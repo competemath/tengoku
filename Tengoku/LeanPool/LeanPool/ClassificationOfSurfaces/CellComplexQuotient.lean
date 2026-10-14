@@ -71,22 +71,30 @@ structure OccurrencePairingValid (K : SurfaceCellComplex) : Prop where
 
 namespace OccurrencePairingValid
 
-/-- A polygonally valid complex has at least one face. -/
+/-- A polygonally valid complex has at least one face.
+@isnad1 id=nonempty.1h1v.s3.cfe1457dfbd9 from=translated src=- shape=58f8d12c vocab=4f3ea936
+-/
 theorem face_nonempty {K : SurfaceCellComplex} (h : K.OccurrencePairingValid) :
     Nonempty K.Face :=
   h.surface_valid.1
 
-/-- Inverse darts in a polygonally valid complex are distinct. -/
+/-- Inverse darts in a polygonally valid complex are distinct.
+@isnad1 id=ne.1h2v.s5.34487968409e from=translated src=- shape=2cfc37c2 vocab=0e78fa19
+-/
 theorem inv_ne {K : SurfaceCellComplex} (h : K.OccurrencePairingValid) (d : K.Dart) :
     K.inv d ≠ d :=
   h.surface_valid.inv_ne d
 
-/-- A non-boundary edge in a valid incidence system occurs exactly twice. -/
+/-- A non-boundary edge in a valid incidence system occurs exactly twice.
+@isnad1 id=occursex.2h2v.s4.48f04b326e95 from=translated src=- shape=48420360 vocab=cbfd6475
+-/
 theorem interior_occurs_twice {K : SurfaceCellComplex} (h : K.OccurrencePairingValid)
     (d : K.Dart) (hd : ¬K.IsBoundaryDart d) : K.OccursExactlyTwice d := by
   exact h.surface_valid.occurs_twice_of_not_boundary hd
 
-/-- Every internal occurrence has a unique distinct partner in its inverse-dart orbit. -/
+/-- Every internal occurrence has a unique distinct partner in its inverse-dart orbit.
+@isnad1 id=existsun.2h2v.s6.c4b68e232553 from=translated src=- shape=76021f05 vocab=dd1fbf89
+-/
 theorem exists_unique_partner {K : SurfaceCellComplex} (h : K.OccurrencePairingValid)
     (source : K.BoundaryOccurrence)
     (hsource : ¬K.IsBoundaryDart (K.occurrenceDart source)) :
@@ -108,7 +116,9 @@ theorem exists_unique_partner {K : SurfaceCellComplex} (h : K.OccurrencePairingV
     · exact htarget₁
     · exact False.elim (htarget.1 (hsource₂.trans htarget₂.symm))
 
-/-- Every internal boundary occurrence is the source of a compatible pairing. -/
+/-- Every internal boundary occurrence is the source of a compatible pairing.
+@isnad1 id=ex.2h2v.s4.8335220e6c5f from=translated src=- shape=ee158e70 vocab=4d6af0b9
+-/
 theorem exists_pairing_source {K : SurfaceCellComplex} (h : K.OccurrencePairingValid)
     (source : K.BoundaryOccurrence)
     (hsource : ¬K.IsBoundaryDart (K.occurrenceDart source)) :
@@ -133,6 +143,9 @@ def edgeName {Edge : Type} : SignedDart Edge → Edge
   | pos e => e
   | neg e => e
 
+/--
+@isnad1 id=eq.0h2v.s3.e3d74bb96b54 from=translated src=- shape=057bed48 vocab=6a715a32
+-/
 @[simp]
 theorem edgeName_flip {Edge : Type} (d : SignedDart Edge) :
     edgeName (flip d) = edgeName d := by
@@ -149,6 +162,9 @@ def wordEdgeOccurrences {Edge : Type} [DecidableEq Edge]
     (word : List (SignedDart Edge)) (e : Edge) : Finset (Fin word.length) :=
   Finset.univ.filter fun i ↦ SignedDart.edgeName (word.get i) = e
 
+/--
+@isnad1 id=iff.0h4v.s6.70b459dfb061 from=translated src=- shape=2d39f901 vocab=365b63a1
+-/
 @[simp]
 theorem mem_wordEdgeOccurrences {Edge : Type} [DecidableEq Edge]
     (word : List (SignedDart Edge)) (e : Edge) (i : Fin word.length) :
@@ -156,7 +172,9 @@ theorem mem_wordEdgeOccurrences {Edge : Type} [DecidableEq Edge]
   simp [wordEdgeOccurrences]
 
 /-- A one-face presentation is incidence-valid when every edge name occurs once or twice, with
-orientation ignored. Boundary status is then derived from the occurrence count. -/
+orientation ignored. Boundary status is then derived from the occurrence count.
+@isnad1 id=issurfac.1h2v.s5.812325a1833a from=translated src=- shape=43f89d55 vocab=7483fa72
+-/
 theorem oneFacePresentation_isSurfaceValid
     {Edge : Type} [Fintype Edge] [DecidableEq Edge]
     (word : List (SignedDart Edge))
@@ -216,7 +234,9 @@ theorem oneFacePresentation_isSurfaceValid
           (orbit_iff k d).mp ho
         simpa [hindices, occurrence_injective.eq_iff] using hk
 
-/-- A nonempty, incidence-valid one-face word supplies polygonal pairing data. -/
+/-- A nonempty, incidence-valid one-face word supplies polygonal pairing data.
+@isnad1 id=occurren.2h2v.s6.57d3ff5f2579 from=translated src=- shape=6e2f9dd6 vocab=9dde2ff7
+-/
 theorem oneFacePresentation_occurrencePairingValid
     {Edge : Type} [Fintype Edge] [DecidableEq Edge]
     (word : List (SignedDart Edge)) (hword : word ≠ [])
@@ -237,16 +257,25 @@ def identification {K : SurfaceCellComplex} (pairing : K.BoundaryPairing) :
   target := K.occurrenceSide pairing.target
   direction := pairing.direction
 
+/--
+@isnad1 id=eq.0h2v.s4.c9d3d2884954 from=translated src=- shape=3e837719 vocab=bd81d071
+-/
 @[simp]
 theorem identification_source {K : SurfaceCellComplex} (pairing : K.BoundaryPairing) :
     pairing.identification.source = K.occurrenceSide pairing.source :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.11ee699d8296 from=translated src=- shape=3e837719 vocab=47e02db6
+-/
 @[simp]
 theorem identification_target {K : SurfaceCellComplex} (pairing : K.BoundaryPairing) :
     pairing.identification.target = K.occurrenceSide pairing.target :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.fb14714620f7 from=translated src=- shape=f94be5bf vocab=49bc28f5
+-/
 @[simp]
 theorem identification_direction {K : SurfaceCellComplex} (pairing : K.BoundaryPairing) :
     pairing.identification.direction = pairing.direction :=
@@ -259,13 +288,18 @@ def polygonalIdentifications (K : SurfaceCellComplex) (_valid : K.OccurrencePair
     Set (PolygonGluing.Identification K.Face K.faceBoundaryLength) :=
   Set.range BoundaryPairing.identification
 
+/--
+@isnad1 id=mem.1h2v.s5.2563b78f4e0e from=translated src=- shape=8190aa40 vocab=d389ca01
+-/
 @[simp]
 theorem pairing_identification_mem {K : SurfaceCellComplex} (valid : K.OccurrencePairingValid)
     (pairing : K.BoundaryPairing) :
     pairing.identification ∈ K.polygonalIdentifications valid :=
   ⟨pairing, rfl⟩
 
-/-- Membership in the polygonal identification set, unpacked into its two boundary occurrences. -/
+/-- Membership in the polygonal identification set, unpacked into its two boundary occurrences.
+@isnad1 id=iff.1h2v.s7.1eee7e34c1d4 from=translated src=- shape=993a904f vocab=7950de40
+-/
 theorem mem_polygonalIdentifications_iff_exists_occurrences
     {K : SurfaceCellComplex} (valid : K.OccurrencePairingValid)
     (identification : PolygonGluing.Identification K.Face K.faceBoundaryLength) :
@@ -309,6 +343,9 @@ def oneFaceOccurrence {Edge : Type} [Fintype Edge]
     (oneFacePresentation Edge word).BoundaryOccurrence :=
   ⟨PUnit.unit, i⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.1e2a056ffbdf from=translated src=- shape=5f1d1d9e vocab=7c0fe2dd
+-/
 @[simp]
 theorem oneFaceOccurrence_dart {Edge : Type} [Fintype Edge]
     (word : List (SignedDart Edge)) (i : Fin word.length) :
@@ -316,7 +353,9 @@ theorem oneFaceOccurrence_dart {Edge : Type} [Fintype Edge]
       word.get i :=
   rfl
 
-/-- For a one-face word, polygonal identifications are exactly compatible pairs of positions. -/
+/-- For a one-face word, polygonal identifications are exactly compatible pairs of positions.
+@isnad1 id=iff.1h3v.s8.1b20c848eb0d from=translated src=- shape=d2f0d233 vocab=67606950
+-/
 theorem oneFace_mem_polygonalIdentifications_iff
     {Edge : Type} [Fintype Edge]
     (word : List (SignedDart Edge))
@@ -377,7 +416,9 @@ theorem oneFace_mem_polygonalIdentifications_iff
         change word.get j = SignedDart.flipEquiv Edge (word.get i)
         exact hcompatible
 
-/-- Two distinct occurrences of the same unoriented dart certify that it is internal. -/
+/-- Two distinct occurrences of the same unoriented dart certify that it is internal.
+@isnad1 id=not.3h4v.s4.eae866f84942 from=translated src=- shape=fe3f7f09 vocab=76fedf44
+-/
 theorem not_isBoundaryDart_of_occurs_at_ne
     {K : SurfaceCellComplex} {d : K.Dart} {source target : K.BoundaryOccurrence}
     (hne : source ≠ target) (hsource : K.Occurs d source) (htarget : K.Occurs d target) :
@@ -394,24 +435,36 @@ def swapIdentification {K : SurfaceCellComplex}
   target := identification.source
   direction := identification.direction
 
+/--
+@isnad1 id=eq.0h2v.s4.4481c8553998 from=translated src=- shape=239a5577 vocab=0467ac32
+-/
 @[simp]
 theorem swapIdentification_source {K : SurfaceCellComplex}
     (identification : PolygonGluing.Identification K.Face K.faceBoundaryLength) :
     (swapIdentification identification).source = identification.target :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.d404df37bfc0 from=translated src=- shape=239a5577 vocab=0467ac32
+-/
 @[simp]
 theorem swapIdentification_target {K : SurfaceCellComplex}
     (identification : PolygonGluing.Identification K.Face K.faceBoundaryLength) :
     (swapIdentification identification).target = identification.source :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.b1fa812a15c4 from=translated src=- shape=9498cf79 vocab=9cd5a00e
+-/
 @[simp]
 theorem swapIdentification_direction {K : SurfaceCellComplex}
     (identification : PolygonGluing.Identification K.Face K.faceBoundaryLength) :
     (swapIdentification identification).direction = identification.direction :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.d853e33495e2 from=translated src=- shape=9c520530 vocab=d4bc1bb9
+-/
 @[simp]
 theorem swapIdentification_swap {K : SurfaceCellComplex}
     (identification : PolygonGluing.Identification K.Face K.faceBoundaryLength) :
@@ -419,6 +472,9 @@ theorem swapIdentification_swap {K : SurfaceCellComplex}
   cases identification
   rfl
 
+/--
+@isnad1 id=mem.2h2v.s5.51c0e08aaf51 from=translated src=- shape=a223d247 vocab=95293240
+-/
 theorem swapIdentification_mem_polygonalIdentifications
     {K : SurfaceCellComplex} (valid : K.OccurrencePairingValid)
     {identification : PolygonGluing.Identification K.Face K.faceBoundaryLength}
@@ -440,7 +496,9 @@ theorem swapIdentification_mem_polygonalIdentifications
       simpa only [K.inv_involutive] using hinv.symm
 
 /-- A positive/negative pair of distinct word positions gives an opposite-direction
-identification. -/
+identification.
+@isnad1 id=mem.4h5v.s7.9811249558e1 from=translated src=- shape=aae76607 vocab=6a71a8ea
+-/
 theorem oppositeDirectionIdentification_mem_of_get_pos_neg
     {Edge : Type} [Fintype Edge]
     (word : List (SignedDart Edge))
@@ -483,7 +541,9 @@ theorem oppositeDirectionIdentification_mem_of_get_pos_neg
     rw [hfirst, hsecond]
     rfl
 
-/-- Under the occurrence-count conditions, every internal side starts an identification. -/
+/-- Under the occurrence-count conditions, every internal side starts an identification.
+@isnad1 id=ex.2h2v.s6.a7500c86b8bf from=translated src=- shape=4e26e7dd vocab=e495da05
+-/
 theorem OccurrencePairingValid.exists_identification_source {K : SurfaceCellComplex}
     (h : K.OccurrencePairingValid) (source : K.BoundaryOccurrence)
     (hsource : ¬K.IsBoundaryDart (K.occurrenceDart source)) :
@@ -511,16 +571,24 @@ def polygonalMk (K : SurfaceCellComplex) (valid : K.OccurrencePairingValid) :
     K.PolygonalPreRealization → K.PolygonalRealization valid :=
   PolygonGluing.mk (K.polygonalIdentifications valid)
 
+/--
+@isnad1 id=continuo.1h1v.s5.6726efc94b1a from=translated src=- shape=8927bd27 vocab=6ff85aa5
+-/
 theorem continuous_polygonalMk (K : SurfaceCellComplex) (valid : K.OccurrencePairingValid) :
     Continuous (K.polygonalMk valid) :=
   PolygonGluing.continuous_mk (K.polygonalIdentifications valid)
 
+/--
+@isnad1 id=isquotie.1h1v.s5.0e711979a59e from=translated src=- shape=8927bd27 vocab=135d2d39
+-/
 theorem isQuotientMap_polygonalMk (K : SurfaceCellComplex)
     (valid : K.OccurrencePairingValid) :
     _root_.Topology.IsQuotientMap (K.polygonalMk valid) :=
   PolygonGluing.isQuotientMap_mk (K.polygonalIdentifications valid)
 
-/-- A compatible occurrence pairing identifies its side points in the polygonal quotient. -/
+/-- A compatible occurrence pairing identifies its side points in the polygonal quotient.
+@isnad1 id=eq.1h3v.s7.7e8522e42dca from=translated src=- shape=5cd07440 vocab=7efe47a3
+-/
 theorem polygonalMk_pairing_eq {K : SurfaceCellComplex} (valid : K.OccurrencePairingValid)
     (pairing : K.BoundaryPairing) (t : unitInterval) :
     K.polygonalMk valid (pairing.identification.source.point t) =
@@ -539,33 +607,49 @@ def spherePositiveOccurrence : sphere.BoundaryOccurrence :=
 def sphereNegativeOccurrence : sphere.BoundaryOccurrence :=
   ⟨true, ⟨0, by simp [sphere]⟩⟩
 
+/--
+@isnad1 id=eq.0h0v.s3.5e9b83713e0a from=translated src=- shape=f1feb7d2 vocab=db485aec
+-/
 @[simp]
 theorem spherePositiveOccurrence_dart :
     sphere.occurrenceDart spherePositiveOccurrence = SignedDart.pos PUnit.unit := by
   simp [occurrenceDart, BoundaryOccurrence.dart, spherePositiveOccurrence, sphere]
 
+/--
+@isnad1 id=eq.0h0v.s3.6d0fa7d07a22 from=translated src=- shape=f1feb7d2 vocab=cd92bfde
+-/
 @[simp]
 theorem sphereNegativeOccurrence_dart :
     sphere.occurrenceDart sphereNegativeOccurrence = SignedDart.neg PUnit.unit := by
   simp [occurrenceDart, BoundaryOccurrence.dart, sphereNegativeOccurrence, sphere]
 
+/--
+@isnad1 id=eq.0h1v.s5.dd2e9ccff8da from=translated src=- shape=80c3ec02 vocab=1184cd2b
+-/
 @[simp]
 theorem sphere_inv_pos (e : PUnit) :
     sphere.inv (SignedDart.pos e) = SignedDart.neg e :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.86b9e5b6bda4 from=translated src=- shape=80c3ec02 vocab=1184cd2b
+-/
 @[simp]
 theorem sphere_inv_neg (e : PUnit) :
     sphere.inv (SignedDart.neg e) = SignedDart.pos e :=
   rfl
 
-/-- The two-monogon sphere satisfies the occurrence-level pairing conditions. -/
+/-- The two-monogon sphere satisfies the occurrence-level pairing conditions.
+@isnad1 id=occurren.0h0v.s1.f3a5d29a3acf from=translated src=- shape=49959d42 vocab=0f20f474
+-/
 theorem sphere_occurrencePairingValid : sphere.OccurrencePairingValid := by
   refine ⟨sphere_isSurfaceValid, ?_⟩
   intro f
   cases f <;> simp [faceBoundaryLength, sphere]
 
-/-- Neither oriented representative of the sphere edge is a boundary dart. -/
+/-- Neither oriented representative of the sphere edge is a boundary dart.
+@isnad1 id=not.0h1v.s2.70e0b5d61785 from=translated src=- shape=17bc9619 vocab=108f3543
+-/
 theorem sphere_not_isBoundaryDart (d : sphere.Dart) : ¬sphere.IsBoundaryDart d := by
   rintro ⟨o, _ho, hunique⟩
   have hpositive : sphere.Occurs d spherePositiveOccurrence := by
@@ -597,6 +681,9 @@ def sphereBoundaryPairing : sphere.BoundaryPairing where
   direction := .opposite
   compatible := rfl
 
+/--
+@isnad1 id=mem.0h0v.s4.43567c7231e7 from=translated src=- shape=685fe59b vocab=73e6623f
+-/
 theorem sphereBoundaryPairing_mem :
     sphereBoundaryPairing.identification ∈
       sphere.polygonalIdentifications sphere_occurrencePairingValid :=

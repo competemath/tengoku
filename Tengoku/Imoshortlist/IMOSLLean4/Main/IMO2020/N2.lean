@@ -34,7 +34,9 @@ def RGraph (R) [CommRing R] : SimpleGraph R where
   symm := ⟨λ _ _ h ↦ ⟨h.1.symm, h.2.symm⟩⟩
   loopless := ⟨λ _ h ↦ h.1 rfl⟩
 
-/-- An unordered pair is an edge of `G_R` if and only if it has the form `(x^2 + 1, x)`. -/
+/-- An unordered pair is an edge of `G_R` if and only if it has the form `(x^2 + 1, x)`.
+@isnad1 id=iff.0h2v.s7.3d818a4ca88c from=translated src=- shape=f257fbd3 vocab=11ec81ef
+-/
 theorem mem_edgeSet_RGraph_iff [CommRing R] :
     e ∈ (RGraph R).edgeSet ↔ ∃ x, x ^ 2 + 1 ≠ x ∧ e = s(x^2 + 1, x) := by
   refine ⟨λ h ↦ ?_, λ h ↦ ?_⟩
@@ -52,7 +54,9 @@ section
 variable [CommRing R] [Fintype R] [DecidableEq R]
 
 /-- The number of edges of `G_R` is less than or equal to
-  the number of `x ∈ R` with `x^2 + 1 ≠ x`. -/
+  the number of `x ∈ R` with `x^2 + 1 ≠ x`.
+@isnad1 id=le.0h1v.s7.5de0826991c7 from=translated src=- shape=297a596b vocab=8274fea0
+-/
 theorem card_RGraph_le : Nat.card (RGraph R).edgeSet ≤ #{x : R | x ^ 2 + 1 ≠ x} := by
   ---- Consider `f : {x : x^2 + 1 ≠ x} ↦ E(G_R)` defined by `f(x) = (x^2 + 1, x)`.
   let f (x : ({x : R | x ^ 2 + 1 ≠ x} : Finset R)) : (RGraph R).edgeSet :=
@@ -69,7 +73,9 @@ theorem card_RGraph_le : Nat.card (RGraph R).edgeSet ≤ #{x : R | x ^ 2 + 1 ≠
       Nat.card_le_card_of_surjective f hf
     _ = #{x : R | x ^ 2 + 1 ≠ x} := Nat.card_eq_finsetCard _
 
-/-- If `x^2 + 1 = x` for some `x ∈ R` with `2x ≠ 1`, then `G_R` is disconnected. -/
+/-- If `x^2 + 1 = x` for some `x ∈ R` with `2x ≠ 1`, then `G_R` is disconnected.
+@isnad1 id=not.2h2v.s6.440da13a3a81 from=translated src=- shape=b8637170 vocab=6bb624ae
+-/
 theorem RGraph_disconnected_of_cyclotomic3_has_root
     {x : R} (hx : x ^ 2 + 1 = x) (hx0 : 2 * x ≠ 1) : ¬(RGraph R).Connected := by
   ---- It suffices to show that `G_R` has less than `|R| - 1` edges.
@@ -92,7 +98,9 @@ theorem RGraph_disconnected_of_cyclotomic3_has_root
     _ ≤ #(univ : Finset R) := card_le_card (subset_univ _)
     _ = Nat.card R := by rw [card_univ, Fintype.card_eq_nat_card]
 
-/-- There exists infinitely many primes `p` such that `x^2 + 1 = x` for some `x ∈ 𝔽_p`. -/
+/-- There exists infinitely many primes `p` such that `x^2 + 1 = x` for some `x ∈ 𝔽_p`.
+@isnad1 id=ex.0h1v.s6.eb985c6f2af2 from=translated src=- shape=6e04337c vocab=cbc516e8
+-/
 theorem exists_infinite_prime_cyclotomic3_has_root (N) :
     ∃ p > N, Nat.Prime p ∧ ∃ x : ZMod p, x ^ 2 + 1 = x := by
   /- We take `p` to be the minimal prime factor of `M^2 + 1 - M`, where `M = 2N!`.
@@ -121,7 +129,9 @@ theorem exists_infinite_prime_cyclotomic3_has_root (N) :
     rwa [← Nat.cast_pow, ← Nat.cast_add_one, ← sub_eq_zero,
       ← Nat.cast_sub hM0, ZMod.natCast_eq_zero_iff]
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.0h1v.s4.aeb5f55cb58b from=translated src=- shape=e9afcb08 vocab=7718570c
+-/
 theorem final_solution (N) : ∃ p > N, Nat.Prime p ∧ ¬(RGraph (ZMod p)).Connected := by
   ---- Choose a prime `p > max{N, 3}` such that `x^2 + 1 = x` for some `x ∈ 𝔽_p`.
   obtain ⟨p, hpN, hp, ⟨x, hx⟩⟩ : ∃ p > max N 3, Nat.Prime p ∧ ∃ x : ZMod p, x ^ 2 + 1 = x :=

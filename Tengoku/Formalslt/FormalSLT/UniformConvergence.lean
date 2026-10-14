@@ -16,6 +16,7 @@ This theorem deliberately abstracts away probability: once empirical and
 population risks are uniformly within `ε`, any empirical-risk minimizer is
 within `2ε` of any comparator's population risk. Stochastic finite-class
 uniform convergence should remain a separate governed claim.
+@isnad1 id=le.2h6v.s6.6c27ecbd5af1 from=translated src=- shape=ff426847 vocab=582e1c17
 -/
 theorem epsilonRepresentativeERMWorks
     {H : Type*} {risk empiricalRisk : H → ℝ} {ε : ℝ}
@@ -40,6 +41,7 @@ This theorem is intentionally scoped: it starts from a pointwise tail bound for
 each hypothesis and proves the simultaneous bad-event bound by the finite
 measure union bound. It does not encode iid sampling, bounded losses, the
 Hoeffding step, or the closed-form `sqrt(log |H| / n)` rearrangement.
+@isnad1 id=le.1h5v.s6.24fd5b03b827 from=translated src=- shape=6655e28e vocab=3f955e2d
 -/
 theorem finiteClassUniformDeviationUnionBound
     {Ω H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [Fintype H]
@@ -60,6 +62,7 @@ failure budget.
 
 If each hypothesis receives budget `δ / card(H)`, then the simultaneous
 finite-class bad event has mass at most `δ`.
+@isnad1 id=le.1h5v.s6.667999f3eb7a from=translated src=- shape=58fa31bc vocab=db07a4a8
 -/
 theorem finiteClassUniformDeviationUnionBound_cardInv
     {Ω H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [Fintype H] [Nonempty H]
@@ -78,6 +81,7 @@ claim: pointwise two-sided deviation tails imply a simultaneous finite-class
 bad-event bound. It still does not formalize iid bounded losses, the
 Hoeffding step that supplies the pointwise tail, or the closed-form
 sample-complexity rearrangement.
+@isnad1 id=le.1h6v.s6.de669780f0f6 from=translated src=- shape=25500603 vocab=4998cd2e
 -/
 theorem finiteClassTwoSidedUniformDeviationUnionBound
     {Ω H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [Fintype H]
@@ -91,6 +95,7 @@ theorem finiteClassTwoSidedUniformDeviationUnionBound
 /--
 Finite-class two-sided uniform-deviation union-bound bridge with the total
 failure budget split equally across hypotheses.
+@isnad1 id=le.1h6v.s7.0471140033ba from=translated src=- shape=fb975816 vocab=b9f76991
 -/
 theorem finiteClassTwoSidedUniformDeviationUnionBound_cardInv
     {Ω H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [Fintype H] [Nonempty H]
@@ -106,6 +111,7 @@ theorem finiteClassTwoSidedUniformDeviationUnionBound_cardInv
 /--
 Finite time-horizon and finite-class union bound with the target budget split
 across all `(time, hypothesis)` pairs.
+@isnad1 id=le.1h6v.s7.3c523bc6c47f from=translated src=- shape=ec2ec5eb vocab=c0e2da29
 -/
 theorem finiteTimeClassUnionBound_cardInv
     {Ω Time H : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
@@ -124,6 +130,7 @@ Finite time-horizon and finite-class absolute-deviation bridge.
 This is the finite-horizon probability shell for later anytime-valid
 finite-class statements: pointwise tails over every `(time, hypothesis)` pair
 imply a simultaneous bound over all pairs.
+@isnad1 id=le.1h7v.s7.3c81d1080f0f from=translated src=- shape=ff17e0d7 vocab=fbd8dc51
 -/
 theorem finiteTimeClassTwoSidedUniformDeviationUnionBound_cardInv
     {Ω Time H : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
@@ -143,6 +150,7 @@ sequence.
 
 At each time `t`, the hypotheses share the budget `timeBudget t`; the finite
 time budgets then sum to the total failure budget `δ`.
+@isnad1 id=le.2h7v.s7.931864c768d5 from=translated src=- shape=65aa9a1c vocab=feaad171
 -/
 theorem finiteTimeClassUnionBound_timeBudget
     {Ω Time H : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
@@ -168,6 +176,7 @@ theorem finiteTimeClassUnionBound_timeBudget
 /--
 Finite time-horizon and finite-class absolute-deviation bridge with a supplied
 time-budget sequence.
+@isnad1 id=le.2h8v.s7.58c98f208004 from=translated src=- shape=d89896ba vocab=d813b79c
 -/
 theorem finiteTimeClassTwoSidedUniformDeviationUnionBound_timeBudget
     {Ω Time H : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
@@ -192,6 +201,7 @@ time budgets and a threshold depending on `(time, hypothesis)`.
 This is the event-shaped variant needed before anytime-valid finite-class
 statements: a dyadic schedule naturally gives each time its own displayed
 radius, not one common `ε` for the whole finite prefix.
+@isnad1 id=le.2h8v.s7.5101ea2fc89e from=translated src=- shape=bd81de4a vocab=d813b79c
 -/
 theorem finiteTimeClassTwoSidedUniformDeviationUnionBound_timeBudget_threshold
     {Ω Time H : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
@@ -220,7 +230,9 @@ all natural times is exactly `δ`, and every finite prefix is bounded by `δ`.
 def finiteDyadicTimeBudget (δ : ℝ≥0∞) (t : ℕ) : ℝ≥0∞ :=
   δ * (2 : ℝ≥0∞) ^ (-1 - (t : ℤ))
 
-/-- A finite prefix of the dyadic time-budget schedule is bounded by `δ`. -/
+/-- A finite prefix of the dyadic time-budget schedule is bounded by `δ`.
+@isnad1 id=le.0h2v.s4.babcb26de457 from=translated src=- shape=96ada212 vocab=2e2898d3
+-/
 theorem finiteDyadicTimeBudget_sum_fin_le (n : ℕ) (δ : ℝ≥0∞) :
     (∑ t : Fin n, finiteDyadicTimeBudget δ t.val) ≤ δ := by
   calc
@@ -236,7 +248,9 @@ theorem finiteDyadicTimeBudget_sum_fin_le (n : ℕ) (δ : ℝ≥0∞) :
       simp_rw [finiteDyadicTimeBudget]
       rw [ENNReal.tsum_mul_left, ENNReal.tsum_two_zpow_neg_add_one, mul_one]
 
-/-- The full dyadic time-budget schedule is summable with total at most `δ`. -/
+/-- The full dyadic time-budget schedule is summable with total at most `δ`.
+@isnad1 id=le.0h1v.s4.86711a745661 from=translated src=- shape=be5639f3 vocab=23fc260d
+-/
 theorem finiteDyadicTimeBudget_tsum_le (δ : ℝ≥0∞) :
     (∑' t : ℕ, finiteDyadicTimeBudget δ t) ≤ δ := by
   calc
@@ -252,6 +266,7 @@ sequence.
 At each natural time `t`, the finite hypothesis class shares `timeBudget t`.
 If the infinite time-budget sum is bounded by `δ`, the bad event over all
 `(t, h)` has mass at most `δ`.
+@isnad1 id=le.2h6v.s7.af9fc027ee8c from=translated src=- shape=eeac8707 vocab=a8f98be5
 -/
 theorem countableTimeClassUnionBound_timeBudget
     {Ω H : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
@@ -278,6 +293,7 @@ theorem countableTimeClassUnionBound_timeBudget
 
 /--
 Countable-time and finite-class union bound using the standard dyadic schedule.
+@isnad1 id=le.1h5v.s6.b449fc0e1d55 from=translated src=- shape=159be2c0 vocab=6930d46c
 -/
 theorem countableTimeClassUnionBound_dyadicBudget
     {Ω H : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
@@ -299,6 +315,7 @@ time-varying thresholds.
 
 This is the reusable anytime shell behind the route-facing finite-class
 Hoeffding theorem: each natural time can carry its own confidence radius.
+@isnad1 id=le.1h6v.s7.a378d288d075 from=translated src=- shape=1dd7d41b vocab=8d3dc038
 -/
 theorem countableTimeClassTwoSidedUniformDeviationUnionBound_dyadicBudget_threshold
     {Ω H : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
@@ -314,7 +331,9 @@ theorem countableTimeClassTwoSidedUniformDeviationUnionBound_dyadicBudget_thresh
     (fun t h => {ω | threshold t h ≤ |deviation t h ω|})
     hPointwiseTail
 
-/-- Rewrite a countable time-class union as an existential event. -/
+/-- Rewrite a countable time-class union as an existential event.
+@isnad1 id=eq.0h3v.s5.2afcb56acfe5 from=translated src=- shape=66f9a429 vocab=b30931b1
+-/
 theorem countableTimeClass_iUnion_eq_exists
     {Ω H : Type*} (event : ℕ → H → Set Ω) :
     (⋃ p : ℕ × H, event p.1 p.2) =
@@ -338,6 +357,7 @@ def zeroOneDyadicFiniteClassConfidenceRadius {H : Type*} [Fintype H]
 /--
 Failure of the all-times/all-hypotheses strict confidence event is exactly the
 existential crossing event used by the probability bound.
+@isnad1 id=eq.0h4v.s6.7686babda4a3 from=translated src=- shape=482d98bf vocab=23ba5814
 -/
 theorem countableTimeClass_not_forall_lt_eq_exists_ge
     {Ω H : Type*} (deviation : ℕ → H → Ω → ℝ)
@@ -352,6 +372,7 @@ Finite-prefix dyadic schedule for time-horizon and finite-class union bounds.
 
 This wrapper removes the need to supply a finite-sum certificate: the time
 budgets are fixed to `δ * 2^(-1-t)` over `Fin n`.
+@isnad1 id=le.1h6v.s7.481adea35a88 from=translated src=- shape=e3b6a424 vocab=c523401b
 -/
 theorem finiteTimeClassUnionBound_dyadicBudget
     {Ω H : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
@@ -369,6 +390,7 @@ theorem finiteTimeClassUnionBound_dyadicBudget
 
 /--
 Finite-prefix dyadic schedule for finite-class absolute-deviation events.
+@isnad1 id=le.1h7v.s7.155796e53b35 from=translated src=- shape=54d67360 vocab=a4d08f50
 -/
 theorem finiteTimeClassTwoSidedUniformDeviationUnionBound_dyadicBudget
     {Ω H : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
@@ -387,6 +409,7 @@ Finite-prefix dyadic schedule for finite-class absolute-deviation events with
 a threshold depending on `(time, hypothesis)`.
 
 This is the finite-prefix union shell used by time-varying confidence radii.
+@isnad1 id=le.1h7v.s7.07d7f2a3907f from=translated src=- shape=e10b562e vocab=a4d08f50
 -/
 theorem finiteTimeClassTwoSidedUniformDeviationUnionBound_dyadicBudget_threshold
     {Ω H : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
@@ -408,6 +431,7 @@ Two-sided absolute-deviation tail bound from one-sided upper and lower tails.
 This is the missing formal adapter between one-sided Hoeffding-style
 concentration facts and the absolute-deviation events used by uniform
 convergence statements.
+@isnad1 id=le.2h6v.s6.517e9bc9a16a from=translated src=- shape=a6c04985 vocab=889785a8
 -/
 theorem twoSidedDeviationTailFromOneSidedTails
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
@@ -438,6 +462,7 @@ one-sided upper and lower pointwise tails.
 
 This is a direct finite-horizon bridge from one-sided concentration inputs to a
 simultaneous finite-class event over all `(time, hypothesis)` pairs.
+@isnad1 id=le.3h9v.s7.4a9b8e62cb91 from=translated src=- shape=b5017f3e vocab=52cf71ac
 -/
 theorem finiteTimeClassTwoSidedUnionBoundFromOneSidedTails_dyadicBudget
     {Ω H : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
@@ -468,6 +493,7 @@ This is still intentionally scoped. It proves the probability-combinatorics
 part of finite-class uniform convergence once each hypothesis has matching
 upper and lower one-sided deviation tails. It does not formalize iid sampling,
 bounded empirical losses, or the closed-form `sqrt(log |H| / n)` rearrangement.
+@isnad1 id=le.2h6v.s7.38b4169cc2a9 from=translated src=- shape=69c2b7da vocab=9e22ed3d
 -/
 theorem finiteClassUniformDeviationUnionBoundFromOneSidedTails
     {Ω H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [Fintype H]
@@ -492,6 +518,7 @@ one-sided pointwise tail bounds for the true-risk/empirical-risk deviation
 imply a simultaneous absolute-deviation failure bound over the finite class.
 It still does not formalize iid samples, bounded losses, or the closed-form
 sample-complexity rearrangement.
+@isnad1 id=le.2h7v.s7.e1d187705c9c from=translated src=- shape=528ad4a7 vocab=cc8489c4
 -/
 theorem finiteClassEpsilonRepresentativeFailureBoundFromOneSidedTails
     {Ω H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [Fintype H]
@@ -516,6 +543,7 @@ If the paired one-sided pointwise tails are small enough that the finite-class
 union-bound expression is at most `δ`, then the simultaneous
 epsilon-representative failure event has measure at most `δ`. This isolates the
 last probability step before any closed-form sample-complexity algebra.
+@isnad1 id=le.3h8v.s7.70d5a66ff5b6 from=translated src=- shape=ac8007eb vocab=cc8489c4
 -/
 theorem finiteClassEpsilonRepresentativeHighProbabilityFromOneSidedTails
     {Ω H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [Fintype H]
@@ -536,6 +564,7 @@ theorem finiteClassEpsilonRepresentativeHighProbabilityFromOneSidedTails
 Convert a probability event bound stated with `μ.real` into an `ENNReal` event
 bound. Mathlib concentration inequalities often return real-valued probability
 bounds, while measure-union statements consume `ℝ≥0∞` bounds.
+@isnad1 id=le.1h4v.s5.af70333934c4 from=translated src=- shape=e9828a51 vocab=bddf47d0
 -/
 theorem probabilityMeasureEventLeOfRealLe
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -554,6 +583,7 @@ one-sided tail bound for the true-risk minus empirical-risk average. The theorem
 keeps the ordinary true-risk sum and makes the expectation-negation step
 explicit. The normalizer is tied to the finite sample size by `hSampleSize`;
 iid sampling and the finite-class union bound remain separate declarations.
+@isnad1 id=le.8h10v.s8.c99a95e1a305 from=translated src=- shape=5621a14b vocab=ba3719ea
 -/
 theorem fixedHypothesisEmpiricalAverageUpperTailFromHoeffding
     {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -652,6 +682,7 @@ for one fixed hypothesis, a finite independent family of bounded losses gives a
 one-sided tail bound for the empirical-risk average above the true-risk
 average. Together, the two wrappers supply the paired pointwise tails consumed
 by the finite-class uniform-convergence bridge.
+@isnad1 id=le.7h10v.s8.3946144c1c26 from=translated src=- shape=3907981b vocab=ba3719ea
 -/
 theorem fixedHypothesisEmpiricalAverageLowerTailFromHoeffding
     {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -719,6 +750,7 @@ theorem fixedHypothesisEmpiricalAverageLowerTailFromHoeffding
 
 This adapter lets the real-valued Hoeffding wrapper feed directly into the
 finite-class union-bound bridge, whose event probabilities live in `ℝ≥0∞`.
+@isnad1 id=le.8h10v.s8.3e7ccddfa77e from=translated src=- shape=9616bca7 vocab=7e925d8c
 -/
 theorem fixedHypothesisEmpiricalAverageUpperTailFromHoeffdingENNReal
     {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -745,6 +777,7 @@ theorem fixedHypothesisEmpiricalAverageUpperTailFromHoeffdingENNReal
 
 Together with the upper-tail adapter, this supplies the measure-valued
 one-hypothesis facts consumed by finite-class uniform-convergence bridges.
+@isnad1 id=le.7h10v.s8.5137afea6597 from=translated src=- shape=30884d3d vocab=7e925d8c
 -/
 theorem fixedHypothesisEmpiricalAverageLowerTailFromHoeffdingENNReal
     {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -796,6 +829,7 @@ def empiricalAverageLowerHoeffdingTail {ι : Type*}
 The fixed-hypothesis upper and lower Hoeffding tail budgets have the same
 closed form. The upper-tail wrapper applies Hoeffding to negated losses, so its
 range term is written as `(-a)-(-b)`; this lemma normalizes that expression.
+@isnad1 id=eq.0h6v.s5.f9eaad658073 from=translated src=- shape=7abb8819 vocab=d9da7544
 -/
 theorem empiricalAverageUpperHoeffdingTail_eq_lower {ι : Type*}
     (s : Finset ι) (a b : ι → ℝ) (sampleSize ε : ℝ) :
@@ -840,6 +874,7 @@ def empiricalAverageUniformRangeTwoSidedHoeffdingSampleSizeTail
 
 /--
 The range-proxy Hoeffding budget specializes to the usual sample-size display.
+@isnad1 id=eq.2h3v.s6.b5177ded62a5 from=translated src=- shape=aed54854 vocab=493651cd
 -/
 theorem empiricalAverageUniformRangeTwoSidedHoeffdingTail_eq_sampleSizeTail
     {sampleSize ε : ℝ} {R : ℝ≥0}
@@ -862,6 +897,7 @@ This is the algebraic inversion hook for later sample-complexity statements:
 once the exponent satisfies
 `log 2 - 2 * sampleSize * ε^2 / R^2 <= log target`, the displayed
 two-sided tail is bounded by `target`.
+@isnad1 id=le.2h4v.s6.c2a1d8348442 from=translated src=- shape=628a6085 vocab=3567d98e
 -/
 theorem empiricalAverageUniformRangeTwoSidedHoeffdingSampleSizeTail_le_of_logBudget
     {sampleSize ε target : ℝ} {R : ℝ≥0}
@@ -895,6 +931,7 @@ For unit-range losses, the radius
 `sqrt((log 2 - log target) / (2 * sampleSize))` is exactly the inversion of the
 two-sided Hoeffding display. The nonpositive log-budget case is harmless: the
 radius is then zero and the tail bound is already at most `target`.
+@isnad1 id=le.2h2v.s6.fde23e4f9cc7 from=translated src=- shape=716d7b57 vocab=7c21b0be
 -/
 theorem empiricalAverageUniformRangeTwoSidedHoeffdingSampleSizeTail_le_of_explicitRadius
     {sampleSize target : ℝ}
@@ -964,6 +1001,7 @@ This is the user-facing algebraic form of
 if the sample size clears the usual
 `R^2 / (2 * ε^2) * (log 2 - log target)` threshold, then the displayed
 two-sided Hoeffding tail is at most `target`.
+@isnad1 id=le.4h4v.s7.2c6e73d03808 from=translated src=- shape=247a01bd vocab=3567d98e
 -/
 theorem empiricalAverageUniformRangeTwoSidedHoeffdingSampleSizeTail_le_of_sampleSize_ge
     {sampleSize ε target : ℝ} {R : ℝ≥0}
@@ -1016,6 +1054,7 @@ the supplied range proxy.
 
 This is the algebraic bridge that discharges the `hRangeEnvelope` hypothesis in
 uniform-range wrappers, except for the degenerate zero-range case.
+@isnad1 id=le.2h7v.s7.d041e84c07ac from=translated src=- shape=1d371744 vocab=10c5cfdc
 -/
 theorem empiricalAverageTwoSidedHoeffdingTail_le_uniformRangeTwoSidedHoeffdingTail
     {ι : Type*} (s : Finset ι) (a b : ι → ℝ)
@@ -1059,6 +1098,7 @@ Finite-sum range envelope from a pointwise uniform range bound.
 
 If every sample coordinate has half-range at most `R / 2`, then the concrete
 Hoeffding denominator sum is bounded by `card(s) * (R / 2)^2`.
+@isnad1 id=le.1h5v.s7.47470f73f058 from=translated src=- shape=3b06cbcb vocab=098df084
 -/
 theorem empiricalAverageRangeSum_le_card_mul_uniformRange
     {ι : Type*} (s : Finset ι) (a b : ι → ℝ) {R : ℝ≥0}
@@ -1084,6 +1124,7 @@ theorem empiricalAverageRangeSum_le_card_mul_uniformRange
 /--
 The concrete Hoeffding denominator is positive once one sampled coordinate has
 positive range.
+@isnad1 id=lt.1h4v.s7.19d86616d3bf from=translated src=- shape=921db2d9 vocab=07f474b1
 -/
 theorem empiricalAverageRangeSum_pos_of_exists_range_pos
     {ι : Type*} (s : Finset ι) (a b : ι → ℝ)
@@ -1109,6 +1150,7 @@ Uniform-range tail bridge from a pointwise range-width condition.
 This combines `empiricalAverageRangeSum_le_card_mul_uniformRange` with the
 algebraic uniform-range tail comparison. The positive concrete range-sum
 assumption excludes the degenerate denominator-zero case.
+@isnad1 id=le.3h8v.s7.5f2a5e0a37f2 from=translated src=- shape=3c06e45c vocab=66d2136e
 -/
 theorem empiricalAverageTwoSidedHoeffdingTail_le_uniformRangeTwoSidedHoeffdingTail_of_rangeBound
     {ι : Type*} (s : Finset ι) (a b : ι → ℝ)
@@ -1133,6 +1175,7 @@ nondegenerate sampled coordinate.
 This packages the positivity side condition of
 `empiricalAverageTwoSidedHoeffdingTail_le_uniformRangeTwoSidedHoeffdingTail_of_rangeBound`
 as the more checkable claim that one sampled coordinate has positive range.
+@isnad1 id=le.3h8v.s7.f77479a42262 from=translated src=- shape=436502fb vocab=e8aeb041
 -/
 theorem empiricalAverageTwoSidedHoeffdingTail_le_uniformRangeTwoSidedHoeffdingTail_of_rangeBound_of_exists_range_pos
     {ι : Type*} (s : Finset ι) (a b : ι → ℝ)
@@ -1163,6 +1206,7 @@ in the finite horizon.
 This is still a finite-prefix theorem. It does not optimize the threshold,
 derive a closed-form sample-complexity display, or assert an infinite-time
 claim.
+@isnad1 id=le.9h13v.s9.c188fb0d0183 from=translated src=- shape=bc28749f vocab=7f96c96f
 -/
 theorem finiteTimeClassEmpiricalAverageDeviationFromHoeffding_dyadicBudget
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -1254,6 +1298,7 @@ This specialization keeps one finite sample index set and one sample size across
 all times and hypotheses, while still allowing the bounded loss family and risk
 to depend on `(t, h)`. It is the cleaner finite-class SLT-facing wrapper over
 `finiteTimeClassEmpiricalAverageDeviationFromHoeffding_dyadicBudget`.
+@isnad1 id=le.9h13v.s9.505577c0c621 from=translated src=- shape=3b185edf vocab=7f96c96f
 -/
 theorem finiteTimeClassSharedSampleEmpiricalAverageDeviationFromHoeffding_dyadicBudget
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -1310,6 +1355,7 @@ This is a closed-budget corollary of
 Instead of asking callers to separately budget the upper and lower one-sided
 Hoeffding tails, it uses the combined expression
 `empiricalAverageTwoSidedHoeffdingTail`.
+@isnad1 id=le.9h13v.s8.fa1e1af21912 from=translated src=- shape=ffc25f7a vocab=06124aba
 -/
 theorem finiteTimeClassSharedSampleEmpiricalAverageDeviationFromHoeffding_twoSidedTailBudget
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -1375,6 +1421,7 @@ uniform proxy. The hypothesis `hRangeEnvelope` is the explicit bridge obligation
 the concrete two-sided Hoeffding tail for each `(time, hypothesis)` must be
 bounded by the uniform-range budget. The result then only asks the caller to
 budget that uniform expression against the dyadic time schedule.
+@isnad1 id=le.10h14v.s9.fb2f8274d3a9 from=translated src=- shape=12af5e4b vocab=f477525b
 -/
 theorem finiteTimeClassSharedSampleEmpiricalAverageDeviationFromHoeffding_uniformRangeBudget
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -1437,6 +1484,7 @@ This is the closed-form range-envelope version of
 The concrete finite range-sum remains required to be positive for each
 `(time, hypothesis)` pair, while the upper envelope is the single proxy
 `card(s) * (R / 2)^2`.
+@isnad1 id=le.12h15v.s9.4ab1d415db7b from=translated src=- shape=7ca55a01 vocab=659d05dc
 -/
 theorem finiteTimeClassSharedSampleEmpiricalAverageDeviationFromHoeffding_uniformRangeBudget_of_rangeBound
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -1503,6 +1551,7 @@ a nondegenerate sampled coordinate.
 This is the range-bound wrapper with the positive denominator supplied by the
 more concrete condition that each `(time, hypothesis)` pair has some sampled
 coordinate with positive range.
+@isnad1 id=le.12h15v.s9.428364aa5ee4 from=translated src=- shape=47371e20 vocab=659d05dc
 -/
 theorem finiteTimeClassSharedSampleEmpiricalAverageDeviationFromHoeffding_uniformRangeBudget_of_rangeBound_of_exists_range_pos
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -1568,6 +1617,7 @@ failure budget condition
 `2 * exp(-2 * sampleSize * ε^2 / R^2) <= budget(t) / card(H)`. The theorem
 then routes that readable budget through the nondegenerate uniform-range
 Hoeffding wrapper.
+@isnad1 id=le.12h14v.s9.29316ef8fded from=translated src=- shape=0452044a vocab=1186d0ac
 -/
 theorem finiteTimeClassSharedSampleEmpiricalAverageDeviationFromHoeffding_sampleSize
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -1640,6 +1690,7 @@ This is the variable-radius version of
 It discharges the pointwise absolute-deviation tails from the fixed-hypothesis
 Hoeffding wrappers, then feeds the resulting per-time thresholds through the
 dyadic finite-prefix union shell.
+@isnad1 id=le.12h14v.s9.cddc74636aac from=translated src=- shape=9ce802ed vocab=1186d0ac
 -/
 theorem finiteTimeClassSharedSampleEmpiricalAverageDeviationFromHoeffding_sampleSize_threshold
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -1802,6 +1853,7 @@ The theorem separates real-valued algebra from the `ENNReal` probability
 budget: each `(time, hypothesis)` receives a positive real budget whose
 `ENNReal.ofReal` value is below the dyadic budget split. A log-budget inequality
 then implies the displayed sample-size Hoeffding tail fits that real budget.
+@isnad1 id=le.14h15v.s9.396608bea9e8 from=translated src=- shape=97982738 vocab=de756d05
 -/
 theorem finiteTimeClassSharedSampleEmpiricalAverageDeviationFromHoeffding_sampleSize_from_logBudget
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -1874,6 +1926,7 @@ This packages the usual displayed finite-class sample-size condition: for each
 `(time, hypothesis)` real budget, it is enough that
 `sampleSize >= R^2 / (2 * ε^2) * (log 2 - log realBudget)`, together with the
 comparison from that real budget into the dyadic `ENNReal` budget split.
+@isnad1 id=le.14h15v.s9.3de090bbdfa8 from=translated src=- shape=5beaf98d vocab=de756d05
 -/
 theorem finiteTimeClassSharedSampleEmpiricalAverageDeviationFromHoeffding_sampleSize_ge
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -1947,6 +2000,7 @@ time-budget split.
 
 This isolates the `ofReal`/integer-power algebra used by the dyadic
 sample-size wrappers.
+@isnad1 id=eq.1h3v.s6.f51648a5572d from=translated src=- shape=fdc5fd43 vocab=ba32b544
 -/
 theorem finiteDyadicRealBudget_classBudget_ofReal
     {H : Type*} [Fintype H] [Nonempty H]
@@ -2004,6 +2058,7 @@ This removes the caller-supplied `realBudget` comparison from
 each `(time, hypothesis)` pair receives the concrete real budget
 `δ * 2^(-1-t) / card(H)`, and Lean checks that its `ENNReal.ofReal` image fits
 the dyadic time/class split.
+@isnad1 id=le.13h14v.s9.87fb733565df from=translated src=- shape=a5807b6a vocab=6b014723
 -/
 theorem finiteTimeClassSharedSampleEmpiricalAverageDeviationFromHoeffding_sampleSize_dyadicRealBudget
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -2126,6 +2181,7 @@ sample-size lower bound used by
 `empiricalAverageUniformRangeTwoSidedHoeffdingSampleSizeTail_le_of_sampleSize_ge`
 holds. When the log-budget term is nonpositive, the lower bound is immediate;
 otherwise the result follows by squaring the displayed radius inequality.
+@isnad1 id=le.3h4v.s7.454655ee936e from=translated src=- shape=6ff7cfcd vocab=17a66278
 -/
 theorem empiricalAverageUniformRangeSampleSize_ge_of_sqrtBudget_le
     {sampleSize ε logBudget : ℝ} {R : ℝ≥0}
@@ -2176,6 +2232,7 @@ This is a user-facing algebra layer over
 `finiteTimeClassSharedSampleEmpiricalAverageDeviationFromHoeffding_sampleSize_dyadicRealBudget`:
 instead of supplying the sample-size lower bound directly, callers may bound the
 usual square-root radius expression by `ε`.
+@isnad1 id=le.13h14v.s9.31e9f9b39b27 from=translated src=- shape=70f442c9 vocab=654f19dc
 -/
 theorem finiteTimeClassSharedSampleEmpiricalAverageDeviationFromHoeffding_epsilonOfSampleSize_dyadicRealBudget
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -2253,6 +2310,7 @@ budget in the prefix.
 For `t : Fin T`, the final dyadic exponent in the prefix is `-T`, while the
 per-time exponent is `-1 - t`. Since `t < T`, monotonicity of `2^n` over
 integer exponents gives the budget comparison.
+@isnad1 id=le.1h4v.s7.51c54104434e from=translated src=- shape=9ed42bb7 vocab=5170b2b2
 -/
 theorem finiteDyadicRealBudget_horizon_le_time
     {H : Type*} [Fintype H] [Nonempty H]
@@ -2292,6 +2350,7 @@ This is a readability wrapper over
 It replaces the per-time radius assumptions by one finite-prefix radius using
 the smallest dyadic budget in the prefix. It is still only a finite-horizon
 statement.
+@isnad1 id=le.13h14v.s9.0f2df18c38dc from=translated src=- shape=e448086e vocab=7707c8fb
 -/
 theorem finiteTimeClassSharedSampleEmpiricalAverageDeviationFromHoeffding_horizonUniformRadius_dyadicRealBudget
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -2418,6 +2477,7 @@ theorem finiteTimeClassSharedSampleEmpiricalAverageDeviationFromHoeffding_horizo
 
 /--
 Closed-form rewrite for the finite-horizon dyadic real-budget log term.
+@isnad1 id=eq.1h3v.s7.c1e7c6d120de from=translated src=- shape=c87f1ee5 vocab=f809be94
 -/
 theorem finiteDyadicRealBudget_horizon_logBudget_eq_closedForm
     {H : Type*} [Fintype H] [Nonempty H]
@@ -2453,6 +2513,7 @@ This is the displayed finite-prefix form of
 `finiteTimeClassSharedSampleEmpiricalAverageDeviationFromHoeffding_horizonUniformRadius_dyadicRealBudget`.
 It rewrites the horizon dyadic log budget as
 `log((2 : ℝ) ^ (T + 1) * card H / δ_real)`.
+@isnad1 id=le.13h14v.s9.5a62ed96f441 from=translated src=- shape=fbc3922b vocab=b3a1bf7b
 -/
 theorem finiteTimeClassSharedSampleEmpiricalAverageDeviationFromHoeffding_closedFormHorizonRadius_dyadicRealBudget
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -2527,6 +2588,7 @@ This is the displayed sample-complexity form of the finite-prefix theorem. It
 uses one sufficient sample-size lower bound with the closed horizon/class/budget
 log term, then recovers the per-time dyadic sample-size hypotheses by
 monotonicity of the finite-horizon budget.
+@isnad1 id=le.13h14v.s9.4ac2582e8d10 from=translated src=- shape=58e2cc96 vocab=8bec86a3
 -/
 theorem finiteTimeClassSharedSampleEmpiricalAverageDeviationFromHoeffding_closedFormHorizonSampleSize_dyadicRealBudget
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -2659,6 +2721,7 @@ This theorem is a short API wrapper around
 `finiteTimeClassSharedSampleEmpiricalAverageDeviationFromHoeffding_closedFormHorizonSampleSize_dyadicRealBudget`.
 It keeps the statement tied to the checked shared-sample chain while exposing a
 compact name for the verified-SLT program outline.
+@isnad1 id=le.13h14v.s9.4ac2582e8d10 from=translated src=- shape=58e2cc96 vocab=8bec86a3
 -/
 theorem finitePrefixFiniteClassDeviationFromHoeffding_closedForm
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -2716,6 +2779,7 @@ denominator written directly as `(s.card : ℝ)`.
 This is the most route-facing version of the current finite-prefix theorem: it
 removes the separate `sampleSize` parameter from the statement while preserving
 the same checked closed-form sample-size condition.
+@isnad1 id=le.12h13v.s9.a38fcb9b6908 from=translated src=- shape=f27030fa vocab=8bec86a3
 -/
 theorem finitePrefixFiniteClassDeviationFromHoeffding_closedForm_cardSample
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -2780,6 +2844,7 @@ Finite-prefix finite-class Hoeffding deviation bound for unit-range losses.
 This specializes the route-facing card-sample theorem to the common teaching
 case `‖b - a‖₊ ≤ 1`, exposing the sample-size condition without a separate
 range parameter.
+@isnad1 id=le.11h12v.s9.13ede1dbebab from=translated src=- shape=f19460bc vocab=beb6fe36
 -/
 theorem finitePrefixFiniteClassDeviationFromHoeffding_closedForm_unitRange
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -2849,6 +2914,7 @@ confidence-radius form.
 This is the route-facing radius presentation of the current finite-prefix
 chain: the caller supplies the displayed closed-form radius bound, and the
 conclusion is the simultaneous finite-horizon, finite-class deviation event.
+@isnad1 id=le.11h12v.s9.a5e095245228 from=translated src=- shape=12504d5e vocab=ce67959c
 -/
 theorem finitePrefixFiniteClassDeviationFromHoeffding_unitRange_radius
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -2920,6 +2986,7 @@ confidence radius written directly in the event.
 This removes the caller-supplied deviation threshold from the route-facing
 statement. The only extra side condition is positivity of the displayed radius,
 needed by the underlying Hoeffding wrapper.
+@isnad1 id=le.10h11v.s9.e42019d2a17f from=translated src=- shape=294c3bc1 vocab=ce67959c
 -/
 theorem finitePrefixFiniteClassDeviationFromHoeffding_unitRange_explicitRadius
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -2988,6 +3055,7 @@ positivity discharged from a strict confidence-budget condition.
 The new assumption `δ_real < 2^(T+1) * card(H)` is exactly what makes the
 closed-form log term positive. The proof is otherwise only an algebra wrapper
 around `finitePrefixFiniteClassDeviationFromHoeffding_unitRange_explicitRadius`.
+@isnad1 id=le.10h11v.s9.30f5f6057f65 from=translated src=- shape=7f9c94cb vocab=ce67959c
 -/
 theorem finitePrefixFiniteClassDeviationFromHoeffding_unitRange_explicitRadius_nonemptySample
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -3071,6 +3139,7 @@ This is the first route-facing bounded-loss surface: callers provide a direct
 `loss ∈ [0,1]` almost-everywhere assumption instead of separate lower and upper
 range functions. The negative-integral identity used by the two-sided Hoeffding
 step is discharged internally by `integral_neg`.
+@isnad1 id=le.7h9v.s8.b3204bdd0bbd from=translated src=- shape=7a9c1428 vocab=52721157
 -/
 theorem finitePrefixFiniteClassDeviationFromHoeffding_zeroOneRange_explicitRadius
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -3141,6 +3210,7 @@ actual dyadic budget `δ * 2^(-1-t) / card(H)`.
 
 The pointwise tail at this radius is supplied as an input. The theorem proves
 the finite-prefix union step and the `ofReal` dyadic-budget conversion.
+@isnad1 id=le.2h9v.s9.9da569957737 from=translated src=- shape=c8178f82 vocab=184a26d2
 -/
 theorem finitePrefixFiniteClassDeviationFromHoeffding_zeroOneRange_timeVaryingRadius
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -3216,6 +3286,7 @@ This discharges the pointwise tail assumption in
 `finitePrefixFiniteClassDeviationFromHoeffding_zeroOneRange_timeVaryingRadius`
 from the fixed-hypothesis Hoeffding wrappers, using the displayed per-time
 dyadic radius directly.
+@isnad1 id=le.6h9v.s8.c626fa4cd966 from=translated src=- shape=195146ed vocab=e840e93b
 -/
 theorem finitePrefixFiniteClassDeviationFromHoeffding_zeroOneRange_timeVaryingRadius_fromHoeffding
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -3332,6 +3403,7 @@ This is the countable-time version of
 It uses the same dyadic per-time radius
 `sqrt((log 2 - log(δ * 2^(-1-t) / card(H))) / (2 * card(s)))`, but the bad
 event ranges over `ℕ × H` instead of a finite prefix.
+@isnad1 id=le.6h8v.s8.d292befca564 from=translated src=- shape=d5b37cb3 vocab=2a5e6c1c
 -/
 theorem anytimeFiniteClassDeviationFromHoeffding_zeroOneRange_timeVaryingRadius_fromHoeffding
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -3532,6 +3604,7 @@ This is the route-facing form of
 instead of exposing a raw indexed union, it states that the probability of
 there existing some natural time and hypothesis with a dyadic-radius deviation
 is at most `δ`.
+@isnad1 id=le.6h8v.s8.15a755560584 from=translated src=- shape=78146c6a vocab=dd9196a2
 -/
 theorem anytimeFiniteClassDeviationFromHoeffding_zeroOneRange_timeVaryingRadius_exists_fromHoeffding
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -3596,6 +3669,7 @@ This is definitionally the same probability statement as
 `anytimeFiniteClassDeviationFromHoeffding_zeroOneRange_timeVaryingRadius_exists_fromHoeffding`,
 but the displayed radius is factored into
 `zeroOneDyadicFiniteClassConfidenceRadius`.
+@isnad1 id=le.6h8v.s8.1ccab9acd7b6 from=translated src=- shape=f495607b vocab=c3245881
 -/
 theorem anytimeFiniteClassDeviationFromHoeffding_zeroOneRange_namedRadius_exists_fromHoeffding
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -3677,6 +3751,7 @@ The event is phrased as failure of the simultaneous statement: for every
 natural time and every hypothesis, the empirical-average deviation stays
 strictly below the named dyadic radius. Its failure probability is bounded by
 `δ`.
+@isnad1 id=le.6h8v.s8.bcd30d6caeac from=translated src=- shape=35032f2c vocab=c3245881
 -/
 theorem anytimeFiniteClassDeviationFromHoeffding_zeroOneRange_confidenceSequence_fromHoeffding
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -3732,6 +3807,7 @@ Bundled API for the `[0,1]` finite-class dyadic confidence sequence.
 
 Supplying a `FiniteClassConfidenceSequence` object gives the probability bound
 for the named failure event without restating the full theorem signature.
+@isnad1 id=le.1h8v.s6.7848a4a0ca6e from=translated src=- shape=57959a75 vocab=7d6291e1
 -/
 theorem FiniteClassConfidenceSequence.failure_probability_le
     {Ω ι H : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -3762,6 +3838,7 @@ Sample-size inversion for the displayed dyadic confidence radius.
 If the sample size clears the usual
 `(log 2 - log budget) / (2 * ε^2)` lower bound at time `t`, then the named
 dyadic radius used in the confidence-sequence theorem is at most `ε`.
+@isnad1 id=le.3h5v.s7.595e18d20cc8 from=translated src=- shape=91c7835d vocab=139c3892
 -/
 theorem zeroOneDyadicFiniteClassConfidenceRadius_le_of_sampleSize_ge
     {H : Type*} [Fintype H] [Nonempty H]

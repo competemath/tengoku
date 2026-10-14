@@ -52,7 +52,9 @@ private lemma two_pi_I_ne_zero : (2 * (π : ℂ) * Complex.I) ≠ 0 :=
 open Filter Topology in
 /-- If the normalised circle integrals defining the residue are eventually equal to a constant
 `a` as the radius `r → 0⁺`, then `residue f c = a`. This is the basic tool for computing residues:
-the integrals need only be known for all *small* `r`. -/
+the integrals need only be known for all *small* `r`.
+@isnad1 id=eq.1h3v.s6.070c56296193 from=translated src=- shape=5bed74ea vocab=d0600ec9
+-/
 lemma residue_eq_of_eventuallyEq {f : ℂ → ℂ} {c a : ℂ}
     (h : ∀ᶠ r in 𝓝[>] (0 : ℝ),
       (2 * (π : ℂ) * Complex.I)⁻¹ * ∮ z in C(c, r), f z = a) :
@@ -62,7 +64,9 @@ lemma residue_eq_of_eventuallyEq {f : ℂ → ℂ} {c a : ℂ}
   exact Filter.Tendsto.limUnder_eq (tendsto_const_nhds.congr' h'.symm)
 
 open Filter Topology in
-/-- The residue depends only on the germ of `f` on a punctured neighbourhood of `c`. -/
+/-- The residue depends only on the germ of `f` on a punctured neighbourhood of `c`.
+@isnad1 id=eq.1h3v.s5.6bac83da0602 from=translated src=- shape=cba91e06 vocab=db2d7cde
+-/
 lemma residue_congr {f₁ f₂ : ℂ → ℂ} {c : ℂ} (h : f₁ =ᶠ[𝓝[≠] c] f₂) :
     residue f₁ c = residue f₂ c := by
   -- Turn the punctured-neighbourhood agreement into agreement of the circle integrals
@@ -92,7 +96,9 @@ lemma residue_congr {f₁ f₂ : ℂ → ℂ} {c : ℂ} (h : f₁ =ᶠ[𝓝[≠]
   exact congrArg Filter.lim (Filter.map_congr hev)
 
 open Filter Topology in
-/-- The residue of `(z - c)⁻¹` at `c` is `1`. -/
+/-- The residue of `(z - c)⁻¹` at `c` is `1`.
+@isnad1 id=eq.0h1v.s4.4f1bdb15edb0 from=translated src=- shape=2de97c6c vocab=fb180e65
+-/
 lemma residue_sub_center_inv (c : ℂ) : residue (fun z ↦ (z - c)⁻¹) c = 1 := by
   apply residue_eq_of_eventuallyEq
   filter_upwards [self_mem_nhdsWithin] with r hr
@@ -102,7 +108,9 @@ lemma residue_sub_center_inv (c : ℂ) : residue (fun z ↦ (z - c)⁻¹) c = 1 
 open Filter Topology in
 /-- **Translation invariance of the residue.** If `f` has period `ω` (`f (z + ω) = f z`), then its
 residues at `c` and at `c + ω` agree. This lets one transport a residue count from a fundamental
-parallelogram to any lattice translate of it. -/
+parallelogram to any lattice translate of it.
+@isnad1 id=eq.1h3v.s5.954919a0b743 from=translated src=- shape=53ee717b vocab=016ded69
+-/
 lemma residue_add_of_periodic {f : ℂ → ℂ} {c ω : ℂ} (h : ∀ z, f (z + ω) = f z) :
     residue f (c + ω) = residue f c := by
   have hfun : (fun r : ℝ ↦ (2 * (π : ℂ) * Complex.I)⁻¹ * ∮ z in C(c + ω, r), f z)
@@ -120,7 +128,9 @@ lemma residue_add_of_periodic {f : ℂ → ℂ} {c ω : ℂ} (h : ∀ z, f (z + 
   rw [hfun]
 
 open Filter Topology in
-/-- A function analytic at `c` has residue `0` there. -/
+/-- A function analytic at `c` has residue `0` there.
+@isnad1 id=eq.1h2v.s5.7a7d4192cd0a from=translated src=- shape=64e000da vocab=9d3adfad
+-/
 lemma residue_eq_zero_of_analyticAt {f : ℂ → ℂ} {c : ℂ} (hf : AnalyticAt ℂ f c) :
     residue f c = 0 := by
   apply residue_eq_of_eventuallyEq
@@ -140,7 +150,9 @@ lemma residue_eq_zero_of_analyticAt {f : ℂ → ℂ} {c : ℂ} (hf : AnalyticAt
   rw [hz, mul_zero]
 
 open Filter Topology in
-/-- The residue of a simple pole `a·(z-c)⁻¹` plus an analytic part is the coefficient `a`. -/
+/-- The residue of a simple pole `a·(z-c)⁻¹` plus an analytic part is the coefficient `a`.
+@isnad1 id=eq.1h3v.s6.a8f0737d888c from=translated src=- shape=ea0b9ec9 vocab=97130bf8
+-/
 lemma residue_simplePole_add_analytic {c a : ℂ} {w : ℂ → ℂ} (hw : AnalyticAt ℂ w c) :
     residue (fun z ↦ a * (z - c)⁻¹ + w z) c = a := by
   apply residue_eq_of_eventuallyEq
@@ -176,7 +188,9 @@ open Filter Topology in
 /-- **Residue of the logarithmic derivative equals the order.** For a function `f` meromorphic at
 `c` with finite order there, the residue of `f'/f = logDeriv f` at `c` equals the order of `f` at
 `c` (a simple pole with integer residue). This is the local computation behind the third Liouville
-theorem. -/
+theorem.
+@isnad1 id=eq.2h2v.s6.4a81c947717f from=translated src=- shape=1a73c891 vocab=98a43251
+-/
 lemma residue_logDeriv_eq_order {f : ℂ → ℂ} {c : ℂ} (hf : MeromorphicAt f c)
     (hord : meromorphicOrderAt f c ≠ ⊤) :
     residue (logDeriv f) c = ((meromorphicOrderAt f c).untop₀ : ℂ) := by
@@ -231,15 +245,21 @@ Every `z : ℂ` is equivalent modulo `L.lattice` to exactly one point of `𝒫`.
 def fundamentalParallelogram : Set ℂ :=
   {z : ℂ | ∃ s ∈ Set.Ico (0 : ℝ) 1, ∃ t ∈ Set.Ico (0 : ℝ) 1, z = s • L.ω₁ + t • L.ω₂}
 
-/-- `℘` is an elliptic function. -/
+/-- `℘` is an elliptic function.
+@isnad1 id=isellipt.0h1v.s2.cf3205d8e4dd from=translated src=- shape=9d44d080 vocab=5aa7a9c1
+-/
 theorem isEllipticWith_weierstrassP : L.IsEllipticWith ℘[L] :=
   ⟨L.meromorphic_weierstrassP, fun z l ↦ L.weierstrassP_add_coe z l⟩
 
-/-- `℘'` is an elliptic function. -/
+/-- `℘'` is an elliptic function.
+@isnad1 id=isellipt.0h1v.s2.874e92e2761c from=translated src=- shape=9d44d080 vocab=27351844
+-/
 theorem isEllipticWith_derivWeierstrassP : L.IsEllipticWith ℘'[L] :=
   ⟨L.meromorphic_derivWeierstrassP, fun z l ↦ L.derivWeierstrassP_add_coe z l⟩
 
-/-- Every `z : ℂ` differs by a lattice point from a point of the fundamental parallelogram. -/
+/-- Every `z : ℂ` differs by a lattice point from a point of the fundamental parallelogram.
+@isnad1 id=ex.0h2v.s5.d8d079e8a57c from=translated src=- shape=3787f198 vocab=b2dd95a1
+-/
 lemma exists_sub_mem_lattice_of_mem_fundamentalParallelogram (L : PeriodPair) (z : ℂ) :
     ∃ w ∈ L.fundamentalParallelogram, z - w ∈ L.lattice := by
   have hz : (L.basis.repr z 0 • L.ω₁ + L.basis.repr z 1 • L.ω₂ : ℂ) = z := by
@@ -283,7 +303,9 @@ private lemma finite_fundamentalParallelogram_inter {L : PeriodPair} {S : Set �
     (Set.inter_subset_inter_left S hPsub)
 
 /-- **First Liouville theorem** (paper `liouville1`): an elliptic function without poles
-(i.e. entire) is constant. -/
+(i.e. entire) is constant.
+@isnad1 id=ex.2h2v.s6.25ff4e8d70a3 from=translated src=- shape=e5d5d511 vocab=359bc223
+-/
 theorem IsEllipticWith.exists_eq_const_of_differentiable (hf : L.IsEllipticWith f)
     (hd : Differentiable ℂ f) : ∃ c : ℂ, f = fun _ ↦ c := by
   have hcompact : IsCompact ((fun p : ℝ × ℝ ↦ p.1 • L.ω₁ + p.2 • L.ω₂) ''
@@ -307,7 +329,9 @@ theorem IsEllipticWith.exists_eq_const_of_differentiable (hf : L.IsEllipticWith 
   exact ⟨c, funext hc⟩
 
 /-- An elliptic function has only finitely many singularities in the (bounded)
-fundamental parallelogram. Part of the **second Liouville theorem** (paper `liouville2`). -/
+fundamental parallelogram. Part of the **second Liouville theorem** (paper `liouville2`).
+@isnad1 id=finite.1h2v.s5.2e45516c8d7e from=translated src=- shape=57b4d460 vocab=07c183f7
+-/
 theorem IsEllipticWith.finite_nonAnalytic (hf : L.IsEllipticWith f) :
     {z ∈ L.fundamentalParallelogram | ¬AnalyticAt ℂ f z}.Finite := by
   have hcod : {z : ℂ | AnalyticAt ℂ f z} ∈ Filter.codiscrete ℂ :=
@@ -332,7 +356,9 @@ opposite edges). By double periodicity the top edge repeats the bottom edge and 
 repeats the left edge, so with the orientation above the four contributions cancel in pairs. This
 is the analysis-free half of the second Liouville theorem: combined with a parallelogram residue
 theorem (`boundaryIntegral f v = 2πi · Σ residues inside`, still open) it yields
-`sum_residue_eq_zero`. -/
+`sum_residue_eq_zero`.
+@isnad1 id=eq.1h3v.s4.e80d351210b3 from=translated src=- shape=9c1480b9 vocab=bf5bcffb
+-/
 theorem IsEllipticWith.boundaryIntegral_eq_zero (hf : L.IsEllipticWith f) (v : ℂ) :
     L.boundaryIntegral f v = 0 := by
   have per1 : ∀ z, f (z + L.ω₁) = f z := fun z => hf.2 z ⟨L.ω₁, L.ω₁_mem_lattice⟩
@@ -1631,7 +1657,9 @@ the singular points inside `𝒫` itself is an equivalent formulation. The proof
 point `v' = -ε₁ω₁ - ε₂ω₂` so that every singularity class has a unique representative strictly
 inside the shifted parallelogram, then applies the parallelogram residue theorem
 (`sum_residue_eq_zero_of_boundaryIntegral_eq_zero`) together with the vanishing of the
-boundary integral by double periodicity (`boundaryIntegral_eq_zero`). -/
+boundary integral by double periodicity (`boundaryIntegral_eq_zero`).
+@isnad1 id=eq.1h2v.s6.e390ef101026 from=translated src=- shape=b39d1dc0 vocab=c3248a55
+-/
 theorem IsEllipticWith.sum_residue_eq_zero (hf : L.IsEllipticWith f) :
     ∑ z ∈ hf.finite_nonAnalytic.toFinset, Chudnovsky.residue f z = 0 := by
   classical
@@ -1779,7 +1807,9 @@ theorem IsEllipticWith.sum_residue_eq_zero (hf : L.IsEllipticWith f) :
   exact hmain
 
 /-- A not-identically-vanishing elliptic function has only finitely many zeros and poles
-in the fundamental parallelogram. -/
+in the fundamental parallelogram.
+@isnad1 id=finite.2h2v.s6.bfe050e461b1 from=translated src=- shape=a84b4cca vocab=8cac6cc1
+-/
 theorem IsEllipticWith.finite_order_ne_zero (hf : L.IsEllipticWith f)
     (h0 : ∃ z, meromorphicOrderAt f z ≠ ⊤) :
     {z ∈ L.fundamentalParallelogram | meromorphicOrderAt f z ≠ 0}.Finite := by
@@ -1802,7 +1832,9 @@ theorem IsEllipticWith.finite_order_ne_zero (hf : L.IsEllipticWith f)
   obtain ⟨hclosed, hdisc⟩ := compl_mem_codiscrete_iff.mp hcd
   exact (finite_fundamentalParallelogram_inter hclosed hdisc).subset (fun z hz => ⟨hz.1, hz.2⟩)
 
-/-- The logarithmic derivative `f'/f` of an elliptic function is again elliptic. -/
+/-- The logarithmic derivative `f'/f` of an elliptic function is again elliptic.
+@isnad1 id=isellipt.1h2v.s4.11abab123499 from=translated src=- shape=ec8e79d7 vocab=8f129af5
+-/
 theorem isEllipticWith_logDeriv (hf : L.IsEllipticWith f) : L.IsEllipticWith (logDeriv f) := by
   refine ⟨fun z => (hf.1 z).deriv.div (hf.1 z), fun z l => ?_⟩
   have hf_per : f (z + (l : ℂ)) = f z := hf.2 z l
@@ -1819,7 +1851,9 @@ equivalently, the sum of the orders `ord_z f` over a fundamental parallelogram i
 The proof reduces the statement to the **second Liouville theorem**: `logDeriv f = f'/f` is
 again elliptic (`IsEllipticWith.logDeriv`), its residue at every point equals the order of `f`
 there (`Chudnovsky.residue_logDeriv_eq_order`), and `f` has a zero/pole exactly where `logDeriv f`
-fails to be analytic; so the residue sum of `logDeriv f` is the order sum of `f`. -/
+fails to be analytic; so the residue sum of `logDeriv f` is the order sum of `f`.
+@isnad1 id=eq.2h2v.s6.6583b6dd3aa0 from=translated src=- shape=6fba42f8 vocab=5ee09e72
+-/
 theorem IsEllipticWith.sum_meromorphicOrderAt_eq_zero (hf : L.IsEllipticWith f)
     (h0 : ∃ z, meromorphicOrderAt f z ≠ ⊤) :
     ∑ z ∈ (hf.finite_order_ne_zero h0).toFinset, (meromorphicOrderAt f z).untop₀ = 0 := by
@@ -1887,7 +1921,9 @@ private lemma codiscrete_add_preimage {S : Set ℂ} (l : ℂ)
 /-- **Workhorse lemma** (used throughout the paper, e.g. in `pstrichprod`,
 `fouriersigma`, and Appendix A): two elliptic functions with the same zeros and poles,
 counted with orders, agree up to a nonzero constant factor away from a discrete set
-(namely, away from their poles and points of non-normality). -/
+(namely, away from their poles and points of non-normality).
+@isnad1 id=ex.3h3v.s6.faf43fee5a9c from=translated src=- shape=50c5d2bb vocab=7a195989
+-/
 theorem IsEllipticWith.exists_const_mul_of_meromorphicOrderAt_eq (hf : L.IsEllipticWith f)
     (hg : L.IsEllipticWith g) (h : ∀ z, meromorphicOrderAt f z = meromorphicOrderAt g z) :
     ∃ c : ℂ, c ≠ 0 ∧ f =ᶠ[Filter.codiscrete ℂ] fun z ↦ c * g z := by

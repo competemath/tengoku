@@ -32,7 +32,9 @@ distance sense (`|a i - a j| ≤ |b i - b j|` for all `i, j`), then
 
 The proof extracts maximizers `i*` of `u + a` and `j*` of `u - a`, uses
 `a i* - a j* ≤ |a i* - a j*| ≤ |b i* - b j*|`, then case-splits on the
-sign of `b i* - b j*` to bound by `sup'(u + b) + sup'(u - b)`. -/
+sign of `b i* - b j*` to bound by `sup'(u + b) + sup'(u - b)`.
+@isnad1 id=le.1h4v.s7.a003252ccdb8 from=translated src=- shape=ba52ab66 vocab=d9bb05b3
+-/
 theorem comparison_lemma (u a b : ι → ℝ)
     (h_contract : ∀ i j : ι, |a i - a j| ≤ |b i - b j|) :
     Finset.univ.sup' Finset.univ_nonempty (fun i => u i + a i) +
@@ -79,7 +81,9 @@ theorem comparison_lemma (u a b : ι → ℝ)
     linarith
 
 /-- Scaled version: if `|a i - a j| ≤ |b i - b j|`, then for `c ≥ 0`:
-`sup'(u + c*a) + sup'(u - c*a) ≤ sup'(u + c*b) + sup'(u - c*b)`. -/
+`sup'(u + c*a) + sup'(u - c*a) ≤ sup'(u + c*b) + sup'(u - c*b)`.
+@isnad1 id=le.2h5v.s7.14b1d56904dd from=translated src=- shape=b599ccc4 vocab=0ae89c57
+-/
 theorem comparison_lemma_scaled (u a b : ι → ℝ) {c : ℝ} (_hc : 0 ≤ c)
     (h_contract : ∀ i j : ι, |a i - a j| ≤ |b i - b j|) :
     Finset.univ.sup' Finset.univ_nonempty (fun i => u i + c * a i) +
@@ -109,7 +113,9 @@ needed by the comparison lemma.
 variable {n : ℕ} {Z : Type*}
 
 /-- For any `g : (Fin n → Bool) → ℝ` and involution `e` on sign vectors,
-the sum is preserved: `∑ σ, g (e σ) = ∑ σ, g σ`. -/
+the sum is preserved: `∑ σ, g (e σ) = ∑ σ, g σ`.
+@isnad1 id=eq.0h3v.s7.4144e1c4ca8c from=translated src=- shape=9f0c37f3 vocab=3bc8073f
+-/
 lemma sum_equiv_perm (g : (Fin n → Bool) → ℝ) (e : Equiv.Perm (Fin n → Bool)) :
     ∑ σ : Fin n → Bool, g (e σ) = ∑ σ : Fin n → Bool, g σ :=
   Equiv.sum_comp e g
@@ -123,7 +129,9 @@ where `g^j` agrees with `f` except at coordinate `j`, where it uses `φ(f_i(z_j)
 
 The proof pairs sign vectors via `flipAt j`: for each pair (σ, flipAt j σ),
 the comparison lemma gives the pointwise inequality on paired sups, and
-summing over all pairs gives the inequality on the full sign-vector sum. -/
+summing over all pairs gives the inequality on the full sign-vector sum.
+@isnad1 id=le.1h7v.s7.44fb6cd765e3 from=translated src=- shape=1a97e1e1 vocab=457927c5
+-/
 theorem one_step_contraction {φ : ℝ → ℝ}
     (hφ_lip : ∀ s t : ℝ, |φ s - φ t| ≤ |s - t|)
     (f : ι → Z → ℝ) (z : Fin n → Z) (j : Fin n) :
@@ -344,7 +352,9 @@ private theorem contraction_induction {φ : ℝ → ℝ}
 /-- **Finite-sample scalar contraction, 1-Lipschitz form.** For a finite
 sample `Fin n`, finite hypothesis class `ι`, and scalar 1-Lipschitz `φ`:
 
-  `∑_σ sup'(∑_k σ_k * φ(g i k)) ≤ ∑_σ sup'(∑_k σ_k * g i k)` -/
+  `∑_σ sup'(∑_k σ_k * φ(g i k)) ≤ ∑_σ sup'(∑_k σ_k * g i k)`
+@isnad1 id=le.1h4v.s7.80bde34a7f9f from=translated src=- shape=1458fd38 vocab=1c631bb3
+-/
 theorem contraction_1lip {φ : ℝ → ℝ}
     (hφ_lip : ∀ s t : ℝ, |φ s - φ t| ≤ |s - t|)
     (g : ι → Fin n → ℝ) :
@@ -380,7 +390,9 @@ sample `Fin n`, finite hypothesis class `ι`, scalar real-valued functions, and
 
 This is the finite combinatorial contraction bound used by the empirical
 Rademacher wrapper below; it is not the full general Talagrand contraction
-principle. -/
+principle.
+@isnad1 id=le.2h5v.s7.8907f76670ac from=translated src=- shape=a20be71b vocab=af8919d4
+-/
 theorem finiteSampleScalarContraction_lipschitz {φ : ℝ → ℝ} {L : ℝ}
     (hL : 0 < L)
     (hφ_lip : ∀ s t : ℝ, |φ s - φ t| ≤ L * |s - t|)
@@ -441,7 +453,9 @@ finite hypothesis class, scalar real-valued loss class, and 1-Lipschitz `φ`:
   `R̂_S(φ ∘ ℓ) ≤ R̂_S(ℓ)`
 
 The key step is factoring `n⁻¹` out of `sup'` (valid since `n⁻¹ ≥ 0`),
-applying `contraction_1lip` at the raw sum level, then reassembling. -/
+applying `contraction_1lip` at the raw sum level, then reassembling.
+@isnad1 id=le.1h6v.s6.adb3f2d377f3 from=translated src=- shape=19f5b775 vocab=04ac5565
+-/
 theorem contraction_empirical {φ : ℝ → ℝ}
     (hφ_lip : ∀ s t : ℝ, |φ s - φ t| ≤ |s - t|)
     (ℓ : ι → Z → ℝ) (z : Fin n → Z) :
@@ -464,7 +478,9 @@ and `φ` satisfying `|φ s - φ t| ≤ L * |s - t|` with `0 < L`:
   `R̂_S(φ ∘ ℓ) ≤ L * R̂_S(ℓ)`.
 
 This is a finite-class wrapper around `finiteSampleScalarContraction_lipschitz`,
-not a statement about infinite classes or general stochastic processes. -/
+not a statement about infinite classes or general stochastic processes.
+@isnad1 id=le.2h7v.s6.8010962f7187 from=translated src=- shape=256b1994 vocab=71481d7b
+-/
 theorem empiricalRademacherComplexity_contraction_lipschitz {φ : ℝ → ℝ} {L : ℝ}
     (hL : 0 < L)
     (hφ_lip : ∀ s t : ℝ, |φ s - φ t| ≤ L * |s - t|)

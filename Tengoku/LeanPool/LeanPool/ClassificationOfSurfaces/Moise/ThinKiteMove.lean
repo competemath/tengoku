@@ -27,15 +27,27 @@ namespace Moise
 def axisKitePosition (lo hi : ℝ) : Fin 4 → Plane :=
   ![planePoint (-1) 0, planePoint 1 0, planePoint 0 hi, planePoint 0 lo]
 
+/--
+@isnad1 id=eq.0h2v.s5.630ef2ede7f1 from=translated src=- shape=581e418e vocab=a765c67b
+-/
 @[simp] theorem axisKitePosition_zero (lo hi : ℝ) :
     axisKitePosition lo hi 0 = planePoint (-1) 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.760f868c51ec from=translated src=- shape=5485ee76 vocab=b3e61a81
+-/
 @[simp] theorem axisKitePosition_one (lo hi : ℝ) :
     axisKitePosition lo hi 1 = planePoint 1 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.78eb1ab7efcd from=translated src=- shape=381cee05 vocab=b3e61a81
+-/
 @[simp] theorem axisKitePosition_two (lo hi : ℝ) :
     axisKitePosition lo hi 2 = planePoint 0 hi := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.5f287d787a1c from=translated src=- shape=5fc9d852 vocab=b3e61a81
+-/
 @[simp] theorem axisKitePosition_three (lo hi : ℝ) :
     axisKitePosition lo hi 3 = planePoint 0 lo := rfl
 
@@ -72,12 +84,18 @@ private theorem affineIndependent_finset_of_range_kite {V : Type}
   funext i
   rfl
 
+/--
+@isnad1 id=injectiv.2h2v.s5.e67044efe7e0 from=translated src=- shape=d0c4ccbf vocab=1e8fba9f
+-/
 theorem axisKitePosition_injective {lo hi : ℝ} (hlo : lo < 0) (hhi : 0 < hi) :
     Function.Injective (axisKitePosition lo hi) := by
   intro i j hij
   fin_cases i <;> fin_cases j <;> simp [axisKitePosition, planePoint] at hij ⊢
   all_goals linarith
 
+/--
+@isnad1 id=affinein.3h3v.s9.27681f457b5b from=translated src=- shape=e1207ccd vocab=2a7070a4
+-/
 theorem axisKite_affineIndependent {lo hi : ℝ} (hlo : lo < 0) (hhi : 0 < hi)
     {t : Finset (Fin 4)} (ht : t ∈ axisKiteTriangles) :
     AffineIndependent ℝ fun v : t => axisKitePosition lo hi v := by
@@ -104,6 +122,9 @@ theorem axisKite_affineIndependent {lo hi : ℝ} (hlo : lo < 0) (hhi : 0 < hi)
     · ext v
       fin_cases v <;> simp
 
+/--
+@isnad1 id=eq.2h2v.s10.c916e93b7379 from=translated src=- shape=cd520886 vocab=624e4be4
+-/
 theorem axisKite_inter {lo hi : ℝ} (hlo : lo < 0) (hhi : 0 < hi) :
     convexHull ℝ (axisKitePosition lo hi '' (({0, 2, 3} : Finset (Fin 4)) : Set _)) ∩
         convexHull ℝ (axisKitePosition lo hi '' (({1, 2, 3} : Finset (Fin 4)) : Set _)) =
@@ -135,6 +156,9 @@ noncomputable def axisKiteMesh (lo hi : ℝ) (hlo : lo < 0) (hhi : 0 < hi) : Tri
     · simpa [Set.inter_comm, Finset.inter_comm] using axisKite_inter hlo hhi
     · simp
 
+/--
+@isnad1 id=eq.2h2v.s5.e84755a7d612 from=translated src=- shape=899deff8 vocab=0bce7168
+-/
 theorem axisKiteMesh_support (lo hi : ℝ) (hlo : lo < 0) (hhi : 0 < hi) :
     (axisKiteMesh lo hi hlo hhi).toPlaneComplex.support = axisKitePatch lo hi := by
   rw [TriangleMesh.toPlaneComplex_support]
@@ -144,6 +168,9 @@ theorem axisKiteMesh_support (lo hi : ℝ) (hlo : lo < 0) (hhi : 0 < hi) :
   ext p
   simp [axisKiteTriangles, axisKitePatch]
 
+/--
+@isnad1 id=eq.0h0v.s4.257217578cb5 from=translated src=- shape=eaf1e5c2 vocab=aa8d8547
+-/
 theorem axisKitePatch_negTwo_two : axisKitePatch (-2) 2 = diamondPatch := by
   unfold axisKitePatch diamondPatch diamondLeftRegion diamondRightRegion
   congr 1 <;> apply congrArg (convexHull ℝ) <;> ext p <;>
@@ -161,6 +188,9 @@ noncomputable def thinKiteMap (δ : ℝ) (p : Plane) : Plane :=
 noncomputable def thinKiteInv (δ : ℝ) (p : Plane) : Plane :=
   planePoint (p 0) ((p 1 - (1 - |p 0|) / 2) / thinKiteScale δ)
 
+/--
+@isnad1 id=lt.1h1v.s4.187493d44e96 from=translated src=- shape=35bd48ee vocab=7a19a6cc
+-/
 theorem thinKiteScale_pos {δ : ℝ} (hδ : 0 < δ) : 0 < thinKiteScale δ := by
   unfold thinKiteScale
   positivity
@@ -195,7 +225,9 @@ noncomputable def thinKiteGlobalHomeomorph (δ : ℝ) (hδ : 0 < δ) : Plane ≃
 /-- The thin kite is the image of the fixed diamond under the explicit transport. -/
 noncomputable def thinKitePatch (δ : ℝ) : Set Plane := thinKiteMap δ '' diamondPatch
 
-/-- Every point of the thin kite lies in the tangent cone at its left base vertex. -/
+/-- Every point of the thin kite lies in the tangent cone at its left base vertex.
+@isnad1 id=and.2h2v.s10.88b86d58782f from=translated src=- shape=9b198776 vocab=67b178e9
+-/
 theorem thinKitePatch_subset_leftCone {δ : ℝ} (hδ : 0 ≤ δ) {p : Plane}
     (hp : p ∈ thinKitePatch δ) :
     0 ≤ p 0 + 1 ∧ -δ * (p 0 + 1) ≤ p 1 ∧ p 1 ≤ (1 + δ) * (p 0 + 1) := by
@@ -228,7 +260,9 @@ theorem thinKitePatch_subset_leftCone {δ : ℝ} (hδ : 0 ≤ δ) {p : Plane}
         rw [abs_of_nonneg hx']
         nlinarith
 
-/-- Every point of the thin kite lies in the tangent cone at its right base vertex. -/
+/-- Every point of the thin kite lies in the tangent cone at its right base vertex.
+@isnad1 id=and.2h2v.s9.eca06d4fe630 from=translated src=- shape=8ede2c55 vocab=a3ec5e0b
+-/
 theorem thinKitePatch_subset_rightCone {δ : ℝ} (hδ : 0 ≤ δ) {p : Plane}
     (hp : p ∈ thinKitePatch δ) :
     0 ≤ 1 - p 0 ∧ -δ * (1 - p 0) ≤ p 1 ∧ p 1 ≤ (1 + δ) * (1 - p 0) := by
@@ -265,13 +299,18 @@ theorem thinKitePatch_subset_rightCone {δ : ℝ} (hδ : 0 ≤ δ) {p : Plane}
 def kiteTrianglePosition : Fin 3 → Plane :=
   ![planePoint (-1) 0, planePoint 1 0, planePoint 0 1]
 
+/--
+@isnad1 id=affinein.0h0v.s8.c3bb80a492fd from=translated src=- shape=7e71be5a vocab=1a658931
+-/
 theorem kiteTrianglePosition_affineIndependent :
     AffineIndependent ℝ kiteTrianglePosition := by
   apply affineIndependent_plane_triple_of_det_ne_zero
   norm_num [kiteTrianglePosition, planePoint_apply_zero, planePoint_apply_one, PiLp.sub_apply]
 
 /-- A ray from the left base vertex whose coordinate direction lies in the original triangle
-cone enters the triangle immediately. -/
+cone enters the triangle immediately.
+@isnad1 id=ex.4h1v.s10.f1bdac362690 from=translated src=- shape=041450a7 vocab=8399f74b
+-/
 theorem exists_leftBase_openSegment_mem_kiteTriangle {q : Plane}
     (hq : q ≠ planePoint (-1) 0) (hx : 0 < q 0 + 1)
     (hy0 : 0 ≤ q 1) (hyx : q 1 ≤ q 0 + 1) :
@@ -322,7 +361,9 @@ theorem exists_leftBase_openSegment_mem_kiteTriangle {q : Plane}
   exact ⟨p, ⟨hpSegment, by simpa using hpNe⟩, hpTriangle⟩
 
 /-- A ray from the right base vertex whose direction lies in the original triangle cone enters
-the triangle immediately. -/
+the triangle immediately.
+@isnad1 id=ex.4h1v.s10.2eca9dfd11be from=translated src=- shape=6a31146d vocab=0b8865a9
+-/
 theorem exists_rightBase_openSegment_mem_kiteTriangle {q : Plane}
     (hq : q ≠ planePoint 1 0) (hx : 0 < 1 - q 0)
     (hy0 : 0 ≤ q 1) (hyx : q 1 ≤ 1 - q 0) :
@@ -373,7 +414,9 @@ theorem exists_rightBase_openSegment_mem_kiteTriangle {q : Plane}
   exact ⟨p, ⟨hpSegment, by simpa using hpNe⟩, hpTriangle⟩
 
 /-- If a segment leaves the left base vertex without entering the triangle, its direction is
-strictly outside the triangle tangent cone. -/
+strictly outside the triangle tangent cone.
+@isnad1 id=or.2h1v.s10.dc345f9552d0 from=translated src=- shape=347141d2 vocab=9ac093f9
+-/
 theorem leftBase_direction_outside_kiteTriangle {q : Plane}
     (hq : q ≠ planePoint (-1) 0)
     (havoid : segment ℝ (planePoint (-1) 0) q ∩
@@ -392,6 +435,9 @@ theorem leftBase_direction_outside_kiteTriangle {q : Plane}
   have hpLeft := havoid ⟨hpSegment.1, hpTriangle⟩
   exact hpSegment.2 (by simpa using hpLeft)
 
+/--
+@isnad1 id=or.2h1v.s10.7eac393f3c0c from=translated src=- shape=226258d4 vocab=fb27b4cb
+-/
 theorem rightBase_direction_outside_kiteTriangle {q : Plane}
     (hq : q ≠ planePoint 1 0)
     (havoid : segment ℝ (planePoint 1 0) q ∩
@@ -411,7 +457,9 @@ theorem rightBase_direction_outside_kiteTriangle {q : Plane}
   exact hpSegment.2 (by simpa using hpRight)
 
 /-- A segment leaving the left base vertex outside the triangle misses every sufficiently thin
-kite except at that vertex. -/
+kite except at that vertex.
+@isnad1 id=ex.2h1v.s9.d24db69bfd4c from=translated src=- shape=057cb0c3 vocab=6c5c8433
+-/
 theorem exists_thinKitePatch_inter_leftSegment_eq_singleton {q : Plane}
     (hq : q ≠ planePoint (-1) 0)
     (havoid : segment ℝ (planePoint (-1) 0) q ∩
@@ -537,7 +585,9 @@ theorem exists_thinKitePatch_inter_leftSegment_eq_singleton {q : Plane}
           simp [thinKiteMap, planePoint]⟩
 
 /-- A segment leaving the right base vertex outside the triangle misses every sufficiently thin
-kite except at that vertex. -/
+kite except at that vertex.
+@isnad1 id=ex.2h1v.s9.85167594b6f7 from=translated src=- shape=7856fa32 vocab=668b9888
+-/
 theorem exists_thinKitePatch_inter_rightSegment_eq_singleton {q : Plane}
     (hq : q ≠ planePoint 1 0)
     (havoid : segment ℝ (planePoint 1 0) q ∩
@@ -662,6 +712,9 @@ theorem exists_thinKitePatch_inter_rightSegment_eq_singleton {q : Plane}
         subset_convexHull ℝ _ ⟨2, rfl⟩, by
           simp [thinKiteMap, planePoint]⟩
 
+/--
+@isnad1 id=mem.1h1v.s7.e00c62789116 from=translated src=- shape=a3d6db3d vocab=915d1ddc
+-/
 theorem thinKiteMap_zero_mem_triangle {q : Plane} (hq : q ∈ diamondPatch) :
     thinKiteMap 0 q ∈ convexHull ℝ (Set.range kiteTrianglePosition) := by
   rw [diamondPatch_eq_inDiamond] at hq
@@ -689,7 +742,9 @@ theorem thinKiteMap_zero_mem_triangle {q : Plane} (hq : q ∈ diamondPatch) :
     all_goals ring
 
 /-- Every open neighborhood of the limiting triangle contains all sufficiently thin normalized
-kites. -/
+kites.
+@isnad1 id=ex.2h1v.s8.ed551301f73e from=translated src=- shape=b79c9cfc vocab=56f89224
+-/
 theorem exists_thinKitePatch_subset_open_normalized (U : Set Plane) (hU : IsOpen U)
     (htriangle : convexHull ℝ (Set.range kiteTrianglePosition) ⊆ U) :
     ∃ ε : ℝ, 0 < ε ∧ ∀ δ : ℝ, 0 < δ → δ < ε → thinKitePatch δ ⊆ U := by
@@ -722,7 +777,9 @@ theorem exists_thinKitePatch_subset_open_normalized (U : Set Plane) (hU : IsOpen
   exact hball hηball q hq
 
 /-- A finite-mesh edge which meets the limiting triangle in at most one base endpoint is
-avoided by every sufficiently thin kite, apart from that endpoint. -/
+avoided by every sufficiently thin kite, apart from that endpoint.
+@isnad1 id=ex.5h2v.s10.945422e93b45 from=translated src=- shape=f3333c1c vocab=2cd5db3c
+-/
 theorem exists_thinKitePatch_inter_segment_subset_baseEndpoints {a b : Plane}
     (hab : a ≠ b)
     (hinter : segment ℝ a b ∩ convexHull ℝ (Set.range kiteTrianglePosition) ⊆
@@ -817,21 +874,33 @@ noncomputable def thinKiteSource (δ : ℝ) : ℝ := -2 / (1 + 2 * δ)
 /-- The `thinKiteTarget` declaration. -/
 noncomputable def thinKiteTarget (δ : ℝ) : ℝ := 2 / (1 + 2 * δ)
 
+/--
+@isnad1 id=lt.1h1v.s4.1181fb8cbbdd from=translated src=- shape=139411af vocab=95bfee39
+-/
 theorem thinKiteSource_lower {δ : ℝ} (hδ : 0 < δ) : -2 < thinKiteSource δ := by
   have hd : 0 < 1 + 2 * δ := by positivity
   rw [thinKiteSource, lt_div_iff₀ hd]
   nlinarith
 
+/--
+@isnad1 id=lt.1h1v.s4.98cf6d22cb18 from=translated src=- shape=3965f485 vocab=7b0796dd
+-/
 theorem thinKiteSource_upper {δ : ℝ} (hδ : 0 < δ) : thinKiteSource δ < 2 := by
   have hd : 0 < 1 + 2 * δ := by positivity
   rw [thinKiteSource, div_lt_iff₀ hd]
   nlinarith
 
+/--
+@isnad1 id=lt.1h1v.s4.b705dfaec078 from=translated src=- shape=139411af vocab=4d78c1e0
+-/
 theorem thinKiteTarget_lower {δ : ℝ} (hδ : 0 < δ) : -2 < thinKiteTarget δ := by
   have hd : 0 < 1 + 2 * δ := by positivity
   rw [thinKiteTarget, lt_div_iff₀ hd]
   nlinarith
 
+/--
+@isnad1 id=lt.1h1v.s4.af51f29b2377 from=translated src=- shape=3965f485 vocab=4365b813
+-/
 theorem thinKiteTarget_upper {δ : ℝ} (hδ : 0 < δ) : thinKiteTarget δ < 2 := by
   have hd : 0 < 1 + 2 * δ := by positivity
   rw [thinKiteTarget, div_lt_iff₀ hd]
@@ -976,6 +1045,9 @@ private theorem diamondFanAmbientHomeomorph_rightSpoke (a b : ℝ)
     (diamondFanRightSpokeRealization a ha0 ha1 c hc)).trans
       (diamondFanRightSpokeRealization_baryEval b hb0 hb1 c hc)
 
+/--
+@isnad1 id=eq.1h1v.s5.08a0bf186635 from=translated src=- shape=eedbbe24 vocab=aabbe9de
+-/
 @[simp] theorem thinKiteMap_source (δ : ℝ) (hδ : 0 < δ) :
     thinKiteMap δ (planePoint 0 (thinKiteSource δ)) = planePoint 0 0 := by
   ext i
@@ -987,6 +1059,9 @@ private theorem diamondFanAmbientHomeomorph_rightSpoke (a b : ℝ)
     field_simp [hd]
     ring
 
+/--
+@isnad1 id=eq.1h1v.s5.b5e5a2b60e23 from=translated src=- shape=eedbbe24 vocab=0922b55b
+-/
 @[simp] theorem thinKiteMap_target (δ : ℝ) (hδ : 0 < δ) :
     thinKiteMap δ (planePoint 0 (thinKiteTarget δ)) = planePoint 0 1 := by
   ext i
@@ -998,6 +1073,9 @@ private theorem diamondFanAmbientHomeomorph_rightSpoke (a b : ℝ)
     field_simp [hd]
     ring
 
+/--
+@isnad1 id=isclosed.0h1v.s5.03c31afe1342 from=translated src=- shape=1a6c1393 vocab=bf862d74
+-/
 theorem isClosed_thinKitePatch (δ : ℝ) : IsClosed (thinKitePatch δ) := by
   rw [thinKitePatch]
   have hcompact : IsCompact diamondPatch := by
@@ -1090,6 +1168,9 @@ private theorem thinKiteMap_rightTargetSpoke (δ : ℝ) (hδ : 0 < δ)
     field_simp [hd]
     ring
 
+/--
+@isnad1 id=eq.2h2v.s11.df4e87c5a627 from=translated src=- shape=c99b132c vocab=95b7a2d9
+-/
 theorem thinKiteAmbientHomeomorph_leftSpoke (δ : ℝ) (hδ : 0 < δ)
     (c : ℝ) (hc : c ∈ Set.Icc (0 : ℝ) 1) :
     thinKiteAmbientHomeomorph δ hδ
@@ -1106,6 +1187,9 @@ theorem thinKiteAmbientHomeomorph_leftSpoke (δ : ℝ) (hδ : 0 < δ)
     diamondFanAmbientHomeomorph_leftSpoke, thinKiteMap_leftTargetSpoke δ hδ c hc]
   exact hc
 
+/--
+@isnad1 id=eq.2h2v.s11.735262551d38 from=translated src=- shape=58f10a81 vocab=249ed237
+-/
 theorem thinKiteAmbientHomeomorph_rightSpoke (δ : ℝ) (hδ : 0 < δ)
     (c : ℝ) (hc : c ∈ Set.Icc (0 : ℝ) 1) :
     thinKiteAmbientHomeomorph δ hδ
@@ -1122,6 +1206,9 @@ theorem thinKiteAmbientHomeomorph_rightSpoke (δ : ℝ) (hδ : 0 < δ)
     diamondFanAmbientHomeomorph_rightSpoke, thinKiteMap_rightTargetSpoke δ hδ c hc]
   exact hc
 
+/--
+@isnad1 id=eq.1h1v.s9.1ca5a6fd8c38 from=translated src=- shape=bda4fff0 vocab=c5a160d1
+-/
 theorem thinKiteAmbientHomeomorph_image_leftSpoke (δ : ℝ) (hδ : 0 < δ) :
     thinKiteAmbientHomeomorph δ hδ ''
         segment ℝ (planePoint (-1) 0) (planePoint 0 0) =
@@ -1135,6 +1222,9 @@ theorem thinKiteAmbientHomeomorph_image_leftSpoke (δ : ℝ) (hδ : 0 < δ) :
     exact ⟨AffineMap.lineMap (planePoint (-1) 0) (planePoint 0 0) c,
       ⟨c, hc, rfl⟩, thinKiteAmbientHomeomorph_leftSpoke δ hδ c hc⟩
 
+/--
+@isnad1 id=eq.1h1v.s9.535a0138fc5b from=translated src=- shape=f19d6e3c vocab=8081b0d1
+-/
 theorem thinKiteAmbientHomeomorph_image_rightSpoke (δ : ℝ) (hδ : 0 < δ) :
     thinKiteAmbientHomeomorph δ hδ ''
         segment ℝ (planePoint 1 0) (planePoint 0 0) =
@@ -1148,7 +1238,9 @@ theorem thinKiteAmbientHomeomorph_image_rightSpoke (δ : ℝ) (hδ : 0 < δ) :
     exact ⟨AffineMap.lineMap (planePoint 1 0) (planePoint 0 0) c,
       ⟨c, hc, rfl⟩, thinKiteAmbientHomeomorph_rightSpoke δ hδ c hc⟩
 
-/-- The thin-kite homeomorphism is affine on every subsegment of its left base half. -/
+/-- The thin-kite homeomorphism is affine on every subsegment of its left base half.
+@isnad1 id=eq.3h3v.s10.c7ba273c0d67 from=translated src=- shape=845315ce vocab=5849806a
+-/
 theorem thinKiteAmbientHomeomorph_image_segment_of_endpoints_mem_leftSpoke
     (δ : ℝ) (hδ : 0 < δ) {a b : Plane}
     (ha : a ∈ segment ℝ (planePoint (-1) 0) (planePoint 0 0))
@@ -1193,7 +1285,9 @@ theorem thinKiteAmbientHomeomorph_image_segment_of_endpoints_mem_leftSpoke
       (AffineMap.lineMap L C r) t, ⟨t, ht, rfl⟩,
         by simpa [L, C] using hline t ht⟩
 
-/-- The thin-kite homeomorphism is affine on every subsegment of its right base half. -/
+/-- The thin-kite homeomorphism is affine on every subsegment of its right base half.
+@isnad1 id=eq.3h3v.s10.98521da1d48a from=translated src=- shape=f83ab1c8 vocab=8cfee80c
+-/
 theorem thinKiteAmbientHomeomorph_image_segment_of_endpoints_mem_rightSpoke
     (δ : ℝ) (hδ : 0 < δ) {a b : Plane}
     (ha : a ∈ segment ℝ (planePoint 0 0) (planePoint 1 0))
@@ -1239,6 +1333,9 @@ theorem thinKiteAmbientHomeomorph_image_segment_of_endpoints_mem_rightSpoke
       (AffineMap.lineMap R C r) t, ⟨t, ht, rfl⟩,
         by simpa [R, C] using hline t ht⟩
 
+/--
+@isnad1 id=eq.0h0v.s8.6bb9315d26ea from=translated src=- shape=ca7f8418 vocab=2cb145bf
+-/
 theorem baseSegment_eq_spokes :
     segment ℝ (planePoint (-1) 0) (planePoint 1 0) =
       segment ℝ (planePoint (-1) 0) (planePoint 0 0) ∪
@@ -1274,6 +1371,9 @@ theorem baseSegment_eq_spokes :
     · exact (convex_segment (𝕜 := ℝ) (planePoint (-1) 0) (planePoint 1 0)).segment_subset
         (right_mem_segment ℝ _ _) hcenter
 
+/--
+@isnad1 id=eq.1h1v.s9.5e2c193df3fd from=translated src=- shape=0e3ee7f5 vocab=bd9ee783
+-/
 theorem thinKiteAmbientHomeomorph_image_baseSegment (δ : ℝ) (hδ : 0 < δ) :
     thinKiteAmbientHomeomorph δ hδ ''
         segment ℝ (planePoint (-1) 0) (planePoint 1 0) =
@@ -1283,6 +1383,9 @@ theorem thinKiteAmbientHomeomorph_image_baseSegment (δ : ℝ) (hδ : 0 < δ) :
     thinKiteAmbientHomeomorph_image_leftSpoke,
     thinKiteAmbientHomeomorph_image_rightSpoke]
 
+/--
+@isnad1 id=eq.1h1v.s8.9243186cbecb from=translated src=- shape=79ae56c9 vocab=626ab743
+-/
 theorem thinKiteAmbientHomeomorph_center (δ : ℝ) (hδ : 0 < δ) :
     thinKiteAmbientHomeomorph δ hδ (planePoint 0 0) = planePoint 0 1 := by
   rw [thinKiteAmbientHomeomorph, Homeomorph.trans_apply, Homeomorph.trans_apply]
@@ -1300,6 +1403,9 @@ theorem thinKiteAmbientHomeomorph_center (δ : ℝ) (hδ : 0 < δ) :
   rw [diamondFanAmbientHomeomorph_center]
   exact thinKiteMap_target δ hδ
 
+/--
+@isnad1 id=eqon.1h1v.s8.ed2150a766ec from=translated src=- shape=ecf89ee8 vocab=0994513d
+-/
 theorem thinKiteAmbientHomeomorph_eqOn_compl (δ : ℝ) (hδ : 0 < δ) :
     Set.EqOn (thinKiteAmbientHomeomorph δ hδ) id (thinKitePatch δ)ᶜ := by
   intro p hp

@@ -27,6 +27,9 @@ abbrev Space := Vec 3
 /-- The Euclidean length given by the finite sum of coordinate squares. -/
 noncomputable def spaceEuclideanNorm (x : Space) : ℝ := Real.sqrt (∑ k, x k ^ 2)
 
+/--
+@isnad1 id=le.0h1v.s5.b46479acc553 from=translated src=- shape=fcad3e9f vocab=c181b458
+-/
 theorem space_norm_le_euclideanNorm (x : Space) :
     ‖x‖ ≤ spaceEuclideanNorm x := by
   change ‖x‖ ≤ Real.sqrt (∑ k, x k ^ 2)
@@ -44,6 +47,9 @@ theorem space_norm_le_euclideanNorm (x : Space) :
   simpa only [Real.norm_eq_abs] using
     habs
 
+/--
+@isnad1 id=le.0h1v.s5.e6c20aaff57a from=translated src=- shape=bec66467 vocab=3d1f17da
+-/
 theorem euclideanNorm_le_three_mul_space_norm (x : Space) :
     spaceEuclideanNorm x ≤ 3 * ‖x‖ := by
   have hsum : (∑ k, x k ^ 2) ≤ 3 * ‖x‖ ^ 2 := by

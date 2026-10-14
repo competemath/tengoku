@@ -43,7 +43,9 @@ open SimpleGraph Finset
 non-backtracking walk of length `≤ r` is a path.  This sharpens the landed
 `nb_walk_isPath_of_girth` (which demands girth `> 2r + 1`): peeling the first edge, the tail is a
 non-backtracking walk of length `≤ r`, hence a path by induction; a revisit of the start supplies
-two distinct paths closing a cycle of length `≤ r`, contradicting the hypothesis. -/
+two distinct paths closing a cycle of length `≤ r`, contradicting the hypothesis.
+@isnad1 id=ispath.3h6v.s6.dc12129b8def from=translated src=- shape=f9c104a1 vocab=b1087b6f
+-/
 theorem nb_walk_isPath_of_girth_sharp {V : Type*} (G : SimpleGraph V) {r : ℕ}
     (hg : ∀ (v : V) (c : G.Walk v v), c.IsCycle → r < c.length) :
     ∀ {x y : V} (w : G.Walk x y), IsNonBacktracking w → w.length ≤ r → w.IsPath := by
@@ -97,7 +99,9 @@ number of non-backtracking walks of length `1..ℓ` is at most `n·(n − 1)`.  
 endpoint map on the disjoint union of `nbWalksFrom G x k` (`k ∈ Icc 1 ℓ`) is injective into
 `univ.erase x`: two walks with a common endpoint `v` are paths (B1), and if distinct they close a
 cycle of length `≤ 2ℓ`; a walk returning to `x` would be a positive-length closed path,
-impossible. -/
+impossible.
+@isnad1 id=le.1h3v.s6.5b6af216ea47 from=translated src=- shape=49e34d89 vocab=b9cbe4ac
+-/
 theorem nb_ball_injectivity
     (hg : ∀ (v : V) (c : G.Walk v v), c.IsCycle → 2 * ℓ < c.length) :
     ∑ k ∈ Finset.Icc 1 ℓ, nbTotalWalks G k ≤ Fintype.card V * (Fintype.card V - 1) := by
@@ -186,7 +190,9 @@ and `1 ≤ ℓ`, the whole Moore ball is captured:
 `D · Σ_{k<ℓ} (D − n)^k n^(ℓ−1−k) ≤ n^ℓ (n − 1)`.  Per level `k`, the AM–GM lower bound
 `D·((D − n)/n)^k ≤ m_{k+1}` (`lambda_ge`, `nb_amgm_lambda`) is scaled by `n^(ℓ−1)`; summing and
 capping `Σ m_k ≤ n(n − 1)` (`nb_ball_injectivity`) gives the ℝ inequality, cast back to ℕ via
-`n ≤ D`.  This keeps the lower Moore terms the pair form `ahl_irregular_moore` discards. -/
+`n ≤ D`.  This keeps the lower Moore terms the pair form `ahl_irregular_moore` discards.
+@isnad1 id=le.3h3v.s8.949e274ddbd6 from=translated src=- shape=08b174a6 vocab=584ab70e
+-/
 theorem ahl_ball_moore (hδ2 : ∀ v, 2 ≤ G.degree v) [Nonempty V] (hℓ : 1 ≤ ℓ)
     (hg : ∀ (v : V) (c : G.Walk v v), c.IsCycle → 2 * ℓ < c.length) :
     (∑ v, G.degree v) * ∑ k ∈ Finset.range ℓ,
@@ -292,7 +298,9 @@ omit [DecidableEq V] in
 /-- **B3 (contrapositive) — the SUM girth bound.**  Under `δ ≥ 2` (and `V` nonempty) with `1 ≤ ℓ`,
 if `n^ℓ(n − 1) < D · Σ_{k<ℓ} (D − n)^k n^(ℓ−1−k)` then `G` contains a cycle of length `≤ 2ℓ`.  This
 is the SUM refutation the band arithmetic instantiates: a failing ball inequality forces a short
-cycle. -/
+cycle.
+@isnad1 id=ex.3h3v.s8.b45071536002 from=translated src=- shape=76300611 vocab=584ab70e
+-/
 theorem ahl_ball_girth_bound (hδ2 : ∀ v, 2 ≤ G.degree v) [Nonempty V] (hℓ : 1 ≤ ℓ)
     (hbig : (Fintype.card V) ^ ℓ * (Fintype.card V - 1)
         < (∑ v, G.degree v) * ∑ k ∈ Finset.range ℓ,

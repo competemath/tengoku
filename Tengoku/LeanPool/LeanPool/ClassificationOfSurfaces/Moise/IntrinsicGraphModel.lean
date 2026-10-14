@@ -28,7 +28,9 @@ namespace Moise
 namespace PlaneComplex
 
 /-- A nonempty face of cardinality at most two is the segment between two (possibly equal)
-vertex positions. -/
+vertex positions.
+@isnad1 id=ex.2h2v.s7.8cb9ea9da252 from=translated src=- shape=ef16839d vocab=b5e20e91
+-/
 theorem exists_cellCarrier_eq_segment (L : PlaneComplex)
     {s : Finset L.Vertex} (hs : s ∈ L.simplexes) (hcard : s.card ≤ 2) :
     ∃ a b : Plane, L.cellCarrier s = segment ℝ a b := by
@@ -85,6 +87,9 @@ noncomputable def replacementSegmentRight
   Classical.choose
     (Classical.choose_spec (private_decl% (K.replacementSegmentFace_has_endpoints q)))
 
+/--
+@isnad1 id=eq.2h5v.s12.cd2c8fd82962 from=translated src=- shape=ad81cfc3 vocab=2d4b0b1c
+-/
 theorem replacementSegment_eq_cellCarrier
     (q : K.ReplacementSegmentFace
       (hcont := hcont) (hinj := hinj) (D := D) (C := C)) :
@@ -158,6 +163,9 @@ private theorem exists_replacementGraphBase_face
       apply hsSegment
       exact subset_convexHull ℝ _ ⟨v, hv, rfl⟩
 
+/--
+@isnad1 id=eq.2h4v.s7.92b3ef2fb4d9 from=translated src=- shape=d17de850 vocab=1f0387a0
+-/
 theorem replacementGraphBaseComplex_support :
     (K.replacementGraphBaseComplex
       (hcont := hcont) (hinj := hinj) (D := D) (C := C)).support =
@@ -172,6 +180,9 @@ theorem replacementGraphBaseComplex_support :
     rw [PlaneComplex.support]
     exact Set.mem_iUnion₂.mpr ⟨s, hs, hxs⟩
 
+/--
+@isnad1 id=eq.2h4v.s7.1427eb773b09 from=translated src=- shape=d17de850 vocab=8e6fcac0
+-/
 theorem replacementGraphComplex_support :
     (K.replacementGraphComplex
       (hcont := hcont) (hinj := hinj) (D := D) (C := C)).support =
@@ -189,6 +200,9 @@ theorem replacementGraphComplex_support :
         (hcont := hcont) (hinj := hinj) (D := D) (C := C)
           |>.mem_oneSkeleton_simplexes).mpr ⟨hs, hscard⟩, hxs⟩
 
+/--
+@isnad1 id=eq.2h4v.s7.2476789c0160 from=translated src=- shape=f1f38e62 vocab=87037b4a
+-/
 theorem replacementGraphCarrier_eq_image :
     K.replacementGraphCarrier
         (hcont := hcont) (hinj := hinj) (D := D) (C := C) =
@@ -226,6 +240,9 @@ theorem replacementGraphCarrier_eq_image :
     rw [K.replacementSegment_eq_cellCarrier q]
     exact hys
 
+/--
+@isnad1 id=eq.2h4v.s7.00daf309b928 from=translated src=- shape=ec5328e9 vocab=265611eb
+-/
 theorem replacementGraphComplex_support_eq_image :
     (K.replacementGraphComplex
       (hcont := hcont) (hinj := hinj) (D := D) (C := C)).support =
@@ -233,7 +250,9 @@ theorem replacementGraphComplex_support_eq_image :
   K.replacementGraphComplex_support.trans K.replacementGraphCarrier_eq_image
 
 /-- Every point of one complete replacement edge has a face of the conforming global graph
-complex which remains inside that edge. -/
+complex which remains inside that edge.
+@isnad1 id=ex.3h6v.s8.6ad268cc4a14 from=translated src=- shape=89536258 vocab=9468cc85
+-/
 theorem exists_replacementGraphComplex_face_of_mem_completeCarrier
     (e : K.Edge) {x : Plane}
     (hx : x ∈ (K.replacementArc hcont hinj D C e).completeCarrier) :
@@ -271,7 +290,9 @@ theorem exists_replacementGraphComplex_face_of_mem_completeCarrier
           (K.replacementArc hcont hinj D C e).completeTarget_support)
 
 /-- Each intrinsic face polygon is locally covered by faces of the one global conforming graph
-complex. -/
+complex.
+@isnad1 id=ex.3h6v.s8.f8f3a0684b19 from=translated src=- shape=56787ab6 vocab=9743ce75
+-/
 theorem facePolygonalCircle_locallyCoveredBy_replacementGraphComplex (t : K.Face) :
     ∀ x ∈ (K.facePolygonalCircle
         (hcont := hcont) (hinj := hinj) (D := D) (C := C) t).carrier,
@@ -293,6 +314,9 @@ theorem facePolygonalCircle_locallyCoveredBy_replacementGraphComplex (t : K.Face
       (K.faceReplacementArc
         (hcont := hcont) (hinj := hinj) (D := D) (C := C) t j).completeCarrier) i)⟩
 
+/--
+@isnad1 id=eq.2h4v.s7.770e26133420 from=translated src=- shape=ff53aa03 vocab=9f540c79
+-/
 theorem replacementGraphComplex_support_eq_range :
     (K.replacementGraphComplex
       (hcont := hcont) (hinj := hinj) (D := D) (C := C)).support =
@@ -315,6 +339,9 @@ noncomputable def replacementGraphHomeomorph :
   (K.graphReplacementMap_isEmbedding_oneSkeleton hcont hinj D C).toHomeomorph.trans
     (Homeomorph.setCongr K.replacementGraphComplex_support_eq_range.symm)
 
+/--
+@isnad1 id=eq.2h5v.s9.8d1d87d299df from=translated src=- shape=4364be78 vocab=81643dd6
+-/
 @[simp] theorem replacementGraphHomeomorph_coe (x : K.oneSkeleton) :
     ((K.replacementGraphHomeomorph
       (hcont := hcont) (hinj := hinj) (D := D) (C := C) x :

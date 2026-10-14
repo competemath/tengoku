@@ -11,6 +11,7 @@ to a fixed finite sample is represented as a finite family of subsets of the
 sample. Mathlib's `Finset.card_le_card_shatterer` gives Pajor's trace bound,
 and `Finset.card_shatterer_le_sum_vcDim` gives the Sauer-Shelah binomial
 bound in terms of the VC dimension of that finite family.
+@isnad1 id=le.0h2v.s5.437983f394af from=translated src=- shape=f9be4314 vocab=e37b06ae
 -/
 theorem sauerShelahFiniteSetFamily
     {α : Type*} [DecidableEq α] [Fintype α] (𝒜 : Finset (Finset α)) :

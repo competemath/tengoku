@@ -59,15 +59,21 @@ def good [DecidableEq R] (n : ℕ) (q : R) := ∀ A : Finset R, #A = n → nice 
 
 /-! ### The elements `0` and `2` are good -/
 
-/-- Every finite set is `0`-nice. -/
+/-- Every finite set is `0`-nice.
+@isnad1 id=nice.0h2v.s4.fc62d7303106 from=translated src=- shape=36a9dbcb vocab=046fc2f0
+-/
 theorem nice.zero_left (B : Finset R) : nice 0 B :=
   λ x hx _ _ ↦ ⟨x, hx, x, hx, x, hx, x, hx, (zero_mul _).trans (sub_self _).symm⟩
 
-/-- The zero element is always `n`-good. -/
+/-- The zero element is always `n`-good.
+@isnad1 id=good.0h2v.s4.dccbf27064f3 from=translated src=- shape=a66f658a vocab=8df80bc2
+-/
 theorem good.zero_right [DecidableEq R] : good n (0 : R) :=
   λ _ _ ↦ nice.zero_left _
 
-/-- If `B` is `q`-nice, then `B` is also `-q`-nice. -/
+/-- If `B` is `q`-nice, then `B` is also `-q`-nice.
+@isnad1 id=nice.1h3v.s5.d7f7e4f905eb from=translated src=- shape=4d259275 vocab=07110128
+-/
 theorem nice.neg {q : R} (h : nice q B) : nice (-q) B := by
   ---- Indeed, if `qxy = a^2 + b^2 - (c^2 + d^2)`, then `-qxy = c^2 + d^2 - (a^2 + b^2)`.
   intro x hx y hy
@@ -75,13 +81,17 @@ theorem nice.neg {q : R} (h : nice q B) : nice (-q) B := by
   refine ⟨c, hc, d, hd, a, ha, b, hb, ?_⟩
   rw [neg_mul, h0, neg_sub]
 
-/-- If `q` is `n`-good, then `-q` is also `n`-good. -/
+/-- If `q` is `n`-good, then `-q` is also `n`-good.
+@isnad1 id=good.1h3v.s5.ddccf8240fb8 from=translated src=- shape=ac2c9ba0 vocab=2b343350
+-/
 theorem good.neg [DecidableEq R] {q : R} (h : good n q) : good n (-q) :=
   λ S hS ↦ (h S hS).neg
 
 end
 
-/-- Over any commutative ring, `2` is `n`-good. -/
+/-- Over any commutative ring, `2` is `n`-good.
+@isnad1 id=good.0h2v.s5.48f3d2e06393 from=translated src=- shape=2395f33e vocab=c307a3ed
+-/
 theorem good.two [CommRing R] [DecidableEq R] : good n (2 : R) := by
   ---- Based on `2(t - u)(v - w) = (t - w)^2 + (u - v)^2 - (t - v)^2 - (u - w)^2`.
   rintro S hS x hx y hy
@@ -101,13 +111,17 @@ section
 variable [Ring R] [Ring S] [DecidableEq S]
 
 /-- If `B` is `q`-nice and `1 ∈ B`, then
-  `q = a^2 + b^2 - (c^2 + d^2)` for some `a, b, c, d ∈ B`. -/
+  `q = a^2 + b^2 - (c^2 + d^2)` for some `a, b, c, d ∈ B`.
+@isnad1 id=ex.2h3v.s7.e6ece43a3c12 from=translated src=- shape=306f7c57 vocab=e0ca670b
+-/
 theorem nice.exists_sq_add_sq_sub_sq_add_sq {q : R} (h : nice q B) (hB : 1 ∈ B) :
     ∃ a ∈ B, ∃ b ∈ B, ∃ c ∈ B, ∃ d ∈ B, q = a ^ 2 + b ^ 2 - (c ^ 2 + d ^ 2) := by
   simpa only [mul_one] using h 1 hB 1 hB
 
 /-- Let `φ : R → S` be a ring homomorphism, `q ∈ S`, and `B ⊆ R` finite with `1 ∈ B`.
-  If `φ(B)` is `q`-nice, then `q = φ(q')` for some `q' ∈ R`. -/
+  If `φ(B)` is `q`-nice, then `q = φ(q')` for some `q' ∈ R`.
+@isnad1 id=ex.2h5v.s7.5744b67690c4 from=translated src=- shape=738d8312 vocab=fda7f4f6
+-/
 theorem nice.exists_eq_RingHom_apply
     {φ : R →+* S} {q' : S} {B : Finset R} (h : nice q' (B.image φ)) (hB : 1 ∈ B) :
     ∃ q : R, q' = φ q := by
@@ -125,7 +139,9 @@ theorem nice.exists_eq_RingHom_apply
   simp_rw [φ.map_sub, φ.map_add, φ.map_pow]
 
 /-- Auxiliary lemma: `φ(A - A) = φ(A) - φ(A)`. This is generalizable to `AddMonoidHom`,
-  but for implementation convenience, we stick to `RingHom`. -/
+  but for implementation convenience, we stick to `RingHom`.
+@isnad1 id=eq.0h4v.s7.db347f2b551d from=translated src=- shape=8ab73c91 vocab=d7850ff8
+-/
 lemma Finset_image_sub_RingHom [DecidableEq R] (φ : R →+* S) (A : Finset R) :
     (A - A).image φ = A.image φ - A.image φ := by
   refine ext λ a ↦ ?_
@@ -137,7 +153,9 @@ lemma Finset_image_sub_RingHom [DecidableEq R] (φ : R →+* S) (A : Finset R) :
     _ ↔ a ∈ A.image φ - A.image φ := by simp_rw [mem_sub, exists_mem_image]
 
 /-- Let `R` be an infinite ring and `φ : R → S` be an injective ring homomorphism.
-  If `q' : S` is `n`-good, where `n ≥ 2`, then `q' = φ(q)` for some `q : R`. -/
+  If `q' : S` is `n`-good, where `n ≥ 2`, then `q' = φ(q)` for some `q : R`.
+@isnad1 id=ex.3h5v.s7.9132cd9a0d25 from=translated src=- shape=c0509835 vocab=5cb64119
+-/
 theorem good.exists_eq_RingHom_apply [Infinite R] [DecidableEq R]
     {φ : R →+* S} (hφ : Injective φ) {q' : S} {n : ℕ} (hn : n ≥ 2) (h : good n q') :
     ∃ q : R, q' = φ q := by
@@ -152,7 +170,9 @@ theorem good.exists_eq_RingHom_apply [Infinite R] [DecidableEq R]
   exact h.exists_eq_RingHom_apply h0
 
 /-- Let `φ : R → S` be a ring homomorphism, `q ∈ R`, and `B ⊆ R` finite.
-  If `B` is `q`-nice, then `φ(B)` is `φ(q)`-nice. -/
+  If `B` is `q`-nice, then `φ(B)` is `φ(q)`-nice.
+@isnad1 id=nice.1h5v.s6.95e410e49221 from=translated src=- shape=f63eaca2 vocab=3a51010e
+-/
 theorem nice.RingHom_apply {φ : R →+* S} {q : R} {B : Finset R} (h : nice q B) :
     nice (φ q) (B.image φ) := by
   refine forall_mem_image.mpr λ x hx ↦ forall_mem_image.mpr λ y hy ↦ ?_
@@ -164,7 +184,9 @@ theorem nice.RingHom_apply {φ : R →+* S} {q : R} {B : Finset R} (h : nice q B
   simp_rw [← φ.map_mul, ← φ.map_pow, ← φ.map_add, ← φ.map_sub, h0]
 
 /-- Let `φ : R → S` be an injective ring homomorphism, `q ∈ R`, and `B ⊆ R` finite.
-  Then `φ(B)` is `φ(q)`-nice if and only if `B` is `q`-nice. -/
+  Then `φ(B)` is `φ(q)`-nice if and only if `B` is `q`-nice.
+@isnad1 id=iff.1h5v.s7.45885c469e51 from=translated src=- shape=c93e2ac3 vocab=0925b130
+-/
 theorem nice.RingHom_apply_iff {φ : R →+* S} (hφ : Injective φ) {q : R} {B : Finset R} :
     nice (φ q) (B.image φ) ↔ nice q B := by
   simp_rw [nice, forall_mem_image, exists_mem_image]
@@ -174,7 +196,9 @@ theorem nice.RingHom_apply_iff {φ : R →+* S} (hφ : Injective φ) {q : R} {B 
   rw [← φ.map_sub, hφ.eq_iff]
 
 /-- Let `R` be a ring, `q : R`, and `φ : R → S` be an injective ring homomorphism.
-  If `φ(q)` is `n`-good, then `q` is `n`-good. -/
+  If `φ(q)` is `n`-good, then `q` is `n`-good.
+@isnad1 id=good.2h5v.s6.1811c0bd0aaa from=translated src=- shape=60398cb1 vocab=37b0a6c1
+-/
 theorem good.of_RingHom_apply [DecidableEq R]
     {φ : R →+* S} (hφ : Injective φ) {q n} (h : good n (φ q)) : good n q := by
   rintro A rfl
@@ -182,14 +206,18 @@ theorem good.of_RingHom_apply [DecidableEq R]
   rwa [← Finset_image_sub_RingHom, nice.RingHom_apply_iff hφ] at h
 
 /-- Let `R` be an infinite ring, `q : R`, and `φ : R → S` be an injective ring homomorphism.
-  If `q' : S` is `n`-good, where `n ≥ 2`, then `q' = φ(q)` for some `n`-good element `q`. -/
+  If `q' : S` is `n`-good, where `n ≥ 2`, then `q' = φ(q)` for some `n`-good element `q`.
+@isnad1 id=ex.3h5v.s7.ac2632552248 from=translated src=- shape=ee1d1a85 vocab=5cb64119
+-/
 theorem good.exists_eq_good_RingHom_apply [Infinite R] [DecidableEq R]
     {φ : R →+* S} (hφ : Injective φ) {q' : S} {n : ℕ} (hn : n ≥ 2) (h : good n q') :
     ∃ q : R, good n q ∧ q' = φ q := by
   obtain ⟨q, rfl⟩ : ∃ q : R, q' = φ q := h.exists_eq_RingHom_apply hφ hn
   exact ⟨q, h.of_RingHom_apply hφ, rfl⟩
 
-/-- The `n`-good elements in a ring of characteristic zero are `n`-good integers. -/
+/-- The `n`-good elements in a ring of characteristic zero are `n`-good integers.
+@isnad1 id=ex.2h3v.s5.e9290c559e8f from=translated src=- shape=e0aa9884 vocab=ae674759
+-/
 theorem good.exists_intCast_of_CharZero [CharZero R] [DecidableEq R]
     {q : R} {n : ℕ} (hn : n ≥ 2) (h : good n q) : ∃ N : ℤ, good n N ∧ q = N :=
   h.exists_eq_good_RingHom_apply (φ := Int.castRingHom R) Int.cast_injective hn
@@ -198,7 +226,9 @@ end
 
 /-! ### The integer case -/
 
-/-- If there is a `q`-nice set of integers containing a non-zero element, then `q ≤ 2`. -/
+/-- If there is a `q`-nice set of integers containing a non-zero element, then `q ≤ 2`.
+@isnad1 id=le.2h2v.s5.74ae68f5f4c8 from=translated src=- shape=1149cbea vocab=493a9b11
+-/
 theorem nice.Int_le_two {B : Finset ℤ} (hB : ∃ N ∈ B, N ≠ 0) (h : nice q B) : q ≤ 2 := by
   ---- Let `x₀` be an element of the maximum absolute value in `B`.
   obtain ⟨x₀, hx₀, hx₀0⟩ : ∃ x₀ ∈ B, ∀ x ∈ B, x.natAbs ≤ x₀.natAbs := by
@@ -231,7 +261,9 @@ theorem nice.Int_le_two {B : Finset ℤ} (hB : ∃ N ∈ B, N ≠ 0) (h : nice q
     _ ≤ x₀ ^ 2 + x₀ ^ 2 := Int.add_le_add (hx₀0 a ha) (hx₀0 b hb)
     _ = 2 * x₀ ^ 2 := (Int.two_mul _).symm
 
-/-- If `n ≥ 2` and an integer `q` is `n`-good, then `q ≤ 2`. -/
+/-- If `n ≥ 2` and an integer `q` is `n`-good, then `q ≤ 2`.
+@isnad1 id=le.2h2v.s4.3cecdc4a5d1e from=translated src=- shape=addaece6 vocab=66102a91
+-/
 theorem good.Int_le_two (hn : n ≥ 2) {q : ℤ} (h : good n q) : q ≤ 2 := by
   let A : Finset ℤ := (range n).image Nat.cast
   replace h : nice q (A - A) :=
@@ -241,7 +273,9 @@ theorem good.Int_le_two (hn : n ≥ 2) {q : ℤ} (h : good n q) : q ≤ 2 := by
     ⟨1, mem_sub.mpr ⟨1, h0 1 hn, 0, h0 0 (Nat.zero_lt_of_lt hn), rfl⟩, Int.one_ne_zero⟩
   refine h.Int_le_two h0
 
-/-- Over `ZMod 8`, the set `{0, 1, 3, 4, 5, 7}` is not `1`-nice. -/
+/-- Over `ZMod 8`, the set `{0, 1, 3, 4, 5, 7}` is not `1`-nice.
+@isnad1 id=not.0h0v.s9.835bb9950c34 from=translated src=- shape=56d9213b vocab=4052c9bd
+-/
 theorem not_nice_one_013457 : ¬nice (1 : ZMod 8) ({0, 1, 3, 4, 5, 7} : Finset (ZMod 8)) := by
   ---- Let `B = {0, 1, 4, 7}` and `C = {x^2 : x ∈ B}`.
   set B : Finset (ZMod 8) := {0, 1, 3, 4, 5, 7}
@@ -255,7 +289,9 @@ theorem not_nice_one_013457 : ¬nice (1 : ZMod 8) ({0, 1, 3, 4, 5, 7} : Finset (
   ---- Now we can run the decision procedure, with 16 cases only vs. 256 cases.
   revert h; decide
 
-/-- For any `n ≥ 3`, there is of integers of size `n` whose image mod `8` is `{0, 1, 4}`. -/
+/-- For any `n ≥ 3`, there is of integers of size `n` whose image mod `8` is `{0, 1, 4}`.
+@isnad1 id=ex.1h1v.s8.afa21f0fecff from=translated src=- shape=6e25b728 vocab=6b0d4321
+-/
 theorem exists_Int_card_eq_ZMod8_image_eq (hn : n ≥ 3) :
     ∃ A : Finset ℤ, #A = n ∧ A.image (Int.castRingHom (ZMod 8)) = {0, 1, 4} := by
   ---- We pick `A = {0, 1, 4, 8, 16, 24, …, 8(n - 3)}`.
@@ -279,7 +315,9 @@ theorem exists_Int_card_eq_ZMod8_image_eq (hn : n ≥ 3) :
     replace hn : (range (n - 2)).Nonempty := ⟨0, mem_range.mpr (Nat.zero_lt_sub_of_lt hn)⟩
     rw [image_union, image_image, h, image_const hn 0]; rfl
 
-/-- The integer `1` is not `n`-good for any `n ≥ 3`. -/
+/-- The integer `1` is not `n`-good for any `n ≥ 3`.
+@isnad1 id=not.1h1v.s4.aa3abc84de70 from=translated src=- shape=e07586b2 vocab=800f33fb
+-/
 theorem not_good_Int_one (hn : n ≥ 3) : ¬good n (1 : ℤ) := by
   ---- Suppose for the sake of contradiction that `1` is `n`-good.
   intro h
@@ -294,7 +332,9 @@ theorem not_good_Int_one (hn : n ≥ 3) : ¬good n (1 : ℤ) := by
     rw [Finset_image_sub_RingHom, hA0]; decide
   exact not_nice_one_013457 (hA0 ▸ h)
 
-/-- If `q` is `n`-good where `n ≥ 3`, then `q` is either equal to `0`, `2`, or `-2`. -/
+/-- If `q` is `n`-good where `n ≥ 3`, then `q` is either equal to `0`, `2`, or `-2`.
+@isnad1 id=or.2h2v.s5.4a0913679ce5 from=translated src=- shape=d2ff02a4 vocab=f6a9972a
+-/
 theorem good.Int_eq_zero_or_two_or_neg_two (hn : n ≥ 3) {q : ℤ} (h : good n q) :
     q = 0 ∨ q = 2 ∨ q = -2 := by
   suffices q = 0 ∨ q.natAbs = 2 from this.imp_right Int.natAbs_eq_natAbs_iff.mp
@@ -313,7 +353,9 @@ theorem good.Int_eq_zero_or_two_or_neg_two (hn : n ≥ 3) {q : ℤ} (h : good n 
 
 /-! ### Summary -/
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.1h3v.s6.8ed59636aef1 from=translated src=- shape=fb4f738c vocab=c5daac78
+-/
 theorem final_solution [CommRing R] [DecidableEq R] [CharZero R] {q : R} (hn : n ≥ 3) :
     good n q ↔ q = 0 ∨ q = 2 ∨ q = -2 := by
   refine ⟨λ h ↦ ?_, ?_⟩

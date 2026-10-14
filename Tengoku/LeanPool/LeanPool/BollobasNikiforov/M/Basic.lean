@@ -44,6 +44,9 @@ def ones : Matrix n n ℝ :=
   of fun _ _ => 1
 
 omit [Fintype n] [DecidableEq n] in
+/--
+@isnad1 id=le.0h4v.s4.6e8f4b550d51 from=translated src=- shape=7589bc9d vocab=8a61808b
+-/
 lemma laplacianCoeff_nonneg (X : Matrix n n ℝ) (i j : n) :
     0 ≤ laplacianCoeff X i j := by
   unfold laplacianCoeff
@@ -51,6 +54,9 @@ lemma laplacianCoeff_nonneg (X : Matrix n n ℝ) (i j : n) :
   · exact sq_nonneg _
   · exact le_rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.d69364d4276c from=translated src=- shape=3f68fa4c vocab=7b3dbfc4
+-/
 lemma M_apply (X : Matrix n n ℝ) (a b : n) :
     M X a b =
       X a b * X a b +
@@ -61,7 +67,9 @@ lemma M_apply (X : Matrix n n ℝ) (a b : n) :
 /-! ### Helpers for the rank-one Laplacian -/
 
 omit [Fintype n] [LinearOrder n] in
-/-- Off-diagonal entries of `vecMulVec (e p - e q) (e p - e q)`. -/
+/-- Off-diagonal entries of `vecMulVec (e p - e q) (e p - e q)`.
+@isnad1 id=eq.1h5v.s7.f10cdedda6e0 from=translated src=- shape=a7df0c7e vocab=d9d0734d
+-/
 lemma vecMulVec_sub_single_offDiag {p q i j : n} (hij : i ≠ j) :
     vecMulVec (e p - e q) (e p - e q) i j =
       if p = i ∧ q = j then (-1 : ℝ)
@@ -84,10 +92,16 @@ lemma vecMulVec_sub_single_offDiag {p q i j : n} (hij : i ≠ j) :
     simp only [hA, hB]
 
 omit [LinearOrder n] in
+/--
+@isnad1 id=eq.0h4v.s6.1d280a369bb1 from=translated src=- shape=5b3b324e vocab=93559da9
+-/
 lemma sum_sum_ite_eq_pair (f : n → n → ℝ) (i j : n) :
     ∑ p, ∑ q, (if p = i ∧ q = j then f p q else 0) = f i j := by
   simp [ite_and, sum_ite_eq']
 
+/--
+@isnad1 id=eq.1h4v.s7.868e76bc2558 from=translated src=- shape=95078111 vocab=473d1cae
+-/
 lemma laplacianCoeff_correction_offDiag (X : Matrix n n ℝ) {i j : n} (hij : i ≠ j) :
     ∑ p, ∑ q, laplacianCoeff X p q * vecMulVec (e p - e q) (e p - e q) i j =
       - laplacianCoeff X i j - laplacianCoeff X j i := by
@@ -112,7 +126,9 @@ lemma laplacianCoeff_correction_offDiag (X : Matrix n n ℝ) {i j : n} (hij : i 
 
 /-! ### MX03 — off-diagonal formula -/
 
-/-- For `i ≠ j` and symmetric `X`, `M X i j = (max (X i j) 0)²`. -/
+/-- For `i ≠ j` and symmetric `X`, `M X i j = (max (X i j) 0)²`.
+@isnad1 id=eq.2h4v.s5.8af62df36ecf from=translated src=- shape=282daf9d vocab=462624f9
+-/
 lemma M_apply_of_ne (X : Matrix n n ℝ) (hX : X.IsSymm) {i j : n} (hij : i ≠ j) :
     M X i j = posPart X i j ^ 2 := by
   rw [M_apply, laplacianCoeff_correction_offDiag X hij]
@@ -133,12 +149,18 @@ lemma M_apply_of_ne (X : Matrix n n ℝ) (hX : X.IsSymm) {i j : n} (hij : i ≠ 
 
 /-! ### MX02 — PSD and entrywise nonnegativity -/
 
+/--
+@isnad1 id=possemid.1h2v.s5.cb2413891890 from=translated src=- shape=a920c22e vocab=3af73382
+-/
 lemma M_posSemidef {X : Matrix n n ℝ} (hX : X.PosSemidef) : (M X).PosSemidef := by
   unfold M
   refine (posSemidef_hadamard_self hX).add ?_
   exact posSemidef_sum _ fun i _ ↦ posSemidef_sum _ fun j _ ↦
     (posSemidef_vecMulVec_self (e i - e j)).smul (laplacianCoeff_nonneg X i j)
 
+/--
+@isnad1 id=le.1h4v.s5.9dbf078083df from=translated src=- shape=ab697cbb vocab=71dae5e1
+-/
 lemma M_nonneg {X : Matrix n n ℝ} (hX : X.PosSemidef) (i j : n) : 0 ≤ M X i j := by
   rcases eq_or_ne i j with rfl | hij
   · rw [M_apply]
@@ -152,28 +174,43 @@ lemma M_nonneg {X : Matrix n n ℝ} (hX : X.PosSemidef) (i j : n) : 0 ≤ M X i 
 /-! ### MX04 — all-ones identities -/
 
 omit [DecidableEq n] [LinearOrder n] in
+/--
+@isnad1 id=eq.0h5v.s5.9bd69906bd89 from=translated src=- shape=a4aba7d5 vocab=aaab76aa
+-/
 lemma inner_sum_right {ι : Type*} (B : Matrix n n ℝ) (s : Finset ι)
     (f : ι → Matrix n n ℝ) :
     inner B (∑ i ∈ s, f i) = ∑ i ∈ s, inner B (f i) := by
   simp [inner, mul_sum, trace_sum]
 
 omit [Fintype n] [DecidableEq n] [LinearOrder n] in
+/--
+@isnad1 id=issymm.0h1v.s2.a3c5db48ef7e from=translated src=- shape=ad9133c1 vocab=d4154b66
+-/
 lemma isSymm_ones : (ones : Matrix n n ℝ).IsSymm := by
   ext
   simp [ones]
 
 omit [LinearOrder n] in
+/--
+@isnad1 id=eq.0h3v.s6.23a5939f863b from=translated src=- shape=f388644b vocab=f25ee4ad
+-/
 lemma sub_single_dotProduct_one (i j : n) :
     (e i - e j) ⬝ᵥ (1 : n → ℝ) = 0 := by
   simp [e, Pi.sub_apply, dotProduct, Pi.single_apply]
 
 omit [LinearOrder n] in
+/--
+@isnad1 id=eq.0h3v.s7.a33d2728a137 from=translated src=- shape=c89a7baf vocab=7cfec42e
+-/
 lemma vecMulVec_sub_single_mulVec_one (i j : n) :
     vecMulVec (e i - e j) (e i - e j) *ᵥ (1 : n → ℝ) = 0 := by
   rw [vecMulVec_mulVec, sub_single_dotProduct_one]
   simp
 
 omit [LinearOrder n] in
+/--
+@isnad1 id=eq.0h3v.s6.5a758886b805 from=translated src=- shape=34c5838d vocab=bbbc7f4e
+-/
 lemma inner_ones_vecMulVec_sub_single (i j : n) :
     inner (ones : Matrix n n ℝ) (vecMulVec (e i - e j) (e i - e j)) = 0 := by
   rcases eq_or_ne i j with rfl | hij
@@ -182,13 +219,18 @@ lemma inner_ones_vecMulVec_sub_single (i j : n) :
     simp [ones]; norm_num
 
 omit [DecidableEq n] [LinearOrder n] in
+/--
+@isnad1 id=eq.0h2v.s4.4d27040a17f1 from=translated src=- shape=1aaa412e vocab=135b9ef9
+-/
 lemma inner_ones_hadamard_self (X : Matrix n n ℝ) :
     inner (ones : Matrix n n ℝ) (X ⊙ X) = inner X X := by
   rw [inner_eq_sum, inner_self]
   simp [ones, hadamard_apply, pow_two]
 
 /-- Each Laplacian annihilates the all-ones vector, so `M X` and `X ⊙ X` have
-the same row sums. -/
+the same row sums.
+@isnad1 id=eq.0h2v.s6.b78611ce9816 from=translated src=- shape=f7060f05 vocab=4e3443eb
+-/
 lemma M_mulVec_one (X : Matrix n n ℝ) :
     M X *ᵥ (1 : n → ℝ) = (X ⊙ X) *ᵥ (1 : n → ℝ) := by
   simp only [M, add_mulVec, sum_mulVec, smul_mulVec]
@@ -196,6 +238,9 @@ lemma M_mulVec_one (X : Matrix n n ℝ) :
   refine Fintype.sum_eq_zero _ fun i ↦ Fintype.sum_eq_zero _ fun j ↦ ?_
   rw [vecMulVec_sub_single_mulVec_one, smul_zero]
 
+/--
+@isnad1 id=eq.0h2v.s5.ea003e715224 from=translated src=- shape=4e9bd28f vocab=1a22215c
+-/
 lemma inner_ones_M (X : Matrix n n ℝ) :
     inner (ones : Matrix n n ℝ) (M X) = inner X X := by
   unfold M
@@ -207,6 +252,9 @@ lemma inner_ones_M (X : Matrix n n ℝ) :
 
 /-! ### MX05 — continuity and scaling -/
 
+/--
+@isnad1 id=eq.0h1v.s6.254c252ca9ce from=translated src=- shape=779cde32 vocab=df94513a
+-/
 lemma ite_neg_sq_eq_min_sq (x : ℝ) :
     (if x < 0 then x ^ 2 else 0) = (min x 0) ^ 2 := by
   rcases lt_trichotomy x 0 with h | h | h
@@ -215,12 +263,18 @@ lemma ite_neg_sq_eq_min_sq (x : ℝ) :
   · simp [h.not_gt, min_eq_right h.le]
 
 omit [Fintype n] [DecidableEq n] in
+/--
+@isnad1 id=eq.0h4v.s6.4a88e9b19678 from=translated src=- shape=10324d58 vocab=3520f118
+-/
 lemma laplacianCoeff_eq_min (X : Matrix n n ℝ) (i j : n) :
     laplacianCoeff X i j = if i < j then (min (X i j) 0) ^ 2 else 0 := by
   unfold laplacianCoeff
   by_cases hij : i < j <;> simp [hij, ite_neg_sq_eq_min_sq]
 
 omit [Fintype n] [DecidableEq n] in
+/--
+@isnad1 id=continuo.0h3v.s5.e0d32cc0559b from=translated src=- shape=7fef9157 vocab=d11432dd
+-/
 lemma continuous_laplacianCoeff (i j : n) :
     Continuous fun X : Matrix n n ℝ => laplacianCoeff X i j := by
   simp_rw [laplacianCoeff_eq_min]
@@ -230,6 +284,9 @@ lemma continuous_laplacianCoeff (i j : n) :
   · simp only [hij, ↓reduceIte]
     exact continuous_const
 
+/--
+@isnad1 id=continuo.0h1v.s5.2a3e2d810c82 from=translated src=- shape=1874db6f vocab=463f1a2b
+-/
 lemma continuous_M : Continuous (fun X : Matrix n n ℝ => M X) := by
   unfold M
   refine Continuous.add ?hadamard ?sum
@@ -239,6 +296,9 @@ lemma continuous_M : Continuous (fun X : Matrix n n ℝ => M X) := by
     exact (continuous_laplacianCoeff i j).smul continuous_const
 
 omit [Fintype n] [DecidableEq n] in
+/--
+@isnad1 id=eq.1h5v.s6.895645156231 from=translated src=- shape=b130e6d9 vocab=e9a9b93e
+-/
 lemma laplacianCoeff_smul_sq (c : ℝ) (hc : 0 ≤ c) (X : Matrix n n ℝ) (i j : n) :
     laplacianCoeff ((c ^ 2) • X) i j = c ^ 4 * laplacianCoeff X i j := by
   unfold laplacianCoeff
@@ -260,7 +320,9 @@ lemma laplacianCoeff_smul_sq (c : ℝ) (hc : 0 ≤ c) (X : Matrix n n ℝ) (i j 
         simp [hneg, this]
   · simp [hij]
 
-/-- `M (c² • X) = c⁴ • M X` for `c ≥ 0`. -/
+/-- `M (c² • X) = c⁴ • M X` for `c ≥ 0`.
+@isnad1 id=eq.1h3v.s7.088a7e8363a8 from=translated src=- shape=769f0cd5 vocab=4f028199
+-/
 lemma M_smul_sq {c : ℝ} (hc : 0 ≤ c) (X : Matrix n n ℝ) :
     M ((c ^ 2) • X) = (c ^ 4) • M X := by
   unfold M

@@ -42,7 +42,9 @@ theorem two_mul_le_add_of_sq_le_mul
     _ = (a + b) * (a + b) := sq _
 -/
 
-/-- A version of the statement to be proved that is free of division. -/
+/-- A version of the statement to be proved that is free of division.
+@isnad1 id=le.5h4v.s8.e1b13edbc2eb from=translated src=- shape=43ac9eee vocab=72128cee
+-/
 theorem general_result
     [CommSemiring R] [LinearOrder R] [IsStrictOrderedRing R] [ExistsAddOfLE R]
     {a b : ℕ → R} (ha : ∀ k, a k > 0) (hb : ∀ k, b k ≥ 0)
@@ -89,7 +91,9 @@ theorem general_result
         (mul_le_mul_of_nonneg_left hab (ha n).le) (le_mul_of_one_le_right hc n_ih)
     _ = T + a n := by rw [← add_mul, hc0, one_mul]
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=le.3h3v.s8.a658eaa0d700 from=translated src=- shape=727d685e vocab=5d246d11
+-/
 theorem final_solution
     [Semifield F] [LinearOrder F] [IsStrictOrderedRing F] [ExistsAddOfLE F] {a : ℕ → F}
     (ha : ∀ k, a k > 0) (ha0 : ∀ k, (k + 1 : ℕ) * a k / (a k ^ 2 + k) ≤ a (k + 1))

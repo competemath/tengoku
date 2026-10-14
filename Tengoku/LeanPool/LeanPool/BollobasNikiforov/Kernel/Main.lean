@@ -35,7 +35,9 @@ variable {k : ℕ} (t : Fin k → ℝ) (q : Fin k → ℝ)
 /-! ### KR26: `lem:kernel` -/
 
 /-- For `x ≥ 0`, the auxiliaries satisfy `N ≥ 1`, `P ≥ 0`, `Z ≥ 0`, and
-the factorization `eq:factor` holds. -/
+the factorization `eq:factor` holds.
+@isnad1 id=and.5h5v.s8.cb9b5991bfc3 from=translated src=- shape=cf26f951 vocab=15fbbf7a
+-/
 lemma kernel_lemma (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ)
     (htmono : Monotone t) (htpos : ∀ i, 0 < t i) {x : ℝ} (hx : 0 ≤ x) :
     1 ≤ N t q x ∧ 0 ≤ P t q x ∧ 0 ≤ Z t q γ x ∧
@@ -63,18 +65,30 @@ def kernelCoeffP : ℝ :=
 def kernelCoeffZ (γ : ℝ) : ℝ :=
   1 / (γ * a0 t q * (γ + a0 t q))
 
+/--
+@isnad1 id=le.1h3v.s5.909d05fead5e from=translated src=- shape=c1ec6b93 vocab=24604a37
+-/
 lemma kernelCoeffN_nonneg (hq : ∀ i, 0 < q i) : 0 ≤ kernelCoeffN t q :=
   one_div_nonneg.mpr (mul_pos (Δ_pos t q hq) (D2_pos t q hq)).le
 
+/--
+@isnad1 id=le.1h3v.s5.26bbd04da237 from=translated src=- shape=c1ec6b93 vocab=15a0ed43
+-/
 lemma kernelCoeffP_nonneg (hq : ∀ i, 0 < q i) : 0 ≤ kernelCoeffP t q :=
   div_nonneg (by norm_num : (0 : ℝ) ≤ 2)
     (mul_pos (a0_pos t q hq) (D2_pos t q hq)).le
 
+/--
+@isnad1 id=le.2h4v.s5.7b3addfdefb2 from=translated src=- shape=8b091500 vocab=e5089c45
+-/
 lemma kernelCoeffZ_nonneg (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ) :
     0 ≤ kernelCoeffZ t q γ :=
   one_div_nonneg.mpr
     (mul_pos (mul_pos hγ (a0_pos t q hq)) (γ_add_a0_pos t q γ hq hγ)).le
 
+/--
+@isnad1 id=eq.2h6v.s8.c3348fb0a820 from=translated src=- shape=c8aff42b vocab=14711a8a
+-/
 lemma kernel_gram_eq {κ : Type*}
     (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ) (x : κ → ℝ) :
     (fun j ℓ ↦ U t q γ (x j) ⬝ᵥ 𝒦 t q γ *ᵥ U t q γ (x ℓ)) =
@@ -88,6 +102,9 @@ lemma kernel_gram_eq {κ : Type*}
   rw [𝒦_factor t q γ hq hγ (x j) (x ℓ)]
   ring
 
+/--
+@isnad1 id=iscomple.5h6v.s7.c1e0afb6ed2f from=translated src=- shape=ed43221b vocab=019a7964
+-/
 lemma kernel_gram_isCompletelyPositive {κ : Type*}
     (γ : ℝ) (hq : ∀ i, 0 < q i) (hγ : 0 < γ)
     (htmono : Monotone t) (htpos : ∀ i, 0 < t i)

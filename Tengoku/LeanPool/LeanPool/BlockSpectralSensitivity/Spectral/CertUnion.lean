@@ -38,7 +38,9 @@ Adapted for Lean Pool from `Timeroot/BS_Lam` at commit
 @[expose] public section
 
 /-- A finite sum of reals that are each at most one is at most the number of nonzero terms.
-This is a general `Finset` fact, stated here because Mathlib does not have it. -/
+This is a general `Finset` fact, stated here because Mathlib does not have it.
+@isnad1 id=le.1h3v.s6.ab3a923ac2c6 from=translated src=- shape=4e1de0fc vocab=6bb06cfb
+-/
 theorem Finset.sum_le_card_filter_ne_zero {α : Type*} (s : Finset α) {f : α → ℝ}
     (hf : ∀ a ∈ s, f a ≤ 1) : ∑ a ∈ s, f a ≤ ((s.filter fun a ↦ f a ≠ 0).card : ℝ) := by
   rw [← Finset.sum_filter_ne_zero]
@@ -68,32 +70,42 @@ noncomputable def offMat : Matrix (Ones F.ind) (Ones F.ind) ℝ := Matrix.of fun
 noncomputable def offBound : ℝ :=
   Real.sqrt (((F.A * (F.c - 1) : ℕ) : ℝ) * (F.B : ℝ))
 
-/-- The defining formula for an entry of the diagonal part (Section 11.3). -/
+/-- The defining formula for an entry of the diagonal part (Section 11.3).
+@isnad1 id=eq.0h5v.s7.5ea3ccd19792 from=translated src=- shape=97727277 vocab=c6d80487
+-/
 theorem diagMat_apply (x y : Ones F.ind) :
     F.diagMat x y = if x = y then gram F.ind x x else 0 :=
   Matrix.diagonal_apply _ _ _
 
-/-- The defining formula for an entry of the oriented part (Section 11.3). -/
+/-- The defining formula for an entry of the oriented part (Section 11.3).
+@isnad1 id=eq.0h5v.s8.cc0262a399ca from=translated src=- shape=83d6c9f9 vocab=66846a32
+-/
 theorem offMat_apply (x y : Ones F.ind) :
     F.offMat x y =
       if F.owner x ≠ F.owner y ∧ (F.P (F.owner y)).dist x.1 = 1 then gram F.ind x y else 0 :=
   rfl
 
 /-- The entries of `R` are Gram entries or zero, hence nonnegative — one of the two
-hypotheses of the Schur test (Section 11.3). -/
+hypotheses of the Schur test (Section 11.3).
+@isnad1 id=le.0h5v.s6.8e57798e018b from=translated src=- shape=7ea2671f vocab=42c3bda9
+-/
 theorem offMat_nonneg (x y : Ones F.ind) : 0 ≤ F.offMat x y := by
   rw [F.offMat_apply]
   split_ifs
   exacts [gram_nonneg F.ind x y, le_rfl]
 
 /-- The diagonal of `R` vanishes, since a point owns itself: this is what makes `D` in the
-splitting `G = D + R + Rᵀ` carry the whole diagonal (Section 11.3). -/
+splitting `G = D + R + Rᵀ` carry the whole diagonal (Section 11.3).
+@isnad1 id=eq.0h4v.s5.1aed8719093c from=translated src=- shape=02440487 vocab=bc58eda3
+-/
 theorem offMat_diag (x : Ones F.ind) : F.offMat x x = 0 := by
   rw [F.offMat_apply, ite_eq_right]
   exact fun h ↦ h.1 rfl
 
 /-- The entries of `R` are at most one, by `gram_le_one`; this is what turns the row and
-column *counts* of Section 11.3 into bounds on the row and column *sums*. -/
+column *counts* of Section 11.3 into bounds on the row and column *sums*.
+@isnad1 id=le.0h5v.s6.4018f2952fe9 from=translated src=- shape=94c9a08d vocab=42c3bda9
+-/
 theorem offMat_le_one (x y : Ones F.ind) : F.offMat x y ≤ 1 := by
   rw [F.offMat_apply]
   split_ifs with h
@@ -124,7 +136,9 @@ private theorem gram_eq_offMat_add_offMat {x y : Ones F.ind} (hxy : x ≠ y) :
       ite_eq_left ⟨hown.symm, hd⟩,
       zero_add, gram_comm]
 
-/-- The splitting `G = D + R + Rᵀ` of the Gram matrix (Section 11.3). -/
+/-- The splitting `G = D + R + Rᵀ` of the Gram matrix (Section 11.3).
+@isnad1 id=eq.0h3v.s8.5c5b81850e71 from=translated src=- shape=398b2fb5 vocab=e2ed30f5
+-/
 theorem gram_eq_add : gram F.ind = F.diagMat + F.offMat + F.offMatᵀ := by
   ext x y
   rw [Matrix.add_apply, Matrix.add_apply, Matrix.transpose_apply, F.diagMat_apply]
@@ -137,7 +151,9 @@ theorem gram_eq_add : gram F.ind = F.diagMat + F.offMat + F.offMatᵀ := by
 /-! ### Counting the nonzero entries of `R` -/
 
 /-- Reading off the three conditions hidden behind a nonzero entry of the oriented part
-(Section 11.3). -/
+(Section 11.3).
+@isnad1 id=iff.0h5v.s7.03bf70ee4ba6 from=translated src=- shape=77d1a39c vocab=c214f474
+-/
 theorem offMat_ne_zero_iff {x y : Ones F.ind} :
     F.offMat x y ≠ 0 ↔
       F.owner x ≠ F.owner y ∧ (F.P (F.owner y)).dist x.1 = 1 ∧ gram F.ind x y ≠ 0 := by
@@ -156,7 +172,9 @@ private theorem eq_proj_of_offMat_ne_zero {x y : Ones F.ind} (h : F.offMat x y �
 /-- For a fixed second owner `j`, at most `c - 1` inputs `y` give a nonzero oriented
 entry in the row of `x`: each such `y` is a single flip of `π_{C_j}(x)` at a coordinate
 fixed by `C_i`, and the flip that returns `x` itself is excluded
-(Section 11.3, row bound). -/
+(Section 11.3, row bound).
+@isnad1 id=le.2h5v.s8.cc571ab4fe63 from=translated src=- shape=2e322bc6 vocab=781f10d0
+-/
 theorem card_offMat_row_slice_le {x : Ones F.ind} {j : ι} (hj : j ≠ F.owner x)
     (hd : (F.P j).dist x.1 = 1) :
     (Finset.univ.filter fun y : Ones F.ind =>
@@ -181,7 +199,9 @@ theorem card_offMat_row_slice_le {x : Ones F.ind} {j : ι} (hj : j ≠ F.owner x
 
 /-- Every row of the oriented part has at most `A (c - 1)` nonzero entries: the row splits
 into at most `A` slices, one per certificate at distance one from `x`, and
-`card_offMat_row_slice_le` bounds each slice (Section 11.3, row bound). -/
+`card_offMat_row_slice_le` bounds each slice (Section 11.3, row bound).
+@isnad1 id=le.0h4v.s7.141cb35b8fc7 from=translated src=- shape=876d18cc vocab=08216e2e
+-/
 theorem card_offMat_row_le (x : Ones F.ind) :
     (Finset.univ.filter fun y : Ones F.ind => F.offMat x y ≠ 0).card
       ≤ F.A * (F.c - 1) := by
@@ -204,7 +224,9 @@ theorem card_offMat_row_le (x : Ones F.ind) :
 
 /-- Every column of the oriented part has at most `B` nonzero entries: every row index `x`
 of the column of `y` has a distinct owner, at distance two from `y`, and `listTwo` bounds the
-number of those (Section 11.3, column bound). -/
+number of those (Section 11.3, column bound).
+@isnad1 id=le.0h4v.s7.053bcbd43a65 from=translated src=- shape=aaa7d0ca vocab=23766361
+-/
 theorem card_offMat_col_le (y : Ones F.ind) :
     (Finset.univ.filter fun x : Ones F.ind => F.offMat x y ≠ 0).card ≤ F.B := by
   refine (Finset.card_le_card_of_injOn F.owner ?_ ?_).trans
@@ -221,14 +243,18 @@ theorem card_offMat_col_le (y : Ones F.ind) :
 /-! ### The Schur test and the Spectral Lemma -/
 
 /-- Every row sum of the oriented part is at most `A (c - 1)`: the entries are at most one,
-so the sum is at most the count of `card_offMat_row_le` (Section 11.3). -/
+so the sum is at most the count of `card_offMat_row_le` (Section 11.3).
+@isnad1 id=le.0h4v.s7.8dc145e4c861 from=translated src=- shape=9863b602 vocab=6d77a7f4
+-/
 theorem offMat_row_sum_le (x : Ones F.ind) :
     ∑ y, F.offMat x y ≤ ((F.A * (F.c - 1) : ℕ) : ℝ) :=
   (Finset.sum_le_card_filter_ne_zero _ fun y _ ↦ F.offMat_le_one x y).trans
     (by exact_mod_cast F.card_offMat_row_le x)
 
 /-- Every column sum of the oriented part is at most `B`: the entries are at most one, so
-the sum is at most the count of `card_offMat_col_le` (Section 11.3). -/
+the sum is at most the count of `card_offMat_col_le` (Section 11.3).
+@isnad1 id=le.0h4v.s7.0a50b284f1c4 from=translated src=- shape=b2dfec4b vocab=adaa8bf5
+-/
 theorem offMat_col_sum_le (y : Ones F.ind) :
     ∑ x, F.offMat x y ≤ (F.B : ℝ) :=
   (Finset.sum_le_card_filter_ne_zero _ fun x _ ↦ F.offMat_le_one x y).trans
@@ -236,7 +262,9 @@ theorem offMat_col_sum_le (y : Ones F.ind) :
 
 /-- The diagonal part has operator norm at most the codimension `c`: the L2 operator norm of
 a diagonal matrix is the supremum norm of its diagonal, and `gram_diag_le` bounds every Gram
-diagonal entry by `c` (Section 11.3). -/
+diagonal entry by `c` (Section 11.3).
+@isnad1 id=le.0h3v.s7.90eaa144eabe from=translated src=- shape=91bb7fbc vocab=0fe6b439
+-/
 theorem l2_opNorm_diagMat_le : ‖F.diagMat‖ ≤ (F.c : ℝ) := by
   rw [diagMat, Matrix.l2_opNorm_diagonal]
   refine (pi_norm_le_iff_of_nonneg (by positivity)).2 fun x ↦ ?_
@@ -244,17 +272,23 @@ theorem l2_opNorm_diagMat_le : ‖F.diagMat‖ ≤ (F.c : ℝ) := by
   exact F.gram_diag_le x
 
 /-- The Schur test applied to `R`, with the row bound `A (c-1)` and the column bound `B`
-(Section 11.3). -/
+(Section 11.3).
+@isnad1 id=le.0h3v.s7.fc0418944561 from=translated src=- shape=b3aa765b vocab=2b9aa29a
+-/
 theorem l2_opNorm_offMat_le : ‖F.offMat‖ ≤ F.offBound :=
   Matrix.l2_opNorm_le_sqrt_of_row_col_sums F.offMat F.offMat_nonneg F.offMat_row_sum_le
     F.offMat_col_sum_le
 
 /-- The transpose of `R` obeys the same bound, since transposition preserves the L2 operator
-norm (Section 11.3). -/
+norm (Section 11.3).
+@isnad1 id=le.0h3v.s7.448cd6a615c4 from=translated src=- shape=296b6196 vocab=d5e19996
+-/
 theorem l2_opNorm_offMat_transpose_le : ‖F.offMatᵀ‖ ≤ F.offBound :=
   F.offMat.l2_opNorm_transpose.trans_le F.l2_opNorm_offMat_le
 
-/-- The triangle inequality on the splitting `G = D + R + Rᵀ` (Section 11.3). -/
+/-- The triangle inequality on the splitting `G = D + R + Rᵀ` (Section 11.3).
+@isnad1 id=le.0h3v.s7.5a9d8cf6c4e8 from=translated src=- shape=59add684 vocab=7dfc273a
+-/
 theorem l2_opNorm_gram_le : ‖gram F.ind‖ ≤ (F.c : ℝ) + 2 * F.offBound := by
   rw [F.gram_eq_add, two_mul, ← add_assoc]
   exact (norm_add_le _ _).trans (add_le_add
@@ -262,13 +296,17 @@ theorem l2_opNorm_gram_le : ‖gram F.ind‖ ≤ (F.c : ℝ) + 2 * F.offBound :=
     F.l2_opNorm_offMat_transpose_le)
 
 /-- **The Spectral Lemma** (Section 11.3): `lambda(f)^2 ≤ c + 2 √(A (c-1) B)`.  Combining
-`lam_sq_le_l2_opNorm_gram` with the norm bound on `G`. -/
+`lam_sq_le_l2_opNorm_gram` with the norm bound on `G`.
+@isnad1 id=le.0h3v.s6.565717d9aa22 from=translated src=- shape=5ac30c33 vocab=912b2db4
+-/
 theorem lam_sq_le : lam F.ind ^ 2 ≤ (F.c : ℝ) + 2 * F.offBound :=
   le_trans (lam_sq_le_l2_opNorm_gram F.ind) F.l2_opNorm_gram_le
 
 /-- The Spectral Lemma with `offBound` unfolded and the subtraction taken in `ℝ` rather than
 in `ℕ`, which is how Section 11.3 displays it. Nothing downstream needs this form — `lam_sq_le`
-is the one the development uses — but it is the statement free of a truncated subtraction. -/
+is the one the development uses — but it is the statement free of a truncated subtraction.
+@isnad1 id=le.1h3v.s7.66bae1596799 from=translated src=- shape=4da95019 vocab=9087b436
+-/
 theorem lam_sq_le_sqrt (hc : 1 ≤ F.c) :
     lam F.ind ^ 2 ≤ (F.c : ℝ) + 2 * Real.sqrt (((F.c : ℝ) - 1) * F.A * F.B) := by
   refine F.lam_sq_le.trans_eq ?_

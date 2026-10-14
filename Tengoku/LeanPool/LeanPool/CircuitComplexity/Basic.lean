@@ -129,12 +129,18 @@ decreasing_by
   have hacyc := c.acyclic ⟨w.val - N, hG⟩ k
   simp_all
 
+/--
+@isnad1 id=eq.1h7v.s6.0a72ed18378b from=translated src=- shape=42d0b233 vocab=6b6251bb
+-/
 theorem wireValue_lt (c : Circuit B N M G) (input : BitString N)
     (w : Fin (N + G)) (h : w.val < N) :
     c.wireValue input w = input ⟨w.val, h⟩ := by
   unfold wireValue
   simp [h]
 
+/--
+@isnad1 id=eq.1h7v.s6.607577011d71 from=translated src=- shape=5c0b732f vocab=4ab893ad
+-/
 theorem wireValue_ge (c : Circuit B N M G) (input : BitString N)
     (w : Fin (N + G)) (h : ¬ (w.val < N)) :
     c.wireValue input w =
@@ -158,7 +164,9 @@ decreasing_by
   have hacyc := c.acyclic ⟨w.val - N, hG⟩ k
   simp_all
 
-/-- Primary input wires (index < N) have depth 0. -/
+/-- Primary input wires (index < N) have depth 0.
+@isnad1 id=eq.1h6v.s6.d07600e29e6f from=translated src=- shape=13cc0af1 vocab=cb53265e
+-/
 @[simp] theorem inputWireDepth (c : Circuit B N M G)
     (w : Fin (N + G)) (h : w.val < N) :
     c.wireDepth w = 0 := by
@@ -208,7 +216,9 @@ private theorem size_complexity_set_nonempty [CompleteBasis B]
   refine ⟨c.size, G, c, rfl, ?_⟩
   simp_all
 
-/-- For a complete basis, circuit size complexity is always positive. -/
+/-- For a complete basis, circuit size complexity is always positive.
+@isnad1 id=lt.0h3v.s5.90908a96d478 from=translated src=- shape=0d9b1928 vocab=99e2a52d
+-/
 theorem size_complexity_pos [CompleteBasis B]
     (f : BitString N → Bool) :
     0 < sizeComplexity B f := by
@@ -217,14 +227,18 @@ theorem size_complexity_pos [CompleteBasis B]
   rw [← hs, size]
   omega
 
-/-- Any circuit computing `f` has size at least `sizeComplexity B f`. -/
+/-- Any circuit computing `f` has size at least `sizeComplexity B f`.
+@isnad1 id=le.1h5v.s6.0fcc5ae94027 from=translated src=- shape=3fe0d7f9 vocab=3ffa4cca
+-/
 theorem size_complexity_le {G : Nat}
     (c : Circuit B N 1 G) (f : BitString N → Bool)
     (hf : (fun x => (c.eval x) 0) = f) :
     sizeComplexity B f ≤ c.size :=
   Nat.sInf_le ⟨G, c, rfl, hf⟩
 
-/-- For a complete basis, `sizeComplexity` is realized by some circuit. -/
+/-- For a complete basis, `sizeComplexity` is realized by some circuit.
+@isnad1 id=ex.0h3v.s6.6d3a84af0be3 from=translated src=- shape=9793bc51 vocab=af1e744a
+-/
 theorem size_complexity_witness [CompleteBasis B]
     (f : BitString N → Bool) :
     ∃ G, ∃ c : Circuit B N 1 G,

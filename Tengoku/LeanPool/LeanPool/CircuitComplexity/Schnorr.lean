@@ -48,7 +48,9 @@ When `Basis.andOr2` is known to be complete, this yields a
 namespace CircuitComplexity
 
 /-- **Schnorr lower bound in terms of `sizeComplexity`**: the fan-in-2
-    AND/OR circuit complexity of N-input XOR is at least `2N − 1`. -/
+    AND/OR circuit complexity of N-input XOR is at least `2N − 1`.
+@isnad1 id=le.1h1v.s5.8a9c465830e0 from=translated src=- shape=e16f07f0 vocab=ffb27684
+-/
 theorem schnorr_size_complexity (N : Nat) [NeZero N] (hN : 1 ≤ N)
     [CompleteBasis Basis.andOr2] :
     Circuit.sizeComplexity Basis.andOr2 (Schnorr.xorBool N) ≥ 2 * N - 1 := by

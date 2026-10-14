@@ -26,7 +26,9 @@ noncomputable section
 namespace CKN.Core.Step4
 
 /-- The power integral of a parabolic cylinder is the time integral of its
-spatial slices. -/
+spatial slices.
+@isnad1 id=eq.2h5v.s7.2d47322e55c1 from=translated src=- shape=2d9ca017 vocab=ac79a2af
+-/
 theorem cylinderPowerIntegral_eq_lintegral_slices
     {P : ℝ} (hP : 0 < P) {g : ParabolicPoint → ℝ} {x : Vec3} {t r : ℝ}
     (hmeas : AEMeasurable g (volume.restrict (parabolicCylinder x t r))) :

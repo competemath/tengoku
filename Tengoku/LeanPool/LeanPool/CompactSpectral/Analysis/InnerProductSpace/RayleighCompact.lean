@@ -62,7 +62,9 @@ private lemma eq_of_mapClusterPt_of_tendsto {X : Type*} [TopologicalSpace X] [T2
     simp_all
   exact (hz.clusterPt.neBot.ne this)
 /-- If `T` is compact, then it sends weak convergence on a weakly-closed ball
-to norm convergence. -/
+to norm convergence.
+@isnad1 id=tendsto.3h8v.s10.cab463a1412f from=translated src=- shape=56f3d78a vocab=196cb29c
+-/
 lemma tendsto_apply_of_isCompactOperator (T : E →L[𝕜] E) (hTc : IsCompactOperator (T : E → E))
     {α : Type*} {l : Filter α}
     {x : α → WeakSpace 𝕜 E} {x0 : WeakSpace 𝕜 E} {r : ℝ}
@@ -122,7 +124,9 @@ lemma tendsto_apply_of_isCompactOperator (T : E →L[𝕜] E) (hTc : IsCompactOp
     exact hinj this
   exact IsCompact.tendsto_nhds_of_unique_mapClusterPt (s := K) hK hmem huniq
 /-- For a compact operator `T`, the quadratic form `x ↦ re ⟪T x, x⟫` is continuous on weakly-compact
-closed balls (i.e. `weakClosedBall`). -/
+closed balls (i.e. `weakClosedBall`).
+@isnad1 id=continuo.1h4v.s9.8c35fe33b82c from=translated src=- shape=2425a75c vocab=f2fbeba3
+-/
 lemma continuousOn_weakClosedBall_reApplyInnerSelf_of_isCompactOperator
     (T : E →L[𝕜] E) (hTc : IsCompactOperator (T : E → E)) (r : ℝ) :
     ContinuousOn (fun x : WeakSpace 𝕜 E => T.reApplyInnerSelf (x : E))
@@ -294,7 +298,9 @@ variable [Nontrivial E]
 
 omit [Nontrivial E] in
 /-- If a self-adjoint operator is nonzero, then its quadratic form `x ↦ re ⟪T x, x⟫` is not
-identically zero. -/
+identically zero.
+@isnad1 id=ex.2h3v.s9.a353f4c9a7de from=translated src=- shape=1df15d96 vocab=e3c1075a
+-/
 lemma exists_reApplyInnerSelf_ne_zero_of_isSelfAdjoint
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (h0 : T ≠ 0) : ∃ x : E, T.reApplyInnerSelf x ≠ 0 := by
   classical
@@ -330,7 +336,9 @@ lemma exists_reApplyInnerSelf_ne_zero_of_isSelfAdjoint
     simp_all
   exact h0 hTzero
 /-- Compact self-adjoint operators attain an extremum of the Rayleigh quotient, yielding a nonzero
-eigenvector for either the global supremum or the global infimum. -/
+eigenvector for either the global supremum or the global infimum.
+@isnad1 id=or.2h3v.s10.d1211f047eb5 from=translated src=- shape=96f21fb6 vocab=bf63b419
+-/
 theorem exists_hasEigenvector_iSup_or_iInf_of_isCompactOperator
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E)) :
     (∃ x : E,

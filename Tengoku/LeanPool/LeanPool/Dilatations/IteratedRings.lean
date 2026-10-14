@@ -49,8 +49,17 @@ def restrict : Multicenter A' where
   ideal := fun i => M.ideal i.1
   elem  := fun i => M.elem i.1
 
+/--
+@isnad1 id=eq.0h4v.s6.b065afe336c4 from=translated src=- shape=aab7fd1e vocab=3e2cc1bb
+-/
 @[simp] lemma restrict_ideal (i : K) : (M.restrict K).ideal i = M.ideal i.1 := rfl
+/--
+@isnad1 id=eq.0h4v.s6.cee08b8ecd9d from=translated src=- shape=f978f99e vocab=33d8d39f
+-/
 @[simp] lemma restrict_elem (i : K) : (M.restrict K).elem i = M.elem i.1 := rfl
+/--
+@isnad1 id=eq.0h4v.s6.08b4b584c9fa from=translated src=- shape=aab7fd1e vocab=fc1ecbb6
+-/
 @[simp] lemma restrict_LargeIdeal (i : K) :
     (M.restrict K).LargeIdeal i = M.LargeIdeal i.1 := rfl
 
@@ -62,9 +71,15 @@ def complement : Multicenter (A'[M.restrict K]) where
   ideal := fun j => Ideal.map (algebraMap A' A'[M.restrict K]) (M.ideal j.1)
   elem  := fun j => algebraMap A' A'[M.restrict K] (M.elem j.1)
 
+/--
+@isnad1 id=eq.0h4v.s8.15dd8525b5b9 from=translated src=- shape=4ac34bdb vocab=3901bca7
+-/
 @[simp] lemma complement_ideal (j : (Kᶜ : Set M.index)) :
     (M.complement K).ideal j = Ideal.map (algebraMap A' A'[M.restrict K]) (M.ideal j.1) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.2d5e370a6b70 from=translated src=- shape=1e03ea3f vocab=ee0f7708
+-/
 @[simp] lemma complement_elem (j : (Kᶜ : Set M.index)) :
     (M.complement K).elem j = algebraMap A' A'[M.restrict K] (M.elem j.1) := rfl
 
@@ -73,7 +88,9 @@ end restrict
 /-- **Reformulation of the `gen` hypothesis of the universal property.** For an `A'`-algebra `B'`,
 the condition `span {φ(aᵢ)} = map φ (Lᵢ)` appearing in `Multicenter.desc` is equivalent to the
 plain containment `map φ (Mᵢ) ≤ span {φ(aᵢ)}`, since `Lᵢ = Mᵢ + (aᵢ)`. This is the working form
-used throughout Appendix C. -/
+used throughout Appendix C.
+@isnad1 id=iff.0h4v.s8.6b74da10e45d from=translated src=- shape=9bdbccb5 vocab=54414ef2
+-/
 lemma gen_iff_le {A' B' : Type*} [CommRing A'] [CommRing B'] [Algebra A' B']
     (M : Multicenter A') (i : M.index) :
     Ideal.span {(algebraMap A' B') (M.elem i)} =
@@ -90,7 +107,9 @@ namespace Dilatation
 /-- **The canonical map of a dilatation preserves non-zero-divisors of the base ring**: if `c ∈ A'`
 is a non-zero-divisor, so is its image in `A'[M]`. (Unlike Proposition 2.20's injectivity, which
 genuinely needs an extra hypothesis, this direction always holds; it is what makes the `i ∈ K`
-branch of Proposition 2.24 unconditional.) -/
+branch of Proposition 2.24 unconditional.)
+@isnad1 id=mem.1h3v.s8.afdd819fcc67 from=translated src=- shape=681b7f5a vocab=f24f25fa
+-/
 lemma nonzerodiv_algebraMap_of_mem_nonZeroDivisors {A' : Type*} [CommRing A']
     {M : Multicenter A'} {c : A'} (hc : c ∈ nonZeroDivisors A') :
     algebraMap A' A'[M] c ∈ nonZeroDivisors A'[M] := by
@@ -129,8 +148,14 @@ def psi224 : B224 →ₐ[A'] A'[M] :=
 
 instance algebra224 : Algebra B224 A'[M] := (psi224 M K).toRingHom.toAlgebra
 
+/--
+@isnad1 id=eq.0h3v.s7.f994c59915ed from=translated src=- shape=71a0e6c6 vocab=ea024cdc
+-/
 lemma algebraMap224_eq : (algebraMap B224 A'[M]) = (psi224 M K).toRingHom := rfl
 
+/--
+@isnad1 id=isscalar.0h3v.s7.bdf15fd18ff4 from=translated src=- shape=1dbd77b2 vocab=974be902
+-/
 instance scalarTower224 : IsScalarTower A' B224 A'[M] :=
   IsScalarTower.of_algebraMap_eq fun a => ((psi224 M K).commutes a).symm
 
@@ -139,10 +164,16 @@ instance scalarTower224 : IsScalarTower A' B224 A'[M] :=
 instance algebra224' : Algebra A' C224 :=
   ((algebraMap B224 C224).comp (algebraMap A' B224)).toAlgebra
 
+/--
+@isnad1 id=isscalar.0h3v.s8.e56ca765f5d5 from=translated src=- shape=48606f95 vocab=65ca1fb3
+-/
 instance scalarTower224' : IsScalarTower A' B224 C224 :=
   IsScalarTower.of_algebraMap_eq fun _ => rfl
 
 /-! #### The four hypotheses feeding the universal property. -/
+/--
+@isnad1 id=mem.0h4v.s8.0630f166a0dc from=translated src=- shape=ab158dcf vocab=4db5f21e
+-/
 lemma hnzd_chi (j : (Multicenter.complement M K).index) :
     (algebraMap B224 A'[M]) ((Multicenter.complement M K).elem j) ∈ nonZeroDivisors A'[M] := by
   erw [algebraMap224_eq, complement_elem]
@@ -150,6 +181,9 @@ lemma hnzd_chi (j : (Multicenter.complement M K).index) :
   rw [(psi224 M K).commutes]
   exact nonzerodiv_image_single M j.1
 
+/--
+@isnad1 id=eq.0h4v.s9.b82ba8507b4b from=translated src=- shape=b8cfdd78 vocab=f5284a1d
+-/
 lemma hgen_chi (j : (Multicenter.complement M K).index) :
     Ideal.span {(algebraMap B224 A'[M]) ((Multicenter.complement M K).elem j)} =
       Ideal.map (algebraMap B224 A'[M]) ((Multicenter.complement M K).LargeIdeal j) := by
@@ -161,6 +195,9 @@ lemma hgen_chi (j : (Multicenter.complement M K).index) :
     (IsScalarTower.algebraMap_apply A' B224 A'[M] (M.elem j.1)).symm]
   exact (gen_iff_le M j.1).mp (reciprocal_for_univ M (AlgHom.id A' A'[M]) j.1)
 
+/--
+@isnad1 id=mem.0h4v.s10.1c26a414fd97 from=translated src=- shape=0bd87de3 vocab=4db5f21e
+-/
 lemma hnzd_rho (i : M.index) :
     (algebraMap A' C224) (M.elem i) ∈ nonZeroDivisors C224 := by
   rw [IsScalarTower.algebraMap_apply A' B224 C224]
@@ -171,6 +208,9 @@ lemma hnzd_rho (i : M.index) :
   · -- `aᵢ/1` is literally one of `complement M K`'s own generators.
     exact nonzerodiv_image_single (Multicenter.complement M K) (⟨i, hi⟩ : (Kᶜ : Set M.index))
 
+/--
+@isnad1 id=eq.0h4v.s10.2ccc21e4288b from=translated src=- shape=263856ae vocab=f5284a1d
+-/
 lemma hgen_rho (i : M.index) :
     Ideal.span {(algebraMap A' C224) (M.elem i)} =
       Ideal.map (algebraMap A' C224) (M.LargeIdeal i) := by
@@ -203,6 +243,9 @@ def chi224 : C224 →ₐ[B224] A'[M] :=
 def rho224 : A'[M] →ₐ[A'] C224 :=
   Multicenter.desc M (hnzd_rho M K) (hgen_rho M K)
 
+/--
+@isnad1 id=eq.0h4v.s9.5c1d4cafa670 from=translated src=- shape=26cab4db vocab=36f6b156
+-/
 lemma rho224_psi224 (b : B224) : rho224 M K (psi224 M K b) = algebraMap B224 C224 b := by
   have h1 := Multicenter.lemma_exists_unique_morphism (M.restrict K)
     (fun i => hnzd_rho M K i.1) (fun i => hgen_rho M K i.1)

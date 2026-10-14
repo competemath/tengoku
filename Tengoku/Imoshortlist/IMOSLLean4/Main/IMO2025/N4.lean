@@ -69,7 +69,9 @@ theorem eq_of_dvd_of_dvd_sub' {n : ℕ+} (a b : {d | d ∣ n}) (h : (n : ℤ) �
   there exists `e : ℕ+` such that `e ∣ n` and `n ∣ d + f(e)`. -/
 def good (f : ℕ+ → ℤ) := ∀ n d : ℕ+, d ∣ n → ∃ e, e ∣ n ∧ (n : ℤ) ∣ d + f e
 
-/-- The function `n ↦ -n` is good. -/
+/-- The function `n ↦ -n` is good.
+@isnad1 id=good.0h0v.s3.7c97a8d73eeb from=translated src=- shape=57802465 vocab=2208de76
+-/
 theorem neg_is_good : good (λ n ↦ -n) :=
   λ _ d h ↦ ⟨d, h, 0, (add_neg_cancel _).trans (Int.mul_zero _).symm⟩
 
@@ -79,7 +81,9 @@ variable (hf : good f)
 include hf
 
 /-- For each `n`, there exists a permutation `g` on divisors on `n`.
-  such that `n ∣ e + f(g(e))` for any `e ∣ n`. -/
+  such that `n ∣ e + f(g(e))` for any `e ∣ n`.
+@isnad1 id=ex.1h2v.s8.abf22f738548 from=translated src=- shape=3ac78ac8 vocab=aceeab5a
+-/
 theorem exists_divisor_perm (n : ℕ+) :
     ∃ g : Equiv.Perm {d | d ∣ n}, ∀ e, (n : ℤ) ∣ e + f (g e) := by
   ---- By axiom of choice, such `g` exists; we just need to show that `g` is bijective.
@@ -103,7 +107,9 @@ theorem exists_divisor_perm (n : ℕ+) :
     exact Set.finite_coe_iff.mpr (hT.of_injOn hT1 hT0)
   exact hg0.bijective_of_finite
 
-/-- `f` is injective. -/
+/-- `f` is injective.
+@isnad1 id=injectiv.1h1v.s3.097bce05892c from=translated src=- shape=9862d0d1 vocab=1193578a
+-/
 theorem injective : f.Injective := by
   intro a b h
   ---- Let `c = ab`, and pick the corresponding permutation `g` on divisors of `c`.
@@ -123,7 +129,9 @@ theorem injective : f.Injective := by
   rwa [EmbeddingLike.apply_eq_iff_eq, ← Subtype.coe_inj] at h
 
 /-- A convenient specialization of `exists_divisor_perm`:
-  for every `e, n : ℕ+` with `e ∣ n`, there exists `d ∣ n` such that `n ∣ d + f(e)`. -/
+  for every `e, n : ℕ+` with `e ∣ n`, there exists `d ∣ n` such that `n ∣ d + f(e)`.
+@isnad1 id=ex.2h3v.s5.234b275635a3 from=translated src=- shape=31eca77f vocab=5569406b
+-/
 theorem forall_right_exists_left {n e : ℕ+} (he : e ∣ n) :
     ∃ d, d ∣ n ∧ (n : ℤ) ∣ d + f e := by
   let S := Set.Elem {d | d ∣ n}
@@ -134,7 +142,9 @@ theorem forall_right_exists_left {n e : ℕ+} (he : e ∣ n) :
   refine ⟨d₀.1, d₀.2, ?_⟩
   simpa only [Equiv.apply_symm_apply] using hg (g.symm e₀)
 
-/-- For any `m` with `f(m) ≠ 0`, there exists `d ∣ m` such that `f(m) = -d`. -/
+/-- For any `m` with `f(m) ≠ 0`, there exists `d ∣ m` such that `f(m) = -d`.
+@isnad1 id=ex.2h2v.s5.8074949af688 from=translated src=- shape=d590a558 vocab=04f94cd1
+-/
 theorem map_eq_zero_or_neg_divisor {m} (hm : f m ≠ 0) : ∃ d, d ∣ m ∧ f m = -d := by
   ---- Reduce to: for all `k > 2|f(m)|`, there exists `d ∣ km` with `f(m) = -d`.
   suffices ∀ k : ℕ+, k > 2 * (f m).natAbs → ∃ d, d ∣ k * m ∧ f m = -d by
@@ -178,7 +188,9 @@ theorem map_eq_zero_or_neg_divisor {m} (hm : f m ≠ 0) : ∃ d, d ∣ m ∧ f m
     exact Nat.add_lt_add_of_le_of_lt hd hk
   exact (Int.natAbs_add_le _ _).trans_lt (Nat.lt_of_mul_lt_mul_left h)
 
-/-- We have `f(n) = -n` for all `n : ℕ+`. -/
+/-- We have `f(n) = -n` for all `n : ℕ+`.
+@isnad1 id=eq.1h2v.s4.5d79bbd69b90 from=translated src=- shape=7622e7fd vocab=2208de76
+-/
 theorem map_eq_neg (n) : f n = -n := by
   ---- First show that for all `k > 1`, there exists `e ∣ kn` such that `f(e) = -n`.
   have h (k) (hk : k > 1) : ∃ e, e ∣ k * n ∧ f e = -n := by
@@ -216,6 +228,8 @@ theorem map_eq_neg (n) : f n = -n := by
 
 end good
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h1v.s4.57a127bc7583 from=translated src=- shape=01c73f25 vocab=2208de76
+-/
 theorem final_solution : good f ↔ f = λ n : ℕ+ ↦ -(n : ℤ) :=
   ⟨λ hf ↦ funext hf.map_eq_neg, λ hf ↦ hf ▸ neg_is_good⟩

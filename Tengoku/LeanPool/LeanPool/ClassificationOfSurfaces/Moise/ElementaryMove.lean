@@ -31,21 +31,39 @@ def diamondFanPosition (a : ℝ) : Fin 5 → Plane :=
 def diamondFanTriangles : Finset (Finset (Fin 5)) :=
   {{0, 4, 2}, {1, 2, 4}, {0, 3, 4}, {1, 4, 3}}
 
+/--
+@isnad1 id=eq.0h1v.s5.ca1fdce01d75 from=translated src=- shape=3c2b5dde vocab=daf3f4dd
+-/
 @[simp] theorem diamondFanPosition_apply_zero (a : ℝ) :
     diamondFanPosition a 0 = planePoint (-1) 0 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.a859ebce8353 from=translated src=- shape=0a40f988 vocab=1af65909
+-/
 @[simp] theorem diamondFanPosition_apply_one (a : ℝ) :
     diamondFanPosition a 1 = planePoint 1 0 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.80e8e8f2ae13 from=translated src=- shape=0a40f988 vocab=1af65909
+-/
 @[simp] theorem diamondFanPosition_apply_two (a : ℝ) :
     diamondFanPosition a 2 = planePoint 0 2 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.b8dddcc1d4d4 from=translated src=- shape=46358de9 vocab=daf3f4dd
+-/
 @[simp] theorem diamondFanPosition_apply_three (a : ℝ) :
     diamondFanPosition a 3 = planePoint 0 (-2) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.f3b7050339bd from=translated src=- shape=162068d6 vocab=1af65909
+-/
 @[simp] theorem diamondFanPosition_apply_four (a : ℝ) :
     diamondFanPosition a 4 = planePoint 0 a := rfl
 
+/--
+@isnad1 id=injectiv.2h1v.s5.6d3590447783 from=translated src=- shape=f8471660 vocab=034972af
+-/
 theorem diamondFanPosition_injective {a : ℝ} (ha0 : -2 < a) (ha1 : a < 2) :
     Function.Injective (diamondFanPosition a) := by
   intro i j hij
@@ -76,6 +94,9 @@ private theorem affineIndependent_finset_of_range {V : Type}
   funext i
   rfl
 
+/--
+@isnad1 id=affinein.3h2v.s9.8c2ae745a8e6 from=translated src=- shape=9e9b8225 vocab=ff95eb8c
+-/
 theorem diamondFan_affineIndependent {a : ℝ} (ha0 : -2 < a) (ha2 : a < 2)
     {t : Finset (Fin 5)} (ht : t ∈ diamondFanTriangles) :
     AffineIndependent ℝ fun v : t => diamondFanPosition a v := by
@@ -145,23 +166,40 @@ noncomputable def diamondDownDiagonalAffine (a : ℝ) : Plane →ᵃ[ℝ] ℝ :=
 noncomputable def diamondUpDiagonalAffine (a : ℝ) : Plane →ᵃ[ℝ] ℝ :=
   cartesianX + cartesianY - AffineMap.const ℝ Plane a
 
+/--
+@isnad1 id=eq.0h2v.s9.aa6a097d99d0 from=translated src=- shape=e109a729 vocab=aec15e0a
+-/
 @[simp] theorem diamondVerticalAffine_apply (x y : ℝ) :
     diamondVerticalAffine (planePoint x y) = x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.2dbf03731ec5 from=translated src=- shape=6ae41be7 vocab=5366fc61
+-/
 @[simp] theorem diamondLeftAffine_apply (a x y : ℝ) :
     diamondLeftAffine a (planePoint x y) = a * x - y + a := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.01f1a5420e84 from=translated src=- shape=6ae41be7 vocab=6f2b6fe4
+-/
 @[simp] theorem diamondRightAffine_apply (a x y : ℝ) :
     diamondRightAffine a (planePoint x y) = a * x + y - a := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.a0d6e68323a6 from=translated src=- shape=a437f865 vocab=9f0041c1
+-/
 @[simp] theorem diamondDownDiagonalAffine_apply (a x y : ℝ) :
     diamondDownDiagonalAffine a (planePoint x y) = x - y + a := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.e4e2ce1d31f8 from=translated src=- shape=a437f865 vocab=267a1da3
+-/
 @[simp] theorem diamondUpDiagonalAffine_apply (a x y : ℝ) :
     diamondUpDiagonalAffine a (planePoint x y) = x + y - a := rfl
 
 /-- Splitting one edge of a nondegenerate triangle at an interior parameter covers the original
-triangle by the two resulting triangles. -/
+triangle by the two resulting triangles.
+@isnad1 id=eq.3h2v.s11.5307c1da4add from=translated src=- shape=3a3e8b8b vocab=c5ed232d
+-/
 theorem triangle_edge_split_union (p : Fin 3 → Plane) (hp : AffineIndependent ℝ p)
     (c : ℝ) (hc0 : 0 < c) (hc1 : c < 1) :
     convexHull ℝ (Set.range ![p 0, p 2, AffineMap.lineMap (p 0) (p 1) c]) ∪
@@ -268,6 +306,9 @@ def diamondRightRegion : Set Plane :=
 /-- The fixed closed patch supporting the elementary move. -/
 def diamondPatch : Set Plane := diamondLeftRegion ∪ diamondRightRegion
 
+/--
+@isnad1 id=isclosed.0h0v.s5.8243898d87f3 from=translated src=- shape=25b03439 vocab=67018b8d
+-/
 theorem isClosed_diamondPatch : IsClosed diamondPatch := by
   apply IsClosed.union
   · exact (Set.finite_range _).isClosed_convexHull ℝ
@@ -289,6 +330,9 @@ private theorem diamondRight_affineIndependent :
   apply affineIndependent_plane_triple_of_det_ne_zero
   norm_num [planePoint, PiLp.sub_apply]
 
+/--
+@isnad1 id=eq.2h1v.s9.14f464ea7007 from=translated src=- shape=a4441854 vocab=1cd661a0
+-/
 theorem diamondFan_left_union {a : ℝ} (ha0 : -2 < a) (ha1 : a < 2) :
     convexHull ℝ (diamondFanPosition a '' (({0, 4, 2} : Finset (Fin 5)) : Set _)) ∪
         convexHull ℝ (diamondFanPosition a '' (({0, 3, 4} : Finset (Fin 5)) : Set _)) =
@@ -317,6 +361,9 @@ theorem diamondFan_left_union {a : ℝ} (ha0 : -2 < a) (ha1 : a < 2) :
   rw [htop, hbottom, diamondLeftRegion, houter]
   simpa using hsplit
 
+/--
+@isnad1 id=eq.2h1v.s9.c7e11353520c from=translated src=- shape=a4441854 vocab=536bc8c9
+-/
 theorem diamondFan_right_union {a : ℝ} (ha0 : -2 < a) (ha1 : a < 2) :
     convexHull ℝ (diamondFanPosition a '' (({1, 2, 4} : Finset (Fin 5)) : Set _)) ∪
         convexHull ℝ (diamondFanPosition a '' (({1, 4, 3} : Finset (Fin 5)) : Set _)) =
@@ -447,6 +494,9 @@ noncomputable abbrev diamondFanMesh (a : ℝ) (ha0 : -2 < a) (ha1 : a < 2) : Tri
     · simpa only [Set.inter_comm, Finset.inter_comm] using diamondFan_inter_03_13 ha0 ha1
     · simp
 
+/--
+@isnad1 id=eq.2h1v.s5.adc8ed0e52b5 from=translated src=- shape=dc712b5a vocab=762cc61d
+-/
 theorem diamondFanMesh_support (a : ℝ) (ha0 : -2 < a) (ha1 : a < 2) :
     (diamondFanMesh a ha0 ha1).toPlaneComplex.support = diamondPatch := by
   rw [TriangleMesh.toPlaneComplex_support, diamondPatch,
@@ -485,38 +535,65 @@ noncomputable def diamondSlackLR : Plane →ᵃ[ℝ] ℝ :=
 noncomputable def diamondSlackLL : Plane →ᵃ[ℝ] ℝ :=
   AffineMap.const ℝ Plane 2 + 2 • cartesianX + cartesianY
 
+/--
+@isnad1 id=eq.0h2v.s9.cf1cc3f621b9 from=translated src=- shape=729dac25 vocab=bc649966
+-/
 theorem diamondSlackUR_apply (x y : ℝ) :
     diamondSlackUR (planePoint x y) = 2 - 2 * x - y := by
   simp [diamondSlackUR]
 
+/--
+@isnad1 id=eq.0h2v.s9.fc4e05139f4e from=translated src=- shape=c168a201 vocab=2fdccb09
+-/
 theorem diamondSlackUL_apply (x y : ℝ) :
     diamondSlackUL (planePoint x y) = 2 + 2 * x - y := by
   simp [diamondSlackUL]
 
+/--
+@isnad1 id=eq.0h2v.s9.11c64163b782 from=translated src=- shape=c168a201 vocab=f8e0d935
+-/
 theorem diamondSlackLR_apply (x y : ℝ) :
     diamondSlackLR (planePoint x y) = 2 - 2 * x + y := by
   simp [diamondSlackLR]
 
+/--
+@isnad1 id=eq.0h2v.s9.aa580f94cd56 from=translated src=- shape=729dac25 vocab=d545b41e
+-/
 theorem diamondSlackLL_apply (x y : ℝ) :
     diamondSlackLL (planePoint x y) = 2 + 2 * x + y := by
   simp [diamondSlackLL]
 
+/--
+@isnad1 id=eq.0h1v.s9.731b4fac4d38 from=translated src=- shape=d87b67dd vocab=d6a701ac
+-/
 @[simp] theorem diamondSlackUR_eq (p : Plane) :
     diamondSlackUR p = 2 - 2 * p 0 - p 1 := by
   simp [diamondSlackUR]
 
+/--
+@isnad1 id=eq.0h1v.s9.055946a35c25 from=translated src=- shape=d7f81578 vocab=bc37ded5
+-/
 @[simp] theorem diamondSlackUL_eq (p : Plane) :
     diamondSlackUL p = 2 + 2 * p 0 - p 1 := by
   simp [diamondSlackUL]
 
+/--
+@isnad1 id=eq.0h1v.s9.46b8e6f95bbc from=translated src=- shape=d7f81578 vocab=09c43311
+-/
 @[simp] theorem diamondSlackLR_eq (p : Plane) :
     diamondSlackLR p = 2 - 2 * p 0 + p 1 := by
   simp [diamondSlackLR]
 
+/--
+@isnad1 id=eq.0h1v.s9.2c5f0752c2e5 from=translated src=- shape=d87b67dd vocab=b7b5b057
+-/
 @[simp] theorem diamondSlackLL_eq (p : Plane) :
     diamondSlackLL p = 2 + 2 * p 0 + p 1 := by
   simp [diamondSlackLL]
 
+/--
+@isnad1 id=eq.3h2v.s9.7f3fe111a8c0 from=translated src=- shape=06eaf6c7 vocab=a79ee912
+-/
 theorem diamondSlackUR_baryEval (a : ℝ) (ha0 : -2 < a) (ha1 : a < 2)
     (x : Fin 5 → ℝ) (hsum : ∑ v, x v = 1) :
     diamondSlackUR ((diamondFanMesh a ha0 ha1).toPlaneComplex.baryEval x) =
@@ -526,6 +603,9 @@ theorem diamondSlackUR_baryEval (a : ℝ) (ha0 : -2 < a) (ha1 : a < 2)
   simp [diamondFanPosition, planePoint, Fin.sum_univ_succ] at hsum ⊢
   linarith
 
+/--
+@isnad1 id=eq.3h2v.s9.cb4a1a8bb1ae from=translated src=- shape=06eaf6c7 vocab=83920a3c
+-/
 theorem diamondSlackUL_baryEval (a : ℝ) (ha0 : -2 < a) (ha1 : a < 2)
     (x : Fin 5 → ℝ) (hsum : ∑ v, x v = 1) :
     diamondSlackUL ((diamondFanMesh a ha0 ha1).toPlaneComplex.baryEval x) =
@@ -535,6 +615,9 @@ theorem diamondSlackUL_baryEval (a : ℝ) (ha0 : -2 < a) (ha1 : a < 2)
   simp [diamondFanPosition, planePoint, Fin.sum_univ_succ] at hsum ⊢
   linarith
 
+/--
+@isnad1 id=eq.3h2v.s9.569cceceb6bd from=translated src=- shape=0ddc93b9 vocab=3a8a7c55
+-/
 theorem diamondSlackLR_baryEval (a : ℝ) (ha0 : -2 < a) (ha1 : a < 2)
     (x : Fin 5 → ℝ) (hsum : ∑ v, x v = 1) :
     diamondSlackLR ((diamondFanMesh a ha0 ha1).toPlaneComplex.baryEval x) =
@@ -544,6 +627,9 @@ theorem diamondSlackLR_baryEval (a : ℝ) (ha0 : -2 < a) (ha1 : a < 2)
   simp [diamondFanPosition, planePoint, Fin.sum_univ_succ] at hsum ⊢
   linarith
 
+/--
+@isnad1 id=eq.3h2v.s9.7da6bd22eb19 from=translated src=- shape=0ddc93b9 vocab=368c6970
+-/
 theorem diamondSlackLL_baryEval (a : ℝ) (ha0 : -2 < a) (ha1 : a < 2)
     (x : Fin 5 → ℝ) (hsum : ∑ v, x v = 1) :
     diamondSlackLL ((diamondFanMesh a ha0 ha1).toPlaneComplex.baryEval x) =
@@ -558,6 +644,9 @@ def InDiamond (p : Plane) : Prop :=
   0 ≤ diamondSlackUR p ∧ 0 ≤ diamondSlackUL p ∧
     0 ≤ diamondSlackLR p ∧ 0 ≤ diamondSlackLL p
 
+/--
+@isnad1 id=eq.0h0v.s3.3f77c9734887 from=translated src=- shape=462644b9 vocab=d5ea24fb
+-/
 theorem diamondPatch_eq_inDiamond : diamondPatch = {p | InDiamond p} := by
   apply Set.Subset.antisymm
   · rintro p (hp | hp)
@@ -607,6 +696,9 @@ def StrictlyInDiamond : Set Plane :=
   {p | 0 < diamondSlackUR p ∧ 0 < diamondSlackUL p ∧
     0 < diamondSlackLR p ∧ 0 < diamondSlackLL p}
 
+/--
+@isnad1 id=mem.5h2v.s7.fa1612795e90 from=translated src=- shape=a46c2b23 vocab=cb1a6442
+-/
 theorem baryEval_mem_strictlyInDiamond_of_center_pos (a : ℝ) (ha0 : -2 < a) (ha1 : a < 2)
     (x : Fin 5 → ℝ) (h0 : ∀ v, 0 ≤ x v) (hsum : ∑ v, x v = 1) (h4 : 0 < x 4) :
     (diamondFanMesh a ha0 ha1).toPlaneComplex.baryEval x ∈ StrictlyInDiamond := by
@@ -620,6 +712,9 @@ theorem baryEval_mem_strictlyInDiamond_of_center_pos (a : ℝ) (ha0 : -2 < a) (h
   · rw [diamondSlackLL_baryEval a ha0 ha1 x hsum]
     nlinarith [h0 1, h0 2]
 
+/--
+@isnad1 id=isopen.0h0v.s5.636d8f6769a2 from=translated src=- shape=25b03439 vocab=d9543b68
+-/
 theorem isOpen_strictlyInDiamond : IsOpen StrictlyInDiamond := by
   change IsOpen ((diamondSlackUR ⁻¹' Set.Ioi 0) ∩
     ((diamondSlackUL ⁻¹' Set.Ioi 0) ∩ ((diamondSlackLR ⁻¹' Set.Ioi 0) ∩
@@ -629,11 +724,17 @@ theorem isOpen_strictlyInDiamond : IsOpen StrictlyInDiamond := by
       ((isOpen_Ioi.preimage diamondSlackLR.continuous_of_finiteDimensional).inter
         (isOpen_Ioi.preimage diamondSlackLL.continuous_of_finiteDimensional)))
 
+/--
+@isnad1 id=le.0h0v.s2.500b4ca54000 from=translated src=- shape=836e6cbb vocab=b6695d91
+-/
 theorem strictlyInDiamond_subset_patch : StrictlyInDiamond ⊆ diamondPatch := by
   rw [diamondPatch_eq_inDiamond]
   rintro p ⟨hUR, hUL, hLR, hLL⟩
   exact ⟨hUR.le, hUL.le, hLR.le, hLL.le⟩
 
+/--
+@isnad1 id=le.0h0v.s5.b9f8949e392d from=translated src=- shape=0ab70a54 vocab=580db492
+-/
 theorem strictlyInDiamond_subset_interior : StrictlyInDiamond ⊆ interior diamondPatch :=
   interior_maximal strictlyInDiamond_subset_patch isOpen_strictlyInDiamond
 
@@ -645,6 +746,9 @@ noncomputable def diamondFanReposition (a b : ℝ)
     (diamondFanMesh b hb0 hb1).affineIndependent_triangle
     (diamondFanMesh b hb0 hb1).triangle_inter
 
+/--
+@isnad1 id=eq.4h2v.s6.e1b258ae3ae5 from=translated src=- shape=46c72661 vocab=7482f6d5
+-/
 theorem diamondFanReposition_support (a b : ℝ)
     (ha0 : -2 < a) (ha1 : a < 2) (hb0 : -2 < b) (hb1 : b < 2) :
     (diamondFanReposition a b ha0 ha1 hb0 hb1).toPlaneComplex.support = diamondPatch := by
@@ -654,6 +758,9 @@ theorem diamondFanReposition_support (a b : ℝ)
   simpa only [TriangleMesh.toPlaneComplex_support, diamondFanMesh] using
     diamondFanMesh_support b hb0 hb1
 
+/--
+@isnad1 id=eq.4h2v.s6.fb6f9d692384 from=translated src=- shape=d203a960 vocab=03db811a
+-/
 theorem diamondFanReposition_support_eq_source (a b : ℝ)
     (ha0 : -2 < a) (ha1 : a < 2) (hb0 : -2 < b) (hb1 : b < 2) :
     (diamondFanReposition a b ha0 ha1 hb0 hb1).toPlaneComplex.support =
@@ -661,6 +768,9 @@ theorem diamondFanReposition_support_eq_source (a b : ℝ)
   (diamondFanReposition_support a b ha0 ha1 hb0 hb1).trans
     (diamondFanMesh_support a ha0 ha1).symm
 
+/--
+@isnad1 id=eq.5h3v.s6.4c6a4f251c98 from=translated src=- shape=64297ab2 vocab=00e7e463
+-/
 theorem diamondFanReposition_baryEval_eq_of_center_zero (a b : ℝ)
     (ha0 : -2 < a) (ha1 : a < 2) (hb0 : -2 < b) (hb1 : b < 2)
     (x : Fin 5 → ℝ) (h4 : x 4 = 0) :
@@ -698,12 +808,18 @@ noncomputable def diamondFanCenterRealization (a : ℝ) (ha0 : -2 < a) (ha1 : a 
       simp at hv
     · rfl
 
+/--
+@isnad1 id=eq.2h1v.s6.aab3bbb74adc from=translated src=- shape=6fd0e347 vocab=d6eb1011
+-/
 @[simp] theorem diamondFanCenterRealization_baryEval (a : ℝ) (ha0 : -2 < a) (ha1 : a < 2) :
     (diamondFanMesh a ha0 ha1).toPlaneComplex.baryEval
         (diamondFanCenterRealization a ha0 ha1).1 = planePoint 0 a := by
   change (∑ v : Fin 5, Pi.single 4 1 v • diamondFanPosition a v) = planePoint 0 a
   simp [Pi.single_apply]
 
+/--
+@isnad1 id=eq.4h2v.s9.a559ac8f1126 from=translated src=- shape=6948cfc8 vocab=4549272a
+-/
 theorem diamondFanSupportHomeomorph_center (a b : ℝ)
     (ha0 : -2 < a) (ha1 : a < 2) (hb0 : -2 < b) (hb1 : b < 2) :
     ((diamondFanSupportHomeomorph a b ha0 ha1 hb0 hb1)
@@ -772,6 +888,9 @@ noncomputable def diamondFanPatchHomeomorph (a b : ℝ)
   (diamondFanSupportHomeomorph a b ha0 ha1 hb0 hb1).trans
     (Homeomorph.setCongr (diamondFanReposition_support_eq_source a b ha0 ha1 hb0 hb1))
 
+/--
+@isnad1 id=eq.4h3v.s9.d96c6770ac34 from=translated src=- shape=148d92cb vocab=d36c8495
+-/
 theorem diamondFanPatchHomeomorph_apply_val (a b : ℝ)
     (ha0 : -2 < a) (ha1 : a < 2) (hb0 : -2 < b) (hb1 : b < 2)
     (z : (diamondFanMesh a ha0 ha1).toPlaneComplex.support) :
@@ -780,6 +899,9 @@ theorem diamondFanPatchHomeomorph_apply_val (a b : ℝ)
   simp only [diamondFanPatchHomeomorph, Homeomorph.trans_apply]
   apply coe_setCongr_apply
 
+/--
+@isnad1 id=eq.5h3v.s9.fef7bcd4e623 from=translated src=- shape=e4a268d0 vocab=e74945d0
+-/
 theorem diamondFanPatchHomeomorph_fixed_frontier (a b : ℝ)
     (ha0 : -2 < a) (ha1 : a < 2) (hb0 : -2 < b) (hb1 : b < 2)
     (p : Plane) (hp : p ∈ frontier (diamondFanMesh a ha0 ha1).toPlaneComplex.support) :
@@ -846,6 +968,9 @@ noncomputable def diamondFanAmbientHomeomorph (a b : ℝ)
     (diamondFanReposition_support_eq_source a b ha0 ha1 hb0 hb1)
     (diamondFanPatchHomeomorph_fixed_frontier a b ha0 ha1 hb0 hb1)
 
+/--
+@isnad1 id=eq.4h2v.s8.65e761b219d9 from=translated src=- shape=4562266f vocab=e1bc86de
+-/
 theorem diamondFanAmbientHomeomorph_center (a b : ℝ)
     (ha0 : -2 < a) (ha1 : a < 2) (hb0 : -2 < b) (hb1 : b < 2) :
   diamondFanAmbientHomeomorph a b ha0 ha1 hb0 hb1 (planePoint 0 a) =
@@ -867,6 +992,9 @@ theorem diamondFanAmbientHomeomorph_center (a b : ℝ)
         diamondFanPatchHomeomorph_apply_val a b ha0 ha1 hb0 hb1 _
     _ = planePoint 0 b := diamondFanSupportHomeomorph_center a b ha0 ha1 hb0 hb1
 
+/--
+@isnad1 id=eqon.4h2v.s8.2792e3bfe42c from=translated src=- shape=737f429c vocab=76430c44
+-/
 theorem diamondFanAmbientHomeomorph_eqOn_compl (a b : ℝ)
     (ha0 : -2 < a) (ha1 : a < 2) (hb0 : -2 < b) (hb1 : b < 2) :
     Set.EqOn (diamondFanAmbientHomeomorph a b ha0 ha1 hb0 hb1) id diamondPatchᶜ := by

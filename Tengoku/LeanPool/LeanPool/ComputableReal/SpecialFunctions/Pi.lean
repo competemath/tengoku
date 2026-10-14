@@ -38,37 +38,61 @@ noncomputable instance instComputableSqrtTwoAddSeries (x : ℝ) [hx : IsComputab
 noncomputable def sqrtTwoAddSeriesN : ℕ → ComputableℝSeq :=
   fun n ↦ (instComputableSqrtTwoAddSeries 0 n).seq
 
+/--
+@isnad1 id=le.0h2v.s5.56b3251bd7e7 from=translated src=- shape=e221d738 vocab=f02eec48
+-/
 theorem sqrtTwoAddSeriesN_lb_le (n k : ℕ) : (sqrtTwoAddSeriesN n).lb k ≤ Real.sqrtTwoAddSeries 0
   n := by
   rw [← IsComputable.prop (x := Real.sqrtTwoAddSeries 0 n)]
   exact ComputableℝSeq.hlb _ _
 
+/--
+@isnad1 id=le.0h2v.s5.028f913d28d3 from=translated src=- shape=18b6fad3 vocab=3d992881
+-/
 theorem sqrtTwoAddSeriesN_ub_ge (n k : ℕ) : Real.sqrtTwoAddSeries 0 n ≤ (sqrtTwoAddSeriesN n).ub
   k := by
   rw [← IsComputable.prop (x := Real.sqrtTwoAddSeries 0 n)]
   exact ComputableℝSeq.hub _ _
 
+/--
+@isnad1 id=le.0h2v.s5.26692f788d07 from=translated src=- shape=f30a2f51 vocab=4275a27d
+-/
 theorem sqrtTwoAddSeriesN_ub_pos (n k : ℕ) : (0 : ℝ) ≤ (sqrtTwoAddSeriesN n).ub k := by
    exact le_trans (Real.sqrtTwoAddSeries_zero_nonneg n) (sqrtTwoAddSeriesN_ub_ge n k)
 
+/--
+@isnad1 id=lt.0h2v.s5.444cfd0112f4 from=translated src=- shape=478d9cf0 vocab=99e55afe
+-/
 theorem sqrtTwoAddSeriesN_lb_lt_two (n k : ℕ) : (sqrtTwoAddSeriesN n).lb k < 2 := by
   rify
   refine lt_of_le_of_lt ?_ (Real.sqrtTwoAddSeries_lt_two n)
   exact_mod_cast sqrtTwoAddSeriesN_lb_le n k
 
+/--
+@isnad1 id=eq.0h2v.s6.b76f35f9e589 from=translated src=- shape=d218a384 vocab=ad4cedd7
+-/
 theorem sqrtTwoAddSeriesN_succ_lb (n k : ℕ) :
     (sqrtTwoAddSeriesN (n + 1)).lb k = (Sqrt.sqrtq (2 + (sqrtTwoAddSeriesN n).lub k) k).fst := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.865e13960a38 from=translated src=- shape=d218a384 vocab=c0497330
+-/
 theorem sqrtTwoAddSeriesN_succ_ub (n k : ℕ) :
     (sqrtTwoAddSeriesN (n + 1)).ub k = (Sqrt.sqrtq (2 + (sqrtTwoAddSeriesN n).lub k) k).snd := by
   rfl
 
+/--
+@isnad1 id=le.0h2v.s5.5d36506f8b61 from=translated src=- shape=cd58a85a vocab=7de8fe0a
+-/
 theorem sqrtTwoAddSeriesN_lb_nonneg (n k : ℕ) : 0 ≤ (sqrtTwoAddSeriesN n).lb k := by
   cases n
   · rfl
   · apply Sqrt.sqrtq_nonneg
 
+/--
+@isnad1 id=le.1h2v.s5.f28238b0f7ad from=translated src=- shape=41c3f32f vocab=f01eeaf8
+-/
 theorem sqrtTwoAddSeriesN_lb_gt_one (n k : ℕ) (hk : 3 ≤ k) : 1 ≤ (sqrtTwoAddSeriesN (n + 1)).lb k
   := by
   have h₀ : (0 : ℝ) ≤ ((sqrtTwoAddSeriesN n).lub k).snd := sqrtTwoAddSeriesN_ub_pos n k
@@ -97,6 +121,9 @@ theorem sqrtTwoAddSeriesN_lb_gt_one (n k : ℕ) (hk : 3 ≤ k) : 1 ≤ (sqrtTwoA
     rw [show 8 = (2 : ℝ) ^ 3 by norm_num]
     exact_mod_cast Nat.pow_le_pow_right (by norm_num) hk
 
+/--
+@isnad1 id=le.1h2v.s6.f88348cef261 from=translated src=- shape=1c0fa42c vocab=b718ce22
+-/
 theorem sqrtTwoAddSeriesN_bounds (n k : ℕ) (hk : 3 ≤ k) :
     (sqrtTwoAddSeriesN n).ub k ≤ (sqrtTwoAddSeriesN n).lb k + 18 * n / 2^k
     := by
@@ -163,10 +190,16 @@ theorem sqrtTwoAddSeriesN_bounds (n k : ℕ) (hk : 3 ≤ k) :
 noncomputable def sqrtTwoSubSqrtTwoAddSeriesN : ℕ → ComputableℝSeq :=
   fun n ↦ (inferInstance : IsComputable (Real.sqrt (2 - Real.sqrtTwoAddSeries 0 n))).seq
 
+/--
+@isnad1 id=eq.0h2v.s5.fea68a3d6c93 from=translated src=- shape=becdbb06 vocab=0772c45c
+-/
 theorem sqrtTwoSubSqrtTwoAddSeries_eq (n k : ℕ) :
     (sqrtTwoSubSqrtTwoAddSeriesN n).lub k = Sqrt.sqrtq ((2 - sqrtTwoAddSeriesN n).lub k) k := by
   rfl
 
+/--
+@isnad1 id=lt.0h1v.s6.71d338dfb782 from=translated src=- shape=eb705b54 vocab=8a23c3e6
+-/
 theorem real_sqrtTwoAddSeries_lb (n : ℕ) : 1 / 2 ^ n < √(2 - Real.sqrtTwoAddSeries 0 n) := by
   have h : 2 ≤ Real.pi - 1 / 4 ^ n := by
     have : 1 / 4 ^ n ≤ (1 : ℝ) := by
@@ -178,6 +211,9 @@ theorem real_sqrtTwoAddSeries_lb (n : ℕ) : 1 / 2 ^ n < √(2 - Real.sqrtTwoAdd
   ring_nf at h₂
   rwa [lt_mul_iff_one_lt_left zero_lt_two, ← div_lt_iff₀ (by positivity)] at h₂
 
+/--
+@isnad1 id=le.1h2v.s7.e2873201dfcd from=translated src=- shape=74adc39d vocab=b9c0c6ed
+-/
 theorem sqrtTwoSubSqrtTwoAddSeries_lb (n k : ℕ) (hk : 3 ≤ k) :
     √(2 - Real.sqrtTwoAddSeries 0 n) ≤ (sqrtTwoSubSqrtTwoAddSeriesN n).lb k +
     (18 * n * 2 ^ n + 4) / 2 ^ k
@@ -236,6 +272,9 @@ theorem sqrtTwoSubSqrtTwoAddSeries_lb (n k : ℕ) (hk : 3 ≤ k) :
     ring_nf
   linarith
 
+/--
+@isnad1 id=le.1h2v.s7.372aeb4eccd1 from=translated src=- shape=7e245ef2 vocab=66756a5a
+-/
 theorem sqrtTwoSubSqrtTwoAddSeries_ub (n k : ℕ) (hk : 3 ≤ k) :
     (sqrtTwoSubSqrtTwoAddSeriesN n).ub k - (18 * n * 2 ^ n + 14) / 2 ^ k ≤ √(2 -
       Real.sqrtTwoAddSeries 0 n) := by
@@ -301,6 +340,9 @@ noncomputable def piLb (n : ℕ) : ℚ :=
 noncomputable def piUb (n : ℕ) : ℚ :=
   2 ^ (n + 1) * (sqrtTwoSubSqrtTwoAddSeriesN n).ub (3 * n) + 1 / 4 ^ n
 
+/--
+@isnad1 id=le.0h1v.s3.92c5c8e9d892 from=translated src=- shape=3aeef610 vocab=f9a08641
+-/
 theorem piLb_le_pi (n : ℕ) : piLb n ≤ Real.pi := by
   refine le_trans ?_ (Real.pi_gt_sqrtTwoAddSeries n).le
   simp only [piLb, Rat.cast_mul, Rat.cast_pow, Rat.cast_ofNat]
@@ -310,6 +352,9 @@ theorem piLb_le_pi (n : ℕ) : piLb n ≤ Real.pi := by
   rw [← hval]
   exact ComputableℝSeq.hlb _ _
 
+/--
+@isnad1 id=le.0h1v.s3.8c7e2376181d from=translated src=- shape=aa5e5f5d vocab=1166c833
+-/
 theorem piUb_ge_pi (n : ℕ) : Real.pi ≤ piUb n := by
   refine le_trans (Real.pi_lt_sqrtTwoAddSeries n).le ?_
   simp only [one_div, piUb, Rat.cast_add, Rat.cast_mul, Rat.cast_pow, Rat.cast_ofNat, Rat.cast_inv,
@@ -320,6 +365,9 @@ theorem piUb_ge_pi (n : ℕ) : Real.pi ≤ piUb n := by
   rw [← hval]
   exact ComputableℝSeq.hub _ _
 
+/--
+@isnad1 id=le.1h1v.s6.c58a2a136897 from=translated src=- shape=33e56a28 vocab=2b42cebe
+-/
 theorem piLb_ge_pi_sub_pow (n : ℕ) (hn : 0 < n) : Real.pi - 41 * n / 2 ^ n ≤ piLb n := by
   suffices 2 ^ (n + 1) * ((18 * n * 2 ^ n + 4) / 2 ^ (3 * n)) + 1 / 4 ^ n ≤ (41 * n / 2 ^ n : ℚ) by
     rify at this
@@ -347,6 +395,9 @@ theorem piLb_ge_pi_sub_pow (n : ℕ) (hn : 0 < n) : Real.pi - 41 * n / 2 ^ n ≤
     linarith
   exact div_le_div₀ (by positivity) (by linarith) (by positivity) (pow_le_pow_left₀ rfl rfl n)
 
+/--
+@isnad1 id=le.1h1v.s6.74f22668e3d0 from=translated src=- shape=79de9150 vocab=b17a225a
+-/
 theorem piUb_le_pi_add_pow (n : ℕ) (hn : 0 < n) : piUb n ≤ Real.pi + 51 * n / 2 ^ n := by
   suffices 2 ^ (n + 1) * ((18 * n * 2 ^ n + 14) / 2 ^ (3 * n)) + 1 / 4 ^ n ≤ (51 * n / 2 ^ n : ℚ) by
     rify at this
@@ -374,6 +425,9 @@ theorem piUb_le_pi_add_pow (n : ℕ) (hn : 0 < n) : piUb n ≤ Real.pi + 51 * n 
     linarith
   exact div_le_div₀ (by positivity) (by linarith) (by positivity) (pow_le_pow_left₀ rfl rfl n)
 
+/--
+@isnad1 id=ex.0h0v.s5.2be9e8226016 from=translated src=- shape=8e6a7a23 vocab=7385b82d
+-/
 theorem piLb_causeq : ∃ (h' : IsCauSeq abs piLb), Real.mk ⟨piLb, h'⟩ = Real.pi := by
   refine Real.of_near piLb Real.pi ?_
   intro ε hε
@@ -392,6 +446,9 @@ theorem piLb_causeq : ∃ (h' : IsCauSeq abs piLb), Real.mk ⟨piLb, h'⟩ = Rea
   · linarith
   · linarith [piLb_le_pi j]
 
+/--
+@isnad1 id=ex.0h0v.s5.51e86839d29c from=translated src=- shape=8e6a7a23 vocab=4a2717cb
+-/
 theorem piUb_causeq : ∃ (h' : IsCauSeq abs piUb), Real.mk ⟨piUb, h'⟩ = Real.pi := by
   refine Real.of_near piUb Real.pi ?_
   intro ε hε

@@ -23,6 +23,7 @@ open scoped unitInterval
 
 /-- For any two natural numbers `i n : ℕ` with `n > 0`, we have that
 `(2i+1)/(2n)` is contained in the interval `[i/n, (i+1)/n]`.
+@isnad1 id=mem.1h2v.s7.2566ea12abe7 from=translated src=- shape=bf38599a vocab=581f70e1
 -/
 lemma mid_point_Icc {i n : ℕ} (hn : n > 0) :
     (2 * i + 1 : ℝ)/(2 * n : ℝ) ∈ Set.Icc ((i :ℝ)/(n :ℝ)) ((i+1 :ℝ)/(n :ℝ)) := by
@@ -33,6 +34,7 @@ lemma mid_point_Icc {i n : ℕ} (hn : n > 0) :
 
 /-- For any two natural numbers `i n : ℕ` with `i < n`, we have that
 `(2i+1)/(2n)` is contained in unit interval
+@isnad1 id=mem.1h2v.s6.ad08eef54501 from=translated src=- shape=21a308da vocab=79fe7e9f
 -/
 lemma mid_point_I {i n : ℕ} (hi : i < n) : (2 * i + 1 : ℝ)/(2 * n : ℝ) ∈ I := by
   have n_cast_pos : 0 < (n : ℝ) := Nat.cast_pos.mpr (lt_of_le_of_lt (Nat.zero_le i) hi)
@@ -46,6 +48,9 @@ namespace UnitIntervalSub
 
 open Set
 
+/--
+@isnad1 id=mem.2h3v.s6.7ecc5f87f179 from=translated src=- shape=f69c05ac vocab=7af41ed1
+-/
 lemma mem_I_of_mem_interval {t : ℝ} {n i : ℕ} (hi : i < n.succ)
     (h : t ∈ Icc ((i : ℝ) / ↑(n.succ)) (↑(i + 1) / ↑(n.succ))) :
     t ∈ I := by
@@ -54,6 +59,9 @@ lemma mem_I_of_mem_interval {t : ℝ} {n i : ℕ} (hi : i < n.succ)
   · exact le_trans h.2 ((div_le_one (show (n.succ : ℝ) > 0 by
       exact Nat.cast_pos.mpr (Nat.succ_pos n))).mpr (Nat.cast_le.mpr (Nat.succ_le_of_lt hi)))
 
+/--
+@isnad1 id=mem.2h3v.s6.918b64698a59 from=translated src=- shape=fd3b9e52 vocab=7af41ed1
+-/
 lemma mem_I_of_mem_interval_coed {t : ℝ} {n i : ℕ} (hi : i < n.succ)
     (h : t ∈ Icc ((i : ℝ) / (↑n + 1)) ((↑i + 1) / (↑n + 1))) :
     t ∈ I := by
@@ -64,6 +72,9 @@ end UnitIntervalSub
 
 /-! ### Covering lemma for the unit interval -/
 
+/--
+@isnad1 id=ex.2h2v.s6.e9e697231f24 from=translated src=- shape=5becf725 vocab=6196b089
+-/
 theorem lebesgue_number_lemma_unit_interval {ι : Sort u} {c : ι → Set ℝ}
   (hc₁ : ∀ (i : ι), IsOpen (c i)) (hc₂ : I ⊆ ⋃ (i : ι), c i) :
     ∃ (n : ℕ), (n > 0) ∧ ∀ (i : ℕ) (_ : i < n), ∃ (j : ι), Set.Icc ((i : ℝ) / n) ((i + 1) / n) ⊆ c j
@@ -102,6 +113,9 @@ theorem lebesgue_number_lemma_unit_interval {ι : Sort u} {c : ι → Set ℝ}
 /-- The full unit square as a subset of `I × I`. -/
 def UnitSquare : Set (I × I) := Set.univ
 
+/--
+@isnad1 id=iscompac.0h0v.s5.fb80bbfafa82 from=translated src=- shape=6c4db19b vocab=8dfc4114
+-/
 lemma compact_unitSquare : IsCompact UnitSquare := isCompact_univ
 
 /-- For any four natural numbers `n m i j : ℕ` such that `i < n + 1` and `j < m + 1`,
@@ -119,11 +133,17 @@ namespace UnitSubrectangle
 
 open Set
 
+/--
+@isnad1 id=mem.0h1v.s5.cad083a0dea3 from=translated src=- shape=d78dda80 vocab=9d80aa57
+-/
 lemma mem_unitSquare (t : I × I) : t ∈ UnitSubrectangle zero_lt_one zero_lt_one := by
   unfold UnitSubrectangle
   rw [Fraction.eq_zero, Fraction.eq_one]
   exact ⟨⟨t.1.2.1, t.1.2.2⟩, ⟨t.2.2.1, t.2.2.2⟩⟩
 
+/--
+@isnad1 id=mem.4h6v.s7.4148fad95d8a from=translated src=- shape=e6ec2293 vocab=4679d74c
+-/
 lemma mem_unitSubrectangle {t₀ t₁ : ℝ} {n m i j : ℕ} (hi : i < n.succ) (hj : j < m.succ)
   (ht₀ : t₀ ∈ Icc ((i : ℝ) / ↑(n.succ)) (↑(i + 1) / ↑(n.succ)))
   (ht₁ : t₁ ∈ Icc ((j : ℝ) / ↑(m.succ)) (↑(j + 1) / ↑(m.succ))) :
@@ -133,6 +153,9 @@ lemma mem_unitSubrectangle {t₀ t₁ : ℝ} {n m i j : ℕ} (hi : i < n.succ) (
 
 end UnitSubrectangle
 
+/--
+@isnad1 id=ex.2h2v.s7.7d7d672df4d3 from=translated src=- shape=b05ad56a vocab=35bc1d23
+-/
 theorem lebesgue_number_lemma_unitSquare {ι : Sort u} {c : ι → Set (I × I)}
   (hc₁ : ∀ (i : ι), IsOpen (c i)) (hc₂ : UnitSquare ⊆ (⋃ (i : ι), c i)) :
     ∃ (n : ℕ), ∀ (i j : ℕ) (hi : i < n.succ)

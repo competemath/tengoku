@@ -28,6 +28,9 @@ open Finset
 def good (S : Finset ℕ) :=
   ∀ m ≥ 2, m + 2 ≤ S.card → ∃ T ⊆ S, T.card = m ∧ T.sum id = (S \ T).sum id
 
+/--
+@isnad1 id=iff.0h1v.s6.259b07093a3a from=translated src=- shape=16d9706d vocab=eee5003a
+-/
 lemma good_iff {S : Finset ℕ} :
     good S ↔ ∀ m ≥ 2, m ≤ S.card / 2 → ∃ T ⊆ S, T.card = m ∧ 2 * T.sum id = S.sum id := by
   have X {T} (h : T ⊆ S) : T.sum id = (S \ T).sum id ↔ 2 * T.sum id = S.sum id := by
@@ -57,6 +60,9 @@ lemma good_iff {S : Finset ℕ} :
       · rw [card_sdiff_of_subset hT, hT0, Nat.sub_sub_self hm]
       · rwa [sdiff_sdiff_right_self, inf_eq_inter, inter_eq_right.mpr hT, eq_comm, X hT]
 
+/--
+@isnad1 id=good.1h1v.s4.dc4d902d08e0 from=translated src=- shape=49abfe4f vocab=8591e4e4
+-/
 theorem good_of_card_lt_four {S : Finset ℕ} (hS : S.card < 4) : good S :=
   λ _ hm hm0 ↦ absurd hm0 (Nat.not_le_of_lt (hS.trans_le (Nat.add_le_add_right hm 2)))
 
@@ -65,9 +71,15 @@ theorem good_of_card_lt_four {S : Finset ℕ} (hS : S.card < 4) : good S :=
 def GoodSetBase (N : ℕ) : Finset ℕ :=
   ((range N).image (2 * 3 ^ ·)) ∪ ((range N).image (4 * 3 ^ ·))
 
+/--
+@isnad1 id=injectiv.0h1v.s5.f1393a33684b from=translated src=- shape=7b406af8 vocab=e311fa04
+-/
 lemma mul_three_pow_inj (n : ℕ) : (n.succ * 3 ^ ·).Injective :=
   λ _ _ h ↦ Nat.pow_right_injective (by decide : 1 < 3) (Nat.mul_left_cancel n.succ_pos h)
 
+/--
+@isnad1 id=disjoint.0h1v.s6.fd41ad06deca from=translated src=- shape=d4076221 vocab=59526ee0
+-/
 lemma image_mul_three_pow_disj (N) :
     Disjoint ((range N).image (2 * 3 ^ ·)) ((range N).image (4 * 3 ^ ·)) := by
   refine disjoint_iff_ne.mpr λ a ha b hb h ↦ ?_
@@ -79,6 +91,9 @@ lemma image_mul_three_pow_disj (N) :
   rw [Nat.mul_mod_right, Nat.pow_mod, Nat.one_pow]
   exact Nat.one_ne_zero
 
+/--
+@isnad1 id=eq.0h1v.s4.b35f0f5f0344 from=translated src=- shape=5238de5c vocab=ddee0ca1
+-/
 lemma GoodSetBase_card (N : ℕ) : (GoodSetBase N).card = 2 * N := calc
   _ = ((range N).image (2 * 3 ^ ·)).card + ((range N).image (4 * 3 ^ ·)).card :=
     card_union_of_disjoint (image_mul_three_pow_disj N)
@@ -87,11 +102,17 @@ lemma GoodSetBase_card (N : ℕ) : (GoodSetBase N).card = 2 * N := calc
     congrArg₂ _ (X _) (X _)
   _ = _ := by rw [card_range, Nat.two_mul]
 
+/--
+@isnad1 id=lt.1h2v.s4.f4386acaa4c4 from=translated src=- shape=e8bdf649 vocab=53d4b403
+-/
 lemma GoodSetBase_pos (hx : x ∈ GoodSetBase N) : 0 < x := by
   rw [GoodSetBase, mem_union, mem_image, mem_image] at hx
   rcases hx with ⟨k, -, rfl⟩ | ⟨k, -, rfl⟩
   all_goals exact Nat.mul_pos (Nat.succ_pos _) (Nat.pow_pos (Nat.succ_pos 2))
 
+/--
+@isnad1 id=eq.0h1v.s5.9c76fa775835 from=translated src=- shape=e52d54be vocab=a49c9967
+-/
 lemma GoodSetBase_sum (N : ℕ) : (GoodSetBase N).sum id + 3 = 3 ^ (N + 1) := by
   have X (n : ℕ) :
       ((range N).image (n.succ * 3 ^ ·)).sum id = ∑ k ∈ range N, n.succ * 3 ^ k :=
@@ -101,6 +122,9 @@ lemma GoodSetBase_sum (N : ℕ) : (GoodSetBase N).sum id + 3 = 3 ^ (N + 1) := by
   rw [sum_range_succ, sum_range_succ, add_add_add_comm, add_right_comm, hN, ← Nat.add_mul,
     Nat.mul_assoc 2 3, ← Nat.pow_succ', add_comm, ← Nat.succ_mul, ← Nat.pow_succ']
 
+/--
+@isnad1 id=dvd.1h2v.s4.d8ea173848ab from=translated src=- shape=e8bdf649 vocab=55a25cf6
+-/
 lemma GoodSetBase_two_dvd_of_mem (hx : x ∈ GoodSetBase N) : 2 ∣ x := by
   rw [GoodSetBase, mem_union, mem_image, mem_image] at hx
   rcases hx with ⟨k, -, rfl⟩ | ⟨k, -, rfl⟩
@@ -111,6 +135,9 @@ lemma GoodSetBase_two_dvd_of_mem (hx : x ∈ GoodSetBase N) : 2 ∣ x := by
 def GoodSubsetBase (K m : ℕ) : Finset ℕ :=
   insert (2 * 3 ^ K) ((range m).image λ k ↦ 4 * 3 ^ (K + k))
 
+/--
+@isnad1 id=le.2h3v.s5.2dd08a55e3fa from=translated src=- shape=8ed96ca8 vocab=62583c40
+-/
 lemma GoodSubsetBase_subset_GoodSetBase (hm : 0 < m) (h : K + m ≤ N) :
     GoodSubsetBase K m ⊆ GoodSetBase N := by
   show ∀ x ∈ insert (2 * 3 ^ K) _, x ∈ GoodSetBase N
@@ -120,6 +147,9 @@ lemma GoodSubsetBase_subset_GoodSetBase (hm : 0 < m) (h : K + m ≤ N) :
   · refine mem_union_right _ (mem_image.mpr ⟨K + k, mem_range.mpr ?_, rfl⟩)
     exact (Nat.add_lt_add_left (mem_range.mp hk) _).trans_le h
 
+/--
+@isnad1 id=not.0h2v.s6.734dc5908776 from=translated src=- shape=343b7a3b vocab=d6502837
+-/
 lemma GoodSubsetBase_disjoint' (K m : ℕ) :
     2 * 3 ^ K ∉ (range m).image λ k ↦ 4 * 3 ^ (K + k) := by
   rw [mem_image]; rintro ⟨k, -, h⟩
@@ -128,13 +158,22 @@ lemma GoodSubsetBase_disjoint' (K m : ℕ) :
   rw [Nat.mul_mod_right, Nat.pow_mod, Nat.one_pow]
   exact Nat.zero_ne_one
 
+/--
+@isnad1 id=injectiv.0h2v.s5.28cd03c27b7a from=translated src=- shape=3168b6f4 vocab=fdbb67bf
+-/
 lemma mul_three_pow_add_inj (n K : ℕ) : (λ k ↦ n.succ * 3 ^ (K + k)).Injective :=
   λ _ _ h ↦ Nat.add_left_cancel (mul_three_pow_inj n h)
 
+/--
+@isnad1 id=eq.0h2v.s4.c74d5eb6ee81 from=translated src=- shape=8646300d vocab=facb1db9
+-/
 lemma GoodSubsetBase_card (K m) : (GoodSubsetBase K m).card = m + 1 := by
   rw [GoodSubsetBase, card_insert_of_notMem (GoodSubsetBase_disjoint' K m),
     card_image_of_injective _ (mul_three_pow_add_inj 3 _), card_range]
 
+/--
+@isnad1 id=eq.0h2v.s5.12b4debc00e9 from=translated src=- shape=7daf7055 vocab=3423e449
+-/
 lemma GoodSubsetBase_sum (K m) : (GoodSubsetBase K m).sum id = 2 * 3 ^ (K + m) := by
   rw [GoodSubsetBase, sum_insert (GoodSubsetBase_disjoint' K m),
     sum_image λ _ _ _ _ h ↦ mul_three_pow_add_inj 3 _ h]
@@ -146,6 +185,9 @@ lemma GoodSubsetBase_sum (K m) : (GoodSubsetBase K m).sum id = 2 * 3 ^ (K + m) :
 
 def EvenGoodSet (N : ℕ) : Finset ℕ := GoodSetBase N ∪ {1, 3 ^ N + 2}
 
+/--
+@isnad1 id=disjoint.0h1v.s5.d2120a05e711 from=translated src=- shape=c11a536c vocab=b4515704
+-/
 theorem EvenGoodSet_disjoint (N : ℕ) : Disjoint (GoodSetBase N) {1, 3 ^ N + 2} := by
   refine disjoint_iff_ne.mpr λ a ha b hb h ↦ ?_
   replace ha : a % 2 = 0 := Nat.dvd_iff_mod_eq_zero.mp (GoodSetBase_two_dvd_of_mem ha)
@@ -155,20 +197,32 @@ theorem EvenGoodSet_disjoint (N : ℕ) : Disjoint (GoodSetBase N) {1, 3 ^ N + 2}
   · rw [Nat.add_mod_right, Nat.pow_mod, Nat.one_pow] at ha
     exact absurd ha Nat.one_ne_zero
 
+/--
+@isnad1 id=eq.0h1v.s5.dd7f27c8a0d0 from=translated src=- shape=3b052cad vocab=8424dc5d
+-/
 theorem EvenGoodSet_card (N : ℕ) : (EvenGoodSet N).card = 2 * (N + 1) := by
   rw [EvenGoodSet, card_union_of_disjoint (EvenGoodSet_disjoint N)]
   exact congrArg₂ _ (GoodSetBase_card N) rfl
 
+/--
+@isnad1 id=lt.1h2v.s4.eec2223fd4c9 from=translated src=- shape=e8bdf649 vocab=fbbcb308
+-/
 theorem EvenGoodSet_pos (hx : x ∈ EvenGoodSet N) : 0 < x := by
   rw [EvenGoodSet, mem_union, mem_insert, mem_singleton] at hx
   rcases hx with hx | rfl | rfl
   exacts [GoodSetBase_pos hx, Nat.one_pos, Nat.succ_pos _]
 
+/--
+@isnad1 id=eq.0h1v.s5.0bd60c5a33fb from=translated src=- shape=24fbe3b7 vocab=333d226b
+-/
 theorem EvenGoodSet_sum (N : ℕ) : (EvenGoodSet N).sum id = 4 * 3 ^ N := calc
   _ = (GoodSetBase N).sum id + (1 + (3 ^ N + 2)) := sum_union (EvenGoodSet_disjoint N)
   _ = _ := by rw [Nat.add_left_comm 1, Nat.add_left_comm, GoodSetBase_sum,
     Nat.pow_succ, Nat.add_comm, ← Nat.mul_succ, Nat.mul_comm]
 
+/--
+@isnad1 id=good.0h1v.s2.f31baa112365 from=translated src=- shape=76a08d12 vocab=4d50ccfe
+-/
 theorem EvenGoodSet_good (N : ℕ) : good (EvenGoodSet N) := by
   refine good_iff.mpr λ m hm hm0 ↦ ?_
   rw [EvenGoodSet_card, Nat.mul_div_cancel_left _ Nat.two_pos] at hm0
@@ -183,6 +237,9 @@ theorem EvenGoodSet_good (N : ℕ) : good (EvenGoodSet N) := by
 
 def OddGoodSet (N : ℕ) : Finset ℕ := insert (3 ^ N + 3) (GoodSetBase N)
 
+/--
+@isnad1 id=not.1h1v.s5.9146f677207f from=translated src=- shape=920833ae vocab=649dd4db
+-/
 theorem OddGoodSet_disjoint (hN : 2 < N) : 3 ^ N + 3 ∉ GoodSetBase N := by
   obtain ⟨N, rfl⟩ : ∃ N', N = N' + 1 := Nat.exists_eq_add_of_le' (Nat.zero_lt_of_lt hN)
   rw [GoodSetBase, mem_union, mem_image, mem_image]
@@ -208,20 +265,32 @@ theorem OddGoodSet_disjoint (hN : 2 < N) : 3 ^ N + 3 ∉ GoodSetBase N := by
     · rw [Nat.succ_mul, Nat.pow_succ', Nat.add_right_inj] at h
       exact h.not_gt (Nat.pow_lt_pow_right (by decide : 1 < 3) (Nat.lt_of_succ_lt_succ hN))
 
+/--
+@isnad1 id=eq.1h1v.s5.070dfea5fe32 from=translated src=- shape=d3f46844 vocab=8c8322b9
+-/
 theorem OddGoodSet_card (hN : 2 < N) : (OddGoodSet N).card = 2 * N + 1 := by
   rw [OddGoodSet, card_insert_of_notMem (OddGoodSet_disjoint hN)]
   exact congrArg₂ _ (GoodSetBase_card N) rfl
 
+/--
+@isnad1 id=lt.1h2v.s4.3cd23dfd3365 from=translated src=- shape=e8bdf649 vocab=56fe117a
+-/
 theorem OddGoodSet_pos (hx : x ∈ OddGoodSet N) : 0 < x := by
   rw [OddGoodSet, mem_insert] at hx
   rcases hx with rfl | hx
   exacts [Nat.succ_pos _, GoodSetBase_pos hx]
 
+/--
+@isnad1 id=eq.1h1v.s5.4dddc6c05fb0 from=translated src=- shape=d1baf3bf vocab=e8e1e021
+-/
 theorem OddGoodSet_sum (hN : 2 < N) : (OddGoodSet N).sum id = 4 * 3 ^ N := calc
   _ =  (3 ^ N + 3) + (GoodSetBase N).sum id := sum_insert (OddGoodSet_disjoint hN)
   _ = _ := by rw [← add_rotate, Nat.add_right_comm,
     GoodSetBase_sum, Nat.pow_succ', ← Nat.succ_mul]
 
+/--
+@isnad1 id=good.1h1v.s3.c63fa2827ed1 from=translated src=- shape=c1538fc1 vocab=96e0234b
+-/
 theorem OddGoodSet_good (hN : 2 < N) : good (OddGoodSet N) := by
   refine good_iff.mpr λ m hm hm0 ↦ ?_
   rw [OddGoodSet_card hN, Nat.mul_add_div Nat.two_pos] at hm0
@@ -234,7 +303,9 @@ theorem OddGoodSet_good (hN : 2 < N) : good (OddGoodSet N) := by
 
 /-! ### Final solution -/
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.0h1v.s5.2d0e91033ace from=translated src=- shape=cbd09f2b vocab=42f335b2
+-/
 theorem final_solution (n : ℕ) : ∃ S : Finset ℕ, S.card = n ∧ (∀ x ∈ S, 0 < x) ∧ good S := by
   ---- First eliminate the case `n < 4`
   obtain hn | hn : n / 2 < 2 ∨ 2 ≤ n / 2 := lt_or_ge _ _

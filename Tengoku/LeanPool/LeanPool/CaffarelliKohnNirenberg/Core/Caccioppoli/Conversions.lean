@@ -24,7 +24,9 @@ noncomputable section
 
 namespace CKN
 
-/-- The square of `alpha` is its normalized time-slice energy. -/
+/-- The square of `alpha` is its normalized time-slice energy.
+@isnad1 id=eq.1h3v.s6.4045c1e43e00 from=translated src=- shape=2ef7c38f vocab=af0c6e35
+-/
 theorem alpha_sq_eq (u : ParabolicPoint → Vec3) (z : ParabolicPoint) (r : ℝ)
     (hr : 0 < r) :
     alpha u z r ^ 2 = r⁻¹ *
@@ -34,7 +36,9 @@ theorem alpha_sq_eq (u : ParabolicPoint → Vec3) (z : ParabolicPoint) (r : ℝ)
   · norm_num
   · positivity
 
-/-- The square of `beta` is its normalized gradient integral. -/
+/-- The square of `beta` is its normalized gradient integral.
+@isnad1 id=eq.1h4v.s6.70f5fc1c2a32 from=translated src=- shape=cba622db vocab=d5aefa12
+-/
 theorem beta_sq_eq (u : ParabolicPoint → Vec3) (Du : ParabolicPoint → Fin 3 → Vec3)
     (z : ParabolicPoint) (r : ℝ) (hr : 0 < r) :
     beta u Du z r ^ 2 = r⁻¹ *
@@ -44,7 +48,9 @@ theorem beta_sq_eq (u : ParabolicPoint → Vec3) (Du : ParabolicPoint → Fin 3 
   · norm_num
   · positivity
 
-/-- The cube of `gamma` is its normalized velocity integral. -/
+/-- The cube of `gamma` is its normalized velocity integral.
+@isnad1 id=eq.1h3v.s6.852f5ce924ec from=translated src=- shape=f5a70b52 vocab=8d98ba20
+-/
 theorem gamma_cube_eq (u : ParabolicPoint → Vec3) (z : ParabolicPoint) (r : ℝ)
     (hr : 0 < r) :
     gamma u z r ^ 3 = r ^ (-2 : ℝ) *
@@ -54,7 +60,9 @@ theorem gamma_cube_eq (u : ParabolicPoint → Vec3) (z : ParabolicPoint) (r : �
   · norm_num
   · positivity
 
-/-- The cube of `delta` is its normalized pressure integral. -/
+/-- The cube of `delta` is its normalized pressure integral.
+@isnad1 id=eq.1h3v.s7.13e0dd0b7124 from=translated src=- shape=415fadd5 vocab=b08fff32
+-/
 theorem delta_cube_eq (p : ParabolicPoint → ℝ) (z : ParabolicPoint) (r : ℝ)
     (hr : 0 < r) :
     delta p z r ^ 3 = r ^ (-2 : ℝ) *
@@ -64,7 +72,9 @@ theorem delta_cube_eq (p : ParabolicPoint → ℝ) (z : ParabolicPoint) (r : ℝ
   · norm_num
   · positivity
 
-/-- The `q`-power of `lambda` separates its radius factor and force integral. -/
+/-- The `q`-power of `lambda` separates its radius factor and force integral.
+@isnad1 id=eq.2h4v.s7.04fa811ef474 from=translated src=- shape=8c079c0a vocab=6648d23f
+-/
 theorem lambda_pow_eq (q : ℝ) (f : ParabolicPoint → Vec3)
     (z : ParabolicPoint) (r : ℝ) (hr : 0 < r) (hq : 0 < q) :
     lambda q f z r ^ q =
@@ -95,7 +105,9 @@ theorem lambda_pow_eq (q : ℝ) (f : ParabolicPoint → Vec3)
       Real.mul_rpow (Real.rpow_nonneg hr.le _) (Real.rpow_nonneg hJ _)
     _ = _ := by rw [hJpow]
 
-/-- A nonnegative Bochner set integral is the real form of its `ofReal` lintegral. -/
+/-- A nonnegative Bochner set integral is the real form of its `ofReal` lintegral.
+@isnad1 id=eq.2h3v.s7.baec0f4f41f6 from=translated src=- shape=466f9cf4 vocab=84e1001e
+-/
 theorem setIntegral_eq_toReal_setLIntegral_of_nonneg
     {α : Type*} [MeasureSpace α] {s : Set α} {g : α → ℝ}
     (hg : IntegrableOn g s volume) (hgn : 0 ≤ᵐ[volume.restrict s] g) :

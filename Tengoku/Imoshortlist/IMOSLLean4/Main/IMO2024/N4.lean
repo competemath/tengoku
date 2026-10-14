@@ -32,16 +32,22 @@ Note that all solutions that I am aware of so far considers $ab + 1$.
 namespace IMOSL
 namespace IMO2024N4
 
-/-- `a` is coprime with `ab + 1`. -/
+/-- `a` is coprime with `ab + 1`.
+@isnad1 id=coprime.0h2v.s4.d1ed235bb5b6 from=translated src=- shape=976a6e73 vocab=f7395964
+-/
 lemma self_coprime_mul_succ (a b : ℕ) : a.Coprime (a * b + 1) := by simp
 
-/-- `a^{φ(ab + 1) k} ≡ 1 (mod ab + 1)`. -/
+/-- `a^{φ(ab + 1) k} ≡ 1 (mod ab + 1)`.
+@isnad1 id=modeq.0h3v.s6.8389778be709 from=translated src=- shape=a6625445 vocab=9b47fc40
+-/
 lemma pow_totient_mul_succ_mul_modeq_one (a b k) :
     a ^ ((a * b + 1).totient * k) ≡ 1 [MOD a * b + 1] := by
   simpa only [Nat.one_pow, a.pow_mul] using
     (Nat.ModEq.pow_totient (self_coprime_mul_succ _ _)).pow k
 
-/-- If `a^{n + 1} ≡ 1 (mod ab + 1)` then `ab + 1 ∣ a^n + b`. -/
+/-- If `a^{n + 1} ≡ 1 (mod ab + 1)` then `ab + 1 ∣ a^n + b`.
+@isnad1 id=dvd.1h3v.s6.820abef5c1c1 from=translated src=- shape=cdb30342 vocab=4d1d8ff9
+-/
 lemma mul_succ_dvd_pow_add_of_pow_succ_modeq_one (h : a ^ (n + 1) ≡ 1 [MOD a * b + 1]) :
     a * b + 1 ∣ a ^ n + b := by
   rw [← (self_coprime_mul_succ a b).symm.dvd_mul_left,
@@ -54,7 +60,9 @@ lemma eq_one_of_mul_succ_right_dvd_succ
   ha.succ_le.antisymm' <| (mul_le_iff_le_one_left hb).mp <|
     Nat.le_of_lt_succ (Nat.le_of_dvd b.succ_pos h)
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.2h2v.s6.155da0114b1d from=translated src=- shape=88ae4f58 vocab=beceef69
+-/
 theorem final_solution (ha : 0 < a) (hb : 0 < b) :
     (∃ g N, ∀ n ≥ N, (a ^ n + b).gcd (b ^ n + a) = g) ↔ (a = 1 ∧ b = 1) := by
   ---- First solve the `←` direction immediately.

@@ -35,7 +35,9 @@ namespace IMO2010N5
   `(f(m) + n + c)(f(n) + m + c)` is a square for any `m, n : ℕ`. -/
 def good (c : ℕ) (f : ℕ → ℕ) := ∀ m n, ∃ k, (f m + n + c) * (f n + m + c) = k ^ 2
 
-/-- The function `n ↦ n + k` is `c`-good for any `c, k : ℕ`. -/
+/-- The function `n ↦ n + k` is `c`-good for any `c, k : ℕ`.
+@isnad1 id=good.0h2v.s4.b18b3003f3a5 from=translated src=- shape=695b52de vocab=9c06b8e0
+-/
 lemma add_right_is_good (c k) : good c (· + k) := by
   intro m n; refine ⟨m + n + k + c, ?_⟩
   rw [Nat.pow_two, Nat.add_right_comm m, Nat.add_right_comm n, Nat.add_comm n]
@@ -45,7 +47,9 @@ section
 variable {p a b : ℕ} (hp : Nat.Prime p) (h : ∃ k : ℕ, a * b = k ^ 2)
 include hp h
 
-/-- Step 1: if `ab` is a square and `ν_p(a) = 2n + 1` for some `n : ℕ`, then `p ∣ b`. -/
+/-- Step 1: if `ab` is a square and `ν_p(a) = 2n + 1` for some `n : ℕ`, then `p ∣ b`.
+@isnad1 id=dvd.4h4v.s7.002a04164728 from=translated src=- shape=29269bb2 vocab=2643bb4c
+-/
 lemma step1_general (ha : p ^ (2 * n + 1) ∣ a) (ha0 : ¬p ^ (2 * n + 2) ∣ a) : p ∣ b := by
   rcases h with ⟨k, hk⟩
   ---- Write `a = p^{2n + 1} u` for some `u`, and note that `p ∤ u`.
@@ -64,7 +68,9 @@ lemma step1_general (ha : p ^ (2 * n + 1) ∣ a) (ha0 : ¬p ^ (2 * n + 2) ∣ a)
     rw [← Nat.mul_left_cancel_iff hp.pos, ← hk, Nat.mul_pow, Nat.pow_two, Nat.mul_assoc]
   exact (hp.dvd_mul.mp hk).resolve_left ha0
 
-/-- A version of Step 1 with `a ≡ p^{2n + 1} (mod p^{2n + 2})`. -/
+/-- A version of Step 1 with `a ≡ p^{2n + 1} (mod p^{2n + 2})`.
+@isnad1 id=dvd.3h4v.s7.ec219032dcf5 from=translated src=- shape=fc9d0d0a vocab=d1cbd633
+-/
 lemma step1_modeq (ha : a ≡ p ^ (2 * n + 1) [MOD p ^ (2 * n + 2)]) : p ∣ b := by
   refine step1_general hp h (n := n) ?_ ?_
   ---- Check `p^{2n + 1} ∣ a`.
@@ -73,21 +79,27 @@ lemma step1_modeq (ha : a ≡ p ^ (2 * n + 1) [MOD p ^ (2 * n + 2)]) : p ∣ b :
   · rw [ha.dvd_iff (Nat.dvd_refl _), Nat.pow_dvd_pow_iff_le_right hp.one_lt]
     exact Nat.not_succ_le_self (2 * n + 1)
 
-/-- A version of Step 1 with `a ≡ p (mod p^2)`. -/
+/-- A version of Step 1 with `a ≡ p (mod p^2)`.
+@isnad1 id=dvd.3h3v.s6.2d47a229303d from=translated src=- shape=337b08f8 vocab=b099588b
+-/
 lemma step1_pow_one (ha : a ≡ p [MOD p ^ 2]) : p ∣ b :=
   step1_modeq hp h (n := 0) (p.pow_one.symm ▸ ha)
 
 end
 
 /-- For any `b > 0` and for any `a, c : ℕ`,
-  there exists `n : ℕ` such that `a + n ≡ c (mod b)`. -/
+  there exists `n : ℕ` such that `a + n ≡ c (mod b)`.
+@isnad1 id=ex.1h3v.s5.d265edecdd8a from=translated src=- shape=497b0bf6 vocab=e3d0589b
+-/
 lemma exists_add_modeq (hb : 0 < b) (a c) : ∃ n, a + n ≡ c [MOD b] := by
   refine ⟨(b - 1) * a + c, ?_⟩
   rw [← Nat.add_assoc, Nat.add_modEq_right_iff,
     Nat.add_comm, ← Nat.add_one_mul, Nat.sub_add_cancel hb]
   exact Nat.dvd_mul_right b a
 
-/-- If `f` is `c`-good and `f(k) ≡ f(l) (mod p)`, then `k ≡ l (mod p)`. -/
+/-- If `f` is `c`-good and `f(k) ≡ f(l) (mod p)`, then `k ≡ l (mod p)`.
+@isnad1 id=modeq.3h5v.s5.bb257aa690d9 from=translated src=- shape=a2ba2b63 vocab=f9a7165a
+-/
 lemma map_modeq_prime_imp_modeq
     (hf : good c f) (hp : Nat.Prime p) (h : f k ≡ f l [MOD p]) : k ≡ l [MOD p] := by
   ---- It suffices to find `n` such that `p` divides `f(n) + k + c` and `f(n) + l + c`.
@@ -121,14 +133,18 @@ lemma map_modeq_prime_imp_modeq
       rw [Nat.pow_one, Nat.dvd_iff_mod_eq_zero, h2, Nat.pow_succ, Nat.mul_mod_left]
     exact ⟨n, step1_modeq hp (hf k n) (n := 1) h1, step1_general hp (hf l n) (n := 0) h2 h0⟩
 
-/-- If `k ≤ l` and `k ≢ l (mod p)` for every prime `p`, then `l = k + 1`. -/
+/-- If `k ≤ l` and `k ≢ l (mod p)` for every prime `p`, then `l = k + 1`.
+@isnad1 id=eq.2h2v.s5.847f41cd6b53 from=translated src=- shape=18e3744a vocab=6c6927e9
+-/
 lemma not_modeq_prime_imp₁
     (h : k ≤ l) (h0 : ∀ p : ℕ, Nat.Prime p → ¬k ≡ l [MOD p]) : l = k + 1 := by
   obtain ⟨c, rfl⟩ : ∃ c, l = k + c := Nat.exists_eq_add_of_le h
   obtain rfl | hc : c = 1 ∨ c ≠ 1 := dec_em (c = 1)
   exacts [rfl, absurd (c.minFac_dvd.zero_modEq_nat.add_left k) (h0 _ (Nat.minFac_prime hc))]
 
-/-- If `k ≢ l (mod p)` for every prime `p`, then either `l = k + 1` or `k = l + 1`. -/
+/-- If `k ≢ l (mod p)` for every prime `p`, then either `l = k + 1` or `k = l + 1`.
+@isnad1 id=or.1h2v.s5.207b8443513a from=translated src=- shape=fdf36af1 vocab=fe418f00
+-/
 lemma not_modeq_prime_imp₂ (h : ∀ p, Nat.Prime p → ¬k ≡ l [MOD p]) :
     l = k + 1 ∨ k = l + 1 := by
   obtain h0 | h0 : k ≤ l ∨ l ≤ k := Nat.le_total k l
@@ -136,7 +152,9 @@ lemma not_modeq_prime_imp₂ (h : ∀ p, Nat.Prime p → ¬k ≡ l [MOD p]) :
   · right; exact not_modeq_prime_imp₁ h0 λ p hp h1 ↦ h p hp h1.symm
 
 /-- Let `f : ℕ → ℕ` be a function such that `f(k) ≡ f(l) (mod p)` implies `k ≡ l (mod p)`
-  for any `k, l : ℕ` and for any prime `p`. Then `f = n ↦ n + k` for some `k : ℕ`. -/
+  for any `k, l : ℕ` and for any prime `p`. Then `f = n ↦ n + k` for some `k : ℕ`.
+@isnad1 id=ex.1h1v.s5.be2d2195d501 from=translated src=- shape=21facbb3 vocab=fe418f00
+-/
 lemma step3 {f : ℕ → ℕ} (hf : ∀ {p k l}, Nat.Prime p → f k ≡ f l [MOD p] → k ≡ l [MOD p]) :
     ∃ k, f = (· + k) := by
   ---- First show that `f` is injective.
@@ -173,13 +191,17 @@ lemma step3 {f : ℕ → ℕ} (hf : ∀ {p k l}, Nat.Prime p → f k ≡ f l [MO
   rw [h0, k_ih, Nat.add_right_comm]
 
 /-- A function `f : ℕ → ℕ` is `c`-good if and only if
-  it is of the form `n ↦ n + k` for some fixed `k : ℕ`. -/
+  it is of the form `n ↦ n + k` for some fixed `k : ℕ`.
+@isnad1 id=iff.0h2v.s4.929c07b88ce6 from=translated src=- shape=6555e01f vocab=9c06b8e0
+-/
 theorem good_iff : good c f ↔ ∃ k, f = (· + k) :=
   ⟨λ h ↦ step3 (map_modeq_prime_imp_modeq h), λ ⟨_, h⟩ ↦ h ▸ add_right_is_good _ _⟩
 
 /-! ### The `ℕ+` version -/
 
-/-- A positive integer is a square over `ℕ+` iff it is a square over `ℕ`. -/
+/-- A positive integer is a square over `ℕ+` iff it is a square over `ℕ`.
+@isnad1 id=iff.0h1v.s5.17ed9bc4e2dd from=translated src=- shape=9f2f9f40 vocab=6b4c7639
+-/
 theorem PNat_square_iff_Nat_square {m : ℕ+} : (∃ k, m = k ^ 2) ↔ (∃ k : ℕ, m = k ^ 2) := by
   ---- The `→` direction is easy.
   refine ⟨λ ⟨k, hk⟩ ↦ ⟨k, congrArg PNat.val hk⟩, ?_⟩
@@ -189,7 +211,9 @@ theorem PNat_square_iff_Nat_square {m : ℕ+} : (∃ k, m = k ^ 2) ↔ (∃ k : 
   exact ⟨⟨k, hk0⟩, PNat.coe_injective hk⟩
 
 /-- Given a property `P : ℕ → Prop`, `P(n)` holds for some `n : ℕ`
-  iff either `P(0)` holds or `P(n)` holds for some `n : ℕ=`. -/
+  iff either `P(0)` holds or `P(n)` holds for some `n : ℕ=`.
+@isnad1 id=iff.0h1v.s4.256bd45f7c72 from=translated src=- shape=bf236efc vocab=39c3bdc6
+-/
 theorem exists_Nat_iff_zero_or_exists_PNat {P : ℕ → Prop} :
     (∃ n, P n) ↔ P 0 ∨ ∃ n : ℕ+, P n := by
   refine ⟨?_, ?_⟩
@@ -202,7 +226,9 @@ theorem exists_Nat_iff_zero_or_exists_PNat {P : ℕ → Prop} :
   · rintro (h | ⟨n, hn⟩)
     exacts [⟨0, h⟩, ⟨n, hn⟩]
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h1v.s6.3731efb4905c from=translated src=- shape=8b1a8db2 vocab=c9ff14fb
+-/
 theorem final_solution {f : ℕ+ → ℕ+} :
     (∀ m n : ℕ+, ∃ k, (f m + n) * (f n + m) = k ^ 2) ↔ f = id ∨ ∃ k : ℕ+, f = (· + k) := by
   let g (n : ℕ) : ℕ := (f n.succPNat).natPred

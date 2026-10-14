@@ -23,19 +23,27 @@ namespace IMO2022A1
 
 variable [Ring R] [LinearOrder R] [IsStrictOrderedRing R]
 
+/--
+@isnad1 id=lt.4h4v.s7.2c0b6aacabd7 from=translated src=- shape=ed3f3fc6 vocab=5fdf3446
+-/
 lemma main_ineq {a b c : R} (h : 1 ≤ a) (h0 : 1 < b)
     (h1 : 0 ≤ c) (h2 : b ^ 2 + a * c ≤ a + c) : b < a :=
   lt_of_add_lt_add_right <| h2.trans_lt' <|
     add_lt_add_of_lt_of_le (lt_self_pow₀ h0 (Nat.lt_succ_self 1))
       (le_mul_of_one_le_left h1 h)
 
+/--
+@isnad1 id=lt.4h4v.s7.e32ac81ed886 from=translated src=- shape=72dabad1 vocab=5fdf3446
+-/
 lemma main_ineq2 {a b c : R} (h : 0 ≤ a) (h0 : 1 < b)
     (h1 : 1 ≤ c) (h2 : b ^ 2 + a * c ≤ a + c) : b < c :=
   lt_of_add_lt_add_left <| h2.trans_lt' <| (add_comm a b).trans_lt <|
     add_lt_add_of_lt_of_le (lt_self_pow₀ h0 (Nat.lt_succ_self 1))
       (le_mul_of_one_le_right h h1)
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=le.3h3v.s7.0408eeb33671 from=translated src=- shape=3709766e vocab=dd3ba320
+-/
 theorem final_solution {a : ℕ → R} (h : ∀ i, 0 ≤ a i)
     (h0 : ∀ i, a (i + 1) ^ 2 + a i * a (i + 2) ≤ a i + a (i + 2))
     (N : ℕ) (h1 : 2 ≤ N) : a N ≤ 1 := by

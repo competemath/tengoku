@@ -39,7 +39,9 @@ def theoremAStartBound (q κ C₂₅ C₂₆ C₃₂ ε₀ : ℝ) : ℝ :=
             κ ^ (3 / 2 : ℝ) * (ε₀ ^ (1 / q : ℝ)) ^ (3 / 2 : ℝ))) ^
               (2 / 3 : ℝ)
 
-/-- The numerical start bound vanishes continuously with the data size. -/
+/-- The numerical start bound vanishes continuously with the data size.
+@isnad1 id=continuo.1h5v.s5.169c5fc9bbe1 from=translated src=- shape=9922cbef vocab=a9ec03a8
+-/
 theorem theoremAStartBound_continuous {q : ℝ} (hq : 0 < q)
     (κ C₂₅ C₂₆ C₃₂ : ℝ) :
     Continuous (theoremAStartBound q κ C₂₅ C₂₆ C₃₂) := by
@@ -47,7 +49,9 @@ theorem theoremAStartBound_continuous {q : ℝ} (hq : 0 < q)
   unfold theoremAStartBound
   fun_prop (disch := positivity)
 
-/-- At zero data the numerical start bound is zero. -/
+/-- At zero data the numerical start bound is zero.
+@isnad1 id=eq.1h5v.s5.414ea59cfedd from=translated src=- shape=433a6413 vocab=9cf813ab
+-/
 theorem theoremAStartBound_zero {q : ℝ} (hq : 0 < q)
     (κ C₂₅ C₂₆ C₃₂ : ℝ) :
     theoremAStartBound q κ C₂₅ C₂₆ C₃₂ 0 = 0 := by
@@ -56,7 +60,9 @@ theorem theoremAStartBound_zero {q : ℝ} (hq : 0 < q)
   norm_num [theoremAStartBound, Real.zero_rpow hi, Real.zero_rpow hqi]
 
 /-- A positive data threshold simultaneously satisfies the force and theta
-smallness requirements, with all constants fixed before the solution. -/
+smallness requirements, with all constants fixed before the solution.
+@isnad1 id=ex.3h6v.s6.c9280c37600d from=translated src=- shape=0de529f3 vocab=de3a5158
+-/
 theorem exists_theoremA_start_smallness
     (q C₂₅ C₂₆ C₂₇ C₂₈ C₃₂ : ℝ)
     (hq : 0 < q) (hC₂₇ : 0 < C₂₇) (hC₂₈ : 0 < C₂₈) :

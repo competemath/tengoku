@@ -22,6 +22,9 @@ Prove that one of the following holds:
 namespace IMOSL
 namespace IMO2016N4
 
+/--
+@isnad1 id=dvd.2h3v.s6.2a5d3ed58913 from=translated src=- shape=c4c3409b vocab=2adff775
+-/
 lemma dvd_of_pow_sub_one_dvd (hn : 1 < n) (h : n ^ k - 1 ∣ n ^ l - 1) : k ∣ l := by
   ---- Change the goal to `n^{l % k} - 1 = 0`
   suffices h0 : n ^ (l % k) - 1 = 0 by
@@ -46,7 +49,9 @@ lemma dvd_of_pow_sub_one_dvd (hn : 1 < n) (h : n ^ k - 1 ∣ n ^ l - 1) : k ∣ 
   · refine Nat.eq_zero_of_dvd_of_lt h (Nat.sub_lt_sub_right (h0 _) ?_)
     exact Nat.pow_lt_pow_right hn (Nat.mod_lt l hk)
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=or.5h4v.s8.5f73745c1c8c from=translated src=- shape=21266573 vocab=3677f69a
+-/
 theorem final_solution (hk : 0 < k) (hl : 0 < l) (hm : 0 < m) (hn : 1 < n)
     (h : n ^ k + m * n ^ l + 1 ∣ n ^ (k + l) - 1) :
     (m = 1 ∧ l = 2 * k) ∨ (∃ t > 0, k = (t + 1) * l ∧ m * (n ^ l - 1) = n ^ (l * t) - 1) := by

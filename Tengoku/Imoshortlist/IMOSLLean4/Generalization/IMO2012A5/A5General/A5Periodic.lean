@@ -36,22 +36,37 @@ def PeriodEquiv [AddCommSemigroup R] (f : R → S) : AddCon R where
 
 namespace PeriodEquiv
 
+/--
+@isnad1 id=iff.0h5v.s6.f286d4268dec from=translated src=- shape=c9840eb6 vocab=d729b3f6
+-/
 lemma iff_def [AddCommSemigroup R] {f : R → S} {c d : R} :
     PeriodEquiv f c d ↔ ∀ x, f (x + c) = f (x + d) :=
   Eq.to_iff rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.99808d72ca1d from=translated src=- shape=987b48dd vocab=81221fc4
+-/
 lemma apply_eq [AddCommMonoid R] {f : R → S} {c d : R} (h : PeriodEquiv f c d) :
     f c = f d := by
   rw [← zero_add c, h, zero_add]
 
+/--
+@isnad1 id=iff.0h4v.s6.f5d8ac9fac3b from=translated src=- shape=3ef8b0c1 vocab=06e88ce0
+-/
 lemma zero_right [AddCommMonoid R] {f : R → S} {c : R} :
     PeriodEquiv f c 0 ↔ ∀ x, f (x + c) = f x :=
   forall_congr' λ x ↦ by rw [add_zero]
 
+/--
+@isnad1 id=iff.0h4v.s6.1d51679c1f08 from=translated src=- shape=a5a6b637 vocab=06e88ce0
+-/
 lemma zero_right' [AddCommMonoid R] {f : R → S} {c : R} :
     PeriodEquiv f c 0 ↔ ∀ x, f (c + x) = f x :=
   zero_right.trans <| forall_congr' λ x ↦ by rw [add_comm]
 
+/--
+@isnad1 id=iff.0h5v.s6.f656816cfec9 from=translated src=- shape=76298abc vocab=1f471f84
+-/
 lemma iff_sub [AddCommGroup R] {f : R → S} {c d : R} :
     PeriodEquiv f c d ↔ PeriodEquiv f (c - d) 0 :=
   ⟨λ h x ↦ by rw [← add_comm_sub, h, sub_add_cancel, add_zero],
@@ -60,6 +75,9 @@ lemma iff_sub [AddCommGroup R] {f : R → S} {c d : R} :
 variable [Ring R] [NonAssocRing S] [NoZeroDivisors S] {f : R → S} (hf : NontrivialGood f)
 include hf
 
+/--
+@isnad1 id=iff.1h4v.s7.b0692dd0b86c from=translated src=- shape=afd54298 vocab=dbb870db
+-/
 theorem equiv_zero_iff : PeriodEquiv f c 0 ↔ QuasiPeriodic f c ∧ f c = -1 := by
   rw [zero_right, QuasiPeriodic.iff_right hf]
   refine ⟨λ h ↦ ?_, λ h x ↦ by rw [h.1, h.2, neg_neg, mul_one]⟩
@@ -68,6 +86,9 @@ theorem equiv_zero_iff : PeriodEquiv f c 0 ↔ QuasiPeriodic f c ∧ f c = -1 :=
   refine ⟨λ x ↦ ?_, h0⟩
   rw [h0, neg_neg, mul_one, h]
 
+/--
+@isnad1 id=coe.1h6v.s7.db5276043733 from=translated src=- shape=add8df69 vocab=fd3bb271
+-/
 theorem mul_left_equiv_zero (h : PeriodEquiv f c 0) : ∀ d, PeriodEquiv f (d * c) 0 := by
   ---- Some general results
   have h0 (d) : QuasiPeriodic f (d * c) :=
@@ -86,6 +107,9 @@ theorem mul_left_equiv_zero (h : PeriodEquiv f c 0) : ∀ d, PeriodEquiv f (d * 
     rw [hf.is_good, h4, zero_mul, zero_add, add_neg_cancel, hf.map_zero] at h3
     rw [h3, ← neg_neg (f _), ← neg_one_mul, h3, zero_mul]
 
+/--
+@isnad1 id=coe.1h6v.s7.86c8c1b0272e from=translated src=- shape=207fe9d3 vocab=fd3bb271
+-/
 theorem mul_right_equiv_zero (h : PeriodEquiv f c 0) : ∀ d, PeriodEquiv f (c * d) 0 := by
   ---- Some general results
   have h0 (d) : QuasiPeriodic f (c * d) :=
@@ -104,16 +128,25 @@ theorem mul_right_equiv_zero (h : PeriodEquiv f c 0) : ∀ d, PeriodEquiv f (c *
     rw [hf.is_good, h4, mul_zero, zero_add, neg_add_cancel, hf.map_zero] at h3
     rw [h3, ← neg_neg (f _), ← neg_one_mul, h3, zero_mul]
 
+/--
+@isnad1 id=coe.1h7v.s7.3863ca899f09 from=translated src=- shape=86f98e03 vocab=fd3bb271
+-/
 theorem mul_left_equiv (h : PeriodEquiv f c d) (a) :
     PeriodEquiv f (a * c) (a * d) := by
   rw [iff_sub, ← mul_sub]
   exact mul_left_equiv_zero hf (iff_sub.mp h) a
 
+/--
+@isnad1 id=coe.1h7v.s7.818ef715d792 from=translated src=- shape=6742495c vocab=fd3bb271
+-/
 theorem mul_right_equiv (h : PeriodEquiv f c d) (a) :
     PeriodEquiv f (c * a) (d * a) := by
   rw [iff_sub, ← sub_mul]
   exact mul_right_equiv_zero hf (iff_sub.mp h) a
 
+/--
+@isnad1 id=coe.1h9v.s8.ca77483bbed7 from=translated src=- shape=6f7e7d88 vocab=fd3bb271
+-/
 theorem mul_equiv (h : PeriodEquiv f a b) (h0 : PeriodEquiv f c d) :
     PeriodEquiv f (a * c) (b * d) :=
   λ x ↦ (mul_left_equiv hf h0 a x).trans (mul_right_equiv hf h d x)
@@ -124,15 +157,25 @@ def toRingCon : RingCon R :=
 def toQuotientMap : (toRingCon hf).Quotient → S :=
   Quotient.lift f λ _ _ ↦ apply_eq
 
+/--
+@isnad1 id=good.1h3v.s7.d7bdb98c837c from=translated src=- shape=fa5810be vocab=9a041927
+-/
 lemma toQuotientMap_good : good (toQuotientMap hf) :=
   Quotient.ind₂ hf.is_good
 
+/--
+@isnad1 id=nontrivi.1h3v.s7.9a8e70e04fce from=translated src=- shape=85679060 vocab=ff7daddc
+-/
 lemma toQuotientMap_NonTrivialGood : NontrivialGood (toQuotientMap hf) :=
   ⟨toQuotientMap_good hf, hf.map_zero_add_one⟩
 
-/-- The induced map `R/I → S` is a reduced good map. -/
+/-- The induced map `R/I → S` is a reduced good map.
+@isnad1 id=reducedg.1h3v.s7.9c333601e81d from=translated src=- shape=fa5810be vocab=b20348ca
+-/
 lemma toQuotientMap_ReducedGood : ReducedGood (toQuotientMap hf) :=
   ⟨toQuotientMap_NonTrivialGood hf, Quotient.ind₂ λ _ _ h ↦ Quot.sound λ x ↦ h x⟩
 
-/-- `f` factors out through a ring homomorphism and the induced map. -/
+/-- `f` factors out through a ring homomorphism and the induced map.
+@isnad1 id=eq.1h3v.s8.eef715b323ed from=translated src=- shape=3a9349e8 vocab=6c15b674
+-/
 lemma toQuotientMap_factor : f = toQuotientMap hf ∘ (toRingCon hf).mk' := rfl

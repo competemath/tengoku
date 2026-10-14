@@ -35,7 +35,9 @@ open Multiset
 
 /-! ### Extra lemmas -/
 
-/-- The supremum of a non-empty multiset belongs to the multiset. -/
+/-- The supremum of a non-empty multiset belongs to the multiset.
+@isnad1 id=mem.1h2v.s5.261ce6667ef8 from=translated src=- shape=8e192cd4 vocab=4f657a3b
+-/
 theorem Multiset_sup_mem [LinearOrder α] [OrderBot α] {S : Multiset α} (hS : S ≠ 0) :
     S.sup ∈ S := by
   obtain ⟨x, hx, hx0⟩ : ∃ x ∈ S, ∀ y ∈ S, y ≤ x := exists_max_image id hS
@@ -43,7 +45,9 @@ theorem Multiset_sup_mem [LinearOrder α] [OrderBot α] {S : Multiset α} (hS : 
   exact hx
 
 open Finset in
-/-- We have the formula `∑_{i < N} (i + 2) = N(N + 3)/2`. -/
+/-- We have the formula `∑_{i < N} (i + 2) = N(N + 3)/2`.
+@isnad1 id=eq.0h1v.s6.c23d46629647 from=translated src=- shape=0c3eab57 vocab=1273e4d0
+-/
 theorem Fin_sum_add_two (N : ℕ) : ∑ i : Fin N, (i.val + 2) = N * (N + 3) / 2 := calc
   _ = ∑ i ∈ range N, (i + 1 + 1) := Fin.sum_univ_eq_sum_range (· + 2) N
   _ = ∑ i ∈ range N, (i + 1) + ∑ _ ∈ range N, 1 := sum_add_distrib
@@ -55,14 +59,18 @@ theorem Fin_sum_add_two (N : ℕ) : ∑ i : Fin N, (i.val + 2) = N * (N + 3) / 2
 
 /-! ### Start of the problem -/
 
-/-- For any `k > 0`, we have `2k^k ≤ (k + 1)^k`. -/
+/-- For any `k > 0`, we have `2k^k ≤ (k + 1)^k`.
+@isnad1 id=le.1h1v.s6.b978d6dd1a4a from=translated src=- shape=88a7396d vocab=90f779e9
+-/
 theorem two_mul_pow_self_le_succ_pow_self {k : ℕ} (hk : k > 0) : 2 * k ^ k ≤ (k + 1) ^ k :=
   calc 2 * k ^ k
   _ = k ^ k + k * k ^ (k - 1) * 1 := by
     rw [Nat.mul_one, ← Nat.pow_add_one', Nat.sub_add_cancel hk, Nat.two_mul]
   _ ≤ (k + 1) ^ k := pow_add_mul_le_add_pow (Nat.zero_le _) (Nat.zero_le _) _
 
-/-- For any `m, x : ℕ`, there exists `N` such that `mx^n < (x + 1)^n` for all `n ≥ N`. -/
+/-- For any `m, x : ℕ`, there exists `N` such that `mx^n < (x + 1)^n` for all `n ≥ N`.
+@isnad1 id=ex.0h2v.s6.56ea11f46861 from=translated src=- shape=28a04e80 vocab=6151322e
+-/
 theorem exists_mul_pow_lt_succ_pow (m x : ℕ) : ∃ N, ∀ n ≥ N, m * x ^ n < (x + 1) ^ n := by
   obtain rfl | hx : x = 0 ∨ x > 0 := Nat.eq_zero_or_pos x
   ---- If `x = 0`, then `N = 1` works.
@@ -81,7 +89,9 @@ theorem exists_mul_pow_lt_succ_pow (m x : ℕ) : ∃ N, ∀ n ≥ N, m * x ^ n <
       _ = (x + 1) ^ n := by rw [← Nat.pow_mul, ← Nat.pow_add, Nat.add_sub_cancel' hn]
 
 /-- Let `S` be a multiset of non-negative integers. Let `a > 0` be an integer greater
-  than all elements of `S`. Then `∑_{x ∈ S} x^n < a^n` for `n` large enough. -/
+  than all elements of `S`. Then `∑_{x ∈ S} x^n < a^n` for `n` large enough.
+@isnad1 id=ex.2h2v.s6.46221c201baf from=translated src=- shape=800f5a13 vocab=724d2e6a
+-/
 theorem exists_sum_map_pow_lt_pow_of_forall_mem_lt
     {S : Multiset ℕ} {a : ℕ} (ha : a > 0) (hSa : ∀ x ∈ S, x < a) :
     ∃ N, ∀ n ≥ N, (S.map (· ^ n)).sum < a ^ n := by
@@ -99,14 +109,18 @@ theorem exists_sum_map_pow_lt_pow_of_forall_mem_lt
     _ = a ^ n := by rw [Nat.sub_add_cancel ha]
 
 /-- Let `S` be a multiset of non-negative integers, and let `a > sup S`.
-  Then `∑_{x ∈ S} x^n < a^n` for `n` large enough. -/
+  Then `∑_{x ∈ S} x^n < a^n` for `n` large enough.
+@isnad1 id=ex.1h2v.s6.4d3b5829688e from=translated src=- shape=3ecf69fa vocab=4549118c
+-/
 theorem exists_sum_map_pow_lt_pow_of_sup_lt {S : Multiset ℕ} {a : ℕ} (hSa : S.sup < a) :
     ∃ N, ∀ n ≥ N, (S.map (· ^ n)).sum < a ^ n :=
   exists_sum_map_pow_lt_pow_of_forall_mem_lt (Nat.zero_lt_of_lt hSa)
     (λ _ hxS ↦ hSa.trans_le' (le_sup hxS))
 
 /-- Let `S` and `T` be multisets of non-negative integers such that there exists infinitely
-  many `n` satisfying `∑_{x ∈ S} x^n = ∑_{x ∈ T} x^n`. Then `sup S = sup T`. -/
+  many `n` satisfying `∑_{x ∈ S} x^n = ∑_{x ∈ T} x^n`. Then `sup S = sup T`.
+@isnad1 id=eq.1h2v.s6.5564bccfc80f from=translated src=- shape=c12024eb vocab=41e766c3
+-/
 theorem sup_eq_of_infinite_sum_map_pow_eq {S T : Multiset ℕ}
     (hST : ∀ N, ∃ n ≥ N, (S.map (· ^ n)).sum = (T.map (· ^ n)).sum) : S.sup = T.sup := by
   ---- WLOG assume `sup S ≤ sup T`.
@@ -210,7 +224,9 @@ theorem eq_cons_one_replicate_of_sum_map_pow_eq
 
 /-- Suppose that `∑_{i ≤ N} {x_i, …, x_i} = {1, a, …, a}`,
   where each `x_i` is repeated `i + 1` times and `a` is repeated `k` times.
-  Then `k = N(N + 3)/2`, `x_0 = 1`, and `x_i = a` for all `i > 0`. -/
+  Then `k = N(N + 3)/2`, `x_0 = 1`, and `x_i = a` for all `i > 0`.
+@isnad1 id=and.1h4v.s8.529295b80715 from=translated src=- shape=27846dc8 vocab=90e67e2f
+-/
 theorem sum_eq_cons_one_replicate {x : Fin (N + 1) → ℕ}
     (hx : ∑ i : Fin (N + 1), replicate (i + 1) (x i) = 1 ::ₘ replicate k a) :
     k = N * (N + 3) / 2 ∧ x = λ i ↦ if i = 0 then 1 else a := by
@@ -265,7 +281,9 @@ theorem sum_eq_cons_one_replicate {x : Fin (N + 1) → ℕ}
 
 /-- Let `x_0, x_1, …, x_N : ℕ`, and suppose that for every `n > 0`,
   there exists `a : ℕ` such that `∑_{i ≤ N} (i + 1) x_i^n = a^{n + 1} + 1`.
-  Then `x_0 = 1` and `x_1 = … = x_N = N(N + 3)/2`. -/
+  Then `x_0 = 1` and `x_1 = … = x_N = N(N + 3)/2`.
+@isnad1 id=iff.1h2v.s8.112a7cc6eee6 from=translated src=- shape=4af1ab10 vocab=05cebde6
+-/
 theorem Nat_version {N : ℕ} {x : Fin (N + 1) → ℕ} (hx : ∀ i, x i > 0) :
     (∀ n > 0, ∃ a : ℕ, ∑ i, (i + 1) * x i ^ n = a ^ (n + 1) + 1)
       ↔ x = λ i ↦ if i = 0 then 1 else N * (N + 3) / 2 := by
@@ -304,7 +322,9 @@ theorem Nat_version {N : ℕ} {x : Fin (N + 1) → ℕ} (hx : ∀ i, x i > 0) :
       _ = 1 + k * k ^ n := congrArg₂ _ (Nat.one_pow _) (congrArg₂ _ (Fin_sum_add_two N) rfl)
       _ = k ^ (n + 1) + 1 := by rw [Nat.pow_succ', Nat.add_comm]
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.1h2v.s8.5af273f112d4 from=translated src=- shape=eb32003d vocab=ef497b96
+-/
 theorem final_solution {N : ℕ} {x : Fin (N + 1) → ℕ} (hx : ∀ i, x i > 0) :
     (∀ n > 0, ∃ a : ℤ, (∑ i, (i + 1) * x i ^ n : ℕ) = a ^ (n + 1) + 1)
       ↔ x = λ i ↦ if i = 0 then 1 else N * (N + 3) / 2 := by

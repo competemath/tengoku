@@ -46,10 +46,16 @@ private lemma volume_metricBall (x : Vec3) {r : ℝ} (hr : 0 < r) :
     (ENNReal.ofReal_mul (by norm_num : (0 : ℝ) ≤ 2)).symm
   rw [h2, hmul, ENNReal.ofReal_pow (by positivity : (0 : ℝ) ≤ 2 * r) 3]
 
+/--
+@isnad1 id=eq.1h2v.s7.a4a4fd1fcbe6 from=translated src=- shape=798daa44 vocab=1bc9ef5d
+-/
 theorem volume_metricBall_eq {x : Vec3} {r : ℝ} (hr : 0 < r) :
     volume (Metric.ball x r) = ENNReal.ofReal ((2 * r) ^ 3) := by
   exact volume_metricBall x hr
 
+/--
+@isnad1 id=le.1h4v.s7.e3019ee5bd05 from=translated src=- shape=e4f74e44 vocab=b0d1d236
+-/
 theorem maximalFunction_average_le {f : Vec3 → ℝ≥0∞}
     {c z : Vec3} {r : ℝ} (hz : z ∈ hardyLittlewoodMetricBall c r) :
     ⨍⁻ y in hardyLittlewoodMetricBall c r, f y ∂volume ≤ maximalFunction f z := by

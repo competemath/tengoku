@@ -68,7 +68,9 @@ section Scalars
 variable {F : Type*} [MulAction X Δ] [SMul F Δ]
 variable [SMulCommClass X F Δ]
 
-/-- The product action commutes with scalars whenever the component action does. -/
+/-- The product action commutes with scalars whenever the component action does.
+@isnad1 id=smulcomm.0h5v.s7.f760b22fead1 from=translated src=- shape=217c805a vocab=7d0ccbbc
+-/
 instance permWreathSMulCommClass :
     SMulCommClass (PermWreath X Q ι) F (ι → Δ) where
   smul_comm g a x := by
@@ -83,29 +85,39 @@ section CoordinateLemmas
 
 variable [MulAction X Δ]
 
-/-- The defining coordinate formula for the product action. -/
+/-- The defining coordinate formula for the product action.
+@isnad1 id=eq.0h7v.s8.a45421516bdd from=translated src=- shape=30d26a76 vocab=4aecf6a2
+-/
 @[simp]
 theorem permWreath_smul_apply (g : PermWreath X Q ι) (x : ι → Δ) (i : ι) :
     (g • x) i = g.left i • x (g.right⁻¹ • i) := rfl
 
-/-- Coordinate form of the identity law. -/
+/-- Coordinate form of the identity law.
+@isnad1 id=eq.0h6v.s7.a363ea2e2487 from=translated src=- shape=4f97b1f5 vocab=1060a257
+-/
 theorem one_smul_coord (x : ι → Δ) (i : ι) :
     ((1 : PermWreath X Q ι) • x) i = x i := by
   simp
 
-/-- Fully expanded coordinate form of the multiplication law. -/
+/-- Fully expanded coordinate form of the multiplication law.
+@isnad1 id=eq.0h8v.s9.144d43b97029 from=translated src=- shape=3e3793b6 vocab=d5473c6f
+-/
 theorem mul_smul_coord (g h : PermWreath X Q ι) (x : ι → Δ) (i : ι) :
     ((g * h) • x) i =
       g.left i • (h.left (g.right⁻¹ • i) •
         x (h.right⁻¹ • (g.right⁻¹ • i))) := by
   simp [mul_smul]
 
-/-- A base-group element acts independently in each coordinate. -/
+/-- A base-group element acts independently in each coordinate.
+@isnad1 id=eq.0h7v.s8.c115abc1ee19 from=translated src=- shape=6cbcafa5 vocab=c5b04254
+-/
 theorem base_smul_coord (f : ι → X) (x : ι → Δ) (i : ι) :
     (PermWreath.base X Q ι f • x) i = f i • x i := by
   simp
 
-/-- A top-group element acts by reindexing the coordinates. -/
+/-- A top-group element acts by reindexing the coordinates.
+@isnad1 id=eq.0h7v.s8.9bc5164e45c0 from=translated src=- shape=82877824 vocab=ccb2953a
+-/
 theorem top_smul_coord (q : Q) (x : ι → Δ) (i : ι) :
     (PermWreath.top X Q ι q • x) i = x (q⁻¹ • i) := by
   simp

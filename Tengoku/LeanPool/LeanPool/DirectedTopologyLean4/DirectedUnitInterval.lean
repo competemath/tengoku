@@ -39,11 +39,14 @@ def IdentityPath : Path (0 : I) (1 : I) :=
   target' := by simp,
 }
 
-/-- The identity path is a directed path. -/
+/-- The identity path is a directed path.
+@isnad1 id=isdipath.0h0v.s5.a71f0dfc83cb from=translated src=- shape=dd223a01 vocab=46b4d25a
+-/
 lemma isDipath_identityPath : IsDipath IdentityPath := fun _ _ hab => hab
 
 /-- If `γ` is path and the identity path on I composed with `γ` is a directed path, then `γ` is a
 directed path.
+@isnad1 id=isdipath.1h4v.s7.8bbf74a0d40e from=translated src=- shape=231b4849 vocab=59f52733
 -/
 lemma isDipath_of_isDipath_comp_id {X : Type u} [DirectedSpace X] {x y : X} {γ : Path x y}
   (h : IsDipath <| IdentityPath.map γ.continuous_toFun) : IsDipath γ := by
@@ -52,20 +55,28 @@ lemma isDipath_of_isDipath_comp_id {X : Type u} [DirectedSpace X] {x y : X} {γ 
   rw [Path.cast_coe]
   rfl
 
-/-- A directed map from I to I is monotone -/
+/-- A directed map from I to I is monotone
+@isnad1 id=monotone.0h1v.s6.51bd18d00ddf from=translated src=- shape=83fc897d vocab=feee81c3
+-/
 lemma monotone_of_directed (f : D(I,I)) : Monotone f :=
   fun _ _ h => (f.directed_toFun IdentityPath isDipath_identityPath) h
 
-/-- A continuous map from I to I that is monotone is directed -/
+/-- A continuous map from I to I that is monotone is directed
+@isnad1 id=directed.1h1v.s7.e3f341de8052 from=translated src=- shape=7242d841 vocab=043b4f36
+-/
 lemma directed_of_monotone (f : C(I, I)) (hf_mono : Monotone f) : DirectedMap.Directed f :=
   fun _ _ _ γ_dipath _ _ ht₀t₁ => hf_mono (γ_dipath ht₀t₁)
 
-/-- A directed path on I is bounded by its source and target -/
+/-- A directed path on I is bounded by its source and target
+@isnad1 id=and.1h4v.s7.ed72b86f220f from=translated src=- shape=2e1c90ab vocab=e2d61e30
+-/
 lemma directed_path_bounded {t₀ t₁ : I} {γ : Path t₀ t₁} (γ_dipath : IsDipath γ)
     : ∀ t, t₀ ≤ γ t ∧ γ t ≤ t₁ :=
   monotone_path_bounded γ_dipath
 
-/-- The source of a directed path on I is `≤` than its target -/
+/-- The source of a directed path on I is `≤` than its target
+@isnad1 id=le.1h3v.s5.bc013bf7cecb from=translated src=- shape=4683e72e vocab=89b685d4
+-/
 lemma directed_path_source_le_target {t₀ t₁ : I} {γ : Path t₀ t₁} (γ_dipath : IsDipath γ) : t₀ ≤ t₁
     :=
   monotone_path_source_le_target γ_dipath

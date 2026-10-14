@@ -13,17 +13,29 @@ variable {S E : Type*} {𝓔 : MeasurableSpace E} {Λ s : Set S} {t : S → Set 
 noncomputable def juxt (Λ : Set S) (η : S → E) (ζ : Λ → E) (x : S) : E := by
   classical exact dite (x ∈ Λ) (fun h ↦ ζ ⟨x, h⟩) (fun _ ↦ η x)
 
+/--
+@isnad1 id=eq.1h6v.s5.20915cda56d1 from=translated src=- shape=9c2931a5 vocab=6606e4f7
+-/
 @[simp]
 lemma juxt_apply_of_mem (hx : x ∈ Λ) (ζ : Λ → E) : juxt Λ η ζ x = ζ ⟨x, hx⟩ := by simp [juxt, hx]
 
+/--
+@isnad1 id=eq.1h6v.s5.ee46799800ba from=translated src=- shape=accff1cc vocab=37cca4e8
+-/
 @[simp]
 lemma juxt_apply_of_not_mem (h : x ∉ Λ) (ζ : Λ → E) : juxt Λ η ζ x = η x := by simp [juxt, h]
 
+/--
+@isnad1 id=measurab.0h5v.s5.105f67f6553b from=translated src=- shape=72a59ed8 vocab=80d95a65
+-/
 protected lemma Measurable.juxt : Measurable (juxt Λ η) := by
   rw [measurable_pi_iff]
   rintro x
   by_cases hx : x ∈ Λ <;> simp [juxt, hx, measurable_pi_apply]
 
+/--
+@isnad1 id=eq.1h6v.s7.2333a7ca7f60 from=translated src=- shape=9ae1adb8 vocab=8dbf6c9a
+-/
 lemma preimage_juxt_pi [DecidablePred (· ∈ s)] (hη : η ∈ (s \ Λ).pi t) :
     juxt Λ η ⁻¹' s.pi t = univ.pi fun j : Λ ↦ if (j : S) ∈ s then t j else univ := by
   ext ζ
@@ -36,6 +48,9 @@ lemma preimage_juxt_pi [DecidablePred (· ∈ s)] (hη : η ∈ (s \ Λ).pi t) :
     · simpa [juxt_apply_of_mem hiΛ, hi] using h ⟨i, hiΛ⟩
     · simpa [juxt_apply_of_not_mem hiΛ] using hη i ⟨hi, hiΛ⟩
 
+/--
+@isnad1 id=eq.1h6v.s6.7929fbb98a4f from=translated src=- shape=f4f36418 vocab=8ba8957a
+-/
 lemma preimage_juxt_pi_eq_empty (hη : η ∉ (s \ Λ).pi t) :
     juxt Λ η ⁻¹' s.pi t = ∅ := by
   rw [eq_empty_iff_forall_notMem]
@@ -45,6 +60,9 @@ lemma preimage_juxt_pi_eq_empty (hη : η ∉ (s \ Λ).pi t) :
   obtain ⟨i, ⟨his, hiΛ⟩, hit⟩ := hη
   exact hit <| by simpa [juxt_apply_of_not_mem hiΛ] using hζ i his
 
+/--
+@isnad1 id=eq.2h8v.s8.75d21a1149c0 from=translated src=- shape=b9b97e84 vocab=e6c02123
+-/
 lemma map_juxt_pi [DecidablePred (· ∈ s)] (μ : Measure (Λ → E))
     (ht : ∀ i, MeasurableSet (t i)) (hs : s.Countable) (η : S → E) :
     μ.map (juxt Λ η) (s.pi t) =
@@ -55,6 +73,9 @@ lemma map_juxt_pi [DecidablePred (· ∈ s)] (μ : Measure (Λ → E))
   · rw [preimage_juxt_pi hη, indicator_of_mem hη]
   · rw [preimage_juxt_pi_eq_empty hη, measure_empty, indicator_of_notMem hη]
 
+/--
+@isnad1 id=measurab.2h7v.s7.76032242c6bd from=translated src=- shape=4ac97168 vocab=e2084115
+-/
 lemma measurable_map_juxt_pi (μ : Measure (Λ → E)) (ht : ∀ i, MeasurableSet (t i))
     (hs : s.Countable) :
     Measurable[cylinderEvents (X := fun _ : S ↦ E) Λᶜ] fun η : S → E ↦

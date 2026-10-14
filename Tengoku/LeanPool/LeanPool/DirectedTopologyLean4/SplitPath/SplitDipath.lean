@@ -30,6 +30,9 @@ namespace SplitDipath
 open SplitPath
 open scoped unitInterval
 
+/--
+@isnad1 id=isdipath.1h5v.s6.57c1e802da46 from=translated src=- shape=646827d2 vocab=e04225dd
+-/
 lemma first_part_is_dipath {γ : Path x₀ x₁} (γ_dipath : IsDipath γ) (T : I) :
   IsDipath (FirstPart γ T) := by
   let φ : Path 0 T := {
@@ -45,6 +48,9 @@ lemma first_part_is_dipath {γ : Path x₀ x₁} (γ_dipath : IsDipath γ) (T : 
   apply isDipath_cast _ γ.source.symm rfl
   exact isDipath_reparam φ_mono γ_dipath
 
+/--
+@isnad1 id=isdipath.1h5v.s6.71ff25ee8143 from=translated src=- shape=e0abc0c9 vocab=c021970d
+-/
 lemma second_part_is_dipath {γ : Path x₀ x₁} (γ_dipath : IsDipath γ) (T : I) :
   IsDipath (SecondPart γ T) := by
   let φ : Path T 1 := {
@@ -74,10 +80,16 @@ def SecondPart (γ : Dipath x₀ x₁) (T : I) : Dipath (γ T) x₁ := {
   dipath_toPath := second_part_is_dipath γ.dipath_toPath T
 }
 
+/--
+@isnad1 id=eq.0h6v.s7.298570a03862 from=translated src=- shape=4ac6a833 vocab=940049e6
+-/
 @[simp]
 lemma first_part_apply (γ : Dipath x₀ x₁) (T t : I) :
   (FirstPart γ T) t = γ ⟨ T* t, unitInterval.mul_mem T.2 t.2⟩ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.5269bf21f176 from=translated src=- shape=9d20f7f0 vocab=7f0bef5c
+-/
 @[simp]
 lemma second_part_apply (γ : Dipath x₀ x₁) (T t : I) :
   (SecondPart γ T) t = γ ⟨(σ T : ℝ) * (t : ℝ) + (T : ℝ), interp_left_mem_I T t⟩ := rfl
@@ -89,12 +101,21 @@ def transReparamMap {T : I} (hT₀ : 0 < T) (hT₁ : T < 1) : D(I,I) where
   continuous_toFun := Continuous.subtype_mk (continuous_trans_reparam hT₀ hT₁) _
   directed_toFun := DirectedUnitInterval.directed_of_monotone _ (monotone_trans_reparam hT₀ hT₁)
 
+/--
+@isnad1 id=eq.2h1v.s7.59e77aa910fc from=translated src=- shape=73754b58 vocab=bf562312
+-/
 lemma trans_reparam_map_zero {T : I} (hT₀ : 0 < T) (hT₁ : T < 1) : transReparamMap hT₀ hT₁ 0 = 0
     :=
   Subtype.ext (trans_reparam_zero T)
+/--
+@isnad1 id=eq.2h1v.s7.a543b061d10b from=translated src=- shape=73754b58 vocab=bf562312
+-/
 lemma trans_reparam_map_one {T : I} (hT₀ : 0 < T) (hT₁ : T < 1) : transReparamMap hT₀ hT₁ 1 = 1 :=
   Subtype.ext (trans_reparam_one hT₁)
 
+/--
+@isnad1 id=eq.2h5v.s7.839ad2b473c6 from=translated src=- shape=427ddfc8 vocab=b731b10f
+-/
 lemma first_trans_second_reparam_eq_self (γ : Dipath x₀ x₁) {T : I} (hT₀ : 0 < T) (hT₁ : T < 1) :
   γ = ((FirstPart γ T).trans (SecondPart γ T)).reparam
     (transReparamMap hT₀ hT₁) (trans_reparam_map_zero _ _) (trans_reparam_map_one _ _) := by

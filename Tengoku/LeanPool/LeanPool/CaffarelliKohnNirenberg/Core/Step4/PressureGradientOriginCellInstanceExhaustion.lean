@@ -134,7 +134,9 @@ private lemma exists_subset_exhaustionCore {I : Set ℝ} (hopen : IsOpen I) {T :
     exact hδsub (Metric.mem_thickening_iff.2 ⟨t, ht, lt_of_le_of_lt hs hr⟩)
 
 /-- An open, order-connected subset of the line is the increasing union of compact
-order-connected subsets, and every compact subset is contained in one of them. -/
+order-connected subsets, and every compact subset is contained in one of them.
+@isnad1 id=ex.2h1v.s7.076961cdfc33 from=translated src=- shape=26b48f66 vocab=4bba9265
+-/
 theorem exists_compact_ordConnected_exhaustion {I : Set ℝ}
     (hopen : IsOpen I) (hord : I.OrdConnected) :
     ∃ J : ℕ → Set ℝ,

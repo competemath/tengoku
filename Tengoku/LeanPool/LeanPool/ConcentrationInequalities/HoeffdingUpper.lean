@@ -55,7 +55,9 @@ space, each valued in `[0,1]`, the sum exceeds its mean by `t ≥ 0` with probab
 
 The proof centers each summand, applies Mathlib's Hoeffding lemma to obtain sub-Gaussian parameter
 `1/4`, combines these bounds using independence, and then applies the optimized Chernoff bound.
-Measurability and boundedness imply the integrability needed for the expectations. -/
+Measurability and boundedness imply the integrability needed for the expectations.
+@isnad1 id=le.4h4v.s8.365c3fc95ed8 from=translated src=- shape=d2ddc831 vocab=2f01f99f
+-/
 theorem hoeffding_upper {Ω : Type*} [MeasureSpace Ω]
     [IsProbabilityMeasure (ℙ : Measure Ω)] {n : ℕ}
     (X : Fin n → Ω → ℝ)

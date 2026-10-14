@@ -38,6 +38,9 @@ def levelFaceCarrier {n : ℕ} (t : K.LevelFace n) : Set K.realization :=
   (K.safeSubdivision n).homeo ''
     (K.safeSubdivision n).refined.faceCarrier t.1
 
+/--
+@isnad1 id=iscompac.0h3v.s5.6c9531de2348 from=translated src=- shape=e41714bc vocab=bc11c453
+-/
 theorem isCompact_levelFaceCarrier {n : ℕ} (t : K.LevelFace n) :
     IsCompact (K.levelFaceCarrier t) :=
   ((K.safeSubdivision n).refined.faceCarrier_closed t.1).isCompact.image
@@ -68,6 +71,9 @@ instance (priority := 100) defaultAdaptiveSafety : AdaptiveSafety K U where
 def LevelFace.IsSafe [AdaptiveSafety K U] {n : ℕ} (t : K.LevelFace n) : Prop :=
   AdaptiveSafety.safe (K := K) (U := U) t
 
+/--
+@isnad1 id=iff.0h4v.s7.e3b8309d683a from=translated src=- shape=b3cf5300 vocab=86a802db
+-/
 theorem levelFace_isSafe_iff {n : ℕ} (t : K.LevelFace n) :
     @LevelFace.IsSafe K U (defaultAdaptiveSafety K U) n t ↔
       t.1 ∈ K.safeFaces U n := by
@@ -102,6 +108,9 @@ class AdaptiveSafety.IsAdmissible [AdaptiveSafety K U] : Prop where
         (K.levelFaceCarrier t ∩ Metric.ball p.1 (ε / 2)).Nonempty →
           LevelFace.IsSafe K U (K.levelParentFace n t)
 
+/--
+@isnad1 id=le.0h3v.s5.cb214f4f026f from=translated src=- shape=39927e76 vocab=ccd28c6a
+-/
 theorem levelFaceCarrier_subset_parent (n : ℕ) (t : K.LevelFace (n + 1)) :
     K.levelFaceCarrier t ⊆ K.levelFaceCarrier (K.levelParentFace n t) := by
   let R := K.safeSubdivision n
@@ -113,7 +122,9 @@ theorem levelFaceCarrier_subset_parent (n : ℕ) (t : K.LevelFace (n + 1)) :
     (R.refined.midpointParentFace t) (R.refined.midpointFace_mem_parent t) x hx
 
 /-- Every point of a level face lies in a child face at the next midpoint level whose entire
-transported carrier remains in the parent carrier. -/
+transported carrier remains in the parent carrier.
+@isnad1 id=ex.1h4v.s6.80765d26b078 from=translated src=- shape=031c6349 vocab=24dca4ac
+-/
 theorem exists_levelFace_succ_containing {n : ℕ} (t : K.LevelFace n)
     {p : K.realization} (hp : p ∈ K.levelFaceCarrier t) :
     ∃ u : K.LevelFace (n + 1),
@@ -142,7 +153,9 @@ theorem exists_levelFace_succ_containing {n : ℕ} (t : K.LevelFace n)
     refine ⟨w, ?_, rfl⟩
     exact R.refined.midpointEval_mem_parentFace t hsOver z hzu
 
-/-- Containment in an open set is an admissible adaptive safety rule. -/
+/-- Containment in an open set is an admissible adaptive safety rule.
+@isnad1 id=isadmiss.0h2v.s3.6b1aef0613fc from=translated src=- shape=8616cb4c vocab=55d210af
+-/
 instance (priority := 100) defaultAdaptiveSafety_admissible :
     @AdaptiveSafety.IsAdmissible K U (defaultAdaptiveSafety K U) := by
   refine { exists_safe := ?_, locally_parent_safe := ?_ }
@@ -193,7 +206,9 @@ instance (priority := 100) defaultAdaptiveSafety_admissible :
 variable [AdaptiveSafety K U]
 
 /-- Iterating the preceding child-cover lemma gives a face at every later level through a
-chosen point, with carrier contained in the original face. -/
+chosen point, with carrier contained in the original face.
+@isnad1 id=ex.1h5v.s6.82542edea0c1 from=translated src=- shape=cf2e4ec6 vocab=24dca4ac
+-/
 theorem exists_levelFace_add_containing (n k : ℕ) (t : K.LevelFace n)
     {p : K.realization} (hp : p ∈ K.levelFaceCarrier t) :
     ∃ u : K.LevelFace (n + k),
@@ -209,7 +224,9 @@ theorem exists_levelFace_add_containing (n k : ℕ) (t : K.LevelFace n)
 
 /-- A level face is exactly the union of its faces at any prescribed later midpoint level.
 The descendant condition is stated geometrically, which avoids choosing a combinatorial parent
-for faces meeting an old edge. -/
+for faces meeting an old edge.
+@isnad1 id=eq.0h4v.s6.7983cc8f0fa8 from=translated src=- shape=d7af7094 vocab=29cc0a04
+-/
 theorem levelFaceCarrier_eq_iUnion_descendants (n k : ℕ) (t : K.LevelFace n) :
     K.levelFaceCarrier t =
       ⋃ u : K.LevelFace (n + k),
@@ -224,7 +241,9 @@ theorem levelFaceCarrier_eq_iUnion_descendants (n k : ℕ) (t : K.LevelFace n) :
     obtain ⟨hut, hpu⟩ := Set.mem_iUnion.mp hp
     exact hut hpu
 
-/-- Exact intersection formula for two transported faces at the same midpoint level. -/
+/-- Exact intersection formula for two transported faces at the same midpoint level.
+@isnad1 id=eq.0h4v.s9.67232f55409a from=translated src=- shape=dac1cf08 vocab=9d8f052c
+-/
 theorem levelFaceCarrier_inter {n : ℕ} (s t : K.LevelFace n) :
     K.levelFaceCarrier s ∩ K.levelFaceCarrier t =
       (K.safeSubdivision n).homeo ''
@@ -233,7 +252,9 @@ theorem levelFaceCarrier_inter {n : ℕ} (s t : K.LevelFace n) :
     ← Set.image_inter (K.safeSubdivision n).homeo.injective,
     (K.safeSubdivision n).refined.faceCarrier_inter]
 
-/-- Distinct maximal faces at one level share at most two vertices. -/
+/-- Distinct maximal faces at one level share at most two vertices.
+@isnad1 id=le.1h4v.s7.cf52fbb40e9b from=translated src=- shape=6b9754db vocab=598bc6bf
+-/
 theorem card_inter_levelFace_le_two {n : ℕ} {s t : K.LevelFace n}
     (hst : s ≠ t) : (s.1 ∩ t.1).card ≤ 2 := by
   by_contra hcard
@@ -315,6 +336,9 @@ theorem eq_of_card_two_of_mem_faceCarriers_not_vertex (t : K.Face)
   apply K.eq_facePoint_of_mem_faceCarrier_singleton t ⟨v, hvt⟩ x
   rwa [hv] at hxinter
 
+/--
+@isnad1 id=issafe.1h4v.s5.8f5af102d499 from=translated src=- shape=0539bf36 vocab=569552cc
+-/
 theorem LevelFace.IsSafe.child {n : ℕ} {t : K.LevelFace (n + 1)}
     (ht : LevelFace.IsSafe K U (K.levelParentFace n t)) :
     LevelFace.IsSafe K U t := by
@@ -329,13 +353,18 @@ def levelFaceRelInterior {n : ℕ} (t : K.LevelFace n) : Set K.realization :=
       x ∈ (K.safeSubdivision n).refined.faceCarrier t.1 ∧
         ∀ v ∈ t.1, 0 < x.1 v}
 
+/--
+@isnad1 id=le.0h3v.s4.5505afa0f813 from=translated src=- shape=2aafe9bb vocab=0d6152a5
+-/
 theorem levelFaceRelInterior_subset_carrier {n : ℕ} (t : K.LevelFace n) :
     K.levelFaceRelInterior t ⊆ K.levelFaceCarrier t := by
   rintro z ⟨x, hx, rfl⟩
   exact ⟨x, hx.1, rfl⟩
 
 /-- Midpoint subdivision sends a child's relative interior into its parent's relative
-interior. -/
+interior.
+@isnad1 id=le.0h3v.s5.dc56089921f1 from=translated src=- shape=39927e76 vocab=50d632c8
+-/
 theorem levelFaceRelInterior_subset_parent (n : ℕ) (t : K.LevelFace (n + 1)) :
     K.levelFaceRelInterior t ⊆
       K.levelFaceRelInterior (K.levelParentFace n t) := by
@@ -352,7 +381,9 @@ theorem levelFaceRelInterior_subset_parent (n : ℕ) (t : K.LevelFace (n + 1)) :
       hx.1 x.2.1.1 hx.2 hv
 
 /-- At a fixed midpoint level, the relative interior of one maximal face misses the carrier of
-every distinct maximal face. -/
+every distinct maximal face.
+@isnad1 id=disjoint.1h4v.s6.2a24cf88b66c from=translated src=- shape=3673dad7 vocab=338b94ce
+-/
 theorem disjoint_levelFaceRelInterior_levelFaceCarrier {n : ℕ}
     {t u : K.LevelFace n} (htu : t ≠ u) :
     Disjoint (K.levelFaceRelInterior t) (K.levelFaceCarrier u) := by
@@ -377,13 +408,22 @@ noncomputable def levelAncestor (n : ℕ) :
   | 0, t => t
   | k + 1, t => levelAncestor n k (K.levelParentFace (n + k) t)
 
+/--
+@isnad1 id=eq.0h3v.s4.45c3b6ebedfd from=translated src=- shape=e7a010f6 vocab=fcf2708e
+-/
 @[simp] theorem levelAncestor_zero (n : ℕ) (t : K.LevelFace n) :
     K.levelAncestor n 0 t = t := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.694a09b3558f from=translated src=- shape=7d848bfd vocab=a9b96c54
+-/
 @[simp] theorem levelAncestor_succ (n k : ℕ) (t : K.LevelFace (n + (k + 1))) :
     K.levelAncestor n (k + 1) t =
       K.levelAncestor n k (K.levelParentFace (n + k) t) := rfl
 
+/--
+@isnad1 id=le.0h4v.s5.464016345d39 from=translated src=- shape=e8df0ed4 vocab=2a8a90a3
+-/
 theorem levelFaceCarrier_subset_ancestor (n k : ℕ)
     (t : K.LevelFace (n + k)) :
     K.levelFaceCarrier t ⊆ K.levelFaceCarrier (K.levelAncestor n k t) := by
@@ -393,6 +433,9 @@ theorem levelFaceCarrier_subset_ancestor (n k : ℕ)
       exact (K.levelFaceCarrier_subset_parent (n + k) t).trans
         (ih (K.levelParentFace (n + k) t))
 
+/--
+@isnad1 id=le.0h4v.s5.2f705fed6501 from=translated src=- shape=e8df0ed4 vocab=4bb963e6
+-/
 theorem levelFaceRelInterior_subset_ancestor (n k : ℕ)
     (t : K.LevelFace (n + k)) :
     K.levelFaceRelInterior t ⊆ K.levelFaceRelInterior (K.levelAncestor n k t) := by
@@ -402,6 +445,9 @@ theorem levelFaceRelInterior_subset_ancestor (n k : ℕ)
       exact (K.levelFaceRelInterior_subset_parent (n + k) t).trans
         (ih (K.levelParentFace (n + k) t))
 
+/--
+@isnad1 id=issafe.1h5v.s5.e23bfa2e7f1c from=translated src=- shape=e96cceea vocab=28c1f280
+-/
 theorem LevelFace.IsSafe.ancestor_child {n k : ℕ} {t : K.LevelFace (n + k)}
     (ht : LevelFace.IsSafe K U (K.levelAncestor n k t)) :
     LevelFace.IsSafe K U t := by
@@ -414,6 +460,9 @@ def LevelFace.IsFirstSafe : {n : ℕ} → K.LevelFace n → Prop
   | n + 1, t => LevelFace.IsSafe K U t ∧
       ¬LevelFace.IsSafe K U (K.levelParentFace n t)
 
+/--
+@isnad1 id=issafe.1h4v.s4.44e189115c16 from=translated src=- shape=d7befe20 vocab=9a83000d
+-/
 theorem LevelFace.IsFirstSafe.safe {n : ℕ} {t : K.LevelFace n}
     (ht : LevelFace.IsFirstSafe K U t) : LevelFace.IsSafe K U t := by
   cases n with
@@ -422,7 +471,9 @@ theorem LevelFace.IsFirstSafe.safe {n : ℕ} {t : K.LevelFace n}
 
 /-- A later first-safe face cannot meet the relative interior of an earlier first-safe face.
 If its ancestor were the earlier face, that safe ancestor would make its immediate parent safe;
-otherwise the fixed-level face-to-face property separates them. -/
+otherwise the fixed-level face-to-face property separates them.
+@isnad1 id=disjoint.2h6v.s7.586946559226 from=translated src=- shape=af145f78 vocab=ee904b48
+-/
 theorem disjoint_firstSafeRelInterior_laterCarrier {n k : ℕ}
     {t : K.LevelFace n} {u : K.LevelFace (n + (k + 1))}
     (ht : LevelFace.IsFirstSafe K U t)
@@ -439,7 +490,9 @@ theorem disjoint_firstSafeRelInterior_laterCarrier {n k : ℕ}
       (fun h ↦ hancestor h.symm)).mono_right
       (K.levelFaceCarrier_subset_ancestor n (k + 1) u)
 
-/-- The relative interior of a later first-safe face also misses the entire earlier carrier. -/
+/-- The relative interior of a later first-safe face also misses the entire earlier carrier.
+@isnad1 id=disjoint.2h6v.s7.5f1c1cde6ad4 from=translated src=- shape=6988f316 vocab=ee904b48
+-/
 theorem disjoint_laterFirstSafeRelInterior_firstSafeCarrier {n k : ℕ}
     {t : K.LevelFace n} {u : K.LevelFace (n + (k + 1))}
     (ht : LevelFace.IsFirstSafe K U t)
@@ -455,6 +508,9 @@ theorem disjoint_laterFirstSafeRelInterior_firstSafeCarrier {n k : ℕ}
   · exact (K.disjoint_levelFaceRelInterior_levelFaceCarrier hancestor).mono_left
       (K.levelFaceRelInterior_subset_ancestor n (k + 1) u)
 
+/--
+@isnad1 id=isfirsts.3h5v.s6.29a948328bc5 from=translated src=- shape=7b5a282c vocab=6c950f63
+-/
 theorem LevelFace.isFirstSafe_of_minimal {n : ℕ} (t : K.LevelFace n)
     {p : K.realization} (hsafe : LevelFace.IsSafe K U t)
     (hp : p ∈ K.levelFaceCarrier t)
@@ -480,6 +536,9 @@ noncomputable def adaptiveFaceCommonLevel
     (F : Finset (K.AdaptiveFace U)) : ℕ :=
   F.sup fun t ↦ t.1
 
+/--
+@isnad1 id=le.1h4v.s6.d3c409e63ad2 from=translated src=- shape=13bae3e4 vocab=42ebac09
+-/
 theorem adaptiveFace_level_le_commonLevel
     (F : Finset (K.AdaptiveFace U)) {t : K.AdaptiveFace U} (ht : t ∈ F) :
     t.1 ≤ K.adaptiveFaceCommonLevel U F := by
@@ -490,7 +549,9 @@ def adaptiveFaceCarrier (t : K.AdaptiveFace U) : Set K.realization :=
   K.levelFaceCarrier t.2.1
 
 /-- Every tile in a finite adaptive family is a union of faces of the family's common midpoint
-level.  This is the finite source-subcomplex reduction used in the Radó crossing weld. -/
+level.  This is the finite source-subcomplex reduction used in the Radó crossing weld.
+@isnad1 id=eq.1h4v.s7.62d22c10ef30 from=translated src=- shape=818752fd vocab=ebb51783
+-/
 theorem adaptiveFaceCarrier_eq_iUnion_commonLevel_descendants
     (F : Finset (K.AdaptiveFace U)) {t : K.AdaptiveFace U} (ht : t ∈ F) :
     K.adaptiveFaceCarrier U t =
@@ -503,6 +564,9 @@ theorem adaptiveFaceCarrier_eq_iUnion_commonLevel_descendants
   rw [Nat.add_sub_of_le hle] at h
   exact h
 
+/--
+@isnad1 id=le.0h3v.s4.b2853e7ad313 from=translated src=- shape=1ffd1eaf vocab=44b077c3
+-/
 theorem adaptiveFaceCarrier_subset (t : K.AdaptiveFace U) :
     K.adaptiveFaceCarrier U t ⊆ U := by
   rcases t with ⟨(_ | n), t⟩
@@ -513,7 +577,9 @@ theorem adaptiveFaceCarrier_subset (t : K.AdaptiveFace U) :
 def adaptiveFaceRelInterior (t : K.AdaptiveFace U) : Set K.realization :=
   K.levelFaceRelInterior t.2.1
 
-/-- Distinct first-safe adaptive faces meet only on their relative boundaries. -/
+/-- Distinct first-safe adaptive faces meet only on their relative boundaries.
+@isnad1 id=disjoint.1h4v.s6.30f7f84d4087 from=translated src=- shape=b2c7811e vocab=220baed4
+-/
 theorem disjoint_adaptiveFaceRelInterior_carrier
     {s t : K.AdaptiveFace U} (hst : s ≠ t) :
     Disjoint (K.adaptiveFaceRelInterior U s) (K.adaptiveFaceCarrier U t) := by
@@ -539,7 +605,9 @@ theorem disjoint_adaptiveFaceRelInterior_carrier
 
 variable [AdaptiveSafety.IsAdmissible (K := K) (U := U)]
 
-/-- Some safe level face contains every point of the open set. -/
+/-- Some safe level face contains every point of the open set.
+@isnad1 id=ex.2h3v.s6.4434809fc2c8 from=translated src=- shape=a6c07fe0 vocab=cf7426da
+-/
 theorem exists_safeLevelFace_containing (hU : IsOpen U)
     {p : K.realization} (hp : p ∈ U) :
     ∃ (n : ℕ) (t : K.LevelFace n),
@@ -552,6 +620,9 @@ noncomputable def firstSafeLevel (hU : IsOpen U) (p : U) : ℕ :=
     classical
     exact Nat.find (K.exists_safeLevelFace_containing U hU p.2)
 
+/--
+@isnad1 id=ex.1h3v.s7.6441d6d8cef4 from=translated src=- shape=a484de16 vocab=a96a5ba8
+-/
 theorem exists_firstSafeLevelFace (hU : IsOpen U) (p : U) :
     ∃ t : K.LevelFace (K.firstSafeLevel U hU p),
       LevelFace.IsSafe K U t ∧ p.1 ∈ K.levelFaceCarrier t :=
@@ -564,14 +635,23 @@ noncomputable def firstSafeFace (hU : IsOpen U) (p : U) :
     K.LevelFace (K.firstSafeLevel U hU p) :=
   Classical.choose (K.exists_firstSafeLevelFace U hU p)
 
+/--
+@isnad1 id=issafe.1h3v.s6.9b4e3c286c9d from=translated src=- shape=933835d3 vocab=7d4c2862
+-/
 theorem firstSafeFace_isSafe (hU : IsOpen U) (p : U) :
     LevelFace.IsSafe K U (K.firstSafeFace U hU p) :=
   (Classical.choose_spec (K.exists_firstSafeLevelFace U hU p)).1
 
+/--
+@isnad1 id=mem.1h3v.s6.e1ff601c2481 from=translated src=- shape=a401cdaa vocab=558df7cf
+-/
 theorem mem_firstSafeFaceCarrier (hU : IsOpen U) (p : U) :
     p.1 ∈ K.levelFaceCarrier (K.firstSafeFace U hU p) :=
   (Classical.choose_spec (K.exists_firstSafeLevelFace U hU p)).2
 
+/--
+@isnad1 id=isfirsts.1h3v.s6.b1bce7228a1b from=translated src=- shape=933835d3 vocab=9dd78640
+-/
 theorem firstSafeFace_isFirstSafe (hU : IsOpen U) (p : U) :
     LevelFace.IsFirstSafe K U (K.firstSafeFace U hU p) := by
   classical
@@ -581,7 +661,9 @@ theorem firstSafeFace_isFirstSafe (hU : IsOpen U) (p : U) :
   intro m hm
   exact Nat.find_min (K.exists_safeLevelFace_containing U hU p.2) hm
 
-/-- The first-safe adaptive triangles cover the whole open set. -/
+/-- The first-safe adaptive triangles cover the whole open set.
+@isnad1 id=eq.1h2v.s6.56cdf9abde8b from=translated src=- shape=0fdffca6 vocab=1a2f93cc
+-/
 theorem iUnion_adaptiveFaceCarrier (hU : IsOpen U) :
     (⋃ t : K.AdaptiveFace U, K.adaptiveFaceCarrier U t) = U := by
   apply Set.Subset.antisymm
@@ -595,7 +677,9 @@ theorem iUnion_adaptiveFaceCarrier (hU : IsOpen U) :
         ⟨K.firstSafeFace U hU q, K.firstSafeFace_isFirstSafe U hU q⟩⟩
     exact Set.mem_iUnion.mpr ⟨t, K.mem_firstSafeFaceCarrier U hU q⟩
 
-/-- The transported diameter of every level-`n` face is at most `2⁻ⁿ`. -/
+/-- The transported diameter of every level-`n` face is at most `2⁻ⁿ`.
+@isnad1 id=le.2h5v.s7.5d0d98e5111f from=translated src=- shape=e763282b vocab=425a790f
+-/
 theorem dist_le_pow_of_mem_levelFaceCarrier {n : ℕ} (t : K.LevelFace n)
     {x y : K.realization} (hx : x ∈ K.levelFaceCarrier t)
     (hy : y ∈ K.levelFaceCarrier t) :
@@ -606,7 +690,9 @@ theorem dist_le_pow_of_mem_levelFaceCarrier {n : ℕ} (t : K.LevelFace n)
 
 omit [AdaptiveSafety K U] in
 /-- If a child face meets a half-radius ball and its parent mesh is below that half-radius,
-then the parent is already safe. -/
+then the parent is already safe.
+@isnad1 id=issafe.4h6v.s8.2f40e4d286aa from=translated src=- shape=92339e02 vocab=fcf6ca48
+-/
 theorem parent_isSafe_of_inter_ball {n : ℕ} (t : K.LevelFace (n + 1))
     {p : K.realization} {ε : ℝ} (_ : 0 < ε)
     (hball : Metric.ball p ε ⊆ U)
@@ -629,7 +715,9 @@ theorem parent_isSafe_of_inter_ball {n : ℕ} (t : K.LevelFace (n + 1))
     _ = ε := by ring
 
 omit [AdaptiveSafety.IsAdmissible K U] in
-/-- Only finitely many adaptive faces occur below a fixed midpoint level. -/
+/-- Only finitely many adaptive faces occur below a fixed midpoint level.
+@isnad1 id=finite.0h3v.s5.e8cedf057855 from=translated src=- shape=025d7c7c vocab=9b6b1400
+-/
 theorem finite_adaptiveFace_level_lt (N : ℕ) :
     {t : K.AdaptiveFace U | t.1 < N}.Finite := by
   classical
@@ -655,7 +743,9 @@ theorem finite_adaptiveFace_level_lt (N : ℕ) :
 def adaptiveFaceCarrierInOpen (t : K.AdaptiveFace U) : Set U :=
   Subtype.val ⁻¹' K.adaptiveFaceCarrier U t
 
-/-- The first-safe adaptive triangle family is locally finite in the open set. -/
+/-- The first-safe adaptive triangle family is locally finite in the open set.
+@isnad1 id=locallyf.1h2v.s7.ea9526395193 from=translated src=- shape=796a03f6 vocab=047eb0b7
+-/
 theorem locallyFinite_adaptiveFaceCarrierInOpen (hU : IsOpen U) :
     LocallyFinite (K.adaptiveFaceCarrierInOpen U) := by
   classical
@@ -691,6 +781,9 @@ noncomputable def levelFaceVertexPoint {n : ℕ} (t : K.LevelFace n)
   (K.safeSubdivision n).homeo
     ((K.safeSubdivision n).refined.facePoint t v)
 
+/--
+@isnad1 id=mem.0h4v.s7.70022aa329f5 from=translated src=- shape=107f67a2 vocab=2cac26c2
+-/
 theorem levelFaceVertexPoint_mem_carrier {n : ℕ} (t : K.LevelFace n)
     (v : {v // v ∈ t.1}) :
     K.levelFaceVertexPoint t v ∈ K.levelFaceCarrier t :=
@@ -709,12 +802,18 @@ noncomputable def adaptiveVertexPoint (t : K.AdaptiveFace U)
   K.levelFaceVertexPoint t.2.1 v
 
 omit [AdaptiveSafety.IsAdmissible K U] in
+/--
+@isnad1 id=mem.0h4v.s5.b92460aed80f from=translated src=- shape=81dfe8c0 vocab=e324f2a3
+-/
 theorem adaptiveVertexPoint_mem_carrier (t : K.AdaptiveFace U)
     (v : K.AdaptiveVertexOccurrence U t) :
     K.adaptiveVertexPoint U t v ∈ K.adaptiveFaceCarrier U t :=
   K.levelFaceVertexPoint_mem_carrier t.2.1 v
 
 omit [AdaptiveSafety.IsAdmissible K U] in
+/--
+@isnad1 id=iscompac.0h3v.s6.6c70e7e17dcd from=translated src=- shape=e5ef9738 vocab=c34d45d5
+-/
 theorem isCompact_adaptiveFaceCarrierInOpen (t : K.AdaptiveFace U) :
     IsCompact (K.adaptiveFaceCarrierInOpen U t) := by
   let e : {x // x ∈ K.adaptiveFaceCarrier U t} → U :=
@@ -739,6 +838,9 @@ def TouchingFace (t : K.AdaptiveFace U) :=
   {u : K.AdaptiveFace U //
     (K.adaptiveFaceCarrierInOpen U u ∩ K.adaptiveFaceCarrierInOpen U t).Nonempty}
 
+/--
+@isnad1 id=finite.1h3v.s6.c347e0656e6e from=translated src=- shape=672f23aa vocab=2c7459c2
+-/
 theorem finite_touchingFace (hU : IsOpen U) (t : K.AdaptiveFace U) :
     Finite (K.TouchingFace U t) := by
   exact Set.finite_coe_iff.mpr
@@ -774,6 +876,9 @@ noncomputable def boundaryVertices (hU : IsOpen U) (t : K.AdaptiveFace U) :
     fun v ↦ K.adaptiveVertexPoint U v.1.1 v.2
   exact (Finset.univ.image point).filter fun p ↦ p ∈ K.adaptiveFaceCarrier U t
 
+/--
+@isnad1 id=iff.1h4v.s8.f059cca95e03 from=translated src=- shape=3048f62c vocab=aae49245
+-/
 theorem mem_boundaryVertices_iff (hU : IsOpen U) (t : K.AdaptiveFace U)
     (p : K.realization) :
     p ∈ K.boundaryVertices U hU t ↔
@@ -793,7 +898,9 @@ theorem mem_boundaryVertices_iff (hU : IsOpen U) (t : K.AdaptiveFace U)
 
 /-- On the overlap of two adaptive tiles, their finite sets of collected boundary marks agree
 pointwise.  Indeed a vertex occurrence whose tile touches one of the two tiles at the shared
-point also touches the other there. -/
+point also touches the other there.
+@isnad1 id=iff.3h5v.s7.31b139b077f4 from=translated src=- shape=575dd26d vocab=e8196979
+-/
 theorem mem_boundaryVertices_iff_of_mem_adaptiveFaceCarrier_inter
     (hU : IsOpen U) (s t : K.AdaptiveFace U) {p : K.realization}
     (hps : p ∈ K.adaptiveFaceCarrier U s)
@@ -821,7 +928,9 @@ theorem mem_boundaryVertices_iff_of_mem_adaptiveFaceCarrier_inter
     exact K.adaptiveVertexPoint_mem_carrier U u.1 v
 
 omit [AdaptiveSafety.IsAdmissible K U] in
-/-- Distinct first-safe tiles meet only in the relative boundary of each tile. -/
+/-- Distinct first-safe tiles meet only in the relative boundary of each tile.
+@isnad1 id=le.1h4v.s6.80856bdff7c4 from=translated src=- shape=0fa53720 vocab=900d1347
+-/
 theorem adaptiveFaceCarrier_inter_subset_relativeBoundaries
     {s t : K.AdaptiveFace U} (hst : s ≠ t) :
     K.adaptiveFaceCarrier U s ∩ K.adaptiveFaceCarrier U t ⊆
@@ -834,6 +943,9 @@ theorem adaptiveFaceCarrier_inter_subset_relativeBoundaries
   · exact fun hpInt ↦ Set.disjoint_left.mp
       (K.disjoint_adaptiveFaceRelInterior_carrier U (fun h ↦ hst h.symm)) hpInt hps
 
+/--
+@isnad1 id=not.0h4v.s7.022b22c29835 from=translated src=- shape=6b23f22d vocab=df1c7ba8
+-/
 theorem levelFaceVertexPoint_not_mem_relInterior {n : ℕ} (t : K.LevelFace n)
     (v : {v // v ∈ t.1}) :
     K.levelFaceVertexPoint t v ∉ K.levelFaceRelInterior t := by
@@ -852,12 +964,17 @@ theorem levelFaceVertexPoint_not_mem_relInterior {n : ℕ} (t : K.LevelFace n)
   linarith [hx.2 w hwt]
 
 omit [AdaptiveSafety.IsAdmissible K U] in
+/--
+@isnad1 id=not.0h4v.s5.70c9b3e98f85 from=translated src=- shape=4d6f706e vocab=a36a8cbc
+-/
 theorem adaptiveVertexPoint_not_mem_relInterior (t : K.AdaptiveFace U)
     (v : K.AdaptiveVertexOccurrence U t) :
     K.adaptiveVertexPoint U t v ∉ K.adaptiveFaceRelInterior U t :=
   K.levelFaceVertexPoint_not_mem_relInterior t.2.1 v
 
-/-- Every collected touching vertex lies on the relative boundary of the fixed tile. -/
+/-- Every collected touching vertex lies on the relative boundary of the fixed tile.
+@isnad1 id=not.2h4v.s6.6c0d081bb8ed from=translated src=- shape=b3171330 vocab=8e5def6f
+-/
 theorem boundaryVertices_not_mem_relInterior (hU : IsOpen U)
     (t : K.AdaptiveFace U) {p : K.realization}
     (hp : p ∈ K.boundaryVertices U hU t) :
@@ -880,7 +997,9 @@ theorem boundaryVertices_not_mem_relInterior (hU : IsOpen U)
     exact Set.disjoint_left.mp hdisjoint hpInt
       (huv ▸ K.adaptiveVertexPoint_mem_carrier U u.1 v)
 
-/-- All three original corners of a tile occur in its resolved boundary vertex set. -/
+/-- All three original corners of a tile occur in its resolved boundary vertex set.
+@isnad1 id=mem.1h4v.s6.3cd24fa1ac6c from=translated src=- shape=bad28a26 vocab=de680d1e
+-/
 theorem adaptiveVertexPoint_mem_boundaryVertices (hU : IsOpen U)
     (t : K.AdaptiveFace U) (v : K.AdaptiveVertexOccurrence U t) :
     K.adaptiveVertexPoint U t v ∈ K.boundaryVertices U hU t := by
@@ -896,6 +1015,9 @@ def levelFaceEdgeCarrier {n : ℕ} (t : K.LevelFace n) (i : ZMod 3) :
     (K.safeSubdivision n).refined.faceCarrier
       ((K.safeSubdivision n).refined.faceEdge t i).1
 
+/--
+@isnad1 id=le.0h4v.s4.2b4c0792a83a from=translated src=- shape=cde1e06d vocab=41e25d42
+-/
 theorem levelFaceEdgeCarrier_subset {n : ℕ} (t : K.LevelFace n) (i : ZMod 3) :
     K.levelFaceEdgeCarrier t i ⊆ K.levelFaceCarrier t := by
   rintro p ⟨x, hx, rfl⟩
@@ -904,7 +1026,9 @@ theorem levelFaceEdgeCarrier_subset {n : ℕ} (t : K.LevelFace n) (i : ZMod 3) :
   exact hx v (fun hve ↦ hvt
     ((K.safeSubdivision n).refined.faceEdge_subset_face t i hve))
 
-/-- Every point of a closed level face outside its relative interior lies on a cyclic edge. -/
+/-- Every point of a closed level face outside its relative interior lies on a cyclic edge.
+@isnad1 id=ex.2h4v.s6.636262eb57b6 from=translated src=- shape=3e55d680 vocab=7623e7eb
+-/
 theorem exists_levelFaceEdge_of_mem_not_relInterior {n : ℕ} (t : K.LevelFace n)
     {p : K.realization} (hp : p ∈ K.levelFaceCarrier t)
     (hpInt : p ∉ K.levelFaceRelInterior t) :
@@ -948,6 +1072,9 @@ noncomputable def boundaryEdgeVertices (hU : IsOpen U) (t : K.AdaptiveFace U)
   exact (K.boundaryVertices U hU t).filter fun p ↦
     p ∈ K.levelFaceEdgeCarrier t.2.1 i
 
+/--
+@isnad1 id=iff.1h5v.s7.6f6742d7199a from=translated src=- shape=eaf0f6ab vocab=7ecdde51
+-/
 theorem mem_boundaryEdgeVertices_iff (hU : IsOpen U) (t : K.AdaptiveFace U)
     (i : ZMod 3) (p : K.realization) :
     p ∈ K.boundaryEdgeVertices U hU t i ↔
@@ -962,6 +1089,9 @@ noncomputable def levelFaceEdgeParameter {n : ℕ} (t : K.LevelFace n)
   ((K.safeSubdivision n).homeo.symm p).1
     ((K.safeSubdivision n).refined.faceVertex t (i + 1))
 
+/--
+@isnad1 id=injon.0h4v.s4.d69f2ab2be6d from=translated src=- shape=474e0f27 vocab=e34c4171
+-/
 theorem levelFaceEdgeParameter_injOn {n : ℕ} (t : K.LevelFace n) (i : ZMod 3) :
     Set.InjOn (K.levelFaceEdgeParameter t i) (K.levelFaceEdgeCarrier t i) := by
   intro p hp q hq hpq
@@ -1021,6 +1151,9 @@ theorem levelFaceEdgeParameter_injOn {n : ℕ} (t : K.LevelFace n) (i : ZMod 3) 
 abbrev BoundaryEdgeVertex (hU : IsOpen U) (t : K.AdaptiveFace U) (i : ZMod 3) :=
   {p // p ∈ K.boundaryEdgeVertices U hU t i}
 
+/--
+@isnad1 id=injectiv.1h4v.s7.09abdbc62b9e from=translated src=- shape=9b977276 vocab=9b128ead
+-/
 theorem boundaryEdgeParameter_injective (hU : IsOpen U) (t : K.AdaptiveFace U)
     (i : ZMod 3) : Function.Injective
       (fun p : K.BoundaryEdgeVertex U hU t i ↦
@@ -1045,6 +1178,9 @@ noncomputable instance boundaryEdgeVertexLEDecidable (hU : IsOpen U)
     (K.levelFaceEdgeParameter t.2.1 i p.1 ≤
       K.levelFaceEdgeParameter t.2.1 i q.1))
 
+/--
+@isnad1 id=total.1h4v.s6.a1d3656b57ef from=translated src=- shape=636508f4 vocab=1b002384
+-/
 instance boundaryEdgeVertexLE_total (hU : IsOpen U)
     (t : K.AdaptiveFace U) (i : ZMod 3) :
     Std.Total (K.boundaryEdgeVertexLE U hU t i) :=
@@ -1052,12 +1188,18 @@ instance boundaryEdgeVertexLE_total (hU : IsOpen U)
     (K.levelFaceEdgeParameter t.2.1 i p.1)
     (K.levelFaceEdgeParameter t.2.1 i q.1)⟩
 
+/--
+@isnad1 id=antisymm.1h4v.s6.82eef2da643f from=translated src=- shape=636508f4 vocab=14904832
+-/
 instance boundaryEdgeVertexLE_antisymm (hU : IsOpen U)
     (t : K.AdaptiveFace U) (i : ZMod 3) :
     Std.Antisymm (K.boundaryEdgeVertexLE U hU t i) :=
   ⟨fun _ _ hpq hqp ↦ K.boundaryEdgeParameter_injective U hU t i
     (le_antisymm hpq hqp)⟩
 
+/--
+@isnad1 id=istrans.1h4v.s6.44ae44e1ddb0 from=translated src=- shape=636508f4 vocab=4c6510de
+-/
 instance boundaryEdgeVertexLE_isTrans (hU : IsOpen U)
     (t : K.AdaptiveFace U) (i : ZMod 3) :
     IsTrans (K.BoundaryEdgeVertex U hU t i)
@@ -1071,6 +1213,9 @@ noncomputable def boundaryEdgeVertexList (hU : IsOpen U) (t : K.AdaptiveFace U)
   exact ((K.boundaryEdgeVertices U hU t i).attach.sort
     (K.boundaryEdgeVertexLE U hU t i)).map Subtype.val
 
+/--
+@isnad1 id=iff.1h5v.s6.adbe01744fc1 from=translated src=- shape=d1883326 vocab=bf79186a
+-/
 theorem mem_boundaryEdgeVertexList_iff (hU : IsOpen U) (t : K.AdaptiveFace U)
     (i : ZMod 3) (p : K.realization) :
     p ∈ K.boundaryEdgeVertexList U hU t i ↔
@@ -1084,6 +1229,9 @@ theorem mem_boundaryEdgeVertexList_iff (hU : IsOpen U) (t : K.AdaptiveFace U)
   · intro hp
     exact ⟨⟨p, hp⟩, trivial, rfl⟩
 
+/--
+@isnad1 id=nodup.1h4v.s6.d06fae5a4df0 from=translated src=- shape=9589a08a vocab=e730f084
+-/
 theorem boundaryEdgeVertexList_nodup (hU : IsOpen U) (t : K.AdaptiveFace U)
     (i : ZMod 3) : (K.boundaryEdgeVertexList U hU t i).Nodup := by
   classical
@@ -1091,6 +1239,9 @@ theorem boundaryEdgeVertexList_nodup (hU : IsOpen U) (t : K.AdaptiveFace U)
   exact (Finset.sort_nodup _ (K.boundaryEdgeVertexLE U hU t i)).map
     Subtype.val_injective
 
+/--
+@isnad1 id=pairwise.1h4v.s8.3adf73e0c160 from=translated src=- shape=d2628fb6 vocab=71163382
+-/
 theorem boundaryEdgeVertexList_pairwise_parameter_le (hU : IsOpen U)
     (t : K.AdaptiveFace U) (i : ZMod 3) :
     (K.boundaryEdgeVertexList U hU t i).Pairwise
@@ -1106,7 +1257,9 @@ theorem boundaryEdgeVertexList_pairwise_parameter_le (hU : IsOpen U)
   exact hpq
 
 /-- A monotone finite list with at least two entries covers every parameter between its
-endpoints by one of its consecutive intervals. -/
+endpoints by one of its consecutive intervals.
+@isnad1 id=ex.4h4v.s7.11b5bc4fade5 from=translated src=- shape=89387ba9 vocab=df3247b0
+-/
 theorem exists_adjacent_get_of_pairwise_le {α : Type*} (L : List α) (f : α → ℝ)
     (hlength : 2 ≤ L.length)
     (hpair : L.Pairwise fun a b ↦ f a ≤ f b) {r : ℝ}
@@ -1173,6 +1326,9 @@ noncomputable def adaptiveEdgeSecondCorner (t : K.AdaptiveFace U) (i : ZMod 3) :
     ⟨(K.safeSubdivision t.1).refined.faceVertex t.2.1 (i + 1),
       (K.safeSubdivision t.1).refined.faceVertex_mem t.2.1 (i + 1)⟩
 
+/--
+@isnad1 id=mem.1h4v.s6.3844849d5374 from=translated src=- shape=455c85f2 vocab=d1691319
+-/
 theorem adaptiveEdgeFirstCorner_mem_boundaryEdgeVertices (hU : IsOpen U)
     (t : K.AdaptiveFace U) (i : ZMod 3) :
     K.adaptiveEdgeFirstCorner U t i ∈ K.boundaryEdgeVertices U hU t i := by
@@ -1192,6 +1348,9 @@ theorem adaptiveEdgeFirstCorner_mem_boundaryEdgeVertices (hU : IsOpen U)
       rw [(K.safeSubdivision t.1).refined.faceEdge_val]
       simp)
 
+/--
+@isnad1 id=mem.1h4v.s6.256be254599f from=translated src=- shape=455c85f2 vocab=e39c398e
+-/
 theorem adaptiveEdgeSecondCorner_mem_boundaryEdgeVertices (hU : IsOpen U)
     (t : K.AdaptiveFace U) (i : ZMod 3) :
     K.adaptiveEdgeSecondCorner U t i ∈ K.boundaryEdgeVertices U hU t i := by
@@ -1212,6 +1371,9 @@ theorem adaptiveEdgeSecondCorner_mem_boundaryEdgeVertices (hU : IsOpen U)
       simp)
 
 omit [AdaptiveSafety.IsAdmissible K U] in
+/--
+@isnad1 id=ne.0h4v.s5.06dfbe3f2e39 from=translated src=- shape=6db41346 vocab=df1f0bc3
+-/
 theorem adaptiveEdgeFirstCorner_ne_second (t : K.AdaptiveFace U) (i : ZMod 3) :
     K.adaptiveEdgeFirstCorner U t i ≠ K.adaptiveEdgeSecondCorner U t i := by
   intro h
@@ -1223,6 +1385,9 @@ theorem adaptiveEdgeFirstCorner_ne_second (t : K.AdaptiveFace U) (i : ZMod 3) :
     Pi.single_apply, ite_eq_right hvne] at hcoord
   norm_num at hcoord
 
+/--
+@isnad1 id=le.1h4v.s6.6f1764a4b79b from=translated src=- shape=a607ecf2 vocab=f32e52dd
+-/
 theorem two_le_boundaryEdgeVertices_card (hU : IsOpen U)
     (t : K.AdaptiveFace U) (i : ZMod 3) :
     2 ≤ (K.boundaryEdgeVertices U hU t i).card := by
@@ -1234,6 +1399,9 @@ theorem two_le_boundaryEdgeVertices_card (hU : IsOpen U)
     K.adaptiveEdgeSecondCorner_mem_boundaryEdgeVertices U hU t i,
     K.adaptiveEdgeFirstCorner_ne_second U t i⟩
 
+/--
+@isnad1 id=le.1h4v.s6.c78221daf399 from=translated src=- shape=a607ecf2 vocab=2a7533eb
+-/
 theorem two_le_boundaryEdgeVertexList_length (hU : IsOpen U)
     (t : K.AdaptiveFace U) (i : ZMod 3) :
     2 ≤ (K.boundaryEdgeVertexList U hU t i).length := by
@@ -1246,6 +1414,9 @@ theorem two_le_boundaryEdgeVertexList_length (hU : IsOpen U)
   exact K.two_le_boundaryEdgeVertices_card U hU t i
 
 omit [AdaptiveSafety.IsAdmissible K U] in
+/--
+@isnad1 id=eq.0h4v.s7.fc849d8455bc from=translated src=- shape=9296135d vocab=14f251fd
+-/
 @[simp] theorem levelFaceEdgeParameter_adaptiveEdgeFirstCorner
     (t : K.AdaptiveFace U) (i : ZMod 3) :
     K.levelFaceEdgeParameter t.2.1 i
@@ -1254,12 +1425,18 @@ omit [AdaptiveSafety.IsAdmissible K U] in
     (K.safeSubdivision t.1).refined.faceVertex_ne_next t.2.1 i]
 
 omit [AdaptiveSafety.IsAdmissible K U] in
+/--
+@isnad1 id=eq.0h4v.s7.24eb2c834180 from=translated src=- shape=9296135d vocab=73cf7a22
+-/
 @[simp] theorem levelFaceEdgeParameter_adaptiveEdgeSecondCorner
     (t : K.AdaptiveFace U) (i : ZMod 3) :
     K.levelFaceEdgeParameter t.2.1 i
       (K.adaptiveEdgeSecondCorner U t i) = 1 := by
   simp [levelFaceEdgeParameter, adaptiveEdgeSecondCorner, levelFaceVertexPoint]
 
+/--
+@isnad1 id=mem.1h5v.s5.c5b8e29b7845 from=translated src=- shape=b85c080b vocab=91175536
+-/
 theorem levelFaceEdgeParameter_mem_Icc {n : ℕ} (t : K.LevelFace n)
     (i : ZMod 3) {p : K.realization}
     (hp : p ∈ K.levelFaceEdgeCarrier t i) :
@@ -1268,6 +1445,9 @@ theorem levelFaceEdgeParameter_mem_Icc {n : ℕ} (t : K.LevelFace n)
   rw [levelFaceEdgeParameter, (K.safeSubdivision n).homeo.symm_apply_apply]
   exact mem_Icc_of_mem_stdSimplex x.2.1 _
 
+/--
+@isnad1 id=eq.1h4v.s7.2b20f06af377 from=translated src=- shape=4d1fb390 vocab=e237c12e
+-/
 theorem boundaryEdgeVertexList_first_parameter (hU : IsOpen U)
     (t : K.AdaptiveFace U) (i : ZMod 3) :
     K.levelFaceEdgeParameter t.2.1 i
@@ -1307,6 +1487,9 @@ theorem boundaryEdgeVertexList_first_parameter (hU : IsOpen U)
       exact this
   apply le_antisymm hle hnonneg
 
+/--
+@isnad1 id=eq.1h4v.s7.d6c682c7668a from=translated src=- shape=391eb405 vocab=c8cc86c3
+-/
 theorem boundaryEdgeVertexList_last_parameter (hU : IsOpen U)
     (t : K.AdaptiveFace U) (i : ZMod 3) :
     K.levelFaceEdgeParameter t.2.1 i
@@ -1360,6 +1543,9 @@ noncomputable def faceCenterSimplex (t : K.Face) :
       K.faces_card t.1 t.2]
     norm_num
 
+/--
+@isnad1 id=eq.0h3v.s8.612542bde4ba from=translated src=- shape=e191b0b5 vocab=531f3e1f
+-/
 @[simp] theorem faceCenterSimplex_apply (t : K.Face) (v : {v // v ∈ t.1}) :
     K.faceCenterSimplex t v = 1 / 3 := rfl
 
@@ -1370,6 +1556,9 @@ noncomputable def levelFaceCenter {n : ℕ} (t : K.LevelFace n) : K.realization 
     ((K.safeSubdivision n).refined.faceStandardMap t
       ((K.safeSubdivision n).refined.faceCenterSimplex t))
 
+/--
+@isnad1 id=mem.0h3v.s4.368d8f379662 from=translated src=- shape=4f917f65 vocab=5a826694
+-/
 theorem levelFaceCenter_mem_relInterior {n : ℕ} (t : K.LevelFace n) :
     K.levelFaceCenter t ∈ K.levelFaceRelInterior t := by
   refine ⟨(K.safeSubdivision n).refined.faceStandardMap t
@@ -1383,6 +1572,9 @@ theorem levelFaceCenter_mem_relInterior {n : ℕ} (t : K.LevelFace n) :
       extendFaceCoordinates_of_mem t.1 _ hv]
     norm_num
 
+/--
+@isnad1 id=mem.0h3v.s4.e57fee186ffe from=translated src=- shape=4f917f65 vocab=6d14e86e
+-/
 theorem levelFaceCenter_mem_carrier {n : ℕ} (t : K.LevelFace n) :
     K.levelFaceCenter t ∈ K.levelFaceCarrier t :=
   K.levelFaceRelInterior_subset_carrier t
@@ -1390,7 +1582,9 @@ theorem levelFaceCenter_mem_carrier {n : ℕ} (t : K.LevelFace n) :
 
 /-- If a later-level edge meets an earlier face at a point which is not a later-level vertex,
 and the two face interiors are disjoint, then the whole later edge lies in the earlier face.
-This is the no-crossing fact for nested midpoint subdivisions. -/
+This is the no-crossing fact for nested midpoint subdivisions.
+@isnad1 id=le.4h7v.s8.7d602ae86416 from=translated src=- shape=6348ee83 vocab=e9eab580
+-/
 theorem levelFaceEdgeCarrier_subset_of_common_not_vertex (n k : ℕ)
     (s : K.LevelFace n) (t : K.LevelFace (n + k)) (i : ZMod 3)
     {p : K.realization}
@@ -1467,7 +1661,9 @@ theorem levelFaceEdgeCarrier_subset_of_common_not_vertex (n k : ℕ)
   exact hxe v (fun hve ↦ hvr (Finset.inter_subset_left hve))
 
 /-- Adaptive-tile specialization of nested-edge no crossing.  At a common point which is not a
-resolved vertex of the later tile, the later edge is contained in the earlier tile. -/
+resolved vertex of the later tile, the later edge is contained in the earlier tile.
+@isnad1 id=le.6h6v.s8.5f65e1afa5f7 from=translated src=- shape=64bf62d0 vocab=0fdc61c7
+-/
 theorem adaptiveFace_edgeCarrier_subset_of_level_le_of_common_not_boundaryVertex
     (hU : IsOpen U) {s t : K.AdaptiveFace U} (hst : s ≠ t)
     (hlevel : s.1 ≤ t.1) (i : ZMod 3) {p : K.realization}
@@ -1495,6 +1691,9 @@ noncomputable def adaptiveFaceCenter (t : K.AdaptiveFace U) : K.realization :=
       ((K.safeSubdivision t.1).refined.faceCenterSimplex t.2.1))
 
 omit [AdaptiveSafety.IsAdmissible K U] in
+/--
+@isnad1 id=mem.0h3v.s5.8b9f87f68682 from=translated src=- shape=7a420818 vocab=87b7e73a
+-/
 theorem adaptiveFaceCenter_mem_relInterior (t : K.AdaptiveFace U) :
     K.adaptiveFaceCenter U t ∈ K.adaptiveFaceRelInterior U t := by
   refine ⟨(K.safeSubdivision t.1).refined.faceStandardMap t.2.1
@@ -1509,11 +1708,17 @@ theorem adaptiveFaceCenter_mem_relInterior (t : K.AdaptiveFace U) :
     norm_num
 
 omit [AdaptiveSafety.IsAdmissible K U] in
+/--
+@isnad1 id=mem.0h3v.s5.0265b1bad2b7 from=translated src=- shape=7a420818 vocab=546f7947
+-/
 theorem adaptiveFaceCenter_mem_carrier (t : K.AdaptiveFace U) :
     K.adaptiveFaceCenter U t ∈ K.adaptiveFaceCarrier U t :=
   K.levelFaceRelInterior_subset_carrier t.2.1
     (K.adaptiveFaceCenter_mem_relInterior U t)
 
+/--
+@isnad1 id=ne.2h4v.s6.b6fa09947a7a from=translated src=- shape=1afdca51 vocab=5628c4b1
+-/
 theorem adaptiveFaceCenter_ne_boundaryVertex (hU : IsOpen U)
     (t : K.AdaptiveFace U) {p : K.realization}
     (hp : p ∈ K.boundaryVertices U hU t) :
@@ -1544,6 +1749,9 @@ noncomputable def adaptiveEdgeIntervalSecond (hU : IsOpen U)
       have hj := j.2
       omega⟩
 
+/--
+@isnad1 id=mem.1h5v.s6.4bef6446da8d from=translated src=- shape=1377442d vocab=b1b611a7
+-/
 theorem adaptiveEdgeIntervalFirst_mem_boundaryEdgeVertices (hU : IsOpen U)
     (t : K.AdaptiveFace U) (i : ZMod 3)
     (j : K.AdaptiveEdgeInterval U hU t i) :
@@ -1552,6 +1760,9 @@ theorem adaptiveEdgeIntervalFirst_mem_boundaryEdgeVertices (hU : IsOpen U)
   rw [← K.mem_boundaryEdgeVertexList_iff U hU t i]
   exact List.get_mem _ _
 
+/--
+@isnad1 id=mem.1h5v.s6.88143d0c9f35 from=translated src=- shape=1377442d vocab=dc63e7f1
+-/
 theorem adaptiveEdgeIntervalSecond_mem_boundaryEdgeVertices (hU : IsOpen U)
     (t : K.AdaptiveFace U) (i : ZMod 3)
     (j : K.AdaptiveEdgeInterval U hU t i) :
@@ -1560,6 +1771,9 @@ theorem adaptiveEdgeIntervalSecond_mem_boundaryEdgeVertices (hU : IsOpen U)
   rw [← K.mem_boundaryEdgeVertexList_iff U hU t i]
   exact List.get_mem _ _
 
+/--
+@isnad1 id=ne.1h5v.s6.921cf717dd71 from=translated src=- shape=b4b25198 vocab=7b8b0fe1
+-/
 theorem adaptiveEdgeIntervalFirst_ne_second (hU : IsOpen U)
     (t : K.AdaptiveFace U) (i : ZMod 3)
     (j : K.AdaptiveEdgeInterval U hU t i) :
@@ -1572,7 +1786,9 @@ theorem adaptiveEdgeIntervalFirst_ne_second (hU : IsOpen U)
   simp only at hval
   omega
 
-/-- Consecutive vertices in the resolved edge order have strictly increasing edge parameter. -/
+/-- Consecutive vertices in the resolved edge order have strictly increasing edge parameter.
+@isnad1 id=lt.1h5v.s8.726c82a864f9 from=translated src=- shape=9c49373a vocab=1ae79f12
+-/
 theorem adaptiveEdgeInterval_parameter_lt (hU : IsOpen U)
     (t : K.AdaptiveFace U) (i : ZMod 3)
     (j : K.AdaptiveEdgeInterval U hU t i) :
@@ -1606,7 +1822,9 @@ theorem adaptiveEdgeInterval_parameter_lt (hU : IsOpen U)
   exact lt_of_le_of_ne hle hne
 
 /-- Every parameter on an adaptive edge lies between the parameters of two consecutive
-resolved boundary vertices. -/
+resolved boundary vertices.
+@isnad1 id=ex.2h5v.s8.84804230c955 from=translated src=- shape=b9aa8d41 vocab=fe7fbf1c
+-/
 theorem exists_adaptiveEdgeInterval_parameter_mem_Icc (hU : IsOpen U)
     (t : K.AdaptiveFace U) (i : ZMod 3) {r : ℝ}
     (hr : r ∈ Set.Icc (0 : ℝ) 1) :
@@ -1653,7 +1871,9 @@ theorem exists_adaptiveEdgeInterval_parameter_mem_Icc (hU : IsOpen U)
   exact hj
 
 /-- No resolved boundary mark lies strictly between the two consecutive marks of an adaptive
-edge interval. -/
+edge interval.
+@isnad1 id=not.2h6v.s8.1e0f6e8c13bd from=translated src=- shape=44b62f36 vocab=cc0414f9
+-/
 theorem not_parameter_mem_Ioo_adaptiveEdgeInterval (hU : IsOpen U)
     (t : K.AdaptiveFace U) (i : ZMod 3)
     (j : K.AdaptiveEdgeInterval U hU t i)
@@ -1719,6 +1939,9 @@ noncomputable def adaptiveFanFacesOver (hU : IsOpen U)
       intro p q hpq
       exact eq_of_heq (Sigma.mk.inj_iff.mp hpq).2⟩
 
+/--
+@isnad1 id=iff.1h4v.s7.70902d835005 from=translated src=- shape=adb292fa vocab=d773bcd3
+-/
 theorem mem_adaptiveFanFacesOver_iff (hU : IsOpen U)
     (t : K.AdaptiveFace U) (f : K.AdaptiveFanFace U hU) :
     f ∈ K.adaptiveFanFacesOver U hU t ↔ f.1 = t := by
@@ -1739,6 +1962,9 @@ noncomputable def adaptiveFanFaceVertices (hU : IsOpen U)
     K.adaptiveEdgeIntervalFirst U hU f.1 f.2.1 f.2.2,
     K.adaptiveEdgeIntervalSecond U hU f.1 f.2.1 f.2.2}
 
+/--
+@isnad1 id=eq.1h3v.s6.04f897c36067 from=translated src=- shape=b2700cb2 vocab=fd6f740a
+-/
 theorem adaptiveFanFaceVertices_card (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     (K.adaptiveFanFaceVertices U hU f).card = 3 := by

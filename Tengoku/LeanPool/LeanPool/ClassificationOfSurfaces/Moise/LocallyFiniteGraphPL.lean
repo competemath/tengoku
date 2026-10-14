@@ -35,7 +35,9 @@ open PlaneGraphRealization
 
 /-! ## Piecewise-affine formulas on the canonical edge parameter -/
 
-/-- On the first piece, the complete replacement path is the affine first spoke. -/
+/-- On the first piece, the complete replacement path is the affine first spoke.
+@isnad1 id=eq.1h6v.s10.99e1b0006816 from=translated src=- shape=287b4fb9 vocab=c247ca9f
+-/
 theorem CentralPolygonalArc.completePath_eq_left
     (A : G.CentralPolygonalArc e) (r : Set.Icc (0 : ℝ) 1)
     (hr : r.1 ≤ (1 / 2 : ℝ)) :
@@ -52,7 +54,9 @@ theorem CentralPolygonalArc.completePath_eq_left
   rw [Path.extend_apply first h2r]
   rfl
 
-/-- On the middle piece, the complete replacement path uses its finite PL segment model. -/
+/-- On the middle piece, the complete replacement path uses its finite PL segment model.
+@isnad1 id=eq.2h6v.s9.a774d23f25cb from=translated src=- shape=f14f0afe vocab=df4c9f9a
+-/
 theorem CentralPolygonalArc.completePath_eq_middle
     (A : G.CentralPolygonalArc e) (r : Set.Icc (0 : ℝ) 1)
     (hr0 : (1 / 2 : ℝ) ≤ r.1) (hr1 : r.1 ≤ (3 / 4 : ℝ)) :
@@ -78,7 +82,9 @@ theorem CentralPolygonalArc.completePath_eq_middle
   simp only [Path.segment_apply, AffineMap.lineMap_apply_module, smul_eq_mul]
   ring
 
-/-- On the final piece, the complete replacement path is the affine second spoke. -/
+/-- On the final piece, the complete replacement path is the affine second spoke.
+@isnad1 id=eq.1h6v.s10.e3aca0c8fcc6 from=translated src=- shape=eda0cff6 vocab=259965bb
+-/
 theorem CentralPolygonalArc.completePath_eq_right
     (A : G.CentralPolygonalArc e) (r : Set.Icc (0 : ℝ) 1)
     (hr : (3 / 4 : ℝ) ≤ r.1) :
@@ -100,7 +106,9 @@ theorem CentralPolygonalArc.completePath_eq_right
     (G.vertexImage (K.edgeSecond e))) (by ring)
 
 /-- Evaluating the edge replacement on its canonical source path recovers the same unit
-interval parameter on the complete polygonal path. -/
+interval parameter on the complete polygonal path.
+@isnad1 id=eq.0h5v.s7.db2cdb5faed5 from=translated src=- shape=d4ab717d vocab=b8534d0f
+-/
 theorem replacementEdgeMap_edgePath (G : K.PlaneGraphRealization) (e : K.Edge)
     (r : Set.Icc (0 : ℝ) 1) :
     G.replacementEdgeMap e
@@ -128,11 +136,17 @@ noncomputable def edgeMiddleBreakpoint
     (A : G.CentralPolygonalArc e) (v : A.parameterization.source.Vertex) : ℝ :=
   max (1 / 2 : ℝ) (min (3 / 4 : ℝ) (rawEdgeMiddleBreakpoint A v))
 
+/--
+@isnad1 id=mem.0h6v.s6.e08b3a422b00 from=translated src=- shape=be400204 vocab=85a8655c
+-/
 theorem edgeMiddleBreakpoint_mem
     (A : G.CentralPolygonalArc e) (v : A.parameterization.source.Vertex) :
     edgeMiddleBreakpoint A v ∈ Set.Icc (1 / 2 : ℝ) (3 / 4 : ℝ) := by
   exact ⟨le_max_left _ _, max_le (by norm_num) (min_le_left _ _)⟩
 
+/--
+@isnad1 id=eq.2h6v.s9.a2d5439a7b88 from=translated src=- shape=e3dafd15 vocab=44e714cb
+-/
 theorem edgeMiddleBreakpoint_eq_raw_of_mem
     (A : G.CentralPolygonalArc e) (v : A.parameterization.source.Vertex)
     (hv0 : A.exitData.left ≤
@@ -159,6 +173,9 @@ theorem edgeMiddleBreakpoint_eq_raw_of_mem
     linarith
   rw [edgeMiddleBreakpoint, min_eq_right hraw1, max_eq_right hraw0]
 
+/--
+@isnad1 id=eq.2h6v.s10.0bc98acc33c6 from=translated src=- shape=2f61d078 vocab=c87d0ad0
+-/
 theorem edgeMiddleSourceScalar_breakpoint
     (A : G.CentralPolygonalArc e) (v : A.parameterization.source.Vertex)
     (hv0 : A.exitData.left ≤
@@ -190,6 +207,9 @@ noncomputable def edgeBreakpointParameter
   | some none => 3 / 4
   | some (some v) => edgeMiddleBreakpoint A v
 
+/--
+@isnad1 id=mem.0h6v.s5.015892ee8454 from=translated src=- shape=93a07e83 vocab=387aacd2
+-/
 theorem edgeBreakpointParameter_mem
     (A : G.CentralPolygonalArc e) (b : EdgeBreakpoint A) :
     edgeBreakpointParameter A b ∈ Set.Icc (0 : ℝ) 1 := by
@@ -213,6 +233,9 @@ noncomputable def leftSourcePoint : Plane :=
 noncomputable def rightSourcePoint : Plane :=
   planePoint (A.parameterization.length * A.exitData.right) 0
 
+/--
+@isnad1 id=mem.0h5v.s6.16eaff95333d from=translated src=- shape=e976c0b8 vocab=7eea5a50
+-/
 theorem leftSourcePoint_mem_source : A.leftSourcePoint ∈ A.parameterization.source.support := by
   rw [A.parameterization.source_support, segment_eq_image_lineMap]
   refine ⟨A.exitData.left, ⟨A.exitData.left_nonneg,
@@ -221,6 +244,9 @@ theorem leftSourcePoint_mem_source : A.leftSourcePoint ∈ A.parameterization.so
   fin_cases i <;>
     simp [leftSourcePoint, planePoint, AffineMap.lineMap_apply_module]; ring
 
+/--
+@isnad1 id=mem.0h5v.s6.91d9cd8e4bd8 from=translated src=- shape=e976c0b8 vocab=9c3fe973
+-/
 theorem rightSourcePoint_mem_source : A.rightSourcePoint ∈ A.parameterization.source.support := by
   rw [A.parameterization.source_support, segment_eq_image_lineMap]
   refine ⟨A.exitData.right, ⟨A.exitData.left_nonneg.trans
@@ -229,6 +255,9 @@ theorem rightSourcePoint_mem_source : A.rightSourcePoint ∈ A.parameterization.
   fin_cases i <;>
     simp [rightSourcePoint, planePoint, AffineMap.lineMap_apply_module]; ring
 
+/--
+@isnad1 id=ne.0h5v.s5.8eb1df56ab18 from=translated src=- shape=675f1f3f vocab=5727c4f0
+-/
 theorem leftSourcePoint_ne_rightSourcePoint : A.leftSourcePoint ≠ A.rightSourcePoint := by
   intro hp
   have hcoord := congrArg (fun p : Plane => p 0) hp
@@ -237,6 +266,9 @@ theorem leftSourcePoint_ne_rightSourcePoint : A.leftSourcePoint ≠ A.rightSourc
   simp only [leftSourcePoint, rightSourcePoint, planePoint_apply_zero] at hcoord
   nlinarith [A.exitData.left_lt_right]
 
+/--
+@isnad1 id=lt.0h5v.s7.54095a1afe05 from=translated src=- shape=f121f5a3 vocab=8690e71e
+-/
 theorem leftSourcePoint_zero_lt_right :
     A.leftSourcePoint 0 < A.rightSourcePoint 0 := by
   have hn : (0 : ℝ) < A.parameterization.length := by
@@ -249,8 +281,14 @@ noncomputable def trimMark : Fin 2 → Plane
   | ⟨0, _⟩ => A.leftSourcePoint
   | ⟨1, _⟩ => A.rightSourcePoint
 
+/--
+@isnad1 id=eq.0h5v.s5.ce60e4e50f5c from=translated src=- shape=d2b46eed vocab=7b548dd0
+-/
 @[simp] theorem trimMark_zero : A.trimMark 0 = A.leftSourcePoint := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.fa67ab22c2c3 from=translated src=- shape=d2b46eed vocab=690fef27
+-/
 @[simp] theorem trimMark_one : A.trimMark 1 = A.rightSourcePoint := rfl
 
 /-- The source graph refined at both last-exit points. -/
@@ -307,7 +345,9 @@ private theorem exists_trimSubdivision_vertex (i : Fin 2) :
   · exact A.leftSourcePoint_mem_source
   · exact A.rightSourcePoint_mem_source
 
-/-- Marking the two exits makes the interval between them an exact finite subcomplex. -/
+/-- Marking the two exits makes the interval between them an exact finite subcomplex.
+@isnad1 id=eq.0h5v.s7.03fd2b514f95 from=translated src=- shape=1e333057 vocab=5e59a437
+-/
 theorem trimSource_support :
     A.trimSource.support = segment ℝ A.leftSourcePoint A.rightSourcePoint := by
   unfold trimSource
@@ -419,16 +459,25 @@ theorem trimSource_support :
 noncomputable def trimActive : PlaneComplex :=
   PlaneComplex.active A.trimSource
 
+/--
+@isnad1 id=eq.0h5v.s7.74793a2608a5 from=translated src=- shape=1e333057 vocab=749cf479
+-/
 theorem trimActive_support :
     A.trimActive.support = segment ℝ A.leftSourcePoint A.rightSourcePoint := by
   rw [trimActive, A.trimSource.active_support, A.trimSource_support]
 
+/--
+@isnad1 id=mem.0h6v.s5.bfa46c57b726 from=translated src=- shape=e66571b1 vocab=3fd4a7f4
+-/
 theorem trimActive_vertex_mem_support (v : A.trimActive.Vertex) :
     A.trimActive.position v ∈ A.trimActive.support := by
   change A.trimSource.position v.1 ∈ (PlaneComplex.active A.trimSource).support
   rw [A.trimSource.active_support]
   exact v.2
 
+/--
+@isnad1 id=le.1h6v.s6.7782f0921544 from=translated src=- shape=51ad35c6 vocab=b50f50d3
+-/
 theorem trimActive_card_le_two :
     ∀ s ∈ A.trimActive.simplexes, s.card ≤ 2 := by
   intro s hs
@@ -448,6 +497,9 @@ theorem trimActive_card_le_two :
       exact (Finset.card_map _).symm
     _ ≤ 2 := huCard
 
+/--
+@isnad1 id=injon.0h5v.s6.1079c65e05df from=translated src=- shape=e9a2a60e vocab=52637d12
+-/
 theorem trimActive_map_injective :
     Set.InjOn A.parameterization.map A.trimActive.support := by
   apply A.parameterization.map_injectiveOn.mono
@@ -462,6 +514,9 @@ theorem trimActive_map_injective :
     exact A.rightSourcePoint_mem_source
   · exact hx
 
+/--
+@isnad1 id=isaffine.1h6v.s7.76c07ff15d38 from=translated src=- shape=dd35450d vocab=fec5e76e
+-/
 theorem trimActive_map_affine :
     ∀ s ∈ A.trimActive.simplexes,
       IsAffineOn A.parameterization.map (A.trimActive.cellCarrier s) := by
@@ -487,6 +542,9 @@ noncomputable def trimTarget : PlaneComplex :=
   A.trimActive.mapGraph A.parameterization.map A.trimActive_vertex_mem_support
     A.trimActive_map_injective A.trimActive_card_le_two A.trimActive_map_affine
 
+/--
+@isnad1 id=eq.0h5v.s7.e947a4e69d77 from=translated src=- shape=45918d5b vocab=6c5dafbd
+-/
 theorem map_image_sourceSegment :
     A.parameterization.map '' segment ℝ A.leftSourcePoint A.rightSourcePoint =
       A.trimmedCarrier := by
@@ -523,6 +581,9 @@ theorem map_image_sourceSegment :
       simp [leftSourcePoint, rightSourcePoint, planePoint,
         AffineMap.lineMap_apply_module]; ring
 
+/--
+@isnad1 id=eq.0h5v.s5.84f457ffc06e from=translated src=- shape=b606e21d vocab=28647cc2
+-/
 theorem trimTarget_support : A.trimTarget.support = A.trimmedCarrier := by
   rw [trimTarget, A.trimActive.mapGraph_support A.parameterization.map
     A.trimActive_vertex_mem_support A.trimActive_map_injective
@@ -574,46 +635,73 @@ noncomputable def leftTrimVertex : A.trimTarget.Vertex :=
 noncomputable def rightTrimVertex : A.trimTarget.Vertex :=
   Classical.choose (private_decl% (A.exists_trimActive_vertex 1))
 
+/--
+@isnad1 id=mem.0h5v.s6.f270ee1f4efd from=translated src=- shape=9035e7d3 vocab=38eb6751
+-/
 theorem leftTrimVertex_face :
     ({A.leftTrimVertex} : Finset A.trimTarget.Vertex) ∈ A.trimTarget.simplexes :=
   (Classical.choose_spec (A.exists_trimActive_vertex 0)).1
 
+/--
+@isnad1 id=mem.0h5v.s6.3863a631f569 from=translated src=- shape=9035e7d3 vocab=5da9e084
+-/
 theorem rightTrimVertex_face :
     ({A.rightTrimVertex} : Finset A.trimTarget.Vertex) ∈ A.trimTarget.simplexes :=
   (Classical.choose_spec (A.exists_trimActive_vertex 1)).1
 
+/--
+@isnad1 id=eq.0h5v.s5.c53b2c76d391 from=translated src=- shape=81fec9c2 vocab=0468c1b7
+-/
 theorem leftTrimVertex_sourcePosition :
     A.trimActive.position A.leftTrimVertex = A.leftSourcePoint := by
   change A.trimActive.position
     (Classical.choose (private_decl% (A.exists_trimActive_vertex 0))) = A.leftSourcePoint
   exact (Classical.choose_spec (A.exists_trimActive_vertex 0)).2.trans A.trimMark_zero
 
+/--
+@isnad1 id=eq.0h5v.s5.096e122e6b30 from=translated src=- shape=81fec9c2 vocab=36149db5
+-/
 theorem rightTrimVertex_sourcePosition :
     A.trimActive.position A.rightTrimVertex = A.rightSourcePoint := by
   change A.trimActive.position
     (Classical.choose (private_decl% (A.exists_trimActive_vertex 1))) = A.rightSourcePoint
   exact (Classical.choose_spec (A.exists_trimActive_vertex 1)).2.trans A.trimMark_one
 
+/--
+@isnad1 id=eq.0h5v.s6.ad55d055ee57 from=translated src=- shape=fbd52be5 vocab=d5d817d0
+-/
 theorem map_leftSourcePoint :
     A.parameterization.map A.leftSourcePoint = A.leftEndpoint := by
   rw [leftEndpoint, A.parameterization.curve_eq]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.9f2123135962 from=translated src=- shape=fbd52be5 vocab=05d08202
+-/
 theorem map_rightSourcePoint :
     A.parameterization.map A.rightSourcePoint = A.rightEndpoint := by
   rw [rightEndpoint, A.parameterization.curve_eq]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.9ee45fc45773 from=translated src=- shape=81fec9c2 vocab=6e6d864a
+-/
 theorem trimTarget_position_left :
     A.trimTarget.position A.leftTrimVertex = A.leftEndpoint := by
   change A.parameterization.map (A.trimActive.position A.leftTrimVertex) = _
   rw [A.leftTrimVertex_sourcePosition, A.map_leftSourcePoint]
 
+/--
+@isnad1 id=eq.0h5v.s5.c018a1882726 from=translated src=- shape=81fec9c2 vocab=10893142
+-/
 theorem trimTarget_position_right :
     A.trimTarget.position A.rightTrimVertex = A.rightEndpoint := by
   change A.parameterization.map (A.trimActive.position A.rightTrimVertex) = _
   rw [A.rightTrimVertex_sourcePosition, A.map_rightSourcePoint]
 
+/--
+@isnad1 id=isprecon.0h5v.s6.1bc0da0ae329 from=translated src=- shape=8470d17f vocab=f88a3d51
+-/
 theorem isPreconnected_trimTarget_support : IsPreconnected A.trimTarget.support := by
   rw [A.trimTarget_support, trimmedCarrier]
   apply IsPreconnected.image (convex_Icc _ _).isPreconnected
@@ -646,14 +734,23 @@ noncomputable def completeChain : BrokenLineData (Set.univ : Set Plane) := by
     vertex := vertex
     segment_subset := fun _ _ _ => Set.mem_univ _ }
 
+/--
+@isnad1 id=eq.0h5v.s6.ac06cca1053d from=translated src=- shape=1e9d2a84 vocab=59a9bcad
+-/
 @[simp] theorem completeChain_vertex_zero :
     A.completeChain.vertex 0 = G.vertexImage (K.edgeFirst e) := by
   simp [completeChain]
 
+/--
+@isnad1 id=eq.0h5v.s6.2b7548ea7f6c from=translated src=- shape=a4e2b063 vocab=960b7439
+-/
 @[simp] theorem completeChain_vertex_one :
     A.completeChain.vertex ⟨1, by simp [completeChain]⟩ = A.leftEndpoint := by
   simp [completeChain]
 
+/--
+@isnad1 id=eq.0h6v.s7.61ebc97f9acc from=translated src=- shape=15cf63d6 vocab=5c28fbb9
+-/
 theorem completeChain_vertex_middle
     (i : Fin (A.trimTarget.edgeChain.n + 1)) :
     A.completeChain.vertex ⟨i.val + 2, by simp [completeChain]; omega⟩ =
@@ -662,12 +759,18 @@ theorem completeChain_vertex_middle
   rw [ite_eq_right (by omega), ite_eq_right (by omega), dite_eq_left (by omega)]
   congr 2
 
+/--
+@isnad1 id=eq.0h5v.s6.ef07ccc815d6 from=translated src=- shape=20d9918d vocab=f81997d4
+-/
 theorem completeChain_vertex_rightEndpoint :
     A.completeChain.vertex
         ⟨A.trimTarget.edgeChain.n + 3, by simp [completeChain]⟩ =
       A.rightEndpoint := by
   simp [completeChain]
 
+/--
+@isnad1 id=eq.0h5v.s5.9da7ffbd8250 from=translated src=- shape=eba487b6 vocab=08b2437a
+-/
 theorem completeChain_vertex_finish :
     A.completeChain.vertex (Fin.last A.completeChain.n) =
       G.vertexImage (K.edgeSecond e) := by
@@ -679,7 +782,9 @@ noncomputable def completeTarget : PlaneComplex :=
 
 /-- Every point of a complete replacement edge lies in a one-dimensional arrangement face
 subordinate to that edge.  The cardinality conclusion is what permits several replacement edges
-to be resolved in one common line arrangement. -/
+to be resolved in one common line arrangement.
+@isnad1 id=ex.1h6v.s7.de957084ee4a from=translated src=- shape=7eb8c2db vocab=93480ff0
+-/
 theorem exists_completeTarget_face {x : Plane} (hx : x ∈ A.completeCarrier) :
     ∃ s ∈ A.completeChain.arrangementMesh.toPlaneComplex.simplexes,
       x ∈ A.completeChain.arrangementMesh.toPlaneComplex.cellCarrier s ∧
@@ -819,7 +924,9 @@ theorem exists_completeTarget_face {x : Plane} (hx : x ∈ A.completeCarrier) :
       exact hsSegment v hv
     exact hsub.trans Set.subset_union_right
 
-/-- Exact finite-complex realization of the complete replacement edge. -/
+/-- Exact finite-complex realization of the complete replacement edge.
+@isnad1 id=eq.0h5v.s5.f2b6ec626212 from=translated src=- shape=b606e21d vocab=2cf0f516
+-/
 theorem completeTarget_support : A.completeTarget.support = A.completeCarrier := by
   unfold completeTarget
   apply A.completeChain.arrangementMesh.toPlaneComplex.restrictedTo_support_eq
@@ -829,7 +936,9 @@ theorem completeTarget_support : A.completeTarget.support = A.completeCarrier :=
 
 /-- Every point of a complete replacement edge lies on one of the finitely listed segments of
 its auxiliary chain.  This is the coverage input used when the three edge chains of a face are
-placed into one common line arrangement. -/
+placed into one common line arrangement.
+@isnad1 id=le.0h5v.s5.342b6e9587b5 from=translated src=- shape=adba4c47 vocab=99ef5b9e
+-/
 theorem completeCarrier_subset_segmentCarrier :
     A.completeCarrier ⊆ A.completeChain.segmentCarrier := by
   classical
@@ -903,12 +1012,18 @@ noncomputable def completeStartVertex : A.completeTarget.Vertex :=
 noncomputable def completeFinishVertex : A.completeTarget.Vertex :=
   A.completeChain.arrangementVertex (Fin.last A.completeChain.n)
 
+/--
+@isnad1 id=eq.0h5v.s5.53528a511702 from=translated src=- shape=4ab327b0 vocab=5e57fd71
+-/
 theorem completeTarget_position_start :
     A.completeTarget.position A.completeStartVertex = G.vertexImage (K.edgeFirst e) := by
   change A.completeChain.arrangementMesh.toPlaneComplex.position
     (A.completeChain.arrangementVertex 0) = _
   rw [A.completeChain.arrangementVertex_position, A.completeChain_vertex_zero]
 
+/--
+@isnad1 id=eq.0h5v.s5.f6a70df9013f from=translated src=- shape=4ab327b0 vocab=acab6356
+-/
 theorem completeTarget_position_finish :
     A.completeTarget.position A.completeFinishVertex = G.vertexImage (K.edgeSecond e) := by
   change A.completeChain.arrangementMesh.toPlaneComplex.position
@@ -938,6 +1053,9 @@ private theorem singleton_cellCarrier_subset_completeCarrier
   rw [hxv, hp]
   exact hpmem
 
+/--
+@isnad1 id=mem.0h5v.s6.f4f730e61183 from=translated src=- shape=9035e7d3 vocab=9e58cf62
+-/
 theorem completeStartVertex_face :
     ({A.completeStartVertex} : Finset A.completeTarget.Vertex) ∈
       A.completeTarget.simplexes := by
@@ -948,6 +1066,9 @@ theorem completeStartVertex_face :
     (G.vertexImage (K.edgeFirst e)) A.completeTarget_position_start
   exact Or.inl (Or.inl (left_mem_segment ℝ _ _))
 
+/--
+@isnad1 id=mem.0h5v.s6.2e285c120e88 from=translated src=- shape=9035e7d3 vocab=93498ee3
+-/
 theorem completeFinishVertex_face :
     ({A.completeFinishVertex} : Finset A.completeTarget.Vertex) ∈
       A.completeTarget.simplexes := by
@@ -958,6 +1079,9 @@ theorem completeFinishVertex_face :
     (G.vertexImage (K.edgeSecond e)) A.completeTarget_position_finish
   exact Or.inr (right_mem_segment ℝ _ _)
 
+/--
+@isnad1 id=isprecon.0h5v.s6.6831026ab8c0 from=translated src=- shape=8470d17f vocab=6cca488d
+-/
 theorem isPreconnected_completeTarget_support :
     IsPreconnected A.completeTarget.support := by
   rw [A.completeTarget_support, ← A.range_completePath]

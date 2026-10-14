@@ -55,7 +55,9 @@ variables.
 `(Real.exp (t * a) + Real.exp (-(t * a))) / 2 ≤ Real.exp (t ^ 2 * a ^ 2 / 2)`.
 
 Equivalent to `cosh(ta) ≤ exp(t²a²/2)`. This is the core sub-Gaussian
-bound for a symmetric ±a random variable. -/
+bound for a symmetric ±a random variable.
+@isnad1 id=le.0h2v.s6.eb87a4558af6 from=translated src=- shape=4d2a60e2 vocab=cdf5626f
+-/
 lemma cosh_le_exp_sq_half (t a : ℝ) :
     (Real.exp (t * a) + Real.exp (-(t * a))) / 2
       ≤ Real.exp (t ^ 2 * a ^ 2 / 2) := by
@@ -66,7 +68,9 @@ lemma cosh_le_exp_sq_half (t a : ℝ) :
   exact h
 
 /-- Average of `exp(t · signOfBool(b) · a)` over `b : Bool` equals
-`(exp(t·a) + exp(-t·a))/2`. -/
+`(exp(t·a) + exp(-t·a))/2`.
+@isnad1 id=eq.0h2v.s6.ddc817d72f44 from=translated src=- shape=a6361d4f vocab=082e1b00
+-/
 lemma avg_exp_sign (t a : ℝ) :
     (∑ b : Bool, Real.exp (t * signOfBool b * a)) / 2
       = (Real.exp (t * a) + Real.exp (-(t * a))) / 2 := by
@@ -82,7 +86,9 @@ sign vectors of `exp(t · (1/n) ∑_k σ_k · ℓ_i(z_k))` is bounded by
 
 omit [Fintype ι] [Nonempty ι] in
 /-- The sign-vector average of `exp(t · signedEmpiricalMean_i)` factors
-as a product over coordinates and is bounded by `exp(t² · B² / (2·n))`. -/
+as a product over coordinates and is bounded by `exp(t² · B² / (2·n))`.
+@isnad1 id=le.2h8v.s7.0c0c3b48eb9e from=translated src=- shape=2895e4f8 vocab=ec02cde0
+-/
 lemma sign_avg_exp_le {ℓ : ι → Z → ℝ} {z : Fin n → Z} {B : ℝ}
     (hBound : ∀ i : ι, ∀ k : Fin n, |ℓ i (z k)| ≤ B)
     (hn : 0 < n) (i : ι) (t : ℝ) :
@@ -196,7 +202,9 @@ For any `t > 0` and any finite family of reals `x : ι → ℝ`,
 
 /-- The sup of a finite nonempty family of reals is bounded above by the
 log-sum-exp with parameter `t > 0`:
-`sup_i x_i ≤ (1/t) · log(∑_i exp(t · x_i))`. -/
+`sup_i x_i ≤ (1/t) · log(∑_i exp(t · x_i))`.
+@isnad1 id=le.1h3v.s6.fe660612e2e5 from=translated src=- shape=52d24c34 vocab=cfe626f5
+-/
 lemma sup_le_log_sum_exp (x : ι → ℝ) {t : ℝ} (ht : 0 < t) :
     (Finset.univ : Finset ι).sup' Finset.univ_nonempty x
       ≤ t⁻¹ * Real.log (∑ i : ι, Real.exp (t * x i)) := by
@@ -225,6 +233,7 @@ Combining the sup bound with the sign average.
 /-- The empirical Rademacher complexity is bounded by the log-sum-exp of
 the sign-vector MGFs:
 `empiricalRademacherComplexity ℓ z ≤ t⁻¹ · log(∑_i E_σ[exp(t · f_i(σ))])`.
+@isnad1 id=le.1h6v.s7.81388b077575 from=translated src=- shape=c7160c55 vocab=5a3d8e1e
 -/
 lemma rademacher_le_log_sum_mgf {ℓ : ι → Z → ℝ} {z : Fin n → Z}
     {t : ℝ} (ht : 0 < t) :
@@ -330,6 +339,7 @@ satisfies:
 Requires `1 < Fintype.card ι` (at least two hypotheses) and `0 < n`
 (nonempty sample). The bound is trivially true for a singleton class
 (where the complexity is 0) but the log form requires `log|H| > 0`.
+@isnad1 id=le.4h6v.s7.c9da21477cf9 from=translated src=- shape=788a9d29 vocab=b35197e7
 -/
 theorem massart_finite_class {ℓ : ι → Z → ℝ} {z : Fin n → Z} {B : ℝ}
     (hB : 0 < B)

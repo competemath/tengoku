@@ -31,7 +31,9 @@ canonical polygonal generators transports to the equivalence closure of `Orienta
 
 namespace Complex
 
-/-- The benchmark boundary parameter is periodic with integral period one. -/
+/-- The benchmark boundary parameter is periodic with integral period one.
+@isnad1 id=eq.0h2v.s4.8e47935efaf8 from=translated src=- shape=00241260 vocab=bcba7915
+-/
 theorem ClosedUnitDisc.bdyPtOfReal_add_int (r : ℝ) (k : ℤ) :
     ClosedUnitDisc.bdyPtOfReal (r + k) = ClosedUnitDisc.bdyPtOfReal r := by
   apply Subtype.ext
@@ -84,7 +86,9 @@ noncomputable def eqvGenQuotientCongrRaw
   (Homeomorph.Quotient.congr e h).trans (quotEqvGenHomeomorph s).symm
 
 /-- A map that sends generators into an equivalence closure sends the whole generated relation
-into that closure. -/
+into that closure.
+@isnad1 id=eqvgen.2h7v.s5.486cb915f306 from=translated src=- shape=77980550 vocab=e7ae3b7d
+-/
 theorem eqvGen_map_of_generator_to_eqvGen
     {X Y : Type*} {r : X → X → Prop} {s : Y → Y → Prop}
     (f : X → Y) (hgen : ∀ x y, r x y → Relation.EqvGen s (f x) (f y))
@@ -98,7 +102,9 @@ theorem eqvGen_map_of_generator_to_eqvGen
       exact Relation.EqvGen.trans _ _ _ hxy hyz
 
 /-- Comparing generators in both directions, up to equivalence closure, compares the generated
-relations. -/
+relations.
+@isnad1 id=iff.2h7v.s7.bb55434d891b from=translated src=- shape=d2c1c425 vocab=130bf82c
+-/
 theorem eqvGen_iff_of_generator_maps
     {X Y : Type*} {r : X → X → Prop} {s : Y → Y → Prop}
     (e : X ≃ Y)
@@ -138,7 +144,9 @@ noncomputable def closedUnitDiscHomeomorph (m : ℕ) :
   continuous_toFun := PolygonCell.continuous_val.subtype_mk _
   continuous_invFun := continuous_induced_rng.2 continuous_subtype_val
 
-/-- Under the carrier homeomorphism, side `i` has the benchmark's boundary parameter. -/
+/-- Under the carrier homeomorphism, side `i` has the benchmark's boundary parameter.
+@isnad1 id=eq.0h3v.s8.5fd97bf1948d from=translated src=- shape=f16f463f vocab=835e6fc9
+-/
 theorem closedUnitDiscHomeomorph_side {m : ℕ} (i : Fin m) (t : unitInterval) :
     closedUnitDiscHomeomorph m (side i t) =
       ClosedUnitDisc.bdyPtOfReal (((i.val : ℝ) + (t : ℝ)) / m) := by
@@ -172,7 +180,9 @@ noncomputable def oneFacePreRealizationHomeomorph (m : ℕ) :
   continuous_invFun :=
     continuous_sigmaMk.comp (PolygonCell.closedUnitDiscHomeomorph m).symm.continuous
 
-/-- Side points in a one-face pre-realization map to the exact benchmark boundary points. -/
+/-- Side points in a one-face pre-realization map to the exact benchmark boundary points.
+@isnad1 id=eq.0h3v.s8.d8def8b20a4c from=translated src=- shape=1ddc9fad vocab=8e525f09
+-/
 theorem oneFacePreRealizationHomeomorph_sidePoint {m : ℕ}
     (i : Fin m) (t : unitInterval) :
     oneFacePreRealizationHomeomorph m
@@ -192,7 +202,9 @@ noncomputable def oneFacePolygonalPreRealizationHomeomorph
   exact PolygonGluing.oneFacePreRealizationHomeomorph word.length
 
 /-- The direct one-face homeomorphism sends occurrence `i` to the benchmark parameter
-`(i + t) / word.length`. -/
+`(i + t) / word.length`.
+@isnad1 id=eq.0h4v.s8.23bde15de416 from=translated src=- shape=062a54a5 vocab=15a12539
+-/
 theorem oneFacePolygonalPreRealizationHomeomorph_sidePoint
     {Edge : Type} [Fintype Edge] (word : List (SignedDart Edge))
     (i : Fin word.length) (t : unitInterval) :

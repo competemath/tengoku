@@ -56,12 +56,16 @@ instance instDecidableIsTriangleSideLengths [Add G] [LT G] [DecidableLT G] :
     DecidablePred (isTriangleSideLengths (G := G)) :=
   λ _ ↦ Nat.decidableForallFin _
 
-/-- For any `g : G`, the triple `(g, g, 2g)` is not a triangle side length. -/
+/-- For any `g : G`, the triple `(g, g, 2g)` is not a triangle side length.
+@isnad1 id=not.0h2v.s5.e99af6fc2e03 from=translated src=- shape=abfb0226 vocab=8b104177
+-/
 theorem not_isTriangleSideLengths_add_self [Add G] [Preorder G] (g : G) :
     ¬isTriangleSideLengths ![g, g, g + g] :=
   λ hg ↦ (hg 2).ne rfl
 
-/-- If `a < b ≤ c ≤ a + a`, then `(a, b, c)` is a triangle side length. -/
+/-- If `a < b ≤ c ≤ a + a`, then `(a, b, c)` is a triangle side length.
+@isnad1 id=istriang.3h2v.s7.cc17c0112579 from=translated src=- shape=45468baa vocab=508ce6df
+-/
 theorem isTriangleSideLengths_of_lt_le_le_add
     [Add G] [Preorder G] [AddLeftStrictMono G] [AddRightStrictMono G]
     {x : Fin 3 → G} (hx : x 0 < x 1) (hx0 : x 1 ≤ x 2) (hx1 : x 2 ≤ x 0 + x 0) :
@@ -72,7 +76,9 @@ theorem isTriangleSideLengths_of_lt_le_le_add
     | 1 => exact (hx0.trans hx1).trans_lt (add_lt_add_left hx2 _)
     | 2 => exact hx1.trans_lt (add_lt_add_right hx _)
 
-/-- If `0 < b ≤ a`, then `(a, b, a)` is a triangle side length. -/
+/-- If `0 < b ≤ a`, then `(a, b, a)` is a triangle side length.
+@isnad1 id=istriang.3h2v.s7.b75e019b9266 from=translated src=- shape=7a3fc130 vocab=8263297f
+-/
 theorem isTriangleSideLengths_of_pos_of_le
     [AddZeroClass G] [Preorder G] [AddLeftStrictMono G] [AddRightStrictMono G]
     {x : Fin 3 → G} (hx : 0 < x 1) (hx0 : x 1 ≤ x 0) (hx1 : x 2 = x 0) :
@@ -102,12 +108,16 @@ instance : FunLike (GoodFun G n) (Fin n) (Fin 3 → G) where
   coe := toFun
   coe_injective _ _ := GoodFun.ext
 
-/-- If `f` is a good function, then the function `i ↦ f(i, j)` is monotone for each `j`. -/
+/-- If `f` is a good function, then the function `i ↦ f(i, j)` is monotone for each `j`.
+@isnad1 id=monotone.0h4v.s5.274173a1c0ed from=translated src=- shape=09236b85 vocab=13a56caf
+-/
 theorem monotone_left (f : GoodFun G n) (j) : Monotone (λ i ↦ f i j) :=
   f.monotone_left' j
 
 /-- If `f` is a good function, then there exist permutations `σ_0, σ_1, σ_2` such that for
-  all `i`, `f(σ_0(i), 0), f(σ_1(i), 1), f(σ_2(i), 2)` form the side lengths of a triangle. -/
+  all `i`, `f(σ_0(i), 0), f(σ_1(i), 1), f(σ_2(i), 2)` form the side lengths of a triangle.
+@isnad1 id=ex.0h3v.s6.cd7b756d4c3c from=translated src=- shape=4bcbdb1b vocab=425bb455
+-/
 theorem exists_triangle_perm (f : GoodFun G n) :
     ∃ σ : Fin 3 → Fin n ≃ Fin n, ∀ i, isTriangleSideLengths (λ j ↦ f (σ j i) j) :=
   f.exists_triangle_perm'
@@ -120,7 +130,9 @@ def triangular (f : GoodFun G n) (i : Fin n) := isTriangleSideLengths (f i)
 instance [DecidableLT G] (f : GoodFun G n) : DecidablePred f.triangular :=
   λ _ ↦ instDecidableIsTriangleSideLengths _
 
-/-- If `f : Fin (n + 1) × Fin 3 → G` is a good function, then `n` is `f`-triangular. -/
+/-- If `f : Fin (n + 1) × Fin 3 → G` is a good function, then `n` is `f`-triangular.
+@isnad1 id=triangul.0h3v.s5.03a4779a1190 from=translated src=- shape=a76fb9e6 vocab=e318a5fa
+-/
 theorem last_is_triangular [AddLeftMono G] [AddRightMono G] (f : GoodFun G (n + 1)) :
     f.triangular (Fin.last n) := by
   ---- Choose corresponding permutations `σ_0, σ_1, σ_2`.
@@ -158,23 +170,33 @@ instance : FunLike (NiceSeq G n) (Fin (n + 1)) G where
   coe := toFun
   coe_injective _ _ := NiceSeq.ext
 
-/-- If `a : Fin (n + 1) → G` is a nice sequence, then `a` is strictly monotone. -/
+/-- If `a : Fin (n + 1) → G` is a nice sequence, then `a` is strictly monotone.
+@isnad1 id=strictmo.0h3v.s6.7c13e8a2cf0f from=translated src=- shape=dc10a358 vocab=aa8cd609
+-/
 theorem strictMono : StrictMono a :=
   a.strictMono'
 
-/-- If `a : Fin (n + 1) → G` is a nice sequence, then `a` is monotone. -/
+/-- If `a : Fin (n + 1) → G` is a nice sequence, then `a` is monotone.
+@isnad1 id=monotone.0h3v.s6.c4fa39a991eb from=translated src=- shape=dc10a358 vocab=a908dfd8
+-/
 theorem monotone : Monotone a :=
   a.strictMono.monotone
 
-/-- If `a : Fin (n + 1) → G` is a nice sequence, then `a_i > 0` for all `i`. -/
+/-- If `a : Fin (n + 1) → G` is a nice sequence, then `a_i > 0` for all `i`.
+@isnad1 id=lt.0h4v.s6.9136b5039872 from=translated src=- shape=68b165ee vocab=0ea04875
+-/
 theorem map_pos (i) : a i > 0 :=
   a.map_zero_pos'.trans_le (a.monotone i.zero_le)
 
-/-- If `a : Fin (n + 1) → G` is a nice sequence, then `a_i ≥ 0` for all `i`. -/
+/-- If `a : Fin (n + 1) → G` is a nice sequence, then `a_i ≥ 0` for all `i`.
+@isnad1 id=le.0h4v.s6.37231ac98963 from=translated src=- shape=68b165ee vocab=515c3648
+-/
 theorem map_nonneg (i) : a i ≥ 0 :=
   (a.map_pos i).le
 
-/-- If `a : Fin (n + 1) → G` is a nice sequence, then `a_{i + 1} ≤ 2a_i` for all `i ≠ n`. -/
+/-- If `a : Fin (n + 1) → G` is a nice sequence, then `a_{i + 1} ≤ 2a_i` for all `i ≠ n`.
+@isnad1 id=le.1h4v.s8.5b257ef50f63 from=translated src=- shape=884d7d0a vocab=489e32c7
+-/
 theorem map_add_one_le {i} (hi : i ≠ Fin.last n) : a (i + 1) ≤ a i + a i :=
   a.map_add_one_le' i hi
 
@@ -183,15 +205,21 @@ theorem map_add_one_le {i} (hi : i ≠ Fin.last n) : a (i + 1) ≤ a i + a i :=
 def mkFun (i : Fin (n + 1)) : Fin 3 → G :=
   ![if i = Fin.last n then a (Fin.last n) + a (Fin.last n) else a i, a i, a i + a i]
 
-/-- The value of `a.mkFun i 0` is `a_i` for `i ≠ n`. -/
+/-- The value of `a.mkFun i 0` is `a_i` for `i ≠ n`.
+@isnad1 id=eq.1h4v.s6.b82b812b82f2 from=translated src=- shape=5e6922a3 vocab=47e8c2c4
+-/
 theorem mkFun_apply_zero_of_ne_last (hi : i ≠ Fin.last n) : a.mkFun i 0 = a i :=
   ite_eq_right hi
 
-/-- The value of `a.mkFun i 0` is `a_i` for `i < n`. -/
+/-- The value of `a.mkFun i 0` is `a_i` for `i < n`.
+@isnad1 id=eq.1h4v.s7.b7bb78239f4a from=translated src=- shape=5e6922a3 vocab=a652214b
+-/
 theorem mkFun_apply_zero_of_lt_last (hi : i < Fin.last n) : a.mkFun i 0 = a i :=
   a.mkFun_apply_zero_of_ne_last hi.ne
 
-/-- The value of `a.mkFun n 0` is `2a_n`. -/
+/-- The value of `a.mkFun n 0` is `2a_n`.
+@isnad1 id=eq.0h3v.s7.d8217aa3c72b from=translated src=- shape=d24ee914 vocab=47e8c2c4
+-/
 theorem mkFun_last_zero : a.mkFun (Fin.last n) 0 = a (Fin.last n) + a (Fin.last n) :=
   ite_eq_left rfl
 
@@ -202,7 +230,9 @@ section
 variable [AddZeroClass G] [Preorder G]
   [AddLeftStrictMono G] [AddRightStrictMono G] (a : NiceSeq G n)
 
-/-- For each `j : Fin 3`, the function `i ↦ a.mkFun i j` is strictly monotone. -/
+/-- For each `j : Fin 3`, the function `i ↦ a.mkFun i j` is strictly monotone.
+@isnad1 id=strictmo.0h4v.s6.d6b91ec5127a from=translated src=- shape=b478035f vocab=63232fc3
+-/
 theorem mkFun_strictMono_left (j) : StrictMono (λ i ↦ a.mkFun i j) := by
   ---- We only need to solve the case `j = 0`.
   intro i₁ i₂ hi
@@ -217,12 +247,16 @@ theorem mkFun_strictMono_left (j) : StrictMono (λ i ↦ a.mkFun i j) := by
   · rw [a.mkFun_apply_zero_of_lt_last hi, a.mkFun_last_zero]
     exact lt_add_of_lt_of_pos hi0 (a.map_pos _)
 
-/-- For each `j : Fin 3`, the function `i ↦ a.mkFun i j` is monotone. -/
+/-- For each `j : Fin 3`, the function `i ↦ a.mkFun i j` is monotone.
+@isnad1 id=monotone.0h4v.s6.58d806e830ac from=translated src=- shape=b478035f vocab=72543eff
+-/
 theorem mkFun_monotone_left (j) : Monotone (λ i ↦ a.mkFun i j) :=
   (a.mkFun_strictMono_left j).monotone
 
 /-- Letting `f = a.mkFun`, for each index `i`, the elements
-  `f(i, 0), f(i + 1, 1), f(i, 2)` form the side lengths of a triangle. -/
+  `f(i, 0), f(i + 1, 1), f(i, 2)` form the side lengths of a triangle.
+@isnad1 id=istriang.0h4v.s8.684d0465e764 from=translated src=- shape=b73515e7 vocab=d77e1086
+-/
 theorem mkFun_isTriangleSideLengths (i) :
     isTriangleSideLengths
       (λ j ↦ a.mkFun (![Equiv.refl _, Equiv.addRight 1, Equiv.refl _] j i) j) := by
@@ -247,14 +281,18 @@ def mkGoodFun : GoodFun G (n + 1) where
   exists_triangle_perm' :=
     ⟨![Equiv.refl _, Equiv.addRight 1, Equiv.refl _], a.mkFun_isTriangleSideLengths⟩
 
-/-- The value of `a.mkGoodFun i` for `i ≠ n`. -/
+/-- The value of `a.mkGoodFun i` for `i ≠ n`.
+@isnad1 id=eq.1h4v.s8.f4a75b65e4f3 from=translated src=- shape=69dfbb18 vocab=9e21a6ef
+-/
 theorem mkGoodFun_apply_zero_of_ne_last (hi : i ≠ Fin.last n) :
     a.mkGoodFun i = ![a i, a i, a i + a i] :=
   congrArg (![·, a i, a i + a i]) (ite_eq_right hi)
 
 end
 
-/-- The only `a.mkFun`-triangular index is `n`. -/
+/-- The only `a.mkFun`-triangular index is `n`.
+@isnad1 id=iff.0h4v.s6.be182807548c from=translated src=- shape=35803210 vocab=1024ebe5
+-/
 theorem mkGoodFun_triangular_iff [AddZeroClass G] [Preorder G] [AddLeftMono G]
     [AddRightMono G] [AddLeftStrictMono G] [AddRightStrictMono G] {a : NiceSeq G n} :
   a.mkGoodFun.triangular i ↔ i = Fin.last n := by
@@ -281,7 +319,9 @@ end NiceSeq
 
 /-! ### Summary -/
 
-/-- A nontrivial totally ordered group contains a positive element. -/
+/-- A nontrivial totally ordered group contains a positive element.
+@isnad1 id=ex.0h1v.s6.a439ba0fd247 from=translated src=- shape=f6d50604 vocab=11cf8655
+-/
 theorem exists_pos_of_nontrivial
     (G) [Nontrivial G] [AddGroup G] [LinearOrder G] [AddLeftStrictMono G] :
     ∃ g : G, g > 0 := by
@@ -290,7 +330,9 @@ theorem exists_pos_of_nontrivial
   exacts [⟨g, hg0⟩, ⟨-g, neg_pos_of_neg hg0⟩]
 
 open Finset in
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=isleast.0h2v.s8.0832927d294b from=translated src=- shape=f7b8f3ea vocab=2dafc9ee
+-/
 theorem final_solution
     (G) [Nontrivial G] [AddCommGroup G] [LinearOrder G] [IsOrderedAddMonoid G] (n) :
     IsLeast (Set.range λ f : GoodFun G (n + 1) ↦ #{i | f.triangular i}) 1 := by

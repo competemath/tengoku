@@ -388,7 +388,9 @@ for `θ = α + β + κ⁻⁴δ²` at the ratio `κ ∈ (0,1/2]`.
 The hypotheses `hA`, `hB`, `hC` are exactly the paper's (A), (B), (C) at the
 radii `r = κρ` (left-hand quantities `αr, βr, δr`) and `ρ` (right-hand
 quantities `α, β, γ, δ, λ`); the conclusion carries the constants
-`thetaDecayC₂₇` and `thetaDecayC₂₈`. -/
+`thetaDecayC₂₇` and `thetaDecayC₂₈`.
+@isnad1 id=le.12h14v.s9.8f286341c963 from=translated src=- shape=f48e7f83 vocab=10924c16
+-/
 theorem thetaDecay_algebra
     {κ C₉ C₁₄ C₁₅ C₂₅ C₂₆ α β γ δ lam αr βr δr : ℝ}
     (hκ : 0 < κ) (hκhalf : κ ≤ 1 / 2)
@@ -573,7 +575,9 @@ theorem thetaDecay_algebra
 /-- **The small-`θ` form of the combination step of `lem:theta-decay`.**  This is
 `eq:theta-decay-2`: under the additional hypothesis `θ(ρ) ≤ 1` the second term of
 `thetaDecay_algebra` weakens, because `β^{1/2} + β ≤ 2θ(ρ)^{1/2}`.  The analytic
-inputs `hA`, `hB`, `hC` are the same as in `thetaDecay_algebra`. -/
+inputs `hA`, `hB`, `hC` are the same as in `thetaDecay_algebra`.
+@isnad1 id=le.13h14v.s9.ef3c1269fb29 from=translated src=- shape=90f3a16f vocab=10924c16
+-/
 theorem thetaDecay_algebra_small
     {κ C₉ C₁₄ C₁₅ C₂₅ C₂₆ α β γ δ lam αr βr δr : ℝ}
     (hκ : 0 < κ) (hκhalf : κ ≤ 1 / 2)

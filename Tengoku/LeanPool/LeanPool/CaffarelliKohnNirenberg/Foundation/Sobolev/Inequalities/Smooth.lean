@@ -39,6 +39,9 @@ def lpNormOn (p : ℝ≥0∞) (s : Set (Vec 3)) (u : Vec 3 → ℝ) : ℝ≥0∞
 def gradientLpNormOn (p : ℝ≥0∞) (s : Set (Vec 3)) (u : Vec 3 → ℝ) : ℝ≥0∞ :=
   eLpNorm (classicalGradient u) p (volume.restrict s)
 
+/--
+@isnad1 id=le.0h2v.s9.8c09fab4e68b from=translated src=- shape=23966c47 vocab=6346732c
+-/
 theorem fderiv_norm_le_three_classicalGradient
     {f : Vec 3 → ℝ} (x : Vec 3) :
     ‖fderiv ℝ f x‖ ≤ 3 * ‖classicalGradient f x‖ := by

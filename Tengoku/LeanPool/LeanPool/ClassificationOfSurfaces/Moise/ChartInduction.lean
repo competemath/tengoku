@@ -2498,7 +2498,9 @@ private structure MixedLocalBarycentricCertificate
 omit [T2Space S] [ConnectedSpace S]
   [IsManifold (modelWithCornersEuclideanHalfSpace 2) 0 S] in
 /-- Shared finite Radó induction assembler.  It turns any clean one-chart absorption step with the
-full `RadoInvariant` conclusion into an end-to-end geometric triangulation. -/
+full `RadoInvariant` conclusion into an end-to-end geometric triangulation.
+@isnad1 id=nonempty.1h1v.s6.e4e5be2a9f72 from=translated src=- shape=7c603002 vocab=41f0752e
+-/
 theorem moise_triangulation_of_induction
     (hstep : ∀ (c : MoiseChart S), c.BoundaryFaithful →
       ∀ {T : PartialTriangulation S} {A : Set S}, RadoInvariant T A →

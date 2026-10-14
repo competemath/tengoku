@@ -26,6 +26,9 @@ open Finset
 
 variable [CommSemiring R] [LinearOrder R] [IsStrictOrderedRing R] [ExistsAddOfLE R]
 
+/--
+@isnad1 id=le.0h4v.s8.2af5d629e9b1 from=translated src=- shape=7f71452b vocab=e26e2961
+-/
 lemma lemma1 (a b c : R) :
     (b + 2 * c) ^ 2 + 6 * (a * b) ≤ (a + 2 * b) ^ 2 + 6 * c ^ 2 := by
   obtain ⟨x, hx⟩ : ∃ x, (a + 2 * b) ^ 2 = x ^ 2 + 3 * b ^ 2 + 6 * (a * b) := by
@@ -40,12 +43,18 @@ lemma lemma1 (a b c : R) :
     add_assoc, hy, ← add_assoc, le_add_iff_nonneg_left]
   exact add_nonneg (sq_nonneg x) (mul_nonneg zero_le_two (sq_nonneg y))
 
+/--
+@isnad1 id=le.1h4v.s8.6d8f0d6d6629 from=translated src=- shape=4415fc38 vocab=e26e2961
+-/
 lemma lemma1_strict {a b c : R} (h : c ^ 2 + 1 ≤ a * b) :
     (b + 2 * c) ^ 2 + 6 ≤ (a + 2 * b) ^ 2 := by
   refine le_of_add_le_add_right (a := 6 * c ^ 2) ((lemma1 _ _ _).trans' ?_)
   rw [add_assoc, add_le_add_iff_left, add_comm, ← mul_add_one 6 (c ^ 2)]
   exact mul_le_mul_of_nonneg_left h (by norm_num)
 
+/--
+@isnad1 id=le.2h4v.s8.0065072a60cf from=translated src=- shape=2313061c vocab=eae1284f
+-/
 lemma lemma2 (r : R) {y : ℕ → R} (hy : ∀ n, 0 ≤ y n) (hy0 : ∀ n, n • r ≤ y n ^ 2) (N) :
     (4 * N ^ 3) • r ≤ (3 * (range (N + 1)).sum y) ^ 2 := by
   ---- Discharge the case `r ≤ 0`
@@ -103,13 +112,18 @@ lemma lemma2 (r : R) {y : ℕ → R} (hy : ∀ n, 0 ≤ y n) (hy0 : ∀ n, n •
       exact mul_le_mul N_ih hy0 (nsmul_nonneg hr _) (sq_nonneg _)
     _ = _ := by rw [← mul_pow, ← mul_pow, ← mul_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s7.19857b15a1bf from=translated src=- shape=0a081c31 vocab=5fea5e32
+-/
 lemma lemma3 [AddCommMonoid M] (x : ℕ → M) (N) :
     (range N).sum (λ i ↦ x (i + 1) + 2 • x i) + (x 0 + 2 • x N)
       = 3 • (range (N + 1)).sum x := by
   rw [sum_add_distrib, add_add_add_comm, ← sum_range_succ,
     ← sum_range_succ', sum_nsmul, ← succ_nsmul']
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=lt.2h3v.s8.500f7011d382 from=translated src=- shape=9c50af60 vocab=e48d1c23
+-/
 theorem final_solution {x : ℕ → R} (hx : ∀ n, 0 ≤ x n)
     (hx0 : ∀ n, x n ^ 2 + 1 ≤ x (n + 1) * x (n + 2)) (N) :
     8 * N ^ 3 < 27 * (range (N + 2)).sum x ^ 2 := by

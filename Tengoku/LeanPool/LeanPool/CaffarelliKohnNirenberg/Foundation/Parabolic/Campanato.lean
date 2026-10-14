@@ -46,6 +46,9 @@ def ParabolicCylinderCampanatoBoundOn
 def parabolicCampanatoTailConstant (α : ℝ) : ℝ :=
   1 / (1 - (2 : ℝ) ^ (-α))
 
+/--
+@isnad1 id=le.6h5v.s8.2ee986c134e0 from=translated src=- shape=3055afb4 vocab=b0731d1e
+-/
 theorem average_abs_le_outer_average_abs
     {α : Type*} [MeasurableSpace α] {μ : Measure α}
     {f : α → ℝ} {A B : Set α} (hBA : B ⊆ A)

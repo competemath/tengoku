@@ -58,7 +58,9 @@ For any empirical-risk minimizer `î` and any comparator `i_star`, the
 population risk of `î` exceeds that of `i_star` by at most twice the uniform
 deviation. The proof reduces to the abstract triangle lemma
 `epsilonRepresentativeERMWorks`, with `ε := uniformDeviation μ ℓ z` supplied
-pointwise by `abs_risk_sub_empiricalRisk_le_uniformDeviation`. -/
+pointwise by `abs_risk_sub_empiricalRisk_le_uniformDeviation`.
+@isnad1 id=le.1h8v.s6.4c450e76d59e from=translated src=- shape=71d61e7b vocab=ea7dcf75
+-/
 theorem erm_excessRisk_le_two_uniformDeviation
     [Fintype ι] [Nonempty ι] [MeasurableSpace Z]
     {μ : MeasureTheory.Measure Z} {ℓ : ι → Z → ℝ} {n : ℕ} {z : Fin n → Z}
@@ -99,7 +101,9 @@ The proof is the same three-step triangle as the exact-ERM case, with the
 approximate-minimization step replacing exact minimization.
 
 Scope: deterministic only; no iid hypothesis on `z`; no concentration; no PAC
-abstraction; no Rademacher/VC content. -/
+abstraction; no Rademacher/VC content.
+@isnad1 id=le.1h9v.s6.cb1409d0d048 from=translated src=- shape=ecbc5094 vocab=280c07e1
+-/
 theorem approxERM_excessRisk_le_twoUniformDeviation_plusOptimizationError
     [Fintype ι] [Nonempty ι] [MeasurableSpace Z]
     {μ : MeasureTheory.Measure Z} {ℓ : ι → Z → ℝ} {n : ℕ} {z : Fin n → Z}
@@ -125,7 +129,9 @@ theorem approxERM_excessRisk_le_twoUniformDeviation_plusOptimizationError
 
 /-- Existence of an exact empirical-risk minimizer on a finite, nonempty
 hypothesis class. Pure existence statement on a real-valued function over a
-finite linearly ordered codomain; no probabilistic content. -/
+finite linearly ordered codomain; no probabilistic content.
+@isnad1 id=ex.0h2v.s4.0926ce81cf36 from=translated src=- shape=f18df9c2 vocab=eacc4311
+-/
 theorem finiteClass_erm_exists [Fintype ι] [Nonempty ι] (Rhat : ι → ℝ) :
     ∃ î : ι, IsERM Rhat î := by
   obtain ⟨î, _, hMin⟩ :=

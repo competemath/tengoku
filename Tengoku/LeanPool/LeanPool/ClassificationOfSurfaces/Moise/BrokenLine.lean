@@ -41,17 +41,23 @@ def JoinedByBrokenLine (U : Set Plane) (a b : Plane) : Prop :=
 
 namespace JoinedByBrokenLine
 
-/-- A single segment inside `U` is a broken line. -/
+/-- A single segment inside `U` is a broken line.
+@isnad1 id=joinedby.1h3v.s6.f426369eb6a6 from=translated src=- shape=608b182f vocab=53e3845a
+-/
 theorem of_segment {U : Set Plane} {a b : Plane} (h : segment ℝ a b ⊆ U) :
     JoinedByBrokenLine U a b :=
   ⟨1, ![a, b], rfl, rfl, fun i => by fin_cases i; simpa using h⟩
 
-/-- Any point of `U` is joined to itself by a (degenerate) broken line in `U`. -/
+/-- Any point of `U` is joined to itself by a (degenerate) broken line in `U`.
+@isnad1 id=joinedby.1h2v.s4.ae76dcac5ea1 from=translated src=- shape=d235cc0c vocab=5c88fe59
+-/
 protected theorem refl {U : Set Plane} {a : Plane} (ha : a ∈ U) :
     JoinedByBrokenLine U a a :=
   of_segment (by rw [segment_same]; exact Set.singleton_subset_iff.2 ha)
 
-/-- Broken-line connectivity is symmetric: traverse the chain backwards. -/
+/-- Broken-line connectivity is symmetric: traverse the chain backwards.
+@isnad1 id=joinedby.1h3v.s4.426143abe76f from=translated src=- shape=18f1d965 vocab=013ef4a6
+-/
 protected theorem symm {U : Set Plane} {a b : Plane} (h : JoinedByBrokenLine U a b) :
     JoinedByBrokenLine U b a := by
   obtain ⟨n, v, hv0, hvl, hvseg⟩ := h
@@ -64,7 +70,9 @@ protected theorem symm {U : Set Plane} {a b : Plane} (h : JoinedByBrokenLine U a
     rw [segment_symm]
     exact hvseg i.rev
 
-/-- Extend a broken line from `a` to `b` by one further segment from `b` to `c` inside `U`. -/
+/-- Extend a broken line from `a` to `b` by one further segment from `b` to `c` inside `U`.
+@isnad1 id=joinedby.2h4v.s7.112861d065ce from=translated src=- shape=2b66d704 vocab=53e3845a
+-/
 theorem snoc {U : Set Plane} {a b c : Plane} (hab : JoinedByBrokenLine U a b)
     (hseg : segment ℝ b c ⊆ U) : JoinedByBrokenLine U a c := by
   obtain ⟨n, v, hv0, hvl, hvseg⟩ := hab
@@ -76,7 +84,9 @@ theorem snoc {U : Set Plane} {a b c : Plane} (hab : JoinedByBrokenLine U a b)
     · rw [Fin.succ_castSucc, Fin.snoc_castSucc, Fin.snoc_castSucc]
       exact hvseg j
 
-/-- Broken-line connectivity is transitive: concatenate the two chains. -/
+/-- Broken-line connectivity is transitive: concatenate the two chains.
+@isnad1 id=joinedby.2h4v.s4.1bf4e89d2969 from=translated src=- shape=7a4644f4 vocab=013ef4a6
+-/
 protected theorem trans {U : Set Plane} {a b c : Plane} (hab : JoinedByBrokenLine U a b)
     (hbc : JoinedByBrokenLine U b c) : JoinedByBrokenLine U a c := by
   have aux : ∀ m (w : Fin (m + 1) → Plane), w 0 = b →
@@ -102,7 +112,9 @@ protected theorem trans {U : Set Plane} {a b c : Plane} (hab : JoinedByBrokenLin
   have h := aux m w hw0 hwseg
   rwa [hwl] at h
 
-/-- Transport a broken line along an inclusion `U ⊆ V`. -/
+/-- Transport a broken line along an inclusion `U ⊆ V`.
+@isnad1 id=joinedby.2h4v.s4.5ea8a5b56399 from=translated src=- shape=b9b9d0b4 vocab=edbfac75
+-/
 theorem mono {U V : Set Plane} {a b : Plane} (h : JoinedByBrokenLine U a b) (hUV : U ⊆ V) :
     JoinedByBrokenLine V a b := by
   obtain ⟨n, v, hv0, hvl, hvseg⟩ := h
@@ -111,7 +123,9 @@ theorem mono {U V : Set Plane} {a b : Plane} (h : JoinedByBrokenLine U a b) (hUV
 end JoinedByBrokenLine
 
 /-- **Broken-line connectivity** (Moise, Ch. 1): any two points of an open preconnected subset
-of the plane are joined by a broken line lying in the set. -/
+of the plane are joined by a broken line lying in the set.
+@isnad1 id=joinedby.4h3v.s6.ade58f2b5c91 from=translated src=- shape=f4388097 vocab=f2390efe
+-/
 theorem IsPreconnected.joinedByBrokenLine {U : Set Plane} (hU : IsOpen U)
     (hconn : IsPreconnected U) {a b : Plane} (ha : a ∈ U) (hb : b ∈ U) :
     JoinedByBrokenLine U a b := by
@@ -146,7 +160,9 @@ theorem IsPreconnected.joinedByBrokenLine {U : Set Plane} (hU : IsOpen U)
   obtain ⟨x, -, ⟨-, hxJ⟩, ⟨-, hxN⟩⟩ := hconn W W' hWopen hW'open hsub hne hne'
   exact hxN hxJ
 
-/-- A positive metric thickening of a preconnected plane set is preconnected. -/
+/-- A positive metric thickening of a preconnected plane set is preconnected.
+@isnad1 id=isprecon.2h2v.s7.672355a05b84 from=translated src=- shape=6235936f vocab=b1787d26
+-/
 theorem IsPreconnected.thickening {A : Set Plane} (hA : IsPreconnected A)
     {ε : ℝ} (_ : 0 < ε) : IsPreconnected (Metric.thickening ε A) := by
   let add : Plane × Plane → Plane := fun p => p.1 + p.2
@@ -171,7 +187,9 @@ theorem IsPreconnected.thickening {A : Set Plane} (hA : IsPreconnected A)
   exact IsPreconnected.image hprod add hadd.continuousOn
 
 /-- Moise Chapter 6, Theorem 1: the endpoints of an embedded edge can be joined by a broken
-line in every positive metric neighborhood of its image. -/
+line in every positive metric neighborhood of its image.
+@isnad1 id=joinedby.4h4v.s7.08ecf1e14e56 from=translated src=- shape=3717e051 vocab=4274a601
+-/
 theorem brokenLine_in_thickening_of_preconnected {A : Set Plane}
     (hA : IsPreconnected A) {a b : Plane} (ha : a ∈ A) (hb : b ∈ A)
     {ε : ℝ} (hε : 0 < ε) :
@@ -184,7 +202,9 @@ theorem brokenLine_in_thickening_of_preconnected {A : Set Plane}
 /-- A preconnected set admits broken-line approximations whose vertices stay in its convex hull.
 
 The thickening supplies room for the polygonal chain, while convex-hull containment records the
-extra fact needed to preserve convex target regions such as a half-plane. -/
+extra fact needed to preserve convex target regions such as a half-plane.
+@isnad1 id=joinedby.4h4v.s8.f72d9d4dd804 from=translated src=- shape=9eba87fa vocab=38be8ee5
+-/
 theorem brokenLine_in_thickening_inter_convexHull_of_preconnected {A : Set Plane}
     (hA : IsPreconnected A) {a b : Plane} (ha : a ∈ A) (hb : b ∈ A)
     {ε : ℝ} (hε : 0 < ε) :

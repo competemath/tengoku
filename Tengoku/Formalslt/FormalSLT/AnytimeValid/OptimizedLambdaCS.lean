@@ -138,7 +138,9 @@ def stitchedExponentialProcess {Ω : Type*}
     (X : ℕ → Ω → ℝ) (sigma2 b : ℝ) (Lam : Finset ℝ) (n : ℕ) (ω : Ω) : ℝ :=
   (Lam.card : ℝ)⁻¹ * ∑ lam ∈ Lam, subGammaExponentialProcess X sigma2 b lam n ω
 
-/-- The stitched process is pointwise nonnegative (an average of `Real.exp` terms). -/
+/-- The stitched process is pointwise nonnegative (an average of `Real.exp` terms).
+@isnad1 id=le.0h7v.s5.495fd3f1b55b from=translated src=- shape=d6165ef3 vocab=1b1d6c04
+-/
 theorem stitchedExponentialProcess_nonneg {Ω : Type*}
     (X : ℕ → Ω → ℝ) (sigma2 b : ℝ) (Lam : Finset ℝ) (n : ℕ) (ω : Ω) :
     0 ≤ stitchedExponentialProcess X sigma2 b Lam n ω := by
@@ -147,7 +149,9 @@ theorem stitchedExponentialProcess_nonneg {Ω : Type*}
   exact Finset.sum_nonneg fun lam _ => (Real.exp_pos _).le
 
 /-- The stitched process starts at `1` for a nonempty grid: each `M_lam 0 = 1`, the
-sum is `Lam.card`, and the `(Lam.card)⁻¹` prefactor normalizes it. -/
+sum is `Lam.card`, and the `(Lam.card)⁻¹` prefactor normalizes it.
+@isnad1 id=eq.1h6v.s5.13cacac598fd from=translated src=- shape=24aa0f3d vocab=12af4cbe
+-/
 theorem stitchedExponentialProcess_zero {Ω : Type*}
     (X : ℕ → Ω → ℝ) (sigma2 b : ℝ) (Lam : Finset ℝ) (hLam : Lam.Nonempty) (ω : Ω) :
     stitchedExponentialProcess X sigma2 b Lam 0 ω = 1 := by
@@ -162,7 +166,9 @@ theorem stitchedExponentialProcess_zero {Ω : Type*}
 
 /-- A finite sum of nonnegative supermartingales is a supermartingale. Proved by
 `Finset.induction` from `MeasureTheory.Supermartingale.add` and the zero martingale
-base case. -/
+base case.
+@isnad1 id=supermar.1h6v.s6.2ea2972230f8 from=translated src=- shape=ff1ce5d9 vocab=decd6d65
+-/
 theorem supermartingale_finset_sum
     {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω} [IsFiniteMeasure μ]
     {ℱ : Filtration ℕ mΩ} (s : Finset ℝ) (M : ℝ → ℕ → Ω → ℝ)
@@ -192,6 +198,7 @@ it is the finite-grid analogue of the single-tilt
 `nonneg_supermartingale_of_condSubGamma` and of the mixture
 `mixture_is_supermartingale`, assembled from the same fixed-tilt one-step bound
 `condSubGamma_supermartingale_step` for each grid element.
+@isnad1 id=and.10h8v.s8.6adff9f3f3b3 from=translated src=- shape=3cad4b59 vocab=4649ece2
 -/
 theorem subGamma_stitched_boundary_supermartingale
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
@@ -245,6 +252,7 @@ running-mean boundary with the stitching-inflated budget
 (stitched) process crosses `1/delta` at `n`. The proof rearranges the boundary to
 the single-tilt exponential crossing `Lam.card / delta ≤ M_lam(n)`, then divides by
 `Lam.card`, using `M_lam(n) ≤ ∑ M(n) = Lam.card * stitched(n)`.
+@isnad1 id=le.5h9v.s7.67334475330e from=translated src=- shape=7adc4821 vocab=c30ae381
 -/
 theorem runningMean_boundary_subset_stitched_crossing
     {Ω : Type*} {X : ℕ → Ω → ℝ} {sigma2 b delta : ℝ} {Lam : Finset ℝ} {n : ℕ} {ω : Ω}
@@ -292,7 +300,9 @@ theorem runningMean_boundary_subset_stitched_crossing
 
 /-- The iterated-log budget `log (log n) + log (1/delta)` is strictly positive once
 `n` exceeds `e^e` and `delta ≤ 1` (so `log (1/delta) ≥ 0`). For the witness we use
-`n ≥ 16 > e^e ≈ 15.15`, giving `log (log n) > 0`. -/
+`n ≥ 16 > e^e ≈ 15.15`, giving `log (log n) > 0`.
+@isnad1 id=lt.3h2v.s5.3dece9405b17 from=translated src=- shape=81a23ebb vocab=50085e27
+-/
 theorem logLogBudget_pos {n : ℕ} {delta : ℝ}
     (hn : Real.exp 1 < (n : ℝ)) (hδ_le : delta ≤ 1) (hδ : 0 < delta) :
     0 < logLogBudget n delta := by
@@ -312,7 +322,9 @@ theorem logLogBudget_pos {n : ℕ} {delta : ℝ}
 `subGammaLogLogWidth` is strictly positive and equals its defining closed form.
 With `sigma2 = 1`, `b = 1`, `delta = 1/2`, `n = 16`
 (`16 > e^e ≈ 15.15`, so `log (log 16) > 0`), the width is a genuine positive number,
-but this theorem alone does not establish an asymptotic rate. -/
+but this theorem alone does not establish an asymptotic rate.
+@isnad1 id=and.0h0v.s7.ff5c54c4e395 from=translated src=- shape=f6ab2a59 vocab=058e59ef
+-/
 theorem subGammaLogLogWidth_loglog_rate :
     0 < subGammaLogLogWidth 1 1 16 (1 / 2)
       ∧ subGammaLogLogWidth 1 1 16 (1 / 2)
@@ -372,7 +384,9 @@ def optTilt (sigma2 b : ℝ) (n : ℕ) (delta : ℝ) : ℝ :=
 `lam ∈ (0, 3/b)`, the iterated-log boundary never drops below the closed-form width:
 `subGammaLogLogWidth sigma2 b n delta ≤ subGammaBoundary sigma2 b (logLogBudget n delta) n lam`.
 This is the deterministic content connecting the optimized-`lambda` grid boundary to the
-closed-form width. Proof: an exact sum-of-squares after clearing the positive denominator. -/
+closed-form width. Proof: an exact sum-of-squares after clearing the positive denominator.
+@isnad1 id=le.6h5v.s6.e4e643036830 from=translated src=- shape=80abca8a vocab=0cd0baf7
+-/
 theorem subGammaLogLogWidth_le_boundary
     {sigma2 b delta lam : ℝ} {n : ℕ}
     (hσ : 0 < sigma2) (_hb : 0 < b) (hn : 0 < n) (hg : 0 ≤ logLogBudget n delta)
@@ -441,7 +455,9 @@ theorem subGammaLogLogWidth_le_boundary
     rw [hkey]; exact div_nonneg hE_nonneg hden.le
   linarith
 
-/-- The optimal tilt is strictly positive once the iterated-log budget is positive. -/
+/-- The optimal tilt is strictly positive once the iterated-log budget is positive.
+@isnad1 id=lt.4h4v.s6.2bbab27c67fa from=translated src=- shape=23f16db8 vocab=a30f5c74
+-/
 theorem optTilt_pos {sigma2 b : ℝ} {n : ℕ} {delta : ℝ}
     (hσ : 0 < sigma2) (hb : 0 < b) (hn : 0 < n) (hg : 0 < logLogBudget n delta) :
     0 < optTilt sigma2 b n delta := by
@@ -454,7 +470,9 @@ theorem optTilt_pos {sigma2 b : ℝ} {n : ℕ} {delta : ℝ}
   linarith
 
 /-- The optimal tilt is admissible: `b * optTilt < 3`. Writing `b*optTilt = 3u/(1+u)` with
-`u = (b/3)*s > 0` gives the bound. -/
+`u = (b/3)*s > 0` gives the bound.
+@isnad1 id=lt.4h4v.s6.56bb5ef25e20 from=translated src=- shape=431c124e vocab=2ccde6b6
+-/
 theorem optTilt_admissible {sigma2 b : ℝ} {n : ℕ} {delta : ℝ}
     (hσ : 0 < sigma2) (hb : 0 < b) (hn : 0 < n) (hg : 0 < logLogBudget n delta) :
     b * optTilt sigma2 b n delta < 3 := by
@@ -472,6 +490,7 @@ theorem optTilt_admissible {sigma2 b : ℝ} {n : ℕ} {delta : ℝ}
 optimized-`lambda` boundary value: at the explicit optimal tilt the iterated-log boundary equals
 `subGammaLogLogWidth`. Combined with `subGammaLogLogWidth_le_boundary`, this shows the closed form
 is the infimum-over-tilt envelope of the boundary (the optimized-`lambda` rate), not a loose bound.
+@isnad1 id=eq.4h4v.s6.8319a0fde8fd from=translated src=- shape=93a7ab66 vocab=e645ee22
 -/
 theorem subGammaLogLogWidth_eq_boundary_optTilt
     {sigma2 b delta : ℝ} {n : ℕ}
@@ -561,6 +580,7 @@ closed-form width must attain equality.
 This is the formal obstruction behind the old fixed finite-grid `hbridge` carry:
 an all-time closed-form bridge would need the fixed grid to hit exact per-time
 optimizers, while `optTilt` varies with `n`.
+@isnad1 id=ex.6h5v.s7.53b72500ada8 from=translated src=- shape=01da5ee2 vocab=0b2b74b1
 -/
 theorem fixedGrid_logLog_bridge_forces_exact_boundary
     {sigma2 b delta : ℝ} {Lam : Finset ℝ} {n : ℕ}
@@ -596,17 +616,23 @@ The negated process satisfies the same increment model: `IncrementAdapted` is cl
 negation, `|(-X)_k| ≤ b`, `μ[(-X)_k | F_k] = 0` (since `condExp` is linear), and
 `((-X)_k)^2 = (X_k)^2`. The running mean negates: `runningMean (-X) n = - runningMean X n`. -/
 
-/-- Running sum of the negated process is the negation of the running sum. -/
+/-- Running sum of the negated process is the negation of the running sum.
+@isnad1 id=eq.0h4v.s5.eac5fccb253d from=translated src=- shape=eefef0ca vocab=f6897b5a
+-/
 theorem runningSum_neg {Ω : Type*} (X : ℕ → Ω → ℝ) (n : ℕ) (ω : Ω) :
     runningSum (fun k ω => -X k ω) n ω = -runningSum X n ω := by
   simp only [runningSum, Finset.sum_neg_distrib]
 
-/-- Running mean of the negated process is the negation of the running mean. -/
+/-- Running mean of the negated process is the negation of the running mean.
+@isnad1 id=eq.0h4v.s5.fcaf23b2168c from=translated src=- shape=eefef0ca vocab=07aad5f1
+-/
 theorem runningMean_neg {Ω : Type*} (X : ℕ → Ω → ℝ) (n : ℕ) (ω : Ω) :
     runningMean (fun k ω => -X k ω) n ω = -runningMean X n ω := by
   simp only [runningMean, runningSum_neg, neg_div]
 
-/-- The negated increment process is `IncrementAdapted`. -/
+/-- The negated increment process is `IncrementAdapted`.
+@isnad1 id=incremen.1h4v.s5.97576eaad173 from=translated src=- shape=44a73a28 vocab=9b8b2b02
+-/
 theorem incrementAdapted_neg {Ω : Type*} {mΩ : MeasurableSpace Ω} {ℱ : Filtration ℕ mΩ}
     {X : ℕ → Ω → ℝ} (hX : IncrementAdapted ℱ X) :
     IncrementAdapted ℱ (fun k ω => -X k ω) :=

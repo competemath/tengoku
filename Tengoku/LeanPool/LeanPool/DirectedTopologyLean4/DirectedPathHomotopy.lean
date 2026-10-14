@@ -51,15 +51,24 @@ section
 
 variable {p₀ p₁ : Dipath x y}
 
+/--
+@isnad1 id=injectiv.0h5v.s7.4f4e8bb8f23d from=translated src=- shape=b73188a7 vocab=61a6a874
+-/
 lemma coeFn_injective : @Function.Injective (Dihomotopy p₀ p₁) (I × I → X) (⇑) :=
   DFunLike.coe_injective
 
+/--
+@isnad1 id=eq.0h7v.s7.37a371996013 from=translated src=- shape=627b1e32 vocab=4f5c51ec
+-/
 @[simp]
 lemma source (F : Dihomotopy p₀ p₁) (t : I) : F (t, 0) = x := by
   calc F (t, 0)
     _ = p₀ 0 := DirectedMap.DihomotopyRel.eq_fst _ _ (.inl rfl)
     _ = x := p₀.source
 
+/--
+@isnad1 id=eq.0h7v.s7.2ad41f604f3a from=translated src=- shape=de74e8e8 vocab=4f5c51ec
+-/
 @[simp]
 lemma target (F : Dihomotopy p₀ p₁) (t : I) : F (t, 1) = y := by
   calc F (t, 1)
@@ -100,15 +109,24 @@ def eval (F : Dihomotopy p₀ p₁) (t : I) : Dipath x y where
     (F.toDihomotopy.curry t).directed_toFun DirectedUnitInterval.IdentityPath
       DirectedUnitInterval.isDipath_identityPath
 
+/--
+@isnad1 id=eq.0h7v.s8.f17f66d6a8f7 from=translated src=- shape=2ddc9a11 vocab=f6ac447e
+-/
 @[simp]
 lemma coe_eval (F : Dihomotopy p₀ p₁) (t : I) :
   (⇑(F.eval t) : I → X)  = ⇑(F.toDihomotopy.curry t) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.3eafd9f58c6f from=translated src=- shape=1e839784 vocab=e8dd4716
+-/
 @[simp]
 lemma eval_zero (F : Dihomotopy p₀ p₁) : F.eval 0 = p₀ := by
   ext t
   simp
 
+/--
+@isnad1 id=eq.0h6v.s5.3bfe26ea2383 from=translated src=- shape=c3affbf5 vocab=e8dd4716
+-/
 @[simp]
 lemma eval_one (F : Dihomotopy p₀ p₁) : F.eval 1 = p₁ := by
   ext t
@@ -132,6 +150,9 @@ dihomotopy on `[0, 1/2]` and the second on `[1/2, 1]`.
 def trans (F : Dihomotopy p₀ p₁) (G : Dihomotopy p₁ p₂) : Dihomotopy p₀ p₂ :=
   DirectedMap.DihomotopyRel.trans F G
 
+/--
+@isnad1 id=eq.0h9v.s9.8fc3f5639098 from=translated src=- shape=05de71d0 vocab=fc6c5d5a
+-/
 lemma trans_apply (F : Dihomotopy p₀ p₁) (G : Dihomotopy p₁ p₂) (x : I × I) :
   (F.trans G) x =
     if h : (x.1 : ℝ) ≤ 1/2 then

@@ -73,7 +73,9 @@ namespace FiniteNet
 def projection [Fintype A] (N : FiniteNet T A) : T → T :=
   fun t => N.center (N.project t)
 
-/-- The projection selected by a finite net is within the net radius. -/
+/-- The projection selected by a finite net is within the net radius.
+@isnad1 id=le.0h4v.s5.3c882135e320 from=translated src=- shape=ccdfcac6 vocab=e31e9196
+-/
 theorem projection_dist_le [Fintype A] (N : FiniteNet T A) (t : T) :
     N.dist t (N.projection t) ≤ N.radius :=
   N.covers t
@@ -83,7 +85,9 @@ represented by this chosen net. -/
 def coveringNumber [Fintype A] (_N : FiniteNet T A) : ℕ :=
   Fintype.card A
 
-/-- A finite net over a nonempty ambient type has positive covering number. -/
+/-- A finite net over a nonempty ambient type has positive covering number.
+@isnad1 id=lt.0h3v.s4.0ef4837da402 from=translated src=- shape=daaee65c vocab=fd46daba
+-/
 theorem coveringNumber_pos [Fintype A] [Nonempty T] (N : FiniteNet T A) :
     0 < N.coveringNumber := by
   classical
@@ -104,6 +108,9 @@ instance projectedIndexFintype [Fintype A] (N : FiniteNet T A) :
   unfold ProjectedIndex
   infer_instance
 
+/--
+@isnad1 id=nonempty.0h3v.s4.6da2fed27e9c from=translated src=- shape=e336f210 vocab=c2fe11a1
+-/
 instance projectedIndexNonempty [Fintype A] [Nonempty T] (N : FiniteNet T A) :
     Nonempty (ProjectedIndex N) := by
   classical
@@ -118,13 +125,17 @@ build chains without assuming the ambient type is finite. -/
 def source [Fintype A] (N : FiniteNet T A) (a : ProjectedIndex N) : T :=
   Classical.choose a.2
 
-/-- The chosen source projects to the projected net index. -/
+/-- The chosen source projects to the projected net index.
+@isnad1 id=eq.0h4v.s5.01a702d8f124 from=translated src=- shape=8bfb7c43 vocab=c680ba22
+-/
 theorem project_source_eq [Fintype A] (N : FiniteNet T A) (a : ProjectedIndex N) :
     N.project (source N a) = a.1 := by
   exact (Classical.choose_spec a.2).symm
 
 /-- Projecting the chosen source point gives the center indexed by the projected
-net index. -/
+net index.
+@isnad1 id=eq.0h4v.s5.aaed5df51741 from=translated src=- shape=f19a08ab vocab=15330954
+-/
 theorem projection_source_eq_center [Fintype A] (N : FiniteNet T A)
     (a : ProjectedIndex N) :
     N.projection (source N a) = N.center a.1 := by
@@ -135,7 +146,9 @@ end ProjectedIndex
 /-- Two finite net projections of the same point are within the sum of their
 radii, assuming the shared distance is symmetric and satisfies the triangle
 inequality. This is the finite-net geometry step used to turn net radii into
-projection-chain increment radii. -/
+projection-chain increment radii.
+@isnad1 id=le.3h6v.s7.ae91d8ac9c25 from=translated src=- shape=dc6e2f6b vocab=d84d7624
+-/
 theorem projection_pair_dist_le_radius_sum
     [Fintype A] {B : Type*} [Fintype B]
     (N₀ : FiniteNet T A) (N₁ : FiniteNet T B)
@@ -176,6 +189,9 @@ def projectionPairOf [Fintype A] {B : Type*} [Fintype B]
     ProjectionPair N₀ N₁ :=
   ⟨(N₀.project t, N₁.project t), ⟨t, rfl⟩⟩
 
+/--
+@isnad1 id=nonempty.0h5v.s5.99997115adf1 from=translated src=- shape=9dcf1b0e vocab=0d1944b5
+-/
 instance projectionPairNonempty
     [Fintype A] {B : Type*} [Fintype B] [Nonempty T]
     (N₀ : FiniteNet T A) (N₁ : FiniteNet T B) :
@@ -183,7 +199,9 @@ instance projectionPairNonempty
   ⟨projectionPairOf N₀ N₁ (Classical.choice (inferInstance : Nonempty T))⟩
 
 /-- The realized projection-pair family is bounded by the product of the two
-finite covering numbers. -/
+finite covering numbers.
+@isnad1 id=le.0h5v.s5.9df6f13c4385 from=translated src=- shape=2585453a vocab=62ee874e
+-/
 theorem projectionPair_card_le_coveringNumber_mul
     [Fintype A] {B : Type*} [Fintype B]
     (N₀ : FiniteNet T A) (N₁ : FiniteNet T B) :
@@ -200,7 +218,9 @@ theorem projectionPair_card_le_coveringNumber_mul
       simp [coveringNumber, Fintype.card_prod]
 
 /-- Log-cardinality of realized projection pairs is bounded by the log of the
-product of the two finite covering numbers. -/
+product of the two finite covering numbers.
+@isnad1 id=le.0h5v.s6.ece3349fdf73 from=translated src=- shape=0c817cb0 vocab=a54bb328
+-/
 theorem projectionPair_log_card_le_log_coveringNumber_mul
     [Nonempty T] [Fintype A] {B : Type*} [Fintype B]
     (N₀ : FiniteNet T A) (N₁ : FiniteNet T B) :
@@ -215,7 +235,9 @@ theorem projectionPair_log_card_le_log_coveringNumber_mul
   exact Real.log_le_log hpos hle
 
 /-- Every realized projection pair inherits the sum-of-radii distance bound
-from the shared point whose projections produced it. -/
+from the shared point whose projections produced it.
+@isnad1 id=le.3h6v.s7.eb9954564c91 from=translated src=- shape=91e3d3b8 vocab=59d11163
+-/
 theorem projectionPair_dist_le_radius_sum
     [Fintype A] {B : Type*} [Fintype B]
     (N₀ : FiniteNet T A) (N₁ : FiniteNet T B)
@@ -254,7 +276,9 @@ structure FiniteSubGaussianProcess (Ω T : Type*) [Fintype Ω] where
 
 namespace FiniteSubGaussianProcess
 
-/-- The sub-Gaussian increment MGF bound packaged as a theorem. -/
+/-- The sub-Gaussian increment MGF bound packaged as a theorem.
+@isnad1 id=le.0h6v.s7.411ee123551f from=translated src=- shape=3d8058fc vocab=577fe8ff
+-/
 theorem increment_mgf [Fintype Ω]
     (P : FiniteSubGaussianProcess Ω T) (s t : T) (lam : ℝ) :
     finiteExpectation P.weight (fun ω => Real.exp (lam * (P.X ω t - P.X ω s))) ≤
@@ -263,7 +287,9 @@ theorem increment_mgf [Fintype Ω]
 
 /-- Radius-bounded form of the sub-Gaussian increment MGF bound for a single
 increment. This is the reusable finite-process primitive behind the finite
-max/entropy estimates below. -/
+max/entropy estimates below.
+@isnad1 id=le.2h7v.s7.3d38e329e272 from=translated src=- shape=c81d9278 vocab=577fe8ff
+-/
 theorem increment_mgf_le_radius [Fintype Ω]
     (P : FiniteSubGaussianProcess Ω T)
     (s t : T) (r : ℝ)
@@ -282,7 +308,9 @@ theorem increment_mgf_le_radius [Fintype Ω]
   nlinarith
 
 /-- The sub-Gaussian increment MGF bound along one level of a projection
-chain. -/
+chain.
+@isnad1 id=le.0h7v.s7.87dbd1329e6e from=translated src=- shape=1a05e056 vocab=f739684f
+-/
 theorem projection_increment_mgf [Fintype Ω]
     (P : FiniteSubGaussianProcess Ω T)
     (π : ℕ → T → T) (j : ℕ) (t : T) (lam : ℝ) :
@@ -294,7 +322,9 @@ theorem projection_increment_mgf [Fintype Ω]
 
 /-- Radius-bounded version of `projection_increment_mgf`. If a projection
 level moves every index point by at most `r`, the same MGF increment is bounded
-using `r` in place of the pointwise distance. -/
+using `r` in place of the pointwise distance.
+@isnad1 id=le.2h8v.s7.d7dbaa5410f6 from=translated src=- shape=5dab5b96 vocab=f739684f
+-/
 theorem projection_increment_mgf_le_radius [Fintype Ω]
     (P : FiniteSubGaussianProcess Ω T)
     (π : ℕ → T → T) (j : ℕ) (r : ℝ)
@@ -317,7 +347,9 @@ end FiniteSubGaussianProcess
 
 /-! ## Finite expectation algebra -/
 
-/-- Monotonicity of finite weighted expectation under nonnegative weights. -/
+/-- Monotonicity of finite weighted expectation under nonnegative weights.
+@isnad1 id=le.2h4v.s5.e55360e05959 from=translated src=- shape=eb2c5610 vocab=bb3ff2b9
+-/
 lemma finiteExpectation_mono [Fintype Ω]
     {p : Ω → ℝ} (hp : ∀ ω : Ω, 0 ≤ p ω)
     {X Y : Ω → ℝ} (hXY : ∀ ω : Ω, X ω ≤ Y ω) :
@@ -327,7 +359,9 @@ lemma finiteExpectation_mono [Fintype Ω]
   intro ω _
   exact mul_le_mul_of_nonneg_left (hXY ω) (hp ω)
 
-/-- Additivity of finite weighted expectation. -/
+/-- Additivity of finite weighted expectation.
+@isnad1 id=eq.0h4v.s5.169cc7936839 from=translated src=- shape=6e11a9e5 vocab=09e3b136
+-/
 lemma finiteExpectation_add [Fintype Ω]
     (p : Ω → ℝ) (X Y : Ω → ℝ) :
     finiteExpectation p (fun ω => X ω + Y ω) =
@@ -342,7 +376,9 @@ lemma finiteExpectation_add [Fintype Ω]
     _ = (∑ ω : Ω, p ω * X ω) + ∑ ω : Ω, p ω * Y ω := by
           rw [Finset.sum_add_distrib]
 
-/-- Expectation of a constant under finite weights with total mass one. -/
+/-- Expectation of a constant under finite weights with total mass one.
+@isnad1 id=eq.1h3v.s5.b16c286e907a from=translated src=- shape=cd442557 vocab=4d17ba25
+-/
 lemma finiteExpectation_const_of_sum_one [Fintype Ω]
     (p : Ω → ℝ) (c : ℝ) (hsum : ∑ ω : Ω, p ω = 1) :
     finiteExpectation p (fun _ω => c) = c := by
@@ -359,6 +395,7 @@ finite-supremum surrogate, under an explicit terminal approximation error.
 This is only finite expectation bookkeeping. It deliberately does not define
 or prove measurability for a supremum over an arbitrary class: callers must
 supply the scalar `supFunctional` and the pointwise approximation hypothesis.
+@isnad1 id=le.3h5v.s6.f7d5f88ad226 from=translated src=- shape=65d15138 vocab=663275e1
 -/
 lemma finiteExpectation_supFunctional_le_projected_add_terminalError
     [Fintype Ω]
@@ -388,6 +425,7 @@ This is the direct helper for the `hterminalApprox` assumption in the
 finite-skeleton Dudley adapter: if each sample path is one-sided continuous at
 the terminal-net radius, then every skeleton point is controlled by its
 terminal projection plus `terminalError`.
+@isnad1 id=le.1h10v.s6.d2c64bff0a2b from=translated src=- shape=71800712 vocab=d84d7624
 -/
 lemma terminalApprox_of_pathwise_modulus
     {K : Type*} [Fintype A]
@@ -405,6 +443,7 @@ lemma terminalApprox_of_pathwise_modulus
 Terminal-projection approximation from a pathwise modulus at a larger radius
 budget. This is useful when the modulus is stated with a named radius bound
 rather than the exact net radius.
+@isnad1 id=le.2h11v.s6.c4ed9f21189a from=translated src=- shape=529e6963 vocab=d84d7624
 -/
 lemma terminalApprox_of_pathwise_modulus_radiusBound
     {K : Type*} [Fintype A]
@@ -426,6 +465,7 @@ If every ambient point is controlled by a selected skeleton point up to
 `skeletonError`, then the finite supremum over the ambient type is controlled
 by the finite skeleton supremum plus the same error. This is a finite,
 measurability-free version of the dense-net step.
+@isnad1 id=le.1h6v.s6.3f5b1576c155 from=translated src=- shape=c1c21e3d vocab=1ca63ec3
 -/
 lemma finiteSup_le_skeletonSup_add_of_pointwise_approx
     [Fintype T] [Nonempty T] {K : Type*} [Fintype K] [Nonempty K]
@@ -457,6 +497,7 @@ point is within `skeletonError` of its skeleton representative, then
 
 This avoids defining an arbitrary measurable supremum: all continuous content
 is exposed as explicit witness and finite-skeleton hypotheses.
+@isnad1 id=le.2h11v.s6.116e174a60e6 from=translated src=- shape=08e5f28b vocab=1ca63ec3
 -/
 lemma supFunctional_le_skeletonSup_add_of_witnessed_pointwise_approx
     {K : Type*} [Fintype K] [Nonempty K]
@@ -482,7 +523,9 @@ lemma supFunctional_le_skeletonSup_add_of_witnessed_pointwise_approx
   have ha := happrox ω (witness ω)
   linarith
 
-/-- Pull a finite sum through finite weighted expectation. -/
+/-- Pull a finite sum through finite weighted expectation.
+@isnad1 id=eq.0h4v.s5.afcc4dff2c1b from=translated src=- shape=265c92a0 vocab=da2b34fc
+-/
 lemma finiteExpectation_sum_range [Fintype Ω]
     (p : Ω → ℝ) (Y : ℕ → Ω → ℝ) (m : ℕ) :
     finiteExpectation p (fun ω => ∑ j ∈ Finset.range m, Y j ω) =
@@ -498,7 +541,9 @@ lemma finiteExpectation_sum_range [Fintype Ω]
           rw [Finset.sum_comm]
 
 /-- Pull a finite sum over an arbitrary finite index type through finite
-weighted expectation. -/
+weighted expectation.
+@isnad1 id=eq.0h4v.s5.3997bf873b88 from=translated src=- shape=94ee1dad vocab=4d17ba25
+-/
 lemma finiteExpectation_sum [Fintype Ω] [Fintype A]
     (p : Ω → ℝ) (Y : A → Ω → ℝ) :
     finiteExpectation p (fun ω => ∑ a : A, Y a ω) =
@@ -513,7 +558,9 @@ lemma finiteExpectation_sum [Fintype Ω] [Fintype A]
     _ = ∑ a : A, ∑ ω : Ω, p ω * Y a ω := by
           rw [Finset.sum_comm]
 
-/-- Shift an exponential inside finite weighted expectation. -/
+/-- Shift an exponential inside finite weighted expectation.
+@isnad1 id=eq.0h5v.s6.a6669c265e37 from=translated src=- shape=79174ba2 vocab=784b5ec8
+-/
 lemma finiteExpectation_exp_shift [Fintype Ω]
     (p : Ω → ℝ) (Z : Ω → ℝ) (lam c : ℝ) :
     finiteExpectation p (fun ω => Real.exp (lam * (Z ω - c))) =
@@ -530,7 +577,9 @@ lemma finiteExpectation_exp_shift [Fintype Ω]
 
 /-- A shifted exponential-moment bound controls the finite weighted mean. This
 is the elementary Chernoff step used below to convert finite-max MGF control
-into an expected-supremum budget. -/
+into an expected-supremum budget.
+@isnad1 id=le.4h5v.s6.f795b7a0104f from=translated src=- shape=88ac354e vocab=7547c24e
+-/
 theorem expectation_le_of_shifted_exp_mgf [Fintype Ω]
     (p : Ω → ℝ) (hp : ∀ ω : Ω, 0 ≤ p ω) (hsum : ∑ ω : Ω, p ω = 1)
     (Z : Ω → ℝ) (lam budget : ℝ) (hlam : 0 < lam)
@@ -589,7 +638,9 @@ theorem expectation_le_of_shifted_exp_mgf [Fintype Ω]
 /-! ## Multiscale chaining decomposition -/
 
 /-- For a finite index set, the exponential of the finite maximum is bounded
-by the sum of coordinate exponentials. -/
+by the sum of coordinate exponentials.
+@isnad1 id=le.0h4v.s6.0e43eeed112b from=translated src=- shape=46116361 vocab=20c909b1
+-/
 lemma exp_finiteSup_sub_le_sum_exp_sub
     [Fintype T] [Nonempty T]
     (Y : T → ℝ) (lam budget : ℝ) :
@@ -604,7 +655,9 @@ lemma exp_finiteSup_sub_le_sum_exp_sub
 
 /-- Finite-max entropy budget from shifted coordinate MGF bounds. If each
 coordinate has shifted exponential moment at most `1 / |T|`, then the expected
-finite supremum is at most `budget`. -/
+finite supremum is at most `budget`.
+@isnad1 id=le.4h6v.s7.8d5dd5dcab2b from=translated src=- shape=1c6cb18b vocab=a475a62d
+-/
 theorem finite_expectedSup_le_of_shifted_mgf
     [Fintype Ω] [Fintype T] [Nonempty T]
     (p : Ω → ℝ) (hp : ∀ ω : Ω, 0 ≤ p ω) (hsum : ∑ ω : Ω, p ω = 1)
@@ -640,7 +693,9 @@ the expected finite supremum is bounded by `(log |T| + q) / λ`.
 
 This is the standalone finite-index bridge from an MGF condition to an
 expected-supremum budget; later chaining theorems apply it to projection
-increments. -/
+increments.
+@isnad1 id=le.4h6v.s7.4e66af0b58ce from=translated src=- shape=6e8374f3 vocab=28e8bf41
+-/
 theorem finite_expectedSup_le_of_mgf_log
     [Fintype Ω] [Fintype T] [Nonempty T]
     (p : Ω → ℝ) (hp : ∀ ω : Ω, 0 ≤ p ω) (hsum : ∑ ω : Ω, p ω = 1)
@@ -677,7 +732,9 @@ theorem finite_expectedSup_le_of_mgf_log
           rw [harg, Real.exp_neg, Real.exp_log hcard_pos]
 
 /-- Optimizing `L / λ + λq / 2` at `λ = sqrt (2L/q)`, written in the
-algebraic form used by the finite sub-Gaussian max bound. -/
+algebraic form used by the finite sub-Gaussian max bound.
+@isnad1 id=eq.2h2v.s7.fee1b7c88405 from=translated src=- shape=1a96eebc vocab=5a524d9b
+-/
 lemma sqrt_entropy_optimizer_identity {L q : ℝ} (hL : 0 < L) (hq : 0 < q) :
     (L + (Real.sqrt (2 * L / q)) ^ 2 * q / 2) / Real.sqrt (2 * L / q) =
       Real.sqrt (2 * q * L) := by
@@ -707,7 +764,9 @@ lemma sqrt_entropy_optimizer_identity {L q : ℝ} (hL : 0 < L) (hq : 0 < q) :
 /-- Pull the finite entropy term out of the square root in the form used by
 the Dudley-style finite entropy-sum corollaries. The `radius` parameter is a
 finite net radius or a sum of adjacent finite net radii, not a limiting
-scale. -/
+scale.
+@isnad1 id=eq.2h3v.s6.d2b37ae9fdb0 from=translated src=- shape=33618f59 vocab=469900d1
+-/
 lemma sqrt_entropy_scale_eq (variance radius entropy : ℝ)
     (hvariance_nonneg : 0 ≤ variance) (hradius_nonneg : 0 ≤ radius) :
     Real.sqrt (2 * variance * radius ^ 2 * entropy) =
@@ -735,7 +794,9 @@ expected supremum over the finite index type is at most
 `sqrt (2σ² log |T|)`.
 
 This is finite-index and finite-support only; it is the entropy-budget lemma
-that feeds the later multiscale chaining statements. -/
+that feeds the later multiscale chaining statements.
+@isnad1 id=le.5h5v.s7.c66055d3e451 from=translated src=- shape=2672a549 vocab=32719f69
+-/
 theorem finite_expectedSup_le_of_subGaussian_mgf_sqrt
     [Fintype Ω] [Fintype T] [Nonempty T]
     (p : Ω → ℝ) (hp : ∀ ω : Ω, 0 ≤ p ω) (hsum : ∑ ω : Ω, p ω = 1)
@@ -765,7 +826,9 @@ theorem finite_expectedSup_le_of_subGaussian_mgf_sqrt
           dsimp [lam]
           simpa [L, mul_assoc, mul_left_comm, mul_comm] using hopt
 
-/-- Real-order closure for bounds with arbitrary positive slack. -/
+/-- Real-order closure for bounds with arbitrary positive slack.
+@isnad1 id=le.1h2v.s5.2ee79f5afcc4 from=translated src=- shape=aca71d2c vocab=91bdb49a
+-/
 lemma real_le_of_forall_pos_le_add {x y : ℝ}
     (h : ∀ eta : ℝ, 0 < eta → x ≤ y + eta) :
     x ≤ y := by
@@ -783,7 +846,9 @@ The existing square-root optimizer needs `1 < Fintype.card T` so that
 case. When `|T| = 1`, the log-cardinality bound is available for every positive
 `λ`; sending `λ` to zero through arbitrary positive slack gives the zero
 entropy bound. This is the finite max brick needed before dyadic chaining can
-allow singleton projection-pair layers. -/
+allow singleton projection-pair layers.
+@isnad1 id=le.4h5v.s7.7979faab8e4d from=translated src=- shape=84105db6 vocab=32719f69
+-/
 theorem finite_expectedSup_le_of_subGaussian_mgf_sqrt_nonempty
     [Fintype Ω] [Fintype T] [Nonempty T]
     (p : Ω → ℝ) (hp : ∀ ω : Ω, 0 ≤ p ω) (hsum : ∑ ω : Ω, p ω = 1)
@@ -829,7 +894,9 @@ theorem finite_expectedSup_le_of_subGaussian_mgf_sqrt_nonempty
 
 /-- Telescoping identity for a chain of projections. The projection sequence is
 indexed by natural-number levels; level `0` is the coarse approximation and
-level `m` is the terminal approximation. -/
+level `m` is the terminal approximation.
+@isnad1 id=eq.0h5v.s6.11e7206dfcdd from=translated src=- shape=921820c3 vocab=4b1bed3f
+-/
 lemma chain_telescope_to_projection
     (X : T → ℝ) (π : ℕ → T → T) (m : ℕ) (t : T) :
     X (π m t) =
@@ -843,7 +910,9 @@ lemma chain_telescope_to_projection
 
 /-- Telescoping identity for a projection chain parameterized by an arbitrary
 finite domain. The process is still indexed by `T`; the chain is evaluated
-along a finite parameter type such as a projected net image. -/
+along a finite parameter type such as a projected net image.
+@isnad1 id=eq.0h6v.s6.1009cc2e2022 from=translated src=- shape=e0b2a5ca vocab=4b1bed3f
+-/
 lemma chain_telescope_to_projection_over
     {U : Type*} (X : T → ℝ) (π : ℕ → U → T) (m : ℕ) (u : U) :
     X (π m u) =
@@ -855,7 +924,9 @@ lemma chain_telescope_to_projection_over
       rw [Finset.sum_range_succ, ih]
       ring
 
-/-- Telescoping identity when the final projection is the original point. -/
+/-- Telescoping identity when the final projection is the original point.
+@isnad1 id=eq.1h5v.s6.c045dce64525 from=translated src=- shape=91702ff2 vocab=4b1bed3f
+-/
 lemma chain_telescope
     (X : T → ℝ) (π : ℕ → T → T) (m : ℕ) (t : T)
     (hlast : π m t = t) :
@@ -868,7 +939,9 @@ lemma chain_telescope
 
 /-- Pointwise finite multiscale chaining: the supremum of a process is bounded
 by the supremum at the coarse projection plus the sum of suprema of scale
-increments. -/
+increments.
+@isnad1 id=le.1h4v.s6.ceccbe537323 from=translated src=- shape=ed43b503 vocab=5f1ce255
+-/
 theorem finite_chaining_decomposition
     [Fintype T] [Nonempty T]
     (X : T → ℝ) (π : ℕ → T → T) (m : ℕ)
@@ -894,7 +967,9 @@ full finite process is bounded by the expected coarse supremum plus the sum of
 the scale budgets.
 
 This is the finite-process scaffold that later sub-Gaussian increment estimates
-feed into; it is not the continuous Dudley entropy integral. -/
+feed into; it is not the continuous Dudley entropy integral.
+@isnad1 id=le.3h7v.s7.8cb0be20dcb2 from=translated src=- shape=79143daf vocab=df9fda46
+-/
 theorem finite_chaining_expectation_bound
     [Fintype Ω] [Fintype T] [Nonempty T]
     (p : Ω → ℝ) (hp : ∀ ω : Ω, 0 ≤ p ω)
@@ -934,7 +1009,9 @@ bookkeeping as `finite_chaining_decomposition`, but it stops at the terminal
 projection `π m` instead of requiring `π m t = t`.
 
 This is the finite projected-supremum scaffold used before passing to a
-continuous or measurable supremum. -/
+continuous or measurable supremum.
+@isnad1 id=le.0h4v.s6.4d99cec825fd from=translated src=- shape=633ad586 vocab=5f1ce255
+-/
 theorem finite_projected_chaining_decomposition
     [Fintype T] [Nonempty T]
     (X : T → ℝ) (π : ℕ → T → T) (m : ℕ) :
@@ -958,7 +1035,9 @@ expected supremum over the terminal projection `π m`, without assuming that
 the terminal projection is the identity.
 
 This is intentionally finite-index and finite-scale. It does not construct a
-measurable supremum over an arbitrary class. -/
+measurable supremum over an arbitrary class.
+@isnad1 id=le.2h7v.s7.8ae28126e7c2 from=translated src=- shape=b5525a78 vocab=df9fda46
+-/
 theorem finite_projected_chaining_expectation_bound
     [Fintype Ω] [Fintype T] [Nonempty T]
     (p : Ω → ℝ) (hp : ∀ ω : Ω, 0 ≤ p ω)
@@ -997,7 +1076,9 @@ The process itself may be indexed by an ambient type `T`; only the parameter
 domain `U` over which the projected supremum is taken must be finite.
 
 This is the finite-image bridge used to avoid assuming `[Fintype T]` for
-projected finite-net suprema. -/
+projected finite-net suprema.
+@isnad1 id=le.0h5v.s6.b4f86b435a06 from=translated src=- shape=bfe48f7e vocab=5f1ce255
+-/
 theorem finite_projected_chaining_decomposition_over
     {U : Type*} [Fintype U] [Nonempty U]
     (X : T → ℝ) (π : ℕ → U → T) (m : ℕ) :
@@ -1017,7 +1098,9 @@ theorem finite_projected_chaining_decomposition_over
       (fun v => X (π (j + 1) v) - X (π j v)) (mem_univ u)
 
 /-- Finite weighted-expectation projected chaining over an arbitrary finite
-parameter domain `U`. The ambient process index type `T` need not be finite. -/
+parameter domain `U`. The ambient process index type `T` need not be finite.
+@isnad1 id=le.2h8v.s7.387c1d6cc69f from=translated src=- shape=2b5697a5 vocab=df9fda46
+-/
 theorem finite_projected_chaining_expectation_bound_over
     [Fintype Ω] {U : Type*} [Fintype U] [Nonempty U]
     (p : Ω → ℝ) (hp : ∀ ω : Ω, 0 ≤ p ω)
@@ -1056,7 +1139,9 @@ namespace FiniteSubGaussianProcess
 /-- Chaining bound specialized to a finite sub-Gaussian process record. The
 sub-Gaussian MGF field is carried by `P`; the present theorem consumes the
 finite expected-sup budgets for each scale, which later entropy lemmas will
-derive from that MGF condition. -/
+derive from that MGF condition.
+@isnad1 id=le.2h6v.s7.0f9a36512899 from=translated src=- shape=b29e5cbd vocab=31451939
+-/
 theorem finite_chaining_expectation_bound
     [Fintype Ω] [Fintype T] [Nonempty T]
     (P : FiniteSubGaussianProcess Ω T)
@@ -1075,7 +1160,9 @@ theorem finite_chaining_expectation_bound
 
 /-- Projected chaining bound specialized to a finite sub-Gaussian process.
 The left side is the expected finite supremum over the terminal projection
-`π m`, so no identity-terminal assumption is required. -/
+`π m`, so no identity-terminal assumption is required.
+@isnad1 id=le.1h6v.s7.bbac2677ced6 from=translated src=- shape=e6f610a8 vocab=31451939
+-/
 theorem finite_projected_chaining_expectation_bound
     [Fintype Ω] [Fintype T] [Nonempty T]
     (P : FiniteSubGaussianProcess Ω T)
@@ -1093,7 +1180,9 @@ theorem finite_projected_chaining_expectation_bound
 
 /-- Projected chaining bound for a finite parameter domain `U`, specialized to
 a finite sub-Gaussian process over an ambient index type `T`. This is the
-version used for projected finite-net images when `T` itself is not finite. -/
+version used for projected finite-net images when `T` itself is not finite.
+@isnad1 id=le.1h7v.s7.bcedd4e5fd05 from=translated src=- shape=b6828be6 vocab=31451939
+-/
 theorem finite_projected_chaining_expectation_bound_over
     [Fintype Ω] {U : Type*} [Fintype U] [Nonempty U]
     (P : FiniteSubGaussianProcess Ω T)
@@ -1113,7 +1202,9 @@ theorem finite_projected_chaining_expectation_bound_over
 sub-Gaussian process. The hypothesis
 `exp(λ²σ²r²/2 - λ·budget) ≤ 1 / |T|` is the finite entropy accounting step:
 the radius-bounded sub-Gaussian MGF leaves enough room for a union bound over
-the finite index type. -/
+the finite index type.
+@isnad1 id=le.4h8v.s7.a65ae0852683 from=translated src=- shape=889b63a8 vocab=f18b72d5
+-/
 theorem projection_increment_expectedSup_le_of_radius
     [Fintype Ω] [Fintype T] [Nonempty T]
     (P : FiniteSubGaussianProcess Ω T)
@@ -1152,7 +1243,9 @@ theorem projection_increment_expectedSup_le_of_radius
 /-- Log-cardinality version of
 `projection_increment_expectedSup_le_of_radius`. This is the finite
 sub-Gaussian max bound for one projection-increment level:
-`E sup_t Δ_j(t) ≤ (log |T| + λ²σ²r²/2) / λ`. -/
+`E sup_t Δ_j(t) ≤ (log |T| + λ²σ²r²/2) / λ`.
+@isnad1 id=le.3h7v.s7.d688cd505926 from=translated src=- shape=729d4818 vocab=16706d5e
+-/
 theorem projection_increment_expectedSup_le_of_radius_log
     [Fintype Ω] [Fintype T] [Nonempty T]
     (P : FiniteSubGaussianProcess Ω T)
@@ -1188,7 +1281,9 @@ theorem projection_increment_expectedSup_le_of_radius_log
 
 /-- Square-root version of the one-level finite sub-Gaussian max bound,
 obtained by optimizing the positive λ parameter in
-`projection_increment_expectedSup_le_of_radius_log`. -/
+`projection_increment_expectedSup_le_of_radius_log`.
+@isnad1 id=le.4h6v.s7.c872e59404e3 from=translated src=- shape=cc8a2e40 vocab=b59dc207
+-/
 theorem projection_increment_expectedSup_le_of_radius_sqrt
     [Fintype Ω] [Fintype T] [Nonempty T]
     (P : FiniteSubGaussianProcess Ω T)
@@ -1229,7 +1324,9 @@ theorem projection_increment_expectedSup_le_of_radius_sqrt
 This is the projection-increment form of
 `finite_expectedSup_le_of_subGaussian_mgf_sqrt_nonempty`. It removes the
 `1 < card` side condition from the one-level bound; singleton projection
-families pay zero entropy. -/
+families pay zero entropy.
+@isnad1 id=le.3h6v.s7.437f6c8c077a from=translated src=- shape=d0effc7d vocab=b59dc207
+-/
 theorem projection_increment_expectedSup_le_of_radius_sqrt_nonempty
     [Fintype Ω] [Fintype T] [Nonempty T]
     (P : FiniteSubGaussianProcess Ω T)
@@ -1257,7 +1354,9 @@ theorem projection_increment_expectedSup_le_of_radius_sqrt_nonempty
 /-- Log-cardinality finite-max bound for an arbitrary finite family of
 sub-Gaussian increments. The index family `I` is finite but otherwise
 abstract; this is still a finite-sample, finite-class statement, not a
-measurable separability or Talagrand contraction theorem. -/
+measurable separability or Talagrand contraction theorem.
+@isnad1 id=le.3h8v.s7.1183fe8c4543 from=translated src=- shape=30d4df0a vocab=16706d5e
+-/
 theorem increment_family_expectedSup_le_of_radius_log
     [Fintype Ω] {I : Type*} [Fintype I] [Nonempty I]
     (P : FiniteSubGaussianProcess Ω T)
@@ -1307,7 +1406,9 @@ theorem increment_family_expectedSup_le_of_radius_log
 /-- Optimized square-root finite-max bound for an arbitrary finite family of
 sub-Gaussian increments:
 `E sup_i (X_{right i} - X_{left i}) ≤ sqrt(2 σ² r² log |I|)`.
-The theorem is deliberately finite-index and finite-family. -/
+The theorem is deliberately finite-index and finite-family.
+@isnad1 id=le.4h7v.s7.12d0010b6e19 from=translated src=- shape=aab91d0d vocab=cc5461f5
+-/
 theorem increment_family_expectedSup_le_of_radius_sqrt
     [Fintype Ω] {I : Type*} [Fintype I] [Nonempty I]
     (P : FiniteSubGaussianProcess Ω T)
@@ -1350,6 +1451,7 @@ increments, including singleton families.
 This removes the `1 < card` side condition from
 `increment_family_expectedSup_le_of_radius_sqrt`; singleton increment families
 pay zero entropy through `finite_expectedSup_le_of_subGaussian_mgf_sqrt_nonempty`.
+@isnad1 id=le.3h7v.s7.fbd91f8f75e8 from=translated src=- shape=e1ae271c vocab=cc5461f5
 -/
 theorem increment_family_expectedSup_le_of_radius_sqrt_nonempty
     [Fintype Ω] {I : Type*} [Fintype I] [Nonempty I]
@@ -1377,7 +1479,9 @@ theorem increment_family_expectedSup_le_of_radius_sqrt_nonempty
 /-- Finite chaining bound with radius/MGF-derived scale budgets. Each scale
 budget is justified by a radius bound and the finite entropy condition
 `exp(λ²σ²r_j²/2 - λ·budget_j) ≤ 1 / |T|`; the existing chaining theorem then
-sums those budgets. -/
+sums those budgets.
+@isnad1 id=le.5h8v.s8.aacd36dede9b from=translated src=- shape=dd5b8d22 vocab=bd6295e4
+-/
 theorem finite_chaining_expectation_bound_of_radius_budgets
     [Fintype Ω] [Fintype T] [Nonempty T]
     (P : FiniteSubGaussianProcess Ω T)
@@ -1402,7 +1506,9 @@ theorem finite_chaining_expectation_bound_of_radius_budgets
 /-- Log-cardinality finite chaining bound. Radius-bounded sub-Gaussian
 projection increments yield the explicit finite entropy budget
 `(log |T| + λ²σ²r_j²/2) / λ` at each scale, and the finite chaining theorem
-sums those budgets. -/
+sums those budgets.
+@isnad1 id=le.4h7v.s8.1991a2b381b0 from=translated src=- shape=b038e29e vocab=5854e463
+-/
 theorem finite_chaining_expectation_bound_of_radius_log
     [Fintype Ω] [Fintype T] [Nonempty T]
     (P : FiniteSubGaussianProcess Ω T)
@@ -1427,7 +1533,9 @@ theorem finite_chaining_expectation_bound_of_radius_log
         hlam (hradius j hj) (hradius_nonneg j hj))
 
 /-- Square-root finite chaining bound. This is the optimized finite-index
-sub-Gaussian chaining form for radius-bounded projection increments. -/
+sub-Gaussian chaining form for radius-bounded projection increments.
+@isnad1 id=le.5h6v.s8.b80494ef9f17 from=translated src=- shape=0ec3c66d vocab=b11461b9
+-/
 theorem finite_chaining_expectation_bound_of_radius_sqrt
     [Fintype Ω] [Fintype T] [Nonempty T]
     (P : FiniteSubGaussianProcess Ω T)
@@ -1454,7 +1562,9 @@ theorem finite_chaining_expectation_bound_of_radius_sqrt
 
 /-- Finite dyadic geometric-series budget used by the public discrete Dudley
 corollaries. It records the elementary fact `∑_{j < m} 2^{-j} ≤ 2` in the
-same real-valued denominator form as the radius schedules below. -/
+same real-valued denominator form as the radius schedules below.
+@isnad1 id=le.0h1v.s5.56d0ed255610 from=translated src=- shape=5ea58486 vocab=9d6a7117
+-/
 lemma dyadic_inverse_sum_le_two (m : ℕ) :
     (∑ j ∈ Finset.range m, ((2 : ℝ) ^ j)⁻¹) ≤ 2 := by
   simpa [one_div, inv_pow] using sum_geometric_two_le m
@@ -1462,14 +1572,18 @@ lemma dyadic_inverse_sum_le_two (m : ℕ) :
 /-- Dyadic annulus identity for the geometric radius schedule. The radius at
 scale `j` is twice the width of the dyadic annulus between scales `j` and
 `j + 1`. This is the elementary bridge used to rewrite finite Dudley-style
-dyadic sums in integral-comparison language. -/
+dyadic sums in integral-comparison language.
+@isnad1 id=eq.0h2v.s7.447f16adf3e7 from=translated src=- shape=34951676 vocab=4d09f77c
+-/
 lemma dyadic_radius_eq_two_mul_annulus_width (radiusScale : ℝ) (j : ℕ) :
     radiusScale / (2 : ℝ) ^ j =
       2 * (radiusScale / (2 : ℝ) ^ j - radiusScale / (2 : ℝ) ^ (j + 1)) := by
   field_simp [pow_succ]
   ring
 
-/-- Nonnegativity of dyadic annulus widths under a nonnegative top radius. -/
+/-- Nonnegativity of dyadic annulus widths under a nonnegative top radius.
+@isnad1 id=le.1h2v.s6.65f9a57bac2f from=translated src=- shape=76b9e166 vocab=075a0716
+-/
 lemma dyadic_annulus_width_nonneg {radiusScale : ℝ} (hradiusScale_nonneg : 0 ≤ radiusScale)
     (j : ℕ) :
     0 ≤ radiusScale / (2 : ℝ) ^ j - radiusScale / (2 : ℝ) ^ (j + 1) := by
@@ -1484,7 +1598,9 @@ lemma dyadic_annulus_width_nonneg {radiusScale : ℝ} (hradiusScale_nonneg : 0 �
 
 /-- The dyadic annulus at scale `j` has twice the width of the next lower
 annulus. This is the elementary constant-loss in the shifted integral
-comparison for antitone entropy profiles. -/
+comparison for antitone entropy profiles.
+@isnad1 id=eq.0h2v.s7.b86213e3007d from=translated src=- shape=1a4d908d vocab=4d09f77c
+-/
 lemma dyadic_annulus_width_eq_two_mul_next (radiusScale : ℝ) (j : ℕ) :
     radiusScale / (2 : ℝ) ^ j - radiusScale / (2 : ℝ) ^ (j + 1) =
       2 * (radiusScale / (2 : ℝ) ^ (j + 1) -
@@ -1495,7 +1611,9 @@ lemma dyadic_annulus_width_eq_two_mul_next (radiusScale : ℝ) (j : ℕ) :
 /-- If a function is bounded below by a constant on an interval, then its
 interval integral dominates the rectangle with that height. This is a small
 analysis adapter used to keep the Dudley integral-comparison hypotheses
-explicit. -/
+explicit.
+@isnad1 id=le.3h4v.s6.4187a4977c35 from=translated src=- shape=84085cd7 vocab=e3ac2808
+-/
 lemma interval_const_mul_le_integral_of_le_on
     {f : ℝ → ℝ} {a b c : ℝ}
     (hab : a ≤ b)
@@ -1515,7 +1633,9 @@ shifted dyadic annulus is a lower bound throughout that annulus, so the
 corresponding rectangle is bounded by the interval integral over the annulus.
 
 This is finite-scale analysis only; it does not assert a continuous Dudley
-integral or any measurable-supremum theorem. -/
+integral or any measurable-supremum theorem.
+@isnad1 id=le.3h3v.s8.5e4df0804931 from=translated src=- shape=06c27b4a vocab=842219a4
+-/
 lemma dyadic_lowerEndpoint_mul_width_le_intervalIntegral
     {radiusScale : ℝ} (entropyAtRadius : ℝ → ℝ) (j : ℕ)
     (hradiusScale_nonneg : 0 ≤ radiusScale)
@@ -1551,7 +1671,9 @@ def finiteDyadicEntropyIntegralBudget (radiusScale : ℝ) (m : ℕ)
     (radiusScale / (2 : ℝ) ^ j - radiusScale / (2 : ℝ) ^ (j + 1)) *
       entropyEnvelope j
 
-/-- One-step dyadic entropy budget for a constant entropy envelope. -/
+/-- One-step dyadic entropy budget for a constant entropy envelope.
+@isnad1 id=eq.0h2v.s5.96a242dd3a82 from=translated src=- shape=b5e46c3f vocab=a695847b
+-/
 theorem finiteDyadicEntropyIntegralBudget_one_const
     (radiusScale entropy : ℝ) :
     finiteDyadicEntropyIntegralBudget radiusScale 1 (fun _ : ℕ => entropy) =
@@ -1579,7 +1701,9 @@ For antitone entropy profiles, the lower-endpoint upper sum on annulus `j` is
 controlled by twice the interval integral over annulus `j + 1`. The theorem is
 therefore a finite dyadic Riemann-step bridge toward Dudley-style integral
 language. It is not a continuous Dudley integral theorem, does not involve
-separability, and does not claim measurable suprema over arbitrary classes. -/
+separability, and does not claim measurable suprema over arbitrary classes.
+@isnad1 id=le.3h3v.s8.1572576338e5 from=translated src=- shape=c3fea92d vocab=41b1c168
+-/
 theorem finiteDyadicEntropyAtRadiusUpperSum_le_two_mul_shifted_intervalIntegral_sum
     {radiusScale : ℝ} (m : ℕ) (entropyAtRadius : ℝ → ℝ)
     (hradiusScale_nonneg : 0 ≤ radiusScale)
@@ -1620,7 +1744,9 @@ The caller supplies the finite integral budget, which later can be discharged
 from a true continuous entropy-integral estimate.
 
 This theorem remains finite-scale and finite-sum; it is the analytic
-domination layer needed before a continuous Dudley wrapper can be stated. -/
+domination layer needed before a continuous Dudley wrapper can be stated.
+@isnad1 id=le.4h4v.s8.199543212752 from=translated src=- shape=2af5a483 vocab=41b1c168
+-/
 theorem finiteDyadicEntropyAtRadiusUpperSum_le_two_mul_intervalIntegralBudget
     {radiusScale : ℝ} (m : ℕ) (entropyAtRadius : ℝ → ℝ)
     (integralBudget : ℝ)
@@ -1650,6 +1776,7 @@ The shifted dyadic annuli used by
 compose into one truncated interval. This is a finite adjacent-interval
 identity only: it does not assert any continuous Dudley theorem, separability
 statement, or measurable supremum over an arbitrary class.
+@isnad1 id=interval.1h3v.s7.cd8658c07de6 from=translated src=- shape=4a35519d vocab=ad12d666
 -/
 lemma shiftedDyadicIntervalIntegrable_truncated
     {radiusScale : ℝ} (m : ℕ) (entropyAtRadius : ℝ → ℝ)
@@ -1689,6 +1816,7 @@ integral over the truncated dyadic range `[radiusScale / 2^(m+1), radiusScale/2]
 This is the analytic bookkeeping bridge from a finite dyadic annulus budget to
 a single truncated interval integral. It remains finite-scale and makes no
 continuous Dudley, separability, or arbitrary measurable-supremum claim.
+@isnad1 id=eq.1h3v.s8.fb1461756d45 from=translated src=- shape=6eda0c6e vocab=fa18c147
 -/
 theorem shiftedDyadicIntervalIntegralSum_eq_truncatedIntervalIntegral
     {radiusScale : ℝ} (m : ℕ) (entropyAtRadius : ℝ → ℝ)
@@ -1738,6 +1866,7 @@ additivity.
 The statement is deliberately finite: a finite dyadic scale range, scalar
 entropy profile, explicit antitonicity and interval-integrability hypotheses,
 and no continuous Dudley, separability, or arbitrary measurable-supremum claim.
+@isnad1 id=le.3h3v.s7.5de905237394 from=translated src=- shape=c361b2ae vocab=16447aa7
 -/
 theorem finiteDyadicEntropyAtRadiusUpperSum_le_two_mul_truncatedIntervalIntegral
     {radiusScale : ℝ} (m : ℕ) (entropyAtRadius : ℝ → ℝ)
@@ -1765,20 +1894,26 @@ it is not a continuous metric-entropy function. -/
 def finitePrefixSupEnvelope (entropyAtScale : ℕ → ℝ) : ℕ → ℝ :=
   fun j => (Finset.range (j + 1)).sup' (by simp) entropyAtScale
 
-/-- The finite prefix-sup envelope of a constant scale budget is constant. -/
+/-- The finite prefix-sup envelope of a constant scale budget is constant.
+@isnad1 id=eq.0h1v.s3.24eec33e7876 from=translated src=- shape=945e3f80 vocab=e83d817b
+-/
 theorem finitePrefixSupEnvelope_const (entropy : ℝ) :
     finitePrefixSupEnvelope (fun _ : ℕ => entropy) =
       (fun _ : ℕ => entropy) := by
   funext j
   simp [finitePrefixSupEnvelope]
 
-/-- Each scale budget is bounded by its finite prefix-sup envelope. -/
+/-- Each scale budget is bounded by its finite prefix-sup envelope.
+@isnad1 id=le.0h2v.s3.0cf2100097f3 from=translated src=- shape=2aac4315 vocab=166a2ce2
+-/
 lemma le_finitePrefixSupEnvelope (entropyAtScale : ℕ → ℝ) (j : ℕ) :
     entropyAtScale j ≤ finitePrefixSupEnvelope entropyAtScale j := by
   unfold finitePrefixSupEnvelope
   exact Finset.le_sup' entropyAtScale (by simp)
 
-/-- A monotone finite scale budget is already equal to its prefix-sup envelope. -/
+/-- A monotone finite scale budget is already equal to its prefix-sup envelope.
+@isnad1 id=eq.1h1v.s4.ac7dc585f723 from=translated src=- shape=3dea028b vocab=9e1caa74
+-/
 theorem finitePrefixSupEnvelope_eq_self_of_monotone
     {entropyAtScale : ℕ → ℝ} (hmono : Monotone entropyAtScale) :
     finitePrefixSupEnvelope entropyAtScale = entropyAtScale := by
@@ -1789,7 +1924,9 @@ theorem finitePrefixSupEnvelope_eq_self_of_monotone
       hmono (Nat.le_of_lt_succ (Finset.mem_range.mp hk))
   · exact le_finitePrefixSupEnvelope entropyAtScale j
 
-/-- The finite prefix-sup envelope is monotone in the scale index. -/
+/-- The finite prefix-sup envelope is monotone in the scale index.
+@isnad1 id=monotone.0h1v.s3.c6c3915328f8 from=translated src=- shape=35ce14da vocab=9e1caa74
+-/
 lemma monotone_finitePrefixSupEnvelope (entropyAtScale : ℕ → ℝ) :
     Monotone (finitePrefixSupEnvelope entropyAtScale) := by
   intro i j hij
@@ -1806,7 +1943,9 @@ sum. The hypothesis only samples the external entropy envelope at the lower
 dyadic endpoint for each finite annulus.
 
 This is a finite upper-sum comparison, not a continuous Dudley integral
-theorem and not an infinite-class statement. -/
+theorem and not an infinite-class statement.
+@isnad1 id=le.2h4v.s6.f7ad4a9206e7 from=translated src=- shape=24b9e5ee vocab=c829ef95
+-/
 theorem finiteDyadicEntropyIntegralBudget_le_entropyAtRadiusUpperSum
     {radiusScale : ℝ} (m : ℕ) (entropyEnvelope : ℕ → ℝ)
     (entropyAtRadius : ℝ → ℝ)
@@ -1823,7 +1962,9 @@ theorem finiteDyadicEntropyIntegralBudget_le_entropyAtRadiusUpperSum
 
 /-- Compare the finite dyadic entropy budget with a supplied scalar upper
 budget. A later analytic layer can discharge `hupperSum` from an actual
-entropy-integral estimate; this theorem itself remains finite and discrete. -/
+entropy-integral estimate; this theorem itself remains finite and discrete.
+@isnad1 id=le.3h5v.s6.91cf4b8b6ea7 from=translated src=- shape=571bfbb9 vocab=c829ef95
+-/
 theorem finiteDyadicEntropyIntegralBudget_le_of_entropyAtRadiusUpperSum_le
     {radiusScale : ℝ} (m : ℕ) (entropyEnvelope : ℕ → ℝ)
     (entropyAtRadius : ℝ → ℝ) (integralBudget : ℝ)
@@ -1911,7 +2052,9 @@ end FiniteDyadicDudleyInstance
 
 /-- One-step square-root entropy bound for increments between two finite-net
 projections. This packages the finite-net geometry lemma with the optimized
-sub-Gaussian max bound. -/
+sub-Gaussian max bound.
+@isnad1 id=le.7h7v.s8.b4ee64c25fa6 from=translated src=- shape=89392cc2 vocab=dad074b2
+-/
 theorem net_increment_expectedSup_le_sqrt
     [Fintype Ω] [Fintype T] [Nonempty T]
     {A B : Type*} [Fintype A] [Fintype B]

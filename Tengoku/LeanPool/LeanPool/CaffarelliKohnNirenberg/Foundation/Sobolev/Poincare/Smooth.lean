@@ -30,6 +30,9 @@ private theorem hasDerivAt_segmentBlend {d : ℕ} (x y : Vec d) (t : ℝ) :
   funext s
   exact segmentBlend_eq_add_smul_sub x y s
 
+/--
+@isnad1 id=eq.1h4v.s9.586bcb33cc52 from=translated src=- shape=acd48efc vocab=b75b85fc
+-/
 theorem sub_eq_integral_fderiv_along_segment {d : ℕ} {u : Vec d → ℝ}
     (hu : ContDiff ℝ 1 u) (x y : Vec d) :
     u x - u y = ∫ t in (0 : ℝ)..1,
@@ -62,6 +65,9 @@ theorem sub_eq_integral_fderiv_along_segment {d : ℕ} {u : Vec d → ℝ}
       intervalIntegral.integral_eq_sub_of_hasDerivAt (fun t _ => huγ t) hint
   exact hftc.symm
 
+/--
+@isnad1 id=le.1h4v.s9.31bf4befdbff from=translated src=- shape=6fe89251 vocab=4a943ab6
+-/
 theorem norm_sub_le_integral_fderiv_along_segment {d : ℕ} {u : Vec d → ℝ}
     (hu : ContDiff ℝ 1 u) (x y : Vec d) :
     ‖u x - u y‖ ≤
@@ -96,6 +102,9 @@ theorem norm_sub_le_integral_fderiv_along_segment {d : ℕ} {u : Vec d → ℝ}
         ‖(fderiv ℝ u (segmentBlend x t y)) (x - y)‖ := by
           exact intervalIntegral.norm_integral_le_integral_norm zero_le_one
 
+/--
+@isnad1 id=le.1h4v.s9.1e08dff10f93 from=translated src=- shape=65f36931 vocab=4270adc6
+-/
 theorem norm_sub_le_integral_norm_fderiv_mul_norm_sub_along_segment
     {d : ℕ} {u : Vec d → ℝ} (hu : ContDiff ℝ 1 u) (x y : Vec d) :
     ‖u x - u y‖ ≤

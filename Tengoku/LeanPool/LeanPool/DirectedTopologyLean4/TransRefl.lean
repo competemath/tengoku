@@ -43,6 +43,9 @@ namespace Dihomotopy
 
 open Path.Homotopy
 
+/--
+@isnad1 id=directed.0h0v.s6.6b5c44fce2a1 from=translated src=- shape=fb48e863 vocab=2cd1ee16
+-/
 lemma directed_transReflReparamAux : DirectedMap.Directed
     ({ toFun := fun t => ⟨transReflReparamAux t, transReflReparamAux_mem_I t⟩
        continuous_toFun := Continuous.subtype_mk continuous_transReflReparamAux _ } :
@@ -61,6 +64,9 @@ def TransReflReparamAuxMap : D(I,I) where
   continuous_toFun := Continuous.subtype_mk continuous_transReflReparamAux _
   directed_toFun := directed_transReflReparamAux
 
+/--
+@isnad1 id=eq.0h4v.s5.f4c8b8a60118 from=translated src=- shape=9a5a58ff vocab=ad3cf80f
+-/
 lemma trans_refl_reparam_dipath (p : Dipath x₀ x₁) : p.trans (Dipath.refl x₁) =
     p.reparam TransReflReparamAuxMap (Subtype.ext transReflReparamAux_zero)
       (Subtype.ext transReflReparamAux_one) := by
@@ -76,22 +82,37 @@ if (t : ℝ) ≤ 1/2 then
 else
   2 * t - 1
 
+/--
+@isnad1 id=continuo.0h0v.s4.66feb79c6094 from=translated src=- shape=f7148d33 vocab=755cc9e3
+-/
 @[continuity]
 lemma continuous_ReflTransReparamAux : Continuous ReflTransReparamAux := by
   refine continuous_if_le ?_ ?_ (Continuous.continuousOn ?_) (Continuous.continuousOn ?_) ?_ <;>
   [continuity; continuity; continuity; continuity; skip]
   simp_all
 
+/--
+@isnad1 id=mem.0h1v.s3.d89fe9cd7993 from=translated src=- shape=036a84be vocab=79f9bcf4
+-/
 lemma reflTransReparamAux_mem_I (t : I) : ReflTransReparamAux t ∈ I := by
   unfold ReflTransReparamAux
   split_ifs <;> constructor <;> linarith [unitInterval.le_one t, unitInterval.nonneg t]
 
+/--
+@isnad1 id=eq.0h0v.s4.8ff527bfe7bb from=translated src=- shape=bc5c0df9 vocab=aacd4204
+-/
 lemma reflTransReparamAux_zero : ReflTransReparamAux 0 = 0 :=
 by norm_num [ReflTransReparamAux]
 
+/--
+@isnad1 id=eq.0h0v.s4.c377e78e2e74 from=translated src=- shape=bc5c0df9 vocab=aacd4204
+-/
 lemma reflTransReparamAux_one : ReflTransReparamAux 1 = 1 :=
 by norm_num [ReflTransReparamAux]
 
+/--
+@isnad1 id=directed.0h0v.s6.17a59e95af4e from=translated src=- shape=fb48e863 vocab=30b7820c
+-/
 lemma directed_ReflTransReparamAux : DirectedMap.Directed
     ({ toFun := fun t => ⟨ReflTransReparamAux t, reflTransReparamAux_mem_I t⟩
        continuous_toFun := Continuous.subtype_mk continuous_ReflTransReparamAux _ } :
@@ -115,6 +136,9 @@ def ReflTransReparamAuxMap : D(I,I) where
   continuous_toFun := Continuous.subtype_mk continuous_ReflTransReparamAux _
   directed_toFun := directed_ReflTransReparamAux
 
+/--
+@isnad1 id=eq.0h4v.s6.8f914829b4ac from=translated src=- shape=6f86de83 vocab=fc7cd89e
+-/
 lemma refl_trans_reparam (p : Path x₀ x₁) :
     (Path.refl x₀).trans p =
       p.reparam (fun t => ⟨ReflTransReparamAux t, reflTransReparamAux_mem_I t⟩) (by continuity)
@@ -124,6 +148,9 @@ lemma refl_trans_reparam (p : Path x₀ x₁) :
   simp [Path.trans_apply, Function.comp_apply]
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h4v.s5.79ad07e204d3 from=translated src=- shape=35f24186 vocab=8ea28071
+-/
 lemma refl_trans_reparam_dipath (p : Dipath x₀ x₁) : (Dipath.refl x₀).trans p =
     p.reparam ReflTransReparamAuxMap
       (Subtype.ext reflTransReparamAux_zero) (Subtype.ext reflTransReparamAux_one) := by

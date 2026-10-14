@@ -21,6 +21,7 @@ Continuous Donsker-Varadhan variational inequality.
 
 For probability measures `ρ ≪ π`, the posterior integral of `g` is bounded by
 `KL(ρ‖π)` plus the prior log-moment of `g`.
+@isnad1 id=le.4h4v.s7.d9d90c967632 from=translated src=- shape=5fcfd374 vocab=d7f5b8ea
 -/
 theorem continuous_donsker_varadhan
     (ρ π : Measure Θ) [IsProbabilityMeasure ρ] [IsProbabilityMeasure π]
@@ -67,6 +68,7 @@ Continuous Catoni fixed-`lambda` change-of-measure bound.
 
 The prior log-MGF certificate is supplied in log form:
 `log E_π exp(lambda * (risk - empiricalRisk)) ≤ lambda^2 * B + log(1/delta)`.
+@isnad1 id=le.8h8v.s8.e567e93018c8 from=translated src=- shape=56e351e5 vocab=a9e7adcd
 -/
 theorem continuous_catoni_changeOfMeasure_bound
     (ρ π : Measure Θ) [IsProbabilityMeasure ρ] [IsProbabilityMeasure π]
@@ -145,22 +147,32 @@ def twoPointRisk : TwoPointParameter → ℝ := twoPointGap
 /-- Zero empirical risk for the Catoni witness. -/
 def twoPointEmpiricalRisk : TwoPointParameter → ℝ := fun _ => 0
 
+/--
+@isnad1 id=isprobab.0h0v.s2.c05d8eacfb93 from=translated src=- shape=54c8eceb vocab=1d870f10
+-/
 instance twoPointPrior_isProbabilityMeasure :
     IsProbabilityMeasure twoPointPriorMeasure := by
   unfold twoPointPriorMeasure
   infer_instance
 
+/--
+@isnad1 id=isprobab.0h0v.s2.9a715983e02d from=translated src=- shape=54c8eceb vocab=1da145d9
+-/
 instance twoPointPosterior_isProbabilityMeasure :
     IsProbabilityMeasure twoPointPosteriorMeasure := by
   unfold twoPointPosteriorMeasure
   infer_instance
 
-/-- The two-point posterior is absolutely continuous with respect to the prior. -/
+/-- The two-point posterior is absolutely continuous with respect to the prior.
+@isnad1 id=absolute.0h0v.s2.8aafde1247e5 from=translated src=- shape=93eefbde vocab=7a9c6b65
+-/
 theorem twoPoint_absolutelyContinuous :
     twoPointPosteriorMeasure ≪ twoPointPriorMeasure :=
   Measure.AbsolutelyContinuous.rfl
 
-/-- The continuous Donsker-Varadhan theorem applies to a nonzero two-point gap. -/
+/-- The continuous Donsker-Varadhan theorem applies to a nonzero two-point gap.
+@isnad1 id=le.0h0v.s5.27ff61de4ced from=translated src=- shape=aab64561 vocab=392a719e
+-/
 theorem twoPoint_continuous_dv_nonvacuous :
     ∫ θ, twoPointGap θ ∂twoPointPosteriorMeasure ≤
       (InformationTheory.klDiv twoPointPosteriorMeasure twoPointPriorMeasure).toReal +
@@ -174,12 +186,16 @@ theorem twoPoint_continuous_dv_nonvacuous :
     rw [integrable_congr (llr_self (Measure.dirac true))]
     exact integrable_zero TwoPointParameter ℝ (Measure.dirac true)
 
-/-- The two-point gap is strictly below the trivial unit bound. -/
+/-- The two-point gap is strictly below the trivial unit bound.
+@isnad1 id=lt.0h0v.s4.3bcacc5d095a from=translated src=- shape=a2f93b9d vocab=3a0374ae
+-/
 theorem twoPoint_gap_strictly_below_one :
     ∫ θ, twoPointGap θ ∂twoPointPosteriorMeasure < (1 : ℝ) := by
   norm_num [twoPointPosteriorMeasure, twoPointGap]
 
-/-- The continuous Catoni theorem gives a finite nonzero two-point certificate. -/
+/-- The continuous Catoni theorem gives a finite nonzero two-point certificate.
+@isnad1 id=le.0h0v.s6.a773c4acb5cc from=translated src=- shape=d37f8eee vocab=8cf33931
+-/
 theorem twoPoint_continuous_certificate_nonvacuous :
     ∫ θ, twoPointRisk θ ∂twoPointPosteriorMeasure ≤
       ∫ θ, twoPointEmpiricalRisk θ ∂twoPointPosteriorMeasure +

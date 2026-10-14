@@ -25,7 +25,9 @@ its points the subspace topology of the finite product used in the fixed-point p
 def standardSimplex (k α : Type*) [Semiring k] [PartialOrder k] [Fintype α] : Set (α → k) :=
   {f | (∀ i, 0 ≤ f i) ∧ ∑ i, f i = 1}
 
-/-- The real standard simplex is a closed subset of the unit cube. -/
+/-- The real standard simplex is a closed subset of the unit cube.
+@isnad1 id=iscompac.0h1v.s4.7310dd54c65c from=translated src=- shape=d0f3d1bd vocab=38fb9bd7
+-/
 theorem isCompact_standardSimplex (α : Type*) [Fintype α] :
     IsCompact (standardSimplex ℝ α) := by
   have closed : IsClosed (standardSimplex ℝ α) := by
@@ -61,9 +63,15 @@ instance funlike : FunLike (standardSimplex k α) α k where
   coe_injective := Subtype.val_injective
 
 omit [IsStrictOrderedRing k] in
+/--
+@isnad1 id=eq.0h3v.s6.1d4b98e1b31c from=translated src=- shape=cb09f9de vocab=868851e4
+-/
 lemma funlike_eval1 (f : standardSimplex k α) : f = f.val := rfl
 
 omit [IsStrictOrderedRing k] in
+/--
+@isnad1 id=eq.0h4v.s6.84c824978883 from=translated src=- shape=e42df5a5 vocab=868851e4
+-/
 lemma funlike_eval2 (f : standardSimplex k α) (x : α) : f.val x = f x := rfl
 
 variable {k α} in
@@ -77,11 +85,17 @@ abbrev pure [DecidableEq α] (i : α) : standardSimplex k α := ⟨fun j => if i
   · simp only [Finset.sum_ite_eq, Finset.mem_univ, ite_true]⟩
 
 variable {k α} in
+/--
+@isnad1 id=eq.1h4v.s6.1d6fa291af3e from=translated src=- shape=95ef1b4e vocab=670573ce
+-/
 lemma pure_eval_eq [DecidableEq α] {i j : α} (h : i = j) : pure i j = (1 : k) := by
   rw [← funlike_eval2]
   simp [h]
 
 variable {k α} in
+/--
+@isnad1 id=eq.1h4v.s6.bab0cb10f3e0 from=translated src=- shape=a5922741 vocab=670573ce
+-/
 lemma pure_eval_neq [DecidableEq α] {i j : α} (h : ¬ i = j) : pure i j = (0 : k) := by
   rw [← funlike_eval2]
   simp [h]
@@ -91,6 +105,9 @@ noncomputable instance SInhabitedOfInhabited [DecidableEq α] [Inhabited α] :
   default := pure (default : α)
 
 variable {k α} in
+/--
+@isnad1 id=ex.1h5v.s7.34984661ae6c from=translated src=- shape=3d71e82a vocab=3fce36eb
+-/
 lemma wsum_magic_ineq [PosMulMono k]
     {σ : standardSimplex k α} {f : α → k} {c : k} :
   ∑ i : α, (σ i) *  f i = c → ∃ i, 0 < σ i ∧ f i ≤ c := by

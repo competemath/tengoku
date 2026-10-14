@@ -31,6 +31,9 @@ open scoped Topology
 variable {𝕜 : Type*} [RCLike 𝕜]
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [CompleteSpace E]
 
+/--
+@isnad1 id=other.3h4v.s10.a92b30e20005 from=translated src=- shape=892541ce vocab=401297e0
+-/
 lemma largeEigenspace_mem_invtSubmodule_of_isCompactOperator_of_isSelfAdjoint
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
@@ -60,6 +63,9 @@ lemma largeEigenspace_mem_invtSubmodule_of_isCompactOperator_of_isSelfAdjoint
   -- `s.Elem` and `largeEigenspace`'s index subtype are definitionally, but not
   -- syntactically, equal.
   exact hU'
+/--
+@isnad1 id=other.3h4v.s10.52ac706a73f7 from=translated src=- shape=c0658426 vocab=9366238a
+-/
 lemma largeEigenspace_orthogonal_mem_invtSubmodule_of_isCompactOperator_of_isSelfAdjoint
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
@@ -74,6 +80,9 @@ lemma largeEigenspace_orthogonal_mem_invtSubmodule_of_isCompactOperator_of_isSel
   have hSymm : t.IsSymmetric := (ContinuousLinearMap.isSelfAdjoint_iff_isSymmetric (A := T)).1 hT
   exact hSymm.orthogonalComplement_mem_invtSubmodule (p := largeEigenspace (𝕜 := 𝕜) (E := E) T ε) hU
 /-! ### Finite-rank approximation in operator norm -/
+/--
+@isnad1 id=finitedi.3h4v.s10.af61c7743c32 from=translated src=- shape=f68b5d4a vocab=20283169
+-/
 lemma finiteDimensional_range_comp_largeEigenspaceProjector
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
@@ -103,6 +112,9 @@ lemma finiteDimensional_range_comp_largeEigenspaceProjector
   -- A submodule of a finite-dimensional submodule is finite-dimensional.
   exact Submodule.finiteDimensional_of_le
     (S₁ := LinearMap.range ((T ∘L P : E →L[𝕜] E) : E →ₗ[𝕜] E)) (S₂ := U) hrange_le
+/--
+@isnad1 id=le.3h4v.s10.d549959f66b5 from=translated src=- shape=ce607912 vocab=d2df2adc
+-/
 lemma opNorm_sub_comp_largeEigenspaceProjector_le
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :

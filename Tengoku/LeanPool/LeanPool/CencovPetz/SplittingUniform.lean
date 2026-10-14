@@ -52,6 +52,9 @@ namespace MarkovMorphism
 
 variable {α : Type u} [Fintype α] [Nonempty α]
 
+/--
+@isnad1 id=eq.2h3v.s7.66c45aece7b8 from=translated src=- shape=80a88a41 vocab=7438fb83
+-/
 lemma split_pushforward_eq_uniform_of_apply_eq_div_card (m : α → ℕ) (hm : ∀ a, 0 < m a)
     (p : Simplex α)
     (hp : ∀ a, p.p a = (m a : ℝ) / (Fintype.card (SplitTarget (α := α) m) : ℝ)) :

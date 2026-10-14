@@ -26,7 +26,9 @@ noncomputable section
 namespace CKN
 
 /-- The slice divergence identity holds simultaneously for every member of any
-countable family of admissible spatial test functions. -/
+countable family of admissible spatial test functions.
+@isnad1 id=eventual.4h4v.s10.7373f760445c from=translated src=- shape=2247d9e8 vocab=a4a342bf
+-/
 theorem divfree_slice_weak_countable
     {Ω : Set Vec3} {I : Set ℝ} {u : ParabolicPoint → Vec3}
     (hS2 : ∀ ψ : Vec3 × ℝ → ℝ, ψ ∈ spaceTimeTestFunction (V := ℝ) Ω I →
@@ -66,7 +68,9 @@ private theorem exists_time_radius {I : Set ℝ} (hI : IsOpen I) {s : ℝ}
 
 /-- For a fixed compactly supported smooth test function, the local weak-gradient
 clause of a suitable weak solution holds for almost every time in the full
-interval, after integrating by parts on the fixed spatial support. -/
+interval, after integrating by parts on the fixed spatial support.
+@isnad1 id=eventual.4h8v.s9.d0b6eb7e5764 from=translated src=- shape=244c6cef vocab=6188e917
+-/
 theorem weakGradient_slice_ae_of_sws
     {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     {u : ParabolicPoint → Vec3} {Du : ParabolicPoint → Fin 3 → Vec3}

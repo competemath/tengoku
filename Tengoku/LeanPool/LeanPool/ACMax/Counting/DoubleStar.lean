@@ -58,6 +58,9 @@ noncomputable def deg3Set (G : SimpleGraph V) : Finset V :=
   Finset.univ.filter (fun v => G.degree v = 3)
 
 open Classical in
+/--
+@isnad1 id=iff.0h3v.s6.befb5a22961d from=translated src=- shape=70c60267 vocab=cb62ec33
+-/
 theorem mem_deg3Set {G : SimpleGraph V} {v : V} : v ∈ deg3Set G ↔ G.degree v = 3 := by
   unfold deg3Set
   simp
@@ -104,6 +107,9 @@ noncomputable def mIncidence (G : SimpleGraph V) : ℕ :=
 /-! ### Vocabulary lemmas -/
 
 open Classical in
+/--
+@isnad1 id=iff.0h5v.s6.2ba5dd409df5 from=translated src=- shape=d25c0292 vocab=e684ec26
+-/
 theorem privTwins_spec {G : SimpleGraph V} {g h t : V} :
     t ∈ privTwins G g h ↔ G.Adj g t ∧ G.degree t = 3 ∧ ¬G.Adj h t := by
   unfold privTwins hubTwins deg3Set
@@ -116,6 +122,9 @@ theorem privTwins_spec {G : SimpleGraph V} {g h t : V} :
     exact ⟨⟨ha, h3⟩, fun hc => hnadj hc.1⟩
 
 open Classical in
+/--
+@isnad1 id=iff.0h5v.s6.2ce5a5333b22 from=translated src=- shape=0d7c41bf vocab=6002759c
+-/
 theorem sharedTwins_spec {G : SimpleGraph V} {g h t : V} :
     t ∈ sharedTwins G g h ↔ G.Adj g t ∧ G.Adj h t ∧ G.degree t = 3 := by
   unfold sharedTwins hubTwins deg3Set
@@ -124,12 +133,17 @@ theorem sharedTwins_spec {G : SimpleGraph V} {g h t : V} :
   tauto
 
 open Classical in
+/--
+@isnad1 id=eq.0h4v.s4.740cab19655d from=translated src=- shape=8436c746 vocab=de28e3db
+-/
 theorem sharedTwins_comm (G : SimpleGraph V) (g h : V) :
     sharedTwins G g h = sharedTwins G h g :=
   Finset.inter_comm _ _
 
 open Classical in
-/-- The two private sides are always disjoint. -/
+/-- The two private sides are always disjoint.
+@isnad1 id=disjoint.0h4v.s4.df0deed33698 from=translated src=- shape=8436c746 vocab=36ded271
+-/
 theorem privTwins_disjoint (G : SimpleGraph V) (g h : V) :
     Disjoint (privTwins G g h) (privTwins G h g) := by
   rw [Finset.disjoint_left]
@@ -137,7 +151,9 @@ theorem privTwins_disjoint (G : SimpleGraph V) (g h : V) :
   exact (privTwins_spec.mp ht').2.2 (privTwins_spec.mp ht).1
 
 open Classical in
-/-- Twin/internal split of a hub's neighbourhood: `|D3(g)| + i(g) = deg g`. -/
+/-- Twin/internal split of a hub's neighbourhood: `|D3(g)| + i(g) = deg g`.
+@isnad1 id=eq.0h3v.s6.32edb06f9996 from=translated src=- shape=be71e012 vocab=0c29ae52
+-/
 theorem hubTwins_card_add_intDeg (G : SimpleGraph V) (g : V) :
     (hubTwins G g).card + intDeg G g = G.degree g := by
   have h := Finset.card_sdiff_add_card_inter (G.neighborFinset g) (deg3Set G)
@@ -146,7 +162,9 @@ theorem hubTwins_card_add_intDeg (G : SimpleGraph V) (g : V) :
   omega
 
 open Classical in
-/-- Private/shared split of the twin set: `|priv(g,h)| + |s(g,h)| = |D3(g)|`. -/
+/-- Private/shared split of the twin set: `|priv(g,h)| + |s(g,h)| = |D3(g)|`.
+@isnad1 id=eq.0h4v.s5.84ec928f255b from=translated src=- shape=f43fd187 vocab=ec9249f8
+-/
 theorem privTwins_card_add_shared (G : SimpleGraph V) (g h : V) :
     (privTwins G g h).card + (sharedTwins G g h).card = (hubTwins G g).card := by
   have h1 := Finset.card_sdiff_add_card_inter (hubTwins G g) (hubTwins G h)
@@ -160,7 +178,9 @@ The leak/cross bookkeeping of the double open star, block by block. -/
 open Classical in
 /-- **Centre leak bound.**  The centre `g` of `P = {g} ∪ priv(g,h)` leaks at most
 `s(g,h) + i(g)`: its neighbourhood is `priv(g,h) ⊔ shared(g,h) ⊔ (N(g) \ D)`, and the
-private part stays inside `P`. -/
+private part stays inside `P`.
+@isnad1 id=le.0h4v.s6.81d11c2840e9 from=translated src=- shape=3e7dbc52 vocab=7a591a39
+-/
 theorem doubleStar_center_leak (G : SimpleGraph V) (g h : V) :
     (G.neighborFinset g \ insert g (privTwins G g h)).card
       ≤ (sharedTwins G g h).card + intDeg G g := by
@@ -186,7 +206,9 @@ theorem doubleStar_center_leak (G : SimpleGraph V) (g h : V) :
 
 open Classical in
 /-- **Twin leak bound.**  Each private twin `t ∈ priv(g,h)` (degree `3`, one edge back to
-`g ∈ P`) leaks at most `2` out of `P`. -/
+`g ∈ P`) leaks at most `2` out of `P`.
+@isnad1 id=le.1h5v.s6.373ce1c7b7a1 from=translated src=- shape=315014b8 vocab=45c597ab
+-/
 theorem doubleStar_twin_leak (G : SimpleGraph V) (g h : V) {t : V}
     (ht : t ∈ privTwins G g h) :
     (G.neighborFinset t \ insert g (privTwins G g h)).card ≤ 2 := by
@@ -206,7 +228,9 @@ theorem doubleStar_twin_leak (G : SimpleGraph V) (g h : V) {t : V}
   omega
 
 open Classical in
-/-- **`P`-side leak bound** (assembled): `leak(P) ≤ s(g,h) + i(g) + 2·|priv(g,h)|`. -/
+/-- **`P`-side leak bound** (assembled): `leak(P) ≤ s(g,h) + i(g) + 2·|priv(g,h)|`.
+@isnad1 id=le.0h4v.s7.909854bb428a from=translated src=- shape=c9722680 vocab=7e01b8cc
+-/
 theorem doubleStar_P_leak (G : SimpleGraph V) (g h : V) :
     ∑ p ∈ insert g (privTwins G g h),
         (G.neighborFinset p \ insert g (privTwins G g h)).card
@@ -228,7 +252,9 @@ theorem doubleStar_P_leak (G : SimpleGraph V) (g h : V) :
 open Classical in
 /-- **`P`-side cross bound**: with far pads, the only cross-edges out of `P` into
 `N = {h} ∪ priv(h,g) ∪ F` are the (possible) `g–h` edge and the `M`-edges between the
-private sides: `e(P,N) ≤ [g ~ h] + mCross(g,h)`. -/
+private sides: `e(P,N) ≤ [g ~ h] + mCross(g,h)`.
+@isnad1 id=le.1h5v.s7.44674456782e from=translated src=- shape=38da4532 vocab=51cda607
+-/
 theorem doubleStar_P_cross (G : SimpleGraph V) (g h : V) (F : Finset V)
     (hfar : ∀ f ∈ F, ∀ w ∈ insert g (privTwins G g h) ∪ insert h (privTwins G h g),
       ¬G.Adj f w) :
@@ -330,7 +356,9 @@ two-block witness.  `P = {g} ∪ priv(g,h)`, `N = {h} ∪ priv(h,g) ∪ F`;
   `  = 4·p_g + (|F| + i(g) + i(h) + 2s + 2[g~h] + 2·mCross) ≤ 4·p_g + 4 = 4|P|`
 
 using `p_h + |F| = p_g` — exactly the master arithmetic (with the crossing `M`-edges'
-true cost `2·mCross ≤ 4·mCross`). -/
+true cost `2·mCross ≤ 4·mCross`).
+@isnad1 id=twoblock.1h2v.s4.2612d4ce5815 from=translated src=- shape=93e860ac vocab=95a51803
+-/
 theorem w1_cut_certificate (G : SimpleGraph V) (hcfg : W1Config G) :
     TwoBlockConfig G := by
   obtain ⟨g, h, F, hg4, hh4, hne, hF3, hfar, hcard, hineq⟩ := hcfg
@@ -420,7 +448,9 @@ def CaseMZero (G : SimpleGraph V) : Prop := mIncidence G = 0
 open Classical in
 /-- The `e(M)` **dispatch gate**: the `D`–`D` incidence sum is even (each `M`-edge is
 counted from both ends), so every graph is `e(M) = 0`, `e(M) = 1` (`mIncidence = 2`), or
-in the cherry world.  This is the C0/C5 split of the glue tree. -/
+in the cherry world.  This is the C0/C5 split of the glue tree.
+@isnad1 id=or.0h2v.s4.48488b9d53cb from=translated src=- shape=a8fc87b9 vocab=71c5a241
+-/
 theorem eM_trichotomy (G : SimpleGraph V) :
     CaseMZero G ∨ mIncidence G = 2 ∨ CaseCherry G := by
   have hev : Even (mIncidence G) := sum_inDegree_even G (deg3Set G)
@@ -446,7 +476,9 @@ def SeaFatBoundary (G : SimpleGraph V) : Prop :=
 
 open Classical in
 /-- **The firing bridge**: a hub pair of DS-value `≤ 4` with an exact far-pad supply *is*
-a W1 configuration (the master inequality is the DS value with `gap = |F|`). -/
+a W1 configuration (the master inequality is the DS value with `gap = |F|`).
+@isnad1 id=w1config.7h5v.s8.4a5825832316 from=translated src=- shape=c768493b vocab=1bee6e2e
+-/
 theorem w1Config_of_pair (G : SimpleGraph V) (g h : V) (F : Finset V)
     (hg4 : 4 ≤ G.degree g) (hh4 : 4 ≤ G.degree h) (hne : g ≠ h)
     (hF3 : ∀ f ∈ F, G.degree f = 3)
@@ -487,7 +519,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
 open Classical in
 /-- Bridge: `Finset.inter` under the `Classical` instance equals `∩` under the ambient
 open Classical in
-instance (`DecidableEq` is a subsingleton). -/
+instance (`DecidableEq` is a subsingleton).
+@isnad1 id=eq.0h3v.s5.507f7ceba27c from=translated src=- shape=3dba4853 vocab=b0dba357
+-/
 theorem classical_inter_eq {α : Type*} [inst : DecidableEq α] (s t : Finset α) :
     @Inter.inter _ (@Finset.instInter _ (fun a b => Classical.propDecidable (a = b))) s t
       = s ∩ t := by
@@ -497,7 +531,9 @@ theorem classical_inter_eq {α : Type*} [inst : DecidableEq α] (s t : Finset α
 
 open Classical in
 /-- Bridge: `Finset.sdiff` under the `Classical` instance equals `\` under the ambient
-instance. -/
+instance.
+@isnad1 id=eq.0h3v.s5.1231dd79f2a4 from=translated src=- shape=3dba4853 vocab=d3ecf88d
+-/
 theorem classical_sdiff_eq {α : Type*} [inst : DecidableEq α] (s t : Finset α) :
     @SDiff.sdiff _ (@Finset.instSDiff _ (fun a b => Classical.propDecidable (a = b))) s t
       = s \ t := by
@@ -512,19 +548,27 @@ noncomputable def hubSet (G : SimpleGraph V) : Finset V :=
 
 open Classical in
 omit [DecidableEq V] in
+/--
+@isnad1 id=iff.0h3v.s6.d8b501467f9c from=translated src=- shape=5c451f9a vocab=5b3ceca2
+-/
 theorem mem_hubSet {G : SimpleGraph V} {v : V} : v ∈ hubSet G ↔ 4 ≤ G.degree v := by
   unfold hubSet
   simp
 
 open Classical in
 omit [DecidableEq V] in
+/--
+@isnad1 id=iff.0h3v.s6.b4c5710e2390 from=translated src=- shape=259e2a88 vocab=a01974d0
+-/
 theorem mem_isoTwins {G : SimpleGraph V} {t : V} :
     t ∈ isoTwins G ↔ G.degree t = 3 ∧ ∀ w : V, G.Adj t w → G.degree w ≠ 3 := by
   unfold isoTwins deg3Set
   simp
 
 open Classical in
-/-- `mIncidence` in the ambient-instance sum form. -/
+/-- `mIncidence` in the ambient-instance sum form.
+@isnad1 id=eq.0h2v.s6.0442962f8fe4 from=translated src=- shape=9e425593 vocab=300ede5a
+-/
 theorem mIncidence_eq_sum (G : SimpleGraph V) :
     mIncidence G = ∑ v ∈ deg3Set G, (G.neighborFinset v ∩ deg3Set G).card := by
   unfold mIncidence
@@ -534,7 +578,9 @@ theorem mIncidence_eq_sum (G : SimpleGraph V) :
 
 omit [DecidableEq V] in
 open Classical in
-/-- Two iso twins are never adjacent. -/
+/-- Two iso twins are never adjacent.
+@isnad1 id=not.2h4v.s5.b12ed82b196b from=translated src=- shape=4a6a6e2e vocab=adb10399
+-/
 theorem isoTwins_not_adj (G : SimpleGraph V) {s t : V}
     (hs : s ∈ isoTwins G) (ht : t ∈ isoTwins G) : ¬G.Adj s t :=
   fun hadj => (mem_isoTwins.mp hs).2 t hadj (mem_isoTwins.mp ht).1
@@ -542,7 +588,9 @@ theorem isoTwins_not_adj (G : SimpleGraph V) {s t : V}
 /-! ### The certificates -/
 
 open Classical in
-/-- Neighbourhood–triple non-adjacency gives a zero cross count. -/
+/-- Neighbourhood–triple non-adjacency gives a zero cross count.
+@isnad1 id=eq.3h6v.s6.dabfe2829c8d from=translated src=- shape=3f6929c4 vocab=467f0516
+-/
 theorem nbr_inter_triple_zero (G : SimpleGraph V) (p x y z : V)
     (hx : ¬G.Adj p x) (hy : ¬G.Adj p y) (hz : ¬G.Adj p z) :
     (G.neighborFinset p ∩ ({x, y, z} : Finset V)).card = 0 := by
@@ -559,7 +607,9 @@ theorem nbr_inter_triple_zero (G : SimpleGraph V) (p x y z : V)
 open Classical in
 /-- **Open-star boundary count**: a hub of degree `≤ 4` with two degree-`3` leaves inside
 its triple leaks at most `(4 − 2) + 2 + 2 = 6` — the `P`-side arithmetic of the two-hub
-cut, `n`-independent. -/
+cut, `n`-independent.
+@isnad1 id=le.8h5v.s8.8010e873e463 from=translated src=- shape=002630ff vocab=1e442aa2
+-/
 theorem star3_leak_le_six (G : SimpleGraph V) (h a b : V)
     (hne_ha : h ≠ a) (hne_hb : h ≠ b) (hne_ab : a ≠ b)
     (hadj_a : G.Adj a h) (hadj_b : G.Adj b h)
@@ -610,7 +660,9 @@ open Classical in
 /-- **The two-hub opposite-twin cut, generic `V`** (port of
 `two_hub_opposite_twin_cert_nineteen`, output `TwoBlockConfig`): the boundary tie
 `2·0 + 6 + 6 = 12 ≤ 4·3`.  The hub degrees are only required `≤ 4` (slack-tolerant
-strengthening; the per-`n` versions used `= 4`). -/
+strengthening; the per-`n` versions used `= 4`).
+@isnad1 id=twoblock.34h8v.s8.52f6d0469cbd from=translated src=- shape=aa1b3df7 vocab=13df5abf
+-/
 theorem two_hub_opposite_twin_twoBlock (G : SimpleGraph V) (h₁ h₂ a b c d : V)
     (hdegh₁ : G.degree h₁ ≤ 4) (hdegh₂ : G.degree h₂ ≤ 4)
     (hdega : G.degree a = 3) (hdegb : G.degree b = 3)
@@ -662,7 +714,9 @@ theorem two_hub_opposite_twin_twoBlock (G : SimpleGraph V) (h₁ h₂ a b c d : 
 open Classical in
 /-- **Two hubs with `2 + 2` private iso twins give a two-block cut** — the positive form
 of the per-`n` `hno2hub` selector (`select_finish` + `two_hub_config`): whenever the
-selector's existential holds, the cut fires. -/
+selector's existential holds, the cut fires.
+@isnad1 id=twoblock.6h4v.s8.dcac27cbb440 from=translated src=- shape=3a2ab5f4 vocab=84549f42
+-/
 theorem two_hub_private_pair_twoBlock (G : SimpleGraph V) (h₁ h₂ : V)
     (hdh₁ : G.degree h₁ = 4) (hdh₂ : G.degree h₂ = 4)
     (hne : h₁ ≠ h₂) (hnadj : ¬G.Adj h₁ h₂)

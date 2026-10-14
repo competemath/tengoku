@@ -26,7 +26,9 @@ noncomputable section
 namespace CKN.Core.Endgame
 
 /-- The heat-source exponent is exactly the minimum of the force exponent
-and the exponent obtained after the velocity improvement. -/
+and the exponent obtained after the velocity improvement.
+@isnad1 id=eq.1h1v.s6.080b795f0a69 from=translated src=- shape=53964d43 vocab=463d56ec
+-/
 theorem heat_source_exponent_eq {q : ℝ} (hq : 5 / 2 < q) :
     stepTheta₀ (stepGamma₀ q) = min q (25 / 9 : ℝ) := by
   have hq0 : 0 < q := by linarith only [hq]
@@ -47,7 +49,9 @@ theorem heat_source_exponent_eq {q : ℝ} (hq : 5 / 2 < q) :
     norm_num
 
 /-- The derivative-source exponent may be lowered from the initial velocity
-Morrey exponent on a bounded support. -/
+Morrey exponent on a bounded support.
+@isnad1 id=le.0h1v.s5.d024c467ab6b from=translated src=- shape=13943f3c vocab=eda088ee
+-/
 theorem derivative_source_exponent_le (q : ℝ) :
     stepTheta₁ (stepGamma₀ q) ≤ (25 / 3 : ℝ) := by
   have hg := stepGamma₀_le_fifth q
@@ -56,7 +60,9 @@ theorem derivative_source_exponent_le (q : ℝ) :
   linarith only [hg]
 
 /-- Bounded-support source norms at the paper's exponents supply precisely
-the quantitative bounds required by the heat Hölder theorem. -/
+the quantitative bounds required by the heat Hölder theorem.
+@isnad1 id=and.5h7v.s8.5a92450708c9 from=translated src=- shape=93ba434a vocab=970a9f8b
+-/
 theorem source_norm_bounds_at_holder_exponents
     (q R : ℝ) (KF KG : ℝ≥0∞) (hq : 5 / 2 < q) (hR : 0 < R)
     {z₀ : ParabolicPoint}
@@ -83,7 +89,9 @@ theorem source_norm_bounds_at_holder_exponents
     exact hbound.trans (mul_le_mul_of_nonneg_left (hG j i) (by positivity))
 
 /-- A symmetric ball support gives the same exponent conversion with the
-explicit radius factor from a containing backward cylinder. -/
+explicit radius factor from a containing backward cylinder.
+@isnad1 id=and.5h7v.s8.35ab2c6173c1 from=translated src=- shape=24835b3c vocab=783297e6
+-/
 theorem source_norm_bounds_at_holder_exponents_on_ball
     (q R : ℝ) (KF KG : ℝ≥0∞) (hq : 5 / 2 < q) (hR : 0 < R)
     {z₀ : ParabolicPoint}
@@ -106,7 +114,9 @@ theorem source_norm_bounds_at_holder_exponents_on_ball
     (metricBall_subset_parabolicCylinder_doubled z₀ hR hmem))
 
 /-- On the unit support cylinder the change of derivative-source exponent
-does not enlarge either numerical source bound. -/
+does not enlarge either numerical source bound.
+@isnad1 id=and.4h5v.s8.131c22f97a38 from=translated src=- shape=e677dfab vocab=604df49d
+-/
 theorem source_norm_bounds_at_holder_exponents_unit
     (q : ℝ) (KF KG : ℝ≥0∞) (hq : 5 / 2 < q)
     {F : ParabolicPoint → Vec3} {G : Fin 3 → ParabolicPoint → Vec3}
@@ -124,7 +134,9 @@ theorem source_norm_bounds_at_holder_exponents_unit
       (z₀ := ((0 : Vec3), (0 : ℝ))) (F := F) (G := G) hF hG hsupp
 
 /-- Bounded-support source norms at the paper's exponents supply precisely
-the exponents required by the heat Hölder theorem. -/
+the exponents required by the heat Hölder theorem.
+@isnad1 id=and.5h5v.s8.65e65a45d101 from=translated src=- shape=cd6d9188 vocab=7da105a0
+-/
 theorem source_norms_at_holder_exponents
     {q R : ℝ} (hq : 5 / 2 < q) (hR : 0 < R)
     {z₀ : ParabolicPoint}

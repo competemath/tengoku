@@ -48,6 +48,9 @@ def idxZ (i : Fin k) : ConfigIdx k p := (configIdxEquiv k p).symm (Sum.inl (some
 /-- The `yⱼ` index. -/
 def idxY (j : Fin p) : ConfigIdx k p := (configIdxEquiv k p).symm (Sum.inr j)
 
+/--
+@isnad1 id=eq.0h2v.s5.d454000bcfb3 from=translated src=- shape=70dc7345 vocab=d3b57da9
+-/
 lemma idxZ0_eq : (idxZ0 : ConfigIdx k p) = 0 := by
   simp only [idxZ0, configIdxEquiv, Equiv.symm_trans, Equiv.sumCongr_symm, Equiv.refl_symm,
     Equiv.symm_symm, Equiv.trans_apply, Equiv.sumCongr_apply, Equiv.coe_refl, Sum.map_inl,
@@ -55,43 +58,76 @@ lemma idxZ0_eq : (idxZ0 : ConfigIdx k p) = 0 := by
   ext
   simp
 
+/--
+@isnad1 id=eq.0h3v.s5.94f1a8fea5c0 from=translated src=- shape=41da7840 vocab=b1ed792d
+-/
 lemma idxZ_val (i : Fin k) : (idxZ (p := p) i).val = i.val + 1 := by
   simp [idxZ, configIdxEquiv]
 
+/--
+@isnad1 id=eq.0h3v.s5.e29429c3d0e7 from=translated src=- shape=57a7933f vocab=d4162c05
+-/
 lemma idxY_val (j : Fin p) : (idxY (k := k) j).val = k + 1 + j.val := by
   simp [idxY, configIdxEquiv]
 
+/--
+@isnad1 id=lt.0h3v.s5.3d83e6a1448e from=translated src=- shape=4c32680f vocab=d667ef27
+-/
 lemma idxZ0_lt_idxZ (i : Fin k) : (idxZ0 : ConfigIdx k p) < idxZ i := by
   rw [Fin.lt_def, idxZ0_eq]
   simp [idxZ_val]
 
+/--
+@isnad1 id=lt.0h3v.s5.b583bfac5338 from=translated src=- shape=3fb7ab04 vocab=682e6169
+-/
 lemma idxZ0_lt_idxY (j : Fin p) : (idxZ0 : ConfigIdx k p) < idxY j := by
   rw [Fin.lt_def, idxZ0_eq]
   simp [idxY_val]
 
+/--
+@isnad1 id=lt.0h4v.s5.9690f00e3ce2 from=translated src=- shape=95248ef9 vocab=ea307eea
+-/
 lemma idxZ_lt_idxY (i : Fin k) (j : Fin p) : idxZ i < (idxY j : ConfigIdx k p) := by
   rw [Fin.lt_def]
   simp [idxZ_val, idxY_val]
   omega
 
+/--
+@isnad1 id=iff.0h4v.s5.e3d606ab5996 from=translated src=- shape=12f2d131 vocab=86001e93
+-/
 lemma idxZ_lt_idxZ_iff {i h : Fin k} :
     (idxZ i : ConfigIdx k p) < idxZ h ↔ i < h := by
   rw [Fin.lt_def, Fin.lt_def]
   simp [idxZ_val]
 
+/--
+@isnad1 id=ne.0h3v.s4.d3ef4eea9c2e from=translated src=- shape=4c32680f vocab=45e92d10
+-/
 lemma idxZ0_ne_idxZ (i : Fin k) : (idxZ0 : ConfigIdx k p) ≠ idxZ i :=
   (idxZ0_lt_idxZ i).ne
 
+/--
+@isnad1 id=ne.0h3v.s4.f80b6fe6380c from=translated src=- shape=3fb7ab04 vocab=435d2a99
+-/
 lemma idxZ0_ne_idxY (j : Fin p) : (idxZ0 : ConfigIdx k p) ≠ idxY j :=
   (idxZ0_lt_idxY j).ne
 
+/--
+@isnad1 id=ne.0h4v.s4.1cf59b0bd9e2 from=translated src=- shape=95248ef9 vocab=d4a0ded8
+-/
 lemma idxZ_ne_idxY (i : Fin k) (j : Fin p) : idxZ i ≠ (idxY j : ConfigIdx k p) :=
   (idxZ_lt_idxY i j).ne
 
+/--
+@isnad1 id=not.0h3v.s5.7964737e1073 from=translated src=- shape=a9e1c519 vocab=2a667a66
+-/
 lemma not_lt_idxZ0 (α : ConfigIdx k p) : ¬ α < idxZ0 := by
   rw [idxZ0_eq]
   exact Fin.not_lt_zero α
 
+/--
+@isnad1 id=eq.0h3v.s6.1034e371e9e1 from=translated src=- shape=65d57f33 vocab=7768191a
+-/
 lemma sum_configIdx (f : ConfigIdx k p → ℝ) :
     ∑ α, f α =
       f idxZ0 + ∑ i : Fin k, f (idxZ i) + ∑ j : Fin p, f (idxY j) := by
@@ -114,14 +150,32 @@ def zVec (s t : Fin k → ℝ) (i : Fin k) : Fin 2 → ℝ :=
 def yVec (ρ x : Fin p → ℝ) (j : Fin p) : Fin 2 → ℝ :=
   ![ Real.sqrt (ρ j) * x j, Real.sqrt (ρ j) ]
 
+/--
+@isnad1 id=eq.0h0v.s4.3f170a65c582 from=translated src=- shape=012516b9 vocab=9302eb5e
+-/
 @[simp] lemma z0_zero : z0 0 = 1 := rfl
+/--
+@isnad1 id=eq.0h0v.s4.347473094ff6 from=translated src=- shape=012516b9 vocab=9302eb5e
+-/
 @[simp] lemma z0_one : z0 1 = 0 := by simp [z0]
+/--
+@isnad1 id=eq.0h4v.s5.31b5460d755f from=translated src=- shape=9ee1bdcf vocab=43686387
+-/
 @[simp] lemma zVec_zero (s t : Fin k → ℝ) (i : Fin k) :
     zVec s t i 0 = -Real.sqrt (s i) := rfl
+/--
+@isnad1 id=eq.0h4v.s5.9e29a2101250 from=translated src=- shape=dcbf01a8 vocab=17e3a496
+-/
 @[simp] lemma zVec_one (s t : Fin k → ℝ) (i : Fin k) :
     zVec s t i 1 = Real.sqrt (s i) * t i := by simp [zVec]
+/--
+@isnad1 id=eq.0h4v.s5.a1a612d74f14 from=translated src=- shape=dcbf01a8 vocab=5ed41511
+-/
 @[simp] lemma yVec_zero (ρ x : Fin p → ℝ) (j : Fin p) :
     yVec ρ x j 0 = Real.sqrt (ρ j) * x j := rfl
+/--
+@isnad1 id=eq.0h4v.s5.c6c9585a0040 from=translated src=- shape=72b696a3 vocab=6efe7585
+-/
 @[simp] lemma yVec_one (ρ x : Fin p → ℝ) (j : Fin p) :
     yVec ρ x j 1 = Real.sqrt (ρ j) := by simp [yVec]
 
@@ -134,14 +188,23 @@ def configVec (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) :
     | Sum.inl (some i) => zVec s t i
     | Sum.inr j => yVec ρ x j
 
+/--
+@isnad1 id=eq.0h6v.s5.a2df887d1229 from=translated src=- shape=7f0ea505 vocab=40cd454f
+-/
 lemma configVec_z0 (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) :
     configVec s t ρ x idxZ0 = z0 := by
   simp [configVec, idxZ0]
 
+/--
+@isnad1 id=eq.0h7v.s5.f002e5e8cbbd from=translated src=- shape=96b8502f vocab=f664a2ff
+-/
 lemma configVec_z (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) (i : Fin k) :
     configVec s t ρ x (idxZ i) = zVec s t i := by
   simp [configVec, idxZ]
 
+/--
+@isnad1 id=eq.0h7v.s5.1c64ee13d5f9 from=translated src=- shape=fa3b8692 vocab=98948ccf
+-/
 lemma configVec_y (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) (j : Fin p) :
     configVec s t ρ x (idxY j) = yVec ρ x j := by
   simp [configVec, idxY]
@@ -156,21 +219,33 @@ def Xconfig (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) :
     Matrix (ConfigIdx k p) (ConfigIdx k p) ℝ :=
   fun a b => configVec s t ρ x a ⬝ᵥ configVec s t ρ x b
 
+/--
+@isnad1 id=eq.0h8v.s6.28e95717407b from=translated src=- shape=60b0a0db vocab=b4928855
+-/
 lemma Xconfig_apply (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) (a b : ConfigIdx k p) :
     Xconfig s t ρ x a b = configVec s t ρ x a ⬝ᵥ configVec s t ρ x b :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.c6935bcf171f from=translated src=- shape=61e5c1ab vocab=15eeaae8
+-/
 lemma Xconfig_eq_mul_transpose (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) :
     Xconfig s t ρ x = configMat s t ρ x * (configMat s t ρ x)ᵀ := by
   ext a b
   simp [Xconfig, configMat, mul_apply, transpose_apply, dotProduct]
 
+/--
+@isnad1 id=issymm.0h6v.s5.edc2b0240078 from=translated src=- shape=848d3809 vocab=d3e7bcf8
+-/
 lemma Xconfig_isSymm (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) :
     (Xconfig s t ρ x).IsSymm := by
   rw [Xconfig_eq_mul_transpose]
   ext a b
   simp [mul_apply, transpose_apply, mul_comm]
 
+/--
+@isnad1 id=possemid.0h6v.s5.1b6eff3a9fc6 from=translated src=- shape=0b7cf1c0 vocab=97139ea6
+-/
 lemma Xconfig_posSemidef (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) :
     (Xconfig s t ρ x).PosSemidef := by
   rw [Xconfig_eq_mul_transpose]
@@ -181,46 +256,76 @@ lemma Xconfig_posSemidef (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) :
 
 /-! ### Inner products of configuration vectors -/
 
+/--
+@isnad1 id=eq.0h0v.s4.cd46efe99082 from=translated src=- shape=7df33ff6 vocab=39e67982
+-/
 lemma z0_dot_z0 : z0 ⬝ᵥ z0 = 1 := by
   simp [dotProduct, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h4v.s5.869eb4e768fc from=translated src=- shape=2e4c0ad3 vocab=0adc595d
+-/
 lemma z0_dot_zVec (s t : Fin k → ℝ) (i : Fin k) :
     z0 ⬝ᵥ zVec s t i = -Real.sqrt (s i) := by
   simp [dotProduct, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h4v.s5.d75a59d68aee from=translated src=- shape=caf16b39 vocab=2f6a2199
+-/
 lemma z0_dot_yVec (ρ x : Fin p → ℝ) (j : Fin p) :
     z0 ⬝ᵥ yVec ρ x j = Real.sqrt (ρ j) * x j := by
   simp [dotProduct, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h5v.s6.899eda8bd226 from=translated src=- shape=1c1ba080 vocab=eacdcf5e
+-/
 lemma zVec_dot_zVec (s t : Fin k → ℝ) (i h : Fin k) :
     zVec s t i ⬝ᵥ zVec s t h =
       Real.sqrt (s i) * Real.sqrt (s h) * (1 + t i * t h) := by
   simp [dotProduct, Fin.sum_univ_two]
   ring
 
+/--
+@isnad1 id=eq.0h8v.s6.dc8606635fc8 from=translated src=- shape=286c1555 vocab=32dd6f2f
+-/
 lemma zVec_dot_yVec (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) (i : Fin k) (j : Fin p) :
     zVec s t i ⬝ᵥ yVec ρ x j =
       Real.sqrt (s i) * Real.sqrt (ρ j) * (t i - x j) := by
   simp [dotProduct, Fin.sum_univ_two]
   ring
 
+/--
+@isnad1 id=eq.0h6v.s5.3b5ed2e38f02 from=translated src=- shape=a0a42bdf vocab=f3d2a9ea
+-/
 lemma Xconfig_z0_z0 (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) :
     Xconfig s t ρ x idxZ0 idxZ0 = 1 := by
   rw [Xconfig_apply, configVec_z0, z0_dot_z0]
 
+/--
+@isnad1 id=eq.0h7v.s5.ba51d860dc11 from=translated src=- shape=45196024 vocab=51b9b87d
+-/
 lemma Xconfig_z0_z (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) (i : Fin k) :
     Xconfig s t ρ x idxZ0 (idxZ i) = -Real.sqrt (s i) := by
   rw [Xconfig_apply, configVec_z0, configVec_z, z0_dot_zVec]
 
+/--
+@isnad1 id=eq.0h7v.s5.7c15d670f84d from=translated src=- shape=1afbb1d9 vocab=68378443
+-/
 lemma Xconfig_z0_y (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) (j : Fin p) :
     Xconfig s t ρ x idxZ0 (idxY j) = Real.sqrt (ρ j) * x j := by
   rw [Xconfig_apply, configVec_z0, configVec_y, z0_dot_yVec]
 
+/--
+@isnad1 id=eq.0h8v.s6.e0a62889b54d from=translated src=- shape=7b0bfc7d vocab=22842b67
+-/
 lemma Xconfig_z_z (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) (i h : Fin k) :
     Xconfig s t ρ x (idxZ i) (idxZ h) =
       Real.sqrt (s i) * Real.sqrt (s h) * (1 + t i * t h) := by
   rw [Xconfig_apply, configVec_z, configVec_z, zVec_dot_zVec]
 
+/--
+@isnad1 id=eq.0h8v.s6.fd89a3868fd2 from=translated src=- shape=c332dcdc vocab=b32ee712
+-/
 lemma Xconfig_z_y (s t : Fin k → ℝ) (ρ x : Fin p → ℝ) (i : Fin k) (j : Fin p) :
     Xconfig s t ρ x (idxZ i) (idxY j) =
       Real.sqrt (s i) * Real.sqrt (ρ j) * (t i - x j) := by
@@ -240,20 +345,32 @@ def configD (t : Fin k → ℝ) (ρ x : Fin p → ℝ) (i : Fin k) : ℝ :=
 def configσ (s : Fin k → ℝ) : ℝ :=
   ∑ i, s i
 
+/--
+@isnad1 id=le.1h6v.s5.0aaeb8c894d5 from=translated src=- shape=e7f77a69 vocab=ae12cecf
+-/
 lemma configH_nonneg (t : Fin k → ℝ) {ρ : Fin p → ℝ} (hρ : ∀ j, 0 < ρ j)
     (x : Fin p → ℝ) (i : Fin k) : 0 ≤ configH t ρ x i :=
   sum_nonneg fun j _ =>
     mul_nonneg (hρ j).le (sq_nonneg _)
 
+/--
+@isnad1 id=lt.1h6v.s5.0f0c04c149da from=translated src=- shape=e1593386 vocab=4f5f6392
+-/
 lemma configD_pos (t : Fin k → ℝ) {ρ : Fin p → ℝ} (hρ : ∀ j, 0 < ρ j)
     (x : Fin p → ℝ) (i : Fin k) : 0 < configD t ρ x i :=
   lt_of_lt_of_le zero_lt_one (le_add_of_nonneg_right (configH_nonneg t hρ x i))
 
+/--
+@isnad1 id=le.1h2v.s5.ebbc5dc9e618 from=translated src=- shape=00c9b24f vocab=1d0be145
+-/
 lemma configσ_nonneg {s : Fin k → ℝ} (hs : ∀ i, 0 < s i) : 0 ≤ configσ s :=
   sum_nonneg fun i _ => (hs i).le
 
 /-! ### Diagonal expansion of `M` -/
 
+/--
+@isnad1 id=eq.0h4v.s7.092821736c5f from=translated src=- shape=a06052b3 vocab=99103e0e
+-/
 lemma vecMulVec_sub_single_diag {n : Type*} [DecidableEq n] (u v a : n) :
     vecMulVec (e u - e v) (e u - e v) a a =
       if u = v then (0 : ℝ) else if a = u ∨ a = v then 1 else 0 := by
@@ -264,6 +381,9 @@ lemma vecMulVec_sub_single_diag {n : Type*} [DecidableEq n] (u v a : n) :
     have : ¬ (a = u ∧ a = v) := fun h => huv (h.1.symm.trans h.2)
     split_ifs <;> simp_all
 
+/--
+@isnad1 id=eq.0h3v.s8.de5b8ad0ace3 from=translated src=- shape=b57b1e75 vocab=cf4d4a52
+-/
 lemma M_diag {n : Type*} [Fintype n] [DecidableEq n] [LinearOrder n]
     (X : Matrix n n ℝ) (a : n) :
     M X a a =
@@ -314,16 +434,25 @@ lemma M_diag {n : Type*} [Fintype n] [DecidableEq n] [LinearOrder n]
 
 variable (s t : Fin k → ℝ) (ρ x : Fin p → ℝ)
 
+/--
+@isnad1 id=lt.1h7v.s6.5b026309d63a from=translated src=- shape=dadcef73 vocab=d2d23fdc
+-/
 lemma Xconfig_z0_z_neg (hs : ∀ i, 0 < s i) (i : Fin k) :
     Xconfig s t ρ x idxZ0 (idxZ i) < 0 := by
   rw [Xconfig_z0_z]
   linarith [Real.sqrt_pos.mpr (hs i)]
 
+/--
+@isnad1 id=le.1h7v.s6.640d2147f78a from=translated src=- shape=28c34ca9 vocab=874186ae
+-/
 lemma Xconfig_z0_y_nonneg (hx : ∀ j, 0 ≤ x j) (j : Fin p) :
     0 ≤ Xconfig s t ρ x idxZ0 (idxY j) := by
   rw [Xconfig_z0_y]
   exact mul_nonneg (Real.sqrt_nonneg _) (hx j)
 
+/--
+@isnad1 id=lt.2h8v.s6.da6a5bec9315 from=translated src=- shape=2e272611 vocab=2694c60d
+-/
 lemma Xconfig_z_z_pos (hs : ∀ i, 0 < s i) (ht : ∀ i, 0 < t i) (i h : Fin k) :
     0 < Xconfig s t ρ x (idxZ i) (idxZ h) := by
   rw [Xconfig_z_z]
@@ -332,7 +461,9 @@ lemma Xconfig_z_z_pos (hs : ∀ i, 0 < s i) (ht : ∀ i, 0 < t i) (i h : Fin k) 
   have h3 : 0 < 1 + t i * t h := by nlinarith [ht i, ht h]
   positivity
 
-/-- `M_{00} = 1 + σ`. -/
+/-- `M_{00} = 1 + σ`.
+@isnad1 id=eq.2h6v.s7.a0525c20dbff from=translated src=- shape=64f18802 vocab=8b85a9ea
+-/
 lemma MX_z0_z0 (hs : ∀ i, 0 < s i) (hx : ∀ j, 0 ≤ x j) :
     M (Xconfig s t ρ x) idxZ0 idxZ0 = 1 + configσ s := by
   rw [M_diag, Xconfig_z0_z0]
@@ -372,14 +503,18 @@ lemma MX_z0_z0 (hs : ∀ i, 0 < s i) (hx : ∀ j, 0 ≤ x j) :
   rw [hsum]
   ring
 
-/-- `M_{0i} = 0`. -/
+/-- `M_{0i} = 0`.
+@isnad1 id=eq.0h7v.s6.736d69028509 from=translated src=- shape=7bbeb954 vocab=0fb64db6
+-/
 lemma MX_z0_z (i : Fin k) :
     M (Xconfig s t ρ x) idxZ0 (idxZ i) = 0 := by
   rw [M_apply_of_ne _ (Xconfig_isSymm s t ρ x) (idxZ0_ne_idxZ (p := p) i)]
   rw [posPart_apply, Xconfig_z0_z, max_eq_right (neg_nonpos.mpr (Real.sqrt_nonneg _)),
     zero_pow (by decide)]
 
-/-- `M_{0ybar} = ρⱼ xⱼ²`. -/
+/-- `M_{0ybar} = ρⱼ xⱼ²`.
+@isnad1 id=eq.2h7v.s7.a27ef3e0e313 from=translated src=- shape=cbf97355 vocab=791147bd
+-/
 lemma MX_z0_y (hρ : ∀ j, 0 < ρ j) (hx : ∀ j, 0 ≤ x j) (j : Fin p) :
     M (Xconfig s t ρ x) idxZ0 (idxY j) = ρ j * x j ^ 2 := by
   rw [M_apply_of_ne _ (Xconfig_isSymm s t ρ x) (idxZ0_ne_idxY (k := k) j)]
@@ -388,7 +523,9 @@ lemma MX_z0_y (hρ : ∀ j, 0 < ρ j) (hx : ∀ j, 0 ≤ x j) (j : Fin p) :
     mul_nonneg (Real.sqrt_nonneg _) (hx j)
   rw [max_eq_left hnn, mul_pow, Real.sq_sqrt (hρ j).le]
 
-/-- Off-diagonal `z`-block: `M_{ih} = sᵢ sₕ (1 + tᵢ tₕ)²` for `i ≠ h`. -/
+/-- Off-diagonal `z`-block: `M_{ih} = sᵢ sₕ (1 + tᵢ tₕ)²` for `i ≠ h`.
+@isnad1 id=eq.3h8v.s7.3bf9ce8a20ef from=translated src=- shape=d991712b vocab=d1769e85
+-/
 lemma MX_z_z_of_ne (hs : ∀ i, 0 < s i) (ht : ∀ i, 0 < t i) {i h : Fin k}
     (hih : i ≠ h) :
     M (Xconfig s t ρ x) (idxZ i) (idxZ h) =
@@ -406,7 +543,9 @@ lemma MX_z_z_of_ne (hs : ∀ i, 0 < s i) (ht : ∀ i, 0 < t i) {i h : Fin k}
     exact this.le
   rw [max_eq_left hpos, mul_pow, mul_pow, Real.sq_sqrt (hs i).le, Real.sq_sqrt (hs h).le]
 
-/-- `M_{iybar} = sᵢ ρⱼ (tᵢ - xⱼ)₊²`. -/
+/-- `M_{iybar} = sᵢ ρⱼ (tᵢ - xⱼ)₊²`.
+@isnad1 id=eq.2h8v.s7.359bb5aefd06 from=translated src=- shape=543d65b5 vocab=cb19bbb1
+-/
 lemma MX_z_y (hs : ∀ i, 0 < s i) (hρ : ∀ j, 0 < ρ j) (i : Fin k) (j : Fin p) :
     M (Xconfig s t ρ x) (idxZ i) (idxY j) =
       s i * ρ j * (max (t i - x j) 0) ^ 2 := by
@@ -425,7 +564,9 @@ lemma MX_z_y (hs : ∀ i, 0 < s i) (hρ : ∀ j, 0 < ρ j) (i : Fin k) (j : Fin 
     simp [c, mul_pow, Real.sq_sqrt (hs i).le, Real.sq_sqrt (hρ j).le]
   rw [hc2]
 
-/-- Diagonal `z`-block: `M_{ii} = sᵢ² (1 + tᵢ²)² + sᵢ dᵢ`. -/
+/-- Diagonal `z`-block: `M_{ii} = sᵢ² (1 + tᵢ²)² + sᵢ dᵢ`.
+@isnad1 id=eq.3h7v.s7.c202652b8e38 from=translated src=- shape=9f94fdc0 vocab=e41abd3d
+-/
 lemma MX_z_z_diag (hs : ∀ i, 0 < s i) (ht : ∀ i, 0 < t i) (hρ : ∀ j, 0 < ρ j)
     (i : Fin k) :
     M (Xconfig s t ρ x) (idxZ i) (idxZ i) =
@@ -505,7 +646,9 @@ lemma MX_z_z_diag (hs : ∀ i, 0 < s i) (ht : ∀ i, 0 < t i) (hρ : ∀ j, 0 < 
   rw [hlow, hup, configD]
   ring
 
-/-- Combined `z`-block formula, including the Kronecker term. -/
+/-- Combined `z`-block formula, including the Kronecker term.
+@isnad1 id=eq.3h8v.s8.a3c3aa223a21 from=translated src=- shape=5e3f9dc8 vocab=82308904
+-/
 lemma MX_z_z (hs : ∀ i, 0 < s i) (ht : ∀ i, 0 < t i) (hρ : ∀ j, 0 < ρ j)
     (i h : Fin k) :
     M (Xconfig s t ρ x) (idxZ i) (idxZ h) =
@@ -517,11 +660,17 @@ lemma MX_z_z (hs : ∀ i, 0 < s i) (ht : ∀ i, 0 < t i) (hρ : ∀ j, 0 < ρ j)
 
 /-! ### MX09 — first column -/
 
+/--
+@isnad1 id=lt.2h6v.s7.9d6b96a3bccc from=translated src=- shape=7ba1eaab vocab=4aae1d1a
+-/
 lemma MX_z0_z0_pos (hs : ∀ i, 0 < s i) (hx : ∀ j, 0 ≤ x j) :
     0 < M (Xconfig s t ρ x) idxZ0 idxZ0 := by
   rw [MX_z0_z0 s t ρ x hs hx]
   linarith [configσ_nonneg hs]
 
+/--
+@isnad1 id=le.3h7v.s7.22a0068759f8 from=translated src=- shape=64d983c8 vocab=4aae1d1a
+-/
 lemma MX_z0_nonneg (hs : ∀ i, 0 < s i) (hρ : ∀ j, 0 < ρ j) (hx : ∀ j, 0 ≤ x j)
     (α : ConfigIdx k p) :
     0 ≤ M (Xconfig s t ρ x) idxZ0 α := by

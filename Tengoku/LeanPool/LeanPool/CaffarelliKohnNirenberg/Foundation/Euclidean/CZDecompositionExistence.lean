@@ -285,6 +285,9 @@ private theorem dyadicBadPart_mean_zero
       simp [dyadicAverage]
     _ = 0 := by rw [hzero, neg_zero]
 
+/--
+@isnad1 id=ex.2h2v.s6.bef6c8c94821 from=translated src=- shape=885e5c10 vocab=ef415655
+-/
 theorem exists_calderonZygmund_decomposition
     {F : Vec3 → ℝ} {height : ℝ} (hF : Integrable F)
     (hheight : 0 < height) :

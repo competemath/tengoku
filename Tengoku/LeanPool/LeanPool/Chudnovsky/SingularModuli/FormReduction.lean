@@ -45,12 +45,21 @@ open UpperHalfPlane
 def Equiv (f g : BQF) : Prop :=
   ∃ p q r s : ℤ, p * s - q * r = 1 ∧ act f p q r s = g
 
+/--
+@isnad1 id=equiv.0h1v.s2.5ff39f907dc5 from=translated src=- shape=b3bac8d8 vocab=5f96a957
+-/
 @[refl] theorem Equiv.refl (f : BQF) : Equiv f f := ⟨1, 0, 0, 1, by ring, act_one f⟩
 
+/--
+@isnad1 id=equiv.1h2v.s3.e89d156c5380 from=translated src=- shape=7e524d71 vocab=5f96a957
+-/
 theorem Equiv.symm {f g : BQF} (h : Equiv f g) : Equiv g f := by
   obtain ⟨p, q, r, s, hdet, hfg⟩ := h
   exact ⟨s, -q, -r, p, by ring_nf; linarith [hdet], by rw [← hfg]; exact act_act_inv f hdet⟩
 
+/--
+@isnad1 id=equiv.2h3v.s4.772b5580df4a from=translated src=- shape=0bc0c4a6 vocab=5f96a957
+-/
 theorem Equiv.trans {f g h : BQF} (hfg : Equiv f g) (hgh : Equiv g h) : Equiv f h := by
   obtain ⟨p, q, r, s, hdet, rfl⟩ := hfg
   obtain ⟨p', q', r', s', hdet', rfl⟩ := hgh
@@ -59,28 +68,54 @@ theorem Equiv.trans {f g h : BQF} (hfg : Equiv f g) (hgh : Equiv g h) : Equiv f 
   nlinarith [hdet, hdet']
 
 /-- The `T`-generator: shift `(a, b, c) ↦ (a, b + 2an, a n² + b n + c)`; preserves the form
-class and (obviously) the discriminant. -/
+class and (obviously) the discriminant.
+@isnad1 id=equiv.0h2v.s4.deb0920f8378 from=translated src=- shape=974bacbd vocab=e82b5512
+-/
 theorem Equiv.T (f : BQF) (n : ℤ) : Equiv f (act f 1 n 0 1) := ⟨1, n, 0, 1, by ring, rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.4c89dd412010 from=translated src=- shape=3030bca5 vocab=eb5bf9b1
+-/
 lemma act_T_a (f : BQF) (n : ℤ) : (act f 1 n 0 1).a = f.a := by simp
+/--
+@isnad1 id=eq.0h2v.s5.7756e0a1fed5 from=translated src=- shape=8311608f vocab=e3551142
+-/
 lemma act_T_b (f : BQF) (n : ℤ) : (act f 1 n 0 1).b = f.b + 2 * f.a * n := by
   simp only [act_b]; ring
+/--
+@isnad1 id=eq.0h2v.s6.f66aa27b5907 from=translated src=- shape=c56d25f0 vocab=f9d59480
+-/
 lemma act_T_c (f : BQF) (n : ℤ) : (act f 1 n 0 1).c = f.a * n ^ 2 + f.b * n + f.c := by
   simp only [act_c]; ring
 
-/-- The `S`-generator: swap `(a, b, c) ↦ (c, −b, a)`. -/
+/-- The `S`-generator: swap `(a, b, c) ↦ (c, −b, a)`.
+@isnad1 id=equiv.0h1v.s4.605588481dc4 from=translated src=- shape=f50007ae vocab=fe417af9
+-/
 theorem Equiv.S (f : BQF) : Equiv f (act f 0 (-1) 1 0) := ⟨0, -1, 1, 0, by ring, rfl⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.5e37bee24dba from=translated src=- shape=60361bef vocab=9c3c448c
+-/
 lemma act_S_a (f : BQF) : (act f 0 (-1) 1 0).a = f.c := by simp
+/--
+@isnad1 id=eq.0h1v.s5.4c0503617055 from=translated src=- shape=7a4222d2 vocab=2beeb790
+-/
 lemma act_S_b (f : BQF) : (act f 0 (-1) 1 0).b = -f.b := by simp only [act_b]; ring
+/--
+@isnad1 id=eq.0h1v.s5.dd44f6f2110c from=translated src=- shape=60361bef vocab=9c3c448c
+-/
 lemma act_S_c (f : BQF) : (act f 0 (-1) 1 0).c = f.a := by simp only [act_c]; ring
 
-/-- Equivalent forms have equal discriminant. -/
+/-- Equivalent forms have equal discriminant.
+@isnad1 id=eq.1h2v.s3.2b760d619d0b from=translated src=- shape=52d409ee vocab=e39e3965
+-/
 theorem Equiv.disc_eq {f g : BQF} (h : Equiv f g) : disc f = disc g := by
   obtain ⟨p, q, r, s, hdet, rfl⟩ := h
   rw [disc_act, hdet]; ring
 
-/-- Equivalence preserves primitivity. -/
+/-- Equivalence preserves primitivity.
+@isnad1 id=isprimit.2h2v.s3.003a5f93e99b from=translated src=- shape=a72c41e2 vocab=e36be2c1
+-/
 theorem Equiv.isPrimitive {f g : BQF} (h : Equiv f g) (hf : IsPrimitive f) : IsPrimitive g := by
   obtain ⟨p, q, r, s, hdet, rfl⟩ := h
   exact hf.act hdet
@@ -92,7 +127,9 @@ theorem Equiv.isPrimitive {f g : BQF} (h : Equiv f g) (hf : IsPrimitive f) : IsP
 def IsReduced (f : BQF) : Prop := -f.a ≤ f.b ∧ f.b ≤ f.a ∧ f.a ≤ f.c
 
 /-- **(C6) Enumeration.** The only positive-definite reduced forms of discriminant `−163`
-are `(1, −1, 41)` and `(1, 1, 41)`. -/
+are `(1, −1, 41)` and `(1, 1, 41)`.
+@isnad1 id=or.3h1v.s6.220340ded201 from=translated src=- shape=72b41438 vocab=216b0b9c
+-/
 theorem reduced_disc_neg163 {f : BQF} (ha : 0 < f.a) (hred : IsReduced f)
     (hdisc : disc f = -163) :
     f = ⟨1, -1, 41⟩ ∨ f = ⟨1, 1, 41⟩ := by
@@ -150,14 +187,18 @@ private theorem exists_reduced_aux : ∀ (n : ℕ) (f : BQF), IsPosDef f → f.a
       exact ⟨g, (hEqf1.trans hEqf2).trans hg1, hg2, hg3⟩
 
 /-- **Existence of a reduced representative.** Every positive-definite form is
-`SL₂(ℤ)`-equivalent to a reduced positive-definite form. -/
+`SL₂(ℤ)`-equivalent to a reduced positive-definite form.
+@isnad1 id=ex.1h1v.s4.ca69c3469c4f from=translated src=- shape=41509329 vocab=c94cc395
+-/
 theorem exists_reduced_equiv (f : BQF) (hf : IsPosDef f) :
     ∃ g, Equiv f g ∧ IsPosDef g ∧ IsReduced g :=
   exists_reduced_aux f.a.toNat f hf rfl
 
 /-- **(C6), form level.** Every positive-definite form of discriminant `−163` is
 `SL₂(ℤ)`-equivalent to `(1, −1, 41)` or `(1, 1, 41)` — the two (`T`-related) presentations
-of the class of `τ₁₆₃`.  This is `h(−163) = 1` for forms. -/
+of the class of `τ₁₆₃`.  This is `h(−163) = 1` for forms.
+@isnad1 id=or.2h1v.s5.dc9110f2da9a from=translated src=- shape=ea4b28f0 vocab=0c6ac02d
+-/
 theorem equiv_of_disc_neg163 {f : BQF} (hpd : IsPosDef f) (hdisc : disc f = -163) :
     Equiv f ⟨1, -1, 41⟩ ∨ Equiv f ⟨1, 1, 41⟩ := by
   obtain ⟨g, hEq, hgpd, hgred⟩ := exists_reduced_equiv f hpd
@@ -200,7 +241,9 @@ private lemma reprN_eq_reprB (m d : ℕ) : reprN m d = reprB m d := by
 `m = 41, 43, 61` is `d = 163` (i.e. `D₀ = −163`).  The `{41,43,47}` trap of §6.6 is exactly
 that `d = 43` would also survive there; here it does not.  Decided by the kernel on the
 `List`-based recomputation `reprB` of `reprN`, which evaluates far faster than the
-`Finset` decidability instances. -/
+`Finset` decidability instances.
+@isnad1 id=eq.4h1v.s6.6d1245698f8e from=translated src=- shape=5500c0db vocab=70b3d74d
+-/
 theorem three_prime_N : ∀ d ∈ Finset.Icc 1 244,
     reprN 41 d = true → reprN 43 d = true → reprN 61 d = true → d = 163 := by
   have key : ∀ d < 245, reprB 41 d = true → reprB 43 d = true → reprB 61 d = true → d = 163 := by
@@ -255,7 +298,9 @@ private lemma reprN_of_relation {m : ℕ} (hm : m ≤ 61) {D0 t l : ℤ} (hD3 : 
 /-- **(C5), integer form.** The wrapper consumed by the rationality argument: if a common
 CM point of primitive discriminant `D₀ ≤ −3` carries integral matrices of determinants
 `41, 43, 61` (trace `tᵢ`, non-zero multiplier `λᵢ`, so `tᵢ² − 4mᵢ = D₀ λᵢ²`), then
-`D₀ = −163`. -/
+`D₀ = −163`.
+@isnad1 id=eq.7h7v.s8.d1e0fd957565 from=translated src=- shape=22464904 vocab=5c924531
+-/
 theorem disc_of_three_relations {D0 : ℤ} (hD3 : D0 ≤ -3)
     {t1 l1 t2 l2 t3 l3 : ℤ} (hl1 : l1 ≠ 0) (hl2 : l2 ≠ 0) (hl3 : l3 ≠ 0)
     (h1 : t1 ^ 2 - 4 * 41 = D0 * l1 ^ 2) (h2 : t2 ^ 2 - 4 * 43 = D0 * l2 ^ 2)
@@ -280,7 +325,9 @@ this yields the analytic statement `PhaseC-PLAN.md` (C6) needs. -/
 
 open UpperHalfPlane in
 /-- **Root transport.** If `act f p q r s = g` with `p s − q r = 1` and `τ` is a root of `f`,
-then `N • τ` is a root of `g` for the inverse matrix `N = ![![s,−q],![−r,p]]`. -/
+then `N • τ` is a root of `g` for the inverse matrix `N = ![![s,−q],![−r,p]]`.
+@isnad1 id=ex.3h7v.s8.0b4f4897fb78 from=translated src=- shape=6da85f0c vocab=b0d828cd
+-/
 theorem isRoot_smul {f g : BQF} {p q r s : ℤ} (hdet : p * s - q * r = 1)
     (hg : act f p q r s = g) {τ : ℍ} (hroot : IsRoot f τ) :
     ∃ N : Matrix.SpecialLinearGroup (Fin 2) ℤ, IsRoot g (N • τ) := by
@@ -307,7 +354,9 @@ theorem isRoot_smul {f g : BQF} {p q r s : ℤ} (hdet : p * s - q * r = 1)
   field_simp
   linear_combination hform
 
-/-- `τ₁₆₃` is the root of the reduced form `(1, −1, 41)` (`41 − τ + τ² = 0`). -/
+/-- `τ₁₆₃` is the root of the reduced form `(1, −1, 41)` (`41 − τ + τ² = 0`).
+@isnad1 id=isroot.0h0v.s4.a31fc23adae5 from=translated src=- shape=ae9ebad3 vocab=bb50a3a2
+-/
 theorem isRoot_τ₁₆₃ : IsRoot ⟨1, -1, 41⟩ Chudnovsky.τ₁₆₃ := by
   simp only [IsRoot]
   have hre : Chudnovsky.τ₁₆₃.re = 1 / 2 := rfl
@@ -323,7 +372,9 @@ theorem isRoot_τ₁₆₃ : IsRoot ⟨1, -1, 41⟩ Chudnovsky.τ₁₆₃ := by
 private lemma posdef_1m141 : IsPosDef ⟨1, -1, 41⟩ := ⟨by norm_num, by norm_num [disc]⟩
 
 /-- **(C6), analytic form.** Every CM point of a positive-definite form of discriminant
-`−163` is `SL₂(ℤ)`-equivalent to `τ₁₆₃`. -/
+`−163` is `SL₂(ℤ)`-equivalent to `τ₁₆₃`.
+@isnad1 id=ex.3h2v.s7.f9646c818435 from=translated src=- shape=6c5229b2 vocab=6fb267dc
+-/
 theorem cm_disc_neg163_smul_eq_τ₁₆₃ {f : BQF} (hpd : IsPosDef f) (hdisc : disc f = -163)
     {τ : ℍ} (hroot : IsRoot f τ) :
     ∃ M : Matrix.SpecialLinearGroup (Fin 2) ℤ, M • τ = Chudnovsky.τ₁₆₃ := by

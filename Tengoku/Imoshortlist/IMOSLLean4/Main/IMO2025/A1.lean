@@ -58,17 +58,23 @@ def good (s : ℕ → ℤ × ℤ) :=
 /-- The function `f(u, v) = (-(u + v), uv)`. -/
 def f (p : ℤ × ℤ) := (-(p.1 + p.2), p.1 * p.2)
 
-/-- The formula `a^2 + (-(a + b))a + ab = 0`. -/
+/-- The formula `a^2 + (-(a + b))a + ab = 0`.
+@isnad1 id=eq.0h2v.s6.ec5b0fa9d6af from=translated src=- shape=3a10a32b vocab=b0c84f33
+-/
 theorem quadratic_formula (a b : ℤ) : a ^ 2 + -(a + b) * a + a * b = 0 := by
   rw [Int.pow_succ, Int.pow_one, ← Int.add_mul, Int.mul_comm,
     ← Int.mul_add, Int.add_right_comm, Int.add_right_neg, Int.mul_zero]
 
-/-- The formula `u^2 - v^2 = (u - v)(u + v)`, implemented to avoid imports. -/
+/-- The formula `u^2 - v^2 = (u - v)(u + v)`, implemented to avoid imports.
+@isnad1 id=eq.0h2v.s6.2b7508a9812a from=translated src=- shape=f0a005c7 vocab=fb2191f5
+-/
 theorem Int_sq_sub_sq (u v : ℤ) : u ^ 2 - v ^ 2 = (u + v) * (u - v) := by
   rw [Int.mul_sub, Int.add_mul, Int.add_mul, ← Int.sub_sub, Int.mul_comm v,
     Int.add_sub_cancel, Int.pow_succ, Int.pow_one, Int.pow_succ, Int.pow_one]
 
-/-- If `(a, b) = f(u, v)`, then `u` and `v` are roots of the polynomial `x^2 + ax + b`. -/
+/-- If `(a, b) = f(u, v)`, then `u` and `v` are roots of the polynomial `x^2 + ax + b`.
+@isnad1 id=isquadro.0h1v.s3.1034569ea03e from=translated src=- shape=6ee7d3ca vocab=15f6b071
+-/
 theorem is_quad_root_of_f (p) : is_quad_root_of (f p) p := by
   rcases p with ⟨u, v⟩
   refine ⟨quadratic_formula u v, ?_⟩
@@ -76,7 +82,9 @@ theorem is_quad_root_of_f (p) : is_quad_root_of (f p) p := by
   exact quadratic_formula v u
 
 /-- If `u ≠ v`, then `u` and `v` are roots of the polynomial `x^2 + ax + b`
-  if and only if `(a, b) = f(u, v)`, i.e. `a = -(u + v)` and `b = uv`. -/
+  if and only if `(a, b) = f(u, v)`, i.e. `a = -(u + v)` and `b = uv`.
+@isnad1 id=iff.1h2v.s4.f1bb2ee5c4a8 from=translated src=- shape=44e732db vocab=0939abb0
+-/
 theorem is_quad_root_of_iff_eq_f {p q : ℤ × ℤ} (hp : q.1 ≠ q.2) :
     is_quad_root_of p q ↔ p = f q := by
   refine ⟨λ h ↦ ?_, λ h ↦ h ▸ is_quad_root_of_f q⟩
@@ -93,7 +101,9 @@ theorem is_quad_root_of_iff_eq_f {p q : ℤ × ℤ} (hp : q.1 ≠ q.2) :
   rw [h0, ← quadratic_formula u v, Int.add_right_inj] at h
   exact Prod.ext h0 h
 
-/-- If `f(u, v) = (a, b)`, then `a^2 - 4b ≥ 0`. -/
+/-- If `f(u, v) = (a, b)`, then `a^2 - 4b ≥ 0`.
+@isnad1 id=le.1h2v.s6.dfacdd3acb42 from=translated src=- shape=baf36b44 vocab=7f626f5e
+-/
 theorem discriminant_nonneg_of_f {p q} (h : f p = q) : q.1 ^ 2 - 4 * q.2 ≥ 0 := by
   calc q.1 ^ 2 - 2 * 2 * q.2
   _ = (-(p.1 + p.2)) ^ 2 - 2 * 2 * (p.1 * p.2) := by rw [← h, f]
@@ -104,14 +114,18 @@ theorem discriminant_nonneg_of_f {p q} (h : f p = q) : q.1 ^ 2 - 4 * q.2 ≥ 0 :
 
 namespace good
 
-/-- The constant `(1, -2)` sequence is good. -/
+/-- The constant `(1, -2)` sequence is good.
+@isnad1 id=good.0h0v.s4.97b50d14ea04 from=translated src=- shape=b467d123 vocab=ebde9b08
+-/
 theorem of_const_one_neg_two : good (λ _ ↦ (1, -2)) :=
   λ _ ↦ ⟨(by decide : (1 : ℤ) ≠ -2), is_quad_root_of_f (1, -2)⟩
 
 variable {s : ℕ → ℤ × ℤ} (hs : good s)
 include hs
 
-/-- We have the formula `(a_i, b_i) = f(a_{i + 1}, b_{i + 1})`. -/
+/-- We have the formula `(a_i, b_i) = f(a_{i + 1}, b_{i + 1})`.
+@isnad1 id=eq.1h2v.s5.2bc8aa2f8edd from=translated src=- shape=09e774cc vocab=44a80568
+-/
 theorem map_eq_f_map_succ (i) : s i = f (s (i + 1)) :=
   let ⟨h, h0⟩ := hs i; (is_quad_root_of_iff_eq_f h).mp h0
 
@@ -169,7 +183,9 @@ theorem eq_const_one_neg_two_of_b0_ne_zero (hs0 : (s 0).2 ≠ 0) : s = λ _ ↦ 
 
 end good
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.1h1v.s6.900402d1f03d from=translated src=- shape=8cadfd98 vocab=d98f8287
+-/
 theorem final_solution (hp : p.2 ≠ 0) : (∃ s, good s ∧ s 0 = p) ↔ p = (1, -2) := by
   refine ⟨?_, λ hp0 ↦ ⟨λ _ ↦ (1, -2), good.of_const_one_neg_two, hp0.symm⟩⟩
   rintro ⟨s, hs, rfl⟩; exact congrFun (hs.eq_const_one_neg_two_of_b0_ne_zero hp) 0

@@ -31,11 +31,17 @@ noncomputable section
 
 attribute [local instance] Classical.propDecidable
 
+/--
+@isnad1 id=contdiff.1h1v.s8.0783e2e659c9 from=translated src=- shape=1661dba1 vocab=f72e27c7
+-/
 theorem seeleyCutoffExtension_contDiff (v : Vec 3 → ℝ) (hv : ContDiff ℝ 1 v) :
     ContDiff ℝ 1 (seeleyCutoffExtension v) := by
   exact (canonicalBallCutoff_smooth (0 : Vec 3) (by norm_num) (by norm_num)
     |>.of_le (by simp)).mul (seeleyExtension_contDiff v hv)
 
+/--
+@isnad1 id=eq.1h2v.s6.14d178451d17 from=translated src=- shape=0f08941a vocab=63c9dc2a
+-/
 theorem seeleyCutoffExtension_eq_on_unitBall {v : Vec 3 → ℝ} {x : Vec 3}
     (hx : x ∈ euclideanBall (0 : Vec 3) 1) :
     seeleyCutoffExtension v x = v x := by

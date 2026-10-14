@@ -37,6 +37,9 @@ def HasWeakGradientOn {d : ℕ}
     (U : Set (Vec d)) (u : Vec d → ℝ) (Du : Vec d → Vec d) : Prop :=
   ∀ i : Fin d, HasWeakPartialDerivOn U i u (fun x => Du x i)
 
+/--
+@isnad1 id=iff.0h5v.s7.f6ed6ce13547 from=translated src=- shape=e67c5601 vocab=99a70158
+-/
 theorem hasWeakPartialDerivOn_iff_forall_testFunction
     {d : ℕ} {U : Set (Vec d)} {i : Fin d}
     {u gi : Vec d → ℝ} :
@@ -56,7 +59,9 @@ theorem hasWeakPartialDerivOn_iff_forall_testFunction
 
 namespace HasWeakPartialDerivOn
 
-/-- Locally integrable weak partial derivatives are unique almost everywhere. -/
+/-- Locally integrable weak partial derivatives are unique almost everywhere.
+@isnad1 id=eventual.5h6v.s7.a92f7c6ecc95 from=translated src=- shape=157bb616 vocab=4b1d9320
+-/
 theorem ae_eq {d : ℕ} {U : Set (Vec d)} (hU : IsOpen U)
     {i : Fin d} {u gi hi : Vec d → ℝ}
     (hgiLoc : MeasureTheory.LocallyIntegrableOn gi U MeasureTheory.volume)
@@ -141,6 +146,9 @@ theorem ae_eq {d : ℕ} {U : Set (Vec d)} (hU : IsOpen U)
 
 end HasWeakPartialDerivOn
 
+/--
+@isnad1 id=hasweakp.3h6v.s6.795157da6340 from=translated src=- shape=c4b50205 vocab=dc8711ea
+-/
 theorem HasWeakPartialDerivOn.restrict {d : ℕ}
     {U V : Set (Vec d)} (_ : IsOpen V) (hVU : V ⊆ U)
     {i : Fin d} {u gi : Vec d → ℝ}
@@ -178,6 +186,9 @@ theorem HasWeakPartialDerivOn.restrict {d : ℕ}
         hGradZeroU,
     hWeak]
 
+/--
+@isnad1 id=hasweakg.3h5v.s5.696579647eb8 from=translated src=- shape=dd20a516 vocab=37c2cead
+-/
 theorem HasWeakGradientOn.restrict {d : ℕ}
     {U V : Set (Vec d)} (hVOpen : IsOpen V) (hVU : V ⊆ U)
     {u : Vec d → ℝ} {Du : Vec d → Vec d}
@@ -186,6 +197,9 @@ theorem HasWeakGradientOn.restrict {d : ℕ}
   intro i
   exact (h i).restrict hVOpen hVU
 
+/--
+@isnad1 id=hasweakp.1h4v.s8.7366b4bcc7f5 from=translated src=- shape=5f3643d2 vocab=1fe60055
+-/
 theorem HasWeakPartialDerivOn.of_contDiff {d : ℕ}
     {U : Set (Vec d)} {i : Fin d} {f : Vec d → ℝ}
     (hf : ContDiff ℝ 1 f) :
@@ -231,6 +245,9 @@ theorem HasWeakPartialDerivOn.of_contDiff {d : ℕ}
     rw [Filter.EventuallyEq.fderiv_eq hφEq]
     simp
 
+/--
+@isnad1 id=hasweakg.1h3v.s8.b06e6e9efa23 from=translated src=- shape=9aba36b8 vocab=83119195
+-/
 theorem HasWeakGradientOn.of_contDiff {d : ℕ}
     {U : Set (Vec d)} {f : Vec d → ℝ}
     (hf : ContDiff ℝ 1 f) :

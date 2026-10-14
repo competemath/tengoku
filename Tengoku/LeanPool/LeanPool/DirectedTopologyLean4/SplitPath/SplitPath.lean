@@ -52,6 +52,9 @@ if (t : ℝ) ≤ (T : ℝ) then
 else
   (1 + t - 2*T) / (2 * (1-T))
 
+/--
+@isnad1 id=continuo.2h1v.s6.0786d12fedcc from=translated src=- shape=3a482a62 vocab=1b22fb5b
+-/
 @[continuity]
 lemma continuous_trans_reparam {T : I} (hT₀ : 0 < T) (hT₁ : T < 1) : Continuous (transReparam T)
     := by
@@ -66,6 +69,9 @@ lemma continuous_trans_reparam {T : I} (hT₀ : 0 < T) (hT₁ : T < 1) : Continu
   simp [hx]
   ring
 
+/--
+@isnad1 id=mem.2h2v.s6.aad6fcbe0bf6 from=translated src=- shape=e12d174c vocab=d85add7c
+-/
 lemma trans_reparam_mem_I (t : I) {T : I} (hT₀ : 0 < T) (hT₁ : T < 1) :
     transReparam T t ∈ I := by
   unfold transReparam
@@ -82,6 +88,9 @@ lemma trans_reparam_mem_I (t : I) {T : I} (hT₀ : 0 < T) (hT₁ : T < 1) :
     · exact (div_le_one (unitIAux.double_sigma_pos_of_lt_one hT₁)).mpr (by
         linarith only [unitInterval.le_one t])
 
+/--
+@isnad1 id=eq.0h1v.s4.d152ec82ab99 from=translated src=- shape=da8c25f1 vocab=ce310540
+-/
 lemma trans_reparam_zero (T : I) : transReparam T 0 = 0 := by
   unfold transReparam
   simp only [Set.Icc.coe_zero, zero_div, add_zero, ite_eq_left_iff, not_le, div_eq_zero_iff,
@@ -89,6 +98,9 @@ lemma trans_reparam_zero (T : I) : transReparam T 0 = 0 := by
   intro hT
   linarith [unitInterval.nonneg T]
 
+/--
+@isnad1 id=eq.1h1v.s5.4d4343795c62 from=translated src=- shape=c69d99d9 vocab=d85add7c
+-/
 lemma trans_reparam_one {T : I} (hT₁ : T < 1) : transReparam T 1 = 1 := by
   unfold transReparam
   split_ifs
@@ -103,6 +115,9 @@ lemma trans_reparam_one {T : I} (hT₁ : T < 1) : transReparam T 1 = 1 := by
       have h₁ : T ≠ 1 := ne_of_lt hT₁
       exact fun h₂ => h₁ (Subtype.coe_inj.mp ((sub_eq_zero.mp h₂).symm))
 
+/--
+@isnad1 id=monotone.2h1v.s6.dc6ba0e86486 from=translated src=- shape=3a482a62 vocab=7dc857a0
+-/
 lemma monotone_trans_reparam {T : I} (hT₀ : 0 < T) (hT₁ : T < 1) :
     Monotone (transReparam T) := by
   intro x y hxy
@@ -118,6 +133,9 @@ lemma monotone_trans_reparam {T : I} (hT₀ : 0 < T) (hT₁ : T < 1) :
   · apply (div_le_div_iff_of_pos_right h2σT).mpr
     linarith [Subtype.coe_le_coe.mpr hxy]
 
+/--
+@isnad1 id=eq.2h6v.s7.1716dd5018e6 from=translated src=- shape=d73fd6da vocab=743a7888
+-/
 lemma first_trans_second_reparam_eq_self_aux (γ : Path x₀ x₁) (t : I) {T : I}
     (hT₀ : 0 < T) (hT₁ : T < 1) :
     γ t = ((FirstPart γ T).trans (SecondPart γ T)).reparam
@@ -168,6 +186,9 @@ lemma first_trans_second_reparam_eq_self_aux (γ : Path x₀ x₁) (t : I) {T : 
                   (ne_of_gt (unitIAux.double_sigma_pos_of_lt_one hT₁))]
       _ = (1 - T) * (2 * ((1 + t - 2 * T) / (2 * (1 - T))) - 1) + T := by ring
 
+/--
+@isnad1 id=eq.2h5v.s7.4e7889d20205 from=translated src=- shape=93bc181f vocab=663a0c3f
+-/
 lemma first_trans_second_reparam_eq_self (γ : Path x₀ x₁) {T : I} (hT₀ : 0 < T) (hT₁ : T < 1) :
     γ = ((FirstPart γ T).trans (SecondPart γ T)).reparam
     (fun t => ⟨transReparam T t, trans_reparam_mem_I t hT₀ hT₁⟩)

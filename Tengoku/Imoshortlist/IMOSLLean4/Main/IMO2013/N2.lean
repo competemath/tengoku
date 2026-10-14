@@ -36,7 +36,9 @@ def good (F) [Field F] (k c : ℕ) :=
   ∀ n > 0, ∃ S : Multiset ℕ, S.card = k ∧ (∀ m ∈ S, 0 < m) ∧
     ((n + c : ℕ) : F) / n = (S.map λ m ↦ ((m + 1 : ℕ) : F) / m).prod
 
-/-- If `(k, c)` is good, then `(k + 1, 2c + 1)` is good. -/
+/-- If `(k, c)` is good, then `(k + 1, 2c + 1)` is good.
+@isnad1 id=good.1h3v.s6.755dac07407f from=translated src=- shape=806ed823 vocab=088e51cf
+-/
 theorem good_two_mul_add_one [Field F] [CharZero F] (h : good F k c) :
     good F (k + 1) (2 * c + 1) := by
   ---- Divide into two cases: `n` is even and `n` is odd.
@@ -77,7 +79,9 @@ theorem good_two_mul_add_one [Field F] [CharZero F] (h : good F k c) :
     _ = (((2 * t + 1) ::ₘ T).map λ (m : ℕ) ↦ (m.succ : F) / m).prod := by
       rw [map_cons, prod_cons, ← h2, Nat.add_right_comm]; rfl
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=good.0h2v.s5.cabe936d28a0 from=translated src=- shape=58d27fe6 vocab=51923282
+-/
 theorem final_solution (F) [Field F] [CharZero F] (k) : good F k (2 ^ k - 1) := by
   induction k with
   | zero =>

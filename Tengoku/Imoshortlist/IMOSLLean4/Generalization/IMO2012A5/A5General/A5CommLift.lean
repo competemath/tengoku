@@ -32,9 +32,15 @@ variable [CommSemiring R] [Ring S]
 def codomainLift (f : R → S) (x : R) : Subring.closure (Set.range f) :=
   ⟨f x, Subring.subset_closure (Set.mem_range_self x)⟩
 
+/--
+@isnad1 id=good.1h3v.s8.100b6f2300ac from=translated src=- shape=adc2efeb vocab=b4efdf73
+-/
 lemma codomainLift_is_good {f : R → S} (hf : good f) : good (codomainLift f) :=
   λ a b ↦ Subtype.ext (hf a b)
 
+/--
+@isnad1 id=nontrivi.1h3v.s8.9449d075ab60 from=translated src=- shape=adc2efeb vocab=9c343f4a
+-/
 lemma codomainLift_is_NontrivialGood {f : R → S} (hf : NontrivialGood f) :
     NontrivialGood (codomainLift f) :=
   ⟨codomainLift_is_good hf.is_good, Subtype.ext hf.map_zero_add_one⟩

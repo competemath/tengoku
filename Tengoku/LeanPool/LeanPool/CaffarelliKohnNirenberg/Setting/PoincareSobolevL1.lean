@@ -39,6 +39,9 @@ attribute [local instance] Classical.propDecidable
 def unitEuclideanBall : Set (Vec 3) :=
   euclideanBall (0 : Vec 3) 1
 
+/--
+@isnad1 id=isbounde.0h0v.s2.2df47c347a6c from=translated src=- shape=cef8a6bf vocab=70053689
+-/
 theorem unitEuclideanBall_bounded :
     IsBoundedDomain unitEuclideanBall := by
   refine ⟨1, by norm_num, ?_⟩

@@ -54,6 +54,9 @@ noncomputable def layerInitSeg (N r t : ℕ) : Finset (Cube N) :=
 noncomputable def upperLayerShadow (N r : ℕ) (A : Finset (Cube N)) : Finset (Cube N) :=
   (Finset.upShadow A).filter (fun x => x.card = r + 1)
 
+/--
+@isnad1 id=eq.0h2v.s5.249dcbcad7ca from=translated src=- shape=d5a93d80 vocab=e5a148da
+-/
 lemma binomPrefix_eq_card_lt (N r : ℕ) :
     binomPrefix N r = (Finset.univ.filter (fun (x : Cube N) => x.card < r)).card := by
   unfold binomPrefix
@@ -74,11 +77,17 @@ lemma binomPrefix_eq_card_lt (N r : ℕ) :
     rw [Finset.mem_powersetCard] at hx hy
     omega
 
+/--
+@isnad1 id=iff.0h4v.s5.8dcd23cf95c2 from=translated src=- shape=b17e3cb9 vocab=169a71a6
+-/
 lemma mem_layerInitSeg_iff {N r t : ℕ} {x : Cube N} :
     x ∈ layerInitSeg N r t ↔ x.card = r ∧ rank x < binomPrefix N r + t := by
   simp [layerInitSeg, simplicialInitSeg]
   tauto
 
+/--
+@isnad1 id=eq.1h3v.s4.e669a4dd0061 from=translated src=- shape=60565f91 vocab=0701f11b
+-/
 lemma layerInitSeg_card {N r t : ℕ} (ht : t ≤ Nat.choose N r) :
     (layerInitSeg N r t).card = t := by
   have hmem : ∀ x : Cube N,
@@ -123,15 +132,24 @@ lemma layerInitSeg_card {N r t : ℕ} (ht : t ≤ Nat.choose N r) :
   rw [← Finset.card_image_of_injective _ rank_injective, himage]
   simp
 
+/--
+@isnad1 id=eq.1h4v.s5.0a128453fdb3 from=translated src=- shape=632d859b vocab=9a53d205
+-/
 lemma upperLayerShadow_sized {N r : ℕ} {A : Finset (Cube N)} {y : Cube N}
     (hy : y ∈ upperLayerShadow N r A) : y.card = r + 1 :=
   (Finset.mem_filter.mp hy).2
 
+/--
+@isnad1 id=eq.1h2v.s5.2841212b5d08 from=translated src=- shape=500c150e vocab=886c09ec
+-/
 lemma neighborhood_binomPrefix {N r : ℕ} (hr : 1 ≤ r) :
     neighborhood 1 (simplicialInitSeg N (binomPrefix N r)) =
     simplicialInitSeg N (binomPrefix N (r + 1)) := by
   rw [neighborhood_initSeg_eq, H_binomPrefix N r hr]
 
+/--
+@isnad1 id=iff.0h4v.s6.77ccfb36f9ae from=translated src=- shape=071693a3 vocab=3c5cd6e1
+-/
 lemma mem_layerInitSeg_iff_rank {N r t : ℕ} {x : Cube N} :
     x ∈ layerInitSeg N r t ↔
       x.card = r ∧ binomPrefix N r ≤ rank x ∧ rank x < binomPrefix N r + t := by
@@ -142,6 +160,9 @@ lemma mem_layerInitSeg_iff_rank {N r t : ℕ} {x : Cube N} :
   · rintro ⟨hcard, hrank⟩
     exact ⟨hrank.2, hcard⟩
 
+/--
+@isnad1 id=eq.1h3v.s5.1b093bfd1e63 from=translated src=- shape=f4acda58 vocab=a592e022
+-/
 lemma simplicialInitSeg_decomp {N r t : ℕ} (ht : t ≤ Nat.choose N r) :
     simplicialInitSeg N (binomPrefix N r + t) =
     (simplicialInitSeg N (binomPrefix N r)) ∪ layerInitSeg N r t := by
@@ -173,6 +194,9 @@ lemma simplicialInitSeg_decomp {N r t : ℕ} (ht : t ≤ Nat.choose N r) :
     · omega
     · exact hrank
 
+/--
+@isnad1 id=le.1h3v.s6.01d987ed22ac from=translated src=- shape=e438c5a7 vocab=1a27587d
+-/
 lemma upShadow_subset_neighborhood {N r : ℕ} (A : Finset (Cube N)) (_ : ∀ x ∈ A, x.card = r) :
     Finset.upShadow A ⊆ neighborhood 1 A := by
   intro x hx
@@ -197,6 +221,9 @@ lemma upShadow_subset_neighborhood {N r : ℕ} (A : Finset (Cube N)) (_ : ∀ x 
     rw [hsd]; simp
   omega
 
+/--
+@isnad1 id=and.3h4v.s6.8cab8b77f734 from=translated src=- shape=f2a5ec8b vocab=cdfc0bc4
+-/
 lemma hDist_eq_one_of_card_diff {N r : ℕ} {u x : Cube N} (hu : u.card = r)
     (hx : x.card = r + 1) (hd : hDist u x ≤ 1) :
     u ⊆ x ∧ (x \ u).card = 1 := by
@@ -218,6 +245,9 @@ lemma hDist_eq_one_of_card_diff {N r : ℕ} {u x : Cube N} (hu : u.card = r)
     exact hudiff
   exact ⟨hsub, by omega⟩
 
+/--
+@isnad1 id=le.2h4v.s5.3d745de7d9f8 from=translated src=- shape=ccf90da3 vocab=bdd7b190
+-/
 lemma card_le_of_hDist_le_one {N r : ℕ} {u x : Cube N} (hu : u.card = r) (hd : hDist u x ≤ 1) :
     x.card ≤ r + 1 := by
   unfold hDist at hd
@@ -230,11 +260,17 @@ lemma card_le_of_hDist_le_one {N r : ℕ} {u x : Cube N} (hu : u.card = r) (hd :
   have hx : x.card ≤ (x \ u).card + u.card := Finset.card_le_card_sdiff_add_card
   omega
 
+/--
+@isnad1 id=eq.0h4v.s6.a6e830d9fea0 from=translated src=- shape=2aa711d8 vocab=28e46fb9
+-/
 lemma neighborhood_union {N r : ℕ} (A B : Finset (Cube N)) :
     neighborhood r (A ∪ B) = neighborhood r A ∪ neighborhood r B := by
   ext x
   simp [mem_neighborhood_iff, or_and_right, exists_or]
 
+/--
+@isnad1 id=eq.2h3v.s5.e3243b6e8e91 from=translated src=- shape=d4f1b3c9 vocab=37092dfc
+-/
 lemma upperShadowVal_eq_card_upperLayerShadow {N r t : ℕ} (hr : 1 ≤ r)
     (ht : t ≤ Nat.choose N r) :
     upperShadowVal N r t = (upperLayerShadow N r (layerInitSeg N r t)).card := by
@@ -328,6 +364,9 @@ real set-family upper shadow `upperLayerShadow`, not the numerical
 `upperShadow` wrapper.
 -/
 
+/--
+@isnad1 id=eq.1h3v.s5.e8510d753a0a from=translated src=- shape=aa1c2b5f vocab=9548cabf
+-/
 lemma upShadow_eq_upperLayerShadow_of_uniform {N r : ℕ} {A : Finset (Cube N)}
     (hA : ∀ x ∈ A, x.card = r) :
     Finset.upShadow A = upperLayerShadow N r A := by
@@ -342,18 +381,27 @@ lemma upShadow_eq_upperLayerShadow_of_uniform {N r : ℕ} {A : Finset (Cube N)}
     exact hcard
   · exact And.left
 
+/--
+@isnad1 id=eq.1h3v.s6.8d11b21e7394 from=translated src=- shape=2783d5e1 vocab=b4e9a44d
+-/
 lemma upperLayerShadow_card_eq_shadow_compls {N r : ℕ} {A : Finset (Cube N)}
     (hA : ∀ x ∈ A, x.card = r) :
     (upperLayerShadow N r A).card = (Finset.shadow Aᶜˢ).card := by
   rw [← upShadow_eq_upperLayerShadow_of_uniform hA]
   rw [Finset.shadow_compls, Finset.card_compls]
 
+/--
+@isnad1 id=eq.1h4v.s5.c4f697aafba8 from=translated src=- shape=4c53f2fe vocab=b653148f
+-/
 lemma layerInitSeg_uniform {N r t : ℕ} :
     ∀ x ∈ layerInitSeg N r t, x.card = r := by
   intro x hx
   simp only [layerInitSeg, Finset.mem_filter] at hx
   exact hx.2
 
+/--
+@isnad1 id=le.1h3v.s5.76b2c3a493d4 from=translated src=- shape=8e4a7f42 vocab=3334e7b6
+-/
 lemma card_le_choose_of_uniform {N r : ℕ} {A : Finset (Cube N)}
     (hA : ∀ x ∈ A, x.card = r) :
     A.card ≤ Nat.choose N r := by
@@ -367,17 +415,26 @@ lemma card_le_choose_of_uniform {N r : ℕ} {A : Finset (Cube N)}
     simp [Finset.mem_powersetCard]]
   rw [Finset.card_powersetCard, Finset.card_univ, Fintype.card_fin]
 
+/--
+@isnad1 id=eq.0h2v.s5.746d41576bad from=translated src=- shape=8050174b vocab=5c596d13
+-/
 lemma cubeToNat_add_compl {N : ℕ} (A : Finset (Fin N)) :
     cubeToNat A + cubeToNat Aᶜ = cubeToNat (Finset.univ : Cube N) := by
   unfold cubeToNat
   exact sum_add_sum_compl A (fun (i:Fin N) => 2^(i:ℕ))
 
+/--
+@isnad1 id=iff.0h3v.s5.19f3bd552db0 from=translated src=- shape=8fb8014d vocab=63d0c661
+-/
 lemma cubeToNat_compl_lt_cubeToNat_compl {N : ℕ} {A B : Finset (Fin N)} :
     cubeToNat Aᶜ < cubeToNat Bᶜ ↔ cubeToNat B < cubeToNat A := by
   have hA := cubeToNat_add_compl A
   have hB := cubeToNat_add_compl B
   omega
 
+/--
+@isnad1 id=iff.0h3v.s7.d409ce4f514a from=translated src=- shape=4ff3545a vocab=d5c68d88
+-/
 lemma toColex_lt_iff_cubeToNat_lt {N : ℕ} {A B : Finset (Fin N)} :
     toColex A < toColex B ↔ cubeToNat A < cubeToNat B := by
   have h_image_A : cubeToNat A = ∑ i ∈ A.image (fun i : Fin N => (i:ℕ)), 2^i := by
@@ -395,6 +452,9 @@ lemma toColex_lt_iff_cubeToNat_lt {N : ℕ} {A B : Finset (Fin N)} :
   rw [Finset.Colex.toColex_image_lt_toColex_image]
   · intro x y hxy; exact hxy
 
+/--
+@isnad1 id=iff.0h3v.s8.69f55338b0de from=translated src=- shape=b2e60c69 vocab=43b9f093
+-/
 lemma toColex_compl_lt_toColex_compl {N : ℕ} {A B : Finset (Fin N)} :
     toColex Aᶜ < toColex Bᶜ ↔ toColex B < toColex A := by
   rw [toColex_lt_iff_cubeToNat_lt, toColex_lt_iff_cubeToNat_lt]
@@ -408,7 +468,9 @@ theorem.
 On a fixed Hamming layer, the project order takes larger binary/colex values
 first; complementation changes a larger `r`-set value into a smaller
 `(N-r)`-set value.  Thus complements of project initial segments are ordinary
-colex initial segments. -/
+colex initial segments.
+@isnad1 id=isinitse.1h3v.s5.bb16f0c26662 from=translated src=- shape=a8bd754d vocab=afafc472
+-/
 lemma layerInitSeg_compls_isInitSeg {N r t : ℕ} (_ : t ≤ Nat.choose N r) :
     Finset.Colex.IsInitSeg (layerInitSeg N r t)ᶜˢ (N - r) := by
   unfold Finset.Colex.IsInitSeg
@@ -451,7 +513,9 @@ minimum upper shadow in layer `r+1`.
 
 This is the project-language form of the mathlib KK theorem transported from
 lower shadows through complementation, with the fixed-card simplicial order
-identified with the corresponding colex/opposite-colex layer order. -/
+identified with the corresponding colex/opposite-colex layer order.
+@isnad1 id=le.1h3v.s5.355eab042def from=translated src=- shape=30df076a vocab=86fae076
+-/
 theorem upperLayerShadow_min {N r : ℕ} {A : Finset (Cube N)}
     (hA : ∀ x ∈ A, x.card = r) :
     (upperLayerShadow N r (layerInitSeg N r A.card)).card ≤
@@ -470,7 +534,9 @@ theorem upperLayerShadow_min {N r : ℕ} {A : Finset (Cube N)}
 
 /-- Numeric corollary of `upperLayerShadow_min`: the numerical scaffold
 `upperShadow` is bounded by the actual upper shadow of every same-size
-`r`-uniform family. -/
+`r`-uniform family.
+@isnad1 id=le.4h4v.s6.c4747578de60 from=translated src=- shape=f83509db vocab=0778e265
+-/
 theorem upperShadowVal_numeric_min {N r t : ℕ} (hr : 1 ≤ r)
     (ht : t ≤ Nat.choose N r) {A : Finset (Cube N)}
     (hA : ∀ x ∈ A, x.card = r) (hcard : A.card = t) :

@@ -34,6 +34,9 @@ noncomputable def adjacencyEigenvalues₀
     (G : SimpleGraph V) [DecidableRel G.Adj] : Fin (Fintype.card V) → ℝ :=
   (G.isHermitian_adjMatrix ℝ).eigenvalues₀
 
+/--
+@isnad1 id=antitone.0h2v.s5.0617b6316b1f from=translated src=- shape=4487dd34 vocab=25501565
+-/
 lemma adjacencyEigenvalues₀_antitone
     (G : SimpleGraph V) [DecidableRel G.Adj] :
     Antitone (adjacencyEigenvalues₀ G) :=

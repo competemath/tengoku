@@ -84,11 +84,16 @@ def mulRightL (u : C) : C →ₗ[ℝ] C where
   map_smul' r x := smul_mul_assoc r x u
 
 omit [SMulCommClass ℝ C C] [CompositionAlgebra C] [Nontrivial C] in
+/--
+@isnad1 id=eq.0h3v.s7.14c2d8af22ea from=translated src=- shape=c0c9ce27 vocab=6db872a2
+-/
 @[simp] theorem mulRightL_apply (u x : C) : mulRightL u x = x * u := rfl
 
 omit [Nontrivial C] in
 /-- Right multiplication by a unit vector is injective: it is a linear isometry of the norm
-form. -/
+form.
+@isnad1 id=injectiv.1h2v.s8.a7372854f360 from=translated src=- shape=c60e1b71 vocab=95389b43
+-/
 theorem mulRight_injective {u : C} (hnu : nf u = 1) :
     Function.Injective (mulRightL u : C →ₗ[ℝ] C) := by
   intro x y hxy
@@ -114,7 +119,9 @@ private def toDualOn (A : Submodule ℝ C) : C →ₗ[ℝ] (A →ₗ[ℝ] ℝ) w
 
 omit [Nontrivial C] in
 /-- **Every proper subspace of a Euclidean composition algebra has a unit normal.** This is the
-only place finite-dimensionality is used, and it is where the doubling gets its input. -/
+only place finite-dimensionality is used, and it is where the doubling gets its input.
+@isnad1 id=ex.1h2v.s8.89e1b242b595 from=translated src=- shape=79088bb2 vocab=08f4559a
+-/
 theorem exists_unit_orthogonal {A : Submodule ℝ C} (hA : A ≠ ⊤) :
     ∃ u : C, (∀ a ∈ A, ip u a = 0) ∧ nf u = 1 := by
   have hrk : Module.finrank ℝ (LinearMap.ker (toDualOn A)) ≠ 0 := by
@@ -144,6 +151,9 @@ theorem exists_unit_orthogonal {A : Submodule ℝ C} (hA : A ≠ ⊤) :
 def double (A : Submodule ℝ C) (u : C) : Submodule ℝ C := A ⊔ A.map (mulRightL u)
 
 omit [SMulCommClass ℝ C C] [CompositionAlgebra C] [Nontrivial C] [FiniteDimensional ℝ C] in
+/--
+@isnad1 id=iff.0h4v.s8.4fff64084788 from=translated src=- shape=66fb41f2 vocab=85440314
+-/
 theorem mem_double_iff {A : Submodule ℝ C} {u x : C} :
     x ∈ double A u ↔ ∃ a ∈ A, ∃ b ∈ A, x = a + b * u := by
   simp only [double, Submodule.mem_sup, Submodule.mem_map, mulRightL_apply]
@@ -154,9 +164,15 @@ theorem mem_double_iff {A : Submodule ℝ C} {u x : C} :
     exact ⟨a, ha, b * u, ⟨b, hb, rfl⟩, rfl⟩
 
 omit [SMulCommClass ℝ C C] [CompositionAlgebra C] [Nontrivial C] [FiniteDimensional ℝ C] in
+/--
+@isnad1 id=le.0h3v.s7.c8032f0c72a5 from=translated src=- shape=4caa3637 vocab=39626c42
+-/
 theorem le_double (A : Submodule ℝ C) (u : C) : A ≤ double A u := le_sup_left
 
 omit [SMulCommClass ℝ C C] [CompositionAlgebra C] [Nontrivial C] [FiniteDimensional ℝ C] in
+/--
+@isnad1 id=mem.1h4v.s7.f120833cac0e from=translated src=- shape=d8791519 vocab=789793bb
+-/
 theorem mem_double_of_mem {A : Submodule ℝ C} {u x : C} (hx : x ∈ A) : x ∈ double A u :=
   le_double A u hx
 
@@ -168,6 +184,9 @@ variable {A : Submodule ℝ C} (hA : IsCompSubalgebra A) {u : C}
 include hA
 
 omit [Nontrivial C] [FiniteDimensional ℝ C] in
+/--
+@isnad1 id=mem.1h3v.s8.d59d72c8c574 from=translated src=- shape=8a18b75b vocab=31b9b4f2
+-/
 theorem unit_mem_double : u ∈ double A u := by
   rw [mem_double_iff]
   exact ⟨0, A.zero_mem, 1, hA.one_mem, by rw [one_mul, zero_add]⟩
@@ -176,7 +195,9 @@ include hu hnu
 
 omit [FiniteDimensional ℝ C] in
 /-- The doubled subalgebra is again a composition subalgebra. This is exactly the three
-Cayley–Dickson rules of `Composition/Doubling.lean`, assembled. -/
+Cayley–Dickson rules of `Composition/Doubling.lean`, assembled.
+@isnad1 id=iscompsu.3h3v.s8.103f73959466 from=translated src=- shape=da069050 vocab=b7eb0e10
+-/
 theorem isCompSubalgebra_double : IsCompSubalgebra (double A u) where
   one_mem := mem_double_of_mem hA.one_mem
   mul_mem := by
@@ -197,7 +218,9 @@ theorem isCompSubalgebra_double : IsCompSubalgebra (double A u) where
     rw [cstar_add, cstar_of_pure (hA.isPure_mul_unit hu hb), neg_mul]
 
 omit [Nontrivial C] [FiniteDimensional ℝ C] in
-/-- The norm of an element of the doubled algebra splits: `N(p + q u) = N p + N q`. -/
+/-- The norm of an element of the doubled algebra splits: `N(p + q u) = N p + N q`.
+@isnad1 id=eq.5h5v.s8.7db53dc080a3 from=translated src=- shape=8ec60b7d vocab=3a00dc33
+-/
 theorem nf_add_mul_unit {p : C} (hp : p ∈ A) {q : C} (hq : q ∈ A) :
     nf (p + q * u) = nf p + nf q := by
   rw [nf_add, ip_symm p (q * u), hA.ip_mul_unit hu hq hp, comp, hnu, mul_one]
@@ -210,7 +233,9 @@ omit [FiniteDimensional ℝ C] in
 This is where Hurwitz's dimension bound actually comes from. The hypothesis is the *existence*
 of `u`, and the conclusion is a property of `A` alone: the norm form of `C`, restricted to
 `A ⊕ A u`, is multiplicative for free, and multiplicativity there is equivalent to
-associativity of `A`. -/
+associativity of `A`.
+@isnad1 id=eq.6h6v.s9.132f6d07c9e8 from=translated src=- shape=23e28996 vocab=59a441f6
+-/
 theorem forced_assoc : ∀ x ∈ A, ∀ y ∈ A, ∀ z ∈ A, (x * y) * z = x * (y * z) := by
   have key : ∀ a ∈ A, ∀ c ∈ A, ∀ d ∈ A, ∀ b ∈ A,
       ip (d * a) (b * cstar c) = ip (a * c) (cstar d * b) := by
@@ -252,7 +277,9 @@ theorem forced_assoc : ∀ x ∈ A, ∀ y ∈ A, ∀ z ∈ A, (x * y) * z = x * 
 /-! ### Dimension of the double -/
 
 omit [Nontrivial C] in
-/-- The doubling exactly doubles the dimension. -/
+/-- The doubling exactly doubles the dimension.
+@isnad1 id=eq.3h3v.s9.4bdcc97ddedd from=translated src=- shape=68a31350 vocab=87320c93
+-/
 theorem finrank_double : Module.finrank ℝ (double A u) = 2 * Module.finrank ℝ A := by
   have hinj := mulRight_injective hnu
   have hmapdim : Module.finrank ℝ (A.map (mulRightL u)) = Module.finrank ℝ A :=
@@ -275,7 +302,9 @@ theorem finrank_double : Module.finrank ℝ (double A u) = 2 * Module.finrank �
 /-! ### Where the chain stops -/
 
 omit [FiniteDimensional ℝ C] in
-/-- If the doubled algebra is associative, `A` is commutative. -/
+/-- If the doubled algebra is associative, `A` is commutative.
+@isnad1 id=eq.6h5v.s9.47f014a722a2 from=translated src=- shape=bc3e8473 vocab=97a83e84
+-/
 theorem comm_of_assoc_double
     (h : ∀ x ∈ double A u, ∀ y ∈ double A u, ∀ z ∈ double A u, (x * y) * z = x * (y * z)) :
     ∀ x ∈ A, ∀ y ∈ A, x * y = y * x := by
@@ -293,7 +322,9 @@ theorem comm_of_assoc_double
   rwa [cstar_cstar] at hs
 
 omit [FiniteDimensional ℝ C] in
-/-- If the doubled algebra is commutative, `A` is the line through the unit. -/
+/-- If the doubled algebra is commutative, `A` is the line through the unit.
+@isnad1 id=le.4h3v.s9.c15a2aa29e64 from=translated src=- shape=e56323ff vocab=498d868f
+-/
 theorem le_span_one_of_comm_double
     (h : ∀ x ∈ double A u, ∀ y ∈ double A u, x * y = y * x) :
     A ≤ Submodule.span ℝ {(1 : C)} := by
@@ -316,7 +347,9 @@ end IsCompSubalgebra
 /-! ### The base of the chain -/
 
 omit [FiniteDimensional ℝ C] in
-/-- The line through the unit is a composition subalgebra. -/
+/-- The line through the unit is a composition subalgebra.
+@isnad1 id=iscompsu.0h1v.s8.9ed4d0233877 from=translated src=- shape=28c00907 vocab=4e3d3c12
+-/
 theorem isCompSubalgebra_spanOne : IsCompSubalgebra (Submodule.span ℝ {(1 : C)}) where
   one_mem := Submodule.mem_span_singleton_self _
   mul_mem := by
@@ -339,7 +372,9 @@ has real dimension `1`, `2`, `4` or `8`.
 `Composition/Instances.lean` exhibits `ℝ`, `ℂ`, `ℍ` and `𝕆` at the four values, so each is
 attained. The *classification* — that those four are the only algebras, not just the only
 dimensions — is `Composition/Classification.lean`'s `hurwitz_classification`, not this
-theorem. -/
+theorem.
+@isnad1 id=or.0h1v.s8.9f60b5059764 from=translated src=- shape=8bab6c64 vocab=1acc9421
+-/
 theorem finrank_eq_one_or_two_or_four_or_eight :
     Module.finrank ℝ C = 1 ∨ Module.finrank ℝ C = 2 ∨ Module.finrank ℝ C = 4 ∨
       Module.finrank ℝ C = 8 := by

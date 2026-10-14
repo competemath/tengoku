@@ -28,7 +28,9 @@ noncomputable section
 namespace CKN.Core.Endgame
 
 /-- A positive interior parabolic ball supplies a compactly interior spatial
-ball and time interval. -/
+ball and time interval.
+@isnad1 id=localbox.2h4v.s6.36615c3f5333 from=translated src=- shape=cb1a19ac vocab=1200cec9
+-/
 theorem localBox_of_parabolic_ball
     {Ω : Set Vec3} {I : Set ℝ} {z₀ : ParabolicPoint} {r : ℝ}
     (hr : 0 < r) (hball : ball z₀ (2 * r) ⊆ spaceTimeSet Ω I) :

@@ -51,7 +51,9 @@ Taking any $y > \max\\{0, -3f(-1) - 2\\}$ then yields a contradiction.
 namespace IMOSL
 namespace IMO2009A5
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=not.0h2v.s6.cb5f0f9e0efe from=translated src=- shape=424156ee vocab=aa259608
+-/
 theorem final_solution [Ring R] [LinearOrder R] [IsStrictOrderedRing R] (f : R → R) :
     ¬∀ x y, f (x - f y) ≤ y * f x + x := by
   intro hf

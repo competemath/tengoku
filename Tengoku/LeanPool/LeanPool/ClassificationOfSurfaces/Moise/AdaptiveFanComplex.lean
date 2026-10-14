@@ -31,7 +31,9 @@ variable (J : PolygonalCircle)
 
 /-- A preconnected subset of a polygonal circle which avoids every polygon vertex cannot pass
 from one open edge to another.  Thus meeting one edge forces the whole set to lie in that edge.
-This is the elementary component fact used to compare hanging-edge subdivisions. -/
+This is the elementary component fact used to compare hanging-edge subdivisions.
+@isnad1 id=le.4h3v.s6.0604c59baddd from=translated src=- shape=30c02231 vocab=d4a62d63
+-/
 theorem isPreconnected_subset_edgeSegment_of_avoids_vertices
     (A : Set Plane) (i : ZMod J.n) (hA : IsPreconnected A)
     (hcarrier : A ⊆ J.carrier)
@@ -71,6 +73,9 @@ variable (K : IntrinsicTwoComplex) (U : Set K.realization)
 variable [K.AdaptiveSafety U]
 variable [AdaptiveSafety.IsAdmissible (K := K) (U := U)]
 
+/--
+@isnad1 id=mem.2h4v.s7.c8a16f254506 from=translated src=- shape=dbeaf224 vocab=d2ff8162
+-/
 theorem adaptiveFanVertex_mem_carrier (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) {p : K.realization}
     (hp : p ∈ K.adaptiveFanFaceVertices U hU f) :
@@ -91,6 +96,9 @@ theorem adaptiveFanVertex_mem_carrier (hU : IsOpen U)
       ((K.mem_boundaryEdgeVertices_iff U hU f.1 f.2.1 _).mp hpEdge).1
     exact ((K.mem_boundaryVertices_iff U hU f.1 _).mp hpBoundary).1
 
+/--
+@isnad1 id=mem.1h4v.s9.99aef9319d79 from=translated src=- shape=05901945 vocab=468e40d4
+-/
 theorem homeo_symm_mem_levelFaceCarrier {n : ℕ} (t : K.LevelFace n)
     {p : K.realization} (hp : p ∈ K.levelFaceCarrier t) :
     (K.safeSubdivision n).homeo.symm p ∈
@@ -108,6 +116,9 @@ noncomputable def adaptiveFanVertexSource (hU : IsOpen U)
     (K.safeSubdivision f.1.1).refined.realization :=
   (K.safeSubdivision f.1.1).homeo.symm p.1
 
+/--
+@isnad1 id=mem.1h4v.s9.2844b4821eb8 from=translated src=- shape=8d775936 vocab=0285bb4a
+-/
 theorem adaptiveFanVertexSource_mem_carrier (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU)
     (p : {p // p ∈ K.adaptiveFanFaceVertices U hU f}) :
@@ -137,6 +148,9 @@ noncomputable def adaptiveFanSecondVertex (hU : IsOpen U)
   ⟨K.adaptiveEdgeIntervalSecond U hU f.1 f.2.1 f.2.2, by
     simp [adaptiveFanFaceVertices]⟩
 
+/--
+@isnad1 id=eq.1h3v.s9.083e00ca0508 from=translated src=- shape=95e47b4c vocab=766eca78
+-/
 theorem adaptiveFanVertex_univ (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     (Finset.univ : Finset {p // p ∈ K.adaptiveFanFaceVertices U hU f}) =
@@ -153,6 +167,9 @@ theorem adaptiveFanVertex_univ (hU : IsOpen U)
   · exact Or.inr (Or.inl (Subtype.ext hp))
   · exact Or.inr (Or.inr (Subtype.ext hp))
 
+/--
+@isnad1 id=ne.1h3v.s6.5f7b39b1bae5 from=translated src=- shape=6851b06b vocab=c84ee7f3
+-/
 theorem adaptiveFanCenterVertex_ne_first (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     K.adaptiveFanCenterVertex U hU f ≠ K.adaptiveFanFirstVertex U hU f := by
@@ -163,6 +180,9 @@ theorem adaptiveFanCenterVertex_ne_first (hU : IsOpen U)
     ((K.mem_boundaryEdgeVertices_iff U hU f.1 f.2.1 _).mp hp).1
     (congrArg Subtype.val h)
 
+/--
+@isnad1 id=ne.1h3v.s6.fa1315dbd0b6 from=translated src=- shape=6851b06b vocab=a3c461e8
+-/
 theorem adaptiveFanCenterVertex_ne_second (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     K.adaptiveFanCenterVertex U hU f ≠ K.adaptiveFanSecondVertex U hU f := by
@@ -173,6 +193,9 @@ theorem adaptiveFanCenterVertex_ne_second (hU : IsOpen U)
     ((K.mem_boundaryEdgeVertices_iff U hU f.1 f.2.1 _).mp hp).1
     (congrArg Subtype.val h)
 
+/--
+@isnad1 id=ne.1h3v.s6.049aa9a25c1f from=translated src=- shape=6851b06b vocab=847ca60b
+-/
 theorem adaptiveFanFirstVertex_ne_second (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     K.adaptiveFanFirstVertex U hU f ≠ K.adaptiveFanSecondVertex U hU f := by
@@ -180,7 +203,9 @@ theorem adaptiveFanFirstVertex_ne_second (hU : IsOpen U)
   exact K.adaptiveEdgeIntervalFirst_ne_second U hU f.1 f.2.1 f.2.2
     (congrArg Subtype.val h)
 
-/-- The three distinguished fan weights sum to one. -/
+/-- The three distinguished fan weights sum to one.
+@isnad1 id=eq.1h4v.s9.1e99b94cdca5 from=translated src=- shape=ae28c73c vocab=1a52e65e
+-/
 theorem adaptiveFanWeights_sum (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f}) :
@@ -215,6 +240,9 @@ noncomputable def adaptiveFanBaseSimplexPath (hU : IsOpen U)
   exact ⟨x, (convex_stdSimplex ℝ _).lineMap_mem
     (stdSimplex.vertex a).2 (stdSimplex.vertex b).2 r.2⟩
 
+/--
+@isnad1 id=continuo.1h3v.s8.0fe62d7da974 from=translated src=- shape=ddb258f1 vocab=f6d435cc
+-/
 theorem continuous_adaptiveFanBaseSimplexPath (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     Continuous (K.adaptiveFanBaseSimplexPath U hU f) := by
@@ -226,6 +254,9 @@ theorem continuous_adaptiveFanBaseSimplexPath (hU : IsOpen U)
       {p // p ∈ K.adaptiveFanFaceVertices U hU f} → ℝ)).continuous_of_finiteDimensional.comp
         continuous_subtype_val
 
+/--
+@isnad1 id=eq.1h4v.s8.e10d9932a482 from=translated src=- shape=26a004de vocab=d1c896a9
+-/
 @[simp] theorem adaptiveFanBaseSimplexPath_apply_first (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) (r : Set.Icc (0 : ℝ) 1) :
     K.adaptiveFanBaseSimplexPath U hU f r
@@ -238,6 +269,9 @@ theorem continuous_adaptiveFanBaseSimplexPath (hU : IsOpen U)
   rw [AffineMap.lineMap_apply_module]
   simp [a, b, hab]
 
+/--
+@isnad1 id=eq.1h4v.s8.dae485a3b4df from=translated src=- shape=c4ef549b vocab=7b844133
+-/
 @[simp] theorem adaptiveFanBaseSimplexPath_apply_second (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) (r : Set.Icc (0 : ℝ) 1) :
     K.adaptiveFanBaseSimplexPath U hU f r
@@ -250,6 +284,9 @@ theorem continuous_adaptiveFanBaseSimplexPath (hU : IsOpen U)
   rw [AffineMap.lineMap_apply_module]
   simp [a, b, hab]
 
+/--
+@isnad1 id=eq.1h4v.s8.c6e24613cbfe from=translated src=- shape=83683478 vocab=615fbd3f
+-/
 @[simp] theorem adaptiveFanBaseSimplexPath_apply_center (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) (r : Set.Icc (0 : ℝ) 1) :
     K.adaptiveFanBaseSimplexPath U hU f r
@@ -293,6 +330,9 @@ noncomputable def adaptiveFanNormalizedBasePoint (hU : IsOpen U)
   K.adaptiveFanBaseSimplexPath U hU f
     (K.adaptiveFanNormalizedBaseParameter U hU f x hxCenter)
 
+/--
+@isnad1 id=eq.2h4v.s9.e08977f23dba from=translated src=- shape=39139418 vocab=5ff0dbae
+-/
 @[simp] theorem adaptiveFanNormalizedBasePoint_apply_center (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f})
@@ -301,6 +341,9 @@ noncomputable def adaptiveFanNormalizedBasePoint (hU : IsOpen U)
         (K.adaptiveFanCenterVertex U hU f) = 0 := by
   exact K.adaptiveFanBaseSimplexPath_apply_center U hU f _
 
+/--
+@isnad1 id=eq.2h4v.s9.df891a316ad9 from=translated src=- shape=d0b00f5a vocab=7b746190
+-/
 @[simp] theorem adaptiveFanNormalizedBasePoint_apply_second (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f})
@@ -313,6 +356,9 @@ noncomputable def adaptiveFanNormalizedBasePoint (hU : IsOpen U)
     K.adaptiveFanBaseSimplexPath_apply_second U hU f]
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s9.212ff742f923 from=translated src=- shape=d0b00f5a vocab=2c42469d
+-/
 @[simp] theorem adaptiveFanNormalizedBasePoint_apply_first (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f})
@@ -339,6 +385,9 @@ noncomputable def adaptiveFanNormalizedBasePoint (hU : IsOpen U)
   field_simp [hden]
   linarith
 
+/--
+@isnad1 id=injectiv.1h3v.s7.79c45d46115c from=translated src=- shape=ddb258f1 vocab=a239b536
+-/
 theorem adaptiveFanBaseSimplexPath_injective (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     Function.Injective (K.adaptiveFanBaseSimplexPath U hU f) := by
@@ -383,6 +432,9 @@ noncomputable def adaptiveFanSourcePoint (hU : IsOpen U)
     intro p _
     rw [(K.adaptiveFanVertexSource_mem_carrier U hU f p) v hv, mul_zero]
 
+/--
+@isnad1 id=mem.1h4v.s10.d7e59ec4f067 from=translated src=- shape=dac6ce85 vocab=489f178f
+-/
 theorem adaptiveFanSourcePoint_mem_carrier (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f}) :
@@ -407,6 +459,9 @@ noncomputable def adaptiveFanSimplexLineMap (hU : IsOpen U)
       x.2 y.2 r.2⟩
 
 -- The affine source calculation expands three dependent finite sums.
+/--
+@isnad1 id=eq.1h6v.s11.38f9ebb0c331 from=translated src=- shape=67d44c1f vocab=2b7c9942
+-/
 theorem adaptiveFanSourcePoint_simplexLineMap (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU)
     (x y : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f})
@@ -436,6 +491,9 @@ theorem adaptiveFanSourcePoint_simplexLineMap (hU : IsOpen U)
     _ = _ := by rw [Finset.sum_add_distrib, Finset.mul_sum, Finset.mul_sum]
 
 -- An affine fan combination sends a simplex vertex to the corresponding source vertex.
+/--
+@isnad1 id=eq.1h4v.s8.2146984e26ed from=translated src=- shape=56be3a63 vocab=be7e07f4
+-/
 theorem adaptiveFanSourcePoint_vertex (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU)
     (p : {p // p ∈ K.adaptiveFanFaceVertices U hU f}) :
@@ -455,7 +513,9 @@ theorem adaptiveFanSourcePoint_vertex (hU : IsOpen U)
   · simp
 
 /-- Pulling an edge point back through the faithful subdivision gives zero in every coordinate
-outside that edge. -/
+outside that edge.
+@isnad1 id=eq.2h6v.s9.40fd25f40cbc from=translated src=- shape=060836ea vocab=fb1f24a3
+-/
 theorem homeo_symm_apply_eq_zero_of_mem_levelFaceEdgeCarrier {n : ℕ}
     (t : K.LevelFace n) (i : ZMod 3) {p : K.realization}
     (hp : p ∈ K.levelFaceEdgeCarrier t i)
@@ -466,6 +526,9 @@ theorem homeo_symm_apply_eq_zero_of_mem_levelFaceEdgeCarrier {n : ℕ}
   rw [(K.safeSubdivision n).homeo.symm_apply_apply]
   exact hx v hv
 
+/--
+@isnad1 id=not.0h4v.s8.58e65e1afca2 from=translated src=- shape=67293a5b vocab=1cc8f390
+-/
 theorem faceVertex_add_two_not_mem_faceEdge {n : ℕ} (t : K.LevelFace n)
     (i : ZMod 3) :
     (K.safeSubdivision n).refined.faceVertex t (i + 2) ∉
@@ -480,6 +543,9 @@ theorem faceVertex_add_two_not_mem_faceEdge {n : ℕ} (t : K.LevelFace n)
         ((K.safeSubdivision n).refined.faceVertex_ne_next t (i + 1)).symm
     exact hne h
 
+/--
+@isnad1 id=eq.1h5v.s11.5e582508f4ff from=translated src=- shape=6e9dba58 vocab=7d5574a3
+-/
 theorem adaptiveEdgeIntervalFirst_source_opposite (hU : IsOpen U)
     (t : K.AdaptiveFace U) (i : ZMod 3)
     (j : K.AdaptiveEdgeInterval U hU t i) :
@@ -491,6 +557,9 @@ theorem adaptiveEdgeIntervalFirst_source_opposite (hU : IsOpen U)
       (K.adaptiveEdgeIntervalFirst_mem_boundaryEdgeVertices U hU t i j)).2
   · exact K.faceVertex_add_two_not_mem_faceEdge t.2.1 i
 
+/--
+@isnad1 id=eq.1h5v.s11.29ce6275448d from=translated src=- shape=6e9dba58 vocab=0c05223d
+-/
 theorem adaptiveEdgeIntervalSecond_source_opposite (hU : IsOpen U)
     (t : K.AdaptiveFace U) (i : ZMod 3)
     (j : K.AdaptiveEdgeInterval U hU t i) :
@@ -503,6 +572,9 @@ theorem adaptiveEdgeIntervalSecond_source_opposite (hU : IsOpen U)
   · exact K.faceVertex_add_two_not_mem_faceEdge t.2.1 i
 
 omit [AdaptiveSafety.IsAdmissible K U] in
+/--
+@isnad1 id=eq.0h4v.s10.786f1c382f01 from=translated src=- shape=4baf0c6f vocab=1b409b53
+-/
 theorem adaptiveFaceCenter_source_apply (t : K.AdaptiveFace U)
     (i : ZMod 3) :
     ((K.safeSubdivision t.1).homeo.symm (K.adaptiveFaceCenter U t)).1
@@ -514,7 +586,9 @@ theorem adaptiveFaceCenter_source_apply (t : K.AdaptiveFace U)
   exact (K.safeSubdivision t.1).refined.faceCenterSimplex_apply t.2.1 _
 
 /-- The coordinate opposite a fan triangle's base edge is exactly one third of its cone-center
-weight. -/
+weight.
+@isnad1 id=eq.1h4v.s10.b122f30f18a2 from=translated src=- shape=4a3d4ac8 vocab=032ae0e3
+-/
 theorem adaptiveFanSourcePoint_opposite (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f}) :
@@ -552,7 +626,9 @@ theorem adaptiveFanSourcePoint_opposite (hU : IsOpen U)
 
 /-- The cone-center contribution is a lower bound for every barycentric coordinate of a fan
 point in its ambient refined face.  At the coordinate opposite the fan base this bound is an
-equality. -/
+equality.
+@isnad1 id=le.1h5v.s10.a47af8773a6e from=translated src=- shape=c04d60de vocab=4f85a288
+-/
 theorem adaptiveFanSourcePoint_faceVertex_lower_bound (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f})
@@ -587,7 +663,9 @@ theorem adaptiveFanSourcePoint_faceVertex_lower_bound (hU : IsOpen U)
   nlinarith
 
 /-- A noncenter fan point is the affine combination of the cone center and its normalized
-radial projection to the base. -/
+radial projection to the base.
+@isnad1 id=eq.2h4v.s11.40972abe0172 from=translated src=- shape=ef83e04f vocab=0c3d4e03
+-/
 theorem adaptiveFanSourcePoint_eq_lineMap_normalizedBase (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f})
@@ -654,7 +732,9 @@ theorem eq_faceVertex_add_two_of_mem_face_not_mem_faceEdge {n : ℕ}
       i j hji0 hjnext
   exact congrArg ((K.safeSubdivision n).refined.faceVertex t) hji
 
-/-- The three cyclic edges of a triangular level face are pairwise distinct. -/
+/-- The three cyclic edges of a triangular level face are pairwise distinct.
+@isnad1 id=injectiv.0h3v.s5.31ae8813dad5 from=translated src=- shape=80c0f068 vocab=4db10ac3
+-/
 theorem levelFace_faceEdge_injective {n : ℕ} (t : K.LevelFace n) :
     Function.Injective fun i : ZMod 3 ↦
       (K.safeSubdivision n).refined.faceEdge t i := by
@@ -669,7 +749,9 @@ theorem levelFace_faceEdge_injective {n : ℕ} (t : K.LevelFace n) :
     (K.safeSubdivision n).refined.faceVertex_injective t hv
   exact (add_right_cancel hindex).symm
 
-/-- Earlier resolved intervals on one ordered tile edge end no later than later intervals begin. -/
+/-- Earlier resolved intervals on one ordered tile edge end no later than later intervals begin.
+@isnad1 id=le.2h6v.s8.601c4c0b47fd from=translated src=- shape=36360d3a vocab=0288c626
+-/
 theorem adaptiveEdgeIntervalSecond_parameter_le_first_of_lt
     (hU : IsOpen U) (t : K.AdaptiveFace U) (i : ZMod 3)
     (a b : K.AdaptiveEdgeInterval U hU t i) (hab : a.1 < b.1) :
@@ -698,7 +780,9 @@ theorem adaptiveEdgeIntervalSecond_parameter_le_first_of_lt
     simpa only [adaptiveEdgeIntervalSecond, adaptiveEdgeIntervalFirst,
       L, ka, kb] using hp
 
-/-- Zero cone-center weight places a fan source point on its resolved base edge. -/
+/-- Zero cone-center weight places a fan source point on its resolved base edge.
+@isnad1 id=mem.2h4v.s10.53055c1375b2 from=translated src=- shape=141c5154 vocab=30510054
+-/
 theorem adaptiveFanSourcePoint_mem_baseEdge_of_center_eq_zero
     (hU : IsOpen U) (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f})
@@ -714,7 +798,9 @@ theorem adaptiveFanSourcePoint_mem_baseEdge_of_center_eq_zero
     norm_num
   · exact (K.adaptiveFanSourcePoint_mem_carrier U hU f x) v hvt
 
-/-- When the cone-center weight vanishes, the two ordered base weights sum to one. -/
+/-- When the cone-center weight vanishes, the two ordered base weights sum to one.
+@isnad1 id=eq.2h4v.s9.6fce3bc2f57a from=translated src=- shape=cf2ccfc9 vocab=5a655360
+-/
 theorem adaptiveFanBaseWeights_sum_of_center_eq_zero
     (hU : IsOpen U) (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f})
@@ -740,6 +826,9 @@ theorem adaptiveFanBaseWeights_sum_of_center_eq_zero
   rw [hxCenter', zero_add] at hsum
   exact hsum
 
+/--
+@isnad1 id=injectiv.1h3v.s9.73d28424c659 from=translated src=- shape=561c05bc vocab=f586a831
+-/
 theorem adaptiveFanVertexSource_val_injective (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) : Function.Injective
       (fun p : {p // p ∈ K.adaptiveFanFaceVertices U hU f} ↦
@@ -754,7 +843,9 @@ theorem adaptiveFanVertexSource_val_injective (hU : IsOpen U)
 
 /-- The three pulled-back vertices of a fan face are affinely independent.  The two boundary
 vertices lie in the affine coordinate hyperplane opposite their common edge, while the positive
-center does not. -/
+center does not.
+@isnad1 id=affinein.1h3v.s10.0bc90f57b5bf from=translated src=- shape=f0d1d3ed vocab=55c66f6a
+-/
 theorem affineIndependent_adaptiveFanVertexSource_val (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     AffineIndependent ℝ
@@ -830,7 +921,9 @@ theorem affineIndependent_adaptiveFanVertexSource_val (hU : IsOpen U)
     exact hthree.range
   · exact K.adaptiveFanVertexSource_val_injective U hU f
 
-/-- The affine combination map is injective when its source points are affinely independent. -/
+/-- The affine combination map is injective when its source points are affinely independent.
+@isnad1 id=injectiv.1h3v.s7.b6eccb36b9bf from=translated src=- shape=129c2158 vocab=da72205e
+-/
 theorem affineCombination_injective_of_affineIndependent
     {ι E : Type*} [Fintype ι] [AddCommGroup E] [Module ℝ E]
     (source : ι → E) (hsource : AffineIndependent ℝ source) :
@@ -840,6 +933,9 @@ theorem affineCombination_injective_of_affineIndependent
   have hweights := (hsource.affineCombination_eq_iff_eq x.2.2 y.2.2).mp hxy
   exact Subtype.ext (funext fun i ↦ hweights i (Finset.mem_univ i))
 
+/--
+@isnad1 id=eq.2h5v.s7.e3d56134d72e from=translated src=- shape=cc25d315 vocab=ca141ae0
+-/
 theorem simplex_eq_of_weighted_sum_eq_of_affineIndependent
     {ι α : Type*} [Fintype ι]
     (source : ι → α → ℝ) (hsource : AffineIndependent ℝ source)
@@ -855,7 +951,9 @@ theorem simplex_eq_of_weighted_sum_eq_of_affineIndependent
   funext v
   simpa only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul] using congrFun hxy v
 
-/-- The coordinate function underlying an adaptive fan source point. -/
+/-- The coordinate function underlying an adaptive fan source point.
+@isnad1 id=eq.1h4v.s10.4c8363e777c9 from=translated src=- shape=34c157a4 vocab=d436006e
+-/
 theorem adaptiveFanSourcePoint_val (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f}) :
@@ -874,6 +972,9 @@ noncomputable def adaptiveFanSourcePointVal (hU : IsOpen U)
       (K.safeSubdivision f.1.1).refined.Vertex → ℝ :=
   fun x ↦ (K.adaptiveFanSourcePoint U hU f x).1
 
+/--
+@isnad1 id=injectiv.1h3v.s7.e223597914c5 from=translated src=- shape=56d434d2 vocab=8ed19c64
+-/
 theorem adaptiveFanSourcePoint_val_injective (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     Function.Injective (K.adaptiveFanSourcePointVal U hU f) := by
@@ -897,7 +998,9 @@ noncomputable def adaptiveFanFaceMap (hU : IsOpen U)
       ⟨K.adaptiveFanSourcePoint U hU f x,
         K.adaptiveFanSourcePoint_mem_carrier U hU f x, rfl⟩⟩
 
-/-- A fan parametrization sends each abstract vertex to its declared geometric point. -/
+/-- A fan parametrization sends each abstract vertex to its declared geometric point.
+@isnad1 id=eq.1h4v.s8.b8d2145546b3 from=translated src=- shape=b244cc9f vocab=a5914256
+-/
 theorem adaptiveFanFaceMap_vertex (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU)
     (p : {p // p ∈ K.adaptiveFanFaceVertices U hU f}) :
@@ -910,6 +1013,9 @@ theorem adaptiveFanFaceMap_vertex (hU : IsOpen U)
   rw [K.adaptiveFanSourcePoint_vertex U hU f p]
   exact (K.safeSubdivision f.1.1).homeo.apply_symm_apply p.1
 
+/--
+@isnad1 id=injectiv.1h3v.s6.c7743aa91b1a from=translated src=- shape=be78f417 vocab=e294a53e
+-/
 theorem adaptiveFanFaceMap_injective (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     Function.Injective (K.adaptiveFanFaceMap U hU f) := by
@@ -919,7 +1025,9 @@ theorem adaptiveFanFaceMap_injective (hU : IsOpen U)
     (congrArg Subtype.val hxy))
 
 /-- Within one adaptive tile, a geometric point determines its cone-center weight.  This is the
-minimum-coordinate characterization of radial coordinates in a triangle. -/
+minimum-coordinate characterization of radial coordinates in a triangle.
+@isnad1 id=eq.2h9v.s11.fc26e0688279 from=translated src=- shape=e27ca227 vocab=b8650b51
+-/
 theorem adaptiveFanCenterWeight_eq_of_faceMap_eq_of_tile_eq
     (hU : IsOpen U) (t : K.AdaptiveFace U)
     (i j : ZMod 3) (a : K.AdaptiveEdgeInterval U hU t i)
@@ -972,7 +1080,9 @@ theorem adaptiveFanCenterWeight_eq_of_faceMap_eq_of_tile_eq
 
 /-- After removing the common cone-center contribution, equal points in one tile have equal
 radial projections to the tile boundary.  The shared tile is explicit to avoid dependent
-transport through the two interval types. -/
+transport through the two interval types.
+@isnad1 id=eq.4h9v.s11.4775d36bfea0 from=translated src=- shape=528a4a3d vocab=07156a0f
+-/
 theorem adaptiveFanNormalizedBaseFaceMap_eq_of_same_tile
     (hU : IsOpen U) (t : K.AdaptiveFace U)
     (i j : ZMod 3) (a : K.AdaptiveEdgeInterval U hU t i)
@@ -1026,6 +1136,9 @@ theorem adaptiveFanNormalizedBaseFaceMap_eq_of_same_tile
   apply congrArg (K.safeSubdivision t.1).homeo
   exact Subtype.ext hbaseVal
 
+/--
+@isnad1 id=continuo.1h3v.s10.d232d48c963c from=translated src=- shape=d31f7482 vocab=c93af5bf
+-/
 theorem continuous_adaptiveFanSourcePoint (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     Continuous (K.adaptiveFanSourcePoint U hU f) := by
@@ -1037,6 +1150,9 @@ theorem continuous_adaptiveFanSourcePoint (hU : IsOpen U)
   intro p _
   exact ((continuous_apply p).comp continuous_subtype_val).mul continuous_const
 
+/--
+@isnad1 id=continuo.1h3v.s8.bc0e24c41ded from=translated src=- shape=be78f417 vocab=41d710a8
+-/
 theorem continuous_adaptiveFanFaceMap (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     Continuous (K.adaptiveFanFaceMap U hU f) := by
@@ -1049,12 +1165,18 @@ noncomputable def adaptiveFanBasePath (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) : Set.Icc (0 : ℝ) 1 → U :=
   K.adaptiveFanFaceMap U hU f ∘ K.adaptiveFanBaseSimplexPath U hU f
 
+/--
+@isnad1 id=continuo.1h3v.s7.b425f2997514 from=translated src=- shape=31004384 vocab=304b2609
+-/
 theorem continuous_adaptiveFanBasePath (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     Continuous (K.adaptiveFanBasePath U hU f) :=
   (K.continuous_adaptiveFanFaceMap U hU f).comp
     (K.continuous_adaptiveFanBaseSimplexPath U hU f)
 
+/--
+@isnad1 id=injectiv.1h3v.s6.fe94129d628e from=translated src=- shape=31004384 vocab=169461f9
+-/
 theorem adaptiveFanBasePath_injective (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     Function.Injective (K.adaptiveFanBasePath U hU f) :=
@@ -1062,7 +1184,9 @@ theorem adaptiveFanBasePath_injective (hU : IsOpen U)
     (K.adaptiveFanBaseSimplexPath_injective U hU f)
 
 /-- In refined barycentric coordinates, the canonical fan-base path is the line segment between
-the two pulled-back endpoint vertices. -/
+the two pulled-back endpoint vertices.
+@isnad1 id=eq.1h4v.s11.9d2b285fa429 from=translated src=- shape=99c454c7 vocab=c12927f1
+-/
 theorem adaptiveFanSourcePoint_baseSimplexPath_val (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) (r : Set.Icc (0 : ℝ) 1) :
     (K.adaptiveFanSourcePoint U hU f
@@ -1094,7 +1218,9 @@ theorem adaptiveFanSourcePoint_baseSimplexPath_val (hU : IsOpen U)
   ring
 
 /-- Faithfulness of the iterated subdivision makes every geometric fan-base path the literal
-ambient affine segment between its two declared endpoints. -/
+ambient affine segment between its two declared endpoints.
+@isnad1 id=eq.1h4v.s8.fc56df87b155 from=translated src=- shape=e4183cf8 vocab=59a69545
+-/
 theorem adaptiveFanBasePath_val_eq_lineMap (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) (r : Set.Icc (0 : ℝ) 1) :
     (K.adaptiveFanBasePath U hU f r).1.1 =
@@ -1130,6 +1256,9 @@ theorem adaptiveFanBasePath_val_eq_lineMap (hU : IsOpen U)
   change (R.homeo z).1 = _
   rw [ha z hzCarrier, hz, AffineMap.apply_lineMap, hpImage, hqImage]
 
+/--
+@isnad1 id=eq.1h3v.s8.13321c4bf867 from=translated src=- shape=68378a60 vocab=9a60ecd6
+-/
 theorem adaptiveFanBaseSimplexPath_zero (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     K.adaptiveFanBaseSimplexPath U hU f ⟨0, by simp⟩ =
@@ -1137,6 +1266,9 @@ theorem adaptiveFanBaseSimplexPath_zero (hU : IsOpen U)
   apply Subtype.ext
   simp [adaptiveFanBaseSimplexPath, AffineMap.lineMap_apply_module]
 
+/--
+@isnad1 id=eq.1h3v.s8.0042cdb907e8 from=translated src=- shape=68378a60 vocab=2207e6ee
+-/
 theorem adaptiveFanBaseSimplexPath_one (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     K.adaptiveFanBaseSimplexPath U hU f ⟨1, by simp⟩ =
@@ -1144,6 +1276,9 @@ theorem adaptiveFanBaseSimplexPath_one (hU : IsOpen U)
   apply Subtype.ext
   simp [adaptiveFanBaseSimplexPath, AffineMap.lineMap_apply_module]
 
+/--
+@isnad1 id=eq.1h3v.s7.9ca7838200f5 from=translated src=- shape=e2b00e66 vocab=91619c60
+-/
 theorem adaptiveFanBasePath_zero (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     K.adaptiveFanBasePath U hU f ⟨0, by simp⟩ =
@@ -1155,6 +1290,9 @@ theorem adaptiveFanBasePath_zero (hU : IsOpen U)
     K.adaptiveFanBaseSimplexPath_zero U hU f,
     K.adaptiveFanFaceMap_vertex U hU f]
 
+/--
+@isnad1 id=eq.1h3v.s7.721fcf354379 from=translated src=- shape=e2b00e66 vocab=920644f5
+-/
 theorem adaptiveFanBasePath_one (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     K.adaptiveFanBasePath U hU f ⟨1, by simp⟩ =
@@ -1166,7 +1304,9 @@ theorem adaptiveFanBasePath_one (hU : IsOpen U)
     K.adaptiveFanBaseSimplexPath_one U hU f,
     K.adaptiveFanFaceMap_vertex U hU f]
 
-/-- A zero-center barycentric point is determined by its second base weight. -/
+/-- A zero-center barycentric point is determined by its second base weight.
+@isnad1 id=eq.3h5v.s9.9d06cc6be4ae from=translated src=- shape=bda2cc1b vocab=4d61ee10
+-/
 theorem adaptiveFanBaseSimplexPath_eq_of_secondWeight (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f})
@@ -1197,7 +1337,9 @@ theorem adaptiveFanBaseSimplexPath_eq_of_secondWeight (hU : IsOpen U)
     exact (K.adaptiveFanBaseSimplexPath_apply_second U hU f r).trans hr
 
 /-- Every zero-center barycentric point has its declared second base weight as the canonical
-base-path parameter. -/
+base-path parameter.
+@isnad1 id=eq.2h4v.s10.b3a74a8b0f05 from=translated src=- shape=f438fb2a vocab=1897b845
+-/
 theorem adaptiveFanBaseSimplexPath_secondWeight (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f})
@@ -1211,6 +1353,9 @@ theorem adaptiveFanBaseSimplexPath_secondWeight (hU : IsOpen U)
   · rfl
   · exact hxCenter
 
+/--
+@isnad1 id=mem.1h4v.s8.2c9657b0a871 from=translated src=- shape=eea5774f vocab=17d3be0b
+-/
 theorem adaptiveFanBasePath_mem_baseEdge (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) (r : Set.Icc (0 : ℝ) 1) :
     (K.adaptiveFanBasePath U hU f r).1 ∈
@@ -1220,6 +1365,9 @@ theorem adaptiveFanBasePath_mem_baseEdge (hU : IsOpen U)
   apply K.adaptiveFanSourcePoint_mem_baseEdge_of_center_eq_zero U hU
   exact K.adaptiveFanBaseSimplexPath_apply_center U hU f r
 
+/--
+@isnad1 id=le.1h3v.s7.dd72a01d9ec7 from=translated src=- shape=ca6fce20 vocab=97e6b73e
+-/
 theorem range_adaptiveFanFaceMap_subset_tile (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU) :
     Set.range (K.adaptiveFanFaceMap U hU f) ⊆
@@ -1229,7 +1377,9 @@ theorem range_adaptiveFanFaceMap_subset_tile (hU : IsOpen U)
     K.adaptiveFanSourcePoint_mem_carrier U hU f x, rfl⟩
 
 omit [AdaptiveSafety.IsAdmissible K U] in
-/-- The adaptive face chart takes a transported cyclic edge to the matching standard edge. -/
+/-- The adaptive face chart takes a transported cyclic edge to the matching standard edge.
+@isnad1 id=mem.1h5v.s9.93f83a4a2e6c from=translated src=- shape=87dc1be7 vocab=cceef0c8
+-/
 theorem adaptiveFacePlaneHomeomorph_mem_edge
     (t : K.AdaptiveFace U) (i : ZMod 3) {p : K.realization}
     (hpEdge : p ∈ K.levelFaceEdgeCarrier t.2.1 i) :
@@ -1245,6 +1395,9 @@ theorem adaptiveFacePlaneHomeomorph_mem_edge
   rfl
 
 omit [AdaptiveSafety.IsAdmissible K U] in
+/--
+@isnad1 id=iff.1h5v.s9.153218cd4b53 from=translated src=- shape=4c1256ec vocab=d7dde5c3
+-/
 theorem adaptiveFacePlaneHomeomorph_mem_edge_iff
     (t : K.AdaptiveFace U) (i : ZMod 3) {p : K.realization}
     (hp : p ∈ K.adaptiveFaceCarrier U t) :
@@ -1269,7 +1422,9 @@ theorem adaptiveFacePlaneHomeomorph_mem_edge_iff
     simpa only using K.adaptiveFacePlaneHomeomorph_mem_edge U t i hpEdge
 
 omit [AdaptiveSafety.IsAdmissible K U] in
-/-- The adaptive tile barycenter is an interior point in the standard plane chart. -/
+/-- The adaptive tile barycenter is an interior point in the standard plane chart.
+@isnad1 id=mem.0h3v.s9.2ecddb73bf63 from=translated src=- shape=910f0674 vocab=940138b3
+-/
 theorem adaptiveFacePlaneCenter_mem_interior (t : K.AdaptiveFace U) :
     (K.adaptiveFacePlaneHomeomorph U t
       ⟨K.adaptiveFaceCenter U t, K.adaptiveFaceCenter_mem_carrier U t⟩).1 ∈
@@ -1299,7 +1454,9 @@ theorem adaptiveFacePlaneCenter_mem_interior (t : K.AdaptiveFace U) :
 
 omit [AdaptiveSafety.IsAdmissible K U] in
 /-- The inverse adaptive face chart is given by the explicit affine inverse in refined
-barycentric coordinates. -/
+barycentric coordinates.
+@isnad1 id=eq.0h4v.s12.ace95e379472 from=translated src=- shape=80c0cb8d vocab=23b20e89
+-/
 theorem adaptiveFaceSourceHomeomorph_val_eq_planeInverseAffine
     (t : K.AdaptiveFace U) (p : K.AdaptiveClosedFace U t) :
     (K.adaptiveFaceSourceHomeomorph U t p).1.1 =
@@ -1312,7 +1469,9 @@ theorem adaptiveFaceSourceHomeomorph_val_eq_planeInverseAffine
 
 omit [AdaptiveSafety.IsAdmissible K U] in
 /-- A radial segment in the plane tile chart pulls back to the corresponding affine segment in
-the refined barycentric face. -/
+the refined barycentric face.
+@isnad1 id=eq.1h6v.s13.86d5d2996f0d from=translated src=- shape=039e9d9e vocab=87e886bf
+-/
 theorem adaptiveFaceSource_val_eq_lineMap_of_plane_eq
     (t : K.AdaptiveFace U) (p q : K.AdaptiveClosedFace U t)
     (r : ℝ)
@@ -1350,7 +1509,9 @@ theorem adaptiveFaceSource_val_eq_lineMap_of_plane_eq
 
 omit [AdaptiveSafety.IsAdmissible K U] in
 /-- The adaptive face chart carries the relative boundary of a tile into the standard
-polygonal triangle boundary. -/
+polygonal triangle boundary.
+@isnad1 id=mem.2h4v.s9.cb78d558547a from=translated src=- shape=c95ed8cf vocab=aa26b0c7
+-/
 theorem adaptiveFacePlaneHomeomorph_mem_standardCircle_of_not_relInterior
     (t : K.AdaptiveFace U) {p : K.realization}
     (hp : p ∈ K.adaptiveFaceCarrier U t)
@@ -1363,7 +1524,9 @@ theorem adaptiveFacePlaneHomeomorph_mem_standardCircle_of_not_relInterior
   simpa only using K.adaptiveFacePlaneHomeomorph_mem_edge U t i hpEdge
 
 /-- A point which an adaptive face chart sends to a standard triangle corner is one of that
-tile's collected boundary marks. -/
+tile's collected boundary marks.
+@isnad1 id=mem.3h5v.s9.f596a6f3c6a8 from=translated src=- shape=e8e8f5dc vocab=fac7a383
+-/
 theorem mem_boundaryVertices_of_adaptiveFacePlaneHomeomorph_eq_vertex
     (hU : IsOpen U) (t : K.AdaptiveFace U) {p : K.realization}
     (hp : p ∈ K.adaptiveFaceCarrier U t) (j : ZMod 3)
@@ -1405,6 +1568,9 @@ theorem mem_boundaryVertices_of_adaptiveFacePlaneHomeomorph_eq_vertex
   rw [hpv]
   exact K.adaptiveVertexPoint_mem_boundaryVertices U hU t v
 
+/--
+@isnad1 id=continuo.0h4v.s6.843bac3d8356 from=translated src=- shape=f718243c vocab=67ba2b77
+-/
 theorem continuous_levelFaceEdgeParameter {n : ℕ}
     (t : K.LevelFace n) (i : ZMod 3) :
     Continuous (K.levelFaceEdgeParameter t i) := by
@@ -1415,7 +1581,9 @@ theorem continuous_levelFaceEdgeParameter {n : ℕ}
     (K.safeSubdivision n).homeo.symm.continuous
 
 /-- Along a fan base, the ambient edge parameter is the convex combination of the two endpoint
-parameters with the two remaining simplex weights. -/
+parameters with the two remaining simplex weights.
+@isnad1 id=eq.2h4v.s10.49979de0ff96 from=translated src=- shape=cb9085ea vocab=9355ea47
+-/
 theorem levelFaceEdgeParameter_adaptiveFanFaceMap_of_center_eq_zero
     (hU : IsOpen U) (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f})
@@ -1452,6 +1620,9 @@ theorem levelFaceEdgeParameter_adaptiveFanFaceMap_of_center_eq_zero
   simp only [zero_mul, zero_add]
   rfl
 
+/--
+@isnad1 id=mem.2h4v.s10.67caab4931cd from=translated src=- shape=51687acc vocab=6eef7637
+-/
 theorem levelFaceEdgeParameter_adaptiveFanFaceMap_mem_Icc_of_center_eq_zero
     (hU : IsOpen U) (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f})
@@ -1501,7 +1672,9 @@ theorem levelFaceEdgeParameter_adaptiveFanFaceMap_mem_Icc_of_center_eq_zero
     exact sub_le_self _ (mul_nonneg hxFirst (sub_nonneg.mpr hfirst.le))
 
 /-- Every point of a resolved adaptive edge is represented by one of its consecutive fan-base
-paths. -/
+paths.
+@isnad1 id=ex.2h5v.s8.e07ca873e2c2 from=translated src=- shape=b07821b1 vocab=8ce0c21b
+-/
 theorem exists_adaptiveFanBasePath_eq_of_mem_levelFaceEdgeCarrier
     (hU : IsOpen U) (t : K.AdaptiveFace U) (i : ZMod 3)
     {p : K.realization} (hp : p ∈ K.levelFaceEdgeCarrier t.2.1 i) :
@@ -1544,7 +1717,9 @@ theorem exists_adaptiveFanBasePath_eq_of_mem_levelFaceEdgeCarrier
   field_simp [hab.ne']
   ring
 
-/-- The fan triangles over one adaptive tile cover the whole closed tile. -/
+/-- The fan triangles over one adaptive tile cover the whole closed tile.
+@isnad1 id=ex.2h4v.s9.d4ce9cce20e9 from=translated src=- shape=cd438eb3 vocab=d06cebca
+-/
 theorem exists_adaptiveFanFaceMap_eq_of_mem_adaptiveFaceCarrier
     (hU : IsOpen U) (t : K.AdaptiveFace U) {p : K.realization}
     (hp : p ∈ K.adaptiveFaceCarrier U t) :
@@ -1632,6 +1807,9 @@ theorem exists_adaptiveFanFaceMap_eq_of_mem_adaptiveFaceCarrier
       rfl
     _ = ((K.safeSubdivision t.1).homeo.symm p).1 := hpSource.symm
 
+/--
+@isnad1 id=mem.4h4v.s10.b5528069f39f from=translated src=- shape=60257014 vocab=d69d547f
+-/
 theorem levelFaceEdgeParameter_adaptiveFanFaceMap_mem_Ioo_of_center_eq_zero
     (hU : IsOpen U) (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f})
@@ -1679,7 +1857,9 @@ theorem levelFaceEdgeParameter_adaptiveFanFaceMap_mem_Ioo_of_center_eq_zero
     exact sub_lt_self _ (mul_pos hxFirst (sub_pos.mpr hfirst))
 
 /-- A point in the relative interior of a resolved fan base is not one of the tile's collected
-boundary marks. -/
+boundary marks.
+@isnad1 id=not.4h4v.s9.089cce65c39f from=translated src=- shape=6fb7a7f8 vocab=abe6f2a0
+-/
 theorem adaptiveFanFaceMap_not_mem_boundaryVertices_of_base_weights_pos
     (hU : IsOpen U) (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f})
@@ -1700,7 +1880,9 @@ theorem adaptiveFanFaceMap_not_mem_boundaryVertices_of_base_weights_pos
       U hU f x hxCenter hxFirst hxSecond)
 
 /-- Relative-interior points of resolved bases in one adaptive tile can agree only when the
-bases lie on the same cyclic tile edge. -/
+bases lie on the same cyclic tile edge.
+@isnad1 id=eq.8h9v.s12.b625ff42e5fd from=translated src=- shape=2d5f52dc vocab=7879d8b5
+-/
 theorem adaptiveFanSide_eq_of_faceMap_eq_of_same_tile_of_base_weights_pos
     (hU : IsOpen U) (t : K.AdaptiveFace U)
     (i j : ZMod 3) (a : K.AdaptiveEdgeInterval U hU t i)
@@ -1756,7 +1938,9 @@ theorem adaptiveFanSide_eq_of_faceMap_eq_of_same_tile_of_base_weights_pos
   exact K.levelFace_faceEdge_injective t.2.1 (Subtype.ext hedgeVal)
 
 /-- Relative interiors of two consecutive-list intervals on the same tile edge are disjoint
-unless the interval indices are equal. -/
+unless the interval indices are equal.
+@isnad1 id=eq.8h8v.s12.e4668b4a8804 from=translated src=- shape=fea35e3a vocab=7879d8b5
+-/
 theorem adaptiveFanInterval_eq_of_faceMap_eq_of_same_edge_of_base_weights_pos
     (hU : IsOpen U) (t : K.AdaptiveFace U) (i : ZMod 3)
     (a b : K.AdaptiveEdgeInterval U hU t i)
@@ -1810,6 +1994,9 @@ theorem adaptiveFanInterval_eq_of_faceMap_eq_of_same_edge_of_base_weights_pos
     rw [hparam] at hxLower
     exact (not_lt_of_ge hsep) (hxLower.trans hyUpper)
 
+/--
+@isnad1 id=not.2h4v.s7.ddd176204f19 from=translated src=- shape=9dc7a881 vocab=c3879a8a
+-/
 theorem adaptiveFanBasePath_not_mem_boundaryVertices_of_mem_Ioo
     (hU : IsOpen U) (f : K.AdaptiveFanFace U hU)
     (r : Set.Icc (0 : ℝ) 1) (hr : r.1 ∈ Set.Ioo (0 : ℝ) 1) :
@@ -1823,7 +2010,9 @@ theorem adaptiveFanBasePath_not_mem_boundaryVertices_of_mem_Ioo
     exact hr.1
 
 /-- Positive weight at the cone center places a fan point in the relative interior of its
-adaptive tile. -/
+adaptive tile.
+@isnad1 id=mem.2h4v.s8.dd6eb555df3c from=translated src=- shape=d83cf8bd vocab=3d89b8e9
+-/
 theorem adaptiveFanFaceMap_mem_relInterior_of_center_pos (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f})
@@ -1859,7 +2048,9 @@ theorem adaptiveFanFaceMap_mem_relInterior_of_center_pos (hU : IsOpen U)
     (Finset.single_le_sum (fun p _ ↦ hnonneg p) (Finset.mem_univ c))
 
 /-- A point common to fan triangles from distinct adaptive tiles has zero cone-center weight in
-the first triangle. -/
+the first triangle.
+@isnad1 id=eq.3h6v.s9.35d085cdd3a8 from=translated src=- shape=811bc73d vocab=16ca066c
+-/
 theorem adaptiveFanCenterWeight_eq_zero_of_faceMap_eq_of_tile_ne
     (hU : IsOpen U) {f g : K.AdaptiveFanFace U hU}
     (hfg : f.1 ≠ g.1)
@@ -1881,7 +2072,9 @@ theorem adaptiveFanCenterWeight_eq_zero_of_faceMap_eq_of_tile_ne
   · exact x.2.1 _
 
 /-- At a common nonvertex point, the base edge belonging to the later adaptive tile lies in the
-earlier tile. -/
+earlier tile.
+@isnad1 id=le.6h6v.s10.2fff7e9ebefb from=translated src=- shape=93d44d54 vocab=12af8d62
+-/
 theorem adaptiveFanLaterBaseEdge_subset_earlierTile_of_faceMap_eq
     (hU : IsOpen U) {f g : K.AdaptiveFanFace U hU}
     (hfg : f.1 ≠ g.1) (hlevel : f.1.1 ≤ g.1.1)
@@ -1911,7 +2104,9 @@ theorem adaptiveFanLaterBaseEdge_subset_earlierTile_of_faceMap_eq
     U hU hfg hlevel g.2.1 hzInF hzEdgeG hzNotG
 
 /-- If interiors of two resolved fan bases meet and the second tile is no earlier in the
-adaptive hierarchy, then the entire second resolved interval lies in the first base edge. -/
+adaptive hierarchy, then the entire second resolved interval lies in the first base edge.
+@isnad1 id=mem.8h7v.s10.4b6cae1813d6 from=translated src=- shape=a23ac685 vocab=7a985378
+-/
 theorem adaptiveFanLaterBasePath_subset_earlierBaseEdge_of_faceMap_eq
     (hU : IsOpen U) {f g : K.AdaptiveFanFace U hU}
     (hfg : f.1 ≠ g.1) (hlevel : f.1.1 ≤ g.1.1)
@@ -2147,7 +2342,9 @@ private theorem endpoint_values_eq_or_swap_of_injective
     exact Or.inr ⟨by simpa [rzero] using hzeroEqB, by simpa [rone] using hOneEqA⟩
 
 /-- Two resolved fan intervals whose relative interiors meet have the same geometric endpoints,
-possibly with opposite order. -/
+possibly with opposite order.
+@isnad1 id=or.8h6v.s10.bf49a26234e5 from=translated src=- shape=a98ed622 vocab=f38f8bf8
+-/
 theorem adaptiveFanBaseEndpoints_eq_or_swap_of_faceMap_eq
     (hU : IsOpen U) {f g : K.AdaptiveFanFace U hU}
     (hfg : f.1 ≠ g.1) (hlevel : f.1.1 ≤ g.1.1)
@@ -2357,7 +2554,9 @@ theorem adaptiveFanBaseEndpoints_eq_or_swap_of_faceMap_eq
       change psi rone = af
       simpa [rone] using hone
 
-/-- Extended coordinates of a fan triangle are the sum of its three vertex-weight spikes. -/
+/-- Extended coordinates of a fan triangle are the sum of its three vertex-weight spikes.
+@isnad1 id=eq.1h4v.s10.873823fecffb from=translated src=- shape=b3693363 vocab=89ce39b0
+-/
 theorem extendFaceCoordinates_adaptiveFanFace (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f}) :
@@ -2412,7 +2611,9 @@ theorem extendFaceCoordinates_adaptiveFanFace (hU : IsOpen U)
     simp [c, p, q, hvc, hvp, hvq]
 
 /-- Radial projection to the fan base recovers the original global coordinates after restoring
-the cone-center weight. -/
+the cone-center weight.
+@isnad1 id=eq.2h4v.s10.2eb5e7b0580d from=translated src=- shape=d44b04c7 vocab=c4f302e0
+-/
 theorem extendFaceCoordinates_eq_center_add_smul_normalizedBase (hU : IsOpen U)
     (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f})
@@ -2473,7 +2674,9 @@ theorem extendFaceCoordinates_eq_center_add_smul_normalizedBase (hU : IsOpen U)
   rw [hfirst, hsecond, add_assoc]
 
 /-- Cross-tile interior overlap is face-to-face not only as a set: the two affine
-parametrizations assign the same global barycentric coordinates. -/
+parametrizations assign the same global barycentric coordinates.
+@isnad1 id=eq.8h6v.s10.af06675a9458 from=translated src=- shape=037793bc vocab=ed37f2f1
+-/
 theorem adaptiveFanExtendedCoordinates_eq_of_faceMap_eq_of_tile_ne_of_base_weights_pos
     (hU : IsOpen U) {f g : K.AdaptiveFanFace U hU}
     (hfg : f.1 ≠ g.1) (hlevel : f.1.1 ≤ g.1.1)
@@ -2559,7 +2762,9 @@ theorem adaptiveFanExtendedCoordinates_eq_of_faceMap_eq_of_tile_ne_of_base_weigh
       hswap.1, hswap.2, hsecondFirst, hfirstSecond, add_comm]
 
 /-- A zero-center fan point which is not in the relative interior of its base is one of the two
-declared base vertices, both geometrically and in extended barycentric coordinates. -/
+declared base vertices, both geometrically and in extended barycentric coordinates.
+@isnad1 id=or.3h4v.s10.0379a12f44cc from=translated src=- shape=9466f363 vocab=cadc575d
+-/
 theorem adaptiveFanEndpointData_of_center_eq_zero_of_not_base_weights_pos
     (hU : IsOpen U) (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f})
@@ -2635,6 +2840,9 @@ theorem adaptiveFanEndpointData_of_center_eq_zero_of_not_base_weights_pos
           simp [extendFaceCoordinates, hmem, hv, hne]
         · simp [extendFaceCoordinates, hmem, hv]
 
+/--
+@isnad1 id=mem.3h4v.s9.c4099aa4140b from=translated src=- shape=bc9fda69 vocab=abe6f2a0
+-/
 theorem adaptiveFanFaceMap_mem_boundaryVertices_of_center_zero_of_not_base_weights_pos
     (hU : IsOpen U) (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f})
@@ -2666,6 +2874,9 @@ abbrev adaptiveFanFaceSimplex (hU : IsOpen U) (t : K.AdaptiveFace U)
     (K.adaptiveFanFace U hU t i a)}
 
 -- Comparing boundary membership reduces to two fan faces with the same underlying tile.
+/--
+@isnad1 id=and.6h6v.s10.5259d29f57a5 from=translated src=- shape=84c838a9 vocab=808939b7
+-/
 theorem adaptiveFanBaseWeights_pos_of_faceMap_eq_of_same_tile
     (hU : IsOpen U) (f g : K.AdaptiveFanFace U hU) (hfg : f.1 = g.1)
     {x : K.adaptiveFanSimplex U hU f}
@@ -2693,6 +2904,9 @@ theorem adaptiveFanBaseWeights_pos_of_faceMap_eq_of_same_tile
 
 /- Resolved fan bases in one adaptive tile use compatible global barycentric coordinates at
 every common point. -/
+/--
+@isnad1 id=eq.4h9v.s11.d62e2c9edb69 from=translated src=- shape=a158095e vocab=0536ce36
+-/
 theorem adaptiveFanExtendedCoordinates_eq_of_faceMap_eq_of_same_tile_of_center_eq_zero
     (hU : IsOpen U) (t : K.AdaptiveFace U)
     (i j : ZMod 3) (a : K.AdaptiveEdgeInterval U hU t i)
@@ -2771,6 +2985,9 @@ theorem adaptiveFanExtendedCoordinates_eq_of_faceMap_eq_of_same_tile_of_center_e
 
 /- Fan triangles in one adaptive tile assign the same global barycentric coordinates to every
 common point, including the cone center. -/
+/--
+@isnad1 id=eq.2h9v.s9.e4647d92b88d from=translated src=- shape=2ea2e138 vocab=4e01a746
+-/
 theorem adaptiveFanExtendedCoordinates_eq_of_faceMap_eq_of_same_tile
     (hU : IsOpen U) (t : K.AdaptiveFace U)
     (i j : ZMod 3) (a : K.AdaptiveEdgeInterval U hU t i)
@@ -2867,7 +3084,9 @@ theorem adaptiveFanExtendedCoordinates_eq_of_faceMap_eq_of_same_tile
 
 /-- Fan triangles belonging to distinct adaptive tiles assign the same global barycentric
 coordinates to every common geometric point.  Interior points use the resolved-interval
-compatibility theorem; endpoint points are the common boundary marks collected by both tiles. -/
+compatibility theorem; endpoint points are the common boundary marks collected by both tiles.
+@isnad1 id=eq.3h6v.s8.216f4163e9e9 from=translated src=- shape=be637ab1 vocab=6c7c54d3
+-/
 theorem adaptiveFanExtendedCoordinates_eq_of_faceMap_eq_of_tile_ne
     (hU : IsOpen U) {f g : K.AdaptiveFanFace U hU}
     (hfg : f.1 ≠ g.1)
@@ -2995,7 +3214,9 @@ theorem adaptiveFanExtendedCoordinates_eq_of_faceMap_eq_of_tile_ne
           hxEnd.1.symm.trans (hactual.trans hyEnd.1)
         rw [hxEnd.2, hyEnd.2, hv]
 
-/-- All adaptive fan faces use one global barycentric coordinate system on their overlaps. -/
+/-- All adaptive fan faces use one global barycentric coordinate system on their overlaps.
+@isnad1 id=eq.2h6v.s8.846a826a36de from=translated src=- shape=55a1f452 vocab=cc044b14
+-/
 theorem adaptiveFanExtendedCoordinates_eq_of_faceMap_eq (hU : IsOpen U)
     {f g : K.AdaptiveFanFace U hU}
     {x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f}}
@@ -3013,7 +3234,9 @@ theorem adaptiveFanExtendedCoordinates_eq_of_faceMap_eq (hU : IsOpen U)
   · exact K.adaptiveFanExtendedCoordinates_eq_of_faceMap_eq_of_tile_ne U hU hfg hxy
 
 /-- In one adaptive tile, equal global coordinates have equal pulled-back barycentric sums and
-hence equal images. -/
+hence equal images.
+@isnad1 id=eq.2h9v.s9.f8a445aba745 from=translated src=- shape=6d5e42c3 vocab=4e01a746
+-/
 theorem adaptiveFanFaceMap_eq_of_extendedCoordinates_eq_of_same_tile
     (hU : IsOpen U) (t : K.AdaptiveFace U)
     (i j : ZMod 3) (a : K.AdaptiveEdgeInterval U hU t i)
@@ -3038,7 +3261,9 @@ theorem adaptiveFanFaceMap_eq_of_extendedCoordinates_eq_of_same_tile
     (sum_extendFaceCoordinates_eq_of_eq x y hxy
       (fun p ↦ ((K.safeSubdivision t.1).homeo.symm p).1 v))
 
-/-- The center of one adaptive tile is not a fan vertex of a distinct tile. -/
+/-- The center of one adaptive tile is not a fan vertex of a distinct tile.
+@isnad1 id=not.2h4v.s7.c7b837a104c5 from=translated src=- shape=25036a6b vocab=f756259b
+-/
 theorem adaptiveFaceCenter_not_mem_adaptiveFanFaceVertices_of_ne
     (hU : IsOpen U) {f g : K.AdaptiveFanFace U hU} (hfg : f.1 ≠ g.1) :
     K.adaptiveFaceCenter U f.1 ∉ K.adaptiveFanFaceVertices U hU g := by
@@ -3050,7 +3275,9 @@ theorem adaptiveFaceCenter_not_mem_adaptiveFanFaceVertices_of_ne
   exact hover.1.2 hinter
 
 /-- On a fan base, the parametrization is the literal weighted sum of its declared geometric
-vertices. -/
+vertices.
+@isnad1 id=eq.2h4v.s9.669974039112 from=translated src=- shape=be16b551 vocab=3784510e
+-/
 theorem adaptiveFanFaceMap_val_eq_weightedVertices_of_center_eq_zero
     (hU : IsOpen U) (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f})
@@ -3106,7 +3333,9 @@ theorem adaptiveFanFaceMap_val_eq_weightedVertices_of_center_eq_zero
   rw [hxFirst]
 
 /-- Across distinct adaptive tiles, equal global coordinates describe the same point on their
-common resolved boundary. -/
+common resolved boundary.
+@isnad1 id=eq.3h6v.s8.fc725cf81e92 from=translated src=- shape=6ae1e970 vocab=6c7c54d3
+-/
 theorem adaptiveFanFaceMap_eq_of_extendedCoordinates_eq_of_tile_ne
     (hU : IsOpen U) {f g : K.AdaptiveFanFace U hU} (hfg : f.1 ≠ g.1)
     {x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f}}
@@ -3145,7 +3374,9 @@ theorem adaptiveFanFaceMap_eq_of_extendedCoordinates_eq_of_tile_ne
   funext v
   exact sum_extendFaceCoordinates_eq_of_eq x y hxy (fun p ↦ p.1 v)
 
-/-- Equal global barycentric coordinates are sufficient for equality of adaptive fan images. -/
+/-- Equal global barycentric coordinates are sufficient for equality of adaptive fan images.
+@isnad1 id=eq.2h6v.s8.7ab0b22f41a1 from=translated src=- shape=ec259a84 vocab=cc044b14
+-/
 theorem adaptiveFanFaceMap_eq_of_extendedCoordinates_eq (hU : IsOpen U)
     {f g : K.AdaptiveFanFace U hU}
     {x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f}}
@@ -3163,7 +3394,9 @@ theorem adaptiveFanFaceMap_eq_of_extendedCoordinates_eq (hU : IsOpen U)
   · exact K.adaptiveFanFaceMap_eq_of_extendedCoordinates_eq_of_tile_ne U hU hfg hxy
 
 /-- The fan-triangle family is locally finite because it has finitely many faces over each
-adaptive tile and the adaptive tile family is locally finite. -/
+adaptive tile and the adaptive tile family is locally finite.
+@isnad1 id=locallyf.1h2v.s7.8e8f68cd4c01 from=translated src=- shape=1216cb5c vocab=b74d2c17
+-/
 theorem locallyFinite_adaptiveFanFaceMap (hU : IsOpen U) :
     LocallyFinite fun f : K.AdaptiveFanFace U hU ↦
       Set.range (K.adaptiveFanFaceMap U hU f) := by

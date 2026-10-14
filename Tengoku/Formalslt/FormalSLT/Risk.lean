@@ -56,7 +56,9 @@ noncomputable def uniformDeviation [Fintype ι] [Nonempty ι] [MeasurableSpace Z
     (fun i => |empiricalRisk z ℓ i - risk μ ℓ i|)
 
 /-- Each hypothesis's empirical-population gap is dominated by the uniform
-deviation. This is just `Finset.le_sup'` instantiated; no probability. -/
+deviation. This is just `Finset.le_sup'` instantiated; no probability.
+@isnad1 id=le.0h7v.s6.37b000d96a77 from=translated src=- shape=0f94aed4 vocab=1115436d
+-/
 lemma abs_empiricalRisk_sub_risk_le_uniformDeviation
     [Fintype ι] [Nonempty ι] [MeasurableSpace Z]
     (μ : Measure Z) (ℓ : ι → Z → ℝ) {n : ℕ} (z : Fin n → Z) (i : ι) :
@@ -67,7 +69,9 @@ lemma abs_empiricalRisk_sub_risk_le_uniformDeviation
 
 /-- Symmetric form of the previous lemma: `|risk - empiricalRisk|` is the
 same as `|empiricalRisk - risk|`. Provided so callers can match either
-orientation without juggling `abs_sub_comm`. -/
+orientation without juggling `abs_sub_comm`.
+@isnad1 id=le.0h7v.s6.272a62d3da84 from=translated src=- shape=08ef861e vocab=1115436d
+-/
 lemma abs_risk_sub_empiricalRisk_le_uniformDeviation
     [Fintype ι] [Nonempty ι] [MeasurableSpace Z]
     (μ : Measure Z) (ℓ : ι → Z → ℝ) {n : ℕ} (z : Fin n → Z) (i : ι) :

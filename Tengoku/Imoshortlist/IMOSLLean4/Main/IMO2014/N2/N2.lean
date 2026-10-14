@@ -21,9 +21,15 @@ namespace IMO2014N2
 
 def good (x y : ℤ) := 7 * x ^ 2 - 13 * x * y + 7 * y ^ 2 = (|x - y| + 1) ^ 3
 
+/--
+@isnad1 id=good.1h2v.s3.6e2e21dd4af1 from=translated src=- shape=7e524d71 vocab=e0a58b54
+-/
 lemma good_swap (h : good x y) : good y x := by
   rw [good, sub_add_comm, mul_right_comm, h, abs_sub_comm]
 
+/--
+@isnad1 id=iff.0h2v.s6.ca3ca1dfc11c from=translated src=- shape=02850f2c vocab=e16b1cbe
+-/
 lemma good_iff (x y : ℤ) :
     good x y ↔ (x + y) ^ 2 = (|x - y| - 2) ^ 2 * (4 * |x - y| + 1) := by calc
   _ ↔ 7 * x ^ 2 - 13 * x * y + 7 * y ^ 2 = (|x - y| + 1) ^ 3 := Iff.rfl
@@ -32,6 +38,9 @@ lemma good_iff (x y : ℤ) :
     rw [sq_abs, sub_left_inj, mul_left_cancel_iff_of_pos four_pos]
   _ ↔ _ := by apply Eq.congr <;> ring
 
+/--
+@isnad1 id=iff.0h2v.s7.413caa7b593c from=translated src=- shape=6be95a6e vocab=271705e4
+-/
 lemma square_lemma (a d : ℤ) :
     a ^ 2 = (d - 2) ^ 2 * (4 * d + 1) ↔
       ∃ m, |a| = |(m ^ 2 + m - 2) * (2 * m + 1)| ∧ d = m ^ 2 + m := by
@@ -62,6 +71,9 @@ lemma square_lemma (a d : ℤ) :
     exact (Int.mul_eq_mul_left_iff four_ne_zero).mp h0
   exact ⟨m, h, rfl⟩
 
+/--
+@isnad1 id=iff.0h4v.s6.6734f601d0e4 from=translated src=- shape=bda827c3 vocab=c85d5191
+-/
 lemma add_eq_sub_eq_iff {a b x y : ℤ} :
     (x + y = 2 * a ∧ x - y = 2 * b) ↔ a + b = x ∧ a - b = y := by
   refine ⟨λ h ↦ ?_, λ h ↦ ?_⟩
@@ -74,6 +86,9 @@ lemma add_eq_sub_eq_iff {a b x y : ℤ} :
     rw [add_add_sub_cancel, add_sub_sub_cancel]
     exact ⟨a.two_mul.symm, b.two_mul.symm⟩
 
+/--
+@isnad1 id=iff.1h2v.s7.fd2901678d9f from=translated src=- shape=c91594e6 vocab=17617ffc
+-/
 lemma good_iff_of_y_le_x (h : y ≤ x) :
     good x y ↔ ∃ m, x = m ^ 3 + 2 * m ^ 2 - m - 1 ∧ y = m ^ 3 + m ^ 2 - 2 * m - 1 := by
   rw [good_iff, square_lemma, abs_of_nonneg (sub_nonneg_of_le h)]
@@ -93,6 +108,9 @@ lemma good_iff_of_y_le_x (h : y ≤ x) :
   · rintro ⟨m, rfl, rfl⟩
     exact ⟨m, Or.inl ⟨by ring, by ring⟩⟩
 
+/--
+@isnad1 id=good.0h1v.s7.d9a6657ef715 from=translated src=- shape=c38ae7dc vocab=14fe7ce2
+-/
 lemma special_pair_is_good (m) :
     good (m ^ 3 + 2 * m ^ 2 - m - 1) (m ^ 3 + m ^ 2 - 2 * m - 1) := by
   suffices m ^ 3 + m ^ 2 - 2 * m - 1 ≤ m ^ 3 + 2 * m ^ 2 - m - 1
@@ -105,7 +123,9 @@ lemma special_pair_is_good (m) :
   · exact Int.mul_nonneg h (Int.add_nonneg h Int.one_nonneg)
   · exact Int.mul_nonneg_of_nonpos_of_nonpos h.le h
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h2v.s8.5732f37344ea from=translated src=- shape=4449e4a3 vocab=af269ddf
+-/
 theorem final_solution :
     good x y ↔ (∃ m, (x, y) = (m ^ 3 + 2 * m ^ 2 - m - 1, m ^ 3 + m ^ 2 - 2 * m - 1)) ∨
       (∃ m, (x, y) = (m ^ 3 + m ^ 2 - 2 * m - 1, m ^ 3 + 2 * m ^ 2 - m - 1)) := by

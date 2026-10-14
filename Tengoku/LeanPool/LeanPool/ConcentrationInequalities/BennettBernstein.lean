@@ -52,7 +52,9 @@ def HasSubgammaMGF (X : Ω → ℝ) (V c : ℝ) (μ : Measure Ω) : Prop :=
 /-- **Bernstein tail from the sub-gamma MGF.** If `X` has a sub-gamma MGF with `V > 0`,
 `c > 0`, then
 `P(X ≥ ε) ≤ exp(−ε²/(2(V + cε)))`. The optimal Chernoff parameter is `t* = ε/(V+cε)`, at which the
-exponent is exactly `−ε²/(2(V+cε))`. -/
+exponent is exactly `−ε²/(2(V+cε))`.
+@isnad1 id=le.5h7v.s7.1dd192527eed from=translated src=- shape=cd18dbc8 vocab=c2c98b21
+-/
 theorem subgamma_tail [IsFiniteMeasure μ] {X : Ω → ℝ} {V c ε : ℝ}
     (h : HasSubgammaMGF X V c μ) (hV : 0 < V) (hc : 0 < c) (hε : 0 ≤ ε)
     (hint : Integrable (fun ω => Real.exp ((ε / (V + c * ε)) * X ω)) μ) :
@@ -272,7 +274,9 @@ private lemma exp_mul_le_bennett_quadratic_of_pos {t b x : ℝ} (ht : 0 ≤ t)
       field_simp [ht.ne', hb.ne']
     linarith
 
-/-- The pointwise quadratic majorant underlying Bennett's MGF inequality. -/
+/-- The pointwise quadratic majorant underlying Bennett's MGF inequality.
+@isnad1 id=le.3h3v.s7.d254a5e79a87 from=translated src=- shape=c9e75d5e vocab=8fff36d7
+-/
 theorem exp_mul_le_bennett_quadratic {t b x : ℝ} (ht : 0 ≤ t) (hb : 0 < b) (hx : x ≤ b) :
     Real.exp (t * x) ≤
       1 + t * x + x ^ 2 * (Real.exp (t * b) - 1 - t * b) / b ^ 2 := by
@@ -355,7 +359,9 @@ private lemma exp_le_bernstein_majorant {u : ℝ} (hu0 : 0 ≤ u) (hu3 : u < 3) 
   linarith
 
 /-- The elementary exponential remainder estimate which converts Bennett's bound to Bernstein's
-sub-gamma bound. -/
+sub-gamma bound.
+@isnad1 id=le.2h1v.s6.2e3c655f2d67 from=translated src=- shape=bfbe77e8 vocab=8571d42b
+-/
 theorem exp_sub_one_sub_le_bernstein {u : ℝ} (hu0 : 0 ≤ u) (hu3 : u < 3) :
     Real.exp u - 1 - u ≤ u ^ 2 / (2 * (1 - u / 3)) := by
   linarith [exp_le_bernstein_majorant hu0 hu3]
@@ -431,7 +437,9 @@ private lemma mgf_le_one_add_bennett [IsProbabilityMeasure μ] {X : Ω → ℝ} 
     _ = 1 + V * (Real.exp (t * b) - 1 - t * b) / b ^ 2 := by ring
 
 /-- **Bennett's MGF inequality.** A centered random variable bounded above by `b > 0`, whose second
-moment is at most `V`, has the Bennett exponential-moment bound. -/
+moment is at most `V`, has the Bennett exponential-moment bound.
+@isnad1 id=le.8h7v.s8.bf4c6e21fa01 from=translated src=- shape=dbabee15 vocab=f07c3e97
+-/
 theorem mgf_le_bennett [IsProbabilityMeasure μ] {X : Ω → ℝ} {V b t : ℝ}
     (hbpos : 0 < b) (ht : 0 ≤ t)
     (hX0 : μ[X] = 0) (hb : ∀ᵐ ω ∂μ, X ω ≤ b)
@@ -469,7 +477,9 @@ private lemma bennett_exponent_le_subgamma {V b t : ℝ} (hb : 0 < b) (ht : 0 �
     _ = V * t ^ 2 / (2 * (1 - t * b / 3)) := by ring
 
 /-- A bounded-above centered random variable with second moment at most `V` is sub-gamma with
-variance factor `V` and scale `b / 3`. -/
+variance factor `V` and scale `b / 3`.
+@isnad1 id=hassubga.7h6v.s8.3c1fe400c977 from=translated src=- shape=bd40fa2b vocab=e9d24e1d
+-/
 theorem hasSubgammaMGF_of_bounded_above [IsProbabilityMeasure μ] {X : Ω → ℝ} {V b : ℝ}
     (hbpos : 0 < b)
     (hX0 : μ[X] = 0) (hb : ∀ᵐ ω ∂μ, X ω ≤ b)

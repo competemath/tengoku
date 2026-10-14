@@ -110,6 +110,9 @@ def qVStarActionHom : Q →* (VStar ≃ₗ[k] VStar) where
     ext f v
     simp [mul_inv_rev]
 
+/--
+@isnad1 id=eq.0h2v.s14.ac2d291047de from=translated src=- shape=c544de2a vocab=42ae1e93
+-/
 @[simp] theorem sl3CAction_diagonal (l : SpecialLinear.SL3) (a : A) :
     sl3CAction l (diagonal a) = diagonal (sl3AAction l a) := by
   apply Subtype.ext
@@ -125,12 +128,16 @@ def squareSpan : Submodule k TensorAA :=
 structure SquareSpanData where
   squares_span : ∀ c : C, (c : TensorAA) ∈ squareSpan
 
-/-- The coefficientwise candidate is surjective. Paper: §2. -/
+/-- The coefficientwise candidate is surjective. Paper: §2.
+@isnad1 id=surjecti.0h0v.s13.1812a6d33779 from=translated src=- shape=3a363944 vocab=aa616755
+-/
 theorem delta_surjective : Function.Surjective delta := by
   intro a
   exact ⟨diagonal a, delta_diagonal a⟩
 
-/-- The coefficientwise candidate intertwines the tensor action on squares. Paper: §2. -/
+/-- The coefficientwise candidate intertwines the tensor action on squares. Paper: §2.
+@isnad1 id=eq.1h2v.s13.af2932079c88 from=translated src=- shape=2a34ccde vocab=52fe3b17
+-/
 theorem deltaTensor_equivariant_on_squareSpan
     (l : SpecialLinear.SL3) {x : TensorAA} (hx : x ∈ squareSpan) :
     deltaTensor (sl3TensorAction l x) =
@@ -152,7 +159,9 @@ theorem deltaTensor_equivariant_on_squareSpan
   | smul c x hx ih =>
       simp only [map_smul, ih, (sl3AAction l).map_smul]
 
-/-- The candidate is equivariant once the paper's spanning lemma is supplied. Paper: §2. -/
+/-- The candidate is equivariant once the paper's spanning lemma is supplied. Paper: §2.
+@isnad1 id=eq.1h2v.s15.f1e0f4bde44a from=translated src=- shape=07cc79d8 vocab=4322ee16
+-/
 theorem delta_equivariant_of_squareSpanData (l : SpecialLinear.SL3)
     (data : SquareSpanData) (c : C) :
     delta (sl3CAction l c) = sl3AAction l (delta c) := by

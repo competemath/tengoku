@@ -34,7 +34,9 @@ open Finset
 
 /-! ### Subgroup of the rationals defined by numerator divisible by a fixed number -/
 
-/-- If `d` divides the numerator of a rational number, `d` is coprime to the denominator. -/
+/-- If `d` divides the numerator of a rational number, `d` is coprime to the denominator.
+@isnad1 id=coprime.1h2v.s4.1f4f02f07dc0 from=translated src=- shape=4173ba7d vocab=d62ee2a9
+-/
 theorem coprime_den_of_dvd_num {d : ℤ} {q : ℚ} (h : d ∣ q.num) : q.den.Coprime d.natAbs :=
   (q.reduced.coprime_dvd_left (Int.natAbs_dvd_natAbs.mpr h)).symm
 
@@ -58,10 +60,14 @@ def NumDvdSubgroup (d : ℤ) : AddSubgroup ℚ where
     rw [Set.mem_ofPred_eq, Rat.num_add]
     exact Int.dvd_div_of_mul_dvd h0
 
-/-- Definition of membership on `NumDvdSubgroup`. -/
+/-- Definition of membership on `NumDvdSubgroup`.
+@isnad1 id=iff.0h2v.s4.4341f41b7a3c from=translated src=- shape=27a0aa3f vocab=60f7163e
+-/
 theorem mem_NumDvdSubgroup_iff : q ∈ NumDvdSubgroup d ↔ d ∣ q.num := Iff.rfl
 
-/-- If `k : ℕ` is coprime to `d`, then `kq ∈ G_d` iff `q ∈ G_d`. -/
+/-- If `k : ℕ` is coprime to `d`, then `kq ∈ G_d` iff `q ∈ G_d`.
+@isnad1 id=iff.1h3v.s5.b3e218a0026a from=translated src=- shape=a57be41a vocab=e7fdf647
+-/
 theorem mul_mem_NumDvdSubgroup_iff_of_coprime
     {k : ℕ} {d : ℤ} (h : k.Coprime d.natAbs) {q : ℚ} :
     k * q ∈ NumDvdSubgroup d ↔ q ∈ NumDvdSubgroup d := by
@@ -82,7 +88,9 @@ abbrev S (p : ℕ) (a : ℤ) : ℚ := ∑ k ∈ Ico 1 p, (a ^ k : ℚ) / k
 
 variable [Fact (Nat.Prime p)]
 
-/-- For any `k < p` we have `(p - 1)(p - 2) … (p - k) ≡ (-1)^k k! (mod p)`. -/
+/-- For any `k < p` we have `(p - 1)(p - 2) … (p - k) ≡ (-1)^k k! (mod p)`.
+@isnad1 id=eq.1h2v.s7.859f3261dc1d from=translated src=- shape=086cdfcb vocab=e40a4a51
+-/
 theorem descFactorial_prime_sub_one_ZMod {k : ℕ} (hkp : k < p) :
     (Nat.descFactorial (p - 1) k : ZMod p) = (-1) ^ k * Nat.factorial k := by
   ---- Induction on `k`, where the base case is trivial.
@@ -99,7 +107,9 @@ theorem descFactorial_prime_sub_one_ZMod {k : ℕ} (hkp : k < p) :
       rw [Nat.factorial_succ, Nat.cast_mul, neg_mul,
         mul_left_comm, pow_succ, mul_neg_one, neg_mul]
 
-/-- For any non-negative integer `k < p`, we have `C(p - 1, k) ≡ (-1)^k (mod p)`. -/
+/-- For any non-negative integer `k < p`, we have `C(p - 1, k) ≡ (-1)^k (mod p)`.
+@isnad1 id=eq.1h2v.s7.17d3f3a45d0b from=translated src=- shape=c2b46e82 vocab=ee548cd8
+-/
 theorem choose_prime_sub_one_left_ZMod {k : ℕ} (hkp : k < p) :
     (Nat.choose (p - 1) k : ZMod p) = (-1) ^ k := by
   have h : (Nat.descFactorial (p - 1) k : ZMod p) = (-1) ^ k * Nat.factorial k :=
@@ -109,7 +119,9 @@ theorem choose_prime_sub_one_left_ZMod {k : ℕ} (hkp : k < p) :
   rwa [Nat.descFactorial_eq_factorial_mul_choose, Nat.cast_mul,
     mul_comm, mul_eq_mul_right_iff, or_iff_left h0] at h
 
-/-- For any `k` with `0 < k < p`, we have `1/k + (-1)^k C(p, k)/p ∈ G_p`. -/
+/-- For any `k` with `0 < k < p`, we have `1/k + (-1)^k C(p, k)/p ∈ G_p`.
+@isnad1 id=mem.2h2v.s6.de66506af39a from=translated src=- shape=a5be9860 vocab=5dcef40e
+-/
 theorem inv_add_sub_choose_div_prime_mem_NumDvdSubgroup (hk : 0 < k) (hkp : k < p) :
     (k : ℚ)⁻¹ + (-1) ^ k * Nat.choose p k / p ∈ NumDvdSubgroup p := by
   ---- Multiply the left hand side by `k`, which is coprime to `p`.
@@ -152,7 +164,9 @@ theorem inv_add_sub_choose_div_prime_mem_NumDvdSubgroup (hk : 0 < k) (hkp : k < 
 variable (hp : Odd p)
 include hp
 
-/-- We have `S_a + (a^p - (a - 1)^p - 1)/p ∈ G_p`. -/
+/-- We have `S_a + (a^p - (a - 1)^p - 1)/p ∈ G_p`.
+@isnad1 id=mem.1h2v.s6.e97138cef0f7 from=translated src=- shape=d6c94a3b vocab=309cd6fd
+-/
 theorem S_add_mem_NumDvdSubgroup (a : ℕ) :
     S p a + (a ^ p - (a - 1) ^ p - 1) / p ∈ NumDvdSubgroup p := by
   ---- It suffices to show that the LHS is `∑_{k = 1}^p a^k (1/k + (-1)^k C(p, k)/p)`.
@@ -188,17 +202,23 @@ theorem S_add_mem_NumDvdSubgroup (a : ℕ) :
     _ = a ^ p - (a - 1) ^ p - 1 := by
       rw [← add_pow, neg_add_eq_sub, ← neg_sub _ 1, hp.neg_pow, ← sub_eq_add_neg]
 
-/-- We have `S_{a + 1} + ((a + 1)^p - a^p - 1)/p ∈ G_p`. -/
+/-- We have `S_{a + 1} + ((a + 1)^p - a^p - 1)/p ∈ G_p`.
+@isnad1 id=mem.1h2v.s6.3f5de972f542 from=translated src=- shape=63b7a74c vocab=309cd6fd
+-/
 theorem S_add_mem_NumDvdSubgroup2 (a : ℕ) :
     S p (a + 1 : ℕ) + ((a + 1 : ℕ) ^ p - a ^ p - 1) / p ∈ NumDvdSubgroup p := by
   simpa only [Nat.cast_succ, add_sub_cancel_right] using S_add_mem_NumDvdSubgroup hp (a + 1)
 
 omit hp in
-/-- We have `p ∣ 2^p - 2`. -/
+/-- We have `p ∣ 2^p - 2`.
+@isnad1 id=dvd.0h1v.s5.547ec2d5dbc9 from=translated src=- shape=0865ed33 vocab=c733eb1c
+-/
 theorem prime_dvd_two_pow_sub_two : (p : ℤ) ∣ 2 ^ p - 2 := by
   rw [← ZMod.intCast_eq_intCast_iff_dvd_sub, Int.cast_pow, ZMod.pow_card]
 
-/-- We have `S_3 + S_4 - 3S_2 ∈ G_p`. -/
+/-- We have `S_3 + S_4 - 3S_2 ∈ G_p`.
+@isnad1 id=mem.1h1v.s6.379d54a9e56f from=translated src=- shape=2a48c1d4 vocab=a17c8585
+-/
 theorem S3_add_S4_sub_three_mul_S2_mem_NumDvdSubgroup :
     S p 3 + S p 4 - 3 * S p 2 ∈ NumDvdSubgroup p := by
   set G : AddSubgroup ℚ := NumDvdSubgroup p
@@ -238,6 +258,8 @@ theorem S3_add_S4_sub_three_mul_S2_mem_NumDvdSubgroup :
   rw [hp, mem_NumDvdSubgroup_iff, Rat.num_intCast]
   exact Int.dvd_mul_right _ _
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=dvd.1h1v.s6.7df239003274 from=translated src=- shape=4d820b32 vocab=348f016d
+-/
 theorem final_solution : (p : ℤ) ∣ (S p 3 + S p 4 - 3 * S p 2).num :=
   S3_add_S4_sub_three_mul_S2_mem_NumDvdSubgroup hp

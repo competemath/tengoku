@@ -66,7 +66,9 @@ variable (F : CertFamily V ι)
 /-- The unique conflict coordinate `q_{ij}` of two distinct certificates (Section 4). -/
 noncomputable def conflictCoord {i j : ι} (h : i ≠ j) : V := (F.uniqueConflict i j h).choose
 
-/-- The conflict coordinate does conflict. -/
+/-- The conflict coordinate does conflict.
+@isnad1 id=conflict.1h5v.s6.e16198ed098c from=translated src=- shape=0fcbdf35 vocab=8766fa37
+-/
 lemma conflict_conflictCoord {i j : ι} (h : i ≠ j) : (F.P i).Conflict (F.P j) (F.conflictCoord h) :=
   (F.uniqueConflict i j h).choose_spec.1
 
@@ -84,28 +86,38 @@ latter do not fire on it; the first three lemmas below restate them for `ind`.
 /-- The indicator `f` of the union of the certificate subcubes (Section 3.3). -/
 def ind : Input V → Bool := PartialAssign.indUnion F.P
 
-/-- A point is positive exactly when some certificate subcube contains it. -/
+/-- A point is positive exactly when some certificate subcube contains it.
+@isnad1 id=iff.0h4v.s5.090ac4c9fd95 from=translated src=- shape=53ddd7be vocab=ca3b264a
+-/
 @[simp] lemma ind_eq_true_iff {x : Input V} : F.ind x = true ↔ ∃ i, (F.P i).Sat x :=
   PartialAssign.indUnion_eq_true_iff
 
-/-- A point is negative exactly when no certificate subcube contains it. -/
+/-- A point is negative exactly when no certificate subcube contains it.
+@isnad1 id=iff.0h4v.s5.85a003fb2c70 from=translated src=- shape=f19a250a vocab=0cb2fa94
+-/
 @[simp] lemma ind_eq_false_iff {x : Input V} : F.ind x = false ↔ ∀ i, ¬ (F.P i).Sat x :=
   PartialAssign.indUnion_eq_false_iff
 
-/-- Every point of a certificate subcube is positive. -/
+/-- Every point of a certificate subcube is positive.
+@isnad1 id=eq.1h5v.s5.f8b25bf069d3 from=translated src=- shape=a697e1d4 vocab=ca3b264a
+-/
 lemma ind_eq_true_of_sat {i : ι} {x : Input V} (h : (F.P i).Sat x) : F.ind x = true :=
   PartialAssign.indUnion_eq_true_of_sat h
 
 /-- Flipping a coordinate that a certificate leaves free keeps the point inside it, hence
 positive (Section 11.2).  This is the source of every "one midpoint is positive"
-argument in `BSLambda/Spectral/GramClass.lean`. -/
+argument in `BSLambda/Spectral/GramClass.lean`.
+@isnad1 id=eq.2h6v.s6.2b1175b625f3 from=translated src=- shape=50e7c335 vocab=4032cd36
+-/
 theorem ind_flipSet_singleton_eq_true {i : ι} {x : Input V} (hx : (F.P i).Sat x) {p : V}
     (hp : p ∉ (F.P i).fixedSet) : F.ind (flipSet x {p}) = true :=
   F.ind_eq_true_of_sat (hx.flipSet_singleton hp)
 
 /-- Contrapositive of `ind_flipSet_singleton_eq_true`: a negative single flip of a positive
 input can only happen at a coordinate that the input's own certificate fixes
-(Section 11.2). -/
+(Section 11.2).
+@isnad1 id=mem.2h6v.s6.8ade4b158a7b from=translated src=- shape=a12c016b vocab=49165ea4
+-/
 theorem mem_fixedSet_of_ind_flipSet_singleton_eq_false {i : ι} {x : Input V}
     (hx : (F.P i).Sat x) {p : V} (hp : F.ind (flipSet x {p}) = false) :
     p ∈ (F.P i).fixedSet := by
@@ -114,7 +126,9 @@ theorem mem_fixedSet_of_ind_flipSet_singleton_eq_false {i : ι} {x : Input V}
   exact Bool.noConfusion hp
 
 /-- Distinct certificates are disjoint, so a point lies in at most one of them
-(Section 4). -/
+(Section 4).
+@isnad1 id=eq.2h6v.s5.7d3fa7ffc468 from=translated src=- shape=f74cc884 vocab=e00dcb99
+-/
 lemma sat_unique {i j : ι} {x : Input V} (hi : (F.P i).Sat x) (hj : (F.P j).Sat x) : i = j :=
   PartialAssign.sat_unique_of_conflict
     (fun _ _ hij ↦ ⟨_, F.conflict_conflictCoord hij⟩) hi hj
@@ -123,22 +137,30 @@ lemma sat_unique {i j : ι} {x : Input V} (hi : (F.P i).Sat x) (hj : (F.P j).Sat
 (Section 4). -/
 noncomputable def owner (x : Ones F.ind) : ι := (F.ind_eq_true_iff.1 x.2).choose
 
-/-- The owner's certificate does contain the point. -/
+/-- The owner's certificate does contain the point.
+@isnad1 id=sat.0h4v.s6.6ad06ea88b00 from=translated src=- shape=bbbc0156 vocab=348e5b79
+-/
 lemma owner_sat (x : Ones F.ind) : (F.P (F.owner x)).Sat x.1 :=
   (F.ind_eq_true_iff.1 x.2).choose_spec
 
-/-- The owner is the only index whose certificate contains the point. -/
+/-- The owner is the only index whose certificate contains the point.
+@isnad1 id=eq.1h5v.s6.4c2d71490a78 from=translated src=- shape=a909d75f vocab=348e5b79
+-/
 lemma owner_eq {x : Ones F.ind} {i : ι} (h : (F.P i).Sat x.1) : F.owner x = i :=
   F.sat_unique (F.owner_sat x) h
 
 /-- Only the `c` coordinates fixed by a containing certificate can be sensitive, so every
-positive input has sensitivity at most `c` (Section 11.1). -/
+positive input has sensitivity at most `c` (Section 11.1).
+@isnad1 id=le.1h5v.s6.73a7a900b489 from=translated src=- shape=4643f271 vocab=c1377ffb
+-/
 lemma sensAt_le_c {i : ι} {x : Input V} (hx : (F.P i).Sat x) : sensAt F.ind x ≤ F.c := by
   rw [← F.codim_eq i, PartialAssign.codim_eq_card_fixedSet]
   exact sensAt_le_card fun v hv ↦ F.mem_fixedSet_of_ind_flipSet_singleton_eq_false hx
     (Bool.eq_false_iff.2 fun h ↦ mem_sensCoords.1 hv (h.trans (F.ind_eq_true_of_sat hx).symm))
 
-/-- The diagonal of the positive-side Gram matrix is bounded by `c` (Section 11.1). -/
+/-- The diagonal of the positive-side Gram matrix is bounded by `c` (Section 11.1).
+@isnad1 id=le.0h4v.s5.fb9ed06dcb84 from=translated src=- shape=ddf9bf0b vocab=f178e360
+-/
 lemma gram_diag_le (x : Ones F.ind) : gram F.ind x x ≤ (F.c : ℝ) := by
   rw [gram_diag]
   exact_mod_cast F.sensAt_le_c (F.owner_sat x)

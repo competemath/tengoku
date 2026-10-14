@@ -29,6 +29,9 @@ namespace ChannelCapacity
 
 open InformationTheory
 
+/--
+@isnad1 id=eq.0h5v.s7.3a0369fbf316 from=translated src=- shape=605baf1d vocab=6fc86184
+-/
 theorem klDiv_mutualInformation_chain
     {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     [StandardBorelSpace α] [Nonempty α]

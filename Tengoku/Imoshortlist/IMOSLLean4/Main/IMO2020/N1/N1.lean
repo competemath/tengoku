@@ -31,18 +31,42 @@ abbrev ratSeq : ℕ → ℚ
 
 /-! ##### Some basic properties -/
 
+/--
+@isnad1 id=eq.0h0v.s3.3acb411e981a from=translated src=- shape=1ac31801 vocab=9be8ef0c
+-/
 lemma ratSeq_zero : ratSeq 0 = 2 := rfl
+/--
+@isnad1 id=eq.0h0v.s4.f032dc777299 from=translated src=- shape=b5968027 vocab=315ade87
+-/
 lemma ratSeq_one : ratSeq 1 = 2⁻¹ := rfl
+/--
+@isnad1 id=eq.0h0v.s4.2f9e22d00b1d from=translated src=- shape=b5968027 vocab=26e196a2
+-/
 lemma ratSeq_two : ratSeq 2 = -4 := rfl
+/--
+@isnad1 id=eq.0h0v.s4.242b720de9b6 from=translated src=- shape=9a4f4740 vocab=844c4b48
+-/
 lemma ratSeq_three : ratSeq 3 = -4⁻¹ := rfl
+/--
+@isnad1 id=eq.0h1v.s5.3bb9f94cde41 from=translated src=- shape=71d01d53 vocab=92bf46fe
+-/
 lemma ratSeq_add_four (n) : ratSeq (n + 4) = (1 + (n.succ : ℚ)⁻¹) * ratSeq n := rfl
 
+/--
+@isnad1 id=lt.0h1v.s4.a2f4688f0fb6 from=translated src=- shape=c1f373a5 vocab=ee15bb77
+-/
 lemma one_add_inv_pos (n : ℕ) : 0 < 1 + (n : ℚ)⁻¹ :=
   add_pos_of_pos_of_nonneg one_pos (inv_nonneg_of_nonneg n.cast_nonneg)
 
+/--
+@isnad1 id=ne.0h1v.s4.18a9b123fcd1 from=translated src=- shape=d1700f53 vocab=a02a1511
+-/
 lemma one_add_inv_ne_zero (n : ℕ) : 1 + (n : ℚ)⁻¹ ≠ 0 :=
   (one_add_inv_pos n).ne.symm
 
+/--
+@isnad1 id=ne.0h1v.s3.087db1717c0e from=translated src=- shape=a311c14d vocab=9be8ef0c
+-/
 lemma ratSeq_ne_zero : ∀ n, ratSeq n ≠ 0
   | 0 => two_ne_zero
   | 1 => inv_ne_zero two_ne_zero
@@ -50,6 +74,9 @@ lemma ratSeq_ne_zero : ∀ n, ratSeq n ≠ 0
   | 3 => neg_ne_zero.mpr (inv_ne_zero four_ne_zero)
   | n + 4 => mul_ne_zero (one_add_inv_ne_zero _) (ratSeq_ne_zero n)
 
+/--
+@isnad1 id=eq.0h1v.s6.e3a0c8ea81d9 from=translated src=- shape=f26b1bdd vocab=34a9762b
+-/
 lemma ratSeq_formula :
     ∀ n, ratSeq n * ratSeq (n + 1) * ratSeq (n + 2) * ratSeq (n + 3) = n.succ := by
   refine Nat.rec (by simp) λ n h ↦ ?_
@@ -59,42 +86,72 @@ lemma ratSeq_formula :
 
 /-! ##### Sign of `ratSeq` -/
 
+/--
+@isnad1 id=iff.0h1v.s5.021903385e0b from=translated src=- shape=4c4e3eb1 vocab=a9d9a12a
+-/
 lemma ratSeq_add_four_pos_iff : 0 < ratSeq (n + 4) ↔ 0 < ratSeq n := by
   rw [ratSeq, mul_pos_iff_of_pos_left (one_add_inv_pos _)]
 
+/--
+@isnad1 id=iff.0h2v.s5.5cc019aff911 from=translated src=- shape=8d5ef46c vocab=4da4778b
+-/
 lemma ratSeq_add_four_mul_pos_iff : ∀ {k}, 0 < ratSeq (n + 4 * k) ↔ 0 < ratSeq n
   | 0 => Iff.rfl
   | _ + 1 => ratSeq_add_four_pos_iff.trans ratSeq_add_four_mul_pos_iff
 
+/--
+@isnad1 id=iff.0h1v.s5.327dea4919db from=translated src=- shape=1b8e6585 vocab=84761c9d
+-/
 lemma ratSeq_pos_iff_mod_four : 0 < ratSeq n ↔ 0 < ratSeq (n % 4) := by
   rw [← ratSeq_add_four_mul_pos_iff (n := n % 4), Nat.mod_add_div]
 
+/--
+@isnad1 id=iff.1h1v.s5.6788cb8bbe01 from=translated src=- shape=bd55e6ec vocab=945e0e05
+-/
 lemma ratSeq_pos_iff_of_lt_four (h : n < 4) : 0 < ratSeq n ↔ n = 0 ∨ n = 1 := by
   simp only [Nat.lt_succ_iff_lt_or_eq, Nat.not_lt_zero, false_or] at h
   rcases h with ((rfl | rfl) | rfl) | rfl
   all_goals simp
 
+/--
+@isnad1 id=iff.0h1v.s5.a0af81ae6671 from=translated src=- shape=ca93caaf vocab=84761c9d
+-/
 lemma ratSeq_pos_iff : 0 < ratSeq n ↔ n % 4 = 0 ∨ n % 4 = 1 := by
   rw [ratSeq_pos_iff_mod_four, ratSeq_pos_iff_of_lt_four (n.mod_lt (Nat.succ_pos 3))]
 
+/--
+@isnad1 id=iff.0h1v.s5.f224040e138e from=translated src=- shape=14cbe89c vocab=84761c9d
+-/
 lemma ratSeq_pos_iff' : 0 < ratSeq n ↔ n % 4 < 2 := by
   rw [ratSeq_pos_iff, Nat.lt_succ_iff_lt_or_eq, Nat.lt_one_iff]
 
 /-! ##### Magnitude of `ratSeq` -/
 
+/--
+@isnad1 id=lt.0h1v.s4.8222b2d31ef1 from=translated src=- shape=30a2f694 vocab=fd06927b
+-/
 lemma ratSeq_add_four_abs_gt (n) : |ratSeq n| < |ratSeq (n + 4)| := by
   rw [ratSeq_add_four, abs_mul, abs_eq_self.mpr (one_add_inv_pos _).le]
   apply lt_mul_left (abs_pos.mpr (ratSeq_ne_zero n))
   rw [lt_add_iff_pos_right, inv_pos, Nat.cast_pos]
   exact n.succ_pos
 
+/--
+@isnad1 id=lt.0h2v.s5.1c4f3b2b8bc3 from=translated src=- shape=c35aaf0a vocab=bbf3c970
+-/
 lemma ratSeq_add_four_mul_succ_abs_gt (n) : ∀ k, |ratSeq n| < |ratSeq (n + 4 * (k + 1))|
   | 0 => ratSeq_add_four_abs_gt n
   | k + 1 => (ratSeq_add_four_mul_succ_abs_gt n k).trans (ratSeq_add_four_abs_gt _)
 
+/--
+@isnad1 id=lt.1h2v.s5.7b4b4b29bd64 from=translated src=- shape=43247c21 vocab=bbf3c970
+-/
 lemma ratSeq_add_four_mul_abs_gt (hk : 0 < k) (n) : |ratSeq n| < |ratSeq (n + 4 * k)| :=
   Nat.succ_pred_eq_of_pos hk ▸ ratSeq_add_four_mul_succ_abs_gt n _
 
+/--
+@isnad1 id=lt.2h2v.s5.3bda74eeaa3d from=translated src=- shape=6633975f vocab=d9304693
+-/
 lemma ratSeq_abs_lt_of_mod_four (h : k % 4 = m % 4) (h0 : k < m) :
     |ratSeq k| < |ratSeq m| := by
   obtain ⟨n, rfl⟩ := Nat.exists_eq_add_of_le h0.le
@@ -104,6 +161,9 @@ lemma ratSeq_abs_lt_of_mod_four (h : k % 4 = m % 4) (h0 : k < m) :
   refine ratSeq_add_four_mul_abs_gt ?_ k
   rwa [Nat.lt_add_right_iff_pos, Nat.mul_pos_iff_of_pos_left (Nat.succ_pos 3)] at h0
 
+/--
+@isnad1 id=ne.2h2v.s5.30d8df870cf5 from=translated src=- shape=6633975f vocab=1e0b8967
+-/
 lemma ratSeq_abs_ne_of_mod_four (h : k % 4 = m % 4) (h0 : k ≠ m) :
     |ratSeq k| ≠ |ratSeq m| :=
   h0.lt_or_gt.elim (λ h1 ↦ (ratSeq_abs_lt_of_mod_four h h1).ne)
@@ -111,6 +171,9 @@ lemma ratSeq_abs_ne_of_mod_four (h : k % 4 = m % 4) (h0 : k ≠ m) :
 
 /-! ##### Parity of denominator -/
 
+/--
+@isnad1 id=not.0h1v.s4.baea4aacd62f from=translated src=- shape=0a713ec1 vocab=488050c1
+-/
 lemma ratSeq_two_mul_den (n) : ¬2 ∣ (ratSeq (2 * n)).den := by
   match n with
     | 0 => exact Nat.two_dvd_ne_zero.mpr rfl
@@ -123,9 +186,15 @@ lemma ratSeq_two_mul_den (n) : ¬2 ∣ (ratSeq (2 * n)).den := by
   rw [Rat.den_ofNat, Nat.one_mul, Rat.inv_natCast_den, ite_eq_right (Nat.succ_ne_zero _)] at h
   revert h; exact Nat.two_dvd_ne_zero.mpr (Nat.mul_add_mod 2 n 1)
 
+/--
+@isnad1 id=not.1h1v.s4.958b119a8ca6 from=translated src=- shape=60257d53 vocab=620b3a17
+-/
 lemma num_odd_of_den_even {q : ℚ} (h : 2 ∣ q.den) : ¬2 ∣ q.num.natAbs :=
   λ h0 ↦ absurd (Nat.eq_one_of_dvd_coprimes q.reduced h0 h) (Nat.succ_ne_self 1)
 
+/--
+@isnad1 id=dvd.0h1v.s5.cf0c3373be30 from=translated src=- shape=6944ce2b vocab=bdf23179
+-/
 lemma ratSeq_two_mul_add_one_den (n) : 2 ∣ (ratSeq (2 * n + 1)).den := by
   match n with
     | 0 => exact ⟨1, by rw [ratSeq, Rat.inv_ofNat_den]⟩
@@ -148,6 +217,9 @@ lemma ratSeq_two_mul_add_one_den (n) : 2 ∣ (ratSeq (2 * n + 1)).den := by
   rw [← Nat.mul_div_eq_iff_dvd.mpr (s.gcd_dvd_right t), Nat.prime_two.dvd_mul] at h0
   exact h0.resolve_left λ h1 ↦ h (h1.trans (s.gcd_dvd_left _))
 
+/--
+@isnad1 id=iff.0h1v.s4.cda1e26e5645 from=translated src=- shape=e50834de vocab=ae6a2b9f
+-/
 lemma ratSeq_den_odd_iff : ¬2 ∣ (ratSeq n).den ↔ 2 ∣ n := by
   refine ⟨λ h ↦ ?_, λ ⟨n, h⟩ ↦ h ▸ ratSeq_two_mul_den n⟩
   rw [Nat.dvd_iff_mod_eq_zero, ← Nat.mod_two_ne_one]
@@ -157,11 +229,17 @@ lemma ratSeq_den_odd_iff : ¬2 ∣ (ratSeq n).den ↔ 2 ∣ n := by
 
 /-! ##### `ratSeq` is injective -/
 
+/--
+@isnad1 id=iff.0h2v.s5.17861d36f276 from=translated src=- shape=f64155fb vocab=6a28e6f0
+-/
 lemma mod_two_eq_iff : i % 2 = j % 2 ↔ (2 ∣ i ↔ 2 ∣ j) := by
   rw [Nat.dvd_iff_mod_eq_zero, Nat.dvd_iff_mod_eq_zero]
   obtain h | h : i % 2 = 0 ∨ i % 2 = 1 := i.mod_two_eq_zero_or_one
   all_goals rw [h, eq_comm]; simp
 
+/--
+@isnad1 id=injectiv.0h0v.s2.e2a0a270f2fb from=translated src=- shape=54c8eceb vocab=a51e6718
+-/
 theorem ratSeq_injective : ratSeq.Injective := λ i j h ↦ by
   have h0 : (i % 4) % 2 = (j % 4) % 2 := by
     have h0 (n) : n % 4 % 2 = n % 2 := Nat.mod_mod_of_dvd n ⟨2, rfl⟩
@@ -186,7 +264,9 @@ theorem ratSeq_injective : ratSeq.Injective := λ i j h ↦ by
 /-! ### Final solution -/
 
 open Finset Fin.NatCast in
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.0h1v.s9.cb075da6a1b2 from=translated src=- shape=3062e63f vocab=dcc274cd
+-/
 theorem final_solution (k : ℕ) :
     ∃ (p : ℕ) (_ : p.Prime) (a : Fin (k + 4) → ZMod p), a.Injective ∧ (∀ i, a i ≠ 0) ∧
         (∀ i ≤ k, a i * a (i + 1) * a (i + 2) * a (i + 3) = i.succ) := by

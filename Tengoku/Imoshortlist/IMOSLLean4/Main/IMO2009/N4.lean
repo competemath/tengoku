@@ -35,7 +35,9 @@ namespace IMO2009N4
 
 /-! ### Extra lemmas -/
 
-/-- For any `n ∈ ℕ`, `n^2 + 1` is never divisible by `4`. -/
+/-- For any `n ∈ ℕ`, `n^2 + 1` is never divisible by `4`.
+@isnad1 id=not.0h1v.s5.a3cc5d5da876 from=translated src=- shape=9553dd3c vocab=da5fd9ce
+-/
 theorem not_four_dvd_sq_add_one (n : ℕ) : ¬4 ∣ n ^ 2 + 1 := by
   suffices ¬((n % 4) ^ 2 % 4 + 1) % 4 = 0 by
     rwa [Nat.dvd_iff_mod_eq_zero, Nat.add_mod, Nat.pow_mod]
@@ -43,7 +45,9 @@ theorem not_four_dvd_sq_add_one (n : ℕ) : ¬4 ∣ n ^ 2 + 1 := by
   generalize n % 4 = k at h ⊢
   revert k; decide
 
-/-- For any `x ∈ ℕ`, we have `x^2 + 1 ≡ 2 (mod x + 1)`. -/
+/-- For any `x ∈ ℕ`, we have `x^2 + 1 ≡ 2 (mod x + 1)`.
+@isnad1 id=modeq.0h1v.s5.e5475745421d from=translated src=- shape=4a768b54 vocab=3b5a0f98
+-/
 theorem pow_two_add_one_modeq_two (x : ℕ) : x ^ 2 + 1 ≡ 2 [MOD x + 1] :=
   calc x ^ 2 + 1
   _ ≡ x ^ 2 + 1 + (x + 1) [MOD x + 1] := Nat.left_modEq_add_iff.mpr (Nat.dvd_refl _)
@@ -68,16 +72,22 @@ instance : DecidablePred good :=
   | [_] => instDecidableTrue
   | _ :: _ :: _ => instDecidableAnd
 
-/-- The list `[4, 33, 217, 1384]` is good. -/
+/-- The list `[4, 33, 217, 1384]` is good.
+@isnad1 id=good.0h0v.s5.aadac8bc1b5c from=translated src=- shape=83b062a0 vocab=96d8b436
+-/
 theorem std_list_is_good : good [4, 33, 217, 1384] := by
   decide
 
-/-- `a :: b :: c :: l` is good iff `b :: c :: l` is good and `(a + 1)(c + 1) = b^2 + 1`. -/
+/-- `a :: b :: c :: l` is good iff `b :: c :: l` is good and `(a + 1)(c + 1) = b^2 + 1`.
+@isnad1 id=iff.0h4v.s6.3fe5747dd541 from=translated src=- shape=e12bfe17 vocab=2d4dbed0
+-/
 theorem good_three_cons_iff :
     good (a :: b :: c :: l) ↔ good (b :: c :: l) ∧ (a + 1) * (c + 1) = b ^ 2 + 1 :=
   Iff.rfl
 
-/-- If a list is good, then its tail (see `List.tail`) is good. -/
+/-- If a list is good, then its tail (see `List.tail`) is good.
+@isnad1 id=good.1h1v.s3.7c9bac160ac6 from=translated src=- shape=dfe6fd44 vocab=296d7d1a
+-/
 theorem good.tail (h : good l) : good l.tail :=
   match l with
   | [] => trivial
@@ -85,7 +95,9 @@ theorem good.tail (h : good l) : good l.tail :=
   | [_, _] => trivial
   | _ :: _ :: _ :: _ => h.1
 
-/-- If there is a good list of length `n`, there is one of length `n - k` for any `k ≥ 0`. -/
+/-- If there is a good list of length `n`, there is one of length `n - k` for any `k ≥ 0`.
+@isnad1 id=ex.1h2v.s5.90914c8ab313 from=translated src=- shape=54b45695 vocab=e526090e
+-/
 theorem exists_good_length_sub (hn : ∃ l, good l ∧ l.length = n) (k) :
     ∃ l, good l ∧ l.length = n - k := by
   ---- Indeed, just keep taking the tails.
@@ -94,7 +106,9 @@ theorem exists_good_length_sub (hn : ∃ l, good l ∧ l.length = n) (k) :
   refine ⟨l.tail, hl.tail, ?_⟩
   rw [length_tail, hl0, Nat.sub_sub]
 
-/-- If `m ≤ n` and there is a good list of length `n`, there is one of length `m`. -/
+/-- If `m ≤ n` and there is a good list of length `n`, there is one of length `m`.
+@isnad1 id=ex.2h2v.s5.9a386d75bcfb from=translated src=- shape=0f67e866 vocab=858a4a76
+-/
 theorem exists_good_length_of_le (hn : ∃ l, good l ∧ l.length = n) (hmn : m ≤ n) :
     ∃ l, good l ∧ l.length = m :=
   Nat.sub_sub_self hmn ▸ exists_good_length_sub hn (n - m)
@@ -104,7 +118,9 @@ section
 variable {a b c : ℕ} (h : (a + 1) * (c + 1) = b ^ 2 + 1)
 include h
 
-/-- If `(a + 1)(c + 1) = b^2 + 1` then one of `a` or `c` is even. -/
+/-- If `(a + 1)(c + 1) = b^2 + 1` then one of `a` or `c` is even.
+@isnad1 id=or.1h3v.s6.9f74f6941d4d from=translated src=- shape=d2bceb18 vocab=1e5f784b
+-/
 theorem even_or_even_of_add_one_mul_add_one_eq_sq_add_one : Even a ∨ Even c := by
   by_contra! h0
   ---- If not, then `4 ∣ b^2 + 1`, which is a contradiction.
@@ -114,7 +130,9 @@ theorem even_or_even_of_add_one_mul_add_one_eq_sq_add_one : Even a ∨ Even c :=
   rw [← h, hk, hm, Nat.mul_mul_mul_comm]
   exact Nat.dvd_mul_right _ _
 
-/-- If `(a + 1)(c + 1) = b^2 + 1` and `b` is even, then `a` is even. -/
+/-- If `(a + 1)(c + 1) = b^2 + 1` and `b` is even, then `a` is even.
+@isnad1 id=even.2h3v.s6.3c5e13817df5 from=translated src=- shape=3e15ce16 vocab=1e5f784b
+-/
 theorem even_of_add_one_mul_add_one_eq_sq_add_one (hb : Even b) : Even a := by
   contrapose hb
   ---- If `a` is odd, then `b` is odd.
@@ -134,21 +152,29 @@ namespace isBadPair
 instance (x y) : Decidable (isBadPair x y) :=
   instDecidableAnd
 
-/-- If `(x, y)` is a bad pair, then so is `(y, x)`. -/
+/-- If `(x, y)` is a bad pair, then so is `(y, x)`.
+@isnad1 id=isbadpai.1h2v.s3.1a0d97402bf8 from=translated src=- shape=7e524d71 vocab=ec83af46
+-/
 theorem symm (h : isBadPair x y) : isBadPair y x :=
   And.symm h
 
-/-- If `(0, y)` is a bad pair, then `y = 0`. -/
+/-- If `(0, y)` is a bad pair, then `y = 0`.
+@isnad1 id=eq.1h1v.s4.f62be8ee3143 from=translated src=- shape=6ab692bb vocab=ec83af46
+-/
 theorem zero_of_zero_left (h : isBadPair 0 y) : y = 0 := by
   replace h : y + 1 ∣ 1 := h.2
   rwa [Nat.dvd_one, Nat.succ_inj] at h
 
-/-- If `(x, x)` is a bad pair, then `x = 0` or `x = 1`. -/
+/-- If `(x, x)` is a bad pair, then `x = 0` or `x = 1`.
+@isnad1 id=or.1h1v.s4.7a7d4b366aaa from=translated src=- shape=51a9c232 vocab=ec83af46
+-/
 theorem zero_or_one_of_self (h : isBadPair x x) : x = 0 ∨ x = 1 := by
   rwa [isBadPair, and_self, (pow_two_add_one_modeq_two x).dvd_iff (Nat.dvd_refl _),
     Nat.dvd_prime Nat.prime_two, Nat.succ_inj, Nat.succ_inj] at h
 
-/-- If `(x, y)` is a bad pair and `x` is even, then `y` is even. -/
+/-- If `(x, y)` is a bad pair and `x` is even, then `y` is even.
+@isnad1 id=even.2h2v.s4.3258eb082ff5 from=translated src=- shape=db3313ca vocab=8948fa71
+-/
 theorem even_of_even (h : isBadPair x y) (hx : Even x) : Even y := by
   contrapose hx
   replace hx : Even (y + 1) := Nat.even_add_one.mpr hx
@@ -156,7 +182,9 @@ theorem even_of_even (h : isBadPair x y) (hx : Even x) : Even y := by
   rwa [Nat.even_add_one, Nat.even_pow' (Nat.succ_ne_zero 1)] at h
 
 /-- If `(x, y)` is a bad pair with `x` even and `x < y`,
-  then there exists `z < x` such that `z` is even and `(z, x)` is a bad pair. -/
+  then there exists `z < x` such that `z` is even and `(z, x)` is a bad pair.
+@isnad1 id=ex.3h2v.s5.dee3b7445866 from=translated src=- shape=7e633a68 vocab=3d42a021
+-/
 theorem exists_lt_of_even (h : isBadPair x y) (hxy : x < y) (hx : Even x) :
     ∃ z < x, isBadPair z x ∧ Even z := by
   ---- First write `x^2 + 1 = (k + 1)(y + 1)`.
@@ -205,7 +233,9 @@ theorem exists_lt_of_even (h : isBadPair x y) (hxy : x < y) (hx : Even x) :
     _ ≡ y ^ 2 + 1 [MOD x + 1] := (h1.pow 2).add_left (y ^ 2)
     _ ≡ 0 [MOD x + 1] := Nat.modEq_zero_iff_dvd.mpr h
 
-/-- If `(x, y)` is a bad pair with `x` even, then `x = 0`. -/
+/-- If `(x, y)` is a bad pair with `x` even, then `x = 0`.
+@isnad1 id=eq.2h2v.s4.0c619b8be073 from=translated src=- shape=0f941a6d vocab=8948fa71
+-/
 theorem even_imp_zero (h : isBadPair x y) (hx : Even x) : x = 0 := by
   ---- Strong induction on `x` to prove: if `x > 0` is even then `(x, y)` is not a bad pair.
   by_contra h0
@@ -224,7 +254,9 @@ theorem even_imp_zero (h : isBadPair x y) (hx : Even x) : x = 0 := by
 
 end isBadPair
 
-/-- A list of length `5` is not good (the list is given in an explicit manner). -/
+/-- A list of length `5` is not good (the list is given in an explicit manner).
+@isnad1 id=not.0h5v.s4.56ced946e746 from=translated src=- shape=51a68dea vocab=d9a46a20
+-/
 theorem length_five_not_good (a b c d e) : ¬good [a, b, c, d, e] := by
   ---- Suppose that `[a, b, c, d, e]` is a good list.
   intro h
@@ -247,7 +279,9 @@ theorem length_five_not_good (a b c d e) : ¬good [a, b, c, d, e] := by
   replace hb : (b : ℕ) = 0 := h.even_imp_zero hb
   exact absurd hb b.ne_zero
 
-/-- A good list has length at most `4`. -/
+/-- A good list has length at most `4`.
+@isnad1 id=le.1h1v.s4.e47009d139ea from=translated src=- shape=1eba480f vocab=858a4a76
+-/
 theorem good.length_le_four (hl : good l) : l.length ≤ 4 := by
   refine Nat.le_of_not_lt λ hl0 ↦ ?_
   obtain ⟨l', hl', hl'0⟩ : ∃ l, good l ∧ l.length = 5 :=
@@ -257,7 +291,9 @@ theorem good.length_le_four (hl : good l) : l.length ≤ 4 := by
   rcases hl'0 with ⟨b, c, d, e, rfl⟩
   exact length_five_not_good _ _ _ _ _ hl'
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h1v.s4.2b1502bb77a3 from=translated src=- shape=0c49ec77 vocab=858a4a76
+-/
 theorem final_solution : (∃ l, good l ∧ l.length = n) ↔ n ≤ 4 :=
   ⟨λ ⟨_, hl, hl0⟩ ↦ hl0.symm.trans_le hl.length_le_four,
   exists_good_length_of_le ⟨[4, 33, 217, 1384], std_list_is_good, rfl⟩⟩

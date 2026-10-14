@@ -66,6 +66,9 @@ structure WellConditionedForCapacity (k : Kernel α β) [IsMarkovKernel k] : Pro
         InformationTheory.klDiv (jointLaw k p).toMeasure (independentJointLaw k p).toMeasure +
           InformationTheory.klDiv (outputPrior k p).toMeasure ν
 
+/--
+@isnad1 id=eq.0h4v.s6.6dfb88c204ea from=translated src=- shape=44158c02 vocab=482fd581
+-/
 @[simp]
 lemma priorPushforward_dirac (k : Kernel α β) [IsMarkovKernel k] (a : α) :
     Kernel.priorPushforward k (MeasureTheory.diracProba a) =
@@ -77,6 +80,9 @@ lemma priorPushforward_dirac (k : Kernel α β) [IsMarkovKernel k] (a : α) :
   simpa [priorPushforward, outputPrior, hd] using
     congrArg (fun μ : Measure β => μ s) (Measure.dirac_bind k.measurable a)
 
+/--
+@isnad1 id=eq.1h6v.s6.4e7f4a5cd89e from=translated src=- shape=fcdd3b12 vocab=2f2355eb
+-/
 lemma priorPushforward_convexCombination (k : Kernel α β) [IsMarkovKernel k]
     (p q : ProbabilityMeasure α) (t : NNReal) (ht : t ≤ 1) :
     Kernel.priorPushforward k (ProbabilityMeasure.convexCombination p q t ht) =
@@ -98,6 +104,9 @@ lemma priorPushforward_convexCombination (k : Kernel α β) [IsMarkovKernel k]
     t • (k ∘ₘ p.toMeasure) + (1 - (t : ENNReal)) • (k ∘ₘ q.toMeasure)
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.f8fba06c4568 from=translated src=- shape=fc038e20 vocab=a3ef5ee6
+-/
 @[simp]
 lemma priorPushforward_id (p : ProbabilityMeasure α) :
     Kernel.priorPushforward (Kernel.id : Kernel α α) p = p := by
@@ -105,11 +114,17 @@ lemma priorPushforward_id (p : ProbabilityMeasure α) :
   ext s hs
   simp [priorPushforward, outputPrior]
 
+/--
+@isnad1 id=injectiv.0h1v.s3.da8a76ea3a2f from=translated src=- shape=66a7fc4a vocab=cd6bb400
+-/
 lemma id_injectivePriorPushforward :
     Kernel.InjectivePriorPushforward (Kernel.id : Kernel α α) := by
   intro p q hpq
   simpa using hpq
 
+/--
+@isnad1 id=outputma.0h4v.s5.a79b3f13e586 from=translated src=- shape=98a61dbc vocab=da898078
+-/
 lemma outputMarginalReference_self
     (k : Kernel α β) [IsMarkovKernel k] (p : ProbabilityMeasure α) :
     Kernel.OutputMarginalReference k p (outputPrior k p).toMeasure := by

@@ -40,19 +40,26 @@ def stdSimplex (𝕜 : Type*) [AddCommMonoid 𝕜] [PartialOrder 𝕜] [One 𝕜
     (ι : Type*) [Fintype ι] : Set (ι → 𝕜) :=
   {f | (∀ i, 0 ≤ f i) ∧ ∑ i, f i = 1}
 
-/-- Each vertex `Pi.single i 1` lies in the standard simplex. -/
+/-- Each vertex `Pi.single i 1` lies in the standard simplex.
+@isnad1 id=mem.0h2v.s5.f4b9987156f8 from=translated src=- shape=d50bf84c vocab=de51079d
+-/
 lemma single_mem_stdSimplex {ι : Type*} [Fintype ι] [DecidableEq ι] (i : ι) :
     Pi.single i (1 : ℝ) ∈ stdSimplex ℝ ι := by
   refine ⟨fun j => ?_, by simp⟩
   rw [Pi.single_apply]
   split_ifs <;> norm_num
 
-/-- Every coordinate of a point of the standard simplex lies in `[0, 1]`. -/
+/-- Every coordinate of a point of the standard simplex lies in `[0, 1]`.
+@isnad1 id=le.0h1v.s6.540be4456735 from=translated src=- shape=755dd46e vocab=02c21f5a
+-/
 lemma stdSimplex_subset_Icc (ι : Type*) [Fintype ι] :
     stdSimplex ℝ ι ⊆ Set.Icc 0 1 := fun _ hf =>
   ⟨fun i => hf.1 i, fun i =>
     (Finset.single_le_sum (fun j _ => hf.1 j) (Finset.mem_univ i)).trans_eq hf.2⟩
 
+/--
+@isnad1 id=isclosed.0h1v.s4.984f14146260 from=translated src=- shape=d0f3d1bd vocab=2d5fc7cf
+-/
 lemma isClosed_stdSimplex (ι : Type*) [Fintype ι] : IsClosed (stdSimplex ℝ ι) := by
   have : stdSimplex ℝ ι =
       (⋂ i, {f : ι → ℝ | 0 ≤ f i}) ∩ {f : ι → ℝ | ∑ i, f i = 1} := by
@@ -62,12 +69,17 @@ lemma isClosed_stdSimplex (ι : Type*) [Fintype ι] : IsClosed (stdSimplex ℝ �
   exact (isClosed_iInter fun i => isClosed_le continuous_const (continuous_apply i)).inter
     (isClosed_eq (by fun_prop) continuous_const)
 
-/-- The standard simplex is compact: it is a closed subset of the unit cube. -/
+/-- The standard simplex is compact: it is a closed subset of the unit cube.
+@isnad1 id=iscompac.0h1v.s4.73905804aa7d from=translated src=- shape=d0f3d1bd vocab=58a0a2e8
+-/
 lemma isCompact_stdSimplex (ι : Type*) [Fintype ι] : IsCompact (stdSimplex ℝ ι) :=
   IsCompact.of_isClosed_subset isCompact_Icc (isClosed_stdSimplex ι) (stdSimplex_subset_Icc ι)
 
 /-! ### MS05 — Cauchy–Schwarz on a block of size `k` -/
 
+/--
+@isnad1 id=le.0h3v.s6.8ed06f17d441 from=translated src=- shape=c31b2e67 vocab=f7ad2dca
+-/
 lemma sum_sq_le_card_mul_sum_sq_finset {ι : Type*} (s : Finset ι) (y : ι → ℝ) :
     (∑ i ∈ s, y i) ^ 2 ≤ s.card * ∑ i ∈ s, y i ^ 2 := by
   have h := Finset.sum_mul_sq_le_sq_mul_sq (R := ℝ) s y fun _ => (1 : ℝ)
@@ -77,11 +89,16 @@ lemma sum_sq_le_card_mul_sum_sq_finset {ι : Type*} (s : Finset ι) (y : ι → 
   simpa [h1, mul_comm] using h
 
 /-- **MS05.** Cauchy–Schwarz against the all-ones vector:
-`(∑ y)² ≤ k ∑ yᵢ²`. -/
+`(∑ y)² ≤ k ∑ yᵢ²`.
+@isnad1 id=le.0h2v.s6.c673016cf40e from=translated src=- shape=ad0589d4 vocab=f497057a
+-/
 lemma sum_sq_le_card_mul_sum_sq {ι : Type*} [Fintype ι] (y : ι → ℝ) :
     (∑ i, y i) ^ 2 ≤ Fintype.card ι * ∑ i, y i ^ 2 :=
   sum_sq_le_card_mul_sum_sq_finset Finset.univ y
 
+/--
+@isnad1 id=le.1h3v.s7.db15bbb72705 from=translated src=- shape=d0253d34 vocab=a26e3cc0
+-/
 lemma sum_sq_sub_sum_sq_le_finset {ι : Type*} (s : Finset ι) (y : ι → ℝ)
     (hk : 1 ≤ s.card) :
     (∑ i ∈ s, y i) ^ 2 - ∑ i ∈ s, y i ^ 2 ≤
@@ -97,7 +114,9 @@ lemma sum_sq_sub_sum_sq_le_finset {ι : Type*} (s : Finset ι) (y : ι → ℝ)
   rw [hring]
   exact sub_le_sub_left hdiv _
 
-/-- **MS05.** If `k ≥ 1` then `(∑ y)² - ∑ y² ≤ (1 - 1/k) (∑ y)²`. -/
+/-- **MS05.** If `k ≥ 1` then `(∑ y)² - ∑ y² ≤ (1 - 1/k) (∑ y)²`.
+@isnad1 id=le.1h2v.s7.5e7030eb2716 from=translated src=- shape=371b26e0 vocab=bc082d2a
+-/
 lemma sum_sq_sub_sum_sq_le {ι : Type*} [Fintype ι] (y : ι → ℝ)
     (hk : 1 ≤ Fintype.card ι) :
     (∑ i, y i) ^ 2 - ∑ i, y i ^ 2 ≤
@@ -109,7 +128,9 @@ variable {G : SimpleGraph V} [DecidableRel G.Adj]
 /-! ### MS01 — quadratic form as an edge sum -/
 
 omit [DecidableEq V] in
-/-- **MS01.** The adjacency quadratic form expands as a sum over edges. -/
+/-- **MS01.** The adjacency quadratic form expands as a sum over edges.
+@isnad1 id=eq.0h3v.s6.22bd1e8f5dd2 from=translated src=- shape=6d284a14 vocab=e72a6b3c
+-/
 lemma mulVec_adjMatrix_dotProduct (y : V → ℝ) :
     mulVec (G.adjMatrix ℝ) y ⬝ᵥ y =
       ∑ i, ∑ j, (if G.Adj i j then y i * y j else 0) := by
@@ -117,6 +138,9 @@ lemma mulVec_adjMatrix_dotProduct (y : V → ℝ) :
   exact G.dotProduct_mulVec_adjMatrix y y
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=continuo.0h2v.s6.2e2105e259e7 from=translated src=- shape=24901673 vocab=f37b335e
+-/
 lemma continuous_adjMatrix_quadratic :
     Continuous fun y : V → ℝ => y ⬝ᵥ G.adjMatrix ℝ *ᵥ y :=
   continuous_id.dotProduct (continuous_const.matrix_mulVec continuous_id)
@@ -124,6 +148,9 @@ lemma continuous_adjMatrix_quadratic :
 /-! ### MS02 — affinity along a nonedge -/
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h6v.s7.45fa1114e360 from=translated src=- shape=223624ee vocab=0f12bc55
+-/
 lemma add_smul_e_sub_e_apply {i j : V} (hne : i ≠ j) (y : V → ℝ) (t : ℝ) (k : V) :
     (y + t • (e i - e j)) k =
       if k = i then y i + t else if k = j then y j - t else y k := by
@@ -134,12 +161,18 @@ lemma add_smul_e_sub_e_apply {i j : V} (hne : i ≠ j) (y : V → ℝ) (t : ℝ)
   · subst hkj; ring
   · simp
 
+/--
+@isnad1 id=eq.0h3v.s5.899a491d4514 from=translated src=- shape=48975d36 vocab=dd27a6b1
+-/
 lemma sum_e_sub_e {i j : V} :
     ∑ k, (e i - e j) k = 0 := by
   simp only [e, Pi.sub_apply]
   rw [Finset.sum_sub_distrib, Fintype.sum_pi_single', Fintype.sum_pi_single']
   simp
 
+/--
+@isnad1 id=mem.4h5v.s7.a1f8eb628c06 from=translated src=- shape=66ab6890 vocab=96716425
+-/
 lemma add_smul_e_sub_e_mem_stdSimplex {i j : V} (hne : i ≠ j)
     {y : V → ℝ} (hy : y ∈ stdSimplex ℝ V) {t : ℝ}
     (hti : 0 ≤ y i + t) (htj : 0 ≤ y j - t) :
@@ -154,7 +187,9 @@ lemma add_smul_e_sub_e_mem_stdSimplex {i j : V} (hne : i ≠ j)
     rw [Finset.sum_add_distrib, ← Finset.mul_sum, hy.2, sum_e_sub_e, mul_zero, add_zero]
 
 /-- The second-difference coefficient along a nonedge vanishes:
-`Aᵢᵢ = Aⱼⱼ = Aᵢⱼ = 0`. -/
+`Aᵢᵢ = Aⱼⱼ = Aᵢⱼ = 0`.
+@isnad1 id=eq.2h4v.s7.1c7059f32526 from=translated src=- shape=1173a65e vocab=bec512d6
+-/
 lemma adjMatrix_quadratic_e_sub_e {i j : V} (hij : ¬ G.Adj i j) (_hne : i ≠ j) :
     (e i - e j) ⬝ᵥ G.adjMatrix ℝ *ᵥ (e i - e j) = 0 := by
   have hji : ¬ G.Adj j i := fun h => hij h.symm
@@ -176,6 +211,9 @@ lemma adjMatrix_quadratic_e_sub_e {i j : V} (hij : ¬ G.Adj i j) (_hne : i ≠ j
   rw [hi, hj]
   simp [hcol, hij, hji]
 
+/--
+@isnad1 id=eq.0h5v.s7.9f3df7dbc92d from=translated src=- shape=eb7240a6 vocab=bec512d6
+-/
 lemma adjMatrix_dotProduct_e_sub_e (y : V → ℝ) {i j : V} :
     (e i - e j) ⬝ᵥ G.adjMatrix ℝ *ᵥ y =
       (G.adjMatrix ℝ *ᵥ y) i - (G.adjMatrix ℝ *ᵥ y) j := by
@@ -183,13 +221,18 @@ lemma adjMatrix_dotProduct_e_sub_e (y : V → ℝ) {i j : V} :
   simp only [e, single_dotProduct, one_mul]
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h4v.s6.5f8f6618ef8f from=translated src=- shape=9d9dd84e vocab=14b2b9fb
+-/
 lemma adjMatrix_quadratic_symm (y d : V → ℝ) :
     y ⬝ᵥ G.adjMatrix ℝ *ᵥ d = d ⬝ᵥ G.adjMatrix ℝ *ᵥ y := by
   rw [dotProduct_mulVec, ← mulVec_transpose, G.transpose_adjMatrix, dotProduct_comm]
 
 /-- **MS02.** Along a nonedge the adjacency quadratic is affine in the
 transfer parameter `t`. The inequalities keep the perturbation
-nonnegative and are used in MS03. -/
+nonnegative and are used in MS03.
+@isnad1 id=eq.4h6v.s8.9d135c144a50 from=translated src=- shape=262f2814 vocab=2c98db56
+-/
 lemma adjMatrix_quadratic_add_smul_single_sub_single
     {i j : V} (hij : ¬ G.Adj i j) (hne : i ≠ j) (y : V → ℝ) (t : ℝ)
     (hti : 0 ≤ y i + t) (htj : 0 ≤ y j - t) :
@@ -231,11 +274,17 @@ lemma adjMatrix_quadratic_add_smul_single_sub_single
 /-! ### MS03 — a maximizer with clique support -/
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=nonempty.0h1v.s4.9c25f00383f0 from=translated src=- shape=82fd2dba vocab=6233c279
+-/
 lemma stdSimplex_nonempty [Nonempty V] : (stdSimplex ℝ V).Nonempty := by
   classical
   exact ⟨Pi.single (Classical.arbitrary V) 1, single_mem_stdSimplex _⟩
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=ex.0h2v.s6.a9f2df2d8d1f from=translated src=- shape=af0d9b00 vocab=6b660c9d
+-/
 lemma exists_isMaxOn_adjMatrix_quadratic [Nonempty V] :
     ∃ y, y ∈ stdSimplex ℝ V ∧
       IsMaxOn (fun y : V → ℝ => y ⬝ᵥ G.adjMatrix ℝ *ᵥ y) (stdSimplex ℝ V) y :=
@@ -244,7 +293,9 @@ lemma exists_isMaxOn_adjMatrix_quadratic [Nonempty V] :
 
 omit [DecidableEq V] in
 /-- **MS03.** The adjacency quadratic attains its maximum on the simplex, and
-some maximizer is supported on a clique. -/
+some maximizer is supported on a clique.
+@isnad1 id=ex.0h2v.s6.02900c63b524 from=translated src=- shape=00e695c0 vocab=50272352
+-/
 lemma exists_isMaxOn_adjMatrix_quadratic_isClique_support [Nonempty V] :
     ∃ y, y ∈ stdSimplex ℝ V ∧
       IsMaxOn (fun y : V → ℝ => y ⬝ᵥ G.adjMatrix ℝ *ᵥ y) (stdSimplex ℝ V) y ∧
@@ -347,7 +398,9 @@ lemma exists_isMaxOn_adjMatrix_quadratic_isClique_support [Nonempty V] :
 /-! ### MS04 — clique computation -/
 
 omit [DecidableEq V] in
-/-- **MS04.** On a clique the adjacency quadratic is `(∑ y)² - ∑ y²`. -/
+/-- **MS04.** On a clique the adjacency quadratic is `(∑ y)² - ∑ y²`.
+@isnad1 id=eq.2h4v.s7.09efa75931b5 from=translated src=- shape=7619e376 vocab=cdd0a3d6
+-/
 lemma adjMatrix_quadratic_eq_sum_sq_sub_of_isClique
     {s : Set V} (hs : G.IsClique s) {y : V → ℝ}
     (hsupp : ∀ v, y v ≠ 0 → v ∈ s) :
@@ -392,6 +445,9 @@ lemma adjMatrix_quadratic_eq_sum_sq_sub_of_isClique
 /-! ### MS06 — Motzkin–Straus -/
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.2h3v.s6.41f0b4526284 from=translated src=- shape=bf49bfb6 vocab=c1309c75
+-/
 lemma adjMatrix_quadratic_le_turanFactor_of_isClique_support
     {y : V → ℝ} (hy : y ∈ stdSimplex ℝ V)
     (hc : G.IsClique {v | y v ≠ 0}) :
@@ -433,6 +489,9 @@ lemma adjMatrix_quadratic_le_turanFactor_of_isClique_support
     _ = turanFactor G := rfl
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.1h3v.s6.d33c80c8595c from=translated src=- shape=02b402fa vocab=e288c2dd
+-/
 lemma adjMatrix_quadratic_le_turanFactor_of_mem_stdSimplex
     [Nonempty V] {y : V → ℝ} (hy : y ∈ stdSimplex ℝ V) :
     y ⬝ᵥ G.adjMatrix ℝ *ᵥ y ≤ turanFactor G := by
@@ -440,13 +499,18 @@ lemma adjMatrix_quadratic_le_turanFactor_of_mem_stdSimplex
   exact (hmax hy).trans (adjMatrix_quadratic_le_turanFactor_of_isClique_support hz hc)
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h4v.s7.60fc36015dda from=translated src=- shape=8975abea vocab=be019129
+-/
 lemma adjMatrix_quadratic_smul (c : ℝ) (y : V → ℝ) :
     (c • y) ⬝ᵥ G.adjMatrix ℝ *ᵥ (c • y) =
       c ^ 2 * (y ⬝ᵥ G.adjMatrix ℝ *ᵥ y) := by
   simp [mulVec_smul, smul_dotProduct, dotProduct_smul, smul_eq_mul, pow_two, mul_assoc]
 
 omit [DecidableEq V] in
-/-- **MS06.** Motzkin–Straus: `yᵀ A_G y ≤ (1 - 1/ω(G)) (1ᵀ y)²` for `y ≥ 0`. -/
+/-- **MS06.** Motzkin–Straus: `yᵀ A_G y ≤ (1 - 1/ω(G)) (1ᵀ y)²` for `y ≥ 0`.
+@isnad1 id=le.1h3v.s6.121a94bbab69 from=translated src=- shape=bcce162c vocab=e5f52a43
+-/
 lemma motzkinStraus {y : V → ℝ} (hy : ∀ i, 0 ≤ y i) :
     y ⬝ᵥ G.adjMatrix ℝ *ᵥ y ≤ turanFactor G * (∑ i, y i) ^ 2 := by
   by_cases h0 : ∑ i, y i = 0
@@ -478,6 +542,9 @@ lemma motzkinStraus {y : V → ℝ} (hy : ∀ i, 0 ≤ y i) :
 /-! ### MS07 — completely positive Motzkin–Straus -/
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h5v.s5.bb9af0a70cf0 from=translated src=- shape=9c37928b vocab=aaab76aa
+-/
 lemma inner_sum {ι : Type*} (s : Finset ι) (B : Matrix V V ℝ)
     (C : ι → Matrix V V ℝ) :
     inner B (∑ a ∈ s, C a) = ∑ a ∈ s, inner B (C a) := by
@@ -487,6 +554,9 @@ lemma inner_sum {ι : Type*} (s : Finset ι) (B : Matrix V V ℝ)
   | insert a s ha ih => simp [Finset.sum_insert ha, inner_add_right, ih]
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h3v.s5.68a1954040e6 from=translated src=- shape=e6e066e1 vocab=3d9e320f
+-/
 lemma inner_vecMulVec (B : Matrix V V ℝ) (p : V → ℝ) :
     inner B (vecMulVec p p) = p ⬝ᵥ B *ᵥ p := by
   rw [inner_eq_sum, dot_mulVec_eq_sum_sum]
@@ -496,6 +566,9 @@ lemma inner_vecMulVec (B : Matrix V V ℝ) (p : V → ℝ) :
   ring
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h2v.s6.a6df5cb69b2c from=translated src=- shape=4c1938eb vocab=edd0e250
+-/
 lemma inner_one_vecMulVec (p : V → ℝ) :
     inner (of fun _ _ => (1 : ℝ)) (vecMulVec p p) = (∑ i, p i) ^ 2 := by
   rw [inner_eq_sum]
@@ -506,7 +579,9 @@ lemma inner_one_vecMulVec (p : V → ℝ) :
 
 omit [DecidableEq V] in
 /-- **MS07.** Completely positive Motzkin–Straus:
-`⟨A_G, C⟩ ≤ (1 - 1/ω(G)) ⟨J, C⟩` for `C` completely positive. -/
+`⟨A_G, C⟩ ≤ (1 - 1/ω(G)) ⟨J, C⟩` for `C` completely positive.
+@isnad1 id=le.1h3v.s6.9eeb6d9d8c2e from=translated src=- shape=b762fcac vocab=0c602a34
+-/
 lemma inner_adjMatrix_le_turanFactor_inner {C : Matrix V V ℝ}
     (hC : IsCompletelyPositive C) :
     inner (G.adjMatrix ℝ) C ≤

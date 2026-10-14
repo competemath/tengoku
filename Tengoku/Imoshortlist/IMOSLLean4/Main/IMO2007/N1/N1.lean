@@ -20,15 +20,24 @@ namespace IMO2007N1
 
 /-! ### Extra lemmas -/
 
+/--
+@isnad1 id=eq.1h1v.s5.5b33427ffa5e from=translated src=- shape=0080028f vocab=df461349
+-/
 lemma sq_mod_four_of_odd (hm : m % 2 = 1) : m ^ 2 % 4 = 1 := by
   rcases Nat.odd_mod_four_iff.mp hm with hm | hm
   all_goals rw [Nat.pow_mod, hm]
 
+/--
+@isnad1 id=dvd.0h2v.s5.7892356f2058 from=translated src=- shape=dc187f10 vocab=82732b80
+-/
 lemma two_dvd_seven_pow_sub_three_pow (k n) : (2 : ℤ) ∣ 7 ^ k - 3 ^ n := by
   show ((2 : ℕ) : ℤ) ∣ (7 : ℕ) ^ k - (3 : ℕ) ^ n
   rw [← Int.natCast_pow, ← Int.natCast_pow, ← Nat.modEq_iff_dvd,
     Nat.ModEq, Nat.pow_mod, Nat.one_pow, Nat.pow_mod, Nat.one_pow]
 
+/--
+@isnad1 id=lt.1h1v.s6.6dd7d1a59f68 from=translated src=- shape=21b47e51 vocab=3f16b8dd
+-/
 lemma succ_pow_four_lt_seven_mul_pow_four (ha : 2 ≤ a) : (a + 1) ^ 4 < 7 * a ^ 4 := by
   calc (a + 1) ^ 3 * (a + 1)
     _ < (a + 1) ^ 3 * (2 * a) := by
@@ -57,6 +66,9 @@ lemma succ_pow_four_lt_seven_mul_pow_four (ha : 2 ≤ a) : (a + 1) ^ 4 < 7 * a ^
       exact Nat.mul_le_mul_right a (Nat.mul_le_mul_left 2 ha)
     _ = 7 * (a * a) := by rw [Nat.mul_assoc, ← Nat.add_mul, ← Nat.succ_mul]
 
+/--
+@isnad1 id=lt.1h1v.s6.8138dc7d99c0 from=translated src=- shape=21b47e51 vocab=3f16b8dd
+-/
 lemma succ_sq_lt_three_mul_sq (hb : 2 ≤ b) : (b + 1) ^ 2 < 3 * b ^ 2 := calc
   _ = b ^ 2 + 2 * b + 1 := by rw [add_sq, Nat.mul_one, Nat.one_pow]
   _ < b ^ 2 + 2 * b + 2 := Nat.lt_succ_self _
@@ -65,6 +77,9 @@ lemma succ_sq_lt_three_mul_sq (hb : 2 ≤ b) : (b + 1) ^ 2 < 3 * b ^ 2 := calc
       (hb.trans b.le_mul_self)
   _ = 3 * b ^ 2 := by rw [← sq, ← Nat.two_mul, ← Nat.succ_mul]
 
+/--
+@isnad1 id=lt.3h3v.s7.508dee36ce9b from=translated src=- shape=69657f1c vocab=e04c09ab
+-/
 lemma a_bound₀ (hn : 2 ≤ n) (hk : 8 * n ^ 4 + k < 7 ^ n) : ∀ a ≥ n, 8 * a ^ 4 + k < 7 ^ a :=
   Nat.le_induction hk λ a ha ha0 ↦ calc
     _ ≤ 8 * (7 * a ^ 4) + 7 * k :=
@@ -74,6 +89,9 @@ lemma a_bound₀ (hn : 2 ≤ n) (hk : 8 * n ^ 4 + k < 7 ^ n) : ∀ a ≥ n, 8 * 
     _ = (8 * a ^ 4 + k) * 7 := by rw [Nat.mul_left_comm, ← Nat.mul_add, Nat.mul_comm]
     _ < _ := Nat.mul_lt_mul_of_pos_right ha0 (Nat.succ_pos 6)
 
+/--
+@isnad1 id=lt.3h3v.s7.d86e5d6cb1ad from=translated src=- shape=69657f1c vocab=e04c09ab
+-/
 lemma b_bound₀ (hn : 2 ≤ n) (hk : 2 * n ^ 2 + k < 3 ^ n) : ∀ b ≥ n, 2 * b ^ 2 + k < 3 ^ b :=
   Nat.le_induction hk λ b hb hb0 ↦ calc
     _ ≤ 2 * (3 * b ^ 2) + 3 * k :=
@@ -82,6 +100,9 @@ lemma b_bound₀ (hn : 2 ≤ n) (hk : 2 * n ^ 2 + k < 3 ^ n) : ∀ b ≥ n, 2 * 
     _ = (2 * b ^ 2 + k) * 3 := by rw [Nat.mul_left_comm, ← Nat.mul_add, Nat.mul_comm]
     _ < _ := Nat.mul_lt_mul_of_pos_right hb0 (Nat.succ_pos 2)
 
+/--
+@isnad1 id=lt.0h1v.s5.846ed5e6064c from=translated src=- shape=0526d132 vocab=f12631c6
+-/
 lemma b_bound₁ : ∀ b, 2 * b ^ 2 < 3 ^ b
   | 0 => Nat.one_pos
   | 1 => Nat.lt_succ_self 2
@@ -91,10 +112,19 @@ lemma b_bound₁ : ∀ b, 2 * b ^ 2 < 3 ^ b
 
 def good (k n : ℕ) := (7 : ℤ) ^ k - 3 ^ n ∣ (k ^ 4 + n ^ 2 : ℕ)
 
+/--
+@isnad1 id=good.0h0v.s3.4b850ebc5487 from=translated src=- shape=6d6f5044 vocab=8523589c
+-/
 lemma good_zero_zero : good 0 0 := ⟨0, rfl⟩
 
+/--
+@isnad1 id=good.0h0v.s3.6272e05e5e1a from=translated src=- shape=6d6f5044 vocab=8523589c
+-/
 lemma good_two_four : good 2 4 := ⟨-1, by rfl⟩
 
+/--
+@isnad1 id=and.1h2v.s4.647f62b98aef from=translated src=- shape=134e1874 vocab=c557858a
+-/
 lemma good_imp_even (h : good k n) : 2 ∣ k ∧ 2 ∣ n := by
   have h0 : Even (k + n) := by
     have h0 : 2 ∣ k ^ 4 + n ^ 2 :=
@@ -127,6 +157,9 @@ lemma good_imp_even (h : good k n) : 2 ∣ k ∧ 2 ∣ n := by
     Nat.pow_mod, sq_mod_four_of_odd h1, sq_mod_four_of_odd h0] at h
   exact Nat.succ_ne_zero 1 h
 
+/--
+@isnad1 id=dvd.1h2v.s7.defb0891b89a from=translated src=- shape=666a818a vocab=2059c3b0
+-/
 lemma good_two_mul_imp₁ (h : good (2 * a) (2 * b)) :
     7 ^ a + 3 ^ b ∣ 8 * a ^ 4 + 2 * b ^ 2 := by
   rw [good, mul_pow, mul_pow, Nat.mul_comm, pow_mul, Nat.mul_comm, pow_mul, sq_sub_sq] at h
@@ -136,6 +169,9 @@ lemma good_two_mul_imp₁ (h : good (2 * a) (2 * b)) :
     Nat.pow_succ', sq, Nat.mul_assoc, Nat.mul_assoc, ← Nat.mul_add, Nat.mul_comm] at h
   exact (mul_dvd_mul_iff_left (Nat.succ_ne_zero 1)).mp h
 
+/--
+@isnad1 id=or.1h2v.s7.2d6b7a332ad7 from=translated src=- shape=70f19cec vocab=bcb3a90b
+-/
 lemma good_two_mul_imp₂ (h : 7 ^ a + 3 ^ b ∣ 8 * a ^ 4 + 2 * b ^ 2) :
     (a = 0 ∧ b = 0) ∨ (a = 1 ∧ b ≤ 2) := by
   ---- First resolve the case `a = 0`
@@ -179,7 +215,9 @@ lemma good_two_mul_imp₂ (h : 7 ^ a + 3 ^ b ∣ 8 * a ^ 4 + 2 * b ^ 2) :
     rw [Nat.add_assoc, Nat.add_lt_add_iff_left, Nat.add_comm]
     exact b_bound₀ (by decide) (by decide) b h1
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h2v.s5.886c87d46811 from=translated src=- shape=6ff0f5ed vocab=8523589c
+-/
 theorem final_solution : good k n ↔ (k = 0 ∧ n = 0) ∨ (k = 2 ∧ n = 4) := by
   refine ⟨λ h ↦ ?_, λ h ↦ ?_⟩
   · obtain ⟨⟨a, rfl⟩, ⟨b, rfl⟩⟩ : 2 ∣ k ∧ 2 ∣ n := good_imp_even h

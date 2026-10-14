@@ -92,6 +92,9 @@ private lemma heatKernelPlus_setIntegral_pos {R : ℝ} :
     _ = ∫ p in ({p : ParabolicPoint | rhoTwo p.1 p.2 < R} ∩
         {p : ParabolicPoint | 0 < p.2}), heatKernelPlus p := by rfl
 
+/--
+@isnad1 id=le.1h1v.s6.1ed79ec2c9f6 from=translated src=- shape=ee4285ff vocab=33090b65
+-/
 lemma heatKernelPlus_integral_rho_lt_le {R : ℝ} (hR : 0 < R) :
     ∫ p in {p : ParabolicPoint | rhoTwo p.1 p.2 < R}, heatKernelPlus p ≤
       1000 * R ^ 2 := by

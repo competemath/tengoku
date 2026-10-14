@@ -24,7 +24,9 @@ noncomputable section
 namespace CKN.Core.Step4
 
 /-- Finite spatial support replaces the cell's spatial volume in the
-power-integral estimate. -/
+power-integral estimate.
+@isnad1 id=le.6h6v.s8.44741f10a727 from=translated src=- shape=4ab7a008 vocab=c4f97dc5
+-/
 theorem pressure_remainder_supported_cylinder_power_bound
     {F : ParabolicPoint → ℝ} {H : ℝ → ℝ≥0∞} {S : Set Vec3}
     (hF : AEMeasurable F volume) (hH : AEMeasurable H volume)
@@ -65,7 +67,9 @@ theorem pressure_remainder_supported_cylinder_power_bound
       exact mul_le_mul_right (pressure_remainder_time_power_bound hH (t := t) hr) _
 
 /-- The supported estimate after normalization, useful for cells of radius
-at least one. -/
+at least one.
+@isnad1 id=le.6h6v.s9.e76a9665e16f from=translated src=- shape=c45042c1 vocab=bc2ac678
+-/
 theorem pressure_remainder_supported_morreyCell_bound
     {κ : ℝ} {F : ParabolicPoint → ℝ} {H : ℝ → ℝ≥0∞} {S : Set Vec3}
     (hF : AEMeasurable F volume) (hH : AEMeasurable H volume)
@@ -96,7 +100,9 @@ theorem pressure_remainder_supported_morreyCell_bound
         ENNReal.rpow_add _ _ (ENNReal.ofReal_pos.mpr hr).ne' ENNReal.ofReal_ne_top]
       ring
 
-/-- All cell radii are controlled by a single explicit constant. -/
+/-- All cell radii are controlled by a single explicit constant.
+@isnad1 id=le.7h4v.s9.682be8c9747f from=translated src=- shape=c8d34854 vocab=155d3e09
+-/
 theorem pressure_remainder_morreyNorm_bound
     {κ : ℝ} (hκlo : 3 / 2 ≤ κ) (hκhi : κ ≤ 25 / 9)
     {F : ParabolicPoint → ℝ} {H : ℝ → ℝ≥0∞} {S : Set Vec3}
@@ -145,7 +151,9 @@ theorem pressure_remainder_morreyNorm_bound
       _ ≤ _ := mul_le_mul_left le_add_self _
 
 /-- The spatially supported remainder has finite Morrey seminorm whenever
-its temporal supremum belongs to `L^{3/2}`. -/
+its temporal supremum belongs to `L^{3/2}`.
+@isnad1 id=lt.9h4v.s8.44cb7ec17b3a from=translated src=- shape=7b839c2e vocab=26aca187
+-/
 theorem pressure_remainder_morreyNorm_lt_top
     {κ : ℝ} (hκlo : 3 / 2 ≤ κ) (hκhi : κ ≤ 25 / 9)
     {F : ParabolicPoint → ℝ} {H : ℝ → ℝ≥0∞} {S : Set Vec3}
@@ -164,7 +172,9 @@ theorem pressure_remainder_morreyNorm_lt_top
   · exact ENNReal.rpow_lt_top_of_nonneg (by norm_num) hHfinite.ne
 
 /-- A measurable restriction to a finite spatial carrier has finite Morrey
-seminorm under a temporal bound on its spatial supremum. -/
+seminorm under a temporal bound on its spatial supremum.
+@isnad1 id=lt.10h5v.s8.adc2ed6621df from=translated src=- shape=8af272fe vocab=27ba84c1
+-/
 theorem pressure_remainder_indicator_morreyNorm_lt_top
     {κ : ℝ} (hκlo : 3 / 2 ≤ κ) (hκhi : κ ≤ 25 / 9)
     {F : ParabolicPoint → ℝ} {H : ℝ → ℝ≥0∞}

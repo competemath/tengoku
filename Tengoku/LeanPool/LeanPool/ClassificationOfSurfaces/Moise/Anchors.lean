@@ -38,7 +38,9 @@ namespace Moise
 def standardTriangleVertex : Fin 3 → Plane :=
   ![!₂[(0 : ℝ), 0], !₂[(1 : ℝ), 0], !₂[(0 : ℝ), 1]]
 
-/-- The vertices of the standard triangle are not collinear. -/
+/-- The vertices of the standard triangle are not collinear.
+@isnad1 id=not.0h0v.s9.87e71328d746 from=translated src=- shape=14c547af vocab=bb6ad414
+-/
 theorem standardTriangle_not_collinear :
     ¬ Collinear ℝ ({!₂[(0 : ℝ), 0], !₂[(1 : ℝ), 0], !₂[(0 : ℝ), 1]} : Set Plane) := by
   intro hcol
@@ -56,17 +58,24 @@ theorem standardTriangle_not_collinear :
   · rw [h, mul_zero] at hB0
     exact one_ne_zero hB0
 
-/-- The vertices of the standard triangle are affinely independent. -/
+/-- The vertices of the standard triangle are affinely independent.
+@isnad1 id=affinein.0h0v.s8.6176553d8d0e from=translated src=- shape=7e71be5a vocab=c2871d57
+-/
 theorem standardTriangleVertex_affineIndependent :
     AffineIndependent ℝ standardTriangleVertex :=
   affineIndependent_iff_not_collinear_set.mpr standardTriangle_not_collinear
 
+/--
+@isnad1 id=injectiv.0h0v.s3.4f0fe9d3179a from=translated src=- shape=bfe16b09 vocab=ceeb6ed5
+-/
 theorem standardTriangleVertex_injective :
     Function.Injective standardTriangleVertex :=
   standardTriangleVertex_affineIndependent.injective
 
 /-- Any relabelling of the standard triangle vertices by an injective index vector is affinely
-independent. -/
+independent.
+@isnad1 id=affinein.1h3v.s8.106849a80cfa from=translated src=- shape=6ceede39 vocab=8712c3b4
+-/
 theorem standardTriangleVertex_triple_affineIndependent (a b c : Fin 3)
     (h : Function.Injective ![a, b, c]) :
     AffineIndependent ℝ
@@ -110,7 +119,9 @@ noncomputable def planeAffineBasisOfTriple (p : Fin 3 → Plane)
   tot' := hp.affineSpan_eq_top_iff_card_eq_finrank_add_one.mpr (by simp [Plane])
 
 /-- The interior of a full-dimensional plane triangle consists exactly of points with all
-three barycentric coordinates positive. -/
+three barycentric coordinates positive.
+@isnad1 id=eq.0h1v.s11.f339375ba2c6 from=translated src=- shape=eed11671 vocab=a026931e
+-/
 theorem interior_convexHull_affineBasis (b : AffineBasis (Fin 3) ℝ Plane) :
     interior (convexHull ℝ (Set.range b)) = {x | ∀ i, 0 < b.coord i x} := by
   have hC : convexHull ℝ (Set.range b) = {x | ∀ i, 0 ≤ b.coord i x} :=
@@ -185,7 +196,9 @@ noncomputable def standardTriangleSimplex : Affine.Simplex ℝ Plane 2 where
   points := standardTriangleVertex
   independent := standardTriangleVertex_affineIndependent
 
-/-- The carrier of `standardTriangleCircle` is the frontier of the closed standard triangle. -/
+/-- The carrier of `standardTriangleCircle` is the frontier of the closed standard triangle.
+@isnad1 id=eq.0h0v.s7.be17b28f4249 from=translated src=- shape=eaf6af9e vocab=16eab43a
+-/
 theorem standardTriangleCircle_carrier :
     standardTriangleCircle.carrier =
       frontier (convexHull ℝ (Set.range standardTriangleVertex)) := by
@@ -349,6 +362,9 @@ noncomputable abbrev standardTrianglePlaneComplex : PlaneComplex where
     rw [← Finset.coe_inter, ← Finset.image_inter s t standardTriangleVertex_injective] at hmain
     simpa [Finset.coe_image] using hmain.symm
 
+/--
+@isnad1 id=eq.0h0v.s3.9de3827e5963 from=translated src=- shape=ad2e3c8d vocab=86926829
+-/
 @[simp] theorem standardTrianglePlaneComplex_position :
     standardTrianglePlaneComplex.position = standardTriangleVertex := rfl
 

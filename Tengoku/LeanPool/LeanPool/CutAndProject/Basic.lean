@@ -39,6 +39,7 @@ namespace CutAndProject
 /--
 Lemma 4.1 from the paper.
 Given α, β ∈ ℕ with gcd(α, β) = 1, we have gcd(α, α ^ 2 + β ^ 2) = 1.
+@isnad1 id=coprime.1h2v.s5.0f6992e71158 from=translated src=- shape=eb5284d6 vocab=fdba99b9
 -/
 theorem coprime_alpha_D (α β : ℕ) (h : Nat.Coprime α β) : Nat.Coprime α (α ^ 2 + β ^ 2) := by
   have h1 : Nat.Coprime α (β ^ 2) := Nat.Coprime.pow_right 2 h
@@ -48,6 +49,7 @@ theorem coprime_alpha_D (α β : ℕ) (h : Nat.Coprime α β) : Nat.Coprime α (
 
 /--
 Symmetric part of Lemma 4.1.
+@isnad1 id=coprime.1h2v.s5.057aa8a1dd5d from=translated src=- shape=6d497b96 vocab=fdba99b9
 -/
 theorem coprime_beta_D (α β : ℕ) (h : Nat.Coprime α β) : Nat.Coprime β (α ^ 2 + β ^ 2) := by
   have h1 : Nat.Coprime β (α ^ 2) := Nat.Coprime.pow_right 2 h.symm
@@ -55,6 +57,9 @@ theorem coprime_beta_D (α β : ℕ) (h : Nat.Coprime α β) : Nat.Coprime β (�
   rw [h2]
   exact (Nat.coprime_add_mul_right_right β (α ^ 2) β).mpr h1
 
+/--
+@isnad1 id=lt.1h2v.s5.eff55592b6f3 from=translated src=- shape=9ad80dcb vocab=14b49bff
+-/
 lemma D_pos (α β : ℕ) (h : Nat.Coprime α β) : 0 < α ^ 2 + β ^ 2 := by
   rcases Nat.eq_zero_or_pos α with rfl | hα
   · rw [Nat.coprime_zero_left] at h
@@ -100,6 +105,9 @@ paper) describes the multiset of multiplicities.
 def countHits (D : ℕ) (r0 N : ℕ) (x : ZMod D) : ℕ :=
   (Finset.range N).filter (fun (i : ℕ) => (r0 + i : ZMod D) = x) |>.card
 
+/--
+@isnad1 id=eq.0h3v.s4.9a42ba2b7f75 from=translated src=- shape=68ed9faa vocab=64549ab7
+-/
 lemma count_hits_D (D : ℕ) [NeZero D] (r0 : ℕ) (x : ZMod D) :
     countHits D r0 D x = 1 := by
   dsimp [countHits]
@@ -126,6 +134,9 @@ lemma count_hits_D (D : ℕ) [NeZero D] (r0 : ℕ) (x : ZMod D) :
       ring
   rw [h_unique, Finset.card_singleton]
 
+/--
+@isnad1 id=le.1h4v.s4.ef476f444f48 from=translated src=- shape=78d31c36 vocab=85fb6065
+-/
 lemma count_hits_lt_D (D : ℕ) (r0 N : ℕ) (h : N < D) (x : ZMod D) :
     countHits D r0 N x ≤ 1 := by
   dsimp [countHits]
@@ -138,6 +149,9 @@ lemma count_hits_lt_D (D : ℕ) (r0 N : ℕ) (h : N < D) (x : ZMod D) :
   have hj_lt : j < D := lt_trans hj.1 h
   have h_mod : i ≡ j [MOD D] := (ZMod.natCast_eq_natCast_iff i j D).mp h_eq2
   exact Nat.ModEq.eq_of_lt_of_lt h_mod hi_lt hj_lt
+/--
+@isnad1 id=eq.0h3v.s5.1f9d916bce78 from=translated src=- shape=351975db vocab=b4878cdb
+-/
 lemma sum_count_hits (D : ℕ) [NeZero D] (r0 N : ℕ) :
     ∑ x : ZMod D, countHits D r0 N x = N := by
   dsimp [countHits]
@@ -146,6 +160,9 @@ lemma sum_count_hits (D : ℕ) [NeZero D] (r0 N : ℕ) :
   rw [← h]
   exact Finset.card_range N
 
+/--
+@isnad1 id=eq.0h4v.s7.89355fd5f2ba from=translated src=- shape=4ec93b68 vocab=ab406cdf
+-/
 lemma count_hits_succ (D : ℕ) (r0 N : ℕ) (x : ZMod D) :
     countHits D r0 (N + 1) x = countHits D r0 N x + if (r0 + N : ZMod D) = x then 1 else 0 := by
   dsimp [countHits]
@@ -155,6 +172,9 @@ lemma count_hits_succ (D : ℕ) (r0 N : ℕ) (x : ZMod D) :
     simp
   · rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.037c76b16a44 from=translated src=- shape=a7306501 vocab=da64ff00
+-/
 lemma count_hits_add (D : ℕ) (r0 N M : ℕ) (x : ZMod D) :
     countHits D r0 (N + M) x = countHits D r0 N x + countHits D (r0 + N) M x := by
   induction M with
@@ -168,6 +188,9 @@ lemma count_hits_add (D : ℕ) (r0 N M : ℕ) (x : ZMod D) :
     push_cast
     ring
 
+/--
+@isnad1 id=eq.0h4v.s5.b6a60ebf962b from=translated src=- shape=06e9f52f vocab=5cc5a510
+-/
 lemma count_hits_mul_D (D : ℕ) [NeZero D] (r0 q : ℕ) (x : ZMod D) :
     countHits D r0 (q * D) x = q := by
   induction q with
@@ -177,12 +200,18 @@ lemma count_hits_mul_D (D : ℕ) [NeZero D] (r0 q : ℕ) (x : ZMod D) :
   | succ k ih =>
     rw [Nat.succ_mul, count_hits_add, ih, count_hits_D]
 
+/--
+@isnad1 id=eq.0h4v.s6.a5c60e17b67e from=translated src=- shape=e2257ef3 vocab=ae9371c6
+-/
 lemma count_hits_eq (D : ℕ) [NeZero D] (r0 N : ℕ) (x : ZMod D) :
     countHits D r0 N x = (N / D) + countHits D (r0 + (N / D) * D) (N % D) x := by
   have h_div : N = (N / D) * D + (N % D) := Nat.div_add_mod' N D |>.symm
   nth_rw 1 [h_div]
   rw [count_hits_add, count_hits_mul_D]
 
+/--
+@isnad1 id=other.0h3v.s7.046dd706723d from=translated src=- shape=a08e0d39 vocab=260e1d10
+-/
 theorem residue_distribution (D : ℕ) [NeZero D] (r0 N : ℕ) :
     let q := N / D
     let s := N % D
@@ -270,6 +299,7 @@ theorem residue_distribution (D : ℕ) [NeZero D] (r0 N : ℕ) :
 Specialisation of `residue_distribution` to the genuinely non-uniform
 case `D ∤ N`: here `s = N % D` is positive, so the heavy classes form a
 non-empty proper subset of `ZMod D`.
+@isnad1 id=other.1h3v.s7.ffc619e05d24 from=translated src=- shape=47cda38a vocab=0d6ed313
 -/
 theorem non_uniform_residue_distribution_of_not_dvd
     (D : ℕ) [NeZero D] (r0 N : ℕ) (h : ¬ D ∣ N) :
@@ -282,6 +312,9 @@ theorem non_uniform_residue_distribution_of_not_dvd
     Nat.pos_of_ne_zero (fun h_eq => h (Nat.dvd_of_mod_eq_zero h_eq))
   exact ⟨h_pos, (residue_distribution D r0 N).1, (residue_distribution D r0 N).2⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.9cac23144a7a from=translated src=- shape=71f2b1a4 vocab=df5f958e
+-/
 lemma count_hits_zero (D : ℕ) (r0 : ℕ) (x : ZMod D) :
     countHits D r0 0 x = 0 := by
   dsimp [countHits]
@@ -290,6 +323,7 @@ lemma count_hits_zero (D : ℕ) (r0 : ℕ) (x : ZMod D) :
 /--
 Lemma (Degenerate Case): Uniform residue distribution.
 If `D ∣ N`, then every residue class is hit exactly `N / D` times.
+@isnad1 id=eq.1h4v.s5.3ed4690a82f9 from=translated src=- shape=a1b3f3c4 vocab=69a04603
 -/
 theorem uniform_residue_distribution (D : ℕ) [NeZero D] (r0 N : ℕ) (h : D ∣ N) (x : ZMod D) :
     countHits D r0 N x = N / D := by
@@ -316,6 +350,7 @@ Transfer lemma: counting hits of the multiplier-twisted progression
 `u * (r0 + i)` against the target `x` equals counting hits of the plain
 progression `r0 + i` against `u⁻¹ * x`. Multiplication by a unit is a
 bijection of `ZMod D`, so the two counts agree pointwise.
+@isnad1 id=eq.0h5v.s6.beb6f9db4d27 from=translated src=- shape=7e68896f vocab=71df91b1
 -/
 lemma count_hits_unit_eq_count_hits
     (D : ℕ) (u : (ZMod D)ˣ) (r0 N : ℕ) (x : ZMod D) :
@@ -334,6 +369,7 @@ lemma count_hits_unit_eq_count_hits
 /--
 Specialisation of `count_hits_unit_eq_count_hits` to `u = 1`:
 the unit-aware count with trivial multiplier reduces to `countHits`.
+@isnad1 id=eq.0h4v.s6.47c4f6a97baf from=translated src=- shape=2f8c9de2 vocab=76c0a8a5
 -/
 lemma count_hits_unit_one (D : ℕ) (r0 N : ℕ) (x : ZMod D) :
     countHitsUnit D 1 r0 N x = countHits D r0 N x := by
@@ -346,6 +382,7 @@ multiplicities of `countHitsUnit D u r0 N` agrees with that of
 `countHits D r0 N`. Multiplication by `u : (ZMod D)ˣ` is a bijection of
 `ZMod D`, so the cardinalities of the level sets `{x | count = k}` are
 preserved.
+@isnad1 id=other.0h4v.s7.aefbee746e8a from=translated src=- shape=e27f4076 vocab=9cacac9d
 -/
 theorem residue_distribution_unit (D : ℕ) [NeZero D] (u : (ZMod D)ˣ) (r0 N : ℕ) :
     let q := N / D
@@ -385,6 +422,7 @@ theorem residue_distribution_unit (D : ℕ) [NeZero D] (u : (ZMod D)ˣ) (r0 N : 
 Unit-aware analogue of `uniform_residue_distribution`: in the degenerate
 case `D ∣ N`, every residue class is hit exactly `N / D` times under the
 multiplier-twisted progression `u * (r0 + i)`.
+@isnad1 id=eq.1h5v.s5.7c9ce52dc3f9 from=translated src=- shape=9b335509 vocab=5fa1b7b5
 -/
 theorem uniform_residue_distribution_unit
     (D : ℕ) [NeZero D] (u : (ZMod D)ˣ) (r0 N : ℕ) (h : D ∣ N) (x : ZMod D) :
@@ -401,6 +439,9 @@ section Minimality
 def cyclicInterval (D s : ℕ) (x0 : ZMod D) : Finset (ZMod D) :=
   (Finset.range s).image (fun (i : ℕ) => x0 + (i : ZMod D))
 
+/--
+@isnad1 id=iff.0h4v.s6.6cd686b0a9b8 from=translated src=- shape=d9b73b9a vocab=b9d1d65a
+-/
 lemma cyclic_interval_mem (D s : ℕ) (x0 : ZMod D) (x : ZMod D) :
     x ∈ cyclicInterval D s x0 ↔ ∃ (i : ℕ), i < s ∧ x = x0 + (i : ZMod D) := by
   dsimp [cyclicInterval]
@@ -411,6 +452,9 @@ lemma cyclic_interval_mem (D s : ℕ) (x0 : ZMod D) (x : ZMod D) :
   · rintro ⟨i, hi, rfl⟩
     exact ⟨i, hi, rfl⟩
 
+/--
+@isnad1 id=iff.1h4v.s6.0e21eec6ccfa from=translated src=- shape=9508a429 vocab=524c5779
+-/
 lemma count_hits_lt_D_eq_one (D s : ℕ) (r0 : ℕ) (h_s_lt : s < D) (x : ZMod D) :
     countHits D r0 s x = 1 ↔ x ∈ cyclicInterval D s (r0 : ZMod D) := by
   dsimp [countHits]
@@ -442,6 +486,9 @@ lemma count_hits_lt_D_eq_one (D s : ℕ) (r0 : ℕ) (h_s_lt : s < D) (x : ZMod D
     · rintro rfl
       exact ⟨hi, rfl⟩
 
+/--
+@isnad1 id=other.0h3v.s6.a375cb953a39 from=translated src=- shape=2ff65669 vocab=3d350ff9
+-/
 lemma heavy_set_is_cyclic_interval (D : ℕ) [NeZero D] (r0 N : ℕ) :
     let q := N / D
     let s := N % D
@@ -472,6 +519,7 @@ by `u`.
 
 Proof: direct corollary of the transfer lemma `count_hits_unit_eq_count_hits`
 and `heavy_set_is_cyclic_interval`.
+@isnad1 id=other.0h4v.s7.0230ff5ce3a6 from=translated src=- shape=49090a61 vocab=d702ffc7
 -/
 lemma heavy_set_unit_is_cyclic_interval (D : ℕ) [NeZero D] (u : (ZMod D)ˣ) (r0 N : ℕ) :
     let q := N / D
@@ -482,6 +530,9 @@ lemma heavy_set_unit_is_cyclic_interval (D : ℕ) [NeZero D] (u : (ZMod D)ˣ) (r
   rw [count_hits_unit_eq_count_hits]
   exact heavy_set_is_cyclic_interval D r0 N ((u⁻¹ : (ZMod D)ˣ) * x)
 
+/--
+@isnad1 id=and.2h3v.s7.41e0e931a1f9 from=translated src=- shape=eea97a2b vocab=2d3b9e8c
+-/
 lemma right_boundary_exists (D s : ℕ) (x0 : ZMod D) (h_s_pos : 0 < s) (h_s_lt : s < D) :
     (x0 + (s - 1 : ℕ) : ZMod D) ∈ cyclicInterval D s x0 ∧
     (x0 + (s - 1 : ℕ) + 1 : ZMod D) ∉ cyclicInterval D s x0 := by
@@ -507,6 +558,9 @@ lemma right_boundary_exists (D s : ℕ) (x0 : ZMod D) (h_s_pos : 0 < s) (h_s_lt 
     have h_eq3 : s = i := Nat.ModEq.eq_of_lt_of_lt h_mod h_s_lt (lt_trans hi h_s_lt)
     omega
 
+/--
+@isnad1 id=eq.4h4v.s7.20b240b9236d from=translated src=- shape=add6c39d vocab=2d3b9e8c
+-/
 lemma right_boundary_unique (D s : ℕ) (x0 : ZMod D) (h_s_pos : 0 < s)
     (_h_s_lt : s < D) (y : ZMod D)
     (hy_in : y ∈ cyclicInterval D s x0) (hy_next_notin : y + 1 ∉ cyclicInterval D s x0) :
@@ -528,6 +582,7 @@ lemma right_boundary_unique (D s : ℕ) (x0 : ZMod D) (h_s_pos : 0 < s)
 /--
 Lemma (Minimality): A cyclic interval of length `s` with `0 < s < D`
 cannot be invariant under any non-zero translation `τ`.
+@isnad1 id=eq.3h4v.s6.f67d85c971a9 from=translated src=- shape=155fb5b1 vocab=137b530b
 -/
 lemma cyclic_interval_stabilizer_trivial (D s : ℕ) (x0 : ZMod D) (τ : ZMod D)
     (h_s_pos : 0 < s) (h_s_lt : s < D)
@@ -588,6 +643,9 @@ class GeometricProjection (α β : ℕ) (ω : ℝ) (s : ℤ → ℤ) [NeZero (α
 
 open GeometricProjection
 
+/--
+@isnad1 id=other.0h4v.s7.8ef67eba0f84 from=translated src=- shape=53de5f1c vocab=d7fcbec0
+-/
 lemma generic_minimality (α β : ℕ) (ω : ℝ) (seq : ℤ → ℤ) [NeZero (α ^ 2 + β ^ 2)]
     [GeometricProjection α β ω seq] :
     let N := (⌊ω * α⌋ + ⌊ω * β⌋ + 1).toNat
@@ -711,7 +769,9 @@ noncomputable def differenceSequenceUnit (α β : ℕ) (ω : ℝ)
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ) (i : ℤ) : ℤ :=
   sortedMultisetUnit α β ω u (i + 1) - sortedMultisetUnit α β ω u i
 
-/-- `u = 1` specialisation: the unit-aware cumulative count agrees with `cumulativeHits`. -/
+/-- `u = 1` specialisation: the unit-aware cumulative count agrees with `cumulativeHits`.
+@isnad1 id=eq.0h4v.s9.aab77dc2640e from=translated src=- shape=d7b0b463 vocab=5da412d6
+-/
 lemma cumulative_hits_unit_one (α β : ℕ) (ω : ℝ) (x : ℕ) :
     cumulativeHitsUnit α β ω 1 x = cumulativeHits α β ω x := by
   unfold cumulativeHitsUnit cumulativeHits
@@ -719,11 +779,17 @@ lemma cumulative_hits_unit_one (α β : ℕ) (ω : ℝ) (x : ℕ) :
   intro y _
   exact count_hits_unit_one _ _ _ _
 
+/--
+@isnad1 id=lt.1h3v.s6.186e967c4c07 from=translated src=- shape=27cfec32 vocab=b71c4d1a
+-/
 lemma N_pos_concrete (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω) : 0 < (⌊ω * α⌋ + ⌊ω * β⌋ + 1).toNat := by
   have h1 : 0 ≤ ⌊ω * α⌋ := Int.floor_nonneg.mpr (mul_nonneg h_ω (Nat.cast_nonneg α))
   have h2 : 0 ≤ ⌊ω * β⌋ := Int.floor_nonneg.mpr (mul_nonneg h_ω (Nat.cast_nonneg β))
   omega
 
+/--
+@isnad1 id=other.1h3v.s6.d73876b15586 from=translated src=- shape=11e0b09f vocab=8b86e280
+-/
 lemma period_N_concrete (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω) :
     let N := (⌊ω * α⌋ + ⌊ω * β⌋ + 1).toNat
     IsPeriod (differenceSequence α β ω) N := by
@@ -771,6 +837,7 @@ lemma period_N_concrete (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω) :
 
 /--
 Helper: sortedMultiset shifts by D when index shifts by N.
+@isnad1 id=other.1h4v.s7.93d9a820dbfe from=translated src=- shape=1c942987 vocab=fe4b0d5a
 -/
 lemma sorted_multiset_add_N (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω) (i : ℤ) :
     let N := (⌊ω * ↑α⌋ + ⌊ω * ↑β⌋ + 1).toNat
@@ -803,6 +870,7 @@ lemma sorted_multiset_add_N (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω) (i : ℤ)
 /--
 Unit-aware analogue of `sorted_multiset_add_N`. Purely structural — only
 uses the `q*N + r` decomposition that defines `sortedMultisetUnit`.
+@isnad1 id=other.1h5v.s8.30f5d2563471 from=translated src=- shape=13fca745 vocab=ec7206a1
 -/
 lemma sorted_multiset_unit_add_N (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ) (i : ℤ) :
@@ -836,6 +904,7 @@ by L is constant (independent of i).
 Proof idea: Define f(i) = sortedMultiset(i+L) - sortedMultiset(i).
 Then f(i+1) - f(i) = differenceSequence(i+L) - differenceSequence(i) = 0
 by periodicity. So f is constant = f(0).
+@isnad1 id=eq.1h5v.s6.097eedca1b6a from=translated src=- shape=f41f84bf vocab=49a5cb55
 -/
 lemma sorted_shift_constant (α β : ℕ) (ω : ℝ)
     (L : ℕ) (hL : IsPeriod (differenceSequence α β ω) L) (i : ℤ) :
@@ -890,6 +959,7 @@ lemma sorted_shift_constant (α β : ℕ) (ω : ℝ)
 Helper: N * shift = L * D.
 From sortedMultiset(i+N) = sortedMultiset(i) + D and
 sortedMultiset(i+L) = sortedMultiset(i) + σ, applied NL times both ways.
+@isnad1 id=other.2h4v.s7.844a99914d96 from=translated src=- shape=777710a9 vocab=946af9a4
 -/
 lemma shift_times_N_eq (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
     (L : ℕ) (hL : IsPeriod (differenceSequence α β ω) L) :
@@ -930,6 +1000,7 @@ lemma shift_times_N_eq (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
 
 /--
 Helper: the shift σ is nonneg (sortedMultiset is non-decreasing).
+@isnad1 id=le.3h4v.s6.06a110c5b4f0 from=translated src=- shape=1e1f6e62 vocab=c7eacb63
 -/
 lemma shift_nonneg (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
     (L : ℕ) (hL_pos : 0 < L) (hL : IsPeriod (differenceSequence α β ω) L) :
@@ -947,6 +1018,7 @@ lemma shift_nonneg (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
 /--
 Generalization of sorted_multiset_add_N to multiple N-steps:
 sortedMultiset(i + m*N) = sortedMultiset(i) + m*D.
+@isnad1 id=eq.1h5v.s7.9d445c2f27f8 from=translated src=- shape=4208f191 vocab=fe4b0d5a
 -/
 lemma sorted_multiset_add_mul_N (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
     (i : ℤ) (m : ℕ) :
@@ -969,6 +1041,7 @@ lemma sorted_multiset_add_mul_N (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
 
 /--
 sortedMultiset mod D depends only on the index mod N.
+@isnad1 id=eq.1h5v.s9.d673d69d5528 from=translated src=- shape=7cf6a60f vocab=007aeffd
 -/
 lemma sorted_multiset_mod_D_eq (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
     (k L : ℕ) :
@@ -991,7 +1064,9 @@ lemma sorted_multiset_mod_D_eq (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
 
 /-- Unit-aware analogue of `sorted_shift_constant`. Structural — identical
 to the untwisted proof with `differenceSequenceUnit`/`sortedMultisetUnit`
-substituted. -/
+substituted.
+@isnad1 id=eq.1h6v.s8.d1a9b746b79d from=translated src=- shape=f4d353e1 vocab=a298ac59
+-/
 lemma sorted_shift_constant_unit (α β : ℕ) (ω : ℝ)
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ)
     (L : ℕ) (hL : IsPeriod (differenceSequenceUnit α β ω u) L) (i : ℤ) :
@@ -1036,7 +1111,9 @@ lemma sorted_shift_constant_unit (α β : ℕ) (ω : ℝ)
     simp only [this]
     exact h_neg (n + 1)
 
-/-- Unit-aware analogue of `shift_times_N_eq`. -/
+/-- Unit-aware analogue of `shift_times_N_eq`.
+@isnad1 id=other.2h5v.s8.6da0e3b4fcb8 from=translated src=- shape=d9a78c70 vocab=ffff90d9
+-/
 lemma shift_times_N_eq_unit (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ)
     (L : ℕ) (hL : IsPeriod (differenceSequenceUnit α β ω u) L) :
@@ -1069,7 +1146,9 @@ lemma shift_times_N_eq_unit (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
   have h3 : (↑N : ℤ) * ↑L = ↑L * ↑N := by ring
   rw [h3] at h1; linarith
 
-/-- Unit-aware analogue of `shift_nonneg`. -/
+/-- Unit-aware analogue of `shift_nonneg`.
+@isnad1 id=le.3h5v.s8.34f5bc7caa40 from=translated src=- shape=93600d31 vocab=0d41ebe2
+-/
 lemma shift_nonneg_unit (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ)
     (L : ℕ) (hL_pos : 0 < L) (hL : IsPeriod (differenceSequenceUnit α β ω u) L) :
@@ -1083,7 +1162,9 @@ lemma shift_nonneg_unit (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
   have h_rhs : 0 ≤ ↑L * ↑(α ^ 2 + β ^ 2) := by positivity
   nlinarith
 
-/-- Unit-aware analogue of `sorted_multiset_add_mul_N`. -/
+/-- Unit-aware analogue of `sorted_multiset_add_mul_N`.
+@isnad1 id=eq.1h6v.s8.fd476a2b193e from=translated src=- shape=f3e40eeb vocab=ec7206a1
+-/
 lemma sorted_multiset_unit_add_mul_N (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ) (i : ℤ) (m : ℕ) :
     sortedMultisetUnit α β ω u (i + ↑m * ↑(⌊ω * ↑α⌋ + ⌊ω * ↑β⌋ + 1).toNat) =
@@ -1103,7 +1184,9 @@ lemma sorted_multiset_unit_add_mul_N (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
         ↑(⌊ω * ↑α⌋ + ⌊ω * ↑β⌋ + 1).toNat := by push_cast; ring
     rw [h_eq, ha, ih]; push_cast; ring
 
-/-- Unit-aware analogue of `sorted_multiset_mod_D_eq`. -/
+/-- Unit-aware analogue of `sorted_multiset_mod_D_eq`.
+@isnad1 id=eq.1h6v.s9.48decd94afa9 from=translated src=- shape=1793fa39 vocab=82326757
+-/
 lemma sorted_multiset_unit_mod_D_eq (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ) (k L : ℕ) :
     (sortedMultisetUnit α β ω u ↑(k + L) : ZMod (α ^ 2 + β ^ 2)) =
@@ -1127,6 +1210,7 @@ lemma sorted_multiset_unit_mod_D_eq (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
 
 /--
 Key residue shift: sortedMultiset((j+L)%N) ≡ sortedMultiset(j) + σ (mod D).
+@isnad1 id=other.2h5v.s7.e2b5ef775036 from=translated src=- shape=e7c427b7 vocab=b39820a6
 -/
 lemma sorted_residue_shift (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
     (L : ℕ) (hL : IsPeriod (differenceSequence α β ω) L) (j : ℕ) :
@@ -1308,6 +1392,7 @@ private lemma V_fiber_card (α β : ℕ) (ω : ℝ) (_h_ω : 0 ≤ ω) [NeZero (
 /--
 Bridge lemma: countHits via the arithmetic progression equals
 counting sortedMultiset residues over one period.
+@isnad1 id=other.1h3v.s8.f733ce1d42a9 from=translated src=- shape=81acca6e vocab=d0efeb9f
 -/
 lemma count_hits_eq_sorted_count (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
     [NeZero (α ^ 2 + β ^ 2)] :
@@ -1391,6 +1476,9 @@ private lemma mod_add_inv (N L k : ℕ) (hN : 0 < N) (hk : k < N) :
   rw [step1, step2, show k + (1 + L / N) * N = k + N * (1 + L / N) from by ring,
       Nat.add_mul_mod_self_left, Nat.mod_eq_of_lt hk]
 
+/--
+@isnad1 id=other.3h4v.s8.851f063ed907 from=translated src=- shape=73b54311 vocab=7cbefd4b
+-/
 lemma count_hits_shift_invariant (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
     [NeZero (α ^ 2 + β ^ 2)]
     (L : ℕ) (hL_pos : 0 < L) (hL : IsPeriod (differenceSequence α β ω) L) :
@@ -1457,7 +1545,9 @@ lemma count_hits_shift_invariant (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
 -- Unit-aware parallel infrastructure (Phase 2 step 3d).
 -- =====================================================================
 
-/-- Unit-aware analogue of `sorted_residue_shift`. -/
+/-- Unit-aware analogue of `sorted_residue_shift`.
+@isnad1 id=other.2h6v.s8.763fc9c2ec1b from=translated src=- shape=87e69590 vocab=0576ca7a
+-/
 lemma sorted_residue_shift_unit (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ)
     (L : ℕ) (hL : IsPeriod (differenceSequenceUnit α β ω u) L) (j : ℕ) :
@@ -1641,7 +1731,9 @@ private lemma V_unit_fiber_card (α β : ℕ) (ω : ℝ) (_h_ω : 0 ≤ ω)
       rwa [show v - 1 + 1 = v from Nat.succ_pred_eq_of_pos hv0] at this
     omega
 
-/-- Unit-aware analogue of `count_hits_eq_sorted_count`. -/
+/-- Unit-aware analogue of `count_hits_eq_sorted_count`.
+@isnad1 id=other.1h4v.s8.c7c0b4cb7f01 from=translated src=- shape=695025c2 vocab=75244248
+-/
 lemma count_hits_eq_sorted_count_unit (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
     [NeZero (α ^ 2 + β ^ 2)] (u : (ZMod (α ^ 2 + β ^ 2))ˣ) :
     let N := (⌊ω * ↑α⌋ + ⌊ω * ↑β⌋ + 1).toNat
@@ -1675,7 +1767,9 @@ lemma count_hits_eq_sorted_count_unit (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
   rw [h_filter_eq2, V_unit_fiber_card α β ω h_ω u x.val (ZMod.val_lt x)]
   congr 1; exact (ZMod.natCast_zmod_val x).symm
 
-/-- Unit-aware analogue of `count_hits_shift_invariant`. -/
+/-- Unit-aware analogue of `count_hits_shift_invariant`.
+@isnad1 id=other.3h5v.s9.5da723e6e358 from=translated src=- shape=d90e10d5 vocab=10015bf5
+-/
 lemma count_hits_shift_invariant_unit (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
     [NeZero (α ^ 2 + β ^ 2)] (u : (ZMod (α ^ 2 + β ^ 2))ˣ)
     (L : ℕ) (hL_pos : 0 < L) (hL : IsPeriod (differenceSequenceUnit α β ω u) L) :
@@ -1901,6 +1995,9 @@ private lemma sorted_multiset_add_q (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
     have hD_sub_cast : (↑(D - 1) : ℤ) = ↑D - 1 := Nat.cast_sub hD_ge_one
     rw [hD_sub_cast]; push_cast; ring
 
+/--
+@isnad1 id=ex.4h4v.s10.afb3c374b822 from=translated src=- shape=4250c330 vocab=45f99f2e
+-/
 lemma sigma_of_period_concrete (α β : ℕ) (_h_coprime : Nat.Coprime α β) (ω : ℝ)
     (h_ω : 0 ≤ ω) [NeZero (α ^ 2 + β ^ 2)] :
     ∀ L > 0, IsPeriod (differenceSequence α β ω) L →
@@ -1931,6 +2028,9 @@ lemma sigma_of_period_concrete (α β : ℕ) (_h_coprime : Nat.Coprime α β) (�
     use ((-⌊ω * ↑β⌋ : ℤ) : ZMod D).val
     exact count_hits_shift_invariant α β ω h_ω L hL_pos hL_period
 
+/--
+@isnad1 id=other.2h3v.s7.5556d9452bfc from=translated src=- shape=b3879344 vocab=f5e5d2ff
+-/
 lemma period_degenerate_concrete (α β : ℕ) (h_coprime : Nat.Coprime α β) (ω : ℝ)
     (h_ω : 0 ≤ ω) [NeZero (α ^ 2 + β ^ 2)] :
     let N := (⌊ω * α⌋ + ⌊ω * β⌋ + 1).toNat
@@ -1973,7 +2073,9 @@ lemma period_degenerate_concrete (α β : ℕ) (h_coprime : Nat.Coprime α β) (
 /-- The concrete residue-model instance built from the difference sequence:
 discharges the four hypotheses of `GeometricProjection` for coprime `α, β`
 and window parameter `ω ≥ 0`. Supplied explicitly at each use site (the
-coprimality and nonnegativity hypotheses cannot be found by synthesis). -/
+coprimality and nonnegativity hypotheses cannot be found by synthesis).
+@isnad1 id=geometri.2h3v.s6.183e903245e1 from=translated src=- shape=26014921 vocab=a5affbb9
+-/
 theorem GeometricProjectionConcrete (α β : ℕ) (h_coprime : Nat.Coprime α β) (ω : ℝ)
     (h_ω : 0 ≤ ω) [NeZero (α ^ 2 + β ^ 2)] :
     GeometricProjection α β ω (differenceSequence α β ω) :=
@@ -1984,6 +2086,7 @@ theorem GeometricProjectionConcrete (α β : ℕ) (h_coprime : Nat.Coprime α β
 
 /--
 Theorem 3.1: Period length formula.
+@isnad1 id=other.2h3v.s7.4e3cf70cfd84 from=translated src=- shape=0fb34bb8 vocab=3fa818fd
 -/
 theorem main_theorem (α β : ℕ) (h_coprime : Nat.Coprime α β) (ω : ℝ) (_h_ω : 0 ≤ ω)
     [NeZero (α ^ 2 + β ^ 2)] [GeometricProjection α β ω (differenceSequence α β ω)] :
@@ -2026,6 +2129,7 @@ period collapses to 1).
 /--
 Lower bound on `countHits`: if `N ≥ D`, every residue class is hit at least
 once. Structural complement to `count_hits_lt_D`.
+@isnad1 id=le.1h4v.s5.e133a7ebcaab from=translated src=- shape=02dcd035 vocab=9df51d61
 -/
 lemma count_hits_ge_D (D : ℕ) [NeZero D] (r0 N : ℕ) (h : D ≤ N) (x : ZMod D) :
     1 ≤ countHits D r0 N x := by
@@ -2044,7 +2148,9 @@ sequence (when `N < D`), respectively constancy at `1` (when `N ≥ D`) —
 which a concrete construction would discharge.
 -/
 
-/-- A sequence that is identically `1` has minimal period `1`. -/
+/-- A sequence that is identically `1` has minimal period `1`.
+@isnad1 id=hasperio.1h1v.s4.761c7b1e51a7 from=translated src=- shape=9fb1baa7 vocab=bb40c0d7
+-/
 lemma HasPeriodLength_const_one (s : ℤ → ℤ) (h : ∀ i, s i = 1) :
     HasPeriodLength s 1 := by
   refine ⟨⟨Nat.one_pos, fun i => ?_⟩, ?_⟩
@@ -2062,6 +2168,7 @@ If `set_seq : ℤ → ℤ` agrees pointwise with `differenceSequence` whenever
 The two hypotheses are exactly what the structural dichotomy
 (`count_hits_lt_D` / `count_hits_ge_D`) lets a concrete enumeration of the
 underlying point set verify.
+@isnad1 id=hasperio.4h4v.s9.cb18a71d1560 from=translated src=- shape=f03a54d5 vocab=7c2292a9
 -/
 theorem set_main_theorem
     (α β : ℕ) (h_coprime : Nat.Coprime α β) (ω : ℝ) (h_ω : 0 ≤ ω)
@@ -2155,7 +2262,9 @@ noncomputable def setDifferenceSequence (α β : ℕ) (ω : ℝ) [NeZero (α ^ 2
 
 /-! ### Phase C, branch `N < D`: agreement with `differenceSequence` -/
 
-/-- Under `N < D`, the indicator and the multiplicity coincide pointwise. -/
+/-- Under `N < D`, the indicator and the multiplicity coincide pointwise.
+@isnad1 id=eq.1h4v.s9.08d34bdab91c from=translated src=- shape=c0aecce6 vocab=ac21cd61
+-/
 lemma set_indicator_eq_count_hits_of_lt
     (α β : ℕ) (ω : ℝ)
     (h : (⌊ω * α⌋ + ⌊ω * β⌋ + 1).toNat < α ^ 2 + β ^ 2) (y : ℕ) :
@@ -2171,7 +2280,9 @@ lemma set_indicator_eq_count_hits_of_lt
   · omega
   · push Not at hge; omega
 
-/-- Under `N < D`, `setCumulativeHits` and `cumulativeHits` agree. -/
+/-- Under `N < D`, `setCumulativeHits` and `cumulativeHits` agree.
+@isnad1 id=eq.1h4v.s6.9f9f9bf9efbf from=translated src=- shape=62b700b1 vocab=97c87cac
+-/
 lemma set_cumulative_hits_eq_of_lt
     (α β : ℕ) (ω : ℝ)
     (h : (⌊ω * α⌋ + ⌊ω * β⌋ + 1).toNat < α ^ 2 + β ^ 2) (x : ℕ) :
@@ -2181,7 +2292,9 @@ lemma set_cumulative_hits_eq_of_lt
   intro y _
   exact set_indicator_eq_count_hits_of_lt α β ω h y
 
-/-- Under `N < D`, `setV` and `V` agree. -/
+/-- Under `N < D`, `setV` and `V` agree.
+@isnad1 id=eq.1h4v.s6.c9a2824d4b16 from=translated src=- shape=62b700b1 vocab=cb6fd3fe
+-/
 lemma set_V_eq_V_of_lt
     (α β : ℕ) (ω : ℝ)
     (h : (⌊ω * α⌋ + ⌊ω * β⌋ + 1).toNat < α ^ 2 + β ^ 2) (k : ℕ) :
@@ -2191,7 +2304,9 @@ lemma set_V_eq_V_of_lt
   unfold setV V
   rw [h_funeq]
 
-/-- Under `N < D`, `setSize = N`. -/
+/-- Under `N < D`, `setSize = N`.
+@isnad1 id=eq.1h3v.s7.57aeaa519e8d from=translated src=- shape=2b6f1103 vocab=c0ca8fe9
+-/
 lemma set_size_eq_N_of_lt
     (α β : ℕ) (ω : ℝ) [NeZero (α ^ 2 + β ^ 2)]
     (h : (⌊ω * α⌋ + ⌊ω * β⌋ + 1).toNat < α ^ 2 + β ^ 2) :
@@ -2217,7 +2332,9 @@ lemma set_size_eq_N_of_lt
   rw [h_filter_eq]
   exact h_dist
 
-/-- Under `N < D`, `setSorted = sortedMultiset` pointwise. -/
+/-- Under `N < D`, `setSorted = sortedMultiset` pointwise.
+@isnad1 id=eq.1h4v.s7.152453ccb058 from=translated src=- shape=bfa46294 vocab=e0231ab7
+-/
 lemma set_sorted_eq_of_lt
     (α β : ℕ) (ω : ℝ) [NeZero (α ^ 2 + β ^ 2)]
     (h : (⌊ω * α⌋ + ⌊ω * β⌋ + 1).toNat < α ^ 2 + β ^ 2) (i : ℤ) :
@@ -2229,7 +2346,9 @@ lemma set_sorted_eq_of_lt
   rw [set_size_eq_N_of_lt α β ω h, set_V_eq_V_of_lt α β ω h]
 
 /-- **Discharge of `h_lt`**: under `N < D`, the concrete set sequence
-agrees pointwise with `differenceSequence`. -/
+agrees pointwise with `differenceSequence`.
+@isnad1 id=eq.1h4v.s7.5a2318cd53e7 from=translated src=- shape=bfa46294 vocab=7c471e6e
+-/
 lemma set_difference_sequence_eq_of_lt
     (α β : ℕ) (ω : ℝ) [NeZero (α ^ 2 + β ^ 2)]
     (h : (⌊ω * α⌋ + ⌊ω * β⌋ + 1).toNat < α ^ 2 + β ^ 2) (i : ℤ) :
@@ -2240,7 +2359,9 @@ lemma set_difference_sequence_eq_of_lt
 
 /-! ### Phase C, branch `D ≤ N`: constant-`1` set sequence -/
 
-/-- Under `D ≤ N`, every residue is hit, so the indicator is constantly `1`. -/
+/-- Under `D ≤ N`, every residue is hit, so the indicator is constantly `1`.
+@isnad1 id=eq.1h4v.s7.ce6e36a89f16 from=translated src=- shape=07c175ef vocab=a48c2256
+-/
 lemma set_indicator_eq_one_of_ge
     (α β : ℕ) (ω : ℝ) [NeZero (α ^ 2 + β ^ 2)]
     (h : α ^ 2 + β ^ 2 ≤ (⌊ω * α⌋ + ⌊ω * β⌋ + 1).toNat) (y : ℕ) :
@@ -2251,7 +2372,9 @@ lemma set_indicator_eq_one_of_ge
   change (if 1 ≤ countHits _ _ _ _ then 1 else 0) = 1
   rw [ite_eq_left h_ge]
 
-/-- Under `D ≤ N`, the cumulative count is just `x + 1`. -/
+/-- Under `D ≤ N`, the cumulative count is just `x + 1`.
+@isnad1 id=eq.1h4v.s7.6c09ff7aac1e from=translated src=- shape=7ba6d291 vocab=85e5179b
+-/
 lemma set_cumulative_hits_eq_of_ge
     (α β : ℕ) (ω : ℝ) [NeZero (α ^ 2 + β ^ 2)]
     (h : α ^ 2 + β ^ 2 ≤ (⌊ω * α⌋ + ⌊ω * β⌋ + 1).toNat) (x : ℕ) :
@@ -2262,7 +2385,9 @@ lemma set_cumulative_hits_eq_of_ge
         Finset.sum_congr rfl (fun y _ => set_indicator_eq_one_of_ge α β ω h y)
     _ = x + 1 := by simp
 
-/-- Under `D ≤ N`, `setV k = k`. -/
+/-- Under `D ≤ N`, `setV k = k`.
+@isnad1 id=eq.1h4v.s7.ec39656d4289 from=translated src=- shape=628e48b2 vocab=bb58211a
+-/
 lemma set_V_eq_id_of_ge
     (α β : ℕ) (ω : ℝ) [NeZero (α ^ 2 + β ^ 2)]
     (h : α ^ 2 + β ^ 2 ≤ (⌊ω * α⌋ + ⌊ω * β⌋ + 1).toNat) (k : ℕ) :
@@ -2278,7 +2403,9 @@ lemma set_V_eq_id_of_ge
   · intro m hm
     rw [h_cum]; omega
 
-/-- Under `D ≤ N`, `setSize = D` (every residue is hit). -/
+/-- Under `D ≤ N`, `setSize = D` (every residue is hit).
+@isnad1 id=eq.1h3v.s7.bbf9265e1a67 from=translated src=- shape=fd6dfec1 vocab=f4cdddd3
+-/
 lemma set_size_eq_D_of_ge
     (α β : ℕ) (ω : ℝ) [NeZero (α ^ 2 + β ^ 2)]
     (h : α ^ 2 + β ^ 2 ≤ (⌊ω * α⌋ + ⌊ω * β⌋ + 1).toNat) :
@@ -2300,6 +2427,7 @@ The set size is positive in either branch of the dichotomy: it equals `N`
 when `N < D` (and `N ≥ 1` from `N_pos_concrete`), and equals `D` when
 `N ≥ D` (and `D ≥ 1` from `NeZero`). Hence the modulo arithmetic in
 `setSorted` is well-defined as a period-block enumeration.
+@isnad1 id=lt.1h3v.s6.d28f724bd17c from=translated src=- shape=265e3b46 vocab=c191f213
 -/
 lemma set_size_pos (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω) [NeZero (α ^ 2 + β ^ 2)] :
     0 < setSize α β ω := by
@@ -2309,7 +2437,9 @@ lemma set_size_pos (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω) [NeZero (α ^ 2 + 
   · rw [set_size_eq_D_of_ge α β ω (Nat.le_of_not_lt h)]
     exact NeZero.pos _
 
-/-- Under `D ≤ N`, `setSorted i = i`. -/
+/-- Under `D ≤ N`, `setSorted i = i`.
+@isnad1 id=eq.1h4v.s7.ac04ee8d7a06 from=translated src=- shape=dc2584a6 vocab=13b6ca93
+-/
 lemma set_sorted_eq_id_of_ge
     (α β : ℕ) (ω : ℝ) [NeZero (α ^ 2 + β ^ 2)]
     (h : α ^ 2 + β ^ 2 ≤ (⌊ω * α⌋ + ⌊ω * β⌋ + 1).toNat) (i : ℤ) :
@@ -2337,7 +2467,9 @@ lemma set_sorted_eq_id_of_ge
   linarith
 
 /-- **Discharge of `h_ge`**: under `D ≤ N`, the concrete set sequence
-is constantly `1`. -/
+is constantly `1`.
+@isnad1 id=eq.1h4v.s7.1ade03eb8f11 from=translated src=- shape=c2be0f01 vocab=ee1fe5c4
+-/
 lemma set_difference_sequence_eq_one_of_ge
     (α β : ℕ) (ω : ℝ) [NeZero (α ^ 2 + β ^ 2)]
     (h : α ^ 2 + β ^ 2 ≤ (⌊ω * α⌋ + ⌊ω * β⌋ + 1).toNat) (i : ℤ) :
@@ -2355,7 +2487,9 @@ so neither requires its caller to provide it. -/
 /--
 Concrete multiset-valued period theorem. Wrapper around `main_theorem`
 (line 1903) that internalises the `GeometricProjectionConcrete` instance,
-so callers only need `h_coprime` and `h_ω`. -/
+so callers only need `h_coprime` and `h_ω`.
+@isnad1 id=hasperio.2h3v.s8.023404b0cb64 from=translated src=- shape=3ae75a58 vocab=c1584741
+-/
 theorem main_theorem_concrete
     (α β : ℕ) (h_coprime : Nat.Coprime α β) (ω : ℝ) (h_ω : 0 ≤ ω)
     [NeZero (α ^ 2 + β ^ 2)] :
@@ -2432,7 +2566,9 @@ private lemma difference_sequence_unit_eq_difference_sequence_of_dvd
   rw [sorted_multiset_unit_eq_sorted_multiset_of_dvd α β ω u h_dvd,
       sorted_multiset_unit_eq_sorted_multiset_of_dvd α β ω u h_dvd]
 
-/-- Unit-aware analogue of `period_N_concrete`. -/
+/-- Unit-aware analogue of `period_N_concrete`.
+@isnad1 id=other.1h4v.s8.102b0a082fd9 from=translated src=- shape=3e5a6400 vocab=fee7f4c2
+-/
 lemma period_N_unit_concrete (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ) :
     let N := (⌊ω * α⌋ + ⌊ω * β⌋ + 1).toNat
@@ -2447,7 +2583,9 @@ lemma period_N_unit_concrete (α β : ℕ) (ω : ℝ) (h_ω : 0 ≤ ω)
   have h3 : i + ↑N + 1 = (i + 1) + ↑N := by ring
   rw [h3]; linarith
 
-/-- Unit-aware analogue of `sigma_of_period_concrete`. -/
+/-- Unit-aware analogue of `sigma_of_period_concrete`.
+@isnad1 id=ex.4h5v.s10.bb9335ec7c87 from=translated src=- shape=d0fe8434 vocab=78488d08
+-/
 lemma sigma_of_period_unit_concrete (α β : ℕ) (_h_coprime : Nat.Coprime α β)
     (ω : ℝ) (h_ω : 0 ≤ ω) [NeZero (α ^ 2 + β ^ 2)]
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ) :
@@ -2478,7 +2616,9 @@ lemma sigma_of_period_unit_concrete (α β : ℕ) (_h_coprime : Nat.Coprime α �
 /-- Unit-aware analogue of `period_degenerate_concrete`. In the degenerate
 case the unit-twisted sequence equals the untwisted one
 (`difference_sequence_unit_eq_difference_sequence_of_dvd`), so the period
-result transfers directly from `period_degenerate_concrete`. -/
+result transfers directly from `period_degenerate_concrete`.
+@isnad1 id=other.2h4v.s8.51be28d174a0 from=translated src=- shape=cf186aa5 vocab=62e80355
+-/
 lemma period_degenerate_unit_concrete (α β : ℕ) (h_coprime : Nat.Coprime α β)
     (ω : ℝ) (h_ω : 0 ≤ ω) [NeZero (α ^ 2 + β ^ 2)]
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ) :
@@ -2492,7 +2632,9 @@ lemma period_degenerate_unit_concrete (α β : ℕ) (h_coprime : Nat.Coprime α 
 /-- Unit-aware concrete main theorem. Combines the period-N and degenerate
 cases plus the minimality argument from `heavy_set_unit_is_cyclic_interval`.
 For `u = multiplier α β h_coprime`, this is the geometric main theorem
-(`main_theorem_geometric_concrete` below). -/
+(`main_theorem_geometric_concrete` below).
+@isnad1 id=hasperio.2h4v.s9.b8fe4035da79 from=translated src=- shape=ce159390 vocab=7dc3c39c
+-/
 theorem main_theorem_unit_concrete (α β : ℕ) (h_coprime : Nat.Coprime α β)
     (ω : ℝ) (h_ω : 0 ≤ ω) [NeZero (α ^ 2 + β ^ 2)]
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ) :
@@ -2573,7 +2715,9 @@ to the geometric multiplier `u = multiplier α β h_coprime`, so the period
 result holds for the residue-model enumeration carrying the geometric
 residues `c_{r0+r} ≡ -αβ⁻¹ · (r0 + r) (mod D)` (paper §9.3, Layer 2; the
 reduction from the lattice strip is not formalised — see the module
-docstring). -/
+docstring).
+@isnad1 id=hasperio.2h3v.s8.83ac5365133e from=translated src=- shape=f593c973 vocab=c9abe1a5
+-/
 theorem main_theorem_geometric_concrete
     (α β : ℕ) (h_coprime : Nat.Coprime α β) (ω : ℝ) (h_ω : 0 ≤ ω)
     [NeZero (α ^ 2 + β ^ 2)] :
@@ -2606,6 +2750,7 @@ def cR (α β : ℕ) (h_coprime : Nat.Coprime α β)
 Bridge lemma to the paper's cR formula. The Lean `multiplier` equals
 `-α · β⁻¹` as a unit in `ZMod D`, so `cR α β h r = -α · β⁻¹ · r (mod D)`
 matches equation `eq:residue` of the paper verbatim.
+@isnad1 id=eq.1h3v.s11.62a5b33d68fa from=translated src=- shape=0412a826 vocab=e2fe4329
 -/
 lemma c_r_eq_multiplier_mul_r (α β : ℕ) (h_coprime : Nat.Coprime α β)
     (r : ℤ) :
@@ -2626,6 +2771,7 @@ the cardinality of `{i ∈ [0, N) : c_{r0+i} ≡ x (mod D)}`, where
 `c_{r0+i}` is the geometric residue from the paper. This makes the
 formalisation of `main_theorem_geometric_concrete` an honest statement
 about the geometric cR enumeration.
+@isnad1 id=eq.1h5v.s7.f6e5d2731130 from=translated src=- shape=7e3093c7 vocab=aab25cd7
 -/
 lemma count_hits_unit_multiplier_eq_c_r_count
     (α β : ℕ) (h_coprime : Nat.Coprime α β)
@@ -2645,7 +2791,9 @@ lemma count_hits_unit_multiplier_eq_c_r_count
 Concrete set-valued period theorem. The `setDifferenceSequence` defined
 above realises the abstract `set_main_theorem`, closing the asymmetry
 between the multiset side (`main_theorem`, line 1903 — instantiated via
-`GeometricProjectionConcrete`) and the set side. -/
+`GeometricProjectionConcrete`) and the set side.
+@isnad1 id=hasperio.2h3v.s8.31885d6ba246 from=translated src=- shape=e9ba3cef vocab=66cf9908
+-/
 theorem set_main_theorem_concrete
     (α β : ℕ) (h_coprime : Nat.Coprime α β) (ω : ℝ) (h_ω : 0 ≤ ω)
     [NeZero (α ^ 2 + β ^ 2)] :
@@ -2712,6 +2860,9 @@ noncomputable def setDifferenceSequenceUnit (α β : ℕ) (ω : ℝ) [NeZero (α
 
 /-! ### Unit-aware Phase C, branch `N < D`: agreement with `differenceSequenceUnit` -/
 
+/--
+@isnad1 id=eq.1h5v.s9.09317df4529f from=translated src=- shape=8fba3c86 vocab=8a868ad0
+-/
 lemma set_indicator_unit_eq_count_hits_unit_of_lt
     (α β : ℕ) (ω : ℝ)
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ)
@@ -2732,6 +2883,9 @@ lemma set_indicator_unit_eq_count_hits_unit_of_lt
   · omega
   · push Not at hge; omega
 
+/--
+@isnad1 id=eq.1h5v.s8.c4b79ae1b9e1 from=translated src=- shape=ee74ee13 vocab=e3277d01
+-/
 lemma set_cumulative_hits_unit_eq_of_lt
     (α β : ℕ) (ω : ℝ)
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ)
@@ -2742,6 +2896,9 @@ lemma set_cumulative_hits_unit_eq_of_lt
   intro y _
   exact set_indicator_unit_eq_count_hits_unit_of_lt α β ω u h y
 
+/--
+@isnad1 id=eq.1h5v.s8.eaa5e2315010 from=translated src=- shape=ee74ee13 vocab=7f027026
+-/
 lemma set_V_unit_eq_V_unit_of_lt
     (α β : ℕ) (ω : ℝ)
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ)
@@ -2752,6 +2909,9 @@ lemma set_V_unit_eq_V_unit_of_lt
   unfold setVUnit VUnit
   rw [h_funeq]
 
+/--
+@isnad1 id=eq.1h4v.s8.4c8436c8059c from=translated src=- shape=8156ece4 vocab=359afbab
+-/
 lemma set_size_unit_eq_N_of_lt
     (α β : ℕ) (ω : ℝ) [NeZero (α ^ 2 + β ^ 2)]
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ)
@@ -2779,6 +2939,9 @@ lemma set_size_unit_eq_N_of_lt
   rw [h_filter_eq]
   exact h_dist
 
+/--
+@isnad1 id=eq.1h5v.s8.3d3dc299e208 from=translated src=- shape=a28fa977 vocab=e00fa4ee
+-/
 lemma set_sorted_unit_eq_of_lt
     (α β : ℕ) (ω : ℝ) [NeZero (α ^ 2 + β ^ 2)]
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ)
@@ -2791,7 +2954,9 @@ lemma set_sorted_unit_eq_of_lt
   rw [set_size_unit_eq_N_of_lt α β ω u h, set_V_unit_eq_V_unit_of_lt α β ω u h]
 
 /-- **Discharge of `h_lt`** for the unit case: under `N < D`, the unit
-set sequence agrees pointwise with `differenceSequenceUnit`. -/
+set sequence agrees pointwise with `differenceSequenceUnit`.
+@isnad1 id=eq.1h5v.s8.beb52135d080 from=translated src=- shape=a28fa977 vocab=5bec9dbf
+-/
 lemma set_difference_sequence_unit_eq_of_lt
     (α β : ℕ) (ω : ℝ) [NeZero (α ^ 2 + β ^ 2)]
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ)
@@ -2804,6 +2969,9 @@ lemma set_difference_sequence_unit_eq_of_lt
 
 /-! ### Unit-aware Phase C, branch `D ≤ N`: constant-`1` set sequence -/
 
+/--
+@isnad1 id=eq.1h5v.s8.d2372523628d from=translated src=- shape=daceeae9 vocab=9c94b7b9
+-/
 lemma set_indicator_unit_eq_one_of_ge
     (α β : ℕ) (ω : ℝ) [NeZero (α ^ 2 + β ^ 2)]
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ)
@@ -2818,6 +2986,9 @@ lemma set_indicator_unit_eq_one_of_ge
   rw [count_hits_unit_eq_count_hits]
   rw [ite_eq_left h_ge]
 
+/--
+@isnad1 id=eq.1h5v.s8.813800aded86 from=translated src=- shape=34bb79c4 vocab=93638fc0
+-/
 lemma set_cumulative_hits_unit_eq_of_ge
     (α β : ℕ) (ω : ℝ) [NeZero (α ^ 2 + β ^ 2)]
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ)
@@ -2829,6 +3000,9 @@ lemma set_cumulative_hits_unit_eq_of_ge
         Finset.sum_congr rfl (fun y _ => set_indicator_unit_eq_one_of_ge α β ω u h y)
     _ = x + 1 := by simp
 
+/--
+@isnad1 id=eq.1h5v.s8.45399ada9b12 from=translated src=- shape=bb62ab51 vocab=14a7b42a
+-/
 lemma set_V_unit_eq_id_of_ge
     (α β : ℕ) (ω : ℝ) [NeZero (α ^ 2 + β ^ 2)]
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ)
@@ -2844,6 +3018,9 @@ lemma set_V_unit_eq_id_of_ge
   · rw [h_cum]; omega
   · intro m hm; rw [h_cum]; omega
 
+/--
+@isnad1 id=eq.1h4v.s8.a0a61756f999 from=translated src=- shape=6c7e016f vocab=129c0735
+-/
 lemma set_size_unit_eq_D_of_ge
     (α β : ℕ) (ω : ℝ) [NeZero (α ^ 2 + β ^ 2)]
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ)
@@ -2862,6 +3039,9 @@ lemma set_size_unit_eq_D_of_ge
     ext x; simp [h_ge x]
   rw [h_filter_eq, Finset.card_univ, ZMod.card]
 
+/--
+@isnad1 id=eq.1h5v.s8.ecf8ff3adc66 from=translated src=- shape=50ece64f vocab=7aa8450a
+-/
 lemma set_sorted_unit_eq_id_of_ge
     (α β : ℕ) (ω : ℝ) [NeZero (α ^ 2 + β ^ 2)]
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ)
@@ -2890,7 +3070,9 @@ lemma set_sorted_unit_eq_id_of_ge
   linarith
 
 /-- **Discharge of `h_ge`** for the unit case: under `D ≤ N`, the unit
-set sequence is constantly `1`. -/
+set sequence is constantly `1`.
+@isnad1 id=eq.1h5v.s8.a0d6fa3c6ea3 from=translated src=- shape=f97b0ca4 vocab=b108949a
+-/
 lemma set_difference_sequence_unit_eq_one_of_ge
     (α β : ℕ) (ω : ℝ) [NeZero (α ^ 2 + β ^ 2)]
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ)
@@ -2903,7 +3085,9 @@ lemma set_difference_sequence_unit_eq_one_of_ge
 
 /-- Unit-aware abstract set-valued period theorem. Parallel to
 `set_main_theorem` but uses `main_theorem_unit_concrete` (the unit-aware
-multiset main theorem) for the `N < D` branch. -/
+multiset main theorem) for the `N < D` branch.
+@isnad1 id=hasperio.4h5v.s9.06d05b201e37 from=translated src=- shape=d2dcb0df vocab=22d39f4c
+-/
 theorem set_main_theorem_unit
     (α β : ℕ) (h_coprime : Nat.Coprime α β) (ω : ℝ) (h_ω : 0 ≤ ω)
     (u : (ZMod (α ^ 2 + β ^ 2))ˣ) (set_seq : ℤ → ℤ)
@@ -2937,7 +3121,9 @@ theorem set_main_theorem_unit
 
 /-- Geometric concrete set-valued main theorem. Specialises
 `set_main_theorem_unit` to `u = multiplier α β h_coprime` and discharges
-the dichotomy axioms via the unit-aware Phase C lemmas. -/
+the dichotomy axioms via the unit-aware Phase C lemmas.
+@isnad1 id=hasperio.2h3v.s8.c4db9d8a0e97 from=translated src=- shape=655b4300 vocab=be3af065
+-/
 theorem set_main_theorem_geometric_concrete
     (α β : ℕ) (h_coprime : Nat.Coprime α β) (ω : ℝ) (h_ω : 0 ≤ ω)
     [NeZero (α ^ 2 + β ^ 2)] :

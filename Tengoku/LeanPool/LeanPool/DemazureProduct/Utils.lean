@@ -27,14 +27,18 @@ noncomputable abbrev oneIf (P : Prop) : ℤ := by
   classical
   exact if P then 1 else 0
 
-/-- The indicator $\delta(P)$ depends only on the truth value of $P$. -/
+/-- The indicator $\delta(P)$ depends only on the truth value of $P$.
+@isnad1 id=eq.1h2v.s3.f9824cef359a from=translated src=- shape=c4ed4c2b vocab=438a067e
+-/
 lemma oneIf_congr {P Q : Prop} (h : P ↔ Q) :
     oneIf P = oneIf Q := by
   -- Proof written by GPT 5.5.
   simp_all
 
 /-- On an integer interval, membership is the difference of two initial
-segments. -/
+segments.
+@isnad1 id=eq.1h3v.s5.3e1facf5a967 from=translated src=- shape=afbf4a7b vocab=3d36c266
+-/
 lemma oneIf_Ico_eq_sub (m n : ℤ) (m_le_n : m ≤ n) (k : ℤ) :
     oneIf (k ∈ Finset.Ico m n) = oneIf (k < n) - oneIf (k < m) := by
   -- Proof written by GPT 5.5.
@@ -42,14 +46,18 @@ lemma oneIf_Ico_eq_sub (m n : ℤ) (m_le_n : m ≤ n) (k : ℤ) :
   <;> simp only [oneIf, Finset.mem_Ico] <;> split_ifs <;> omega
 
 /-- Summing the indicator of membership in `A` over any finite superset `U`
-counts `A`. -/
+counts `A`.
+@isnad1 id=eq.1h3v.s5.0fd7ffa1d80e from=translated src=- shape=369515de vocab=ab5494bd
+-/
 lemma sum_oneIf_mem_of_subset {ι : Type*} {A U : Finset ι} (hAU : A ⊆ U) :
     (∑ k ∈ U, oneIf (k ∈ A)) = (A.card : ℤ) := by
   -- Proof written by GPT 5.5.
   simp_all
 
 /-- The difference of the cardinalities of two finite sets is equal to the
-difference of the cardinalities of their set-theoretic differences. -/
+difference of the cardinalities of their set-theoretic differences.
+@isnad1 id=eq.0h2v.s5.ce4535524d1c from=translated src=- shape=840870ea vocab=73502707
+-/
 lemma sub_card_eq_sub_card_diff (S T : Finset ℤ) :
   (↑S.card : ℤ) - ↑T.card = ↑(S \ T).card - ↑(T \ S).card := by
   have h1 := Finset.card_sdiff_add_card_inter S T
@@ -57,11 +65,17 @@ lemma sub_card_eq_sub_card_diff (S T : Finset ℤ) :
   rw [Finset.inter_comm] at h2
   omega
 
+/--
+@isnad1 id=eq.0h3v.s5.9a4cea0698ab from=translated src=- shape=f2122947 vocab=5145e737
+-/
 lemma card_filter_helper (S : Finset ℤ) (f : ℤ → ℤ) (c : ℤ) :
   (S.filter (f · ≥ c)).card + (S.filter (f · < c)).card = S.card := by
   simpa [not_le] using
     (Finset.card_filter_add_card_filter_not (s := S) (p := fun x => f x ≥ c))
 
+/--
+@isnad1 id=ex.4h3v.s7.43d2a88e4c90 from=translated src=- shape=bb3fa929 vocab=f36b79aa
+-/
 lemma min_helper {m n : ℤ} (m_pos : m ≥ 1) (n_pos : n ≥ 1)
     {S : Set (ℤ × ℤ)} (mem : ⟨m, n⟩ ∈ S) (nmem : ⟨1, 1⟩ ∉ S) :
   ∃ m' n', m' ≥ 1 ∧ n' ≥ 1 ∧ ⟨m', n'⟩ ∈ S

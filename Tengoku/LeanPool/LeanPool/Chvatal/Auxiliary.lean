@@ -60,20 +60,26 @@ variable {ι : Type*} [DecidableEq ι]
 /-- The Boolean monomial `M_S` of Section 3.1, equal to `1` exactly on supersets of `S`. -/
 def monomial (S x : Finset ι) : ℝ := if S ⊆ x then 1 else 0
 
-/-- The physical support calculation immediately preceding Lemma 3.1. -/
+/-- The physical support calculation immediately preceding Lemma 3.1.
+@isnad1 id=iff.0h3v.s5.65c31f5ba505 from=translated src=- shape=3ed3e01f vocab=32d3dd13
+-/
 @[simp] theorem monomial_ne_zero_iff (S x : Finset ι) :
     monomial S x ≠ 0 ↔ S ⊆ x := by
   simp [monomial]
 
 /-- Each monomial is one at its own index, the diagonal entry in the triangular
-independence argument of Lemma 3.1(iii). -/
+independence argument of Lemma 3.1(iii).
+@isnad1 id=eq.0h2v.s4.00e5d97ea246 from=translated src=- shape=b81717d3 vocab=829b3b8b
+-/
 @[simp] theorem monomial_self (S : Finset ι) : monomial S S = 1 := by
   simp [monomial]
 
 variable [Fintype ι]
 
 /-- Evaluating a zero linear combination at successive subsets forces every
-coefficient to vanish. This is the triangular argument in Lemma 3.1(iii). -/
+coefficient to vanish. This is the triangular argument in Lemma 3.1(iii).
+@isnad1 id=eq.1h3v.s6.e277af225949 from=translated src=- shape=d8ce5212 vocab=f60acc37
+-/
 theorem monomial_coefficients_eq_zero (c : Finset ι → ℝ)
     (h : ∑ S, c S • monomial S = 0) : ∀ S, c S = 0 := by
   intro S
@@ -94,7 +100,9 @@ theorem monomial_coefficients_eq_zero (c : Finset ι → ℝ)
 
 omit [Fintype ι] in
 /-- Lemma 3.1(iii): the entire Boolean monomial family is linearly independent.
-Consequently every family obtained by restricting the index set is independent. -/
+Consequently every family obtained by restricting the index set is independent.
+@isnad1 id=linearin.0h1v.s5.7265efa89bca from=translated src=- shape=f8ef59b3 vocab=1ba2c77f
+-/
 theorem linearIndependent_monomial [Finite ι] :
     LinearIndependent ℝ (monomial (ι := ι)) := by
   let _ := Fintype.ofFinite ι
@@ -102,14 +110,18 @@ theorem linearIndependent_monomial [Finite ι] :
   exact monomial_coefficients_eq_zero
 
 omit [Fintype ι] in
-/-- Lemma 3.1(iii) for any specified subfamily of monomials. -/
+/-- Lemma 3.1(iii) for any specified subfamily of monomials.
+@isnad1 id=linearin.0h2v.s6.3bdb68688fca from=translated src=- shape=5fa51114 vocab=13deb687
+-/
 theorem linearIndependent_monomial_subfamily [Finite ι] (A : Set (Finset ι)) :
     LinearIndependent ℝ (fun S : A => monomial S.1) :=
   linearIndependent_monomial.comp Subtype.val Subtype.val_injective
 
 omit [Fintype ι] in
 /-- A monomial is unchanged when a coordinate outside its index is toggled.
-This gives its Fourier support in the discussion preceding Lemma 3.1. -/
+This gives its Fourier support in the discussion preceding Lemma 3.1.
+@isnad1 id=eq.1h4v.s5.d0f091f2ca7e from=translated src=- shape=da01b397 vocab=ba23540c
+-/
 theorem monomial_toggle {S : Finset ι} {i : ι} (hi : i ∉ S) (x : Finset ι) :
     monomial S (x ∆ {i}) = monomial S x := by
   have hsub : S ⊆ x ∆ {i} ↔ S ⊆ x := by
@@ -121,7 +133,9 @@ theorem monomial_toggle {S : Finset ι} {i : ι} (hi : i ∉ S) (x : Finset ι) 
   simp [monomial, hsub]
 
 /-- The Fourier support inclusion for monomials preceding Lemma 3.1:
-only subsets of the monomial's index can have a nonzero coefficient. -/
+only subsets of the monomial's index can have a nonzero coefficient.
+@isnad1 id=eq.1h3v.s5.38af84246a75 from=translated src=- shape=637825bf vocab=395cf943
+-/
 theorem fourier_monomial_eq_zero {S T : Finset ι} (hTS : ¬T ⊆ S) :
     fourier (monomial S) T = 0 := by
   obtain ⟨i, hiT, hiS⟩ := Finset.not_subset.mp hTS
@@ -147,19 +161,25 @@ noncomputable def fullWalshMultiplier : (Finset ι → ℝ) ≃ₗ[ℝ] (Finset 
 noncomputable def twistedMonomial (S : Finset ι) : Finset ι → ℝ :=
   fullWalshMultiplier (monomial S)
 
-/-- Coordinate description of the twisted monomials of Lemma 3.1. -/
+/-- Coordinate description of the twisted monomials of Lemma 3.1.
+@isnad1 id=eq.0h3v.s5.a802868086f1 from=translated src=- shape=44c94de6 vocab=2c0cd4aa
+-/
 @[simp] theorem twistedMonomial_apply (S x : Finset ι) :
     twistedMonomial S x = monomial S x * walsh Finset.univ x := rfl
 
 /-- Lemma 3.1(iii) for the second family: the full character is an invertible
-multiplier, so independence of the monomials is preserved. -/
+multiplier, so independence of the monomials is preserved.
+@isnad1 id=linearin.0h1v.s5.b3040a2c798e from=translated src=- shape=f8ef59b3 vocab=b7aff60e
+-/
 theorem linearIndependent_twistedMonomial :
     LinearIndependent ℝ (twistedMonomial (ι := ι)) :=
   linearIndependent_monomial.map' fullWalshMultiplier.toLinearMap
     (LinearMap.ker_eq_bot.mpr fullWalshMultiplier.injective)
 
 /-- Fourier support of the second family in Lemma 3.1: a nonzero coefficient
-must contain the complement of the monomial's index. -/
+must contain the complement of the monomial's index.
+@isnad1 id=eq.1h3v.s5.1facd2f81a57 from=translated src=- shape=9c61fac1 vocab=0fd85497
+-/
 theorem fourier_twistedMonomial_eq_zero {S T : Finset ι} (hST : ¬Sᶜ ⊆ T) :
     fourier (twistedMonomial S) T = 0 := by
   have hTS : ¬Tᶜ ⊆ S := by
@@ -175,7 +195,9 @@ theorem fourier_twistedMonomial_eq_zero {S T : Finset ι} (hST : ¬Sᶜ ⊆ T) :
 
 omit [Fintype ι] in
 /-- Lemma 3.1(i), physical support: increasing families contain the entire
-support of every monomial indexed by one of their members. -/
+support of every monomial indexed by one of their members.
+@isnad1 id=eq.3h4v.s6.a9e3079eeac8 from=translated src=- shape=dc8c30e3 vocab=26c3b8c6
+-/
 theorem monomial_eq_zero_of_not_mem {F : Family ι} (hF : F.IsIncreasing)
     {S : Finset ι} (hS : S ∈ F) {x : Finset ι} (hx : x ∉ F) :
     monomial S x = 0 := by
@@ -183,27 +205,35 @@ theorem monomial_eq_zero_of_not_mem {F : Family ι} (hF : F.IsIncreasing)
   simp [monomial, hsub]
 
 /-- Lemma 3.1(i), Fourier support: a monomial whose index lies outside an
-increasing family has zero Fourier coefficients on that family. -/
+increasing family has zero Fourier coefficients on that family.
+@isnad1 id=eq.3h4v.s6.54b00e9a6763 from=translated src=- shape=01e8f686 vocab=d3ff32ca
+-/
 theorem fourier_monomial_eq_zero_of_mem {G : Family ι} (hG : G.IsIncreasing)
     {S T : Finset ι} (hS : S ∉ G) (hT : T ∈ G) :
     fourier (monomial S) T = 0 :=
   fourier_monomial_eq_zero (fun hTS => hS (hG hTS hT))
 
-/-- Lemma 3.1(ii), physical support of the twisted monomials. -/
+/-- Lemma 3.1(ii), physical support of the twisted monomials.
+@isnad1 id=eq.3h4v.s6.2a4c7aea938c from=translated src=- shape=4bc849cd vocab=ae2e0815
+-/
 theorem twistedMonomial_eq_zero_of_not_mem {F : Family ι} (hF : F.IsIncreasing)
     {S : Finset ι} (hS : S ∈ F) {x : Finset ι} (hx : x ∉ F) :
     twistedMonomial S x = 0 := by
   simp [monomial_eq_zero_of_not_mem hF hS hx]
 
 /-- Lemma 3.1(ii), Fourier support of the twisted monomials: when the complement
-of the index belongs to an increasing family, all coefficients outside it vanish. -/
+of the index belongs to an increasing family, all coefficients outside it vanish.
+@isnad1 id=eq.3h4v.s6.2a9298188427 from=translated src=- shape=a09864c4 vocab=8acfc95b
+-/
 theorem fourier_twistedMonomial_eq_zero_of_not_mem {G : Family ι}
     (hG : G.IsIncreasing) {S T : Finset ι} (hS : Sᶜ ∈ G) (hT : T ∉ G) :
     fourier (twistedMonomial S) T = 0 :=
   fourier_twistedMonomial_eq_zero (fun hST => hT (hG hST hS))
 
 omit [Fintype ι] in
-/-- The multiplicative recursion for the Boolean monomials in Section 3.1. -/
+/-- The multiplicative recursion for the Boolean monomials in Section 3.1.
+@isnad1 id=eq.0h4v.s5.bec29cb441ac from=translated src=- shape=5be05dc3 vocab=a74d2f8c
+-/
 theorem monomial_insert (i : ι) (S x : Finset ι) :
     monomial (insert i S) x = if i ∈ x then monomial S x else 0 := by
   simp only [monomial, Finset.insert_subset_iff]
@@ -211,7 +241,9 @@ theorem monomial_insert (i : ι) (S x : Finset ι) :
 
 omit [Fintype ι] in
 /-- Equation (9), multiplied by `2^|S|`: the finite Walsh expansion of a
-Boolean monomial. This proof follows the coordinate product expansion. -/
+Boolean monomial. This proof follows the coordinate product expansion.
+@isnad1 id=eq.0h3v.s6.b28338717be6 from=translated src=- shape=e96f2219 vocab=bf542bcd
+-/
 theorem monomial_expansion_scaled (S x : Finset ι) :
     (∑ T ∈ S.powerset, (-1 : ℝ) ^ T.card * walsh T x) =
       (2 : ℝ) ^ S.card * monomial S x := by
@@ -234,7 +266,9 @@ theorem monomial_expansion_scaled (S x : Finset ι) :
     ring
 
 omit [Fintype ι] in
-/-- Equation (9): the normalized Fourier–Walsh expansion of `M_S`. -/
+/-- Equation (9): the normalized Fourier–Walsh expansion of `M_S`.
+@isnad1 id=eq.0h3v.s6.ec32d1548e82 from=translated src=- shape=b2785a1b vocab=d18b12a3
+-/
 theorem monomial_expansion (S x : Finset ι) :
     monomial S x = ((2 : ℝ) ^ S.card)⁻¹ *
       ∑ T ∈ S.powerset, (-1 : ℝ) ^ T.card * walsh T x := by
@@ -242,7 +276,9 @@ theorem monomial_expansion (S x : Finset ι) :
   simp
 
 /-- Scalar linearity of the Fourier transform, used when preserving support
-under the Gram–Schmidt process in Corollary 3.2. -/
+under the Gram–Schmidt process in Corollary 3.2.
+@isnad1 id=eq.0h4v.s6.0497e1a90fff from=translated src=- shape=5abad85d vocab=f54db366
+-/
 theorem fourier_smul_function (c : ℝ) (f : Finset ι → ℝ) (S : Finset ι) :
     fourier (c • f) S = c * fourier f S := by
   simp only [fourier, Pi.smul_apply, smul_eq_mul, mul_assoc, cubeMean_mul_left]
@@ -269,18 +305,24 @@ def supportSubspace (F K : Family ι) : Submodule ℝ (Finset ι → ℝ) where
     · intro S hS; rw [fourier_smul_function, hf.2 S hS, mul_zero]
 
 /-- Expanded membership criterion for the support-preserving subspace used in
-Corollary 3.2. -/
+Corollary 3.2.
+@isnad1 id=iff.0h4v.s7.86a026870e10 from=translated src=- shape=9d74351a vocab=f853c6da
+-/
 @[simp] theorem mem_supportSubspace (F K : Family ι) (f : Finset ι → ℝ) :
     f ∈ supportSubspace F K ↔
       (∀ x, x ∉ F → f x = 0) ∧ (∀ S, S ∉ K → fourier f S = 0) := Iff.rfl
 
 omit [DecidableEq ι] in
 /-- The probability inner product of Theorem 2.1 is the cube expectation used in
-all Fourier identities in Section 2. -/
+all Fourier identities in Section 2.
+@isnad1 id=eq.0h3v.s5.e3aaea247682 from=translated src=- shape=4e736f56 vocab=d83d779f
+-/
 theorem uniformInner_eq_cubeMean (f g : Finset ι → ℝ) :
     uniformInner f g = cubeMean (fun x => f x * g x) := rfl
 
-/-- Lemma 3.1(iv): disjoint Fourier supports imply orthogonality by Parseval. -/
+/-- Lemma 3.1(iv): disjoint Fourier supports imply orthogonality by Parseval.
+@isnad1 id=eq.2h4v.s6.34d0858cbd4f from=translated src=- shape=683cae0c vocab=9b1d8466
+-/
 theorem uniformInner_eq_zero_of_fourier_support (G : Family ι)
     {f g : Finset ι → ℝ} (hf : ∀ S, S ∈ G → fourier f S = 0)
     (hg : ∀ S, S ∉ G → fourier g S = 0) : uniformInner f g = 0 := by
@@ -293,11 +335,15 @@ theorem uniformInner_eq_zero_of_fourier_support (G : Family ι)
 
 omit [DecidableEq ι] in
 /-- Symmetry of the real probability inner product, used for the two mixed
-orders in the combined orthonormal family of Corollary 3.2. -/
+orders in the combined orthonormal family of Corollary 3.2.
+@isnad1 id=eq.0h3v.s5.cba36f046d9c from=translated src=- shape=8dc2419e vocab=952f3fa3
+-/
 theorem uniformInner_comm (f g : Finset ι → ℝ) : uniformInner f g = uniformInner g f := by
   simp only [uniformInner, mul_comm]
 
-/-- Lemma 3.1(iv) for the particular two monomial families in the paper. -/
+/-- Lemma 3.1(iv) for the particular two monomial families in the paper.
+@isnad1 id=eq.3h4v.s6.7a03a5846c17 from=translated src=- shape=d4e3d73b vocab=a15bb40f
+-/
 theorem monomial_twistedMonomial_orthogonal {G : Family ι} (hG : G.IsIncreasing)
     {S T : Finset ι} (hS : S ∉ G) (hT : Tᶜ ∈ G) :
     uniformInner (monomial S) (twistedMonomial T) = 0 :=
@@ -307,7 +353,9 @@ theorem monomial_twistedMonomial_orthogonal {G : Family ι} (hG : G.IsIncreasing
 
 /-- Corollary 3.2: orthonormal auxiliary families with the paper's exact index
 sets and both required support conditions. The sum type joins the two families
-into a single orthonormal system, including when either index set is empty. -/
+into a single orthonormal system, including when either index set is empty.
+@isnad1 id=ex.2h3v.s9.55b9edc9f8b1 from=translated src=- shape=d4bbbf53 vocab=254b79a9
+-/
 theorem auxiliary_orthonormal_system (F G : Family ι)
     (hF : F.IsIncreasing) (hG : G.IsIncreasing) :
     ∃ (u : ↥(F \ G) → Finset ι → ℝ) (v : ↥(F \ G.dual) → Finset ι → ℝ),
@@ -357,7 +405,9 @@ theorem auxiliary_orthonormal_system (F G : Family ι)
       by_cases hij : i = j <;> simpa [hij] using hv i j
 
 /-- The exact coefficient formula from equation (9). In particular, every subset
-of `S` occurs with a nonzero Fourier coefficient. -/
+of `S` occurs with a nonzero Fourier coefficient.
+@isnad1 id=eq.0h3v.s6.e117e706ce81 from=translated src=- shape=736de4bb vocab=c3e86f0a
+-/
 theorem fourier_monomial (S T : Finset ι) :
     fourier (monomial S) T =
       if T ⊆ S then ((2 : ℝ) ^ S.card)⁻¹ * (-1 : ℝ) ^ T.card else 0 := by
@@ -368,14 +418,18 @@ theorem fourier_monomial (S T : Finset ι) :
   simp_rw [cubeMean_mul_left, walsh_orthogonality]
   by_cases hTS : T ⊆ S <;> simp [hTS, mul_ite]
 
-/-- The exact Fourier support calculation for the first family preceding Lemma 3.1. -/
+/-- The exact Fourier support calculation for the first family preceding Lemma 3.1.
+@isnad1 id=iff.0h3v.s5.53d6cc523b6d from=translated src=- shape=a89c636f vocab=395cf943
+-/
 theorem fourier_monomial_ne_zero_iff (S T : Finset ι) :
     fourier (monomial S) T ≠ 0 ↔ T ⊆ S := by
   rw [fourier_monomial]
   split_ifs with h <;> simp [h]
 
 /-- The exact coefficients of the second auxiliary family, obtained by
-complementing Fourier indices as in the discussion preceding Lemma 3.1. -/
+complementing Fourier indices as in the discussion preceding Lemma 3.1.
+@isnad1 id=eq.0h3v.s7.bb52c65bdf58 from=translated src=- shape=9020a43c vocab=6f526954
+-/
 theorem fourier_twistedMonomial (S T : Finset ι) :
     fourier (twistedMonomial S) T =
       if Sᶜ ⊆ T then ((2 : ℝ) ^ S.card)⁻¹ * (-1 : ℝ) ^ Tᶜ.card else 0 := by
@@ -388,25 +442,33 @@ theorem fourier_twistedMonomial (S T : Finset ι) :
   simp only [hsub]
 
 /-- The exact Fourier support calculation for the second family preceding
-Lemma 3.1: its support is the upper interval above the complementary index. -/
+Lemma 3.1: its support is the upper interval above the complementary index.
+@isnad1 id=iff.0h3v.s5.0c32d2526601 from=translated src=- shape=7013401a vocab=0fd85497
+-/
 theorem fourier_twistedMonomial_ne_zero_iff (S T : Finset ι) :
     fourier (twistedMonomial S) T ≠ 0 ↔ Sᶜ ⊆ T := by
   rw [fourier_twistedMonomial]
   split_ifs with h <;> simp [h]
 
 omit [Fintype ι] in
-/-- The physical support equality for monomials stated before Lemma 3.1. -/
+/-- The physical support equality for monomials stated before Lemma 3.1.
+@isnad1 id=eq.0h2v.s5.8e1c1ba8525e from=translated src=- shape=e0dd618a vocab=5b14ece6
+-/
 theorem support_monomial (S : Finset ι) :
     Function.support (monomial S) = {x | S ⊆ x} := by
   ext x; simp [Function.mem_support]
 
-/-- The Fourier support equality for monomials stated before Lemma 3.1. -/
+/-- The Fourier support equality for monomials stated before Lemma 3.1.
+@isnad1 id=eq.0h2v.s5.5607da40bdda from=translated src=- shape=61bb3837 vocab=10123ae5
+-/
 theorem support_fourier_monomial (S : Finset ι) :
     Function.support (fourier (monomial S)) = {T | T ⊆ S} := by
   ext T; simp [Function.mem_support, fourier_monomial_ne_zero_iff]
 
 /-- Multiplication by the full character does not change physical support,
-as stated before Lemma 3.1. -/
+as stated before Lemma 3.1.
+@isnad1 id=eq.0h2v.s5.6e46787895e8 from=translated src=- shape=2dd842ca vocab=9aa82891
+-/
 theorem support_twistedMonomial (S : Finset ι) :
     Function.support (twistedMonomial S) = {x | S ⊆ x} := by
   ext x
@@ -416,7 +478,9 @@ theorem support_twistedMonomial (S : Finset ι) :
     simp [h] at hsq
   simp [Function.mem_support, hw]
 
-/-- The Fourier support equality for twisted monomials stated before Lemma 3.1. -/
+/-- The Fourier support equality for twisted monomials stated before Lemma 3.1.
+@isnad1 id=eq.0h2v.s5.52bfcda1a54e from=translated src=- shape=dcc42199 vocab=8b3da112
+-/
 theorem support_fourier_twistedMonomial (S : Finset ι) :
     Function.support (fourier (twistedMonomial S)) = {T | Sᶜ ⊆ T} := by
   ext T; simp [Function.mem_support, fourier_twistedMonomial_ne_zero_iff]

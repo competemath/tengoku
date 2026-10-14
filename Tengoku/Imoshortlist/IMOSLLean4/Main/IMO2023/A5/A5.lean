@@ -27,6 +27,9 @@ namespace IMO2023A5
 
 /-! ### Extra lemmas -/
 
+/--
+@isnad1 id=eq.0h2v.s6.cf508ee6014e from=translated src=- shape=86ff9c73 vocab=aae16fe3
+-/
 theorem two_mul_add_dist_sq_eq (k m : ℕ) :
     2 * k * m + k.dist m ^ 2 = k ^ 2 + m ^ 2 := by
   wlog h : k ≤ m
@@ -36,25 +39,43 @@ theorem two_mul_add_dist_sq_eq (k m : ℕ) :
   rw [Nat.dist_eq_sub_of_le h, Nat.add_sub_cancel_left, Nat.mul_add, Nat.mul_assoc,
     ← Nat.pow_two, Nat.two_mul, Nat.add_assoc, Nat.add_assoc, add_sq, Nat.add_assoc]
 
+/--
+@isnad1 id=eq.0h2v.s6.4664d4ebe386 from=translated src=- shape=ffed5add vocab=aae16fe3
+-/
 theorem add_sq_add_dist_sq_eq (k m : ℕ) :
     (k + m) ^ 2 + k.dist m ^ 2 = 2 * (k ^ 2 + m ^ 2) := by
   rw [add_sq', Nat.add_assoc, two_mul_add_dist_sq_eq, Nat.two_mul]
 
+/--
+@isnad1 id=eq.0h1v.s5.186431b6bd7b from=translated src=- shape=6c83d677 vocab=fceb7f08
+-/
 theorem succ_div_two_eq (N) : (N + 1) / 2 = N / 2 + N % 2 := by
   rw [Nat.succ_div, Nat.add_left_cancel_iff]
   simp_rw [Nat.dvd_iff_mod_eq_zero, ← Nat.even_iff, Nat.even_add_one, Nat.not_even_iff]
   split_ifs with h; exacts [h.symm, (Nat.mod_two_ne_one.mp h).symm]
 
+/--
+@isnad1 id=eq.0h1v.s5.f32f1b7fb4a5 from=translated src=- shape=e198463a vocab=38b42274
+-/
 theorem div_two_add_succ_div_two (N) : N / 2 + (N + 1) / 2 = N := by
   rw [succ_div_two_eq, ← Nat.add_assoc, ← Nat.two_mul, Nat.div_add_mod]
 
+/--
+@isnad1 id=eq.0h1v.s5.003c1f010746 from=translated src=- shape=09e90df8 vocab=31989226
+-/
 theorem two_mul_succ_div_two (N) : 2 * ((N + 1) / 2) = N + N % 2 := by
   rw [succ_div_two_eq, Nat.mul_add, (N % 2).two_mul, ← Nat.add_assoc, Nat.div_add_mod]
 
+/--
+@isnad1 id=eq.0h1v.s5.d62b61bf1759 from=translated src=- shape=7ee55301 vocab=df461349
+-/
 theorem mod_two_sq_eq_self (N) : (N % 2) ^ 2 = N % 2 := by
   obtain h | h : N % 2 = 0 ∨ N % 2 = 1 := N.mod_two_eq_zero_or_one
   all_goals rw [h]; rfl
 
+/--
+@isnad1 id=lt.1h2v.s5.2cc584b5854f from=translated src=- shape=7172dade vocab=e17dee47
+-/
 theorem add_div_two_lt_max_of_ne {x y : ℕ} (h : x ≠ y) : (x + y) / 2 < x.max y := by
   rw [Nat.div_lt_iff_lt_mul Nat.two_pos, Nat.mul_two]
   obtain h | h : x < y ∨ y < x := h.lt_or_gt
@@ -75,6 +96,9 @@ namespace nicePerm
 
 variable (X : nicePerm N)
 
+/--
+@isnad1 id=eq.0h2v.s8.efbb072d66ac from=translated src=- shape=3defcd01 vocab=1d620ed0
+-/
 theorem sum_dist_abs_eq :
     2 * ∑ i : Fin N, Nat.dist (X.toPerm i.castSucc) (X.toPerm i.succ) = (N + 1) * N := by
   simp only [X.distPerm_spec, Nat.succ_eq_add_one]
@@ -82,6 +106,9 @@ theorem sum_dist_abs_eq :
     Equiv.sum_comp, Nat.mul_add, mul_sum, Fin.sum_univ_eq_sum_range,
     ← sum_range_succ, ← mul_sum, Nat.mul_comm, sum_range_id_mul_two]; rfl
 
+/--
+@isnad1 id=eq.1h3v.s8.1e9d9604b83d from=translated src=- shape=c659151a vocab=1c83469e
+-/
 theorem sum_dist_rel_eq (hk : k ≤ N) :
     2 * ∑ i : Fin (N + 1), Nat.dist (X.toPerm i) k
       = (k + 1) * k + (N - k + 1) * (N - k) := by
@@ -97,6 +124,9 @@ theorem sum_dist_rel_eq (hk : k ≤ N) :
     rw [mul_sum, Fin.sum_univ_eq_sum_range, ← mul_sum,
       Nat.mul_comm, sum_range_id_mul_two]; rfl
 
+/--
+@isnad1 id=le.0h3v.s10.8f3f1e99d91f from=translated src=- shape=5d651646 vocab=9d120c62
+-/
 theorem sum_dist_abs_le_sum_dist_rel (k) :
     ∑ i : Fin N, Nat.dist (X.toPerm i.castSucc) (X.toPerm i.succ)
         + (Nat.dist (X.toPerm (Fin.last N)) k + Nat.dist (X.toPerm 0) k)
@@ -113,6 +143,9 @@ theorem sum_dist_abs_le_sum_dist_rel (k) :
   · rw [Fin.sum_univ_castSucc, Nat.add_comm]
   · rw [Fin.sum_univ_succ, Nat.add_comm]
 
+/--
+@isnad1 id=le.1h3v.s8.e4d029c39c80 from=translated src=- shape=150a5478 vocab=a2752179
+-/
 theorem dist_rel_main_free_ineq (hk : k ≤ N) :
     2 * (Nat.dist (X.toPerm (Fin.last N)) k + Nat.dist (X.toPerm 0) k)
       ≤ k.dist (N - k) ^ 2 + N := by
@@ -126,6 +159,9 @@ theorem dist_rel_main_free_ineq (hk : k ≤ N) :
     ((k + m) ^ 2).add_assoc, Nat.add_le_add_iff_left, Nat.two_mul, Nat.add_left_comm] at h
   exact Nat.le_of_add_le_add_left h
 
+/--
+@isnad1 id=le.0h2v.s8.1cc442220215 from=translated src=- shape=84d186e5 vocab=3d3551db
+-/
 theorem toPerm_last_add_toPerm_zero_bound :
     (N + 1) / 2 ≤ X.toPerm (Fin.last N) + X.toPerm 0 := by
   let aN := X.toPerm (Fin.last N); let a0 := X.toPerm 0
@@ -143,6 +179,9 @@ theorem toPerm_last_add_toPerm_zero_bound :
     ← succ_div_two_eq, Nat.two_mul, Nat.add_le_add_iff_left] at h
   exact Nat.le_of_mul_le_mul_left h Nat.two_pos
 
+/--
+@isnad1 id=le.1h2v.s8.184178606a9c from=translated src=- shape=b68cfc41 vocab=f5b8a301
+-/
 theorem toPerm_last_max_toPerm_zero_bound (hN : N ≠ 0) :
     (N + 1) / 4 + 1 ≤ (X.toPerm (Fin.last N)).1.max (X.toPerm 0) :=
   calc (N + 1) / 4
@@ -153,5 +192,7 @@ theorem toPerm_last_max_toPerm_zero_bound (hN : N ≠ 0) :
 
 end nicePerm
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=le.1h2v.s8.184178606a9c from=translated src=- shape=b68cfc41 vocab=f5b8a301
+-/
 alias final_solution := nicePerm.toPerm_last_max_toPerm_zero_bound

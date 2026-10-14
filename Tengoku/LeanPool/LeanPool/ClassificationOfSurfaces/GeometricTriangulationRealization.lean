@@ -44,6 +44,9 @@ noncomputable def faceCellHomeomorph (f : T.Triangle) :
   TriangleCell.cellHomeomorph.trans
     (T.toIntrinsic.facePlaneHomeomorph f).symm
 
+/--
+@isnad1 id=eq.0h4v.s8.ed8b71c3dc9f from=translated src=- shape=0ffd6cc0 vocab=63fb19ab
+-/
 @[simp]
 theorem faceVertexEmbedding_eq_cyclic (f : T.Triangle) (i : Fin 3) :
     T.toIntrinsic.faceVertexEmbedding f i =
@@ -52,7 +55,9 @@ theorem faceVertexEmbedding_eq_cyclic (f : T.Triangle) (i : Fin 3) :
   simp
 
 /-- On cyclic side `i`, the face-cell map is the affine barycentric path from face vertex `i`
-to face vertex `i+1`. -/
+to face vertex `i+1`.
+@isnad1 id=eq.0h5v.s10.40448882c21e from=translated src=- shape=25410ecc vocab=b1452f2c
+-/
 theorem faceCellHomeomorph_side (f : T.Triangle) (i : Fin 3)
     (r : unitInterval) :
     ((T.faceCellHomeomorph f) (PolygonCell.side i r)).1.1 =
@@ -75,19 +80,27 @@ theorem faceCellHomeomorph_side (f : T.Triangle) (i : Fin 3)
 noncomputable abbrev cyclicFace (f : T.toFiniteCyclicPresentation.Face) : T.Triangle :=
   T.toFiniteSurfaceTriangulation.finiteCyclicFaceEquiv.symm f
 
+/--
+@isnad1 id=eq.0h3v.s6.7d7011ae97a0 from=translated src=- shape=968bca48 vocab=36793d7d
+-/
 @[simp]
 theorem cyclicFace_finiteCyclicFaceEquiv (f : T.Triangle) :
     T.cyclicFace
       (T.toFiniteSurfaceTriangulation.finiteCyclicFaceEquiv f) = f :=
   T.toFiniteSurfaceTriangulation.finiteCyclicFaceEquiv.symm_apply_apply f
 
+/--
+@isnad1 id=eq.0h3v.s6.f9c45012c7f4 from=translated src=- shape=700017d0 vocab=47754edb
+-/
 theorem finiteCyclicFaceEquiv_cyclicFace
     (f : T.toFiniteCyclicPresentation.Face) :
     T.toFiniteSurfaceTriangulation.finiteCyclicFaceEquiv (T.cyclicFace f) = f :=
   T.toFiniteSurfaceTriangulation.finiteCyclicFaceEquiv.apply_symm_apply f
 
 /-- Every polygon appearing in the cyclic presentation of a triangulation has three marked
-sides. -/
+sides.
+@isnad1 id=eq.0h3v.s5.89ddc36ee291 from=translated src=- shape=9bb0c94e vocab=84b731e8
+-/
 theorem cyclicBoundaryLength (f : T.toFiniteCyclicPresentation.Face) :
     (T.toFiniteCyclicPresentation.boundary f).length = 3 := by
   rw [← T.finiteCyclicFaceEquiv_cyclicFace f]
@@ -109,6 +122,9 @@ noncomputable def polygonalPreMap :
     T.toFiniteCyclicPresentation.PolygonalPreRealization → T.realization :=
   fun x => (T.polygonFaceHomeomorph x.1 x.2).1
 
+/--
+@isnad1 id=continuo.0h2v.s7.9693d09e3a82 from=translated src=- shape=ba83e84f vocab=74ce3f3e
+-/
 theorem continuous_polygonalPreMap : Continuous T.polygonalPreMap := by
   apply continuous_sigma
   intro f
@@ -127,12 +143,18 @@ noncomputable abbrev cyclicOccurrence
     T.toFiniteCyclicPresentation.BoundaryOccurrence :=
   ⟨f, Fin.cast (T.cyclicBoundaryLength f).symm i⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.a96667dbafb8 from=translated src=- shape=f1eb91f8 vocab=7af2dc9e
+-/
 @[simp]
 theorem cyclicOccurrence_face
     (f : T.toFiniteCyclicPresentation.Face) (i : Fin 3) :
     (T.cyclicOccurrence f i).1 = f :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.21e124620309 from=translated src=- shape=30c04173 vocab=8f8a40d7
+-/
 @[simp]
 theorem cyclicOccurrence_index_cast
     (f : T.toFiniteCyclicPresentation.Face) (i : Fin 3) :
@@ -140,6 +162,9 @@ theorem cyclicOccurrence_index_cast
   apply Fin.ext
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.c80eefcc8c42 from=translated src=- shape=eb7c93b2 vocab=cef34302
+-/
 @[simp]
 theorem cyclicOrientedEdge_cyclicOccurrence
     (f : T.toFiniteCyclicPresentation.Face) (i : Fin 3) :
@@ -147,6 +172,9 @@ theorem cyclicOrientedEdge_cyclicOccurrence
       T.orientedFaceEdge (T.cyclicFace f) (ZMod.finEquiv 3 i) := by
   simp [cyclicOrientedEdge, cyclicOccurrence]
 
+/--
+@isnad1 id=eq.0h3v.s7.012a591275b5 from=translated src=- shape=fae2eb3f vocab=b4b3d684
+-/
 @[simp]
 theorem finiteCyclicDartEquiv_cyclicOrientedEdge
     (o : T.toFiniteCyclicPresentation.BoundaryOccurrence) :
@@ -173,23 +201,34 @@ theorem finiteCyclicDartEquiv_cyclicOrientedEdge
   congr
   exact T.toFiniteSurfaceTriangulation.finiteCyclicFaceEquiv.symm_apply_apply f
 
+/--
+@isnad1 id=eq.0h3v.s8.dcaee4b7b56d from=translated src=- shape=b82b4f2b vocab=65021408
+-/
 @[simp]
 theorem finiteCyclicDartEquiv_flip (d : OrientedEdge T.Edge) :
     T.toFiniteSurfaceTriangulation.finiteCyclicDartEquiv d.flip =
       (T.toFiniteSurfaceTriangulation.finiteCyclicDartEquiv d).flip := by
   cases d <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.58a7802e01eb from=translated src=- shape=686fcbc7 vocab=9c15715d
+-/
 @[simp]
 theorem orientedEdgeSource_flip (d : OrientedEdge T.Edge) :
     T.orientedEdgeSource d.flip = T.orientedEdgeTarget d := by
   cases d <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.fd6fa05df8e2 from=translated src=- shape=686fcbc7 vocab=9c15715d
+-/
 @[simp]
 theorem orientedEdgeTarget_flip (d : OrientedEdge T.Edge) :
     T.orientedEdgeTarget d.flip = T.orientedEdgeSource d := by
   cases d <;> rfl
 
-/-- The enumerated side parameter is carried to the corresponding affine edge parameter. -/
+/-- The enumerated side parameter is carried to the corresponding affine edge parameter.
+@isnad1 id=eq.0h5v.s10.99daa2bd2917 from=translated src=- shape=02b5e85b vocab=d0606d2d
+-/
 theorem polygonFaceHomeomorph_side
     (f : T.toFiniteCyclicPresentation.Face)
     (i : Fin (T.toFiniteCyclicPresentation.boundary f).length)
@@ -208,7 +247,9 @@ theorem polygonFaceHomeomorph_side
     PolygonCell.castHomeomorph_side, T.faceCellHomeomorph_side]
 
 /-- The affine endpoints of an enumerated side are the source and target of its original
-oriented geometric edge. -/
+oriented geometric edge.
+@isnad1 id=eq.0h4v.s10.417aff7cf6ee from=translated src=- shape=fc2fb022 vocab=3a42121a
+-/
 theorem polygonFaceHomeomorph_side_oriented
     (o : T.toFiniteCyclicPresentation.BoundaryOccurrence)
     (r : unitInterval) :
@@ -230,7 +271,9 @@ theorem polygonFaceHomeomorph_side_oriented
   exact hrotate _
 
 /-- Every point of a geometric edge has the affine parameterization determined by either
-orientation of that edge. -/
+orientation of that edge.
+@isnad1 id=ex.1h4v.s8.a60104ea9974 from=translated src=- shape=77974f3e vocab=fde4b7e3
+-/
 theorem exists_orientedEdgeParameter
     (d : OrientedEdge T.Edge) (x : T.realization)
     (hx : x ∈ T.toIntrinsic.faceCarrier d.edge.1) :
@@ -277,7 +320,9 @@ theorem exists_orientedEdgeParameter
       simp [a, b, r, hva, hvb]
 
 /-- Compatible signed occurrence pairings have identical images under the facewise geometric
-map. -/
+map.
+@isnad1 id=eq.0h4v.s8.67b455e4b0de from=translated src=- shape=94cc09e1 vocab=0210833b
+-/
 theorem polygonalPreMap_pairing_eq
     (pairing : T.toFiniteCyclicPresentation.BoundaryPairing)
     (r : unitInterval) :
@@ -322,7 +367,9 @@ theorem polygonalPreMap_pairing_eq
         unitInterval.coe_symm_eq, AffineMap.lineMap_apply_one_sub]
 
 /-- The facewise map is constant on the equivalence relation generated by all compatible
-pairings. -/
+pairings.
+@isnad1 id=eq.2h4v.s6.0dd4ad1a4a77 from=translated src=- shape=52469251 vocab=a14cfd35
+-/
 theorem polygonalPreMap_respects
     (valid : T.toFiniteCyclicPresentation.IsSurfaceValid)
     {x y : T.toFiniteCyclicPresentation.PolygonalPreRealization}
@@ -344,6 +391,9 @@ noncomputable def polygonalRealizationMap
     T.toFiniteCyclicPresentation.PolygonalRealization valid → T.realization :=
   Quotient.lift T.polygonalPreMap fun _ _ h => T.polygonalPreMap_respects valid h
 
+/--
+@isnad1 id=eq.1h3v.s5.ffa902eccdbe from=translated src=- shape=8941402c vocab=fd241fcc
+-/
 @[simp]
 theorem polygonalRealizationMap_mk
     (valid : T.toFiniteCyclicPresentation.IsSurfaceValid)
@@ -353,12 +403,18 @@ theorem polygonalRealizationMap_mk
       T.polygonalPreMap x :=
   rfl
 
+/--
+@isnad1 id=continuo.1h2v.s7.fa3e55ee83f9 from=translated src=- shape=12cd4a18 vocab=026748b0
+-/
 theorem continuous_polygonalRealizationMap
     (valid : T.toFiniteCyclicPresentation.IsSurfaceValid) :
     Continuous (T.polygonalRealizationMap valid) :=
   T.continuous_polygonalPreMap.quotient_lift fun _ _ h =>
     T.polygonalPreMap_respects valid h
 
+/--
+@isnad1 id=surjecti.0h2v.s4.35b07d123052 from=translated src=- shape=ba83e84f vocab=c394202a
+-/
 theorem surjective_polygonalPreMap :
     Function.Surjective T.polygonalPreMap := by
   intro x
@@ -376,6 +432,9 @@ theorem surjective_polygonalPreMap :
   change ((T.polygonFaceHomeomorph pf) z).1 = x
   rw [Homeomorph.apply_symm_apply]
 
+/--
+@isnad1 id=surjecti.1h2v.s5.63c4a5a7b5d1 from=translated src=- shape=12cd4a18 vocab=991dbcd6
+-/
 theorem surjective_polygonalRealizationMap
     (valid : T.toFiniteCyclicPresentation.IsSurfaceValid) :
     Function.Surjective (T.polygonalRealizationMap valid) := by
@@ -384,7 +443,9 @@ theorem surjective_polygonalRealizationMap
   exact ⟨T.toFiniteCyclicPresentation.polygonalMk valid z, rfl⟩
 
 /-- Two distinct occurrences carrying the same oriented geometric edge identify equal side
-parameters in the polygonal quotient. -/
+parameters in the polygonal quotient.
+@isnad1 id=eq.3h5v.s7.2ef19ac23aec from=translated src=- shape=1a7f2567 vocab=4ec7ee43
+-/
 theorem polygonalMk_side_eq_of_orientedEdge_eq
     (valid : T.toFiniteCyclicPresentation.IsSurfaceValid)
     {o p : T.toFiniteCyclicPresentation.BoundaryOccurrence}
@@ -420,7 +481,9 @@ theorem polygonalMk_side_eq_of_orientedEdge_eq
   exact h
 
 /-- Two distinct occurrences carrying oppositely oriented copies of one geometric edge identify
-opposite side parameters in the polygonal quotient. -/
+opposite side parameters in the polygonal quotient.
+@isnad1 id=eq.3h5v.s7.9ca8dbaa2f3c from=translated src=- shape=c7ed3d93 vocab=069055cc
+-/
 theorem polygonalMk_side_eq_of_orientedEdge_eq_flip
     (valid : T.toFiniteCyclicPresentation.IsSurfaceValid)
     {o p : T.toFiniteCyclicPresentation.BoundaryOccurrence}
@@ -489,6 +552,9 @@ noncomputable def closedFaceCastHomeomorph
   subst g
   exact Homeomorph.refl _
 
+/--
+@isnad1 id=eq.1h5v.s10.4fc0646dc7df from=translated src=- shape=ef0b79ae vocab=25aaefcb
+-/
 @[simp]
 theorem closedFaceCastHomeomorph_val
     {f g : T.Triangle} (h : f = g)
@@ -497,6 +563,9 @@ theorem closedFaceCastHomeomorph_val
   subst g
   rfl
 
+/--
+@isnad1 id=continuo.1h3v.s8.f94af1df0c2a from=translated src=- shape=aa2b86b4 vocab=57cab012
+-/
 theorem continuous_faceQuotientMap
     (valid : T.toFiniteCyclicPresentation.IsSurfaceValid)
     (f : T.toFiniteCyclicPresentation.Face) :
@@ -505,7 +574,9 @@ theorem continuous_faceQuotientMap
     (continuous_sigmaMk.comp (T.polygonFaceHomeomorph f).symm.continuous)
 
 /-- Changing only the proof-level name of a packed face does not change its inverse quotient
-value. -/
+value.
+@isnad1 id=eq.3h6v.s8.d21dc7e36af7 from=translated src=- shape=4ff9b65e vocab=28426df4
+-/
 theorem faceQuotientMap_congr
     (valid : T.toFiniteCyclicPresentation.IsSurfaceValid)
     {f g : T.toFiniteCyclicPresentation.Face} (hfg : f = g)
@@ -518,6 +589,9 @@ theorem faceQuotientMap_congr
   subst y
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s9.07efa1e99cbf from=translated src=- shape=70a161aa vocab=c5319337
+-/
 theorem faceQuotientMap_faceHomeomorph
     (valid : T.toFiniteCyclicPresentation.IsSurfaceValid)
     (f : T.toFiniteCyclicPresentation.Face)
@@ -526,7 +600,9 @@ theorem faceQuotientMap_faceHomeomorph
       T.toFiniteCyclicPresentation.polygonalMk valid ⟨f, z⟩ := by
   simp [faceQuotientMap]
 
-/-- The two inverse face maps agree in the quotient along a common geometric edge. -/
+/-- The two inverse face maps agree in the quotient along a common geometric edge.
+@isnad1 id=eq.5h5v.s9.49d5e3d313e7 from=translated src=- shape=0e07ddaf vocab=8ebc7ecc
+-/
 theorem faceQuotientMap_eq_of_inter_card_two
     (valid : T.toFiniteCyclicPresentation.IsSurfaceValid)
     {f g : T.toFiniteCyclicPresentation.Face} (hfg : f ≠ g)
@@ -678,7 +754,9 @@ private theorem card_inter_le_two_of_ne
       exact hthree)
   exact hfg (Subtype.ext (hinterf.symm.trans hinterg))
 
-/-- At a fixed vertex, inverse face maps agree across one star-adjacency step. -/
+/-- At a fixed vertex, inverse face maps agree across one star-adjacency step.
+@isnad1 id=eq.4h5v.s10.af9caba20bce from=translated src=- shape=a3f6742b vocab=a3777084
+-/
 theorem faceQuotientMap_eq_vertexPoint_of_faceAdjacentAtVertex
     (valid : T.toFiniteCyclicPresentation.IsSurfaceValid)
     (v : T.toIntrinsic.UsedVertex) {f g : T.Triangle}
@@ -717,7 +795,9 @@ theorem faceQuotientMap_eq_vertexPoint_of_faceAdjacentAtVertex
         simpa only [T.cyclicFace_finiteCyclicFaceEquiv] using hadj))
 
 /-- Strong fixed-star connectivity makes the quotient value of a vertex independent of the
-incident face used to compute it. -/
+incident face used to compute it.
+@isnad1 id=eq.4h5v.s9.f8a2eafca2d5 from=translated src=- shape=6d1012f8 vocab=d9299142
+-/
 theorem faceQuotientMap_eq_vertexPoint
     (valid : T.toFiniteCyclicPresentation.IsSurfaceValid)
     (hstar : TriangleFamily.IsStrongVertexStarConnected T.faces)
@@ -751,7 +831,9 @@ theorem faceQuotientMap_eq_vertexPoint
         (T.faceQuotientMap_eq_vertexPoint_of_faceAdjacentAtVertex
           valid v hvleft hvright hstep)
 
-/-- Under strong fixed-star connectivity, inverse face maps agree on every face overlap. -/
+/-- Under strong fixed-star connectivity, inverse face maps agree on every face overlap.
+@isnad1 id=eq.4h5v.s8.cc00bd2e2a1f from=translated src=- shape=13e12c56 vocab=5e666b3f
+-/
 theorem faceQuotientMap_eq_of_mem
     (valid : T.toFiniteCyclicPresentation.IsSurfaceValid)
     (hstar : TriangleFamily.IsStrongVertexStarConnected T.faces)
@@ -842,6 +924,9 @@ noncomputable def realizationInverse
       rw [T.cyclicFace_finiteCyclicFaceEquiv]
       exact T.toIntrinsic.mem_faceCarrier_containingFace x⟩
 
+/--
+@isnad1 id=eq.3h4v.s8.bf42f5ffd1ea from=translated src=- shape=104b7221 vocab=d13d3c49
+-/
 theorem realizationInverse_eqOn_face
     (valid : T.toFiniteCyclicPresentation.IsSurfaceValid)
     (hstar : TriangleFamily.IsStrongVertexStarConnected T.faces)
@@ -856,6 +941,9 @@ theorem realizationInverse_eqOn_face
   unfold realizationInverse
   apply T.faceQuotientMap_eq_of_mem valid hstar
 
+/--
+@isnad1 id=continuo.2h2v.s7.5aaa34112d98 from=translated src=- shape=19e8cb39 vocab=d48046e6
+-/
 theorem continuous_realizationInverse
     (valid : T.toFiniteCyclicPresentation.IsSurfaceValid)
     (hstar : TriangleFamily.IsStrongVertexStarConnected T.faces) :
@@ -888,6 +976,9 @@ theorem continuous_realizationInverse
   exact hfinite.continuous
     T.toIntrinsic.realization_eq_iUnion_faceCarrier.symm hclosed hlocal
 
+/--
+@isnad1 id=eq.1h3v.s5.d555e8fcb03e from=translated src=- shape=fc65da40 vocab=15a24065
+-/
 theorem polygonalRealizationMap_realizationInverse
     (valid : T.toFiniteCyclicPresentation.IsSurfaceValid)
     (x : T.realization) :
@@ -902,6 +993,9 @@ theorem polygonalRealizationMap_realizationInverse
           (T.toIntrinsic.containingFace x))).symm ⟨x, _⟩)).1 = x
   rw [Homeomorph.apply_symm_apply]
 
+/--
+@isnad1 id=eq.2h3v.s5.ef7bc99d24f9 from=translated src=- shape=86f45c66 vocab=b1e1c9c8
+-/
 theorem realizationInverse_polygonalRealizationMap
     (valid : T.toFiniteCyclicPresentation.IsSurfaceValid)
     (hstar : TriangleFamily.IsStrongVertexStarConnected T.faces)
@@ -940,7 +1034,9 @@ noncomputable def polygonalRealizationHomeomorph
   continuous_toFun := T.continuous_polygonalRealizationMap valid
   continuous_invFun := T.continuous_realizationInverse valid hstar
 
-/-- Existence form used by the classification pipeline. -/
+/-- Existence form used by the classification pipeline.
+@isnad1 id=nonempty.2h2v.s7.fba403711347 from=translated src=- shape=07282654 vocab=64621696
+-/
 theorem polygonalRealization_homeomorphic
     (valid : T.toFiniteCyclicPresentation.IsSurfaceValid)
     (hstar : TriangleFamily.IsStrongVertexStarConnected T.faces) :
@@ -950,7 +1046,9 @@ theorem polygonalRealization_homeomorphic
   ⟨T.polygonalRealizationHomeomorph valid hstar⟩
 
 /-- For a genuine surface triangulation, fixed-star connectivity follows from the manifold
-charts, so the faithful polygonal realization needs no extra combinatorial hypothesis. -/
+charts, so the faithful polygonal realization needs no extra combinatorial hypothesis.
+@isnad1 id=nonempty.1h2v.s8.dc863836877d from=translated src=- shape=b967a6cf vocab=6356bb50
+-/
 theorem polygonalRealization_homeomorphic_of_surface
     [ChartedSpace (EuclideanHalfSpace 2) S]
     [IsManifold (modelWithCornersEuclideanHalfSpace 2) 0 S]

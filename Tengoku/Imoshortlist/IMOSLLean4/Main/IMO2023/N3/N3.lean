@@ -24,14 +24,23 @@ namespace IMO2023N3
 
 /-! ### Extra lemmas -/
 
+/--
+@isnad1 id=iff.2h3v.s5.19944ede143f from=translated src=- shape=444d7a9e vocab=62c56812
+-/
 lemma le_padicValNat_iff (ha : 1 < a) (hb : 0 < b) : n ≤ padicValNat a b ↔ a ^ n ∣ b :=
   (Nat.pow_dvd_iff_le_padicValNat ha.ne.symm hb.ne.symm).symm
 
+/--
+@isnad1 id=iff.2h3v.s6.1f5020a8018f from=translated src=- shape=6a0ee89d vocab=3862c078
+-/
 lemma padicValNat_eq_iff (ha : a ≠ 1) (hb : b ≠ 0) :
     padicValNat a b = n ↔ a ^ n ∣ b ∧ ¬a ^ (n + 1) ∣ b := by
   rw [Nat.pow_dvd_iff_le_padicValNat ha hb, Nat.pow_dvd_iff_le_padicValNat ha hb,
     Nat.not_le, Nat.lt_succ_iff, ← Nat.le_antisymm_iff, eq_comm]
 
+/--
+@isnad1 id=eq.0h3v.s5.5b9c89cb6538 from=translated src=- shape=8648532c vocab=f3e465ed
+-/
 lemma padicValNat_pow_left (a b k) : padicValNat (a ^ k) b = padicValNat a b / k := by
   ---- Side case 1: `k = 0`.
   obtain rfl | hk : k = 0 ∨ k ≠ 0 := eq_or_ne _ _
@@ -50,6 +59,9 @@ lemma padicValNat_pow_left (a b k) : padicValNat (a ^ k) b = padicValNat a b / k
       Nat.mul_comm, ← Nat.div_lt_iff_lt_mul (Nat.zero_lt_of_ne_zero hk)]
     exact Nat.lt_succ_self _
 
+/--
+@isnad1 id=eq.1h3v.s5.034edb196b87 from=translated src=- shape=13fd001e vocab=ce515d8f
+-/
 lemma padicValNat_prime_mul_left
     [Fact (Nat.Prime p)] [Fact (Nat.Prime q)] (h : p ≠ q) (n : ℕ) :
     padicValNat (p * q) n = min (padicValNat p n) (padicValNat q n) := by
@@ -74,6 +86,9 @@ lemma padicValNat_prime_mul_left
     rw [Nat.pow_dvd_iff_le_padicValNat hp0 hn, Nat.add_one_le_iff] at h0
     exact h0.ne rfl
 
+/--
+@isnad1 id=le.1h3v.s4.d7863cd36377 from=translated src=- shape=b5c374b7 vocab=a774a9cd
+-/
 lemma padicValNat_factorial_prime_le
     [Fact (Nat.Prime p)] [Fact (Nat.Prime q)] (h : p ≤ q) (n : ℕ) :
     padicValNat q n.factorial ≤ padicValNat p n.factorial := by
@@ -83,6 +98,9 @@ lemma padicValNat_factorial_prime_le
   refine Finset.sum_le_sum λ i _ ↦ Nat.div_le_div_left (Nat.pow_le_pow_left h i) ?_
   have h : p.Prime := Fact.out; exact Nat.pow_pos h.pos
 
+/--
+@isnad1 id=eq.1h3v.s5.bf6806e02b08 from=translated src=- shape=98c90759 vocab=9ab9236e
+-/
 lemma padicValNat_prime_mul_factorial_of_lt
     [Fact (Nat.Prime p)] [Fact (Nat.Prime q)] (h : p < q) (n : ℕ) :
     padicValNat (p * q) n.factorial = padicValNat q n.factorial := by
@@ -90,23 +108,38 @@ lemma padicValNat_prime_mul_factorial_of_lt
 
 instance : Fact (Nat.Prime 5) := ⟨Nat.prime_five⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.09d65be32752 from=translated src=- shape=38c3c1b1 vocab=b9601328
+-/
 lemma padicValNat_9_eq (n : ℕ) : padicValNat 9 n = padicValNat 3 n / 2 :=
   padicValNat_pow_left 3 n 2
 
+/--
+@isnad1 id=eq.0h1v.s5.35ca29d2ad57 from=translated src=- shape=1e465df4 vocab=1427332a
+-/
 lemma padicValNat_9_factorial_eq (n : ℕ) :
     padicValNat 9 n.factorial = (n - (Nat.digits 3 n).sum) / 4 := by
   rw [padicValNat_9_eq, ← sub_one_mul_padicValNat_factorial,
     ← Nat.div_div_eq_div_mul _ 2 2, Nat.mul_div_cancel_left _ Nat.two_pos]
 
+/--
+@isnad1 id=eq.0h1v.s4.6d0ba237c6f3 from=translated src=- shape=ff2447be vocab=410625b4
+-/
 lemma padicValNat_10_factorial_eq' (n : ℕ) :
     padicValNat 10 n.factorial = padicValNat 5 n.factorial :=
   padicValNat_prime_mul_factorial_of_lt (by norm_num : 2 < 5) n
 
+/--
+@isnad1 id=eq.0h1v.s5.8a1a80ff23ba from=translated src=- shape=1e465df4 vocab=1427332a
+-/
 lemma padicValNat_10_factorial_eq (n : ℕ) :
     padicValNat 10 n.factorial = (n - (Nat.digits 5 n).sum) / 4 := by
   rw [padicValNat_10_factorial_eq', ← sub_one_mul_padicValNat_factorial,
     Nat.mul_div_cancel_left _ (Nat.succ_pos 3)]
 
+/--
+@isnad1 id=eq.1h2v.s5.d337b6c09c08 from=translated src=- shape=ab3fd223 vocab=3f3a3620
+-/
 lemma Nat_digits_self_pow {b : ℕ} (hb : 1 < b) :
     ∀ n, b.digits (b ^ n) = List.replicate n 0 ++ [1] := by
   refine Nat.rec ?_ λ n hn ↦ ?_
@@ -115,10 +148,16 @@ lemma Nat_digits_self_pow {b : ℕ} (hb : 1 < b) :
     rw [Nat.digits_of_two_le_of_pos hb (Nat.pow_pos hb0), Nat.pow_succ,
       Nat.mul_mod_left, Nat.mul_div_left _ hb0, hn]; rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.d42316aafa36 from=translated src=- shape=5ae75e76 vocab=0b202b42
+-/
 lemma Nat_ofDigits_replicate_zero (b) : ∀ n, Nat.ofDigits b (List.replicate n 0) = 0 := by
   refine Nat.rec rfl λ n hn ↦ ?_
   rw [List.replicate_succ, Nat.ofDigits_cons, hn, Nat.mul_zero]
 
+/--
+@isnad1 id=lt.1h2v.s4.8bb15be69733 from=translated src=- shape=d8e27a1d vocab=d76bcb6d
+-/
 lemma Nat_digits_sum_pos (b : ℕ) {n : ℕ} (h : 0 < n) : 0 < (b.digits n).sum := by
   rw [Nat.pos_iff_ne_zero, Ne, List.sum_eq_zero_iff]
   intro h0; apply h.ne.symm
@@ -126,6 +165,9 @@ lemma Nat_digits_sum_pos (b : ℕ) {n : ℕ} (h : 0 < n) : 0 < (b.digits n).sum 
 
 /-! ### Start of the problem -/
 
+/--
+@isnad1 id=lt.0h1v.s5.db388bfc0cb7 from=translated src=- shape=3e385ca7 vocab=9c2f082b
+-/
 lemma Nat_digits3_5pow (k : ℕ) : 1 < (Nat.digits 3 (5 ^ (k + 1))).sum := by
   have h : 0 < 5 := Nat.succ_pos 4
   rw [Nat.digits_of_two_le_of_pos (Nat.le_succ 2) (Nat.pow_pos h), List.sum_cons]
@@ -134,6 +176,9 @@ lemma Nat_digits3_5pow (k : ℕ) : 1 < (Nat.digits 3 (5 ^ (k + 1))).sum := by
   · refine Nat.div_pos ?_ (Nat.succ_pos 2)
     exact (Nat.le_add_right 3 2).trans (Nat.le_mul_of_pos_left _ (Nat.pow_pos h))
 
+/--
+@isnad1 id=lt.0h1v.s6.8c434aeda836 from=translated src=- shape=dbbc85dd vocab=85bc206e
+-/
 lemma main_step1 (N : ℕ) :
     padicValNat 9 (5 ^ (N + 1)).factorial < padicValNat 10 (5 ^ (N + 1)).factorial := by
   have h : 1 < 5 := by norm_num
@@ -142,11 +187,16 @@ lemma main_step1 (N : ℕ) :
   rw [Nat_digits_self_pow h, List.sum_append, List.sum_replicate]
   exact Nat.sub_lt_sub_left (Nat.one_lt_pow N.succ_ne_zero h) (Nat_digits3_5pow _)
 
-/-- Final solution, part 1 -/
+/-- Final solution, part 1
+@isnad1 id=ex.0h1v.s4.4b5b189ed982 from=translated src=- shape=d666a7ae vocab=4b822367
+-/
 theorem final_solution_part1 (N : ℕ) :
     ∃ n > N, padicValNat 9 n.factorial < padicValNat 10 n.factorial :=
   ⟨5 ^ (N + 1), N.lt_succ_self.trans (Nat.lt_pow_self (by norm_num)), main_step1 N⟩
 
+/--
+@isnad1 id=le.0h1v.s6.0ae447b3634c from=translated src=- shape=435a3311 vocab=98e124bc
+-/
 lemma Nat_digits5_3pow (k : ℕ) : 5 ≤ (Nat.digits 5 (3 ^ (2 * (2 * k + 1)))).sum := by
   have h : 0 < 3 := Nat.succ_pos 2
   rw [Nat.digits_of_two_le_of_pos (by norm_num) (Nat.pow_pos h), List.sum_cons, Nat.pow_mul]
@@ -156,6 +206,9 @@ lemma Nat_digits5_3pow (k : ℕ) : 5 ≤ (Nat.digits 5 (3 ^ (2 * (2 * k + 1)))).
     refine (by norm_num : 5 ≤ 9).trans (Nat.le_mul_of_pos_left _ ?_)
     exact Nat.pow_pos (Nat.pow_pos h)
 
+/--
+@isnad1 id=lt.0h1v.s6.b09f9d7920ff from=translated src=- shape=7e1d1b5d vocab=85e71601
+-/
 lemma main_step2 (N : ℕ) :
     padicValNat 10 (3 ^ (2 * (2 * N + 1))).factorial
       < padicValNat 9 (3 ^ (2 * (2 * N + 1))).factorial := by
@@ -167,7 +220,9 @@ lemma main_step2 (N : ℕ) :
   rw [← Nat.sub_add_comm (Nat.digit_sum_le _ _)]
   exact Nat.sub_le_of_le_add (Nat.add_le_add_left (Nat_digits5_3pow _) _)
 
-/-- Final solution, part 2 -/
+/-- Final solution, part 2
+@isnad1 id=ex.0h1v.s4.b2f5a026b4c4 from=translated src=- shape=d666a7ae vocab=4b822367
+-/
 theorem final_solution_part2 (N : ℕ) :
     ∃ n > N, padicValNat 10 n.factorial < padicValNat 9 n.factorial := by
   refine ⟨3 ^ (2 * (2 * N + 1)), ?_, main_step2 _⟩; calc

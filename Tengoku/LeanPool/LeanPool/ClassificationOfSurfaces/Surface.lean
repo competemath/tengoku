@@ -65,7 +65,9 @@ def evalSurface : EvalSurface S where
   charted := inferInstance
   manifold := inferInstance
 
-/-- Marker theorem packaging the active Eval assumptions. -/
+/-- Marker theorem packaging the active Eval assumptions.
+@isnad1 id=nonempty.0h1v.s7.c1ba157a9fe2 from=translated src=- shape=51149bcc vocab=8fcc4079
+-/
 theorem eval_surface_hypotheses : Nonempty (EvalSurface S) :=
   ⟨evalSurface S⟩
 

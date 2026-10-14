@@ -23,6 +23,9 @@ namespace ACMax
 open Matrix
 
 open Classical in
+/--
+@isnad1 id=le.1h3v.s7.0eb3f16f35b4 from=translated src=- shape=424f03bd vocab=37a0c8ad
+-/
 theorem le_algConn_of_forall {V : Type*} [Fintype V] [Nonempty V] [Nontrivial V]
     (G : SimpleGraph V) (c : ℝ)
     (h : ∀ x : V → ℝ, ∑ i, x i = 0 →

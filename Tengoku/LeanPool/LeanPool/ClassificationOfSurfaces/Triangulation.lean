@@ -47,6 +47,9 @@ def flip {α : Type*} : OrientedEdge α → OrientedEdge α
   | pos e => neg e
   | neg e => pos e
 
+/--
+@isnad1 id=eq.0h2v.s3.e7aefea909f8 from=translated src=- shape=efbf31f7 vocab=71161084
+-/
 @[simp] theorem flip_flip {α : Type*} (e : OrientedEdge α) : flip (flip e) = e := by
   cases e <;> rfl
 
@@ -199,6 +202,9 @@ variable {S : Type*} [TopologicalSpace S] (T : GeometricTriangulation S)
   faces := T.faces
   faces_card := T.faces_card
 
+/--
+@isnad1 id=eq.0h2v.s4.c4dd4da83087 from=translated src=- shape=e8b780fe vocab=585de4af
+-/
 @[simp] theorem toIntrinsic_faces : T.toIntrinsic.faces = T.faces := rfl
 
 /-- Source vertex of an oriented geometric edge. -/
@@ -221,11 +227,17 @@ noncomputable def orientedFaceEdge (t : T.Triangle) (i : ZMod 3) :
   else
     OrientedEdge.neg e
 
+/--
+@isnad1 id=eq.0h4v.s5.a55b4e0e2d19 from=translated src=- shape=60204866 vocab=dc74bb8c
+-/
 @[simp] theorem orientedFaceEdge_edge (t : T.Triangle) (i : ZMod 3) :
     (T.orientedFaceEdge t i).edge = T.toIntrinsic.faceEdge t i := by
   rw [orientedFaceEdge]
   split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.4cf593eeab2a from=translated src=- shape=bc64026b vocab=73f65898
+-/
 @[simp] theorem orientedFaceEdge_source (t : T.Triangle) (i : ZMod 3) :
     T.orientedEdgeSource (T.orientedFaceEdge t i) =
       T.toIntrinsic.faceVertex t i := by
@@ -236,6 +248,9 @@ noncomputable def orientedFaceEdge (t : T.Triangle) (i : ZMod 3) :
     · exact (h hforward.1).elim
     · exact hreverse.2
 
+/--
+@isnad1 id=eq.0h4v.s7.9135ae4a3d73 from=translated src=- shape=52a6305b vocab=f99c50bd
+-/
 @[simp] theorem orientedFaceEdge_target (t : T.Triangle) (i : ZMod 3) :
     T.orientedEdgeTarget (T.orientedFaceEdge t i) =
       T.toIntrinsic.faceVertex t (i + 1) := by
@@ -254,13 +269,17 @@ cyclic face vertex to the next one. -/
 noncomputable def triangleBoundary (t : T.Triangle) : List (OrientedEdge T.Edge) :=
   List.ofFn fun i : Fin 3 => T.orientedFaceEdge t (ZMod.finEquiv 3 i)
 
-/-- Every cyclic triangle boundary has exactly three occurrences. -/
+/-- Every cyclic triangle boundary has exactly three occurrences.
+@isnad1 id=eq.0h3v.s5.5c507e3855a4 from=translated src=- shape=30aa52d4 vocab=32ae0575
+-/
 @[simp] theorem triangleBoundary_length (t : T.Triangle) :
     (T.triangleBoundary t).length = 3 := by
   simp [triangleBoundary]
 
 /-- Reading a cyclic triangle boundary recovers the correspondingly indexed oriented face
-edge. -/
+edge.
+@isnad1 id=eq.0h4v.s8.1e6ed002f12f from=translated src=- shape=e4941a08 vocab=dd78bdaa
+-/
 theorem triangleBoundary_get (t : T.Triangle)
     (i : Fin (T.triangleBoundary t).length) :
     (T.triangleBoundary t).get i =
@@ -274,7 +293,9 @@ theorem triangleBoundary_get (t : T.Triangle)
   congr
 
 /-- The underlying edge at a cyclic boundary position is the intrinsic edge with the same
-index. -/
+index.
+@isnad1 id=eq.0h4v.s8.98d0c11a30bb from=translated src=- shape=ac257f31 vocab=56c3e56a
+-/
 theorem triangleBoundary_get_edge (t : T.Triangle)
     (i : Fin (T.triangleBoundary t).length) :
     ((T.triangleBoundary t).get i).edge =
@@ -283,7 +304,9 @@ theorem triangleBoundary_get_edge (t : T.Triangle)
   rw [T.triangleBoundary_get]
   exact T.orientedFaceEdge_edge _ _
 
-/-- The source of a boundary occurrence is its cyclic face vertex. -/
+/-- The source of a boundary occurrence is its cyclic face vertex.
+@isnad1 id=eq.0h4v.s8.cb22e4b76f0a from=translated src=- shape=cbc15488 vocab=89f37285
+-/
 theorem triangleBoundary_get_source (t : T.Triangle)
     (i : Fin (T.triangleBoundary t).length) :
     T.orientedEdgeSource ((T.triangleBoundary t).get i) =
@@ -292,7 +315,9 @@ theorem triangleBoundary_get_source (t : T.Triangle)
   rw [T.triangleBoundary_get]
   exact T.orientedFaceEdge_source _ _
 
-/-- The target of a boundary occurrence is the next cyclic face vertex. -/
+/-- The target of a boundary occurrence is the next cyclic face vertex.
+@isnad1 id=eq.0h4v.s9.f461584d9aad from=translated src=- shape=339a2a64 vocab=2672e72f
+-/
 theorem triangleBoundary_get_target (t : T.Triangle)
     (i : Fin (T.triangleBoundary t).length) :
     T.orientedEdgeTarget ((T.triangleBoundary t).get i) =
@@ -301,6 +326,9 @@ theorem triangleBoundary_get_target (t : T.Triangle)
   rw [T.triangleBoundary_get]
   exact T.orientedFaceEdge_target _ _
 
+/--
+@isnad1 id=le.1h4v.s7.68cf7e4e7c73 from=translated src=- shape=07e023aa vocab=88f7c068
+-/
 theorem edge_subset_of_mem_triangleBoundary {t : T.Triangle} {oe : OrientedEdge T.Edge}
     (hoe : oe ∈ T.triangleBoundary t) : oe.edge.1 ⊆ t.1 := by
   rw [triangleBoundary, List.mem_ofFn'] at hoe
@@ -309,7 +337,9 @@ theorem edge_subset_of_mem_triangleBoundary {t : T.Triangle} {oe : OrientedEdge 
   exact T.toIntrinsic.faceEdge_subset_face t (ZMod.finEquiv 3 i)
 
 /-- A named geometric edge lies in the underlying triangle-boundary list exactly when it is a
-face of that triangle. -/
+face of that triangle.
+@isnad1 id=iff.0h4v.s7.6d97d4d5ed9d from=translated src=- shape=077d2416 vocab=abd75522
+-/
 theorem mem_map_edge_triangleBoundary_iff (t : T.Triangle) (e : T.Edge) :
     e ∈ (T.triangleBoundary t).map OrientedEdge.edge ↔ e.1 ⊆ t.1 := by
   constructor
@@ -327,7 +357,9 @@ theorem mem_map_edge_triangleBoundary_iff (t : T.Triangle) (e : T.Edge) :
     refine ⟨T.orientedFaceEdge t i, hmem, ?_⟩
     rw [T.orientedFaceEdge_edge, hi]
 
-/-- Distinct cyclic positions in one face name distinct underlying edges. -/
+/-- Distinct cyclic positions in one face name distinct underlying edges.
+@isnad1 id=injectiv.0h3v.s5.df8bebfc835a from=translated src=- shape=3a7fbaa7 vocab=b93fa4ea
+-/
 theorem triangleBoundary_edge_get_injective (t : T.Triangle) :
     Function.Injective fun i : Fin (T.triangleBoundary t).length =>
       ((T.triangleBoundary t).get i).edge := by
@@ -343,7 +375,9 @@ theorem triangleBoundary_edge_get_injective (t : T.Triangle) :
     (ZMod.finEquiv 3).injective hz
   exact Fin.cast_injective _ hf
 
-/-- Each geometric edge occurs at most once in a triangle's canonical boundary list. -/
+/-- Each geometric edge occurs at most once in a triangle's canonical boundary list.
+@isnad1 id=nodup.0h3v.s4.8e1244fd2b21 from=translated src=- shape=14fdc341 vocab=8efa5903
+-/
 theorem triangleBoundary_nodup (t : T.Triangle) : (T.triangleBoundary t).Nodup := by
   apply List.nodup_ofFn_ofInjective
   intro i j hij
@@ -383,7 +417,9 @@ noncomputable def toFiniteSurfaceTriangulation : FiniteSurfaceTriangulation S wh
         T.edge_subset_of_mem_triangleBoundary hoe }
   homeomorphSurface := ⟨T.homeo⟩
 
-/-- The bridge realizes the ambient space. -/
+/-- The bridge realizes the ambient space.
+@isnad1 id=nonempty.0h2v.s4.8ef66c086233 from=translated src=- shape=55bb9612 vocab=9780812f
+-/
 theorem toFiniteSurfaceTriangulation_homeomorphSurface :
     Nonempty (T.toFiniteSurfaceTriangulation.realization ≃ₜ S) :=
   T.toFiniteSurfaceTriangulation.homeomorphSurface
@@ -448,7 +484,9 @@ private theorem faceAdjacent_to_triangleAdjacent
   exact ⟨df, hdf, dg, hdg, hdfE.trans hdgE.symm⟩
 
 /-- A geometric surface-incidence certificate supplies every incidence obligation required by
-the legacy finite triangulation bridge. -/
+the legacy finite triangulation bridge.
+@isnad1 id=incidenc.1h2v.s4.08e47dacedbb from=translated src=- shape=b161458b vocab=413a98e3
+-/
 theorem incidenceCertificate_of_surfaceIncidence
     (h : T.SurfaceIncidence) :
     T.toFiniteSurfaceTriangulation.IncidenceCertificate := by

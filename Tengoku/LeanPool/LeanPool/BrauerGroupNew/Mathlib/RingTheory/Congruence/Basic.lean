@@ -46,6 +46,9 @@ def mkL [Semiring α] [NonAssocSemiring R] [Module α R] [IsScalarTower α R R]
   __ := c.mk'
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.3e6b27efc88a from=translated src=- shape=a6d8c078 vocab=d71d10fe
+-/
 lemma algebraMap_def [CommSemiring α] [Semiring R] [Algebra α R] (c : RingCon R) :
     algebraMap α c.Quotient = c.mk'.comp (algebraMap α R) := rfl
 

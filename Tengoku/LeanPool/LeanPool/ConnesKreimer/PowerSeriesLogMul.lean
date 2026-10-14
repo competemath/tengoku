@@ -21,7 +21,9 @@ namespace PowerSeries
 variable {A : Type*} [CommRing A] [Algebra ℚ A]
 
 omit [Algebra ℚ A] in
-/-- A series with zero constant coefficient has its `d`-th power vanishing below degree `d`. -/
+/-- A series with zero constant coefficient has its `d`-th power vanishing below degree `d`.
+@isnad1 id=eq.2h4v.s8.8105708e4b87 from=translated src=- shape=68c11677 vocab=e2427a50
+-/
 theorem coeff_pow_eq_zero_of_lt {g : A⟦X⟧} (hg : constantCoeff g = 0) {d m : ℕ}
     (hmd : m < d) :
     coeff m (g ^ d) = 0 :=

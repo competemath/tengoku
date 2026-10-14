@@ -24,7 +24,9 @@ namespace IMO2021A6
 open Finset
 
 /-- If `c_0 + c_1 m + c_2 m^2 + … + c_n m^n = d_0 + d_1 m + d_2 m^2 + … + d_n m^n`
-  for `0 ≤ c_0, c_1, …, c_n, d_1, …, d_n < m`, then `c_i = d_i` for each `i`. -/
+  for `0 ≤ c_0, c_1, …, c_n, d_1, …, d_n < m`, then `c_i = d_i` for each `i`.
+@isnad1 id=injon.0h2v.s6.d58561e82b6d from=translated src=- shape=c546e452 vocab=0ecece3d
+-/
 lemma Fin_digits_map_injOn (m n : ℕ) :
     (Fintype.piFinset (λ _ : Fin n ↦ range m) : Set (Fin n → ℕ)).InjOn
       λ c : (i : Fin n) → ℕ ↦ ∑ i : Fin n, c i * m ^ i.1 := by
@@ -53,6 +55,9 @@ lemma Fin_digits_map_injOn (m n : ℕ) :
     rwa [h0, Nat.add_right_inj, Nat.mul_left_inj hm] at h
   exact funext (Fin.cases h0 (congrFun (n_ih (λ i ↦ hc i.succ) (λ i ↦ hd i.succ) h1)))
 
+/--
+@isnad1 id=injon.0h2v.s6.daa4ead1b2b0 from=translated src=- shape=6490e0e7 vocab=39a5d308
+-/
 lemma Fin_digits_map_injOn' (m n : ℕ) :
     (Fintype.piFinset (λ _ : Fin n ↦ range m) : Set (Fin n → ℕ)).InjOn
       λ c : (i : Fin n) → ℕ ↦ ∑ i : Fin n, c i * (m : ℤ) ^ (i.1 + 1) := by
@@ -67,7 +72,9 @@ lemma Fin_digits_map_injOn' (m n : ℕ) :
 
 variable [Fintype κ] [DecidableEq κ] {a : κ → ℤ}
 
-/-- More general inequality -/
+/-- More general inequality
+@isnad1 id=le.1h5v.s7.6aefe69ee0a0 from=translated src=- shape=6756e457 vocab=f8a55157
+-/
 theorem general_ineq {B : Fin n → Finset κ} [∀ i j, Decidable (j ∈ B i)]
     {m : ℕ} (h : ∀ i : Fin n, (B i).sum a = m ^ (i.1 + 1)) :
     m ^ n ≤ (n * (m - 1) + 1) ^ Fintype.card κ := by
@@ -109,7 +116,9 @@ theorem general_ineq {B : Fin n → Finset κ} [∀ i j, Decidable (j ∈ B i)]
         rw [← sum_filter, filter_mem_eq_inter, univ_inter, mul_sum]
       _ = _ := Fintype.sum_congr _ _ λ i ↦ congrArg (_ * ·) (h i)
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=le.1h4v.s6.accb28231d27 from=translated src=- shape=856ef313 vocab=5fdb8396
+-/
 theorem final_solution {a : κ → ℤ} {B : Fin m → Finset κ}
     [∀ i j, Decidable (j ∈ B i)] (h : ∀ i : Fin m, (B i).sum a = m ^ (i.1 + 1)) :
     m ≤ 2 * Fintype.card κ := by

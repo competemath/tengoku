@@ -66,6 +66,9 @@ def expUb₀ (x : ℚ) (n : ℕ) : ℚ :=
   let err : ℚ := 2 * y^(n+1) / (n+1).factorial
   (ey + err) ^ xc
 
+/--
+@isnad1 id=eq.0h2v.s6.db95f515ebf5 from=translated src=- shape=c29da12d vocab=9f05a651
+-/
 lemma List_foldr_eq_finset_sum (x : ℚ) (n : ℕ) :
     List.foldr (fun n v => 1 + x * v / (↑n + 1)) 1 (List.range n)
     = ∑ i ∈ Finset.range (n + 1), x^i / i.factorial := by
@@ -87,6 +90,9 @@ lemma List_foldr_eq_finset_sum (x : ℚ) (n : ℕ) :
       ring
     field_simp
 
+/--
+@isnad1 id=lt.1h2v.s4.8e6a7c0649a9 from=translated src=- shape=c77dbd64 vocab=cd22e285
+-/
 theorem expLb₀_pos {x : ℚ} (n : ℕ) (hx : 0 ≤ x) : 0 < expLb₀ x n := by
   rw [expLb₀, List_foldr_eq_finset_sum, Finset.range_add_one']
   rw [Finset.sum_insert (by simp)]
@@ -96,6 +102,9 @@ theorem expLb₀_pos {x : ℚ} (n : ℕ) (hx : 0 ≤ x) : 0 < expLb₀ x n := by
   · positivity
   · exact Finset.sum_nonneg fun i _ ↦ div_nonneg (pow_nonneg ha _) (by positivity)
 
+/--
+@isnad1 id=le.1h2v.s4.0da9d107d705 from=translated src=- shape=7626295d vocab=e68db632
+-/
 theorem expLb₀_ge_one {x : ℚ} (n : ℕ) (hx : 0 ≤ x) : 1 ≤ expLb₀ x n := by
   rw [expLb₀, List_foldr_eq_finset_sum, Finset.range_add_one']
   rw [Finset.sum_insert (by simp)]
@@ -105,6 +114,9 @@ theorem expLb₀_ge_one {x : ℚ} (n : ℕ) (hx : 0 ≤ x) : 1 ≤ expLb₀ x n 
   exact le_add_of_nonneg_right
     (Finset.sum_nonneg fun i _ ↦ div_nonneg (pow_nonneg ha _) (by positivity))
 
+/--
+@isnad1 id=le.1h2v.s4.1a530638e32b from=translated src=- shape=4f99d6cf vocab=2eef3a76
+-/
 theorem expLb₀_le_exp {x : ℚ} (n : ℕ) (hx : 0 ≤ x) : expLb₀ x n ≤ Real.exp x := by
   rw [expLb₀, List_foldr_eq_finset_sum]
   have he : Real.exp x = (Real.exp (x / ↑⌈x⌉.toNat)) ^ ⌈x⌉.toNat := by
@@ -119,6 +131,9 @@ theorem expLb₀_le_exp {x : ℚ} (n : ℕ) (hx : 0 ≤ x) : expLb₀ x n ≤ Re
   apply_mod_cast Real.sum_le_exp_of_nonneg
   exact_mod_cast div_nonneg hx (by positivity)
 
+/--
+@isnad1 id=le.1h2v.s4.c0467fc00aa1 from=translated src=- shape=a7f3a675 vocab=3ab18f62
+-/
 theorem expUb₀_ge_exp (x : ℚ) (n : ℕ) (hx : 0 ≤ x) : Real.exp x ≤ expUb₀ x n := by
   rw [expUb₀, List_foldr_eq_finset_sum]
   have he : Real.exp x = (Real.exp (x / ↑⌈x⌉.toNat)) ^ ⌈x⌉.toNat := by
@@ -155,7 +170,9 @@ theorem _root_.Real.one_plus_pow_lt_exp_mul {x y : ℝ} (hx : 0 < x) (hy : 0 < y
 
 /-- This proves that the gap between `expLb₀` and `expUb₀` shrinks at least as
 fast as `exp x * (exp (2x/n!) - 1)`. This is then used to prove that they are
-cauchy sequences in `n`, i.e. taking sufficiently large `n` makes this go to zero. -/
+cauchy sequences in `n`, i.e. taking sufficiently large `n` makes this go to zero.
+@isnad1 id=le.1h2v.s6.f6624f8ec4df from=translated src=- shape=74ea2ff9 vocab=ba522e5d
+-/
 theorem expUb₀_sub_expLb₀ {x : ℚ} (n : ℕ) (hx : 0 ≤ x) :
     expUb₀ x n - expLb₀ x n ≤ Real.exp x * (Real.exp (2 * x / n.factorial) - 1) := by
   rw [expUb₀, expLb₀]
@@ -234,6 +251,9 @@ def expLb (x : ℚ) : ℕ → ℚ :=
 def expUb (x : ℚ) : ℕ → ℚ :=
   if 0 ≤ x then expUb₀ x else fun n ↦ (expLb₀ (-x) n)⁻¹
 
+/--
+@isnad1 id=le.0h2v.s4.4c7d6455c79c from=translated src=- shape=dffca72b vocab=8026b675
+-/
 theorem expLb_le_exp (x : ℚ) (n : ℕ) : expLb x n ≤ Real.exp x := by
   rw [expLb]
   split
@@ -247,6 +267,9 @@ theorem expLb_le_exp (x : ℚ) (n : ℕ) : expLb x n ≤ Real.exp x := by
       positivity
     · positivity
 
+/--
+@isnad1 id=le.0h2v.s4.fe072e25ad62 from=translated src=- shape=6cf4e077 vocab=e81e17b6
+-/
 theorem expUb_ge_exp (x : ℚ) (n : ℕ) : Real.exp x ≤ expUb x n := by
   rw [expUb]
   split
@@ -259,10 +282,16 @@ theorem expUb_ge_exp (x : ℚ) (n : ℕ) : Real.exp x ≤ expUb x n := by
     · positivity
     · exact_mod_cast expLb₀_pos (x := -x) n (by linarith)
 
+/--
+@isnad1 id=le.1h2v.s6.068c97ac6272 from=translated src=- shape=74ea2ff9 vocab=fa316f69
+-/
 theorem expUb_sub_expLb_of_nonneg {x : ℚ} (n : ℕ) (hx : 0 ≤ x) :
     expUb x n - expLb x n ≤ Real.exp x * (Real.exp (2 * x / n.factorial) - 1) := by
   simpa [expUb, hx, ↓reduceIte, expLb] using expUb₀_sub_expLb₀ n hx
 
+/--
+@isnad1 id=le.1h2v.s6.863b92237761 from=translated src=- shape=a61492d2 vocab=ce2200e9
+-/
 theorem expUb_sub_expLb_of_neg {x : ℚ} (n : ℕ) (hx : x < 0) :
     expUb x n - expLb x n ≤ Real.exp (2 * ↑(-x) / n.factorial) - 1 := by
   simp only [expUb, Rat.not_le.mpr hx, ↓reduceIte, expLb]
@@ -291,6 +320,9 @@ theorem expUb_sub_expLb_of_neg {x : ℚ} (n : ℕ) (hx : x < 0) :
   · rw [sub_nonneg, Real.one_le_exp_iff]
     positivity
 
+/--
+@isnad1 id=and.0h2v.s7.343a14f1df05 from=translated src=- shape=367a9e26 vocab=e3f5d419
+-/
 theorem expUb_lb_err (x : ℚ) (n : ℕ) :
     Real.exp x ≤ expLb x n + (Real.exp ↑|x| * (Real.exp (2 * |x| / n.factorial) - 1)) ∧
     expUb x n - (Real.exp ↑|x| * (Real.exp (2 * |x| / n.factorial) - 1)) ≤ Real.exp x := by
@@ -402,6 +434,9 @@ private lemma exists_n_bound_err (a b : ℝ) {ε : ℝ} (hε : 0 < ε) :
   · rw [Nat.cast_le]
     exact Nat.self_le_factorial v₃
 
+/--
+@isnad1 id=and.0h0v.s4.9a772a4e5a04 from=translated src=- shape=17849ee8 vocab=f99e9373
+-/
 theorem TLUW_lb_ub :
     TendstoLocallyUniformlyWithout (fun n x => expLb x n) Real.exp ∧
     TendstoLocallyUniformlyWithout (fun n x => expUb x n) Real.exp := by

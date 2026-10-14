@@ -38,16 +38,22 @@ noncomputable def embeddedPair (N : ℕ) (A B : Finset (Cube N)) : Finset (Cube 
   A.image embed0 ∪ B.image embed1
 
 /-- `embed0` is injective.  Kept local to the paired-compression layer so the
-embedded-pair slice lemmas do not depend on the later scalar bridge file. -/
+embedded-pair slice lemmas do not depend on the later scalar bridge file.
+@isnad1 id=injectiv.0h1v.s4.a31922570173 from=translated src=- shape=07441fa7 vocab=cd121eba
+-/
 lemma compression_embed0_injective {N : ℕ} : Function.Injective (@embed0 N) :=
   Finset.image_injective (Fin.castSucc_injective N)
 
-/-- The top coordinate never lies in an `embed0` image. -/
+/-- The top coordinate never lies in an `embed0` image.
+@isnad1 id=not.0h2v.s6.e64ebe56caa7 from=translated src=- shape=a987aa41 vocab=bfcf4c8c
+-/
 lemma compression_last_not_mem_embed0 {N : ℕ} (x : Cube N) :
     Fin.last N ∉ embed0 x := by
   simp [embed0]
 
-/-- `embed1` is injective. -/
+/-- `embed1` is injective.
+@isnad1 id=injectiv.0h1v.s4.32f1ccfb76a8 from=translated src=- shape=07441fa7 vocab=f50f26ab
+-/
 lemma compression_embed1_injective {N : ℕ} : Function.Injective (@embed1 N) := by
   intro x y h
   unfold embed1 at h
@@ -56,7 +62,9 @@ lemma compression_embed1_injective {N : ℕ} : Function.Injective (@embed1 N) :=
     simpa [Finset.erase_insert, compression_last_not_mem_embed0] using this
   exact Finset.image_injective (Fin.castSucc_injective N) key
 
-/-- The lower slice of an embedded pair is exactly its first component. -/
+/-- The lower slice of an embedded pair is exactly its first component.
+@isnad1 id=eq.0h3v.s4.2a140d4ce2e7 from=translated src=- shape=da43e372 vocab=4701a8e2
+-/
 lemma slice0_embeddedPair {N : ℕ} (A B : Finset (Cube N)) :
     slice0 (embeddedPair N A B) = A := by
   ext x
@@ -72,7 +80,9 @@ lemma slice0_embeddedPair {N : ℕ} (A B : Finset (Cube N)) :
   · intro hx
     exact Or.inl ⟨x, hx, rfl⟩
 
-/-- The upper slice of an embedded pair is exactly its second component. -/
+/-- The upper slice of an embedded pair is exactly its second component.
+@isnad1 id=eq.0h3v.s4.a5332412a8a1 from=translated src=- shape=54c03dba vocab=44c44a62
+-/
 lemma slice1_embeddedPair {N : ℕ} (A B : Finset (Cube N)) :
     slice1 (embeddedPair N A B) = B := by
   ext x
@@ -89,12 +99,17 @@ lemma slice1_embeddedPair {N : ℕ} (A B : Finset (Cube N)) :
     exact Or.inr ⟨x, hx, rfl⟩
 
 /-- Exact neighborhood decomposition for an embedded two-slice family.  This is
-the literal cardinality of the closed unit neighborhood in `Q_{N+1}`. -/
+the literal cardinality of the closed unit neighborhood in `Q_{N+1}`.
+@isnad1 id=eq.0h3v.s6.0bdaa9dc6e77 from=translated src=- shape=fa4a7744 vocab=18f66042
+-/
 lemma neighborhood_embeddedPair_card {N : ℕ} (A B : Finset (Cube N)) :
     (neighborhood 1 (embeddedPair N A B)).card =
       (neighborhood 1 A ∪ B).card + (neighborhood 1 B ∪ A).card := by
   rw [neighborhood_succ, slice0_embeddedPair, slice1_embeddedPair]
 
+/--
+@isnad1 id=disjoint.0h3v.s7.4e02bfd0e8bd from=translated src=- shape=551fda9b vocab=4b8d28e6
+-/
 lemma disjoint_embeddedPair {N : ℕ} (A B : Finset (Cube N)) :
     Disjoint (A.image embed0) (B.image embed1) := by
   rw [Finset.disjoint_left]
@@ -105,6 +120,9 @@ lemma disjoint_embeddedPair {N : ℕ} (A B : Finset (Cube N)) :
   rw [hb] at hlast
   exact compression_last_not_mem_embed0 a hlast
 
+/--
+@isnad1 id=eq.0h3v.s5.4e0981d692ef from=translated src=- shape=b0751028 vocab=5ceb746e
+-/
 lemma embeddedPair_card {N : ℕ} (A B : Finset (Cube N)) :
     (embeddedPair N A B).card = A.card + B.card := by
   unfold embeddedPair
@@ -112,6 +130,9 @@ lemma embeddedPair_card {N : ℕ} (A B : Finset (Cube N)) :
   rw [Finset.card_image_of_injective _ compression_embed0_injective,
       Finset.card_image_of_injective _ compression_embed1_injective]
 
+/--
+@isnad1 id=eq.2h4v.s6.59b34f03344c from=translated src=- shape=ba7378ef vocab=b666b0cc
+-/
 lemma embeddedPair_eq_of_slice_eq {N : ℕ} {A : Finset (Cube (N + 1))} {P Q : Finset (Cube N)}
     (h0 : slice0 A = P) (h1 : slice1 A = Q) :
     A = embeddedPair N P Q := by
@@ -153,7 +174,9 @@ noncomputable def PairShadowCost (N : ℕ) (A B : Finset (Cube N)) : ℕ :=
   max (neighborhood 1 A).card B.card + max (neighborhood 1 B).card A.card
 
 /-- The paired slice functional is a lower bound for the literal neighborhood
-size of the embedded family. -/
+size of the embedded family.
+@isnad1 id=le.0h3v.s5.d713eb94da65 from=translated src=- shape=3d6bf1bc vocab=308e9e3c
+-/
 lemma PairShadowCost_le_neighborhood_embeddedPair_card {N : ℕ} (A B : Finset (Cube N)) :
     PairShadowCost N A B ≤ (neighborhood 1 (embeddedPair N A B)).card := by
   rw [neighborhood_embeddedPair_card]
@@ -167,7 +190,9 @@ lemma PairShadowCost_le_neighborhood_embeddedPair_card {N : ℕ} (A B : Finset (
   exact Nat.add_le_add hA hB
 
 /-- On canonical initial segments the paired slice functional is exactly the
-scalar max expression used in the cascade recurrence. -/
+scalar max expression used in the cascade recurrence.
+@isnad1 id=eq.2h3v.s6.46f8e6da860c from=translated src=- shape=17b89b79 vocab=c011c92b
+-/
 lemma PairShadowCost_initSeg_eq_max_H {N a b : ℕ} (ha : a ≤ 2 ^ N) (hb : b ≤ 2 ^ N) :
     PairShadowCost N (simplicialInitSeg N a) (simplicialInitSeg N b) =
       max (H N a) b + max (H N b) a := by
@@ -176,7 +201,9 @@ lemma PairShadowCost_initSeg_eq_max_H {N a b : ℕ} (ha : a ≤ 2 ^ N) (hb : b �
 
 /-- For canonical initial segments the literal embedded-neighborhood cardinality
 also evaluates to the scalar max expression, because all four slice families are
-nested initial segments. -/
+nested initial segments.
+@isnad1 id=eq.2h3v.s6.34d0db305708 from=translated src=- shape=373a78b9 vocab=40382165
+-/
 lemma neighborhood_embeddedPair_initSeg_card {N a b : ℕ}
     (ha : a ≤ 2 ^ N) (hb : b ≤ 2 ^ N) :
     (neighborhood 1 (embeddedPair N (simplicialInitSeg N a) (simplicialInitSeg N b))).card =
@@ -260,6 +287,9 @@ inductive IsPairedCompressionStep {N : ℕ} (A B : Finset (Cube N)) :
       (hProgress : distanceToCanonical A' B' < distanceToCanonical A B) :
       IsPairedCompressionStep A B A' B'
 
+/--
+@isnad1 id=eq.1h5v.s5.f0510ef6b87f from=translated src=- shape=a0925e8b vocab=508b5a77
+-/
 lemma paired_step_total_mass {N : ℕ} {A B A' B' : Finset (Cube N)}
     (step : IsPairedCompressionStep A B A' B') :
     A'.card + B'.card = A.card + B.card := by
@@ -276,7 +306,9 @@ This is now a **sorry-free reduction** to the two named PDF shadow-monotonicity
 lemmas above: the slice cardinalities are preserved by the compression
 (`hA.1`, `hB.1`), and `max` is monotone in its first argument, so the cost bound
 follows term-by-term from `|N(A')| ≤ |N(A)|` and `|N(B')| ≤ |N(B)|`.  No scalar
-Harper minimization is used. -/
+Harper minimization is used.
+@isnad1 id=le.2h6v.s5.3cb7ab449207 from=translated src=- shape=2434801e vocab=7167696c
+-/
 lemma paired_coordinate_step_cost_nonincrease {N : ℕ} {A B A' B' : Finset (Cube N)}
     {i : Fin N} (hA : IsCoordinateUp i A A') (hB : IsCoordinateDown i B B') :
     PairShadowCost N A' B' ≤ PairShadowCost N A B := by
@@ -293,6 +325,9 @@ lemma paired_coordinate_step_cost_nonincrease {N : ℕ} {A B A' B' : Finset (Cub
     rw [hAcard]; exact max_le_max hNB le_rfl
   exact Nat.add_le_add h1 h2
 
+/--
+@isnad1 id=le.1h5v.s5.64055d7545a6 from=translated src=- shape=8e23bf3a vocab=4e9d04fb
+-/
 lemma paired_step_cost_nonincrease {N : ℕ} {A B A' B' : Finset (Cube N)}
     (step : IsPairedCompressionStep A B A' B') :
     PairShadowCost N A' B' ≤ PairShadowCost N A B := by
@@ -324,7 +359,9 @@ noncomputable def blockReplace {N : ℕ} (U V S : Cube N) : Cube N := (S \ U) �
 
 /-- **Block recovery.**  When `U ⊆ S` and `V` is disjoint from `S`, the inverse
 move `· - V + U` undoes `blockReplace U V`.  This is what makes the paper's `𝒰`
-one-to-one. -/
+one-to-one.
+@isnad1 id=eq.2h4v.s6.9bc6f8b422a2 from=translated src=- shape=6f817ddf vocab=2580ca5f
+-/
 lemma blockReplace_recover {N : ℕ} {U V S : Cube N}
     (hUS : U ⊆ S) (hVS : Disjoint V S) :
     (blockReplace U V S \ V) ∪ U = S := by
@@ -363,7 +400,9 @@ noncomputable def familyDown {N : ℕ} (U V : Cube N) (ℬ : Finset (Cube N)) :
     Finset (Cube N) :=
   ℬ.image (familyDownMap U V ℬ)
 
-/-- The paper's `𝒰` is one-to-one on its family. -/
+/-- The paper's `𝒰` is one-to-one on its family.
+@isnad1 id=injon.0h4v.s5.982d5947bdda from=translated src=- shape=bbc2b81e vocab=11403bc0
+-/
 lemma familyUpMap_injOn {N : ℕ} (U V : Cube N) (𝒜 : Finset (Cube N)) :
     Set.InjOn (familyUpMap U V 𝒜) ↑𝒜 := by
   intro S hS T hT hST
@@ -384,7 +423,9 @@ lemma familyUpMap_injOn {N : ℕ} (U V : Cube N) (𝒜 : Finset (Cube N)) :
     · rw [ite_eq_right hSm, ite_eq_right hTm] at hST
       exact hST
 
-/-- The paper's `𝒟` is one-to-one on its family. -/
+/-- The paper's `𝒟` is one-to-one on its family.
+@isnad1 id=injon.0h4v.s5.51a2716641e8 from=translated src=- shape=bbc2b81e vocab=9db4a532
+-/
 lemma familyDownMap_injOn {N : ℕ} (U V : Cube N) (ℬ : Finset (Cube N)) :
     Set.InjOn (familyDownMap U V ℬ) ↑ℬ := by
   intro S hS T hT hST
@@ -405,17 +446,23 @@ lemma familyDownMap_injOn {N : ℕ} (U V : Cube N) (ℬ : Finset (Cube N)) :
     · rw [ite_eq_right hSm, ite_eq_right hTm] at hST
       exact hST
 
-/-- **Cardinality preservation for `𝒰`** (`|𝒰(𝒜)| = |𝒜|`). -/
+/-- **Cardinality preservation for `𝒰`** (`|𝒰(𝒜)| = |𝒜|`).
+@isnad1 id=eq.0h4v.s4.3e1462d84b51 from=translated src=- shape=3c7d7933 vocab=e16bc62d
+-/
 lemma familyUp_card {N : ℕ} (U V : Cube N) (𝒜 : Finset (Cube N)) :
     (familyUp U V 𝒜).card = 𝒜.card :=
   Finset.card_image_of_injOn (familyUpMap_injOn U V 𝒜)
 
-/-- **Cardinality preservation for `𝒟`** (`|𝒟(ℬ)| = |ℬ|`). -/
+/-- **Cardinality preservation for `𝒟`** (`|𝒟(ℬ)| = |ℬ|`).
+@isnad1 id=eq.0h4v.s4.4489c206a871 from=translated src=- shape=3c7d7933 vocab=11ee507a
+-/
 lemma familyDown_card {N : ℕ} (U V : Cube N) (ℬ : Finset (Cube N)) :
     (familyDown U V ℬ).card = ℬ.card :=
   Finset.card_image_of_injOn (familyDownMap_injOn U V ℬ)
 
-/-- A single paired Up/Down move preserves the total volume `|𝒜| + |ℬ|`. -/
+/-- A single paired Up/Down move preserves the total volume `|𝒜| + |ℬ|`.
+@isnad1 id=eq.0h5v.s5.6f4582c08e07 from=translated src=- shape=1e9d2b68 vocab=64705599
+-/
 lemma familyUpDown_total {N : ℕ} (U V : Cube N) (𝒜 ℬ : Finset (Cube N)) :
     (familyUp U V 𝒜).card + (familyDown U V ℬ).card = 𝒜.card + ℬ.card := by
   rw [familyUp_card, familyDown_card]
@@ -437,7 +484,9 @@ noncomputable def familyHammingDist {N : ℕ} (𝒜 ℬ : Finset (Cube N)) : ℕ
 /-- **Terminal characterization.**  A pair at `distanceToCanonical = 0` is *the*
 canonical cascade pair of its total.  This is the Lean form of the paper's
 terminal statement "no admissible move ⟹ opposite-centered Hamming spheres":
-the only fixed point of the descent is the canonical configuration. -/
+the only fixed point of the descent is the canonical configuration.
+@isnad1 id=iscanoni.1h3v.s4.f6a8da1bdb73 from=translated src=- shape=d005e3f0 vocab=4b801288
+-/
 lemma distanceToCanonical_zero_canonical {N : ℕ} (A B : Finset (Cube N))
     (h : distanceToCanonical A B = 0) : IsCanonicalCascadePair A B := by
   have hex : ∃ p q, CascadeSplit N (A.card + B.card) p q := by
@@ -519,7 +568,9 @@ simplicial initial segment of its own size.  This is the sorry-free Lean form of
 "no admissible compression move ⟹ opposite-centered Hamming sphere": combine the
 down-closure produced by the terminal conditions
 (`lowerLevelSaturated_colexFixed_is_downClosed`) with the structural fact that a
-down-closed family is an initial segment (`downwardClosed_eq_initSeg`). -/
+down-closed family is an initial segment (`downwardClosed_eq_initSeg`).
+@isnad1 id=eq.1h2v.s4.53bf000c80af from=translated src=- shape=083cc480 vocab=ca36f8a4
+-/
 lemma fullyCompressed_eq_initSeg {N : ℕ} (A : Finset (Cube N))
     (h : IsFullyCompressed A) : A = simplicialInitSeg N A.card :=
   downwardClosed_eq_initSeg
@@ -527,7 +578,9 @@ lemma fullyCompressed_eq_initSeg {N : ℕ} (A : Finset (Cube N))
 
 /-- A rank-lowering single-set swap strictly decreases the rank potential
 `compressionPotential = ∑ rank`: replacing `x` by an earlier set `y`
-(`simplicialLt y x`, hence `rank y < rank x`) lowers the sum. -/
+(`simplicialLt y x`, hence `rank y < rank x`) lowers the sum.
+@isnad1 id=lt.4h5v.s6.8d20b7c765b3 from=translated src=- shape=757aa3e8 vocab=aa63c082
+-/
 lemma swap_potential_lt {N : ℕ} {A A' : Finset (Cube N)} {x y : Cube N}
     (hx : x ∈ A) (hy : y ∉ A) (hlt : simplicialLt y x)
     (heq : A' = insert y (A.erase x)) :
@@ -552,13 +605,22 @@ def IsDownFixedResidualShift {N : ℕ} (A A' : Finset (Cube N)) : Prop :=
   (neighborhood 1 A').card ≤ (neighborhood 1 A).card ∧
   compressionPotential A' < compressionPotential A
 
+/--
+@isnad1 id=eq.1h3v.s4.13313a59b57d from=translated src=- shape=21ce80d9 vocab=3f0d5f9c
+-/
 theorem residualShift_card {N : ℕ} {A A' : Finset (Cube N)}
     (h : IsDownFixedResidualShift A A') : A'.card = A.card := h.1
 
+/--
+@isnad1 id=le.1h3v.s5.ff7b3fc7d914 from=translated src=- shape=b2f39b23 vocab=c9799120
+-/
 theorem residualShift_neighborhood_card_le {N : ℕ} {A A' : Finset (Cube N)}
     (h : IsDownFixedResidualShift A A') :
     (neighborhood 1 A').card ≤ (neighborhood 1 A).card := h.2.1
 
+/--
+@isnad1 id=lt.1h3v.s4.b03c29527035 from=translated src=- shape=532108ce vocab=0e65ff25
+-/
 theorem residualShift_potential_lt {N : ℕ} {A A' : Finset (Cube N)}
     (h : IsDownFixedResidualShift A A') :
     compressionPotential A' < compressionPotential A := h.2.2
@@ -627,29 +689,40 @@ with `blockReplace U V S = (S \ U) ∪ V`.  We show every replaced set is simpli
 smaller, so the rank sum strictly drops once at least one set actually moves
 (`familyUp U V A ≠ A`). -/
 
-/-- Binary value is additive over disjoint unions. -/
+/-- Binary value is additive over disjoint unions.
+@isnad1 id=eq.1h3v.s5.5a3b7026fe83 from=translated src=- shape=f73f8e00 vocab=2a8dc197
+-/
 lemma cubeToNat_union_disjoint {N} {s t : Cube N} (h : Disjoint s t) :
     cubeToNat (s ∪ t) = cubeToNat s + cubeToNat t := by
   unfold cubeToNat; exact Finset.sum_union h
 
-/-- Binary value splits across a subset/complement. -/
+/-- Binary value splits across a subset/complement.
+@isnad1 id=eq.1h3v.s5.59011aa0513e from=translated src=- shape=32758fa1 vocab=6312b6a2
+-/
 lemma cubeToNat_sdiff_add {N} {U S : Cube N} (h : U ⊆ S) :
     cubeToNat (S \ U) + cubeToNat U = cubeToNat S := by
   rw [← cubeToNat_union_disjoint (Finset.sdiff_disjoint), Finset.sdiff_union_of_subset h]
 
+/--
+@isnad1 id=le.1h3v.s5.83c6f4a8c337 from=translated src=- shape=2074125d vocab=69a0d91a
+-/
 lemma cubeToNat_le_of_subset {N} {U S : Cube N} (h : U ⊆ S) :
     cubeToNat U ≤ cubeToNat S := by
   have := cubeToNat_sdiff_add h; omega
 
 /-- Cardinality of a block replacement `(S \ U) ∪ V` when `U ⊆ S` and `V` is
-disjoint from `S`. -/
+disjoint from `S`.
+@isnad1 id=eq.2h4v.s6.46430b0bc20c from=translated src=- shape=951e49da vocab=4281536c
+-/
 lemma blockReplace_card {N} {U V S : Cube N} (hUS : U ⊆ S) (hVS : Disjoint V S) :
     (blockReplace U V S).card = S.card - U.card + V.card := by
   unfold blockReplace
   rw [Finset.card_union_of_disjoint (Disjoint.disjoint_sdiff_left (Disjoint.symm hVS)),
     Finset.card_sdiff_of_subset hUS]
 
-/-- Binary value of a block replacement. -/
+/-- Binary value of a block replacement.
+@isnad1 id=eq.2h4v.s6.33c29a789134 from=translated src=- shape=04d125ca vocab=5441fde6
+-/
 lemma cubeToNat_blockReplace {N} {U V S : Cube N} (hUS : U ⊆ S) (hVS : Disjoint V S) :
     cubeToNat (blockReplace U V S) = cubeToNat S - cubeToNat U + cubeToNat V := by
   unfold blockReplace
@@ -658,7 +731,9 @@ lemma cubeToNat_blockReplace {N} {U V S : Cube N} (hUS : U ⊆ S) (hVS : Disjoin
 
 /-- **Level block move descent.**  Replacing block `U ⊆ S` by a strictly smaller
 block `V` (disjoint from `S`, `V.card < U.card`) yields a simplicially smaller set
-(lower Hamming weight comes first in the simplicial order). -/
+(lower Hamming weight comes first in the simplicial order).
+@isnad1 id=simplici.3h4v.s5.a0d67dcf094f from=translated src=- shape=2167f4c6 vocab=15126289
+-/
 lemma blockReplace_simplicialLt_level {N} {U V S : Cube N}
     (hUS : U ⊆ S) (hVS : Disjoint V S) (hcard : V.card < U.card) :
     simplicialLt (blockReplace U V S) S := by
@@ -670,7 +745,9 @@ lemma blockReplace_simplicialLt_level {N} {U V S : Cube N}
 
 /-- **Colex block move descent.**  Replacing block `U ⊆ S` by an equal-size block `V`
 (disjoint from `S`) that is simplicially below `U` yields a simplicially smaller set:
-equal weight, but a strictly larger binary value because `cubeToNat U < cubeToNat V`. -/
+equal weight, but a strictly larger binary value because `cubeToNat U < cubeToNat V`.
+@isnad1 id=simplici.4h4v.s5.ae17af5d23ab from=translated src=- shape=32c85f40 vocab=4b9c8e02
+-/
 lemma blockReplace_simplicialLt_colex {N} {U V S : Cube N}
     (hUS : U ⊆ S) (hVS : Disjoint V S) (hcard : U.card = V.card)
     (hVU : simplicialLt V U) :
@@ -695,7 +772,9 @@ lemma blockReplace_simplicialLt_colex {N} {U V S : Cube N}
 
 /-- **Block-move potential descent (general).**  If every replaced set drops in the
 simplicial order, then a nontrivial `familyUp U V` move (`familyUp U V A ≠ A`) strictly
-decreases the rank potential `compressionPotential = ∑ rank`. -/
+decreases the rank potential `compressionPotential = ∑ rank`.
+@isnad1 id=lt.2h4v.s6.0b6caf083383 from=translated src=- shape=74da4b8a vocab=11a531dc
+-/
 lemma familyUp_potential_lt_of_blockLt {N : ℕ} {U V : Cube N} {A : Finset (Cube N)}
     (hne : familyUp U V A ≠ A)
     (hlt : ∀ S, U ⊆ S → Disjoint V S → simplicialLt (blockReplace U V S) S) :
@@ -746,7 +825,9 @@ def IsUVAdmissibleForFamily {N : ℕ} (A : Finset (Cube N)) (U V : Cube N) : Pro
 single-element compression `UV.compress V U` agrees with the project's block
 replacement: it is `blockReplace U V S = (S \ U) ∪ V` exactly when `U ⊆ S` and `V`
 is disjoint from `S`, and the identity otherwise.  (Disjointness of `U`, `V` is
-what makes `(S ∪ V) \ U = (S \ U) ∪ V`.) -/
+what makes `(S ∪ V) \ U = (S \ U) ∪ V`.)
+@isnad1 id=eq.1h4v.s7.03d0db99c126 from=translated src=- shape=905ddad7 vocab=83633565
+-/
 lemma compress_VU_eq_blockReplace {N : ℕ} {U V : Cube N} (hd : Disjoint U V) (S : Cube N) :
     UV.compress V U S = (if U ⊆ S ∧ Disjoint V S then blockReplace U V S else S) := by
   unfold UV.compress blockReplace
@@ -761,7 +842,9 @@ project's family `𝒰`-move is literally mathlib's `UV`-compression with the sl
 swapped: `familyUp U V A = UV.compression V U A`.  Proved set-theoretically from
 `compress_VU_eq_blockReplace`, identifying the image form (`familyUpMap`, which
 keeps a set fixed when its replacement already lies in `A`) with mathlib's
-"stay / move" split (`UV.mem_compression`). -/
+"stay / move" split (`UV.mem_compression`).
+@isnad1 id=eq.1h4v.s6.e3f15a18b475 from=translated src=- shape=54b73af1 vocab=0bb5f1e1
+-/
 lemma familyUp_eq_UV_compression {N : ℕ} (A : Finset (Cube N)) {U V : Cube N}
     (hd : Disjoint U V) :
     familyUp U V A = UV.compression V U A := by
@@ -804,7 +887,9 @@ lemma familyUp_eq_UV_compression {N : ℕ} (A : Finset (Cube N)) {U V : Cube N}
 /-- **Block move does not increase the shadow** (Frankl–Füredi / Kruskal–Katona).
 For disjoint admissible blocks the `𝒰`-move's shadow is no larger than the
 original's.  This is the mathlib UV-compression shadow bound
-`Finset.UV.card_shadow_compression_le` transported across the block dictionary. -/
+`Finset.UV.card_shadow_compression_le` transported across the block dictionary.
+@isnad1 id=le.2h4v.s5.0d46eab6b97d from=translated src=- shape=0b6d817a vocab=6cf6f776
+-/
 lemma familyUp_shadow_card_le_of_admissible {N : ℕ} {A : Finset (Cube N)} {U V : Cube N}
     (hd : Disjoint U V) (hUV : IsUVAdmissibleForFamily A U V) :
     (familyUp U V A).shadow.card ≤ A.shadow.card := by
@@ -822,7 +907,9 @@ lemma familyUp_shadow_card_le_of_admissible {N : ℕ} {A : Finset (Cube N)} {U V
 /-- **Block replacement commutes with vertex complementation.**  For disjoint
 blocks, complementing the result of replacing `U` by `V` is the same as replacing
 `V` by `U` in the complemented set: `(blockReplace U V S)ᶜ = blockReplace V U Sᶜ`.
-This is the cube self-duality that turns the lower shadow into the upper shadow. -/
+This is the cube self-duality that turns the lower shadow into the upper shadow.
+@isnad1 id=eq.1h4v.s5.fee080619293 from=translated src=- shape=8570f8c3 vocab=9484f56a
+-/
 lemma blockReplace_compl {N : ℕ} {U V : Cube N} (hd : Disjoint U V) (S : Cube N) :
     (blockReplace U V S)ᶜ = blockReplace V U Sᶜ := by
   unfold blockReplace
@@ -845,7 +932,9 @@ lemma blockReplace_compl {N : ℕ} {U V : Cube N} (hd : Disjoint U V) (S : Cube 
 /-- The per-set `𝒰`-map intertwines with complementation: applying `familyUpMap U V A`
 then complementing equals complementing then applying the swapped map
 `familyUpMap V U (Aᶜˢ)`.  (The membership guard `∉ A` becomes `∉ Aᶜˢ` under the
-complement bijection.) -/
+complement bijection.)
+@isnad1 id=eq.1h5v.s6.c80d972076b9 from=translated src=- shape=96901777 vocab=29760257
+-/
 lemma familyUpMap_compl {N : ℕ} {U V : Cube N} (hd : Disjoint U V)
     (A : Finset (Cube N)) (S : Cube N) :
     (familyUpMap U V A S)ᶜ = familyUpMap V U (Aᶜˢ) Sᶜ := by
@@ -873,7 +962,9 @@ lemma familyUpMap_compl {N : ℕ} {U V : Cube N} (hd : Disjoint U V)
 /-- **The `𝒰`-move commutes with vertex complementation at family level.**  For
 disjoint blocks, `(familyUp U V A)ᶜˢ = familyUp V U (Aᶜˢ)`.  This is what reduces
 upper-shadow control of a block move to lower-shadow control of the dual block
-move on the complemented family. -/
+move on the complemented family.
+@isnad1 id=eq.1h4v.s5.6c0fa5cf18ef from=translated src=- shape=d3e07125 vocab=714508c6
+-/
 lemma familyUp_compls {N : ℕ} {U V : Cube N} (hd : Disjoint U V) (A : Finset (Cube N)) :
     (familyUp U V A)ᶜˢ = familyUp V U (Aᶜˢ) := by
   have hL : (familyUp U V A)ᶜˢ = A.image (fun S => (familyUpMap U V A S)ᶜ) := by
@@ -889,7 +980,9 @@ lemma familyUp_compls {N : ℕ} {U V : Cube N} (hd : Disjoint U V) (A : Finset (
 complemented image is bounded by that of `Aᶜˢ`.  Needs the *dual* admissibility
 `IsUVAdmissibleForFamily (Aᶜˢ) V U` of the complemented family for the swapped
 blocks — admissibility of the lower-shadow move alone does **not** control the
-upper shadow (a finite counterexample exists already at `N = 3`). -/
+upper shadow (a finite counterexample exists already at `N = 3`).
+@isnad1 id=le.2h4v.s6.ba489118b11e from=translated src=- shape=19772b38 vocab=c1b4e682
+-/
 lemma familyUp_upperShadow_card_le_of_admissible {N : ℕ} {A : Finset (Cube N)} {U V : Cube N}
     (hd : Disjoint U V) (hUV' : IsUVAdmissibleForFamily (Aᶜˢ) V U) :
     ((familyUp U V A)ᶜˢ).shadow.card ≤ (Aᶜˢ).shadow.card := by
@@ -904,7 +997,9 @@ one-element superset (upper shadow `∂⁺A`).  This is the structural dictionar
 bridging the project's metric `neighborhood 1` to mathlib's `Finset.shadow` /
 `Finset.upShadow`, so the closed-neighborhood leaf below can be analysed with the
 standard set-family shadow operators (and the already-proved UV shadow bounds).
-Sorry-free. -/
+Sorry-free.
+@isnad1 id=eq.0h2v.s6.328e106d9494 from=translated src=- shape=474c4159 vocab=c148aac1
+-/
 lemma neighborhood_one_eq_self_union_shadow_upShadow {N : ℕ} (A : Finset (Cube N)) :
     neighborhood 1 A = A ∪ Finset.shadow A ∪ Finset.upShadow A := by
   ext v
@@ -967,6 +1062,9 @@ lemma neighborhood_one_eq_self_union_shadow_upShadow {N : ℕ} (A : Finset (Cube
       have : hDist s v = 1 := by unfold hDist; rw [hss]; exact hcard
       omega
 
+/--
+@isnad1 id=eq.0h2v.s5.cf38c79cad53 from=translated src=- shape=8f0e0168 vocab=219afa05
+-/
 lemma card_eq_sum_card_filter_layer {N : ℕ} (A : Finset (Cube N)) :
     A.card = ∑ k ∈ Finset.range (N + 1), (A.filter (fun x => x.card = k)).card := by
   have H : Set.MapsTo (fun (x : Cube N) => x.card) ↑A ↑(Finset.range (N + 1)) := by
@@ -979,7 +1077,9 @@ lemma card_eq_sum_card_filter_layer {N : ℕ} (A : Finset (Cube N)) :
 
 /-- Lower-shadow membership in a fixed output layer only depends on the next
 input layer.  This is the local Hamming-window dictionary used by the
-layer-by-layer closed-neighborhood argument. -/
+layer-by-layer closed-neighborhood argument.
+@isnad1 id=eq.0h3v.s6.a99b549c7723 from=translated src=- shape=51ccf048 vocab=5fb1e10f
+-/
 lemma shadow_filter_layer_eq {N : ℕ} (A : Finset (Cube N)) (k : ℕ) :
     (Finset.shadow A).filter (fun x => x.card = k) =
       (Finset.shadow (A.filter (fun x => x.card = k + 1))).filter
@@ -1008,7 +1108,9 @@ lemma shadow_filter_layer_eq {N : ℕ} (A : Finset (Cube N)) (k : ℕ) :
 
 /-- Upper-shadow membership in a fixed output layer only depends on the previous
 input layer.  The `k = 0` case is empty on the upper-shadow side, and the
-`Nat.pred` formulation keeps the window statement total. -/
+`Nat.pred` formulation keeps the window statement total.
+@isnad1 id=eq.0h3v.s7.8061627cf9b6 from=translated src=- shape=51ccf048 vocab=c93d0463
+-/
 lemma upShadow_filter_layer_eq {N : ℕ} (A : Finset (Cube N)) (k : ℕ) :
     (Finset.upShadow A).filter (fun x => x.card = k) =
       (Finset.upShadow (A.filter (fun x => x.card = k - 1))).filter
@@ -1035,6 +1137,9 @@ lemma upShadow_filter_layer_eq {N : ℕ} (A : Finset (Cube N)) (k : ℕ) :
     rcases hxup with ⟨s, hsA, hsx, hsdiff⟩
     exact ⟨⟨s, (Finset.mem_filter.mp hsA).1, hsx, hsdiff⟩, hxcard⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.c924c36d5d0b from=translated src=- shape=da5256d5 vocab=767b3df2
+-/
 lemma neighborhood_one_filter_layer_eq_self_shadow_upShadow {N : ℕ}
     (A : Finset (Cube N)) (k : ℕ) :
     (neighborhood 1 A).filter (fun x => x.card = k) =
@@ -1058,6 +1163,9 @@ lemma neighborhood_one_filter_layer_eq_self_shadow_upShadow {N : ℕ}
   simp only [Finset.mem_filter, Finset.mem_union]
   tauto
 
+/--
+@isnad1 id=le.2h5v.s6.76ea10e40d45 from=translated src=- shape=df170fec vocab=f74c4ce9
+-/
 lemma familyUp_subset_familyUp {N : ℕ} {U V : Cube N} (hd : Disjoint U V)
     {A B : Finset (Cube N)} (hsub : A ⊆ B) :
     familyUp U V A ⊆ familyUp U V B := by
@@ -1073,6 +1181,9 @@ lemma familyUp_subset_familyUp {N : ℕ} {U V : Cube N} (hd : Disjoint U V)
       rwa [H]
     · exact Or.inr ⟨hxB, y, hsub hyA, hcomp⟩
 
+/--
+@isnad1 id=le.2h4v.s6.1dd4ecceb9a3 from=translated src=- shape=f67c0b73 vocab=8e058e25
+-/
 lemma familyUp_shadow_subset {N : ℕ} {A : Finset (Cube N)} {U V : Cube N}
     (hd : Disjoint U V) (hUV : IsUVAdmissibleForFamily A U V) :
     shadow (familyUp U V A) ⊆ familyUp U V (shadow A) := by
@@ -1086,6 +1197,9 @@ lemma familyUp_shadow_subset {N : ℕ} {A : Finset (Cube N)} {U V : Cube N}
   rw [← familyUp_eq_UV_compression A hde]
   exact hcomp
 
+/--
+@isnad1 id=le.2h4v.s6.5fd02c739a77 from=translated src=- shape=76b081b2 vocab=b3a6335d
+-/
 lemma familyUp_upShadow_subset {N : ℕ} {A : Finset (Cube N)} {U V : Cube N}
     (hd : Disjoint U V) (hUV' : IsUVAdmissibleForFamily (Aᶜˢ) V U) :
     upShadow (familyUp U V A) ⊆ familyUp U V (upShadow A) := by
@@ -1102,7 +1216,9 @@ lemma familyUp_upShadow_subset {N : ℕ} {A : Finset (Cube N)} {U V : Cube N}
 If a block move is doubly admissible for `A`, the neighborhood of the compressed
 family is a subset of the compression of the neighborhood. This avoids layer-by-layer
 bounds which are false when `|V| < |U|`, instead providing a global inclusion that
-preserves cardinality. -/
+preserves cardinality.
+@isnad1 id=le.3h4v.s6.f74b48ce0cac from=translated src=- shape=26744182 vocab=4d60f4c3
+-/
 lemma neighborhood_one_subset_familyUp_neighborhood_of_admissible {N : ℕ}
     {A : Finset (Cube N)} {U V : Cube N}
     (hd : Disjoint U V)
@@ -1143,7 +1259,9 @@ disjoint block `𝒰`-move that is admissible in *both* directions (primal
 increase the closed unit neighborhood `neighborhood 1 A`.
 
 It is proved via the global inclusion `neighborhood_one_subset_familyUp_neighborhood_of_admissible`,
-avoiding false layer-by-layer bounds for moves where `|V| < |U|`. -/
+avoiding false layer-by-layer bounds for moves where `|V| < |U|`.
+@isnad1 id=le.3h4v.s6.b4f43d5544d9 from=translated src=- shape=c84bb4e1 vocab=f509c196
+-/
 lemma neighborhood_one_card_le_for_admissible_block {N : ℕ}
     {A : Finset (Cube N)} {U V : Cube N}
     (hd : Disjoint U V)
@@ -1155,12 +1273,18 @@ lemma neighborhood_one_card_le_for_admissible_block {N : ℕ}
   rw [familyUp_card U V (neighborhood 1 A)] at h_le
   exact h_le
 
+/--
+@isnad1 id=eq.1h5v.s5.929808e96c4d from=translated src=- shape=4f4a3585 vocab=5f6bbf48
+-/
 theorem paperColexBlockMove_card {N : ℕ} {A A' : Finset (Cube N)} {i j : Fin N}
     (h : IsPaperColexBlockMove A A' i j) : A'.card = A.card := by
   have heq := h.1
   subst heq
   exact familyUp_card {i} {j} A
 
+/--
+@isnad1 id=le.1h5v.s5.2ec66f90e109 from=translated src=- shape=e5fed437 vocab=af2da7c6
+-/
 theorem paperColexBlockMove_neighborhood_card_le {N : ℕ} {A A' : Finset (Cube N)} {i j : Fin N}
     (h : IsPaperColexBlockMove A A' i j) : (neighborhood 1 A').card ≤ (neighborhood 1 A).card := by
   have h_adm : IsUVAdmissibleForFamily A {i} {j} := by
@@ -1192,6 +1316,9 @@ theorem paperColexBlockMove_neighborhood_card_le {N : ℕ} {A A' : Finset (Cube 
   subst heq
   exact neighborhood_one_card_le_for_admissible_block hdisj h_adm h_adm_c
 
+/--
+@isnad1 id=lt.1h5v.s5.4e07e164ca00 from=translated src=- shape=e4759f3d vocab=38c8db23
+-/
 theorem paperColexBlockMove_potential_lt {N : ℕ} {A A' : Finset (Cube N)} {i j : Fin N}
     (h : IsPaperColexBlockMove A A' i j) : compressionPotential A' < compressionPotential A := by
   have heq := h.1
@@ -1211,6 +1338,9 @@ theorem paperColexBlockMove_potential_lt {N : ℕ} {A A' : Finset (Cube N)} {i j
     rintro (H | ⟨_, H⟩) <;> omega
   exact blockReplace_simplicialLt_colex hsub hdisj hcard hlt_simp
 
+/--
+@isnad1 id=isdownfi.3h5v.s5.8994800fa73b from=translated src=- shape=7322fd9f vocab=d9685cdb
+-/
 theorem paperColexBlockMove_isResidualShift {N : ℕ} {A A' : Finset (Cube N)} {i j : Fin N}
     (h : IsPaperColexBlockMove A A' i j)
     (_hdown : IsCoordinateDownFixed A)
@@ -1218,6 +1348,9 @@ theorem paperColexBlockMove_isResidualShift {N : ℕ} {A A' : Finset (Cube N)} {
   ⟨paperColexBlockMove_card h, paperColexBlockMove_neighborhood_card_le h,
     paperColexBlockMove_potential_lt h⟩
 
+/--
+@isnad1 id=eq.1h3v.s4.315729610026 from=translated src=- shape=21ce80d9 vocab=319ac47c
+-/
 theorem paperColexShiftMove_card {N : ℕ} {A A' : Finset (Cube N)}
     (h : IsPaperColexShiftMove A A') : A'.card = A.card := by
   rcases h with h_colex | ⟨i, j, h_block⟩
@@ -1227,7 +1360,9 @@ theorem paperColexShiftMove_card {N : ℕ} {A A' : Finset (Cube N)}
 /-- Rank-potential strict descent for a pure within-layer colex move.  This is a
 genuine dictionary consequence of the move (`swap_potential_lt` for a single
 colex swap, `paperColexBlockMove_potential_lt` for a block move) — no boundary or
-KK input. -/
+KK input.
+@isnad1 id=lt.1h3v.s4.56fc95c7e3d4 from=translated src=- shape=532108ce vocab=2c6657c7
+-/
 theorem paperColexShiftMove_potential_lt {N : ℕ} {A A' : Finset (Cube N)}
     (h : IsPaperColexShiftMove A A') : compressionPotential A' < compressionPotential A := by
   rcases h with h_colex | ⟨i, j, h_block⟩
@@ -1239,18 +1374,26 @@ theorem paperColexShiftMove_potential_lt {N : ℕ} {A A' : Finset (Cube N)}
 separately supplied boundary non-increase `hnbhd`.  The boundary bound is genuine
 selection data (from the KK existence leaf), not a projection off the move
 predicate: `paperColexShiftMove_neighborhood_card_le` no longer exists because it
-is false for arbitrary colex shifts (see the `IsPaperColexShiftMove` docstring). -/
+is false for arbitrary colex shifts (see the `IsPaperColexShiftMove` docstring).
+@isnad1 id=isdownfi.2h3v.s5.35952cfc01ca from=translated src=- shape=8296da07 vocab=4b8e906b
+-/
 theorem paperColexShiftMove_isResidualShift {N : ℕ} {A A' : Finset (Cube N)}
     (h : IsPaperColexShiftMove A A')
     (hnbhd : (neighborhood 1 A').card ≤ (neighborhood 1 A).card) :
     IsDownFixedResidualShift A A' :=
   ⟨paperColexShiftMove_card h, hnbhd, paperColexShiftMove_potential_lt h⟩
 
+/--
+@isnad1 id=eq.1h5v.s5.7877f697f292 from=translated src=- shape=3147296f vocab=75e1deb4
+-/
 theorem paperLevelBlockMove_card {N : ℕ} {A A' : Finset (Cube N)} {U V : Cube N}
     (h : IsPaperLevelBlockMove A A' U V) : A'.card = A.card := by
   rw [h.1]
   exact familyUp_card U V A
 
+/--
+@isnad1 id=le.1h5v.s5.57690f2688d7 from=translated src=- shape=7adc4d43 vocab=a28370d8
+-/
 theorem paperLevelBlockMove_neighborhood_card_le {N : ℕ} {A A' : Finset (Cube N)} {U V : Cube N}
     (h : IsPaperLevelBlockMove A A' U V) : (neighborhood 1 A').card ≤ (neighborhood 1 A).card := by
   have hd : Disjoint U V := h.2.2.1
@@ -1259,6 +1402,9 @@ theorem paperLevelBlockMove_neighborhood_card_le {N : ℕ} {A A' : Finset (Cube 
   rw [h.1]
   exact neighborhood_one_card_le_for_admissible_block hd hadm hadm'
 
+/--
+@isnad1 id=lt.1h5v.s5.6200bdcb1abd from=translated src=- shape=76dc8ea9 vocab=19c62f9a
+-/
 theorem paperLevelBlockMove_potential_lt {N : ℕ} {A A' : Finset (Cube N)} {U V : Cube N}
     (h : IsPaperLevelBlockMove A A' U V) : compressionPotential A' < compressionPotential A := by
   obtain ⟨heq, hne, _hd, hcard, _, _⟩ := h
@@ -1267,6 +1413,9 @@ theorem paperLevelBlockMove_potential_lt {N : ℕ} {A A' : Finset (Cube N)} {U V
   intro S hUS hVS
   exact blockReplace_simplicialLt_level hUS hVS hcard
 
+/--
+@isnad1 id=isdownfi.1h3v.s4.f20290078ed1 from=translated src=- shape=73466102 vocab=7e629698
+-/
 lemma paperResidualStep_isResidualShift {N : ℕ} {A A' : Finset (Cube N)}
     (h : IsPaperResidualStep A A') : IsDownFixedResidualShift A A' := by
   cases h with
@@ -1276,6 +1425,9 @@ lemma paperResidualStep_isResidualShift {N : ℕ} {A A' : Finset (Cube N)}
       exact ⟨paperLevelBlockMove_card hmove, paperLevelBlockMove_neighborhood_card_le hmove,
         paperLevelBlockMove_potential_lt hmove⟩
 
+/--
+@isnad1 id=isdownfi.1h3v.s4.6dde0d7fa56e from=translated src=- shape=73466102 vocab=b9d781d3
+-/
 lemma paperResidualSequence_isResidualShift {N : ℕ} {A A' : Finset (Cube N)}
     (h : IsPaperResidualSequence A A') : IsDownFixedResidualShift A A' := by
   induction h with
@@ -1288,7 +1440,9 @@ lemma paperResidualSequence_isResidualShift {N : ℕ} {A A' : Finset (Cube N)}
 
 /-- A coordinate-Down-fixed family is closed under deleting any present
 coordinate: if `x ∈ A` and `i ∈ x` then `x.erase i ∈ A`.  This is the forward
-direction of the `IsCoordinateDown i A A` fixed-point characterization. -/
+direction of the `IsCoordinateDown i A A` fixed-point characterization.
+@isnad1 id=mem.3h4v.s6.a66a202ecce5 from=translated src=- shape=e3b4e341 vocab=57a273fd
+-/
 lemma downFixed_erase_mem {N : ℕ} {A : Finset (Cube N)}
     (hdown : IsCoordinateDownFixed A) {x : Cube N} (hx : x ∈ A) {i : Fin N} (hi : i ∈ x) :
     x.erase i ∈ A := by
@@ -1302,7 +1456,9 @@ lemma downFixed_erase_mem {N : ℕ} {A : Finset (Cube N)}
   · exact absurd hi hi'
 
 /-- Iterating `downFixed_erase_mem`: a coordinate-Down-fixed family is closed
-under removing any sub-block `W ⊆ S`. -/
+under removing any sub-block `W ⊆ S`.
+@isnad1 id=mem.3h4v.s6.98ad8c9e4ce2 from=translated src=- shape=57259aa9 vocab=f4a9c7bd
+-/
 lemma downFixed_sdiff_mem {N : ℕ} {A : Finset (Cube N)}
     (hdown : IsCoordinateDownFixed A) {S W : Cube N} (hS : S ∈ A) (hWS : W ⊆ S) :
     S \ W ∈ A := by
@@ -1327,7 +1483,9 @@ lemma downFixed_sdiff_mem {N : ℕ} {A : Finset (Cube N)}
 /-- The `familyUp W ∅` move is trivial on a coordinate-Down-fixed family: removing
 a block from any of its sets stays inside the (down-closed) family, so no set is
 actually moved.  This is one of the two admissibility ingredients of a paper
-level block move whose `V` is a single coordinate. -/
+level block move whose `V` is a single coordinate.
+@isnad1 id=eq.1h3v.s4.11f7da4e7786 from=translated src=- shape=32faaf90 vocab=aba0ec8f
+-/
 lemma downFixed_familyUp_erase_eq {N : ℕ} {A : Finset (Cube N)}
     (hdown : IsCoordinateDownFixed A) (W : Cube N) :
     familyUp W ∅ A = A := by
@@ -1347,7 +1505,9 @@ lemma downFixed_familyUp_erase_eq {N : ℕ} {A : Finset (Cube N)}
 
 /-- Dual admissibility ingredient: `familyUp ∅ W` is trivial on the complemented
 family `Aᶜˢ` of a coordinate-Down-fixed `A`.  Follows from
-`downFixed_familyUp_erase_eq` through the complement dictionary `familyUp_compls`. -/
+`downFixed_familyUp_erase_eq` through the complement dictionary `familyUp_compls`.
+@isnad1 id=eq.1h3v.s5.58527fbe7dc2 from=translated src=- shape=9fcfed27 vocab=05d49767
+-/
 lemma downFixed_familyUp_add_compls_eq {N : ℕ} {A : Finset (Cube N)}
     (hdown : IsCoordinateDownFixed A) (W : Cube N) :
     familyUp ∅ W (Aᶜˢ) = Aᶜˢ := by
@@ -1369,7 +1529,9 @@ This is the genuine combinatorial core (a strictly smaller terminalization
 lemma): the admissibility of the resulting move is automatic from down-fixedness
 (`downFixed_familyUp_erase_eq`, `downFixed_familyUp_add_compls_eq`), so only this
 pure existence statement remains.  It is finite-checked NO_COUNTEREXAMPLE for
-`N ≤ 4` by `verify_paperBlock_existence_small.py` (clean-form column). -/
+`N ≤ 4` by `verify_paperBlock_existence_small.py` (clean-form column).
+@isnad1 id=mem.3h4v.s6.903ea873c6ec from=translated src=- shape=e2ef6df0 vocab=14af29e0
+-/
 lemma downFixed_downClosed {N : ℕ} {A : Finset (Cube N)}
     (hdown : IsCoordinateDownFixed A) {R S : Cube N} (hS : S ∈ A) (hRS : R ⊆ S) :
     R ∈ A := by
@@ -1382,7 +1544,9 @@ lemma downFixed_downClosed {N : ℕ} {A : Finset (Cube N)}
     · intro haR; exact ⟨hRS haR, fun h2 => h2.2 haR⟩
   rwa [hrw] at h
 
-/-- Direct witness form of lower-level-saturation failure. -/
+/-- Direct witness form of lower-level-saturation failure.
+@isnad1 id=ex.1h2v.s6.7e4e922fab21 from=translated src=- shape=9d5b89fc vocab=12d21d74
+-/
 lemma not_lowerLevelSaturated_exists_witness {N : ℕ} {A : Finset (Cube N)}
     (h : ¬ IsLowerLevelSaturated A) :
     ∃ (T S : Cube N), T ∉ A ∧ S ∈ A ∧ T.card < S.card := by
@@ -1393,7 +1557,9 @@ lemma not_lowerLevelSaturated_exists_witness {N : ℕ} {A : Finset (Cube N)}
   exact ⟨T, S, hT, hS, hcard⟩
 
 /-- The block replacement associated to an absent lower vertex `T` and a present
-larger vertex `S`: remove `S \ T` and insert `T \ S`. -/
+larger vertex `S`: remove `S \ T` and insert `T \ S`.
+@isnad1 id=eq.0h3v.s5.ec2e0cb1e973 from=translated src=- shape=fd5fbd7c vocab=0029615f
+-/
 lemma blockReplace_sdiff_sdiff_eq_right {N : ℕ} (S T : Cube N) :
     blockReplace (S \ T) (T \ S) S = T := by
   unfold blockReplace
@@ -1411,7 +1577,9 @@ lemma blockReplace_sdiff_sdiff_eq_right {N : ℕ} (S T : Cube N) :
 
 /-- Cardinality comparison for the block replacement associated to
 `T.card < S.card`: the inserted block `T \ S` is strictly smaller than the
-removed block `S \ T`. -/
+removed block `S \ T`.
+@isnad1 id=lt.1h3v.s5.234a0918332b from=translated src=- shape=b655b190 vocab=2a44a1d5
+-/
 lemma sdiff_card_lt_sdiff_card_of_card_lt {N : ℕ} {S T : Cube N}
     (hcard : T.card < S.card) : (T \ S).card < (S \ T).card := by
   have hTsplit : (T ∩ S).card + (T \ S).card = T.card :=
@@ -1434,7 +1602,9 @@ It does **not** by itself give an admissible block: the finite checker
 extremal pair is jointly admissible, so the eventual proof of
 `downFixed_not_lowerSat_exists_admissibleBlock` must still select *which* extremal
 pair works.  But every candidate produced here is a genuine minimal-absent /
-max-present witness, exactly the objects the paper move ranges over. -/
+max-present witness, exactly the objects the paper move ranges over.
+@isnad1 id=ex.1h2v.s7.328f7cf5f854 from=translated src=- shape=de364b0c vocab=6f2d5979
+-/
 lemma not_lowerSat_exists_minimalAbsent_maxPresent {N : ℕ} {A : Finset (Cube N)}
     (h : ¬ IsLowerLevelSaturated A) :
     ∃ (T S : Cube N), T ∉ A ∧ (∀ R : Cube N, R ⊂ T → R ∈ A) ∧
@@ -1484,7 +1654,9 @@ nonempty frontier of extremal pairs); the admissibility consequence for the
 selected pair is the remaining research content of
 `downFixed_not_lowerSat_exists_admissibleBlock`.  This upgrades the previously
 external min-`|S △ T|` finite evidence to an in-Lean theorem, giving the exact
-selected objects the paper move ranges over. -/
+selected objects the paper move ranges over.
+@isnad1 id=ex.1h2v.s7.a1366d741ffb from=translated src=- shape=d48ccf08 vocab=3939c512
+-/
 lemma not_lowerSat_exists_minDelta_pair {N : ℕ} {A : Finset (Cube N)}
     (h : ¬ IsLowerLevelSaturated A) :
     ∃ (T S : Cube N), T ∉ A ∧ S ∈ A ∧ T.card < S.card ∧
@@ -1517,7 +1689,9 @@ is actually moved: for every `R ∈ A` with `W₁ ⊆ R` and `W₂` disjoint fro
 block replacement `blockReplace W₁ W₂ R = (R \ W₁) ∪ W₂` already lies in `A`.  This
 is a pure image/injectivity dictionary fact about `familyUp = A.image (familyUpMap …)`
 and the definitional guard of `familyUpMap`; it carries no combinatorial content and
-is reused by both directional admissibility leaves. -/
+is reused by both directional admissibility leaves.
+@isnad1 id=iff.0h4v.s6.1b3a3de97418 from=translated src=- shape=9989469b vocab=7c71df36
+-/
 lemma familyUp_eq_self_iff {N : ℕ} (W₁ W₂ : Cube N) (A : Finset (Cube N)) :
     familyUp W₁ W₂ A = A ↔
       ∀ R ∈ A, W₁ ⊆ R → Disjoint W₂ R → blockReplace W₁ W₂ R ∈ A := by
@@ -1609,7 +1783,9 @@ inserted block `T \ S` some coordinate `y` of the removed block `S \ T` can be
 spared so that the trimmed level-block move `familyUp ((S\T).erase y)
 ((T\S).erase x) A` fixes `A` setwise.  Proved (or to be proved) via the trivial-move
 characterization `familyUp_eq_self_iff` and a contradiction against the
-symmetric-difference minimality `hmin`. -/
+symmetric-difference minimality `hmin`.
+@isnad1 id=ex.6h5v.s8.bf7b6757ee5e from=translated src=- shape=2a083ea7 vocab=bf0f4c71
+-/
 lemma minDelta_pair_admissible_primal {N : ℕ} {A : Finset (Cube N)}
     {T S : Cube N}
     (_ : IsCoordinateDownFixed A)
@@ -1695,6 +1871,9 @@ lemma minDelta_pair_admissible_primal {N : ℕ} {A : Finset (Cube N)}
     rw [h1]
   omega
 
+/--
+@isnad1 id=ex.6h5v.s8.e935e4b65a78 from=translated src=- shape=bcb24b78 vocab=bf0f4c71
+-/
 lemma minDelta_pair_admissible_dual_A {N : ℕ} {A : Finset (Cube N)}
     {T S : Cube N}
     (hdown : IsCoordinateDownFixed A)
@@ -1779,6 +1958,9 @@ lemma minDelta_pair_admissible_dual_A {N : ℕ} {A : Finset (Cube N)}
     rw [h1]
   omega
 
+/--
+@isnad1 id=ex.6h5v.s8.35c608240093 from=translated src=- shape=ead5fe5b vocab=fe829298
+-/
 lemma minDelta_pair_admissible_dual {N : ℕ} {A : Finset (Cube N)}
     {T S : Cube N}
     (hdown : IsCoordinateDownFixed A)
@@ -1798,6 +1980,9 @@ lemma minDelta_pair_admissible_dual {N : ℕ} {A : Finset (Cube N)}
   rw [hAeq] at hbridge
   exact hbridge.symm
 
+/--
+@isnad1 id=and.5h4v.s8.6abaea979dd4 from=translated src=- shape=1e985be4 vocab=fe829298
+-/
 lemma minDelta_pair_admissible {N : ℕ} {A : Finset (Cube N)} {T S : Cube N}
     (hdown : IsCoordinateDownFixed A)
     (hT : T ∉ A)
@@ -1810,6 +1995,9 @@ lemma minDelta_pair_admissible {N : ℕ} {A : Finset (Cube N)} {T S : Cube N}
   ⟨minDelta_pair_admissible_primal hdown hT hS hcard hmin,
    minDelta_pair_admissible_dual hdown hT hS hcard hmin⟩
 
+/--
+@isnad1 id=ex.2h2v.s8.42438c8e58eb from=translated src=- shape=0b247a94 vocab=0c52363d
+-/
 lemma downFixed_not_lowerSat_exists_admissibleBlock {N : ℕ} {A : Finset (Cube N)}
     (hdown : IsCoordinateDownFixed A) (h : ¬ IsLowerLevelSaturated A) :
     ∃ (T S : Cube N), T ∉ A ∧ S ∈ A ∧ T.card < S.card ∧
@@ -1832,7 +2020,9 @@ U.card`.
 This leaf is the remaining local terminalization content: from a coordinate
 Down-fixed, non-lower-saturated family, select an admissible Frankl-Furedi level
 block move.  It is intentionally a pure move statement; boundary monotonicity is
-still proved from `IsPaperLevelBlockMove`, not bundled into the predicate. -/
+still proved from `IsPaperLevelBlockMove`, not bundled into the predicate.
+@isnad1 id=ex.2h2v.s5.a7b159fa332c from=translated src=- shape=2589d5e2 vocab=da02861f
+-/
 lemma downFixed_not_lowerSat_exists_levelBlock {N : ℕ} {A : Finset (Cube N)}
     (hdown : IsCoordinateDownFixed A) (h : ¬ IsLowerLevelSaturated A) :
     ∃ U V, IsPaperLevelBlockMove A (familyUp U V A) U V := by
@@ -1861,6 +2051,9 @@ lemma downFixed_not_lowerSat_exists_levelBlock {N : ℕ} {A : Finset (Cube N)}
   rw [heq] at hT_in
   exact hT hT_in
 
+/--
+@isnad1 id=ex.2h2v.s5.86fec160a803 from=translated src=- shape=31b3bbe9 vocab=263d689a
+-/
 theorem not_lowerLevelSaturated_exists_paperLevelBlock
     {N : ℕ} (A : Finset (Cube N))
     (hdown : IsCoordinateDownFixed A)
@@ -1873,7 +2066,9 @@ theorem not_lowerLevelSaturated_exists_paperLevelBlock
 both concentrated in layers `≤ r` and both contain every set of card `< r`, then
 comparing their unit neighborhoods reduces to comparing their layer-`(r+1)` upper
 shadows.  (This is the swap-free generalization of the body of the old
-`neighborhood_card_le_of_upperLayerShadow_le_of_colexShift`.) -/
+`neighborhood_card_le_of_upperLayerShadow_le_of_colexShift`.)
+@isnad1 id=le.6h4v.s7.ea461db2b8ea from=translated src=- shape=3e2c7173 vocab=8707afb9
+-/
 lemma neighborhood_card_le_of_layers_upperShadow_le {N r : ℕ}
     {A A' : Finset (Cube N)} (hr : 1 ≤ r)
     (hA_le : ∀ w ∈ A, w.card ≤ r) (hA'_le : ∀ w ∈ A', w.card ≤ r)
@@ -1956,18 +2151,24 @@ lemma neighborhood_card_le_of_layers_upperShadow_le {N r : ℕ}
 /-- **Slice-reduction dictionary lemma.**  The upper layer shadow at layer `r`
 depends only on the card-`r` slice of the family, because a card-`(r+1)` set lies
 in `upShadow B` iff it contains some card-`r` member of `B`.  This is a direct
-specialization of `upShadow_filter_layer_eq` at `k = r + 1`. -/
+specialization of `upShadow_filter_layer_eq` at `k = r + 1`.
+@isnad1 id=eq.0h3v.s5.b5122d36f238 from=translated src=- shape=26acfe21 vocab=75f7b8e3
+-/
 lemma upperLayerShadow_eq_filter_layer {N r : ℕ} (B : Finset (Cube N)) :
     upperLayerShadow N r B = upperLayerShadow N r (B.filter (fun z => z.card = r)) := by
   unfold upperLayerShadow
   have h := upShadow_filter_layer_eq B (r + 1)
   simpa using h
 
-/-- `simplicialInitSeg N 0 = ∅`. -/
+/-- `simplicialInitSeg N 0 = ∅`.
+@isnad1 id=eq.0h1v.s4.75dbbfb2d6c0 from=translated src=- shape=39aebeb0 vocab=917f9f5f
+-/
 lemma simplicialInitSeg_zero {N : ℕ} : simplicialInitSeg N 0 = ∅ := by
   simp [simplicialInitSeg]
 
-/-- `rank (∅) = 0`. -/
+/-- `rank (∅) = 0`.
+@isnad1 id=eq.0h1v.s4.daaeb9a9efe4 from=translated src=- shape=b53d8fdf vocab=5904db4a
+-/
 lemma rank_empty {N : ℕ} : rank (∅ : Cube N) = 0 := by
   classical
   unfold rank
@@ -1981,7 +2182,9 @@ lemma rank_empty {N : ℕ} : rank (∅ : Cube N) = 0 := by
     subst hy
     exact hnle (Or.inr ⟨rfl, le_rfl⟩)
 
-/-- `simplicialInitSeg N 1 = {∅}`. -/
+/-- `simplicialInitSeg N 1 = {∅}`.
+@isnad1 id=eq.0h1v.s4.558150bc4f97 from=translated src=- shape=e4f7d2ca vocab=0689cafd
+-/
 lemma simplicialInitSeg_one {N : ℕ} : simplicialInitSeg N 1 = {(∅ : Cube N)} := by
   have hmem : (∅ : Cube N) ∈ simplicialInitSeg N 1 := by
     simp only [simplicialInitSeg, Finset.mem_filter, Finset.mem_univ, true_and, rank_empty]
@@ -1998,7 +2201,9 @@ simplicial initial segment of size `A.card` has unit neighborhood no larger than
 `L`; the initial segment shares that ball and carries the *colex-initial* `r`-slice
 `layerInitSeg N r |L|`, whose upper shadow is minimal by the Kruskal–Katona
 theorem `upperLayerShadow_min`.  `neighborhood_card_le_of_layers_upperShadow_le`
-then transfers the layer bound to the full neighborhood. -/
+then transfers the layer bound to the full neighborhood.
+@isnad1 id=le.1h2v.s5.a9e0cf8e2ecb from=translated src=- shape=02917d64 vocab=144d83e1
+-/
 lemma simplicialInitSeg_neighborhood_le_of_lowerSaturated {N : ℕ} {A : Finset (Cube N)}
     (hl : IsLowerLevelSaturated A) :
     (neighborhood 1 (simplicialInitSeg N A.card)).card ≤ (neighborhood 1 A).card := by
@@ -2092,7 +2297,9 @@ lemma simplicialInitSeg_neighborhood_le_of_lowerSaturated {N : ℕ} {A : Finset 
 
 /-- The simplicial initial segment is fully compressed (lower-level saturated and
 colex-shift fixed): it is a rank-downward-closed set, so no colex shift or level
-fill can apply. -/
+fill can apply.
+@isnad1 id=isfullyc.0h2v.s3.949360d32106 from=translated src=- shape=e3ef7f21 vocab=ba2fac94
+-/
 lemma simplicialInitSeg_isFullyCompressed {N m : ℕ} :
     IsFullyCompressed (simplicialInitSeg N m) := by
   constructor
@@ -2114,7 +2321,9 @@ lemma simplicialInitSeg_isFullyCompressed {N m : ℕ} :
 If `A` is not yet both coordinate-Down-fixed and lower-level saturated, one
 coordinate Down-compression or one level-block fill gives a family of the same
 size, no larger neighborhood, and strictly smaller potential.  Both moves are
-sorry-free; no within-layer colex swap is used. -/
+sorry-free; no within-layer colex swap is used.
+@isnad1 id=ex.1h2v.s6.a21059cb407c from=translated src=- shape=eac72d13 vocab=8df3c64e
+-/
 theorem lowerSatDownFixed_descent_step {N : ℕ} (A : Finset (Cube N))
     (h : ¬ (IsCoordinateDownFixed A ∧ IsLowerLevelSaturated A)) :
     ∃ A' : Finset (Cube N), A'.card = A.card ∧
@@ -2138,7 +2347,9 @@ theorem lowerSatDownFixed_descent_step {N : ℕ} (A : Finset (Cube N))
       coordinateDown_potential_lt_of_ne i A hne⟩
 
 /-- Well-founded descent (strong induction on potential) to a lower-saturated,
-Down-fixed family, using only coordinate-Down and level-block moves. -/
+Down-fixed family, using only coordinate-Down and level-block moves.
+@isnad1 id=ex.1h3v.s6.52c326e2e236 from=translated src=- shape=7e52d532 vocab=9e5702b7
+-/
 lemma exists_lowerSatDownFixed_le_aux {N : ℕ} :
     ∀ n (A : Finset (Cube N)), compressionPotential A = n →
       ∃ A₁ : Finset (Cube N), IsCoordinateDownFixed A₁ ∧ IsLowerLevelSaturated A₁ ∧
@@ -2159,7 +2370,9 @@ unit neighborhood is no larger** — now via the honest Kruskal–Katona jump.  
 `A` to a lower-saturated, Down-fixed `A₁` (coordinate-Down + level-block moves,
 sorry-free), then replace `A₁` by the simplicial initial segment of its size; the
 neighborhood does not increase by `simplicialInitSeg_neighborhood_le_of_lowerSaturated`
-(whose crux is the mathlib theorem `Finset.kruskal_katona` via `upperLayerShadow_min`). -/
+(whose crux is the mathlib theorem `Finset.kruskal_katona` via `upperLayerShadow_min`).
+@isnad1 id=ex.0h2v.s5.a3f24c85d6c0 from=translated src=- shape=9968c100 vocab=176d92d3
+-/
 lemma exists_fullyCompressed_le {N : ℕ} (A : Finset (Cube N)) :
     ∃ C : Finset (Cube N), IsFullyCompressed C ∧ C.card = A.card ∧
       (neighborhood 1 C).card ≤ (neighborhood 1 A).card := by
@@ -2186,7 +2399,9 @@ replaced the earlier single-swap colex descent, whose selection leaf
 (`exists_colex_swap_upperLayerShadow_le_of_layerUpShifted`) was **false** —
 up-shifted-but-not-colex-initial layers are stuck under single swaps
 (`verify_colex_singlelayer_false_small.py`), so the Kruskal–Katona jump to the
-whole initial segment is essential. -/
+whole initial segment is essential.
+@isnad1 id=le.0h2v.s5.31b6d20569a3 from=translated src=- shape=5d6f6153 vocab=07dfdf4a
+-/
 theorem simplicialInitSeg_neighborhood_card_min {N : ℕ} (A : Finset (Cube N)) :
     (neighborhood 1 (simplicialInitSeg N A.card)).card ≤ (neighborhood 1 A).card := by
   obtain ⟨C, hC, hCcard, hCnbhd⟩ := exists_fullyCompressed_le A
@@ -2207,7 +2422,9 @@ the inequality then follows term-by-term from single-family vertex isoperimetry
 This is now **sorry-free**: it is a direct consequence of the single-family
 compression result `simplicialInitSeg_neighborhood_card_min`, which in turn rests
 on the Kruskal–Katona jump `exists_fullyCompressed_le` (via `upperLayerShadow_min`
-= mathlib `Finset.kruskal_katona`). -/
+= mathlib `Finset.kruskal_katona`).
+@isnad1 id=le.0h3v.s4.366dc033e83a from=translated src=- shape=e35d3b09 vocab=97c04170
+-/
 theorem compress_to_simplicial_pair {N : ℕ} (A B : Finset (Cube N)) :
     PairShadowCost N (simplicialInitSeg N A.card) (simplicialInitSeg N B.card)
       ≤ PairShadowCost N A B := by
@@ -2228,7 +2445,9 @@ canonical cross-boundary cost `H N p + p` is already at most the arbitrary-split
 functional.  The cascade arithmetic lives upstream in
 `Macaulay.harper_bc_min_q_zero_core` (it depends only on
 `Cube`/`Cascade`/`Macaulay`); this restatement discharges the
-degenerate regime of the Phase-2 leaf below. -/
+degenerate regime of the Phase-2 leaf below.
+@isnad1 id=le.6h4v.s7.0bca67eb31d9 from=translated src=- shape=cba14c8d vocab=3acce346
+-/
 lemma H_exchange_q_zero {N a b p : ℕ}
     (ha : a ≤ 2 ^ N) (hb : b ≤ 2 ^ N) (hp : p ≤ 2 ^ N)
     (hb_le_a : b ≤ a)
@@ -2247,7 +2466,9 @@ This is pure proof engineering, *not* Kruskal–Katona: on initial segments
 neighborhood's per-layer window counts.  Filling the bridge removes the previous
 "definition still missing" hole: `initSegPairLayerWindowCost` is now a real
 layer-window sum, and the only remaining Phase-2 obligation is the genuine
-cross-slice Kruskal–Katona minimization `cascade_layerWindowCost_min` below. -/
+cross-slice Kruskal–Katona minimization `cascade_layerWindowCost_min` below.
+@isnad1 id=eq.2h3v.s6.aa1e2a22f52b from=translated src=- shape=4e711dcf vocab=45ba054e
+-/
 theorem PairShadowCost_initSeg_eq_layerWindowCost
     {N a b : ℕ} (ha : a ≤ 2 ^ N) (hb : b ≤ 2 ^ N) :
     PairShadowCost N (simplicialInitSeg N a) (simplicialInitSeg N b) =
@@ -2317,7 +2538,9 @@ The identification uses only two sorry-free dictionary facts already in
 This turns every cross-slice window into an honest **Macaulay layer window** of a
 single initial segment, so the cascade leaf below is a genuine Kruskal–Katona
 initial-segment comparison rather than a scalar `H` inequality (rule 3).  It
-needs no capacity hypotheses. -/
+needs no capacity hypotheses.
+@isnad1 id=eq.0h4v.s5.9deb46ed5fdf from=translated src=- shape=0ffc60fa vocab=c74891c6
+-/
 lemma PairLayerWindowCost_eq_maxInitSeg (N r a b : ℕ) :
     PairLayerWindowCost N r a b
       = layerWindowRemainder N r (max (H N a) b)
@@ -2337,7 +2560,9 @@ dictionary facts `PairLayerWindowCost_eq_maxInitSeg` (each layer cost is a sum o
 two nested initial-segment layer counts) and `suffix_layerWindowRemainder_eq`
 (the suffix sum of an initial segment's layer counts is `m - binomPrefix N k`).
 It turns the opaque suffix window sum into an explicit truncated-neighborhood
-comparison over the Macaulay layer threshold `binomPrefix N k`. -/
+comparison over the Macaulay layer threshold `binomPrefix N k`.
+@isnad1 id=eq.2h4v.s6.7e74ac1cade6 from=translated src=- shape=2d928490 vocab=ff22854a
+-/
 lemma sum_Ico_PairLayerWindowCost_eq (N a b k : ℕ)
     (ha : a ≤ 2 ^ N) (hb : b ≤ 2 ^ N) :
     ∑ r ∈ Finset.Ico k (N + 2), PairLayerWindowCost N r a b
@@ -2361,7 +2586,9 @@ initial segment of the larger size, and the suffix layer sum of an initial
 segment counts exactly its vertices of cardinality `≥ k`
 (`sum_Ico_layerCount_eq_filter_card_ge`).  It converts the opaque window sum into
 the genuine set-family Hamming upper-tail count on which the dimension recursion
-operates. -/
+operates.
+@isnad1 id=eq.0h4v.s6.81c16f976f04 from=translated src=- shape=0e8da0d8 vocab=dbddeabf
+-/
 lemma sum_Ico_layerWindowRemainder_max_eq (N x y k : ℕ) :
     ∑ r ∈ Finset.Ico k (N + 2), layerWindowRemainder N r (max (H N x) y)
       = ((neighborhood 1 (simplicialInitSeg N x) ∪ simplicialInitSeg N y).filter
@@ -2397,25 +2624,39 @@ upper-tail count with cutoff `k` to the level-`(N-1)` counts of the two slices
 with cutoffs `k` (slice 0) and `k - 1` (slice 1), and the interleaving
 majorization is inherited by the slice sub-splits via `CascadeInterleaves.lower_succ`.
 This is the exact `dimension recursion + single-layer KK` route requested by the
-Frankl–Füredi PDF, not a scalar reduction. -/
+Frankl–Füredi PDF, not a scalar reduction.
+@isnad1 id=eq.0h3v.s7.c220f2b2d000 from=translated src=- shape=4db62801 vocab=7825da5c
+-/
 lemma slice0_union {N : ℕ} (A B : Finset (Cube (N + 1))) :
     slice0 (A ∪ B) = slice0 A ∪ slice0 B := by
   ext x
   simp [slice0]
 
+/--
+@isnad1 id=eq.0h3v.s7.8673effb2dd4 from=translated src=- shape=4db62801 vocab=be991ada
+-/
 lemma slice1_union {N : ℕ} (A B : Finset (Cube (N + 1))) :
     slice1 (A ∪ B) = slice1 A ∪ slice1 B := by
   ext x
   simp [slice1]
 
+/--
+@isnad1 id=eq.1h4v.s5.82c8d4317e54 from=translated src=- shape=19a4fd93 vocab=b04870ea
+-/
 lemma slice0_simplicialInitSeg_eq_cascadeSplit {N x p q : ℕ} (h : CascadeSplit N x p q) :
     slice0 (simplicialInitSeg (N + 1) x) = simplicialInitSeg N p := by
   rw [slice0_initSeg_eq, (slice_card_eq_cascade h).1]
 
+/--
+@isnad1 id=eq.1h4v.s5.dab9cb47ca76 from=translated src=- shape=7af63f20 vocab=d4292b5b
+-/
 lemma slice1_simplicialInitSeg_eq_cascadeSplit {N x p q : ℕ} (h : CascadeSplit N x p q) :
     slice1 (simplicialInitSeg (N + 1) x) = simplicialInitSeg N q := by
   rw [slice1_initSeg_eq, (slice_card_eq_cascade h).2]
 
+/--
+@isnad1 id=le.1h4v.s5.198e5efc0ded from=translated src=- shape=c976cd97 vocab=66f498ca
+-/
 lemma cascade_upper_slice_subset_neighborhood_lower {N x p q : ℕ}
     (h : CascadeSplit N x p q) :
     simplicialInitSeg N q ⊆ neighborhood 1 (simplicialInitSeg N p) := by
@@ -2425,6 +2666,9 @@ lemma cascade_upper_slice_subset_neighborhood_lower {N x p q : ℕ}
   rw [mem_neighborhood_iff]
   exact ⟨z, hz_p, by simp [hDist]⟩
 
+/--
+@isnad1 id=eq.2h7v.s7.e9ba62b2bc31 from=translated src=- shape=ce0f637e vocab=3656bb50
+-/
 lemma slice0_neighborhoodUnion {N x y px qx py qy : ℕ}
     (hx : CascadeSplit N x px qx) (hy : CascadeSplit N y py qy) :
     slice0 (neighborhood 1 (simplicialInitSeg (N + 1) x) ∪ simplicialInitSeg (N + 1) y)
@@ -2447,6 +2691,9 @@ lemma slice0_neighborhoodUnion {N x y px qx py qy : ℕ}
     · exact Finset.mem_union_left _ (Finset.mem_union_left _ hz)
     · exact Finset.mem_union_right _ hz
 
+/--
+@isnad1 id=eq.2h7v.s7.f2facef813b7 from=translated src=- shape=bcdf7b02 vocab=abd11ff2
+-/
 lemma slice1_neighborhoodUnion {N x y px qx py qy : ℕ}
     (hx : CascadeSplit N x px qx) (hy : CascadeSplit N y py qy) :
     slice1 (neighborhood 1 (simplicialInitSeg (N + 1) x) ∪ simplicialInitSeg (N + 1) y)
@@ -2457,6 +2704,9 @@ lemma slice1_neighborhoodUnion {N x y px qx py qy : ℕ}
     slice1_simplicialInitSeg_eq_cascadeSplit hx,
     slice1_simplicialInitSeg_eq_cascadeSplit hy]
 
+/--
+@isnad1 id=eq.1h4v.s6.2ab8023fc1a8 from=translated src=- shape=15840412 vocab=f4147188
+-/
 lemma card_filter_neighborhoodUnion_initSeg (N x y k : ℕ) (hy : y ≤ 2 ^ N) :
     ((neighborhood 1 (simplicialInitSeg N x) ∪ simplicialInitSeg N y).filter
           (fun z => k ≤ z.card)).card
@@ -2464,6 +2714,9 @@ lemma card_filter_neighborhoodUnion_initSeg (N x y k : ℕ) (hy : y ≤ 2 ^ N) :
   rw [← sum_Ico_layerWindowRemainder_max_eq]
   exact suffix_layerWindowRemainder_eq N (max (H N x) y) k (max_le (H_le_cube N x) hy)
 
+/--
+@isnad1 id=eq.3h5v.s7.0e8232bb4895 from=translated src=- shape=d7b58f30 vocab=f4147188
+-/
 lemma card_filter_neighborhoodUnion_initSeg_three (N x y z k : ℕ)
     (h_le : H N x ≤ y) (hy : y ≤ 2 ^ N) (hz : z ≤ 2 ^ N) :
     ((neighborhood 1 (simplicialInitSeg N x) ∪ simplicialInitSeg N y ∪ simplicialInitSeg N z).filter
@@ -2492,7 +2745,9 @@ simplicial initial segment of size `a + b` (`embeddedPair_eq_of_slice_eq`), so t
 cost comparison is exactly the dimension-`(N + 1)` Harper minimality
 `simplicialInitSeg_neighborhood_card_min`.
 
-The existence/total parts are immediate from the chosen canonical witnesses. -/
+The existence/total parts are immediate from the chosen canonical witnesses.
+@isnad1 id=ex.2h3v.s6.e97d1f5ec97d from=translated src=- shape=dc9f7e10 vocab=6cc75315
+-/
 theorem cascade_split_reaches_canonical {N : ℕ} (a b : ℕ)
     (ha : a ≤ 2 ^ N) (hb : b ≤ 2 ^ N) :
     ∃ A' B' : Finset (Cube N), IsCanonicalCascadePair A' B' ∧
@@ -2563,7 +2818,9 @@ Everything Harper-facing (`franklFuredi_pairedCompression_exchange`,
 `H_exchange_max_form_pos`, `H_shadow_LE_sum` / `H_shadow_GT_sum`, the scalar leaves
 `macaulay_extremal_pos_step_LE/GT`, `harper_macaulay_min`,
 `harper_compression_descent`, `harper_vertex_iso`) is a sorry-free consequence of
-these two phases. -/
+these two phases.
+@isnad1 id=ex.0h3v.s6.ba328b361245 from=translated src=- shape=b24d1e13 vocab=94f66ee8
+-/
 theorem pairedCompression_reaches_canonical {N : ℕ} (A B : Finset (Cube N)) :
     ∃ A' B' : Finset (Cube N), IsCanonicalCascadePair A' B' ∧
       A'.card + B'.card = A.card + B.card ∧
@@ -2585,7 +2842,9 @@ total volume `|A| + |B|`, so by `cascadeSplit_unique` its two slices are exactly
 the canonical initial segments `simplicialInitSeg N p`, `simplicialInitSeg N q` of
 the cascade split `(p, q)`, and the cost bound transfers verbatim.  It no longer
 routes through `harper_compression_descent`, so the dependency direction is the
-genuine PDF one (paired compression ⟹ scalar Macaulay leaves). -/
+genuine PDF one (paired compression ⟹ scalar Macaulay leaves).
+@isnad1 id=le.1h5v.s5.de4ac87d30e6 from=translated src=- shape=91aab5ca vocab=7e0bb445
+-/
 theorem franklFuredi_pairedCompression_exchange {N : ℕ} (A B : Finset (Cube N))
     (p q : ℕ) (hpq : CascadeSplit N (A.card + B.card) p q) :
     PairShadowCost N (simplicialInitSeg N p) (simplicialInitSeg N q) ≤

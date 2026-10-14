@@ -37,7 +37,9 @@ namespace CKN
 interval, `S` is the outer-ball essential supremum before the endpoint, and
 `henergy` is the estimate obtained from the a.e.-time local energy inequality
 and a product cutoff.  The conclusion is the paper's right-sided limsup
-bound. -/
+bound.
+@isnad1 id=le.4h3v.s7.5e17fc06421b from=translated src=- shape=dd64538b vocab=a3efcf5b
+-/
 theorem alpha_usc_of_local_energy_inequality
     {F ω : ℝ → ℝ} {S : ℝ}
     (hF_nonneg : ∀ᶠ h in (𝓝[>] (0 : ℝ)), 0 ≤ F h)

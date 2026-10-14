@@ -25,6 +25,9 @@ namespace Topology
 namespace ClassificationOfSurfaces
 namespace Moise
 
+/--
+@isnad1 id=le.2h4v.s6.50dbe7253438 from=translated src=- shape=b5147f61 vocab=dc392449
+-/
 theorem normalized_ge_of_line_nonneg {a b q t : ℝ}
     (hΔ : 0 < b - a) (hq : 0 ≤ q - ((1 - t) * a + t * b)) :
     t ≤ (b - a)⁻¹ * (q - a) := by
@@ -35,6 +38,9 @@ theorem normalized_ge_of_line_nonneg {a b q t : ℝ}
       field_simp [hΔ.ne']
     _ ≤ (b - a)⁻¹ * (q - a) := h
 
+/--
+@isnad1 id=le.2h4v.s6.f53e40f85e7e from=translated src=- shape=26415531 vocab=dc392449
+-/
 theorem normalized_le_of_line_nonpos {a b q t : ℝ}
     (hΔ : 0 < b - a) (hq : q - ((1 - t) * a + t * b) ≤ 0) :
     (b - a)⁻¹ * (q - a) ≤ t := by
@@ -44,6 +50,9 @@ theorem normalized_le_of_line_nonpos {a b q t : ℝ}
     (b - a)⁻¹ * (q - a) ≤ (b - a)⁻¹ * (t * (b - a)) := h
     _ = t := by field_simp [hΔ.ne']
 
+/--
+@isnad1 id=le.2h4v.s6.08a3e0bbb6e6 from=translated src=- shape=25e79e20 vocab=dc392449
+-/
 theorem normalized_le_of_line_nonneg_of_neg {a b q t : ℝ}
     (hΔ : b - a < 0) (hq : 0 ≤ q - ((1 - t) * a + t * b)) :
     (b - a)⁻¹ * (q - a) ≤ t := by
@@ -53,6 +62,9 @@ theorem normalized_le_of_line_nonneg_of_neg {a b q t : ℝ}
     (b - a)⁻¹ * (q - a) ≤ (b - a)⁻¹ * (t * (b - a)) := h
     _ = t := by field_simp [hΔ.ne]
 
+/--
+@isnad1 id=le.2h4v.s6.44a9b15f1806 from=translated src=- shape=a36641a8 vocab=dc392449
+-/
 theorem normalized_ge_of_line_nonpos_of_neg {a b q t : ℝ}
     (hΔ : b - a < 0) (hq : q - ((1 - t) * a + t * b) ≤ 0) :
     t ≤ (b - a)⁻¹ * (q - a) := by
@@ -136,6 +148,9 @@ noncomputable def vertexEquiv : K.Vertex ≃ Fin (Fintype.card K.Vertex) :=
 noncomputable def vertexAt (i : Fin (Fintype.card K.Vertex)) : K.Vertex :=
   K.vertexEquiv.symm i
 
+/--
+@isnad1 id=eq.0h2v.s5.6a45a19d9f22 from=translated src=- shape=8b63aaea vocab=c04a9c83
+-/
 theorem edgeAt_card (i : Fin (Fintype.card K.EdgeFace)) : (K.edgeAt i).1.card = 2 := by
   exact (Finset.mem_filter.mp (K.edgeAt i).2).2
 
@@ -147,14 +162,23 @@ noncomputable def edgeFirst (i : Fin (Fintype.card K.EdgeFace)) : K.Vertex :=
 noncomputable def edgeSecond (i : Fin (Fintype.card K.EdgeFace)) : K.Vertex :=
   (Finset.card_eq_two.mp (K.edgeAt_card i)).choose_spec.choose
 
+/--
+@isnad1 id=ne.0h2v.s4.5c7b384b2437 from=translated src=- shape=ea65a3d1 vocab=e0a7b5f9
+-/
 theorem edgeFirst_ne_edgeSecond (i : Fin (Fintype.card K.EdgeFace)) :
     K.edgeFirst i ≠ K.edgeSecond i :=
   (Finset.card_eq_two.mp (K.edgeAt_card i)).choose_spec.choose_spec.1
 
+/--
+@isnad1 id=eq.0h2v.s6.91049b5af1ce from=translated src=- shape=5e1183a2 vocab=708fd4d1
+-/
 theorem edgeAt_eq (i : Fin (Fintype.card K.EdgeFace)) :
     (K.edgeAt i).1 = {K.edgeFirst i, K.edgeSecond i} :=
   (Finset.card_eq_two.mp (K.edgeAt_card i)).choose_spec.choose_spec.2
 
+/--
+@isnad1 id=mem.0h2v.s6.6d12271b2a54 from=translated src=- shape=0f0303b1 vocab=b63b90ab
+-/
 theorem edgeAt_mem_simplexes (i : Fin (Fintype.card K.EdgeFace)) :
     (K.edgeAt i).1 ∈ K.simplexes :=
   (Finset.mem_filter.mp (K.edgeAt i).2).1
@@ -169,11 +193,17 @@ noncomputable def edgeParameter (i : Fin (Fintype.card K.EdgeFace)) :
     (K.position (K.edgeSecond i) 1 - K.position (K.edgeFirst i) 1)⁻¹ •
       (cartesianY - AffineMap.const ℝ Plane (K.position (K.edgeFirst i) 1))
 
+/--
+@isnad1 id=eq.0h2v.s9.a6fb6058af59 from=translated src=- shape=28d5a8a0 vocab=8ece3ec6
+-/
 theorem edgeParameter_apply_first (i : Fin (Fintype.card K.EdgeFace)) :
     K.edgeParameter i (K.position (K.edgeFirst i)) = 0 := by
   unfold edgeParameter
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h2v.s9.a310ac7369c5 from=translated src=- shape=28d5a8a0 vocab=d88b323c
+-/
 theorem edgeParameter_apply_second (i : Fin (Fintype.card K.EdgeFace)) :
     K.edgeParameter i (K.position (K.edgeSecond i)) = 1 := by
   unfold edgeParameter
@@ -191,6 +221,9 @@ theorem edgeParameter_apply_second (i : Fin (Fintype.card K.EdgeFace)) :
       (K.position (K.edgeSecond i) 1 - K.position (K.edgeFirst i) 1) = 1
     exact inv_mul_cancel₀ (sub_ne_zero.mpr hy.symm)
 
+/--
+@isnad1 id=eq.0h3v.s10.4bb984bcd0e3 from=translated src=- shape=6246b49a vocab=9fafd11e
+-/
 theorem edgeParameter_lineMap (i : Fin (Fintype.card K.EdgeFace)) (t : ℝ) :
     K.edgeParameter i
       (AffineMap.lineMap (K.position (K.edgeFirst i)) (K.position (K.edgeSecond i)) t) = t := by
@@ -198,6 +231,9 @@ theorem edgeParameter_lineMap (i : Fin (Fintype.card K.EdgeFace)) (t : ℝ) :
     K.edgeParameter_apply_second]
   simp [AffineMap.lineMap_apply_module]
 
+/--
+@isnad1 id=mem.1h3v.s9.cdbe2db3e6d3 from=translated src=- shape=7d81fc49 vocab=741528fe
+-/
 theorem edgeParameter_mem_Icc (i : Fin (Fintype.card K.EdgeFace)) {x : Plane}
     (hx : x ∈ K.cellCarrier (K.edgeAt i).1) : K.edgeParameter i x ∈ Set.Icc (0 : ℝ) 1 := by
   rw [K.edgeAt_eq, PlaneComplex.cellCarrier] at hx
@@ -211,6 +247,9 @@ theorem edgeParameter_mem_Icc (i : Fin (Fintype.card K.EdgeFace)) {x : Plane}
   obtain ⟨t, ht, rfl⟩ := hx
   simpa [K.edgeParameter_lineMap]
 
+/--
+@isnad1 id=eq.1h3v.s10.a03916560027 from=translated src=- shape=26cd9575 vocab=573a5421
+-/
 theorem lineMap_edgeParameter_eq (i : Fin (Fintype.card K.EdgeFace)) {x : Plane}
     (hx : x ∈ K.cellCarrier (K.edgeAt i).1) :
     AffineMap.lineMap (K.position (K.edgeFirst i)) (K.position (K.edgeSecond i))
@@ -225,9 +264,15 @@ theorem lineMap_edgeParameter_eq (i : Fin (Fintype.card K.EdgeFace)) {x : Plane}
   obtain ⟨t, -, rfl⟩ := hx
   rw [K.edgeParameter_lineMap]
 
+/--
+@isnad1 id=ex.0h2v.s5.e58a2f71a8a8 from=translated src=- shape=3ee831c6 vocab=dfc03583
+-/
 theorem exists_edgeAt (e : K.EdgeFace) : ∃ i, K.edgeAt i = e := by
   exact K.edgeEquiv.symm.surjective e
 
+/--
+@isnad1 id=ex.0h2v.s4.198f3cc70b7a from=translated src=- shape=3ee831c6 vocab=b7423430
+-/
 theorem exists_vertexAt (v : K.Vertex) : ∃ i, K.vertexAt i = v := by
   exact K.vertexEquiv.symm.surjective v
 
@@ -249,6 +294,9 @@ noncomputable def edgeChain : BrokenLineData (Set.univ : Set Plane) := by
     vertex := vertex
     segment_subset := fun _ _ _ => Set.mem_univ _ }
 
+/--
+@isnad1 id=eq.0h2v.s6.298765901640 from=translated src=- shape=4f5f5657 vocab=d92b4fc5
+-/
 theorem edgeChain_vertex_even (i : Fin (Fintype.card K.EdgeFace)) :
     K.edgeChain.vertex ⟨2 * i.val, by
       change 2 * i.val <
@@ -263,6 +311,9 @@ theorem edgeChain_vertex_even (i : Fin (Fintype.card K.EdgeFace)) :
   congr 2
   exact Fin.ext hdiv
 
+/--
+@isnad1 id=eq.0h2v.s6.20f5cb148390 from=translated src=- shape=da100f58 vocab=6e2104e7
+-/
 theorem edgeChain_vertex_odd (i : Fin (Fintype.card K.EdgeFace)) :
     K.edgeChain.vertex ⟨2 * i.val + 1, by
       change 2 * i.val + 1 <
@@ -277,6 +328,9 @@ theorem edgeChain_vertex_odd (i : Fin (Fintype.card K.EdgeFace)) :
   congr 2
   exact Fin.ext hdiv
 
+/--
+@isnad1 id=eq.0h2v.s6.f23650769e78 from=translated src=- shape=7ffa3bc4 vocab=df941f5d
+-/
 theorem edgeChain_vertex_original (i : Fin (Fintype.card K.Vertex)) :
     K.edgeChain.vertex ⟨2 * Fintype.card K.EdgeFace + i.val, by
       change 2 * Fintype.card K.EdgeFace + i.val <
@@ -299,6 +353,9 @@ noncomputable def edgeChainIndex (i : Fin (Fintype.card K.EdgeFace)) :
       Fintype.card_pos_iff.mpr ⟨K.edgeAt i⟩
     omega⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.26713c37817f from=translated src=- shape=eeae4aab vocab=4d545c02
+-/
 theorem edgeChainIndex_castSucc (i : Fin (Fintype.card K.EdgeFace)) :
     (K.edgeChainIndex i).castSucc =
       ⟨2 * i.val, by
@@ -307,6 +364,9 @@ theorem edgeChainIndex_castSucc (i : Fin (Fintype.card K.EdgeFace)) :
         omega⟩ := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.b2902b71003b from=translated src=- shape=b17a3220 vocab=7afafae7
+-/
 theorem edgeChainIndex_succ (i : Fin (Fintype.card K.EdgeFace)) :
     (K.edgeChainIndex i).succ =
       ⟨2 * i.val + 1, by
@@ -315,6 +375,9 @@ theorem edgeChainIndex_succ (i : Fin (Fintype.card K.EdgeFace)) :
         omega⟩ := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.d998ffe52369 from=translated src=- shape=e4c41226 vocab=11bf5e2f
+-/
 theorem edgeChain_segment (i : Fin (Fintype.card K.EdgeFace)) :
     segment ℝ
         (K.edgeChain.vertex (K.edgeChainIndex i).castSucc)
@@ -338,6 +401,9 @@ noncomputable def edgeArrangement : PlaneComplex :=
 noncomputable def edgeSubdivision : PlaneComplex :=
   K.edgeArrangement.subordinateTo K
 
+/--
+@isnad1 id=eq.1h1v.s5.8dc7beb641a1 from=translated src=- shape=77b6686c vocab=77e450f1
+-/
 theorem edgeSubdivision_support_eq (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2) :
     K.edgeSubdivision.support = K.support := by
   unfold edgeSubdivision edgeArrangement
@@ -415,6 +481,9 @@ theorem edgeSubdivision_support_eq (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2
         exact huSegment w hw
       · exact convex_segment _ _
 
+/--
+@isnad1 id=subdivid.1h1v.s5.545bbb128a91 from=translated src=- shape=98abd784 vocab=dd7cc2d1
+-/
 theorem edgeSubdivision_subdivides (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2) :
     K.edgeSubdivision.Subdivides K :=
   K.edgeArrangement.subordinateTo_subdivides K (K.edgeSubdivision_support_eq hgraph)
@@ -435,6 +504,9 @@ noncomputable def edgeSamplePoint (cuts : ℕ) (s : K.EdgeSample cuts) : Plane :
   AffineMap.lineMap (K.position (K.edgeFirst s.1))
     (K.position (K.edgeSecond s.1)) (s.2.val / (cuts + 1 : ℝ))
 
+/--
+@isnad1 id=eq.0h3v.s9.02c5d67c0f6f from=translated src=- shape=7c0cc2ee vocab=1dc97fb5
+-/
 theorem edgeParameter_samplePoint (cuts : ℕ) (s : K.EdgeSample cuts) :
     K.edgeParameter s.1 (K.edgeSamplePoint cuts s) = s.2.val / (cuts + 1 : ℝ) := by
   exact K.edgeParameter_lineMap s.1 _
@@ -462,6 +534,9 @@ noncomputable def sampledEdgeChain (cuts : ℕ) : BrokenLineData (Set.univ : Set
     vertex := vertex
     segment_subset := fun _ _ _ => Set.mem_univ _ }
 
+/--
+@isnad1 id=eq.0h3v.s6.0b9340268850 from=translated src=- shape=5d04cd41 vocab=919e349a
+-/
 theorem sampledEdgeChain_vertex_even (cuts : ℕ)
     (i : Fin (Fintype.card K.EdgeFace)) :
     (K.sampledEdgeChain cuts).vertex ⟨2 * i.val, by
@@ -477,6 +552,9 @@ theorem sampledEdgeChain_vertex_even (cuts : ℕ)
   congr 2
   exact Fin.ext hdiv
 
+/--
+@isnad1 id=eq.0h3v.s6.ec892f755314 from=translated src=- shape=5c543c8a vocab=bc075203
+-/
 theorem sampledEdgeChain_vertex_odd (cuts : ℕ)
     (i : Fin (Fintype.card K.EdgeFace)) :
     (K.sampledEdgeChain cuts).vertex ⟨2 * i.val + 1, by
@@ -492,6 +570,9 @@ theorem sampledEdgeChain_vertex_odd (cuts : ℕ)
   congr 2
   exact Fin.ext hdiv
 
+/--
+@isnad1 id=eq.0h3v.s8.758ae67ab1a2 from=translated src=- shape=ef8cb55a vocab=ca203e27
+-/
 theorem sampledEdgeChain_vertex_sample (cuts : ℕ) (s : K.EdgeSample cuts) :
     (K.sampledEdgeChain cuts).vertex
       ⟨2 * Fintype.card K.EdgeFace + (K.edgeSampleEquiv cuts s).val, by
@@ -519,6 +600,9 @@ noncomputable def sampledEdgeChainSampleIndex (cuts : ℕ) (s : K.EdgeSample cut
         Fintype.card K.Vertex + 1
     omega⟩
 
+/--
+@isnad1 id=ismonoch.0h3v.s4.aeb133e2d2da from=translated src=- shape=39d51c24 vocab=d1e0ab65
+-/
 theorem sampledEdgeArrangement_monochromatic_vertical (cuts : ℕ)
     (s : K.EdgeSample cuts) :
     (K.sampledEdgeChain cuts).arrangementMesh.IsMonochromatic
@@ -531,6 +615,9 @@ theorem sampledEdgeArrangement_monochromatic_vertical (cuts : ℕ)
   rw [hj] at h
   exact h
 
+/--
+@isnad1 id=ismonoch.0h3v.s4.f3e1def04fce from=translated src=- shape=39d51c24 vocab=843ca701
+-/
 theorem sampledEdgeArrangement_monochromatic_horizontal (cuts : ℕ)
     (s : K.EdgeSample cuts) :
     (K.sampledEdgeChain cuts).arrangementMesh.IsMonochromatic
@@ -544,7 +631,9 @@ theorem sampledEdgeArrangement_monochromatic_horizontal (cuts : ℕ)
   exact h
 
 /-- Every arrangement face lies wholly on one side of every rational mark on an original edge,
-when measured in that edge's affine coordinate. -/
+when measured in that edge's affine coordinate.
+@isnad1 id=or.1h5v.s10.d4b3a8482d28 from=translated src=- shape=a853f1b5 vocab=b2399b52
+-/
 theorem sampledFace_parameter_side (cuts : ℕ)
     (i : Fin (Fintype.card K.EdgeFace)) (r : Fin (cuts + 2))
     {u : Finset (K.sampledEdgeChain cuts).arrangementMesh.Vertex}
@@ -636,6 +725,9 @@ theorem sampledFace_parameter_side (cuts : ℕ)
         change M.position v 1 - K.edgeSamplePoint cuts sample 1 ≤ 0 at hline
         simpa [edgeSamplePoint, sample, M, AffineMap.lineMap_apply_module] using hline
 
+/--
+@isnad1 id=or.1h5v.s10.20280c57967b from=translated src=- shape=b4b1718c vocab=b7e4baca
+-/
 theorem sampledFaceCarrier_parameter_side (cuts : ℕ)
     (i : Fin (Fintype.card K.EdgeFace)) (r : Fin (cuts + 2))
     {u : Finset (K.sampledEdgeChain cuts).arrangementMesh.Vertex}
@@ -658,6 +750,9 @@ theorem sampledFaceCarrier_parameter_side (cuts : ℕ)
     rintro y ⟨v, hv, rfl⟩
     exact hge v hv
 
+/--
+@isnad1 id=le.4h6v.s10.965759ec8a41 from=translated src=- shape=8568dcd4 vocab=72ab0eef
+-/
 theorem sampledFace_parameter_diameter (cuts : ℕ)
     (i : Fin (Fintype.card K.EdgeFace))
     {u : Finset (K.sampledEdgeChain cuts).arrangementMesh.Vertex}
@@ -684,6 +779,9 @@ theorem sampledFace_parameter_diameter (cuts : ℕ)
       · simpa only [Nat.cast_add, Nat.cast_one] using hge y hy
   simpa only [Nat.cast_add, Nat.cast_one] using hbound
 
+/--
+@isnad1 id=eq.0h3v.s7.dd665ff9f1be from=translated src=- shape=302e727c vocab=08f2eddc
+-/
 theorem sampledEdgeChain_vertex_original (cuts : ℕ)
     (i : Fin (Fintype.card K.Vertex)) :
     (K.sampledEdgeChain cuts).vertex
@@ -710,6 +808,9 @@ noncomputable def sampledEdgeChainIndex (cuts : ℕ)
       Fintype.card_pos_iff.mpr ⟨K.edgeAt i⟩
     omega⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.0fdf19aef017 from=translated src=- shape=3c12f675 vocab=f3506693
+-/
 theorem sampledEdgeChainIndex_castSucc (cuts : ℕ)
     (i : Fin (Fintype.card K.EdgeFace)) :
     (K.sampledEdgeChainIndex cuts i).castSucc =
@@ -719,6 +820,9 @@ theorem sampledEdgeChainIndex_castSucc (cuts : ℕ)
         omega⟩ := by
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.ae87c7724768 from=translated src=- shape=c8e46b02 vocab=6d1f31cc
+-/
 theorem sampledEdgeChainIndex_succ (cuts : ℕ)
     (i : Fin (Fintype.card K.EdgeFace)) :
     (K.sampledEdgeChainIndex cuts i).succ =
@@ -728,6 +832,9 @@ theorem sampledEdgeChainIndex_succ (cuts : ℕ)
         omega⟩ := by
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.ec9ef6ebb125 from=translated src=- shape=23e7e04a vocab=ff4fa102
+-/
 theorem sampledEdgeChain_segment (cuts : ℕ)
     (i : Fin (Fintype.card K.EdgeFace)) :
     segment ℝ
@@ -753,7 +860,9 @@ noncomputable def sampledEdgeSubdivision (cuts : ℕ) : PlaneComplex :=
   (K.sampledEdgeArrangement cuts).subordinateTo K
 
 /-- Every point of an original graph face lies in a sampled-subdivision face contained in that
-same original face. -/
+same original face.
+@isnad1 id=ex.3h4v.s7.cb2bcb57f45c from=translated src=- shape=28bed622 vocab=2e7d6848
+-/
 theorem exists_sampledEdgeSubdivision_face_at (cuts : ℕ)
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2)
     {s : Finset K.Vertex} (hs : s ∈ K.simplexes) {x : Plane}
@@ -836,6 +945,9 @@ theorem exists_sampledEdgeSubdivision_face_at (cuts : ℕ)
       |>.mem_subordinateTo_simplexes_iff K).mpr
     exact ⟨hu, s, hs, huCarrier⟩
 
+/--
+@isnad1 id=eq.1h2v.s5.012e4ddb973d from=translated src=- shape=c119f308 vocab=98f3bc18
+-/
 theorem sampledEdgeSubdivision_support_eq (cuts : ℕ)
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2) :
     (K.sampledEdgeSubdivision cuts).support = K.support := by
@@ -925,7 +1037,9 @@ theorem sampledEdgeSubdivision_support_eq (cuts : ℕ)
 
 /-- Every original vertex position which lies in the graph support becomes an actual zero-face
 of the sampled subdivision.  The extra original-vertex marks in `sampledEdgeChain` ensure this
-even when the original abstract vertex was not itself used by a face. -/
+even when the original abstract vertex was not itself used by a face.
+@isnad1 id=ex.1h3v.s6.5fe7a3ab31cb from=translated src=- shape=0a996ced vocab=683a2416
+-/
 theorem exists_sampledEdgeSubdivision_vertex_position_eq (cuts : ℕ) (v : K.Vertex)
     (hv : K.position v ∈ K.support) :
     ∃ w : (K.sampledEdgeSubdivision cuts).Vertex,
@@ -977,6 +1091,9 @@ theorem exists_sampledEdgeSubdivision_vertex_position_eq (cuts : ℕ) (v : K.Ver
     rw [hyw, hwpos, K.sampledEdgeChain_vertex_original cuts i, hi]
     exact hvs
 
+/--
+@isnad1 id=subdivid.1h2v.s5.a2d5ec3cda0a from=translated src=- shape=5af64746 vocab=cb6699a8
+-/
 theorem sampledEdgeSubdivision_subdivides (cuts : ℕ)
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2) :
     (K.sampledEdgeSubdivision cuts).Subdivides K :=
@@ -988,6 +1105,9 @@ noncomputable def edgeLengthBound : ℝ :=
   1 + ∑ i : Fin (Fintype.card K.EdgeFace),
     dist (K.position (K.edgeFirst i)) (K.position (K.edgeSecond i))
 
+/--
+@isnad1 id=lt.0h1v.s3.ed3d2d94de1d from=translated src=- shape=b9369acb vocab=cf943ca1
+-/
 theorem edgeLengthBound_pos : 0 < K.edgeLengthBound := by
   unfold edgeLengthBound
   have hsum : 0 ≤ ∑ i : Fin (Fintype.card K.EdgeFace),
@@ -995,6 +1115,9 @@ theorem edgeLengthBound_pos : 0 < K.edgeLengthBound := by
     Finset.sum_nonneg fun _ _ => dist_nonneg
   linarith
 
+/--
+@isnad1 id=lt.0h2v.s6.1cba82b83155 from=translated src=- shape=11c02f17 vocab=c7d18984
+-/
 theorem edge_length_lt_bound (i : Fin (Fintype.card K.EdgeFace)) :
     dist (K.position (K.edgeFirst i)) (K.position (K.edgeSecond i)) <
       K.edgeLengthBound := by
@@ -1009,7 +1132,9 @@ theorem edge_length_lt_bound (i : Fin (Fintype.card K.EdgeFace)) :
   linarith
 
 /-- Heine--Cantor plus the marked line arrangement: every finite embedded graph has a subordinate
-subdivision whose faces have arbitrarily small image diameter under a continuous map. -/
+subdivision whose faces have arbitrarily small image diameter under a continuous map.
+@isnad1 id=ex.3h3v.s8.bcd39249d44b from=translated src=- shape=95576711 vocab=5701e916
+-/
 theorem exists_sampledEdgeSubdivision_image_diameter_lt
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2)
     {h : Plane → Plane} (hcont : ContinuousOn h K.support)

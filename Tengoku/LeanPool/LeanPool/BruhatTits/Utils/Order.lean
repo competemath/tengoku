@@ -15,11 +15,17 @@ public import Tengoku
 
 variable {α β : Type*} [PartialOrder α] [PartialOrder β] (f : α ≃o β)
 
+/--
+@isnad1 id=iff.0h4v.s6.8f64625a58ee from=translated src=- shape=0da877ad vocab=005935db
+-/
 lemma OrderIso.map_top_iff [OrderTop α] [OrderTop β] (x : α) :
     f x = ⊤ ↔ x = ⊤ := by
   refine ⟨fun h ↦ ?_, fun h ↦ h ▸ f.map_top⟩
   rw [← f.symm_apply_apply x, h, f.symm.map_top]
 
+/--
+@isnad1 id=iff.0h4v.s6.eedd790cd02a from=translated src=- shape=0da877ad vocab=6e8353c4
+-/
 lemma OrderIso.map_bot_iff [OrderBot α] [OrderBot β] (x : α) :
     f x = ⊥ ↔ x = ⊥ := by
   refine ⟨fun h ↦ ?_, fun h ↦ h ▸ f.map_bot⟩

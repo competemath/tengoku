@@ -24,7 +24,9 @@ open CKN.Foundation.Parabolic CKN.Foundation.Parabolic.Morrey
 noncomputable section
 namespace CKN.Core.Endgame
 
-/-- Restricting an indicated source cannot increase its Morrey norm. -/
+/-- Restricting an indicated source cannot increase its Morrey norm.
+@isnad1 id=le.2h5v.s5.d2195d8c47d5 from=translated src=- shape=ec2139b7 vocab=599849a7
+-/
 theorem morreyNorm_indicator_mono_set {P τ : ℝ} (hP : 0 ≤ P)
     {S T : Set ParabolicPoint} (hST : S ⊆ T) (f : ParabolicPoint → ℝ) :
     morreyNorm P τ (S.indicator f) ≤ morreyNorm P τ (T.indicator f) := by
@@ -35,7 +37,9 @@ theorem morreyNorm_indicator_mono_set {P τ : ℝ} (hP : 0 ≤ P)
   · rw [indicator_of_notMem hz, abs_zero]
     exact abs_nonneg _
 
-/-- Componentwise ball-Morrey membership restricts to any smaller carrier. -/
+/-- Componentwise ball-Morrey membership restricts to any smaller carrier.
+@isnad1 id=morreyve.3h5v.s5.437dcb50e799 from=translated src=- shape=9739a5b1 vocab=632875ff
+-/
 theorem morreyVecMem_mono_carrier {P τ : ℝ} (hP : 0 ≤ P)
     {S T : Set ParabolicPoint} {u : ParabolicPoint → Vec3}
     (hST : S ⊆ T) (hu : morreyVecMem P τ T u) : morreyVecMem P τ S u := by

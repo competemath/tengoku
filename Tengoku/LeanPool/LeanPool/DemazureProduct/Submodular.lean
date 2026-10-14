@@ -355,7 +355,9 @@ private lemma asp_spec (s : SlipFace) (hsub : s.submodular) :
 some ASP permutation `α`.
 
 *Proposition 4.3 (`prop:imageASP`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227).*, full statement. -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227).*, full statement.
+@isnad1 id=iff.0h1v.s3.1384e11dd438 from=translated src=- shape=78f6a3e7 vocab=e40a4e76
+-/
 theorem submodular_iff_asp (s : SlipFace) : s.submodular ↔ ∃ α : AspPerm, α.s = s := by
   constructor
   · intro hsub
@@ -421,7 +423,9 @@ private lemma AspValley_min_eq_s {α β τ : AspPerm} (dprod : τ.eqDprod α β)
 
 /-- Compare the minima and rightmost minimizers of two valleys that differ by
 `1` below a cutoff and agree above it. *Lemma 4.7 (`lem:fg`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227).* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227).*
+@isnad1 id=and.2h3v.s6.488f4cbf469e from=translated src=- shape=25edb3c0 vocab=8107a237
+-/
 lemma sediment (v w : Valley) {A : ℤ}
   (low : ∀ l : ℤ, l ≤ A → w.f l = v.f l + 1) (high : ∀ l : ℤ, l > A → w.f l = v.f l) :
   ((v.M ≤ A → w.min = v.min + 1)
@@ -498,7 +502,9 @@ lemma sediment (v w : Valley) {A : ℤ}
 exactly when the rightmost minimizer lies at or to the left of `α⁻¹ a`, and
 the rightmost minimizer can only move to the right. *Lemma 4.8 (`lem:Kstara+1`) of
 [An extended Demazure product](https://arxiv.org/abs/2206.14227), in slightly different
-phrasing.* -/
+phrasing.*
+@isnad1 id=other.0h4v.s6.a48908ff5415 from=translated src=- shape=fe7d02ec vocab=4a9d26d5
+-/
 lemma AspValley_step_a (α β : AspPerm) (a b : ℤ) :
   let v := AspValley α β a b
   let w := AspValley α β (a+1) b
@@ -527,7 +533,9 @@ lemma AspValley_step_a (α β : AspPerm) (a b : ℤ) :
 the position of the rightmost minimizer relative to `β b`, and the rightmost
 minimizer can only move to the right. *Lemma 4.9 (`lem:Kstarb+1`) of
 [An extended Demazure product](https://arxiv.org/abs/2206.14227), in slightly different
-phrasing.* -/
+phrasing.*
+@isnad1 id=other.0h4v.s6.6bf7d1e0ceb9 from=translated src=- shape=088747b7 vocab=ac55ac2e
+-/
 lemma AspValley_step_b (α β : AspPerm) (a b : ℤ) :
   let v := (AspValley α β a b)
   let w := AspValley α β a (b+1)
@@ -569,6 +577,9 @@ lemma AspValley_step_b (α β : AspPerm) (a b : ℤ) :
   · simp only [h, ↓reduceIte, add_zero]
     exact ⟨sed.1.2 (lt_of_not_ge h), sed.2⟩
 
+/--
+@isnad1 id=other.1h5v.s5.cf80fd59f304 from=translated src=- shape=3dcd91ec vocab=c733dbc4
+-/
 lemma AspValley_noninc (α β : AspPerm) (a b c : ℤ) (b_le_c : b ≤ c) :
   let v := AspValley α β a b
   let w := AspValley α β a c
@@ -620,7 +631,9 @@ private lemma submodular_of_basepoint_preserved (s : SlipFace) (a b : ℤ) :
 
 /-- The product of two submodular slipfaces is submodular.
 *Theorem 4.5 (`thm:starExists1`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/5.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/5.*
+@isnad1 id=submodul.2h2v.s3.fa6f953aa16d from=translated src=- shape=03e07a40 vocab=f98a2c09
+-/
 theorem submodular_of_star {s t : SlipFace} (subS : s.submodular) (subT : t.submodular) :
   (s.star t).submodular := by
   intro a b
@@ -678,7 +691,9 @@ private lemma lres_wit_mem_lres_witness_set (α β : AspPerm) (a b : ℤ) :
   dsimp [lres_witness_set]
   rw [SlipFace.lres_wit_spec, AspPerm.s_dual]
 
-/-- Every candidate value for left residual is at most its maximum. -/
+/-- Every candidate value for left residual is at most its maximum.
+@isnad1 id=le.0h5v.s5.1cd013292a9c from=translated src=- shape=2e6898c4 vocab=3eb03baa
+-/
 lemma lres_candidate_le (α β : AspPerm) (a b l : ℤ) :
     α.s a l - (β⁻¹).s b l ≤ (α.s ◃ β.s) a b := by
   rw [SlipFace.lres_func_eq]
@@ -941,7 +956,9 @@ private lemma lres_witness_move_b_up_of_le (α β : AspPerm) (a b c l : ℤ)
 
 /-- The left residual $s \triangleleft t$ of submodular slipfaces is
 submodular. *Theorem 4.11 (`thm:resLExists`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/11.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/11.*
+@isnad1 id=submodul.2h2v.s3.04b498b10953 from=translated src=- shape=03e07a40 vocab=7f4b09be
+-/
 theorem submodular_of_lres {s t : SlipFace}
     (subS : s.submodular) (subT : t.submodular) :
     (s ◃ t).submodular := by
@@ -965,7 +982,9 @@ theorem submodular_of_lres {s t : SlipFace}
 
 /-- The right residual $s \triangleright t$ of submodular slipfaces is
 submodular. *Theorem 4.11 (`thm:resLExists`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/11.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/11.*
+@isnad1 id=submodul.2h2v.s3.b9f668b0a6b8 from=translated src=- shape=03e07a40 vocab=a6525f94
+-/
 theorem submodular_of_rres {s t : SlipFace}
     (subS : s.submodular) (subT : t.submodular) :
     (s ▹ t).submodular := by
@@ -1055,7 +1074,9 @@ noncomputable def star (α β : AspPerm) : AspPerm :=
 /-- The Demazure product on ASP is characterized by the equation
 $s_{\alpha \star \beta} = s_\alpha \star s_\beta$.
 *Theorem 4.5 (`thm:starExists1`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/5.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/5.*
+@isnad1 id=eq.0h2v.s3.71258ed084d9 from=translated src=- shape=4b8415a6 vocab=318e7647
+-/
 @[simp] lemma star_spec (α β : AspPerm) : (star α β).s = α.s ⋆ β.s :=
   (Classical.choose_spec (star_exists α β)).1
 
@@ -1072,7 +1093,9 @@ noncomputable def lres (α β : AspPerm) : AspPerm :=
 /-- Left residual on ASP permutations is characterized by
 $s_{\alpha \triangleleft \beta} = s_\alpha \triangleleft s_\beta$.
 *Theorem 4.11 (`thm:resLExists`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 3/11.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 3/11.*
+@isnad1 id=eq.0h2v.s3.c4b8215baceb from=translated src=- shape=4b8415a6 vocab=049d3a8c
+-/
 @[simp] lemma lres_spec (α β : AspPerm) :
     (lres α β).s = α.s ◃ β.s :=
   (Classical.choose_spec (lres_exists α β)).1
@@ -1090,7 +1113,9 @@ noncomputable def rres (α β : AspPerm) : AspPerm :=
 /-- Right residual on ASP permutations is characterized by
 $s_{\alpha \triangleright \beta} = s_\alpha \triangleright s_\beta$.
 *Theorem 4.11 (`thm:resLExists`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 4/11.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 4/11.*
+@isnad1 id=eq.0h2v.s3.c91bab9313e9 from=translated src=- shape=4b8415a6 vocab=ee1d68f3
+-/
 @[simp] lemma rres_spec (α β : AspPerm) :
     (rres α β).s = α.s ▹ β.s :=
   (Classical.choose_spec (rres_exists α β)).1
@@ -1100,7 +1125,9 @@ infixr:70 " ▹ " => rres
 
 /-- Demazure product on ASP permutations is associative.
 *Theorem 4.5 (`thm:starExists1`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 3/5.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 3/5.*
+@isnad1 id=eq.0h3v.s4.038d5c8b0096 from=translated src=- shape=b8c031c3 vocab=978c31bf
+-/
 lemma star_assoc : ∀ α β γ : AspPerm, (α ⋆ β) ⋆ γ = α ⋆ (β ⋆ γ) := by
   intro α β γ
   apply AspPerm.eq_of_sf_eq
@@ -1108,7 +1135,9 @@ lemma star_assoc : ∀ α β γ : AspPerm, (α ⋆ β) ⋆ γ = α ⋆ (β ⋆ �
 
 /-- Left residual associates with Demazure product on ASP permutations.
 *Theorem 4.11 (`thm:resLExists`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 5/11.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 5/11.*
+@isnad1 id=eq.0h3v.s4.98486f62c97c from=translated src=- shape=b8c031c3 vocab=33d0cc18
+-/
 lemma lres_assoc (α β γ : AspPerm) :
     (α ◃ β) ◃ γ = α ◃ (β ⋆ γ) := by
   -- Proof written by Codex.
@@ -1117,7 +1146,9 @@ lemma lres_assoc (α β γ : AspPerm) :
 
 /-- Right residual associates with Demazure product on ASP permutations.
 *Theorem 4.11 (`thm:resLExists`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 6/11.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 6/11.*
+@isnad1 id=eq.0h3v.s4.93da1b212c26 from=translated src=- shape=dcd8247e vocab=e6f9ec7a
+-/
 lemma rres_assoc (α β γ : AspPerm) :
     α ▹ (β ▹ γ) = (α ⋆ β) ▹ γ := by
   -- Proof written by Codex.
@@ -1126,7 +1157,9 @@ lemma rres_assoc (α β γ : AspPerm) :
 
 /-- Inversion swaps left residual for right residual.
 *Theorem 4.11 (`thm:resLExists`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 7/11.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 7/11.*
+@isnad1 id=eq.0h2v.s5.387b0cb9a14a from=translated src=- shape=e7e92c51 vocab=9a0ae4d9
+-/
 lemma inverse_lres (α β : AspPerm) :
     (α ◃ β)⁻¹ = β⁻¹ ▹ α⁻¹ := by
   -- Proof written by Codex.
@@ -1137,20 +1170,26 @@ lemma inverse_lres (α β : AspPerm) :
 
 /-- The shift of left residual is the sum of shifts.
 *Theorem 4.11 (`thm:resLExists`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 8/11.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 8/11.*
+@isnad1 id=eq.0h2v.s4.8a7eb2b2f8be from=translated src=- shape=88b36870 vocab=0d0d927f
+-/
 lemma chi_lres (α β : AspPerm) : (α ◃ β).χ = α.χ + β.χ := by
   repeat rw [← AspPerm.s_chi_eq]
   simp only [lres_spec, SlipFace.chi_lres]
 
 /-- The shift of right residual is the sum of shifts.
 *Theorem 4.11 (`thm:resLExists`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 9/11.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 9/11.*
+@isnad1 id=eq.0h2v.s4.4009dc5b930f from=translated src=- shape=88b36870 vocab=8e7e3554
+-/
 lemma chi_rres (α β : AspPerm) : (α ▹ β).χ = α.χ + β.χ := by
   repeat rw [← AspPerm.s_chi_eq]
   simp only [rres_spec, SlipFace.chi_rres]
 
 /-- The min-plus characterization of the Demazure product on \mathrm{ASP}.
-This is part of *Theorem A* (`thm:starExists`) in [An extended Demazure product](https://arxiv.org/abs/2206.14227). -/
+This is part of *Theorem A* (`thm:starExists`) in [An extended Demazure product](https://arxiv.org/abs/2206.14227).
+@isnad1 id=isleast.0h4v.s5.0a9c1fcdea20 from=translated src=- shape=723dae31 vocab=27cb8e96
+-/
 theorem star_sf_isleast (α β : AspPerm) (a b : ℤ) :
     IsLeast {α.s a l + β.s l b | l : ℤ} ((α ⋆ β).s a b) := by
   have h := SlipFace.star_eq_min α.s β.s a b
@@ -1159,7 +1198,9 @@ theorem star_sf_isleast (α β : AspPerm) (a b : ℤ) :
 /-- The shift of a Demazure product satisfies
 `(α ⋆ β).χ = α.χ + β.χ`, i.e. $\chi_{\alpha \star \beta}
 = \chi_\alpha + \chi_\beta$. *Theorem 4.5 (`thm:starExists1`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 5/5.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 5/5.*
+@isnad1 id=eq.0h2v.s4.5f1d12ab035d from=translated src=- shape=88b36870 vocab=c90db87d
+-/
 lemma chi_star (α β : AspPerm) : (α ⋆ β).χ = α.χ + β.χ := by
   have ex := star_exists α β
   let τ := α ⋆ β
@@ -1179,17 +1220,31 @@ noncomputable abbrev DProd (L : List AspPerm) : AspPerm :=
 noncomputable abbrev OrdProd (L : List AspPerm) : AspPerm :=
   List.foldr (· * ·) AspPerm.id L
 
+/--
+@isnad1 id=eq.0h0v.s2.6e21d48ed163 from=translated src=- shape=64700cea vocab=f020e3dd
+-/
 @[simp] lemma DProd_nil : DProd [] = AspPerm.id := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.b9eda1a09e07 from=translated src=- shape=acfd8237 vocab=11d58c3f
+-/
 @[simp] lemma DProd_cons (α : AspPerm) (L : List AspPerm) :
     DProd (α :: L) = α ⋆ DProd L := rfl
 
+/--
+@isnad1 id=eq.0h0v.s2.e0d1baa2ee15 from=translated src=- shape=64700cea vocab=02f492cb
+-/
 @[simp] lemma OrdProd_nil : OrdProd [] = AspPerm.id := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.b871830d210d from=translated src=- shape=fcb3fea8 vocab=bdb33fd8
+-/
 @[simp] lemma OrdProd_cons (α : AspPerm) (L : List AspPerm) :
     OrdProd (α :: L) = α * OrdProd L := rfl
 
-/-- The shift of a Demazure list product is the sum of the shifts. -/
+/-- The shift of a Demazure list product is the sum of the shifts.
+@isnad1 id=eq.0h1v.s4.f36ee8112af1 from=translated src=- shape=875ec862 vocab=3f5baa5e
+-/
 lemma chi_DProd (L : List AspPerm) : (DProd L).χ = (L.map AspPerm.χ).sum := by
   -- Proof written by GPT 5.5.
   induction L with
@@ -1197,7 +1252,9 @@ lemma chi_DProd (L : List AspPerm) : (DProd L).χ = (L.map AspPerm.χ).sum := by
   | cons α L ih =>
       simp only [DProd_cons, List.map_cons, List.sum_cons, chi_star, ih]
 
-/-- The shift of an ordinary list product is the sum of the shifts. -/
+/-- The shift of an ordinary list product is the sum of the shifts.
+@isnad1 id=eq.0h1v.s4.80d440552a0d from=translated src=- shape=875ec862 vocab=dec150ac
+-/
 lemma chi_OrdProd (L : List AspPerm) : (OrdProd L).χ = (L.map AspPerm.χ).sum := by
   -- Proof written by GPT 5.5.
   induction L with
@@ -1209,6 +1266,9 @@ lemma chi_OrdProd (L : List AspPerm) : (OrdProd L).χ = (L.map AspPerm.χ).sum :
   ## Some properties of the identity permutations
 -/
 
+/--
+@isnad1 id=eq.0h2v.s4.f97cd188040f from=translated src=- shape=af976e5a vocab=d8aa512f
+-/
 lemma id_s_eq (a b : ℤ) : AspPerm.id.s a b = max (a - b) 0 := by
   rw [AspPerm.s_eq_se_card]
   rw [show AspPerm.id.seFinset a b = Finset.Ico b a by
@@ -1230,17 +1290,26 @@ lemma id_s_eq (a b : ℤ) : AspPerm.id.s a b = max (a - b) 0 := by
     have : (a - b).toNat = 0 := Int.toNat_of_nonpos (le_of_lt h')
     simp only [this, Nat.cast_zero]
 
+/--
+@isnad1 id=eq.0h0v.s2.6e8ef8febf70 from=translated src=- shape=4b736592 vocab=892458e6
+-/
 lemma id_sf : AspPerm.id.s = SlipFace.id := by
   apply (SF_ext _ _).mpr
   intro a b
   change AspPerm.id.s a b = max (a - b) 0
   exact id_s_eq a b
 
+/--
+@isnad1 id=eq.0h1v.s3.bcca9ea98d06 from=translated src=- shape=29edb2d9 vocab=49a6cec6
+-/
 lemma id_star (α : AspPerm) : AspPerm.id ⋆ α = α := by
   apply AspPerm.eq_of_sf_eq
   rw [AspPerm.star_spec, id_sf]
   simpa using SlipFace.id_mul α.s
 
+/--
+@isnad1 id=eq.0h1v.s3.b515798214bc from=translated src=- shape=9960b201 vocab=49a6cec6
+-/
 lemma star_id (α : AspPerm) : α ⋆ AspPerm.id = α := by
   apply AspPerm.eq_of_sf_eq
   rw [AspPerm.star_spec, id_sf]
@@ -1275,12 +1344,16 @@ def leChi (σ τ : AspPerm) : Prop := σ ≤ τ ∧ σ.χ = τ.χ
 infix:50 " ≤χ " => leChi
 
 /-- Bruhat order on ASP permutations agrees with pointwise order on their
-slipfaces. -/
+slipfaces.
+@isnad1 id=iff.0h2v.s4.561ae2f9d08a from=translated src=- shape=e5555f7a vocab=1ecfa669
+-/
 lemma s_le_iff (α β : AspPerm) : α.s ≤ β.s ↔ α ≤ β := Iff.rfl
 
 /-- An ASP permutation of nonnegative shift lies above the identity in Bruhat
 order. This is the $\chi = 0$ case of the minimum-shift observation after Definition 2.5 in
-[An extended Demazure product](https://arxiv.org/abs/2206.14227). -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227).
+@isnad1 id=le.1h1v.s4.ea9939a2c5c1 from=translated src=- shape=238b7835 vocab=99a38371
+-/
 lemma id_le_of_chi_nonneg {τ : AspPerm} (hχ : 0 ≤ τ.χ) : AspPerm.id ≤ τ := by
   -- Proof written by Codex.
   intro a b
@@ -1291,7 +1364,9 @@ lemma id_le_of_chi_nonneg {τ : AspPerm} (hχ : 0 ≤ τ.χ) : AspPerm.id ≤ τ
 
 /-- Demazure product on ASP permutations is Bruhat-increasing in both
 arguments. This lifts the slipface comparison of Lemma 3.8 in
-[An extended Demazure product](https://arxiv.org/abs/2206.14227). -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227).
+@isnad1 id=le.2h4v.s5.a9b6b0955f85 from=translated src=- shape=47ba7c8b vocab=259a4033
+-/
 lemma star_mono {α₁ α₂ β₁ β₂ : AspPerm}
     (hα : α₁ ≤ α₂) (hβ : β₁ ≤ β₂) : α₁ ⋆ β₁ ≤ α₂ ⋆ β₂ := by
   -- Proof written by Codex.
@@ -1304,7 +1379,9 @@ lemma star_mono {α₁ α₂ β₁ β₂ : AspPerm}
 /-- The left residual $\tau \triangleleft \beta^{-1}$ is the Bruhat
 minimum of the ASP permutations $\alpha$ such that $\alpha \star \beta \geq \tau$.
 *Theorem 4.11 (`thm:resLExists`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 10/11.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 10/11.*
+@isnad1 id=iff.0h3v.s5.b3e13aea5515 from=translated src=- shape=f60d44ad vocab=5a4f5c86
+-/
 lemma ge_star_iff_ge_lres (α β τ : AspPerm) :
     α ≥ τ ◃ β⁻¹ ↔ α ⋆ β ≥ τ := by
   change (τ ◃ β⁻¹).s ≤ α.s ↔ τ.s ≤ (α ⋆ β).s
@@ -1314,7 +1391,9 @@ lemma ge_star_iff_ge_lres (α β τ : AspPerm) :
 /-- The right residual $\alpha^{-1} \triangleright \tau$ is the Bruhat
 minimum of the ASP permutations $\beta$ such that $\alpha \star \beta \geq \tau$.
 *Theorem 4.11 (`thm:resLExists`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 11/11.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 11/11.*
+@isnad1 id=iff.0h3v.s5.4b727771582e from=translated src=- shape=367dc2e0 vocab=632c4dda
+-/
 lemma ge_star_iff_ge_rres (α β τ : AspPerm) :
     β ≥ α⁻¹ ▹ τ ↔ α ⋆ β ≥ τ := by
   change (α⁻¹ ▹ τ).s ≤ β.s ↔ τ.s ≤ (α ⋆ β).s
@@ -1326,7 +1405,9 @@ lemma ge_star_iff_ge_rres (α β τ : AspPerm) :
   This is Equation (11) (`eq:resRMin`) in [An extended Demazure product](https://arxiv.org/abs/2206.14227). -/
 
 /-- Comparison `τ ≤ α ⋆ β` is equivalent to the lower Demazure-product
-inequalities defining `τ.leDprod α β`. -/
+inequalities defining `τ.leDprod α β`.
+@isnad1 id=iff.0h3v.s4.0240e887385a from=translated src=- shape=df0ac368 vocab=b629609c
+-/
 lemma le_star_iff (τ α β : AspPerm) : τ ≤ α ⋆ β ↔ τ.leDprod α β := by
   constructor
   · intro le a b l
@@ -1337,7 +1418,9 @@ lemma le_star_iff (τ α β : AspPerm) : τ ≤ α ⋆ β ↔ τ.leDprod α β :
     exact dle a b l
 
 /-- Comparison `α ⋆ β ≤ τ` is equivalent to the upper Demazure-product
-inequalities defining `τ.geDprod α β`. -/
+inequalities defining `τ.geDprod α β`.
+@isnad1 id=iff.0h3v.s4.0665d591d176 from=translated src=- shape=28484652 vocab=f5a3df82
+-/
 lemma ge_star_iff (τ α β : AspPerm) : α ⋆ β ≤ τ ↔ τ.geDprod α β := by
   constructor
   · intro ge a b
@@ -1371,7 +1454,9 @@ lemma eq_star_iff {τ α β : AspPerm} : τ = α ⋆ β ↔ τ.eqDprod α β := 
 /-- Comparison of ASP permutations in the Bruhat order using essential set.
   This is Corollary 7.9 (`cor:essBD`) in [An extended Demazure product](https://arxiv.org/abs/2206.14227).
   This theorem is delayed until this file since the definition of `≤` on ASP is needed for the
-  statement. -/
+  statement.
+@isnad1 id=iff.1h2v.s5.0418dd930101 from=translated src=- shape=6ff9f363 vocab=ce9ec32a
+-/
 theorem ess_bdiff (α β : AspPerm) (bdiff : α.isBdiff) :
   α ≤ β ↔ α.χ ≤ β.χ ∧ ∀ (a b : ℤ), ⟨a, b⟩ ∈ α.ess → α.s a b ≤ β.s a b := by
   have := SlipFace.ess_clifford α.s β.s (α.bdiff_iff_clifford.mp bdiff)
@@ -1388,7 +1473,9 @@ namespace Submodular
 
 /-- In a Demazure product `α ⋆ β`, the factor `β` lies below the product in
 left weak order. *Lemma 4.10 (`lem:invStar`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/2.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/2.*
+@isnad1 id=leweakl.0h2v.s3.c7c090be03a0 from=translated src=- shape=27901c13 vocab=496b3de8
+-/
 theorem lel_of_dprod (α β : AspPerm) : β ≤L α ⋆ β := by
   let τ := α ⋆ β
   have dprod : τ.eqDprod α β := by
@@ -1428,7 +1515,9 @@ theorem lel_of_dprod (α β : AspPerm) : β ≤L α ⋆ β := by
 
 /-- In a Demazure product `α ⋆ β`, the factor `α` lies below the product in
 right weak order. *Lemma 4.10 (`lem:invStar`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/2.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/2.*
+@isnad1 id=leweakr.0h2v.s3.94deb0bff341 from=translated src=- shape=e3ef7f21 vocab=fc79f345
+-/
 theorem ler_of_dprod (α β : AspPerm) : α ≤R α ⋆ β := by
   let τ := α ⋆ β
   have dprod : τ.eqDprod α β := by
@@ -1445,7 +1534,9 @@ theorem ler_of_dprod (α β : AspPerm) : α ≤R α ⋆ β := by
 
 /-- Left residual forms a reduced product with the inverse of its right
 factor. *Lemma 4.15 (`lem:invRes`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/2.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/2.*
+@isnad1 id=reducedp.0h2v.s4.93f480371625 from=translated src=- shape=ec32b3dd vocab=a032ef76
+-/
 theorem reducedProduct_of_lres (α β : AspPerm) :
     AspPerm.ReducedProduct (α ◃ β) β⁻¹ := by
   -- Proof written by Codex.
@@ -1473,7 +1564,9 @@ theorem reducedProduct_of_lres (α β : AspPerm) :
 
 /-- Left residual is below its left factor in right weak order.
 *Lemma 4.15 (`lem:invRes`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/2.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/2.*
+@isnad1 id=leweakr.0h2v.s3.ab89ccf8af1f from=translated src=- shape=63071510 vocab=ab17e6c8
+-/
 theorem ler_of_lres (α β : AspPerm) : α ◃ β ≤R α := by
   -- Proof written by Codex.
   rintro ⟨u, v⟩ huv
@@ -1499,7 +1592,9 @@ theorem ler_of_lres (α β : AspPerm) : α ◃ β ≤R α := by
 
 /-- Right residual forms a reduced product with the inverse of its left
 factor. *Corollary 4.16 (`cor:reducedResR`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/2.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/2.*
+@isnad1 id=reducedp.0h2v.s4.6393fa2dfb3b from=translated src=- shape=ba35cc98 vocab=5cf1767e
+-/
 theorem reducedProduct_of_rres (α β : AspPerm) :
     AspPerm.ReducedProduct α⁻¹ (α ▹ β) := by
   -- Proof written by Codex.
@@ -1511,7 +1606,9 @@ theorem reducedProduct_of_rres (α β : AspPerm) :
 
 /-- Right residual is below its right factor in left weak order.
 *Corollary 4.16 (`cor:reducedResR`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/2.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/2.*
+@isnad1 id=leweakl.0h2v.s3.991de420dfc6 from=translated src=- shape=e696a1f1 vocab=4d806b13
+-/
 theorem lel_of_rres (α β : AspPerm) : α ▹ β ≤L β := by
   -- Proof written by Codex.
   have h := AspPerm.le_weak_L_of_R (ler_of_lres β⁻¹ α⁻¹)

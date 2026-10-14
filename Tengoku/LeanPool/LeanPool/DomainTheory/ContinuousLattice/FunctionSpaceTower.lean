@@ -51,9 +51,14 @@ def towerType (D₀ : CLat.{u}) (n : ℕ) : Type u := (towerCLat D₀ n).carrier
 noncomputable instance towerCompleteLattice (D₀ : CLat.{u}) (n : ℕ) :
     CompleteLattice (towerType D₀ n) := (towerCLat D₀ n).str
 
+/--
+@isnad1 id=eq.0h1v.s3.079187b2ec5a from=translated src=- shape=665f6adc vocab=c26fa6fa
+-/
 @[simp] theorem towerType_zero (D₀ : CLat.{u}) : towerType D₀ 0 = D₀.carrier := rfl
 
-/-- `D_{n+1}` is *definitionally* the function space `[Dₙ → Dₙ]`. -/
+/-- `D_{n+1}` is *definitionally* the function space `[Dₙ → Dₙ]`.
+@isnad1 id=eq.0h2v.s5.d5355a1c59aa from=translated src=- shape=3bb9e816 vocab=a601a929
+-/
 theorem towerType_succ (D₀ : CLat.{u}) (n : ℕ) :
     towerType D₀ (n + 1) = ScottMap (towerType D₀ n) (towerType D₀ n) := rfl
 
@@ -68,7 +73,9 @@ instance towerCoeFun {D₀ : CLat.{u}} {n : ℕ} :
     CoeFun (towerType D₀ (n + 1)) (fun _ => towerType D₀ n → towerType D₀ n) where
   coe f := towerToMap f
 
-/-- The map view of a tower element is definitionally the original element. -/
+/-- The map view of a tower element is definitionally the original element.
+@isnad1 id=heq.0h3v.s5.27663bf0cdd8 from=translated src=- shape=d5ab7fee vocab=fd745efb
+-/
 theorem towerToMap_coe {D₀ : CLat.{u}} {n : ℕ} (f : towerType D₀ (n + 1)) :
     HEq (towerToMap f) f := HEq.rfl
 
@@ -93,9 +100,15 @@ variable {Y Z W : Type u} [CompleteLattice Y] [CompleteLattice Z] [CompleteLatti
 def conjMapFun (post : ScottMap Y Z) (pre : ScottMap W Y) (f : ScottMap Y Y) : ScottMap W Z :=
   post.comp (f.comp pre)
 
+/--
+@isnad1 id=eq.0h7v.s6.9d33d217553e from=translated src=- shape=92137710 vocab=35422752
+-/
 theorem conjMapFun_apply (post : ScottMap Y Z) (pre : ScottMap W Y) (f : ScottMap Y Y) (x : W) :
     conjMapFun post pre f x = post (f (pre x)) := rfl
 
+/--
+@isnad1 id=preserve.0h5v.s5.1dfed0efd63f from=translated src=- shape=e48eefb7 vocab=a5c82f92
+-/
 theorem conjMap_preservesDirectedSup (post : ScottMap Y Z) (pre : ScottMap W Y) :
     PreservesDirectedSup (conjMapFun post pre) := by
   intro F hF hFdir
@@ -110,6 +123,9 @@ theorem conjMap_preservesDirectedSup (post : ScottMap Y Z) (pre : ScottMap W Y) 
     ScottMap.sSup_apply, Set.image_image, Set.image_image]
   rfl
 
+/--
+@isnad1 id=eq.2h7v.s7.cc81f72e7d8b from=translated src=- shape=50981f21 vocab=1b791624
+-/
 theorem conjMap_preservesDirectedSup_apply (post : ScottMap Y Z) (pre : ScottMap W Y)
     (F : Set (ScottMap Y Y)) (hF : F.Nonempty) (hFdir : DirectedOn (· ≤ ·) F) (y : W) :
     post ((sSup F : ScottMap Y Y) (pre y)) = (sSup (conjMapFun post pre '' F) :
@@ -127,6 +143,9 @@ noncomputable def conjMap (post : ScottMap Y Z) (pre : ScottMap W Y) :
     ScottMap (ScottMap Y Y) (ScottMap W Z) :=
   ⟨conjMapFun post pre, continuous_of_preservesDirectedSup (conjMap_preservesDirectedSup post pre)⟩
 
+/--
+@isnad1 id=eq.0h7v.s7.e1d5386c78cf from=translated src=- shape=78329357 vocab=467a47c1
+-/
 @[simp] theorem conjMap_apply (post : ScottMap Y Z) (pre : ScottMap W Y) (f : ScottMap Y Y)
     (x : W) :
     conjMap post pre f x = post (f (pre x)) := rfl
@@ -161,6 +180,9 @@ noncomputable def towerProj (D₀ : CLat.{u})
   | 0 => j₀
   | (n + 1) => (towerProj D₀ j₀ n).functionSpace
 
+/--
+@isnad1 id=eq.0h3v.s7.3f0a82defc7c from=translated src=- shape=b32c04e4 vocab=f0f97bab
+-/
 theorem towerProj_succ (D₀ : CLat.{u})
     (j₀ : IsContinuousLatticeProjection D₀.carrier (ScottMap D₀.carrier D₀.carrier)) (n : ℕ) :
     towerProj D₀ j₀ (n + 1) = (towerProj D₀ j₀ n).functionSpace := rfl
@@ -170,13 +192,17 @@ section Tower
 variable (D₀ : CLat.{u})
   (j₀ : IsContinuousLatticeProjection D₀.carrier (ScottMap D₀.carrier D₀.carrier))
 
-/-- **Scott 1972, §4 (recursion for the embeddings).** `i_{n+1}(x) = iₙ ∘ x ∘ jₙ`. -/
+/-- **Scott 1972, §4 (recursion for the embeddings).** `i_{n+1}(x) = iₙ ∘ x ∘ jₙ`.
+@isnad1 id=eq.0h5v.s10.ba7e171461af from=translated src=- shape=2ad793e7 vocab=9fd803d7
+-/
 theorem towerProj_succ_incl_apply (n : ℕ) (x : towerType D₀ (n + 1)) (y : towerType D₀ (n + 1)) :
     ((towerProj D₀ j₀ (n + 1)).incl x) y
       = (towerProj D₀ j₀ n).incl (x ((towerProj D₀ j₀ n).retr y)) := rfl
 
 /-- **Scott 1972, §4 (recursion for the projections).** `j_{n+1}(x') = jₙ ∘ x' ∘
-iₙ`. -/
+iₙ`.
+@isnad1 id=eq.0h5v.s10.c8b0198c3cbd from=translated src=- shape=2ad7f09c vocab=9fd803d7
+-/
 theorem towerProj_succ_retr_apply (n : ℕ) (x' : towerType D₀ (n + 2)) (y : towerType D₀ n) :
     ((towerProj D₀ j₀ (n + 1)).retr x') y
       = (towerProj D₀ j₀ n).retr (x' ((towerProj D₀ j₀ n).incl y)) := rfl
@@ -184,7 +210,9 @@ theorem towerProj_succ_retr_apply (n : ℕ) (x' : towerType D₀ (n + 2)) (y : t
 /-- **Scott 1972, §4 (application is preserved).** `iₙ(f(x)) = i_{n+1}(f)(iₙ(x))`
 for `f ∈ D_{n+1}`,
 `x ∈ Dₙ`. The embeddings turn functional application into application one level
-up. -/
+up.
+@isnad1 id=eq.0h5v.s10.1f3c1a736dae from=translated src=- shape=e11f4932 vocab=44ae724d
+-/
 theorem towerProj_incl_apply (n : ℕ) (f : towerType D₀ (n + 1)) (x : towerType D₀ n) :
     (towerProj D₀ j₀ n).incl (f x)
       = ((towerProj D₀ j₀ (n + 1)).incl f) ((towerProj D₀ j₀ n).incl x) := by
@@ -231,6 +259,9 @@ noncomputable def iInfTerm (n : ℕ) : ScottMap (DInf D₀ j₀) (DInfFn D₀ j�
            (projInf (towerType D₀) (towerProj D₀ j₀) n)).comp
     (projInf (towerType D₀) (towerProj D₀ j₀) (n + 1))
 
+/--
+@isnad1 id=eq.0h5v.s8.7fb42ab34494 from=translated src=- shape=b26b9998 vocab=92f2fad3
+-/
 @[simp] theorem iInfTerm_apply (n : ℕ) (x z : DInf D₀ j₀) :
     (iInfTerm D₀ j₀ n x) z
       = embInf (towerType D₀) (towerProj D₀ j₀) n
@@ -244,7 +275,9 @@ noncomputable def embInfInf : ScottMap (DInf D₀ j₀) (DInfFn D₀ j₀) :=
   ⨆ n, iInfTerm D₀ j₀ n
 
 /-- `i_∞` evaluated at `x` is the pointwise supremum of the summands `iInfTerm n
-x`. -/
+x`.
+@isnad1 id=eq.0h3v.s7.7f41c7246dd1 from=translated src=- shape=d86025f3 vocab=d58c9325
+-/
 theorem embInfInf_apply (x : DInf D₀ j₀) :
     embInfInf D₀ j₀ x = ⨆ n, iInfTerm D₀ j₀ n x := by
   change (sSup (Set.range (iInfTerm D₀ j₀)) : ScottMap _ _) x = _
@@ -261,6 +294,9 @@ noncomputable def jInfTerm (n : ℕ) : ScottMap (DInfFn D₀ j₀) (DInf D₀ j�
     (conjMap (projInf (towerType D₀) (towerProj D₀ j₀) n)
              (embInf (towerType D₀) (towerProj D₀ j₀) n))
 
+/--
+@isnad1 id=eq.0h4v.s9.38b40b42233b from=translated src=- shape=84246967 vocab=e1449866
+-/
 @[simp] theorem jInfTerm_apply (n : ℕ) (f : DInfFn D₀ j₀) :
     jInfTerm D₀ j₀ n f
       = embInf (towerType D₀) (towerProj D₀ j₀) (n + 1)
@@ -274,19 +310,25 @@ the Scott maps
 noncomputable def projInfInf : ScottMap (DInfFn D₀ j₀) (DInf D₀ j₀) :=
   ⨆ n, jInfTerm D₀ j₀ n
 
-/-- `j_∞` evaluated at `f` is the supremum of the summands `jInfTerm n f`. -/
+/-- `j_∞` evaluated at `f` is the supremum of the summands `jInfTerm n f`.
+@isnad1 id=eq.0h3v.s7.8e72abc74362 from=translated src=- shape=d86025f3 vocab=e4a6210b
+-/
 theorem projInfInf_apply (f : DInfFn D₀ j₀) :
     projInfInf D₀ j₀ f = ⨆ n, jInfTerm D₀ j₀ n f := by
   change (sSup (Set.range (jInfTerm D₀ j₀)) : ScottMap _ _) f = _
   rw [ScottMap.sSup_apply, ← Set.range_comp, sSup_range]
   rfl
 
-/-- `i_∞` is Scott-continuous (it is a bundled `ScottMap`). -/
+/-- `i_∞` is Scott-continuous (it is a bundled `ScottMap`).
+@isnad1 id=preserve.0h2v.s7.a3d2b679d4a0 from=translated src=- shape=edb95804 vocab=35a43a79
+-/
 theorem embInfInf_preservesDirectedSup :
     PreservesDirectedSup (embInfInf D₀ j₀ : DInf D₀ j₀ → DInfFn D₀ j₀) :=
   (proposition_2_5 _).mp (embInfInf D₀ j₀).continuous
 
-/-- `j_∞` is Scott-continuous (it is a bundled `ScottMap`). -/
+/-- `j_∞` is Scott-continuous (it is a bundled `ScottMap`).
+@isnad1 id=preserve.0h2v.s7.41a14f343d20 from=translated src=- shape=edb95804 vocab=ab834605
+-/
 theorem projInfInf_preservesDirectedSup :
     PreservesDirectedSup (projInfInf D₀ j₀ : DInfFn D₀ j₀ → DInf D₀ j₀) :=
   (proposition_2_5 _).mp (projInfInf D₀ j₀).continuous
@@ -308,7 +350,9 @@ variable (D₀ : CLat.{u})
 when `f` is
 monotone).
 Since `conjMap post pre` is itself a Scott map, this is just preservation of
-directed suprema. -/
+directed suprema.
+@isnad1 id=eq.1h6v.s9.d550b30fca97 from=translated src=- shape=a9451262 vocab=c1735957
+-/
 theorem conjMap_iSup (n : ℕ) (post : ScottMap (DInf D₀ j₀) (towerType D₀ n))
     (pre : ScottMap (towerType D₀ n) (DInf D₀ j₀))
     (f : ℕ → ScottMap (DInf D₀ j₀) (DInf D₀ j₀)) (hf : Monotone f) :
@@ -321,7 +365,9 @@ theorem conjMap_iSup (n : ℕ) (post : ScottMap (DInf D₀ j₀) (towerType D₀
   rfl
 
 /-- The inverse-limit embedding commutes with a supremum in `D_{n+1}` (monotone ⇒
-directed). -/
+directed).
+@isnad1 id=eq.1h4v.s9.44532671850b from=translated src=- shape=8ad778b7 vocab=f4fb3883
+-/
 theorem embInf_succ_iSup (n : ℕ) (f : ℕ → towerType D₀ (n + 1)) (hf : Monotone f) :
     embInf (towerType D₀) (towerProj D₀ j₀) (n + 1) (⨆ m, f m) =
       ⨆ m, embInf (towerType D₀) (towerProj D₀ j₀) (n + 1) (f m) := by
@@ -337,7 +383,9 @@ theorem embInf_succ_iSup (n : ℕ) (f : ℕ → towerType D₀ (n + 1)) (hf : Mo
 summand of `i_∞`
 recovers the component `x_{n+1}`. This is exactly `j_{[·]} ∘ i_{[·]} = id` for the
 function-space
-projection built from `proposition_4_2`. -/
+projection built from `proposition_4_2`.
+@isnad1 id=eq.0h4v.s8.afed71f79da7 from=translated src=- shape=ac486fd8 vocab=599fcb30
+-/
 theorem conj_iInfTerm_eq (n : ℕ) (x : DInf D₀ j₀) :
     conjMap (projInf (towerType D₀) (towerProj D₀ j₀) n)
             (embInf (towerType D₀) (towerProj D₀ j₀) n)
@@ -346,7 +394,9 @@ theorem conj_iInfTerm_eq (n : ℕ) (x : DInf D₀ j₀) :
     (projInf (towerType D₀) (towerProj D₀ j₀) (n + 1) x)
 
 /-- `i_{n∞}(yₙ) ⊑ y_{n+1}`: climbing one level and embedding stays below the next
-component. -/
+component.
+@isnad1 id=le.0h4v.s9.17273bc965bf from=translated src=- shape=3721101e vocab=1a291ca9
+-/
 theorem incl_projInf_le_projInf_succ (n : ℕ) (w : DInf D₀ j₀) :
     (towerProj D₀ j₀ n).incl (projInf (towerType D₀) (towerProj D₀ j₀) n w)
       ≤ projInf (towerType D₀) (towerProj D₀ j₀) (n + 1) w := by
@@ -355,7 +405,9 @@ theorem incl_projInf_le_projInf_succ (n : ℕ) (w : DInf D₀ j₀) :
   rwa [show (towerProj D₀ j₀ n).retr (projInf (towerType D₀) (towerProj D₀ j₀) (n + 1) w)
       = projInf (towerType D₀) (towerProj D₀ j₀) n w from w.2 n] at h
 
-/-- `i_∞` is monotone in its summand index. -/
+/-- `i_∞` is monotone in its summand index.
+@isnad1 id=le.0h4v.s7.8d0ecb2bb03d from=translated src=- shape=dc4b7589 vocab=3dbed9f8
+-/
 theorem iInfTerm_le_succ (x : DInf D₀ j₀) (m : ℕ) :
     iInfTerm D₀ j₀ m x ≤ iInfTerm D₀ j₀ (m + 1) x := by
   rw [ScottMap.le_def]
@@ -384,10 +436,15 @@ theorem iInfTerm_le_succ (x : DInf D₀ j₀) (m : ℕ) :
     _ ≤ x.1 (m + 2) (projInf (towerType D₀) (towerProj D₀ j₀) (m + 1) z) :=
         ScottMap.monotone (x.1 (m + 2)) hab
 
+/--
+@isnad1 id=monotone.0h3v.s7.1324cdc12ad3 from=translated src=- shape=87e87b33 vocab=a14c22bc
+-/
 theorem iInfTerm_monotone (x : DInf D₀ j₀) : Monotone (fun m => iInfTerm D₀ j₀ m x) :=
   monotone_nat_of_le_succ (iInfTerm_le_succ D₀ j₀ x)
 
-/-- A monotone double `iSup` over `ℕ × ℕ` equals the diagonal `iSup`. -/
+/-- A monotone double `iSup` over `ℕ × ℕ` equals the diagonal `iSup`.
+@isnad1 id=eq.2h2v.s6.c3142f254539 from=translated src=- shape=8cf82f2e vocab=6a4c0366
+-/
 theorem iSup₂_monotone_eq_diagonal {α : Type*} [CompleteLattice α] (f : ℕ → ℕ → α)
     (hfm : ∀ n, Monotone (f n)) (hfn : ∀ m, Monotone (fun n => f n m)) :
     ⨆ n, ⨆ m, f n m = ⨆ n, f n n := by
@@ -406,7 +463,9 @@ f` along
 stays below `conjMap (j_{∞(n+1)}, i_{(n+1)∞}) f`. Both sides live in `D_{n+2}`;
 the inequality is the
 algebraic content that makes the double sup defining `j_∞ ∘ i_∞` monotone in the
-level index `n`. -/
+level index `n`.
+@isnad1 id=le.0h4v.s10.a3a7ddb89408 from=translated src=- shape=08cb7289 vocab=d07bc9b0
+-/
 theorem conjMap_incl_le_conjMap_succ (n : ℕ) (f : DInfFn D₀ j₀) :
     (towerProj D₀ j₀ (n + 1)).incl
         (conjMap (projInf (towerType D₀) (towerProj D₀ j₀) n)
@@ -430,7 +489,9 @@ theorem conjMap_incl_le_conjMap_succ (n : ℕ) (f : DInfFn D₀ j₀) :
         incl_projInf_le_projInf_succ D₀ j₀ n
           (f (embInf (towerType D₀) (towerProj D₀ j₀) (n + 1) y))
 
-/-- `j_∞(i_∞(x)) = ⨆ₙ i_{(n+1)∞}(x_{n+1})`. -/
+/-- `j_∞(i_∞(x)) = ⨆ₙ i_{(n+1)∞}(x_{n+1})`.
+@isnad1 id=eq.0h3v.s8.f045d3249907 from=translated src=- shape=2ee2c7cb vocab=2f5cf36a
+-/
 theorem projInfInf_embInfInf_eq (x : DInf D₀ j₀) :
     projInfInf D₀ j₀ (embInfInf D₀ j₀ x) = ⨆ n, embInf (towerType D₀) (towerProj D₀ j₀) (n +
       1) (x.1 (n + 1)) := by
@@ -491,7 +552,9 @@ theorem projInfInf_embInfInf_eq (x : DInf D₀ j₀) :
   dsimp only
   rw [conj_iInfTerm_eq D₀ j₀ n x]
 
-/-- **Scott 1972, §4 (Theorem 4.4, first half).** `j_∞ ∘ i_∞ = id` on `D_∞`. -/
+/-- **Scott 1972, §4 (Theorem 4.4, first half).** `j_∞ ∘ i_∞ = id` on `D_∞`.
+@isnad1 id=eq.0h2v.s6.18ec4740ac74 from=translated src=- shape=49bed241 vocab=0e117a30
+-/
 theorem projInfInf_comp_embInfInf :
     (projInfInf D₀ j₀).comp (embInfInf D₀ j₀) = ScottMap.idMap := by
   apply ScottMap.ext
@@ -519,7 +582,9 @@ to `f`. -/
 j_{∞n} ∘ f ∘ i_{n∞}`.
 This is the equality counterpart of `conjMap_incl_le_conjMap_succ`; it is the
 hypothesis Lemma 4.5
-needs to recognize `j_∞(f)` from its restrictions. -/
+needs to recognize `j_∞(f)` from its restrictions.
+@isnad1 id=eq.0h4v.s10.7a49ac65829d from=translated src=- shape=782d7778 vocab=373e4290
+-/
 theorem towerProj_retr_conjMap_succ (n : ℕ) (f : DInfFn D₀ j₀) :
     (towerProj D₀ j₀ (n + 1)).retr
         (conjMap (projInf (towerType D₀) (towerProj D₀ j₀) (n + 1))
@@ -538,7 +603,9 @@ theorem towerProj_retr_conjMap_succ (n : ℕ) (f : DInfFn D₀ j₀) :
   exact (f (embInf (towerType D₀) (towerProj D₀ j₀) n y)).2 n
 
 /-- **Scott 1972, §4 (Theorem 4.4, second half).** `i_∞ ∘ j_∞ = id` on `[D_∞ →
-D_∞]`. -/
+D_∞]`.
+@isnad1 id=eq.0h2v.s7.ec6265ab6036 from=translated src=- shape=49bed241 vocab=0e117a30
+-/
 theorem embInfInf_comp_projInfInf :
     (embInfInf D₀ j₀).comp (projInfInf D₀ j₀) = ScottMap.idMap := by
   apply ScottMap.ext
@@ -656,16 +723,25 @@ section Thm44d
 variable (D₀ : CLat.{u})
   (j₀ : IsContinuousLatticeProjection D₀.carrier (ScottMap D₀.carrier D₀.carrier))
 
+/--
+@isnad1 id=eq.0h3v.s7.af7c9b892319 from=translated src=- shape=cc02c906 vocab=ddbbf00e
+-/
 theorem projInfInf_embInfInf (x : DInf D₀ j₀) :
     projInfInf D₀ j₀ (embInfInf D₀ j₀ x) = x := by
   have h := congrArg (fun g => g x) (projInfInf_comp_embInfInf D₀ j₀)
   simpa [ScottMap.comp_apply, ScottMap.idMap_apply] using h
 
+/--
+@isnad1 id=eq.0h3v.s7.a6649790b602 from=translated src=- shape=cc02c906 vocab=ddbbf00e
+-/
 theorem embInfInf_projInfInf (f : DInfFn D₀ j₀) :
     embInfInf D₀ j₀ (projInfInf D₀ j₀ f) = f := by
   have h := congrArg (fun g => g f) (embInfInf_comp_projInfInf D₀ j₀)
   simpa [ScottMap.comp_apply, ScottMap.idMap_apply] using h
 
+/--
+@isnad1 id=iff.0h4v.s8.c6fc0a160e2c from=translated src=- shape=a8f400ed vocab=847f77e4
+-/
 theorem embInfInf_le_iff (x y : DInf D₀ j₀) :
     embInfInf D₀ j₀ x ≤ embInfInf D₀ j₀ y ↔ x ≤ y := by
   constructor
@@ -678,7 +754,9 @@ theorem embInfInf_le_iff (x y : DInf D₀ j₀) :
 function-space tower is
 order-isomorphic to its own function space `[D_∞ → D_∞]` via the mutually-inverse
 Scott maps
-`i_∞ = embInfInf` and `j_∞ = projInfInf`. -/
+`i_∞ = embInfInf` and `j_∞ = projInfInf`.
+@isnad1 id=and.0h2v.s8.19d7e262da84 from=translated src=- shape=395afc45 vocab=0e117a30
+-/
 theorem theorem_4_4 :
     (projInfInf D₀ j₀).comp (embInfInf D₀ j₀) = ScottMap.idMap ∧
     (embInfInf D₀ j₀).comp (projInfInf D₀ j₀) = ScottMap.idMap :=

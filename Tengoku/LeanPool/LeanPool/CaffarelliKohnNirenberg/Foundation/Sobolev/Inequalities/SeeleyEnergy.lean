@@ -32,11 +32,17 @@ attribute [local instance] Classical.propDecidable
 def seeleyOuterAnnulus : Set (Vec 3) :=
   {x | 1 < vecEuclideanNorm x ∧ vecEuclideanNorm x < 2}
 
+/--
+@isnad1 id=le.0h0v.s4.bc36aa2f80f9 from=translated src=- shape=2a30f11b vocab=d0bbd1ea
+-/
 theorem seeleyOuterAnnulus_subset_closedAnnulus :
     seeleyOuterAnnulus ⊆ seeleyClosedAnnulus := by
   intro x hx
   exact ⟨hx.1.le, hx.2.le⟩
 
+/--
+@isnad1 id=measurab.0h0v.s4.af7a6f1d2bcb from=translated src=- shape=06f63001 vocab=695da5f0
+-/
 theorem seeleyOuterAnnulus_measurableSet :
     MeasurableSet seeleyOuterAnnulus := by
   rw [seeleyOuterAnnulus]
@@ -46,6 +52,9 @@ theorem seeleyOuterAnnulus_measurableSet :
   exact (isOpen_lt continuous_const hnorm).inter
     (isOpen_lt hnorm continuous_const) |>.measurableSet
 
+/--
+@isnad1 id=eq.1h2v.s6.5d2ca01c340a from=translated src=- shape=1602ebbd vocab=f7b67337
+-/
 theorem seeleyExtension_value_eq_reflection_combo
     (v : Vec 3 → ℝ) {x : Vec 3} (hx : x ∈ seeleyOuterAnnulus) :
     seeleyExtension v x =

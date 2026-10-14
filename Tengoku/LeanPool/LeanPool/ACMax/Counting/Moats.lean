@@ -54,7 +54,9 @@ open Finset
 open Classical in
 /-- **The excess ledger.**  On the `m = 2(n−2)`, `δ ≥ 3` census (`n ≥ 8`) the total degree
 excess is `Σ_v (deg v − 3) = n − 8`: the handshake `Σ deg = 2·2(n−2) = 4n − 8` minus the
-base `3n`. -/
+base `3n`.
+@isnad1 id=eq.3h2v.s7.c0029e0441b5 from=translated src=- shape=8ef461bb vocab=62320e96
+-/
 theorem total_excess_eq {n : ℕ} (hn : 8 ≤ n) (G : SimpleGraph (Fin n))
     (hm : G.edgeFinset.card = 2 * (n - 2)) (h3 : ∀ v : Fin n, 3 ≤ G.degree v) :
     ∑ v : Fin n, (G.degree v - 3) = n - 8 := by

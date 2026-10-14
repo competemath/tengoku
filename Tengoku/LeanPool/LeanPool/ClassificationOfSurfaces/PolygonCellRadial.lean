@@ -36,11 +36,17 @@ noncomputable def direction (z : ℂ) (hz : z ≠ 0) : Circle :=
     rw [norm_div, norm_real, Real.norm_eq_abs, abs_norm]
     exact div_self (norm_ne_zero_iff.mpr hz)⟩
 
+/--
+@isnad1 id=eq.1h1v.s6.60109d0c8c00 from=translated src=- shape=5df770c4 vocab=9f230508
+-/
 @[simp]
 theorem coe_direction (z : ℂ) (hz : z ≠ 0) :
     (direction z hz : ℂ) = z / ‖z‖ :=
   rfl
 
+/--
+@isnad1 id=continuo.0h0v.s6.1420638f5bcf from=translated src=- shape=3b867c1d vocab=249dcddd
+-/
 theorem continuous_direction :
     Continuous (fun w : {w : ℂ // w ≠ 0} =>
       direction (w : ℂ) w.property) := by
@@ -58,16 +64,24 @@ noncomputable def radialMap (h : Circle ≃ₜ Circle) (z : ℂ) : ℂ :=
   if hz : z = 0 then 0
   else (‖z‖ : ℂ) * (h (direction z hz) : ℂ)
 
+/--
+@isnad1 id=eq.0h1v.s4.2952a0253fcd from=translated src=- shape=71625799 vocab=93748ca4
+-/
 @[simp]
 theorem radialMap_zero (h : Circle ≃ₜ Circle) :
     radialMap h 0 = 0 := by
   simp [radialMap]
 
+/--
+@isnad1 id=eq.1h2v.s7.803fecbe640a from=translated src=- shape=2af6e864 vocab=21c6b408
+-/
 theorem radialMap_of_ne (h : Circle ≃ₜ Circle) {z : ℂ} (hz : z ≠ 0) :
     radialMap h z = (‖z‖ : ℂ) * (h (direction z hz) : ℂ) := by
   simp [radialMap, hz]
 
-/-- Radial extension preserves distance from the origin exactly. -/
+/-- Radial extension preserves distance from the origin exactly.
+@isnad1 id=eq.0h2v.s4.c6d413c796d6 from=translated src=- shape=aed1972b vocab=df1ae2f4
+-/
 @[simp]
 theorem norm_radialMap (h : Circle ≃ₜ Circle) (z : ℂ) :
     ‖radialMap h z‖ = ‖z‖ := by
@@ -77,12 +91,17 @@ theorem norm_radialMap (h : Circle ≃ₜ Circle) (z : ℂ) :
   · rw [radialMap_of_ne h hz, norm_mul, Circle.norm_coe]
     simp
 
+/--
+@isnad1 id=ne.1h2v.s4.3048b4bd7f16 from=translated src=- shape=8f2a7935 vocab=93748ca4
+-/
 theorem radialMap_ne_zero (h : Circle ≃ₜ Circle) {z : ℂ} (hz : z ≠ 0) :
     radialMap h z ≠ 0 := by
   rw [← norm_ne_zero_iff, norm_radialMap]
   exact norm_ne_zero_iff.mpr hz
 
-/-- The direction of a radial image is the selected image direction. -/
+/-- The direction of a radial image is the selected image direction.
+@isnad1 id=eq.1h2v.s5.8671f291e818 from=translated src=- shape=54212b72 vocab=08104ffd
+-/
 theorem direction_radialMap (h : Circle ≃ₜ Circle) {z : ℂ} (hz : z ≠ 0) :
     direction (radialMap h z) (radialMap_ne_zero h hz) =
       h (direction z hz) := by
@@ -92,7 +111,9 @@ theorem direction_radialMap (h : Circle ≃ₜ Circle) {z : ℂ} (hz : z ≠ 0) 
     Real.norm_eq_abs, abs_norm]
   field_simp [norm_ne_zero_iff.mpr hz]
 
-/-- Extending the inverse circle homeomorphism gives the inverse radial map. -/
+/-- Extending the inverse circle homeomorphism gives the inverse radial map.
+@isnad1 id=eq.0h2v.s4.712583b27753 from=translated src=- shape=7450e864 vocab=95fe11ad
+-/
 theorem radialMap_symm_apply (h : Circle ≃ₜ Circle) (z : ℂ) :
     radialMap h.symm (radialMap h z) = z := by
   by_cases hz : z = 0
@@ -103,6 +124,9 @@ theorem radialMap_symm_apply (h : Circle ≃ₜ Circle) (z : ℂ) :
       coe_direction]
     field_simp [norm_ne_zero_iff.mpr hz]
 
+/--
+@isnad1 id=continuo.0h1v.s5.40598ce2b7f4 from=translated src=- shape=cfd42336 vocab=f89dc32d
+-/
 theorem continuousAt_radialMap_zero (h : Circle ≃ₜ Circle) :
     ContinuousAt (radialMap h) 0 := by
   rw [Metric.continuousAt_iff]
@@ -113,6 +137,9 @@ theorem continuousAt_radialMap_zero (h : Circle ≃ₜ Circle) :
     ← dist_zero_right]
   exact hz
 
+/--
+@isnad1 id=continuo.1h2v.s5.be7ee01ca12f from=translated src=- shape=3c318702 vocab=f89dc32d
+-/
 theorem continuousAt_radialMap_of_ne (h : Circle ≃ₜ Circle)
     {z : ℂ} (hz : z ≠ 0) :
     ContinuousAt (radialMap h) z := by
@@ -136,6 +163,9 @@ theorem continuousAt_radialMap_of_ne (h : Circle ≃ₜ Circle)
     exact hrestrict
   exact (hOn z hz).continuousAt (isOpen_compl_singleton.mem_nhds hz)
 
+/--
+@isnad1 id=continuo.0h1v.s5.a8f290dc06e7 from=translated src=- shape=d8239103 vocab=ec9fc058
+-/
 theorem continuous_radialMap (h : Circle ≃ₜ Circle) :
     Continuous (radialMap h) := by
   rw [continuous_iff_continuousAt]
@@ -145,7 +175,9 @@ theorem continuous_radialMap (h : Circle ≃ₜ Circle) :
     exact continuousAt_radialMap_zero h
   · exact continuousAt_radialMap_of_ne h hz
 
-/-- On the unit circle, radial extension is exactly the original homeomorphism. -/
+/-- On the unit circle, radial extension is exactly the original homeomorphism.
+@isnad1 id=eq.0h2v.s7.0606b6a4afee from=translated src=- shape=b87c3014 vocab=7962cc76
+-/
 @[simp]
 theorem radialMap_coe (h : Circle ≃ₜ Circle) (z : Circle) :
     radialMap h (z : ℂ) = (h z : ℂ) := by
@@ -185,6 +217,9 @@ noncomputable def radialHomeomorph {n m : ℕ} (h : Circle ≃ₜ Circle) :
     apply continuous_induced_rng.2
     exact Circle.continuous_radialMap h.symm |>.comp PolygonCell.continuous_val
 
+/--
+@isnad1 id=eq.0h4v.s6.ed92397df8b9 from=translated src=- shape=0a40a511 vocab=49fec09c
+-/
 @[simp]
 theorem radialHomeomorph_apply_val {n m : ℕ} (h : Circle ≃ₜ Circle)
     (z : PolygonCell n) :
@@ -192,7 +227,9 @@ theorem radialHomeomorph_apply_val {n m : ℕ} (h : Circle ≃ₜ Circle)
       Circle.radialMap h z.val :=
   rfl
 
-/-- The radial cell homeomorphism restricts to the selected circle homeomorphism. -/
+/-- The radial cell homeomorphism restricts to the selected circle homeomorphism.
+@isnad1 id=eq.0h4v.s7.7bba8def3a2b from=translated src=- shape=c47bae8c vocab=ac235424
+-/
 @[simp]
 theorem radialHomeomorph_ofCircle {n m : ℕ} (h : Circle ≃ₜ Circle)
     (z : Circle) :

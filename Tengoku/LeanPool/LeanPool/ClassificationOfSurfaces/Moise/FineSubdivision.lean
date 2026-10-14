@@ -28,6 +28,9 @@ namespace PlaneComplex
 
 variable (K : PlaneComplex)
 
+/--
+@isnad1 id=le.2h4v.s10.058fa6e8c34a from=translated src=- shape=af47e06a vocab=ffeed51e
+-/
 theorem affine_nonneg_on_cellCarrier {a : Plane →ᵃ[ℝ] ℝ}
     {s : Finset K.Vertex} (hs : ∀ v ∈ s, 0 ≤ a (K.position v)) :
     ∀ x ∈ K.cellCarrier s, 0 ≤ a x := by
@@ -37,6 +40,9 @@ theorem affine_nonneg_on_cellCarrier {a : Plane →ᵃ[ℝ] ℝ}
     exact hs v hv
   exact convexHull_min hsubset ((convex_Ici 0).affine_preimage a) hx
 
+/--
+@isnad1 id=le.2h4v.s10.989f37816a15 from=translated src=- shape=020cf560 vocab=ffeed51e
+-/
 theorem affine_nonpos_on_cellCarrier {a : Plane →ᵃ[ℝ] ℝ}
     {s : Finset K.Vertex} (hs : ∀ v ∈ s, a (K.position v) ≤ 0) :
     ∀ x ∈ K.cellCarrier s, a x ≤ 0 := by
@@ -56,9 +62,15 @@ noncomputable def verticalCut (c : ℝ) : Plane →ᵃ[ℝ] ℝ :=
 noncomputable def horizontalCut (c : ℝ) : Plane →ᵃ[ℝ] ℝ :=
   cartesianY - AffineMap.const ℝ Plane c
 
+/--
+@isnad1 id=eq.0h2v.s9.e2594ab3c274 from=translated src=- shape=2366f912 vocab=2732fead
+-/
 @[simp] theorem verticalCut_apply (c : ℝ) (p : Plane) : verticalCut c p = p 0 - c := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.5d2e860e2398 from=translated src=- shape=2366f912 vocab=0ef9c6a9
+-/
 @[simp] theorem horizontalCut_apply (c : ℝ) (p : Plane) : horizontalCut c p = p 1 - c := by
   rfl
 
@@ -67,6 +79,9 @@ noncomputable def boxCuts (p : Plane) (r : ℝ) : List (Plane →ᵃ[ℝ] ℝ) :
   [verticalCut (p 0 - r), verticalCut (p 0 + r),
     horizontalCut (p 1 - r), horizontalCut (p 1 + r)]
 
+/--
+@isnad1 id=iff.0h3v.s11.1e0b4642a3e1 from=translated src=- shape=40c89cfe vocab=c634cbf4
+-/
 @[simp] theorem mem_boxCuts {p : Plane} {r : ℝ} {a : Plane →ᵃ[ℝ] ℝ} :
     a ∈ boxCuts p r ↔
       a = verticalCut (p 0 - r) ∨ a = verticalCut (p 0 + r) ∨
@@ -78,6 +93,9 @@ noncomputable def coverCuts (centers : Finset Plane) (r : ℝ) :
     List (Plane →ᵃ[ℝ] ℝ) :=
   centers.toList.flatMap fun p => boxCuts p r
 
+/--
+@isnad1 id=mem.2h4v.s11.18f20802c9cc from=translated src=- shape=b2b40487 vocab=f899187c
+-/
 theorem boxCut_mem_coverCuts {centers : Finset Plane} {p : Plane} (hp : p ∈ centers)
     (r : ℝ) {a : Plane →ᵃ[ℝ] ℝ} (ha : a ∈ boxCuts p r) :
     a ∈ coverCuts centers r := by
@@ -90,7 +108,9 @@ private theorem coordinate_dist_le (x y : Plane) (k : Fin 2) :
   simpa only [PiLp.sub_apply, Real.norm_eq_abs, dist_eq_norm] using h
 
 /-- A chamber cut by the four box lines around `p` is trapped in that box as soon as it meets
-the concentric half-radius ball. -/
+the concentric half-radius ball.
+@isnad1 id=and.6h6v.s11.6cb1b682bf46 from=translated src=- shape=a5927fdc vocab=fb7a3511
+-/
 theorem TriangleMesh.cellCarrier_subset_box_of_monochromatic
     (N : TriangleMesh) {p : Plane} {r : ℝ} (hr : 0 < r)
     (hmono : ∀ a ∈ boxCuts p r, N.IsMonochromatic a)
@@ -166,7 +186,9 @@ private theorem dist_lt_four_mul_of_mem_box {p x y : Plane} {r : ℝ} (hr : 0 < 
   nlinarith [sq_nonneg r]
 
 /-- A finite pure plane complex has a subdivision on whose two-cells a prescribed continuous map
-has arbitrarily small oscillation. -/
+has arbitrarily small oscillation.
+@isnad1 id=ex.3h3v.s7.db0f77b8c904 from=translated src=- shape=8d50b33d vocab=e901ee36
+-/
 theorem PlaneComplex.exists_subdivision_image_dist_lt (K : PlaneComplex)
     (hpure : K.IsPure2) {h : Plane → Plane} (hcont : ContinuousOn h K.support)
     {eps : ℝ} (heps : 0 < eps) :
@@ -226,7 +248,9 @@ theorem PlaneComplex.exists_subdivision_image_dist_lt (K : PlaneComplex)
   exact hcontrol x hxK y hyK hxy
 
 /-- A sufficiently fine subdivision of a pure finite plane complex is subordinate to any open
-cover of its support. -/
+cover of its support.
+@isnad1 id=ex.3h3v.s7.513731257e0e from=translated src=- shape=9d70dbff vocab=079af9ed
+-/
 theorem PlaneComplex.exists_subdivision_subordinate_openCover
     (K : PlaneComplex) (hpure : K.IsPure2)
     {I : Type*} (U : I → Set Plane) (hU : ∀ i, IsOpen (U i))
@@ -269,7 +293,9 @@ namespace PlaneComplex.OpenSubmesh
 
 variable {K : PlaneComplex} {C U : Set Plane}
 
-/-- Every retained triangle of an open submesh still lies in the original complex support. -/
+/-- Every retained triangle of an open submesh still lies in the original complex support.
+@isnad1 id=le.0h4v.s4.92e480091f99 from=translated src=- shape=44236543 vocab=965dd450
+-/
 theorem support_subset_original (L : K.OpenSubmesh C U) :
     L.mesh.toPlaneComplex.support ⊆ K.support := by
   intro x hx
@@ -281,7 +307,9 @@ theorem support_subset_original (L : K.OpenSubmesh C U) :
 end PlaneComplex.OpenSubmesh
 
 /-- Every compact subset of an open subset of a pure finite plane complex is covered by a finite
-triangle submesh lying in that open set. -/
+triangle submesh lying in that open set.
+@isnad1 id=nonempty.5h3v.s6.88ddaf3d52c0 from=translated src=- shape=dff47267 vocab=5d5b6c59
+-/
 theorem PlaneComplex.exists_openSubmesh
     (K : PlaneComplex) (hpure : K.IsPure2) {C U : Set Plane}
     (hC : IsCompact C) (hCK : C ⊆ K.support)

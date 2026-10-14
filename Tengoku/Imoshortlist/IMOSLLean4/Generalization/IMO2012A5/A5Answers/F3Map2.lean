@@ -27,7 +27,9 @@ def 𝔽₃Map2 : 𝔽₃ → ℤ
   | 𝔽₃1 => 0
   | 𝔽₃2 => 0
 
-/-- The map `𝔽₃Map2` is good. -/
+/-- The map `𝔽₃Map2` is good.
+@isnad1 id=good.0h0v.s3.71d894b17e76 from=translated src=- shape=54c8eceb vocab=6627536d
+-/
 theorem 𝔽₃Map2_is_good : good 𝔽₃Map2
   | 𝔽₃0, 𝔽₃0 => rfl
   | 𝔽₃0, 𝔽₃1 => rfl
@@ -39,6 +41,8 @@ theorem 𝔽₃Map2_is_good : good 𝔽₃Map2
   | 𝔽₃2, 𝔽₃1 => rfl
   | 𝔽₃2, 𝔽₃2 => rfl
 
-/-- The map `𝔽₃Map2` is non-trivial good. -/
+/-- The map `𝔽₃Map2` is non-trivial good.
+@isnad1 id=nontrivi.0h0v.s4.1ded3d32c3de from=translated src=- shape=54c8eceb vocab=7330fa2b
+-/
 theorem 𝔽₃Map2_is_NontrivialGood : NontrivialGood 𝔽₃Map2 :=
   ⟨𝔽₃Map2_is_good, rfl⟩

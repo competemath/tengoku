@@ -61,7 +61,9 @@ private theorem integrable_sq_of_local_energy_prod
 
 /- The next theorem is public. -/
 /-- The velocity and gradient have square-integrable spatial slices almost everywhere
-in every local space-time box. -/
+in every local space-time box.
+@isnad1 id=eventual.2h9v.s9.9fbf9438fff5 from=translated src=- shape=5de53e9c vocab=32c969b0
+-/
 theorem slice_memLp_ae_of_sws
     {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     {u : ParabolicPoint → Vec3} {Du : ParabolicPoint → Fin 3 → Vec3}

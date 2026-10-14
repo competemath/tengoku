@@ -17,4 +17,7 @@ Imported Lean Pool material for `LeanPool.BrauerGroupNew.Mathlib.RingTheory.NonU
 
 variable {R : Type*} [NonUnitalRing R]
 
+/--
+@isnad1 id=eq.0h2v.s6.fbc670e0974d from=translated src=- shape=dc9eceeb vocab=9986112b
+-/
 @[simp] lemma NonUnitalSubring.carrier_eq_coe (S : NonUnitalSubring R) : S.carrier = S := rfl

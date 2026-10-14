@@ -178,6 +178,9 @@ def TendstoLocallyUniformlyWithout (F : ℕ → ℚ → ℚ) (f : ℝ → ℝ) :
     ∀ (x : ℝ), ∃ t ∈ nhds x, ∃ a, ∀ (b : ℕ), a ≤ b → ∀ (y : ℚ), ↑y ∈ t →
     |f y - ↑(F b y)| < ε
 
+/--
+@isnad1 id=ex.2h3v.s7.69955dabc3cf from=translated src=- shape=bbdca296 vocab=ec752bf3
+-/
 theorem Real_mk_of_TendstoLocallyUniformly' (fImpl : ℕ → ℚ → ℚ) (f : ℝ → ℝ)
     (hfImpl : TendstoLocallyUniformlyWithout (fImpl) (f))
     (hf : Continuous f)
@@ -257,6 +260,9 @@ def ofTendstoLocallyUniformlyContinuous
     exact Real.mk_eq.1 (h₁.trans h₂.symm)
   )
 
+/--
+@isnad1 id=eq.6h5v.s7.959f61c1e0c3 from=translated src=- shape=f9c0e756 vocab=5e864775
+-/
 @[simp]
 theorem val_ofTendstoLocallyUniformlyContinuous (f) (hf : Continuous f) (fI fl fu h₁ h₂ h₃ h₄ h₅
   a)

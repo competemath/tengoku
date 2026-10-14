@@ -33,7 +33,9 @@ namespace IMO2017A1
 variable [CommSemiring R] [LinearOrder R] [IsStrictOrderedRing R]
 
 /-- Let `n ≥ 2` and `a, b : R` with `a, b > 0`.
-  Then `a^n + na^{n - 1} b < (a + b)^n`. -/
+  Then `a^n + na^{n - 1} b < (a + b)^n`.
+@isnad1 id=lt.3h4v.s7.2343eb2bc14f from=translated src=- shape=62c1209f vocab=1348bf48
+-/
 theorem pow_add_mul_lt_add_pow
     {a b : R} (ha : a > 0) (hb : b > 0) {n : ℕ} (hn : n ≥ 2) :
     a ^ n + n * a ^ (n - 1) * b < (a + b) ^ n := by
@@ -54,7 +56,9 @@ theorem pow_add_mul_lt_add_pow
     _ = (a + b) ^ (k + 2) := (pow_succ _ _).symm
 
 /-- Let `n` be a positive integer and `x : R` with `x ≥ 0`.
-  Then we have `n^n (x + 1) ≤ (x + n)^n`. -/
+  Then we have `n^n (x + 1) ≤ (x + n)^n`.
+@isnad1 id=le.2h3v.s7.dfdabcc7498c from=translated src=- shape=cb427047 vocab=614979b3
+-/
 theorem bernoulli_special1 {x : R} (hx : x ≥ 0) {n : ℕ} (hn : n ≠ 0) :
     (n : R) ^ n * (x + 1) ≤ (x + n) ^ n :=
   calc (n : R) ^ n * (x + 1)
@@ -68,7 +72,9 @@ theorem bernoulli_special1 {x : R} (hx : x ≥ 0) {n : ℕ} (hn : n ≠ 0) :
   _ = (x + n) ^ n := congrArg (· ^ n) (add_comm _ _)
 
 /-- Let `n > 1` be an integer and `x : R` with `x > 0`.
-  Then we have `n^n (x + 1) < (x + n)^n`. -/
+  Then we have `n^n (x + 1) < (x + n)^n`.
+@isnad1 id=lt.2h3v.s7.21e9bff22a38 from=translated src=- shape=956ad177 vocab=c6dcac30
+-/
 theorem bernoulli_special2 {x : R} (hx : x > 0) {n : ℕ} (hn : n > 1) :
     (n : R) ^ n * (x + 1) < (x + n) ^ n := by
   have hn0 : n > 0 := Nat.zero_lt_of_lt hn

@@ -41,7 +41,9 @@ noncomputable def layerPart (N r : ℕ) (A : Finset (Cube N)) : Finset (Cube N) 
 noncomputable def layerCount (N r : ℕ) (A : Finset (Cube N)) : ℕ :=
   (layerPart N r A).card
 
-/-- Layers above the top Hamming level of the `N`-cube are empty. -/
+/-- Layers above the top Hamming level of the `N`-cube are empty.
+@isnad1 id=eq.1h3v.s4.f5942accb0e6 from=translated src=- shape=eac52ba5 vocab=89f482d2
+-/
 lemma layerCount_eq_zero_of_N_lt {N r : ℕ} (hNr : N < r) (A : Finset (Cube N)) :
     layerCount N r A = 0 := by
   unfold layerCount layerPart
@@ -72,7 +74,9 @@ noncomputable def neighborhoodLayerCost (N a : ℕ) : ℕ :=
 /-- The layer-window sum reconstructs the boundary functional `H`: summing the
 per-layer window counts of the neighborhood over all Hamming layers recovers its
 cardinality `H N a`.  (Every vertex of the `N`-cube has cardinality `≤ N < N+2`,
-so the layers `0, …, N+1` partition the neighborhood.) -/
+so the layers `0, …, N+1` partition the neighborhood.)
+@isnad1 id=eq.0h2v.s3.72c67737dbe4 from=translated src=- shape=6c8684e5 vocab=d860f792
+-/
 lemma neighborhoodLayerCost_eq_H (N a : ℕ) :
     neighborhoodLayerCost N a = H N a := by
   unfold neighborhoodLayerCost layerCount layerPart H
@@ -89,7 +93,9 @@ lemma neighborhoodLayerCost_eq_H (N a : ℕ) :
 /-- The per-layer window counts of the neighborhood are the layer counts of the
 *neighborhood-as-initial-segment* `simplicialInitSeg N (H N a)`.  This makes the
 windows manifestly the Macaulay/binomial windows that the Kruskal–Katona core
-`upperShadowVal_numeric_min` minimizes layer by layer. -/
+`upperShadowVal_numeric_min` minimizes layer by layer.
+@isnad1 id=eq.0h3v.s4.cd7b38bab65d from=translated src=- shape=a1a419b4 vocab=baf43a67
+-/
 lemma layerCount_neighborhood_initSeg (N r a : ℕ) :
     layerCount N r (neighborhood 1 (simplicialInitSeg N a)) =
       layerCount N r (simplicialInitSeg N (H N a)) := by
@@ -120,19 +126,25 @@ noncomputable def PairLayerWindowCost (N r a b : ℕ) : ℕ :=
   max (layerWindowShadowCost N r a) (layerWindowRemainder N r b) +
   max (layerWindowShadowCost N r b) (layerWindowRemainder N r a)
 
-/-- The remainder window is zero above the top Hamming layer. -/
+/-- The remainder window is zero above the top Hamming layer.
+@isnad1 id=eq.1h3v.s4.a033cb2d55f0 from=translated src=- shape=a1ee45a6 vocab=b39809c7
+-/
 lemma layerWindowRemainder_eq_zero_of_N_lt {N r a : ℕ} (hNr : N < r) :
     layerWindowRemainder N r a = 0 := by
   unfold layerWindowRemainder
   exact layerCount_eq_zero_of_N_lt hNr (simplicialInitSeg N a)
 
-/-- The shadow-cost window is zero above the top Hamming layer. -/
+/-- The shadow-cost window is zero above the top Hamming layer.
+@isnad1 id=eq.1h3v.s4.cf79951c3d26 from=translated src=- shape=a1ee45a6 vocab=da1bb67b
+-/
 lemma layerWindowShadowCost_eq_zero_of_N_lt {N r a : ℕ} (hNr : N < r) :
     layerWindowShadowCost N r a = 0 := by
   unfold layerWindowShadowCost
   exact layerCount_eq_zero_of_N_lt hNr (neighborhood 1 (simplicialInitSeg N a))
 
-/-- The pair layer-window cost is zero above the top Hamming layer. -/
+/-- The pair layer-window cost is zero above the top Hamming layer.
+@isnad1 id=eq.1h4v.s4.0dc393c1977b from=translated src=- shape=b27b4d89 vocab=ad43ce61
+-/
 lemma PairLayerWindowCost_eq_zero_of_N_lt {N r a b : ℕ} (hNr : N < r) :
     PairLayerWindowCost N r a b = 0 := by
   unfold PairLayerWindowCost
@@ -142,6 +154,9 @@ lemma PairLayerWindowCost_eq_zero_of_N_lt {N r a b : ℕ} (hNr : N < r) :
       layerWindowRemainder_eq_zero_of_N_lt hNr]
   simp
 
+/--
+@isnad1 id=eq.0h4v.s5.1ce0421fa695 from=translated src=- shape=97b4ef59 vocab=b5071797
+-/
 lemma max_layerWindow_eq_union_card (N r X Y : ℕ) :
     max (layerCount N r (simplicialInitSeg N X)) (layerCount N r (simplicialInitSeg N Y)) =
     layerCount N r (simplicialInitSeg N (max X Y)) := by
@@ -166,7 +181,9 @@ lemma max_layerWindow_eq_union_card (N r X Y : ℕ) :
 /-- The per-layer window counts of any family `A` sum to its cardinality over the
 Hamming layers `0, …, N+1` (every vertex of the `N`-cube has cardinality `≤ N`).
 This is the reusable fiberwise-partition identity already used inside
-`neighborhoodLayerCost_eq_H`. -/
+`neighborhoodLayerCost_eq_H`.
+@isnad1 id=eq.0h2v.s5.ba8a0485a14f from=translated src=- shape=32f696cd vocab=5db8e917
+-/
 lemma sum_layerCount_eq_card (N : ℕ) (A : Finset (Cube N)) :
     ∑ r ∈ Finset.range (N + 2), layerCount N r A = A.card := by
   unfold layerCount layerPart
@@ -193,7 +210,9 @@ segments are nested, so on each layer the two counts are comparable and their
 (`max_layerWindow_eq_union_card`).  Summing over layers gives the cardinality
 `min (max (H N a) b) (2^N) = max (H N a) b`, the last equality using `b ≤ 2^N`
 and `H N a ≤ 2^N`.  This is exactly the statement that the global `max` commutes
-with the per-layer decomposition for nested initial-segment windows. -/
+with the per-layer decomposition for nested initial-segment windows.
+@isnad1 id=eq.1h3v.s6.82523a9bcb00 from=translated src=- shape=f5285782 vocab=8159a1c8
+-/
 lemma sum_max_shadowRemainder (N a b : ℕ) (hb : b ≤ 2 ^ N) :
     ∑ r ∈ Finset.range (N + 2),
         max (layerWindowShadowCost N r a) (layerWindowRemainder N r b)
@@ -219,13 +238,17 @@ than through opaque scalar `H` arithmetic. -/
 /-- The shadow-cost window of `a` in layer `r` is the *remainder* window of the
 neighborhood size `H N a` in the same layer: the unit neighborhood of an initial
 segment is again an initial segment (`neighborhood_initSeg_eq`), so its per-layer
-counts are literally the per-layer counts of `simplicialInitSeg N (H N a)`. -/
+counts are literally the per-layer counts of `simplicialInitSeg N (H N a)`.
+@isnad1 id=eq.0h3v.s4.39d20a1a17cd from=translated src=- shape=5ebfd78f vocab=765b333f
+-/
 lemma layerWindowShadowCost_eq_remainder_H (N r a : ℕ) :
     layerWindowShadowCost N r a = layerWindowRemainder N r (H N a) := by
   unfold layerWindowShadowCost layerWindowRemainder
   rw [layerCount_neighborhood_initSeg]
 
-/-- The layer-`r` part of a simplicial initial segment is `r`-uniform. -/
+/-- The layer-`r` part of a simplicial initial segment is `r`-uniform.
+@isnad1 id=eq.1h4v.s5.c415f1b7d088 from=translated src=- shape=5045c452 vocab=a080586c
+-/
 lemma layerPart_initSeg_uniform (N r a : ℕ) :
     ∀ x ∈ layerPart N r (simplicialInitSeg N a), x.card = r := by
   intro x hx
@@ -233,7 +256,9 @@ lemma layerPart_initSeg_uniform (N r a : ℕ) :
   exact hx.2
 
 /-- The layer-`r` window of an initial segment never exceeds the number of
-`r`-subsets `Nat.choose N r`. -/
+`r`-subsets `Nat.choose N r`.
+@isnad1 id=le.0h3v.s4.9bf1598d74dc from=translated src=- shape=dd4c2752 vocab=1f8e2754
+-/
 lemma layerWindowRemainder_le_choose (N r a : ℕ) :
     layerWindowRemainder N r a ≤ Nat.choose N r := by
   unfold layerWindowRemainder layerCount
@@ -245,7 +270,9 @@ a lower bound for the size of its actual upper shadow in layer `r+1`.  This is
 exactly `upperShadowVal_numeric_min` specialized to `t := A.card`, packaged so
 the cross-slice layer-window leaf can invoke single-layer KK directly: the
 simplicial layer initial segment of the same size achieves this lower bound, so
-no `r`-uniform family has a smaller layer-`(r+1)` upper shadow. -/
+no `r`-uniform family has a smaller layer-`(r+1)` upper shadow.
+@isnad1 id=le.2h3v.s6.05f4041d3572 from=translated src=- shape=c608f824 vocab=c578a9f4
+-/
 lemma layerWindowShadowCost_KK_min {N r : ℕ} (hr : 1 ≤ r) {A : Finset (Cube N)}
     (hA : ∀ x ∈ A, x.card = r) :
     upperShadowVal N r A.card ≤ (upperLayerShadow N r A).card :=
@@ -257,7 +284,9 @@ layers of the per-layer pair window costs `PairLayerWindowCost N r a b`.  This i
 the bookkeeping bridge exposing the Macaulay/Kruskal–Katona layer windows that
 the cross-slice leaf `cascade_window_sum_min` (`Compression.lean`) operates on
 it requires `a, b ≤ 2^N` (otherwise the literal cross terms `a`/`b` exceed the
-saturated initial-segment cardinality `2^N` and the identity fails). -/
+saturated initial-segment cardinality `2^N` and the identity fails).
+@isnad1 id=eq.2h3v.s6.d28b42318032 from=translated src=- shape=81332752 vocab=4398e067
+-/
 lemma initSegPairLayerWindowCost_eq_KK_window_sum (N a b : ℕ)
     (ha : a ≤ 2 ^ N) (hb : b ≤ 2 ^ N) :
     initSegPairLayerWindowCost N a b =
@@ -282,6 +311,9 @@ capped at `m`, via `rank_lt_binomPrefix_iff`). -/
 A suffix of Hamming layers counts exactly the elements of cardinality `≥ k`
 (every vertex of the `N`-cube has cardinality `≤ N < N + 2`).
 -/
+/--
+@isnad1 id=eq.0h3v.s6.e05323c2a62a from=translated src=- shape=1b3de41c vocab=bee5fc81
+-/
 lemma sum_Ico_layerCount_eq_filter_card_ge (N k : ℕ) (A : Finset (Cube N)) :
     ∑ r ∈ Finset.Ico k (N + 2), layerCount N r A
       = (A.filter (fun x => k ≤ x.card)).card := by
@@ -301,6 +333,9 @@ lemma sum_Ico_layerCount_eq_filter_card_ge (N k : ℕ) (A : Finset (Cube N)) :
 segment of size `m ≤ 2^N`, the upper-tail sum (Hamming layers `≥ k`) of its
 per-layer counts is the truncated difference `m - binomPrefix N k`.  This is the
 reusable KK/Macaulay lever the cascade suffix leaf runs on.
+-/
+/--
+@isnad1 id=eq.1h3v.s6.f518145d03dd from=translated src=- shape=90257349 vocab=4746850a
 -/
 lemma suffix_layerWindowRemainder_eq (N m k : ℕ) (hm : m ≤ 2 ^ N) :
     ∑ r ∈ Finset.Ico k (N + 2), layerWindowRemainder N r m
@@ -359,7 +394,9 @@ that leaf only requires the truncated inequality at the *Macaulay grid points*
 *sound but incomplete* tool for that leaf: it closes the tail only in the
 weak-majorized regime, and the genuine remaining content lives in the grid
 structure of `H`, to be handled by the dimension recursion `H_succ_cascade` and
-the single-layer minimum `layerWindowShadowCost_KK_min`. -/
+the single-layer minimum `layerWindowShadowCost_KK_min`.
+@isnad1 id=le.2h5v.s6.90cd49b898b2 from=translated src=- shape=b5874d71 vocab=e1450afc
+-/
 lemma pair_tsub_le_of_sum_le_of_max_le {a b a' b' c : ℕ}
     (hsum : a + b ≤ a' + b') (hmax : max a b ≤ max a' b') :
     (a - c) + (b - c) ≤ (a' - c) + (b' - c) := by
@@ -375,6 +412,9 @@ weight-`≥ k-1` count of the upper slice `slice1 A` (the upper slice already
 carries the top coordinate, so its members have one extra active coordinate).
 This is the tail-count analogue of `slice_card_add`. -/
 
+/--
+@isnad1 id=eq.0h3v.s7.c4d0407c7615 from=translated src=- shape=529632e9 vocab=8c0593be
+-/
 lemma tailCount_succ_slice {N : ℕ} (k : ℕ) (A : Finset (Cube (N + 1))) :
     (A.filter (fun z => k ≤ z.card)).card
       = ((slice0 A).filter (fun z => k ≤ z.card)).card

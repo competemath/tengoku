@@ -236,7 +236,9 @@ private lemma exists_norm_bound_on_compact {K : Set ℂ} (hK : IsCompact K) :
 
 /-! ## Convergence (paper Rem. `bemsigma`) -/
 
-/-- The σ-product converges for every `z`. -/
+/-- The σ-product converges for every `z`.
+@isnad1 id=multipli.0h2v.s9.0b2d6a050bac from=translated src=- shape=5d911062 vocab=7f760dfa
+-/
 theorem multipliable_weierstrassSigmaTerm (z : ℂ) :
     Multipliable fun l : {l : L.lattice // l ≠ 0} ↦ weierstrassSigmaTerm z (l.1 : ℂ) := by
   have hsummable :
@@ -248,7 +250,9 @@ theorem multipliable_weierstrassSigmaTerm (z : ℂ) :
     exact norm_weierstrassSigmaTerm_sub_one_le z (l.1 : ℂ) hw hl
   exact (Complex.multipliable_one_add_of_summable hsummable).congr fun l ↦ by ring
 
-/-- The σ-product converges locally uniformly on `ℂ`. -/
+/-- The σ-product converges locally uniformly on `ℂ`.
+@isnad1 id=hasprodl.0h1v.s10.486b8bf1e005 from=translated src=- shape=e703b148 vocab=a701c41a
+-/
 theorem hasProdLocallyUniformly_weierstrassSigmaTerm :
     HasProdLocallyUniformly
       (fun (l : {l : L.lattice // l ≠ 0}) (z : ℂ) ↦ weierstrassSigmaTerm z (l.1 : ℂ))
@@ -276,7 +280,9 @@ theorem hasProdLocallyUniformly_weierstrassSigmaTerm :
     unfold weierstrassSigmaTerm
     fun_prop
 
-/-- The ζ-series converges away from the lattice. -/
+/-- The ζ-series converges away from the lattice.
+@isnad1 id=summable.1h2v.s9.a5246fe853d1 from=translated src=- shape=540746f1 vocab=716e9a1c
+-/
 theorem summable_weierstrassZetaTerm (z : ℂ) (_hz : z ∉ L.lattice) :
     Summable fun l : {l : L.lattice // l ≠ 0} ↦ weierstrassZetaTerm z (l.1 : ℂ) := by
   refine Summable.of_norm_bounded_eventually
@@ -285,7 +291,9 @@ theorem summable_weierstrassZetaTerm (z : ℂ) (_hz : z ∉ L.lattice) :
   have hw : (l.1 : ℂ) ≠ 0 := by simpa using l.2
   exact norm_weierstrassZetaTerm_le z (l.1 : ℂ) hw hl
 
-/-- The ζ-series converges locally uniformly away from the lattice. -/
+/-- The ζ-series converges locally uniformly away from the lattice.
+@isnad1 id=hassumlo.0h1v.s10.0c6329ab9ecd from=translated src=- shape=3ffcaa8f vocab=18f7685c
+-/
 theorem hasSumLocallyUniformlyOn_weierstrassZetaTerm :
     HasSumLocallyUniformlyOn
       (fun (l : {l : L.lattice // l ≠ 0}) (z : ℂ) ↦ weierstrassZetaTerm z (l.1 : ℂ))
@@ -324,13 +332,17 @@ private lemma differentiable_tprod_weierstrassSigmaTerm :
     DifferentiableOn.finsetProd fun i _ ↦
       (differentiable_weierstrassSigmaTerm (i.1 : ℂ)).differentiableOn
 
-/-- `σ` is an entire function. -/
+/-- `σ` is an entire function.
+@isnad1 id=differen.0h1v.s6.f409f24d12da from=translated src=- shape=e86db131 vocab=fe8acc9c
+-/
 theorem differentiable_weierstrassSigma : Differentiable ℂ L.weierstrassSigma := by
   change Differentiable ℂ fun z ↦
     z * ∏' l : {l : L.lattice // l ≠ 0}, weierstrassSigmaTerm z (l.1 : ℂ)
   exact fun z ↦ differentiableAt_id.mul (L.differentiable_tprod_weierstrassSigmaTerm z)
 
-/-- `ζ` is holomorphic away from the lattice. -/
+/-- `ζ` is holomorphic away from the lattice.
+@isnad1 id=differen.0h1v.s6.7f761f2fc32c from=translated src=- shape=fc8eb3c5 vocab=d2f2801b
+-/
 theorem differentiableOn_weierstrassZeta :
     DifferentiableOn ℂ L.weierstrassZeta (↑L.lattice)ᶜ := by
   have hopen : IsOpen ((↑L.lattice : Set ℂ)ᶜ) := L.isClosed_lattice.isOpen_compl
@@ -354,7 +366,9 @@ theorem differentiableOn_weierstrassZeta :
     (fun z ↦ 1 / z + ∑' l : {l : L.lattice // l ≠ 0}, weierstrassZetaTerm z (l.1 : ℂ)) _
   exact hinv.add hsum
 
-/-- `σ` is an odd function (paper Prop. `sigmaodd`). -/
+/-- `σ` is an odd function (paper Prop. `sigmaodd`).
+@isnad1 id=eq.0h2v.s4.b355a9d3b9c2 from=translated src=- shape=bc84b48a vocab=f7b4285c
+-/
 theorem weierstrassSigma_neg (z : ℂ) :
     L.weierstrassSigma (-z) = -L.weierstrassSigma z := by
   have hprod : (∏' l : {l : L.lattice // l ≠ 0}, weierstrassSigmaTerm (-z) (l.1 : ℂ))
@@ -365,7 +379,9 @@ theorem weierstrassSigma_neg (z : ℂ) :
   simp only [weierstrassSigma, hprod]
   ring
 
-/-- `ζ` is an odd function. -/
+/-- `ζ` is an odd function.
+@isnad1 id=eq.0h2v.s4.ce540264fc16 from=translated src=- shape=bc84b48a vocab=11232230
+-/
 theorem weierstrassZeta_neg (z : ℂ) :
     L.weierstrassZeta (-z) = -L.weierstrassZeta z := by
   have hsum : (∑' l : {l : L.lattice // l ≠ 0}, weierstrassZetaTerm (-z) (l.1 : ℂ))
@@ -379,7 +395,9 @@ theorem weierstrassZeta_neg (z : ℂ) :
 
 /-! ## Zeros of σ (paper Rem. `bemsigma`) -/
 
-/-- The zeros of `σ` are exactly the lattice points. -/
+/-- The zeros of `σ` are exactly the lattice points.
+@isnad1 id=iff.0h2v.s5.4cd54724d3f7 from=translated src=- shape=8d72a88a vocab=a60b20fa
+-/
 theorem weierstrassSigma_eq_zero_iff (z : ℂ) :
     L.weierstrassSigma z = 0 ↔ z ∈ L.lattice := by
   constructor
@@ -538,7 +556,9 @@ private lemma deriv_weierstrassSigma_ne_zero_at (i₀ : {l : L.lattice // l ≠ 
   rw [hfull.deriv]
   exact mul_ne_zero (mul_ne_zero hwne hQw) hdB_ne
 
-/-- The zeros of `σ` at the lattice points are simple (order `1`). -/
+/-- The zeros of `σ` at the lattice points are simple (order `1`).
+@isnad1 id=eq.1h2v.s6.d7aaf49f2650 from=translated src=- shape=9a328c03 vocab=1cda103c
+-/
 theorem meromorphicOrderAt_weierstrassSigma (l : ℂ) (hl : l ∈ L.lattice) :
     meromorphicOrderAt L.weierstrassSigma l = 1 := by
   have hAn : AnalyticAt ℂ L.weierstrassSigma l := L.differentiable_weierstrassSigma.analyticAt l
@@ -571,7 +591,9 @@ theorem meromorphicOrderAt_weierstrassSigma (l : ℂ) (hl : l ∈ L.lattice) :
 
 /-! ## The logarithmic derivative and `ζ' = -℘` -/
 
-/-- `ζ` is the logarithmic derivative of `σ` (paper Def. `defizeta`). -/
+/-- `ζ` is the logarithmic derivative of `σ` (paper Def. `defizeta`).
+@isnad1 id=eq.1h2v.s5.1d4a923df152 from=translated src=- shape=2826bf7d vocab=01df0f33
+-/
 theorem logDeriv_weierstrassSigma (z : ℂ) (hz : z ∉ L.lattice) :
     logDeriv L.weierstrassSigma z = L.weierstrassZeta z := by
   have hz0 : z ≠ 0 := by rintro rfl; exact hz L.lattice.zero_mem
@@ -706,7 +728,9 @@ private lemma deriv_tsum_weierstrassZetaTerm {z : ℂ} (hz : z ∉ L.lattice) :
       = -L.weierstrassP z + 1 / z ^ 2 :=
   (L.hasSum_deriv_zetaTerm hz).unique (L.hasSum_val_zetaTerm hz)
 
-/-- `℘` is the negative derivative of `ζ` (paper Def. `defiwp`). -/
+/-- `℘` is the negative derivative of `ζ` (paper Def. `defiwp`).
+@isnad1 id=eq.1h2v.s6.5187803d8c2f from=translated src=- shape=cddca380 vocab=60dd8215
+-/
 theorem deriv_weierstrassZeta (z : ℂ) (hz : z ∉ L.lattice) :
     deriv L.weierstrassZeta z = -L.weierstrassP z := by
   have hz0 : z ≠ 0 := by rintro rfl; exact hz L.lattice.zero_mem

@@ -30,7 +30,9 @@ def parabolicRescale (a : ℝ) (κ : ℝ) (x : Vec3) (t : ℝ)
     (u : ParabolicPoint → ℝ) (p : ParabolicPoint) : ℝ :=
   a ^ κ * u (parabolicTranslate x t (parabolicScale a p))
 
-/-- The image of a centred cylinder under a positive rescaling and translation. -/
+/-- The image of a centred cylinder under a positive rescaling and translation.
+@isnad1 id=eq.1h4v.s6.0629e9f057fe from=translated src=- shape=769bd65f vocab=9bbb5c01
+-/
 theorem parabolicCylinder_rescale_image {a : ℝ} (ha : 0 < a) (x : Vec3) (t r : ℝ) :
     parabolicTranslate x t '' (parabolicScale a '' parabolicCylinder 0 0 r) =
     parabolicCylinder x t (a * r) := by
@@ -146,7 +148,9 @@ private theorem time_comp_translate_scale {a : ℝ} (ha : 0 < a)
   simpa [smul_eq_mul, sub_eq_add_neg, mul_pow, mul_comm, add_comm, add_left_comm,
     add_assoc] using h
 
-/-- Bochner integration on a parabolic cylinder changes by the homogeneous factor `a⁻⁵`. -/
+/-- Bochner integration on a parabolic cylinder changes by the homogeneous factor `a⁻⁵`.
+@isnad1 id=eq.3h5v.s8.15903dc3f0bb from=translated src=- shape=6258d88e vocab=699a8853
+-/
 theorem cylinder_setIntegral_comp_parabolicRescale {a : ℝ} (ha : 0 < a)
     (x : Vec3) (t r : ℝ) (F : ParabolicPoint → ℝ)
     (hsource : IntegrableOn
@@ -182,7 +186,9 @@ theorem cylinder_setIntegral_comp_parabolicRescale {a : ℝ} (ha : 0 < a)
   simp only [Module.finrank_fin_fun]
   field_simp [ha.ne']
 
-/-- The corresponding nonnegative cylinder lintegral has homogeneous factor `a⁻⁵`. -/
+/-- The corresponding nonnegative cylinder lintegral has homogeneous factor `a⁻⁵`.
+@isnad1 id=eq.4h6v.s8.d4d9444e4040 from=translated src=- shape=f8d106a7 vocab=fd5d6c46
+-/
 theorem cylinder_setLIntegral_comp_parabolicRescale {a : ℝ} (ha : 0 < a)
     (x : Vec3) (t r p : ℝ) (u : ParabolicPoint → ℝ) (hp : 0 ≤ p)
     (hsource : IntegrableOn
@@ -246,7 +252,9 @@ theorem cylinder_setLIntegral_comp_parabolicRescale {a : ℝ} (ha : 0 < a)
         ∫⁻ z in parabolicCylinder x t (a * r), ‖u z‖ₑ ^ p := by
       rw [ht]
 
-/-- The velocity-weighted cylinder power integral changes by `a^(p-5)`. -/
+/-- The velocity-weighted cylinder power integral changes by `a^(p-5)`.
+@isnad1 id=eq.3h6v.s8.b5581a9b0e1d from=translated src=- shape=bed132f9 vocab=9535cd48
+-/
 theorem cylinder_setIntegral_rescaled_power {a : ℝ} (ha : 0 < a)
     (x : Vec3) (t r p : ℝ) (u : ParabolicPoint → ℝ)
     (hsource : IntegrableOn
@@ -284,7 +292,9 @@ theorem cylinder_setIntegral_rescaled_power {a : ℝ} (ha : 0 < a)
       rw [← Real.rpow_add ha p (-5)]
       congr 2
 
-/-- A single spatial time slice changes by the spatial factor `a⁻³`. -/
+/-- A single spatial time slice changes by the spatial factor `a⁻³`.
+@isnad1 id=eq.1h6v.s8.983b7ab1f36d from=translated src=- shape=120b39b8 vocab=f71158ee
+-/
 theorem timeSlice_setIntegral_comp_parabolicRescale {a : ℝ} (ha : 0 < a)
     (x : Vec3) (t r s : ℝ) (F : Vec3 → ℝ) :
     ∫ y in vec3Ball 0 r,
@@ -294,7 +304,9 @@ theorem timeSlice_setIntegral_comp_parabolicRescale {a : ℝ} (ha : 0 < a)
   simpa [parabolicTranslate, parabolicScale, zero_add, zero_smul] using
     (spatial_comp_translate_scale ha x r (fun y => F y))
 
-/-- A velocity-weighted time-slice power integral changes by `a^(p-3)`. -/
+/-- A velocity-weighted time-slice power integral changes by `a^(p-3)`.
+@isnad1 id=eq.3h7v.s9.584e8f096aff from=translated src=- shape=19bd40e6 vocab=08dbe194
+-/
 theorem timeSlice_setIntegral_rescaled_power {a : ℝ} (ha : 0 < a)
     (x : Vec3) (t r s p : ℝ) (u : ParabolicPoint → ℝ)
     (_ : IntegrableOn
@@ -337,21 +349,27 @@ theorem timeSlice_setIntegral_rescaled_power {a : ℝ} (ha : 0 < a)
       rw [← hneg, ← mul_assoc, ← Real.rpow_add ha p (-3)]
       congr 2
 
-/-- Spatial change of variables under a positive dilation. -/
+/-- Spatial change of variables under a positive dilation.
+@isnad1 id=eq.1h4v.s8.fcb7458e1582 from=translated src=- shape=816e6399 vocab=0f2bf816
+-/
 theorem spatial_setIntegral_comp_smul {a : ℝ} (ha : 0 < a) (x : Vec3) (r : ℝ)
     (f : Vec3 → ℝ) :
     ∫ y in vec3Ball x r, f (a • y) =
       (a ^ Module.finrank ℝ Vec3)⁻¹ • ∫ y in a • vec3Ball x r, f y := by
   exact Measure.setIntegral_comp_smul_of_pos volume f (vec3Ball x r) ha
 
-/-- One-dimensional time change of variables under a positive dilation. -/
+/-- One-dimensional time change of variables under a positive dilation.
+@isnad1 id=eq.1h4v.s7.9eb5c81e5e9d from=translated src=- shape=25e11744 vocab=53e48768
+-/
 theorem time_setIntegral_comp_smul {a : ℝ} (ha : 0 < a) (s₁ s₂ : ℝ)
     (f : ℝ → ℝ) :
     ∫ s in Set.Ioc s₁ s₂, f (a • s) =
       (a ^ Module.finrank ℝ ℝ)⁻¹ • ∫ s in a • Set.Ioc s₁ s₂, f s := by
   exact Measure.setIntegral_comp_smul_of_pos volume f (Set.Ioc s₁ s₂) ha
 
-/-- Spatial power integrals transform with an arbitrary constant weight. -/
+/-- Spatial power integrals transform with an arbitrary constant weight.
+@isnad1 id=eq.1h6v.s8.d07f081138fe from=translated src=- shape=ab439326 vocab=0c54c6ed
+-/
 theorem spatial_setIntegral_rescaled_power {a : ℝ} (ha : 0 < a) (x : Vec3) (r p c : ℝ)
     (u : Vec3 → ℝ) :
     ∫ y in vec3Ball x r, |c * u (a • y)| ^ p =
@@ -360,7 +378,9 @@ theorem spatial_setIntegral_rescaled_power {a : ℝ} (ha : 0 < a) (x : Vec3) (r 
   simpa only [smul_eq_mul] using
     (spatial_setIntegral_comp_smul ha x r (fun y => |c * u y| ^ p))
 
-/-- Time-slice power integrals transform with an arbitrary constant weight. -/
+/-- Time-slice power integrals transform with an arbitrary constant weight.
+@isnad1 id=eq.1h6v.s7.0f93af2c409b from=translated src=- shape=9c27a0a5 vocab=87c1688c
+-/
 theorem time_setIntegral_rescaled_power {a : ℝ} (ha : 0 < a) (s₁ s₂ p c : ℝ)
     (u : ℝ → ℝ) :
     ∫ s in Set.Ioc s₁ s₂, |c * u (a • s)| ^ p =
@@ -369,7 +389,9 @@ theorem time_setIntegral_rescaled_power {a : ℝ} (ha : 0 < a) (s₁ s₂ p c : 
   simpa only [smul_eq_mul] using
     (time_setIntegral_comp_smul ha s₁ s₂ (fun s => |c * u s| ^ p))
 
-/-- Translation preserves the volume of a parabolic cylinder. -/
+/-- Translation preserves the volume of a parabolic cylinder.
+@isnad1 id=eq.0h5v.s6.8677513fb4d5 from=translated src=- shape=203ec00a vocab=a29b9f8f
+-/
 theorem volume_parabolicCylinder_translate (a x : Vec3) (τ t r : ℝ) :
     volume (parabolicCylinder (a + x) (τ + t) r) =
       volume (parabolicCylinder x t r) := by
@@ -384,14 +406,18 @@ def timeSliceBallEnergy (x : Vec3) (r s : ℝ) (g : ParabolicPoint → ℝ) : �
 def timeSliceEnergyEssSup (x : Vec3) (t r : ℝ) (g : ParabolicPoint → ℝ) : ℝ≥0∞ :=
   essSup (timeSliceBallEnergy x r · g) (volume.restrict (Ioc (t - r ^ 2) t))
 
-/-- Essential suprema increase when the measure and the integrand both increase. -/
+/-- Essential suprema increase when the measure and the integrand both increase.
+@isnad1 id=le.2h5v.s6.114f09d15e43 from=translated src=- shape=aceebe96 vocab=ff3ac3cb
+-/
 theorem essSup_mono_measure_and_ae {α : Type*} [MeasurableSpace α]
     {μ ν : Measure α} {f g : α → ℝ≥0∞}
     (hμν : μ ≤ ν) (hfg : f ≤ᵐ[μ] g) :
     essSup f μ ≤ essSup g ν := by
   exact (essSup_mono_ae hfg).trans (essSup_mono_measure' hμν)
 
-/-- The time interval for a smaller nonnegative radius is contained in the larger one. -/
+/-- The time interval for a smaller nonnegative radius is contained in the larger one.
+@isnad1 id=le.2h3v.s6.3203c2bdcd94 from=translated src=- shape=7ca18490 vocab=e4144bb6
+-/
 theorem time_interval_mono_radius {t r₁ r₂ : ℝ} (hr₁ : 0 ≤ r₁) (hrr : r₁ ≤ r₂) :
     Ioc (t - r₁ ^ 2) t ⊆ Ioc (t - r₂ ^ 2) t := by
   intro s hs
@@ -400,7 +426,9 @@ theorem time_interval_mono_radius {t r₁ r₂ : ℝ} (hr₁ : 0 ≤ r₁) (hrr 
   have hrsq : r₁ ^ 2 ≤ r₂ ^ 2 := (sq_le_sq₀ hr₁ hr₂).2 hrr
   exact (sub_le_sub_left hrsq t).trans_lt hs.1
 
-/-- The time-slice `L²` energy essential supremum is monotone in the radius. -/
+/-- The time-slice `L²` energy essential supremum is monotone in the radius.
+@isnad1 id=le.2h5v.s5.1402eb37d08d from=translated src=- shape=034dd05f vocab=691418ab
+-/
 theorem timeSliceEnergyEssSup_mono_radius {x : Vec3} {t r₁ r₂ : ℝ}
     (hr₁ : 0 ≤ r₁) (hrr : r₁ ≤ r₂) (g : ParabolicPoint → ℝ) :
     timeSliceEnergyEssSup x t r₁ g ≤ timeSliceEnergyEssSup x t r₂ g := by
@@ -409,7 +437,9 @@ theorem timeSliceEnergyEssSup_mono_radius {x : Vec3} {t r₁ r₂ : ℝ}
   · exact Filter.Eventually.of_forall fun s =>
       ball_lintegral_norm_sq_mono_radius hrr g
 
-/-- The radius-normalized time-slice essential supremum has the standard comparison. -/
+/-- The radius-normalized time-slice essential supremum has the standard comparison.
+@isnad1 id=le.2h5v.s6.e8fe3dde9bfd from=translated src=- shape=343a33bb vocab=eb492a77
+-/
 theorem timeSliceEnergyEssSup_div_radius_le {x : Vec3} {t r₁ r₂ : ℝ}
     (hr₁ : 0 < r₁) (hrr : r₁ ≤ r₂) (g : ParabolicPoint → ℝ) :
     timeSliceEnergyEssSup x t r₁ g / ENNReal.ofReal r₁ ≤

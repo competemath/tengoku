@@ -22,7 +22,9 @@ open CKN.Foundation.Parabolic
 
 namespace CKN
 
-/-- The explicit decaying shear is a suitable weak solution with zero force. -/
+/-- The explicit decaying shear is a suitable weak solution with zero force.
+@isnad1 id=issuitab.0h0v.s6.d7816f12e4a3 from=translated src=- shape=6424896b vocab=d4a8009b
+-/
 theorem isSuitableWeakSolutionIntegrable_shearFlow :
     IsSuitableWeakSolutionIntegrable Set.univ (Ioo 0 1) 3
       shearFlow shearFlowGrad (fun _ => 0) (fun _ => 0) := by

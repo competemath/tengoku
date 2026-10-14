@@ -47,6 +47,9 @@ def morreyCell (p q : ℝ) (f : ParabolicPoint → ℝ)
     (cylinderPowerIntegral p f z r) ^ (1 / p)
 
 /-! The fixed homogeneous dimension in the cylinder normalization. -/
+/--
+@isnad1 id=eq.0h5v.s6.72902aa3fc26 from=translated src=- shape=664cddbc vocab=40daf93f
+-/
 theorem morreyCell_eq (p q : ℝ) (f : ParabolicPoint → ℝ)
     (z : ParabolicPoint) (r : ℝ) :
     morreyCell p q f z r =
@@ -213,6 +216,9 @@ private lemma morreyCell_le_globalLpNorm {p q : ℝ} (hp : 0 < p) (hpq : p < q)
           (∫⁻ w, ENNReal.ofReal |f w| ^ q) ^ (1 / q) = _
       simp only [eLpNorm', Real.enorm_eq_ofReal_abs]
 
+/--
+@isnad1 id=le.3h3v.s7.f40a1051bdde from=translated src=- shape=3afeb838 vocab=fa0051a8
+-/
 theorem morreyNorm_le_eLpNorm' {p q : ℝ} (hp : 1 ≤ p) (hpq : p ≤ q)
     {f : ParabolicPoint → ℝ} (hf : AEMeasurable f volume) :
     morreyNorm p q f ≤
@@ -325,6 +331,9 @@ private lemma morreyCell_lower_p {p' p q : ℝ} (hp' : 0 < p') (hpp : p' < p)
           (cylinderPowerIntegral p f z r) ^ (1 / p) := by ac_rfl
         _ = _ := by rw [hfactor]; ac_rfl
 
+/--
+@isnad1 id=eq.4h6v.s8.b68866bc7a57 from=translated src=- shape=8fc81839 vocab=a523f776
+-/
 theorem cylinderPowerIntegral_parabolicPullback {a : ℝ} (ha : 0 < a)
     (x : Vec3) (t r p : ℝ) (u : ParabolicPoint → ℝ) (hp : 0 ≤ p)
     (hsource : IntegrableOn
@@ -395,6 +404,9 @@ theorem cylinderPowerIntegral_parabolicPullback {a : ℝ} (ha : 0 < a)
       _ = ENNReal.ofReal a ^ (-5 : ℝ) := (ENNReal.rpow_neg _ _).symm
   rw [hfactor]
 
+/--
+@isnad1 id=eq.3h5v.s7.20ed010b1d04 from=translated src=- shape=88f016e5 vocab=43aa288c
+-/
 theorem cylinderPowerIntegral_translate {x : Vec3} {t r p : ℝ}
     (u : ParabolicPoint → ℝ) (hp : 0 ≤ p)
     (hsource : IntegrableOn
@@ -519,6 +531,9 @@ private lemma cylinderPowerIntegral_mul_holder {p p₁ p₂ : ℝ}
   rw [h_exp1, h_exp2] at hH
   exact hH
 
+/--
+@isnad1 id=le.6h8v.s7.3b2fe283e74b from=translated src=- shape=76c726f6 vocab=864cc1f1
+-/
 theorem morreyNorm_mul_le {p p₁ p₂ q q₁ q₂ : ℝ}
     (hp₁ : 1 ≤ p₁) (hp₂ : 1 ≤ p₂)
     (hrelp : 1 / p = 1 / p₁ + 1 / p₂)
@@ -610,6 +625,9 @@ theorem morreyNorm_mul_le {p p₁ p₂ q q₁ q₂ : ℝ}
     _ ≤ morreyNorm p₁ q₁ f * morreyNorm p₂ q₂ g := by
       exact mul_le_mul hcell₁ hcell₂ (by positivity) (by positivity)
 
+/--
+@isnad1 id=le.4h4v.s7.909b85e273f4 from=translated src=- shape=aa8a10c6 vocab=ead1b1e6
+-/
 theorem morreyNorm_lower_p {p' p q : ℝ} (hp' : 1 ≤ p') (hpp : p' ≤ p)
     (hpq : p ≤ q) {f : ParabolicPoint → ℝ} (hf : AEMeasurable f volume) :
     morreyNorm p' q f ≤
@@ -626,6 +644,9 @@ theorem morreyNorm_lower_p {p' p q : ℝ} (hp' : 1 ≤ p') (hpp : p' ≤ p)
       (mul_le_mul_right (le_iSup_of_le z
         (le_iSup (fun s : {s : ℝ // 0 < s} => morreyCell p q f z s.1) r)) _)
 
+/--
+@isnad1 id=le.2h5v.s6.4788f5c5a48d from=translated src=- shape=2bb44d4a vocab=83d84993
+-/
 theorem cylinderPowerIntegral_mono {p : ℝ} (hp : 0 ≤ p)
     {f g : ParabolicPoint → ℝ} {z : ParabolicPoint} {r : ℝ}
     (hfg : ∀ w ∈ parabolicCylinder z.1 z.2 r, |f w| ≤ |g w|) :
@@ -636,6 +657,9 @@ theorem cylinderPowerIntegral_mono {p : ℝ} (hp : 0 ≤ p)
     exact (vec3Ball_measurable z.1 r).prod measurableSet_Ioc)] with w hw
   exact ENNReal.rpow_le_rpow (ENNReal.ofReal_le_ofReal (hfg w hw)) hp
 
+/--
+@isnad1 id=le.2h5v.s6.4b63a9bdd932 from=translated src=- shape=8d5871df vocab=aa027b86
+-/
 theorem ballPowerIntegral_mono {p : ℝ} (hp : 0 ≤ p)
     {f g : ParabolicPoint → ℝ} {z : ParabolicPoint} {r : ℝ}
     (hfg : ∀ w ∈ Metric.ball z r, |f w| ≤ |g w|) :
@@ -645,6 +669,9 @@ theorem ballPowerIntegral_mono {p : ℝ} (hp : 0 ≤ p)
   filter_upwards [ae_restrict_mem measurableSet_ball] with w hw
   exact ENNReal.rpow_le_rpow (ENNReal.ofReal_le_ofReal (hfg w hw)) hp
 
+/--
+@isnad1 id=le.2h6v.s6.46f306a0f767 from=translated src=- shape=5c785ded vocab=ebce5172
+-/
 theorem morreyCell_mono {p q : ℝ} (hp : 0 ≤ p)
     {f g : ParabolicPoint → ℝ} {z : ParabolicPoint} {r : ℝ}
     (hfg : ∀ w ∈ parabolicCylinder z.1 z.2 r, |f w| ≤ |g w|) :
@@ -653,6 +680,9 @@ theorem morreyCell_mono {p q : ℝ} (hp : 0 ≤ p)
   exact mul_le_mul_right (ENNReal.rpow_le_rpow
     (cylinderPowerIntegral_mono hp hfg) (by positivity)) _
 
+/--
+@isnad1 id=le.2h6v.s6.e9d72a7e965e from=translated src=- shape=4ebab79c vocab=fc482096
+-/
 theorem morreyBallCell_mono {p q : ℝ} (hp : 0 ≤ p)
     {f g : ParabolicPoint → ℝ} {z : ParabolicPoint} {r : ℝ}
     (hfg : ∀ w ∈ Metric.ball z r, |f w| ≤ |g w|) :
@@ -661,7 +691,9 @@ theorem morreyBallCell_mono {p q : ℝ} (hp : 0 ≤ p)
   exact mul_le_mul_right (ENNReal.rpow_le_rpow
     (ballPowerIntegral_mono hp hfg) (by positivity)) _
 
-/-- Pointwise domination passes to the cylinder Morrey seminorm. -/
+/-- Pointwise domination passes to the cylinder Morrey seminorm.
+@isnad1 id=le.2h4v.s5.172b83443acb from=translated src=- shape=6e835d9f vocab=c4c6ac1a
+-/
 theorem morreyNorm_mono {p q : ℝ} (hp : 0 ≤ p)
     {f g : ParabolicPoint → ℝ}
     (hfg : ∀ w, |f w| ≤ |g w|) :
@@ -671,7 +703,9 @@ theorem morreyNorm_mono {p q : ℝ} (hp : 0 ≤ p)
   exact (morreyCell_mono hp fun w _ => hfg w).trans
     (le_iSup_of_le z (le_iSup (fun s : {s : ℝ // 0 < s} => morreyCell p q g z s.1) r))
 
-/-- Pointwise domination passes to the metric-ball Morrey seminorm. -/
+/-- Pointwise domination passes to the metric-ball Morrey seminorm.
+@isnad1 id=le.2h4v.s5.4dc18d63e88d from=translated src=- shape=6e835d9f vocab=4203781d
+-/
 theorem morreyBallNorm_mono {p q : ℝ} (hp : 0 ≤ p)
     {f g : ParabolicPoint → ℝ}
     (hfg : ∀ w, |f w| ≤ |g w|) :
@@ -681,7 +715,9 @@ theorem morreyBallNorm_mono {p q : ℝ} (hp : 0 ≤ p)
   exact (morreyBallCell_mono hp fun w _ => hfg w).trans
     (le_iSup_of_le z (le_iSup (fun s : {s : ℝ // 0 < s} => morreyBallCell p q g z s.1) r))
 
-/-- Indicator truncation cannot increase a Morrey seminorm. -/
+/-- Indicator truncation cannot increase a Morrey seminorm.
+@isnad1 id=le.1h4v.s5.080743fb05bc from=translated src=- shape=82620afc vocab=599849a7
+-/
 theorem morreyNorm_indicator_le {p q : ℝ} (hp : 0 ≤ p)
     (s : Set ParabolicPoint) (f : ParabolicPoint → ℝ) :
     morreyNorm p q (s.indicator f) ≤ morreyNorm p q f := by
@@ -689,7 +725,9 @@ theorem morreyNorm_indicator_le {p q : ℝ} (hp : 0 ≤ p)
   intro w
   simpa only [Real.norm_eq_abs] using (norm_indicator_le_norm_self (s := s) (f := f) w)
 
-/-- A nonnegative truncation cannot increase a Morrey seminorm. -/
+/-- A nonnegative truncation cannot increase a Morrey seminorm.
+@isnad1 id=le.2h4v.s5.88a7e0adf4db from=translated src=- shape=c6b3a438 vocab=dbab8b3b
+-/
 theorem morreyNorm_truncate_le {p q : ℝ} (hp : 0 ≤ p)
     {A : ℝ} (hA : 0 ≤ A) (f : ParabolicPoint → ℝ) :
     morreyNorm p q (truncate A f) ≤ morreyNorm p q f := by

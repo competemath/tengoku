@@ -39,7 +39,9 @@ variable {p : ParabolicPoint → ℝ} {f : ParabolicPoint → Vec3}
 /-- The dissipation integrand of the local energy inequality of `def:sws` is
 integrable on the closed support of the test function.  Only the data clauses
 are used; the nonnegativity of the test function that the clause also
-assumes is not needed for integrability and is therefore omitted here. -/
+assumes is not needed for integrability and is therefore omitted here.
+@isnad1 id=integrab.2h8v.s7.3eb5d6f15d70 from=translated src=- shape=3ced3382 vocab=cc842890
+-/
 theorem dissipation_integrand_integrableOn_of_data
     (hdata : IsSuitableWeakSolutionData Ω I q u Du p f)
     {ψ : Vec3 × ℝ → ℝ} (hψ : ψ ∈ spaceTimeTestFunction (V := ℝ) Ω I) :

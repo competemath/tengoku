@@ -38,7 +38,9 @@ namespace CKN
 mollification: the convolution pairing `mollify ψ ε hε x` equals the integral
 of `ψ y` against `mollifier ε hε (x - y)` over the ambient volume measure.
 This is the change of variables `y ↦ x - y` for the (reflected) mollifier
-pairing of Caffarelli--Kohn--Nirenberg (1982). -/
+pairing of Caffarelli--Kohn--Nirenberg (1982).
+@isnad1 id=eq.1h4v.s6.b2e5948f8a20 from=translated src=- shape=3ed90b5b vocab=aa3c9287
+-/
 theorem integral_mul_mollifier_sub {d : ℕ} (ψ : Vec d → ℝ) {ε : ℝ} (hε : 0 < ε)
     (x : Vec d) :
     ∫ y, ψ y * mollifier (d := d) ε hε (x - y) ∂MeasureTheory.volume =
@@ -70,7 +72,9 @@ for `ContDiff` `ψ`, the integral of `ψ y` against the `i`th partial derivative
 of the reflected kernel equals the mollification of the `i`th partial derivative
 of `ψ`. The change of variables `y ↦ x - y` reduces the claim to the integral
 form of the weak partial derivative of `ψ` on all of space
-(Caffarelli--Kohn--Nirenberg, 1982). -/
+(Caffarelli--Kohn--Nirenberg, 1982).
+@isnad1 id=eq.2h5v.s9.327ea656ddb0 from=translated src=- shape=72ae7627 vocab=83849f14
+-/
 theorem integral_mul_fderiv_mollifier_sub {d : ℕ} {ψ : Vec d → ℝ}
     (hψ : ContDiff ℝ (⊤ : ℕ∞) ψ) (i : Fin d) {ε : ℝ} (hε : 0 < ε) (x : Vec d) :
     ∫ y, ψ y * (fderiv ℝ (mollifier (d := d) ε hε) (x - y)) (basisVec i)

@@ -31,6 +31,9 @@ variable [CommSemiring R] [LinearOrder R] [IsStrictOrderedRing R] [ExistsAddOfLE
 
 def targetSum (x : ℕ → R) (n : ℕ) := (range n).sum λ i ↦ x i * x (i + 2)
 
+/--
+@isnad1 id=le.4h6v.s8.f76b349db6d8 from=translated src=- shape=f0cd5277 vocab=972a0f9b
+-/
 theorem special_ineq {w x y z c : R} (hx : 0 ≤ x) (hy : 0 ≤ y)
     (h : w + x + y ≤ 2 • c) (h0 : x + y + z ≤ 2 • c) :
     w * y + x * z ≤ c ^ 2 := by
@@ -44,6 +47,9 @@ theorem special_ineq {w x y z c : R} (hx : 0 ≤ x) (hy : 0 ≤ y)
     mul_comm z, ← sq, add_comm, two_nsmul, ← two_mul] at h1
   exact le_of_add_le_add_right (h1.trans (two_mul_le_add_sq _ _))
 
+/--
+@isnad1 id=le.2h4v.s7.05c404335ba1 from=translated src=- shape=aac299ea vocab=ae9ac26e
+-/
 theorem good_targetSum_le {x : ℕ → R} (h : ∀ i, 0 ≤ x i) {c : R} (h0 : good c x) :
     ∀ n, targetSum x (2 * n) ≤ n • c ^ 2
   | 0 => by rw [targetSum, sum_range_zero, zero_nsmul]
@@ -53,6 +59,9 @@ theorem good_targetSum_le {x : ℕ → R} (h : ∀ i, 0 ≤ x i) {c : R} (h0 : g
 
 open Fin.NatCast in
 omit [ExistsAddOfLE R] in
+/--
+@isnad1 id=eq.0h3v.s7.95e1643d9dda from=translated src=- shape=243fe53d vocab=64366bdd
+-/
 theorem targetSum_of_Fin2Map (c : R) :
     ∀ n, targetSum (λ n ↦ ![c, 0] n) (2 * n) = n • c ^ 2
   | 0 => by rw [Nat.mul_zero, targetSum, sum_range_zero, zero_nsmul]
@@ -85,7 +94,9 @@ def Fin2Map_goodPeriodicSeq {c : R} (h : 0 ≤ c) (n) : goodPeriodicSeq c n :=
       rw [zero_add, add_zero]; exact le_add_of_nonneg_left h
     periodic := λ i ↦  congrArg _ (Fin.val_injective (Nat.add_mul_mod_self_left i 2 n)) }
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=isgreate.1h3v.s7.b864784d8a31 from=translated src=- shape=fa86d72a vocab=9605832e
+-/
 theorem final_solution {c : R} (h : 0 ≤ c) (n : ℕ) :
     IsGreatest (Set.range λ (X : goodPeriodicSeq c n) ↦ targetSum X.x (2 * n)) (n • c ^ 2) :=
   ⟨⟨Fin2Map_goodPeriodicSeq h n, targetSum_of_Fin2Map c n⟩,

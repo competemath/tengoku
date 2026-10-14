@@ -36,7 +36,9 @@ private lemma sum_prod_telescope (f : ℕ → ℝ) (N : ℕ) :
 
 /-- On a compact set covered by open sets there are finitely many smooth
 compactly supported functions, each supported inside one member of the cover,
-whose sum is identically one on the compact set. -/
+whose sum is identically one on the compact set.
+@isnad1 id=ex.3h4v.s8.5fcc01553918 from=translated src=- shape=bc3f5c3a vocab=c6696698
+-/
 theorem exists_smooth_partition_of_unity_of_isCompact {d : ℕ} {ι : Type*}
     {K : Set (Vec d)} (hK : IsCompact K) (V : ι → Set (Vec d))
     (hV : ∀ b, IsOpen (V b)) (hcover : K ⊆ ⋃ b, V b) :

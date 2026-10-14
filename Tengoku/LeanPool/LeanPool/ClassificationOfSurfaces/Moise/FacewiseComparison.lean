@@ -56,54 +56,90 @@ open PlaneGraphRealization
 noncomputable def stdTriBasis : AffineBasis (Fin 3) ℝ Plane :=
   planeAffineBasisOfTriple standardTriangleVertex standardTriangleVertex_affineIndependent
 
+/--
+@isnad1 id=eq.0h1v.s9.a96fff5640ab from=translated src=- shape=d38ba8b0 vocab=c15975fb
+-/
 @[simp] theorem stdTriBasis_apply (j : Fin 3) :
     stdTriBasis j = standardTriangleVertex j := rfl
 
+/--
+@isnad1 id=eq.0h0v.s9.40ec1aa142b3 from=translated src=- shape=4fd9f927 vocab=71e705f9
+-/
 theorem range_stdTriBasis :
     Set.range ⇑stdTriBasis = Set.range standardTriangleVertex := rfl
 
 /-- The barycentric coordinate of a plane point with respect to a standard triangle vertex. -/
 noncomputable def triCoord (j : Fin 3) (x : Plane) : ℝ := stdTriBasis.coord j x
 
+/--
+@isnad1 id=continuo.0h1v.s5.fdf6f394ae7b from=translated src=- shape=58d06a47 vocab=90a1a0aa
+-/
 theorem continuous_triCoord (j : Fin 3) : Continuous (triCoord j) :=
   (stdTriBasis.coord j).continuous_of_finiteDimensional
 
+/--
+@isnad1 id=eq.0h1v.s4.1b79924448df from=translated src=- shape=94c5e141 vocab=7e8f4646
+-/
 @[simp] theorem triCoord_vertex_self (j : Fin 3) :
     triCoord j (standardTriangleVertex j) = 1 := by
   simpa [triCoord] using stdTriBasis.coord_apply_eq j
 
+/--
+@isnad1 id=eq.1h2v.s5.bfa7a292a6d9 from=translated src=- shape=0e90bb7c vocab=7e8f4646
+-/
 theorem triCoord_vertex_ne {j k : Fin 3} (hjk : j ≠ k) :
     triCoord j (standardTriangleVertex k) = 0 := by
   simpa [triCoord] using stdTriBasis.coord_apply_ne hjk
 
+/--
+@isnad1 id=eq.0h1v.s5.3a4d49580a28 from=translated src=- shape=711c2347 vocab=3201db98
+-/
 theorem sum_triCoord (x : Plane) : ∑ j, triCoord j x = 1 :=
   stdTriBasis.sum_coord_apply_eq_one x
 
+/--
+@isnad1 id=eq.0h4v.s10.951ee459202f from=translated src=- shape=2bf701d2 vocab=8bea6623
+-/
 theorem triCoord_lineMap (j : Fin 3) (a b : Plane) (t : ℝ) :
     triCoord j (AffineMap.lineMap a b t) =
       AffineMap.lineMap (triCoord j a) (triCoord j b) t := by
   simp only [triCoord]
   exact (stdTriBasis.coord j).apply_lineMap a b t
 
+/--
+@isnad1 id=eq.0h0v.s7.a6b9be7fa95f from=translated src=- shape=f25d7ac9 vocab=e1fa2f81
+-/
 theorem standardFaceRegion_eq_convexHull :
     standardFaceRegion = convexHull ℝ (Set.range standardTriangleVertex) :=
   standardTrianglePlaneComplex_support
 
+/--
+@isnad1 id=convex.0h0v.s6.ebe4c4f22a60 from=translated src=- shape=54c8eceb vocab=36604cb3
+-/
 theorem convex_standardFaceRegion : Convex ℝ standardFaceRegion := by
   rw [standardFaceRegion_eq_convexHull]
   exact convex_convexHull ℝ _
 
+/--
+@isnad1 id=iff.0h1v.s4.1482e3e30dc0 from=translated src=- shape=6afa2afd vocab=a21fa11d
+-/
 theorem mem_standardFaceRegion_iff {x : Plane} :
     x ∈ standardFaceRegion ↔ ∀ j, 0 ≤ triCoord j x := by
   rw [standardFaceRegion_eq_convexHull, ← range_stdTriBasis,
     stdTriBasis.convexHull_eq_nonneg_coord]
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.6b67d5ba32a7 from=translated src=- shape=e746afc8 vocab=4cf7cbce
+-/
 theorem interior_standardFaceRegion :
     interior standardFaceRegion = {x | ∀ j, 0 < triCoord j x} := by
   rw [standardFaceRegion_eq_convexHull, ← range_stdTriBasis]
   exact interior_convexHull_affineBasis stdTriBasis
 
+/--
+@isnad1 id=iff.0h1v.s6.5a17dac6cfd8 from=translated src=- shape=909634e4 vocab=6311ee62
+-/
 theorem mem_frontier_standardFaceRegion_iff {x : Plane} :
     x ∈ frontier standardFaceRegion ↔
       x ∈ standardFaceRegion ∧ ∃ j, triCoord j x = 0 := by
@@ -122,6 +158,9 @@ theorem mem_frontier_standardFaceRegion_iff {x : Plane} :
     intro hint
     exact (hint j).ne' hj
 
+/--
+@isnad1 id=mem.2h2v.s6.60d2076bd070 from=translated src=- shape=58be072e vocab=6311ee62
+-/
 theorem mem_frontier_of_triCoord_eq_zero {x : Plane}
     (hx : x ∈ standardFaceRegion) {j : Fin 3} (hj : triCoord j x = 0) :
     x ∈ frontier standardFaceRegion :=
@@ -131,6 +170,9 @@ theorem mem_frontier_of_triCoord_eq_zero {x : Plane}
 noncomputable def triCenter : Plane :=
   Finset.univ.centroid ℝ standardTriangleVertex
 
+/--
+@isnad1 id=eq.0h1v.s5.a01b6078088f from=translated src=- shape=db06bd43 vocab=a38b0d25
+-/
 @[simp] theorem triCoord_triCenter (j : Fin 3) :
     triCoord j triCenter = 1 / 3 := by
   have h := stdTriBasis.coord_apply_centroid
@@ -139,6 +181,9 @@ noncomputable def triCenter : Plane :=
   rw [hcentroid] at h
   simpa [triCoord] using h
 
+/--
+@isnad1 id=mem.0h0v.s3.1dfb6a9885bb from=translated src=- shape=d1530203 vocab=fc5cf674
+-/
 theorem triCenter_mem_standardFaceRegion : triCenter ∈ standardFaceRegion := by
   rw [mem_standardFaceRegion_iff]
   intro j
@@ -150,28 +195,51 @@ theorem triCenter_mem_standardFaceRegion : triCenter ∈ standardFaceRegion := b
 /-- Clamp a real parameter into `[0, 1]`. -/
 noncomputable def unitClamp (t : ℝ) : ℝ := max 0 (min 1 t)
 
+/--
+@isnad1 id=continuo.0h0v.s3.4bbcd3cf06ad from=translated src=- shape=e3d48bcb vocab=30a0403d
+-/
 theorem continuous_unitClamp : Continuous unitClamp :=
   continuous_const.max (continuous_const.min continuous_id)
 
+/--
+@isnad1 id=le.0h1v.s3.f42f5811c72f from=translated src=- shape=8a62b088 vocab=b07fbeb6
+-/
 theorem unitClamp_nonneg (t : ℝ) : 0 ≤ unitClamp t := le_max_left _ _
 
+/--
+@isnad1 id=le.0h1v.s3.e4b671001a7a from=translated src=- shape=b14ee516 vocab=b07fbeb6
+-/
 theorem unitClamp_le_one (t : ℝ) : unitClamp t ≤ 1 :=
   max_le zero_le_one (min_le_left _ _)
 
+/--
+@isnad1 id=mem.0h1v.s4.e1c3160416b9 from=translated src=- shape=828ff9db vocab=c2807d62
+-/
 theorem unitClamp_mem (t : ℝ) : unitClamp t ∈ Set.Icc (0 : ℝ) 1 :=
   ⟨unitClamp_nonneg t, unitClamp_le_one t⟩
 
+/--
+@isnad1 id=eq.1h1v.s4.fcfb191f4466 from=translated src=- shape=59a9e9ba vocab=c2807d62
+-/
 theorem unitClamp_of_mem {t : ℝ} (ht : t ∈ Set.Icc (0 : ℝ) 1) :
     unitClamp t = t := by
   rw [unitClamp, min_eq_right ht.2, max_eq_right ht.1]
 
+/--
+@isnad1 id=eq.0h0v.s3.0bac970b21e1 from=translated src=- shape=3c26ae4f vocab=32800af2
+-/
 @[simp] theorem unitClamp_zero : unitClamp 0 = 0 :=
   unitClamp_of_mem ⟨le_rfl, zero_le_one⟩
 
+/--
+@isnad1 id=eq.0h0v.s3.2a976c0b4b73 from=translated src=- shape=3c26ae4f vocab=32800af2
+-/
 @[simp] theorem unitClamp_one : unitClamp 1 = 1 :=
   unitClamp_of_mem ⟨zero_le_one, le_rfl⟩
 
-/-- A clamped line-map combination of two points of a convex set stays in the set. -/
+/-- A clamped line-map combination of two points of a convex set stays in the set.
+@isnad1 id=mem.3h4v.s10.7cc7f89f0015 from=translated src=- shape=acb331b1 vocab=7b12d729
+-/
 theorem lineMap_unitClamp_mem {s : Set Plane} (hs : Convex ℝ s) {a b : Plane}
     (ha : a ∈ s) (hb : b ∈ s) (t : ℝ) :
     AffineMap.lineMap a b (unitClamp t) ∈ s := by
@@ -185,6 +253,9 @@ variable {S : Type*} [TopologicalSpace S] {K : LocallyFiniteTriangleComplex S}
 
 /-! ## Coordinates along one oriented standard side -/
 
+/--
+@isnad1 id=ne.0h4v.s5.1ace48df391f from=translated src=- shape=9cde27e3 vocab=4850b39a
+-/
 theorem faceEdgeFirstIndex_ne_secondIndex (f : K.Face) (i : ZMod 3) :
     K.faceEdgeFirstIndex f i ≠ K.faceEdgeSecondIndex f i := by
   intro h
@@ -192,6 +263,9 @@ theorem faceEdgeFirstIndex_ne_secondIndex (f : K.Face) (i : ZMod 3) :
   rw [← K.faceVertexEmbedding_faceEdgeFirstIndex f i,
     ← K.faceVertexEmbedding_faceEdgeSecondIndex f i, h]
 
+/--
+@isnad1 id=eq.0h5v.s5.d1bbb540620b from=translated src=- shape=2ba1d18d vocab=d91398e7
+-/
 theorem triCoord_secondIndex_sourcePoint (f : K.Face) (i : ZMod 3) (r : ℝ) :
     triCoord (K.faceEdgeSecondIndex f i) (K.faceEdgeSourcePoint f i r) = r := by
   rw [faceEdgeSourcePoint, triCoord_lineMap,
@@ -199,12 +273,18 @@ theorem triCoord_secondIndex_sourcePoint (f : K.Face) (i : ZMod 3) (r : ℝ) :
     triCoord_vertex_self]
   simp [AffineMap.lineMap_apply_module]
 
+/--
+@isnad1 id=eq.0h5v.s5.d52bddeb2839 from=translated src=- shape=b66d7019 vocab=9115186b
+-/
 theorem triCoord_firstIndex_sourcePoint (f : K.Face) (i : ZMod 3) (r : ℝ) :
     triCoord (K.faceEdgeFirstIndex f i) (K.faceEdgeSourcePoint f i r) = 1 - r := by
   rw [faceEdgeSourcePoint, triCoord_lineMap, triCoord_vertex_self,
     triCoord_vertex_ne (K.faceEdgeFirstIndex_ne_secondIndex f i)]
   simp [AffineMap.lineMap_apply_module]
 
+/--
+@isnad1 id=eq.2h6v.s6.566caa6f2cd4 from=translated src=- shape=40706b70 vocab=22031a40
+-/
 theorem triCoord_other_sourcePoint (f : K.Face) (i : ZMod 3) {j : Fin 3}
     (hj₁ : j ≠ K.faceEdgeFirstIndex f i) (hj₂ : j ≠ K.faceEdgeSecondIndex f i)
     (r : ℝ) :
@@ -213,16 +293,25 @@ theorem triCoord_other_sourcePoint (f : K.Face) (i : ZMod 3) {j : Fin 3}
     triCoord_vertex_ne hj₂]
   simp
 
+/--
+@isnad1 id=eq.0h4v.s5.a96c02dcde61 from=translated src=- shape=cd008d9f vocab=130e5d7b
+-/
 @[simp] theorem faceEdgeSourcePoint_zero (f : K.Face) (i : ZMod 3) :
     K.faceEdgeSourcePoint f i 0 =
       standardTriangleVertex (K.faceEdgeFirstIndex f i) :=
   AffineMap.lineMap_apply_zero _ _
 
+/--
+@isnad1 id=eq.0h4v.s5.823ad54d135b from=translated src=- shape=cd008d9f vocab=036ca79b
+-/
 @[simp] theorem faceEdgeSourcePoint_one (f : K.Face) (i : ZMod 3) :
     K.faceEdgeSourcePoint f i 1 =
       standardTriangleVertex (K.faceEdgeSecondIndex f i) :=
   AffineMap.lineMap_apply_one _ _
 
+/--
+@isnad1 id=mem.1h5v.s5.c94477edf279 from=translated src=- shape=f6d4be9c vocab=48f04db1
+-/
 theorem faceEdgeSourcePoint_mem_region (f : K.Face) (i : ZMod 3) {r : ℝ}
     (hr : r ∈ Set.Icc (0 : ℝ) 1) :
     K.faceEdgeSourcePoint f i r ∈ standardFaceRegion := by
@@ -236,6 +325,9 @@ theorem faceEdgeSourcePoint_mem_region (f : K.Face) (i : ZMod 3) {r : ℝ}
     exact hr.1
   · rw [triCoord_other_sourcePoint f i hj₁ hj₂]
 
+/--
+@isnad1 id=continuo.0h4v.s6.374b0ba6d0f3 from=translated src=- shape=fc7f7020 vocab=5c0e11c3
+-/
 theorem continuous_faceEdgeSourcePoint (f : K.Face) (i : ZMod 3) :
     Continuous (K.faceEdgeSourcePoint f i) :=
   (AffineMap.lineMap _ _).continuous_of_finiteDimensional.comp
@@ -244,7 +336,9 @@ theorem continuous_faceEdgeSourcePoint (f : K.Face) (i : ZMod 3) :
 /-! ## The original face chart along a source side -/
 
 /-- The original face chart carries the oriented standard side to the charted edge curve with
-the identical parameter. -/
+the identical parameter.
+@isnad1 id=eq.1h6v.s6.e70ea3dd65b7 from=translated src=- shape=de38a91f vocab=8c321f3f
+-/
 theorem faceOriginalMap_sourcePoint (f : K.Face) (i : ZMod 3) {r : ℝ}
     (hr : r ∈ Set.Icc (0 : ℝ) 1) :
     faceOriginalMap G f (K.faceEdgeSourcePoint f i r) =
@@ -262,7 +356,9 @@ theorem faceOriginalMap_sourcePoint (f : K.Face) (i : ZMod 3) {r : ℝ}
   rw [happly, hsupport', G.chartEdgeCurve_eq_of_mem _ hr]
   rfl
 
-/-- The original face chart is injective on the closed standard triangle. -/
+/-- The original face chart is injective on the closed standard triangle.
+@isnad1 id=injon.0h4v.s4.2bd5a069318d from=translated src=- shape=ed4a5310 vocab=f3f4b483
+-/
 theorem faceOriginalMap_injOn (f : K.Face) :
     Set.InjOn (faceOriginalMap G f) standardFaceRegion := by
   intro x hx y hy hxy
@@ -285,7 +381,9 @@ the original face chart converts image smallness into segment-image smallness.  
 scale is what the shrunken approximation controls must undercut. -/
 
 /-- Two-sided modulus: once two standard points have images within twice this scale, the whole
-straight segment between them has image within a quarter separation radius of either end. -/
+straight segment between them has image within a quarter separation radius of either end.
+@isnad1 id=ex.0h4v.s10.7f818c450614 from=translated src=- shape=dd283ea0 vocab=542cd553
+-/
 theorem exists_comparisonScale (G : K.PlaneGraphRealization) (f : K.Face) :
     ∃ eta : ℝ, 0 < eta ∧ eta ≤ faceVertexSeparationRadius G f / 8 ∧
       ∀ x ∈ standardFaceRegion, ∀ y ∈ standardFaceRegion,
@@ -377,14 +475,23 @@ theorem exists_comparisonScale (G : K.PlaneGraphRealization) (f : K.Face) :
 noncomputable def comparisonScale (G : K.PlaneGraphRealization) (f : K.Face) : ℝ :=
   Classical.choose (exists_comparisonScale G f)
 
+/--
+@isnad1 id=lt.0h4v.s5.03574d8decab from=translated src=- shape=ceec0736 vocab=0ee13a85
+-/
 theorem comparisonScale_pos (G : K.PlaneGraphRealization) (f : K.Face) :
     0 < comparisonScale G f :=
   (Classical.choose_spec (exists_comparisonScale G f)).1
 
+/--
+@isnad1 id=le.0h4v.s5.033d3617a21b from=translated src=- shape=c711f1c2 vocab=00130462
+-/
 theorem comparisonScale_le (G : K.PlaneGraphRealization) (f : K.Face) :
     comparisonScale G f ≤ faceVertexSeparationRadius G f / 8 :=
   (Classical.choose_spec (exists_comparisonScale G f)).2.1
 
+/--
+@isnad1 id=le.4h7v.s10.9b47210caadd from=translated src=- shape=d14f84b2 vocab=4011d850
+-/
 theorem comparisonScale_segment (G : K.PlaneGraphRealization) (f : K.Face)
     {x y : Plane} (hx : x ∈ standardFaceRegion) (hy : y ∈ standardFaceRegion)
     (hclose : dist (faceOriginalMap G f x) (faceOriginalMap G f y) ≤
@@ -400,10 +507,16 @@ theorem comparisonScale_segment (G : K.PlaneGraphRealization) (f : K.Face)
 noncomputable def standardOppIndex (i : ZMod 3) : Fin 3 :=
   (ZMod.finEquiv 3).symm (i + 2)
 
+/--
+@isnad1 id=injectiv.0h0v.s8.c77607bd9496 from=translated src=- shape=68ef4763 vocab=8833a07e
+-/
 theorem finEquiv_symm_injective :
     Function.Injective ((ZMod.finEquiv 3).symm : ZMod 3 → Fin 3) :=
   (ZMod.finEquiv 3).symm.injective
 
+/--
+@isnad1 id=or.0h4v.s10.f077349997d4 from=translated src=- shape=7700c4b1 vocab=31d2aa1d
+-/
 theorem faceEdge_index_cases (f : K.Face) (i : ZMod 3) :
     (K.faceEdgeFirstIndex f i = (ZMod.finEquiv 3).symm i ∧
         K.faceEdgeSecondIndex f i = (ZMod.finEquiv 3).symm (i + 1)) ∨
@@ -433,34 +546,51 @@ theorem faceEdge_index_cases (f : K.Face) (i : ZMod 3) :
     · exact absurd ((Finset.mem_singleton.mp h₁).trans
         (Finset.mem_singleton.mp h₂).symm) hne
 
+/--
+@isnad1 id=ne.0h1v.s8.c937b027fc11 from=translated src=- shape=49314353 vocab=ca43a1c0
+-/
 theorem standardOppIndex_ne_symm (i : ZMod 3) :
     standardOppIndex i ≠ (ZMod.finEquiv 3).symm i := by
   intro h
   exact (by decide : ∀ z : ZMod 3, z + 2 ≠ z) i (finEquiv_symm_injective h)
 
+/--
+@isnad1 id=ne.0h1v.s9.83072b1c0eba from=translated src=- shape=0ae7ad73 vocab=437fcb24
+-/
 theorem standardOppIndex_ne_symm_succ (i : ZMod 3) :
     standardOppIndex i ≠ (ZMod.finEquiv 3).symm (i + 1) := by
   intro h
   exact (by decide : ∀ z : ZMod 3, z + 2 ≠ z + 1) i (finEquiv_symm_injective h)
 
+/--
+@isnad1 id=ne.0h4v.s5.b4da32135168 from=translated src=- shape=e5a5dede vocab=43bb68c2
+-/
 theorem standardOppIndex_ne_firstIndex (f : K.Face) (i : ZMod 3) :
     standardOppIndex i ≠ K.faceEdgeFirstIndex f i := by
   rcases K.faceEdge_index_cases f i with ⟨h₁, -⟩ | ⟨h₁, -⟩
   · rw [h₁]; exact standardOppIndex_ne_symm i
   · rw [h₁]; exact standardOppIndex_ne_symm_succ i
 
+/--
+@isnad1 id=ne.0h4v.s5.b3315dc8821d from=translated src=- shape=e5a5dede vocab=07106a2a
+-/
 theorem standardOppIndex_ne_secondIndex (f : K.Face) (i : ZMod 3) :
     standardOppIndex i ≠ K.faceEdgeSecondIndex f i := by
   rcases K.faceEdge_index_cases f i with ⟨-, h₂⟩ | ⟨-, h₂⟩
   · rw [h₂]; exact standardOppIndex_ne_symm_succ i
   · rw [h₂]; exact standardOppIndex_ne_symm i
 
+/--
+@isnad1 id=eq.0h5v.s5.8bed2de7f6c1 from=translated src=- shape=42010332 vocab=375b1dde
+-/
 theorem triCoord_oppIndex_sourcePoint (f : K.Face) (i : ZMod 3) (r : ℝ) :
     triCoord (standardOppIndex i) (K.faceEdgeSourcePoint f i r) = 0 :=
   K.triCoord_other_sourcePoint f i (K.standardOppIndex_ne_firstIndex f i)
     (K.standardOppIndex_ne_secondIndex f i) r
 
-/-- The three coordinates named by one side enumerate the whole coordinate sum. -/
+/-- The three coordinates named by one side enumerate the whole coordinate sum.
+@isnad1 id=eq.0h5v.s6.9d2789c053db from=translated src=- shape=dd62aa23 vocab=a4378c34
+-/
 theorem triCoord_side_sum (f : K.Face) (i : ZMod 3) (x : Plane) :
     triCoord (K.faceEdgeFirstIndex f i) x + triCoord (K.faceEdgeSecondIndex f i) x +
       triCoord (standardOppIndex i) x = 1 := by
@@ -504,6 +634,9 @@ noncomputable def sideTrimRight (G : K.PlaneGraphRealization) (f : K.Face)
     (G.edgeTrim (K.faceEdge f i)).right
     (G.replacementArc (K.faceEdge f i)).exitData.right
 
+/--
+@isnad1 id=le.0h5v.s5.d292d2f27c7c from=translated src=- shape=938686dc vocab=4cc6cb83
+-/
 theorem sideTrim_left_le_right (G : K.PlaneGraphRealization) (f : K.Face)
     (i : ZMod 3) : sideTrimLeft G f i ≤ sideTrimRight G f i := by
   have hT := (G.edgeTrim (K.faceEdge f i)).left_lt_right
@@ -511,6 +644,9 @@ theorem sideTrim_left_le_right (G : K.PlaneGraphRealization) (f : K.Face)
   simp only [sideTrimLeft, sideTrimRight, AffineMap.lineMap_apply_ring]
   nlinarith
 
+/--
+@isnad1 id=mem.0h5v.s5.6d03b9f807a1 from=translated src=- shape=da103ce1 vocab=d7a47ffa
+-/
 theorem sideTrimLeft_mem (G : K.PlaneGraphRealization) (f : K.Face)
     (i : ZMod 3) : sideTrimLeft G f i ∈ Set.Icc (0 : ℝ) 1 := by
   have hTl := (G.edgeTrim (K.faceEdge f i)).left_pos
@@ -522,6 +658,9 @@ theorem sideTrimLeft_mem (G : K.PlaneGraphRealization) (f : K.Face)
   simp only [sideTrimLeft, AffineMap.lineMap_apply_ring]
   constructor <;> nlinarith
 
+/--
+@isnad1 id=mem.0h5v.s5.3b9b048252bd from=translated src=- shape=da103ce1 vocab=28ab5360
+-/
 theorem sideTrimRight_mem (G : K.PlaneGraphRealization) (f : K.Face)
     (i : ZMod 3) : sideTrimRight G f i ∈ Set.Icc (0 : ℝ) 1 := by
   have hTl := (G.edgeTrim (K.faceEdge f i)).left_pos
@@ -545,6 +684,9 @@ noncomputable def sideParamProfile (G : K.PlaneGraphRealization) (f : K.Face)
     AffineMap.lineMap (sideTrimLeft G f i) (sideTrimRight G f i) (4 * u - 2)
   else AffineMap.lineMap (sideTrimRight G f i) 1 (4 * u - 3)
 
+/--
+@isnad1 id=continuo.0h5v.s5.2e380a8d600b from=translated src=- shape=c200dd98 vocab=181c1e0f
+-/
 theorem continuous_sideParamProfile (G : K.PlaneGraphRealization) (f : K.Face)
     (i : ZMod 3) : Continuous (sideParamProfile G f i) := by
   apply Continuous.if_le
@@ -565,14 +707,23 @@ theorem continuous_sideParamProfile (G : K.PlaneGraphRealization) (f : K.Face)
     rw [hu]
     norm_num [AffineMap.lineMap_apply_ring]
 
+/--
+@isnad1 id=eq.0h5v.s5.6ce58cc9ec13 from=translated src=- shape=a134da6f vocab=5326d6b0
+-/
 @[simp] theorem sideParamProfile_zero (G : K.PlaneGraphRealization) (f : K.Face)
     (i : ZMod 3) : sideParamProfile G f i 0 = 0 := by
   norm_num [sideParamProfile]
 
+/--
+@isnad1 id=eq.0h5v.s5.f3eb18a237f6 from=translated src=- shape=a134da6f vocab=5326d6b0
+-/
 @[simp] theorem sideParamProfile_one (G : K.PlaneGraphRealization) (f : K.Face)
     (i : ZMod 3) : sideParamProfile G f i 1 = 1 := by
   norm_num [sideParamProfile, AffineMap.lineMap_apply_ring]
 
+/--
+@isnad1 id=mem.1h6v.s6.8e8423c4a595 from=translated src=- shape=39da1ae3 vocab=3983f30d
+-/
 theorem sideParamProfile_mem (G : K.PlaneGraphRealization) (f : K.Face)
     (i : ZMod 3) {u : ℝ} (hu : u ∈ Set.Icc (0 : ℝ) 1) :
     sideParamProfile G f i u ∈ Set.Icc (0 : ℝ) 1 := by
@@ -596,6 +747,9 @@ barycenter. -/
 noncomputable def sideDepth (i : ZMod 3) (x : Plane) : ℝ :=
   1 - 3 * triCoord (standardOppIndex i) x
 
+/--
+@isnad1 id=continuo.0h1v.s5.34a9a10e2c0f from=translated src=- shape=58d06a47 vocab=7772f1cf
+-/
 theorem continuous_sideDepth (i : ZMod 3) : Continuous (sideDepth i) :=
   continuous_const.sub
     (continuous_const.mul (continuous_triCoord (standardOppIndex i)))
@@ -606,6 +760,9 @@ noncomputable def sideRawParam (f : K.Face) (i : ZMod 3) (x : Plane) : ℝ :=
   (triCoord (K.faceEdgeSecondIndex f i) x - 1 / 3) /
       max (sideDepth i x) (1 / 3) + 1 / 3
 
+/--
+@isnad1 id=continuo.0h4v.s6.c74c4873c002 from=translated src=- shape=fc7f7020 vocab=5b2db3d6
+-/
 theorem continuous_sideRawParam (f : K.Face) (i : ZMod 3) :
     Continuous (sideRawParam f i) := by
   apply Continuous.add _ continuous_const
@@ -626,7 +783,9 @@ noncomputable def sidePiece (G : K.PlaneGraphRealization) (f : K.Face)
       (sideParamProfile G f i (unitClamp (sideRawParam f i x))))
     (unitClamp (3 * sideDepth i x - 1)))
 
-/-- The domain point fed to the original chart by a side piece. -/
+/-- The domain point fed to the original chart by a side piece.
+@isnad1 id=mem.0h6v.s9.50ea849e6709 from=translated src=- shape=93c42877 vocab=23cf0a5e
+-/
 theorem sidePiece_arg_mem (G : K.PlaneGraphRealization) (f : K.Face)
     (i : ZMod 3) (x : Plane) :
     AffineMap.lineMap triCenter
@@ -638,6 +797,9 @@ theorem sidePiece_arg_mem (G : K.PlaneGraphRealization) (f : K.Face)
   exact K.faceEdgeSourcePoint_mem_region f i
     (sideParamProfile_mem G f i (unitClamp_mem _))
 
+/--
+@isnad1 id=mem.0h6v.s5.db0a195ed4d8 from=translated src=- shape=746ed055 vocab=3a489685
+-/
 theorem sidePiece_mem_faceImage (G : K.PlaneGraphRealization) (f : K.Face)
     (i : ZMod 3) (x : Plane) :
     sidePiece G f i x ∈ G.map '' faceInSupport (K := K) f := by
@@ -645,6 +807,9 @@ theorem sidePiece_mem_faceImage (G : K.PlaneGraphRealization) (f : K.Face)
   exact faceOriginalMap_mem_face_image (G := G) f
     ⟨_, K.sidePiece_arg_mem G f i x⟩
 
+/--
+@isnad1 id=continuo.0h5v.s6.8d136f54820e from=translated src=- shape=c200dd98 vocab=05cdca44
+-/
 theorem continuous_sidePiece (G : K.PlaneGraphRealization) (f : K.Face)
     (i : ZMod 3) : Continuous (sidePiece G f i) := by
   apply (continuousOn_faceOriginalMap (G := G) f).comp_continuous
@@ -665,26 +830,39 @@ theorem continuous_sidePiece (G : K.PlaneGraphRealization) (f : K.Face)
 
 /-! ## Evaluation of a side piece -/
 
+/--
+@isnad1 id=eq.1h1v.s4.d6aa8554be63 from=translated src=- shape=278e0375 vocab=b07fbeb6
+-/
 theorem unitClamp_of_nonpos {t : ℝ} (ht : t ≤ 0) : unitClamp t = 0 := by
   rw [unitClamp, min_eq_right (ht.trans zero_le_one), max_eq_left ht]
 
+/--
+@isnad1 id=eq.1h1v.s4.12366abe1e82 from=translated src=- shape=97c35add vocab=b07fbeb6
+-/
 theorem unitClamp_of_one_le {t : ℝ} (ht : 1 ≤ t) : unitClamp t = 1 := by
   rw [unitClamp, min_eq_left ht]
   exact max_eq_right zero_le_one
 
-/-- On the side itself the raw parameter is the oriented affine side parameter. -/
+/-- On the side itself the raw parameter is the oriented affine side parameter.
+@isnad1 id=eq.0h5v.s5.18b425a9bbe3 from=translated src=- shape=0fa3e8a3 vocab=b20cd6b0
+-/
 theorem sideRawParam_sourcePoint (f : K.Face) (i : ZMod 3) (r : ℝ) :
     sideRawParam f i (K.faceEdgeSourcePoint f i r) = r := by
   rw [sideRawParam, sideDepth, K.triCoord_oppIndex_sourcePoint f i r,
     K.triCoord_secondIndex_sourcePoint f i r]
   norm_num
 
+/--
+@isnad1 id=eq.0h5v.s5.3f2915ff9ad4 from=translated src=- shape=6650000d vocab=f081c557
+-/
 theorem sideDepth_sourcePoint (f : K.Face) (i : ZMod 3) (r : ℝ) :
     sideDepth i (K.faceEdgeSourcePoint f i r) = 1 := by
   rw [sideDepth, K.triCoord_oppIndex_sourcePoint f i r]
   norm_num
 
-/-- A side piece evaluated on its own side is the reparametrized original boundary chart. -/
+/-- A side piece evaluated on its own side is the reparametrized original boundary chart.
+@isnad1 id=eq.1h6v.s6.8080bdbca73c from=translated src=- shape=7a103d41 vocab=278ee816
+-/
 theorem sidePiece_sourcePoint (G : K.PlaneGraphRealization) (f : K.Face)
     (i : ZMod 3) {r : ℝ} (hr : r ∈ Set.Icc (0 : ℝ) 1) :
     sidePiece G f i (K.faceEdgeSourcePoint f i r) =
@@ -695,7 +873,9 @@ theorem sidePiece_sourcePoint (G : K.PlaneGraphRealization) (f : K.Face)
     AffineMap.lineMap_apply_one]
 
 /-- The first-corner evaluation: whenever the first endpoint coordinate agrees with the
-opposite coordinate, the side piece interpolates toward the second corner. -/
+opposite coordinate, the side piece interpolates toward the second corner.
+@isnad1 id=eq.1h6v.s9.14af19df1667 from=translated src=- shape=5cf48099 vocab=f7d7374c
+-/
 theorem sidePiece_of_firstCoord_eq (G : K.PlaneGraphRealization) (f : K.Face)
     (i : ZMod 3) {x : Plane}
     (hcc : triCoord (K.faceEdgeFirstIndex f i) x =
@@ -727,7 +907,9 @@ theorem sidePiece_of_firstCoord_eq (G : K.PlaneGraphRealization) (f : K.Face)
       AffineMap.lineMap_apply_zero]
 
 /-- The second-corner evaluation: whenever the second endpoint coordinate agrees with the
-opposite coordinate, the side piece interpolates toward the first corner. -/
+opposite coordinate, the side piece interpolates toward the first corner.
+@isnad1 id=eq.1h6v.s9.645dc8917e28 from=translated src=- shape=5cf48099 vocab=f7d7374c
+-/
 theorem sidePiece_of_secondCoord_eq (G : K.PlaneGraphRealization) (f : K.Face)
     (i : ZMod 3) {x : Plane}
     (hcc : triCoord (K.faceEdgeSecondIndex f i) x =
@@ -759,6 +941,9 @@ theorem sidePiece_of_secondCoord_eq (G : K.PlaneGraphRealization) (f : K.Face)
 
 /-! ## Agreement of adjacent side pieces -/
 
+/--
+@isnad1 id=eq.0h1v.s9.d262649b573a from=translated src=- shape=b6c8bad1 vocab=437fcb24
+-/
 theorem standardOppIndex_succ (i : ZMod 3) :
     standardOppIndex (i + 1) = (ZMod.finEquiv 3).symm i := by
   rw [standardOppIndex]
@@ -767,6 +952,9 @@ theorem standardOppIndex_succ (i : ZMod 3) :
   calc i + 1 + 2 = i + 3 := by ring
     _ = i := by rw [h30, add_zero]
 
+/--
+@isnad1 id=eq.0h1v.s9.2cd1eff4bf95 from=translated src=- shape=49ac5d7f vocab=437fcb24
+-/
 theorem standardOppIndex_succ_succ (i : ZMod 3) :
     standardOppIndex (i + 2) = (ZMod.finEquiv 3).symm (i + 1) := by
   rw [standardOppIndex]
@@ -776,7 +964,9 @@ theorem standardOppIndex_succ_succ (i : ZMod 3) :
     _ = i + 1 := by rw [h30, add_zero]
 
 /-- Two side pieces agree wherever their opposite coordinates agree.  This is the closed
-interface condition of the sector decomposition; no minimality is required. -/
+interface condition of the sector decomposition; no minimality is required.
+@isnad1 id=eq.2h7v.s6.aa851c93ef8f from=translated src=- shape=4b8838e2 vocab=2a0cd3e5
+-/
 theorem sidePiece_interface (G : K.PlaneGraphRealization) (f : K.Face)
     {i i' : ZMod 3} (hne : i ≠ i') {x : Plane}
     (heq : triCoord (standardOppIndex i) x =
@@ -878,12 +1068,18 @@ noncomputable def facewiseComparison (G : K.PlaneGraphRealization) (f : K.Face)
     sidePiece G f 1 x
   else sidePiece G f 2 x
 
+/--
+@isnad1 id=mem.0h5v.s5.14531b96033a from=translated src=- shape=5715e87b vocab=1b60e5b6
+-/
 theorem facewiseComparison_mem_faceImage (G : K.PlaneGraphRealization)
     (f : K.Face) (x : Plane) :
     facewiseComparison G f x ∈ G.map '' faceInSupport (K := K) f := by
   rw [facewiseComparison]
   split_ifs <;> exact K.sidePiece_mem_faceImage G f _ x
 
+/--
+@isnad1 id=continuo.0h4v.s6.dad206c20d45 from=translated src=- shape=ed4a5310 vocab=1fff8a21
+-/
 theorem continuousOn_facewiseComparison (G : K.PlaneGraphRealization)
     (f : K.Face) :
     ContinuousOn (facewiseComparison G f) standardFaceRegion := by
@@ -913,7 +1109,9 @@ theorem continuousOn_facewiseComparison (G : K.PlaneGraphRealization)
     · exact (K.continuous_sidePiece G f 2).continuousOn
 
 /-- On the closed sector of side `i` — in fact anywhere the opposite coordinate of side `i`
-vanishes — the comparison map is the side-`i` piece. -/
+vanishes — the comparison map is the side-`i` piece.
+@isnad1 id=eq.2h6v.s6.4bae6046f24e from=translated src=- shape=32146c6a vocab=9ebe837f
+-/
 theorem facewiseComparison_eq_sidePiece (G : K.PlaneGraphRealization)
     (f : K.Face) (i : ZMod 3) {x : Plane} (hx : x ∈ standardFaceRegion)
     (hzero : triCoord (standardOppIndex i) x = 0) :
@@ -1009,7 +1207,9 @@ private theorem dist_completePath_comparison_lt_of_middle (G : K.PlaneGraphReali
 
 /-- The complete replacement path of one side stays within half the face separation radius of
 the reparametrized original boundary chart, once the vertex isolation disks and the central
-tube are below the comparison scale. -/
+tube are below the comparison scale.
+@isnad1 id=lt.4h6v.s8.7badb0819a19 from=translated src=- shape=5a87c6eb vocab=988f28b7
+-/
 theorem dist_completePath_comparison_lt (G : K.PlaneGraphRealization)
     (f : K.Face) (i : ZMod 3)
     (hiso₁ : G.vertexIsolationRadius (K.edgeFirst (K.faceEdge f i)) ≤
@@ -1220,7 +1420,9 @@ theorem dist_completePath_comparison_lt (G : K.PlaneGraphRealization)
             linarith
 
 /-- The graph replacement on one face boundary stays within half the face separation radius of
-the facewise comparison map. -/
+the facewise comparison map.
+@isnad1 id=lt.2h5v.s7.725c8f5788d5 from=translated src=- shape=73cf3f33 vocab=c943a6b9
+-/
 theorem facewiseComparison_close (G : K.PlaneGraphRealization) (f : K.Face)
     (hiso : ∀ i : ZMod 3,
       G.vertexIsolationRadius (K.edgeFirst (K.faceEdge f i)) ≤
@@ -1256,7 +1458,9 @@ theorem facewiseComparison_close (G : K.PlaneGraphRealization) (f : K.Face)
 
 /-- The complete cellwise compatibility package from comparison-scale-small approximation
 data.  This is the honest side-preservation discharge for the locally finite Chapter 6
-replacement: no same-parameter mesh estimate enters. -/
+replacement: no same-parameter mesh estimate enters.
+@isnad1 id=cellwise.5h3v.s8.2b17f5470809 from=translated src=- shape=72af041b vocab=1a142e48
+-/
 theorem cellwiseCompatibility_of_comparisonScale (G : K.PlaneGraphRealization)
     (hfaces : Function.Injective K.faceVertices)
     (hiso : ∀ (f : K.Face) (i : ZMod 3),
@@ -1293,6 +1497,9 @@ noncomputable def comparisonVertexControl (G : K.PlaneGraphRealization)
   ((facesContaining (K := K) (K.vertexSupportPoint v)).image
     (comparisonScale G)).min' ((facesContaining_nonempty _).image _)
 
+/--
+@isnad1 id=lt.0h4v.s5.62a7a6b9a561 from=translated src=- shape=ceec0736 vocab=c78778e4
+-/
 theorem comparisonVertexControl_pos (G : K.PlaneGraphRealization)
     (v : K.Vertex) : 0 < comparisonVertexControl G v := by
   have hmem := Finset.min'_mem
@@ -1302,6 +1509,9 @@ theorem comparisonVertexControl_pos (G : K.PlaneGraphRealization)
   rw [comparisonVertexControl, ← hf]
   exact comparisonScale_pos G f
 
+/--
+@isnad1 id=le.1h5v.s6.410287fc4926 from=translated src=- shape=25ed70f3 vocab=671bc219
+-/
 theorem comparisonVertexControl_le (G : K.PlaneGraphRealization)
     {v : K.Vertex} {f : K.Face} (hv : v ∈ K.faceVertices f) :
     comparisonVertexControl G v ≤ comparisonScale G f := by
@@ -1319,6 +1529,9 @@ noncomputable def comparisonEdgeControl (G : K.PlaneGraphRealization)
       ⟨K.edgeFace e, (Set.Finite.mem_toFinset _).mpr
         (K.edgeFace_mem_edgeMeetingFaces e)⟩ _)
 
+/--
+@isnad1 id=lt.0h4v.s5.de8a4218449b from=translated src=- shape=ceec0736 vocab=562ba1c7
+-/
 theorem comparisonEdgeControl_pos (G : K.PlaneGraphRealization) (e : K.Edge) :
     0 < comparisonEdgeControl G e := by
   have hmem := Finset.min'_mem
@@ -1330,6 +1543,9 @@ theorem comparisonEdgeControl_pos (G : K.PlaneGraphRealization) (e : K.Edge) :
   rw [comparisonEdgeControl, ← hf]
   exact comparisonScale_pos G f
 
+/--
+@isnad1 id=le.1h5v.s5.449420eb8c71 from=translated src=- shape=b8e02105 vocab=f7e29a06
+-/
 theorem comparisonEdgeControl_le (G : K.PlaneGraphRealization)
     {e : K.Edge} {f : K.Face} (hf : f ∈ K.edgeMeetingFaces e) :
     comparisonEdgeControl G e ≤ comparisonScale G f := by
@@ -1338,6 +1554,9 @@ theorem comparisonEdgeControl_le (G : K.PlaneGraphRealization)
 
 /-! ## Invariance of the comparison data under control shrinking -/
 
+/--
+@isnad1 id=eq.2h6v.s6.d048c4588522 from=translated src=- shape=7a7630f5 vocab=f48567f3
+-/
 theorem faceVertexSeparationRadius_withApproximationControls
     (G : K.PlaneGraphRealization)
     (vc : K.Vertex → ℝ) (hvc : ∀ v, 0 < vc v)
@@ -1345,6 +1564,9 @@ theorem faceVertexSeparationRadius_withApproximationControls
     faceVertexSeparationRadius (G.withApproximationControls vc hvc ec hec) f =
       faceVertexSeparationRadius G f := rfl
 
+/--
+@isnad1 id=eq.2h6v.s6.582664a12c32 from=translated src=- shape=7a7630f5 vocab=713f1800
+-/
 theorem comparisonScale_withApproximationControls (G : K.PlaneGraphRealization)
     (vc : K.Vertex → ℝ) (hvc : ∀ v, 0 < vc v)
     (ec : K.Edge → ℝ) (hec : ∀ e, 0 < ec e) (f : K.Face) :
@@ -1354,7 +1576,9 @@ theorem comparisonScale_withApproximationControls (G : K.PlaneGraphRealization)
 /-- **The side-preservation discharge with shrunken controls.**  For every locally finite
 realization there are strictly positive replacement controls below which the complete
 cellwise compatibility package holds; the shrunken realization keeps the same map, region and
-separation radii. -/
+separation radii.
+@isnad1 id=ex.1h3v.s8.0b35e78d65d2 from=translated src=- shape=9000fffb vocab=1f2a38c6
+-/
 theorem exists_controls_cellwiseCompatibility (G : K.PlaneGraphRealization)
     (hfaces : Function.Injective K.faceVertices) :
     ∃ (vc : K.Vertex → ℝ) (hvc : ∀ v, 0 < vc v)

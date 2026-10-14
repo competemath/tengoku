@@ -36,7 +36,9 @@ def countableWeightedProcess
     (weight : ℕ → ℝ) (E : ℕ → ℕ → Ω → ℝ) (n : ℕ) (ω : Ω) : ℝ :=
   ∑' j, weight j * E j n ω
 
-/-- Pointwise nonnegativity of a countable weighted process series. -/
+/-- Pointwise nonnegativity of a countable weighted process series.
+@isnad1 id=le.2h3v.s6.80e3846de721 from=translated src=- shape=d4bbb9e7 vocab=4d817660
+-/
 theorem countableWeightedProcess_nonneg
     {weight : ℕ → ℝ} {E : ℕ → ℕ → Ω → ℝ}
     (hweight : ∀ j, 0 ≤ weight j)
@@ -45,7 +47,9 @@ theorem countableWeightedProcess_nonneg
   intro n ω
   exact tsum_nonneg fun j ↦ mul_nonneg (hweight j) (hE j n ω)
 
-/-- A normalized countable mixture starts at one when every component does. -/
+/-- A normalized countable mixture starts at one when every component does.
+@isnad1 id=eq.2h4v.s6.8477c9b67c95 from=translated src=- shape=e9fbc3aa vocab=bc59ef33
+-/
 theorem countableWeightedProcess_zero
     {weight : ℕ → ℝ} {E : ℕ → ℕ → Ω → ℝ}
     (hweight : HasSum weight 1)
@@ -65,6 +69,7 @@ expectations.
 
 Strict positivity of the weights is not required for closure.  It is required
 only by downstream selected-atom bounds that divide by the selected weight.
+@isnad1 id=eprocess.6h6v.s7.99f983851754 from=translated src=- shape=19e2753e vocab=617f7055
 -/
 theorem countableWeightedProcess_eProcess
     [IsFiniteMeasure μ]

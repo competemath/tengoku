@@ -38,7 +38,9 @@ namespace CKN.Foundation.Parabolic
 
 /-- Equation `eq:parabolic-ball`: the open `parabolicDist`-ball of radius `r`
 about `z = (x, t)` is the product of the Euclidean ball `vec3Ball x r` with the
-open time interval `(t - r², t + r²)`. -/
+open time interval `(t - r², t + r²)`.
+@isnad1 id=eq.0h2v.s6.2cefffd3c340 from=translated src=- shape=c2f206b8 vocab=790a65b1
+-/
 theorem metricBall_eq_parabolicBall (z : ParabolicPoint) (r : ℝ) :
     Metric.ball z r = vec3Ball z.1 r ×ˢ Ioo (z.2 - r ^ 2) (z.2 + r ^ 2) := by
   ext p
@@ -66,7 +68,9 @@ theorem metricBall_eq_parabolicBall (z : ParabolicPoint) (r : ℝ) :
 /-- Lemma `lem:parabolic-metric`: the parabolic cylinder `C_r(z)` is contained
 in the open ball `𝔅_r(z)` of the same center and radius.  Every point of the
 cylinder with time coordinate exactly `t` lies in the open time interval
-`(t - r², t + r²)` because `r > 0`. -/
+`(t - r², t + r²)` because `r > 0`.
+@isnad1 id=le.1h2v.s5.3c9dddc2c595 from=translated src=- shape=f7d62ce6 vocab=5745179d
+-/
 theorem parabolicCylinder_subset_metricBall_sameCenter (z : ParabolicPoint) {r : ℝ}
     (hr : 0 < r) : parabolicCylinder z.1 z.2 r ⊆ Metric.ball z r := by
   intro p hp
@@ -78,7 +82,9 @@ theorem parabolicCylinder_subset_metricBall_sameCenter (z : ParabolicPoint) {r :
 
 /-- Lemma `lem:parabolic-metric`: the open parabolic ball `𝔅_r(z)` is contained
 in the cylinder of radius `2r` based at `(x, t + r²)`, i.e.
-`𝔅_r(z) ⊆ C_{2r}(x, t + r²)`. -/
+`𝔅_r(z) ⊆ C_{2r}(x, t + r²)`.
+@isnad1 id=le.1h2v.s6.929328190e86 from=translated src=- shape=676f33e5 vocab=accd3ee5
+-/
 theorem metricBall_subset_parabolicCylinder_doubled (z : ParabolicPoint) {r : ℝ}
     (hr : 0 < r) :
     Metric.ball z r ⊆ parabolicCylinder z.1 (z.2 + r ^ 2) (2 * r) := by
@@ -94,7 +100,9 @@ theorem metricBall_subset_parabolicCylinder_doubled (z : ParabolicPoint) {r : �
 /-- The volume of the open Euclidean ball of radius `r` centred at the origin
 of `Vec3 = Fin 3 → ℝ`, namely `(4π/3) r³`.  The Euclidean norm on `Fin 3 → ℝ`
 is the `L²` norm, so this is Mathlib's `EuclideanSpace.volume_ball_fin_three`,
-transported along the measure-preserving equivalence `WithLp.toLp 2`. -/
+transported along the measure-preserving equivalence `WithLp.toLp 2`.
+@isnad1 id=eq.0h1v.s7.08e0142584cc from=translated src=- shape=51459b62 vocab=a1f42c99
+-/
 lemma volume_vec3Ball_zero (r : ℝ) :
     volume (vec3Ball (0 : Vec3) r) =
       ENNReal.ofReal r ^ 3 * ENNReal.ofReal (Real.pi * 4 / 3) := by
@@ -110,14 +118,18 @@ lemma volume_vec3Ball_zero (r : ℝ) :
 
 /-- The volume of the open Euclidean ball of radius `r` centred at any point of
 `Vec3`, namely `(4π/3) r³`; this is `volume_vec3Ball_zero` together with
-translation invariance of Lebesgue measure. -/
+translation invariance of Lebesgue measure.
+@isnad1 id=eq.0h2v.s7.b544f0ea3458 from=translated src=- shape=442e0645 vocab=a1f42c99
+-/
 lemma volume_vec3Ball_eq (x : Vec3) (r : ℝ) :
     volume (vec3Ball x r) =
       ENNReal.ofReal r ^ 3 * ENNReal.ofReal (Real.pi * 4 / 3) := by
   rw [volume_vec3Ball, volume_vec3Ball_zero]
 
 /-- The volume of the parabolic ball: `|𝔅_r(z)| = (8π/3) r⁵`, the product of
-the spatial ball volume `(4π/3) r³` and the time interval length `2r²`. -/
+the spatial ball volume `(4π/3) r³` and the time interval length `2r²`.
+@isnad1 id=eq.1h2v.s6.8fbeae759f76 from=translated src=- shape=6774773e vocab=90da0b2e
+-/
 theorem volume_metricBall (z : ParabolicPoint) {r : ℝ} (hr : 0 ≤ r) :
     volume (Metric.ball z r) = ENNReal.ofReal (8 * Real.pi / 3 * r ^ 5) := by
   rw [metricBall_eq_parabolicBall]

@@ -68,19 +68,31 @@ namespace Link
 def chi (L : Link) : ℤ :=
   L.χa + L.χb
 
+/--
+@isnad1 id=le.0h1v.s4.91fe3eac0329 from=translated src=- shape=355e5add vocab=67348cf6
+-/
 lemma B_subset (L : Link) : L.B ⊆ L.S.I := by
   rw [← L.union_eq]
   apply Set.subset_union_right
 
+/--
+@isnad1 id=le.0h1v.s4.c581224c48f7 from=translated src=- shape=355e5add vocab=9764b8f7
+-/
 lemma A_subset (L : Link) : L.A ⊆ L.S.I := by
   rw [← L.union_eq]
   apply Set.subset_union_left
 
+/--
+@isnad1 id=mem.2h2v.s5.288d9b1d933f from=translated src=- shape=17fa623d vocab=d6cf9708
+-/
 lemma mem_A_of_mem_inv_not_mem_B (L : Link) {p : ℤ × ℤ}
   (hpτ : p ∈ L.S.I) (hpB : p ∉ L.B) : p ∈ L.A := by
   rw [← L.union_eq] at hpτ
   simp_all
 
+/--
+@isnad1 id=eq.4h2v.s5.da8b4a27fd22 from=translated src=- shape=b64b9396 vocab=093a0d73
+-/
 theorem ext {L₁ L₂ : Link}
     (hA : L₁.A = L₂.A) (hB : L₁.B = L₂.B)
     (hχa : L₁.χa = L₂.χa) (hχb : L₁.χb = L₂.χb) : L₁ = L₂ := by
@@ -97,6 +109,9 @@ theorem ext {L₁ L₂ : Link}
   cases L₁
   simp_all
 
+/--
+@isnad1 id=aspsetpr.0h1v.s2.d9f649c7e30f from=translated src=- shape=76a08d12 vocab=2a5e51d8
+-/
 lemma B_AspSet_prop (L : Link) :
   AspSet_prop L.B where
   directed := by
@@ -143,6 +158,9 @@ lemma B_AspSet_prop (L : Link) :
       intro u hu
       exact L.B_subset hu)
 
+/--
+@isnad1 id=set321ap.0h1v.s2.6c1f05cfe41d from=translated src=- shape=76a08d12 vocab=a061351d
+-/
 lemma B_set_321a_prop (L : Link) : set_321a_prop L.B where
   asp := L.B_AspSet_prop
   tfree := by
@@ -163,16 +181,25 @@ def bAspSet (L : Link) : AspSet :=
 noncomputable def τ (L : Link) : AspPerm :=
   L.S.toAspPerm L.chi
 
+/--
+@isnad1 id=eq.0h1v.s3.96cded6655fb from=translated src=- shape=fa353d8a vocab=9cf75a94
+-/
 @[simp]
 lemma inv_set_τ (L : Link) : invSet L.τ = L.S.I := by
   change invSet (L.S.toAspSet.toAspPerm L.chi) = L.S.toAspSet.I
   exact L.S.toAspSet.invSet_of_toAspPerm L.chi
 
+/--
+@isnad1 id=is321a.0h1v.s2.5bd1539f2f79 from=translated src=- shape=36b3d148 vocab=f92806ed
+-/
 lemma is_321a_τ (L : Link) : is321a L.τ := by
   rw [is_321a_iff_set_321a_prop L.τ L.τ.bijective]
   change set_321a_prop (invSet (L.S.toAspSet.toAspPerm L.chi).func)
   simpa [Link.τ, AspSet.toAspPerm] using set_321a_prop_of_func L.S L.chi
 
+/--
+@isnad1 id=eq.0h1v.s3.837029e8060a from=translated src=- shape=7718e021 vocab=1db88b27
+-/
 @[simp]
 lemma chi_tau (L : Link) : L.τ.χ = L.chi := by
   simpa [Link.τ] using (L.S.toAspSet.chi_of_toAspPerm L.chi)
@@ -181,15 +208,24 @@ lemma chi_tau (L : Link) : L.τ.χ = L.chi := by
 noncomputable def β (L : Link) : AspPerm :=
   L.bAspSet.toAspPerm L.χb
 
+/--
+@isnad1 id=eq.0h1v.s3.e263ada5bdc0 from=translated src=- shape=273301aa vocab=199fa475
+-/
 @[simp]
 lemma inv_set_β (L : Link) : invSet L.β = L.B := by
   change invSet (L.bAspSet.toAspPerm L.χb) = L.bAspSet.I
   exact L.bAspSet.invSet_of_toAspPerm L.χb
 
+/--
+@isnad1 id=eq.0h1v.s3.fde4e0ed9b72 from=translated src=- shape=7718e021 vocab=4961374a
+-/
 @[simp]
 lemma chi_beta (L : Link) : L.β.χ = L.χb := by
   simpa [Link.β] using (L.bAspSet.chi_of_toAspPerm L.χb)
 
+/--
+@isnad1 id=aspsetpr.0h1v.s3.00e8a1310cbc from=translated src=- shape=24bcf7e6 vocab=fcfcaa4f
+-/
 lemma A_AspSet_prop (L : Link) :
   AspSet_prop (L.τ.revMap '' L.A) := by
   let L' : Link := {
@@ -269,6 +305,9 @@ def aAspSet (L : Link) : AspSet :=
 noncomputable def α (L : Link) : AspPerm :=
   (L.aAspSet.toAspPerm (-L.χa))⁻¹
 
+/--
+@isnad1 id=eq.0h1v.s4.60e318845b75 from=translated src=- shape=fbd30e98 vocab=72daf838
+-/
 @[simp]
 lemma inv_set_α (L : Link) : L.A = L.τ.sr L.α '' invSet L.α := by
   have hAinv : invSet (((Link.α L)⁻¹).func) = L.τ.revMap '' L.A := by
@@ -292,12 +331,18 @@ lemma inv_set_α (L : Link) : L.A = L.τ.sr L.α '' invSet L.α := by
     apply L.τ.injective at hu
     simpa [hu, hv] using hu'v'
 
+/--
+@isnad1 id=eq.0h1v.s3.c77b68ee4e6e from=translated src=- shape=7718e021 vocab=480aa72f
+-/
 @[simp]
 lemma chi_alpha (L : Link) : L.α.χ = L.χa := by
   rw [Link.α, AspPerm.chi_dual]
   have hχ := L.aAspSet.chi_of_toAspPerm (-L.χa)
   linarith
 
+/--
+@isnad1 id=eq.0h1v.s3.910fce674f13 from=translated src=- shape=dea8492f vocab=67ecb5f1
+-/
 lemma dprod (L : Link) : L.α ⋆ L.β = L.τ := by
   have hτ : L.τ = L.α ⋆ L.β := by
     apply (dprod_eq_iff (τ := L.τ) (α := L.α) (β := L.β) (L.is_321a_τ)).mpr
@@ -345,6 +390,9 @@ noncomputable def linkOfDprod {α β : AspPerm}
     have hboxes := ((dprod_eq_iff (τ := τ) (α := α) (β := β) h_321a).mp dprod.symm).2
     exact hboxes.2 p ⟨hp, hp'⟩ q ⟨hq', hq⟩ hpq
 
+/--
+@isnad1 id=eq.2h3v.s5.245f9f57b1c1 from=translated src=- shape=6d6e4f53 vocab=f2639a07
+-/
 lemma rev_A_eq_inv_inv_of_Link_of_dprod {α β : AspPerm} (dprod : α ⋆ β = τ) :
   τ.revMap '' (linkOfDprod h_321a dprod).A = invSet α⁻¹.func := by
   ext ⟨u, v⟩
@@ -496,6 +544,9 @@ noncomputable def lSetOfLPerm : List AspPerm → List (Set (ℤ × ℤ) × ℤ)
   | α :: L =>
     ((DProd (α :: L)).sr α '' (invSet α), α.χ) :: lSetOfLPerm L
 
+/--
+@isnad1 id=eq.0h2v.s5.75a02105daa6 from=translated src=- shape=06e08242 vocab=c9013a63
+-/
 lemma LSet_cons (α : AspPerm) (L : List AspPerm) :
     lSetOfLPerm (α :: L) =
       ((DProd (α :: L)).sr α '' invSet α, α.χ) :: lSetOfLPerm L := by
@@ -503,6 +554,9 @@ lemma LSet_cons (α : AspPerm) (L : List AspPerm) :
 
 include h_321a
 
+/--
+@isnad1 id=eq.1h2v.s4.30a23cb0dd5a from=translated src=- shape=9b12ab2b vocab=abce1317
+-/
 lemma LSet_chiSum (A : HeckeFactorization τ) :
   chiSum (lSetOfLPerm A.val) = τ.χ := by
   rcases A with ⟨AL, dprodA⟩
@@ -524,6 +578,9 @@ lemma LSet_chiSum (A : HeckeFactorization τ) :
       rw [LSet_cons, chiSum, ih']
       linarith
 
+/--
+@isnad1 id=eq.1h2v.s4.278dbb85e512 from=translated src=- shape=9df74ac3 vocab=641cc89e
+-/
 lemma LSet_boxUnion (A : HeckeFactorization τ) :
   boxUnion (lSetOfLPerm A.val) = invSet τ := by
   rcases A with ⟨AL, dprodA⟩
@@ -551,6 +608,9 @@ lemma LSet_boxUnion (A : HeckeFactorization τ) :
       have := ((ASP321a.dprod_eq_iff h_321a).mp τ_eq.symm).2.1.symm
       convert this
 
+/--
+@isnad1 id=ischain.1h2v.s4.4e7eee5dba44 from=translated src=- shape=c5427867 vocab=ef7f8fbe
+-/
 lemma LSet_isChain (A : HeckeFactorization τ) :
   isChain (lSetOfLPerm A.val) := by
   rcases A with ⟨AL, dprodA⟩
@@ -601,6 +661,9 @@ noncomputable def lPermOfChain :
       exact L.B_set_321a_prop)
 
 omit h_321a in
+/--
+@isnad1 id=eq.2h1v.s4.c0cf133eb505 from=translated src=- shape=0fd98afd vocab=4908b8f7
+-/
 theorem DProd_LPerm_of_Chain :
     (C : List (Set (ℤ × ℤ) × ℤ)) → (hC : isChain C) →
       (htfas : set_321a_prop (boxUnion C)) →
@@ -642,6 +705,9 @@ noncomputable def hfOfPChain (C : PChain τ) : HeckeFactorization τ := by
   exact (DProd_LPerm_of_Chain C.val C.prop.1 tfas).trans h_asps
 
 omit h_321a in
+/--
+@isnad1 id=eq.2h1v.s4.40c36848b533 from=translated src=- shape=c5d2bb41 vocab=e8132ed6
+-/
 lemma LSet_of_LPerm_of_Chain :
   ∀ (C : List (Set (ℤ × ℤ) × ℤ)) (hC : isChain C) (htfas : set_321a_prop (boxUnion C)),
     lSetOfLPerm (lPermOfChain C hC htfas) = C
@@ -682,6 +748,9 @@ lemma LSet_of_LPerm_of_Chain :
       · exact hA
       · rfl
 
+/--
+@isnad1 id=eq.1h2v.s4.697a171c39b3 from=translated src=- shape=b2403d1b vocab=6b683fbf
+-/
 lemma PChain_of_HF_of_PChain (C : PChain τ) :
   pChainOfHf h_321a (hfOfPChain h_321a C) = C := by
   have tfas : set_321a_prop (boxUnion C.val) := by
@@ -691,6 +760,9 @@ lemma PChain_of_HF_of_PChain (C : PChain τ) :
   simpa [pChainOfHf, hfOfPChain] using
     (LSet_of_LPerm_of_Chain C.val C.prop.1 tfas)
 
+/--
+@isnad1 id=eq.1h2v.s4.af7dfa21ea98 from=translated src=- shape=b2403d1b vocab=1a4fd000
+-/
 lemma HF_of_PChain_of_HF (A : HeckeFactorization τ) :
   hfOfPChain h_321a (pChainOfHf h_321a A) = A := by
   rcases A with ⟨AL, dprodA⟩
@@ -846,6 +918,9 @@ noncomputable def tableauOfLabelChain (C : LabelChain τ n) :
       exact hpq_eq
     · exact le_of_not_gt hlt
 
+/--
+@isnad1 id=iff.0h5v.s7.90e84f6d37c0 from=translated src=- shape=80e13ce9 vocab=e8ef7002
+-/
 lemma mem_labelChainOfTableau_iff (T : SetValuedTableau τ n)
     (p : ↥(invSet τ)) (i : Fin n) :
     p.1 ∈ (labelChainOfTableau T).1 i ↔ i ∈ T.1 p := by
@@ -855,6 +930,9 @@ lemma mem_labelChainOfTableau_iff (T : SetValuedTableau τ n)
   · intro hi
     exact ⟨p.2, hi⟩
 
+/--
+@isnad1 id=iff.0h5v.s6.284afab364cb from=translated src=- shape=4ca9f809 vocab=a2203d23
+-/
 lemma mem_labelChainOfTableau_tableauOfLabelChain_iff (C : LabelChain τ n)
     (p : ℤ × ℤ) (i : Fin n) :
     p ∈ (labelChainOfTableau (tableauOfLabelChain C)).1 i ↔ p ∈ C.1 i := by
@@ -866,7 +944,9 @@ lemma mem_labelChainOfTableau_tableauOfLabelChain_iff (C : LabelChain τ n)
     exact ⟨hpτ, by simp only [tableauOfLabelChain, Finset.mem_filter,
       Finset.mem_univ, hp, and_self]⟩
 
-/-- The tableau reconstructed from the label-chain of `T` is `T` itself. -/
+/-- The tableau reconstructed from the label-chain of `T` is `T` itself.
+@isnad1 id=eq.0h3v.s4.ed2b3b8ca674 from=translated src=- shape=0221f8a5 vocab=1c89e133
+-/
 lemma tableauOfLabelChain_labelChainOfTableau (T : SetValuedTableau τ n) :
     tableauOfLabelChain (labelChainOfTableau T) = T := by
   exact Subtype.ext (by
@@ -879,7 +959,9 @@ lemma tableauOfLabelChain_labelChainOfTableau (T : SetValuedTableau τ n) :
             simp only [tableauOfLabelChain, Finset.mem_filter, Finset.mem_univ, true_and]
       _ ↔ i ∈ T.1 p := mem_labelChainOfTableau_iff T p i)
 
-/-- The label-chain reconstructed from the tableau of `C` is `C` itself. -/
+/-- The label-chain reconstructed from the tableau of `C` is `C` itself.
+@isnad1 id=eq.0h3v.s4.eb199758673f from=translated src=- shape=0221f8a5 vocab=2c7be8c3
+-/
 lemma labelChainOfTableau_tableauOfLabelChain (C : LabelChain τ n) :
     labelChainOfTableau (tableauOfLabelChain C) = C := by
   exact Subtype.ext (by
@@ -925,6 +1007,9 @@ of shifts is `List.ofFn χs`. -/
 def FixedChiHeckeFactorization (τ : AspPerm) (n : ℕ) (χs : Fin n → ℤ) : Type :=
   {A : HeckeFactorization τ // A.val.length = n ∧ chiList A = List.ofFn χs}
 
+/--
+@isnad1 id=eq.0h1v.s5.89233c676311 from=translated src=- shape=be05cfe4 vocab=46f35243
+-/
 lemma chiSum_eq_sum_map_snd (L : List (Set (ℤ × ℤ) × ℤ)) :
     chiSum L = (L.map Prod.snd).sum := by
   induction L with
@@ -933,6 +1018,9 @@ lemma chiSum_eq_sum_map_snd (L : List (Set (ℤ × ℤ) × ℤ)) :
   | cons head tail ih =>
       simp only [chiSum, ih, List.map_cons, List.sum_cons]
 
+/--
+@isnad1 id=iff.0h2v.s6.93c1ea4c360e from=translated src=- shape=f4f52e8a vocab=65f76c17
+-/
 lemma mem_boxUnion_iff_exists_mem {L : List (Set (ℤ × ℤ) × ℤ)} {p : ℤ × ℤ} :
     p ∈ boxUnion L ↔ ∃ x ∈ L, p ∈ x.1 := by
   induction L with
@@ -942,6 +1030,9 @@ lemma mem_boxUnion_iff_exists_mem {L : List (Set (ℤ × ℤ) × ℤ)} {p : ℤ 
       simp only [boxUnion, Set.mem_union, ih, Prod.exists, exists_and_right,
         List.mem_cons, exists_eq_or_imp]
 
+/--
+@isnad1 id=iff.0h2v.s6.3adf427a80a2 from=translated src=- shape=a38dfd25 vocab=0a1ff0bd
+-/
 lemma mem_boxUnion_iff_exists_index {L : List (Set (ℤ × ℤ) × ℤ)} {p : ℤ × ℤ} :
     p ∈ boxUnion L ↔ ∃ i, ∃ h : i < L.length, p ∈ (L[i]'h).1 := by
   rw [mem_boxUnion_iff_exists_mem]
@@ -952,6 +1043,9 @@ lemma mem_boxUnion_iff_exists_index {L : List (Set (ℤ × ℤ) × ℤ)} {p : �
   · rintro ⟨i, h, hp⟩
     exact ⟨L[i]'h, List.getElem_mem h, hp⟩
 
+/--
+@isnad1 id=ischain.1h3v.s6.ef642faf3017 from=translated src=- shape=2f720ddb vocab=8db96ec6
+-/
 lemma isChain_of_sep_ofFn (A : Fin n → Set (ℤ × ℤ)) (χs : Fin n → ℤ)
     (hsep : ∀ {i j : Fin n}, i < j → ∀ p ∈ A i, ∀ q ∈ A j, p ≼ q → p = q) :
     isChain (List.ofFn fun i => (A i, χs i)) := by
@@ -1091,6 +1185,9 @@ noncomputable def labelChainEquivFixedChiPChain (χs : Fin n → ℤ)
       · simpa [fixedChiPChainOfLabelChain, pChainOfLabelChain,
           labelChainOfFixedChiPChain, List.getElem_ofFn, C.2.1] using hχi.symm
 
+/--
+@isnad1 id=eq.0h1v.s4.394a33c9be8c from=translated src=- shape=b8e9319a vocab=b295e48d
+-/
 lemma length_LSet_of_LPerm (L : List AspPerm) :
     (lSetOfLPerm L).length = L.length := by
   induction L with
@@ -1099,6 +1196,9 @@ lemma length_LSet_of_LPerm (L : List AspPerm) :
   | cons α tail ih =>
       simp only [lSetOfLPerm, List.foldr_cons, List.length_cons, ih]
 
+/--
+@isnad1 id=eq.0h1v.s4.bf352649bf55 from=translated src=- shape=cd3896c0 vocab=2aac7e65
+-/
 lemma chainChiList_LSet_of_LPerm (L : List AspPerm) :
     (lSetOfLPerm L).map Prod.snd = L.map AspPerm.χ := by
   induction L with
@@ -1107,10 +1207,16 @@ lemma chainChiList_LSet_of_LPerm (L : List AspPerm) :
   | cons α tail ih =>
       simp only [lSetOfLPerm, List.foldr_cons, List.map_cons, ih]
 
+/--
+@isnad1 id=eq.1h2v.s6.6278f68c43e6 from=translated src=- shape=4bf69088 vocab=7454e4e5
+-/
 lemma length_PChain_of_HF (h_321a : is321a τ) (A : HeckeFactorization τ) :
     (pChainOfHf h_321a A).val.length = A.val.length := by
   simpa [pChainOfHf] using length_LSet_of_LPerm A.val
 
+/--
+@isnad1 id=eq.1h2v.s4.8e655f66d79e from=translated src=- shape=d6699efe vocab=4d685779
+-/
 lemma chainChiList_PChain_of_HF (h_321a : is321a τ) (A : HeckeFactorization τ) :
     chainChiList (pChainOfHf h_321a A) = chiList A := by
   simpa [pChainOfHf, chainChiList, chiList] using chainChiList_LSet_of_LPerm A.val

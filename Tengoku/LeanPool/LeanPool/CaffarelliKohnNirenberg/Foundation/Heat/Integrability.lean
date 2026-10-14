@@ -35,6 +35,9 @@ def heatKernelGradientMajorant (x : Vec3) (t : ℝ) : ℝ :=
       Real.exp (-(∑ i, x i ^ 2) / (8 * t))
   else 0
 
+/--
+@isnad1 id=le.0h2v.s4.3cdc1857606a from=translated src=- shape=787c1379 vocab=4ab280df
+-/
 lemma heatKernelGradientMajorant_nonneg (x : Vec3) (t : ℝ) :
     0 ≤ heatKernelGradientMajorant x t := by
   unfold heatKernelGradientMajorant
@@ -102,6 +105,9 @@ private lemma heat_prefactor_double_le {t : ℝ} (ht : 0 < t) :
   rw [hratio_inv]
   exact htwo
 
+/--
+@isnad1 id=integrab.1h1v.s6.308aa13189d0 from=translated src=- shape=4aa00920 vocab=b4dc48b5
+-/
 lemma heatKernelGradientMajorant_slice_integrable {t : ℝ} (ht : 0 < t) :
     Integrable (fun x : Vec3 => heatKernelGradientMajorant x t) volume := by
   rw [show (fun x : Vec3 => heatKernelGradientMajorant x t) =
@@ -112,6 +118,9 @@ lemma heatKernelGradientMajorant_slice_integrable {t : ℝ} (ht : 0 < t) :
     simp [heatKernelGradientMajorant, ht]]
   exact (gaussian_eight_integrable ht).const_mul _
 
+/--
+@isnad1 id=le.1h1v.s6.b35fc212dfd3 from=translated src=- shape=af777986 vocab=e53ca178
+-/
 lemma heatKernelGradientMajorant_slice_le {t : ℝ} (ht : 0 < t) :
     ∫ x : Vec3, ‖heatKernelGradientMajorant x t‖ ≤
       4 * (Real.sqrt t)⁻¹ := by
@@ -174,6 +183,9 @@ private lemma heatKernel_measurable :
   · fun_prop
   · exact measurable_const
 
+/--
+@isnad1 id=measurab.0h0v.s4.3113a6e852f3 from=translated src=- shape=b0cdd7f3 vocab=f94e17e6
+-/
 lemma heatKernelGradientNorm_measurable :
     Measurable (fun p : ParabolicPoint => heatKernelGradientNorm p.1 p.2) := by
   unfold heatKernelGradientNorm
@@ -190,6 +202,9 @@ lemma heatKernelGradientNorm_measurable :
     · exact measurable_const
   exact (continuous_abs.measurable.comp hderiv)
 
+/--
+@isnad1 id=integrab.0h1v.s7.7647f70c743e from=translated src=- shape=8c5d621e vocab=1e44e715
+-/
 lemma heatKernelPlus_integrable_prod {T : ℝ} :
     Integrable (fun p : Vec3 × ℝ => heatKernelPlus (show ParabolicPoint from p))
       ((volume : Measure Vec3).prod (volume.restrict (Ioc 0 T))) := by
@@ -225,6 +240,9 @@ lemma heatKernelPlus_integrable_prod {T : ℝ} :
         (measure_Ioc_lt_top (μ := volume)).ne
     exact hone.congr houter.symm
 
+/--
+@isnad1 id=integrab.0h1v.s5.cd6b3dc1b854 from=translated src=- shape=7341eccb vocab=5c984955
+-/
 lemma heatKernelPlus_integrableOn_time {T : ℝ} :
     IntegrableOn (fun p : ParabolicPoint => heatKernelPlus p)
       (Set.univ ×ˢ Ioc 0 T) volume := by
@@ -235,6 +253,9 @@ lemma heatKernelPlus_integrableOn_time {T : ℝ} :
   rw [← Measure.prod_restrict]
   simpa only [Measure.restrict_univ] using heatKernelPlus_integrable_prod
 
+/--
+@isnad1 id=integrab.1h1v.s6.119c0ad9030a from=translated src=- shape=f1e6ba8c vocab=d75bae00
+-/
 lemma time_sqrt_inv_integrable {T : ℝ} (hT : 0 < T) :
     Integrable (fun t : ℝ => 4 * (Real.sqrt t)⁻¹)
       (volume.restrict (Ioc 0 T)) := by
@@ -252,6 +273,9 @@ lemma time_sqrt_inv_integrable {T : ℝ} (hT : 0 < T) :
   rw [Real.sqrt_eq_rpow, show -(1 : ℝ) / 2 = -((1 : ℝ) / 2) by ring_nf,
     Real.rpow_neg ht0.le]
 
+/--
+@isnad1 id=eq.1h2v.s4.eab6c3b8814c from=translated src=- shape=a7faa7d3 vocab=2c9f1b9b
+-/
 lemma heatKernelGradientNorm_eq_zero_of_nonpos {x : Vec3} {t : ℝ}
     (ht : t ≤ 0) : heatKernelGradientNorm x t = 0 := by
   unfold heatKernelGradientNorm heatKernelSpaceDerivative

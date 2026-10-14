@@ -33,6 +33,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [Complete
 
 /-! ### Weak continuity of the norm on a weakly-closed ball -/
 
+/--
+@isnad1 id=continuo.1h4v.s9.14998b8a7526 from=translated src=- shape=b10afb7a vocab=184f859a
+-/
 lemma continuousOn_weakClosedBall_norm_apply_of_isCompactOperator
     (T : E →L[𝕜] E) (hTc : IsCompactOperator (T : E → E)) (r : ℝ) :
     ContinuousOn (fun x : WeakSpace 𝕜 E => ‖T (x : E)‖)
@@ -58,6 +61,9 @@ lemma continuousOn_weakClosedBall_norm_apply_of_isCompactOperator
     tendsto_apply_of_isCompactOperator (𝕜 := 𝕜) (E := E) (T := T) hTc
       (x := fun y : WeakSpace 𝕜 E => y) (x0 := x) (r := r) hx_mem hid
 /-! ### Norm attainment for compact operators -/
+/--
+@isnad1 id=ex.1h3v.s9.39a5b8139038 from=translated src=- shape=b7d7bbf0 vocab=886f9123
+-/
 theorem exists_unit_norm_eq_opNorm_of_isCompactOperator
     [Nontrivial E] (T : E →L[𝕜] E) (hTc : IsCompactOperator (T : E → E)) :
     ∃ x : E, ‖x‖ = 1 ∧ ‖T x‖ = ‖T‖ := by
@@ -154,6 +160,9 @@ theorem exists_unit_norm_eq_opNorm_of_isCompactOperator
   refine ⟨xe, hxMax_norm_eq, ?_⟩
   exact hTxMax
 /-! ### A compact self-adjoint operator has an eigenvalue at the operator norm -/
+/--
+@isnad1 id=ex.2h3v.s9.2e377f48c24e from=translated src=- shape=b7b52bc2 vocab=8a43ee12
+-/
 theorem exists_hasEigenvector_norm_eq_opNorm_of_isCompactOperator_of_isSelfAdjoint
     [Nontrivial E] (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E)) :
     ∃ μ : 𝕜, ∃ v : E, Module.End.HasEigenvector (T : E →ₗ[𝕜] E) μ v ∧ ‖μ‖ = ‖T‖ := by

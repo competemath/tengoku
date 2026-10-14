@@ -97,7 +97,9 @@ def mkByScale {n : ℕ} (election : Election n) (k : ℕ+) : Election n :=
       simpa [sum_pos_iff_exists_pos]
   }
 
-/-- The number of parties in an election is positive. -/
+/-- The number of parties in an election is positive.
+@isnad1 id=lt.0h2v.s3.57736222a487 from=translated src=- shape=7d122e43 vocab=7473db2f
+-/
 lemma n_pos {n : ℕ} (election : Election n) : 0 < n := by
   by_contra h_neg
   have h_sum_zero : (Vector.sum election.votes) = 0 := by
@@ -194,7 +196,9 @@ class IsPopulationMonotone (rule : Rule) : Prop where
           -- i gets less seats, j gets more seats
           ¬(App₁[i] > App₂[i] ∧ App₁[j] < App₂[j])
 
-/-- If an anonymous rule is population monotone, then it is concordant. -/
+/-- If an anonymous rule is population monotone, then it is concordant.
+@isnad1 id=isconcor.0h1v.s3.475098ee897e from=translated src=- shape=cbe5c5ba vocab=6a5531fe
+-/
 lemma IsConcordant_of_IsPopulationMonotone (rule : Rule) [h_anon : IsAnonymous rule]
     [h_mono : IsPopulationMonotone rule] : IsConcordant rule := by
   constructor

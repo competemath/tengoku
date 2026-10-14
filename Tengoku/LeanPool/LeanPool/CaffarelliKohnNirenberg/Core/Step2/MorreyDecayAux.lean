@@ -27,6 +27,9 @@ noncomputable section
 namespace CKN
 namespace MorreyDecayAux
 
+/--
+@isnad1 id=le.4h6v.s6.0b52f1022b16 from=translated src=- shape=8917e687 vocab=8b3df6cf
+-/
 theorem max_components_le_theta
     {κ : ℝ} {u : ParabolicPoint → Vec3}
     {Du : ParabolicPoint → Fin 3 → Vec3} {p : ParabolicPoint → ℝ}
@@ -56,6 +59,9 @@ theorem max_components_le_theta
     nlinarith only [hα, hβ, hδ]
   exact max_le (max_le hα' hβ') hδ'
 
+/--
+@isnad1 id=le.4h11v.s8.c0bba9b41937 from=translated src=- shape=a3728092 vocab=b51f9e89
+-/
 theorem lambda_le_of_subset
     {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     {u : ParabolicPoint → Vec3} {Du : ParabolicPoint → Fin 3 → Vec3}
@@ -83,6 +89,9 @@ theorem lambda_le_of_subset
   exact mul_le_mul_of_nonneg_left hroot
     (Real.rpow_nonneg (by positivity) _)
 
+/--
+@isnad1 id=ex.3h4v.s7.d62615c605c5 from=translated src=- shape=bd245b1f vocab=70d00927
+-/
 theorem exists_small_normalized
     {T L : ℕ → ℝ} {ηd C₂₉ : ℝ}
     (hηd : 0 < ηd)

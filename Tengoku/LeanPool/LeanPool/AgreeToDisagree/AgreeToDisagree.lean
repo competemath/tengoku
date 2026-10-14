@@ -38,7 +38,9 @@ instance Partition.instSetLike : SetLike (Partition α) (Set α) where
   coe_injective := Subtype.val_injective
 
 /-- As expected, a partition `P` refines a partition `Q` iff every set in `P` is contained in
-a set in `Q`. -/
+a set in `Q`.
+@isnad1 id=iff.0h3v.s5.9ffc544959a2 from=translated src=- shape=42fee54b vocab=496a27ce
+-/
 lemma Partition.le_iff {P Q : Partition α} : P ≤ Q ↔ ∀ s ∈ P, ∃ t ∈ Q, s ⊆ t := by
   refine ⟨fun h ↦ ?_, fun h ↦ ?_⟩
   · intro s hs
@@ -60,7 +62,9 @@ protected def Partition.Measurable [MeasurableSpace Ω] (P : Partition Ω) :=
 
 /-- If a countable partition is measurable, every partition it refines is measurable too.
 Note that the countability assumption is necessary because e.g. the partition into singletons is
-usually measurable but refines all other partitions, even nonmeasurable ones. -/
+usually measurable but refines all other partitions, even nonmeasurable ones.
+@isnad1 id=measurab.3h3v.s5.4d168f54f31c from=translated src=- shape=3b2c7dce vocab=a26412a5
+-/
 lemma Partition.Measurable.mono [MeasurableSpace Ω] {P Q : Partition Ω}
     (hP : P.Measurable) (hP' : P.val.Countable) (hQ : P ≤ Q) : Q.Measurable := by
   intro s hs
@@ -75,7 +79,9 @@ lemma Partition.Measurable.mono [MeasurableSpace Ω] {P Q : Partition Ω}
     exact (inter_subset_inter_right s hs'.2).trans <| Set.disjoint_iff.1 h
 
 /-- The supremum of two measurable partitions is measurable if at least one of the two partitions
-is countable. -/
+is countable.
+@isnad1 id=measurab.3h3v.s6.fa129154a2fc from=translated src=- shape=78e3560f vocab=dad657a4
+-/
 lemma Partition.Measurable.sup [MeasurableSpace Ω] {P Q : Partition Ω}
     (hP : P.Measurable) (hQ : Q.Measurable) (h : P.val.Countable ∨ Q.val.Countable) :
     (P ⊔ Q).Measurable := by
@@ -87,28 +93,49 @@ lemma Partition.Measurable.sup [MeasurableSpace Ω] {P Q : Partition Ω}
 protected def Partition.class (P : Partition α) (a : α) : Set α :=
   {b | Setoid.mkClasses P.1 P.2.2 b a}
 
+/--
+@isnad1 id=mem.0h3v.s4.781b0a4a8781 from=translated src=- shape=57626d8f vocab=d12927ab
+-/
 lemma Partition.mem_class (P : Partition α) (a : α) : a ∈ P.class a :=
   (Setoid.mkClasses P.1 P.2.2).2.refl _
 
+/--
+@isnad1 id=mem.0h3v.s4.d8705cf83cec from=translated src=- shape=220385b6 vocab=d12927ab
+-/
 lemma Partition.class_mem (P : Partition α) (a : α) : P.class a ∈ P :=
   (Setoid.classes_mkClasses P.1 P.2 ▸ (Setoid.mkClasses P.1 P.2.2).mem_classes a:)
 
+/--
+@isnad1 id=measurab.1h3v.s4.6ec02428edb2 from=translated src=- shape=7860106a vocab=de1308af
+-/
 lemma Partition.Measurable.measurableSet_class [MeasurableSpace Ω] {P : Partition Ω}
     (hP : P.Measurable) (ω : Ω) : MeasurableSet (P.class ω) :=
   hP _ (P.class_mem ω)
 
+/--
+@isnad1 id=le.1h4v.s4.52531d42fea5 from=translated src=- shape=ec1af781 vocab=1da3a395
+-/
 lemma Partition.class_mono {P Q : Partition α} (h : P ≤ Q) (a : α) :
     P.class a ⊆ Q.class a :=
   fun x ↦ @h x a
 
+/--
+@isnad1 id=eq.1h4v.s5.091ce64a58ef from=translated src=- shape=583e77b2 vocab=d12927ab
+-/
 lemma Partition.class_eq_class_of_mem {P : Partition α} {a a' : α} (h : a' ∈ P.class a) :
     P.class a' = P.class a :=
   (Setoid.eq_eqv_class_of_mem P.2.2 (P.class_mem a) h).symm
 
+/--
+@isnad1 id=eq.2h4v.s5.d76971fc9887 from=translated src=- shape=9948779d vocab=d12927ab
+-/
 lemma Partition.class_eq_of_mem {P : Partition α} {s : Set α} {a : α}
     (hs : s ∈ P) (ha : a ∈ s) : P.class a = s :=
   (Setoid.eq_eqv_class_of_mem P.2.2 hs ha).symm
 
+/--
+@isnad1 id=eq.1h4v.s6.246774e4f5f4 from=translated src=- shape=44b8393c vocab=4582b3d9
+-/
 lemma Partition.class_eq_biUnion_of_le {P Q : Partition α} (h : P ≤ Q) (a : α) :
     Q.class a = ⋃ s ∈ {s ∈ P | s ⊆ Q.class a}, s := by
   ext b
@@ -118,14 +145,23 @@ lemma Partition.class_eq_biUnion_of_le {P Q : Partition α} (h : P ≤ Q) (a : �
   · obtain ⟨s, hs, hs'⟩ := mem_iUnion₂.mp hb
     exact hs.2 hs'
 
+/--
+@isnad1 id=le.1h4v.s4.52531d42fea5 from=translated src=- shape=ec1af781 vocab=1da3a395
+-/
 lemma Partition.class_subset_of_le {P Q : Partition α} (hle : P ≤ Q) (ω : α) :
     P.class ω ⊆ Q.class ω :=
   P.class_mono hle ω
 
+/--
+@isnad1 id=eq.2h4v.s5.d76971fc9887 from=translated src=- shape=9948779d vocab=d12927ab
+-/
 lemma Partition.class_eq_of_mem_part {P : Partition α} {s : Set α} {ω : α}
     (hs : s ∈ P) (hω : ω ∈ s) : P.class ω = s :=
   P.class_eq_of_mem hs hω
 
+/--
+@isnad1 id=pairwise.0h2v.s6.47b7852bac4f from=translated src=- shape=a1259c1d vocab=23b00222
+-/
 lemma Partition.pairwise_disjoint_subtype_val (P : Partition α) :
     Pairwise (Function.onFun Disjoint (fun i : ↑(P.val) => (i : Set α))) :=
   fun ⟨_, hs⟩ ⟨_, ht⟩ hne => Set.disjoint_left.mpr fun _ has hat =>
@@ -143,7 +179,9 @@ noncomputable abbrev Partition.probabilityAt (P : Partition Ω)
     (μ : Measure Ω) (E : Set Ω) (ω : Ω) : ENNReal :=
   μ (E ∩ P.class ω) / μ (P.class ω)
 
-/-- A partition with all parts of positive measure is countable. -/
+/-- A partition with all parts of positive measure is countable.
+@isnad1 id=countabl.2h3v.s6.95ced8289b02 from=translated src=- shape=b1bacb30 vocab=5fbdb158
+-/
 lemma Partition.countable_of_measure_pos {μ : Measure Ω} [IsProbabilityMeasure μ]
     {P : Partition Ω} (hP : P.Measurable) (hP' : ∀ s ∈ P, μ s > 0) :
     P.val.Countable := by
@@ -153,11 +191,17 @@ lemma Partition.countable_of_measure_pos {μ : Measure Ω} [IsProbabilityMeasure
   · intro s t hst
     exact P.2.pairwiseDisjoint s.2 t.2 (fun h ↦ hst (Subtype.ext h))
 
+/--
+@isnad1 id=countabl.2h3v.s6.95ced8289b02 from=translated src=- shape=b1bacb30 vocab=5fbdb158
+-/
 lemma Partition.countable_of_pos_measure {μ : Measure Ω} [IsProbabilityMeasure μ]
     (P : Partition Ω) (hP : P.Measurable) (hP' : ∀ s ∈ P, μ s > 0) :
     P.val.Countable :=
   P.countable_of_measure_pos hP hP'
 
+/--
+@isnad1 id=eq.4h7v.s7.4abe9863e720 from=translated src=- shape=be68efc6 vocab=dc57429a
+-/
 lemma measure_inter_eq_mul_of_probabilityAt_eq
     (P : Partition Ω) (hP' : ∀ s ∈ P, μ s > 0)
     {E : Set Ω} {s S : Set Ω} {p : ENNReal}
@@ -170,6 +214,9 @@ lemma measure_inter_eq_mul_of_probabilityAt_eq
       using hconst ω (hsS hω)
   rw [← hprob, ENNReal.div_mul_cancel (ne_of_gt (hP' s hs)) (measure_ne_top μ s)]
 
+/--
+@isnad1 id=eq.6h6v.s8.be2f2ed9f136 from=translated src=- shape=f49743a0 vocab=8f124e7d
+-/
 lemma measure_inter_sup_class_eq_mul
     (P : Partition Ω) (hPm : P.Measurable) (hP' : ∀ s ∈ P, μ s > 0)
     {E S : Set Ω} {p : ENNReal}
@@ -197,7 +244,9 @@ lemma measure_inter_sup_class_eq_mul
 
 /-- Let `P` be a partition of `Ω` into measurable non-null sets, `Q` a coarser partition and
 `E` a set such that `P.probabilityAt E ω' = p` for all `ω' ∈ Q.class ω`.
-Then `Q.probabilityAt E ω = p`. -/
+Then `Q.probabilityAt E ω = p`.
+@isnad1 id=eq.5h7v.s6.2501c4640653 from=translated src=- shape=871b3e51 vocab=38f52864
+-/
 lemma Partition.probabilityAt_eq_of_le {P Q : Partition Ω} (hP : P.Measurable)
     (hP' : ∀ s ∈ P, μ s > 0) (hQ : P ≤ Q) {E : Set Ω} (hE : MeasurableSet E) (ω : Ω) {p : ENNReal}
     (h : ∀ ω' ∈ Q.class ω, P.probabilityAt μ E ω' = p) :
@@ -220,7 +269,9 @@ lemma Partition.probabilityAt_eq_of_le {P Q : Partition Ω} (hP : P.Measurable)
 /-- Let `Ω` be a probability measure space, `P₁` and `P₂` two measurable partitions representing
 the information partitions of two agents, `E` a measurable set and `ω` an event. Then if it is
 common knowledge at `ω` that `E` appears to have probability `p₁` to the first agent and probability
-`p₂` to the second agent, `p₁ = p₂` - that is, the two agents agree on the probability of `E`. -/
+`p₂` to the second agent, `p₁ = p₂` - that is, the two agents agree on the probability of `E`.
+@isnad1 id=eq.7h9v.s8.685c483b9315 from=translated src=- shape=ef4f7afa vocab=8f65a890
+-/
 lemma agreeToDisagree {P₁ P₂ : Partition Ω} (hP₁ : P₁.Measurable) (hP₂ : P₂.Measurable)
     (hP₁' : ∀ s ∈ P₁, μ₁ s > 0) (hP₂' : ∀ s ∈ P₂, μ₂ s > 0)
     {E : Set Ω} (hE : MeasurableSet E) (ω : Ω) {p₁ p₂ : ENNReal}
@@ -234,7 +285,9 @@ lemma agreeToDisagree {P₁ P₂ : Partition Ω} (hP₁ : P₁.Measurable) (hP�
 /-- Let `Ω` be a probability measure space, `P` a family of measurable partitions representing
 the information partitions of agents indexed by a type `ι`, `E` a measurable set and `ω` an event.
 Then if it is common knowledge at `ω` that `E` appears to have probability `p i` to each agent `i`,
-`p i = p j` for all `i`, `j` - that is, all agents agree on the probability of `E`. -/
+`p i = p j` for all `i`, `j` - that is, all agents agree on the probability of `E`.
+@isnad1 id=eq.5h9v.s7.64f4733b82e9 from=translated src=- shape=835ddf67 vocab=badc2ca1
+-/
 lemma agreeToDisagree' {ι : Type*} {μ : ι → Measure Ω} [∀ i, IsProbabilityMeasure (μ i)]
     {P : ι → Partition Ω} (hP : ∀ i, (P i).Measurable) (hP' : ∀ i, ∀ s ∈ P i, μ i s > 0)
     {E : Set Ω} (hE : MeasurableSet E) (ω : Ω) {p : ι → ENNReal}

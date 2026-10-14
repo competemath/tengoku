@@ -60,7 +60,9 @@ theorem eq_one_iff_forall_NatPrimes_not_dvd {k : ℕ+} :
   rw [← PNat.coe_eq_one_iff, Nat.eq_one_iff_not_exists_prime_dvd]
   exact Iff.symm Subtype.forall
 
-/-- If `n ∣ b + c`, then `a ≡ b (mod n)` if and only if `n ∣ a + c`. -/
+/-- If `n ∣ b + c`, then `a ≡ b (mod n)` if and only if `n ∣ a + c`.
+@isnad1 id=iff.1h4v.s5.eed6f1124fc9 from=translated src=- shape=a1275279 vocab=bfa7efda
+-/
 theorem modeq_iff_dvd_add_of_dvd_add (h : n ∣ b + c) :
     a ≡ b [MOD n] ↔ n ∣ a + c :=
   calc a ≡ b [MOD n]
@@ -74,7 +76,9 @@ theorem modeq_iff_dvd_add_of_dvd_add (h : n ∣ b + c) :
 def good (f : ℕ+ → ℕ+) :=
   ∀ p : Nat.Primes, ∀ m n : ℕ+, (p : ℕ) ∣ f (m + n) ↔ (p : ℕ) ∣ f m + f n
 
-/-- The identity function is good. -/
+/-- The identity function is good.
+@isnad1 id=good.0h0v.s1.1453b6d95470 from=translated src=- shape=87ceb31f vocab=42fe47ee
+-/
 theorem id_is_good : good id :=
   λ _ _ _ ↦ Iff.rfl
 
@@ -84,7 +88,9 @@ variable (hf : good f)
 include hf
 
 /-- Suppose that `f` is good and `p ∣ f(m)` for some `m ∈ ℕ+`.
-  Letting `d` be the minimal such `m`, we have `p ∣ f(n)` if and only id `d ∣ n`. -/
+  Letting `d` be the minimal such `m`, we have `p ∣ f(n)` if and only id `d ∣ n`.
+@isnad1 id=iff.2h3v.s6.881a958600ce from=translated src=- shape=8ed38e5b vocab=30a357eb
+-/
 theorem prime_dvd_map_iff_find_min_dvd (p : Nat.Primes) (hpf : ∃ n, (p : ℕ) ∣ f n) :
     (p : ℕ) ∣ f n ↔ (PNat.find hpf : ℕ) ∣ n := by
   set d : ℕ+ := PNat.find hpf
@@ -104,7 +110,9 @@ theorem prime_dvd_map_iff_find_min_dvd (p : Nat.Primes) (hpf : ∃ n, (p : ℕ) 
     exact n_ih _ ((PNat.lt_add_left _ _).trans_eq hn)
 
 /-- Assume `f` is good and some `d` satisfies `p ∣ f(n) ↔ d ∣ n`.
-  Then for any `m, n ∈ ℕ+`, we have `f(m) ≡ f(n) (mod p) ↔ m ≡ n (mod d)`. -/
+  Then for any `m, n ∈ ℕ+`, we have `f(m) ≡ f(n) (mod p) ↔ m ≡ n (mod d)`.
+@isnad1 id=iff.2h5v.s6.b9c090c538d8 from=translated src=- shape=bda911a8 vocab=a5aea986
+-/
 theorem map_modeq_prime_iff_modeq
     (p : Nat.Primes) {d : ℕ+} (hpd : ∀ n, (p : ℕ) ∣ f n ↔ (d : ℕ) ∣ n) {m n} :
     f m ≡ f n [MOD p] ↔ m ≡ n [MOD d] := by
@@ -125,12 +133,16 @@ theorem map_modeq_prime_iff_modeq
   _ ↔ m ≡ n [MOD d] := (modeq_iff_dvd_add_of_dvd_add hk).symm
 
 /-- Assume `f` is good and `p ∣ f(d)` for some `d ∈ ℕ+` minimal.
-  Then for any `m, n ∈ ℕ+`, we have `f(m) ≡ f(n) (mod p) ↔ m ≡ n (mod d)`. -/
+  Then for any `m, n ∈ ℕ+`, we have `f(m) ≡ f(n) (mod p) ↔ m ≡ n (mod d)`.
+@isnad1 id=iff.2h4v.s6.65e477a1f8bf from=translated src=- shape=ea86ae13 vocab=82da9e50
+-/
 theorem map_modeq_prime_iff_modeq_find (p : Nat.Primes) (hpf : ∃ n, (p : ℕ) ∣ f n) {m n} :
     f m ≡ f n [MOD p] ↔ m ≡ n [MOD (PNat.find hpf)] :=
   hf.map_modeq_prime_iff_modeq p λ _ ↦ hf.prime_dvd_map_iff_find_min_dvd p _
 
-/-- If `f` is good and infinitely many primes divide some `f(n)`, then `f` is injective. -/
+/-- If `f` is good and infinitely many primes divide some `f(n)`, then `f` is injective.
+@isnad1 id=injectiv.2h1v.s5.c3e7d105b734 from=translated src=- shape=a7b5012c vocab=d3289b31
+-/
 theorem injective_of_infinite_prime_dvd
     (hf0 : ∀ N : ℕ, ∃ p : Nat.Primes, N ≤ p ∧ ∃ n, (p : ℕ) ∣ f n) : f.Injective := by
   ---- Indeed, suppose that `f(m) = f(n)` for some `m ≠ n`; WLOG assume `m > n`.
@@ -196,7 +208,9 @@ theorem eq_id_of_surjective (hf0 : f.Surjective) : f = id := by
 
 end good
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h1v.s4.f7fc5703d0b6 from=translated src=- shape=5126e1b8 vocab=4443d3f8
+-/
 theorem final_solution {f} : (good f ∧ f.Surjective) ↔ f = id :=
   ⟨λ ⟨hf, hf0⟩ ↦ hf.eq_id_of_surjective hf0,
   λ hf ↦ hf ▸ ⟨id_is_good, Function.surjective_id⟩⟩

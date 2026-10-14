@@ -49,6 +49,9 @@ structure SlipFace where
 instance : CoeFun SlipFace (fun _ => ℤ → ℤ → ℤ) :=
   ⟨SlipFace.func⟩
 
+/--
+@isnad1 id=iff.0h2v.s4.7fd6e9764ab1 from=translated src=- shape=0366096b vocab=83ec0a03
+-/
 lemma SF_ext (s t : SlipFace) : s = t ↔ ∀ a b, s a b = t a b := by
   constructor
   · simp_all
@@ -132,25 +135,43 @@ def dual : SlipFace := {
     omega
 }
 
+/--
+@isnad1 id=eq.0h1v.s3.c6790d95a47a from=translated src=- shape=47dcad53 vocab=299ca87a
+-/
 lemma dual_dual (s : SlipFace) : s.dual.dual = s := by
   apply (SF_ext s.dual.dual s).mpr
   intro a b
   dsimp [SlipFace.dual]
   omega
 
+/--
+@isnad1 id=eq.0h3v.s5.bc12405b60aa from=translated src=- shape=60dd64c8 vocab=4b1c6e10
+-/
 lemma duality (a b : ℤ) : sf a b - sf.dual b a = a - b + sf.χ := by
   dsimp [SlipFace.dual]
   omega
 
+/--
+@isnad1 id=eq.0h3v.s5.49ca35aee254 from=translated src=- shape=5c573d80 vocab=4b1c6e10
+-/
 lemma s_eq (a b : ℤ) : sf a b = a - b + sf.χ + sf.dual b a := by
   linarith [sf.duality a b]
 
+/--
+@isnad1 id=eq.0h3v.s5.c26f810c13dd from=translated src=- shape=81cb562d vocab=4b1c6e10
+-/
 lemma s'_eq (b a : ℤ) : sf.dual b a = sf a b - a + b - sf.χ := by
   linarith [sf.duality a b]
 
+/--
+@isnad1 id=le.0h3v.s5.c49095a1bbc5 from=translated src=- shape=681e2762 vocab=63a8eb37
+-/
 lemma ge_max (a b : ℤ) : sf a b ≥ max 0 (a - b + sf.χ) :=
   max_le (sf.nonneg a b) (sf.ge_diff a b)
 
+/--
+@isnad1 id=iff.0h3v.s6.f8b967a16518 from=translated src=- shape=b3196f45 vocab=3dc21dc2
+-/
 lemma gt_iff_special (a b : ℤ) : sf a b > max 0 (a - b + sf.χ)
   ↔ sf a b > 0 ∧ sf.dual b a > 0 := by
   constructor
@@ -192,6 +213,9 @@ structure D_props (f : ℤ → ℤ → ℤ) : Prop where
   large_b : ∀ a, ∃ B, ∀ b ≥ B, f a b = 0
   small_a : ∀ b, ∃ A, ∀ a ≤ A, f a b = 0
 
+/--
+@isnad1 id=le.2h4v.s5.5ea63c59e2ac from=translated src=- shape=d8e0cc2a vocab=40efb7ef
+-/
 lemma mono_a_of_D_props (f : ℤ → ℤ → ℤ) (h : D_props f) :
     ∀ a a' b, a ≤ a' → f a' b ≥ f a b := by
   intro a a' b ha
@@ -206,6 +230,9 @@ lemma mono_a_of_D_props (f : ℤ → ℤ → ℤ) (h : D_props f) :
     rw [Nat.cast_add, Nat.cast_one, ← add_assoc]
     exact h.a_step (a + n) b
 
+/--
+@isnad1 id=le.2h4v.s5.e66c45817087 from=translated src=- shape=53136fd6 vocab=f387ba23
+-/
 lemma mono_b_of_D_props (f : ℤ → ℤ → ℤ) (h : D_props f) :
     ∀ a b b', b ≤ b' → f a b' ≤ f a b := by
   intro a b b' hb
@@ -222,7 +249,9 @@ lemma mono_b_of_D_props (f : ℤ → ℤ → ℤ) (h : D_props f) :
 
 /-- Construct a slipface from a pair of functions satisfying `D_props` and the
 duality relation `s a b - t b a = a - b + χ`. *Lemma 3.6 (`lem:dualCrit`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/2.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/2.*
+@isnad1 id=ex.2h3v.s6.65759dc5ccd3 from=translated src=- shape=f50a1c06 vocab=8f79db85
+-/
 lemma sf_of_D_props {s t : ℤ → ℤ → ℤ} {χ : ℤ}
     (h : ∀ a b, s a b - t b a = a - b + χ) :
   D_props s ∧ D_props t →
@@ -296,17 +325,25 @@ lemma sf_of_D_props {s t : ℤ → ℤ → ℤ} {χ : ℤ}
 
 /-- Every slipface function and its dual satisfies the `D_props`, denoted (D1) and (D2).
 *Lemma 3.6 (`lem:dualCrit`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/2.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/2.*
+@isnad1 id=and.0h1v.s3.e91448566e5f from=translated src=- shape=67714955 vocab=b2c120de
+-/
 lemma D_props_of_sf (sf : SlipFace) : D_props sf.func ∧ D_props sf.dual.func :=
   ⟨⟨fun a b => (sf.a_step a b).1, fun a b => (sf.b_step a b).1, sf.large_b, sf.small_a⟩,
     ⟨fun a b => (sf.dual.a_step a b).1, fun a b => (sf.dual.b_step a b).1,
       sf.dual.large_b, sf.dual.small_a⟩⟩
 
+/--
+@isnad1 id=le.2h5v.s5.0313e20642c3 from=translated src=- shape=46cc8d20 vocab=1f766b72
+-/
 lemma nondec {a a' b b' : ℤ} (a_le_a' : a ≤ a') (b'_le_b : b' ≤ b) : sf a b ≤ sf a' b' := by
   have dp := D_props_of_sf sf
   exact le_trans (mono_a_of_D_props sf.func dp.1 a a' b a_le_a')
     (mono_b_of_D_props sf.func dp.1 a' b' b b'_le_b)
 
+/--
+@isnad1 id=eq.3h5v.s5.bb99b93b5355 from=translated src=- shape=0d3950f7 vocab=1f766b72
+-/
 lemma zero_below {a a' b b' : ℤ} (a_le_a' : a ≤ a') (b'_le_b : b' ≤ b) :
   sf a' b' = 0 → sf a b = 0 := by
   intro eq0
@@ -355,6 +392,9 @@ See *Definition 3.7 (`defn:sfAlgebra`) of
 noncomputable def starFunc (s t : SlipFace) : ℤ → ℤ → ℤ :=
   fun a b => (SlipValley s t a b).min
 
+/--
+@isnad1 id=le.0h4v.s5.56b59d39ab58 from=translated src=- shape=5d75bdea vocab=87f0f7d8
+-/
 lemma star_dual_ineq (s t : SlipFace) (a b : ℤ) :
   starFunc t.dual s.dual b a ≤ starFunc s t a b - a + b - s.χ - t.χ := by
   let v := SlipValley s t a b
@@ -367,6 +407,9 @@ lemma star_dual_ineq (s t : SlipFace) (a b : ℤ) :
   dsimp [SlipFace.dual]
   omega
 
+/--
+@isnad1 id=eq.0h4v.s5.d671e95b48f8 from=translated src=- shape=baebaf5f vocab=bc5263c8
+-/
 lemma star_dual_eq (s t : SlipFace) (a b : ℤ) :
   starFunc s t a b - starFunc t.dual s.dual b a = a - b + s.χ + t.χ := by
   suffices starFunc t.dual s.dual b a = starFunc s t a b - a + b - s.χ - t.χ by omega
@@ -471,6 +514,9 @@ noncomputable instance : Mul SlipFace := ⟨star⟩
 /-- Infix notation for the slipface Demazure product. -/
 infixl:70 " ⋆ " => star
 
+/--
+@isnad1 id=eq.0h2v.s4.fbb125575e2a from=translated src=- shape=029ccec5 vocab=c32fd142
+-/
 lemma star_func_eq (s t : SlipFace) : (s ⋆ t).func = starFunc s t := by
   have h := star_exists s t
   exact (Classical.choose_spec h).1.1
@@ -479,7 +525,9 @@ lemma star_func_eq (s t : SlipFace) : (s ⋆ t).func = starFunc s t := by
 $s \star t(a,b) = \min_{l \in \mathbb{Z}} (s(a,l) + t(l,b))$.
 This unpacks the formal definition of $\star$ into the form of *Definition 3.7*
 (`defn:sfAlgebra`) of [An extended Demazure product](https://arxiv.org/abs/2206.14227),
-part 1/3.* -/
+part 1/3.*
+@isnad1 id=isleast.0h4v.s5.19385df062ae from=translated src=- shape=865d0286 vocab=80cf44c1
+-/
 lemma star_eq_min (s t : SlipFace) (a b : ℤ) :
   IsLeast { s a l + t l b | l : ℤ } ( (s ⋆ t) a b ) := by
   let v := SlipValley s t a b
@@ -499,13 +547,17 @@ lemma star_eq_min (s t : SlipFace) (a b : ℤ) :
 
 /-- The shift is additive under $\star$.
 *Proposition 3.9* (`prop:sfAlgebraDefined`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/6.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/6.*
+@isnad1 id=eq.0h2v.s4.c0f1608b5c0d from=translated src=- shape=88b36870 vocab=65cc492b
+-/
 @[simp] lemma chi_star (s t : SlipFace) : (s ⋆ t).χ = s.χ + t.χ := by
   have h := star_exists s t
   exact (Classical.choose_spec h).1.2
 
 /-- Duality reverses the product `⋆`. *Proposition 3.9 (`prop:sfAlgebraDefined`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/6.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/6.*
+@isnad1 id=eq.0h2v.s3.08926c02de2b from=translated src=- shape=0e1e4560 vocab=c6787898
+-/
 @[simp] lemma star_dual (s t : SlipFace) : (s ⋆ t).dual = t.dual ⋆ s.dual := by
   have h := star_exists s t
   have := (Classical.choose_spec h).2
@@ -536,6 +588,9 @@ instance : PartialOrder SlipFace where
     have le2 : t a b ≤ s a b := hts a b
     exact le_antisymm le1 le2
 
+/--
+@isnad1 id=le.0h5v.s5.6b9cadd896a1 from=translated src=- shape=43719fa5 vocab=dcdd6c4a
+-/
 lemma star_val_le (s t : SlipFace) (a b l : ℤ) : (s ⋆ t) a b ≤ s a l + t l b := by
   let v := SlipValley s t a b
   have hmin : (s ⋆ t) a b = v.min := by
@@ -549,6 +604,9 @@ lemma star_val_le (s t : SlipFace) (a b l : ℤ) : (s ⋆ t) a b ≤ s a l + t l
 noncomputable def starWit (s t : SlipFace) (a b : ℤ) : ℤ :=
   (SlipValley s t a b).M
 
+/--
+@isnad1 id=eq.0h4v.s5.4971cd18b0e3 from=translated src=- shape=1c99f7f7 vocab=034ea2f8
+-/
 lemma star_wit_spec (s t : SlipFace) (a b : ℤ) :
   (s ⋆ t) a b = s a (starWit s t a b) + t (starWit s t a b) b := by
   let v := SlipValley s t a b
@@ -556,7 +614,9 @@ lemma star_wit_spec (s t : SlipFace) (a b : ℤ) :
   exact Eq.symm v.f_M
 
 /-- A lower bound for `(s ⋆ t) a b` is equivalent to a uniform lower bound
-against every witness `l`. -/
+against every witness `l`.
+@isnad1 id=iff.0h5v.s5.119a5ed7468c from=translated src=- shape=50f50060 vocab=dcdd6c4a
+-/
 lemma le_star_val_iff (r s t : SlipFace) (a b : ℤ) :
   r a b ≤ (s ⋆ t) a b ↔ ∀ l, r a b ≤ s a l + t l b
   := by
@@ -571,7 +631,9 @@ lemma le_star_val_iff (r s t : SlipFace) (a b : ℤ) :
     simp_all
 
 /-- An upper bound for `(s ⋆ t) a b` is equivalent to exhibiting a single
-witness `l` that realizes it. -/
+witness `l` that realizes it.
+@isnad1 id=iff.0h5v.s5.9e37932fbaa7 from=translated src=- shape=a6b6ffa3 vocab=74244b71
+-/
 lemma ge_star_val_iff (r s t : SlipFace) (a b : ℤ) :
   r a b ≥ (s ⋆ t) a b ↔ ∃ l, r a b ≥ s a l + t l b
   := by
@@ -589,7 +651,9 @@ The product `⋆` is associative and has the positive-part function as identity,
 giving `SlipFace` a monoid structure. -/
 
 /-- Slipface product is associative. *Lemma 3.12 (`lem:sfAlgebra`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/3.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/3.*
+@isnad1 id=eq.0h3v.s4.f6649755302a from=translated src=- shape=b8c031c3 vocab=15ed4fb9
+-/
 lemma star_assoc (r s t : SlipFace) : r ⋆ s ⋆ t = r ⋆ (s ⋆ t) := by
   apply (SF_ext _ _).mpr
   intro a b
@@ -645,6 +709,9 @@ def id : SlipFace := {
       omega
   }
 
+/--
+@isnad1 id=eq.0h1v.s3.9ba7096bbcd8 from=translated src=- shape=29edb2d9 vocab=e0d67455
+-/
 lemma id_mul (s : SlipFace) : id ⋆ s = s := by
   apply (SF_ext _ _).mpr
   intro a b
@@ -671,6 +738,9 @@ lemma id_mul (s : SlipFace) : id ⋆ s = s := by
       rw [this, zero_add]
       apply s.nondec (by linarith) (le_refl b)
 
+/--
+@isnad1 id=eq.0h1v.s3.cfafde08b5eb from=translated src=- shape=9960b201 vocab=e0d67455
+-/
 lemma mul_id (s : SlipFace) : s ⋆ id = s := by
   apply (SF_ext _ _).mpr
   intro a b
@@ -709,6 +779,9 @@ This section develops the basic properties of the operations $s \triangleleft t$
 and $s \triangleright t$ at the level of slipface functions.
 -/
 
+/--
+@isnad1 id=ex.0h4v.s5.33787779b908 from=translated src=- shape=959777bc vocab=31671327
+-/
 lemma lres_wit_exists (s t : SlipFace) (a b : ℤ) : ∃ m, ∀ l,
   s a l - t.dual b l ≤ s a m - t.dual b m := by
   -- Proof written by Sonnet 4.6.
@@ -766,12 +839,16 @@ See *Definition 3.7* (`defn:sfAlgebra`) of
 noncomputable def lresFunc (s t : SlipFace) : ℤ → ℤ → ℤ :=
   fun a b => s a (lresWit s t a b) - t.dual b (lresWit s t a b)
 
-/-- Every value $s(a,\ell) - t^\vee(b,\ell)$ is at most $s \triangleleft t (a,b)$. -/
+/-- Every value $s(a,\ell) - t^\vee(b,\ell)$ is at most $s \triangleleft t (a,b)$.
+@isnad1 id=le.0h5v.s5.657a67ee68e6 from=translated src=- shape=2ba065bc vocab=0e116da8
+-/
 lemma lres_val_ge (s t : SlipFace) (a b l : ℤ) : s a l - t.dual b l ≤ lresFunc s t a b :=
   Classical.choose_spec (lres_wit_exists s t a b) l
 
 /-- The left residual is nonnegative, since for `l ≫ 0` both terms in the
-maximizing expression vanish. -/
+maximizing expression vanish.
+@isnad1 id=le.0h4v.s4.808acf5611e3 from=translated src=- shape=11d7463b vocab=43ef33a2
+-/
 lemma lres_func_nonneg (s t : SlipFace) (a b : ℤ) : 0 ≤ lresFunc s t a b := by
   -- Proof written by GPT 5.5.
   obtain ⟨U₁, hU₁⟩ := s.large_b a
@@ -970,12 +1047,16 @@ $$
 noncomputable def rresFunc (s t : SlipFace) : ℤ → ℤ → ℤ :=
   fun a b => t (rresWit s t a b) b - s.dual (rresWit s t a b) a
 
-/-- Every value $t(\ell,b) - s^\vee(\ell,a)$ is at most $s \triangleright t (a,b)$. -/
+/-- Every value $t(\ell,b) - s^\vee(\ell,a)$ is at most $s \triangleright t (a,b)$.
+@isnad1 id=le.0h5v.s5.8aa99aa0ca83 from=translated src=- shape=ccf44b19 vocab=9d15e62f
+-/
 lemma rres_val_ge (s t : SlipFace) (a b l : ℤ) : t l b - s.dual l a ≤ rresFunc s t a b :=
   Classical.choose_spec (rres_exists s t a b) l
 
 /-- The right residual is nonnegative, since for `l ≪ 0` both terms in the
-maximizing expression vanish. -/
+maximizing expression vanish.
+@isnad1 id=le.0h4v.s4.5d99020f077a from=translated src=- shape=11d7463b vocab=611ef266
+-/
 lemma rres_func_nonneg (s t : SlipFace) (a b : ℤ) : 0 ≤ rresFunc s t a b := by
   -- Proof written by GPT 5.5.
   obtain ⟨A₁, hA₁⟩ := t.small_a b
@@ -1163,9 +1244,15 @@ noncomputable def lres (s t : SlipFace) : SlipFace :=
 /-- Infix notation for the slipface left residual. -/
 infixl:70 " ◃ " => lres
 
+/--
+@isnad1 id=eq.0h2v.s4.afd6f6f39ea4 from=translated src=- shape=029ccec5 vocab=2c57b8b9
+-/
 lemma lres_func_eq (s t : SlipFace) : (s ◃ t).func = lresFunc s t :=
   (Classical.choose_spec (lres_exists s t)).1.1
 
+/--
+@isnad1 id=eq.0h4v.s5.24f050fc600a from=translated src=- shape=5abe717a vocab=1f1b052c
+-/
 lemma lres_wit_spec (s t : SlipFace) (a b : ℤ) :
     (s ◃ t) a b = s a (lresWit s t a b) - t.dual b (lresWit s t a b) := by
   rw [lres_func_eq]
@@ -1175,7 +1262,9 @@ lemma lres_wit_spec (s t : SlipFace) (a b : ℤ) :
 $(s ◃ t)(a,b) = \max_{\ell \in \mathbb{Z}} (s(a,\ell) - t^\vee(b,\ell))$.
 This is simply an unwinding of the formal definition to obtain the formula as stated in
 *Definition 3.7* (`defn:sfAlgebra`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/3.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/3.*
+@isnad1 id=isgreate.0h4v.s5.6a48b981127b from=translated src=- shape=d4d51d6b vocab=15222a1b
+-/
 lemma lres_eq_max (s t : SlipFace) (a b : ℤ) :
     IsGreatest {s a l - t.dual b l | l : ℤ} ((s ◃ t) a b) := by
     constructor
@@ -1186,7 +1275,9 @@ lemma lres_eq_max (s t : SlipFace) (a b : ℤ) :
 
 /-- The shift is additive under left residual.
 *Proposition 3.9* (`prop:sfAlgebraDefined`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 3/6.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 3/6.*
+@isnad1 id=eq.0h2v.s4.5e21cc170fa0 from=translated src=- shape=88b36870 vocab=4dc352b0
+-/
 @[simp] lemma chi_lres (s t : SlipFace) : (s ◃ t).χ = s.χ + t.χ := by
   have h := lres_exists s t
   exact (Classical.choose_spec h).1.2
@@ -1200,6 +1291,9 @@ noncomputable def rres (s t : SlipFace) : SlipFace :=
 /-- Infix notation for the slipface right residual. -/
 infixr:70 " ▹ " => rres
 
+/--
+@isnad1 id=eq.0h2v.s4.5a89e8cb339a from=translated src=- shape=029ccec5 vocab=bfd9b5c6
+-/
 lemma rres_func_eq (s t : SlipFace) : (s ▹ t).func = rresFunc s t := by
   dsimp [rres]
   calc
@@ -1207,6 +1301,9 @@ lemma rres_func_eq (s t : SlipFace) : (s ▹ t).func = rresFunc s t := by
       (Classical.choose_spec (lres_exists t.dual s.dual)).2
     _ = rresFunc s t := by rw [SlipFace.dual_dual s, SlipFace.dual_dual t]
 
+/--
+@isnad1 id=eq.0h4v.s5.d19d664192c6 from=translated src=- shape=60aa7085 vocab=34aab39b
+-/
 lemma rres_wit_spec (s t : SlipFace) (a b : ℤ) :
     (s ▹ t) a b = t (rresWit s t a b) b - s.dual (rresWit s t a b) a := by
   rw [rres_func_eq]
@@ -1216,7 +1313,9 @@ lemma rres_wit_spec (s t : SlipFace) (a b : ℤ) :
 $(s ▹ t)(a,b) = \max_{\ell \in \mathbb{Z}} (t(\ell,b) - s^\vee(\ell,a))$.
 This is simply an unwinding of the formal definition to obtain the formula as stated in
 *Definition 3.7* (`defn:sfAlgebra`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 3/3.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 3/3.*
+@isnad1 id=isgreate.0h4v.s5.db685ba6d08b from=translated src=- shape=215ac4b0 vocab=e1e03fe0
+-/
 lemma rres_eq_max (s t : SlipFace) (a b : ℤ) :
     IsGreatest {t l b - s.dual l a | l : ℤ} ((s ▹ t) a b) := by
     constructor
@@ -1227,14 +1326,18 @@ lemma rres_eq_max (s t : SlipFace) (a b : ℤ) :
 
 /-- The shift is additive under right residual.
 *Proposition 3.9* (`prop:sfAlgebraDefined`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 4/6.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 4/6.*
+@isnad1 id=eq.0h2v.s4.2dd1446ea3a5 from=translated src=- shape=88b36870 vocab=1952cd2b
+-/
 @[simp] lemma chi_rres (s t : SlipFace) : (s ▹ t).χ = s.χ + t.χ := by
   dsimp [rres, SlipFace.dual]
   simp_all
 
 /-- The stated left/right residual duality.
 *Proposition 3.9 (`prop:sfAlgebraDefined`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 5/6.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 5/6.*
+@isnad1 id=eq.0h2v.s3.1d1a8effb976 from=translated src=- shape=0e1e4560 vocab=e67ecb6c
+-/
 @[simp] lemma lres_dual (s t : SlipFace) :
     (s ◃ t).dual = t.dual ▹ s.dual := by
   dsimp [rres]
@@ -1243,7 +1346,9 @@ lemma rres_eq_max (s t : SlipFace) (a b : ℤ) :
 /-- The corresponding right/left residual duality, obtained by applying the
 left/right duality to dual slipfaces.
 *Consequence of Proposition 3.9 (`prop:sfAlgebraDefined`) in
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 6/6.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 6/6.*
+@isnad1 id=eq.0h2v.s3.bae6019e73f4 from=translated src=- shape=0e1e4560 vocab=e67ecb6c
+-/
 @[simp] lemma rres_dual (s t : SlipFace) :
     (s ▹ t).dual = t.dual ◃ s.dual := by
   dsimp [rres]
@@ -1256,7 +1361,9 @@ def bendSet (t : SlipFace) (b : ℤ) : Set ℤ :=
   {l : ℤ | t (l-1) b = t l b ∧ t l b ≠ t (l+1) b}
 
 /-- *Lemma 3.13 (`lem:setL`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/5.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/5.*
+@isnad1 id=finite.0h2v.s3.eefc0d89bc50 from=translated src=- shape=2c148825 vocab=66d8980f
+-/
 lemma bend_set_finite (t : SlipFace) (b : ℤ) : Finite (bendSet t b) := by
   obtain ⟨A1, hA1⟩ := t.large_a b
   obtain ⟨A0, hA0⟩ := t.small_a b
@@ -1300,7 +1407,9 @@ decreasing_by
   omega
 
 /-- *Lemma 3.13 (`lem:setL`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 3/5.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 3/5.*
+@isnad1 id=ex.0h4v.s5.588f20aa5ac8 from=translated src=- shape=ba055e82 vocab=1a89a09a
+-/
 lemma bend_set_witness (s t : SlipFace) (a b : ℤ) :
   ∃ l ∈ bendSet t b, (s ⋆ t) a b = s a l + t l b := by
   -- Proof written by GPT 5.5.
@@ -1392,7 +1501,9 @@ decreasing_by
   omega
 
 /-- *Lemma 3.13 (`lem:setL`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 4/5.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 4/5.*
+@isnad1 id=ex.0h4v.s5.644fb0f85bff from=translated src=- shape=2f607aa7 vocab=db2ca7c7
+-/
 lemma bend_set_witness_lres (s t : SlipFace) (a b : ℤ) :
     ∃ l ∈ bendSet t b, (s ◃ t) a b = s a l - t.dual b l := by
   -- Proof written by GPT 5.5.
@@ -1474,7 +1585,9 @@ def iotaSf (n : ℤ) : SlipFace  := {
 
 /-- The $\star$ operation is Bruhat-increasing in both arguments.
 *Lemma 3.8 (`lem:compatLeq`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/3.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/3.*
+@isnad1 id=le.2h4v.s5.f38e494aa897 from=translated src=- shape=47ba7c8b vocab=4f96a683
+-/
 lemma star_mono {s₁ s₂ t₁ t₂ : SlipFace}
     (hs : s₁ ≤ s₂) (ht : t₁ ≤ t₂) :
     s₁ ⋆ t₁ ≤ s₂ ⋆ t₂ := by
@@ -1490,7 +1603,9 @@ lemma star_mono {s₁ s₂ t₁ t₂ : SlipFace}
 /-- The residual `(s, t) ↦ s ◃ t.dual` is increasing in `s` and decreasing in
 `t`.
 *Lemma 3.8 (`lem:compatLeq`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/3.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/3.*
+@isnad1 id=le.2h4v.s5.8694707fc7cc from=translated src=- shape=8db39201 vocab=bcdb1e93
+-/
 lemma lres_mono {s₁ s₂ t₁ t₂ : SlipFace}
     (hs : s₁ ≤ s₂) (ht : t₁ ≤ t₂) :
     s₁ ◃ t₂.dual ≤ s₂ ◃ t₁.dual := by
@@ -1512,7 +1627,9 @@ lemma lres_mono {s₁ s₂ t₁ t₂ : SlipFace}
 /-- The residual `(s, t) ↦ t.dual ▹ s` is increasing in `s` and decreasing in
 `t`.
 *Lemma 3.8 (`lem:compatLeq`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 3/3.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 3/3.*
+@isnad1 id=le.2h4v.s5.256f97842b93 from=translated src=- shape=32cb953e vocab=69813d52
+-/
 lemma rres_mono {s₁ s₂ t₁ t₂ : SlipFace}
     (hs : s₁ ≤ s₂) (ht : t₁ ≤ t₂) :
     t₂.dual ▹ s₁ ≤ t₁.dual ▹ s₂ := by
@@ -1534,7 +1651,9 @@ lemma rres_mono {s₁ s₂ t₁ t₂ : SlipFace}
 /-- The left residual $u \triangleleft t^∨$ as a Bruhat minimum: the minimum
 slipface such that $s \star t ≥ u$.
 *Lemma 3.10 (`lem:sfOpChar`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/2.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/2.*
+@isnad1 id=iff.0h3v.s4.dcb649cf0566 from=translated src=- shape=a14de870 vocab=686a3a1c
+-/
 lemma ge_star_iff_ge_lres (s t u : SlipFace) :
     s ≥ u ◃ t.dual ↔ s ⋆ t ≥ u := by
   -- Proof written by GPT 5.5.
@@ -1561,7 +1680,9 @@ lemma ge_star_iff_ge_lres (s t u : SlipFace) :
 /-- The right residual $s^∨ \triangleright u$ as a Bruhat minimum: the minimum
 slipface such that $s \star t ≥ u$.
 *Lemma 3.10 (`lem:sfOpChar`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/2.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/2.*
+@isnad1 id=iff.0h3v.s4.bcbe7bb06e76 from=translated src=- shape=c34e3a45 vocab=14b4bb8c
+-/
 lemma ge_star_iff_ge_rres (s t u : SlipFace) :
     t ≥ s.dual ▹ u ↔ s ⋆ t ≥ u := by
   -- Proof written by GPT 5.5.
@@ -1587,7 +1708,9 @@ lemma ge_star_iff_ge_rres (s t u : SlipFace) :
 
 /-- Left residual associates with the product on the right.
 *Lemma 3.12 (`lem:sfAlgebra`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/3.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/3.*
+@isnad1 id=eq.0h3v.s4.68b48d29403c from=translated src=- shape=b8c031c3 vocab=8a529fe0
+-/
 lemma lres_assoc (s t u : SlipFace) :
     (s ◃ t) ◃ u = s ◃ (t ⋆ u) := by
   -- Proof written by GPT 5.5.
@@ -1612,7 +1735,9 @@ lemma lres_assoc (s t u : SlipFace) :
 
 /-- Right residual associates with the product on the left.
 *Lemma 3.12 (`lem:sfAlgebra`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 3/3.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 3/3.*
+@isnad1 id=eq.0h3v.s4.06b92f271071 from=translated src=- shape=dcd8247e vocab=5920ea1d
+-/
 lemma rres_assoc (s t u : SlipFace) :
     s ▹ (t ▹ u) = (s ⋆ t) ▹ u := by
   -- Proof written by GPT 5.5.
@@ -1651,11 +1776,16 @@ def Δ (a b : ℤ) : ℤ :=
   sf (a+1) b - sf a b - sf (a+1) (b+1) + sf a (b+1)
 
 /-- Duality preserves the mixed difference `Δ` after swapping the coordinates.
-*Equation (20) (`eq:DeltasDual`) of [An extended Demazure product](https://arxiv.org/abs/2206.14227).* -/
+*Equation (20) (`eq:DeltasDual`) of [An extended Demazure product](https://arxiv.org/abs/2206.14227).*
+@isnad1 id=eq.0h3v.s4.47ce707c1cde from=translated src=- shape=f1d026f0 vocab=6abbc76b
+-/
 lemma Δ_dual (a b : ℤ) : sf.dual.Δ b a = sf.Δ a b := by
   dsimp [SlipFace.dual, Δ]
   omega
 
+/--
+@isnad1 id=or.0h3v.s5.02eba6a25611 from=translated src=- shape=2060d7d9 vocab=c9863f06
+-/
 lemma Δ_values (a b : ℤ) : sf.Δ a b = 0 ∨ sf.Δ a b = 1 ∨ sf.Δ a b = -1 := by
   suffices sf.Δ a b ≥ -1 ∧ sf.Δ a b ≤ 1 by omega
   let d1 := sf (a+1) b - sf a b
@@ -1666,6 +1796,9 @@ lemma Δ_values (a b : ℤ) : sf.Δ a b = 0 ∨ sf.Δ a b = 1 ∨ sf.Δ a b = -1
   obtain ⟨h21, h22⟩ := sf.a_step a (b+1)
   omega
 
+/--
+@isnad1 id=eq.1h3v.s5.a74442210110 from=translated src=- shape=6211154f vocab=250ff66a
+-/
 lemma Δ_zero_of_s_zero (a b : ℤ) (h0 : sf (a + 1) b = 0) : sf.Δ a b = 0 := by
   have h1 : sf a b = 0 := by
     apply sf.zero_below (a' := a+1) (b' := b)
@@ -1679,6 +1812,9 @@ lemma Δ_zero_of_s_zero (a b : ℤ) (h0 : sf (a + 1) b = 0) : sf.Δ a b = 0 := b
   dsimp [Δ]
   simp_all
 
+/--
+@isnad1 id=eq.1h4v.s6.9c897ca8288d from=translated src=- shape=f56a932d vocab=762961ca
+-/
 lemma sum_a {a₁ a₂ : ℤ} (ha : a₁ ≤ a₂) (b : ℤ) :
   ∑ a ∈ Finset.Ico a₁ a₂, sf.Δ a b
   = (sf a₂ b  - sf a₂ (b+1)) - (sf a₁ b - sf a₁ (b+1)) := by
@@ -1701,7 +1837,9 @@ lemma sum_a {a₁ a₂ : ℤ} (ha : a₁ ≤ a₂) (b : ℤ) :
 
 /-- Summing `Δ` over a rectangle recovers the corresponding boundary term in
 `sf`. *Modification of Equation (19) (`eq:sumDelta`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227) to a finite sum.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227) to a finite sum.*
+@isnad1 id=eq.2h5v.s6.f2b87be13873 from=translated src=- shape=2e835e40 vocab=540bb535
+-/
 lemma sum_ab {a₁ a₂ b₁ b₂ : ℤ} (ha : a₁ ≤ a₂) (hb : b₁ ≤ b₂) :
   ∑ b ∈ Finset.Ico b₁ b₂, ∑ a ∈ Finset.Ico a₁ a₂, sf.Δ a b
   = (sf a₂ b₁ - sf a₁ b₁) - (sf a₂ b₂ - sf a₁ b₂) := by
@@ -1732,6 +1870,9 @@ as defined in the proof of *Proposition 4.3* (`prop:imageASP`) of
 [An extended Demazure product](https://arxiv.org/abs/2206.14227).* -/
 def Γ : Set (ℤ × ℤ) := {(a, b) | sf.Δ a b = 1}
 
+/--
+@isnad1 id=iff.0h3v.s5.fb454b72b128 from=translated src=- shape=45799c39 vocab=a4e3026e
+-/
 lemma Γ_dual : ∀ (a b : ℤ), (a, b) ∈ sf.Γ ↔ (b, a) ∈ sf.dual.Γ := by
   intro a b
   simp only [Γ, Set.mem_ofPred_eq, sf.Δ_dual]
@@ -1751,6 +1892,7 @@ def ess : Set (ℤ × ℤ) := {(a, b) | sf (a-1) b < sf a b ∧ sf a b = sf (a+1
   ∧ sf a (b+1) < sf a b ∧ sf a b = sf a (b-1)}
 
 /-- Lemma 7.2 (`lem:essSetMoves`) of [An extended Demazure product](https://arxiv.org/abs/2206.14227).
+@isnad1 id=ex.2h4v.s7.73fb446699ca from=translated src=- shape=08821f3e vocab=1ba60242
 -/
 lemma ess_step (s t : SlipFace) (a b : ℤ) (wit : s a b > t a b) :
   ¬ (a, b) ∈ s.ess →
@@ -1859,6 +2001,9 @@ private lemma le_of_ess_le (s t : SlipFace) (cliff : s.isClifford) (chile : s.χ
       have := t.dual.nonneg b a
       omega
 
+/--
+@isnad1 id=iff.1h2v.s5.c068a4bba89a from=translated src=- shape=2118632f vocab=e82c9560
+-/
 theorem ess_clifford (s t : SlipFace) (cliff : s.isClifford) :
   s ≤ t ↔ s.χ ≤ t.χ ∧ ∀ (a b : ℤ), (a, b) ∈ s.ess → s a b ≤ t a b := by
   constructor

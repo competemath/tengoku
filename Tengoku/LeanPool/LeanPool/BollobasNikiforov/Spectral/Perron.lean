@@ -28,9 +28,15 @@ variable {B : Matrix n n ℝ}
 def l2Sphere : Set (n → ℝ) := {x | ∑ i, x i ^ 2 = 1}
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=iff.0h2v.s5.3273bd4eaaf1 from=translated src=- shape=b2c3fe61 vocab=49059a83
+-/
 lemma mem_l2Sphere {x : n → ℝ} : x ∈ l2Sphere ↔ ∑ i, x i ^ 2 = 1 := Iff.rfl
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=iscompac.0h1v.s4.ed78207f51c8 from=translated src=- shape=fea4225f vocab=5062bdeb
+-/
 lemma isCompact_l2Sphere : IsCompact (l2Sphere : Set (n → ℝ)) := by
   have hc := (isCompact_sphere (0 : EuclideanSpace ℝ n) 1).image
     (EuclideanSpace.equiv n ℝ).continuous
@@ -46,6 +52,9 @@ lemma isCompact_l2Sphere : IsCompact (l2Sphere : Set (n → ℝ)) := by
     simpa [l2Sphere] using hy
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=nonempty.0h1v.s3.e72207c7b16c from=translated src=- shape=f0bed929 vocab=00844156
+-/
 lemma l2Sphere_nonempty [Nonempty n] : (l2Sphere : Set (n → ℝ)).Nonempty := by
   classical
   let i0 : n := Classical.arbitrary n
@@ -56,6 +65,9 @@ lemma l2Sphere_nonempty [Nonempty n] : (l2Sphere : Set (n → ℝ)).Nonempty := 
     simp [hj]
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=continuo.0h2v.s5.34f01fa2cfe6 from=translated src=- shape=f5496c66 vocab=485bd3a1
+-/
 lemma continuous_dotProduct_mulVec :
     Continuous fun x : n → ℝ => x ⬝ᵥ B *ᵥ x :=
   continuous_id.dotProduct (continuous_const.matrix_mulVec continuous_id)
@@ -71,7 +83,9 @@ private lemma reApplyInnerSelf_eq_dotProduct_mulVec (hB : B.IsHermitian)
 
 omit [DecidableEq n] in
 /-- **SP01.** Replacing a vector by its absolute value cannot decrease the Rayleigh
-form of an entrywise nonnegative matrix. -/
+form of an entrywise nonnegative matrix.
+@isnad1 id=le.1h3v.s6.9d267b0f61a1 from=translated src=- shape=f50fe744 vocab=15caac13
+-/
 lemma dotProduct_mulVec_le_abs (hnn : ∀ i j, 0 ≤ B i j) (x : n → ℝ) :
     x ⬝ᵥ B *ᵥ x ≤ |x| ⬝ᵥ B *ᵥ |x| := by
   simp_rw [dot_mulVec_eq_sum_sum]
@@ -85,14 +99,18 @@ lemma dotProduct_mulVec_le_abs (hnn : ∀ i j, 0 ≤ B i j) (x : n → ℝ) :
 
 omit [DecidableEq n] in
 /-- **SP02** (existence). The Rayleigh form of a symmetric matrix attains a maximum on
-the Euclidean unit sphere. -/
+the Euclidean unit sphere.
+@isnad1 id=ex.1h2v.s6.d2cbdf68219c from=translated src=- shape=7bfbec7e vocab=bc885c6e
+-/
 lemma exists_isMaxOn_dotProduct_mulVec (_hB : B.IsHermitian) [Nonempty n] :
     ∃ u, u ∈ l2Sphere ∧ IsMaxOn (fun x : n → ℝ => x ⬝ᵥ B *ᵥ x) l2Sphere u :=
   isCompact_l2Sphere.exists_isMaxOn l2Sphere_nonempty
     continuous_dotProduct_mulVec.continuousOn
 
 omit [DecidableEq n] in
-/-- **SP02.** If `B` is also entrywise nonnegative, some maximizer is nonnegative. -/
+/-- **SP02.** If `B` is also entrywise nonnegative, some maximizer is nonnegative.
+@isnad1 id=ex.2h2v.s7.0c63e2778f05 from=translated src=- shape=724561d1 vocab=4cdade43
+-/
 lemma exists_nonneg_isMaxOn_dotProduct_mulVec (hB : B.IsHermitian)
     (hnn : ∀ i j, 0 ≤ B i j) [Nonempty n] :
     ∃ u, u ∈ l2Sphere ∧ (∀ i, 0 ≤ u i) ∧
@@ -104,7 +122,9 @@ lemma exists_nonneg_isMaxOn_dotProduct_mulVec (hB : B.IsHermitian)
     exact (hmax hy).trans (dotProduct_mulVec_le_abs hnn u)
 
 /-- **SP03.** A symmetric entrywise-nonnegative matrix has a nonnegative unit eigenvector
-for `lambdaMax`. -/
+for `lambdaMax`.
+@isnad1 id=ex.2h2v.s7.b028dd97b9ee from=translated src=- shape=f7c0762d vocab=93493708
+-/
 lemma exists_nonneg_eigenvector_lambdaMax (hB : B.IsHermitian)
     (hnn : ∀ i j, 0 ≤ B i j) [Nonempty n] :
     ∃ u : n → ℝ, (∀ i, 0 ≤ u i) ∧ ∑ i, u i ^ 2 = 1 ∧ B *ᵥ u = lambdaMax hB • u := by

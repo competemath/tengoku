@@ -44,9 +44,15 @@ open InvarianceOfDomain
 def HalfPlaneSet : Set Plane :=
   {v : Plane | 0 ≤ v 0}
 
+/--
+@isnad1 id=continuo.0h0v.s7.dca78814168c from=translated src=- shape=612dfe02 vocab=96ebd605
+-/
 theorem continuous_coordZero : Continuous fun v : Plane => v 0 :=
   PiLp.continuous_apply (p := 2) (β := fun _ : Fin 2 => ℝ) (0 : Fin 2)
 
+/--
+@isnad1 id=isopen.0h0v.s7.b94e5da07dba from=translated src=- shape=50553c6a vocab=91a4bafe
+-/
 theorem isOpen_posCoord : IsOpen {v : Plane | 0 < v 0} :=
   isOpen_lt continuous_const continuous_coordZero
 
@@ -59,24 +65,39 @@ noncomputable def recenter (p : Plane) (ε : ℝ) (hε : ε ≠ 0) : Plane ≃�
 
 variable {p : Plane} {ε : ℝ}
 
+/--
+@isnad1 id=eq.1h3v.s8.5d78110d9214 from=translated src=- shape=ef10af25 vocab=d0b50c72
+-/
 theorem recenter_apply (hε : ε ≠ 0) (v : Plane) :
     recenter p ε hε v = ε⁻¹ • (v + -p) := rfl
 
+/--
+@isnad1 id=eq.1h3v.s8.6b453d7e3347 from=translated src=- shape=a1ba2ff0 vocab=4a6dc904
+-/
 theorem recenter_symm_apply (hε : ε ≠ 0) (w : Plane) :
     (recenter p ε hε).symm w = ε • w + p := by
   apply (recenter p ε hε).injective
   rw [Homeomorph.apply_symm_apply, recenter_apply]
   simp [add_assoc, smul_smul, inv_mul_cancel₀ hε]
 
+/--
+@isnad1 id=eq.1h3v.s8.9db1227c04e5 from=translated src=- shape=84148930 vocab=52925f39
+-/
 theorem recenter_dist (hε : 0 < ε) (v : Plane) :
     dist (recenter p ε hε.ne' v) 0 = ε⁻¹ * dist v p := by
   rw [recenter_apply, dist_eq_norm, dist_eq_norm, sub_zero, ← sub_eq_add_neg, norm_smul,
     Real.norm_eq_abs, abs_inv, abs_of_pos hε]
 
+/--
+@isnad1 id=iff.1h3v.s8.a50b3d74a71b from=translated src=- shape=b8fa81a1 vocab=1512a1d2
+-/
 theorem recenter_mem_ball_iff (hε : 0 < ε) {v : Plane} :
     recenter p ε hε.ne' v ∈ Metric.ball 0 1 ↔ v ∈ Metric.ball p ε := by
   rw [Metric.mem_ball, Metric.mem_ball, recenter_dist hε, inv_mul_lt_iff₀ hε, mul_one]
 
+/--
+@isnad1 id=iff.1h3v.s8.3e254d9d668a from=translated src=- shape=a1fdd2f7 vocab=69c1b625
+-/
 theorem recenter_mem_closedBall_iff (hε : 0 < ε) {v : Plane} :
     recenter p ε hε.ne' v ∈ Metric.closedBall 0 (1 / 2) ↔
       v ∈ Metric.closedBall p (ε / 2) := by
@@ -84,13 +105,18 @@ theorem recenter_mem_closedBall_iff (hε : 0 < ε) {v : Plane} :
     inv_mul_le_iff₀ hε]
   constructor <;> intro h <;> linarith
 
+/--
+@isnad1 id=eq.1h3v.s9.15cad43d4d58 from=translated src=- shape=86fd2df5 vocab=3b7c38af
+-/
 theorem recenter_coordZero (hε : ε ≠ 0) (v : Plane) :
     recenter p ε hε v 0 = ε⁻¹ * (v 0 - p 0) := by
   rw [recenter_apply, sub_eq_add_neg]
   simp
   ring
 
-/-- When the center sits on the edge line, recentering preserves the half-plane condition. -/
+/-- When the center sits on the edge line, recentering preserves the half-plane condition.
+@isnad1 id=iff.2h3v.s8.dbfc0a004bcd from=translated src=- shape=1d3fa7e3 vocab=22771c36
+-/
 theorem recenter_mem_halfPlane_iff (hε : 0 < ε) (hp : p 0 = 0) {v : Plane} :
     recenter p ε hε.ne' v ∈ HalfPlaneSet ↔ v ∈ HalfPlaneSet := by
   simp only [HalfPlaneSet, Set.mem_ofPred_eq, recenter_coordZero, hp, sub_zero]
@@ -107,7 +133,9 @@ end Recenter
 section HalfSpacePlumbing
 
 /-- A relatively open subset of the closed half-plane meets its own frontier only on the edge
-line.  This is the geometric fact behind boundary-faithfulness of the extracted charts. -/
+line.  This is the geometric fact behind boundary-faithfulness of the extracted charts.
+@isnad1 id=eq.3h2v.s7.41bb771d9236 from=translated src=- shape=425cc3ef vocab=ef2b9528
+-/
 theorem coordZero_eq_zero_of_mem_frontier {V : Set Plane} (hV : IsOpen V)
     {z : Plane} (hzmem : z ∈ V ∩ HalfPlaneSet) (hz : z ∈ frontier (V ∩ HalfPlaneSet)) :
     z 0 = 0 := by
@@ -143,6 +171,9 @@ def ChartKind.modelCore : ChartKind → Set Plane
   | .disk => Metric.closedBall 0 (1 / 2)
   | .halfDisk => {x ∈ Metric.closedBall 0 (1 / 2) | 0 ≤ x 0}
 
+/--
+@isnad1 id=iscompac.0h1v.s5.5d1533b4d18d from=translated src=- shape=1a6c1393 vocab=3ca59cac
+-/
 theorem ChartKind.isCompact_modelCore (k : ChartKind) : IsCompact k.modelCore := by
   cases k with
   | disk => exact isCompact_closedBall _ _
@@ -150,6 +181,9 @@ theorem ChartKind.isCompact_modelCore (k : ChartKind) : IsCompact k.modelCore :=
       exact (isCompact_closedBall (0 : Plane) (1 / 2)).inter_right
         (isClosed_le continuous_const continuous_coordZero)
 
+/--
+@isnad1 id=le.0h1v.s3.84e779993562 from=translated src=- shape=ffc59986 vocab=ffed851c
+-/
 theorem ChartKind.modelCore_subset_modelRegion (k : ChartKind) :
     k.modelCore ⊆ k.modelRegion := by
   cases k with
@@ -165,12 +199,17 @@ def halfDiskModelToHalfSpace :
     ChartKind.halfDisk.modelRegion → EuclideanHalfSpace 2 :=
   fun p => ⟨p.1, p.2.2⟩
 
+/--
+@isnad1 id=eq.0h1v.s7.ab98dc17dd15 from=translated src=- shape=b1ce68a9 vocab=11bede6d
+-/
 @[simp] theorem halfDiskModelToHalfSpace_val
     (p : ChartKind.halfDisk.modelRegion) :
     (halfDiskModelToHalfSpace p).1 = p.1 :=
   rfl
 
-/-- The half-disk model is an open subset of the Euclidean half-space. -/
+/-- The half-disk model is an open subset of the Euclidean half-space.
+@isnad1 id=isopenem.0h0v.s6.2829348e0ec5 from=translated src=- shape=94ea3747 vocab=b97c61af
+-/
 theorem isOpenEmbedding_halfDiskModelToHalfSpace :
     _root_.Topology.IsOpenEmbedding halfDiskModelToHalfSpace := by
   have hembed :
@@ -206,7 +245,9 @@ If the corresponding source point is fixed and its old physical image is an inte
 the old range, then that physical point remains in the interior of the new range.  The proof
 restricts to the old physical interior, writes both embeddings in the half-disk chart, applies
 the half-plane doubling theorem, and transports the resulting open coordinate image back to
-the surface. -/
+the surface.
+@isnad1 id=mem.8h7v.s10.3e30c02b2701 from=translated src=- shape=c3406dc9 vocab=27d3435b
+-/
 theorem mem_interior_range_of_fixed_boundary_preserving_in_halfDiskChart
     {S : Type*} [TopologicalSpace S]
     [ChartedSpace (EuclideanHalfSpace 2) S]
@@ -359,11 +400,16 @@ variable {S : Type*} [TopologicalSpace S] (c : MoiseChart S)
 def core : Set S :=
   Subtype.val '' (c.chart ⁻¹' {p : c.kind.modelRegion | (p : Plane) ∈ c.kind.modelCore})
 
+/--
+@isnad1 id=le.0h2v.s4.30a56e2fb0cd from=translated src=- shape=a5e9b6d0 vocab=023daa85
+-/
 theorem core_subset_domain : c.core ⊆ c.domain := by
   rintro x ⟨p, -, rfl⟩
   exact p.2
 
-/-- Chart cores are compact closed disks or half-disks transported through the chart. -/
+/-- Chart cores are compact closed disks or half-disks transported through the chart.
+@isnad1 id=iscompac.0h2v.s4.c61cf06997a8 from=translated src=- shape=ed10201d vocab=98e3f3ca
+-/
 theorem isCompact_core : IsCompact c.core := by
   let C : Set c.kind.modelRegion :=
     Subtype.val ⁻¹' c.kind.modelCore
@@ -387,6 +433,9 @@ theorem isCompact_core : IsCompact c.core := by
   rw [hcore]
   exact hC.image hf
 
+/--
+@isnad1 id=iff.0h3v.s8.bd0a1456b79d from=translated src=- shape=4a61a47a vocab=76f5e140
+-/
 theorem mem_core_iff {s : S} :
     s ∈ c.core ↔ ∃ hs : s ∈ c.domain, ((c.chart ⟨s, hs⟩ : Plane) ∈ c.kind.modelCore) := by
   constructor
@@ -423,7 +472,9 @@ def MoiseChart.BoundaryFaithful {S : Type*} [TopologicalSpace S]
         ((c.chart ⟨y, hy⟩ : Plane) 0 = 0))
 
 /-- The image of the preferred chart's target in the plane is a relatively open subset of the
-closed half-plane. -/
+closed half-plane.
+@isnad1 id=eq.0h2v.s9.32c27979e114 from=translated src=- shape=604bc495 vocab=c17666f2
+-/
 theorem chartImage_eq_inter (x : S) :
     Subtype.val '' (chartAt (EuclideanHalfSpace 2) x).target =
       ((modelWithCornersEuclideanHalfSpace 2).symm ⁻¹'
@@ -440,7 +491,9 @@ theorem chartImage_eq_inter (x : S) :
   rw [← hval, ← h2, h1, hrange]
 
 /-- The chart image is an ambient plane neighborhood of the center's image when the latter is
-away from the edge. -/
+away from the edge.
+@isnad1 id=mem.1h2v.s9.66be0d3c8633 from=translated src=- shape=682e1437 vocab=a47977d9
+-/
 theorem chartImage_mem_nhds_of_coord_pos (x : S)
     (hpt : (0 : ℝ) <
       (((chartAt (EuclideanHalfSpace 2) x) x)).1 0) :
@@ -462,7 +515,9 @@ theorem chartImage_mem_nhds_of_coord_pos (x : S)
       show (0 : ℝ) ≤ v 0 from le_of_lt hv
   exact Filter.inter_mem (hVopen.mem_nhds hptE.1) hH
 
-/-- The chart image is a relative half-plane neighborhood of the center's image. -/
+/-- The chart image is a relative half-plane neighborhood of the center's image.
+@isnad1 id=mem.0h2v.s9.6acbe1166432 from=translated src=- shape=51f9d24b vocab=f740268f
+-/
 theorem chartImage_mem_nhdsWithin (x : S) :
     Subtype.val '' (chartAt (EuclideanHalfSpace 2) x).target ∈
       𝓝[HalfPlaneSet] (((chartAt (EuclideanHalfSpace 2) x) x).1) := by
@@ -479,7 +534,9 @@ theorem chartImage_mem_nhdsWithin (x : S) :
   exact mem_nhdsWithin.mpr ⟨_, hVopen, hptE.1, subset_rfl⟩
 
 /-- Boundary points of the chart source have edge-line chart coordinates: the chart-level
-consequence of planar invariance of domain. -/
+consequence of planar invariance of domain.
+@isnad1 id=eq.2h3v.s9.1bf44efce7e9 from=translated src=- shape=f9ff86df vocab=db66f41f
+-/
 theorem coordZero_of_boundary (x : S) {y : S}
     (hy : y ∈ (chartAt (EuclideanHalfSpace 2) x).source)
     (hybd : y ∈ (modelWithCornersEuclideanHalfSpace 2).boundary S) :
@@ -510,7 +567,9 @@ theorem coordZero_of_boundary (x : S) {y : S}
   exact coordZero_eq_zero_of_mem_frontier hVopen hmem hcbi
 
 /-- Interior case of the chart extraction: a disk chart at a point whose preferred chart
-coordinate is away from the edge. -/
+coordinate is away from the edge.
+@isnad1 id=ex.1h2v.s8.ff657abc9840 from=translated src=- shape=0fba3e92 vocab=df22d723
+-/
 theorem exists_moiseChart_of_coord_pos (x : S)
     (hpt : (0 : ℝ) <
       (((chartAt (EuclideanHalfSpace 2) x) x)).1 0) :
@@ -604,7 +663,9 @@ theorem exists_moiseChart_of_coord_pos (x : S)
     exact (recenter_mem_closedBall_iff hε).mpr (Metric.ball_subset_closedBall hs.2)
 
 /-- Boundary case of the chart extraction: a half-disk chart at a point whose preferred chart
-coordinate lies on the edge line. -/
+coordinate lies on the edge line.
+@isnad1 id=ex.1h2v.s8.56da9632e20f from=translated src=- shape=16301ae9 vocab=d5f68b5e
+-/
 theorem exists_moiseChart_of_coord_zero (x : S)
     (hpt : (((chartAt (EuclideanHalfSpace 2) x) x)).1 0 = 0) :
     ∃ c : MoiseChart S, c.BoundaryFaithful ∧ c.core ∈ 𝓝 x := by
@@ -730,7 +791,9 @@ theorem exists_moiseChart_of_coord_zero (x : S)
 
 Every point of an Eval surface has a boundary-faithful Moise chart whose core is a neighborhood
 of the point: interior points get disk charts, edge points get half-disk charts, and invariance of
-domain supplies boundary-faithfulness. -/
+domain supplies boundary-faithfulness.
+@isnad1 id=ex.0h2v.s5.5aae7778c0b6 from=translated src=- shape=2a1d43a4 vocab=cc93b98e
+-/
 theorem exists_moiseChart_core_mem_nhds (x : S) :
     ∃ c : MoiseChart S, c.BoundaryFaithful ∧ c.core ∈ 𝓝 x := by
   rcases lt_or_eq_of_le

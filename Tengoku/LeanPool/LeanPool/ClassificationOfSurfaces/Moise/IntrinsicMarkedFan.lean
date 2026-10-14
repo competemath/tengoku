@@ -59,6 +59,9 @@ noncomputable def EdgeMarking.ofFinset (P : Finset K.realization) :
         apply Finset.mem_union_right
         exact Finset.mem_image.mpr ⟨e, Finset.mem_univ e, rfl⟩ }
 
+/--
+@isnad1 id=le.0h2v.s4.8fcf0f993297 from=translated src=- shape=679f8281 vocab=3d6834ad
+-/
 theorem EdgeMarking.subset_points_ofFinset (P : Finset K.realization) :
     P ⊆ (EdgeMarking.ofFinset (K := K) P).points := by
   intro p hp
@@ -73,11 +76,17 @@ noncomputable def edgeMarks (e : K.Edge) : Finset K.realization := by
   classical
   exact M.points.filter fun p ↦ p ∈ K.faceCarrier e.1
 
+/--
+@isnad1 id=iff.0h4v.s6.d98f42b70713 from=translated src=- shape=ba845d62 vocab=5476ee89
+-/
 theorem mem_edgeMarks_iff (e : K.Edge) (p : K.realization) :
     p ∈ M.edgeMarks e ↔ p ∈ M.points ∧ p ∈ K.faceCarrier e.1 := by
   classical
   exact Finset.mem_filter
 
+/--
+@isnad1 id=mem.0h3v.s4.bafc25ccb58f from=translated src=- shape=bbdbd27a vocab=0fd4ce40
+-/
 theorem edgeFirstPoint_mem_edgeMarks (e : K.Edge) :
     K.edgeFirstPoint e ∈ M.edgeMarks e := by
   rw [M.mem_edgeMarks_iff e]
@@ -85,6 +94,9 @@ theorem edgeFirstPoint_mem_edgeMarks (e : K.Edge) :
   rw [← K.range_edgePath e]
   exact ⟨⟨0, by simp⟩, K.edgePath_zero e⟩
 
+/--
+@isnad1 id=mem.0h3v.s4.4fb19fb7605f from=translated src=- shape=bbdbd27a vocab=a0c9777e
+-/
 theorem edgeSecondPoint_mem_edgeMarks (e : K.Edge) :
     K.edgeSecondPoint e ∈ M.edgeMarks e := by
   rw [M.mem_edgeMarks_iff e]
@@ -99,12 +111,17 @@ noncomputable def edgeParameterValue (_ : K.EdgeMarking)
   classical
   exact if hp : p ∈ K.faceCarrier e.1 then (K.edgeParameter e p hp : ℝ) else 0
 
+/--
+@isnad1 id=eq.1h4v.s6.40d81a1ab551 from=translated src=- shape=bc829534 vocab=f169528d
+-/
 theorem edgeParameterValue_eq (e : K.Edge) {p : K.realization}
     (hp : p ∈ K.faceCarrier e.1) :
     M.edgeParameterValue e p = (K.edgeParameter e p hp : ℝ) := by
   simp only [edgeParameterValue, dite_eq_left hp]
 
-/-- The total parameter remains injective when restricted to its intended edge carrier. -/
+/-- The total parameter remains injective when restricted to its intended edge carrier.
+@isnad1 id=injon.0h3v.s5.1699dd099ffd from=translated src=- shape=e747da33 vocab=3ea35e97
+-/
 theorem edgeParameterValue_injOn (e : K.Edge) :
     Set.InjOn (M.edgeParameterValue e) (K.faceCarrier e.1) := by
   intro p hp q hq hpq
@@ -126,6 +143,9 @@ abbrev EdgeMark (e : K.Edge) := {p // p ∈ M.edgeMarks e}
 noncomputable def edgeMarkParameter (e : K.Edge) (p : M.EdgeMark e) : ℝ :=
   M.edgeParameterValue e p.1
 
+/--
+@isnad1 id=injectiv.0h3v.s4.828fb20b6f14 from=translated src=- shape=cf1106fc vocab=4b51c5aa
+-/
 theorem edgeMarkParameter_injective (e : K.Edge) :
     Function.Injective (M.edgeMarkParameter e) := by
   intro p q hpq
@@ -154,14 +174,23 @@ noncomputable instance edgeMarkLEDecidable (e : K.Edge) :
   fun p q ↦ inferInstanceAs
     (Decidable (M.edgeMarkParameter e p ≤ M.edgeMarkParameter e q))
 
+/--
+@isnad1 id=total.0h3v.s4.26406fd11a55 from=translated src=- shape=6dad5da5 vocab=38615bbe
+-/
 instance edgeMarkLE_total (e : K.Edge) :
     Std.Total (M.edgeMarkLE e) :=
   ⟨fun p q ↦ le_total (M.edgeMarkParameter e p) (M.edgeMarkParameter e q)⟩
 
+/--
+@isnad1 id=antisymm.0h3v.s4.ae7dc533b138 from=translated src=- shape=6dad5da5 vocab=deaa0948
+-/
 instance edgeMarkLE_antisymm (e : K.Edge) :
     Std.Antisymm (M.edgeMarkLE e) :=
   ⟨fun _ _ hpq hqp ↦ M.edgeMarkParameter_injective e (le_antisymm hpq hqp)⟩
 
+/--
+@isnad1 id=istrans.0h3v.s4.0a6f44857793 from=translated src=- shape=6dad5da5 vocab=4b50f74b
+-/
 instance edgeMarkLE_isTrans (e : K.Edge) :
     IsTrans (M.EdgeMark e) (M.edgeMarkLE e) :=
   ⟨fun _ _ _ hpq hqr ↦ hpq.trans hqr⟩
@@ -171,6 +200,9 @@ noncomputable def edgeMarkList (e : K.Edge) : List K.realization := by
   classical
   exact ((M.edgeMarks e).attach.sort (M.edgeMarkLE e)).map Subtype.val
 
+/--
+@isnad1 id=iff.0h4v.s5.a44100efec13 from=translated src=- shape=2af47ff4 vocab=6179bf71
+-/
 theorem mem_edgeMarkList_iff (e : K.Edge) (p : K.realization) :
     p ∈ M.edgeMarkList e ↔ p ∈ M.edgeMarks e := by
   classical
@@ -182,12 +214,18 @@ theorem mem_edgeMarkList_iff (e : K.Edge) (p : K.realization) :
   · intro hp
     exact ⟨⟨p, hp⟩, trivial, rfl⟩
 
+/--
+@isnad1 id=nodup.0h3v.s3.beb11ef66882 from=translated src=- shape=96153363 vocab=dad0628a
+-/
 theorem edgeMarkList_nodup (e : K.Edge) :
     (M.edgeMarkList e).Nodup := by
   classical
   unfold edgeMarkList
   exact (Finset.sort_nodup _ (M.edgeMarkLE e)).map Subtype.val_injective
 
+/--
+@isnad1 id=pairwise.0h3v.s5.658a8b49ab48 from=translated src=- shape=36f96923 vocab=5fc5f0d6
+-/
 theorem edgeMarkList_pairwise_parameter_le (e : K.Edge) :
     (M.edgeMarkList e).Pairwise fun p q ↦
       M.edgeParameterValue e p ≤ M.edgeParameterValue e q := by
@@ -198,6 +236,9 @@ theorem edgeMarkList_pairwise_parameter_le (e : K.Edge) :
   intro p q hpq
   exact hpq
 
+/--
+@isnad1 id=ne.0h2v.s3.04095ba38a35 from=translated src=- shape=8927bd27 vocab=3d73a48b
+-/
 theorem edgeFirstPoint_ne_edgeSecondPoint (e : K.Edge) :
     K.edgeFirstPoint e ≠ K.edgeSecondPoint e := by
   intro h
@@ -206,6 +247,9 @@ theorem edgeFirstPoint_ne_edgeSecondPoint (e : K.Edge) :
   simp [edgeFirstPoint, edgeSecondPoint, edgeVertexPoint,
     K.edgeFirst_ne_edgeSecond e] at hcoord
 
+/--
+@isnad1 id=le.0h3v.s4.b760eb4813ff from=translated src=- shape=d244fe69 vocab=6a74b833
+-/
 theorem two_le_edgeMarks_card (e : K.Edge) :
     2 ≤ (M.edgeMarks e).card := by
   rw [Nat.succ_le_iff]
@@ -214,6 +258,9 @@ theorem two_le_edgeMarks_card (e : K.Edge) :
     K.edgeSecondPoint e, M.edgeSecondPoint_mem_edgeMarks e,
     edgeFirstPoint_ne_edgeSecondPoint e⟩
 
+/--
+@isnad1 id=le.0h3v.s4.24ae7dc9cb5a from=translated src=- shape=d244fe69 vocab=65db52cb
+-/
 theorem two_le_edgeMarkList_length (e : K.Edge) :
     2 ≤ (M.edgeMarkList e).length := by
   rw [← List.toFinset_card_of_nodup (M.edgeMarkList_nodup e)]
@@ -222,6 +269,9 @@ theorem two_le_edgeMarkList_length (e : K.Edge) :
     simp only [List.mem_toFinset, M.mem_edgeMarkList_iff e]]
   exact M.two_le_edgeMarks_card e
 
+/--
+@isnad1 id=eq.0h3v.s4.8ef8398b700e from=translated src=- shape=7bfe49f7 vocab=4093c8e4
+-/
 @[simp] theorem edgeParameter_edgeFirstPoint (e : K.Edge) :
     M.edgeParameterValue e (K.edgeFirstPoint e) = 0 := by
   rw [M.edgeParameterValue_eq e
@@ -229,6 +279,9 @@ theorem two_le_edgeMarkList_length (e : K.Edge) :
     K.edgeParameter_eq_secondCoordinate]
   simp [edgeFirstPoint, edgeVertexPoint, K.edgeFirst_ne_edgeSecond e]
 
+/--
+@isnad1 id=eq.0h3v.s4.84b4908c40be from=translated src=- shape=7bfe49f7 vocab=862c26ad
+-/
 @[simp] theorem edgeParameter_edgeSecondPoint (e : K.Edge) :
     M.edgeParameterValue e (K.edgeSecondPoint e) = 1 := by
   rw [M.edgeParameterValue_eq e
@@ -236,12 +289,18 @@ theorem two_le_edgeMarkList_length (e : K.Edge) :
     K.edgeParameter_eq_secondCoordinate]
   simp [edgeSecondPoint, edgeVertexPoint]
 
+/--
+@isnad1 id=mem.1h4v.s6.a62043092270 from=translated src=- shape=f6a92cf6 vocab=7aa1a26a
+-/
 theorem edgeParameterValue_mem_Icc (e : K.Edge) {p : K.realization}
     (hp : p ∈ K.faceCarrier e.1) :
     M.edgeParameterValue e p ∈ Set.Icc (0 : ℝ) 1 := by
   rw [M.edgeParameterValue_eq e hp]
   exact (K.edgeParameter e p hp).2
 
+/--
+@isnad1 id=eq.0h3v.s5.770e00038a7c from=translated src=- shape=8b93b563 vocab=1ca907f9
+-/
 theorem edgeMarkList_first_parameter (e : K.Edge) :
     M.edgeParameterValue e
       ((M.edgeMarkList e).get ⟨0, by
@@ -277,6 +336,9 @@ theorem edgeMarkList_first_parameter (e : K.Edge) :
       exact h
   exact le_antisymm hle hnonneg
 
+/--
+@isnad1 id=eq.0h3v.s5.0555bcfca1c4 from=translated src=- shape=2cbe83f2 vocab=70fc21e1
+-/
 theorem edgeMarkList_last_parameter (e : K.Edge) :
     M.edgeParameterValue e
       ((M.edgeMarkList e).get
@@ -330,32 +392,45 @@ noncomputable def edgeIntervalSecond (e : K.Edge) (j : M.EdgeInterval e) :
     have := j.2
     omega⟩
 
+/--
+@isnad1 id=mem.0h4v.s5.3860bc26b50e from=translated src=- shape=8495a9d4 vocab=390c811c
+-/
 theorem edgeIntervalFirst_mem_edgeMarks (e : K.Edge)
     (j : M.EdgeInterval e) :
     M.edgeIntervalFirst e j ∈ M.edgeMarks e := by
   rw [← M.mem_edgeMarkList_iff e]
   exact List.get_mem _ _
 
+/--
+@isnad1 id=mem.0h4v.s5.a343318b1b0c from=translated src=- shape=8495a9d4 vocab=13e3bb48
+-/
 theorem edgeIntervalSecond_mem_edgeMarks (e : K.Edge)
     (j : M.EdgeInterval e) :
     M.edgeIntervalSecond e j ∈ M.edgeMarks e := by
   rw [← M.mem_edgeMarkList_iff e]
   exact List.get_mem _ _
 
-/-- The first endpoint of a marked edge interval lies on the underlying geometric edge. -/
+/-- The first endpoint of a marked edge interval lies on the underlying geometric edge.
+@isnad1 id=mem.0h4v.s5.3b73c4ed5fbe from=translated src=- shape=ee1b3852 vocab=e1e90ccd
+-/
 theorem edgeIntervalFirst_mem_faceCarrier (e : K.Edge)
     (j : M.EdgeInterval e) :
     M.edgeIntervalFirst e j ∈ K.faceCarrier e.1 :=
   ((M.mem_edgeMarks_iff e _).mp
     (M.edgeIntervalFirst_mem_edgeMarks e j)).2
 
-/-- The second endpoint of a marked edge interval lies on the underlying geometric edge. -/
+/-- The second endpoint of a marked edge interval lies on the underlying geometric edge.
+@isnad1 id=mem.0h4v.s5.12219face9e8 from=translated src=- shape=ee1b3852 vocab=38a6716d
+-/
 theorem edgeIntervalSecond_mem_faceCarrier (e : K.Edge)
     (j : M.EdgeInterval e) :
     M.edgeIntervalSecond e j ∈ K.faceCarrier e.1 :=
   ((M.mem_edgeMarks_iff e _).mp
     (M.edgeIntervalSecond_mem_edgeMarks e j)).2
 
+/--
+@isnad1 id=ne.0h4v.s4.12e2afe24ef2 from=translated src=- shape=00451120 vocab=5e8fad90
+-/
 theorem edgeIntervalFirst_ne_second (e : K.Edge)
     (j : M.EdgeInterval e) :
     M.edgeIntervalFirst e j ≠ M.edgeIntervalSecond e j := by
@@ -366,7 +441,9 @@ theorem edgeIntervalFirst_ne_second (e : K.Edge)
   simp only at hval
   omega
 
-/-- The first marked endpoint determines a consecutive interval uniquely. -/
+/-- The first marked endpoint determines a consecutive interval uniquely.
+@isnad1 id=eq.1h5v.s5.215af7eace57 from=translated src=- shape=02421ae5 vocab=6711708a
+-/
 theorem edgeInterval_eq_of_first_eq (e : K.Edge)
     {a b : M.EdgeInterval e}
     (h : M.edgeIntervalFirst e a = M.edgeIntervalFirst e b) :
@@ -376,7 +453,9 @@ theorem edgeInterval_eq_of_first_eq (e : K.Edge)
   exact congrArg
     (fun i : Fin (M.edgeMarkList e).length ↦ i.1) hindex
 
-/-- The second marked endpoint determines a consecutive interval uniquely. -/
+/-- The second marked endpoint determines a consecutive interval uniquely.
+@isnad1 id=eq.1h5v.s5.00f9b8a7a237 from=translated src=- shape=02421ae5 vocab=1215eff1
+-/
 theorem edgeInterval_eq_of_second_eq (e : K.Edge)
     {a b : M.EdgeInterval e}
     (h : M.edgeIntervalSecond e a = M.edgeIntervalSecond e b) :
@@ -389,7 +468,9 @@ theorem edgeInterval_eq_of_second_eq (e : K.Edge)
   omega
 
 /-- Three consecutive intervals on one ordered marked edge which all meet at the same marked
-point cannot be pairwise distinct. -/
+point cannot be pairwise distinct.
+@isnad1 id=or.3h7v.s6.18685a72ff96 from=translated src=- shape=ae2c97b5 vocab=5e8fad90
+-/
 theorem edgeInterval_pair_eq_of_three_common_endpoint (e : K.Edge)
     (a b c : M.EdgeInterval e) (p : K.realization)
     (ha : p = M.edgeIntervalFirst e a ∨
@@ -415,6 +496,9 @@ theorem edgeInterval_pair_eq_of_three_common_endpoint (e : K.Edge)
   · exact Or.inl (M.edgeInterval_eq_of_second_eq e (ha.symm.trans hb))
   · exact Or.inl (M.edgeInterval_eq_of_second_eq e (ha.symm.trans hb))
 
+/--
+@isnad1 id=lt.0h4v.s5.bf6c21ebdfe5 from=translated src=- shape=960de697 vocab=d0ead6a4
+-/
 theorem edgeInterval_parameter_lt (e : K.Edge)
     (j : M.EdgeInterval e) :
     M.edgeParameterValue e (M.edgeIntervalFirst e j) <
@@ -435,7 +519,9 @@ theorem edgeInterval_parameter_lt (e : K.Edge)
           (M.edgeIntervalSecond_mem_edgeMarks e j)).2 hEq)
 
 /-- At an abstract endpoint of an old edge there is only one incident consecutive interval on
-that edge. -/
+that edge.
+@isnad1 id=eq.3h6v.s7.f407aed13d6a from=translated src=- shape=c0034976 vocab=d838f828
+-/
 theorem edgeInterval_eq_of_common_vertex_endpoint (e : K.Edge)
     (a b : M.EdgeInterval e) (v : K.UsedVertex) (hve : v.1 ∈ e.1)
     (ha : K.vertexPoint v = M.edgeIntervalFirst e a ∨
@@ -490,7 +576,9 @@ theorem edgeInterval_eq_of_common_vertex_endpoint (e : K.Edge)
     · exact M.edgeInterval_eq_of_second_eq e (ha.symm.trans hb)
 
 /-- Earlier consecutive intervals on one globally ordered edge end no later than later intervals
-begin. -/
+begin.
+@isnad1 id=le.1h5v.s6.3a9adc11b7ce from=translated src=- shape=41170c1a vocab=688f5bb9
+-/
 theorem edgeIntervalSecond_parameter_le_first_of_lt (e : K.Edge)
     (a b : M.EdgeInterval e) (hab : a.1 < b.1) :
     M.edgeParameterValue e (M.edgeIntervalSecond e a) ≤
@@ -515,7 +603,9 @@ theorem edgeIntervalSecond_parameter_le_first_of_lt (e : K.Edge)
     simpa only [edgeIntervalSecond, edgeIntervalFirst, L, ka, kb] using hp
 
 /-- Two open consecutive parameter intervals on the same marked edge can overlap only when their
-indices agree. -/
+indices agree.
+@isnad1 id=eq.2h6v.s6.20e3e22312d6 from=translated src=- shape=e34de17d vocab=10a86fe7
+-/
 theorem edgeInterval_eq_of_parameter_mem_Ioo (e : K.Edge)
     (a b : M.EdgeInterval e) {z : ℝ}
     (ha : z ∈ Set.Ioo
@@ -534,7 +624,9 @@ theorem edgeInterval_eq_of_parameter_mem_Ioo (e : K.Edge)
     exact False.elim ((not_lt_of_ge (hb.2.trans_le hsep).le) ha.1)
 
 /-- Open consecutive intervals on propositionally equal abstract edges have the same two
-geometric endpoints whenever their parameter interiors overlap. -/
+geometric endpoints whenever their parameter interiors overlap.
+@isnad1 id=and.3h7v.s6.4248bd0264be from=translated src=- shape=ae680c29 vocab=cf103cac
+-/
 theorem edgeInterval_endpoints_eq_of_edge_eq_of_parameter_mem_Ioo
     {e d : K.Edge} (hed : e = d)
     (a : M.EdgeInterval e) (b : M.EdgeInterval d) {z : ℝ}
@@ -551,7 +643,9 @@ theorem edgeInterval_endpoints_eq_of_edge_eq_of_parameter_mem_Ioo
   subst b
   exact ⟨rfl, rfl⟩
 
-/-- Every point of an abstract edge lies between two consecutive global marks. -/
+/-- Every point of an abstract edge lies between two consecutive global marks.
+@isnad1 id=ex.1h4v.s6.7976c851c529 from=translated src=- shape=d4ef8d5e vocab=219b6c07
+-/
 theorem exists_edgeInterval_containing (e : K.Edge) (p : K.realization)
     (hp : p ∈ K.faceCarrier e.1) :
     ∃ j : M.EdgeInterval e,
@@ -575,7 +669,9 @@ theorem exists_edgeInterval_containing (e : K.Edge) (p : K.realization)
     (r := M.edgeParameterValue e p) L (M.edgeParameterValue e)
     hlength (M.edgeMarkList_pairwise_parameter_le e) hfirst hlast
 
-/-- No marked point lies strictly between the endpoints of a consecutive interval. -/
+/-- No marked point lies strictly between the endpoints of a consecutive interval.
+@isnad1 id=not.1h5v.s6.e79576641ec5 from=translated src=- shape=50eb1d52 vocab=df37bd68
+-/
 theorem not_edgeMark_parameter_mem_Ioo (e : K.Edge)
     (j : M.EdgeInterval e) {p : K.realization} (hp : p ∈ M.edgeMarks e) :
     ¬M.edgeParameterValue e p ∈ Set.Ioo
@@ -620,19 +716,27 @@ end EdgeMarking
 noncomputable def faceCenter (t : K.Face) : K.realization :=
   K.faceStandardMap t (K.faceCenterSimplex t)
 
+/--
+@isnad1 id=mem.0h2v.s5.ee10583f83ce from=translated src=- shape=04f255b3 vocab=b1e425e1
+-/
 theorem faceCenter_mem_faceCarrier (t : K.Face) :
     K.faceCenter t ∈ K.faceCarrier t.1 := by
   intro v hv
   rw [faceCenter, K.faceStandardMap_val,
     extendFaceCoordinates_of_notMem t.1 _ hv]
 
+/--
+@isnad1 id=eq.1h3v.s6.42d2d806189b from=translated src=- shape=33f92528 vocab=81e8268e
+-/
 theorem faceCenter_coordinate (t : K.Face) {v : K.Vertex} (hv : v ∈ t.1) :
     (K.faceCenter t).1 v = 1 / 3 := by
   rw [faceCenter, K.faceStandardMap_val,
     extendFaceCoordinates_of_mem t.1 _ hv]
   rfl
 
-/-- A barycentric face center is not a vertex point. -/
+/-- A barycentric face center is not a vertex point.
+@isnad1 id=ne.0h3v.s4.406baa730707 from=translated src=- shape=9f6d346d vocab=e56ba818
+-/
 theorem faceCenter_ne_vertexPoint (t : K.Face) (v : K.UsedVertex) :
     K.faceCenter t ≠ K.vertexPoint v := by
   intro h
@@ -645,7 +749,9 @@ theorem faceCenter_ne_vertexPoint (t : K.Face) (v : K.UsedVertex) :
     rw [hzero] at hcoord
     norm_num [vertexPoint] at hcoord
 
-/-- Distinct maximal intrinsic faces have distinct barycentric centers. -/
+/-- Distinct maximal intrinsic faces have distinct barycentric centers.
+@isnad1 id=injectiv.0h1v.s3.e22a79f4e5ed from=translated src=- shape=ca92e646 vocab=19d7c2d8
+-/
 theorem faceCenter_injective : Function.Injective K.faceCenter := by
   intro t u htu
   apply Subtype.ext
@@ -660,7 +766,9 @@ theorem faceCenter_injective : Function.Injective K.faceCenter := by
     norm_num at hcoord
   · rw [K.faces_card t.1 t.2, K.faces_card u.1 u.2]
 
-/-- A barycentric face center cannot lie on any abstract edge of the intrinsic complex. -/
+/-- A barycentric face center cannot lie on any abstract edge of the intrinsic complex.
+@isnad1 id=ne.1h4v.s5.116bb68724e7 from=translated src=- shape=5b4b49e2 vocab=161b79a1
+-/
 theorem faceCenter_ne_mem_edgeCarrier (t : K.Face) (e : K.Edge)
     {p : K.realization} (hp : p ∈ K.faceCarrier e.1) :
     K.faceCenter t ≠ p := by
@@ -678,7 +786,9 @@ theorem faceCenter_ne_mem_edgeCarrier (t : K.Face) (e : K.Edge)
   rw [K.faces_card t.1 t.2, K.card_of_mem_edges e.2] at hcard
   omega
 
-/-- Two abstract edges which contain the same two distinct intrinsic points are equal. -/
+/-- Two abstract edges which contain the same two distinct intrinsic points are equal.
+@isnad1 id=eq.5h5v.s7.f0a0b2c7bdbe from=translated src=- shape=de362285 vocab=e2513dc1
+-/
 theorem edge_eq_of_two_distinct_common_points (e d : K.Edge)
     {p q : K.realization} (hpE : p ∈ K.faceCarrier e.1)
     (hpD : p ∈ K.faceCarrier d.1) (hqE : q ∈ K.faceCarrier e.1)
@@ -731,6 +841,9 @@ theorem edge_eq_of_two_distinct_common_points (e d : K.Edge)
     (K.eq_facePoint_of_mem_faceCarrier_singleton t vt p hpSingle).trans
       (K.eq_facePoint_of_mem_faceCarrier_singleton t vt q hqSingle).symm
 
+/--
+@isnad1 id=not.0h3v.s7.6b144440110f from=translated src=- shape=4c9eb7cb vocab=2fad5297
+-/
 theorem intrinsicFaceVertex_add_two_not_mem_faceEdge (t : K.Face) (i : ZMod 3) :
     K.faceVertex t (i + 2) ∉ (K.faceEdge t i).1 := by
   rw [K.faceEdge_val]
@@ -740,6 +853,9 @@ theorem intrinsicFaceVertex_add_two_not_mem_faceEdge (t : K.Face) (i : ZMod 3) :
   · have h := K.faceVertex_ne_next t (i + 1)
     simpa only [add_assoc, show (1 : ZMod 3) + 1 = 2 by decide] using h.symm
 
+/--
+@isnad1 id=ne.1h4v.s6.ade72024638d from=translated src=- shape=0c2d4b45 vocab=b5b7f85d
+-/
 theorem faceCenter_ne_mem_faceEdge (t : K.Face) (i : ZMod 3)
     {p : K.realization} (hp : p ∈ K.faceCarrier (K.faceEdge t i).1) :
     K.faceCenter t ≠ p := by
@@ -767,6 +883,9 @@ noncomputable def fanFaceVertices (f : M.FanFace) : Finset K.realization :=
     M.edgeIntervalFirst (K.faceEdge f.1 f.2.1) f.2.2,
     M.edgeIntervalSecond (K.faceEdge f.1 f.2.1) f.2.2}
 
+/--
+@isnad1 id=eq.0h3v.s4.1ec9a15f3722 from=translated src=- shape=989f5104 vocab=f5c349b5
+-/
 theorem fanFaceVertices_card (f : M.FanFace) :
     (M.fanFaceVertices f).card = 3 := by
   let e := K.faceEdge f.1 f.2.1
@@ -789,7 +908,9 @@ theorem fanFaceVertices_card (f : M.FanFace) :
     M.edgeIntervalFirst_ne_second e f.2.2
   simp [fanFaceVertices, e, hcfirst, hcsecond, hfirstSecond]
 
-/-- A fan center is never one of the marked base vertices of any fan triangle. -/
+/-- A fan center is never one of the marked base vertices of any fan triangle.
+@isnad1 id=ne.0h4v.s7.796336801afa from=translated src=- shape=3bdc8f2c vocab=2d0c3331
+-/
 theorem fanCenter_ne_fanFirst (f g : M.FanFace) :
     K.faceCenter f.1 ≠
       M.edgeIntervalFirst (K.faceEdge g.1 g.2.1) g.2.2 := by
@@ -799,7 +920,9 @@ theorem fanCenter_ne_fanFirst (f g : M.FanFace) :
     (M.edgeIntervalFirst_mem_edgeMarks
       (K.faceEdge g.1 g.2.1) g.2.2)).2
 
-/-- A fan center is never the other marked base vertex of any fan triangle. -/
+/-- A fan center is never the other marked base vertex of any fan triangle.
+@isnad1 id=ne.0h4v.s7.dca157146276 from=translated src=- shape=3bdc8f2c vocab=99bb2054
+-/
 theorem fanCenter_ne_fanSecond (f g : M.FanFace) :
     K.faceCenter f.1 ≠
       M.edgeIntervalSecond (K.faceEdge g.1 g.2.1) g.2.2 := by
@@ -810,7 +933,9 @@ theorem fanCenter_ne_fanSecond (f g : M.FanFace) :
       (K.faceEdge g.1 g.2.1) g.2.2)).2
 
 /-- The center of one fan triangle occurs among the vertices of another exactly when their old
-parent faces agree. -/
+parent faces agree.
+@isnad1 id=iff.0h4v.s6.5e6375cc5b99 from=translated src=- shape=13e232b5 vocab=f194443f
+-/
 theorem faceCenter_mem_fanFaceVertices_iff (f g : M.FanFace) :
     K.faceCenter f.1 ∈ M.fanFaceVertices g ↔ f.1 = g.1 := by
   constructor
@@ -847,7 +972,9 @@ theorem eq_fanBase_of_card_two_of_subset_of_center_notMem
 
 /-- Three fan triangles with one old parent which all contain the same radial edge cannot be
 pairwise distinct.  Away from an old vertex all three bases lie on one globally ordered old
-edge; at an old vertex there are only the two cyclic sides of the parent triangle. -/
+edge; at an old vertex there are only the two cyclic sides of the parent triangle.
+@isnad1 id=or.5h6v.s10.aea72ebd0d31 from=translated src=- shape=dd20491b vocab=7b0181d7
+-/
 theorem fanFaceVertices_pair_eq_of_three_same_parent_endpoint
     (f g h : M.FanFace) (p : K.realization)
     (hfg : f.1 = g.1) (hfh : f.1 = h.1)
@@ -999,7 +1126,9 @@ theorem fanFaceVertices_pair_eq_of_three_same_parent_endpoint
     · subst d
       exact Or.inr (Or.inr rfl)
 
-/-- Every geometric vertex of a marked fan triangle lies in its parent old face. -/
+/-- Every geometric vertex of a marked fan triangle lies in its parent old face.
+@isnad1 id=mem.1h4v.s6.a45d1da2a2b9 from=translated src=- shape=c5d62fa4 vocab=e8530a82
+-/
 theorem fanVertex_mem_faceCarrier (f : M.FanFace) {p : K.realization}
     (hp : p ∈ M.fanFaceVertices f) :
     p ∈ K.faceCarrier f.1.1 := by
@@ -1042,6 +1171,9 @@ noncomputable def fanSecondVertex (f : M.FanFace) :
   ⟨M.edgeIntervalSecond (K.faceEdge f.1 f.2.1) f.2.2, by
     simp [fanFaceVertices]⟩
 
+/--
+@isnad1 id=eq.0h3v.s9.ec7cb39b80aa from=translated src=- shape=13bf4140 vocab=4cac7728
+-/
 theorem fanVertex_univ (f : M.FanFace) :
     (Finset.univ : Finset {p // p ∈ M.fanFaceVertices f}) =
       {M.fanCenterVertex f, M.fanFirstVertex f, M.fanSecondVertex f} := by
@@ -1055,6 +1187,9 @@ theorem fanVertex_univ (f : M.FanFace) :
   · exact Or.inr (Or.inl (Subtype.ext hp))
   · exact Or.inr (Or.inr (Subtype.ext hp))
 
+/--
+@isnad1 id=ne.0h3v.s5.52764ebbd256 from=translated src=- shape=ae2d85d8 vocab=9c53cbd4
+-/
 theorem fanCenterVertex_ne_first (f : M.FanFace) :
     M.fanCenterVertex f ≠ M.fanFirstVertex f := by
   intro h
@@ -1067,6 +1202,9 @@ theorem fanCenterVertex_ne_first (f : M.FanFace) :
   exact K.faceCenter_ne_mem_faceEdge f.1 f.2.1 hpEdge
     (congrArg Subtype.val h)
 
+/--
+@isnad1 id=ne.0h3v.s5.b0f7a637fa89 from=translated src=- shape=ae2d85d8 vocab=ee19ad35
+-/
 theorem fanCenterVertex_ne_second (f : M.FanFace) :
     M.fanCenterVertex f ≠ M.fanSecondVertex f := by
   intro h
@@ -1079,6 +1217,9 @@ theorem fanCenterVertex_ne_second (f : M.FanFace) :
   exact K.faceCenter_ne_mem_faceEdge f.1 f.2.1 hpEdge
     (congrArg Subtype.val h)
 
+/--
+@isnad1 id=ne.0h3v.s5.b650567dcc17 from=translated src=- shape=ae2d85d8 vocab=2060d78c
+-/
 theorem fanFirstVertex_ne_second (f : M.FanFace) :
     M.fanFirstVertex f ≠ M.fanSecondVertex f := by
   intro h
@@ -1116,6 +1257,9 @@ noncomputable def fanFaceMap (f : M.FanFace) :
     intro p _
     rw [M.fanVertex_mem_faceCarrier f p.2 v hv, mul_zero]
 
+/--
+@isnad1 id=mem.0h4v.s7.33129215de04 from=translated src=- shape=046ab759 vocab=d3c05c19
+-/
 theorem fanFaceMap_mem_faceCarrier (f : M.FanFace)
     (x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f}) :
     M.fanFaceMap f x ∈ K.faceCarrier f.1.1 := by
@@ -1126,6 +1270,9 @@ theorem fanFaceMap_mem_faceCarrier (f : M.FanFace)
   intro p _
   rw [M.fanVertex_mem_faceCarrier f p.2 v hv, mul_zero]
 
+/--
+@isnad1 id=eq.0h4v.s7.f0011045318f from=translated src=- shape=6bb473ed vocab=1d60bba0
+-/
 theorem fanFaceMap_vertex (f : M.FanFace)
     (p : {p // p ∈ M.fanFaceVertices f}) :
     M.fanFaceMap f (stdSimplex.vertex p) = p.1 := by
@@ -1140,6 +1287,9 @@ theorem fanFaceMap_vertex (f : M.FanFace)
     simp [hqp]
   · simp
 
+/--
+@isnad1 id=injectiv.0h3v.s6.e161807ca3b0 from=translated src=- shape=b5f23371 vocab=058615c9
+-/
 theorem fanVertex_val_injective (f : M.FanFace) :
     Function.Injective
       (fun p : {p // p ∈ M.fanFaceVertices f} ↦ p.1.1) := by
@@ -1148,7 +1298,9 @@ theorem fanVertex_val_injective (f : M.FanFace) :
   apply Subtype.ext
   exact hpq
 
-/-- The three geometric vertices of a marked fan triangle are affinely independent. -/
+/-- The three geometric vertices of a marked fan triangle are affinely independent.
+@isnad1 id=affinein.0h3v.s7.e7be8f5374fe from=translated src=- shape=4fd31bbc vocab=56e05c38
+-/
 theorem affineIndependent_fanVertex_val (f : M.FanFace) :
     AffineIndependent ℝ
       (fun p : {p // p ∈ M.fanFaceVertices f} ↦ p.1.1) := by
@@ -1218,6 +1370,9 @@ theorem affineIndependent_fanVertex_val (f : M.FanFace) :
     exact hthree.range
   · exact M.fanVertex_val_injective f
 
+/--
+@isnad1 id=injectiv.0h3v.s6.7f54040f7c51 from=translated src=- shape=1f0b05f0 vocab=9cb2c832
+-/
 theorem fanFaceMap_injective (f : M.FanFace) :
     Function.Injective (M.fanFaceMap f) := by
   classical
@@ -1242,6 +1397,9 @@ theorem fanFaceMap_injective (f : M.FanFace) :
   funext p
   exact hweights p (Finset.mem_univ p)
 
+/--
+@isnad1 id=continuo.0h3v.s8.d28b6ff2da99 from=translated src=- shape=1f0b05f0 vocab=7847bc74
+-/
 theorem continuous_fanFaceMap (f : M.FanFace) :
     Continuous (M.fanFaceMap f) := by
   classical
@@ -1252,13 +1410,17 @@ theorem continuous_fanFaceMap (f : M.FanFace) :
   intro p _
   exact ((continuous_apply p).comp continuous_subtype_val).mul continuous_const
 
-/-- Each marked fan face is embedded in the intrinsic realization. -/
+/-- Each marked fan face is embedded in the intrinsic realization.
+@isnad1 id=isembedd.0h3v.s8.a19f33254b52 from=translated src=- shape=1f0b05f0 vocab=8c26783f
+-/
 theorem isEmbedding_fanFaceMap (f : M.FanFace) :
     _root_.Topology.IsEmbedding (M.fanFaceMap f) :=
   (M.continuous_fanFaceMap f).isClosedEmbedding
     (M.fanFaceMap_injective f) |>.isEmbedding
 
-/-- The three distinguished fan weights sum to one. -/
+/-- The three distinguished fan weights sum to one.
+@isnad1 id=eq.0h4v.s9.893c746dd67b from=translated src=- shape=55be7dad vocab=717e1da2
+-/
 theorem fanWeights_sum (f : M.FanFace)
     (x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f}) :
     x.1 (M.fanCenterVertex f) +
@@ -1292,6 +1454,9 @@ noncomputable def fanBaseSimplexPath (f : M.FanFace)
   exact ⟨x, (convex_stdSimplex ℝ _).lineMap_mem
     (stdSimplex.vertex a).2 (stdSimplex.vertex b).2 r.2⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.54f42d88c54d from=translated src=- shape=c80cc35b vocab=d64e82f1
+-/
 @[simp] theorem fanBaseSimplexPath_apply_first (f : M.FanFace)
     (r : Set.Icc (0 : ℝ) 1) :
     M.fanBaseSimplexPath f r (M.fanFirstVertex f) = 1 - r.1 := by
@@ -1303,6 +1468,9 @@ noncomputable def fanBaseSimplexPath (f : M.FanFace)
   rw [AffineMap.lineMap_apply_module]
   simp [a, b, hab]
 
+/--
+@isnad1 id=eq.0h4v.s7.8be4114abbcd from=translated src=- shape=4a7ca363 vocab=2c7fcd09
+-/
 @[simp] theorem fanBaseSimplexPath_apply_second (f : M.FanFace)
     (r : Set.Icc (0 : ℝ) 1) :
     M.fanBaseSimplexPath f r (M.fanSecondVertex f) = r.1 := by
@@ -1314,6 +1482,9 @@ noncomputable def fanBaseSimplexPath (f : M.FanFace)
   rw [AffineMap.lineMap_apply_module]
   simp [a, b, hab]
 
+/--
+@isnad1 id=eq.0h4v.s7.6faf3a5ca4b4 from=translated src=- shape=320c789e vocab=65820b9b
+-/
 @[simp] theorem fanBaseSimplexPath_apply_center (f : M.FanFace)
     (r : Set.Icc (0 : ℝ) 1) :
     M.fanBaseSimplexPath f r (M.fanCenterVertex f) = 0 := by
@@ -1335,6 +1506,9 @@ noncomputable def fanSimplexLineMap (f : M.FanFace)
   ⟨AffineMap.lineMap x.1 y.1 r.1,
     (convex_stdSimplex ℝ _).lineMap_mem x.2 y.2 r.2⟩
 
+/--
+@isnad1 id=eq.0h6v.s8.fb890ac97e9b from=translated src=- shape=1bd569d1 vocab=1d5d109c
+-/
 theorem fanFaceMap_simplexLineMap (f : M.FanFace)
     (x y : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f})
     (r : Set.Icc (0 : ℝ) 1) :
@@ -1363,6 +1537,9 @@ noncomputable def fanBasePath (f : M.FanFace) :
     Set.Icc (0 : ℝ) 1 → K.realization :=
   M.fanFaceMap f ∘ M.fanBaseSimplexPath f
 
+/--
+@isnad1 id=eq.0h4v.s8.f2e56618627a from=translated src=- shape=b2cf77b8 vocab=bd245966
+-/
 theorem fanBaseWeights_sum (f : M.FanFace) (r : Set.Icc (0 : ℝ) 1) :
     M.fanBaseSimplexPath f r (M.fanFirstVertex f) +
       M.fanBaseSimplexPath f r (M.fanSecondVertex f) = 1 := by
@@ -1370,7 +1547,9 @@ theorem fanBaseWeights_sum (f : M.FanFace) (r : Set.Icc (0 : ℝ) 1) :
     M.fanBaseSimplexPath_apply_second f r]
   ring
 
-/-- A zero center weight puts a fan point on its declared base edge. -/
+/-- A zero center weight puts a fan point on its declared base edge.
+@isnad1 id=mem.1h4v.s8.deac37462c79 from=translated src=- shape=7ee34704 vocab=e324418e
+-/
 theorem fanFaceMap_mem_baseEdge_of_center_eq_zero
     (f : M.FanFace)
     (x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f})
@@ -1403,13 +1582,18 @@ theorem fanFaceMap_mem_baseEdge_of_center_eq_zero
   rw [show x c = 0 from hxCenter, hpEdge v hv, hqEdge v hv]
   ring
 
+/--
+@isnad1 id=mem.0h4v.s7.5db062981691 from=translated src=- shape=da29e2b0 vocab=1f328319
+-/
 theorem fanBasePath_mem_baseEdge (f : M.FanFace)
     (r : Set.Icc (0 : ℝ) 1) :
     M.fanBasePath f r ∈ K.faceCarrier (K.faceEdge f.1 f.2.1).1 := by
   apply M.fanFaceMap_mem_baseEdge_of_center_eq_zero f
   exact M.fanBaseSimplexPath_apply_center f r
 
-/-- On a fan base, the global edge parameter is the affine combination of its endpoints. -/
+/-- On a fan base, the global edge parameter is the affine combination of its endpoints.
+@isnad1 id=eq.1h4v.s9.af17e307ad4b from=translated src=- shape=f7ee1cf2 vocab=d66491c4
+-/
 theorem edgeParameterValue_fanFaceMap_of_center_eq_zero
     (f : M.FanFace)
     (x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f})
@@ -1452,7 +1636,9 @@ theorem edgeParameterValue_fanFaceMap_of_center_eq_zero
     K.edgeParameter_eq_secondCoordinate,
     K.edgeParameter_eq_secondCoordinate]
 
-/-- Every point of a globally marked edge lies on one consecutive fan base. -/
+/-- Every point of a globally marked edge lies on one consecutive fan base.
+@isnad1 id=ex.1h5v.s7.a0b36266fe76 from=translated src=- shape=de91c8c9 vocab=c3c14975
+-/
 theorem exists_fanBasePath_eq_of_mem_faceEdge
     (t : K.Face) (i : ZMod 3) {p : K.realization}
     (hp : p ∈ K.faceCarrier (K.faceEdge t i).1) :
@@ -1491,7 +1677,9 @@ theorem exists_fanBasePath_eq_of_mem_faceEdge
 
 end EdgeMarking
 
-/-- The standard face chart detects membership in each cyclic intrinsic edge. -/
+/-- The standard face chart detects membership in each cyclic intrinsic edge.
+@isnad1 id=iff.1h4v.s9.9ef5f42e1abf from=translated src=- shape=c76e86b2 vocab=553a8070
+-/
 theorem facePlaneHomeomorph_mem_edge_iff
     (t : K.Face) (i : ZMod 3) {p : K.realization}
     (hp : p ∈ K.faceCarrier t.1) :
@@ -1513,7 +1701,9 @@ theorem facePlaneHomeomorph_mem_edge_iff
     rw [← K.facePlaneHomeomorph_image_edge t i]
     exact ⟨⟨p, hp⟩, hpEdge, rfl⟩
 
-/-- The barycentric center maps to the interior of the standard triangle. -/
+/-- The barycentric center maps to the interior of the standard triangle.
+@isnad1 id=mem.0h2v.s9.d4fd584a5374 from=translated src=- shape=bcb3f7d6 vocab=412df09b
+-/
 theorem facePlaneCenter_mem_interior (t : K.Face) :
     (K.facePlaneHomeomorph t
       ⟨K.faceCenter t, K.faceCenter_mem_faceCarrier t⟩).1 ∈
@@ -1537,7 +1727,9 @@ theorem facePlaneCenter_mem_interior (t : K.Face) :
   exact (K.faceCenter_ne_mem_faceEdge t i hcEdge) rfl
 
 /-- A radial segment in the standard face chart pulls back to the same affine segment in
-intrinsic barycentric coordinates. -/
+intrinsic barycentric coordinates.
+@isnad1 id=eq.1h5v.s11.388f625b8a24 from=translated src=- shape=31b86ec3 vocab=e296ebac
+-/
 theorem face_val_eq_lineMap_of_plane_eq
     (t : K.Face) (p q : K.ClosedFace t) (r : ℝ)
     (hplane : (K.facePlaneHomeomorph t p).1 =
@@ -1576,7 +1768,9 @@ namespace EdgeMarking
 
 variable {K : IntrinsicTwoComplex} (M : K.EdgeMarking)
 
-/-- The marked fan triangles over one old face cover that entire closed face. -/
+/-- The marked fan triangles over one old face cover that entire closed face.
+@isnad1 id=ex.1h4v.s9.7538f3330c47 from=translated src=- shape=54e05208 vocab=8fe2307b
+-/
 theorem exists_fanFaceMap_eq_of_mem_faceCarrier
     (t : K.Face) {p : K.realization} (hp : p ∈ K.faceCarrier t.1) :
     ∃ i : ZMod 3, ∃ j : M.EdgeInterval (K.faceEdge t i),
@@ -1683,12 +1877,18 @@ noncomputable def fanNormalizedBasePoint (f : M.FanFace)
     stdSimplex ℝ {p // p ∈ M.fanFaceVertices f} :=
   M.fanBaseSimplexPath f (M.fanNormalizedBaseParameter f x hxCenter)
 
+/--
+@isnad1 id=eq.1h4v.s8.58a38f52af15 from=translated src=- shape=77cb4e90 vocab=8cab0a73
+-/
 @[simp] theorem fanNormalizedBasePoint_apply_center (f : M.FanFace)
     (x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f})
     (hxCenter : x (M.fanCenterVertex f) < 1) :
     M.fanNormalizedBasePoint f x hxCenter (M.fanCenterVertex f) = 0 :=
   M.fanBaseSimplexPath_apply_center f _
 
+/--
+@isnad1 id=eq.1h4v.s9.3fa6571aee94 from=translated src=- shape=46b08153 vocab=c95a07b9
+-/
 @[simp] theorem fanNormalizedBasePoint_apply_second (f : M.FanFace)
     (x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f})
     (hxCenter : x (M.fanCenterVertex f) < 1) :
@@ -1697,6 +1897,9 @@ noncomputable def fanNormalizedBasePoint (f : M.FanFace)
   rw [fanNormalizedBasePoint, M.fanBaseSimplexPath_apply_second]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s9.de684631f1e3 from=translated src=- shape=46b08153 vocab=16fa28b0
+-/
 @[simp] theorem fanNormalizedBasePoint_apply_first (f : M.FanFace)
     (x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f})
     (hxCenter : x (M.fanCenterVertex f) < 1) :
@@ -1722,7 +1925,9 @@ noncomputable def fanNormalizedBasePoint (f : M.FanFace)
   linarith [hnum]
 
 /-- A noncenter fan point is the affine combination of the cone center and its normalized
-base projection. -/
+base projection.
+@isnad1 id=eq.1h4v.s9.b713ad534750 from=translated src=- shape=7a4b3eb1 vocab=06d214ed
+-/
 theorem fanFaceMap_eq_lineMap_normalizedBase (f : M.FanFace)
     (x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f})
     (hxCenter : x (M.fanCenterVertex f) < 1) :
@@ -1764,7 +1969,9 @@ theorem fanFaceMap_eq_lineMap_normalizedBase (f : M.FanFace)
   field_simp [hd]
   ring
 
-/-- The coordinate opposite a fan base is exactly one third of the cone-center weight. -/
+/-- The coordinate opposite a fan base is exactly one third of the cone-center weight.
+@isnad1 id=eq.0h4v.s9.777148edc40d from=translated src=- shape=03bb9c1d vocab=9ff1cbd9
+-/
 theorem fanFaceMap_opposite (f : M.FanFace)
     (x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f}) :
     (M.fanFaceMap f x).1 (K.faceVertex f.1 (f.2.1 + 2)) =
@@ -1809,7 +2016,9 @@ theorem fanFaceMap_opposite (f : M.FanFace)
   · intro hcNot
     simp at hcNot
 
-/-- A fan point lies on its declared base edge only if its cone-center weight vanishes. -/
+/-- A fan point lies on its declared base edge only if its cone-center weight vanishes.
+@isnad1 id=eq.1h4v.s8.b743e549444f from=translated src=- shape=1c6db7a2 vocab=e324418e
+-/
 theorem fanCenterWeight_eq_zero_of_mem_baseEdge
     (f : M.FanFace)
     (x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f})
@@ -1823,7 +2032,9 @@ theorem fanCenterWeight_eq_zero_of_mem_baseEdge
   rw [M.fanFaceMap_opposite] at hopposite
   linarith
 
-/-- The center contribution is a lower bound for every parent-face barycentric coordinate. -/
+/-- The center contribution is a lower bound for every parent-face barycentric coordinate.
+@isnad1 id=le.0h5v.s8.632f997f15a8 from=translated src=- shape=af1c46c1 vocab=bf436b6d
+-/
 theorem fanFaceMap_faceVertex_lower_bound (f : M.FanFace)
     (x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f})
     (i : ZMod 3) :
@@ -1845,7 +2056,9 @@ theorem fanFaceMap_faceVertex_lower_bound (f : M.FanFace)
   rw [hcValue] at hterm
   simpa only [c, div_eq_mul_inv, one_mul] using hterm
 
-/-- Within one old parent face, a common geometric point determines its cone-center weight. -/
+/-- Within one old parent face, a common geometric point determines its cone-center weight.
+@isnad1 id=eq.1h9v.s10.6afc5a71fbce from=translated src=- shape=b805d373 vocab=b1dec139
+-/
 theorem fanCenterWeight_eq_of_faceMap_eq_of_parent_eq
     (t : K.Face) (i j : ZMod 3)
     (a : M.EdgeInterval (K.faceEdge t i))
@@ -1887,7 +2100,9 @@ theorem fanCenterWeight_eq_of_faceMap_eq_of_parent_eq
       _ = y (M.fanCenterVertex ⟨t, j, b⟩) / 3 := hyOpp
   exact le_antisymm hleXY hleYX
 
-/-- When the cone-center weight vanishes, the two base weights sum to one. -/
+/-- When the cone-center weight vanishes, the two base weights sum to one.
+@isnad1 id=eq.1h4v.s9.63ec325f60cd from=translated src=- shape=53eaaadb vocab=a988519e
+-/
 theorem fanBaseWeights_sum_of_center_eq_zero (f : M.FanFace)
     (x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f})
     (hxCenter : x (M.fanCenterVertex f) = 0) :
@@ -1900,7 +2115,9 @@ theorem fanBaseWeights_sum_of_center_eq_zero (f : M.FanFace)
   exact hsum
 
 /-- Positive weights at both base vertices put the edge parameter strictly between the two
-consecutive marked parameters. -/
+consecutive marked parameters.
+@isnad1 id=mem.3h4v.s9.99762ea327c1 from=translated src=- shape=db85e304 vocab=ca835ad5
+-/
 theorem edgeParameterValue_fanFaceMap_mem_Ioo_of_center_eq_zero
     (f : M.FanFace)
     (x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f})
@@ -1944,7 +2161,9 @@ theorem edgeParameterValue_fanFaceMap_mem_Ioo_of_center_eq_zero
     rw [hzRight]
     exact sub_lt_self _ (mul_pos hxFirst (sub_pos.mpr hfirst))
 
-/-- A relative-interior point of a marked fan base is not one of the global marked points. -/
+/-- A relative-interior point of a marked fan base is not one of the global marked points.
+@isnad1 id=not.3h4v.s9.2cd338ce7a61 from=translated src=- shape=f7a02a95 vocab=d7e43a72
+-/
 theorem fanFaceMap_not_mem_points_of_center_zero_of_base_weights_pos
     (f : M.FanFace)
     (x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f})
@@ -1963,7 +2182,9 @@ theorem fanFaceMap_not_mem_points_of_center_zero_of_base_weights_pos
       f x hxCenter hxFirst hxSecond)
 
 /-- A relative-interior point of a fan base lies in the open barycentric carrier of its old
-abstract edge. -/
+abstract edge.
+@isnad1 id=mem.3h4v.s9.c556d4d202ce from=translated src=- shape=978f6094 vocab=6f299595
+-/
 theorem fanFaceMap_mem_edgePath_image_Ioo_of_center_zero_of_base_weights_pos
     (f : M.FanFace)
     (x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f})
@@ -2000,7 +2221,9 @@ theorem fanFaceMap_mem_edgePath_image_Ioo_of_center_zero_of_base_weights_pos
   exact ⟨hfirstIcc.1.trans_lt hxIoo.1, hxIoo.2.trans_le hsecondIcc.2⟩
 
 /-- A point common to fan triangles from distinct old parent faces has zero cone-center weight
-in the first triangle. -/
+in the first triangle.
+@isnad1 id=eq.2h6v.s8.8e6b7d9de111 from=translated src=- shape=8eddd820 vocab=a35fe255
+-/
 theorem fanCenterWeight_eq_zero_of_faceMap_eq_of_parent_ne
     {f g : M.FanFace} (hfg : f.1 ≠ g.1)
     {x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f}}
@@ -2035,7 +2258,9 @@ theorem fanCenterWeight_eq_zero_of_faceMap_eq_of_parent_ne
     exact hfg (Subtype.ext hval)
   · exact x.2.1 _
 
-/-- A fan point lying in a distinct old parent face has zero cone-center weight. -/
+/-- A fan point lying in a distinct old parent face has zero cone-center weight.
+@isnad1 id=eq.2h5v.s8.627cf1b8b1cd from=translated src=- shape=a989c55b vocab=945a2eb6
+-/
 theorem fanCenterWeight_eq_zero_of_mem_faceCarrier_of_parent_ne
     (f : M.FanFace) (g : K.Face) (hfg : f.1 ≠ g)
     (x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f})
@@ -2068,7 +2293,9 @@ theorem fanCenterWeight_eq_zero_of_mem_faceCarrier_of_parent_ne
   · exact x.2.1 _
 
 /-- Extended coordinates of a marked fan triangle are the sum of its three vertex-weight
-spikes. -/
+spikes.
+@isnad1 id=eq.0h4v.s9.2a3e794e95fc from=translated src=- shape=3b495c1e vocab=8f8b71ed
+-/
 theorem extendFaceCoordinates_fanFace (f : M.FanFace)
     (x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f}) :
     extendFaceCoordinates (M.fanFaceVertices f) x =
@@ -2122,7 +2349,9 @@ theorem extendFaceCoordinates_fanFace (f : M.FanFace)
     simp [c, p, q, hvc, hvp, hvq]
 
 /-- A zero-center fan point outside the relative interior of its base is one of the declared
-base vertices, both geometrically and in zero-extended barycentric coordinates. -/
+base vertices, both geometrically and in zero-extended barycentric coordinates.
+@isnad1 id=or.2h4v.s10.73d14f1d0c5a from=translated src=- shape=83444e6d vocab=29f6be75
+-/
 theorem fanEndpointData_of_center_eq_zero_of_not_base_weights_pos
     (f : M.FanFace)
     (x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f})
@@ -2205,7 +2434,9 @@ theorem fanEndpointData_of_center_eq_zero_of_not_base_weights_pos
 
 /-- Relative-interior points of fan bases use the same zero-extended coordinates in every fan
 triangle that contains them.  Distinct old edges have disjoint open barycentric carriers, while
-on one old edge the global mark order determines a unique consecutive interval. -/
+on one old edge the global mark order determines a unique consecutive interval.
+@isnad1 id=eq.7h6v.s10.a92fe0def24f from=translated src=- shape=1f33490f vocab=1f4dba0d
+-/
 theorem fanExtendedCoordinates_eq_of_faceMap_eq_of_center_zero_of_base_weights_pos
     {f g : M.FanFace}
     {x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f}}
@@ -2355,7 +2586,9 @@ theorem fanExtendedCoordinates_eq_of_faceMap_eq_of_center_zero_of_base_weights_p
   simp only [Pi.single_zero, zero_add]
   rw [hfirstVal, hsecondVal, hfirstWeight, hsecondWeight]
 
-/-- A zero-center fan point outside the relative interior of its base is a global marked point. -/
+/-- A zero-center fan point outside the relative interior of its base is a global marked point.
+@isnad1 id=mem.2h4v.s9.4e14f6f70945 from=translated src=- shape=7fe78b6e vocab=d7e43a72
+-/
 theorem fanFaceMap_mem_points_of_center_zero_of_not_base_weights_pos
     (f : M.FanFace)
     (x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f})
@@ -2379,7 +2612,9 @@ theorem fanFaceMap_mem_points_of_center_zero_of_not_base_weights_pos
         (K.faceEdge f.1 f.2.1) f.2.2)).1
 
 /-- Zero-center points in any two marked fan triangles have compatible global barycentric
-coordinates. -/
+coordinates.
+@isnad1 id=eq.3h6v.s9.740f7915fed9 from=translated src=- shape=31489629 vocab=13344a5f
+-/
 theorem fanExtendedCoordinates_eq_of_faceMap_eq_of_center_zero
     {f g : M.FanFace}
     {x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f}}
@@ -2449,7 +2684,9 @@ theorem fanExtendedCoordinates_eq_of_faceMap_eq_of_center_zero
         rw [hxEnd.2, hyEnd.2, hv]
 
 /-- After removing the common center contribution, equal points in one old parent face have
-equal radial projections to its marked boundary. -/
+equal radial projections to its marked boundary.
+@isnad1 id=eq.3h9v.s10.4a8f093863d5 from=translated src=- shape=13868d3c vocab=22317b99
+-/
 theorem fanNormalizedBaseFaceMap_eq_of_same_parent
     (t : K.Face) (i j : ZMod 3)
     (a : M.EdgeInterval (K.faceEdge t i))
@@ -2494,7 +2731,9 @@ theorem fanNormalizedBaseFaceMap_eq_of_same_parent
   nlinarith
 
 /-- Restoring the center weight after radial projection recovers the original zero-extended
-coordinates. -/
+coordinates.
+@isnad1 id=eq.1h4v.s9.b85e547af884 from=translated src=- shape=48f6c58f vocab=f5e2e610
+-/
 theorem extendFaceCoordinates_eq_center_add_smul_normalizedBase
     (f : M.FanFace)
     (x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f})
@@ -2555,7 +2794,9 @@ theorem extendFaceCoordinates_eq_center_add_smul_normalizedBase
   rw [hfirst, hsecond, add_assoc]
 
 /-- Marked fan triangles in one old parent face assign the same global barycentric coordinates
-to every common point. -/
+to every common point.
+@isnad1 id=eq.1h9v.s9.1c498fb69a0d from=translated src=- shape=5163a01b vocab=c91e3763
+-/
 theorem fanExtendedCoordinates_eq_of_faceMap_eq_of_same_parent
     (t : K.Face) (i j : ZMod 3)
     (a : M.EdgeInterval (K.faceEdge t i))
@@ -2648,7 +2889,9 @@ theorem fanExtendedCoordinates_eq_of_faceMap_eq_of_same_parent
         (M.extendFaceCoordinates_eq_center_add_smul_normalizedBase
           ⟨t, j, b⟩ y hyCenter).symm
 
-/-- All marked fan faces use one global barycentric coordinate system on overlaps. -/
+/-- All marked fan faces use one global barycentric coordinate system on overlaps.
+@isnad1 id=eq.1h6v.s8.41624a887e0d from=translated src=- shape=01b3c807 vocab=640081bf
+-/
 theorem fanExtendedCoordinates_eq_of_faceMap_eq
     {f g : M.FanFace}
     {x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f}}
@@ -2693,6 +2936,9 @@ noncomputable def globalFanFaceVertices (f : M.FanFace) :
     Finset M.FanVertex :=
   (M.fanFaceVertices f).attach.map (M.fanVertexEmbedding f)
 
+/--
+@isnad1 id=iff.0h4v.s6.54112b1eda81 from=translated src=- shape=049f1038 vocab=fa1ddbe8
+-/
 theorem mem_globalFanFaceVertices_iff (f : M.FanFace) (v : M.FanVertex) :
     v ∈ M.globalFanFaceVertices f ↔
       v.1 ∈ M.fanFaceVertices f := by
@@ -2721,17 +2967,29 @@ noncomputable def globalFanFirst (f : M.FanFace) : M.FanVertex :=
 noncomputable def globalFanSecond (f : M.FanFace) : M.FanVertex :=
   M.fanVertexEmbedding f (M.fanSecondVertex f)
 
+/--
+@isnad1 id=eq.0h3v.s6.006882b2fead from=translated src=- shape=dc0fa27c vocab=ae54f7ba
+-/
 @[simp] theorem globalFanCenter_val (f : M.FanFace) :
     (M.globalFanCenter f).1 = K.faceCenter f.1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.b7159845340b from=translated src=- shape=06f0b883 vocab=8f832bb7
+-/
 @[simp] theorem globalFanFirst_val (f : M.FanFace) :
     (M.globalFanFirst f).1 =
       M.edgeIntervalFirst (K.faceEdge f.1 f.2.1) f.2.2 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.b25a39057ef3 from=translated src=- shape=06f0b883 vocab=f64f4d7f
+-/
 @[simp] theorem globalFanSecond_val (f : M.FanFace) :
     (M.globalFanSecond f).1 =
       M.edgeIntervalSecond (K.faceEdge f.1 f.2.1) f.2.2 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.d7a1119af76b from=translated src=- shape=ccc562c6 vocab=85727c35
+-/
 theorem globalFanFaceVertices_eq (f : M.FanFace) :
     M.globalFanFaceVertices f =
       {M.globalFanCenter f, M.globalFanFirst f, M.globalFanSecond f} := by
@@ -2748,16 +3006,25 @@ theorem globalFanFaceVertices_eq (f : M.FanFace) :
     · exact Or.inr (Or.inl (congrArg Subtype.val hv))
     · exact Or.inr (Or.inr (congrArg Subtype.val hv))
 
+/--
+@isnad1 id=ne.0h4v.s4.5dbbd26a6d50 from=translated src=- shape=04162690 vocab=f109432f
+-/
 theorem globalFanCenter_ne_first (f g : M.FanFace) :
     M.globalFanCenter f ≠ M.globalFanFirst g := by
   intro h
   exact M.fanCenter_ne_fanFirst f g (congrArg Subtype.val h)
 
+/--
+@isnad1 id=ne.0h4v.s4.6c7306e8d0bf from=translated src=- shape=04162690 vocab=9a8b12d6
+-/
 theorem globalFanCenter_ne_second (f g : M.FanFace) :
     M.globalFanCenter f ≠ M.globalFanSecond g := by
   intro h
   exact M.fanCenter_ne_fanSecond f g (congrArg Subtype.val h)
 
+/--
+@isnad1 id=iff.0h4v.s6.41de6413fe64 from=translated src=- shape=83c50181 vocab=1c390f64
+-/
 theorem globalFanCenter_eq_iff (f g : M.FanFace) :
     M.globalFanCenter f = M.globalFanCenter g ↔ f.1 = g.1 := by
   constructor
@@ -2808,6 +3075,9 @@ noncomputable def fanFaceVertexEquiv (f : M.FanFace) :
     apply Subtype.ext
     rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.08d325e748bc from=translated src=- shape=fe134de8 vocab=a074a101
+-/
 @[simp] theorem fanFaceVertexEquiv_apply_val (f : M.FanFace)
     (v : {v // v ∈ M.globalFanFaceVertices f}) :
     (M.fanFaceVertexEquiv f v).1 = v.1.1 := rfl
@@ -2818,6 +3088,9 @@ noncomputable def fanRelabelSimplex (f : M.FanFace)
     stdSimplex ℝ {p // p ∈ M.fanFaceVertices f} :=
   stdSimplex.map (M.fanFaceVertexEquiv f) x
 
+/--
+@isnad1 id=eq.0h5v.s8.9d106bf91acc from=translated src=- shape=d62b2282 vocab=0cd3c750
+-/
 theorem fanRelabel_extended_apply (f : M.FanFace)
     (x : stdSimplex ℝ {v // v ∈ M.globalFanFaceVertices f})
     (v : M.FanVertex) :
@@ -2857,6 +3130,9 @@ theorem fanRelabel_extended_apply (f : M.FanFace)
     rw [extendFaceCoordinates_of_notMem _ _ hp,
       extendFaceCoordinates_of_notMem _ _ hv]
 
+/--
+@isnad1 id=iff.0h6v.s9.5819fee376b0 from=translated src=- shape=d07096ef vocab=4040e9be
+-/
 theorem fanRelabel_extended_eq_iff
     {f g : M.FanFace}
     {x : stdSimplex ℝ {v // v ∈ M.globalFanFaceVertices f}}
@@ -2897,11 +3173,17 @@ noncomputable def globalFanFaceMap (f : M.FanFace) :
     stdSimplex ℝ {v // v ∈ M.globalFanFaceVertices f} → K.realization :=
   fun x ↦ M.fanFaceMap f (M.fanRelabelSimplex f x)
 
+/--
+@isnad1 id=continuo.0h3v.s8.0d332dbc6aa4 from=translated src=- shape=6da09622 vocab=d920e108
+-/
 theorem continuous_globalFanFaceMap (f : M.FanFace) :
     Continuous (M.globalFanFaceMap f) :=
   (M.continuous_fanFaceMap f).comp
     (stdSimplex.continuous_map (M.fanFaceVertexEquiv f))
 
+/--
+@isnad1 id=eq.0h3v.s7.f4c449e3c2fc from=translated src=- shape=03bb62c7 vocab=8f3b383a
+-/
 theorem range_globalFanFaceMap (f : M.FanFace) :
     Set.range (M.globalFanFaceMap f) = Set.range (M.fanFaceMap f) := by
   apply Set.Subset.antisymm
@@ -2919,6 +3201,9 @@ theorem range_globalFanFaceMap (f : M.FanFace) :
       exact (M.fanFaceVertexEquiv f).apply_symm_apply z
     rw [he, stdSimplex.map_id_apply]
 
+/--
+@isnad1 id=mem.0h4v.s7.b515e4d94842 from=translated src=- shape=3889a182 vocab=fdad166f
+-/
 theorem globalFanFaceMap_mem_faceCarrier (f : M.FanFace)
     (x : stdSimplex ℝ {v // v ∈ M.globalFanFaceVertices f}) :
     M.globalFanFaceMap f x ∈ K.faceCarrier f.1.1 :=
@@ -2931,13 +3216,18 @@ noncomputable def fanBarycentricAffine :
   (∑ v : M.FanVertex,
     (LinearMap.proj v).smulRight (v.1.1 : K.Vertex → ℝ)).toAffineMap
 
+/--
+@isnad1 id=eq.0h3v.s8.f6fb5a74f52e from=translated src=- shape=4407cc0a vocab=6ce99fca
+-/
 @[simp] theorem fanBarycentricAffine_apply (z : M.FanVertex → ℝ) :
     M.fanBarycentricAffine z =
       fun k ↦ ∑ v : M.FanVertex, z v * v.1.1 k := by
   funext k
   simp [fanBarycentricAffine, Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
 
-/-- A globally relabeled fan-face map is affine evaluation at its actual intrinsic vertices. -/
+/-- A globally relabeled fan-face map is affine evaluation at its actual intrinsic vertices.
+@isnad1 id=eq.0h4v.s8.a80bf0edde4a from=translated src=- shape=47ba27ad vocab=92f992fb
+-/
 theorem globalFanFaceMap_val_eq_fanBarycentricAffine
     (f : M.FanFace)
     (x : stdSimplex ℝ {v // v ∈ M.globalFanFaceVertices f}) :
@@ -2988,7 +3278,9 @@ theorem globalFanFaceMap_val_eq_fanBarycentricAffine
       rw [hweight]
       rfl
 
-/-- Equal zero-extended geometric-point coordinates give equal marked fan images. -/
+/-- Equal zero-extended geometric-point coordinates give equal marked fan images.
+@isnad1 id=eq.1h6v.s8.11c55f305d31 from=translated src=- shape=b245a91a vocab=640081bf
+-/
 theorem fanFaceMap_eq_of_extendedCoordinates_eq
     {f g : M.FanFace}
     {x : stdSimplex ℝ {p // p ∈ M.fanFaceVertices f}}
@@ -3001,7 +3293,9 @@ theorem fanFaceMap_eq_of_extendedCoordinates_eq
   change (∑ p, x p * p.1.1 v) = ∑ p, y p * p.1.1 v
   exact sum_extendFaceCoordinates_eq_of_eq x y hxy (fun p ↦ p.1 v)
 
-/-- Equal global fan coordinates are sufficient for equality of geometric images. -/
+/-- Equal global fan coordinates are sufficient for equality of geometric images.
+@isnad1 id=eq.1h6v.s8.857a517c0c25 from=translated src=- shape=6cab2c34 vocab=1c6c6e03
+-/
 theorem globalFanFaceMap_eq_of_extendedCoordinates_eq
     {f g : M.FanFace}
     {x : stdSimplex ℝ {v // v ∈ M.globalFanFaceVertices f}}
@@ -3013,7 +3307,9 @@ theorem globalFanFaceMap_eq_of_extendedCoordinates_eq
     ((M.fanRelabel_extended_eq_iff).mpr hxy)
 
 /-- Equal geometric images of globally relabeled marked fan faces have equal zero-extended
-barycentric coordinates. -/
+barycentric coordinates.
+@isnad1 id=eq.1h6v.s8.52d24d57e1b0 from=translated src=- shape=66e7433b vocab=1c6c6e03
+-/
 theorem globalFanExtendedCoordinates_eq_of_faceMap_eq
     {f g : M.FanFace}
     {x : stdSimplex ℝ {v // v ∈ M.globalFanFaceVertices f}}
@@ -3024,7 +3320,9 @@ theorem globalFanExtendedCoordinates_eq_of_faceMap_eq
   (M.fanRelabel_extended_eq_iff).mp
     (M.fanExtendedCoordinates_eq_of_faceMap_eq hxy)
 
-/-- Exact face-to-face compatibility of the globally relabeled marked fan family. -/
+/-- Exact face-to-face compatibility of the globally relabeled marked fan family.
+@isnad1 id=iff.0h6v.s8.0a8f2ee7b86a from=translated src=- shape=2ef4437e vocab=1c6c6e03
+-/
 theorem globalFanFaceMap_eq_iff
     {f g : M.FanFace}
     {x : stdSimplex ℝ {v // v ∈ M.globalFanFaceVertices f}}
@@ -3098,7 +3396,9 @@ private theorem oldFaceEdge_eq_of_globalFanBase_eq (f g : M.FanFace)
   exact K.edge_eq_of_two_distinct_common_points E D hp₀E hp₀D hp₁E hp₁D hpNe
 
 /-- The maximal global fan-face family inherits surface edge valence from the old intrinsic
-complex. -/
+complex.
+@isnad1 id=le.2h3v.s8.b0c467dc5fd4 from=translated src=- shape=3d01ea4e vocab=f095925a
+-/
 theorem globalFanFaceFamily_edge_valence
     (hK : K.HasSurfaceEdgeValence) (e : Finset M.FanVertex)
     (hecard : e.card = 2) :
@@ -3275,7 +3575,9 @@ theorem globalFanFaceFamily_edge_valence
     have hbound := hK E.1 E.2
     omega
 
-/-- The compact intrinsic complex underlying the global marked fan has surface edge valence. -/
+/-- The compact intrinsic complex underlying the global marked fan has surface edge valence.
+@isnad1 id=hassurfa.1h2v.s6.c0fac0aeaadd from=translated src=- shape=0766058c vocab=6b29d24b
+-/
 theorem markedFanCompactIntrinsic_hasSurfaceEdgeValence
     (hK : K.HasSurfaceEdgeValence) :
     M.markedFanLocallyFiniteTriangleComplex.compactIntrinsic.HasSurfaceEdgeValence := by
@@ -3303,7 +3605,9 @@ theorem markedFanCompactIntrinsic_hasSurfaceEdgeValence
   exact M.globalFanFaceFamily_edge_valence hK e
     (M.markedFanLocallyFiniteTriangleComplex.compactIntrinsic.card_of_mem_edges he)
 
-/-- The marked fan family covers the entire old intrinsic realization. -/
+/-- The marked fan family covers the entire old intrinsic realization.
+@isnad1 id=eq.0h2v.s6.8e8cb12b425e from=translated src=- shape=915f20c5 vocab=cfdb1331
+-/
 theorem markedFanLocallyFiniteTriangleComplex_support :
     M.markedFanLocallyFiniteTriangleComplex.support = Set.univ := by
   apply Set.eq_univ_of_forall
@@ -3325,6 +3629,9 @@ noncomputable def markedFanGeometricTriangulation :
   M.markedFanLocallyFiniteTriangleComplex.toGeometricTriangulation
     M.markedFanLocallyFiniteTriangleComplex_support
 
+/--
+@isnad1 id=eq.0h3v.s11.6b01f211f8cd from=translated src=- shape=e35d1168 vocab=0eaae791
+-/
 @[simp] theorem markedFanGeometricTriangulation_homeo_apply
     (x : M.markedFanLocallyFiniteTriangleComplex.compactIntrinsic.realization) :
     M.markedFanGeometricTriangulation.homeo x =
@@ -3348,6 +3655,9 @@ noncomputable def markedFanHomeomorph :
   exact Continuous.homeoOfEquivCompactToT2
     (f := e) L.continuous_compactEval
 
+/--
+@isnad1 id=eq.0h3v.s11.1033e32962fb from=translated src=- shape=a9799ac8 vocab=06cb53b5
+-/
 @[simp] theorem markedFanHomeomorph_apply
     (x : M.markedFanLocallyFiniteTriangleComplex.compactIntrinsic.realization) :
     M.markedFanHomeomorph x =

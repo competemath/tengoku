@@ -39,12 +39,18 @@ def HasParabolicHolderRepresentativeOn
     g =ᵐ[volume.restrict U] f ∧
       ParabolicHolderSeminormLE U g α K
 
+/--
+@isnad1 id=le.0h2v.s4.a1bbd99c861c from=translated src=- shape=5ffe46ab vocab=8b9ca051
+-/
 lemma parabolicDist_nonneg (x y : ParabolicPoint) :
     0 ≤ parabolicDist x y := by
   exact (vec3EuclideanNorm_nonneg _).trans (le_max_left _ _)
 
 namespace ParabolicHolderSeminormLE
 
+/--
+@isnad1 id=paraboli.2h5v.s5.fabe2dfb557f from=translated src=- shape=8261fadd vocab=9f5d8bba
+-/
 theorem mono_set {U V : Set ParabolicPoint} {g : ParabolicPoint → ℝ}
     {α K : ℝ} (h : ParabolicHolderSeminormLE U g α K) (hVU : V ⊆ U) :
     ParabolicHolderSeminormLE V g α K :=
@@ -52,6 +58,9 @@ theorem mono_set {U V : Set ParabolicPoint} {g : ParabolicPoint → ℝ}
 
 end ParabolicHolderSeminormLE
 
+/--
+@isnad1 id=hasparab.1h4v.s4.68bcd427171c from=translated src=- shape=d0c213bb vocab=75d2b8c6
+-/
 theorem ParabolicHolderSeminormLE.hasRepresentative
     {U : Set ParabolicPoint} {f : ParabolicPoint → ℝ} {α K : ℝ}
     (h : ParabolicHolderSeminormLE U f α K) :

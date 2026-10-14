@@ -38,7 +38,9 @@ noncomputable abbrev uniformDistribution {α : Type u} [Fintype α] : α → ℝ
 def IsUniform {α : Type u} [Fintype α] (p : α → ℝ) : Prop :=
   ∀ a : α, p a = uniformDistribution (α := α) a
 
-/-- The uniform distribution sums to `1`. -/
+/-- The uniform distribution sums to `1`.
+@isnad1 id=eq.0h1v.s4.8624f0c67aa1 from=translated src=- shape=ddd5e275 vocab=52de6b60
+-/
 lemma uniformDistribution_sum_one {α : Type u} [Fintype α] [Nonempty α] :
     (∑ a : α, uniformDistribution (α := α) a) = 1 := by
   simp_all

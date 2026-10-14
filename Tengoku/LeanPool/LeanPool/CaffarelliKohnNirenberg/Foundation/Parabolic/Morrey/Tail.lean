@@ -22,7 +22,9 @@ noncomputable section
 
 namespace CKN.Foundation.Parabolic.Morrey
 
-/-- The absolute integral on a positive cylinder is controlled by its Morrey norm. -/
+/-- The absolute integral on a positive cylinder is controlled by its Morrey norm.
+@isnad1 id=le.3h4v.s7.0b903aee9caf from=translated src=- shape=9a37ce19 vocab=7d20a98a
+-/
 theorem cylinderAbsIntegral_le_morreyNorm {q : ℝ} (hq : 1 ≤ q)
     {f : ParabolicPoint → ℝ} (_ : AEMeasurable f volume)
     (z : ParabolicPoint) {r : ℝ} (hr : 0 < r) :
@@ -63,6 +65,9 @@ theorem cylinderAbsIntegral_le_morreyNorm {q : ℝ} (hq : 1 ≤ q)
           (mul_le_mul_left hcell' ((ENNReal.ofReal r) ^
             (5 * (1 - 1 / q))))
 
+/--
+@isnad1 id=ex.2h3v.s5.54238978214b from=translated src=- shape=78a82809 vocab=128729f1
+-/
 lemma exists_positive_shell {z w : ParabolicPoint} {R : ℝ}
     (hR : 0 < R) (hRρ : R ≤ parabolicRho₂ z w) :
     ∃ k : ℕ, w ∈ parabolicRieszShell R (k : ℤ) z := by

@@ -44,12 +44,16 @@ open Fin.NatCast
 
 /-! ### Extra lemmas -/
 
-/-- If `a ∣ b` and `b` is odd, then `a` is odd. -/
+/-- If `a ∣ b` and `b` is odd, then `a` is odd.
+@isnad1 id=odd.2h2v.s4.b9071f338903 from=translated src=- shape=f12ead87 vocab=3cd4933f
+-/
 theorem odd_of_dvd_Int {a b : ℤ} (ha : Odd b) (hab : a ∣ b) : Odd a := by
   rcases hab with ⟨c, rfl⟩
   exact Int.Odd.of_mul_left ha
 
-/-- Given natural numbers `m` and `n`, we have `mn = 1` iff `m = 1` and `n = 1`. -/
+/-- Given natural numbers `m` and `n`, we have `mn = 1` iff `m = 1` and `n = 1`.
+@isnad1 id=iff.0h2v.s5.3c09782d23dc from=translated src=- shape=16f063c0 vocab=662b3218
+-/
 theorem mul_eq_one_Nat : m * n = 1 ↔ m = 1 ∧ n = 1 :=
   ⟨λ h ↦ ⟨Nat.eq_one_of_mul_eq_one_right h, Nat.eq_one_of_mul_eq_one_left h⟩,
   λ ⟨h, h0⟩ ↦ congrArg₂ Nat.mul h h0⟩
@@ -60,7 +64,9 @@ open Finset
 
 variable [DecidableEq ι]
 
-/-- The product of several integers is odd iff each term is odd. -/
+/-- The product of several integers is odd iff each term is odd.
+@isnad1 id=iff.0h3v.s5.8bdf41c561d8 from=translated src=- shape=388c0b36 vocab=50780b74
+-/
 theorem odd_prod_Int {f : ι → ℤ} {I : Finset ι} :
     Odd (∏ i ∈ I, f i) ↔ ∀ i ∈ I, Odd (f i) := by
   induction I using Finset.induction with
@@ -69,12 +75,16 @@ theorem odd_prod_Int {f : ι → ℤ} {I : Finset ι} :
       rw [prod_insert hi₀, Int.odd_mul, forall_mem_insert]
       exact and_congr_right' hI
 
-/-- The product of several integers is odd iff each term is odd. -/
+/-- The product of several integers is odd iff each term is odd.
+@isnad1 id=iff.0h2v.s5.63eb1828cdd5 from=translated src=- shape=90ef9365 vocab=9ed69ef9
+-/
 theorem odd_prod_Int_Fintype [Fintype ι] {f : ι → ℤ} :
     Odd (∏ i, f i) ↔ ∀ i, Odd (f i) := by
   simp_rw [odd_prod_Int, mem_univ, forall_const]
 
-/-- If the product of several natural numbers is one, then each term is one. -/
+/-- If the product of several natural numbers is one, then each term is one.
+@isnad1 id=iff.0h3v.s5.bf214924473b from=translated src=- shape=45cb31df vocab=e524027b
+-/
 theorem prod_eq_one_Nat {f : ι → ℕ} {I : Finset ι} :
     ∏ i ∈ I, f i = 1 ↔ ∀ i ∈ I, f i = 1 := by
   induction I using Finset.induction with
@@ -83,12 +93,16 @@ theorem prod_eq_one_Nat {f : ι → ℕ} {I : Finset ι} :
       rw [prod_insert hi₀, mul_eq_one_Nat, forall_mem_insert]
       exact and_congr_right' hI
 
-/-- If the product of several natural numbers is one, then each term is one. -/
+/-- If the product of several natural numbers is one, then each term is one.
+@isnad1 id=iff.0h2v.s5.189227ae12cb from=translated src=- shape=a06106d9 vocab=89d92c5a
+-/
 theorem prod_eq_one_Nat_Fintype [Fintype ι] {f : ι → ℕ} :
     ∏ i, f i = 1 ↔ ∀ i, f i = 1 := by
   simp_rw [prod_eq_one_Nat, mem_univ, forall_const]
 
-/-- The `natAbs` of product is equal to the product of `natAbs`. -/
+/-- The `natAbs` of product is equal to the product of `natAbs`.
+@isnad1 id=eq.0h3v.s5.0e937fd4fb6f from=translated src=- shape=e6fbd24c vocab=258cbe60
+-/
 theorem natAbs_prod_Int (f : ι → ℤ) (I : Finset ι) :
     (∏ i ∈ I, f i).natAbs = ∏ i ∈ I, (f i).natAbs := by
   induction I using Finset.induction with
@@ -114,7 +128,9 @@ variable {n : ℕ} {p : ℤ} (hp : p ≠ 0) {x : Fin m → ℤ} (hx : good m n p
 include hp hx
 
 /-- Suppose `p ≠ 0`, and let `(x_i)` be an `(n, p)`-good sequence.
-  If `x_i = x_j`, then `x_{i + k} = x_{j + k}` for any `k`. -/
+  If `x_i = x_j`, then `x_{i + k} = x_{j + k}` for any `k`.
+@isnad1 id=eq.3h7v.s6.a80781d25b93 from=translated src=- shape=9ddd188a vocab=d3df117e
+-/
 theorem map_add_eq_of_map_eq (hx0 : x i = x j) (k) : x (i + k) = x (j + k) := by
   have h {i j} (h : x i = x j) : x (i + 1) = x (j + 1) := by
     specialize hx i j
@@ -126,7 +142,9 @@ theorem map_add_eq_of_map_eq (hx0 : x i = x j) (k) : x (i + k) = x (j + k) := by
   simpa only [Fin.cast_val_eq_self] using h k
 
 /-- Suppose `p ≠ 0`, and let `(x_i)` be an `(n, p)`-good sequence.
-  If `x_{i + j} = x_i`, then `x_{i + jk} = x_i` for any `k`. -/
+  If `x_{i + j} = x_i`, then `x_{i + jk} = x_i` for any `k`.
+@isnad1 id=eq.3h7v.s6.c55c93fe3c7e from=translated src=- shape=ce2d08a1 vocab=048e848f
+-/
 theorem map_add_nat_mul_of_map_add_nat_eq {j : ℕ} (hx0 : x (i + j) = x i) (k) :
     x (i + (j * k : ℕ)) = x i := by
   induction k with | zero => rw [Nat.mul_zero, Nat.cast_zero, add_zero] | succ k hk => ?_
@@ -134,7 +152,9 @@ theorem map_add_nat_mul_of_map_add_nat_eq {j : ℕ} (hx0 : x (i + j) = x i) (k) 
     add_right_comm, hx.map_add_eq_of_map_eq hp hx0, hk]
 
 /-- If `p ≠ 0` and `(x_i)` is an `(n, p)`-good sequence such that
-  `x_{i + 1} = x_i` for some `i`, then `(x_i)` is constant. -/
+  `x_{i + 1} = x_i` for some `i`, then `(x_i)` is constant.
+@isnad1 id=ex.3h4v.s6.f73d1679b241 from=translated src=- shape=c347bee2 vocab=d3df117e
+-/
 theorem const_of_exists_map_add_one_eq (hx0 : ∃ i, x (i + 1) = x i) : ∃ C, ∀ i, x i = C := by
   rcases hx0 with ⟨i, hi⟩
   refine ⟨x i, λ j ↦ ?_⟩
@@ -145,7 +165,9 @@ theorem const_of_exists_map_add_one_eq (hx0 : ∃ i, x (i + 1) = x i) : ∃ C, �
 end
 
 /-- If `p ≠ 0` and `(x_i)` is an `(n, p)`-good sequence of *odd length*
-  such that `x_{i + 2} = x_i` for some `i`, then `(x_i)` is constant. -/
+  such that `x_{i + 2} = x_i` for some `i`, then `(x_i)` is constant.
+@isnad1 id=ex.4h4v.s6.dc72c4eb4acf from=translated src=- shape=19e25f29 vocab=6e88f4a0
+-/
 theorem const_of_exists_map_add_two_eq
     (hm : Odd m) (hp : p ≠ 0) (hx : good m n p x) (hx0 : ∃ i, x (i + 2) = x i) :
     ∃ C, ∀ i, x i = C := by
@@ -172,13 +194,17 @@ section
 variable {n : ℕ} (hn : Odd n)
 include hn
 
-/-- If `n` is odd and `(x_i)` is `(n, p)`-good, then `(-x_i)` is `(n, p)`-good. -/
+/-- If `n` is odd and `(x_i)` is `(n, p)`-good, then `(-x_i)` is `(n, p)`-good.
+@isnad1 id=good.2h4v.s5.3fb8b11720eb from=translated src=- shape=745df730 vocab=348b2527
+-/
 theorem neg_of_exp_odd {x : Fin m → ℤ} (hx : good m n p x) : good m n p (-x) := by
   intro i j
   iterate 2 rw [Pi.neg_apply, Pi.neg_apply, hn.neg_pow, Int.mul_neg, ← Int.neg_add]
   exact neg_inj.mpr (hx i j)
 
-/-- If `n` is odd and `p ≤ 0`, then any `(n, p)`-good sequence is constant. -/
+/-- If `n` is odd and `p ≤ 0`, then any `(n, p)`-good sequence is constant.
+@isnad1 id=ex.3h4v.s5.e80eafc3805c from=translated src=- shape=a9e46558 vocab=14cb1cc2
+-/
 theorem const_of_exp_odd_p_nonpos (hp : p ≤ 0) {x : Fin m → ℤ} (hx : good m n p x) :
     ∃ C, ∀ i, x i = C := by
   ---- If `p = 0` then we are done, so assume `p < 0`.
@@ -207,7 +233,9 @@ theorem const_of_exp_odd_p_nonpos (hp : p ≤ 0) {x : Fin m → ℤ} (hx : good 
     simpa only [Fin.cast_val_eq_self, add_sub_cancel] using hx0 i (j - i).val
   exact ⟨x 0, λ i ↦ (hx0 i 0).antisymm (hx0 0 i)⟩
 
-/-- If `n` is odd and `p > 0`, then any `(n, p)`-good sequence is `2`-periodic. -/
+/-- If `n` is odd and `p > 0`, then any `(n, p)`-good sequence is `2`-periodic.
+@isnad1 id=eq.3h5v.s6.381f28ea92b1 from=translated src=- shape=961be005 vocab=397a194b
+-/
 theorem two_periodic_of_exp_odd_p_pos (hp : p > 0) {x : Fin m → ℤ} (hx : good m n p x) (i) :
     x (i + 2) = x i := by
   ---- WLOG assume that `x_i ≤ x_{i + 2}`.
@@ -235,7 +263,9 @@ theorem two_periodic_of_exp_odd_p_pos (hp : p > 0) {x : Fin m → ℤ} (hx : goo
     Nat.cast_add, Fin.natCast_self, add_zero, add_zero] at h
   exact h.antisymm hx0
 
-/-- If `n` is odd, then any `(n, p)`-good sequence of odd length is constant. -/
+/-- If `n` is odd, then any `(n, p)`-good sequence of odd length is constant.
+@isnad1 id=ex.3h4v.s5.94d40afe488b from=translated src=- shape=79c37ba0 vocab=c01b234f
+-/
 theorem const_of_exp_odd_length_odd (hm : Odd m) {x : Fin m → ℤ} (hx : good m n p x) :
     ∃ C, ∀ i, x i = C := by
   obtain hp | hp : p ≤ 0 ∨ p > 0 := (Int.lt_or_le 0 p).symm
@@ -249,7 +279,9 @@ section
 
 open Finset
 
-/-- A general formula for `(2k, p)`-good sequences. -/
+/-- A general formula for `(2k, p)`-good sequences.
+@isnad1 id=eq.1h4v.s8.5e37b308910d from=translated src=- shape=9599911b vocab=84a434f4
+-/
 theorem formula_of_exp_two_mul {x : Fin m → ℤ} (hx : good m (2 * k) p x) :
     (∏ i, (x i ^ k + x (i + 1) ^ k)) * ∏ i, (x i ^ k - x (i + 1) ^ k)
       = (-p) ^ m * ∏ i, (x i - x (i + 1)) := calc
@@ -263,7 +295,9 @@ theorem formula_of_exp_two_mul {x : Fin m → ℤ} (hx : good m (2 * k) p x) :
   _ = (-p) ^ m * ∏ i, (x i - x (i + 1)) :=
     congrArg ((-p) ^ m * ·) (Fintype.prod_equiv (Equiv.addRight 1) _ _ λ _ ↦ rfl)
 
-/-- A general formula for `(2k, p)`-good sequences with adjacent terms being distinct. -/
+/-- A general formula for `(2k, p)`-good sequences with adjacent terms being distinct.
+@isnad1 id=eq.2h4v.s8.d23a640bd447 from=translated src=- shape=f05244b5 vocab=6a6092a6
+-/
 theorem formula_of_exp_two_mul2
     {x : Fin m → ℤ} (hx : good m (2 * k) p x) (hx0 : ∀ i, x (i + 1) ≠ x i) :
     (∏ i, (x i ^ k + x (i + 1) ^ k)) * ∏ i, (x i ^ k - x (i + 1) ^ k) / (x i - x (i + 1))
@@ -277,7 +311,9 @@ theorem formula_of_exp_two_mul2
   rw [← Int.mul_eq_mul_right_iff h, Int.mul_assoc, h0, hx.formula_of_exp_two_mul]
 
 /-- If `(x_i)` is a `(2k, p)`-good sequence with adjacent terms being distinct,
-  then `∏_i (x_i^k + x_{i + 1}^k) ∣ p^m`. -/
+  then `∏_i (x_i^k + x_{i + 1}^k) ∣ p^m`.
+@isnad1 id=dvd.2h4v.s7.cac3bed15c00 from=translated src=- shape=bce913b7 vocab=688dfd43
+-/
 theorem dvd_of_exp_two_mul
     {x : Fin m → ℤ} (hx : good m (2 * k) p x) (hx0 : ∀ i, x (i + 1) ≠ x i) :
     ∏ i, (x i ^ k + x (i + 1) ^ k) ∣ p ^ m := by
@@ -285,7 +321,9 @@ theorem dvd_of_exp_two_mul
   rw [Int.mul_left_comm, hx.formula_of_exp_two_mul2 hx0,
     ← Int.mul_pow, Int.neg_one_mul, Int.neg_neg]
 
-/-- If `p` is odd, then any `(2k, p)`-good sequence of odd length is constant. -/
+/-- If `p` is odd, then any `(2k, p)`-good sequence of odd length is constant.
+@isnad1 id=ex.3h4v.s5.c3a4013de1c5 from=translated src=- shape=ef42a812 vocab=5b883181
+-/
 theorem const_of_exp_two_mul_and_p_odd
     {k p} (hm : Odd m) (hp : Odd p) {x : Fin m → ℤ} (hx : good m (2 * k) p x) :
     ∃ C, ∀ i, x i = C := by
@@ -309,13 +347,17 @@ theorem const_of_exp_two_mul_and_p_odd
     _ = m % 2 := by rw [sum_const, nsmul_one, card_univ, Fintype.card_fin]
     _ = 1 := by rwa [← Int.odd_iff, Int.odd_coe_nat]
 
-/-- If `(x_i)` is a `(2k, p)`-good sequence, then `(-x_i)` is `(2k, -p)`-good. -/
+/-- If `(x_i)` is a `(2k, p)`-good sequence, then `(-x_i)` is `(2k, -p)`-good.
+@isnad1 id=good.1h4v.s6.0cdf11d46277 from=translated src=- shape=4c5febe7 vocab=3b3a1c17
+-/
 theorem neg_of_exp_even {x : Fin m → ℤ} (hx : good m (2 * k) p x) :
     good m (2 * k) (-p) (-x) := by
   intro i j; simp_rw [Pi.neg_apply, Int.neg_mul_neg, Int.neg_pow (n := 2 * k)]
   rw [Nat.mul_mod_right, Int.pow_zero, Int.one_mul, Int.one_mul, hx i j]
 
-/-- If `|p| = 2`, then any `(2k, p)`-good sequence of odd length is constant. -/
+/-- If `|p| = 2`, then any `(2k, p)`-good sequence of odd length is constant.
+@isnad1 id=ex.3h4v.s6.7d83697e9818 from=translated src=- shape=1895e215 vocab=6978f421
+-/
 theorem const_of_exp_two_mul_and_abs_p_eq_two
     {k p} (hm : Odd m) (hp : p.natAbs = 2) {x : Fin m → ℤ} (hx : good m (2 * k) p x) :
     ∃ C, ∀ i, x i = C := by
@@ -388,7 +430,9 @@ end
 
 end good
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.3h4v.s5.28194f9cf15b from=translated src=- shape=600628b5 vocab=8926288b
+-/
 theorem final_solution {m n p} [NeZero m] (hm : Odd m) (hp : Odd p ∨ p.natAbs = 2)
     {x : Fin m → ℤ} (hx : good m n p x) : ∃ C, ∀ i, x i = C := by
   obtain hn | ⟨k, rfl⟩ : Odd n ∨ 2 ∣ n :=

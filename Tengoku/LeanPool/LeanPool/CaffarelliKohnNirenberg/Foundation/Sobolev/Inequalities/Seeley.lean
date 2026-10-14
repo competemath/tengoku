@@ -134,6 +134,9 @@ private theorem seeley_norm_contDiffOn :
     simp only [Real.sqrt_zero]
   linarith only [hx.1, hnormzero]
 
+/--
+@isnad1 id=contdiff.0h0v.s7.bbc7d6edbda0 from=translated src=- shape=d1884689 vocab=6060ffb3
+-/
 theorem seeleyReflectionOne_contDiffOn :
     ContDiffOn ℝ (⊤ : ℕ∞) seeleyReflectionOne seeleyAnnulus := by
   have hscalar := (contDiff_vecNormSq (d := 3)).contDiffOn.inv
@@ -142,6 +145,9 @@ theorem seeleyReflectionOne_contDiffOn :
     ((fun x : Vec 3 => (vecNormSq x)⁻¹) • fun x => x) seeleyAnnulus
   exact hscalar.smul contDiffOn_id
 
+/--
+@isnad1 id=contdiff.0h0v.s7.c9486382b4d0 from=translated src=- shape=d1884689 vocab=374e3bba
+-/
 theorem seeleyReflectionTwo_contDiffOn :
     ContDiffOn ℝ (⊤ : ℕ∞) seeleyReflectionTwo seeleyAnnulus := by
   have hnorm := seeley_norm_contDiffOn
@@ -156,6 +162,9 @@ theorem seeleyReflectionTwo_contDiffOn :
       fun x => x) seeleyAnnulus
   exact hscalar.smul contDiffOn_id
 
+/--
+@isnad1 id=eq.1h2v.s9.26e09594d031 from=translated src=- shape=2549a5b4 vocab=59b00021
+-/
 theorem seeleyReflectionOne_fderiv_apply {x : Vec 3}
     (hx : x ∈ seeleyAnnulus) (z : Vec 3) :
     (fderiv ℝ seeleyReflectionOne x) z =
@@ -178,6 +187,9 @@ theorem seeleyReflectionOne_fderiv_apply {x : Vec 3}
   simp only [Pi.smul_apply, smul_eq_mul]
   field_simp [seeley_sq_ne_zero_of_mem_annulus hx]
 
+/--
+@isnad1 id=eq.1h2v.s9.1dae828a3878 from=translated src=- shape=b8722a4d vocab=f83ab44d
+-/
 theorem seeleyReflectionOne_fderiv_sphere {x : Vec 3}
     (hx : vecEuclideanNorm x = 1) (z : Vec 3) :
     (fderiv ℝ seeleyReflectionOne x) z =
@@ -190,6 +202,9 @@ theorem seeleyReflectionOne_fderiv_sphere {x : Vec 3}
   rw [seeleyReflectionOne_fderiv_apply hAnn z, hq]
   simp only [inv_one, one_pow, one_smul, one_mul]
 
+/--
+@isnad1 id=eq.1h2v.s9.c52451b35fdd from=translated src=- shape=b8722a4d vocab=d2fe4856
+-/
 theorem seeleyReflectionTwo_fderiv_sphere {x : Vec 3}
     (hx : vecEuclideanNorm x = 1) (z : Vec 3) :
     (fderiv ℝ seeleyReflectionTwo x) z =
@@ -227,6 +242,9 @@ theorem seeleyReflectionTwo_fderiv_sphere {x : Vec 3}
   field_simp [hq0]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s10.3f44b6ee0c55 from=translated src=- shape=b6d15c60 vocab=19d588bc
+-/
 theorem seeleyReflectionTwo_fderiv_apply {x : Vec 3}
     (hx : x ∈ seeleyAnnulus) (z : Vec 3) :
     (fderiv ℝ seeleyReflectionTwo x) z =
@@ -275,6 +293,9 @@ private theorem seeleyAnnulus_open : IsOpen seeleyAnnulus := by
   exact (isOpen_lt continuous_const seeley_norm_continuous).inter
     (isOpen_lt seeley_norm_continuous continuous_const)
 
+/--
+@isnad1 id=eq.1h2v.s5.b773c8f8bf0c from=translated src=- shape=066d63d2 vocab=b7687df5
+-/
 theorem seeleyExterior_eq_on_sphere (v : Vec 3 → ℝ) {x : Vec 3}
     (hx : vecEuclideanNorm x = 1) : seeleyExterior v x = v x := by
   have hq : vecNormSq x = 1 := by
@@ -288,6 +309,9 @@ theorem seeleyExterior_eq_on_sphere (v : Vec 3 → ℝ) {x : Vec 3}
   simp only [seeleyExterior, h1, h2]
   ring
 
+/--
+@isnad1 id=eq.2h3v.s10.809e99ad30dc from=translated src=- shape=300a7b0f vocab=8a43ab67
+-/
 theorem seeleyExterior_fderiv_on_sphere (v : Vec 3 → ℝ)
     (hv : ContDiff ℝ 1 v) {x : Vec 3}
     (hx : vecEuclideanNorm x = 1) (z : Vec 3) :
@@ -328,6 +352,9 @@ theorem seeleyExterior_fderiv_on_sphere (v : Vec 3 → ℝ)
   simp only [map_sub, map_smul, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=hasfderi.5h5v.s9.2409c7794671 from=translated src=- shape=c4dc2478 vocab=1750bc09
+-/
 theorem seeley_glue_hasFDerivAt {C : Set (Vec 3)} {g h : Vec 3 → ℝ}
     (hC : IsClosed C) {x : Vec 3} (hx : x ∈ frontier C)
     (hvalue : g x = h x) {L : Vec 3 →L[ℝ] ℝ}
@@ -349,6 +376,9 @@ theorem seeley_glue_hasFDerivAt {C : Set (Vec 3)} {g h : Vec 3 → ℝ}
     rw [hvalue]
     exact hkh
 
+/--
+@isnad1 id=hasfderi.2h5v.s8.131edf7605a4 from=translated src=- shape=4aaaa40f vocab=9f700ef6
+-/
 theorem seeley_glue_hasFDerivAt_of_mem_interior
     {C : Set (Vec 3)} {g h : Vec 3 → ℝ} {x : Vec 3}
     (hx : x ∈ interior C) {L : Vec 3 →L[ℝ] ℝ}
@@ -359,6 +389,9 @@ theorem seeley_glue_hasFDerivAt_of_mem_interior
   have hyC : y ∈ C := interior_subset hy
   simp only [hyC, ite_true]
 
+/--
+@isnad1 id=hasfderi.3h5v.s8.8014edc944b1 from=translated src=- shape=93ec5047 vocab=3bab325e
+-/
 theorem seeley_glue_hasFDerivAt_of_not_mem
     {C : Set (Vec 3)} {g h : Vec 3 → ℝ} {x : Vec 3}
     (hC : IsClosed C) (hx : x ∉ C) {L : Vec 3 →L[ℝ] ℝ}
@@ -401,6 +434,9 @@ private theorem seeley_reflection_two_norm {x : Vec 3}
       0 < 2 * vecEuclideanNorm x - 1)]
   exact heq
 
+/--
+@isnad1 id=mem.1h1v.s6.458d69262f78 from=translated src=- shape=a3d68beb vocab=133b2133
+-/
 theorem seeleyReflectionOne_maps_closedAnnulus {x : Vec 3}
     (hx : x ∈ seeleyClosedAnnulus) :
     seeleyReflectionOne x ∈ euclideanClosedBall (0 : Vec 3) 1 := by
@@ -409,6 +445,9 @@ theorem seeleyReflectionOne_maps_closedAnnulus {x : Vec 3}
   rw [seeley_reflection_one_norm hx]
   exact (inv_le_one₀ (seeley_norm_pos_of_mem_closed hx)).2 hx.1
 
+/--
+@isnad1 id=mem.1h1v.s6.b129a07b3f98 from=translated src=- shape=a3d68beb vocab=43c9d9bf
+-/
 theorem seeleyReflectionTwo_maps_closedAnnulus {x : Vec 3}
     (hx : x ∈ seeleyClosedAnnulus) :
     seeleyReflectionTwo x ∈ euclideanClosedBall (0 : Vec 3) 1 := by
@@ -418,6 +457,9 @@ theorem seeleyReflectionTwo_maps_closedAnnulus {x : Vec 3}
   apply (inv_le_one₀ (by linarith only [hx.1] : 0 < 2 * vecEuclideanNorm x - 1)).2
   linarith only [hx.1]
 
+/--
+@isnad1 id=injon.0h0v.s3.b144149a5888 from=translated src=- shape=434a9ff5 vocab=cabe399c
+-/
 theorem seeleyReflectionOne_injectiveOn_closedAnnulus :
     Set.InjOn seeleyReflectionOne seeleyClosedAnnulus := by
   intro x hx y hy hxy
@@ -441,6 +483,9 @@ theorem seeleyReflectionOne_injectiveOn_closedAnnulus :
     _ = y := by
       rw [hq, smul_smul, mul_inv_cancel₀ hqy, one_smul]
 
+/--
+@isnad1 id=injon.0h0v.s3.c6cac27ca483 from=translated src=- shape=434a9ff5 vocab=c93b4879
+-/
 theorem seeleyReflectionTwo_injectiveOn_closedAnnulus :
     Set.InjOn seeleyReflectionTwo seeleyClosedAnnulus := by
   intro x hx y hy hxy
@@ -473,12 +518,18 @@ theorem seeleyReflectionTwo_injectiveOn_closedAnnulus :
     _ = y := by
       rw [hfactor, hnorm, smul_smul, mul_inv_cancel₀ hdeny, one_smul]
 
+/--
+@isnad1 id=measurab.0h0v.s4.9bac55de43ae from=translated src=- shape=06f63001 vocab=312bcf0c
+-/
 theorem seeleyClosedAnnulus_measurableSet :
     MeasurableSet seeleyClosedAnnulus := by
   rw [seeleyClosedAnnulus]
   exact (isClosed_le continuous_const seeley_norm_continuous).inter
     (isClosed_le seeley_norm_continuous continuous_const) |>.measurableSet
 
+/--
+@isnad1 id=hasfderi.1h1v.s8.fc5316127964 from=translated src=- shape=5706fb18 vocab=63dd778c
+-/
 theorem seeleyReflectionOne_hasFDerivWithinAt {x : Vec 3}
     (hx : x ∈ seeleyClosedAnnulus) :
     HasFDerivWithinAt seeleyReflectionOne (fderiv ℝ seeleyReflectionOne x)
@@ -488,6 +539,9 @@ theorem seeleyReflectionOne_hasFDerivWithinAt {x : Vec 3}
     seeleyReflectionOne_contDiffOn.contDiffAt (seeleyAnnulus_open.mem_nhds hA)
   exact (hAt.differentiableAt (by simp)).hasFDerivAt.hasFDerivWithinAt
 
+/--
+@isnad1 id=hasfderi.1h1v.s8.bb10c6972af4 from=translated src=- shape=5706fb18 vocab=90651a46
+-/
 theorem seeleyReflectionTwo_hasFDerivWithinAt {x : Vec 3}
     (hx : x ∈ seeleyClosedAnnulus) :
     HasFDerivWithinAt seeleyReflectionTwo (fderiv ℝ seeleyReflectionTwo x)
@@ -497,6 +551,9 @@ theorem seeleyReflectionTwo_hasFDerivWithinAt {x : Vec 3}
     seeleyReflectionTwo_contDiffOn.contDiffAt (seeleyAnnulus_open.mem_nhds hA)
   exact (hAt.differentiableAt (by simp)).hasFDerivAt.hasFDerivWithinAt
 
+/--
+@isnad1 id=eq.0h1v.s9.743b2a3997e8 from=translated src=- shape=a83e3d39 vocab=76cafd7f
+-/
 theorem seeley_changeVariables_lintegral_one {g : Vec 3 → ℝ≥0∞}
     :
     ∫⁻ x in seeleyReflectionOne '' seeleyClosedAnnulus, g x ∂volume =
@@ -508,6 +565,9 @@ theorem seeley_changeVariables_lintegral_one {g : Vec 3 → ℝ≥0∞}
     (fun x hx => seeleyReflectionOne_hasFDerivWithinAt hx)
     seeleyReflectionOne_injectiveOn_closedAnnulus g
 
+/--
+@isnad1 id=eq.0h1v.s9.79a907c6ad08 from=translated src=- shape=a83e3d39 vocab=5d5832a1
+-/
 theorem seeley_changeVariables_lintegral_two {g : Vec 3 → ℝ≥0∞}
     :
     ∫⁻ x in seeleyReflectionTwo '' seeleyClosedAnnulus, g x ∂volume =

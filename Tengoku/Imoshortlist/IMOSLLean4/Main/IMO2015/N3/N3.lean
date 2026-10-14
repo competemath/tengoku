@@ -22,20 +22,32 @@ namespace IMO2015N3
 
 open Finset
 
+/--
+@isnad1 id=lt.2h2v.s5.60e9aa5e34ea from=translated src=- shape=395b0e5d vocab=a998d035
+-/
 lemma div_pos_of_dvd (hm : 0 < m) (hk : k ∣ m) : 0 < m / k :=
   Nat.pos_of_mul_pos_right (hm.trans_eq (Nat.div_mul_cancel hk).symm)
 
+/--
+@isnad1 id=eq.2h2v.s5.dee3e1ee97cf from=translated src=- shape=19c34a7d vocab=0d8ed556
+-/
 lemma clog_base_mul (hb : 1 < b) (hn : 0 < n) : b.clog (b * n) = b.clog n + 1 := by
   refine (Nat.clog_of_two_le hb (Nat.mul_le_mul hb hn)).trans (congrArg (b.clog · + 1) ?_)
   have hb' : 0 < b := Nat.zero_lt_of_lt hb
   rw [Nat.add_sub_assoc hb.le, Nat.mul_add_div hb', Nat.add_eq_left, Nat.div_eq_zero_iff]
   exact Or.inr (Nat.sub_one_lt_of_lt hb)
 
+/--
+@isnad1 id=mem.1h1v.s6.038428c5beb6 from=translated src=- shape=836f23cd vocab=7f6cbad5
+-/
 lemma two_pow_clog_mem_Ico (hn : 0 < n) : 2 ^ Nat.clog 2 n ∈ Ico n (2 * n) := by
   have X : 1 < 2 := Nat.one_lt_two
   refine mem_Ico.mpr ⟨Nat.le_pow_clog X n, ?_⟩
   rw [← Nat.lt_clog_iff_pow_lt X, clog_base_mul X hn, Nat.lt_succ_iff]
 
+/--
+@isnad1 id=ne.1h4v.s6.d3c654919ff7 from=translated src=- shape=ecedfc45 vocab=0590f66e
+-/
 lemma prod_mod_ne_one [DecidableEq ι] {I : Finset ι}
     {f : ι → ℕ} (h : ∃ i₀ ∈ I, ∀ i ∈ I, n ∣ f i ↔ i ≠ i₀) :
     (∏ i ∈ I, (f i + 1)) % n ≠ 1 % n := by
@@ -52,6 +64,9 @@ lemma prod_mod_ne_one [DecidableEq ι] {I : Finset ι}
   rw [Nat.add_sub_cancel, ← Nat.dvd_iff_mod_eq_zero] at h0
   exact hi₀ h0
 
+/--
+@isnad1 id=ex.3h2v.s7.7addffbcd56d from=translated src=- shape=8ba29740 vocab=cbd7077b
+-/
 lemma main_lemma (hm : 0 < m) (hn : 0 < n) (h : ∀ k ∈ Ico n (2 * n), k ∣ m) :
     ∃ t, ∀ k ∈ Ico n (2 * n), 2 ^ t ∣ m / k ↔ k ≠ 2 ^ Nat.clog 2 n := by
   refine ⟨m.factorization 2 - Nat.clog 2 n + 1, λ k hk ↦ ?_⟩
@@ -65,7 +80,9 @@ lemma main_lemma (hm : 0 < m) (hn : 0 < n) (h : ∀ k ∈ Ico n (2 * n), k ∣ m
   refine ⟨λ h0 ↦ dvd_of_eq h0.symm, λ h0 ↦ (Nat.eq_of_dvd_of_lt_two_mul hk0.ne.symm h0 ?_)⟩
   exact (mem_Ico.mp hk).2.trans_le (Nat.mul_le_mul_left 2 (Nat.le_pow_clog Nat.one_lt_two _))
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ne.3h3v.s7.130905f0b1d7 from=translated src=- shape=661492c4 vocab=5b5bde31
+-/
 theorem final_solution (hm : 0 < m) (hn : 1 < n) (h : ∀ k ∈ Ico n (2 * n), k ∣ m) :
     ∀ N, ∏ k ∈ Ico n (2 * n), (m / k + 1) ≠ 2 ^ N + 1 := by
   have hn0 : 0 < n := Nat.zero_lt_of_lt hn

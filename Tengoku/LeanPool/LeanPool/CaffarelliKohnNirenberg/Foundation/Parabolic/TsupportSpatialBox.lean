@@ -23,7 +23,9 @@ namespace CKN
 
 /-- Given an open set `Ω` and a compactly supported function `ψ` whose topological support
 lies in `Ω`, there exists an open set `Ω'` containing `tsupport ψ` whose closure is compact
-and contained in `Ω`. -/
+and contained in `Ω`.
+@isnad1 id=ex.3h2v.s8.98f725f8f179 from=translated src=- shape=ae96398b vocab=bb7ec40c
+-/
 theorem exists_spatial_box_of_tsupport_subset {Ω : Set Vec3} {ψ : Vec3 → ℝ}
     (hΩ : IsOpen Ω) (hψΩ : tsupport ψ ⊆ Ω) (hψc : HasCompactSupport ψ) :
     ∃ Ω' : Set Vec3, IsOpen Ω' ∧ tsupport ψ ⊆ Ω' ∧

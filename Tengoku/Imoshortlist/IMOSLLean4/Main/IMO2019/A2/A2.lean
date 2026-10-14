@@ -23,6 +23,9 @@ namespace IMO2019A2
 
 open Multiset
 
+/--
+@isnad1 id=le.3h4v.s7.f5f8e4a7a1e2 from=translated src=- shape=cb9a43b7 vocab=cf513b03
+-/
 theorem final_solution [Semiring R] [LinearOrder R] [IsStrictOrderedRing R]
     [ExistsAddOfLE R] {M : Multiset R} (hM : M.sum = 0)
     (ha : ∀ x ∈ M, x ≤ a) (hb : ∀ x ∈ M, b ≤ x) :

@@ -54,15 +54,30 @@ def signOfBool : Bool → ℝ
   | false => -1
   | true  => 1
 
+/--
+@isnad1 id=eq.0h0v.s3.de30bbbc53c1 from=translated src=- shape=f7285ee8 vocab=064e0e32
+-/
 @[simp] lemma signOfBool_false : signOfBool false = -1 := rfl
+/--
+@isnad1 id=eq.0h0v.s3.a9b099f50666 from=translated src=- shape=b0ae1d2b vocab=e085fcda
+-/
 @[simp] lemma signOfBool_true  : signOfBool true  = 1  := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.845d63e0c6c2 from=translated src=- shape=d2189a58 vocab=acc81746
+-/
 lemma signOfBool_neg (b : Bool) : signOfBool (!b) = -signOfBool b := by
   cases b <;> simp [signOfBool]
 
+/--
+@isnad1 id=eq.0h1v.s4.7cbb8f721921 from=translated src=- shape=7bab346c vocab=6ff7b571
+-/
 lemma signOfBool_sq (b : Bool) : signOfBool b * signOfBool b = 1 := by
   cases b <;> simp [signOfBool]
 
+/--
+@isnad1 id=eq.0h1v.s4.713a78b0f47b from=translated src=- shape=562e4a6d vocab=c04bd28f
+-/
 lemma abs_signOfBool (b : Bool) : |signOfBool b| = 1 := by
   cases b <;> simp [signOfBool]
 
@@ -74,14 +89,23 @@ variable {n : ℕ}
 def flipAt (i : Fin n) (σ : Fin n → Bool) : Fin n → Bool :=
   fun k => if k = i then !σ k else σ k
 
+/--
+@isnad1 id=eq.0h3v.s4.46f2fc137aa8 from=translated src=- shape=970cc171 vocab=1d5c11e1
+-/
 @[simp] lemma flipAt_same (i : Fin n) (σ : Fin n → Bool) :
     flipAt i σ i = !σ i := by
   simp [flipAt]
 
+/--
+@isnad1 id=eq.1h4v.s4.557420ef210a from=translated src=- shape=22c596fa vocab=6fbc85f6
+-/
 lemma flipAt_other (i : Fin n) (σ : Fin n → Bool) {k : Fin n} (hk : k ≠ i) :
     flipAt i σ k = σ k := by
   simp [flipAt, hk]
 
+/--
+@isnad1 id=involuti.0h2v.s3.6ab06e9cfd70 from=translated src=- shape=3c2f92b9 vocab=acf963ec
+-/
 lemma flipAt_involutive (i : Fin n) :
     Function.Involutive (flipAt i : (Fin n → Bool) → (Fin n → Bool)) := by
   intro σ
@@ -94,6 +118,9 @@ lemma flipAt_involutive (i : Fin n) :
 def flipAtEquiv (i : Fin n) : Equiv.Perm (Fin n → Bool) :=
   Function.Involutive.toPerm (flipAt i) (flipAt_involutive i)
 
+/--
+@isnad1 id=eq.0h3v.s6.752ef4168928 from=translated src=- shape=b0a68855 vocab=1ab71a7a
+-/
 @[simp] lemma flipAtEquiv_apply (i : Fin n) (σ : Fin n → Bool) :
     flipAtEquiv i σ = flipAt i σ := rfl
 
@@ -102,9 +129,15 @@ def flipAtEquiv (i : Fin n) : Equiv.Perm (Fin n → Bool) :=
 /-- Negate every coordinate of a sign vector. -/
 def negateAll (σ : Fin n → Bool) : Fin n → Bool := fun k => !σ k
 
+/--
+@isnad1 id=eq.0h3v.s4.b3bb3850fc6d from=translated src=- shape=f521c7f2 vocab=8cffc641
+-/
 @[simp] lemma negateAll_apply (σ : Fin n → Bool) (k : Fin n) :
     negateAll σ k = !σ k := rfl
 
+/--
+@isnad1 id=involuti.0h1v.s3.535c8e89d1f6 from=translated src=- shape=fe6f4f64 vocab=0f35fc43
+-/
 lemma negateAll_involutive :
     Function.Involutive (negateAll : (Fin n → Bool) → (Fin n → Bool)) := by
   intro σ
@@ -115,12 +148,17 @@ lemma negateAll_involutive :
 def negateAllEquiv : Equiv.Perm (Fin n → Bool) :=
   Function.Involutive.toPerm negateAll negateAll_involutive
 
+/--
+@isnad1 id=eq.0h2v.s5.af8f6add741c from=translated src=- shape=3f11a228 vocab=5b2f5dab
+-/
 @[simp] lemma negateAllEquiv_apply (σ : Fin n → Bool) :
     negateAllEquiv σ = negateAll σ := rfl
 
 /-! ### Cardinality and sign-symmetry -/
 
-/-- Cardinality of the sign-vector type: `|Fin n → Bool| = 2^n`. -/
+/-- Cardinality of the sign-vector type: `|Fin n → Bool| = 2^n`.
+@isnad1 id=eq.0h1v.s5.dd86853de612 from=translated src=- shape=f9c99b06 vocab=80feae36
+-/
 lemma card_signVectors :
     Fintype.card (Fin n → Bool) = 2 ^ n := by
   rw [Fintype.card_fun, Fintype.card_bool, Fintype.card_fin]
@@ -128,7 +166,9 @@ lemma card_signVectors :
 /-- Sum of `signOfBool (σ i)` over all sign vectors is zero, for any fixed
 coordinate `i`. The pairing `σ ↔ flipAt i σ` swaps the contribution at
 coordinate `i` and leaves all others fixed; the swapped sum equals the
-negation of the original. -/
+negation of the original.
+@isnad1 id=eq.0h2v.s5.466b5e725dfc from=translated src=- shape=ec340979 vocab=bc9cc8de
+-/
 lemma sum_signOfBool_eq_zero (i : Fin n) :
     ∑ σ : Fin n → Bool, signOfBool (σ i) = 0 := by
   set f : (Fin n → Bool) → ℝ := fun σ => signOfBool (σ i) with hf_def
@@ -169,7 +209,9 @@ noncomputable def empiricalRademacherComplexity
       (Finset.univ : Finset ι).sup' Finset.univ_nonempty
         (fun i => (n : ℝ)⁻¹ * ∑ k : Fin n, signOfBool (σ k) * ℓ i (z k))
 
-/-- The leading averaging factor `(2^n)⁻¹` is strictly positive in `ℝ`. -/
+/-- The leading averaging factor `(2^n)⁻¹` is strictly positive in `ℝ`.
+@isnad1 id=lt.0h1v.s5.f48bdbdbe581 from=translated src=- shape=75b92053 vocab=346282d9
+-/
 lemma two_pow_inv_pos : (0 : ℝ) < ((2 : ℝ) ^ n)⁻¹ := by
   apply inv_pos.mpr
   exact pow_pos (by norm_num : (0 : ℝ) < 2) n

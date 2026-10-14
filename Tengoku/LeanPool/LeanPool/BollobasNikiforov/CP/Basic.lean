@@ -29,11 +29,17 @@ def IsCompletelyPositive (C : Matrix n n ℝ) : Prop :=
     (∀ a i, 0 ≤ p a i) ∧ C = ∑ a, vecMulVec (p a) (p a)
 
 omit [Fintype n] [DecidableEq n] in
+/--
+@isnad1 id=iscomple.1h2v.s5.f16e5887689b from=translated src=- shape=42c86025 vocab=d3815e82
+-/
 lemma isCompletelyPositive_vecMulVec {p : n → ℝ} (hp : 0 ≤ p) :
     IsCompletelyPositive (vecMulVec p p) :=
   ⟨1, fun _ ↦ p, fun _ i ↦ hp i, by simp⟩
 
 omit [Fintype n] [DecidableEq n] in
+/--
+@isnad1 id=iscomple.2h3v.s5.b6653aa01549 from=translated src=- shape=5416a594 vocab=a1f81bf9
+-/
 lemma IsCompletelyPositive.smul {C : Matrix n n ℝ} {r : ℝ} (hr : 0 ≤ r)
     (hC : IsCompletelyPositive C) : IsCompletelyPositive (r • C) := by
   obtain ⟨q, p, hp, rfl⟩ := hC
@@ -44,6 +50,9 @@ lemma IsCompletelyPositive.smul {C : Matrix n n ℝ} {r : ℝ} (hr : 0 ≤ r)
       Real.mul_self_sqrt hr]
 
 omit [Fintype n] [DecidableEq n] in
+/--
+@isnad1 id=iscomple.2h3v.s5.dd673007429f from=translated src=- shape=f4dd09ae vocab=0095867d
+-/
 lemma IsCompletelyPositive.add {C D : Matrix n n ℝ}
     (hC : IsCompletelyPositive C) (hD : IsCompletelyPositive D) :
     IsCompletelyPositive (C + D) := by
@@ -58,12 +67,18 @@ lemma IsCompletelyPositive.add {C D : Matrix n n ℝ}
     simp
 
 omit [Fintype n] [DecidableEq n] in
+/--
+@isnad1 id=eq.0h3v.s6.df43be0b24e4 from=translated src=- shape=004688ae vocab=32b5662a
+-/
 lemma mul_transpose_eq_sum_vecMulVec {r : Type*} [Fintype r] (A : Matrix n r ℝ) :
     A * Aᵀ = ∑ a, vecMulVec (A.col a) (A.col a) := by
   ext i j
   simp [mul_apply, transpose_apply, Matrix.sum_apply, vecMulVec_apply, col_apply]
 
 omit [Fintype n] [DecidableEq n] in
+/--
+@isnad1 id=iff.0h2v.s6.de217e4e51dc from=translated src=- shape=f89dad48 vocab=e5a77ef3
+-/
 lemma isCompletelyPositive_iff_exists_mul_transpose {C : Matrix n n ℝ} :
     IsCompletelyPositive C ↔
       ∃ (r : ℕ) (A : Matrix n (Fin r) ℝ), (∀ i j, 0 ≤ A i j) ∧ C = A * Aᵀ := by
@@ -77,6 +92,9 @@ lemma isCompletelyPositive_iff_exists_mul_transpose {C : Matrix n n ℝ} :
 
 omit [DecidableEq n] [Fintype n] in
 variable [Finite n] in
+/--
+@isnad1 id=possemid.0h2v.s4.5b8c0bdaf39a from=translated src=- shape=8532ac72 vocab=dfc56b87
+-/
 lemma posSemidef_vecMulVec_self (p : n → ℝ) : (vecMulVec p p).PosSemidef := by
   cases nonempty_fintype n
   refine .of_dotProduct_mulVec_nonneg (by
@@ -88,6 +106,9 @@ lemma posSemidef_vecMulVec_self (p : n → ℝ) : (vecMulVec p p).PosSemidef := 
 
 omit [DecidableEq n] [Fintype n] in
 variable [Finite n] in
+/--
+@isnad1 id=possemid.1h2v.s4.ae6a1d05c671 from=translated src=- shape=385715ac vocab=a8031988
+-/
 lemma IsCompletelyPositive.posSemidef {C : Matrix n n ℝ} (hC : IsCompletelyPositive C) :
     C.PosSemidef := by
   obtain ⟨_, p, _, rfl⟩ := hC
@@ -95,17 +116,26 @@ lemma IsCompletelyPositive.posSemidef {C : Matrix n n ℝ} (hC : IsCompletelyPos
 
 omit [DecidableEq n] [Fintype n] in
 variable [Finite n] in
+/--
+@isnad1 id=ishermit.1h2v.s5.fa703ef9f866 from=translated src=- shape=6be7d06e vocab=df27aaa2
+-/
 lemma IsCompletelyPositive.isHermitian {C : Matrix n n ℝ} (hC : IsCompletelyPositive C) :
     C.IsHermitian :=
   hC.posSemidef.isHermitian
 
 omit [DecidableEq n] [Fintype n] in
 variable [Finite n] in
+/--
+@isnad1 id=issymm.1h2v.s4.eeaf3ae1e392 from=translated src=- shape=6be7d06e vocab=04f1a500
+-/
 lemma IsCompletelyPositive.isSymm {C : Matrix n n ℝ} (hC : IsCompletelyPositive C) :
     C.IsSymm :=
   isHermitian_iff_isSymm.mp hC.isHermitian
 
 omit [Fintype n] [DecidableEq n] in
+/--
+@isnad1 id=le.1h4v.s4.a285ceeef008 from=translated src=- shape=1afcc98f vocab=8e47d40e
+-/
 lemma IsCompletelyPositive.nonneg {C : Matrix n n ℝ} (hC : IsCompletelyPositive C)
     (i j : n) : 0 ≤ C i j := by
   obtain ⟨_, p, hp, rfl⟩ := hC
@@ -113,6 +143,9 @@ lemma IsCompletelyPositive.nonneg {C : Matrix n n ℝ} (hC : IsCompletelyPositiv
   exact Finset.sum_nonneg fun a _ ↦ mul_nonneg (hp a i) (hp a j)
 
 omit [Fintype n] [DecidableEq n] in
+/--
+@isnad1 id=iscomple.1h4v.s4.9dc1531829cf from=translated src=- shape=a00bb65e vocab=82590fb6
+-/
 lemma IsCompletelyPositive.submatrix {ι : Type*} {C : Matrix n n ℝ}
     (hC : IsCompletelyPositive C) (e : ι → n) :
     IsCompletelyPositive (C.submatrix e e) := by

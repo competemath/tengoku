@@ -38,7 +38,9 @@ namespace CKN
 
 noncomputable section
 
-/-- The coordinatewise gradient sum is controlled by the Euclidean norm in dimension three. -/
+/-- The coordinatewise gradient sum is controlled by the Euclidean norm in dimension three.
+@isnad1 id=le.0h1v.s5.07a68897185a from=translated src=- shape=21d16f2a vocab=c271d5ed
+-/
 theorem sum_abs_le_sqrt_three_vec3EuclideanNormFaithful (v : Vec3) :
     (∑ i : Fin 3, |v i|) ≤ Real.sqrt 3 * vec3EuclideanNorm v := by
   have hcs := Real.sum_mul_le_sqrt_mul_sqrt (Finset.univ : Finset (Fin 3))

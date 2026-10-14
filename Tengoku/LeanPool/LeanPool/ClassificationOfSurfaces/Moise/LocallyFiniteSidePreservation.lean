@@ -32,7 +32,9 @@ open PlaneGraphRealization
 variable {S : Type*} [TopologicalSpace S] {K : LocallyFiniteTriangleComplex S}
   {G : K.PlaneGraphRealization}
 
-/-- The canonical boundary lift belongs to the face whose boundary it parametrizes. -/
+/-- The canonical boundary lift belongs to the face whose boundary it parametrizes.
+@isnad1 id=mem.0h4v.s6.54da7e60d39c from=translated src=- shape=7b878e66 vocab=0db3b2ee
+-/
 theorem faceBoundaryLift_mem_faceInSupport (f : K.Face) (q : StandardFaceBoundary) :
     (K.faceBoundaryLift f q).1 ∈ faceInSupport (K := K) f := by
   exact Set.mem_range_self
@@ -42,7 +44,9 @@ theorem faceBoundaryLift_mem_faceInSupport (f : K.Face) (q : StandardFaceBoundar
 /-- A replacement graph pointwise finer than the canonical vertex-separation control is
 facewise close at the canonical per-face separation radii.  This is the bridge from a
 tolerance-parametrized one-skeleton replacement to the side-preservation entry
-`FaceBoundariesClose G (faceVertexSeparationRadius G)`. -/
+`FaceBoundariesClose G (faceVertexSeparationRadius G)`.
+@isnad1 id=faceboun.1h3v.s7.4fa46f4b3c40 from=translated src=- shape=66823dd2 vocab=e166a9c3
+-/
 theorem faceBoundariesClose_of_lt_vertexSeparationControl
     (harc : ∀ p : oneSkeletonInSupport (K := K),
       dist (G.graphReplacementMap p) (G.map p.1) < vertexSeparationControl G p.1) :
@@ -57,7 +61,9 @@ theorem faceBoundariesClose_of_lt_vertexSeparationControl
   exact (harc (K.faceBoundaryLift f q)).trans_le
     (vertexSeparationControl_le (faceBoundaryLift_mem_faceInSupport f q))
 
-/-- Every selected face boundary is part of the single global replacement graph. -/
+/-- Every selected face boundary is part of the single global replacement graph.
+@isnad1 id=le.0h4v.s5.c6dd8ecba860 from=translated src=- shape=34da1ea3 vocab=ee169766
+-/
 theorem facePolygonalCircle_carrier_subset_graphReplacement (f : K.Face) :
     (K.facePolygonalCircle (G := G) f).carrier ⊆
       Set.range G.graphReplacementMap := by
@@ -68,7 +74,9 @@ theorem facePolygonalCircle_carrier_subset_graphReplacement (f : K.Face) :
   exact ⟨K.faceBoundaryLift f q',
     (K.faceBoundaryMap_apply (G := G) f q').symm⟩
 
-/-- If a replacement-graph point lies on one face polygon, its source lies in that face. -/
+/-- If a replacement-graph point lies on one face polygon, its source lies in that face.
+@isnad1 id=mem.1h5v.s6.4c5229f553e0 from=translated src=- shape=dbaefa9f vocab=96f912bc
+-/
 theorem mem_faceInSupport_of_graphReplacement_mem_facePolygonalCircle
     (f : K.Face) (p : oneSkeletonInSupport (K := K))
     (hp : G.graphReplacementMap p ∈
@@ -93,15 +101,23 @@ noncomputable def edgePathInOneSkeleton (e : K.Edge) (r : Set.Icc (0 : ℝ) 1) :
       rw [← range_edgePathInSupport (K := K) e]
       exact Set.mem_range_self r⟩⟩
 
+/--
+@isnad1 id=continuo.0h3v.s7.6f9e82875597 from=translated src=- shape=c7ad246b vocab=fb060b93
+-/
 theorem continuous_edgePathInOneSkeleton (e : K.Edge) :
     Continuous (edgePathInOneSkeleton (K := K) e) := by
   apply Continuous.subtype_mk
   exact continuous_edgePathInSupport (K := K) e
 
+/--
+@isnad1 id=eq.0h4v.s6.023e624eba77 from=translated src=- shape=4e77ef7f vocab=75205250
+-/
 @[simp] theorem edgePathInOneSkeleton_val (e : K.Edge) (r : Set.Icc (0 : ℝ) 1) :
     (edgePathInOneSkeleton (K := K) e r).1 = edgePathInSupport (K := K) e r := rfl
 
-/-- An edge contained in a face has all its support points in that face. -/
+/-- An edge contained in a face has all its support points in that face.
+@isnad1 id=le.1h4v.s6.782ead6b76e8 from=translated src=- shape=3da554f6 vocab=4f389a8f
+-/
 theorem edgeInSupport_subset_faceInSupport (f : K.Face) (e : K.Edge)
     (hef : e.1 ⊆ K.faceVertices f) :
     edgeInSupport (K := K) e ⊆ faceInSupport (K := K) f := by
@@ -116,7 +132,9 @@ theorem edgeInSupport_subset_faceInSupport (f : K.Face) (e : K.Edge)
   exact (K.edgeMap_eq_faceMap e f hef x).symm.trans hx
 
 /-- If the second endpoint of an edge is absent from a face, an edge-path point in that face
-must have parameter zero. -/
+must have parameter zero.
+@isnad1 id=eq.2h5v.s7.9966803a1d9c from=translated src=- shape=3693ab62 vocab=44af5e7d
+-/
 theorem edgePathInSupport_parameter_eq_zero_of_mem_face
     (f : K.Face) (e : K.Edge) (r : Set.Icc (0 : ℝ) 1)
     (hsecond : K.edgeSecond e ∉ K.faceVertices f)
@@ -132,7 +150,9 @@ theorem edgePathInSupport_parameter_eq_zero_of_mem_face
   exact hc
 
 /-- If the first endpoint of an edge is absent from a face, an edge-path point in that face must
-have parameter one. -/
+have parameter one.
+@isnad1 id=eq.2h5v.s7.ae4fe5462bb8 from=translated src=- shape=3693ab62 vocab=371f8f03
+-/
 theorem edgePathInSupport_parameter_eq_one_of_mem_face
     (f : K.Face) (e : K.Edge) (r : Set.Icc (0 : ℝ) 1)
     (hfirst : K.edgeFirst e ∉ K.faceVertices f)
@@ -147,7 +167,9 @@ theorem edgePathInSupport_parameter_eq_one_of_mem_face
     K.edgeSimplexPath_apply_first] at hc
   linarith
 
-/-- The replacement of an abstract edge contained in a face lies on that face's polygon. -/
+/-- The replacement of an abstract edge contained in a face lies on that face's polygon.
+@isnad1 id=mem.2h6v.s7.861c4670b5fe from=translated src=- shape=479f801d vocab=2532d3aa
+-/
 theorem graphReplacement_mem_facePolygonalCircle_of_edge_subset
     (f : K.Face) (e : K.Edge) (p : oneSkeletonInSupport (K := K))
     (hp : p.1 ∈ edgeInSupport (K := K) e)
@@ -165,7 +187,9 @@ theorem graphReplacement_mem_facePolygonalCircle_of_edge_subset
   exact Set.mem_range_self
     (⟨p.1, hp'⟩ : edgeInSupport (K := K) (K.faceEdge f i))
 
-/-- The simultaneous graph replacement fixes every abstract vertex. -/
+/-- The simultaneous graph replacement fixes every abstract vertex.
+@isnad1 id=ex.0h4v.s6.596236d08f99 from=translated src=- shape=23742bc9 vocab=a59e280d
+-/
 theorem graphReplacementMap_vertex (v : K.Vertex) :
     ∃ p : oneSkeletonInSupport (K := K), p.1.1 = K.vertexPoint v ∧
       G.graphReplacementMap p = G.vertexImage v := by
@@ -185,7 +209,9 @@ theorem graphReplacementMap_vertex (v : K.Vertex) :
   rw [G.graphReplacementMap_eq e p hse]
   exact G.replacementEdgeMap_vertex e v hve
 
-/-- A vertex of a face maps to that face's replacement polygon. -/
+/-- A vertex of a face maps to that face's replacement polygon.
+@isnad1 id=mem.1h5v.s6.b69fc019996c from=translated src=- shape=f8e7533d vocab=b9317e9d
+-/
 theorem graphReplacement_vertex_mem_facePolygonalCircle
     (f : K.Face) (v : K.Vertex) (hvf : v ∈ K.faceVertices f) :
     G.vertexImage v ∈ (K.facePolygonalCircle (G := G) f).carrier := by
@@ -203,6 +229,9 @@ theorem graphReplacement_vertex_mem_facePolygonalCircle
   exact graphReplacement_mem_facePolygonalCircle_of_edge_subset (G := G) f e p hpe
     (K.faceEdge_subset_faceVertices f i)
 
+/--
+@isnad1 id=eq.0h4v.s6.23e2d10e4c92 from=translated src=- shape=940dfe3e vocab=28b2f324
+-/
 theorem graphReplacementMap_edgePathInOneSkeleton_zero (e : K.Edge) :
     G.graphReplacementMap
         (edgePathInOneSkeleton (K := K) e ⟨0, by simp⟩) =
@@ -214,6 +243,9 @@ theorem graphReplacementMap_edgePathInOneSkeleton_zero (e : K.Edge) :
   apply Subtype.ext
   exact (K.edgePath_zero e).trans hp.symm
 
+/--
+@isnad1 id=eq.0h4v.s6.0392457d92a5 from=translated src=- shape=940dfe3e vocab=8a5ee5fe
+-/
 theorem graphReplacementMap_edgePathInOneSkeleton_one (e : K.Edge) :
     G.graphReplacementMap
         (edgePathInOneSkeleton (K := K) e ⟨1, by simp⟩) =
@@ -234,7 +266,9 @@ def FaceFillingsGraphAvoidInteriors (G : K.PlaneGraphRealization) : Prop :=
 /-- Facewise closeness and vertex-to-face separation put every nonincident vertex on the
 unbounded side of the replacement polygon.  This is the locally finite form of Moise's actual
 Chapter 6 argument: bounded Tietze extension fills the close boundary while avoiding the outside
-vertex, and no-retraction detects the unbounded side. -/
+vertex, and no-retraction detects the unbounded side.
+@isnad1 id=facefill.3h4v.s5.acf23aeba50c from=translated src=- shape=9b4c630c vocab=23030b58
+-/
 theorem faceFillingsVerticesAvoidClosedRegions_of_close
     {r : K.Face → ℝ} (hr : ∀ f, 0 < r f)
     (hsep : FaceVertexThickeningsSeparated G r)
@@ -289,7 +323,9 @@ the separation radius of the original face image, and which is within half that 
 replacement boundary on the frontier.  This absorbs the parameter misalignment between the
 replacement arcs' `Path.trans` splits and the original edge trims: an aligned comparison built
 from `CentralPolygonalArc.curve_close` can discharge the closeness at the approximation-control
-scale, which the crude same-parameter comparison with `faceOriginalMap` cannot. -/
+scale, which the crude same-parameter comparison with `faceOriginalMap` cannot.
+@isnad1 id=facefill.5h5v.s8.bc57ff6cb648 from=translated src=- shape=f04cb717 vocab=9dca496e
+-/
 theorem faceFillingsVerticesAvoidClosedRegions_of_comparison
     {r : K.Face → ℝ} (hr : ∀ f, 0 < r f)
     (hsep : FaceVertexThickeningsSeparated G r)
@@ -343,7 +379,9 @@ theorem faceFillingsVerticesAvoidClosedRegions_of_comparison
     (K.facePolygonalCircle (G := G) f).disjoint_closedRegion_exteriorRegion
       hvClosed hvExterior
 
-/-- A nonincident vertex outside the polygonal closed disk lies in its unbounded component. -/
+/-- A nonincident vertex outside the polygonal closed disk lies in its unbounded component.
+@isnad1 id=mem.2h5v.s6.e6260c50eae2 from=translated src=- shape=9b42bbe3 vocab=620cbddc
+-/
 theorem graphReplacement_vertex_mem_exterior
     (hvertices : FaceFillingsVerticesAvoidClosedRegions G)
     (f : K.Face) (v : K.Vertex) (hvf : v ∉ K.faceVertices f) :
@@ -366,7 +404,9 @@ theorem graphReplacement_vertex_mem_exterior
   exact hoff.resolve_left hnotInterior
 
 /-- Moise's vertex-side condition propagates along every edge: the complete simultaneous
-replacement graph avoids the bounded interior selected for each face. -/
+replacement graph avoids the bounded interior selected for each face.
+@isnad1 id=facefill.1h3v.s4.14f7a1e88387 from=translated src=- shape=b3bf46a4 vocab=6b2d6c79
+-/
 theorem faceFillingsGraphAvoidInteriors_of_verticesAvoid
     (hvertices : FaceFillingsVerticesAvoidClosedRegions G) :
     FaceFillingsGraphAvoidInteriors G := by
@@ -504,7 +544,9 @@ theorem faceFillingsGraphAvoidInteriors_of_verticesAvoid
 
 /-- Once the replacement graph stays out of every selected bounded component, distinct filled
 face interiors are disjoint.  A vertex of the second face not belonging to the first supplies the
-strict side witness required by polygonal Jordan separation. -/
+strict side witness required by polygonal Jordan separation.
+@isnad1 id=disjoint.3h5v.s6.8b7b3ffe1eeb from=translated src=- shape=7b89217a vocab=ac4bc789
+-/
 theorem disjoint_facePolygonalCircle_interiors
     (hfaces : Function.Injective K.faceVertices)
     (hside : FaceFillingsGraphAvoidInteriors G)
@@ -545,7 +587,9 @@ theorem disjoint_facePolygonalCircle_interiors
   · exact ⟨G.vertexImage w, hwCarrierG, hwNotCarrierF⟩
 
 /-- The quantitative Chapter 6 hypotheses, together with local finiteness of the selected closed
-polygonal disks, produce the complete compatibility package needed for cellwise assembly. -/
+polygonal disks, produce the complete compatibility package needed for cellwise assembly.
+@isnad1 id=cellwise.5h4v.s7.fa7f4cf28731 from=translated src=- shape=33c05240 vocab=07fdda76
+-/
 theorem cellwiseCompatibility_of_control
     (hfaces : Function.Injective K.faceVertices)
     {phi : K.support → ℝ}
@@ -572,7 +616,9 @@ theorem cellwiseCompatibility_of_control
 /-- Moise's original side-control interface: facewise graph closeness below the canonical
 vertex-to-face separation radius gives the compatibility package for all Schoenflies fillings.
 Unlike `cellwiseCompatibility_of_control`, this formulation does not force one pointwise
-tolerance to serve every face incident to a source point. -/
+tolerance to serve every face incident to a source point.
+@isnad1 id=cellwise.4h3v.s7.745db49c93b4 from=translated src=- shape=0dc81577 vocab=0904e9e4
+-/
 theorem cellwiseCompatibility_of_facewise_close
     (hfaces : Function.Injective K.faceVertices)
     (hclose : FaceBoundariesClose G (faceVertexSeparationRadius G))
@@ -599,7 +645,9 @@ theorem cellwiseCompatibility_of_facewise_close
 canonical separation radii.  This is the entry matched to the locally finite replacement arcs:
 their `curve_close` tracking is stated against the trimmed original curve, not against the
 `Path.trans` parameter, so only a reparametrized comparison can be discharged at the
-approximation-control scale. -/
+approximation-control scale.
+@isnad1 id=cellwise.6h4v.s9.b46cbaa8f683 from=translated src=- shape=65728422 vocab=cc27a4bc
+-/
 theorem cellwiseCompatibility_of_comparison
     (hfaces : Function.Injective K.faceVertices)
     (comp : K.Face → Plane → Plane)

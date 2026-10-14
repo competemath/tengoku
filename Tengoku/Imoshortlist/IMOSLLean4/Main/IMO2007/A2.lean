@@ -59,7 +59,9 @@ namespace IMO2007A2
   `g(m + n + 1) ≥ g(m) + g(g(n))` for all `m, n : ℕ`. -/
 def good (g : ℕ → ℕ) := ∀ m n : ℕ, g m + g (g n) ≤ g (m + n + 1)
 
-/-- For any `m, n, k : ℕ` we have `(m - k) + (n - k) ≤ m + n - k`. -/
+/-- For any `m, n, k : ℕ` we have `(m - k) + (n - k) ≤ m + n - k`.
+@isnad1 id=le.0h3v.s5.9a2944265a1e from=translated src=- shape=49c9c093 vocab=8577ebb4
+-/
 theorem sub_add_sub_le_add_sub (m n k : ℕ) : (m - k) + (n - k) ≤ m + n - k := by
   obtain h | h : n ≤ k ∨ k ≤ n := Nat.le_total n k
   ---- Case 1: `n ≤ k`.
@@ -71,7 +73,9 @@ theorem sub_add_sub_le_add_sub (m n k : ℕ) : (m - k) + (n - k) ≤ m + n - k :
     _ ≤ m + (n - k) := Nat.add_le_add_right (Nat.sub_le _ _) _
     _ = m + n - k := (Nat.add_sub_assoc h _).symm
 
-/-- The function `n ↦ n - C` is good for any `C : ℕ`. -/
+/-- The function `n ↦ n - C` is good for any `C : ℕ`.
+@isnad1 id=good.0h1v.s3.27d99b0c2ea1 from=translated src=- shape=296efa7c vocab=02b2ea92
+-/
 theorem sub_right_is_good (C : ℕ) : good (· - C) := by
   intro m n; calc m - C + (n - C - C)
     _ ≤ (m - C) + (n - C) := Nat.add_le_add_left (Nat.sub_le _ _) _
@@ -79,7 +83,9 @@ theorem sub_right_is_good (C : ℕ) : good (· - C) := by
     _ ≤ m + n + 1 - C := Nat.sub_le_sub_right (Nat.le_add_right _ _) _
 
 /-- For any `K ≠ 1`, the function `g : ℕ → ℕ` defined by
-  `g(n) = n` if `K ∤ n + 1` and `g(n) = n + 1` if `K ∣ n + 1` is good. -/
+  `g(n) = n` if `K ∤ n + 1` and `g(n) = n + 1` if `K ∣ n + 1` is good.
+@isnad1 id=good.1h1v.s5.85df40be8213 from=translated src=- shape=b2cfc3f0 vocab=4d4e93be
+-/
 theorem ite_dvd_add_one_is_good (hK : K ≠ 1) :
     good (λ n ↦ if K ∣ n + 1 then n + 1 else n) := by
   intro m n; dsimp only
@@ -109,7 +115,9 @@ namespace good
 variable {g : ℕ → ℕ} (hg : good g)
 include hg
 
-/-- A good function is monotone. -/
+/-- A good function is monotone.
+@isnad1 id=monotone.1h1v.s3.a133bc24d00a from=translated src=- shape=e7580e15 vocab=77d59405
+-/
 theorem monotone : Monotone g := by
   refine monotone_iff_forall_lt.mpr λ x y h ↦ ?_
   calc g x
@@ -117,19 +125,25 @@ theorem monotone : Monotone g := by
     _ ≤ g (x + (y - (x + 1)) + 1) := hg x (y - (x + 1))
     _ = g y := by rw [Nat.add_right_comm, Nat.add_sub_of_le h]
 
-/-- If `g` is a good function, then `g(0) = 0`. -/
+/-- If `g` is a good function, then `g(0) = 0`.
+@isnad1 id=eq.1h1v.s4.57c436e6c593 from=translated src=- shape=18892e30 vocab=755cd778
+-/
 theorem map_zero : g 0 = 0 :=
   Nat.eq_zero_of_not_pos λ h0 ↦
     (hg.monotone h0).not_gt ((Nat.lt_add_of_pos_left h0).trans_le (hg 0 0))
 
-/-- If `g` is a good function and `g(m) > 0`, then `g(n) ≤ m + n` for any `n : ℕ`. -/
+/-- If `g` is a good function and `g(m) > 0`, then `g(n) ≤ m + n` for any `n : ℕ`.
+@isnad1 id=le.2h3v.s5.13bf5d07f4ca from=translated src=- shape=553483bd vocab=192fc391
+-/
 theorem map_le_add_of_map_pos (hm : g m > 0) (n) : g n ≤ m + n := by
   refine Nat.le_of_not_lt λ h ↦ Nat.not_lt_of_le (hg m n) ?_
   calc g (m + n + 1)
     _ ≤ g (g n) := hg.monotone h
     _ < g m + g (g n) := Nat.lt_add_of_pos_left hm
 
-/-- If `g` is a good function, then `g(N) ≤ N + 1` for all `N : ℕ`. -/
+/-- If `g` is a good function, then `g(N) ≤ N + 1` for all `N : ℕ`.
+@isnad1 id=le.1h2v.s4.d506f305aa7c from=translated src=- shape=62dac09b vocab=1d7128d0
+-/
 theorem map_bound (N : ℕ) : g N ≤ N + 1 := by
   ---- Suppose for the sake of contradiction that `g(N) ≥ N + 2`.
   refine Nat.le_of_not_lt λ hN ↦ ?_
@@ -174,7 +188,9 @@ theorem eq_map_good_iff : (∃ g, good g ∧ g N = k) ↔ k ≤ N + 1 ∧ (N = 0
     ite_dvd_add_one_is_good (Nat.add_one_ne_add_one_iff.mpr hN),
     ite_eq_left (Nat.dvd_refl _)⟩
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h2v.s7.1df02abf86b0 from=translated src=- shape=88b00a99 vocab=b781db34
+-/
 theorem final_solution {N k : ℕ+} :
     (∃ f : ℕ+ → ℕ+, (∀ m n, f m + f (f n) ≤ f (m + n) + 1) ∧ f N = k)
       ↔ k ≤ N + 1 ∧ (N = 1 → k = 1) :=

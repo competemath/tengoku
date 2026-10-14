@@ -20,7 +20,9 @@ noncomputable section
 
 namespace LeanPool.CenteredMaximal
 
-/-- Both numerical bounds on `Φ`, from rational enclosures of the five square roots. -/
+/-- Both numerical bounds on `Φ`, from rational enclosures of the five square roots.
+@isnad1 id=mem.0h0v.s5.12600dd4b10b from=translated src=- shape=69539859 vocab=426de593
+-/
 theorem phi_mem_Ioo : phi ∈ Set.Ioo (1685 / 1000 : ℝ) (1686 / 1000) := by
   have s22l : (4.6904 : ℝ) < √22 := (Real.lt_sqrt (by norm_num)).2 (by norm_num)
   have s22u : √22 < (4.6905 : ℝ) := (Real.sqrt_lt' (by norm_num)).2 (by norm_num)

@@ -29,7 +29,9 @@ namespace IMO2007N7
 
 open Finset
 
-/-- If `r < p^k` and `p^k ∣ m`, then `ν_p((m + r)!) = ν_p(m) + ν_p(r)`. -/
+/-- If `r < p^k` and `p^k ∣ m`, then `ν_p((m + r)!) = ν_p(m) + ν_p(r)`.
+@isnad1 id=eq.2h4v.s6.e7966e68cb66 from=translated src=- shape=27bc570d vocab=1be92dd6
+-/
 theorem padicValNat_add_factorial_of_lt_dvd
     [hp : Fact (Nat.Prime p)] (hr : r < p ^ k) (hm : p ^ k ∣ m) :
     padicValNat p (m + r).factorial
@@ -56,24 +58,32 @@ variable [Fintype ι] (p : ι → ℕ) [hp : ∀ i, Fact (Nat.Prime (p i))]
     `(n_k)_{k ≥ 0}` by `n_0 = 1` and `n_{k + 1} = (2 ∏_i p_i)^{n_k}`. -/
 def stdSeq (n : ℕ) : ℕ := ((2 * ∏ i, p i) ^ ·)^[n] 1
 
-/-- Given a finite list `p : ι → ℕ` of primes, we have `1 < 2 ∏_i p_i`. -/
+/-- Given a finite list `p : ι → ℕ` of primes, we have `1 < 2 ∏_i p_i`.
+@isnad1 id=lt.0h2v.s5.ecbeb13a50f0 from=translated src=- shape=b8600cbf vocab=2cd2d4aa
+-/
 theorem one_lt_two_mul_prod_prime : 1 < 2 * ∏ i, p i :=
   Nat.le_mul_of_pos_right _ <| Nat.pos_of_ne_zero <|
     prod_ne_zero_iff.mpr λ i _ ↦ (hp i).out.ne_zero
 
 omit hp in
-/-- We have `stdSeq p (n + 1) = (2 ∏_i p_i)^{stdSeq p n}`. -/
+/-- We have `stdSeq p (n + 1) = (2 ∏_i p_i)^{stdSeq p n}`.
+@isnad1 id=eq.0h3v.s6.4aa0a8fc9223 from=translated src=- shape=f105b1ec vocab=6dfa2757
+-/
 theorem stdSeq_succ (n) : stdSeq p (n + 1) = (2 * ∏ i, p i) ^ stdSeq p n :=
   Function.iterate_succ_apply' _ _ _
 
-/-- The function `stdSeq p` is strictly monotone. -/
+/-- The function `stdSeq p` is strictly monotone.
+@isnad1 id=strictmo.0h2v.s4.209fed4855a2 from=translated src=- shape=ed9b453f vocab=c262cc43
+-/
 theorem stdSeq_strictMono : StrictMono (stdSeq p) := by
   refine strictMono_of_lt_add_one λ n _ ↦ ?_
   calc stdSeq p n
     _ < (2 * ∏ i, p i) ^ stdSeq p n := Nat.lt_pow_self (one_lt_two_mul_prod_prime p)
     _ = stdSeq p (n + 1) := (stdSeq_succ p n).symm
 
-/-- We have `2 * stdSeq p n ≤ stdSeq p (n + 1)`. -/
+/-- We have `2 * stdSeq p n ≤ stdSeq p (n + 1)`.
+@isnad1 id=le.0h3v.s5.f5d7051aa569 from=translated src=- shape=e62e0e6d vocab=e0350710
+-/
 theorem two_mul_stdSeq_le_stdSeq_succ (n) : 2 * stdSeq p n ≤ stdSeq p (n + 1) :=
   calc 2 * stdSeq p n
   _ ≤ 2 ^ stdSeq p n := Nat.mul_le_pow (Nat.succ_ne_self 1) _
@@ -81,7 +91,9 @@ theorem two_mul_stdSeq_le_stdSeq_succ (n) : 2 * stdSeq p n ≤ stdSeq p (n + 1) 
     Nat.pow_le_pow_left (one_lt_two_mul_prod_prime p) _
   _ = stdSeq p (n + 1) := (stdSeq_succ p n).symm
 
-/-- For any `n`, we have `∑_{j < n} stdSeq p j < stdSeq p n`. -/
+/-- For any `n`, we have `∑_{j < n} stdSeq p j < stdSeq p n`.
+@isnad1 id=lt.0h3v.s5.369bf0573b6d from=translated src=- shape=8969d255 vocab=fbe90767
+-/
 theorem sum_stdSeq_range_lt_stdSeq (n) : ∑ j ∈ range n, stdSeq p j < stdSeq p n := by
   induction n with | zero => exact Nat.zero_lt_one | succ n n_ih => ?_
   calc ∑ j ∈ range (n + 1), stdSeq p j
@@ -92,7 +104,9 @@ theorem sum_stdSeq_range_lt_stdSeq (n) : ∑ j ∈ range n, stdSeq p j < stdSeq 
 
 /-- For any finite list `p : ι → ℕ` of primes, finite subset `S ⊆ ℕ`,
   and `i : ι`, we have `ν_{p_i}([∑_{k ∈ S} n_k]!) = ∑_{k ∈ S} ν_{p_i}(n_k!)`,
-  where `(n_k)_{k ≥ 0}` is the `stdSeq` sequence defined above. -/
+  where `(n_k)_{k ≥ 0}` is the `stdSeq` sequence defined above.
+@isnad1 id=eq.0h4v.s5.712a453e28cd from=translated src=- shape=c9430cc0 vocab=136cd054
+-/
 theorem padicValNat_sum_stdSeq (i : ι) (S : Finset ℕ) :
     padicValNat (p i) (∑ k ∈ S, stdSeq p k).factorial
       = ∑ k ∈ S, padicValNat (p i) (stdSeq p k).factorial := by
@@ -126,7 +140,9 @@ theorem padicValNat_sum_stdSeq (i : ι) (S : Finset ℕ) :
       _ = stdSeq p (n + 1) := (stdSeq_succ p n).symm
 
 open Fin.NatCast in
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.0h4v.s5.eaf027c99f0e from=translated src=- shape=b5994253 vocab=a9738e7a
+-/
 theorem final_solution (d) [NeZero d] (N) :
     ∃ n ≥ N, ∀ i, d ∣ padicValNat (p i) (Nat.factorial n) := by
   ---- Define `f(n) = (∑_{j < n + N} ν_{p_i}([stdSeq p j]!) (mod d))_{i ∈ ι}`.

@@ -89,7 +89,9 @@ def toStarAlgEquiv (w : SpatialWitness G H) :
     exact map_smul w.unitary.conjStarAlgEquiv c
       (x : GroupL2 G →L[ℂ] GroupL2 G)
 
-/-- The spatial witness preserves the canonical vacuum trace. Paper: §3. -/
+/-- The spatial witness preserves the canonical vacuum trace. Paper: §3.
+@isnad1 id=eq.0h4v.s20.c09734d38b5f from=translated src=- shape=9b34ee5a vocab=db02401f
+-/
 theorem trace_preserving (w : SpatialWitness G H)
     (x : GroupVonNeumannAlgebra G) :
     canonicalTrace H (w.toStarAlgEquiv x) = canonicalTrace G x := by
@@ -111,7 +113,9 @@ def toTracialGroupFactorEquiv
 
 end SpatialWitness
 
-/-- Spatial-to-tracial transfer. Paper: §3. -/
+/-- Spatial-to-tracial transfer. Paper: §3.
+@isnad1 id=tracialg.0h3v.s3.f29175250707 from=translated src=- shape=8584b719 vocab=5eff308b
+-/
 theorem tracialEquiv_of_spatialWitness {G H : CountableDiscreteGroup}
     (w : SpatialWitness G H) : TracialGroupFactorsIsomorphic G H :=
   ⟨w.toTracialGroupFactorEquiv⟩

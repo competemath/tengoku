@@ -34,6 +34,9 @@ noncomputable def uniform : Simplex α where
   sum_eq_one := by
     exact uniformDistribution_sum_one (α := α)
 
+/--
+@isnad1 id=eq.0h2v.s5.70a8a34eaeba from=translated src=- shape=80854307 vocab=fc90f71d
+-/
 @[simp] lemma uniform_apply (a : α) :
     (uniform (α := α)).p a = 1 / (Fintype.card α : ℝ) :=
   rfl

@@ -24,21 +24,27 @@ namespace CKN.Core.Step4
 open CKN.Core.Endgame
 
 /-- The one-sided Morrey transfer constant is monotone in both integral
-arguments A and B. -/
+arguments A and B.
+@isnad1 id=le.3h7v.s5.4685e03136ec from=translated src=- shape=c79dfa84 vocab=e87eb363
+-/
 theorem oneSidedMorreyBound_mono {P τ ρ₀ : ℝ} {A₁ A₂ B₁ B₂ : ℝ≥0∞}
     (hP : 0 < P) (hA : A₁ ≤ A₂) (hB : B₁ ≤ B₂) :
     oneSidedMorreyBound P τ ρ₀ A₁ B₁ ≤ oneSidedMorreyBound P τ ρ₀ A₂ B₂ := by
   unfold oneSidedMorreyBound
   gcongr
 
-/-- The one-sided Morrey transfer constant is monotone in A alone. -/
+/-- The one-sided Morrey transfer constant is monotone in A alone.
+@isnad1 id=le.2h6v.s5.ff09854bd050 from=translated src=- shape=2dcae29b vocab=e87eb363
+-/
 theorem oneSidedMorreyBound_mono_left {P τ ρ₀ : ℝ} {A₁ A₂ B : ℝ≥0∞}
     (hP : 0 < P) (hA : A₁ ≤ A₂) :
     oneSidedMorreyBound P τ ρ₀ A₁ B ≤ oneSidedMorreyBound P τ ρ₀ A₂ B := by
   unfold oneSidedMorreyBound
   gcongr
 
-/-- The one-sided Morrey transfer constant is monotone in B alone. -/
+/-- The one-sided Morrey transfer constant is monotone in B alone.
+@isnad1 id=le.2h6v.s5.2b0ba2fa7bc5 from=translated src=- shape=9a8b51e7 vocab=e87eb363
+-/
 theorem oneSidedMorreyBound_mono_right {P τ ρ₀ : ℝ} {A B₁ B₂ : ℝ≥0∞}
     (hP : 0 < P) (hB : B₁ ≤ B₂) :
     oneSidedMorreyBound P τ ρ₀ A B₁ ≤ oneSidedMorreyBound P τ ρ₀ A B₂ := by

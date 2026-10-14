@@ -49,7 +49,9 @@ structure FacePLFilling (t : K.Face) where
     (K.facePolygonalCircle
       (hcont := hcont) (hinj := hinj) (D := D) (C := C) t).closedRegion)
 
-/-- Polygonal Schoenflies fills the canonical face boundary by a finite PL homeomorphism. -/
+/-- Polygonal Schoenflies fills the canonical face boundary by a finite PL homeomorphism.
+@isnad1 id=nonempty.2h5v.s7.9992d801a0c7 from=translated src=- shape=3a9d9e22 vocab=e0a6eb2e
+-/
 theorem exists_facePLFilling (t : K.Face) :
     Nonempty (K.FacePLFilling
       (hcont := hcont) (hinj := hinj) (D := D) (C := C) t) := by
@@ -78,7 +80,9 @@ noncomputable def facePLFilling (t : K.Face) :
 
 /-- Fillings of neighboring faces agree wherever their standard boundary lifts name the same
 intrinsic one-skeleton point.  The equality is pointwise because both restrictions are the same
-global graph replacement map. -/
+global graph replacement map.
+@isnad1 id=eq.3h8v.s8.a7b6f7930706 from=translated src=- shape=d4c47f52 vocab=38bd03dc
+-/
 theorem facePLFilling_eq_of_boundaryLift_eq
     {t u : K.Face} {p q : StandardFaceBoundary}
     (hpq : (K.faceBoundaryLift t p).1 = (K.faceBoundaryLift u q).1) :

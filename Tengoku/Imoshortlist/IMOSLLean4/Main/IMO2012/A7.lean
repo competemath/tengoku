@@ -43,19 +43,27 @@ section
 variable {R : I → Type*} [(i : I) → Ring (R i)] [(i : I) → LinearOrder (R i)]
   [(i : I) → IsOrderedRing (R i)] (f g₁ g₂ : (i : I) → R i)
 
-/-- For any `f, g₁, g₂ ∈ ∏_i R_i`, we have `f⁺ min{g₁, g₂} = min{f⁺ g₁, f⁺ g₂}`. -/
+/-- For any `f, g₁, g₂ ∈ ∏_i R_i`, we have `f⁺ min{g₁, g₂} = min{f⁺ g₁, f⁺ g₂}`.
+@isnad1 id=eq.0h5v.s8.89c50a8a02d2 from=translated src=- shape=6bd467d7 vocab=cc2d382c
+-/
 lemma Pi_posPart_mul_inf : f⁺ * (g₁ ⊓ g₂) = f⁺ * g₁ ⊓ f⁺ * g₂ :=
   funext λ i ↦ mul_min_of_nonneg (g₁ i) (g₂ i) (posPart_nonneg f i)
 
-/-- For any `f, g₁, g₂ ∈ ∏_i R_i`, we have `f⁺ max{g₁, g₂} = max{f⁺ g₁, f⁺ g₂}`. -/
+/-- For any `f, g₁, g₂ ∈ ∏_i R_i`, we have `f⁺ max{g₁, g₂} = max{f⁺ g₁, f⁺ g₂}`.
+@isnad1 id=eq.0h5v.s8.48cf57d562cd from=translated src=- shape=6bd467d7 vocab=c0fd4efa
+-/
 lemma Pi_posPart_mul_sup : f⁺ * (g₁ ⊔ g₂) = f⁺ * g₁ ⊔ f⁺ * g₂ :=
   funext λ i ↦ mul_max_of_nonneg (g₁ i) (g₂ i) (posPart_nonneg f i)
 
-/-- For any `f, g₁, g₂ ∈ ∏_i R_i`, we have `min{g₁, g₂} f⁺ = min{g₁ f⁺, g₂ f⁺}`. -/
+/-- For any `f, g₁, g₂ ∈ ∏_i R_i`, we have `min{g₁, g₂} f⁺ = min{g₁ f⁺, g₂ f⁺}`.
+@isnad1 id=eq.0h5v.s8.90a692b0e0fd from=translated src=- shape=d80334b1 vocab=cc2d382c
+-/
 lemma Pi_inf_mul_posPart : (g₁ ⊓ g₂) * f⁺ = g₁ * f⁺ ⊓ g₂ * f⁺ :=
   funext λ i ↦ min_mul_of_nonneg (g₁ i) (g₂ i) (posPart_nonneg f i)
 
-/-- For any `f, g₁, g₂ ∈ ∏_i R_i`, we have `max{g₁, g₂} f⁺ = max{g₁ f⁺, g₂ f⁺}`. -/
+/-- For any `f, g₁, g₂ ∈ ∏_i R_i`, we have `max{g₁, g₂} f⁺ = max{g₁ f⁺, g₂ f⁺}`.
+@isnad1 id=eq.0h5v.s8.c033186fcb94 from=translated src=- shape=d80334b1 vocab=c0fd4efa
+-/
 lemma Pi_sup_mul_posPart : (g₁ ⊔ g₂) * f⁺ = g₁ * f⁺ ⊔ g₂ * f⁺ :=
   funext λ i ↦ max_mul_of_nonneg (g₁ i) (g₂ i) (posPart_nonneg f i)
 
@@ -78,13 +86,17 @@ section Lattice
 
 variable [Lattice α] (P : α → Prop)
 
-/-- The inf-closure is contained in the meta-closure. -/
+/-- The inf-closure is contained in the meta-closure.
+@isnad1 id=metaclos.1h3v.s4.8ae5fb2bb874 from=translated src=- shape=f7c238b1 vocab=bdac4c64
+-/
 lemma InfClosure_imp_MetaClosure (ha : BinOpClosure Min.min P a) : MetaClosure P a := by
   induction ha with
   | ofMem a ha => exact MetaClosure.ofMem a ha
   | ofOp a b _ _ ha hb => exact MetaClosure.ofMin a b ha hb
 
-/-- The sup-closure of inf-closure is contained in the meta-closure. -/
+/-- The sup-closure of inf-closure is contained in the meta-closure.
+@isnad1 id=metaclos.1h3v.s5.22f19501fae2 from=translated src=- shape=d4b94a8e vocab=2761e55e
+-/
 lemma SupInfClosure_imp_MetaClosure
     (ha : BinOpClosure Max.max (BinOpClosure Min.min P) a) : MetaClosure P a := by
   induction ha with
@@ -98,7 +110,9 @@ section Distrib
 variable [DistribLattice α] (P : α → Prop)
 
 open BinOpClosure in
-/-- The meta-closure is contained in the sup-closure of inf-closure. -/
+/-- The meta-closure is contained in the sup-closure of inf-closure.
+@isnad1 id=binopclo.1h3v.s5.9ed19f1d2618 from=translated src=- shape=a16bb3f0 vocab=1113a1f1
+-/
 lemma MetaClosure_imp_SupInfClosure (ha : MetaClosure P a) :
     BinOpClosure Max.max (BinOpClosure Min.min P) a := by
   induction ha with
@@ -113,7 +127,9 @@ lemma MetaClosure_imp_SupInfClosure (ha : MetaClosure P a) :
     | ofMem d hd => exact ofMem (c ⊓ d) (ofOp c d hc hd)
     | ofOp d e _ _ hd he => rw [inf_sup_left]; exact ofOp _ _ hd he
 
-/-- The sup-closure of inf-closure is equal to the meta-closure. -/
+/-- The sup-closure of inf-closure is equal to the meta-closure.
+@isnad1 id=eq.0h2v.s5.9da22298ae9e from=translated src=- shape=037f7c29 vocab=1113a1f1
+-/
 theorem SupInfClosure_eq_MetaClosure :
     BinOpClosure Max.max (BinOpClosure Min.min P) = MetaClosure P :=
   funext λ _ ↦ propext ⟨SupInfClosure_imp_MetaClosure P, MetaClosure_imp_SupInfClosure P⟩
@@ -128,17 +144,23 @@ section
 
 variable [Lattice G] [AddGroup G] (S : AddSubgroup G)
 
-/-- The meta-closure of a subgroup contains `0`. -/
+/-- The meta-closure of a subgroup contains `0`.
+@isnad1 id=metaclos.0h2v.s5.099d3590137a from=translated src=- shape=5d9777e1 vocab=852d0260
+-/
 lemma zero_mem : MetaClosure (· ∈ S) 0 :=
   ofMem 0 S.zero_mem
 
-/-- The meta-closure of a subgroup is closed under taking maximum with zero. -/
+/-- The meta-closure of a subgroup is closed under taking maximum with zero.
+@isnad1 id=metaclos.1h3v.s6.c22ac4735947 from=translated src=- shape=6a8c0a94 vocab=d608e178
+-/
 lemma posPart_mem (ha : MetaClosure (· ∈ S) a) : MetaClosure (· ∈ S) a⁺ :=
   ofMax a 0 ha (zero_mem S)
 
 variable [AddLeftMono G] [AddRightMono G]
 
-/-- The meta-closure of a subgroup is closed under addition. -/
+/-- The meta-closure of a subgroup is closed under addition.
+@isnad1 id=metaclos.2h4v.s7.3d4696e1d510 from=translated src=- shape=2bce9aa7 vocab=aa769f84
+-/
 lemma add_mem (ha : MetaClosure (· ∈ S) a) (hb : MetaClosure (· ∈ S) b) :
     MetaClosure (· ∈ S) (a + b) := by
   induction ha with
@@ -150,14 +172,18 @@ lemma add_mem (ha : MetaClosure (· ∈ S) a) (hb : MetaClosure (· ∈ S) b) :
     | ofMin b c _ _ hb hc => rw [add_inf]; exact ofMin _ _ hb hc
     | ofMax b c _ _ hb hc => rw [add_sup]; exact ofMax _ _ hb hc
 
-/-- The meta-closure of a subgroup is closed under taking positive part. -/
+/-- The meta-closure of a subgroup is closed under taking positive part.
+@isnad1 id=metaclos.1h3v.s6.856affbd0142 from=translated src=- shape=fbef17e1 vocab=646ee757
+-/
 lemma neg_mem (ha : MetaClosure (· ∈ S) a) : MetaClosure (· ∈ S) (-a) := by
   induction ha with
   | ofMem a ha => exact ofMem (-a) (S.neg_mem ha)
   | ofMin a b _ _ ha hb => rw [neg_inf]; exact ofMax _ _ ha hb
   | ofMax a b _ _ ha hb => rw [neg_sup]; exact ofMin _ _ ha hb
 
-/-- The meta-closure of a subgroup is closed under subtraction. -/
+/-- The meta-closure of a subgroup is closed under subtraction.
+@isnad1 id=metaclos.2h4v.s7.486bf4e25091 from=translated src=- shape=2bce9aa7 vocab=b0db511c
+-/
 lemma sub_mem (ha : MetaClosure (· ∈ S) a) (hb : MetaClosure (· ∈ S) b) :
     MetaClosure (· ∈ S) (a - b) :=
   (sub_eq_add_neg a b) ▸ add_mem S ha (neg_mem S hb)
@@ -174,6 +200,9 @@ end
 /-! ### Subring structure of meta-closure -/
 
 /- The main formula, expressing `a⁺b⁺` as the positive part of another element. -/
+/--
+@isnad1 id=eq.0h3v.s7.29aa707567cc from=translated src=- shape=5d3360ef vocab=69969a58
+-/
 lemma posPart_mul_posPart_main_formula
     [Ring R] [LinearOrder R] [IsOrderedRing R] (a b : R) :
     a⁺ * b⁺ = (min (a * b) (min (max a (a * b ^ 2)) (max b (a ^ 2 * b))))⁺ := by
@@ -207,16 +236,23 @@ variable {R : I → Type*} [(i : I) → Ring (R i)] [(i : I) → LinearOrder (R 
   [(i : I) → IsOrderedRing (R i)] (S : Subring ((i : I) → R i))
 
 omit [∀ (i : I), IsOrderedRing (R i)] in
-/-- The meta-closure of a subring of `∏_i R_i` contains `1`. -/
+/-- The meta-closure of a subring of `∏_i R_i` contains `1`.
+@isnad1 id=metaclos.0h3v.s7.63693b219dc8 from=translated src=- shape=3cb8cd21 vocab=9b317528
+-/
 lemma Pi_one_mem : MetaClosure (· ∈ S) 1 :=
   ofMem 1 S.one_mem
 
 /- The main formula, expressing `f⁺g⁺` as the positive part of a function. -/
+/--
+@isnad1 id=eq.0h4v.s9.81412ec8257b from=translated src=- shape=c7e2e1d8 vocab=69969a58
+-/
 lemma Pi_posPart_mul_posPart_main_formula (f g : (i : I) → R i) :
     f⁺ * g⁺ = ((f * g) ⊓ ((f ⊔ f * g ^ 2) ⊓ (g ⊔ f ^ 2 * g)))⁺ :=
   funext λ i ↦ posPart_mul_posPart_main_formula (f i) (g i)
 
-/-- If `f, g` belongs to a subring of `∏_i R_i`, then `fg` belongs to the meta-closure. -/
+/-- If `f, g` belongs to a subring of `∏_i R_i`, then `fg` belongs to the meta-closure.
+@isnad1 id=metaclos.2h5v.s8.30a8380d12e3 from=translated src=- shape=a8fd2319 vocab=dce3139f
+-/
 theorem Pi_posPart_mul_posPart_mem (hf : f ∈ S) (hg : g ∈ S) :
     MetaClosure (· ∈ S) (f⁺ * g⁺) :=
   (Pi_posPart_mul_posPart_main_formula f g).symm ▸
@@ -224,7 +260,9 @@ theorem Pi_posPart_mul_posPart_mem (hf : f ∈ S) (hg : g ∈ S) :
       (ofMax _ _ (ofMem _ hf) (ofMem _ <| S.mul_mem hf (S.pow_mem hg 2)))
       (ofMax _ _ (ofMem _ hg) (ofMem _ <| S.mul_mem (S.pow_mem hf 2) hg))
 
-/-- If `f, g` belongs to the meta-clousre of a subring of `∏_i R_i`, then so is `f⁺g⁺`. -/
+/-- If `f, g` belongs to the meta-clousre of a subring of `∏_i R_i`, then so is `f⁺g⁺`.
+@isnad1 id=metaclos.2h5v.s9.dc46dc5f7f60 from=translated src=- shape=bb0d2d47 vocab=dce3139f
+-/
 theorem Pi_closure_posPart_mul_closure_posPart_mem
     (hf : MetaClosure (· ∈ S) f) (hg : MetaClosure (· ∈ S) g) :
     MetaClosure (· ∈ S) (f⁺ * g⁺) := by
@@ -241,7 +279,9 @@ theorem Pi_closure_posPart_mul_closure_posPart_mem
     | ofMax f₁ f₂ _ _ hf₁ hf₂ =>
         rw [posPart_max, Pi_sup_mul_posPart]; exact ofMax _ _ hf₁ hf₂
 
-/-- If `f, g` belongs to the meta-clousre of a subring of `∏_i R_i`, then so is `fg`. -/
+/-- If `f, g` belongs to the meta-clousre of a subring of `∏_i R_i`, then so is `fg`.
+@isnad1 id=metaclos.2h5v.s8.38a3eaf5026f from=translated src=- shape=e6601f2e vocab=26612a26
+-/
 theorem Pi_mul_mem (hf : MetaClosure (· ∈ S) f) (hg : MetaClosure (· ∈ S) g) :
     MetaClosure (· ∈ S) (f * g) := by
   rw [← posPart_sub_negPart f, sub_mul, ← posPart_sub_negPart g, mul_sub, mul_sub]
@@ -266,7 +306,9 @@ noncomputable def MvPolynomial_image (σ R : Type*) [CommRing R] : Subring ((σ 
   (RingHom.pi (MvPolynomial.eval (R := R) (σ := σ))).range
 
 open MetaClosure in
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.0h2v.s8.9010abbc8686 from=translated src=- shape=e429c17c vocab=416893d3
+-/
 theorem final_solution (σ R) [CommRing R] [LinearOrder R] [IsOrderedRing R] :
     ∃ T : Subring ((σ → R) → R), T.carrier =
       Set.ofPred (BinOpClosure Max.max (BinOpClosure Min.min (· ∈ MvPolynomial_image σ R))) :=

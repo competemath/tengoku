@@ -71,13 +71,17 @@ Hölder machinery of Mathlib is stated for extended-real numerals.  The two
 bridges below and the Hölder pairing `3 / 2` with `3` are what connect them;
 Mathlib supplies no such pairing for these numerals. -/
 
-/-- The pressure exponent of `def:sws` as an extended-real numeral. -/
+/-- The pressure exponent of `def:sws` as an extended-real numeral.
+@isnad1 id=eq.0h0v.s5.eedf3b78ccdb from=translated src=- shape=d56f06f5 vocab=f98920dc
+-/
 theorem ofReal_threeHalves : ENNReal.ofReal (3 / 2 : ℝ) = (3 / 2 : ℝ≥0∞) := by
   rw [show (3 / 2 : ℝ) = ((3 : ℝ) / 2) by norm_num]
   rw [ENNReal.ofReal_div_of_pos (by norm_num)]
   norm_num
 
-/-- The velocity exponent used below as an extended-real numeral. -/
+/-- The velocity exponent used below as an extended-real numeral.
+@isnad1 id=eq.0h0v.s4.9a8b64c1c3d9 from=translated src=- shape=1ac31801 vocab=a4038434
+-/
 theorem ofReal_three : ENNReal.ofReal (3 : ℝ) = (3 : ℝ≥0∞) := by simp
 
 /-! ### `L^p` membership through the Lebesgue integral

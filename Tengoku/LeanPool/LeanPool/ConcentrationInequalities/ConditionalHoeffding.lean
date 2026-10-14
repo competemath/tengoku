@@ -34,7 +34,9 @@ namespace Contrib.ConditionalHoeffding
 variable {Ω : Type*} {m mΩ : MeasurableSpace Ω} {hm : m ≤ mΩ} {μ : Measure Ω}
 
 /-- **Conditional Hoeffding.** A variable a.s. in `[a,b]` with conditional expectation `0` given `m`
-is conditionally sub-Gaussian with parameter `(b−a)²/4`. -/
+is conditionally sub-Gaussian with parameter `(b−a)²/4`.
+@isnad1 id=hasconds.4h7v.s7.76993e34d34c from=translated src=- shape=da5f94fd vocab=118236b7
+-/
 theorem hasCondSubgaussianMGF_of_mem_Icc [StandardBorelSpace Ω] [IsProbabilityMeasure μ]
     {a b : ℝ} {X : Ω → ℝ} (hXm : Measurable X)
     (hb : ∀ᵐ ω ∂μ, X ω ∈ Set.Icc a b)

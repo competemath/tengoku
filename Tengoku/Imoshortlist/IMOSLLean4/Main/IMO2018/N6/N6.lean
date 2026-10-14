@@ -21,12 +21,18 @@ namespace IMO2018N6
 
 /-! ### Extra lemmas -/
 
+/--
+@isnad1 id=eq.2h2v.s6.11da33f3441f from=translated src=- shape=399bba94 vocab=07b988ff
+-/
 lemma PNat_eq_of_dvd_of_lt_mul_one_add_one
     {a b : ℕ+} (h : a ∣ b) (h0 : b < a * (1 + 1)) : b = a := by
   rcases h with ⟨c, rfl⟩
   rw [mul_lt_mul_iff_left, PNat.lt_add_one_iff, le_one_iff_eq_one] at h0
   rw [h0, mul_one]
 
+/--
+@isnad1 id=ex.1h1v.s6.31bb794dd66d from=translated src=- shape=e14b27d8 vocab=4487d344
+-/
 lemma PNat_exists_greatest_infinite_fiber {f : ℕ+ → ℕ+} (h : ∃ N, ∀ n, f n ≤ N) :
     ∃ M, (∀ N, ∃ n ≥ N, f n = M) ∧ (∃ C, ∀ n ≥ C, f n ≤ M) := by
   contrapose! h
@@ -44,6 +50,9 @@ lemma PNat_exists_greatest_infinite_fiber {f : ℕ+ → ℕ+} (h : ∃ N, ∀ n,
       obtain ⟨n, h1, h2⟩ := h _ h0 K
       exact (PNat.add_one_le_iff.mpr h2).not_gt (hK n h1)
 
+/--
+@isnad1 id=ex.1h2v.s5.7035c86a6616 from=translated src=- shape=d08a43d1 vocab=9ffa8e8e
+-/
 lemma PNat_exists_big_not_dvd {d : ℕ+} (hd : d > 1) (N : ℕ+) : ∃ n ≥ N, ¬d.val ∣ n := by
   refine (em' (d.val ∣ N)).elim (λ h ↦ ⟨N, le_refl N, h⟩)
     (λ h ↦ ⟨N + 1, (N.lt_add_right _).le, λ h0 ↦ ?_⟩)
@@ -66,12 +75,21 @@ instance : FunLike (GoodFun G) G ℕ+ where
   coe f := f.toFun
   coe_injective f g h := by rwa [GoodFun.mk.injEq]
 
+/--
+@isnad1 id=eq.1h3v.s5.d1a983ce7202 from=translated src=- shape=2bd411b8 vocab=f0040c6f
+-/
 @[ext] theorem ext {f g : GoodFun G} : (∀ x, f x = g x) → f = g :=
   DFunLike.ext _ _
 
+/--
+@isnad1 id=dvd.0h4v.s6.814203f7fb89 from=translated src=- shape=91bf7a55 vocab=c28670b4
+-/
 theorem good_def (f : GoodFun G) : ∀ m n, f (m + n) ∣ f m + f n :=
   f.good_def'
 
+/--
+@isnad1 id=dvd.0h4v.s6.f657822d34aa from=translated src=- shape=9bcdec00 vocab=9f737509
+-/
 theorem good_def2 (f : GoodFun G) (m n) : (f (m + n)).val ∣ f m + f n :=
   PNat.dvd_iff.mp (f.good_def m n)
 
@@ -81,6 +99,9 @@ protected def smul (c : ℕ+) (f : GoodFun G) : GoodFun G :=
 
 instance : SMul ℕ+ (GoodFun G) := ⟨GoodFun.smul⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.ccc7ab572e9d from=translated src=- shape=d9019f9b vocab=b53d902d
+-/
 @[simp] theorem smul_apply (c : ℕ+) (f : GoodFun G) (n) : (c • f) n = c * f n := rfl
 
 variable (f : GoodFun G) {M : ℕ+} (h : ∀ n, M ∣ f n)
@@ -94,8 +115,14 @@ protected def div : GoodFun G where
     rw [← h m, ← h n, ← h (m + n), ← mul_add, mul_assoc, mul_right_inj] at h0
     exact ⟨k, h0⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.0d6783805cd5 from=translated src=- shape=c4450c1b vocab=0db5e666
+-/
 @[simp] theorem div_apply : f.div h n = (f n).divExact M := rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.2a42f2abb6ec from=translated src=- shape=9c893e99 vocab=62ad80f1
+-/
 theorem smul_div : M • f.div h = f :=
   ext λ n ↦ PNat.mul_div_exact (h n)
 
@@ -107,6 +134,9 @@ end
 protected def id : GoodFun ℕ+ :=
   ⟨id, λ m n ↦ dvd_refl (m + n)⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.e5a3a14c74a2 from=translated src=- shape=251a8e62 vocab=a7129a56
+-/
 @[simp] theorem id_apply (n) : GoodFun.id n = n := rfl
 
 section
@@ -117,11 +147,20 @@ variable (G) [Add G]
 protected def const (c : ℕ+) : GoodFun G :=
   ⟨λ _ ↦ c, λ _ _ ↦ ⟨2, PNat.coe_inj.mp c.val.mul_two.symm⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.f8338f9ee1f4 from=translated src=- shape=f6ab5215 vocab=ae4eb2b5
+-/
 @[simp] theorem const_apply (c x) : GoodFun.const G c x = c := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.8da170379f1d from=translated src=- shape=008f9b10 vocab=f2644f12
+-/
 theorem const_mul_eq_smul (m n : ℕ+) :
     GoodFun.const G (m * n) = m • GoodFun.const G n := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.1a327a611b75 from=translated src=- shape=a30430f0 vocab=694e2dd2
+-/
 theorem const_eq_smul_const_one (m : ℕ+) : GoodFun.const G m = m • GoodFun.const G 1 :=
   GoodFun.ext λ _ ↦ (mul_one m).symm
 
@@ -144,27 +183,45 @@ protected def periodic_one_two (d : ℕ+) : GoodFun ℕ+ where
       rw [ite_eq_right h0, ite_eq_right h]
       exact dvd_refl 2
 
+/--
+@isnad1 id=eq.0h2v.s5.642e15cac9ed from=translated src=- shape=82bcf2af vocab=698c4ed8
+-/
 @[simp] theorem periodic_one_two_apply (d n) :
     GoodFun.periodic_one_two d n = if d.val ∣ n then 2 else 1 := rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.f5185ff2a5fa from=translated src=- shape=24ad987b vocab=77633bc6
+-/
 theorem periodic_one_two_apply_of_dvd {d n : ℕ+} (h : d.val ∣ n) :
     GoodFun.periodic_one_two d n = 2 := ite_eq_left h
 
+/--
+@isnad1 id=eq.1h2v.s5.471d1bec138e from=translated src=- shape=d6fa1146 vocab=77633bc6
+-/
 theorem periodic_one_two_apply_of_not_dvd {d n : ℕ+} (h : ¬d.val ∣ n) :
     GoodFun.periodic_one_two d n = 1 := ite_eq_right h
 
 /-! ### Start of the problem -/
 
+/--
+@isnad1 id=le.0h2v.s5.be0e63ae531d from=translated src=- shape=d2764733 vocab=b33b5b98
+-/
 theorem map_le_mul_map_one (f : GoodFun ℕ+) (n : ℕ+) : f n ≤ f 1 * n := by
   induction n using PNat.recOn with | one => exact (mul_one _).ge | succ n hn => ?_
   apply (PNat.le_of_dvd (f.good_def n 1)).trans
   rwa [mul_add_one, add_le_add_iff_right]
 
+/--
+@isnad1 id=eq.3h4v.s7.4be8848b6da7 from=translated src=- shape=81757231 vocab=e131839c
+-/
 theorem map_add_eq_of_map_lt_dvd_map_add {f : GoodFun ℕ+}
     (h : f k < M) (h0 : f m < M) (h1 : M ∣ f (k + m)) : f k + f m = M :=
   PNat_eq_of_dvd_of_lt_mul_one_add_one (h1.trans (f.good_def k m))
     ((add_lt_add h h0).trans_eq (by rw [mul_add_one, mul_one]))
 
+/--
+@isnad1 id=eq.2h3v.s7.3d8d05278f77 from=translated src=- shape=81e3ddeb vocab=aaae8701
+-/
 theorem map_add_eq_of_map_lt {f : GoodFun ℕ+} (h : f k < f (k + m)) (h0 : f m < f (k + m)) :
     f k + f m = f (k + m) :=
   map_add_eq_of_map_lt_dvd_map_add h h0 (dvd_refl _)
@@ -215,10 +272,16 @@ theorem eq_smul_id_of_unbounded {f : GoodFun ℕ+} (hf : ∀ N, ∃ n, N < f n) 
       rw [← mul_add_one, add_right_comm, mul_assoc, mul_add_one, mul_one]
     _ < f (M + 1) * 2 := mul_lt_mul_left hN 2
 
+/--
+@isnad1 id=dvd.2h4v.s6.ab7072a36ff2 from=translated src=- shape=91f99947 vocab=27699b4c
+-/
 theorem dvd_map_add_imp_iff {f : GoodFun ℕ+} {M : ℕ}
     (h : M ∣ f (m + n)) (h0 : M ∣ f m) : M ∣ f n :=
   (Nat.dvd_add_right h0).mp (h.trans (PNat.dvd_iff.mp (f.good_def m n)))
 
+/--
+@isnad1 id=dvd.2h5v.s6.9df76efe46ae from=translated src=- shape=984003df vocab=a53ca2d5
+-/
 theorem dvd_map_dvd_map_mul_add_imp {f : GoodFun ℕ+} {M : ℕ}
     (h : M ∣ f d) (h0 : M ∣ f (d * (m + k))) : M ∣ f (d * m) := by
   have h1 {m} (h1 : M ∣ f (d * (m + 1))) : M ∣ f (d * m) := by
@@ -227,11 +290,17 @@ theorem dvd_map_dvd_map_mul_add_imp {f : GoodFun ℕ+} {M : ℕ}
   | hz => exact h1 h0
   | hi k k_ih => exact k_ih _ (le_refl k) (h1 (add_assoc m k 1 ▸ h0))
 
+/--
+@isnad1 id=dvd.3h5v.s6.785988e02af0 from=translated src=- shape=71d1a15b vocab=e8a20e44
+-/
 theorem dvd_map_dvd_map_mul_imp {f : GoodFun ℕ+} {M : ℕ}
     (h : M ∣ f d) (h0 : M ∣ f (d * k)) (h1 : m ≤ k) : M ∣ f (d * m) :=
   h1.eq_or_lt.elim (λ h2 ↦ h2 ▸ h0)
     (λ h2 ↦ dvd_map_dvd_map_mul_add_imp h (by rwa [PNat.add_sub_of_lt h2]))
 
+/--
+@isnad1 id=ex.1h2v.s6.6427673fd049 from=translated src=- shape=9b3b0bf9 vocab=3037a03e
+-/
 theorem exists_dvd_dvd_imp {f : GoodFun ℕ+} {M : ℕ} (h : ∃ n, M ∣ f n) :
     ∃ d : ℕ+, M ∣ f d ∧ ∀ n, M ∣ f n → d.val ∣ n := by
   let d := PNat.find h
@@ -243,6 +312,9 @@ theorem exists_dvd_dvd_imp {f : GoodFun ℕ+} {M : ℕ} (h : ∃ n, M ∣ f n) :
   exacts [d.val.dvd_refl, Nat.dvd_add_self_right.mpr <| n_ih _ (m.lt_add_right d) <|
     (Nat.dvd_add_iff_left d_spec).mpr (hn.trans (f.good_def2 m d))]
 
+/--
+@isnad1 id=ex.1h2v.s6.f10203dc87e1 from=translated src=- shape=3656d980 vocab=b46bbcac
+-/
 theorem dvd_set_infinite_imp {f : GoodFun ℕ+} {M : ℕ} (h : ∀ N, ∃ n ≥ N, M ∣ f n) :
     ∃ d : ℕ+, ∀ n, M ∣ f n ↔ d.val ∣ n := by
   obtain ⟨d, hd, hd0⟩ := exists_dvd_dvd_imp ((h 1).imp λ _ ↦ And.right)
@@ -252,11 +324,17 @@ theorem dvd_set_infinite_imp {f : GoodFun ℕ+} {M : ℕ} (h : ∀ N, ∃ n ≥ 
   obtain ⟨m, rfl⟩ : d ∣ n := (PNat.dvd_iff).mpr (hd0 n h1)
   exact dvd_map_dvd_map_mul_imp hd h1 ((mul_le_mul_iff_left d).mp h0)
 
+/--
+@isnad1 id=ex.1h1v.s7.a9e9cf112782 from=translated src=- shape=b533833b vocab=420c08e1
+-/
 theorem exists_limsup_and_dvd_map_iff {f : GoodFun ℕ+} (h : ∃ N, ∀ n, f n ≤ N) :
     ∃ M, (∃ N, ∀ n ≥ N, f n ≤ M) ∧ (∃ d : ℕ+, ∀ n, M.val ∣ f n ↔ d.val ∣ n) := by
   obtain ⟨M, h0, h1⟩ := PNat_exists_greatest_infinite_fiber h
   exact ⟨M, h1, dvd_set_infinite_imp λ N ↦ (h0 N).imp λ n ↦ And.imp_right λ h2 ↦ by rw [h2]⟩
 
+/--
+@isnad1 id=dvd.1h3v.s6.6e8a54570ea2 from=translated src=- shape=265d60b9 vocab=b46bbcac
+-/
 theorem dvd_set_cofinite_imp {f : GoodFun ℕ+} {M : ℕ} (h : ∃ N, ∀ n ≥ N, M ∣ f n) :
     ∀ n, M ∣ f n := by
   rcases h with ⟨K, h⟩
@@ -276,6 +354,9 @@ theorem eq_set_cofinite_imp {f : GoodFun ℕ+} (h : ∃ N, ∀ n ≥ N, f n = M)
   refine ⟨f.div h0, hg.symm, N, λ n hn ↦ ?_⟩
   rw [← mul_eq_left, ← smul_apply, hg, hN n hn]
 
+/--
+@isnad1 id=ex.3h4v.s7.7a768b102a6e from=translated src=- shape=5c67e17a vocab=57a4d2d1
+-/
 theorem eventually_bound_and_dvd_iff_period_imp {f : GoodFun ℕ+} (hN : ∀ n ≥ N, f n ≤ M)
     {d : ℕ+} (hd : d > 1) (hd0 : ∀ n, M.val ∣ f n ↔ d.val ∣ n) :
     ∃ C, 2 * C = M ∧ ∀ n, n ≥ N → f n = C * if d.val ∣ n then 2 else 1 := by
@@ -323,7 +404,9 @@ theorem eventually_bound_and_dvd_iff_period_imp {f : GoodFun ℕ+} (hN : ∀ n �
   rw [← hN hk hm hk0 hm0 h1, add_one_mul, one_mul, add_right_inj, ← PNat.coe_inj]
   exact Nat.dvd_antisymm (hd0 hk hm hk0 hm0 h1) (hd0 hm hk hm0 hk0 (by rwa [add_comm]))
 
-/-- Characterization of bounded good functions. -/
+/-- Characterization of bounded good functions.
+@isnad1 id=or.1h1v.s7.93075eeb1ec1 from=translated src=- shape=e9761729 vocab=d024de62
+-/
 theorem exists_smul_eventually_eq_one_or_one_two {f : GoodFun ℕ+} (h : ∃ N, ∀ n, f n ≤ N) :
     (∃ (C : ℕ+) (g : GoodFun ℕ+), f = C • g ∧ ∃ N, ∀ n ≥ N, g n = 1) ∨
     (∃ (C : ℕ+) (g : GoodFun ℕ+), f = C • g ∧ ∃ d : ℕ+, d > 1 ∧
@@ -342,7 +425,9 @@ theorem exists_smul_eventually_eq_one_or_one_two {f : GoodFun ℕ+} (h : ∃ N, 
     rw [← mul_left_cancel_iff, ← hC n hn]
     exact (GoodFun.ext_iff.mp hg n).symm
 
-/-- Main characterization lemma. -/
+/-- Main characterization lemma.
+@isnad1 id=or.0h1v.s7.1d18d61581ff from=translated src=- shape=9ff3dfe4 vocab=8b507c81
+-/
 theorem exists_smul_id_or_eventually_eq_one_or_one_two (f : GoodFun ℕ+) :
     (∃ C : ℕ+, f = C • GoodFun.id) ∨
     (∃ (C : ℕ+) (g : GoodFun ℕ+), f = C • g ∧ ∃ N, ∀ n ≥ N, g n = 1) ∨
@@ -355,7 +440,9 @@ end GoodFun
 
 /-! ### Final solution -/
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.0h1v.s5.d391bae8fb06 from=translated src=- shape=32b104d2 vocab=328f71c5
+-/
 theorem final_solution (f : GoodFun ℕ+) : ∃ m, ∀ n, f m ∣ f n := by
   obtain ⟨C, rfl⟩ | ⟨C, g, rfl, N, hN⟩ | ⟨C, g, rfl, d, hd, N, hN⟩ :=
     f.exists_smul_id_or_eventually_eq_one_or_one_two
@@ -369,4 +456,7 @@ theorem final_solution (f : GoodFun ℕ+) : ∃ m, ∀ n, f m ∣ f n := by
     rw [hN c hc, ite_eq_right hc0]
     exact one_dvd _
 
+/--
+@isnad1 id=or.0h1v.s7.1d18d61581ff from=translated src=- shape=9ff3dfe4 vocab=8b507c81
+-/
 alias final_solution_extra := GoodFun.exists_smul_id_or_eventually_eq_one_or_one_two

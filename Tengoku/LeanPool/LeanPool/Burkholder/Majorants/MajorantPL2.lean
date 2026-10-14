@@ -9192,6 +9192,7 @@ full checklist as in the other regimes: continuity, quantitative growth bounds
 for `u` and its first derivatives, the tangent-step inequality, domination of
 `v`, and negativity on the opposite-sign region (with strict axis negativity
 away from the origin).
+@isnad1 id=ex.1h1v.s9.552d40690209 from=translated src=- shape=fda60d22 vocab=c66e2c80
 -/
 theorem exists_majorant_leTwo (p : ℝ) (hp : 1 < p ∧ p < 2) :
     ∃ u du_dx du_dy : ℝ → ℝ → ℝ, ∃ C : ℝ,

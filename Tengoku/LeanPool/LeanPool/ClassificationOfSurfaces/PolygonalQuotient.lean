@@ -44,6 +44,9 @@ namespace PolygonCell
 instance (n : ℕ) : CoeOut (PolygonCell n) ℂ :=
   ⟨val⟩
 
+/--
+@isnad1 id=eq.1h3v.s4.deea12ed6357 from=translated src=- shape=1cd6e48f vocab=71875c69
+-/
 @[ext]
 theorem ext {n : ℕ} {x y : PolygonCell n} (h : x.val = y.val) : x = y := by
   cases x
@@ -53,6 +56,9 @@ theorem ext {n : ℕ} {x y : PolygonCell n} (h : x.val = y.val) : x = y := by
 noncomputable instance (n : ℕ) : TopologicalSpace (PolygonCell n) :=
   TopologicalSpace.induced val inferInstance
 
+/--
+@isnad1 id=continuo.0h1v.s4.3b01949ae194 from=translated src=- shape=a9076b4c vocab=9abcc351
+-/
 theorem continuous_val {n : ℕ} : Continuous (fun x : PolygonCell n => x.val) :=
   continuous_induced_dom
 
@@ -63,6 +69,9 @@ noncomputable def castHomeomorph {m n : ℕ} (h : m = n) :
   subst n
   exact Homeomorph.refl _
 
+/--
+@isnad1 id=eq.1h3v.s6.f0c39246e23a from=translated src=- shape=b1f3d75d vocab=f44ee634
+-/
 theorem castHomeomorph_val {m n : ℕ} (h : m = n) (x : PolygonCell m) :
     (castHomeomorph h x).val = x.val := by
   subst n
@@ -79,6 +88,9 @@ def ofCircle (n : ℕ) : C(Circle, PolygonCell n) where
 noncomputable def sideAngle {n : ℕ} (i : Fin n) (t : unitInterval) : ℝ :=
   2 * Real.pi * ((i.val : ℝ) + t) / n
 
+/--
+@isnad1 id=continuo.0h2v.s5.3a6caafde822 from=translated src=- shape=03382f7d vocab=b2c8ce76
+-/
 theorem continuous_sideAngle {n : ℕ} (i : Fin n) : Continuous (sideAngle i) := by
   unfold sideAngle
   fun_prop
@@ -94,26 +106,40 @@ noncomputable def reversedSide {n : ℕ} (i : Fin n) : C(unitInterval, PolygonCe
   toFun t := side i (unitInterval.symm t)
   continuous_toFun := (side i).continuous.comp unitInterval.continuous_symm
 
+/--
+@isnad1 id=eq.0h3v.s7.71dccd456515 from=translated src=- shape=216b2ac4 vocab=2355eba6
+-/
 theorem reversedSide_apply {n : ℕ} (i : Fin n) (t : unitInterval) :
     reversedSide i t = side i (unitInterval.symm t) :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.c3f9f9c4e65a from=translated src=- shape=690f16b0 vocab=4530f0ff
+-/
 theorem castHomeomorph_side {m n : ℕ} (h : m = n) (i : Fin m)
     (t : unitInterval) :
     castHomeomorph h (side i t) = side (Fin.cast h i) t := by
   subst n
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.56b78bb7b45d from=translated src=- shape=b7735dba vocab=5ed1d86e
+-/
 theorem reversedSide_zero {n : ℕ} (i : Fin n) : reversedSide i 0 = side i 1 := by
   rw [reversedSide_apply]
   simp only [unitInterval.symm_zero]
 
+/--
+@isnad1 id=eq.0h2v.s7.4bbcc8c3efe0 from=translated src=- shape=b7735dba vocab=5ed1d86e
+-/
 @[simp]
 theorem reversedSide_one {n : ℕ} (i : Fin n) : reversedSide i 1 = side i 0 := by
   rw [reversedSide_apply]
   simp only [unitInterval.symm_one]
 
-/-- Consecutive sides meet at their common cyclic endpoint. -/
+/-- Consecutive sides meet at their common cyclic endpoint.
+@isnad1 id=eq.0h2v.s7.86594214b5a2 from=translated src=- shape=a08d61ca vocab=285bd1dc
+-/
 theorem side_one_eq_rotate_zero {n : ℕ} (i : Fin n) :
     side i 1 = side (finRotate n i) 0 := by
   apply PolygonCell.ext
@@ -135,12 +161,16 @@ theorem side_one_eq_rotate_zero {n : ℕ} (i : Fin n) :
     push_cast
     rw [add_zero]
 
-/-- Every side lies on the boundary circle of its polygonal cell. -/
+/-- Every side lies on the boundary circle of its polygonal cell.
+@isnad1 id=mem.0h3v.s6.714e46cc4cfc from=translated src=- shape=f6655451 vocab=e59ef6bb
+-/
 theorem side_mem_sphere {n : ℕ} (i : Fin n) (t : unitInterval) :
     (side i t : ℂ) ∈ Metric.sphere 0 1 := by
   exact (Circle.exp (sideAngle i t)).property
 
-/-- Every boundary point of a cell with at least one side belongs to a marked side. -/
+/-- Every boundary point of a cell with at least one side belongs to a marked side.
+@isnad1 id=ex.2h2v.s7.194d98e040fa from=translated src=- shape=0110453a vocab=dbb1593e
+-/
 theorem exists_side_eq_of_mem_sphere {n : ℕ} (hn : 0 < n) (x : PolygonCell n)
     (hx : (x : ℂ) ∈ Metric.sphere 0 1) :
     ∃ i : Fin n, ∃ t : unitInterval, side i t = x := by
@@ -171,7 +201,9 @@ theorem exists_side_eq_of_mem_sphere {n : ℕ} (hn : 0 < n) (x : PolygonCell n)
     ring
   rw [hangle, hθz]
 
-/-- Boundary membership is equivalent to membership in one of the marked sides. -/
+/-- Boundary membership is equivalent to membership in one of the marked sides.
+@isnad1 id=iff.1h2v.s7.de5442891b89 from=translated src=- shape=0c2dad08 vocab=dbb1593e
+-/
 theorem mem_sphere_iff_exists_side {n : ℕ} (hn : 0 < n) (x : PolygonCell n) :
     (x : ℂ) ∈ Metric.sphere 0 1 ↔
       ∃ i : Fin n, ∃ t : unitInterval, side i t = x := by
@@ -180,7 +212,9 @@ theorem mem_sphere_iff_exists_side {n : ℕ} (hn : 0 < n) (x : PolygonCell n) :
   · rintro ⟨i, t, rfl⟩
     exact side_mem_sphere i t
 
-/-- The marked sides cover exactly the boundary circle of a nonzero-sided cell. -/
+/-- The marked sides cover exactly the boundary circle of a nonzero-sided cell.
+@isnad1 id=eq.1h1v.s7.7694ff705b68 from=translated src=- shape=e98b99c5 vocab=ed6dbc7b
+-/
 theorem iUnion_range_side {n : ℕ} (hn : 0 < n) :
     (⋃ i : Fin n, Set.range (side i)) =
       {x : PolygonCell n | (x : ℂ) ∈ Metric.sphere 0 1} := by
@@ -188,11 +222,15 @@ theorem iUnion_range_side {n : ℕ} (hn : 0 < n) :
   simpa only [Set.mem_iUnion, Set.mem_range, Set.mem_ofPred_eq] using
     (mem_sphere_iff_exists_side hn x).symm
 
-/-- The unique side of a monogon is a loop. -/
+/-- The unique side of a monogon is a loop.
+@isnad1 id=eq.0h1v.s7.56dadc9de889 from=translated src=- shape=f09297ea vocab=e12b5b45
+-/
 theorem side_zero_eq_side_one_monogon (i : Fin 1) : side i 0 = side i 1 := by
   simpa using (side_one_eq_rotate_zero i).symm
 
-/-- The two sides of a digon meet at their middle vertex. -/
+/-- The two sides of a digon meet at their middle vertex.
+@isnad1 id=eq.0h0v.s7.e45ee09593d4 from=translated src=- shape=9a796763 vocab=e12b5b45
+-/
 theorem side_zero_one_eq_side_one_zero_digon :
     side (0 : Fin 2) 1 = side (1 : Fin 2) 0 := by
   simpa using side_one_eq_rotate_zero (0 : Fin 2)
@@ -236,16 +274,28 @@ def homeomorph : ParameterDirection → (unitInterval ≃ₜ unitInterval)
   | same => Homeomorph.refl unitInterval
   | opposite => unitInterval.symmHomeomorph
 
+/--
+@isnad1 id=eq.0h0v.s6.7d7a7e09cd89 from=translated src=- shape=71092852 vocab=a083259b
+-/
 theorem homeomorph_same : homeomorph same = Homeomorph.refl unitInterval :=
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s5.eceef8fb8074 from=translated src=- shape=057c665e vocab=0c9706b5
+-/
 theorem homeomorph_opposite : homeomorph opposite = unitInterval.symmHomeomorph :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.d2915ada036e from=translated src=- shape=cbca9efd vocab=5f2a8dd3
+-/
 @[simp]
 theorem homeomorph_same_apply (t : unitInterval) : homeomorph same t = t :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.dba2b907d506 from=translated src=- shape=73f501fe vocab=32e87856
+-/
 theorem homeomorph_opposite_apply (t : unitInterval) :
     homeomorph opposite t = unitInterval.symm t :=
   rfl
@@ -282,12 +332,18 @@ def oppositeDirection {Face : Type u} {sideCount : Face → ℕ}
   target := target
   direction := .opposite
 
+/--
+@isnad1 id=eq.0h4v.s6.e561e9b54dd1 from=translated src=- shape=d269d030 vocab=e9b3d546
+-/
 @[simp]
 theorem parameter_sameDirection {Face : Type u} {sideCount : Face → ℕ}
     (source target : Side Face sideCount) :
     (sameDirection source target).parameter = Homeomorph.refl unitInterval :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.c8cdd0234599 from=translated src=- shape=bcab9298 vocab=fbb7a5ff
+-/
 @[simp]
 theorem parameter_oppositeDirection {Face : Type u} {sideCount : Face → ℕ}
     (source target : Side Face sideCount) :
@@ -311,6 +367,9 @@ def setoid {Face : Type u} {sideCount : Face → ℕ}
     Setoid (PreRealization Face sideCount) :=
   Relation.EqvGen.setoid (Generator identifications)
 
+/--
+@isnad1 id=eq.0h2v.s6.503064f22112 from=translated src=- shape=a402adef vocab=533a474b
+-/
 @[simp]
 theorem setoid_empty {Face : Type u} {sideCount : Face → ℕ} :
     setoid (∅ : Set (Identification Face sideCount)) = ⊥ := by
@@ -331,6 +390,9 @@ theorem setoid_empty {Face : Type u} {sideCount : Face → ℕ} :
     subst y
     exact Relation.EqvGen.refl x
 
+/--
+@isnad1 id=r.1h5v.s7.b32e21cc71fd from=translated src=- shape=105ed590 vocab=ae393822
+-/
 theorem related_of_mem {Face : Type u} {sideCount : Face → ℕ}
     {identifications : Set (Identification Face sideCount)}
     (identification : Identification Face sideCount) (h : identification ∈ identifications)
@@ -350,17 +412,25 @@ def mk {Face : Type u} {sideCount : Face → ℕ}
     PreRealization Face sideCount → Realization identifications :=
   @Quotient.mk' _ (setoid identifications)
 
+/--
+@isnad1 id=continuo.0h3v.s5.a797b9aac80a from=translated src=- shape=2236338f vocab=07dbc904
+-/
 theorem continuous_mk {Face : Type u} {sideCount : Face → ℕ}
     (identifications : Set (Identification Face sideCount)) :
     Continuous (mk identifications) :=
   continuous_quotient_mk'
 
+/--
+@isnad1 id=isquotie.0h3v.s5.d991112c8bbe from=translated src=- shape=2236338f vocab=f720e0b9
+-/
 theorem isQuotientMap_mk {Face : Type u} {sideCount : Face → ℕ}
     (identifications : Set (Identification Face sideCount)) :
     _root_.Topology.IsQuotientMap (mk identifications) :=
   isQuotientMap_quotient_mk'
 
-/-- A prescribed side gluing identifies the corresponding points in the quotient. -/
+/-- A prescribed side gluing identifies the corresponding points in the quotient.
+@isnad1 id=eq.1h5v.s7.71065affd462 from=translated src=- shape=f5ae1f2c vocab=76266367
+-/
 theorem mk_source_eq_mk_target {Face : Type u} {sideCount : Face → ℕ}
     {identifications : Set (Identification Face sideCount)}
     (identification : Identification Face sideCount) (h : identification ∈ identifications)

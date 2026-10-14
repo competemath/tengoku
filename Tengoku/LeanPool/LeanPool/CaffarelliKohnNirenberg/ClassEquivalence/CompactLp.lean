@@ -74,7 +74,9 @@ private theorem localBox_of_compact_of_data
   caccioppoli_localBox_of_compact_subset hdata.isOpen_space hdata.isOpen_time
     hdata.ordConnected_time hK hKsub
 
-/-- The velocity is square integrable on every compact subset of the carrier. -/
+/-- The velocity is square integrable on every compact subset of the carrier.
+@isnad1 id=memlp.3h8v.s7.8d54187799c5 from=translated src=- shape=6e64031b vocab=8f91f4b2
+-/
 theorem velocity_memLp_two_on_compact_of_data
     (hdata : IsSuitableWeakSolutionData Ω I q u Du p f)
     {K : Set ParabolicPoint} (hK : IsCompact K) (hKsub : K ⊆ spaceTimeSet Ω I) :
@@ -87,7 +89,9 @@ theorem velocity_memLp_two_on_compact_of_data
   exact hbase.mono_measure (Measure.restrict_mono hKbox le_rfl)
 
 /-- The velocity gradient is square integrable on every compact subset of the
-carrier. -/
+carrier.
+@isnad1 id=memlp.3h8v.s8.730b2d9f5ddf from=translated src=- shape=4c0d9c2e vocab=8f91f4b2
+-/
 theorem gradient_memLp_two_on_compact_of_data
     (hdata : IsSuitableWeakSolutionData Ω I q u Du p f)
     {K : Set ParabolicPoint} (hK : IsCompact K) (hKsub : K ⊆ spaceTimeSet Ω I) :
@@ -99,7 +103,9 @@ theorem gradient_memLp_two_on_compact_of_data
         (hdata.energy_lintegral_lt_top hbox))
   exact hbase.mono_measure (Measure.restrict_mono hKbox le_rfl)
 
-/-- The pressure is `L^{3/2}` on every compact subset of the carrier. -/
+/-- The pressure is `L^{3/2}` on every compact subset of the carrier.
+@isnad1 id=memlp.3h8v.s7.744d529087d1 from=translated src=- shape=21fc328b vocab=f673421c
+-/
 theorem pressure_memLp_threeHalves_on_compact_of_data
     (hdata : IsSuitableWeakSolutionData Ω I q u Du p f)
     {K : Set ParabolicPoint} (hK : IsCompact K) (hKsub : K ⊆ spaceTimeSet Ω I) :
@@ -107,7 +113,9 @@ theorem pressure_memLp_threeHalves_on_compact_of_data
   obtain ⟨Ω', J, hbox, hKbox⟩ := localBox_of_compact_of_data hdata hK hKsub
   exact (hdata.memLp_pressure hbox).mono_measure (Measure.restrict_mono hKbox le_rfl)
 
-/-- The force is `L^q` on every compact subset of the carrier. -/
+/-- The force is `L^q` on every compact subset of the carrier.
+@isnad1 id=memlp.3h8v.s7.1cb493643db7 from=translated src=- shape=5fd826f0 vocab=b4b474a0
+-/
 theorem force_memLp_on_compact_of_data
     (hdata : IsSuitableWeakSolutionData Ω I q u Du p f)
     {K : Set ParabolicPoint} (hK : IsCompact K) (hKsub : K ⊆ spaceTimeSet Ω I) :
@@ -145,7 +153,9 @@ private theorem ofReal_spatialGradientSq_le (z : ParabolicPoint) :
 
 /-- The Dirichlet density of the velocity is integrable on every compact subset
 of the carrier.  This is the data-clause form of
-`CKN.spatialGradientSq_integrableOn_compact`. -/
+`CKN.spatialGradientSq_integrableOn_compact`.
+@isnad1 id=integrab.3h8v.s6.a6c9cac2a890 from=translated src=- shape=3337d07d vocab=8817b83f
+-/
 theorem spatialGradientSq_integrableOn_compact_of_data
     (hdata : IsSuitableWeakSolutionData Ω I q u Du p f)
     {K : Set ParabolicPoint} (hK : IsCompact K) (hKsub : K ⊆ spaceTimeSet Ω I) :

@@ -22,7 +22,9 @@ namespace Topology
 namespace ClassificationOfSurfaces
 namespace Moise
 
-/-- Changing only the proof that a point belongs to an equal set does not change the point. -/
+/-- Changing only the proof that a point belongs to an equal set does not change the point.
+@isnad1 id=eq.1h4v.s7.7b13c8a1d80f from=translated src=- shape=bcdb7ecd vocab=b80c0723
+-/
 theorem coe_setCongr_apply {X : Type*} [TopologicalSpace X] {s t : Set X}
     (h : s = t) (z : s) : ((Homeomorph.setCongr h z : t) : X) = z := by
   subst t
@@ -50,6 +52,9 @@ noncomputable def repositionHomeomorph (position' : M.Vertex → Plane)
         (M.reposition position' hposition_injective haffineIndependent
           htriangle_inter).toPlaneComplex_isPure2)
 
+/--
+@isnad1 id=eq.3h3v.s11.2208b5b06f30 from=translated src=- shape=6bac197d vocab=0714dd9b
+-/
 @[simp] theorem repositionHomeomorph_apply_realization (position' : M.Vertex → Plane)
     (hposition_injective : Function.Injective position')
     (haffineIndependent : ∀ t ∈ M.triangles,
@@ -68,6 +73,9 @@ noncomputable def repositionHomeomorph (position' : M.Vertex → Plane)
   simp
   rfl
 
+/--
+@isnad1 id=eq.3h3v.s11.d51fb08cd157 from=translated src=- shape=337a18df vocab=a17168c9
+-/
 theorem coe_repositionHomeomorph_apply_realization (position' : M.Vertex → Plane)
     (hposition_injective : Function.Injective position')
     (haffineIndependent : ∀ t ∈ M.triangles,
@@ -83,6 +91,9 @@ theorem coe_repositionHomeomorph_apply_realization (position' : M.Vertex → Pla
   exact congrArg Subtype.val (M.repositionHomeomorph_apply_realization position'
     hposition_injective haffineIndependent htriangle_inter x)
 
+/--
+@isnad1 id=eq.3h3v.s11.a86cf955464f from=translated src=- shape=a7458394 vocab=ecbd83c3
+-/
 theorem coe_repositionHomeomorph_apply (position' : M.Vertex → Plane)
     (hposition_injective : Function.Injective position')
     (haffineIndependent : ∀ t ∈ M.triangles,
@@ -107,6 +118,9 @@ theorem coe_repositionHomeomorph_apply (position' : M.Vertex → Plane)
   rw [hz, repositionHomeomorph_apply_realization]
   rfl
 
+/--
+@isnad1 id=eq.4h3v.s11.44b50baa7d3e from=translated src=- shape=4e516b52 vocab=4284dd4b
+-/
 theorem coe_repositionHomeomorph_trans_setCongr_apply
     (position' : M.Vertex → Plane)
     (hposition_injective : Function.Injective position')
@@ -196,6 +210,9 @@ noncomputable def extendHomeomorphByIdentity {P : Set Plane} (hP : IsClosed P)
       continuous_toFun := hfContinuous
       continuous_invFun := hgContinuous }
 
+/--
+@isnad1 id=eq.3h3v.s10.faf7ac3dd86f from=translated src=- shape=dbcc1cef vocab=04b1c553
+-/
 theorem extendHomeomorphByIdentity_apply_mem {P : Set Plane} (hP : IsClosed P)
     (e : P ≃ₜ P)
     (hfrontier : ∀ x (hx : x ∈ frontier P), (e ⟨x, hP.frontier_subset hx⟩).1 = x)
@@ -204,6 +221,9 @@ theorem extendHomeomorphByIdentity_apply_mem {P : Set Plane} (hP : IsClosed P)
   classical
   simp [extendHomeomorphByIdentity, hx]
 
+/--
+@isnad1 id=eq.3h3v.s9.17a3c4bb2db5 from=translated src=- shape=b04b4773 vocab=04b1c553
+-/
 theorem extendHomeomorphByIdentity_apply_not_mem {P : Set Plane} (hP : IsClosed P)
     (e : P ≃ₜ P)
     (hfrontier : ∀ x (hx : x ∈ frontier P), (e ⟨x, hP.frontier_subset hx⟩).1 = x)
@@ -237,6 +257,9 @@ noncomputable def ambientRepositionHomeomorph (position' : M.Vertex → Plane)
     ((M.repositionHomeomorph position' hposition_injective haffineIndependent
       htriangle_inter).trans (Homeomorph.setCongr hsupport)) hfrontier
 
+/--
+@isnad1 id=eqon.5h2v.s11.b8dffbbcbeb5 from=translated src=- shape=1318ab8c vocab=36a50b5e
+-/
 theorem ambientRepositionHomeomorph_eqOn_compl (position' : M.Vertex → Plane)
     (hposition_injective : Function.Injective position')
     (haffineIndependent : ∀ t ∈ M.triangles,

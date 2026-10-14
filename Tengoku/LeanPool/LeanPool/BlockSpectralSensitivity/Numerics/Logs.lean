@@ -45,14 +45,18 @@ namespace BSLambda.Numerics
 
 /-- For `y < 1` one has `-log (1-y) ≤ y / (1-y)`; a repackaging of
 `Real.one_sub_inv_le_log_of_pos`, and the elementary estimate used in Section 10.2 of
-`bs_lambda.txt`. -/
+`bs_lambda.txt`.
+@isnad1 id=le.1h1v.s5.ffcdbbe073c7 from=translated src=- shape=8223b29a vocab=3c5f5cf8
+-/
 theorem neg_log_one_sub_le {y : ℝ} (hy : y < 1) : -Real.log (1 - y) ≤ y / (1 - y) := by
   have hpos : (0 : ℝ) < 1 - y := sub_pos.mpr hy
   have h : (1 - y)⁻¹ - 1 = y / (1 - y) := by rw [← one_div, div_sub_one hpos.ne', sub_sub_cancel]
   linarith [Real.one_sub_inv_le_log_of_pos hpos]
 
 /-- The analytic core of an asymmetric local-lemma condition: if `log c` exceeds the weighted
-sum of the logarithmic losses `-log yᵢ`, then `p ≤ c p y₁^m y₂^n`. -/
+sum of the logarithmic losses `-log yᵢ`, then `p ≤ c p y₁^m y₂^n`.
+@isnad1 id=le.5h6v.s7.e32f8d48f722 from=translated src=- shape=8dc206c5 vocab=da91060e
+-/
 theorem le_mul_pow_mul_pow_of_lt_log {p c y₁ y₂ : ℝ} {m n : ℕ} (hp : 0 < p) (hc : 0 < c)
     (hy₁ : 0 < y₁) (hy₂ : 0 < y₂)
     (h : (m : ℝ) * -Real.log y₁ + (n : ℝ) * -Real.log y₂ < Real.log c) :
@@ -66,27 +70,35 @@ theorem le_mul_pow_mul_pow_of_lt_log {p c y₁ y₂ : ℝ} {m n : ℕ} (hp : 0 <
 
 /-- Cubic Taylor lower bound for `log (29/32) = log (1 - 3/32)`.  The exact bound the Taylor
 estimate gives is `-(3225/32768) - 81/950272 = -0.09850442…`; the true value is
-`-0.09806…`. -/
+`-0.09806…`.
+@isnad1 id=lt.0h0v.s5.ba3c381b0840 from=translated src=- shape=4522fd38 vocab=4732c225
+-/
 theorem log_29_div_32_gt : (-0.0986 : ℝ) < Real.log (29 / 32) := by
   have h := Real.abs_log_sub_add_sum_range_le (show |(3 / 32 : ℝ)| < 1 by norm_num) 3
   norm_num [Finset.sum_range_succ] at h
   linarith [(abs_le.mp h).1]
 
-/-- Lower bound `1/17 < log (17/16)`, from `log t < t - 1` at `t = 16/17`. -/
+/-- Lower bound `1/17 < log (17/16)`, from `log t < t - 1` at `t = 16/17`.
+@isnad1 id=lt.0h0v.s5.20eea5d46d67 from=translated src=- shape=573007ee vocab=26a59d5f
+-/
 theorem log_17_div_16_gt : (1 / 17 : ℝ) < Real.log (17 / 16) := by
   have hinv : Real.log (17 / 16 : ℝ) = -Real.log (16 / 17) := by norm_num [← Real.log_inv]
   linarith [Real.log_lt_sub_one_of_pos (show (0 : ℝ) < 16 / 17 by norm_num) (by norm_num)]
 
 /-- Certified rational lower bound `0.594 < log (29/16)`, the first of the two logarithm
 estimates required by the local-lemma verification in Section 10.2 of `bs_lambda.txt`.  The
-true value is `0.5947071077…`. -/
+true value is `0.5947071077…`.
+@isnad1 id=lt.0h0v.s5.dbf976f56748 from=translated src=- shape=ea5bba05 vocab=f367cbbd
+-/
 theorem log_29_div_16_gt : (0.594 : ℝ) < Real.log (29 / 16) := by
   rw [show (29 / 16 : ℝ) = 2 * (29 / 32) by norm_num, Real.log_mul two_ne_zero (by norm_num)]
   linarith [Real.log_two_gt_d9, log_29_div_32_gt]
 
 /-- Certified rational lower bound `2.138 < log (17/2)`, the second of the two logarithm
 estimates required by the local-lemma verification in Section 10.2 of `bs_lambda.txt`.  The
-true value is `2.1400661635…`. -/
+true value is `2.1400661635…`.
+@isnad1 id=lt.0h0v.s5.c2fa64e98c7b from=translated src=- shape=ea5bba05 vocab=f367cbbd
+-/
 theorem log_17_div_2_gt : (2.138 : ℝ) < Real.log (17 / 2) := by
   rw [show (17 / 2 : ℝ) = 2 ^ (3 : ℕ) * (17 / 16) by norm_num,
     Real.log_mul (by positivity) (by norm_num), Real.log_pow, Nat.cast_ofNat]

@@ -113,7 +113,9 @@ def finiteWeightedProcess {κ : Type*} [Fintype κ]
 
 /-- A normalized finite mixture of e-processes is an e-process.  Strict
 positivity of the weights is not needed for this closure theorem; catalog
-selection results add it when dividing by the selected atom's weight. -/
+selection results add it when dividing by the selected atom's weight.
+@isnad1 id=eprocess.3h7v.s6.6aee928d1e53 from=translated src=- shape=2642f9cb vocab=b229de0c
+-/
 theorem finiteWeightedProcess_eProcess
     {κ : Type*} [Fintype κ] [DecidableEq κ] [IsFiniteMeasure μ]
     {weight : κ → ℝ} {E : κ → ℕ → Ω → ℝ}
@@ -154,7 +156,9 @@ theorem finiteWeightedProcess_eProcess
       (fun n ω => ∑ j : κ, weight j * E j n ω) 𝒢 μ
     simpa using hsum (Finset.univ : Finset κ)
 
-/-- For an e-process under a probability measure, `∫ E 0 = 1`. -/
+/-- For an e-process under a probability measure, `∫ E 0 = 1`.
+@isnad1 id=eq.1h5v.s6.af542bd57373 from=translated src=- shape=46375814 vocab=2a3d998f
+-/
 theorem EProcess.integral_start_eq_one [IsProbabilityMeasure μ]
     {E : ℕ → Ω → ℝ} (hE : EProcess μ 𝒢 E) :
     ∫ ω, E 0 ω ∂μ = 1 := by
@@ -169,7 +173,9 @@ e-processes is again an e-process provided the product is again a
 `𝒢`-supermartingale (`hprod_sup`). This is the honest, dischargeable hypothesis:
 the module does not formalize a conditional-independence criterion that would
 imply it. The statement records exactly the property used, while nonnegativity
-and the `1 * 1 = 1` start are discharged from the two factor e-processes. -/
+and the `1 * 1 = 1` start are discharged from the two factor e-processes.
+@isnad1 id=eprocess.3h6v.s6.18fab1f6ad0f from=translated src=- shape=d7271b2b vocab=2123d1f5
+-/
 theorem eProcess_product_of_supermartingale
     {E F : ℕ → Ω → ℝ} (hE : EProcess μ 𝒢 E) (hF : EProcess μ 𝒢 F)
     (hprod_sup : Supermartingale (fun n ω => E n ω * F n ω) 𝒢 μ) :

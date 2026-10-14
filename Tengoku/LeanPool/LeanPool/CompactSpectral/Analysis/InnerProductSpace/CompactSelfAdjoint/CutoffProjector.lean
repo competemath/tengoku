@@ -48,7 +48,9 @@ noncomputable def largeEigenspace (T : E →L[𝕜] E) (ε : ℝ) : Submodule �
   (⨆ i : {μ : 𝕜 // ε ≤ ‖μ‖ ∧ t.HasEigenvalue μ}, t.eigenspace i.1)
 
 /-- For a compact self-adjoint operator, `largeEigenspace` is finite-dimensional
-(hence complete). -/
+(hence complete).
+@isnad1 id=finitedi.3h4v.s9.9c1702863dcc from=translated src=- shape=787c973e vocab=dccf876b
+-/
 lemma finiteDimensional_largeEigenspace_of_isCompactOperator_of_isSelfAdjoint
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
@@ -66,17 +68,26 @@ noncomputable def largeEigenspaceProjector
     finiteDimensional_largeEigenspace_of_isCompactOperator_of_isSelfAdjoint
       (𝕜 := 𝕜) (E := E) T hT hTc hε
   exact (largeEigenspace (𝕜 := 𝕜) (E := E) T ε).starProjection
+/--
+@isnad1 id=isstarpr.3h4v.s9.a0135960d30b from=translated src=- shape=3d931dd1 vocab=5828ffbe
+-/
 lemma isStarProjection_largeEigenspaceProjector
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
     IsStarProjection (largeEigenspaceProjector (𝕜 := 𝕜) (E := E) T hT hTc hε) := by
   classical
   simp [largeEigenspaceProjector, isStarProjection_starProjection]
+/--
+@isnad1 id=isselfad.3h4v.s9.d828b99011dc from=translated src=- shape=00b4470d vocab=88a6a9d3
+-/
 lemma isSelfAdjoint_largeEigenspaceProjector
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
     IsSelfAdjoint (largeEigenspaceProjector (𝕜 := 𝕜) (E := E) T hT hTc hε) := by
   exact (isStarProjection_largeEigenspaceProjector (𝕜 := 𝕜) (E := E) T hT hTc hε).isSelfAdjoint
+/--
+@isnad1 id=eq.3h4v.s9.85a7c88a0901 from=translated src=- shape=924e75fc vocab=9c9552ca
+-/
 lemma largeEigenspaceProjector_idem
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
@@ -86,6 +97,9 @@ lemma largeEigenspaceProjector_idem
   have h :=
     (isStarProjection_largeEigenspaceProjector (𝕜 := 𝕜) (E := E) T hT hTc hε).isIdempotentElem
   exact h
+/--
+@isnad1 id=eq.3h4v.s9.7da9988f934b from=translated src=- shape=64322275 vocab=aa2d3717
+-/
 lemma range_largeEigenspaceProjector
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
@@ -99,6 +113,9 @@ lemma range_largeEigenspaceProjector
   simp only [largeEigenspaceProjector]
   exact Submodule.range_starProjection (U := largeEigenspace (𝕜 := 𝕜) (E := E) T ε)
 /-! ### Cutoff projectors commute with the operator -/
+/--
+@isnad1 id=eq.3h4v.s10.aa7d27f3f242 from=translated src=- shape=24e92303 vocab=9c9552ca
+-/
 lemma largeEigenspaceProjector_comp
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :

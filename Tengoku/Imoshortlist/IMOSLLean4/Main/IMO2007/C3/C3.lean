@@ -28,9 +28,15 @@ variable [Fintype G] [DecidableEq G]
 def tripleSet (S : Finset G) : Finset (Fin 3 → G) :=
   (Fintype.piFinset λ _ ↦ S) ∪ (Fintype.piFinset λ _ ↦ Sᶜ)
 
+/--
+@isnad1 id=iff.0h3v.s6.99878b31c602 from=translated src=- shape=3049118e vocab=2bb2bdcc
+-/
 lemma mem_tripleSet {S : Finset G} : p ∈ tripleSet S ↔ (∀ i, p i ∈ S) ∨ (∀ i, p i ∉ S) := by
   simp only [tripleSet, mem_union, Fintype.mem_piFinset, mem_compl]
 
+/--
+@isnad1 id=iff.0h3v.s7.2d6ef0534a39 from=translated src=- shape=7655421d vocab=db93357d
+-/
 lemma mem_tripleSet' {S : Finset G} : p ∈ tripleSet S ↔ ¬∃ i, p i ∈ S ∧ p (i + 1) ∉ S := by
   refine mem_tripleSet.trans ⟨λ h h0 ↦ ?_, λ h ↦ ?_⟩
   · rcases h0 with ⟨i, hi, hi0⟩
@@ -59,16 +65,28 @@ variable [Group G]
 def toSumCompl (p : Fin 3 × G × G) : Fin 3 → G :=
   λ k ↦ ![p.2.1, p.2.2, (p.2.1 * p.2.2)⁻¹] (k - p.1)
 
+/--
+@isnad1 id=eq.0h3v.s5.89ebc8f19206 from=translated src=- shape=d49b0093 vocab=1ecf710b
+-/
 lemma toSumCompl_self (p : G × G) (k) : toSumCompl (k, p) k = p.1 := by
   rw [toSumCompl, sub_self]; rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.7b62bb99060f from=translated src=- shape=4f8fb244 vocab=ba5ac03c
+-/
 lemma toSumCompl_self_add_one (p : G × G) (k) : toSumCompl (k, p) (k + 1) = p.2 := by
   rw [toSumCompl, add_sub_cancel_left]; rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.0595778cbabd from=translated src=- shape=db55107a vocab=984299cd
+-/
 lemma toSumCompl_self_add_two (p : G × G) (k) :
     toSumCompl (k, p) (k + 2) = (p.1 * p.2)⁻¹ := by
   rw [toSumCompl, add_sub_cancel_left]; rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.2a0becb390b7 from=translated src=- shape=545f6325 vocab=19018225
+-/
 lemma toSumCompl_prod (p : G × G) (k) :
     toSumCompl (k, p) 0 * toSumCompl (k, p) 1 * toSumCompl (k, p) 2 = 1 :=
   match k with
@@ -84,6 +102,9 @@ section
 
 variable [Fintype G] [DecidableEq G] [Group G]
 
+/--
+@isnad1 id=injon.0h2v.s7.649658b5f2c8 from=translated src=- shape=a55b68f6 vocab=b6bc2ee4
+-/
 lemma toSumCompl_injOn (S : Finset G) :
     ((univ ×ˢ S ×ˢ Sᶜ : Finset (Fin 3 × G × G)) : Set (Fin 3 × G × G)).InjOn toSumCompl := by
   rintro ⟨i, x, y⟩ h ⟨j, z, w⟩ h0 h1
@@ -111,6 +132,9 @@ lemma toSumCompl_injOn (S : Finset G) :
     add_sub_cancel_left i j ▸ congrFun h1 _
   exact ⟨rfl, h1 0, h1 1⟩
 
+/--
+@isnad1 id=iff.0h3v.s8.302c69ff7ac3 from=translated src=- shape=6bc0920b vocab=0e441877
+-/
 lemma mem_toSumCompl_image_iff {S : Finset G} :
     p ∈ (univ ×ˢ S ×ˢ Sᶜ).image toSumCompl ↔ p ∉ tripleSet S ∧ p 0 * p 1 * p 2 = 1 := by
   simp only [mem_image, mem_product, mem_compl, mem_tripleSet', not_not]
@@ -131,14 +155,23 @@ lemma mem_toSumCompl_image_iff {S : Finset G} :
       | 2 => by rwa [mul_assoc, ← inv_eq_iff_mul_eq_one, eq_comm, eq_inv_iff_mul_eq_one]
     rw [toSumCompl_self_add_two, inv_eq_of_mul_eq_one_right h]
 
+/--
+@isnad1 id=disjoint.0h2v.s7.5f8924471ab3 from=translated src=- shape=124db160 vocab=54263d19
+-/
 lemma toSumCompl_image_disjoint_tripleSet (S : Finset G) :
     Disjoint ((univ ×ˢ S ×ˢ Sᶜ).image toSumCompl) (tripleSet S) :=
   disjoint_left.mpr λ _ h ↦ (mem_toSumCompl_image_iff.mp h).1
 
+/--
+@isnad1 id=disjoint.0h2v.s7.9399358672c4 from=translated src=- shape=124db160 vocab=3787b264
+-/
 lemma toSumCompl_image_disjoint_filtered_tripleSet (S : Finset G) :
     Disjoint ((univ ×ˢ S ×ˢ Sᶜ).image toSumCompl) (filtered_tripleSet S) :=
   disjoint_of_subset_right (filter_subset _ _) (toSumCompl_image_disjoint_tripleSet S)
 
+/--
+@isnad1 id=eq.0h2v.s8.14cae37bb23b from=translated src=- shape=3ac2c583 vocab=1b4c6e8e
+-/
 lemma toSumCompl_image_union_tripleSet (S : Finset G) :
     disjUnion ((univ ×ˢ S ×ˢ Sᶜ).image toSumCompl) (filtered_tripleSet S)
         (toSumCompl_image_disjoint_filtered_tripleSet S)
@@ -146,6 +179,9 @@ lemma toSumCompl_image_union_tripleSet (S : Finset G) :
   ext p; rw [mem_disjUnion, mem_toSumCompl_image_iff, filtered_tripleSet, mem_filter,
     ← or_and_right, mem_filter, and_iff_right (dec_em' _), and_iff_right (mem_univ _)]
 
+/--
+@isnad1 id=eq.0h1v.s8.138348fa155b from=translated src=- shape=34407561 vocab=226d2a26
+-/
 lemma filter_mul_eq_one_eq_image :
     (univ : Finset (Fin 3 → G)).filter (λ p ↦ p 0 * p 1 * p 2 = 1)
       = (univ : Finset (G × G)).image (λ (x, y) ↦ ![x, y, (x * y)⁻¹]) := by
@@ -156,6 +192,9 @@ lemma filter_mul_eq_one_eq_image :
   · rcases h with ⟨p, rfl⟩
     exact mul_inv_cancel _
 
+/--
+@isnad1 id=eq.0h2v.s6.598ce1ac006c from=translated src=- shape=bacc3338 vocab=ab27288f
+-/
 theorem filtered_tripleSet_card_formula (S : Finset G) :
     3 * S.card * Sᶜ.card + (filtered_tripleSet S).card = Fintype.card G ^ 2 := calc
   _ = ((univ ×ˢ S ×ˢ Sᶜ).image toSumCompl).card + (filtered_tripleSet S).card := by
@@ -174,6 +213,9 @@ end
 
 /-! ### The main problem -/
 
+/--
+@isnad1 id=iff.0h2v.s6.7be846f5fcf6 from=translated src=- shape=1a77cca0 vocab=6dbb143c
+-/
 theorem exists_filtered_tripleSet_card_eq_iff' [Fintype G] [DecidableEq G] [Group G] {N} :
     (∃ S : Finset G, (filtered_tripleSet S).card = N)
       ↔ ∃ a b, a + b = Fintype.card G ∧ 3 * a * b + N = Fintype.card G ^ 2 := by
@@ -187,6 +229,9 @@ theorem exists_filtered_tripleSet_card_eq_iff' [Fintype G] [DecidableEq G] [Grou
     subst b; rw [← filtered_tripleSet_card_formula S, Nat.add_right_inj] at h0
     exact ⟨S, h0.symm⟩
 
+/--
+@isnad1 id=iff.0h3v.s7.998e75fc4943 from=translated src=- shape=c7ec4084 vocab=30ba1354
+-/
 theorem formula1 {b c N : ℕ} :
     3 * (b + c) * b + N = (b + c + b) ^ 2 ↔ b ^ 2 + c ^ 2 + b * c = N :=
   suffices (b + c + b) ^ 2 = 3 * (b + c) * b + (b ^ 2 + c ^ 2 + b * c)
@@ -204,6 +249,9 @@ theorem formula1 {b c N : ℕ} :
       rw [← Nat.add_mul, (b + c).add_comm, ← Nat.succ_mul, Nat.add_mul, ← sq]
     _ = _ := by rw [Nat.add_right_inj, Nat.add_right_comm, add_rotate]
 
+/--
+@isnad1 id=iff.0h2v.s7.7a5bb5ef6678 from=translated src=- shape=5ad45b2d vocab=30ba1354
+-/
 theorem formula2 {n N : ℕ} :
     (∃ a b, a + b = n ∧ 3 * a * b + N = n ^ 2)
       ↔ (∃ b c, 2 * b + c = n ∧ b ^ 2 + c ^ 2 + b * c = N) := by
@@ -219,6 +267,9 @@ theorem formula2 {n N : ℕ} :
     rw [Nat.two_mul, Nat.add_right_comm]
     exact ⟨b + c, b, rfl, formula1.mpr rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.7c7995d6dc26 from=translated src=- shape=b0b0aa80 vocab=30ba1354
+-/
 theorem formula3 (b c) : 3 * c ^ 2 + (2 * b + c) ^ 2 = 4 * (b ^ 2 + c ^ 2 + b * c) := calc
   _ = 3 * c ^ 2 + ((2 * b + c) * (2 * b) + 2 * b * c + c * c) := by
     rw [Nat.add_right_inj, sq, Nat.mul_add, Nat.add_assoc, ← Nat.add_mul]
@@ -228,11 +279,17 @@ theorem formula3 (b c) : 3 * c ^ 2 + (2 * b + c) ^ 2 = 4 * (b ^ 2 + c ^ 2 + b * 
     rw [Nat.add_assoc, ← Nat.two_mul, ← Nat.mul_add, Nat.mul_mul_mul_comm, ← Nat.mul_add]
   _ = _ := by rw [b.mul_add, ← sq, Nat.add_right_comm]
 
+/--
+@isnad1 id=ex.1h2v.s7.4f55ad0d959f from=translated src=- shape=482b946c vocab=f96c6fce
+-/
 theorem formula4 (h : ∃ b c, 2 * b + c = n ∧ b ^ 2 + c ^ 2 + b * c = N) :
     ∃ c ≤ n, 4 * N = 3 * c ^ 2 + n ^ 2 := by
   rcases h with ⟨b, c, rfl, rfl⟩
   refine ⟨c, Nat.le_add_left _ _, (formula3 b c).symm⟩
 
+/--
+@isnad1 id=dvd.1h1v.s5.89fce8c61596 from=translated src=- shape=2aa752ef vocab=059ded25
+-/
 theorem three_dvd_sq_imp (hn : 3 ∣ n ^ 2) : 3 ∣ n := by
   rw [Nat.dvd_iff_mod_eq_zero, Nat.pow_mod] at hn
   obtain (h0 | h0) | h0 : (n % 3 = 0 ∨ n % 3 = 1) ∨ n % 3 = 2 := by
@@ -242,6 +299,9 @@ theorem three_dvd_sq_imp (hn : 3 ∣ n ^ 2) : 3 ∣ n := by
   · rw [h0] at hn; exact absurd hn Nat.one_ne_zero
   · rw [h0] at hn; exact absurd hn Nat.one_ne_zero
 
+/--
+@isnad1 id=or.1h1v.s6.e1ae11eccb30 from=translated src=- shape=c0042054 vocab=f96c6fce
+-/
 theorem formula5 (h : ∃ c ≤ n, 4 * 2007 = 3 * c ^ 2 + n ^ 2) : n = 69 ∨ n = 84 := by
   have X : 0 < 3 := Nat.succ_pos 2
   ---- For the converse, first show that `3 ∣ n` and write `n = 3k`
@@ -278,7 +338,9 @@ theorem formula5 (h : ∃ c ≤ n, 4 * 2007 = 3 * c ^ 2 + n ^ 2) : n = 69 ∨ n 
   revert h; revert d; revert k
   decide
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h1v.s5.185779072189 from=translated src=- shape=80c59098 vocab=282ab352
+-/
 theorem final_solution [Fintype G] [DecidableEq G] [Group G] :
     (∃ S : Finset G, (filtered_tripleSet S).card = 2007)
       ↔ Fintype.card G = 69 ∨ Fintype.card G = 84 := by

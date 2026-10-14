@@ -24,7 +24,9 @@ noncomputable section
 
 namespace CKN
 
-/-- Locally integrable weak partial derivatives of the same function agree almost everywhere. -/
+/-- Locally integrable weak partial derivatives of the same function agree almost everywhere.
+@isnad1 id=eventual.5h6v.s8.ba69d4fed6a7 from=translated src=- shape=6f201169 vocab=2c8d63a4
+-/
 theorem hasWeakPartialDerivOn_unique_ae {d : ℕ} {U : Set (Vec d)} (hU : IsOpen U)
     {i : Fin d} {f g h : Vec d → ℝ}
     (hgLoc : LocallyIntegrableOn g U volume) (hhLoc : LocallyIntegrableOn h U volume)

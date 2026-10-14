@@ -42,7 +42,9 @@ open Finset
 open Classical in
 /-- **The degree-`3` census identity** `n₃ = X + 8`.  From the excess ledger
 `Σ_v (deg v − 3) = n − 8`: a degree-`3` vertex spends `0`, and every other vertex spends
-`(deg − 4) + 1`, so `n − 8 = X + (n − n₃)`. -/
+`(deg − 4) + 1`, so `n − 8 = X + (n − n₃)`.
+@isnad1 id=eq.3h2v.s8.2fc2e94f2f4b from=translated src=- shape=3f134d05 vocab=6669930b
+-/
 theorem n3_eq_excess_add_eight {n : ℕ} (hn : 8 ≤ n) (G : SimpleGraph (Fin n))
     (hm : G.edgeFinset.card = 2 * (n - 2)) (h3 : ∀ v : Fin n, 3 ≤ G.degree v) :
     (Finset.univ.filter (fun v : Fin n => G.degree v = 3)).card = excessX n G + 8 := by

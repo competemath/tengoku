@@ -51,12 +51,17 @@ noncomputable def conjHomeomorph (n : ℕ) : PolygonCell n ≃ₜ PolygonCell n 
   continuous_invFun :=
     continuous_induced_rng.2 (Complex.continuous_conj.comp PolygonCell.continuous_val)
 
+/--
+@isnad1 id=eq.0h2v.s6.97df8efcb5e5 from=translated src=- shape=e9651ba3 vocab=e24d6dce
+-/
 @[simp]
 theorem conjHomeomorph_apply (n : ℕ) (z : PolygonCell n) :
     (conjHomeomorph n z).val = conj z.val :=
   rfl
 
-/-- On a monogon, conjugation changes the reversed boundary parameter into the forward one. -/
+/-- On a monogon, conjugation changes the reversed boundary parameter into the forward one.
+@isnad1 id=eq.0h1v.s8.a8262c5b9dbc from=translated src=- shape=ea4aa421 vocab=291af57b
+-/
 theorem conj_side_symm_monogon (t : unitInterval) :
     conj ((side (0 : Fin 1) (unitInterval.symm t) : PolygonCell 1).val) =
       (side (0 : Fin 1) t : PolygonCell 1).val := by

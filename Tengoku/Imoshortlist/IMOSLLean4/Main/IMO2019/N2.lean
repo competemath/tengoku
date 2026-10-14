@@ -40,27 +40,39 @@ section
 variable (h : good a b c)
 include h
 
-/-- If `(a, b, c)` is good then `(a, c, b)` is good. -/
+/-- If `(a, b, c)` is good then `(a, c, b)` is good.
+@isnad1 id=good.1h3v.s3.7bee84404789 from=translated src=- shape=7289543a vocab=b46bbe7e
+-/
 theorem perm12 : good a c b := by
   rw [good, Nat.add_right_comm, h, Nat.mul_right_comm]
 
-/-- If `(a, b, c)` is good then `(b, a, c)` is good. -/
+/-- If `(a, b, c)` is good then `(b, a, c)` is good.
+@isnad1 id=good.1h3v.s3.d5249049cb0d from=translated src=- shape=89e289df vocab=b46bbe7e
+-/
 theorem perm01 : good b a c := by
   rw [good, Nat.add_comm (b ^ 3), h, Nat.mul_comm a]
 
-/-- If `(a, b, c)` is good then `(b, c, a)` is good. -/
+/-- If `(a, b, c)` is good then `(b, c, a)` is good.
+@isnad1 id=good.1h3v.s3.abe1c0e5117f from=translated src=- shape=c6b3d791 vocab=b46bbe7e
+-/
 theorem perm012 : good b c a :=
   h.perm01.perm12
 
-/-- If `(a, b, c)` is good then `(c, a, b)` is good. -/
+/-- If `(a, b, c)` is good then `(c, a, b)` is good.
+@isnad1 id=good.1h3v.s3.9177edc6ff7a from=translated src=- shape=21e4916e vocab=b46bbe7e
+-/
 theorem perm021 : good c a b :=
   h.perm12.perm01
 
-/-- If `(a, b, c)` is good then `(c, b, a)` is good. -/
+/-- If `(a, b, c)` is good then `(c, b, a)` is good.
+@isnad1 id=good.1h3v.s3.1b476dc16ef4 from=translated src=- shape=50ddc591 vocab=b46bbe7e
+-/
 theorem perm02 : good c b a :=
   h.perm012.perm01
 
-/-- If `(a, b, c)` is good and `c ≤ b ≤ a`, then `c = 0` or `c = 1`. -/
+/-- If `(a, b, c)` is good and `c ≤ b ≤ a`, then `c = 0` or `c = 1`.
+@isnad1 id=or.3h3v.s5.35b9ccf98b66 from=translated src=- shape=53509e30 vocab=ef9ff50c
+-/
 theorem c_eq_zero_or_one (hcb : c ≤ b) (hba : b ≤ a) : c = 0 ∨ c = 1 := by
   unfold good at h
   ---- Suppose that `c ≥ 2`.
@@ -192,7 +204,9 @@ theorem eq_000_or_321 (h : good a b c) (hcb : c ≤ b) (hba : b ≤ a) :
 
 end good
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h1v.s7.77da19765581 from=translated src=- shape=115bc4ae vocab=1d47ceb8
+-/
 theorem final_solution {p : Nat × Nat × Nat} :
     good p.1 p.2.1 p.2.2 ↔ p = (0, 0, 0) ∨ p = (3, 2, 1) ∨ p = (3, 1, 2)
       ∨ p = (2, 3, 1) ∨ p = (2, 1, 3) ∨ p = (1, 3, 2) ∨ p = (1, 2, 3) := by

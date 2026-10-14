@@ -65,6 +65,9 @@ namespace IsConicalLimit
 
 variable {V} {c} {d : Cone F}
 
+/--
+@isnad1 id=hasconic.0h6v.s5.a54f8118f1b8 from=translated src=- shape=1a001654 vocab=943e195d
+-/
 lemma hasConicalLimit (hc : IsConicalLimit V c) : HasConicalLimit V F where
   exists_limit := ⟨c, hc.isLimit⟩
   preservesLimit_eCoyoneda X :=
@@ -98,6 +101,9 @@ variable (V) (c) in
 noncomputable def limitComparison (X : C) : (X ⟶[V] c.pt) ⟶ limit (F ⋙ eCoyoneda V X) :=
   limit.lift _ <| (eCoyoneda V X).mapCone c
 
+/--
+@isnad1 id=eq.0h7v.s8.c49833137d88 from=translated src=- shape=c84cef12 vocab=a1d8189c
+-/
 lemma limitComparison_eq_conePointUniqueUpToIso (hc : IsConicalLimit V c) (X : C)
     [HasLimit (F ⋙ eCoyoneda V X)] :
     limitComparison V c X =
@@ -107,7 +113,9 @@ lemma limitComparison_eq_conePointUniqueUpToIso (hc : IsConicalLimit V c) (X : C
   simp [limitComparison]
   rfl
 
-/-- `IsConicalLimit.limitComparison` is an isomorphism. -/
+/-- `IsConicalLimit.limitComparison` is an isomorphism.
+@isnad1 id=isiso.0h7v.s6.964457790f26 from=translated src=- shape=5753054c vocab=15bf2115
+-/
 lemma isIso_limitComparison (hc : IsConicalLimit V c) (X : C) : IsIso (limitComparison V c X) := by
   rw [limitComparison_eq_conePointUniqueUpToIso hc X]; exact Iso.isIso_hom _
 
@@ -140,6 +148,7 @@ A limit cone in `C` is a `V`-enriched limit if and only if the comparison map is
 for every `X : C`.
 Note: it's easier to use the two directions `limitComparisonIso` and
 `ofIsIsoLimitComparison` directly.
+@isnad1 id=iff.0h6v.s6.1235073cbd1c from=translated src=- shape=ee622a59 vocab=d73bd42d
 -/
 theorem nonempty_isConicalLimit_iff (hc : IsLimit c) : Nonempty (IsConicalLimit V c) ↔
     ∀ X, IsIso (limitComparison V c X) :=
@@ -163,6 +172,9 @@ noncomputable def isConicalLimit :
 noncomputable def lift : c.pt ⟶ conicalLimit V F :=
   (conicalLimit.isConicalLimit V F).isLimit.lift c
 
+/--
+@isnad1 id=eq.0h6v.s7.1f3238a35744 from=translated src=- shape=ebb42098 vocab=00524e12
+-/
 @[reassoc (attr := simp)]
 theorem lift_π (j : J) :
     conicalLimit.lift V c ≫ conicalLimit.π V F j = c.π.app j :=

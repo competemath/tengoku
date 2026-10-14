@@ -33,7 +33,9 @@ If the slope is non-zero, then $f$ is injective, so $f(x + 1) = f(f(x))$ yields
 namespace IMOSL
 namespace IMO2015A2
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h1v.s6.a281a2ba1a5f from=translated src=- shape=a9fa26b7 vocab=b735407f
+-/
 theorem final_solution {f : Int → Int} :
     (∀ x y, f (x - f y) = f (f x) - f y - 1) ↔ (f = λ _ ↦ -1) ∨ f = (· + 1) := by
   ---- The `←` direction is easier.

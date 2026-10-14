@@ -42,7 +42,9 @@ namespace Countermodels
 
 /-! ## Positive anchor -/
 
-/-- The one-face complex on three vertices realizes exactly the standard 2-simplex. -/
+/-- The one-face complex on three vertices realizes exactly the standard 2-simplex.
+@isnad1 id=eq.0h0v.s6.235a5d454f66 from=translated src=- shape=c8985a58 vocab=71cbdc93
+-/
 theorem geometricRealization_single_face :
     GeometricRealization (Fin 3) {Finset.univ} = stdSimplex ℝ (Fin 3) := by
   ext x
@@ -109,14 +111,18 @@ noncomputable def arbitrarySpaceLegacyTriangulation
       simp at hoe
   homeomorphSurface := ⟨Homeomorph.refl S⟩
 
-/-- The arbitrary stored realization makes the legacy topological field hold by reflexivity. -/
+/-- The arbitrary stored realization makes the legacy topological field hold by reflexivity.
+@isnad1 id=nonempty.0h1v.s4.e76548e52168 from=translated src=- shape=eab656d5 vocab=d0da7710
+-/
 theorem arbitrarySpaceLegacyTriangulation_homeomorphSurface
     (S : Type) [TopologicalSpace S] :
     Nonempty ((arbitrarySpaceLegacyTriangulation S).realization ≃ₜ S) :=
   (arbitrarySpaceLegacyTriangulation S).homeomorphSurface
 
 /-- Empty boundary words leave the stored edge orbit unused, so the converted presentation is
-not incidence-valid. -/
+not incidence-valid.
+@isnad1 id=not.0h1v.s3.232444234663 from=translated src=- shape=71465b91 vocab=5869f188
+-/
 theorem arbitrarySpaceLegacyTriangulation_not_isSurfaceValid
     (S : Type) [TopologicalSpace S] :
     ¬ (arbitrarySpaceLegacyTriangulation S).toCellComplex.IsSurfaceValid := by
@@ -130,7 +136,9 @@ theorem arbitrarySpaceLegacyTriangulation_not_isSurfaceValid
     exact Fin.elim0 i
 
 /-- The two empty face words have no adjacency path, so the converted presentation is not
-face-edge connected. -/
+face-edge connected.
+@isnad1 id=not.0h1v.s3.e6d83a8a2754 from=translated src=- shape=71465b91 vocab=37d7ce50
+-/
 theorem arbitrarySpaceLegacyTriangulation_not_isConnected
     (S : Type) [TopologicalSpace S] :
     ¬ (arbitrarySpaceLegacyTriangulation S).toCellComplex.IsConnected := by
@@ -158,7 +166,9 @@ open SurfaceCellComplex.SignedDart
 def unusedDartOrbit : SurfaceCellComplex :=
   SurfaceCellComplex.oneFacePresentation PUnit []
 
-/-- Incidence validity rejects an edge orbit with zero boundary occurrences. -/
+/-- Incidence validity rejects an edge orbit with zero boundary occurrences.
+@isnad1 id=not.0h0v.s1.adf63c33fcd2 from=translated src=- shape=87ceb31f vocab=98dab935
+-/
 theorem unusedDartOrbit_not_isSurfaceValid :
     ¬ unusedDartOrbit.IsSurfaceValid := by
   rintro ⟨_, _, _, hedges⟩
@@ -186,7 +196,9 @@ def disconnectedBoundaryFaces : SurfaceCellComplex where
   inv_source := by intro d; rfl
   inv_target := by intro d; rfl
 
-/-- The disconnected fixture is locally valid: each of its two edge orbits occurs exactly once. -/
+/-- The disconnected fixture is locally valid: each of its two edge orbits occurs exactly once.
+@isnad1 id=issurfac.0h0v.s1.94e731831bd0 from=translated src=- shape=49959d42 vocab=b396128e
+-/
 theorem disconnectedBoundaryFaces_isSurfaceValid :
     disconnectedBoundaryFaces.IsSurfaceValid := by
   refine ⟨⟨false⟩, ?_, ?_, ?_⟩
@@ -241,7 +253,9 @@ theorem disconnectedBoundaryFaces_isSurfaceValid :
         cases hfb
         rfl
 
-/-- Face-edge connectedness rejects two face systems even when the stored vertex type is a point. -/
+/-- Face-edge connectedness rejects two face systems even when the stored vertex type is a point.
+@isnad1 id=not.0h0v.s1.c59f5d5c7089 from=translated src=- shape=87ceb31f vocab=bae2c55c
+-/
 theorem disconnectedBoundaryFaces_not_isConnected :
     ¬ disconnectedBoundaryFaces.IsConnected := by
   rintro ⟨_, hconnected⟩

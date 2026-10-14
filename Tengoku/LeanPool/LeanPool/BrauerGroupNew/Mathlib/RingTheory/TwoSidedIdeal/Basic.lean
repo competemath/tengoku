@@ -23,6 +23,9 @@ section NonUnitalNonAssocRing
 
 variable [NonUnitalNonAssocRing R] {I : TwoSidedIdeal R} {x : R}
 
+/--
+@isnad1 id=mem.1h4v.s5.29f9170ffae3 from=translated src=- shape=ec83ec50 vocab=da283c0c
+-/
 lemma smul_mem (r : R) (hx : x ∈ I) : r • x ∈ I := by
   exact I.mul_mem_left r x hx
 

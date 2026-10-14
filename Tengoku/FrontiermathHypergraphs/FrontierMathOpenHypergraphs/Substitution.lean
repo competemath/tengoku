@@ -168,11 +168,17 @@ noncomputable def allNewVertices {t : ℕ}
     (F : Multiset (SupportPattern t)) : Finset (SubstVertex t F) :=
   (Finset.univ : Finset (Fin F.card)).image SubstVertex.new
 
+/--
+@isnad1 id=iff.0h4v.s5.ddf94550e422 from=translated src=- shape=c09d4fe0 vocab=a5ab51ae
+-/
 @[simp] lemma mem_supportVerticesOnBlock_iff {t : ℕ}
     {F : Multiset (SupportPattern t)} {i : Fin t} {s : SupportOcc F} :
     SubstVertex.new s ∈ supportVerticesOnBlock F i ↔ i ∈ supportSetAt F s := by
   simp [supportVerticesOnBlock]
 
+/--
+@isnad1 id=iff.0h6v.s6.ba90bce89a93 from=translated src=- shape=a408c0c5 vocab=dea5e0ee
+-/
 @[simp] lemma old_mem_liftBlockEdge_iff {t : ℕ}
     {F : Multiset (SupportPattern t)} {i j : Fin t} {v : ℕ} {e : Finset ℕ} :
     SubstVertex.old i v ∈ liftBlockEdge F j e ↔ i = j ∧ v ∈ e := by
@@ -187,11 +193,17 @@ noncomputable def allNewVertices {t : ℕ}
   · rintro ⟨rfl, hv⟩
     simp [liftBlockEdge, hv]
 
+/--
+@isnad1 id=iff.0h5v.s6.be5b16a6a9c9 from=translated src=- shape=3b4301ea vocab=2242d5d2
+-/
 @[simp] lemma new_mem_liftBlockEdge_iff {t : ℕ}
     {F : Multiset (SupportPattern t)} {s : SupportOcc F} {i : Fin t} {e : Finset ℕ} :
     SubstVertex.new s ∈ liftBlockEdge F i e ↔ i ∈ supportSetAt F s := by
   simp [liftBlockEdge]
 
+/--
+@isnad1 id=injectiv.0h3v.s4.7348deb3be48 from=translated src=- shape=ac76940f vocab=9174478c
+-/
 lemma liftBlockEdge_injective {t : ℕ}
     (F : Multiset (SupportPattern t)) (i : Fin t) :
     Function.Injective (liftBlockEdge F i) := by
@@ -209,6 +221,9 @@ lemma liftBlockEdge_injective {t : ℕ}
     rw [← hEq] at hmem
     simpa using (old_mem_liftBlockEdge_iff.mp hmem).2
 
+/--
+@isnad1 id=iff.0h5v.s5.77dc84839aae from=translated src=- shape=d9af27c2 vocab=4624bd01
+-/
 @[simp] lemma mem_T_of_iff {t : ℕ}
     {F : Multiset (SupportPattern t)}
     {blocks : BlockFamily t}
@@ -216,6 +231,9 @@ lemma liftBlockEdge_injective {t : ℕ}
     i ∈ T_of F blocks P ↔ selectedBlockCount F blocks P i ≤ 1 := by
   simp [T_of]
 
+/--
+@isnad1 id=iff.0h5v.s5.98d70d01a500 from=translated src=- shape=d9af27c2 vocab=7a19f1be
+-/
 @[simp] lemma mem_I_of_iff {t : ℕ}
     {F : Multiset (SupportPattern t)}
     {blocks : BlockFamily t}
@@ -223,6 +241,9 @@ lemma liftBlockEdge_injective {t : ℕ}
     i ∈ I_of F blocks P ↔ selectedBlockCount F blocks P i = 1 := by
   simp [I_of]
 
+/--
+@isnad1 id=eq.0h5v.s6.24286e91da77 from=translated src=- shape=b8f3fac3 vocab=def78dd7
+-/
 lemma card_inter_I_of_eq_sum_indicator {t : ℕ}
     (F : Multiset (SupportPattern t))
     (blocks : BlockFamily t)

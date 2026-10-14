@@ -89,6 +89,9 @@ private theorem seeleyUnitEuclideanBall_convex :
           (mul_lt_mul_of_pos_left hy' hbpos)
     _ = 1 := by simp [hab]
 
+/--
+@isnad1 id=isopenbo.0h0v.s2.dcbbb08cba4f from=translated src=- shape=cef8a6bf vocab=3cc770c9
+-/
 theorem seeleyUnitEuclideanBall_domain :
     IsOpenBoundedConvexDomain seeleyUnitEuclideanBall :=
   ⟨seeleyUnitEuclideanBall_open, seeleyUnitEuclideanBall_bounded,

@@ -36,6 +36,9 @@ namespace KawaiiSequence
 variable (X : KawaiiSequence S)
 include X
 
+/--
+@isnad1 id=le.0h3v.s4.5a0ee071396b from=translated src=- shape=cd82c97f vocab=bddf7c30
+-/
 lemma a_le_succ : ∀ n, X.a n ≤ X.a (n + 1) := by
   refine Nat.rec ?_ λ n hn ↦ ?_
   · rw [X.a_zero, X.a_one]; exact Nat.zero_le 1
@@ -43,15 +46,27 @@ lemma a_le_succ : ∀ n, X.a n ≤ X.a (n + 1) := by
     rw [← Nat.add_le_add_iff_right (n := c * X.a n), h, Nat.succ_mul, Nat.add_comm]
     exact Nat.add_le_add_right (Nat.mul_le_mul_left _ hn) _
 
+/--
+@isnad1 id=le.1h4v.s4.777256e33703 from=translated src=- shape=4a4293bd vocab=c50da305
+-/
 lemma a_monotone {m} : ∀ {n}, m ≤ n → X.a m ≤ X.a n :=
   Nat.le_induction (Nat.le_refl _) (λ n _ hn ↦ Nat.le_trans hn (X.a_le_succ n)) _
 
+/--
+@isnad1 id=lt.0h3v.s5.ab3500810af8 from=translated src=- shape=1db4f70e vocab=9f8fe4f2
+-/
 lemma a_succ_pos (n) : 0 < X.a (n + 1) := by
   have h := X.a_monotone n.succ_pos; rwa [X.a_one] at h
 
+/--
+@isnad1 id=le.0h3v.s5.0ecf4aaaf19e from=translated src=- shape=1db4f70e vocab=bddf7c30
+-/
 lemma one_le_a_succ (n) : 1 ≤ X.a (n + 1) :=
   X.a_succ_pos n
 
+/--
+@isnad1 id=ex.0h3v.s7.b12db8df1840 from=translated src=- shape=cfa4e4c4 vocab=7ef78f30
+-/
 lemma a_sub_one_step (n) :
     ∃ c : S, (X.a (n + 3) - 1) + c.1 * (X.a (n + 1) - 1)
       = (c.1 + 1) * (X.a (n + 2) - 1) := by
@@ -60,6 +75,9 @@ lemma a_sub_one_step (n) :
   rw [c.1.add_comm, Nat.add_add_add_comm, Nat.sub_add_cancel (X.one_le_a_succ _),
     ← Nat.mul_add_one, Nat.sub_add_cancel (X.one_le_a_succ _), hc, Nat.add_comm 1]
 
+/--
+@isnad1 id=mem.0h2v.s5.6d03aced177d from=translated src=- shape=4581a352 vocab=edfcc362
+-/
 lemma a_two_pred_mem : X.a 2 - 1 ∈ S := by
   obtain ⟨c, h⟩ : ∃ c : S, X.a 2 + c * X.a 0 = (c + 1) * X.a 1 := X.a_step 0
   rw [X.a_zero, X.a_one, Nat.mul_zero, Nat.mul_one, Nat.add_zero] at h
@@ -75,15 +93,24 @@ def of_mem (c : S) : KawaiiSequence S where
     ← Nat.succ_mul, Nat.mul_succ, Nat.mul_left_comm, Nat.add_assoc, ← Nat.mul_succ]⟩
 
 omit X in
+/--
+@isnad1 id=eq.0h3v.s6.c4b419afc659 from=translated src=- shape=8b14623d vocab=484b096d
+-/
 lemma of_mem_a_succ (c : S) (n) : (of_mem c).a (n + 1) = c * (of_mem c).a n + 1 := rfl
 
 /-! ##### Tail of a kawaii sequence; the number `a_2 - 1` -/
 
 def tail_coeff : S := ⟨X.a 2 - 1, X.a_two_pred_mem⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.814caf8b3f03 from=translated src=- shape=1fe26708 vocab=1c48c141
+-/
 lemma a_two : X.a 2 = X.tail_coeff + 1 :=
   (Nat.sub_add_cancel (X.one_le_a_succ 1)).symm
 
+/--
+@isnad1 id=dvd.0h3v.s5.007c51a0a2dd from=translated src=- shape=6bc16e82 vocab=13743c23
+-/
 lemma tail_coeff_dvd_a_sub_one : ∀ n, X.tail_coeff.1 ∣ X.a n - 1
   | 0 => X.a_zero.symm ▸ Nat.dvd_zero _
   | 1 => X.a_one.symm ▸ Nat.dvd_zero _
@@ -96,6 +123,9 @@ lemma tail_coeff_dvd_a_sub_one : ∀ n, X.tail_coeff.1 ∣ X.a n - 1
         Nat.dvd_trans (tail_coeff_dvd_a_sub_one (n + 2)) (Nat.dvd_mul_left _ _)
       rwa [← hc, ← Nat.dvd_add_iff_left h] at h0
 
+/--
+@isnad1 id=eq.1h3v.s5.e6d631a01ea7 from=translated src=- shape=2383c31f vocab=1c48c141
+-/
 lemma a_succ_of_tail_coeff_eq_zero (h : X.tail_coeff.1 = 0) (n) : X.a (n + 1) = 1 :=
   Nat.eq_add_of_sub_eq (X.one_le_a_succ n)
     (Nat.zero_dvd.mp (h ▸ X.tail_coeff_dvd_a_sub_one _))
@@ -116,6 +146,9 @@ def drop_tail_of_pos (h : 0 < X.tail_coeff.1) : KawaiiSequence S where
     rw [hk, hl, hm, Nat.mul_left_comm, ← Nat.mul_add, Nat.mul_left_comm] at hc
     exact Nat.eq_of_mul_eq_mul_left h hc
 
+/--
+@isnad1 id=eq.1h3v.s6.95675af8467a from=translated src=- shape=dd807a63 vocab=c93fd7d6
+-/
 lemma a_succ_drop_tail_formula_of_pos (h : 0 < X.tail_coeff.1) (n) :
     X.a (n + 1) = X.tail_coeff * (X.drop_tail_of_pos h).a n + 1 :=
   (Nat.sub_add_cancel (X.one_le_a_succ n)).symm.trans
@@ -125,13 +158,22 @@ def drop_tail : KawaiiSequence S :=
   dite (0 < X.tail_coeff.1) X.drop_tail_of_pos
     λ h ↦ of_mem ⟨0, Nat.eq_zero_of_not_pos h ▸ X.tail_coeff.2⟩
 
+/--
+@isnad1 id=eq.1h2v.s5.25e382b2c73b from=translated src=- shape=fda8b14e vocab=ebcb2039
+-/
 lemma drop_tail_eq_of_pos (h : 0 < X.tail_coeff.1) : X.drop_tail = X.drop_tail_of_pos h :=
   dite_eq_left h
 
+/--
+@isnad1 id=eq.1h2v.s6.f7ef4ccf9aae from=translated src=- shape=261aed73 vocab=b55e2aec
+-/
 lemma drop_tail_eq_of_zero (h : X.tail_coeff.1 = 0) :
     X.drop_tail = of_mem ⟨0, h ▸ X.tail_coeff.2⟩ :=
   dite_eq_right (Nat.not_lt_of_le (Nat.le_zero.mpr h))
 
+/--
+@isnad1 id=eq.0h3v.s6.5a162e8b0a26 from=translated src=- shape=441ed56e vocab=8700d39b
+-/
 lemma a_succ_drop_tail_formula (n) : X.a (n + 1) = X.tail_coeff * X.drop_tail.a n + 1 := by
   obtain h | h : X.tail_coeff.1 = 0 ∨ 0 < X.tail_coeff.1 := X.tail_coeff.1.eq_zero_or_pos
   · rw [h, Nat.zero_mul, X.a_succ_of_tail_coeff_eq_zero h]
@@ -149,9 +191,15 @@ def append_tail (c : S) : KawaiiSequence S where
         rw [Nat.mul_succ, Nat.add_add_add_comm, ← Nat.mul_left_comm,
           ← Nat.mul_add, hd, Nat.add_comm 1, Nat.mul_left_comm, Nat.mul_succ]
 
+/--
+@isnad1 id=eq.0h3v.s4.3afbafe950b9 from=translated src=- shape=b087ea7b vocab=2af35400
+-/
 lemma tail_coeff_append_tail (c : S) : (X.append_tail c).tail_coeff = c :=
   Subtype.ext ((congrArg (c.1 * ·) X.a_one).trans c.1.mul_one)
 
+/--
+@isnad1 id=eq.0h4v.s6.64204eb75dc5 from=translated src=- shape=de9ede41 vocab=885f0234
+-/
 lemma append_tail_a_succ (c : S) (n) : (X.append_tail c).a (n + 1) = c * X.a n + 1 := rfl
 
 end KawaiiSequence
@@ -162,11 +210,17 @@ inductive isKawaii : Set ℕ → ℕ → Prop
   | zero (S) : isKawaii S 0
   | rec_mul_succ {S : Set ℕ} (c : S) (n) (h : isKawaii S n) : isKawaii S (c * n).succ
 
+/--
+@isnad1 id=var.1h5v.s5.6d1ccff5d87a from=translated src=- shape=82127d78 vocab=2fb02e52
+-/
 protected theorem isKawaii.induction {S : Set ℕ} {P : ℕ → Prop}
     (h : P 0) (h0 : ∀ (c : S) (n : ℕ), P n → P (c * n).succ) :
     ∀ n, isKawaii S n → P n :=
   λ _ h1 ↦ h1.recOn h λ c n _ ↦ h0 c n
 
+/--
+@isnad1 id=iskawaii.1h1v.s3.5ddffd293f82 from=translated src=- shape=34120c9e vocab=d927fd89
+-/
 theorem isKawaii.one {S : Set ℕ} (hS : S.Nonempty) : isKawaii S 1 := by
   rcases hS with ⟨c, hc⟩
   have h := (isKawaii.zero S).rec_mul_succ ⟨c, hc⟩
@@ -178,21 +232,33 @@ theorem isKawaii.eq_zero_or_rec_mul_succ :
   rcases h with rfl | ⟨d, m, hm, rfl⟩
   exacts [⟨c, 0, isKawaii.zero S, rfl⟩, ⟨c, d * m + 1, hm.rec_mul_succ d, rfl⟩]
 
+/--
+@isnad1 id=ex.1h2v.s5.16277c5da348 from=translated src=- shape=1e132ad1 vocab=2cf49592
+-/
 theorem isKawaii.succ_imp (h : isKawaii S (k + 1)) :
     ∃ (c : S) (n : ℕ), isKawaii S n ∧ k = c * n := by
   obtain ⟨c, n, h0, h1⟩ := (h.eq_zero_or_rec_mul_succ _).resolve_left k.succ_ne_zero
   exact ⟨c, n, h0, Nat.succ_inj.mp h1⟩
 
+/--
+@isnad1 id=iskawaii.0h3v.s3.d4bb2646ac97 from=translated src=- shape=50af49a6 vocab=a3e275ba
+-/
 theorem KawaiiSequence.a_isKawaii : ∀ (k : ℕ) (X : KawaiiSequence S), isKawaii S (X.a k) :=
   Nat.rec (λ X ↦ X.a_zero.symm ▸ isKawaii.zero S)
     λ n hn X ↦ X.a_succ_drop_tail_formula n ▸ (hn X.drop_tail).rec_mul_succ _ _
 
+/--
+@isnad1 id=ex.2h2v.s4.55da62bfd46c from=translated src=- shape=78ab75c9 vocab=7b504972
+-/
 theorem isKawaii.exists_mem_KawaiiSequence (hS : S.Nonempty) :
     ∀ n, isKawaii S n → ∃ (X : KawaiiSequence S) (k : ℕ), n = X.a k := by
   refine isKawaii.induction ?_ ?_
   · rcases hS with ⟨c, hc⟩; exact ⟨KawaiiSequence.of_mem ⟨c, hc⟩, 0, rfl⟩
   · rintro d _ ⟨X, k, rfl⟩; exact ⟨X.append_tail d, k + 1, rfl⟩
 
+/--
+@isnad1 id=iff.1h2v.s4.3fa23d382744 from=translated src=- shape=4436bfda vocab=7b504972
+-/
 theorem isKawaii_iff_mem_KawaiiSequence (hS : S.Nonempty) :
     isKawaii S n ↔ ∃ (X : KawaiiSequence S) (k : ℕ), n = X.a k := by
   refine ⟨isKawaii.exists_mem_KawaiiSequence hS _, ?_⟩
@@ -200,6 +266,9 @@ theorem isKawaii_iff_mem_KawaiiSequence (hS : S.Nonempty) :
 
 /-! ### Kawaii integers, `S = {2, 3}` version -/
 
+/--
+@isnad1 id=or.1h1v.s5.e7dc1bb971dd from=translated src=- shape=f951275c vocab=4ca61478
+-/
 theorem isKawaii23_mod_three : ∀ m, isKawaii {2, 3} m → 3 ∣ m ∨ m % 3 = 1 := by
   refine isKawaii.induction (Or.inl ⟨0, rfl⟩) λ c n hn ↦ ?_
   rcases c with ⟨c, rfl | rfl⟩
@@ -212,6 +281,9 @@ theorem isKawaii23_mod_three : ∀ m, isKawaii {2, 3} m → 3 ∣ m ∨ m % 3 = 
   ---- Case 2: `c = 3`
   · right; rw [Nat.succ_eq_add_one, Nat.mul_add_mod, Nat.one_mod]
 
+/--
+@isnad1 id=ex.2h1v.s6.ecb3c24fb799 from=translated src=- shape=2fe45016 vocab=3855bd93
+-/
 theorem isKawaii23_self_and_succ (hm : isKawaii {2, 3} m) (hm0 : isKawaii {2, 3} (m + 1)) :
     ∃ k, isKawaii {2, 3} k ∧ m = 3 * k := by
   ---- First show that `m = 3k` for some `k : ℕ`, and reduce to showing that `k` is kawaii
@@ -240,7 +312,9 @@ theorem isKawaii23_self_and_succ (hm : isKawaii {2, 3} m) (hm0 : isKawaii {2, 3}
 
 /-! ### Final solution -/
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.2h1v.s8.48a338adf5d8 from=translated src=- shape=f6171a90 vocab=61f413ec
+-/
 theorem final_solution (hn : ∃ (X : KawaiiSequence {2, 3}) (k : ℕ), n = X.a k)
     (hn0 : ∃ (X : KawaiiSequence {2, 3}) (k : ℕ), n + 1 = X.a k) :
     ∃ m, (∃ (X : KawaiiSequence {2, 3}) (k : ℕ), m = X.a k) ∧ n = 3 * m := by

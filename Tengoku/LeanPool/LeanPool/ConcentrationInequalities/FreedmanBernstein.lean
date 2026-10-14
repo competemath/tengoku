@@ -47,10 +47,16 @@ structure Kernel.HasSubgammaMGF (X : Ω → ℝ) (V c : ℝ≥0)
 
 namespace Kernel.HasSubgammaMGF
 
+/--
+@isnad1 id=eventual.1h10v.s6.ed90f00e4b80 from=translated src=- shape=dfb0c28b vocab=a243c1d7
+-/
 lemma ae_integrable_exp_mul (h : Kernel.HasSubgammaMGF X V c κ ν) (t : ℝ) :
     ∀ᵐ ω' ∂ν, Integrable (fun y ↦ exp (t * X y)) (κ ω') :=
   Measure.ae_integrable_of_integrable_comp (h.integrable_exp_mul t)
 
+/--
+@isnad1 id=eventual.1h9v.s6.246673c3a30b from=translated src=- shape=673e203d vocab=a243c1d7
+-/
 lemma ae_forall_integrable_exp_mul (h : Kernel.HasSubgammaMGF X V c κ ν) :
     ∀ᵐ ω' ∂ν, ∀ t, Integrable (fun ω ↦ exp (t * X ω)) (κ ω') := by
   have hi (n : ℤ) : ∀ᵐ ω' ∂ν, Integrable (fun ω ↦ exp (n * X ω)) (κ ω') :=
@@ -59,6 +65,9 @@ lemma ae_forall_integrable_exp_mul (h : Kernel.HasSubgammaMGF X V c κ ν) :
   filter_upwards [hi] with ω' hi t
   exact integrable_exp_mul_of_le_of_le (hi _) (hi _) (Int.floor_le t) (Int.le_ceil t)
 
+/--
+@isnad1 id=hassubga.0h7v.s5.b2dad841e4ab from=translated src=- shape=7380b98f vocab=6d3ea18e
+-/
 @[simp] lemma fun_zero [IsFiniteMeasure ν] [IsZeroOrMarkovKernel κ] :
     Kernel.HasSubgammaMGF (fun _ ↦ 0) 0 c κ ν where
   integrable_exp_mul := by simp
@@ -67,11 +76,20 @@ lemma ae_forall_integrable_exp_mul (h : Kernel.HasSubgammaMGF X V c κ ν) :
     intro t ht htc
     simp [mgf, measureReal_le_one]
 
+/--
+@isnad1 id=hassubga.0h8v.s5.38b7ccfc0f2f from=translated src=- shape=bfe5e429 vocab=7a3c855f
+-/
 @[simp] lemma zero_measure : Kernel.HasSubgammaMGF X V c κ (0 : Measure Ω') := ⟨by simp, by simp⟩
 
+/--
+@isnad1 id=hassubga.0h7v.s6.37f85682eff7 from=translated src=- shape=832410cf vocab=6d3ea18e
+-/
 @[simp] lemma zero [IsFiniteMeasure ν] [IsZeroOrMarkovKernel κ] :
     Kernel.HasSubgammaMGF 0 0 c κ ν := fun_zero
 
+/--
+@isnad1 id=hassubga.2h10v.s6.99b092c2a761 from=translated src=- shape=c222f259 vocab=b2f1c3b0
+-/
 lemma congr {Y : Ω → ℝ} (h : Kernel.HasSubgammaMGF X V c κ ν) (h' : X =ᵐ[κ ∘ₘ ν] Y) :
     Kernel.HasSubgammaMGF Y V c κ ν where
   integrable_exp_mul t := by
@@ -85,6 +103,9 @@ lemma congr {Y : Ω → ℝ} (h : Kernel.HasSubgammaMGF X V c κ ν) (h' : X =�
 
 variable {Ω'' : Type*} {mΩ'' : MeasurableSpace Ω''} {Y : Ω'' → ℝ} {W : ℝ≥0}
 
+/--
+@isnad1 id=hassubga.1h12v.s6.0ed025f84293 from=translated src=- shape=affefd40 vocab=ed6a7b7b
+-/
 lemma prodMkLeft_compProd {η : Kernel Ω Ω''} (h : Kernel.HasSubgammaMGF Y W c η (κ ∘ₘ ν)) :
     Kernel.HasSubgammaMGF Y W c (Kernel.prodMkLeft Ω' η) (ν ⊗ₘ κ) := by
   by_cases hν : SFinite ν
@@ -118,11 +139,17 @@ def HasCondSubgammaMGF (X : Ω → ℝ) (V c : ℝ≥0)
 
 namespace HasCondSubgammaMGF
 
+/--
+@isnad1 id=integrab.2h8v.s6.99d139c7e125 from=translated src=- shape=fba71c2a vocab=4d077da5
+-/
 lemma integrable_exp_mul (h : HasCondSubgammaMGF m hm X V c μ) (t : ℝ) :
     Integrable (fun ω ↦ exp (t * X ω)) μ :=
   condExpKernel_comp_trim (μ := μ) hm ▸
     Contrib.Freedman.Kernel.HasSubgammaMGF.integrable_exp_mul h t
 
+/--
+@isnad1 id=eventual.4h8v.s7.cd13e04209b8 from=translated src=- shape=7a0dd249 vocab=cc106faf
+-/
 lemma ae_condExp_le (h : HasCondSubgammaMGF m hm X V c μ) {t : ℝ}
     (ht : 0 ≤ t) (htc : (c : ℝ) * t < 1) :
     ∀ᵐ ω ∂μ, (μ[fun x ↦ exp (t * X x) | m]) ω ≤
@@ -156,6 +183,9 @@ structure MeasureSubgammaMGF (X : Ω → ℝ) (V c : ℝ≥0)
   mgf_le : ∀ t : ℝ, 0 ≤ t → (c : ℝ) * t < 1 →
     mgf X μ t ≤ exp ((V : ℝ) * t ^ 2 / (2 * (1 - (c : ℝ) * t)))
 
+/--
+@isnad1 id=iff.0h6v.s5.b42098bf849b from=translated src=- shape=22b6302c vocab=4f01d1bd
+-/
 lemma measureSubgammaMGF_iff_kernel :
     MeasureSubgammaMGF X V c μ ↔
       Kernel.HasSubgammaMGF X V c (Kernel.const Unit μ) (Measure.dirac ()) :=
@@ -168,12 +198,21 @@ lemma measureSubgammaMGF_iff_kernel :
 
 namespace MeasureSubgammaMGF
 
+/--
+@isnad1 id=measures.0h4v.s5.001a5ccf1d3c from=translated src=- shape=43f4b903 vocab=0bf1d927
+-/
 @[simp] lemma fun_zero [IsZeroOrProbabilityMeasure μ] :
     MeasureSubgammaMGF (fun _ ↦ 0) 0 c μ := by
   simp [measureSubgammaMGF_iff_kernel]
 
+/--
+@isnad1 id=measures.0h4v.s5.485e8ad72149 from=translated src=- shape=74bd5435 vocab=0bf1d927
+-/
 @[simp] lemma zero [IsZeroOrProbabilityMeasure μ] : MeasureSubgammaMGF 0 0 c μ := fun_zero
 
+/--
+@isnad1 id=measures.2h9v.s5.391e98561041 from=translated src=- shape=549d17d1 vocab=f0398cad
+-/
 lemma of_map {μ : Measure Ω'} {Y : Ω' → Ω} (hY : AEMeasurable Y μ)
     (h : MeasureSubgammaMGF X V c (μ.map Y)) : MeasureSubgammaMGF (X ∘ Y) V c μ where
   integrable_exp_mul t := by
@@ -183,6 +222,9 @@ lemma of_map {μ : Measure Ω'} {Y : Ω' → Ω} (hY : AEMeasurable Y μ)
     convert h.mgf_le t ht htc using 1
     rw [mgf_map hY (h.integrable_exp_mul t).1]
 
+/--
+@isnad1 id=measures.3h7v.s5.436ffbb46fbf from=translated src=- shape=989367df vocab=0160d779
+-/
 lemma trim (hm : m ≤ mΩ) (hXm : Measurable[m] X) (hX : MeasureSubgammaMGF X V c μ) :
     MeasureSubgammaMGF X V c (μ.trim hm) where
   integrable_exp_mul t := by

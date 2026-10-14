@@ -42,6 +42,9 @@ abbrev good2 {G} [AddCommGroup G] (D : ℕ) (a : ℕ → G) :=
 
 variable [IsOrderedAddMonoid G]
 
+/--
+@isnad1 id=le.0h3v.s7.fe56b00ee420 from=translated src=- shape=d41cee7a vocab=51928240
+-/
 theorem abs_le_max_range_sup' (a : ℕ → G) (n : ℕ) :
     |a n| ≤ max ((range (n + 1)).sup' nonempty_range_add_one (-a))
       (2 • (range (n + 1)).sup' nonempty_range_add_one a) := by
@@ -52,6 +55,9 @@ theorem abs_le_max_range_sup' (a : ℕ → G) (n : ℕ) :
       le_sup' a (self_mem_range_succ _)
     exact le_add_of_le_of_nonneg h0 (h.trans h0)
 
+/--
+@isnad1 id=le.2h4v.s7.55e018d929d9 from=translated src=- shape=0e51d52c vocab=aafcb193
+-/
 theorem good1_bdd_above {a : ℕ → G} (h : good1 D a) (h0 : D ≤ n) :
     a (n + 1) ≤ (range (n + 1)).sup' nonempty_range_add_one (-a)
       - (range (n + 1)).sup' nonempty_range_add_one a := by
@@ -63,6 +69,9 @@ theorem good1_bdd_above {a : ℕ → G} (h : good1 D a) (h0 : D ≤ n) :
   rw [h1, neg_add_rev, ← sub_eq_add_neg, sub_le_sub_iff_right]
   exact le_sup' (-a) (mem_range_succ_iff.mpr (Nat.le_add_left j i))
 
+/--
+@isnad1 id=le.2h4v.s7.9990a2e4bf14 from=translated src=- shape=b2301599 vocab=b0cd5fe2
+-/
 theorem good1_range_sup' {a : ℕ → G} (h : good1 D a) (h0 : D ≤ n) :
     (range (n + 2)).sup' nonempty_range_add_one a ≤
       max ((range (n + 1)).sup' nonempty_range_add_one a)
@@ -71,6 +80,9 @@ theorem good1_range_sup' {a : ℕ → G} (h : good1 D a) (h0 : D ≤ n) :
   simp_rw [range_add_one (n := n + 1), sup'_insert nonempty_range_add_one, max_comm (a _)]
   refine max_le_max (le_refl _) (good1_bdd_above h h0)
 
+/--
+@isnad1 id=le.2h4v.s7.cf48c8f3d6e3 from=translated src=- shape=1714d098 vocab=492b6375
+-/
 theorem good2_bdd_below {a : ℕ → G} (h : good2 D a) (h0 : D ≤ n) :
     -a (n + 1) ≤ 2 • (range (n + 1)).sup' nonempty_range_add_one a := by
   rcases h n h0 with ⟨i, j, rfl, h0⟩
@@ -78,6 +90,9 @@ theorem good2_bdd_below {a : ℕ → G} (h : good2 D a) (h0 : D ≤ n) :
   exact add_le_add (le_sup' a (mem_range_succ_iff.mpr (Nat.le_add_right i j)))
     (le_sup' a (mem_range_succ_iff.mpr (Nat.le_add_left j i)))
 
+/--
+@isnad1 id=le.2h4v.s7.cbb652907f71 from=translated src=- shape=bb5e0997 vocab=18613c3e
+-/
 theorem good2_range_sup' {D : ℕ} {a : ℕ → G} (h : good2 D a) {n : ℕ} (h0 : D ≤ n) :
     (range (n + 2)).sup' nonempty_range_add_one (-a)
       ≤ max ((range (n + 1)).sup' nonempty_range_add_one (-a))
@@ -93,12 +108,18 @@ variable {b c : ℕ → G} (h : ∀ n, D ≤ n → b (n + 1) ≤ max (b n) (c n 
   (h0 : ∀ n, D ≤ n → c (n + 1) ≤ max (c n) (2 • b n)) (h1 : Monotone b)
 include h h0 h1
 
+/--
+@isnad1 id=and.5h5v.s8.907493a2c39f from=translated src=- shape=de05b461 vocab=584dbf97
+-/
 theorem c_bdd (h2 : D ≤ K) (h3 : c K ≤ 2 • b K) :
     b (K + 1) = b K ∧ c (K + 1) ≤ 2 • b (K + 1) := by
   suffices b K = b (K + 1) from ⟨this.symm, (h0 K h2).trans_eq (this ▸ max_eq_right h3)⟩
   rw [two_nsmul, ← sub_le_iff_le_add] at h3
   exact (h1 K.le_succ).antisymm ((h K h2).trans_eq (max_eq_left h3))
 
+/--
+@isnad1 id=eq.6h5v.s8.7ed004b1d05f from=translated src=- shape=d5015dd0 vocab=16811aac
+-/
 theorem c_succ_eq_D_of_b_bdd (h2 : Monotone c) (h3 : D ≤ K) :
     2 • b K < c K → c (K + 1) = c D := by
   have X {M : ℕ} : D ≤ M → 2 • b M < c M → c (M + 1) = c M := λ h3 h4 ↦
@@ -107,6 +128,9 @@ theorem c_succ_eq_D_of_b_bdd (h2 : Monotone c) (h3 : D ≤ K) :
   rw [X (Nat.le_succ_of_le h4) h6]
   exact h5 (lt_of_not_ge λ h7 ↦ h6.not_ge (c_bdd h h0 h1 h4 h7).2)
 
+/--
+@isnad1 id=le.4h5v.s8.775c73ec9043 from=translated src=- shape=29519877 vocab=584dbf97
+-/
 theorem max_two_nsmul_b_and_c_bdd (h2 : Monotone c) (n : ℕ) :
     max (c n) (2 • b n) ≤ max (2 • b D) (2 • (c D - b D)) := by
   have h3 : max (c D) (2 • b D) ≤ max (2 • b D) (2 • (c D - b D)) := by
@@ -131,12 +155,16 @@ end SeqMax
 
 /-! ### Summary -/
 
-/-- For any function `f : ℕ → α`, the function `g(n) = max{f(0), …, f(n)}` is monotone. -/
+/-- For any function `f : ℕ → α`, the function `g(n) = max{f(0), …, f(n)}` is monotone.
+@isnad1 id=monotone.0h2v.s5.1de247e7524c from=translated src=- shape=990ff2d7 vocab=b7e8535a
+-/
 theorem range_sup'_monotone [LinearOrder α] (f : ℕ → α) :
     Monotone (λ n ↦ (range (n + 1)).sup' nonempty_range_add_one f) :=
   λ _ _ hmn ↦ sup'_mono _ (range_subset_range.mpr (Nat.succ_le_succ hmn)) _
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=le.2h4v.s7.95bb6939a2cd from=translated src=- shape=af6318d4 vocab=fe7c8856
+-/
 theorem final_solution {a : ℕ → G} (h : good1 D a) (h0 : good2 D a) (n : ℕ) :
     |a n| ≤ max (2 • (range (D + 1)).sup' nonempty_range_add_one a)
       (2 • ((range (D + 1)).sup' nonempty_range_add_one (-a)

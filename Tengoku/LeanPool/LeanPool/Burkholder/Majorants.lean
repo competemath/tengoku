@@ -36,6 +36,7 @@ nonpositive on the opposite-sign region `x * y ≤ 0`.
 
 The proof dispatches to the specialized constructions in the three regimes
 `p = 2`, `p > 2`, and `1 < p < 2`.
+@isnad1 id=ex.1h1v.s9.07ccc8e64bdd from=translated src=- shape=07ee1192 vocab=4bf7693f
 -/
 theorem exists_majorant_p_g_1 (p : ℝ) (hp : p > 1) :
     ∃ u du_dx du_dy : ℝ → ℝ → ℝ, ∃ C : ℝ,

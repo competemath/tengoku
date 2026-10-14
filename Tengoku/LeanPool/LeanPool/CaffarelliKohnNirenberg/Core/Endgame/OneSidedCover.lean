@@ -78,7 +78,9 @@ private theorem truncated_self_center_mem_three_quarters
 
 /-- At every prescribed positive scale, finitely many cylinders of half
 that radius, with admissible centers, cover the intermediate cylinder.
-The selected centers depend only on the scale and the fixed geometry. -/
+The selected centers depend only on the scale and the fixed geometry.
+@isnad1 id=ex.3h2v.s7.7e09160e8d7a from=translated src=- shape=1fb2feff vocab=3ffbf195
+-/
 theorem exists_finite_one_sided_cylinder_cover_on_cylinder
     (a ρ₀ : ℝ) (ha : 0 < a) (ha34 : a < 3 / 4) (hρ₀ : 0 < ρ₀) :
     ∃ s : Finset ParabolicPoint,
@@ -115,7 +117,9 @@ theorem exists_finite_one_sided_cylinder_cover_on_cylinder
 /-- A finite geometric multiplicity turns uniform small-cylinder integral
 bounds into a total bound on the intermediate cylinder. The integer is
 chosen before the integrand or its bound, so its dependence is only on the
-fixed geometry and `ρ₀`. -/
+fixed geometry and `ρ₀`.
+@isnad1 id=ex.3h2v.s8.4147a13e10f2 from=translated src=- shape=2ab5d441 vocab=292131b1
+-/
 theorem exists_one_sided_integral_constant_on_cylinder
     (a ρ₀ : ℝ) (ha : 0 < a) (ha34 : a < 3 / 4) (hρ₀ : 0 < ρ₀) :
     ∃ N : ℕ, ∀ F : ParabolicPoint → ℝ≥0∞, ∀ B : ℝ≥0∞,
@@ -141,7 +145,9 @@ theorem exists_one_sided_integral_constant_on_cylinder
     _ = (s.card : ℝ≥0∞) * B := by simp only [tsum_fintype, Finset.sum_const,
       Finset.card_univ, Fintype.card_coe, nsmul_eq_mul]
 
-/-- A geometric multiplicity bounds the total integral on the fixed cylinder. -/
+/-- A geometric multiplicity bounds the total integral on the fixed cylinder.
+@isnad1 id=ex.1h1v.s7.3f02a6b9db7e from=translated src=- shape=2e56e8d0 vocab=292131b1
+-/
 theorem exists_one_sided_integral_constant (ρ₀ : ℝ) (hρ₀ : 0 < ρ₀) :
     ∃ N : ℕ, ∀ F : ParabolicPoint → ℝ≥0∞, ∀ B : ℝ≥0∞,
       (∀ z ∈ parabolicCylinder (0 : Vec3) 0 (3 / 4),

@@ -71,11 +71,15 @@ variable [NonAssocRing R]
   `f(x f(x + y)) = f(f(x) y) + x^2` for any `x, y : R`. -/
 def good (f : R → R) := ∀ x y : R, f (x * f (x + y)) = f (f x * y) + x * x
 
-/-- The identity function is good. -/
+/-- The identity function is good.
+@isnad1 id=good.0h1v.s3.f77630ac457c from=translated src=- shape=84bfdc15 vocab=f71dc2fe
+-/
 theorem id_is_good : good (id : R → R) :=
   λ x y ↦ (mul_add x x y).trans (add_comm _ _)
 
-/-- The function `x ↦ -x` is good. -/
+/-- The function `x ↦ -x` is good.
+@isnad1 id=good.0h1v.s4.5948e489e221 from=translated src=- shape=1bfa7afd vocab=3a15ac08
+-/
 theorem neg_is_good : good (λ x : R ↦ -x) := by
   intro x y; simp only
   rw [mul_neg, neg_neg, neg_mul, neg_neg, mul_add, add_comm]
@@ -90,7 +94,9 @@ variable [NonAssocRing R] [NoZeroDivisors R] {f : R → R} (hf : good f)
 include hf
 
 omit [NoZeroDivisors R] in
-/-- If `f` is a good function, then `f(0) f(0) = 0`. -/
+/-- If `f` is a good function, then `f(0) f(0) = 0`.
+@isnad1 id=eq.1h2v.s6.da9c0e356852 from=translated src=- shape=07a173b2 vocab=a843bc4f
+-/
 theorem map_zero_mul_self_eq_zero : f 0 * f 0 = 0 := by
   ---- Plugging `(x, y) = (0, f(f(0)))` gives `f(f(0) f(f(0))) = f(0)`.
   have h : f (f 0 * f (f 0)) = f 0 := calc
@@ -100,22 +106,30 @@ theorem map_zero_mul_self_eq_zero : f 0 * f 0 = 0 := by
   have h0 := hf (f 0) 0
   rwa [add_zero, h, mul_zero, left_eq_add] at h0
 
-/-- If `f` is a good function, then `f(0) = 0`. -/
+/-- If `f` is a good function, then `f(0) = 0`.
+@isnad1 id=eq.1h2v.s6.ddc7b0f32121 from=translated src=- shape=6bae688a vocab=d92b01dd
+-/
 theorem map_zero : f 0 = 0 :=
   mul_self_eq_zero.mp hf.map_zero_mul_self_eq_zero
 
-/-- For any `x : R`, we have `f(x f(x)) = xx`. -/
+/-- For any `x : R`, we have `f(x f(x)) = xx`.
+@isnad1 id=eq.1h3v.s6.879deda12e9b from=translated src=- shape=f5eef619 vocab=9117e8bf
+-/
 theorem map_self_mul_map (x : R) : f (x * f x) = x * x := by
   have h := hf x 0
   rwa [add_zero, mul_zero, hf.map_zero, zero_add] at h
 
-/-- For any `x : R`, we have `f(x) = 0 ↔ x = 0`. -/
+/-- For any `x : R`, we have `f(x) = 0 ↔ x = 0`.
+@isnad1 id=iff.1h3v.s6.e32e57884dad from=translated src=- shape=0db5301a vocab=d92b01dd
+-/
 theorem map_eq_zero_iff {x : R} : f x = 0 ↔ x = 0 := by
   refine ⟨λ h ↦ ?_, λ h ↦ (congrArg f h).trans hf.map_zero⟩
   have h0 := hf.map_self_mul_map x
   rwa [h, mul_zero, hf.map_zero, zero_eq_mul_self] at h0
 
-/-- A good function is injective. -/
+/-- A good function is injective.
+@isnad1 id=injectiv.1h2v.s5.939787582fbb from=translated src=- shape=5effceb9 vocab=94e6ec18
+-/
 theorem injective : f.Injective := by
   intro r s h
   ---- From `rr = f(f(r) (s - r)) + rr`, we get either `f(r) = 0` or `s - r = 0`.
@@ -129,11 +143,15 @@ theorem injective : f.Injective := by
   ---- If `s - r = 0` then clearly `r = s`.
   · exact (eq_of_sub_eq_zero h0).symm
 
-/-- Injectivity in the iff form. -/
+/-- Injectivity in the iff form.
+@isnad1 id=iff.1h4v.s5.1dd4db781c87 from=translated src=- shape=a33c53fd vocab=d92b01dd
+-/
 theorem inj {x y : R} : f x = f y ↔ x = y :=
   ⟨λ h ↦ hf.injective h, congrArg f⟩
 
-/-- A good function is odd. -/
+/-- A good function is odd.
+@isnad1 id=eq.1h3v.s6.67d68f3df4a6 from=translated src=- shape=0626105d vocab=08e5e169
+-/
 theorem map_neg (x : R) : f (-x) = -f x := by
   ---- Comparing `f(-x f(-x)) = f(x f(x))` gives either `x = 0` or `f(-x) + f(x) = 0`.
   obtain rfl | h : x = 0 ∨ f (-x) + f x = 0 := by
@@ -145,21 +163,27 @@ theorem map_neg (x : R) : f (-x) = -f x := by
   ---- If `f(-x) + f(x) = 0`, then clearly `f(-x) = -f(x)`.
   · exact eq_neg_of_add_eq_zero_left h
 
-/-- If `f` is good, then so is `-f`. -/
+/-- If `f` is good, then so is `-f`.
+@isnad1 id=good.1h2v.s6.a0eba91080f7 from=translated src=- shape=e2cef475 vocab=08e5e169
+-/
 theorem neg_apply : good (-f) := by
   intro x y; calc -f (x * -f (x + y))
     _ = f (x * f (x + y)) := by rw [mul_neg, hf.map_neg, neg_neg]
     _ = f (f x * y) + x * x := hf x y
     _ = -f (-f x * y) + x * x := by rw [neg_mul, hf.map_neg, neg_neg]
 
-/-- If `f` is a good function, then `f(1) = ±1`. -/
+/-- If `f` is a good function, then `f(1) = ±1`.
+@isnad1 id=or.1h2v.s6.5c4b37d8e83a from=translated src=- shape=95ab90d7 vocab=08e5e169
+-/
 theorem map_one_eq : f 1 = 1 ∨ f 1 = -1 := by
   have h : f (f 1) = 1 := by rw [← one_mul (f 1), hf.map_self_mul_map, one_mul]
   have h0 : f 1 * f 1 = 1 := by rw [← hf.map_self_mul_map, h, mul_one, h]
   exact mul_self_eq_one_iff.mp h0
 
 omit [NoZeroDivisors R] in
-/-- If `f(1) = 1`, then `f(f(y + 1)) = f(y) + 1` for all `y : R`. -/
+/-- If `f(1) = 1`, then `f(f(y + 1)) = f(y) + 1` for all `y : R`.
+@isnad1 id=eq.2h3v.s6.cb411fa5dfe0 from=translated src=- shape=dd93cbfc vocab=3522deb9
+-/
 theorem map_map_add_one (h : f 1 = 1) (y) : f (f (y + 1)) = f y + 1 := by
   rw [← one_mul (f (y + 1)), add_comm y, hf, h, one_mul, one_mul]
 
@@ -170,7 +194,9 @@ section
 variable [NonAssocRing R] [NoZeroDivisors R] (hR : (2 : R) ≠ 0) {f : R → R} (hf : good f)
 include hR hf
 
-/-- If `char(R) ∤ 2`, the only good function `f` with `f(1) = 1` is the identity. -/
+/-- If `char(R) ∤ 2`, the only good function `f` with `f(1) = 1` is the identity.
+@isnad1 id=eq.3h2v.s6.243cee5d48e5 from=translated src=- shape=8e5b7826 vocab=f5763f3f
+-/
 theorem case_two_ne_zero_map_one_eq_one (hf1 : f 1 = 1) : f = id := by
   ---- First show that `f(y + 2) = f(y) + 2` for all `y`.
   have h0 (y) : f (f (y + 1)) = f y + 1 := hf.map_map_add_one hf1 y
@@ -191,7 +217,9 @@ theorem case_two_ne_zero_map_one_eq_one (hf1 : f 1 = 1) : f = id := by
       h0, h0, add_assoc, add_left_inj, hf.inj] at h2
   rwa [← sub_eq_zero, ← mul_sub, mul_eq_zero, or_iff_right hR, sub_eq_zero] at h2
 
-/-- If `char(R) ∤ 2`, then the only good functions are `f(x) = x` and `f(x) = -x`. -/
+/-- If `char(R) ∤ 2`, then the only good functions are `f(x) = x` and `f(x) = -x`.
+@isnad1 id=or.2h2v.s6.5e05c7a1567f from=translated src=- shape=f9f7f36e vocab=2228e6aa
+-/
 theorem case_two_ne_zero : f = id ∨ f = (λ x ↦ -x) := by
   refine hf.map_one_eq.imp (hf.case_two_ne_zero_map_one_eq_one hR) (λ h ↦ ?_)
   have h0 : ∀ x, -f x = x :=
@@ -200,7 +228,9 @@ theorem case_two_ne_zero : f = id ∨ f = (λ x ↦ -x) := by
 
 end
 
-/-- If `char(R) = 2`, then the only good function is `f(x) = x`. -/
+/-- If `char(R) = 2`, then the only good function is `f(x) = x`.
+@isnad1 id=eq.1h2v.s5.5c3149a168bb from=translated src=- shape=18d79317 vocab=b2846a27
+-/
 theorem char_eq2_solution [Ring R] [NoZeroDivisors R] [CharP R 2]
     {f : R → R} (hf : good f) : f = id := by
   ---- In this case, we must have `f(1) = 1`.
@@ -249,7 +279,9 @@ end good
 
 /-! ### Summary -/
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h2v.s6.403a332c631a from=translated src=- shape=8d588746 vocab=f82cc3c2
+-/
 theorem final_solution [Ring R] [NoZeroDivisors R] {f : R → R} :
     good f ↔ f = (·) ∨ f = (- ·) := by
   ---- The `←` direction has been done before.

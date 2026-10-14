@@ -55,20 +55,31 @@ def evalD {N s : Nat} (hs : 0 < s) (d : CircDesc N s) : BitString N → Bool :=
 
 /-! ## Cardinality Lemmas -/
 
+/--
+@isnad1 id=eq.0h1v.s6.852eb81d98e9 from=translated src=- shape=fab95342 vocab=197d28bd
+-/
 theorem card_gateSlot (W : Nat) : Fintype.card (GateSlot W) = 8 * W ^ 2 := by
   simp [GateSlot, Fintype.card_prod, Fintype.card_bool, Fintype.card_fin]; ring
 
+/--
+@isnad1 id=eq.0h2v.s7.43aeefec74e3 from=translated src=- shape=106561a2 vocab=cc368f62
+-/
 theorem card_circDesc (N s : Nat) :
     Fintype.card (CircDesc N s) = (8 * (N + s) ^ 2) ^ s := by
   simp only [CircDesc, Fintype.card_fun, Fintype.card_fin]; rw [card_gateSlot]
 
+/--
+@isnad1 id=eq.0h1v.s6.b1a251044e0a from=translated src=- shape=c4c5e294 vocab=14465b64
+-/
 theorem card_bool_fun (N : Nat) :
     Fintype.card (BitString N → Bool) = 2 ^ 2 ^ N := by
   simp [BitString]
 
 /-! ## Arithmetic Lemmas -/
 
-/-- For `N ≥ 6`, the exponential `2^N` dominates `5N`. -/
+/-- For `N ≥ 6`, the exponential `2^N` dominates `5N`.
+@isnad1 id=le.1h1v.s5.a12999f7caaf from=translated src=- shape=7922f764 vocab=45880164
+-/
 theorem five_n_le_two_pow (N : Nat) (hN : 6 ≤ N) : 5 * N ≤ 2 ^ N := by
   induction N with
   | zero => omega
@@ -81,11 +92,15 @@ theorem five_n_le_two_pow (N : Nat) (hN : 6 ≤ N) : 5 * N ≤ 2 ^ N := by
       omega
     · interval_cases n <;> simp_all
 
-/-- The gate count `s = 2^N / (5N)` is positive for `N ≥ 6`. -/
+/-- The gate count `s = 2^N / (5N)` is positive for `N ≥ 6`.
+@isnad1 id=lt.1h1v.s5.92f4c7162a75 from=translated src=- shape=915fc661 vocab=2558d175
+-/
 theorem s_pos (N : Nat) (hN : 6 ≤ N) : 0 < 2 ^ N / (5 * N) :=
   Nat.div_pos (five_n_le_two_pow N hN) (by omega)
 
-/-- The total wire count `N + s` is less than `2^N`. -/
+/-- The total wire count `N + s` is less than `2^N`.
+@isnad1 id=lt.1h1v.s6.16717d099281 from=translated src=- shape=8a629462 vocab=dc46af4e
+-/
 theorem n_plus_s_lt (N : Nat) (hN : 6 ≤ N) :
     N + 2 ^ N / (5 * N) < 2 ^ N := by
   have h5n := five_n_le_two_pow N hN
@@ -102,7 +117,9 @@ theorem n_plus_s_lt (N : Nat) (hN : 6 ≤ N) :
   omega
 
 /-- The exponent `(2N+3) * s` is less than `2^N`, which ensures the
-    power-of-two bound in the main arithmetic inequality. -/
+    power-of-two bound in the main arithmetic inequality.
+@isnad1 id=lt.1h1v.s6.fbd86cb37959 from=translated src=- shape=a4b4d417 vocab=dc46af4e
+-/
 theorem mul_s_lt_two_pow (N : Nat) (hN : 6 ≤ N) :
     (2 * N + 3) * (2 ^ N / (5 * N)) < 2 ^ N := by
   calc (2 * N + 3) * (2 ^ N / (5 * N))
@@ -117,7 +134,9 @@ theorem mul_s_lt_two_pow (N : Nat) (hN : 6 ≤ N) :
     1. `N + s < 2^N`
     2. `8(N+s)² < 2^(2N+3)`
     3. `(2N+3)·s < 2^N`
-    4. `(2^(2N+3))^s = 2^((2N+3)·s) < 2^(2^N)` -/
+    4. `(2^(2N+3))^s = 2^((2N+3)·s) < 2^(2^N)`
+@isnad1 id=lt.1h1v.s7.b7fe3c7c81c9 from=translated src=- shape=ec5f8cb2 vocab=dc46af4e
+-/
 theorem arith_bound (N : Nat) (hN : 6 ≤ N) :
     (8 * (N + 2 ^ N / (5 * N)) ^ 2) ^ (2 ^ N / (5 * N)) < 2 ^ 2 ^ N := by
   set s := 2 ^ N / (5 * N)
@@ -140,7 +159,9 @@ theorem arith_bound (N : Nat) (hN : 6 ≤ N) :
     descriptor with at most `2^N / (5N)` gates.
 
     This is a formalization of Shannon's 1949 counting argument, which shows
-    that most Boolean functions require circuits of size at least `2^N / (5N)`. -/
+    that most Boolean functions require circuits of size at least `2^N / (5N)`.
+@isnad1 id=ex.1h1v.s6.7b1259967c32 from=translated src=- shape=c817ecc1 vocab=48c63fc7
+-/
 theorem shannon_lower_bound (N : Nat) (hN : 6 ≤ N) :
     ∃ f : BitString N → Bool,
       ∀ (d : CircDesc N (2 ^ N / (5 * N))),

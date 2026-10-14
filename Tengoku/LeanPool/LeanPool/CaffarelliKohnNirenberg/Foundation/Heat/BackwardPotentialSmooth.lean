@@ -33,6 +33,9 @@ private lemma heatKernel_neg (y : Vec3) (s : ℝ) : heatKernel (-y) s = heatKern
   · rw [heatKernel_eq_zero_of_nonpos (le_of_not_gt hs),
       heatKernel_eq_zero_of_nonpos (le_of_not_gt hs)]
 
+/--
+@isnad1 id=eq.2h3v.s8.60e89522eec7 from=translated src=- shape=c5d8a1a5 vocab=d9a12811
+-/
 lemma backwardTestPotential_future_integral
     {ζ : Vec3 × ℝ → ℝ} (hζ : ContDiff ℝ (⊤ : ℕ∞) ζ)
     (hζc : HasCompactSupport ζ) (x : Vec3) (t : ℝ) :
@@ -158,6 +161,9 @@ lemma backwardTestPotential_future_integral
   rw [heatKernel_neg]
   simp [sub_eq_add_neg]
 
+/--
+@isnad1 id=integrab.2h3v.s8.7a9c0839fd5f from=translated src=- shape=042a18ed vocab=17368e3c
+-/
 lemma backwardTestPotential_future_integrable
     {ζ : Vec3 × ℝ → ℝ} (hζ : ContDiff ℝ (⊤ : ℕ∞) ζ)
     (hζc : HasCompactSupport ζ) (x : Vec3) (t : ℝ) :
@@ -239,6 +245,9 @@ lemma backwardTestPotential_future_integrable
     _ = heatConv s (fun y : Vec3 => ζ (y, t + s)) x := by
       rw [heatConv_eq_integral]
 
+/--
+@isnad1 id=tendsto.2h3v.s8.fc4b014afe5b from=translated src=- shape=089493cf vocab=63802577
+-/
 lemma backwardTestPotential_future_truncated_tendsto
     {ζ : Vec3 × ℝ → ℝ} (hζ : ContDiff ℝ (⊤ : ℕ∞) ζ)
     (hζc : HasCompactSupport ζ) (x : Vec3) (t : ℝ) :

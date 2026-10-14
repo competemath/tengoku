@@ -23,7 +23,9 @@ namespace CriticalPortraits
 
 open Finset
 
-/-- The `k`-subsets of `Z_N` number `C(N, k)` (the count numerator). -/
+/-- The `k`-subsets of `Z_N` number `C(N, k)` (the count numerator).
+@isnad1 id=eq.0h2v.s5.f9ea578acefc from=translated src=- shape=79295d27 vocab=80b65a71
+-/
 theorem card_kSubsets (N k : ℕ) [NeZero N] :
     Fintype.card {S : Finset (ZMod N) // S.card = k} = N.choose k := by
   rw [Fintype.card_finset_len, ZMod.card]

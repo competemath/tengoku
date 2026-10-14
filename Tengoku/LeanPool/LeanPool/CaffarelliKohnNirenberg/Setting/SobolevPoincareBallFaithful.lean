@@ -48,11 +48,15 @@ noncomputable def sobolevPoincareFaithfulC5 : ℝ :=
     Real.sqrt 3 * poincareSobolevL1Constant.toReal *
       (Real.pi * 4 / 3) ^ (1 / 3 : ℝ)
 
-/-- The constant in the existing mean-zero L⁶ estimate is nonnegative. -/
+/-- The constant in the existing mean-zero L⁶ estimate is nonnegative.
+@isnad1 id=le.0h0v.s3.e25b725f2ed3 from=translated src=- shape=a1bca669 vocab=3a041951
+-/
 theorem sobolevPoincareL6Constant_nonneg :
     0 ≤ sobolevPoincareL6Constant.toReal := ENNReal.toReal_nonneg
 
-/-- `C₅` is positive. -/
+/-- `C₅` is positive.
+@isnad1 id=lt.0h0v.s3.d967b00b306c from=translated src=- shape=ff3a10fc vocab=61e3fa35
+-/
 theorem sobolevPoincareFaithfulC5_pos : 0 < sobolevPoincareFaithfulC5 := by
   dsimp [sobolevPoincareFaithfulC5]
   positivity

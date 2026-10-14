@@ -56,6 +56,7 @@ def CascadeSplit (n k p q : ℕ) : Prop :=
 /--
 Abel summation majorization over ℤ: if `v` is majorized by `u` in prefix sums,
 and `w` is antitone, then the `w`-weighted sum of `v` is ≤ that of `u`.
+@isnad1 id=le.4h4v.s7.9819c0691d5d from=translated src=- shape=72f191ae vocab=f1e1d7fc
 -/
 lemma int_sum_mul_le_of_prefix_le_of_antitone_weight
     (M : ℕ) (u v w : ℕ → ℤ)
@@ -103,23 +104,41 @@ lemma int_sum_mul_le_of_prefix_le_of_antitone_weight
 -- Arithmetic helpers for binomPrefix
 -- ==========================================
 
+/--
+@isnad1 id=eq.0h1v.s4.10110122e6fe from=translated src=- shape=1d838610 vocab=a58254c0
+-/
 lemma binomPrefix_zero (n : ℕ) : binomPrefix n 0 = 0 := by
   simp [binomPrefix]
 
+/--
+@isnad1 id=eq.0h2v.s5.162a588b03a8 from=translated src=- shape=8637d02c vocab=cd4d3df4
+-/
 lemma binomPrefix_succ (n r : ℕ) :
     binomPrefix n (r + 1) = binomPrefix n r + Nat.choose n r := by
   simp [binomPrefix, Finset.sum_range_succ]
 
+/--
+@isnad1 id=le.1h3v.s4.f99bc2201491 from=translated src=- shape=32f89d1d vocab=688eb7f3
+-/
 lemma binomPrefix_mono (n : ℕ) {r s : ℕ} (h : r ≤ s) :
     binomPrefix n r ≤ binomPrefix n s := by
   exact Finset.sum_le_sum_of_subset (Finset.range_mono h)
 
+/--
+@isnad1 id=eq.0h1v.s5.1bf62c1f0eac from=translated src=- shape=c98ee380 vocab=adec2444
+-/
 lemma binomPrefix_full (n : ℕ) : binomPrefix n (n + 1) = 2 ^ n := by
   simpa [binomPrefix] using Nat.sum_range_choose n
 
+/--
+@isnad1 id=eq.1h2v.s4.d483d09be1da from=translated src=- shape=429d2d77 vocab=9e3b1d5a
+-/
 lemma choose_eq_zero_of_gt {n r : ℕ} (h : n < r) : Nat.choose n r = 0 := by
   exact Nat.choose_eq_zero_of_lt h
 
+/--
+@isnad1 id=le.0h2v.s4.e380c67983f9 from=translated src=- shape=a458b0eb vocab=c1a9d5b5
+-/
 lemma binomPrefix_le_two_pow (n r : ℕ) : binomPrefix n r ≤ 2 ^ n := by
   by_cases hr : r ≤ n + 1
   · exact le_trans (binomPrefix_mono n hr) (by rw [binomPrefix_full])
@@ -130,6 +149,9 @@ lemma binomPrefix_le_two_pow (n r : ℕ) : binomPrefix n r ≤ 2 ^ n := by
       Finset.sum_eq_zero_iff, Finset.mem_Ico, Order.add_one_le_iff, and_imp] at *
     exact fun i hi₁ hi₂ => Nat.choose_eq_zero_of_lt hi₁
 
+/--
+@isnad1 id=eq.1h2v.s5.07cf781ca0a8 from=translated src=- shape=e86b3c5f vocab=426795bd
+-/
 lemma binomPrefix_eq_two_pow_of_ge (n r : ℕ) (h : n + 1 ≤ r) :
     binomPrefix n r = 2 ^ n := by
   apply le_antisymm
@@ -140,6 +162,9 @@ lemma binomPrefix_eq_two_pow_of_ge (n r : ℕ) (h : n + 1 ≤ r) :
 /-
 Pascal's identity at the level of binomial prefixes.
 -/
+/--
+@isnad1 id=eq.0h2v.s5.2b9b5034fd77 from=translated src=- shape=e5128ee1 vocab=4565f0b9
+-/
 lemma binomPrefix_pascal (n r : ℕ) :
     binomPrefix (n + 1) r = binomPrefix n r + binomPrefix n (r - 1) := by
   simp +arith +decide only [binomPrefix]
@@ -148,14 +173,18 @@ lemma binomPrefix_pascal (n r : ℕ) :
     Nat.choose_zero_right, add_tsub_cancel_right]
   rw [Finset.sum_add_distrib]
 
-/-- `Nat.choose (n+1) r` splits as `Nat.choose n r + choosePred n r`. -/
+/-- `Nat.choose (n+1) r` splits as `Nat.choose n r + choosePred n r`.
+@isnad1 id=eq.0h2v.s5.b8a88b073c99 from=translated src=- shape=9ad67006 vocab=b44cc451
+-/
 lemma choose_succ_dim (n r : ℕ) :
     Nat.choose (n + 1) r = Nat.choose n r + choosePred n r := by
   rcases r with _ | r
   · simp [choosePred]
   · simp [choosePred, Nat.choose_succ_succ, Nat.add_comm]
 
-/-- `binomPrefix n (r-1) + choosePred n r = binomPrefix n r`. -/
+/-- `binomPrefix n (r-1) + choosePred n r = binomPrefix n r`.
+@isnad1 id=eq.0h2v.s5.614e69abafc3 from=translated src=- shape=d202da8c vocab=3743e1c8
+-/
 lemma binomPrefix_pred_add_choosePred (n r : ℕ) :
     binomPrefix n (r - 1) + choosePred n r = binomPrefix n r := by
   rcases r with _ | r
@@ -166,6 +195,9 @@ lemma binomPrefix_pred_add_choosePred (n r : ℕ) :
 
 /-
 Existence of the canonical binomial cascade decomposition.
+-/
+/--
+@isnad1 id=ex.1h2v.s6.bd329181ba57 from=translated src=- shape=4942caa1 vocab=5d5778ad
 -/
 lemma exists_isBinomialCascade (n k : ℕ) (hk : k ≤ 2 ^ (n + 1)) :
     ∃ r t, IsBinomialCascade (n + 1) k r t := by
@@ -191,7 +223,9 @@ lemma exists_isBinomialCascade (n k : ℕ) (hk : k ≤ 2 ^ (n + 1)) :
       simp_all +decide [binomPrefix_succ]
       omega
 
-/-- The two cascade slice values sum to `k`. -/
+/-- The two cascade slice values sum to `k`.
+@isnad1 id=eq.1h4v.s5.cb706a5ec6fe from=translated src=- shape=3fd6c0cc vocab=1681fe29
+-/
 lemma cascade_slice_add {n k r t : ℕ} (h : IsBinomialCascade (n + 1) k r t) :
     cascadeSlice0Value n r t + cascadeSlice1Value n r t = k := by
   obtain ⟨_, ht, hk, _⟩ := h
@@ -199,7 +233,9 @@ lemma cascade_slice_add {n k r t : ℕ} (h : IsBinomialCascade (n + 1) k r t) :
   unfold cascadeSlice0Value cascadeSlice1Value
   omega
 
-/-- The lower cascade slice value is at most `2^n`. -/
+/-- The lower cascade slice value is at most `2^n`.
+@isnad1 id=le.1h4v.s5.4f861e45f9f0 from=translated src=- shape=24ce8ad6 vocab=f6556f19
+-/
 lemma cascadeSlice0Value_le {n k r t : ℕ} (h : IsBinomialCascade (n + 1) k r t) :
     cascadeSlice0Value n r t ≤ 2 ^ n := by
   obtain ⟨_, ht, _, _⟩ := h
@@ -209,7 +245,9 @@ lemma cascadeSlice0Value_le {n k r t : ℕ} (h : IsBinomialCascade (n + 1) k r t
   unfold cascadeSlice0Value
   omega
 
-/-- The upper cascade slice value is at most `2^n`. -/
+/-- The upper cascade slice value is at most `2^n`.
+@isnad1 id=le.1h4v.s5.73f7f56584fe from=translated src=- shape=24ce8ad6 vocab=79dee167
+-/
 lemma cascadeSlice1Value_le {n k r t : ℕ} (_ : IsBinomialCascade (n + 1) k r t) :
     cascadeSlice1Value n r t ≤ 2 ^ n := by
   have hadd := binomPrefix_pred_add_choosePred n r
@@ -220,6 +258,7 @@ lemma cascadeSlice1Value_le {n k r t : ℕ} (_ : IsBinomialCascade (n + 1) k r t
 /--
 Every integer `k ≤ 2^(n+1)` admits a valid cascade split `(p, q)`
 bounded by `2^n`.
+@isnad1 id=ex.1h2v.s6.fb92bcca0ef5 from=translated src=- shape=2fa36d89 vocab=6a78ef52
 -/
 lemma exists_cascade_split (n k : ℕ) (hk : k ≤ 2 ^ (n + 1)) :
     ∃ p q, p ≤ 2 ^ n ∧ q ≤ 2 ^ n ∧ p + q = k ∧ CascadeSplit n k p q := by
@@ -233,7 +272,9 @@ total `k` and dimension `m`, the canonical cascade `(r, t)` with all layers belo
 `r` full and `t` points of layer `r` is unique.  Standard fact: if `r < r'` then
 the full prefix `binomPrefix m (r+1)` already exceeds the partial sum, forcing
 `t = Nat.choose m r` and (via the canonical boundary disjunct) `r = m`, which is
-incompatible with `r < r' ≤ m`. -/
+incompatible with `r < r' ≤ m`.
+@isnad1 id=and.2h6v.s5.8b1f1187a717 from=translated src=- shape=c071b446 vocab=a6af4409
+-/
 lemma isBinomialCascade_unique {m k r t r' t' : ℕ}
     (h : IsBinomialCascade m k r t) (h' : IsBinomialCascade m k r' t') :
     r = r' ∧ t = t' := by
@@ -261,7 +302,9 @@ lemma isBinomialCascade_unique {m k r t r' t' : ℕ}
 /-- **Uniqueness of the canonical cascade split.**  Because the underlying
 binomial cascade `(r, t)` is unique, the canonical split `(p, q)` of a fixed total
 `k` in dimension `n + 1` is uniquely determined.  This is what lets the
-Frankl–Füredi terminal family be identified with *the* canonical cascade pair. -/
+Frankl–Füredi terminal family be identified with *the* canonical cascade pair.
+@isnad1 id=and.2h6v.s5.7e89bdeaa834 from=translated src=- shape=c071b446 vocab=c7a48f38
+-/
 lemma cascadeSplit_unique {n k p q p' q' : ℕ}
     (h : CascadeSplit n k p q) (h' : CascadeSplit n k p' q') :
     p = p' ∧ q = q' := by
@@ -275,7 +318,9 @@ lemma cascadeSplit_unique {n k p q p' q' : ℕ}
 -- Layer structure of the simplicial order
 -- ==========================================
 
-/-- The number of vertices of the `n`-cube with cardinality exactly `c` is `C(n,c)`. -/
+/-- The number of vertices of the `n`-cube with cardinality exactly `c` is `C(n,c)`.
+@isnad1 id=eq.0h2v.s5.c09c4bd84e4f from=translated src=- shape=63f184bf vocab=e4b00e4a
+-/
 lemma card_filter_card_eq (n c : ℕ) :
     (Finset.univ.filter (fun w : Cube n => w.card = c)).card = Nat.choose n c := by
   rw [show (Finset.univ.filter (fun w : Cube n => w.card = c))
@@ -283,7 +328,9 @@ lemma card_filter_card_eq (n c : ℕ) :
       ext w; simp [Finset.mem_powersetCard]]
   rw [Finset.card_powersetCard]; simp
 
-/-- The number of vertices of the `n`-cube with cardinality `< c` is `binomPrefix n c`. -/
+/-- The number of vertices of the `n`-cube with cardinality `< c` is `binomPrefix n c`.
+@isnad1 id=eq.0h2v.s5.2e63a63722ac from=translated src=- shape=77405412 vocab=e5a148da
+-/
 lemma card_filter_card_lt (n c : ℕ) :
     (Finset.univ.filter (fun w : Cube n => w.card < c)).card = binomPrefix n c := by
   induction c with
@@ -300,7 +347,9 @@ lemma card_filter_card_lt (n c : ℕ) :
     simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hw hw'
     omega
 
-/-- The set of low-cardinality vertices is exactly an initial segment. -/
+/-- The set of low-cardinality vertices is exactly an initial segment.
+@isnad1 id=eq.0h2v.s5.551f57b5aa86 from=translated src=- shape=04140ec5 vocab=45a0e182
+-/
 lemma lowCard_eq_initSeg (n c : ℕ) :
     Finset.univ.filter (fun w : Cube n => w.card < c)
       = simplicialInitSeg n (binomPrefix n c) := by
@@ -315,7 +364,9 @@ lemma lowCard_eq_initSeg (n c : ℕ) :
   rw [card_filter_card_lt] at h
   exact h
 
-/-- `rank` versus cardinality: `rank w < binomPrefix n c ↔ w.card < c`. -/
+/-- `rank` versus cardinality: `rank w < binomPrefix n c ↔ w.card < c`.
+@isnad1 id=iff.0h3v.s4.94e03cc0d31e from=translated src=- shape=10c982aa vocab=9b5bdf29
+-/
 lemma rank_lt_binomPrefix_iff {n c : ℕ} (w : Cube n) :
     rank w < binomPrefix n c ↔ w.card < c := by
   have h := lowCard_eq_initSeg n c
@@ -324,30 +375,40 @@ lemma rank_lt_binomPrefix_iff {n c : ℕ} (w : Cube n) :
   simp only [Finset.mem_filter, Finset.mem_univ, true_and, simplicialInitSeg] at hmem
   exact hmem.symm
 
-/-- Layer lower bound on `rank`. -/
+/-- Layer lower bound on `rank`.
+@isnad1 id=le.0h2v.s4.efe2992ee3d8 from=translated src=- shape=2db29f3c vocab=d296b462
+-/
 lemma binomPrefix_card_le_rank {n : ℕ} (w : Cube n) :
     binomPrefix n w.card ≤ rank w := by
   by_contra hlt
   push Not at hlt
   exact absurd ((rank_lt_binomPrefix_iff w).mp hlt) (lt_irrefl _)
 
-/-- Layer upper bound on `rank`. -/
+/-- Layer upper bound on `rank`.
+@isnad1 id=lt.0h2v.s4.c47011a13c61 from=translated src=- shape=0a521942 vocab=f36db516
+-/
 lemma rank_lt_binomPrefix_card_succ {n : ℕ} (w : Cube n) :
     rank w < binomPrefix n (w.card + 1) := by
   exact (rank_lt_binomPrefix_iff w).mpr (Nat.lt_succ_self _)
 
-/-- `cubeToNat` of any vertex of the `n`-cube is `< 2^n`. -/
+/-- `cubeToNat` of any vertex of the `n`-cube is `< 2^n`.
+@isnad1 id=lt.0h2v.s4.cb4ee08d039f from=translated src=- shape=23736ffc vocab=d68dd681
+-/
 lemma cubeToNat_lt {n : ℕ} (u : Cube n) : cubeToNat u < 2 ^ n := by
   exact cubeToNat_lt_two_pow (fun i _ => i.isLt)
 
-/-- `embed1` reflects (and preserves) the strict simplicial order. -/
+/-- `embed1` reflects (and preserves) the strict simplicial order.
+@isnad1 id=iff.0h3v.s5.83af486159f8 from=translated src=- shape=de347a4a vocab=83fd6b7c
+-/
 lemma simplicialLt_embed1_embed1 {n : ℕ} (u w : Cube n) :
     simplicialLt (embed1 u) (embed1 w) ↔ simplicialLt u w := by
   unfold simplicialLt simplicialLe
   rw [embed1_card, embed1_card, embed1_cubeToNat, embed1_cubeToNat]
   omega
 
-/-- Comparing an `embed0` vertex with an `embed1` vertex reduces to cardinalities. -/
+/-- Comparing an `embed0` vertex with an `embed1` vertex reduces to cardinalities.
+@isnad1 id=iff.0h3v.s5.df362994e129 from=translated src=- shape=b6cf05df vocab=2e16ee15
+-/
 lemma simplicialLt_embed0_embed1 {n : ℕ} (u w : Cube n) :
     simplicialLt (embed0 u) (embed1 w) ↔ u.card < w.card + 1 := by
   have h0 := cubeToNat_lt u
@@ -357,6 +418,9 @@ lemma simplicialLt_embed0_embed1 {n : ℕ} (u w : Cube n) :
 
 /-
 Rank decomposition of `embed1`: the upper-slice embedding.
+-/
+/--
+@isnad1 id=eq.0h2v.s5.6876607fdd6f from=translated src=- shape=ecd92a5a vocab=d56c988d
 -/
 lemma rank_embed1 {n : ℕ} (w : Cube n) :
     rank (embed1 w) = rank w + binomPrefix n (w.card + 1) := by
@@ -396,7 +460,9 @@ lemma rank_embed1 {n : ℕ} (w : Cube n) :
   · norm_num [Finset.disjoint_left, embed0, embed1]
     intro a ha x hx H; replace H := Finset.ext_iff.mp H (Fin.last n) ; aesop
 
-/-- The upper slice of an initial segment as an explicit filter. -/
+/-- The upper slice of an initial segment as an explicit filter.
+@isnad1 id=eq.0h2v.s6.086d5478f446 from=translated src=- shape=ac2cefc7 vocab=e2af86f8
+-/
 lemma slice1_eq_filter {n k : ℕ} :
     slice1 (simplicialInitSeg (n + 1) k)
       = Finset.univ.filter
@@ -409,6 +475,9 @@ lemma slice1_eq_filter {n k : ℕ} :
 The arithmetic heart of the upper-slice count: for a vertex of cardinality `c`
 and rank `rho` confined to its layer (`binomPrefix n c ≤ rho < binomPrefix n (c+1)`),
 the `embed1`-membership condition is equivalent to `rho < cascadeSlice1Value`.
+-/
+/--
+@isnad1 id=iff.3h5v.s7.b9229c67f5cc from=translated src=- shape=fdd51906 vocab=f3f9f6bf
 -/
 lemma cascade_pred_iff {n r t c rho : ℕ}
     (ht : t ≤ Nat.choose (n + 1) r)
@@ -441,7 +510,9 @@ lemma cascade_pred_iff {n r t c rho : ℕ}
       simp_all +decide [binomPrefix_pascal, binomPrefix_succ, choosePred]
       grind
 
-/-- The upper slice cardinality matches the cascade value. -/
+/-- The upper slice cardinality matches the cascade value.
+@isnad1 id=eq.1h4v.s5.6757ffea82b7 from=translated src=- shape=2a6453e1 vocab=b4ff98eb
+-/
 lemma slice1_card_eq_cascade {n k r t : ℕ} (h : IsBinomialCascade (n + 1) k r t) :
     (slice1 (simplicialInitSeg (n + 1) k)).card = cascadeSlice1Value n r t := by
   have ht : t ≤ Nat.choose (n + 1) r := h.2.1
@@ -462,6 +533,7 @@ lemma slice1_card_eq_cascade {n k r t : ℕ} (h : IsBinomialCascade (n + 1) k r 
 /--
 The actual Lean slice sizes of the simplicial initial segment match
 the components of the cascade split.
+@isnad1 id=and.1h4v.s5.bab07fe48dcc from=translated src=- shape=f535c767 vocab=fb85337b
 -/
 lemma slice_card_eq_cascade {n k p q : ℕ} (h : CascadeSplit n k p q) :
     (slice0 (simplicialInitSeg (n + 1) k)).card = p ∧
@@ -482,13 +554,17 @@ lemma slice_card_eq_cascade {n k p q : ℕ} (h : CascadeSplit n k p q) :
   have hadd := slice_card_add (simplicialInitSeg (n + 1) k)
   omega
 
-/-- The two components of a cascade split add back to the split mass. -/
+/-- The two components of a cascade split add back to the split mass.
+@isnad1 id=eq.1h4v.s4.7918ed3f8504 from=translated src=- shape=a8282896 vocab=14f1023c
+-/
 lemma cascade_split_add {n k p q : ℕ} (h : CascadeSplit n k p q) : p + q = k := by
   obtain ⟨r, t, hcasc, hp, hq⟩ := h
   rw [hp, hq]
   exact cascade_slice_add hcasc
 
-/-- In a cascade split the lower slice is at least as large as the upper slice. -/
+/-- In a cascade split the lower slice is at least as large as the upper slice.
+@isnad1 id=le.1h4v.s4.7b5cf81d2663 from=translated src=- shape=dc1cf0b0 vocab=43c7fcab
+-/
 lemma cascade_q_le_p {n k p q : ℕ} (h : CascadeSplit n k p q) : q ≤ p := by
   obtain ⟨r, t, _, hp, hq⟩ := h
   have hadd := binomPrefix_pred_add_choosePred n r
@@ -496,11 +572,15 @@ lemma cascade_q_le_p {n k p q : ℕ} (h : CascadeSplit n k p q) : q ≤ p := by
   unfold cascadeSlice0Value cascadeSlice1Value
   omega
 
-/-- The strictly-increasing "mass" function `H n x + x` is monotone. -/
+/-- The strictly-increasing "mass" function `H n x + x` is monotone.
+@isnad1 id=le.1h3v.s5.92a94d039caa from=translated src=- shape=f198e3d2 vocab=a6b89680
+-/
 lemma H_add_self_mono {n x y : ℕ} (h : x ≤ y) : H n x + x ≤ H n y + y :=
   Nat.add_le_add (H_mono h) h
 
-/-- Comparing an `embed1` vertex with an `embed0` vertex reduces to cardinalities. -/
+/-- Comparing an `embed1` vertex with an `embed0` vertex reduces to cardinalities.
+@isnad1 id=iff.0h3v.s5.ce1cfa7719bb from=translated src=- shape=a3fdce56 vocab=4b444f2f
+-/
 lemma simplicialLt_embed1_embed0 {n : ℕ} (u w : Cube n) :
     simplicialLt (embed1 u) (embed0 w) ↔ u.card + 1 ≤ w.card := by
   have h0 := cubeToNat_lt w
@@ -508,7 +588,9 @@ lemma simplicialLt_embed1_embed0 {n : ℕ} (u w : Cube n) :
   rw [embed1_card, embed0_card, embed1_cubeToNat, embed0_cubeToNat]
   omega
 
-/-- The empty vertex lies in every nonempty initial segment. -/
+/-- The empty vertex lies in every nonempty initial segment.
+@isnad1 id=mem.1h2v.s5.e655d0d02c0a from=translated src=- shape=010bdcea vocab=938ecc47
+-/
 lemma empty_mem_initSeg {n k : ℕ} (hk : 1 ≤ k) :
     (∅ : Cube n) ∈ simplicialInitSeg n k := by
   simp only [simplicialInitSeg, Finset.mem_filter, Finset.mem_univ, true_and]
@@ -521,6 +603,9 @@ lemma empty_mem_initSeg {n k : ℕ} (hk : 1 ≤ k) :
 /-
 Compression property of the canonical split: the lower slice is contained in the
 neighborhood of the upper slice, hence `p ≤ H n q` (when the upper slice is nonempty).
+-/
+/--
+@isnad1 id=le.2h4v.s4.4c06822f8e76 from=translated src=- shape=3359b592 vocab=9c10cd59
 -/
 lemma cascade_p_le_H_q {n k p q : ℕ} (h : CascadeSplit n k p q) (hq : 1 ≤ q) :
     p ≤ H n q := by
@@ -551,7 +636,9 @@ lemma cascade_p_le_H_q {n k p q : ℕ} (h : CascadeSplit n k p q) (hq : 1 ≤ q)
     rfl
   exact h_slice0 ▸ le_trans (Finset.card_le_card h_subset) h_card_subset
 
-/-- `gShift` on the 0-slice commutes with the embedding. -/
+/-- `gShift` on the 0-slice commutes with the embedding.
+@isnad1 id=eq.0h2v.s5.a053ed0ddaf5 from=translated src=- shape=faf98cdd vocab=6af692d9
+-/
 lemma gShift_embed0 {n : ℕ} (v : Cube n) :
     gShift (embed0 v) = embed0 (gShift v) := by
   unfold gShift
@@ -589,7 +676,9 @@ lemma gShift_embed0 {n : ℕ} (v : Cube n) :
   · simp_all [embed0]
 
 /-- `gShift` on the 1-slice stays in the 1-slice, except for `{n}` which maps to `∅`
-in the 0-slice. -/
+in the 0-slice.
+@isnad1 id=eq.0h2v.s6.f1a013d7755e from=translated src=- shape=4a33c157 vocab=922920e0
+-/
 lemma gShift_embed1 {n : ℕ} (v : Cube n) :
     gShift (embed1 v) = if v.Nonempty then embed1 (gShift v) else embed0 ∅ := by
   by_cases h : v.Nonempty
@@ -638,7 +727,9 @@ lemma gShift_embed1 {n : ℕ} (v : Cube n) :
     rw [hmin, herase]
   · simp_all [embed1, embed0, gShift]
 
-/-- Explicit boundary count: `H n k` counts vertices whose `gShift` lands in the segment. -/
+/-- Explicit boundary count: `H n k` counts vertices whose `gShift` lands in the segment.
+@isnad1 id=eq.0h2v.s5.4e59e4ef58d6 from=translated src=- shape=65fa60f2 vocab=1a386cd1
+-/
 lemma H_eq_gShift_count (n k : ℕ) :
     H n k = (Finset.univ.filter (fun v : Cube n => rank (gShift v) < k)).card := by
   unfold H
@@ -647,13 +738,17 @@ lemma H_eq_gShift_count (n k : ℕ) :
   rw [mem_neighborhood_initSeg_iff]
   simp
 
-/-- Recursion for `H` in terms of the canonical cascade split. -/
+/-- Recursion for `H` in terms of the canonical cascade split.
+@isnad1 id=eq.1h4v.s5.af491f70de0e from=translated src=- shape=bec108ad vocab=ed0c1856
+-/
 lemma H_succ_cascade {n k p q : ℕ} (h : CascadeSplit n k p q) :
     H (n + 1) k = max (H n p) q + max (H n q) p := by
   obtain ⟨h0, h1⟩ := slice_card_eq_cascade h
   rw [H_succ_slice, h0, h1]
 
-/-- The canonical cascade split of the singleton initial segment is `(1, 0)`. -/
+/-- The canonical cascade split of the singleton initial segment is `(1, 0)`.
+@isnad1 id=cascades.0h1v.s4.c8a18c3579e3 from=translated src=- shape=a24636fe vocab=c7a48f38
+-/
 lemma cascadeSplit_one (n : ℕ) : CascadeSplit n 1 1 0 := by
   refine ⟨1, 0, ⟨by omega, ?_, ?_, ?_⟩, ?_, ?_⟩
   · simp [Nat.choose]
@@ -662,7 +757,9 @@ lemma cascadeSplit_one (n : ℕ) : CascadeSplit n 1 1 0 := by
   · simp [cascadeSlice0Value, binomPrefix, choosePred]
   · simp [cascadeSlice1Value, binomPrefix, choosePred]
 
-/-- The boundary of the singleton initial segment: `H n 1 = n + 1`. -/
+/-- The boundary of the singleton initial segment: `H n 1 = n + 1`.
+@isnad1 id=eq.0h1v.s4.fa5e41521a2e from=translated src=- shape=c809089b vocab=c36ca4f7
+-/
 lemma H_one (n : ℕ) : H n 1 = n + 1 := by
   induction n with
   | zero =>
@@ -681,6 +778,9 @@ This is the combinatorial heart of the lower bound on `H`-increments below:
 the smaller the rank of `w`, the larger its minimal coordinate must be.  It is
 verified computationally for all `n ≤ 5`, and is non-circular (it depends only on
 the simplicial order `rank`, not on `H` or any later result).
+-/
+/--
+@isnad1 id=le.1h2v.s5.1869e2ea4527 from=translated src=- shape=4deb6b57 vocab=ee7d2b9d
 -/
 lemma rank_add_min_ge {n : ℕ} (w : Cube n) (h : w.Nonempty) :
     n ≤ rank w + (w.min' h : ℕ) := by
@@ -752,6 +852,7 @@ is the unique rank-`p` vertex `w`.
 
 This provides the exact layer-profile increment structure for `H`, upgrading the
 lower bound in `H_increment_lower` to a full structural equality.
+@isnad1 id=eq.1h3v.s6.5968b9da086b from=translated src=- shape=27c30e48 vocab=7c17f06f
 -/
 lemma H_increment_eq_gShift_inv (n p : ℕ) (w : Cube n) (hw : rank w = p) :
     H n (p + 1) =
@@ -782,6 +883,9 @@ lemma H_increment_eq_gShift_inv (n p : ℕ) (w : Cube n) (hw : rank w = p) :
   · intro h
     rw [h, hw]
 
+/--
+@isnad1 id=le.1h2v.s6.bb4e18f4723a from=translated src=- shape=123d341d vocab=dea3473a
+-/
 lemma H_increment_lower (n p : ℕ) (hp : p + 1 ≤ 2 ^ n) :
     H n p + n ≤ H n (p + 1) + p := by
   obtain ⟨w, hw⟩ : ∃ w : Cube n, rank w = p := by

@@ -205,7 +205,9 @@ private lemma u_sq_integrable_on_localBox
   exact (MeasureTheory.lintegral_ofReal_ne_top_iff_integrable hsq_ae
     (Filter.Eventually.of_forall fun z => sq_nonneg _)).mp hfinite
 
-/-- The squared velocity times a compactly supported test function is integrable. -/
+/-- The squared velocity times a compactly supported test function is integrable.
+@isnad1 id=integrab.2h8v.s7.f65f763ffac9 from=translated src=- shape=e55cc859 vocab=a638d648
+-/
 lemma u_sq_mul_test_integrable
     {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     {u : ParabolicPoint → Vec3} {Du : ParabolicPoint → Fin 3 → Vec3}
@@ -248,7 +250,9 @@ lemma u_sq_mul_test_integrable
 /-! ### Compact rectangular time-slice bounds -/
 
 /-- The velocity time-slice energy is essentially bounded on a compact
-rectangular portion of the open space-time carrier. -/
+rectangular portion of the open space-time carrier.
+@isnad1 id=lt.4h11v.s7.58fa5e95986d from=translated src=- shape=6acd6d9c vocab=d5163695
+-/
 theorem sws_timeSliceBallEnergy_essSup_lt_top
     {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     {u : ParabolicPoint → Vec3} {Du : ParabolicPoint → Fin 3 → Vec3}

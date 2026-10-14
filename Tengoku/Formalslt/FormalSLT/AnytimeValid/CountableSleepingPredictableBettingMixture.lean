@@ -36,6 +36,9 @@ def sleepingStrategy [Zero R]
     (strategy : Nat -> Nat -> Omega -> R) (j k : Nat) (omega : Omega) : R :=
   if j <= k then strategy j k omega else 0
 
+/--
+@isnad1 id=eq.1h6v.s5.45b5b557ddb3 from=translated src=- shape=a2788fb5 vocab=711f6d4d
+-/
 @[simp]
 theorem sleepingStrategy_of_le [Zero R]
     (strategy : Nat -> Nat -> Omega -> R) {j k : Nat} (hjk : j <= k)
@@ -43,6 +46,9 @@ theorem sleepingStrategy_of_le [Zero R]
     sleepingStrategy strategy j k omega = strategy j k omega := by
   simp [sleepingStrategy, hjk]
 
+/--
+@isnad1 id=eq.1h6v.s5.1e5cde8ca4f7 from=translated src=- shape=2e45de92 vocab=69df05d4
+-/
 @[simp]
 theorem sleepingStrategy_of_lt [Zero R]
     (strategy : Nat -> Nat -> Omega -> R) {j k : Nat} (hkj : k < j)
@@ -50,7 +56,9 @@ theorem sleepingStrategy_of_lt [Zero R]
     sleepingStrategy strategy j k omega = 0 := by
   simp [sleepingStrategy, not_le.mpr hkj]
 
-/-- An expert that has not awakened has unit wealth. -/
+/-- An expert that has not awakened has unit wealth.
+@isnad1 id=eq.1h7v.s6.d9d3c0f8f853 from=translated src=- shape=cecc409d vocab=fbe8744a
+-/
 theorem algebraicBettingWealth_sleeping_of_time_le [CommSemiring R]
     (residual : Nat -> Omega -> R) (strategy : Nat -> Nat -> Omega -> R)
     {n j : Nat} (hnj : n <= j) (omega : Omega) :
@@ -97,6 +105,9 @@ def countableSleepingMasterBet [Field R]
   countableSleepingBetNumerator residual strategy n omega /
     countableSleepingMixtureWealth residual strategy n omega
 
+/--
+@isnad1 id=eq.0h5v.s5.99810dc21f08 from=translated src=- shape=254e6538 vocab=eea08a71
+-/
 @[simp]
 theorem countableSleepingMixtureWealth_zero [Field R]
     (residual : Nat -> Omega -> R)
@@ -104,7 +115,9 @@ theorem countableSleepingMixtureWealth_zero [Field R]
     countableSleepingMixtureWealth residual strategy 0 omega = 1 := by
   simp [countableSleepingMixtureWealth, dyadicSleepingTail]
 
-/-- One dyadic atom plus the remaining tail equals the previous tail. -/
+/-- One dyadic atom plus the remaining tail equals the previous tail.
+@isnad1 id=eq.0h2v.s5.c9074c53d509 from=translated src=- shape=ef95a24d vocab=1bcd5eb3
+-/
 theorem dyadicSleepingTail_succ_add_weight [Field R] [CharZero R]
     (n : Nat) :
     dyadicSleepingTail (R := R) (n + 1) +
@@ -115,12 +128,18 @@ theorem dyadicSleepingTail_succ_add_weight [Field R] [CharZero R]
   field_simp
   ring
 
+/--
+@isnad1 id=lt.0h2v.s6.add4b9efc040 from=translated src=- shape=70182548 vocab=f976ef82
+-/
 theorem dyadicExpertWeight_pos [Field R] [LinearOrder R]
     [IsStrictOrderedRing R] (j : Nat) :
     0 < dyadicExpertWeight (R := R) j := by
   unfold dyadicExpertWeight
   positivity
 
+/--
+@isnad1 id=lt.0h2v.s6.84c45e3b7b67 from=translated src=- shape=70182548 vocab=15ea9564
+-/
 theorem dyadicSleepingTail_pos [Field R] [LinearOrder R]
     [IsStrictOrderedRing R] (n : Nat) :
     0 < dyadicSleepingTail (R := R) n := by
@@ -128,7 +147,9 @@ theorem dyadicSleepingTail_pos [Field R] [LinearOrder R]
   positivity
 
 /-- The exact countable mixture obeys the usual wealth recursion, with a
-finite current numerator. -/
+finite current numerator.
+@isnad1 id=eq.0h6v.s6.949aae4db199 from=translated src=- shape=79a0db82 vocab=62a1ac3f
+-/
 theorem countableSleepingMixtureWealth_succ [Field R] [CharZero R]
     (residual : Nat -> Omega -> R)
     (strategy : Nat -> Nat -> Omega -> R) (n : Nat) (omega : Omega) :
@@ -205,7 +226,9 @@ theorem countableSleepingMixtureWealth_succ [Field R] [CharZero R]
   ring
 
 /-- The closed-form sleeping tail keeps the countable mixture strictly
-positive whenever active expert wealth is nonnegative. -/
+positive whenever active expert wealth is nonnegative.
+@isnad1 id=lt.1h6v.s7.32eca785a954 from=translated src=- shape=405edab0 vocab=950e281a
+-/
 theorem countableSleepingMixtureWealth_pos [Field R] [LinearOrder R]
     [IsStrictOrderedRing R]
     {residual : Nat -> Omega -> R}
@@ -222,7 +245,9 @@ theorem countableSleepingMixtureWealth_pos [Field R] [LinearOrder R]
         (hwealth_nonneg j n omega))
 
 /-- Once expert `j` is in the active prefix, the exact finite-tail mixture
-dominates its prior-weighted wealth. -/
+dominates its prior-weighted wealth.
+@isnad1 id=le.2h7v.s7.3646ed62897b from=translated src=- shape=dd4e1410 vocab=bfdfc208
+-/
 theorem countableSleepingMixtureWealth_competes_of_lt
     [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     {residual : Nat -> Omega -> R}
@@ -252,7 +277,9 @@ theorem countableSleepingMixtureWealth_competes_of_lt
 
 /-- The total prior-weighted wealth of experts that can bet at time `n` is
 bounded by the exact mixture denominator. The unused mass is precisely the
-still-sleeping dyadic tail. -/
+still-sleeping dyadic tail.
+@isnad1 id=le.0h6v.s7.edce0b7ef813 from=translated src=- shape=01093b62 vocab=0caadfbc
+-/
 theorem countableSleepingActiveMass_le_mixture
     [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     (residual : Nat -> Omega -> R)
@@ -272,7 +299,9 @@ theorem countableSleepingActiveMass_le_mixture
   linarith
 
 /-- Nonnegative legal expert bets yield a legal countable-master bet in the
-same interval. -/
+same interval.
+@isnad1 id=mem.3h7v.s7.10c65df5d84a from=translated src=- shape=61c201b0 vocab=3e56a0c9
+-/
 theorem countableSleepingMasterBet_mem_Icc
     [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     {residual : Nat -> Omega -> R}
@@ -337,7 +366,9 @@ theorem countableSleepingMasterBet_mem_Icc
     (div_le_iff₀ hmix_pos).2 hnum_le⟩
 
 /-- The recursively generated master wealth is exactly the finite-tail
-representation of the countable sleeping-expert mixture. -/
+representation of the countable sleeping-expert mixture.
+@isnad1 id=eq.1h6v.s6.5be30cb1cf47 from=translated src=- shape=00e4c578 vocab=c3824f8b
+-/
 theorem countableSleepingMasterWealth_eq_mixture [Field R] [CharZero R]
     (residual : Nat -> Omega -> R)
     (strategy : Nat -> Nat -> Omega -> R)
@@ -360,7 +391,9 @@ theorem countableSleepingMasterWealth_eq_mixture [Field R] [CharZero R]
       field_simp [hmix_ne n omega]
 
 /-- The executable countable master competes with every expert after that
-expert enters the growing active prefix. -/
+expert enters the growing active prefix.
+@isnad1 id=le.2h7v.s7.c9a5a24fda07 from=translated src=- shape=1e053c47 vocab=66761332
+-/
 theorem countableSleepingMasterWealth_competes_of_lt
     [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     {residual : Nat -> Omega -> R}
@@ -387,6 +420,9 @@ section InfiniteMixtureIdentity
 
 variable {Omega : Type*}
 
+/--
+@isnad1 id=hassum.0h0v.s4.a791d4180629 from=translated src=- shape=bef2ba81 vocab=abcd2207
+-/
 theorem hasSum_dyadicExpertWeight :
     HasSum (fun j : Nat => dyadicExpertWeight (R := Real) j) 1 := by
   have heq :
@@ -401,7 +437,9 @@ theorem hasSum_dyadicExpertWeight :
 
 /-- The executable finite-prefix-plus-tail formula is exactly the mathematical
 infinite dyadic mixture of all sleeping-expert wealths. The infinite sum
-appears only in this specification theorem, not in the executable definition. -/
+appears only in this specification theorem, not in the executable definition.
+@isnad1 id=eq.0h5v.s6.46edf0cc22e4 from=translated src=- shape=d4ab20b3 vocab=abfe4fb2
+-/
 theorem countableSleepingMixtureWealth_eq_tsum
     (residual : Nat -> Omega -> Real)
     (strategy : Nat -> Nat -> Omega -> Real) (n : Nat) (omega : Omega) :
@@ -460,6 +498,9 @@ section RationalBridge
 
 variable {Omega : Type*}
 
+/--
+@isnad1 id=eq.0h5v.s5.0b08c2585307 from=translated src=- shape=8fbf481f vocab=a2b9a8ff
+-/
 @[simp]
 theorem ratCast_sleepingStrategy
     (strategy : Nat -> Nat -> Omega -> Rat) (j k : Nat) (omega : Omega) :
@@ -468,6 +509,9 @@ theorem ratCast_sleepingStrategy
         (fun j k omega => (strategy j k omega : Real)) j k omega := by
   by_cases hjk : j <= k <;> simp [sleepingStrategy, hjk]
 
+/--
+@isnad1 id=eq.0h5v.s6.4ee51f5a8821 from=translated src=- shape=5e6afe21 vocab=dc26673e
+-/
 theorem ratCast_countableSleepingMixtureWealth
     (residual : Nat -> Omega -> Rat)
     (strategy : Nat -> Nat -> Omega -> Rat) (n : Nat) (omega : Omega) :
@@ -479,6 +523,9 @@ theorem ratCast_countableSleepingMixtureWealth
     dyadicExpertWeight, ratCast_algebraicBettingWealth,
     ratCast_sleepingStrategy]
 
+/--
+@isnad1 id=eq.0h5v.s6.61be4a53b5da from=translated src=- shape=5e6afe21 vocab=6b4ba8f4
+-/
 theorem ratCast_countableSleepingBetNumerator
     (residual : Nat -> Omega -> Rat)
     (strategy : Nat -> Nat -> Omega -> Rat) (n : Nat) (omega : Omega) :
@@ -489,6 +536,9 @@ theorem ratCast_countableSleepingBetNumerator
   simp [countableSleepingBetNumerator, dyadicExpertWeight,
     ratCast_algebraicBettingWealth, ratCast_sleepingStrategy]
 
+/--
+@isnad1 id=eq.0h5v.s6.cd9468e00ca5 from=translated src=- shape=5e6afe21 vocab=b57254ad
+-/
 theorem ratCast_countableSleepingMasterBet
     (residual : Nat -> Omega -> Rat)
     (strategy : Nat -> Nat -> Omega -> Rat) (n : Nat) (omega : Omega) :
@@ -508,7 +558,9 @@ variable {Omega : Type*}
 
 /-- The countable sleeping-expert master is predictable. Its time-`n`
 calculation uses only finite sums of expert wealth through time `n` and the
-experts' time-`n` predictable bets. -/
+experts' time-`n` predictable bets.
+@isnad1 id=strongly.2h6v.s6.54b9c7e92d7a from=translated src=- shape=80fa0090 vocab=67bd9b97
+-/
 theorem countableSleepingMasterBet_stronglyAdapted
     {mOmega : MeasurableSpace Omega} {F : MeasureTheory.Filtration Nat mOmega}
     (X : Nat -> Omega -> Real) (m : Real)
@@ -578,7 +630,9 @@ theorem countableSleepingMasterBet_stronglyAdapted
   exact hnumerator.div hdenominator
 
 /-- Fixed-time integrability of the mathematical countable mixture reduces to
-a finite active prefix plus its constant dyadic sleeping tail. -/
+a finite active prefix plus its constant dyadic sleeping tail.
+@isnad1 id=integrab.1h8v.s6.0f837b4a4172 from=translated src=- shape=549112c5 vocab=9ac5db61
+-/
 theorem countableSleepingWeightedProcess_integrable
     {mOmega : MeasurableSpace Omega} {mu : Measure Omega}
     {F : Filtration Nat mOmega} [IsFiniteMeasure mu]
@@ -632,7 +686,9 @@ theorem countableSleepingWeightedProcess_integrable
 
 /-- The set-integral norm series required for countable e-process closure is
 summable automatically: after the finite active prefix, every expert still has
-unit wealth and only the dyadic prior tail remains. -/
+unit wealth and only the dyadic prior tail remains.
+@isnad1 id=summable.1h8v.s6.5ff1b7126cf1 from=translated src=- shape=4833e3b8 vocab=07cf7273
+-/
 theorem countableSleepingWeightedProcess_integralNorm_summable
     {mOmega : MeasurableSpace Omega} {mu : Measure Omega}
     [IsFiniteMeasure mu]
@@ -674,7 +730,9 @@ theorem countableSleepingWeightedProcess_integralNorm_summable
 
 /-- Analytic e-process bridge for the executable countable master. The finite
 active prefix and geometric sleeping tail automatically discharge the
-integrability and sum/interchange obligations of countable-mixture closure. -/
+integrability and sum/interchange obligations of countable-mixture closure.
+@isnad1 id=eprocess.3h7v.s6.79294319aa82 from=translated src=- shape=18f21f06 vocab=f98e3a8f
+-/
 theorem countableSleepingMasterBet_eProcess
     {mOmega : MeasurableSpace Omega} {mu : Measure Omega}
     {F : Filtration Nat mOmega} [IsFiniteMeasure mu]
@@ -738,7 +796,9 @@ theorem countableSleepingMasterBet_eProcess
   exact hE
 
 /-- Log-wealth regret against any expert already in the active prefix is at
-most the negative log of that expert's dyadic prior weight. -/
+most the negative log of that expert's dyadic prior weight.
+@isnad1 id=le.3h6v.s6.ae2e5ca12a5f from=translated src=- shape=656a92db vocab=fee0deb6
+-/
 theorem countableSleepingMaster_logWealth_regret_le
     {residual : Nat -> Omega -> Real}
     {strategy : Nat -> Nat -> Omega -> Real}

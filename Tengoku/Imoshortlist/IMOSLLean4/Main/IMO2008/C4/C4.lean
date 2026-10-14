@@ -43,11 +43,20 @@ open Finset
 
 /-! ### Extra lemmas -/
 
+/--
+@isnad1 id=or.0h1v.s5.232ab8be9d64 from=translated src=- shape=a99d14a3 vocab=00dd0f92
+-/
 theorem Fin2_eq_zero_or_one : ∀ a : Fin 2, a = 0 ∨ a = 1
   | 0 => Or.inl rfl | 1 => Or.inr rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.e024de40fa57 from=translated src=- shape=3af60698 vocab=87d30e84
+-/
 theorem Fin2_add_add_cancel_right : ∀ a b : Fin 2, a + b + b = a := by decide
 
+/--
+@isnad1 id=eq.0h1v.s6.48421a0ac6b7 from=translated src=- shape=020303a5 vocab=87d30e84
+-/
 theorem Fin2_zero_add : ∀ a : Fin 2, 0 + a = a
   | 0 => rfl | 1 => rfl
 
@@ -61,12 +70,18 @@ structure FiniteFiberFn (α β) where
 
 namespace FiniteFiberFn
 
+/--
+@isnad1 id=eq.1h4v.s4.5640a56df1b3 from=translated src=- shape=1ad4e7fd vocab=3172e7e5
+-/
 @[ext] lemma ext {X Y : FiniteFiberFn α β} (h : X.toFun = Y.toFun) : X = Y := by
   refine (mk.injEq _ _ _ _ _ _).mpr ⟨h, funext λ p ↦ Finset.ext λ i ↦ ?_⟩
   rw [fiber_spec, fiber_spec, h]
 
 variable (X : FiniteFiberFn α β)
 
+/--
+@isnad1 id=disjoint.1h5v.s5.96340ae72e3d from=translated src=- shape=267add6c vocab=d5ea8899
+-/
 lemma fiber_disjoint_of_ne (h : p ≠ q) : Disjoint (X.fiber p) (X.fiber q) := by
   refine disjoint_iff_ne.mpr λ lp hlp lq hlq h0 ↦ h ?_
   rw [← (X.fiber_spec _ _).mp hlp, ← (X.fiber_spec _ _).mp hlq, h0]
@@ -85,22 +100,40 @@ variable (s : NSequence I Λ)
 
 abbrev steps : I → Fin 2 × Λ := s.toFun
 
+/--
+@isnad1 id=eq.1h4v.s5.9d66a4147cf2 from=translated src=- shape=c1cf1089 vocab=b85d8139
+-/
 @[ext] lemma ext {s₁ s₂ : NSequence I Λ} (h : s₁.steps = s₂.steps) : s₁ = s₂ :=
   (mk.injEq _ _ _ _).mpr (FiniteFiberFn.ext h)
 
+/--
+@isnad1 id=eq.0h4v.s5.35511fed6350 from=translated src=- shape=8fb21392 vocab=074b1236
+-/
 lemma fiber_card_mod2 (p) : (s.fiber p).card % 2 = p.1 :=
   congrArg Fin.val (s.fiber_card_Fin2 p)
 
+/--
+@isnad1 id=eq.0h4v.s6.d13dce5558f3 from=translated src=- shape=787e598d vocab=c0b0bfdf
+-/
 lemma fiber_card0_mod2 (l) : (s.fiber (0, l)).card % 2 = 0 :=
   s.fiber_card_mod2 (0, l)
 
+/--
+@isnad1 id=eq.0h4v.s6.ef08c1e9c509 from=translated src=- shape=787e598d vocab=c0b0bfdf
+-/
 lemma fiber_card1_mod2 (l) : (s.fiber (1, l)).card % 2 = 1 :=
   s.fiber_card_mod2 (1, l)
 
+/--
+@isnad1 id=ex.0h4v.s6.a40085581941 from=translated src=- shape=43228869 vocab=e16b3730
+-/
 lemma exists_mem_fiber_one (l) : ∃ a, a ∈ s.fiber (1, l) :=
   Multiset.card_pos_iff_exists_mem.mp <|
     Nat.one_pos.trans_le ((s.fiber_card1_mod2 l).symm.trans_le (Nat.mod_le _ _))
 
+/--
+@isnad1 id=le.0h3v.s4.afcd0ad04610 from=translated src=- shape=911e4f8f vocab=220db10d
+-/
 lemma card_lamp_le_step [Fintype I] [Fintype Λ] (s : NSequence I Λ) :
     Fintype.card Λ ≤ Fintype.card I := by
   apply Fintype.card_le_of_surjective (λ i ↦ (s.steps i).2) λ l ↦ ?_
@@ -122,13 +155,22 @@ namespace MSequence
 
 abbrev steps (s : MSequence I Λ) : I → Λ := s.toFun
 
+/--
+@isnad1 id=eq.1h4v.s4.49fe5132232f from=translated src=- shape=1ad4e7fd vocab=0f8de132
+-/
 @[ext] lemma ext {s₁ s₂ : MSequence I Λ} (h : s₁.steps = s₂.steps) : s₁ = s₂ :=
   (mk.injEq _ _ _ _).mpr (FiniteFiberFn.ext h)
 
+/--
+@isnad1 id=ex.0h4v.s5.25db6afc1723 from=translated src=- shape=908f2af6 vocab=1ce65ad5
+-/
 lemma exists_mem_fiber_one (s : MSequence I Λ) (l) : ∃ a, a ∈ s.fiber l :=
   Multiset.card_pos_iff_exists_mem.mp <|
     Nat.one_pos.trans_le ((s.fiber_card_mod2 l).symm.trans_le (Nat.mod_le _ _))
 
+/--
+@isnad1 id=le.0h3v.s4.f43af861e74e from=translated src=- shape=911e4f8f vocab=a6503026
+-/
 lemma card_lamp_le_step [Fintype I] [Fintype Λ] (s : MSequence I Λ) :
     Fintype.card Λ ≤ Fintype.card I := by
   apply Fintype.card_le_of_surjective s.steps λ l ↦ ?_
@@ -150,15 +192,24 @@ namespace KSequence
 
 abbrev steps (s : KSequence I Λ) : I → Fin 2 × Λ := s.toFun
 
+/--
+@isnad1 id=eq.1h4v.s5.e6379c01c2c5 from=translated src=- shape=c1cf1089 vocab=78906016
+-/
 @[ext] lemma ext {s₁ s₂ : KSequence I Λ} (h : s₁.steps = s₂.steps) : s₁ = s₂ :=
   (mk.injEq _ _ _ _).mpr (FiniteFiberFn.ext h)
 
 open Fin.NatCast in
+/--
+@isnad1 id=eq.0h4v.s7.df1691290c42 from=translated src=- shape=dd80177d vocab=e6e86b15
+-/
 lemma fiber_card_add_Fin2 (s : KSequence I Λ)  (l) :
     ((s.fiber (0, l)).card + (s.fiber (1, l)).card : Fin 2) = 1 :=
   Fin.ext ((Nat.add_mod _ _ _).symm.trans (s.fiber_card_add_mod2 l))
 
 open Fin.NatCast in
+/--
+@isnad1 id=eq.0h5v.s7.d657efa45452 from=translated src=- shape=eabed95a vocab=e6e86b15
+-/
 lemma fiber_card_Fin2 (s : KSequence I Λ) (b l) :
     ((s.fiber (b, l)).card : Fin 2) = (s.fiber (0, l)).card + b := match b with
   | 0 => match ((s.fiber (0, l)).card : Fin 2) with | 0 => rfl | 1 => rfl
@@ -217,6 +268,9 @@ def EquivPairMSeqFinset : KSequence I Λ ≃ MSequence I Λ × Finset I where
     · show (univ.biUnion λ l ↦ s.fiber l ∩ P) = P
       ext i; simp [s.fiber_spec]
 
+/--
+@isnad1 id=eq.0h2v.s5.391ef107092b from=translated src=- shape=353eff5d vocab=019784cd
+-/
 theorem card_wrt_MSeq :
     Fintype.card (KSequence I Λ) = 2 ^ Fintype.card I * Fintype.card (MSequence I Λ) := calc
   _ = Fintype.card (MSequence I Λ × Finset I) := Fintype.card_congr EquivPairMSeqFinset
@@ -269,6 +323,9 @@ def EquivPairNSeqPi : KSequence I Λ ≃ NSequence I Λ × (Λ → Fin 2) where
     · show ↑(s.fiber (0 + f l, l)).card = f l
       rw [Fin2_zero_add, s.fiber_card_Fin2]
 
+/--
+@isnad1 id=eq.0h2v.s6.66cab8c9e477 from=translated src=- shape=dcbe8d58 vocab=f90116ba
+-/
 theorem card_wrt_NSeq [DecidableEq Λ] :
     Fintype.card (KSequence I Λ) = 2 ^ Fintype.card Λ * Fintype.card (NSequence I Λ) := calc
   _ = Fintype.card (NSequence I Λ × (Λ → Fin 2)) := Fintype.card_congr EquivPairNSeqPi
@@ -280,12 +337,17 @@ end KSequence
 
 variable (I Λ) [DecidableEq I] [Fintype I] [DecidableEq Λ] [Fintype Λ]
 
+/--
+@isnad1 id=eq.0h2v.s6.509987552e98 from=translated src=- shape=880f67a0 vocab=6e2c34ce
+-/
 theorem card_NSeq_vs_MSeq :
     2 ^ Fintype.card Λ * Fintype.card (NSequence I Λ)
       = 2 ^ Fintype.card I * Fintype.card (MSequence I Λ) := by
   rw [← KSequence.card_wrt_MSeq, ← KSequence.card_wrt_NSeq]
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=eq.0h2v.s6.c520ee870209 from=translated src=- shape=32cd3dfc vocab=8e7b68c2
+-/
 theorem final_solution :
     Fintype.card (NSequence I Λ) =
       2 ^ (Fintype.card I - Fintype.card Λ) * Fintype.card (MSequence I Λ) := by

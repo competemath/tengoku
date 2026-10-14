@@ -64,6 +64,9 @@ noncomputable def allBoundaryEdges : Finset (Finset M.Vertex) := by
   classical
   exact M.edges.filter M.IsBoundaryEdge
 
+/--
+@isnad1 id=iff.0h2v.s5.8291ef0470cd from=translated src=- shape=3de83175 vocab=2975e92c
+-/
 theorem mem_allBoundaryEdges_iff {e : Finset M.Vertex} :
     e ∈ M.allBoundaryEdges ↔ M.IsBoundaryEdge e := by
   classical
@@ -73,19 +76,31 @@ theorem mem_allBoundaryEdges_iff {e : Finset M.Vertex} :
 noncomputable def boundaryCarrier : Set Plane :=
   ⋃ e ∈ M.allBoundaryEdges, convexHull ℝ (M.position '' (e : Set M.Vertex))
 
+/--
+@isnad1 id=iscompac.0h1v.s5.e930f1377ac6 from=translated src=- shape=1a6c1393 vocab=e38ab452
+-/
 theorem isCompact_boundaryCarrier : IsCompact M.boundaryCarrier := by
   classical
   exact M.allBoundaryEdges.finite_toSet.isCompact_biUnion fun e _ =>
     (e.finite_toSet.image M.position).isCompact_convexHull ℝ
 
+/--
+@isnad1 id=eq.1h2v.s5.7f40fee83012 from=translated src=- shape=320ae28e vocab=6d1290c4
+-/
 theorem card_of_mem_edges {e : Finset M.Vertex} (he : e ∈ M.edges) : e.card = 2 := by
   obtain ⟨t, _, het⟩ := Finset.mem_biUnion.mp he
   exact (Finset.mem_powersetCard.mp het).2
 
+/--
+@isnad1 id=iff.0h3v.s6.127f786dcb19 from=translated src=- shape=9ccfd88e vocab=0d879644
+-/
 theorem mem_incidentTriangles_iff {e t : Finset M.Vertex} :
     t ∈ M.incidentTriangles e ↔ t ∈ M.triangles ∧ e ⊆ t := by
   simp [incidentTriangles]
 
+/--
+@isnad1 id=le.0h2v.s7.fc0ba51259e4 from=translated src=- shape=43104423 vocab=14a1a8e8
+-/
 theorem frontier_biUnion_subset (F : Finset (Finset M.Vertex)) :
     frontier (⋃ t ∈ F, M.triangleCarrier t) ⊆
       ⋃ t ∈ F, frontier (M.triangleCarrier t) := by
@@ -113,6 +128,9 @@ noncomputable def triangleAffineBasis {t : Finset M.Vertex} (ht : t ∈ M.triang
   apply hp.affineSpan_eq_top_iff_card_eq_finrank_add_one.mpr
   simp [Plane]
 
+/--
+@isnad1 id=eq.1h2v.s9.8b9246e5d4f7 from=translated src=- shape=b24dbc6e vocab=c30857bc
+-/
 theorem range_triangleAffineBasis {t : Finset M.Vertex} (ht : t ∈ M.triangles) :
     Set.range (M.triangleAffineBasis ht) = M.position '' (t : Set M.Vertex) := by
   ext p
@@ -131,15 +149,24 @@ noncomputable def triangleEdgeOpposite {t : Finset M.Vertex} (ht : t ∈ M.trian
     (i : Fin 3) : Finset M.Vertex :=
   t.erase (M.triangleIndexEquiv ht i)
 
+/--
+@isnad1 id=eq.1h3v.s5.7649e6575a62 from=translated src=- shape=cdc9eae3 vocab=45dbe193
+-/
 theorem triangleEdgeOpposite_card {t : Finset M.Vertex} (ht : t ∈ M.triangles) (i : Fin 3) :
     (M.triangleEdgeOpposite ht i).card = 2 := by
   rw [triangleEdgeOpposite, Finset.card_erase_of_mem (M.triangleIndexEquiv ht i).property,
     M.card_triangle t ht]
 
+/--
+@isnad1 id=le.1h3v.s5.0fd955f2a5c3 from=translated src=- shape=c9e62438 vocab=37b9161a
+-/
 theorem triangleEdgeOpposite_subset {t : Finset M.Vertex} (ht : t ∈ M.triangles) (i : Fin 3) :
     M.triangleEdgeOpposite ht i ⊆ t :=
   Finset.erase_subset _ _
 
+/--
+@isnad1 id=eq.1h3v.s9.cee428fbfad7 from=translated src=- shape=e808b72d vocab=d4f14368
+-/
 theorem image_compl_eq_triangleEdgeOpposite {t : Finset M.Vertex} (ht : t ∈ M.triangles)
     (i : Fin 3) :
     M.triangleAffineBasis ht '' ({i}ᶜ : Set (Fin 3)) =
@@ -161,7 +188,9 @@ theorem image_compl_eq_triangleEdgeOpposite {t : Finset M.Vertex} (ht : t ∈ M.
         M.position v
       rw [Equiv.apply_symm_apply]
 
-/-- A nonvertex point on the frontier of a maximal triangle lies in one of its edges. -/
+/-- A nonvertex point on the frontier of a maximal triangle lies in one of its edges.
+@isnad1 id=ex.2h3v.s8.225b98d32f62 from=translated src=- shape=0c8d39cd vocab=90be8f6f
+-/
 theorem exists_edge_of_mem_frontier_triangle {t : Finset M.Vertex} (ht : t ∈ M.triangles)
     {p : Plane} (hp : p ∈ frontier (M.triangleCarrier t)) :
     ∃ e : Finset M.Vertex, e.card = 2 ∧ e ⊆ t ∧
@@ -211,6 +240,9 @@ theorem exists_edge_of_mem_frontier_triangle {t : Finset M.Vertex} (ht : t ∈ M
     M.triangleEdgeOpposite_subset ht i, ?_⟩
   rwa [M.image_compl_eq_triangleEdgeOpposite ht i] at hpEdge
 
+/--
+@isnad1 id=eq.1h4v.s9.b9d26a4f580b from=translated src=- shape=bcf45ea9 vocab=0a311f59
+-/
 theorem oppositeCoord_eq_zero_of_mem_oppositeEdge (T : M.Triangle) (k : Fin 3)
     {p : Plane}
     (hp : p ∈ convexHull ℝ ((M.oppositeEdgePoints T k : Finset Plane) : Set Plane)) :
@@ -219,7 +251,9 @@ theorem oppositeCoord_eq_zero_of_mem_oppositeEdge (T : M.Triangle) (k : Fin 3)
   rw [← M.parent_inter_oppositeCoord_zero T k] at h
   exact h.2
 
-/-- At a nonvertex point of an edge, the two barycentric coordinates along the edge are positive. -/
+/-- At a nonvertex point of an edge, the two barycentric coordinates along the edge are positive.
+@isnad1 id=lt.3h5v.s9.24e9acb46519 from=translated src=- shape=cbd3af57 vocab=3d595bd8
+-/
 theorem oppositeCoord_pos_of_mem_oppositeEdge_of_not_vertex (T : M.Triangle) (k j : Fin 3)
     (hjk : j ≠ k) {p : Plane}
     (hp : p ∈ convexHull ℝ ((M.oppositeEdgePoints T k : Finset Plane) : Set Plane))
@@ -309,6 +343,9 @@ theorem oppositeCoord_pos_of_mem_oppositeEdge_of_not_vertex (T : M.Triangle) (k 
   obtain ⟨r, hr⟩ := hpv'
   exact hpv r hr
 
+/--
+@isnad1 id=eq.1h5v.s13.5e1174b88c80 from=translated src=- shape=11fd8ac5 vocab=c2aacbbb
+-/
 theorem oppositeCoord_smul_eq_of_same_edge (T U : M.Triangle) (kT kU : Fin 3)
     (hedge : M.oppositeEdgePoints T kT = M.oppositeEdgePoints U kU) :
     (M.oppositeCoord T kT (M.position (M.orderedVertex U kU))) •
@@ -334,6 +371,9 @@ theorem oppositeCoord_smul_eq_of_same_edge (T U : M.Triangle) (kT kU : Fin 3)
       (subset_convexHull ℝ _ hmemT)
     simp [M.oppositeCoord_vertex U kU i, Ne.symm hi, hz]
 
+/--
+@isnad1 id=ne.1h5v.s9.a372ad13ee2a from=translated src=- shape=5ef16d32 vocab=3af65bf1
+-/
 theorem oppositeCoord_ne_zero_of_same_edge (T U : M.Triangle) (kT kU : Fin 3)
     (hedge : M.oppositeEdgePoints T kT = M.oppositeEdgePoints U kU) :
     M.oppositeCoord T kT (M.position (M.orderedVertex U kU)) ≠ 0 := by
@@ -344,6 +384,9 @@ theorem oppositeCoord_ne_zero_of_same_edge (T U : M.Triangle) (kT kU : Fin 3)
     f (M.position (M.orderedVertex T kT))) hrel
   simp at h
 
+/--
+@isnad1 id=eq.0h2v.s9.3dc3795d659b from=translated src=- shape=b214c8cd vocab=d523dc67
+-/
 theorem interior_triangleCarrier (T : M.Triangle) :
     interior (M.triangleCarrier T.1) =
       {p | ∀ i : Fin 3, 0 < M.oppositeCoord T i p} := by
@@ -355,6 +398,9 @@ theorem interior_triangleCarrier (T : M.Triangle) :
   rw [triangleCarrier, ← hrange, b.interior_convexHull]
   rfl
 
+/--
+@isnad1 id=nonempty.0h2v.s6.6b3f031a89cf from=translated src=- shape=5ab7212c vocab=fffe6749
+-/
 theorem interior_triangleCarrier_nonempty (T : M.Triangle) :
     (interior (M.triangleCarrier T.1)).Nonempty := by
   let b := M.triangleAffineBasis T.2
@@ -362,7 +408,9 @@ theorem interior_triangleCarrier_nonempty (T : M.Triangle) :
   have hnonempty := interior_convexHull_nonempty_iff_affineSpan_eq_top.mpr hspan
   simpa only [triangleCarrier, b, M.range_triangleAffineBasis T.2] using hnonempty
 
-/-- A nondegenerate closed triangle is the closure of its Euclidean interior. -/
+/-- A nondegenerate closed triangle is the closure of its Euclidean interior.
+@isnad1 id=eq.0h2v.s7.649bf46ffc5b from=translated src=- shape=08f9e94b vocab=49608276
+-/
 theorem closure_interior_triangleCarrier (T : M.Triangle) :
     closure (interior (M.triangleCarrier T.1)) = M.triangleCarrier T.1 := by
   unfold triangleCarrier
@@ -372,7 +420,9 @@ theorem closure_interior_triangleCarrier (T : M.Triangle) :
 
 /-- The interior of a maximal triangle misses the carrier of every proper face of that
 triangle.  The formulation with an arbitrary set of at most two vertices is convenient when
-restricting a mesh along an existing edge. -/
+restricting a mesh along an existing edge.
+@isnad1 id=disjoint.2h3v.s8.ad6a7a974f0a from=translated src=- shape=3f67579f vocab=f64b95c5
+-/
 theorem disjoint_interior_triangleCarrier_convexHull_of_subset_card_le_two
     (T : M.Triangle) {s : Finset M.Vertex} (hs : s ⊆ T.1) (hcard : s.card ≤ 2) :
     Disjoint (interior (M.triangleCarrier T.1))
@@ -418,7 +468,9 @@ theorem disjoint_interior_triangleCarrier_convexHull_of_subset_card_le_two
   linarith
 
 /-- The interior of every maximal triangle misses every edge carrier of the mesh, whether or
-not that edge belongs to the triangle. -/
+not that edge belongs to the triangle.
+@isnad1 id=disjoint.1h3v.s8.34ea7ecf1ea9 from=translated src=- shape=bfebf77d vocab=5abcaeb2
+-/
 theorem disjoint_interior_triangleCarrier_edgeCarrier (T : M.Triangle)
     {e : Finset M.Vertex} (he : e ∈ M.edges) :
     Disjoint (interior (M.triangleCarrier T.1))
@@ -460,7 +512,9 @@ theorem disjoint_interior_triangleCarrier_edgeCarrier (T : M.Triangle)
       Finset.inter_subset_left hInterCard) hpT hpInter
 
 /-- The interior of one maximal triangle misses the full carrier of every distinct maximal
-triangle. -/
+triangle.
+@isnad1 id=disjoint.1h3v.s7.98bc23121045 from=translated src=- shape=29648a47 vocab=c4b2da9a
+-/
 theorem disjoint_interior_triangleCarrier_triangleCarrier {T U : M.Triangle}
     (hne : T.1 ≠ U.1) :
     Disjoint (interior (M.triangleCarrier T.1)) (M.triangleCarrier U.1) := by
@@ -543,6 +597,9 @@ theorem eq_of_interior_triangleCarrier_inter_nonempty (T U : M.Triangle)
     rw [hfcard, M.card_triangle U.1 U.2])
   exact hfT.symm.trans hfU
 
+/--
+@isnad1 id=disjoint.1h3v.s8.fafaa3923a36 from=translated src=- shape=e41454a7 vocab=c4b2da9a
+-/
 theorem disjoint_interior_triangleCarrier {T U : M.Triangle} (hne : T.1 ≠ U.1) :
     Disjoint (interior (M.triangleCarrier T.1))
       (interior (M.triangleCarrier U.1)) := by
@@ -553,7 +610,9 @@ theorem disjoint_interior_triangleCarrier {T U : M.Triangle} (hne : T.1 ≠ U.1)
 /-- Deleting a maximal triangle leaves precisely the closure of the part of the old support
 outside that triangle.  This is the face-to-face form of the elementary observation used in
 Moise's free-triangle removal: points on a surviving triangle are limits of points in its
-interior, and the interior of a different maximal triangle misses the deleted carrier. -/
+interior, and the interior of a different maximal triangle misses the deleted carrier.
+@isnad1 id=eq.0h2v.s6.6b094bbf256b from=translated src=- shape=a6abdbb2 vocab=44df68c6
+-/
 theorem eraseTriangle_support_eq_closure_diff_triangleCarrier (T : M.Triangle) :
     (M.eraseTriangle T.1).toPlaneComplex.support =
       closure (M.toPlaneComplex.support \ M.triangleCarrier T.1) := by
@@ -604,7 +663,9 @@ theorem eraseTriangle_support_eq_closure_diff_triangleCarrier (T : M.Triangle) :
       · exact ⟨u, Finset.mem_erase.mpr ⟨huT, hu⟩, hpU⟩
     · exact (M.eraseTriangle T.1).toPlaneComplex.isCompact_support.isClosed
 
-/-- The remaining support cannot contain an interior point of the deleted triangle. -/
+/-- The remaining support cannot contain an interior point of the deleted triangle.
+@isnad1 id=disjoint.0h2v.s7.b207b9d0d112 from=translated src=- shape=77b83c81 vocab=285ef7ec
+-/
 theorem disjoint_eraseTriangle_support_interior_triangleCarrier (T : M.Triangle) :
     Disjoint (M.eraseTriangle T.1).toPlaneComplex.support
       (interior (M.triangleCarrier T.1)) := by
@@ -618,7 +679,9 @@ theorem disjoint_eraseTriangle_support_interior_triangleCarrier (T : M.Triangle)
   exact hpClosureCompl hpInterior
 
 /-- The frontier after deleting a maximal triangle consists of the old frontier away from the
-triangle together with the exact attachment of the surviving support to that triangle. -/
+triangle together with the exact attachment of the surviving support to that triangle.
+@isnad1 id=eq.0h2v.s7.344e8d8d54b8 from=translated src=- shape=b8a22511 vocab=6772470f
+-/
 theorem frontier_eraseTriangle_support (T : M.Triangle) :
     frontier (M.eraseTriangle T.1).toPlaneComplex.support =
       (frontier M.toPlaneComplex.support \ M.triangleCarrier T.1) ∪
@@ -680,6 +743,9 @@ theorem frontier_eraseTriangle_support (T : M.Triangle) :
       obtain ⟨q, hqB, hqK⟩ := Set.Nonempty.of_closure ⟨p, hpClosureMeet⟩
       exact Set.disjoint_left.mp hBdisjoint (interior_subset hqB) hqK
 
+/--
+@isnad1 id=eq.0h2v.s9.1ca9adb50f53 from=translated src=- shape=25f6f258 vocab=2be1ac1a
+-/
 theorem triangleCarrier_eq_nonnegCoords (T : M.Triangle) :
     M.triangleCarrier T.1 = {p | ∀ i : Fin 3, 0 ≤ M.oppositeCoord T i p} := by
   let b := affineBasisOfTriangle (M.position ∘ M.orderedVertex T)
@@ -695,6 +761,9 @@ barycentric coordinates tangent to that edge. -/
 def nonOppositeCoordNeighborhood (T : M.Triangle) (k : Fin 3) : Set Plane :=
   {p | ∀ j : Fin 3, j ≠ k → 0 < M.oppositeCoord T j p}
 
+/--
+@isnad1 id=isopen.0h3v.s5.e4ee3aa8f5bb from=translated src=- shape=f7dda2b5 vocab=33d307b7
+-/
 theorem isOpen_nonOppositeCoordNeighborhood (T : M.Triangle) (k : Fin 3) :
     IsOpen (M.nonOppositeCoordNeighborhood T k) := by
   have heq : M.nonOppositeCoordNeighborhood T k =
@@ -708,6 +777,9 @@ theorem isOpen_nonOppositeCoordNeighborhood (T : M.Triangle) (k : Fin 3) :
   intro _
   exact isOpen_Ioi.preimage (M.oppositeCoord T j).continuous_of_finiteDimensional
 
+/--
+@isnad1 id=mem.2h4v.s7.3ca11cc65673 from=translated src=- shape=ef15e400 vocab=07310388
+-/
 theorem mem_nonOppositeCoordNeighborhood_of_mem_edge (T : M.Triangle) (k : Fin 3)
     {p : Plane}
     (hp : p ∈ convexHull ℝ ((M.oppositeEdgePoints T k : Finset Plane) : Set Plane))
@@ -716,6 +788,9 @@ theorem mem_nonOppositeCoordNeighborhood_of_mem_edge (T : M.Triangle) (k : Fin 3
   intro j hj
   exact M.oppositeCoord_pos_of_mem_oppositeEdge_of_not_vertex T k j hj hp hpv
 
+/--
+@isnad1 id=eq.4h4v.s8.7a179b3abfba from=translated src=- shape=1bfdda11 vocab=25f1f107
+-/
 theorem triangle_inter_eq_edge {T U : M.Triangle} (hTU : T.1 ≠ U.1)
     {e : Finset M.Vertex} (hecard : e.card = 2) (heT : e ⊆ T.1) (heU : e ⊆ U.1) :
     T.1 ∩ U.1 = e := by
@@ -739,6 +814,9 @@ theorem triangle_inter_eq_edge {T U : M.Triangle} (hTU : T.1 ≠ U.1)
   symm
   exact Finset.eq_of_subset_of_card_le heInter (by simpa [hecard] using hcard)
 
+/--
+@isnad1 id=lt.9h7v.s10.c5de7caacf7e from=translated src=- shape=2f4637e0 vocab=994ada5b
+-/
 theorem oppositeCoord_negative_across_shared_edge {T U : M.Triangle} (hTU : T.1 ≠ U.1)
     {e : Finset M.Vertex} (hecard : e.card = 2) (heT : e ⊆ T.1) (heU : e ⊆ U.1)
     (kT kU : Fin 3)
@@ -820,7 +898,9 @@ theorem oppositeCoord_negative_across_shared_edge {T U : M.Triangle} (hTU : T.1 
     exact hzT kT
   linarith
 
-/-- A genuine geometric edge contains infinitely many points. -/
+/-- A genuine geometric edge contains infinitely many points.
+@isnad1 id=infinite.1h2v.s7.d5c28002594f from=translated src=- shape=54b8bbbd vocab=0fd6106b
+-/
 theorem edgeCarrier_infinite {e : Finset M.Vertex} (hecard : e.card = 2) :
     (convexHull ℝ (M.position '' (e : Set M.Vertex))).Infinite := by
   obtain ⟨v, w, hvw, rfl⟩ := Finset.card_eq_two.mp hecard
@@ -841,7 +921,9 @@ theorem edgeCarrier_infinite {e : Finset M.Vertex} (hecard : e.card = 2) :
   exact (Set.Icc_infinite (by norm_num : (0 : ℝ) < 1)).image
     (AffineMap.lineMap_injective ℝ hpne).injOn
 
-/-- Choose a relative-interior edge point which is not any vertex of the finite mesh. -/
+/-- Choose a relative-interior edge point which is not any vertex of the finite mesh.
+@isnad1 id=ex.1h2v.s7.b2b0174d87be from=translated src=- shape=33a714a0 vocab=5d56485e
+-/
 theorem exists_nonvertex_mem_edgeCarrier {e : Finset M.Vertex} (hecard : e.card = 2) :
     ∃ p ∈ convexHull ℝ (M.position '' (e : Set M.Vertex)),
       ∀ v : M.Vertex, p ≠ M.position v := by
@@ -852,7 +934,9 @@ theorem exists_nonvertex_mem_edgeCarrier {e : Finset M.Vertex} (hecard : e.card 
   apply hpnot
   exact Finset.mem_image.mpr ⟨v, Finset.mem_univ v, hpv.symm⟩
 
-/-- Two mesh edges containing the same nonvertex point are the same edge. -/
+/-- Two mesh edges containing the same nonvertex point are the same edge.
+@isnad1 id=eq.5h4v.s8.46fa940d6a2b from=translated src=- shape=0d4ab3da vocab=2baa7be3
+-/
 theorem edge_eq_of_nonvertex_mem_edgeCarriers {e f : Finset M.Vertex}
     (he : e ∈ M.edges) (hf : f ∈ M.edges) {p : Plane}
     (hpe : p ∈ convexHull ℝ (M.position '' (e : Set M.Vertex)))
@@ -910,7 +994,9 @@ theorem edge_eq_of_nonvertex_mem_edgeCarriers {e f : Finset M.Vertex}
   exact heqE.symm.trans heqF
 
 /-- Edge carriers in a face-to-face mesh meet in exactly the carrier of their common
-vertices. -/
+vertices.
+@isnad1 id=eq.2h3v.s9.d81a229770d7 from=translated src=- shape=a95111f4 vocab=ceebab4b
+-/
 theorem edgeCarrier_inter_edgeCarrier {e f : Finset M.Vertex}
     (he : e ∈ M.edges) (hf : f ∈ M.edges) :
     convexHull ℝ (M.position '' (e : Set M.Vertex)) ∩
@@ -928,7 +1014,9 @@ theorem edgeCarrier_inter_edgeCarrier {e f : Finset M.Vertex}
       ⟨Finset.card_pos.mp (by rw [hftData.2]; omega), t, ht, hftData.1⟩
   exact M.toPlaneComplex.face_inter e heFace f hfFace
 
-/-- A used mesh vertex lying on an edge carrier is one of that edge's abstract endpoints. -/
+/-- A used mesh vertex lying on an edge carrier is one of that edge's abstract endpoints.
+@isnad1 id=mem.4h4v.s8.1bcc573b7165 from=translated src=- shape=36fc4844 vocab=8f171c59
+-/
 theorem vertex_mem_edge_of_position_mem_edgeCarrier {v : M.Vertex} {e t : Finset M.Vertex}
     (ht : t ∈ M.triangles) (hvt : v ∈ t) (he : e ∈ M.edges)
     (hv : M.position v ∈ convexHull ℝ (M.position '' (e : Set M.Vertex))) : v ∈ e := by
@@ -958,7 +1046,9 @@ theorem vertex_mem_edge_of_position_mem_edgeCarrier {v : M.Vertex} {e t : Finset
   simp at hp
 
 /-- In a face-to-face planar mesh, once one incident triangle is fixed there is at most one
-other triangle incident to the same edge. -/
+other triangle incident to the same edge.
+@isnad1 id=eq.6h5v.s6.7a24f2cb9441 from=translated src=- shape=f59528a7 vocab=13a4c777
+-/
 theorem incidentTriangle_eq_of_ne {e t u v : Finset M.Vertex} (hecard : e.card = 2)
     (ht : t ∈ M.incidentTriangles e) (hu : u ∈ M.incidentTriangles e)
     (hv : v ∈ M.incidentTriangles e) (hut : u ≠ t) (hvt : v ≠ t) : u = v := by
@@ -994,7 +1084,9 @@ theorem incidentTriangle_eq_of_ne {e t u v : Finset M.Vertex} (hecard : e.card =
     M.oppositeCoord T kT (M.position (M.orderedVertex V kV)) at hrelV
   nlinarith
 
-/-- Every geometric edge of a face-to-face planar mesh is incident to at most two triangles. -/
+/-- Every geometric edge of a face-to-face planar mesh is incident to at most two triangles.
+@isnad1 id=le.1h2v.s5.b05a7599db58 from=translated src=- shape=71498a62 vocab=ec7905cc
+-/
 theorem card_incidentTriangles_le_two {e : Finset M.Vertex} (hecard : e.card = 2) :
     (M.incidentTriangles e).card ≤ 2 := by
   by_contra hcard
@@ -1004,7 +1096,9 @@ theorem card_incidentTriangles_le_two {e : Finset M.Vertex} (hecard : e.card = 2
   exact huv huv'
 
 /-- If a nonvertex point of an edge of `t` also belongs to `u`, then `u` contains the whole
-edge.  This is the face-to-face property upgraded from geometry to incidence. -/
+edge.  This is the face-to-face property upgraded from geometry to incidence.
+@isnad1 id=le.7h5v.s8.dbe083a811ee from=translated src=- shape=ff20509d vocab=c59921c1
+-/
 theorem edge_subset_of_nonvertex_mem_triangleCarrier {e t u : Finset M.Vertex} {p : Plane}
     (hecard : e.card = 2) (het : e ⊆ t) (ht : t ∈ M.triangles)
     (hu : u ∈ M.triangles)
@@ -1068,7 +1162,9 @@ theorem edge_subset_of_nonvertex_mem_triangleCarrier {e t u : Finset M.Vertex} {
       simpa using hpCommon
     exact hpv v hpEq
 
-/-- Every nonvertex point of an incidence-one edge lies on the support frontier. -/
+/-- Every nonvertex point of an incidence-one edge lies on the support frontier.
+@isnad1 id=mem.3h3v.s8.fc5547b6403f from=translated src=- shape=cafe45ad vocab=7801958b
+-/
 theorem mem_frontier_of_mem_boundaryEdge {e : Finset M.Vertex} (he : M.IsBoundaryEdge e)
     {p : Plane} (hpEdge : p ∈ convexHull ℝ (M.position '' (e : Set M.Vertex)))
     (hpv : ∀ v : M.Vertex, p ≠ M.position v) :
@@ -1150,7 +1246,9 @@ theorem mem_frontier_of_mem_boundaryEdge {e : Finset M.Vertex} (he : M.IsBoundar
   rw [M.toPlaneComplex.isCompact_support.isClosed.frontier_eq]
   exact ⟨hpSupport, hpNotInteriorSupport⟩
 
-/-- The whole carrier of an incidence-one edge lies in the support frontier, including endpoints. -/
+/-- The whole carrier of an incidence-one edge lies in the support frontier, including endpoints.
+@isnad1 id=le.1h2v.s8.0a613c398746 from=translated src=- shape=87555022 vocab=d83114de
+-/
 theorem boundaryEdgeCarrier_subset_frontier {e : Finset M.Vertex} (he : M.IsBoundaryEdge e) :
     convexHull ℝ (M.position '' (e : Set M.Vertex)) ⊆
       frontier M.toPlaneComplex.support := by
@@ -1204,6 +1302,9 @@ theorem boundaryEdgeCarrier_subset_frontier {e : Finset M.Vertex} (he : M.IsBoun
     image_closure_subset_closure_image hlineContinuous ⟨c, hcClosureGood, rfl⟩
   exact (closure_minimal hgoodImage isClosed_frontier) hmemClosureImage
 
+/--
+@isnad1 id=le.0h1v.s5.e9e484972ac8 from=translated src=- shape=9e091550 vocab=ba4dfa35
+-/
 theorem boundaryCarrier_subset_frontier :
     M.boundaryCarrier ⊆ frontier M.toPlaneComplex.support := by
   intro p hp
@@ -1212,10 +1313,16 @@ theorem boundaryCarrier_subset_frontier :
   exact M.boundaryEdgeCarrier_subset_frontier
     (M.mem_allBoundaryEdges_iff.mp he) hpe
 
+/--
+@isnad1 id=eq.1h2v.s5.38721a96e75a from=translated src=- shape=3f2f514e vocab=ebbceb0a
+-/
 theorem card_triangleEdges {t : Finset M.Vertex} (ht : t ∈ M.triangles) :
     (M.triangleEdges t).card = 3 := by
   simp [triangleEdges, M.card_triangle t ht]
 
+/--
+@isnad1 id=le.0h2v.s4.102453ff3c14 from=translated src=- shape=574131f0 vocab=9d800009
+-/
 theorem boundaryEdges_subset_triangleEdges (t : Finset M.Vertex) :
     M.boundaryEdges t ⊆ M.triangleEdges t := by
   classical
@@ -1223,19 +1330,27 @@ theorem boundaryEdges_subset_triangleEdges (t : Finset M.Vertex) :
   exact (Finset.mem_filter.mp (show e ∈ (M.triangleEdges t).filter M.IsBoundaryEdge by
     simpa [boundaryEdges] using he)).1
 
+/--
+@isnad1 id=iff.0h3v.s6.a5010032db22 from=translated src=- shape=927c1df1 vocab=ff687a27
+-/
 theorem mem_boundaryEdges_iff {e t : Finset M.Vertex} :
     e ∈ M.boundaryEdges t ↔ e ⊆ t ∧ e.card = 2 ∧ M.IsBoundaryEdge e := by
   classical
   simp [boundaryEdges, triangleEdges, Finset.mem_powersetCard]
   tauto
 
+/--
+@isnad1 id=nonempty.1h2v.s4.700d665b5fb0 from=translated src=- shape=9bc0577b vocab=b9bb82fb
+-/
 theorem boundaryEdges_nonempty_of_isFreeTriangle {t : Finset M.Vertex}
     (ht : M.IsFreeTriangle t) : (M.boundaryEdges t).Nonempty := by
   obtain ⟨htM, e, he, het⟩ := ht
   exact ⟨e, M.mem_boundaryEdges_iff.mpr
     ⟨het, M.card_of_mem_edges he.1, he⟩⟩
 
-/-- A non-boundary edge of a maximal triangle has exactly two incident triangles. -/
+/-- A non-boundary edge of a maximal triangle has exactly two incident triangles.
+@isnad1 id=eq.4h3v.s6.c5e4c1a644b5 from=translated src=- shape=40cafc3d vocab=736adfe7
+-/
 theorem card_incidentTriangles_eq_two_of_not_boundary {e t : Finset M.Vertex}
     (ht : t ∈ M.triangles) (hecard : e.card = 2) (het : e ⊆ t)
     (he : ¬M.IsBoundaryEdge e) : (M.incidentTriangles e).card = 2 := by
@@ -1255,7 +1370,9 @@ theorem card_incidentTriangles_eq_two_of_not_boundary {e t : Finset M.Vertex}
 def AreEdgeNeighbors (t u : Finset M.Vertex) : Prop :=
   ∃ e : Finset M.Vertex, e.card = 2 ∧ e ⊆ t ∧ e ⊆ u
 
-/-- A triangle with an edge-neighbor cannot have all three edges on the boundary. -/
+/-- A triangle with an edge-neighbor cannot have all three edges on the boundary.
+@isnad1 id=le.4h3v.s6.15a35a6dff67 from=translated src=- shape=8db2c23e vocab=4b612b20
+-/
 theorem card_boundaryEdges_le_two_of_neighbor {t u : Finset M.Vertex}
     (ht : t ∈ M.triangles) (hu : u ∈ M.triangles) (htu : t ≠ u)
     (hneigh : M.AreEdgeNeighbors t u) : (M.boundaryEdges t).card ≤ 2 := by
@@ -1283,7 +1400,9 @@ theorem card_boundaryEdges_le_two_of_neighbor {t u : Finset M.Vertex}
   omega
 
 /-- Two distinct face-to-face triangles fill a neighborhood of every nonvertex point of their
-common edge. -/
+common edge.
+@isnad1 id=mem.7h5v.s9.ec16f711b565 from=translated src=- shape=2e9d3061 vocab=b1a402e5
+-/
 theorem mem_interior_union_triangleCarrier_of_shared_edge {T U : M.Triangle}
     (hTU : T.1 ≠ U.1) {e : Finset M.Vertex} (hecard : e.card = 2)
     (heT : e ⊆ T.1) (heU : e ⊆ U.1) {p : Plane}
@@ -1341,6 +1460,9 @@ theorem mem_interior_union_triangleCarrier_of_shared_edge {T U : M.Triangle}
       · exact (hx.2 i hi).le
   exact interior_maximal hOsub hOpen hpO
 
+/--
+@isnad1 id=ne.3h6v.s8.9d545970e5b7 from=translated src=- shape=0d9f92bf vocab=5ebaa1fb
+-/
 theorem orderedVertex_ne_of_not_mem_edgeVertices (T : M.Triangle) (k : Fin 3)
     {e : Finset M.Vertex}
     (hedge : M.oppositeEdgePoints T k = e.image M.position)
@@ -1368,7 +1490,9 @@ theorem orderedVertex_ne_of_not_mem_edgeVertices (T : M.Triangle) (k : Fin 3)
     exact ⟨v, hve, hv.trans hpi.symm⟩
 
 /-- The shared-edge neighborhood theorem only needs the point to avoid the two endpoints of
-the common edge; unrelated retained mesh vertices are irrelevant. -/
+the common edge; unrelated retained mesh vertices are irrelevant.
+@isnad1 id=mem.6h5v.s9.2dc44b72759b from=translated src=- shape=2885d2ec vocab=fd4367b4
+-/
 theorem mem_interior_union_triangleCarrier_of_shared_edge_of_not_mem_edgeVertices
     {T U : M.Triangle} (hTU : T.1 ≠ U.1)
     {e : Finset M.Vertex} (hecard : e.card = 2)
@@ -1382,7 +1506,9 @@ theorem mem_interior_union_triangleCarrier_of_shared_edge_of_not_mem_edgeVertice
     (M.orderedVertex_ne_of_not_mem_edgeVertices T kT hedgeT hpEdge hpNotVertices)
     (M.orderedVertex_ne_of_not_mem_edgeVertices U kU hedgeU hpEdge hpNotVertices)
 
-/-- Every non-endpoint point of a non-boundary mesh edge is interior to the mesh support. -/
+/-- Every non-endpoint point of a non-boundary mesh edge is interior to the mesh support.
+@isnad1 id=le.4h3v.s8.9adfccefb235 from=translated src=- shape=2675fdd0 vocab=ed512fd2
+-/
 theorem edgeCarrier_diff_vertices_subset_interior_support
     {e t : Finset M.Vertex} (ht : t ∈ M.triangles)
     (hecard : e.card = 2) (heT : e ⊆ t) (heNotBoundary : ¬M.IsBoundaryEdge e) :
@@ -1422,7 +1548,9 @@ theorem edgeCarrier_diff_vertices_subset_interior_support
         (Set.subset_iUnion_of_subset U.2 (by rfl)))
   exact interior_mono hUnionSubset hpInteriorUnion
 
-/-- Every nonvertex point of the support frontier lies on an incidence-one mesh edge. -/
+/-- Every nonvertex point of the support frontier lies on an incidence-one mesh edge.
+@isnad1 id=ex.2h2v.s8.dd9eb4c522f6 from=translated src=- shape=ff05f2f2 vocab=b9ab17c4
+-/
 theorem exists_boundaryEdge_through_frontier_point {p : Plane}
     (hpFrontier : p ∈ frontier M.toPlaneComplex.support)
     (hpv : ∀ v : M.Vertex, p ≠ M.position v) :
@@ -1482,6 +1610,9 @@ theorem exists_boundaryEdge_through_frontier_point {p : Plane}
     exact (Set.disjoint_left.1 disjoint_interior_frontier hpInteriorSupport hpFrontier)
   exact ⟨t, ht, e, ⟨heEdges, hIncidentCard⟩, heT, hpEdge⟩
 
+/--
+@isnad1 id=iff.1h2v.s8.10fa52d24338 from=translated src=- shape=7ec56e8c vocab=7801958b
+-/
 theorem mem_frontier_iff_exists_boundaryEdge_of_nonvertex {p : Plane}
     (hpv : ∀ v : M.Vertex, p ≠ M.position v) :
     p ∈ frontier M.toPlaneComplex.support ↔
@@ -1497,7 +1628,9 @@ theorem mem_frontier_iff_exists_boundaryEdge_of_nonvertex {p : Plane}
 
 /-- Away from mesh vertices, a triangle's frontier trace is exactly the union of its
 incidence-one edges.  Extra isolated frontier vertices are precisely the obstruction addressed
-by Moise's cutting induction. -/
+by Moise's cutting induction.
+@isnad1 id=eq.1h2v.s8.1ed75a2083f0 from=translated src=- shape=b582b0ac vocab=f9cdd1e1
+-/
 theorem frontier_inter_triangleCarrier_diff_vertices {t : Finset M.Vertex}
     (ht : t ∈ M.triangles) :
     (frontier M.toPlaneComplex.support ∩ M.triangleCarrier t) \ Set.range M.position =
@@ -1537,7 +1670,9 @@ def HasNoIsolatedFrontierVertex (t : Finset M.Vertex) : Prop :=
         M.position v ∈ convexHull ℝ (M.position '' (e : Set M.Vertex))
 
 /-- An isolated point in a triangle's frontier trace must be one of the triangle's own
-vertices.  This remains valid when the mesh vertex type contains unused retained vertices. -/
+vertices.  This remains valid when the mesh vertex type contains unused retained vertices.
+@isnad1 id=mem.3h3v.s8.b0279201be2e from=translated src=- shape=b0f9bbfe vocab=6d08f6c3
+-/
 theorem vertex_mem_triangle_of_frontier_not_mem_boundaryEdges (T : M.Triangle)
     (v : M.Vertex) (hvFrontier : M.position v ∈ frontier M.toPlaneComplex.support)
     (hvTriangle : M.position v ∈ M.triangleCarrier T.1)
@@ -1603,7 +1738,9 @@ theorem vertex_mem_triangle_of_frontier_not_mem_boundaryEdges (T : M.Triangle)
   exact heT hwe
 
 /-- If two edges of a maximal triangle are boundary edges, every frontier vertex on that
-triangle lies on one of them. -/
+triangle lies on one of them.
+@isnad1 id=hasnoiso.1h2v.s6.92f12383a845 from=translated src=- shape=bc7f0384 vocab=ec67f1e1
+-/
 theorem hasNoIsolatedFrontierVertex_of_boundaryEdges_card_two (T : M.Triangle)
     (hcard : (M.boundaryEdges T.1).card = 2) :
     M.HasNoIsolatedFrontierVertex T.1 := by
@@ -1637,6 +1774,9 @@ theorem hasNoIsolatedFrontierVertex_of_boundaryEdges_card_two (T : M.Triangle)
       (by rw [hfData.2.1, heraseCard])
   exact hef (heErase.trans hfErase.symm)
 
+/--
+@isnad1 id=eq.2h2v.s8.6406b5c468ae from=translated src=- shape=61de3265 vocab=b71ade1e
+-/
 theorem frontier_inter_triangleCarrier_eq_boundaryEdges {t : Finset M.Vertex}
     (ht : t ∈ M.triangles) (hvertices : M.HasNoIsolatedFrontierVertex t) :
     frontier M.toPlaneComplex.support ∩ M.triangleCarrier t =
@@ -1661,7 +1801,9 @@ theorem frontier_inter_triangleCarrier_eq_boundaryEdges {t : Finset M.Vertex}
       convexHull_mono (Set.image_mono heData.1) hpe⟩
 
 /-- An infinite frontier of a finite face-to-face planar mesh contains a boundary edge.  This is
-the weak free-triangle existence theorem used at the start of Moise's finite induction. -/
+the weak free-triangle existence theorem used at the start of Moise's finite induction.
+@isnad1 id=ex.1h1v.s5.299901cdbad6 from=translated src=- shape=b22fdf78 vocab=20f47c1c
+-/
 theorem exists_free_triangle (hfrontier : (frontier M.toPlaneComplex.support).Infinite) :
     ∃ t, M.IsFreeTriangle t := by
   classical
@@ -1676,7 +1818,9 @@ theorem exists_free_triangle (hfrontier : (frontier M.toPlaneComplex.support).In
     M.exists_boundaryEdge_through_frontier_point hpFrontier hpv
   exact ⟨t, ht, e, he, het⟩
 
-/-- The frontier of every nonempty finite planar triangle mesh is infinite. -/
+/-- The frontier of every nonempty finite planar triangle mesh is infinite.
+@isnad1 id=infinite.1h1v.s5.ab9f20fae101 from=translated src=- shape=07e8e70a vocab=efd0ec08
+-/
 theorem frontier_infinite_of_triangles_nonempty (hne : M.triangles.Nonempty) :
     (frontier M.toPlaneComplex.support).Infinite := by
   classical
@@ -1727,6 +1871,9 @@ theorem frontier_infinite_of_triangles_nonempty (hne : M.triangles.Nonempty) :
     exact Or.inr hqInterior
   exact Set.disjoint_left.mp hdisjoint (hallInterior hqComplFrontier) hqInterior
 
+/--
+@isnad1 id=ex.1h1v.s4.9ac34f1f0f7e from=translated src=- shape=7070220c vocab=d1dd3183
+-/
 theorem exists_free_triangle_of_triangles_nonempty (hne : M.triangles.Nonempty) :
     ∃ t, M.IsFreeTriangle t :=
   M.exists_free_triangle (M.frontier_infinite_of_triangles_nonempty hne)

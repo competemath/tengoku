@@ -30,6 +30,9 @@ namespace CKN.Foundation.Parabolic
 abbrev coveringParabolicMetricBall (c : ParabolicPoint) (r : ℝ) : Set ParabolicPoint :=
   @Metric.ball ParabolicPoint parabolicPseudoMetricSpace c r
 
+/--
+@isnad1 id=measurab.0h3v.s3.a995a987a623 from=translated src=- shape=448046c7 vocab=22c8ccfa
+-/
 lemma measurableSet_parabolicCylinder (x : Vec3) (t r : ℝ) :
     MeasurableSet (parabolicCylinder x t r) := by
   rw [parabolicCylinder]

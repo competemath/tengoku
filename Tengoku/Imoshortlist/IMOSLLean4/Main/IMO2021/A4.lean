@@ -36,12 +36,16 @@ namespace IMO2021A4
 
 /-! ### Subset relations of intervals -/
 
-/-- If `c ≤ a`, then `[a, b] ⊆ [c, ∞)`. -/
+/-- If `c ≤ a`, then `[a, b] ⊆ [c, ∞)`.
+@isnad1 id=le.1h4v.s5.6dd8ac0b5389 from=translated src=- shape=7f01347e vocab=458b1cdd
+-/
 theorem Icc_subset_Ici [Preorder α] {a b c : α} (h : c ≤ a) :
     Set.Icc a b ⊆ Set.Ici c :=
   λ _ hd ↦ Set.mem_Ici.mpr (h.trans (Set.mem_Icc.mp hd).1)
 
-/-- If `b ≤ c`, then `[a, b] ⊆ (-∞, c]`. -/
+/-- If `b ≤ c`, then `[a, b] ⊆ (-∞, c]`.
+@isnad1 id=le.1h4v.s5.ce025d53fc73 from=translated src=- shape=febabc0b vocab=077c9fd8
+-/
 theorem Icc_subset_Iic [Preorder α] {a b c : α} (h : b ≤ c) :
     Set.Icc a b ⊆ Set.Iic c :=
   λ _ hd ↦ Set.mem_Iic.mpr ((Set.mem_Icc.mp hd).2.trans h)
@@ -57,11 +61,15 @@ variable [Semiring 𝕜] [PartialOrder 𝕜]
   [AddCommMonoid β] [PartialOrder β] [SMul 𝕜 β] (g : E → β) (hg : ConcaveOn 𝕜 (Ici 0) g)
 include g hg
 
-/-- If `g` is concave on non-negative inputs, then `t ↦ g(|t|)` is concave on `[0, ∞)`. -/
+/-- If `g` is concave on non-negative inputs, then `t ↦ g(|t|)` is concave on `[0, ∞)`.
+@isnad1 id=concaveo.1h4v.s7.36cb48c0e0ab from=translated src=- shape=ea910fb1 vocab=def17cb4
+-/
 theorem ConcaveOn_abs_zero_Ici : ConcaveOn 𝕜 (Ici 0) (λ t ↦ g |t|) :=
   hg.congr λ _ hx ↦ congrArg g (abs_of_nonneg (mem_Ici.mp hx)).symm
 
-/-- If `g` is concave on non-negative inputs, then `t ↦ g(|t|)` is concave on `(-∞, 0]`. -/
+/-- If `g` is concave on non-negative inputs, then `t ↦ g(|t|)` is concave on `(-∞, 0]`.
+@isnad1 id=concaveo.1h4v.s7.6bf7f6ae9623 from=translated src=- shape=1ca004b9 vocab=9dec2d07
+-/
 theorem ConcaveOn_abs_zero_Iic : ConcaveOn 𝕜 (Iic 0) (λ t ↦ g |t|) := by
   have h : (-LinearMap.id (R := 𝕜) (M := E)) ⁻¹' Ici 0 = Iic 0 := by
     ext x; change -x ∈ Ici 0 ↔ x ∈ Iic 0
@@ -71,7 +79,9 @@ theorem ConcaveOn_abs_zero_Iic : ConcaveOn 𝕜 (Iic 0) (λ t ↦ g |t|) := by
   simpa only [abs_neg] using h
 
 /-- If `g` is concave on non-negative inputs, then for any `x ∈ E`,
-  the function `t ↦ g(|x - t|)` is concave on `(-∞, x]`. -/
+  the function `t ↦ g(|x - t|)` is concave on `(-∞, x]`.
+@isnad1 id=concaveo.1h5v.s7.4706b3400c1c from=translated src=- shape=d10cc34b vocab=47053d1e
+-/
 theorem ConcaveOn_abs_sub_Ici (x) : ConcaveOn 𝕜 (Iic x) (λ t ↦ g |x - t|) := by
   have h : (-x + ·) ⁻¹' Iic 0 = Iic x :=
     ext λ x ↦ by rw [preimage_const_add_Iic, sub_neg_eq_add, zero_add, mem_Iic]
@@ -79,7 +89,9 @@ theorem ConcaveOn_abs_sub_Ici (x) : ConcaveOn 𝕜 (Iic x) (λ t ↦ g |x - t|) 
   exact h ▸ (ConcaveOn_abs_zero_Iic g hg).translate_left (-x)
 
 /-- If `g` is concave on non-negative inputs, then for any `x ∈ E`,
-  the function `t ↦ g(|x - t|)` is concave on `[x, ∞)`. -/
+  the function `t ↦ g(|x - t|)` is concave on `[x, ∞)`.
+@isnad1 id=concaveo.1h5v.s7.724c5262714c from=translated src=- shape=edcb8300 vocab=ae19a682
+-/
 theorem ConcaveOn_abs_sub_Iic (x) : ConcaveOn 𝕜 (Ici x) (λ t ↦ g |x - t|) := by
   have h : (-x + ·) ⁻¹' Ici 0 = Ici x :=
     ext λ x ↦ by rw [preimage_const_add_Ici, sub_neg_eq_add, zero_add, mem_Ici]
@@ -97,7 +109,9 @@ variable [Semiring 𝕜] [PartialOrder 𝕜] [AddCommMonoid E]
 include hs hg
 
 /-- The sum of concave functions on a subset is concave on the same subset.
-  This should eventually get into `mathlib`. -/
+  This should eventually get into `mathlib`.
+@isnad1 id=concaveo.2h7v.s7.1164c3c7cd9b from=translated src=- shape=9e399aee vocab=c882f8e6
+-/
 theorem ConcaveOn_sum : ConcaveOn 𝕜 s (∑ i ∈ S, g i) := by
   induction S using Finset.induction_on with
   | empty => exact concaveOn_const 0 hs
@@ -107,7 +121,9 @@ theorem ConcaveOn_sum : ConcaveOn 𝕜 s (∑ i ∈ S, g i) := by
       exact hg.1.add (h hg.2)
 
 /-- The sum of concave functions on a subset is concave on the same subset.
-  This should eventually get into `mathlib`. -/
+  This should eventually get into `mathlib`.
+@isnad1 id=concaveo.3h8v.s7.6bba172934ad from=translated src=- shape=caf253e7 vocab=c882f8e6
+-/
 theorem ConcaveOn_of_sum_eq {f : E → β} (hf : ∀ x, f x = ∑ i ∈ S, g i x) :
     ConcaveOn 𝕜 s f := by
   obtain rfl : f = ∑ i ∈ S, g i := funext λ x ↦ (hf x).trans (Finset.sum_apply _ _ _).symm
@@ -116,7 +132,9 @@ theorem ConcaveOn_of_sum_eq {f : E → β} (hf : ∀ x, f x = ∑ i ∈ S, g i x
 end
 
 /-- If a function is concave on a closed interval, then the function attains its minimum
-  on the interval at one of the endpoints. This should eventually get into `mathlib`. -/
+  on the interval at one of the endpoints. This should eventually get into `mathlib`.
+@isnad1 id=le.3h6v.s8.ba846728d28c from=translated src=- shape=ea933201 vocab=32536211
+-/
 theorem ConcaveOn_min_endpoints_le [Field 𝕜] [LinearOrder 𝕜] [IsStrictOrderedRing 𝕜]
     [AddCommGroup β] [LinearOrder β] [IsOrderedAddMonoid β] [Module 𝕜 β]
     [IsStrictOrderedModule 𝕜 β] {f : 𝕜 → β} (hf : ConcaveOn 𝕜 (Set.Icc x y) f)
@@ -138,7 +156,9 @@ def targetSum (S : Finset ι) (x : ι → 𝕜) : β :=
   ∑ p ∈ S ×ˢ S, (g |x p.1 + x p.2| - g |x p.1 - x p.2|)
 
 /-- If `x_i = 0`, then the value of the target sum with
-  index set `S ∪ {i}` and index set `S` are equal. -/
+  index set `S ∪ {i}` and index set `S` are equal.
+@isnad1 id=eq.1h7v.s6.36c3fb6b721f from=translated src=- shape=83579140 vocab=94b2d002
+-/
 theorem targetSum_insert_of_eq_zero
     [DecidableEq ι] (S : Finset ι) (x : ι → 𝕜) (hi : x i = 0) :
     targetSum g (insert i S) x = targetSum g S x := by
@@ -160,7 +180,9 @@ theorem targetSum_insert_of_eq_zero
         rw [sum_product]
 
 /-- If `i₁ ≠ i₂ ∉ S` and `x_{i₁} + x_{i₂} = 0`, then the value of the target sum with
-  index set `S ∪ {i, j}` and index set `S` are equal. -/
+  index set `S ∪ {i, j}` and index set `S` are equal.
+@isnad1 id=eq.3h8v.s7.2e5b781e4942 from=translated src=- shape=0c1fdbae vocab=1c52af8d
+-/
 theorem targetSum_insert_of_add_eq_zero [DecidableEq ι] (S : Finset ι)
     (hi : Disjoint {i₁, i₂} S) (hi0 : i₁ ≠ i₂) (x : ι → 𝕜) (hi1 : x i₁ + x i₂ = 0) :
     targetSum g ({i₁, i₂} ∪ S) x = targetSum g S x :=
@@ -191,7 +213,9 @@ variable [Field 𝕜] [LinearOrder 𝕜] [IsStrictOrderedRing 𝕜] [AddCommGrou
 include hg hg0
 
 /-- If `S` is non-empty, then there exists a pair `(i₁, i₂) ∈ S^2` such that the target sum
-  with `x_i - (x_{i_1} + x_{i_2})/2` is less than or equal to the target sum with `x_i`. -/
+  with `x_i - (x_{i_1} + x_{i_2})/2` is less than or equal to the target sum with `x_i`.
+@isnad1 id=ex.3h6v.s9.784c6417873d from=translated src=- shape=e3ed2d94 vocab=933a070c
+-/
 theorem exists_targetSum_shift_le_targetSum
     [DecidableEq ι] {S : Finset ι} (hS : S.Nonempty) (x : ι → 𝕜) :
     ∃ p ∈ S ×ˢ S, targetSum g S (λ i ↦ x i - (x p.1 + x p.2) / 2) ≤ targetSum g S x := by
@@ -276,7 +300,9 @@ theorem exists_targetSum_shift_le_targetSum
   rcases h with h | h
   exacts [⟨pₙ, hpₙ, h⟩, ⟨pₚ, hpₚ, h⟩]
 
-/-- If `g` is monotone and concave on `[0, ∞)`, then the target sum is nonnegative. -/
+/-- If `g` is monotone and concave on `[0, ∞)`, then the target sum is nonnegative.
+@isnad1 id=le.2h6v.s8.e829ee920065 from=translated src=- shape=63797873 vocab=a17673b2
+-/
 theorem targetSum_nonneg_of_monotone_concave [DecidableEq ι] (S : Finset ι) (x : ι → 𝕜) :
     targetSum g S x ≥ 0 := by
   ---- Proceed by strong induction on `S`.
@@ -314,7 +340,9 @@ theorem targetSum_nonneg_of_monotone_concave [DecidableEq ι] (S : Finset ι) (x
     _ ≤ targetSum g S x := h
 
 /-- If `g` is monotone and concave on `[0, ∞)`,
-  then `∑_{i, j ∈ S} g(|x_i - x_j|) ≤ ∑_{i, j ∈ S} g(|x_i + x_j|)`. -/
+  then `∑_{i, j ∈ S} g(|x_i - x_j|) ≤ ∑_{i, j ∈ S} g(|x_i + x_j|)`.
+@isnad1 id=le.2h6v.s9.1f65950e4cb1 from=translated src=- shape=7ba2ed2d vocab=80a4c9b5
+-/
 theorem targetSum_nonneg_of_monotone_concave' [DecidableEq ι] (S : Finset ι) (x : ι → 𝕜) :
     ∑ p ∈ S ×ˢ S, g |x p.1 - x p.2| ≤ ∑ p ∈ S ×ˢ S, g |x p.1 + x p.2| := by
   rw [← sub_nonneg, ← sum_sub_distrib]
@@ -322,7 +350,9 @@ theorem targetSum_nonneg_of_monotone_concave' [DecidableEq ι] (S : Finset ι) (
 
 end
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=le.0h3v.s6.c66193f99c4e from=translated src=- shape=10f9e61d vocab=c5f06aed
+-/
 theorem final_solution [DecidableEq ι] (S : Finset ι) (x : ι → ℝ) :
     ∑ p ∈ S ×ˢ S, √|x p.1 - x p.2| ≤ ∑ p ∈ S ×ˢ S, √|x p.1 + x p.2| :=
   targetSum_nonneg_of_monotone_concave' _ (λ _ _ _ ↦ Real.sqrt_le_sqrt)

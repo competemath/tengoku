@@ -28,6 +28,9 @@ open MeasureTheory
 
 namespace CKN
 
+/--
+@isnad1 id=eq.6h7v.s9.286066b9ce78 from=translated src=- shape=150e1899 vocab=844b1505
+-/
 theorem fderiv_mollify_eq_mollify_of_hasWeakPartialDerivOn
     {d : ℕ} {U : Set (Vec d)} (_ : IsOpen U)
     {u gi : Vec d → ℝ} {i : Fin d} (hu : MeasureTheory.LocallyIntegrable u volume)
@@ -170,6 +173,9 @@ theorem fderiv_mollify_eq_mollify_of_hasWeakPartialDerivOn
     _ = ∫ y, gi y * φ y ∂volume := by rw [hweakGlobal]; simp
     _ = ∫ t, mollifier (d := d) ε hε t * gi (x - t) ∂volume := hright.symm
 
+/--
+@isnad1 id=eq.8h8v.s9.8000b1efba01 from=translated src=- shape=b404be61 vocab=e1a7f242
+-/
 theorem fderiv_mollify_eq_mollify_on_compact
     {d : ℕ} {U K : Set (Vec d)} (hU : IsOpen U) (_ : IsCompact K)
     {u gi : Vec d → ℝ} {i : Fin d} (hu : MeasureTheory.LocallyIntegrable u volume)

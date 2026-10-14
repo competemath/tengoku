@@ -31,6 +31,9 @@ namespace Dipath
 
 /-### Stretching a path that only lives in the first half of the unit interval upwards -/
 
+/--
+@isnad1 id=mem.1h4v.s6.6de3d43add6d from=translated src=- shape=d016ba4f vocab=f784b4f7
+-/
 lemma double_mem_I_of_bounded {t₀ t₁ : I} (t : I) (γ : Dipath t₀ t₁) (ht₁ : ↑t₁ ≤ (2⁻¹ : ℝ))
     : 2 * (γ t : ℝ) ∈ I :=
   double_mem_I <| le_trans (monotone_path_bounded γ.dipath_toPath t).2 (ht₁)
@@ -44,6 +47,9 @@ def stretchUpPath {t₀ t₁ : I} (γ : Dipath t₀ t₁) (ht₁ : ↑t₁ ≤ (
     source' := by simp
     target' := by simp
 
+/--
+@isnad1 id=isdipath.1h3v.s7.c3fddb0e43d5 from=translated src=- shape=27a343db vocab=4e224572
+-/
 lemma isDipath_stretch_up {t₀ t₁ : I} (γ : Dipath t₀ t₁) (ht₁ : ↑t₁ ≤ (2⁻¹ : ℝ)) :
   IsDipath (stretchUpPath γ ht₁) := by
   intros x y hxy
@@ -62,6 +68,9 @@ def stretchUp {t₀ t₁ : I} (γ : Dipath t₀ t₁) (ht₁ : ↑t₁ ≤ (2⁻
 
 /-### Stretching a path that only lives in the second half of the unit interval downwards -/
 
+/--
+@isnad1 id=mem.1h4v.s6.7dd5a420ed3d from=translated src=- shape=969b577a vocab=7cd9116b
+-/
 lemma double_sub_one_mem_I_of_bounded {t₀ t₁ : I} (t : I) (γ : Dipath t₀ t₁) (ht₀ : (2⁻¹ : ℝ) ≤ ↑t₀)
  : 2 * (γ t : ℝ) - 1 ∈ I :=
   double_sub_one_mem_I <| le_trans ht₀ (monotone_path_bounded γ.dipath_toPath t).1
@@ -75,6 +84,9 @@ def stretchDownPath {t₀ t₁ : I} (γ : Dipath t₀ t₁) (ht₀ : (2⁻¹ : �
     source' := by simp
     target' := by simp
 
+/--
+@isnad1 id=isdipath.1h3v.s7.f1be9eee2efc from=translated src=- shape=8520b049 vocab=e1cd57d1
+-/
 lemma isDipath_stretch_down {t₀ t₁ : I} (γ : Dipath t₀ t₁) (ht₀ : (2⁻¹ : ℝ) ≤ ↑t₀) :
   IsDipath (stretchDownPath γ ht₀) := by
   intros x y hxy

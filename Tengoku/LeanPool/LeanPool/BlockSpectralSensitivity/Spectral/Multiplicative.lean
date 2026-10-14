@@ -56,7 +56,9 @@ because it is Mathlib-shaped, not `BSLambda`-shaped.
 
 /-- **Minkowski's inequality** for a finite family of vectors, in sum-of-squares form: if the
 `ℓ²`-norm of each `F y` is at most `t y`, then the `ℓ²`-norm of `∑ y, F y` is at most
-`∑ y, t y`. -/
+`∑ y, t y`.
+@isnad1 id=le.2h4v.s7.e83de0142330 from=translated src=- shape=115d5d54 vocab=8d2b42e3
+-/
 theorem sum_sq_sum_le_sq_sum {X Y : Type*} [Fintype X] [Fintype Y] (F : Y → X → ℝ) (t : Y → ℝ)
     (ht0 : ∀ y, 0 ≤ t y) (ht : ∀ y, ∑ x, F y x ^ 2 ≤ t y ^ 2) :
     ∑ x, (∑ y, F y x) ^ 2 ≤ (∑ y, t y) ^ 2 := by
@@ -92,11 +94,15 @@ def blk (x : Input (W × V)) : W → Input V := Function.curry x
 /-- The string of block values `w ↦ g (blk x w)`, which `comp f g` feeds into `f`. -/
 def topBits (g : Input V → Bool) (x : Input (W × V)) : Input W := fun w ↦ g (blk x w)
 
-/-- `comp f g` is `f` applied to the top bits. -/
+/-- `comp f g` is `f` applied to the top bits.
+@isnad1 id=eq.0h5v.s5.50982dde3ed6 from=translated src=- shape=457c8fdd vocab=3eceb1ea
+-/
 theorem comp_apply_topBits (f : Input W → Bool) (g : Input V → Bool) (x : Input (W × V)) :
     comp f g x = f (topBits g x) := rfl
 
-/-- An input is determined by its blocks. -/
+/-- An input is determined by its blocks.
+@isnad1 id=injectiv.0h2v.s4.68c0b5076697 from=translated src=- shape=7aaf98cd vocab=dee655cb
+-/
 theorem blk_injective : Function.Injective (blk : Input (W × V) → W → Input V) :=
   Function.curry_injective
 
@@ -107,20 +113,28 @@ def setBlk (x : Input (W × V)) (w : W) (z : Input V) : Input (W × V) :=
   Function.uncurry (Function.update (blk x) w z)
 
 /-- The blocks of `setBlk x w z` are the blocks of `x` with the `w`-th one updated.  Every
-other `setBlk` lemma below is this together with Mathlib's `Function.update` API. -/
+other `setBlk` lemma below is this together with Mathlib's `Function.update` API.
+@isnad1 id=eq.0h5v.s5.f020d458c030 from=translated src=- shape=a8a8a823 vocab=87361cf9
+-/
 @[simp] theorem blk_setBlk (x : Input (W × V)) (w : W) (z : Input V) :
     blk (setBlk x w z) = Function.update (blk x) w z := rfl
 
-/-- Writing back the block that is already there does nothing. -/
+/-- Writing back the block that is already there does nothing.
+@isnad1 id=eq.0h4v.s4.82bd97f8d77d from=translated src=- shape=977f6290 vocab=31ab8f1b
+-/
 @[simp] theorem setBlk_blk_self (x : Input (W × V)) (w : W) : setBlk x w (blk x w) = x :=
   blk_injective (by simp)
 
-/-- Only the last value written to the `w`-th block survives. -/
+/-- Only the last value written to the `w`-th block survives.
+@isnad1 id=eq.0h6v.s5.2e5e8b7a0cd3 from=translated src=- shape=29ad945f vocab=b1833ab3
+-/
 @[simp] theorem setBlk_setBlk (x : Input (W × V)) (w : W) (z z' : Input V) :
     setBlk (setBlk x w z) w z' = setBlk x w z' :=
   blk_injective (by simp)
 
-/-- Overwriting the `w`-th block changes exactly one factor of a product over the blocks. -/
+/-- Overwriting the `w`-th block changes exactly one factor of a product over the blocks.
+@isnad1 id=eq.0h7v.s6.8942423ce1bc from=translated src=- shape=c38da670 vocab=6e4982c4
+-/
 theorem prod_blk_setBlk {M : Type*} [Fintype W] [CommMonoid M]
     (u : Input V → M) (x : Input (W × V)) (w : W) (z : Input V) :
     ∏ w' : W, u (blk (setBlk x w z) w') = u z * ∏ w' ∈ Finset.univ.erase w, u (blk x w') := by
@@ -130,7 +144,9 @@ theorem prod_blk_setBlk {M : Type*} [Fintype W] [CommMonoid M]
   exact Finset.prod_congr rfl fun w' hw' ↦
     congrArg u (Function.update_of_ne (Finset.ne_of_mem_erase hw') z (blk x))
 
-/-- Flipping the coordinate `(w, v)` flips the coordinate `v` inside the `w`-th block. -/
+/-- Flipping the coordinate `(w, v)` flips the coordinate `v` inside the `w`-th block.
+@isnad1 id=eq.0h5v.s6.f247c8cab5a2 from=translated src=- shape=a32ef952 vocab=7a893036
+-/
 theorem flipSet_prod_singleton [DecidableEq V] (x : Input (W × V)) (w : W) (v : V) :
     flipSet x {(w, v)} = setBlk x w (flipSet (blk x w) {v}) := by
   refine blk_injective (funext fun w' ↦ ?_)
@@ -145,18 +161,24 @@ theorem flipSet_prod_singleton [DecidableEq V] (x : Input (W × V)) (w : W) (v :
     funext v'
     simp [blk, flipSet, hw, Prod.ext_iff]
 
-/-- The `w`-th top bit of `setBlk x w z` is the value of `g` on the new block. -/
+/-- The `w`-th top bit of `setBlk x w z` is the value of `g` on the new block.
+@isnad1 id=eq.0h6v.s5.a03804c95d68 from=translated src=- shape=f6c1d18e vocab=7731e8ef
+-/
 theorem topBits_setBlk_apply_self (g : Input V → Bool) (x : Input (W × V)) (w : W)
     (z : Input V) : topBits g (setBlk x w z) w = g z := by
   simp [topBits]
 
-/-- Away from `w`, the top bits of `setBlk x w z` are those of `x`. -/
+/-- Away from `w`, the top bits of `setBlk x w z` are those of `x`.
+@isnad1 id=eq.1h7v.s5.7505edeff8d4 from=translated src=- shape=53b79fbb vocab=7731e8ef
+-/
 theorem topBits_setBlk_apply_of_ne (g : Input V → Bool) (x : Input (W × V)) (w : W)
     (z : Input V) {w' : W} (h : w' ≠ w) :
     topBits g (setBlk x w z) w' = topBits g x w' := by
   simp [topBits, Function.update_of_ne h]
 
-/-- Rewriting the `w`-th block without changing its `g`-value leaves the top bits alone. -/
+/-- Rewriting the `w`-th block without changing its `g`-value leaves the top bits alone.
+@isnad1 id=eq.1h6v.s5.6c5be50c31fc from=translated src=- shape=c727bade vocab=79858950
+-/
 theorem topBits_setBlk_of_eq (g : Input V → Bool) (x : Input (W × V)) (w : W) (z : Input V)
     (h : g z = g (blk x w)) :
     topBits g (setBlk x w z) = topBits g x := by
@@ -164,7 +186,9 @@ theorem topBits_setBlk_of_eq (g : Input V → Bool) (x : Input (W × V)) (w : W)
   rcases eq_or_ne w' w with rfl | hw
   exacts [(topBits_setBlk_apply_self g x w' z).trans h, topBits_setBlk_apply_of_ne g x w z hw]
 
-/-- Rewriting the `w`-th block so as to change its `g`-value flips the `w`-th top bit. -/
+/-- Rewriting the `w`-th block so as to change its `g`-value flips the `w`-th top bit.
+@isnad1 id=eq.1h6v.s6.97ceeb1b3dd3 from=translated src=- shape=3d0acae2 vocab=b13699aa
+-/
 theorem topBits_setBlk_of_ne (g : Input V → Bool) (x : Input (W × V)) (w : W) (z : Input V)
     (h : g z ≠ g (blk x w)) :
     topBits g (setBlk x w z) = flipSet (topBits g x) {w} := by
@@ -176,7 +200,9 @@ theorem topBits_setBlk_of_ne (g : Input V → Bool) (x : Input (W × V)) (w : W)
       flipSet_apply_of_notMem (Finset.notMem_singleton.mpr hw)]
 
 /-- If the top bits of `x` disagree with `c` at some coordinate other than `w`, then no
-rewriting of the `w`-th block lands in the fibre of `topBits g` over `c`. -/
+rewriting of the `w`-th block lands in the fibre of `topBits g` over `c`.
+@isnad1 id=ne.2h8v.s5.9bd25a08fd46 from=translated src=- shape=8d29a907 vocab=7731e8ef
+-/
 theorem topBits_setBlk_ne (g : Input V → Bool) (x : Input (W × V)) (w : W) {c : Input W}
     {w' : W} (hw' : w' ≠ w) (h : topBits g x w' ≠ c w') (z : Input V) :
     topBits g (setBlk x w z) ≠ c := by
@@ -184,7 +210,9 @@ theorem topBits_setBlk_ne (g : Input V → Bool) (x : Input (W × V)) (w : W) {c
   rw [← topBits_setBlk_apply_of_ne g x w z hw', hcon]
 
 /-- If the top bits of `x` already agree with `c` away from `w`, then `setBlk x w z` lies in the
-fibre of `topBits g` over `c` exactly when `g z` is the `w`-th bit of `c`. -/
+fibre of `topBits g` over `c` exactly when `g z` is the `w`-th bit of `c`.
+@isnad1 id=iff.1h7v.s6.c73432546c41 from=translated src=- shape=d63ebff2 vocab=7731e8ef
+-/
 theorem topBits_setBlk_eq_iff (g : Input V → Bool) (x : Input (W × V)) (w : W) {c : Input W}
     (hc : ∀ w' : W, w' ≠ w → topBits g x w' = c w') (z : Input V) :
     topBits g (setBlk x w z) = c ↔ g z = c w := by
@@ -202,7 +230,9 @@ variable {W V : Type*} [Fintype W] [DecidableEq W] [Fintype V] [DecidableEq V]
 /-! ### The adjacency matrix of a composition -/
 
 /-- An edge of the sensitivity graph of `comp f g` is a `g`-sensitive flip inside one block
-whose effect on the top bits is an `f`-sensitive flip. -/
+whose effect on the top bits is an `f`-sensitive flip.
+@isnad1 id=eq.0h7v.s7.d2c29bfbd3e9 from=translated src=- shape=2d90d58a vocab=ed4e386d
+-/
 theorem adj_comp_flip (f : Input W → Bool) (g : Input V → Bool) (x : Input (W × V)) (w : W)
     (v : V) :
     adj (comp f g) x (flipSet x {(w, v)})
@@ -223,7 +253,9 @@ theorem adj_comp_flip (f : Input W → Bool) (g : Input V → Bool) (x : Input (
       hammingDist_flipSet_singleton, hammingDist_flipSet_singleton]
 
 /-- **Master identity.**  `A_{f∘g}` acts on a vector by applying `A_g` inside each block and
-weighting the blocks by the entries of `A_f` at the top bits. -/
+weighting the blocks by the entries of `A_f` at the top bits.
+@isnad1 id=eq.0h6v.s7.101b2a93ec20 from=translated src=- shape=133d63b4 vocab=77a282d4
+-/
 theorem adj_comp_mulVec_apply (f : Input W → Bool) (g : Input V → Bool)
     (ψ : Input (W × V) → ℝ) (x : Input (W × V)) :
     (adj (comp f g) *ᵥ ψ) x
@@ -238,7 +270,9 @@ theorem adj_comp_mulVec_apply (f : Input W → Bool) (g : Input V → Bool)
 /-! ### The upper bound -/
 
 /-- The fibres of `topBits g` partition the inputs, so the squares of the fibrewise truncations
-of `F` sum to `∑ x, F x ^ 2`. -/
+of `F` sum to `∑ x, F x ^ 2`.
+@isnad1 id=eq.0h4v.s7.cabe0a68f83a from=translated src=- shape=6a6b15e5 vocab=bca9bce9
+-/
 theorem sum_sq_fibres (g : Input V → Bool) (F : Input (W × V) → ℝ) :
     ∑ b : Input W, ∑ x : Input (W × V), (if topBits g x = b then F x else 0) ^ 2
       = ∑ x : Input (W × V), F x ^ 2 := by
@@ -251,17 +285,23 @@ theorem sum_sq_fibres (g : Input V → Bool) (F : Input (W × V) → ℝ) :
 noncomputable def fibreNorm (g : Input V → Bool) (ψ : Input (W × V) → ℝ) (b : Input W) : ℝ :=
   Real.sqrt (∑ x : Input (W × V), (if topBits g x = b then ψ x else 0) ^ 2)
 
-/-- Fibre norms are nonnegative. -/
+/-- Fibre norms are nonnegative.
+@isnad1 id=le.0h5v.s5.594ad751d939 from=translated src=- shape=568173e4 vocab=8b3544da
+-/
 theorem fibreNorm_nonneg (g : Input V → Bool) (ψ : Input (W × V) → ℝ) (b : Input W) :
     0 ≤ fibreNorm g ψ b :=
   Real.sqrt_nonneg _
 
-/-- The defining property of the fibre norm, with the square root cleared. -/
+/-- The defining property of the fibre norm, with the square root cleared.
+@isnad1 id=eq.0h5v.s7.cc2b77fcb806 from=translated src=- shape=615ae34e vocab=34eb9657
+-/
 theorem sq_fibreNorm (g : Input V → Bool) (ψ : Input (W × V) → ℝ) (b : Input W) :
     fibreNorm g ψ b ^ 2 = ∑ x : Input (W × V), (if topBits g x = b then ψ x else 0) ^ 2 :=
   Real.sq_sqrt (Finset.sum_nonneg fun _ _ ↦ sq_nonneg _)
 
-/-- The fibre norms of `ψ` recombine into its `ℓ²`-norm. -/
+/-- The fibre norms of `ψ` recombine into its `ℓ²`-norm.
+@isnad1 id=eq.0h4v.s7.d6b93a15098e from=translated src=- shape=24e0e203 vocab=b5039c46
+-/
 theorem sum_sq_fibreNorm (g : Input V → Bool) (ψ : Input (W × V) → ℝ) :
     ∑ b : Input W, fibreNorm g ψ b ^ 2 = ∑ x : Input (W × V), ψ x ^ 2 :=
   (Finset.sum_congr rfl fun b _ ↦ sq_fibreNorm g ψ b).trans (sum_sq_fibres g ψ)
@@ -277,7 +317,9 @@ def blockEquiv (w : W) :
   right_inv x := by simp
 
 /-- Every input decomposes as a value for the `w`-th block together with an input whose `w`-th
-block is zero, so a sum over all inputs splits accordingly. -/
+block is zero, so a sum over all inputs splits accordingly.
+@isnad1 id=eq.0h4v.s8.0898eb5c73f2 from=translated src=- shape=57cc003f vocab=f7c89ee9
+-/
 theorem sum_setBlk (w : W) (F : Input (W × V) → ℝ) :
     ∑ y : {x : Input (W × V) // blk x w = zeroInput V}, ∑ a : Input V, F (setBlk y.1 w a)
       = ∑ x : Input (W × V), F x := by
@@ -286,7 +328,9 @@ theorem sum_setBlk (w : W) (F : Input (W × V) → ℝ) :
   exact Equiv.sum_comp (blockEquiv (V := V) w) F
 
 /-- Applying `A_g` inside the block `w` and the identity elsewhere is an operator of norm at
-most `lambda(g)` from the fibre of `topBits g` over `b^w` to the fibre over `b`. -/
+most `lambda(g)` from the fibre of `topBits g` over `b^w` to the fibre over `b`.
+@isnad1 id=le.0h6v.s7.37aec2116d5c from=translated src=- shape=e6eb58f2 vocab=bcf49cb3
+-/
 theorem sum_sq_block_le (g : Input V → Bool) (ψ : Input (W × V) → ℝ) (b : Input W) (w : W) :
     ∑ x : Input (W × V),
         (if topBits g x = b then (adj g *ᵥ fun z ↦ ψ (setBlk x w z)) (blk x w) else 0) ^ 2
@@ -330,7 +374,9 @@ theorem sum_sq_block_le (g : Input V → Bool) (ψ : Input (W × V) → ℝ) (b 
     simp [topBits_setBlk_ne g y.1 w hw'ne hw', topBits_setBlk_ne g y.1 w hw'ne hw'flip]
 
 /-- The `w`-th summand of the master identity, restricted to the fibre of `topBits g` over `b`.
-This is `sum_sq_block_le` with the constant `A_f b b^w` pulled out of the sum. -/
+This is `sum_sq_block_le` with the constant `A_f b b^w` pulled out of the sum.
+@isnad1 id=le.0h7v.s8.5a593ffc3eb7 from=translated src=- shape=7df15134 vocab=bcf49cb3
+-/
 theorem sum_sq_fibre_summand_le (f : Input W → Bool) (g : Input V → Bool)
     (ψ : Input (W × V) → ℝ) (b : Input W) (w : W) :
     ∑ x : Input (W × V), (if topBits g x = b then
@@ -348,7 +394,9 @@ theorem sum_sq_fibre_summand_le (f : Input W → Bool) (g : Input V → Bool)
 /-- **The fibrewise bound.**  On the fibre of `topBits g` over `b`, the master identity writes
 `A_{f∘g} ψ` as a sum of `#W` vectors whose norms `sum_sq_fibre_summand_le` controls; Minkowski's
 inequality then bounds the fibre by `lambda(g)` times the value at `b` of `A_f` applied to the
-vector of fibre norms of `ψ`. -/
+vector of fibre norms of `ψ`.
+@isnad1 id=le.0h6v.s8.8393d9dac560 from=translated src=- shape=d8724e29 vocab=d4f6d209
+-/
 theorem sum_sq_fibre_adj_comp_mulVec_le (f : Input W → Bool) (g : Input V → Bool)
     (ψ : Input (W × V) → ℝ) (b : Input W) :
     ∑ x : Input (W × V), (if topBits g x = b then (adj (comp f g) *ᵥ ψ) x else 0) ^ 2
@@ -375,7 +423,9 @@ theorem sum_sq_fibre_adj_comp_mulVec_le (f : Input W → Bool) (g : Input V → 
         sum_sq_sum_le_sq_sum _ _ ht0 (sum_sq_fibre_summand_le f g ψ b)
     _ = lam g ^ 2 * ((adj f *ᵥ fibreNorm g ψ) b) ^ 2 := by rw [htsum, mul_pow]
 
-/-- The operator bound for `A_{f∘g}`, in sum-of-squares form. -/
+/-- The operator bound for `A_{f∘g}`, in sum-of-squares form.
+@isnad1 id=le.0h5v.s8.04e7f93fb564 from=translated src=- shape=74bf0177 vocab=ff883d0b
+-/
 theorem sum_sq_adj_comp_mulVec_le (f : Input W → Bool) (g : Input V → Bool)
     (ψ : Input (W × V) → ℝ) :
     ∑ x, (adj (comp f g) *ᵥ ψ) x ^ 2 ≤ (lam f * lam g) ^ 2 * ∑ x, ψ x ^ 2 :=
@@ -392,7 +442,9 @@ theorem sum_sq_adj_comp_mulVec_le (f : Input W → Bool) (g : Input V → Bool)
         rw [sum_sq_fibreNorm]
         ring
 
-/-- **Submultiplicativity of `lambda`.** -/
+/-- **Submultiplicativity of `lambda`.**
+@isnad1 id=le.0h4v.s6.e601064b4338 from=translated src=- shape=f32ec214 vocab=1a0522a2
+-/
 theorem lam_comp_le (f : Input W → Bool) (g : Input V → Bool) :
     lam (comp f g) ≤ lam f * lam g :=
   (lam_le_l2_opNorm_adj (comp f g)).trans
@@ -402,7 +454,9 @@ theorem lam_comp_le (f : Input W → Bool) (g : Input V → Bool) :
 /-! ### The lower bound -/
 
 /-- The support of an eigenvector for a nonzero eigenvalue meets both sides of the
-bipartition. -/
+bipartition.
+@isnad1 id=ex.3h5v.s7.b4397dc9717f from=translated src=- shape=d58b1937 vocab=c03140e7
+-/
 theorem exists_apply_eq_and_ne_zero (g : Input V → Bool) {μ : ℝ} (hμ : μ ≠ 0)
     {u : Input V → ℝ} (hu : u ≠ 0) (hev : adj g *ᵥ u = μ • u) (β : Bool) :
     ∃ a : Input V, g a = β ∧ u a ≠ 0 := by
@@ -423,7 +477,9 @@ theorem exists_apply_eq_and_ne_zero (g : Input V → Bool) {μ : ℝ} (hμ : μ 
 /-- **The block step of the product eigenvector computation.**  Applying `A_g` inside the
 `w`-th block to `x ↦ v (topBits g x) * ∏ w, u (blk x w)` multiplies it by `lambda(g)` and
 flips the `w`-th top bit: only blocks `z` adjacent to `blk x w` contribute, and for those the
-top bits change exactly at `w`. -/
+top bits change exactly at `w`.
+@isnad1 id=eq.1h7v.s7.d3ef1f84dd42 from=translated src=- shape=a33ea3b6 vocab=045c9949
+-/
 theorem adj_mulVec_block_prod (g : Input V → Bool) {u : Input V → ℝ} (v : Input W → ℝ)
     (hu : adj g *ᵥ u = lam g • u) (x : Input (W × V)) (w : W) :
     (adj g *ᵥ fun z : Input V ↦
@@ -455,7 +511,9 @@ theorem adj_mulVec_block_prod (g : Input V → Bool) {u : Input V → ℝ} (v : 
   ring
 
 /-- The product eigenvector: if `u` and `v` are eigenvectors of `A_g` and `A_f` then
-`x ↦ v (topBits g x) * ∏ w, u (blk x w)` is an eigenvector of `A_{f∘g}`. -/
+`x ↦ v (topBits g x) * ∏ w, u (blk x w)` is an eigenvector of `A_{f∘g}`.
+@isnad1 id=eq.2h6v.s8.34ddb423b2c0 from=translated src=- shape=dd1496a4 vocab=3e7a6aaf
+-/
 theorem adj_comp_mulVec_prod (f : Input W → Bool) (g : Input V → Bool) {u : Input V → ℝ}
     {v : Input W → ℝ} (hu : adj g *ᵥ u = lam g • u) (hv : adj f *ᵥ v = lam f • v) :
     adj (comp f g) *ᵥ (fun x ↦ v (topBits g x) * ∏ w, u (blk x w))
@@ -480,7 +538,9 @@ theorem adj_comp_mulVec_prod (f : Input W → Bool) (g : Input V → Bool) {u : 
   exact Finset.sum_congr rfl fun w _ ↦ by rw [adj_mulVec_block_prod g v hu x w]
 
 omit [DecidableEq W] [Fintype V] [DecidableEq V] in
-/-- The product eigenvector is nonzero. -/
+/-- The product eigenvector is nonzero.
+@isnad1 id=ne.2h5v.s7.1f5ba834bbb7 from=translated src=- shape=789b004e vocab=1ecb4a68
+-/
 theorem prod_eigenvector_ne_zero (g : Input V → Bool) {u : Input V → ℝ} {v : Input W → ℝ}
     (hboth : ∀ β : Bool, ∃ a : Input V, g a = β ∧ u a ≠ 0) (hv : v ≠ 0) :
     (fun x : Input (W × V) ↦ v (topBits g x) * ∏ w, u (blk x w)) ≠ 0 := by
@@ -495,7 +555,9 @@ theorem prod_eigenvector_ne_zero (g : Input V → Bool) {u : Input V → ℝ} {v
   rw [Finset.prod_ne_zero_iff]
   exact fun w _ ↦ hua (b w)
 
-/-- **Supermultiplicativity of `lambda`.** -/
+/-- **Supermultiplicativity of `lambda`.**
+@isnad1 id=le.0h4v.s6.968b0b4691d6 from=translated src=- shape=03b8f0d9 vocab=1a0522a2
+-/
 theorem le_lam_comp (f : Input W → Bool) (g : Input V → Bool) :
     lam f * lam g ≤ lam (comp f g) := by
   rcases eq_or_lt_of_le (lam_nonneg g) with hg | hg
@@ -508,14 +570,18 @@ theorem le_lam_comp (f : Input W → Bool) (g : Input V → Bool) :
     (adj_comp_mulVec_prod f g hu hv)
 
 /-- **The composition theorem** (Section 14 of `bs_lambda.txt`, imported there from ABKRT):
-`lambda` is multiplicative under block composition. -/
+`lambda` is multiplicative under block composition.
+@isnad1 id=eq.0h4v.s6.21feb7ee25ac from=translated src=- shape=f32ec214 vocab=64fc3e02
+-/
 theorem lam_comp (f : Input W → Bool) (g : Input V → Bool) :
     lam (comp f g) = lam f * lam g :=
   le_antisymm (lam_comp_le f g) (le_lam_comp f g)
 
 /-! ### Self-composition -/
 
-/-- The one-bit identity function has `lambda = 1`. -/
+/-- The one-bit identity function has `lambda = 1`.
+@isnad1 id=eq.0h2v.s6.d58358a168f5 from=translated src=- shape=6faf4fbe vocab=f0ef9154
+-/
 theorem lam_iterFun_zero (f : Input V → Bool) : lam (iterFun f 0) = 1 := by
   let : Unique (IterCoord V 0) := inferInstanceAs (Unique PUnit)
   refine lam_eq_of_sensAt_eq zero_le_one fun x ↦ ?_
@@ -525,7 +591,9 @@ theorem lam_iterFun_zero (f : Input V → Bool) : lam (iterFun f 0) = 1 := by
     exact Bool.not_ne_self _
   rw [sensAt_eq_card_univ hsc, Fintype.card_unique, Nat.cast_one]
 
-/-- `lambda(F_m) = lambda(f)^m` for the `m`-fold self-composition (Section 14). -/
+/-- `lambda(F_m) = lambda(f)^m` for the `m`-fold self-composition (Section 14).
+@isnad1 id=eq.0h3v.s5.898ae0ae5647 from=translated src=- shape=857c4a01 vocab=a64632ab
+-/
 theorem lam_iterFun_eq (f : Input V → Bool) : ∀ m, lam (iterFun f m) = lam f ^ m
   | 0 => (lam_iterFun_zero f).trans (pow_zero _).symm
   | m + 1 => by

@@ -36,7 +36,9 @@ radius `δ` has the property that the closed `δ`-thickening of that ball is
 still contained in `Ω`, and every translate of the ball whose centre lies
 within distance `δ` of `y₀` is contained in that same thickening. This is the
 uniform room around `closedBall y₀ ε` used in the Caffarelli–Kohn–Nirenberg
-paper (CKN) to slide a localised kernel without leaving `Ω`. -/
+paper (CKN) to slide a localised kernel without leaving `Ω`.
+@isnad1 id=ex.2h4v.s7.9427e0454194 from=translated src=- shape=507853be vocab=add091a1
+-/
 theorem exists_delta_cthickening_subset {d : ℕ} {Ω : Set (Vec d)} (hΩ : IsOpen Ω)
     {ε : ℝ} {y₀ : Vec d} (hy₀ : Metric.closedBall y₀ ε ⊆ Ω) :
     ∃ δ : ℝ, 0 < δ ∧
@@ -65,7 +67,9 @@ function.** If `k` is continuous and vanishes outside the closed ball of radius
 ball `closedBall y ε` contained in `Ω` the product `x ↦ g x * k (x - y)` is
 integrable for Lebesgue measure. This is the local-integrability input in the
 Caffarelli–Kohn–Nirenberg paper (CKN) for a spatially localised kernel acted
-against a locally integrable density. -/
+against a locally integrable density.
+@isnad1 id=integrab.4h6v.s8.ce2a469d8d70 from=translated src=- shape=18ac7ba9 vocab=5ebd801f
+-/
 theorem integrable_mul_translate {d : ℕ} {Ω : Set (Vec d)} {g k : Vec d → ℝ}
     (hg : MeasureTheory.LocallyIntegrableOn g Ω MeasureTheory.volume)
     (hk : Continuous k) {ε : ℝ}
@@ -91,7 +95,9 @@ vanishes outside the closed ball of radius `ε` about the origin, `g` is locally
 integrable on the open set `Ω`, and `closedBall y₀ ε ⊆ Ω`, then the
 parametrised integral `y ↦ ∫ x, g x * k (x - y)` is continuous at `y₀`. This is
 the continuity input in the Caffarelli–Kohn–Nirenberg paper (CKN) that lets a
-localised kernel be slid against a locally integrable density. -/
+localised kernel be slid against a locally integrable density.
+@isnad1 id=continuo.5h6v.s8.57692a968e32 from=translated src=- shape=41df0120 vocab=da25ea18
+-/
 theorem continuousAt_integral_mul_translate {d : ℕ} {Ω : Set (Vec d)} (hΩ : IsOpen Ω)
     {g k : Vec d → ℝ}
     (hg : MeasureTheory.LocallyIntegrableOn g Ω MeasureTheory.volume)

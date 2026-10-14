@@ -64,7 +64,9 @@ private theorem gate_eval_eq_slot {W W' : Nat} (g : Gate Basis.andOr2 W) (hW : W
     Fin.foldl_succ_last, Fin.foldl_zero, hwv]
 
 /-- Wire values agree between `Circuit.wireValue` and `wireValD` for wires
-    in the range `0..N+G-1`. -/
+    in the range `0..N+G-1`.
+@isnad1 id=eq.0h5v.s6.4e30ff03e119 from=translated src=- shape=8de02aab vocab=cf28eac6
+-/
 theorem wireValue_eq_wireValD {N G : Nat} [NeZero N]
     (c : Circuit Basis.andOr2 N 1 G)
     (input : BitString N) (w : Fin (N + G)) :
@@ -118,7 +120,9 @@ theorem wireValue_eq_wireValD {N G : Nat} [NeZero N]
       _ (hgate h').symm (by simp [hgate h']) j
   termination_by w.val
 
-/-- Circuit evaluation agrees with descriptor evaluation. -/
+/-- Circuit evaluation agrees with descriptor evaluation.
+@isnad1 id=eq.0h3v.s6.677044179481 from=translated src=- shape=9fe08511 vocab=283f187c
+-/
 theorem circuit_eval_eq_evalD {N G : Nat} [NeZero N]
     (c : Circuit Basis.andOr2 N 1 G) :
     (fun x => (c.eval x) 0) = evalD (Nat.succ_pos G) (circuitToDesc c) := by
@@ -190,7 +194,9 @@ private theorem wireValD_padDesc_ge {N s s' : Nat} (d : CircDesc N s) (hs : 0 < 
   have hlt : N + s - 1 < N + s := by omega
   exact wireValD_padDesc_lt d hs h x ⟨N + s - 1, by omega⟩ hlt
 
-/-- Padding preserves evaluation. -/
+/-- Padding preserves evaluation.
+@isnad1 id=eq.3h4v.s5.9b28fd04b9af from=translated src=- shape=dd10ea30 vocab=c9b5f4b7
+-/
 theorem evalD_padDesc {N s s' : Nat} (d : CircDesc N s) (hs : 0 < s)
     (h : s ≤ s') (hs' : 0 < s') :
     evalD hs' (padDesc d s' hs h) = evalD hs d := by
@@ -207,7 +213,9 @@ theorem evalD_padDesc {N s s' : Nat} (d : CircDesc N s) (hs : 0 < s)
 
 /-- **Shannon lower bound for circuits**: for N ≥ 6, there exists a Boolean
     function on N inputs that cannot be computed by any fan-in-2 AND/OR
-    circuit of size at most 2^N/(5N). -/
+    circuit of size at most 2^N/(5N).
+@isnad1 id=ex.1h1v.s7.c85ad771a795 from=translated src=- shape=c16dcb9d vocab=730c4eef
+-/
 theorem shannon_lower_bound_circuit (N : Nat) [NeZero N] (hN : 6 ≤ N) :
     ∃ f : BitString N → Bool,
       ∀ G (c : Circuit Basis.andOr2 N 1 G),
@@ -225,7 +233,9 @@ theorem shannon_lower_bound_circuit (N : Nat) [NeZero N] (hN : 6 ≤ N) :
 
 /-- **Schnorr's lower bound for circuits**: any fan-in-2 AND/OR circuit
     computing XOR_N (or its complement) has at least 2(N-1) internal gates,
-    i.e., G + 1 (total gates including output) ≥ 2N - 1. -/
+    i.e., G + 1 (total gates including output) ≥ 2N - 1.
+@isnad1 id=le.2h4v.s6.1b8c4aebe002 from=translated src=- shape=906f1cd5 vocab=3fb6b710
+-/
 theorem schnorr_lower_bound_circuit (N G : Nat) [NeZero N]
     (c : Circuit Basis.andOr2 N 1 G) (comp : Bool)
     (heval : ∀ x, (c.eval x) 0 = comp.xor (Schnorr.xorBool N x))

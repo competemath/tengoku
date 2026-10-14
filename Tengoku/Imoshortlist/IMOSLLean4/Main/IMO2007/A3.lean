@@ -32,12 +32,16 @@ open Finset
 
 variable [Field F] [LinearOrder F] [IsStrictOrderedRing F]
 
-/-- The inequality `(1 + x^2)/(1 + x^4) ≥ 0`. -/
+/-- The inequality `(1 + x^2)/(1 + x^4) ≥ 0`.
+@isnad1 id=le.0h2v.s7.9b26cd43912d from=translated src=- shape=a34b1405 vocab=783c9b6a
+-/
 theorem easy_ineq (x : F) : 0 ≤ (1 + x ^ 2) / (1 + x ^ 4) :=
   div_nonneg (add_nonneg zero_le_one (sq_nonneg x))
     (add_nonneg zero_le_one ((even_two_mul 2).pow_nonneg x))
 
-/-- The inequality `∑_{i ∈ S} (1 + x^{2i})/(1 + x^{4i}) ≥ 0`. -/
+/-- The inequality `∑_{i ∈ S} (1 + x^{2i})/(1 + x^{4i}) ≥ 0`.
+@isnad1 id=le.0h3v.s7.6b5e2c6c3b39 from=translated src=- shape=5adf60f9 vocab=c6d2d3c0
+-/
 theorem sum_easy_ineq (x : F) (S : Finset ℕ) :
     0 ≤ ∑ i ∈ S, (1 + x ^ (2 * i)) / (1 + x ^ (4 * i)) := by
   refine sum_nonneg λ i _ ↦ ?_
@@ -45,7 +49,9 @@ theorem sum_easy_ineq (x : F) (S : Finset ℕ) :
   exact easy_ineq _
 
 /-- The inequality `(1 + x^2)/(1 + x^4) < 1/x` for `0 < x < 1`.
-  Note that this inequality also holds for `x > 1`. -/
+  Note that this inequality also holds for `x > 1`.
+@isnad1 id=lt.2h2v.s8.2f49f0e63b9b from=translated src=- shape=b1f50156 vocab=02f8834d
+-/
 theorem main_ineq {x : F} (hx : 0 < x) (hx0 : x < 1) : (1 + x ^ 2) / (1 + x ^ 4) < x⁻¹ := by
   have h : 3 ≠ 0 := Nat.succ_ne_zero 2
   replace hx0 : 0 < (x ^ 3 - 1) * (x - 1) :=
@@ -59,7 +65,9 @@ theorem main_ineq {x : F} (hx : 0 < x) (hx0 : x < 1) : (1 + x ^ 2) / (1 + x ^ 4)
     _ = 1 + x ^ 4 := by rw [← pow_succ, add_comm]
   rwa [inv_eq_one_div, div_lt_div_iff₀ (add_pos one_pos (pow_pos hx 4)) hx, one_mul]
 
-/-- The inequality `∑_{1 ≤ i ≤ n} (1 + x^{2i})/(1 + x^{4i}) < (1 - x^n)/(x^n (1 - x))`. -/
+/-- The inequality `∑_{1 ≤ i ≤ n} (1 + x^{2i})/(1 + x^{4i}) < (1 - x^n)/(x^n (1 - x))`.
+@isnad1 id=lt.3h3v.s8.31d47f7706c7 from=translated src=- shape=01f21f8c vocab=2d547160
+-/
 theorem sum_main_ineq {x : F} (hx : 0 < x) (hx0 : x < 1) (hx1 : 0 < n) :
     ∑ i ∈ Icc 1 n, (1 + x ^ (2 * i)) / (1 + x ^ (4 * i))
         < (1 - x ^ n) / (x ^ n * (1 - x)) :=
@@ -83,7 +91,9 @@ theorem sum_main_ineq {x : F} (hx : 0 < x) (hx0 : x < 1) (hx1 : 0 < n) :
     _ = (1 - x ^ n) / (x ^ n * (1 - x)) := by
       rw [inv_pow, inv_eq_one_div, div_sub_one (pow_ne_zero _ hx2), div_div]
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=lt.3h4v.s9.f40c8899171c from=translated src=- shape=14a4d53c vocab=2d547160
+-/
 theorem final_solution {x y : F} (hx : 0 < x) (hy : 0 < y) (h : x ^ n + y ^ n = 1) :
     (∑ i ∈ Icc 1 n, (1 + x ^ (2 * i)) / (1 + x ^ (4 * i)))
         * ∑ i ∈ Icc 1 n, (1 + y ^ (2 * i)) / (1 + y ^ (4 * i))

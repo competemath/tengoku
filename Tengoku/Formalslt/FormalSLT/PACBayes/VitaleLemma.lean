@@ -38,6 +38,7 @@ Certificate-form continuous KL control.
 This theorem is intentionally named as a certificate. It does not prove
 Vitale's analytic lemma; it packages the verified algebra once a continuous
 prior/posterior KL certificate has supplied `kl ≤ vitaleTotalBound`.
+@isnad1 id=le.1h2v.s5.5ded116a7bbf from=translated src=- shape=c7772a9b vocab=876a9f02
 -/
 theorem vitaleContinuousKL_certificate
     {Θ : Type*} [MeasurableSpace Θ]

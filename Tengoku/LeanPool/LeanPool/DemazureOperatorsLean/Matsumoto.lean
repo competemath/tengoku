@@ -90,6 +90,9 @@ def applyCoxeterMove (cm : cs.CoxeterMove) (l : List B) : List B :=
   | CoxeterMove.nil nm => cs.applyNilMove nm l
   | CoxeterMove.braid bm => cs.applyBraidMove bm l
 
+/--
+@isnad1 id=eq.0h6v.s5.ddb1ce20e7a3 from=translated src=- shape=72cb573f vocab=cfe21f6a
+-/
 theorem nilMove_wordProd (nm : cs.NilMove) (l : List B) : π (cs.applyNilMove nm l) = π l := by
   rcases nm with ⟨i, p⟩
   match p with
@@ -114,6 +117,9 @@ theorem nilMove_wordProd (nm : cs.NilMove) (l : List B) : π (cs.applyNilMove nm
       simp only [applyNilMove, wordProd_cons]
       rw[nilMove_wordProd (NilMove.mk i p) t]
 
+/--
+@isnad1 id=eq.0h6v.s5.8010ece0e1ed from=translated src=- shape=72cb573f vocab=c071f298
+-/
 theorem braidMove_wordProd (bm : cs.BraidMove) (l : List B) :
     π (cs.applyBraidMove bm l) = π l := by
   rcases bm with ⟨i, j, p⟩
@@ -135,6 +141,9 @@ theorem braidMove_wordProd (bm : cs.BraidMove) (l : List B) :
         simp only [applyBraidMove, wordProd_cons]
         rw[braidMove_wordProd (BraidMove.mk i j p) t]
 
+/--
+@isnad1 id=eq.0h6v.s5.447b55a322cf from=translated src=- shape=72cb573f vocab=3d058107
+-/
 theorem coxeterMove_wordProd (cm : cs.CoxeterMove) (l : List B) :
     π (cs.applyCoxeterMove cm l) = π l := by
   cases cm with
@@ -151,12 +160,18 @@ def applyBraidMoveSequence (bms : List (cs.BraidMove)) (l : List B) : List B :=
   | [] => l
   | bm :: bms' => cs.applyBraidMove bm (applyBraidMoveSequence bms' l)
 
+/--
+@isnad1 id=eq.0h7v.s6.1c0de10771a8 from=translated src=- shape=3e17ba8e vocab=445a7bfa
+-/
 lemma apply_braidMoveSequence_cons (bm : cs.BraidMove) (bms : List (cs.BraidMove))
     (l : List B) :
     cs.applyBraidMoveSequence (bm :: bms) l =
       cs.applyBraidMove bm (cs.applyBraidMoveSequence bms l) := by
   simp[applyBraidMoveSequence]
 
+/--
+@isnad1 id=ex.1h3v.s5.011c2f36f726 from=translated src=- shape=bd2931e6 vocab=07b773f2
+-/
 lemma cons_of_length_succ {α : Type} (l : List α) {p : ℕ} (h : l.length = p + 1) :
   ∃ (a : α) (t : List α), l = a :: t ∧ t.length = p := by
   cases l with
@@ -170,11 +185,17 @@ def shiftBraidMove (bm : cs.BraidMove) : cs.BraidMove :=
   match bm with
   | BraidMove.mk i j p => BraidMove.mk i j (p + 1)
 
+/--
+@isnad1 id=eq.0h7v.s5.0e0642eafa4a from=translated src=- shape=377ab646 vocab=dff08036
+-/
 lemma braidMove_cons (bm : cs.BraidMove) (l : List B) (a : B) :
   a :: cs.applyBraidMove bm l = cs.applyBraidMove (cs.shiftBraidMove bm) (a :: l) := by
   rcases bm with ⟨i, j, p⟩
   simp[shiftBraidMove, applyBraidMove]
 
+/--
+@isnad1 id=eq.0h7v.s6.87cdebef80c1 from=translated src=- shape=cfb1761d vocab=fa7f39d8
+-/
 lemma braidMoveSequence_cons (bms : List (cs.BraidMove)) (l : List B) (a : B) :
     a :: cs.applyBraidMoveSequence bms l =
       cs.applyBraidMoveSequence (List.map cs.shiftBraidMove bms) (a :: l) := by
@@ -187,21 +208,33 @@ lemma braidMoveSequence_cons (bms : List (cs.BraidMove)) (l : List B) (a : B) :
       rw[ih]
       simp[apply_braidMoveSequence_cons]
 
+/--
+@isnad1 id=isreduce.1h6v.s5.b168b0491509 from=translated src=- shape=f7305d53 vocab=df56b7be
+-/
 theorem isReduced_cons (a : B) (l : List B) : cs.IsReduced (a :: l) → cs.IsReduced l := by
   intro h
   have h' : l = (a::l).drop 1 := by simp
   rw[h']
   exact h.drop 1
 
+/--
+@isnad1 id=isleftde.1h6v.s5.b5272532dab1 from=translated src=- shape=a3c20079 vocab=1fe258c5
+-/
 lemma leftDescent_of_cons (i : B) (l : List B) (hr : cs.IsReduced (i :: l)) :
     cs.IsLeftDescent (π (i :: l)) i := by
   rw [IsLeftDescent, hr, wordProd_cons, simple_mul_simple_cancel_left, List.length_cons]
   exact Nat.lt_of_le_of_lt (cs.length_wordProd_le l) (Nat.lt_succ_self l.length)
 
+/--
+@isnad1 id=isleftin.1h6v.s5.cc77ecf2f3a9 from=translated src=- shape=591b6ef5 vocab=3ddccfbc
+-/
 lemma leftInversion_of_cons (i : B) (l : List B) (hr : cs.IsReduced (i :: l)) :
     cs.IsLeftInversion (π (i :: l)) (s i) :=
   (cs.isLeftInversion_simple_iff_isLeftDescent (π (i :: l)) i).mpr (cs.leftDescent_of_cons i l hr)
 
+/--
+@isnad1 id=ne.3h8v.s6.4e3964375ba8 from=translated src=- shape=6860136d vocab=34b4feec
+-/
 theorem alternatingWord_succ_ne_alternatingWord_eraseIdx [MatsumotoCondition cs]
  (i j : B) (p : ℕ) (hp : p < M i j) (hij : i ≠ j) :
     ∀ (k : ℕ) (_ : k < p),
@@ -294,6 +327,9 @@ theorem alternatingWord_succ_ne_alternatingWord_eraseIdx [MatsumotoCondition cs]
         apply MatsumotoCondition.alternatingWords_ne_one i j hij (p + 1) zero_lt_p_succ _ h_contra
         linarith
 
+/--
+@isnad1 id=ex.6h10v.s7.d03abdbe640c from=translated src=- shape=0da81533 vocab=5c13deb7
+-/
 lemma prefix_braidWord_aux [MatsumotoCondition cs] (w : W) (l l' : List B) (i j : B)
     (i_ne_j : i ≠ j) (hil : π(i :: l) = w) (hjl' : π(j :: l') = w)
     (hr : cs.IsReduced (i :: l)) (hr' : cs.IsReduced (j :: l')) :
@@ -438,6 +474,9 @@ lemma prefix_braidWord_aux [MatsumotoCondition cs] (w : W) (l l' : List B) (i j 
           omega
         use ⟨k - (alternatingWord i j p).length, this⟩
 
+/--
+@isnad1 id=ex.4h8v.s7.e921ba232105 from=translated src=- shape=c5bd3899 vocab=b4a1228a
+-/
 lemma prefix_braidWord [MatsumotoCondition cs] (l l' : List B) (i j : B)
     (i_ne_j : i ≠ j) (pi_eq : π(i :: l) = π(j :: l'))
     (hr : cs.IsReduced (i :: l)) (hr' : cs.IsReduced (j :: l')) :
@@ -453,6 +492,9 @@ lemma prefix_braidWord [MatsumotoCondition cs] (l l' : List B) (i j : B)
   · simp[ht]
   · exact htr
 
+/--
+@isnad1 id=eq.0h7v.s6.bf22bd5537ba from=translated src=- shape=b9d06e0b vocab=49a0fe84
+-/
 theorem apply_braidMove_sequence_append (bms bms' : List (cs.BraidMove)) (l : List B) :
     cs.applyBraidMoveSequence (bms ++ bms') l =
       cs.applyBraidMoveSequence bms (cs.applyBraidMoveSequence bms' l) := by
@@ -461,6 +503,9 @@ theorem apply_braidMove_sequence_append (bms bms' : List (cs.BraidMove)) (l : Li
   | cons bm bms ih =>
     rw [List.cons_append, apply_braidMoveSequence_cons, apply_braidMoveSequence_cons, ih]
 
+/--
+@isnad1 id=ex.2h7v.s6.9c367098a0ba from=translated src=- shape=d143810e vocab=f160c9ae
+-/
 theorem concatenate_braidMove_sequences (l l' l'' : List B)
     (h : ∃ bms : List (cs.BraidMove), cs.applyBraidMoveSequence bms l = l')
     (h' : ∃ bms' : List (cs.BraidMove), cs.applyBraidMoveSequence bms' l' = l'') :
@@ -471,6 +516,9 @@ theorem concatenate_braidMove_sequences (l l' l'' : List B)
   rw[apply_braidMove_sequence_append, hbms, hbms']
 
 -- move to aux file
+/--
+@isnad1 id=isreduce.3h6v.s5.170a51d30678 from=translated src=- shape=cd546b5b vocab=eaf9d1ae
+-/
 theorem isReduced_of_eq_length (l l' : List B) (h_len : l.length = l'.length) (h_eq : π l = π l')
    (hr : cs.IsReduced l) : cs.IsReduced l' := by
   rw[IsReduced]
@@ -489,6 +537,9 @@ theorem eq_length_of_isReduced (l l' : List B)
     _ = len π l' := by rw[h_eq]
     _ = l'.length := by rw[hr']
 
+/--
+@isnad1 id=ex.6h8v.s7.f91fe3ddac10 from=translated src=- shape=bf0af886 vocab=e1d06492
+-/
 lemma matsumoto_reduced_inductionStep_of_firstLetterEq (p : ℕ) (l_t l'_t : List B) (i : B)
     (len_l_t_eq_p : l_t.length = p) (len_l'_t_eq_p : l'_t.length = p)
     (h_eq : π(i :: l_t) = π(i :: l'_t))
@@ -512,6 +563,9 @@ lemma matsumoto_reduced_inductionStep_of_firstLetterEq (p : ℕ) (l_t l'_t : Lis
   rw[braidMoveSequence_cons]
   use (List.map cs.shiftBraidMove bms)
 
+/--
+@isnad1 id=ex.5h7v.s6.f7c7431a0a2e from=translated src=- shape=fa2f82f5 vocab=7ae6be40
+-/
 theorem matsumoto_reduced_aux [MatsumotoCondition cs] (p : ℕ) (l l' : List B)
 (len_l_eq_p : l.length = p) (len_l'_eq_p : l'.length = p)
 (l_reduced : cs.IsReduced l) (l'_reduced : cs.IsReduced l') (h_eq : π l = π l') :
@@ -716,6 +770,9 @@ theorem matsumoto_reduced_aux [MatsumotoCondition cs] (p : ℕ) (l l' : List B)
                 rw[this]
             exact ih'
 
+/--
+@isnad1 id=ex.3h6v.s6.6b3d3bcf21ad from=translated src=- shape=70890345 vocab=c55c952f
+-/
 theorem matsumoto_reduced [MatsumotoCondition cs] (l l' : List B)
 (hr : cs.IsReduced l) (hr' : cs.IsReduced l') (h : π l = π l') :
   ∃ bms : List (cs.BraidMove), cs.applyBraidMoveSequence bms l = l' := by

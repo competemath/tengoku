@@ -25,6 +25,9 @@ namespace CKN
 
 noncomputable section
 
+/--
+@isnad1 id=eq.4h7v.s7.6aaea0162623 from=translated src=- shape=327e2c00 vocab=162b24e9
+-/
 theorem mollify_eq_on_compact_of_eq_on_thickening
     {d : ℕ} {K : Set (Vec d)} {u g : Vec d → ℝ} {ε₀ ε : ℝ}
     (hε : 0 < ε) (hεlt : ε ≤ ε₀)

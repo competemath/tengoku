@@ -46,6 +46,7 @@ and high-probability PAC gates.
 
 The theorem does not assume a finite hypothesis class. It also does not derive
 the high-probability gate; that gate is the hypothesis `hpacGate`.
+@isnad1 id=le.2h2v.s5.3cf724cfaf65 from=translated src=- shape=1f500598 vocab=61cfbd2c
 -/
 theorem continuousPriorPosterior_certificate_of_kl
     {Θ : Type*} [MeasurableSpace Θ]
@@ -64,6 +65,7 @@ the Radon-Nikodym change-of-measure theorem.
 
 The finite-sample prior log-MGF certificate is still an explicit hypothesis;
 this theorem discharges only the continuous posterior change-of-measure step.
+@isnad1 id=le.12h7v.s8.97f0b26849a8 from=translated src=- shape=4ac9129a vocab=eda17854
 -/
 theorem continuousPriorPosterior_certificate_derived
     {Θ : Type*} [MeasurableSpace Θ]

@@ -54,11 +54,15 @@ open Function
 def good [Ring R] (f : R → R) :=
   ∀ x y : R, f (f x * f y) + f (x + y) = f (x * y)
 
-/-- The zero function is good. -/
+/-- The zero function is good.
+@isnad1 id=good.0h1v.s4.f6017f948150 from=translated src=- shape=98d677cc vocab=c7a2bb75
+-/
 theorem zero_is_good [Ring R] : good (0 : R → R) :=
   λ _ _ ↦ add_zero 0
 
-/-- The function `x ↦ 1 - x` is good. -/
+/-- The function `x ↦ 1 - x` is good.
+@isnad1 id=good.0h1v.s5.215626c3f402 from=translated src=- shape=81484299 vocab=97aec624
+-/
 theorem one_sub_is_good [Ring R] : good ((1 : R) - ·) := by
   intro x y; calc 1 - (1 - x) * (1 - y) + (1 - (x + y))
     _ = 1 - (1 - x - (y - x * y)) + (1 - (x + y)) := by rw [mul_one_sub, one_sub_mul]
@@ -72,13 +76,17 @@ section Ring
 variable [Ring R] {f : R → R} (hf : good f)
 include hf
 
-/-- If `f` is good then `-f` is good as well. -/
+/-- If `f` is good then `-f` is good as well.
+@isnad1 id=good.1h2v.s5.9e71f469b008 from=translated src=- shape=9ec931fb vocab=00be576f
+-/
 theorem neg : good (-f) := by
   intro x y; calc -f (-f x * -f y) + -f (x + y)
     _ = -(f (f x * f y) + f (x + y)) := by rw [neg_mul_neg, neg_add]
     _ = -f (x * y) := congrArg _ (hf x y)
 
-/-- If `xy = 1`, then `f(f(x + 1) f(y + 1)) = 0`. -/
+/-- If `xy = 1`, then `f(f(x + 1) f(y + 1)) = 0`.
+@isnad1 id=eq.2h4v.s7.32b79ef783be from=translated src=- shape=d556f1e0 vocab=9dd81da2
+-/
 theorem map_map_add_one_mul_add_one_of_mul_eq_one {x y : R} (h0 : x * y = 1) :
     f (f (x + 1) * f (y + 1)) = 0 :=
   calc f (f (x + 1) * f (y + 1))
@@ -86,13 +94,17 @@ theorem map_map_add_one_mul_add_one_of_mul_eq_one {x y : R} (h0 : x * y = 1) :
   _ = f ((1 + x) + (y + 1)) - f ((x + 1) + (y + 1)) := by rw [add_one_mul, mul_add_one, h0]
   _ = 0 := by rw [add_comm 1 x, sub_self]
 
-/-- For any `x ∈ R`, we have `f(f(x) f(0)) + f(x) = f(0)`. -/
+/-- For any `x ∈ R`, we have `f(f(x) f(0)) + f(x) = f(0)`.
+@isnad1 id=eq.1h3v.s6.0d9e2add4d1a from=translated src=- shape=cec332fb vocab=9dd81da2
+-/
 theorem map_map_mul_map_zero_add_map (x) : f (f x * f 0) + f x = f 0 :=
   calc f (f x * f 0) + f x
   _ = f (f x * f 0) + f (x + 0) := by rw [add_zero]
   _ = f 0 := by rw [hf, mul_zero]
 
-/-- We have `f(f(0)^2) = 0`. -/
+/-- We have `f(f(0)^2) = 0`.
+@isnad1 id=eq.1h2v.s6.cf60e48820ef from=translated src=- shape=e699094f vocab=9ffd3c3e
+-/
 theorem map_map_zero_sq : f (f 0 ^ 2) = 0 :=
   have h : (-1 : R) * -1 = 1 := by rw [neg_mul_neg, one_mul]
   calc f (f 0 ^ 2)
@@ -114,12 +126,16 @@ section DivisionRing
 variable [DivisionRing D] {f : D → D} (hf : good f)
 include hf
 
-/-- For any `x ≠ 0`, we have `f(f(x + 1) f(x⁻¹ + 1)) = 0`. -/
+/-- For any `x ≠ 0`, we have `f(f(x + 1) f(x⁻¹ + 1)) = 0`.
+@isnad1 id=eq.2h3v.s7.282700e6058c from=translated src=- shape=56653be0 vocab=80567c53
+-/
 theorem map_map_add_one_mul_map_inv_add_one {x} (hx : x ≠ 0) :
     f (f (x + 1) * f (x⁻¹ + 1)) = 0 :=
   hf.map_map_add_one_mul_add_one_of_mul_eq_one (mul_inv_cancel₀ hx)
 
-/-- If `f ≠ 0` and `f(c) = 0`, then `c = 1`. -/
+/-- If `f ≠ 0` and `f(c) = 0`, then `c = 1`.
+@isnad1 id=eq.3h3v.s6.c9b30eeebfa9 from=translated src=- shape=9ce72c87 vocab=a3918505
+-/
 theorem map_eq_zero_imp_eq_one (hf0 : f ≠ 0) {c : D} (hc : f c = 0) : c = 1 := by
   ---- If `c ≠ 1`, we claim that `f ≡ 0`.
   contrapose! hf0
@@ -133,31 +149,43 @@ theorem map_eq_zero_imp_eq_one (hf0 : f ≠ 0) {c : D} (hc : f c = 0) : c = 1 :=
     _ = f 0 - f (f x * f 0) := eq_sub_of_add_eq' (hf.map_map_mul_map_zero_add_map x)
     _ = 0 := by rw [hf0, mul_zero, hf0, sub_zero]
 
-/-- If `f ≠ 0`, then `f(0)^2 = 1`. -/
+/-- If `f ≠ 0`, then `f(0)^2 = 1`.
+@isnad1 id=eq.2h2v.s6.46ebe6de56a6 from=translated src=- shape=1a513da3 vocab=654650e5
+-/
 theorem map_zero_sq_eq_one (hf0 : f ≠ 0) : f 0 ^ 2 = 1 :=
   hf.map_eq_zero_imp_eq_one hf0 hf.map_map_zero_sq
 
-/-- If `f ≠ 0`, then `f(0) = ±1`. -/
+/-- If `f ≠ 0`, then `f(0) = ±1`.
+@isnad1 id=or.2h2v.s7.7399b53759cf from=translated src=- shape=5975f1f8 vocab=a9098f1d
+-/
 theorem map_zero_eq_one_or_neg_one (hf0 : f ≠ 0) : f 0 = 1 ∨ f 0 = -1 :=
   sq_eq_one_iff.mp (hf.map_zero_sq_eq_one hf0)
 
-/-- We always have `f(1) = 0`. -/
+/-- We always have `f(1) = 0`.
+@isnad1 id=eq.1h2v.s5.aaf137ad2514 from=translated src=- shape=061c6a34 vocab=a3918505
+-/
 theorem map_one_eq_zero : f 1 = 0 := by
   obtain hf0 | hf0 : f = 0 ∨ f ≠ 0 := eq_or_ne f 0
   · exact congrFun hf0 1
   · rw [← hf.map_zero_sq_eq_one hf0, hf.map_map_zero_sq]
 
-/-- If `f(0) = 1`, then `f(c) = 0` if and only if `c = 1`. -/
+/-- If `f(0) = 1`, then `f(c) = 0` if and only if `c = 1`.
+@isnad1 id=iff.2h3v.s6.c8e040bdcf00 from=translated src=- shape=431520d6 vocab=a3918505
+-/
 theorem map_eq_zero_iff_eq_one (hf0 : f 0 = 1) {c : D} : f c = 0 ↔ c = 1 := by
   refine ⟨λ h ↦ hf.map_eq_zero_imp_eq_one ?_ h, λ h ↦ h ▸ hf.map_one_eq_zero⟩
   rintro rfl; exact zero_ne_one hf0
 
-/-- If `f(0) = 1`, then `f(x + 1) + 1 = f(x)` for any `x ∈ D`. -/
+/-- If `f(0) = 1`, then `f(x + 1) + 1 = f(x)` for any `x ∈ D`.
+@isnad1 id=eq.2h3v.s6.dd252fc5770d from=translated src=- shape=524595a6 vocab=779c37a0
+-/
 theorem map_add_one (hf0 : f 0 = 1) (x : D) : f (x + 1) + 1 = f x := by
   have h := hf x 1
   rwa [hf.map_one_eq_zero, mul_zero, hf0, add_comm, mul_one] at h
 
-/-- If `f(0) = 1`, then `f(x - 1) = f(x) + 1` for any `x ∈ D`. -/
+/-- If `f(0) = 1`, then `f(x - 1) = f(x) + 1` for any `x ∈ D`.
+@isnad1 id=eq.2h3v.s6.6e0ca8d04896 from=translated src=- shape=f1726406 vocab=00f6ce05
+-/
 theorem map_sub_one (hf0 : f 0 = 1) (x : D) : f (x - 1) = f x + 1 := by
   rw [← hf.map_add_one hf0, sub_add_cancel]
 
@@ -165,7 +193,9 @@ end DivisionRing
 
 end good
 
-/-- The general framework reducing to injectivity. -/
+/-- The general framework reducing to injectivity.
+@isnad1 id=iff.1h2v.s7.240b46e4851a from=translated src=- shape=6c1feada vocab=56a1350e
+-/
 theorem solution_of_map_zero_eq_one_imp_injective
     [DivisionRing D] (h : ∀ f : D → D, good f → f 0 = 1 → Injective f) {f : D → D} :
     good f ↔ f = 0 ∨ f = (1 - ·) ∨ f = -(1 - ·) := by
@@ -185,7 +215,9 @@ theorem solution_of_map_zero_eq_one_imp_injective
   right; exact (neg_eq_iff_eq_neg.mp (hf.eq_of_map_zero_of_inj hf1 (h (-f) hf hf1)))
 
 /-- Let `D` be a division ring with `char(D) ≠ 2`.
-  Then a good function `f : D → D` with `f(0) = 1` is injective. -/
+  Then a good function `f : D → D` with `f(0) = 1` is injective.
+@isnad1 id=injectiv.3h2v.s6.c348037227f4 from=translated src=- shape=dd0c0968 vocab=696f97ec
+-/
 theorem case1_injective [DivisionRing D] (hD : (2 : D) ≠ 0)
     {f : D → D} (hf : good f) (hf0 : f 0 = 1) : Injective f := by
   have h : ∀ x, f (x - 1) = f x + 1 := hf.map_sub_one hf0
@@ -213,7 +245,9 @@ theorem case1_injective [DivisionRing D] (hD : (2 : D) ≠ 0)
   rwa [← hf, ← hf b, hab, h1 hab, add_right_inj] at hab0
 
 /-- Let `F` be a field with `char(F) = 2`.
-  Then a good function `f : F → F` with `f(0) = 1` is injective. -/
+  Then a good function `f : F → F` with `f(0) = 1` is injective.
+@isnad1 id=injectiv.2h2v.s6.50e453a4c61e from=translated src=- shape=bafb3c7e vocab=93035059
+-/
 theorem case2_injective [Field F] [CharP F 2]
     {f : F → F} (hf : good f) (hf0 : f 0 = 1) : Injective f := by
   have hf1 (x) : f (x + 1) = f x + 1 := by rw [← CharTwo.sub_eq_add, hf.map_sub_one hf0]
@@ -262,7 +296,9 @@ theorem case2_injective [Field F] [CharP F 2]
   rwa [← hf, add_right_comm, add_eq_right, ← hf1, hf3, mul_eq_zero, hf3, hf3,
     CharTwo.add_eq_zero, CharTwo.add_eq_zero, inv_inj, eq_comm (a := b), or_self] at hab
 
-/-- Let `F` be a field. Then a good function `f : F → F` with `f(0) = 1` is injective. -/
+/-- Let `F` be a field. Then a good function `f : F → F` with `f(0) = 1` is injective.
+@isnad1 id=injectiv.2h2v.s5.6f28ba54ca90 from=translated src=- shape=aecc5f78 vocab=d6b613b8
+-/
 theorem map_zero_eq_one_imp_injective [Field F] (f : F → F) :
     good f → f 0 = 1 → Injective f := by
   obtain hF | hF : (2 : F) ≠ 0 ∨ (2 : F) = 0 := ne_or_eq _ _
@@ -270,7 +306,9 @@ theorem map_zero_eq_one_imp_injective [Field F] (f : F → F) :
   · have : CharP F 2 := CharTwo.of_one_ne_zero_of_two_eq_zero one_ne_zero hF
     exact case2_injective
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h2v.s7.dd87d8ad4f19 from=translated src=- shape=c9563485 vocab=98970d14
+-/
 theorem final_solution [Field F] {f : F → F} :
     good f ↔ f = 0 ∨ f = Sub.sub 1 ∨ f = λ x ↦ -(1 - x) :=
   solution_of_map_zero_eq_one_imp_injective map_zero_eq_one_imp_injective

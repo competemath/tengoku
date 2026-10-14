@@ -37,7 +37,9 @@ open CKN.Foundation.Parabolic
 `(1,1)` with constant `A₁` and of strong type `(2,2)` with constant `A₂` satisfies the
 strong `(p,p)` bound for every `1 < p < 2`, with the explicit constant
 `p · 2^p · (A₁/(p-1) + A₂²/(2-p))`.  This is the distribution-function estimate at the
-level `t`, integrated against the layer-cake weight `p t^{p-1}`. -/
+level `t`, integrated against the layer-cake weight `p t^{p-1}`.
+@isnad1 id=le.8h5v.s9.5823a9486b62 from=translated src=- shape=ac1b8351 vocab=61bc0b69
+-/
 theorem interpolation_weak11_strong22 {T : (Vec3 → ℝ) → (Vec3 → ℝ)} {A₁ A₂ p : ℝ}
     (hTsub : ∀ f g (x : Vec3), |T (f + g) x| ≤ |T f x| + |T g x|)
     (hTmeas : ∀ f, Measurable f → Measurable (T f))
@@ -94,7 +96,9 @@ theorem interpolation_weak11_strong22 {T : (Vec3 → ℝ) → (Vec3 → ℝ)} {A
 
 /-- Interpolation at the exponent `p = 3/2`: weak `(1,1)` and strong `(2,2)` estimates
 give the strong `(3/2,3/2)` estimate, with the constant of
-`interpolation_weak11_strong22` specialized to `p = 3/2`. -/
+`interpolation_weak11_strong22` specialized to `p = 3/2`.
+@isnad1 id=le.6h4v.s10.003b27019258 from=translated src=- shape=ae8e23dc vocab=61bc0b69
+-/
 theorem interpolation_weak11_strong22_threeHalves {T : (Vec3 → ℝ) → (Vec3 → ℝ)} {A₁ A₂ : ℝ}
     (hTsub : ∀ f g (x : Vec3), |T (f + g) x| ≤ |T f x| + |T g x|)
     (hTmeas : ∀ f, Measurable f → Measurable (T f))
@@ -111,7 +115,9 @@ theorem interpolation_weak11_strong22_threeHalves {T : (Vec3 → ℝ) → (Vec3 
 
 /-- Interpolation at the exponent `p = 6/5`: weak `(1,1)` and strong `(2,2)` estimates
 give the strong `(6/5,6/5)` estimate, with the constant of
-`interpolation_weak11_strong22` specialized to `p = 6/5`. -/
+`interpolation_weak11_strong22` specialized to `p = 6/5`.
+@isnad1 id=le.6h4v.s10.a49058e6811a from=translated src=- shape=ae8e23dc vocab=61bc0b69
+-/
 theorem interpolation_weak11_strong22_sixFifths {T : (Vec3 → ℝ) → (Vec3 → ℝ)} {A₁ A₂ : ℝ}
     (hTsub : ∀ f g (x : Vec3), |T (f + g) x| ≤ |T f x| + |T g x|)
     (hTmeas : ∀ f, Measurable f → Measurable (T f))

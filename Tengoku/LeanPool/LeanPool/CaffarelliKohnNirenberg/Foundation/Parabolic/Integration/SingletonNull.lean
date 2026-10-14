@@ -22,7 +22,9 @@ noncomputable section
 
 namespace CKN.Foundation.Parabolic.Integration
 
-/-- A single parabolic point has zero Lebesgue volume. -/
+/-- A single parabolic point has zero Lebesgue volume.
+@isnad1 id=eq.0h1v.s5.151128ade6b0 from=translated src=- shape=8acf7f27 vocab=f4e06a18
+-/
 theorem volume_singleton_parabolicPoint (z : ParabolicPoint) :
     volume ({z} : Set ParabolicPoint) = 0 := by
   rcases z with ⟨x, t⟩

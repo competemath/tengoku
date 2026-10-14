@@ -61,12 +61,18 @@ def wealthWeightedBet [Field R] [Fintype Kappa] [DecidableEq Kappa]
         strategy j n omega) /
     finiteExpertMixtureWealth weight residual strategy n omega
 
+/--
+@isnad1 id=eq.0h5v.s5.58e7b1b316df from=translated src=- shape=66fa91f9 vocab=ef19e0b0
+-/
 @[simp]
 theorem algebraicBettingWealth_zero [CommSemiring R]
     (residual bet : Nat -> Omega -> R) (omega : Omega) :
     algebraicBettingWealth residual bet 0 omega = 1 := by
   simp [algebraicBettingWealth]
 
+/--
+@isnad1 id=eq.0h6v.s6.a7cc3779e4f9 from=translated src=- shape=75df87c3 vocab=f00e47f5
+-/
 theorem algebraicBettingWealth_succ [CommSemiring R]
     (residual bet : Nat -> Omega -> R) (n : Nat) (omega : Omega) :
     algebraicBettingWealth residual bet (n + 1) omega =
@@ -74,6 +80,9 @@ theorem algebraicBettingWealth_succ [CommSemiring R]
         (1 + bet n omega * residual n omega) := by
   simp [algebraicBettingWealth, Finset.prod_range_succ]
 
+/--
+@isnad1 id=eq.0h7v.s6.2ee9dc3d68db from=translated src=- shape=d3d5f002 vocab=bc05d095
+-/
 @[simp]
 theorem finiteExpertMixtureWealth_zero [CommSemiring R]
     [Fintype Kappa] [DecidableEq Kappa]
@@ -84,7 +93,9 @@ theorem finiteExpertMixtureWealth_zero [CommSemiring R]
   simp [finiteExpertMixtureWealth]
 
 /-- The finite mixture update is exactly the old mixture wealth plus the
-current residual times the wealth-weighted bet numerator. -/
+current residual times the wealth-weighted bet numerator.
+@isnad1 id=eq.0h8v.s7.95800c9d5334 from=translated src=- shape=5c86d46e vocab=20522017
+-/
 theorem finiteExpertMixtureWealth_succ [CommSemiring R]
     [Fintype Kappa] [DecidableEq Kappa]
     (weight : Kappa -> R) (residual : Nat -> Omega -> R)
@@ -122,7 +133,9 @@ theorem finiteExpertMixtureWealth_succ [CommSemiring R]
               strategy j n omega := by rw [Finset.mul_sum]
 
 /-- The wealth of the adaptive master strategy equals the fixed-prior mixture
-of all component wealths, at every time and on every path. -/
+of all component wealths, at every time and on every path.
+@isnad1 id=eq.2h8v.s7.4c0c9654fbf5 from=translated src=- shape=d082f62a vocab=f977dcd3
+-/
 theorem aggregateWealth_eq_finiteExpertMixtureWealth [Field R]
     [Fintype Kappa] [DecidableEq Kappa]
     (weight : Kappa -> R) (residual : Nat -> Omega -> R)
@@ -149,7 +162,9 @@ theorem aggregateWealth_eq_finiteExpertMixtureWealth [Field R]
       field_simp [hne]
 
 /-- Nonnegative component wealths make the mixture dominate every
-prior-weighted strategy wealth. -/
+prior-weighted strategy wealth.
+@isnad1 id=le.2h9v.s7.4192a460e8b6 from=translated src=- shape=57b4a2c2 vocab=7b86f435
+-/
 theorem finiteExpertMixtureWealth_competes [CommSemiring R]
     [PartialOrder R] [IsOrderedRing R]
     [Fintype Kappa] [DecidableEq Kappa]
@@ -167,7 +182,9 @@ theorem finiteExpertMixtureWealth_competes [CommSemiring R]
     (Finset.mem_univ j)
 
 /-- The adaptive master competes with every supplied strategy without a
-post-hoc atom selector. -/
+post-hoc atom selector.
+@isnad1 id=le.4h9v.s8.5524aa91a076 from=translated src=- shape=c564f2d4 vocab=c20fc5ea
+-/
 theorem aggregateWealth_competes_with_every_strategy [Field R]
     [LinearOrder R] [IsStrictOrderedRing R]
     [Fintype Kappa] [DecidableEq Kappa]
@@ -189,7 +206,9 @@ theorem aggregateWealth_competes_with_every_strategy [Field R]
   exact finiteExpertMixtureWealth_competes
     hweight_nonneg hwealth_nonneg j n omega
 
-/-- Strictly positive one-step factors give strictly positive expert wealth. -/
+/-- Strictly positive one-step factors give strictly positive expert wealth.
+@isnad1 id=lt.1h6v.s7.75c5413a4b4f from=translated src=- shape=d6732889 vocab=4f710b95
+-/
 theorem algebraicBettingWealth_pos [Field R]
     [LinearOrder R] [IsStrictOrderedRing R]
     {residual bet : Nat -> Omega -> R}
@@ -201,7 +220,9 @@ theorem algebraicBettingWealth_pos [Field R]
   exact Finset.prod_pos fun k _hk => hfactor_pos k omega
 
 /-- Positive prior weights and positive component factors make the master
-mixture denominator strictly positive. -/
+mixture denominator strictly positive.
+@isnad1 id=lt.2h8v.s7.217ff4d383bd from=translated src=- shape=9494e92b vocab=a4109f95
+-/
 theorem finiteExpertMixtureWealth_pos [Field R]
     [LinearOrder R] [IsStrictOrderedRing R]
     [Fintype Kappa] [DecidableEq Kappa] [Nonempty Kappa]
@@ -219,7 +240,9 @@ theorem finiteExpertMixtureWealth_pos [Field R]
     Finset.univ_nonempty
 
 /-- A convex catalog of nonnegative bounded bets produces a legal master bet
-in the same interval. -/
+in the same interval.
+@isnad1 id=mem.4h9v.s8.0356e3e25d3b from=translated src=- shape=6e7ea3d5 vocab=c2e9a322
+-/
 theorem wealthWeightedBet_mem_Icc [Field R]
     [LinearOrder R] [IsStrictOrderedRing R]
     [Fintype Kappa] [DecidableEq Kappa]
@@ -272,7 +295,9 @@ section RationalBridge
 
 variable {Omega Kappa : Type*}
 
-/-- Exact rational expert wealth casts to the corresponding real wealth. -/
+/-- Exact rational expert wealth casts to the corresponding real wealth.
+@isnad1 id=eq.0h5v.s5.2a4a491adf83 from=translated src=- shape=28d26307 vocab=7737b7c8
+-/
 theorem ratCast_algebraicBettingWealth
     (residual bet : Nat -> Omega -> Rat) (n : Nat) (omega : Omega) :
     ((algebraicBettingWealth residual bet n omega : Rat) : Real) =
@@ -282,7 +307,9 @@ theorem ratCast_algebraicBettingWealth
   simp [algebraicBettingWealth]
 
 /-- Exact rational finite-mixture wealth casts to the same real finite
-mixture, term for term. -/
+mixture, term for term.
+@isnad1 id=eq.0h7v.s6.96a3b2c3adab from=translated src=- shape=690b2fff vocab=b41ba8f8
+-/
 theorem ratCast_finiteExpertMixtureWealth
     [Fintype Kappa] [DecidableEq Kappa]
     (weight : Kappa -> Rat) (residual : Nat -> Omega -> Rat)
@@ -295,7 +322,9 @@ theorem ratCast_finiteExpertMixtureWealth
   simp [finiteExpertMixtureWealth, ratCast_algebraicBettingWealth]
 
 /-- The executable rational master bet casts exactly to the real master bet
-used by the analytic e-process layer. -/
+used by the analytic e-process layer.
+@isnad1 id=eq.0h7v.s6.8ee94a151459 from=translated src=- shape=690b2fff vocab=d3e9fdd1
+-/
 theorem ratCast_wealthWeightedBet
     [Fintype Kappa] [DecidableEq Kappa]
     (weight : Kappa -> Rat) (residual : Nat -> Omega -> Rat)
@@ -315,7 +344,9 @@ section RealBridge
 variable {Omega Kappa : Type*}
 
 /-- The algebraic wealth specialized to residual `X - m` is the existing
-betting wealth process definition. -/
+betting wealth process definition.
+@isnad1 id=eq.0h6v.s5.7e4f9fd529f4 from=translated src=- shape=8a3f70a3 vocab=7c7c7150
+-/
 theorem algebraicBettingWealth_eq_bettingWealthProcess
     (X bet : Nat -> Omega -> Real) (m : Real) (n : Nat) (omega : Omega) :
     algebraicBettingWealth (fun k omega => X k omega - m) bet n omega =
@@ -323,7 +354,9 @@ theorem algebraicBettingWealth_eq_bettingWealthProcess
   rfl
 
 /-- The algebraic finite mixture is the library's finite weighted process of
-the component betting wealths. -/
+the component betting wealths.
+@isnad1 id=eq.0h8v.s6.8221334cc3a8 from=translated src=- shape=29730b5e vocab=d1dc8986
+-/
 theorem finiteExpertMixtureWealth_eq_finiteWeightedProcess
     [Fintype Kappa] [DecidableEq Kappa]
     (weight : Kappa -> Real) (X : Nat -> Omega -> Real) (m : Real)
@@ -338,7 +371,9 @@ theorem finiteExpertMixtureWealth_eq_finiteWeightedProcess
   rw [algebraicBettingWealth_eq_bettingWealthProcess]
 
 /-- The wealth-weighted master bet is predictable: its current weights use
-only component wealth accumulated before the current observation. -/
+only component wealth accumulated before the current observation.
+@isnad1 id=strongly.2h8v.s6.d1727308ed35 from=translated src=- shape=e5aa5920 vocab=510ea591
+-/
 theorem wealthWeightedBet_stronglyAdapted
     {mOmega : MeasurableSpace Omega} {F : Filtration Nat mOmega}
     [Fintype Kappa] [DecidableEq Kappa]
@@ -388,7 +423,9 @@ theorem wealthWeightedBet_stronglyAdapted
 
 /-- The adaptive master's betting wealth is an e-process whenever every
 component betting wealth is an e-process and the pathwise mixture denominator
-is positive. -/
+is positive.
+@isnad1 id=eprocess.4h9v.s7.c062f2a333b9 from=translated src=- shape=3a4ae038 vocab=08c95963
+-/
 theorem wealthWeightedBet_eProcess
     {mOmega : MeasurableSpace Omega} {mu : Measure Omega}
     {F : Filtration Nat mOmega}
@@ -427,7 +464,9 @@ theorem wealthWeightedBet_eProcess
   exact hmix
 
 /-- E-process closure with mixture positivity discharged by positive prior
-weights and strictly positive component betting factors. -/
+weights and strictly positive component betting factors.
+@isnad1 id=eprocess.4h9v.s7.c15a634065e8 from=translated src=- shape=215ffc85 vocab=05f6750e
+-/
 theorem wealthWeightedBet_eProcess_of_positive_factors
     {mOmega : MeasurableSpace Omega} {mu : Measure Omega}
     {F : Filtration Nat mOmega}
@@ -455,7 +494,9 @@ theorem wealthWeightedBet_eProcess_of_positive_factors
     n omega
 
 /-- Log-wealth regret of the adaptive master relative to any supplied
-strategy is at most the strategy's negative log prior weight. -/
+strategy is at most the strategy's negative log prior weight.
+@isnad1 id=le.6h8v.s7.06634c1e1c66 from=translated src=- shape=a1fbf3b8 vocab=b46a5cc2
+-/
 theorem aggregate_logWealth_regret_le
     [Fintype Kappa] [DecidableEq Kappa]
     {weight : Kappa -> Real} {residual : Nat -> Omega -> Real}

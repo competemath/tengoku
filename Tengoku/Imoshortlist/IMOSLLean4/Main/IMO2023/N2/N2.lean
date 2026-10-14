@@ -21,18 +21,27 @@ namespace IMO2023N2
 
 /-! ### Some bounding -/
 
+/--
+@isnad1 id=lt.1h1v.s6.b2e6dd5f39a1 from=translated src=- shape=21b47e51 vocab=3f16b8dd
+-/
 lemma y_ineq₁ (hy : 3 ≤ y) : (y + 2) ^ 2 < 3 * y ^ 2 := by
   rw [Nat.succ_mul, add_sq, Nat.add_assoc, Nat.add_comm, Nat.add_lt_add_iff_right,
     sq, ← Nat.add_mul, Nat.mul_comm, Nat.mul_lt_mul_left Nat.two_pos, sq]
   apply (Nat.add_le_add_left hy _).trans ((Nat.succ_mul 2 y).ge.trans ?_)
   exact Nat.mul_le_mul_right y hy
 
+/--
+@isnad1 id=lt.1h1v.s6.5adecde89f3a from=translated src=- shape=21b47e51 vocab=3f16b8dd
+-/
 lemma y_ineq₂ (hy : 5 ≤ y) : (y + 2) ^ 2 < 2 * y ^ 2 := by
   rw [Nat.two_mul, add_sq, Nat.mul_right_comm, Nat.add_assoc, Nat.add_lt_add_iff_left]
   apply (Nat.add_lt_add_left hy _).trans_le
   rw [← Nat.succ_mul, sq]
   exact Nat.mul_le_mul_right y hy
 
+/--
+@isnad1 id=lt.4h4v.s7.e226ce86756d from=translated src=- shape=7ef90c36 vocab=3f16b8dd
+-/
 lemma y_bound₀ (hn : 0 < n) (hp : 3 ≤ p) (h : 2 * (2 * n + 1) ^ 2 < k * p ^ n) (hy : n ≤ y) :
     2 * (2 * y + 1) ^ 2 < k * p ^ y := by
   induction y, hy using Nat.le_induction with | base => exact h | succ y hy h0 => ?_
@@ -44,6 +53,9 @@ lemma y_bound₀ (hn : 0 < n) (hp : 3 ≤ p) (h : 2 * (2 * n + 1) ^ 2 < k * p ^ 
   refine Nat.mul_lt_mul_of_pos_left (y_ineq₁ ?_) Nat.two_pos
   exact Nat.succ_le_succ (Nat.mul_le_mul_left 2 (hn.trans_le hy))
 
+/--
+@isnad1 id=lt.1h2v.s6.94daf79d986f from=translated src=- shape=3a3ca050 vocab=62399aff
+-/
 lemma y_bound₁ (hp : 5 ≤ p) (y) : 2 * (2 * y + 1) ^ 2 < (p - 1) * p ^ y := by
   have hp0 : 3 < p := hp.trans_lt' (by decide)
   rcases y with _ | y
@@ -53,6 +65,9 @@ lemma y_bound₁ (hp : 5 ≤ p) (y) : 2 * (2 * y + 1) ^ 2 < (p - 1) * p ^ y := b
   · refine y_bound₀ Nat.one_pos hp0.le ?_ y.succ_pos
     rw [p.pow_one]; exact (Nat.mul_le_mul (Nat.pred_le_pred hp) hp).trans_lt' (by decide)
 
+/--
+@isnad1 id=lt.1h1v.s6.982ecb7861b4 from=translated src=- shape=76a2e200 vocab=3f16b8dd
+-/
 lemma y_bound₂ (hy : 10 ≤ y) : 2 * (2 * y + 1) ^ 2 < 2 ^ y := by
   induction y, hy using Nat.le_induction with | base => decide | succ y hy h0 => ?_
   calc 2 * (2 * y + 1 + 2) ^ 2
@@ -68,6 +83,9 @@ def good (a p : ℕ) := ∃ b, p ^ a + a ^ 4 = b ^ 2
 
 def good_alt (x y p : ℕ) := p ^ x + 2 * (x + y) ^ 2 = p ^ y
 
+/--
+@isnad1 id=ex.2h2v.s5.c9c54b119d9a from=translated src=- shape=1950a94b vocab=b4ec4dd2
+-/
 lemma good_imp_alt (hp : Nat.Prime p) (h : good a p) :
     ∃ x y, a = x + y ∧ good_alt x y p := by
   rcases h with ⟨b, h⟩
@@ -83,6 +101,9 @@ lemma good_imp_alt (hp : Nat.Prime p) (h : good a p) :
   rw [Nat.pow_add, Nat.mul_comm] at h
   exact ⟨x, y, rfl, Nat.mul_right_cancel (Nat.pow_pos hp.pos) h.symm⟩
 
+/--
+@isnad1 id=and.2h3v.s6.9e400a089661 from=translated src=- shape=2579079b vocab=bd04eb21
+-/
 lemma good_alt_imp (hxy : 0 < x + y) (h : good_alt x y p) :
     p = 3 ∧ (x + y = 1 ∨ x + y = 2 ∨ x + y = 6 ∨ x + y = 9) := by
   replace hxy : 1 < 2 * (x + y) ^ 2 := Nat.le_mul_of_pos_right 2 (Nat.pow_pos hxy)
@@ -119,7 +140,9 @@ lemma good_alt_imp (hxy : 0 < x + y) (h : good_alt x y p) :
   ---- Case 4: `p ≥ 5`
   · exact absurd (y_bound₁ hp y) h0.not_gt
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.2h2v.s6.2b92e4bda94f from=translated src=- shape=0f339caf vocab=cb7ad760
+-/
 theorem final_solution {a p : ℕ} (ha : 0 < a) (hp : p.Prime) :
     good a p ↔ p = 3 ∧ (a = 1 ∨ a = 2 ∨ a = 6 ∨ a = 9) := by
   refine ⟨λ h ↦ ?_, λ h ↦ ?_⟩

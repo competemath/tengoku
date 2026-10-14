@@ -27,7 +27,9 @@ def unitIntervalRoundedGridCoverProfile (j : ℕ) : ℕ :=
 /-- The dyadic-indexed profile is definitionally the rounded-grid cover count.
 
 This is intentionally a dyadic-indexed statement, not a global real-radius
-covering-number antitonicity claim. -/
+covering-number antitonicity claim.
+@isnad1 id=eq.0h1v.s3.de8820d2b59a from=translated src=- shape=0fc427d2 vocab=ff6249dd
+-/
 -- fidelity: This is only a definitional identity for the rounded-grid profile;
 -- it is not advertised as a separate domination theorem.
 theorem unitInterval_coverProfile_eq_roundedDyadicGridCoverCount (j : ℕ) :
@@ -39,11 +41,17 @@ unit-interval capstone. -/
 def unitIntervalEntropyProfile (ε : ℝ) : ℝ :=
   20 + Real.exp (-ε)
 
+/--
+@isnad1 id=le.0h1v.s3.4fff1330f4fa from=translated src=- shape=8a62b088 vocab=b544b1e1
+-/
 theorem unitIntervalEntropyProfile_nonneg (ε : ℝ) :
     0 ≤ unitIntervalEntropyProfile ε := by
   dsimp [unitIntervalEntropyProfile]
   positivity
 
+/--
+@isnad1 id=antitone.0h0v.s2.4f8353ce1afc from=translated src=- shape=e3d48bcb vocab=87eec680
+-/
 theorem unitIntervalEntropyProfile_antitone :
     Antitone unitIntervalEntropyProfile := by
   intro a b hab
@@ -51,11 +59,17 @@ theorem unitIntervalEntropyProfile_antitone :
   simpa [add_comm, add_left_comm, add_assoc] using
     add_le_add_left (Real.exp_le_exp.mpr (neg_le_neg hab)) 20
 
+/--
+@isnad1 id=guardeda.0h1v.s3.b538f86c9cc8 from=translated src=- shape=7f61ff03 vocab=493c26ef
+-/
 theorem unitIntervalEntropyProfile_guarded (j : ℕ) :
     GuardedAntitoneOnDyadicAnnulus unitIntervalEntropyProfile (1 : ℝ) j := by
   intro ε _hleft hright
   exact unitIntervalEntropyProfile_antitone hright
 
+/--
+@isnad1 id=interval.0h2v.s4.3757530caf3d from=translated src=- shape=703fab3b vocab=cfc6da87
+-/
 theorem unitIntervalEntropyProfile_intervalIntegrable (a b : ℝ) :
     IntervalIntegrable unitIntervalEntropyProfile volume a b := by
   have hcont : Continuous unitIntervalEntropyProfile := by
@@ -63,7 +77,9 @@ theorem unitIntervalEntropyProfile_intervalIntegrable (a b : ℝ) :
     exact continuous_const.add (Real.continuous_exp.comp continuous_neg)
   exact hcont.intervalIntegrable a b
 
-/-- The entropy integrand is load-bearing: it is not a constant profile. -/
+/-- The entropy integrand is load-bearing: it is not a constant profile.
+@isnad1 id=ne.0h0v.s4.630f761c5ca9 from=translated src=- shape=fe96b7c9 vocab=65e1c68d
+-/
 -- fidelity: The two endpoint values are unequal, so the capstone integral is
 -- not a disguised constant-entropy bound.
 theorem unitInterval_entropyProfile_nonconstant :
@@ -76,7 +92,9 @@ theorem unitInterval_entropyProfile_nonconstant :
     linarith
   linarith
 
-/-- The entropy integrand has positive mass on the continuous Dudley interval. -/
+/-- The entropy integrand has positive mass on the continuous Dudley interval.
+@isnad1 id=lt.0h0v.s5.75a7527b6281 from=translated src=- shape=82bd89d8 vocab=46ab9f5b
+-/
 -- fidelity: The integral dominates the positive rectangle with height `20`
 -- over `[0, 1 / 2]`, so the entropy term is not zero.
 theorem unitInterval_entropyProfile_integral_positive :
@@ -102,6 +120,9 @@ but diverges like `ε^(-1/2)` as `ε ↓ 0` along positive radii. -/
 def unitIntervalDivergingEntropyProfile (ε : ℝ) : ℝ :=
   if 0 < ε then 20 * ε ^ (-(1 : ℝ) / 2) else 0
 
+/--
+@isnad1 id=le.0h1v.s3.75abefcda142 from=translated src=- shape=8a62b088 vocab=3a459c8e
+-/
 theorem unitIntervalDivergingEntropyProfile_nonneg (ε : ℝ) :
     0 ≤ unitIntervalDivergingEntropyProfile ε := by
   by_cases hε : 0 < ε
@@ -110,6 +131,9 @@ theorem unitIntervalDivergingEntropyProfile_nonneg (ε : ℝ) :
         (Real.rpow_nonneg hε.le (-(1 : ℝ) / 2))]
   · simp [unitIntervalDivergingEntropyProfile, hε]
 
+/--
+@isnad1 id=guardeda.0h1v.s3.c03f5780c9fc from=translated src=- shape=7f61ff03 vocab=90dc4170
+-/
 theorem unitIntervalDivergingEntropyProfile_guarded (j : ℕ) :
     GuardedAntitoneOnDyadicAnnulus
       unitIntervalDivergingEntropyProfile (1 : ℝ) j := by
@@ -123,6 +147,9 @@ theorem unitIntervalDivergingEntropyProfile_guarded (j : ℕ) :
     Real.rpow_le_rpow_of_nonpos hε_pos hright
       (by norm_num : (-(1 : ℝ) / 2) ≤ 0)
 
+/--
+@isnad1 id=interval.0h0v.s5.4f586fbcfe53 from=translated src=- shape=a1975529 vocab=9610d1e7
+-/
 theorem unitIntervalDivergingEntropyProfile_intervalIntegrable_zero_half :
     IntervalIntegrable unitIntervalDivergingEntropyProfile volume
       (0 : ℝ) ((1 : ℝ) / 2) := by
@@ -137,6 +164,9 @@ theorem unitIntervalDivergingEntropyProfile_intervalIntegrable_zero_half :
   rw [Set.uIoc_of_le (by norm_num : (0 : ℝ) ≤ (1 : ℝ) / 2)] at hε
   simp [unitIntervalDivergingEntropyProfile, hε.1]
 
+/--
+@isnad1 id=interval.0h1v.s6.ea1a2ba196e5 from=translated src=- shape=6b4c99b1 vocab=cb1ec10a
+-/
 theorem unitIntervalDivergingEntropyProfile_intervalIntegrable_dyadic
     (j : ℕ) :
     IntervalIntegrable unitIntervalDivergingEntropyProfile volume
@@ -187,7 +217,9 @@ private lemma unitIntervalRoundedDyadicGridCoverCount_le_pow (j : ℕ) :
 
 -- fidelity: The domination is uniform in the dyadic index and uses the
 actual rounded-grid cover counts, while the profile diverges at positive radii
-approaching zero. -/
+approaching zero.
+@isnad1 id=le.0h1v.s5.a3facd71c5c3 from=translated src=- shape=d47bb8c7 vocab=a8e6367f
+-/
 theorem unitInterval_divergingEntropyProfile_dominates_roundedDyadicEntropy
     (j : ℕ) :
     Real.sqrt (Real.log (unitIntervalRoundedDyadicGridCoverCount j : ℝ)) ≤
@@ -275,7 +307,9 @@ theorem unitInterval_divergingEntropyProfile_dominates_roundedDyadicEntropy
 
 -- fidelity: The positive lower bound comes from the concrete subinterval
 `[1 / 4, 1 / 2]`, so the load-bearing entropy term is not concentrated in a
-formal singularity at zero. -/
+formal singularity at zero.
+@isnad1 id=lt.0h0v.s5.7fde40e9bff6 from=translated src=- shape=82bd89d8 vocab=a363a400
+-/
 theorem unitInterval_divergingEntropyProfile_integral_positive :
     0 < ∫ ε in (0 : ℝ)..((1 : ℝ) / 2),
       unitIntervalDivergingEntropyProfile ε := by
@@ -321,7 +355,9 @@ condition instead of a global antitone entropy profile.
 
 -- fidelity: The finite input is a real dyadic upper-sum bound at positive
 annuli; the theorem does not assume global antitonicity or evaluate the profile
-at radius zero through monotonicity. -/
+at radius zero through monotonicity.
+@isnad1 id=le.4h7v.s8.e788a27e347c from=translated src=- shape=955b8861 vocab=cf28a1f5
+-/
 theorem continuous_dudley_entropy_integral_iSup_of_dyadicProfile_guarded
     {Ω T : Type*} [Fintype Ω]
     (P : FiniteSubGaussianProcess Ω T)

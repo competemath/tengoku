@@ -27,7 +27,9 @@ noncomputable section
 namespace CKN.Core.Endgame
 
 /-- A bounded supported multiplier is controlled by the indicated source
-norm. No measurability assumption is needed for this upper-integral bound. -/
+norm. No measurability assumption is needed for this upper-integral bound.
+@isnad1 id=le.4h6v.s6.8ac5ff4fabad from=translated src=- shape=6c236259 vocab=d81a65ea
+-/
 theorem morrey_norm_mul_le_indicator (P τ C : ℝ) (hP : 0 < P) (hC : 0 ≤ C)
     (S : Set ParabolicPoint) (a f : ParabolicPoint → ℝ)
     (ha : ∀ z, |a z| ≤ C) (hsupp : ∀ z ∉ S, a z = 0) :

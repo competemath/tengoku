@@ -39,10 +39,16 @@ def coveredInputs (g : Gate B (N + G)) : Finset (Fin N) :=
     ∃ k : Fin g.fanIn, (g.inputs k).val = i.val
 
 omit [NeZero N] in
+/--
+@isnad1 id=iff.0h5v.s6.4ac0ee5f8c2d from=translated src=- shape=c33ac41c vocab=379670bc
+-/
 theorem mem_coveredInputs (g : Gate B (N + G)) (i : Fin N) :
     i ∈ coveredInputs g ↔ ∃ k : Fin g.fanIn, (g.inputs k).val = i.val := by
   simp [coveredInputs]
 
+/--
+@isnad1 id=le.0h4v.s5.2ad98b127062 from=translated src=- shape=aa4bb022 vocab=1cb4c28e
+-/
 theorem card_coveredInputs_le (g : Gate B (N + G)) :
     (coveredInputs g : Finset (Fin N)).card ≤ g.fanIn := by
   suffices coveredInputs g ⊆
@@ -60,7 +66,9 @@ theorem card_coveredInputs_le (g : Gate B (N + G)) :
   simp only [Finset.mem_image, Finset.mem_univ, true_and]
   exact ⟨k, by simp [hk]⟩
 
-/-- For a gate over bounded fan-in k AON basis, covered inputs has card ≤ k. -/
+/-- For a gate over bounded fan-in k AON basis, covered inputs has card ≤ k.
+@isnad1 id=le.0h4v.s5.b2cbc1d74a38 from=translated src=- shape=45861582 vocab=2b166e7f
+-/
 theorem boundedAON_coveredInputs_card_le {k : Nat}
     (g : Gate (Basis.boundedAON k) (N + G)) :
     (coveredInputs g : Finset (Fin N)).card ≤ k := by

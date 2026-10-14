@@ -30,13 +30,22 @@ abbrev TwoPoint : Type := Bool
 def twoPointDist (s t : TwoPoint) : ℝ :=
   if s = t then 0 else 1
 
+/--
+@isnad1 id=le.0h2v.s4.dbfd1fda809d from=translated src=- shape=5ffe46ab vocab=f208a5e3
+-/
 theorem twoPointDist_nonneg (s t : TwoPoint) : 0 ≤ twoPointDist s t := by
   by_cases h : s = t <;> simp [twoPointDist, h]
 
+/--
+@isnad1 id=eq.0h2v.s3.58ac6a01be22 from=translated src=- shape=ab795eaa vocab=7667280b
+-/
 theorem twoPointDist_symm (s t : TwoPoint) :
     twoPointDist s t = twoPointDist t s := by
   cases s <;> cases t <;> norm_num [twoPointDist]
 
+/--
+@isnad1 id=le.0h3v.s4.1d9dd4cd8afa from=translated src=- shape=5968a5f3 vocab=57910c6e
+-/
 theorem twoPointDist_triangle (x y z : TwoPoint) :
     twoPointDist x z ≤ twoPointDist x y + twoPointDist y z := by
   cases x <;> cases y <;> cases z <;> norm_num [twoPointDist]
@@ -49,6 +58,9 @@ private theorem twoPointRademacherValue_le_one (ω : Bool) (t : TwoPoint) :
     twoPointRademacherValue ω t ≤ 1 := by
   cases ω <;> cases t <;> norm_num [twoPointRademacherValue, signOfBool]
 
+/--
+@isnad1 id=le.0h3v.s7.9fc9bc0cf6c6 from=translated src=- shape=602b67c9 vocab=5eab1d35
+-/
 theorem twoPoint_rademacher_mgf_bound (s t : TwoPoint) (lam : ℝ) :
     finiteExpectation (fun _ : Bool => (1 : ℝ) / 2)
         (fun ω => Real.exp
@@ -112,15 +124,24 @@ def twoPointDyadicNet (j : ℕ) : FiniteNet TwoPoint Bool where
 
 def twoPointDyadicCoverCount (_j : ℕ) : ℕ := 4
 
+/--
+@isnad1 id=eq.0h1v.s4.47f7fc636e27 from=translated src=- shape=3d1b0112 vocab=1b9589c5
+-/
 theorem twoPointDyadicNet_dist (j : ℕ) :
     (twoPointDyadicNet j).dist = twoPointRademacherProcess.dist := by
   rfl
 
+/--
+@isnad1 id=lt.0h1v.s5.0d33a3802146 from=translated src=- shape=25b052d0 vocab=74571843
+-/
 theorem twoPointDyadicNet_radius_pos (j : ℕ) :
     0 < (twoPointDyadicNet j).radius + (twoPointDyadicNet (j + 1)).radius := by
   simp [twoPointDyadicNet]
   positivity
 
+/--
+@isnad1 id=le.0h1v.s6.6644f2e60c78 from=translated src=- shape=c18e13a8 vocab=7375e91a
+-/
 theorem twoPointDyadicNet_radius_geometric (j : ℕ) :
     (twoPointDyadicNet j).radius + (twoPointDyadicNet (j + 1)).radius ≤
       (1 : ℝ) / (2 : ℝ) ^ j := by
@@ -147,6 +168,9 @@ theorem twoPointDyadicNet_radius_geometric (j : ℕ) :
     _ = (1 : ℝ) / (2 : ℝ) ^ j := by
           field_simp [hpow_pos.ne']
 
+/--
+@isnad1 id=lt.0h1v.s5.c50e28f4b576 from=translated src=- shape=238233b4 vocab=c1ffb9ba
+-/
 theorem twoPointDyadicNet_pair_card_gt_one (j : ℕ) :
     1 < Fintype.card
       (FiniteNet.ProjectionPair (twoPointDyadicNet j) (twoPointDyadicNet (j + 1))) := by
@@ -159,10 +183,16 @@ theorem twoPointDyadicNet_pair_card_gt_one (j : ℕ) :
   have hfst : p0.1.1 = p1.1.1 := congrArg (fun p => p.1.1) hp
   norm_num [p0, p1, FiniteNet.projectionPairOf, twoPointDyadicNet] at hfst
 
+/--
+@isnad1 id=eq.0h1v.s3.8f65ab04693c from=translated src=- shape=b2519bca vocab=2661c669
+-/
 theorem twoPointDyadicNet_coveringNumber (j : ℕ) :
     (twoPointDyadicNet j).coveringNumber = 2 := by
   simp [FiniteNet.coveringNumber]
 
+/--
+@isnad1 id=le.0h1v.s5.2de97fa84d8e from=translated src=- shape=31807e71 vocab=a5014a50
+-/
 theorem twoPointDyadicNet_coverCount_le (j : ℕ) :
     (twoPointDyadicNet j).coveringNumber *
         (twoPointDyadicNet (j + 1)).coveringNumber ≤
@@ -228,6 +258,9 @@ def twoPointDudleyInstance :
 def twoPointRademacherSup (ω : Bool) : ℝ :=
   finiteSup (fun t : TwoPoint => twoPointRademacherProcess.X ω t)
 
+/--
+@isnad1 id=le.0h2v.s5.1124fdb5ff36 from=translated src=- shape=7c24464d vocab=2e5aa702
+-/
 theorem twoPointRademacherSup_le_projectedSup (m : ℕ) (ω : Bool) :
     twoPointRademacherSup ω ≤
       finiteSup

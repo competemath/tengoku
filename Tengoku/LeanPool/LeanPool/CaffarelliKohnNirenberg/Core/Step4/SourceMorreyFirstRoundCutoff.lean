@@ -35,7 +35,9 @@ namespace CKN.Core.Step4
 
 /-- Equation `eq:local-equation`, in box form: `spaceTimeSet` applied to the spatial
 ball `vec3Ball z₀.1 r` and the time interval `(z₀.2 - r², z₀.2 + r²)` is the parabolic
-metric ball `Metric.ball z₀ r` of `eq:parabolic-ball`. -/
+metric ball `Metric.ball z₀ r` of `eq:parabolic-ball`.
+@isnad1 id=eq.0h2v.s6.d1ca14113bef from=translated src=- shape=5e741123 vocab=f4e0357c
+-/
 theorem parabolic_box_eq_ball (z₀ : ParabolicPoint) (r : ℝ) :
     spaceTimeSet (vec3Ball z₀.1 r) (Set.Ioo (z₀.2 - r ^ 2) (z₀.2 + r ^ 2)) =
       Metric.ball z₀ r :=
@@ -43,7 +45,9 @@ theorem parabolic_box_eq_ball (z₀ : ParabolicPoint) (r : ℝ) :
 
 /-- Equation `eq:local-equation`, preimage form: the product box of spatial ball and
 open time interval is contained in the preimage of the parabolic metric ball under the
-product identification `parabolicHomeomorph.symm`. -/
+product identification `parabolicHomeomorph.symm`.
+@isnad1 id=le.0h2v.s8.7bf57a7b6ea3 from=translated src=- shape=f919fd1b vocab=3cae1371
+-/
 theorem parabolic_box_subset_ball_preimage (z₀ : ParabolicPoint) (r : ℝ) :
     vec3Ball z₀.1 r ×ˢ Set.Ioo (z₀.2 - r ^ 2) (z₀.2 + r ^ 2) ⊆
       parabolicHomeomorph.symm ⁻¹' Metric.ball z₀ r := by

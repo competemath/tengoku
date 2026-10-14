@@ -34,6 +34,9 @@ noncomputable section
 
 namespace CKN
 
+/--
+@isnad1 id=eq.1h2v.s5.bc9f683b55ce from=translated src=- shape=8139cc40 vocab=c29d0dbd
+-/
 theorem euclideanBall_eq_vec3Ball_timeSobolev
     {x₀ : Vec3} {r : ℝ} (hr : 0 < r) :
     euclideanBall x₀ r = vec3Ball x₀ r := by

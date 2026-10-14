@@ -14,6 +14,7 @@ This is the exact claim-facing wrapper for the core inequality on the
 forms are useful corollaries, but they are intentionally not bundled into this
 declaration.
 Claim-facing wrapper for theorempath.com evidence entry `claim:common-inequalities::cauchy-schwarz-inequality`.
+@isnad1 id=le.0h3v.s5.b31b1949467c from=translated src=- shape=23d428e3 vocab=9fec0a3e
 -/
 theorem cauchySchwarzRealInner
     {E : Type*} [SeminormedAddCommGroup E] [InnerProductSpace ℝ E] (u v : E) :
@@ -28,6 +29,7 @@ makes the formal side conditions explicit: the convex function is continuous on
 a closed convex domain, the random variable lands in that domain almost
 everywhere, and both sides are integrable.
 Claim-facing wrapper for theorempath.com evidence entry `claim:common-inequalities::jensen-inequality`.
+@isnad1 id=le.6h6v.s8.5e5db93cf897 from=translated src=- shape=520df133 vocab=44ca0406
 -/
 theorem jensenIntegralAverageConvex
     {α E : Type*} [MeasurableSpace α]
@@ -49,6 +51,7 @@ Jensen's inequality for expectations under a probability measure.
 This is the probability-expectation statement closest to the textbook display
 `g (E[X]) ≤ E[g(X)]`, with mathlib's measurability, domain, continuity, and
 integrability side conditions made explicit.
+@isnad1 id=le.6h6v.s8.04c2eff77b6f from=translated src=- shape=8c900df9 vocab=4637d58d
 -/
 theorem jensenProbabilityIntegralConvex
     {Ω E : Type*} [MeasurableSpace Ω]
@@ -69,6 +72,7 @@ Jensen's inequality for concave functions under a probability measure.
 
 This records the reversed inequality for the concave variant stated on the
 public common-inequalities page.
+@isnad1 id=le.6h6v.s8.603c1a5b9886 from=translated src=- shape=3d480cf3 vocab=11b519f6
 -/
 theorem jensenProbabilityIntegralConcave
     {Ω E : Type*} [MeasurableSpace Ω]
@@ -90,6 +94,7 @@ Finite weighted Jensen inequality for convex functions.
 This is the finite weighted form shown on the public page: nonnegative weights
 whose finite sum is one give a convex combination before and after applying
 the convex function.
+@isnad1 id=le.4h7v.s8.e7cc1f8436dd from=translated src=- shape=cffe894d vocab=81126933
 -/
 theorem jensenFiniteWeightedConvex
     {E ι : Type*} [AddCommGroup E] [Module ℝ E]
@@ -105,6 +110,7 @@ theorem jensenFiniteWeightedConvex
 Finite weighted Jensen inequality for concave functions.
 
 This is the finite weighted reversed inequality for concave functions.
+@isnad1 id=le.4h7v.s8.24165d34e634 from=translated src=- shape=5858d1c7 vocab=dd7646c0
 -/
 theorem jensenFiniteWeightedConcave
     {E ι : Type*} [AddCommGroup E] [Module ℝ E]

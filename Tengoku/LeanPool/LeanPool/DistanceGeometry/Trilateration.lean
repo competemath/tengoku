@@ -56,6 +56,9 @@ nonnegative. -/
 def sphereIntersection (c : ι → P) (r : ι → ℝ) : Set P :=
   {p | ∀ i, dist p (c i) = r i}
 
+/--
+@isnad1 id=iff.0h5v.s5.f0723e7872c5 from=translated src=- shape=eaa7a135 vocab=74887b9d
+-/
 @[simp]
 theorem mem_sphereIntersection {p : P} :
     p ∈ sphereIntersection c r ↔ ∀ i, dist p (c i) = r i := Iff.rfl
@@ -155,7 +158,9 @@ private theorem sphereIntersection_subset_pair [Nonempty ι]
 
 /-- If the orthogonal complement of the center span is one-dimensional (the centers
 span a hyperplane), the intersection of the spheres `{p | ∀ i, dist p (c i) = r i}`
-has at most two elements. -/
+has at most two elements.
+@isnad1 id=le.1h5v.s8.c3d86a3a0d23 from=translated src=- shape=9cb0de90 vocab=14caf8b3
+-/
 theorem encard_setOf_forall_dist_eq_le_two [Nonempty ι]
     (hc : finrank ℝ (vectorSpan ℝ (Set.range c))ᗮ = 1) (r : ι → ℝ) :
     Set.encard {p : P | ∀ i, dist p (c i) = r i} ≤ 2 := by
@@ -183,7 +188,9 @@ variable {c : Fin 3 → EuclideanSpace ℝ (Fin 3)}
 /-- Three affinely independent centers and three radii localize a point in
 `EuclideanSpace ℝ (Fin 3)` to at most two candidates: the intersection of the three
 spheres has at most two elements. The `d = 3` analog of
-`EuclideanGeometry.eq_of_dist_eq_of_dist_eq_of_mem_of_finrank_eq_two`. -/
+`EuclideanGeometry.eq_of_dist_eq_of_dist_eq_of_mem_of_finrank_eq_two`.
+@isnad1 id=le.1h2v.s8.69a0aa3508a8 from=translated src=- shape=315c5064 vocab=d460fbbf
+-/
 theorem trilateration_le_two (hc : AffineIndependent ℝ c) (r : Fin 3 → ℝ) :
     (trilaterationSet c r).encard ≤ 2 := by
   -- the centers span a plane, so the orthogonal complement is a line

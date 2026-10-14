@@ -32,10 +32,16 @@ section NoncommRing
 
 variable [Ring R]
 
+/--
+@isnad1 id=eq.0h4v.s7.42321dc031be from=translated src=- shape=1a691a5a vocab=f79e6646
+-/
 theorem matrix_fin2_mulVec (M : Matrix (Fin 2) (Fin 2) R) (v : Fin 2 → R) (b : Fin 2) :
     M.mulVec v b = M b 0 * v 0 + M b 1 * v 1 :=
   vec2_dotProduct (M b) v
 
+/--
+@isnad1 id=eq.0h4v.s7.767a0e9f3481 from=translated src=- shape=61047d45 vocab=f72f7ff9
+-/
 theorem matrix_fin2_vecMul (v : Fin 2 → R) (M : Matrix (Fin 2) (Fin 2) R) (b : Fin 2) :
     vecMul v M b = v 0 * M 0 b + v 1 * M 1 b :=
   vec2_dotProduct v _
@@ -46,8 +52,14 @@ def f_aux : List R → R × R
   | [] => (1, 1)
   | r :: l => let (a, b) := f_aux l; (a + r * b, a)
 
+/--
+@isnad1 id=eq.0h1v.s5.4dfecc554d21 from=translated src=- shape=dbe09b1e vocab=27fc521f
+-/
 theorem f_aux_nil : f_aux ([] : List R) = (1, 1) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.b3f6a740322a from=translated src=- shape=bd6a1808 vocab=0678eb89
+-/
 theorem f_aux_cons (r : R) (l : List R) :
     f_aux (r :: l) = ((f_aux l).1 + r * (f_aux l).2, (f_aux l).1) := rfl
 
@@ -61,16 +73,28 @@ def M (r : R) : Matrix (Fin 2) (Fin 2) R := !![1 + r, -r; r, -r]
 
 def f_aux_alt1 (l : List R) : Fin 2 → R := foldr (λ r ↦ (M r).mulVec) ![1, 0] l
 
+/--
+@isnad1 id=eq.0h1v.s5.a3d5bf000a17 from=translated src=- shape=8bd4f02c vocab=62330eb4
+-/
 theorem f_aux_alt1_nil : f_aux_alt1 nil = ![(1 : R), 0] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.70c07180accc from=translated src=- shape=f93fb2b3 vocab=238f2835
+-/
 theorem f_aux_alt1_cons (r : R) (l : List R) :
     f_aux_alt1 (r :: l) = (M r).mulVec (f_aux_alt1 l) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.56bb55fbfb71 from=translated src=- shape=c6b69101 vocab=79671b03
+-/
 theorem f_aux_alt1_prod_description :
     ∀ l : List R, f_aux_alt1 l = (l.map M).prod.mulVec ![1, 0] := by
   refine List.rec (one_mulVec ![1, 0]).symm λ r l h ↦ ?_
   rw [map_cons, prod_cons, f_aux_alt1_cons, h, mulVec_mulVec]
 
+/--
+@isnad1 id=eq.0h2v.s6.3d306bfec3e5 from=translated src=- shape=b4ea70b1 vocab=4ef26ee6
+-/
 theorem f_aux_matrix_description1 :
     ∀ l : List R, f_aux l = (f_aux_alt1 l 0, f_aux_alt1 l 0 - f_aux_alt1 l 1) := by
   refine List.rec (Prod.ext rfl (sub_zero 1).symm) λ r l h ↦ ?_
@@ -81,6 +105,9 @@ theorem f_aux_matrix_description1 :
   · rw [one_add_mul, neg_mul, add_assoc, ← sub_eq_add_neg, mul_sub]
   · rw [add_sub_add_right_eq_sub, one_add_mul, add_sub_cancel_right]
 
+/--
+@isnad1 id=eq.0h2v.s5.1f4b2e14416c from=translated src=- shape=afd61412 vocab=bfaa3d8b
+-/
 theorem f_description1 (l : List R) : f l = f_aux_alt1 l 0 :=
   congrArg Prod.fst (f_aux_matrix_description1 l)
 
@@ -89,11 +116,20 @@ theorem f_description1 (l : List R) : f l = f_aux_alt1 l 0 :=
 def f_aux_alt2 (l : List R) : Fin 2 → R :=
   foldr (λ r v ↦ vecMul v (M r)) ![1, 0] l
 
+/--
+@isnad1 id=eq.0h1v.s5.9306fc5045bd from=translated src=- shape=8bd4f02c vocab=86ce1813
+-/
 theorem f_aux_alt2_nil : f_aux_alt2 nil = ![(1 : R), 0] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.6cd95847561c from=translated src=- shape=a6ae98fd vocab=d5118c8f
+-/
 theorem f_aux_alt2_cons (r : R) (l : List R) :
     f_aux_alt2 (r :: l) = vecMul (f_aux_alt2 l) (M r) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.e83b6172f49b from=translated src=- shape=fd20ee25 vocab=a43edfd0
+-/
 theorem f_aux_alt2_prod_description :
     ∀ l : List R, f_aux_alt2 l = vecMul ![1, 0] (l.reverse.map M).prod := by
   refine List.rec (vecMul_one ![1, 0]).symm λ r l h ↦ ?_
@@ -106,6 +142,9 @@ section CommRing
 
 variable [CommRing R]
 
+/--
+@isnad1 id=eq.0h2v.s6.a86bbd301bbf from=translated src=- shape=b4ea70b1 vocab=f98b7a9c
+-/
 theorem f_aux_matrix_description2 :
     ∀ l : List R, f_aux l = (f_aux_alt2 l 0, f_aux_alt2 l 0 + f_aux_alt2 l 1) := by
   refine List.rec (Prod.ext rfl (add_zero 1).symm) λ r l h ↦ ?_
@@ -117,12 +156,17 @@ theorem f_aux_matrix_description2 :
   · rw [← add_mul, mul_one_add, add_assoc (f_aux_alt2 l 0),
       ← add_mul, mul_neg, add_neg_cancel_right]
 
+/--
+@isnad1 id=eq.0h2v.s5.a0fa3058f7d9 from=translated src=- shape=afd61412 vocab=8dccd859
+-/
 theorem f_description2 (l : List R) : f l = f_aux_alt2 l 0 :=
   congrArg Prod.fst (f_aux_matrix_description2 l)
 
 /-! ### Final solution -/
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=eq.0h2v.s4.47e175a78440 from=translated src=- shape=660825d4 vocab=f07a0c4f
+-/
 theorem final_solution (l : List R) : f l.reverse = f l := by
   rw [f_description2, f_aux_alt2_prod_description, reverse_reverse, matrix_fin2_vecMul,
     f_description1, f_aux_alt1_prod_description, matrix_fin2_mulVec]

@@ -13,6 +13,9 @@ public import Tengoku
 
 @[expose] public section
 
+/--
+@isnad1 id=eq.0h14v.s6.af28f1ae375b from=translated src=- shape=7b2d25b9 vocab=b2a25a4b
+-/
 theorem List.zipWith₃_map {α α' β β' γ γ' δ : Type*} (f : α' → β' → γ' → δ)
     (fa : α → α') (fb : β → β') (fc : γ → γ')
     (la : List α) (lb : List β) (lc : List γ) :

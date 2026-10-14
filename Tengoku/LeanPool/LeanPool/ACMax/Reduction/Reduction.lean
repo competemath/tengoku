@@ -142,7 +142,9 @@ structure ResidualCore (n : ℕ) (G : SimpleGraph (Fin n)) : Prop where
 open Classical in
 /-- **Handshake counting.**  If every degree is `≥ 3` and `G` has `2(n−2)` edges, then at least
 `8` vertices have degree exactly `3`: with `D = {deg = 3}` and `H = {deg ≥ 4}`,
-`3|D| + 4|H| ≤ ∑deg = 4n − 8` and `|D| + |H| = n` give `|D| ≥ 8`. -/
+`3|D| + 4|H| ≤ ∑deg = 4n − 8` and `|D| + |H| = n` give `|D| ≥ 8`.
+@isnad1 id=le.3h2v.s8.3b3f2e507082 from=translated src=- shape=34dcbd67 vocab=80e42eea
+-/
 theorem card_deg3_ge_eight (n : ℕ) (hn : 8 ≤ n) (G : SimpleGraph (Fin n))
     (hm : G.edgeFinset.card = 2 * (n - 2)) (h3 : ∀ v : Fin n, 3 ≤ G.degree v) :
     8 ≤ (Finset.univ.filter (fun v : Fin n => G.degree v = 3)).card := by

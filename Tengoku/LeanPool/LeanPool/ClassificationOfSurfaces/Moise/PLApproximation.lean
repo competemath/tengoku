@@ -44,7 +44,9 @@ namespace Topology
 namespace ClassificationOfSurfaces
 namespace Moise
 
-/-- Every closed triangle has an explicit polygonal presentation of its frontier. -/
+/-- Every closed triangle has an explicit polygonal presentation of its frontier.
+@isnad1 id=ex.1h1v.s5.c678f622aab7 from=translated src=- shape=fe77a607 vocab=e8d30542
+-/
 theorem IsTriangle.exists_polygonalCircle {C : Set Plane} (hC : IsTriangle C) :
     ∃ J : PolygonalCircle, J.carrier = frontier C := by
   obtain ⟨p, hp, rfl⟩ := hC
@@ -70,7 +72,9 @@ theorem IsTriangle.exists_polygonalCircle {C : Set Plane} (hC : IsTriangle C) :
       exact triangleAffineEquiv_image_convexHull standardTriangleVertex p
         standardTriangleVertex_affineIndependent hp]
 
-/-- The topological interior of a full-dimensional plane simplex is its barycentric interior. -/
+/-- The topological interior of a full-dimensional plane simplex is its barycentric interior.
+@isnad1 id=eq.1h1v.s10.b596ec91654e from=translated src=- shape=b6542d8b vocab=a185630f
+-/
 theorem interior_convexHull_fin3_eq_simplex_interior (p : Fin 3 → Plane)
     (hp : AffineIndependent ℝ p) :
     interior (convexHull ℝ (Set.range p)) =
@@ -105,7 +109,9 @@ theorem interior_convexHull_fin3_eq_simplex_interior (p : Fin 3 → Plane)
     rw [b.coord_apply_combination_of_mem (Finset.mem_univ i) hw] at hcoord
     exact hcoord ▸ (hwI i).1
 
-/-- Every maximal face of a plane complex is a nondegenerate closed triangle. -/
+/-- Every maximal face of a plane complex is a nondegenerate closed triangle.
+@isnad1 id=istriang.1h2v.s5.0406e39fb7f3 from=translated src=- shape=3b7e93ba vocab=0372140f
+-/
 theorem PlaneComplex.isTriangle_cellCarrier (K : PlaneComplex)
     {t : Finset K.Vertex} (ht : t ∈ K.cells) :
     IsTriangle (K.cellCarrier t) := by
@@ -119,7 +125,9 @@ theorem PlaneComplex.isTriangle_cellCarrier (K : PlaneComplex)
   rw [Set.range_comp, show Set.range q = (t : Set K.Vertex) by
     exact K.toTriangleMesh.range_orderedVertex T]
 
-/-- The frontier of a two-cell of a plane complex is covered facewise by its one-skeleton. -/
+/-- The frontier of a two-cell of a plane complex is covered facewise by its one-skeleton.
+@isnad1 id=ex.2h3v.s7.3e7e142f694e from=translated src=- shape=72b0c472 vocab=bf54d4cb
+-/
 theorem PlaneComplex.frontier_cellCarrier_coveredBy_oneSkeleton (K : PlaneComplex)
     {t : Finset K.Vertex} (ht : t ∈ K.cells) :
     ∀ x ∈ frontier (K.cellCarrier t),
@@ -185,6 +193,9 @@ theorem PlaneComplex.frontier_cellCarrier_coveredBy_oneSkeleton (K : PlaneComple
     rw [← hface, hfrontier]
     exact Set.subset_iUnion (fun i : Fin 3 => (S.faceOpposite i).closedInterior) i
 
+/--
+@isnad1 id=le.1h2v.s6.f2cb58d90a4d from=translated src=- shape=6f1ed5cc vocab=e94667ac
+-/
 theorem PlaneComplex.frontier_cellCarrier_subset_oneSkeleton_support (K : PlaneComplex)
     {t : Finset K.Vertex} (ht : t ∈ K.cells) :
     frontier (K.cellCarrier t) ⊆ K.oneSkeleton.support := by
@@ -192,7 +203,9 @@ theorem PlaneComplex.frontier_cellCarrier_subset_oneSkeleton_support (K : PlaneC
   obtain ⟨s, hs, hxs, -⟩ := K.frontier_cellCarrier_coveredBy_oneSkeleton ht x hx
   exact K.oneSkeleton.cellCarrier_subset_support hs hxs
 
-/-- Every point of a pure complex lies in a maximal triangle. -/
+/-- Every point of a pure complex lies in a maximal triangle.
+@isnad1 id=ex.2h2v.s5.d0d60fec0f40 from=translated src=- shape=fc5d7bfc vocab=4d12a27b
+-/
 theorem PlaneComplex.exists_cell_of_mem_support (K : PlaneComplex) (hpure : K.IsPure2)
     {x : Plane} (hx : x ∈ K.support) :
     ∃ t ∈ K.cells, x ∈ K.cellCarrier t := by
@@ -203,7 +216,9 @@ theorem PlaneComplex.exists_cell_of_mem_support (K : PlaneComplex) (hpure : K.Is
   exact ⟨t, Finset.mem_filter.mpr ⟨ht, htcard⟩,
     convexHull_mono (Set.image_mono hst) hxs⟩
 
-/-- A vertex of a maximal triangle lies on its Euclidean frontier. -/
+/-- A vertex of a maximal triangle lies on its Euclidean frontier.
+@isnad1 id=mem.2h3v.s6.36c2b90dcc31 from=translated src=- shape=018e7a38 vocab=7f2a0b80
+-/
 theorem PlaneComplex.position_mem_frontier_cellCarrier (K : PlaneComplex)
     {t : Finset K.Vertex} (ht : t ∈ K.cells) {v : K.Vertex} (hv : v ∈ t) :
     K.position v ∈ frontier (K.cellCarrier t) := by
@@ -224,7 +239,9 @@ theorem PlaneComplex.position_mem_frontier_cellCarrier (K : PlaneComplex)
     subset_convexHull ℝ _ ⟨v', by simp, rfl⟩
   exact Set.disjoint_left.mp hdisjoint hvInterior hvSingleton
 
-/-- The convex hull of at most two vertices of a maximal triangle lies in its frontier. -/
+/-- The convex hull of at most two vertices of a maximal triangle lies in its frontier.
+@isnad1 id=le.3h3v.s8.314093a756b8 from=translated src=- shape=556317f0 vocab=eb9c2347
+-/
 theorem PlaneComplex.convexHull_position_subset_frontier_cellCarrier (K : PlaneComplex)
     {s t : Finset K.Vertex} (ht : t ∈ K.cells) (hst : s ⊆ t) (hscard : s.card ≤ 2) :
     convexHull ℝ (K.position '' (s : Set K.Vertex)) ⊆ frontier (K.cellCarrier t) := by
@@ -241,7 +258,9 @@ theorem PlaneComplex.convexHull_position_subset_frontier_cellCarrier (K : PlaneC
   intro hxInterior
   exact Set.disjoint_left.mp hdisjoint hxInterior hx
 
-/-- A used complex vertex outside a maximal face is not geometrically contained in that face. -/
+/-- A used complex vertex outside a maximal face is not geometrically contained in that face.
+@isnad1 id=not.3h3v.s6.8f90f5826e95 from=translated src=- shape=90e4da64 vocab=b4642d3c
+-/
 theorem PlaneComplex.position_not_mem_cellCarrier_of_not_mem (K : PlaneComplex)
     {t : Finset K.Vertex} (ht : t ∈ K.cells) {v : K.Vertex}
     (hvUsed : ({v} : Finset K.Vertex) ∈ K.simplexes) (hv : v ∉ t) :
@@ -261,7 +280,9 @@ theorem PlaneComplex.position_not_mem_cellCarrier_of_not_mem (K : PlaneComplex)
   rw [hinter, hempty] at hp
   simp at hp
 
-/-- A graph face meets a maximal-cell frontier only over vertices shared with that cell. -/
+/-- A graph face meets a maximal-cell frontier only over vertices shared with that cell.
+@isnad1 id=le.2h3v.s7.7986a8321958 from=translated src=- shape=d9e8eee6 vocab=f6d124f0
+-/
 theorem PlaneComplex.cellCarrier_inter_frontier_subset_sharedCarrier (K : PlaneComplex)
     {s t : Finset K.Vertex} (hs : s ∈ K.oneSkeleton.simplexes) (ht : t ∈ K.cells) :
     K.oneSkeleton.cellCarrier s ∩ frontier (K.cellCarrier t) ⊆
@@ -297,7 +318,9 @@ theorem PlaneComplex.cellCarrier_inter_frontier_subset_sharedCarrier (K : PlaneC
   exact convexHull_mono (Set.image_mono hsub) hxInter
 
 /-- Removing from a graph face the carrier of its vertices shared with a maximal triangle leaves
-a preconnected set.  In dimension one this is a point, a segment, or a half-open segment. -/
+a preconnected set.  In dimension one this is a point, a segment, or a half-open segment.
+@isnad1 id=isprecon.3h3v.s7.224d3fcd0813 from=translated src=- shape=02ec6e6a vocab=d0abb786
+-/
 theorem PlaneComplex.isPreconnected_cellCarrier_sdiff_sharedCarrier (K : PlaneComplex)
     {s t : Finset K.Vertex} (hs : s ∈ K.oneSkeleton.simplexes) (_ : t ∈ K.cells)
     (hnot : ¬s ⊆ t) :
@@ -400,7 +423,9 @@ theorem PlaneComplex.isPreconnected_cellCarrier_sdiff_sharedCarrier (K : PlaneCo
         exact (convex_convexHull ℝ _).isPreconnected
 
 /-- Refine a polygonal presentation of a complex support so that every used complex vertex is
-an explicit polygon vertex. -/
+an explicit polygon vertex.
+@isnad1 id=ex.2h2v.s5.35438f4c847d from=translated src=- shape=210821b5 vocab=399e5bb9
+-/
 theorem PolygonalCircle.exists_refinement_containing_complex_vertices
     (J : PolygonalCircle) (K : PlaneComplex) (hsupport : K.support = J.carrier)
     (hvertex : ∀ v : K.Vertex, K.position v ∈ K.support) :
@@ -417,7 +442,9 @@ theorem PolygonalCircle.exists_refinement_containing_complex_vertices
   exact Finset.mem_image.mpr ⟨v, Finset.mem_univ v, rfl⟩
 
 /-- If every vertex of a graph complex supported on a polygon is among the polygon vertices,
-then each polygon edge lies in a single graph face. -/
+then each polygon edge lies in a single graph face.
+@isnad1 id=ex.3h3v.s6.7cb76a51e608 from=translated src=- shape=b33a6500 vocab=16f1b6a6
+-/
 theorem PlaneComplex.exists_face_containing_polygon_edge
     (K : PlaneComplex) (J : PolygonalCircle)
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2)
@@ -552,7 +579,9 @@ theorem PlaneComplex.exists_face_containing_polygon_edge
         hAoutside hBoutside
 
 /-- A facewise-affine embedding of a graph complex supported on a polygon transports that
-polygon to a polygon whose carrier is the exact image. -/
+polygon to a polygon whose carrier is the exact image.
+@isnad1 id=ex.5h3v.s6.1d19b306f7db from=translated src=- shape=05130ab5 vocab=9d25c35c
+-/
 theorem PolygonalCircle.exists_mapEmbedding_of_affineOn_complex
     (J : PolygonalCircle) (K : PlaneComplex)
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2)
@@ -572,7 +601,9 @@ theorem PolygonalCircle.exists_mapEmbedding_of_affineOn_complex
   let J' := J.mapEmbedding f hinjJ hedge
   exact ⟨J', J.mapEmbedding_carrier f hinjJ hedge⟩
 
-/-- The image of a polygon under a PL embedding of its carrier is again a polygon. -/
+/-- The image of a polygon under a PL embedding of its carrier is again a polygon.
+@isnad1 id=ex.2h2v.s5.7e96087f94e9 from=translated src=- shape=bba56f27 vocab=bc474827
+-/
 theorem PolygonalCircle.exists_image_of_isPLOnSet_embedding (J : PolygonalCircle)
     {f : Plane → Plane} (hpl : IsPLOnSet J.carrier f)
     (hinj : Set.InjOn f J.carrier) :
@@ -603,7 +634,9 @@ theorem PolygonalCircle.exists_image_of_isPLOnSet_embedding (J : PolygonalCircle
   exact ⟨R', by rw [hR'image, hRcarrier]⟩
 
 /-- A connected set mapped off a polygon lies in its exterior as soon as one image point does.
-This is the component argument used implicitly in Moise's proof of Chapter 6, Theorem 3. -/
+This is the component argument used implicitly in Moise's proof of Chapter 6, Theorem 3.
+@isnad1 id=mapsto.4h4v.s6.e7f7c1d37a92 from=translated src=- shape=e2e69e0a vocab=378938e0
+-/
 theorem PolygonalCircle.mapsTo_exteriorRegion_of_isPreconnected (J : PolygonalCircle)
     {X : Type*} [TopologicalSpace X] {A : Set X} {f : X → Plane}
     (hA : IsPreconnected A)
@@ -625,7 +658,9 @@ theorem PolygonalCircle.mapsTo_exteriorRegion_of_isPreconnected (J : PolygonalCi
 /-- Two polygonal disks have disjoint interiors if each boundary avoids the other interior and
 the boundaries are genuinely different.  If the interiors met, connectedness would force one
 bounded complementary component into the other; taking closures would then force every point of
-its boundary into the other closed disk. -/
+its boundary into the other closed disk.
+@isnad1 id=disjoint.3h2v.s7.5a7c31c2bab2 from=translated src=- shape=3d92a1ba vocab=b3f953ba
+-/
 theorem PolygonalCircle.disjoint_interiorRegion_of_boundary_avoidance
     (J₁ J₂ : PolygonalCircle)
     (h₁₂ : Disjoint J₁.carrier J₂.interiorRegion)
@@ -656,7 +691,9 @@ theorem PolygonalCircle.disjoint_interiorRegion_of_boundary_avoidance
   · exact Set.disjoint_left.mp h₂₁ hp₂ hpInterior₁
   · exact hpnot₁ hpCarrier₁
 
-/-- The bounded region of a polygon lies in every closed ball containing its boundary. -/
+/-- The bounded region of a polygon lies in every closed ball containing its boundary.
+@isnad1 id=le.1h3v.s6.8614417d222d from=translated src=- shape=44cc42c6 vocab=a5cc4f89
+-/
 theorem PolygonalCircle.closedRegion_subset_closedBall_of_carrier_subset
     (J : PolygonalCircle) {c : Plane} {r : ℝ}
     (hcarrier : J.carrier ⊆ Metric.closedBall c r) :
@@ -725,7 +762,9 @@ theorem PolygonalCircle.closedRegion_subset_closedBall_of_carrier_subset
 If `p` were inside the polygon, polygonal Schoenflies straightens its closed region to a
 triangle. Radial projection from the image of `p`, followed by the inverse boundary
 homeomorphism, would retract the source triangle onto its frontier, contradicting
-`IsTriangle.no_retraction`. -/
+`IsTriangle.no_retraction`.
+@isnad1 id=mem.7h5v.s8.1c4b09bbfb5e from=translated src=- shape=3c9d7efa vocab=6360bea2
+-/
 theorem PolygonalCircle.mem_exteriorRegion_of_continuous_extension
     (J : PolygonalCircle) {C : Set Plane} (hC : IsTriangle C)
     {b F : Plane → Plane} {p : Plane}
@@ -825,7 +864,9 @@ theorem PolygonalCircle.mem_exteriorRegion_of_continuous_extension
 
 /-- A uniformly small perturbation of a triangle boundary has a uniformly small continuous
 extension over the triangle.  This is the bounded, finite-dimensional Tietze extension theorem
-applied to the displacement `b - h`. -/
+applied to the displacement `b - h`.
+@isnad1 id=ex.5h4v.s9.88bc6d874739 from=translated src=- shape=5a22846e vocab=0e79eb3b
+-/
 theorem exists_continuous_extension_of_close_on_frontier
     {C : Set Plane} {b h : Plane → Plane} {r : ℝ}
     (hCclosed : IsClosed C) (hr : 0 < r)
@@ -867,7 +908,9 @@ theorem exists_continuous_extension_of_close_on_frontier
 
 The proof refines the source polygon at the breakpoints of the first PL presentation and at the
 preimages of the breakpoints of the second.  On the resulting cyclic edge complex both maps are
-affine edge by edge. -/
+affine edge by edge.
+@isnad1 id=isplonse.4h4v.s5.a71d595c4a25 from=translated src=- shape=d92b1050 vocab=3e466122
+-/
 theorem IsPLOnSet.comp_polygonal_embedding (J J' : PolygonalCircle)
     {f g : Plane → Plane} (hf : IsPLOnSet J.carrier f)
     (hinj : Set.InjOn f J.carrier) (himage : f '' J.carrier = J'.carrier)
@@ -1005,7 +1048,9 @@ strengthen this predicate rather than weakening the theorem.) -/
 def IsCombinatorial2ManifoldWithBoundary (K : PlaneComplex) : Prop :=
   K.IsPure2 ∧ ∀ e ∈ K.edges, (K.cells.filter fun s => e ⊆ s).card ≤ 2
 
-/-- An injective map preserves the exact face-to-face intersection of two simplex carriers. -/
+/-- An injective map preserves the exact face-to-face intersection of two simplex carriers.
+@isnad1 id=eq.3h4v.s6.01bde35ba389 from=translated src=- shape=a94e82d8 vocab=736af925
+-/
 theorem image_cellCarrier_inter {K : PlaneComplex} {h : Plane → Plane}
     (hinj : Set.InjOn h K.support) {s t : Finset K.Vertex}
     (hs : s ∈ K.simplexes) (ht : t ∈ K.simplexes) :
@@ -1031,7 +1076,9 @@ theorem image_cellCarrier_inter {K : PlaneComplex} {h : Plane → Plane}
       convexHull_mono (Set.image_mono Finset.inter_subset_right)
     exact ⟨⟨x, hsubS hx, rfl⟩, x, hsubT hx, rfl⟩
 
-/-- Images of disjoint faces of an embedded finite graph admit disjoint metric thickenings. -/
+/-- Images of disjoint faces of an embedded finite graph admit disjoint metric thickenings.
+@isnad1 id=ex.5h4v.s8.b857cf6c6a8c from=translated src=- shape=2900e615 vocab=c593612d
+-/
 theorem exists_disjoint_thickenings_image_cellCarriers {K : PlaneComplex}
     {h : Plane → Plane} (hcont : ContinuousOn h K.support)
     (hinj : Set.InjOn h K.support) {s t : Finset K.Vertex}
@@ -1053,7 +1100,9 @@ theorem exists_disjoint_thickenings_image_cellCarriers {K : PlaneComplex}
   exact hdisjoint.exists_thickenings hcompactS hcompactT.isClosed
 
 /-- A finite embedded two-complex has one positive separation radius which works for every
-maximal cell and every complex vertex not belonging to that cell. -/
+maximal cell and every complex vertex not belonging to that cell.
+@isnad1 id=ex.2h2v.s8.7ef977576fec from=translated src=- shape=4d84f477 vocab=e20852f1
+-/
 theorem exists_uniform_vertex_cell_separation (K : PlaneComplex)
     {h : Plane → Plane} (hcont : ContinuousOn h K.support)
     (hinj : Set.InjOn h K.support) :
@@ -1209,7 +1258,9 @@ private theorem exists_edge_face_of_support_eq_triangle (A : PlaneComplex)
 
 end PlaneComplex
 
-/-- A polygonal arc extracted from a broken line is the PL image of a straight segment. -/
+/-- A polygonal arc extracted from a broken line is the PL image of a straight segment.
+@isnad1 id=ex.0h2v.s8.67b7d441996c from=translated src=- shape=1695f636 vocab=4773280c
+-/
 theorem brokenLine_has_PL_segment_model {U : Set Plane} (B : BrokenLineData U) :
     ∃ (S : PlaneComplex) (F : Plane → Plane),
       S.support = segment ℝ (planePoint 0 0) (planePoint B.resolvedWalk.length 0) ∧
@@ -1341,7 +1392,9 @@ theorem brokenLine_has_PL_segment_model {U : Set Plane} (B : BrokenLineData U) :
 A map that is PL and injective on the frontier of a triangle, carrying it onto the frontier of a
 second triangle, extends to a map of the closed triangles with the same properties.  Moise proves
 this by coning from an interior point: the extension is linear on each segment from the cone
-point to the boundary. -/
+point to the boundary.
+@isnad1 id=ex.5h3v.s8.d9319c44c882 from=translated src=- shape=529b0344 vocab=0edc2103
+-/
 theorem pl_extension_of_triangle_boundary {C C' : Set Plane}
     (hC : IsTriangle C) (hC' : IsTriangle C') {f : Plane → Plane}
     (hpl : IsPLOnSet (frontier C) f) (hinj : Set.InjOn f (frontier C))
@@ -1530,7 +1583,9 @@ theorem pl_extension_of_triangle_boundary {C C' : Set Plane}
 
 The target polygon is straightened by the finite PL Schoenflies homeomorphism, the triangular
 boundary problem is solved by coning, and the result is pulled back through the inverse
-straightening using common subdivision. -/
+straightening using common subdivision.
+@isnad1 id=ex.4h3v.s8.1636cf579545 from=translated src=- shape=f12759fe vocab=9d3cac9e
+-/
 theorem pl_extension_of_triangle_to_polygon_boundary {C : Set Plane}
     (hC : IsTriangle C) (J : PolygonalCircle) {f : Plane → Plane}
     (hpl : IsPLOnSet (frontier C) f) (hinj : Set.InjOn f (frontier C))
@@ -1577,7 +1632,9 @@ theorem pl_extension_of_triangle_to_polygon_boundary {C : Set Plane}
   exact straight.symm_apply_apply (f x)
 
 /-- The named graph-replacement subdivision restricts to the frontier of each maximal triangle,
-and its polygonal image bounds a certified PL cell extension. -/
+and its polygonal image bounds a certified PL cell extension.
+@isnad1 id=ex.3h5v.s8.63417fd49559 from=translated src=- shape=30a917a5 vocab=f3597201
+-/
 theorem PlaneComplex.exists_graphReplacement_cell_extension (K : PlaneComplex)
     {h : Plane → Plane}
     (hcont : ContinuousOn h K.oneSkeleton.support)
@@ -1661,7 +1718,9 @@ namespace PlaneComplex.CellExtensionData
 variable {K : PlaneComplex} {g : Plane → Plane}
 variable {t : {t : Finset K.Vertex // t ∈ K.cells}}
 
-/-- The cell interior maps into the bounded complementary component of its polygonal boundary. -/
+/-- The cell interior maps into the bounded complementary component of its polygonal boundary.
+@isnad1 id=mapsto.0h4v.s7.2ed6a1f556b1 from=translated src=- shape=2b84fe06 vocab=68c7e8e2
+-/
 theorem mapsTo_interiorRegion (E : K.CellExtensionData g t) :
     Set.MapsTo E.map (interior (K.cellCarrier t.1)) E.polygon.interiorRegion := by
   intro x hx
@@ -1683,7 +1742,9 @@ theorem mapsTo_interiorRegion (E : K.CellExtensionData g t) :
     subst y
     exact False.elim <| Set.disjoint_left.mp disjoint_interior_frontier hx hyFrontier
 
-/-- Cell extensions chosen from one boundary map agree wherever their source cells overlap. -/
+/-- Cell extensions chosen from one boundary map agree wherever their source cells overlap.
+@isnad1 id=eqon.0h5v.s7.72ae01d94f73 from=translated src=- shape=b2948000 vocab=b532b4b5
+-/
 theorem family_eqOn_cell_inter
     (E : ∀ t : {t : Finset K.Vertex // t ∈ K.cells}, K.CellExtensionData g t)
     (t u : {t : Finset K.Vertex // t ∈ K.cells}) :
@@ -1726,6 +1787,9 @@ noncomputable def PlaneComplex.cellwiseExtensionMap (K : PlaneComplex)
       (E (Classical.choose hx)).map x
     else x
 
+/--
+@isnad1 id=eqon.0h4v.s6.da5477c39b0f from=translated src=- shape=1fb8c0e3 vocab=cad6bd3e
+-/
 theorem PlaneComplex.cellwiseExtensionMap_eqOn_cell (K : PlaneComplex)
     {g : Plane → Plane}
     (E : ∀ t : {t : Finset K.Vertex // t ∈ K.cells}, K.CellExtensionData g t)
@@ -1741,7 +1805,9 @@ theorem PlaneComplex.cellwiseExtensionMap_eqOn_cell (K : PlaneComplex)
 
 /-- A finite coherent family of certified cell extensions glues to one PL map on the whole
 complex.  The common witness cuts the source by every barycentric coordinate line occurring in
-any local certificate. -/
+any local certificate.
+@isnad1 id=isplon.1h3v.s5.168a38d97669 from=translated src=- shape=83041651 vocab=b6fa4d52
+-/
 theorem PlaneComplex.cellwiseExtensionMap_isPL (K : PlaneComplex)
     (hpure : K.IsPure2) {g : Plane → Plane}
     (E : ∀ t : {t : Finset K.Vertex // t ∈ K.cells}, K.CellExtensionData g t) :
@@ -1819,7 +1885,9 @@ def PlaneComplex.CellExtensionData.VerticesAvoidClosedRegions
     ({v} : Finset K.Vertex) ∈ K.simplexes → v ∉ t.1 →
       g (K.position v) ∉ (E t).polygon.closedRegion
 
-/-- Moise's finite vertex-avoidance condition propagates over every graph face. -/
+/-- Moise's finite vertex-avoidance condition propagates over every graph face.
+@isnad1 id=graphavo.3h3v.s7.e4a2a709f9ae from=translated src=- shape=60b40c46 vocab=d5ce68a6
+-/
 theorem PlaneComplex.CellExtensionData.graphAvoidsInteriors_of_verticesAvoid
     {K : PlaneComplex} {g : Plane → Plane}
     (E : ∀ t : {t : Finset K.Vertex // t ∈ K.cells}, K.CellExtensionData g t)
@@ -1908,7 +1976,9 @@ theorem PlaneComplex.CellExtensionData.graphAvoidsInteriors_of_verticesAvoid
         hpInterior hgExterior
 
 /-- Under graph-side compatibility, the bounded interiors selected for distinct cells are
-disjoint. -/
+disjoint.
+@isnad1 id=disjoint.3h5v.s7.8a22a46d9ed6 from=translated src=- shape=4b19651c vocab=beefbfed
+-/
 theorem PlaneComplex.CellExtensionData.disjoint_polygon_interiors
     {K : PlaneComplex} {g : Plane → Plane}
     (E : ∀ t : {t : Finset K.Vertex // t ∈ K.cells}, K.CellExtensionData g t)
@@ -1956,7 +2026,9 @@ theorem PlaneComplex.CellExtensionData.disjoint_polygon_interiors
   · exact ⟨g (K.position w), hpU, hpNotT⟩
 
 /-- Cellwise PL extensions form a global embedding once their polygon interiors avoid the global
-one-skeleton. -/
+one-skeleton.
+@isnad1 id=injon.3h3v.s6.2636574579ea from=translated src=- shape=0ebe4a0b vocab=8d957ce8
+-/
 theorem PlaneComplex.cellwiseExtensionMap_injOn (K : PlaneComplex)
     (hpure : K.IsPure2) {g : Plane → Plane}
     (E : ∀ t : {t : Finset K.Vertex // t ∈ K.cells}, K.CellExtensionData g t)
@@ -2027,7 +2099,9 @@ theorem PlaneComplex.cellwiseExtensionMap_injOn (K : PlaneComplex)
 
 /-- Quantitative control for the glued cell extension.  If `h` oscillates by less than `η` on
 each cell and the polygonalized graph is `δ`-close to `h`, then every filled cell moves points by
-less than `δ + 2 * η`. -/
+less than `δ + 2 * η`.
+@isnad1 id=lt.4h7v.s8.538957890267 from=translated src=- shape=58d748cb vocab=c3a5e0cd
+-/
 theorem PlaneComplex.cellwiseExtensionMap_dist_lt (K : PlaneComplex)
     (hpure : K.IsPure2) {g h : Plane → Plane}
     (E : ∀ t : {t : Finset K.Vertex // t ∈ K.cells}, K.CellExtensionData g t)
@@ -2071,7 +2145,9 @@ theorem PlaneComplex.cellwiseExtensionMap_dist_lt (K : PlaneComplex)
       (hsmall t ht (K.position v) hvCell x hxt)
     _ = δ + 2 * η := by ring
 
-/-- Package the cell extension produced from the named graph replacement. -/
+/-- Package the cell extension produced from the named graph replacement.
+@isnad1 id=nonempty.2h5v.s7.985a0e80348c from=translated src=- shape=b9dc9234 vocab=81e6238d
+-/
 theorem PlaneComplex.nonempty_cellExtensionData_graphReplacement (K : PlaneComplex)
     {h : Plane → Plane}
     (hcont : ContinuousOn h K.oneSkeleton.support)
@@ -2094,7 +2170,9 @@ theorem PlaneComplex.nonempty_cellExtensionData_graphReplacement (K : PlaneCompl
     isPLOnSet := hpl
     finitePL := hcert }⟩
 
-/-- Any PL embedding of a triangular frontier has a certified polygonal-disk extension. -/
+/-- Any PL embedding of a triangular frontier has a certified polygonal-disk extension.
+@isnad1 id=nonempty.2h3v.s7.e6e16a3257f1 from=translated src=- shape=f4d8f24c vocab=842f5a77
+-/
 theorem PlaneComplex.nonempty_cellExtensionData_of_boundary_isPL (K : PlaneComplex)
     {g : Plane → Plane}
     (hginj : Set.InjOn g K.oneSkeleton.support)
@@ -2128,7 +2206,9 @@ theorem PlaneComplex.nonempty_cellExtensionData_of_boundary_isPL (K : PlaneCompl
 /-- A close graph approximation preserves the side of every cell boundary.  Bounded Tietze
 extension turns the boundary displacement into a filling which stays inside the prescribed
 vertex-to-cell thickening; `PolygonalCircle.mem_exteriorRegion_of_continuous_extension` then
-detects the unbounded side. -/
+detects the unbounded side.
+@isnad1 id=vertices.7h5v.s9.4ad8a36b4438 from=translated src=- shape=3618eaa6 vocab=72e80469
+-/
 theorem PlaneComplex.CellExtensionData.verticesAvoidClosedRegions_of_close
     (K : PlaneComplex) {g h : Plane → Plane}
     (E : ∀ t : {t : Finset K.Vertex // t ∈ K.cells}, K.CellExtensionData g t)
@@ -2185,7 +2265,9 @@ the polygonal closed disk selected by any certified extension.
 This is the precise content hidden in Moise's sentence
 `f(σ) ⊂ N(h(σ), εσ)`.  It is a planar side-preservation (or mod-two winding)
 statement, not a metric convexity estimate: its proof compares the replacement boundary with
-the original embedded boundary in the complement of the outside vertex. -/
+the original embedded boundary in the complement of the outside vertex.
+@isnad1 id=vertices.7h5v.s9.606a8ed67dae from=translated src=- shape=9c124e51 vocab=72e80469
+-/
 theorem PlaneComplex.graphReplacement_verticesAvoidClosedRegions (K : PlaneComplex)
     {g h : Plane → Plane}
     (hgcont : ContinuousOn g K.oneSkeleton.support)
@@ -2211,7 +2293,9 @@ An embedding of the support of a finite one-dimensional complex into the plane c
 `ε`-approximated by a PL embedding that agrees with it on every vertex.  Moise's proof: choose a
 fine subdivision, replace each small arc by a broken line in a small neighborhood (Ch. 6, Thm. 1,
 which rests on the broken-line connectivity of open connected sets, Ch. 1), keeping the broken
-lines disjoint except at shared endpoints. -/
+lines disjoint except at shared endpoints.
+@isnad1 id=ex.4h3v.s7.559106da3755 from=translated src=- shape=b7b2c092 vocab=1c8c3762
+-/
 theorem pl_approximation_one_skeleton (K : PlaneComplex)
     (hgraph : ∀ s ∈ K.simplexes, s.card ≤ 2)
     {h : Plane → Plane} (hcont : ContinuousOn h K.support)
@@ -2233,7 +2317,9 @@ Thm. 6.2, then extend across each 2-cell by the combinatorial Schoenflies theore
 images of distinct cells have disjoint interiors.
 
 The face-to-face plane-complex axioms and purity already provide all incidence properties used
-in the argument; no separate link or edge-degree hypothesis is needed. -/
+in the argument; no separate link or edge-degree hypothesis is needed.
+@isnad1 id=ex.4h3v.s7.2ff60b56e6b4 from=translated src=- shape=cbe473eb vocab=ef0340d1
+-/
 theorem pl_approximation_pure_two_complex (K : PlaneComplex)
     (hpure : K.IsPure2)
     {h : Plane → Plane} (hcont : ContinuousOn h K.support)
@@ -2307,7 +2393,9 @@ theorem pl_approximation_pure_two_complex (K : PlaneComplex)
 
 /-- Moise Ch. 6, Thm. 3 for a finite combinatorial two-manifold with boundary.  This public
 surface-shaped interface is a direct specialization of
-`pl_approximation_pure_two_complex`. -/
+`pl_approximation_pure_two_complex`.
+@isnad1 id=ex.4h3v.s7.d0d64de17230 from=translated src=- shape=cbe473eb vocab=49b4815e
+-/
 theorem pl_approximation_two_manifold (K : PlaneComplex)
     (hsurface : K.IsCombinatorial2ManifoldWithBoundary)
     {h : Plane → Plane} (hcont : ContinuousOn h K.support)

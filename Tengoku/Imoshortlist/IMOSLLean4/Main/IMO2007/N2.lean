@@ -46,7 +46,9 @@ theorem eq_pow_of_sq_dvd_self_sub_pow {b n : ℕ} (h : ∃ a, (b : ℤ) ^ 2 ∣ 
   rw [Int.associated_iff_natAbs, Int.natAbs_pow, Int.natAbs_natCast] at hc
   exact ⟨c.natAbs, hc.symm⟩
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.2h2v.s6.9ef65c1e184f from=translated src=- shape=f10ec984 vocab=7de8e855
+-/
 theorem final_solution {b n : ℕ} (hb : 0 < b) (h : ∀ k > 0, ∃ c : ℤ, k ∣ b - c ^ n) :
     ∃ A, b = A ^ n :=
   eq_pow_of_sq_dvd_self_sub_pow (h (b ^ 2) (sq_pos_of_pos (Int.natCast_pos.mpr hb)))

@@ -22,7 +22,9 @@ namespace IMO2013A5
 open Finset
 open scoped Classical
 
-/-- (+4)-induction -/
+/-- (+4)-induction
+@isnad1 id=var.0h7v.s5.243f73827b54 from=translated src=- shape=45ad8609 vocab=fc0e7020
+-/
 theorem add_four_induction {P : ℕ → Prop}
     (h : P 0) (h0 : P 1) (h1 : P 2) (h2 : P 3)
     (h3 : ∀ n, P n → P (n + 4)) : ∀ n, P n
@@ -44,8 +46,14 @@ def answer2 : ℕ → ℕ
   | 3 => 0
   | n + 4 => answer2 n + 4
 
+/--
+@isnad1 id=good.0h0v.s1.876e858bf0e2 from=translated src=- shape=49959d42 vocab=8b1a8b97
+-/
 theorem good_succ : good Nat.succ := λ _ ↦ rfl
 
+/--
+@isnad1 id=good.0h0v.s1.3eeaf8301755 from=translated src=- shape=49959d42 vocab=3503fadd
+-/
 theorem good_answer2 : good answer2
   | 0 => rfl
   | 1 => rfl
@@ -58,11 +66,17 @@ section Solution
 variable (h : good f)
 include h
 
+/--
+@isnad1 id=eq.1h2v.s5.72781e235185 from=translated src=- shape=07885ab5 vocab=5631d732
+-/
 theorem iter_four_eq : ∀ n, f^[4] n = f^[4] 0 + n :=
   have h0 n : f^[4] (n + 1) = f^[4] n + 1 := by
     rw [f.iterate_succ_apply, h, ← h n, ← f.iterate_succ_apply']
   Nat.rec rfl λ n h1 ↦ by rw [Nat.add_succ, h0, h1]
 
+/--
+@isnad1 id=injectiv.1h1v.s3.5d703ba961d8 from=translated src=- shape=e7580e15 vocab=da082776
+-/
 theorem good_injective : f.Injective :=
   suffices f^[4].Injective from this.of_comp
   λ m n h0 ↦ by rwa [iter_four_eq h, iter_four_eq h n, add_right_inj] at h0
@@ -75,6 +89,9 @@ noncomputable def finChainFnOfgood : FinChainFn f where
     refine and_iff_right_of_imp λ h0 h1 ↦ h0 ⟨f^[3] (n - f^[4] 0), ?_⟩
     rw [← f.iterate_succ_apply', iter_four_eq h, Nat.add_sub_of_le h1]
 
+/--
+@isnad1 id=le.1h1v.s6.b66c335a4603 from=translated src=- shape=f2376574 vocab=2e4bfb9c
+-/
 theorem iterRangeCompl_three_subset :
     (finChainFnOfgood h).iterRangeCompl 3 ⊆
       {0, (f 0).succ} ∪ image Nat.succ (finChainFnOfgood h).rangeCompl := by
@@ -90,6 +107,9 @@ theorem iterRangeCompl_three_subset :
     rw [h, ← d.pred.succ_eq_add_one, ← h2]
   · rwa [(finChainFnOfgood h).mem_rangeCompl_iff]
 
+/--
+@isnad1 id=ex.1h1v.s4.3dd9a211eef3 from=translated src=- shape=79902320 vocab=bfc44415
+-/
 theorem exists_rangeCompl_eq_singleton :
     ∃ a, (finChainFnOfgood h).rangeCompl = {a} := by
   have h0 := (card_le_card <| iterRangeCompl_three_subset h).trans <|
@@ -102,6 +122,9 @@ theorem exists_rangeCompl_eq_singleton :
   obtain ⟨a, h0⟩ := h0.iterate 3 0
   exact absurd ((h a).symm.trans h0) (f a.succ).succ_ne_zero
 
+/--
+@isnad1 id=eq.1h1v.s4.cb56c8a375d8 from=translated src=- shape=2f7afe06 vocab=14c115f9
+-/
 theorem iter_four_zero_eq_four : f^[4] 0 = 4 := by
   obtain ⟨a, h0⟩ := exists_rangeCompl_eq_singleton h
   suffices (finChainFnOfgood h).iterRangeCompl 4 = range (f^[4] 0) by
@@ -113,13 +136,22 @@ theorem iter_four_zero_eq_four : f^[4] 0 = 4 := by
   · rw [iter_four_eq h, Nat.add_sub_of_le h1]
   · rw [← h1, iter_four_eq h k]; exact Nat.le_add_right _ k
 
+/--
+@isnad1 id=eq.1h2v.s5.d7eb790bd62f from=translated src=- shape=15e50f42 vocab=5631d732
+-/
 theorem iter_four_eq_add_four (n : ℕ) : f^[4] n = n + 4 := by
   rw [iter_four_eq h, add_comm, iter_four_zero_eq_four h]
 
+/--
+@isnad1 id=eq.1h2v.s5.c1df8d9a6803 from=translated src=- shape=5d462804 vocab=d3a591e4
+-/
 theorem map_add_four (n : ℕ) : f (n + 4) = f n + 4 := by
   have h1 := iter_four_eq_add_four h
   rw [← h1, ← h1]; rfl
 
+/--
+@isnad1 id=or.1h1v.s4.bd2867987099 from=translated src=- shape=1c600985 vocab=35cef290
+-/
 theorem good_imp_succ_or_answer2 : f = Nat.succ ∨ f = answer2 := by
   ---- Get `{a, f(a), f(f(a))} ⊆ {0, f(0) + 1, a + 1}`
   rcases exists_rangeCompl_eq_singleton h with ⟨a, h0⟩
@@ -169,7 +201,9 @@ theorem good_imp_succ_or_answer2 : f = Nat.succ ∨ f = answer2 := by
 
 end Solution
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h1v.s4.474a9245439b from=translated src=- shape=7512a7ef vocab=35cef290
+-/
 theorem final_solution : good f ↔ f = Nat.succ ∨ f = answer2 :=
   ⟨good_imp_succ_or_answer2,
   λ h ↦ h.elim (λ h ↦ h.symm ▸ good_succ) (λ h ↦ h.symm ▸ good_answer2)⟩

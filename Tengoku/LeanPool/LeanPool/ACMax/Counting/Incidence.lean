@@ -17,7 +17,9 @@ open Classical in
 /-- **Bipartite double count** (generic-`V` port of `cross_count_nineteen`): for any two
 vertex sets, the `X→Y` incidences equal the `Y→X` incidences.  The `DecidableEq` binder
 lets the lemma instantiate to whichever instance the call site elaborated with
-(`instDecidableEqFin` at `Fin n`, `Classical.propDecidable` at generic `V`). -/
+(`instDecidableEqFin` at `Fin n`, `Classical.propDecidable` at generic `V`).
+@isnad1 id=eq.0h4v.s6.7fb10636fb3c from=translated src=- shape=d16d543d vocab=ca22971b
+-/
 theorem cross_count {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)
     (X Y : Finset V) :
     ∑ v ∈ X, (G.neighborFinset v ∩ Y).card = ∑ w ∈ Y, (G.neighborFinset w ∩ X).card := by
@@ -36,7 +38,9 @@ theorem cross_count {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)
   exact Finset.sum_comm
 
 open Classical in
-/-- A weighted adjacency sum supported on one pair is its contribution at that pair. -/
+/-- A weighted adjacency sum supported on one pair is its contribution at that pair.
+@isnad1 id=eq.3h8v.s7.2ac48a9d4d12 from=translated src=- shape=7978b060 vocab=0fcf62c2
+-/
 theorem sum_adj_eq_single {V R : Type*} [AddCommMonoid R] (G : SimpleGraph V)
     (A B : Finset V) (a b : V) (weight : V → V → R) (ha : a ∈ A) (hb : b ∈ B)
     (hsupport : ∀ i ∈ A, ∀ j ∈ B, G.Adj i j → i = a ∧ j = b) :

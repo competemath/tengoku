@@ -40,7 +40,9 @@ open Finset
 
 /-! ### Extra lemmas -/
 
-/-- We have `a + d ≡ b + d (mod c) ↔ a ≡ b (mod c)`. -/
+/-- We have `a + d ≡ b + d (mod c) ↔ a ≡ b (mod c)`.
+@isnad1 id=iff.0h4v.s5.2507d0f55e1d from=translated src=- shape=0beb568c vocab=45b033b7
+-/
 theorem Int_add_modeq_right_iff : a + d ≡ b + d [ZMOD c] ↔ a ≡ b [ZMOD c] :=
   ⟨λ h ↦ h.add_right_cancel', λ h ↦ h.add_right d⟩
 
@@ -49,7 +51,9 @@ section
 variable (S : Finset ℤ) (m D)
 
 /-- Removing elements `≡ 2m + c (mod 2D)` to `2S + c` yields `2T + c`,
-  where `T` is obtained by removing elements `≡ m (mod D)` from `S`. -/
+  where `T` is obtained by removing elements `≡ m (mod D)` from `S`.
+@isnad1 id=eq.0h4v.s7.259c11a70e36 from=translated src=- shape=1b9143e3 vocab=9fe68b3a
+-/
 theorem filter_image_two_mul_translate (c) :
     {s ∈ S.image (2 * · + c) | ¬s ≡ 2 * m + c [ZMOD D * 2]}
       = {s ∈ S | ¬s ≡ m [ZMOD D]}.image (2 * · + c) := by
@@ -59,7 +63,9 @@ theorem filter_image_two_mul_translate (c) :
     Int.ModEq.mul_left_cancel_iff' (by decide : (2 : ℤ) ≠ 0)]
 
 /-- If `a ≢ b (mod 2)`, then removing elements `≡ 2m + b (mod 2D)`
-  does nothing to `2S + a`. -/
+  does nothing to `2S + a`.
+@isnad1 id=eq.1h5v.s7.8c77ac3830ff from=translated src=- shape=82ee3dca vocab=7b2ab74e
+-/
 theorem filter_image_two_mul_translate_of_mod_two_ne {a b : ℤ} (hab : a % 2 ≠ b % 2) :
     {s ∈ S.image (2 * · + a) | ¬s ≡ 2 * m + b [ZMOD D * 2]} = S.image (2 * · + a) := by
   rw [filter_eq_self, forall_mem_image]
@@ -80,23 +86,31 @@ end
 
 namespace isWinning
 
-/-- The empty set is winning. -/
+/-- The empty set is winning.
+@isnad1 id=iswinnin.0h0v.s2.bdca481766c6 from=translated src=- shape=ed5d6145 vocab=ccd80f7b
+-/
 theorem empty : isWinning ∅ := by
   rw [isWinning, strongInduction_eq]
   exact Or.inl rfl
 
-/-- An inductive criterion for a non-empty set to be winning. -/
+/-- An inductive criterion for a non-empty set to be winning.
+@isnad1 id=iff.1h1v.s6.4db5e279345f from=translated src=- shape=cc31874b vocab=be87d053
+-/
 theorem iff_of_nonempty {S : Finset ℤ} (hS : S.Nonempty) :
     isWinning S ↔ ∃ n ∈ S, ∃ k : ℕ, ¬isWinning {s ∈ S | ¬s ≡ n [ZMOD 2 ^ k]} := by
   rw [isWinning, strongInduction_eq, or_iff_right (nonempty_iff_ne_empty.mp hS)]
   simp only [exists_prop]
 
-/-- If there is a move transforming `S` into a losing set, then `S` is winning. -/
+/-- If there is a move transforming `S` into a losing set, then `S` is winning.
+@isnad1 id=iswinnin.2h3v.s6.b84b75c293cf from=translated src=- shape=b64a19b2 vocab=f23b035e
+-/
 theorem of_move (hnS : n ∈ S) (hnS0 : ¬isWinning {s ∈ S | ¬s ≡ n [ZMOD 2 ^ k]}) :
     isWinning S :=
   (iff_of_nonempty ⟨n, hnS⟩).mpr ⟨n, hnS, k, hnS0⟩
 
-/-- A singleton always loses. -/
+/-- A singleton always loses.
+@isnad1 id=not.0h1v.s3.7ce4cb2d9666 from=translated src=- shape=3b3db514 vocab=ba97ff8f
+-/
 theorem not_singleton (n) : ¬isWinning {n} := by
   simp_rw [iff_of_nonempty (singleton_nonempty n), mem_singleton]
   rintro ⟨n, rfl, k, h⟩
@@ -104,7 +118,9 @@ theorem not_singleton (n) : ¬isWinning {n} := by
     filter_eq_empty_iff.mpr λ m hm ↦ by rw [not_not, mem_singleton.mp hm]
   exact h (h0 ▸ empty)
 
-/-- Adding one element to a losing set creates a winning set. -/
+/-- Adding one element to a losing set creates a winning set.
+@isnad1 id=iswinnin.2h2v.s5.b18e128efd25 from=translated src=- shape=d66c347d vocab=ea3029e0
+-/
 theorem insert_of_not_isWinning (hS : ¬isWinning S) (hnS : n ∉ S) :
     isWinning (insert n S) := by
   ---- Find `e` such that `n` and all elements of `S` are less than `2^e`.
@@ -127,7 +143,9 @@ theorem insert_of_not_isWinning (hS : ¬isWinning S) (hnS : n ∉ S) :
     _ = ((2 : ℤ) ^ (e + 1)).natAbs := by rw [Int.natAbs_pow, ← Nat.mul_two]; rfl
   exact h0.not_gt h1
 
-/-- `2S + d` is winning if and only if `S` is winning. -/
+/-- `2S + d` is winning if and only if `S` is winning.
+@isnad1 id=iff.0h2v.s5.1acb64f3687b from=translated src=- shape=b9bf5008 vocab=2d749ec0
+-/
 theorem two_mul_translate_iff : isWinning (S.image (2 * · + d)) ↔ isWinning S := by
   ---- Strong induction on `S`, where the empty case is trivial.
   induction S using Finset.strongInduction with | H S hS => ?_
@@ -155,11 +173,15 @@ theorem two_mul_translate_iff : isWinning (S.image (2 * · + d)) ↔ isWinning S
     refine ⟨k + 1, ?_⟩
     simpa only [Int.pow_succ', Int.ModEq.mul_left_cancel_iff' X]
 
-/-- `2S` is winning if and only if `S` is winning. -/
+/-- `2S` is winning if and only if `S` is winning.
+@isnad1 id=iff.0h1v.s4.0df45de9477b from=translated src=- shape=47b99e49 vocab=4f8e37fb
+-/
 theorem two_mul_iff : isWinning (S.image (2 * ·)) ↔ isWinning S := by
   simpa only [add_zero] using two_mul_translate_iff (d := 0)
 
-/-- `S + d` is winning if and only if `S` is winning. -/
+/-- `S + d` is winning if and only if `S` is winning.
+@isnad1 id=iff.0h2v.s4.204392cb1ec4 from=translated src=- shape=274d411f vocab=3598a12d
+-/
 theorem translate_iff : isWinning (S.image (· + d)) ↔ isWinning S := by
   have h : (2 * ·) ∘ (· + d) = λ x ↦ 2 * x + 2 * d := funext λ x ↦ Int.mul_add 2 x d
   rw [← two_mul_iff, image_image, h, two_mul_translate_iff]
@@ -169,7 +191,9 @@ section
 variable {a b : ℤ} (hab : a % 2 ≠ b % 2) {S T : Finset ℤ}
 include hab
 
-/-- If `a ≢ b (mod 2)`, `S` is losing, and `T ≠ ∅`, then `(2S + a) ∪ (2T + b)` is winning. -/
+/-- If `a ≢ b (mod 2)`, `S` is losing, and `T ≠ ∅`, then `(2S + a) ∪ (2T + b)` is winning.
+@isnad1 id=iswinnin.3h4v.s6.9dc93b78d1c7 from=translated src=- shape=bcf295cc vocab=0a64b2af
+-/
 theorem binary_merge_of_left_not_isWinning (hS : ¬isWinning S) (hT : T.Nonempty) :
     isWinning (S.image (2 * · + a) ∪ T.image (2 * · + b)) := by
   ---- If `t ∈ T`, choose `(1, 2t + b)`, reducing `(2S + a) ∪ (2T + b)` to `2S + a`.
@@ -180,12 +204,16 @@ theorem binary_merge_of_left_not_isWinning (hS : ¬isWinning S) (hT : T.Nonempty
   rwa [ite_eq_left hab, ite_eq_right (not_not.mpr trivial),
     image_empty, union_empty, two_mul_translate_iff]
 
-/-- If `a ≢ b (mod 2)`, `S ≠ ∅`, and `T` is losing, then `(2S + a) ∪ (2T + b)` is winning. -/
+/-- If `a ≢ b (mod 2)`, `S ≠ ∅`, and `T` is losing, then `(2S + a) ∪ (2T + b)` is winning.
+@isnad1 id=iswinnin.3h4v.s6.28da49066635 from=translated src=- shape=bfd17fdc vocab=0a64b2af
+-/
 theorem binary_merge_of_right_not_isWinning (hS : S.Nonempty) (hT : ¬isWinning T) :
     isWinning (S.image (2 * · + a) ∪ T.image (2 * · + b)) := by
   rw [union_comm]; exact binary_merge_of_left_not_isWinning hab.symm hT hS
 
-/-- If `a ≢ b (mod 2)` and `S ≠ ∅` is winning, then `(2S + a) ∪ (2S + b)` is losing. -/
+/-- If `a ≢ b (mod 2)` and `S ≠ ∅` is winning, then `(2S + a) ∪ (2S + b)` is losing.
+@isnad1 id=not.3h3v.s6.b6780c736d88 from=translated src=- shape=b658977a vocab=0a64b2af
+-/
 theorem binary_merge_self_not_isWinning (hS : isWinning S) (hS0 : S.Nonempty) :
     ¬isWinning (S.image (2 * · + a) ∪ S.image (2 * · + b)) := by
   ---- Strong induction on `S`.
@@ -225,7 +253,9 @@ theorem binary_merge_self_not_isWinning (hS : isWinning S) (hS0 : S.Nonempty) :
       filter_image_two_mul_translate_of_mod_two_ne _ _ _ hab]
     exact S_ih _ (filter_ssubset.mpr ⟨m, hmS, not_not.mpr rfl⟩) hT0 hT
 
-/-- If `a ≢ b (mod 2)` and `S ≠ ∅`, then `2S ∪ (2S + 1)` is losing iff `S` is winning. -/
+/-- If `a ≢ b (mod 2)` and `S ≠ ∅`, then `2S ∪ (2S + 1)` is losing iff `S` is winning.
+@isnad1 id=iff.2h3v.s6.d848dcd4574b from=translated src=- shape=92151b18 vocab=0a64b2af
+-/
 theorem binary_merge_self_not_isWinning_iff (hS : S.Nonempty) :
     ¬isWinning (S.image (2 * · + a) ∪ S.image (2 * · + b)) ↔ isWinning S :=
   ⟨λ hS0 ↦ by_contra λ hS1 ↦ hS0 (binary_merge_of_left_not_isWinning hab hS1 hS),

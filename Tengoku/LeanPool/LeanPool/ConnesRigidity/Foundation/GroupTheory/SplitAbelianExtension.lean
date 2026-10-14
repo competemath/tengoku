@@ -57,14 +57,18 @@ namespace SplitAbelianExtension
 variable {A : Type u} [AddCommGroup A]
 variable {G H : CountableDiscreteGroup.{u}}
 
-/-- The split quotient evaluates to the identity on its section. Paper: §4. -/
+/-- The split quotient evaluates to the identity on its section. Paper: §4.
+@isnad1 id=eq.0h5v.s7.1674ed119286 from=translated src=- shape=2c1d23e5 vocab=a6d54b32
+-/
 @[simp] theorem quotient_splitting_apply
     (E : SplitAbelianExtension A G H) (h : H) :
     E.quotient (E.splitting h) = h := by
   have heq := DFunLike.congr_fun E.quotient_splitting h
   exact heq
 
-/-- Every extension element has kernel-section coordinates. Paper: §4. -/
+/-- Every extension element has kernel-section coordinates. Paper: §4.
+@isnad1 id=ex.0h5v.s7.40979bf15cae from=translated src=- shape=229f8b92 vocab=5f181d04
+-/
 theorem exists_kernel_mul_splitting
     (E : SplitAbelianExtension A G H) (g : G) :
     ∃ (a : A) (h : H),
@@ -81,7 +85,9 @@ theorem exists_kernel_mul_splitting
       simp only [inv_mul_cancel_right]
     _ = E.inclusion a * E.splitting (E.quotient g) := by rw [← ha]
 
-/-- Kernel and quotient fixedness give full invariance. Paper: §4. -/
+/-- Kernel and quotient fixedness give full invariance. Paper: §4.
+@isnad1 id=isinvari.2h7v.s13.a957b877480d from=translated src=- shape=429b091c vocab=bc65aa04
+-/
 theorem invariant_of_kernel_and_quotient
     (E : SplitAbelianExtension A G H)
     {V : Type v} [NormedAddCommGroup V]

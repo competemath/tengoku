@@ -30,7 +30,9 @@ private theorem nnrealOfPos_ne_zero {variance : ℝ}
   change variance = 0 at hcoe
   exact hvariance.ne' hcoe
 
-/-- A positive-variance one-dimensional Gaussian density is strictly positive. -/
+/-- A positive-variance one-dimensional Gaussian density is strictly positive.
+@isnad1 id=lt.1h3v.s4.1f3f317a1b2c from=translated src=- shape=665d5371 vocab=8e7cd876
+-/
 theorem gaussianCoordinateDensity_pos
     (mean variance x : ℝ) (hvariance : 0 < variance) :
     0 < gaussianCoordinateDensity mean variance x := by
@@ -41,7 +43,9 @@ theorem gaussianCoordinateDensity_pos
   exact mul_pos (inv_pos.mpr hnormalizer) (Real.exp_pos _)
 
 /-- The logarithm of a one-dimensional Gaussian density ratio is the usual
-constant-plus-quadratic expression. -/
+constant-plus-quadratic expression.
+@isnad1 id=eq.2h5v.s7.83de8330d011 from=translated src=- shape=86464204 vocab=560176a2
+-/
 theorem log_gaussianCoordinateDensity_ratio
     (posteriorMean posteriorVariance priorMean priorVariance x : ℝ)
     (hposteriorVariance : 0 < posteriorVariance)
@@ -79,7 +83,9 @@ theorem log_gaussianCoordinateDensity_ratio
   ring
 
 /-- The logarithm of a diagonal Gaussian density ratio is a finite sum of
-coordinatewise constant and quadratic terms. -/
+coordinatewise constant and quadratic terms.
+@isnad1 id=eq.0h4v.s7.4d3a3981520b from=translated src=- shape=664a76cc vocab=33c7396f
+-/
 theorem log_diagonalGaussianDensity_ratio_eq_sum {d : ℕ}
     (posterior prior : DiagonalGaussianParams d)
     (x : GaussianParameterSpace d) :
@@ -106,7 +112,9 @@ theorem log_diagonalGaussianDensity_ratio_eq_sum {d : ℕ}
       (prior.mean i) (prior.variance i) (x i)
       (posterior.variance_pos i) (prior.variance_pos i)
 
-/-- The diagonal Gaussian density is strictly positive everywhere. -/
+/-- The diagonal Gaussian density is strictly positive everywhere.
+@isnad1 id=lt.0h3v.s4.e0ff4710a77c from=translated src=- shape=d78b0cc0 vocab=7900ba8c
+-/
 theorem diagonalGaussianDensity_pos {d : ℕ}
     (params : DiagonalGaussianParams d) (x : GaussianParameterSpace d) :
     0 < diagonalGaussianDensity params x := by
@@ -115,14 +123,18 @@ theorem diagonalGaussianDensity_pos {d : ℕ}
     gaussianCoordinateDensity_pos
       (params.mean i) (params.variance i) (x i) (params.variance_pos i)
 
-/-- The real-valued diagonal Gaussian density is measurable. -/
+/-- The real-valued diagonal Gaussian density is measurable.
+@isnad1 id=measurab.0h2v.s4.701ef748f108 from=translated src=- shape=cc4c7d09 vocab=172b3bac
+-/
 theorem measurable_diagonalGaussianDensity {d : ℕ}
     (params : DiagonalGaussianParams d) :
     Measurable (diagonalGaussianDensity params) := by
   unfold diagonalGaussianDensity gaussianCoordinateDensity
   fun_prop
 
-/-- The `ENNReal`-valued diagonal Gaussian density is measurable. -/
+/-- The `ENNReal`-valued diagonal Gaussian density is measurable.
+@isnad1 id=measurab.0h2v.s4.9f0f976bc4e7 from=translated src=- shape=cc4c7d09 vocab=301a35dc
+-/
 theorem measurable_diagonalGaussianENNRealDensity {d : ℕ}
     (params : DiagonalGaussianParams d) :
     Measurable (diagonalGaussianENNRealDensity params) := by
@@ -131,7 +143,9 @@ theorem measurable_diagonalGaussianENNRealDensity {d : ℕ}
     (measurable_diagonalGaussianDensity params)
 
 /-- Converting the repository's `ENNReal` density back to `ℝ` recovers the
-original nonnegative density. -/
+original nonnegative density.
+@isnad1 id=eq.0h3v.s4.a4c54f6759e6 from=translated src=- shape=2482a6e2 vocab=0b75e543
+-/
 @[simp]
 theorem diagonalGaussianENNRealDensity_toReal {d : ℕ}
     (params : DiagonalGaussianParams d) (x : GaussianParameterSpace d) :
@@ -140,7 +154,9 @@ theorem diagonalGaussianENNRealDensity_toReal {d : ℕ}
   simp [diagonalGaussianENNRealDensity, diagonalGaussianDensity_nonneg]
 
 /-- The Radon--Nikodym derivative of a repository diagonal Gaussian measure
-with respect to Lebesgue measure is its defining `ENNReal` density. -/
+with respect to Lebesgue measure is its defining `ENNReal` density.
+@isnad1 id=eventual.0h2v.s6.cc3b35d86bae from=translated src=- shape=9f985b6d vocab=ab3d60c2
+-/
 theorem rnDeriv_diagonalGaussianMeasure_volume {d : ℕ}
     (params : DiagonalGaussianParams d) :
     (diagonalGaussianMeasure params).rnDeriv volume
@@ -149,7 +165,9 @@ theorem rnDeriv_diagonalGaussianMeasure_volume {d : ℕ}
     (measurable_diagonalGaussianENNRealDensity params)
 
 /-- Lebesgue measure is absolutely continuous with respect to a positive-variance
-repository diagonal Gaussian measure. -/
+repository diagonal Gaussian measure.
+@isnad1 id=absolute.0h2v.s5.4166f11b049b from=translated src=- shape=c519d259 vocab=78598949
+-/
 theorem volume_absolutelyContinuous_diagonalGaussianMeasure {d : ℕ}
     (params : DiagonalGaussianParams d) :
     volume ≪ diagonalGaussianMeasure params := by
@@ -160,7 +178,9 @@ theorem volume_absolutelyContinuous_diagonalGaussianMeasure {d : ℕ}
     exact ne_of_gt (ENNReal.ofReal_pos.mpr (diagonalGaussianDensity_pos params x))
 
 /-- A repository diagonal Gaussian measure and Lebesgue measure are mutually
-absolutely continuous. -/
+absolutely continuous.
+@isnad1 id=and.0h2v.s6.2808c7095539 from=translated src=- shape=35e196f0 vocab=78598949
+-/
 theorem diagonalGaussianMeasure_mutuallyAbsolutelyContinuous_volume {d : ℕ}
     (params : DiagonalGaussianParams d) :
     diagonalGaussianMeasure params ≪ volume ∧
@@ -169,14 +189,18 @@ theorem diagonalGaussianMeasure_mutuallyAbsolutelyContinuous_volume {d : ℕ}
     volume_absolutelyContinuous_diagonalGaussianMeasure params⟩
 
 /-- Lebesgue measure is absolutely continuous with respect to a positive-variance
-repository spherical Gaussian measure. -/
+repository spherical Gaussian measure.
+@isnad1 id=absolute.0h2v.s5.fc6f369e3b5c from=translated src=- shape=c519d259 vocab=2eabc9c5
+-/
 theorem volume_absolutelyContinuous_sphericalGaussianMeasure {d : ℕ}
     (params : SphericalGaussianParams d) :
     volume ≪ sphericalGaussianMeasure params := by
   exact volume_absolutelyContinuous_diagonalGaussianMeasure params.toDiagonal
 
 /-- A repository spherical Gaussian measure and Lebesgue measure are mutually
-absolutely continuous. -/
+absolutely continuous.
+@isnad1 id=and.0h2v.s6.86990b03b887 from=translated src=- shape=35e196f0 vocab=2eabc9c5
+-/
 theorem sphericalGaussianMeasure_mutuallyAbsolutelyContinuous_volume {d : ℕ}
     (params : SphericalGaussianParams d) :
     sphericalGaussianMeasure params ≪ volume ∧
@@ -185,7 +209,9 @@ theorem sphericalGaussianMeasure_mutuallyAbsolutelyContinuous_volume {d : ℕ}
     volume_absolutelyContinuous_sphericalGaussianMeasure params⟩
 
 /-- Any two positive-variance repository diagonal Gaussian measures are mutually
-absolutely continuous. -/
+absolutely continuous.
+@isnad1 id=and.0h3v.s5.89a6f19060e0 from=translated src=- shape=35b3e039 vocab=fcf8ffba
+-/
 theorem diagonalGaussianMeasure_mutuallyAbsolutelyContinuous {d : ℕ}
     (posterior prior : DiagonalGaussianParams d) :
     diagonalGaussianMeasure posterior ≪ diagonalGaussianMeasure prior ∧
@@ -198,7 +224,9 @@ theorem diagonalGaussianMeasure_mutuallyAbsolutelyContinuous {d : ℕ}
 
 /-- Any two positive-variance repository spherical Gaussian measures are mutually
 absolutely continuous. In particular, this supplies the `posterior ≪ prior`
-premise needed by continuous PAC-Bayes change of measure. -/
+premise needed by continuous PAC-Bayes change of measure.
+@isnad1 id=and.0h3v.s5.8c9803a4d6bf from=translated src=- shape=35b3e039 vocab=6bc621dd
+-/
 theorem sphericalGaussianMeasure_mutuallyAbsolutelyContinuous {d : ℕ}
     (posterior prior : SphericalGaussianParams d) :
     sphericalGaussianMeasure posterior ≪ sphericalGaussianMeasure prior ∧
@@ -207,14 +235,18 @@ theorem sphericalGaussianMeasure_mutuallyAbsolutelyContinuous {d : ℕ}
     posterior.toDiagonal prior.toDiagonal
 
 /-- Directed absolute continuity from posterior to prior for spherical Gaussian
-measures, provided as the form consumed directly by PAC-Bayes theorems. -/
+measures, provided as the form consumed directly by PAC-Bayes theorems.
+@isnad1 id=absolute.0h3v.s4.801f760edb0c from=translated src=- shape=f36acec1 vocab=6bc621dd
+-/
 theorem sphericalGaussianMeasure_absolutelyContinuous {d : ℕ}
     (posterior prior : SphericalGaussianParams d) :
     sphericalGaussianMeasure posterior ≪ sphericalGaussianMeasure prior :=
   (sphericalGaussianMeasure_mutuallyAbsolutelyContinuous posterior prior).1
 
 /-- The repository coordinate density agrees with mathlib's normalized Gaussian
-density after packaging the positive variance as an `NNReal`. -/
+density after packaging the positive variance as an `NNReal`.
+@isnad1 id=eq.1h3v.s5.3d09925e4580 from=translated src=- shape=8cc5111b vocab=c74f856a
+-/
 theorem gaussianCoordinateDensity_eq_gaussianPDFReal
     (mean variance x : ℝ) (hvariance : 0 < variance) :
     gaussianCoordinateDensity mean variance x =
@@ -230,7 +262,9 @@ theorem gaussianCoordinateDensity_eq_gaussianPDFReal
     | (all_goals decide; done; trace "PORTFOLIO-OK decide")
     | (all_goals tauto; done; trace "PORTFOLIO-OK tauto")
 
-/-- Each coordinate density is integrable with respect to Lebesgue measure. -/
+/-- Each coordinate density is integrable with respect to Lebesgue measure.
+@isnad1 id=integrab.1h2v.s5.e35adc8ece45 from=translated src=- shape=09749f8b vocab=3f51966e
+-/
 theorem integrable_gaussianCoordinateDensity
     (mean variance : ℝ) (hvariance : 0 < variance) :
     Integrable (gaussianCoordinateDensity mean variance) := by
@@ -242,7 +276,9 @@ theorem integrable_gaussianCoordinateDensity
   exact integrable_gaussianPDFReal mean ⟨variance, hvariance.le⟩
 
 /-- A coordinate Gaussian density times any shifted square is integrable with
-respect to Lebesgue measure. -/
+respect to Lebesgue measure.
+@isnad1 id=integrab.1h3v.s6.faa842bdd178 from=translated src=- shape=9dad25f0 vocab=51477ff1
+-/
 theorem integrable_gaussianCoordinateDensity_mul_sq_sub
     (mean variance center : ℝ) (hvariance : 0 < variance) :
     Integrable (fun x => gaussianCoordinateDensity mean variance x *
@@ -269,7 +305,9 @@ theorem integrable_gaussianCoordinateDensity_mul_sq_sub
   simpa only [toReal_gaussianPDF, smul_eq_mul] using hint
 
 /-- The weighted shifted-square moment of a one-dimensional repository
-Gaussian density is its variance plus squared displacement from the mean. -/
+Gaussian density is its variance plus squared displacement from the mean.
+@isnad1 id=eq.1h3v.s6.630e699c776d from=translated src=- shape=b44245c7 vocab=8dff59a1
+-/
 theorem integral_gaussianCoordinateDensity_mul_sq_sub
     (mean variance center : ℝ) (hvariance : 0 < variance) :
     ∫ x, gaussianCoordinateDensity mean variance x *
@@ -331,7 +369,9 @@ theorem integral_gaussianCoordinateDensity_mul_sq_sub
   rw [hvcoe] at hshift
   simpa only [smul_eq_mul] using hshift
 
-/-- Each positive-variance coordinate density integrates to one. -/
+/-- Each positive-variance coordinate density integrates to one.
+@isnad1 id=eq.1h2v.s5.9a7ca4333c3e from=translated src=- shape=855333e4 vocab=2d65e914
+-/
 theorem integral_gaussianCoordinateDensity_eq_one
     (mean variance : ℝ) (hvariance : 0 < variance) :
     ∫ x, gaussianCoordinateDensity mean variance x = 1 := by
@@ -344,7 +384,9 @@ theorem integral_gaussianCoordinateDensity_eq_one
   exact integral_gaussianPDFReal_eq_one mean (v := v) hv
 
 /-- Multiplying a diagonal Gaussian density by a shifted square in one
-coordinate preserves its separated product form. -/
+coordinate preserves its separated product form.
+@isnad1 id=eq.0h5v.s7.4b810b2581dd from=translated src=- shape=6e0369d3 vocab=c8d4d8b9
+-/
 theorem diagonalGaussianDensity_mul_sq_sub_eq_prod {d : ℕ}
     (params : DiagonalGaussianParams d) (i : Fin d) (center : ℝ)
     (x : GaussianParameterSpace d) :
@@ -380,7 +422,9 @@ theorem diagonalGaussianDensity_mul_sq_sub_eq_prod {d : ℕ}
       (Fintype.prod_eq_mul_prod_subtype_ne g i).symm
 
 /-- Every shifted coordinate square is integrable under a repository diagonal
-Gaussian measure. -/
+Gaussian measure.
+@isnad1 id=integrab.0h4v.s6.cb05dc2bdf97 from=translated src=- shape=ae903617 vocab=35df5d43
+-/
 theorem integrable_sq_sub_coordinate_diagonalGaussianMeasure {d : ℕ}
     (params : DiagonalGaussianParams d) (i : Fin d) (center : ℝ) :
     Integrable (fun x : GaussianParameterSpace d =>
@@ -423,7 +467,9 @@ theorem integrable_sq_sub_coordinate_diagonalGaussianMeasure {d : ℕ}
             (params.mean j) (params.variance j) (params.variance_pos j)))
 
 /-- The shifted second moment of one coordinate under a repository diagonal
-Gaussian has the expected variance-plus-bias form. -/
+Gaussian has the expected variance-plus-bias form.
+@isnad1 id=eq.0h4v.s6.835132e67919 from=translated src=- shape=e4751765 vocab=a14ffb35
+-/
 theorem integral_sq_sub_coordinate_diagonalGaussianMeasure {d : ℕ}
     (params : DiagonalGaussianParams d) (i : Fin d) (center : ℝ) :
     ∫ x : GaussianParameterSpace d, (x i - center) ^ (2 : Nat)
@@ -472,7 +518,9 @@ theorem integral_sq_sub_coordinate_diagonalGaussianMeasure {d : ℕ}
   rw [hrest, mul_one]
 
 /-- The diagonal Gaussian density integrates to one over finite-dimensional
-Lebesgue space. -/
+Lebesgue space.
+@isnad1 id=eq.0h2v.s6.3eb7f8754b23 from=translated src=- shape=7971c152 vocab=e299a6a3
+-/
 theorem integral_diagonalGaussianDensity_eq_one {d : ℕ}
     (params : DiagonalGaussianParams d) :
     ∫ x, diagonalGaussianDensity params x = 1 := by
@@ -488,7 +536,9 @@ theorem integral_diagonalGaussianDensity_eq_one {d : ℕ}
   simp_rw [hcoord]
   simp
 
-/-- The repository diagonal Gaussian measure has total mass one. -/
+/-- The repository diagonal Gaussian measure has total mass one.
+@isnad1 id=eq.0h2v.s5.362b6f412f5d from=translated src=- shape=094f5179 vocab=cc79ae46
+-/
 theorem diagonalGaussianMeasure_apply_univ {d : ℕ}
     (params : DiagonalGaussianParams d) :
     diagonalGaussianMeasure params Set.univ = 1 := by
@@ -504,19 +554,25 @@ theorem diagonalGaussianMeasure_apply_univ {d : ℕ}
           (params.mean i) (params.variance i) (params.variance_pos i))
   · exact ae_of_all _ (diagonalGaussianDensity_nonneg params)
 
-/-- Every repository diagonal Gaussian measure is a probability measure. -/
+/-- Every repository diagonal Gaussian measure is a probability measure.
+@isnad1 id=isprobab.0h2v.s4.2fb86a1657a1 from=translated src=- shape=1db69a2b vocab=fb60d896
+-/
 instance instIsProbabilityMeasureDiagonalGaussianMeasure {d : ℕ}
     (params : DiagonalGaussianParams d) :
     IsProbabilityMeasure (diagonalGaussianMeasure params) where
   measure_univ := diagonalGaussianMeasure_apply_univ params
 
-/-- The repository spherical Gaussian measure has total mass one. -/
+/-- The repository spherical Gaussian measure has total mass one.
+@isnad1 id=eq.0h2v.s5.ca1e7dfabbad from=translated src=- shape=094f5179 vocab=fed21af6
+-/
 theorem sphericalGaussianMeasure_apply_univ {d : ℕ}
     (params : SphericalGaussianParams d) :
     sphericalGaussianMeasure params Set.univ = 1 :=
   diagonalGaussianMeasure_apply_univ params.toDiagonal
 
-/-- Every repository spherical Gaussian measure is a probability measure. -/
+/-- Every repository spherical Gaussian measure is a probability measure.
+@isnad1 id=isprobab.0h2v.s4.a1168fdf08b8 from=translated src=- shape=1db69a2b vocab=f48d2f3f
+-/
 instance instIsProbabilityMeasureSphericalGaussianMeasure {d : ℕ}
     (params : SphericalGaussianParams d) :
     IsProbabilityMeasure (sphericalGaussianMeasure params) where
@@ -524,7 +580,9 @@ instance instIsProbabilityMeasureSphericalGaussianMeasure {d : ℕ}
 
 /-- The Radon--Nikodym derivative between two repository diagonal Gaussian
 measures is the ratio of their Lebesgue densities, almost everywhere under the
-prior. -/
+prior.
+@isnad1 id=eventual.0h3v.s6.521a74de871a from=translated src=- shape=c6b3d393 vocab=68e15c0a
+-/
 theorem rnDeriv_diagonalGaussianMeasure_eq_density_ratio {d : ℕ}
     (posterior prior : DiagonalGaussianParams d) :
     (diagonalGaussianMeasure posterior).rnDeriv
@@ -545,7 +603,9 @@ theorem rnDeriv_diagonalGaussianMeasure_eq_density_ratio {d : ℕ}
 
 /-- The log-likelihood ratio between two repository diagonal Gaussian measures
 is the logarithm of their real-valued density ratio, almost everywhere under
-the posterior. -/
+the posterior.
+@isnad1 id=eventual.0h3v.s6.9eceefc9bc16 from=translated src=- shape=2272f6dd vocab=a9850594
+-/
 theorem llr_diagonalGaussianMeasure_eq_log_density_ratio {d : ℕ}
     (posterior prior : DiagonalGaussianParams d) :
     llr (diagonalGaussianMeasure posterior) (diagonalGaussianMeasure prior)
@@ -564,7 +624,9 @@ theorem llr_diagonalGaussianMeasure_eq_log_density_ratio {d : ℕ}
 
 /-- The log-likelihood ratio between two repository diagonal Gaussian measures
 has the standard finite coordinate-sum form, almost everywhere under the
-posterior. -/
+posterior.
+@isnad1 id=eventual.0h3v.s7.75303f9b0eaa from=translated src=- shape=b02b8b12 vocab=909a157a
+-/
 theorem llr_diagonalGaussianMeasure_eq_sum {d : ℕ}
     (posterior prior : DiagonalGaussianParams d) :
     llr (diagonalGaussianMeasure posterior) (diagonalGaussianMeasure prior)
@@ -581,7 +643,9 @@ theorem llr_diagonalGaussianMeasure_eq_sum {d : ℕ}
   rw [hx, log_diagonalGaussianDensity_ratio_eq_sum posterior prior x]
 
 /-- The log-likelihood ratio between two repository diagonal Gaussian measures
-is integrable under the posterior. -/
+is integrable under the posterior.
+@isnad1 id=integrab.0h3v.s6.d6421278b4d2 from=translated src=- shape=8f5fe34e vocab=23608480
+-/
 theorem integrable_llr_diagonalGaussianMeasure {d : ℕ}
     (posterior prior : DiagonalGaussianParams d) :
     Integrable
@@ -603,7 +667,9 @@ theorem integrable_llr_diagonalGaussianMeasure {d : ℕ}
         (hposteriorSquare.div_const (posterior.variance i))).div_const 2
 
 /-- The posterior expectation of the diagonal Gaussian log-likelihood ratio is
-the repository's analytic diagonal Gaussian KL expression. -/
+the repository's analytic diagonal Gaussian KL expression.
+@isnad1 id=eq.0h3v.s6.67387263b624 from=translated src=- shape=415bd8a6 vocab=b0ae2ac1
+-/
 theorem integral_llr_diagonalGaussianMeasure_eq_diagonalGaussianKL {d : ℕ}
     (posterior prior : DiagonalGaussianParams d) :
     ∫ x, llr (diagonalGaussianMeasure posterior)
@@ -703,7 +769,9 @@ theorem integral_llr_diagonalGaussianMeasure_eq_diagonalGaussianKL {d : ℕ}
   ring
 
 /-- Mathlib's KL divergence between two repository diagonal Gaussian measures
-is finite. -/
+is finite.
+@isnad1 id=ne.0h3v.s5.d9cb7ef7e5f2 from=translated src=- shape=890f3d2c vocab=a1d3fa1c
+-/
 theorem diagonalGaussianMeasure_klDiv_ne_top {d : ℕ}
     (posterior prior : DiagonalGaussianParams d) :
     InformationTheory.klDiv
@@ -715,7 +783,9 @@ theorem diagonalGaussianMeasure_klDiv_ne_top {d : ℕ}
 
 /-- Mathlib's measure-theoretic KL divergence between two repository diagonal
 Gaussian measures equals the repository's analytic diagonal Gaussian KL
-expression. -/
+expression.
+@isnad1 id=eq.0h3v.s5.2d6ae6034640 from=translated src=- shape=a9b7bb56 vocab=8b54858d
+-/
 theorem diagonalGaussianMeasure_klDiv_toReal_eq {d : ℕ}
     (posterior prior : DiagonalGaussianParams d) :
     (InformationTheory.klDiv
@@ -731,7 +801,9 @@ theorem diagonalGaussianMeasure_klDiv_toReal_eq {d : ℕ}
     integral_llr_diagonalGaussianMeasure_eq_diagonalGaussianKL posterior prior
 
 /-- Mathlib's KL divergence between two repository spherical Gaussian measures
-is finite. -/
+is finite.
+@isnad1 id=ne.0h3v.s5.754b5e89daaa from=translated src=- shape=890f3d2c vocab=735ec8d9
+-/
 theorem sphericalGaussianMeasure_klDiv_ne_top {d : ℕ}
     (posterior prior : SphericalGaussianParams d) :
     InformationTheory.klDiv
@@ -742,7 +814,9 @@ theorem sphericalGaussianMeasure_klDiv_ne_top {d : ℕ}
 
 /-- Mathlib's measure-theoretic KL divergence between two repository spherical
 Gaussian measures equals the repository's analytic spherical Gaussian KL
-expression. -/
+expression.
+@isnad1 id=eq.0h3v.s5.ce5736d692c1 from=translated src=- shape=a9b7bb56 vocab=91fc6cab
+-/
 theorem sphericalGaussianMeasure_klDiv_toReal_eq {d : ℕ}
     (posterior prior : SphericalGaussianParams d) :
     (InformationTheory.klDiv

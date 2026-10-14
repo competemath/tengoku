@@ -28,7 +28,9 @@ noncomputable section
 namespace CKN
 
 /-- Integrating the mollifier's derivative against `u` reproduces the mollification of a weak
-partial derivative `gi` of `u`, at every point whose closed `ε`-ball lies in the domain. -/
+partial derivative `gi` of `u`, at every point whose closed `ε`-ball lies in the domain.
+@isnad1 id=eq.5h7v.s9.28901e1df1a7 from=translated src=- shape=177c7c12 vocab=e715849a
+-/
 theorem integral_fderiv_mollifier_mul_eq_mollify
     {d : ℕ} {U : Set (Vec d)} {u gi : Vec d → ℝ} {i : Fin d}
     (_ : MeasureTheory.LocallyIntegrable u MeasureTheory.volume)

@@ -21,6 +21,9 @@ universe u v w
 
 section RingEquiv
 
+/--
+@isnad1 id=iff.0h3v.s8.10322d6c4678 from=translated src=- shape=e53538b8 vocab=345245f5
+-/
 lemma Matrix.mem_center_iff (R : Type*) [Ring R] (n : ℕ) (M) :
     M ∈ Subring.center M[Fin n, R] ↔ ∃ α : (Subring.center R), M = α • 1 := by
   constructor

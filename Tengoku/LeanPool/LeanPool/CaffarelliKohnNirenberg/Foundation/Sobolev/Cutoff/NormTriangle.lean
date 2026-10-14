@@ -19,7 +19,9 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 namespace CKN
 
 /-- The Euclidean norm on native coordinate vectors coincides with the `L²`
-norm of `WithLp.toLp 2 x`. -/
+norm of `WithLp.toLp 2 x`.
+@isnad1 id=eq.0h2v.s6.80229d42b8c2 from=translated src=- shape=755c25e9 vocab=56ed39da
+-/
 theorem vecEuclideanNorm_eq_norm_toLp {d : ℕ} (x : Vec d) :
     vecEuclideanNorm x = ‖WithLp.toLp 2 x‖ := by
   rw [PiLp.norm_eq_of_L2]
@@ -29,7 +31,9 @@ theorem vecEuclideanNorm_eq_norm_toLp {d : ℕ} (x : Vec d) :
   intro i _hi
   ring
 
-/-- The triangle inequality for the Euclidean norm on native coordinate vectors. -/
+/-- The triangle inequality for the Euclidean norm on native coordinate vectors.
+@isnad1 id=le.0h3v.s5.45aa79685d51 from=translated src=- shape=e4bc9e79 vocab=c475e8d1
+-/
 theorem vecEuclideanNorm_add_le {d : ℕ} (x y : Vec d) :
     vecEuclideanNorm (x + y) ≤ vecEuclideanNorm x + vecEuclideanNorm y := by
   rw [vecEuclideanNorm_eq_norm_toLp, vecEuclideanNorm_eq_norm_toLp, vecEuclideanNorm_eq_norm_toLp]

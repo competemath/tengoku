@@ -132,10 +132,16 @@ noncomputable def tangentPushforward (u : tangentSpace (α := α)) : tangentSpac
     _ = ∑ a : α, (u : α → ℝ) a := by simp [κ.row_sum_eq_one]
     _ = 0 := hu_sum
 
+/--
+@isnad1 id=eq.0h5v.s6.f08f63133c17 from=translated src=- shape=99c38f95 vocab=f3ad4aca
+-/
 @[simp] lemma pushforward_apply (p : Simplex α) (b : β) :
     (κ.pushforward p).p b = ∑ a : α, p.p a * κ.K a b :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.ab0075d81615 from=translated src=- shape=2786a0cd vocab=9b368640
+-/
 @[simp] lemma tangentPushforward_apply (u : tangentSpace (α := α)) (b : β) :
     (κ.tangentPushforward u : β → ℝ) b = ∑ a : α, ((u : α → ℝ) a) * κ.K a b :=
   rfl
@@ -155,11 +161,16 @@ noncomputable def tangentPushforwardLinear : tangentSpace (α := α) →ₗ[ℝ]
     simp [MarkovMorphism.tangentPushforward_apply, Pi.smul_apply, smul_eq_mul,
       mul_assoc, Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h4v.s10.8f5273c4457e from=translated src=- shape=8cd7a2ae vocab=f31d53fc
+-/
 @[simp] lemma tangentPushforwardLinear_apply (u : tangentSpace (α := α)) :
     κ.tangentPushforwardLinear u = κ.tangentPushforward u :=
   rfl
 
-/-- Pushforward along a deterministic morphism is fiberwise summation. -/
+/-- Pushforward along a deterministic morphism is fiberwise summation.
+@isnad1 id=eq.1h5v.s6.0c70a3634b89 from=translated src=- shape=4917b4fe vocab=90652c51
+-/
 lemma deterministic_pushforward_apply [DecidableEq β] (g : α → β) (hg : Function.Surjective g)
     (p : Simplex α) (b : β) :
     ((deterministic (α := α) (β := β) g hg).pushforward p).p b = ∑ a with g a = b, p.p a := by
@@ -172,7 +183,9 @@ lemma deterministic_pushforward_apply [DecidableEq β] (g : α → β) (hg : Fun
         (f := fun a => p.p a)).symm
   simp [deterministic, pushforward, mul_ite, this]
 
-/-- Tangent pushforward along a deterministic morphism is fiberwise summation. -/
+/-- Tangent pushforward along a deterministic morphism is fiberwise summation.
+@isnad1 id=eq.1h5v.s8.fed2e12af896 from=translated src=- shape=ca279191 vocab=30191fa0
+-/
 lemma deterministic_tangentPushforward_apply [DecidableEq β]
     (g : α → β) (hg : Function.Surjective g)
     (u : tangentSpace (α := α)) (b : β) :
@@ -189,7 +202,9 @@ lemma deterministic_tangentPushforward_apply [DecidableEq β]
 
 end MarkovMorphism
 
-/-- Fisher monotonicity under a finite Markov morphism. -/
+/-- Fisher monotonicity under a finite Markov morphism.
+@isnad1 id=le.0h5v.s11.19a2b92275dc from=translated src=- shape=c5fe19e8 vocab=0f0928da
+-/
 theorem fisherBilin_pushforward_le_of_markovMorphism (κ : MarkovMorphism α β)
     (p : Simplex α) (u : tangentSpace (α := α)) :
     fisherBilin (κ.pushforward p) (κ.tangentPushforward u) (κ.tangentPushforward u) ≤

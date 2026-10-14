@@ -33,7 +33,9 @@ namespace Construction
 variable {ι : Type*} {r : ℕ}
 
 /-- `f (0^V) = 0`: no certificate is satisfied by the all-zero input, because every
-certificate requires its whole (nonempty) owner block to be `1` (Section 5). -/
+certificate requires its whole (nonempty) owner block to be `1` (Section 5).
+@isnad1 id=eq.0h4v.s5.67e778c4ac27 from=translated src=- shape=0956862c vocab=302b9bef
+-/
 theorem ind_zeroInput [Fintype ι] [DecidableEq ι] [NeZero r] (Arc : ι → ι → Bool)
     (γ : ι → ι → Fin r) : ind Arc γ (zeroInput (Coord ι r)) = false :=
   ind_eq_false_iff.2 fun _ hi ↦ by simpa using (sat_cert_iff.1 hi).1 0
@@ -42,24 +44,32 @@ variable {Arc : ι → ι → Bool} {γ : ι → ι → Fin r}
 
 /-- Flipping exactly the owner block `B_i` at the all-zero input lands in `C_i`
 (Section 5).  No irreflexivity hypothesis is needed: the gate coordinates of `C_i` lie in
-blocks `B_j` with `j ≠ i`, which the flip does not touch. -/
+blocks `B_j` with `j ≠ i`, which the flip does not touch.
+@isnad1 id=sat.0h5v.s5.4f53bdb1617b from=translated src=- shape=2df4d14c vocab=2c33f994
+-/
 theorem sat_cert_flipSet_block [DecidableEq ι] (i : ι) :
     (cert Arc γ i).Sat (flipSet (zeroInput (Coord ι r)) (block i)) :=
   sat_cert_iff.2 ⟨fun _ ↦ by simp, fun _ hji _ ↦ by simp [hji]⟩
 
 /-- `f ((0^V)^{B_i}) = 1`: flipping the owner block `B_i` at the all-zero input lands in
-`C_i`, hence in the union defining `f` (Section 5). -/
+`C_i`, hence in the union defining `f` (Section 5).
+@isnad1 id=eq.0h5v.s6.b2343c3ecd62 from=translated src=- shape=9f99e2e3 vocab=60b5278d
+-/
 theorem ind_flipSet_block [Fintype ι] [DecidableEq ι] (i : ι) :
     ind Arc γ (flipSet (zeroInput (Coord ι r)) (block i)) = true :=
   ind_eq_true_of_sat (sat_cert_flipSet_block i)
 
-/-- Each block `B_i` is a sensitive block of `f` at the all-zero input (Section 5). -/
+/-- Each block `B_i` is a sensitive block of `f` at the all-zero input (Section 5).
+@isnad1 id=issensit.0h5v.s6.c9fd1b72147f from=translated src=- shape=a6e48310 vocab=99c16c24
+-/
 theorem isSensitiveBlock_block [Fintype ι] [DecidableEq ι] [NeZero r] (i : ι) :
     IsSensitiveBlock (ind Arc γ) (zeroInput (Coord ι r)) (block i) :=
   isSensitiveBlock_of_eq_true (block_nonempty i) (ind_zeroInput Arc γ) (ind_flipSet_block i)
 
 /-- **The block-sensitivity lower bound**: `bs f ≥ |ι|` (Section 5, `bs(f) ≥ k`).  The
-blocks `B_i` are nonempty, pairwise disjoint and sensitive at the all-zero input. -/
+blocks `B_i` are nonempty, pairwise disjoint and sensitive at the all-zero input.
+@isnad1 id=le.0h4v.s6.977c7afa50a9 from=translated src=- shape=f2e4246d vocab=9d787419
+-/
 theorem card_le_bs [Fintype ι] [DecidableEq ι] [NeZero r] :
     Fintype.card ι ≤ bs (ind Arc γ) := by
   rw [← Finset.card_univ (α := ι)]

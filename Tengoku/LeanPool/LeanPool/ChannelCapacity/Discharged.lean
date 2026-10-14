@@ -63,28 +63,46 @@ namespace ContinuousPositiveDensity
 
 variable {k : Kernel α β} [IsMarkovKernel k] [OpensMeasurableSpace α] {ν : Measure β}
 
+/--
+@isnad1 id=eq.0h6v.s6.6471462021d3 from=translated src=- shape=ef7dd42a vocab=8cdbd2b8
+-/
 lemma row_eq_withDensity (h : ContinuousPositiveDensity k ν) (a : α) :
     k a = ν.withDensity (fun b => (h.density a b : ENNReal)) :=
   h.eq_withDensity a
 
+/--
+@isnad1 id=absolute.0h6v.s6.9d0f905e3a67 from=translated src=- shape=0e99ddda vocab=efba7069
+-/
 lemma row_absolutelyContinuous_ref (h : ContinuousPositiveDensity k ν) (a : α) :
     k a ≪ ν := by
   rw [h.row_eq_withDensity a]
   simpa using MeasureTheory.withDensity_absolutelyContinuous ν
     (fun b => (h.density a b : ENNReal))
 
+/--
+@isnad1 id=ne.0h7v.s6.26d5129044d5 from=translated src=- shape=aad6efa3 vocab=5a4c76fd
+-/
 lemma density_ne_zero (h : ContinuousPositiveDensity k ν) (a : α) (b : β) :
     h.density a b ≠ 0 :=
   ne_of_gt (h.density_pos a b)
 
+/--
+@isnad1 id=lt.0h7v.s6.262933aec0f6 from=translated src=- shape=2f229042 vocab=ba7fe61d
+-/
 lemma density_ennreal_pos (h : ContinuousPositiveDensity k ν) (a : α) (b : β) :
     0 < (h.density a b : ENNReal) :=
   ENNReal.coe_pos.mpr (h.density_pos a b)
 
+/--
+@isnad1 id=ne.0h7v.s6.37c3af98d8df from=translated src=- shape=f1de7a92 vocab=e2eb9b3b
+-/
 lemma density_ennreal_ne_zero (h : ContinuousPositiveDensity k ν) (a : α) (b : β) :
     (h.density a b : ENNReal) ≠ 0 :=
   ne_of_gt (h.density_ennreal_pos a b)
 
+/--
+@isnad1 id=uppersem.0h5v.s6.14e9dbe6a4dd from=translated src=- shape=7fdc1a76 vocab=9b068905
+-/
 lemma upperSemicontinuous_mutualInformation
     (h : ContinuousPositiveDensity k ν) :
     UpperSemicontinuous fun p : ProbabilityMeasure α => mutualInformation p k :=
@@ -95,7 +113,9 @@ section UniformBounds
 variable [CompactSpace α] [CompactSpace β] [Nonempty α] [Nonempty β]
 
 /-- A strictly positive jointly continuous density on a compact product has a positive uniform lower
-bound and a finite uniform upper bound. -/
+bound and a finite uniform upper bound.
+@isnad1 id=ex.0h5v.s7.3cd91ea36322 from=translated src=- shape=e7cb659c vocab=59d0a5b0
+-/
 lemma exists_uniform_density_bounds
     (h : ContinuousPositiveDensity k ν) :
     ∃ c C : NNReal,
@@ -114,6 +134,9 @@ lemma exists_uniform_density_bounds
 
 end UniformBounds
 
+/--
+@isnad1 id=le.2h2v.s5.c63e96c879c5 from=translated src=- shape=5204bf5a vocab=621bfdbe
+-/
 lemma klFun_le_sq_add_one {x B : ℝ} (hx : 0 ≤ x) (hB : x ≤ B) :
     InformationTheory.klFun x ≤ B ^ 2 + 1 := by
   have hlog : Real.log x ≤ x := Real.log_le_self hx
@@ -137,6 +160,9 @@ noncomputable def outputDensity (h : ContinuousPositiveDensity k ν) (p : Probab
   fun b => ∫⁻ a, (h.density a b : ENNReal) ∂p.toMeasure
 
 omit [CompactSpace α] [CompactSpace β] [BorelSpace α] [BorelSpace β] in
+/--
+@isnad1 id=aemeasur.0h6v.s6.e7646e735355 from=translated src=- shape=de234bc6 vocab=d2e81b36
+-/
 lemma aemeasurable_outputDensity (h : ContinuousPositiveDensity k ν) (p : ProbabilityMeasure α) :
     AEMeasurable (h.outputDensity p) ν := by
   have hbase :
@@ -147,6 +173,9 @@ lemma aemeasurable_outputDensity (h : ContinuousPositiveDensity k ν) (p : Proba
   exact hbase.lintegral_prod_left (μ := p.toMeasure) (ν := ν)
 
 omit [CompactSpace α] [CompactSpace β] [BorelSpace α] [BorelSpace β] in
+/--
+@isnad1 id=eq.0h6v.s6.8fb2ff3a2807 from=translated src=- shape=6b950880 vocab=57332178
+-/
 lemma outputPrior_eq_withDensity_outputDensity
     (h : ContinuousPositiveDensity k ν) (p : ProbabilityMeasure α) :
     (outputPrior k p).toMeasure = ν.withDensity (h.outputDensity p) := by
@@ -165,6 +194,9 @@ lemma outputPrior_eq_withDensity_outputDensity
 
 omit [CompactSpace β] [PolishSpace α] [PolishSpace β] [BorelSpace α] [BorelSpace β]
   [OpensMeasurableSpace β] [IsFiniteMeasure ν] in
+/--
+@isnad1 id=lt.0h7v.s6.65b4592eb60c from=translated src=- shape=8ca8799a vocab=ef5f20b4
+-/
 lemma outputDensity_pos (h : ContinuousPositiveDensity k ν) (p : ProbabilityMeasure α) (b : β) :
     0 < h.outputDensity p b := by
   let : Nonempty α := p.nonempty
@@ -188,6 +220,9 @@ lemma outputDensity_pos (h : ContinuousPositiveDensity k ν) (p : ProbabilityMea
   exact lt_of_lt_of_le (ENNReal.coe_pos.mpr (h.density_pos a0 b)) hconst_le
 
 omit [CompactSpace β] [BorelSpace α] [BorelSpace β] in
+/--
+@isnad1 id=eventual.0h6v.s6.09b754f28575 from=translated src=- shape=e8c3aa57 vocab=962d2c62
+-/
 lemma ae_row_absolutelyContinuous_outputPrior
     (h : ContinuousPositiveDensity k ν) (p : ProbabilityMeasure α) :
     ∀ᵐ a ∂p.toMeasure, k a ≪ (outputPrior k p).toMeasure := by
@@ -203,6 +238,9 @@ lemma ae_row_absolutelyContinuous_outputPrior
     (h.row_absolutelyContinuous_ref a).trans hν_ac_out
 
 omit [CompactSpace β] [BorelSpace α] [BorelSpace β] in
+/--
+@isnad1 id=absolute.0h7v.s6.6e46a7d24d7b from=translated src=- shape=dda143d0 vocab=9dabc8a8
+-/
 lemma row_absolutelyContinuous_outputPrior
     (h : ContinuousPositiveDensity k ν) (p : ProbabilityMeasure α) (a : α) :
     k a ≪ (outputPrior k p).toMeasure := by
@@ -217,6 +255,9 @@ lemma row_absolutelyContinuous_outputPrior
   exact (h.row_absolutelyContinuous_ref a).trans hν_ac_out
 
 omit [BorelSpace α] [BorelSpace β] in
+/--
+@isnad1 id=ex.0h6v.s7.9b596e366670 from=translated src=- shape=da4ce784 vocab=9095a7a7
+-/
 lemma row_klDiv_le_outputPrior_bound
     (h : ContinuousPositiveDensity k ν) (p : ProbabilityMeasure α) :
     ∃ B : ℝ≥0∞, B ≠ ∞ ∧
@@ -335,6 +376,9 @@ lemma row_klDiv_le_outputPrior_bound
     _ = B := by simp [B]
 
 omit [BorelSpace α] in
+/--
+@isnad1 id=ne.1h7v.s7.8f6221a8eaa4 from=translated src=- shape=108247dc vocab=f27d39ae
+-/
 theorem hFiniteRefKL_of_continuousPositiveDensity
     (h : ContinuousPositiveDensity k ν) (p : ProbabilityMeasure α) (ν' : Measure β)
     (hRef : Kernel.OutputMarginalReference k p ν') :
@@ -365,6 +409,9 @@ theorem hFiniteRefKL_of_continuousPositiveDensity
 
 omit [TopologicalSpace β] [CompactSpace α] [CompactSpace β] [PolishSpace β] [BorelSpace β]
   [OpensMeasurableSpace α] [OpensMeasurableSpace β] [IsFiniteMeasure ν] in
+/--
+@isnad1 id=eq.1h5v.s7.faef8c8594dd from=translated src=- shape=7875fda2 vocab=56221e87
+-/
 theorem hChainRule_of_outputMarginalReference
     (p : ProbabilityMeasure α) (ν' : Measure β)
     (hRef : Kernel.OutputMarginalReference k p ν') :
@@ -376,6 +423,9 @@ theorem hChainRule_of_outputMarginalReference
   simpa using
     klDiv_mutualInformation_chain (k := k) (p := p) (ν := (outputPrior k q).toMeasure)
 
+/--
+@isnad1 id=wellcond.0h5v.s6.77a1e5ec65ab from=translated src=- shape=fc853275 vocab=45341756
+-/
 theorem wellConditionedForCapacity_of_continuousPositiveDensity
     (h : ContinuousPositiveDensity k ν) :
     Kernel.WellConditionedForCapacity k := by
@@ -392,11 +442,17 @@ variable [CompactSpace α] [PolishSpace α] [BorelSpace α] [Nonempty α]
 
 omit [TopologicalSpace α] [CompactSpace α] [PolishSpace α] [BorelSpace α]
   [OpensMeasurableSpace α] in
+/--
+@isnad1 id=nonempty.0h1v.s4.a8bce0fd1e54 from=translated src=- shape=e8f95c8a vocab=f838826d
+-/
 lemma univ_nonempty_probabilityMeasure :
     (Set.univ : Set (ProbabilityMeasure α)).Nonempty := by
   exact ⟨MeasureTheory.diracProba (Classical.choice ‹Nonempty α›), Set.mem_univ _⟩
 
 omit [Nonempty α] in
+/--
+@isnad1 id=iscompac.0h1v.s5.1d01ebe42f61 from=translated src=- shape=1ead3076 vocab=41e59c64
+-/
 lemma isCompact_univ_probabilityMeasure :
     IsCompact (Set.univ : Set (ProbabilityMeasure α)) :=
   isCompact_univ
@@ -415,6 +471,9 @@ variable [OpensMeasurableSpace α] [OpensMeasurableSpace β]
 variable [MeasurableSpace.CountableOrCountablyGenerated α β]
 variable [Nonempty α]
 
+/--
+@isnad1 id=existsun.1h5v.s6.db9d4978b0df from=translated src=- shape=a1843fc4 vocab=d62c774a
+-/
 theorem exists_unique_capacity_achieving_prior_discharged
     (k : Kernel α β) [IsMarkovKernel k]
     (ν : Measure β) [IsFiniteMeasure ν]

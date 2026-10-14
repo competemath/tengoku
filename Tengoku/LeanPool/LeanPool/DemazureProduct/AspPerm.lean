@@ -42,6 +42,9 @@ def northwestSet (τ : ℤ → ℤ) (m n : ℤ) : Set ℤ := { k : ℤ | k < n �
 /-- Reflect an integer function by the order-reversing involution `n ↦ -1 - n`. -/
 abbrev flipFunc (f : ℤ → ℤ) : ℤ → ℤ := fun k => -1 - f (-1 - k)
 
+/--
+@isnad1 id=eq.0h3v.s5.fee9490fc5d9 from=translated src=- shape=8aa4d830 vocab=8eaf274b
+-/
 lemma flip_quadrant (f : ℤ → ℤ) (a b : ℤ) :
   (-1 - ·) '' (southeastSet f a b) = northwestSet (flipFunc f) (-a) (-b) := by
   ext n
@@ -113,6 +116,9 @@ Equivalently, only finitely many integers change sign under `τ`. -/
 def isAsp (τ : ℤ → ℤ) : Prop :=
   { n : ℤ | n * (τ n) < 0 }.Finite
 
+/--
+@isnad1 id=finite.2h3v.s4.ee0d1a83a125 from=translated src=- shape=8e125446 vocab=fb98ba07
+-/
 lemma se_finite_of_asp {τ : ℤ → ℤ} (h_inj : Function.Injective τ) (m n : ℤ) :
   isAsp τ → (southeastSet τ m n).Finite := by
   intro h_asp
@@ -126,6 +132,9 @@ lemma se_finite_of_asp {τ : ℤ → ℤ} (h_inj : Function.Injective τ) (m n :
     exact Set.Finite.subset h_asp this
   exact se_finite_of_finite h_inj 0 1 m n h_se
 
+/--
+@isnad1 id=finite.2h3v.s4.4be6ce0a2891 from=translated src=- shape=8e125446 vocab=3db783c3
+-/
 lemma nw_finite_of_asp {τ : ℤ → ℤ} (h_inj : Function.Injective τ) (m n : ℤ) :
   isAsp τ → (northwestSet τ m n).Finite := by
   intro h_asp
@@ -139,6 +148,9 @@ lemma nw_finite_of_asp {τ : ℤ → ℤ} (h_inj : Function.Injective τ) (m n :
     exact Set.Finite.subset h_asp this
   exact nw_finite_of_finite h_inj 1 0 m n h_nw
 
+/--
+@isnad1 id=isasp.3h5v.s5.54ae4eff4053 from=translated src=- shape=b7485714 vocab=23283fa6
+-/
 lemma asp_of_finite_quadrants {τ : ℤ → ℤ} (h_inj : Function.Injective τ)
   {m n m' n' : ℤ} (fin_se : (southeastSet τ m n).Finite)
   (fin_nw : (northwestSet τ m' n').Finite) :
@@ -179,11 +191,20 @@ instance : CoeFun AspPerm (fun _ => ℤ → ℤ) :=
 namespace AspPerm
 variable (τ : AspPerm)
 
+/--
+@isnad1 id=injectiv.0h1v.s2.5eeea536265c from=translated src=- shape=8735051e vocab=790805fc
+-/
 lemma injective : Function.Injective τ.func := τ.bijective.injective
 
+/--
+@isnad1 id=surjecti.0h1v.s2.9e660ec236e5 from=translated src=- shape=8735051e vocab=0762c545
+-/
 lemma surjective : Function.Surjective τ.func := τ.bijective.surjective
 
 -- Lemmas for convenience, to handle edge cases involving i = j
+/--
+@isnad1 id=iff.1h3v.s5.a5648ea0c352 from=translated src=- shape=1ce7ec63 vocab=fce62720
+-/
 lemma inv_iff_lt {i j : ℤ} (i_le_j : i ≤ j) :
   ⟨i, j⟩ ∈ invSet τ ↔  τ j < τ i := by
   rw [invSet]
@@ -191,6 +212,9 @@ lemma inv_iff_lt {i j : ℤ} (i_le_j : i ≤ j) :
   · have i_eq_j : i = j := le_antisymm i_le_j (le_of_not_gt i_lt_j)
     rw [i_eq_j]; simp
   simp_all
+/--
+@isnad1 id=iff.1h3v.s5.a2c2251d9053 from=translated src=- shape=1ce7ec63 vocab=fce62720
+-/
 lemma inv_iff_le {i j : ℤ} (i_lt_j : i < j) :
   ⟨i, j⟩ ∈ invSet τ ↔ τ j ≤ τ i := by
   constructor
@@ -203,6 +227,9 @@ lemma inv_iff_le {i j : ℤ} (i_lt_j : i < j) :
       rw [heq] at i_lt_j; exact lt_irrefl i i_lt_j
     exact ⟨i_lt_j, lt_of_le_of_ne τ_j_le_i this⟩
 
+/--
+@isnad1 id=iff.0h2v.s4.c04700de194e from=translated src=- shape=73e7072c vocab=7ca80b87
+-/
 lemma ext {σ τ : AspPerm} : σ = τ ↔ σ.func = τ.func := by
   constructor
   · intro h; rw [h]
@@ -289,26 +316,43 @@ noncomputable instance : Group AspPerm where
     change Function.invFun τ.func (τ.func n) = n
     exact Function.leftInverse_invFun τ.injective n
 
-/-- Ordinary multiplication of ASP permutations is function composition. -/
+/-- Ordinary multiplication of ASP permutations is function composition.
+@isnad1 id=eq.0h3v.s5.692919d3ba97 from=translated src=- shape=7177eae1 vocab=2dd2f823
+-/
 @[simp] lemma mul_apply (σ τ : AspPerm) (n : ℤ) : (σ * τ) n = σ (τ n) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.efbb0794c041 from=translated src=- shape=2f232696 vocab=1e3d05e0
+-/
 @[simp] lemma inv_mul_cancel_eval (n : ℤ) : τ⁻¹ (τ n) = n := by
   change Function.invFun τ.func (τ.func n) = n
   exact Function.leftInverse_invFun τ.injective n
 
+/--
+@isnad1 id=eq.0h2v.s4.72f5c95a87a6 from=translated src=- shape=0fc13fc9 vocab=1e3d05e0
+-/
 @[simp] lemma mul_inv_cancel_eval (n : ℤ) : τ (τ⁻¹ n) = n := by
   change τ.func (Function.invFun τ.func n) = n
   exact Function.rightInverse_invFun τ.surjective n
 
+/--
+@isnad1 id=finite.0h3v.s3.7256e427dbc4 from=translated src=- shape=b09d33ac vocab=6dfe4321
+-/
 lemma se_finite (a b : ℤ) : (southeastSet τ a b).Finite :=
   se_finite_of_asp τ.injective a b τ.asp
 
+/--
+@isnad1 id=finite.0h3v.s3.d7f1a09e724f from=translated src=- shape=b09d33ac vocab=f59b092c
+-/
 lemma nw_finite (a b : ℤ) : (northwestSet τ a b).Finite :=
   nw_finite_of_asp τ.injective a b τ.asp
 
 /-- The finite southeast quadrant for an ASP permutation. -/
 noncomputable def seFinset (a b : ℤ) : Finset ℤ := (τ.se_finite a b).toFinset
 
+/--
+@isnad1 id=iff.0h4v.s5.0de4dbd99e7a from=translated src=- shape=85db47fd vocab=36f9a1cc
+-/
 @[simp] lemma mem_se (a b n : ℤ) : n ∈ (τ.seFinset a b) ↔ n ≥ b ∧ τ n < a := by
   unfold seFinset
   simp [southeastSet]
@@ -316,10 +360,16 @@ noncomputable def seFinset (a b : ℤ) : Finset ℤ := (τ.se_finite a b).toFins
 /-- The finite northwest quadrant for an ASP permutation. -/
 noncomputable def nwFinset (a b : ℤ) : Finset ℤ := (τ.nw_finite a b).toFinset
 
+/--
+@isnad1 id=iff.0h4v.s5.a50fb400f8b6 from=translated src=- shape=85db47fd vocab=f24234a9
+-/
 @[simp] lemma mem_nw (a b n : ℤ) : n ∈ (τ.nwFinset a b) ↔ n < b ∧ τ n ≥ a := by
   unfold nwFinset
   simp [northwestSet]
 
+/--
+@isnad1 id=iff.0h3v.s5.839e31327d5e from=translated src=- shape=95b4733a vocab=28c9754a
+-/
 lemma inv_set_inverse (u v : ℤ) :
     ⟨u, v⟩ ∈ invSet τ ↔ ⟨τ v, τ u⟩ ∈ invSet τ⁻¹.func := by
   constructor
@@ -758,48 +808,101 @@ noncomputable def s : SlipFace := {
 
 /-! ### Basic properties of the slipface of a permutation -/
 
+/--
+@isnad1 id=eq.0h3v.s4.d978e2a4dc6f from=translated src=- shape=440597e5 vocab=45f8c7c7
+-/
 lemma s_eq_ncard (a b : ℤ) : τ.s a b = ↑(southeastSet τ a b).ncard := by rfl
+/--
+@isnad1 id=eq.0h3v.s5.c3c73e4b29b7 from=translated src=- shape=97f4e670 vocab=39e03ab6
+-/
 lemma s'_eq_ncard (b a : ℤ) : (τ⁻¹).s b a = ↑(northwestSet τ a b).ncard := by
   change (τ⁻¹).sRaw b a = _
   rw [← dual_inverse_raw]
   rfl
+/--
+@isnad1 id=eq.0h3v.s4.c2186bd669e9 from=translated src=- shape=4bf3fe1f vocab=73541aa5
+-/
 lemma s_eq_se_card (a b : ℤ) : τ.s a b = (τ.seFinset a b).card := τ.s_eq_se_card_raw a b
+/--
+@isnad1 id=le.0h3v.s4.e4e7e3641459 from=translated src=- shape=d1c48a86 vocab=38865605
+-/
 lemma s_nonneg (a b : ℤ) : τ.s a b ≥ 0 := τ.s_nonneg_raw a b
+/--
+@isnad1 id=le.0h3v.s5.786a253c679b from=translated src=- shape=2015c9f0 vocab=bb3f790b
+-/
 lemma s_ge (a b : ℤ) : τ.s a b ≥ a - b + τ.χ := τ.s_ge_raw a b
+/--
+@isnad1 id=eq.0h3v.s6.07767f59faac from=translated src=- shape=7497c74e vocab=3ea56cb8
+-/
 lemma a_step (a b : ℤ) :
     τ.s (a + 1) b = τ.s a b + (if τ⁻¹ a ≥ b then 1 else 0) := τ.a_step_raw a b
+/--
+@isnad1 id=eq.0h3v.s5.d4b284524355 from=translated src=- shape=a64a45ed vocab=eb3b4ba6
+-/
 lemma b_step (a b : ℤ) :
     τ.s a (b + 1) = τ.s a b - (if τ b < a then 1 else 0) := τ.b_step_raw a b
 
+/--
+@isnad1 id=and.1h4v.s5.1bc3c4b5122b from=translated src=- shape=7a091ea6 vocab=e8993402
+-/
 lemma s_noninc (a : ℤ) {b b' : ℤ} (b_le_b' : b ≤ b') :
     τ.s a b ≥ τ.s a b' ∧
       (τ.s a b = τ.s a b' ↔ ∀ x : ℤ, b ≤ x → x < b' → τ x ≥ a) := τ.s_noninc_raw a b_le_b'
+/--
+@isnad1 id=and.1h4v.s6.d756d24ab337 from=translated src=- shape=4732375c vocab=41e89ab6
+-/
 lemma s_nondec {a a' : ℤ} (a_le_a' : a ≤ a') (b : ℤ) :
     τ.s a b ≤ τ.s a' b ∧
       (τ.s a b = τ.s a' b ↔ ∀ x : ℤ, a ≤ τ x → τ x < a' → x < b) := τ.s_nondec_raw a_le_a' b
+/--
+@isnad1 id=eq.0h3v.s5.021d2f692f2f from=translated src=- shape=2707fb21 vocab=b11c7e8b
+-/
 lemma duality (a b : ℤ) : τ.s a b - (τ⁻¹).s b a = τ.χ + a - b := τ.duality_raw a b
+/--
+@isnad1 id=eq.0h3v.s5.ce094111c7da from=translated src=- shape=c1e8100d vocab=b11c7e8b
+-/
 lemma s_eq (a b : ℤ) : τ.s a b = (τ⁻¹).s b a + τ.χ + a - b := τ.s_eq_raw a b
+/--
+@isnad1 id=eq.0h3v.s5.a8a2c0924773 from=translated src=- shape=c66de122 vocab=b11c7e8b
+-/
 lemma s'_eq (a b : ℤ) : (τ⁻¹).s a b = τ.s b a - τ.χ + a - b := by
   have := duality_raw τ b a
   dsimp [s]
   omega
+/--
+@isnad1 id=ex.0h2v.s4.8f37eeb77f74 from=translated src=- shape=712e2dee vocab=e794863d
+-/
 lemma tend_zero_a (b : ℤ) : ∃ a : ℤ, τ.s a b = 0 := τ.tend_zero_a_raw b
+/--
+@isnad1 id=ex.0h2v.s4.92398959b013 from=translated src=- shape=52ec425e vocab=e794863d
+-/
 lemma tend_zero_b (a : ℤ) : ∃ b : ℤ, τ.s a b = 0 := τ.tend_zero_b_raw a
 
+/--
+@isnad1 id=eq.1h4v.s6.04feac09f870 from=translated src=- shape=e94a1028 vocab=32b04a5e
+-/
 lemma a_move_up (a a' b : ℤ) (a_le_a' : a ≤ a') :
     τ.s a' b = τ.s a b + ((Finset.Ico a a').filter (τ⁻¹ · ≥ b)).card :=
   τ.a_move_up_raw a a' b a_le_a'
+/--
+@isnad1 id=eq.1h4v.s6.3638fd86f1d9 from=translated src=- shape=c6e922b2 vocab=d12dfaee
+-/
 lemma b_move_up (a b b' : ℤ) (b_le_b' : b ≤ b') :
     τ.s a b' = τ.s a b - ((Finset.Ico b b').filter (τ · < a)).card :=
   τ.b_move_up_raw a b b' b_le_b'
 
-/-- The shift as a difference of southeast and northwest cardinalities. -/
+/-- The shift as a difference of southeast and northwest cardinalities.
+@isnad1 id=eq.0h1v.s5.0c256d93d291 from=translated src=- shape=a17b1e57 vocab=d1af5845
+-/
 lemma chi_eq_card : τ.χ = ((τ.seFinset 0 0).card : ℤ) - (τ.nwFinset 0 0).card := by
   dsimp [AspPerm.χ]
   rw [s_eq_se_card_raw, s'_eq_nw_card_raw]
 
 -- Note: use of _raw definitions and statements should stop here
 
+/--
+@isnad1 id=eq.0h0v.s3.a468001b7f90 from=translated src=- shape=b0ae1d2b vocab=d10f7c35
+-/
 @[simp] lemma id_chi : AspPerm.id.χ = 0 := by
   have h_se : southeastSet AspPerm.id 0 0 = ∅ := by
     apply Set.eq_empty_iff_forall_notMem.mpr
@@ -815,6 +918,9 @@ lemma chi_eq_card : τ.χ = ((τ.seFinset 0 0).card : ℤ) - (τ.nwFinset 0 0).c
   simp only [id.s_eq_ncard, id.s'_eq_ncard, h_se, h_nw, Set.ncard_empty] at this
   omega
 
+/--
+@isnad1 id=eq.0h1v.s4.cc4bf623abb0 from=translated src=- shape=5a02da31 vocab=b8c5a873
+-/
 lemma chi_dual : τ⁻¹.χ = - τ.χ := by
   have h1 := τ.duality 0 0
   have h2 := τ⁻¹.duality 0 0
@@ -824,7 +930,9 @@ lemma chi_dual : τ⁻¹.χ = - τ.χ := by
 /-- Shift is additive under ordinary multiplication:
 $\chi_{\alpha\beta} = \chi_\alpha + \chi_\beta$.
 *Equation (16) (`eq:chiHom`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227).* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227).*
+@isnad1 id=eq.0h2v.s5.963ab6b5adc7 from=translated src=- shape=0438c7a3 vocab=04d0efbf
+-/
 lemma chi_mul (α β : AspPerm) : (α * β).χ = α.χ + β.χ := by
   -- Proof written by Codex.
   let A := Finset.image β (β.seFinset 0 0)
@@ -956,10 +1064,16 @@ lemma chi_mul (α β : AspPerm) : (α * β).χ = α.χ + β.χ := by
     hmul_se_image, hmul_nw_image, hse_image, hnw_image]
   exact hcards
 
+/--
+@isnad1 id=iff.0h3v.s5.558c313b1b9e from=translated src=- shape=9422256b vocab=706cd6c7
+-/
 lemma b_step_one_iff (a b : ℤ) : τ.s a (b+1) = τ.s a b - 1 ↔ τ b < a := by
   rw [b_step τ a b]
   simp_all
 
+/--
+@isnad1 id=iff.0h3v.s5.76e4b6c9473c from=translated src=- shape=2471ea18 vocab=6c9fee16
+-/
 lemma b_step_lt_iff (a b : ℤ) : τ.s a (b + 1) < τ.s a b ↔ τ b < a := by
   -- Proof written by GPT-5.
   have hiff := τ.b_step_one_iff a b
@@ -971,10 +1085,16 @@ lemma b_step_lt_iff (a b : ℤ) : τ.s a (b + 1) < τ.s a b ↔ τ b < a := by
   · intro h
     simp_all
 
+/--
+@isnad1 id=iff.0h3v.s5.78b678bf0868 from=translated src=- shape=8a079ff0 vocab=351e7f72
+-/
 lemma b_step_eq_iff (a b : ℤ) : τ.s a (b+1) = τ.s a b ↔ a ≤ τ b := by
   rw [b_step τ a b]
   simp_all
 
+/--
+@isnad1 id=iff.0h3v.s5.80a088529cdd from=translated src=- shape=8a079ff0 vocab=fd40e743
+-/
 lemma b_step_ge_iff (a b : ℤ) : τ.s a (b + 1) ≥ τ.s a b ↔ a ≤ τ b := by
   constructor
   · intro h
@@ -985,10 +1105,16 @@ lemma b_step_ge_iff (a b : ℤ) : τ.s a (b + 1) ≥ τ.s a b ↔ a ≤ τ b := 
     apply le_of_eq
     rw [(τ.b_step_eq_iff a b).mpr h]
 
+/--
+@isnad1 id=iff.0h3v.s5.1f50a0e3344b from=translated src=- shape=377c523c vocab=e64a75cd
+-/
 lemma a_step_one_iff (a b : ℤ) : τ.s (a+1) b = τ.s a b + 1 ↔ τ⁻¹ a ≥ b := by
   rw [a_step τ a b]
   by_cases h_ge : τ⁻¹ a ≥ b <;> simp [h_ge]
 
+/--
+@isnad1 id=iff.0h3v.s5.275ea9fa61de from=translated src=- shape=bc2d2b1d vocab=c502fe4a
+-/
 lemma a_step_gt_iff (a b : ℤ) : τ.s a b < τ.s (a + 1) b ↔ b ≤ τ⁻¹ a := by
   -- Proof written by GPT-5.
   have hiff := τ.a_step_one_iff a b
@@ -1000,14 +1126,23 @@ lemma a_step_gt_iff (a b : ℤ) : τ.s a b < τ.s (a + 1) b ↔ b ≤ τ⁻¹ a 
   · intro h
     simp_all
 
+/--
+@isnad1 id=iff.0h3v.s5.978dfc00811a from=translated src=- shape=de9c7311 vocab=9c7ee2f3
+-/
 lemma a_step_one_iff' (u b : ℤ) : τ.s (τ u + 1) b = τ.s (τ u) b + 1 ↔ u ≥ b := by
   have := a_step_one_iff τ (τ u) b
   simpa [τ.mul_inv_cancel_eval] using this
 
+/--
+@isnad1 id=iff.0h3v.s5.fa9e56d984fa from=translated src=- shape=f1bad505 vocab=832a0c57
+-/
 lemma a_step_eq_iff (a b : ℤ) : τ.s (a+1) b = τ.s a b ↔ τ⁻¹ a < b := by
   rw [a_step τ a b]
   simp_all
 
+/--
+@isnad1 id=iff.0h3v.s5.61a57f520b57 from=translated src=- shape=bb048a06 vocab=6c9fee16
+-/
 lemma a_step_eq_iff' (u b : ℤ) : τ.s (τ u + 1) b = τ.s (τ u) b ↔ u < b := by
   have := a_step_eq_iff τ (τ u) b
   simpa [τ.mul_inv_cancel_eval] using this
@@ -1015,6 +1150,9 @@ lemma a_step_eq_iff' (u b : ℤ) : τ.s (τ u + 1) b = τ.s (τ u) b ↔ u < b :
 /-- The set of inversion sources ending at `v`. -/
 def inset (v : ℤ) : Set ℤ := {u | ⟨u, v⟩ ∈ invSet τ}
 
+/--
+@isnad1 id=eq.0h2v.s4.9c56c2b8ecda from=translated src=- shape=4be385ac vocab=87614b57
+-/
 lemma inset_eq_nw (v : ℤ) : τ.inset v = northwestSet τ (τ v) v := by
   ext u
   constructor
@@ -1025,6 +1163,9 @@ lemma inset_eq_nw (v : ℤ) : τ.inset v = northwestSet τ (τ v) v := by
     obtain ⟨u_lt_v, τv_le_τu⟩ := uv_se
     exact (τ.inv_iff_le u_lt_v).mpr τv_le_τu
 
+/--
+@isnad1 id=iff.0h3v.s5.56bf020433ff from=translated src=- shape=84350ad4 vocab=ae05db81
+-/
 lemma invset_iff_inset (u v : ℤ) : ⟨u, v⟩ ∈ invSet τ ↔ u ∈ τ.inset v := by
   simp only [inset_eq_nw, northwestSet, Set.mem_ofPred_eq]
   constructor
@@ -1033,6 +1174,9 @@ lemma invset_iff_inset (u v : ℤ) : ⟨u, v⟩ ∈ invSet τ ↔ u ∈ τ.inset
   · intro ⟨x_lt_n, σx_le_σn⟩
     exact (inv_iff_le τ x_lt_n).mpr σx_le_σn
 
+/--
+@isnad1 id=finite.0h2v.s3.ca851ed90043 from=translated src=- shape=a51c7acb vocab=9919d61f
+-/
 lemma inset_finite (v : ℤ) : (τ.inset v).Finite := by
   rw [τ.inset_eq_nw v]
   apply τ.nw_finite
@@ -1040,6 +1184,9 @@ lemma inset_finite (v : ℤ) : (τ.inset v).Finite := by
 /-- The set of inversion targets starting at `u`. -/
 def outset (u : ℤ) : Set ℤ := {v | ⟨u, v⟩ ∈ invSet τ}
 
+/--
+@isnad1 id=eq.0h2v.s4.4389a87c783a from=translated src=- shape=4be385ac vocab=46a15aad
+-/
 lemma outset_eq_se (u : ℤ) : τ.outset u = southeastSet τ (τ u) u := by
   ext v
   constructor
@@ -1050,6 +1197,9 @@ lemma outset_eq_se (u : ℤ) : τ.outset u = southeastSet τ (τ u) u := by
     obtain ⟨u_le_v, τv_lt_τu⟩ := uv_se
     exact (τ.inv_iff_lt u_le_v).mpr τv_lt_τu
 
+/--
+@isnad1 id=iff.0h3v.s5.aa1f3e0b2f48 from=translated src=- shape=6ed9861a vocab=4c036025
+-/
 lemma invset_iff_outset (u v : ℤ) : ⟨u, v⟩ ∈ invSet τ ↔ v ∈ τ.outset u := by
   simp only [outset_eq_se, southeastSet, Set.mem_ofPred_eq]
   constructor
@@ -1058,6 +1208,9 @@ lemma invset_iff_outset (u v : ℤ) : ⟨u, v⟩ ∈ invSet τ ↔ v ∈ τ.outs
   · intro ⟨x_le_n, σx_lt_σn⟩
     exact (inv_iff_lt τ x_le_n).mpr σx_lt_σn
 
+/--
+@isnad1 id=finite.0h2v.s3.b8d13a366cbf from=translated src=- shape=a51c7acb vocab=e61b9c37
+-/
 lemma outset_finite (u : ℤ) : (τ.outset u).Finite := by
   rw [τ.outset_eq_se u]
   apply τ.se_finite
@@ -1068,7 +1221,9 @@ $+ \#\{v \in \mathbb{Z} : (n,v) \in \operatorname{Inv} \tau\}$
 $- \#\{u \in \mathbb{Z} : (u,n) \in \operatorname{Inv} \tau\}$.
 
 *Proposition 2.11 (`prop:reconstruction`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/2.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/2.*
+@isnad1 id=eq.0h2v.s5.d9283da81a3b from=translated src=- shape=cd2fa2f2 vocab=36a1406b
+-/
 theorem reconstruction : ∀ n : ℤ,
   τ n = n - τ.χ + (τ.outset n).ncard - (τ.inset n).ncard := by
   intro n
@@ -1111,6 +1266,9 @@ theorem eq_id_of_inv_set_eq_empty_of_chi_eq_zero (τ : AspPerm)
     simp only [inset, h_inv, Set.mem_empty_iff_false, Set.ofPred_false]
   simp only [sub_zero, h_out, Set.ncard_empty, Nat.cast_zero, add_zero, h_in, id, id_eq]
 
+/--
+@isnad1 id=eq.0h0v.s4.8098e3e26173 from=translated src=- shape=942cae87 vocab=fc4bff38
+-/
 @[simp]
 lemma inv_set_id : invSet AspPerm.id = ∅ := by
   ext ⟨u, v⟩
@@ -1119,8 +1277,14 @@ lemma inv_set_id : invSet AspPerm.id = ∅ := by
   intro u_lt_v
   exact le_of_lt u_lt_v
 
+/--
+@isnad1 id=eq.0h1v.s3.611bfac163bc from=translated src=- shape=7718e021 vocab=6c1e0257
+-/
 @[simp] lemma s_chi_eq : τ.s.χ = τ.χ := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.346f8353a3ed from=translated src=- shape=89e9f200 vocab=d5235685
+-/
 lemma s_dual : τ.s.dual = (τ⁻¹).s := by
   apply (SF_ext τ.s.dual τ⁻¹.s).mpr
   intro a b
@@ -1129,14 +1293,18 @@ lemma s_dual : τ.s.dual = (τ⁻¹).s := by
   omega
 
 /-- The northwest count `(τ⁻¹).s b a` (the slipface dual value) equals the
-cardinality of the northwest set. The slipface replacement for `s'_eq_nw_card`. -/
+cardinality of the northwest set. The slipface replacement for `s'_eq_nw_card`.
+@isnad1 id=eq.0h3v.s5.4c36642060f6 from=translated src=- shape=ebe84923 vocab=dab3470c
+-/
 lemma s_dual_eq_nw_card (b a : ℤ) : (τ⁻¹).s b a = (τ.nwFinset a b).card := by
   rw [s'_eq_ncard]
   unfold nwFinset
   rw [Set.ncard_eq_toFinset_card _ (τ.nw_finite a b)]
 
 /-- Formula (14) (`eq:Deltasa`) of [An extended Demazure product](https://arxiv.org/abs/2206.14227),
-characterizing the values of a permutation via the second iterated difference of its slipface. -/
+characterizing the values of a permutation via the second iterated difference of its slipface.
+@isnad1 id=eq.0h3v.s5.bde9b871bc76 from=translated src=- shape=716496d0 vocab=19240620
+-/
 lemma Delta_eq (a b : ℤ) : τ.s.Δ a b = if τ b = a then 1 else 0 := by
   let d1 := τ.s (a+1) b - τ.s (a+1) (b+1)
   let d2 := τ.s a b - τ.s a (b+1)
@@ -1163,13 +1331,18 @@ lemma Delta_eq (a b : ℤ) : τ.s.Δ a b = if τ b = a then 1 else 0 := by
     exact le_antisymm h' h
   simpa [h, h']
 
+/--
+@isnad1 id=eq.0h1v.s5.2a8e26127050 from=translated src=- shape=95547758 vocab=2ac1c6e1
+-/
 lemma Γ_eq : τ.s.Γ = { ⟨a, b⟩ | τ b = a } := by
   ext ⟨a, b⟩
   simp only [SlipFace.Γ, τ.Delta_eq, ite_eq_left_iff, zero_ne_one, imp_false,
     Decidable.not_not, Set.mem_ofPred_eq]
 
 /-- The slipface of an ASP permutation is submodular.
-*Proposition 4.3* (`prop:imageASP`) of [An extended Demazure product](https://arxiv.org/abs/2206.14227), one direction. -/
+*Proposition 4.3* (`prop:imageASP`) of [An extended Demazure product](https://arxiv.org/abs/2206.14227), one direction.
+@isnad1 id=submodul.0h1v.s2.d6dd4c39c014 from=translated src=- shape=76a08d12 vocab=24cf2864
+-/
 lemma submodular : τ.s.submodular := by
   intro a b
   have Delta_eq := τ.Delta_eq a b
@@ -1195,6 +1368,9 @@ def ramp (b : ℤ) : Set (ℤ × ℤ) :=
 def lamp (a : ℤ) : Set (ℤ × ℤ) :=
   {⟨m, n⟩ | ∃ l : ℤ, τ.s a l ≥ m ∧ τ⁻¹.s l a ≥ n}
 
+/--
+@isnad1 id=mem.3h6v.s6.f581cac02392 from=translated src=- shape=04ae2e4a vocab=e144b528
+-/
 lemma ramp_closed (b : ℤ) {m₁ n₁ m₂ n₂ : ℤ} (hm : m₁ ≤ m₂) (hn : n₁ ≤ n₂) :
   ⟨m₂, n₂⟩ ∈ τ.ramp b → ⟨m₁, n₁⟩ ∈ τ.ramp b := by
   intro h
@@ -1202,12 +1378,18 @@ lemma ramp_closed (b : ℤ) {m₁ n₁ m₂ n₂ : ℤ} (hm : m₁ ≤ m₂) (hn
   use l
   constructor <;> omega
 
+/--
+@isnad1 id=iff.0h4v.s5.5b64512a719b from=translated src=- shape=f3df4bc5 vocab=586cb3d8
+-/
 lemma ramp_lamp_dual (b m n : ℤ) :
   ⟨m,n⟩ ∈ τ.ramp b ↔ ⟨n, m⟩ ∈ (τ⁻¹).lamp b := by
   unfold ramp lamp
   rw [inv_inv τ]
   constructor <;> (intro h; rcases h with ⟨l, _, _⟩; use l)
 
+/--
+@isnad1 id=iff.0h4v.s5.7cf2fab30096 from=translated src=- shape=dc09d31a vocab=e9e87995
+-/
 lemma mem_ramp_iff_s_ge (b m n : ℤ) :
   ⟨m, n⟩ ∈ τ.ramp b ↔ τ.s (b + m - n - τ.χ) b ≥ m := by
   constructor
@@ -1226,6 +1408,9 @@ lemma mem_ramp_iff_s_ge (b m n : ℤ) :
     · rw [s_eq] at s_ge
       omega
 
+/--
+@isnad1 id=iff.0h4v.s6.29caad055899 from=translated src=- shape=8941d18a vocab=88d5ca59
+-/
 lemma mem_lamp_iff_s_ge (a m n : ℤ) :
   ⟨m, n⟩ ∈ τ.lamp a ↔ τ⁻¹.s (a - m + n + τ.χ) a ≥ n := by
   have := ramp_lamp_dual (τ := τ⁻¹) a n m
@@ -1294,6 +1479,9 @@ private lemma v_spec (b : ℤ) {m : ℤ} (m_pos : m > 0) :
   rw [← τ_vs] at this
   simpa [v, R, Wings.R] using this
 
+/--
+@isnad1 id=iff.1h4v.s5.e3846aa20021 from=translated src=- shape=ac9358df vocab=6f83c78f
+-/
 lemma v_crit (b : ℤ) {m : ℤ} (m_pos : m > 0) (v : ℤ) :
   v = τ.v b m_pos ↔ τ.s (τ v) b = m - 1 ∧ b ≤ v := by
   constructor
@@ -1332,13 +1520,22 @@ lemma v_crit (b : ℤ) {m : ℤ} (m_pos : m > 0) (v : ℤ) :
       linarith [this, s_eq, (τ.v_spec b m_pos).1]
     exact τ.injective <| le_antisymm τv_le τv_ge
 
+/--
+@isnad1 id=eq.1h3v.s5.7857d4cf3b98 from=translated src=- shape=cb4b2f7f vocab=03a3f8b0
+-/
 lemma s_τv_b (b : ℤ) {m : ℤ} (m_pos : m > 0) :
   τ.s (τ (τ.v b m_pos)) b = m - 1 := by
   exact ((τ.v_crit b m_pos (τ.v b m_pos)).mp rfl).1
 
+/--
+@isnad1 id=le.1h3v.s4.6b5bffdac430 from=translated src=- shape=42fce894 vocab=8cf63e51
+-/
 lemma v_ge (b : ℤ) {m : ℤ} (m_pos : m > 0) : b ≤ τ.v b m_pos :=
   ((τ.v_crit b m_pos (τ.v b m_pos)).mp rfl).2
 
+/--
+@isnad1 id=lt.2h4v.s5.4aa1e1d29015 from=translated src=- shape=2dc35e06 vocab=d1d5da14
+-/
 lemma τv_lt (b : ℤ) {m : ℤ} (m_pos : m > 0)
   {a : ℤ} (s_ge_m : m ≤ τ.s a b) : τ (τ.v b m_pos) < a := by
   by_contra! τv_ge_a
@@ -1369,6 +1566,9 @@ private lemma u_spec (b : ℤ) {n : ℤ} (n_pos : n > 0) :
   rw [← τ_us] at this
   simpa [L, Wings.L] using this
 
+/--
+@isnad1 id=iff.1h4v.s5.c170c9d3f118 from=translated src=- shape=a2b54ea8 vocab=beb73e66
+-/
 lemma u_crit (b : ℤ) {n : ℤ} (n_pos : n > 0) (u : ℤ) :
   u = τ.u b n_pos ↔ τ⁻¹.s b (τ u) = n ∧ u < b := by
   constructor
@@ -1417,10 +1617,16 @@ lemma u_crit (b : ℤ) {n : ℤ} (n_pos : n > 0) (u : ℤ) :
       omega
     exact τ.injective <| le_antisymm τu_le τu_ge
 
+/--
+@isnad1 id=eq.1h3v.s5.f229518c4100 from=translated src=- shape=729a803d vocab=21334ee9
+-/
 lemma s'_b_τu (b : ℤ) {n : ℤ} (n_pos : n > 0) :
   τ⁻¹.s b (τ (τ.u b n_pos)) = n := by
   exact ((τ.u_crit b n_pos (τ.u b n_pos)).mp rfl).1
 
+/--
+@isnad1 id=le.1h3v.s5.a6434aa14be6 from=translated src=- shape=56024cb7 vocab=3c4271eb
+-/
 lemma s'_pos_of_lt {u b : ℤ} (u_lt_b : u < b) : τ⁻¹.s b (τ u) ≥ 1 := by
   have h_pos : 0 < (τ.nwFinset (τ u) b).card := by
     apply Finset.card_pos.mpr
@@ -1428,9 +1634,15 @@ lemma s'_pos_of_lt {u b : ℤ} (u_lt_b : u < b) : τ⁻¹.s b (τ u) ≥ 1 := by
   rw [τ.s_dual_eq_nw_card]
   exact_mod_cast h_pos
 
+/--
+@isnad1 id=lt.1h3v.s4.56e95d4811f7 from=translated src=- shape=1cb01e81 vocab=b57e5e88
+-/
 lemma u_lt (b : ℤ) {n : ℤ} (n_pos : n > 0) : τ.u b n_pos < b :=
   ((τ.u_crit b n_pos (τ.u b n_pos)).mp rfl).2
 
+/--
+@isnad1 id=le.2h4v.s5.aa7c69b2bc60 from=translated src=- shape=50972afd vocab=383f093e
+-/
 lemma τu_ge (b : ℤ) {n : ℤ} (n_pos : n > 0)
   {a : ℤ} (s_ge_n : n ≤ τ⁻¹.s b a) : τ (τ.u b n_pos) ≥ a := by
   by_contra! τu_lt_a
@@ -1438,7 +1650,9 @@ lemma τu_ge (b : ℤ) {n : ℤ} (n_pos : n > 0)
   omega
 
 /-- A box lies in the ramp exactly when a specific inversion belongs to `invSet τ`,
-given by the functions `u` and `v` above. -/
+given by the functions `u` and `v` above.
+@isnad1 id=iff.2h4v.s6.efa2eb4cc207 from=translated src=- shape=cf8bd5a2 vocab=75636a67
+-/
 theorem inv_ramp_correspondence (b : ℤ) {m n : ℤ} (m_pos : m > 0) (n_pos : n > 0) :
   ⟨m, n⟩ ∈ τ.ramp b ↔ ⟨τ.u b n_pos, τ.v b m_pos⟩ ∈ invSet τ := by
   let u := τ.u b n_pos
@@ -1501,15 +1715,23 @@ def leWeakR (σ τ : AspPerm) : Prop := invSet (σ⁻¹).func ⊆ invSet (τ⁻�
 /-- Infix notation for the right weak order on ASP permutations. -/
 infix:50 " ≤R " => leWeakR
 
+/--
+@isnad1 id=leweakl.1h2v.s5.de053f26934e from=translated src=- shape=d7a51243 vocab=719483ad
+-/
 lemma le_weak_L_of_R {σ τ : AspPerm} (h_R : σ ≤R τ) : σ⁻¹ ≤L τ⁻¹ := h_R
 
+/--
+@isnad1 id=leweakr.1h2v.s5.abac263d278a from=translated src=- shape=d7a51243 vocab=719483ad
+-/
 lemma le_weak_R_of_L {σ τ : AspPerm} (h_L : σ ≤L τ) : σ⁻¹ ≤R τ⁻¹ := by
   intro x; simp only [inv_inv]; intro hx
   exact h_L hx
 
 /-- A product `α β` is reduced exactly when `α` is below `α β` in right
 weak order. *Lemma 2.8 (`lem:reducedWeakEquivs`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/2.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/2.*
+@isnad1 id=iff.0h2v.s4.c8e928d837f3 from=translated src=- shape=7966ca5e vocab=11031102
+-/
 lemma reduced_iff_leR (α β : AspPerm) :
     ReducedProduct α β ↔ α ≤R α * β := by
   -- Proof written by Codex.
@@ -1547,7 +1769,9 @@ lemma reduced_iff_leR (α β : AspPerm) :
     simp only [inv_mul_cancel_eval] at hmul
     exact (not_lt_of_ge (le_of_lt hβ.2)) hmul
 
-/-- Inversion reverses the factors in a reduced product. -/
+/-- Inversion reverses the factors in a reduced product.
+@isnad1 id=iff.0h2v.s5.ef78fe93f158 from=translated src=- shape=378cc528 vocab=13c9769e
+-/
 lemma reducedProduct_inv_swap (α β : AspPerm) :
     ReducedProduct α β ↔ ReducedProduct β⁻¹ α⁻¹ := by
   unfold ReducedProduct
@@ -1558,6 +1782,9 @@ lemma reducedProduct_inv_swap (α β : AspPerm) :
 noncomputable def sr (τ α : AspPerm) : (ℤ × ℤ) → (ℤ × ℤ) := fun x =>
   ⟨τ⁻¹ (α x.1), τ⁻¹ (α x.2)⟩
 
+/--
+@isnad1 id=iff.0h4v.s6.77579109101c from=translated src=- shape=c8b4071a vocab=41332216
+-/
 lemma sr_crit (τ α : AspPerm) : ∀ (u v : ℤ),
   ⟨u, v⟩ ∈ (τ.sr α) '' invSet α ↔ ⟨τ v, τ u⟩ ∈ invSet α⁻¹.func := by
   intro u v
@@ -1574,6 +1801,9 @@ lemma sr_crit (τ α : AspPerm) : ∀ (u v : ℤ),
     · unfold sr
       simp
 
+/--
+@isnad1 id=le.1h2v.s5.e315e03cb132 from=translated src=- shape=22ee5fcc vocab=b902faa0
+-/
 lemma sr_subset (τ α : AspPerm) (h_R : α ≤R τ) : (τ.sr α) '' invSet α ⊆ invSet τ := by
   intro x hx; obtain ⟨u, v⟩ := x
   apply (sr_crit τ α u v).mp at hx
@@ -1602,6 +1832,9 @@ def geDprod (τ α β : AspPerm) : Prop :=
 def eqDprod (τ α β : AspPerm) : Prop :=
   τ.leDprod α β ∧ τ.geDprod α β
 
+/--
+@isnad1 id=le.1h3v.s4.4beeb6469e93 from=translated src=- shape=351f716b vocab=3a4d2aa2
+-/
 lemma chi_ge_of_dprod_ge {α β τ : AspPerm} (h_ge : τ.leDprod α β) :
   α.χ + β.χ ≥ τ.χ := by
   rcases α⁻¹.tend_zero_a 0 with ⟨l, hl⟩
@@ -1610,6 +1843,9 @@ lemma chi_ge_of_dprod_ge {α β τ : AspPerm} (h_ge : τ.leDprod α β) :
   rw [α.s_eq, β.s_eq] at eq
   linarith [τ.s_ge 0 c]
 
+/--
+@isnad1 id=le.1h3v.s4.961a394669f4 from=translated src=- shape=351f716b vocab=f3e1935c
+-/
 lemma chi_le_of_dprod_le {α β τ : AspPerm} (h_le : τ.geDprod α β) :
   α.χ + β.χ ≤ τ.χ := by
   rcases τ⁻¹.tend_zero_a 0 with ⟨c, hc⟩
@@ -1617,10 +1853,16 @@ lemma chi_le_of_dprod_le {α β τ : AspPerm} (h_le : τ.geDprod α β) :
   rw [τ.s_eq] at hl
   linarith [α.s_ge 0 l, β.s_ge l c]
 
+/--
+@isnad1 id=eq.1h3v.s4.fbb5c098d0ab from=translated src=- shape=e725a8d0 vocab=53a0c92d
+-/
 lemma chi_eq_of_drop_eq {τ α β : AspPerm} (h_eq : τ.eqDprod α β) :
   α.χ + β.χ = τ.χ :=
   Int.le_antisymm (chi_le_of_dprod_le h_eq.2) (chi_ge_of_dprod_ge h_eq.1)
 
+/--
+@isnad1 id=eqdprod.1h3v.s5.726d47ab007b from=translated src=- shape=8ab4290d vocab=e94d27a7
+-/
 lemma dprod_inv_eq_inv_dprod (τ α β : AspPerm) (h_eq : τ.eqDprod α β) :
   τ⁻¹.eqDprod (β⁻¹) (α⁻¹) := by
   have hχ : α.χ + β.χ = τ.χ := chi_eq_of_drop_eq h_eq
@@ -1645,7 +1887,9 @@ lemma dprod_inv_eq_inv_dprod (τ α β : AspPerm) (h_eq : τ.eqDprod α β) :
 "ramps" and "lamps" above. This is the key input in classifying the Demazure factorizations
 of 321-avoiding permutations.
 
-This theorem is not present in [An extended Demazure product](https://arxiv.org/abs/2206.14227). -/
+This theorem is not present in [An extended Demazure product](https://arxiv.org/abs/2206.14227).
+@isnad1 id=iff.1h6v.s7.45de938ce186 from=translated src=- shape=8808a380 vocab=40e3f994
+-/
 theorem ramp_dprod_legos (α β : AspPerm) (a b M N : ℤ)
   (habMN : a - b + α.χ + β.χ = M - N) :
   dprodValGe α β a b M ↔
@@ -1726,6 +1970,9 @@ theorem ramp_dprod_legos (α β : AspPerm) (a b M N : ℤ)
 def ess (τ : AspPerm) : Set (ℤ × ℤ) :=
   {⟨a, b⟩ | τ b < a ∧ a ≤ τ (b-1) ∧ τ⁻¹ a < b ∧ b ≤ τ⁻¹ (a-1)}
 
+/--
+@isnad1 id=eq.0h1v.s3.8de6e8ac1b1d from=translated src=- shape=0b2f6403 vocab=713b46cd
+-/
 lemma ess_asp_eq_ess_sf (τ : AspPerm) : τ.ess = τ.s.ess := by
   ext ⟨a, b⟩
   unfold AspPerm.ess SlipFace.ess
@@ -1865,12 +2112,16 @@ private lemma M_sub_M'' : τ.M ⊆ τ.M'' := by
     omega
 
 /-- A set-theoretic reformulation of *Lemma 7.8* (`lem:malpha`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/2.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/2.*
+@isnad1 id=eq.0h1v.s3.770ae78defc0 from=translated src=- shape=ffc59986 vocab=3f1042ff
+-/
 lemma M'_eq_M : τ.M' = τ.M :=
   Set.Subset.antisymm τ.M'_sub_M <| Set.Subset.trans τ.M_sub_M'' τ.M''_sub_M'
 
 /-- A set-theoretic reformulation of *Lemma 7.8* (`lem:malpha`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/2.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/2.*
+@isnad1 id=eq.0h1v.s3.09443bf773dc from=translated src=- shape=ffc59986 vocab=9e98c293
+-/
 lemma M''_eq_M : τ.M'' = τ.M :=
   Set.Subset.antisymm (Set.Subset.trans τ.M''_sub_M' τ.M'_sub_M) τ.M_sub_M''
 
@@ -1901,7 +2152,9 @@ private lemma bdiff_width_helper (M : ℤ) :
 /-- A permutation $\tau$ has bounded difference if and only if $s_\tau(a,b)$ agrees with
 $\max\{0, a-b+\chi(\tau)\}$ for all $|a-b| \gg 0$. *Proposition 7.7*
 (`prop:cliffordPerms`) of [An extended Demazure product](https://arxiv.org/abs/2206.14227),
-part 1/2.* -/
+part 1/2.*
+@isnad1 id=iff.0h1v.s3.22ba9d17b2ab from=translated src=- shape=1583ee4c vocab=8657601d
+-/
 theorem bdiff_iff_width : τ.isBdiff ↔ ∃ N, τ.widthBound N := by
   constructor
   · intro bdiff
@@ -1950,7 +2203,9 @@ theorem bdiff_iff_width : τ.isBdiff ↔ ∃ N, τ.widthBound N := by
 
 /-- A permutation $\tau$ has bounded difference if and only if $s_\tau$ is a Clifford slipface.
 *Proposition 7.7* (`prop:cliffordPerms`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/2.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/2.*
+@isnad1 id=iff.0h1v.s3.a962c96474c7 from=translated src=- shape=56a69fcb vocab=e87f035d
+-/
 theorem bdiff_iff_clifford : τ.isBdiff ↔ τ.s.isClifford := by
   constructor
   · rintro ⟨M, hM⟩

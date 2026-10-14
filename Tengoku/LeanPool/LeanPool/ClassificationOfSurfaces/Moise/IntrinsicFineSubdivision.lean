@@ -32,13 +32,22 @@ variable (K : IntrinsicTwoComplex)
 noncomputable def facePoint (t : K.Face) (v : t.1) : K.realization :=
   K.vertexPoint ⟨v.1, t.1, t.2, v.2⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.362c8a981974 from=translated src=- shape=a42a73ba vocab=649b4c0d
+-/
 @[simp] theorem facePoint_val (t : K.Face) (v : t.1) :
     (K.facePoint t v).1 = Pi.single v.1 1 := rfl
 
+/--
+@isnad1 id=mem.0h3v.s6.b69ce4e65387 from=translated src=- shape=ad84a16d vocab=a82f45ee
+-/
 theorem facePoint_mem_faceCarrier (t : K.Face) (v : t.1) :
     K.facePoint t v ∈ K.faceCarrier t.1 :=
   (K.vertexPoint_mem_faceCarrier_iff ⟨v.1, t.1, t.2, v.2⟩ t.1).mpr v.2
 
+/--
+@isnad1 id=eq.1h3v.s8.406fec9bedc7 from=translated src=- shape=a0ceeba9 vocab=5c278ffa
+-/
 theorem sum_face_coords (t : K.Face) (x : K.realization)
     (hx : x ∈ K.faceCarrier t.1) :
     ∑ v : t.1, x.1 v.1 = 1 := by
@@ -48,6 +57,9 @@ theorem sum_face_coords (t : K.Face) (x : K.realization)
       Finset.sum_subset (Finset.subset_univ t.1) (fun v _ hv => hx v hv)
     _ = 1 := x.2.1.2
 
+/--
+@isnad1 id=eq.1h3v.s10.250eadc7d39b from=translated src=- shape=e2db8a00 vocab=6d5de873
+-/
 theorem face_affineCombination_eq (t : K.Face) (x : K.realization)
     (hx : x ∈ K.faceCarrier t.1) :
     (Finset.univ.affineCombination ℝ
@@ -70,7 +82,9 @@ theorem face_affineCombination_eq (t : K.Face) (x : K.realization)
     have hvw : v.1 ≠ w := fun h => hw (h ▸ v.2)
     simp [hvw]
 
-/-- An affine image of a face lies in the convex hull of the images of its three vertices. -/
+/-- An affine image of a face lies in the convex hull of the images of its three vertices.
+@isnad1 id=mem.1h5v.s9.1ed81300a917 from=translated src=- shape=57b37fa5 vocab=f2bfba5f
+-/
 theorem affine_mem_convexHull_facePoints
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (t : K.Face) (a : (K.Vertex → ℝ) →ᵃ[ℝ] E)
@@ -97,7 +111,9 @@ theorem affine_mem_convexHull_facePoints
           (fun v : t.1 => a (K.facePoint t v).1) w := rfl
   rwa [← heq] at hmem
 
-/-- Distances in an affine image of one face are bounded by a distance between vertex images. -/
+/-- Distances in an affine image of one face are bounded by a distance between vertex images.
+@isnad1 id=ex.2h6v.s10.4769d0327af9 from=translated src=- shape=9a31baaa vocab=2a3ab0ab
+-/
 theorem exists_facePoints_dist_ge
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (t : K.Face) (a : (K.Vertex → ℝ) →ᵃ[ℝ] E)
@@ -112,7 +128,9 @@ theorem exists_facePoints_dist_ge
       (K.affine_mem_convexHull_facePoints t a y hy)
   exact ⟨v, w, hpq⟩
 
-/-- Affine maps preserve midpoints. -/
+/-- Affine maps preserve midpoints.
+@isnad1 id=eq.0h5v.s9.cd9ef64e58bc from=translated src=- shape=59654987 vocab=e49eaaa3
+-/
 theorem affine_map_midpoint
     {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F]
@@ -137,6 +155,9 @@ theorem affine_map_midpoint
     norm_num
   rw [← hs, Finset.map_affineCombination s p w hw a, ht]
 
+/--
+@isnad1 id=eq.0h3v.s7.5aa56a7c0456 from=translated src=- shape=d9851eca vocab=8285e8fa
+-/
 theorem midpointPosition_faceEdge (t : K.Face) (i : ZMod 3) :
     K.midpointPosition (Sum.inr (K.faceEdge t i)) =
       midpoint ℝ (Pi.single (K.faceVertex t i) 1 : K.Vertex → ℝ)
@@ -153,6 +174,9 @@ theorem midpointPosition_faceEdge (t : K.Face) (i : ZMod 3) :
         simp [hvi, hvj]
       simp [midpointPosition, midpoint, AffineMap.lineMap_apply_module, hvi, hvj]
 
+/--
+@isnad1 id=eq.0h3v.s7.c9295d0f1188 from=translated src=- shape=938d9e3a vocab=a93990ef
+-/
 theorem midpointEval_facePoint
     (s : K.midpointComplex.Face) (w : s.1) :
     (K.midpointEval (K.midpointComplex.facePoint s w)).1 =
@@ -173,6 +197,9 @@ theorem midpointEval_facePoint
     simp [huw]
   · simp
 
+/--
+@isnad1 id=eq.0h3v.s8.5ec7ede82f15 from=translated src=- shape=024621d6 vocab=99df7ff2
+-/
 theorem midpointEvalAffine_facePoint
     (s : K.midpointComplex.Face) (w : s.1) :
     K.midpointEvalAffine (K.midpointComplex.facePoint s w).1 =
@@ -184,6 +211,9 @@ def Subdivision.MeshLE {K : IntrinsicTwoComplex} (R : K.Subdivision) (d : ℝ) :
   ∀ t ∈ R.refined.faces, ∀ x ∈ R.refined.faceCarrier t,
     ∀ y ∈ R.refined.faceCarrier t, dist (R.homeo x) (R.homeo y) ≤ d
 
+/--
+@isnad1 id=le.1h4v.s4.5b43cb9a6b48 from=translated src=- shape=fced2041 vocab=c8fa1a26
+-/
 theorem Subdivision.meshLE_nonneg {K : IntrinsicTwoComplex} {R : K.Subdivision} {d : ℝ}
     (hR : R.MeshLE d) (t : R.refined.Face) : 0 ≤ d := by
   have htpos : 0 < t.1.card := by rw [R.refined.faces_card t.1 t.2]; decide
@@ -193,6 +223,9 @@ theorem Subdivision.meshLE_nonneg {K : IntrinsicTwoComplex} {R : K.Subdivision} 
     (R.refined.facePoint_mem_faceCarrier t _) p
     (R.refined.facePoint_mem_faceCarrier t _)
 
+/--
+@isnad1 id=le.4h8v.s9.6919729aaa03 from=translated src=- shape=1f0a70d8 vocab=03dc8eb0
+-/
 theorem dist_midpointPosition_corner_le
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (t : K.Face) (i : ZMod 3) (a : (K.Vertex → ℝ) →ᵃ[ℝ] E)
@@ -272,6 +305,9 @@ theorem dist_midpointPosition_corner_le
   · rw [hedge, dist_self]
     positivity
 
+/--
+@isnad1 id=le.4h7v.s9.c6ba1a2b5cd7 from=translated src=- shape=39904c43 vocab=7b55337c
+-/
 theorem dist_midpointPosition_central_le
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (t : K.Face) (a : (K.Vertex → ℝ) →ᵃ[ℝ] E)
@@ -312,7 +348,9 @@ theorem dist_midpointPosition_central_le
         dist_midpoint_midpoint_le _ _ _ _
       _ ≤ d / 2 := by simp only [dist_self, zero_add]; gcongr; exact hvertex _ _
 
-/-- One midpoint subdivision halves every existing mesh bound. -/
+/-- One midpoint subdivision halves every existing mesh bound.
+@isnad1 id=meshle.1h3v.s5.ede58a46a000 from=translated src=- shape=55850c11 vocab=145ae4fb
+-/
 theorem Subdivision.meshLE_trans_midpoint
     {K : IntrinsicTwoComplex} (R : K.Subdivision) {d : ℝ}
     (hR : R.MeshLE d) :
@@ -380,7 +418,9 @@ theorem Subdivision.meshLE_trans_midpoint
     have hw : w.1 ∈ R.refined.midpointCentralFace t := by rw [← hscentral]; exact w.2
     exact R.refined.dist_midpointPosition_central_le t a hd hvertex hv hw
 
-/-- The identity subdivision has mesh at most one in barycentric sup distance. -/
+/-- The identity subdivision has mesh at most one in barycentric sup distance.
+@isnad1 id=meshle.0h1v.s3.5292c605ddbc from=translated src=- shape=33f99a55 vocab=4d461ce8
+-/
 theorem Subdivision.refl_meshLE (K : IntrinsicTwoComplex) :
     (Subdivision.refl K).MeshLE 1 := by
   intro t ht x hx y hy
@@ -402,15 +442,23 @@ noncomputable def iteratedMidpointSubdivision (K : IntrinsicTwoComplex) :
       let R := K.iteratedMidpointSubdivision n
       R.trans R.refined.midpointSubdivision
 
+/--
+@isnad1 id=eq.0h1v.s3.be2f15590a6f from=translated src=- shape=c48ec1e7 vocab=9fab71f5
+-/
 @[simp] theorem iteratedMidpointSubdivision_zero (K : IntrinsicTwoComplex) :
     K.iteratedMidpointSubdivision 0 = Subdivision.refl K := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.8b5868ae797d from=translated src=- shape=1e59861e vocab=f2d5ca2b
+-/
 theorem iteratedMidpointSubdivision_succ (K : IntrinsicTwoComplex) (n : ℕ) :
     K.iteratedMidpointSubdivision (n + 1) =
       (K.iteratedMidpointSubdivision n).trans
         (K.iteratedMidpointSubdivision n).refined.midpointSubdivision := rfl
 
-/-- Every iterated midpoint refinement preserves the surface edge-valence bound. -/
+/-- Every iterated midpoint refinement preserves the surface edge-valence bound.
+@isnad1 id=hassurfa.1h2v.s3.124cfb09cb91 from=translated src=- shape=9814323c vocab=eb145f27
+-/
 theorem hasSurfaceEdgeValence_iteratedMidpointSubdivision
     (K : IntrinsicTwoComplex) (hK : K.HasSurfaceEdgeValence) :
     ∀ n, (K.iteratedMidpointSubdivision n).refined.HasSurfaceEdgeValence := by
@@ -422,7 +470,9 @@ theorem hasSurfaceEdgeValence_iteratedMidpointSubdivision
       exact
         (K.iteratedMidpointSubdivision n).refined.hasSurfaceEdgeValence_midpointComplex ih
 
-/-- Quantitative mesh estimate for iterated midpoint subdivision. -/
+/-- Quantitative mesh estimate for iterated midpoint subdivision.
+@isnad1 id=meshle.0h2v.s5.1d40908d2be6 from=translated src=- shape=f9c8b060 vocab=fa91f642
+-/
 theorem iteratedMidpointSubdivision_meshLE (K : IntrinsicTwoComplex) (n : ℕ) :
     (K.iteratedMidpointSubdivision n).MeshLE ((1 / 2 : ℝ) ^ n) := by
   induction n with
@@ -434,7 +484,9 @@ theorem iteratedMidpointSubdivision_meshLE (K : IntrinsicTwoComplex) (n : ℕ) :
       rw [pow_succ]
       ring
 
-/-- Every intrinsic finite two-complex has a faithful subdivision of arbitrarily small mesh. -/
+/-- Every intrinsic finite two-complex has a faithful subdivision of arbitrarily small mesh.
+@isnad1 id=ex.1h2v.s9.f715553bdb9c from=translated src=- shape=055a7131 vocab=8c294618
+-/
 theorem exists_subdivision_mesh_lt (K : IntrinsicTwoComplex) {eps : ℝ} (heps : 0 < eps) :
     ∃ R : K.Subdivision, ∀ t ∈ R.refined.faces,
       ∀ x ∈ R.refined.faceCarrier t, ∀ y ∈ R.refined.faceCarrier t,
@@ -446,7 +498,9 @@ theorem exists_subdivision_mesh_lt (K : IntrinsicTwoComplex) {eps : ℝ} (heps :
   exact (K.iteratedMidpointSubdivision_meshLE n t ht x hx y hy).trans_lt hn
 
 /-- Heine--Cantor and faithful midpoint subdivision make the image of every refined face have
-arbitrarily small diameter under a continuous map. -/
+arbitrarily small diameter under a continuous map.
+@isnad1 id=ex.2h3v.s10.15ebc157a9e3 from=translated src=- shape=aac5fd95 vocab=1f8402cc
+-/
 theorem exists_subdivision_image_dist_lt (K : IntrinsicTwoComplex)
     {h : K.realization → Plane} (hcont : Continuous h)
     {eps : ℝ} (heps : 0 < eps) :
@@ -463,7 +517,9 @@ theorem exists_subdivision_image_dist_lt (K : IntrinsicTwoComplex)
   exact hcontrol (R.homeo x) (Set.mem_univ _) (R.homeo y) (Set.mem_univ _)
     (hR t ht x hx y hy)
 
-/-- A sufficiently fine intrinsic subdivision is subordinate to any open cover. -/
+/-- A sufficiently fine intrinsic subdivision is subordinate to any open cover.
+@isnad1 id=ex.2h3v.s9.586053f86449 from=translated src=- shape=e92b92b6 vocab=6be4a560
+-/
 theorem exists_subdivision_subordinate_openCover (K : IntrinsicTwoComplex)
     {I : Type*} (U : I → Set K.realization) (hU : ∀ i, IsOpen (U i))
     (hcover : (Set.univ : Set K.realization) ⊆ ⋃ i, U i) :
@@ -520,7 +576,9 @@ def inclusion (L : K.OpenSubcomplex C U) : L.complex.realization → K.realizati
   L.subdivision.homeo ∘
     L.subdivision.refined.restrictFacesInclusion (fun t => t ∈ L.keptFaces)
 
-/-- The canonical inclusion of an open subcomplex is an embedding. -/
+/-- The canonical inclusion of an open subcomplex is an embedding.
+@isnad1 id=isembedd.0h4v.s7.f07da1cba24d from=translated src=- shape=d7a0fabb vocab=d599fb09
+-/
 theorem isEmbedding_inclusion (L : K.OpenSubcomplex C U) :
     _root_.Topology.IsEmbedding L.inclusion :=
   L.subdivision.homeo.isEmbedding.comp
@@ -531,16 +589,24 @@ theorem isEmbedding_inclusion (L : K.OpenSubcomplex C U) :
 def support (L : K.OpenSubcomplex C U) : Set K.realization :=
   Set.range L.inclusion
 
+/--
+@isnad1 id=le.0h4v.s4.9668458ea6f9 from=translated src=- shape=2a2dd9ac vocab=8228b477
+-/
 theorem covers_support (L : K.OpenSubcomplex C U) : C ⊆ L.support :=
   L.covers
 
+/--
+@isnad1 id=le.0h4v.s4.c5e6ca4cb174 from=translated src=- shape=b96f142d vocab=8228b477
+-/
 theorem support_subset (L : K.OpenSubcomplex C U) : L.support ⊆ U :=
   L.contained
 
 end OpenSubcomplex
 
 /-- A compact subset of an open subset of a finite intrinsic complex is covered by a finite
-subcomplex of a faithful subdivision which is still contained in that open set. -/
+subcomplex of a faithful subdivision which is still contained in that open set.
+@isnad1 id=nonempty.3h3v.s7.8475ba2fab9a from=translated src=- shape=1a8853d6 vocab=df0da280
+-/
 theorem exists_openSubcomplex (K : IntrinsicTwoComplex) {C U : Set K.realization}
     (hC : IsCompact C) (hU : IsOpen U) (hCU : C ⊆ U) :
     Nonempty (K.OpenSubcomplex C U) := by
@@ -611,12 +677,17 @@ variable {K : IntrinsicTwoComplex} {U : Set K.realization}
 def stageSupport (E : K.OpenExhaustion U) (n : ℕ) : Set K.realization :=
   (E.stage n).support
 
+/--
+@isnad1 id=le.1h4v.s5.f937627d4ce5 from=translated src=- shape=39a564cf vocab=b27b0aab
+-/
 theorem stageSupport_subset (E : K.OpenExhaustion U) (hUc : Uᶜ.Nonempty) (n : ℕ) :
     E.stageSupport n ⊆ U := by
   exact (E.stage n).support_subset.trans interior_subset |>.trans
     (frontierCore_subset hUc (n + 1))
 
-/-- The finite stage carriers cover exactly the prescribed open set. -/
+/-- The finite stage carriers cover exactly the prescribed open set.
+@isnad1 id=eq.2h3v.s6.3da104199d35 from=translated src=- shape=82d94886 vocab=6a59e48c
+-/
 theorem iUnion_stageSupport (E : K.OpenExhaustion U) (hU : IsOpen U)
     (hUc : Uᶜ.Nonempty) :
     (⋃ n : ℕ, E.stageSupport n) = U := by
@@ -634,7 +705,9 @@ theorem iUnion_stageSupport (E : K.OpenExhaustion U) (hU : IsOpen U)
 end OpenExhaustion
 
 /-- Every proper open subset of a finite intrinsic complex has a compactly nested exhaustion by
-finite subcomplexes of faithful subdivisions. -/
+finite subcomplexes of faithful subdivisions.
+@isnad1 id=nonempty.2h2v.s6.7b7e2d7b4f8d from=translated src=- shape=ab3f0bc7 vocab=ff079669
+-/
 theorem exists_openExhaustion (K : IntrinsicTwoComplex) {U : Set K.realization}
     (_ : IsOpen U) (_ : Uᶜ.Nonempty) : Nonempty (K.OpenExhaustion U) := by
   refine ⟨⟨fun n => Classical.choice (K.exists_openSubcomplex

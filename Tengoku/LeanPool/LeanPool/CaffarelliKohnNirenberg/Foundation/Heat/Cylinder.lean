@@ -98,6 +98,9 @@ private lemma cylinder_time_data {r : ℝ} {p : ParabolicPoint}
   · nlinarith only [hupp]
   · nlinarith only [hlow]
 
+/--
+@isnad1 id=le.2h2v.s6.19620bf7640e from=translated src=- shape=f48b1fca vocab=4d13e344
+-/
 lemma backwardHeatTestFunction_lower_on_cylinder {r : ℝ} (hr : 0 < r)
     {p : ParabolicPoint} (hp : p ∈ parabolicCylinder 0 0 r) :
     1 / (2000 * r) ≤ backwardHeatTestFunction r p.1 p.2 := by
@@ -113,6 +116,9 @@ lemma backwardHeatTestFunction_lower_on_cylinder {r : ℝ} (hr : 0 < r)
     _ ≤ r ^ 2 * heatKernel p.1 (r ^ 2 - p.2) := by
       gcongr
 
+/--
+@isnad1 id=le.3h3v.s6.bdd7c242a23e from=translated src=- shape=009f5695 vocab=38c5a630
+-/
 lemma backwardHeatTestFunction_upper_on_cylinder {r ρ : ℝ} (hr : 0 < r)
     (_ : 0 < ρ) {p : ParabolicPoint}
     (hp : p ∈ parabolicCylinder 0 0 ρ) :
@@ -139,6 +145,9 @@ lemma backwardHeatTestFunction_upper_on_cylinder {r ρ : ℝ} (hr : 0 < r)
     _ ≤ r ^ 2 * (1000 / r ^ 3) := by gcongr
     _ = 1000 / r := by field_simp [hr.ne']
 
+/--
+@isnad1 id=le.3h3v.s6.3797a40346a1 from=translated src=- shape=38d4b87f vocab=2ed0bef0
+-/
 lemma backwardHeatTestGradient_upper_on_cylinder {r ρ : ℝ} (hr : 0 < r)
     (_ : 0 < ρ) {p : ParabolicPoint}
     (hp : p ∈ parabolicCylinder 0 0 ρ) :
@@ -193,6 +202,9 @@ private lemma rhoTwo_ge_half_on_annulus {r ρ : ℝ} (_ : 0 < r) (hρ : 0 < ρ)
     unfold rhoTwo
     exact hlarge.trans (le_add_of_nonneg_right (Real.sqrt_nonneg _))
 
+/--
+@isnad1 id=le.4h3v.s7.5576238d6742 from=translated src=- shape=87659584 vocab=4e963b3f
+-/
 lemma backwardHeatTestFunction_upper_on_annulus {r ρ : ℝ} (hr : 0 < r)
     (hρ : 0 < ρ) (_ : r ≤ ρ / 2) {p : ParabolicPoint}
     (hp : p ∈ parabolicCylinder 0 0 ρ \ parabolicCylinder 0 0 (ρ / 2)) :
@@ -218,6 +230,9 @@ lemma backwardHeatTestFunction_upper_on_annulus {r ρ : ℝ} (hr : 0 < r)
     _ ≤ r ^ 2 * (8000000 / ρ ^ 3) := by gcongr
     _ = 8000000 * r ^ 2 / ρ ^ 3 := by ring
 
+/--
+@isnad1 id=le.4h3v.s7.1ec2f54bc9bb from=translated src=- shape=87659584 vocab=918c0f6c
+-/
 lemma backwardHeatTestGradient_upper_on_annulus {r ρ : ℝ} (hr : 0 < r)
     (hρ : 0 < ρ) (_ : r ≤ ρ / 2) {p : ParabolicPoint}
     (hp : p ∈ parabolicCylinder 0 0 ρ \ parabolicCylinder 0 0 (ρ / 2)) :

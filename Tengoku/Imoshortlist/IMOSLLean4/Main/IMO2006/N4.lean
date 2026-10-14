@@ -81,7 +81,9 @@ variable {R} [Ring R] [IsDomain R] {M} [AddCommGroup M]
   {A : Set M} {α : A → A → Rˣ} (hα : admissible Rˣ A α)
 include hα
 
-/-- If `α : A × A → Rˣ` is `A`-admissible, then `α(x, y) = α(y, x)` for any `x, y ∈ Rˣ`. -/
+/-- If `α : A × A → Rˣ` is `A`-admissible, then `α(x, y) = α(y, x)` for any `x, y ∈ Rˣ`.
+@isnad1 id=eq.1h6v.s7.d7d9e1c04132 from=translated src=- shape=2085cbeb vocab=08b85646
+-/
 theorem comm (x y : A) : α x y = α y x := by
   ---- If `x = y` then there is nothing to do.
   obtain hxy | hxy : x.1 = y ∨ x.1 ≠ y := eq_or_ne x.1 y.1
@@ -103,12 +105,16 @@ theorem eq_trans (hxy : α x y = β) (hyz : α y z = β) (hxz : x ≠ z) : α x 
 
 end admissible
 
-/-- A set of size at most one is `G`-good. -/
+/-- A set of size at most one is `G`-good.
+@isnad1 id=good.1h3v.s5.b6c518d9a39c from=translated src=- shape=95f75711 vocab=0ee2a56a
+-/
 theorem good_of_forall_mem_eq [hG : Nonempty G] [AddCommGroup M] [SMul G M]
     {A : Set M} (hA : ∀ x y : A, x = y) : good G A :=
   hG.elim λ g _ _ ↦ ⟨g, λ x y ↦ absurd (hA x y)⟩
 
-/-- If `|Rˣ| ≤ 2`, there is no good subset of any `R`-module. -/
+/-- If `|Rˣ| ≤ 2`, there is no good subset of any `R`-module.
+@isnad1 id=good.1h3v.s7.021707b0f0d4 from=translated src=- shape=76a190c5 vocab=18a42803
+-/
 theorem good_of_card_units_le_two
     {R} [Ring R] [IsDomain R] [Fintype Rˣ] (hR : Fintype.card Rˣ ≤ 2)
     {M} [AddCommGroup M] [Module R M] [Module.IsTorsionFree R M] (A : Set M) :
@@ -143,7 +149,9 @@ open Polynomial Function
 variable [CommRing R] [IsDomain R] [DecidableEq R]
 
 /-- Let `f ∈ R[X]` be a polynomial of degree at least `2`, and let `A ⊆ R` be an `Rˣ`-good
-  finite subset such that `f(x) - f(y) ∣ x - y` for all `x, y ∈ A`. Then `|A| ≤ deg(f)`. -/
+  finite subset such that `f(x) - f(y) ∣ x - y` for all `x, y ∈ A`. Then `|A| ≤ deg(f)`.
+@isnad1 id=le.3h3v.s8.5aef185203ab from=translated src=- shape=25989669 vocab=ac62f40b
+-/
 theorem card_le_natDegree_of_eval_sub_eval_dvd_sub
     {f : R[X]} (hf : f.natDegree ≥ 2) {A : Finset R} (hA : good Rˣ (A : Set R))
     (hfA : ∀ x y : A, f.eval x.1 - f.eval y.1 ∣ x - y) :
@@ -193,7 +201,9 @@ theorem card_le_natDegree_of_eval_sub_eval_dvd_sub
   · rw [add_sub_cancel, sub_self]
   · rw [← sub_sub, sub_sub_sub_comm, ← mul_sub, sub_eq_zero, hα, hβ _ _ hxz]; rfl
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=le.2h3v.s7.ca840d800bbb from=translated src=- shape=8eb45f7d vocab=cbb982f1
+-/
 theorem final_solution [Fintype Rˣ] (hR : Fintype.card Rˣ ≤ 2)
     {f : R[X]} (hf : f.natDegree ≥ 2) (k) :
     (f.comp^[k] X - X).roots.toFinset.card ≤ f.natDegree := by

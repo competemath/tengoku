@@ -47,7 +47,9 @@ structure ControlledNeighborhood {X : Type*} [TopologicalSpace X]
   dist_le_quarter : ∀ y ∈ set, ∀ z ∈ set,
     dist (f y) (f z) ≤ scale / 4
 
-/-- Strong positivity and local compactness produce controlled neighborhoods for every point. -/
+/-- Strong positivity and local compactness produce controlled neighborhoods for every point.
+@isnad1 id=nonempty.2h4v.s6.e24e1824f583 from=translated src=- shape=0c45b749 vocab=7adca65b
+-/
 theorem exists_controlledNeighborhood {X : Type*} [TopologicalSpace X]
     [LocallyCompactSpace X] {f : X → Plane} (hf : Continuous f)
     {phi : X → ℝ} (hphi : StronglyPositiveOn Set.univ phi) (x : X) :
@@ -96,19 +98,27 @@ noncomputable def regionMeshControl {X : Type*} (V : Set Plane)
   classical
   exact if hcomp : Vᶜ.Nonempty then min 1 (frontierDistance V (f x) / 4) else 1
 
+/--
+@isnad1 id=le.0h4v.s4.823431c424b2 from=translated src=- shape=1b8eb142 vocab=a4702ffd
+-/
 theorem regionMeshControl_le_one {X : Type*} (V : Set Plane)
     (f : X → Plane) (x : X) : regionMeshControl V f x ≤ 1 := by
   by_cases hcomp : Vᶜ.Nonempty
   · simp [regionMeshControl, hcomp]
   · simp [regionMeshControl, hcomp]
 
+/--
+@isnad1 id=le.1h4v.s6.d804ee71f95b from=translated src=- shape=6db1272a vocab=6794f68c
+-/
 theorem regionMeshControl_le_frontier {X : Type*} {V : Set Plane}
     (hcomp : Vᶜ.Nonempty) (f : X → Plane) (x : X) :
     regionMeshControl V f x ≤ frontierDistance V (f x) / 4 := by
   simp [regionMeshControl, hcomp]
 
 /-- The target-region mesh control is strongly positive along any continuous map landing in
-that region. -/
+that region.
+@isnad1 id=strongly.3h3v.s6.c342a47d77cf from=translated src=- shape=adbedf98 vocab=46f8027f
+-/
 theorem stronglyPositiveOn_regionMeshControl {X : Type*} [TopologicalSpace X]
     {V : Set Plane} (hV : IsOpen V) {f : X → Plane} (hf : Continuous f)
     (hmem : ∀ x, f x ∈ V) :
@@ -140,21 +150,32 @@ noncomputable def regionSafeControl {X : Type*} (V : Set Plane)
     (f : X → Plane) (phi : X → ℝ) (x : X) : ℝ :=
   min (phi x) (regionMeshControl V f x)
 
+/--
+@isnad1 id=le.0h5v.s4.560e6f3d7693 from=translated src=- shape=ca406e75 vocab=46c36684
+-/
 theorem regionSafeControl_le_left {X : Type*} (V : Set Plane)
     (f : X → Plane) (phi : X → ℝ) (x : X) :
     regionSafeControl V f phi x ≤ phi x := min_le_left _ _
 
+/--
+@isnad1 id=le.0h5v.s4.f48e066c160a from=translated src=- shape=4594a59b vocab=46c36684
+-/
 theorem regionSafeControl_le_one {X : Type*} (V : Set Plane)
     (f : X → Plane) (phi : X → ℝ) (x : X) :
     regionSafeControl V f phi x ≤ 1 :=
   (min_le_right _ _).trans (regionMeshControl_le_one V f x)
 
+/--
+@isnad1 id=le.1h5v.s6.44bdeffb9f0c from=translated src=- shape=706dd48c vocab=4dbc3e89
+-/
 theorem regionSafeControl_le_frontier {X : Type*} {V : Set Plane}
     (hcomp : Vᶜ.Nonempty) (f : X → Plane) (phi : X → ℝ) (x : X) :
     regionSafeControl V f phi x ≤ frontierDistance V (f x) / 4 :=
   (min_le_right _ _).trans (regionMeshControl_le_frontier hcomp f x)
 
-/-- A minimum of two strongly-positive controls is strongly positive. -/
+/-- A minimum of two strongly-positive controls is strongly positive.
+@isnad1 id=strongly.2h4v.s5.c8794a2d13e5 from=translated src=- shape=d2e9b889 vocab=46fa50e7
+-/
 theorem StronglyPositiveOn.min_control {X : Type*} [TopologicalSpace X]
     {U : Set X} {phi psi : X → ℝ}
     (hphi : StronglyPositiveOn U phi) (hpsi : StronglyPositiveOn U psi) :
@@ -166,6 +187,9 @@ theorem StronglyPositiveOn.min_control {X : Type*} [TopologicalSpace X]
   intro x hx
   exact min_le_min (hepsLe x hx) (hdeltaLe x hx)
 
+/--
+@isnad1 id=strongly.4h4v.s7.cb4a0e72ab0d from=translated src=- shape=c1268cd3 vocab=13a9d4db
+-/
 theorem stronglyPositiveOn_regionSafeControl {X : Type*} [TopologicalSpace X]
     {V : Set Plane} (hV : IsOpen V) {f : X → Plane} (hf : Continuous f)
     (hmem : ∀ x, f x ∈ V) {phi : X → ℝ}
@@ -206,7 +230,9 @@ private noncomputable def N (x : U) : ControlledNeighborhood f phi x := by
   letI : LocallyCompactSpace U := hU.locallyCompactSpace
   exact controlledNeighborhood hf hphi x
 
-/-- Every selected cover set retains its quantitative scale and image-diameter bounds. -/
+/-- Every selected cover set retains its quantitative scale and image-diameter bounds.
+@isnad1 id=ex.3h5v.s8.172e1107e806 from=translated src=- shape=79735cfe vocab=9706b22c
+-/
 theorem cover_set_control (x : U) :
     ∃ eps : ℝ, 0 < eps ∧ eps ≤ 1 ∧
       (∀ y : U, y.1 ∈ (K.controlledAdaptiveOpenCover U hU f hf phi hphi).set x →
@@ -256,7 +282,9 @@ variable (hU : IsOpen U) (f : U → Plane) (hf : Continuous f)
 noncomputable abbrev L : LocallyFiniteTriangleComplex U :=
   K.controlledAdaptiveComplex U hU f hf phi hphi
 
-/-- Each adaptive face inherits one quantitative scale from the cover member containing it. -/
+/-- Each adaptive face inherits one quantitative scale from the cover member containing it.
+@isnad1 id=ex.3h5v.s9.7fda4667ee2e from=translated src=- shape=eedd49e4 vocab=9417597b
+-/
 theorem exists_face_scale (t : (L K U hU f hf phi hphi).Face) :
     ∃ eps : ℝ, 0 < eps ∧ eps ≤ 1 ∧
       (∀ p ∈ (L K U hU f hf phi hphi).faceCarrier t, eps ≤ phi p) ∧
@@ -275,7 +303,9 @@ theorem exists_face_scale (t : (L K U hU f hf phi hphi).Face) :
     exact hepsDist p q (hti ⟨p, hp, rfl⟩) (hti ⟨q, hq, rfl⟩)
 
 /-- Subordination makes every edge image small enough for the canonical simultaneous
-polygonal replacement to satisfy the original strongly-positive pointwise control. -/
+polygonal replacement to satisfy the original strongly-positive pointwise control.
+@isnad1 id=edgeimag.4h5v.s9.fbab4cfc57a8 from=translated src=- shape=d3eff077 vocab=a03ae841
+-/
 theorem edgeImagesControlled
     (G : (L K U hU f hf phi hphi).PlaneGraphRealization)
     (hmap : ∀ p, G.map p = f p.1) :
@@ -311,7 +341,9 @@ theorem edgeImagesControlled
     _ ≤ phi p.1 := hepsPhi p.1 hpFace
 
 /-- The canonical replacement graph on the controlled adaptive mesh is a pointwise
-`phi`-approximation of the original realization. -/
+`phi`-approximation of the original realization.
+@isnad1 id=lt.4h6v.s11.c5710ea3980e from=translated src=- shape=14405240 vocab=35f69289
+-/
 theorem isPhiApproximation_graphReplacementMap
     (G : (L K U hU f hf phi hphi).PlaneGraphRealization)
     (hmap : ∀ p, G.map p = f p.1) :
@@ -324,7 +356,9 @@ theorem isPhiApproximation_graphReplacementMap
     (edgeImagesControlled K U hU f hf phi hphi G hmap) p
 
 /-- Every edge belonging to a controlled adaptive face has image diameter bounded by that
-face's selected scale. -/
+face's selected scale.
+@isnad1 id=le.7h8v.s10.2953b143da04 from=translated src=- shape=2e8866b8 vocab=974b5f60
+-/
 theorem edgeImage_diam_le_face_scale
     (G : (L K U hU f hf phi hphi).PlaneGraphRealization)
     (hmap : ∀ p, G.map p = f p.1)
@@ -359,7 +393,9 @@ theorem edgeImage_diam_le_face_scale
     exact hepsDist py.1 pz.1 hpyFace hpzFace
 
 /-- The boundary error on one adaptive face is bounded by a positive scale which is at most
-both the prescribed pointwise tolerance and one. -/
+both the prescribed pointwise tolerance and one.
+@isnad1 id=ex.5h8v.s11.56d7f9afea9d from=translated src=- shape=5f10cce6 vocab=327f1c82
+-/
 theorem exists_faceBoundary_control
     (G : (L K U hU f hf phi hphi).PlaneGraphRealization)
     (hmap : ∀ p, G.map p = f p.1)
@@ -419,7 +455,9 @@ theorem exists_faceBoundary_control
   exact ⟨eps, heps, hepsOne, hlt.le, hepsPhi p.1 hpCarrier⟩
 
 /-- The adaptive mesh discharges the exact face-boundary estimate consumed by the cellwise
-Schoenflies extension. -/
+Schoenflies extension.
+@isnad1 id=faceboun.4h5v.s9.4c41c8d885bf from=translated src=- shape=d3eff077 vocab=587658f7
+-/
 theorem faceBoundariesControlled
     (G : (L K U hU f hf phi hphi).PlaneGraphRealization)
     (hmap : ∀ p, G.map p = f p.1) :
@@ -430,7 +468,9 @@ theorem faceBoundariesControlled
   exact hcontrol.trans hepsPhi
 
 /-- If the original controlled realization lies in the model half-plane, so does its entire
-simultaneous polygonal replacement graph. -/
+simultaneous polygonal replacement graph.
+@isnad1 id=le.5h5v.s9.682874fa62ed from=translated src=- shape=34a17288 vocab=c1cbd49e
+-/
 theorem range_graphReplacementMap_subset_halfPlane
     (G : (L K U hU f hf phi hphi).PlaneGraphRealization)
     (hmap : ∀ p, G.map p = f p.1)
@@ -457,7 +497,9 @@ variable (hU : IsOpen U) (V : Set Plane) (hV : IsOpen V)
 noncomputable abbrev R : LocallyFiniteTriangleComplex U :=
   K.regionControlledAdaptiveComplex U hU V hV f hf hmem phi hphi
 
-/-- The adaptive face-boundary estimate for the frontier-reduced tolerance. -/
+/-- The adaptive face-boundary estimate for the frontier-reduced tolerance.
+@isnad1 id=faceboun.6h6v.s9.d3d731ae1541 from=translated src=- shape=dc3b57ea vocab=c0857efa
+-/
 theorem faceBoundariesControlled
     (G : (R K U hU V hV f hf hmem phi hphi).PlaneGraphRealization)
     (hmap : ∀ p, G.map p = f p.1) :
@@ -467,7 +509,9 @@ theorem faceBoundariesControlled
     (regionSafeControl V f phi)
     (stronglyPositiveOn_regionSafeControl hV hf hmem hphi) G hmap
 
-/-- The tolerance consumed by the filling is uniformly bounded and frontier-relative. -/
+/-- The tolerance consumed by the filling is uniformly bounded and frontier-relative.
+@isnad1 id=uniformf.7h6v.s10.a2403fb31136 from=translated src=- shape=a38480c6 vocab=8674d82b
+-/
 theorem uniformFrontierControl
     (G : (R K U hU V hV f hf hmem phi hphi).PlaneGraphRealization)
     (hmap : ∀ p, G.map p = f p.1) (hregion : G.region = V) :
@@ -485,7 +529,9 @@ theorem uniformFrontierControl
         rw [hmap p, hregion]
         rfl
 
-/-- The frontier-reduced adaptive fillings lie in the open target region. -/
+/-- The frontier-reduced adaptive fillings lie in the open target region.
+@isnad1 id=le.7h7v.s10.dd13bf040cf8 from=translated src=- shape=956880dd vocab=c00b9e3f
+-/
 theorem closedRegions_mem_region
     (G : (R K U hU V hV f hf hmem phi hphi).PlaneGraphRealization)
     (hmap : ∀ p, G.map p = f p.1) (hregion : G.region = V) :
@@ -496,7 +542,9 @@ theorem closedRegions_mem_region
     G (faceBoundariesControlled K U hU V hV f hf hmem phi hphi G hmap)
       (uniformFrontierControl K U hU V hV f hf hmem phi hphi G hmap hregion)
 
-/-- The frontier-reduced adaptive fillings form a locally finite family in the open target. -/
+/-- The frontier-reduced adaptive fillings form a locally finite family in the open target.
+@isnad1 id=locallyf.7h6v.s10.c37d9c40140e from=translated src=- shape=d1068baf vocab=460f5216
+-/
 theorem locallyFinite_closedRegions
     (G : (R K U hU V hV f hf hmem phi hphi).PlaneGraphRealization)
     (hmap : ∀ p, G.map p = f p.1) (hregion : G.region = V) :
@@ -509,7 +557,9 @@ theorem locallyFinite_closedRegions
       (uniformFrontierControl K U hU V hV f hf hmem phi hphi G hmap hregion)
 
 /-- The region-controlled adaptive complex carries distinct vertex triples on distinct faces:
-the `hfaces` entry condition of `exists_polygonalReplacement` holds unconditionally. -/
+the `hfaces` entry condition of `exists_polygonalReplacement` holds unconditionally.
+@isnad1 id=injectiv.5h5v.s9.5f6d6dc568a9 from=translated src=- shape=ee90bb2d vocab=5036e8bb
+-/
 theorem faceVertices_injective :
     Function.Injective (R K U hU V hV f hf hmem phi hphi).faceVertices :=
   AdaptiveOpenCover.faceVertices_injective K U
@@ -517,7 +567,9 @@ theorem faceVertices_injective :
       (stronglyPositiveOn_regionSafeControl hV hf hmem hphi)) hU
 
 /-- Complete locally finite cellwise replacement once the remaining side-separation condition
-is supplied.  Region containment and local finiteness are now consequences, not hypotheses. -/
+is supplied.  Region containment and local finiteness are now consequences, not hypotheses.
+@isnad1 id=ex.9h6v.s13.802d930613c5 from=translated src=- shape=9721483f vocab=6bfb2b79
+-/
 theorem exists_polygonalReplacement
     (G : (R K U hU V hV f hf hmem phi hphi).PlaneGraphRealization)
     (hmap : ∀ p, G.map p = f p.1) (hregion : G.region = V)
@@ -542,7 +594,9 @@ theorem exists_polygonalReplacement
 /-- **Complete locally finite cellwise replacement with no residual side hypothesis.**  The
 separation entry of `exists_polygonalReplacement` is discharged by the facewise comparison
 map after shrinking the arc approximation controls; the shrunken realization keeps the map,
-the region, and the frontier-reduced tolerance, so all adaptive control theorems reapply. -/
+the region, and the frontier-reduced tolerance, so all adaptive control theorems reapply.
+@isnad1 id=ex.7h6v.s13.d7b1251637f2 from=translated src=- shape=49517f9c vocab=caae41cd
+-/
 theorem exists_polygonalReplacement_of_comparison
     (G : (R K U hU V hV f hf hmem phi hphi).PlaneGraphRealization)
     (hmap : ∀ p, G.map p = f p.1) (hregion : G.region = V) :

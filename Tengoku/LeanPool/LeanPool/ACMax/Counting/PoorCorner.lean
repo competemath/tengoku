@@ -679,7 +679,9 @@ with no common neighbour.  Proof: otherwise twins + multi-twin hubs form a
 linear space; fibre partition forces per-point profiles, incidence double
 counts force the design `(α, β, γ) = (4, 0, 4)` resp. `(4, 0, 3)`, and the
 `Σ C(r₄,2) = 8 > C(4,2) = 6` pigeonhole gives two 4-lines sharing two twins —
-a forbidden induced `C₄`. -/
+a forbidden induced `C₄`.
+@isnad1 id=ex.6h2v.s9.db16fc192fe0 from=translated src=- shape=66303d00 vocab=880ae245
+-/
 theorem exists_far_deg3_pair (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (hm : G.edgeFinset.card = 2 * (n - 2))
     (hdeg : ∀ v : Fin n, G.degree v = 3 ∨ G.degree v = 4)
@@ -899,6 +901,9 @@ noncomputable def farOf (n : ℕ) (G : SimpleGraph (Fin n)) (t : Fin n) : Finset
     ∀ w : Fin n, ¬(G.Adj t w ∧ G.Adj s w))
 
 open Classical in
+/--
+@isnad1 id=iff.0h4v.s6.bdc781388f48 from=translated src=- shape=28606138 vocab=e535dd69
+-/
 theorem mem_farOf {n : ℕ} {G : SimpleGraph (Fin n)} {t s : Fin n} :
     s ∈ farOf n G t ↔ G.degree s = 3 ∧ s ≠ t ∧ ¬G.Adj t s ∧
       ∀ w : Fin n, ¬(G.Adj t w ∧ G.Adj s w) := by
@@ -907,7 +912,9 @@ theorem mem_farOf {n : ℕ} {G : SimpleGraph (Fin n)} {t s : Fin n} :
 /-! ## Threshold bricks (tri-11 / C4-14, valid for all `n ≥ 18`) -/
 
 open Classical in
-/-- No good triangle: a triangle with degree sum `≤ 11` is impossible (`n ≥ 18`). -/
+/-- No good triangle: a triangle with degree sum `≤ 11` is impossible (`n ≥ 18`).
+@isnad1 id=false.6h5v.s7.d143e2ccf7ad from=translated src=- shape=965ef70e vocab=40dd2816
+-/
 theorem tri11_false {n : ℕ} (hn : 18 ≤ n) {G : SimpleGraph (Fin n)}
     (hT : ¬HasGoodTriangle n G) {x y z : Fin n}
     (hxy : G.Adj x y) (hyz : G.Adj y z) (hxz : G.Adj x z)
@@ -918,7 +925,9 @@ theorem tri11_false {n : ℕ} (hn : 18 ≤ n) {G : SimpleGraph (Fin n)}
   omega
 
 open Classical in
-/-- No good `C₄`: an induced `C₄` with degree sum `≤ 14` is impossible (`n ≥ 16`). -/
+/-- No good `C₄`: an induced `C₄` with degree sum `≤ 14` is impossible (`n ≥ 16`).
+@isnad1 id=false.10h6v.s8.d3dd60317486 from=translated src=- shape=f126d801 vocab=f0a5f5ad
+-/
 theorem c4_14_false {n : ℕ} (hn : 16 ≤ n) {G : SimpleGraph (Fin n)}
     (hC4 : ¬HasGoodC4 n G) {a b c d : Fin n}
     (hcard : ({a, b, c, d} : Finset (Fin n)).card = 4)
@@ -937,7 +946,9 @@ open Classical in
 /-- **F2/F3 combined — twin-pair common-neighbour uniqueness**: two distinct
 degree-3 vertices have at most one common neighbour (elementwise form).
 Adjacent pairs actually share none (good triangle at `Σ ≤ 10`); non-adjacent
-pairs share at most one (good triangle at `Σ ≤ 11` / good `C₄` at `Σ ≤ 14`). -/
+pairs share at most one (good triangle at `Σ ≤ 11` / good `C₄` at `Σ ≤ 14`).
+@isnad1 id=eq.11h6v.s7.a5c9ad90b75f from=translated src=- shape=e496e949 vocab=b670877e
+-/
 theorem twin_common_unique {n : ℕ} (hn : 18 ≤ n) {G : SimpleGraph (Fin n)}
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G)
     (hdeg4 : ∀ v : Fin n, G.degree v ≤ 4)
@@ -962,7 +973,9 @@ theorem twin_common_unique {n : ℕ} (hn : 18 ≤ n) {G : SimpleGraph (Fin n)}
         hadj hadj' (by have := hdeg4 w; have := hdeg4 w'; omega)
 
 open Classical in
-/-- Cardinality form of `twin_common_unique`. -/
+/-- Cardinality form of `twin_common_unique`.
+@isnad1 id=le.7h4v.s8.1f3f1f77566e from=translated src=- shape=185074d9 vocab=31ec4989
+-/
 theorem twin_common_card_le_one {n : ℕ} (hn : 18 ≤ n) {G : SimpleGraph (Fin n)}
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G)
     (hdeg4 : ∀ v : Fin n, G.degree v ≤ 4)
@@ -978,7 +991,9 @@ theorem twin_common_card_le_one {n : ℕ} (hn : 18 ≤ n) {G : SimpleGraph (Fin 
 
 open Classical in
 /-- In the `x = 0` corner (`∑deg = 4n − 8`, degrees `∈ {3,4}`) there are exactly
-`8` degree-3 vertices. -/
+`8` degree-3 vertices.
+@isnad1 id=eq.3h2v.s8.ce4cc31409db from=translated src=- shape=ae6694f3 vocab=80e42eea
+-/
 theorem corner_deg3_card (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (hm : G.edgeFinset.card = 2 * (n - 2))
     (hdeg : ∀ v : Fin n, G.degree v = 3 ∨ G.degree v = 4) :
@@ -1015,7 +1030,9 @@ theorem corner_deg3_card (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
 
 open Classical in
 /-- Three distinct degree-3 vertices: their internal-degree sum obeys the `heM`
-budget. -/
+budget.
+@isnad1 id=le.7h6v.s8.e1013251b89d from=translated src=- shape=0894f1e9 vocab=7cc92c4b
+-/
 theorem three_deg3_sum_le {n : ℕ} {G : SimpleGraph (Fin n)} {D : Finset (Fin n)}
     (heM : ∑ z ∈ D, (G.neighborFinset z ∩ D).card ≤ 2)
     {a b c : Fin n} (haD : a ∈ D) (hbD : b ∈ D) (hcD : c ∈ D)
@@ -1034,7 +1051,9 @@ theorem three_deg3_sum_le {n : ℕ} {G : SimpleGraph (Fin n)} {D : Finset (Fin n
 
 open Classical in
 /-- **The unique `M`-edge**: under `e(M) ≤ 1` (the `heM` sum form), once one edge
-inside the degree-3 set is known, every degree-3–degree-3 edge coincides with it. -/
+inside the degree-3 set is known, every degree-3–degree-3 edge coincides with it.
+@isnad1 id=or.8h7v.s8.24277e987e19 from=translated src=- shape=22b01c2a vocab=f4f7374d
+-/
 theorem m_edge_unique {n : ℕ} {G : SimpleGraph (Fin n)} {D : Finset (Fin n)}
     (hD : ∀ v : Fin n, v ∈ D ↔ G.degree v = 3)
     (heM : ∑ z ∈ D, (G.neighborFinset z ∩ D).card ≤ 2)
@@ -1078,7 +1097,9 @@ theorem m_edge_unique {n : ℕ} {G : SimpleGraph (Fin n)} {D : Finset (Fin n)}
       omega
 
 open Classical in
-/-- An `M`-end's degree-3 neighbourhood is exactly its partner. -/
+/-- An `M`-end's degree-3 neighbourhood is exactly its partner.
+@isnad1 id=eq.5h5v.s8.55254cc85559 from=translated src=- shape=93d5382a vocab=de9a977d
+-/
 theorem mend_nbr_inter_deg3 {n : ℕ} {G : SimpleGraph (Fin n)} {D : Finset (Fin n)}
     (hD : ∀ v : Fin n, v ∈ D ↔ G.degree v = 3)
     (heM : ∑ z ∈ D, (G.neighborFinset z ∩ D).card ≤ 2)
@@ -1101,7 +1122,9 @@ theorem mend_nbr_inter_deg3 {n : ℕ} {G : SimpleGraph (Fin n)} {D : Finset (Fin
 /-! ## The mediator regrouping (the anchor swap) -/
 
 open Classical in
-/-- Splitting a sum at a cut set: `∑_{s∩t} + ∑_{s∖t} = ∑_s`. -/
+/-- Splitting a sum at a cut set: `∑_{s∩t} + ∑_{s∖t} = ∑_s`.
+@isnad1 id=eq.0h4v.s6.c0222665fbf8 from=translated src=- shape=89a3b43d vocab=006acdf3
+-/
 theorem sum_inter_add_sum_diff' {n : ℕ} (s t : Finset (Fin n)) (f : Fin n → ℕ) :
     ∑ w ∈ s ∩ t, f w + ∑ w ∈ s \ t, f w = ∑ w ∈ s, f w := by
   classical
@@ -1114,7 +1137,9 @@ theorem sum_inter_add_sum_diff' {n : ℕ} (s t : Finset (Fin n)) (f : Fin n → 
 
 open Classical in
 /-- **Anchor swap**: a double sum over slots `(h, w ∈ N(h) ∩ S)` of a
-mediator-only weight, regrouped by the mediator. -/
+mediator-only weight, regrouped by the mediator.
+@isnad1 id=eq.0h5v.s7.02b29c447843 from=translated src=- shape=8c1a3966 vocab=85fe058e
+-/
 theorem anchor_swap {n : ℕ} (G : SimpleGraph (Fin n)) (H S : Finset (Fin n))
     (f : Fin n → ℕ) :
     ∑ h ∈ H, ∑ w ∈ G.neighborFinset h ∩ S, f w
@@ -1142,7 +1167,9 @@ theorem anchor_swap {n : ℕ} (G : SimpleGraph (Fin n)) (H S : Finset (Fin n))
 
 open Classical in
 /-- **The triple double count**: the total cross of `F` against the anchor `H`,
-regrouped by mediator and split at the degree-3 set `D`. -/
+regrouped by mediator and split at the degree-3 set `D`.
+@isnad1 id=eq.0h5v.s8.3409ec88e2c4 from=translated src=- shape=77fbc767 vocab=e87eae13
+-/
 theorem service_decomp {n : ℕ} (G : SimpleGraph (Fin n)) (H F D : Finset (Fin n)) :
     ∑ s ∈ F, ∑ h ∈ H, (G.neighborFinset h ∩ G.neighborFinset s).card
       = (∑ h ∈ H, ∑ w ∈ G.neighborFinset h ∩ D, (G.neighborFinset w ∩ F).card)
@@ -1166,7 +1193,9 @@ neighbour, the deg-4-mediated service `∑_{h∈H} ∑_{w∈N(h)∖D} |N(w) ∩ 
 most `B + 2x + y` for slot masses `x + y ≤ B := ∑_{h∈H} |N(h)∖D|` obeying the
 pair budget `6x + y ≤ |F|² − |F|`.  (`x`/`y` = slot mass on mediators serving
 `3`/`2` far partners; the coupling `m(w) + v(w) ≤ 4` and the pair budget
-`∑ v(v−1) ≤ k(k−1)` are the two nontrivial inputs.) -/
+`∑ v(v−1) ≤ k(k−1)` are the two nontrivial inputs.)
+@isnad1 id=ex.5h5v.s9.04478dfd768f from=translated src=- shape=bb6dbc7b vocab=e042aff5
+-/
 theorem service_supply {n : ℕ} (G : SimpleGraph (Fin n)) {D : Finset (Fin n)}
     (hD : ∀ v : Fin n, v ∈ D ↔ G.degree v = 3)
     (hdeg : ∀ v : Fin n, G.degree v = 3 ∨ G.degree v = 4)
@@ -1366,7 +1395,9 @@ theorem service_supply {n : ℕ} (G : SimpleGraph (Fin n)) {D : Finset (Fin n)}
 open Classical in
 /-- **The degree-3 bonus, iso side**: for an iso twin `t` and a far family `F`,
 the deg-3-mediated service `∑_{h∈N(t)} ∑_{w∈N(h)∩D} |N(w) ∩ F|` is at most `1`
-(the only possible contributor is the unique `M`-edge, once, through one hub). -/
+(the only possible contributor is the unique `M`-edge, once, through one hub).
+@isnad1 id=le.10h5v.s9.7464c9213be6 from=translated src=- shape=1ff5dbfd vocab=6d3b5f50
+-/
 theorem bonus_le_one_iso {n : ℕ} (hn : 18 ≤ n) {G : SimpleGraph (Fin n)}
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G)
     (hdeg4 : ∀ v : Fin n, G.degree v ≤ 4)
@@ -1446,7 +1477,9 @@ theorem bonus_le_one_iso {n : ℕ} (hn : 18 ≤ n) {G : SimpleGraph (Fin n)}
 
 open Classical in
 /-- If every member of `F` is itself iso (no degree-3 neighbour), the deg-3 bonus
-vanishes entirely — the `k = 1` clause of Lemma S. -/
+vanishes entirely — the `k = 1` clause of Lemma S.
+@isnad1 id=eq.2h5v.s8.5cf68b2116f8 from=translated src=- shape=99265ffe vocab=7eb8f1c0
+-/
 theorem bonus_zero_of_iso_partners {n : ℕ} {G : SimpleGraph (Fin n)}
     {D : Finset (Fin n)} (hD : ∀ v : Fin n, v ∈ D ↔ G.degree v = 3)
     (H : Finset (Fin n)) {F : Finset (Fin n)}
@@ -1461,7 +1494,9 @@ theorem bonus_zero_of_iso_partners {n : ℕ} {G : SimpleGraph (Fin n)}
 
 open Classical in
 /-- **The degree-3 bonus, `M`-end side, vanishes pointwise**: no degree-3 vertex
-is adjacent to a far partner of the `M`-end `e₀`. -/
+is adjacent to a far partner of the `M`-end `e₀`.
+@isnad1 id=eq.6h6v.s8.58feb3f94182 from=translated src=- shape=96c25963 vocab=ed43892d
+-/
 theorem far_deg3_inter_zero_end {n : ℕ} {G : SimpleGraph (Fin n)}
     {D : Finset (Fin n)} (hD : ∀ v : Fin n, v ∈ D ↔ G.degree v = 3)
     (heM : ∑ z ∈ D, (G.neighborFinset z ∩ D).card ≤ 2)
@@ -1483,7 +1518,9 @@ theorem far_deg3_inter_zero_end {n : ℕ} {G : SimpleGraph (Fin n)}
 
 open Classical in
 /-- **The iso φ-identity**: for an iso twin `t` in the corner, the slot budget is
-`∑_{h∈N(t)} |N(h)∖D| = k + 2` where `k = |farOf t| ≤ 7`. -/
+`∑_{h∈N(t)} |N(h)∖D| = k + 2` where `k = |farOf t| ≤ 7`.
+@isnad1 id=and.8h4v.s9.319b96bb12ba from=translated src=- shape=a3aa0dae vocab=209a9738
+-/
 theorem phi_iso {n : ℕ} (hn : 18 ≤ n) {G : SimpleGraph (Fin n)}
     (hm : G.edgeFinset.card = 2 * (n - 2))
     (hdeg : ∀ v : Fin n, G.degree v = 3 ∨ G.degree v = 4)
@@ -1579,7 +1616,9 @@ theorem phi_iso {n : ℕ} (hn : 18 ≤ n) {G : SimpleGraph (Fin n)}
 
 open Classical in
 /-- **The end φ-identity**: for the `M`-end `e₀` (partner `e₁`) in the corner, the
-slot budget over the two hub neighbours is exactly `k₀ = |farOf e₀| ≤ 6`. -/
+slot budget over the two hub neighbours is exactly `k₀ = |farOf e₀| ≤ 6`.
+@isnad1 id=and.10h5v.s9.aa042d4a2f85 from=translated src=- shape=7e39944b vocab=87578420
+-/
 theorem phi_end {n : ℕ} (hn : 18 ≤ n) {G : SimpleGraph (Fin n)}
     (hm : G.edgeFinset.card = 2 * (n - 2))
     (hdeg : ∀ v : Fin n, G.degree v = 3 ∨ G.degree v = 4)
@@ -1717,7 +1756,9 @@ theorem phi_end {n : ℕ} (hn : 18 ≤ n) {G : SimpleGraph (Fin n)}
 open Classical in
 /-- The Lemma-S endgame arithmetic: demand `4k` versus supply
 `bonus + (k+2) + 2x + y` under the slot and pair budgets is infeasible for every
-`1 ≤ k ≤ 7` (the `k = 1` tie needs `bonus = 0`). -/
+`1 ≤ k ≤ 7` (the `k = 1` tie needs `bonus = 0`).
+@isnad1 id=false.9h6v.s7.5cb82284807c from=translated src=- shape=c262fe2e vocab=e3ba5ca3
+-/
 theorem service_endgame_iso (k bonus B X x y : ℕ) (hk1 : 1 ≤ k) (hk7 : k ≤ 7)
     (hB : B = k + 2) (hxy : x + y ≤ B) (h6 : 6 * x + y ≤ k * k - k)
     (hbonus : bonus ≤ 1) (hbz : k = 1 → bonus = 0)
@@ -1730,7 +1771,9 @@ theorem service_endgame_iso (k bonus B X x y : ℕ) (hk1 : 1 ≤ k) (hk7 : k ≤
 
 open Classical in
 /-- The Lemma-E endgame arithmetic: demand `3k₀` versus supply `k₀ + 2x + y`
-under `x + y ≤ k₀` and the pair budget is infeasible for every `1 ≤ k₀ ≤ 6`. -/
+under `x + y ≤ k₀` and the pair budget is infeasible for every `1 ≤ k₀ ≤ 6`.
+@isnad1 id=false.6h4v.s7.a0a38e9b0468 from=translated src=- shape=857838b7 vocab=e3ba5ca3
+-/
 theorem service_endgame_end (k X x y : ℕ) (hk1 : 1 ≤ k) (hk6 : k ≤ 6)
     (hxy : x + y ≤ k) (h6 : 6 * x + y ≤ k * k - k)
     (hdem : 3 * k ≤ X) (hX : X ≤ k + 2 * x + y) : False := by
@@ -1741,7 +1784,9 @@ theorem service_endgame_end (k X x y : ℕ) (hk1 : 1 ≤ k) (hk6 : k ≤ 6)
 open Classical in
 /-- **Lemma S — the iso-twin service bound.**  In the corner, an iso twin `t` with
 at least one far partner cannot have ALL far partners at cross `≥ 4` (given the
-`k = 1` far partner iso — the excluded case is exactly the one routed to Lemma E). -/
+`k = 1` far partner iso — the excluded case is exactly the one routed to Lemma E).
+@isnad1 id=false.11h3v.s9.b006a6aba519 from=translated src=- shape=ab47fe67 vocab=578c8ac2
+-/
 theorem service_count_iso (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (hm : G.edgeFinset.card = 2 * (n - 2))
     (hdeg : ∀ v : Fin n, G.degree v = 3 ∨ G.degree v = 4)
@@ -1810,7 +1855,9 @@ theorem service_count_iso (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
 open Classical in
 /-- **Lemma E — the `M`-end service bound.**  In the corner, the `M`-end `e₀`
 (partner `e₁`) with at least one far partner cannot have ALL far partners at
-cross `≥ 4`. -/
+cross `≥ 4`.
+@isnad1 id=false.11h4v.s9.2aec18881b34 from=translated src=- shape=d046d59e vocab=578c8ac2
+-/
 theorem service_count_end (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (hm : G.edgeFinset.card = 2 * (n - 2))
     (hdeg : ∀ v : Fin n, G.degree v = 3 ∨ G.degree v = 4)
@@ -1899,7 +1946,9 @@ open Classical in
 cross count `≤ 3`**, in the exact `hcross` form of the workhorse
 `algConn_le_two_of_far_deg3_pair`.  Proof: B2 (`exists_far_deg3_pair`) gives a
 far pair; if all far pairs had cross `≥ 4`, an `M`-end endpoint is killed by
-Lemma E and an iso pair by Lemma S. -/
+Lemma E and an iso pair by Lemma S.
+@isnad1 id=ex.6h2v.s9.806181bc3203 from=translated src=- shape=2bdc9c98 vocab=880ae245
+-/
 theorem exists_far_deg3_pair_lowcross (n : ℕ) (hn : 18 ≤ n)
     (G : SimpleGraph (Fin n))
     (hm : G.edgeFinset.card = 2 * (n - 2))

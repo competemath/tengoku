@@ -36,7 +36,9 @@ def xorBool : (N : Nat) → BitString N → Bool
 private theorem bxor_not_right (a b : Bool) : (a.xor (!b)) = !(a.xor b) := by
   rw [Bool.xor_comm, Bool.not_xor, Bool.xor_comm]
 
-/-- Flipping any input bit flips the XOR output. -/
+/-- Flipping any input bit flips the XOR output.
+@isnad1 id=eq.0h3v.s4.b8024b7b74fd from=translated src=- shape=1b2e6b51 vocab=944b2690
+-/
 theorem xorBool_flip (N : Nat) (x : BitString N) (a : Fin N) :
     xorBool N (Function.update x a (!x a)) = !xorBool N x := by
   induction N with
@@ -61,7 +63,9 @@ theorem xorBool_flip (N : Nat) (x : BitString N) (a : Fin N) :
         exact Function.update_comp_eq_of_injective x (Fin.succ_injective n) a' (!x a'.succ)
       rw [htail, ih _ a', bxor_not_right]
 
-/-- XOR depends on all inputs. -/
+/-- XOR depends on all inputs.
+@isnad1 id=ne.0h3v.s4.53c360ada131 from=translated src=- shape=cd41a307 vocab=944b2690
+-/
 theorem xorBool_essential (N : Nat) (a : Fin N) (x : BitString N) :
     xorBool N x ≠ xorBool N (Function.update x a (!x a)) := by
   rw [xorBool_flip]; cases xorBool N x <;> simp

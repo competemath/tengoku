@@ -37,7 +37,9 @@ open CKN.Foundation.Parabolic
 
 /-- Above the level `l`, the modulus is dominated by the `p`-th power with the
 weight `l ^ (1 - p)`: from `l < |f x|` the monotonicity of real powers gives
-`|f x| ≤ l ^ (1 - p) * |f x| ^ p` whenever `1 < p`. -/
+`|f x| ≤ l ^ (1 - p) * |f x| ^ p` whenever `1 < p`.
+@isnad1 id=le.3h4v.s6.e574f19f3cf7 from=translated src=- shape=d15366c7 vocab=cc0c9192
+-/
 lemma absE_le_of_lt_absE {f : Vec3 → ℝ} {p l : ℝ} (hp1 : 1 < p) (hl : 0 < l) {x : Vec3}
     (hx : ENNReal.ofReal l < absE f x) :
     absE f x ≤ ENNReal.ofReal (l ^ (1 - p)) * absE f x ^ p := by
@@ -66,7 +68,9 @@ lemma absE_le_of_lt_absE {f : Vec3 → ℝ} {p l : ℝ} (hp1 : 1 < p) (hl : 0 < 
 
 /-- Below the level `l`, the square is dominated by the `p`-th power with the
 weight `l ^ (2 - p)`: from `|f x| ≤ l` the monotonicity of real powers gives
-`|f x| ^ 2 ≤ l ^ (2 - p) * |f x| ^ p` whenever `0 < p < 2`. -/
+`|f x| ^ 2 ≤ l ^ (2 - p) * |f x| ^ p` whenever `0 < p < 2`.
+@isnad1 id=le.4h4v.s7.0824fa11ba37 from=translated src=- shape=fc2eab84 vocab=ae2e44df
+-/
 lemma absE_sq_le_of_absE_le {f : Vec3 → ℝ} {p l : ℝ} (hp0 : 0 < p) (hp2 : p < 2) (hl : 0 < l)
     {x : Vec3} (hx : absE f x ≤ ENNReal.ofReal l) :
     absE f x ^ 2 ≤ ENNReal.ofReal (l ^ (2 - p)) * absE f x ^ p := by

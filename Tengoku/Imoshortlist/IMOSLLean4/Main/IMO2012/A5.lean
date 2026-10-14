@@ -58,12 +58,16 @@ variable [Semiring R] [Ring S]
 def good' (g : R → S) :=
   ∀ x y : R, g (x * y + 1) = (g x - 1) * (g y - 1) + g (x + y)
 
-/-- `f` is good if and only if `f + 1` is good'. -/
+/-- `f` is good if and only if `f + 1` is good'.
+@isnad1 id=iff.0h3v.s5.fd7fbc2765d0 from=translated src=- shape=49ab3b9c vocab=091d51f0
+-/
 theorem good_iff_good' {f : R → S} : good f ↔ good' (f · + 1) := by
   refine forall₂_congr λ x y ↦ ?_
   rw [add_sub_cancel_right, add_sub_cancel_right, ← add_assoc, add_left_inj]
 
-/-- A ring homomorphism is always good'. -/
+/-- A ring homomorphism is always good'.
+@isnad1 id=good.0h3v.s5.e7bbd12dc63a from=translated src=- shape=8887b199 vocab=b6bc770c
+-/
 theorem RingHom_is_good' (φ : R →+* S) : good' φ := by
   intro x y; rw [φ.map_add, φ.map_one, φ.map_mul, sub_one_mul, mul_sub_one, sub_sub,
     ← add_sub_assoc, ← sub_add, φ.map_add, add_right_comm, sub_add_cancel]
@@ -72,7 +76,9 @@ end
 
 namespace good'
 
-/-- If `g : R → S` is good', then `g(1 - x) = (g(-1) - 1)(g(x) - 1) + g(x - 1)`. -/
+/-- If `g : R → S` is good', then `g(1 - x) = (g(-1) - 1)(g(x) - 1) + g(x - 1)`.
+@isnad1 id=eq.1h4v.s7.56a24dd8a644 from=translated src=- shape=42c2d102 vocab=106268ed
+-/
 theorem eq2_map_one_sub [Ring R] [Ring S] {g : R → S} (hg : good' g) (x) :
     g (1 - x) = (g (-1) - 1) * (g x - 1) + g (x - 1) :=
   calc g (1 - x)
@@ -85,20 +91,26 @@ section
 variable [Ring R] [Ring S] [IsDomain S] {g : R → S} (hg : good' g) (hg0 : g (-1) ≠ 1)
 include hg hg0
 
-/-- If `g : R → S` is good' and `g(-1) ≠ 1`, then `g(1) = 1`. -/
+/-- If `g : R → S` is good' and `g(-1) ≠ 1`, then `g(1) = 1`.
+@isnad1 id=eq.2h3v.s6.0f6947199cf7 from=translated src=- shape=83ea33bb vocab=b8a2cfb6
+-/
 theorem map_one_eq_one : g 1 = 1 := by
   have h := hg.eq2_map_one_sub 1
   rw [sub_self, right_eq_add, mul_eq_zero, sub_eq_zero, sub_eq_zero] at h
   exact h.resolve_left hg0
 
-/-- If `g : R → S` is good' and `g(-1) ≠ 1`, then `g(0) = 0`. -/
+/-- If `g : R → S` is good' and `g(-1) ≠ 1`, then `g(0) = 0`.
+@isnad1 id=eq.2h3v.s6.ca65400a8aa3 from=translated src=- shape=83ea33bb vocab=b8a2cfb6
+-/
 theorem map_zero_eq_zero : g 0 = 0 := by
   have h := hg.eq2_map_one_sub 0
   rw [sub_zero, zero_sub, hg.map_one_eq_one hg0, eq_comm, mul_sub_one, sub_add,
     sub_sub_cancel_left, sub_neg_eq_add, add_eq_right, mul_eq_zero, sub_eq_zero] at h
   exact h.resolve_left hg0
 
-/-- If `g : R → S` is good', then `g(1 + x) + g(1 - x) = 2` for all `x`. -/
+/-- If `g : R → S` is good', then `g(1 + x) + g(1 - x) = 2` for all `x`.
+@isnad1 id=eq.2h4v.s7.a32a9b1686b2 from=translated src=- shape=d93deb08 vocab=eaa4a91c
+-/
 theorem eq3_map_one_add_add_map_one_sub (x) : g (1 + x) + g (1 - x) = 2 := by
   ---- One step is getting `g(-x) = (g(-1) - 1)(g(1 + x) - 1)` for all `x`.
   have hg1 (x) : g (-x) = (g (-1) - 1) * (g (1 + x) - 1) + g x := by
@@ -117,7 +129,9 @@ section
 variable [Ring S] [IsDomain S] {g : ℝ → S} (hg : good' g) (hg0 : g (-1) ≠ 1)
 include hg hg0
 
-/-- If `g : ℝ → S` is good' and `g(-1) ≠ 1`, then `g` is odd. -/
+/-- If `g : ℝ → S` is good' and `g(-1) ≠ 1`, then `g` is odd.
+@isnad1 id=eq.2h3v.s6.0a1d62388c95 from=translated src=- shape=c1d3c396 vocab=ca592e74
+-/
 theorem Real_odd (x) : g (-x) = -g x := by
   ---- Recall that `g(1 + t) + g(1 - t) = 2` for all `t ∈ ℝ`.
   have hg1 (t) : g (1 + t) + g (1 - t) = 2 := hg.eq3_map_one_add_add_map_one_sub hg0 t
@@ -162,7 +176,9 @@ theorem Real_odd (x) : g (-x) = -g x := by
     _ = g (x + 2) - g x - g (2 + x) := by rw [h x hx, ← add_assoc, one_add_one_eq_two]
     _ = -g x := by rw [add_comm, sub_sub_cancel_left]
 
-/-- If `g : ℝ → S` is good' and `g(-1) ≠ 1`, then `g` is a ring homomorphism. -/
+/-- If `g : ℝ → S` is good' and `g(-1) ≠ 1`, then `g` is a ring homomorphism.
+@isnad1 id=ex.2h2v.s6.6a75d324336d from=translated src=- shape=ce0618ab vocab=c87a25fb
+-/
 theorem Real_is_hom : ∃ φ : ℝ →+* S, g = φ := by
   have h : g 1 = 1 := hg.map_one_eq_one hg0
   have h0 (x) : g (-x) = -g x := hg.Real_odd hg0 x
@@ -191,7 +207,9 @@ end
 end good'
 
 /-- A function `g : ℝ → S` is good' with `g(-1) ≠ 1` if and only if
-  `g` is a ring homomorphism. -/
+  `g` is a ring homomorphism.
+@isnad1 id=iff.0h2v.s6.a020aefa6846 from=translated src=- shape=edd025a6 vocab=c87a25fb
+-/
 theorem good'_Real_iff [Ring S] [IsDomain S] {g : ℝ → S} :
     (good' g ∧ g (-1) ≠ 1) ↔ ∃ φ : ℝ →+* S, g = φ := by
   refine ⟨?_, ?_⟩
@@ -204,7 +222,9 @@ theorem good'_Real_iff [Ring S] [IsDomain S] {g : ℝ → S} :
     replace hφ : φ 2 * φ 2⁻¹ = 0 := mul_eq_zero_of_left hφ _
     rwa [← φ.map_mul, mul_inv_cancel₀ two_ne_zero, φ.map_one] at hφ
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h2v.s7.82522dd33f59 from=translated src=- shape=9786765d vocab=525fafa4
+-/
 theorem final_solution [Ring S] [IsDomain S] {f : ℝ → S} :
     (good f ∧ f (-1) ≠ 0) ↔ ∃ φ : ℝ →+* S, f = (φ · - 1) :=
   calc good f ∧ f (-1) ≠ 0

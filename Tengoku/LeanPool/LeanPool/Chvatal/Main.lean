@@ -64,7 +64,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 omit [DecidableEq ι] in
 /-- Nonnegativity of covariance for increasing Boolean functions, recalled after
-Theorem 1.2. Here it follows directly by setting `t = 1` in Theorem 1.4. -/
+Theorem 1.2. Here it follows directly by setting `t = 1` in Theorem 1.4.
+@isnad1 id=le.4h3v.s5.b7754ee70bf8 from=translated src=- shape=b5261268 vocab=df603e00
+-/
 theorem covariance_nonneg {f g : Finset ι → ℝ} (hf : IsBoolean f) (hmf : Monotone f)
     (hg : IsBoolean g) (hmg : Monotone g) : 0 ≤ covariance f g := by
   classical
@@ -77,7 +79,9 @@ theorem covariance_nonneg {f g : Finset ι → ℝ} (hf : IsBoolean f) (hmf : Mo
   exact hs.trans h
 
 /-- Theorem 1.2, equation (1): the sharp correlation inequality.
-The denominator-zero convention in the paper agrees with Lean's real division. -/
+The denominator-zero convention in the paper agrees with Lean's real division.
+@isnad1 id=le.4h3v.s6.8241a8e52ac1 from=translated src=- shape=863100fc vocab=7cd9c13c
+-/
 theorem sharp_correlation {f g : Finset ι → ℝ} (hf : IsBoolean f) (hmf : Monotone f)
     (hg : IsBoolean g) (hmg : Monotone g) :
     spectralWeight f g ≤
@@ -92,7 +96,9 @@ theorem sharp_correlation {f g : Finset ι → ℝ} (hf : IsBoolean f) (hmf : Mo
     linarith
   · exact two_spectral_le_quadratic_covariance hf hmf hg hmg
 
-/-- The antipodal specialization of Theorem 1.2 used in Corollary 1.3 and Proposition 5.3. -/
+/-- The antipodal specialization of Theorem 1.2 used in Corollary 1.3 and Proposition 5.3.
+@isnad1 id=le.5h3v.s6.5c09153e5a17 from=translated src=- shape=a8c13d03 vocab=86b2eb4a
+-/
 theorem antipodal_spectral_bound {f g : Finset ι → ℝ} (hf : IsBoolean f)
     (hmf : Monotone f) (hg : IsBoolean g) (hmg : Monotone g) (hdual : dual g = g) :
     spectralWeight f g ≤ covariance f g := by
@@ -104,19 +110,25 @@ A nonempty coordinate type is required to choose a minimum. -/
 def minInfluence [Nonempty ι] (f : Finset ι → ℝ) : ℝ :=
   Finset.univ.inf' Finset.univ_nonempty (influence f)
 
-/-- The minimum influence is no larger than any coordinate influence. -/
+/-- The minimum influence is no larger than any coordinate influence.
+@isnad1 id=le.0h3v.s5.42c1d3723a10 from=translated src=- shape=3ccfc6ea vocab=166d19f1
+-/
 theorem minInfluence_le [Nonempty ι] (f : Finset ι → ℝ) (i : ι) :
     minInfluence f ≤ influence f i :=
   Finset.inf'_le (influence f) (Finset.mem_univ i)
 
-/-- Corollary 1.3, equation (2): the Friedgut–Kahn–Kalai–Keller correlation bound. -/
+/-- Corollary 1.3, equation (2): the Friedgut–Kahn–Kalai–Keller correlation bound.
+@isnad1 id=le.5h3v.s6.696bf17edbb3 from=translated src=- shape=cbc52305 vocab=3edbb2fc
+-/
 theorem antipodal_correlation [Nonempty ι] {f g : Finset ι → ℝ} (hf : IsBoolean f)
     (hmf : Monotone f) (hg : IsBoolean g) (hmg : Monotone g) (hdual : dual g = g) :
     minInfluence f / 4 ≤ covariance f g :=
   (quarter_le_spectralWeight hg hdual (minInfluence_le f)).trans
     (antipodal_spectral_bound hf hmf hg hmg hdual)
 
-/-- Corollary 1.3 in the existential coordinate form used by the Section 4 counting reduction. -/
+/-- Corollary 1.3 in the existential coordinate form used by the Section 4 counting reduction.
+@isnad1 id=antipoda.0h1v.s3.6f6d45c3ae6e from=translated src=- shape=affebb5f vocab=29f85a9e
+-/
 theorem antipodal_correlation_bound [Nonempty ι] : AntipodalCorrelationBound ι := by
   intro f g hf hmf hg hmg hdual
   obtain ⟨i, _, hi⟩ := Finset.exists_min_image Finset.univ (influence f) Finset.univ_nonempty
@@ -126,7 +138,9 @@ theorem antipodal_correlation_bound [Nonempty ι] : AntipodalCorrelationBound ι
 
 omit [Fintype ι] in
 /-- Theorem 1.1: every intersecting subfamily of a hereditary family is bounded
-in cardinality by a star of that hereditary family. -/
+in cardinality by a star of that hereditary family.
+@isnad1 id=ex.3h3v.s5.082b82c461f6 from=translated src=- shape=879fb29c vocab=7e09aa2a
+-/
 theorem chvatal [Finite ι] [Nonempty ι] {D A : Family ι} (hD : D.IsHereditary)
     (hAD : A ⊆ D) (hA : A.IsIntersecting) :
     ∃ i : ι, A.card ≤ (D.star i).card := by
@@ -135,7 +149,9 @@ theorem chvatal [Finite ι] [Nonempty ι] {D A : Family ι} (hD : D.IsHereditary
 
 omit [Fintype ι] in
 /-- The abstract's formulation of Theorem 1.1: a single star is a largest
-intersecting subfamily of the given hereditary family. -/
+intersecting subfamily of the given hereditary family.
+@isnad1 id=ex.1h2v.s6.500f2158f272 from=translated src=- shape=a81401b6 vocab=7e09aa2a
+-/
 theorem exists_largest_intersecting_star [Finite ι] [Nonempty ι] {D : Family ι}
     (hD : D.IsHereditary) :
     ∃ i : ι, (D.star i).IsIntersecting ∧

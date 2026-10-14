@@ -34,7 +34,9 @@ open scoped Matrix Matrix.Norms.L2Operator
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
-/-- An eigenvalue of `A_f` is at most `lambda(f)`. -/
+/-- An eigenvalue of `A_f` is at most `lambda(f)`.
+@isnad1 id=le.2h4v.s6.33420c7d003f from=translated src=- shape=2a7b04de vocab=37fdc3b9
+-/
 theorem le_lam_of_eigenvector (f : Input V → Bool) {μ : ℝ} {v : Input V → ℝ} (hv : v ≠ 0)
     (hev : adj f *ᵥ v = μ • v) : μ ≤ lam f :=
   (isHermitian_adj f).le_ciSup_eigenvalues hv hev
@@ -63,7 +65,9 @@ private theorem adj_mul_signPattern (f : Input V → Bool) (v : Input V → ℝ)
     ring
 
 /-- The sign flip `x ↦ (-1)^{f x}` conjugates an eigenvector for `μ` into one for `-μ`: every
-edge of the sensitivity graph joins inputs with different `f`-values. -/
+edge of the sensitivity graph joins inputs with different `f`-values.
+@isnad1 id=ex.2h4v.s7.5310830c144a from=translated src=- shape=5b89a8de vocab=08584b08
+-/
 theorem exists_neg_eigenvector (f : Input V → Bool) {μ : ℝ} {v : Input V → ℝ} (hv : v ≠ 0)
     (hev : adj f *ᵥ v = μ • v) : ∃ w : Input V → ℝ, w ≠ 0 ∧ adj f *ᵥ w = (-μ) • w := by
   refine ⟨fun x ↦ signPattern f x * v x, ?_, ?_⟩
@@ -83,7 +87,9 @@ theorem exists_neg_eigenvector (f : Input V → Bool) {μ : ℝ} {v : Input V �
           simp only [Pi.smul_apply, smul_eq_mul]
           ring
 
-/-- Every eigenvalue of `A_f` is at most `lambda(f)` in absolute value. -/
+/-- Every eigenvalue of `A_f` is at most `lambda(f)` in absolute value.
+@isnad1 id=le.0h3v.s6.4b5e34d23db7 from=translated src=- shape=76af8ad2 vocab=a7e86622
+-/
 theorem abs_eigenvalues_adj_le_lam (f : Input V → Bool) (i : Input V) :
     |(isHermitian_adj f).eigenvalues i| ≤ lam f := by
   have hne : (⇑((isHermitian_adj f).eigenvectorBasis i) : Input V → ℝ) ≠ 0 :=
@@ -96,22 +102,30 @@ theorem abs_eigenvalues_adj_le_lam (f : Input V → Bool) (i : Input V) :
   obtain ⟨w, hw, hwev⟩ := exists_neg_eigenvector f hne hev
   exact neg_le.2 (le_lam_of_eigenvector f hw hwev)
 
-/-- The L2 operator norm of the sensitivity adjacency matrix is at most `lambda(f)`. -/
+/-- The L2 operator norm of the sensitivity adjacency matrix is at most `lambda(f)`.
+@isnad1 id=le.0h2v.s6.113c7de7b07c from=translated src=- shape=59a654e2 vocab=d3d46f26
+-/
 theorem l2_opNorm_adj_le_lam (f : Input V → Bool) : ‖adj f‖ ≤ lam f :=
   (isHermitian_adj f).l2_opNorm_le_of_abs_eigenvalues_le (abs_eigenvalues_adj_le_lam f)
 
 /-- **`lambda(f)` is the L2 operator norm of `A_f`.**  The sensitivity graph is bipartite, so
-its spectrum is symmetric about `0` and the largest eigenvalue is the spectral radius. -/
+its spectrum is symmetric about `0` and the largest eigenvalue is the spectral radius.
+@isnad1 id=eq.0h2v.s6.09a95415046c from=translated src=- shape=59a654e2 vocab=bdc954ae
+-/
 theorem l2_opNorm_adj_eq_lam (f : Input V → Bool) : ‖adj f‖ = lam f :=
   le_antisymm (l2_opNorm_adj_le_lam f) (lam_le_l2_opNorm_adj f)
 
-/-- The operator bound defining `lambda(f)`, in sum-of-squares form. -/
+/-- The operator bound defining `lambda(f)`, in sum-of-squares form.
+@isnad1 id=le.0h3v.s7.de0ad7c01d83 from=translated src=- shape=cb21cc4a vocab=edbe0f39
+-/
 theorem sum_sq_adj_mulVec_le (f : Input V → Bool) (v : Input V → ℝ) :
     ∑ x, (adj f *ᵥ v) x ^ 2 ≤ lam f ^ 2 * ∑ x, v x ^ 2 := by
   simpa [l2_opNorm_adj_eq_lam] using Matrix.sum_sq_mulVec_le (adj f) v
 
 /-- The operator bound restricted to one side of the bipartition: `A_f *ᵥ v` reads `v` only on
-the other side, so only the other side's coordinates appear on the right. -/
+the other side, so only the other side's coordinates appear on the right.
+@isnad1 id=le.0h4v.s7.72849552c985 from=translated src=- shape=f8f3cf76 vocab=bf570a45
+-/
 theorem sum_sq_adj_mulVec_side_le (f : Input V → Bool) (v : Input V → ℝ) (β : Bool) :
     ∑ x, (if f x = β then (adj f *ᵥ v) x else 0) ^ 2
       ≤ lam f ^ 2 * ∑ x, (if f x = β then 0 else v x) ^ 2 := by
@@ -126,12 +140,16 @@ theorem sum_sq_adj_mulVec_side_le (f : Input V → Bool) (v : Input V → ℝ) (
   · rw [ite_eq_right hx, zero_pow two_ne_zero]
     positivity
 
-/-- The largest eigenvalue of `A_f` is attained by an eigenvector. -/
+/-- The largest eigenvalue of `A_f` is attained by an eigenvector.
+@isnad1 id=ex.0h2v.s6.d4b786e96bf0 from=translated src=- shape=3b1e5336 vocab=79e4fd88
+-/
 theorem exists_top_eigenvector (f : Input V → Bool) :
     ∃ u : Input V → ℝ, u ≠ 0 ∧ adj f *ᵥ u = lam f • u :=
   (isHermitian_adj f).exists_eigenvector_ciSup_eigenvalues
 
-/-- `A_f *ᵥ v` written as a sum over coordinate flips. -/
+/-- `A_f *ᵥ v` written as a sum over coordinate flips.
+@isnad1 id=eq.0h4v.s6.3433e5cc5c6d from=translated src=- shape=fd1acbf7 vocab=fe273c1c
+-/
 theorem adj_mulVec_apply (f : Input V → Bool) (ν : Input V → ℝ) (x : Input V) :
     (adj f *ᵥ ν) x = ∑ i : V, adj f x (flipSet x {i}) * ν (flipSet x {i}) := by
   classical
@@ -148,7 +166,9 @@ theorem adj_mulVec_apply (f : Input V → Bool) (ν : Input V → ℝ) (x : Inpu
   exact Finset.mem_image.2 ⟨w, Finset.mem_univ w, rfl⟩
 
 /-- A bound on the sensitivity of `f` bounds `lambda(f)`: the adjacency matrix has nonnegative
-entries and all its row sums are at most `k`. -/
+entries and all its row sums are at most `k`.
+@isnad1 id=le.2h3v.s5.896d5ffa289f from=translated src=- shape=c70fcd9d vocab=66acfea2
+-/
 theorem lam_le_of_sensAt_le {f : Input V → Bool} {k : ℝ} (hk : 0 ≤ k)
     (hs : ∀ x, (sensAt f x : ℝ) ≤ k) : lam f ≤ k := by
   refine (lam_le_l2_opNorm_adj f).trans ?_
@@ -157,7 +177,9 @@ theorem lam_le_of_sensAt_le {f : Input V → Bool} {k : ℝ} (hk : 0 ≤ k)
     (fun x ↦ (sum_adj_row f x).trans_le (hs x)) fun y ↦ (sum_adj_col f y).trans_le (hs y)
 
 /-- A sensitivity graph all of whose vertices have degree `k` has `lambda = k`: the row sums
-give `lam f ≤ k`, and the all-ones vector is an eigenvector for `k`. -/
+give `lam f ≤ k`, and the all-ones vector is an eigenvector for `k`.
+@isnad1 id=eq.2h3v.s5.6ecbf5b3de9d from=translated src=- shape=a7927756 vocab=66acfea2
+-/
 theorem lam_eq_of_sensAt_eq {f : Input V → Bool} {k : ℝ} (hk : 0 ≤ k)
     (hs : ∀ x, (sensAt f x : ℝ) = k) : lam f = k :=
   le_antisymm (lam_le_of_sensAt_le hk fun x ↦ (hs x).le) <|

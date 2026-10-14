@@ -136,7 +136,9 @@ private lemma star_sum_eq_mul_add_errors (α β : AspPerm) (a b l : ℤ) :
 
 /-- An ordinary product lies below the corresponding Demazure product in
 Bruhat order. *Lemma 5.1 (`lem:reducedStar`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/2.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/2.*
+@isnad1 id=le.0h2v.s5.e244baf2caa0 from=translated src=- shape=34900cef vocab=69624afb
+-/
 theorem mul_le_star (α β : AspPerm) : α * β ≤ α ⋆ β := by
   rw [AspPerm.le_star_iff]
   intro a b l
@@ -240,7 +242,9 @@ private lemma star_le_mul_of_reducedProduct (α β : AspPerm)
 
 /-- The Demazure product agrees with ordinary multiplication exactly for a
 reduced product. *Lemma 5.1 (`lem:reducedStar`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/2.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/2.*
+@isnad1 id=iff.0h2v.s5.fd5d1f13127e from=translated src=- shape=aa75ae96 vocab=7fa8bb57
+-/
 theorem star_eq_mul_iff_reducedProduct (α β : AspPerm) :
     α ⋆ β = α * β ↔ AspPerm.ReducedProduct α β := by
   -- Proof written by Codex.
@@ -349,7 +353,9 @@ private lemma lres_diff_eq_mul_sub_errors (α β : AspPerm) (a b l : ℤ) :
 
 /-- Left residual lies below ordinary multiplication in Bruhat order.
 *Lemma 5.2 (`lem:reducedRes`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/4.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/4.*
+@isnad1 id=le.0h2v.s5.ff622c7cf7e2 from=translated src=- shape=895a5e7f vocab=c783e0ce
+-/
 theorem lres_le_mul (α β : AspPerm) : α ◃ β ≤ α * β := by
   -- Proof written by Codex.
   apply (AspPerm.s_le_iff (α ◃ β) (α * β)).mp
@@ -470,7 +476,9 @@ private lemma mul_le_lres_of_le_weak_L (α β : AspPerm)
 /-- Left residual agrees with ordinary multiplication exactly when the
 inverse of the right factor is below the left factor in left weak order.
 *Lemma 5.2 (`lem:reducedRes`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/4.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/4.*
+@isnad1 id=iff.0h2v.s5.b35ade1a7d38 from=translated src=- shape=9017d287 vocab=136a6d77
+-/
 theorem lres_eq_mul_iff (α β : AspPerm) :
     α ◃ β = α * β ↔ β⁻¹ ≤L α := by
   -- Proof written by Codex.
@@ -486,7 +494,9 @@ theorem lres_eq_mul_iff (α β : AspPerm) :
 /-- Right residual agrees with ordinary multiplication exactly when the
 inverse of the left factor is below the right factor in right weak order.
 *Lemma 5.2 (`lem:reducedRes`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 4/4.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 4/4.*
+@isnad1 id=iff.0h2v.s5.d196fdf2066c from=translated src=- shape=8f7abcbf vocab=8790429f
+-/
 theorem rres_eq_mul_iff (α β : AspPerm) :
     α ▹ β = α * β ↔ α⁻¹ ≤R β := by
   -- Proof written by Codex.
@@ -518,7 +528,9 @@ theorem rres_eq_mul_iff (α β : AspPerm) :
 
 /-- Left weak order implies Bruhat order when the shifts are weakly ordered.
 *Corollary 5.3 (`cor:weakStrong`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/2.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 1/2.*
+@isnad1 id=le.2h2v.s4.cd96cfa99d7f from=translated src=- shape=5df08be5 vocab=d7b13ecd
+-/
 theorem le_of_le_weak_L_of_chi_le {α β : AspPerm}
     (hweak : α ≤L β) (hχ : α.χ ≤ β.χ) : α ≤ β := by
   -- Proof written by Codex.
@@ -541,7 +553,9 @@ theorem le_of_le_weak_L_of_chi_le {α β : AspPerm}
 
 /-- Right weak order implies Bruhat order when the shifts are weakly ordered.
 *Corollary 5.3 (`cor:weakStrong`) of
-[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/2.* -/
+[An extended Demazure product](https://arxiv.org/abs/2206.14227), part 2/2.*
+@isnad1 id=le.2h2v.s4.7ceb94ad8015 from=translated src=- shape=5df08be5 vocab=2c152da8
+-/
 theorem le_of_le_weak_R_of_chi_le {α β : AspPerm}
     (hweak : α ≤R β) (hχ : α.χ ≤ β.χ) : α ≤ β := by
   -- Proof written by Codex.
@@ -576,6 +590,9 @@ structure ReducedFact (α β γ : AspPerm) where
 
 namespace ReducedFact
 
+/--
+@isnad1 id=reducedf.2h3v.s5.48720a400a0b from=translated src=- shape=d80f078a vocab=3274b1f5
+-/
 theorem of_ler_rres {α β γ : AspPerm}
     (h_ler : α ≤R γ) (h_rres : α⁻¹ ▹ γ = β) : ReducedFact α β γ := by
   have eq_β : α⁻¹ * γ = β := by
@@ -587,7 +604,9 @@ theorem of_ler_rres {α β γ : AspPerm}
   exact ReducedFact.mk ((AspPerm.reduced_iff_leR α β).mpr h_ler) h_mul
 
 /-- The Demazure product in a reduced factorization has the same value as its ordinary
-product. -/
+product.
+@isnad1 id=eq.1h3v.s4.2e68ad8d25d1 from=translated src=- shape=184d58ed vocab=bc1ecbf5
+-/
 lemma star_eq {α β γ : AspPerm} (h : ReducedFact α β γ) : α ⋆ β = γ := by
   rw [(ReducedProducts.star_eq_mul_iff_reducedProduct α β).mpr h.reduced, h.mul_eq]
 

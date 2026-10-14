@@ -44,12 +44,18 @@ noncomputable def faceBoundaryMap (t : K.Face) : Plane → Plane :=
   A.planeMap ∘
     K.faceBoundaryMap (hcont := hcont) (hinj := hinj) (D := D) (C := C) t
 
+/--
+@isnad1 id=eq.2h8v.s7.8d44871267a8 from=translated src=- shape=ce33149a vocab=b231b4eb
+-/
 theorem faceBoundaryMap_apply (t : K.Face) (p : StandardFaceBoundary) :
     A.faceBoundaryMap t p.1 = A.intrinsicMap (K.faceBoundaryLift t p).1 := by
   change A.planeMap (K.faceBoundaryMap t p.1) =
     A.planeMap (K.graphReplacementMap hcont hinj D C (K.faceBoundaryLift t p).1)
   rw [K.faceBoundaryMap_apply t p]
 
+/--
+@isnad1 id=continuo.2h7v.s8.a53583e0a530 from=translated src=- shape=d4f23bd4 vocab=24eedbb2
+-/
 theorem continuousOn_faceBoundaryMap (t : K.Face) :
     ContinuousOn (A.faceBoundaryMap t) (frontier standardFaceRegion) := by
   apply A.isPLOnModel.continuousOn.comp (K.continuousOn_faceBoundaryMap t)
@@ -59,6 +65,9 @@ theorem continuousOn_faceBoundaryMap (t : K.Face) :
   exact ⟨(K.faceBoundaryLift t q).1, (K.faceBoundaryLift t q).2,
     (K.faceBoundaryMap_apply t q).symm⟩
 
+/--
+@isnad1 id=injon.2h7v.s7.badf2da9ee0b from=translated src=- shape=d4f23bd4 vocab=bb5b2ccd
+-/
 theorem injOn_faceBoundaryMap (t : K.Face) :
     Set.InjOn (A.faceBoundaryMap t) (frontier standardFaceRegion) := by
   intro p hp q hq hpq
@@ -76,6 +85,9 @@ theorem injOn_faceBoundaryMap (t : K.Face) :
         (K.faceBoundaryMap_apply t q').symm⟩)
     hpq
 
+/--
+@isnad1 id=isplonse.2h7v.s7.6b15df6dbb67 from=translated src=- shape=a9444854 vocab=2b7cb3c3
+-/
 theorem faceBoundaryMap_isPLOnSet (t : K.Face) :
     IsPLOnSet (frontier standardFaceRegion) (A.faceBoundaryMap t) := by
   let J := K.facePolygonalCircle
@@ -99,7 +111,9 @@ theorem faceBoundaryMap_isPLOnSet (t : K.Face) :
   rw [hsource] at hcomp
   exact hcomp
 
-/-- The image of a close face-boundary map is a polygonal circle. -/
+/-- The image of a close face-boundary map is a polygonal circle.
+@isnad1 id=ex.2h7v.s7.4f55eefbbcdc from=translated src=- shape=549e592a vocab=41e2dfe8
+-/
 theorem exists_imagePolygon (t : K.Face) :
     ∃ J : PolygonalCircle,
       J.carrier = A.faceBoundaryMap t '' frontier standardFaceRegion := by
@@ -115,6 +129,9 @@ theorem exists_imagePolygon (t : K.Face) :
 noncomputable def imagePolygon (t : K.Face) : PolygonalCircle :=
   Classical.choose (A.exists_imagePolygon t)
 
+/--
+@isnad1 id=eq.2h7v.s7.1f2e14e6d356 from=translated src=- shape=4465e8d9 vocab=9e09fa58
+-/
 theorem imagePolygon_carrier (t : K.Face) :
     (A.imagePolygon t).carrier =
       A.faceBoundaryMap t '' frontier standardFaceRegion := by
@@ -132,6 +149,9 @@ structure FaceFilling (t : K.Face) where
   certificate : Nonempty (FinitePLHomeomorphBetween map standardFaceRegion
     (A.imagePolygon t).closedRegion)
 
+/--
+@isnad1 id=nonempty.2h7v.s7.47f79c184c8a from=translated src=- shape=53eeac22 vocab=319d0342
+-/
 theorem exists_faceFilling (t : K.Face) : Nonempty (A.FaceFilling t) := by
   obtain ⟨F, hboundary, hcontinuous, hFinj, himage, hpl, hcert⟩ :=
     pl_extension_of_triangle_to_polygon_boundary
@@ -158,12 +178,18 @@ noncomputable def faceInteriorMap {t : K.Face} (F : A.FaceFilling t) :
     K.ClosedFace t → Plane :=
   fun x ↦ F.map (K.facePlaneHomeomorph t x).1
 
+/--
+@isnad1 id=continuo.2h8v.s8.c07acb2bddda from=translated src=- shape=0d3706d2 vocab=c32c415b
+-/
 theorem continuous_intrinsicMap {t : K.Face} (F : A.FaceFilling t) :
     Continuous F.faceInteriorMap := by
   have hF : Continuous (fun p : standardFaceRegion ↦ F.map p.1) :=
     continuousOn_iff_continuous_domRestrict.mp F.continuousOn
   exact hF.comp (K.facePlaneHomeomorph t).continuous
 
+/--
+@isnad1 id=injectiv.2h8v.s7.ef1f3c32e7ba from=translated src=- shape=513d1f43 vocab=bde76756
+-/
 theorem injective_intrinsicMap {t : K.Face} (F : A.FaceFilling t) :
     Function.Injective F.faceInteriorMap := by
   intro x y hxy
@@ -172,6 +198,9 @@ theorem injective_intrinsicMap {t : K.Face} (F : A.FaceFilling t) :
   exact F.injectiveOn (K.facePlaneHomeomorph t x).2
     (K.facePlaneHomeomorph t y).2 hxy
 
+/--
+@isnad1 id=eq.2h8v.s7.d45577e11403 from=translated src=- shape=82d5c2ac vocab=b7ce55bc
+-/
 theorem range_intrinsicMap {t : K.Face} (F : A.FaceFilling t) :
     Set.range F.faceInteriorMap = (A.imagePolygon t).closedRegion := by
   rw [← F.image_eq]
@@ -185,6 +214,9 @@ theorem range_intrinsicMap {t : K.Face} (F : A.FaceFilling t) :
       change F.map (K.facePlaneHomeomorph t ((K.facePlaneHomeomorph t).symm q)).1 = F.map p
       rw [(K.facePlaneHomeomorph t).apply_symm_apply]⟩
 
+/--
+@isnad1 id=mapsto.2h8v.s7.55633c1a1439 from=translated src=- shape=b2203674 vocab=392cee75
+-/
 theorem mapsTo_interiorRegion {t : K.Face} (F : A.FaceFilling t) :
     Set.MapsTo F.map (interior standardFaceRegion)
       (A.imagePolygon t).interiorRegion := by
@@ -208,6 +240,9 @@ theorem mapsTo_interiorRegion {t : K.Face} (F : A.FaceFilling t) :
 
 end FaceFilling
 
+/--
+@isnad1 id=eq.3h10v.s8.f510ef6e26c3 from=translated src=- shape=16a986cd vocab=20f742f2
+-/
 theorem faceFilling_eq_of_boundaryLift_eq
     {t u : K.Face} {p q : StandardFaceBoundary}
     (hpq : (K.faceBoundaryLift t p).1 = (K.faceBoundaryLift u q).1) :
@@ -216,6 +251,9 @@ theorem faceFilling_eq_of_boundaryLift_eq
     (A.faceFilling u).eqOn_boundary q.2,
     A.faceBoundaryMap_apply t p, A.faceBoundaryMap_apply u q, hpq]
 
+/--
+@isnad1 id=eq.4h9v.s8.2436ae0a7778 from=translated src=- shape=c2714d93 vocab=869cba56
+-/
 theorem faceFilling_intrinsicMap_eq
     (t u : K.Face) {x : K.realization}
     (hxt : x ∈ K.faceCarrier t.1) (hxu : x ∈ K.faceCarrier u.1) :
@@ -240,6 +278,9 @@ noncomputable def closeCellwiseMap (x : K.realization) : Plane :=
   FaceFilling.faceInteriorMap A (A.faceFilling (K.containingFace x))
     ⟨x, K.mem_faceCarrier_containingFace x⟩
 
+/--
+@isnad1 id=eq.3h8v.s8.452445d4861e from=translated src=- shape=ec5121b5 vocab=77ae6b8d
+-/
 theorem closeCellwiseMap_eqOn_face (t : K.Face) (x : K.realization)
     (hxt : x ∈ K.faceCarrier t.1) :
     A.closeCellwiseMap x =
@@ -247,6 +288,9 @@ theorem closeCellwiseMap_eqOn_face (t : K.Face) (x : K.realization)
   exact A.faceFilling_intrinsicMap_eq (K.containingFace x) t
     (K.mem_faceCarrier_containingFace x) hxt
 
+/--
+@isnad1 id=continuo.2h6v.s7.84e5c1f0716b from=translated src=- shape=f65a974e vocab=1261e33f
+-/
 theorem continuous_closeCellwiseMap : Continuous A.closeCellwiseMap := by
   let carriers : K.Face → Set K.realization := fun t ↦ K.faceCarrier t.1
   have hfinite : LocallyFinite carriers := locallyFinite_of_finite carriers
@@ -259,6 +303,9 @@ theorem continuous_closeCellwiseMap : Continuous A.closeCellwiseMap := by
     exact A.closeCellwiseMap_eqOn_face t x.1 x.2
   exact hfinite.continuous K.realization_eq_iUnion_faceCarrier.symm hclosed hlocal
 
+/--
+@isnad1 id=eq.3h7v.s7.6cab0d5f18b4 from=translated src=- shape=6ba4e85e vocab=7517da30
+-/
 theorem closeCellwiseMap_eq_intrinsicMap {x : K.realization} (hx : x ∈ K.oneSkeleton) :
     A.closeCellwiseMap x = A.intrinsicMap x := by
   let t := K.containingFace x
@@ -270,6 +317,9 @@ theorem closeCellwiseMap_eq_intrinsicMap {x : K.realization} (hx : x ∈ K.oneSk
     ⟨(K.facePlaneHomeomorph t ⟨x, hxt⟩).1, hp⟩,
     K.faceBoundaryLift_facePlaneHomeomorph t hxt hp]
 
+/--
+@isnad1 id=mem.0h2v.s4.93a7d6b8614b from=translated src=- shape=da8846ae vocab=d07b2565
+-/
 theorem vertexPoint_mem_oneSkeleton (v : K.UsedVertex) :
     K.vertexPoint v ∈ K.oneSkeleton := by
   obtain ⟨t, ht, hvt⟩ := v.2
@@ -287,6 +337,9 @@ def VerticesAvoidClosedRegions : Prop :=
   ∀ (t : K.Face) (v : K.UsedVertex), v.1 ∉ t.1 →
     A.intrinsicMap (K.vertexPoint v) ∉ (A.imagePolygon t).closedRegion
 
+/--
+@isnad1 id=vertices.5h7v.s8.8e80fd93ffa5 from=translated src=- shape=f8045fa0 vocab=baf8b1b0
+-/
 theorem verticesAvoidClosedRegions_of_close
     {r : ℝ} (hr : 0 < r)
     (hsep : ∀ (t : K.Face) (v : K.UsedVertex), v.1 ∉ t.1 →
@@ -338,6 +391,9 @@ theorem verticesAvoidClosedRegions_of_close
   exact Set.disjoint_left.mp
     (A.imagePolygon t).disjoint_closedRegion_exteriorRegion hvClosed hvExterior
 
+/--
+@isnad1 id=le.2h7v.s7.6a815928586d from=translated src=- shape=6ccf2217 vocab=b4cc2bd4
+-/
 theorem imagePolygon_carrier_subset_graph (t : K.Face) :
     (A.imagePolygon t).carrier ⊆ A.intrinsicMap '' K.oneSkeleton := by
   intro y hy
@@ -347,6 +403,9 @@ theorem imagePolygon_carrier_subset_graph (t : K.Face) :
   exact ⟨(K.faceBoundaryLift t q).1, (K.faceBoundaryLift t q).2,
     (A.faceBoundaryMap_apply t q).symm⟩
 
+/--
+@isnad1 id=mem.4h8v.s7.fe08c75039a8 from=translated src=- shape=b9eaae75 vocab=d314d9b1
+-/
 theorem mem_faceCarrier_of_intrinsicMap_mem_imagePolygon
     (t : K.Face) {x : K.realization} (hx : x ∈ K.oneSkeleton)
     (himage : A.intrinsicMap x ∈ (A.imagePolygon t).carrier) :
@@ -361,6 +420,9 @@ theorem mem_faceCarrier_of_intrinsicMap_mem_imagePolygon
   rw [hxEq]
   exact K.faceBoundaryLift_mem_faceCarrier t q
 
+/--
+@isnad1 id=mem.4h8v.s7.38edbce13887 from=translated src=- shape=97cef1f4 vocab=d314d9b1
+-/
 theorem intrinsicMap_mem_imagePolygon
     (t : K.Face) {x : K.realization} (hxt : x ∈ K.faceCarrier t.1)
     (hx : x ∈ K.oneSkeleton) :
@@ -377,6 +439,9 @@ def GraphAvoidsInteriors : Prop :=
   ∀ t : K.Face,
     Disjoint (A.intrinsicMap '' K.oneSkeleton) (A.imagePolygon t).interiorRegion
 
+/--
+@isnad1 id=mem.4h8v.s8.ff6af5b9fb23 from=translated src=- shape=e5736fcb vocab=a13b4473
+-/
 theorem vertex_mem_exterior
     (hvertices : A.VerticesAvoidClosedRegions)
     (t : K.Face) (v : K.UsedVertex) (hvt : v.1 ∉ t.1) :
@@ -398,7 +463,9 @@ theorem vertex_mem_exterior
   exact hoff.resolve_left hnotInterior
 
 /-- The endpoint exterior condition propagates along each connected intrinsic edge, so the
-whole close graph avoids every nonincident bounded face interior. -/
+whole close graph avoids every nonincident bounded face interior.
+@isnad1 id=graphavo.3h6v.s7.4d201e79f68c from=translated src=- shape=3ad40a38 vocab=f4f021f1
+-/
 theorem graphAvoidsInteriors_of_verticesAvoid
     (hvertices : A.VerticesAvoidClosedRegions) : A.GraphAvoidsInteriors := by
   intro t
@@ -528,7 +595,9 @@ theorem graphAvoidsInteriors_of_verticesAvoid
       rw [hxPath] at hrExterior
       exact Set.disjoint_left.mp J.disjoint_interior_exterior hxInterior hrExterior
 
-/-- Quantitative control of the close cellwise filling. -/
+/-- Quantitative control of the close cellwise filling.
+@isnad1 id=le.4h9v.s8.8bd7f5cefc93 from=translated src=- shape=114c1958 vocab=93a5b9e8
+-/
 theorem closeCellwiseMap_dist_le
     {η ρ : ℝ}
     (hsmall : ∀ t : K.Face, ∀ x ∈ K.faceCarrier t.1,
@@ -565,7 +634,9 @@ theorem closeCellwiseMap_dist_le
     (J.closedRegion_subset_closedBall_of_carrier_subset hcarrierBall hmapClosed)
 
 /-- Distinct face polygons have disjoint bounded interiors once the global graph avoids all of
-them. -/
+them.
+@isnad1 id=disjoint.4h8v.s7.9704d41fe842 from=translated src=- shape=e078a6b4 vocab=10a315aa
+-/
 theorem disjoint_imagePolygon_interiors
     (hside : A.GraphAvoidsInteriors) (t u : K.Face) (htu : t ≠ u) :
     Disjoint (A.imagePolygon t).interiorRegion (A.imagePolygon u).interiorRegion := by
@@ -592,7 +663,9 @@ theorem disjoint_imagePolygon_interiors
   · exact (hside t).mono_left (A.imagePolygon_carrier_subset_graph u)
   · exact ⟨A.intrinsicMap x, hpU, hpNotT⟩
 
-/-- Graph-side compatibility makes the coherent close cellwise filling injective. -/
+/-- Graph-side compatibility makes the coherent close cellwise filling injective.
+@isnad1 id=injectiv.3h6v.s7.591222a2b8d1 from=translated src=- shape=14214ec1 vocab=ee5c8131
+-/
 theorem injective_closeCellwiseMap (hside : A.GraphAvoidsInteriors) :
     Function.Injective A.closeCellwiseMap := by
   intro x y hxy
@@ -671,6 +744,9 @@ theorem injective_closeCellwiseMap (hside : A.GraphAvoidsInteriors) :
         ← A.closeCellwiseMap_eq_intrinsicMap hyOne]
       exact hxy
 
+/--
+@isnad1 id=isembedd.3h6v.s7.9d3afc6bfe99 from=translated src=- shape=8c4d31a1 vocab=d8a3439d
+-/
 theorem closeCellwiseMap_isEmbedding (hvertices : A.VerticesAvoidClosedRegions) :
     _root_.Topology.IsEmbedding A.closeCellwiseMap := by
   apply Topology.IsClosedEmbedding.toIsEmbedding
@@ -678,6 +754,9 @@ theorem closeCellwiseMap_isEmbedding (hvertices : A.VerticesAvoidClosedRegions) 
   · exact A.continuous_closeCellwiseMap
   · exact A.injective_closeCellwiseMap (A.graphAvoidsInteriors_of_verticesAvoid hvertices)
 
+/--
+@isnad1 id=eq.2h6v.s7.24bcc6e6b60b from=translated src=- shape=cc1ef6c2 vocab=8c10ba43
+-/
 theorem range_closeCellwiseMap :
     Set.range A.closeCellwiseMap = ⋃ t : K.Face, (A.imagePolygon t).closedRegion := by
   apply Set.Subset.antisymm
@@ -698,6 +777,9 @@ theorem range_closeCellwiseMap :
     refine ⟨x.1, ?_⟩
     exact (A.closeCellwiseMap_eqOn_face t x.1 x.2).trans rfl
 
+/--
+@isnad1 id=ex.2h6v.s7.ba0173db85a3 from=translated src=- shape=221fcbfa vocab=f257b938
+-/
 theorem exists_targetComplex :
     ∃ L : PlaneComplex, L.support = Set.range A.closeCellwiseMap ∧ L.IsPure2 := by
   let J : K.Face → PolygonalCircle := fun t ↦ A.imagePolygon t
@@ -707,7 +789,9 @@ theorem exists_targetComplex :
   rfl
 
 /-- A compatible close cellwise filling presents the intrinsic source as one finite pure plane
-complex. -/
+complex.
+@isnad1 id=ex.3h6v.s9.7d70877e2e5c from=translated src=- shape=f2872c1d vocab=b11a0e20
+-/
 theorem exists_retriangulation (hvertices : A.VerticesAvoidClosedRegions) :
     ∃ (L : PlaneComplex) (_hLpure : L.IsPure2) (e : L.support ≃ₜ K.realization),
       ∀ p : L.support, A.closeCellwiseMap (e p) = p.1 := by
@@ -727,7 +811,9 @@ end CloseGraphApproximation
 
 /-- Intrinsic-source form of Moise Ch. 6, Thm. 3.  A continuous embedding of a finite intrinsic
 two-complex into the plane can be replaced by a finite pure plane triangulation whose coordinate
-embedding is uniformly close to the original one. -/
+embedding is uniformly close to the original one.
+@isnad1 id=ex.3h3v.s9.edc6c5b1784e from=translated src=- shape=1f30935f vocab=562ef169
+-/
 theorem exists_intrinsic_pl_approximation (K : IntrinsicTwoComplex)
     {h : K.realization → Plane} (hcont : Continuous h) (hinj : Function.Injective h)
     {ε : ℝ} (hε : 0 < ε) :

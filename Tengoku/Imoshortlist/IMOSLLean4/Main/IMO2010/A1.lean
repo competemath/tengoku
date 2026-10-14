@@ -52,11 +52,15 @@ variable [Ring R] [LinearOrder R] [FloorRing R] [Ring S] [LinearOrder S] [FloorR
   `f(⌊x⌋ y) = ⌊f(y)⌋ f(x)` for all `x, y : R`. -/
 def good (f : R → S) := ∀ x y : R, f (⌊x⌋ • y) = ⌊f y⌋ • f x
 
-/-- The zero function is good. -/
+/-- The zero function is good.
+@isnad1 id=good.0h2v.s5.a31cdd2ed4ad from=translated src=- shape=468be772 vocab=06e8a9f7
+-/
 theorem zero_is_good : good (0 : R → S) :=
   λ _ _ ↦ (zsmul_zero _).symm
 
-/-- The constant function `f ≡ C` is good if `⌊C⌋ = 1`. -/
+/-- The constant function `f ≡ C` is good if `⌊C⌋ = 1`.
+@isnad1 id=good.1h3v.s5.0bbaf99d88a0 from=translated src=- shape=bd34aca4 vocab=e4e00549
+-/
 theorem const_is_good_of_floor_eq_one {C : S} (hC : ⌊C⌋ = 1) : good (λ _ : R ↦ C) :=
   λ _ _ ↦ ((congrArg (· • C) hC).trans (one_zsmul C)).symm
 
@@ -64,7 +68,9 @@ namespace good
 
 open IsAddTorsionFree
 
-/-- We have either `⌊f(0)⌋ = 1` or `f(0) = 0`. -/
+/-- We have either `⌊f(0)⌋ = 1` or `f(0) = 0`.
+@isnad1 id=or.1h3v.s6.59e64ae185c2 from=translated src=- shape=355fe99f vocab=4bf002bb
+-/
 theorem map_zero_eq_zero_or_floor_eq_one [IsOrderedAddMonoid S] {f : R → S} (hf : good f) :
     f 0 = 0 ∨ ⌊f 0⌋ = 1 := by
   have h : f (⌊(0 : R)⌋ • 0) = ⌊f 0⌋ • f 0 := hf 0 0
@@ -108,7 +114,9 @@ theorem eq_zero_of_map_zero_eq_zero
 
 end good
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.1h3v.s7.2baf53e85b35 from=translated src=- shape=44960aaa vocab=fa94c442
+-/
 theorem final_solution [IsStrictOrderedRing R] (hR : ∃ α : R, 0 < α ∧ α < 1)
     [IsStrictOrderedRing S] {f : R → S} :
     good f ↔ f = 0 ∨ (∃ C : S, ⌊C⌋ = 1 ∧ f = λ _ ↦ C) := by

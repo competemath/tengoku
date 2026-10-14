@@ -54,6 +54,7 @@ Shifted harmonic epoch weights are not summable. Hence they cannot normalize a
 countable probability mixture, which is the obstruction to proving the existing
 literal `subGammaLogLogWidth` as an unconditional all-`n` stitched CS by the
 dyadic-epoch route.
+@isnad1 id=not.0h0v.s3.e54ea00128b0 from=translated src=- shape=49ee9095 vocab=b1a17cba
 -/
 theorem literalDyadicEpochWeight_not_summable :
     ¬ Summable literalDyadicEpochWeight := by
@@ -73,7 +74,9 @@ choice.
 def pSeriesDyadicEpochWeight (j : ℕ) : ℝ :=
   (1 / 2 : ℝ) / ((j + 1 : ℕ) : ℝ) ^ 2
 
-/-- The p-series dyadic-epoch weights are summable. -/
+/-- The p-series dyadic-epoch weights are summable.
+@isnad1 id=summable.0h0v.s3.12a685af15a9 from=translated src=- shape=ef4b497d vocab=7bbbb12f
+-/
 theorem pSeriesDyadicEpochWeight_summable :
     Summable pSeriesDyadicEpochWeight := by
   have hbase : Summable fun n : ℕ => (1 : ℝ) / (n : ℝ) ^ 2 := by
@@ -84,24 +87,32 @@ theorem pSeriesDyadicEpochWeight_summable :
   unfold pSeriesDyadicEpochWeight
   simpa [div_eq_mul_inv, mul_comm, mul_left_comm, mul_assoc] using hshift.mul_left (1 / 2 : ℝ)
 
-/-- The p-series dyadic-epoch weights are pointwise nonnegative. -/
+/-- The p-series dyadic-epoch weights are pointwise nonnegative.
+@isnad1 id=le.0h1v.s3.1511918d78a9 from=translated src=- shape=b9369acb vocab=15f52c3f
+-/
 theorem pSeriesDyadicEpochWeight_nonneg (j : ℕ) :
     0 ≤ pSeriesDyadicEpochWeight j := by
   unfold pSeriesDyadicEpochWeight
   positivity
 
-/-- The p-series dyadic-epoch weights are strictly positive. -/
+/-- The p-series dyadic-epoch weights are strictly positive.
+@isnad1 id=lt.0h1v.s3.fef43054c7f1 from=translated src=- shape=b9369acb vocab=3c77f991
+-/
 theorem pSeriesDyadicEpochWeight_pos (j : ℕ) :
     0 < pSeriesDyadicEpochWeight j := by
   unfold pSeriesDyadicEpochWeight
   positivity
 
-/-- The first p-series epoch has weight `1/2`. -/
+/-- The first p-series epoch has weight `1/2`.
+@isnad1 id=eq.0h0v.s4.569977c6313b from=translated src=- shape=4683683d vocab=58e7adbd
+-/
 theorem pSeriesDyadicEpochWeight_zero :
     pSeriesDyadicEpochWeight 0 = 1 / 2 := by
   norm_num [pSeriesDyadicEpochWeight]
 
-/-- The concrete unit-capital stitching penalty for epoch `0` is `log 2`. -/
+/-- The concrete unit-capital stitching penalty for epoch `0` is `log 2`.
+@isnad1 id=eq.0h0v.s5.13a6670e5344 from=translated src=- shape=5bd9ae4a vocab=aa6519c0
+-/
 theorem pSeriesDyadicEpochWeight_zero_unitPenalty :
     Real.log (1 / pSeriesDyadicEpochWeight 0) = Real.log 2 := by
   rw [pSeriesDyadicEpochWeight_zero]
@@ -118,6 +129,7 @@ This is the countable analogue of `supermartingale_finset_sum`. The explicit
 `hsummable_integral_norm` hypothesis is exactly the domination needed by
 `integral_tsum_of_summable_integral_norm`; it is the missing mathlib brick this
 dyadic-epoch route needs before specializing to p-series epoch mixtures.
+@isnad1 id=supermar.5h6v.s8.5e2d47095647 from=translated src=- shape=3679f272 vocab=87d878a6
 -/
 theorem countableWeightedSupermartingale_tsum
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
@@ -264,7 +276,9 @@ private theorem logLogBudget_exp_sub (n : ℕ) (budget : ℝ) :
   ring
 
 /-- The generic-budget tilt is the existing `optTilt` after representing the
-budget as a `logLogBudget`. -/
+budget as a `logLogBudget`.
+@isnad1 id=eq.0h4v.s5.6ffc58a5927d from=translated src=- shape=e7aa11e1 vocab=1945b6a4
+-/
 theorem optTiltAtBudget_eq_optTilt_exp (sigma2 b : ℝ) (n : ℕ) (budget : ℝ) :
     optTiltAtBudget sigma2 b n budget =
       optTilt sigma2 b n
@@ -272,7 +286,9 @@ theorem optTiltAtBudget_eq_optTilt_exp (sigma2 b : ℝ) (n : ℕ) (budget : ℝ)
   unfold optTiltAtBudget optTilt
   rw [logLogBudget_exp_sub]
 
-/-- The generic-budget optimal tilt is positive. -/
+/-- The generic-budget optimal tilt is positive.
+@isnad1 id=lt.4h4v.s6.6311750f3e0f from=translated src=- shape=da3c492c vocab=520bbb34
+-/
 theorem optTiltAtBudget_pos {sigma2 b budget : ℝ} {n : ℕ}
     (hσ : 0 < sigma2) (_hb : 0 < b) (hn : 0 < n) (hbudget : 0 < budget) :
     0 < optTiltAtBudget sigma2 b n budget := by
@@ -284,7 +300,9 @@ theorem optTiltAtBudget_pos {sigma2 b budget : ℝ} {n : ℕ}
   apply div_pos hsqrt
   positivity
 
-/-- The generic-budget optimal tilt lies in the sub-Gamma admissible range. -/
+/-- The generic-budget optimal tilt lies in the sub-Gamma admissible range.
+@isnad1 id=lt.4h4v.s6.695ade61f394 from=translated src=- shape=35beaba4 vocab=c849969f
+-/
 theorem optTiltAtBudget_admissible {sigma2 b budget : ℝ} {n : ℕ}
     (hσ : 0 < sigma2) (hb : 0 < b) (hn : 0 < n) (hbudget : 0 < budget) :
     b * optTiltAtBudget sigma2 b n budget < 3 := by
@@ -297,7 +315,9 @@ theorem optTiltAtBudget_admissible {sigma2 b budget : ℝ} {n : ℕ}
   exact optTilt_admissible hσ hb hn (by simpa [hlog] using hbudget)
 
 /-- Exact optimization of the sub-Gamma boundary at an arbitrary positive
-budget. -/
+budget.
+@isnad1 id=eq.4h4v.s6.0438df93d923 from=translated src=- shape=8ccf29c4 vocab=962b62f9
+-/
 theorem subGammaBoundary_eq_widthAtBudget_optTilt
     {sigma2 b budget : ℝ} {n : ℕ}
     (hσ : 0 < sigma2) (hb : 0 < b) (hn : 0 < n) (hbudget : 0 < budget) :
@@ -327,7 +347,9 @@ def subGammaLogLogWidthStitchingPenalty
   subGammaWidthAtBudget sigma2 b n (logLogBudget n delta + extraBudget)
     - subGammaLogLogWidth sigma2 b n delta
 
-/-- The inflated-budget width is literally `subGammaLogLogWidth` plus the penalty above. -/
+/-- The inflated-budget width is literally `subGammaLogLogWidth` plus the penalty above.
+@isnad1 id=eq.0h5v.s5.51e14cae29a0 from=translated src=- shape=53a9d52a vocab=35868bfa
+-/
 theorem subGammaLogLogWidth_add_stitchingPenalty
     (sigma2 b : ℝ) (n : ℕ) (delta extraBudget : ℝ) :
     subGammaLogLogWidth sigma2 b n delta
@@ -336,7 +358,9 @@ theorem subGammaLogLogWidth_add_stitchingPenalty
   unfold subGammaLogLogWidthStitchingPenalty
   abel
 
-/-- Nonnegativity of the countable epoch mixture. -/
+/-- Nonnegativity of the countable epoch mixture.
+@isnad1 id=le.1h8v.s5.49f1067ee0df from=translated src=- shape=4bf649ef vocab=0ba9d074
+-/
 theorem dyadicEpochMixtureProcess_nonneg {Ω : Type*}
     (X : ℕ → Ω → ℝ) (sigma2 b : ℝ) (Lam : ℕ → Finset ℝ) {w : ℕ → ℝ}
     (hw_nonneg : ∀ j, 0 ≤ w j) (n : ℕ) (ω : Ω) :
@@ -349,6 +373,7 @@ theorem dyadicEpochMixtureProcess_nonneg {Ω : Type*}
 The countable dyadic-epoch mixture is a supermartingale once each finite epoch
 grid is an admissible stitched-grid supermartingale and the countable sum has the
 integrability package required by `countableWeightedSupermartingale_tsum`.
+@isnad1 id=supermar.14h9v.s9.591bd19091e1 from=translated src=- shape=03f1f902 vocab=b2cde425
 -/
 theorem dyadicEpochMixture_supermartingale
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
@@ -388,6 +413,7 @@ If one epoch-grid boundary is crossed at time `n`, then the countable epoch
 mixture crosses its Ville threshold. The threshold uses
 `delta * w j / epochWeightTotal w` inside the finite-grid crossing, so the
 extra term over the finite grid is `log(epochWeightTotal w / w j)`.
+@isnad1 id=le.8h11v.s7.b10f3f51666c from=translated src=- shape=3abf26e9 vocab=7c8a1564
 -/
 theorem runningMean_dyadicEpochBoundary_subset_mixture_crossing
     {Ω : Type*} {X : ℕ → Ω → ℝ} {sigma2 b delta : ℝ}

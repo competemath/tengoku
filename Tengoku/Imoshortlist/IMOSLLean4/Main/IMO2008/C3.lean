@@ -51,7 +51,9 @@ def friends (k : ℕ) (p q : ℤ × ℤ) := ∃ r, triangleArea ![p, q, r] = k
 /-- A set `S` is a `k`-*clique* if every two distinct points in `S` are `k`-friends. -/
 def clique (k : ℕ) (S : Set (ℤ × ℤ)) := ∀ p ∈ S, ∀ q ∈ S, p ≠ q → friends k p q
 
-/-- An alternative (assymetric) formula for the area of a triangle. -/
+/-- An alternative (assymetric) formula for the area of a triangle.
+@isnad1 id=eq.0h3v.s7.fee0de7919c7 from=translated src=- shape=cbe05b1c vocab=273150b4
+-/
 lemma triangleArea_alt (p q r) :
     triangleArea ![p, q, r] =
       mkRat ((p.1 - q.1) * (q.2 - r.2) + (p.2 - q.2) * (r.1 - q.1)).natAbs 2 := by
@@ -69,7 +71,9 @@ lemma triangleArea_alt (p q r) :
       rw [Int.add_right_comm, ← Int.neg_sub p.1,
         Int.neg_mul, Int.add_neg_eq_sub, ← Int.mul_sub]
 
-/-- The main criterion for two points to be `k`-friends. -/
+/-- The main criterion for two points to be `k`-friends.
+@isnad1 id=iff.0h3v.s5.f2d9f267a39d from=translated src=- shape=d8447538 vocab=86dee17b
+-/
 theorem friends_iff {k : ℕ} {p q : ℤ × ℤ} :
     friends k p q ↔ Int.gcd (p.1 - q.1) (p.2 - q.2) ∣ 2 * k := calc
   _ ↔ ∃ r s, triangleArea ![p, q, (r, s)] = k := Prod.exists'
@@ -92,12 +96,16 @@ theorem friends_iff {k : ℕ} {p q : ℤ × ℤ} :
   _ ↔ Int.gcd (p.1 - q.1) (p.2 - q.2) ∣ 2 * k := Int.gcd_dvd_iff.symm
 
 /-- The point `(p₁, p₂)` is a `k`-friend of `(q₁, q₂)`
-  if and only if `(p₂, p₁)` is a `k`-friend of `(q₂, q₁)`. -/
+  if and only if `(p₂, p₁)` is a `k`-friend of `(q₂, q₁)`.
+@isnad1 id=iff.0h5v.s5.1e556673270e from=translated src=- shape=c1b30dc0 vocab=98ec64c3
+-/
 theorem friends_coord_comm : friends k (p₁, p₂) (q₁, q₂) ↔ friends k (p₂, p₁) (q₂, q₁) := by
   rw [friends_iff, friends_iff, Int.gcd_comm]
 
 /-- If a subset `S ⊆ ℤ × ℤ` has cardinality greater than `m^2`, where `m > 0`, then
-  there exist two distinct points `p, q ∈ S` such that `m ∣ gcd(p₁ - q₁, p₂ - q₂)`. -/
+  there exist two distinct points `p, q ∈ S` such that `m ∣ gcd(p₁ - q₁, p₂ - q₂)`.
+@isnad1 id=ex.2h2v.s7.0276b80b6869 from=translated src=- shape=cb0a8967 vocab=659dd55f
+-/
 theorem exist_dvd_gcd_of_sq_lt_card (hm : m > 0) {S : Finset (ℤ × ℤ)} (hS : m ^ 2 < #S) :
     ∃ p ∈ S, ∃ q ∈ S, p ≠ q ∧ m ∣ Int.gcd (p.1 - q.1) (p.2 - q.2) := by
   have : NeZero m := NeZero.of_pos hm
@@ -115,7 +123,9 @@ theorem exist_dvd_gcd_of_sq_lt_card (hm : m > 0) {S : Finset (ℤ × ℤ)} (hS :
     ← ZMod.intCast_eq_intCast_iff_dvd_sub, eq_comm (a := (q.2 : ZMod m))]
   exact Prod.mk_inj.mp h
 
-/-- If `m > 0` and `m ∤ 2k`, then any `k`-clique has size at most `m^2`. -/
+/-- If `m > 0` and `m ∤ 2k`, then any `k`-clique has size at most `m^2`.
+@isnad1 id=le.3h3v.s6.3077a078d31e from=translated src=- shape=7769663d vocab=835c9932
+-/
 theorem clique_card_le_sq_of_not_dvd_two_mul
     (hm : m > 0) (h : ¬m ∣ 2 * k) {S : Finset (ℤ × ℤ)} (hS : clique k S) : #S ≤ m ^ 2 := by
   contrapose! h
@@ -125,7 +135,9 @@ theorem clique_card_le_sq_of_not_dvd_two_mul
   exact h0.trans (friends_iff.mp (hS p hp q hq hpq))
 
 /-- If `N : ℕ` satisfies `m ∣ 2k` for every `0 < m ≤ N`,
-  then `{0, 1, …, N}^2` is a `k`-clique. -/
+  then `{0, 1, …, N}^2` is a `k`-clique.
+@isnad1 id=clique.1h2v.s6.54dac5bed127 from=translated src=- shape=8cc0acf3 vocab=8e17212b
+-/
 theorem range_sq_is_clique {N k : ℕ} (hN : ∀ m > 0, m ≤ N → m ∣ 2 * k) :
     clique k (Icc 0 (N : ℤ) ×ˢ Icc 0 (N : ℤ) : Finset _) := by
   ---- Fix some `p_1, q_1, p_2, q_2 ∈ {0, 1, …, N}^2` with `(p_1, p_2) ≠ (q_1, q_2)`.
@@ -147,7 +159,9 @@ theorem range_sq_is_clique {N k : ℕ} (hN : ∀ m > 0, m ≤ N → m ∣ 2 * k)
     ((Int.gcd_le_natAbs_left _ hpq₁).trans hpq)
 
 /-- There exists a clique of size greater than `N`
-  if and only if `m ∣ 2k` for every positive integer `m ≤ ⌊√N⌋`. -/
+  if and only if `m ∣ 2k` for every positive integer `m ≤ ⌊√N⌋`.
+@isnad1 id=iff.0h2v.s6.2952675dc123 from=translated src=- shape=aedcd4f4 vocab=a9d97129
+-/
 theorem exists_clique_card_lt_iff :
     (∃ S : Finset (ℤ × ℤ), clique k S ∧ #S > N) ↔ ∀ m > 0, m ≤ N.sqrt → m ∣ 2 * k := by
   refine ⟨λ h ↦ ?_, λ h ↦ ?_⟩
@@ -161,7 +175,9 @@ theorem exists_clique_card_lt_iff :
     exact Nat.lt_succ_sqrt N
 
 /-- There exists a clique of size greater than `N`
-  if and only if `lcm(1, 2, …, ⌊√N⌋)` divides `2k`. -/
+  if and only if `lcm(1, 2, …, ⌊√N⌋)` divides `2k`.
+@isnad1 id=iff.0h2v.s6.e0a94619d117 from=translated src=- shape=00204384 vocab=4d1df551
+-/
 theorem exists_clique_card_lt_iff2 :
     (∃ S : Finset (ℤ × ℤ), clique k S ∧ #S > N) ↔ (range N.sqrt).lcm Nat.succ ∣ 2 * k :=
   calc ∃ S : Finset (ℤ × ℤ), clique k S ∧ #S > N
@@ -171,16 +187,22 @@ theorem exists_clique_card_lt_iff2 :
     cases m with | zero => exact absurd rfl hm.ne | succ l => exact h l hm0
   _ ↔ (range N.sqrt).lcm Nat.succ ∣ 2 * k := by simp_rw [Finset.lcm_dvd_iff, mem_range]
 
-/-- If `k ≥ 2`, then `2 ∣ lcm(1, 2, …, k)`. -/
+/-- If `k ≥ 2`, then `2 ∣ lcm(1, 2, …, k)`.
+@isnad1 id=dvd.1h1v.s4.ac7c637fbac2 from=translated src=- shape=cf2f1831 vocab=ea5c202a
+-/
 theorem two_dvd_lcm_range_succ (hk : k ≥ 2) : 2 ∣ (range k).lcm Nat.succ :=
   dvd_lcm (mem_range.mpr hk)
 
-/-- For any `k`, we have `lcm(1, 2, …, k) > 0`. -/
+/-- For any `k`, we have `lcm(1, 2, …, k) > 0`.
+@isnad1 id=lt.0h1v.s4.a4f4c5d66c05 from=translated src=- shape=fe5f2608 vocab=c0dfe67c
+-/
 theorem lcm_range_succ_pos (k) : 0 < (range k).lcm Nat.succ := by
   rw [Nat.pos_iff_ne_zero, Finset.lcm_ne_zero_iff]
   rintro x -; exact Nat.succ_ne_zero x
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=isleast.1h1v.s6.e82d6850ee6b from=translated src=- shape=31dc258e vocab=d877dcd2
+-/
 theorem final_solution (hN : N ≥ 4) :
     IsLeast {k : ℕ | k > 0 ∧ ∃ S : Finset (ℤ × ℤ), clique k S ∧ #S > N}
       ((range N.sqrt).lcm Nat.succ / 2) := by

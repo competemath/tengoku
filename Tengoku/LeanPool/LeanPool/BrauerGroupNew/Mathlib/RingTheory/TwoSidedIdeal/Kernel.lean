@@ -19,6 +19,9 @@ variable {R S : Type*} [Ring R] [Ring S]
 
 namespace TwoSidedIdeal
 
+/--
+@isnad1 id=iff.0h4v.s6.e08eacf4d1fe from=translated src=- shape=6615f7c6 vocab=b95f274c
+-/
 lemma injective_iff_ker_eq_bot {F : Type*} [FunLike F R S] [RingHomClass F R S] (f : F) :
     Function.Injective f ↔ TwoSidedIdeal.ker f = ⊥ := by
   rw [Function.Injective, eq_bot_iff, le_iff]

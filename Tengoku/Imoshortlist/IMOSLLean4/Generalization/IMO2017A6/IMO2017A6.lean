@@ -40,18 +40,24 @@ section
 
 variable [NonAssocRing R] (x y : R)
 
-/-- The formula `(1 - x)(1 - y) = 1 - (x + y - xy)`. -/
+/-- The formula `(1 - x)(1 - y) = 1 - (x + y - xy)`.
+@isnad1 id=eq.0h3v.s7.4373f0624b8d from=translated src=- shape=8ec7981a vocab=664ded15
+-/
 lemma one_sub_mul_one_sub : (1 - x) * (1 - y) = 1 - (x + y - x * y) := by
   rw [mul_one_sub, one_sub_mul, sub_sub, add_sub_assoc]
 
-/-- The formula `1 - (1 - x)(1 - y) + (1 - (x + y)) = 1 - xy`. -/
+/-- The formula `1 - (1 - x)(1 - y) + (1 - (x + y)) = 1 - xy`.
+@isnad1 id=eq.0h3v.s7.d78321a88ebb from=translated src=- shape=a5ddcc0f vocab=664ded15
+-/
 lemma one_sub_one_sub_mul_one_sub_add_one_sub_add :
     1 - (1 - x) * (1 - y) + (1 - (x + y)) = 1 - x * y := by
   rw [one_sub_mul_one_sub, sub_sub_cancel, sub_add_sub_cancel']
 
 end
 
-/-- The most general form of good functions. -/
+/-- The most general form of good functions.
+@isnad1 id=good.3h6v.s10.e3df198df1ea from=translated src=- shape=ad187569 vocab=d6cb995a
+-/
 theorem good_of_RingCon [Ring R] [AddZero G] (ι : G →+ R)
     {I : RingCon R} {φ : I.Quotient →+ G} (h : ∀ x : I.Quotient, ↑(ι (φ x)) = x)
     {a : I.Quotient} (ha : a * a = 1) (ha0 : ∀ x, a * x = x * a) :
@@ -76,7 +82,9 @@ def PeriodEquiv [AddCommSemigroup R] (f : R → α) : AddCon R where
   iseqv := ⟨λ _ _ ↦ rfl, λ h x ↦ (h x).symm, λ h h0 x ↦ (h x).trans (h0 x)⟩
   add' h h0 x := by rw [← add_assoc, h0, add_right_comm, h, add_right_comm, add_assoc]
 
-/-- If `c` and `d` are `f`-period equivalent, then `f(c) = f(d)`. -/
+/-- If `c` and `d` are `f`-period equivalent, then `f(c) = f(d)`.
+@isnad1 id=eq.0h6v.s5.f1c7d4049cc2 from=translated src=- shape=e1be3581 vocab=6d80f1ff
+-/
 lemma PeriodEquiv_map_eq [AddCommMonoid R] {f : R → α} (h : PeriodEquiv f c d) :
     f c = f d := by
   rw [← zero_add c, h, zero_add]
@@ -87,13 +95,17 @@ section
 
 variable [NonUnitalNonAssocSemiring R] [AddZero G]
 
-/-- If `f(a) = f(b)`, `f(c) = f(d)`, and `f(a + c) = f(b + d)`, then `f(ac) = f(bd)`. -/
+/-- If `f(a) = f(b)`, `f(c) = f(d)`, and `f(a + c) = f(b + d)`, then `f(ac) = f(bd)`.
+@isnad1 id=eq.4h8v.s6.3923cc4dc5ec from=translated src=- shape=d19ba7d9 vocab=6bbfde80
+-/
 lemma map_mul_eq_of_map_eq_of_map_add_eq {ι : G →+ R} {f : R → G}
     (hf : good ι f) (hab : f a = f b) (hcd : f c = f d) (h : f (a + c) = f (b + d)) :
     f (a * c) = f (b * d) := by
   rw [← hf, hab, hcd, h, hf]
 
-/-- If `f(a) = f(b)` and `f(c) = f(d)`, then `f(a + c) = f(b + d)` iff `f(ac) = f(bd)`. -/
+/-- If `f(a) = f(b)` and `f(c) = f(d)`, then `f(a + c) = f(b + d)` iff `f(ac) = f(bd)`.
+@isnad1 id=iff.3h8v.s7.590a5e49d45a from=translated src=- shape=9115140b vocab=8f25084c
+-/
 lemma map_add_eq_iff_map_mul_eq [IsCancelAdd G] {ι : G →+ R} {f : R → G}
     (hf : good ι f) (hab : f a = f b) (hcd : f c = f d) :
     f (a + c) = f (b + d) ↔ f (a * c) = f (b * d) := by
@@ -108,7 +120,9 @@ variable [NonUnitalSemiring R] [AddZero G] [IsCancelAdd G]
 include hf
 
 /-- If `f(x + a) = f(x + b)` and `f(x + c) = f(x + d)` for all `x : R`,
-  then `f(x + ac) = f(x + bd)` for all `x : R`. -/
+  then `f(x + ac) = f(x + bd)` for all `x : R`.
+@isnad1 id=coe.1h10v.s7.4d7a9657f04e from=translated src=- shape=eb7685b5 vocab=b29f4227
+-/
 lemma PeriodEquiv_mul (hab : PeriodEquiv f a b) (hcd : PeriodEquiv f c d) :
     PeriodEquiv f (a * c) (b * d) := by
   intro x
@@ -130,7 +144,9 @@ lemma PeriodEquiv_mul (hab : PeriodEquiv f a b) (hcd : PeriodEquiv f c d) :
 def inducedRingCon : RingCon R :=
   { PeriodEquiv f with mul' := hf.PeriodEquiv_mul }
 
-/-- If `c ∼ d`, then `f(c) = f(d)`. -/
+/-- If `c ∼ d`, then `f(c) = f(d)`.
+@isnad1 id=eq.1h7v.s6.f41b3c4b07a2 from=translated src=- shape=79cefb69 vocab=5f4fcd56
+-/
 theorem inducedRingConEquiv_map_eq (h : hf.inducedRingCon c d) : f c = f d :=
   PeriodEquiv_map_eq h
 
@@ -138,11 +154,15 @@ theorem inducedRingConEquiv_map_eq (h : hf.inducedRingCon c d) : f c = f d :=
 def Quotient : hf.inducedRingCon.Quotient → G :=
   Quotient.lift f λ _ _ ↦ hf.inducedRingConEquiv_map_eq
 
-/-- The induced quotient map is non-periodic. -/
+/-- The induced quotient map is non-periodic.
+@isnad1 id=nonperio.1h4v.s6.a15e3be4f81c from=translated src=- shape=bad83471 vocab=6160decf
+-/
 theorem Quotient_is_nonperiodic : nonperiodic hf.Quotient :=
   Quotient.ind₂ λ _ _ h ↦ Quot.sound λ x ↦ h x
 
-/-- The quotient map induced by `f` is `q ∘ ι`-good, where `q : R → R/I` is the quotient. -/
+/-- The quotient map induced by `f` is `q ∘ ι`-good, where `q : R → R/I` is the quotient.
+@isnad1 id=good.1h4v.s8.775ddfee3312 from=translated src=- shape=bf49bbda vocab=062ebd02
+-/
 theorem Quotient_is_good : good (hf.inducedRingCon.toAddCon.mk'.comp ι) hf.Quotient :=
   Quotient.ind₂ hf
 
@@ -156,17 +176,23 @@ variable [NonAssocSemiring R] [AddZero G] [IsCancelAdd G]
   {ι : G →+ R} {f : R → G} (hf : good ι f) (h : f a = f b)
 include hf h
 
-/-- If `f(a) = f(b)`, then `f(a + 1) = f(b + 1)`. -/
+/-- If `f(a) = f(b)`, then `f(a + 1) = f(b + 1)`.
+@isnad1 id=eq.2h6v.s6.1f24b30ec7b9 from=translated src=- shape=f03f05dd vocab=8d033ce5
+-/
 lemma map_add_one_eq_of_map_eq : f (a + 1) = f (b + 1) := by
   rw [hf.map_add_eq_iff_map_mul_eq h rfl, mul_one, h, mul_one]
 
-/-- If `f(a) = f(b)`, then `f(a + 2) = f(b + 2)`. -/
+/-- If `f(a) = f(b)`, then `f(a + 2) = f(b + 2)`.
+@isnad1 id=eq.2h6v.s6.5ea07619b567 from=translated src=- shape=f03f05dd vocab=6cefed9a
+-/
 lemma map_add_two_eq_of_map_eq : f (a + 2) = f (b + 2) := by
   replace h : f (a + 1 + 1) = f (b + 1 + 1) :=
     hf.map_add_one_eq_of_map_eq (hf.map_add_one_eq_of_map_eq h)
   rwa [add_assoc, add_assoc, one_add_one_eq_two] at h
 
-/-- If `f(a) = f(b)`, then `f(2a) = f(2b)`. -/
+/-- If `f(a) = f(b)`, then `f(2a) = f(2b)`.
+@isnad1 id=eq.2h6v.s6.7b835d1ea7a6 from=translated src=- shape=3ca4f6e6 vocab=8b99cee2
+-/
 lemma map_two_mul_eq_of_map_eq : f (2 * a) = f (2 * b) := by
   rw [← hf.map_add_eq_iff_map_mul_eq rfl h, add_comm,
     hf.map_add_two_eq_of_map_eq h, add_comm]
@@ -179,7 +205,9 @@ variable [NonAssocRing R] [AddZero G] [IsCancelAdd G]
   {ι : G →+ R} {f : R → G} (hf : good ι f)
 include hf
 
-/-- If `f(a) = f(b)`, then `f(-(a + 1)) = f(-(b + 1))`. -/
+/-- If `f(a) = f(b)`, then `f(-(a + 1)) = f(-(b + 1))`.
+@isnad1 id=eq.2h6v.s7.082f094e7d73 from=translated src=- shape=0eaa9a08 vocab=e4898a04
+-/
 lemma map_neg_add_one_eq_of_map_eq (h : f a = f b) : f (-(a + 1)) = f (-(b + 1)) := by
   have h0 : f (a + 1) = f (b + 1) := hf.map_add_one_eq_of_map_eq h
   replace h : f (a + 1 + -1) = f (b + 1 + -1) := by
@@ -188,13 +216,17 @@ lemma map_neg_add_one_eq_of_map_eq (h : f a = f b) : f (-(a + 1)) = f (-(b + 1))
     hf.map_mul_eq_of_map_eq_of_map_add_eq h0 rfl h
   rwa [mul_neg_one, mul_neg_one] at h
 
-/-- If `f(a) = f(b)`, then `f(-a) = f(-b)`. -/
+/-- If `f(a) = f(b)`, then `f(-a) = f(-b)`.
+@isnad1 id=eq.2h6v.s6.3b8897693f47 from=translated src=- shape=fe4670b6 vocab=90cd944c
+-/
 lemma map_neg_eq_of_map_eq (h : f a = f b) : f (-a) = f (-b) := by
   have h0 : f (-(a + 1) + 1) = f (-(b + 1) + 1) :=
     hf.map_add_one_eq_of_map_eq (hf.map_neg_add_one_eq_of_map_eq h)
   rwa [neg_add_rev, neg_add_cancel_comm, neg_add_rev, neg_add_cancel_comm] at h0
 
-/-- We have `f(-a) = f(-b)` if and only if `f(a) = f(b)`. -/
+/-- We have `f(-a) = f(-b)` if and only if `f(a) = f(b)`.
+@isnad1 id=iff.1h6v.s6.f917200a7405 from=translated src=- shape=4f005610 vocab=90cd944c
+-/
 lemma map_neg_eq_iff_map_eq : f (-a) = f (-b) ↔ f a = f b :=
   ⟨λ h ↦ by simpa only [neg_neg] using hf.map_neg_eq_of_map_eq h, hf.map_neg_eq_of_map_eq⟩
 
@@ -205,21 +237,29 @@ section
 variable [NonAssocSemiring R] [AddZero G] {ι : G →+ R} {f : R → G} (hf : good ι f)
 include hf
 
-/-- For any `x : R`, we have `f(ι(f(0)) ι(f(x))) + f(x) = f(0)`. -/
+/-- For any `x : R`, we have `f(ι(f(0)) ι(f(x))) + f(x) = f(0)`.
+@isnad1 id=eq.1h5v.s7.39ccac283f6a from=translated src=- shape=543a8e33 vocab=f3228743
+-/
 lemma map_ι_map_zero_mul_ι_map_add_map (x) : f (ι (f 0) * ι (f x)) + f x = f 0 := by
   simpa only [zero_add, zero_mul] using hf 0 x
 
-/-- If `f(d) = 0` then `f(xd) = f(0) + f(x + d)` for any `x : R`. -/
+/-- If `f(d) = 0` then `f(xd) = f(0) + f(x + d)` for any `x : R`.
+@isnad1 id=eq.2h6v.s6.11281f46ed76 from=translated src=- shape=3befdc6b vocab=1087a1af
+-/
 lemma map_mul_kernel (hd : f d = 0) (x) : f (x * d) = f 0 + f (x + d) := by
   rw [← hf, hd, ι.map_zero, mul_zero]
 
-/-- If `f(d) = 0` then `f(0) + f(d + 1) = 0`. -/
+/-- If `f(d) = 0` then `f(0) + f(d + 1) = 0`.
+@isnad1 id=eq.2h5v.s6.9404bde8bd5b from=translated src=- shape=09e8cd7c vocab=55237b75
+-/
 lemma map_kernel_add_one (hd : f d = 0) : f 0 + f (d + 1) = 0 := by
   rw [add_comm, ← hf.map_mul_kernel hd, one_mul, hd]
 
 end
 
-/-- We have `f(ι(f(0))^2) = 0`. -/
+/-- We have `f(ι(f(0))^2) = 0`.
+@isnad1 id=eq.1h4v.s7.d2c803a60bde from=translated src=- shape=a01b3588 vocab=f06b3efa
+-/
 lemma map_ι_map_zero_mul_self [NonAssocSemiring R] [AddZeroClass G] [IsCancelAdd G]
   {ι : G →+ R} {f : R → G} (hf : good ι f) : f (ι (f 0) * ι (f 0)) = 0 := by
   rw [← add_right_cancel_iff (a := f 0), hf.map_ι_map_zero_mul_ι_map_add_map, zero_add]
@@ -229,7 +269,9 @@ section
 variable [Semiring R] [AddCancelMonoid G] {ι : G →+ R} {f : R → G} (hf : good ι f)
 include hf
 
-/-- We have `f(0) + f(2 ι(f(0))^2) = 0`. -/
+/-- We have `f(0) + f(2 ι(f(0))^2) = 0`.
+@isnad1 id=eq.1h4v.s8.d8bfd6c0c3bf from=translated src=- shape=03aced49 vocab=d1a6753b
+-/
 lemma map_two_mul_ι_map_zero_mul_self : f 0 + f (2 * (ι (f 0) * ι (f 0))) = 0 := by
   let C := ι (f 0)
   -- First, we prove that there exists `b` such that `f(b) = 2f(0)`.
@@ -249,7 +291,9 @@ lemma map_two_mul_ι_map_zero_mul_self : f 0 + f (2 * (ι (f 0) * ι (f 0))) = 0
   ---- Add both sides by `f(0)` on the right and then subtract on the left.
   rw [← add_right_cancel_iff (a := f 0), add_assoc, h, add_zero, zero_add]
 
-/-- If `f(c) = 0`, then `f(x + c) = f(x + 1)` for all `x : R`. -/
+/-- If `f(c) = 0`, then `f(x + c) = f(x + 1)` for all `x : R`.
+@isnad1 id=eq.2h6v.s7.cd5cc740818c from=translated src=- shape=8b468957 vocab=6add69b9
+-/
 theorem period_of_map_eq_zero' (hc : f c = 0) :
     ∀ x, f (x + c * c + c) = f (x + c * c + 1) := by
   let C := ι (f 0)
@@ -275,7 +319,9 @@ theorem period_of_map_eq_zero' (hc : f c = 0) :
     _ = f (x * (c * c) * (c * c)) := by simp only [mul_assoc]
     _ = f 0 + (f 0 + f (x + c * c + 1)) := by rw [hc2, ← add_one_mul, hc2, add_right_comm]
 
-/-- For any `x : R`, we have `f(x + ι(f(0))^2) = f(x + 1)`. -/
+/-- For any `x : R`, we have `f(x + ι(f(0))^2) = f(x + 1)`.
+@isnad1 id=eq.1h5v.s7.d3e75f1bd13b from=translated src=- shape=04bbe1e7 vocab=795ae398
+-/
 theorem map_add_ι_map_zero_mul_self (x) : f (x + ι (f 0) * ι (f 0)) = f (x + 1) := by
   let D := ι (f 0) * ι (f 0)
   have h : f D = 0 := hf.map_ι_map_zero_mul_self
@@ -289,17 +335,23 @@ theorem map_add_ι_map_zero_mul_self (x) : f (x + ι (f 0) * ι (f 0)) = f (x + 
     hf.period_of_map_eq_zero' h (x + d)
   rwa [add_assoc x, hd, add_zero] at h0
 
-/-- We have `f(1) = 0`. -/
+/-- We have `f(1) = 0`.
+@isnad1 id=eq.1h4v.s6.052f8db7641e from=translated src=- shape=c70fbd6c vocab=afcdb065
+-/
 theorem map_one_eq_zero : f 1 = 0 := by
   rw [← zero_add 1, ← hf.map_add_ι_map_zero_mul_self, zero_add, hf.map_ι_map_zero_mul_self]
 
-/-- For any `x : R`, we have `f(0) + f(x + 1) = f(x)`. -/
+/-- For any `x : R`, we have `f(0) + f(x + 1) = f(x)`.
+@isnad1 id=eq.1h5v.s6.74a901d8509f from=translated src=- shape=9f04c417 vocab=2ac1a65e
+-/
 theorem map_zero_add_map_add_one (x) : f 0 + f (x + 1) = f x := by
   simpa only [mul_one] using (hf.map_mul_kernel hf.map_one_eq_zero x).symm
 
 end
 
-/-- For any `x : R`, we have `f(x - 1) = f(0) + f(x)`. -/
+/-- For any `x : R`, we have `f(x - 1) = f(0) + f(x)`.
+@isnad1 id=eq.1h5v.s6.d7447ea83811 from=translated src=- shape=a80a0308 vocab=d2fd6c4b
+-/
 theorem map_sub_one [Ring R] [AddCancelMonoid G]
     {ι : G →+ R} {f : R → G} (hf : good ι f) (x) : f (x - 1) = f 0 + f x := by
   simpa only [sub_add_cancel] using (hf.map_zero_add_map_add_one (x - 1)).symm
@@ -309,7 +361,9 @@ section
 variable [Ring R] [AddCancelCommMonoid G] {ι : G →+ R} {f : R → G} (hf : good ι f)
 include hf
 
-/-- For any `x : R`, we have `f(1 - ι(f(0)) ι(f(x))) = f(x)`. -/
+/-- For any `x : R`, we have `f(1 - ι(f(0)) ι(f(x))) = f(x)`.
+@isnad1 id=eq.1h5v.s7.909bff5f2ddd from=translated src=- shape=5317c27a vocab=81d02a45
+-/
 theorem map_one_sub_map_ι_map_zero_mul_ι_map (x) : f (1 - ι (f 0) * ι (f x)) = f x := by
   let C := ι (f 0)
   have h : ι (f (C * ι (f x))) = -ι (f x) + C := by
@@ -322,7 +376,9 @@ theorem map_one_sub_map_ι_map_zero_mul_ι_map (x) : f (1 - ι (f 0) * ι (f x))
       rw [add_assoc, hf.map_ι_map_zero_mul_ι_map_add_map]
     _ = f 0 + f x := by rw [hf.map_ι_map_zero_mul_ι_map_add_map]
 
-/-- For any `x : R`, we have `f(x) + f(-x) = 2f(0)`. -/
+/-- For any `x : R`, we have `f(x) + f(-x) = 2f(0)`.
+@isnad1 id=eq.1h5v.s7.7892334c15b5 from=translated src=- shape=0d65c0e3 vocab=8a5b40e0
+-/
 theorem map_add_map_neg (x) : f x + f (-x) = 2 • f 0 := by
   have h : f 0 + f (ι (f 0) * ι (f x)) = f (-x) := by
     rw [← hf.map_sub_one, ← neg_sub, hf.map_neg_eq_iff_map_eq]
@@ -339,19 +395,25 @@ variable [Semiring R] [IsCancelAdd R] [AddCancelMonoid G] {ι : G →+ R}
   {f : R → G} (hf : good ι f) (hf0 : nonperiodic f)
 include hf hf0
 
-/-- If `f` is non-periodic and `f(c) = 0`, then `c = 1`. -/
+/-- If `f` is non-periodic and `f(c) = 0`, then `c = 1`.
+@isnad1 id=eq.3h5v.s6.4c70cc4f6c92 from=translated src=- shape=7c84cb5f vocab=f27d3895
+-/
 theorem map_eq_zero_imp_eq_one (h : f c = 0) : c = 1 := by
   refine add_left_cancel (a := c * c) (hf0 _ _ λ x ↦ ?_)
   rw [← add_assoc, ← add_assoc, hf.period_of_map_eq_zero' h]
 
-/-- If `f` is non-periodic, then `f(x) = 0` if and only if `x = 1`. -/
+/-- If `f` is non-periodic, then `f(x) = 0` if and only if `x = 1`.
+@isnad1 id=iff.2h5v.s6.2eebb71ada8d from=translated src=- shape=53b27ea1 vocab=f27d3895
+-/
 theorem map_eq_zero_iff_eq_one : f x = 0 ↔ x = 1 :=
   ⟨hf.map_eq_zero_imp_eq_one hf0, λ h ↦ h ▸ hf.map_one_eq_zero⟩
 
 end
 
 /-- If `G` is `2`- and `3`-torsion free, then any function `g : R → G` satisfying
-  `g(x + y - xy) + g(1 - (x + y)) = g(1 - xy)` for all `x, y : R` is a homomorphism. -/
+  `g(x + y - xy) + g(1 - (x + y)) = g(1 - xy)` for all `x, y : R` is a homomorphism.
+@isnad1 id=ex.3h3v.s8.3663f8f9796a from=translated src=- shape=98482bd3 vocab=7af47cc4
+-/
 theorem sideFE [NonAssocRing R] [AddCancelCommMonoid G]
     (hG2 : IsSMulRegular G 2) (hG3 : IsSMulRegular G 3)
     {g : R → G} (hg : ∀ x y, g (x + y - x * y) + g (1 - (x + y)) = g (1 - x * y)) :
@@ -454,7 +516,9 @@ section
 
 variable [Ring R] [AddCancelCommMonoid G]
 
-/-- If `G` is `2`-torsion free, then a non-periodic good function `R → G` is injective. -/
+/-- If `G` is `2`-torsion free, then a non-periodic good function `R → G` is injective.
+@isnad1 id=injectiv.3h4v.s6.96dbb7479977 from=translated src=- shape=7cbd089c vocab=fc7666e1
+-/
 theorem injective_of_IsSMulRegular_two (hG2 : IsSMulRegular G 2)
     {ι : G →+ R} {f : R → G} (hf : good ι f) (hf0 : nonperiodic f) : f.Injective := by
   intro a b h
@@ -473,7 +537,9 @@ theorem injective_of_IsSMulRegular_two (hG2 : IsSMulRegular G 2)
     hf.map_eq_zero_iff_eq_one hf0, add_eq_right, sub_eq_zero] at h
 
 /-- If `f` is injective, then there exists `a ∈ Z(R)` such that
-  `a^2 = 1` and `ι(f(x)) = a(1 - x)` for all `x : R`. -/
+  `a^2 = 1` and `ι(f(x)) = a(1 - x)` for all `x : R`.
+@isnad1 id=ex.2h4v.s7.b453e810bf80 from=translated src=- shape=0f5758bd vocab=28aa85fb
+-/
 theorem exists_central_mul_self_eq_one
     {ι : G →+ R} {f : R → G} (hf : good ι f) (hf0 : f.Injective) :
     ∃ a : R, a * a = 1 ∧ (∀ x, a * x = x * a) ∧ (∀ x, ι (f x) = a * (1 - x)) := by
@@ -495,7 +561,9 @@ theorem exists_central_mul_self_eq_one
 
 /-- If `G` is `2`- and `3`-torsion free, then any non-periodic `ι`-good function
   can be written as `φ(a(1 - x))` for some `φ : R →+ G` with `ι ∘ φ = id_R` and
-  `a ∈ Z(R)` with `a^2 = 1`. -/
+  `a ∈ Z(R)` with `a^2 = 1`.
+@isnad1 id=ex.4h4v.s9.c9b70f743ec4 from=translated src=- shape=727c4eda vocab=d4e03d60
+-/
 theorem IsSMulRegular_two_three_nonperiodic_imp
     (hG2 : IsSMulRegular G 2) (hG3 : IsSMulRegular G 3)
     {ι : G →+ R} {f : R → G} (hf : good ι f) (hf0 : nonperiodic f) :
@@ -527,7 +595,9 @@ end good
 
 /-! ### Summary -/
 
-/-- The criterion for a function `f : R → G` to be `ι`-good. -/
+/-- The criterion for a function `f : R → G` to be `ι`-good.
+@isnad1 id=iff.2h4v.s10.05e53b27b598 from=translated src=- shape=69268f02 vocab=4962c63e
+-/
 theorem good_iff [Ring R] [AddCancelCommMonoid G]
     (hG2 : IsSMulRegular G 2) (hG3 : IsSMulRegular G 3) {ι : G →+ R} {f : R → G} :
     good ι f ↔ ∃ (I : RingCon R) (φ : I.Quotient →+ G) (_ : ∀ x, ↑(ι (φ x)) = x)
@@ -543,12 +613,16 @@ theorem good_iff [Ring R] [AddCancelCommMonoid G]
   · rcases hf with ⟨I, φ, hφ, a, ha, ha0, rfl⟩
     exact good_of_RingCon ι hφ ha ha0
 
-/-- If `n : ℕ` is left regular as an element of a ring `R`, then `R` is `n`-torsion free. -/
+/-- If `n : ℕ` is left regular as an element of a ring `R`, then `R` is `n`-torsion free.
+@isnad1 id=issmulre.1h2v.s5.6dc3c960fbcf from=translated src=- shape=04f09a30 vocab=f7bc1f0a
+-/
 theorem IsSMulRegular_of_IsLeftRegular_Nat
     [NonAssocSemiring R] {n : ℕ} (hRn : IsLeftRegular (n : R)) : IsSMulRegular R n :=
   λ a b h ↦ hRn (by simpa only [nsmul_eq_mul] using h)
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.2h2v.s10.8798f83c7179 from=translated src=- shape=63b91e87 vocab=f729292b
+-/
 theorem final_solution
     [Ring R] (hR2 : IsLeftRegular (2 : R)) (hR3 : IsLeftRegular (3 : R)) {f : R → R} :
     (∀ x y, f (f x * f y) + f (x + y) = f (x * y)) ↔

@@ -14,6 +14,9 @@ namespace MeasureTheory
 
 attribute [local simp] memLp_top_const
 
+/--
+@isnad1 id=memlp.0h4v.s6.61b17a0447d2 from=translated src=- shape=d27455fa vocab=59887d47
+-/
 @[simp] lemma memLp_top_one [One E] : MemLp (1 : α → E) ⊤ μ := memLp_top_const _
 
 end MeasureTheory

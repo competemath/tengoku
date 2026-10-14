@@ -19,6 +19,9 @@ Prove that there exists $a, b, c ∈ A$ such that $a < b < c$ and $c + 2a > 3b$.
 namespace IMOSL
 namespace IMO2021A1
 
+/--
+@isnad1 id=var.1h5v.s4.b97b109f337b from=translated src=- shape=748133dd vocab=0a41fe29
+-/
 lemma List_sorted_cons_cons_imp (h : List.Pairwise r (a :: b :: l)) : r a b :=
   (List.forall_mem_cons.mp (List.pairwise_cons.mp h).1).1
 
@@ -33,6 +36,9 @@ def good (c : ℕ) : List ℕ → Prop
 
 namespace good
 
+/--
+@isnad1 id=le.1h4v.s6.925e5d044129 from=translated src=- shape=4bd7aa7f vocab=a0fb5cb4
+-/
 theorem general_ineq₁ {c a} :
     ∀ {l b}, good c (b :: concat l a) →
       3 ^ l.length.succ * (c - b) ≤ 2 ^ l.length.succ * (c - a)
@@ -43,6 +49,9 @@ theorem general_ineq₁ {c a} :
       rw [mul_left_comm, Nat.pow_succ' (m := 2), mul_assoc]
       exact Nat.mul_le_mul_left _ h.1.general_ineq₁
 
+/--
+@isnad1 id=le.2h3v.s6.0fcd38078a0e from=translated src=- shape=e412fcc4 vocab=92a49fbb
+-/
 theorem general_ineq₂ (h : b < c) (h0 : good c (b :: l)) :
     3 ^ l.length ≤ 2 ^ l.length * c := by
   obtain rfl | ⟨l, a, rfl⟩ : l = [] ∨ ∃ l' a, l = concat l' a := l.eq_nil_or_concat
@@ -50,6 +59,9 @@ theorem general_ineq₂ (h : b < c) (h0 : good c (b :: l)) :
   · apply (Nat.le_mul_of_pos_right _ (Nat.zero_lt_sub_of_lt h)).trans
     rw [l.length_concat]; exact (h0.general_ineq₁).trans (Nat.mul_le_mul_left _ (c.sub_le a))
 
+/--
+@isnad1 id=good.2h2v.s6.57379918d511 from=translated src=- shape=3ebd910c vocab=257231f8
+-/
 theorem of_sorted_ineq : ∀ {l},
     l.Pairwise GT.gt → (∀ a ∈ l, ∀ b ∈ l, a < b → 3 * (c - b) ≤ 2 * (c - a)) → good c l
   | [] => λ _ _ ↦ trivial
@@ -62,11 +74,16 @@ theorem of_sorted_ineq : ∀ {l},
 
 end good
 
+/--
+@isnad1 id=lt.1h1v.s6.ed46308e88ad from=translated src=- shape=3d731061 vocab=f12631c6
+-/
 lemma five_pow_bound (hn : n ≠ 0) : 2 ^ (4 * n) * 5 ^ n < 3 ^ (4 * n) := by
   rw [Nat.pow_mul, ← Nat.mul_pow, Nat.pow_mul]
   exact Nat.pow_lt_pow_left (Nat.lt_succ_self 80) hn
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.3h2v.s7.947bcbb3368c from=translated src=- shape=4b441c06 vocab=e8ad47f5
+-/
 theorem final_solution (hn : n ≠ 0) {A : Finset ℕ}
     (hA : A.card = 4 * n + 2) (hA0 : ∀ a ∈ A, a ≤ 5 ^ n) :
     ∃ a ∈ A, ∃ b ∈ A, ∃ c ∈ A, a < b ∧ b < c ∧ 3 * b < c + 2 * a := by

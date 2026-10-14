@@ -19,18 +19,24 @@ noncomputable section
 
 namespace CKN.Foundation.Parabolic
 
-/-- The Euclidean norm on `Vec3` satisfies the triangle inequality. -/
+/-- The Euclidean norm on `Vec3` satisfies the triangle inequality.
+@isnad1 id=le.0h2v.s5.43043b2c1139 from=translated src=- shape=0438c7a3 vocab=4ea4a37e
+-/
 theorem vec3EuclideanNorm_add_le (v w : Vec3) :
     vec3EuclideanNorm (v + w) ≤ vec3EuclideanNorm v + vec3EuclideanNorm w := by
   simp only [vec3EuclideanNorm_eq_l2, WithLp.toLp_add]
   exact norm_add_le _ _
 
-/-- The Euclidean norm on `Vec3` is invariant under negation. -/
+/-- The Euclidean norm on `Vec3` is invariant under negation.
+@isnad1 id=eq.0h1v.s5.9d3591a0bc6b from=translated src=- shape=8fc7e33b vocab=af193548
+-/
 theorem vec3EuclideanNorm_neg (v : Vec3) :
     vec3EuclideanNorm (-v) = vec3EuclideanNorm v := by
   simp only [vec3EuclideanNorm_eq_l2, WithLp.toLp_neg, norm_neg]
 
-/-- The Euclidean norm on `Vec3` satisfies the reverse triangle inequality. -/
+/-- The Euclidean norm on `Vec3` satisfies the reverse triangle inequality.
+@isnad1 id=le.0h2v.s5.93303ca0d3cd from=translated src=- shape=0438c7a3 vocab=06e74943
+-/
 theorem vec3EuclideanNorm_sub_le (v w : Vec3) :
     vec3EuclideanNorm (v - w) ≤ vec3EuclideanNorm v + vec3EuclideanNorm w := by
   calc
@@ -38,7 +44,9 @@ theorem vec3EuclideanNorm_sub_le (v w : Vec3) :
     _ ≤ vec3EuclideanNorm v + vec3EuclideanNorm (-w) := vec3EuclideanNorm_add_le v (-w)
     _ = vec3EuclideanNorm v + vec3EuclideanNorm w := by rw [vec3EuclideanNorm_neg]
 
-/-- Each component of a vector in `Vec3` is bounded in absolute value by the Euclidean norm. -/
+/-- Each component of a vector in `Vec3` is bounded in absolute value by the Euclidean norm.
+@isnad1 id=le.0h2v.s4.10214af97440 from=translated src=- shape=a4c675b7 vocab=2a67bc8f
+-/
 theorem abs_apply_le_vec3EuclideanNorm (v : Vec3) (i : Fin 3) :
     |v i| ≤ vec3EuclideanNorm v := by
   unfold vec3EuclideanNorm
@@ -47,7 +55,9 @@ theorem abs_apply_le_vec3EuclideanNorm (v : Vec3) (i : Fin 3) :
     simpa [sq_abs] using h
   exact Real.abs_le_sqrt hsq
 
-/-- The sup norm on `Vec3` (the default `‖·‖` for `Fin 3 → ℝ`) is bounded by the Euclidean norm. -/
+/-- The sup norm on `Vec3` (the default `‖·‖` for `Fin 3 → ℝ`) is bounded by the Euclidean norm.
+@isnad1 id=le.0h1v.s5.db4d40e3fe2a from=translated src=- shape=fcad3e9f vocab=a3ca6814
+-/
 theorem norm_le_vec3EuclideanNorm (v : Vec3) :
     ‖v‖ ≤ vec3EuclideanNorm v := by
   rw [Pi.norm_def]
@@ -59,7 +69,9 @@ theorem norm_le_vec3EuclideanNorm (v : Vec3) :
     exact_mod_cast hi'
   exact_mod_cast hnn
 
-/-- The Euclidean norm on `Vec3` is bounded by `√3` times the sup norm. -/
+/-- The Euclidean norm on `Vec3` is bounded by `√3` times the sup norm.
+@isnad1 id=le.0h1v.s5.aa6e4f1164e8 from=translated src=- shape=73f798ee vocab=695dce09
+-/
 theorem vec3EuclideanNorm_le_sqrt_three_mul_norm (v : Vec3) :
     vec3EuclideanNorm v ≤ Real.sqrt 3 * ‖v‖ := by
   have hsq : vec3EuclideanNorm v ^ 2 ≤ (Real.sqrt 3 * ‖v‖) ^ 2 := by
@@ -80,7 +92,9 @@ theorem vec3EuclideanNorm_le_sqrt_three_mul_norm (v : Vec3) :
   rwa [abs_of_nonneg (vec3EuclideanNorm_nonneg v),
     abs_of_nonneg (mul_nonneg (Real.sqrt_nonneg 3) (norm_nonneg v))] at h2
 
-/-- The Euclidean norm on `Vec3` is bounded by the sum of absolute values of its components. -/
+/-- The Euclidean norm on `Vec3` is bounded by the sum of absolute values of its components.
+@isnad1 id=le.0h1v.s5.64cdf5695029 from=translated src=- shape=3bf1a654 vocab=ad62c7bc
+-/
 theorem vec3EuclideanNorm_le_sum_abs (v : Vec3) :
     vec3EuclideanNorm v ≤ ∑ i : Fin 3, |v i| := by
   unfold vec3EuclideanNorm
@@ -104,7 +118,9 @@ theorem vec3EuclideanNorm_le_sum_abs (v : Vec3) :
     _ = S := abs_of_nonneg hS
     _ = ∑ i : Fin 3, |v i| := rfl
 
-/-- The Euclidean norm on `Vec3` is continuous with respect to the product topology. -/
+/-- The Euclidean norm on `Vec3` is continuous with respect to the product topology.
+@isnad1 id=continuo.0h0v.s5.116624bf4c87 from=translated src=- shape=54c8eceb vocab=584236dd
+-/
 theorem continuous_vec3EuclideanNorm :
     Continuous (vec3EuclideanNorm : Vec3 → ℝ) := by
   change Continuous (fun z : Vec3 => Real.sqrt (∑ i : Fin 3, (z i) ^ 2))

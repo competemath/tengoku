@@ -43,7 +43,9 @@ namespace ACMax
 open Classical in
 /-- **B3 — Each `M`-isolated twin meets exactly three hubs.**  An `M`-isolated degree-`3`
 twin `t` (`(N t ∩ D).card = 0`) has all three of its neighbours in `Hub`, so
-`(N t ∩ Hub).card = 3`. -/
+`(N t ∩ Hub).card = 3`.
+@isnad1 id=eq.5h5v.s8.67b8846763ef from=translated src=- shape=be319d04 vocab=8dbbd48d
+-/
 theorem each_iso_three_hubs_general {V : Type*} [Fintype V] (G : SimpleGraph V)
     (D Hub : Finset V)
     (hmemD : ∀ v : V, v ∈ D ↔ G.degree v = 3)
@@ -78,7 +80,9 @@ namespace ACMax
 variable {V : Type*} [Fintype V]
 
 open Classical in
-/-- **Total iso-degree is `3·|Iso|`.**  Each `M`-isolated twin meets exactly three hubs. -/
+/-- **Total iso-degree is `3·|Iso|`.**  Each `M`-isolated twin meets exactly three hubs.
+@isnad1 id=eq.1h4v.s7.635a7efcf68f from=translated src=- shape=33fd1788 vocab=b6bb21cc
+-/
 theorem hub_iso_sum_general (G : SimpleGraph V) (Hub Iso : Finset V)
     (hiso3 : ∀ t ∈ Iso, (G.neighborFinset t ∩ Hub).card = 3) :
     ∑ a ∈ Hub, (G.neighborFinset a ∩ Iso).card = 3 * Iso.card := by
@@ -105,7 +109,9 @@ open Classical in
 /-- **A `closeSet` member is within distance `3`.**  Every vertex of
 the radius-`3` combinatorial ball `closeSet G u₀` is at graph distance `≤ 3` from
 `u₀`; each membership certificate is a walk of length `≤ 3`.  No connectivity is
-needed. -/
+needed.
+@isnad1 id=le.1h4v.s5.155136a3a20a from=translated src=- shape=782a2768 vocab=aeff0038
+-/
 theorem dist_le_three_of_mem_closeSet (G : SimpleGraph (Fin n)) (u₀ v : Fin n)
     (hv : v ∈ closeSet G u₀) : G.dist u₀ v ≤ 3 := by
   unfold closeSet at hv
@@ -149,7 +155,9 @@ variable {V : Type*} [Fintype V]
 
 open Classical in
 /-- **B-0a (push).**  The negation of a degree-`3`–degree-`3` edge, in the pointwise
-`hs0` form the downstream `e(M) = 0` fight consumes. -/
+`hs0` form the downstream `e(M) = 0` fight consumes.
+@isnad1 id=not.3h4v.s7.eaa8e3d3c122 from=translated src=- shape=dc1c7db3 vocab=9cb17b25
+-/
 theorem s0_of_no_medge (G : SimpleGraph V)
     (h : ¬ ∃ v w : V, G.degree v = 3 ∧ G.degree w = 3 ∧ G.Adj v w) :
     ∀ v w : V, G.degree v = 3 → G.degree w = 3 → ¬G.Adj v w :=
@@ -159,7 +167,9 @@ open Classical in
 /-- **B-0a (identification).**  Under `hs0` (no degree-`3`–degree-`3` adjacency) every
 degree-`3` vertex is `M`-isolated, so the degree-`3` set coincides with the `M`-isolated
 twin set: `deg3Set G = isoTwins G`.  The forward inclusion is the `(a)`-step `hsub` of
-`xmz_pigeonhole_input`; the reverse is the definitional `isoTwins ⊆ deg3Set`. -/
+`xmz_pigeonhole_input`; the reverse is the definitional `isoTwins ⊆ deg3Set`.
+@isnad1 id=eq.1h2v.s6.71a198bcf457 from=translated src=- shape=5d0d0342 vocab=f6b440b9
+-/
 theorem deg3_eq_isoTwins_of_s0 (G : SimpleGraph V)
     (hs0 : ∀ v w : V, G.degree v = 3 → G.degree w = 3 → ¬G.Adj v w) :
     deg3Set G = isoTwins G := by
@@ -180,7 +190,9 @@ hub-to-twin incidence sum is `3·|Iso|` (`hub_iso_sum_general`):
 supplies its per-twin hypothesis directly from the definition of `isoTwins` (whose members
 are intrinsically `M`-isolated), so only minimum degree `3` is needed here — the `hs0`
 `e(M) = 0` hypothesis of the surrounding node is what identifies `|Iso| = n₃` upstream
-(`deg3_eq_isoTwins_of_s0`), not this incidence identity. -/
+(`deg3_eq_isoTwins_of_s0`), not this incidence identity.
+@isnad1 id=eq.1h2v.s7.b39ec5313517 from=translated src=- shape=5419f622 vocab=327318e2
+-/
 theorem twin_incidence_total (G : SimpleGraph V)
     (h3 : ∀ v : V, 3 ≤ G.degree v) :
     ∑ h ∈ hubSet G, (G.neighborFinset h ∩ isoTwins G).card = 3 * (isoTwins G).card := by

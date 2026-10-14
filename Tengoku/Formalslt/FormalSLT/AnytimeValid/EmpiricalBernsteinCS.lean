@@ -61,6 +61,9 @@ def empiricalBernsteinUpperFailure {Ω : Type*}
       + Real.log (1 / delta) / ((n : ℝ) * lam)
       ≤ runningMean X n ω}
 
+/--
+@isnad1 id=le.2h2v.s5.67b7e9f21038 from=translated src=- shape=a2fc2f48 vocab=23cd3f93
+-/
 lemma empiricalBernsteinCgf_nonneg {b lam : ℝ}
     (_hlam : 0 ≤ lam) (hblam : b * lam < 3) :
     0 ≤ empiricalBernsteinCgf b lam := by
@@ -70,13 +73,18 @@ lemma empiricalBernsteinCgf_nonneg {b lam : ℝ}
     exact mul_pos (by norm_num) hpos
   exact div_nonneg (sq_nonneg lam) hden.le
 
+/--
+@isnad1 id=le.1h4v.s5.1276342d4e86 from=translated src=- shape=e4e87559 vocab=fb2da512
+-/
 lemma runningVarianceProxy_nonneg {Ω : Type*} {V : ℕ → Ω → ℝ}
     (hV_nonneg : ∀ k, 0 ≤ V k) (n : ℕ) (ω : Ω) :
     0 ≤ runningVarianceProxy V n ω := by
   unfold runningVarianceProxy
   exact Finset.sum_nonneg fun i _ => hV_nonneg i ω
 
-/-- Product measurability of the parameterized empirical-Bernstein process. -/
+/-- Product measurability of the parameterized empirical-Bernstein process.
+@isnad1 id=measurab.2h5v.s6.fe83c7928e87 from=translated src=- shape=53030969 vocab=5b5a1af2
+-/
 theorem measurable_empiricalBernsteinExponentialProcess_prod {Ω : Type*} [MeasurableSpace Ω]
     (X V : ℕ → Ω → ℝ) (b : ℝ) (n : ℕ)
     (hX_meas : ∀ k, Measurable (X k)) (hV_meas : ∀ k, Measurable (V k)) :
@@ -91,7 +99,9 @@ theorem measurable_empiricalBernsteinExponentialProcess_prod {Ω : Type*} [Measu
 /-- Each fixed-tilt empirical-Bernstein process is adapted once the increment process is
 predictable-increment adapted (`X_k` is `ℱ (k+1)`-measurable) and the variance proxy `V` is
 `ℱ`-adapted (predictable). The running sum `S_n` is `ℱ n`-measurable because it only involves
-`X_0, …, X_{n-1}` and `i < n ⟹ i + 1 ≤ n`. -/
+`X_0, …, X_{n-1}` and `i < n ⟹ i + 1 ≤ n`.
+@isnad1 id=strongly.2h7v.s6.81c7abd57c6f from=translated src=- shape=9e42bfc6 vocab=370c4d1e
+-/
 theorem stronglyAdapted_empiricalBernsteinExponentialProcess_of_adapted
     {Ω : Type*} {mΩ : MeasurableSpace Ω} {ℱ : Filtration ℕ mΩ}
     {X V : ℕ → Ω → ℝ} (b lam : ℝ)
@@ -127,6 +137,7 @@ Random-proxy conditional Bernstein MGF.
 
 If the conditional second moment is bounded by a predictable proxy `V`, then
 the conditional MGF is bounded by `exp (psi(lambda) * V)`.
+@isnad1 id=eventual.8h7v.s8.502665996bdb from=translated src=- shape=058adee8 vocab=081600da
 -/
 theorem condBernsteinMGF_of_bounded_centered_condVarianceProxy
     {Ω : Type*} [m₀ : MeasurableSpace Ω]
@@ -251,7 +262,9 @@ theorem condBernsteinMGF_of_bounded_centered_condVarianceProxy
           simpa [add_comm] using Real.add_one_le_exp (lam ^ 2 / K * V ω)
     _ = (fun ω => Real.exp (empiricalBernsteinCgf b lam * V ω)) ω := by rw [hsame]
 
-/-- Pointwise upper bound for the variance-adapted exponential process. -/
+/-- Pointwise upper bound for the variance-adapted exponential process.
+@isnad1 id=le.4h7v.s7.7fcf7a6e9eda from=translated src=- shape=d90c52ba vocab=9c67fa55
+-/
 theorem empiricalBernsteinExponentialProcess_le_of_bound {Ω : Type*}
     (X V : ℕ → Ω → ℝ) (b lam : ℝ) (n : ℕ) (ω : Ω)
     (hlam : 0 ≤ lam) (hblam : b * lam < 3)
@@ -275,7 +288,9 @@ theorem empiricalBernsteinExponentialProcess_le_of_bound {Ω : Type*}
     mul_le_mul_of_nonneg_left hsum_le hlam
   nlinarith
 
-/-- Integrability of the fixed-tilt empirical-Bernstein process from bounded increments. -/
+/-- Integrability of the fixed-tilt empirical-Bernstein process from bounded increments.
+@isnad1 id=integrab.6h8v.s7.85f0c1b4f63e from=translated src=- shape=9281c0fa vocab=8d3a3b20
+-/
 theorem integrable_empiricalBernsteinExponentialProcess
     {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω} [IsFiniteMeasure μ]
     {X V : ℕ → Ω → ℝ} {b lam : ℝ} (n : ℕ)
@@ -302,6 +317,7 @@ theorem integrable_empiricalBernsteinExponentialProcess
 /--
 The variance-adapted exponential process is a supermartingale under the
 bounded, centered, conditional-second-moment model.
+@isnad1 id=supermar.12h8v.s8.9df26757618f from=translated src=- shape=597d0281 vocab=4c32b788
 -/
 theorem empiricalBernstein_exponential_supermartingale
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
@@ -397,6 +413,7 @@ theorem empiricalBernstein_exponential_supermartingale
 /--
 The fixed-lambda empirical-Bernstein failure event is contained in the
 corresponding exponential crossing event.
+@isnad1 id=le.2h6v.s6.52e2ae611655 from=translated src=- shape=70825310 vocab=44993fdf
 -/
 theorem empiricalBernsteinUpperFailure_subset_exponential_crossing
     {Ω : Type*} {X V : ℕ → Ω → ℝ} {b lam delta : ℝ}
@@ -422,7 +439,9 @@ theorem empiricalBernsteinUpperFailure_subset_exponential_crossing
   rw [← Real.exp_log hdelta_inv_pos]
   exact Real.exp_le_exp.2 hlog_le
 
-/-- Product integrability for the empirical-Bernstein process under the uniform tilt prior. -/
+/-- Product integrability for the empirical-Bernstein process under the uniform tilt prior.
+@isnad1 id=integrab.8h9v.s7.c52d3a0df90a from=translated src=- shape=af67eb75 vocab=25e5e5fb
+-/
 theorem integrable_empiricalBernsteinExponentialProcess_prod_uniformPrior
     {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω} [IsFiniteMeasure μ]
     {X V : ℕ → Ω → ℝ} {b lam0 lam1 : ℝ} (n : ℕ)
@@ -465,7 +484,9 @@ theorem integrable_empiricalBernsteinExponentialProcess_prod_uniformPrior
       nlinarith
     exact hbase.trans (Real.exp_le_exp.2 harg)
 
-/-- Product integrability in the `Ω × ℝ` orientation for the uniform tilt prior. -/
+/-- Product integrability in the `Ω × ℝ` orientation for the uniform tilt prior.
+@isnad1 id=integrab.8h9v.s7.0d7d65ddea15 from=translated src=- shape=ae993ece vocab=25e5e5fb
+-/
 theorem integrable_empiricalBernsteinExponentialProcess_omegaProd_uniformPrior
     {Ω : Type*} {mΩ : MeasurableSpace Ω} (ν : Measure Ω) [IsFiniteMeasure ν]
     {X V : ℕ → Ω → ℝ} {b lam0 lam1 : ℝ} (n : ℕ)
@@ -514,7 +535,9 @@ theorem integrable_empiricalBernsteinExponentialProcess_omegaProd_uniformPrior
       nlinarith
     exact hbase.trans (Real.exp_le_exp.2 harg)
 
-/-- Product strong measurability of the parameterized empirical-Bernstein process. -/
+/-- Product strong measurability of the parameterized empirical-Bernstein process.
+@isnad1 id=strongly.2h7v.s6.f43d07ba2ca6 from=translated src=- shape=f5c58065 vocab=a48b3dbf
+-/
 theorem stronglyMeasurable_filtration_prod_empiricalBernstein
     {Ω : Type*} {mΩ : MeasurableSpace Ω} {ℱ : Filtration ℕ mΩ}
     {X V : ℕ → Ω → ℝ} (b : ℝ) (n : ℕ)
@@ -557,7 +580,9 @@ theorem stronglyMeasurable_filtration_prod_empiricalBernstein
         exact measurable_snd
     · exact Finset.measurable_sum _ hVmeas
 
-/-- The prior integral is adapted once `X` and `V` are adapted. -/
+/-- The prior integral is adapted once `X` and `V` are adapted.
+@isnad1 id=strongly.2h7v.s6.c5c353320330 from=translated src=- shape=bdb402ec vocab=eb55e275
+-/
 theorem stronglyAdapted_empiricalBernsteinMixtureProcess_of_adapted
     {Ω : Type*} {mΩ : MeasurableSpace Ω} {ℱ : Filtration ℕ mΩ}
     {X V : ℕ → Ω → ℝ} (b : ℝ) (ρ : Measure ℝ) [SFinite ρ]
@@ -572,7 +597,9 @@ theorem stronglyAdapted_empiricalBernsteinMixtureProcess_of_adapted
   letI : MeasurableSpace Ω := ℱ n
   exact MeasureTheory.StronglyMeasurable.integral_prod_right (ν := ρ) hjoint
 
-/-- One mixture supermartingale step from fixed-tilt empirical-Bernstein steps. -/
+/-- One mixture supermartingale step from fixed-tilt empirical-Bernstein steps.
+@isnad1 id=eventual.7h9v.s9.410c212485f4 from=translated src=- shape=d272b4e4 vocab=302f6b8c
+-/
 theorem empiricalBernstein_mixture_condExp_step_of_fixed_tilt_steps
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {μ : @Measure Ω mΩ} [IsProbabilityMeasure μ]
@@ -653,7 +680,9 @@ theorem empiricalBernstein_mixture_condExp_step_of_fixed_tilt_steps
                 (f := fun ω lam => empiricalBernsteinExponentialProcess X V b lam n ω)
                 hcurrent_restrict).symm
 
-/-- The empirical-Bernstein mixture process is a nonnegative supermartingale. -/
+/-- The empirical-Bernstein mixture process is a nonnegative supermartingale.
+@isnad1 id=and.17h8v.s9.910c12d6acc7 from=translated src=- shape=5aacc713 vocab=3f94931d
+-/
 theorem empiricalBernstein_mixture_is_supermartingale
     {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {μ : @Measure Ω mΩ} [IsProbabilityMeasure μ]
@@ -720,7 +749,9 @@ theorem empiricalBernstein_mixture_is_supermartingale
   intro n ω
   exact integral_nonneg fun lam => (Real.exp_pos _).le
 
-/-- Rational arithmetic witness for the displayed closed-form boundary helper. -/
+/-- Rational arithmetic witness for the displayed closed-form boundary helper.
+@isnad1 id=eq.0h0v.s5.f5d001a6f0e0 from=translated src=- shape=2caa60ef vocab=6753fb11
+-/
 theorem empiricalBernstein_rational_witness_nonvacuous :
     empiricalBernsteinClosedFormBoundary 0 1 4 2 1 = 2 := by
   norm_num [empiricalBernsteinClosedFormBoundary]

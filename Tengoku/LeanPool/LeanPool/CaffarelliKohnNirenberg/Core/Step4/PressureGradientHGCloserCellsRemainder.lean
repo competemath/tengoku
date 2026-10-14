@@ -26,7 +26,9 @@ noncomputable section
 namespace CKN.Core.Step4
 
 /-- Temporal Hölder on a cell window produces the factor `r^{2/5}` for the
-`6/5` power integral of a function controlled in `L^{3/2}` in time. -/
+`6/5` power integral of a function controlled in `L^{3/2}` in time.
+@isnad1 id=le.2h3v.s7.a8db99b42b4d from=translated src=- shape=9cf150bb vocab=bbe94a0b
+-/
 theorem pressure_remainder_time_power_bound
     {H : ℝ → ℝ≥0∞} (hH : AEMeasurable H volume)
     {t r : ℝ} (hr : 0 < r) :
@@ -66,7 +68,9 @@ theorem pressure_remainder_time_power_bound
       norm_num
 
 /-- A spatial bound on almost every time slice gives a power-integral
-estimate on every cylinder, with its full spatial volume factor. -/
+estimate on every cylinder, with its full spatial volume factor.
+@isnad1 id=le.4h5v.s8.68a0394793d9 from=translated src=- shape=023d69d1 vocab=4cdd72c2
+-/
 theorem pressure_remainder_cylinder_power_bound
     {F : ParabolicPoint → ℝ} {H : ℝ → ℝ≥0∞}
     (hF : AEMeasurable F volume) (hH : AEMeasurable H volume)
@@ -104,7 +108,9 @@ theorem pressure_remainder_cylinder_power_bound
       exact mul_le_mul_right (pressure_remainder_time_power_bound hH (t := t) hr) _
 
 /-- The normalized cell estimate for a spatially bounded remainder. Its
-radius exponent is positive throughout the pressure-gradient bootstrap range. -/
+radius exponent is positive throughout the pressure-gradient bootstrap range.
+@isnad1 id=le.4h5v.s8.4a40a766c4c7 from=translated src=- shape=b4cd434a vocab=da298bd8
+-/
 theorem pressure_remainder_morreyCell_bound
     {κ : ℝ} {F : ParabolicPoint → ℝ} {H : ℝ → ℝ≥0∞}
     (hF : AEMeasurable F volume) (hH : AEMeasurable H volume)

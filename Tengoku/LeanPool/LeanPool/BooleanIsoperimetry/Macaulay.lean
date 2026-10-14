@@ -29,6 +29,9 @@ simplicial initial segments.  It is stated with truncated subtraction because
 noncomputable def HIncrement (n p : ℕ) : ℕ :=
   H n (p + 1) - H n p
 
+/--
+@isnad1 id=eq.0h2v.s4.105453b1cb79 from=translated src=- shape=2796827b vocab=68c80db2
+-/
 lemma H_eq_sum_HIncrement (n k : ℕ) :
     H n k = ∑ p ∈ Finset.range k, HIncrement n p := by
   induction k with
@@ -44,6 +47,7 @@ Additive form of the one-step lower bound: the new point contributes at least
 `n - p` new neighborhood vertices.  This is a direct corollary of
 `H_increment_lower`, but the shape is easier to reuse in cascade-layer
 arguments.
+@isnad1 id=le.1h2v.s6.771229f703b0 from=translated src=- shape=4e7b998f vocab=17b4ccf8
 -/
 lemma H_increment_lower_dim_sub (n p : ℕ) (hp : p + 1 ≤ 2 ^ n) :
     H n p + (n - p) ≤ H n (p + 1) := by
@@ -58,6 +62,7 @@ lemma H_increment_lower_dim_sub (n p : ℕ) (hp : p + 1 ≤ 2 ^ n) :
 /--
 First-difference form of `H_increment_lower`: as long as `p + 1` is inside the
 `n`-cube, the `p`-th increment of `H n` is at least `n - p`.
+@isnad1 id=le.1h2v.s5.427fec96f8df from=translated src=- shape=7a441e6a vocab=5342b818
 -/
 lemma HIncrement_lower (n p : ℕ) (hp : p + 1 ≤ 2 ^ n) :
     n - p ≤ HIncrement n p := by
@@ -69,6 +74,7 @@ lemma HIncrement_lower (n p : ℕ) (hp : p + 1 ≤ 2 ^ n) :
 /--
 The exact first difference of `H` is the number of preimages of the rank-`p` vertex
 under `gShift`. This exactly captures the Kruskal-Katona binomial layer profile.
+@isnad1 id=eq.1h3v.s5.6be4e4f15533 from=translated src=- shape=6d1342ed vocab=4efd3e65
 -/
 lemma HIncrement_eq_gShift_inv (n p : ℕ) (w : Cube n) (hw : rank w = p) :
     HIncrement n p =
@@ -87,7 +93,9 @@ structure: the `gShift`-fibre of `w` is an interval of "lower extensions".
 
 This refines `H_increment_lower` (which only established the `⊇` inclusion and a
 cardinality lower bound) to a full equality of fibres, and is the reusable input
-for the exact increment-profile value `HIncrement_eq_min'`. -/
+for the exact increment-profile value `HIncrement_eq_min'`.
+@isnad1 id=eq.1h2v.s6.1c488f9d1e34 from=translated src=- shape=859d97fe vocab=ab2f534d
+-/
 lemma gShift_preimage_eq_insert_below_min {n : ℕ} (w : Cube n) (h : w.Nonempty) :
     Finset.univ.filter (fun v : Cube n => gShift v = w)
       = (Finset.univ.filter (fun j : Fin n => (j : ℕ) < (w.min' h : ℕ))).image
@@ -146,7 +154,9 @@ This is the exact Kruskal–Katona/Macaulay layer-increment value, upgrading the
 lower bound `HIncrement_lower` (`n - p ≤ HIncrement n p`, via
 `rank_add_min_ge`) to a closed form.  It is reusable, non-circular `H`-increment
 theory: it mentions only `H`, `rank`, `gShift`, and `Finset.min'`, and sits well
-below the cascade/Macaulay-window leaves in the dependency order. -/
+below the cascade/Macaulay-window leaves in the dependency order.
+@isnad1 id=eq.2h3v.s5.0c347f519073 from=translated src=- shape=161f9c93 vocab=3f99e1a8
+-/
 lemma HIncrement_eq_min' {n : ℕ} (p : ℕ) (w : Cube n) (hw : rank w = p) (hne : w.Nonempty) :
     HIncrement n p = (w.min' hne : ℕ) := by
   have hinj : Set.InjOn (fun j : Fin n => insert j w)
@@ -175,7 +185,9 @@ lemma HIncrement_eq_min' {n : ℕ} (p : ℕ) (w : Cube n) (hw : rank w = p) (hne
     _ = (w.min' hne : ℕ) := Finset.card_range _
 
 /-- The empty-rank first difference: adding the empty vertex exposes the whole
-closed unit ball around it. -/
+closed unit ball around it.
+@isnad1 id=eq.0h1v.s4.7755b75d19f0 from=translated src=- shape=c809089b vocab=9b787148
+-/
 lemma HIncrement_zero (n : ℕ) : HIncrement n 0 = n + 1 := by
   unfold HIncrement
   rw [H_one, H_zero]
@@ -189,6 +201,9 @@ vertices in its closed unit ball.
 noncomputable def macaulayShadowWeight {n : ℕ} (w : Cube n) : ℕ :=
   if h : w.Nonempty then (w.min' h : ℕ) else n + 1
 
+/--
+@isnad1 id=eq.2h3v.s4.2f2c31296b72 from=translated src=- shape=fd4eba5a vocab=f64e01b2
+-/
 lemma rank_eq_zero_of_not_nonempty {n p : ℕ} (w : Cube n) (hw : rank w = p)
     (hempty : ¬ w.Nonempty) : p = 0 := by
   have hwempty : w = ∅ := Finset.not_nonempty_iff_eq_empty.mp hempty
@@ -200,6 +215,7 @@ lemma rank_eq_zero_of_not_nonempty {n p : ℕ} (w : Cube n) (hw : rank w = p)
 Uniform exact first-difference formula, including the empty vertex.  This is the
 rank-indexed layer profile used to turn a Macaulay shadow window into an
 ordinary sum over vertices in the corresponding rank interval.
+@isnad1 id=eq.1h3v.s4.70d600a54205 from=translated src=- shape=bd35013d vocab=0eb68571
 -/
 lemma HIncrement_eq_macaulayShadowWeight {n : ℕ} (p : ℕ) (w : Cube n)
     (hw : rank w = p) :
@@ -231,7 +247,9 @@ subset of `Fin n` has its smallest coordinate plus its cardinality bounded by `n
 
 /-- A nonempty vertex of the `n`-cube satisfies `min' + card ≤ n`: its `card`
 active coordinates all lie in `[min', n)`, an interval of size `n - min'`.  A
-pure `Finset.min'` bound, used for the per-layer increment upper bound. -/
+pure `Finset.min'` bound, used for the per-layer increment upper bound.
+@isnad1 id=le.1h2v.s5.4279e5764c80 from=translated src=- shape=76e84d65 vocab=d0a8108f
+-/
 lemma cube_min'_add_card_le {n : ℕ} (w : Cube n) (h : w.Nonempty) :
     (w.min' h : ℕ) + w.card ≤ n := by
   have hsub : w ⊆ Finset.Ici (w.min' h) := fun x hx =>
@@ -241,7 +259,9 @@ lemma cube_min'_add_card_le {n : ℕ} (w : Cube n) (h : w.Nonempty) :
   omega
 
 /-- Every rank below `2 ^ n` is realised by some vertex of the `n`-cube
-(`rank` is a bijection onto `range (2 ^ n)`). -/
+(`rank` is a bijection onto `range (2 ^ n)`).
+@isnad1 id=ex.1h2v.s5.f8f031b6f27e from=translated src=- shape=a474de38 vocab=9da332c8
+-/
 lemma exists_rank_eq {n j : ℕ} (hj : j < 2 ^ n) : ∃ w : Cube n, rank w = j := by
   have hmem : j ∈ Finset.image (@rank n) Finset.univ := by
     rw [rank_image_eq]; exact Finset.mem_range.mpr hj
@@ -251,7 +271,9 @@ lemma exists_rank_eq {n j : ℕ} (hj : j < 2 ^ n) : ∃ w : Cube n, rank w = j :
 /-- **Per-layer increment upper bound.**  For a rank `j` in Macaulay layer `r`
 (i.e. `binomPrefix n r ≤ j < binomPrefix n (r+1)`, the cardinality-`r` band), the
 increment `HIncrement n j` (the min coordinate of the rank-`j` vertex) is at most
-`n - r`.  This is the upper companion of `HIncrement_lower`. -/
+`n - r`.  This is the upper companion of `HIncrement_lower`.
+@isnad1 id=le.3h3v.s5.78960167882d from=translated src=- shape=d115867d vocab=468e9564
+-/
 lemma HIncrement_le_of_mem_layer {n r j : ℕ} (hr : 1 ≤ r)
     (hlo : binomPrefix n r ≤ j) (hhi : j < binomPrefix n (r + 1)) :
     HIncrement n j ≤ n - r := by
@@ -271,7 +293,9 @@ lemma HIncrement_le_of_mem_layer {n r j : ℕ} (hr : 1 ≤ r)
 /-- **Per-layer increment window bound.**  A length-`L` rank window contained in a
 single Macaulay layer `r` has total `HIncrement` mass at most `L * (n - r)`.  This
 is the reusable upper-shadow-window bound for a window confined to one layer; it
-follows by summing `HIncrement_le_of_mem_layer` over the window. -/
+follows by summing `HIncrement_le_of_mem_layer` over the window.
+@isnad1 id=le.3h4v.s6.e582119478d6 from=translated src=- shape=416b4ba3 vocab=bb870662
+-/
 lemma HIncrement_window_le_of_layer {n r a L : ℕ} (hr : 1 ≤ r)
     (hlo : binomPrefix n r ≤ a) (hhi : a + L ≤ binomPrefix n (r + 1)) :
     (∑ i ∈ Finset.Ico a (a + L), HIncrement n i) ≤ L * (n - r) := by
@@ -288,6 +312,7 @@ Exact interval form of the Macaulay layer profile: a rank window of
 `HIncrement` is the sum of the explicit shadow weights of the vertices whose
 ranks lie in the same interval.  The endpoint bound `hi ≤ 2^n` is the natural
 cube-capacity condition used by all Harper windows.
+@isnad1 id=eq.1h3v.s6.840e10f05db5 from=translated src=- shape=6a105d56 vocab=a16be02b
 -/
 lemma HIncrement_window_eq_macaulayShadowWeight_sum
     (n lo hi : ℕ) (hhi : hi ≤ 2 ^ n) :
@@ -322,6 +347,7 @@ lemma HIncrement_window_eq_macaulayShadowWeight_sum
 /--
 Strictness consequence of the increment lower bound: before rank `n`, extending
 the initial segment by one strictly enlarges its closed neighborhood.
+@isnad1 id=lt.2h2v.s6.eccadbd5e965 from=translated src=- shape=5239a95a vocab=3f188ac0
 -/
 lemma H_strictMono_on_initial_layer {n p : ℕ} (hp : p + 1 ≤ 2 ^ n) (hpn : p < n) :
     H n p < H n (p + 1) := by
@@ -351,6 +377,7 @@ side to `H n p + H n q` (using `q ≤ p ≤ H n q` from the cascade), and taking
   * Case II (`a > H n b`): `H n p + H n q ≤ H n a + a`.
 Both are true; closing them is the missing combinatorial heart (a compression /
 nested-cascade interleaving argument using `ih`).
+@isnad1 id=eq.4h4v.s6.55b6e9c1549c from=translated src=- shape=18f9d95d vocab=3acce346
 -/
 lemma canonical_boundaryCost_eq_H_add
     {n k p q : ℕ} (hp : p ≤ 2 ^ n) (_hq : q ≤ 2 ^ n) (hq_pos : 1 ≤ q)
@@ -364,11 +391,17 @@ lemma canonical_boundaryCost_eq_H_add
   have max2 : max (H n q) p = H n q := max_eq_left h4
   rw [max1, max2]
 
+/--
+@isnad1 id=eq.0h3v.s5.da1b51401323 from=translated src=- shape=a730f6f1 vocab=fbf9cc0d
+-/
 lemma boundaryCost_comm (n a b : ℕ) :
     max (H n a) b + max (H n b) a =
     max (H n b) a + max (H n a) b := by
   omega
 
+/--
+@isnad1 id=eq.3h3v.s6.0355e4e63424 from=translated src=- shape=058efc27 vocab=2a1acc16
+-/
 lemma boundaryCost_eq_case_le
     {n a b : ℕ} (ha : a ≤ 2 ^ n) (hb_le_a : b ≤ a) (hcase : a ≤ H n b) :
     max (H n a) b + max (H n b) a = H n a + H n b := by
@@ -378,6 +411,9 @@ lemma boundaryCost_eq_case_le
   have max2 : max (H n b) a = H n b := max_eq_left hcase
   rw [max1, max2]
 
+/--
+@isnad1 id=eq.3h3v.s6.d259f5a7a2b6 from=translated src=- shape=7bacc587 vocab=3406d999
+-/
 lemma boundaryCost_eq_case_gt
     {n a b : ℕ} (ha : a ≤ 2 ^ n) (hb_le_a : b ≤ a) (hcase : H n b < a) :
     max (H n a) b + max (H n b) a = H n a + a := by
@@ -387,6 +423,9 @@ lemma boundaryCost_eq_case_gt
   have max2 : max (H n b) a = a := max_eq_right (le_of_lt hcase)
   rw [max1, max2]
 
+/--
+@isnad1 id=le.6h4v.s7.0bca67eb31d9 from=translated src=- shape=cba14c8d vocab=3acce346
+-/
 lemma harper_bc_min_q_zero_core (n : ℕ) {a b p : ℕ}
     (ha : a ≤ 2 ^ n) (hb : b ≤ 2 ^ n) (hp : p ≤ 2 ^ n)
     (hb_le_a : b ≤ a)
@@ -410,6 +449,9 @@ lemma harper_bc_min_q_zero_core (n : ℕ) {a b p : ℕ}
     · rw [ eq_comm ] at ht; simp_all +arith +decide [ binomPrefix ];
       grind +suggestions
 
+/--
+@isnad1 id=le.7h4v.s7.966f67b1a3b9 from=translated src=- shape=709f3045 vocab=11580788
+-/
 lemma harper_bc_min_q_zero (n : ℕ)
     (_ih : ∀ m, m < n → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
             H (m + 1) (x + y) ≤ max (H m x) y + max (H m y) x)
@@ -420,6 +462,9 @@ lemma harper_bc_min_q_zero (n : ℕ)
     H n p + p ≤ max (H n a) b + max (H n b) a :=
   harper_bc_min_q_zero_core n ha hb hp hb_le_a hpq hcasc
 
+/--
+@isnad1 id=eq.1h4v.s5.390691690e2e from=translated src=- shape=95362497 vocab=2e48f7e4
+-/
 lemma cascade_max_eq_right {n x x0 x1 : ℕ} (hx : CascadeSplit n x x0 x1) :
     max (H n x1) x0 = if 1 ≤ x1 then H n x1 else x0 := by
   split_ifs with h
@@ -430,6 +475,9 @@ lemma cascade_max_eq_right {n x x0 x1 : ℕ} (hx : CascadeSplit n x x0 x1) :
     rw [H_zero]
     exact max_eq_right (Nat.zero_le _)
 
+/--
+@isnad1 id=eq.2h4v.s6.d6bde4dcd060 from=translated src=- shape=39397582 vocab=e23d7720
+-/
 lemma H_succ_cascade_expand {n x x0 x1 : ℕ} (hx : CascadeSplit n x x0 x1) (hx0 : x0 ≤ 2 ^ n) :
     max (H n x0) x1 + max (H n x1) x0 = H n x0 + if 1 ≤ x1 then H n x1 else x0 := by
   have h1 : max (H n x0) x1 = H n x0 := by
@@ -446,6 +494,7 @@ boundary cost is no larger than that of the arbitrary split `(a, b)`.  This is
 exactly `ih n` rewritten through `H_succ_cascade`; it is the *one-dimension-lower*
 Macaulay/Harper extremal statement, used as a tool for the genuine
 `n → n+1` inductive step below.
+@isnad1 id=le.4h5v.s7.e70ca6d851eb from=translated src=- shape=f5289ede vocab=11580788
 -/
 lemma harper_extremal_n (n : ℕ)
     (ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -456,10 +505,16 @@ lemma harper_extremal_n (n : ℕ)
   rw [← H_succ_cascade hcasc]
   exact ih n (Nat.lt_succ_self n) a b ha hb
 
+/--
+@isnad1 id=le.1h4v.s5.2e340a10afc1 from=translated src=- shape=d9d77db1 vocab=be63980f
+-/
 lemma cascade_p_le {n k p q : ℕ} (h : CascadeSplit n k p q) : p ≤ 2 ^ n := by
   obtain ⟨r, t, ht, h1, h2⟩ := h
   exact h1 ▸ cascadeSlice0Value_le ht
 
+/--
+@isnad1 id=le.1h4v.s5.5c257433067b from=translated src=- shape=fc79c4ec vocab=be63980f
+-/
 lemma cascade_q_le {n k p q : ℕ} (h : CascadeSplit n k p q) : q ≤ 2 ^ n := by
   obtain ⟨r, t, ht, h1, h2⟩ := h
   exact h2 ▸ cascadeSlice1Value_le ht
@@ -468,6 +523,7 @@ lemma cascade_q_le {n k p q : ℕ} (h : CascadeSplit n k p q) : q ≤ 2 ^ n := b
 The degenerate top-level branch of the nested extremal step.  When the canonical
 upper slice `q` is empty, the statement reduces to the already-proved
 `harper_bc_min_q_zero` in dimension `n + 1` (with a symmetric `a,b` branch).
+@isnad1 id=le.17h13v.s9.43edd4763fdc from=translated src=- shape=d08537a4 vocab=11580788
 -/
 lemma harper_extremal_step_nested_q_zero (n : ℕ)
     (_ih : ∀ m, m < n + 1 → ∀ x y, x ≤ 2 ^ m → y ≤ 2 ^ m →
@@ -511,6 +567,7 @@ slice values of `x` are dominated by those of `y`.  This is because the lower
 (resp. upper) slice of a simplicial initial segment is monotone in the segment
 size (initial segments are nested), and `slice_card_eq_cascade` identifies these
 slice cardinalities with the cascade split values.
+@isnad1 id=and.3h7v.s5.7c70cacd6b70 from=translated src=- shape=7db5fb16 vocab=43c7fcab
 -/
 lemma cascade_slice_mono {n x x0 x1 y y0 y1 : ℕ}
     (hx : CascadeSplit n x x0 x1) (hy : CascadeSplit n y y0 y1) (hxy : x ≤ y) :
@@ -541,6 +598,7 @@ Proof: if `a < p` then, since `p + q = a + b`, the upper slice satisfies
 contradicting `a < p`.  This is a clean structural consequence of
 `cascade_p_le_H_q`, `H_mono`, and `cascade_split_add`; it is non-circular
 (it does not use any later Harper result).
+@isnad1 id=le.3h5v.s6.65295fc46d5f from=translated src=- shape=ab11ad55 vocab=b7117eae
 -/
 lemma cascade_lower_le_of_neighbor_lt {n a b p q : ℕ}
     (hcasc : CascadeSplit (n + 1) (a + b) p q) (hq_pos : 1 ≤ q)
@@ -553,7 +611,9 @@ lemma cascade_lower_le_of_neighbor_lt {n a b p q : ℕ}
   have hmono : H (n + 1) q ≤ H (n + 1) b := H_mono (le_of_lt hqb)
   omega
 
-/-- Every positive canonical split with empty upper subslice has mass exactly one. -/
+/-- Every positive canonical split with empty upper subslice has mass exactly one.
+@isnad1 id=le.0h2v.s4.ae79c3532d2f from=translated src=- shape=e92353f1 vocab=d8320445
+-/
 lemma one_le_binomPrefix_succ (n r : ℕ) : 1 ≤ binomPrefix n (r + 1) := by
   induction r with
   | zero => simp [binomPrefix_succ, binomPrefix_zero]
@@ -563,6 +623,7 @@ lemma one_le_binomPrefix_succ (n r : ℕ) : 1 ≤ binomPrefix n (r + 1) := by
 /--
 If the upper slice in a canonical split is zero but the split mass is positive,
 then the split mass is the singleton initial segment.
+@isnad1 id=eq.3h4v.s5.7cf7a7a964db from=translated src=- shape=65f99894 vocab=43c7fcab
 -/
 lemma cascade_upper_zero_eq_one {n q q0 q1 : ℕ}
     (h : CascadeSplit n q q0 q1) (hq_pos : 1 ≤ q) (hq1_zero : q1 = 0) :
@@ -590,6 +651,7 @@ lemma cascade_upper_zero_eq_one {n q q0 q1 : ℕ}
 /--
 If the upper slice in a canonical split is zero, then the split mass is in the
 bottom layer: it is either empty or the singleton initial segment.
+@isnad1 id=or.2h4v.s5.13903c62fa62 from=translated src=- shape=a0a6d0e4 vocab=c7a48f38
 -/
 lemma cascade_upper_zero_eq_zero_or_one {n q q0 q1 : ℕ}
     (h : CascadeSplit n q q0 q1) (hq1_zero : q1 = 0) :
@@ -598,7 +660,9 @@ lemma cascade_upper_zero_eq_zero_or_one {n q q0 q1 : ℕ}
   · exact Or.inr (cascade_upper_zero_eq_one h hq_pos hq1_zero)
   · exact Or.inl (by omega)
 
-/-- In the same situation, the lower slice is the whole split mass. -/
+/-- In the same situation, the lower slice is the whole split mass.
+@isnad1 id=eq.2h4v.s4.1ad5ae13aaba from=translated src=- shape=2c6e38cd vocab=c7a48f38
+-/
 lemma cascade_upper_zero_lower_eq {n q q0 q1 : ℕ}
     (h : CascadeSplit n q q0 q1) (hq1_zero : q1 = 0) :
     q0 = q := by
@@ -608,6 +672,7 @@ lemma cascade_upper_zero_lower_eq {n q q0 q1 : ℕ}
 /--
 A full binomial prefix `binomPrefix (n+1) r` splits canonically into the corresponding
 full layers `binomPrefix n r` and `binomPrefix n (r-1)` in the lower dimensions.
+@isnad1 id=cascades.2h2v.s6.4089f4ecf108 from=translated src=- shape=2960ed4c vocab=9a0b8ffd
 -/
 lemma cascade_split_binomPrefix (n r : ℕ) (hr : 1 ≤ r) (hrn : r ≤ n + 1) :
     CascadeSplit n (binomPrefix (n + 1) r) (binomPrefix n r) (binomPrefix n (r - 1)) := by
@@ -624,6 +689,7 @@ lemma cascade_split_binomPrefix (n r : ℕ) (hr : 1 ≤ r) (hrn : r ≤ n + 1) :
 /--
 The boundary of a full binomial prefix (a complete collection of layers) is exactly
 the next full binomial prefix, evaluated algebraically on `H`.
+@isnad1 id=eq.1h2v.s5.d5b6c8de3cfc from=translated src=- shape=61304323 vocab=b75eb3e2
 -/
 lemma H_binomPrefix (n r : ℕ) (hr : 1 ≤ r) :
     H n (binomPrefix n r) = binomPrefix n (r + 1) := by
@@ -662,6 +728,7 @@ lemma H_binomPrefix (n r : ℕ) (hr : 1 ≤ r) :
 /--
 The first full binomial-prefix jump of `H`: the closed neighbourhood of the
 singleton initial segment contains both the empty layer and the first layer.
+@isnad1 id=eq.0h1v.s5.d65b6d5053b1 from=translated src=- shape=0c3b160f vocab=88a644b2
 -/
 lemma H_binomPrefix_first_diff (n : ℕ) :
     H n (binomPrefix n 1) - H n (binomPrefix n 0) =
@@ -674,6 +741,7 @@ Layer-precise increment behavior away from the empty-prefix edge case: the
 total increment of `H` across the `r`-th positive binomial layer is exactly its
 size `Nat.choose n r`. This is required because `H` is not concave across layer
 boundaries.
+@isnad1 id=eq.1h2v.s5.14cd8d87f39f from=translated src=- shape=1e309873 vocab=530e4fa0
 -/
 lemma H_binomPrefix_diff (n r : ℕ) (hr : 2 ≤ r) :
     H n (binomPrefix n r) - H n (binomPrefix n (r - 1)) = Nat.choose n r := by
@@ -688,6 +756,7 @@ lemma H_binomPrefix_diff (n r : ℕ) (hr : 2 ≤ r) :
 Adjacent full-binomial-prefix form of the same layer calculation.  This avoids
 subtraction from `r - 1` and is often the cleaner statement for induction over
 cascade layers.
+@isnad1 id=eq.1h2v.s5.57a8761a9960 from=translated src=- shape=2a263689 vocab=a37d545b
 -/
 lemma H_binomPrefix_succ_diff (n r : ℕ) (hr : 1 ≤ r) :
     H n (binomPrefix n (r + 1)) - H n (binomPrefix n r) =
@@ -698,6 +767,7 @@ lemma H_binomPrefix_succ_diff (n r : ℕ) (hr : 1 ≤ r) :
 Additive full-layer form of `H_binomPrefix_succ_diff`.  This avoids truncated
 subtraction and is the shape needed when comparing sums of whole
 Kruskal-Katona/Macaulay layers.
+@isnad1 id=eq.1h2v.s5.7a8cc2f45051 from=translated src=- shape=e6510af6 vocab=e9e77939
 -/
 lemma H_binomPrefix_add_layer (n r : ℕ) (hr : 1 ≤ r) :
     H n (binomPrefix n r) + Nat.choose n (r + 1) =
@@ -710,6 +780,7 @@ Additive window form for complete binomial layers: moving `H` from the full
 prefix below layer `r` to the full prefix below layer `s` adds exactly the
 whole layers `r+1, ..., s`.  This is a reusable whole-block version of the
 increment-window profile behind the positive-cascade obstruction.
+@isnad1 id=eq.2h3v.s6.bafc6f53a0f3 from=translated src=- shape=34714576 vocab=3f2baa2a
 -/
 lemma H_binomPrefix_window (n r s : ℕ) (hr : 1 ≤ r) (hrs : r ≤ s) :
     H n (binomPrefix n r) +
@@ -726,6 +797,7 @@ stays below the boundary of the next full prefix.
 
 This is the inequality form of `H_binomPrefix_add_layer`, useful when a cascade
 comparison cuts through a layer rather than moving by a whole binomial block.
+@isnad1 id=le.2h3v.s6.38654e829cd7 from=translated src=- shape=7517fa59 vocab=e9e77939
 -/
 lemma H_binomPrefix_partial_layer_le (n r t : ℕ) (hr : 1 ≤ r)
     (ht : t ≤ Nat.choose n (r + 1)) :
@@ -741,6 +813,7 @@ full prefix.
 
 This packages the full-window equality in the one-sided form needed for
 partial-window majorization and nested-cascade interleaving arguments.
+@isnad1 id=le.3h4v.s6.c6a8e55299c6 from=translated src=- shape=22998dca vocab=3f2baa2a
 -/
 lemma H_binomPrefix_partial_window_le (n r s t : ℕ) (hr : 1 ≤ r) (hrs : r ≤ s)
     (ht : t ≤ (Finset.Ico (r + 1) (s + 1)).sum (fun i => Nat.choose n i)) :
@@ -748,6 +821,9 @@ lemma H_binomPrefix_partial_window_le (n r s t : ℕ) (hr : 1 ≤ r) (hrs : r �
   rw [← H_binomPrefix_window n r s hr hrs]
   omega
 
+/--
+@isnad1 id=le.3h5v.s8.27694a4f35db from=translated src=- shape=38fd6b15 vocab=46aa1dbf
+-/
 lemma H_add_le_H_add_of_le_telescope (n a b c d : ℕ) (hab : a + b = c + d) (hac : a ≤ c)
     (hinc : ∀ i < c - a, H (n + 1) (a + i + 1) + H (n + 1) (b - i - 1) ≤
       H (n + 1) (a + i) + H (n + 1) (b - i)) :
@@ -772,6 +848,9 @@ lemma H_add_le_H_add_of_le_telescope (n a b c d : ℕ) (hab : a + b = c + d) (ha
       ih (fun i hi => hinc i (by omega))
     omega
 
+/--
+@isnad1 id=le.3h5v.s8.8897368776fd from=translated src=- shape=6506edcc vocab=46aa1dbf
+-/
 lemma H_add_le_H_add_of_ge_telescope (n a b c d : ℕ) (hab : a + b = c + d) (hca : c ≤ a)
     (hinc : ∀ i < a - c, H (n + 1) (c + i) + H (n + 1) (d - i) ≤
       H (n + 1) (c + i + 1) + H (n + 1) (d - i - 1)) :
@@ -802,6 +881,7 @@ This is the structural half of the GT branch: if `a` is already larger than
 the neighbourhood of `b`, then the positive canonical split of `a+b` cannot put
 more than `a` vertices in its lower slice.  The proof uses only the earlier
 canonical compression lemma `cascade_p_le_H_q` and monotonicity of `H`.
+@isnad1 id=le.3h5v.s6.0b7dceaf8ab1 from=translated src=- shape=d0a7d262 vocab=b7117eae
 -/
 lemma harper_case_gt_a_ge_p (n : ℕ) {a b p q : ℕ}
     (hq_pos : 1 ≤ q) (hcase : H (n + 1) b < a)
@@ -819,6 +899,7 @@ mass strictly inward (from the `a`-side toward the `b`-side) without crossing
 either endpoint.  It depends only on the level-`n+1` cascade structure
 (`harper_case_gt_a_ge_p`, `cascade_q_le_p`, `cascade_split_add`) and the case
 hypothesis, so it is non-circular and reusable in any GT-regime argument.
+@isnad1 id=and.3h5v.s6.9979ffe5e221 from=translated src=- shape=a0526f01 vocab=b7117eae
 -/
 lemma harper_gt_split_between (n : ℕ) {a b p q : ℕ}
     (hq_pos : 1 ≤ q) (hcase : H (n + 1) b < a)
@@ -837,7 +918,9 @@ dimension up.  This is the local algebraic boundary cost of a nested split
 noncomputable def cascadeBoundary (n x0 x1 : ℕ) : ℕ :=
   max (H n x0) x1 + max (H n x1) x0
 
-/-- A nested cascade boundary is exactly the corresponding `H (n+1)` value. -/
+/-- A nested cascade boundary is exactly the corresponding `H (n+1)` value.
+@isnad1 id=eq.1h4v.s5.34177a7052a2 from=translated src=- shape=247aafb2 vocab=e64082bc
+-/
 lemma cascadeBoundary_eq_H_succ {n x x0 x1 : ℕ} (hx : CascadeSplit n x x0 x1) :
     cascadeBoundary n x0 x1 = H (n + 1) x := by
   unfold cascadeBoundary
@@ -855,6 +938,7 @@ noncomputable def pairedCascadeBoundary (n x0 x1 y0 y1 : ℕ) : ℕ :=
 Paired nested boundaries rewrite to the sum of the two `H (n+1)` boundary
 values.  This packages the four-block expression that occurs in the two open
 positive-cascade leaves.
+@isnad1 id=eq.2h7v.s6.ffc2ef88ba37 from=translated src=- shape=128cf236 vocab=e5fafd7d
 -/
 lemma pairedCascadeBoundary_eq_H_add {n x y x0 x1 y0 y1 : ℕ}
     (hx : CascadeSplit n x x0 x1) (hy : CascadeSplit n y y0 y1) :
@@ -867,6 +951,7 @@ Componentwise monotonicity of the nested two-slice boundary profile.  This is
 the local monotonicity tool available before the genuine Macaulay interleaving
 argument starts: if both exposed cascade slices grow, then the corresponding
 two-slice boundary cost grows.
+@isnad1 id=le.2h5v.s5.d1d1283842b5 from=translated src=- shape=c30ffc74 vocab=d12dc862
 -/
 lemma cascadeBoundary_mono {n x0 x1 y0 y1 : ℕ} (h0 : x0 ≤ y0) (h1 : x1 ≤ y1) :
     cascadeBoundary n x0 x1 ≤ cascadeBoundary n y0 y1 := by
@@ -876,6 +961,7 @@ lemma cascadeBoundary_mono {n x0 x1 y0 y1 : ℕ} (h0 : x0 ≤ y0) (h1 : x1 ≤ y
 /--
 Paired version of `cascadeBoundary_mono`, used when comparing the four exposed
 blocks in a nested cascade profile.
+@isnad1 id=le.4h9v.s5.66e310c9ecbc from=translated src=- shape=218220d7 vocab=3abed12c
 -/
 lemma pairedCascadeBoundary_mono {n x0 x1 y0 y1 z0 z1 w0 w1 : ℕ}
     (hx0 : x0 ≤ z0) (hx1 : x1 ≤ z1) (hy0 : y0 ≤ w0) (hy1 : y1 ≤ w1) :
@@ -886,6 +972,7 @@ lemma pairedCascadeBoundary_mono {n x0 x1 y0 y1 z0 z1 w0 w1 : ℕ}
 /--
 Monotonicity of `cascadeBoundary` along canonical cascade splits.  It packages
 `cascade_slice_mono` with the local boundary monotonicity above.
+@isnad1 id=le.3h7v.s5.a7e7c3baf465 from=translated src=- shape=47768a6c vocab=1ef9353f
 -/
 lemma cascadeBoundary_mono_of_cascade_le {n x x0 x1 y y0 y1 : ℕ}
     (hx : CascadeSplit n x x0 x1) (hy : CascadeSplit n y y0 y1) (hxy : x ≤ y) :
@@ -897,6 +984,7 @@ lemma cascadeBoundary_mono_of_cascade_le {n x x0 x1 y y0 y1 : ℕ}
 Mass conservation for the two nested cascade decompositions under a common
 top-level split.  This is the algebraic form of the fact that the four exposed
 level-`n` pieces of `(p,q)` and `(a,b)` occupy the same total window.
+@isnad1 id=eq.5h13v.s7.976d41691308 from=translated src=- shape=758b25b6 vocab=14f1023c
 -/
 lemma nested_cascade_mass_conservation {n a b p q p0 p1 q0 q1 a0 a1 b0 b1 : ℕ}
     (hcasc : CascadeSplit (n + 1) (a + b) p q)
@@ -915,6 +1003,7 @@ lemma nested_cascade_mass_conservation {n a b p q p0 p1 q0 q1 a0 a1 b0 b1 : ℕ}
 /--
 The same conservation statement in flattened form, often more convenient for
 linear arithmetic over component-wise interleaving inequalities.
+@isnad1 id=eq.5h13v.s7.1e3d45b1d8f6 from=translated src=- shape=86c58e3d vocab=14f1023c
 -/
 lemma nested_cascade_flat_mass_conservation {n a b p q p0 p1 q0 q1 a0 a1 b0 b1 : ℕ}
     (hcasc : CascadeSplit (n + 1) (a + b) p q)
@@ -960,7 +1049,9 @@ def CascadeInterleaves (n p q a b : ℕ) : Prop :=
   CascadeSplit n (a + b) p q ∧
   ∀ l, splitPrefixMass n a b l ≤ splitPrefixMass n p q l
 
-/-- A pointwise upper bound on the prefix mass of an arbitrary split. -/
+/-- A pointwise upper bound on the prefix mass of an arbitrary split.
+@isnad1 id=le.0h4v.s5.82aad89ac15e from=translated src=- shape=8894d748 vocab=17d00cd9
+-/
 lemma splitPrefixMass_le_min (n a b l : ℕ) :
     splitPrefixMass n a b l ≤
       min (a + b) (binomPrefix n (l + 1) + binomPrefix n l) := by
@@ -969,6 +1060,7 @@ lemma splitPrefixMass_le_min (n a b l : ℕ) :
 
 /--
 The canonical cascade split saturates the prefix-mass bound at every layer.
+@isnad1 id=eq.1h5v.s5.824f53b1283a from=translated src=- shape=ebb0b0d4 vocab=290af13d
 -/
 lemma cascade_splitPrefixMass_eq {n k p q : ℕ} (h : CascadeSplit n k p q) (l : ℕ) :
     splitPrefixMass n p q l =
@@ -1014,6 +1106,7 @@ lemma cascade_splitPrefixMass_eq {n k p q : ℕ} (h : CascadeSplit n k p q) (l :
 /--
 The canonical cascade split of `a + b` maximizes prefix mass, hence interleaves
 any other split `(a, b)`.
+@isnad1 id=cascadei.3h5v.s6.f9e51e47f88d from=translated src=- shape=8c33012d vocab=74e8310c
 -/
 lemma canonicalSplit_interleaves
     {n a b p q : ℕ} (_ha : a ≤ 2 ^ n) (_hb : b ≤ 2 ^ n)
@@ -1025,6 +1118,9 @@ lemma canonicalSplit_interleaves
   rw [heq]
   exact hub
 
+/--
+@isnad1 id=eq.1h5v.s6.9ec4a4175952 from=translated src=- shape=81a01e22 vocab=72eb0f97
+-/
 lemma cappedPrefixMass_succ_of_cascadeSplit
     {n k k0 k1 : ℕ} (hk : CascadeSplit n k k0 k1) (l : ℕ) :
     cappedPrefixMass (n + 1) k (l + 1)
@@ -1039,6 +1135,9 @@ lemma cappedPrefixMass_succ_of_cascadeSplit
   unfold splitPrefixMass at h_eq
   exact h_eq.symm
 
+/--
+@isnad1 id=eq.2h8v.s6.9d5b56eb2a1b from=translated src=- shape=a8c5398a vocab=47c7c2a0
+-/
 lemma splitPrefixMass_succ_of_cascadeSplits
     (ha : CascadeSplit n a a0 a1) (hb : CascadeSplit n b b0 b1) (l : ℕ) :
     splitPrefixMass (n + 1) a b (l + 1)
@@ -1047,6 +1146,9 @@ lemma splitPrefixMass_succ_of_cascadeSplits
   rw [cappedPrefixMass_succ_of_cascadeSplit ha, cappedPrefixMass_succ_of_cascadeSplit hb]
   omega
 
+/--
+@isnad1 id=le.5h14v.s7.9bb77cfffc44 from=translated src=- shape=c336572c vocab=88c3184d
+-/
 lemma CascadeInterleaves.lower_succ
     {n a b p q p0 p1 q0 q1 a0 a1 b0 b1 : ℕ}
     (h_inter : CascadeInterleaves (n + 1) p q a b)

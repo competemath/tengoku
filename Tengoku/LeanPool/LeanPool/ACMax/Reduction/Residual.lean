@@ -79,7 +79,9 @@ open Classical in
 def goodC4Threshold (n : ℕ) : ℕ := 8 + 8 * (n - 4) / n
 
 open Classical in
-/-- The generic conversion: `n·(S − c) ≤ m ↔ S ≤ c + m/n` (`ℕ`-division, `n > 0`). -/
+/-- The generic conversion: `n·(S − c) ≤ m ↔ S ≤ c + m/n` (`ℕ`-division, `n > 0`).
+@isnad1 id=iff.1h4v.s5.af4ce4afba7f from=translated src=- shape=398ef934 vocab=91c4bd75
+-/
 theorem nat_mul_sub_le_iff {n : ℕ} (hn : 0 < n) (c m S : ℕ) :
     n * (S - c) ≤ m ↔ S ≤ c + m / n := by
   rw [Nat.mul_comm n (S - c), ← Nat.le_div_iff_mul_le hn]
@@ -87,7 +89,9 @@ theorem nat_mul_sub_le_iff {n : ℕ} (hn : 0 < n) (c m S : ℕ) :
   omega
 
 open Classical in
-/-- Division sandwich: `k·n ≤ m < (k+1)·n → m/n = k`. -/
+/-- Division sandwich: `k·n ≤ m < (k+1)·n → m/n = k`.
+@isnad1 id=eq.3h3v.s6.8e4129852db4 from=translated src=- shape=09c87177 vocab=ef4726aa
+-/
 theorem nat_div_eq_of_between {m n k : ℕ} (hn : 0 < n) (h1 : k * n ≤ m)
     (h2 : m < (k + 1) * n) : m / n = k := by
   have hle : k ≤ m / n := (Nat.le_div_iff_mul_le hn).mpr h1
@@ -95,7 +99,9 @@ theorem nat_div_eq_of_between {m n k : ℕ} (hn : 0 < n) (h1 : k * n ≤ m)
   omega
 
 open Classical in
-/-- The good-triangle weighted-cut inequality is exactly the degree-sum threshold. -/
+/-- The good-triangle weighted-cut inequality is exactly the degree-sum threshold.
+@isnad1 id=iff.1h2v.s6.d611e2c3fc9e from=translated src=- shape=d63f2feb vocab=a9fee9dd
+-/
 theorem goodTri_threshold_iff {n : ℕ} (hn : 0 < n) (S : ℕ) :
     n * (S - 6) ≤ 2 * (3 * (n - 3)) ↔ S ≤ goodTriThreshold n := by
   have h : (2 : ℕ) * (3 * (n - 3)) = 6 * (n - 3) := by ring
@@ -103,7 +109,9 @@ theorem goodTri_threshold_iff {n : ℕ} (hn : 0 < n) (S : ℕ) :
   exact nat_mul_sub_le_iff hn 6 (6 * (n - 3)) S
 
 open Classical in
-/-- The good-`C₄` weighted-cut inequality is exactly the degree-sum threshold. -/
+/-- The good-`C₄` weighted-cut inequality is exactly the degree-sum threshold.
+@isnad1 id=iff.1h2v.s6.a3007574b60c from=translated src=- shape=d63f2feb vocab=be504985
+-/
 theorem goodC4_threshold_iff {n : ℕ} (hn : 0 < n) (S : ℕ) :
     n * (S - 8) ≤ 2 * (4 * (n - 4)) ↔ S ≤ goodC4Threshold n := by
   have h : (2 : ℕ) * (4 * (n - 4)) = 8 * (n - 4) := by ring
@@ -112,7 +120,9 @@ theorem goodC4_threshold_iff {n : ℕ} (hn : 0 < n) (S : ℕ) :
 
 open Classical in
 /-- **No good triangle ⟹ every triangle exceeds the threshold**: in a graph with no good
-triangle, every triangle has degree sum `> goodTriThreshold n`. -/
+triangle, every triangle has degree sum `> goodTriThreshold n`.
+@isnad1 id=lt.8h5v.s7.140a24591f4c from=translated src=- shape=6c0350d0 vocab=86d499f2
+-/
 theorem no_good_triangle_sum_gt {n : ℕ} (hn : 0 < n) {G : SimpleGraph (Fin n)}
     (hT : ¬HasGoodTriangle n G) {x y z : Fin n}
     (hxy : x ≠ y) (hyz : y ≠ z) (hxz : x ≠ z)
@@ -124,7 +134,9 @@ theorem no_good_triangle_sum_gt {n : ℕ} (hn : 0 < n) {G : SimpleGraph (Fin n)}
     (goodTri_threshold_iff hn _).mpr hle⟩
 
 open Classical in
-/-- **No good `C₄` ⟹ every induced `C₄` exceeds the threshold.** -/
+/-- **No good `C₄` ⟹ every induced `C₄` exceeds the threshold.**
+@isnad1 id=lt.9h6v.s8.7faeac42b73f from=translated src=- shape=359792d9 vocab=ba6c73c6
+-/
 theorem no_good_C4_sum_gt {n : ℕ} (hn : 0 < n) {G : SimpleGraph (Fin n)}
     (hC4 : ¬HasGoodC4 n G) {a b c d : Fin n}
     (hcard : ({a, b, c, d} : Finset (Fin n)).card = 4)
@@ -139,7 +151,9 @@ theorem no_good_C4_sum_gt {n : ℕ} (hn : 0 < n) {G : SimpleGraph (Fin n)}
 /-! ### The saturation ladder -/
 
 open Classical in
-/-- Good-triangle threshold saturates at `11` for **all** `n ≥ 18` (never reaches `12`). -/
+/-- Good-triangle threshold saturates at `11` for **all** `n ≥ 18` (never reaches `12`).
+@isnad1 id=eq.1h1v.s4.472a38647992 from=translated src=- shape=97c35add vocab=64fbdada
+-/
 theorem goodTriThreshold_eq_of_ge_eighteen {n : ℕ} (hn : 18 ≤ n) :
     goodTriThreshold n = 11 := by
   have hdiv : 6 * (n - 3) / n = 5 :=
@@ -147,7 +161,9 @@ theorem goodTriThreshold_eq_of_ge_eighteen {n : ℕ} (hn : 18 ≤ n) :
   rw [goodTriThreshold, hdiv]
 
 open Classical in
-/-- Good-`C₄` threshold is `14` on the window `16 ≤ n < 32`. -/
+/-- Good-`C₄` threshold is `14` on the window `16 ≤ n < 32`.
+@isnad1 id=eq.2h1v.s4.0d333350b37a from=translated src=- shape=8bbe90a8 vocab=e8dbc321
+-/
 theorem goodC4Threshold_eq_of_window {n : ℕ} (h1 : 16 ≤ n) (h2 : n < 32) :
     goodC4Threshold n = 14 := by
   have hdiv : 8 * (n - 4) / n = 6 :=
@@ -155,7 +171,9 @@ theorem goodC4Threshold_eq_of_window {n : ℕ} (h1 : 16 ≤ n) (h2 : n < 32) :
   rw [goodC4Threshold, hdiv]
 
 open Classical in
-/-- Good-`C₄` threshold saturates at `15` for **all** `n ≥ 32` (never reaches `16`). -/
+/-- Good-`C₄` threshold saturates at `15` for **all** `n ≥ 32` (never reaches `16`).
+@isnad1 id=eq.1h1v.s4.a0f89b6d1834 from=translated src=- shape=97c35add vocab=3ccf6b12
+-/
 theorem goodC4Threshold_eq_of_ge_thirtytwo {n : ℕ} (hn : 32 ≤ n) :
     goodC4Threshold n = 15 := by
   have hdiv : 8 * (n - 4) / n = 7 :=
@@ -167,7 +185,9 @@ theorem goodC4Threshold_eq_of_ge_thirtytwo {n : ℕ} (hn : 32 ≤ n) :
 Throughout, `D = univ.filter (deg = 3)` and `Hub = univ.filter (4 ≤ deg)`. -/
 
 open Classical in
-/-- **(a) Degree sum.**  `2(n−2)` edges give `∑ deg = 4n − 8` (`n ≥ 2`). -/
+/-- **(a) Degree sum.**  `2(n−2)` edges give `∑ deg = 4n − 8` (`n ≥ 2`).
+@isnad1 id=eq.2h2v.s7.1ea147718103 from=translated src=- shape=fe432bab vocab=62320e96
+-/
 theorem residual_degree_sum (n : ℕ) (hn : 2 ≤ n) (G : SimpleGraph (Fin n))
     (hm : G.edgeFinset.card = 2 * (n - 2)) :
     ∑ v : Fin n, G.degree v = 4 * n - 8 := by
@@ -197,7 +217,9 @@ on the verified `n = 23, 25` fat-regime escapers). -/
 
 open Classical in
 /-- Neighbourhood split along a disjoint pair: for disjoint `X, Y`,
-`|N(p) \ X| = |N(p) ∩ Y| + |N(p) \ (X ∪ Y)|`. -/
+`|N(p) \ X| = |N(p) ∩ Y| + |N(p) \ (X ∪ Y)|`.
+@isnad1 id=eq.1h5v.s7.c5f2ac4c3c5e from=translated src=- shape=5b72fe20 vocab=81bb2abc
+-/
 theorem leak_split {V : Type*} [Fintype V] (G : SimpleGraph V) {X Y : Finset V}
     (hd : Disjoint X Y) (p : V) :
     (G.neighborFinset p \ X).card
@@ -249,7 +271,9 @@ open Classical in
 /-- **The two forms are equal**: for disjoint `P, N`,
 `2·e(P,N) + leak(P) + leak(N) = 4·e(P,N) + e(P,Z) + e(N,Z)` — the left side is the
 two-block form, the right side is the exact quantity in the hypothesis of
-`algConn_le_two_of_signed`. -/
+`algConn_le_two_of_signed`.
+@isnad1 id=eq.1h4v.s8.e621f3498320 from=translated src=- shape=682d7826 vocab=22648c94
+-/
 theorem twoBlock_eq_signed {V : Type*} [Fintype V] (G : SimpleGraph V) (P N : Finset V)
     (hd : Disjoint P N) :
     2 * (∑ p ∈ P, (G.neighborFinset p ∩ N).card)
@@ -279,7 +303,9 @@ open Classical in
 /-- `TwoBlockConfig` is **exactly** the existence of a witness of the signed-cut hypothesis
 `4·e(P,N) + e(P,Z) + e(N,Z) ≤ 4|P|` of `algConn_le_two_of_signed`.  In particular every
 witness assembled by the five per-`n` cut certificates (whose conclusions are precisely the
-right-hand existential) is a two-block witness — `TwoBlockConfig` is the umbrella form. -/
+right-hand existential) is a two-block witness — `TwoBlockConfig` is the umbrella form.
+@isnad1 id=iff.0h2v.s8.dfbe64fddb42 from=translated src=- shape=c6f13418 vocab=722bcd22
+-/
 theorem twoBlockConfig_iff_signed {V : Type*} [Fintype V] (G : SimpleGraph V) :
     TwoBlockConfig G ↔
       ∃ P N : Finset V, Disjoint P N ∧ P.card = N.card ∧ 0 < P.card ∧

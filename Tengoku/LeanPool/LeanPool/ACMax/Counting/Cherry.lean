@@ -72,18 +72,28 @@ namespace Cherry
 variable {G : SimpleGraph V} {x z y : V}
 
 open Classical in
+/--
+@isnad1 id=ne.1h5v.s4.6a5b93b2fa78 from=translated src=- shape=80cb9924 vocab=7d6e5436
+-/
 theorem ne_zx (h : Cherry G x z y) : z ≠ x := G.ne_of_adj h.adj_zx
 
 open Classical in
+/--
+@isnad1 id=ne.1h5v.s4.b7c583ce57ca from=translated src=- shape=614fd52d vocab=7d6e5436
+-/
 theorem ne_zy (h : Cherry G x z y) : z ≠ y := G.ne_of_adj h.adj_zy
 
 open Classical in
-/-- The cherry block `{z, x, y}` has exactly `3` vertices. -/
+/-- The cherry block `{z, x, y}` has exactly `3` vertices.
+@isnad1 id=eq.1h5v.s6.ceb092320045 from=translated src=- shape=043bba41 vocab=809b596b
+-/
 theorem card_three (h : Cherry G x z y) : ({z, x, y} : Finset V).card = 3 := by
   rw [Finset.card_insert_of_notMem (by simp [h.ne_zx, h.ne_zy]), Finset.card_pair h.ne_xy]
 
 open Classical in
-/-- No cherry member is `M`-isolated (each has a degree-`3` neighbour). -/
+/-- No cherry member is `M`-isolated (each has a degree-`3` neighbour).
+@isnad1 id=not.2h6v.s6.76d951af2bd7 from=translated src=- shape=5306de7b vocab=bf7fcc3b
+-/
 theorem notMem_isoTwins (h : Cherry G x z y) {v : V} (hv : v ∈ isoTwins G) :
     v ∉ ({z, x, y} : Finset V) := by
   intro hmem
@@ -95,7 +105,9 @@ theorem notMem_isoTwins (h : Cherry G x z y) {v : V} (hv : v ∈ isoTwins G) :
   · exact hiso z (G.adj_symm h.adj_zy) h.deg_z
 
 open Classical in
-/-- An `M`-isolated twin sends no edge into the cherry. -/
+/-- An `M`-isolated twin sends no edge into the cherry.
+@isnad1 id=eq.2h6v.s7.c74047c6a153 from=translated src=- shape=5836b46a vocab=6e3d4d13
+-/
 theorem iso_cross_zero (h : Cherry G x z y) {t : V} (ht : t ∈ isoTwins G) :
     (G.neighborFinset t ∩ ({z, x, y} : Finset V)).card = 0 := by
   obtain ⟨-, hiso⟩ := mem_isoTwins.mp ht
@@ -135,7 +147,9 @@ private theorem card_triple {a b c : V} (hab : a ≠ b) (hac : a ≠ c) (hbc : b
 open Classical in
 /-- **The cherry leaks at most `5`**: the centre keeps two edges inside (`leak ≤ 1`),
 each end keeps one (`leak ≤ 2`).  Size `3`, leak `5`: excess `−1` — the cherry is the
-canonical twin-anchored small block of the design's block calculus. -/
+canonical twin-anchored small block of the design's block calculus.
+@isnad1 id=le.1h5v.s7.ce5171c3bb02 from=translated src=- shape=91b0c50a vocab=9117c385
+-/
 theorem cherry_leak_le_five (G : SimpleGraph V) {x z y : V} (hch : Cherry G x z y) :
     ∑ q ∈ ({z, x, y} : Finset V),
       (G.neighborFinset q \ ({z, x, y} : Finset V)).card ≤ 5 := by
@@ -175,7 +189,9 @@ open Classical in
 /-- **The cherry assembly lemma**: any `3`-block `P` disjoint from the cherry with
 `2·e(P, N) + leak(P) ≤ 7` is a two-block witness against the cherry
 (`2·e + leak(P) + leak(N) ≤ 7 + 5 = 12 = 4·3`).  All three cherry cut certificates
-below are instances. -/
+below are instances.
+@isnad1 id=twoblock.4h6v.s8.c7714c550b51 from=translated src=- shape=c71f726d vocab=87ac55ec
+-/
 theorem cherry_assemble (G : SimpleGraph V) {x z y : V} (hch : Cherry G x z y)
     (P : Finset V) (hcard : P.card = 3)
     (hdisj : Disjoint P ({z, x, y} : Finset V))
@@ -195,7 +211,9 @@ open Classical in
 (degree-`5` hubs ARE eligible — the slack that kills the fat regime), two `M`-isolated
 twins `t₁ ≠ t₂`, and no edge from `h` into the cherry, yield a two-block witness
 `P = {h, t₁, t₂}` against `N = {z, x, y}`:
-`leak(P) ≤ (deg h − 2) + 2 + 2 ≤ 7`, `e(P, N) = 0`. -/
+`leak(P) ≤ (deg h − 2) + 2 + 2 ≤ 7`, `e(P, N) = 0`.
+@isnad1 id=twoblock.11h8v.s7.b61385ad28f4 from=translated src=- shape=dee53577 vocab=8679bdb1
+-/
 theorem two_twin_cherry_twoBlock (G : SimpleGraph V) {x z y h t₁ t₂ : V}
     (hch : Cherry G x z y)
     (hh4 : 4 ≤ G.degree h) (hh5 : G.degree h ≤ 5)
@@ -262,7 +280,9 @@ exact per-`n` boundary arithmetic
 
 (`cᵢ` = the cherry cross count of `hᵢ`) yields a two-block witness `P = {t, h₁, h₂}`:
 the apex leaks `≤ 1` and crosses `0` (isolated), each hub leaks
-`≤ deg − 1 − [h₁ ~ h₂]`. -/
+`≤ deg − 1 − [h₁ ~ h₂]`.
+@isnad1 id=twoblock.8h8v.s8.46bea5343118 from=translated src=- shape=2075865d vocab=c6a82113
+-/
 theorem single_vertex_cherry_twoBlock (G : SimpleGraph V) {x z y t h₁ h₂ : V}
     (hch : Cherry G x z y) (ht : t ∈ isoTwins G)
     (hne : h₁ ≠ h₂) (ha₁ : G.Adj t h₁) (ha₂ : G.Adj t h₂)
@@ -360,7 +380,9 @@ no good triangle and no induced `2K₂` on degree-`3` vertices, a cherry exists:
 some degree-`3` vertex has two degree-`3` neighbours, or `M` is a matching with `≥ 2`
 edges whose two edges have no cross adjacency (any cross adjacency would give a vertex
 two degree-`3` neighbours) — an induced `2K₂`, excluded.  The ends are non-adjacent
-since a degree-`3` triangle has `∑deg = 9`, good for every `n ≥ 6`. -/
+since a degree-`3` triangle has `∑deg = 9`, good for every `n ≥ 6`.
+@isnad1 id=ex.4h2v.s5.19ff2f1de23d from=translated src=- shape=abf60c85 vocab=4e890e8c
+-/
 theorem exists_cherry (n : ℕ) (hn : 6 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) (h2k2 : ¬HasDeg3Ind2K2 n G)
     (hch : CaseCherry G) : ∃ x z y : Fin n, Cherry G x z y := by
@@ -483,7 +505,9 @@ theorem exists_cherry (n : ℕ) (hn : 6 ≤ n) (G : SimpleGraph (Fin n))
 
 open Classical in
 /-- Cherry extraction from the residual core (the `ResidualCore` fields supply
-exactly the needed exclusions; `n ≥ 12 ≥ 6`). -/
+exactly the needed exclusions; `n ≥ 12 ≥ 6`).
+@isnad1 id=ex.2h2v.s5.3396200359f0 from=translated src=- shape=67d69465 vocab=ee0c5fd3
+-/
 theorem residualCore_cherry (n : ℕ) (G : SimpleGraph (Fin n)) (h : ResidualCore n G)
     (hch : CaseCherry G) : ∃ x z y : Fin n, Cherry G x z y :=
   exists_cherry n (by have := h.n_ge; omega) G h.no_good_triangle h.no_deg3_ind2K2 hch
@@ -496,6 +520,9 @@ noncomputable def cherryHubs (G : SimpleGraph V) (x z y : V) : Finset V :=
   (hubSet G).filter (fun w => G.Adj w z ∨ G.Adj w x ∨ G.Adj w y)
 
 open Classical in
+/--
+@isnad1 id=iff.0h6v.s6.c15fb88e0e55 from=translated src=- shape=8e56292a vocab=24df2bed
+-/
 theorem mem_cherryHubs {G : SimpleGraph V} {x z y w : V} :
     w ∈ cherryHubs G x z y ↔
       4 ≤ G.degree w ∧ (G.Adj w z ∨ G.Adj w x ∨ G.Adj w y) := by
@@ -504,7 +531,9 @@ theorem mem_cherryHubs {G : SimpleGraph V} {x z y w : V} :
 
 open Classical in
 /-- **The cherry-touching hub budget** — at most `5` hubs meet a cherry: the centre
-carries `≤ 1` hub (two of its three edges stay in the cherry), each end `≤ 2`. -/
+carries `≤ 1` hub (two of its three edges stay in the cherry), each end `≤ 2`.
+@isnad1 id=le.1h5v.s5.1ca8cd84a7ee from=translated src=- shape=74955819 vocab=b588f9cb
+-/
 theorem cherryHubs_card_le_five (G : SimpleGraph V) {x z y : V} (hch : Cherry G x z y) :
     (cherryHubs G x z y).card ≤ 5 := by
   have hsub : cherryHubs G x z y ⊆ (G.neighborFinset z ∩ hubSet G)
@@ -577,7 +606,9 @@ open Classical in
 /-- **Shared-twin hubs are non-adjacent** (`n ≥ 18`): two degree-`≤ 4` hubs adjacent to
 a common degree-`3` vertex cannot be adjacent — the `(3,4,4)`-triangle has
 `∑deg ≤ 11 = thr(n)`, a good triangle for every `n ≥ 18`.  The structural atom of the
-sea-side host-capacity analysis (host pairs of an iso twin are pairwise non-adjacent). -/
+sea-side host-capacity analysis (host pairs of an iso twin are pairwise non-adjacent).
+@isnad1 id=not.8h5v.s7.8b05d3da86e8 from=translated src=- shape=3adeb86e vocab=bb481e53
+-/
 theorem shared_twin_hubs_nonadj (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) {t g h : Fin n} (hdt : G.degree t = 3)
     (hdg : G.degree g ≤ 4) (hdh : G.degree h ≤ 4)
@@ -599,6 +630,9 @@ noncomputable def richLowHubs (G : SimpleGraph V) : Finset V :=
     (fun w => G.degree w ≤ 5 ∧ 2 ≤ (G.neighborFinset w ∩ isoTwins G).card)
 
 open Classical in
+/--
+@isnad1 id=iff.0h3v.s7.de8893cc5598 from=translated src=- shape=5eb54cfe vocab=58ebf5de
+-/
 theorem mem_richLowHubs {G : SimpleGraph V} {w : V} :
     w ∈ richLowHubs G ↔ 4 ≤ G.degree w ∧ G.degree w ≤ 5 ∧
       2 ≤ (G.neighborFinset w ∩ isoTwins G).card := by
@@ -614,7 +648,9 @@ noncomputable def badApexNbrs (G : SimpleGraph V) (x z y t : V) : Finset V :=
 open Classical in
 /-- **The C0 pigeonhole (the design's "fat + cherry → TwoTwin" counting)**: `≥ 6` rich
 low hubs close the cherry world — at most `5` hubs touch the cherry, so some rich low
-hub avoids it and fires the TwoTwin certificate. -/
+hub avoids it and fires the TwoTwin certificate.
+@isnad1 id=twoblock.2h5v.s5.db93a7e326f6 from=translated src=- shape=56492d55 vocab=e43cdc8b
+-/
 theorem six_richLow_twoBlock (G : SimpleGraph V) {x z y : V} (hch : Cherry G x z y)
     (h6 : 6 ≤ (richLowHubs G).card) : TwoBlockConfig G := by
   have h5 := cherryHubs_card_le_five G hch
@@ -640,7 +676,9 @@ open Classical in
 /-- **The sea-side dispatch atom**: every `M`-isolated apex `t` either fires the
 SingleVertex certificate outright (two neighbours of degree exactly `4` avoiding the
 cherry), or has `≥ 2` **bad** neighbours — degree `≥ 5` or cherry-touching.  (The
-`δ ≥ 3` hypothesis makes all of `t`'s three neighbours hubs.) -/
+`δ ≥ 3` hypothesis makes all of `t`'s three neighbours hubs.)
+@isnad1 id=or.3h6v.s6.3e1a01fb1dbb from=translated src=- shape=b12ed364 vocab=8824be1b
+-/
 theorem iso_apex_dichotomy (G : SimpleGraph V) (hdeg3 : ∀ v : V, 3 ≤ G.degree v)
     {x z y t : V} (hch : Cherry G x z y) (ht : t ∈ isoTwins G) :
     TwoBlockConfig G ∨ 2 ≤ (badApexNbrs G x z y t).card := by
@@ -703,7 +741,9 @@ low hubs and every `M`-isolated twin double-blocked (`≥ 2` neighbours of degre
 cherry-touching).  The corner predicate is exactly the interface the L4 continuation
 (the sea-side host-capacity pigeonhole) must close; every adversarial build probed at
 `n ∈ {25, 30, 40}` that satisfies it is nevertheless killed by `TwoHub ⊂ W1`
-(`scratchpad/general_cherry_sweep.py`). -/
+(`scratchpad/general_cherry_sweep.py`).
+@isnad1 id=or.2h2v.s6.e70df0423298 from=translated src=- shape=5a9b97ac vocab=c6789b23
+-/
 theorem caseCherry_dichotomy (n : ℕ) (G : SimpleGraph (Fin n)) (h : ResidualCore n G)
     (hch : CaseCherry G) :
     TwoBlockConfig G ∨
@@ -755,23 +795,34 @@ noncomputable def isoNbrs (G : SimpleGraph V) (g : V) : Finset V :=
   G.neighborFinset g ∩ isoTwins G
 
 open Classical in
+/--
+@isnad1 id=iff.0h4v.s5.813666aada12 from=translated src=- shape=3b7c8c64 vocab=ab90987a
+-/
 theorem mem_isoNbrs {G : SimpleGraph V} {g t : V} :
     t ∈ isoNbrs G g ↔ G.Adj g t ∧ t ∈ isoTwins G := by
   unfold isoNbrs
   rw [Finset.mem_inter, G.mem_neighborFinset]
 
 open Classical in
-/-- The cherry ends and centre are not `M`-isolated (each has a degree-`3` neighbour). -/
+/-- The cherry ends and centre are not `M`-isolated (each has a degree-`3` neighbour).
+@isnad1 id=not.1h5v.s5.943bdf9ac0fc from=translated src=- shape=6fba76a6 vocab=7c1f66c1
+-/
 theorem cherry_x_not_iso (G : SimpleGraph V) {x z y : V} (hch : Cherry G x z y) :
     x ∉ isoTwins G :=
   fun hx => (mem_isoTwins.mp hx).2 z hch.adj_zx.symm hch.deg_z
 
 open Classical in
+/--
+@isnad1 id=not.1h5v.s5.b062a9694bc8 from=translated src=- shape=ceae0828 vocab=7c1f66c1
+-/
 theorem cherry_y_not_iso (G : SimpleGraph V) {x z y : V} (hch : Cherry G x z y) :
     y ∉ isoTwins G :=
   fun hy => (mem_isoTwins.mp hy).2 z hch.adj_zy.symm hch.deg_z
 
 open Classical in
+/--
+@isnad1 id=not.1h5v.s5.e0b990601cfa from=translated src=- shape=07321141 vocab=7c1f66c1
+-/
 theorem cherry_z_not_iso (G : SimpleGraph V) {x z y : V} (hch : Cherry G x z y) :
     z ∉ isoTwins G :=
   fun hz => (mem_isoTwins.mp hz).2 x hch.adj_zx hch.deg_x
@@ -781,7 +832,9 @@ theorem cherry_z_not_iso (G : SimpleGraph V) {x z y : V} (hch : Cherry G x z y) 
 open Classical in
 /-- **The `mIncidence = 4` structure theorem.**  When `e(M) = 2`, the cherry accounts
 for the entire `D`–`D` incidence sum: the only degree-`3` neighbour of each end is the
-centre `z`, and every degree-`3` vertex other than `x, z, y` is an `M`-isolated twin. -/
+centre `z`, and every degree-`3` vertex other than `x, z, y` is an `M`-isolated twin.
+@isnad1 id=and.2h5v.s7.68234f6d39f3 from=translated src=- shape=c4fc7364 vocab=ec73a9aa
+-/
 theorem eM_four_nbrs (G : SimpleGraph V) {x z y : V}
     (hch : Cherry G x z y) (heM : mIncidence G = 4) :
     (∀ w : V, G.Adj x w → G.degree w = 3 → w = z) ∧
@@ -864,7 +917,9 @@ theorem eM_four_nbrs (G : SimpleGraph V) {x z y : V}
     omega
 
 open Classical in
-/-- **The iso-twin supply of the `e(M) = 2` world**: `|Iso| ≥ |D| − 3 ≥ 5`. -/
+/-- **The iso-twin supply of the `e(M) = 2` world**: `|Iso| ≥ |D| − 3 ≥ 5`.
+@isnad1 id=le.5h5v.s7.edcc705a2d74 from=translated src=- shape=345713bc vocab=b02ac1f6
+-/
 theorem eM_four_iso_card (n : ℕ) (hn : 8 ≤ n) (G : SimpleGraph (Fin n))
     (hm : G.edgeFinset.card = 2 * (n - 2)) (h3 : ∀ v : Fin n, 3 ≤ G.degree v)
     {x z y : Fin n} (hch : Cherry G x z y) (heM : mIncidence G = 4) :
@@ -899,7 +954,9 @@ theorem eM_four_iso_card (n : ℕ) (hn : 8 ≤ n) (G : SimpleGraph (Fin n))
 open Classical in
 /-- **The crossing budget vanishes for `z`-avoiding pairs**: in the `e(M) = 2` world
 every `M`-edge touches the centre `z`, and `z` lies in neither private side of a pair
-of hubs avoiding it — so `mCross(g, h) = 0` *structurally*. -/
+of hubs avoiding it — so `mCross(g, h) = 0` *structurally*.
+@isnad1 id=eq.4h7v.s6.313de6dcb05d from=translated src=- shape=100c402a vocab=a5534642
+-/
 theorem mCross_eq_zero_of_zavoid (G : SimpleGraph V) {x z y : V}
     (hch : Cherry G x z y) (heM : mIncidence G = 4) {g h : V}
     (hgz : ¬G.Adj g z) (hhz : ¬G.Adj h z) :
@@ -925,7 +982,9 @@ theorem mCross_eq_zero_of_zavoid (G : SimpleGraph V) {x z y : V}
 open Classical in
 /-- **The share bound for `z`-avoiding pairs** (`n ≥ 16`): two non-adjacent degree-`4`
 hubs avoiding `z` share at most one degree-`3` twin — any two shared twins live in
-`{x, y} ∪ Iso`, hence are non-adjacent, and give the good `C₄` `Σ = 14`. -/
+`{x, y} ∪ Iso`, hence are non-adjacent, and give the good `C₄` `Σ = 14`.
+@isnad1 id=le.9h7v.s7.bc262d06dade from=translated src=- shape=a84a7970 vocab=b616076e
+-/
 theorem sharedTwins_card_le_one_of_zavoid (n : ℕ) (hn : 16 ≤ n)
     (G : SimpleGraph (Fin n)) (hC4 : ¬HasGoodC4 n G) {x z y : Fin n}
     (hch : Cherry G x z y) (heM : mIncidence G = 4) {g h : Fin n}
@@ -965,7 +1024,9 @@ theorem sharedTwins_card_le_one_of_zavoid (n : ℕ) (hn : 16 ≤ n)
 open Classical in
 /-- **Adjacent low hubs share nothing** (`n ≥ 18`, wraps `shared_twin_hubs_nonadj`):
 an adjacent pair of degree-`≤ 4` hubs with a common degree-`3` twin is a
-`(3,4,4)`-triangle. -/
+`(3,4,4)`-triangle.
+@isnad1 id=eq.5h4v.s7.3ded2c2e2c5c from=translated src=- shape=82a5a617 vocab=815c0815
+-/
 theorem sharedTwins_eq_empty_of_adj (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) {g h : Fin n}
     (hdg : G.degree g ≤ 4) (hdh : G.degree h ≤ 4) (hadj : G.Adj g h) :
@@ -977,7 +1038,9 @@ theorem sharedTwins_eq_empty_of_adj (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (
 
 open Classical in
 /-- The rich-CT `D3`-card bound: a hub with a non-iso degree-`3` neighbour `c` has
-`|D3| ≥ |isoNbrs| + 1`. -/
+`|D3| ≥ |isoNbrs| + 1`.
+@isnad1 id=le.3h4v.s6.ee6c8c36cbce from=translated src=- shape=8d47df21 vocab=710a43df
+-/
 theorem hubTwins_card_bounds (G : SimpleGraph V) {g c : V}
     (hgc : G.Adj g c) (hc3 : G.degree c = 3) (hcIso : c ∉ isoTwins G) :
     (isoNbrs G g).card + 1 ≤ (hubTwins G g).card := by
@@ -1075,7 +1138,9 @@ private theorem p3_pair_gap (G : SimpleGraph V) {g h : V}
 open Classical in
 /-- **The `z`-avoiding rich pair closes** (the main pair theorem, `n ≥ 18`): two
 distinct rich cherry-touching degree-`4` hubs avoiding the centre give a `W1Config` or
-a `TwoBlockConfig`, by the adjacent / equal / gap / two-hub case tree. -/
+a `TwoBlockConfig`, by the adjacent / equal / gap / two-hub case tree.
+@isnad1 id=or.15h7v.s8.4aa2b0de942f from=translated src=- shape=3f655d53 vocab=64da8ccf
+-/
 theorem p3_pair_close (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (hT : ¬HasGoodTriangle n G) (hC4 : ¬HasGoodC4 n G)
     {x z y : Fin n} (hch : Cherry G x z y) (heM : mIncidence G = 4)
@@ -1190,7 +1255,9 @@ open Classical in
 and there is no degree-`≥ 5` vertex, the `≥ 2|Iso| ≥ 10` cherry-touching incidence
 demand against the `≤ 5`-hub, `≤ 3`-each capacity forces `≥ 3` rich cherry-touching
 hubs, of which at most one is adjacent to the centre `z` — leaving the two hubs the
-pair theorem needs. -/
+pair theorem needs.
+@isnad1 id=ex.4h5v.s8.ec43c12f0711 from=translated src=- shape=c7f92f82 vocab=29b47d08
+-/
 theorem corner_rich_pair_exists (G : SimpleGraph V)
     (hsea : ∀ v : V, G.degree v ≤ 4)
     {x z y : V} (hch : Cherry G x z y)
@@ -1330,7 +1397,9 @@ open Classical in
 /-- **THE BLOCKED CHERRY CORNER CLOSES** in the `e(M) = 2` sea regime (`n ≥ 18`,
 `Δ ≤ 4`, `mIncidence = 4`): under `ResidualCore`, a cherry all of whose iso twins are
 double-blocked forces a `W1Config` or a `TwoBlockConfig` — the exact conclusion the
-`caseCherry_dichotomy` corner interface asks for. -/
+`caseCherry_dichotomy` corner interface asks for.
+@isnad1 id=or.6h5v.s7.3dc6ff0acbbb from=translated src=- shape=5aeeb25d vocab=eca13e41
+-/
 theorem blockedCherryCorner_close (n : ℕ) (hn : 18 ≤ n) (G : SimpleGraph (Fin n))
     (h : ResidualCore n G) (hsea : ∀ v : Fin n, G.degree v ≤ 4)
     (heM : mIncidence G = 4) {x z y : Fin n} (hch : Cherry G x z y)

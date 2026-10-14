@@ -35,6 +35,9 @@ variable (G : Type*) [Group G] [MulAction G V] (X : SimpleGraph V) [GraphAction 
 
 namespace GraphAction
 
+/--
+@isnad1 id=iff.0h6v.s6.ca75c33d564d from=translated src=- shape=15340661 vocab=1c55248e
+-/
 @[simp]
 lemma adj_iff (g : G) (x y : V) : X.Adj (g • x) (g • y) ↔ X.Adj x y := by
   constructor
@@ -45,6 +48,9 @@ lemma adj_iff (g : G) (x y : V) : X.Adj (g • x) (g • y) ↔ X.Adj x y := by
 instance : SMul G (Sym2 V) where
   smul g := Sym2.map (fun x ↦ g • x)
 
+/--
+@isnad1 id=eq.0h5v.s6.451d569b59e2 from=translated src=- shape=4645c0cf vocab=4f2ab888
+-/
 @[simp]
 lemma smul_sym2 (g : G) (x y : V) : g • s(x, y) = s(g • x, g • y) :=
   rfl
@@ -68,6 +74,9 @@ instance : SMul G X.edgeSet where
     intro x y
     simp⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.eafebc29b0cf from=translated src=- shape=08ec1db9 vocab=7d7d7c20
+-/
 @[simp]
 lemma smul_edgeSet_coe (g : G) (e : X.edgeSet) : (g • e).val = g • e.val := rfl
 
@@ -83,6 +92,9 @@ instance : MulAction G X.edgeSet where
 
 variable {G} {X}
 
+/--
+@isnad1 id=mem.1h5v.s6.5f6a08170a58 from=translated src=- shape=ec32759b vocab=542b0edb
+-/
 lemma smul_mem_smul_of (g : G) (e : Sym2 V) (x : V) (h : x ∈ e) :
     g • x ∈ g • e := by
   revert h
@@ -90,6 +102,9 @@ lemma smul_mem_smul_of (g : G) (e : Sym2 V) (x : V) (h : x ∈ e) :
   intro a b h
   simpa using h
 
+/--
+@isnad1 id=iff.0h5v.s6.d0ae0b56af5e from=translated src=- shape=0ebf2b4d vocab=542b0edb
+-/
 @[simp]
 lemma smul_mem_smul_iff (g : G) (e : Sym2 V) (x : V) :
     g • x ∈ g • e ↔ x ∈ e := by

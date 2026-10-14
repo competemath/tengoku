@@ -59,7 +59,9 @@ def remap₂ (N G₁ G₂ : Nat) (w : Fin (N + G₂)) : Fin (N + (G₁ + G₂ + 
   if h : w.val < N then ⟨w.val, by omega⟩
   else ⟨w.val + G₁ + 1, by have := w.isLt; omega⟩
 
-/-- Remapping a wire preserves its bound in the combined circuit. -/
+/-- Remapping a wire preserves its bound in the combined circuit.
+@isnad1 id=lt.2h5v.s7.8fe025254a00 from=translated src=- shape=62fae24a vocab=76d3fed2
+-/
 lemma remap₂_val_lt (N G₁ G₂ : Nat) (w : Fin (N + G₂))
     (bound : Nat) (hb : G₁ + 1 ≤ bound) (hw : w.val < N + (bound - G₁ - 1)) :
     (remap₂ N G₁ G₂ w).val < N + bound := by
@@ -235,7 +237,9 @@ private theorem binop_wireValue_c₂ {N G₁ G₂ : Nat} [NeZero N]
     `N + G₁ + G₂ + 1`, which replicate the output gates of c₁ and c₂.
     The proof shows that wire values in the combined circuit agree with
     wire values in the original circuits (via `binop_wireValue_c₁` and
-    `binop_wireValue_c₂`), then combines. -/
+    `binop_wireValue_c₂`), then combines.
+@isnad1 id=eq.2h7v.s7.fcf62565ce36 from=translated src=- shape=f28bb8a2 vocab=d1e0cfd3
+-/
 theorem binopCircuit_or_correct {N G₁ G₂ : Nat} [NeZero N]
     (c₁ : Circuit Basis.andOr2 N 1 G₁) (c₂ : Circuit Basis.andOr2 N 1 G₂)
     (f₁ f₂ : BitString N → Bool)
@@ -298,14 +302,23 @@ private theorem log_ge_one (N : Nat) (hN : 16 ≤ N) : 1 ≤ Nat.log 2 N :=
 private theorem log_lt_N (N : Nat) (hN : 16 ≤ N) : Nat.log 2 N < N :=
   Nat.log_lt_of_lt_pow (by omega) (@Nat.lt_pow_self N 2 (by omega))
 
+/--
+@isnad1 id=le.1h1v.s4.9f79dd785d8a from=translated src=- shape=35bd48ee vocab=d5c79b22
+-/
 theorem addrBits_ge_three (N : Nat) (hN : 16 ≤ N) : 3 ≤ addrBits N := by
   unfold addrBits
   have := Nat.le_log_of_pow_le (by omega : 1 < 2) (show 2 ^ 4 ≤ N by omega)
   omega
 
+/--
+@isnad1 id=lt.1h1v.s4.b24ff1677364 from=translated src=- shape=a8dc2df9 vocab=9957999e
+-/
 theorem dataBits_pos (N : Nat) (hN : 16 ≤ N) : 0 < dataBits N := by
   unfold dataBits addrBits; have := log_lt_N N hN; omega
 
+/--
+@isnad1 id=le.1h1v.s4.45baa68aeb42 from=translated src=- shape=35bd48ee vocab=d0a73702
+-/
 theorem dataBits_ge_two (N : Nat) (hN : 16 ≤ N) : 2 ≤ dataBits N := by
   unfold dataBits addrBits
   have : Nat.log 2 N < N := log_lt_N N hN
@@ -431,6 +444,9 @@ private theorem term3 (N : Nat) (hN : 16 ≤ N) :
     Nat.mul_le_mul_left _ (by omega)
   omega
 
+/--
+@isnad1 id=le.1h1v.s7.92241330cd95 from=translated src=- shape=55546b8f vocab=aee6fb2b
+-/
 theorem shannon_arithmetic (N : Nat) (hN : 16 ≤ N) :
     (4 * 2 ^ dataBits N + 2 * 2 ^ addrBits N +
       2 ^ (2 ^ addrBits N + addrBits N)) * N ≤ 18 * 2 ^ N := by
@@ -439,6 +455,9 @@ theorem shannon_arithmetic (N : Nat) (hN : 16 ≤ N) :
   have h3 := term3 N hN
   nlinarith
 
+/--
+@isnad1 id=le.2h2v.s7.a2cefbb87c0e from=translated src=- shape=ccd26d12 vocab=f1ea2789
+-/
 theorem shannon_size_le (N : Nat) (hN : 16 ≤ N) (G : Nat)
     (hG : G + 1 ≤ 4 * 2 ^ dataBits N + 2 * 2 ^ addrBits N +
             2 ^ (2 ^ addrBits N + addrBits N)) :
@@ -470,6 +489,9 @@ private def mkG (W : Nat) (op : AONOp) (w0 w1 : Nat) (n0 n1 : Bool)
 def szSections (kk qq : Nat) : Nat :=
   1 + (2^(qq+1) - 4) + (2^(kk+1) - 4) + 2^(2^kk) * (2^kk - 1) + 2^qq + (2^qq - 1)
 
+/--
+@isnad1 id=lt.0h2v.s3.33b59c8da6ed from=translated src=- shape=a120b2a8 vocab=ed1e3cf7
+-/
 lemma szSections_pos (kk qq : Nat) : 0 < szSections kk qq := by
   unfold szSections; positivity
 
@@ -497,11 +519,17 @@ private lemma pow_double (n : Nat) : 2 ^ (n + 1) = 2 * 2 ^ n := by ring
 /-- The level (depth from the root) of node `j` in the selection tree. -/
 def treeLevel (j : Nat) : Nat := Nat.log 2 (j + 4) - 1
 
+/--
+@isnad1 id=le.1h1v.s4.624988c9823d from=translated src=- shape=35bd48ee vocab=fe3c7876
+-/
 lemma treeLevel_ge_two (j : Nat) (hj : 4 ≤ j) : 2 ≤ treeLevel j := by
   unfold treeLevel
   have : 3 ≤ Nat.log 2 (j + 4) := Nat.le_log_of_pow_le (by omega) (by omega)
   omega
 
+/--
+@isnad1 id=lt.2h2v.s6.e462b1f69007 from=translated src=- shape=a52e04ad vocab=58b1016a
+-/
 lemma treeLevel_lt (j n : Nat) (hj : j < 2 ^ (n + 1) - 4) (hn : 2 ≤ n) :
     treeLevel j < n := by
   unfold treeLevel
@@ -516,6 +544,9 @@ def treePos (j l : Nat) : Nat := j - treeBase l
 /-- The index of the parent of a node at level `l`, position `m`. -/
 def treeParentIdx (l m : Nat) : Nat := treeBase (l-1) + (m % 2 ^ l)
 
+/--
+@isnad1 id=le.1h1v.s4.5ae873f5acc8 from=translated src=- shape=710a314e vocab=a15fc0a4
+-/
 lemma treeBase_le_of_level (j : Nat) (hj : 4 ≤ j) :
     treeBase (treeLevel j) ≤ j := by
   unfold treeBase treeLevel
@@ -526,6 +557,9 @@ lemma treeBase_le_of_level (j : Nat) (hj : 4 ≤ j) :
   have hpow_le : 2 ^ Nat.log 2 (j + 4) ≤ j + 4 := Nat.pow_log_le_self 2 (by omega)
   rw [hlog_sub]; omega
 
+/--
+@isnad1 id=lt.3h3v.s5.928e33136a13 from=translated src=- shape=7d056b5a vocab=5f3aa1db
+-/
 lemma treeParentIdx_lt_j (l m j : Nat) (hl : 2 ≤ l)
     (hm : m = treePos j l) (hbase : treeBase l ≤ j) :
     treeParentIdx l m < j := by
@@ -577,6 +611,9 @@ private lemma sum_pow_two_lt (n : Nat) :
         < 2 ^ n + 2 ^ n := by omega
       _ = 2 ^ (n + 1) := by ring
 
+/--
+@isnad1 id=lt.0h2v.s6.f993333fb5f5 from=translated src=- shape=aafbfbee vocab=60bfde63
+-/
 theorem encodeCol_lt (k : Nat) (col : Fin (2 ^ k) → Bool) :
     encodeCol k col < 2^(2^k) := by
   unfold encodeCol
@@ -599,6 +636,9 @@ noncomputable def colPatIdx (N : Nat) (f : BitString N → Bool)
     (k q : Nat) (hkq : k + q = N) (y : Fin (2 ^ q)) : Nat :=
   encodeCol k (colFun N f k q hkq y)
 
+/--
+@isnad1 id=lt.1h5v.s6.1ba0212d2a8d from=translated src=- shape=b96ea7cd vocab=0b74819f
+-/
 theorem colPatIdx_lt (N : Nat) (f : BitString N → Bool)
     (k q : Nat) (hkq : k + q = N) (y : Fin (2 ^ q)) :
     colPatIdx N f k q hkq y < 2^(2^k) :=
@@ -1760,6 +1800,9 @@ private theorem szSections_le_bound (N : Nat) (_hN : 16 ≤ N) :
       _ = 2 ^ (2 ^ addrBits N + addrBits N) := by rw [← Nat.pow_add]
   omega
 
+/--
+@isnad1 id=ex.1h2v.s7.090df5d88935 from=translated src=- shape=e929ed37 vocab=32e7f1c9
+-/
 theorem shannon_assembly (N : Nat) [NeZero N] (hN : 16 ≤ N)
     (f : BitString N → Bool) :
     ∃ G, ∃ c : Circuit Basis.andOr2 N 1 G,
@@ -1774,7 +1817,9 @@ theorem shannon_assembly (N : Nat) [NeZero N] (hN : 16 ≤ N)
 /-! ## Main Theorem -/
 
 /-- **Shannon circuit construction**: For `N ≥ 16`, every Boolean function
-    has a fan-in-2 AND/OR circuit of size `≤ 18 · 2^N / N`. -/
+    has a fan-in-2 AND/OR circuit of size `≤ 18 · 2^N / N`.
+@isnad1 id=ex.1h2v.s7.697a7961e9f2 from=translated src=- shape=47bbf8d4 vocab=f988c38c
+-/
 theorem shannon_construction (N : Nat) [NeZero N] (hN : 16 ≤ N)
     (f : BitString N → Bool) :
     ∃ G, ∃ c : Circuit Basis.andOr2 N 1 G,

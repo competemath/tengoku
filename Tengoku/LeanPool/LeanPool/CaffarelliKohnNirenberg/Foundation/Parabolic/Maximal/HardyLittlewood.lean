@@ -38,6 +38,9 @@ def parabolicMaximalFunction (f : ParabolicPoint → ℝ≥0∞) (z : ParabolicP
     (hardyLittlewoodParabolicMetricBall c r).indicator
       (fun _ ↦ ⨍⁻ y in hardyLittlewoodParabolicMetricBall c r, f y ∂volume) z
 
+/--
+@isnad1 id=le.1h4v.s5.b03b35386428 from=translated src=- shape=e4f74e44 vocab=665a9e58
+-/
 theorem parabolicMaximalFunction_average_le {f : ParabolicPoint → ℝ≥0∞}
     {c z : ParabolicPoint} {r : ℝ} (hz : z ∈ hardyLittlewoodParabolicMetricBall c r) :
     ⨍⁻ y in hardyLittlewoodParabolicMetricBall c r, f y ∂volume ≤ parabolicMaximalFunction f z := by

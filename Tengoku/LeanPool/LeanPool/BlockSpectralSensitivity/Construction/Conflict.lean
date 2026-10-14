@@ -48,13 +48,17 @@ section Cert
 variable [DecidableEq ι] {Arc : ι → ι → Bool} {γ : ι → ι → Fin r} {i j : ι}
 
 /-- If `i → j` then `q_{ij} = (j, γ(i,j))` is a conflicting literal between `C_i`
-and `C_j` (Section 4). -/
+and `C_j` (Section 4).
+@isnad1 id=conflict.2h6v.s5.0a2f95edbdae from=translated src=- shape=45e03b37 vocab=5a498caa
+-/
 theorem conflict_gateCoord (hji : j ≠ i) (hij : Arc i j) :
     (cert Arc γ i).Conflict (cert Arc γ j) (gateCoord γ i j) :=
   ⟨false, cert_apply_gateCoord hji hij, cert_apply_of_fst_eq (gateCoord_fst γ i j)⟩
 
 /-- Distinct certificates always conflict: at the gate coordinate of whichever of the two
-arcs joins `i` and `j` (Section 4). -/
+arcs joins `i` and `j` (Section 4).
+@isnad1 id=ex.2h6v.s5.2542fc0e8191 from=translated src=- shape=99f55556 vocab=87e2968e
+-/
 theorem exists_conflict_of_ne (hT : IsTournament Arc) (hij : i ≠ j) :
     ∃ v : Coord ι r, (cert Arc γ i).Conflict (cert Arc γ j) v :=
   (hT.arc_or_arc hij).elim (fun h ↦ ⟨_, conflict_gateCoord hij.symm h⟩)
@@ -74,7 +78,9 @@ theorem eq_gateCoord_of_conflict (hT : IsTournament Arc)
     rw [← h2, gateCoord_fst_eq_self hg]
 
 /-- Every positive input lies in exactly one certificate subcube: the *owner*
-(Section 4). -/
+(Section 4).
+@isnad1 id=eq.3h7v.s5.ce75431de6b3 from=translated src=- shape=2e6f67d0 vocab=a13ec408
+-/
 theorem sat_cert_unique (hT : IsTournament Arc)
     {x : Input (Coord ι r)} (hi : (cert Arc γ i).Sat x) (hj : (cert Arc γ j).Sat x) :
     i = j :=
@@ -87,7 +93,9 @@ section Fintype
 variable [Fintype ι] [DecidableEq ι] {Arc : ι → ι → Bool} {γ : ι → ι → Fin r} {i j : ι}
 
 /-- The set of coordinates on which `C_i` and `C_j` conflict is the singleton `{q_{ij}}`
-(Section 4). -/
+(Section 4).
+@isnad1 id=eq.3h6v.s6.67ed63d84d12 from=translated src=- shape=307ddbf3 vocab=c502822d
+-/
 theorem filter_conflict_eq_singleton (hT : IsTournament Arc)
     (hji : j ≠ i) (hij : Arc i j) :
     (Finset.univ.filter fun v : Coord ι r ↦ (cert Arc γ i).Conflict (cert Arc γ j) v)
@@ -98,13 +106,17 @@ theorem filter_conflict_eq_singleton (hT : IsTournament Arc)
   rintro rfl
   exact conflict_gateCoord hji hij
 
-/-- Distinct certificate subcubes are disjoint (Section 4). -/
+/-- Distinct certificate subcubes are disjoint (Section 4).
+@isnad1 id=disjoint.2h6v.s6.8c28067375d5 from=translated src=- shape=d76d2afa vocab=6d16e247
+-/
 theorem disjoint_cube_cert (hT : IsTournament Arc) (hij : i ≠ j) :
     Disjoint (cert Arc γ i).cube (cert Arc γ j).cube :=
   (exists_conflict_of_ne hT hij).elim fun _ hv ↦ hv.disjoint_cube
 
 /-- The unique conflict is always violated: `q_{ij} ∈ violSet (C_j) x` for `x ∈ C_i`
-(Section 4). -/
+(Section 4).
+@isnad1 id=mem.3h7v.s6.ee99d1675b2f from=translated src=- shape=9c9ca3e8 vocab=c3543629
+-/
 theorem gateCoord_mem_violSet (hji : j ≠ i) (hij : Arc i j)
     {x : Input (Coord ι r)} (hx : (cert Arc γ i).Sat x) :
     gateCoord γ i j ∈ (cert Arc γ j).violSet x :=
@@ -124,7 +136,9 @@ theorem eq_gateCoord_of_mem_violSet_of_fixed (hT : IsTournament Arc)
   rw [hb, Bool.eq_not_of_ne hne.symm]
 
 /-- A point of `C_i` is at distance at least `1` from `C_j` when `i ≠ j`; in particular
-`C_i ∩ C_j = ∅` (Section 4). -/
+`C_i ∩ C_j = ∅` (Section 4).
+@isnad1 id=le.3h7v.s6.3fe9012d5f3f from=translated src=- shape=64797bf5 vocab=79082287
+-/
 theorem one_le_dist_cert (hT : IsTournament Arc) (hij : i ≠ j)
     {x : Input (Coord ι r)} (hx : (cert Arc γ i).Sat x) : 1 ≤ (cert Arc γ j).dist x :=
   (exists_conflict_of_ne hT hij).elim fun v hv ↦ Finset.card_pos.2 ⟨v, hv.mem_violSet hx⟩

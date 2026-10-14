@@ -44,6 +44,9 @@ layer-cake integrals are globally measurable. -/
 def rpowExt (a t : ℝ) : ℝ :=
   if 0 < t then Real.exp (a * Real.log t) else 0
 
+/--
+@isnad1 id=eq.1h2v.s4.1cdf56dc3b0f from=translated src=- shape=dafc2c67 vocab=c9a21581
+-/
 lemma rpowExt_eq {a t : ℝ} (ht : 0 < t) : rpowExt a t = t ^ a := by
   simp only [rpowExt, ht, ↓reduceIte]
   rw [Real.rpow_def_of_pos ht]
@@ -62,6 +65,9 @@ def weightedHighIntegrand (N : Vec3 → ℝ≥0∞) (p : ℝ) (t : ℝ) (x : Vec
   ENNReal.ofReal (rpowExt (p - 2) t) *
     (N ⁻¹' Ioi (ENNReal.ofReal (t / 2))).indicator N x
 
+/--
+@isnad1 id=aemeasur.1h2v.s7.7b0f7105c337 from=translated src=- shape=037c2de5 vocab=f734f305
+-/
 lemma measurable_weightedHighIntegrand {N : Vec3 → ℝ≥0∞} (hN : Measurable N)
     {p : ℝ} :
     AEMeasurable (Function.uncurry (weightedHighIntegrand N p))
@@ -158,6 +164,9 @@ private lemma inner_weightedHigh {N : Vec3 → ℝ≥0∞} {p : ℝ} (hp : 1 < p
           (measurableSet_Ioc : MeasurableSet (Ioc (0 : ℝ) (2 * y)))] with t ht
         exact Real.rpow_nonneg ht.1.le _
 
+/--
+@isnad1 id=eq.1h3v.s8.afcd394dbccb from=translated src=- shape=d111ca3b vocab=cd823f77
+-/
 lemma inner_High_eq {N : Vec3 → ℝ≥0∞} (hN : Measurable N) {p : ℝ} (t : ℝ) :
     ∫⁻ x, weightedHighIntegrand N p t x =
       ENNReal.ofReal (rpowExt (p - 2) t) *
@@ -425,6 +434,9 @@ def absE (f : Vec3 → ℝ) : Vec3 → ℝ≥0∞ := fun x ↦ ENNReal.ofReal |f
 private lemma absE_apply (f : Vec3 → ℝ) (x : Vec3) : absE f x = ENNReal.ofReal |f x| :=
   rfl
 
+/--
+@isnad1 id=measurab.1h1v.s5.f549cd5d3c9f from=translated src=- shape=7b940848 vocab=9437c450
+-/
 lemma measurable_absE {f : Vec3 → ℝ} (hf : Measurable f) : Measurable (absE f) :=
   ENNReal.measurable_ofReal.comp hf.norm
 
@@ -474,7 +486,9 @@ private lemma low_term_eq {A p t : ℝ} (ht : 0 < t) (J : ℝ≥0∞) :
 
 /-- The distribution-function bound obtained by truncating `f` at the level
 `t / 2`: the weak `(1,1)` estimate controls the part of `f` above the level and
-the strong `(2,2)` estimate (via Chebyshev's inequality) the part below it. -/
+the strong `(2,2)` estimate (via Chebyshev's inequality) the part below it.
+@isnad1 id=le.6h5v.s10.35ed237cb3ba from=translated src=- shape=342e9309 vocab=112df331
+-/
 lemma tail_bound {T : (Vec3 → ℝ) → (Vec3 → ℝ)} {A₁ A₂ : ℝ}
     (hTsub : ∀ f g (x : Vec3), |T (f + g) x| ≤ |T f x| + |T g x|)
     (hTmeas : ∀ f, Measurable f → Measurable (T f))
@@ -670,7 +684,9 @@ private lemma interp_scale {A₁ A₂ p : ℝ} (hA₁ : 0 ≤ A₁) (hp1 : 1 < p
           rw [interp_constant]
 
 /-- The pointwise distribution-function inequality of the tail bound, rewritten
-as a product of the two layer-cake weights with the split coefficients. -/
+as a product of the two layer-cake weights with the split coefficients.
+@isnad1 id=eq.3h6v.s8.6e6ddf5481df from=translated src=- shape=355c896e vocab=8c8093a9
+-/
 lemma interp_integrand {A₁ A₂ p t : ℝ} (hA₁ : 0 ≤ A₁) (hp1 : 1 < p) (ht : 0 < t)
     (H L : ℝ≥0∞) :
     (ENNReal.ofReal (2 * A₁ / t) * H + ENNReal.ofReal (4 * A₂ ^ 2 / t ^ 2) * L) *
@@ -718,7 +734,9 @@ def lowTail (N : Vec3 → ℝ≥0∞) (t : ℝ) : ℝ≥0∞ :=
   ∫⁻ x in N ⁻¹' Iic (ENNReal.ofReal (t / 2)), N x ^ 2
 
 /-- The layer-cake representation of `∫ |T f| ^ p` as the integral over the level `t`
-of the distribution function of `|T f|` against the weight `p t ^ (p - 1)`. -/
+of the distribution function of `|T f|` against the weight `p t ^ (p - 1)`.
+@isnad1 id=eq.2h3v.s8.13616486899e from=translated src=- shape=f43652a3 vocab=43c09d49
+-/
 lemma layer_cake {T : (Vec3 → ℝ) → (Vec3 → ℝ)} {f : Vec3 → ℝ}
     (hTf : Measurable (T f)) {p : ℝ} (hp1 : 1 < p) :
     ∫⁻ x, absE (T f) x ^ p =
@@ -742,7 +760,9 @@ lemma layer_cake {T : (Vec3 → ℝ) → (Vec3 → ℝ)} {f : Vec3 → ℝ}
 
 /-- Evaluating the two weighted tail integrals of the distribution-function estimate
 against the layer-cake weight and collecting the coefficients into the interpolation
-constant. -/
+constant.
+@isnad1 id=eq.5h4v.s8.d05f0042431e from=translated src=- shape=cd06a56e vocab=f2bf3ef4
+-/
 lemma weighted_combined {N : Vec3 → ℝ≥0∞} (hN : Measurable N) (hNfin : ∀ x, N x < ∞)
     {A₁ A₂ p : ℝ} (hA₁ : 0 ≤ A₁) (hp1 : 1 < p) (hp2 : p < 2) :
     (∫⁻ t in Ioi (0 : ℝ), ENNReal.ofReal (2 * A₁) *

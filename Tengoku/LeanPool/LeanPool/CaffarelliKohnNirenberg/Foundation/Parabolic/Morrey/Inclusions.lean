@@ -132,7 +132,9 @@ private lemma morreyCell_bounded_support {p q q' : ℝ} (hp : 0 < p)
           _ = (A ^ (-α') * B ^ α) * morreyNorm p q f := by ac_rfl
           _ ≤ _ := mul_le_mul_left hcoef _
 
-/-- A bounded-support function has the lower Morrey exponent at an explicit scale cost. -/
+/-- A bounded-support function has the lower Morrey exponent at an explicit scale cost.
+@isnad1 id=le.6h6v.s7.16b7bbc02410 from=translated src=- shape=c2a8a86c vocab=96a49908
+-/
 theorem morreyNorm_bounded_support {p q q' : ℝ} (hp : 1 ≤ p)
     (hpq : p ≤ q) (hpq' : p ≤ q') (hq'q : q' ≤ q)
     {f : ParabolicPoint → ℝ}

@@ -48,7 +48,9 @@ bounds and `norm_num` closes.
 
 An earlier attempt to decompose `89693` into small primes stalled, because Mathlib carries `log 2`,
 `log 3` and `log 5` to nine digits but not `log 7`, and no 5-smooth integer lies in the necessary
-range. That route was unnecessary. -/
+range. That route was unnecessary.
+@isnad1 id=lt.0h0v.s4.a65b2730c47c from=translated src=- shape=8905eb1d vocab=ee452584
+-/
 theorem lt_log_89693 : (11.4 : ℝ) < Real.log 89693 := by
   rw [show (11.4 : ℝ) = 57 / (5 : ℕ) by norm_num, div_lt_iff₀ (by norm_num), mul_comm,
     ← Real.log_pow, Real.lt_log_iff_exp_lt (by norm_num), ← Real.exp_one_rpow]
@@ -65,7 +67,9 @@ instance of `v2`, and the bridge exhibits the instantiation.
 `11.4` is passed for `c` because that is the value `Lcm.v1`'s development uses, and `lt_log_89693`
 is exactly the side condition it needs. `Lcm.v2` requires only `5 ≤ c`, so any value in `[5, 11.4]`
 would do here; keeping `11.4` makes the bridge a faithful record of what the ported proof actually
-establishes. -/
+establishes.
+@isnad1 id=lcmupton.2h0v.s2.5bfb6de30864 from=translated src=- shape=f443e7c7 vocab=9cc3d291
+-/
 theorem bridge_v2_to_v1
     (general : Lcm.v2.lcmUpto_not_highlyAbundant_of_primeGap)
     (dusart : Dusart2018.v1.proposition_5_4) :

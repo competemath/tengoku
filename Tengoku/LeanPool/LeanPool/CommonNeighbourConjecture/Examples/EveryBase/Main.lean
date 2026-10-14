@@ -89,7 +89,9 @@ noncomputable def hqBadVector
   badVector (hqSeed d hd hd3) (hqColours d hd hd3 tail)
     (hqFirstColour d hd hd3 tail)
 
-/-- At base size two, the displayed vertices are nonadjacent. -/
+/-- At base size two, the displayed vertices are nonadjacent.
+@isnad1 id=not.2h1v.s13.e4b6db8399ad from=translated src=- shape=31b0095b vocab=264f961b
+-/
 theorem hq_zero_not_generalizedAdjacent_badVector
     (d : Nat) (hd : Odd d) (hd3 : 3 ≤ d) :
     ¬ Saxl.GeneralizedAdjacent (GBd d hd hd3 0)
@@ -119,6 +121,9 @@ theorem hq_zero_not_generalizedAdjacent_badVector
   rw [hvalue]
   exact hh
 
+/--
+@isnad1 id=and.2h2v.s11.843b08bfcec1 from=translated src=- shape=ee125fd0 vocab=5bb81e9e
+-/
 theorem hq_exactBase_and_noCommonNeighbour
     (d : Nat) (hd : Odd d) (hd3 : 3 ≤ d) (tail : Nat) :
     Saxl.ExactBaseSize
@@ -142,6 +147,9 @@ theorem hq_exactBase_and_noCommonNeighbour
   apply abstractCoreFamily
   exact (hqColourTower d hd hd3).linear_exactTupleBaseSize_of_seed tail
 
+/--
+@isnad1 id=isirredu.2h2v.s14.4eb07521b912 from=translated src=- shape=9305bbda vocab=509ef28f
+-/
 theorem hq_linearTop_irreducible
     (d : Nat) (hd : Odd d) (hd3 : 3 ≤ d) (tail : Nat) :
     Representation.IsIrreducible
@@ -159,6 +167,9 @@ theorem hq_linearTop_irreducible
     (ι := (hqColours d hd hd3 tail).C) (V := Vq d)
     (hq_irreducible d hd) inferInstance
 
+/--
+@isnad1 id=isprepri.2h2v.s14.cd18235f7b46 from=translated src=- shape=6c0c7479 vocab=b352b750
+-/
 theorem hq_primitive
     (d : Nat) (hd : Odd d) (hd3 : 3 ≤ d) (tail : Nat) :
     MulAction.IsPreprimitive (GBd d hd hd3 tail)
@@ -172,6 +183,9 @@ theorem hq_primitive
     (HqLinearGroup d hd hd3 tail)
     (HqProductModule d hd hd3 tail) 2
 
+/--
+@isnad1 id=and.2h2v.s15.2941973b0c48 from=translated src=- shape=886067aa vocab=9336d58d
+-/
 theorem hq_coreFamily
     (d : Nat) (hd : Odd d) (hd3 : 3 ≤ d) (tail : Nat) :
     Saxl.ExactBaseSize (GBd d hd hd3 tail)
@@ -188,6 +202,9 @@ theorem hq_coreFamily
   · exact hcore.1
   · exact hcore.2
 
+/--
+@isnad1 id=le.2h2v.s8.b1082609c4d3 from=translated src=- shape=40749527 vocab=58a0d010
+-/
 theorem vq_card_le_productModule_card
     (d : Nat) (hd : Odd d) (hd3 : 3 ≤ d) (tail : Nat) :
     Nat.card (Vq d) ≤ Nat.card (HqProductModule d hd hd3 tail) := by

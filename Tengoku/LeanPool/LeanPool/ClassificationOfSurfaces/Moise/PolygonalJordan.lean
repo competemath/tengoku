@@ -68,23 +68,40 @@ def NonAdjacentEdges (i j : ZMod J.n) : Prop :=
 def carrier : Set Plane :=
   ⋃ i, J.edgeSegment i
 
+/--
+@isnad1 id=mem.0h2v.s4.0e3a40a92e21 from=translated src=- shape=4af212fb vocab=2b90b081
+-/
 theorem vertex_mem_carrier (i : ZMod J.n) : J.vertex i ∈ J.carrier :=
   Set.mem_iUnion.mpr ⟨i, left_mem_segment ℝ _ _⟩
 
+/--
+@isnad1 id=nonempty.0h1v.s2.d3e77ef7a1f5 from=translated src=- shape=1a6c1393 vocab=c90c7923
+-/
 theorem carrier_nonempty : J.carrier.Nonempty :=
   ⟨J.vertex 0, J.vertex_mem_carrier 0⟩
 
+/--
+@isnad1 id=iscompac.0h2v.s5.984f9b29b9fd from=translated src=- shape=7bccf03c vocab=8f923bdf
+-/
 theorem isCompact_edgeSegment (i : ZMod J.n) : IsCompact (J.edgeSegment i) := by
   rw [edgeSegment, ← convexHull_pair]
   exact Set.Finite.isCompact_convexHull (𝕜 := ℝ) (by simp)
 
-/-- The carrier of a polygon is compact. -/
+/-- The carrier of a polygon is compact.
+@isnad1 id=iscompac.0h1v.s5.0f83d2196b91 from=translated src=- shape=1a6c1393 vocab=c8f977ef
+-/
 theorem isCompact_carrier : IsCompact J.carrier :=
   isCompact_iUnion J.isCompact_edgeSegment
 
+/--
+@isnad1 id=isclosed.0h1v.s5.958b8893c14e from=translated src=- shape=1a6c1393 vocab=891344a6
+-/
 theorem isClosed_carrier : IsClosed J.carrier :=
   J.isCompact_carrier.isClosed
 
+/--
+@isnad1 id=isclosed.0h2v.s5.4918e9214079 from=translated src=- shape=7bccf03c vocab=09d06aba
+-/
 theorem isClosed_edgeSegment (i : ZMod J.n) : IsClosed (J.edgeSegment i) :=
   (J.isCompact_edgeSegment i).isClosed
 
@@ -122,17 +139,26 @@ noncomputable def mapEmbedding (f : Plane → Plane)
     rw [hdis]
     simp
 
+/--
+@isnad1 id=eq.2h2v.s7.e56d52387227 from=translated src=- shape=8c1dbe8f vocab=3711ce28
+-/
 @[simp] theorem mapEmbedding_n (f : Plane → Plane) (hinj : Set.InjOn f J.carrier)
     (hedge : ∀ i : ZMod J.n,
       f '' J.edgeSegment i = segment ℝ (f (J.vertex i)) (f (J.vertex (i + 1)))) :
     (J.mapEmbedding f hinj hedge).n = J.n := rfl
 
+/--
+@isnad1 id=eq.2h3v.s7.f4d5479122d8 from=translated src=- shape=517a21b5 vocab=3711ce28
+-/
 @[simp] theorem mapEmbedding_vertex (f : Plane → Plane) (hinj : Set.InjOn f J.carrier)
     (hedge : ∀ i : ZMod J.n,
       f '' J.edgeSegment i = segment ℝ (f (J.vertex i)) (f (J.vertex (i + 1))))
     (i : ZMod J.n) :
     (J.mapEmbedding f hinj hedge).vertex i = f (J.vertex i) := rfl
 
+/--
+@isnad1 id=eq.2h3v.s7.9c4e96237fff from=translated src=- shape=e72ad581 vocab=3711ce28
+-/
 theorem mapEmbedding_edgeSegment (f : Plane → Plane) (hinj : Set.InjOn f J.carrier)
     (hedge : ∀ i : ZMod J.n,
       f '' J.edgeSegment i = segment ℝ (f (J.vertex i)) (f (J.vertex (i + 1))))
@@ -140,6 +166,9 @@ theorem mapEmbedding_edgeSegment (f : Plane → Plane) (hinj : Set.InjOn f J.car
     (J.mapEmbedding f hinj hedge).edgeSegment i = f '' J.edgeSegment i := by
   exact (hedge i).symm
 
+/--
+@isnad1 id=eq.2h2v.s7.9fafe95335eb from=translated src=- shape=b788a26d vocab=3711ce28
+-/
 theorem mapEmbedding_carrier (f : Plane → Plane) (hinj : Set.InjOn f J.carrier)
     (hedge : ∀ i : ZMod J.n,
       f '' J.edgeSegment i = segment ℝ (f (J.vertex i)) (f (J.vertex (i + 1)))) :
@@ -181,17 +210,26 @@ noncomputable def mapHomeomorph (h : Plane ≃ₜ Plane)
     rw [hdisjoint]
     simp
 
+/--
+@isnad1 id=eq.1h2v.s10.a07e5ce2a8d2 from=translated src=- shape=4e62f3e8 vocab=33e70926
+-/
 @[simp] theorem mapHomeomorph_n (h : Plane ≃ₜ Plane)
     (hedge : ∀ i : ZMod J.n,
       h '' J.edgeSegment i = segment ℝ (h (J.vertex i)) (h (J.vertex (i + 1)))) :
     (J.mapHomeomorph h hedge).n = J.n := rfl
 
+/--
+@isnad1 id=eq.1h3v.s10.6392bcd332a9 from=translated src=- shape=03098a92 vocab=33e70926
+-/
 @[simp] theorem mapHomeomorph_vertex (h : Plane ≃ₜ Plane)
     (hedge : ∀ i : ZMod J.n,
       h '' J.edgeSegment i = segment ℝ (h (J.vertex i)) (h (J.vertex (i + 1))))
     (i : ZMod J.n) :
     (J.mapHomeomorph h hedge).vertex i = h (J.vertex i) := rfl
 
+/--
+@isnad1 id=eq.1h3v.s10.7da1b2160577 from=translated src=- shape=8d9def9f vocab=33e70926
+-/
 theorem mapHomeomorph_edgeSegment (h : Plane ≃ₜ Plane)
     (hedge : ∀ i : ZMod J.n,
       h '' J.edgeSegment i = segment ℝ (h (J.vertex i)) (h (J.vertex (i + 1))))
@@ -199,6 +237,9 @@ theorem mapHomeomorph_edgeSegment (h : Plane ≃ₜ Plane)
     (J.mapHomeomorph h hedge).edgeSegment i = h '' J.edgeSegment i := by
   exact (hedge i).symm
 
+/--
+@isnad1 id=eq.1h2v.s10.aa2ebf66ee90 from=translated src=- shape=9f2c2dfe vocab=b1e45200
+-/
 theorem mapHomeomorph_carrier (h : Plane ≃ₜ Plane)
     (hedge : ∀ i : ZMod J.n,
       h '' J.edgeSegment i = segment ℝ (h (J.vertex i)) (h (J.vertex (i + 1)))) :
@@ -215,6 +256,9 @@ theorem mapHomeomorph_carrier (h : Plane ≃ₜ Plane)
       rw [J.mapHomeomorph_edgeSegment h hedge i]
       exact ⟨q, hqi, rfl⟩⟩
 
+/--
+@isnad1 id=disjoint.1h3v.s5.fadc56e01f35 from=translated src=- shape=bf78b7d2 vocab=78e4d50a
+-/
 theorem disjoint_edgeSegment_of_nonAdjacent {i j : ZMod J.n}
     (hij : J.NonAdjacentEdges i j) : Disjoint (J.edgeSegment i) (J.edgeSegment j) := by
   rw [Set.disjoint_iff_inter_eq_empty, edgeSegment, edgeSegment]
@@ -245,7 +289,9 @@ private theorem exists_pos_three_mul_lt_of_finite {ι : Type*} [Finite ι]
     exact Finset.min'_le values _ hmem
   linarith
 
-/-- There is a uniform positive lower bound on distances between nonadjacent polygon edges. -/
+/-- There is a uniform positive lower bound on distances between nonadjacent polygon edges.
+@isnad1 id=ex.0h1v.s6.313ed5e63269 from=translated src=- shape=665b8375 vocab=395241f6
+-/
 theorem exists_uniform_nonAdjacent_separation :
     ∃ ε : ℝ, 0 < ε ∧ ∀ i j : ZMod J.n, J.NonAdjacentEdges i j →
       ∀ x ∈ J.edgeSegment i, ∀ y ∈ J.edgeSegment j, 3 * ε < dist x y := by
@@ -290,7 +336,9 @@ theorem exists_uniform_nonAdjacent_separation :
     exact Finset.min'_le radii _ hrmem
   exact lt_of_lt_of_le (by linarith) (hradius_dist p x hx y hy).le
 
-/-- Nonadjacent edges have disjoint tubes of one uniform positive radius. -/
+/-- Nonadjacent edges have disjoint tubes of one uniform positive radius.
+@isnad1 id=ex.0h1v.s7.797445efc678 from=translated src=- shape=f1e06953 vocab=4c9bf12e
+-/
 theorem exists_uniform_nonAdjacent_thickenings_disjoint :
     ∃ ε : ℝ, 0 < ε ∧ ∀ i j : ZMod J.n, J.NonAdjacentEdges i j →
       Disjoint (Metric.thickening ε (J.edgeSegment i))
@@ -307,7 +355,9 @@ theorem exists_uniform_nonAdjacent_thickenings_disjoint :
   rw [dist_comm x z] at htri
   linarith
 
-/-- A vertex lies on exactly its outgoing and incoming polygon edges. -/
+/-- A vertex lies on exactly its outgoing and incoming polygon edges.
+@isnad1 id=iff.0h3v.s6.c508a3779222 from=translated src=- shape=0bc88b39 vocab=d8933caa
+-/
 theorem vertex_mem_edgeSegment_iff (i j : ZMod J.n) :
     J.vertex i ∈ J.edgeSegment j ↔ i = j ∨ i = j + 1 := by
   constructor
@@ -331,7 +381,9 @@ theorem vertex_mem_edgeSegment_iff (i j : ZMod J.n) :
     · exact left_mem_segment ℝ _ _
     · exact right_mem_segment ℝ _ _
 
-/-- The vertices of a simple polygon are pairwise distinct. -/
+/-- The vertices of a simple polygon are pairwise distinct.
+@isnad1 id=injectiv.0h1v.s3.257d5fb55dd7 from=translated src=- shape=27ae7379 vocab=5aeb329d
+-/
 theorem vertex_injective : Function.Injective J.vertex := by
   intro i j hij
   have hmem : J.vertex i ∈ J.edgeSegment j := by
@@ -345,7 +397,9 @@ theorem vertex_injective : Function.Injective J.vertex := by
     exact hij.symm
 
 /-- There is a uniform positive lower bound between every vertex and every edge not incident to
-that vertex. -/
+that vertex.
+@isnad1 id=ex.0h1v.s7.53594172dc8b from=translated src=- shape=75aa9639 vocab=7bde4448
+-/
 theorem exists_uniform_nonincident_vertex_edge_separation :
     ∃ ε : ℝ, 0 < ε ∧ ∀ i j : ZMod J.n, i ≠ j → i ≠ j + 1 →
       ∀ y ∈ J.edgeSegment j, 3 * ε < dist (J.vertex i) y := by
@@ -380,7 +434,9 @@ theorem exists_uniform_nonincident_vertex_edge_separation :
     simpa [radiusNN, edist_dist] using hdist
   exact (hεradius p).trans hdist'
 
-/-- Polygon edges have a uniform positive lower bound on their lengths. -/
+/-- Polygon edges have a uniform positive lower bound on their lengths.
+@isnad1 id=ex.0h1v.s7.210870de7b29 from=translated src=- shape=6279db90 vocab=3e40da39
+-/
 theorem exists_uniform_edge_length :
     ∃ ε : ℝ, 0 < ε ∧ ∀ i : ZMod J.n, 3 * ε < dist (J.vertex i) (J.vertex (i + 1)) := by
   apply exists_pos_three_mul_lt_of_finite
@@ -388,7 +444,9 @@ theorem exists_uniform_edge_length :
   exact dist_pos.mpr (J.adjacent_ne i)
 
 /-- A single feature radius simultaneously controls edge lengths, nonadjacent-edge separation,
-and vertex-to-nonincident-edge separation. -/
+and vertex-to-nonincident-edge separation.
+@isnad1 id=ex.0h1v.s8.53af80fc3fad from=translated src=- shape=27341814 vocab=dfe21699
+-/
 theorem exists_featureRadius :
     ∃ ε : ℝ, 0 < ε ∧
       (∀ i : ZMod J.n, 12 * ε < dist (J.vertex i) (J.vertex (i + 1))) ∧
@@ -423,7 +481,9 @@ theorem exists_featureRadius :
     linarith
 
 /-- Inside the vertex-to-nonincident-edge separation radius, every point of the carrier lies on
-one of the two edges incident to the vertex. -/
+one of the two edges incident to the vertex.
+@isnad1 id=mem.3h4v.s8.4fe8164025bf from=translated src=- shape=ee95b6ab vocab=bb0b312a
+-/
 theorem mem_incident_edge_of_mem_carrier_of_dist_lt {r : ℝ}
     (hsep : ∀ i j : ZMod J.n, i ≠ j → i ≠ j + 1 →
       ∀ y ∈ J.edgeSegment j, r < dist (J.vertex i) y)
@@ -442,7 +502,9 @@ theorem mem_incident_edge_of_mem_carrier_of_dist_lt {r : ℝ}
   · exact (not_lt_of_ge (hsep i j hij hprev x hxj).le hdist).elim
 
 /-- A ball inside the feature radius sees exactly the two polygon edges incident to its center
-vertex.  This is the local isolation input for the vertex sectors of Moise's strip. -/
+vertex.  This is the local isolation input for the vertex sectors of Moise's strip.
+@isnad1 id=eq.1h3v.s8.55fe47fadd7c from=translated src=- shape=5a8e45b9 vocab=d22c498b
+-/
 theorem ball_inter_carrier_eq_incident_edges {r : ℝ}
     (hsep : ∀ i j : ZMod J.n, i ≠ j → i ≠ j + 1 →
       ∀ y ∈ J.edgeSegment j, r < dist (J.vertex i) y)
@@ -466,7 +528,9 @@ noncomputable def openAngularSector (a b : Circle) (r : ℝ) : Set ℂ :=
     (p.1 : ℂ) * (Circle.exp (a.val.arg + p.2 * a.angleDiff b) : ℂ)) ''
       (Set.Ioo 0 r ×ˢ Set.Ioo 0 1)
 
-/-- An open angular sector of positive radius and nonzero angle is path connected. -/
+/-- An open angular sector of positive radius and nonzero angle is path connected.
+@isnad1 id=ispathco.1h3v.s5.9519b9d3a299 from=translated src=- shape=f9b20773 vocab=1b30a8d3
+-/
 theorem isPathConnected_openAngularSector (a b : Circle) {r : ℝ}
     (hr : 0 < r) : IsPathConnected (openAngularSector a b r) := by
   have hdomain : IsPathConnected (Set.Ioo (0 : ℝ) r ×ˢ Set.Ioo (0 : ℝ) 1) := by
@@ -475,14 +539,18 @@ theorem isPathConnected_openAngularSector (a b : Circle) {r : ℝ}
   apply hdomain.image
   fun_prop
 
-/-- The radial norm in the sector is exactly its radial parameter. -/
+/-- The radial norm in the sector is exactly its radial parameter.
+@isnad1 id=eq.1h4v.s8.139e1dbfe3be from=translated src=- shape=3138fa81 vocab=19f96938
+-/
 theorem norm_openAngularSector_param (a b : Circle) {r : ℝ} {p : ℝ × ℝ}
     (hp : p ∈ Set.Ioo 0 r ×ˢ Set.Ioo 0 1) :
     ‖(p.1 : ℂ) * (Circle.exp (a.val.arg + p.2 * a.angleDiff b) : ℂ)‖ = p.1 := by
   rw [norm_mul, Circle.norm_coe, mul_one, Complex.norm_real, Real.norm_eq_abs,
     abs_of_pos hp.1.1]
 
-/-- Every point in an open angular sector lies in the punctured open disk of the stated radius. -/
+/-- Every point in an open angular sector lies in the punctured open disk of the stated radius.
+@isnad1 id=le.0h3v.s5.e3690fcd57a5 from=translated src=- shape=a6ef0973 vocab=60e6db6b
+-/
 theorem openAngularSector_subset_puncturedBall (a b : Circle) {r : ℝ} :
     openAngularSector a b r ⊆ Metric.ball (0 : ℂ) r \ {0} := by
   rintro z ⟨p, hp, rfl⟩
@@ -498,7 +566,9 @@ theorem openAngularSector_subset_puncturedBall (a b : Circle) {r : ℝ} :
     rw [hnorm] at hzero
     linarith [hp.1.1]
 
-/-- The closed parameter rectangle maps into the closure of the open angular sector. -/
+/-- The closed parameter rectangle maps into the closure of the open angular sector.
+@isnad1 id=mem.2h4v.s8.9d0ad47f920c from=translated src=- shape=6a124149 vocab=1d4d77bd
+-/
 theorem angularSector_param_mem_closure (a b : Circle) {r : ℝ} (hr : 0 < r)
     {p : ℝ × ℝ} (hp : p ∈ Set.Icc 0 r ×ˢ Set.Icc 0 1) :
     (p.1 : ℂ) * (Circle.exp (a.val.arg + p.2 * a.angleDiff b) : ℂ) ∈
@@ -512,7 +582,9 @@ theorem angularSector_param_mem_closure (a b : Circle) {r : ℝ} (hr : 0 < r)
     exact hp
   exact image_closure_subset_closure_image hf ⟨p, hpclosure, rfl⟩
 
-/-- The initial radial boundary ray belongs to the closure of an angular sector. -/
+/-- The initial radial boundary ray belongs to the closure of an angular sector.
+@isnad1 id=mem.2h4v.s7.276410392ff9 from=translated src=- shape=6d2d6593 vocab=cfca1de0
+-/
 theorem sourceRadialRay_mem_closure_openAngularSector (a b : Circle) {r radius : ℝ}
     (hr : 0 < r) (hradius : radius ∈ Set.Icc 0 r) :
     (radius : ℂ) * (a : ℂ) ∈ closure (openAngularSector a b r) := by
@@ -520,7 +592,9 @@ theorem sourceRadialRay_mem_closure_openAngularSector (a b : Circle) {r radius :
     (p := (radius, 0)) ⟨hradius, le_rfl, zero_le_one⟩
   simpa only [Prod.fst, Prod.snd, zero_mul, add_zero, Circle.exp_arg] using h
 
-/-- The terminal radial boundary ray belongs to the closure of an angular sector. -/
+/-- The terminal radial boundary ray belongs to the closure of an angular sector.
+@isnad1 id=mem.2h4v.s7.a36605b8b7b8 from=translated src=- shape=aa027807 vocab=cfca1de0
+-/
 theorem targetRadialRay_mem_closure_openAngularSector (a b : Circle) {r radius : ℝ}
     (hr : 0 < r) (hradius : radius ∈ Set.Icc 0 r) :
     (radius : ℂ) * (b : ℂ) ∈ closure (openAngularSector a b r) := by
@@ -537,10 +611,15 @@ noncomputable def complexDirection (z : ℂ) (hz : z ≠ 0) : Circle :=
     rw [norm_div, Complex.norm_real, Real.norm_eq_abs,
       abs_of_pos (norm_pos_iff.mpr hz), div_self (norm_ne_zero_iff.mpr hz)]⟩
 
+/--
+@isnad1 id=eq.1h1v.s6.8b1c8236266f from=translated src=- shape=5df770c4 vocab=7a6d6f2f
+-/
 @[simp] theorem coe_complexDirection (z : ℂ) (hz : z ≠ 0) :
     (complexDirection z hz : ℂ) = z / ‖z‖ := rfl
 
-/-- Polar reconstruction from norm and unit direction. -/
+/-- Polar reconstruction from norm and unit direction.
+@isnad1 id=eq.1h1v.s6.15c9f9c16801 from=translated src=- shape=ad69fafc vocab=055bb13d
+-/
 theorem norm_mul_complexDirection (z : ℂ) (hz : z ≠ 0) :
     (‖z‖ : ℂ) * (complexDirection z hz : ℂ) = z := by
   rw [coe_complexDirection]
@@ -550,6 +629,9 @@ theorem norm_mul_complexDirection (z : ℂ) (hz : z ≠ 0) :
 def openRadialRay (a : Circle) (r : ℝ) : Set ℂ :=
   (fun ρ : ℝ => (ρ : ℂ) * (a : ℂ)) '' Set.Ioo 0 r
 
+/--
+@isnad1 id=mem.5h5v.s7.4ade5b9d9518 from=translated src=- shape=d19c7cbd vocab=dd1d9cab
+-/
 theorem mem_openAngularSector_of_direction_eq_path {a b : Circle} {r : ℝ} {z : ℂ}
     (hz : z ≠ 0) (hzr : ‖z‖ < r) {t : unitInterval} (ht0 : 0 < t) (ht1 : t < 1)
     (hdir : complexDirection z hz = Circle.path a b t) :
@@ -570,6 +652,9 @@ theorem mem_openAngularSector_of_direction_eq_path {a b : Circle} {r : ℝ} {z :
     ← congrArg (fun q : Circle => (q : ℂ)) hdir]
   exact norm_mul_complexDirection z hz
 
+/--
+@isnad1 id=mem.3h3v.s5.24b44c79636e from=translated src=- shape=2694f6de vocab=38b2697e
+-/
 theorem mem_openRadialRay_of_direction_eq {a : Circle} {r : ℝ} {z : ℂ}
     (hz : z ≠ 0) (hzr : ‖z‖ < r) (hdir : complexDirection z hz = a) :
     z ∈ openRadialRay a r := by
@@ -579,7 +664,9 @@ theorem mem_openRadialRay_of_direction_eq {a : Circle} {r : ℝ} {z : ℂ}
         (‖z‖ : ℂ) * (complexDirection z hz : ℂ) := by rw [hdir]
     _ = z := norm_mul_complexDirection z hz
 
-/-- The two angular sectors and their two boundary rays partition the punctured disk. -/
+/-- The two angular sectors and their two boundary rays partition the punctured disk.
+@isnad1 id=le.1h3v.s6.ae94db7670ca from=translated src=- shape=a067d560 vocab=8b2f0cc9
+-/
 theorem puncturedBall_subset_twoSectors_union_rays {a b : Circle} (hab : a ≠ b) {r : ℝ} :
     Metric.ball (0 : ℂ) r \ {0} ⊆
       openAngularSector a b r ∪ openAngularSector b a r ∪
@@ -631,10 +718,15 @@ theorem puncturedBall_subset_twoSectors_union_rays {a b : Circle} (hab : a ≠ b
 noncomputable def planeComplexEquiv : Plane ≃ₗᵢ[ℝ] ℂ :=
   Complex.orthonormalBasisOneI.repr.symm
 
+/--
+@isnad1 id=eq.0h1v.s9.3b443b2c5210 from=translated src=- shape=5f37a07e vocab=5b6bc0ab
+-/
 theorem norm_planeComplexEquiv (x : Plane) : ‖planeComplexEquiv x‖ = ‖x‖ :=
   planeComplexEquiv.norm_map x
 
-/-- Equality of complex unit directions reflects equality of normalized plane vectors. -/
+/-- Equality of complex unit directions reflects equality of normalized plane vectors.
+@isnad1 id=eq.3h2v.s10.234e92da093e from=translated src=- shape=4832ae5e vocab=e930a7c8
+-/
 theorem normalized_eq_of_complexDirection_eq {u v : Plane} (hu : u ≠ 0) (hv : v ≠ 0)
     (hdir : complexDirection (planeComplexEquiv u)
         (by simpa using planeComplexEquiv.injective.ne hu) =
@@ -647,7 +739,9 @@ theorem normalized_eq_of_complexDirection_eq {u v : Plane} (hu : u ≠ 0) (hv : 
     Complex.real_smul] using hcoe
 
 /-- Two nonzero vectors with the same normalized direction have a common nonzero initial point
-on their segments from the origin. -/
+on their segments from the origin.
+@isnad1 id=ex.3h2v.s9.2ce9a09829a6 from=translated src=- shape=e108d739 vocab=c8e4a878
+-/
 theorem exists_nonzero_mem_segments_of_normalized_eq {u v : Plane} (hu : u ≠ 0) (hv : v ≠ 0)
     (hdir : ‖u‖⁻¹ • u = ‖v‖⁻¹ • v) :
     ∃ q : Plane, q ≠ 0 ∧ q ∈ segment ℝ 0 u ∧ q ∈ segment ℝ 0 v := by
@@ -679,7 +773,9 @@ theorem exists_nonzero_mem_segments_of_normalized_eq {u v : Plane} (hu : u ≠ 0
     rw [hq, hdir, smul_smul]
     congr 1
 
-/-- Translating a segment based at the origin gives the corresponding segment based at `p`. -/
+/-- Translating a segment based at the origin gives the corresponding segment based at `p`.
+@isnad1 id=mem.1h3v.s8.d07ddf27c791 from=translated src=- shape=0c7ff43a vocab=4b8ed24f
+-/
 theorem add_mem_segment_of_mem_segment_zero {p u q : Plane} (hq : q ∈ segment ℝ 0 u) :
     p + q ∈ segment ℝ p (p + u) := by
   rcases hq with ⟨a, b, ha, hb, hab, hq⟩
@@ -696,16 +792,24 @@ def outgoingVector (i : ZMod J.n) : Plane :=
 def incomingRayVector (i : ZMod J.n) : Plane :=
   J.vertex (i - 1) - J.vertex i
 
+/--
+@isnad1 id=ne.0h2v.s6.84197b479a6c from=translated src=- shape=65b27a68 vocab=2da4527c
+-/
 theorem outgoingVector_ne_zero (i : ZMod J.n) : J.outgoingVector i ≠ 0 := by
   rw [outgoingVector, sub_ne_zero]
   exact (J.adjacent_ne i).symm
 
+/--
+@isnad1 id=ne.0h2v.s6.b307fc63855d from=translated src=- shape=65b27a68 vocab=fa63e32c
+-/
 theorem incomingRayVector_ne_zero (i : ZMod J.n) : J.incomingRayVector i ≠ 0 := by
   rw [incomingRayVector, sub_ne_zero]
   have h := J.adjacent_ne (i - 1)
   simpa only [sub_add_cancel] using h
 
-/-- The two unit directions cut out by the incident edges at a polygon vertex are distinct. -/
+/-- The two unit directions cut out by the incident edges at a polygon vertex are distinct.
+@isnad1 id=ne.0h2v.s10.6cd2387c11dd from=translated src=- shape=110d1ffd vocab=62b4b560
+-/
 theorem incident_complexDirections_ne (i : ZMod J.n) :
     complexDirection (planeComplexEquiv (J.outgoingVector i))
         (by simpa using planeComplexEquiv.injective.ne (J.outgoingVector_ne_zero i)) ≠
@@ -737,6 +841,9 @@ theorem incident_complexDirections_ne (i : ZMod J.n) :
   apply add_left_cancel (a := J.vertex i)
   simpa only [add_zero] using hx.symm.trans hxvertex
 
+/--
+@isnad1 id=eq.1h2v.s6.62ff8d7a96f0 from=translated src=- shape=edbf2417 vocab=54ab3663
+-/
 @[simp] theorem complexDirection_pos_mul_circle (ρ : ℝ) (hρ : 0 < ρ) (a : Circle) :
     complexDirection ((ρ : ℂ) * (a : ℂ))
         (mul_ne_zero (by exact_mod_cast hρ.ne') a.coe_ne_zero) = a := by
@@ -745,7 +852,9 @@ theorem incident_complexDirections_ne (i : ZMod J.n) :
     Real.norm_eq_abs, abs_of_pos hρ]
   field_simp [hρ.ne']
 
-/-- An interior point of an angular sector does not have either boundary direction. -/
+/-- An interior point of an angular sector does not have either boundary direction.
+@isnad1 id=and.2h4v.s6.b74db2274150 from=translated src=- shape=e4adf502 vocab=362c6e10
+-/
 theorem direction_ne_boundary_of_mem_openAngularSector {a b : Circle} (hab : a ≠ b) {r : ℝ}
     {z : ℂ} (hz : z ∈ openAngularSector a b r) :
     complexDirection z
@@ -785,7 +894,9 @@ theorem direction_ne_boundary_of_mem_openAngularSector {a b : Circle} (hab : a �
     have := (Circle.path_injective_of_ne hab) (hb.trans (Circle.path a b).target.symm)
     exact ht1 this
 
-/-- A small positive rotation from the initial boundary direction lies in the angular sector. -/
+/-- A small positive rotation from the initial boundary direction lies in the angular sector.
+@isnad1 id=mem.4h5v.s7.bae9eb7d63d5 from=translated src=- shape=05af0305 vocab=80843bef
+-/
 theorem pos_rotation_mem_openAngularSector {a b : Circle} {radius bound θ : ℝ}
     (hθ : 0 < θ) (hδ : θ < a.angleDiff b) (hradius : 0 < radius)
     (hrbound : radius < bound) :
@@ -807,7 +918,9 @@ theorem pos_rotation_mem_openAngularSector {a b : Circle} {radius bound θ : ℝ
   rw [congrArg (fun q : Circle => (q : ℂ)) hcircle, Circle.coe_mul]
   ring
 
-/-- A small negative rotation from the terminal boundary direction lies in the angular sector. -/
+/-- A small negative rotation from the terminal boundary direction lies in the angular sector.
+@isnad1 id=mem.4h5v.s7.74388d09df1a from=translated src=- shape=ddf6e32f vocab=dfdcb99e
+-/
 theorem neg_rotation_mem_openAngularSector {a b : Circle} {radius bound θ : ℝ}
     (hθ : 0 < θ) (hδ : θ < a.angleDiff b) (hradius : 0 < radius)
     (hrbound : radius < bound) :
@@ -836,17 +949,25 @@ theorem neg_rotation_mem_openAngularSector {a b : Circle} {radius bound θ : ℝ
   rw [congrArg (fun q : Circle => (q : ℂ)) hcircle, Circle.coe_mul]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s6.a81355ac5cc4 from=translated src=- shape=dc323abf vocab=d6ecb49f
+-/
 theorem ofReal_mul_circle_exp_re (radius θ : ℝ) :
     ((radius : ℂ) * (Circle.exp θ : ℂ)).re = radius * Real.cos θ := by
   simp only [Circle.coe_exp, Complex.mul_re, Complex.ofReal_re, Complex.ofReal_im,
     zero_mul, sub_zero, Complex.exp_ofReal_mul_I_re]
 
+/--
+@isnad1 id=eq.0h2v.s6.946ecd59e4ca from=translated src=- shape=dc323abf vocab=abc0a1c1
+-/
 theorem ofReal_mul_circle_exp_im (radius θ : ℝ) :
     ((radius : ℂ) * (Circle.exp θ : ℂ)).im = radius * Real.sin θ := by
   simp only [Circle.coe_exp, Complex.mul_im, Complex.ofReal_re, Complex.ofReal_im,
     zero_mul, add_zero, Complex.exp_ofReal_mul_I_im]
 
-/-- A noninitial point of a segment has the direction of the segment. -/
+/-- A noninitial point of a segment has the direction of the segment.
+@isnad1 id=eq.3h3v.s10.ffc79425c6e4 from=translated src=- shape=640e93a7 vocab=968e4ec6
+-/
 theorem complexDirection_sub_eq_of_mem_segment {p q x : Plane} (hpq : p ≠ q)
     (hx : x ∈ segment ℝ p q) (hxp : x ≠ p) :
     complexDirection (planeComplexEquiv (x - p))
@@ -900,12 +1021,17 @@ noncomputable def incomingRayDirection (i : ZMod J.n) : Circle :=
   complexDirection (planeComplexEquiv (J.incomingRayVector i))
     (by simpa using planeComplexEquiv.injective.ne (J.incomingRayVector_ne_zero i))
 
+/--
+@isnad1 id=ne.0h2v.s3.043a5552f60a from=translated src=- shape=63855cee vocab=bf0196ea
+-/
 theorem outgoingDirection_ne_incomingRayDirection (i : ZMod J.n) :
     J.outgoingDirection i ≠ J.incomingRayDirection i :=
   J.incident_complexDirections_ne i
 
 /-- At the terminal endpoint of an edge, its incoming ray points opposite to its oriented
-outgoing direction. -/
+outgoing direction.
+@isnad1 id=eq.0h2v.s7.045bd629bd57 from=translated src=- shape=e7263b00 vocab=fb9aefec
+-/
 theorem coe_incomingRayDirection_add_one (i : ZMod J.n) :
     (J.incomingRayDirection (i + 1) : ℂ) = -(J.outgoingDirection i : ℂ) := by
   rw [incomingRayDirection, outgoingDirection, coe_complexDirection,
@@ -926,17 +1052,25 @@ noncomputable def vertexBackwardSector (i : ZMod J.n) (r : ℝ) : Set Plane :=
   (fun z : ℂ => J.vertex i + planeComplexEquiv.symm z) ''
     openAngularSector (J.incomingRayDirection i) (J.outgoingDirection i) r
 
+/--
+@isnad1 id=ispathco.1h3v.s6.bfa8f4a54b7d from=translated src=- shape=5152cc5f vocab=206c9379
+-/
 theorem isPathConnected_vertexForwardSector (i : ZMod J.n) {r : ℝ} (hr : 0 < r) :
     IsPathConnected (J.vertexForwardSector i r) := by
   apply (isPathConnected_openAngularSector _ _ hr).image
   fun_prop
 
+/--
+@isnad1 id=ispathco.1h3v.s6.17addd59787d from=translated src=- shape=5152cc5f vocab=59263e4c
+-/
 theorem isPathConnected_vertexBackwardSector (i : ZMod J.n) {r : ℝ} (hr : 0 < r) :
     IsPathConnected (J.vertexBackwardSector i r) := by
   apply (isPathConnected_openAngularSector _ _ hr).image
   fun_prop
 
-/-- The outgoing edge ray is in the closure of each local side sector. -/
+/-- The outgoing edge ray is in the closure of each local side sector.
+@isnad1 id=mem.2h4v.s10.b2497dd16e8d from=translated src=- shape=6f1e1329 vocab=224df6ba
+-/
 theorem outgoingRay_mem_closure_vertexSectors (i : ZMod J.n) {r radius : ℝ}
     (hr : 0 < r) (hradius : radius ∈ Set.Icc 0 r) :
     J.vertex i + planeComplexEquiv.symm
@@ -948,7 +1082,9 @@ theorem outgoingRay_mem_closure_vertexSectors (i : ZMod J.n) {r radius : ℝ}
   · apply image_closure_subset_closure_image (by fun_prop)
     exact ⟨_, targetRadialRay_mem_closure_openAngularSector _ _ hr hradius, rfl⟩
 
-/-- The incoming edge ray is in the closure of each local side sector. -/
+/-- The incoming edge ray is in the closure of each local side sector.
+@isnad1 id=mem.2h4v.s10.8b25185ceb60 from=translated src=- shape=6f1e1329 vocab=7107bb5a
+-/
 theorem incomingRay_mem_closure_vertexSectors (i : ZMod J.n) {r radius : ℝ}
     (hr : 0 < r) (hradius : radius ∈ Set.Icc 0 r) :
     J.vertex i + planeComplexEquiv.symm
@@ -961,7 +1097,9 @@ theorem incomingRay_mem_closure_vertexSectors (i : ZMod J.n) {r radius : ℝ}
     exact ⟨_, sourceRadialRay_mem_closure_openAngularSector _ _ hr hradius, rfl⟩
 
 /-- Either transported angular sector lies in its vertex ball and avoids the polygon, provided
-the ball sees only the two incident edges. -/
+the ball sees only the two incident edges.
+@isnad1 id=le.1h3v.s7.29690f22777b from=translated src=- shape=b36bba03 vocab=a95556a5
+-/
 theorem vertexForwardSector_subset_ball_diff_carrier {r : ℝ}
     (hsep : ∀ i j : ZMod J.n, i ≠ j → i ≠ j + 1 →
       ∀ y ∈ J.edgeSegment j, r < dist (J.vertex i) y)
@@ -1008,6 +1146,9 @@ theorem vertexForwardSector_subset_ball_diff_carrier {r : ℝ}
     simpa only [incomingRayDirection, incomingRayVector, add_sub_cancel_left,
       planeComplexEquiv.apply_symm_apply] using hdir
 
+/--
+@isnad1 id=le.1h3v.s7.a3b7598dcd74 from=translated src=- shape=b36bba03 vocab=7ce90600
+-/
 theorem vertexBackwardSector_subset_ball_diff_carrier {r : ℝ}
     (hsep : ∀ i j : ZMod J.n, i ≠ j → i ≠ j + 1 →
       ∀ y ∈ J.edgeSegment j, r < dist (J.vertex i) y)
@@ -1055,7 +1196,9 @@ theorem vertexBackwardSector_subset_ball_diff_carrier {r : ℝ}
       planeComplexEquiv.apply_symm_apply] using hdir
 
 /-- A short radial ray in the direction of `u` transports into the segment from `p` to
-`p + u`. -/
+`p + u`.
+@isnad1 id=mem.3h4v.s10.cb280bd041c0 from=translated src=- shape=2c016f44 vocab=53799820
+-/
 theorem vertex_add_symm_mem_segment_of_mem_openRadialRay {p u : Plane} (hu : u ≠ 0)
     {r : ℝ} (hr : r ≤ ‖u‖) {z : ℂ}
     (hz : z ∈ openRadialRay
@@ -1079,7 +1222,9 @@ theorem vertex_add_symm_mem_segment_of_mem_openRadialRay {p u : Plane} (hu : u �
   refine ⟨ρ / ‖u‖, hcoef, ?_⟩
   simp only [smul_zero, zero_add, hsymm]
 
-/-- The punctured vertex ball is exactly the union of its two angular sectors. -/
+/-- The punctured vertex ball is exactly the union of its two angular sectors.
+@isnad1 id=eq.2h3v.s8.9c5902525d1a from=translated src=- shape=04b7e3e1 vocab=5db811c6
+-/
 theorem ball_diff_carrier_eq_vertexSectors {r : ℝ}
     (hsep : ∀ i j : ZMod J.n, i ≠ j → i ≠ j + 1 →
       ∀ y ∈ J.edgeSegment j, r < dist (J.vertex i) y)
@@ -1160,6 +1305,9 @@ theorem ball_diff_carrier_eq_vertexSectors {r : ℝ}
 noncomputable def edgeLength (i : ZMod J.n) : ℝ :=
   ‖J.outgoingVector i‖
 
+/--
+@isnad1 id=lt.0h2v.s4.53c2cfa2a8a8 from=translated src=- shape=2c701dde vocab=e7226517
+-/
 theorem edgeLength_pos (i : ZMod J.n) : 0 < J.edgeLength i :=
   norm_pos_iff.mpr (J.outgoingVector_ne_zero i)
 
@@ -1172,6 +1320,9 @@ noncomputable def edgeCoordinate (i : ZMod J.n) (x : Plane) : ℂ :=
 noncomputable def edgeCoordinateInv (i : ZMod J.n) (z : ℂ) : Plane :=
   J.vertex i + planeComplexEquiv.symm (z * (J.outgoingDirection i : ℂ))
 
+/--
+@isnad1 id=eq.0h3v.s4.70ad099f7985 from=translated src=- shape=a1b38f7c vocab=40351387
+-/
 @[simp] theorem edgeCoordinate_edgeCoordinateInv (i : ZMod J.n) (z : ℂ) :
     J.edgeCoordinate i (J.edgeCoordinateInv i z) = z := by
   rw [edgeCoordinate, edgeCoordinateInv]
@@ -1181,6 +1332,9 @@ noncomputable def edgeCoordinateInv (i : ZMod J.n) (z : ℂ) : Plane :=
   rw [hsub, planeComplexEquiv.apply_symm_apply, mul_div_cancel_right₀]
   exact (J.outgoingDirection i).coe_ne_zero
 
+/--
+@isnad1 id=eq.0h3v.s4.646b20b98d64 from=translated src=- shape=a1b38f7c vocab=e964f5c2
+-/
 @[simp] theorem edgeCoordinateInv_edgeCoordinate (i : ZMod J.n) (x : Plane) :
     J.edgeCoordinateInv i (J.edgeCoordinate i x) = x := by
   rw [edgeCoordinateInv, edgeCoordinate, div_mul_cancel₀]
@@ -1188,10 +1342,16 @@ noncomputable def edgeCoordinateInv (i : ZMod J.n) (z : ℂ) : Plane :=
     abel
   · exact (J.outgoingDirection i).coe_ne_zero
 
+/--
+@isnad1 id=eq.0h2v.s4.acee848dc6d5 from=translated src=- shape=9e2f50ed vocab=ce7ff5d3
+-/
 @[simp] theorem edgeCoordinate_initial (i : ZMod J.n) :
     J.edgeCoordinate i (J.vertex i) = 0 := by
   simp [edgeCoordinate]
 
+/--
+@isnad1 id=eq.0h2v.s6.8e65a6e8c296 from=translated src=- shape=184a8c2a vocab=4b77fde5
+-/
 @[simp] theorem edgeCoordinate_terminal (i : ZMod J.n) :
     J.edgeCoordinate i (J.vertex (i + 1)) = J.edgeLength i := by
   rw [edgeCoordinate]
@@ -1219,10 +1379,16 @@ noncomputable def edgeNegativeSide (i : ZMod J.n) (trim width : ℝ) : Set Plane
     (J.edgeCoordinate i x).re < J.edgeLength i - 2 * trim ∧
     -width < (J.edgeCoordinate i x).im ∧ (J.edgeCoordinate i x).im < 0}
 
+/--
+@isnad1 id=continuo.0h2v.s6.8b8dccfa9535 from=translated src=- shape=160ba013 vocab=ed02e165
+-/
 theorem continuous_edgeCoordinate (i : ZMod J.n) : Continuous (J.edgeCoordinate i) := by
   unfold edgeCoordinate
   fun_prop
 
+/--
+@isnad1 id=isopen.0h4v.s5.a174b922d5ed from=translated src=- shape=863ff40a vocab=58915d41
+-/
 theorem isOpen_edgeTube (i : ZMod J.n) (trim width : ℝ) :
     IsOpen (J.edgeTube i trim width) := by
   have hre : Continuous fun x => (J.edgeCoordinate i x).re :=
@@ -1233,12 +1399,18 @@ theorem isOpen_edgeTube (i : ZMod J.n) (trim width : ℝ) :
   exact (isOpen_lt continuous_const hre).inter ((isOpen_lt hre continuous_const).inter
     ((isOpen_lt continuous_const him).inter (isOpen_lt him continuous_const)))
 
+/--
+@isnad1 id=le.1h4v.s5.c1abbd1402b9 from=translated src=- shape=ad9d1180 vocab=dfabc820
+-/
 theorem edgePositiveSide_subset_edgeTube (i : ZMod J.n) {trim width : ℝ}
     (hwidth : 0 < width) :
     J.edgePositiveSide i trim width ⊆ J.edgeTube i trim width := by
   rintro x ⟨hx0, hx1, hy0, hy1⟩
   exact ⟨hx0, hx1, hy0.trans' (neg_neg_of_pos hwidth), hy1⟩
 
+/--
+@isnad1 id=le.1h4v.s5.58b5357bc89c from=translated src=- shape=ad9d1180 vocab=a59a5ca4
+-/
 theorem edgeNegativeSide_subset_edgeTube (i : ZMod J.n) {trim width : ℝ}
     (hwidth : 0 < width) :
     J.edgeNegativeSide i trim width ⊆ J.edgeTube i trim width := by
@@ -1287,6 +1459,9 @@ private theorem edgeNegativeSide_eq_image_rectangle (i : ZMod J.n) (trim width :
     rcases hp with ⟨⟨hx0, hx1⟩, ⟨hy0, hy1⟩⟩
     simpa using ⟨hx0, hx1, hy0, hy1⟩
 
+/--
+@isnad1 id=ispathco.2h4v.s6.033085f056c8 from=translated src=- shape=ca551f66 vocab=f1156b3a
+-/
 theorem isPathConnected_edgePositiveSide (i : ZMod J.n) {trim width : ℝ}
     (hwidth : 0 < width) (hlen : 4 * trim < J.edgeLength i) :
     IsPathConnected (J.edgePositiveSide i trim width) := by
@@ -1298,6 +1473,9 @@ theorem isPathConnected_edgePositiveSide (i : ZMod J.n) {trim width : ℝ}
     · constructor <;> linarith)
   exact hdom.image (by unfold edgeCoordinateInv; fun_prop)
 
+/--
+@isnad1 id=ispathco.2h4v.s6.1211997d62fa from=translated src=- shape=ca551f66 vocab=1f361f0f
+-/
 theorem isPathConnected_edgeNegativeSide (i : ZMod J.n) {trim width : ℝ}
     (hwidth : 0 < width) (hlen : 4 * trim < J.edgeLength i) :
     IsPathConnected (J.edgeNegativeSide i trim width) := by
@@ -1309,7 +1487,9 @@ theorem isPathConnected_edgeNegativeSide (i : ZMod J.n) {trim width : ℝ}
     · constructor <;> linarith)
   exact hdom.image (by unfold edgeCoordinateInv; fun_prop)
 
-/-- The central edge axis is approached from the positive side rectangle. -/
+/-- The central edge axis is approached from the positive side rectangle.
+@isnad1 id=mem.3h5v.s7.ba381ae6195f from=translated src=- shape=b0cf4643 vocab=a37ad03e
+-/
 theorem edgeAxis_mem_closure_positiveSide (i : ZMod J.n) {trim width s : ℝ}
     (hwidth : 0 < width) (hlen : 4 * trim < J.edgeLength i)
     (hs : s ∈ Set.Icc (2 * trim) (J.edgeLength i - 2 * trim)) :
@@ -1326,7 +1506,9 @@ theorem edgeAxis_mem_closure_positiveSide (i : ZMod J.n) {trim width s : ℝ}
     exact ⟨hs, le_rfl, hwidth.le⟩
   · simp only [f, Complex.ofReal_zero, zero_mul, add_zero]
 
-/-- The central edge axis is approached from the negative side rectangle. -/
+/-- The central edge axis is approached from the negative side rectangle.
+@isnad1 id=mem.3h5v.s7.10fd3d079e45 from=translated src=- shape=b0cf4643 vocab=3c62983d
+-/
 theorem edgeAxis_mem_closure_negativeSide (i : ZMod J.n) {trim width s : ℝ}
     (hwidth : 0 < width) (hlen : 4 * trim < J.edgeLength i)
     (hs : s ∈ Set.Icc (2 * trim) (J.edgeLength i - 2 * trim)) :
@@ -1343,6 +1525,9 @@ theorem edgeAxis_mem_closure_negativeSide (i : ZMod J.n) {trim width s : ℝ}
     exact ⟨hs, neg_nonpos.mpr hwidth.le, le_rfl⟩
   · simp only [f, Complex.ofReal_zero, zero_mul, add_zero]
 
+/--
+@isnad1 id=eq.1h3v.s5.d1b4a2f1d6f6 from=translated src=- shape=c83419b2 vocab=9c3e141e
+-/
 theorem edgeCoordinate_im_eq_zero_of_mem_edgeSegment (i : ZMod J.n) {x : Plane}
     (hx : x ∈ J.edgeSegment i) : (J.edgeCoordinate i x).im = 0 := by
   rw [edgeSegment, segment_eq_image] at hx
@@ -1364,7 +1549,9 @@ theorem edgeCoordinate_im_eq_zero_of_mem_edgeSegment (i : ZMod J.n) {x : Plane}
   simp
 
 /-- Removing the polygon from a central edge tube leaves exactly its positive and negative
-rectangular halves. -/
+rectangular halves.
+@isnad1 id=eq.3h4v.s6.71b2d8581ad2 from=translated src=- shape=857d42b7 vocab=c9dc6fbc
+-/
 theorem edgeTube_diff_carrier_eq_sides (i : ZMod J.n) {trim width : ℝ}
     (htrim : 0 < trim) (hwidth : 0 < width)
     (honly : J.edgeTube i trim width ∩ J.carrier ⊆ J.edgeSegment i) :
@@ -1404,7 +1591,9 @@ theorem edgeTube_diff_carrier_eq_sides (i : ZMod J.n) {trim width : ℝ}
       have hxedge := honly ⟨J.edgeNegativeSide_subset_edgeTube i hwidth hx, hxcarrier⟩
       linarith [hx.2.2.2, J.edgeCoordinate_im_eq_zero_of_mem_edgeSegment i hxedge]
 
-/-- Distinct polygon edges can meet only at an endpoint of the first edge. -/
+/-- Distinct polygon edges can meet only at an endpoint of the first edge.
+@isnad1 id=le.1h3v.s6.ecba55497389 from=translated src=- shape=0980f88d vocab=97548c38
+-/
 theorem edgeSegment_inter_subset_endpoints {i j : ZMod J.n} (hij : i ≠ j) :
     J.edgeSegment i ∩ J.edgeSegment j ⊆ {J.vertex i, J.vertex (i + 1)} := by
   intro x hx
@@ -1431,13 +1620,21 @@ theorem edgeSegment_inter_subset_endpoints {i j : ZMod J.n} (hij : i ≠ j) :
 def otherEdges (i : ZMod J.n) : Set Plane :=
   ⋃ (j : ZMod J.n) (_ : j ≠ i), J.edgeSegment j
 
+/--
+@isnad1 id=iscompac.0h2v.s5.82803da181a4 from=translated src=- shape=7bccf03c vocab=f5e8c8f3
+-/
 theorem isCompact_otherEdges (i : ZMod J.n) : IsCompact (J.otherEdges i) := by
   exact isCompact_iUnion fun _ => isCompact_iUnion fun _ => J.isCompact_edgeSegment _
 
+/--
+@isnad1 id=isclosed.0h2v.s5.a389d97d3a49 from=translated src=- shape=7bccf03c vocab=05337946
+-/
 theorem isClosed_otherEdges (i : ZMod J.n) : IsClosed (J.otherEdges i) :=
   (J.isCompact_otherEdges i).isClosed
 
-/-- Near a relative-interior point of a polygon edge, the carrier consists only of that edge. -/
+/-- Near a relative-interior point of a polygon edge, the carrier consists only of that edge.
+@isnad1 id=ex.1h3v.s8.da89875ca39f from=translated src=- shape=07e34e03 vocab=12e2720d
+-/
 theorem exists_ball_inter_carrier_subset_edgeSegment {i : ZMod J.n} {x : Plane}
     (hx : x ∈ openSegment ℝ (J.vertex i) (J.vertex (i + 1))) :
     ∃ r : ℝ, 0 < r ∧ Metric.ball x r ∩ J.carrier ⊆ J.edgeSegment i := by
@@ -1465,7 +1662,9 @@ theorem exists_ball_inter_carrier_subset_edgeSegment {i : ZMod J.n} {x : Plane}
       Set.mem_iUnion.mpr ⟨j, Set.mem_iUnion.mpr ⟨hji, hyj⟩⟩)
 
 /-- If a straight subsegment of the polygon carrier passes through a polygon vertex, its two
-local sides occupy the two incident polygon edges. -/
+local sides occupy the two incident polygon edges.
+@isnad1 id=and.3h4v.s9.87b1aab72b80 from=translated src=- shape=7517c587 vocab=eb0614db
+-/
 theorem exists_basePoints_on_incident_edges {P Q : Plane} (hPQ : P ≠ Q)
     (hbase : segment ℝ P Q ⊆ J.carrier) {i : ZMod J.n}
     (hi : J.vertex i ∈ openSegment ℝ P Q) :
@@ -1550,7 +1749,9 @@ theorem exists_basePoints_on_incident_edges {P Q : Plane} (hPQ : P ≠ Q)
   · exact False.elim (hnotBothIncoming ⟨hyPin, hyQin⟩)
 
 /-- An edge meeting the relative interior of a straight subsegment of the carrier overlaps that
-subsegment in at least two points. -/
+subsegment in at least two points.
+@isnad1 id=ex.4h5v.s8.74716e80631c from=translated src=- shape=68672918 vocab=4da040ee
+-/
 theorem exists_second_basePoint_of_edge_inter_openSegment {P Q x : Plane}
     (hPQ : P ≠ Q) (hbase : segment ℝ P Q ⊆ J.carrier) {i : ZMod J.n}
     (hxEdge : x ∈ J.edgeSegment i) (hxBase : x ∈ openSegment ℝ P Q) :
@@ -1587,7 +1788,9 @@ theorem exists_second_basePoint_of_edge_inter_openSegment {P Q x : Plane}
     exact ⟨y, hyne, hlocal ⟨hyBall, hbase hyBase⟩, hyBase⟩
 
 /-- In normalized ear coordinates, every polygon edge meeting the open base lies on the
-horizontal base line. -/
+horizontal base line.
+@isnad1 id=and.6h5v.s9.456657997efb from=translated src=- shape=6d40408e vocab=689617e6
+-/
 theorem edge_endpoints_on_axis_of_inter_openBase
     {P Q : Plane} (hPQ : P ≠ Q) (hP0 : P 1 = 0) (hQ0 : Q 1 = 0)
     (hbase : segment ℝ P Q ⊆ J.carrier)
@@ -1609,6 +1812,9 @@ theorem edge_endpoints_on_axis_of_inter_openBase
   · exact haxis (openSegment_subset_segment ℝ _ _ hxBase)
   · exact haxis hyBase
 
+/--
+@isnad1 id=or.1h3v.s5.679983de9475 from=translated src=- shape=d48a2f5f vocab=229eccd7
+-/
 theorem mem_edgeSegment_or_otherEdges {x : Plane} (hx : x ∈ J.carrier) (i : ZMod J.n) :
     x ∈ J.edgeSegment i ∨ x ∈ J.otherEdges i := by
   rcases Set.mem_iUnion.mp hx with ⟨j, hxj⟩
@@ -1621,12 +1827,18 @@ noncomputable def edgeCore (i : ZMod J.n) (trim : ℝ) : Set Plane :=
   (fun s : ℝ => J.edgeCoordinateInv i s) ''
     Set.Icc (2 * trim) (J.edgeLength i - 2 * trim)
 
+/--
+@isnad1 id=iscompac.0h3v.s5.94243127d7f9 from=translated src=- shape=6d33d30f vocab=8309bdca
+-/
 theorem isCompact_edgeCore (i : ZMod J.n) (trim : ℝ) :
     IsCompact (J.edgeCore i trim) := by
   apply (isCompact_Icc.image_of_continuousOn)
   unfold edgeCoordinateInv
   fun_prop
 
+/--
+@isnad1 id=le.2h3v.s5.905ce3293997 from=translated src=- shape=5aa41c01 vocab=cda37e47
+-/
 theorem edgeCore_subset_edgeSegment (i : ZMod J.n) {trim : ℝ} (htrim : 0 < trim)
     (_ : 4 * trim < J.edgeLength i) : J.edgeCore i trim ⊆ J.edgeSegment i := by
   rintro x ⟨s, hs, rfl⟩
@@ -1644,6 +1856,9 @@ theorem edgeCore_subset_edgeSegment (i : ZMod J.n) {trim : ℝ} (htrim : 0 < tri
   simp only [outgoingVector]
   abel
 
+/--
+@isnad1 id=disjoint.2h3v.s6.04f4ade2252a from=translated src=- shape=5aa41c01 vocab=5615d6aa
+-/
 theorem disjoint_edgeCore_otherEdges (i : ZMod J.n) {trim : ℝ} (htrim : 0 < trim)
     (hlen : 4 * trim < J.edgeLength i) :
     Disjoint (J.edgeCore i trim) (J.otherEdges i) := by
@@ -1664,7 +1879,9 @@ theorem disjoint_edgeCore_otherEdges (i : ZMod J.n) {trim : ℝ} (htrim : 0 < tr
     have : s < J.edgeLength i := by linarith [hs.2]
     exact this.ne (Complex.ofReal_injective hcoord)
 
-/-- Inverse edge coordinates preserve distances. -/
+/-- Inverse edge coordinates preserve distances.
+@isnad1 id=eq.0h4v.s6.ab1e50a62fdf from=translated src=- shape=e3e4af87 vocab=6785cc75
+-/
 theorem dist_edgeCoordinateInv (i : ZMod J.n) (z w : ℂ) :
     dist (J.edgeCoordinateInv i z) (J.edgeCoordinateInv i w) = dist z w := by
   rw [dist_eq_norm, dist_eq_norm]
@@ -1679,7 +1896,9 @@ theorem dist_edgeCoordinateInv (i : ZMod J.n) (z w : ℂ) :
     _ = ‖z - w‖ := by rw [norm_mul, Circle.norm_coe, mul_one]
 
 /-- After fixing a longitudinal trim, one can choose a uniform thinner transverse width so that
-every central edge tube meets the polygon only in its own edge. -/
+every central edge tube meets the polygon only in its own edge.
+@isnad1 id=ex.2h2v.s6.f351051f0f13 from=translated src=- shape=8eca73ca vocab=75e30570
+-/
 theorem exists_edgeTube_width {trim : ℝ} (htrim : 0 < trim)
     (hlen : ∀ i : ZMod J.n, 4 * trim < J.edgeLength i) :
     ∃ width : ℝ, 0 < width ∧ width < trim ∧
@@ -1736,7 +1955,9 @@ theorem exists_edgeTube_width {trim : ℝ} (htrim : 0 < trim)
         _ < width := abs_lt.mpr ⟨hx.1.2.2.1, hx.1.2.2.2⟩
     linarith
 
-/-- Points on an edge have a real edge coordinate between zero and the edge length. -/
+/-- Points on an edge have a real edge coordinate between zero and the edge length.
+@isnad1 id=ex.1h3v.s5.0aa67db9bf90 from=translated src=- shape=9c0e1c8f vocab=db338839
+-/
 theorem edgeCoordinate_mem_real_Icc (i : ZMod J.n) {x : Plane} (hx : x ∈ J.edgeSegment i) :
     ∃ s ∈ Set.Icc (0 : ℝ) (J.edgeLength i), J.edgeCoordinate i x = s := by
   rw [edgeSegment, segment_eq_image] at hx
@@ -1767,13 +1988,18 @@ noncomputable def polygonStrip (trim width : ℝ) : Set Plane :=
   (⋃ i : ZMod J.n, Metric.ball (J.vertex i) (3 * trim)) ∪
     ⋃ i : ZMod J.n, J.edgeTube i trim width
 
+/--
+@isnad1 id=isopen.0h3v.s5.091051820bfc from=translated src=- shape=448046c7 vocab=27119bbf
+-/
 theorem isOpen_polygonStrip (trim width : ℝ) : IsOpen (J.polygonStrip trim width) := by
   apply IsOpen.union
   · exact isOpen_iUnion fun i => Metric.isOpen_ball
   · exact isOpen_iUnion fun i => J.isOpen_edgeTube i trim width
 
 /-- Vertex balls cover the endpoint portions of every edge and the central tube covers the
-remainder. -/
+remainder.
+@isnad1 id=le.2h3v.s5.33729375be7c from=translated src=- shape=95852dda vocab=f86f223e
+-/
 theorem carrier_subset_polygonStrip {trim width : ℝ} (htrim : 0 < trim)
     (hwidth : 0 < width) : J.carrier ⊆ J.polygonStrip trim width := by
   intro x hxcarrier
@@ -1847,6 +2073,9 @@ structure StripScales where
   tube_isolation : ∀ i : ZMod J.n,
     J.edgeTube i trim width ∩ J.carrier ⊆ J.edgeSegment i
 
+/--
+@isnad1 id=nonempty.0h1v.s2.d96f87cc9536 from=translated src=- shape=76a08d12 vocab=483d5244
+-/
 theorem exists_stripScales : Nonempty J.StripScales := by
   obtain ⟨trim, htrim, hedge, -, hvertex⟩ := J.exists_featureRadius
   have hlen4 : ∀ i : ZMod J.n, 4 * trim < J.edgeLength i := by
@@ -1871,7 +2100,9 @@ noncomputable def stripBackwardPieces (S : J.StripScales) : Set Plane :=
     ⋃ i : ZMod J.n, J.edgeNegativeSide i S.trim S.width
 
 /-- The punctured explicit strip is exactly the union of all its local forward and backward
-pieces. -/
+pieces.
+@isnad1 id=eq.0h2v.s5.9906c15bfebd from=translated src=- shape=f3579cd6 vocab=f122c40b
+-/
 theorem polygonStrip_diff_carrier_eq_pieces (S : J.StripScales) :
     J.polygonStrip S.trim S.width \ J.carrier =
       J.stripForwardPieces S ∪ J.stripBackwardPieces S := by
@@ -1933,7 +2164,9 @@ theorem polygonStrip_diff_carrier_eq_pieces (S : J.StripScales) :
         exact ⟨Or.inr (Set.mem_iUnion.mpr ⟨i, hsub⟩), hoff⟩
 
 /-- A single sufficiently small positive angle gives overlap points for both sides of an edge at
-both endpoint vertex sectors. -/
+both endpoint vertex sectors.
+@isnad1 id=ex.0h3v.s9.d300e9615417 from=translated src=- shape=b6d89654 vocab=ccbc07b0
+-/
 theorem StripScales.exists_edgeOverlapAngle (S : J.StripScales) (i : ZMod J.n) :
     ∃ θ : ℝ, 0 < θ ∧ θ < Real.pi ∧
       θ < (J.outgoingDirection i).angleDiff (J.incomingRayDirection i) ∧
@@ -2019,7 +2252,9 @@ theorem StripScales.exists_edgeOverlapAngle (S : J.StripScales) (i : ZMod J.n) :
   · simpa only [U, g, ρ, Set.mem_ofPred_eq] using hθU
 
 /-- The two side rectangles at the initial endpoint of an edge overlap the corresponding
-vertex sectors. -/
+vertex sectors.
+@isnad1 id=and.0h3v.s6.3693176c929a from=translated src=- shape=6dbee0dc vocab=4c58e71f
+-/
 theorem StripScales.initial_edge_side_intersections (S : J.StripScales) (i : ZMod J.n) :
     (J.vertexForwardSector i (3 * S.trim) ∩
         J.edgePositiveSide i S.trim S.width).Nonempty ∧
@@ -2074,7 +2309,9 @@ theorem StripScales.initial_edge_side_intersections (S : J.StripScales) (i : ZMo
       rw [hznegre]
       exact ⟨hzposre0, hzposre1, (abs_lt.mp hznegabsimlt).1, hznegim⟩
 
-/-- Coordinates measured from an edge's terminal endpoint run in the opposite direction. -/
+/-- Coordinates measured from an edge's terminal endpoint run in the opposite direction.
+@isnad1 id=eq.0h3v.s10.0cf5c1b03eac from=translated src=- shape=be06bc13 vocab=c7877a89
+-/
 @[simp] theorem edgeCoordinate_terminal_ray (i : ZMod J.n) (z : ℂ) :
     J.edgeCoordinate i (J.vertex (i + 1) + planeComplexEquiv.symm
       (z * (J.incomingRayDirection (i + 1) : ℂ))) = (J.edgeLength i : ℂ) - z := by
@@ -2096,7 +2333,9 @@ theorem StripScales.initial_edge_side_intersections (S : J.StripScales) (i : ZMo
   ring
 
 /-- The two side rectangles at the terminal endpoint of an edge overlap the corresponding
-vertex sectors. -/
+vertex sectors.
+@isnad1 id=and.0h3v.s7.c932029cde28 from=translated src=- shape=ddab173b vocab=67c2ac60
+-/
 theorem StripScales.terminal_edge_side_intersections (S : J.StripScales) (i : ZMod J.n) :
     (J.vertexForwardSector (i + 1) (3 * S.trim) ∩
         J.edgePositiveSide i S.trim S.width).Nonempty ∧
@@ -2172,7 +2411,9 @@ theorem StripScales.terminal_edge_side_intersections (S : J.StripScales) (i : ZM
       linarith
 
 /-- A graph-connected union of path-connected sets is path-connected.  This is the path analogue
-of `IsConnected.iUnion_of_reflTransGen`. -/
+of `IsConnected.iUnion_of_reflTransGen`.
+@isnad1 id=ispathco.2h3v.s5.b61ee31661a4 from=translated src=- shape=54868ba8 vocab=b9358550
+-/
 theorem isPathConnected_iUnion_of_reflTransGen {X ι : Type*} [TopologicalSpace X] [Nonempty ι]
     {s : ι → Set X} (hs : ∀ i, IsPathConnected (s i))
     (hgraph : ∀ i j, Relation.ReflTransGen
@@ -2211,6 +2452,9 @@ private noncomputable def forwardEdgePatch (S : J.StripScales) (i : ZMod J.n) : 
 private noncomputable def backwardEdgePatch (S : J.StripScales) (i : ZMod J.n) : Set Plane :=
   J.vertexBackwardSector i (3 * S.trim) ∪ J.edgeNegativeSide i S.trim S.width
 
+/--
+@isnad1 id=ispathco.0h2v.s5.d937aaf9ac25 from=translated src=- shape=595ce0b1 vocab=8624c742
+-/
 theorem StripScales.isPathConnected_stripForwardPieces (S : J.StripScales) :
     IsPathConnected (J.stripForwardPieces S) := by
   have hpatch : ∀ i : ZMod J.n, IsPathConnected (J.forwardEdgePatch S i) := by
@@ -2242,6 +2486,9 @@ theorem StripScales.isPathConnected_stripForwardPieces (S : J.StripScales) :
     ring
   simpa only [forwardEdgePatch, Set.iUnion_union_distrib, stripForwardPieces] using hconnected
 
+/--
+@isnad1 id=ispathco.0h2v.s5.f6e8a1f4d6c3 from=translated src=- shape=595ce0b1 vocab=996872f6
+-/
 theorem StripScales.isPathConnected_stripBackwardPieces (S : J.StripScales) :
     IsPathConnected (J.stripBackwardPieces S) := by
   have hpatch : ∀ i : ZMod J.n, IsPathConnected (J.backwardEdgePatch S i) := by
@@ -2274,7 +2521,9 @@ theorem StripScales.isPathConnected_stripBackwardPieces (S : J.StripScales) :
     ring
   simpa only [backwardEdgePatch, Set.iUnion_union_distrib, stripBackwardPieces] using hconnected
 
-/-- Every point of the polygon is approached from both of the explicit strip bands. -/
+/-- Every point of the polygon is approached from both of the explicit strip bands.
+@isnad1 id=le.0h2v.s6.d14dad8fdc19 from=translated src=- shape=af4ee13b vocab=31155ebd
+-/
 theorem StripScales.carrier_subset_closure_stripPieces (S : J.StripScales) :
     J.carrier ⊆ closure (J.stripForwardPieces S) ∩ closure (J.stripBackwardPieces S) := by
   intro x hx
@@ -2337,15 +2586,23 @@ theorem StripScales.carrier_subset_closure_stripPieces (S : J.StripScales) :
     rw [hxinv] at hpos hneg
     exact ⟨closure_mono hforwardEdge hpos, closure_mono hbackwardEdge hneg⟩
 
+/--
+@isnad1 id=le.0h2v.s5.3aab52b7166a from=translated src=- shape=8f5b8ff9 vocab=47286afd
+-/
 theorem StripScales.carrier_subset_closure_stripForwardPieces (S : J.StripScales) :
     J.carrier ⊆ closure (J.stripForwardPieces S) := fun _ hx =>
   (S.carrier_subset_closure_stripPieces J hx).1
 
+/--
+@isnad1 id=le.0h2v.s5.d780c1638992 from=translated src=- shape=8f5b8ff9 vocab=a0b43b24
+-/
 theorem StripScales.carrier_subset_closure_stripBackwardPieces (S : J.StripScales) :
     J.carrier ⊆ closure (J.stripBackwardPieces S) := fun _ hx =>
   (S.carrier_subset_closure_stripPieces J hx).2
 
-/-- A genuine segment in the plane has empty planar interior. -/
+/-- A genuine segment in the plane has empty planar interior.
+@isnad1 id=eq.0h2v.s5.669f231592b2 from=translated src=- shape=fda24053 vocab=258dd41d
+-/
 theorem interior_edgeSegment (i : ZMod J.n) : interior (J.edgeSegment i) = ∅ := by
   rw [← Set.not_nonempty_iff_eq_empty]
   intro hinterior
@@ -2360,7 +2617,9 @@ theorem interior_edgeSegment (i : ZMod J.n) : interior (J.edgeSegment i) = ∅ :
     finrank_top] at hdim
   norm_num [Plane, finrank_euclideanSpace] at hdim
 
-/-- A finite polygonal carrier has empty interior in the plane. -/
+/-- A finite polygonal carrier has empty interior in the plane.
+@isnad1 id=eq.0h1v.s5.10f2b8c5dce8 from=translated src=- shape=a1fc294e vocab=60c23265
+-/
 theorem interior_carrier : interior J.carrier = ∅ := by
   classical
   have hfinite : ∀ s : Finset (ZMod J.n),
@@ -2376,7 +2635,9 @@ theorem interior_carrier : interior J.carrier = ∅ := by
   simpa using hfinite Finset.univ
 
 /-- The carrier of a polygon is connected: it is a cyclic union of connected segments, with each
-segment meeting the next one at their common vertex. -/
+segment meeting the next one at their common vertex.
+@isnad1 id=isconnec.0h1v.s5.cb18acce09eb from=translated src=- shape=1a6c1393 vocab=8f8402e6
+-/
 theorem isConnected_carrier : IsConnected J.carrier := by
   have hedge : ∀ i : ZMod J.n, IsConnected (J.edgeSegment i) := by
     intro i
@@ -2408,7 +2669,9 @@ theorem isConnected_carrier : IsConnected J.carrier := by
 
 /-- Every point off the polygon can be joined by a single polygon-avoiding segment to any open
 neighborhood of the polygon.  This is the "reach the strip" part of Moise Ch. 2, Thm. 1,
-Lemma 1. -/
+Lemma 1.
+@isnad1 id=ex.3h3v.s7.5508ca7a0fd2 from=translated src=- shape=d96caaa0 vocab=170d96f3
+-/
 theorem exists_segment_to_open_neighborhood {N : Set Plane} (hN : IsOpen N)
     (hcarrierN : J.carrier ⊆ N) {P : Plane} (hP : P ∉ J.carrier) :
     ∃ Q ∈ N \ J.carrier, segment ℝ P Q ⊆ J.carrierᶜ := by
@@ -2460,10 +2723,15 @@ horizontal ray. -/
 noncomputable def index (P : Plane) : ℕ :=
   (Finset.univ.filter fun i : ZMod J.n => J.EdgeCrossed i P).card % 2
 
+/--
+@isnad1 id=lt.0h2v.s3.712612da0dba from=translated src=- shape=90ed236d vocab=bb31c416
+-/
 theorem index_lt_two (P : Plane) : J.index P < 2 :=
   Nat.mod_lt _ (by norm_num)
 
-/-- Points of a segment have heights between the endpoint heights. -/
+/-- Points of a segment have heights between the endpoint heights.
+@isnad1 id=le.1h3v.s8.1e80e45971c5 from=translated src=- shape=d059db55 vocab=757925e4
+-/
 theorem height_le_max_of_mem_segment {v w q : Plane} (hq : q ∈ segment ℝ v w) :
     q 1 ≤ max (v 1) (w 1) := by
   rcases hq with ⟨a, b, ha, hb, hab, rfl⟩
@@ -2476,7 +2744,9 @@ theorem height_le_max_of_mem_segment {v w q : Plane} (hq : q ∈ segment ℝ v w
         · exact le_max_right _ _
     _ = max (v 1) (w 1) := by rw [← add_mul, hab, one_mul]
 
-/-- Points of a segment have heights at least the smaller endpoint height. -/
+/-- Points of a segment have heights at least the smaller endpoint height.
+@isnad1 id=le.1h3v.s8.1cb940e55f25 from=translated src=- shape=c99196e0 vocab=7c63e2b3
+-/
 theorem min_le_height_of_mem_segment {v w q : Plane} (hq : q ∈ segment ℝ v w) :
     min (v 1) (w 1) ≤ q 1 := by
   rcases hq with ⟨a, b, ha, hb, hab, rfl⟩
@@ -2490,7 +2760,9 @@ theorem min_le_height_of_mem_segment {v w q : Plane} (hq : q ∈ segment ℝ v w
         · exact min_le_left _ _
         · exact min_le_right _ _
 
-/-- Points of the polygon have heights at most the maximal vertex height. -/
+/-- Points of the polygon have heights at most the maximal vertex height.
+@isnad1 id=ex.1h2v.s7.4ae2ee8c5cce from=translated src=- shape=d19a4a3d vocab=ceb0c352
+-/
 theorem height_le_of_mem_carrier {q : Plane} (hq : q ∈ J.carrier) :
     ∃ i : ZMod J.n, q 1 ≤ (J.vertex i) 1 := by
   rcases Set.mem_iUnion.mp hq with ⟨i, hqi⟩
@@ -2498,7 +2770,9 @@ theorem height_le_of_mem_carrier {q : Plane} (hq : q ∈ J.carrier) :
   · exact ⟨i + 1, by simpa [max_eq_right h] using height_le_max_of_mem_segment hqi⟩
   · exact ⟨i, by simpa [max_eq_left h] using height_le_max_of_mem_segment hqi⟩
 
-/-- A point strictly above every vertex has index zero: its leftward ray crosses nothing. -/
+/-- A point strictly above every vertex has index zero: its leftward ray crosses nothing.
+@isnad1 id=eq.1h2v.s7.5a07979aceb4 from=translated src=- shape=5282a439 vocab=b7de8667
+-/
 theorem index_eq_zero_of_high {P : Plane} (hP : ∀ i : ZMod J.n, (J.vertex i) 1 < P 1) :
     J.index P = 0 := by
   classical
@@ -2510,14 +2784,18 @@ theorem index_eq_zero_of_high {P : Plane} (hP : ∀ i : ZMod J.n, (J.vertex i) 1
     · exact absurd hy.2 (not_lt.mpr (hP i).le)
   simp [index, hempty]
 
-/-- A point strictly above every vertex is off the polygon. -/
+/-- A point strictly above every vertex is off the polygon.
+@isnad1 id=not.1h2v.s7.361b20c17c35 from=translated src=- shape=fe3aae4b vocab=de67089f
+-/
 theorem notMem_carrier_of_high {P : Plane} (hP : ∀ i : ZMod J.n, (J.vertex i) 1 < P 1) :
     P ∉ J.carrier := by
   intro hmem
   rcases J.height_le_of_mem_carrier hmem with ⟨i, hi⟩
   exact absurd hi (not_le.mpr (hP i))
 
-/-- There are points off the polygon with index zero. -/
+/-- There are points off the polygon with index zero.
+@isnad1 id=ex.0h1v.s4.b9b3560d642d from=translated src=- shape=3dda7589 vocab=78e4dc1d
+-/
 theorem exists_index_eq_zero : ∃ P : Plane, P ∉ J.carrier ∧ J.index P = 0 := by
   classical
   obtain ⟨ymax, hymax⟩ : ∃ y, ∀ i : ZMod J.n, (J.vertex i) 1 ≤ y := by
@@ -2543,7 +2821,9 @@ partner of a left vertex is itself a left vertex (otherwise the horizontal edge 
 `P`), and so the non-horizontal incident edges of the left vertices pair up. -/
 
 /-- A point at the height of a horizontal segment, with abscissa between the endpoints, lies on
-the segment. -/
+the segment.
+@isnad1 id=mem.4h3v.s9.810ece03068a from=translated src=- shape=cc5e47b9 vocab=5903ddc0
+-/
 theorem mem_segment_of_horizontal {a b P : Plane} (ha : a 1 = P 1) (hb : b 1 = P 1)
     (hax : a 0 ≤ P 0) (hxb : P 0 ≤ b 0) : P ∈ segment ℝ a b := by
   rcases eq_or_lt_of_le (hax.trans hxb) with hab | hab
@@ -2594,7 +2874,9 @@ noncomputable def downLeftEdges (P : Plane) : Finset (ZMod J.n) :=
     ((J.vertex (i + 1)) 1 = P 1 ∧ (J.vertex (i + 1)) 0 < P 0 ∧ (J.vertex i) 1 < P 1)
 
 /-- The horizontal partner of a left vertex is a left vertex: otherwise the horizontal edge
-between them would contain `P`. -/
+between them would contain `P`.
+@isnad1 id=lt.5h4v.s9.e227731cd286 from=translated src=- shape=b886e7fe vocab=695ad2f4
+-/
 theorem left_of_horizontal_partner {P : Plane} (hP : P ∉ J.carrier) {k : ZMod J.n}
     (hk1 : (J.vertex k) 1 = P 1) (hk0 : (J.vertex k) 0 < P 0)
     {l : ZMod J.n} (hl1 : (J.vertex l) 1 = P 1)
@@ -2611,13 +2893,17 @@ theorem left_of_horizontal_partner {P : Plane} (hP : P ∉ J.carrier) {k : ZMod 
     rw [segment_symm]
     exact hmem
 
-/-- Edge `i` (from vertex `i` to vertex `i + 1`) lies on the carrier. -/
+/-- Edge `i` (from vertex `i` to vertex `i + 1`) lies on the carrier.
+@isnad1 id=le.0h2v.s7.4c31eebf0480 from=translated src=- shape=dd9137a7 vocab=8eccc68e
+-/
 theorem edgeSegment_subset_carrier (i : ZMod J.n) :
     segment ℝ (J.vertex i) (J.vertex (i + 1)) ⊆ J.carrier :=
   fun _ hx => Set.mem_iUnion.mpr ⟨i, hx⟩
 
 open Classical in
-/-- **The handshake lemma**: the flipping edges (up-left plus down-left) are even in number. -/
+/-- **The handshake lemma**: the flipping edges (up-left plus down-left) are even in number.
+@isnad1 id=even.1h2v.s5.cf9abfc9b8bd from=translated src=- shape=a71c7f87 vocab=6ace2203
+-/
 theorem upLeft_card_add_downLeft_card_even {P : Plane} (hP : P ∉ J.carrier) :
     Even ((J.upLeftEdges P).card + (J.downLeftEdges P).card) := by
   classical
@@ -2734,19 +3020,30 @@ theorem upLeft_card_add_downLeft_card_even {P : Plane} (hP : P ∉ J.carrier) :
 
 /-! #### Per-edge behavior of the crossing status near a point off the polygon -/
 
+/--
+@isnad1 id=continuo.0h1v.s6.6b892ae8bb87 from=translated src=- shape=8b3f526a vocab=96ebd605
+-/
 theorem continuous_coord (j : Fin 2) : Continuous fun v : Plane => v j :=
   PiLp.continuous_apply (p := 2) (β := fun _ : Fin 2 => ℝ) j
 
-/-- The crossing abscissa depends continuously on the query point. -/
+/-- The crossing abscissa depends continuously on the query point.
+@isnad1 id=continuo.0h2v.s6.ca3712ecd610 from=translated src=- shape=77decdb3 vocab=ebf6e648
+-/
 theorem continuous_crossingX (v w : Plane) :
     Continuous fun Q : Plane => crossingX v w (Q 1) := by
   unfold crossingX
   fun_prop
 
+/--
+@isnad1 id=eq.0h2v.s6.1abc5959bb34 from=translated src=- shape=fe663a2c vocab=493ed7cf
+-/
 @[simp] theorem crossingX_left (v w : Plane) : crossingX v w (v 1) = v 0 := by
   unfold crossingX
   simp
 
+/--
+@isnad1 id=eq.1h2v.s7.bfa32bd26e62 from=translated src=- shape=f71a2308 vocab=493ed7cf
+-/
 theorem crossingX_right (v w : Plane) (hne : v 1 ≠ w 1) : crossingX v w (w 1) = w 0 := by
   unfold crossingX
   field_simp
@@ -2759,7 +3056,9 @@ namespace PolygonalCircle
 variable (J : PolygonalCircle)
 
 /-- A point whose height lies in an edge's band and whose abscissa is the crossing abscissa lies
-on that edge. -/
+on that edge.
+@isnad1 id=mem.2h3v.s9.ddf35c32eb24 from=translated src=- shape=3fc9353a vocab=05ef7dbf
+-/
 theorem mem_edgeSegment_of_crossing {P : Plane} (i : ZMod J.n)
     (hy : ((J.vertex i) 1 ≤ P 1 ∧ P 1 < (J.vertex (i + 1)) 1) ∨
       ((J.vertex (i + 1)) 1 ≤ P 1 ∧ P 1 < (J.vertex i) 1))
@@ -2794,7 +3093,9 @@ theorem mem_edgeSegment_of_crossing {P : Plane} (i : ZMod J.n)
       ring
   exact ⟨1 - t, t, by linarith, ht0, by ring, hpt⟩
 
-/-- Carrier-level form of `mem_edgeSegment_of_crossing`. -/
+/-- Carrier-level form of `mem_edgeSegment_of_crossing`.
+@isnad1 id=mem.2h3v.s9.b6cb0673ba69 from=translated src=- shape=4c680a58 vocab=d40eb19a
+-/
 theorem mem_carrier_of_crossing {P : Plane} (i : ZMod J.n)
     (hy : ((J.vertex i) 1 ≤ P 1 ∧ P 1 < (J.vertex (i + 1)) 1) ∨
       ((J.vertex (i + 1)) 1 ≤ P 1 ∧ P 1 < (J.vertex i) 1))
@@ -2803,7 +3104,9 @@ theorem mem_carrier_of_crossing {P : Plane} (i : ZMod J.n)
   J.edgeSegment_subset_carrier i (J.mem_edgeSegment_of_crossing i hy hx)
 
 /-- On a nonhorizontal edge, the crossing formula recovers the abscissa of every point of the
-edge. -/
+edge.
+@isnad1 id=eq.2h3v.s8.b4ed77dd11e8 from=translated src=- shape=3e1c605e vocab=b9b9ac78
+-/
 theorem crossingX_eq_of_mem_edgeSegment {P : Plane} {i : ZMod J.n}
     (horiz : (J.vertex i) 1 ≠ (J.vertex (i + 1)) 1) (hP : P ∈ J.edgeSegment i) :
     crossingX (J.vertex i) (J.vertex (i + 1)) (P 1) = P 0 := by
@@ -2824,7 +3127,9 @@ theorem crossingX_eq_of_mem_edgeSegment {P : Plane} {i : ZMod J.n}
   ring
 
 /-- At a height different from both endpoint heights, a point of an edge lies strictly between
-those heights. -/
+those heights.
+@isnad1 id=or.2h3v.s9.cde5bd70260e from=translated src=- shape=7c215be3 vocab=e12879da
+-/
 theorem strict_height_band_of_mem_edgeSegment {P : Plane} {i : ZMod J.n}
     (hP : P ∈ J.edgeSegment i)
     (hheight : ∀ k : ZMod J.n, P 1 ≠ (J.vertex k) 1) :
@@ -2850,7 +3155,9 @@ theorem strict_height_band_of_mem_edgeSegment {P : Plane} {i : ZMod J.n}
     exact ⟨lt_of_le_of_ne hlo (hheight (i + 1)).symm,
       lt_of_le_of_ne hhi (hheight i)⟩
 
-/-- Two edges containing the same point away from all vertices are the same edge. -/
+/-- Two edges containing the same point away from all vertices are the same edge.
+@isnad1 id=eq.3h4v.s7.2250c3bd00c3 from=translated src=- shape=c5d072e9 vocab=7f1e2bdb
+-/
 theorem edge_eq_of_mem_edgeSegments_of_height_ne_vertices {P : Plane} {i j : ZMod J.n}
     (hi : P ∈ J.edgeSegment i) (hj : P ∈ J.edgeSegment j)
     (hheight : ∀ k : ZMod J.n, P 1 ≠ (J.vertex k) 1) : i = j := by
@@ -2879,7 +3186,9 @@ theorem edge_eq_of_mem_edgeSegments_of_height_ne_vertices {P : Plane} {i j : ZMo
     exact hmem
 
 /-- A polygon has a nonhorizontal edge.  Otherwise, at a leftmost vertex the two incident
-horizontal edges overlap in more than their common endpoint. -/
+horizontal edges overlap in more than their common endpoint.
+@isnad1 id=ex.0h1v.s7.5eb0ef576bc8 from=translated src=- shape=e2720abd vocab=e161f63b
+-/
 theorem exists_nonhorizontal_edge :
     ∃ i : ZMod J.n, (J.vertex i) 1 ≠ (J.vertex (i + 1)) 1 := by
   classical
@@ -2954,13 +3263,17 @@ theorem exists_nonhorizontal_edge :
   change xmid = (J.vertex k) 0 at hx
   linarith
 
-/-- Horizontal edges are never crossed. -/
+/-- Horizontal edges are never crossed.
+@isnad1 id=not.1h3v.s7.a64818886956 from=translated src=- shape=9f50b52e vocab=b9336300
+-/
 theorem not_edgeCrossed_of_horizontal {i : ZMod J.n}
     (hAB : (J.vertex i) 1 = (J.vertex (i + 1)) 1) (R : Plane) : ¬ J.EdgeCrossed i R := by
   rintro ⟨⟨h1, h2⟩ | ⟨h1, h2⟩, -⟩ <;> linarith
 
 /-- Near a point off the polygon, each edge's crossing status is: switched by the query height
-for the flipping edges, constant otherwise. -/
+for the flipping edges, constant otherwise.
+@isnad1 id=eventual.1h3v.s8.b3566221d901 from=translated src=- shape=fd611c97 vocab=a7931f4b
+-/
 theorem eventually_edgeCrossed_iff {P : Plane} (hP : P ∉ J.carrier) (i : ZMod J.n) :
     ∀ᶠ Q in nhds P,
       (J.EdgeCrossed i Q ↔
@@ -3183,7 +3496,9 @@ Off the polygon the crossing index is locally constant.  The proof is elementary
 `Q` near `P`, the crossing status of each edge is unchanged unless the ray endpoint passes a
 vertex height, and at a vertex height the half-open convention makes the count change by `0` or
 `2` (the two edges at that vertex are both gained or both lost when they point to the same side,
-and exchanged when they point to opposite sides). -/
+and exchanged when they point to opposite sides).
+@isnad1 id=eventual.1h2v.s6.f766226040b5 from=translated src=- shape=b176ed46 vocab=a4d63fa6
+-/
 theorem index_locallyConstant {P : Plane} (hP : P ∉ J.carrier) :
     ∀ᶠ Q in nhds P, J.index Q = J.index P := by
   classical
@@ -3289,7 +3604,9 @@ theorem index_locallyConstant {P : Plane} (hP : P ∉ J.carrier) :
 Some point off the polygon has index one: take a height that is no vertex height but is attained
 by the polygon, let `P₁` be the leftmost polygon point at that height, and move slightly right of
 `P₁`.  (Moise's construction; requires knowing the polygon is not contained in a single
-horizontal line, which follows from the embedding fields.) -/
+horizontal line, which follows from the embedding fields.)
+@isnad1 id=ex.0h1v.s4.c7f70ea9f8c1 from=translated src=- shape=3dda7589 vocab=78e4dc1d
+-/
 theorem exists_index_eq_one : ∃ P : Plane, P ∉ J.carrier ∧ J.index P = 1 := by
   classical
   obtain ⟨i₀, hi₀⟩ := J.exists_nonhorizontal_edge
@@ -3447,7 +3764,9 @@ def indexRegion (k : ℕ) : Set Plane :=
   {P | P ∉ J.carrier ∧ J.index P = k}
 
 /-- Every index region is open, since the carrier is closed and the index is locally constant on
-its complement. -/
+its complement.
+@isnad1 id=isopen.0h2v.s5.bd066e87f831 from=translated src=- shape=6ad8120f vocab=52db440a
+-/
 theorem isOpen_indexRegion (k : ℕ) : IsOpen (J.indexRegion k) := by
   rw [isOpen_iff_mem_nhds]
   rintro P ⟨hPmem, hPk⟩
@@ -3456,15 +3775,23 @@ theorem isOpen_indexRegion (k : ℕ) : IsOpen (J.indexRegion k) := by
   filter_upwards [J.index_locallyConstant hPmem, hcompl] with Q hQ hQmem
   exact ⟨hQmem, by rw [hQ, hPk]⟩
 
+/--
+@isnad1 id=nonempty.0h1v.s3.4ed829165e83 from=translated src=- shape=4e122c91 vocab=739d03ec
+-/
 theorem indexRegion_zero_nonempty : (J.indexRegion 0).Nonempty := by
   obtain ⟨P, hPmem, hPindex⟩ := J.exists_index_eq_zero
   exact ⟨P, hPmem, hPindex⟩
 
+/--
+@isnad1 id=nonempty.0h1v.s3.2c855dd775d3 from=translated src=- shape=4e122c91 vocab=739d03ec
+-/
 theorem indexRegion_one_nonempty : (J.indexRegion 1).Nonempty := by
   obtain ⟨P, hPmem, hPindex⟩ := J.exists_index_eq_one
   exact ⟨P, hPmem, hPindex⟩
 
-/-- The index-zero region is unbounded: it contains points arbitrarily high above the polygon. -/
+/-- The index-zero region is unbounded: it contains points arbitrarily high above the polygon.
+@isnad1 id=not.0h1v.s5.2f845afa8291 from=translated src=- shape=1dd5de0f vocab=adf214b8
+-/
 theorem not_isBounded_indexRegion_zero : ¬ Bornology.IsBounded (J.indexRegion 0) := by
   intro hbounded
   obtain ⟨C, hC⟩ := hbounded.exists_norm_le
@@ -3492,6 +3819,9 @@ theorem not_isBounded_indexRegion_zero : ¬ Bornology.IsBounded (J.indexRegion 0
   have hCle : C ≤ |C| := le_abs_self C
   linarith
 
+/--
+@isnad1 id=disjoint.0h1v.s5.0555cfd4f1ed from=translated src=- shape=ac82eee9 vocab=2c2f0f2c
+-/
 theorem disjoint_indexRegion_zero_one : Disjoint (J.indexRegion 0) (J.indexRegion 1) := by
   rw [Set.disjoint_left]
   intro P hP0 hP1
@@ -3500,6 +3830,9 @@ theorem disjoint_indexRegion_zero_one : Disjoint (J.indexRegion 0) (J.indexRegio
   rw [hP0.2] at hP1
   norm_num at hP1
 
+/--
+@isnad1 id=eq.0h1v.s4.06e3b2a0fe88 from=translated src=- shape=e939525c vocab=54d3165c
+-/
 theorem indexRegion_zero_union_one :
     J.indexRegion 0 ∪ J.indexRegion 1 = J.carrierᶜ := by
   ext P
@@ -3513,11 +3846,16 @@ theorem indexRegion_zero_union_one :
     · exact Or.inl ⟨hP, hindex⟩
     · exact Or.inr ⟨hP, hindex⟩
 
-/-- The polygon is the frontier of its full complement. -/
+/-- The polygon is the frontier of its full complement.
+@isnad1 id=eq.0h1v.s5.1c4d6f7acf81 from=translated src=- shape=e48ed353 vocab=ea0482f3
+-/
 theorem frontier_compl_carrier : frontier J.carrierᶜ = J.carrier := by
   rw [frontier_compl, J.isClosed_carrier.frontier_eq, J.interior_carrier]
   simp
 
+/--
+@isnad1 id=le.0h1v.s5.c9c9bef53470 from=translated src=- shape=5a8472b3 vocab=92882ab9
+-/
 theorem frontier_indexRegion_zero_subset_carrier :
     frontier (J.indexRegion 0) ⊆ J.carrier := by
   intro P hP
@@ -3530,6 +3868,9 @@ theorem frontier_indexRegion_zero_subset_carrier :
   · exact Set.disjoint_left.1
       (J.disjoint_indexRegion_zero_one.frontier_left (J.isOpen_indexRegion 1)) hP hP1
 
+/--
+@isnad1 id=le.0h1v.s5.2eff7aae41fc from=translated src=- shape=5a8472b3 vocab=92882ab9
+-/
 theorem frontier_indexRegion_one_subset_carrier :
     frontier (J.indexRegion 1) ⊆ J.carrier := by
   intro P hP
@@ -3543,7 +3884,9 @@ theorem frontier_indexRegion_one_subset_carrier :
       (disjoint_frontier_iff_isOpen.mpr (J.isOpen_indexRegion 1)) hP hP1
 
 /-- Every polygon point is approached by at least one of the two index sides.  The remaining
-two-sided frontier step is to show that it is approached by both. -/
+two-sided frontier step is to show that it is approached by both.
+@isnad1 id=le.0h1v.s6.7ad7e28f9fa9 from=translated src=- shape=b06974f6 vocab=b2896a0b
+-/
 theorem carrier_subset_frontier_indexRegion_union :
     J.carrier ⊆ frontier (J.indexRegion 0) ∪ frontier (J.indexRegion 1) := by
   rw [← J.frontier_compl_carrier, ← J.indexRegion_zero_union_one]
@@ -3552,7 +3895,9 @@ theorem carrier_subset_frontier_indexRegion_union :
     · exact Or.inl hP.1
     · exact Or.inr hP.2
 
-/-- The crossing index is constant on every preconnected subset of the polygon complement. -/
+/-- The crossing index is constant on every preconnected subset of the polygon complement.
+@isnad1 id=eq.4h4v.s6.25b0fad251c1 from=translated src=- shape=71ccd5e2 vocab=a8df8cf0
+-/
 theorem index_eq_of_isPreconnected {s : Set Plane} (hs : IsPreconnected s)
     (hsub : s ⊆ J.carrierᶜ) {P Q : Plane} (hP : P ∈ s) (hQ : Q ∈ s) :
     J.index P = J.index Q := by
@@ -3573,7 +3918,9 @@ theorem index_eq_of_isPreconnected {s : Set Plane} (hs : IsPreconnected s)
     exact Set.disjoint_left.1 J.disjoint_indexRegion_zero_one hR0 hR1
   · exact hne rfl
 
-/-- A path in the polygon complement has constant crossing index. -/
+/-- A path in the polygon complement has constant crossing index.
+@isnad1 id=eq.1h3v.s6.2f06b381f18c from=translated src=- shape=5fc27df1 vocab=9bcf9d05
+-/
 theorem index_eq_of_joinedIn_compl {P Q : Plane} (h : JoinedIn J.carrierᶜ P Q) :
     J.index P = J.index Q := by
   let γ := h.somePath
@@ -3588,7 +3935,9 @@ theorem index_eq_of_joinedIn_compl {P Q : Plane} (h : JoinedIn J.carrierᶜ P Q)
   · exact ⟨1, γ.target⟩
 
 /-- A path in a neighborhood of the polygon complement whose initial point has index `k` stays
-in the index-`k` part of that neighborhood. -/
+in the index-`k` part of that neighborhood.
+@isnad1 id=joinedin.2h5v.s6.b39cf66b5512 from=translated src=- shape=874ec523 vocab=4f741df7
+-/
 theorem JoinedIn.mono_indexRegion {N : Set Plane} {P Q : Plane} {k : ℕ}
     (h : JoinedIn (N \ J.carrier) P Q) (hindex : J.index P = k) :
     JoinedIn (N ∩ J.indexRegion k) P Q := by
@@ -3673,6 +4022,9 @@ noncomputable def StripScales.toTwoGateStrip (S : J.StripScales) : J.TwoGateStri
     intro P hPB
     exact ⟨hBsub hPB, (hB.joinedIn gateB hgateB P hPB).mono hBsub⟩
 
+/--
+@isnad1 id=nonempty.0h1v.s2.cbaed39d9a9a from=translated src=- shape=76a08d12 vocab=9e0793c4
+-/
 theorem exists_twoGateStrip : Nonempty J.TwoGateStrip := by
   let S := J.exists_stripScales.some
   exact ⟨S.toTwoGateStrip J⟩
@@ -3685,12 +4037,18 @@ def TwoGateStrip.gateAComponent (S : J.TwoGateStrip) : Set Plane :=
 def TwoGateStrip.gateBComponent (S : J.TwoGateStrip) : Set Plane :=
   {P | P ∈ (S.strip \ J.carrier) ∧ JoinedIn (S.strip \ J.carrier) S.gateB P}
 
+/--
+@isnad1 id=le.1h3v.s4.2cd04b8ed167 from=translated src=- shape=b5d73656 vocab=1089b926
+-/
 theorem TwoGateStrip.gateAComponent_subset_indexRegion (S : J.TwoGateStrip) {k : ℕ}
     (hk : J.index S.gateA = k) : S.gateAComponent ⊆ J.indexRegion k := by
   rintro P ⟨hP, hjoin⟩
   have heq := J.index_eq_of_joinedIn_compl (hjoin.mono fun _ hx => hx.2)
   exact ⟨hP.2, heq.symm.trans hk⟩
 
+/--
+@isnad1 id=le.1h3v.s4.654a82a67f0f from=translated src=- shape=b5d73656 vocab=ec0cc473
+-/
 theorem TwoGateStrip.gateBComponent_subset_indexRegion (S : J.TwoGateStrip) {k : ℕ}
     (hk : J.index S.gateB = k) : S.gateBComponent ⊆ J.indexRegion k := by
   rintro P ⟨hP, hjoin⟩
@@ -3698,7 +4056,9 @@ theorem TwoGateStrip.gateBComponent_subset_indexRegion (S : J.TwoGateStrip) {k :
   exact ⟨hP.2, heq.symm.trans hk⟩
 
 /-- If gate A has index `k`, every carrier point belongs to the frontier of the index-`k`
-region. -/
+region.
+@isnad1 id=le.1h3v.s6.eddab2591eef from=translated src=- shape=3e4484f0 vocab=80943157
+-/
 theorem TwoGateStrip.carrier_subset_frontier_indexRegion_of_gateA
     (S : J.TwoGateStrip) {k : ℕ} (hk : J.index S.gateA = k) :
     J.carrier ⊆ frontier (J.indexRegion k) := by
@@ -3709,7 +4069,9 @@ theorem TwoGateStrip.carrier_subset_frontier_indexRegion_of_gateA
   · exact fun hPregion => hPregion.1 hP
 
 /-- If gate B has index `k`, every carrier point belongs to the frontier of the index-`k`
-region. -/
+region.
+@isnad1 id=le.1h3v.s6.d287cc97da9c from=translated src=- shape=3e4484f0 vocab=ab3d0b4d
+-/
 theorem TwoGateStrip.carrier_subset_frontier_indexRegion_of_gateB
     (S : J.TwoGateStrip) {k : ℕ} (hk : J.index S.gateB = k) :
     J.carrier ⊆ frontier (J.indexRegion k) := by
@@ -3721,7 +4083,9 @@ theorem TwoGateStrip.carrier_subset_frontier_indexRegion_of_gateB
 
 /-- Every nonempty index region meets every open neighborhood of the polygon.  A point is joined
 to the neighborhood by the visibility segment from `exists_segment_to_open_neighborhood`, and
-the index is constant on that segment. -/
+the index is constant on that segment.
+@isnad1 id=nonempty.3h3v.s6.1d3940da65cc from=translated src=- shape=1037b852 vocab=1121ae18
+-/
 theorem indexRegion_inter_neighborhood_nonempty {N : Set Plane} (hN : IsOpen N)
     (hcarrierN : J.carrier ⊆ N) {k : ℕ} (hk : (J.indexRegion k).Nonempty) :
     (N ∩ J.indexRegion k).Nonempty := by
@@ -3734,7 +4098,9 @@ theorem indexRegion_inter_neighborhood_nonempty {N : Set Plane} (hN : IsOpen N)
   exact ⟨Q, hQN, hQcarrier, hindex.symm.trans hPk.2⟩
 
 /-- The crossing index rules out the a priori possibility that the punctured strip has only one
-path component. -/
+path component.
+@isnad1 id=ne.0h2v.s4.2a3a80ccac06 from=translated src=- shape=15b31ff3 vocab=81b7016d
+-/
 theorem TwoGateStrip.index_gateA_ne_index_gateB (S : J.TwoGateStrip) :
     J.index S.gateA ≠ J.index S.gateB := by
   obtain ⟨P₀, hP₀N, hP₀carrier, hP₀index⟩ :=
@@ -3768,7 +4134,9 @@ theorem TwoGateStrip.index_gateA_ne_index_gateB (S : J.TwoGateStrip) :
     rw [hP₀index, hP₁index] at h01
     norm_num at h01
 
-/-- Every point of the polygon is approached from the index-zero gate component. -/
+/-- Every point of the polygon is approached from the index-zero gate component.
+@isnad1 id=eq.0h2v.s5.eaacfdec6645 from=translated src=- shape=f301f526 vocab=a14dc162
+-/
 theorem TwoGateStrip.frontier_indexRegion_zero (S : J.TwoGateStrip) :
     frontier (J.indexRegion 0) = J.carrier := by
   apply Set.Subset.antisymm J.frontier_indexRegion_zero_subset_carrier
@@ -3780,7 +4148,9 @@ theorem TwoGateStrip.frontier_indexRegion_zero (S : J.TwoGateStrip) :
   · exact TwoGateStrip.carrier_subset_frontier_indexRegion_of_gateB J S hBi
   · exact (TwoGateStrip.index_gateA_ne_index_gateB J S (hAi.trans hBi.symm)).elim
 
-/-- Every point of the polygon is approached from the index-one gate component. -/
+/-- Every point of the polygon is approached from the index-one gate component.
+@isnad1 id=eq.0h2v.s5.74fef663147e from=translated src=- shape=f301f526 vocab=a14dc162
+-/
 theorem TwoGateStrip.frontier_indexRegion_one (S : J.TwoGateStrip) :
     frontier (J.indexRegion 1) = J.carrier := by
   apply Set.Subset.antisymm J.frontier_indexRegion_one_subset_carrier
@@ -3794,7 +4164,9 @@ theorem TwoGateStrip.frontier_indexRegion_one (S : J.TwoGateStrip) :
 
 /-- The two index sides of a two-gate strip are path connected.  This is the formal form of the
 last sentence in Moise Ch. 2, Thm. 1, Lemma 1: the index forces the two gates to represent the two
-different strip components. -/
+different strip components.
+@isnad1 id=ispathco.1h3v.s6.7a1e5d3dcf60 from=translated src=- shape=2e4127b1 vocab=7a3b7047
+-/
 theorem TwoGateStrip.isPathConnected_indexRegion (S : J.TwoGateStrip) (k : ℕ)
     (hk : k = 0 ∨ k = 1) :
     IsPathConnected (S.strip ∩ J.indexRegion k) := by
@@ -3847,7 +4219,9 @@ theorem TwoGateStrip.isPathConnected_indexRegion (S : J.TwoGateStrip) (k : ℕ)
 
 /-- If one index side is preconnected inside an open strip neighborhood of the polygon, then the
 whole index side is preconnected.  The proof joins arbitrary points to the strip using
-`exists_segment_to_open_neighborhood`. -/
+`exists_segment_to_open_neighborhood`.
+@isnad1 id=isprecon.3h3v.s7.603dc2e95b68 from=translated src=- shape=40923865 vocab=05705211
+-/
 theorem isPreconnected_indexRegion_of_strip (k : ℕ) {N : Set Plane} (hN : IsOpen N)
     (hcarrierN : J.carrier ⊆ N) (hstrip : IsPreconnected (N ∩ J.indexRegion k)) :
     IsPreconnected (J.indexRegion k) := by
@@ -3894,7 +4268,9 @@ theorem isPreconnected_indexRegion_of_strip (k : ℕ) {N : Set Plane} (hN : IsOp
     · exact hsegQconn
 
 /-- The index-one region is bounded.  Outside a ball containing the polygon, every point lies on
-a large connected circle with a point above the polygon, where the index is zero. -/
+a large connected circle with a point above the polygon, where the index is zero.
+@isnad1 id=isbounde.0h1v.s5.938e8e0fa186 from=translated src=- shape=4e122c91 vocab=adf214b8
+-/
 theorem isBounded_indexRegion_one : Bornology.IsBounded (J.indexRegion 1) := by
   obtain ⟨R, hR⟩ := J.isCompact_carrier.isBounded.subset_closedBall (0 : Plane)
   set R₀ : ℝ := max R 0 with hR₀
@@ -3949,7 +4325,9 @@ theorem isBounded_indexRegion_one : Bornology.IsBounded (J.indexRegion 1) := by
 
 /-- **Moise Ch. 2, Thm. 1, Lemma 2**: the complement of a polygon is disconnected.  Proved from
 the index machinery: the index-0 and index-1 loci are relatively open (local constancy), cover
-the complement (the index is a parity), and are both nonempty. -/
+the complement (the index is a parity), and are both nonempty.
+@isnad1 id=not.0h1v.s5.2e0f1df2d4f3 from=translated src=- shape=87ce0d61 vocab=d9404ec5
+-/
 theorem compl_carrier_not_isPreconnected : ¬ IsPreconnected (J.carrierᶜ : Set Plane) := by
   intro hconn
   obtain ⟨P₀, hP₀⟩ := J.indexRegion_zero_nonempty
@@ -3966,7 +4344,9 @@ theorem compl_carrier_not_isPreconnected : ¬ IsPreconnected (J.carrierᶜ : Set
   exact Set.disjoint_left.1 J.disjoint_indexRegion_zero_one hQ0 hQ1
 
 /-- Once the explicit two-gate strip has been constructed, all global parts of polygonal Jordan
-follow from the crossing index and the visibility-to-strip lemma. -/
+follow from the crossing index and the visibility-to-strip lemma.
+@isnad1 id=ex.0h2v.s8.115b6c207879 from=translated src=- shape=738e861a vocab=b5e51727
+-/
 theorem polygonal_jordan_of_twoGateStrip (S : J.TwoGateStrip) :
     ∃ inside outside : Set Plane,
       IsOpen inside ∧ IsOpen outside ∧ Disjoint inside outside ∧
@@ -3996,7 +4376,9 @@ The complement of a polygon has exactly two connected components: a bounded inte
 unbounded exterior, both open, and the polygon is the frontier of each.
 
 Must-fail check: the statement forces `interior ∪ exterior = carrierᶜ` with both sides connected
-and the frontiers equal to the carrier, so it cannot be satisfied by choosing junk open sets. -/
+and the frontiers equal to the carrier, so it cannot be satisfied by choosing junk open sets.
+@isnad1 id=ex.0h1v.s8.641163671434 from=translated src=- shape=afb7d861 vocab=5e3dd757
+-/
 theorem polygonal_jordan :
     ∃ inside outside : Set Plane,
       IsOpen inside ∧ IsOpen outside ∧ Disjoint inside outside ∧
@@ -4014,36 +4396,69 @@ noncomputable def interiorRegion : Set Plane :=
 noncomputable def exteriorRegion : Set Plane :=
   J.polygonal_jordan.choose_spec.choose
 
+/--
+@isnad1 id=isopen.0h1v.s5.c3b761aa6a77 from=translated src=- shape=1a6c1393 vocab=ae693e48
+-/
 theorem isOpen_interiorRegion : IsOpen J.interiorRegion :=
   J.polygonal_jordan.choose_spec.choose_spec.1
 
+/--
+@isnad1 id=isopen.0h1v.s5.24d8cff2d18e from=translated src=- shape=1a6c1393 vocab=a26e72a9
+-/
 theorem isOpen_exteriorRegion : IsOpen J.exteriorRegion :=
   J.polygonal_jordan.choose_spec.choose_spec.2.1
 
+/--
+@isnad1 id=disjoint.0h1v.s5.4bf70e6dbc82 from=translated src=- shape=ffc59986 vocab=5e68fcaf
+-/
 theorem disjoint_interior_exterior : Disjoint J.interiorRegion J.exteriorRegion :=
   J.polygonal_jordan.choose_spec.choose_spec.2.2.1
 
+/--
+@isnad1 id=eq.0h1v.s4.59472b97864c from=translated src=- shape=c4dd997b vocab=6b97e789
+-/
 theorem interior_union_exterior : J.interiorRegion ∪ J.exteriorRegion = J.carrierᶜ :=
   J.polygonal_jordan.choose_spec.choose_spec.2.2.2.1
 
+/--
+@isnad1 id=isconnec.0h1v.s5.a53cf1e75a6c from=translated src=- shape=1a6c1393 vocab=32893240
+-/
 theorem isConnected_interiorRegion : IsConnected J.interiorRegion :=
   J.polygonal_jordan.choose_spec.choose_spec.2.2.2.2.1
 
+/--
+@isnad1 id=isconnec.0h1v.s5.78f4bfa29447 from=translated src=- shape=1a6c1393 vocab=a995ce8a
+-/
 theorem isConnected_exteriorRegion : IsConnected J.exteriorRegion :=
   J.polygonal_jordan.choose_spec.choose_spec.2.2.2.2.2.1
 
+/--
+@isnad1 id=isbounde.0h1v.s5.2b1c3b7a1f7a from=translated src=- shape=1a6c1393 vocab=27be85be
+-/
 theorem isBounded_interiorRegion : Bornology.IsBounded J.interiorRegion :=
   J.polygonal_jordan.choose_spec.choose_spec.2.2.2.2.2.2.1
 
+/--
+@isnad1 id=not.0h1v.s5.af10979f2313 from=translated src=- shape=90e8939d vocab=0bcba868
+-/
 theorem not_isBounded_exteriorRegion : ¬ Bornology.IsBounded J.exteriorRegion :=
   J.polygonal_jordan.choose_spec.choose_spec.2.2.2.2.2.2.2.1
 
+/--
+@isnad1 id=eq.0h1v.s5.20148bf17103 from=translated src=- shape=d709d7a6 vocab=356cc0e0
+-/
 theorem frontier_interiorRegion : frontier J.interiorRegion = J.carrier :=
   J.polygonal_jordan.choose_spec.choose_spec.2.2.2.2.2.2.2.2.1
 
+/--
+@isnad1 id=eq.0h1v.s5.e20cd391fad3 from=translated src=- shape=d709d7a6 vocab=e2654e6b
+-/
 theorem frontier_exteriorRegion : frontier J.exteriorRegion = J.carrier :=
   J.polygonal_jordan.choose_spec.choose_spec.2.2.2.2.2.2.2.2.2
 
+/--
+@isnad1 id=eq.0h1v.s3.d0e5778b3e1b from=translated src=- shape=a75fa119 vocab=f0425101
+-/
 theorem exteriorRegion_eq_indexRegion_zero : J.exteriorRegion = J.indexRegion 0 := by
   have hExteriorSubset : J.exteriorRegion ⊆ J.indexRegion 0 := by
     have hsubset : J.exteriorRegion ⊆ J.indexRegion 0 ∪ J.indexRegion 1 := by
@@ -4074,6 +4489,9 @@ theorem exteriorRegion_eq_indexRegion_zero : J.exteriorRegion = J.indexRegion 0 
   exact hpre.subset_right_of_subset_union J.isOpen_interiorRegion J.isOpen_exteriorRegion
     J.disjoint_interior_exterior hsubset ⟨x, hxZero, hxExterior⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.6b5a92afc0e0 from=translated src=- shape=a75fa119 vocab=1b5d8612
+-/
 theorem interiorRegion_eq_indexRegion_one : J.interiorRegion = J.indexRegion 1 := by
   apply Set.Subset.antisymm
   · intro x hx
@@ -4099,9 +4517,15 @@ theorem interiorRegion_eq_indexRegion_one : J.interiorRegion = J.indexRegion 1 :
 noncomputable def closedRegion : Set Plane :=
   closure J.interiorRegion
 
+/--
+@isnad1 id=eq.0h1v.s4.088831b5c856 from=translated src=- shape=97affee1 vocab=bfc5e089
+-/
 theorem closedRegion_eq_union : J.closedRegion = J.interiorRegion ∪ J.carrier := by
   rw [closedRegion, closure_eq_self_union_frontier, J.frontier_interiorRegion]
 
+/--
+@isnad1 id=iscompac.0h1v.s5.38941889daa2 from=translated src=- shape=1a6c1393 vocab=1c3fe7c8
+-/
 theorem isCompact_closedRegion : IsCompact J.closedRegion :=
   J.isBounded_interiorRegion.isCompact_closure
 

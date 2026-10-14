@@ -36,6 +36,9 @@ noncomputable def faceCoordExtensionAffineLF (f : L.Face) :
   AffineMap.pi fun v =>
     (LinearMap.proj ((L.faceVertexEquiv f).symm v)).toAffineMap
 
+/--
+@isnad1 id=eq.0h5v.s10.d0181dc88ded from=translated src=- shape=f5d02da3 vocab=6aa7555b
+-/
 @[simp] theorem faceCoordExtensionAffineLF_apply
     (f : L.Face) (z : Fin 3 → ℝ)
     (v : {v // v ∈ L.faceVertices f}) :
@@ -50,6 +53,9 @@ noncomputable def facePlaneInverseAffineLF (f : L.Face) :
   (L.faceCoordExtensionAffineLF f).comp
     (standardTrianglePlaneComplex.faceCoords standardTriangleMeshFace)
 
+/--
+@isnad1 id=eq.0h4v.s11.5cfef6a0d5e7 from=translated src=- shape=10b8b0f1 vocab=c091789a
+-/
 theorem facePlaneHomeomorph_symm_val_LF (f : L.Face)
     (p : standardTrianglePlaneComplex.support) :
     ((L.facePlaneHomeomorph f).symm p).1 =
@@ -82,7 +88,9 @@ variable {K : IntrinsicTwoComplex} {U : Set K.realization}
 variable [K.AdaptiveSafety U]
 variable [AdaptiveSafety.IsAdmissible (K := K) (U := U)]
 
-/-- Relabeling a global adaptive fan simplex preserves the source-weighted affine sum. -/
+/-- Relabeling a global adaptive fan simplex preserves the source-weighted affine sum.
+@isnad1 id=eq.1h5v.s11.f2d7b7074c42 from=translated src=- shape=5217c84e vocab=e27c21f3
+-/
 theorem adaptiveFanRelabel_source_sum_apply
     (hU : IsOpen U) (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ
@@ -111,6 +119,9 @@ theorem adaptiveFanRelabel_source_sum_apply
     extendFaceCoordinates_of_mem _ _ q.2] at hweight
   exact hweight
 
+/--
+@isnad1 id=eq.3h6v.s15.13e6307b41f3 from=translated src=- shape=5145312d vocab=e27df5a7
+-/
 theorem adaptiveGlobalFanFaceMap_standardAffine_point
     (hU : IsOpen U) (f : K.AdaptiveFanFace U hU)
     (aQ : ((K.safeSubdivision f.1.1).refined.Vertex → ℝ) →ᵃ[ℝ] (K.Vertex → ℝ))
@@ -188,6 +199,9 @@ noncomputable def adaptiveGlobalFanFaceMapValue
     K.adaptiveGlobalFanSimplex hU f → (K.Vertex → ℝ) :=
   fun x ↦ (K.adaptiveGlobalFanFaceMap U hU f x).1.1
 
+/--
+@isnad1 id=eq.1h4v.s14.c5819f99c2aa from=translated src=- shape=682f83b4 vocab=a812cb09
+-/
 theorem adaptiveGlobalFanMapStandardAffine_apply
     (hU : IsOpen U) (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ
@@ -214,6 +228,9 @@ theorem adaptiveGlobalFanMapStandardAffine_apply
 
 /- One adaptive global fan face is affine, in original intrinsic barycentric coordinates, as a
 function of its standard planar face coordinates. -/
+/--
+@isnad1 id=ex.1h3v.s14.01f7d141c728 from=translated src=- shape=048f4648 vocab=35843d2e
+-/
 theorem adaptiveGlobalFanFaceMap_standardAffine
     (hU : IsOpen U) (f : K.AdaptiveFanFace U hU) :
     ∃ a : Plane →ᵃ[ℝ] (K.Vertex → ℝ),
@@ -226,7 +243,9 @@ theorem adaptiveGlobalFanFaceMap_standardAffine
 
 /-- On one local fan triangle, the transported old barycentric coordinates are the
 barycentric weighted sum of the coordinates of its three geometric vertices.  This is the
-supporting-face formula used by the bordered chart straightening. -/
+supporting-face formula used by the bordered chart straightening.
+@isnad1 id=eq.1h4v.s9.7873483f00ae from=translated src=- shape=0f87809c vocab=71ffc91a
+-/
 theorem adaptiveFanFaceMap_val_eq_vertex_sum
     (hU : IsOpen U) (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ {p // p ∈ K.adaptiveFanFaceVertices U hU f}) :
@@ -287,7 +306,9 @@ theorem adaptiveFanFaceMap_val_eq_vertex_sum
   rw [hvertex p]
 
 /-- The same vertex-sum formula after relabeling a fan triangle by the global vertex type of
-the locally finite adaptive complex. -/
+the locally finite adaptive complex.
+@isnad1 id=eq.1h4v.s9.01241e9c7b75 from=translated src=- shape=8e2fbb78 vocab=c20f944e
+-/
 theorem adaptiveGlobalFanFaceMap_val_eq_vertex_sum
     (hU : IsOpen U) (f : K.AdaptiveFanFace U hU)
     (x : stdSimplex ℝ
@@ -342,7 +363,9 @@ noncomputable def adaptiveGlobalFanFaceVerticesInCarrier
         w.1 ∈ K.faceCarrier b)
 
 /-- Pulling an old barycentric face carrier back to one adaptive fan triangle gives the
-simplex face spanned by precisely those adaptive vertices which lie in the old carrier. -/
+simplex face spanned by precisely those adaptive vertices which lie in the old carrier.
+@isnad1 id=iff.1h5v.s9.ae0c7a8f330c from=translated src=- shape=1b5665db vocab=2912ceca
+-/
 theorem adaptiveGlobalFanFaceMap_mem_faceCarrier_iff_supported
     (hU : IsOpen U) (f : K.AdaptiveFanFace U hU)
     (b : Finset K.Vertex)
@@ -411,7 +434,9 @@ private theorem exists_levelZeroAncestor_relInterior
 
 /-- The cone center of an adaptive fan face lies in the relative interior of its unique
 level-zero parent.  Hence it misses every proper old face of cardinality at most two in any
-old triangle to which the refined face is subordinate. -/
+old triangle to which the refined face is subordinate.
+@isnad1 id=not.4h5v.s11.9b66c6d39e38 from=translated src=- shape=491f7bcf vocab=82af6a69
+-/
 theorem adaptiveFaceCenter_not_mem_faceCarrier_of_subordinate
     (hU : IsOpen U) (f : K.AdaptiveFanFace U hU)
     (t : K.Face)
@@ -480,7 +505,9 @@ theorem adaptiveFaceCenter_not_mem_faceCarrier_of_subordinate
   exact (lt_irrefl 0 hpos)
 
 /-- If one declared fan vertex misses an old carrier, that pullback carrier has at most two
-vertices and hence is an exposed proper face of the adaptive triangle. -/
+vertices and hence is an exposed proper face of the adaptive triangle.
+@isnad1 id=ex.2h5v.s9.460bb004bc75 from=translated src=- shape=b8a189c4 vocab=948b50b4
+-/
 theorem adaptiveGlobalFanFaceMap_exists_exposedFace
     (hU : IsOpen U) (f : K.AdaptiveFanFace U hU)
     (b : Finset K.Vertex)

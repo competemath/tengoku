@@ -47,11 +47,15 @@ variable [Ring R]
   we have `f(x + f(x + y)) + f(xy) = x + f(x + y) + f(x) y`. -/
 def good (f : R → R) := ∀ x y, f (x + f (x + y)) + f (x * y) = x + f (x + y) + f x * y
 
-/-- The identity function is good. -/
+/-- The identity function is good.
+@isnad1 id=good.0h1v.s3.69244764a490 from=translated src=- shape=84bfdc15 vocab=9c31a94f
+-/
 theorem id_is_good : good (id : R → R) :=
   λ _ _ ↦ rfl
 
-/-- The function `x ↦ 2 - x` is good. -/
+/-- The function `x ↦ 2 - x` is good.
+@isnad1 id=good.0h1v.s5.242182386f18 from=translated src=- shape=81484299 vocab=26c04878
+-/
 theorem two_sub_is_good : good (λ x : R ↦ 2 - x) := by
   intro x y
   have h : x + (2 - (x + y)) = 2 - y := by rw [← add_sub_assoc, add_sub_add_left_eq_sub]
@@ -63,19 +67,25 @@ theorem two_sub_is_good : good (λ x : R ↦ 2 - x) := by
 
 namespace good
 
-/-- For any `x ∈ R`, we have `f(x + f(x + 1)) = x + f(x + 1)`. -/
+/-- For any `x ∈ R`, we have `f(x + f(x + 1)) = x + f(x + 1)`.
+@isnad1 id=eq.1h3v.s6.32fe7f5fc29d from=translated src=- shape=4b78222b vocab=b82c3540
+-/
 theorem map_add_map_add_one_fixed {f : R → R} (hf : good f) (x) :
     f (x + f (x + 1)) = x + f (x + 1) := by
   have h := hf x 1
   rwa [mul_one, mul_one, add_left_inj] at h
 
-/-- For any `y ∈ R`, we have `f(f(y)) + f(0) = f(y) + f(0) y`. -/
+/-- For any `y ∈ R`, we have `f(f(y)) + f(0) = f(y) + f(0) y`.
+@isnad1 id=eq.1h3v.s6.12da38ef8c57 from=translated src=- shape=55b68961 vocab=adfc7537
+-/
 theorem map_map_add_map_zero {f : R → R} (hf : good f) (y) :
     f (f y) + f 0 = f y + f 0 * y := by
   have h := hf 0 y
   rwa [zero_add, zero_add, zero_mul] at h
 
-/-- For any fixed point `y`, we have `f(0) (1 - y) = 0`. -/
+/-- For any fixed point `y`, we have `f(0) (1 - y) = 0`.
+@isnad1 id=eq.2h3v.s6.7b817e4cd54e from=translated src=- shape=1706c368 vocab=991e1056
+-/
 theorem fixed_point_formula {f : R → R} (hf : good f) (hy : f y = y) :
     f 0 * (1 - y) = 0 := by
   have h := hf.map_map_add_map_zero y
@@ -86,7 +96,9 @@ section
 variable [NoZeroDivisors R] {f : R → R} (hf : good f) (hf0 : f 0 ≠ 0)
 include hf hf0
 
-/-- If `R` is a domain and `f(0) ≠ 0`, then the only fixed point is `1`. -/
+/-- If `R` is a domain and `f(0) ≠ 0`, then the only fixed point is `1`.
+@isnad1 id=eq.3h3v.s6.babec7902b67 from=translated src=- shape=fd7c3fb2 vocab=3df2499e
+-/
 theorem fixed_point_eq_one (hy : f y = y) : y = 1 := by
   have h : f 0 * (1 - y) = 0 := hf.fixed_point_formula hy
   rwa [mul_eq_zero, or_iff_right hf0, sub_eq_zero, eq_comm] at h
@@ -101,13 +113,17 @@ theorem eq_two_sub_of_map_zero_ne_zero : f = (λ x ↦ 2 - x) := by
 
 end
 
-/-- If `f(0) = 0`, then `f(-1) = -1`. -/
+/-- If `f(0) = 0`, then `f(-1) = -1`.
+@isnad1 id=eq.2h2v.s6.f62dc8116d53 from=translated src=- shape=28b6e932 vocab=4cd500ce
+-/
 theorem neg_one_fixed_of_zero_fixed {f : R → R} (hf : good f) (hf0 : f 0 = 0) :
     f (-1) = -1 := by
   have h : f (-1 + f (-1 + 1)) = -1 + f (-1 + 1) := hf.map_add_map_add_one_fixed (-1)
   rwa [neg_add_cancel, hf0, add_zero] at h
 
-/-- If `2` is not a zero divisor of `R` and `f(0) = 0`, then `f(1) = 1`. -/
+/-- If `2` is not a zero divisor of `R` and `f(0) = 0`, then `f(1) = 1`.
+@isnad1 id=eq.3h2v.s7.e24c3d6a1930 from=translated src=- shape=ad939c3c vocab=d0064236
+-/
 theorem map_one_of_twoNZD_map_zero (hR : ∀ x y : R, 2 * x = 2 * y → x = y)
     {f : R → R} (hf : good f) (hf0 : f 0 = 0) : f 1 = 1 := by
   have h := hf 1 (-1)
@@ -121,16 +137,22 @@ section
 variable {f : R → R} (hf : good f)
 include hf
 
-/-- For any `x ∈ R`, we have `f(x + f(x)) + f(0) = x + f(x)`. -/
+/-- For any `x ∈ R`, we have `f(x + f(x)) + f(0) = x + f(x)`.
+@isnad1 id=eq.1h3v.s6.adc1caead4d2 from=translated src=- shape=acd3b0b2 vocab=b82c3540
+-/
 theorem map_self_add_map_self (x) : f (x + f x) + f 0 = x + f x := by
   simpa only [add_zero, mul_zero] using hf x 0
 
-/-- If `f(1) = 1`, then `f(1 + f(y + 1)) + f(y) = 1 + f(y + 1) + y`. -/
+/-- If `f(1) = 1`, then `f(1 + f(y + 1)) + f(y) = 1 + f(y + 1) + y`.
+@isnad1 id=eq.2h3v.s7.7755da7ec808 from=translated src=- shape=7748db30 vocab=b82c3540
+-/
 theorem map_one_add_map_add_one_of_map_one (hf1 : f 1 = 1) (y) :
     f (1 + f (y + 1)) + f y = 1 + f (y + 1) + y := by
   simpa only [add_comm y 1, one_mul, hf1] using hf 1 y
 
-/-- If `f(1) = 1`, `f(y) = y`, and `f(y + 1) = y + 1`, then `f(y + 2) = y + 2`. -/
+/-- If `f(1) = 1`, `f(y) = y`, and `f(y + 1) = y + 1`, then `f(y + 2) = y + 2`.
+@isnad1 id=eq.4h3v.s7.79d7734cb7a9 from=translated src=- shape=554f2386 vocab=35cdafa5
+-/
 theorem fixed_pt_add_two_of_map_one
     (hf1 : f 1 = 1) (hy : f y = y) (hy1 : f (y + 1) = y + 1) :
     f (y + 2) = y + 2 := by
@@ -138,7 +160,9 @@ theorem fixed_pt_add_two_of_map_one
     hf.map_one_add_map_add_one_of_map_one hf1 y
   rwa [hy1, hy, add_left_inj, add_left_comm, one_add_one_eq_two] at h
 
-/-- If `f(0) = 0` and `f(1) = 1`, then `f(-x) = -f(x)` for all `x ∈ R`. -/
+/-- If `f(0) = 0` and `f(1) = 1`, then `f(-x) = -f(x)` for all `x ∈ R`.
+@isnad1 id=eq.3h3v.s6.16c75a0988f9 from=translated src=- shape=c5bd3353 vocab=4cd500ce
+-/
 theorem map_neg_of_map_zero_map_one (hf0 : f 0 = 0) (hf1 : f 1 = 1) (x) :
     f (-x) = -f x := by
   ---- First change `x` to `x - 2` in `f(x + f(x + 1)) = x + f(x + 1)`.
@@ -157,7 +181,9 @@ theorem map_neg_of_map_zero_map_one (hf0 : f 0 = 0) (hf1 : f 1 = 1) (x) :
   replace h0 : f (x + f (x + -1)) + f (x * -1) = x + f (x + -1) + f x * -1 := hf x (-1)
   rwa [← sub_eq_add_neg, h, add_right_inj, mul_neg_one, mul_neg_one] at h0
 
-/-- If `f(0) = 0` and `f(1) = 1`, then `2 f(y) = 2y` for all `y ∈ R`. -/
+/-- If `f(0) = 0` and `f(1) = 1`, then `2 f(y) = 2y` for all `y ∈ R`.
+@isnad1 id=eq.3h3v.s7.79dcfddc6558 from=translated src=- shape=ac2c63f3 vocab=d0064236
+-/
 theorem two_mul_map_of_map_zero_eq_zero (hf0 : f 0 = 0) (hf1 : f 1 = 1) (y) :
     2 * f y = 2 * y := by
   ---- Recall that `f(-x) = -f(x)` for all `x ∈ R`.
@@ -184,7 +210,9 @@ theorem eq_id_of_map_zero_eq_zero2 (hR : ∀ x y : R, 2 * x = 2 * y → x = y)
 
 end good
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.1h2v.s6.b66ae23a6be0 from=translated src=- shape=5ef848cf vocab=1254eb31
+-/
 theorem final_solution [DecidableEq R] [NoZeroDivisors R] (hR : (2 : R) ≠ 0) {f : R → R} :
     good f ↔ f = (λ x ↦ 2 - x) ∨ f = id := by
   refine ⟨λ hf ↦ ?_, λ hf ↦ ?_⟩

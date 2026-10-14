@@ -23,7 +23,9 @@ namespace ClassificationOfSurfaces
 namespace Moise
 
 /-- Extending a self-homeomorphism of a closed patch by the identity preserves that patch
-setwise. -/
+setwise.
+@isnad1 id=eq.2h2v.s9.0ed600527313 from=translated src=- shape=a5eb5b02 vocab=aba06651
+-/
 theorem extendHomeomorphByIdentity_image {P : Set Plane} (hP : IsClosed P)
     (e : P ≃ₜ P)
     (hfrontier : ∀ x (hx : x ∈ frontier P), (e ⟨x, hP.frontier_subset hx⟩).1 = x) :
@@ -58,6 +60,9 @@ noncomputable def boundaryFaces : Finset (Finset M.Vertex) := by
   classical
   exact M.allBoundaryEdges.biUnion fun e => e.powerset.filter (·.Nonempty)
 
+/--
+@isnad1 id=iff.0h2v.s6.59e29bd96a88 from=translated src=- shape=2dd503cf vocab=c1a3121c
+-/
 theorem mem_boundaryFaces_iff {s : Finset M.Vertex} :
     s ∈ M.boundaryFaces ↔ s.Nonempty ∧ ∃ e ∈ M.allBoundaryEdges, s ⊆ e := by
   classical
@@ -106,6 +111,9 @@ noncomputable def boundaryComplex : PlaneComplex where
       exact ⟨htne, u, hu, htet.trans (Finset.mem_powersetCard.mp heu).1⟩
     exact M.toPlaneComplex.face_inter s hsM t htM
 
+/--
+@isnad1 id=eq.0h1v.s3.b7180decd1c0 from=translated src=- shape=d403cf25 vocab=41e11670
+-/
 theorem boundaryComplex_support :
     M.boundaryComplex.support = M.boundaryCarrier := by
   classical
@@ -124,7 +132,9 @@ theorem boundaryComplex_support :
       omega)
     exact ⟨e, M.mem_boundaryFaces_iff.mpr ⟨hene, e, he, subset_rfl⟩, hxe⟩
 
-/-- Every boundary-complex face is a face of the full mesh complex. -/
+/-- Every boundary-complex face is a face of the full mesh complex.
+@isnad1 id=mem.1h2v.s5.e8a0ec8608b3 from=translated src=- shape=5ce86009 vocab=b092adad
+-/
 theorem boundaryComplex_simplex_mem_toPlaneComplex {s : Finset M.Vertex}
     (hs : s ∈ M.boundaryComplex.simplexes) :
     s ∈ M.toPlaneComplex.simplexes := by
@@ -135,7 +145,9 @@ theorem boundaryComplex_simplex_mem_toPlaneComplex {s : Finset M.Vertex}
     ⟨hsne, u, hu, hse.trans (Finset.mem_powersetCard.mp heu).1⟩
 
 /-- On its closed patch, an ambient barycentric repositioning agrees with the facewise-affine
-`PlaneComplex.repositionMap`. -/
+`PlaneComplex.repositionMap`.
+@isnad1 id=eqon.5h2v.s11.ba7ea2f4d8bd from=translated src=- shape=da1434a9 vocab=56cbe3ad
+-/
 theorem ambientRepositionHomeomorph_eq_repositionMap_on_support
     (position' : M.Vertex → Plane)
     (hinj : Function.Injective position')
@@ -210,7 +222,9 @@ theorem ambientRepositionHomeomorph_eq_repositionMap_on_support
   rw [hrmap, hambient]
   rfl
 
-/-- An ambient barycentric repositioning is affine on every face of its source mesh. -/
+/-- An ambient barycentric repositioning is affine on every face of its source mesh.
+@isnad1 id=isaffine.6h3v.s11.bf48279e58a4 from=translated src=- shape=835e1a25 vocab=4e732b6f
+-/
 theorem ambientRepositionHomeomorph_affineOn
     (position' : M.Vertex → Plane)
     (hinj : Function.Injective position')
@@ -302,6 +316,9 @@ noncomputable def diamondFanAmbientHomeomorphFinitePL (a b : ℝ)
     (diamondFanReposition_support_eq_source a b ha0 ha1 hb0 hb1)
     (diamondFanPatchHomeomorph_fixed_frontier a b ha0 ha1 hb0 hb1) hs
 
+/--
+@isnad1 id=eq.4h2v.s8.8b967f06b7fc from=translated src=- shape=275a850f vocab=09551eb2
+-/
 theorem diamondFanAmbientHomeomorph_image (a b : ℝ)
     (ha0 : -2 < a) (ha1 : a < 2) (hb0 : -2 < b) (hb1 : b < 2) :
     diamondFanAmbientHomeomorph a b ha0 ha1 hb0 hb1 '' diamondPatch = diamondPatch := by
@@ -327,6 +344,9 @@ noncomputable def thinKiteRightAffine (δ : ℝ) : Plane →ᵃ[ℝ] Plane :=
       thinKiteScale δ • cartesianY - (2 : ℝ)⁻¹ • cartesianX +
         AffineMap.const ℝ Plane (2 : ℝ)⁻¹])
 
+/--
+@isnad1 id=eq.1h2v.s10.74bd72d9731c from=translated src=- shape=e6b54e9f vocab=6a2b1835
+-/
 theorem thinKiteMap_eq_leftAffine (δ : ℝ) {p : Plane} (hp : p 0 ≤ 0) :
     thinKiteMap δ p = thinKiteLeftAffine δ p := by
   apply plane_ext
@@ -336,6 +356,9 @@ theorem thinKiteMap_eq_leftAffine (δ : ℝ) {p : Plane} (hp : p 0 ≤ 0) :
     simp [thinKiteLeftAffine]
     ring
 
+/--
+@isnad1 id=eq.1h2v.s10.e8d64f923c9f from=translated src=- shape=cf0ceea9 vocab=de0a8a0a
+-/
 theorem thinKiteMap_eq_rightAffine (δ : ℝ) {p : Plane} (hp : 0 ≤ p 0) :
     thinKiteMap δ p = thinKiteRightAffine δ p := by
   apply plane_ext
@@ -345,6 +368,9 @@ theorem thinKiteMap_eq_rightAffine (δ : ℝ) {p : Plane} (hp : 0 ≤ p 0) :
     simp [thinKiteRightAffine]
     ring
 
+/--
+@isnad1 id=le.1h3v.s8.f15c876eced6 from=translated src=- shape=db9dc47a vocab=d045fb10
+-/
 theorem nonpos_zero_of_mem_axisKite_left {lo hi : ℝ} {p : Plane}
     (hp : p ∈ convexHull ℝ
       (axisKitePosition lo hi '' (({0, 2, 3} : Finset (Fin 4)) : Set _))) :
@@ -355,6 +381,9 @@ theorem nonpos_zero_of_mem_axisKite_left {lo hi : ℝ} {p : Plane}
     fin_cases v <;> simp [axisKitePosition] at hv ⊢
   exact hp'
 
+/--
+@isnad1 id=le.1h3v.s8.2413534fedaa from=translated src=- shape=f5da7bec vocab=d045fb10
+-/
 theorem nonneg_zero_of_mem_axisKite_right {lo hi : ℝ} {p : Plane}
     (hp : p ∈ convexHull ℝ
       (axisKitePosition lo hi '' (({1, 2, 3} : Finset (Fin 4)) : Set _))) :
@@ -396,6 +425,9 @@ noncomputable def thinKiteGlobalHomeomorphFinitePL (δ : ℝ) (hδ : 0 < δ) :
     apply nonneg_zero_of_mem_axisKite_right
     exact convexHull_mono (Set.image_mono hst) hp
 
+/--
+@isnad1 id=eq.1h1v.s8.e237f68f7325 from=translated src=- shape=7d706842 vocab=bdf98cee
+-/
 theorem thinKiteGlobalHomeomorph_image (δ : ℝ) (hδ : 0 < δ) :
     thinKiteGlobalHomeomorph δ hδ '' diamondPatch = thinKitePatch δ := by
   rfl
@@ -436,6 +468,9 @@ noncomputable def thinKiteAmbientHomeomorphFinitePL (δ : ℝ) (hδ : 0 < δ) :
   intro p
   rfl
 
+/--
+@isnad1 id=eq.1h1v.s8.7d1e21d30486 from=translated src=- shape=8ddb80e3 vocab=cfb54ac7
+-/
 theorem thinKiteAmbientHomeomorph_image (δ : ℝ) (hδ : 0 < δ) :
     thinKiteAmbientHomeomorph δ hδ '' thinKitePatch δ = thinKitePatch δ := by
   let outer := thinKiteGlobalHomeomorph δ hδ
@@ -490,6 +525,9 @@ noncomputable def transportedThinKiteHomeomorphFinitePL
     rfl
   exact (Ftotal.congrHomeomorph hhome).congrSet rfl
 
+/--
+@isnad1 id=eq.1h2v.s9.ad96cbdccc4c from=translated src=- shape=f955ae54 vocab=2c5e1c8c
+-/
 theorem transportedThinKiteHomeomorph_image
     (e : Plane ≃ᵃ[ℝ] Plane) (δ : ℝ) (hδ : 0 < δ) :
     transportedThinKiteHomeomorph e δ hδ '' transportedThinKitePatch e δ =

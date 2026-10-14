@@ -18,6 +18,9 @@ Imported Lean Pool material for
 
 variable {R A B : Type*} [CommSemiring R] [Semiring A] [Semiring B] [Algebra R A] [Algebra R B]
 
+/--
+@isnad1 id=le.0h5v.s6.332ae4fbfade from=translated src=- shape=73137dd6 vocab=fe31bf59
+-/
 lemma Subalgebra.map_centralizer_le_centralizer_image (s : Set A) (f : A →ₐ[R] B) :
     (centralizer _ s).map f ≤ centralizer _ (f '' s) := by
   rintro - ⟨g, hg, rfl⟩ - ⟨h, hh, rfl⟩

@@ -23,7 +23,9 @@ integrable on the full interval.
 
 This is the continuous step needed after the guarded finite dyadic comparison:
 it never evaluates the entropy profile at radius zero through an antitonicity
-hypothesis. -/
+hypothesis.
+@isnad1 id=le.3h3v.s7.9cc029149c80 from=translated src=- shape=70d1633a vocab=c1f5fe01
+-/
 theorem guarded_truncatedIntegral_le_full_integral
     {radiusScale : ℝ} (m : ℕ) (entropyAtRadius : ℝ → ℝ)
     (hradiusScale : 0 < radiusScale)
@@ -73,7 +75,9 @@ The finite input is deliberately the post-guarded-truncation statement: for
 every positive terminal error, some dyadic depth gives a finite expected
 supremum bound with the positive-radius truncated integral. This theorem then
 removes the truncation and yields the continuous `0..radiusScale/2` integral
-bound without assuming `Antitone entropyAtRadius`. -/
+bound without assuming `Antitone entropyAtRadius`.
+@isnad1 id=le.4h7v.s8.c200313d86bf from=translated src=- shape=d509bdf5 vocab=1d6f5f89
+-/
 theorem guarded_continuous_dudley_entropy_integral_nonempty_of_truncated_bounds
     {Ω T : Type*} [Fintype Ω]
     (P : FiniteSubGaussianProcess Ω T)
@@ -116,7 +120,9 @@ sum bounds.
 This is the guarded replacement for the global-antitone sum-to-integral step:
 the finite input is allowed to be stated with the dyadic entropy upper sum, and
 the only monotonicity needed is the positive-radius guarded annulus condition
-from `GuardedDudleyIntegral`. -/
+from `GuardedDudleyIntegral`.
+@isnad1 id=le.4h7v.s8.e788a27e347c from=translated src=- shape=955b8861 vocab=cf28a1f5
+-/
 theorem guarded_continuous_dudley_entropy_integral_nonempty_of_upper_sum_bounds
     {Ω T : Type*} [Fintype Ω]
     (P : FiniteSubGaussianProcess Ω T)

@@ -43,6 +43,9 @@ noncomputable instance cqFintype (d : Nat) : Fintype (Cq d) :=
 /-- The affine Frobenius group `GF(3^d) ⋊ Cq`. -/
 abbrev Hq (d : Nat) := Saxl.AffineGroup (Cq d) (Fq d)
 
+/--
+@isnad1 id=eq.1h1v.s5.fcda8a68901a from=translated src=- shape=dcde83a3 vocab=bb121176
+-/
 theorem three_pow_mod_four_of_odd (d : Nat) (hd : Odd d) :
     3 ^ d % 4 = 3 := by
   obtain ⟨k, rfl⟩ := hd
@@ -51,21 +54,33 @@ theorem three_pow_mod_four_of_odd (d : Nat) (hd : Odd d) :
   have hk := h9.pow k |>.mul_right 3
   simpa [Nat.ModEq] using hk
 
+/--
+@isnad1 id=eq.1h1v.s4.4f4871ae6d1d from=translated src=- shape=a31ae772 vocab=0f7f5eb4
+-/
 theorem fq_card (d : Nat) (hd : Odd d) : Nat.card (Fq d) = 3 ^ d := by
   rw [GaloisField.card 3 d]
   intro h
   subst d
   norm_num at hd
 
+/--
+@isnad1 id=eq.1h1v.s4.cdf431012e45 from=translated src=- shape=16b167d3 vocab=1bc3d44c
+-/
 theorem fq_card_mod_four (d : Nat) (hd : Odd d) :
     Nat.card (Fq d) % 4 = 3 := by
   rw [fq_card d hd]
   exact three_pow_mod_four_of_odd d hd
 
+/--
+@isnad1 id=odd.1h1v.s3.3e480a4e24af from=translated src=- shape=d78201a6 vocab=d0f9d9d2
+-/
 theorem fq_odd_card (d : Nat) (hd : Odd d) : Odd (Nat.card (Fq d)) := by
   rw [fq_card d hd]
   exact (show Odd 3 from ⟨1, rfl⟩).pow
 
+/--
+@isnad1 id=eq.0h1v.s5.8dd4ee3dfd82 from=translated src=- shape=59ca8f69 vocab=2642bf5d
+-/
 theorem square_subgroup_eq_powRange (G : Type*) [CommGroup G] :
     Subgroup.square G = (powMonoidHom 2 : G →* G).range := by
   ext a
@@ -77,6 +92,9 @@ theorem square_subgroup_eq_powRange (G : Type*) [CommGroup G] :
     refine ⟨r, ?_⟩
     simpa [pow_two] using hr.symm
 
+/--
+@isnad1 id=eq.1h1v.s8.8eecf93f997b from=translated src=- shape=321c3493 vocab=943b884b
+-/
 theorem cq_card (d : Nat) (hd : Odd d) :
     Nat.card (Cq d) = (3 ^ d - 1) / 2 := by
   rw [show Cq d = (powMonoidHom 2 : (Fq d)ˣ →* (Fq d)ˣ).range by
@@ -88,6 +106,9 @@ theorem cq_card (d : Nat) (hd : Odd d) :
     omega
   rw [Nat.gcd_eq_right_iff_dvd.mpr hdiv]
 
+/--
+@isnad1 id=odd.1h1v.s8.61ea7db148f4 from=translated src=- shape=7cc0c9ab vocab=3c7760a7
+-/
 theorem cq_odd_card (d : Nat) (hd : Odd d) : Odd (Nat.card (Cq d)) := by
   rw [cq_card d hd]
   refine ⟨3 ^ d / 4, ?_⟩
@@ -95,18 +116,27 @@ theorem cq_odd_card (d : Nat) (hd : Odd d) : Odd (Nat.card (Cq d)) := by
   have hdivmod := Nat.mod_add_div (3 ^ d) 4
   omega
 
+/--
+@isnad1 id=odd.1h1v.s3.c9e1f140f7e2 from=translated src=- shape=d78201a6 vocab=d67ec6ea
+-/
 theorem hq_odd_card (d : Nat) (hd : Odd d) : Odd (Nat.card (Hq d)) := by
   rw [SemidirectProduct.card, Nat.card_congr Multiplicative.toAdd,
     fq_card d hd]
   exact (show Odd (3 ^ d) from (show Odd 3 from ⟨1, rfl⟩).pow).mul
     (cq_odd_card d hd)
 
+/--
+@isnad1 id=not.1h1v.s6.21e56806cfb5 from=translated src=- shape=9f5af422 vocab=627b8f63
+-/
 theorem neg_one_not_square (d : Nat) (hd : Odd d) :
     ¬ IsSquare (-1 : Fq d) := by
   rw [FiniteField.isSquare_neg_one_iff]
   rw [Fintype.card_eq_nat_card, fq_card_mod_four d hd]
   simp
 
+/--
+@isnad1 id=issquare.3h2v.s7.76cfa1e4b87c from=translated src=- shape=4c1cc933 vocab=627b8f63
+-/
 theorem neg_isSquare_of_not_isSquare (d : Nat) (hd : Odd d)
     {z : Fq d} (hz0 : z ≠ 0) (hz : ¬ IsSquare z) : IsSquare (-z) := by
   classical
@@ -133,12 +163,18 @@ noncomputable def squareUnit (d : Nat) {z : Fq d} (hz0 : z ≠ 0)
   apply Units.ext
   simpa using hr
 
+/--
+@isnad1 id=issquare.0h2v.s9.1f72c119af75 from=translated src=- shape=1ea62889 vocab=d0678a49
+-/
 theorem cq_isSquare (d : Nat) (a : Cq d) : IsSquare (a.1.1 : Fq d) := by
   obtain ⟨r, hr⟩ := a.property
   refine ⟨(r : Fq d), ?_⟩
   have := congrArg (fun u : (Fq d)ˣ ↦ (u : Fq d)) hr
   simpa [pow_two] using this
 
+/--
+@isnad1 id=eq.0h3v.s11.27537584de43 from=translated src=- shape=b21b34de vocab=483a602f
+-/
 @[simp] theorem cq_smul_eq_mul (d : Nat) (a : Cq d) (x : Fq d) :
     a • x = (a.1.1 : Fq d) * x := by
   rfl
@@ -150,6 +186,9 @@ noncomputable def cqValueFinset (d : Nat) : Finset (Fq d) :=
     classical
     exact Finset.univ.image fun a : Cq d ↦ (a.1.1 : Fq d)
 
+/--
+@isnad1 id=iff.0h2v.s9.a4b869c0c64f from=translated src=- shape=77555d82 vocab=22bf7adf
+-/
 theorem mem_cqValueFinset_iff (d : Nat) (x : Fq d) :
     x ∈ cqValueFinset d ↔ ∃ a : Cq d, (a.1.1 : Fq d) = x := by
   classical
@@ -161,12 +200,18 @@ theorem mem_cqValueFinset_iff (d : Nat) (x : Fq d) :
     rw [cqValueFinset, Finset.mem_image]
     exact ⟨a, Finset.mem_univ _, rfl⟩
 
+/--
+@isnad1 id=not.0h1v.s5.45a703478742 from=translated src=- shape=b3fc45e9 vocab=19a85e1e
+-/
 theorem zero_not_mem_cqValueFinset (d : Nat) :
     (0 : Fq d) ∉ cqValueFinset d := by
   rw [mem_cqValueFinset_iff]
   rintro ⟨a, ha⟩
   exact a.1.ne_zero ha
 
+/--
+@isnad1 id=eq.0h1v.s8.3aa99b3ca4ba from=translated src=- shape=e768ffb2 vocab=2c71836c
+-/
 theorem card_cqValueFinset (d : Nat) :
     (cqValueFinset d).card = Nat.card (Cq d) := by
   classical
@@ -177,6 +222,9 @@ theorem card_cqValueFinset (d : Nat) :
     apply Units.ext
     exact hab
 
+/--
+@isnad1 id=odd.1h1v.s3.0b8c0c7b59bb from=translated src=- shape=ed9fd762 vocab=c4bcfe76
+-/
 theorem odd_card_cqValueFinset (d : Nat) (hd : Odd d) :
     Odd (cqValueFinset d).card := by
   rw [card_cqValueFinset]
@@ -187,6 +235,9 @@ noncomputable def affineOfSquare (d : Nat) (b z : Fq d) (hz0 : z ≠ 0)
     (hz : IsSquare z) : Hq d :=
   ⟨Multiplicative.ofAdd b, squareUnit d hz0 hz⟩
 
+/--
+@isnad1 id=eq.2h4v.s11.804c81137d68 from=translated src=- shape=08d51a3e vocab=9eaa04df
+-/
 theorem affineOfSquare_smul (d : Nat) (b z : Fq d)
     (hz0 : z ≠ 0) (hz : IsSquare z) (x : Fq d) :
     affineOfSquare d b z hz0 hz • x = b + z * x := by
@@ -200,12 +251,21 @@ noncomputable def twoPointVector (d : Nat) : Fq d → ZMod 2 :=
     classical
     exact fun x ↦ if x = 0 ∨ x = 1 then 1 else 0
 
+/--
+@isnad1 id=eq.0h1v.s6.624bcc7e76f7 from=translated src=- shape=67494fe9 vocab=4f778e95
+-/
 @[simp] theorem twoPointVector_zero (d : Nat) : twoPointVector d 0 = 1 := by
   simp [twoPointVector]
 
+/--
+@isnad1 id=eq.0h1v.s6.b4519fd40779 from=translated src=- shape=67494fe9 vocab=4f778e95
+-/
 @[simp] theorem twoPointVector_one (d : Nat) : twoPointVector d 1 = 1 := by
   simp [twoPointVector]
 
+/--
+@isnad1 id=iff.0h2v.s7.9744ad6e755e from=translated src=- shape=4050963b vocab=4f778e95
+-/
 theorem twoPointVector_eq_one_iff (d : Nat) (x : Fq d) :
     twoPointVector d x = 1 ↔ x = 0 ∨ x = 1 := by
   classical
@@ -214,6 +274,9 @@ theorem twoPointVector_eq_one_iff (d : Nat) (x : Fq d) :
   · exact iff_of_true rfl h
   · exact iff_of_false (by exact zero_ne_one) h
 
+/--
+@isnad1 id=eq.0h1v.s10.67fc76bc2724 from=translated src=- shape=bfb77a3e vocab=f37aff19
+-/
 theorem twoPointVector_eq_basisSum (d : Nat) :
     twoPointVector d =
       Pi.basisFun (ZMod 2) (Fq d) 0 + Pi.basisFun (ZMod 2) (Fq d) 1 := by
@@ -228,7 +291,9 @@ theorem twoPointVector_eq_basisSum (d : Nat) :
     · simp [twoPointVector, Pi.basisFun_apply, hx0, hx1]
 
 /-- The two-point characteristic function belongs to the binary deleted
-permutation module. -/
+permutation module.
+@isnad1 id=eq.0h1v.s6.1776c0d0d966 from=translated src=- shape=27d11345 vocab=630c4e84
+-/
 theorem twoPointVector_coordSum (d : Nat) :
     ∑ x : Fq d, twoPointVector d x = 0 := by
   classical
@@ -243,7 +308,9 @@ theorem twoPointVector_coordSum (d : Nat) :
 
 /-- An affine square map preserving `{0,1}` pointwise as a characteristic
 function is the identity.  The only other possible setwise stabilizer would
-have multiplier `-1`, which is not a square when `d` is odd. -/
+have multiplier `-1`, which is not a square when `d` is odd.
+@isnad1 id=eq.2h2v.s11.9c07401cf8d8 from=translated src=- shape=234d8c32 vocab=27ed119e
+-/
 theorem hq_eq_one_of_twoPointVector_comp_eq (d : Nat) (hd : Odd d)
     (g : Hq d)
     (hfix : ∀ x : Fq d, twoPointVector d (g • x) = twoPointVector d x) :
@@ -288,16 +355,24 @@ theorem hq_eq_one_of_twoPointVector_comp_eq (d : Nat) (hd : Odd d)
 
 /-! ## Odd cycles avoiding the distinguished point -/
 
+/--
+@isnad1 id=eq.0h2v.s6.7de490bf675e from=translated src=- shape=963fdb3e vocab=afb5301c
+-/
 theorem char_three_add_self (d : Nat) (x : Fq d) : x + x = -x := by
   have h3 : (3 : Fq d) = 0 := CharP.cast_eq_zero (Fq d) 3
   linear_combination h3 * x
 
+/--
+@isnad1 id=eq.0h2v.s6.0e43dfb61192 from=translated src=- shape=b44a125b vocab=f914f0c9
+-/
 theorem char_three_neg_sub_self (d : Nat) (x : Fq d) : -x - x = x := by
   have h := congrArg Neg.neg (char_three_add_self d x)
   simpa only [sub_eq_add_neg, neg_add_rev, neg_neg] using h
 
 /-- The action of an element of `Hq d` whose translation part vanishes
-preserves the odd set of nonzero square field elements. -/
+preserves the odd set of nonzero square field elements.
+@isnad1 id=iff.1h3v.s11.fe5b391a351d from=translated src=- shape=e6174714 vocab=cfefdf5c
+-/
 theorem cqValueFinset_invariant_of_left_eq_zero (d : Nat) (g : Hq d)
     (hgleft : g.left.toAdd = 0) (x : Fq d) :
     x ∈ cqValueFinset d ↔ g • x ∈ cqValueFinset d := by

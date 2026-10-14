@@ -18,7 +18,9 @@ variable [IsFiniteMeasure μ]
 
 /-- **Uniqueness of the conditional expectation**
 If a function is a.e. `m`-measurable, verifies an integrability condition and has same integral
-as `f` on all `m`-measurable sets, then it is a.e. equal to `μ[f|hm]`. -/
+as `f` on all `m`-measurable sets, then it is a.e. equal to `μ[f|hm]`.
+@isnad1 id=eventual.5h6v.s7.363c4f1a2d2d from=translated src=- shape=f6462262 vocab=95d6f9fa
+-/
 theorem toReal_ae_eq_indicator_condExp_of_forall_setLIntegral_eq (hm : m ≤ m0)
     {g : α → ℝ≥0∞} {s : Set α} (hs₀ : MeasurableSet[m] s) (hgm : AEStronglyMeasurable[m] g μ)
     (hg_int_finite : ∀ t, MeasurableSet[m] t → μ t < ∞ → ∫⁻ a in t, g a ∂μ ≠ ⊤)

@@ -29,7 +29,9 @@ For the → direction, we use Solution 2 for $f(n) ≤ n$ and we use Solution 1 
 namespace IMOSL
 namespace IMO2013N1
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.0h1v.s5.b8dcc370b549 from=translated src=- shape=10f61902 vocab=c47a09e7
+-/
 theorem final_solution {f : ℕ+ → ℕ+} :
     (∀ m n : ℕ+, m * m + f n ∣ m * f m + n) ↔ f = id := by
   ---- The `←` direction is obvious, so now we just work on the `→` direction.

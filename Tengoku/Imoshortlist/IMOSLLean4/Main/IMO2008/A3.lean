@@ -69,11 +69,15 @@ structure SpanishCouple (α) [Preorder α] where
 
 namespace SpanishCouple
 
-/-- Given a Spanish couple `(f, g)`, `g` can't be the identity. -/
+/-- Given a Spanish couple `(f, g)`, `g` can't be the identity.
+@isnad1 id=ne.0h2v.s4.dd1a8f8a0f52 from=translated src=- shape=20a75141 vocab=10904b3f
+-/
 theorem g_ne_id [hα : Nonempty α] [Preorder α] (X : SpanishCouple α) : X.g ≠ id :=
   hα.elim λ x h ↦ (X.spec x).ne (h ▸ rfl)
 
-/-- If `α` is well-ordered, then `g^k(x) ≤ f(x)` for any `k ∈ ℕ` and `x : α`. -/
+/-- If `α` is well-ordered, then `g^k(x) ≤ f(x)` for any `k ∈ ℕ` and `x : α`.
+@isnad1 id=le.0h4v.s6.5eab743a5257 from=translated src=- shape=7f183f11 vocab=d4487029
+-/
 theorem g_iter_le_f [LinearOrder α] [WellFoundedLT α] (X : SpanishCouple α) (k x) :
     X.g^[k] x ≤ X.f x := by
   ---- Induction on `k`, but the base case is obvious.
@@ -88,7 +92,9 @@ theorem g_iter_le_f [LinearOrder α] [WellFoundedLT α] (X : SpanishCouple α) (
 
 end SpanishCouple
 
-/-- Final solution, part 1 -/
+/-- Final solution, part 1
+@isnad1 id=isempty.0h0v.s2.16814882fc73 from=translated src=- shape=87ceb31f vocab=8e8abee5
+-/
 theorem final_solution_part1 : IsEmpty (SpanishCouple ℕ) := by
   ---- Suppose that there is a Spanish couple `(f, g)` on `ℕ`.
   refine ⟨λ X ↦ ?_⟩
@@ -109,7 +115,9 @@ def ProdShear (f : α → α) (g : α → β → β) (p : α × β) : α × β :
   (f p.1, g p.1 p.2)
 
 /-- Construct a strictly increasing function on `α ×ₗ β` from a strictly increasing
-  function on `α` and an `α`-indexed collection of strictly increasing functions on `β`. -/
+  function on `α` and an `α`-indexed collection of strictly increasing functions on `β`.
+@isnad1 id=strictmo.2h4v.s7.317faa5ec1ee from=translated src=- shape=4b0ec7c6 vocab=017e3f88
+-/
 theorem ProdShearLex_strictMono [Preorder α] [Preorder β]
     {f : α → α} (hf : StrictMono f) {g : α → β → β} (hg : ∀ a : α, StrictMono (g a)) :
     StrictMono (toLex.conj (ProdShear f g)) := by
@@ -119,7 +127,9 @@ theorem ProdShearLex_strictMono [Preorder α] [Preorder β]
   exact Or.imp (λ h ↦ hf h) (λ h ↦ h.1 ▸ ⟨rfl, hg _ h.2⟩)
 
 /-- Construct a strictly increasing function on `α ×ₗ β` from a
-  strictly increasing function on `α`, using identity on `β`. -/
+  strictly increasing function on `α`, using identity on `β`.
+@isnad1 id=strictmo.2h4v.s7.43d91882df43 from=translated src=- shape=2180900f vocab=0ce4f65c
+-/
 theorem ProdMapLex_strictMono [Preorder α] [Preorder β]
     {f : α → α} {g : β → β} (hf : StrictMono f) (hg : StrictMono g) :
     StrictMono (toLex.conj (Prod.map f g)) :=

@@ -30,7 +30,9 @@ After obtaining linearity, we substitute $b = 0$ to the original functional equa
 namespace IMOSL
 namespace IMO2019A1
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.1h2v.s6.41708c779556 from=translated src=- shape=12d03e20 vocab=04e5438e
+-/
 theorem final_solution (h : N ≠ 0) {f : Int → Int} :
     (∀ a b : Int, f (N * a) + N * f b = f (f (a + b)))
       ↔ (f = λ _ ↦ 0) ∨ ∃ c : Int, f = (N * · + c) := by

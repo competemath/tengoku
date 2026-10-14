@@ -49,7 +49,9 @@ def gaussianGaussianKL (posteriorMean priorMean posteriorVariance priorVariance 
     2
 
 /-- Equal-variance Gaussian-Gaussian KL collapses to the squared mean gap over
-twice the common variance. -/
+twice the common variance.
+@isnad1 id=eq.1h3v.s6.7f41063c9eed from=translated src=- shape=c2d506ff vocab=9fefccd0
+-/
 theorem gaussianGaussianKL_equalVariance_closedForm
     {posteriorMean priorMean variance : ℝ} (hvariance : 0 < variance) :
     gaussianGaussianKL posteriorMean priorMean variance variance =
@@ -65,7 +67,9 @@ theorem gaussianGaussianKL_equalVariance_closedForm
 Compared with `vitaleContinuousKL_certificate`, this theorem does not take the
 final `kl ≤ vitaleTotalBound` inequality directly. It derives that inequality
 from the Gaussian closed-form KL identity plus a verified real upper bound on
-that closed form. -/
+that closed form.
+@isnad1 id=le.3h5v.s6.b82edb45e02b from=translated src=- shape=abc1d81d vocab=982f5daf
+-/
 theorem vitaleContinuousKL_analytic_gaussian_equalVariance
     {Θ : Type*} [MeasurableSpace Θ]
     (control : ContinuousKLControl Θ)
@@ -81,7 +85,9 @@ theorem vitaleContinuousKL_analytic_gaussian_equalVariance
 /-- Analytic Vitale/KL control for concrete finite-dimensional spherical Gaussian measures.
 
 The prior and posterior fields of `control` are actual Gaussian measures on
-`Fin d → ℝ`; the KL value is the q062 closed-form Gaussian KL backend. -/
+`Fin d → ℝ`; the KL value is the q062 closed-form Gaussian KL backend.
+@isnad1 id=le.4h4v.s7.0a5dfa086f6e from=translated src=- shape=34beb0ed vocab=d5ac7571
+-/
 theorem vitaleContinuousKL_sphericalGaussian
     {d : ℕ}
     (control : ContinuousKLControl (GaussianParameterSpace d))

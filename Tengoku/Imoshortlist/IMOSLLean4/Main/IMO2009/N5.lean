@@ -32,7 +32,9 @@ open Polynomial Function Finset
 /-! ### Extra lemma -/
 
 /-- If `a₀` is `T`-periodic, then `a` has the same `T`-orbit as `a₀`
-  if and only if `a` is in the `T`-orbit of `a₀`. -/
+  if and only if `a` is in the `T`-orbit of `a₀`.
+@isnad1 id=iff.1h4v.s5.d1ed8e546a0c from=translated src=- shape=94923799 vocab=0d3f2384
+-/
 lemma periodicOrbit_eq_iff_mem_periodicOrbit (ha₀ : a₀ ∈ periodicPts T) :
     periodicOrbit T a = periodicOrbit T a₀ ↔ a ∈ periodicOrbit T a₀ := by
   refine ⟨λ h ↦ ?_, λ h ↦ ?_⟩
@@ -71,7 +73,9 @@ section
 
 variable (T : NiceFun α)
 
-/-- `nth_fixed_pts n` consists of points `a` such that `T^n(a) = a`. -/
+/-- `nth_fixed_pts n` consists of points `a` such that `T^n(a) = a`.
+@isnad1 id=iff.1h4v.s5.36d39c11f2c5 from=translated src=- shape=dec63d5c vocab=f3350f65
+-/
 theorem nth_fixed_pts_spec (hn : n > 0) : a ∈ T.nth_fixed_pts n ↔ IsPeriodicPt T n a :=
   T.nth_fixed_pts_spec' n hn a
 
@@ -79,36 +83,48 @@ theorem nth_fixed_pts_spec (hn : n > 0) : a ∈ T.nth_fixed_pts n ↔ IsPeriodic
 noncomputable def period_n_pts (n : ℕ) : Finset α :=
   {a ∈ T.nth_fixed_pts n | minimalPeriod T a = n}
 
-/-- `period_n_pts 0 = ∅`. -/
+/-- `period_n_pts 0 = ∅`.
+@isnad1 id=eq.0h2v.s4.7ed08eb5d1a2 from=translated src=- shape=c2ffa522 vocab=7d686ca9
+-/
 lemma period_zero_pts : T.period_n_pts 0 = ∅ := by
   rw [period_n_pts, T.nth_fixed_pts_zero, filter_empty]
 
-/-- The finite set `period_n_pts` is indeed the set of `T`-period `n` points if `n > 0`. -/
+/-- The finite set `period_n_pts` is indeed the set of `T`-period `n` points if `n > 0`.
+@isnad1 id=iff.1h4v.s5.a1eba6963452 from=translated src=- shape=1f878a4e vocab=921d2606
+-/
 lemma period_n_pts_spec (hn : n > 0) :
     a ∈ T.period_n_pts n ↔ minimalPeriod T a = n := by
   rw [period_n_pts, mem_filter, T.nth_fixed_pts_spec hn]
   exact and_iff_right_iff_imp.mpr λ h ↦ h ▸ iterate_minimalPeriod
 
 /-- An alternate version of `period_n_pts_spec` that, in addition,
-  says that there are no "`T`-period `0` points". -/
+  says that there are no "`T`-period `0` points".
+@isnad1 id=iff.0h4v.s5.c1f79ae12f3d from=translated src=- shape=ba5cef4f vocab=921d2606
+-/
 lemma period_n_pts_spec2 : a ∈ T.period_n_pts n ↔ n > 0 ∧ minimalPeriod T a = n := by
   obtain rfl | hn : n = 0 ∨ n > 0 := n.eq_zero_or_pos
   · rw [T.period_zero_pts, gt_iff_lt, lt_self_iff_false, false_and, iff_false]
     exact notMem_empty a
   · rw [and_iff_right hn, T.period_n_pts_spec hn]
 
-/-- Any member of `period_n_pts` is a member of `periodicPts T`. -/
+/-- Any member of `period_n_pts` is a member of `periodicPts T`.
+@isnad1 id=mem.1h4v.s5.dd0fe83be00a from=translated src=- shape=12558c0d vocab=34cbf499
+-/
 theorem mem_periodicPts_of_mem_period_n_pts (ha : a ∈ T.period_n_pts n) :
     a ∈ periodicPts T := by
   obtain rfl | hn : n = 0 ∨ n > 0 := Nat.eq_zero_or_pos n
   · exact absurd (T.period_zero_pts ▸ ha) (notMem_empty a)
   · rwa [← minimalPeriod_pos_iff_mem_periodicPts, (T.period_n_pts_spec hn).mp ha]
 
-/-- If `T.period_n_pts n` has an element, then `n > 0`. -/
+/-- If `T.period_n_pts n` has an element, then `n > 0`.
+@isnad1 id=lt.1h4v.s5.1edab9d5602f from=translated src=- shape=dc1897ee vocab=876e4aaf
+-/
 lemma pos_of_mem_period_n_pts (ha : a ∈ T.period_n_pts n) : n > 0 :=
   (T.period_n_pts_spec2.mp ha).1
 
-/-- If `a` has `T`-period `n`, then `T^k(a)` has `T`-period `n`. -/
+/-- If `a` has `T`-period `n`, then `T^k(a)` has `T`-period `n`.
+@isnad1 id=mem.1h5v.s5.226af3100a06 from=translated src=- shape=f957e942 vocab=5d71813b
+-/
 lemma iterate_apply_mem_period_n_pts (ha : a ∈ T.period_n_pts n) (k) :
     T^[k] a ∈ T.period_n_pts n := by
   obtain rfl | hn : n = 0 ∨ n > 0 := Nat.eq_zero_or_pos n
@@ -121,7 +137,9 @@ lemma iterate_apply_mem_period_n_pts (ha : a ∈ T.period_n_pts n) (k) :
 
 /-- `T^n(a) = a` if and only if `a` has `T`-period dividing `n`.
   Note: Due to the formulation of `nth_fixed_pts` and `Nat.divisors`,
-    the implemented formulation works even if `n = 0`. -/
+    the implemented formulation works even if `n = 0`.
+@isnad1 id=iff.0h4v.s5.95d1e3f778e7 from=translated src=- shape=6ef7f5bb vocab=c18d5f57
+-/
 theorem mem_nth_fixed_pts_iff_mem_period_n_pts_divisors (n) :
     a ∈ T.nth_fixed_pts n ↔ ∃ d ∈ n.divisors, a ∈ T.period_n_pts d := by
   obtain rfl | hn : n = 0 ∨ n > 0 := n.eq_zero_or_pos
@@ -134,7 +152,9 @@ theorem mem_nth_fixed_pts_iff_mem_period_n_pts_divisors (n) :
       and_iff_left hn.ne.symm, and_iff_left_of_imp (λ h ↦ Nat.pos_of_dvd_of_pos h hn)]
     exact Iff.symm exists_eq_right'
 
-/-- The sets of points with `T`-period `n` are pairwise disjoint across all `n`. -/
+/-- The sets of points with `T`-period `n` are pairwise disjoint across all `n`.
+@isnad1 id=pairwise.0h3v.s4.fcac8ddb203d from=translated src=- shape=75db72ca vocab=80bfdfc7
+-/
 theorem period_n_pts_PairwiseDisjoint (S : Set ℕ) : S.PairwiseDisjoint T.period_n_pts := by
   rintro k - m - h
   refine disjoint_left.mpr λ a hak ham ↦ ?_
@@ -142,7 +162,9 @@ theorem period_n_pts_PairwiseDisjoint (S : Set ℕ) : S.PairwiseDisjoint T.perio
   exact h (hak.2.symm.trans ham.2)
 
 /-- The set of `n`th fixed points is the union, over all `d ∣ n`,
-  of the set of elements of `T`-period `d`. -/
+  of the set of elements of `T`-period `d`.
+@isnad1 id=eq.0h3v.s4.8e4012671ec3 from=translated src=- shape=ba41dc5a vocab=78c355e6
+-/
 theorem nth_fixed_pts_eq_disjiUnion_divisors_period_n_pts (n) :
     T.nth_fixed_pts n = n.divisors.disjiUnion T.period_n_pts
       (T.period_n_pts_PairwiseDisjoint _) := by
@@ -150,7 +172,9 @@ theorem nth_fixed_pts_eq_disjiUnion_divisors_period_n_pts (n) :
   rw [T.mem_nth_fixed_pts_iff_mem_period_n_pts_divisors, mem_disjiUnion]
 
 /-- Summation formula for the number of points `a` such that `T^n(a) = a`.
-  Note: This is one of the key observations used in the solution. -/
+  Note: This is one of the key observations used in the solution.
+@isnad1 id=eq.0h3v.s4.3ffdbe6d937f from=translated src=- shape=71f2bed6 vocab=1e207174
+-/
 theorem card_nth_fixed_pts_eq_sum_card_period_n_pts (n : ℕ) :
     #(T.nth_fixed_pts n) = ∑ d ∈ n.divisors, #(T.period_n_pts d) := calc
   _ = #(n.divisors.disjiUnion T.period_n_pts
@@ -163,7 +187,9 @@ end
 
 /-! ### The number of points of period `n` is divisible by `n`. -/
 
-/-- The "periodic orbit" of the points of `T`-period `n` has size `n`. -/
+/-- The "periodic orbit" of the points of `T`-period `n` has size `n`.
+@isnad1 id=eq.1h4v.s5.69c8d976886b from=translated src=- shape=075995ea vocab=8ab29554
+-/
 theorem periodicOrbit_length_of_mem_period_n_pts
     (T : NiceFun α) (ha : a ∈ T.period_n_pts n) :
     (periodicOrbit T a).length = n := by
@@ -173,7 +199,9 @@ section
 
 variable [DecidableEq α] (T : NiceFun α) (n : ℕ)
 
-/-- The size of `period_n_pts` is `n` times the number of corresponding orbits. -/
+/-- The size of `period_n_pts` is `n` times the number of corresponding orbits.
+@isnad1 id=eq.0h3v.s5.d61c77a72940 from=translated src=- shape=2aa49f34 vocab=ad957502
+-/
 theorem card_period_n_pts_eq_n_mul_card_periodicOrbits (n) :
     #(T.period_n_pts n) = n * #((T.period_n_pts n).image (periodicOrbit T)) := by
   ---- Let `Bn` be the set of points of periodic `n` and `f` be the projection to cycle.
@@ -205,12 +233,16 @@ theorem card_period_n_pts_eq_n_mul_card_periodicOrbits (n) :
   exact iterate_apply_mem_period_n_pts T ha₀ k
 
 /-- The set of points with `T`-period `n` has size divisible by `n`.
-  Note: This is one of the key observations used in the solution. -/
+  Note: This is one of the key observations used in the solution.
+@isnad1 id=dvd.0h3v.s4.cbb6c3c98f5e from=translated src=- shape=3c03baea vocab=ec94d7f7
+-/
 theorem n_dvd_card_period_n_pts (n) : n ∣ #(T.period_n_pts n) :=
   ⟨_, T.card_period_n_pts_eq_n_mul_card_periodicOrbits n⟩
 
 /-- For any `n` and for any prime `q`, the number of fixed points
-  of `T^n` and `T^{nq}` are congruent modulo `q`. -/
+  of `T^n` and `T^{nq}` are congruent modulo `q`.
+@isnad1 id=modeq.1h4v.s5.f8e721426a73 from=translated src=- shape=88b687eb vocab=1130212e
+-/
 theorem card_nth_fixed_pts_modeq_prime (hq : Nat.Prime q) (n : ℕ) :
     #(T.nth_fixed_pts (n * q)) ≡ #(T.nth_fixed_pts n) [MOD q] := by
   /- It suffices to show the following claim: for each `d` dividing `nq` but not `n`,
@@ -242,7 +274,9 @@ end
 
 end NiceFun
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=ex.1h2v.s6.9fe4d23953bf from=translated src=- shape=aac4e65c vocab=51be457a
+-/
 theorem final_solution [DecidableEq α] {T : NiceFun α}
     (h : ∃ P : ℤ[X], ∀ n > 0, (#(T.nth_fixed_pts n) : ℤ) = P.eval ↑n) :
     ∃ N, ∀ n > 0, #(T.nth_fixed_pts n) = N := by

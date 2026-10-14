@@ -72,8 +72,14 @@ def SourceToPath : Dihomotopy (Dipath.refl x).toDirectedMap γ.toDirectedMap whe
     have : min 1 t = t := min_eq_right t.2.2
     simp_all
 
+/--
+@isnad1 id=eq.0h6v.s7.42c1c2e40aa6 from=translated src=- shape=7193bbcb vocab=999ceaa8
+-/
 lemma sourceToPath_apply (s t : I) : SourceToPath γ (s, t) = γ (min s t) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.d23e2bbc82a4 from=translated src=- shape=3c776fe2 vocab=e9b0bbec
+-/
 lemma sourceToPath_range : Set.range (SourceToPath γ) = Set.range γ := by
   ext z
   constructor
@@ -98,8 +104,14 @@ def PathToTarget : Dihomotopy γ.toDirectedMap (Dipath.refl y).toDirectedMap whe
     have : max 1 t = 1 := max_eq_left t.2.2
     simp_all
 
+/--
+@isnad1 id=eq.0h6v.s7.196b0816cbc2 from=translated src=- shape=f2f2f7f2 vocab=358955ac
+-/
 lemma pathToTarget_apply (s t : I) : PathToTarget γ (s, t) = γ (max s t) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.2ff2e000663e from=translated src=- shape=f1b2bb6c vocab=05d06d05
+-/
 lemma pathToTarget_range : Set.range (PathToTarget γ) = Set.range γ := by
   ext z
   constructor
@@ -184,6 +196,9 @@ def dihomToPathDihom (F : Dihomotopy f g) : Dipath.Dihomotopy
       · simp
       exact t.2.2
 
+/--
+@isnad1 id=le.0h4v.s11.a1210681c194 from=translated src=- shape=10396fbe vocab=5143f627
+-/
 lemma dihom_to_path_dihom_range (F : Dihomotopy f g) :
     Set.range (dihomToPathDihom F) ⊆ Set.range F := by
   unfold dihomToPathDihom

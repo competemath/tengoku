@@ -24,7 +24,9 @@ namespace IMO2019N3
 
 open List
 
-/-- Given `b k : ℤ` with `k ≠ 0`, there exists `m ≠ n` such that `b^m ≡ b^n (mod k)`. -/
+/-- Given `b k : ℤ` with `k ≠ 0`, there exists `m ≠ n` such that `b^m ≡ b^n (mod k)`.
+@isnad1 id=ex.1h2v.s6.42a2978b7bb3 from=translated src=- shape=48423423 vocab=82732b80
+-/
 theorem exists_ne_pow_eq (h : k ≠ 0) (b : ℤ) : ∃ m n : ℕ, m ≠ n ∧ k ∣ b ^ m - b ^ n :=
   have h0 : Set.MapsTo (λ x : ℕ ↦ b ^ x % k) Set.univ (Finset.Ico 0 |k|) :=
     λ x _ ↦ Finset.coe_Ico 0 |k| ▸ ⟨(b ^ x).emod_nonneg h, Int.emod_lt_abs _ h⟩
@@ -37,6 +39,9 @@ def rootiful (S : Set ℤ) :=
   ∀ (x : ℤ) (P : List ℤ) (_ : ∀ a : ℤ, a ∈ P → a ∈ S) (_ : ∃ a : ℤ, a ∈ P ∧ a ≠ 0),
     P.foldr (· + x * ·) 0 = 0 → x ∈ S
 
+/--
+@isnad1 id=rootiful.0h0v.s1.b0c9350aa2e9 from=translated src=- shape=87ceb31f vocab=526a9e7e
+-/
 theorem univ_rootiful : rootiful Set.univ := λ x _ _ _ _ ↦ Set.mem_univ x
 
 section
@@ -44,12 +49,18 @@ section
 variable {S : Set ℤ} (h : rootiful S)
 include h
 
+/--
+@isnad1 id=mem.3h2v.s5.fb46b94fb01b from=translated src=- shape=ae4957d5 vocab=e40128b4
+-/
 theorem rootiful_neg_one_mem (x : ℤ) (h0 : x ≠ 0) (h1 : x ∈ S) : (-1 : ℤ) ∈ S :=
   h (-1) (replicate 2 x)
     (λ _ h2 ↦ Set.mem_of_eq_of_mem (eq_of_mem_replicate h2) h1)
     ⟨x, mem_replicate.mpr ⟨Nat.succ_ne_zero 1, rfl⟩, h0⟩
     (by change x + -1 * (x + 0) = 0; rw [add_zero, neg_one_mul, add_neg_cancel])
 
+/--
+@isnad1 id=mem.3h2v.s5.34693436bb8b from=translated src=- shape=54d5d326 vocab=9201c95b
+-/
 theorem rootiful_one_mem_of_nat (n : ℕ) (h0 : n ≠ 0) (h1 : (n : ℤ) ∈ S) : (1 : ℤ) ∈ S :=
   let h0 : (n : ℤ) ≠ 0 := Nat.cast_ne_zero.mpr h0
   h 1 (n :: replicate n (-1))
@@ -59,10 +70,16 @@ theorem rootiful_one_mem_of_nat (n : ℕ) (h0 : n ≠ 0) (h1 : (n : ℤ) ∈ S) 
     (by simp only [one_mul]; rw [← sum_eq_foldr, sum_cons,
       sum_replicate, nsmul_eq_mul, mul_neg_one, add_neg_cancel])
 
+/--
+@isnad1 id=mem.3h2v.s5.8f56ae06dafa from=translated src=- shape=df313dbc vocab=9ec1e285
+-/
 theorem rootiful_one_mem_of_pos (n : ℤ) (h0 : 0 < n) (h1 : n ∈ S) : (1 : ℤ) ∈ S :=
   rootiful_one_mem_of_nat h n.natAbs (Int.natAbs_ne_zero.mpr h0.ne.symm)
     (Int.eq_natAbs_of_nonneg h0.le ▸ h1)
 
+/--
+@isnad1 id=mem.3h2v.s5.24c1ab2f8122 from=translated src=- shape=da7c7e06 vocab=e40128b4
+-/
 theorem rootiful_neg_mem_of_one_mem (h0 : (1 : ℤ) ∈ S) (x : ℤ) (h1 : x ∈ S) : -x ∈ S :=
   h (-x) [x, 1]
     (λ a h2 ↦ by
@@ -71,9 +88,15 @@ theorem rootiful_neg_mem_of_one_mem (h0 : (1 : ℤ) ∈ S) (x : ℤ) (h1 : x ∈
     ⟨1, mem_cons_of_mem _ (mem_singleton_self 1), Int.one_ne_zero⟩
     (by show x + -x * (1 + -x * 0) = 0; rw [mul_zero, add_zero, mul_one, add_neg_cancel])
 
+/--
+@isnad1 id=mem.3h2v.s5.94d90c07761b from=translated src=- shape=8a79d1f7 vocab=1959f446
+-/
 theorem rootiful_neg_mem_of_pos {x : ℤ} (h0 : 0 < x) (h1 : x ∈ S) : -x ∈ S :=
   rootiful_neg_mem_of_one_mem h (rootiful_one_mem_of_pos h x h0 h1) x h1
 
+/--
+@isnad1 id=mem.6h3v.s6.2a80b343f3f5 from=translated src=- shape=b746061b vocab=679118c1
+-/
 theorem rootiful_induction_of_nat_dvd_nat (h0 : 1 < n) (h1 : ∀ k : ℕ, k < n → (k : ℤ) ∈ S)
     (N : ℕ) (h2 : 0 < N) (h3 : n ∣ N) (h4 : -(N : ℤ) ∈ S) : (n : ℤ) ∈ S :=
   h3.elim λ K h3 ↦ h n (-(N : ℕ) :: (n.digits K).map Nat.cast)
@@ -84,6 +107,9 @@ theorem rootiful_induction_of_nat_dvd_nat (h0 : 1 < n) (h1 : ∀ k : ℕ, k < n 
     (by rw [List.foldr, foldr_map, ← Nat.ofDigits_eq_foldr, ← Nat.coe_ofDigits,
       Nat.ofDigits_digits, h3, Nat.cast_mul, neg_add_cancel])
 
+/--
+@isnad1 id=mem.6h3v.s6.1e2f700cf2bf from=translated src=- shape=b176df93 vocab=cec25800
+-/
 theorem rootiful_induction_of_nat_dvd_int (h0 : 1 < n) (h1 : ∀ k : ℕ, k < n → (k : ℤ) ∈ S)
     (N : ℤ) (h2 : N ≠ 0) (h3 : (n : ℤ) ∣ N) (h4 : N ∈ S) : (n : ℤ) ∈ S :=
   have h2 := Int.natAbs_pos.mpr h2
@@ -91,6 +117,9 @@ theorem rootiful_induction_of_nat_dvd_int (h0 : 1 < n) (h1 : ∀ k : ℕ, k < n 
     (N.natAbs_eq.symm.elim
       (λ h5 ↦ h5 ▸ h4) (λ h5 ↦ rootiful_neg_mem_of_pos h (Nat.cast_pos.mpr h2) (h5 ▸ h4)))
 
+/--
+@isnad1 id=mem.4h2v.s6.a59d3b199f6f from=translated src=- shape=ea4fdfb8 vocab=cec25800
+-/
 theorem rootiful_nat_subset (h0 : (0 : ℤ) ∈ S) (h1 : (1 : ℤ) ∈ S)
     (h2 : ∀ k : ℕ, 0 < k → ∃ N : ℤ, N ≠ 0 ∧ (k : ℤ) ∣ N ∧ N ∈ S) (k : ℕ) : (k : ℤ) ∈ S := by
   induction k using Nat.strong_induction_on with | h k h3 => ?_
@@ -101,6 +130,9 @@ theorem rootiful_nat_subset (h0 : (0 : ℤ) ∈ S) (h1 : (1 : ℤ) ∈ S)
       rcases h2 (k + 2) k.succ.succ_pos with ⟨N, h4, h5, h6⟩
       exact rootiful_induction_of_nat_dvd_int h (Nat.succ_lt_succ k.succ_pos) h3 N h4 h5 h6
 
+/--
+@isnad1 id=eq.4h1v.s6.762cca4698c5 from=translated src=- shape=076f192e vocab=0b2c072d
+-/
 theorem rootiful_eq_univ (h0 : (0 : ℤ) ∈ S) (h1 : (1 : ℤ) ∈ S)
     (h2 : ∀ k : ℕ, 0 < k → ∃ N : ℤ, N ≠ 0 ∧ (k : ℤ) ∣ N ∧ N ∈ S) : S = Set.univ := by
   refine Set.eq_univ_of_forall λ k ↦ ?_
@@ -112,7 +144,9 @@ theorem rootiful_eq_univ (h0 : (0 : ℤ) ∈ S) (h1 : (1 : ℤ) ∈ S)
 
 end
 
-/-- Final solution -/
+/-- Final solution
+@isnad1 id=iff.1h2v.s6.f43bb4f5f266 from=translated src=- shape=2a26e8e1 vocab=17022025
+-/
 theorem final_solution {N : ℤ} (h : 1 < |N|) {S : Set ℤ} :
     (rootiful S ∧ ∀ a b : ℕ, N ^ (a + 1) - N ^ (b + 1) ∈ S) ↔ S = Set.univ := by
   refine ⟨λ h0 ↦ ?_, λ h0 ↦ h0 ▸ ⟨univ_rootiful, λ _ _ ↦ Set.mem_univ _⟩⟩

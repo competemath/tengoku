@@ -80,6 +80,9 @@ def continuumWealthWeightedBet
   continuumWealthWeightedBetNumerator strategyPrior residual strategy n omega /
     continuumExpertMixtureWealth strategyPrior residual strategy n omega
 
+/--
+@isnad1 id=eq.0h6v.s5.b8bedceeeecc from=translated src=- shape=a3ceef30 vocab=5c14c76a
+-/
 @[simp]
 theorem continuumExpertMixtureWealth_zero
     (strategyPrior : Measure Kappa) [IsProbabilityMeasure strategyPrior]
@@ -89,7 +92,9 @@ theorem continuumExpertMixtureWealth_zero
   simp [continuumExpertMixtureWealth]
 
 /-- One-step recursion for the prior mixture.  The increment is the current
-residual times the unnormalized master bet, exactly as in the finite case. -/
+residual times the unnormalized master bet, exactly as in the finite case.
+@isnad1 id=eq.2h7v.s7.e1d43de5e7b8 from=translated src=- shape=9f6500a2 vocab=3dba5685
+-/
 theorem continuumExpertMixtureWealth_succ
     (strategyPrior : Measure Kappa)
     (residual : Nat -> Omega -> Real)
@@ -123,7 +128,9 @@ theorem continuumExpertMixtureWealth_succ
 mixture of all component wealths, at every time and on every path.  This is
 the uncountable analogue of `aggregateWealth_eq_finiteExpertMixtureWealth`;
 the induction is the same algebra with the finite sum replaced by the prior
-integral. -/
+integral.
+@isnad1 id=eq.3h7v.s7.126dea2898b1 from=translated src=- shape=f0936269 vocab=1ff8ec8d
+-/
 theorem continuumAggregateWealth_eq_continuumExpertMixtureWealth
     (strategyPrior : Measure Kappa) [IsProbabilityMeasure strategyPrior]
     (residual : Nat -> Omega -> Real)
@@ -159,7 +166,9 @@ theorem continuumAggregateWealth_eq_continuumExpertMixtureWealth
 /-- The prior mixture dominates the prior mass of any measurable set of
 strategies times the worst component wealth on that set.  This remains useful
 for nonatomic priors, where singleton strategies have zero mass and the
-atom-level `finiteExpertMixtureWealth_competes` has no useful instance. -/
+atom-level `finiteExpertMixtureWealth_competes` has no useful instance.
+@isnad1 id=le.4h9v.s7.225a08bfbbd4 from=translated src=- shape=aca09673 vocab=cafe6be9
+-/
 theorem continuumExpertMixtureWealth_competes_of_priorMass
     (strategyPrior : Measure Kappa) [IsFiniteMeasure strategyPrior]
     {residual : Nat -> Omega -> Real}
@@ -191,7 +200,9 @@ theorem continuumExpertMixtureWealth_competes_of_priorMass
 
 /-- A set of strategies with positive prior mass and a positive uniform wealth
 floor makes the mixture denominator strictly positive, so the master bet is
-well defined at that time. -/
+well defined at that time.
+@isnad1 id=lt.6h9v.s7.4124a65edf06 from=translated src=- shape=1152d11e vocab=df4b1fe3
+-/
 theorem continuumExpertMixtureWealth_pos_of_priorMass
     (strategyPrior : Measure Kappa) [IsFiniteMeasure strategyPrior]
     {residual : Nat -> Omega -> Real}
@@ -215,7 +226,9 @@ theorem continuumExpertMixtureWealth_pos_of_priorMass
 of strategies is at most the negative log prior mass of that set.  The
 competing object is a set, not an atom; `c` is the worst component wealth on
 the set at the reported time, so this charges the set's prior log mass and
-nothing for the choice of member. -/
+nothing for the choice of member.
+@isnad1 id=le.6h9v.s7.41ae96ad4b99 from=translated src=- shape=0b912571 vocab=3dbd815e
+-/
 theorem continuumExpertMixtureWealth_logWealth_regret_le_neg_log_priorMass
     (strategyPrior : Measure Kappa) [IsFiniteMeasure strategyPrior]
     {residual : Nat -> Omega -> Real}
@@ -243,7 +256,9 @@ theorem continuumExpertMixtureWealth_logWealth_regret_le_neg_log_priorMass
 /-- The headline statement on the master's own realized wealth: one
 predictable bet, run against the observed residuals, loses at most the
 negative log prior mass of any positive-mass set of competing strategies
-relative to the worst member of that set. -/
+relative to the worst member of that set.
+@isnad1 id=le.8h9v.s8.24c1a3c9ce10 from=translated src=- shape=1b8a474e vocab=8dd14545
+-/
 theorem continuumMaster_logWealth_regret_le_neg_log_priorMass
     (strategyPrior : Measure Kappa) [IsProbabilityMeasure strategyPrior]
     (residual : Nat -> Omega -> Real)
@@ -276,7 +291,9 @@ theorem continuumMaster_logWealth_regret_le_neg_log_priorMass
 
 /-- The master bet inherits the interval the whole class bets in, so it is a
 legal bet of the same family.  This is the uncountable analogue of
-`wealthWeightedBet_mem_Icc`. -/
+`wealthWeightedBet_mem_Icc`.
+@isnad1 id=mem.5h8v.s7.791c78611571 from=translated src=- shape=0a1ca2a3 vocab=e2c3dae3
+-/
 theorem continuumWealthWeightedBet_mem_Icc
     (strategyPrior : Measure Kappa)
     {residual : Nat -> Omega -> Real}
@@ -326,7 +343,9 @@ variable {mOmega : MeasurableSpace Omega}
 /-- The master's betting wealth for the residual `X - m` is exactly the prior
 mixture process.  Any e-process argument supplied for the prior mixture
 therefore transfers to the single realized master bet; this module does not
-prove the mixture supermartingale property itself. -/
+prove the mixture supermartingale property itself.
+@isnad1 id=eq.3h6v.s7.4f8b0ec76bd6 from=translated src=- shape=2b1223ce vocab=5cfa9ab4
+-/
 theorem continuumMasterWealth_eq_bettingWealthProcess
     (strategyPrior : Measure Kappa) [IsProbabilityMeasure strategyPrior]
     (X : Nat -> Omega -> Real) (m : Real)
@@ -354,7 +373,9 @@ theorem continuumMasterWealth_eq_bettingWealthProcess
 /-- Joint strong measurability of the component wealths in the `F n`-product
 sigma-algebra, from a one-step-late increment process and a jointly
 predictable strategy family.  This is the input to predictability of the
-master bet. -/
+master bet.
+@isnad1 id=strongly.2h8v.s7.8f41b6b3bb18 from=translated src=- shape=45873dc6 vocab=b37af6cd
+-/
 theorem stronglyMeasurable_filtration_prod_algebraicBettingWealth
     {F : Filtration Nat mOmega}
     (X : Nat -> Omega -> Real) (m : Real)
@@ -390,7 +411,9 @@ theorem stronglyMeasurable_filtration_prod_algebraicBettingWealth
 /-- The master bet is predictable: its time-`n` value is `F n`-measurable, so
 it is fixed before the time-`n` residual `X n - m` (which is only
 `F (n + 1)`-measurable) is revealed.  The prior integral is pushed through the
-sigma-algebra by Fubini measurability. -/
+sigma-algebra by Fubini measurability.
+@isnad1 id=strongly.2h7v.s7.d431b8ca6c86 from=translated src=- shape=51093cf6 vocab=03276d7b
+-/
 theorem continuumWealthWeightedBet_stronglyAdapted
     {F : Filtration Nat mOmega}
     (strategyPrior : Measure Kappa) [SFinite strategyPrior]
@@ -426,7 +449,9 @@ theorem continuumWealthWeightedBet_stronglyAdapted
 obligations discharged from the increment model.  The time-`k` bet of every
 member of the class is jointly measurable in path and index at level `F k`,
 and increments arrive one step late, so the master bet at time `n` is
-`F n`-measurable and is fixed before `X n - m` is revealed. -/
+`F n`-measurable and is fixed before `X n - m` is revealed.
+@isnad1 id=strongly.2h8v.s7.574f2d93e7f0 from=translated src=- shape=82b4724c vocab=ef5292c8
+-/
 theorem continuumWealthWeightedBet_stronglyAdapted_of_incrementAdapted
     {F : Filtration Nat mOmega}
     (strategyPrior : Measure Kappa) [SFinite strategyPrior]
