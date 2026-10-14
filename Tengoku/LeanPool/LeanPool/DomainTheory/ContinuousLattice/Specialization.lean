@@ -42,6 +42,9 @@ instance specializationPreorder : Preorder X where
   le_refl x := fun _ _ hx => hx
   le_trans x y z hxy hyz U hU hxU := hyz U hU (hxy U hU hxU)
 
+/--
+@isnad1 id=eq.2h3v.s4.dadc4e4beec8 from=translated src=- shape=fa17130a vocab=b13dac38
+-/
 theorem specializationLe_antisymm [T0Space X] {x y : X}
     (hxy : SpecializationLe x y) (hyx : SpecializationLe y x) : x = y :=
   Inseparable.eq (inseparable_iff_specializes_and.2
@@ -55,6 +58,9 @@ topology. -/
 @[reducible] noncomputable def scottTopologicalSpace : TopologicalSpace D :=
   Topology.scott D univ
 
+/--
+@isnad1 id=iff.0h2v.s5.f6d6600b57a2 from=translated src=- shape=74baf24e vocab=40bf00af
+-/
 theorem ScottOpen_iff_dirSupInacc {U : Set D} : ScottOpen U ↔ IsUpperSet U ∧ DirSupInacc U := by
   constructor
   · intro ⟨hU, hU'⟩
@@ -66,13 +72,18 @@ theorem ScottOpen_iff_dirSupInacc {U : Set D} : ScottOpen U ↔ IsUpperSet U ∧
     obtain ⟨s, hs, hsU⟩ := hU' hd₁ hd₂ (isLUB_sSup d) hmem
     exact ⟨s, hs, hsU⟩
 
+/--
+@isnad1 id=iff.0h2v.s4.ff3fe636bedf from=translated src=- shape=18cb2c77 vocab=d8dce1b8
+-/
 theorem isOpen_iff_scottOpen {U : Set D} : @IsOpen D scottTopologicalSpace U ↔ ScottOpen U := by
   have inst : @IsScott D univ _ (Topology.scott D univ) :=
     @IsScott.mk D univ _ (Topology.scott D univ) rfl
   rw [ScottOpen_iff_dirSupInacc, ← dirSupInaccOn_univ (s := U)]
   exact @IsScott.isOpen_iff_isUpperSet_and_dirSupInaccOn D univ _ (Topology.scott D univ) U inst
 
-/-- Scott-open sets in our sense agree with mathlib's Scott topology (alias). -/
+/-- Scott-open sets in our sense agree with mathlib's Scott topology (alias).
+@isnad1 id=iff.0h2v.s4.6910ffa9a386 from=translated src=- shape=18cb2c77 vocab=a31a1375
+-/
 theorem isOpen_scott_iff_scottOpen {U : Set D} :
     @IsOpen D (Topology.scott D univ) U ↔ ScottOpen U :=
   isOpen_iff_scottOpen
@@ -93,7 +104,9 @@ variable {x : ι → D} {L y : D}
 
 /-- **Scott 1972, Proposition 2.1 (backward).** If `y ≤ L` and `L` is  the lub of
 a monotone
-net, then the net converges to `y` in the Scott topology. -/
+net, then the net converges to `y` in the Scott topology.
+@isnad1 id=scottcon.3h5v.s6.790339690a63 from=translated src=- shape=263d6d80 vocab=cd4a3841
+-/
 theorem proposition_2_1_of_le [Nonempty ι] (hx : IsMonotoneNet x) (hL : IsLUB (range x) L)
     (hyL : y ≤ L) : ScottConvergesTo x y := by
   intro U hU hyU
@@ -112,7 +125,9 @@ theorem proposition_2_1_of_le [Nonempty ι] (hx : IsMonotoneNet x) (hL : IsLUB (
 set, and it
 is inaccessible by directed suprema because if every member of a directed `S` lies
 below `L`
-then so does `⊔S`. -/
+then so does `⊔S`.
+@isnad1 id=scottope.0h2v.s4.ffdb95bdece7 from=translated src=- shape=ceb62a2c vocab=5a046200
+-/
 theorem scottOpen_not_le (L : D) : ScottOpen {z : D | ¬ z ≤ L} := by
   refine ⟨fun a b hab ha hb => ha (le_trans hab hb), fun S hSne hSdir hmem => ?_⟩
   by_contra hcon
@@ -123,7 +138,9 @@ theorem scottOpen_not_le (L : D) : ScottOpen {z : D | ¬ z ≤ L} := by
 omit [IsDirected ι (· ≤ ·)] in
 /-- **Scott 1972, Proposition 2.1 (forward).** If a monotone net converges to `y`
 in the Scott
-topology and `L` is its least upper bound, then `y ≤ L`. -/
+topology and `L` is its least upper bound, then `y ≤ L`.
+@isnad1 id=le.2h5v.s5.64fed40ef886 from=translated src=- shape=605bf03d vocab=35166e19
+-/
 theorem proposition_2_1_le_of_converges (hL : IsLUB (range x) L)
     (hconv : ScottConvergesTo x y) : y ≤ L := by
   by_contra hyL
@@ -132,7 +149,9 @@ theorem proposition_2_1_le_of_converges (hL : IsLUB (range x) L)
 
 /-- **Scott 1972, Proposition 2.1.** A monotone net with least upper bound `L`
 converges to
-`y` in the Scott topology iff `y ⊑ L = ⊔ {xᵢ}`. -/
+`y` in the Scott topology iff `y ⊑ L = ⊔ {xᵢ}`.
+@isnad1 id=iff.2h5v.s6.4a488b3a7509 from=translated src=- shape=7386beed vocab=cd4a3841
+-/
 theorem proposition_2_1 [Nonempty ι] (hx : IsMonotoneNet x) (hL : IsLUB (range x) L) :
     ScottConvergesTo x y ↔ y ≤ L :=
   ⟨fun hconv => proposition_2_1_le_of_converges hL hconv, proposition_2_1_of_le hx hL⟩

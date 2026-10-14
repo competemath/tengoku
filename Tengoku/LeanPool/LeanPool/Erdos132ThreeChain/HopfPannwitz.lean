@@ -47,33 +47,50 @@ def DiameterAdj (D : ℝ) (p q : Point) : Prop := p ≠ q ∧ sqDist p q = D
 noncomputable instance decidableDiameterAdj (D : ℝ) : DecidableRel (DiameterAdj D) := fun _ _ =>
   inferInstanceAs (Decidable (_ ∧ _))
 
+/--
+@isnad1 id=diameter.1h3v.s3.063e20e97ad8 from=translated src=- shape=2b5f2a84 vocab=4098609b
+-/
 theorem diameterAdj_symm (D : ℝ) (p q : Point) : DiameterAdj D p q → DiameterAdj D q p :=
   fun h => ⟨h.1.symm, by rw [sqDist_comm q p]; exact h.2⟩
 
+/--
+@isnad1 id=not.0h2v.s3.60a54ee6ee08 from=translated src=- shape=324f9d5f vocab=4098609b
+-/
 theorem diameterAdj_irrefl (D : ℝ) (p : Point) : ¬ DiameterAdj D p p := fun h => h.1 rfl
 
+/--
+@isnad1 id=lt.1h2v.s4.d19160f508eb from=translated src=- shape=1e4b1026 vocab=1abd3037
+-/
 theorem IsSqDiameter.pos {X : Finset Point} {D : ℝ} (h : IsSqDiameter X D) : 0 < D := by
   obtain ⟨⟨p, _, q, _, hpq, rfl⟩, -⟩ := h
   exact sqDist_pos hpq
 
 /-! ### The plane geometry -/
 
-/-- The squared distance between two points expanded around a third. -/
+/-- The squared distance between two points expanded around a third.
+@isnad1 id=eq.0h3v.s5.29afae913321 from=translated src=- shape=a2add107 vocab=9ef3fcc0
+-/
 theorem sqDist_expand (v a w : Point) :
     sqDist a w = sqDist v a + sqDist v w - 2 * dotp v a w := by
   simp only [sqDist, dotp]; ring
 
-/-- Lagrange's identity in the plane. -/
+/-- Lagrange's identity in the plane.
+@isnad1 id=eq.0h3v.s6.3d6423b87562 from=translated src=- shape=51f1c58b vocab=8fa0c56b
+-/
 theorem dotp_sq_add_cross_sq (v a b : Point) :
     dotp v a b ^ 2 + cross v a b ^ 2 = sqDist v a * sqDist v b := by
   simp only [dotp, cross, sqDist]; ring
 
-/-- Cramer's rule in the plane, paired with a fourth point. -/
+/-- Cramer's rule in the plane, paired with a fourth point.
+@isnad1 id=eq.0h5v.s6.dc551f6f0f3b from=translated src=- shape=720c74da vocab=18812d40
+-/
 theorem cross_dotp_identity (v a b c w : Point) :
     cross v a c * dotp v b w = cross v b c * dotp v a w + cross v a b * dotp v c w := by
   simp only [cross, dotp]; ring
 
-/-- Cramer's rule in the plane, in squared-length form. -/
+/-- Cramer's rule in the plane, in squared-length form.
+@isnad1 id=eq.0h4v.s7.42b5c26b28b4 from=translated src=- shape=7d2996f3 vocab=8fa0c56b
+-/
 theorem cross_sq_identity (v a b c : Point) :
     cross v a c ^ 2 * sqDist v b
       = cross v b c ^ 2 * sqDist v a + cross v a b ^ 2 * sqDist v c
@@ -81,7 +98,9 @@ theorem cross_sq_identity (v a b c : Point) :
   simp only [cross, dotp, sqDist]; ring
 
 /-- Two distinct points at squared distance `D` from `v`, no farther than `D` from each other,
-are not collinear with `v`. -/
+are not collinear with `v`.
+@isnad1 id=ne.5h4v.s5.100e458f5dae from=translated src=- shape=89f10551 vocab=ce2b4aa3
+-/
 theorem cross_ne_zero {v a b : Point} {D : ℝ} (hD : 0 < D)
     (hva : sqDist v a = D) (hvb : sqDist v b = D) (hab : sqDist a b ≤ D) (hne : a ≠ b) :
     cross v a b ≠ 0 := by
@@ -96,7 +115,9 @@ theorem cross_ne_zero {v a b : Point} {D : ℝ} (hD : 0 < D)
 /-- **The pendant lemma.**  Let `a`, `b`, `c` sit at squared distance `D` from `v`, with `b`
 strictly between `a` and `c` as seen from `v` (both cross products positive).  If no squared
 distance among the points involved exceeds `D`, then the only point at squared distance `D`
-from `b` is `v` itself. -/
+from `b` is `v` itself.
+@isnad1 id=eq.10h6v.s6.063e98f0abbd from=translated src=- shape=828c57dd vocab=ce2b4aa3
+-/
 theorem middle_no_other_neighbour {v a b c w : Point} {D : ℝ} (hD : 0 < D)
     (hva : sqDist v a = D) (hvb : sqDist v b = D) (hvc : sqDist v c = D) (hac : a ≠ c)
     (hX : 0 < cross v a b) (hY : 0 < cross v b c)
@@ -136,7 +157,9 @@ theorem middle_no_other_neighbour {v a b c w : Point} {D : ℝ} (hD : 0 < D)
 
 /-- Of three points seen from `v` with no two collinear with `v`, one lies strictly between the
 other two.  The six alternatives are the three choices of middle point, each in the two possible
-orientations. -/
+orientations.
+@isnad1 id=or.3h4v.s7.62e7d0af4695 from=translated src=- shape=c96857d3 vocab=9ce783bf
+-/
 theorem exists_middle (v a b c : Point) (hab : cross v a b ≠ 0) (hbc : cross v b c ≠ 0)
     (hac : cross v a c ≠ 0) :
     (0 < cross v a b ∧ 0 < cross v b c) ∨ (0 < cross v c b ∧ 0 < cross v b a) ∨
@@ -157,7 +180,9 @@ theorem exists_middle (v a b c : Point) (hab : cross v a b ≠ 0) (hbc : cross v
   · exact Or.inl ⟨h1, h2⟩
 
 /-- Three points at squared distance `D` from `v` inside a set of diameter `D` force one of the
-three to have `v` as its only partner at squared distance `D`. -/
+three to have `v` as its only partner at squared distance `D`.
+@isnad1 id=or.11h6v.s7.0c221e971a2e from=translated src=- shape=3741cd17 vocab=f41770ec
+-/
 theorem exists_pendant {X : Finset Point} {D : ℝ} (hD : 0 < D)
     (hmax : ∀ p ∈ X, ∀ q ∈ X, sqDist p q ≤ D)
     {v a b c : Point} (haX : a ∈ X) (hbX : b ∈ X) (hcX : c ∈ X)
@@ -189,7 +214,9 @@ theorem exists_pendant {X : Finset Point} {D : ℝ} (hD : 0 < D)
 
 /-! ### Counting -/
 
-/-- Deleting a pendant vertex removes exactly one edge, i.e. two from the degree sum. -/
+/-- Deleting a pendant vertex removes exactly one edge, i.e. two from the degree sum.
+@isnad1 id=eq.4h4v.s7.4a575d0fc242 from=translated src=- shape=68b211fc vocab=2d8f14e5
+-/
 theorem sum_degree_erase {X : Finset Point} {D : ℝ} {b v : Point} (hbX : b ∈ X) (hvX : v ∈ X)
     (hbv : b ≠ v) (hstar : X.filter (DiameterAdj D b) = {v}) :
     ∑ u ∈ X, degree (DiameterAdj D) X u
@@ -238,7 +265,9 @@ theorem sum_degree_erase {X : Finset Point} {D : ℝ} {b v : Point} (hbX : b ∈
     _ = (∑ u ∈ X.erase b, degree (DiameterAdj D) (X.erase b) u) + 2 := by
         rw [hnbr, Finset.card_singleton]; omega
 
-/-- The induction step packaged: a pendant vertex `b` whose only partner is `v`. -/
+/-- The induction step packaged: a pendant vertex `b` whose only partner is `v`.
+@isnad1 id=le.6h4v.s7.4ae8d26a6d60 from=translated src=- shape=64aa9f72 vocab=53582c0a
+-/
 theorem sum_degree_le_of_pendant {X : Finset Point} {D : ℝ} {b v : Point}
     (hbX : b ∈ X) (hvX : v ∈ X) (hbv : b ≠ v) (hvb : sqDist v b = D)
     (hstar : ∀ w ∈ X, sqDist b w = D → w = v)
@@ -260,7 +289,9 @@ theorem sum_degree_le_of_pendant {X : Finset Point} {D : ℝ} {b v : Point}
 
 /-- **Hopf--Pannwitz.**  If every squared distance inside `X` is at most `D > 0`, then the graph
 joining points of `X` at squared distance exactly `D` has degree sum at most `2 * #X`, that is,
-at most `#X` edges. -/
+at most `#X` edges.
+@isnad1 id=le.2h2v.s6.c009644e581e from=translated src=- shape=631e6234 vocab=e6462ce7
+-/
 theorem sum_degree_le {D : ℝ} (hD : 0 < D) (X : Finset Point)
     (hmax : ∀ p ∈ X, ∀ q ∈ X, sqDist p q ≤ D) :
     ∑ v ∈ X, degree (DiameterAdj D) X v ≤ 2 * X.card := by
@@ -299,7 +330,9 @@ theorem sum_degree_le {D : ℝ} (hD : 0 < D) (X : Finset Point)
             hmax p (Finset.mem_of_mem_erase hp') q (Finset.mem_of_mem_erase hq'))
 
 /-- **Hopf--Pannwitz for a diameter.**  The diameter graph of a finite planar set has at most as
-many edges as the set has points. -/
+many edges as the set has points.
+@isnad1 id=le.1h2v.s5.99896280217a from=translated src=- shape=97bea62d vocab=c7df4a19
+-/
 theorem hopfPannwitz {X : Finset Point} {D : ℝ} (hD : IsSqDiameter X D) :
     ∑ v ∈ X, degree (DiameterAdj D) X v ≤ 2 * X.card :=
   sum_degree_le hD.pos X hD.2

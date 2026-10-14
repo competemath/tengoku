@@ -25,6 +25,9 @@ namespace Erdos865
 
 /-! ### Monotonicity of the sum sets -/
 
+/--
+@isnad1 id=foldedok.2h3v.s4.d7bc8e592460 from=translated src=- shape=2f100fbd vocab=2e16f601
+-/
 theorem foldedOK_subset {m : ℕ} {B C : Finset ℕ} (hB : FoldedOK m B) (h : C ⊆ B) :
     FoldedOK m C := by
   constructor;
@@ -33,10 +36,16 @@ theorem foldedOK_subset {m : ℕ} {B C : Finset ℕ} (hB : FoldedOK m B) (h : C 
       ⟨ hB.2 x ( h hx ) y ( h hy ) hxy |>.1,
         fun hxy' => hB.2 x ( h hx ) y ( h hy ) hxy |>.2 <| h hxy' ⟩
 
+/--
+@isnad1 id=le.1h3v.s5.ebe429c74618 from=translated src=- shape=0b1fbad5 vocab=f6fdcf05
+-/
 theorem lowSums_mono {m : ℕ} {B C : Finset ℕ} (h : B ⊆ C) : lowSums m B ⊆ lowSums m C := by
   exact Finset.image_subset_image
     ( Finset.filter_subset_filter _ ( Finset.product_subset_product h h ) )
 
+/--
+@isnad1 id=le.1h3v.s5.04d05f3573fc from=translated src=- shape=0b1fbad5 vocab=89a599cc
+-/
 theorem highSums_mono {m : ℕ} {B C : Finset ℕ} (h : B ⊆ C) : highSums m B ⊆ highSums m C := by
   exact Finset.image_subset_iff.mpr fun p hp => Finset.mem_image.mpr
     ⟨ p, Finset.mem_filter.mpr
@@ -45,14 +54,23 @@ theorem highSums_mono {m : ℕ} {B C : Finset ℕ} (h : B ⊆ C) : highSums m B 
           h <| Finset.mem_filter.mp hp |>.1 |> Finset.mem_product.mp |>.2 ⟩,
         Finset.mem_filter.mp hp |>.2 ⟩, rfl ⟩
 
+/--
+@isnad1 id=le.1h3v.s5.f9c94d5d0bb2 from=translated src=- shape=0b1fbad5 vocab=12956b85
+-/
 theorem collisions_mono {m : ℕ} {B C : Finset ℕ} (h : B ⊆ C) :
     collisions m B ⊆ collisions m C :=
   Finset.inter_subset_inter (lowSums_mono h) (highSums_mono h)
 
+/--
+@isnad1 id=lt.1h3v.s4.60c595a85f23 from=translated src=- shape=675b2633 vocab=8c8c015f
+-/
 theorem mem_lowSums_lt {m : ℕ} {B : Finset ℕ} {v : ℕ} (hv : v ∈ lowSums m B) : v < m := by
   unfold lowSums at hv;
   grind
 
+/--
+@isnad1 id=lt.3h3v.s5.7e8ab08c6622 from=translated src=- shape=810e2838 vocab=db96ffb6
+-/
 theorem mem_highSums_lt {m : ℕ} (_hm : 2 ≤ m) {B : Finset ℕ} (hB : FoldedOK m B) {v : ℕ}
     (hv : v ∈ highSums m B) : v < m := by
   obtain ⟨ p, hp, rfl ⟩ := Finset.mem_image.mp hv;
@@ -65,6 +83,9 @@ theorem mem_highSums_lt {m : ℕ} (_hm : 2 ≤ m) {B : Finset ℕ} (hB : FoldedO
 After deleting the minimum `α`, the value `α + β` is no longer a low pair sum, because
 every remaining pair of distinct elements has both entries `≥ β > α`, so sum `> α + β`.
 -/
+/--
+@isnad1 id=not.2h4v.s6.38440378e3d1 from=translated src=- shape=a8ea1489 vocab=ffda01a6
+-/
 theorem sum_not_lowSums_erase {m : ℕ} {S : Finset ℕ} {α β : ℕ} (hαβ : α < β)
     (hmin2 : ∀ x ∈ S, x ≠ α → β ≤ x) : α + β ∉ lowSums m (S.erase α) := by
   simp [lowSums];
@@ -75,10 +96,16 @@ theorem sum_not_lowSums_erase {m : ℕ} {S : Finset ℕ} {α β : ℕ} (hαβ : 
 /-- The reflected set `-B = {m - b : b ∈ B}`. -/
 def reflB (m : ℕ) (B : Finset ℕ) : Finset ℕ := B.image (fun b : ℕ => m - b)
 
+/--
+@isnad1 id=eq.1h2v.s4.c6f0c6bdc8a7 from=translated src=- shape=d56d969d vocab=5d7edb1a
+-/
 theorem card_reflB {m : ℕ} {B : Finset ℕ} (hB : FoldedOK m B) : (reflB m B).card = B.card := by
   rw [ reflB, Finset.card_image_of_injOn ];
   exact fun x hx y hy hxy => by rw [ tsub_right_inj ] at hxy <;> linarith [ hB.1 x hx, hB.1 y hy ] ;
 
+/--
+@isnad1 id=foldedok.2h2v.s4.84bc95a65b27 from=translated src=- shape=1d2d2ac5 vocab=3ffcd556
+-/
 theorem foldedOK_reflB {m : ℕ} (hm : 2 ≤ m) {B : Finset ℕ} (hB : FoldedOK m B) :
     FoldedOK m (reflB m B) := by
   constructor;
@@ -106,6 +133,9 @@ theorem foldedOK_reflB {m : ℕ} (hm : 2 ≤ m) {B : Finset ℕ} (hB : FoldedOK 
         exact Nat.mod_eq_of_lt ( hB.1 z hz |>.2 );
       exact ⟨ by aesop, fun _ => h_eq.symm ▸ hz ⟩
 
+/--
+@isnad1 id=eq.2h2v.s5.97258a6c4248 from=translated src=- shape=f801de39 vocab=13951686
+-/
 theorem lowSums_reflB {m : ℕ} (_hm : 2 ≤ m) {B : Finset ℕ} (hB : FoldedOK m B) :
     lowSums m (reflB m B) = (highSums m B).image (fun v : ℕ => m - v) := by
   ext z;
@@ -125,6 +155,9 @@ theorem lowSums_reflB {m : ℕ} (_hm : 2 ≤ m) {B : Finset ℕ} (hB : FoldedOK 
     simp_all +decide [ add_comm ];
     have := hB.1 a ha; have := hB.1 b hb; omega;
 
+/--
+@isnad1 id=eq.1h2v.s5.b35ca91f1f69 from=translated src=- shape=c6f5b3ed vocab=2da7299d
+-/
 theorem highSums_reflB {m : ℕ} (hm : 2 ≤ m) {B : Finset ℕ} :
     highSums m (reflB m B) = (lowSums m B).image (fun v : ℕ => m - v) := by
   ext z;
@@ -132,6 +165,9 @@ theorem highSums_reflB {m : ℕ} (hm : 2 ≤ m) {B : Finset ℕ} :
     and_true, lowSums];
   constructor <;> intro h; all_goals grind
 
+/--
+@isnad1 id=eq.2h2v.s5.9cb851d2fcb3 from=translated src=- shape=c2bf6d6e vocab=c7afe2ab
+-/
 theorem collisions_reflB_card {m : ℕ} (hm : 2 ≤ m) {B : Finset ℕ} (hB : FoldedOK m B) :
     (collisions m (reflB m B)).card = (collisions m B).card := by
   -- By definition of `collisions`, we know that
@@ -159,6 +195,9 @@ theorem collisions_reflB_card {m : ℕ} (hm : 2 ≤ m) {B : Finset ℕ} (hB : Fo
 
 /-! ### The core inductive step -/
 
+/--
+@isnad1 id=le.9h4v.s7.9841957efd6c from=translated src=- shape=332f3bed vocab=1694f93d
+-/
 theorem core_step {m : ℕ} (hm : 2 ≤ m) {S : Finset ℕ} (hS : FoldedOK m S) {α β : ℕ}
     (hα : α ∈ S) (hβ : β ∈ S) (hαβ : α < β) (hmin : ∀ x ∈ S, α ≤ x)
     (hmin2 : ∀ x ∈ S, x ≠ α → β ≤ x) (hsum : α + β < m)
@@ -185,6 +224,9 @@ theorem core_step {m : ℕ} (hm : 2 ≤ m) {S : Finset ℕ} (hS : FoldedOK m S) 
 /-
 **Folded additive lemma.** For `m ≥ 2` and `B` satisfying `FoldedOK`,
 `4 * |B| ≤ 4 * |C(B)| + m + 8`, i.e. `|B| - |C(B)| ≤ m/4 + 2`.
+-/
+/--
+@isnad1 id=le.2h2v.s6.836bad680d97 from=translated src=- shape=d9407481 vocab=cc36e476
 -/
 theorem folded_additive {m : ℕ} (hm : 2 ≤ m) {B : Finset ℕ} (hB : FoldedOK m B) :
     4 * B.card ≤ 4 * (collisions m B).card + m + 8 := by

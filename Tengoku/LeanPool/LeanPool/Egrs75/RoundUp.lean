@@ -81,13 +81,17 @@ decreasing_by
 `ru p x` is always `LowDigits p`. Proven by strong induction using the digit
 recursion: `LowDigits p (p·m + d) ` holds when `d ≤ (p-1)/2` and `LowDigits p m`. -/
 
-/-- `0` has no digits, hence `LowDigits p 0` vacuously. -/
+/-- `0` has no digits, hence `LowDigits p 0` vacuously.
+@isnad1 id=lowdigit.0h1v.s3.5f7a65cd4ef1 from=translated src=- shape=3d52821e vocab=5ecc3acc
+-/
 lemma lowDigits_zero (p : ℕ) : LowDigits p 0 := by
   unfold LowDigits
   simp_all
 
 /-- A low last digit on top of a low number stays low: `LowDigits p (p*m + d)`
-when `d ≤ (p-1)/2` and `LowDigits p m` (and `2 ≤ p`). -/
+when `d ≤ (p-1)/2` and `LowDigits p m` (and `2 ≤ p`).
+@isnad1 id=lowdigit.3h3v.s6.24d72f338011 from=translated src=- shape=6ae2d7e2 vocab=c848177b
+-/
 lemma lowDigits_cons {p m d : ℕ} (hp : 2 ≤ p) (hd : d ≤ (p - 1) / 2)
     (hm : LowDigits p m) : LowDigits p (p * m + d) := by
   have hp1 : 1 < p := by omega
@@ -103,19 +107,25 @@ lemma lowDigits_cons {p m d : ℕ} (hp : 2 ≤ p) (hd : d ≤ (p - 1) / 2)
     rw [Nat.digits_def' hp1 (Nat.pos_of_ne_zero h0), hmod, hdiv]
     simp_all
 
-/-- For `p ≥ 3`, the digit `1 ≤ (p-1)/2`. -/
+/-- For `p ≥ 3`, the digit `1 ≤ (p-1)/2`.
+@isnad1 id=le.1h1v.s5.a9a45a44d005 from=translated src=- shape=09b6d7b2 vocab=e13abb0b
+-/
 lemma one_le_half {p : ℕ} (hp : 3 ≤ p) : (1 : ℕ) ≤ (p - 1) / 2 := by
   have : 2 ≤ p - 1 := by omega
   calc (1 : ℕ) = 2 / 2 := by norm_num
     _ ≤ (p - 1) / 2 := Nat.div_le_div_right this
 
-/-- `LowDigits p 1` for `p ≥ 3` (digits of `1` are `[1]`, and `1 ≤ (p-1)/2`). -/
+/-- `LowDigits p 1` for `p ≥ 3` (digits of `1` are `[1]`, and `1 ≤ (p-1)/2`).
+@isnad1 id=lowdigit.1h1v.s4.9760625f3d07 from=translated src=- shape=72ac9461 vocab=00b24480
+-/
 lemma lowDigits_one {p : ℕ} (hp : 3 ≤ p) : LowDigits p 1 := by
   have h : (1 : ℕ) = p * 0 + 1 := by ring
   rw [h]
   exact lowDigits_cons (by omega) (one_le_half hp) (lowDigits_zero p)
 
-/-- `ru p x` has all base-`p` digits `≤ (p-1)/2`. KERNEL-CLEAN. -/
+/-- `ru p x` has all base-`p` digits `≤ (p-1)/2`. KERNEL-CLEAN.
+@isnad1 id=lowdigit.1h2v.s4.3a9f664bb568 from=translated src=- shape=51f3754e vocab=bedb2dcf
+-/
 lemma lowDigits_ru {p : ℕ} (hp : 3 ≤ p) (x : ℕ) : LowDigits p (ru p x) := by
   induction x using Nat.strong_induction_on with
   | _ x ih =>
@@ -150,7 +160,9 @@ upper bound `p · ru(x/p+1) < 2x` uses `2·(x%p) > p` (which holds since
 
 /-- **The EGRS density Fact, as bounds on `ru`.** For odd `p ≥ 3` and `x ≥ 1`:
 `x ≤ ru p x` and `ru p x < 2*x`. Hence the smallest `LowDigits p` number `≥ x`
-lies in `[x, 2x)`. KERNEL-CLEAN. -/
+lies in `[x, 2x)`. KERNEL-CLEAN.
+@isnad1 id=and.3h2v.s5.c9b1319cf473 from=translated src=- shape=4d1cf9af vocab=8c6f23cd
+-/
 lemma ru_bounds {p : ℕ} (hp : 3 ≤ p) (hodd : Odd p) :
     ∀ x, 1 ≤ x → x ≤ ru p x ∧ ru p x < 2 * x := by
   -- `Odd p` ⟹ `2 * ((p-1)/2) + 1 = p`, i.e. the half is exact: `(p-1)/2 = (p-1)/2`
@@ -231,7 +243,9 @@ lemma ru_bounds {p : ℕ} (hp : 3 ≤ p) (hodd : Odd p) :
 /-- **EGRS density Fact (existence form).** For an odd prime base `p ≥ 3` (in fact
 any odd `p ≥ 3`) and every `x ≥ 1`, the interval `[x, 2x)` contains a `LowDigits p`
 number. This is the single load-bearing density input from EGRS75's proof of
-their Theorem 1. KERNEL-CLEAN. -/
+their Theorem 1. KERNEL-CLEAN.
+@isnad1 id=ex.3h2v.s5.b898caeeacec from=translated src=- shape=a106e58f vocab=2ce828f5
+-/
 theorem exists_lowDigits_between {p : ℕ} (hp : 3 ≤ p) (hodd : Odd p) (x : ℕ)
     (hx : 1 ≤ x) : ∃ m, x ≤ m ∧ m < 2 * x ∧ LowDigits p m := by
   obtain ⟨hlo, hhi⟩ := ru_bounds hp hodd x hx

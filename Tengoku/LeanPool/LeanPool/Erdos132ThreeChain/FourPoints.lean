@@ -32,7 +32,9 @@ steps of the chain.
 
 namespace Erdos132ThreeChain
 
-/-- Relative to a shortest edge `A B`, every further point is isoceles or spanning. -/
+/-- Relative to a shortest edge `A B`, every further point is isoceles or spanning.
+@isnad1 id=or.4h4v.s7.7508d54a49c6 from=translated src=- shape=a5a942e4 vocab=06c914ea
+-/
 theorem classify_point {A B P : Point} {c : ℝ} (hc : 0 < c) (hAB : sqDist A B = c)
     (hAP : IsChainValue c (sqDist A P)) (hBP : IsChainValue c (sqDist B P)) :
     (∃ x : ℕ, sqDist A P = c * 3 ^ x ∧ sqDist B P = c * 3 ^ x)
@@ -56,33 +58,53 @@ theorem classify_point {A B P : Point} {c : ℝ} (hc : 0 < c) (hAB : sqDist A B 
     · exact Or.inl ⟨x, hx, by rw [hy, ← h]⟩
     · refine Or.inr (Or.inr ⟨by rw [hx, h2]; ring, by rw [hy, ← h1, pow_zero, mul_one]⟩)
 
+/--
+@isnad1 id=eq.0h4v.s7.ef7ba04bf995 from=translated src=- shape=4c908f7c vocab=32d89b52
+-/
 theorem gramDet_isoceles (c r s t : ℝ) :
     gramDet c r s r s t
       = -2 * c * (r ^ 2 + s ^ 2 + t ^ 2 - 2 * r * s - 2 * r * t - 2 * s * t + c * t) := by
   simp only [gramDet]; ring
 
+/--
+@isnad1 id=eq.0h3v.s7.27b2b9358fd1 from=translated src=- shape=6a138daf vocab=32d89b52
+-/
 theorem gramDet_mixed (c r t : ℝ) :
     gramDet c r c r (3 * c) t = -2 * c * ((r - t) ^ 2 - 3 * c * t + 3 * c ^ 2) := by
   simp only [gramDet]; ring
 
+/--
+@isnad1 id=eq.0h3v.s7.18884a9234bd from=translated src=- shape=a35d7ecc vocab=32d89b52
+-/
 theorem gramDet_mixed' (c r t : ℝ) :
     gramDet c r (3 * c) r c t = -2 * c * ((r - t) ^ 2 - 3 * c * t + 3 * c ^ 2) := by
   simp only [gramDet]; ring
 
+/--
+@isnad1 id=eq.0h2v.s6.f331a9c47518 from=translated src=- shape=0d6e5057 vocab=e673c41f
+-/
 theorem gramDet_spanning (c t : ℝ) :
     gramDet c c c (3 * c) (3 * c) t = 2 * t * c * (3 * c - t) := by
   simp only [gramDet]; ring
 
+/--
+@isnad1 id=eq.0h2v.s6.79930ef7eb84 from=translated src=- shape=0af91451 vocab=e673c41f
+-/
 theorem gramDet_spanning' (c t : ℝ) :
     gramDet c (3 * c) (3 * c) c c t = 2 * t * c * (3 * c - t) := by
   simp only [gramDet]; ring
 
+/--
+@isnad1 id=eq.0h2v.s6.42bc12de4a06 from=translated src=- shape=3a1e164c vocab=efd412eb
+-/
 theorem gramDet_opposite (c t : ℝ) :
     gramDet c c (3 * c) (3 * c) c t = -2 * c * (4 * c - t) * (7 * c - t) := by
   simp only [gramDet]; ring
 
 /-- Two isoceles points: the shortest edge and both isoceles radii are equal to `c`, and the
-two points are `3 * c` apart.  Auxiliary form, with the radii ordered. -/
+two points are `3 * c` apart.  Auxiliary form, with the radii ordered.
+@isnad1 id=and.8h8v.s7.e61bc1b1f97f from=translated src=- shape=8710fba2 vocab=93ab78e5
+-/
 theorem pair_isoceles_aux {A B C D : Point} {c : ℝ} (hc : 0 < c) {x y l : ℕ} (hxy : x ≤ y)
     (hAB : sqDist A B = c)
     (hAC : sqDist A C = c * 3 ^ x) (hBC : sqDist B C = c * 3 ^ x)
@@ -132,7 +154,9 @@ theorem pair_isoceles_aux {A B C D : Point} {c : ℝ} (hc : 0 < c) {x y l : ℕ}
   exact isoceles_pair_solution hxy hcase hZ
 
 /-- Two isoceles points relative to the shortest edge `A B` force both radii to equal `c` and
-their mutual squared distance to equal `3 * c`. -/
+their mutual squared distance to equal `3 * c`.
+@isnad1 id=and.7h8v.s7.4a4d7fcfef21 from=translated src=- shape=c3789685 vocab=9095079b
+-/
 theorem pair_isoceles {A B C D : Point} {c : ℝ} (hc : 0 < c) {x y l : ℕ}
     (hAB : sqDist A B = c)
     (hAC : sqDist A C = c * 3 ^ x) (hBC : sqDist B C = c * 3 ^ x)
@@ -146,7 +170,9 @@ theorem pair_isoceles {A B C D : Point} {c : ℝ} (hc : 0 < c) {x y l : ℕ}
     exact ⟨hx0, hy0, hl1⟩
 
 /-- One isoceles point and one spanning point: the isoceles radius is `c` and the two points
-are `c` apart. -/
+are `c` apart.
+@isnad1 id=and.6h7v.s7.462c8315fdd9 from=translated src=- shape=9850cb2b vocab=9095079b
+-/
 theorem pair_mixed {A B C D : Point} {c : ℝ} (hc : 0 < c) {x l : ℕ}
     (hAB : sqDist A B = c)
     (hAC : sqDist A C = c * 3 ^ x) (hBC : sqDist B C = c * 3 ^ x)
@@ -170,7 +196,9 @@ theorem pair_mixed {A B C D : Point} {c : ℝ} (hc : 0 < c) {x l : ℕ}
     exact_mod_cast hcast
   exact mixed_pair_solution hZ
 
-/-- Two spanning points of the same sense are `3 * c` apart. -/
+/-- Two spanning points of the same sense are `3 * c` apart.
+@isnad1 id=eq.4h6v.s7.2e0433ab34b9 from=translated src=- shape=65ca10dd vocab=9095079b
+-/
 theorem pair_spanning {A B C D : Point} {c : ℝ} (hc : 0 < c) {l : ℕ}
     (hAB : sqDist A B = c) (hCD : sqDist C D = c * 3 ^ l)
     (h : (sqDist A C = c ∧ sqDist B C = 3 * c ∧ sqDist A D = c ∧ sqDist B D = 3 * c)
@@ -194,7 +222,9 @@ theorem pair_spanning {A B C D : Point} {c : ℝ} (hc : 0 < c) {l : ℕ}
     exact_mod_cast hcast
   exact pow3_inj hZ
 
-/-- Two spanning points of opposite senses cannot both occur. -/
+/-- Two spanning points of opposite senses cannot both occur.
+@isnad1 id=false.7h6v.s6.e70430361416 from=translated src=- shape=a79050e0 vocab=9095079b
+-/
 theorem pair_opposite {A B C D : Point} {c : ℝ} (hc : 0 < c) {l : ℕ}
     (hAB : sqDist A B = c) (hCD : sqDist C D = c * 3 ^ l)
     (hAC : sqDist A C = c) (hBC : sqDist B C = 3 * c)
@@ -286,7 +316,9 @@ structure ChainQuadruple (A B C D : Point) (c : ℝ) : Prop where
 /-- **The chain-quadruple theorem relative to a shortest edge.**  If the six squared distances
 of `A`, `B`, `C`, `D` are all `c` times a power of three, with `c = sqDist A B` the smallest,
 then all six lie in the adjacent pair `{c, 3 * c}`, the points `C` and `D` never span the edge
-`A B` in opposite senses, and the labelling is one of the seven patterns of `ChainPattern`. -/
+`A B` in opposite senses, and the labelling is one of the seven patterns of `ChainPattern`.
+@isnad1 id=chainqua.7h5v.s6.bef53c244522 from=translated src=- shape=2ab5af17 vocab=df5957a8
+-/
 theorem pair_classification {A B C D : Point} {c : ℝ} (hc : 0 < c)
     (hAB : sqDist A B = c)
     (hAC : IsChainValue c (sqDist A C)) (hBC : IsChainValue c (sqDist B C))

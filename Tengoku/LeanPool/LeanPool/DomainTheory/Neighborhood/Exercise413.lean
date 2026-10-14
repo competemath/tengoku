@@ -70,6 +70,9 @@ namespace NeighborhoodSystem
 /-- The set of *pre-fixed points* `{x ∣ f(x) ⊑ x}` of `f`. -/
 def preFix (f : V.Element → V.Element) : Set V.Element := {x | f x ≤ x}
 
+/--
+@isnad1 id=iff.0h4v.s5.6fd567e6f4bf from=translated src=- shape=c18f5445 vocab=4a591b63
+-/
 @[simp] theorem mem_preFix {f : V.Element → V.Element} {x : V.Element} :
     x ∈ preFix f ↔ f x ≤ x := Iff.rfl
 
@@ -82,17 +85,23 @@ element by Exercise 1.18 (`sInf`); the non-emptiness witness is any `a` with `f(
 def monoFix (f : V.Element → V.Element) {a : V.Element} (ha : f a ≤ a) : V.Element :=
   V.sInf (preFix f) ⟨a, ha⟩
 
-/-- `monoFix f ha ⊑ x` for every pre-fixed point `x` (`f(x) ⊑ x`). -/
+/-- `monoFix f ha ⊑ x` for every pre-fixed point `x` (`f(x) ⊑ x`).
+@isnad1 id=le.2h5v.s6.3e420aa1164b from=translated src=- shape=bebc599c vocab=27e5e4e0
+-/
 theorem monoFix_le_preFix (f : V.Element → V.Element) {a : V.Element} (ha : f a ≤ a)
     {x : V.Element} (hx : f x ≤ x) : monoFix f ha ≤ x :=
   V.sInf_le (preFix f) ⟨a, ha⟩ hx
 
 /-- `monoFix f ha ⊑ a`: the least fixed point lies below the given pre-fixed point
-`a`. -/
+`a`.
+@isnad1 id=le.1h4v.s5.1adadb6a5931 from=translated src=- shape=0c44d556 vocab=27e5e4e0
+-/
 theorem monoFix_le (f : V.Element → V.Element) {a : V.Element} (ha : f a ≤ a) :
     monoFix f ha ≤ a := monoFix_le_preFix f ha ha
 
-/-- The key step: `f(b) ⊑ b` where `b = monoFix f ha`, by monotonicity alone. -/
+/-- The key step: `f(b) ⊑ b` where `b = monoFix f ha`, by monotonicity alone.
+@isnad1 id=le.2h4v.s6.ec9b375752af from=translated src=- shape=9d19c345 vocab=d04e9970
+-/
 theorem monoFix_preFix (f : V.Element → V.Element) (hf : Monotone f) {a : V.Element}
     (ha : f a ≤ a) : f (monoFix f ha) ≤ monoFix f ha := by
   apply V.le_sInf (preFix f) ⟨a, ha⟩
@@ -103,7 +112,9 @@ theorem monoFix_preFix (f : V.Element → V.Element) (hf : Monotone f) {a : V.El
 `f(b) = b`. (After
 `f(b) ⊑ b`, monotonicity gives `f(f(b)) ⊑ f(b)`, so `f(b)` is itself a pre-fixed
 point, whence
-`b ⊑ f(b)`.) -/
+`b ⊑ f(b)`.)
+@isnad1 id=eq.2h4v.s6.6653e6e1c578 from=translated src=- shape=b2c7a875 vocab=d04e9970
+-/
 theorem monoFix_isFixed (f : V.Element → V.Element) (hf : Monotone f) {a : V.Element}
     (ha : f a ≤ a) : f (monoFix f ha) = monoFix f ha := by
   have hfb : f (monoFix f ha) ≤ monoFix f ha := monoFix_preFix f hf ha
@@ -113,7 +124,9 @@ theorem monoFix_isFixed (f : V.Element → V.Element) (hf : Monotone f) {a : V.E
 
 /-- **Exercise 4.13(1) (Scott 1981, PRG-19).** `monoFix f ha` is the *least* fixed
 point: any `y`
-with `f(y) = y` satisfies `b ⊑ y`. -/
+with `f(y) = y` satisfies `b ⊑ y`.
+@isnad1 id=le.2h5v.s6.bde92c9daab4 from=translated src=- shape=f1a1edcf vocab=27e5e4e0
+-/
 theorem monoFix_least (f : V.Element → V.Element) {a : V.Element} (ha : f a ≤ a)
     {y : V.Element} (hy : f y = y) : monoFix f ha ≤ y :=
   monoFix_le_preFix f ha (le_of_eq hy)
@@ -126,7 +139,9 @@ theorem monoFix_least (f : V.Element → V.Element) {a : V.Element} (ha : f a �
 n)·`. This is the
 choice-free recursion principle (`Nat.rec`); together with 4.13(1) it eliminates
 the circularity in
-the proofs of 4.1 and 4.6. -/
+the proofs of 4.1 and 4.6.
+@isnad1 id=existsun.0h3v.s5.440308f4fd9e from=translated src=- shape=471cb99e vocab=f8e5188d
+-/
 theorem exists_unique_nat_rec {Z : Type*} (z : Z) (op : Z → Z) :
     ∃! s : ℕ → Z, s 0 = z ∧ ∀ n, s (n + 1) = op (s n) := by
   refine ⟨fun n => Nat.rec z (fun _ x => op x) n, ⟨rfl, fun _ => rfl⟩, ?_⟩
@@ -143,7 +158,9 @@ structured set
 `⟨ℕ, 0, ⁺⟩`: the *unique* function `s` with `s(0) = 0` and `s(n⁺) = (s n)⁺` is the
 identity. This
 is the iteration `n ↦ fⁿ` underlying Theorem 4.1, now justified without
-circularity. -/
+circularity.
+@isnad1 id=eq.2h2v.s5.28734d931fe9 from=translated src=- shape=d373e343 vocab=fc0e7020
+-/
 theorem nat_iterate_unique {s : ℕ → ℕ} (h0 : s 0 = 0) (hsucc : ∀ n, s (n + 1) = s n + 1) :
     ∀ n, s n = n := by
   intro n

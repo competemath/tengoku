@@ -63,7 +63,9 @@ variable {α β γ α' β' : Type*}
 
 /-- The product representation is determined by its two components (the `↔` form
 of
-`prodNbhd_injective`). -/
+`prodNbhd_injective`).
+@isnad1 id=iff.0h6v.s5.486f5879335c from=translated src=- shape=87b0c089 vocab=d19a00ee
+-/
 theorem prodNbhd_eq_iff {X X' : Set α} {Y Y' : Set β} :
     prodNbhd X Y = prodNbhd X' Y' ↔ X = X' ∧ Y = Y' :=
   ⟨prodNbhd_injective, by rintro ⟨rfl, rfl⟩; rfl⟩
@@ -75,6 +77,9 @@ def prodEnum (P₀ : ComputablePresentation V₀) (P₁ : ComputablePresentation
     Set (α ⊕ β) :=
   prodNbhd (P₀.X t.unpair.1) (P₁.X t.unpair.2)
 
+/--
+@isnad1 id=eq.0h7v.s5.47efbf60072d from=translated src=- shape=c64ec6c1 vocab=d61d6aa4
+-/
 @[simp] theorem prodEnum_apply (P₀ : ComputablePresentation V₀) (P₁ : ComputablePresentation V₁)
     (t : ℕ) : prodEnum P₀ P₁ t = prodNbhd (P₀.X t.unpair.1) (P₁.X t.unpair.2) := rfl
 
@@ -151,13 +156,18 @@ def prodPresentation (P₀ : ComputablePresentation V₀) (P₁ : ComputablePres
     simp only [prodEnum_apply, unpair_pair_fst, unpair_pair_snd, P₀.masterIdx_spec,
       P₁.masterIdx_spec, prod_master]
 
+/--
+@isnad1 id=eq.0h7v.s5.93ccc180f6a0 from=translated src=- shape=781d420c vocab=642f2412
+-/
 @[simp] theorem prodPresentation_X (P₀ : ComputablePresentation V₀) (P₁ : ComputablePresentation V₁)
     (t : ℕ) :
     (prodPresentation P₀ P₁).X t = prodNbhd (P₀.X t.unpair.1) (P₁.X t.unpair.2) := rfl
 
 /-- **Theorem 7.4 (Scott 1981, PRG-19).** The product of effectively given domains
 is effectively
-given. -/
+given.
+@isnad1 id=iseffect.2h4v.s4.372e146f4811 from=translated src=- shape=ec3c0157 vocab=476ef161
+-/
 theorem prod_isEffectivelyGiven (h₀ : V₀.IsEffectivelyGiven) (h₁ : V₁.IsEffectivelyGiven) :
     (prod V₀ V₁).IsEffectivelyGiven := by
   obtain ⟨P₀⟩ := h₀; obtain ⟨P₁⟩ := h₁
@@ -166,7 +176,9 @@ theorem prod_isEffectivelyGiven (h₀ : V₀.IsEffectivelyGiven) (h₁ : V₁.Is
 /-- **Theorem 7.4 (Scott 1981, PRG-19) — `proj₀` is computable.** `(Xₙ⁰ ∪ Xₘ¹) p₀
 X⁰_k ↔ Xₙ⁰ ⊆
 X⁰_k`,
-a recursive slice of `incl_computable`, hence r.e. -/
+a recursive slice of `incl_computable`, hence r.e.
+@isnad1 id=iscomput.0h6v.s5.f75b15699c30 from=translated src=- shape=7bb6cdaf vocab=f8c99ffd
+-/
 theorem proj₀_isComputable (P₀ : ComputablePresentation V₀) (P₁ : ComputablePresentation V₁) :
     IsComputableMap (prodPresentation P₀ P₁) P₀ (proj₀ V₀ V₁) := by
   have hincl : RecDecidable (fun s => P₀.X s.unpair.1 ⊆ P₀.X s.unpair.2) := P₀.incl_computable
@@ -179,7 +191,9 @@ theorem proj₀_isComputable (P₀ : ComputablePresentation V₀) (P₁ : Comput
 
 /-- **Theorem 7.4 (Scott 1981, PRG-19) — `proj₁` is computable.** `(Xₙ⁰ ∪ Xₘ¹) p₁
 X¹_k ↔ Xₘ¹ ⊆ X¹_k`
-(Scott's worked example), a recursive slice of `incl_computable`. -/
+(Scott's worked example), a recursive slice of `incl_computable`.
+@isnad1 id=iscomput.0h6v.s5.ad1519268909 from=translated src=- shape=3c62eb44 vocab=53b97d0d
+-/
 theorem proj₁_isComputable (P₀ : ComputablePresentation V₀) (P₁ : ComputablePresentation V₁) :
     IsComputableMap (prodPresentation P₀ P₁) P₁ (proj₁ V₀ V₁) := by
   have hincl : RecDecidable (fun s => P₁.X s.unpair.1 ⊆ P₁.X s.unpair.2) := P₁.incl_computable
@@ -204,7 +218,9 @@ enumerate with a `Nat.pair` tag: `tag 0 ↦ 0X⁰ₖ`, `tag 1 ↦ 1X¹ₖ`, `tag
 master. -/
 
 /-- Choice-free three-way split of a tag `n ∈ {0, 1, ≥2}` (via `Nat.decEq`, not
-classical `em`). -/
+classical `em`).
+@isnad1 id=or.0h1v.s5.5ed3d85abd9a from=translated src=- shape=7c32e6f2 vocab=45a14d8d
+-/
 theorem tag_trichotomy (n : ℕ) : n = 0 ∨ n = 1 ∨ (n ≠ 0 ∧ n ≠ 1) := by
   rcases Nat.decEq n 0 with h | h
   · rcases Nat.decEq n 1 with h' | h'
@@ -228,19 +244,31 @@ def sumEnum (P₀ : ComputablePresentation V₀) (P₁ : ComputablePresentation 
 
 variable {P₀ : ComputablePresentation V₀} {P₁ : ComputablePresentation V₁}
 
+/--
+@isnad1 id=eq.1h7v.s5.7d6d975edc9d from=translated src=- shape=c7d0604f vocab=39146ccb
+-/
 @[simp] theorem sumEnum_zero {t : ℕ} (h : t.unpair.1 = 0) :
     sumEnum P₀ P₁ t = inj₀ (P₀.X t.unpair.2) := by unfold sumEnum; rw [ite_eq_left h]
 
+/--
+@isnad1 id=eq.1h7v.s5.28cc3a82205f from=translated src=- shape=099179c5 vocab=3b14c495
+-/
 @[simp] theorem sumEnum_one {t : ℕ} (h : t.unpair.1 = 1) :
     sumEnum P₀ P₁ t = inj₁ (P₁.X t.unpair.2) := by
   have h0 : t.unpair.1 ≠ 0 := by omega
   unfold sumEnum; rw [ite_eq_right h0, ite_eq_left h]
 
+/--
+@isnad1 id=eq.2h7v.s6.51a20dfffd0f from=translated src=- shape=afa99cac vocab=5293b833
+-/
 theorem sumEnum_master {t : ℕ} (h0 : t.unpair.1 ≠ 0) (h1 : t.unpair.1 ≠ 1) :
     sumEnum P₀ P₁ t = sumMaster V₀ V₁ := by
   unfold sumEnum
   rw [ite_eq_right h0, ite_eq_right h1]
 
+/--
+@isnad1 id=mem.2h7v.s6.daa3a9281364 from=translated src=- shape=59ae0dee vocab=61e7710e
+-/
 theorem sumEnum_mem (t : ℕ) : (sum V₀ V₁ h₀ h₁).mem (sumEnum P₀ P₁ t) := by
   unfold sumEnum
   split
@@ -250,6 +278,9 @@ theorem sumEnum_mem (t : ℕ) : (sum V₀ V₁ h₀ h₁).mem (sumEnum P₀ P₁
     · exact Or.inl rfl
 
 include h₀ h₁ in
+/--
+@isnad1 id=nonempty.2h7v.s5.6eb2a6573402 from=translated src=- shape=50aa61e0 vocab=eda8d885
+-/
 theorem sumEnum_nonempty (t : ℕ) : (sumEnum P₀ P₁ t).Nonempty := by
   unfold sumEnum
   split
@@ -260,18 +291,33 @@ theorem sumEnum_nonempty (t : ℕ) : (sumEnum P₀ P₁ t).Nonempty := by
 
 /-! ### Distinctness of the three neighbourhood kinds (uses non-emptiness). -/
 
+/--
+@isnad1 id=iff.0h4v.s4.37e1d44278d1 from=translated src=- shape=ce8c1d66 vocab=7deb30a1
+-/
 theorem inj₀_eq_iff {A B : Set α} : (inj₀ A : Set (Option (α ⊕ β))) = inj₀ B ↔ A = B :=
   ⟨inj₀_injective, fun h => h ▸ rfl⟩
 
+/--
+@isnad1 id=iff.0h4v.s4.018fd7f5e3ed from=translated src=- shape=8527575a vocab=8edd6702
+-/
 theorem inj₁_eq_iff {A B : Set β} : (inj₁ A : Set (Option (α ⊕ β))) = inj₁ B ↔ A = B :=
   ⟨inj₁_injective, fun h => h ▸ rfl⟩
 
+/--
+@isnad1 id=ne.0h5v.s4.2665ecc5fefc from=translated src=- shape=8f78cb1f vocab=524b4289
+-/
 theorem inj₀_ne_sumMaster {A : Set α} : (inj₀ A : Set (Option (α ⊕ β))) ≠ sumMaster V₀ V₁ :=
   fun h => none_mem_inj₀ (h.symm ▸ none_mem_sumMaster)
 
+/--
+@isnad1 id=ne.0h5v.s4.e59127e0a876 from=translated src=- shape=05b27ca7 vocab=f88d16dc
+-/
 theorem inj₁_ne_sumMaster {B : Set β} : (inj₁ B : Set (Option (α ⊕ β))) ≠ sumMaster V₀ V₁ :=
   fun h => none_mem_inj₁ (h.symm ▸ none_mem_sumMaster)
 
+/--
+@isnad1 id=ne.1h4v.s4.75b441246d23 from=translated src=- shape=601af8ad vocab=91b19445
+-/
 theorem inj₀_ne_inj₁_of_nonempty {A : Set α} {B : Set β} (hB : B.Nonempty) :
     (inj₀ A : Set (Option (α ⊕ β))) ≠ inj₁ B := by
   rintro h; obtain ⟨b, hb⟩ := hB
@@ -280,7 +326,9 @@ theorem inj₀_ne_inj₁_of_nonempty {A : Set α} {B : Set β} (hB : B.Nonempty)
 include h₁ in
 /-- **Equality of two sum-neighbourhoods, in the indices.** Both master, or same
 tag with equal
-component. -/
+component.
+@isnad1 id=iff.1h8v.s7.f2f1be14e209 from=translated src=- shape=412e2488 vocab=2ec3774d
+-/
 theorem sumEnum_eq_iff (x y : ℕ) :
     sumEnum P₀ P₁ x = sumEnum P₀ P₁ y ↔
       ((x.unpair.1 ≠ 0 ∧ x.unpair.1 ≠ 1) ∧ (y.unpair.1 ≠ 0 ∧ y.unpair.1 ≠ 1))
@@ -340,7 +388,9 @@ theorem sumEnum_eq_iff (x y : ℕ) :
 
 /-- Equality of two enumerated `𝒟₀`-neighbourhoods is recursively decidable
 (antisymmetry of `⊆`,
-decided by `incl_computable`). -/
+decided by `incl_computable`).
+@isnad1 id=recdecid.2h5v.s5.003a71de5f0e from=translated src=- shape=4cdeabef vocab=7c80c011
+-/
 theorem recDec_setEq₀ {f g : ℕ → ℕ} (hf : Nat.Primrec f) (hg : Nat.Primrec g) :
     RecDecidable (fun u => P₀.X (f u) = P₀.X (g u)) := by
   have hincl : RecDecidable (fun s => P₀.X s.unpair.1 ⊆ P₀.X s.unpair.2) := P₀.incl_computable
@@ -348,6 +398,9 @@ theorem recDec_setEq₀ {f g : ℕ → ℕ} (hf : Nat.Primrec f) (hg : Nat.Primr
   simp only [unpair_pair_fst, unpair_pair_snd]
   exact ⟨fun h => ⟨h.subset, h.symm.subset⟩, fun ⟨h1, h2⟩ => Set.Subset.antisymm h1 h2⟩
 
+/--
+@isnad1 id=recdecid.2h5v.s5.003a71de5f0e from=translated src=- shape=4cdeabef vocab=7c80c011
+-/
 theorem recDec_setEq₁ {f g : ℕ → ℕ} (hf : Nat.Primrec f) (hg : Nat.Primrec g) :
     RecDecidable (fun u => P₁.X (f u) = P₁.X (g u)) := by
   have hincl : RecDecidable (fun s => P₁.X s.unpair.1 ⊆ P₁.X s.unpair.2) := P₁.incl_computable
@@ -358,7 +411,9 @@ theorem recDec_setEq₁ {f g : ℕ → ℕ} (hf : Nat.Primrec f) (hg : Nat.Primr
 include h₁ in
 /-- **`sumEnum u.1 = sumEnum u.2` is recursively decidable** (the `of_iff`
 translation of
-`sumEnum_eq_iff` into the tag/component deciders). -/
+`sumEnum_eq_iff` into the tag/component deciders).
+@isnad1 id=recdecid.1h6v.s5.f76906a199f6 from=translated src=- shape=e2fe554d vocab=6f1a7aec
+-/
 theorem eqSEdec :
     RecDecidable (fun u => sumEnum P₀ P₁ u.unpair.1 = sumEnum P₀ P₁ u.unpair.2) := by
   have hX0 : RecDecidable (fun u => u.unpair.1.unpair.1 = 0) :=
@@ -379,13 +434,17 @@ theorem eqSEdec :
     (((hX0.not.and hX1.not).and (hY0.not.and hY1.not)).or
       (((hX0.and hY0).and hE0).or ((hX1.and hY1).and hE1)))
 
-/-- A nonempty left copy cannot equal a right copy. -/
+/-- A nonempty left copy cannot equal a right copy.
+@isnad1 id=false.2h4v.s4.963df84e8839 from=translated src=- shape=a63a81cb vocab=91b19445
+-/
 theorem inj₀_eq_inj₁_elim {A : Set α} {B : Set β} (hA : A.Nonempty)
     (h : (inj₀ A : Set (Option (α ⊕ β))) = inj₁ B) : False := by
   obtain ⟨a, ha⟩ := hA; exact il_mem_inj₁ (h ▸ il_mem_inj₀.mpr ha)
 
 /-- Every enumerated sum-neighbourhood lies under the master (no non-emptiness
-needed). -/
+needed).
+@isnad1 id=le.0h7v.s5.740875c7e6c8 from=translated src=- shape=2d925547 vocab=f3e1f57f
+-/
 theorem sumEnum_subset_sumMaster (n : ℕ) :
     sumEnum P₀ P₁ n ⊆ sumMaster V₀ V₁ := by
   unfold sumEnum
@@ -395,19 +454,25 @@ theorem sumEnum_subset_sumMaster (n : ℕ) :
     · exact inj₁_subset_sumMaster (P₁.mem_X _)
     · exact subset_rfl
 
-/-- `M ∩ Z = Z`: the master absorbs on the left. -/
+/-- `M ∩ Z = Z`: the master absorbs on the left.
+@isnad1 id=eq.0h7v.s5.0c1b2c4f0f36 from=translated src=- shape=03116d1b vocab=1f5c9e10
+-/
 theorem sumMaster_inter_sumEnum (m : ℕ) :
     sumMaster V₀ V₁ ∩ sumEnum P₀ P₁ m = sumEnum P₀ P₁ m :=
   Set.inter_eq_right.mpr (sumEnum_subset_sumMaster m)
 
-/-- `Z ∩ M = Z`: the master absorbs on the right. -/
+/-- `Z ∩ M = Z`: the master absorbs on the right.
+@isnad1 id=eq.0h7v.s5.8a11ebfb1b3a from=translated src=- shape=e804d822 vocab=1f5c9e10
+-/
 theorem sumEnum_inter_sumMaster (n : ℕ) :
     sumEnum P₀ P₁ n ∩ sumMaster V₀ V₁ = sumEnum P₀ P₁ n :=
   Set.inter_eq_left.mpr (sumEnum_subset_sumMaster n)
 
 include h₀ h₁
 
-/-- Decidability of the sum-presentation intersection equality relation. -/
+/-- Decidability of the sum-presentation intersection equality relation.
+@isnad1 id=recdecid.2h6v.s6.1bf28a49cf15 from=translated src=- shape=7fa234da vocab=3ea1caaf
+-/
 theorem sumPresentation_interEq_computable :
     RecDecidable₃ (fun n m k => sumEnum P₀ P₁ n ∩ sumEnum P₀ P₁ m = sumEnum P₀ P₁ k) := by
   have hMK : RecDecidable (fun t => sumEnum P₀ P₁ t.unpair.2.unpair.1
@@ -539,7 +604,9 @@ theorem sumPresentation_interEq_computable :
       · exfalso; omega
       · exfalso; omega
 
-/-- Decidability of the sum-presentation consistency relation. -/
+/-- Decidability of the sum-presentation consistency relation.
+@isnad1 id=recdecid.2h6v.s6.3f69d4cfa771 from=translated src=- shape=1c3d91c3 vocab=c432d6a0
+-/
 theorem sumPresentation_cons_computable :
     RecDecidable₂ (fun n m => ∃ k, sumEnum P₀ P₁ k ⊆ sumEnum P₀ P₁ n ∩ sumEnum P₀ P₁ m) := by
   have hA0 : RecDecidable (fun s => s.unpair.1.unpair.1 = 0) :=
@@ -630,7 +697,9 @@ def sumInter (P₀ : ComputablePresentation V₀) (P₁ : ComputablePresentation
         (Nat.pair 1 (P₁.inter n.unpair.2 m.unpair.2))))
 
 omit h₀ h₁ in
-/-- The sum-presentation intersection index is primitive recursive. -/
+/-- The sum-presentation intersection index is primitive recursive.
+@isnad1 id=primrec.0h6v.s5.b4beac3d06a8 from=translated src=- shape=ace9e51f vocab=ed4b7747
+-/
 theorem sumInter_primrec :
     Nat.Primrec (fun t => sumInter P₀ P₁ t.unpair.1 t.unpair.2) := by
   have hnTag : Nat.Primrec (fun t => t.unpair.1.unpair.1) :=
@@ -658,7 +727,9 @@ theorem sumInter_primrec :
       (primrec_selectFn hcnZero hP0 hP1))
 
 /-- The sum-presentation intersection index specifies the actual intersection when
-consistent. -/
+consistent.
+@isnad1 id=eq.3h8v.s7.40faca407271 from=translated src=- shape=ffe08ad0 vocab=f8b051a0
+-/
 theorem sumInter_spec {n m : ℕ} (h : ∃ k, sumEnum P₀ P₁ k ⊆ sumEnum P₀ P₁ n ∩ sumEnum P₀ P₁ m) :
     sumEnum P₀ P₁ (sumInter P₀ P₁ n m) = sumEnum P₀ P₁ n ∩ sumEnum P₀ P₁ m := by
   rcases h with ⟨k, hk⟩
@@ -705,7 +776,9 @@ theorem sumInter_spec {n m : ℕ} (h : ∃ k, sumEnum P₀ P₁ k ⊆ sumEnum P�
   · rw [show 1 - (2 - n.unpair.1) = 1 by omega, selectFn_one,
       sumEnum_master hna0 hna1, sumMaster_inter_sumEnum]
 
-/-- The master index of the sum presentation denotes the sum master. -/
+/-- The master index of the sum presentation denotes the sum master.
+@isnad1 id=eq.2h6v.s6.ab92c609afee from=translated src=- shape=bea8187e vocab=c410f69e
+-/
 theorem sumPresentation_masterIdx_spec :
     sumEnum P₀ P₁ (Nat.pair 2 0) = (sum V₀ V₁ h₀ h₁).master := by
   rw [sumEnum_master (by rw [unpair_pair_fst]; decide) (by rw [unpair_pair_fst]; decide)]
@@ -746,12 +819,17 @@ def sumPresentation (P₀ : ComputablePresentation V₀) (P₁ : ComputablePrese
 
 /-- **Theorem 7.4 (Scott 1981, PRG-19).** The sum of effectively given domains is
 effectively
-given. -/
+given.
+@isnad1 id=iseffect.4h4v.s5.68743eab8609 from=translated src=- shape=229a68ca vocab=ee2ef643
+-/
 theorem sum_isEffectivelyGiven (g₀ : V₀.IsEffectivelyGiven) (g₁ : V₁.IsEffectivelyGiven) :
     (sum V₀ V₁ h₀ h₁).IsEffectivelyGiven := by
   obtain ⟨P₀⟩ := g₀; obtain ⟨P₁⟩ := g₁
   exact ⟨sumPresentation P₀ P₁⟩
 
+/--
+@isnad1 id=eq.2h7v.s6.d6650c23dcea from=translated src=- shape=d539458f vocab=9a1255ef
+-/
 @[simp] theorem sumPresentation_X (P₀ : ComputablePresentation V₀) (P₁ : ComputablePresentation V₁)
     (t : ℕ) : (sumPresentation P₀ P₁ (h₀ := h₀) (h₁ := h₁)).X t = sumEnum P₀ P₁ t := by
   unfold sumPresentation
@@ -760,7 +838,9 @@ theorem sum_isEffectivelyGiven (g₀ : V₀.IsEffectivelyGiven) (g₁ : V₁.IsE
 /-- **Theorem 7.4 (Scott 1981, PRG-19) — `in₀` is computable.** `X⁰ₙ (in₀) Z_m ↔
 0X⁰ₙ ⊆ Z_m`, which
 tag-decodes to `(m = 0X⁰ ∧ X⁰ₙ ⊆ X⁰_{m.2}) ∨ (m = master)` (`m = 1X¹` is
-impossible as `X⁰ₙ ≠ ∅`). -/
+impossible as `X⁰ₙ ≠ ∅`).
+@isnad1 id=iscomput.2h6v.s6.4360a5b98983 from=translated src=- shape=dc214219 vocab=74cdb581
+-/
 theorem inMap₀_isComputable (P₀ : ComputablePresentation V₀) (P₁ : ComputablePresentation V₁) :
     IsComputableMap P₀ (sumPresentation P₀ P₁) (inMap₀ (h₀ := h₀) (h₁ := h₁)) := by
   have hincl : RecDecidable (fun s => P₀.X s.unpair.1 ⊆ P₀.X s.unpair.2) := P₀.incl_computable
@@ -795,7 +875,9 @@ theorem inMap₀_isComputable (P₀ : ComputablePresentation V₀) (P₁ : Compu
       rw [sumEnum_master hm0 hm1]; exact inj₀_subset_sumMaster (P₀.mem_X _)
 
 /-- **Theorem 7.4 (Scott 1981, PRG-19) — `in₁` is computable.** Symmetric to
-`in₀`. -/
+`in₀`.
+@isnad1 id=iscomput.2h6v.s6.41feb1b13a30 from=translated src=- shape=d243502e vocab=ce917d47
+-/
 theorem inMap₁_isComputable (P₀ : ComputablePresentation V₀) (P₁ : ComputablePresentation V₁) :
     IsComputableMap P₁ (sumPresentation P₀ P₁) (inMap₁ (h₀ := h₀) (h₁ := h₁)) := by
   have hincl : RecDecidable (fun s => P₁.X s.unpair.1 ⊆ P₁.X s.unpair.2) := P₁.incl_computable
@@ -833,7 +915,9 @@ theorem inMap₁_isComputable (P₀ : ComputablePresentation V₀) (P₁ : Compu
 ↔ leftPart Z_n ⊆
 X⁰_m`; tag-decoded, `leftPart` is `X⁰_{n.2}` on a left copy and `Δ₀` on a right
 copy/master, so the
-relation is `incl` against either `n.2` or the master index `k₀` (`X⁰_{k₀} = Δ₀`). -/
+relation is `incl` against either `n.2` or the master index `k₀` (`X⁰_{k₀} = Δ₀`).
+@isnad1 id=iscomput.2h6v.s6.d9d1f36bcba3 from=translated src=- shape=5f934ffb vocab=d3561120
+-/
 theorem outMap₀_isComputable (P₀ : ComputablePresentation V₀) (P₁ : ComputablePresentation V₁) :
     IsComputableMap (sumPresentation P₀ P₁) P₀ (outMap₀ (h₀ := h₀) (h₁ := h₁)) := by
   obtain ⟨k0, hk0⟩ := P₀.surj V₀.master_mem
@@ -879,7 +963,9 @@ theorem outMap₀_isComputable (P₀ : ComputablePresentation V₀) (P₁ : Comp
 
 /-- **Theorem 7.4 (Scott 1981, PRG-19) — `out₁` is computable.** Symmetric to
 `out₀` via
-`rightPart`. -/
+`rightPart`.
+@isnad1 id=iscomput.2h6v.s6.b0b2b6d8841f from=translated src=- shape=da4be386 vocab=4a34dcee
+-/
 theorem outMap₁_isComputable (P₀ : ComputablePresentation V₀) (P₁ : ComputablePresentation V₁) :
     IsComputableMap (sumPresentation P₀ P₁) P₁ (outMap₁ (h₀ := h₀) (h₁ := h₁)) := by
   obtain ⟨k1, hk1⟩ := P₁.surj V₁.master_mem

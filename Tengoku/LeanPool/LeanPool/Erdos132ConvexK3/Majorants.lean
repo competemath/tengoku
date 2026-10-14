@@ -69,16 +69,22 @@ def yzSides (D : ErLVK3MaximalGapSetup) : ℤ :=
 end ErLVK3MaximalGapSetup
 
 /-- Maximality gives the exact corrected formula `L = 3 - δ`, not merely
-ErLV's printed loose upper bound. -/
+ErLV's printed loose upper bound.
+@isnad1 id=eq.0h1v.s4.23cfafc3ba4f from=translated src=- shape=1492028a vocab=77b22b56
+-/
 theorem maximal_gap_L_eq_three_sub_delta (D : ErLVK3MaximalGapSetup) :
     D.L = 3 - (D.delta : ℤ) := rfl
 
-/-- The corrected maximal-gap formula implies the sharp signed bound `L ≤ 3`. -/
+/-- The corrected maximal-gap formula implies the sharp signed bound `L ≤ 3`.
+@isnad1 id=le.0h1v.s3.7e69f8a303a2 from=translated src=- shape=a311c14d vocab=513c80ec
+-/
 theorem maximal_gap_L_le_three (D : ErLVK3MaximalGapSetup) : D.L ≤ 3 := by
   simp [ErLVK3MaximalGapSetup.L]
 
 /-- With unwrapped indices `t=x+3`, `y=x+gₓ`, and `u=t+gₜ`, maximality
-turns the signed arc difference `u-y` into `3-δ`. -/
+turns the signed arc difference `u-y` into `3-δ`.
+@isnad1 id=eq.3h5v.s6.f29039c0e9b3 from=translated src=- shape=94fd0f43 vocab=9e58d32b
+-/
 theorem maximal_gap_signed_yu
     (D : ErLVK3MaximalGapSetup) {x t y u : ℤ}
     (ht : t = x + 3)
@@ -90,7 +96,9 @@ theorem maximal_gap_signed_yu
   omega
 
 /-- Signed arc arithmetic remains valid when `L < 0`: if
-`u-y=L`, `s-u=M`, and `z-s=b`, then `z-y=L+M+b`. -/
+`u-y=L`, `s-u=M`, and `z-s=b`, then `z-y=L+M+b`.
+@isnad1 id=eq.3h7v.s6.0972253f1979 from=translated src=- shape=958fef0d vocab=b116aaaa
+-/
 theorem signed_arc_arithmetic
     {y u s z L M b : ℤ}
     (hyu : u - y = L)
@@ -99,14 +107,18 @@ theorem signed_arc_arithmetic
     z - y = L + M + b := by
   omega
 
-/-- The second majorant gives the draft bound `M ≤ 2`. -/
+/-- The second majorant gives the draft bound `M ≤ 2`.
+@isnad1 id=le.0h1v.s3.a7cd87fe4d71 from=translated src=- shape=a311c14d vocab=fd92ec48
+-/
 theorem majorant_M_le_two (D : ErLVK3MaximalGapSetup) : D.M ≤ 2 := by
   calc
     D.M ≤ D.second.rightMoves := D.M_le_secondRight
     _ ≤ D.second.leftMoves + D.second.rightMoves := Nat.le_add_left _ _
     _ ≤ 2 := D.second.coverBudget
 
-/-- The complete signed arc identity for the maximal-gap setup. -/
+/-- The complete signed arc identity for the maximal-gap setup.
+@isnad1 id=eq.5h7v.s6.53c819307ee6 from=translated src=- shape=abb3d205 vocab=62c74a3b
+-/
 theorem maximal_gap_signed_yz
     (D : ErLVK3MaximalGapSetup) {x t y u s z : ℤ}
     (ht : t = x + 3)
@@ -128,7 +140,9 @@ def IsExceptionalMajorantRow (a b L M : ℤ) : Prop :=
   (a = 0 ∧ b = 2 ∧ L = 3 ∧ M = 2)
 
 /-- Transparent Presburger certification of draft table (3.5)/(Section 4):
-the short-arc bound fails exactly on the five displayed `(a,b,L,M)` rows. -/
+the short-arc bound fails exactly on the five displayed `(a,b,L,M)` rows.
+@isnad1 id=iff.7h5v.s6.8880fe7919de from=translated src=- shape=df099ee2 vocab=20427fb5
+-/
 theorem five_row_enumeration
     {a b L M δ : ℤ}
     (ha : 0 ≤ a) (hb : 0 ≤ b) (hM0 : 0 ≤ M) (hδ : 0 ≤ δ)
@@ -139,7 +153,9 @@ theorem five_row_enumeration
   omega
 
 /-- The structure-level form of `five_row_enumeration`, with `a,b,L,M`
-read directly from the two majorants and maximal-gap data. -/
+read directly from the two majorants and maximal-gap data.
+@isnad1 id=iff.0h1v.s5.741fd01aec07 from=translated src=- shape=1a9bc253 vocab=62f1d806
+-/
 theorem maximal_gap_five_row_enumeration (D : ErLVK3MaximalGapSetup) :
     5 < D.yzSides ↔
       IsExceptionalMajorantRow
@@ -158,7 +174,9 @@ theorem maximal_gap_five_row_enumeration (D : ErLVK3MaximalGapSetup) :
   · rfl
 
 /-- A negative signed `L` can never be exceptional; it forces the desired
-short-arc bound directly. -/
+short-arc bound directly.
+@isnad1 id=le.1h1v.s4.8fcc6eef480d from=translated src=- shape=8acc91d3 vocab=dd90cc9a
+-/
 theorem negative_L_short_arc (D : ErLVK3MaximalGapSetup) (hL : D.L < 0) :
     D.yzSides ≤ 5 := by
   have hb : D.first.rightMoves ≤ 2 := by

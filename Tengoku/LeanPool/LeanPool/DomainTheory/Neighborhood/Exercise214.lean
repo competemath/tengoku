@@ -62,12 +62,16 @@ the neighbourhood with `e(↑X) = ↑φ(X)` provided by Theorem 2.7. -/
 noncomputable def phi (e : V₀.Element ≃o V₁.Element) {X : Set α} (hX : V₀.mem X) : Set β :=
   Classical.choose (exists_principal_eq_apply_principal e hX)
 
-/-- `φ(X) ∈ 𝒟₁`. -/
+/-- `φ(X) ∈ 𝒟₁`.
+@isnad1 id=mem.1h6v.s5.d3dd07748f74 from=translated src=- shape=fa5af8a1 vocab=3fac5a5a
+-/
 theorem phi_mem (e : V₀.Element ≃o V₁.Element) {X : Set α} (hX : V₀.mem X) :
     V₁.mem (phi e hX) :=
   Classical.choose (Classical.choose_spec (exists_principal_eq_apply_principal e hX))
 
-/-- **Theorem 2.7 defining equation: `e(↑X) = ↑φ(X)`.** -/
+/-- **Theorem 2.7 defining equation: `e(↑X) = ↑φ(X)`.**
+@isnad1 id=eq.1h6v.s7.416c423b49f7 from=translated src=- shape=1415e4e4 vocab=12c6a641
+-/
 theorem phi_spec (e : V₀.Element ≃o V₁.Element) {X : Set α} (hX : V₀.mem X) :
     e (V₀.principal hX) = V₁.principal (phi_mem e hX) :=
   Classical.choose_spec (Classical.choose_spec (exists_principal_eq_apply_principal e hX))
@@ -75,7 +79,9 @@ theorem phi_spec (e : V₀.Element ≃o V₁.Element) {X : Set α} (hX : V₀.me
 /-- **Exercise 2.14 — the approximable mapping of `e` is `φ(X) ⊆ Y`.** For `X ∈
 𝒟₀`,
 `(ofIso e).rel X Y ↔ Y ∈ 𝒟₁ ∧ φ(X) ⊆ Y`. (Immediate from `phi_spec` and
-`mem_principal`.) -/
+`mem_principal`.)
+@isnad1 id=iff.1h7v.s6.9975655b1aac from=translated src=- shape=37d81c14 vocab=4bff76a7
+-/
 theorem rel_ofIso_iff (e : V₀.Element ≃o V₁.Element) {X : Set α} (hX : V₀.mem X) {Y : Set β} :
     (ofIso e).rel X Y ↔ V₁.mem Y ∧ phi e hX ⊆ Y := by
   constructor
@@ -96,7 +102,9 @@ consistent
 `e`/`e.symm`
 preserve this least upper bound, and the join of the consistent principals `↑φ(X),
 ↑φ(X')` is
-`↑(φ(X) ∩ φ(X'))`. -/
+`↑(φ(X) ∩ φ(X'))`.
+@isnad1 id=eq.3h7v.s6.bf695223c4c5 from=translated src=- shape=211d008e vocab=9febe07a
+-/
 theorem phi_inter (e : V₀.Element ≃o V₁.Element) {X X' : Set α}
     (hX : V₀.mem X) (hX' : V₀.mem X') (hXX' : V₀.mem (X ∩ X')) :
     phi e hXX' = phi e hX ∩ phi e hX' := by

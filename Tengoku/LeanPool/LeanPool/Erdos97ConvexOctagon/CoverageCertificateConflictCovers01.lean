@@ -76,7 +76,9 @@ def conflictCovers04 : Array ConflictCover :=
   ⟨5, 1593480, 17179869183, [3, 7, 12, 14, 19, 20]⟩,
   ⟨5, 274886824076, 34091302911, [2, 3, 7, 12, 19, 23, 38]⟩, ⟨4, 557088, 8514142171, [5, 15, 19]⟩]
 
-/-- Every entry in conflict-cover group 4 passes its audit. -/
+/-- Every entry in conflict-cover group 4 passes its audit.
+@isnad1 id=eq.0h0v.s3.d8d126ee9a59 from=translated src=- shape=0547e772 vocab=5d994cbb
+-/
 theorem conflictCovers04_valid :
     conflictCovers04.toList.all ConflictCover.validB = true := by
   decide
@@ -140,7 +142,9 @@ def conflictCovers05 : Array ConflictCover :=
   ⟨6, 271061000, 34090761719, [3, 12, 19, 21, 28]⟩,
   ⟨7, 70369281593344, 34359582715, [12, 14, 19, 29, 46]⟩]
 
-/-- Every entry in conflict-cover group 5 passes its audit. -/
+/-- Every entry in conflict-cover group 5 passes its audit.
+@isnad1 id=eq.0h0v.s3.cfffe0f5ae3e from=translated src=- shape=0547e772 vocab=905da8dd
+-/
 theorem conflictCovers05_valid :
     conflictCovers05.toList.all ConflictCover.validB = true := by
   decide
@@ -205,7 +209,9 @@ def conflictCovers06 : Array ConflictCover :=
   ⟨7, 70369281591296, 34351193977, [11, 14, 19, 29, 46]⟩,
   ⟨6, 537921540, 33788656767, [2, 11, 20, 29]⟩, ⟨7, 537397248, 25173498993, [11, 19, 29]⟩]
 
-/-- Every entry in conflict-cover group 6 passes its audit. -/
+/-- Every entry in conflict-cover group 6 passes its audit.
+@isnad1 id=eq.0h0v.s3.821b22211e4d from=translated src=- shape=0547e772 vocab=2c31b282
+-/
 theorem conflictCovers06_valid :
     conflictCovers06.toList.all ConflictCover.validB = true := by
   decide
@@ -277,7 +283,9 @@ def conflictCovers07 : Array ConflictCover :=
   ⟨6, 550293214240, 34359738303, [5, 10, 12, 19, 29, 39]⟩,
   ⟨6, 140737488881828, 34334572543, [2, 5, 7, 11, 19, 47]⟩]
 
-/-- Every entry in conflict-cover group 7 passes its audit. -/
+/-- Every entry in conflict-cover group 7 passes its audit.
+@isnad1 id=eq.0h0v.s3.da7e89472cf7 from=translated src=- shape=0547e772 vocab=de1d36e0
+-/
 theorem conflictCovers07_valid :
     conflictCovers07.toList.all ConflictCover.validB = true := by
   decide

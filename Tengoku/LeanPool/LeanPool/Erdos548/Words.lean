@@ -42,12 +42,18 @@ namespace Erdos548
 def MarkedEnd {α : Type*} (N : α → Prop) (l : List α) : Prop :=
   ∃ a, l.getLast? = some a ∧ N a
 
+/--
+@isnad1 id=ne.1h3v.s4.270815a7bbee from=translated src=- shape=a4b5c099 vocab=dccac234
+-/
 lemma markedEnd_not_nil {α : Type*} {N : α → Prop} {l : List α}
     (h : MarkedEnd N l) : l ≠ [] := by
   rintro rfl
   obtain ⟨a, ha, _⟩ := h
   simp at ha
 
+/--
+@isnad1 id=markeden.2h4v.s5.78b6338d4648 from=translated src=- shape=8406798e vocab=599fbd7e
+-/
 lemma markedEnd_append_right {α : Type*} {N : α → Prop} {r x : List α}
     (h : MarkedEnd N (r ++ x)) (hx : x ≠ []) : MarkedEnd N x := by
   obtain ⟨a, ha, hN⟩ := h
@@ -65,6 +71,9 @@ lemma markedEnd_append_right {α : Type*} {N : α → Prop} {r x : List α}
 def FirstPrefix {α : Type*} (P : List α → Prop) (r : List α) : Prop :=
   P r ∧ ∀ j < r.length, ¬P (r.take j)
 
+/--
+@isnad1 id=and.3h6v.s6.11b96f0cb57f from=translated src=- shape=86e7e01c vocab=e60fc22d
+-/
 lemma firstPrefix_unique {α : Type*} {P : List α → Prop} {r y r' y' : List α}
     (hr : FirstPrefix P r) (hr' : FirstPrefix P r') (he : r ++ y = r' ++ y') :
     r = r' ∧ y = y' := by
@@ -79,6 +88,9 @@ lemma firstPrefix_unique {α : Type*} {P : List α → Prop} {r y r' y' : List �
       exact hr.2 r'.length h (hh.symm ▸ hr'.1)
   exact ⟨List.append_inj_left he hlen, List.append_inj_right he hlen⟩
 
+/--
+@isnad1 id=eq.3h8v.s7.a13716338b43 from=translated src=- shape=28b2c14e vocab=ab48cac2
+-/
 lemma firstPrefix_rotation_injective {α : Type*} {P : List α → Prop}
     {r x y r' x' y' : List α} (hr : FirstPrefix P r) (hr' : FirstPrefix P r')
     (he : (x ++ (r ++ y), x.length) = (x' ++ (r' ++ y'), x'.length)) :
@@ -95,7 +107,9 @@ lemma firstPrefix_rotation_injective {α : Type*} {P : List α → Prop}
 
 /-- Cut at the first qualifying marked prefix and rotate it past the rest of
 an input prefix. Its new prefix is a disjoint difference and hence cannot
-belong to the second family. -/
+belong to the second family.
+@isnad1 id=ex.4h9v.s7.e5312916c6d7 from=translated src=- shape=8cd9cbd1 vocab=1cfcd3d7
+-/
 lemma marked_prefix_rotation_exists {α : Type*} [DecidableEq α]
     (N : α → Prop) (A B C : Finset α → Prop)
     (hglue : ∀ R X, Disjoint R X → A R → B X → C (R ∪ X))
@@ -153,6 +167,9 @@ def PrefixRotation {α : Type*} (P : List α → Prop)
   ∃ r x y : List α, u = ((r ++ x) ++ y, r.length + x.length) ∧
     v = (x ++ (r ++ y), x.length) ∧ FirstPrefix P r
 
+/--
+@isnad1 id=eq.2h5v.s5.a8ee3abe80cb from=translated src=- shape=64a78ecb vocab=d76e94d5
+-/
 lemma prefixRotation_left_unique {α : Type*} {P : List α → Prop}
     {u u' v : List α × ℕ} (h : PrefixRotation P u v) (h' : PrefixRotation P u' v) : u = u' := by
   obtain ⟨r, x, y, rfl, hv, hr⟩ := h
@@ -175,6 +192,9 @@ noncomputable def goodWordCuts {α : Type*} [DecidableEq α]
   exact (W ×ˢ Finset.range (m + 1)).filter
     (fun p => MarkedEnd N (p.1.take p.2) ∧ A (p.1.take p.2).toFinset)
 
+/--
+@isnad1 id=le.0h5v.s5.75af9ef8fab3 from=translated src=- shape=3cf89081 vocab=f2e461be
+-/
 lemma goodWordCuts_subset_allowed {α : Type*} [DecidableEq α]
     (W : Finset (List α)) (m : ℕ) (N : α → Prop) (A : Finset α → Prop) :
     goodWordCuts W m N A ⊆ allowedWordCuts W m N := by
@@ -183,6 +203,9 @@ lemma goodWordCuts_subset_allowed {α : Type*} [DecidableEq α]
   obtain ⟨hp, hm, _⟩ := Finset.mem_filter.mp hp
   exact Finset.mem_filter.mpr ⟨hp, Or.inr hm⟩
 
+/--
+@isnad1 id=le.0h7v.s6.78c1226a74c0 from=translated src=- shape=f2695b33 vocab=5042f808
+-/
 lemma goodWordCuts_mono {α : Type*} [DecidableEq α]
     (W : Finset (List α)) (m : ℕ) (N : α → Prop) (A C : Finset α → Prop)
     (hCA : ∀ X, C X → A X) : goodWordCuts W m N C ⊆ goodWordCuts W m N A := by
@@ -192,7 +215,9 @@ lemma goodWordCuts_mono {α : Type*} [DecidableEq α]
   exact Finset.mem_filter.mpr ⟨hp, hm, hCA _ hC⟩
 
 /-- The exact finite marked-word gluing inequality. The ambient word family
-must be closed under permutation; every word is repetition-free. -/
+must be closed under permutation; every word is repetition-free.
+@isnad1 id=le.3h9v.s7.6a8e4d929843 from=translated src=- shape=1d07d010 vocab=4d72fdf5
+-/
 lemma marked_word_gluing_count {α : Type*} [DecidableEq α]
     (W : Finset (List α)) (m : ℕ) (N : α → Prop) (A B C : Finset α → Prop)
     (hlen : ∀ l ∈ W, l.length = m) (hnodup : ∀ l ∈ W, l.Nodup)
@@ -265,15 +290,24 @@ attribute [local instance] Classical.propDecidable
 noncomputable def permutationWords {α : Type*} [DecidableEq α] (l : List α) :
     Finset (List α) := l.permutations.toFinset
 
+/--
+@isnad1 id=iff.0h3v.s5.7a5c67e7af1e from=translated src=- shape=898fe02d vocab=40449b17
+-/
 lemma mem_permutationWords {α : Type*} [DecidableEq α] (l q : List α) :
     q ∈ permutationWords l ↔ q.Perm l := by
   simp only [permutationWords, List.mem_toFinset, List.mem_permutations]
 
+/--
+@isnad1 id=eq.1h2v.s4.4a5f17c95770 from=translated src=- shape=31c54666 vocab=8a96dfd1
+-/
 lemma permutationWords_card {α : Type*} [DecidableEq α] (l : List α) (hl : l.Nodup) :
     (permutationWords l).card = l.length.factorial := by
   rw [permutationWords, List.toFinset_card_of_nodup (List.nodup_permutations l hl),
     List.length_permutations]
 
+/--
+@isnad1 id=iff.1h4v.s5.319f4643b0c1 from=translated src=- shape=beb8f99a vocab=3144d431
+-/
 lemma markedEnd_take_succ {α : Type*} (N : α → Prop) (l : List α) (i : ℕ)
     (hi : i < l.length) : MarkedEnd N (l.take (i + 1)) ↔ N l[i] := by
   rw [List.take_succ_eq_append_getElem hi]
@@ -284,6 +318,9 @@ lemma markedEnd_take_succ {α : Type*} (N : α → Prop) (l : List α) (i : ℕ)
   · intro h
     exact ⟨l[i], rfl, h⟩
 
+/--
+@isnad1 id=lt.1h4v.s4.7e469df46f0e from=translated src=- shape=3f20bf41 vocab=f8cca3a6
+-/
 lemma markedEnd_take_pos {α : Type*} {N : α → Prop} {l : List α} {k : ℕ}
     (h : MarkedEnd N (l.take k)) : 0 < k := by
   by_contra hn
@@ -291,6 +328,9 @@ lemma markedEnd_take_pos {α : Type*} {N : α → Prop} {l : List α} {k : ℕ}
   rw [hk, List.take_zero] at h
   exact markedEnd_not_nil h rfl
 
+/--
+@isnad1 id=iff.1h4v.s6.c507a9494eb2 from=translated src=- shape=664011e3 vocab=05fa8d6c
+-/
 lemma markedEnd_take_iff {α : Type*} (N : α → Prop) (l : List α) (k : ℕ)
     (hk : k ≤ l.length) :
     MarkedEnd N (l.take k) ↔ ∃ h : 0 < k, N (l[k - 1]'(by omega)) := by
@@ -305,6 +345,9 @@ lemma markedEnd_take_iff {α : Type*} (N : α → Prop) (l : List α) (k : ℕ)
     have hh := (markedEnd_take_succ N l (k - 1) (by omega)).mpr h
     simpa only [Nat.sub_add_cancel hp] using hh
 
+/--
+@isnad1 id=eq.1h3v.s6.2664d776c7c7 from=translated src=- shape=a9931f65 vocab=75a4c654
+-/
 lemma marked_prefix_card {α : Type*} [DecidableEq α] (N : α → Prop)
     (l : List α) (hl : l.Nodup) :
     (Finset.filter (fun k => MarkedEnd N (l.take k)) (Finset.range (l.length + 1))).card =
@@ -334,6 +377,9 @@ lemma marked_prefix_card {α : Type*} [DecidableEq α] (N : α → Prop)
     refine ⟨i + 1, hF, ?_⟩
     simpa only [f, Nat.add_sub_cancel] using hia
 
+/--
+@isnad1 id=eq.2h4v.s6.213ddd1c8dbb from=translated src=- shape=f410822b vocab=b9c11896
+-/
 lemma goodWordCuts_true_card {α : Type*} [DecidableEq α]
     (W : Finset (List α)) (m : ℕ) (N : α → Prop)
     (hlen : ∀ l ∈ W, l.length = m) (hnodup : ∀ l ∈ W, l.Nodup) :
@@ -347,6 +393,9 @@ lemma goodWordCuts_true_card {α : Type*} [DecidableEq α]
   simp only [and_true]
   rw [← Finset.card_filter, ← hlen l hl, marked_prefix_card N l (hnodup l hl)]
 
+/--
+@isnad1 id=eq.0h4v.s5.a357ff113d37 from=translated src=- shape=2f6940d8 vocab=7003d28d
+-/
 lemma allowedWordCuts_card {α : Type*} [DecidableEq α]
     (W : Finset (List α)) (m : ℕ) (N : α → Prop) :
     (allowedWordCuts W m N).card = W.card + (goodWordCuts W m N (fun _ => True)).card := by
@@ -390,6 +439,9 @@ def FullWordQualifies {α : Type*} [DecidableEq α]
     (N : α → α → Prop) (A : α → Finset α → Prop) (l : List α) (k : ℕ) : Prop :=
   ∃ b q, l = b::q ∧ MarkedEnd (N b) (q.take k) ∧ A b (q.take k).toFinset
 
+/--
+@isnad1 id=iff.0h6v.s5.26f4cc2fa132 from=translated src=- shape=eee0832b vocab=8a05e7ae
+-/
 lemma fullWordQualifies_cons {α : Type*} [DecidableEq α]
     (N : α → α → Prop) (A : α → Finset α → Prop) (b : α) (q : List α) (k : ℕ) :
     FullWordQualifies N A (b::q) k ↔
@@ -412,12 +464,18 @@ noncomputable def fullWordCount {α : Type*} [DecidableEq α]
     (l₀ : List α) (N : α → α → Prop) (A : α → Finset α → Prop) : ℕ :=
   (fullGoodWordCuts l₀ N A).card
 
+/--
+@isnad1 id=iff.0h6v.s6.2e4b39bf5de3 from=translated src=- shape=173905ac vocab=10bb337b
+-/
 lemma mem_fullGoodWordCuts {α : Type*} [DecidableEq α]
     (l₀ : List α) (N : α → α → Prop) (A : α → Finset α → Prop) (l : List α) (k : ℕ) :
     (l, k) ∈ fullGoodWordCuts l₀ N A ↔ l.Perm l₀ ∧ k < l₀.length ∧ FullWordQualifies N A l k := by
   simp only [fullGoodWordCuts, Finset.mem_filter, Finset.mem_product, mem_permutationWords,
     Finset.mem_range, and_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s6.a5975685efc5 from=translated src=- shape=3682213d vocab=0aa8a776
+-/
 lemma fullWordCount_eq_sum {α : Type*} [DecidableEq α]
     (l₀ : List α) (N : α → α → Prop) (A : α → Finset α → Prop) :
     fullWordCount l₀ N A = ∑ b ∈ l₀.toFinset,
@@ -467,7 +525,9 @@ lemma fullWordCount_eq_sum {α : Type*} [DecidableEq α]
   exact Prod.ext hq hk
 
 /-- Sum of the numbers of outer words: exactly one full word for every
-choice of its head and its outer permutation. -/
+choice of its head and its outer permutation.
+@isnad1 id=eq.2h2v.s5.b0d47c7ac3fd from=translated src=- shape=448b1fa8 vocab=db2b8f5a
+-/
 lemma sum_outer_words_card {α : Type*} [DecidableEq α] (l₀ : List α) (hl : l₀.Nodup)
     (hne : l₀ ≠ []) :
     (∑ b ∈ l₀.toFinset, (permutationWords (l₀.erase b)).card) = (permutationWords l₀).card := by
@@ -482,7 +542,9 @@ lemma sum_outer_words_card {α : Type*} [DecidableEq α] (l₀ : List α) (hl : 
     permutationWords_card l₀ hl, Nat.cast_id]
   simpa only [Nat.sub_add_cancel hn] using (Nat.factorial_succ (l₀.length - 1)).symm
 
-/-- Root-dependent gluing, summed over ALL full permutation words. -/
+/-- Root-dependent gluing, summed over ALL full permutation words.
+@isnad1 id=le.2h8v.s7.ff4e0aea4c8c from=translated src=- shape=e12e1f45 vocab=fbfc02d1
+-/
 lemma full_word_gluing_count {α : Type*} [DecidableEq α]
     (l₀ : List α) (hl : l₀.Nodup) (hne : l₀ ≠ [])
     (N : α → α → Prop) (A B C : α → Finset α → Prop)
@@ -516,10 +578,16 @@ lemma full_word_gluing_count {α : Type*} [DecidableEq α]
 def reverseWordAt {α : Type*} (l : List α) (c : ℕ) : List α :=
   (l.take c).reverse ++ (l.drop c).reverse
 
+/--
+@isnad1 id=perm.0h3v.s3.49f0e42469a0 from=translated src=- shape=0438c52b vocab=a78c0092
+-/
 lemma reverseWordAt_perm {α : Type*} (l : List α) (c : ℕ) : (reverseWordAt l c).Perm l := by
   have h := (List.reverse_perm (l.take c)).append (List.reverse_perm (l.drop c))
   simpa only [reverseWordAt, List.take_append_drop] using h
 
+/--
+@isnad1 id=eq.0h3v.s4.4d25e54ffea0 from=translated src=- shape=8da93ded vocab=2cfb9192
+-/
 lemma reverseWordAt_involutive {α : Type*} (l : List α) (c : ℕ) :
     reverseWordAt (reverseWordAt l c) c = l := by
   by_cases hc : c ≤ l.length
@@ -543,13 +611,22 @@ lemma reverseWordAt_involutive {α : Type*} (l : List α) (c : ℕ) :
 def reverseCutPair {α : Type*} (p : List α × ℕ) : List α × ℕ :=
   (reverseWordAt p.1 (p.2 + 1), p.2)
 
+/--
+@isnad1 id=involuti.0h1v.s3.19b0ab3a86b9 from=translated src=- shape=59b7f7c9 vocab=3a88a008
+-/
 lemma reverseCutPair_involutive {α : Type*} : Function.Involutive (@reverseCutPair α) := by
   rintro ⟨l, k⟩
   exact Prod.ext (reverseWordAt_involutive l (k + 1)) rfl
 
+/--
+@isnad1 id=injectiv.0h1v.s3.8d8a20163bae from=translated src=- shape=6c9ffd75 vocab=eda73597
+-/
 lemma reverseCutPair_injective {α : Type*} : Function.Injective (@reverseCutPair α) :=
   reverseCutPair_involutive.injective
 
+/--
+@isnad1 id=eq.0h5v.s6.42c777cc2af0 from=translated src=- shape=5ce33095 vocab=89d58586
+-/
 lemma reverseWordAt_decomposition {α : Type*} (b w : α) (p q : List α) :
     reverseWordAt (b::(p ++ w::q)) (p.length + 2) = w::(p.reverse ++ b::q.reverse) := by
   have he : b::(p ++ w::q) = (b::(p ++ [w])) ++ q := by
@@ -560,7 +637,9 @@ lemma reverseWordAt_decomposition {α : Type*} (b w : α) (p q : List α) :
     List.nil_append, List.append_assoc, List.reverse_nil]
 
 /-- A first-state loss of at most one per full word, followed by the cut
-reversal involution. This is purely finite counting. -/
+reversal involution. This is purely finite counting.
+@isnad1 id=le.1h6v.s7.6a35637baa69 from=translated src=- shape=c5d6b169 vocab=9822171c
+-/
 lemma full_word_transfer_count {α : Type*} [DecidableEq α]
     (l₀ : List α) (N N' : α → α → Prop) (A B : α → Finset α → Prop)
     (hstep : ∀ l, l.Perm l₀ → ∀ k, k < l₀.length → FullWordQualifies N A l k →

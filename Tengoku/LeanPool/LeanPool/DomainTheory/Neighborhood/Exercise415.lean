@@ -55,7 +55,9 @@ namespace NeighborhoodSystem
 
 /-- `chainUnion C` is the least upper bound of the chain: an upper bound `y` of
 every member
-dominates it. -/
+dominates it.
+@isnad1 id=le.3h4v.s6.4b61eac0e5f0 from=translated src=- shape=7b67c4c6 vocab=eebe957f
+-/
 theorem chainUnion_le (C : Set V.Element) (hne : C.Nonempty) (hchain : IsChain (· ≤ ·) C)
     {y : V.Element} (hy : ∀ x ∈ C, x ≤ y) : V.chainUnion C hne hchain ≤ y := by
   rintro Z ⟨x, hxC, hxZ⟩
@@ -63,7 +65,9 @@ theorem chainUnion_le (C : Set V.Element) (hne : C.Nonempty) (hchain : IsChain (
 
 /-- **Exercise 4.15 (Scott 1981, PRG-19).** A monotone `f : |𝒟| → |𝒟|` has a
 *maximal* fixed point:
-some `m` with `f(m) = m` that admits no strictly larger fixed point. -/
+some `m` with `f(m) = m` that admits no strictly larger fixed point.
+@isnad1 id=ex.1h3v.s6.e086f538edb8 from=translated src=- shape=5125504b vocab=c4c92325
+-/
 theorem exists_maximal_fixedPoint (f : V.Element → V.Element) (hf : Monotone f) :
     ∃ m, f m = m ∧ ∀ y, f y = y → m ≤ y → y ≤ m := by
   -- Zorn on the set of post-fixed points.
@@ -90,7 +94,9 @@ theorem exists_maximal_fixedPoint (f : V.Element → V.Element) (hf : Monotone f
 *least* fixed point.
 (Having a maximal fixed point `m` gives a pre-fixed point `f(m) ⊑ m`; Exercise
 4.13(1)'s `monoFix`
-then constructs the least fixed point `⋂{x ∣ f(x) ⊑ x}`.) -/
+then constructs the least fixed point `⋂{x ∣ f(x) ⊑ x}`.)
+@isnad1 id=ex.1h3v.s6.059e88ed0f9a from=translated src=- shape=02f62ab5 vocab=c4c92325
+-/
 theorem exists_least_fixedPoint (f : V.Element → V.Element) (hf : Monotone f) :
     ∃ b, f b = b ∧ ∀ y, f y = y → b ≤ y := by
   obtain ⟨m, hfm, _⟩ := exists_maximal_fixedPoint f hf

@@ -62,7 +62,9 @@ variable {τ : Type*} (C : Set (Set τ))
 `C`. -/
 def Cl (F : Set τ) : Set τ := ⋂₀ {X | X ∈ C ∧ F ⊆ X}
 
-/-- `F ⊆ Fbar`: a set is contained in its closure. -/
+/-- `F ⊆ Fbar`: a set is contained in its closure.
+@isnad1 id=le.0h3v.s4.4c3baae2babd from=translated src=- shape=c45e9601 vocab=470121b5
+-/
 theorem subset_Cl (F : Set τ) : F ⊆ Cl C F := by
   intro t ht
   rw [Cl, Set.mem_sInter]
@@ -70,7 +72,9 @@ theorem subset_Cl (F : Set τ) : F ⊆ Cl C F := by
   exact hX.2 ht
 
 /-- `Fbar ⊆ X` whenever `X ∈ C` contains `F`: the closure is the *smallest* member
-of `C` over `F`. -/
+of `C` over `F`.
+@isnad1 id=le.2h4v.s5.8077cf61dbfc from=translated src=- shape=33a909e4 vocab=07c4b77a
+-/
 theorem Cl_subset {F X : Set τ} (hX : X ∈ C) (hFX : F ⊆ X) : Cl C F ⊆ X := by
   intro t ht
   exact (Set.mem_sInter.mp ht) X ⟨hX, hFX⟩
@@ -85,7 +89,9 @@ variable (hInter : ∀ 𝒮 : Set (Set τ), 𝒮.Nonempty → 𝒮 ⊆ C → ⋂
 
 include hInter in
 /-- Every closure `Fbar` of a token lies in `C` (closure under non-empty
-intersection). -/
+intersection).
+@isnad1 id=mem.2h3v.s6.e56dfd7b31f4 from=translated src=- shape=3fb3c109 vocab=c761af62
+-/
 theorem Cl_mem {F : Set τ} (h : ∃ X ∈ C, F ⊆ X) : Cl C F ∈ C := by
   change ⋂₀ {X | X ∈ C ∧ F ⊆ X} ∈ C
   apply hInter
@@ -98,11 +104,16 @@ theorem Cl_mem {F : Set τ} (h : ∃ X ∈ C, F ⊆ X) : Cl C F ∈ C := by
 /-- Scott's neighbourhood `C(F) = {G ∈ Δ ∣ F ⊆ Gbar}`. -/
 def nbhd (F : Set τ) : Set (Tok C) := {G | F ⊆ Cl C G.1}
 
+/--
+@isnad1 id=iff.0h4v.s5.9f6dc3783df2 from=translated src=- shape=616d1ffc vocab=b54d2fca
+-/
 @[simp] theorem mem_nbhd {F : Set τ} {G : Tok C} : G ∈ nbhd C F ↔ F ⊆ Cl C G.1 := Iff.rfl
 
 include hInter in
 /-- `C(F) ⊆ C(G) ↔ G ⊆ Fbar`: comparison of neighbourhoods reduces to inclusion
-against closures. -/
+against closures.
+@isnad1 id=iff.2h4v.s6.0139b811d65b from=translated src=- shape=039b2011 vocab=4d347329
+-/
 theorem nbhd_subset_iff {F G : Set τ} (hF : IsTok C F) :
     nbhd C F ⊆ nbhd C G ↔ G ⊆ Cl C F := by
   constructor
@@ -112,7 +123,9 @@ theorem nbhd_subset_iff {F G : Set τ} (hF : IsTok C F) :
   · intro hG H hH
     exact hG.trans (Cl_subset C (Cl_mem C hInter H.2.2) hH)
 
-/-- `C(∅) = Δ`: the empty token's neighbourhood is everything (the master). -/
+/-- `C(∅) = Δ`: the empty token's neighbourhood is everything (the master).
+@isnad1 id=eq.0h2v.s4.a482c426275c from=translated src=- shape=4af67cf8 vocab=d7fdac57
+-/
 theorem nbhd_empty : nbhd C (∅ : Set τ) = Set.univ := by
   ext G
   simp [nbhd]
@@ -142,9 +155,15 @@ def reprSystem : NeighborhoodSystem (Tok C) where
     simp only [mem_nbhd, Set.mem_inter_iff, Set.union_subset_iff]
   sub_master := fun _ => Set.subset_univ _
 
+/--
+@isnad1 id=iff.2h3v.s6.f39ed708096a from=translated src=- shape=84460c3e vocab=a6c34ac2
+-/
 @[simp] theorem mem_reprSystem {N : Set (Tok C)} :
     (reprSystem C hInter hne).mem N ↔ ∃ F : Tok C, N = nbhd C F.1 := Iff.rfl
 
+/--
+@isnad1 id=eq.2h2v.s5.9c5beb714a04 from=translated src=- shape=b723631f vocab=730923b3
+-/
 @[simp] theorem reprSystem_master : (reprSystem C hInter hne).master = Set.univ := rfl
 
 /-! ### From an element to a set of `C`: `x ↦ ⋃ {Fbar ∣ C(F) ∈ x}`. -/
@@ -158,6 +177,9 @@ def famC (x : (reprSystem C hInter hne).Element) : Set (Set τ) :=
 `x`. -/
 def toC (x : (reprSystem C hInter hne).Element) : Set τ := ⋃₀ famC C hInter hne x
 
+/--
+@isnad1 id=iff.2h4v.s6.c20dc2543208 from=translated src=- shape=3de26cfd vocab=c750e9b1
+-/
 theorem mem_toC (x : (reprSystem C hInter hne).Element) {t : τ} :
     t ∈ toC C hInter hne x ↔ ∃ F : Tok C, x.mem (nbhd C F.1) ∧ t ∈ Cl C F.1 := by
   simp only [toC, famC, Set.mem_sUnion, Set.mem_ofPred_eq]
@@ -167,7 +189,9 @@ theorem mem_toC (x : (reprSystem C hInter hne).Element) {t : τ} :
 `C(F₃) ∈ x` whose
 closure dominates both `Fbar` and `Fbar'`. (From the filter intersection `C(F) ∩ C(F')
 ∈ x`, which is
-some `C(F₃)`.) -/
+some `C(F₃)`.)
+@isnad1 id=ex.4h5v.s7.eefc27698c9e from=translated src=- shape=7aad7641 vocab=075fcccb
+-/
 theorem directed_step (x : (reprSystem C hInter hne).Element) {F F' : Tok C}
     (hF : x.mem (nbhd C F.1)) (hF' : x.mem (nbhd C F'.1)) :
     ∃ F₃ : Tok C, x.mem (nbhd C F₃.1) ∧ Cl C F.1 ⊆ Cl C F₃.1 ∧ Cl C F'.1 ⊆ Cl C F₃.1 := by
@@ -182,7 +206,9 @@ theorem directed_step (x : (reprSystem C hInter hne).Element) {F F' : Tok C}
   · exact Cl_subset C (Cl_mem C hInter F₃.2.2) hF₃self.2
 
 /-- The empty token's neighbourhood `C(∅) = Δ` is in every element (it is the
-master). -/
+master).
+@isnad1 id=mem.2h3v.s6.6f4c0cdb8c11 from=translated src=- shape=5e0cde0f vocab=191941f2
+-/
 theorem mem_nbhd_bot (x : (reprSystem C hInter hne).Element) :
     x.mem (nbhd C (botTok C hne).1) := by
   have h : (botTok C hne).1 = (∅ : Set τ) := rfl
@@ -191,7 +217,9 @@ theorem mem_nbhd_bot (x : (reprSystem C hInter hne).Element) :
 
 /-- **Finite sets are captured by a single token.** A finite `s ⊆ toC x` is
 contained in some `Fbar`
-with `C(F) ∈ x` — the finite-subcover property of the directed union `toC x`. -/
+with `C(F) ∈ x` — the finite-subcover property of the directed union `toC x`.
+@isnad1 id=ex.4h4v.s6.4b67f16033c8 from=translated src=- shape=b48d86fa vocab=f8ae6484
+-/
 theorem exists_tok_of_finite_subset (x : (reprSystem C hInter hne).Element) {s : Set τ}
     (hs : s.Finite) (hsub : s ⊆ toC C hInter hne x) :
     ∃ F : Tok C, x.mem (nbhd C F.1) ∧ s ⊆ Cl C F.1 := by
@@ -215,7 +243,9 @@ theorem exists_tok_of_finite_subset (x : (reprSystem C hInter hne).Element) {s :
 Reverse: `G` is
 finite, so the finite-subcover lemma gives `F` with `C(F) ∈ x` and `G ⊆ Fbar`,
 whence `C(F) ⊆ C(G)`
-and upward closure gives `C(G) ∈ x`. -/
+and upward closure gives `C(G) ∈ x`.
+@isnad1 id=iff.2h4v.s6.c4cb64cd9ab9 from=translated src=- shape=44b3bcee vocab=74b0ee96
+-/
 theorem mem_nbhd_iff (x : (reprSystem C hInter hne).Element) (G : Tok C) :
     x.mem (nbhd C G.1) ↔ G.1 ⊆ toC C hInter hne x := by
   constructor
@@ -251,7 +281,9 @@ def ofC (X : Set τ) (hX : X ∈ C) : (reprSystem C hInter hne).Element where
     exact ⟨hM, F, hFX, hFN.trans hNM⟩
 
 /-- **Scott's identity** `X = ⋃ {Fbar ∣ F ⊆ X, F ∈ Δ}` in round-trip form: `toC (ofC
-X) = X`. -/
+X) = X`.
+@isnad1 id=eq.3h3v.s6.167bc4982f62 from=translated src=- shape=bb20dd01 vocab=35f94ccb
+-/
 theorem toC_ofC (X : Set τ) (hX : X ∈ C) : toC C hInter hne (ofC C hInter hne X hX) = X := by
   apply Set.Subset.antisymm
   · intro t ht
@@ -271,7 +303,9 @@ variable (hDir : ∀ 𝒮 : Set (Set τ), 𝒮.Nonempty → 𝒮 ⊆ C → Direc
 
 include hDir in
 /-- `toC x ∈ C`: the represented set lies in the family (closure under directed
-unions). -/
+unions).
+@isnad1 id=mem.3h3v.s6.b42c1b4093ac from=translated src=- shape=75985630 vocab=cbd28434
+-/
 theorem toC_mem (x : (reprSystem C hInter hne).Element) : toC C hInter hne x ∈ C := by
   change ⋃₀ famC C hInter hne x ∈ C
   apply hDir (famC C hInter hne x)
@@ -282,7 +316,9 @@ theorem toC_mem (x : (reprSystem C hInter hne).Element) : toC C hInter hne x ∈
     obtain ⟨F₃, hF₃, hFF₃, hF'F₃⟩ := directed_step C hInter hne x hF hF'
     exact ⟨Cl C F₃.1, ⟨F₃, hF₃, rfl⟩, hFF₃, hF'F₃⟩
 
-/-- The other round-trip `ofC (toC x) = x`. -/
+/-- The other round-trip `ofC (toC x) = x`.
+@isnad1 id=eq.3h3v.s7.258a5f213a6b from=translated src=- shape=61aac1b1 vocab=254ecc26
+-/
 theorem ofC_toC (x : (reprSystem C hInter hne).Element) :
     ofC C hInter hne (toC C hInter hne x) (toC_mem C hInter hne hDir x) = x := by
   apply Element.ext

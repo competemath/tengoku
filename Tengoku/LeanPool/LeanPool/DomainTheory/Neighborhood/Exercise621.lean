@@ -60,11 +60,16 @@ variable {D₀ D₁ : NeighborhoodSystem Str}
 the shared `sumTokMaster`. -/
 
 /-- If `X ⊆ Δ` and `X ≠ Δ`, then any intersection `X ∩ X'` is still `≠ Δ` (it is
-`⊆ X ⊊ Δ`). -/
+`⊆ X ⊊ Δ`).
+@isnad1 id=ne.2h3v.s5.052c7d850c7a from=translated src=- shape=2965d4d5 vocab=44ff12a0
+-/
 theorem inter_ne_of_ne_left {X X' Δ : Set Str} (hX : X ⊆ Δ) (hne : X ≠ Δ) : X ∩ X' ≠ Δ := by
   intro h
   exact hne (Set.Subset.antisymm hX (by rw [← h]; exact Set.inter_subset_left))
 
+/--
+@isnad1 id=ne.2h3v.s5.0164b4c2a4b3 from=translated src=- shape=a80391d8 vocab=44ff12a0
+-/
 theorem inter_ne_of_ne_right {X X' Δ : Set Str} (hX' : X' ⊆ Δ) (hne : X' ≠ Δ) : X ∩ X' ≠ Δ := by
   intro h
   exact hne (Set.Subset.antisymm hX' (by rw [← h]; exact Set.inter_subset_right))
@@ -127,6 +132,9 @@ def oplusTok (D₀ D₁ : NeighborhoodSystem Str)
 
 variable {h₀ : ∀ X, D₀.mem X → X.Nonempty} {h₁ : ∀ Y, D₁.mem Y → Y.Nonempty}
 
+/--
+@isnad1 id=nonempty.3h3v.s5.5efde57e6bf6 from=translated src=- shape=d82c9303 vocab=199dcfd6
+-/
 theorem oplusTok_nonempty : ∀ W, (oplusTok D₀ D₁ h₀ h₁).mem W → W.Nonempty := by
   rintro W (rfl | ⟨X, hX, -, rfl⟩ | ⟨Y, hY, -, rfl⟩)
   · exact ⟨[], nil_mem_sumTokMaster⟩
@@ -176,6 +184,9 @@ def otimesTok (D₀ D₁ : NeighborhoodSystem Str) : NeighborhoodSystem Str wher
             D₁.inter_mem hY hY' hZ₁ hsub₁, inter_ne_of_ne_left (D₀.sub_master hX) hXne,
             inter_ne_of_ne_left (D₁.sub_master hY) hYne, rfl⟩
 
+/--
+@isnad1 id=nonempty.1h3v.s4.a4507adb4731 from=translated src=- shape=3c0c9b90 vocab=a492d0be
+-/
 theorem otimesTok_nonempty : ∀ W, (otimesTok D₀ D₁).mem W → W.Nonempty := by
   rintro W (rfl | ⟨X, Y, -, -, -, -, rfl⟩) <;> exact ⟨[], mem_prodTokNbhd_nil⟩
 
@@ -191,14 +202,26 @@ def ScottSys.otimes (A₀ A₁ : ScottSys) : ScottSys :=
 
 /-! ## Membership inversions -/
 
+/--
+@isnad1 id=mem.2h2v.s5.3184fdb2722d from=translated src=- shape=703964ee vocab=dfea8983
+-/
 theorem oplusTok_mem_master : (oplusTok D₀ D₁ h₀ h₁).mem (sumTokMaster D₀ D₁) := Or.inl rfl
 
+/--
+@isnad1 id=mem.4h3v.s5.e15af5598f52 from=translated src=- shape=7d4fab9e vocab=8dfdf39a
+-/
 theorem oplusTok_mem_embF {X : Set Str} (hX : D₀.mem X) (hXne : X ≠ D₀.master) :
     (oplusTok D₀ D₁ h₀ h₁).mem (embBit false X) := Or.inr (Or.inl ⟨X, hX, hXne, rfl⟩)
 
+/--
+@isnad1 id=mem.4h3v.s5.93831d6d336c from=translated src=- shape=5da532fd vocab=e928b431
+-/
 theorem oplusTok_mem_embT {Y : Set Str} (hY : D₁.mem Y) (hYne : Y ≠ D₁.master) :
     (oplusTok D₀ D₁ h₀ h₁).mem (embBit true Y) := Or.inr (Or.inr ⟨Y, hY, hYne, rfl⟩)
 
+/--
+@isnad1 id=mem.3h3v.s5.ca509eaf2d25 from=translated src=- shape=1f2f625c vocab=ad7ee931
+-/
 theorem oplusTok_mem_embF_inv {W : Set Str} (h : (oplusTok D₀ D₁ h₀ h₁).mem (embBit false W)) :
     D₀.mem W := by
   rcases h with h0 | ⟨X, hX, -, heq⟩ | ⟨Y, hY, -, heq⟩
@@ -206,6 +229,9 @@ theorem oplusTok_mem_embF_inv {W : Set Str} (h : (oplusTok D₀ D₁ h₀ h₁).
   · rw [embBit_injective heq]; exact hX
   · exact absurd heq.symm (embBit_ne (show (true : Bool) ≠ false by decide) (h₁ Y hY))
 
+/--
+@isnad1 id=mem.3h3v.s5.4da1b6bfef63 from=translated src=- shape=aefcf185 vocab=2ab98734
+-/
 theorem oplusTok_mem_embT_inv {W : Set Str} (h : (oplusTok D₀ D₁ h₀ h₁).mem (embBit true W)) :
     D₁.mem W := by
   rcases h with h0 | ⟨X, hX, -, heq⟩ | ⟨Y, hY, -, heq⟩
@@ -213,12 +239,21 @@ theorem oplusTok_mem_embT_inv {W : Set Str} (h : (oplusTok D₀ D₁ h₀ h₁).
   · exact absurd heq.symm (embBit_ne (show (false : Bool) ≠ true by decide) (h₀ X hX))
   · rw [embBit_injective heq]; exact hY
 
+/--
+@isnad1 id=mem.0h2v.s4.13b05c70c487 from=translated src=- shape=c432a118 vocab=5623403d
+-/
 theorem otimesTok_mem_master : (otimesTok D₀ D₁).mem (prodTokNbhd D₀.master D₁.master) := Or.inl rfl
 
+/--
+@isnad1 id=mem.4h4v.s5.20b90b307ab3 from=translated src=- shape=5ce45467 vocab=5a89b3a9
+-/
 theorem otimesTok_mem_prod {X Y : Set Str} (hX : D₀.mem X) (hY : D₁.mem Y)
     (hXne : X ≠ D₀.master) (hYne : Y ≠ D₁.master) :
     (otimesTok D₀ D₁).mem (prodTokNbhd X Y) := Or.inr ⟨X, Y, hX, hY, hXne, hYne, rfl⟩
 
+/--
+@isnad1 id=and.2h4v.s5.e7408149cbda from=translated src=- shape=8c097aa9 vocab=5a89b3a9
+-/
 theorem otimesTok_mem_prod_inv {X Y : Set Str} (h : (otimesTok D₀ D₁).mem (prodTokNbhd X Y))
     (hX : X ≠ D₀.master) : D₀.mem X ∧ D₁.mem Y := by
   rcases h with heq | ⟨X', Y', hX', hY', -, -, heq⟩
@@ -229,7 +264,9 @@ theorem otimesTok_mem_prod_inv {X Y : Set Str} (h : (otimesTok D₀ D₁).mem (p
 
 variable {A₀ A₁ B₀ B₁ : ScottSys}
 
-/-- The coalesced sum carries the subsystem relation componentwise. -/
+/-- The coalesced sum carries the subsystem relation componentwise.
+@isnad1 id=subsyste.2h4v.s5.22988d7b3d36 from=translated src=- shape=8a504658 vocab=ea22038a
+-/
 theorem oplusTok_subsystem (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.sys) :
     (A₀.oplus A₁).sys ◁ (B₀.oplus B₁).sys := by
   have heqm : sumTokMaster A₀.sys A₁.sys = sumTokMaster B₀.sys B₁.sys := by
@@ -259,7 +296,9 @@ theorem oplusTok_subsystem (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.
         h1.inter_closed hY hY' (oplusTok_mem_embT_inv (h₀ := B₀.ne) (h₁ := B₁.ne) hInt),
         inter_ne_of_ne_left (A₁.sys.sub_master hY) hYne, rfl⟩)
 
-/-- The smash product carries the subsystem relation componentwise. -/
+/-- The smash product carries the subsystem relation componentwise.
+@isnad1 id=subsyste.2h4v.s5.af4c015dcd05 from=translated src=- shape=8a504658 vocab=8cf24430
+-/
 theorem otimesTok_subsystem (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.sys) :
     (A₀.otimes A₁).sys ◁ (B₀.otimes B₁).sys := by
   have heqm : prodTokNbhd A₀.sys.master A₁.sys.master
@@ -374,7 +413,9 @@ def oplusMapTok (f₀ : ApproximableMap A₀.sys B₀.sys) (f₁ : ApproximableM
             f₁.mono hrel (embBit_subset.mp hWW) (embBit_subset.mp hZZ') hY₂ hY₃,
             hY₂ne, hY₃ne, rfl, rfl⟩)
 
-/-- **`oplusMapTok` is always strict.** -/
+/-- **`oplusMapTok` is always strict.**
+@isnad1 id=isstrict.0h6v.s5.a6f74edf5e9b from=translated src=- shape=3664282c vocab=98e773fa
+-/
 theorem oplusMapTok_isStrict (f₀ : ApproximableMap A₀.sys B₀.sys)
     (f₁ : ApproximableMap A₁.sys B₁.sys) : IsStrict (oplusMapTok f₀ f₁) := by
   rintro Y (⟨-, rfl⟩ | ⟨X, X', -, -, -, heq, -⟩ | ⟨Y0, Y', -, -, -, heq, -⟩)
@@ -384,7 +425,9 @@ theorem oplusMapTok_isStrict (f₀ : ApproximableMap A₀.sys B₀.sys)
   · have heq' : sumTokMaster A₀.sys A₁.sys = embBit true Y0 := heq
     exact absurd (heq' ▸ nil_mem_sumTokMaster) nil_not_mem_embBit
 
-/-- **`(I ⊕ I) = I`.** -/
+/-- **`(I ⊕ I) = I`.**
+@isnad1 id=eq.0h2v.s5.d378f0869eba from=translated src=- shape=f6490af4 vocab=dd555b4b
+-/
 theorem oplusMapTok_id :
     oplusMapTok (idMap A₀.sys) (idMap A₁.sys) = idMap (A₀.oplus A₁).sys := by
   apply ApproximableMap.ext
@@ -414,7 +457,9 @@ theorem oplusMapTok_id :
 outer maps is exactly what prevents an intermediate top `f₀(X) = Δ₀'` from being
 re-expanded — that
 is the categorical reason `⊕` is a functor only on the strict-map category Scott
-restricts to.) -/
+restricts to.)
+@isnad1 id=eq.2h10v.s7.6cc620ae0961 from=translated src=- shape=aaf51efb vocab=2ef482c1
+-/
 theorem oplusMapTok_comp (f₀ : ApproximableMap A₀.sys B₀.sys) (f₁ : ApproximableMap A₁.sys B₁.sys)
     {g₀ : ApproximableMap B₀.sys C₀.sys} {g₁ : ApproximableMap B₁.sys C₁.sys}
     (hg₀ : IsStrict g₀) (hg₁ : IsStrict g₁) :
@@ -450,7 +495,9 @@ theorem oplusMapTok_comp (f₀ : ApproximableMap A₀.sys B₀.sys) (f₁ : Appr
       · obtain rfl := embBit_injective heq
         exact Or.inr (Or.inr ⟨Y, Y'', ⟨Y', hf, hg⟩, hYne, hY''ne, rfl, rfl⟩)
 
-/-- `oplusMapTok` is monotone in both arguments. -/
+/-- `oplusMapTok` is monotone in both arguments.
+@isnad1 id=le.2h8v.s7.055a1d65cff8 from=translated src=- shape=75d3b575 vocab=c2d24165
+-/
 theorem oplusMapTok_mono {f₀ f₀' : ApproximableMap A₀.sys B₀.sys}
     {f₁ f₁' : ApproximableMap A₁.sys B₁.sys} (h0 : f₀ ≤ f₀') (h1 : f₁ ≤ f₁') :
     oplusMapTok f₀ f₁ ≤ oplusMapTok f₀' f₁' := by
@@ -517,7 +564,9 @@ def otimesMapTok (f₀ : ApproximableMap A₀.sys B₀.sys) (f₁ : Approximable
           exact Or.inr ⟨Xz, Yz, Xz', Yz', f₀.mono hr0 hXzX hX'Xz' hXz hXz',
             f₁.mono hr1 hYzY hY'Yz' hYz hYz', hXzne, hYzne, hXz'ne, hYz'ne, rfl, rfl⟩
 
-/-- **`otimesMapTok` is always strict.** -/
+/-- **`otimesMapTok` is always strict.**
+@isnad1 id=isstrict.0h6v.s5.610cce29de72 from=translated src=- shape=3664282c vocab=81200f11
+-/
 theorem otimesMapTok_isStrict (f₀ : ApproximableMap A₀.sys B₀.sys)
     (f₁ : ApproximableMap A₁.sys B₁.sys) : IsStrict (otimesMapTok f₀ f₁) := by
   rintro Y (⟨-, rfl⟩ | ⟨X, Y0, X', Y', -, -, hXne, -, -, -, heq, -⟩)
@@ -526,7 +575,9 @@ theorem otimesMapTok_isStrict (f₀ : ApproximableMap A₀.sys B₀.sys)
     obtain ⟨h, -⟩ := prodTokNbhd_injective heq'
     exact absurd h.symm hXne
 
-/-- **`(I ⊗ I) = I`.** -/
+/-- **`(I ⊗ I) = I`.**
+@isnad1 id=eq.0h2v.s5.a4e0f2838876 from=translated src=- shape=f6490af4 vocab=cc3a808e
+-/
 theorem otimesMapTok_id :
     otimesMapTok (idMap A₀.sys) (idMap A₁.sys) = idMap (A₀.otimes A₁).sys := by
   apply ApproximableMap.ext
@@ -547,7 +598,9 @@ theorem otimesMapTok_id :
         exact Or.inr ⟨X, Y, X', Y', ⟨hX, hX', hsX⟩, ⟨hY, hY', hsY⟩,
           hXne, hYne, hX'ne, hY'ne, rfl, rfl⟩
 
-/-- **`(g₀ ∘ f₀) ⊗ (g₁ ∘ f₁) = (g₀ ⊗ g₁) ∘ (f₀ ⊗ f₁)`** for **strict** `g₀, g₁`. -/
+/-- **`(g₀ ∘ f₀) ⊗ (g₁ ∘ f₁) = (g₀ ⊗ g₁) ∘ (f₀ ⊗ f₁)`** for **strict** `g₀, g₁`.
+@isnad1 id=eq.2h10v.s7.96cf30fb9bcc from=translated src=- shape=aaf51efb vocab=9c5bc1e7
+-/
 theorem otimesMapTok_comp (f₀ : ApproximableMap A₀.sys B₀.sys) (f₁ : ApproximableMap A₁.sys B₁.sys)
     {g₀ : ApproximableMap B₀.sys C₀.sys} {g₁ : ApproximableMap B₁.sys C₁.sys}
     (hg₀ : IsStrict g₀) (hg₁ : IsStrict g₁) :
@@ -578,7 +631,9 @@ theorem otimesMapTok_comp (f₀ : ApproximableMap A₀.sys B₀.sys) (f₁ : App
         exact Or.inr ⟨X, Y, X'', Y'', ⟨X', hf0, hg0⟩, ⟨Y', hf1, hg1⟩,
           hXne, hYne, hX''ne, hY''ne, rfl, rfl⟩
 
-/-- `otimesMapTok` is monotone in both arguments. -/
+/-- `otimesMapTok` is monotone in both arguments.
+@isnad1 id=le.2h8v.s7.2cc98bc2e67f from=translated src=- shape=75d3b575 vocab=237f9e1b
+-/
 theorem otimesMapTok_mono {f₀ f₀' : ApproximableMap A₀.sys B₀.sys}
     {f₁ f₁' : ApproximableMap A₁.sys B₁.sys} (h0 : f₀ ≤ f₀') (h1 : f₁ ≤ f₁') :
     otimesMapTok f₀ f₁ ≤ otimesMapTok f₀' f₁' := by
@@ -636,7 +691,9 @@ def GExpr.map : (T : GExpr) → {X Y : ScottSys} → ApproximableMap X.sys Y.sys
   | .oplus a b, _, _, f => oplusMapTok (a.map f) (b.map f)
   | .otimes a b, _, _, f => otimesMapTok (a.map f) (b.map f)
 
-/-- **Every `T` preserves strictness.** -/
+/-- **Every `T` preserves strictness.**
+@isnad1 id=isstrict.1h4v.s5.53e8e0f15d9b from=translated src=- shape=63cadeba vocab=01be7705
+-/
 theorem GExpr.map_isStrict : (T : GExpr) → {X Y : ScottSys} → (f : ApproximableMap X.sys Y.sys) →
     IsStrict f → IsStrict (T.map f)
   | .const _, _, _, _, _ => isStrict_idMap
@@ -646,7 +703,9 @@ theorem GExpr.map_isStrict : (T : GExpr) → {X Y : ScottSys} → (f : Approxima
   | .oplus a b, _, _, f, _ => oplusMapTok_isStrict (a.map f) (b.map f)
   | .otimes a b, _, _, f, _ => otimesMapTok_isStrict (a.map f) (b.map f)
 
-/-- **Functor law 1 — `T(I_X) = I_{T(X)}`.** -/
+/-- **Functor law 1 — `T(I_X) = I_{T(X)}`.**
+@isnad1 id=eq.0h2v.s4.cf995e7aa369 from=translated src=- shape=9824d7a9 vocab=ce2d9be8
+-/
 theorem GExpr.map_id : (T : GExpr) → (X : ScottSys) → T.map (idMap X.sys) = idMap (T.obj X).sys
   | .const _, _ => rfl
   | .var, _ => rfl
@@ -672,7 +731,9 @@ theorem GExpr.map_id : (T : GExpr) → (X : ScottSys) → T.map (idMap X.sys) = 
 all functors* of the strict-map category. The strictness of `g` is needed (and
 only) for the
 coalesced `⊕`/`⊗`, whose composition law `oplusMapTok_comp`/`otimesMapTok_comp`
-requires it. -/
+requires it.
+@isnad1 id=eq.1h6v.s6.1aae9eec5a07 from=translated src=- shape=bfe44ed0 vocab=ad1a56c0
+-/
 theorem GExpr.map_comp : (T : GExpr) → {X Y Z : ScottSys} → (f : ApproximableMap X.sys Y.sys) →
     {g : ApproximableMap Y.sys Z.sys} → IsStrict g → T.map (g.comp f) = (T.map g).comp (T.map f)
   | .const D, _, _, _, _, _, _ => (idMap_comp (idMap D.sys)).symm
@@ -698,7 +759,9 @@ theorem GExpr.map_comp : (T : GExpr) → {X Y Z : ScottSys} → (f : Approximabl
       rw [a.map_comp f hg, b.map_comp f hg]
       · exact otimesMapTok_comp _ _ (a.map_isStrict g hg) (b.map_isStrict g hg)
 
-/-- **`λf. T(f)` is monotone** (the order half of *continuous on maps*). -/
+/-- **`λf. T(f)` is monotone** (the order half of *continuous on maps*).
+@isnad1 id=le.1h5v.s6.964515d24dcd from=translated src=- shape=e0181052 vocab=c34869d2
+-/
 theorem GExpr.map_mono : (T : GExpr) → {X Y : ScottSys} → {f f' : ApproximableMap X.sys Y.sys} →
     f ≤ f' → T.map f ≤ T.map f'
   | .const _, _, _, _, _, _ => le_rfl
@@ -708,7 +771,9 @@ theorem GExpr.map_mono : (T : GExpr) → {X Y : ScottSys} → {f f' : Approximab
   | .oplus a b, _, _, _, _, h => oplusMapTok_mono (a.map_mono h) (b.map_mono h)
   | .otimes a b, _, _, _, _, h => otimesMapTok_mono (a.map_mono h) (b.map_mono h)
 
-/-- **`λX. T(X)` is monotone on domains.** -/
+/-- **`λX. T(X)` is monotone on domains.**
+@isnad1 id=subsyste.1h3v.s4.6fa84f95a336 from=translated src=- shape=bcf571ee vocab=86c84af7
+-/
 theorem GExpr.obj_subsystem : (T : GExpr) → {X Y : ScottSys} → X.sys ◁ Y.sys →
     (T.obj X).sys ◁ (T.obj Y).sys
   | .const D, _, _, _ => Subsystem.refl D.sys
@@ -720,7 +785,9 @@ theorem GExpr.obj_subsystem : (T : GExpr) → {X Y : ScottSys} → X.sys ◁ Y.s
 
 /-! ### Continuous on domains -/
 
-/-- Forward direction of continuity on domains for `GExpr`. -/
+/-- Forward direction of continuity on domains for `GExpr`.
+@isnad1 id=ex.5h4v.s6.c535f48f8c5d from=translated src=- shape=7f951e4b vocab=1baf92f1
+-/
 theorem GExpr.obj_continuous_mp : (T : GExpr) → {ℱ : Set ScottSys} → {U : ScottSys} →
     DirectedOn (fun a b => a.sys ◁ b.sys) ℱ → ℱ.Nonempty →
     (∀ D ∈ ℱ, D.sys ◁ U.sys) → (∀ X, U.sys.mem X ↔ ∃ D ∈ ℱ, D.sys.mem X) →
@@ -764,7 +831,9 @@ theorem GExpr.obj_continuous_mp : (T : GExpr) → {ℱ : Set ScottSys} → {U : 
         · exact fun heq => hXne (heq.trans (a.obj_subsystem (hsub D₃ hD₃)).master_eq)
         · exact fun heq => hYne (heq.trans (b.obj_subsystem (hsub D₃ hD₃)).master_eq)
 
-/-- **`λD. T(D)` is continuous on domains.** -/
+/-- **`λD. T(D)` is continuous on domains.**
+@isnad1 id=iff.4h4v.s6.29a2c4fc0f70 from=translated src=- shape=fac50a8f vocab=1baf92f1
+-/
 theorem GExpr.obj_continuous (T : GExpr) {ℱ : Set ScottSys} {U : ScottSys}
     (hdir : DirectedOn (fun a b => a.sys ◁ b.sys) ℱ) (hne : ℱ.Nonempty)
     (hsub : ∀ D ∈ ℱ, D.sys ◁ U.sys) (hU : ∀ X, U.sys.mem X ↔ ∃ D ∈ ℱ, D.sys.mem X)
@@ -775,7 +844,9 @@ theorem GExpr.obj_continuous (T : GExpr) {ℱ : Set ScottSys} {U : ScottSys}
 
 /-! ### Continuous on maps -/
 
-/-- Forward direction of continuity on maps for `GExpr`. -/
+/-- Forward direction of continuity on maps for `GExpr`.
+@isnad1 id=ex.3h8v.s7.8541832b79b7 from=translated src=- shape=4e19c4d6 vocab=a3b6ed18
+-/
 theorem GExpr.map_continuous_mp : (T : GExpr) → {I : Type} → {X Y : ScottSys} →
     {g : I → ApproximableMap X.sys Y.sys} → {f : ApproximableMap X.sys Y.sys} →
     [Nonempty I] → (∀ i j, ∃ k, g i ≤ g k ∧ g j ≤ g k) →
@@ -814,7 +885,9 @@ theorem GExpr.map_continuous_mp : (T : GExpr) → {I : Type} → {X Y : ScottSys
         exact ⟨k, Or.inr ⟨P, Q, P', Q', (a.map_mono hik) P P' hi, (b.map_mono hjk) Q Q' hj,
           hPne, hQne, hP'ne, hQ'ne, rfl, rfl⟩⟩
 
-/-- **`λf. T(f)` is continuous on maps.** -/
+/-- **`λf. T(f)` is continuous on maps.**
+@isnad1 id=iff.2h8v.s7.b463e962f3dc from=translated src=- shape=d976e1a3 vocab=a3b6ed18
+-/
 theorem GExpr.map_continuous (T : GExpr) {I : Type} [Nonempty I] {X Y : ScottSys}
     (g : I → ApproximableMap X.sys Y.sys) (f : ApproximableMap X.sys Y.sys)
     (hdir : ∀ i j, ∃ k, g i ≤ g k ∧ g j ≤ g k)
@@ -851,7 +924,9 @@ def gFun : GExpr → Set Str → Set Str
   | .oplus a b, Γ => insert ([] : Str) (embBit false (gFun a Γ) ∪ embBit true (gFun b Γ))
   | .otimes a b, Γ => insert ([] : Str) (embBit false (gFun a Γ) ∪ embBit true (gFun b Γ))
 
-/-- `gFun T Γ = tok(T({Γ}))`. -/
+/-- `gFun T Γ = tok(T({Γ}))`.
+@isnad1 id=eq.1h2v.s4.1aca3972d9bf from=translated src=- shape=9e6475a9 vocab=e164d196
+-/
 theorem gFun_eq_master : (T : GExpr) → {Γ : Set Str} → (h : Γ.Nonempty) →
     gFun T Γ = (T.obj (singletonSys Γ h)).sys.master
   | .const _, _, _ => rfl
@@ -877,7 +952,9 @@ theorem gFun_eq_master : (T : GExpr) → {Γ : Set Str} → (h : Γ.Nonempty) �
             ∪ embBit true ((b.obj (singletonSys Γ h)).sys.master))
       rw [gFun_eq_master a h, gFun_eq_master b h]
 
-/-- **`λΓ. tok(T({Γ}))` is monotone.** -/
+/-- **`λΓ. tok(T({Γ}))` is monotone.**
+@isnad1 id=le.1h3v.s4.1dcca4719eec from=translated src=- shape=03c8cd90 vocab=a8933a1b
+-/
 theorem gFun_mono (T : GExpr) {Γ Γ' : Set Str} (h : Γ ⊆ Γ') : gFun T Γ ⊆ gFun T Γ' := by
   induction T with
   | const C => exact subset_rfl
@@ -887,7 +964,9 @@ theorem gFun_mono (T : GExpr) {Γ Γ' : Set Str} (h : Γ ⊆ Γ') : gFun T Γ �
   | oplus a b ih₀ ih₁ => exact insertTag_mono ih₀ ih₁
   | otimes a b ih₀ ih₁ => exact insertTag_mono ih₀ ih₁
 
-/-- **`λΓ. tok(T({Γ}))` is continuous on `{Γ ∣ Λ ∈ Γ}`.** -/
+/-- **`λΓ. tok(T({Γ}))` is continuous on `{Γ ∣ Λ ∈ Γ}`.**
+@isnad1 id=iff.3h4v.s6.bb18f84c198b from=translated src=- shape=44dff229 vocab=083778f6
+-/
 theorem gFun_continuous (T : GExpr) {ℱ : Set (Set Str)} {U : Set Str}
     (_hdir : DirectedOn (· ⊆ ·) ℱ) (hne : ℱ.Nonempty)
     (hU : ∀ w, w ∈ U ↔ ∃ Γ ∈ ℱ, w ∈ Γ) :
@@ -911,6 +990,9 @@ def GExpr.RootedConst : GExpr → Prop
   | .oplus a b => a.RootedConst ∧ b.RootedConst
   | .otimes a b => a.RootedConst ∧ b.RootedConst
 
+/--
+@isnad1 id=mem.2h2v.s4.ebb803f75f07 from=translated src=- shape=a5c2b719 vocab=86b20878
+-/
 theorem gFun_nil_mem : ∀ (T : GExpr), T.RootedConst → {Γ : Set Str} →
     ([] : Str) ∈ Γ → ([] : Str) ∈ gFun T Γ
   | .const _, hC, _, _ => hC
@@ -925,10 +1007,16 @@ def gIter (T : GExpr) : ℕ → Set Str
   | 0 => {([] : Str)}
   | n + 1 => gFun T (gIter T n)
 
+/--
+@isnad1 id=mem.1h2v.s4.c28a36c8af5f from=translated src=- shape=740787d8 vocab=b69c5d88
+-/
 theorem nil_mem_gIter (T : GExpr) (hT : T.RootedConst) : ∀ n, ([] : Str) ∈ gIter T n
   | 0 => rfl
   | n + 1 => gFun_nil_mem T hT (nil_mem_gIter T hT n)
 
+/--
+@isnad1 id=le.1h2v.s4.3f44cd992d5f from=translated src=- shape=d1d493e2 vocab=96144cd1
+-/
 theorem gIter_mono_step (T : GExpr) (hT : T.RootedConst) :
     ∀ n, gIter T n ⊆ gIter T (n + 1)
   | 0 => by
@@ -938,13 +1026,18 @@ theorem gIter_mono_step (T : GExpr) (hT : T.RootedConst) :
       exact gFun_nil_mem T hT rfl
   | n + 1 => gFun_mono T (gIter_mono_step T hT n)
 
+/--
+@isnad1 id=le.2h3v.s4.8003c0ef6f83 from=translated src=- shape=708e4447 vocab=bb8db557
+-/
 theorem gIter_mono (T : GExpr) (hT : T.RootedConst) {m n : ℕ} (hmn : m ≤ n) :
     gIter T m ⊆ gIter T n := by
   induction hmn with
   | refl => exact subset_rfl
   | step _ ih => intro x hx; exact gIter_mono_step T hT _ (ih hx)
 
-/-- The Kleene union is a **fixed point** of `λΓ. tok(T({Γ}))`. -/
+/-- The Kleene union is a **fixed point** of `λΓ. tok(T({Γ}))`.
+@isnad1 id=eq.1h1v.s4.c06b16ccf17e from=translated src=- shape=6d107179 vocab=8f3172b1
+-/
 theorem gFun_iter_fixed (T : GExpr) (hT : T.RootedConst) :
     gFun T (⋃ n, gIter T n) = ⋃ n, gIter T n := by
   have hstep := gIter_mono_step T hT
@@ -966,14 +1059,18 @@ theorem gFun_iter_fixed (T : GExpr) (hT : T.RootedConst) :
 /-- **Exercise 6.21/6.20 (token level).** For any `GExpr` `T` whose constants
 contain `Λ`, there
 is a
-set `Γ` with `Λ ∈ Γ` and `Γ = tok(T({Γ}))`. -/
+set `Γ` with `Λ ∈ Γ` and `Γ = tok(T({Γ}))`.
+@isnad1 id=ex.1h1v.s4.6eb4909595e7 from=translated src=- shape=a81e3e5d vocab=86b20878
+-/
 theorem gExists_tok_fixedPoint (T : GExpr) (hT : T.RootedConst) :
     ∃ Γ : Set Str, ([] : Str) ∈ Γ ∧ gFun T Γ = Γ :=
   ⟨⋃ n, gIter T n, Set.mem_iUnion.mpr ⟨0, nil_mem_gIter T hT 0⟩, gFun_iter_fixed T hT⟩
 
 /-- **Exercise 6.21/6.20 (object level): `{Γ} ◁ T({Γ})`, so Theorem 6.14 applies**
 for any construct
-`T` built from constants, identity, `+`, `×`, `⊕`, `⊗`. -/
+`T` built from constants, identity, `+`, `×`, `⊕`, `⊗`.
+@isnad1 id=ex.1h1v.s4.5b5c4ac1e4ff from=translated src=- shape=2cf09ad1 vocab=3ca60cd8
+-/
 theorem gExists_singleton_subsystem (T : GExpr) (hT : T.RootedConst) :
     ∃ (Γ : Set Str) (h : Γ.Nonempty),
       (singletonSys Γ h).sys ◁ (T.obj (singletonSys Γ h)).sys := by
@@ -1034,7 +1131,9 @@ def GExpr.naryOtimes : GExpr → List GExpr → GExpr := GExpr.naryOp GExpr.otim
 
 /-- The `Λ ∈ tok` side-condition is preserved by any n-ary fold whose binary
 operation preserves it
-(all four of `+`, `×`, `⊕`, `⊗` do, definitionally). -/
+(all four of `+`, `×`, `⊕`, `⊗` do, definitionally).
+@isnad1 id=rootedco.3h3v.s5.250f2f32ddee from=translated src=- shape=8b75699a vocab=c669ea62
+-/
 theorem GExpr.naryOp_rootedConst {op : GExpr → GExpr → GExpr}
     (hop : ∀ x y, (op x y).RootedConst ↔ x.RootedConst ∧ y.RootedConst) :
     ∀ (a : GExpr) (l : List GExpr), a.RootedConst → (∀ b ∈ l, b.RootedConst) →
@@ -1048,25 +1147,36 @@ theorem GExpr.naryOp_rootedConst {op : GExpr → GExpr → GExpr}
 /-- **Every n-ary construct has a solution `Γ = tok(T({Γ}))`** (so `{Γ} ◁ T({Γ})`
 and 6.14 applies),
 illustrated for the n-ary separated sum; identical for
-`naryProd`/`naryOplus`/`naryOtimes`. -/
+`naryProd`/`naryOplus`/`naryOtimes`.
+@isnad1 id=ex.2h2v.s5.ded704f6fb06 from=translated src=- shape=f39db506 vocab=9bc7a8fe
+-/
 theorem narySum_singleton_subsystem (a : GExpr) (l : List GExpr)
     (ha : a.RootedConst) (hl : ∀ b ∈ l, b.RootedConst) :
     ∃ (Γ : Set Str) (h : Γ.Nonempty),
       (singletonSys Γ h).sys ◁ ((GExpr.narySum a l).obj (singletonSys Γ h)).sys :=
   gExists_singleton_subsystem _ (GExpr.naryOp_rootedConst (fun _ _ => Iff.rfl) a l ha hl)
 
+/--
+@isnad1 id=ex.2h2v.s5.a27ec071e2da from=translated src=- shape=f39db506 vocab=7ac5a46b
+-/
 theorem naryOplus_singleton_subsystem (a : GExpr) (l : List GExpr)
     (ha : a.RootedConst) (hl : ∀ b ∈ l, b.RootedConst) :
     ∃ (Γ : Set Str) (h : Γ.Nonempty),
       (singletonSys Γ h).sys ◁ ((GExpr.naryOplus a l).obj (singletonSys Γ h)).sys :=
   gExists_singleton_subsystem _ (GExpr.naryOp_rootedConst (fun _ _ => Iff.rfl) a l ha hl)
 
+/--
+@isnad1 id=ex.2h2v.s5.7f90a9258512 from=translated src=- shape=f39db506 vocab=56bbfc0e
+-/
 theorem naryProd_singleton_subsystem (a : GExpr) (l : List GExpr)
     (ha : a.RootedConst) (hl : ∀ b ∈ l, b.RootedConst) :
     ∃ (Γ : Set Str) (h : Γ.Nonempty),
       (singletonSys Γ h).sys ◁ ((GExpr.naryProd a l).obj (singletonSys Γ h)).sys :=
   gExists_singleton_subsystem _ (GExpr.naryOp_rootedConst (fun _ _ => Iff.rfl) a l ha hl)
 
+/--
+@isnad1 id=ex.2h2v.s5.568f19d5357f from=translated src=- shape=f39db506 vocab=42684f0e
+-/
 theorem naryOtimes_singleton_subsystem (a : GExpr) (l : List GExpr)
     (ha : a.RootedConst) (hl : ∀ b ∈ l, b.RootedConst) :
     ∃ (Γ : Set Str) (h : Γ.Nonempty),

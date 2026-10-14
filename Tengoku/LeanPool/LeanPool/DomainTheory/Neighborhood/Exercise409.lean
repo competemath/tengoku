@@ -64,7 +64,9 @@ def bigPsi (V : NeighborhoodSystem α) :
     (paired (proj₁ (funSpace (funSpace V V) V) (funSpace V V)) (evalMap (funSpace V V) V)))
 
 /-- **Exercise 4.9 (Scott 1981, PRG-19).** The defining equation `Ψ(θ)(f) =
-f(θ(f))`. -/
+f(θ(f))`.
+@isnad1 id=eq.0h4v.s7.f62477fba001 from=translated src=- shape=0fd68d5f vocab=0e03ab2e
+-/
 theorem bigPsi_apply (V : NeighborhoodSystem α)
     (θ : (funSpace (funSpace V V) V).Element) (f : (funSpace V V).Element) :
     (toApproxMap ((bigPsi V).toElementMap θ)).toElementMap f
@@ -74,14 +76,18 @@ theorem bigPsi_apply (V : NeighborhoodSystem α)
 
 /-- `fix`, as the element of `E = ((𝒟 → 𝒟) → 𝒟)` corresponding to the operator
 `fixMap`, unfolds
-under `toApproxMap` back to `fixMap` (the `funSpace` round-trip). -/
+under `toApproxMap` back to `fixMap` (the `funSpace` round-trip).
+@isnad1 id=eq.0h2v.s5.80e250d7824d from=translated src=- shape=5e05b8d4 vocab=aff5aa75
+-/
 theorem toApproxMap_toFilter_fixMap (V : NeighborhoodSystem α) :
     toApproxMap (toFilter (fixMap V)) = fixMap V := by
   have he := (funSpaceEquiv (funSpace V V) V).apply_symm_apply (fixMap V)
   rwa [funSpaceEquiv_apply, funSpaceEquiv_symm_apply] at he
 
 /-- **Exercise 4.9 (Scott 1981, PRG-19).** `fix` is a *fixed point* of `Ψ`:
-`Ψ(fix) = fix`. -/
+`Ψ(fix) = fix`.
+@isnad1 id=eq.0h2v.s6.e2a0684a1564 from=translated src=- shape=bd993340 vocab=defe86b9
+-/
 theorem bigPsi_fix (V : NeighborhoodSystem α) :
     (bigPsi V).toElementMap (toFilter (fixMap V)) = toFilter (fixMap V) := by
   apply (funSpaceEquiv (funSpace V V) V).injective
@@ -92,7 +98,9 @@ theorem bigPsi_fix (V : NeighborhoodSystem α) :
 
 /-- **Exercise 4.9 (Scott 1981, PRG-19).** `fix` is the *least* pre-fixed point of
 `Ψ`: any `θ` with
-`Ψ(θ) ⊑ θ` satisfies `fix ⊑ θ`. -/
+`Ψ(θ) ⊑ θ` satisfies `fix ⊑ θ`.
+@isnad1 id=le.1h3v.s8.9a3cc91b2e63 from=translated src=- shape=d97560ac vocab=af635c89
+-/
 theorem bigPsi_least (V : NeighborhoodSystem α) (θ : (funSpace (funSpace V V) V).Element)
     (hθ : (bigPsi V).toElementMap θ ≤ θ) : toFilter (fixMap V) ≤ θ := by
   -- transport `Ψ(θ) ⊑ θ` to the pointwise pre-fixed-point inequality on maps.
@@ -113,7 +121,9 @@ theorem bigPsi_least (V : NeighborhoodSystem α) (θ : (funSpace (funSpace V V) 
 
 /-- **Exercise 4.9 (Scott 1981, PRG-19).** `fix = fix(Ψ)`: `fix` is the least
 fixed point of `Ψ`,
-i.e. coincides with Theorem 4.1's canonical least fixed point `fixElement Ψ`. -/
+i.e. coincides with Theorem 4.1's canonical least fixed point `fixElement Ψ`.
+@isnad1 id=eq.0h2v.s6.d12dfbc025d9 from=translated src=- shape=3d9f11a8 vocab=1928d372
+-/
 theorem fix_eq_fixElement_bigPsi (V : NeighborhoodSystem α) :
     toFilter (fixMap V) = (bigPsi V).fixElement := by
   apply le_antisymm

@@ -72,9 +72,15 @@ def relSystem (a : V.Element) : NeighborhoodSystem α where
   sub_master := fun hX => V.sub_master (a.sub hX)
   inter_mem := fun hX hY _ _ => a.inter_mem hX hY
 
+/--
+@isnad1 id=iff.0h4v.s4.023d01a353c1 from=translated src=- shape=2fdd110d vocab=1abe118d
+-/
 @[simp] theorem relSystem_mem (a : V.Element) {X : Set α} :
     (relSystem a).mem X ↔ a.mem X := Iff.rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.bc2a4ea4f648 from=translated src=- shape=618f61f3 vocab=03b696e3
+-/
 @[simp] theorem relSystem_master (a : V.Element) : (relSystem a).master = V.master := rfl
 
 /-- The `𝒟`-element obtained from a `Dₐ`-filter by upward closure in `𝒟`. -/
@@ -101,11 +107,16 @@ def restrict (a : V.Element) (x : V.Element) (hx : x ≤ a) : (relSystem a).Elem
   inter_mem := fun hX hY => x.inter_mem hX hY
   up_mem := fun hX hY hXY => x.up_mem hX (a.sub hY) hXY
 
-/-- `embed a g ⊑ a`: the embedding lands below `a`. -/
+/-- `embed a g ⊑ a`: the embedding lands below `a`.
+@isnad1 id=le.0h4v.s5.4d9013598232 from=translated src=- shape=ae1d5bcb vocab=d6cd4d6c
+-/
 theorem embed_le (a : V.Element) (g : (relSystem a).Element) : embed a g ≤ a := by
   rintro X ⟨hVX, W, haW, _, hWX⟩
   exact a.up_mem haW hVX hWX
 
+/--
+@isnad1 id=eq.1h4v.s5.d500cf0731d3 from=translated src=- shape=06465301 vocab=805bdb96
+-/
 theorem embed_restrict (a : V.Element) (x : V.Element) (hx : x ≤ a) :
     embed a (restrict a x hx) = x := by
   apply Element.ext
@@ -116,6 +127,9 @@ theorem embed_restrict (a : V.Element) (x : V.Element) (hx : x ≤ a) :
   · intro hxX
     exact ⟨x.sub hxX, X, hx _ hxX, hxX, subset_rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.9230ff8bb892 from=translated src=- shape=c48329cf vocab=d2f7f4ff
+-/
 theorem restrict_embed (a : V.Element) (g : (relSystem a).Element) :
     restrict a (embed a g) (embed_le a g) = g := by
   apply Element.ext
@@ -126,11 +140,17 @@ theorem restrict_embed (a : V.Element) (g : (relSystem a).Element) :
   · intro hgX
     exact ⟨a.sub (g.sub hgX), X, g.sub hgX, hgX, subset_rfl⟩
 
+/--
+@isnad1 id=le.1h5v.s6.c4eb65b46a6f from=translated src=- shape=c4d2d879 vocab=d6cd4d6c
+-/
 theorem embed_mono (a : V.Element) {g₁ g₂ : (relSystem a).Element} (h : g₁ ≤ g₂) :
     embed a g₁ ≤ embed a g₂ := by
   rintro X ⟨hVX, W, haW, hgW, hWX⟩
   exact ⟨hVX, W, haW, h _ hgW, hWX⟩
 
+/--
+@isnad1 id=le.1h5v.s6.3e605a79aa6e from=translated src=- shape=8532a13a vocab=d6cd4d6c
+-/
 theorem le_of_embed_le (a : V.Element) {g₁ g₂ : (relSystem a).Element}
     (h : embed a g₁ ≤ embed a g₂) : g₁ ≤ g₂ := by
   intro X hg₁X
@@ -179,7 +199,9 @@ def relMap (f : ApproximableMap V V) {a : V.Element} (ha : f.toElementMap a = a)
     exact ⟨haX', f.mono hXY hX'X hYY' (a.sub haX') (a.sub haY')⟩
 
 /-- The restriction `f'` has the same action as `f`: `embed a (f'(g)) = f(embed a
-g)`. -/
+g)`.
+@isnad1 id=eq.1h5v.s6.621daefca452 from=translated src=- shape=9db94b6e vocab=60c6ada0
+-/
 theorem relMap_toElementMap_embed (f : ApproximableMap V V) {a : V.Element}
     (ha : f.toElementMap a = a) (g : (relSystem a).Element) :
     embed a ((relMap f ha).toElementMap g) = f.toElementMap (embed a g) := by
@@ -207,7 +229,9 @@ theorem relMap_toElementMap_embed (f : ApproximableMap V V) {a : V.Element}
 
 /-- **Exercise 4.10 (Scott 1981, PRG-19).** Any fixed point of `f` below `fix(f)`
 *is* `fix(f)`:
-a fixed point is a pre-fixed point, so leastness forces `fix(f) ⊑ x`. -/
+a fixed point is a pre-fixed point, so leastness forces `fix(f) ⊑ x`.
+@isnad1 id=eq.2h4v.s5.4de7a268c2fe from=translated src=- shape=47f8a7c1 vocab=e91cefb2
+-/
 theorem fixElement_below_unique (f : ApproximableMap V V) {x : V.Element}
     (hxle : x ≤ f.fixElement) (hxfix : f.toElementMap x = x) : x = f.fixElement := by
   have hge : f.fixElement ≤ x := fixElement_le_of_toElementMap_le f (le_of_eq hxfix)
@@ -218,7 +242,9 @@ theorem fixElement_below_unique (f : ApproximableMap V V) {x : V.Element}
 one* fixed point: the top element of `D_{fix f}`, namely `restrict (fix f)` of
 `fix f` itself. Every
 `Dₐ`-fixed point `g` of `f'` satisfies `embed a g = fix f`, hence is this top
-element. -/
+element.
+@isnad1 id=eq.2h4v.s6.b657d63723aa from=translated src=- shape=4106a420 vocab=47759862
+-/
 theorem relMap_unique_fixed (f : ApproximableMap V V)
     (ha : f.toElementMap f.fixElement = f.fixElement) (g : (relSystem f.fixElement).Element)
     (hg : (relMap f ha).toElementMap g = g) :

@@ -51,20 +51,26 @@ open Egrs75.LeafInduction
 /-- The base-`q` "oversized" test: a digit `d` is oversized iff `(q-1)/2 < d`. -/
 @[reducible] def bigQ (q d : ℕ) : Bool := decide ((q - 1) / 2 < d)
 
-/-- `badCountQ` unfolded as a filter-length over the base-`q` digit list. -/
+/-- `badCountQ` unfolded as a filter-length over the base-`q` digit list.
+@isnad1 id=eq.0h2v.s4.f662b8258160 from=translated src=- shape=56be3ac5 vocab=09d01a4a
+-/
 theorem badCountQ_eq (q n : ℕ) :
     badCountQ q n = ((Nat.digits q n).filter (fun d => bigQ q d)).length := rfl
 
 /-- `badCountQ` additivity over `filter`/`append`: the bad count of a digit list
 that splits as `L₁ ++ L₂` is the sum of the two bad counts.  Used to read the bad
-count off a high/low decomposition of `n`. -/
+count off a high/low decomposition of `n`.
+@isnad1 id=eq.0h3v.s5.b31b69d5e9e9 from=translated src=- shape=d787ef7a vocab=7c37da5b
+-/
 theorem badCount_filter_append (q : ℕ) (L₁ L₂ : List ℕ) :
     ((L₁ ++ L₂).filter (fun d => bigQ q d)).length =
       (L₁.filter (fun d => bigQ q d)).length + (L₂.filter (fun d => bigQ q d)).length := by
   rw [List.filter_append, List.length_append]
 
 /-- Appending zeros to a digit list does not change its bad count (since `0` is
-never oversized for `q ≥ 1`). -/
+never oversized for `q ≥ 1`).
+@isnad1 id=eq.0h2v.s4.c5cac2dc86bf from=translated src=- shape=7ced3fa8 vocab=cbb70c17
+-/
 theorem badCount_filter_replicate_zero (q k : ℕ) :
     ((List.replicate k 0).filter (fun d => bigQ q d)).length = 0 := by
   simp_all
@@ -78,7 +84,9 @@ digit-vector view that lets the repair reason about the high block and low block
 independently. -/
 
 /-- Base-`q` digit list of `Lo + q^k · Hi` is `digits Lo ++ zeros ++ digits Hi`,
-for `Lo < q^k`, `Hi > 0`, `q ≥ 2`. -/
+for `Lo < q^k`, `Hi > 0`, `q ≥ 2`.
+@isnad1 id=eq.3h4v.s7.b88de76bf945 from=translated src=- shape=44eb4718 vocab=dbac3e53
+-/
 theorem digits_split {q k Lo Hi : ℕ} (hq : 1 < q) (hLo : Lo < q ^ k) (hHi : 0 < Hi) :
     Nat.digits q (Lo + q ^ k * Hi) =
       Nat.digits q Lo ++ List.replicate (k - (Nat.digits q Lo).length) 0 ++ Nat.digits q Hi := by
@@ -88,7 +96,9 @@ theorem digits_split {q k Lo Hi : ℕ} (hq : 1 < q) (hLo : Lo < q ^ k) (hHi : 0 
 
 /-- **Bad-count split (KERNEL-CLEAN).**  For `n = Lo + q^k · Hi` with `Lo < q^k`,
 `Hi > 0`, `q ≥ 2`: the oversized-base-`q`-digit count is the sum of the low block's
-and the high block's bad counts. -/
+and the high block's bad counts.
+@isnad1 id=eq.3h4v.s6.e4db07451abf from=translated src=- shape=6d1cf202 vocab=77ce61c0
+-/
 theorem badCountQ_split {q k Lo Hi : ℕ} (hq : 1 < q) (hLo : Lo < q ^ k) (hHi : 0 < Hi) :
     badCountQ q (Lo + q ^ k * Hi) = badCountQ q Lo + badCountQ q Hi := by
   rw [badCountQ_eq, badCountQ_eq, badCountQ_eq, digits_split hq hLo hHi]
@@ -106,7 +116,9 @@ is used to guarantee no oversized base-`p` digit is created. -/
 /-- **Disjoint-support `LowDigits p` addition (KERNEL-CLEAN).**  If `U < p^k` and both
 `U` and `Hi` are `LowDigits p` (and `Hi > 0`, `p ≥ 2`), then `U + p^k · Hi` is
 `LowDigits p`: its base-`p` digits are exactly those of `U`, of `Hi`, and padding
-zeros, all `≤ (p-1)/2`. -/
+zeros, all `≤ (p-1)/2`.
+@isnad1 id=lowdigit.5h4v.s6.54e8541b87aa from=translated src=- shape=d1726f35 vocab=7c5f2497
+-/
 theorem lowDigits_disjoint_add {p k U Hi : ℕ} (hp : 1 < p) (hU : U < p ^ k) (hHi : 0 < Hi)
     (hUlow : LowDigits p U) (hHilow : LowDigits p Hi) : LowDigits p (U + p ^ k * Hi) := by
   unfold LowDigits at *
@@ -136,7 +148,9 @@ as indices into the digit list.  `i` is oversized iff `(q-1)/2 < n / q^i % q`
 def badIndexSet (q n : ℕ) : Finset ℕ :=
   (Finset.range (Nat.digits q n).length).filter (fun i => bigQ q ((Nat.digits q n).getD i 0))
 
-/-- If the bad count is positive, the bad-index set is nonempty. -/
+/-- If the bad count is positive, the bad-index set is nonempty.
+@isnad1 id=nonempty.2h2v.s4.2106b0462704 from=translated src=- shape=c04eef5c vocab=ab69b9d6
+-/
 theorem badIndexSet_nonempty {q n : ℕ} (_hq : 1 < q) (hbad : 0 < badCountQ q n) :
     (badIndexSet q n).Nonempty := by
   -- A bad digit exists in the list; its position is in `badIndexSet`.
@@ -158,13 +172,17 @@ noncomputable def topBadIndex (q n : ℕ) : ℕ :=
   if h : (badIndexSet q n).Nonempty then (badIndexSet q n).max' h else 0
 
 /-- The top bad index is itself a bad index: its base-`q` digit is oversized and it is
-within the digit list. -/
+within the digit list.
+@isnad1 id=mem.2h2v.s5.16c5bd9aa810 from=translated src=- shape=1d99850c vocab=d1971f37
+-/
 theorem topBadIndex_mem {q n : ℕ} (hq : 1 < q) (hbad : 0 < badCountQ q n) :
     topBadIndex q n ∈ badIndexSet q n := by
   rw [topBadIndex, dite_eq_left (badIndexSet_nonempty hq hbad)]
   exact (badIndexSet q n).max'_mem _
 
-/-- Maximality: every bad index is `≤ topBadIndex`. -/
+/-- Maximality: every bad index is `≤ topBadIndex`.
+@isnad1 id=le.3h3v.s5.986dcd676c3f from=translated src=- shape=39443272 vocab=152b6ab5
+-/
 theorem le_topBadIndex {q n i : ℕ} (hq : 1 < q) (hbad : 0 < badCountQ q n)
     (hi : i ∈ badIndexSet q n) : i ≤ topBadIndex q n := by
   rw [topBadIndex, dite_eq_left (badIndexSet_nonempty hq hbad)]
@@ -178,7 +196,9 @@ the high block `n / q^(topBadIndex+1)` is `LowDigits q` (bad count `0`). -/
 
 /-- The base-`q` digit of `n` at any index strictly above `topBadIndex q n` is good
 (`≤ (q-1)/2`).  Indices beyond the list read as `0` (also good); indices in range
-above the top bad index are good by maximality. -/
+above the top bad index are good by maximality.
+@isnad1 id=le.3h3v.s6.3e16cd9aa949 from=translated src=- shape=53e303c9 vocab=c516ac2e
+-/
 theorem digit_good_above_top {q n i : ℕ} (hq : 1 < q) (hbad : 0 < badCountQ q n)
     (hi : topBadIndex q n < i) : n / q ^ i % q ≤ (q - 1) / 2 := by
   -- The digit at index `i` equals `(digits q n).getD i 0`.
@@ -198,7 +218,9 @@ theorem digit_good_above_top {q n i : ℕ} (hq : 1 < q) (hbad : 0 < badCountQ q 
     simp_all
 
 /-- **High block is `LowDigits q` (KERNEL-CLEAN).**  With `k = topBadIndex q n + 1`,
-the high block `Hi = n / q^k` has no oversized base-`q` digit. -/
+the high block `Hi = n / q^k` has no oversized base-`q` digit.
+@isnad1 id=lowdigit.2h2v.s6.62f4b01f17a7 from=translated src=- shape=8836e0c5 vocab=4d4e6a99
+-/
 theorem highBlock_lowDigits {q n : ℕ} (hq : 1 < q) (hbad : 0 < badCountQ q n) :
     LowDigits q (n / q ^ (topBadIndex q n + 1)) := by
   set k := topBadIndex q n + 1 with hk
@@ -222,7 +244,9 @@ sits in the low block: `badCountQ q n = badCountQ q Lo`.  And `Lo ≥ 1` carries
 oversized top digit, so `badCountQ q Lo ≥ 1`. -/
 
 /-- The base-`q` digit at index `topBadIndex q n` is itself oversized
-(`(q-1)/2 < n / q^(topBadIndex) % q`). -/
+(`(q-1)/2 < n / q^(topBadIndex) % q`).
+@isnad1 id=lt.2h2v.s6.7985ecf8b899 from=translated src=- shape=d0b5bcb8 vocab=76e95848
+-/
 theorem digit_top_big {q n : ℕ} (hq : 1 < q) (hbad : 0 < badCountQ q n) :
     (q - 1) / 2 < n / q ^ (topBadIndex q n) % q := by
   have hmem := topBadIndex_mem hq hbad
@@ -234,7 +258,9 @@ theorem digit_top_big {q n : ℕ} (hq : 1 < q) (hbad : 0 < badCountQ q n) :
 /-- **Decomposition (KERNEL-CLEAN).**  With `k = topBadIndex q n + 1`, the bad count of
 `n` equals the bad count of its low block `n % q^k`, and that is `≥ 1`.  Moreover the
 high block `n / q^k` is positive (the top bad digit forces `n ≥ q^(k-1) > 0`, and
-since the digit at `topBadIndex` is nonzero the number extends at least that far). -/
+since the digit at `topBadIndex` is nonzero the number extends at least that far).
+@isnad1 id=eq.2h2v.s6.10897770b469 from=translated src=- shape=39f5e85d vocab=b7a2955f
+-/
 theorem badCount_eq_lowBlock {q n : ℕ} (hq : 1 < q) (hbad : 0 < badCountQ q n) :
     badCountQ q n = badCountQ q (n % q ^ (topBadIndex q n + 1)) := by
   set j := topBadIndex q n with hj

@@ -35,14 +35,23 @@ def cyclicAdvance {n : ℕ} [NeZero n] (i : Fin n) (k : ℕ) : Fin n :=
 def cyclicRetreat {n : ℕ} [NeZero n] (i : Fin n) (k : ℕ) : Fin n :=
   i - Fin.ofNat n k
 
+/--
+@isnad1 id=eq.0h2v.s4.8bbce986c31e from=translated src=- shape=7487563e vocab=2a84b4c5
+-/
 @[simp] theorem cyclicAdvance_zero {n : ℕ} [NeZero n] (i : Fin n) :
     cyclicAdvance i 0 = i := by
   simp [cyclicAdvance]
 
+/--
+@isnad1 id=eq.0h2v.s4.022e40f9b04e from=translated src=- shape=7487563e vocab=af7a96ab
+-/
 @[simp] theorem cyclicRetreat_zero {n : ℕ} [NeZero n] (i : Fin n) :
     cyclicRetreat i 0 = i := by
   simp [cyclicRetreat]
 
+/--
+@isnad1 id=eq.0h4v.s5.80b15604d796 from=translated src=- shape=5594c791 vocab=0e2efaa0
+-/
 theorem cyclicAdvance_add {n : ℕ} [NeZero n] (i : Fin n) (a b : ℕ) :
     cyclicAdvance (cyclicAdvance i a) b = cyclicAdvance i (a + b) := by
   have hof : Fin.ofNat n (a + b) = Fin.ofNat n a + Fin.ofNat n b := by
@@ -51,6 +60,9 @@ theorem cyclicAdvance_add {n : ℕ} [NeZero n] (i : Fin n) (a b : ℕ) :
   simp only [cyclicAdvance, hof]
   abel
 
+/--
+@isnad1 id=eq.0h4v.s5.a06a00568e84 from=translated src=- shape=5594c791 vocab=e3a10832
+-/
 theorem cyclicRetreat_add {n : ℕ} [NeZero n] (i : Fin n) (a b : ℕ) :
     cyclicRetreat (cyclicRetreat i a) b = cyclicRetreat i (a + b) := by
   have hof : Fin.ofNat n (a + b) = Fin.ofNat n a + Fin.ofNat n b := by
@@ -110,7 +122,9 @@ noncomputable def firstClockwiseNeighbor
   cyclicRetreat v (firstClockwiseNeighborOffset P d₁ d₂ d₃ v).val
 
 /-- Strictly increasing a top-three edge produces another top-three edge.
-This is the rank fact behind termination of the primary-source cover process. -/
+This is the rank fact behind termination of the primary-source cover process.
+@isnad1 id=topthree.3h9v.s6.6adc7adcc01f from=translated src=- shape=4c313bfe vocab=9ade9537
+-/
 theorem top_three_adjacent_of_strictly_longer
     {n : ℕ} {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -142,13 +156,18 @@ theorem top_three_adjacent_of_strictly_longer
       · have hlt2 : sqDist (P p) (P q) < d₂ := lt_of_le_of_ne hle2 h2
         exact (not_lt_of_ge (hnew.2.2 hlt2) (by linarith)).elim
 
+/--
+@isnad1 id=topthree.1h7v.s5.4d1006c8a267 from=translated src=- shape=2c72a695 vocab=03b53e17
+-/
 theorem topThreeAdjacent_symm
     {n : ℕ} {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ} {i j : Fin n}
     (h : TopThreeAdjacent P d₁ d₂ d₃ i j) :
     TopThreeAdjacent P d₁ d₂ d₃ j i :=
   (topThreeGraph P d₁ d₂ d₃).symm.symm i j h
 
-/-- Positive degree makes the first-neighbor offset set nonempty. -/
+/-- Positive degree makes the first-neighbor offset set nonempty.
+@isnad1 id=nonempty.1h6v.s5.3db99e277bbd from=translated src=- shape=cf518390 vocab=1fe86413
+-/
 theorem ccwNeighborOffsets_nonempty_of_degree_pos
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ} {v : Fin n}
     (hdegree : 0 < vertexDegree P d₁ d₂ d₃ v) :
@@ -173,6 +192,9 @@ theorem ccwNeighborOffsets_nonempty_of_degree_pos
   rw [hvk]
   exact ⟨hjErase.1.symm, hjData.2⟩
 
+/--
+@isnad1 id=nonempty.1h6v.s5.5e5a06f68d1a from=translated src=- shape=cf518390 vocab=9bc76816
+-/
 theorem cwNeighborOffsets_nonempty_of_degree_pos
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ} {v : Fin n}
     (hdegree : 0 < vertexDegree P d₁ d₂ d₃ v) :
@@ -198,7 +220,9 @@ theorem cwNeighborOffsets_nonempty_of_degree_pos
   exact ⟨hjErase.1.symm, hjData.2⟩
 
 /-- With a nonempty neighbor-offset set, the selected offset is one of its
-members and therefore is the genuine first counterclockwise graph neighbor. -/
+members and therefore is the genuine first counterclockwise graph neighbor.
+@isnad1 id=mem.1h6v.s6.f3810ab620b9 from=translated src=- shape=563fb13f vocab=3aa21518
+-/
 theorem firstNeighborOffset_mem
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ} {v : Fin n}
     (h : (ccwNeighborOffsets P d₁ d₂ d₃ v).Nonempty) :
@@ -209,6 +233,9 @@ theorem firstNeighborOffset_mem
   rw [dite_eq_left h]
   exact Finset.min'_mem _ _
 
+/--
+@isnad1 id=mem.1h6v.s6.576ac456cee4 from=translated src=- shape=563fb13f vocab=a37cf3db
+-/
 theorem firstClockwiseNeighborOffset_mem
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ} {v : Fin n}
     (h : (cwNeighborOffsets P d₁ d₂ d₃ v).Nonempty) :
@@ -220,7 +247,9 @@ theorem firstClockwiseNeighborOffset_mem
   exact Finset.min'_mem _ _
 
 /-- Positive degree gives a nonzero first-neighbor gap and an actual graph
-neighbor at that cyclic offset. -/
+neighbor at that cyclic offset.
+@isnad1 id=and.1h6v.s6.7ab6d91f80a0 from=translated src=- shape=8ce8166a vocab=30014eb0
+-/
 theorem firstNeighborOffset_spec_of_degree_pos
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ} {v : Fin n}
     (hdegree : 0 < vertexDegree P d₁ d₂ d₃ v) :
@@ -232,6 +261,9 @@ theorem firstNeighborOffset_spec_of_degree_pos
   have hmem := firstNeighborOffset_mem hnonempty
   exact (Finset.mem_filter.mp hmem).2
 
+/--
+@isnad1 id=topthree.1h6v.s5.051ce6e320ee from=translated src=- shape=0607b6e3 vocab=f8de0c42
+-/
 theorem firstCounterclockwiseNeighbor_adjacent_of_degree_pos
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ} {v : Fin n}
     (hdegree : 0 < vertexDegree P d₁ d₂ d₃ v) :
@@ -239,6 +271,9 @@ theorem firstCounterclockwiseNeighbor_adjacent_of_degree_pos
       (firstCounterclockwiseNeighbor P d₁ d₂ d₃ v) := by
   exact (firstNeighborOffset_spec_of_degree_pos hdegree).2
 
+/--
+@isnad1 id=topthree.1h6v.s5.04cb74d99e67 from=translated src=- shape=0607b6e3 vocab=17989e54
+-/
 theorem firstClockwiseNeighbor_adjacent_of_degree_pos
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ} {v : Fin n}
     (hdegree : 0 < vertexDegree P d₁ d₂ d₃ v) :
@@ -250,7 +285,9 @@ theorem firstClockwiseNeighbor_adjacent_of_degree_pos
   exact (Finset.mem_filter.mp hmem).2.2
 
 /-- Every finite cyclic configuration admits a vertex maximizing the chosen
-first-neighbor gap (including the isolated-vertex sentinel convention). -/
+first-neighbor gap (including the isolated-vertex sentinel convention).
+@isnad1 id=ex.0h5v.s5.f24c55c3fce9 from=translated src=- shape=ee9415d7 vocab=63f3ea77
+-/
 theorem exists_maximal_firstNeighborGap
     {n : ℕ} [NeZero n] (P : Fin n → Point ℝ) (d₁ d₂ d₃ : ℝ) :
     ∃ x : Fin n, ∀ v : Fin n,
@@ -303,7 +340,9 @@ non-diameter top-three edge admits a cover.  In the exact attempt-2 heptagon,
 the `d₂` edge `(0,5)` is already a majorant: both permitted endpoint moves
 strictly shorten it.  ErLV majorant existence therefore uses finite rank
 ascent with a terminal case; it does not use such a universal extension
-lemma. -/
+lemma.
+@isnad1 id=and.0h0v.s7.284cb56c42a9 from=translated src=- shape=0cde29d5 vocab=02362ca8
+-/
 theorem heptagon_nondiameter_edge_is_majorant :
     CyclicStrictConvex Witnesses.heptagon ∧
       HasTopThreeDistanceClasses Witnesses.heptagon 7225 6649 5353 ∧
@@ -343,7 +382,9 @@ structure K3MajorantWitness
   terminal : IsMajorant P
     (cyclicRetreat i leftMoves) (cyclicAdvance j rightMoves)
 
-/-- A left cover preserves membership in the top-three graph. -/
+/-- A left cover preserves membership in the top-three graph.
+@isnad1 id=topthree.3h7v.s6.7f23e460bd9f from=translated src=- shape=01c2e731 vocab=f4f9d91f
+-/
 theorem left_cover_top_three_adjacent
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -352,7 +393,9 @@ theorem left_cover_top_three_adjacent
     TopThreeAdjacent P d₁ d₂ d₃ (cyclicRetreat i 1) j :=
   top_three_adjacent_of_strictly_longer hClasses hAdj hCover
 
-/-- A right cover preserves membership in the top-three graph. -/
+/-- A right cover preserves membership in the top-three graph.
+@isnad1 id=topthree.3h7v.s6.f5649844ec95 from=translated src=- shape=e0ed93e0 vocab=9f2391a5
+-/
 theorem right_cover_top_three_adjacent
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -361,7 +404,9 @@ theorem right_cover_top_three_adjacent
     TopThreeAdjacent P d₁ d₂ d₃ i (cyclicAdvance j 1) :=
   top_three_adjacent_of_strictly_longer hClasses hAdj hCover
 
-/-- Three increasing values drawn from three ordered ranks exhaust the ranks in order. -/
+/-- Three increasing values drawn from three ordered ranks exhaust the ranks in order.
+@isnad1 id=and.7h7v.s7.3f40d7440bc9 from=translated src=- shape=5e46c331 vocab=46f51e20
+-/
 theorem strict_three_rank_chain
     {K : Type*} [LinearOrder K] {x y z d₁ d₂ d₃ : K}
     (hd₃d₂ : d₃ < d₂) (hd₂d₁ : d₂ < d₁)
@@ -396,7 +441,9 @@ theorem strict_three_rank_chain
     · exact (hd₃d₂.asymm hyz).elim
 
 /-- Two strict cover moves among exactly three distance ranks must end in
-the largest class. -/
+the largest class.
+@isnad1 id=eq.6h11v.s7.bb48a8b8a370 from=translated src=- shape=223bd098 vocab=9ade9537
+-/
 theorem two_covers_end_at_d₁
     {n : ℕ} {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -411,7 +458,9 @@ theorem two_covers_end_at_d₁
     h₀.2 h₁.2 h₂.2 hgrow₁ hgrow₂).2.2
 
 /-- A diameter-class edge is terminal for the cover process because every
-interpoint squared distance is at most `d₁`. -/
+interpoint squared distance is at most `d₁`.
+@isnad1 id=ismajora.3h7v.s6.66c3f04d0c1e from=translated src=- shape=a8ef5c5c vocab=a53c43fd
+-/
 theorem d₁_edge_is_majorant
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -431,6 +480,9 @@ theorem d₁_edge_is_majorant
     dsimp only at hBound
     linarith [hBound.1]
 
+/--
+@isnad1 id=or.1h4v.s5.935dc9510922 from=translated src=- shape=23e07125 vocab=976e2a18
+-/
 theorem left_or_right_cover_of_not_majorant
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {i j : Fin n}
     (h : ¬IsMajorant P i j) : IsLeftCover P i j ∨ IsRightCover P i j := by
@@ -438,7 +490,9 @@ theorem left_or_right_cover_of_not_majorant
   tauto
 
 /-- Primary-source majorant existence for `G(S,3)`: strict covers stay in
-the top-three graph and at most two such rank raises are possible. -/
+the top-three graph and at most two such rank raises are possible.
+@isnad1 id=nonempty.2h7v.s5.dc8bba4d5e11 from=translated src=- shape=53917316 vocab=c789f4e3
+-/
 theorem exists_k3_majorant
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -535,7 +589,9 @@ structure CoordinatedK3MajorantPair
       first'.rightMoves + second'.leftMoves
 
 /-- The nonempty Cartesian pool of actual majorant paths has a pair
-minimizing the total number of moves at the two facing endpoints. -/
+minimizing the total number of moves at the two facing endpoints.
+@isnad1 id=nonempty.2h9v.s6.75725e467a23 from=translated src=- shape=f631b708 vocab=f1dc8c07
+-/
 theorem exists_coordinated_k3_majorant_pair
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     {z x t u : Fin n}
@@ -560,7 +616,9 @@ theorem exists_coordinated_k3_majorant_pair
   rw [hmin]
   exact Nat.find_min' hCost ⟨first', second', rfl⟩
 
-/-- If no degree-six vertex exists, every vertex has degree at least seven. -/
+/-- If no degree-six vertex exists, every vertex has degree at least seven.
+@isnad1 id=le.1h6v.s6.e06237a7bc22 from=translated src=- shape=03fb196e vocab=c9740682
+-/
 theorem all_degrees_at_least_seven_of_no_degree_six
     {n : ℕ} [_nonzero : NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hNoLow : ¬∃ v, vertexDegree P d₁ d₂ d₃ v ≤ 6) :
@@ -574,7 +632,9 @@ theorem all_degrees_at_least_seven_of_no_degree_six
 /-- In the high-minimum-degree branch, a maximal-gap vertex and both
 primary-source majorants exist.  The first witness is oriented `z ⟶ x`, so
 its endpoint counts are reversed when compared with the draft's `(a,b)`
-convention. -/
+convention.
+@isnad1 id=ex.2h5v.s7.cd008bca2747 from=translated src=- shape=18a424f5 vocab=5709391f
+-/
 theorem exists_maximal_gap_two_majorants
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -599,7 +659,9 @@ theorem exists_maximal_gap_two_majorants
     omega
 
 /-- The high-minimum-degree branch admits a maximal-gap vertex together with
-a jointly minimal pair of actual cover paths. -/
+a jointly minimal pair of actual cover paths.
+@isnad1 id=ex.2h5v.s6.0070ae5c2d2b from=translated src=- shape=97d890f4 vocab=3f6d8f20
+-/
 theorem exists_maximal_gap_coordinated_majorants
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)

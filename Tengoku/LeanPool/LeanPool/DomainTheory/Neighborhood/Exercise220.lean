@@ -71,16 +71,26 @@ def powerSet : NeighborhoodSystem ℕ where
     rw [Set.compl_inter]; exact hX.union hY
   sub_master := fun _ => Set.subset_univ _
 
+/--
+@isnad1 id=iff.0h1v.s4.404bce0f52eb from=translated src=- shape=f1bd4624 vocab=02b35b5d
+-/
 @[simp] theorem mem_powerSet {X : Set ℕ} : powerSet.mem X ↔ Xᶜ.Finite := Iff.rfl
+/--
+@isnad1 id=eq.0h0v.s3.fcf134c6e13d from=translated src=- shape=d672ce25 vocab=c2d8964b
+-/
 @[simp] theorem powerSet_master : powerSet.master = (Set.univ : Set ℕ) := rfl
 
-/-- Cofinite sets are closed under intersection (witness-free form). -/
+/-- Cofinite sets are closed under intersection (witness-free form).
+@isnad1 id=mem.2h2v.s4.aa930c1f0fb6 from=translated src=- shape=b1b2c283 vocab=31e438b3
+-/
 theorem powerSet_inter_mem {A B : Set ℕ} (hA : powerSet.mem A) (hB : powerSet.mem B) :
     powerSet.mem (A ∩ B) := by
   rw [mem_powerSet, Set.compl_inter]; exact hA.union hB
 
 /-- The complement of a singleton is a neighbourhood (it represents the finite
-element `{n}`). -/
+element `{n}`).
+@isnad1 id=mem.0h1v.s4.a6c7c6d7be51 from=translated src=- shape=eaa59f61 vocab=d9b890fe
+-/
 theorem mem_compl_singleton (n : ℕ) : powerSet.mem ({n}ᶜ) := by
   rw [mem_powerSet, compl_compl]; exact Set.finite_singleton n
 
@@ -89,6 +99,9 @@ theorem mem_compl_singleton (n : ℕ) : powerSet.mem ({n}ᶜ) := by
 /-- The subset of `ℕ` represented by an element: `n ∈ toSet x ↔ {n}ᶜ ∈ x`. -/
 def toSet (x : powerSet.Element) : Set ℕ := {n | x.mem ({n}ᶜ)}
 
+/--
+@isnad1 id=iff.0h2v.s5.4b709af21c8f from=translated src=- shape=c5899f02 vocab=489808cc
+-/
 @[simp] theorem mem_toSet {x : powerSet.Element} {n : ℕ} : n ∈ toSet x ↔ x.mem ({n}ᶜ) := Iff.rfl
 
 /-- The filter of a subset `S ⊆ ℕ`: the cofinite `Z` with `Zᶜ ⊆ S`. -/
@@ -108,7 +121,9 @@ def ofSet (S : Set ℕ) : powerSet.Element where
 /-- **Filters are determined on cofinite sets by their singleton-complements.**
 For cofinite `Z`,
 `Z ∈ x ↔ ∀ n ∈ Zᶜ, {n}ᶜ ∈ x` (since `Z = ⋂_{n ∈ Zᶜ} {n}ᶜ`, a *finite*
-intersection). -/
+intersection).
+@isnad1 id=mem.2h2v.s5.6e7e3bc9d674 from=translated src=- shape=44642e42 vocab=d6060b26
+-/
 theorem mem_compl_of_finite (x : powerSet.Element) {t : Set ℕ} (ht : t.Finite)
     (h : ∀ n ∈ t, x.mem ({n}ᶜ)) : x.mem (tᶜ) := by
   revert h
@@ -121,6 +136,9 @@ theorem mem_compl_of_finite (x : powerSet.Element) {t : Set ℕ} (ht : t.Finite)
     exact x.inter_mem (h a (Set.mem_insert a s))
       (ih (fun n hn => h n (Set.mem_insert_of_mem a hn)))
 
+/--
+@isnad1 id=eq.0h1v.s3.9fea2848e7fb from=translated src=- shape=e9e6e124 vocab=c905cbef
+-/
 theorem toSet_ofSet (S : Set ℕ) : toSet (ofSet S) = S := by
   ext n
   simp only [mem_toSet]
@@ -130,6 +148,9 @@ theorem toSet_ofSet (S : Set ℕ) : toSet (ofSet S) = S := by
   · intro hn
     exact ⟨mem_compl_singleton n, by rw [compl_compl]; exact Set.singleton_subset_iff.mpr hn⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.b53fbce78984 from=translated src=- shape=ad4d4fb1 vocab=6805ba82
+-/
 theorem ofSet_toSet (x : powerSet.Element) : ofSet (toSet x) = x := by
   apply Element.ext
   intro Z
@@ -143,7 +164,9 @@ theorem ofSet_toSet (x : powerSet.Element) : ofSet (toSet x) = x := by
     rw [mem_toSet]
     exact x.up_mem hZ (mem_compl_singleton n) (Set.subset_compl_singleton_iff.mpr hn)
 
-/-- `ofSet` is monotone in the set. -/
+/-- `ofSet` is monotone in the set.
+@isnad1 id=le.1h2v.s5.31c641e8171c from=translated src=- shape=79aea53d vocab=dcfdb7b5
+-/
 theorem ofSet_mono {S S' : Set ℕ} (h : S ⊆ S') : ofSet S ≤ ofSet S' :=
   fun _ hZ => ⟨hZ.1, hZ.2.trans h⟩
 
@@ -170,9 +193,18 @@ def succSet (S : Set ℕ) : Set ℕ := (· + 1) '' S
 /-- `S − 1 = {n ∣ n + 1 ∈ S}`. -/
 def predSet (S : Set ℕ) : Set ℕ := {n | n + 1 ∈ S}
 
+/--
+@isnad1 id=iff.0h2v.s5.1636893ad89e from=translated src=- shape=4b3de587 vocab=8cebedd2
+-/
 @[simp] theorem mem_predSet {S : Set ℕ} {n : ℕ} : n ∈ predSet S ↔ n + 1 ∈ S := Iff.rfl
 
+/--
+@isnad1 id=le.1h2v.s4.346b00204007 from=translated src=- shape=4ad33e2d vocab=ab9c38d8
+-/
 theorem succSet_mono {S T : Set ℕ} (h : S ⊆ T) : succSet S ⊆ succSet T := Set.image_mono h
+/--
+@isnad1 id=le.1h2v.s4.62046ad3c56c from=translated src=- shape=4ad33e2d vocab=9dd25d3c
+-/
 theorem predSet_mono {S T : Set ℕ} (h : S ⊆ T) : predSet S ⊆ predSet T := fun _ hn => h hn
 
 /-- **Exercise 2.20 — `x + 1` is approximable.** `X f Z ↔ Zᶜ ⊆ (Xᶜ + 1)`. -/
@@ -209,6 +241,9 @@ def predMap : ApproximableMap powerSet powerSet where
     exact (Set.compl_subset_compl.mpr hZZ').trans
       (hsub.trans (predSet_mono (Set.compl_subset_compl.mpr hX'X)))
 
+/--
+@isnad1 id=eq.0h1v.s4.1acffa62c3c6 from=translated src=- shape=7b4ce1a7 vocab=379f3100
+-/
 theorem toSet_succMap (x : powerSet.Element) :
     toSet (succMap.toElementMap x) = succSet (toSet x) := by
   ext k
@@ -225,6 +260,9 @@ theorem toSet_succMap (x : powerSet.Element) :
     rw [Set.mem_singleton_iff] at ha; subst ha
     exact ⟨m, by rw [compl_compl]; exact Set.mem_singleton m, rfl⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.71da17404c62 from=translated src=- shape=7b4ce1a7 vocab=a5a2e238
+-/
 theorem toSet_predMap (x : powerSet.Element) :
     toSet (predMap.toElementMap x) = predSet (toSet x) := by
   ext k
@@ -274,6 +312,9 @@ def interMap₂ : ApproximableMap₂ powerSet powerSet powerSet where
     rintro X X' Y Y' Z Z' ⟨_, _, _, hsub⟩ hX'X hY'Y hZZ' hX' hY' hZ'
     exact ⟨hX', hY', hZ', (Set.union_subset_union hX'X hY'Y).trans (hsub.trans hZZ')⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.8e747d29bea7 from=translated src=- shape=fc07a751 vocab=3ed96661
+-/
 theorem toSet_unionMap (x y : powerSet.Element) :
     toSet (unionMap.toElementMap₂ x y) = toSet x ∪ toSet y := by
   ext k
@@ -291,6 +332,9 @@ theorem toSet_unionMap (x y : powerSet.Element) :
     · exact ⟨Set.univ, {k}ᶜ, x.master_mem, hky, powerSet.master_mem, mem_compl_singleton k,
         mem_compl_singleton k, Set.inter_subset_right⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.781d9cb22ce8 from=translated src=- shape=fc07a751 vocab=7d5c0700
+-/
 theorem toSet_interMap₂ (x y : powerSet.Element) :
     toSet (interMap₂.toElementMap₂ x y) = toSet x ∩ toSet y := by
   ext k

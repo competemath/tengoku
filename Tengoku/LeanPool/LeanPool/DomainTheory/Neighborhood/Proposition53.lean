@@ -58,6 +58,9 @@ approximable endomap of
 def sectionX (τ : ApproximableMap (prod V₀ V₁) V₀) (y : V₁.Element) : ApproximableMap V₀ V₀ :=
   toApproxMap ((curry (τ.comp (swapC V₁ V₀))).toElementMap y)
 
+/--
+@isnad1 id=eq.0h7v.s6.0f7ac8d6f678 from=translated src=- shape=637185c8 vocab=e341e7f7
+-/
 theorem sectionX_apply (τ : ApproximableMap (prod V₀ V₁) V₀) (y : V₁.Element) (x : V₀.Element) :
     (sectionX τ y).toElementMap x = τ.toElementMap (pair x y) := by
   rw [sectionX, toElementMap_curry_apply, toElementMap_comp, swapC_apply]
@@ -66,11 +69,16 @@ theorem sectionX_apply (τ : ApproximableMap (prod V₀ V₁) V₀) (y : V₁.El
 def secFixX (τ : ApproximableMap (prod V₀ V₁) V₀) : ApproximableMap V₁ V₀ :=
   (fixMap V₀).comp (curry (τ.comp (swapC V₁ V₀)))
 
+/--
+@isnad1 id=eq.0h6v.s5.af5f0d106781 from=translated src=- shape=8338dd7b vocab=d1c7e01a
+-/
 theorem secFixX_apply (τ : ApproximableMap (prod V₀ V₁) V₀) (y : V₁.Element) :
     (secFixX τ).toElementMap y = (sectionX τ y).fixElement := by
   rw [secFixX, toElementMap_comp, fixMap_toElementMap, sectionX]
 
-/-- `!x. τ(x, y)` is a fixed point of the section: `τ(!x.τ(x,y), y) = !x.τ(x,y)`. -/
+/-- `!x. τ(x, y)` is a fixed point of the section: `τ(!x.τ(x,y), y) = !x.τ(x,y)`.
+@isnad1 id=eq.0h6v.s6.22eef7c83eea from=translated src=- shape=40d77a4d vocab=d56a7bab
+-/
 theorem secFixX_isFixed (τ : ApproximableMap (prod V₀ V₁) V₀) (y : V₁.Element) :
     τ.toElementMap (pair ((secFixX τ).toElementMap y) y) = (secFixX τ).toElementMap y := by
   rw [secFixX_apply, ← sectionX_apply, toElementMap_fixElement]
@@ -80,6 +88,9 @@ def outerOp (τ : ApproximableMap (prod V₀ V₁) V₀) (σ : ApproximableMap (
     ApproximableMap V₁ V₁ :=
   σ.comp (paired (secFixX τ) (idMap V₁))
 
+/--
+@isnad1 id=eq.0h7v.s6.236b6df71d1c from=translated src=- shape=624f24ec vocab=8f29cee2
+-/
 theorem outerOp_apply (τ : ApproximableMap (prod V₀ V₁) V₀) (σ : ApproximableMap (prod V₀ V₁) V₁)
     (y : V₁.Element) :
     (outerOp τ σ).toElementMap y = σ.toElementMap (pair ((secFixX τ).toElementMap y) y) := by
@@ -90,7 +101,9 @@ point of
 `F = ⟨τ, σ⟩` is the pair `⟨!x.τ(x, !y.σ(x,y)-coordinate), !y.σ(!x.τ(x,y), y)⟩`.
 Here the second
 coordinate is `ystar = (outerOp τ σ).fixElement` and the first is `xstar = secFixX
-τ (ystar)`. -/
+τ (ystar)`.
+@isnad1 id=eq.0h6v.s6.9b7c3b24d026 from=translated src=- shape=9f94d4f1 vocab=b07269a6
+-/
 theorem fixElement_paired_eq (τ : ApproximableMap (prod V₀ V₁) V₀)
     (σ : ApproximableMap (prod V₀ V₁) V₁) :
     (paired τ σ).fixElement =

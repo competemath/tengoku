@@ -72,6 +72,9 @@ topology of
 Exercise 1.22. -/
 def basicOpen (X : Set α) : Set V.Element := {x | x.mem X}
 
+/--
+@isnad1 id=iff.0h4v.s5.b95700105ab4 from=translated src=- shape=4fc160cf vocab=fec167f4
+-/
 @[simp] theorem mem_basicOpen {X : Set α} {x : V.Element} :
     x ∈ V.basicOpen X ↔ x.mem X := Iff.rfl
 
@@ -79,12 +82,16 @@ def basicOpen (X : Set α) : Set V.Element := {x | x.mem X}
 (upward closure).
 This (with the symmetric version) is the closure of the basic opens under finite
 intersection,
-i.e. `[X] ∩ [Y] = [X ∩ Y]`, the base condition behind the topology. -/
+i.e. `[X] ∩ [Y] = [X ∩ Y]`, the base condition behind the topology.
+@isnad1 id=le.1h4v.s5.97549c6477ff from=translated src=- shape=420bd3b8 vocab=8d3eab84
+-/
 theorem basicOpen_inter_subset_left {X Y : Set α} (hX : V.mem X) :
     V.basicOpen (X ∩ Y) ⊆ V.basicOpen X :=
   fun z hz => z.up_mem hz hX Set.inter_subset_left
 
-/-- `[X ∩ Y] ⊆ [Y]` whenever `Y ∈ 𝒟`. -/
+/-- `[X ∩ Y] ⊆ [Y]` whenever `Y ∈ 𝒟`.
+@isnad1 id=le.1h4v.s5.76e2b7d937bb from=translated src=- shape=43656149 vocab=8d3eab84
+-/
 theorem basicOpen_inter_subset_right {X Y : Set α} (hY : V.mem Y) :
     V.basicOpen (X ∩ Y) ⊆ V.basicOpen Y :=
   fun z hz => z.up_mem hz hY Set.inter_subset_right
@@ -119,10 +126,14 @@ instance instTopologicalSpaceElement : TopologicalSpace V.Element where
     obtain ⟨X, hX, hXt⟩ := hS t htS x hxt
     exact ⟨X, hX, hXt.trans fun _ ha => ⟨t, htS, ha⟩⟩
 
-/-- `IsOpen` for `|𝒟|` is exactly Scott's condition (ii). -/
+/-- `IsOpen` for `|𝒟|` is exactly Scott's condition (ii).
+@isnad1 id=iff.0h3v.s4.a296915a9ff1 from=translated src=- shape=3cc0fc08 vocab=02b00144
+-/
 theorem isOpen_iff_isOpenFilter (U : Set V.Element) : IsOpen U ↔ V.IsOpenFilter U := Iff.rfl
 
-/-- **Exercise 1.22.** Each basic neighbourhood `[X]` is open. -/
+/-- **Exercise 1.22.** Each basic neighbourhood `[X]` is open.
+@isnad1 id=isopen.0h3v.s4.be117cac86c3 from=translated src=- shape=8a6c82c0 vocab=46f7fde3
+-/
 theorem isOpen_basicOpen (X : Set α) : IsOpen (V.basicOpen X) :=
   fun _ hx => ⟨X, hx, subset_rfl⟩
 
@@ -130,7 +141,9 @@ theorem isOpen_basicOpen (X : Set α) : IsOpen (V.basicOpen X) :=
 approximation order
 `⊑`: if `x ∈ 𝒰` and `x ⊑ y` then `y ∈ 𝒰`. (This is a *consequence* of (ii): the
 basic
-neighbourhood `[X] ⊆ 𝒰` witnessing `x ∈ 𝒰` also contains every `y ⊒ x`.) -/
+neighbourhood `[X] ⊆ 𝒰` witnessing `x ∈ 𝒰` also contains every `y ⊒ x`.)
+@isnad1 id=mem.3h5v.s6.22caf639b728 from=translated src=- shape=4028800e vocab=5dfe736c
+-/
 theorem isOpen_isUpperSet {U : Set V.Element} (hU : IsOpen U) :
     ∀ ⦃x y : V.Element⦄, x ∈ U → x ≤ y → y ∈ U := by
   intro x y hxU hxy
@@ -141,7 +154,9 @@ theorem isOpen_isUpperSet {U : Set V.Element} (hU : IsOpen U) :
 iff
 (i) it is upward closed under `⊑`, and (ii) every point of `𝒰` has a basic
 neighbourhood `[X]`
-(`X ∈ x`) contained in `𝒰`. -/
+(`X ∈ x`) contained in `𝒰`.
+@isnad1 id=iff.0h3v.s6.44949aa49870 from=translated src=- shape=a692e82b vocab=0fb1fdf6
+-/
 theorem isOpen_iff_upper_basic (U : Set V.Element) :
     IsOpen U ↔
       (∀ ⦃x y : V.Element⦄, x ∈ U → x ≤ y → y ∈ U) ∧
@@ -157,7 +172,9 @@ the topology:
 `x ⊑ y` iff every open set containing `x` also contains `y`.
 
 * `→` is upward closure of opens (`isOpen_isUpperSet`);
-* `←` tests against the open basic neighbourhood `[X]` for each `X ∈ x`. -/
+* `←` tests against the open basic neighbourhood `[X]` for each `X ∈ x`.
+@isnad1 id=iff.0h4v.s6.17fa0eb2dd88 from=translated src=- shape=9aa60178 vocab=5dfe736c
+-/
 theorem le_iff_isOpen_imp (x y : V.Element) :
     x ≤ y ↔ ∀ U : Set V.Element, IsOpen U → x ∈ U → y ∈ U := by
   constructor
@@ -170,7 +187,9 @@ theorem le_iff_isOpen_imp (x y : V.Element) :
 preorder `⤳`:
 `y ⤳ x ↔ x ⊑ y`. (Scott's (iii) says exactly that `⊑` is the specialization order
 of this
-topology.) -/
+topology.)
+@isnad1 id=iff.0h4v.s5.7f37633d1898 from=translated src=- shape=d8ef258b vocab=705fa38a
+-/
 theorem specializes_iff_le (x y : V.Element) : y ⤳ x ↔ x ≤ y := by
   rw [specializes_iff_forall_open]
   exact (V.le_iff_isOpen_imp x y).symm

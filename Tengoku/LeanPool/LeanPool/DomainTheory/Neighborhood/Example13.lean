@@ -46,11 +46,22 @@ def memSet : Set (Set Token) := {master, twelve, two}
 /-- Membership in the neighbourhood system `𝒟` of Example 1.3. -/
 def mem (X : Set Token) : Prop := X ∈ memSet
 
+/--
+@isnad1 id=mem.0h0v.s1.6488cadda0d2 from=translated src=- shape=49959d42 vocab=7a55c11a
+-/
 theorem mem_master : mem master := by simp [mem, memSet, master, twelve, two]
+/--
+@isnad1 id=mem.0h0v.s1.a30cb9bacb1e from=translated src=- shape=49959d42 vocab=b4db7e72
+-/
 theorem mem_twelve : mem twelve := by simp [mem, memSet, master, twelve, two]
+/--
+@isnad1 id=mem.0h0v.s1.5156b61bba25 from=translated src=- shape=49959d42 vocab=3d5bdfd1
+-/
 theorem mem_two : mem two := by simp [mem, memSet, master, twelve, two]
 
-/-- A neighbourhood of Example 1.3 is exactly one of `Δ`, `{1,2}`, or `{2}`. -/
+/-- A neighbourhood of Example 1.3 is exactly one of `Δ`, `{1,2}`, or `{2}`.
+@isnad1 id=iff.0h1v.s4.4bcd2af1d25f from=translated src=- shape=28ec64fc vocab=da36cb73
+-/
 theorem mem_iff (X : Set Token) : mem X ↔ X = master ∨ X = twelve ∨ X = two := by
   constructor
   · intro h
@@ -259,7 +270,9 @@ private theorem mem_twelve_of_mem (x : neighborhoodSystem.Element) (htwelve : x.
     · exact x.master_mem
     · rw [hx]; exact htwelve
 
-/-- Every element of Example 1.3 is one of the three filters in the linear chain. -/
+/-- Every element of Example 1.3 is one of the three filters in the linear chain.
+@isnad1 id=or.0h1v.s4.068c4cd1860a from=translated src=- shape=5e9adaa9 vocab=409de6c9
+-/
 theorem element_classification (x : neighborhoodSystem.Element) :
     x = bot ∨ x = elemTwelve ∨ x = elemTwo := by
   by_cases htwo : x.mem two
@@ -279,6 +292,9 @@ theorem element_classification (x : neighborhoodSystem.Element) :
     rw [hx]
     exact x.master_mem
 
+/--
+@isnad1 id=lt.0h0v.s4.66905d23e382 from=translated src=- shape=9094f7d5 vocab=b1963c0f
+-/
 theorem bot_lt_elemTwelve : bot < elemTwelve := by
   constructor
   · intro X hx
@@ -288,6 +304,9 @@ theorem bot_lt_elemTwelve : bot < elemTwelve := by
     have : bot.mem twelve := h twelve (Or.inr rfl)
     exact twelve_ne_master this
 
+/--
+@isnad1 id=lt.0h0v.s4.9f415d676b11 from=translated src=- shape=9094f7d5 vocab=a0b179d9
+-/
 theorem elemTwelve_lt_elemTwo : elemTwelve < elemTwo := by
   constructor
   · intro X hx
@@ -301,6 +320,9 @@ theorem elemTwelve_lt_elemTwo : elemTwelve < elemTwo := by
     · exact absurd h1 two_ne_master
     · exact two_ne_twelve h2
 
+/--
+@isnad1 id=eq.1h1v.s4.f7aef7f1f331 from=translated src=- shape=35d47406 vocab=8ae51a00
+-/
 theorem elemTwo_maximal (x : neighborhoodSystem.Element) (h : elemTwo ≤ x) : x = elemTwo := by
   rcases element_classification x with rfl | rfl | rfl
   · exfalso

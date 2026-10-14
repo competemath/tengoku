@@ -33,21 +33,32 @@ def planeCross (z w : ℂ) : ℝ :=
 def planeTurn (a b c : ℂ) : ℝ :=
   planeCross (b - a) (c - a)
 
+/--
+@isnad1 id=eq.0h1v.s5.0cb4b19d867b from=translated src=- shape=6999648a vocab=ea0db140
+-/
 theorem planeDot_self (z : ℂ) :
     diameterDot z z = Complex.normSq z := by
   simp [diameterDot, Complex.normSq_apply]
 
+/--
+@isnad1 id=eq.0h2v.s3.fc3adbfeb46b from=translated src=- shape=a45fe407 vocab=1dce82e3
+-/
 theorem planeCross_swap (z w : ℂ) :
     planeCross w z = -planeCross z w := by
   simp [planeCross]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s4.3753e0574428 from=translated src=- shape=04d76633 vocab=090d4914
+-/
 theorem planeTurn_swap (a b c : ℂ) :
     planeTurn a c b = -planeTurn a b c := by
   unfold planeTurn
   rw [planeCross_swap]
 
-/-- Lagrange's identity in the form needed by the diameter argument. -/
+/-- Lagrange's identity in the form needed by the diameter argument.
+@isnad1 id=eq.0h3v.s5.19cc2472f990 from=translated src=- shape=36a15ac4 vocab=3c04f883
+-/
 theorem plane_lagrange (x y z : ℂ) :
     diameterDot x x * diameterDot y z =
       diameterDot x y * diameterDot x z + planeCross x y * planeCross x z := by
@@ -62,7 +73,9 @@ private theorem normSq_of_dist_eq {a b : ℂ} {d : ℝ} (h : dist a b = d) :
   rw [hnorm]
 
 /-- Two equal-length rays with zero signed area coincide if the distance
-between their endpoints is no longer than the rays. -/
+between their endpoints is no longer than the rays.
+@isnad1 id=eq.5h4v.s6.fc85ef9f1f6c from=translated src=- shape=39fa93ad vocab=58165a99
+-/
 theorem equal_rays_of_cross_eq_zero
     {u v w : ℂ} {d : ℝ}
     (huv : dist u v = d) (huw : dist u w = d)
@@ -113,7 +126,9 @@ theorem equal_rays_of_cross_eq_zero
 opposite signed sides, the two free endpoints are farther apart.
 
 This is the algebraic core of the fact that two disjoint diameter edges in
-the plane must cross. -/
+the plane must cross.
+@isnad1 id=lt.6h5v.s6.7b2fd6063150 from=translated src=- shape=7bf6df16 vocab=7c1eea04
+-/
 theorem opposite_turns_force_longer_pair
     {u v a b : ℂ} {d : ℝ}
     (huv : dist u v = d) (hua : dist u a = d) (hvb : dist v b = d)

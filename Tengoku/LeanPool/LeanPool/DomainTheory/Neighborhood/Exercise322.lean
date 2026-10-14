@@ -56,7 +56,9 @@ def compApp (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) (V₂ 
             (proj₀ (prod (funSpace V₁ V₂) (funSpace V₀ V₁)) V₀))
           (proj₁ (prod (funSpace V₁ V₂) (funSpace V₀ V₁)) V₀))))
 
-/-- `compApp(⟨⟨g, f⟩, x⟩) = g(f(x))`. -/
+/-- `compApp(⟨⟨g, f⟩, x⟩) = g(f(x))`.
+@isnad1 id=eq.0h9v.s7.c228f4290d01 from=translated src=- shape=d3acb27b vocab=9bf0de10
+-/
 theorem toElementMap_compApp (Gφ : (funSpace V₁ V₂).Element) (Fφ : (funSpace V₀ V₁).Element)
     (x : V₀.Element) :
     (compApp V₀ V₁ V₂).toElementMap (pair (pair Gφ Fφ) x)
@@ -73,7 +75,9 @@ def compMap (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) (V₂ 
 
 /-- **Exercise 3.22 (Scott 1981, PRG-19).** `comp(g, f) = g ∘ f`: applying the
 value
-`comp(⟨g, f⟩) ∈ |𝒟₀ → 𝒟₂|` to `x` gives `g(f(x))`. -/
+`comp(⟨g, f⟩) ∈ |𝒟₀ → 𝒟₂|` to `x` gives `g(f(x))`.
+@isnad1 id=eq.0h9v.s7.b2af18b4ccd1 from=translated src=- shape=6b0255d9 vocab=20b6dfda
+-/
 theorem toElementMap_compMap_apply (Gφ : (funSpace V₁ V₂).Element) (Fφ : (funSpace V₀ V₁).Element)
     (x : V₀.Element) :
     (toApproxMap ((compMap V₀ V₁ V₂).toElementMap (pair Gφ Fφ))).toElementMap x
@@ -83,7 +87,9 @@ theorem toElementMap_compMap_apply (Gφ : (funSpace V₁ V₂).Element) (Fφ : (
 /-- **Exercise 3.22 (Scott 1981, PRG-19).** The relational form `comp(g, f) = g ∘
 f`: the value of
 `comp` at `⟨g, f⟩`, read back as an approximable map, is the composition of the
-approximable maps. -/
+approximable maps.
+@isnad1 id=eq.0h8v.s7.dcac79dd5e1c from=translated src=- shape=cf3f3c8b vocab=4dac1f6c
+-/
 theorem toApproxMap_compMap (Gφ : (funSpace V₁ V₂).Element) (Fφ : (funSpace V₀ V₁).Element) :
     toApproxMap ((compMap V₀ V₁ V₂).toElementMap (pair Gφ Fφ))
       = (toApproxMap Gφ).comp (toApproxMap Fφ) := by

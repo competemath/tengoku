@@ -81,7 +81,9 @@ def conflictCovers44 : Array ConflictCover :=
   ⟨6, 140739636367394, 34359721983, [1, 5, 12, 19, 31, 47]⟩,
   ⟨7, 530496, 8556306427, [6, 11, 12, 19]⟩]
 
-/-- Every entry in conflict-cover group 44 passes its audit. -/
+/-- Every entry in conflict-cover group 44 passes its audit.
+@isnad1 id=eq.0h0v.s3.d6fa4c850b46 from=translated src=- shape=0547e772 vocab=ac7c9645
+-/
 theorem conflictCovers44_valid :
     conflictCovers44.toList.all ConflictCover.validB = true := by
   decide
@@ -151,7 +153,9 @@ def conflictCovers45 : Array ConflictCover :=
   ⟨6, 137439483940, 34326052863, [2, 5, 11, 12, 19, 37]⟩,
   ⟨5, 550829560964, 34359738367, [2, 7, 10, 12, 30, 39]⟩]
 
-/-- Every entry in conflict-cover group 45 passes its audit. -/
+/-- Every entry in conflict-cover group 45 passes its audit.
+@isnad1 id=eq.0h0v.s3.b153bad2aea8 from=translated src=- shape=0547e772 vocab=4e86023f
+-/
 theorem conflictCovers45_valid :
     conflictCovers45.toList.all ConflictCover.validB = true := by
   decide
@@ -223,7 +227,9 @@ def conflictCovers46 : Array ConflictCover :=
   ⟨3, 140737488359424, 28948709745, [12, 47]⟩,
   ⟨5, 2420118656, 34359738335, [7, 10, 12, 22, 28, 31]⟩]
 
-/-- Every entry in conflict-cover group 46 passes its audit. -/
+/-- Every entry in conflict-cover group 46 passes its audit.
+@isnad1 id=eq.0h0v.s3.44b5ed5bdc4b from=translated src=- shape=0547e772 vocab=60eff2cc
+-/
 theorem conflictCovers46_valid :
     conflictCovers46.toList.all ConflictCover.validB = true := by
   decide
@@ -292,7 +298,9 @@ def conflictCovers47 : Array ConflictCover :=
   ⟨7, 70370086358016, 34359711359, [10, 11, 28, 30, 46]⟩,
   ⟨5, 1082134660, 34359738367, [2, 7, 12, 23, 30]⟩]
 
-/-- Every entry in conflict-cover group 47 passes its audit. -/
+/-- Every entry in conflict-cover group 47 passes its audit.
+@isnad1 id=eq.0h0v.s3.69e9b50e613e from=translated src=- shape=0547e772 vocab=069e7ec9
+-/
 theorem conflictCovers47_valid :
     conflictCovers47.toList.all ConflictCover.validB = true := by
   decide

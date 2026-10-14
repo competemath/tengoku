@@ -53,7 +53,9 @@ def LowDigits (p n : ℕ) : Prop := ∀ d ∈ Nat.digits p n, d ≤ (p - 1) / 2
 /-- For an **odd** prime `p`, the per-digit bound `2*d < p` (the #376 form, i.e.
 "doubling produces no carry") is equivalent to `d ≤ (p-1)/2` (the `LowDigits`
 form). The hypotheses are stated per-digit so the lemma threads through the
-`∀ d ∈ digits p n` quantifier. -/
+`∀ d ∈ digits p n` quantifier.
+@isnad1 id=iff.2h2v.s6.0dceb3712083 from=translated src=- shape=afca2ef3 vocab=248938b3
+-/
 lemma digit_le_half_iff_two_mul_lt {p d : ℕ} (hp2 : 2 ≤ p) (hpodd : Odd p) :
     d ≤ (p - 1) / 2 ↔ 2 * d < p := by
   obtain ⟨k, hk⟩ := hpodd
@@ -64,7 +66,9 @@ lemma digit_le_half_iff_two_mul_lt {p d : ℕ} (hp2 : 2 ≤ p) (hpodd : Odd p) :
     rw [this]; exact Nat.mul_div_cancel_left k (by decide)
   rw [hhalf]; omega
 
-/-- `LowDigits` and #376's `LowDoubleDigits` coincide for odd primes. -/
+/-- `LowDigits` and #376's `LowDoubleDigits` coincide for odd primes.
+@isnad1 id=iff.2h2v.s4.1ee65d9803bd from=translated src=- shape=ef9bc2da vocab=410d1a9b
+-/
 theorem lowDigits_iff_lowDoubleDigits {p n : ℕ} (hp2 : 2 ≤ p) (hpodd : Odd p) :
     LowDigits p n ↔ Egrs75.Erdos376.LowDoubleDigits p n := by
   unfold LowDigits Egrs75.Erdos376.LowDoubleDigits
@@ -82,7 +86,9 @@ We turn `Coprime _ p` into `¬ p ∣ _` and `LowDoubleDigits` into `LowDigits`
 /-- **EGRS single-base bridge.** For an **odd prime** `p`,
 `p ∤ C(2n,n)` exactly when every base-`p` digit of `n` is `≤ (p-1)/2`.
 Kernel-clean: assembled from `coprime_centralBinom_prime_iff` + odd-prime digit
-arithmetic. This is the per-prime Kummer fact the two-prime target stands on. -/
+arithmetic. This is the per-prime Kummer fact the two-prime target stands on.
+@isnad1 id=iff.2h2v.s4.2e2c056401c8 from=translated src=- shape=909184c4 vocab=89127581
+-/
 theorem not_dvd_centralBinom_iff_lowDigits {p : ℕ} (hp : p.Prime) (hpodd : Odd p)
     (n : ℕ) : ¬ p ∣ Nat.centralBinom n ↔ LowDigits p n := by
   have : Fact p.Prime := ⟨hp⟩

@@ -35,7 +35,9 @@ open scoped Nat
 /-- The `i`-th factorial-base digit of `n`: `dᵢ(n) = ⌊n / i!⌋ mod (i+1)`. -/
 def factDigit (i n : ℕ) : ℕ := (n / i !) % (i + 1)
 
-/-- The factorials below `i` (positive indices) sum to less than `i!`. -/
+/-- The factorials below `i` (positive indices) sum to less than `i!`.
+@isnad1 id=lt.1h2v.s5.057919eeb09f from=translated src=- shape=b097657d vocab=3684db47
+-/
 theorem sum_lt_factorial_of_lt (T : Finset ℕ) (hT : ∀ a ∈ T, 1 ≤ a) (i : ℕ) :
     ∑ a ∈ T.filter (· < i), a ! < i ! := by
   have hsub : T.filter (· < i) ⊆ Finset.Ico 1 i := by
@@ -57,7 +59,9 @@ theorem sum_lt_factorial_of_lt (T : Finset ℕ) (hT : ∀ a ∈ T, 1 ≤ a) (i :
 
 /-- **The digits of a sum of distinct factorials are its indicators.** For `T` a finite set of
 positive integers, `d_i(∑_{a∈T} a!) = [i ∈ T] ∈ {0,1}`. (The "representable ⟹ all digits ≤ 1"
-direction, with the exact value.) -/
+direction, with the exact value.)
+@isnad1 id=eq.2h2v.s6.6a637c587cae from=translated src=- shape=48825267 vocab=93c8df38
+-/
 theorem factDigit_sum_factorial (T : Finset ℕ) (hT : ∀ a ∈ T, 1 ≤ a) {i : ℕ} (hi : 1 ≤ i) :
     factDigit i (∑ a ∈ T, a !) = if i ∈ T then 1 else 0 := by
   classical
@@ -96,27 +100,35 @@ theorem factDigit_sum_factorial (T : Finset ℕ) (hT : ∀ a ∈ T, 1 ≤ a) {i 
   rw [Nat.add_mul_mod_self_left, Nat.mod_eq_of_lt hemod]
 
 /-- **Leading digit.** If `n < (M+1)!` then the top digit is just the quotient:
-`d_M(n) = ⌊n / M!⌋` (no `mod` truncation, since `n/M! < M+1`). -/
+`d_M(n) = ⌊n / M!⌋` (no `mod` truncation, since `n/M! < M+1`).
+@isnad1 id=eq.1h2v.s5.ce700d21a68d from=translated src=- shape=be633a0a vocab=2b84a95f
+-/
 theorem factDigit_top {n M : ℕ} (h : n < (M + 1)!) : factDigit M n = n / M ! := by
   have h2 : n / M ! < M + 1 := by
     rw [Nat.div_lt_iff_lt_mul (Nat.factorial_pos M), ← Nat.factorial_succ]; exact h
   rw [factDigit]; exact Nat.mod_eq_of_lt h2
 
 /-- If `n` reaches `2·M!` (but stays below `(M+1)!`), its top digit is `≥ 2`. The size-sandwich
-side of the residual: `n ∉ [M!, 2M!)` ⟹ leading digit `≥ 2` ⟹ not all digits `≤ 1`. -/
+side of the residual: `n ∉ [M!, 2M!)` ⟹ leading digit `≥ 2` ⟹ not all digits `≤ 1`.
+@isnad1 id=le.2h2v.s5.0e34acaa2a30 from=translated src=- shape=ee4e7260 vocab=d2b390e9
+-/
 theorem two_le_factDigit_top {n M : ℕ} (h : n < (M + 1)!) (h2 : 2 * M ! ≤ n) :
     2 ≤ factDigit M n := by
   rw [factDigit_top h, Nat.le_div_iff_mul_le (Nat.factorial_pos M)]
   omega
 
-/-- A sum of distinct factorials (positive indices) has all digits `≤ 1`. -/
+/-- A sum of distinct factorials (positive indices) has all digits `≤ 1`.
+@isnad1 id=le.2h2v.s5.c90b423ede62 from=translated src=- shape=72a24c6f vocab=fa94e404
+-/
 theorem factDigit_factSum_le_one (T : Finset ℕ) (hT : ∀ a ∈ T, 1 ≤ a) {i : ℕ} (hi : 1 ≤ i) :
     factDigit i (∑ a ∈ T, a !) ≤ 1 := by
   rw [factDigit_sum_factorial T hT hi]; split_ifs <;> omega
 
 /-- **The `0!` bridge.** Since `0! = 1!`, allowing index `0` adds at most one unit. So if `n` is a
 sum of distinct factorials (`n = factSum S`, indices `≥ 0`), then *either* `n` *or* `n - 1` has all
-factorial digits `≤ 1` (the latter when `0 ∈ S`, peeling `0! = 1`). -/
+factorial digits `≤ 1` (the latter when `0 ∈ S`, peeling `0! = 1`).
+@isnad1 id=or.1h2v.s6.86a94605d719 from=translated src=- shape=7a2d9b44 vocab=a5476132
+-/
 theorem factSum_digit_dichotomy (S : Finset ℕ) {n : ℕ} (hn : factSum S = n) :
     (∀ i, 1 ≤ i → factDigit i n ≤ 1) ∨ (∀ i, 1 ≤ i → factDigit i (n - 1) ≤ 1) := by
   rw [factSum] at hn
@@ -141,7 +153,9 @@ theorem factSum_digit_dichotomy (S : Finset ℕ) {n : ℕ} (hn : factSum S = n) 
 
 /-- **Non-representability criterion.** If *both* `n` and `n - 1` carry a factorial digit `≥ 2`
 (at a positive index), then `n` is not a sum of distinct factorials: no `S` has `factSum S = n`.
-This is the interface the sharp endgame calls on `n = 2^m`. -/
+This is the interface the sharp endgame calls on `n = 2^m`.
+@isnad1 id=ne.2h2v.s6.9f8544b45bda from=translated src=- shape=09f6edef vocab=a5476132
+-/
 theorem not_factSum_of_digits (n : ℕ)
     (h1 : ∃ i, 1 ≤ i ∧ 2 ≤ factDigit i n)
     (h2 : ∃ i, 1 ≤ i ∧ 2 ≤ factDigit i (n - 1)) :

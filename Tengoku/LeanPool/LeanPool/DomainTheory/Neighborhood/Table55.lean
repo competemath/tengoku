@@ -78,10 +78,16 @@ def P₀ (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) : Approxi
 def P₁ (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) : ApproximableMap (prod V₀ V₁) V₁ :=
   proj₁ V₀ V₁
 
+/--
+@isnad1 id=eq.0h6v.s5.08bb26c4a2ab from=translated src=- shape=6436f7ed vocab=0353df63
+-/
 @[simp] theorem P₀_apply (x : V₀.Element) (y : V₁.Element) :
     (P₀ V₀ V₁).toElementMap (pair x y) = x := by
   rw [P₀, toElementMap_proj₀, fst_pair]
 
+/--
+@isnad1 id=eq.0h6v.s5.860af8d28eed from=translated src=- shape=773c7405 vocab=edf107cb
+-/
 @[simp] theorem P₁_apply (x : V₀.Element) (y : V₁.Element) :
     (P₁ V₀ V₁).toElementMap (pair x y) = y := by
   rw [P₁, toElementMap_proj₁, snd_pair]
@@ -93,6 +99,9 @@ def P₁ (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) : Approxi
 def pairC (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) :
     ApproximableMap V₀ (funSpace V₁ (prod V₀ V₁)) := curry (idMap (prod V₀ V₁))
 
+/--
+@isnad1 id=eq.0h6v.s6.e7c66e141818 from=translated src=- shape=f6dd685d vocab=7b032020
+-/
 theorem pairC_apply (x : V₀.Element) (y : V₁.Element) :
     (toApproxMap ((pairC V₀ V₁).toElementMap x)).toElementMap y = pair x y := by
   rw [pairC, toElementMap_curry_apply, toElementMap_idMap]
@@ -103,6 +112,9 @@ theorem pairC_apply (x : V₀.Element) (y : V₁.Element) :
 𝒟`. -/
 def diagC (V : NeighborhoodSystem α) : ApproximableMap V (prod V V) := paired (idMap V) (idMap V)
 
+/--
+@isnad1 id=eq.0h3v.s5.27c6680e198c from=translated src=- shape=974a453d vocab=d04a17df
+-/
 @[simp] theorem diagC_apply (x : V.Element) : (diagC V).toElementMap x = pair x x := by
   rw [diagC, toElementMap_paired, toElementMap_idMap]
 
@@ -115,6 +127,9 @@ argument-swap scheme: `𝒟₀ × 𝒟₁ → 𝒟₁ × 𝒟₀`. -/
 def swapC (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) :
     ApproximableMap (prod V₀ V₁) (prod V₁ V₀) := paired (proj₁ V₀ V₁) (proj₀ V₀ V₁)
 
+/--
+@isnad1 id=eq.0h6v.s6.feca83ba1962 from=translated src=- shape=c1e56836 vocab=76a74241
+-/
 @[simp] theorem swapC_apply (x : V₀.Element) (y : V₁.Element) :
     (swapC V₀ V₁).toElementMap (pair x y) = pair y x := by
   rw [swapC, toElementMap_paired, toElementMap_proj₁, toElementMap_proj₀, snd_pair, fst_pair]
@@ -127,6 +142,9 @@ def swapC (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) :
 def evalC (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) :
     ApproximableMap (prod (funSpace V₀ V₁) V₀) V₁ := evalMap V₀ V₁
 
+/--
+@isnad1 id=eq.0h6v.s6.21229baa2c75 from=translated src=- shape=b521b33c vocab=9a7c5a32
+-/
 theorem evalC_apply (φ : (funSpace V₀ V₁).Element) (x : V₀.Element) :
     (evalC V₀ V₁).toElementMap (pair φ x) = (toApproxMap φ).toElementMap x := by
   rw [evalC, evalMap_apply]
@@ -139,11 +157,16 @@ the constant map
 def constC (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) :
     ApproximableMap V₁ (funSpace V₀ V₁) := curry (proj₀ V₁ V₀)
 
+/--
+@isnad1 id=eq.0h6v.s5.b4a70881d526 from=translated src=- shape=d7dbc215 vocab=f54bf9fc
+-/
 theorem constC_apply (k : V₁.Element) (x : V₀.Element) :
     (toApproxMap ((constC V₀ V₁).toElementMap k)).toElementMap x = k := by
   rw [constC, toElementMap_curry_apply, toElementMap_proj₀, fst_pair]
 
-/-- `const(k)` is the constant map `constMap` of Lemma 3.6. -/
+/-- `const(k)` is the constant map `constMap` of Lemma 3.6.
+@isnad1 id=eq.0h5v.s5.5a275aa63a19 from=translated src=- shape=7b0fe8af vocab=2b6b1b59
+-/
 theorem constC_eq_constMap (k : V₁.Element) :
     toApproxMap ((constC V₀ V₁).toElementMap k) = constMap V₀ k := by
   apply ext_of_toElementMap
@@ -168,7 +191,9 @@ def curryC (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) (V₂ :
     ApproximableMap (funSpace (prod V₀ V₁) V₂) (funSpace V₀ (funSpace V₁ V₂)) :=
   ofIso (curryIso V₀ V₁ V₂)
 
-/-- `curry(g)` is the curried map of Theorem 3.12. -/
+/-- `curry(g)` is the curried map of Theorem 3.12.
+@isnad1 id=eq.0h7v.s7.f3dbec11be2a from=translated src=- shape=434cdfc6 vocab=4c411593
+-/
 theorem curryC_toApproxMap (φ : (funSpace (prod V₀ V₁) V₂).Element) :
     toApproxMap ((curryC V₀ V₁ V₂).toElementMap φ) = curry (toApproxMap φ) := by
   rw [curryC, toElementMap_ofIso]
@@ -176,6 +201,9 @@ theorem curryC_toApproxMap (φ : (funSpace (prod V₀ V₁) V₂).Element) :
   have he := (funSpaceEquiv V₀ (funSpace V₁ V₂)).apply_symm_apply (curry (toApproxMap φ))
   rwa [funSpaceEquiv_apply, funSpaceEquiv_symm_apply] at he
 
+/--
+@isnad1 id=eq.0h9v.s7.7f121cc74741 from=translated src=- shape=cac39ed6 vocab=4f0fe33b
+-/
 theorem curryC_apply (φ : (funSpace (prod V₀ V₁) V₂).Element) (x : V₀.Element) (y : V₁.Element) :
     (toApproxMap ((toApproxMap ((curryC V₀ V₁ V₂).toElementMap φ)).toElementMap x)).toElementMap y
       = (toApproxMap φ).toElementMap (pair x y) := by
@@ -206,6 +234,9 @@ def compC (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) (V₂ : 
     ApproximableMap (prod (funSpace V₁ V₂) (funSpace V₀ V₁)) (funSpace V₀ V₂) :=
   curry (compMapTbl V₀ V₁ V₂)
 
+/--
+@isnad1 id=eq.0h9v.s7.62b47dae68d6 from=translated src=- shape=6b0255d9 vocab=81fbcd98
+-/
 theorem compC_apply (φ : (funSpace V₁ V₂).Element) (ψ : (funSpace V₀ V₁).Element) (x : V₀.Element) :
     (toApproxMap ((compC V₀ V₁ V₂).toElementMap (pair φ ψ))).toElementMap x
       = (toApproxMap φ).toElementMap ((toApproxMap ψ).toElementMap x) := by
@@ -213,7 +244,9 @@ theorem compC_apply (φ : (funSpace V₁ V₂).Element) (ψ : (funSpace V₀ V�
   simp only [toElementMap_comp, toElementMap_paired, toElementMap_proj₀, toElementMap_proj₁,
     fst_pair, snd_pair, evalMap_apply]
 
-/-- `comp(g, f) = g ∘ f` (Scott's infix `g ∘ f`). -/
+/-- `comp(g, f) = g ∘ f` (Scott's infix `g ∘ f`).
+@isnad1 id=eq.0h8v.s7.5257b8afec62 from=translated src=- shape=cf3f3c8b vocab=2c28dc4c
+-/
 theorem compC_eq_comp (φ : (funSpace V₁ V₂).Element) (ψ : (funSpace V₀ V₁).Element) :
     toApproxMap ((compC V₀ V₁ V₂).toElementMap (pair φ ψ)) =
       (toApproxMap φ).comp (toApproxMap ψ) := by
@@ -248,6 +281,9 @@ def funpairC (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) (V₂
       (funSpace (funSpace V₂ V₁) (funSpace V₂ (prod V₀ V₁))) :=
   curry (curry (funpairMapTbl V₀ V₁ V₂))
 
+/--
+@isnad1 id=eq.0h9v.s8.d5e24d941c5e from=translated src=- shape=d5728c67 vocab=7cc2f860
+-/
 theorem funpairC_apply (φ : (funSpace V₂ V₀).Element) (ψ : (funSpace V₂ V₁).Element)
     (x : V₂.Element) :
     (toApproxMap ((toApproxMap ((funpairC V₀ V₁ V₂).toElementMap φ)).toElementMap ψ)).toElementMap x
@@ -256,7 +292,9 @@ theorem funpairC_apply (φ : (funSpace V₂ V₀).Element) (ψ : (funSpace V₂ 
   simp only [toElementMap_paired, toElementMap_comp, toElementMap_proj₀, toElementMap_proj₁,
     fst_pair, snd_pair, evalMap_apply]
 
-/-- `funpair(f)(g)` is the paired map `⟨f, g⟩` of Definition 3.3. -/
+/-- `funpair(f)(g)` is the paired map `⟨f, g⟩` of Definition 3.3.
+@isnad1 id=eq.0h8v.s7.f4fb16a32294 from=translated src=- shape=b07c704a vocab=a223cbb8
+-/
 theorem funpairC_eq_paired (φ : (funSpace V₂ V₀).Element) (ψ : (funSpace V₂ V₁).Element) :
     toApproxMap ((toApproxMap ((funpairC V₀ V₁ V₂).toElementMap φ)).toElementMap ψ)
       = paired (toApproxMap φ) (toApproxMap ψ) := by
@@ -271,11 +309,16 @@ operator
 `(𝒟 → 𝒟) → 𝒟` (Theorem 4.2's `fixMap`). -/
 def fixC (V : NeighborhoodSystem α) : ApproximableMap (funSpace V V) V := fixMap V
 
+/--
+@isnad1 id=eq.0h3v.s5.77a9f566eb66 from=translated src=- shape=c05ebbc8 vocab=34e1484a
+-/
 theorem fixC_apply (φ : (funSpace V V).Element) :
     (fixC V).toElementMap φ = (toApproxMap φ).fixElement := by
   rw [fixC, fixMap_toElementMap]
 
-/-- `fix(f) = f(fix(f))`. -/
+/-- `fix(f) = f(fix(f))`.
+@isnad1 id=eq.0h3v.s6.08e1d5ab28f7 from=translated src=- shape=7f050f52 vocab=14e4654b
+-/
 theorem fixC_fixed (φ : (funSpace V V).Element) :
     (toApproxMap φ).toElementMap ((fixC V).toElementMap φ) = (fixC V).toElementMap φ := by
   rw [fixC]; exact fixMap_fixed V φ

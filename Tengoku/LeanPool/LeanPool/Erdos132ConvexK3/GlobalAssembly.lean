@@ -46,6 +46,9 @@ inductive StartsRight
       (tail : K3CoverSequence P i (cyclicAdvance j 1) leftMoves rightMoves) :
       StartsRight (.right h tail)
 
+/--
+@isnad1 id=or.2h6v.s6.0a2fe84df7c2 from=translated src=- shape=618bedbe vocab=3140fbc9
+-/
 theorem startsLeft_or_startsRight_of_positive
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {i j : Fin n}
     {leftMoves rightMoves : ℕ}
@@ -57,6 +60,9 @@ theorem startsLeft_or_startsRight_of_positive
   | left h tail => exact Or.inl (.intro h tail)
   | right h tail => exact Or.inr (.intro h tail)
 
+/--
+@isnad1 id=startsle.3h6v.s5.38b8c4ef690f from=translated src=- shape=52f0298a vocab=bfbd35f6
+-/
 theorem startsLeft_of_left_positive_right_zero
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {i j : Fin n}
     {leftMoves rightMoves : ℕ}
@@ -68,6 +74,9 @@ theorem startsLeft_of_left_positive_right_zero
   | left h tail => exact .intro h tail
   | right => omega
 
+/--
+@isnad1 id=startsri.3h6v.s5.16951920acf3 from=translated src=- shape=a7a813c6 vocab=e2ed6e3f
+-/
 theorem startsRight_of_left_zero_right_positive
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {i j : Fin n}
     {leftMoves rightMoves : ℕ}
@@ -82,7 +91,9 @@ theorem startsRight_of_left_zero_right_positive
 end K3CoverSequence
 
 /-- A single strict rank increase between top-three edges has exactly one of
-the three transitions `d₃→d₂`, `d₃→d₁`, or `d₂→d₁`. -/
+the three transitions `d₃→d₂`, `d₃→d₁`, or `d₂→d₁`.
+@isnad1 id=or.4h9v.s7.73abcbc67e1e from=translated src=- shape=52de94e9 vocab=9ade9537
+-/
 theorem strict_top_three_rank_transition
     {n : ℕ} {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -187,6 +198,9 @@ def Row5
   F.pair.first.rightMoves = 0 ∧ F.pair.first.leftMoves = 2 ∧
     F.setup.L = 3 ∧ F.M = 2
 
+/--
+@isnad1 id=iff.0h6v.s6.e49d005c66e8 from=translated src=- shape=e3b63b12 vocab=794c8709
+-/
 theorem exceptional_row_iff_rows
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃) :
@@ -265,6 +279,9 @@ def SecondRank21
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃) : Prop :=
   F.secondStartSqDist = d₂ ∧ F.secondTerminalSqDist = d₁
 
+/--
+@isnad1 id=or.1h6v.s8.8d2e9ef2b85a from=translated src=- shape=922eaeaa vocab=1c853258
+-/
 theorem first_rank_transition_of_positive
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃)
@@ -283,6 +300,9 @@ theorem first_rank_transition_of_positive
       strict_top_three_rank_transition F.classes hstart
         F.pair.first.adjacent hraise
 
+/--
+@isnad1 id=or.1h6v.s8.006516de5837 from=translated src=- shape=2145207c vocab=94ba958e
+-/
 theorem second_rank_transition_of_positive
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃)
@@ -342,7 +362,9 @@ def RealizesCoverWord
       F.pair.second.path.StartsRight
 
 /-- Every actual exceptional row expands to one of exactly the thirteen
-cover words in the draft table. -/
+cover words in the draft table.
+@isnad1 id=ex.1h6v.s6.4c976f464a66 from=translated src=- shape=1f9d4ca3 vocab=910f2289
+-/
 theorem exceptional_row_realizes_cover_word
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃)
@@ -452,7 +474,9 @@ theorem exceptional_row_realizes_cover_word
 
 /-- The five-row arithmetic applies to every global frame: either the
 short-arc inequality already holds or one of the five exceptional rows is
-realized by the actual majorant counts. -/
+realized by the actual majorant counts.
+@isnad1 id=or.0h6v.s6.96a0c10ccc37 from=translated src=- shape=975fcfe0 vocab=d776eaae
+-/
 theorem short_arc_or_exceptional_row
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃) :
@@ -465,7 +489,9 @@ theorem short_arc_or_exceptional_row
 
 /-- The localized terminal endpoint turns the abstract signed quantity
 `D.yzSides` into the actual counterclockwise offset span from the first
-counterclockwise neighbor of `x` to its first clockwise neighbor. -/
+counterclockwise neighbor of `x` to its first clockwise neighbor.
+@isnad1 id=eq.0h6v.s6.75c5d54708b7 from=translated src=- shape=5f8e2636 vocab=b41489e8
+-/
 theorem localized_offset_span_eq_yzSides
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃) :
@@ -558,7 +584,9 @@ theorem localized_offset_span_eq_yzSides
 
 /-- The direct branch of the ErLV assembly.  If the localized span between
 the first counterclockwise and first clockwise neighbors is at most five
-sides, the complete neighbor set of `x` has at most six vertices. -/
+sides, the complete neighbor set of `x` has at most six vertices.
+@isnad1 id=le.1h6v.s6.5c8a9e481026 from=translated src=- shape=995e0f31 vocab=95112975
+-/
 theorem degree_le_six_of_short_arc
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃)
@@ -614,7 +642,9 @@ theorem degree_le_six_of_short_arc
 end ErLVGlobalFiveRowFrame
 
 /-- Raw convex/top-three data in the high-degree contradiction branch
-produces the complete localized maximal-gap frame. -/
+produces the complete localized maximal-gap frame.
+@isnad1 id=nonempty.3h5v.s6.27393447a2e0 from=translated src=- shape=677a45c0 vocab=f2eaffee
+-/
 theorem exists_erlv_global_five_row_frame
     {n : ℕ} [NeZero n] (P : Fin n → Point ℝ) (d₁ d₂ d₃ : ℝ)
     (hConvex : CyclicStrictConvex P)
@@ -637,7 +667,9 @@ theorem exists_erlv_global_five_row_frame
     outerLocalized := hOuter }⟩
 
 /-- Combined raw-data form of the maximal-gap choice, the two actual
-majorants, their localization, and the five-row enumeration. -/
+majorants, their localization, and the five-row enumeration.
+@isnad1 id=ex.3h5v.s7.5c65f798f74a from=translated src=- shape=86915218 vocab=d2e35ce1
+-/
 theorem exists_erlv_global_short_arc_or_exceptional_row
     {n : ℕ} [NeZero n] (P : Fin n → Point ℝ) (d₁ d₂ d₃ : ℝ)
     (hConvex : CyclicStrictConvex P)
@@ -652,7 +684,9 @@ theorem exists_erlv_global_short_arc_or_exceptional_row
   exact ⟨F, F.short_arc_or_exceptional_row⟩
 
 /-- Once the direct short-arc branch is discharged, failure of the desired
-degree bound produces an actual localized frame in one of the five rows. -/
+degree bound produces an actual localized frame in one of the five rows.
+@isnad1 id=ex.3h5v.s7.4055f51ff972 from=translated src=- shape=5cd3c6af vocab=457153a4
+-/
 theorem exists_erlv_global_exceptional_row_of_no_degree_six
     {n : ℕ} [NeZero n] (P : Fin n → Point ℝ) (d₁ d₂ d₃ : ℝ)
     (hConvex : CyclicStrictConvex P)
@@ -678,7 +712,9 @@ def GeometricallyRealizesCoverWord
   ∃ F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃, F.RealizesCoverWord w
 
 /-- Raw convex/top-three data now supplies the complete direct-or-thirteen-
-word reduction.  No route closure is assumed in this theorem. -/
+word reduction.  No route closure is assumed in this theorem.
+@isnad1 id=hasthirt.2h5v.s5.ff6ed266d19f from=translated src=- shape=9b44d7c8 vocab=eac55ecd
+-/
 theorem has_thirteen_word_reduction_of_convex_top_three
     {n : ℕ} [NeZero n] (P : Fin n → Point ℝ) (d₁ d₂ d₃ : ℝ)
     (hConvex : CyclicStrictConvex P)
@@ -703,7 +739,9 @@ def GlobalThirteenWordClosureComplete : Prop :=
       (GeometricallyRealizesCoverWord P d₁ d₂ d₃))
 
 /-- Once the route-specific geometric closure interface is constructed, the
-new raw reduction is the final `HasConvexK3DraftReduction` adapter. -/
+new raw reduction is the final `HasConvexK3DraftReduction` adapter.
+@isnad1 id=convexto.1h0v.s1.79a33d65ff92 from=translated src=- shape=1d48f1ac vocab=3d1fc745
+-/
 theorem convex_top_three_draft_reduction_complete_of_global_word_closure
     (hClosure : GlobalThirteenWordClosureComplete) :
     ConvexTopThreeDraftReductionComplete := by
@@ -714,7 +752,9 @@ theorem convex_top_three_draft_reduction_complete_of_global_word_closure
     hClosure P d₁ d₂ d₃⟩
 
 /-- The same exact closure boundary implies the intended unconditional
-degree-six statement through the existing thirteen-word assembly. -/
+degree-six statement through the existing thirteen-word assembly.
+@isnad1 id=convexto.1h0v.s1.9386dd972dae from=translated src=- shape=1d48f1ac vocab=5b7326f5
+-/
 theorem convex_top_three_degree_six_of_global_word_closure
     (hClosure : GlobalThirteenWordClosureComplete) :
     ConvexTopThreeDegreeSixStatement :=

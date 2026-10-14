@@ -56,7 +56,9 @@ variable {α : Type*} (V : NeighborhoodSystem α)
 
 /-- The finite intersection is antitone in its length: a longer prefix is
 contained in a shorter
-one. -/
+one.
+@isnad1 id=le.1h5v.s5.530eb3d77a01 from=translated src=- shape=402ebb06 vocab=5ca730d8
+-/
 theorem interUpTo_antitone (X : ℕ → Set α) {j k : ℕ} (h : j ≤ k) :
     V.interUpTo X k ⊆ V.interUpTo X j := by
   induction k with
@@ -99,37 +101,59 @@ prefix `Y₀,…,Yₙ`?
 An `abbrev` so the `[DecidablePred V.mem]` instance is found through it. -/
 abbrev cond (n : ℕ) : Prop := V.mem (acc V enum n ∩ enum (n + 1))
 
+/--
+@isnad1 id=eq.0h3v.s5.5282d99f8af9 from=translated src=- shape=ea5c4da1 vocab=097287e9
+-/
 @[simp] theorem Y_zero : Y V enum 0 = enum 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.b7bd988c093f from=translated src=- shape=b64566d9 vocab=a2ddac42
+-/
 @[simp] theorem acc_zero : acc V enum 0 = V.master ∩ enum 0 := rfl
 
 /-- The defining equation of `state` at a successor, written with the named
-`cond`/`acc`. -/
+`cond`/`acc`.
+@isnad1 id=eq.0h4v.s7.ff0b1a55de33 from=translated src=- shape=21312533 vocab=c607d2f3
+-/
 theorem state_succ (n : ℕ) :
     state V enum (n + 1) =
       if cond V enum n then (enum (n + 1), acc V enum n ∩ enum (n + 1)) else state V enum n :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.d786ee6bf85f from=translated src=- shape=32f1d2d4 vocab=ed9c09bd
+-/
 theorem Y_succ_pos {n : ℕ} (h : cond V enum n) : Y V enum (n + 1) = enum (n + 1) := by
   change (state V enum (n + 1)).1 = enum (n + 1)
   rw [state_succ, ite_eq_left h]
 
+/--
+@isnad1 id=eq.1h4v.s5.e85367c36447 from=translated src=- shape=11abde38 vocab=ed9c09bd
+-/
 theorem Y_succ_neg {n : ℕ} (h : ¬ cond V enum n) : Y V enum (n + 1) = Y V enum n := by
   change (state V enum (n + 1)).1 = (state V enum n).1
   rw [state_succ, ite_eq_right h]
 
+/--
+@isnad1 id=eq.1h4v.s6.407fae26a957 from=translated src=- shape=ae8488ae vocab=926e9737
+-/
 theorem acc_succ_pos {n : ℕ} (h : cond V enum n) :
     acc V enum (n + 1) = acc V enum n ∩ enum (n + 1) := by
   change (state V enum (n + 1)).2 = acc V enum n ∩ enum (n + 1)
   rw [state_succ, ite_eq_left h]
 
+/--
+@isnad1 id=eq.1h4v.s5.0724413eb22d from=translated src=- shape=11abde38 vocab=082bff4e
+-/
 theorem acc_succ_neg {n : ℕ} (h : ¬ cond V enum n) :
     acc V enum (n + 1) = acc V enum n := by
   change (state V enum (n + 1)).2 = (state V enum n).2
   rw [state_succ, ite_eq_right h]
 
 /-- `acc n = ⋂_{i<n+1} Yᵢ`: the carried intersection is exactly the prefix
-intersection. -/
+intersection.
+@isnad1 id=eq.0h4v.s5.661b59d4cdb5 from=translated src=- shape=72c2dae6 vocab=bc80ef33
+-/
 theorem acc_eq_interUpTo : ∀ n, acc V enum n = V.interUpTo (Y V enum) (n + 1) := by
   intro n
   induction n with
@@ -145,7 +169,9 @@ theorem acc_eq_interUpTo : ∀ n, acc V enum n = V.interUpTo (Y V enum) (n + 1) 
 variable (henum : ∀ n, V.mem (enum n))
 include henum
 
-/-- Each `Yₙ` is a neighbourhood. -/
+/-- Each `Yₙ` is a neighbourhood.
+@isnad1 id=mem.1h4v.s5.21a0016a487b from=translated src=- shape=ba2cd44d vocab=097287e9
+-/
 theorem Y_mem : ∀ n, V.mem (Y V enum n) := by
   intro n
   induction n with
@@ -157,7 +183,9 @@ theorem Y_mem : ∀ n, V.mem (Y V enum n) := by
 
 /-- The running intersection `acc n` is always a neighbourhood — the greedy choice
 guarantees it.
-This is the content of Scott's hint (consistency of the prefix). -/
+This is the content of Scott's hint (consistency of the prefix).
+@isnad1 id=mem.1h4v.s5.be1f5546b8d4 from=translated src=- shape=ba2cd44d vocab=b8df85e0
+-/
 theorem acc_mem : ∀ n, V.mem (acc V enum n) := by
   intro n
   induction n with
@@ -169,7 +197,9 @@ theorem acc_mem : ∀ n, V.mem (acc V enum n) := by
     · rw [acc_succ_pos V enum h]; exact h
     · rw [acc_succ_neg V enum h]; exact ih
 
-/-- `⋂_{i<n} Yᵢ` is always a neighbourhood. -/
+/-- `⋂_{i<n} Yᵢ` is always a neighbourhood.
+@isnad1 id=mem.1h4v.s5.b78139c17f0b from=translated src=- shape=8c095ca1 vocab=23773018
+-/
 theorem mem_interUpTo_Y : ∀ n, V.mem (V.interUpTo (Y V enum) n) := by
   intro n
   cases n with
@@ -179,7 +209,9 @@ theorem mem_interUpTo_Y : ∀ n, V.mem (V.interUpTo (Y V enum) n) := by
 /-- **Exercise 1.23 — the hint.** For every `n`, the prefix `Y₀, …, Y_{n-1}` is
 consistent in
 `𝒟`: its finite intersection is a neighbourhood, so it is its own common lower
-bound. -/
+bound.
+@isnad1 id=consiste.1h4v.s5.533d725a17d1 from=translated src=- shape=5008732e vocab=fa04aeca
+-/
 theorem Y_prefix_consistent (n : ℕ) : V.Consistent (Y V enum) n :=
   ⟨V.interUpTo (Y V enum) n, mem_interUpTo_Y V enum henum n, subset_rfl⟩
 
@@ -202,11 +234,15 @@ def greedyElement : V.Element where
     rintro X X' ⟨_, n, hn⟩ hX' hsub
     exact ⟨hX', n, hn.trans hsub⟩
 
-/-- Every `Yₙ` belongs to the greedy element. -/
+/-- Every `Yₙ` belongs to the greedy element.
+@isnad1 id=mem.1h4v.s5.7441bf1ed0e1 from=translated src=- shape=7fa9abbd vocab=4e178f60
+-/
 theorem greedyElement_mem_Y (n : ℕ) : (greedyElement V enum henum).mem (Y V enum n) :=
   ⟨Y_mem V enum henum n, n + 1, V.interUpTo_subset (Y V enum) (Nat.lt_succ_self n)⟩
 
-/-- The running intersection `acc n` belongs to the greedy element. -/
+/-- The running intersection `acc n` belongs to the greedy element.
+@isnad1 id=mem.1h4v.s5.7aae8337e9cf from=translated src=- shape=7fa9abbd vocab=c093e634
+-/
 theorem greedyElement_mem_acc (n : ℕ) : (greedyElement V enum henum).mem (acc V enum n) := by
   refine ⟨acc_mem V enum henum n, n + 1, ?_⟩
   rw [acc_eq_interUpTo V enum]
@@ -222,7 +258,9 @@ element. For `k = m+1`: either the greedy step *accepted* `enum k` (then `W = Y_
 is in the
 element), or it *rejected* it — but then `acc m ∩ enum k ∉ 𝒟`, contradicting that
 both `acc m`
-(in the greedy element, hence in `z`) and `W` lie in the filter `z`. -/
+(in the greedy element, hence in `z`) and `W` lie in the filter `z`.
+@isnad1 id=istotal.2h3v.s5.4e3dd361d8da from=translated src=- shape=b22b05af vocab=db9398f0
+-/
 theorem greedyElement_isTotal : V.IsTotal (greedyElement V enum henum) := by
   intro z hz W hW
   obtain ⟨k, rfl⟩ := hsurj (z.sub hW)
@@ -251,7 +289,9 @@ n` whenever
 (surjectivity), so it is
 caught by `s`; conversely each `sₙ ∈ x`, so anything above some `sₙ` is in `x`.
 (Classical: it
-selects the sequence by deciding membership in `x`.) -/
+selects the sequence by deciding membership in `x`.)
+@isnad1 id=ex.2h4v.s6.2538c86f5d99 from=translated src=- shape=d772db88 vocab=9ae22fa6
+-/
 theorem filters_sequence_determined (x : V.Element) :
     ∃ s : ℕ → Set α, (∀ n, V.mem (s n)) ∧ ∀ Z, x.mem Z ↔ (V.mem Z ∧ ∃ n, s n ⊆ Z) := by
   classical

@@ -97,14 +97,18 @@ def sSupDirected (V : NeighborhoodSystem α) (S : Set V.Element) (hne : S.Nonemp
     rintro Z Z' ⟨a, haS, haZ⟩ hZ' hZZ'
     exact ⟨a, haS, a.up_mem haZ hZ' hZZ'⟩
 
-/-- Each member of a directed family approximates the directed union. -/
+/-- Each member of a directed family approximates the directed union.
+@isnad1 id=le.3h4v.s7.2c511cc68646 from=translated src=- shape=0b49c091 vocab=d904af08
+-/
 theorem le_sSupDirected (V : NeighborhoodSystem α) (S : Set V.Element) (hne : S.Nonempty)
     (hdir : ∀ a ∈ S, ∀ b ∈ S, ∃ c ∈ S, a ≤ c ∧ b ≤ c) {a : V.Element} (ha : a ∈ S) :
     a ≤ V.sSupDirected S hne hdir :=
   fun _ hZ => ⟨a, ha, hZ⟩
 
 /-- The directed union is the least upper bound: an upper bound of every member
-dominates it. -/
+dominates it.
+@isnad1 id=le.3h4v.s7.672b10b5ff62 from=translated src=- shape=d5911331 vocab=d904af08
+-/
 theorem sSupDirected_le (V : NeighborhoodSystem α) (S : Set V.Element) (hne : S.Nonempty)
     (hdir : ∀ a ∈ S, ∀ b ∈ S, ∃ c ∈ S, a ≤ c ∧ b ≤ c) {y : V.Element}
     (hy : ∀ s ∈ S, s ≤ y) : V.sSupDirected S hne hdir ≤ y := by
@@ -146,7 +150,9 @@ variable {V₀ : NeighborhoodSystem α} {V₁ : NeighborhoodSystem β} {V₂ : N
 
 /-- **Extensionality for the relation.** Two approximable maps with the same
 neighbourhood relation
-are equal (the remaining fields are propositions). -/
+are equal (the remaining fields are propositions).
+@isnad1 id=eq.1h6v.s5.6888c9efca3e from=translated src=- shape=155d9ebc vocab=ea376e61
+-/
 theorem ext {f g : ApproximableMap V₀ V₁} (h : ∀ X Y, f.rel X Y ↔ g.rel X Y) : f = g := by
   obtain ⟨rf, _, _, _, _, _⟩ := f
   obtain ⟨rg, _, _, _, _, _⟩ := g
@@ -178,6 +184,9 @@ def toElementMap (f : ApproximableMap V₀ V₁) (x : V₀.Element) : V₁.Eleme
     rintro Y Y' ⟨X, hX, hXY⟩ hY' hYY'
     exact ⟨X, hX, f.mono hXY subset_rfl hYY' (x.sub hX) hY'⟩
 
+/--
+@isnad1 id=iff.0h7v.s5.12920b603da6 from=translated src=- shape=764d1649 vocab=e496324a
+-/
 @[simp] theorem mem_toElementMap (f : ApproximableMap V₀ V₁) (x : V₀.Element) {Y : Set β} :
     (f.toElementMap x).mem Y ↔ ∃ X, x.mem X ∧ f.rel X Y := Iff.rfl
 
@@ -185,7 +194,9 @@ def toElementMap (f : ApproximableMap V₀ V₁) (x : V₀.Element) : V₁.Eleme
 the elementwise
 map: for `X ∈ 𝒟₀`, `X f Y ↔ Y ∈ f(↑X)`. (`→` since `X ∈ ↑X`; `←` since any `Z ∈
 ↑X` has `X ⊆ Z`,
-so `Z f Y` monotonically yields `X f Y`.) -/
+so `Z f Y` monotonically yields `X f Y`.)
+@isnad1 id=iff.1h7v.s5.03e54c86221d from=translated src=- shape=adfcb354 vocab=4fc79345
+-/
 theorem rel_iff_mem_principal (f : ApproximableMap V₀ V₁) {X : Set α} (hX : V₀.mem X) {Y : Set β} :
     f.rel X Y ↔ (f.toElementMap (V₀.principal hX)).mem Y := by
   constructor
@@ -196,7 +207,9 @@ theorem rel_iff_mem_principal (f : ApproximableMap V₀ V₁) {X : Set α} (hX :
 
 /-- **Proposition 2.2(iii) (Scott 1981, PRG-19).** Approximable maps are monotone
 on elements:
-`x ⊑ y ⟹ f(x) ⊑ f(y)`. -/
+`x ⊑ y ⟹ f(x) ⊑ f(y)`.
+@isnad1 id=le.1h7v.s6.e025ad00361c from=translated src=- shape=80317a0d vocab=747da6c7
+-/
 theorem toElementMap_mono (f : ApproximableMap V₀ V₁) {x y : V₀.Element} (hxy : x ≤ y) :
     f.toElementMap x ≤ f.toElementMap y := by
   rintro Y ⟨X, hX, hXY⟩
@@ -207,7 +220,9 @@ theorem toElementMap_mono (f : ApproximableMap V₀ V₁) {x y : V₀.Element} (
 iff they induce the same elementwise function: `(∀ x, f(x) = g(x)) ⟹ f = g`. For
 neighbourhoods `X`
 the relation is read off `f(↑X)` (`rel_iff_mem_principal`); off `𝒟₀` both
-relations are empty. -/
+relations are empty.
+@isnad1 id=eq.1h6v.s5.83db0653629d from=translated src=- shape=e91db30f vocab=31bd4fb3
+-/
 theorem ext_of_toElementMap {f g : ApproximableMap V₀ V₁}
     (h : ∀ x, f.toElementMap x = g.toElementMap x) : f = g := by
   apply ApproximableMap.ext
@@ -238,6 +253,9 @@ def idMap (V : NeighborhoodSystem α) : ApproximableMap V V where
     rintro X X' Y Y' ⟨_, _, hXY⟩ hX'X hYY' hX' hY'
     exact ⟨hX', hY', (hX'X.trans hXY).trans hYY'⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.bb21c6c80989 from=translated src=- shape=95ead7bd vocab=d3eb6cf2
+-/
 @[simp] theorem idMap_rel {V : NeighborhoodSystem α} {X Y : Set α} :
     (idMap V).rel X Y ↔ V.mem X ∧ V.mem Y ∧ X ⊆ Y := Iff.rfl
 
@@ -269,12 +287,17 @@ def comp (g : ApproximableMap V₁ V₂) (f : ApproximableMap V₀ V₁) : Appro
     refine ⟨Y, f.mono hXY hX'X subset_rfl hX' (f.rel_cod hXY), ?_⟩
     exact g.mono hYZ subset_rfl hZZ' (g.rel_dom hYZ) hZ'
 
+/--
+@isnad1 id=iff.0h10v.s6.469e9a37335d from=translated src=- shape=dcef8ff2 vocab=9a7f61c1
+-/
 @[simp] theorem comp_rel {g : ApproximableMap V₁ V₂} {f : ApproximableMap V₀ V₁} {X : Set α}
     {Z : Set γ} : (g.comp f).rel X Z ↔ ∃ Y, f.rel X Y ∧ g.rel Y Z := Iff.rfl
 
 /-- **Theorem 2.5 — left identity law.** `I_{D₁} ∘ f = f`. (`→`: a witness `Y ⊆ Z`
 widens the output
-of `f` by `f.mono`; `←`: take `Y = Z`.) -/
+of `f` by `f.mono`; `←`: take `Y = Z`.)
+@isnad1 id=eq.0h5v.s5.c77ee415fd6f from=translated src=- shape=baf16ca6 vocab=a3f89a12
+-/
 theorem idMap_comp (f : ApproximableMap V₀ V₁) : (idMap V₁).comp f = f := by
   apply ApproximableMap.ext
   intro X Z
@@ -286,7 +309,9 @@ theorem idMap_comp (f : ApproximableMap V₀ V₁) : (idMap V₁).comp f = f := 
 
 /-- **Theorem 2.5 — right identity law.** `f ∘ I_{D₀} = f`. (`→`: a witness `X ⊆
 Y` sharpens the
-input of `f` by `f.mono`; `←`: take `Y = X`.) -/
+input of `f` by `f.mono`; `←`: take `Y = X`.)
+@isnad1 id=eq.0h5v.s5.49ea5f7ecf81 from=translated src=- shape=0d424010 vocab=a3f89a12
+-/
 theorem comp_idMap (f : ApproximableMap V₀ V₁) : f.comp (idMap V₀) = f := by
   apply ApproximableMap.ext
   intro X Z
@@ -298,7 +323,9 @@ theorem comp_idMap (f : ApproximableMap V₀ V₁) : f.comp (idMap V₀) = f := 
 
 /-- **Theorem 2.5 — associativity.** `h ∘ (g ∘ f) = (h ∘ g) ∘ f`. Pure
 reassociation of the
-existential witnesses. -/
+existential witnesses.
+@isnad1 id=eq.0h11v.s6.ef01b7381b65 from=translated src=- shape=0f6120af vocab=c435ca95
+-/
 theorem comp_assoc {V₃ : NeighborhoodSystem δ} (h : ApproximableMap V₂ V₃)
     (g : ApproximableMap V₁ V₂) (f : ApproximableMap V₀ V₁) :
     (h.comp g).comp f = h.comp (g.comp f) := by
@@ -315,7 +342,9 @@ theorem comp_assoc {V₃ : NeighborhoodSystem δ} (h : ApproximableMap V₂ V₃
 /-- **Proposition 2.6(i) (Scott 1981, PRG-19).** The identity mapping acts as the
 identity on
 elements: `I_D(x) = x`. (`→`: `X ∈ x`, `X ⊆ Y ∈ 𝒟` gives `Y ∈ x` by `up_mem`; `←`:
-take `X = Y`.) -/
+take `X = Y`.)
+@isnad1 id=eq.0h3v.s4.37566673b17f from=translated src=- shape=159f371b vocab=5140d997
+-/
 @[simp] theorem toElementMap_idMap (x : V₀.Element) : (idMap V₀).toElementMap x = x := by
   apply Element.ext
   intro Y
@@ -329,7 +358,9 @@ take `X = Y`.) -/
 mappings becomes
 composition of the elementwise functions: `(g ∘ f)(x) = g(f(x))`. Both sides
 unfold to
-`∃ Y X, x.mem X ∧ X f Y ∧ Y g Z`; the proof is a reassociation of existentials. -/
+`∃ Y X, x.mem X ∧ X f Y ∧ Y g Z`; the proof is a reassociation of existentials.
+@isnad1 id=eq.0h9v.s5.610dffb80868 from=translated src=- shape=9bff3d66 vocab=4059f4e4
+-/
 theorem toElementMap_comp (g : ApproximableMap V₁ V₂) (f : ApproximableMap V₀ V₁) (x : V₀.Element) :
     (g.comp f).toElementMap x = g.toElementMap (f.toElementMap x) := by
   apply Element.ext
@@ -373,7 +404,9 @@ itself: `(ofIso e)(x) = e(x)` for every `x`. The forward inclusion uses that `X 
 x` implies
 `↑X ⊑ x`, hence `e(↑X) ⊑ e(x)`; the reverse uses surjectivity of `e` (via
 `e.symm`) exactly as in
-Scott's proof — one shows `x = e⁻¹((ofIso e)(x))` by antisymmetry. -/
+Scott's proof — one shows `x = e⁻¹((ofIso e)(x))` by antisymmetry.
+@isnad1 id=eq.0h6v.s7.f96d5818e29d from=translated src=- shape=5076f051 vocab=0581f9a1
+-/
 theorem toElementMap_ofIso (e : V₀.Element ≃o V₁.Element) (x : V₀.Element) :
     (ofIso e).toElementMap x = e x := by
   have hgxle : (ofIso e).toElementMap x ≤ e x := by
@@ -401,7 +434,9 @@ domains results
 from
 an approximable mapping." For any domain isomorphism `e`, there is an approximable
 mapping whose
-elementwise action is exactly `e`. -/
+elementwise action is exactly `e`.
+@isnad1 id=ex.0h5v.s7.ebb4ec18ce5f from=translated src=- shape=f251e930 vocab=27011fd2
+-/
 theorem exists_approximable_of_iso (e : V₀.Element ≃o V₁.Element) :
     ∃ f : ApproximableMap V₀ V₁, ∀ x, f.toElementMap x = e x :=
   ⟨ofIso e, toElementMap_ofIso e⟩
@@ -417,7 +452,9 @@ of members of `w` give upper bounds), so its union `z = ⋃ S` is an element
 `z = ↑X` (each `e⁻¹(↑Y) ⊑ e⁻¹(w) = ↑X`, and conversely `w ⊑ e(z)` forces `↑X =
 e⁻¹(w) ⊑ z`); then
 `X ∈ z` lands in some `e⁻¹(↑Y)`, giving `w ⊑ ↑Y`, while `↑Y ⊑ w` is automatic — so
-`w = ↑Y`. -/
+`w = ↑Y`.
+@isnad1 id=ex.1h6v.s7.a335d94bb567 from=translated src=- shape=806e8614 vocab=e794ae76
+-/
 theorem exists_principal_eq_apply_principal (e : V₀.Element ≃o V₁.Element)
     {X : Set α} (hX : V₀.mem X) :
     ∃ (Y : Set β) (hY : V₁.mem Y), e (V₀.principal hX) = V₁.principal hY := by

@@ -73,28 +73,49 @@ variable {D₀ D₁ : NeighborhoodSystem Str}
 def sumTokMaster (D₀ D₁ : NeighborhoodSystem Str) : Set Str :=
   insert [] (embBit false D₀.master ∪ embBit true D₁.master)
 
+/--
+@isnad1 id=mem.0h2v.s4.a716b6aaff16 from=translated src=- shape=6ad21f0b vocab=1fd6b6bc
+-/
 theorem nil_mem_sumTokMaster : ([] : Str) ∈ sumTokMaster D₀ D₁ := Set.mem_insert _ _
 
+/--
+@isnad1 id=le.1h3v.s4.f22e902624ca from=translated src=- shape=a268b7a5 vocab=37ca6428
+-/
 theorem embF_subset_sumTokMaster {X : Set Str} (hX : D₀.mem X) :
     embBit false X ⊆ sumTokMaster D₀ D₁ :=
   (embBit_subset.mpr (D₀.sub_master hX)).trans (Set.subset_union_left.trans (Set.subset_insert _ _))
 
+/--
+@isnad1 id=le.1h3v.s4.3c3d03929fd4 from=translated src=- shape=5b353c1d vocab=a263c112
+-/
 theorem embT_subset_sumTokMaster {Y : Set Str} (hY : D₁.mem Y) :
     embBit true Y ⊆ sumTokMaster D₀ D₁ :=
   (embBit_subset.mpr (D₁.sub_master hY)).trans
     (Set.subset_union_right.trans (Set.subset_insert _ _))
 
+/--
+@isnad1 id=eq.1h3v.s4.0752d43aa881 from=translated src=- shape=7cc0fd86 vocab=fdb164d8
+-/
 theorem sumTokMaster_inter_embF {X : Set Str} (hX : D₀.mem X) :
     sumTokMaster D₀ D₁ ∩ embBit false X = embBit false X :=
   Set.inter_eq_right.mpr (embF_subset_sumTokMaster hX)
 
+/--
+@isnad1 id=eq.1h3v.s4.ed7b4ed88c93 from=translated src=- shape=7b653adf vocab=24273ec7
+-/
 theorem sumTokMaster_inter_embT {Y : Set Str} (hY : D₁.mem Y) :
     sumTokMaster D₀ D₁ ∩ embBit true Y = embBit true Y :=
   Set.inter_eq_right.mpr (embT_subset_sumTokMaster hY)
 
+/--
+@isnad1 id=ne.0h3v.s4.07e41b3c635c from=translated src=- shape=77c08e35 vocab=a8b410ab
+-/
 theorem embF_ne_sumTokMaster {X : Set Str} : embBit false X ≠ sumTokMaster D₀ D₁ := fun h =>
   nil_not_mem_embBit (h.symm ▸ nil_mem_sumTokMaster)
 
+/--
+@isnad1 id=ne.0h3v.s4.f2e68dbea599 from=translated src=- shape=77c08e35 vocab=26402aa1
+-/
 theorem embT_ne_sumTokMaster {Y : Set Str} : embBit true Y ≠ sumTokMaster D₀ D₁ := fun h =>
   nil_not_mem_embBit (h.symm ▸ nil_mem_sumTokMaster)
 
@@ -155,14 +176,26 @@ def sumTok (D₀ D₁ : NeighborhoodSystem Str)
 
 variable {h₀ : ∀ X, D₀.mem X → X.Nonempty} {h₁ : ∀ Y, D₁.mem Y → Y.Nonempty}
 
+/--
+@isnad1 id=mem.2h2v.s5.0a3ba22da866 from=translated src=- shape=703964ee vocab=6bf9e726
+-/
 theorem sumTok_mem_master : (sumTok D₀ D₁ h₀ h₁).mem (sumTokMaster D₀ D₁) := Or.inl rfl
 
+/--
+@isnad1 id=mem.3h3v.s5.da895ef7900d from=translated src=- shape=8733e421 vocab=644381eb
+-/
 theorem sumTok_mem_embF {X : Set Str} (hX : D₀.mem X) :
     (sumTok D₀ D₁ h₀ h₁).mem (embBit false X) := Or.inr (Or.inl ⟨X, hX, rfl⟩)
 
+/--
+@isnad1 id=mem.3h3v.s5.a2c802a1e6c4 from=translated src=- shape=1268ce26 vocab=fb69e8c6
+-/
 theorem sumTok_mem_embT {Y : Set Str} (hY : D₁.mem Y) :
     (sumTok D₀ D₁ h₀ h₁).mem (embBit true Y) := Or.inr (Or.inr ⟨Y, hY, rfl⟩)
 
+/--
+@isnad1 id=mem.3h3v.s5.bd2f0b7090da from=translated src=- shape=1f2f625c vocab=644381eb
+-/
 theorem sumTok_mem_embF_inv {W : Set Str} (h : (sumTok D₀ D₁ h₀ h₁).mem (embBit false W)) :
     D₀.mem W := by
   rcases h with h0 | ⟨X, hX, heq⟩ | ⟨Y, hY, heq⟩
@@ -170,6 +203,9 @@ theorem sumTok_mem_embF_inv {W : Set Str} (h : (sumTok D₀ D₁ h₀ h₁).mem 
   · rw [embBit_injective heq]; exact hX
   · exact absurd heq.symm (embBit_ne (show (true : Bool) ≠ false by decide) (h₁ Y hY))
 
+/--
+@isnad1 id=mem.3h3v.s5.d98163664ba2 from=translated src=- shape=aefcf185 vocab=fb69e8c6
+-/
 theorem sumTok_mem_embT_inv {W : Set Str} (h : (sumTok D₀ D₁ h₀ h₁).mem (embBit true W)) :
     D₁.mem W := by
   rcases h with h0 | ⟨X, hX, heq⟩ | ⟨Y, hY, heq⟩
@@ -177,18 +213,26 @@ theorem sumTok_mem_embT_inv {W : Set Str} (h : (sumTok D₀ D₁ h₀ h₁).mem 
   · exact absurd heq.symm (embBit_ne (show (false : Bool) ≠ true by decide) (h₀ X hX))
   · rw [embBit_injective heq]; exact hY
 
+/--
+@isnad1 id=nonempty.3h3v.s5.7eae173fe318 from=translated src=- shape=d82c9303 vocab=ccf0f309
+-/
 theorem sumTok_mem_nonempty {W : Set Str} (h : (sumTok D₀ D₁ h₀ h₁).mem W) : W.Nonempty := by
   rcases h with rfl | ⟨X, hX, rfl⟩ | ⟨Y, hY, rfl⟩
   · exact ⟨[], nil_mem_sumTokMaster⟩
   · exact embBit_nonempty (h₀ X hX)
   · exact embBit_nonempty (h₁ Y hY)
 
-/-- The concrete sum is again `∅`-free (an object of Scott's category). -/
+/-- The concrete sum is again `∅`-free (an object of Scott's category).
+@isnad1 id=nonempty.3h3v.s5.7eae173fe318 from=translated src=- shape=d82c9303 vocab=ccf0f309
+-/
 theorem sumTok_nonempty : ∀ W, (sumTok D₀ D₁ h₀ h₁).mem W → W.Nonempty :=
   fun _ h => sumTok_mem_nonempty h
 
 /-! ### Generic inversion lemmas for the abstract separated sum `sum D₀ D₁` -/
 
+/--
+@isnad1 id=nonempty.3h3v.s5.b8de0658a076 from=translated src=- shape=59259e6e vocab=3c202916
+-/
 theorem sum_mem_nonempty {W : Set (Option (Str ⊕ Str))} (h : (sum D₀ D₁ h₀ h₁).mem W) :
     W.Nonempty := by
   rcases h with rfl | ⟨X, hX, rfl⟩ | ⟨Y, hY, rfl⟩
@@ -196,6 +240,9 @@ theorem sum_mem_nonempty {W : Set (Option (Str ⊕ Str))} (h : (sum D₀ D₁ h�
   · exact inj₀_nonempty (h₀ X hX)
   · exact inj₁_nonempty (h₁ Y hY)
 
+/--
+@isnad1 id=mem.3h3v.s5.2a97cd8323ea from=translated src=- shape=f923c355 vocab=c9c7b72a
+-/
 theorem sum_mem_inj₀_inv {X : Set Str} (h : (sum D₀ D₁ h₀ h₁).mem (inj₀ X)) : D₀.mem X := by
   rcases h with h0 | ⟨X', hX', heq⟩ | ⟨Y', hY', heq⟩
   · exact absurd (h0 ▸ none_mem_sumMaster) none_mem_inj₀
@@ -203,6 +250,9 @@ theorem sum_mem_inj₀_inv {X : Set Str} (h : (sum D₀ D₁ h₀ h₁).mem (inj
   · obtain ⟨b, hb⟩ := h₁ Y' hY'
     exact absurd (heq ▸ ir_mem_inj₁.mpr hb) ir_mem_inj₀
 
+/--
+@isnad1 id=mem.3h3v.s5.fcf4a7676648 from=translated src=- shape=69707690 vocab=f55a65b2
+-/
 theorem sum_mem_inj₁_inv {Y : Set Str} (h : (sum D₀ D₁ h₀ h₁).mem (inj₁ Y)) : D₁.mem Y := by
   rcases h with h0 | ⟨X', hX', heq⟩ | ⟨Y', hY', heq⟩
   · exact absurd (h0 ▸ none_mem_sumMaster) none_mem_inj₁
@@ -268,6 +318,9 @@ def toSum (x : (sumTok D₀ D₁ h₀ h₁).Element) : (sum D₀ D₁ h₀ h₁)
       · refine Or.inr (Or.inr ⟨Y', hY', rfl, ?_⟩)
         exact x.up_mem hzY (sumTok_mem_embT hY') (embBit_subset.mpr (inj₁_subset_inj₁.mp hsub))
 
+/--
+@isnad1 id=iff.3h4v.s6.73d6dd80c9e8 from=translated src=- shape=ec8ae721 vocab=372da195
+-/
 @[simp] theorem toSum_mem_inj₀ {x : (sumTok D₀ D₁ h₀ h₁).Element} {X : Set Str} (hX : D₀.mem X) :
     (toSum x).mem (inj₀ X) ↔ x.mem (embBit false X) := by
   constructor
@@ -278,6 +331,9 @@ def toSum (x : (sumTok D₀ D₁ h₀ h₁).Element) : (sum D₀ D₁ h₀ h₁)
       exact absurd (heq ▸ il_mem_inj₀.mpr ha) il_mem_inj₁
   · intro hz; exact Or.inr (Or.inl ⟨X, hX, rfl, hz⟩)
 
+/--
+@isnad1 id=iff.3h4v.s6.bd5b095e5265 from=translated src=- shape=31fcef85 vocab=1230028a
+-/
 @[simp] theorem toSum_mem_inj₁ {x : (sumTok D₀ D₁ h₀ h₁).Element} {Y : Set Str} (hY : D₁.mem Y) :
     (toSum x).mem (inj₁ Y) ↔ x.mem (embBit true Y) := by
   constructor
@@ -346,6 +402,9 @@ def fromSum (s : (sum D₀ D₁ h₀ h₁).Element) : (sumTok D₀ D₁ h₀ h�
         exact s.up_mem hsY (Or.inr (Or.inr ⟨Y', hY', rfl⟩))
           (inj₁_subset_inj₁.mpr (embBit_subset.mp hsub))
 
+/--
+@isnad1 id=iff.3h4v.s6.d6149eaa2f6b from=translated src=- shape=8ffb6ef2 vocab=d7808719
+-/
 @[simp] theorem fromSum_mem_embF {s : (sum D₀ D₁ h₀ h₁).Element} {X : Set Str} (hX : D₀.mem X) :
     (fromSum s).mem (embBit false X) ↔ s.mem (inj₀ X) := by
   constructor
@@ -355,6 +414,9 @@ def fromSum (s : (sum D₀ D₁ h₀ h₁).Element) : (sumTok D₀ D₁ h₀ h�
     · exact absurd heq (embBit_ne (show (false : Bool) ≠ true by decide) (h₀ X hX))
   · intro hs; exact Or.inr (Or.inl ⟨X, hX, rfl, hs⟩)
 
+/--
+@isnad1 id=iff.3h4v.s6.3e084701b351 from=translated src=- shape=5f92e614 vocab=f9d5d286
+-/
 @[simp] theorem fromSum_mem_embT {s : (sum D₀ D₁ h₀ h₁).Element} {Y : Set Str} (hY : D₁.mem Y) :
     (fromSum s).mem (embBit true Y) ↔ s.mem (inj₁ Y) := by
   constructor
@@ -366,6 +428,9 @@ def fromSum (s : (sum D₀ D₁ h₀ h₁).Element) : (sumTok D₀ D₁ h₀ h�
 
 /-! ### The two halves are mutually inverse, giving the isomorphism. -/
 
+/--
+@isnad1 id=eq.2h3v.s5.af8f196ee9f3 from=translated src=- shape=05e640b1 vocab=a9add1ca
+-/
 theorem fromSum_toSum (x : (sumTok D₀ D₁ h₀ h₁).Element) : fromSum (toSum x) = x := by
   apply NeighborhoodSystem.Element.ext
   intro W
@@ -380,6 +445,9 @@ theorem fromSum_toSum (x : (sumTok D₀ D₁ h₀ h₁).Element) : fromSum (toSu
     · exact Or.inr (Or.inl ⟨X, hX, rfl, (toSum_mem_inj₀ hX).mpr hW⟩)
     · exact Or.inr (Or.inr ⟨Y, hY, rfl, (toSum_mem_inj₁ hY).mpr hW⟩)
 
+/--
+@isnad1 id=eq.2h3v.s6.1bb8cbd19aab from=translated src=- shape=7fcdcab2 vocab=631e95fe
+-/
 theorem toSum_fromSum (s : (sum D₀ D₁ h₀ h₁).Element) : toSum (fromSum s) = s := by
   apply NeighborhoodSystem.Element.ext
   intro W
@@ -421,7 +489,9 @@ def sumTokEquiv : (sumTok D₀ D₁ h₀ h₁).Element ≃o (sum D₀ D₁ h₀ 
 uniform
 `{0,1}*`-presentation `𝒟₀ + 𝒟₁` is isomorphic, as a domain, to the abstract
 separated sum of
-Exercise 3.18. -/
+Exercise 3.18.
+@isnad1 id=isomorph.2h2v.s5.e76951d76a4e from=translated src=- shape=4b263491 vocab=ec27084e
+-/
 theorem sumTok_iso_sum : sumTok D₀ D₁ h₀ h₁ ≅ᴰ sum D₀ D₁ h₀ h₁ := ⟨sumTokEquiv⟩
 
 /-! ## The concrete product `D₀ × D₁` over `{0,1}*`
@@ -434,23 +504,36 @@ exactly one summand). -/
 /-- A product neighbourhood `{Λ} ∪ 0X ∪ 1Y` over `{0,1}*`. -/
 def prodTokNbhd (X Y : Set Str) : Set Str := insert [] (embBit false X ∪ embBit true Y)
 
+/--
+@isnad1 id=mem.0h2v.s4.49bdeebc0aa4 from=translated src=- shape=717a334b vocab=48aa7f38
+-/
 @[simp] theorem mem_prodTokNbhd_nil {X Y : Set Str} : ([] : Str) ∈ prodTokNbhd X Y :=
   Set.mem_insert _ _
 
+/--
+@isnad1 id=iff.0h3v.s4.4de09578d9a2 from=translated src=- shape=d1b105ed vocab=0b2bf379
+-/
 @[simp] theorem mem_prodTokNbhd_false {X Y : Set Str} {w' : Str} :
     (false :: w') ∈ prodTokNbhd X Y ↔ w' ∈ X := by
   simp only [prodTokNbhd, Set.mem_insert_iff, Set.mem_union, mem_embBit]
   simp_all
 
+/--
+@isnad1 id=iff.0h3v.s4.666e514d886b from=translated src=- shape=0b22bf4d vocab=596f468b
+-/
 @[simp] theorem mem_prodTokNbhd_true {X Y : Set Str} {w' : Str} :
     (true :: w') ∈ prodTokNbhd X Y ↔ w' ∈ Y := by
   simp only [prodTokNbhd, Set.mem_insert_iff, Set.mem_union, mem_embBit]
   simp_all
 
-/-- `prodTokNbhd D₀.master D₁.master` is exactly the sum master `{Λ} ∪ 0Δ₀ ∪ 1Δ₁`. -/
+/-- `prodTokNbhd D₀.master D₁.master` is exactly the sum master `{Λ} ∪ 0Δ₀ ∪ 1Δ₁`.
+@isnad1 id=eq.0h2v.s4.97a9be8c43c3 from=translated src=- shape=d880163c vocab=add22218
+-/
 theorem prodTokNbhd_master_eq : prodTokNbhd D₀.master D₁.master = sumTokMaster D₀ D₁ := rfl
 
-/-- Scott's (2) for the product: product neighbourhoods intersect componentwise. -/
+/-- Scott's (2) for the product: product neighbourhoods intersect componentwise.
+@isnad1 id=eq.0h4v.s5.bbf702f80b41 from=translated src=- shape=6948a0b4 vocab=be8733c7
+-/
 theorem prodTokNbhd_inter (X X' Y Y' : Set Str) :
     prodTokNbhd X Y ∩ prodTokNbhd X' Y' = prodTokNbhd (X ∩ X') (Y ∩ Y') := by
   ext w
@@ -459,7 +542,9 @@ theorem prodTokNbhd_inter (X X' Y Y' : Set Str) :
   | cons b w' => cases b <;> simp [Set.mem_inter_iff]
 
 /-- Scott's (1) for the product: inclusion of product neighbourhoods is
-componentwise. -/
+componentwise.
+@isnad1 id=iff.0h4v.s5.90cc023f29de from=translated src=- shape=790de52e vocab=2e2cb2b7
+-/
 theorem prodTokNbhd_subset_iff {X X' Y Y' : Set Str} :
     prodTokNbhd X Y ⊆ prodTokNbhd X' Y' ↔ X ⊆ X' ∧ Y ⊆ Y' := by
   constructor
@@ -475,6 +560,9 @@ theorem prodTokNbhd_subset_iff {X X' Y Y' : Set Str} :
       | false => exact mem_prodTokNbhd_false.mpr (hX (mem_prodTokNbhd_false.mp hw))
       | true => exact mem_prodTokNbhd_true.mpr (hY (mem_prodTokNbhd_true.mp hw))
 
+/--
+@isnad1 id=and.1h4v.s5.29dc63529b8b from=translated src=- shape=31ef58b6 vocab=2154325c
+-/
 theorem prodTokNbhd_injective {X X' Y Y' : Set Str} (h : prodTokNbhd X Y = prodTokNbhd X' Y') :
     X = X' ∧ Y = Y' :=
   ⟨Set.Subset.antisymm (prodTokNbhd_subset_iff.mp h.subset).1
@@ -500,15 +588,26 @@ def prodTok (D₀ D₁ : NeighborhoodSystem Str) : NeighborhoodSystem Str where
     rintro W ⟨X, Y, hX, hY, rfl⟩
     exact prodTokNbhd_subset_iff.mpr ⟨D₀.sub_master hX, D₁.sub_master hY⟩
 
+/--
+@isnad1 id=iff.0h3v.s5.81aacbb4fa1f from=translated src=- shape=8fe28457 vocab=5a704f25
+-/
 @[simp] theorem prodTok_mem_iff {W : Set Str} :
     (prodTok D₀ D₁).mem W ↔ ∃ X Y, D₀.mem X ∧ D₁.mem Y ∧ W = prodTokNbhd X Y := Iff.rfl
 
+/--
+@isnad1 id=mem.2h4v.s4.d24861508b2d from=translated src=- shape=904279b2 vocab=5a704f25
+-/
 theorem prodTok_mem_prodTokNbhd {X Y : Set Str} (hX : D₀.mem X) (hY : D₁.mem Y) :
     (prodTok D₀ D₁).mem (prodTokNbhd X Y) := ⟨X, Y, hX, hY, rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.a4caaae5425f from=translated src=- shape=f1c0d89d vocab=8b1d302b
+-/
 @[simp] theorem prodTok_master : (prodTok D₀ D₁).master = prodTokNbhd D₀.master D₁.master := rfl
 
-/-- The concrete product is again `∅`-free (every neighbourhood contains `Λ`). -/
+/-- The concrete product is again `∅`-free (every neighbourhood contains `Λ`).
+@isnad1 id=nonempty.1h3v.s4.7464efd490d7 from=translated src=- shape=3c0c9b90 vocab=a1c0bb21
+-/
 theorem prodTok_nonempty : ∀ W, (prodTok D₀ D₁).mem W → W.Nonempty := by
   rintro W ⟨X, Y, _, _, rfl⟩; exact ⟨[], mem_prodTokNbhd_nil⟩
 
@@ -548,13 +647,21 @@ def sndTok (z : (prodTok D₀ D₁).Element) : D₁.Element where
     exact ⟨hY', z.up_mem hzY (prodTok_mem_prodTokNbhd D₀.master_mem hY')
       (prodTokNbhd_subset_iff.mpr ⟨subset_rfl, hYY'⟩)⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.5e10e62faa31 from=translated src=- shape=2727a92a vocab=e0b46b3a
+-/
 @[simp] theorem mem_fstTok {z : (prodTok D₀ D₁).Element} {X : Set Str} :
     (fstTok z).mem X ↔ D₀.mem X ∧ z.mem (prodTokNbhd X D₁.master) := Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s5.e738122fdf3f from=translated src=- shape=d085884c vocab=204077cb
+-/
 @[simp] theorem mem_sndTok {z : (prodTok D₀ D₁).Element} {Y : Set Str} :
     (sndTok z).mem Y ↔ D₁.mem Y ∧ z.mem (prodTokNbhd D₀.master Y) := Iff.rfl
 
-/-- Scott's (3) for the product: membership of `X ∪ Y` splits into its two slices. -/
+/-- Scott's (3) for the product: membership of `X ∪ Y` splits into its two slices.
+@isnad1 id=iff.2h5v.s5.22f8d0270ee2 from=translated src=- shape=93050957 vocab=d4ba4890
+-/
 theorem prodTok_mem_split {z : (prodTok D₀ D₁).Element} {X Y : Set Str}
     (hX : D₀.mem X) (hY : D₁.mem Y) :
     z.mem (prodTokNbhd X Y) ↔
@@ -585,6 +692,9 @@ def pairTok (x : D₀.Element) (y : D₁.Element) : (prodTok D₀ D₁).Element 
     obtain ⟨hXX', hYY'⟩ := prodTokNbhd_subset_iff.mp hsub
     exact ⟨X', Y', x.up_mem hX hX' hXX', y.up_mem hY hY' hYY', rfl⟩
 
+/--
+@isnad1 id=iff.0h6v.s5.51f3bdbee316 from=translated src=- shape=c4bb252c vocab=f67c221e
+-/
 theorem mem_pairTok_prodTokNbhd {x : D₀.Element} {y : D₁.Element} {X Y : Set Str} :
     (pairTok x y).mem (prodTokNbhd X Y) ↔ x.mem X ∧ y.mem Y := by
   constructor
@@ -593,6 +703,9 @@ theorem mem_pairTok_prodTokNbhd {x : D₀.Element} {y : D₁.Element} {X Y : Set
     exact ⟨hX', hY'⟩
   · rintro ⟨hx, hy⟩; exact ⟨X, Y, hx, hy, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.23edf1efafda from=translated src=- shape=c58c3051 vocab=3e8bc289
+-/
 theorem pairTok_fstTok_sndTok (z : (prodTok D₀ D₁).Element) :
   pairTok (fstTok z) (sndTok z) = z := by
   apply NeighborhoodSystem.Element.ext
@@ -605,6 +718,9 @@ theorem pairTok_fstTok_sndTok (z : (prodTok D₀ D₁).Element) :
     obtain ⟨h1, h2⟩ := (prodTok_mem_split hX hY).mp hW
     exact ⟨X, Y, ⟨hX, h1⟩, ⟨hY, h2⟩, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s4.61bee0bed964 from=translated src=- shape=d04b7727 vocab=78ebe7ee
+-/
 @[simp] theorem fstTok_pairTok (x : D₀.Element) (y : D₁.Element) : fstTok (pairTok x y) = x := by
   apply NeighborhoodSystem.Element.ext
   intro X
@@ -612,6 +728,9 @@ theorem pairTok_fstTok_sndTok (z : (prodTok D₀ D₁).Element) :
   · rintro ⟨hX, hmem⟩; exact (mem_pairTok_prodTokNbhd.mp hmem).1
   · intro hX; exact ⟨x.sub hX, mem_pairTok_prodTokNbhd.mpr ⟨hX, y.master_mem⟩⟩
 
+/--
+@isnad1 id=eq.0h4v.s4.c6d6a4700314 from=translated src=- shape=f689aae3 vocab=a3b16412
+-/
 @[simp] theorem sndTok_pairTok (x : D₀.Element) (y : D₁.Element) : sndTok (pairTok x y) = y := by
   apply NeighborhoodSystem.Element.ext
   intro Y
@@ -643,7 +762,9 @@ Scott's uniform
 `{0,1}*`-presentation `𝒟₀ × 𝒟₁` is isomorphic, as a domain, to the abstract
 product of Definition 3.1.
 Both compute the same domain `|D₀| × |D₁|` (via `prodTokEquiv` and Scott's
-`prodEquiv`). -/
+`prodEquiv`).
+@isnad1 id=isomorph.0h2v.s4.6c80bbd39e4e from=translated src=- shape=725666eb vocab=87d8f103
+-/
 theorem prodTok_iso_prod : prodTok D₀ D₁ ≅ᴰ prod D₀ D₁ :=
   ⟨prodTokEquiv.trans (prodEquiv D₀ D₁).symm⟩
 

@@ -84,7 +84,9 @@ def prodCommD (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) :
     (prod V₀ V₁).Element ≃o (prod V₁ V₀).Element :=
   (prodEquiv V₀ V₁).trans (OrderIso.prodComm.trans (prodEquiv V₁ V₀).symm)
 
-/-- **Exercise 3.15(i).** `𝒟₀ × 𝒟₁ ≅ 𝒟₁ × 𝒟₀`. -/
+/-- **Exercise 3.15(i).** `𝒟₀ × 𝒟₁ ≅ 𝒟₁ × 𝒟₀`.
+@isnad1 id=isomorph.0h4v.s4.002970b3e855 from=translated src=- shape=aa41c791 vocab=66486923
+-/
 theorem prod_comm_isomorphic : prod V₀ V₁ ≅ᴰ prod V₁ V₀ := ⟨prodCommD V₀ V₁⟩
 
 /-! ### (ii) Associativity. -/
@@ -100,7 +102,9 @@ def prodAssocD (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) (V�
         (prodCongrOrderIso (prodEquiv V₀ V₁).symm (OrderIso.refl V₂.Element)).trans
           (prodEquiv (prod V₀ V₁) V₂).symm
 
-/-- **Exercise 3.15(ii).** `𝒟₀ × (𝒟₁ × 𝒟₂) ≅ (𝒟₀ × 𝒟₁) × 𝒟₂`. -/
+/-- **Exercise 3.15(ii).** `𝒟₀ × (𝒟₁ × 𝒟₂) ≅ (𝒟₀ × 𝒟₁) × 𝒟₂`.
+@isnad1 id=isomorph.0h6v.s5.79f28db51d3a from=translated src=- shape=105f5c0f vocab=66486923
+-/
 theorem prod_assoc_isomorphic : prod V₀ (prod V₁ V₂) ≅ᴰ prod (prod V₀ V₁) V₂ :=
   ⟨prodAssocD V₀ V₁ V₂⟩
 
@@ -118,7 +122,9 @@ def unitSys : NeighborhoodSystem Unit where
   inter_mem := by rintro X Y Z rfl rfl _ _; simp
   sub_master := by rintro X rfl; exact subset_rfl
 
-/-- `|𝟙|` is a subsingleton: every element is `⊥`. -/
+/-- `|𝟙|` is a subsingleton: every element is `⊥`.
+@isnad1 id=eq.0h1v.s3.3deb3c7d45d9 from=translated src=- shape=37f80573 vocab=800cd75a
+-/
 theorem unitSys_element_eq (x : unitSys.Element) : x = unitSys.bot := by
   apply Element.ext
   intro Y
@@ -135,6 +141,9 @@ def prodUnitD (V₀ : NeighborhoodSystem α) :
     (prod V₀ unitSys).Element ≃o V₀.Element :=
   (prodEquiv V₀ unitSys).trans (prodUniqueOrderIso _ _)
 
+/--
+@isnad1 id=isomorph.0h2v.s4.b5e71416c79a from=translated src=- shape=c4a3d6c3 vocab=052f0b33
+-/
 theorem prod_unit_isomorphic : prod V₀ unitSys ≅ᴰ V₀ := ⟨prodUnitD V₀⟩
 
 /-- **Exercise 3.15 (empty product).** `𝟙` is a left unit: `𝟙 × 𝒟 ≅ 𝒟`. -/
@@ -142,6 +151,9 @@ def unitProdD (V₀ : NeighborhoodSystem α) :
     (prod unitSys V₀).Element ≃o V₀.Element :=
   (prodEquiv unitSys V₀).trans (uniqueProdOrderIso _ _)
 
+/--
+@isnad1 id=isomorph.0h2v.s4.d3d333f55dfe from=translated src=- shape=f6f614d3 vocab=052f0b33
+-/
 theorem unit_prod_isomorphic : prod unitSys V₀ ≅ᴰ V₀ := ⟨unitProdD V₀⟩
 
 /-! ### (iii) Functoriality of `≅`. -/
@@ -153,7 +165,9 @@ def prodCongrD (e₀ : V₀.Element ≃o V₀'.Element) (e₁ : V₁.Element ≃
     (prod V₀ V₁).Element ≃o (prod V₀' V₁').Element :=
   (prodEquiv V₀ V₁).trans ((prodCongrOrderIso e₀ e₁).trans (prodEquiv V₀' V₁').symm)
 
-/-- **Exercise 3.15(iii).** `𝒟₀ ≅ 𝒟₀'` and `𝒟₁ ≅ 𝒟₁'` imply `𝒟₀ × 𝒟₁ ≅ 𝒟₀' × 𝒟₁'`. -/
+/-- **Exercise 3.15(iii).** `𝒟₀ ≅ 𝒟₀'` and `𝒟₁ ≅ 𝒟₁'` imply `𝒟₀ × 𝒟₁ ≅ 𝒟₀' × 𝒟₁'`.
+@isnad1 id=isomorph.2h8v.s5.02485fb22789 from=translated src=- shape=bcf5b8ab vocab=66486923
+-/
 theorem Isomorphic.prod (h₀ : V₀ ≅ᴰ V₀') (h₁ : V₁ ≅ᴰ V₁') : prod V₀ V₁ ≅ᴰ prod V₀' V₁' :=
   h₀.elim fun e₀ => h₁.elim fun e₁ => ⟨prodCongrD e₀ e₁⟩
 

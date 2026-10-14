@@ -56,7 +56,9 @@ namespace Theorem52
 /-- **Theorem 5.2, base value law (Scott 1981, PRG-19).** `(λx.τ)(σ) = τ[σ/x]`
 evaluated: applying
 the abstraction `curry g` (in free-variable context `v`) to `x` substitutes,
-giving `g(v, x)`. -/
+giving `g(v, x)`.
+@isnad1 id=eq.0h9v.s6.0f1bea5b2b4b from=translated src=- shape=bb6e6fa6 vocab=adef677b
+-/
 theorem subst_value (g : ApproximableMap (prod V₀ V₁) V₂) (v : V₀.Element) (x : V₁.Element) :
     (toApproxMap ((curry g).toElementMap v)).toElementMap x = g.toElementMap (pair v x) :=
   toElementMap_curry_apply g v x
@@ -67,7 +69,9 @@ the bound variable: `(λx.τ)(σ) = τ[σ/x]`, where the left side first abstrac
 (`curry g`) then
 applies to the constant `σ`, and the right side substitutes `σ` directly. Both are
 approximable
-maps `Γ → 𝒟'` and they are equal. -/
+maps `Γ → 𝒟'` and they are equal.
+@isnad1 id=eq.0h8v.s6.2d82a11ccbc0 from=translated src=- shape=10aa446c vocab=14c87e6e
+-/
 theorem beta (g : ApproximableMap (prod V₀ V₁) V₂) (σ : V₁.Element) :
     (evalMap V₁ V₂).comp (paired (curry g) (constMap V₀ σ))
       = g.comp (paired (idMap V₀) (constMap V₀ σ)) := by
@@ -79,7 +83,9 @@ theorem beta (g : ApproximableMap (prod V₀ V₁) V₂) (σ : V₁.Element) :
 
 /-- **Theorem 5.2 (Scott 1981, PRG-19) — tuple case.**
 `(λx.⟨τ₀, τ₁⟩)(σ) = ⟨(λx.τ₀)(σ), (λx.τ₁)(σ)⟩`: abstraction distributes over a
-tuple. -/
+tuple.
+@isnad1 id=eq.0h12v.s7.9e0028f6dfb8 from=translated src=- shape=13467712 vocab=35718d89
+-/
 theorem beta_tuple (g₀ : ApproximableMap (prod V₀ V₁) V₂) (g₁ : ApproximableMap (prod V₀ V₁) V₃)
     (v : V₀.Element) (x : V₁.Element) :
     (toApproxMap ((curry (paired g₀ g₁)).toElementMap v)).toElementMap x
@@ -92,7 +98,9 @@ theorem beta_tuple (g₀ : ApproximableMap (prod V₀ V₁) V₂) (g₁ : Approx
 `(λx.λy.τ)(σ)(y) = τ[σ/x]` evaluated at `y`: the double-curry application law. The
 bound `y` is
 carried inert past the substitution of `σ` for `x`, exactly Scott's
-`(λx.λy.τ)(σ)(y) = (λx.τ)(σ)`. -/
+`(λx.λy.τ)(σ)(y) = (λx.τ)(σ)`.
+@isnad1 id=eq.0h12v.s7.176ec35e42a0 from=translated src=- shape=2005e87e vocab=adef677b
+-/
 theorem beta_abs (g : ApproximableMap (prod (prod V₀ V₁) V₂) V₃) (v : V₀.Element) (σ : V₁.Element)
     (y : V₂.Element) :
     (toApproxMap ((toApproxMap ((curry (curry g)).toElementMap v)).toElementMap σ)).toElementMap y

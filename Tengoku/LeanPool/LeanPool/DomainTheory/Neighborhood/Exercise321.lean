@@ -46,7 +46,9 @@ variable {α β : Type*} {V₀ : NeighborhoodSystem α} {V₁ : NeighborhoodSyst
 /-! ### The intersection `interYs` of a single step. -/
 
 /-- For a single step `[Y, Z]` and a *sharp enough* input `X ⊆ Y`, the
-intersection is just `Z`. -/
+intersection is just `Z`.
+@isnad1 id=eq.2h6v.s5.231d8972ed1f from=translated src=- shape=58614d01 vocab=2cfb05b0
+-/
 theorem interYs_single_subset_eq {YX : Set α} {Z : Set β} {X : Set α} (hZ : V₁.mem Z)
     (hXY : X ⊆ YX) : interYs V₁.master [(YX, Z)] X = Z := by
   ext z
@@ -57,7 +59,9 @@ theorem interYs_single_subset_eq {YX : Set α} {Z : Set β} {X : Set α} (hZ : V
     exact ⟨V₁.sub_master hZ hz, fun p hp _ => by rw [List.mem_singleton] at hp; subst hp; exact hz⟩
 
 /-- For a single step `[Y, Z]` and an input `X ⊄ Y`, the intersection is the whole
-master `Δ₂`. -/
+master `Δ₂`.
+@isnad1 id=eq.1h6v.s5.f7e865764a34 from=translated src=- shape=ca6bc029 vocab=40b537f2
+-/
 theorem interYs_single_not_subset_eq {YX : Set α} {Z : Set β} {X : Set α}
     (hXY : ¬ X ⊆ YX) : interYs V₁.master [(YX, Z)] X = V₁.master := by
   ext z
@@ -68,7 +72,9 @@ theorem interYs_single_not_subset_eq {YX : Set α} {Z : Set β} {X : Set α}
 
 /-- Consistency (`hcons`) for a single step `[Y, Z]`: the intersection over the
 relevant outputs is
-either `Z` (sharp input) or `Δ₂` (blunt input), both neighbourhoods. -/
+either `Z` (sharp input) or `Δ₂` (blunt input), both neighbourhoods.
+@isnad1 id=mem.2h7v.s5.19bf2b7e9a6c from=translated src=- shape=a9fd0138 vocab=3a61b2e4
+-/
 theorem stepCons {Y : Set α} {Z : Set β} (hZ : V₁.mem Z) :
     ∀ {X}, V₀.mem X → V₁.mem (interYs V₁.master [(Y, Z)] X) := by
   intro X _
@@ -85,6 +91,9 @@ def leastStep (Y : Set α) (Z : Set β) (hY : V₀.mem Y) (hZ : V₁.mem Z) :
     have _hY : V₀.mem Y := hY
     exact leastMap [(Y, Z)] (stepCons hZ)
 
+/--
+@isnad1 id=mem.2h6v.s5.cee290905aa3 from=translated src=- shape=2b8e3a71 vocab=12bf748e
+-/
 theorem leastStep_mem {Y : Set α} {Z : Set β} (hY : V₀.mem Y) (hZ : V₁.mem Z) :
     leastStep Y Z hY hZ ∈ step Y Z := by
   have := leastMap_mem_stepFun (V₀ := V₀) (V₁ := V₁)
@@ -93,13 +102,18 @@ theorem leastStep_mem {Y : Set α} {Z : Set β} (hY : V₀.mem Y) (hZ : V₁.mem
   rw [stepFun_singleton] at this
   exact this
 
+/--
+@isnad1 id=le.3h7v.s6.6c61887f9294 from=translated src=- shape=d1065b16 vocab=e543c30d
+-/
 theorem leastStep_le {Y : Set α} {Z : Set β} (hY : V₀.mem Y) (hZ : V₁.mem Z)
     {f : ApproximableMap V₀ V₁} (hf : f ∈ step Y Z) : leastStep Y Z hY hZ ≤ f := by
   apply leastMap_le (stepCons hZ)
   rw [stepFun_singleton]; exact hf
 
 /-- `f₀ = leastStep Y Z` relates `Y'` to `Z'` iff (`Y' ⊆ Y` and `Z ⊆ Z'`) or `Z' =
-Δ₂`. -/
+Δ₂`.
+@isnad1 id=iff.4h8v.s6.b76eb0f0c91e from=translated src=- shape=ffd3c156 vocab=43fe95c0
+-/
 theorem leastStep_rel {Y : Set α} {Z : Set β} (hY : V₀.mem Y) (hZ : V₁.mem Z)
     {Y' : Set α} {Z' : Set β} (hY' : V₀.mem Y') (hZ' : V₁.mem Z') :
     (leastStep Y Z hY hZ).rel Y' Z' ↔ interYs V₁.master [(Y, Z)] Y' ⊆ Z' := by
@@ -109,13 +123,18 @@ theorem leastStep_rel {Y : Set α} {Z : Set β} (hY : V₀.mem Y) (hZ : V₁.mem
 /-! ### `[Y, Z]` is the whole space exactly when `Z = Δ₂`. -/
 
 /-- **Exercise 3.21.** If the output is the master, `[Y, Δ₂]` is the whole
-function space. -/
+function space.
+@isnad1 id=eq.1h5v.s5.58d8dc0f4722 from=translated src=- shape=af104470 vocab=24fcb594
+-/
 theorem step_master_right (Y : Set α) (hY : V₀.mem Y) :
     (step Y V₁.master : Set (ApproximableMap V₀ V₁)) = Set.univ := by
   ext f
   simp only [mem_step, Set.mem_univ, iff_true]
   exact f.mono f.master_rel (V₀.sub_master hY) subset_rfl hY V₁.master_mem
 
+/--
+@isnad1 id=iff.2h6v.s5.a85e456ebe4e from=translated src=- shape=bb77e7fd vocab=24fcb594
+-/
 theorem step_eq_univ_iff {Y : Set α} {Z : Set β} (hY : V₀.mem Y) (hZ : V₁.mem Z) :
     (step Y Z : Set (ApproximableMap V₀ V₁)) = Set.univ ↔ Z = V₁.master := by
   constructor
@@ -132,7 +151,9 @@ theorem step_eq_univ_iff {Y : Set α} {Z : Set β} (hY : V₀.mem Y) (hZ : V₁.
 
 /-! ### Uniqueness when `Z ≠ Δ₂`. -/
 
-/-- The least elements of equal step neighbourhoods coincide. -/
+/-- The least elements of equal step neighbourhoods coincide.
+@isnad1 id=eq.5h8v.s6.92bb47cfe2e7 from=translated src=- shape=05b09c23 vocab=10517ae5
+-/
 theorem leastStep_eq_of_step_eq {Y : Set α} {Z : Set β} (hY : V₀.mem Y) (hZ : V₁.mem Z)
     {Y' : Set α} {Z' : Set β} (hY' : V₀.mem Y') (hZ' : V₁.mem Z')
     (h : (step Y Z : Set (ApproximableMap V₀ V₁)) = step Y' Z') :
@@ -143,7 +164,9 @@ theorem leastStep_eq_of_step_eq {Y : Set α} {Z : Set β} (hY : V₀.mem Y) (hZ 
 
 /-- **Exercise 3.21 (Scott 1981, PRG-19).** If `Z ≠ Δ₂`, the neighbourhood `[Y,
 Z]` determines both
-endpoints: `[Y, Z] = [Y', Z']` implies `Y = Y'` and `Z = Z'`. -/
+endpoints: `[Y, Z] = [Y', Z']` implies `Y = Y'` and `Z = Z'`.
+@isnad1 id=and.6h8v.s6.c3cfb3b425da from=translated src=- shape=495aa378 vocab=d6bcf42b
+-/
 theorem step_eq_of_ne_master {Y : Set α} {Z : Set β} (hY : V₀.mem Y) (hZ : V₁.mem Z)
     {Y' : Set α} {Z' : Set β} (hY' : V₀.mem Y') (hZ' : V₁.mem Z') (hZne : Z ≠ V₁.master)
     (h : (step Y Z : Set (ApproximableMap V₀ V₁)) = step Y' Z') : Y = Y' ∧ Z = Z' := by
@@ -182,7 +205,9 @@ theorem step_eq_of_ne_master {Y : Set α} {Z : Set β} (hY : V₀.mem Y) (hZ : V
 /-- **Exercise 3.21 (Scott 1981, PRG-19).** The simple criterion for identity of
 function-space
 neighbourhoods: `[Y, Z] = [Y', Z']` iff both outputs are the master `Δ₂`, or the
-pairs coincide. -/
+pairs coincide.
+@isnad1 id=iff.4h8v.s6.18fe8574fe86 from=translated src=- shape=f51d99d9 vocab=d6bcf42b
+-/
 theorem step_eq_iff {Y : Set α} {Z : Set β} (hY : V₀.mem Y) (hZ : V₁.mem Z)
     {Y' : Set α} {Z' : Set β} (hY' : V₀.mem Y') (hZ' : V₁.mem Z') :
     (step Y Z : Set (ApproximableMap V₀ V₁)) = step Y' Z' ↔

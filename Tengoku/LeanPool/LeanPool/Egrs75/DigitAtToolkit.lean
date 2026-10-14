@@ -58,7 +58,9 @@ open Egrs75.LeafInduction
 def digitAt (p i n : ℕ) : ℕ := n / p ^ i % p
 
 /-- `LowDigits p n` iff every indexed base-`p` digit is `≤ (p-1)/2`.
-Out-of-range indices give digit `0 ≤ (p-1)/2`, so the quantifier is over all `i`. -/
+Out-of-range indices give digit `0 ≤ (p-1)/2`, so the quantifier is over all `i`.
+@isnad1 id=iff.1h2v.s5.71d11ed4f0b5 from=translated src=- shape=c361e5ac vocab=72e88c2a
+-/
 theorem lowDigits_iff_digitAt {p n : ℕ} (hp : 2 ≤ p) :
     LowDigits p n ↔ ∀ i, digitAt p i n ≤ (p - 1) / 2 := by
   unfold LowDigits digitAt
@@ -77,7 +79,9 @@ theorem lowDigits_iff_digitAt {p n : ℕ} (hp : 2 ≤ p) :
 /-! ## Digit-at-index of a disjoint base-`p` sum `u + p^k * h` -/
 
 /-- For `i < k`, the index-`i` base-`p` digit of `u + p^k * h` is the digit of `u`
-(the high block `p^k * h` contributes nothing below index `k`). -/
+(the high block `p^k * h` contributes nothing below index `k`).
+@isnad1 id=eq.2h5v.s6.641ba1bcd13a from=translated src=- shape=e1580c05 vocab=a4f97a57
+-/
 theorem digitAt_add_low {p : ℕ} (hp : 1 ≤ p) {k u h i : ℕ} (hik : i < k) :
     digitAt p i (u + p ^ k * h) = digitAt p i u := by
   unfold digitAt
@@ -92,7 +96,9 @@ theorem digitAt_add_low {p : ℕ} (hp : 1 ≤ p) {k u h i : ℕ} (hik : i < k) :
 
 /-- For `k ≤ i` and `u < p^k`, the index-`i` base-`p` digit of `u + p^k * h` is the
 index-`(i-k)` digit of `h` (the low block `u` is below `p^k`, so it does not reach
-index `i ≥ k`). -/
+index `i ≥ k`).
+@isnad1 id=eq.2h5v.s6.1ecbaab296f3 from=translated src=- shape=0ed19b76 vocab=2b76247e
+-/
 theorem digitAt_add_high {p : ℕ} {k u h i : ℕ} (hu : u < p ^ k) (hki : k ≤ i) :
     digitAt p i (u + p ^ k * h) = digitAt p (i - k) h := by
   unfold digitAt
@@ -110,7 +116,9 @@ bounds the low (all-zero) base-`p` block of `n`. Adding it keeps `LowDigits p`. 
 
 /-- **Base-`p` safety.** If `u < p ^ k`, `LowDigits p u`, and `LowDigits p h`, then
 `LowDigits p (u + p ^ k * h)`: the digit at each index is either a digit of `u`
-(index `< k`) or a digit of `h` (index `≥ k`), all `≤ (p-1)/2`. KERNEL-CLEAN. -/
+(index `< k`) or a digit of `h` (index `≥ k`), all `≤ (p-1)/2`. KERNEL-CLEAN.
+@isnad1 id=lowdigit.4h4v.s6.6672f49567dd from=translated src=- shape=c59227f4 vocab=c8d33f66
+-/
 theorem lowDigits_add_disjoint {p : ℕ} (hp : 2 ≤ p) {k u h : ℕ}
     (hu : u < p ^ k) (hlu : LowDigits p u) (hlh : LowDigits p h) :
     LowDigits p (u + p ^ k * h) := by
@@ -131,7 +139,9 @@ def BadAt (q i n : ℕ) : Prop := (q - 1) / 2 < digitAt q i n
 
 /-- If `badCountQ q n > 0` then some base-`q` digit index is bad, and there is a
 greatest such index. (Bad indices are bounded by the length of the digit list, so
-the nonempty bounded set of bad indices has a maximum.) KERNEL-CLEAN. -/
+the nonempty bounded set of bad indices has a maximum.) KERNEL-CLEAN.
+@isnad1 id=ex.2h2v.s5.2b2387fefe74 from=translated src=- shape=32d2f365 vocab=831551e0
+-/
 theorem exists_highest_bad {q n : ℕ} (hq : 2 ≤ q) (hbad : 0 < badCountQ q n) :
     ∃ j, BadAt q j n ∧ ∀ i, BadAt q i n → i ≤ j := by
   -- From a positive filter-length, the filtered list is nonempty, giving a bad member,

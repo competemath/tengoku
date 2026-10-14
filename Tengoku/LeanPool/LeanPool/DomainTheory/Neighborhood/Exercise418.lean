@@ -45,7 +45,9 @@ namespace Domain.Neighborhood.Exercise418
 
 open Domain.Neighborhood NeighborhoodSystem ApproximableMap Example43
 
-/-- `∅` is not a neighbourhood of `N`. -/
+/-- `∅` is not a neighbourhood of `N`.
+@isnad1 id=not.0h0v.s3.eee0358030dd from=translated src=- shape=7fa2a4d3 vocab=6960ed49
+-/
 theorem not_N_mem_empty : ¬ N.mem (∅ : Set ℕ) := by
   rw [N_mem]
   rintro (h | ⟨n, h⟩)
@@ -59,7 +61,9 @@ private theorem singleton_inter_eq_empty {n m : ℕ} (hmn : m ≠ n) :
 
 /-- **Exercise 4.18 (Scott 1981, PRG-19).** Element classification: every element
 of `|N|` is either
-the bottom `⊥` or a total element `n̂`. So `N` is the flat domain over `ℕ`. -/
+the bottom `⊥` or a total element `n̂`. So `N` is the flat domain over `ℕ`.
+@isnad1 id=or.0h1v.s4.0b21bee057e2 from=translated src=- shape=8b86e3ec vocab=fc3dd80b
+-/
 theorem element_classification (x : N.Element) :
     x = N.bot ∨ ∃ n, x = natElem n := by
   by_cases h : ∃ n, x.mem {n}
@@ -94,27 +98,35 @@ theorem element_classification (x : N.Element) :
       exact x.master_mem
 
 /-- **Exercise 4.18 (Scott 1981, PRG-19).** The numerals are distinct: `n̂ = m̂ ⟹
-n = m`. -/
+n = m`.
+@isnad1 id=eq.1h2v.s4.a670680f837b from=translated src=- shape=648d2cea vocab=ed6dbc0d
+-/
 theorem natElem_injective {n m : ℕ} (h : natElem n = natElem m) : n = m := by
   have hmem : (natElem m).mem {n} := h ▸ (mem_natElem_iff.mpr (Or.inr rfl))
   rw [mem_natElem_iff] at hmem
   simp_all
 
 /-- **Exercise 4.18 (Scott 1981, PRG-19).** `succ` is injective on the total
-elements. -/
+elements.
+@isnad1 id=eq.1h2v.s4.f4a4809df066 from=translated src=- shape=cdbba4c2 vocab=c1f25620
+-/
 theorem succMap_injective {n m : ℕ}
     (h : succMap.toElementMap (natElem n) = succMap.toElementMap (natElem m)) : n = m := by
   rw [succMap_natElem, succMap_natElem] at h
   have := natElem_injective h
   omega
 
-/-- **Exercise 4.18 (Scott 1981, PRG-19).** `0̂` is not a numeral successor. -/
+/-- **Exercise 4.18 (Scott 1981, PRG-19).** `0̂` is not a numeral successor.
+@isnad1 id=ne.0h1v.s4.5d800c13977b from=translated src=- shape=b3a55546 vocab=2559e14c
+-/
 theorem natElem_zero_ne_succ (k : ℕ) : natElem 0 ≠ natElem (k + 1) := fun h =>
   Nat.succ_ne_zero k (natElem_injective h).symm
 
 /-- **Exercise 4.18 (Scott 1981, PRG-19).** `0̂` is not in the image of `succ` —
 Peano's
-"zero is not a successor". -/
+"zero is not a successor".
+@isnad1 id=ne.0h1v.s4.039103892267 from=translated src=- shape=051a529c vocab=c1f25620
+-/
 theorem zero_ne_succMap (n : ℕ) : natElem 0 ≠ succMap.toElementMap (natElem n) := by
   rw [succMap_natElem]
   exact natElem_zero_ne_succ n

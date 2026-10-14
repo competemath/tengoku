@@ -26,6 +26,9 @@ namespace Erdos865
 For a triple-free set `A` with pivot `h ∈ A` and `h ≥ 2`, the folded coordinate set
 `B_h` satisfies the hypothesis of the folded additive lemma modulo `h`.
 -/
+/--
+@isnad1 id=foldedok.3h3v.s5.0df7e8430134 from=translated src=- shape=ad42c037 vocab=543c16ca
+-/
 theorem foldedOK_Bset {A : Finset ℕ} {N h : ℕ} (hA : IsTripleFree A) (hh : h ∈ A)
     (_hh2 : 2 ≤ h) : FoldedOK h (Bset A N h) := by
   constructor;
@@ -50,6 +53,9 @@ theorem foldedOK_Bset {A : Finset ℕ} {N h : ℕ} (hA : IsTripleFree A) (hh : h
 
 /-
 Collisions of `B_h` land in the "excluded" set `E`.
+-/
+/--
+@isnad1 id=le.2h3v.s5.6bc966552a92 from=translated src=- shape=d951b98d vocab=85cf76c0
 -/
 theorem collisions_subset_Eset {A : Finset ℕ} {N h : ℕ} (hA : IsTripleFree A) (hh : h ∈ A) :
     collisions h (Bset A N h) ⊆ Eset A N h := by
@@ -77,6 +83,9 @@ theorem collisions_subset_Eset {A : Finset ℕ} {N h : ℕ} (hA : IsTripleFree A
 /-
 The elementary counting identity `|X| + |Y| + |E| = (h-1) + |B_h|`.
 -/
+/--
+@isnad1 id=eq.0h3v.s6.e684931605a8 from=translated src=- shape=8352b372 vocab=8be3bfe3
+-/
 theorem card_XY_E (A : Finset ℕ) (N h : ℕ) :
     (Xset A h).card + (Yset A N h).card + (Eset A N h).card = (h - 1) + (Bset A N h).card := by
   rw [ Eset, Finset.card_sdiff ];
@@ -92,6 +101,9 @@ theorem card_XY_E (A : Finset ℕ) (N h : ℕ) :
 /-
 **Folding lemma.** For a triple-free `A` and pivot `h ∈ A`,
 `4(|X|+|Y|) + 4|E \ C(B_h)| ≤ 5h + 4`, i.e. `|X|+|Y| ≤ 5h/4 - |E \ C(B_h)| + 1`.
+-/
+/--
+@isnad1 id=le.2h3v.s6.e9bcf845dd32 from=translated src=- shape=f10fdbb1 vocab=dd681aff
 -/
 theorem folding_lemma {A : Finset ℕ} {N h : ℕ} (hA : IsTripleFree A) (hh : h ∈ A) :
     4 * ((Xset A h).card + (Yset A N h).card)

@@ -60,17 +60,27 @@ def hOut : Str → Str
   | [] => []
   | b :: t => b :: false :: hOut t
 
+/--
+@isnad1 id=eq.0h0v.s2.73b1c6e97019 from=translated src=- shape=d3545b1f vocab=90fc00cc
+-/
 @[simp] theorem hOut_nil : hOut [] = [] := rfl
+/--
+@isnad1 id=eq.0h2v.s4.0fe17766c155 from=translated src=- shape=076227b8 vocab=67700f3f
+-/
 @[simp] theorem hOut_cons (b : Bool) (t : Str) : hOut (b :: t) = b :: false :: hOut t := rfl
 
-/-- `hOut` grows under extension: `hOut σ <+: hOut (σ ++ t)`. -/
+/-- `hOut` grows under extension: `hOut σ <+: hOut (σ ++ t)`.
+@isnad1 id=isprefix.0h2v.s4.ccbf4800c310 from=translated src=- shape=91273a34 vocab=2af3f54b
+-/
 theorem hOut_append (σ t : Str) : hOut σ <+: hOut (σ ++ t) := by
   induction σ with
   | nil => simp
   | cons b s ih =>
     simp_all
 
-/-- **Prefix-monotonicity of `hOut`.** `σ <+: σ' → hOut σ <+: hOut σ'`. -/
+/-- **Prefix-monotonicity of `hOut`.** `σ <+: σ' → hOut σ <+: hOut σ'`.
+@isnad1 id=isprefix.1h2v.s3.ba6762336afe from=translated src=- shape=9a0a01eb vocab=c2562365
+-/
 theorem hOut_mono {σ σ' : Str} (h : σ <+: σ') : hOut σ <+: hOut σ' := by
   obtain ⟨t, rfl⟩ := h
   exact hOut_append σ t
@@ -85,17 +95,30 @@ def kOut : Str → Str
   | [_] => []
   | b :: _ :: t => b :: kOut t
 
+/--
+@isnad1 id=eq.0h0v.s2.0379e595eb7c from=translated src=- shape=d3545b1f vocab=aad97f26
+-/
 @[simp] theorem kOut_nil : kOut [] = [] := rfl
+/--
+@isnad1 id=eq.0h1v.s3.4c3267579595 from=translated src=- shape=d4e2285e vocab=e2c253cf
+-/
 @[simp] theorem kOut_single (b : Bool) : kOut [b] = [] := rfl
+/--
+@isnad1 id=eq.0h3v.s4.fd40a27b622d from=translated src=- shape=e1f4f22a vocab=16c3437f
+-/
 @[simp] theorem kOut_cons (b c : Bool) (t : Str) : kOut (b :: c :: t) = b :: kOut t := rfl
 
-/-- **`k` inverts `h` on prefixes.** `kOut (hOut σ) = σ`. -/
+/-- **`k` inverts `h` on prefixes.** `kOut (hOut σ) = σ`.
+@isnad1 id=eq.0h1v.s3.474811a629cd from=translated src=- shape=47dcad53 vocab=1f14e47a
+-/
 theorem kOut_hOut (σ : Str) : kOut (hOut σ) = σ := by
   induction σ with
   | nil => rfl
   | cons b t ih => simp only [hOut_cons, kOut_cons, ih]
 
-/-- `kOut` grows under extension: `kOut σ <+: kOut (σ ++ t)`. -/
+/-- `kOut` grows under extension: `kOut σ <+: kOut (σ ++ t)`.
+@isnad1 id=isprefix.0h2v.s4.20ec09863a26 from=translated src=- shape=91273a34 vocab=07422a5a
+-/
 theorem kOut_append (σ t : Str) : kOut σ <+: kOut (σ ++ t) := by
   induction σ using kOut.induct with
   | case1 => simp
@@ -103,7 +126,9 @@ theorem kOut_append (σ t : Str) : kOut σ <+: kOut (σ ++ t) := by
   | case3 b c t' ih =>
     simp_all
 
-/-- **Prefix-monotonicity of `kOut`.** `σ <+: σ' → kOut σ <+: kOut σ'`. -/
+/-- **Prefix-monotonicity of `kOut`.** `σ <+: σ' → kOut σ <+: kOut σ'`.
+@isnad1 id=isprefix.1h2v.s3.168c32dce3a9 from=translated src=- shape=9a0a01eb vocab=7080cb0a
+-/
 theorem kOut_mono {σ σ' : Str} (h : σ <+: σ') : kOut σ <+: kOut σ' := by
   obtain ⟨t, rfl⟩ := h
   exact kOut_append σ t
@@ -161,7 +186,9 @@ def kMap : ApproximableMap B B where
     exact ⟨σ', hX'cone, hY'mem, (hcone.trans hYsub).trans hYY'⟩
 
 /-- The elementwise value of `hMap` on the finite element `↑(σΣ*)` is `↑((hOut
-σ)Σ*)`. -/
+σ)Σ*)`.
+@isnad1 id=eq.0h1v.s4.746a981cae6f from=translated src=- shape=13ba3fe6 vocab=fe6cd2f5
+-/
 theorem toElementMap_hMap_cone (σ : Str) :
     hMap.toElementMap (B.principal (memB_cone σ)) = B.principal (memB_cone (hOut σ)) := by
   apply Element.ext
@@ -175,7 +202,9 @@ theorem toElementMap_hMap_cone (σ : Str) :
     exact ⟨σ, rfl, hYmem, hsub⟩
 
 /-- The elementwise value of `kMap` on the finite element `↑(σΣ*)` is `↑((kOut
-σ)Σ*)`. -/
+σ)Σ*)`.
+@isnad1 id=eq.0h1v.s4.ad016a16e3bb from=translated src=- shape=13ba3fe6 vocab=d191537d
+-/
 theorem toElementMap_kMap_cone (σ : Str) :
     kMap.toElementMap (B.principal (memB_cone σ)) = B.principal (memB_cone (kOut σ)) := by
   apply Element.ext
@@ -193,7 +222,9 @@ theorem toElementMap_kMap_cone (σ : Str) :
 /-- **Exercise 2.18 — `k ∘ h = I_𝔹`.** The composite recovers the identity:
 reading `kOut (hOut
 σ) = σ`
-through the cone relations. -/
+through the cone relations.
+@isnad1 id=eq.0h0v.s4.7b00ed941757 from=translated src=- shape=4099b900 vocab=87fae5a1
+-/
 theorem kMap_comp_hMap : kMap.comp hMap = idMap B := by
   apply ApproximableMap.ext
   intro X Z
@@ -214,7 +245,9 @@ theorem kMap_comp_hMap : kMap.comp hMap = idMap B := by
 /-- **Exercise 2.18 — `k` is not one-one.** `↑(0Σ*)` and `↑(1Σ*)` are distinct
 finite elements that
 `k` collapses to `⊥` (a length-1 prefix is an incomplete pair, so its bit is
-dropped). -/
+dropped).
+@isnad1 id=not.0h0v.s3.dde604406a17 from=translated src=- shape=b096d583 vocab=59f91210
+-/
 theorem kMap_not_injective : ¬ Function.Injective kMap.toElementMap := by
   intro hinj
   have h1 : kMap.toElementMap (B.principal (memB_cone [false]))
@@ -227,7 +260,9 @@ theorem kMap_not_injective : ¬ Function.Injective kMap.toElementMap := by
 /-- **Exercise 2.18 — `h` is not an isomorphism.** It is not surjective: `↑(01Σ*)`
 is not in the
 range (any preimage `x` satisfies `x = k(h(x))`, forcing `h(x) = ↑(00Σ*) ≠
-↑(01Σ*)`). -/
+↑(01Σ*)`).
+@isnad1 id=not.0h0v.s3.4f13bb310c7b from=translated src=- shape=b096d583 vocab=ee354908
+-/
 theorem hMap_not_surjective : ¬ Function.Surjective hMap.toElementMap := by
   intro hsurj
   obtain ⟨x, hx⟩ := hsurj (B.principal (memB_cone [false, true]))

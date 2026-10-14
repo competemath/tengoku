@@ -67,14 +67,22 @@ def unfold : ApproximableMap (iterSys V) (prod V (iterSys V)) := ofIso (iterProd
 /-- `fold : D × D^∞ → D^∞`, the inverse direction of `iterProdIso`. -/
 def fold : ApproximableMap (prod V (iterSys V)) (iterSys V) := ofIso (iterProdIso V).symm
 
-/-- `iterProdIso` reads a stack as its head together with the tail sequence. -/
+/-- `iterProdIso` reads a stack as its head together with the tail sequence.
+@isnad1 id=eq.0h3v.s8.aa4c832f1501 from=translated src=- shape=b1fed1bf vocab=beebbad8
+-/
 theorem iterProdIso_apply (z : (iterSys V).Element) :
     iterProdIso V z = pair (component z 0) (ofSeq (fun n => component z (n + 1))) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.09a46d9fda34 from=translated src=- shape=93602909 vocab=30e76242
+-/
 theorem unfold_fold (p : (prod V (iterSys V)).Element) :
     (unfold V).toElementMap ((fold V).toElementMap p) = p := by
   rw [unfold, fold, toElementMap_ofIso, toElementMap_ofIso, OrderIso.apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h3v.s6.4054e6892b82 from=translated src=- shape=7a518581 vocab=30e76242
+-/
 theorem fold_unfold (z : (iterSys V).Element) :
     (fold V).toElementMap ((unfold V).toElementMap z) = z := by
   rw [unfold, fold, toElementMap_ofIso, toElementMap_ofIso, OrderIso.symm_apply_apply]
@@ -90,33 +98,47 @@ def tail : ApproximableMap (iterSys V) (iterSys V) := (proj₁ V (iterSys V)).co
 /-- `push : D × D^∞ → D^∞`, prepend an element to a stack. -/
 def push : ApproximableMap (prod V (iterSys V)) (iterSys V) := fold V
 
+/--
+@isnad1 id=eq.0h3v.s5.1278dd53a82e from=translated src=- shape=f35be706 vocab=b3e92066
+-/
 @[simp] theorem head_apply (z : (iterSys V).Element) :
     (head V).toElementMap z = component z 0 := by
   rw [head, toElementMap_comp, unfold, toElementMap_ofIso, toElementMap_proj₀,
     iterProdIso_apply, fst_pair]
 
+/--
+@isnad1 id=eq.0h3v.s5.f675d37a8be8 from=translated src=- shape=493f68d3 vocab=934f4d9c
+-/
 @[simp] theorem tail_apply (z : (iterSys V).Element) :
     (tail V).toElementMap z = ofSeq (fun n => component z (n + 1)) := by
   rw [tail, toElementMap_comp, unfold, toElementMap_ofIso, toElementMap_proj₁,
     iterProdIso_apply, snd_pair]
 
-/-- `(tail z)ₙ = zₙ₊₁`. -/
+/-- `(tail z)ₙ = zₙ₊₁`.
+@isnad1 id=eq.0h4v.s5.54d74ca07d35 from=translated src=- shape=ec593062 vocab=8361d16b
+-/
 theorem component_tail (z : (iterSys V).Element) (n : ℕ) :
     component ((tail V).toElementMap z) n = component z (n + 1) := by
   rw [tail_apply, component_ofSeq]
 
-/-- **Stack law.** `head(push(x, s)) = x`. -/
+/-- **Stack law.** `head(push(x, s)) = x`.
+@isnad1 id=eq.0h4v.s6.ad9387d9441e from=translated src=- shape=d5ce8787 vocab=8a396da5
+-/
 theorem head_push (x : V.Element) (s : (iterSys V).Element) :
     (head V).toElementMap ((push V).toElementMap (pair x s)) = x := by
   rw [head, toElementMap_comp, push, unfold_fold, toElementMap_proj₀, fst_pair]
 
-/-- **Stack law.** `tail(push(x, s)) = s`. -/
+/-- **Stack law.** `tail(push(x, s)) = s`.
+@isnad1 id=eq.0h4v.s6.c49e73acb0b8 from=translated src=- shape=b3c9dc9b vocab=b6e41130
+-/
 theorem tail_push (x : V.Element) (s : (iterSys V).Element) :
     (tail V).toElementMap ((push V).toElementMap (pair x s)) = s := by
   rw [tail, toElementMap_comp, push, unfold_fold, toElementMap_proj₁, snd_pair]
 
 /-- **Stack law.** `push(head z, tail z) = z` (a stack is its top pushed onto its
-tail). -/
+tail).
+@isnad1 id=eq.0h3v.s6.f16f5e0e0599 from=translated src=- shape=73ace84c vocab=f33791f5
+-/
 theorem push_head_tail (z : (iterSys V).Element) :
     (push V).toElementMap (pair ((head V).toElementMap z) ((tail V).toElementMap z)) = z := by
   rw [head, tail, toElementMap_comp, toElementMap_comp, toElementMap_proj₀, toElementMap_proj₁,
@@ -130,7 +152,9 @@ def diag : ApproximableMap V (iterSys V) :=
   (fixMap (iterSys V)).comp (curry (push V))
 
 /-- **Exercise 5.11 (Scott 1981, PRG-19).** The recursion `diag(x) = push(x,
-diag(x))`. -/
+diag(x))`.
+@isnad1 id=eq.0h3v.s6.934fb5a4c49e from=translated src=- shape=86a07b3e vocab=4ed8c263
+-/
 theorem diag_rec (x : V.Element) :
     (diag V).toElementMap x =
       (push V).toElementMap (pair x ((diag V).toElementMap x)) := by
@@ -144,7 +168,9 @@ theorem diag_rec (x : V.Element) :
 
 /-- **Exercise 5.11 (Scott 1981, PRG-19).** Scott's emphasised property: *all*
 components of
-`diag(x)` equal `x`, i.e. `diag(x) = ⟨x⟩ₙ`. -/
+`diag(x)` equal `x`, i.e. `diag(x) = ⟨x⟩ₙ`.
+@isnad1 id=eq.0h4v.s5.c6c7f63aef6d from=translated src=- shape=62b08f85 vocab=c2f855eb
+-/
 theorem component_diag (x : V.Element) (n : ℕ) :
     component ((diag V).toElementMap x) n = x := by
   induction n with
@@ -181,6 +207,9 @@ def mapBody : ApproximableMap (prod (funSpace (Arg V) (iterSys V)) (Arg V)) (ite
             ((proj₁ (iterSys (funSpace V V)) V).comp
               (proj₁ (funSpace (Arg V) (iterSys V)) (Arg V)))))))
 
+/--
+@isnad1 id=eq.0h5v.s8.5900b29fc3dc from=translated src=- shape=8665e297 vocab=3aa3a7d3
+-/
 theorem mapBody_apply (W : (funSpace (Arg V) (iterSys V)).Element)
     (s : (iterSys (funSpace V V)).Element) (x : V.Element) :
     (mapBody V).toElementMap (pair W (pair s x)) =
@@ -200,7 +229,9 @@ def mapOp : ApproximableMap (funSpace (Arg V) (iterSys V)) (funSpace (Arg V) (it
 def mapMap : ApproximableMap (Arg V) (iterSys V) := toApproxMap (mapOp V).fixElement
 
 /-- **Exercise 5.11 (Scott 1981, PRG-19).** The recursion defining `map`:
-`map(s, x) = push((head s)(x), map(tail s, x))`. -/
+`map(s, x) = push((head s)(x), map(tail s, x))`.
+@isnad1 id=eq.0h4v.s8.91b7544b09e9 from=translated src=- shape=39998d6d vocab=3b47476b
+-/
 theorem map_rec (s : (iterSys (funSpace V V)).Element) (x : V.Element) :
     (mapMap V).toElementMap (pair s x) =
       (push V).toElementMap
@@ -215,7 +246,9 @@ theorem map_rec (s : (iterSys (funSpace V V)).Element) (x : V.Element) :
 /-- **Exercise 5.11 (Scott 1981, PRG-19).** The `n`-th component of `map(s, x)` is
 `(component s
 n)(x)`,
-i.e. `map(⟨fₙ⟩, x) = ⟨fₙ(x)⟩ₙ`. -/
+i.e. `map(⟨fₙ⟩, x) = ⟨fₙ(x)⟩ₙ`.
+@isnad1 id=eq.0h5v.s6.503fa501802d from=translated src=- shape=c89648d0 vocab=be74f88c
+-/
 theorem component_map (x : V.Element) :
     ∀ (n : ℕ) (s : (iterSys (funSpace V V)).Element),
       component ((mapMap V).toElementMap (pair s x)) n =

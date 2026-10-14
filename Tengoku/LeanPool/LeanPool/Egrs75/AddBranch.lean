@@ -80,7 +80,9 @@ follow that drive the ADD branch:
 
 /-- **High base-`p` block stays low (KERNEL-CLEAN).**  If every base-`p` digit of `n`
 is `≤ (p-1)/2`, so is every base-`p` digit of `n / p^m`: the digit of `n / p^m` at
-index `i` is the digit of `n` at index `m + i`. -/
+index `i` is the digit of `n` at index `m + i`.
+@isnad1 id=lowdigit.2h3v.s5.86cba8b9b4ec from=translated src=- shape=1ae751e2 vocab=349180a3
+-/
 theorem lowDigits_div_pow {p : ℕ} (hp : 2 ≤ p) {n m : ℕ}
     (hpn : LowDigits p n) : LowDigits p (n / p ^ m) := by
   rw [lowDigits_iff_digitAt hp] at hpn ⊢
@@ -100,7 +102,9 @@ Proof.  `p^m ∣ n` gives `n = p^m · (n / p^m)`, so `n + U = U + p^m · (n / p^
 `U < p^m`; the high block `n / p^m` is `LowDigits p` (`lowDigits_div_pow`) and `> 0`
 (since `n > 0` forces `n ≥ p^m`), so `lowDigits_disjoint_add` applies — adding the
 disjoint-support correction creates no oversized base-`p` digit.  This is the EGRS
-"`U < p^m` keeps the base-`p` digits small" step. -/
+"`U < p^m` keeps the base-`p` digits small" step.
+@isnad1 id=lowdigit.6h4v.s6.d836d8239fe6 from=translated src=- shape=abb630b0 vocab=c9d8cb7f
+-/
 theorem add_U_lowDigits_p {p : ℕ} (hp : 2 ≤ p) {n m U : ℕ}
     (hpn : LowDigits p n) (hpU : LowDigits p U) (hUlt : U < p ^ m)
     (hm : n % p ^ m = 0) (hnpos : 0 < n) : LowDigits p (n + U) := by
@@ -134,7 +138,9 @@ to `2(q^i - T) ≤ p^m` at `A = B = (p-1)/2 = (q-1)/2`), then there is a `LowDig
 number `U` with `q^i - T ≤ U` and `U < p^m`.
 
 Drawn from the density Fact `RoundUp.exists_lowDigits_between` (interval `[x, 2x)`,
-ratio `(p-1)/A = 2`); `U < 2x ≤ p^m`. -/
+ratio `(p-1)/A = 2`); `U < 2x ≤ p^m`.
+@isnad1 id=ex.4h5v.s7.7ac0c3c7ebf4 from=translated src=- shape=07a80523 vocab=a622bf69
+-/
 theorem exists_U_in_range {p q i T m : ℕ} (hp : 3 ≤ p) (hpo : Odd p)
     (hx1 : 1 ≤ q ^ i - T) (hcond3 : 2 * (q ^ i - T) ≤ p ^ m) :
     ∃ U, q ^ i - T ≤ U ∧ U < p ^ m ∧ LowDigits p U := by

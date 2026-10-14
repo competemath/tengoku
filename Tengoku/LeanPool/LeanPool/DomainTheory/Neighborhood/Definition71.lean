@@ -155,7 +155,9 @@ private theorem primrec_swapPair : Nat.Primrec swapPair :=
 neighbourhoods is itself
 decidable in terms of the indices", because `Xₙ ⊆ Xₘ ↔ Xₙ ∩ Xₘ = Xₙ`. We obtain
 the decision by
-reindexing `(n, m) ↦ (n, m, n)` into relation (i). -/
+reindexing `(n, m) ↦ (n, m, n)` into relation (i).
+@isnad1 id=recdecid.0h3v.s4.8fdaf616e430 from=translated src=- shape=c8f6433e vocab=820a5f39
+-/
 theorem incl_computable : RecDecidable₂ (fun n m => P.X n ⊆ P.X m) := by
   refine RecDecidable.of_iff (fun t => ?_) (P.interEq_computable.comp primrec_inclShuffle)
   simp only [inclShuffle, unpair_pair_fst, unpair_pair_snd]
@@ -199,7 +201,9 @@ def unitPresentation : ComputablePresentation unitSys where
   masterIdx := 0
   masterIdx_spec := rfl
 
-/-- **The one-point domain `𝟙` is effectively given.** -/
+/-- **The one-point domain `𝟙` is effectively given.**
+@isnad1 id=iseffect.0h0v.s1.0dc3a6ea730f from=translated src=- shape=25b03439 vocab=3643e1aa
+-/
 theorem unitSys_isEffectivelyGiven : unitSys.IsEffectivelyGiven :=
   ⟨unitPresentation⟩
 

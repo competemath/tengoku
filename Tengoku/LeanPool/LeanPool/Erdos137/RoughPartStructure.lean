@@ -37,20 +37,31 @@ def SmoothPartBelow (k m : ℕ) : ℕ :=
 def RoughPartAbove (k m : ℕ) : ℕ :=
   ∏ p ∈ m.primeFactors.filter (fun p => ¬ p < k), p ^ m.factorization p
 
+/--
+@isnad1 id=le.0h2v.s3.466636cd6cf8 from=translated src=- shape=a120b2a8 vocab=5eaa4547
+-/
 lemma smoothPartBelow_pos (k m : ℕ) : 1 ≤ SmoothPartBelow k m := by
   unfold SmoothPartBelow
   exact Finset.one_le_prod fun p hp =>
     Nat.one_le_pow _ _ (Nat.prime_of_mem_primeFactors (Finset.mem_of_mem_filter _ hp)).pos
 
+/--
+@isnad1 id=le.0h2v.s3.15eecb8b9374 from=translated src=- shape=a120b2a8 vocab=0b3acad7
+-/
 lemma roughPartAbove_pos (k m : ℕ) : 1 ≤ RoughPartAbove k m := by
   unfold RoughPartAbove
   exact Finset.one_le_prod fun p hp =>
     Nat.one_le_pow _ _ (Nat.prime_of_mem_primeFactors (Finset.mem_of_mem_filter _ hp)).pos
 
+/--
+@isnad1 id=ne.0h2v.s3.6db8ecbc4f07 from=translated src=- shape=aa052b1b vocab=e5ab7ea3
+-/
 lemma roughPartAbove_ne_zero (k m : ℕ) : RoughPartAbove k m ≠ 0 :=
   Nat.one_le_iff_ne_zero.mp (roughPartAbove_pos k m)
 
-/-- Term-level smooth/rough factorization: `SmoothPartBelow k m * RoughPartAbove k m = m`. -/
+/-- Term-level smooth/rough factorization: `SmoothPartBelow k m * RoughPartAbove k m = m`.
+@isnad1 id=eq.1h2v.s4.ea663ed278ec from=translated src=- shape=556652a6 vocab=00d52214
+-/
 lemma smoothPartBelow_mul_roughPartAbove {k m : ℕ} (hm : m ≠ 0) :
     SmoothPartBelow k m * RoughPartAbove k m = m := by
   unfold SmoothPartBelow RoughPartAbove
@@ -58,11 +69,16 @@ lemma smoothPartBelow_mul_roughPartAbove {k m : ℕ} (hm : m ≠ 0) :
   conv_rhs => rw [← Nat.prod_factorization_pow_eq_self hm]
   rw [Nat.prod_factorization_eq_prod_primeFactors]
 
+/--
+@isnad1 id=dvd.1h2v.s4.0a82c15af51a from=translated src=- shape=96d9866c vocab=83790dca
+-/
 lemma roughPartAbove_dvd_self {k m : ℕ} (hm : m ≠ 0) : RoughPartAbove k m ∣ m := by
   conv_rhs => rw [← smoothPartBelow_mul_roughPartAbove (k := k) hm]
   exact dvd_mul_left _ _
 
-/-- Factorization of the term-level rough part. -/
+/-- Factorization of the term-level rough part.
+@isnad1 id=eq.0h3v.s6.0153cafcd3c8 from=translated src=- shape=e9a695c8 vocab=2e270c89
+-/
 lemma factorization_roughPartAbove (k m p : ℕ) :
     (RoughPartAbove k m).factorization p =
       if p ∈ m.primeFactors.filter (fun q => ¬ q < k) then m.factorization p else 0 := by
@@ -84,7 +100,9 @@ lemma factorization_roughPartAbove (k m p : ℕ) :
     have hqp : q ≠ p := by rintro rfl; exact hp hq
     rw [Nat.Prime.factorization_pow hqprime, Finsupp.single_apply, ite_eq_right hqp]
 
-/-- If a prime divides the rough part, it is a prime factor of `m` and is `≥ k`. -/
+/-- If a prime divides the rough part, it is a prime factor of `m` and is `≥ k`.
+@isnad1 id=and.2h3v.s5.1fdad65ad8f6 from=translated src=- shape=2e8db3fd vocab=b0ed8f75
+-/
 lemma prime_dvd_roughPartAbove_imp {k m p : ℕ} (hp : p.Prime) (hpdvd : p ∣ RoughPartAbove k m) :
     p ∈ m.primeFactors ∧ k ≤ p := by
   have hRne : RoughPartAbove k m ≠ 0 := roughPartAbove_ne_zero k m
@@ -99,7 +117,9 @@ lemma prime_dvd_roughPartAbove_imp {k m p : ℕ} (hp : p.Prime) (hpdvd : p ∣ R
   rw [ite_eq_right hnot] at hfac
   omega
 
-/-- **Rough part of each term is powerful in a very bad interval.** -/
+/-- **Rough part of each term is powerful in a very bad interval.**
+@isnad1 id=powerful.3h3v.s5.d8e9020c13a1 from=translated src=- shape=0e029bff vocab=73f768a4
+-/
 theorem roughPartAbove_powerful_of_block_powerful {k n i : ℕ}
     (hn : 1 ≤ n) (hPow : Powerful (F k n)) (hi : i < k) :
     Powerful (RoughPartAbove k (n + i)) := by
@@ -121,7 +141,9 @@ theorem roughPartAbove_powerful_of_block_powerful {k n i : ℕ}
   have hRne : RoughPartAbove k (n + i) ≠ 0 := roughPartAbove_ne_zero k (n + i)
   exact (Nat.Prime.pow_dvd_iff_le_factorization hp hRne).mpr hval_rough
 
-/-- Every term in a very bad interval = (`k`-smooth part) · (powerful `k`-rough part). -/
+/-- Every term in a very bad interval = (`k`-smooth part) · (powerful `k`-rough part).
+@isnad1 id=and.3h3v.s6.31f2ea4c7d02 from=translated src=- shape=686070c6 vocab=f78b4da5
+-/
 theorem term_decomposes_smooth_times_powerful_rough {k n i : ℕ}
     (hn : 1 ≤ n) (hPow : Powerful (F k n)) (hi : i < k) :
     SmoothPartBelow k (n + i) * RoughPartAbove k (n + i) = n + i
@@ -135,7 +157,9 @@ theorem term_decomposes_smooth_times_powerful_rough {k n i : ℕ}
 /-- A nonzero powerful divisor of a nonzero squarefree number is `1`.
 A small reusable helper: if `d ∣ m`, `m` is squarefree, and `d` is powerful, then every prime
 valuation of `d` is both `≥ 2` if nonzero (powerfulness) and `≤ 1` (since `d ∣ m` squarefree), so
-all valuations of `d` vanish. -/
+all valuations of `d` vanish.
+@isnad1 id=eq.5h2v.s5.15119d7b5649 from=translated src=- shape=748212bc vocab=654afe91
+-/
 lemma powerful_dvd_squarefree_eq_one {d m : ℕ}
     (hdne : d ≠ 0) (hmne : m ≠ 0) (hdvd : d ∣ m) (hsq : Squarefree m) (hPow : Powerful d) :
     d = 1 := by
@@ -160,7 +184,9 @@ lemma powerful_dvd_squarefree_eq_one {d m : ℕ}
 
 /-- **Squarefree term corollary.** In a powerful block, the `k`-rough part of a squarefree term is
 trivial: if `F k n` is powerful and `n+i` is squarefree, then `n+i` has no prime factor `p ≥ k`, so
-all of its prime support lies below `k`. -/
+all of its prime support lies below `k`.
+@isnad1 id=eq.4h3v.s5.e969b3a34867 from=translated src=- shape=66d189ff vocab=613d6362
+-/
 theorem roughPartAbove_eq_one_of_squarefree_term {k n i : ℕ}
     (hn : 1 ≤ n) (hPow : Powerful (F k n)) (hi : i < k) (hsq : Squarefree (n + i)) :
     RoughPartAbove k (n + i) = 1 := by

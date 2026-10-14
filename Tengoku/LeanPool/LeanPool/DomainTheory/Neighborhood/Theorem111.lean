@@ -54,16 +54,23 @@ def iInter (x : ℕ → V.Element) : V.Element where
   inter_mem h1 h2 n := (x n).inter_mem (h1 n) (h2 n)
   up_mem h hY hXY n := (x n).up_mem (h n) hY hXY
 
+/--
+@isnad1 id=iff.0h4v.s5.ac7f55c1557d from=translated src=- shape=177103d1 vocab=86128043
+-/
 @[simp] theorem mem_iInter (x : ℕ → V.Element) {X : Set α} :
     (V.iInter x).mem X ↔ ∀ n, (x n).mem X := Iff.rfl
 
-/-- `⋂ₙ xₙ ⊑ xₙ`: the intersection approximates every member of the sequence. -/
+/-- `⋂ₙ xₙ ⊑ xₙ`: the intersection approximates every member of the sequence.
+@isnad1 id=le.0h4v.s5.db916815dd20 from=translated src=- shape=948037d8 vocab=d6cfbade
+-/
 theorem iInter_le (x : ℕ → V.Element) (n : ℕ) : V.iInter x ≤ x n :=
   fun _ h => h n
 
 /-- `⋂ₙ xₙ` is the **greatest** lower bound: anything approximating all `xₙ`
 approximates `⋂ₙ
-xₙ`. -/
+xₙ`.
+@isnad1 id=le.1h4v.s5.297e5836802b from=translated src=- shape=5c8cb551 vocab=d6cfbade
+-/
 theorem le_iInter (x : ℕ → V.Element) (y : V.Element) (h : ∀ n, y ≤ x n) :
     y ≤ V.iInter x :=
   fun X hX n => h n X hX
@@ -87,17 +94,24 @@ def iUnion (x : ℕ → V.Element) (hmono : Monotone x) : V.Element where
     rintro X Y ⟨n, hn⟩ hY hXY
     exact ⟨n, (x n).up_mem hn hY hXY⟩
 
+/--
+@isnad1 id=iff.1h4v.s5.5bd36775e69e from=translated src=- shape=1a023ef8 vocab=57faecb3
+-/
 @[simp] theorem mem_iUnion (x : ℕ → V.Element) (hmono : Monotone x) {X : Set α} :
     (V.iUnion x hmono).mem X ↔ ∃ n, (x n).mem X := Iff.rfl
 
-/-- `xₙ ⊑ ⋃ₙ xₙ`: every member of the sequence approximates the union. -/
+/-- `xₙ ⊑ ⋃ₙ xₙ`: every member of the sequence approximates the union.
+@isnad1 id=le.1h4v.s5.177addffd14d from=translated src=- shape=e288cf68 vocab=7e19b727
+-/
 theorem le_iUnion (x : ℕ → V.Element) (hmono : Monotone x) (n : ℕ) :
     x n ≤ V.iUnion x hmono :=
   fun _ hX => ⟨n, hX⟩
 
 /-- `⋃ₙ xₙ` is the **least** upper bound: anything approximated by all `xₙ`
 approximates the
-union from above. -/
+union from above.
+@isnad1 id=le.2h4v.s6.df8086031b0e from=translated src=- shape=460b2817 vocab=7e19b727
+-/
 theorem iUnion_le (x : ℕ → V.Element) (hmono : Monotone x) (y : V.Element)
     (h : ∀ n, x n ≤ y) : V.iUnion x hmono ≤ y := by
   rintro X ⟨n, hn⟩

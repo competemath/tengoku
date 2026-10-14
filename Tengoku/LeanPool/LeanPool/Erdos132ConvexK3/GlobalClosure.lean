@@ -29,22 +29,34 @@ namespace LeanPool.Erdos132ConvexK3
 reverses signed orientation. -/
 def reflectAcrossXAxis (p : Point ℝ) : Point ℝ := (p.1, -p.2)
 
+/--
+@isnad1 id=eq.0h2v.s4.8b7a09819e73 from=translated src=- shape=1879049c vocab=8e6d309e
+-/
 @[simp] theorem reflectAcrossXAxis_sqDist (p q : Point ℝ) :
     sqDist (reflectAcrossXAxis p) (reflectAcrossXAxis q) = sqDist p q := by
   simp [reflectAcrossXAxis, sqDist]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s4.6151a84327a8 from=translated src=- shape=f2daa442 vocab=f49b2188
+-/
 @[simp] theorem reflectAcrossXAxis_turn (p q r : Point ℝ) :
     turn (reflectAcrossXAxis p) (reflectAcrossXAxis q)
       (reflectAcrossXAxis r) = -turn p q r := by
   simp [reflectAcrossXAxis, turn]
   ring
 
+/--
+@isnad1 id=injectiv.0h0v.s2.137af77bcb3c from=translated src=- shape=3ec79756 vocab=fc268d77
+-/
 theorem reflectAcrossXAxis_injective : Function.Injective reflectAcrossXAxis := by
   rintro ⟨px, py⟩ ⟨qx, qy⟩ hpq
   simp only [reflectAcrossXAxis, Prod.mk.injEq, neg_inj] at hpq
   exact Prod.ext hpq.1 hpq.2
 
+/--
+@isnad1 id=strictco.1h4v.s5.d15c9b045762 from=translated src=- shape=431fab55 vocab=2cf6b63a
+-/
 theorem reflectAcrossXAxis_strictConvexQuad_reverse
     {a b c d : Point ℝ} (h : StrictConvexQuad a b c d) :
     StrictConvexQuad (reflectAcrossXAxis a) (reflectAcrossXAxis d)
@@ -69,6 +81,9 @@ theorem reflectAcrossXAxis_strictConvexQuad_reverse
     rw [turn_swap c a b]
     linarith
 
+/--
+@isnad1 id=iff.0h3v.s4.9993bca1f05c from=translated src=- shape=457358d4 vocab=0728bb92
+-/
 theorem reflectAcrossXAxis_halfPlane_reverse
     (a b p : Point ℝ) :
     InLeftOpenHalfPlane (reflectAcrossXAxis a) (reflectAcrossXAxis b)
@@ -80,6 +95,9 @@ theorem reflectAcrossXAxis_halfPlane_reverse
     ring
   rw [h]
 
+/--
+@isnad1 id=eq.0h6v.s5.5d73fb1d10ac from=translated src=- shape=4a24732f vocab=caeadda1
+-/
 theorem reflectAcrossXAxis_vertexDegree
     {n : ℕ} (P : Fin n → Point ℝ) (d₁ d₂ d₃ : ℝ) (v : Fin n) :
     vertexDegree (fun i ↦ reflectAcrossXAxis (P i)) d₁ d₂ d₃ v =
@@ -90,6 +108,9 @@ theorem reflectAcrossXAxis_vertexDegree
   simp only [Finset.mem_filter, Finset.mem_erase, Finset.mem_univ, and_true]
   simp only [reflectAcrossXAxis_sqDist]
 
+/--
+@isnad1 id=hastopth.1h5v.s5.1ab404abf296 from=translated src=- shape=14e99008 vocab=b0595374
+-/
 theorem reflectAcrossXAxis_top_three_classes
     {n : ℕ} {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (h : HasTopThreeDistanceClasses P d₁ d₂ d₃) :
@@ -122,7 +143,9 @@ private theorem chordDot_turn_identity (e t p : Point ℝ) :
 
 /-- On one side of an oriented center line, the point on the first-center
 circle which is strictly closer to the second center has strictly smaller
-signed height than the common-radius tip. -/
+signed height than the common-radius tip.
+@isnad1 id=lt.8h6v.s6.5bc4fe437a7e from=translated src=- shape=1ebbc113 vocab=ebd9297f
+-/
 theorem penultimate_turn_lt_shared_tip
     {e t w s : Point ℝ} {d₁ d₂ : ℝ}
     (het : e ≠ t) (hd₂d₁ : d₂ < d₁)
@@ -170,7 +193,9 @@ private theorem sqDist_eq_of_euclideanDist_eq_sqrt_global
   nlinarith
 
 /-- Squared-distance form of red-blue forcing, with the two diagonal class
-splits discharged from the global top-three hypothesis. -/
+splits discharged from the global top-three hypothesis.
+@isnad1 id=and.6h9v.s6.5a87cd150de2 from=translated src=- shape=d2135875 vocab=de0c5963
+-/
 theorem red_blue_forcing_sqDist
     {n : ℕ} {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -213,6 +238,9 @@ theorem red_blue_forcing_sqDist
 def cyclicOffset
     {n : ℕ} (base j : Fin n) : ℕ := (j - base).val
 
+/--
+@isnad1 id=eq.0h3v.s4.01c9c4609604 from=translated src=- shape=4ff092bb vocab=bd402e24
+-/
 @[simp] theorem cyclicAdvance_cyclicOffset
     {n : ℕ} [NeZero n] (base j : Fin n) :
     cyclicAdvance base (cyclicOffset base j) = j := by
@@ -220,10 +248,16 @@ def cyclicOffset
   rw [fin_ofNat_val]
   abel
 
+/--
+@isnad1 id=eq.0h2v.s4.f4265751eedd from=translated src=- shape=ef1f4744 vocab=78117408
+-/
 @[simp] theorem cyclicOffset_self
     {n : ℕ} [NeZero n] (base : Fin n) : cyclicOffset base base = 0 := by
   simp [cyclicOffset]
 
+/--
+@isnad1 id=eq.1h3v.s4.680a49d83faa from=translated src=- shape=3619682d vocab=b46c8329
+-/
 theorem cyclicOffset_cyclicAdvance
     {n : ℕ} [NeZero n] (base : Fin n) {k : ℕ} (hk : k < n) :
     cyclicOffset base (cyclicAdvance base k) = k := by
@@ -254,12 +288,18 @@ noncomputable def cyclicWrapInterval
   exact Finset.univ.filter fun j ↦
     hi < cyclicOffset base j ∨ cyclicOffset base j < lo
 
+/--
+@isnad1 id=iff.0h5v.s5.122a86086f0f from=translated src=- shape=dff9a637 vocab=5326876b
+-/
 @[simp] theorem mem_cyclicOpenInterval
     {n : ℕ} {base j : Fin n} {lo hi : ℕ} :
     j ∈ cyclicOpenInterval base lo hi ↔
       lo < cyclicOffset base j ∧ cyclicOffset base j < hi := by
   simp [cyclicOpenInterval]
 
+/--
+@isnad1 id=iff.0h5v.s5.8126bf4ec6ec from=translated src=- shape=dff9a637 vocab=136441fe
+-/
 @[simp] theorem mem_cyclicWrapInterval
     {n : ℕ} {base j : Fin n} {hi lo : ℕ} :
     j ∈ cyclicWrapInterval base hi lo ↔
@@ -267,7 +307,9 @@ noncomputable def cyclicWrapInterval
   simp [cyclicWrapInterval]
 
 /-- Four increasing unwrapped offsets in a single turn form a strict
-quadrilateral, even when the last offsets use representatives past `n`. -/
+quadrilateral, even when the last offsets use representatives past `n`.
+@isnad1 id=strictco.5h7v.s6.d743f2ea5244 from=translated src=- shape=acf723f3 vocab=79883a19
+-/
 theorem cyclic_strict_convex_quad_unwrapped
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ}
     (hConvex : CyclicStrictConvex P) (base : Fin n)
@@ -287,7 +329,9 @@ theorem cyclic_strict_convex_quad_unwrapped
     exact h
 
 /-- A point after an oriented chord in one unwrapped turn lies in its left
-open half-plane. -/
+open half-plane.
+@isnad1 id=inleftop.4h6v.s6.c069fd2976eb from=translated src=- shape=e8362e06 vocab=7b5354f5
+-/
 theorem cyclic_inLeft_of_unwrapped_order
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ}
     (hConvex : CyclicStrictConvex P) (base : Fin n)
@@ -298,7 +342,9 @@ theorem cyclic_inLeft_of_unwrapped_order
   exact cyclic_strict_convex_turn_unwrapped hConvex base hab hbk hwindow
 
 /-- The reversed chord sees the points on its short intervening arc in its
-left open half-plane. -/
+left open half-plane.
+@isnad1 id=inleftop.4h6v.s6.2d8cd20382b8 from=translated src=- shape=117ac229 vocab=c9636e64
+-/
 theorem cyclic_inLeft_reverse_of_between
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ}
     (hConvex : CyclicStrictConvex P) (base : Fin n)
@@ -352,7 +398,9 @@ private theorem cyclicWrapInterval_center_ne_of_between
   omega
 
 /-- A six-label cyclic pattern with the displayed two-rung distances is the
-raw shared-tip realization consumed by the full-two-rung kernel. -/
+raw shared-tip realization consumed by the full-two-rung kernel.
+@isnad1 id=nonempty.14h12v.s7.2ac247b2fafc from=translated src=- shape=78108d88 vocab=5978f8ff
+-/
 theorem fullTwoRungGeometry_of_cyclic_offsets
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hConvex : CyclicStrictConvex P)
@@ -572,7 +620,9 @@ theorem fullTwoRungGeometry_of_cyclic_offsets
     tNegativeQuad := hNegativeQuad }⟩
 
 /-- The corresponding five-label cyclic pattern realizes the raw
-one-penultimate anti-saturation record. -/
+one-penultimate anti-saturation record.
+@isnad1 id=nonempty.10h11v.s7.f7e68bcd4c60 from=translated src=- shape=f299b4b4 vocab=bac8ec53
+-/
 theorem onePenultimateGeometry_of_cyclic_offsets
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hConvex : CyclicStrictConvex P)
@@ -775,7 +825,9 @@ theorem onePenultimateGeometry_of_cyclic_offsets
     tp := htp }⟩
 
 /-- Reflection reverses the row-4 cyclic orientation and turns the displayed
-five-label pattern into the raw one-penultimate orientation. -/
+five-label pattern into the raw one-penultimate orientation.
+@isnad1 id=nonempty.10h11v.s7.954fb864b4c7 from=translated src=- shape=32414dda vocab=311f2fa2
+-/
 theorem reflectedOnePenultimateGeometry_of_cyclic_offsets
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hConvex : CyclicStrictConvex P)
@@ -1018,7 +1070,9 @@ private theorem reflected_terminal_central_quads
   · exact reflected_cyclic_strictConvexQuad_unwrapped hConvex base
       (by omega) hx_s hs_w (by omega)
 
-/-- Reflected terminal-cage adapter for the row-4 `D32` orientation. -/
+/-- Reflected terminal-cage adapter for the row-4 `D32` orientation.
+@isnad1 id=nonempty.11h11v.s7.249e452cac0b from=translated src=- shape=2e6dab9c vocab=f73936d7
+-/
 theorem reflectedRow1B32Geometry_of_cyclic_offsets
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hConvex : CyclicStrictConvex P)
@@ -1235,7 +1289,9 @@ theorem reflectedRow1B32Geometry_of_cyclic_offsets
     ts := by simpa using hts }⟩
 
 /-- One endpoint of the row-4 four-edge cage, generated from its cyclic
-offset pattern. -/
+offset pattern.
+@isnad1 id=ex.8h11v.s7.90b1ec2426f6 from=translated src=- shape=5dcf2fc2 vocab=bf53976b
+-/
 theorem fourEdgeEndpointGeometry_of_cyclic_offsets
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hConvex : CyclicStrictConvex P) (base : Fin n)
@@ -1391,7 +1447,9 @@ theorem fourEdgeEndpointGeometry_of_cyclic_offsets
 namespace K3CoverSequence
 
 /-- Any actual two-cover witness exhausts the three strict distance ranks,
-independently of the order in which its endpoints move. -/
+independently of the order in which its endpoints move.
+@isnad1 id=and.5h9v.s7.161de6222ee1 from=translated src=- shape=93f4a612 vocab=c73d3f7a
+-/
 theorem two_cover_rank_endpoints
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     {i j : Fin n} {leftMoves rightMoves : ℕ}
@@ -1451,7 +1509,9 @@ end K3CoverSequence
 namespace K3CoverSequence
 
 /-- A one-right/one-left path which starts on the right has the expected
-`d₃,d₂,d₁` ladder. -/
+`d₃,d₂,d₁` ladder.
+@isnad1 id=and.4h7v.s7.eecc5c37bc55 from=translated src=- shape=0d3176ac vocab=0c901a5f
+-/
 theorem right_left_cover_rank_ladder
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -1474,7 +1534,9 @@ theorem right_left_cover_rank_ladder
                 hStart.2 hMid.2 hEnd.2 h₀ h₁
 
 /-- The opposite one-left/one-right order has the same rank ladder, with
-the middle edge obtained by retreating the left endpoint. -/
+the middle edge obtained by retreating the left endpoint.
+@isnad1 id=and.4h7v.s7.5a0e9fd8b13c from=translated src=- shape=954c5046 vocab=e4d43f43
+-/
 theorem left_right_cover_rank_ladder
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -1517,11 +1579,17 @@ noncomputable def zOffset
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃) : ℕ :=
   n - (firstClockwiseNeighborOffset P d₁ d₂ d₃ F.x).val
 
+/--
+@isnad1 id=le.0h6v.s5.476c69aa1c57 from=translated src=- shape=b8c719ac vocab=778cfde1
+-/
 theorem card_ge_eight
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃) : 8 ≤ n :=
   eight_le_card_of_degree_seven (F.highDegree F.x)
 
+/--
+@isnad1 id=lt.0h6v.s5.352f4377f588 from=translated src=- shape=3da02b82 vocab=80e22026
+-/
 theorem secondGap_pos
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃) : 0 < F.secondGap := by
@@ -1538,6 +1606,9 @@ theorem secondGap_pos
     simpa using hz
   omega
 
+/--
+@isnad1 id=lt.0h6v.s5.515dded16a23 from=translated src=- shape=1af073d7 vocab=be683fbd
+-/
 theorem uOffset_add_M_lt_card
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃) :
@@ -1563,6 +1634,9 @@ theorem uOffset_add_M_lt_card
   dsimp [uOffset]
   omega
 
+/--
+@isnad1 id=lt.0h6v.s5.27b4d4891b83 from=translated src=- shape=a2825720 vocab=5386c248
+-/
 theorem zOffset_lt_card
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃) : F.zOffset < n := by
@@ -1576,7 +1650,9 @@ theorem zOffset_lt_card
   omega
 
 /-- Outer localization is equality of unwrapped offsets, not merely equality
-of labels. -/
+of labels.
+@isnad1 id=eq.0h6v.s7.b58c62297881 from=translated src=- shape=2579751f vocab=0e7eda84
+-/
 theorem zOffset_eq_uOffset_add
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃) :
@@ -1647,6 +1723,9 @@ theorem zOffset_eq_uOffset_add
   dsimp [soff, umoff] at hoff
   omega
 
+/--
+@isnad1 id=eq.0h6v.s6.97c66b5a9c55 from=translated src=- shape=920f5475 vocab=b6d6fe08
+-/
 theorem firstClockwiseNeighbor_eq_offset
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃) :
@@ -1664,6 +1743,9 @@ theorem firstClockwiseNeighbor_eq_offset
     cyclicRetreat_eq_advance_complement F.x hhx
       (firstClockwiseNeighborOffset P d₁ d₂ d₃ F.x).isLt]
 
+/--
+@isnad1 id=eq.0h6v.s6.229a958279be from=translated src=- shape=b7f88c4a vocab=b0bcf447
+-/
 theorem firstCounterclockwiseNeighbor_eq_uOffset
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃) :
@@ -1872,7 +1954,9 @@ private theorem row1B32Geometry_of_cyclic_offsets
     ts := by simpa [T, S] using hts }⟩
 
 /-- The canonical row-1 terminal word supplies exactly the raw terminal-cage
-record used by `row1_B32_realization_degree_le_six`. -/
+record used by `row1_B32_realization_degree_le_six`.
+@isnad1 id=nonempty.1h6v.s5.4448832ad4df from=translated src=- shape=f54c82d9 vocab=1c053948
+-/
 theorem row1_B32_raw_realization
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃)
@@ -1961,7 +2045,9 @@ theorem row1_B32_raw_realization
     huPos hlast hXW hXS hTW hTS
 
 /-- Row 1 with first transition `d₂→d₁` is the direct full-two-rung
-realization. -/
+realization.
+@isnad1 id=nonempty.1h6v.s5.f07fbd2dbfdf from=translated src=- shape=f54c82d9 vocab=365538a0
+-/
 theorem row1_B21_raw_realization
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃)
@@ -2100,7 +2186,9 @@ theorem row1_B21_raw_realization
     (by simpa using hXR) hTR
 
 /-- Row 1 with first transition `d₃→d₁` is the direct
-one-penultimate realization. -/
+one-penultimate realization.
+@isnad1 id=nonempty.1h6v.s5.5d490b52aeaa from=translated src=- shape=f54c82d9 vocab=b1ff050f
+-/
 theorem row1_B31_raw_realization
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃)
@@ -2175,7 +2263,9 @@ theorem row1_B31_raw_realization
     (by simpa using hXS) hTS hTW
 
 /-- The row-2 left-first word is the direct one-penultimate geometry based
-at the first lower endpoint. -/
+at the first lower endpoint.
+@isnad1 id=nonempty.1h6v.s5.39e2dfa47d93 from=translated src=- shape=f54c82d9 vocab=4bdd4ce0
+-/
 theorem row2_BA_raw_realization
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃)
@@ -2260,7 +2350,9 @@ theorem row2_BA_raw_realization
     hPS hTS hTW
 
 /-- The row-2 right-first word supplies the second full-two-rung
-realization. -/
+realization.
+@isnad1 id=nonempty.1h6v.s5.3a75bf4e4aa3 from=translated src=- shape=f54c82d9 vocab=80a1b8ef
+-/
 theorem row2_AB_raw_realization
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃)
@@ -2407,7 +2499,9 @@ theorem row2_AB_raw_realization
     hPS hTS hPW hTW hPR hTR
 
 /-- The common `BB/DD` geometry in rows 3 and 5 is a direct full-two-rung
-record. -/
+record.
+@isnad1 id=nonempty.5h6v.s9.3b732e275951 from=translated src=- shape=a62e0dd2 vocab=bd25e762
+-/
 theorem double_double_raw_realization
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃)
@@ -2545,6 +2639,9 @@ theorem double_double_raw_realization
     (by simpa using hXS) hTS (by simpa using hXW) hTW
     (by simpa using hXR) hTR
 
+/--
+@isnad1 id=nonempty.1h6v.s5.82db63a9fcfc from=translated src=- shape=f54c82d9 vocab=c4dec3b0
+-/
 theorem row3_BB_DD_raw_realization
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃)
@@ -2563,6 +2660,9 @@ theorem row3_BB_DD_raw_realization
   exact F.double_double_raw_realization hFirstRight hFirstLeft hM
     hSecondLeft hSecondRight
 
+/--
+@isnad1 id=nonempty.1h6v.s5.fff6d934d0b1 from=translated src=- shape=f54c82d9 vocab=4f7db50e
+-/
 theorem row5_BB_DD_raw_realization
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃)
@@ -2582,7 +2682,9 @@ theorem row5_BB_DD_raw_realization
     hSecondLeft hSecondRight
 
 /-- Common direct row-4 full-two-rung adapter.  The second diameter center
-is either `x+3` (`D21`) or `x+2` (`CD`). -/
+is either `x+3` (`D21`) or `x+2` (`CD`).
+@isnad1 id=nonempty.7h7v.s8.f200ecba906f from=translated src=- shape=2014a212 vocab=2748aacc
+-/
 theorem row4_full_raw_realization
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃)
@@ -2700,6 +2802,9 @@ theorem row4_full_raw_realization
     (by simpa using hXS) hTS (by simpa using hXU) hTU
     (by simpa using hXR) hTR
 
+/--
+@isnad1 id=nonempty.1h6v.s5.04e62e82ed5a from=translated src=- shape=f54c82d9 vocab=ff14df69
+-/
 theorem row4_D21_raw_realization
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃)
@@ -2735,6 +2840,9 @@ theorem row4_D21_raw_realization
   exact F.row4_full_raw_realization hFirstRight hFirstLeft hM 3
     (by omega) (by omega) hTU hTS
 
+/--
+@isnad1 id=nonempty.1h6v.s5.0e596fe6eaaf from=translated src=- shape=f54c82d9 vocab=86efe956
+-/
 theorem row4_CD_raw_realization
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃)
@@ -2790,7 +2898,9 @@ theorem row4_CD_raw_realization
   exact F.row4_full_raw_realization hFirstRight hFirstLeft hM 2
     (by omega) (by omega) hQU hQS
 
-/-- The first double-left ladder shared by every row-4 word. -/
+/-- The first double-left ladder shared by every row-4 word.
+@isnad1 id=and.3h6v.s8.db71ba5f409e from=translated src=- shape=f321ba35 vocab=9d994c1f
+-/
 theorem row4_first_ladder_data
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃)
@@ -2840,7 +2950,9 @@ theorem row4_first_ladder_data
   exact ⟨hlast, hXS, hXR⟩
 
 /-- The row-4 `D31` route becomes one-penultimate geometry after reflecting
-the polygon across the horizontal axis. -/
+the polygon across the horizontal axis.
+@isnad1 id=nonempty.1h6v.s5.c45de04ff11c from=translated src=- shape=3c65d707 vocab=9f4f89b4
+-/
 theorem row4_D31_reflected_raw_realization
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃)
@@ -2873,7 +2985,9 @@ theorem row4_D31_reflected_raw_realization
     hTS (by simpa using hXS) (by simpa using hXR)
 
 /-- The row-4 `DC` route has the same reflected raw geometry, with `x+2`
-as its first center. -/
+as its first center.
+@isnad1 id=nonempty.1h6v.s5.98e5af8de957 from=translated src=- shape=3c65d707 vocab=62536139
+-/
 theorem row4_DC_reflected_raw_realization
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃)
@@ -2921,7 +3035,9 @@ theorem row4_DC_reflected_raw_realization
     (by omega) (by omega) (by omega) (by omega) (by omega)
     hQS (by simpa using hXS) (by simpa using hXR)
 
-/-- The row-4 `D32` terminal cage is the reflected terminal realization. -/
+/-- The row-4 `D32` terminal cage is the reflected terminal realization.
+@isnad1 id=nonempty.1h6v.s5.bf8f61124a1d from=translated src=- shape=3c65d707 vocab=212d3a34
+-/
 theorem row4_D32_reflected_raw_realization
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃)
@@ -2966,7 +3082,9 @@ theorem row4_D32_reflected_raw_realization
     (by omega) (by omega) (by omega) rfl (by omega)
     hTRle hTS (by simpa using hXR) (by simpa using hXS)
 
-/-- The row-4 `DD` word supplies the complete two-endpoint four-edge cage. -/
+/-- The row-4 `DD` word supplies the complete two-endpoint four-edge cage.
+@isnad1 id=nonempty.1h6v.s5.c9c475b9cc28 from=translated src=- shape=f54c82d9 vocab=12edaad1
+-/
 theorem row4_DD_raw_realization
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (F : ErLVGlobalFiveRowFrame P d₁ d₂ d₃)
@@ -3134,7 +3252,9 @@ private theorem geometric_word_degree_bound
       exact ⟨G.vertex, fullTwoRung_realization_degree_le_six G⟩
 
 /-- The thirteen canonical maximal-gap words all transport to their four raw
-geometric closure predicates. -/
+geometric closure predicates.
+@isnad1 id=globalth.0h0v.s0.66d168f8f6be from=translated src=- shape=45709ebd vocab=66d168f8
+-/
 theorem global_thirteen_word_closure_complete :
     GlobalThirteenWordClosureComplete := by
   intro n _ P d₁ d₂ d₃
@@ -3157,14 +3277,18 @@ theorem global_thirteen_word_closure_complete :
       geometric_word_degree_bound word hRealizes
 
 /-- Raw convex top-three data now constructs the complete thirteen-word
-reduction package without an additional hypothesis. -/
+reduction package without an additional hypothesis.
+@isnad1 id=convexto.0h0v.s0.0868d0f634d8 from=translated src=- shape=45709ebd vocab=0868d0f6
+-/
 theorem convex_top_three_draft_reduction_complete :
     ConvexTopThreeDraftReductionComplete :=
   convex_top_three_draft_reduction_complete_of_global_word_closure
     global_thirteen_word_closure_complete
 
 /-- Every finite strictly convex three-distance configuration has a vertex
-incident to at most six edges from its three largest distance classes. -/
+incident to at most six edges from its three largest distance classes.
+@isnad1 id=convexto.0h0v.s0.034dea3ba668 from=translated src=- shape=45709ebd vocab=034dea3b
+-/
 theorem convex_top_three_degree_six : ConvexTopThreeDegreeSixStatement :=
   convex_k3_degree_six_of_reduction
     convex_top_three_draft_reduction_complete

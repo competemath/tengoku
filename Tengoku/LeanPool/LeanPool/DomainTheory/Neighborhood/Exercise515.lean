@@ -62,7 +62,9 @@ variable {S : Type*} [Monoid S]
 
 /-! ### A choice-free slice of Kleene algebra on `Set S` -/
 
-/-- Associativity of the pointwise product (membership proof, choice-free). -/
+/-- Associativity of the pointwise product (membership proof, choice-free).
+@isnad1 id=eq.0h4v.s6.7b6c308fbca8 from=translated src=- shape=8e3ed96c vocab=8dd1ff6f
+-/
 theorem smul_assoc (a b c : Set S) : a * b * c = a * (b * c) := by
   ext s; simp only [Set.mem_mul]
   constructor
@@ -71,7 +73,9 @@ theorem smul_assoc (a b c : Set S) : a * b * c = a * (b * c) := by
   · rintro ⟨p, hp, u, ⟨q, hq, w, hw, rfl⟩, rfl⟩
     exact ⟨p * q, ⟨p, hp, q, hq, rfl⟩, w, hw, by rw [mul_assoc]⟩
 
-/-- Right distributivity `(a ∪ b)·c = a·c ∪ b·c` (choice-free). -/
+/-- Right distributivity `(a ∪ b)·c = a·c ∪ b·c` (choice-free).
+@isnad1 id=eq.0h4v.s6.2a688a4629f2 from=translated src=- shape=93bc61ad vocab=f125ecd9
+-/
 theorem sunion_mul (a b c : Set S) : (a ∪ b) * c = a * c ∪ b * c := by
   ext s; simp only [Set.mem_mul, Set.mem_union]
   constructor
@@ -82,7 +86,9 @@ theorem sunion_mul (a b c : Set S) : (a ∪ b) * c = a * c ∪ b * c := by
     · exact ⟨u, Or.inl hu, w, hw, rfl⟩
     · exact ⟨u, Or.inr hu, w, hw, rfl⟩
 
-/-- Left distributivity `a·(b ∪ c) = a·b ∪ a·c` (choice-free). -/
+/-- Left distributivity `a·(b ∪ c) = a·b ∪ a·c` (choice-free).
+@isnad1 id=eq.0h4v.s6.1d486ebb08c3 from=translated src=- shape=6d807e17 vocab=f125ecd9
+-/
 theorem smul_union (a b c : Set S) : a * (b ∪ c) = a * b ∪ a * c := by
   ext s; simp only [Set.mem_mul, Set.mem_union]
   constructor
@@ -100,7 +106,13 @@ def kpow (z : Set S) : ℕ → Set S
   | 0 => 1
   | n + 1 => z * kpow z n
 
+/--
+@isnad1 id=eq.0h2v.s5.3291d6afcf28 from=translated src=- shape=cee84e30 vocab=3073dff3
+-/
 @[simp] theorem kpow_zero (z : Set S) : kpow z 0 = 1 := rfl
+/--
+@isnad1 id=eq.0h3v.s5.6876165f53ef from=translated src=- shape=31ddbc87 vocab=040d7d02
+-/
 @[simp] theorem kpow_succ (z : Set S) (n : ℕ) : kpow z (n + 1) = z * kpow z n := rfl
 
 /-- Scott's `z*`: the set of all finite products of elements of `z` (including the
@@ -109,9 +121,14 @@ empty product
 lemmas). -/
 def star (z : Set S) : Set S := {s | ∃ n, s ∈ kpow z n}
 
+/--
+@isnad1 id=iff.0h3v.s5.39b21edb3d8f from=translated src=- shape=9cade5ea vocab=8240f549
+-/
 theorem mem_star {z : Set S} {s : S} : s ∈ star z ↔ ∃ n, s ∈ kpow z n := Iff.rfl
 
-/-- **Scott's unfolding** `z* = Λ ∪ z·z*`. -/
+/-- **Scott's unfolding** `z* = Λ ∪ z·z*`.
+@isnad1 id=eq.0h2v.s5.3875a648e928 from=translated src=- shape=e5c97b5d vocab=d7614ff0
+-/
 theorem star_eq (z : Set S) : star z = (1 : Set S) ∪ z * star z := by
   apply Set.Subset.antisymm
   · intro s hs
@@ -135,7 +152,9 @@ theorem star_eq (z : Set S) : star z = (1 : Set S) ∪ z * star z := by
       exact mem_star.mpr ⟨m + 1, by rw [kpow_succ, Set.mem_mul]; exact ⟨a, ha, t, hm, rfl⟩⟩
 
 /-- `z*·v` is a fixed point of `w ↦ z·w ∪ v`: the star identity `z·(z*·v) ∪ v =
-z*·v`. -/
+z*·v`.
+@isnad1 id=eq.0h3v.s6.530014e4e683 from=translated src=- shape=389b145f vocab=492e6a05
+-/
 theorem star_mul_isFixed (z v : Set S) : z * (star z * v) ∪ v = star z * v := by
   conv_rhs => rw [star_eq z]
   rw [sunion_mul, one_mul, smul_assoc]
@@ -143,7 +162,9 @@ theorem star_mul_isFixed (z v : Set S) : z * (star z * v) ∪ v = star z * v := 
 
 /-- For any prefixed point `w₀` of `w ↦ z·w ∪ v` (i.e. `z·w₀ ∪ v ⊆ w₀`), the
 candidate `z*·v` is
-below `w₀`: the induction `zⁿ·v ⊆ w₀`. -/
+below `w₀`: the induction `zⁿ·v ⊆ w₀`.
+@isnad1 id=le.1h4v.s6.75d46238b299 from=translated src=- shape=d7c038f6 vocab=959e66f5
+-/
 theorem star_mul_subset_prefixed (z v x : Set S) (hx : z * x ∪ v ⊆ x) : star z * v ⊆ x := by
   have hvx : v ⊆ x := Set.subset_union_right.trans hx
   have hzx : z * x ⊆ x := Set.subset_union_left.trans hx
@@ -171,7 +192,9 @@ def G (z v : Set S) (w : Set S) : Set S := z * w ∪ v
 (Stated via
 `lfpSet`, Exercise 4.14; the proof uses neither `Monotone` nor `⋃` order lemmas,
 so it is
-choice-free.) -/
+choice-free.)
+@isnad1 id=eq.0h3v.s5.3f6fd8b2ed29 from=translated src=- shape=18ca4971 vocab=eeb05606
+-/
 theorem arden (z v : Set S) : lfpSet (G z v) = star z * v := by
   apply Set.Subset.antisymm
   · exact lfpSet_least (G z v) (star_mul_isFixed z v)
@@ -180,7 +203,9 @@ theorem arden (z v : Set S) : lfpSet (G z v) = star z * v := by
 
 /-! ### Part (1): the single equation `z = {e}·z ∪ {e'}` -/
 
-/-- `{e}ⁿ = {eⁿ}` at the membership level (choice-free). -/
+/-- `{e}ⁿ = {eⁿ}` at the membership level (choice-free).
+@isnad1 id=iff.0h4v.s5.a35196d06d7b from=translated src=- shape=ae18d60b vocab=a00f88a0
+-/
 theorem mem_kpow_singleton (e s : S) (n : ℕ) : s ∈ kpow ({e} : Set S) n ↔ s = e ^ n := by
   induction n generalizing s with
   | zero => rw [kpow_zero, pow_zero]; exact Set.mem_one
@@ -191,7 +216,9 @@ theorem mem_kpow_singleton (e s : S) (n : ℕ) : s ∈ kpow ({e} : Set S) n ↔ 
       · simp_all
 
 /-- `{e}* = e* = {Λ, e, e², …}`: a point lies in `star {e}` iff it is some power
-of `e`. -/
+of `e`.
+@isnad1 id=iff.0h3v.s5.e1d6afabbc51 from=translated src=- shape=bd530296 vocab=3e6c7d44
+-/
 theorem mem_star_singleton (e s : S) : s ∈ star ({e} : Set S) ↔ ∃ n, s = e ^ n := by
   rw [mem_star]
   constructor
@@ -200,14 +227,18 @@ theorem mem_star_singleton (e s : S) : s ∈ star ({e} : Set S) ↔ ∃ n, s = e
 
 /-- **Exercise 5.15(1).** The least fixed point of `z = {e}·z ∪ {e'}` is `e*·{e'}`
 (`star {e}` is
-`e*` by `mem_star_singleton`). -/
+`e*` by `mem_star_singleton`).
+@isnad1 id=eq.0h3v.s6.6287c9ed0e09 from=translated src=- shape=63708875 vocab=86f22b0a
+-/
 theorem part1 (e e' : S) :
     lfpSet (fun w => ({e} : Set S) * w ∪ {e'}) = star ({e} : Set S) * {e'} := by
   have hG : (fun w => ({e} : Set S) * w ∪ {e'}) = G ({e} : Set S) {e'} := rfl
   rw [hG]; exact arden {e} {e'}
 
 /-- The free semigroup `{0,1}*` of the exercise. Part (1) holds here as a special
-case. -/
+case.
+@isnad1 id=eq.0h2v.s7.c9df24e46863 from=translated src=- shape=87ed2ce0 vocab=a516b6f0
+-/
 theorem part1_freeMonoid (e e' : FreeMonoid Bool) :
     lfpSet (fun w => ({e} : Set (FreeMonoid Bool)) * w ∪ {e'})
       = star ({e} : Set (FreeMonoid Bool)) * {e'} :=
@@ -227,7 +258,9 @@ def parkX (a b c d : Set S) : Set S := star (parkA a b) * parkC a b c d
 /-- The accompanying least solution for `y`: `y₀ = a*·(b·x₀ ∪ d)`. -/
 def parkY (a b c d : Set S) : Set S := star a * (b * parkX a b c d ∪ d)
 
-/-- `x₀` satisfies the first equation `x = a·x ∪ b·y ∪ c`. -/
+/-- `x₀` satisfies the first equation `x = a·x ∪ b·y ∪ c`.
+@isnad1 id=eq.0h5v.s6.2649b4a298b4 from=translated src=- shape=6a402862 vocab=107712df
+-/
 theorem parkX_eq (a b c d : Set S) :
     parkX a b c d = a * parkX a b c d ∪ b * parkY a b c d ∪ c := by
   have hfix : parkA a b * parkX a b c d ∪ parkC a b c d = parkX a b c d :=
@@ -236,7 +269,9 @@ theorem parkX_eq (a b c d : Set S) :
   simp only [parkA, parkC, parkY, sunion_mul, smul_union, smul_assoc,
     Set.union_comm, Set.union_left_comm]
 
-/-- `y₀` satisfies the second equation `y = b·x ∪ a·y ∪ d`. -/
+/-- `y₀` satisfies the second equation `y = b·x ∪ a·y ∪ d`.
+@isnad1 id=eq.0h5v.s6.b2324e42abb9 from=translated src=- shape=f170904e vocab=107712df
+-/
 theorem parkY_eq (a b c d : Set S) :
     parkY a b c d = b * parkX a b c d ∪ a * parkY a b c d ∪ d := by
   have hfix : a * parkY a b c d ∪ (b * parkX a b c d ∪ d) = parkY a b c d :=
@@ -244,7 +279,9 @@ theorem parkY_eq (a b c d : Set S) :
   conv_lhs => rw [← hfix]
   simp only [Set.union_assoc, Set.union_comm]
 
-/-- **Exercise 5.15(2), existence.** `(x₀, y₀)` solves David Park's system. -/
+/-- **Exercise 5.15(2), existence.** `(x₀, y₀)` solves David Park's system.
+@isnad1 id=and.0h5v.s7.8c54d1e69773 from=translated src=- shape=3642350f vocab=107712df
+-/
 theorem park_solves (a b c d : Set S) :
     parkX a b c d = a * parkX a b c d ∪ b * parkY a b c d ∪ c ∧
       parkY a b c d = b * parkX a b c d ∪ a * parkY a b c d ∪ d :=
@@ -256,7 +293,9 @@ theorem park_solves (a b c d : Set S) :
 claimed. The proof is
 Gaussian elimination: solve the second equation for `y` by `arden`, substitute,
 apply `arden`
-again. -/
+again.
+@isnad1 id=and.2h7v.s7.6e7cfedee172 from=translated src=- shape=ba618ae5 vocab=325c75d5
+-/
 theorem park_least (a b c d : Set S) {x y : Set S}
     (hx : x = a * x ∪ b * y ∪ c) (hy : y = b * x ∪ a * y ∪ d) :
     parkX a b c d ⊆ x ∧ parkY a b c d ⊆ y := by

@@ -42,13 +42,17 @@ def g (t : ℕ) : ℕ := t ^ 6 - 3 * t ^ 3 + 3
 
 /-! ## Generic facts about `rFullPart` -/
 
-/-- `rFullPart` is always positive (it is a product of prime powers, each `≥ 1`). -/
+/-- `rFullPart` is always positive (it is a product of prime powers, each `≥ 1`).
+@isnad1 id=le.0h2v.s3.89d4512bfcb0 from=translated src=- shape=a120b2a8 vocab=e6e0ebb2
+-/
 lemma rFullPart_pos (r M : ℕ) : 1 ≤ rFullPart r M := by
   by_contra! h_contra
   simp_all +decide [rFullPart]
 
 /-- For `m ≥ 1`, the `r`-full part of `m ^ r` is `m ^ r` itself: every prime dividing `m ^ r`
-has multiplicity `r * v_p(m) ≥ r`, so the filter keeps the entire factorization. -/
+has multiplicity `r * v_p(m) ≥ r`, so the filter keeps the entire factorization.
+@isnad1 id=eq.1h2v.s5.969f152b0d98 from=translated src=- shape=1e267a02 vocab=a657c3dc
+-/
 lemma rFullPart_pow (r m : ℕ) (hm : 1 ≤ m) :
     rFullPart r (m ^ r) = m ^ r := by
   unfold rFullPart
@@ -62,7 +66,9 @@ lemma rFullPart_pow (r m : ℕ) (hm : 1 ≤ m) :
       simpa +decide [Finsupp.filter_apply] using this
     exact fun _ => Or.inr (Nat.eq_zero_of_not_pos fun h' => by nlinarith)
 
-/-- The factorization of `rFullPart r M` is the filtered factorization. -/
+/-- The factorization of `rFullPart r M` is the filtered factorization.
+@isnad1 id=eq.0h2v.s6.caa17dc139f9 from=translated src=- shape=5b28aa95 vocab=df1fb0f7
+-/
 lemma factorization_rFullPart (r M : ℕ) :
     (rFullPart r M).factorization = M.factorization.filter (fun p => r ≤ M.factorization p) := by
   unfold rFullPart
@@ -70,7 +76,9 @@ lemma factorization_rFullPart (r M : ℕ) :
   simp_all
 
 /-- If `d ≥ 1` and `d ^ r ∣ M` then `d ^ r ∣ rFullPart r M`: each prime `p ∣ d` has
-`v_p(M) ≥ r * v_p(d) ≥ r`, so it survives the filter and `v_p(rFullPart r M) = v_p(M)`. -/
+`v_p(M) ≥ r * v_p(d) ≥ r`, so it survives the filter and `v_p(rFullPart r M) = v_p(M)`.
+@isnad1 id=dvd.3h3v.s6.6f26c9940a8e from=translated src=- shape=a8b36bc1 vocab=2bedd9d7
+-/
 lemma pow_dvd_rFullPart (r d M : ℕ) (hd : 1 ≤ d) (hM : M ≠ 0)
     (h : d ^ r ∣ M) : d ^ r ∣ rFullPart r M := by
   rw [← Nat.factorization_le_iff_dvd] at *
@@ -86,13 +94,17 @@ lemma pow_dvd_rFullPart (r d M : ℕ) (hd : 1 ≤ d) (hM : M ≠ 0)
 
 /-! ## Arithmetic facts about `g` -/
 
-/-- For `t ≥ 2`, the natural subtraction in `g` is exact: `g t + 3 t^3 = t^6 + 3`. -/
+/-- For `t ≥ 2`, the natural subtraction in `g` is exact: `g t + 3 t^3 = t^6 + 3`.
+@isnad1 id=eq.1h1v.s6.d16db876cf3a from=translated src=- shape=1369894e vocab=c420971b
+-/
 lemma g_add (t : ℕ) (ht : 2 ≤ t) : g t + 3 * t ^ 3 = t ^ 6 + 3 := by
   unfold g
   linarith [Nat.sub_add_cancel
     (show 3 * t ^ 3 ≤ t ^ 6 by nlinarith [Nat.pow_le_pow_left ht 3, Nat.pow_le_pow_left ht 6])]
 
-/-- Casting `g` to any commutative ring (for `t ≥ 2`): `(g t : R) = t^6 - 3 t^3 + 3`. -/
+/-- Casting `g` to any commutative ring (for `t ≥ 2`): `(g t : R) = t^6 - 3 t^3 + 3`.
+@isnad1 id=eq.1h2v.s7.e8324717c48b from=translated src=- shape=f3314998 vocab=56786569
+-/
 lemma g_cast {R : Type*} [CommRing R] (t : ℕ) (ht : 2 ≤ t) :
     (g t : R) = (t : R) ^ 6 - 3 * (t : R) ^ 3 + 3 := by
   have h_cast : (g t : R) + 3 * (t : R) ^ 3 = (t : R) ^ 6 + 3 := by
@@ -109,13 +121,17 @@ def nval (s t₀ : ℕ) : ℕ := (tval s t₀ ^ 3 - 1) ^ 3
 
 section Construction
 
-/-- Basic bound: `t = t₀ + s^3 ≥ 9` (since `s ≥ 2` so `s^3 ≥ 8`, and `t₀ ≥ 1`). -/
+/-- Basic bound: `t = t₀ + s^3 ≥ 9` (since `s ≥ 2` so `s^3 ≥ 8`, and `t₀ ≥ 1`).
+@isnad1 id=le.2h2v.s5.889cae2a6ca5 from=translated src=- shape=7a3e1c92 vocab=627b80ca
+-/
 lemma tval_ge (s t₀ : ℕ) (hs : s.Prime) (ht₀ : 1 ≤ t₀ ∧ t₀ ≤ s ^ 3) :
     9 ≤ tval s t₀ := by
   unfold tval
   nlinarith [Nat.pow_le_pow_left hs.two_le 3]
 
-/-- Key identity: `n + 1 = t^3 * g t`, i.e. `(t^3 - 1)^3 + 1 = t^3 (t^6 - 3 t^3 + 3)`. -/
+/-- Key identity: `n + 1 = t^3 * g t`, i.e. `(t^3 - 1)^3 + 1 = t^3 (t^6 - 3 t^3 + 3)`.
+@isnad1 id=eq.2h2v.s6.8099169b83ba from=translated src=- shape=d59a4616 vocab=dd73bf07
+-/
 lemma key_identity (s t₀ : ℕ) (hs : s.Prime) (ht₀ : 1 ≤ t₀ ∧ t₀ ≤ s ^ 3) :
     nval s t₀ + 1 = tval s t₀ ^ 3 * g (tval s t₀) := by
   convert Nat.cast_injective (R := ℤ) _
@@ -126,7 +142,9 @@ lemma key_identity (s t₀ : ℕ) (hs : s.Prime) (ht₀ : 1 ≤ t₀ ∧ t₀ �
   ring
 
 /-- Congruence step: `s^3 ∣ g t`. Since `t ≡ t₀ (mod s^3)` and `g` is a polynomial,
-`g t ≡ g t₀ ≡ 0 (mod s^3)`. -/
+`g t ≡ g t₀ ≡ 0 (mod s^3)`.
+@isnad1 id=dvd.3h2v.s6.605bbe138f00 from=translated src=- shape=a17a3a98 vocab=5cbf50ed
+-/
 lemma s3_dvd_g_t (s t₀ : ℕ) (hs : s.Prime) (ht₀ : 1 ≤ t₀ ∧ t₀ ≤ s ^ 3)
     (hroot : s ^ 3 ∣ g t₀) : s ^ 3 ∣ g (tval s t₀) := by
   have h_cast : (g (tval s t₀) : ZMod (s ^ 3)) = (g t₀ : ZMod (s ^ 3)) := by
@@ -139,7 +157,9 @@ lemma s3_dvd_g_t (s t₀ : ℕ) (hs : s.Prime) (ht₀ : 1 ≤ t₀ ∧ t₀ ≤ 
   simp_all +decide [← ZMod.natCast_eq_zero_iff]
 
 /-- `s` does not divide `t`: otherwise `s ∣ g t` together with `s ∣ t^6`, `s ∣ 3 t^3` would
-force `s ∣ 3`, hence `s = 3`, contradicting `hs3`. -/
+force `s ∣ 3`, hence `s = 3`, contradicting `hs3`.
+@isnad1 id=not.4h2v.s6.05852620e32a from=translated src=- shape=130a7f4e vocab=5cbf50ed
+-/
 lemma s_not_dvd_t (s t₀ : ℕ) (hs : s.Prime) (hs3 : s ≠ 3) (ht₀ : 1 ≤ t₀ ∧ t₀ ≤ s ^ 3)
     (hroot : s ^ 3 ∣ g t₀) : ¬ s ∣ tval s t₀ := by
   intro hdiv
@@ -161,7 +181,9 @@ lemma s_not_dvd_t (s t₀ : ℕ) (hs : s.Prime) (hs3 : s ≠ 3) (ht₀ : 1 ≤ t
 `t^3 - 1 ≥ 1`, this is `rFullPart_pow`.
 
 (The hypotheses `hs3` and `hroot` are part of the construction's hypothesis structure but
-turn out to be unnecessary for this particular statement.) -/
+turn out to be unnecessary for this particular statement.)
+@isnad1 id=eq.4h2v.s6.fd336f9011f8 from=translated src=- shape=c17456dc vocab=03eaea5c
+-/
 theorem T1 (s t₀ : ℕ) (hs : s.Prime) (_hs3 : s ≠ 3) (ht₀ : 1 ≤ t₀ ∧ t₀ ≤ s ^ 3)
     (_hroot : s ^ 3 ∣ g t₀) : rFullPart 3 (nval s t₀) = nval s t₀ := by
   have hm : 1 ≤ tval s t₀ ^ 3 - 1 :=
@@ -171,7 +193,9 @@ theorem T1 (s t₀ : ℕ) (hs : s.Prime) (_hs3 : s ≠ 3) (ht₀ : 1 ≤ t₀ �
 
 /-- (T2) `t^3 * s^3` divides the `3`-full part of `n + 1`. Both `t^3` and `s^3` divide `n+1`
 (via `n+1 = t^3 g t` and `s^3 ∣ g t`), each survives into `B₃` by `pow_dvd_rFullPart`, and
-they are coprime since `s ∤ t`. -/
+they are coprime since `s ∤ t`.
+@isnad1 id=dvd.4h2v.s7.f399708c6eb3 from=translated src=- shape=01ac0570 vocab=9fdaf279
+-/
 theorem T2 (s t₀ : ℕ) (hs : s.Prime) (hs3 : s ≠ 3) (ht₀ : 1 ≤ t₀ ∧ t₀ ≤ s ^ 3)
     (hroot : s ^ 3 ∣ g t₀) : tval s t₀ ^ 3 * s ^ 3 ∣ rFullPart 3 (nval s t₀ + 1) := by
   apply Nat.Coprime.mul_dvd_of_dvd_of_dvd
@@ -189,7 +213,9 @@ theorem T2 (s t₀ : ℕ) (hs : s.Prime) (hs3 : s ≠ 3) (ht₀ : 1 ≤ t₀ ∧
 
 Proof chain: `B₃ n = n` and `t^3 s^3 ≤ B₃ (n+1)`, with `t ≤ 2 s^3` giving
 `2 (B₃ n · B₃ (n+1)) ≥ n t^4`; raising to the `9`-th power and using `t^9 > n` (so
-`t^36 > n^4`) yields `512 (B₃ n · B₃ (n+1))^9 ≥ n^9 t^36 > n^13`. -/
+`t^36 > n^4`) yields `512 (B₃ n · B₃ (n+1))^9 ≥ n^9 t^36 > n^13`.
+@isnad1 id=lt.4h2v.s7.93e06bd26adc from=translated src=- shape=7e8dd154 vocab=51f8d980
+-/
 theorem T3 (s t₀ : ℕ) (hs : s.Prime) (hs3 : s ≠ 3) (ht₀ : 1 ≤ t₀ ∧ t₀ ≤ s ^ 3)
     (hroot : s ^ 3 ∣ g t₀) :
     512 * (rFullPart 3 (nval s t₀) * rFullPart 3 (nval s t₀ + 1)) ^ 9

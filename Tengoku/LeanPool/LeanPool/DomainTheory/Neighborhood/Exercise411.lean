@@ -59,14 +59,18 @@ namespace ApproximableMap
 
 /-! ### `fix` satisfies the uniformity condition (iii). -/
 
-/-- `fⁿ(⊥) ⊑ fix(f)`: every approximant lies below the least fixed point. -/
+/-- `fⁿ(⊥) ⊑ fix(f)`: every approximant lies below the least fixed point.
+@isnad1 id=le.0h4v.s5.0c4dcf93af72 from=translated src=- shape=0e372d7f vocab=79841113
+-/
 theorem iterElem_le_fixElement (f : ApproximableMap V V) (n : ℕ) :
     f.iterElem n ≤ f.fixElement :=
   fun _ hX => ⟨n, (mem_iterElem f n).mp hX⟩
 
 /-- **Exercise 4.11(iii) (Scott 1981, PRG-19).** `fix` is *uniform*: if `h(⊥) = ⊥`
 and
-`h ∘ f₀ = f₁ ∘ h`, then `h(fix f₀) = fix f₁`. -/
+`h ∘ f₀ = f₁ ∘ h`, then `h(fix f₀) = fix f₁`.
+@isnad1 id=eq.2h7v.s6.019c299163af from=translated src=- shape=08d6dfe4 vocab=cc318551
+-/
 theorem fixElement_uniform {β γ : Type*} {W₀ : NeighborhoodSystem β} {W₁ : NeighborhoodSystem γ}
     (f₀ : ApproximableMap W₀ W₀) (f₁ : ApproximableMap W₁ W₁) (h : ApproximableMap W₀ W₁)
     (hbot : h.toElementMap W₀.bot = W₁.bot)
@@ -112,7 +116,9 @@ def inclMap (a : V.Element) : ApproximableMap (relSystem a) V where
     rintro X X' Y Y' ⟨_, _, hXY⟩ hX'X hYY' haX' hVY'
     exact ⟨haX', hVY', (hX'X.trans hXY).trans hYY'⟩
 
-/-- The inclusion's elementwise action is `embed a` (Exercise 4.10). -/
+/-- The inclusion's elementwise action is `embed a` (Exercise 4.10).
+@isnad1 id=eq.0h4v.s5.8de6c4d18f68 from=translated src=- shape=db5221e5 vocab=ff1ecf4c
+-/
 theorem inclMap_toElementMap (a : V.Element) (g : (relSystem a).Element) :
     (inclMap a).toElementMap g = embed a g := by
   apply Element.ext
@@ -123,7 +129,9 @@ theorem inclMap_toElementMap (a : V.Element) (g : (relSystem a).Element) :
   · rintro ⟨hVY, W, haW, hgW, hWY⟩
     exact ⟨W, hgW, haW, hVY, hWY⟩
 
-/-- The inclusion is strict: `ι(⊥) = ⊥`. -/
+/-- The inclusion is strict: `ι(⊥) = ⊥`.
+@isnad1 id=eq.0h3v.s5.db0c4ab12210 from=translated src=- shape=5a77a8ad vocab=d08a16ae
+-/
 theorem inclMap_bot (a : V.Element) : (inclMap a).toElementMap (relSystem a).bot = V.bot := by
   rw [inclMap_toElementMap]
   apply Element.ext
@@ -138,7 +146,9 @@ theorem inclMap_bot (a : V.Element) : (inclMap a).toElementMap (relSystem a).bot
     exact ⟨V.master_mem, V.master, a.master_mem, (relSystem a).bot.master_mem, subset_rfl⟩
 
 /-- The inclusion intertwines `f'` with `f`: `ι ∘ f' = f ∘ ι` (from
-`relMap_toElementMap_embed`). -/
+`relMap_toElementMap_embed`).
+@isnad1 id=eq.1h5v.s6.9f8b88e1b5eb from=translated src=- shape=e9619ee8 vocab=dd62d96b
+-/
 theorem inclMap_intertwine (f : ApproximableMap V V) {a : V.Element} (ha : f.toElementMap a = a)
     (g : (relSystem a).Element) :
     (inclMap a).toElementMap ((relMap f ha).toElementMap g) =
@@ -158,7 +168,9 @@ universe u
 fixed-point operator to every domain satisfying (ii) `F_𝒟(f) = f(F_𝒟(f))` and
 (iii) the uniformity
 law coincides with `fix`: `F_𝒟(f) = fix(f)` for every domain `𝒟` and every `f : 𝒟
-→ 𝒟`. -/
+→ 𝒟`.
+@isnad1 id=eq.2h4v.s7.8a6affeea517 from=translated src=- shape=3758d5de vocab=cc318551
+-/
 theorem fix_unique_of_uniform
     (F : ∀ {β : Type u} (W : NeighborhoodSystem β), ApproximableMap W W → W.Element)
     (hfixed : ∀ {β : Type u} (W : NeighborhoodSystem β) (g : ApproximableMap W W),

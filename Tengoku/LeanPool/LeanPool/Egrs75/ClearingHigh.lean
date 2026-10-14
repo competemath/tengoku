@@ -26,7 +26,9 @@ open Egrs75
 open Egrs75.RepairPaperfaithful
 
 /-- Goodness of the high block: if `q^j ≤ m < 2*q^j` and `q ≥ 3`, then every base-`q`
-digit of `m` at index `≥ j` is `≤ (q-1)/2` (digit at `j` is `1`, digits above are `0`). -/
+digit of `m` at index `≥ j` is `≤ (q-1)/2` (digit at `j` is `1`, digits above are `0`).
+@isnad1 id=le.4h4v.s7.4a6dfb55d5fe from=translated src=- shape=e01bbb28 vocab=d5ead77a
+-/
 theorem good_above_of_mem_window {q j m : ℕ} (hq : 3 ≤ q)
     (hlo : q ^ j ≤ m) (hhi : m < 2 * q ^ j) :
     ∀ i, j ≤ i → m / q ^ i % q ≤ (q - 1) / 2 := by
@@ -51,7 +53,9 @@ theorem good_above_of_mem_window {q j m : ℕ} (hq : 3 ≤ q)
 /-- **Clean branch of `egrs_clearing`: when `q^j > N`.**  If the top bad base-`q`
 index `j` of `n` satisfies `q^j > N`, then a `LowDigits p` number drawn from the
 window `[q^j, 2*q^j)` is `> N` and good at every base-`q` index `≥ j` — no carry
-control needed.  KERNEL-CLEAN. -/
+control needed.  KERNEL-CLEAN.
+@isnad1 id=ex.4h4v.s6.2d22785fb570 from=translated src=- shape=b272b9e3 vocab=153d82b4
+-/
 theorem clearing_high {p q : ℕ} (hp3 : 3 ≤ p) (hpo : Odd p) (hq3 : 3 ≤ q)
     (N : ℕ) {j : ℕ} (hjN : N < q ^ j) :
     ∃ n', LowDigits p n' ∧ N < n' ∧ (∀ i, j ≤ i → ¬ BadAt q i n') := by

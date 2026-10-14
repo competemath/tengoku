@@ -93,23 +93,31 @@ namespace Theorem614
 variable {α : Type w}
 
 /-- Transport a subsystem relation `D ◁ E` along a carrier-type equality `β = α`.
-Choice-free. -/
+Choice-free.
+@isnad1 id=subsyste.2h4v.s5.35f8b48ad6cb from=translated src=- shape=6790bf75 vocab=a22aeeb4
+-/
 theorem subsystem_cast {β : Type w} (e : β = α) {D E : NeighborhoodSystem β} (h : D ◁ E) :
     (e ▸ D : NeighborhoodSystem α) ◁ (e ▸ E : NeighborhoodSystem α) := by
   cases e; exact h
 
 /-- Transport composition for neighbourhood systems: `e' ▸ (e ▸ x) = (e.trans e')
-▸ x`. -/
+▸ x`.
+@isnad1 id=eq.2h4v.s6.92cf88888ff8 from=translated src=- shape=c6269d93 vocab=d007c53e
+-/
 theorem rec_trans {β γ : Type w} (e : β = γ) (e' : γ = α) (x : NeighborhoodSystem β) :
     (e' ▸ (e ▸ x : NeighborhoodSystem γ) : NeighborhoodSystem α) = (e.trans e') ▸ x := by
   cases e; cases e'; rfl
 
-/-- Membership in a transported system: `(e ▸ V).mem X ↔ V.mem (e.symm ▸ X)`. -/
+/-- Membership in a transported system: `(e ▸ V).mem X ↔ V.mem (e.symm ▸ X)`.
+@isnad1 id=iff.1h4v.s5.46c32c6f9959 from=translated src=- shape=d5abb65f vocab=52e626bc
+-/
 theorem mem_cast {β : Type w} (e : β = α) (V : NeighborhoodSystem β) (X : Set α) :
     (e ▸ V : NeighborhoodSystem α).mem X ↔ V.mem (e.symm ▸ X : Set β) := by
   cases e; rfl
 
-/-- Transport composition for sets: `e' ▸ (e ▸ X) = (e.trans e') ▸ X`. -/
+/-- Transport composition for sets: `e' ▸ (e ▸ X) = (e.trans e') ▸ X`.
+@isnad1 id=eq.2h4v.s6.7e780d10118c from=translated src=- shape=c6269d93 vocab=3b79c732
+-/
 theorem set_rec_trans {β γ : Type w} (e : β = γ) (e' : γ = α) (X : Set β) :
     (e' ▸ (e ▸ X : Set γ) : Set α) = (e.trans e') ▸ X := by
   cases e; cases e'; rfl
@@ -167,25 +175,35 @@ def iter (s : Setup.{w}) : (n : ℕ) →
 /-- `Tⁿ({Γ})`, the `n`-th system in the tower (over `Tok`). -/
 def Dsys (s : Setup.{w}) (n : ℕ) : NeighborhoodSystem s.Tok := (iter s n).1
 
-/-- The carrier identification `(T.obj Tⁿ({Γ})).carrier = Tok`. -/
+/-- The carrier identification `(T.obj Tⁿ({Γ})).carrier = Tok`.
+@isnad1 id=eq.0h2v.s4.bfa02f30702e from=translated src=- shape=51b80bb0 vocab=2d8c6135
+-/
 theorem Dceq (s : Setup.{w}) (n : ℕ) : (s.T.obj ⟨s.Tok, Dsys s n⟩).carrier = s.Tok :=
   (iter s n).2.1
 
-/-- `Tⁿ⁺¹({Γ})` is the carrier-transport of `T(Tⁿ({Γ}))`. -/
+/-- `Tⁿ⁺¹({Γ})` is the carrier-transport of `T(Tⁿ({Γ}))`.
+@isnad1 id=eq.0h2v.s6.25dfadd51298 from=translated src=- shape=a26609df vocab=fb66ba09
+-/
 theorem Dsys_succ (s : Setup.{w}) (n : ℕ) :
     Dsys s (n + 1) = (Dceq s n ▸ (s.T.obj ⟨s.Tok, Dsys s n⟩).sys : NeighborhoodSystem s.Tok) :=
   rfl
 
-/-- The basic subdomain step `Tⁿ({Γ}) ◁ Tⁿ⁺¹({Γ})`. -/
+/-- The basic subdomain step `Tⁿ({Γ}) ◁ Tⁿ⁺¹({Γ})`.
+@isnad1 id=subsyste.0h2v.s4.409f80cb9529 from=translated src=- shape=9bc7e56a vocab=412fca28
+-/
 theorem Dchain (s : Setup.{w}) (n : ℕ) : Dsys s n ◁ Dsys s (n + 1) := (iter s n).2.2
 
-/-- Every system in the tower has the same master `Δ = Γ`. -/
+/-- Every system in the tower has the same master `Δ = Γ`.
+@isnad1 id=eq.0h2v.s4.400cc7808baf from=translated src=- shape=117514f5 vocab=56a506ff
+-/
 theorem Dsys_master (s : Setup.{w}) (n : ℕ) : (Dsys s n).master = s.Γ.master := by
   induction n with
   | zero => rfl
   | succ k ih => rw [← (Dchain s k).master_eq]; exact ih
 
-/-- The tower is a `◁`-chain: `Tⁿ({Γ}) ◁ Tᵐ({Γ})` whenever `n ≤ m`. -/
+/-- The tower is a `◁`-chain: `Tⁿ({Γ}) ◁ Tᵐ({Γ})` whenever `n ≤ m`.
+@isnad1 id=subsyste.1h3v.s4.5ac98c03d050 from=translated src=- shape=f2e1b6a8 vocab=de536282
+-/
 theorem chain_le (s : Setup.{w}) {n m : ℕ} (h : n ≤ m) : Dsys s n ◁ Dsys s m := by
   induction h with
   | refl => exact Subsystem.refl _
@@ -218,12 +236,20 @@ def colim (s : Setup.{w}) : NeighborhoodSystem s.Tok where
     rw [← Dsys_master s n]
     exact (Dsys s n).sub_master hX
 
+/--
+@isnad1 id=iff.0h2v.s4.caef6a8ec5f3 from=translated src=- shape=bbb18e5b vocab=4a874f97
+-/
 @[simp] theorem mem_colim (s : Setup.{w}) {X : Set s.Tok} :
     (colim s).mem X ↔ ∃ n, (Dsys s n).mem X := Iff.rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.d93174843a17 from=translated src=- shape=f217715a vocab=f7963a68
+-/
 @[simp] theorem colim_master (s : Setup.{w}) : (colim s).master = s.Γ.master := rfl
 
-/-- Each level of the tower is a subdomain of the colimit: `Tⁿ({Γ}) ◁ 𝒟`. -/
+/-- Each level of the tower is a subdomain of the colimit: `Tⁿ({Γ}) ◁ 𝒟`.
+@isnad1 id=subsyste.0h2v.s3.de897e47a2f9 from=translated src=- shape=b5869186 vocab=4f54b2bc
+-/
 theorem Dsys_sub_colim (s : Setup.{w}) (n : ℕ) : Dsys s n ◁ colim s where
   master_eq := by rw [colim_master, Dsys_master]
   sub hX := ⟨n, hX⟩
@@ -238,7 +264,9 @@ theorem Dsys_sub_colim (s : Setup.{w}) (n : ℕ) : Dsys s n ◁ colim s where
 /-! ### `T(𝒟)` and the relation `𝒟 ◁ T(𝒟)` -/
 
 /-- The carrier identification `(T.obj 𝒟).carrier = Tok`, from `MonotoneAt` of
-`T⁰({Γ}) ◁ 𝒟`. -/
+`T⁰({Γ}) ◁ 𝒟`.
+@isnad1 id=eq.0h1v.s4.c448811be7ca from=translated src=- shape=09d6ef21 vocab=45b800b9
+-/
 theorem colimCeq (s : Setup.{w}) : (s.T.obj ⟨s.Tok, colim s⟩).carrier = s.Tok :=
   (s.hmono (Dsys_sub_colim s 0)).carrier_eq.trans (Dceq s 0)
 
@@ -247,19 +275,25 @@ def Tcolim (s : Setup.{w}) : NeighborhoodSystem s.Tok :=
   colimCeq s ▸ (s.T.obj ⟨s.Tok, colim s⟩).sys
 
 /-- `Tⁿ⁺¹({Γ}) ◁ T(𝒟)`: applying *monotone on domains* to `Tⁿ({Γ}) ◁ 𝒟` and
-transporting. -/
+transporting.
+@isnad1 id=subsyste.0h2v.s4.63a50be32516 from=translated src=- shape=4fc9615b vocab=ce0651ab
+-/
 theorem Dsys_sub_Tcolim (s : Setup.{w}) (n : ℕ) : Dsys s (n + 1) ◁ Tcolim s := by
   have h := subsystem_cast (Dceq s n) (s.hmono (Dsys_sub_colim s n)).sub
   rw [rec_trans] at h
   exact h
 
-/-- `T(𝒟)` and `𝒟` share the master `Δ = Γ`. -/
+/-- `T(𝒟)` and `𝒟` share the master `Δ = Γ`.
+@isnad1 id=eq.0h1v.s4.532310fef4d2 from=translated src=- shape=f217715a vocab=0c101c61
+-/
 theorem Tcolim_master (s : Setup.{w}) : (Tcolim s).master = s.Γ.master := by
   rw [← (Dsys_sub_Tcolim s 0).master_eq, Dsys_master]
 
 /-- The easy half of `T(𝒟) = 𝒟`: every neighbourhood of `𝒟` is a neighbourhood of
 `T(𝒟)`
-(`𝒟 ⊆ T(𝒟)`), since `Tⁿ({Γ}) ◁ Tⁿ⁺¹({Γ}) ◁ T(𝒟)`. -/
+(`𝒟 ⊆ T(𝒟)`), since `Tⁿ({Γ}) ◁ Tⁿ⁺¹({Γ}) ◁ T(𝒟)`.
+@isnad1 id=mem.1h2v.s4.1ac21beacb52 from=translated src=- shape=f4cc9c26 vocab=5ec63e9c
+-/
 theorem colim_sub_Tcolim (s : Setup.{w}) {X : Set s.Tok} (hX : (colim s).mem X) :
     (Tcolim s).mem X := by
   obtain ⟨n, hn⟩ := hX
@@ -269,7 +303,9 @@ theorem colim_sub_Tcolim (s : Setup.{w}) {X : Set s.Tok} (hX : (colim s).mem X) 
 `T(𝒟)` is a
 neighbourhood of `𝒟`. This is exactly Scott's `T(𝒟) = T(⋃ₙ Tⁿ({Γ})) = ⋃ₙ Tⁿ⁺¹({Γ})
 = 𝒟`,
-obtained from *continuity on domains* applied to the directed family `{Tⁿ({Γ})}`. -/
+obtained from *continuity on domains* applied to the directed family `{Tⁿ({Γ})}`.
+@isnad1 id=mem.1h2v.s4.3889942ff271 from=translated src=- shape=f4cc9c26 vocab=5ec63e9c
+-/
 theorem Tcolim_sub_colim (s : Setup.{w}) {X : Set s.Tok} (hX : (Tcolim s).mem X) :
     (colim s).mem X := by
   obtain ⟨hmono', hC⟩ := s.hcont
@@ -304,7 +340,9 @@ theorem Tcolim_sub_colim (s : Setup.{w}) {X : Set s.Tok} (hX : (Tcolim s).mem X)
 
 /-- **`T(𝒟) = 𝒟`** (Scott's `𝒟 = T(𝒟)`): the two systems have the same
 neighbourhoods (mutual
-inclusion via `colim_sub_Tcolim`/`Tcolim_sub_colim`) and the same master. -/
+inclusion via `colim_sub_Tcolim`/`Tcolim_sub_colim`) and the same master.
+@isnad1 id=eq.0h1v.s3.3dac8074fc75 from=translated src=- shape=935d3ac8 vocab=580612ff
+-/
 theorem Tcolim_eq_colim (s : Setup.{w}) : Tcolim s = colim s :=
   NeighborhoodSystem.ext
     (fun _ => ⟨fun h => Tcolim_sub_colim s h, fun h => colim_sub_Tcolim s h⟩)
@@ -313,7 +351,9 @@ theorem Tcolim_eq_colim (s : Setup.{w}) : Tcolim s = colim s :=
 /-! ### `𝒟` is a `T`-algebra: the iso `𝒟 ≅ T(𝒟)` is the identity -/
 
 /-- A `DomainObj` equality from a carrier equality and a transported-system
-equality. -/
+equality.
+@isnad1 id=eq.2h4v.s5.98a4428c434b from=translated src=- shape=96eec136 vocab=1bc92f91
+-/
 theorem domainObj_ext {c : Type w} (σ : NeighborhoodSystem c) (e : c = α)
     {V : NeighborhoodSystem α} (h : (e ▸ σ : NeighborhoodSystem α) = V) :
     (⟨c, σ⟩ : DomainObj) = ⟨α, V⟩ := by
@@ -324,7 +364,9 @@ def isoOfEq {Obj : Type*} [Category Obj] {X Y : Obj} (h : X = Y) : Iso X Y := by
   cases h
   exact ⟨Category.id X, Category.id X, Category.id_comp _, Category.id_comp _⟩
 
-/-- **`T(𝒟) ≅ 𝒟` is the identity**, packaged as a `DomainObj` equality `T(𝒟) = 𝒟`. -/
+/-- **`T(𝒟) ≅ 𝒟` is the identity**, packaged as a `DomainObj` equality `T(𝒟) = 𝒟`.
+@isnad1 id=eq.0h1v.s4.c8cb9d435d87 from=translated src=- shape=9cd99d93 vocab=ee831f07
+-/
 theorem colimObj_eq (s : Setup.{w}) :
     s.T.obj ⟨s.Tok, colim s⟩ = (⟨s.Tok, colim s⟩ : DomainObj) :=
   domainObj_ext (s.T.obj ⟨s.Tok, colim s⟩).sys (colimCeq s) (Tcolim_eq_colim s)
@@ -343,14 +385,18 @@ attribute [local implicit_reducible] colimAlg
 
 /-- **Existence (Theorem 6.9 applied to `𝒟 ≅ T(𝒟)`).** For any `T`-algebra `B`
 with a strict
-structure map, there is a *strict* homomorphism `𝒟 → B`. -/
+structure map, there is a *strict* homomorphism `𝒟 → B`.
+@isnad1 id=nonempty.1h2v.s6.1f331003aa74 from=translated src=- shape=72903b55 vocab=469e4c14
+-/
 theorem nonempty_strict_algHom (s : Setup.{w}) (B : TAlgebra s.T) (hk : IsStrict B.str) :
     Nonempty {g : AlgHom (colimAlg s) B // IsStrict g.hom} :=
   nonempty_algHom_of_continuousOnMaps s.T s.hmaps (colimIso s) B hk
 
 /-- **Existence (Theorem 6.9 applied to `𝒟 ≅ T(𝒟)`).** For any `T`-algebra `B`
 with a strict
-structure map, there is a homomorphism `𝒟 → B`. -/
+structure map, there is a homomorphism `𝒟 → B`.
+@isnad1 id=nonempty.1h2v.s5.db41739b8760 from=translated src=- shape=8448e5d1 vocab=72c14e5e
+-/
 theorem nonempty_algHom (s : Setup.{w}) (B : TAlgebra s.T) (hk : IsStrict B.str) :
     Nonempty (AlgHom (colimAlg s) B) :=
   (nonempty_strict_algHom s B hk).map (·.1)
@@ -363,7 +409,9 @@ projection pair for
 def rho (s : Setup.{w}) (n : ℕ) : ApproximableMap (colim s) (colim s) :=
   (Dsys_sub_colim s n).inj.comp (Dsys_sub_colim s n).proj
 
-/-- Scott's relational description `X ρₙ Y ↔ ∃ z ∈ Tⁿ({Γ}), X ⊆ z ⊆ Y`. -/
+/-- Scott's relational description `X ρₙ Y ↔ ∃ z ∈ Tⁿ({Γ}), X ⊆ z ⊆ Y`.
+@isnad1 id=iff.0h4v.s6.44a08e0992c0 from=translated src=- shape=5fed1f35 vocab=58f679c5
+-/
 theorem rho_rel (s : Setup.{w}) (n : ℕ) {X Y : Set s.Tok} :
     (rho s n).rel X Y ↔
       (colim s).mem X ∧ (colim s).mem Y ∧ ∃ z, (Dsys s n).mem z ∧ X ⊆ z ∧ z ⊆ Y := by
@@ -375,7 +423,9 @@ theorem rho_rel (s : Setup.{w}) (n : ℕ) {X Y : Set s.Tok} :
   · rintro ⟨hcX, hcY, z, hDz, hXz, hzY⟩
     exact ⟨z, ⟨hcX, hDz, hXz⟩, hDz, hcY, hzY⟩
 
-/-- `ρₙ ⊆ ρₘ` for `n ≤ m` (the projection chain is increasing). -/
+/-- `ρₙ ⊆ ρₘ` for `n ≤ m` (the projection chain is increasing).
+@isnad1 id=rel.2h5v.s5.00e704bdf244 from=translated src=- shape=60e48541 vocab=d0135abe
+-/
 theorem rho_mono (s : Setup.{w}) {n m : ℕ} (h : n ≤ m) {X Y : Set s.Tok}
     (hr : (rho s n).rel X Y) : (rho s m).rel X Y := by
   rw [rho_rel] at hr ⊢
@@ -392,7 +442,9 @@ def iSupRho (s : Setup.{w}) : ApproximableMap (colim s) (colim s) :=
 uses
 `X ⊆ z ⊆ Y ⟹ X ⊆ Y`; the reverse factors the identity step `X ⊆ X ⊆ Y` through the
 level
-witnessing `X ∈ 𝒟`. -/
+witnessing `X ∈ 𝒟`.
+@isnad1 id=eq.0h1v.s4.e0db6c07c1ee from=translated src=- shape=c4cc8134 vocab=0b388272
+-/
 theorem iSupRho_eq_id (s : Setup.{w}) : iSupRho s = idMap (colim s) := by
   apply ApproximableMap.ext
   intro X Y
@@ -419,7 +471,9 @@ isomorphism
 into every
 `T`-algebra with a strict structure map (Theorem 6.9). This is Scott's *existence*
 of the initial
-`T`-algebra. -/
+`T`-algebra.
+@isnad1 id=ex.0h1v.s6.b3806d20a4d7 from=translated src=- shape=00e5fd2a vocab=bc5f8bec
+-/
 theorem exists_algebra_with_hom (s : Setup.{w}) :
     ∃ A : TAlgebra s.T, Nonempty (Iso (s.T.obj A.carrier) A.carrier) ∧
       ∀ B : TAlgebra s.T, IsStrict B.str → Nonempty (AlgHom A B) :=
@@ -440,7 +494,9 @@ j` by the
 homomorphism square; so `g = ⋃ₙ gₙ` is forced. -/
 
 /-- In the category of domains, `⊚` (categorical composition) is
-`ApproximableMap.comp`. -/
+`ApproximableMap.comp`.
+@isnad1 id=eq.0h5v.s5.f5b485087af1 from=translated src=- shape=c0dd8924 vocab=b5656330
+-/
 theorem cat_comp_eq {X Y Z : DomainObj} (g : Category.Hom Y Z) (f : Category.Hom X Y) :
     g ⊚ f = g.comp f := rfl
 
@@ -458,13 +514,17 @@ abbrev tmapRho (s : Setup.{w}) (n : ℕ) :
   s.T.map (X := objColim s) (Y := objColim s) (rho s n)
 
 /-- Transport of a `Hom X X` along an object equality is heterogeneously equal to
-itself. -/
+itself.
+@isnad1 id=heq.1h4v.s5.624a10798be9 from=translated src=- shape=77dd7002 vocab=baf918cb
+-/
 theorem transport_heq {Obj : Type*} [Category Obj] {X Y : Obj} (e : X = Y)
     (f : Category.Hom X X) : HEq (e ▸ f : Category.Hom Y Y) f := by
   cases e; rfl
 
 /-- Conjugation by the identity isomorphism `isoOfEq e` is the object-transport
-along `e`. -/
+along `e`.
+@isnad1 id=eq.1h4v.s6.cd4191b6a5df from=translated src=- shape=6216efb6 vocab=59da6348
+-/
 theorem isoOfEq_conj {Obj : Type*} [Category Obj] {X Y : Obj} (e : X = Y)
     (f : Category.Hom X X) :
     (isoOfEq e).hom ⊚ f ⊚ (isoOfEq e).inv = (e ▸ f : Category.Hom Y Y) := by
@@ -482,7 +542,9 @@ after carrying the functor-image carriers `Pc, Qc` down to `Tok` — exactly the
 projection
 `iₙ₊₁ ∘ jₙ₊₁` of the next subsystem `hsub' : Dn1 ◁ Col`. Proved by `subst`ing the
 carrier equalities,
-after which proof-irrelevance identifies the two subsystem proofs. -/
+after which proof-irrelevance identifies the two subsystem proofs.
+@isnad1 id=heq.9h9v.s7.f41b08675814 from=translated src=- shape=e827a25d vocab=53bfcd6a
+-/
 theorem map_comp_proj_heq {Tok : Type w} {Pc Qc : Type w} (cn : Pc = Tok) (cc : Qc = Tok)
     {Ps : NeighborhoodSystem Pc} {Qs : NeighborhoodSystem Qc} (ce : Qc = Pc)
     (sub : Ps ◁ (ce ▸ Qs : NeighborhoodSystem Pc))
@@ -502,7 +564,9 @@ theorem map_comp_proj_heq {Tok : Type w} {Pc Qc : Type w} (cn : Pc = Tok) (cc : 
 /-- **`T(ρₙ) = ρₙ₊₁`, heterogeneously.** The image `T(ρₙ)` of the `n`-th
 projection, living over
 `T(𝒟)`'s carrier, is heterogeneously equal to the `(n+1)`-st projection `ρₙ₊₁`
-over `Tok`. -/
+over `Tok`.
+@isnad1 id=heq.0h2v.s6.732b69c39d81 from=translated src=- shape=2d28b39d vocab=23496514
+-/
 theorem map_rho_heq (s : Setup.{w}) (n : ℕ) :
     HEq (tmapRho s n) (rho s (n + 1)) := by
   have hcomp : tmapRho s n
@@ -522,7 +586,9 @@ theorem map_rho_heq (s : Setup.{w}) (n : ℕ) :
 structure iso). Since the
 iso `𝒟 ≅ T(𝒟)` is the identity, this is the carrier transport of `T(ρₙ)`; combined
 with
-`map_rho_heq` it pins `ρₙ₊₁`. -/
+`map_rho_heq` it pins `ρₙ₊₁`.
+@isnad1 id=eq.0h2v.s6.eab1ba3fef1d from=translated src=- shape=ac75879b vocab=93d7d9f1
+-/
 theorem key_rho (s : Setup.{w}) (n : ℕ) :
     rho s (n + 1) = (colimIso s).hom ⊚ tmapRho s n ⊚ (colimIso s).inv := by
   rw [show (colimIso s).hom = (isoOfEq (colimObj_eq s)).hom from rfl,
@@ -534,18 +600,24 @@ theorem key_rho (s : Setup.{w}) (n : ℕ) :
 
 /-! ### The `g`-independent fixed-point recursion -/
 
-/-- For a strict map `g`, `g(⊥) = ⊥` relationally: `g` sends `Δ` only to `Δ`. -/
+/-- For a strict map `g`, `g(⊥) = ⊥` relationally: `g` sends `Δ` only to `Δ`.
+@isnad1 id=iff.1h6v.s5.d2f8c35a9d93 from=translated src=- shape=bb35b8ff vocab=f0824a6f
+-/
 theorem strict_rel_master {β₀ β₁ : Type w} {V₀ : NeighborhoodSystem β₀}
     {V₁ : NeighborhoodSystem β₁} {g : ApproximableMap V₀ V₁} (hg : IsStrict g) {Z : Set β₁} :
     g.rel V₀.master Z ↔ Z = V₁.master :=
   ⟨fun h => hg h, fun h => h ▸ g.master_rel⟩
 
-/-- `Dsys s 0 = Γ` (the base of the tower). -/
+/-- `Dsys s 0 = Γ` (the base of the tower).
+@isnad1 id=eq.0h1v.s3.cd62f920c7d0 from=translated src=- shape=ed585fb9 vocab=43f77cb8
+-/
 @[simp] theorem Dsys_zero (s : Setup.{w}) : Dsys s 0 = s.Γ := rfl
 
 /-- **`ρ₀ = ⊥`** when `{Γ}` is the trivial one-point system: `ρ₀` relates `X` only
 to the master.
-This is where Scott's `{Γ}` (a *one-point* domain) is used. -/
+This is where Scott's `{Γ}` (a *one-point* domain) is used.
+@isnad1 id=iff.1h3v.s6.05c84425b019 from=translated src=- shape=c7d2ff4e vocab=a371cab3
+-/
 theorem rho_zero_rel (s : Setup.{w}) (hΓ : ∀ X, s.Γ.mem X → X = s.Γ.master)
     {X Y : Set s.Tok} :
     (rho s 0).rel X Y ↔ (colim s).mem X ∧ Y = (colim s).master := by
@@ -563,7 +635,9 @@ theorem rho_zero_rel (s : Setup.{w}) (hΓ : ∀ X, s.Γ.mem X → X = s.Γ.maste
 
 /-- For a strict homomorphism `g`, the base `g ∘ ρ₀` is the least map: it relates
 `X` only to the
-master of `E`, independent of `g`. -/
+master of `E`, independent of `g`.
+@isnad1 id=iff.2h5v.s7.1bc077bb551a from=translated src=- shape=32f46a5e vocab=27ebe2cd
+-/
 theorem gcomp_rho_zero_rel (s : Setup.{w}) (hΓ : ∀ X, s.Γ.mem X → X = s.Γ.master)
     (B : TAlgebra s.T) {g : ApproximableMap (colim s) B.carrier.sys} (hg : IsStrict g)
     {X : Set s.Tok} {Z : Set B.carrier.carrier} :
@@ -577,7 +651,9 @@ theorem gcomp_rho_zero_rel (s : Setup.{w}) (hΓ : ∀ X, s.Γ.mem X → X = s.Γ
   · rintro ⟨hcX, rfl⟩
     exact ⟨(colim s).master, (rho_zero_rel s hΓ).mpr ⟨hcX, rfl⟩, g.master_rel⟩
 
-/-- The base case of `g`-independence: any two strict maps agree after `∘ ρ₀`. -/
+/-- The base case of `g`-independence: any two strict maps agree after `∘ ρ₀`.
+@isnad1 id=eq.3h4v.s7.864d5ab559a8 from=translated src=- shape=1981c75e vocab=59bd64a3
+-/
 theorem gcomp_rho_zero_indep (s : Setup.{w}) (hΓ : ∀ X, s.Γ.mem X → X = s.Γ.master)
     (B : TAlgebra s.T) {g g' : ApproximableMap (colim s) B.carrier.sys}
     (hg : IsStrict g) (hg' : IsStrict g') :
@@ -589,7 +665,9 @@ theorem gcomp_rho_zero_indep (s : Setup.{w}) (hΓ : ∀ X, s.Γ.mem X → X = s.
 /-- **The fixed-point recursion `gₙ₊₁ = k ∘ T(gₙ) ∘ j`.** Using `key_rho` (`ρₙ₊₁ =
 i∘T(ρₙ)∘j`)
 and the
-homomorphism square `g ∘ i = k ∘ T(g)`. -/
+homomorphism square `g ∘ i = k ∘ T(g)`.
+@isnad1 id=eq.0h4v.s8.5093acdc0f34 from=translated src=- shape=0b8790ed vocab=afd21f62
+-/
 theorem gcomp_rho_succ (s : Setup.{w}) (B : TAlgebra s.T) (g : AlgHom (colimAlg s) B) (n : ℕ) :
     g.hom.comp (rho s (n + 1))
       = B.str.comp ((s.T.map (X := objColim s) (Y := B.carrier)
@@ -623,7 +701,9 @@ theorem gcomp_rho_succ (s : Setup.{w}) (B : TAlgebra s.T) (g : AlgHom (colimAlg 
 /-- **`g`-independence of `gₙ = g ∘ ρₙ`.** For any two strict homomorphisms into
 the same algebra,
 `g ∘ ρₙ = g' ∘ ρₙ` for all `n` — the sequence is determined by the recursion, not
-by `g`. -/
+by `g`.
+@isnad1 id=eq.3h5v.s7.ed3338048b20 from=translated src=- shape=e6d2f82e vocab=14660189
+-/
 theorem gcomp_rho_indep (s : Setup.{w}) (hΓ : ∀ X, s.Γ.mem X → X = s.Γ.master)
     (B : TAlgebra s.T) (g g' : AlgHom (colimAlg s) B)
     (hg : IsStrict g.hom) (hg' : IsStrict g'.hom) (n : ℕ) :
@@ -636,14 +716,18 @@ theorem gcomp_rho_indep (s : Setup.{w}) (hΓ : ∀ X, s.Γ.mem X → X = s.Γ.ma
 
 /-- Two algebra homomorphisms with equal underlying maps are equal (the commuting
 square is a
-`Prop`). -/
+`Prop`).
+@isnad1 id=eq.1h6v.s6.e1977b44f1bd from=translated src=- shape=1acfc980 vocab=4d369040
+-/
 theorem algHom_ext {Obj : Type*} [Category Obj] {T : Endofunctor Obj} {A B : TAlgebra T}
     {g g' : AlgHom A B} (h : g.hom = g'.hom) : g = g' := by
   cases g; cases g'; cases h; rfl
 
 /-- **The underlying maps of two strict homomorphisms coincide**: `g = g ∘ I = g ∘
 ⋃ₙ ρₙ =
-⋃ₙ (g ∘ ρₙ)`, and the latter is `g`-independent. -/
+⋃ₙ (g ∘ ρₙ)`, and the latter is `g`-independent.
+@isnad1 id=eq.3h4v.s7.313b13cc28b5 from=translated src=- shape=0e2fe4f6 vocab=b08b7ca6
+-/
 theorem gcomp_eq (s : Setup.{w}) (hΓ : ∀ X, s.Γ.mem X → X = s.Γ.master)
     (B : TAlgebra s.T) (g g' : AlgHom (colimAlg s) B)
     (hg : IsStrict g.hom) (hg' : IsStrict g'.hom) :
@@ -670,7 +754,9 @@ theorem gcomp_eq (s : Setup.{w}) (hΓ : ∀ X, s.Γ.mem X → X = s.Γ.master)
 
 /-- **Uniqueness of strict homomorphisms out of `𝒟`.** Any two strict `T`-algebra
 homomorphisms from
-the canonical solution into the same algebra are equal. -/
+the canonical solution into the same algebra are equal.
+@isnad1 id=eq.3h4v.s7.4670f620a334 from=translated src=- shape=65e6e676 vocab=fae095fe
+-/
 theorem algHom_unique (s : Setup.{w}) (hΓ : ∀ X, s.Γ.mem X → X = s.Γ.master)
     (B : TAlgebra s.T) (g g' : AlgHom (colimAlg s) B)
     (hg : IsStrict g.hom) (hg' : IsStrict g'.hom) : g = g' :=
@@ -683,7 +769,9 @@ generating system, the canonical solution `𝒟 = ⋃ₙ Tⁿ({Γ})` is the **in
 strict algebras: for every `T`-algebra `B` with a strict structure map there is a
 *unique* strict
 homomorphism `𝒟 → B`. (Existence is Theorem 6.9; uniqueness is the `ρₙ`
-projection-chain argument.) -/
+projection-chain argument.)
+@isnad1 id=ex.2h2v.s7.6783e427304e from=translated src=- shape=a83bca5f vocab=4b4b592d
+-/
 theorem exists_unique_strict_algHom (s : Setup.{w}) (hΓ : ∀ X, s.Γ.mem X → X = s.Γ.master)
     (B : TAlgebra s.T) (hk : IsStrict B.str) :
     ∃ g : AlgHom (colimAlg s) B, IsStrict g.hom ∧

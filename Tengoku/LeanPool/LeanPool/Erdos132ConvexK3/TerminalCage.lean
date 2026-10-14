@@ -21,7 +21,9 @@ boundaries cannot disappear inside prose.
 
 namespace LeanPool.Erdos132ConvexK3
 
-/-- The first inequality in (6.10), together with `q≤d₂`, gives `Vw<Vs`. -/
+/-- The first inequality in (6.10), together with `q≤d₂`, gives `Vw<Vs`.
+@isnad1 id=lt.2h4v.s5.fb856b76c88a from=translated src=- shape=7b9ee258 vocab=91bdb49a
+-/
 theorem terminal_central_distance_order
     {d₂ q Vw Vs : ℝ}
     (hq : q ≤ d₂) (hleftED : Vw + d₂ < q + Vs) :
@@ -29,7 +31,9 @@ theorem terminal_central_distance_order
   linarith
 
 /-- Draft (6.11): the two central ED inequalities and the top-two gap force
-`Vs≤d₂` as well as `Vw<Vs`. -/
+`Vs≤d₂` as well as `Vw<Vs`.
+@isnad1 id=and.5h5v.s6.f44d9dbd2b96 from=translated src=- shape=8c81ab12 vocab=91bdb49a
+-/
 theorem terminal_central_distances
     {d₁ d₂ q Vw Vs : ℝ}
     (hq : q ≤ d₂)
@@ -51,7 +55,9 @@ theorem terminal_central_distances
   linarith
 
 /-- Left branch (6.12), `Vs=d₂`: a `d₂` partner must lie on the `d₁`
-circle about the opposite center. -/
+circle about the opposite center.
+@isnad1 id=eq.2h3v.s5.cd75ead4ad1c from=translated src=- shape=9972d7d9 vocab=91bdb49a
+-/
 theorem terminal_left_d2_partner_forces_outer_d1
     {d₁ d₂ xR : ℝ}
     (hxRClasses : xR ≤ d₁ ∧ (xR < d₁ → xR ≤ d₂))
@@ -63,7 +69,9 @@ theorem terminal_left_d2_partner_forces_outer_d1
   linarith
 
 /-- Left branch (6.12), `Vs=d₂`: a `d₃` partner uses one of exactly the
-`d₁` and `d₂` second-center radii. -/
+`d₁` and `d₂` second-center radii.
+@isnad1 id=or.2h4v.s6.4fc7e148ddca from=translated src=- shape=5929cd15 vocab=91bdb49a
+-/
 theorem terminal_left_d3_partner_outer_band
     {d₁ d₂ d₃ xR : ℝ}
     (hxRClasses : xR ≤ d₁ ∧ (xR < d₁ → xR ≤ d₂) ∧
@@ -81,7 +89,9 @@ theorem terminal_left_d3_partner_outer_band
     linarith
 
 /-- Right branch (6.13), `Vs=d₂`: a `d₃` partner has second-center radius
-`d₁` or `d₂` before the metric split. -/
+`d₁` or `d₂` before the metric split.
+@isnad1 id=or.3h4v.s6.f2bb85e07f55 from=translated src=- shape=ada59a08 vocab=91bdb49a
+-/
 theorem terminal_right_d3_partner_outer_band
     {d₁ d₂ d₃ tR : ℝ}
     (hd₂d₁ : d₂ < d₁)
@@ -101,7 +111,9 @@ theorem terminal_right_d3_partner_outer_band
     linarith
 
 /-- Long regime, including equality: (6.13) collapses the two right `d₃`
-circle slots to the single `d₁` radius. -/
+circle slots to the single `d₁` radius.
+@isnad1 id=eq.3h4v.s6.353cb1622a53 from=translated src=- shape=e4bebc18 vocab=62f9b668
+-/
 theorem terminal_long_right_d3_partner_forces_outer_d1
     {d₁ d₂ d₃ tR : ℝ}
     (htRClasses : tR ≤ d₁ ∧ (tR < d₁ → tR ≤ d₂))
@@ -113,7 +125,9 @@ theorem terminal_long_right_d3_partner_forces_outer_d1
   have htRLe : tR ≤ d₂ := htRClasses.2 htRLt
   linarith
 
-/-- The literal `q=d₃` boundary is impossible in the short regime. -/
+/-- The literal `q=d₃` boundary is impossible in the short regime.
+@isnad1 id=false.3h4v.s6.91fd250dedde from=translated src=- shape=b780884b vocab=4eff4c1a
+-/
 theorem terminal_short_q_eq_d3_impossible
     {d₁ d₂ d₃ q : ℝ}
     (hshort : d₁ + d₃ < 2 * d₂)
@@ -123,7 +137,9 @@ theorem terminal_short_q_eq_d3_impossible
   linarith
 
 /-- Draft (2.15)/(6.14): in the short regime, terminal ED and the top-three
-gap force `q=d₂`; the entire `q≤d₃` branch, including equality, is excluded. -/
+gap force `q=d₂`; the entire `q≤d₃` branch, including equality, is excluded.
+@isnad1 id=eq.4h4v.s6.1fa80ea196aa from=translated src=- shape=fe51b170 vocab=62f9b668
+-/
 theorem terminal_short_regime_forces_q_eq_d2
     {d₁ d₂ d₃ q : ℝ}
     (hq : q ≤ d₂)
@@ -138,7 +154,9 @@ theorem terminal_short_regime_forces_q_eq_d2
     linarith
 
 /-- Once `q=d₂`, ED with `w` collapses the two left `d₃` circle slots to
-the single `d₁` second-center radius. -/
+the single `d₁` second-center radius.
+@isnad1 id=eq.2h4v.s5.8fbfc3df375a from=translated src=- shape=1fe8dc51 vocab=91bdb49a
+-/
 theorem terminal_short_left_d3_partner_forces_outer_d1
     {d₁ d₂ d₃ xR : ℝ}
     (hxRClasses : xR ≤ d₁ ∧ (xR < d₁ → xR ≤ d₂))
@@ -149,7 +167,9 @@ theorem terminal_short_left_d3_partner_forces_outer_d1
   have hxRLe : xR ≤ d₂ := hxRClasses.2 hxRLt
   linarith
 
-/-- Crude package (6.14): `3+2+1+1=7`. -/
+/-- Crude package (6.14): `3+2+1+1=7`.
+@isnad1 id=le.4h4v.s6.65b5aa7cb1eb from=translated src=- shape=38daca62 vocab=086a35fc
+-/
 theorem terminal_crude_seven_slot_bound
     {degree leftArc rightArc wSlot : ℕ}
     (hdegree : degree ≤ leftArc + rightArc + wSlot + 1)
@@ -157,7 +177,9 @@ theorem terminal_crude_seven_slot_bound
     degree ≤ 7 := by
   omega
 
-/-- Low-tip branch: two left slots, no right branch, no `w` slot, and `s`. -/
+/-- Low-tip branch: two left slots, no right branch, no `w` slot, and `s`.
+@isnad1 id=le.4h4v.s6.d686976ff1a5 from=translated src=- shape=12d31941 vocab=086a35fc
+-/
 theorem terminal_low_tip_degree_le_three
     {degree leftArc rightArc wSlot : ℕ}
     (hdegree : degree ≤ leftArc + rightArc + wSlot + 1)
@@ -166,7 +188,9 @@ theorem terminal_low_tip_degree_le_three
   omega
 
 /-- Regime 1 package: the right branch loses one slot, so the crude seven
-becomes `3+1+1+1=6`. -/
+becomes `3+1+1+1=6`.
+@isnad1 id=le.4h4v.s6.5a2124fa6a0a from=translated src=- shape=38daca62 vocab=086a35fc
+-/
 theorem terminal_long_regime_degree_le_six
     {degree leftArc rightArc wSlot : ℕ}
     (hdegree : degree ≤ leftArc + rightArc + wSlot + 1)
@@ -174,7 +198,9 @@ theorem terminal_long_regime_degree_le_six
     degree ≤ 6 := by
   omega
 
-/-- Regime 2, `w` not a partner: `3+2+0+1=6`. -/
+/-- Regime 2, `w` not a partner: `3+2+0+1=6`.
+@isnad1 id=le.4h4v.s6.eddf711fd738 from=translated src=- shape=befe59f5 vocab=086a35fc
+-/
 theorem terminal_short_no_w_degree_le_six
     {degree leftArc rightArc wSlot : ℕ}
     (hdegree : degree ≤ leftArc + rightArc + wSlot + 1)
@@ -183,7 +209,9 @@ theorem terminal_short_no_w_degree_le_six
   omega
 
 /-- Regime 2, `Vw=d₃`: the left package loses one slot, giving
-`2+2+1+1=6`. -/
+`2+2+1+1=6`.
+@isnad1 id=le.4h4v.s6.e6b01b285e8d from=translated src=- shape=38daca62 vocab=086a35fc
+-/
 theorem terminal_short_left_collapse_degree_le_six
     {degree leftArc rightArc wSlot : ℕ}
     (hdegree : degree ≤ leftArc + rightArc + wSlot + 1)
@@ -193,7 +221,9 @@ theorem terminal_short_left_collapse_degree_le_six
 
 /-- Complete metric split of the terminal `d₂` cage.  Equality is included
 in the first branch by `≤`; strict failure invokes the `q=d₂`/left-collapse
-package. -/
+package.
+@isnad1 id=le.6h7v.s7.aaf2b57c35fa from=translated src=- shape=2fcc12a3 vocab=62f9b668
+-/
 theorem terminal_d2_cage_metric_split_degree_le_six
     {degree leftArc rightArc wSlot : ℕ} {d₁ d₂ d₃ : ℝ}
     (hdegree : degree ≤ leftArc + rightArc + wSlot + 1)

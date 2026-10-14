@@ -68,18 +68,24 @@ open Domain.Neighborhood NeighborhoodSystem ApproximableMap ExampleB Example44
 /-! ### "Peano's Axioms" for `{0,1}* = List Bool`. -/
 
 /-- **Exercise 4.19 — Peano (i) for `{0,1}*`.** `Λ` is not a successor: `[] ≠ b ::
-σ`. -/
+σ`.
+@isnad1 id=ne.0h2v.s3.d836d2fb9f67 from=translated src=- shape=fa428b89 vocab=95f0f8ff
+-/
 theorem peano_nil_ne_cons (b : Bool) (σ : Str) : ([] : Str) ≠ b :: σ := by
   simp
 
 /-- **Exercise 4.19 — Peano (ii) for `{0,1}*`.** Each successor `b ::·` is
-injective. -/
+injective.
+@isnad1 id=eq.1h3v.s4.0bf1ca3c03bc from=translated src=- shape=70e6efbe vocab=50840ed3
+-/
 theorem peano_cons_injective {b : Bool} {σ τ : Str} (h : b :: σ = b :: τ) : σ = τ :=
   (List.cons.injEq b σ b τ).mp h |>.2
 
 /-- **Exercise 4.19 — Peano (ii′) for `{0,1}*`.** The two successor ranges are
 disjoint:
-`0σ ≠ 1τ`. -/
+`0σ ≠ 1τ`.
+@isnad1 id=ne.0h2v.s3.5a21d5c8392c from=translated src=- shape=a1c6a75d vocab=429a3b44
+-/
 theorem peano_cons_disjoint (σ τ : Str) : (false :: σ) ≠ (true :: τ) := by
   simp
 
@@ -87,7 +93,9 @@ theorem peano_cons_disjoint (σ τ : Str) : (false :: σ) ≠ (true :: τ) := by
 at `Λ` and closed
 under both successors holds everywhere. (This is `List.rec`; it is the
 two-successor analogue of
-Definition 4.5(iii) and the recursion engine behind `tail`/`empty`/`zero`/`one`.) -/
+Definition 4.5(iii) and the recursion engine behind `tail`/`empty`/`zero`/`one`.)
+@isnad1 id=var.0h4v.s4.2b9158aa87c2 from=translated src=- shape=c4b58838 vocab=258a2603
+-/
 theorem peano_induction (P : Str → Prop) (hnil : P []) (hcons : ∀ b σ, P σ → P (b :: σ)) :
     ∀ σ, P σ := by
   intro σ
@@ -97,7 +105,9 @@ theorem peano_induction (P : Str → Prop) (hnil : P []) (hcons : ∀ b σ, P σ
 
 /-! ### Disjointness facts for `C`'s neighbourhoods (cones vs singletons). -/
 
-/-- A cone is never contained in a singleton (it has at least two elements). -/
+/-- A cone is never contained in a singleton (it has at least two elements).
+@isnad1 id=not.0h2v.s4.090a3797ae94 from=translated src=- shape=c9ae1b1c vocab=3d017307
+-/
 theorem not_cone_subset_singleton (τ σ : Str) : ¬ cone τ ⊆ ({σ} : Set Str) := by
   intro h
   have h1 : τ ∈ ({σ} : Set Str) := h (by simp [mem_cone])
@@ -106,7 +116,9 @@ theorem not_cone_subset_singleton (τ σ : Str) : ¬ cone τ ⊆ ({σ} : Set Str
   have : τ = τ ++ [true] := h1.trans h2.symm
   simp at this
 
-/-- A cone is never equal to a singleton. -/
+/-- A cone is never equal to a singleton.
+@isnad1 id=ne.0h2v.s4.553d0be1ae71 from=translated src=- shape=8e64aab0 vocab=4d8cef5c
+-/
 theorem cone_ne_singleton (τ σ : Str) : cone τ ≠ ({σ} : Set Str) := by
   intro h
   exact not_cone_subset_singleton τ σ (h ▸ subset_rfl)
@@ -125,10 +137,19 @@ def headValC (V : NeighborhoodSystem β) (z a0 a1 : V.Element) : Str → V.Eleme
   | false :: _ => a0
   | true :: _ => a1
 
+/--
+@isnad1 id=eq.0h5v.s4.00ffefcd2429 from=translated src=- shape=f44deff9 vocab=d0b455ac
+-/
 @[simp] theorem headValC_nil (V : NeighborhoodSystem β) (z a0 a1 : V.Element) :
     headValC V z a0 a1 [] = z := rfl
+/--
+@isnad1 id=eq.0h6v.s5.c973b7edd477 from=translated src=- shape=c9041145 vocab=9bc5cb5e
+-/
 @[simp] theorem headValC_false (V : NeighborhoodSystem β) (z a0 a1 : V.Element) (σ : Str) :
     headValC V z a0 a1 (false :: σ) = a0 := rfl
+/--
+@isnad1 id=eq.0h6v.s5.3cfbe86974c8 from=translated src=- shape=af806ca9 vocab=05810e6c
+-/
 @[simp] theorem headValC_true (V : NeighborhoodSystem β) (z a0 a1 : V.Element) (σ : Str) :
     headValC V z a0 a1 (true :: σ) = a1 := rfl
 
@@ -136,7 +157,9 @@ def headValC (V : NeighborhoodSystem β) (z a0 a1 : V.Element) : Str → V.Eleme
 (`z = ⊥`) at `σ`
 is below *any* head value at `τ` with the same head constants. Covers both
 required conditions
-(cone→cone with `z' = ⊥`, cone→singleton with `z' = vΛ`). -/
+(cone→cone with `z' = ⊥`, cone→singleton with `z' = vΛ`).
+@isnad1 id=le.1h7v.s5.7dfc42c8bd5f from=translated src=- shape=3da78022 vocab=a71667ed
+-/
 theorem headValC_bot_le (V : NeighborhoodSystem β) (z' a0 a1 : V.Element) {σ τ : Str}
     (h : σ <+: τ) : headValC V V.bot a0 a1 σ ≤ headValC V z' a0 a1 τ := by
   cases σ with
@@ -201,7 +224,9 @@ def liftC (V : NeighborhoodSystem β) (coneVal singVal : Str → V.Element)
         subst hτσ
         exact Or.inr ⟨τ, rfl, (singVal τ).up_mem hY hY' hYY'⟩
 
-/-- `liftC` on a partial element: `f(σ⊥) = coneVal σ`. -/
+/-- `liftC` on a partial element: `f(σ⊥) = coneVal σ`.
+@isnad1 id=eq.2h5v.s6.e016e3bbf2a5 from=translated src=- shape=62d6c557 vocab=9b751ac0
+-/
 theorem liftC_strBot (V : NeighborhoodSystem β) (coneVal singVal : Str → V.Element)
     (hcone : ∀ {σ τ : Str}, σ <+: τ → coneVal σ ≤ coneVal τ)
     (hsing : ∀ {σ τ : Str}, σ <+: τ → coneVal σ ≤ singVal τ) (σ : Str) :
@@ -217,7 +242,9 @@ theorem liftC_strBot (V : NeighborhoodSystem β) (coneVal singVal : Str → V.El
   · intro hY
     exact ⟨cone σ, ⟨memC_cone σ, subset_rfl⟩, Or.inl ⟨σ, rfl, hY⟩⟩
 
-/-- `liftC` on a total element: `f(σ) = singVal σ`. -/
+/-- `liftC` on a total element: `f(σ) = singVal σ`.
+@isnad1 id=eq.2h5v.s6.7f6742f4542e from=translated src=- shape=1e1715a3 vocab=86d1769c
+-/
 theorem liftC_strElem (V : NeighborhoodSystem β) (coneVal singVal : Str → V.Element)
     (hcone : ∀ {σ τ : Str}, σ <+: τ → coneVal σ ≤ coneVal τ)
     (hsing : ∀ {σ τ : Str}, σ <+: τ → coneVal σ ≤ singVal τ) (σ : Str) :
@@ -262,26 +289,44 @@ def oneMap : ApproximableMap C T :=
 
 /-! Value equations on total elements `σ` and partial elements `σ⊥`. -/
 
+/--
+@isnad1 id=eq.0h1v.s4.17f3bd26275e from=translated src=- shape=74add88d vocab=837e2b0c
+-/
 @[simp] theorem emptyMap_strElem (σ : Str) :
     emptyMap.toElementMap (strElem σ) = headValC T 𝕥 𝕗 𝕗 σ :=
   liftC_strElem T (headValC T T.bot 𝕗 𝕗) (headValC T 𝕥 𝕗 𝕗)
     (headValC_bot_le T T.bot 𝕗 𝕗) (headValC_bot_le T 𝕥 𝕗 𝕗) σ
+/--
+@isnad1 id=eq.0h1v.s4.53bed58ea888 from=translated src=- shape=2ccde7fa vocab=746bc892
+-/
 @[simp] theorem emptyMap_strBot (σ : Str) :
     emptyMap.toElementMap (strBot σ) = headValC T T.bot 𝕗 𝕗 σ :=
   liftC_strBot T (headValC T T.bot 𝕗 𝕗) (headValC T 𝕥 𝕗 𝕗)
     (headValC_bot_le T T.bot 𝕗 𝕗) (headValC_bot_le T 𝕥 𝕗 𝕗) σ
+/--
+@isnad1 id=eq.0h1v.s4.cacaad8f5187 from=translated src=- shape=0da00ebe vocab=755e460d
+-/
 @[simp] theorem zeroMap_strElem (σ : Str) :
     zeroMap.toElementMap (strElem σ) = headValC T 𝕗 𝕥 𝕗 σ :=
   liftC_strElem T (headValC T T.bot 𝕥 𝕗) (headValC T 𝕗 𝕥 𝕗)
     (headValC_bot_le T T.bot 𝕥 𝕗) (headValC_bot_le T 𝕗 𝕥 𝕗) σ
+/--
+@isnad1 id=eq.0h1v.s4.26f54cc50351 from=translated src=- shape=2ccde7fa vocab=8364bb16
+-/
 @[simp] theorem zeroMap_strBot (σ : Str) :
     zeroMap.toElementMap (strBot σ) = headValC T T.bot 𝕥 𝕗 σ :=
   liftC_strBot T (headValC T T.bot 𝕥 𝕗) (headValC T 𝕗 𝕥 𝕗)
     (headValC_bot_le T T.bot 𝕥 𝕗) (headValC_bot_le T 𝕗 𝕥 𝕗) σ
+/--
+@isnad1 id=eq.0h1v.s4.fc0ca058d0db from=translated src=- shape=0da00ebe vocab=9d061c29
+-/
 @[simp] theorem oneMap_strElem (σ : Str) :
     oneMap.toElementMap (strElem σ) = headValC T 𝕗 𝕗 𝕥 σ :=
   liftC_strElem T (headValC T T.bot 𝕗 𝕥) (headValC T 𝕗 𝕗 𝕥)
     (headValC_bot_le T T.bot 𝕗 𝕥) (headValC_bot_le T 𝕗 𝕗 𝕥) σ
+/--
+@isnad1 id=eq.0h1v.s4.f7f172e32c8b from=translated src=- shape=2ccde7fa vocab=5ef47f93
+-/
 @[simp] theorem oneMap_strBot (σ : Str) :
     oneMap.toElementMap (strBot σ) = headValC T T.bot 𝕗 𝕥 σ :=
   liftC_strBot T (headValC T T.bot 𝕗 𝕥) (headValC T 𝕗 𝕗 𝕥)
@@ -293,7 +338,9 @@ equation. -/
 /-- `cond(⊥, x, y) = ⊥` in `T`, phrased with `T.bot` (which the head-test
 `empty(⊥)` produces)
 rather than the syntactically distinct `Example23.botElt` of
-`Exercise326.cond_bot`. -/
+`Exercise326.cond_bot`.
+@isnad1 id=eq.0h2v.s5.15371cd7c6fb from=translated src=- shape=98c5aa72 vocab=0f8dc2c8
+-/
 theorem condT_bot (x y : T.Element) :
     (Exercise326.cond T).toElementMap (pair T.bot (pair x y)) = T.bot := by
   apply Element.ext
@@ -319,7 +366,9 @@ def oneDef (x : C.Element) : T.Element :=
 `zero`, `cond`: the
 equation `one(x) = cond(empty(x), false, cond(zero(x), false, true))` holds on
 every total element
-`σ`. -/
+`σ`.
+@isnad1 id=eq.0h1v.s4.a6fbeaf69214 from=translated src=- shape=c91b7fd6 vocab=5d50eef2
+-/
 theorem one_def_strElem (σ : Str) : oneMap.toElementMap (strElem σ) = oneDef (strElem σ) := by
   cases σ with
   | nil =>
@@ -338,7 +387,9 @@ theorem one_def_strElem (σ : Str) : oneMap.toElementMap (strElem σ) = oneDef (
 
 /-- **Exercise 4.19 (Scott 1981, PRG-19).** The same defining equation holds on
 every partial
-element `σ⊥` — including `⊥ = []⊥` where `empty(⊥) = ⊥` forces `cond(⊥, …) = ⊥`. -/
+element `σ⊥` — including `⊥ = []⊥` where `empty(⊥) = ⊥` forces `cond(⊥, …) = ⊥`.
+@isnad1 id=eq.0h1v.s4.a91f9ce80f14 from=translated src=- shape=c91b7fd6 vocab=80de572e
+-/
 theorem one_def_strBot (σ : Str) : oneMap.toElementMap (strBot σ) = oneDef (strBot σ) := by
   cases σ with
   | nil =>

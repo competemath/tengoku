@@ -48,7 +48,9 @@ open Egrs75
 
 /-! ## Real-log bridge -/
 
-/-- exp-bridge: `log a < log b → a < b` for positive reals. -/
+/-- exp-bridge: `log a < log b → a < b` for positive reals.
+@isnad1 id=lt.3h2v.s5.8dfd4d5adb12 from=translated src=- shape=7edad7f9 vocab=35a19195
+-/
 theorem lt_of_log_lt {a b : ℝ} (ha : 0 < a) (hb : 0 < b)
     (h : Real.log a < Real.log b) : a < b := by
   have := Real.exp_lt_exp.mpr h
@@ -58,7 +60,9 @@ theorem lt_of_log_lt {a b : ℝ} (ha : 0 < a) (hb : 0 < b)
 
 /-- **Walk lemma (KERNEL-CLEAN).**  If `0 < δ < w₂ − w₁` and the walk
 `start + t·δ` begins below `w₁`, then its FIRST crossing of `w₁` lands strictly
-inside `(w₁, w₂)`. -/
+inside `(w₁, w₂)`.
+@isnad1 id=ex.3h4v.s6.5c4f7181b597 from=translated src=- shape=29894cf1 vocab=554f40e3
+-/
 theorem walk_hits {δ w₁ w₂ start : ℝ} (hδ0 : 0 < δ) (hδw : δ < w₂ - w₁)
     (hstart : start < w₁) :
     ∃ t : ℕ, 1 ≤ t ∧ w₁ < start + t * δ ∧ start + t * δ < w₂ := by
@@ -93,7 +97,9 @@ theorem walk_hits {δ w₁ w₂ start : ℝ} (hδ0 : 0 < δ) (hδw : δ < w₂ -
 /-- **Small-step lemma (KERNEL-CLEAN).**  For distinct primes `p q` and any
 `ε > 0` there are naturals `a ≥ 1`, `b` with `δ := a·log p − b·log q` NONZERO,
 `|δ| < ε`, and `b ≥ 1` whenever `δ < 0`.  Dirichlet supplies the approximation;
-the kernel-clean `irrational_log_div_log` rules out `δ = 0`. -/
+the kernel-clean `irrational_log_div_log` rules out `δ = 0`.
+@isnad1 id=ex.4h3v.s7.a218b67eaf74 from=translated src=- shape=0d7f6174 vocab=56fb7a16
+-/
 theorem exists_small_step {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)
     {ε : ℝ} (hε : 0 < ε) :
     ∃ a b : ℕ, 1 ≤ a ∧
@@ -184,7 +190,9 @@ theorem exists_small_step {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠
 
 So `p^α` (automatically `LowDigits p`) has base-`q` digit `(q-1)/2` at `e+3`,
 digit `0` at `e+2`, zeros above `e+3`, and excess `< q^(e+1)` — the EGRS75
-condition-(2) staircase seed at arbitrary height. -/
+condition-(2) staircase seed at arbitrary height.
+@isnad1 id=ex.4h3v.s8.ab25028a506d from=translated src=- shape=80c0ba0e vocab=f565a5b3
+-/
 theorem seed_window {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hq3 : 3 ≤ q)
     (hpq : p ≠ q) (F : ℕ) :
     ∃ α e : ℕ, 1 ≤ α ∧ F < q ^ (e + 3) ∧

@@ -98,12 +98,20 @@ data) -/
 (no `Classical.choice`). -/
 def gFix (T : GExpr) : Set Str := ⋃ n, gIter T n
 
+/--
+@isnad1 id=mem.0h1v.s3.427cb1a793a0 from=translated src=- shape=20864b8b vocab=9880d6a2
+-/
 theorem gFix_nil_mem (T : GExpr) : ([] : Str) ∈ gFix T :=
   Set.mem_iUnion.mpr ⟨0, rfl⟩
 
+/--
+@isnad1 id=nonempty.0h1v.s2.5a6e6a5a6eb8 from=translated src=- shape=1a6c1393 vocab=b70609ee
+-/
 theorem gFix_nonempty (T : GExpr) : (gFix T).Nonempty := ⟨[], gFix_nil_mem T⟩
 
-/-- `Γ = tok(T({Γ}))` at the token level: `gFun T Γ = Γ`. -/
+/-- `Γ = tok(T({Γ}))` at the token level: `gFun T Γ = Γ`.
+@isnad1 id=eq.1h1v.s3.c0dba8329a19 from=translated src=- shape=2ebd61c1 vocab=e18de230
+-/
 theorem gFix_fixed (T : GExpr) (hT : T.RootedConst) : gFun T (gFix T) = gFix T :=
   gFun_iter_fixed T hT
 
@@ -112,12 +120,17 @@ theorem gFix_fixed (T : GExpr) (hT : T.RootedConst) : gFun T (gFix T) = gFix T :
 /-- **The one-point generator `{Γ}`** as an object of the category. -/
 def gGen (T : GExpr) : ScottSys := singletonSys (gFix T) (gFix_nonempty T)
 
+/--
+@isnad1 id=eq.0h1v.s3.89b05a6e0912 from=translated src=- shape=7a9bd752 vocab=1e50ad10
+-/
 @[simp] theorem gGen_master (T : GExpr) : (gGen T).sys.master = gFix T := rfl
 
 /-- **`{Γ} ◁ T({Γ})`** — Scott's hypothesis for Theorem 6.14, the base of the
 tower. (This is the
 content of `gExists_singleton_subsystem`, here at the *explicit* generator `Γ =
-gFix T`.) -/
+gFix T`.)
+@isnad1 id=subsyste.1h1v.s3.8fb0fbe13b39 from=translated src=- shape=ac66d9a7 vocab=ff7a2d0f
+-/
 theorem gBase (T : GExpr) (hT : T.RootedConst) : (gGen T).sys ◁ (T.obj (gGen T)).sys := by
   have hmaster : (T.obj (gGen T)).sys.master = gFix T :=
     (gFun_eq_master T (gFix_nonempty T)).symm.trans (gFix_fixed T hT)
@@ -136,25 +149,37 @@ def gTower (T : GExpr) : ℕ → ScottSys
   | 0 => gGen T
   | n + 1 => T.obj (gTower T n)
 
+/--
+@isnad1 id=eq.0h1v.s3.7beda99aaa5a from=translated src=- shape=219197cb vocab=dac94af8
+-/
 @[simp] theorem gTower_zero (T : GExpr) : gTower T 0 = gGen T := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.b1af3880ce03 from=translated src=- shape=aca6f6b2 vocab=eccce51d
+-/
 @[simp] theorem gTower_succ (T : GExpr) (n : ℕ) : gTower T (n + 1) = T.obj (gTower T n) := rfl
 
 /-- **The basic chain step `Tⁿ({Γ}) ◁ Tⁿ⁺¹({Γ})`.** Base: `gBase`. Step: `T` is
 monotone on domains
-(`obj_subsystem`). -/
+(`obj_subsystem`).
+@isnad1 id=subsyste.1h2v.s4.3d3ee639e063 from=translated src=- shape=67c25976 vocab=46b87764
+-/
 theorem gChain (T : GExpr) (hT : T.RootedConst) :
     ∀ n, (gTower T n).sys ◁ (gTower T (n + 1)).sys
   | 0 => gBase T hT
   | n + 1 => T.obj_subsystem (gChain T hT n)
 
-/-- Every level of the tower has the same master `Δ = Γ`. -/
+/-- Every level of the tower has the same master `Δ = Γ`.
+@isnad1 id=eq.1h2v.s4.6ee8735a7fa7 from=translated src=- shape=4a420b82 vocab=bf282910
+-/
 theorem gTower_master (T : GExpr) (hT : T.RootedConst) :
     ∀ n, (gTower T n).sys.master = gFix T
   | 0 => rfl
   | n + 1 => ((gChain T hT n).master_eq).symm.trans (gTower_master T hT n)
 
-/-- The tower is a `◁`-chain: `Tⁿ({Γ}) ◁ Tᵐ({Γ})` whenever `n ≤ m`. -/
+/-- The tower is a `◁`-chain: `Tⁿ({Γ}) ◁ Tᵐ({Γ})` whenever `n ≤ m`.
+@isnad1 id=subsyste.2h3v.s4.68371d2ac30a from=translated src=- shape=cf78d679 vocab=7f436974
+-/
 theorem gTower_le (T : GExpr) (hT : T.RootedConst) {n m : ℕ} (h : n ≤ m) :
     (gTower T n).sys ◁ (gTower T m).sys := by
   induction h with
@@ -188,13 +213,21 @@ def gColim (T : GExpr) (hT : T.RootedConst) : ScottSys where
         exact (gTower T n).sys.sub_master hX }
   ne := by rintro X ⟨n, hX⟩; exact (gTower T n).ne X hX
 
+/--
+@isnad1 id=iff.1h2v.s4.89af871b5df1 from=translated src=- shape=d7d19a5b vocab=589a51ac
+-/
 @[simp] theorem mem_gColim (T : GExpr) (hT : T.RootedConst) {X : Set Str} :
     (gColim T hT).sys.mem X ↔ ∃ n, (gTower T n).sys.mem X := Iff.rfl
 
+/--
+@isnad1 id=eq.1h1v.s4.1ff3c168e795 from=translated src=- shape=fd243369 vocab=8e5ac2c3
+-/
 @[simp] theorem gColim_master (T : GExpr) (hT : T.RootedConst) :
     (gColim T hT).sys.master = gFix T := rfl
 
-/-- Each level of the tower is a subdomain of the colimit: `Tⁿ({Γ}) ◁ 𝒟`. -/
+/-- Each level of the tower is a subdomain of the colimit: `Tⁿ({Γ}) ◁ 𝒟`.
+@isnad1 id=subsyste.1h2v.s4.dc45bfc2f0bf from=translated src=- shape=75161861 vocab=f7871ee4
+-/
 theorem gTower_sub_colim (T : GExpr) (hT : T.RootedConst) (n : ℕ) :
     (gTower T n).sys ◁ (gColim T hT).sys where
   master_eq := by rw [gColim_master, gTower_master T hT]
@@ -209,7 +242,9 @@ theorem gTower_sub_colim (T : GExpr) (hT : T.RootedConst) (n : ℕ) :
 
 /-- Two objects of the category with the same underlying system are equal (the
 `∅`-freeness field is
-a `Prop`). -/
+a `Prop`).
+@isnad1 id=eq.1h2v.s4.4ff9476a63ca from=translated src=- shape=c0cc7f33 vocab=90ef32b4
+-/
 theorem ScottSys.ext {A B : ScottSys} (h : A.sys = B.sys) : A = B := by
   cases A; cases B; cases h; rfl
 
@@ -219,7 +254,9 @@ on domains
 Tⁿ⁺¹({Γ})`, which has the
 same neighbourhoods as `⋃ₙ Tⁿ({Γ})` (the extra `n=0` level `T⁰({Γ})` is absorbed
 by the chain step).
-Master: both are `Γ` (`gTower_master` through `obj_subsystem` of `Tⁿ({Γ}) ◁ 𝒟`). -/
+Master: both are `Γ` (`gTower_master` through `obj_subsystem` of `Tⁿ({Γ}) ◁ 𝒟`).
+@isnad1 id=eq.1h1v.s4.7b6a47d10dd3 from=translated src=- shape=a1bbfaf4 vocab=77f3fdaf
+-/
 theorem gColim_obj_sys_eq (T : GExpr) (hT : T.RootedConst) :
     (T.obj (gColim T hT)).sys = (gColim T hT).sys := by
   set ℱ : Set ScottSys := Set.range (gTower T) with hℱ
@@ -251,7 +288,9 @@ theorem gColim_obj_sys_eq (T : GExpr) (hT : T.RootedConst) :
 
 /-- **The structure isomorphism `T(𝒟) ≅ 𝒟` is the identity** (the two objects are
 literally
-equal). -/
+equal).
+@isnad1 id=eq.1h1v.s3.43f6998e4466 from=translated src=- shape=bddd810f vocab=8e840a30
+-/
 theorem gColim_obj_eq (T : GExpr) (hT : T.RootedConst) : T.obj (gColim T hT) = gColim T hT :=
   ScottSys.ext (gColim_obj_sys_eq T hT)
 
@@ -267,7 +306,9 @@ def Texp (N : ScottSys) : GExpr :=
 
 /-- `Texp N` is rooted iff the variable domain `N` is (`Λ ∈ tok(N)`, automatic for
 the fixed-point
-solutions of 6.19–6.22). -/
+solutions of 6.19–6.22).
+@isnad1 id=rootedco.1h1v.s4.e7e8f5bf9a53 from=translated src=- shape=5e10ee9e vocab=9382ade0
+-/
 theorem Texp_rooted {N : ScottSys} (hN : ([] : Str) ∈ N.sys.master) : (Texp N).RootedConst :=
   ⟨hN, ⟨trivial, trivial⟩, ⟨trivial, trivial⟩⟩
 
@@ -281,7 +322,9 @@ def Exp (N : ScottSys) (hN : ([] : Str) ∈ N.sys.master) : ScottSys :=
 equality of systems
 (the structure map is the identity). This is the "construe the initial solution"
 half of
-Exercise 6.23. -/
+Exercise 6.23.
+@isnad1 id=eq.1h1v.s4.cb3e30bf1045 from=translated src=- shape=87bb7157 vocab=81421a25
+-/
 theorem Exp_structure_eq (N : ScottSys) (hN : ([] : Str) ∈ N.sys.master) :
     (Texp N).obj (Exp N hN) = Exp N hN :=
   gColim_obj_eq (Texp N) (Texp_rooted hN)
@@ -317,9 +360,15 @@ instance : Category ScottSys where
   comp_id f := Subtype.ext (comp_idMap f.1)
   assoc h g f := Subtype.ext (comp_assoc h.1 g.1 f.1)
 
+/--
+@isnad1 id=eq.0h1v.s5.89d6271f0abe from=translated src=- shape=3b9961de vocab=4ca7caa6
+-/
 @[simp] theorem ScottSys.id_val (A : ScottSys) :
     (Category.id A : StrictMap A.sys A.sys).1 = idMap A.sys := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.88cddec8c48f from=translated src=- shape=161fc09c vocab=5419a286
+-/
 @[simp] theorem ScottSys.comp_val {A B C : ScottSys} (g : Category.Hom B C) (f : Category.Hom A B) :
     ((g ⊚ f : StrictMap A.sys C.sys)).1 = g.1.comp f.1 := rfl
 
@@ -346,8 +395,14 @@ def gFunctor (T : GExpr) : Endofunctor ScottSys where
   map_comp {_ _ _} g f :=
     Subtype.ext (T.map_comp (f : StrictMap _ _).1 (g : StrictMap _ _).2)
 
+/--
+@isnad1 id=eq.0h2v.s3.9d81bc0ebd59 from=translated src=- shape=ff4b3147 vocab=805968c9
+-/
 @[simp] theorem gFunctor_obj (T : GExpr) (X : ScottSys) : (gFunctor T).obj X = T.obj X := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.00b602b7f459 from=translated src=- shape=7bef85d4 vocab=1db6ed33
+-/
 @[simp] theorem gFunctorMap_val (T : GExpr) {X Y : ScottSys} (f : StrictMap X.sys Y.sys) :
     (gFunctorMap T f).1 = T.map f.1 := rfl
 
@@ -407,6 +462,9 @@ def algStr (B : TAlgebra (TexpF N)) :
     ApproximableMap ((Texp N).obj B.carrier).sys B.carrier.sys :=
   (B.str : StrictMap ((Texp N).obj B.carrier).sys B.carrier.sys).1
 
+/--
+@isnad1 id=isstrict.0h2v.s4.a2adc94c5112 from=translated src=- shape=59a22722 vocab=d3462ff2
+-/
 theorem algStr_strict (B : TAlgebra (TexpF N)) : IsStrict (algStr B) :=
   (B.str : StrictMap ((Texp N).obj B.carrier).sys B.carrier.sys).2
 
@@ -416,6 +474,9 @@ def expInv (N : ScottSys) (hN : ([] : Str) ∈ N.sys.master) :
     ApproximableMap (Exp N hN).sys ((Texp N).obj (Exp N hN)).sys :=
   ((ExpIso N hN).inv : StrictMap (Exp N hN).sys ((Texp N).obj (Exp N hN)).sys).1
 
+/--
+@isnad1 id=isstrict.1h1v.s5.8642de8f8dd2 from=translated src=- shape=bc582841 vocab=f9db6f3e
+-/
 theorem expInv_strict (N : ScottSys) (hN : ([] : Str) ∈ N.sys.master) : IsStrict (expInv N hN) :=
   ((ExpIso N hN).inv : StrictMap (Exp N hN).sys ((Texp N).obj (Exp N hN)).sys).2
 
@@ -425,13 +486,17 @@ def expHom (N : ScottSys) (hN : ([] : Str) ∈ N.sys.master) :
     ApproximableMap ((Texp N).obj (Exp N hN)).sys (Exp N hN).sys :=
   ((ExpIso N hN).hom : StrictMap ((Texp N).obj (Exp N hN)).sys (Exp N hN).sys).1
 
-/-- `j ∘ i = I_{T(Exp)}` at the raw level (from the iso's `hom_inv_id`). -/
+/-- `j ∘ i = I_{T(Exp)}` at the raw level (from the iso's `hom_inv_id`).
+@isnad1 id=eq.1h1v.s6.3f6aa0202aba from=translated src=- shape=051ec9b2 vocab=4d8061ee
+-/
 theorem expInv_comp_expHom (N : ScottSys) (hN : ([] : Str) ∈ N.sys.master) :
     (expInv N hN).comp (expHom N hN) = idMap ((Texp N).obj (Exp N hN)).sys := by
   have h := congrArg (Subtype.val) (ExpIso N hN).hom_inv_id
   exact h
 
-/-- `i ∘ j = I_Exp` at the raw level (from the iso's `inv_hom_id`). -/
+/-- `i ∘ j = I_Exp` at the raw level (from the iso's `inv_hom_id`).
+@isnad1 id=eq.1h1v.s5.34089d5a9093 from=translated src=- shape=0ef5bcc5 vocab=4d8061ee
+-/
 theorem expHom_comp_expInv (N : ScottSys) (hN : ([] : Str) ∈ N.sys.master) :
     (expHom N hN).comp (expInv N hN) = idMap (Exp N hN).sys := by
   have h := congrArg (Subtype.val) (ExpIso N hN).inv_hom_id
@@ -448,11 +513,16 @@ def descRel : ℕ → ApproximableMap (Exp N hN).sys B.carrier.sys
   | 0 => constMap (Exp N hN).sys B.carrier.sys.bot
   | n + 1 => (algStr B).comp (((Texp N).map (descRel n)).comp (expInv N hN))
 
+/--
+@isnad1 id=eq.1h3v.s7.e0dab9e9eecd from=translated src=- shape=bbb7a3a3 vocab=43a0b00e
+-/
 @[simp] theorem descRel_succ (n : ℕ) :
     descRel hN B (n + 1) = (algStr B).comp (((Texp N).map (descRel hN B n)).comp (expInv N hN)) :=
   rfl
 
-/-- Every iterate is strict. -/
+/-- Every iterate is strict.
+@isnad1 id=isstrict.1h3v.s5.f8877a1abbe7 from=translated src=- shape=0fe38fce vocab=5c1d2223
+-/
 theorem descRel_isStrict : ∀ n, IsStrict (descRel hN B n)
   | 0 => isStrict_constBot
   | n + 1 => by
@@ -463,7 +533,9 @@ theorem descRel_isStrict : ∀ n, IsStrict (descRel hN B n)
 /-- The constant `⊥` map is below every approximable map (it relates each domain
 neighbourhood only
 to the codomain master, which every map produces by monotonicity from
-`master_rel`). -/
+`master_rel`).
+@isnad1 id=le.0h5v.s5.a7be0e0308f0 from=translated src=- shape=f474ec2f vocab=dfb7062e
+-/
 theorem constBot_le {α β : Type*} {V₀ : NeighborhoodSystem α} {V₁ : NeighborhoodSystem β}
     (g : ApproximableMap V₀ V₁) : constMap V₀ V₁.bot ≤ g := by
   intro X Y hr
@@ -472,7 +544,9 @@ theorem constBot_le {α β : Type*} {V₀ : NeighborhoodSystem α} {V₁ : Neigh
   subst hY
   exact g.mono g.master_rel (V₀.sub_master hX) subset_rfl hX V₁.master_mem
 
-/-- The iterates increase: `valₙ ≤ valₙ₊₁`. -/
+/-- The iterates increase: `valₙ ≤ valₙ₊₁`.
+@isnad1 id=le.1h3v.s6.677c824f9dd3 from=translated src=- shape=0d7a4424 vocab=da5a7e70
+-/
 theorem descRel_le_succ : ∀ n, descRel hN B n ≤ descRel hN B (n + 1)
   | 0 => constBot_le _
   | n + 1 => by
@@ -480,14 +554,18 @@ theorem descRel_le_succ : ∀ n, descRel hN B n ≤ descRel hN B (n + 1)
       exact comp_mono_gen le_rfl
         (comp_mono_gen ((Texp N).map_mono (descRel_le_succ n)) le_rfl)
 
-/-- The iterates form a `≤`-chain. -/
+/-- The iterates form a `≤`-chain.
+@isnad1 id=le.2h4v.s6.7ad7ad2821c3 from=translated src=- shape=91849118 vocab=ee9d0e3c
+-/
 theorem descRel_mono {i j : ℕ} (h : i ≤ j) : descRel hN B i ≤ descRel hN B j := by
   induction h with
   | refl => exact le_rfl
   | step _ ih => exact ih.trans (descRel_le_succ hN B _)
 
 /-- Directedness witness for the union (any two iterates are dominated by the
-later one). -/
+later one).
+@isnad1 id=ex.1h4v.s7.8a3541142802 from=translated src=- shape=c452309c vocab=0e90382c
+-/
 theorem descDir (i j : ℕ) : ∃ k, (∀ X Y, (descRel hN B i).rel X Y → (descRel hN B k).rel X Y) ∧
     (∀ X Y, (descRel hN B j).rel X Y → (descRel hN B k).rel X Y) :=
   ⟨max i j, descRel_mono hN B (le_max_left i j), descRel_mono hN B (le_max_right i j)⟩
@@ -496,21 +574,30 @@ theorem descDir (i j : ℕ) : ∃ k, (∀ X Y, (descRel hN B i).rel X Y → (des
 def descMap : ApproximableMap (Exp N hN).sys B.carrier.sys :=
   iSupMap (descRel hN B) (descDir hN B)
 
+/--
+@isnad1 id=iff.1h4v.s6.d0db79eaaa92 from=translated src=- shape=49044093 vocab=0fe1ba5c
+-/
 theorem descMap_rel {A E : Set Str} :
     (descMap hN B).rel A E ↔ ∃ n, (descRel hN B n).rel A E := Iff.rfl
 
-/-- `val` is strict (a union of strict maps). -/
+/-- `val` is strict (a union of strict maps).
+@isnad1 id=isstrict.1h2v.s5.74b1de9d7dc2 from=translated src=- shape=3363b0da vocab=6c4fff9a
+-/
 theorem descMap_isStrict : IsStrict (descMap hN B) := by
   rintro Y ⟨n, hn⟩
   exact descRel_isStrict hN B n hn
 
-/-- Directedness of the iterates in `≤`-form (for `map_continuous`). -/
+/-- Directedness of the iterates in `≤`-form (for `map_continuous`).
+@isnad1 id=ex.1h4v.s7.27f73baec612 from=translated src=- shape=2e482dce vocab=ee9d0e3c
+-/
 theorem descDirLe (i j : ℕ) :
     ∃ k, descRel hN B i ≤ descRel hN B k ∧ descRel hN B j ≤ descRel hN B k :=
   ⟨max i j, descRel_mono hN B (le_max_left i j), descRel_mono hN B (le_max_right i j)⟩
 
 /-- `val` is the relational union of the iterates (the hypothesis for
-`map_continuous`). -/
+`map_continuous`).
+@isnad1 id=iff.1h4v.s6.d0db79eaaa92 from=translated src=- shape=49044093 vocab=0fe1ba5c
+-/
 theorem descMap_is_sup (A E : Set Str) :
     (descMap hN B).rel A E ↔ ∃ n, (descRel hN B n).rel A E := Iff.rfl
 
@@ -518,7 +605,9 @@ theorem descMap_is_sup (A E : Set Str) :
 `valₙ` is, after the
 recursion, `k ∘ T(valₙ₋₁) ∘ j`, and `T(valₙ₋₁) ⊆ T(val)` by continuity on maps.
 Backward: a witness
-factoring through `T(valₙ)` lands in `valₙ₊₁`. -/
+factoring through `T(valₙ)` lands in `valₙ₊₁`.
+@isnad1 id=eq.1h2v.s6.4ae6ba245cd1 from=translated src=- shape=d528c240 vocab=57ebb3a7
+-/
 theorem descMap_fix :
     descMap hN B = (algStr B).comp (((Texp N).map (descMap hN B)).comp (expInv N hN)) := by
   have hmc : ∀ Y C, ((Texp N).map (descMap hN B)).rel Y C
@@ -546,7 +635,9 @@ theorem descMap_fix :
 
 /-- **The homomorphism square `val ∘ i = k ∘ T(val)`** at the raw level
 (conjugating the fixed-point
-equation by `i`, using `j ∘ i = I`). -/
+equation by `i`, using `j ∘ i = I`).
+@isnad1 id=eq.1h2v.s6.d6905575b1aa from=translated src=- shape=01356d2b vocab=4abd3e5a
+-/
 theorem descComm :
     (descMap hN B).comp (expHom N hN) = (algStr B).comp ((Texp N).map (descMap hN B)) := by
   calc (descMap hN B).comp (expHom N hN)
@@ -576,7 +667,9 @@ def descAlgHom : AlgHom (ExpAlg N hN) B where
 /-- **Every homomorphism `g : Exp → D` is a fixed point** of the operator `λh. k ∘
 T(h) ∘ j`.
 This is
-the homomorphism square `g ∘ i = k ∘ T(g)` (`g.comm`) rearranged by `i ∘ j = I`. -/
+the homomorphism square `g ∘ i = k ∘ T(g)` (`g.comm`) rearranged by `i ∘ j = I`.
+@isnad1 id=eq.1h3v.s8.333aa86b78e4 from=translated src=- shape=e72bee9f vocab=4af91d2b
+-/
 theorem algHom_fix (g : AlgHom (ExpAlg N hN) B) :
     g.hom.1 = (algStr B).comp (((Texp N).map g.hom.1).comp (expInv N hN)) := by
   have hcomm : (g.hom.1).comp (expHom N hN) = (algStr B).comp ((Texp N).map g.hom.1) :=
@@ -596,7 +689,9 @@ and the operator is
 monotone with `g` its own fixed point), so their union `val` does too. This is the
 easy half of
 initiality; the matching `g ≤ val` (so `g = val`) is the projection-chain argument
-of Phase 4. -/
+of Phase 4.
+@isnad1 id=le.1h4v.s7.1d95cbf253b2 from=translated src=- shape=27127b13 vocab=c7e5bc4e
+-/
 theorem descRel_le_algHom (g : AlgHom (ExpAlg N hN) B) : ∀ n, descRel hN B n ≤ g.hom.1
   | 0 => constBot_le _
   | n + 1 => by
@@ -604,6 +699,9 @@ theorem descRel_le_algHom (g : AlgHom (ExpAlg N hN) B) : ∀ n, descRel hN B n �
       exact comp_mono_gen le_rfl
         (comp_mono_gen ((Texp N).map_mono (descRel_le_algHom g n)) le_rfl)
 
+/--
+@isnad1 id=le.1h3v.s7.a718546e5e9e from=translated src=- shape=82134d54 vocab=c3a9c948
+-/
 theorem descMap_le_algHom (g : AlgHom (ExpAlg N hN) B) : descMap hN B ≤ g.hom.1 := by
   intro X Y hr
   obtain ⟨n, hn⟩ := hr
@@ -635,7 +733,9 @@ functor constructors), then mirrors Theorem 6.14's uniqueness argument concretel
 ◁ D` -/
 
 /-- The injection `i : D → E` of a subsystem is **strict**: `i` sends `Δ_D` only
-to `Δ_E`. -/
+to `Δ_E`.
+@isnad1 id=isstrict.1h3v.s4.28d16ffe40e8 from=translated src=- shape=86b98a17 vocab=0a729e93
+-/
 theorem Subsystem.inj_isStrict {α : Type*} {D E : NeighborhoodSystem α} (h : D ◁ E) :
     IsStrict h.inj := by
   intro Y hrel
@@ -643,7 +743,9 @@ theorem Subsystem.inj_isStrict {α : Type*} {D E : NeighborhoodSystem α} (h : D
   obtain ⟨_, hYE, hsub⟩ := hrel
   exact Set.Subset.antisymm (E.sub_master hYE) (by rw [← h.master_eq]; exact hsub)
 
-/-- The projection `j : E → D` of a subsystem is **strict**. -/
+/-- The projection `j : E → D` of a subsystem is **strict**.
+@isnad1 id=isstrict.1h3v.s4.841b99c2e19b from=translated src=- shape=24b2c417 vocab=9560ac62
+-/
 theorem Subsystem.proj_isStrict {α : Type*} {D E : NeighborhoodSystem α} (h : D ◁ E) :
     IsStrict h.proj := by
   intro X hrel
@@ -653,13 +755,17 @@ theorem Subsystem.proj_isStrict {α : Type*} {D E : NeighborhoodSystem α} (h : 
 
 /-- On `D ◁ D` (e.g. `Subsystem.refl`), the injection is the identity (both
 relations are
-`X ∈ D ∧ Y ∈ D ∧ X ⊆ Y`). -/
+`X ∈ D ∧ Y ∈ D ∧ X ⊆ Y`).
+@isnad1 id=eq.1h2v.s4.314655fd1014 from=translated src=- shape=354fd7f1 vocab=2b843ddb
+-/
 theorem Subsystem.self_inj {α : Type*} {D : NeighborhoodSystem α} (h : D ◁ D) :
     h.inj = idMap D := by
   apply ApproximableMap.ext
   simp_all
 
-/-- On `D ◁ D`, the projection is the identity. -/
+/-- On `D ◁ D`, the projection is the identity.
+@isnad1 id=eq.1h2v.s4.03ff4f1a9d82 from=translated src=- shape=354fd7f1 vocab=f9771db9
+-/
 theorem Subsystem.self_proj {α : Type*} {D : NeighborhoodSystem α} (h : D ◁ D) :
     h.proj = idMap D := by
   apply ApproximableMap.ext
@@ -671,7 +777,9 @@ variable {A₀ A₁ B₀ B₁ : ScottSys}
 
 /-- **Sum carries the injection.** `(i₀ + i₁) = i` for the sum subsystem: both
 relate `W ↦ W'` iff
-`W ∈ 𝒟₀+𝒟₁`, `W' ∈ ℰ₀+ℰ₁`, `W ⊆ W'`. -/
+`W ∈ 𝒟₀+𝒟₁`, `W' ∈ ℰ₀+ℰ₁`, `W ⊆ W'`.
+@isnad1 id=eq.2h4v.s6.56dd334f45b3 from=translated src=- shape=569bf86f vocab=caafe577
+-/
 theorem sumMapTok_inj (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.sys) :
     sumMapTok h0.inj h1.inj = (sumTok_subsystem h0 h1).inj := by
   have hsubM : ∀ {W : Set Str}, (A₀.sum A₁).sys.mem W → W ⊆ sumTokMaster B₀.sys B₁.sys := by
@@ -700,7 +808,9 @@ theorem sumMapTok_inj (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.sys) 
       · exact absurd hsub (fun h => embBit_not_subset_cross (by decide) (A₀.ne X hX) h)
       · exact Or.inr (Or.inr ⟨Y, Y', ⟨hY, hY', embBit_subset.mp hsub⟩, rfl, rfl⟩)
 
-/-- **Sum carries the projection.** -/
+/-- **Sum carries the projection.**
+@isnad1 id=eq.2h4v.s6.4704b06d51a4 from=translated src=- shape=584cbf9b vocab=d5d45bd9
+-/
 theorem sumMapTok_proj (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.sys) :
     sumMapTok h0.proj h1.proj = (sumTok_subsystem h0 h1).proj := by
   have hsubM : ∀ {W : Set Str}, (B₀.sum B₁).sys.mem W → W ⊆ sumTokMaster A₀.sys A₁.sys := by
@@ -731,7 +841,9 @@ theorem sumMapTok_proj (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.sys)
       · exact absurd hsub (fun h => embBit_not_subset_cross (by decide) (B₀.ne X hX) h)
       · exact Or.inr (Or.inr ⟨Y, Y', ⟨hY, hY', embBit_subset.mp hsub⟩, rfl, rfl⟩)
 
-/-- **Product carries the injection.** -/
+/-- **Product carries the injection.**
+@isnad1 id=eq.2h4v.s6.9fea943fbc54 from=translated src=- shape=569bf86f vocab=cf4ae32d
+-/
 theorem prodMapTok_inj (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.sys) :
     prodMapTok h0.inj h1.inj = (prodTok_subsystem h0 h1).inj := by
   apply ApproximableMap.ext
@@ -745,7 +857,9 @@ theorem prodMapTok_inj (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.sys)
     obtain ⟨hXs, hYs⟩ := prodTokNbhd_subset_iff.mp hsub
     exact ⟨X, Y, X', Y', ⟨hX, hX', hXs⟩, ⟨hY, hY', hYs⟩, rfl, rfl⟩
 
-/-- **Product carries the projection.** -/
+/-- **Product carries the projection.**
+@isnad1 id=eq.2h4v.s6.79ec81a4e665 from=translated src=- shape=584cbf9b vocab=38746199
+-/
 theorem prodMapTok_proj (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.sys) :
     prodMapTok h0.proj h1.proj = (prodTok_subsystem h0 h1).proj := by
   apply ApproximableMap.ext
@@ -759,7 +873,9 @@ theorem prodMapTok_proj (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.sys
     obtain ⟨hXs, hYs⟩ := prodTokNbhd_subset_iff.mp hsub
     exact ⟨X, Y, X', Y', ⟨hX, hX', hXs⟩, ⟨hY, hY', hYs⟩, rfl, rfl⟩
 
-/-- **Coalesced sum carries the injection.** -/
+/-- **Coalesced sum carries the injection.**
+@isnad1 id=eq.2h4v.s6.55905fb67a8a from=translated src=- shape=569bf86f vocab=c062d994
+-/
 theorem oplusMapTok_inj (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.sys) :
     oplusMapTok h0.inj h1.inj = (oplusTok_subsystem h0 h1).inj := by
   have hsubM : ∀ {W : Set Str}, (A₀.oplus A₁).sys.mem W → W ⊆ sumTokMaster B₀.sys B₁.sys := by
@@ -791,7 +907,9 @@ theorem oplusMapTok_inj (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.sys
       · exact absurd hsub (fun h => embBit_not_subset_cross (by decide) (A₀.ne X hX) h)
       · exact Or.inr (Or.inr ⟨Y, Y', ⟨hY, hY', embBit_subset.mp hsub⟩, hYne, hY'ne, rfl, rfl⟩)
 
-/-- **Coalesced sum carries the projection.** -/
+/-- **Coalesced sum carries the projection.**
+@isnad1 id=eq.2h4v.s6.978155bf09f2 from=translated src=- shape=584cbf9b vocab=541db589
+-/
 theorem oplusMapTok_proj (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.sys) :
     oplusMapTok h0.proj h1.proj = (oplusTok_subsystem h0 h1).proj := by
   have hsubM : ∀ {W : Set Str}, (B₀.oplus B₁).sys.mem W → W ⊆ sumTokMaster A₀.sys A₁.sys := by
@@ -825,7 +943,9 @@ theorem oplusMapTok_proj (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.sy
       · exact absurd hsub (fun h => embBit_not_subset_cross (by decide) (B₀.ne X hX) h)
       · exact Or.inr (Or.inr ⟨Y, Y', ⟨hY, hY', embBit_subset.mp hsub⟩, hYne, hY'ne, rfl, rfl⟩)
 
-/-- **Smash product carries the injection.** -/
+/-- **Smash product carries the injection.**
+@isnad1 id=eq.2h4v.s6.b6316b507fcb from=translated src=- shape=569bf86f vocab=9439df8d
+-/
 theorem otimesMapTok_inj (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.sys) :
     otimesMapTok h0.inj h1.inj = (otimesTok_subsystem h0 h1).inj := by
   apply ApproximableMap.ext
@@ -853,7 +973,9 @@ theorem otimesMapTok_inj (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.sy
         exact Or.inr ⟨X, Y, X', Y', ⟨hX, hX', hXs⟩, ⟨hY, hY', hYs⟩,
           hXne, hYne, hX'ne, hY'ne, rfl, rfl⟩
 
-/-- **Smash product carries the projection.** -/
+/-- **Smash product carries the projection.**
+@isnad1 id=eq.2h4v.s6.b4ef9b6d2567 from=translated src=- shape=584cbf9b vocab=b7189a65
+-/
 theorem otimesMapTok_proj (h0 : A₀.sys ◁ B₀.sys) (h1 : A₁.sys ◁ B₁.sys) :
     otimesMapTok h0.proj h1.proj = (otimesTok_subsystem h0 h1).proj := by
   apply ApproximableMap.ext
@@ -892,7 +1014,9 @@ Proved by induction
 over the six constructors using the token-level lemmas just established. -/
 
 /-- **`T(i) = i'`** — the functor carries the injection of `D ◁ E` to that of
-`T(D) ◁ T(E)`. -/
+`T(D) ◁ T(E)`.
+@isnad1 id=eq.1h3v.s5.6c7e182c2a1b from=translated src=- shape=e60651fc vocab=862f2d25
+-/
 theorem GExpr.map_inj : (T : GExpr) → {X Y : ScottSys} → (h : X.sys ◁ Y.sys) →
     T.map h.inj = (T.obj_subsystem h).inj
   | .const D, _, _, _ => (Subsystem.self_inj (Subsystem.refl D.sys)).symm
@@ -915,7 +1039,9 @@ theorem GExpr.map_inj : (T : GExpr) → {X Y : ScottSys} → (h : X.sys ◁ Y.sy
       rw [a.map_inj h, b.map_inj h, otimesMapTok_inj]
 
 /-- **`T(j) = j'`** — the functor carries the projection of `D ◁ E` to that of
-`T(D) ◁ T(E)`. -/
+`T(D) ◁ T(E)`.
+@isnad1 id=eq.1h3v.s5.0cd75fba3671 from=translated src=- shape=7ca3d342 vocab=e32e0d3b
+-/
 theorem GExpr.map_proj : (T : GExpr) → {X Y : ScottSys} → (h : X.sys ◁ Y.sys) →
     T.map h.proj = (T.obj_subsystem h).proj
   | .const D, _, _, _ => (Subsystem.self_proj (Subsystem.refl D.sys)).symm
@@ -942,24 +1068,32 @@ theorem GExpr.map_proj : (T : GExpr) → {X Y : ScottSys} → (h : X.sys ◁ Y.s
 /-- The forward map of the identity iso `isoOfObjEq e` is the inclusion `X ↪ Y` (=
 `idMap`
 across the
-object equality `e`). -/
+object equality `e`).
+@isnad1 id=iff.1h4v.s6.41b30af079d1 from=translated src=- shape=ec08408f vocab=d446ebde
+-/
 theorem isoOfObjEq_hom_rel {X Y : ScottSys} (e : X = Y) {A E : Set Str} :
     ((isoOfObjEq e).hom).1.rel A E ↔ X.sys.mem A ∧ Y.sys.mem E ∧ A ⊆ E := by
   cases e; exact idMap_rel
 
-/-- The inverse map of the identity iso `isoOfObjEq e`. -/
+/-- The inverse map of the identity iso `isoOfObjEq e`.
+@isnad1 id=iff.1h4v.s6.a01fa9b1f85a from=translated src=- shape=9abcfc4a vocab=d79a3be1
+-/
 theorem isoOfObjEq_inv_rel {X Y : ScottSys} (e : X = Y) {A E : Set Str} :
     ((isoOfObjEq e).inv).1.rel A E ↔ Y.sys.mem A ∧ X.sys.mem E ∧ A ⊆ E := by
   cases e; exact idMap_rel
 
 /-- **Relational description of the structure map `i = expHom`** (the identity
-`T(Exp) = Exp`). -/
+`T(Exp) = Exp`).
+@isnad1 id=iff.1h3v.s6.acc208e14c46 from=translated src=- shape=96c53256 vocab=7bf7d906
+-/
 theorem expHom_rel {N : ScottSys} (hN : ([] : Str) ∈ N.sys.master) {A E : Set Str} :
     (expHom N hN).rel A E ↔
       ((Texp N).obj (Exp N hN)).sys.mem A ∧ (Exp N hN).sys.mem E ∧ A ⊆ E :=
   isoOfObjEq_hom_rel (Exp_structure_eq N hN)
 
-/-- **Relational description of the inverse structure map `j = expInv`**. -/
+/-- **Relational description of the inverse structure map `j = expInv`**.
+@isnad1 id=iff.1h3v.s6.78a0937557fa from=translated src=- shape=8dbea62e vocab=a2a3a651
+-/
 theorem expInv_rel {N : ScottSys} (hN : ([] : Str) ∈ N.sys.master) {A E : Set Str} :
     (expInv N hN).rel A E ↔
       (Exp N hN).sys.mem A ∧ ((Texp N).obj (Exp N hN)).sys.mem E ∧ A ⊆ E :=
@@ -971,7 +1105,9 @@ section Uniqueness
 
 variable {N : ScottSys} (hN : ([] : Str) ∈ N.sys.master)
 
-/-- The subdomain `Texpⁿ({Γ}) ◁ Exp` (Proposition 6.12's pair lives here). -/
+/-- The subdomain `Texpⁿ({Γ}) ◁ Exp` (Proposition 6.12's pair lives here).
+@isnad1 id=subsyste.1h2v.s4.de997980a86a from=translated src=- shape=4f9230a4 vocab=c80f2776
+-/
 theorem expSub (n : ℕ) : (gTower (Texp N) n).sys ◁ (Exp N hN).sys :=
   gTower_sub_colim (Texp N) (Texp_rooted hN) n
 
@@ -979,7 +1115,9 @@ theorem expSub (n : ℕ) : (gTower (Texp N) n).sys ◁ (Exp N hN).sys :=
 def rho (n : ℕ) : ApproximableMap (Exp N hN).sys (Exp N hN).sys :=
   (expSub hN n).inj.comp (expSub hN n).proj
 
-/-- Scott's relational description `A ρₙ E ↔ ∃ z ∈ Texpⁿ({Γ}), A ⊆ z ⊆ E`. -/
+/-- Scott's relational description `A ρₙ E ↔ ∃ z ∈ Texpⁿ({Γ}), A ⊆ z ⊆ E`.
+@isnad1 id=iff.1h4v.s6.ba6d75ee30ec from=translated src=- shape=abe05bfb vocab=4a9e501c
+-/
 theorem rho_rel (n : ℕ) {A E : Set Str} :
     (rho hN n).rel A E ↔ (Exp N hN).sys.mem A ∧ (Exp N hN).sys.mem E ∧
       ∃ z, (gTower (Texp N) n).sys.mem z ∧ A ⊆ z ∧ z ⊆ E := by
@@ -996,7 +1134,9 @@ theorem rho_rel (n : ℕ) {A E : Set Str} :
     exact ⟨z, by rw [Subsystem.proj_rel]; exact ⟨hcA, hTz, hAz⟩,
       by rw [Subsystem.inj_rel]; exact ⟨hTz, hcE, hzE⟩⟩
 
-/-- `ρₙ ⊆ ρₘ` for `n ≤ m`. -/
+/-- `ρₙ ⊆ ρₘ` for `n ≤ m`.
+@isnad1 id=rel.3h5v.s6.1618adf0c3fa from=translated src=- shape=6e266eb5 vocab=5bed427e
+-/
 theorem rho_mono {n m : ℕ} (h : n ≤ m) {A E : Set Str} (hr : (rho hN n).rel A E) :
     (rho hN m).rel A E := by
   rw [rho_rel] at hr ⊢
@@ -1009,7 +1149,9 @@ def iSupRho : ApproximableMap (Exp N hN).sys (Exp N hN).sys :=
     fun _ _ h => rho_mono hN (le_max_left i j) h,
     fun _ _ h => rho_mono hN (le_max_right i j) h⟩)
 
-/-- **`⋃ₙ ρₙ = I_Exp`** (Scott's key identity). -/
+/-- **`⋃ₙ ρₙ = I_Exp`** (Scott's key identity).
+@isnad1 id=eq.1h1v.s5.7c9dfbe4a2c2 from=translated src=- shape=df01abcd vocab=55cd27c1
+-/
 theorem iSupRho_eq_id : iSupRho hN = idMap (Exp N hN).sys := by
   apply ApproximableMap.ext
   intro A E
@@ -1024,7 +1166,9 @@ theorem iSupRho_eq_id : iSupRho hN = idMap (Exp N hN).sys := by
     exact ⟨n, (rho_rel hN n).mpr ⟨⟨n, hA⟩, hcE, A, hA, subset_rfl, hAE⟩⟩
 
 /-- **`ρ₀ = ⊥`** (the generator `{Γ}` is one-point): `ρ₀` relates `A` only to the
-master. -/
+master.
+@isnad1 id=iff.1h3v.s5.224300d8ca7a from=translated src=- shape=55113146 vocab=3afa53a3
+-/
 theorem rho_zero_rel {A E : Set Str} :
     (rho hN 0).rel A E ↔ (Exp N hN).sys.mem A ∧ E = (Exp N hN).sys.master := by
   rw [rho_rel]
@@ -1041,7 +1185,9 @@ theorem rho_zero_rel {A E : Set Str} :
 /-! ### The crux equation `ρₙ₊₁ = i ∘ T(ρₙ) ∘ j` -/
 
 /-- `T(ρₙ) = T(iₙ) ∘ T(jₙ) = i'ₙ ∘ j'ₙ`, the projection pair of `T(Texpⁿ{Γ}) ◁
-T(Exp)`. -/
+T(Exp)`.
+@isnad1 id=eq.1h2v.s6.401f6cd1f428 from=translated src=- shape=92458a05 vocab=80826ba8
+-/
 theorem map_rho_eq (n : ℕ) :
     (Texp N).map (rho hN n)
       = ((Texp N).obj_subsystem (expSub hN n)).inj.comp
@@ -1051,7 +1197,9 @@ theorem map_rho_eq (n : ℕ) :
       (Texp N).map_inj, (Texp N).map_proj]
 
 /-- **`ρₙ₊₁ = i ∘ T(ρₙ) ∘ j`** (Scott's `T(ρₙ) = ρₙ₊₁`, conjugated by the
-structure iso). -/
+structure iso).
+@isnad1 id=eq.1h2v.s6.b7f8b0c36f5b from=translated src=- shape=ebba49e0 vocab=475f5f7f
+-/
 theorem key_rho (n : ℕ) :
     rho hN (n + 1)
       = (expHom N hN).comp (((Texp N).map (rho hN n)).comp (expInv N hN)) := by
@@ -1073,7 +1221,9 @@ theorem key_rho (n : ℕ) :
 
 variable (B : TAlgebra (TexpF N))
 
-/-- The base of the recursion: `g ∘ ρ₀ = ⊥ = val₀`, independent of `g`. -/
+/-- The base of the recursion: `g ∘ ρ₀ = ⊥ = val₀`, independent of `g`.
+@isnad1 id=eq.1h3v.s7.47467332cb6b from=translated src=- shape=d9d43b4b vocab=f0bb1f77
+-/
 theorem gcomp_rho_zero (g : AlgHom (ExpAlg N hN) B) :
     g.hom.1.comp (rho hN 0) = descRel hN B 0 := by
   apply ApproximableMap.ext
@@ -1091,7 +1241,9 @@ theorem gcomp_rho_zero (g : AlgHom (ExpAlg N hN) B) :
     exact ⟨(Exp N hN).sys.master, (rho_zero_rel hN).mpr ⟨hcA, rfl⟩, g.hom.1.master_rel⟩
 
 /-- **The fixed-point recursion `gₙ₊₁ = k ∘ T(gₙ) ∘ j`** (`key_rho` + the
-homomorphism square). -/
+homomorphism square).
+@isnad1 id=eq.1h4v.s8.fc4382071d7c from=translated src=- shape=23306bb7 vocab=1b655588
+-/
 theorem gcomp_rho_succ (g : AlgHom (ExpAlg N hN) B) (n : ℕ) :
     g.hom.1.comp (rho hN (n + 1))
       = (algStr B).comp (((Texp N).map (g.hom.1.comp (rho hN n))).comp (expInv N hN)) := by
@@ -1118,7 +1270,9 @@ theorem gcomp_rho_succ (g : AlgHom (ExpAlg N hN) B) (n : ℕ) :
 
 /-- **`g ∘ ρₙ = val₀ₙ`**: every homomorphism `g` agrees with the canonical Kleene
 iterate after the
-`n`-th projection — the sequence is forced by the recursion, independent of `g`. -/
+`n`-th projection — the sequence is forced by the recursion, independent of `g`.
+@isnad1 id=eq.1h4v.s7.10565ec15853 from=translated src=- shape=06283bf4 vocab=f0bb1f77
+-/
 theorem gcomp_rho_eq (g : AlgHom (ExpAlg N hN) B) :
     ∀ n, g.hom.1.comp (rho hN n) = descRel hN B n
   | 0 => gcomp_rho_zero hN B g
@@ -1126,7 +1280,9 @@ theorem gcomp_rho_eq (g : AlgHom (ExpAlg N hN) B) :
 
 /-- **The underlying map of any homomorphism `g : Exp → D` is `val = descMap`.**
 Hence `descAlgHom`
-is the *unique* homomorphism. -/
+is the *unique* homomorphism.
+@isnad1 id=eq.1h3v.s6.720bd61be6be from=translated src=- shape=cd6dc007 vocab=d555604d
+-/
 theorem descMap_eq_algHom (g : AlgHom (ExpAlg N hN) B) : g.hom.1 = descMap hN B := by
   have hcomp : g.hom.1.comp (iSupRho hN) = descMap hN B := by
     apply ApproximableMap.ext
@@ -1145,7 +1301,9 @@ theorem descMap_eq_algHom (g : AlgHom (ExpAlg N hN) B) : g.hom.1 = descMap hN B 
         rw [iSupRho_eq_id hN]; exact (comp_idMap g.hom.1).symm
     _ = descMap hN B := hcomp
 
-/-- Two algebra homomorphisms with equal underlying maps are equal. -/
+/-- Two algebra homomorphisms with equal underlying maps are equal.
+@isnad1 id=eq.1h5v.s6.3ef5b036cf13 from=translated src=- shape=f118981c vocab=fabdee48
+-/
 theorem algHom_ext {A C : TAlgebra (TexpF N)} {g g' : AlgHom A C} (h : g.hom = g'.hom) :
   g = g' := by
   cases g; cases g'; cases h; rfl

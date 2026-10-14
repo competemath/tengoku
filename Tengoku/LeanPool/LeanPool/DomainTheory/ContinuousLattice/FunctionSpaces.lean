@@ -73,10 +73,16 @@ abbrev ScottFunctionSpace (X Y : Type*) [TopologicalSpace X] [TopologicalSpace Y
 
 /-! ### Proposition 3.2 -/
 
+/--
+@isnad1 id=isopen.1h4v.s6.531176b078a1 from=translated src=- shape=3b4ca533 vocab=9c7d019c
+-/
 theorem scottFunctionSubbasis_isOpen {x : X} {U : Set Y} (hU : IsOpen U) :
     @IsOpen (C(X, Y)) (scottFunctionTopology X Y) {f : C(X, Y) | f x ∈ U} :=
   isOpen_generateFrom_of_mem (s := {f : C(X, Y) | f x ∈ U}) ⟨x, U, hU, rfl⟩
 
+/--
+@isnad1 id=mem.3h5v.s6.abea351bfa41 from=translated src=- shape=ab34e80b vocab=84cc925f
+-/
 theorem specializationLe_generateOpen (f g : C(X, Y)) (hfg : ∀ x, SpecializationLe (f x) (g x))
     {V : Set (C(X, Y))} (hV : GenerateOpen (scottFunctionEvalSubbasis X Y) V) (hf : f ∈ V) :
     g ∈ V :=
@@ -93,6 +99,9 @@ theorem specializationLe_generateOpen (f g : C(X, Y)) (hfg : ∀ x, Specializati
     obtain ⟨W, hWS, hfW⟩ := Set.mem_sUnion.mp hf
     exact Set.mem_sUnion.mpr ⟨W, hWS, specializationLe_generateOpen f g hfg (hS W hWS) hfW⟩
 
+/--
+@isnad1 id=iff.0h4v.s6.e8f902c307c8 from=translated src=- shape=637b724f vocab=e875bf0c
+-/
 theorem scottFunctionSpecializationLe {f g : C(X, Y)} :
     letI := scottFunctionTopology X Y
     SpecializationLe f g ↔ ∀ x, SpecializationLe (f x) (g x) := by
@@ -104,7 +113,9 @@ theorem scottFunctionSpecializationLe {f g : C(X, Y)} :
     exact specializationLe_generateOpen f g hfg hU hfU
 
 /-- **Scott 1972, Proposition 3.2.** The specialization order on `[X → Y]` is
-pointwise. -/
+pointwise.
+@isnad1 id=iff.0h4v.s6.e8f902c307c8 from=translated src=- shape=637b724f vocab=e875bf0c
+-/
 theorem proposition_3_2 {f g : C(X, Y)} :
     letI := scottFunctionTopology X Y
     (SpecializationLe f g ↔ ∀ x, SpecializationLe (f x) (g x)) :=
@@ -125,23 +136,38 @@ namespace ScottMap
 instance : CoeFun (ScottMap D D') (fun _ => D → D') where
   coe f := f.1
 
+/--
+@isnad1 id=eq.1h4v.s6.e3b159fcc2f2 from=translated src=- shape=83e64ff8 vocab=60599e40
+-/
 @[ext]
 theorem ext {f g : ScottMap D D'} (h : ∀ x, f x = g x) : f = g :=
   Subtype.ext (funext h)
 
+/--
+@isnad1 id=continuo.0h3v.s5.fed061ffd17b from=translated src=- shape=c601c913 vocab=60599e40
+-/
 theorem continuous (f : ScottMap D D') :
     @Continuous D D' scottTopologicalSpace scottTopologicalSpace f :=
   f.2
 
+/--
+@isnad1 id=eq.2h4v.s6.fa9dafde80cb from=translated src=- shape=e4463ea4 vocab=37ec15db
+-/
 theorem preservesDirectedSup_coe (f : ScottMap D D') (S : Set D) (hS : S.Nonempty)
     (hSdir : DirectedOn (· ≤ ·) S) :
     (f : D → D') (sSup S) = sSup (Set.image (f : D → D') S) := by
   have h := (proposition_2_5 (Subtype.val f)).mp f.property
   exact h hS hSdir
 
+/--
+@isnad1 id=monotone.0h3v.s5.f7a845605454 from=translated src=- shape=610616d8 vocab=fc82cd0f
+-/
 theorem monotone (f : ScottMap D D') : Monotone (f : D → D') :=
   preservesDirectedSup_monotone ((proposition_2_5 (Subtype.val f)).mp f.property)
 
+/--
+@isnad1 id=preserve.2h5v.s5.b74170819714 from=translated src=- shape=42314fae vocab=67061776
+-/
 theorem preservesDirectedSup_comp {f : D' → D''} {g : D → D'} (hf : PreservesDirectedSup f)
     (hg : PreservesDirectedSup g) : PreservesDirectedSup (f ∘ g) := by
   intro S hS hSdir
@@ -168,6 +194,9 @@ def const (c : D') : ScottMap D D' :=
   ⟨fun _ => c, continuous_of_preservesDirectedSup fun S hS _ => by
     simp_all⟩
 
+/--
+@isnad1 id=preserve.0h4v.s6.c8e7731cd3da from=translated src=- shape=83fdefee vocab=beacc34e
+-/
 theorem pointwise_sup_preservesDirectedSup (f g : ScottMap D D') :
     PreservesDirectedSup (fun x => f x ⊔ g x) := by
   intro S hS hSdir
@@ -201,6 +230,9 @@ def le (f g : ScottMap D D') : Prop :=
 noncomputable def sup (f g : ScottMap D D') : ScottMap D D' :=
   ⟨fun x => f x ⊔ g x, continuous_of_preservesDirectedSup (pointwise_sup_preservesDirectedSup f g)⟩
 
+/--
+@isnad1 id=preserve.0h3v.s6.49cde70fa420 from=translated src=- shape=8c6679cc vocab=c1f357a1
+-/
 theorem pointwise_sSup_preservesDirectedSup (F : Set (ScottMap D D')) :
     PreservesDirectedSup (fun x => sSup (Set.image (fun f : ScottMap D D' =>
       (f : D → D') x) F)) := by
@@ -232,6 +264,9 @@ noncomputable def sSupMaps (F : Set (ScottMap D D')) : ScottMap D D' :=
   ⟨fun x => sSup (Set.image (fun f : ScottMap D D' => (f : D → D') x) F),
     continuous_of_preservesDirectedSup (pointwise_sSup_preservesDirectedSup F)⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.d18eb284d206 from=translated src=- shape=0127e1a5 vocab=2b36c857
+-/
 theorem sSupMaps_apply (F : Set (ScottMap D D')) (x : D) :
     (sSupMaps F : D → D') x =
       sSup (Set.image (fun f : ScottMap D D' => (f : D → D') x) F) :=
@@ -253,15 +288,24 @@ instance instPartialOrder : PartialOrder (ScottMap D D') where
   le_trans _ _ _ hfg hgh x := le_trans (hfg x) (hgh x)
   le_antisymm _ _ hfg hgf := ScottMap.ext fun x => le_antisymm (hfg x) (hgf x)
 
+/--
+@isnad1 id=iff.0h4v.s6.2fecdf7f6e73 from=translated src=- shape=f330f4b7 vocab=a6430843
+-/
 theorem le_def {f g : ScottMap D D'} : f ≤ g ↔ ∀ x, (f : D → D') x ≤ g x := Iff.rfl
 
 noncomputable instance instSupSet : SupSet (ScottMap D D') := ⟨sSupMaps⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.d2f4a2865919 from=translated src=- shape=a57ceb4f vocab=782e28f2
+-/
 theorem sSup_apply (F : Set (ScottMap D D')) (x : D) :
     ((sSup F : ScottMap D D') : D → D') x =
       sSup (Set.image (fun f : ScottMap D D' => (f : D → D') x) F) :=
   rfl
 
+/--
+@isnad1 id=islub.0h3v.s5.f098f3a06dea from=translated src=- shape=b1346af0 vocab=e010b056
+-/
 theorem isLUB_sSup (F : Set (ScottMap D D')) : IsLUB F (sSup F) := by
   constructor
   · intro f hf
@@ -286,24 +330,37 @@ def idMap : ScottMap D D :=
     show sSup S = sSup (Set.image (fun x => x) S)
     rw [Set.image_id']⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.74b8bae0edff from=translated src=- shape=beb23251 vocab=54d8a08d
+-/
 @[simp] theorem idMap_apply (x : D) : (idMap : ScottMap D D) x = x := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.8e7031a9bd40 from=translated src=- shape=b1aa954a vocab=9aa908dc
+-/
 @[simp] theorem comp_apply (f : ScottMap D' D'') (g : ScottMap D D') (x : D) :
     (f.comp g : D → D'') x = f (g x) := rfl
 
 /-- The (completeLatticeOfSup-derived) binary join of Scott maps is computed
-pointwise. -/
+pointwise.
+@isnad1 id=eq.0h5v.s7.efd34be9cd9c from=translated src=- shape=9703e932 vocab=bb58c11b
+-/
 theorem sup_apply (f g : ScottMap D D') (x : D) :
     ((f ⊔ g : ScottMap D D') : D → D') x = f x ⊔ g x := by
   have h : (f ⊔ g : ScottMap D D') = sSup ({f, g} : Set (ScottMap D D')) := rfl
   rw [h, sSup_apply, Set.image_pair]
   exact sSup_pair
 
-/-- The bottom Scott map is the constant `⊥`. -/
+/-- The bottom Scott map is the constant `⊥`.
+@isnad1 id=eq.0h3v.s6.9e53cf1bb2d2 from=translated src=- shape=65e6f5d2 vocab=8eb1568b
+-/
 theorem bot_apply (x : D) : ((⊥ : ScottMap D D') : D → D') x = ⊥ := by
   have h : (⊥ : ScottMap D D') = sSup (∅ : Set (ScottMap D D')) := rfl
   rw [h, sSup_apply, Set.image_empty, sSup_empty]
 
+/--
+@isnad1 id=eq.0h4v.s5.59d34c8e8338 from=translated src=- shape=f16babe6 vocab=6e4d7f4f
+-/
 @[simp] theorem const_apply (c : D') (x : D) : (ScottMap.const c : D → D') x = c := rfl
 
 end ScottMap
@@ -339,16 +396,24 @@ lattice. -/
 /-- The (value of the) step function `ē[e, e']` at `x`: `e'` if `e ≪ x`, else `⊥`. -/
 noncomputable def stepFun (e : D) (e' : D') (x : D) : D' := ⨆ _ : e ≪ x, e'
 
+/--
+@isnad1 id=eq.1h5v.s5.b6ce6163ce63 from=translated src=- shape=b29d8bff vocab=cb93b76f
+-/
 theorem stepFun_of_wayBelow {e : D} {e' : D'} {x : D} (h : e ≪ x) : stepFun e e' x = e' :=
   iSup_pos h
 
+/--
+@isnad1 id=eq.1h5v.s5.edc6408f809f from=translated src=- shape=5c527967 vocab=91792307
+-/
 theorem stepFun_of_not_wayBelow {e : D} {e' : D'} {x : D} (h : ¬ e ≪ x) :
     stepFun e e' x = ⊥ :=
   iSup_neg h
 
 /-- Step functions are Scott-continuous: `{x | e ≪ x}` is Scott-open, so the
 conditional commutes
-with directed suprema. -/
+with directed suprema.
+@isnad1 id=preserve.0h4v.s4.296850dae16b from=translated src=- shape=775a0050 vocab=a59815d5
+-/
 theorem stepFun_preservesDirectedSup (e : D) (e' : D') :
     PreservesDirectedSup (stepFun e e') := by
   intro S hS hSdir
@@ -372,12 +437,17 @@ theorem stepFun_preservesDirectedSup (e : D) (e' : D') :
 noncomputable def stepMap (e : D) (e' : D') : ScottMap D D' :=
   ⟨stepFun e e', continuous_of_preservesDirectedSup (stepFun_preservesDirectedSup e e')⟩
 
+/--
+@isnad1 id=eq.1h5v.s5.334c347e01aa from=translated src=- shape=d54c5e1b vocab=7fbeab77
+-/
 theorem stepMap_apply_of_wayBelow {e : D} {e' : D'} {x : D} (h : e ≪ x) :
     (stepMap e e' : D → D') x = e' :=
   stepFun_of_wayBelow h
 
 /-- If `e' ≪ g e` then the step function `ē[e, e']` lies below `g` (a pointwise
-argument). -/
+argument).
+@isnad1 id=le.1h5v.s6.11445044364e from=translated src=- shape=5106f88b vocab=c3e5a60d
+-/
 theorem stepMap_le_of_wayBelow {e : D} {e' : D'} {g : ScottMap D D'}
     (h : e' ≪ (g : D → D') e) : stepMap e e' ≤ g := by
   rw [ScottMap.le_def]
@@ -393,7 +463,9 @@ theorem stepMap_le_of_wayBelow {e : D} {e' : D'} {g : ScottMap D D'}
 `[D → D']`,
 witnessed by the Scott-open set `{g | e' ≪ g e}` (open because suprema in `[D →
 D']` are pointwise
-and `{· ≪ ·}` is inaccessible by directed suprema). -/
+and `{· ≪ ·}` is inaccessible by directed suprema).
+@isnad1 id=waybelow.1h5v.s6.51a9bb766ef9 from=translated src=- shape=ec16ae36 vocab=74ecfcfd
+-/
 theorem stepMap_wayBelow {e : D} {e' : D'} {f : ScottMap D D'}
     (he' : e' ≪ (f : D → D') e) : stepMap e e' ≪ f := by
   refine ⟨{g : ScottMap D D' | e' ≪ (g : D → D') e}, ⟨?_, ?_⟩, he', ?_⟩
@@ -415,7 +487,9 @@ theorem stepMap_wayBelow {e : D} {e' : D'} {f : ScottMap D D'}
 of the step
 functions below `f` recovers `f x`: `f x = ⊔ {e' | ∃ e ≪ x, e' ≪ f e}`. Uses
 continuity of `D`
-(`x = ⊔{e | e ≪ x}`), Scott-continuity of `f`, and continuity of `D'`. -/
+(`x = ⊔{e | e ≪ x}`), Scott-continuity of `f`, and continuity of `D'`.
+@isnad1 id=eq.2h4v.s6.bb78893fd76b from=translated src=- shape=f02c9536 vocab=4fd58b63
+-/
 theorem stepMap_pointwise_sSup (hD : IsContinuousLattice D) (hD' : IsContinuousLattice D')
     (f : ScottMap D D') (x : D) :
     sSup {e' : D' | ∃ e, e ≪ x ∧ e' ≪ (f : D → D') e} = (f : D → D') x := by
@@ -442,7 +516,9 @@ theorem stepMap_pointwise_sSup (hD : IsContinuousLattice D) (hD' : IsContinuousL
 lattices, then so
 is `[D → D']` under the pointwise order. Every `f` is the supremum of the step
 functions way below
-it: `f = ⊔ {ē[e,e'] | e' ≪ f e}`, and each such step function is way below `f`. -/
+it: `f = ⊔ {ē[e,e'] | e' ≪ f e}`, and each such step function is way below `f`.
+@isnad1 id=iscontin.2h2v.s4.9f44990ab1c9 from=translated src=- shape=ab93cd92 vocab=3648cb13
+-/
 theorem theorem_3_3_isContinuousLattice (hD : IsContinuousLattice D)
     (hD' : IsContinuousLattice D') : IsContinuousLattice (ScottMap D D') := by
   intro f
@@ -472,7 +548,9 @@ eᵢ`, and the
 finite intersection `⋂ᵢ {h | eᵢ' ≪ h eᵢ}` is a pointwise-open neighbourhood of `g`
 inside `↟φ`. -/
 
-/-- A finite sup of elements way below `g` is way below `g`. -/
+/-- A finite sup of elements way below `g` is way below `g`.
+@isnad1 id=waybelow.1h5v.s5.0a112f54eb6f from=translated src=- shape=7432c892 vocab=e2f1ef02
+-/
 theorem wayBelow_finset_sup {ι L : Type*} [CompleteLattice L] {s : Finset ι} {f : ι → L} {g : L}
     (h : ∀ i ∈ s, f i ≪ g) : s.sup f ≪ g :=
   Finset.sup_induction (p := fun a => a ≪ g) (bot_wayBelow g) (fun _ ha _ hb => ha.sup hb) h
@@ -492,6 +570,9 @@ convergence on
     [CompleteLattice D] [CompleteLattice D'] : TopologicalSpace (ScottMap D D') :=
   generateFrom (scottMapPointwiseSubbasis D D')
 
+/--
+@isnad1 id=isopen.1h4v.s6.bca8533e0771 from=translated src=- shape=f8427d0f vocab=072d88f9
+-/
 theorem pointwiseSubbasic_isOpen (x : D) {U : Set D'} (hU : @IsOpen D' scottTopologicalSpace U) :
     @IsOpen (ScottMap D D') (scottMapPointwiseTopology D D')
       {f : ScottMap D D' | (f : D → D') x ∈ U} :=
@@ -500,7 +581,9 @@ theorem pointwiseSubbasic_isOpen (x : D) {U : Set D'} (hU : @IsOpen D' scottTopo
 /-- Each pointwise-subbasic set `{f | f x ∈ U}` (`U` Scott-open) is Scott-open in
 the lattice
 `[D → D']`, because suprema there are pointwise. This is the easy inclusion
-pointwise ⊆ Scott. -/
+pointwise ⊆ Scott.
+@isnad1 id=scottope.1h4v.s6.e586df042490 from=translated src=- shape=f8427d0f vocab=57e7e192
+-/
 theorem pointwiseSubbasic_scottOpen (x : D) {U : Set D'} (hU : ScottOpen U) :
     ScottOpen {f : ScottMap D D' | (f : D → D') x ∈ U} := by
   refine ⟨fun f f' hff' hf => hU.1 (hff' x) hf, fun F hFne hFdir hmem => ?_⟩
@@ -518,7 +601,9 @@ lies below a finite
 join of step functions `ē[eᵢ,eᵢ']` with `eᵢ' ≪ g eᵢ`. The finite joins of such
 step functions form
 a directed family with supremum `g`, so `wayBelow_sSup_iff` produces one above
-`φ`. -/
+`φ`.
+@isnad1 id=ex.3h4v.s7.582f72f62ee7 from=translated src=- shape=37840faf vocab=4b390a2f
+-/
 theorem wayBelow_le_finset_sup_step (hD : IsContinuousLattice D) (hD' : IsContinuousLattice D')
     {φ g : ScottMap D D'} (h : φ ≪ g) :
     ∃ F : Finset (D × D'), (∀ p ∈ F, (p.2 : D') ≪ (g : D → D') p.1) ∧
@@ -561,7 +646,9 @@ theorem wayBelow_le_finset_sup_step (hD : IsContinuousLattice D) (hD' : IsContin
 
 /-- **Scott 1972, Theorem 3.3(b).** The Scott (lattice) topology on `[D → D']`
 agrees with the
-topology of pointwise convergence. -/
+topology of pointwise convergence.
+@isnad1 id=eq.2h2v.s5.78961ae66ead from=translated src=- shape=993c47a8 vocab=f07edfbd
+-/
 theorem theorem_3_3_topology (hD : IsContinuousLattice D) (hD' : IsContinuousLattice D') :
     (scottTopologicalSpace : TopologicalSpace (ScottMap D D')) =
       scottMapPointwiseTopology D D' := by
@@ -592,7 +679,9 @@ theorem theorem_3_3_topology (hD : IsContinuousLattice D) (hD' : IsContinuousLat
 `D'`, the function
 space `[D → D']` is a continuous lattice (`theorem_3_3_isContinuousLattice`) whose
 Scott topology
-agrees with the topology of pointwise convergence (`theorem_3_3_topology`). -/
+agrees with the topology of pointwise convergence (`theorem_3_3_topology`).
+@isnad1 id=and.2h2v.s5.61ce0f65dde0 from=translated src=- shape=7678a0e5 vocab=f07edfbd
+-/
 theorem theorem_3_3 (hD : IsContinuousLattice D) (hD' : IsContinuousLattice D') :
     IsContinuousLattice (ScottMap D D') ∧
       (scottTopologicalSpace : TopologicalSpace (ScottMap D D')) = scottMapPointwiseTopology D D' :=
@@ -600,12 +689,18 @@ theorem theorem_3_3 (hD : IsContinuousLattice D) (hD' : IsContinuousLattice D') 
 
 /-! ### Corollary 3.4 -/
 
+/--
+@isnad1 id=isopen.1h4v.s6.b801674ff466 from=translated src=- shape=3b4ca533 vocab=b8002920
+-/
 theorem scottFunctionSubbasis_isOpen_scott {x : D} {U : Set D'}
     (hU : @IsOpen D' scottTopologicalSpace U) :
     @IsOpen (ScottC D D') (@scottFunctionTopology D D' scottTopologicalSpace scottTopologicalSpace)
       {f : ScottC D D' | f x ∈ U} :=
   isOpen_generateFrom_of_mem (s := {f : ScottC D D' | f x ∈ U}) ⟨x, U, hU, rfl⟩
 
+/--
+@isnad1 id=continuo.0h3v.s5.c3adbe6a4e7e from=translated src=- shape=803451a8 vocab=0a9e095a
+-/
 theorem corollary_3_4_eval_on_C (x : D) :
     @Continuous (ScottC D D') D'
       (@scottFunctionTopology D D' scottTopologicalSpace scottTopologicalSpace)
@@ -616,7 +711,9 @@ theorem corollary_3_4_eval_on_C (x : D) :
 continuous on `[D → D']`
 (with Scott topologies on `D` and `D'`); this is one half of the
 separate-continuity input to
-joint continuity. -/
+joint continuity.
+@isnad1 id=continuo.0h3v.s5.c3adbe6a4e7e from=translated src=- shape=803451a8 vocab=0a9e095a
+-/
 theorem corollary_3_4 (x : D) :
     @Continuous (ScottC D D') D'
       (@scottFunctionTopology D D' scottTopologicalSpace scottTopologicalSpace)
@@ -629,7 +726,9 @@ D → D'`,
 check separate
 Scott-continuity: in `x` (with `f` fixed) it is `f`'s own continuity, and in `f`
 (with `x` fixed)
-it is the pointwise formula for suprema in `[D → D']` (`ScottMap.sSup_apply`). -/
+it is the pointwise formula for suprema in `[D → D']` (`ScottMap.sSup_apply`).
+@isnad1 id=preserve.0h2v.s6.479dd89482aa from=translated src=- shape=b554d5c3 vocab=49f04102
+-/
 theorem corollary_3_4_preservesDirectedSup :
     PreservesDirectedSup (fun p : ScottMap D D' × D => (p.1 : D → D') p.2) := by
   rw [proposition_2_6]
@@ -647,7 +746,9 @@ is (jointly) Scott-continuous. Via Theorem 3.3(b) and Proposition 2.9(b) the Sco
 topology of the
 product lattice is the product of the pointwise topology on `[D → D']` and the
 Scott topology on
-`D`, so this is exactly joint continuity for Scott's product topology. -/
+`D`, so this is exactly joint continuity for Scott's product topology.
+@isnad1 id=continuo.0h2v.s6.c6a7e8987c9d from=translated src=- shape=af100beb vocab=56d1bccd
+-/
 theorem corollary_3_4_jointly_continuous :
     @Continuous (ScottMap D D' × D) D' scottTopologicalSpace scottTopologicalSpace
       (fun p : ScottMap D D' × D => (p.1 : D → D') p.2) :=
@@ -655,6 +756,9 @@ theorem corollary_3_4_jointly_continuous :
 
 /-! ### Proposition 3.5 (currying) -/
 
+/--
+@isnad1 id=eq.1h4v.s6.6bd2ea0ad55a from=translated src=- shape=38ae818f vocab=07838431
+-/
 theorem sSup_image_prod_mk_left (x : D) (S : Set D') (hS : S.Nonempty) :
     sSup (Set.image (fun y => (x, y)) S) = (x, sSup S) := by
   have himage : Set.image (fun y => (x, y)) S = ({x} : Set D) ×ˢ S := by
@@ -667,6 +771,9 @@ theorem sSup_image_prod_mk_left (x : D) (S : Set D') (hS : S.Nonempty) :
     simp_all
   rw [himage, sSup_prod (hs := ⟨x, Set.mem_singleton x⟩) (ht := hS), hx]
 
+/--
+@isnad1 id=preserve.0h5v.s6.a1a1b366e978 from=translated src=- shape=b309feea vocab=5d2e9f63
+-/
 theorem curry_right_preservesDirectedSup (f : ScottMap (D × D') D'') (x : D) :
     PreservesDirectedSup (fun y => f (x, y)) := by
   intro S hS hSdir
@@ -690,6 +797,9 @@ Scott-continuous. -/
 noncomputable def scottLambdaAt (f : ScottMap (D × D') D'') (x : D) : ScottMap D' D'' :=
   ⟨fun y => f (x, y), continuous_of_preservesDirectedSup (curry_right_preservesDirectedSup f x)⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.510ae1f45cae from=translated src=- shape=468dd00c vocab=07838431
+-/
 theorem sSup_image_prod_mk_right (y : D') (S : Set D) (hS : S.Nonempty) :
     sSup (Set.image (fun x => (x, y)) S) = (sSup S, y) := by
   have himage : Set.image (fun x => (x, y)) S = S ×ˢ ({y} : Set D') := by
@@ -704,7 +814,9 @@ theorem sSup_image_prod_mk_right (y : D') (S : Set D) (hS : S.Nonempty) :
 
 /-- Currying in the `x`-variable: `x ↦ f (x, y)` is Scott-continuous (used for
 continuity of
-`lambda f` as a map `D → [D' → D'']`). -/
+`lambda f` as a map `D → [D' → D'']`).
+@isnad1 id=preserve.0h5v.s6.414e6446164f from=translated src=- shape=fac64c8e vocab=5d2e9f63
+-/
 theorem curry_left_preservesDirectedSup (f : ScottMap (D × D') D'') (y : D') :
     PreservesDirectedSup (fun x => f (x, y)) := by
   intro S hS hSdir
@@ -726,7 +838,9 @@ theorem curry_left_preservesDirectedSup (f : ScottMap (D × D') D'') (y : D') :
 /-- The outer half of currying: `x ↦ (y ↦ f (x, y))` preserves directed suprema
 (so `lambda f` is a
 Scott map `D → [D' → D'']`). Equality in `[D' → D'']` is pointwise, reducing to
-`curry_left`. -/
+`curry_left`.
+@isnad1 id=preserve.0h4v.s5.484d82f8315c from=translated src=- shape=22944d71 vocab=ca470d3a
+-/
 theorem lambda_outer_preservesDirectedSup (f : ScottMap (D × D') D'') :
     PreservesDirectedSup (fun x => scottLambdaAt f x) := by
   intro S hS hSdir
@@ -745,6 +859,9 @@ noncomputable def scottLambda (f : ScottMap (D × D') D'') : ScottMap D (ScottMa
   ⟨fun x => scottLambdaAt f x,
     continuous_of_preservesDirectedSup (lambda_outer_preservesDirectedSup f)⟩
 
+/--
+@isnad1 id=eq.0h6v.s7.baba906cf955 from=translated src=- shape=747a8d4b vocab=ac68735a
+-/
 @[simp] theorem scottLambda_apply (f : ScottMap (D × D') D'') (x : D) (y : D') :
     ((scottLambda f x : ScottMap D' D'') : D' → D'') y = (f : (D × D') → D'') (x, y) :=
   rfl
@@ -752,7 +869,9 @@ noncomputable def scottLambda (f : ScottMap (D × D') D'') : ScottMap D (ScottMa
 /-- `lambda` preserves directed suprema: both sides evaluate, pointwise at `(x,
 y)`, to
 `⊔ {f (x, y) | f ∈ 𝓕}`, since suprema in every function lattice involved are
-pointwise. -/
+pointwise.
+@isnad1 id=preserve.0h3v.s6.a10091986d07 from=translated src=- shape=ede589c1 vocab=7bb7af94
+-/
 theorem proposition_3_5_preservesDirectedSup :
     PreservesDirectedSup
       (scottLambda : ScottMap (D × D') D'' → ScottMap D (ScottMap D' D'')) := by
@@ -766,7 +885,9 @@ theorem proposition_3_5_preservesDirectedSup :
   congr 1
 
 /-- **Scott 1972, Proposition 3.5.** Functional abstraction `lambda` is
-Scott-continuous. -/
+Scott-continuous.
+@isnad1 id=continuo.0h3v.s6.934e70004c13 from=translated src=- shape=ede589c1 vocab=2fe8b900
+-/
 theorem proposition_3_5 :
     @Continuous (ScottMap (D × D') D'') (ScottMap D (ScottMap D' D''))
       scottTopologicalSpace scottTopologicalSpace scottLambda :=
@@ -802,7 +923,9 @@ noncomputable def ambientSSup (R : IsContinuousLatticeRetraction D D') (S : Set 
 
 /-- **Scott 1972, Prop 2.10 / March 1972 correction (p. 135).** For directed `S ⊆
 D`,
-`j(⊔S′) = ⊔S`: the retraction sends the ambient join back to the subspace join. -/
+`j(⊔S′) = ⊔S`: the retraction sends the ambient join back to the subspace join.
+@isnad1 id=eq.2h4v.s6.410c5f121d75 from=translated src=- shape=cfb57e06 vocab=2a2698e8
+-/
 theorem retr_ambientSSup_eq_sSup (R : IsContinuousLatticeRetraction D D') (S : Set D)
     (hS : S.Nonempty) (hdir : DirectedOn (· ≤ ·) S) :
     R.retr (ambientSSup R S) = sSup S := by
@@ -818,7 +941,9 @@ theorem retr_ambientSSup_eq_sSup (R : IsContinuousLatticeRetraction D D') (S : S
   rw [Set.image_image, Set.image_congr fun a _ => R.retr_incl a]
   simp
 
-/-- The inclusion of a retraction preserves directed suprema (it is a Scott map). -/
+/-- The inclusion of a retraction preserves directed suprema (it is a Scott map).
+@isnad1 id=preserve.0h3v.s5.31f8aab6ea12 from=translated src=- shape=cb8f8eb5 vocab=9e2187d6
+-/
 theorem incl_preservesDirectedSup (R : IsContinuousLatticeRetraction D D') :
     PreservesDirectedSup (R.incl : D → D') :=
   fun _ hS hSdir => R.incl.preservesDirectedSup_coe _ hS hSdir
@@ -831,7 +956,9 @@ preimage `i⁻¹V'` of an ambient Scott-open witness `V'` (Scott-open because `i
 preserves directed
 suprema); for `z ∈ i⁻¹V'` we have `x' ⊑ i(z)`, hence `j(x') ⊑ j(i(z)) = z`. No
 projection
-hypothesis is needed — `j ∘ i = id` and monotonicity suffice. -/
+hypothesis is needed — `j ∘ i = id` and monotonicity suffice.
+@isnad1 id=waybelow.1h5v.s6.44ae5ea52c0b from=translated src=- shape=3cd1a8bf vocab=370accbc
+-/
 theorem retr_wayBelow_of_wayBelow_incl (R : IsContinuousLatticeRetraction D D')
     {d : D} {x' : D'} (hx' : x' ≪ R.incl d) : R.retr x' ≪ d := by
   obtain ⟨U', hU'open, hd_in, hU'sub⟩ := hx'
@@ -846,7 +973,9 @@ theorem retr_wayBelow_of_wayBelow_incl (R : IsContinuousLatticeRetraction D D')
 is a directed
 family whose supremum (computed in `D`) is `d`. This is the identity `j(⊔S′) = ⊔S`
 applied to
-`S = {j(x') : x' ≪ i(d)}`, combined with continuity of `D'`. -/
+`S = {j(x') : x' ≪ i(d)}`, combined with continuity of `D'`.
+@isnad1 id=eq.1h4v.s6.1d66dda88b9e from=translated src=- shape=9052fa07 vocab=8006faaf
+-/
 theorem sSup_image_retr_wayBelow (R : IsContinuousLatticeRetraction D D')
     (hD' : IsContinuousLattice D') (d : D) :
     sSup (Set.image (R.retr : D' → D) {x' | x' ≪ R.incl d}) = d := by
@@ -854,10 +983,16 @@ theorem sSup_image_retr_wayBelow (R : IsContinuousLatticeRetraction D D')
   have hdir : DirectedOn (· ≤ ·) {x' : D' | x' ≪ R.incl d} := directedOn_wayBelow _
   rw [← R.retr.preservesDirectedSup_coe _ hne hdir, hD'.sSup_wayBelow (R.incl d), R.retr_incl d]
 
+/--
+@isnad1 id=nonempty.0h4v.s6.e53ed35c625b from=translated src=- shape=cf3d2e68 vocab=dd126540
+-/
 theorem image_retr_wayBelow_nonempty (R : IsContinuousLatticeRetraction D D') (d : D) :
     (Set.image (R.retr : D' → D) {x' | x' ≪ R.incl d}).Nonempty :=
   ⟨R.retr ⊥, ⊥, bot_wayBelow _, rfl⟩
 
+/--
+@isnad1 id=directed.0h4v.s6.78c770995f36 from=translated src=- shape=3032eaf2 vocab=914b0a6f
+-/
 theorem image_retr_wayBelow_directed (R : IsContinuousLatticeRetraction D D') (d : D) :
     DirectedOn (· ≤ ·) (Set.image (R.retr : D' → D) {x' | x' ≪ R.incl d}) := by
   rintro _ ⟨a, ha, rfl⟩ _ ⟨b, hb, rfl⟩
@@ -877,7 +1012,9 @@ the retraction `j` (which preserves this directed supremum) gives `d = ⊔{j(x')
 x' ≪ i(d)}` in
 `D`, and each `j(x') ≪ d` by `retr_wayBelow_of_wayBelow_incl`. Hence any upper
 bound of
-`{x | x ≪ d}` dominates `d`, so `d = ⊔{x | x ≪ d}`. -/
+`{x | x ≪ d}` dominates `d`, so `d = ⊔{x | x ≪ d}`.
+@isnad1 id=iscontin.1h3v.s4.bba5db2c01ad from=translated src=- shape=96a879ac vocab=34d1e02d
+-/
 theorem proposition_2_10_a (R : IsContinuousLatticeRetraction D D')
     (hD' : IsContinuousLattice D') : IsContinuousLattice D := by
   intro d
@@ -899,7 +1036,9 @@ of `D`'s Scott
   `U` at some `j(x')`, and `i⁻¹(↟x') ⊆ U` since `x' ≪ i(z) ⟹ j(x') ⊑ z` with `U`
   upper. Each such
   basic set is induced-open by construction, so every Scott-open of `D` is
-  induced-open. -/
+  induced-open.
+@isnad1 id=eq.1h3v.s5.3eab961f9a87 from=translated src=- shape=988b3703 vocab=271d86ba
+-/
 theorem proposition_2_10_b (R : IsContinuousLatticeRetraction D D')
     (hD' : IsContinuousLattice D') :
     (scottTopologicalSpace : TopologicalSpace D) =
@@ -931,7 +1070,9 @@ theorem proposition_2_10_b (R : IsContinuousLatticeRetraction D D')
 lattice is a
 continuous lattice (`proposition_2_10_a`) whose Scott topology agrees with the
 subspace topology
-(`proposition_2_10_b`). -/
+(`proposition_2_10_b`).
+@isnad1 id=and.1h3v.s5.699b619637e9 from=translated src=- shape=9dddc3ee vocab=271d86ba
+-/
 theorem proposition_2_10 (R : IsContinuousLatticeRetraction D D')
     (hD' : IsContinuousLattice D') :
     IsContinuousLattice D ∧
@@ -1012,21 +1153,30 @@ open Finset
 namespace IsContinuousLatticeProjection
 
 /-- **Scott 1972, Proposition 3.10(ii).** The inclusion map of a projection is
-injective. -/
+injective.
+@isnad1 id=eq.1h5v.s6.11277db6bb63 from=translated src=- shape=099c7592 vocab=012e0ac1
+-/
 theorem incl_injective (P : IsContinuousLatticeProjection D D') {x y : D} (h : P.incl x =
   P.incl y) : x = y := by
   rw [← P.retr_incl x, ← P.retr_incl y, h]
 
+/--
+@isnad1 id=eq.0h3v.s6.2f697de56dd5 from=translated src=- shape=7b89f990 vocab=3e49c079
+-/
 theorem retr_bot (P : IsContinuousLatticeProjection D D') : (P.retr : D' → D) ⊥ = ⊥ := by
   have hle : (⊥ : D') ≤ P.incl (⊥ : D) := bot_le
   have heq : (P.retr : D' → D) (P.incl (⊥ : D)) = (⊥ : D) := P.retr_incl (d := (⊥ : D))
   exact le_antisymm (le_trans (P.retr.monotone hle) (le_of_eq heq)) bot_le
 
-/-- **Scott 1972, Proposition 3.10(i), empty case.** `i(⊥) = ⊥`. -/
+/-- **Scott 1972, Proposition 3.10(i), empty case.** `i(⊥) = ⊥`.
+@isnad1 id=eq.0h3v.s6.3a882d4c5cc2 from=translated src=- shape=df79dfd2 vocab=80c361ae
+-/
 theorem incl_bot (P : IsContinuousLatticeProjection D D') : P.incl (⊥ : D) = ⊥ :=
   le_antisymm (by simpa [retr_bot P] using P.incl_retr_le (⊥ : D')) bot_le
 
-/-- **Scott 1972, Proposition 3.10(i), binary case.** `i(x ⊔ y) = i(x) ⊔ i(y)`. -/
+/-- **Scott 1972, Proposition 3.10(i), binary case.** `i(x ⊔ y) = i(x) ⊔ i(y)`.
+@isnad1 id=eq.0h5v.s7.73ce8c141fcd from=translated src=- shape=5142fdc1 vocab=e177e852
+-/
 theorem incl_sup (P : IsContinuousLatticeProjection D D') (x y : D) :
     P.incl (x ⊔ y) = P.incl x ⊔ P.incl y := by
   apply le_antisymm
@@ -1037,6 +1187,9 @@ theorem incl_sup (P : IsContinuousLatticeProjection D D') (x y : D) :
     exact le_trans (P.incl.monotone (sup_le hx hy)) (P.incl_retr_le (P.incl x ⊔ P.incl y))
   · exact sup_le (P.incl.monotone le_sup_left) (P.incl.monotone le_sup_right)
 
+/--
+@isnad1 id=eq.0h4v.s6.3ded0c418e0e from=translated src=- shape=4b630d99 vocab=ba3f6a52
+-/
 theorem incl_finset_sup (P : IsContinuousLatticeProjection D D') (T : Finset D) :
     P.incl (T.sup (fun x => x)) = T.sup (fun x => P.incl x) := by
   classical
@@ -1051,21 +1204,36 @@ theorem incl_finset_sup (P : IsContinuousLatticeProjection D D') (T : Finset D) 
 def finsetSupOf (S : Set D) : Set D :=
   { z | ∃ T : Finset D, (∀ x ∈ T, x ∈ S) ∧ z = T.sup id }
 
+/--
+@isnad1 id=mem.1h3v.s4.b432102d51c4 from=translated src=- shape=95b6cb2f vocab=28fd8177
+-/
 theorem mem_finsetSupOf_of_mem {S : Set D} {x : D} (hx : x ∈ S) :
     x ∈ finsetSupOf S :=
   ⟨{x}, by simp [hx], by simp⟩
 
+/--
+@isnad1 id=le.0h2v.s5.d23c05421ffc from=translated src=- shape=3a319ae8 vocab=825f533f
+-/
 theorem le_sSup_finsetSupOf (S : Set D) : sSup S ≤ sSup (finsetSupOf S) :=
   sSup_le fun _ hx => le_sSup (mem_finsetSupOf_of_mem hx)
 
+/--
+@isnad1 id=le.0h2v.s5.c925afc78395 from=translated src=- shape=660825d4 vocab=825f533f
+-/
 theorem sSup_le_finsetSupOf (S : Set D) : sSup (finsetSupOf S) ≤ sSup S :=
   sSup_le fun z hz => by
     obtain ⟨T, hTS, rfl⟩ := hz
     exact Finset.sup_le fun t ht => le_sSup (hTS t ht)
 
+/--
+@isnad1 id=eq.0h2v.s4.80b9cd5a4fd4 from=translated src=- shape=3a319ae8 vocab=ed4313bb
+-/
 theorem sSup_finsetSupOf (S : Set D) : sSup S = sSup (finsetSupOf S) :=
   le_antisymm (le_sSup_finsetSupOf S) (sSup_le_finsetSupOf S)
 
+/--
+@isnad1 id=directed.0h2v.s4.bff9d9a84259 from=translated src=- shape=689a3541 vocab=8cf5b73b
+-/
 theorem directedOn_finsetSupOf (S : Set D) :
     DirectedOn (· ≤ ·) (finsetSupOf S) := by
   classical
@@ -1079,11 +1247,16 @@ theorem directedOn_finsetSupOf (S : Set D) :
   simp only [Finset.mem_union] at hx
   exact hx.elim (hT₁ x) (hT₂ x)
 
+/--
+@isnad1 id=directed.0h2v.s5.4f758fbcca44 from=translated src=- shape=726e7c2e vocab=be622dff
+-/
 theorem directedOn_wayBelow (a : D) : DirectedOn (· ≤ ·) { z | z ≪ a } := by
   intro p hp q hq
   exact ⟨p ⊔ q, WayBelow.sup hp hq, le_sup_left, le_sup_right⟩
 
-/-- **Scott 1972, Proposition 3.10(i).** Projections preserve arbitrary suprema. -/
+/-- **Scott 1972, Proposition 3.10(i).** Projections preserve arbitrary suprema.
+@isnad1 id=eq.0h4v.s6.22ba9570e205 from=translated src=- shape=1c36619b vocab=27a01f9c
+-/
 theorem incl_sSup (P : IsContinuousLatticeProjection D D') (S : Set D) :
     P.incl (sSup S) = sSup (Set.image (P.incl : D → D') S) := by
   rcases S.eq_empty_or_nonempty with hS | hS
@@ -1112,7 +1285,9 @@ theorem incl_sSup (P : IsContinuousLatticeProjection D D') (S : Set D) :
       exact le_sSup (Set.mem_image_of_mem (P.incl : D → D') (mem_finsetSupOf_of_mem hxS))
 
 /-- **Scott 1972, Proposition 3.10(iii).** Projections preserve the way-below
-relation. -/
+relation.
+@isnad1 id=waybelow.2h5v.s6.73726ddacd5f from=translated src=- shape=8c3c708b vocab=de7e5218
+-/
 theorem incl_wayBelow (P : IsContinuousLatticeProjection D D') (hD' : IsContinuousLattice D')
     {x y : D} (h : x ≪ y) : @WayBelow D' _ (P.incl x) (P.incl y) := by
   set W : Set D' := { z' | @WayBelow D' _ z' (P.incl y) }
@@ -1141,7 +1316,9 @@ theorem incl_wayBelow (P : IsContinuousLatticeProjection D D') (hD' : IsContinuo
 
 /-- **Scott 1972, Proposition 3.10(i)–(iii), bundled.** The inclusion `i` of a
 projection preserves
-arbitrary suprema, is injective, and preserves the way-below relation. -/
+arbitrary suprema, is injective, and preserves the way-below relation.
+@isnad1 id=and.1h3v.s7.567e263780e5 from=translated src=- shape=0b84060c vocab=747928f7
+-/
 theorem proposition_3_10_forward (P : IsContinuousLatticeProjection D D')
     (hD' : IsContinuousLattice D') :
     (∀ S : Set D, (P.incl : D → D') (sSup S) = sSup (Set.image (P.incl : D → D') S))
@@ -1156,7 +1333,9 @@ be Scott's formula `j(x') = ⊔ { x | i(x) ⊑ x' }`. `≤`: `j(x')` itself sati
 `i(j x') ⊑ x'`
 (by `i ∘ j ⊑ id`), so it is a member of the set; `≥`: each member `x` (with `i x ⊑
 x'`) satisfies
-`x = j(i x) ⊑ j(x')` by `j ∘ i = id` and monotonicity. -/
+`x = j(i x) ⊑ j(x')` by `j ∘ i = id` and monotonicity.
+@isnad1 id=eq.0h4v.s6.d6d2de9cf333 from=translated src=- shape=2dd6c9d1 vocab=cb17d96e
+-/
 theorem retr_eq_sSup (P : IsContinuousLatticeProjection D D') (x' : D') :
     (P.retr : D' → D) x' = sSup {x | (P.incl : D → D') x ≤ x'} := by
   apply le_antisymm
@@ -1181,11 +1360,16 @@ x' }`. -/
 noncomputable def converseRetr (i : D → D') (x' : D') : D :=
   sSup {x | i x ≤ x'}
 
+/--
+@isnad1 id=monotone.0h3v.s5.6b2c3e71b686 from=translated src=- shape=da0276b9 vocab=e8af7f1b
+-/
 theorem converseRetr_mono (i : D → D') : Monotone (converseRetr i) := by
   intro a b hab
   exact sSup_le_sSup fun _ hx => le_trans hx hab
 
-/-- From (i): `i` preserves binary joins (Scott checks (i) on two-element sets). -/
+/-- From (i): `i` preserves binary joins (Scott checks (i) on two-element sets).
+@isnad1 id=eq.1h5v.s6.ddfcbf89ed70 from=translated src=- shape=71e71a6e vocab=9bf54a1c
+-/
 theorem incl_sup_of_preservesSSup (hi : ∀ S : Set D, i (sSup S) = sSup (i '' S)) (x y : D) :
     i (x ⊔ y) = i x ⊔ i y := by
   calc i (x ⊔ y) = i (sSup {x, y}) := by rw [sSup_pair]
@@ -1193,7 +1377,9 @@ theorem incl_sup_of_preservesSSup (hi : ∀ S : Set D, i (sSup S) = sSup (i '' S
     _ = sSup {i x, i y} := by rw [Set.image_pair]
     _ = i x ⊔ i y := sSup_pair
 
-/-- From (i): `i` is monotone. -/
+/-- From (i): `i` is monotone.
+@isnad1 id=monotone.1h3v.s5.62c8a5710102 from=translated src=- shape=0cef0559 vocab=ca6c85c2
+-/
 theorem incl_mono_of_preservesSSup (hi : ∀ S : Set D, i (sSup S) = sSup (i '' S)) :
     Monotone i := by
   intro x y hxy
@@ -1201,19 +1387,25 @@ theorem incl_mono_of_preservesSSup (hi : ∀ S : Set D, i (sSup S) = sSup (i '' 
   simp_all
 
 /-- From (i)+(ii): `i` is order-reflecting (`x ⊑ y ↔ i x ⊑ i y`), since `x ⊑ y ↔ x
-⊔ y = y`. -/
+⊔ y = y`.
+@isnad1 id=le.3h5v.s6.2dd2200547a4 from=translated src=- shape=5af1e7f9 vocab=a44a3330
+-/
 theorem le_of_incl_le (hi : ∀ S : Set D, i (sSup S) = sSup (i '' S))
     (hinj : Function.Injective i) {x y : D} (h : i x ≤ i y) : x ≤ y := by
   have h1 : i (x ⊔ y) = i y := by rw [incl_sup_of_preservesSSup hi, sup_eq_right.mpr h]
   exact sup_eq_right.mp (hinj h1)
 
-/-- `i ∘ j ⊑ id` (uses only (i)). -/
+/-- `i ∘ j ⊑ id` (uses only (i)).
+@isnad1 id=le.1h4v.s6.4bad7fe6a611 from=translated src=- shape=dc49475a vocab=4672eb49
+-/
 theorem incl_converseRetr_le (hi : ∀ S : Set D, i (sSup S) = sSup (i '' S)) (x' : D') :
     i (converseRetr i x') ≤ x' := by
   change i (sSup {x | i x ≤ x'}) ≤ x'
   simp_all
 
-/-- `j ∘ i = id` (uses (i)+(ii)): `{x | i x ⊑ i y} = Iic y`, whose join is `y`. -/
+/-- `j ∘ i = id` (uses (i)+(ii)): `{x | i x ⊑ i y} = Iic y`, whose join is `y`.
+@isnad1 id=eq.2h4v.s5.6acbc77cd7e4 from=translated src=- shape=95c854a7 vocab=cfc3d601
+-/
 theorem converseRetr_incl (hi : ∀ S : Set D, i (sSup S) = sSup (i '' S))
     (hinj : Function.Injective i) (y : D) : converseRetr i (i y) = y := by
   have hset : {x | i x ≤ i y} = Set.Iic y := by
@@ -1229,7 +1421,9 @@ gives `⊔ j''S' ⊑ j(⊔S')`; conversely if `i x ⊑ ⊔S'` then for every `z 
 `i z ≪ i x ⊑ ⊔S'`,
 so `i z ⊑ x'` for some `x' ∈ S'` (directedness), whence `z ⊑ j(x') ⊑ ⊔ j''S'`;
 continuity of `D`
-then gives `x ⊑ ⊔ j''S'`. -/
+then gives `x ⊑ ⊔ j''S'`.
+@isnad1 id=preserve.3h3v.s6.93946fc6eff1 from=translated src=- shape=c503cbe4 vocab=a8db210e
+-/
 theorem converseRetr_preservesDirectedSup
     (_hi : ∀ S : Set D, i (sSup S) = sSup (i '' S))
     (hwb : ∀ {x y : D}, x ≪ y → i x ≪ i y) (hD : IsContinuousLattice D) :
@@ -1268,7 +1462,9 @@ satisfies (i) preservation of arbitrary suprema, (ii) injectivity, and (iii)
 preservation of `≪`,
 then there is a continuous `j` making `D` a projection of `D'` via `i`, with `j`
 given by Scott's
-formula (iv) `j(x') = ⊔ { x | i(x) ⊑ x' }`. -/
+formula (iv) `j(x') = ⊔ { x | i(x) ⊑ x' }`.
+@isnad1 id=ex.4h3v.s7.ff0863c2f3bb from=translated src=- shape=a5bbdde9 vocab=a921aac7
+-/
 theorem proposition_3_10_converse
     (hi : ∀ S : Set D, i (sSup S) = sSup (i '' S)) (hinj : Function.Injective i)
     (hwb : ∀ {x y : D}, x ≪ y → i x ≪ i y) (hD : IsContinuousLattice D) :
@@ -1296,10 +1492,16 @@ noncomputable def scottSubspaceExtend (e : X → Y) (f : X → D) (y : Y) : D :=
   sSup { d | ∃ U, @IsOpen Y scottTopologicalSpace U ∧ y ∈ U ∧ d = scottSubspaceExtendInf e f U }
 
 omit [TopologicalSpace Y] in
+/--
+@isnad1 id=le.1h5v.s6.9252e4791fb7 from=translated src=- shape=8bd54c99 vocab=70eb980c
+-/
 theorem scottSubspaceExtendInf_le_of_mem {f' : ScottMap Y D} {U : Set Y} {y : Y}
     (hyU : y ∈ U) : sInf (Set.image (f' : Y → D) U) ≤ f' y :=
   sInf_le (Set.mem_image_of_mem _ hyU)
 
+/--
+@isnad1 id=le.1h5v.s6.0497c3d940bd from=translated src=- shape=45a73113 vocab=c92a9306
+-/
 theorem sInf_image_le_sInf_image_of_subset {α : Type*} {f : α → D} {S T : Set α}
     (hST : S ⊆ T) : sInf (Set.image f T) ≤ sInf (Set.image f S) :=
   sInf_le_sInf fun _ hd => by
@@ -1307,6 +1509,9 @@ theorem sInf_image_le_sInf_image_of_subset {α : Type*} {f : α → D} {S T : Se
     exact ⟨s, hST hs, rfl⟩
 
 omit [TopologicalSpace Y] in
+/--
+@isnad1 id=eq.1h4v.s6.86a50da3aef2 from=translated src=- shape=a06f4c50 vocab=e705360f
+-/
 theorem scottMap_eq_sSup_openInfs (hD : IsContinuousLattice D) (f' : ScottMap Y D) (y : Y) :
     (f' : Y → D) y =
       sSup { d | ∃ U, @IsOpen Y scottTopologicalSpace U ∧ y ∈ U ∧
@@ -1338,6 +1543,9 @@ theorem scottMap_eq_sSup_openInfs (hD : IsContinuousLattice D) (f' : ScottMap Y 
     exact scottSubspaceExtendInf_le_of_mem (f' := f') hyU
 
 omit [TopologicalSpace X] [TopologicalSpace Y] in
+/--
+@isnad1 id=eq.1h7v.s6.b9782583348a from=translated src=- shape=f35227e1 vocab=7a6cd704
+-/
 theorem scottSubspaceExtendInf_eq_of_comp {e : X → Y} {f : X → D} {U : Set Y}
     (f' : ScottMap Y D) (h : ∀ x, f' (e x) = f x) :
     scottSubspaceExtendInf e f U = sInf (Set.image (f' : Y → D) (Set.image e Set.univ ∩ U)) := by
@@ -1350,7 +1558,9 @@ theorem scottSubspaceExtendInf_eq_of_comp {e : X → Y} {f : X → D} {U : Set Y
 topology on `Y`) is
 the maximal extension along a subspace embedding. The faithful statement
 (arbitrary topology on
-`Y`) is `proposition_3_8` in `Constructions.lean`. -/
+`Y`) is `proposition_3_8` in `Constructions.lean`.
+@isnad1 id=le.3h7v.s6.e7ba11c0bd8b from=translated src=- shape=a87fb81f vocab=3722214a
+-/
 theorem scottSubspaceExtend_maximal (hD : IsContinuousLattice D) (e : X → Y) (_he : IsEmbedding e)
     (f : X → D) (f' : ScottMap Y D) (h_ext : ∀ x, f' (e x) = f x) (y : Y) :
     (f' : Y → D) y ≤ scottSubspaceExtend e f y := by
@@ -1375,6 +1585,9 @@ theorem scottSubspaceExtend_maximal (hD : IsContinuousLattice D) (e : X → Y) (
   exact le_trans (le_of_eq hEq) hmain
 
 omit [TopologicalSpace X] [TopologicalSpace Y] [CompleteLattice Y] in
+/--
+@isnad1 id=le.1h7v.s6.5d2d14161d80 from=translated src=- shape=27a4b458 vocab=918b2138
+-/
 theorem scottSubspaceExtendInf_mono {e : X → Y} {f g₀ : X → D} (hfg : ∀ x, f x ≤ g₀ x) (U : Set Y) :
     scottSubspaceExtendInf e f U ≤ scottSubspaceExtendInf e g₀ U := by
   apply le_sInf
@@ -1383,6 +1596,9 @@ theorem scottSubspaceExtendInf_mono {e : X → Y} {f g₀ : X → D} (hfg : ∀ 
   exact le_trans (sInf_le ⟨x, hxU, rfl⟩) (hfg x)
 
 omit [TopologicalSpace X] [TopologicalSpace Y] in
+/--
+@isnad1 id=le.1h7v.s6.d421e7840f76 from=translated src=- shape=661e603d vocab=b5124b4d
+-/
 theorem scottSubspaceExtend_mono {e : X → Y} {f g₀ : X → D} (hfg : ∀ x, f x ≤ g₀ x) (y : Y) :
     scottSubspaceExtend e f y ≤ scottSubspaceExtend e g₀ y := by
   apply sSup_le
@@ -1394,6 +1610,9 @@ theorem scottSubspaceExtend_mono {e : X → Y} {f g₀ : X → D} (hfg : ∀ x, 
   exact le_trans (scottSubspaceExtendInf_mono hfg U) (le_sSup hmem)
 
 omit [CompleteLattice Y] [TopologicalSpace X] [TopologicalSpace Y] in
+/--
+@isnad1 id=eq.1h7v.s5.f67b155ed129 from=translated src=- shape=27a4b458 vocab=4b4849b4
+-/
 theorem scottSubspaceExtendInf_eq_of_ext {e : X → Y}
     {f g' : X → D} (h : ∀ x, f x = g' x) (U : Set Y) :
     scottSubspaceExtendInf e f U = scottSubspaceExtendInf e g' U := by
@@ -1401,6 +1620,9 @@ theorem scottSubspaceExtendInf_eq_of_ext {e : X → Y}
   simp_all
 
 omit [TopologicalSpace X] [TopologicalSpace Y] in
+/--
+@isnad1 id=eq.1h7v.s5.1ab9a4d97431 from=translated src=- shape=661e603d vocab=dd15cacd
+-/
 theorem scottSubspaceExtend_eq_of_ext {e : X → Y} {f g' : X → D} (h : ∀ x, f x = g' x) (y : Y) :
     scottSubspaceExtend e f y = scottSubspaceExtend e g' y := by
   unfold scottSubspaceExtend
@@ -1409,6 +1631,9 @@ theorem scottSubspaceExtend_eq_of_ext {e : X → Y} {f g' : X → D} (h : ∀ x,
   simp [scottSubspaceExtendInf_eq_of_ext h]
 
 omit [CompleteLattice Y] [TopologicalSpace X] [TopologicalSpace Y] in
+/--
+@isnad1 id=le.0h8v.s6.eaf0b78064b6 from=translated src=- shape=0f07ba5a vocab=82903cfe
+-/
 theorem scottSubspaceExtendInf_mono_retr {e : X → Y} {g : X → D'}
     (P : IsContinuousLatticeProjection D D') (U : Set Y) :
     P.retr (scottSubspaceExtendInf e g U) ≤ scottSubspaceExtendInf e (fun x => P.retr (g x)) U := by
@@ -1419,6 +1644,9 @@ theorem scottSubspaceExtendInf_mono_retr {e : X → Y} {g : X → D'}
   exact (P.retr.monotone (sInf_le (Set.mem_image_of_mem g hx))).trans le_rfl
 
 omit [CompleteLattice Y] [TopologicalSpace X] [TopologicalSpace Y] in
+/--
+@isnad1 id=le.1h9v.s7.9024dfcb62e2 from=translated src=- shape=332df9a3 vocab=f4de11bf
+-/
 theorem scottSubspaceExtendInf_mono_incl {e : X → Y} {f : X → D} {g : X → D'}
     (P : IsContinuousLatticeProjection D D') (hfg : ∀ x, f x = P.retr (g x)) (U : Set Y) :
     scottSubspaceExtendInf e (fun x => P.incl (f x)) U ≤ scottSubspaceExtendInf e g U := by
@@ -1432,6 +1660,9 @@ theorem scottSubspaceExtendInf_mono_incl {e : X → Y} {f : X → D} {g : X → 
   exact le_trans (sInf_le hmem) hincl
 
 omit [CompleteLattice Y] [TopologicalSpace X] [TopologicalSpace Y] in
+/--
+@isnad1 id=le.0h8v.s6.50397e453df9 from=translated src=- shape=dc3e029e vocab=55d27dc9
+-/
 theorem scottSubspaceExtendInf_mono_incl_apply {e : X → Y} {f : X → D} (U : Set Y)
     (P : IsContinuousLatticeProjection D D') :
     P.incl (scottSubspaceExtendInf e f U) ≤ scottSubspaceExtendInf e (fun x => P.incl (f x)) U := by
@@ -1443,7 +1674,9 @@ theorem scottSubspaceExtendInf_mono_incl_apply {e : X → Y} {f : X → D} (U : 
 omit [CompleteLattice Y] [TopologicalSpace X] [TopologicalSpace Y] in
 /-- **Scott 1972, Lemma 3.9 (inclusion at infimum level).** Used in the
 inverse-limit
-argument (Theorem 4.4). -/
+argument (Theorem 4.4).
+@isnad1 id=le.1h9v.s7.713e6149542d from=translated src=- shape=0ec5db3e vocab=f4de11bf
+-/
 theorem lemma_3_9_incl_inf {e : X → Y} (P : IsContinuousLatticeProjection D D')
     {f : X → D} {g : X → D'} (hfg : ∀ x, f x = P.retr (g x)) (U : Set Y) :
     P.incl (scottSubspaceExtendInf e f U) ≤ scottSubspaceExtendInf e g U :=
@@ -1452,7 +1685,9 @@ theorem lemma_3_9_incl_inf {e : X → Y} (P : IsContinuousLatticeProjection D D'
 
 omit [CompleteLattice Y] [TopologicalSpace X] [TopologicalSpace Y] in
 /-- **Scott 1972, Lemma 3.9 (retraction at infimum level).** The global equality
-`fbar = j ∘ gbar` assembles these infimum bounds via Proposition 3.10(i). -/
+`fbar = j ∘ gbar` assembles these infimum bounds via Proposition 3.10(i).
+@isnad1 id=le.0h8v.s6.b2ab35343b13 from=translated src=- shape=9b56ce5f vocab=82903cfe
+-/
 theorem lemma_3_9_retr_inf {e : X → Y} (P : IsContinuousLatticeProjection D D') {g : X → D'}
     (U : Set Y) :
     P.retr (scottSubspaceExtendInf e g U) ≤ scottSubspaceExtendInf e (fun x => P.retr (g x)) U :=
@@ -1471,7 +1706,9 @@ projections of `D` (idempotent self-maps below the identity), as a predicate on
 def IsProjection (j : ScottMap D D) : Prop :=
   j.comp j = j ∧ j ≤ ScottMap.idMap
 
-/-- Pointwise characterization of projections: idempotent and deflationary. -/
+/-- Pointwise characterization of projections: idempotent and deflationary.
+@isnad1 id=iff.0h2v.s6.ebb56eafcb64 from=translated src=- shape=a663daed vocab=78a9abe9
+-/
 theorem isProjection_iff {j : ScottMap D D} :
     IsProjection j ↔ (∀ x, (j : D → D) (j x) = j x) ∧ (∀ x, (j : D → D) x ≤ x) := by
   constructor
@@ -1485,7 +1722,9 @@ theorem isProjection_iff {j : ScottMap D D} :
     exact ⟨ScottMap.ext fun x => by rw [ScottMap.comp_apply]; exact hidem x,
       ScottMap.le_def.mpr fun x => by rw [ScottMap.idMap_apply]; exact hle x⟩
 
-/-- `⊥` (the constant `⊥` map) is a projection — Scott's `⊔∅ ∈ J_D`. -/
+/-- `⊥` (the constant `⊥` map) is a projection — Scott's `⊔∅ ∈ J_D`.
+@isnad1 id=isprojec.0h1v.s6.fd4813d6e534 from=translated src=- shape=f6453e1b vocab=a20ac003
+-/
 theorem isProjection_bot : IsProjection (⊥ : ScottMap D D) := by
   rw [isProjection_iff]
   refine ⟨fun x => ?_, fun x => ?_⟩
@@ -1495,7 +1734,9 @@ theorem isProjection_bot : IsProjection (⊥ : ScottMap D D) := by
 /-- `J_D` is closed under binary joins (Scott 1972, 3.12). The key step: since `j
 x ⊔ k x ⊑ x`,
 monotonicity and idempotency force `j (j x ⊔ k x) = j x` and `k (j x ⊔ k x) = k
-x`. -/
+x`.
+@isnad1 id=isprojec.2h3v.s6.08071cc73bb9 from=translated src=- shape=c1ea9def vocab=71b670a4
+-/
 theorem isProjection_sup {j k : ScottMap D D} (hj : IsProjection j) (hk : IsProjection k) :
     IsProjection (j ⊔ k) := by
   rw [isProjection_iff] at hj hk ⊢
@@ -1510,7 +1751,9 @@ theorem isProjection_sup {j k : ScottMap D D} (hj : IsProjection j) (hk : IsProj
     rw [ScottMap.sup_apply, ScottMap.sup_apply, hj_eq, hk_eq]
   · rw [ScottMap.sup_apply]; exact sup_le (hjle x) (hkle x)
 
-/-- `J_D` is closed under finite joins. -/
+/-- `J_D` is closed under finite joins.
+@isnad1 id=isprojec.1h2v.s6.0da0bc8adb5b from=translated src=- shape=bdf11764 vocab=eda4b723
+-/
 theorem isProjection_finsetSup {T : Finset (ScottMap D D)} (hT : ∀ j ∈ T, IsProjection j) :
     IsProjection (T.sup id) :=
   Finset.sup_induction isProjection_bot (fun _ ha _ hb => isProjection_sup ha hb) hT
@@ -1519,7 +1762,9 @@ theorem isProjection_finsetSup {T : Finset (ScottMap D D)} (hT : ∀ j ∈ T, Is
 member lets the
 inner `(⊔S)`-application distribute over the directed family `{ j x : j ∈ S }`,
 and directedness
-plus idempotency collapse the double family `{ k (j x) }` to `(⊔S) x`. -/
+plus idempotency collapse the double family `{ k (j x) }` to `(⊔S) x`.
+@isnad1 id=isprojec.3h2v.s6.d122877b197c from=translated src=- shape=a5713d61 vocab=94d9e500
+-/
 theorem isProjection_directedSup {S : Set (ScottMap D D)} (hSne : S.Nonempty)
     (hSdir : DirectedOn (· ≤ ·) S) (hS : ∀ j ∈ S, IsProjection j) :
     IsProjection (sSup S) := by
@@ -1553,7 +1798,9 @@ theorem isProjection_directedSup {S : Set (ScottMap D D)} (hSne : S.Nonempty)
 arbitrary suprema in
 `[D → D]`: every supremum is the directed supremum of finite sub-joins
 (`finsetSupOf`), each a
-projection by `isProjection_finsetSup`. -/
+projection by `isProjection_finsetSup`.
+@isnad1 id=isprojec.1h2v.s5.3abc84bd054d from=translated src=- shape=128b0d6a vocab=3999f940
+-/
 theorem isProjection_sSup {T : Set (ScottMap D D)} (hT : ∀ j ∈ T, IsProjection j) :
     IsProjection (sSup T) := by
   rw [IsContinuousLatticeProjection.sSup_finsetSupOf T]
@@ -1573,6 +1820,9 @@ noncomputable instance instSupSet : SupSet (Projections D) :=
   ⟨fun T => ⟨sSup (Set.image Subtype.val T), isProjection_sSup (by
     simp_all)⟩⟩
 
+/--
+@isnad1 id=islub.0h2v.s5.63dc08bcfe7b from=translated src=- shape=d0da45ad vocab=0e6f733e
+-/
 theorem isLUB_sSup (T : Set (Projections D)) : IsLUB T (sSup T) := by
   constructor
   · intro p hp
@@ -1600,7 +1850,9 @@ lattice `D`, the
 projections `J_D` form a complete lattice as a `⊔`-closed subspace of `[D → D]`:
 the `⊔`-closure is
 `isProjection_sSup`, and the complete-lattice structure is
-`Projections.instCompleteLattice`. -/
+`Projections.instCompleteLattice`.
+@isnad1 id=and.0h1v.s6.084f455208da from=translated src=- shape=90309caa vocab=13fdfc7f
+-/
 theorem proposition_3_12 :
     (∀ T : Set (ScottMap D D), (∀ j ∈ T, IsProjection j) → IsProjection (sSup T))
       ∧ Nonempty (CompleteLattice (Projections D)) :=
@@ -1631,8 +1883,14 @@ noncomputable def min : ScottMap (ScottMap D D) D :=
       = sSup (Set.image (fun f : ScottMap D D => (f : D → D) ⊥) F)
     rw [ScottMap.sSup_apply])⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.eaef028f8891 from=translated src=- shape=f2a53a43 vocab=259b06db
+-/
 @[simp] theorem con_apply (x y : D) : ((con x : ScottMap D D) : D → D) y = x := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.6936e57aa5c6 from=translated src=- shape=3d600b03 vocab=8fda108e
+-/
 @[simp] theorem min_apply (f : ScottMap D D) : (min f : D) = (f : D → D) ⊥ := rfl
 
 /-- **Scott 1972, Proposition 3.13.** `(con, min)` makes `D` a projection of `[D →
@@ -1655,7 +1913,9 @@ end Proposition313
 
 /-- **Scott 1972, Proposition 3.13.** Every continuous lattice `D` is a projection
 of its function
-space `[D → D]`, via `con`/`min` (`Proposition313.projection`). -/
+space `[D → D]`, via `con`/`min` (`Proposition313.projection`).
+@isnad1 id=nonempty.1h1v.s4.33e99dba319e from=translated src=- shape=43a7096f vocab=ee3699db
+-/
 theorem proposition_3_13 (_hD : IsContinuousLattice D) :
     Nonempty (IsContinuousLatticeProjection D (ScottMap D D)) :=
   ⟨Proposition313.projection⟩
@@ -1672,17 +1932,23 @@ def toOrderHom (f : ScottMap D D) : D →o D := ⟨(f : D → D), f.monotone⟩
 mathlib's `OrderHom.lfp`. -/
 noncomputable def fix (f : ScottMap D D) : D := (toOrderHom f).lfp
 
-/-- `fix f` is a fixed point of `f`. -/
+/-- `fix f` is a fixed point of `f`.
+@isnad1 id=eq.0h2v.s5.a6eab92c5a85 from=translated src=- shape=26155b0f vocab=f5641525
+-/
 theorem fix_eq (f : ScottMap D D) : (f : D → D) (fix f) = fix f :=
   (toOrderHom f).map_lfp
 
-/-- `fix f` is below every pre-fixed point: `f x ⊑ x ⟹ fix f ⊑ x`. -/
+/-- `fix f` is below every pre-fixed point: `f x ⊑ x ⟹ fix f ⊑ x`.
+@isnad1 id=le.1h3v.s5.b9a3cdda95e3 from=translated src=- shape=9883123c vocab=bb3400f8
+-/
 theorem fix_le {f : ScottMap D D} {x : D} (h : (f : D → D) x ≤ x) : fix f ≤ x :=
   (toOrderHom f).lfp_le h
 
 /-- `fix` is monotone in `f`: if `f ⊑ f'` then `fix f ⊑ fix f'`, since `f (fix f')
 ⊑ f' (fix f') =
-fix f'` makes `fix f'` a pre-fixed point of `f`. -/
+fix f'` makes `fix f'` a pre-fixed point of `f`.
+@isnad1 id=le.1h3v.s5.65b66d85728a from=translated src=- shape=c78e292f vocab=936a57ed
+-/
 theorem fix_mono {f f' : ScottMap D D} (hff' : f ≤ f') : fix f ≤ fix f' :=
   fix_le (le_trans (ScottMap.le_def.mp hff' (fix f')) (le_of_eq (fix_eq f')))
 
@@ -1696,7 +1962,9 @@ pre-fixed point of `g`. Now `g a = ⊔_{f∈S} f a` (pointwise sup), and each `f
 ⊔_{f'∈S} f (fix f')`
 (continuity of `f` on the directed family `{fix f'}`); for any `f, f' ∈ S` pick `h
 ∈ S` above both,
-so `f (fix f') ⊑ h (fix f') ⊑ h (fix h) = fix h ⊑ a`. Hence `g a ⊑ a`. -/
+so `f (fix f') ⊑ h (fix f') ⊑ h (fix h) = fix h ⊑ a`. Hence `g a ⊑ a`.
+@isnad1 id=preserve.0h1v.s4.842ecfefa818 from=translated src=- shape=6b9ad5cd vocab=263afde0
+-/
 theorem fix_preservesDirectedSup : PreservesDirectedSup (fix : ScottMap D D → D) := by
   intro S hSne hSdir
   set T : Set D := Set.image fix S with hTdef
@@ -1731,11 +1999,16 @@ Scott-continuous map. -/
 noncomputable def fixMap : ScottMap (ScottMap D D) D :=
   ⟨fix, continuous_of_preservesDirectedSup fix_preservesDirectedSup⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.f121270f3e29 from=translated src=- shape=733b92e5 vocab=48a1ca12
+-/
 @[simp] theorem fixMap_apply (f : ScottMap D D) : (fixMap f : D) = fix f := rfl
 
 /-- Uniqueness: any value that is a fixed point of `f` and below every pre-fixed
 point equals
-`fix f` (the least fixed point is unique). -/
+`fix f` (the least fixed point is unique).
+@isnad1 id=eq.2h3v.s6.bf2b4de68e96 from=translated src=- shape=b2a1ff73 vocab=bb3400f8
+-/
 theorem fix_unique {f : ScottMap D D} {a : D} (hfix : (f : D → D) a = a)
     (hleast : ∀ x, (f : D → D) x ≤ x → a ≤ x) : a = fix f :=
   le_antisymm (hleast (fix f) (le_of_eq (fix_eq f))) (fix_le hfix.le)
@@ -1750,7 +2023,9 @@ whenever `f x ⊑ x`. Existence and continuity are `Proposition314.fixMap`; the
 defining equations are
 `fix_eq`/`fix_le`; uniqueness (any operator with these two properties agrees with
 `fix`) is
-`fix_unique`. -/
+`fix_unique`.
+@isnad1 id=ex.1h1v.s8.8570c08b5019 from=translated src=- shape=a8003698 vocab=068a6eb8
+-/
 theorem proposition_3_14 (_hD : IsContinuousLattice D) :
     ∃ Fix : ScottMap (ScottMap D D) D,
       (∀ f : ScottMap D D, (f : D → D) (Fix f) = Fix f)

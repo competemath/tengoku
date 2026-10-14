@@ -43,11 +43,22 @@ def memSet : Set (Set Token) := {master, zero, one}
 /-- Membership in the neighbourhood system `𝒟` of Example 1.2. -/
 def mem (X : Set Token) : Prop := X ∈ memSet
 
+/--
+@isnad1 id=mem.0h0v.s1.f384ce0de589 from=translated src=- shape=49959d42 vocab=5b331d3a
+-/
 theorem mem_master : mem master := by simp [mem, memSet, master, zero, one]
+/--
+@isnad1 id=mem.0h0v.s1.e51b66ba66b5 from=translated src=- shape=49959d42 vocab=648e91cd
+-/
 theorem mem_zero : mem zero := by simp [mem, memSet, master, zero, one]
+/--
+@isnad1 id=mem.0h0v.s1.5f9171e268c3 from=translated src=- shape=49959d42 vocab=f7d12005
+-/
 theorem mem_one : mem one := by simp [mem, memSet, master, zero, one]
 
-/-- A neighbourhood of Example 1.2 is exactly one of `Δ`, `{0}`, or `{1}`. -/
+/-- A neighbourhood of Example 1.2 is exactly one of `Δ`, `{0}`, or `{1}`.
+@isnad1 id=iff.0h1v.s4.1d3544def464 from=translated src=- shape=28ec64fc vocab=7169cf78
+-/
 theorem mem_iff (X : Set Token) : mem X ↔ X = master ∨ X = zero ∨ X = one := by
   constructor
   · intro h
@@ -63,6 +74,9 @@ theorem mem_iff (X : Set Token) : mem X ↔ X = master ∨ X = zero ∨ X = one 
     · exact mem_zero
     · exact mem_one
 
+/--
+@isnad1 id=not.0h0v.s2.1e78187b8c34 from=translated src=- shape=70d57dbf vocab=a5c51fc8
+-/
 theorem not_mem_empty : ¬mem (∅ : Set Token) := by
   intro h
   rcases (mem_iff (∅ : Set Token)).mp h with h | h | h
@@ -248,7 +262,9 @@ private theorem mem_one_of_mem (x : neighborhoodSystem.Element) (h : x.mem one) 
     · rw [hx]; exact h
 
 /-- Every element of Example 1.2 is one of the three filters `⊥`, `{0}`-total,
-`{1}`-total. -/
+`{1}`-total.
+@isnad1 id=or.0h1v.s4.6315eb06e50b from=translated src=- shape=5e9adaa9 vocab=9c2779b5
+-/
 theorem element_classification (x : neighborhoodSystem.Element) :
     x = bot ∨ x = elemZero ∨ x = elemOne := by
   by_cases h0 : x.mem zero
@@ -269,7 +285,9 @@ theorem element_classification (x : neighborhoodSystem.Element) :
     exact x.master_mem
 
 /-- The bottom filter is the only partial element: it is strictly below both total
-elements. -/
+elements.
+@isnad1 id=lt.0h0v.s4.a61e7fb3a19d from=translated src=- shape=9094f7d5 vocab=9524a499
+-/
 theorem bot_lt_elemZero : bot < elemZero := by
   constructor
   · intro X hx; exact Or.inl hx
@@ -278,6 +296,9 @@ theorem bot_lt_elemZero : bot < elemZero := by
     have hm : zero = master := this
     exact zero_ne_master hm
 
+/--
+@isnad1 id=lt.0h0v.s4.63e8f320e1ac from=translated src=- shape=9094f7d5 vocab=a0d8fc1e
+-/
 theorem bot_lt_elemOne : bot < elemOne := by
   constructor
   · intro X hx; exact Or.inl hx
@@ -286,6 +307,9 @@ theorem bot_lt_elemOne : bot < elemOne := by
     have hm : one = master := this
     exact one_ne_master hm
 
+/--
+@isnad1 id=eq.2h1v.s4.ea27f19c7b0f from=translated src=- shape=2dd3500c vocab=9c2779b5
+-/
 theorem bot_is_unique_partial (x : neighborhoodSystem.Element) :
     x ≠ elemZero → x ≠ elemOne → x = bot := by
   intro hne0 hne1

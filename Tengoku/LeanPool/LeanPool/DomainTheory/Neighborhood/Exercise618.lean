@@ -78,7 +78,9 @@ namespace Exercise618
 
 /-! ## `∅`-freeness is preserved by `prod` and `iterSys` -/
 
-/-- The product of two `∅`-free systems is `∅`-free. -/
+/-- The product of two `∅`-free systems is `∅`-free.
+@isnad1 id=nonempty.3h5v.s5.53b6f354dee3 from=translated src=- shape=7bc51b04 vocab=62b07fa7
+-/
 theorem prod_nonempty {α β : Type*} {V₀ : NeighborhoodSystem α} {V₁ : NeighborhoodSystem β}
     (h₀ : ∀ X, V₀.mem X → X.Nonempty) (_h₁ : ∀ Y, V₁.mem Y → Y.Nonempty) :
     ∀ W, (prod V₀ V₁).mem W → W.Nonempty := by
@@ -88,7 +90,9 @@ theorem prod_nonempty {α β : Type*} {V₀ : NeighborhoodSystem α} {V₁ : Nei
 
 /-- The infinite iterate of an `∅`-free system is `∅`-free (each fibre is a
 non-empty
-neighbourhood). -/
+neighbourhood).
+@isnad1 id=nonempty.2h3v.s5.120c7a45e0bf from=translated src=- shape=52362f69 vocab=3e535077
+-/
 theorem iterSys_nonempty {α : Type*} {V : NeighborhoodSystem α}
     (h : ∀ X, V.mem X → X.Nonempty) :
     ∀ W, (iterSys V).mem W → W.Nonempty := by
@@ -103,7 +107,9 @@ variable {α : Type*} {V : NeighborhoodSystem α}
 /-- **The forward iso reads off head and tail.** `iterProdIso z = ⟨z₀,
 ⟨z₁,z₂,…⟩⟩`: the first
 component is the `0`-coordinate `component z 0`, the second is the shifted
-sequence. -/
+sequence.
+@isnad1 id=eq.0h3v.s8.aa4c832f1501 from=translated src=- shape=b1fed1bf vocab=beebbad8
+-/
 theorem iterProdIso_apply (z : (iterSys V).Element) :
     iterProdIso V z = pair (component z 0) (ofSeq (fun n => component z (n + 1))) := rfl
 
@@ -112,12 +118,20 @@ b₁, …⟩`. -/
 def consSeq (a : V.Element) (b : (iterSys V).Element) : ℕ → V.Element :=
   fun i => Nat.casesOn i a (fun k => component b k)
 
+/--
+@isnad1 id=eq.0h4v.s5.d990723537f5 from=translated src=- shape=06996950 vocab=f0db3c9b
+-/
 @[simp] theorem consSeq_zero (a : V.Element) (b : (iterSys V).Element) : consSeq a b 0 = a := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.72e6fdd7a324 from=translated src=- shape=63ae9ed4 vocab=3259e938
+-/
 @[simp] theorem consSeq_succ (a : V.Element) (b : (iterSys V).Element) (k : ℕ) :
     consSeq a b (k + 1) = component b k := rfl
 
-/-- **The inverse iso is "cons".** `iterProdIso⁻¹ ⟨a, b⟩ = ⟨a, b₀, b₁, …⟩`. -/
+/-- **The inverse iso is "cons".** `iterProdIso⁻¹ ⟨a, b⟩ = ⟨a, b₀, b₁, …⟩`.
+@isnad1 id=eq.0h4v.s8.14a26c59291c from=translated src=- shape=e75ffb53 vocab=b050d255
+-/
 theorem iterProdIso_symm_pair (a : V.Element) (b : (iterSys V).Element) :
     (iterProdIso V).symm (pair a b) = ofSeq (consSeq a b) := by
   have hkey : iterProdIso V (ofSeq (consSeq a b)) = pair a b := by
@@ -127,7 +141,9 @@ theorem iterProdIso_symm_pair (a : V.Element) (b : (iterSys V).Element) :
 
 /-! ## Bottom-element computations -/
 
-/-- `⊥` of `𝒟^∞` is the all-`⊥` sequence. -/
+/-- `⊥` of `𝒟^∞` is the all-`⊥` sequence.
+@isnad1 id=eq.0h2v.s4.3c207bda72d6 from=translated src=- shape=961fece5 vocab=4f4df65a
+-/
 theorem iterBot_eq : (iterSys V).bot = ofSeq (fun _ : ℕ => V.bot) := by
   apply Element.ext
   intro W
@@ -143,11 +159,15 @@ theorem iterBot_eq : (iterSys V).bot = ofSeq (fun _ : ℕ => V.bot) := by
     rw [fiber_iterSys_master]
     rwa [mem_bot] at hi
 
-/-- The `n`-th coordinate of `⊥` is `⊥`. -/
+/-- The `n`-th coordinate of `⊥` is `⊥`.
+@isnad1 id=eq.0h3v.s4.10f1080c7791 from=translated src=- shape=028c4765 vocab=c450dd17
+-/
 @[simp] theorem component_bot (n : ℕ) : component (iterSys V).bot n = V.bot := by
   rw [iterBot_eq, component_ofSeq]
 
-/-- `⊥` of a product is the pair of `⊥`s. -/
+/-- `⊥` of a product is the pair of `⊥`s.
+@isnad1 id=eq.0h4v.s5.684f9406d4bc from=translated src=- shape=c2491603 vocab=2d871609
+-/
 theorem pair_bot {α β : Type*} {V₀ : NeighborhoodSystem α} {V₁ : NeighborhoodSystem β} :
     pair V₀.bot V₁.bot = (prod V₀ V₁).bot := by
   apply Element.ext
@@ -164,9 +184,14 @@ structure map. -/
 def imap (V : NeighborhoodSystem α) : ApproximableMap (prod V (iterSys V)) (iterSys V) :=
   ofIso (iterProdIso V).symm
 
+/--
+@isnad1 id=isstrict.0h2v.s4.af67db684d52 from=translated src=- shape=ed6d7c75 vocab=4b84040f
+-/
 theorem isStrict_imap : IsStrict (imap V) := isStrict_ofIso _
 
-/-- `j ∘ i = I` on `𝒟 × 𝒟^∞`. -/
+/-- `j ∘ i = I` on `𝒟 × 𝒟^∞`.
+@isnad1 id=eq.0h2v.s6.e8e9ad1bc32e from=translated src=- shape=baeb5db7 vocab=683689ce
+-/
 theorem jmap_comp_imap : (jmap V).comp (imap V) = idMap (prod V (iterSys V)) := by
   apply ext_of_toElementMap
   intro w
@@ -176,7 +201,9 @@ theorem jmap_comp_imap : (jmap V).comp (imap V) = idMap (prod V (iterSys V)) := 
 
 /-! ## Monotonicity of the product action -/
 
-/-- `T(·) = (id_𝒟 × ·)` is monotone. -/
+/-- `T(·) = (id_𝒟 × ·)` is monotone.
+@isnad1 id=le.1h6v.s7.e09f5d6f77c9 from=translated src=- shape=7fb6635a vocab=673332df
+-/
 theorem prodMap_idMap_mono {γ : Type*} {E : NeighborhoodSystem γ}
     {f f' : ApproximableMap (iterSys V) E} (h : f ≤ f') :
     prodMap (idMap V) f ≤ prodMap (idMap V) f' := by
@@ -184,7 +211,9 @@ theorem prodMap_idMap_mono {γ : Type*} {E : NeighborhoodSystem γ}
   simp only [prodMap, paired_rel] at hrel ⊢
   exact ⟨hrel.1, hrel.2.1, comp_mono_gen h le_rfl _ _ hrel.2.2⟩
 
-/-- Approximable maps are monotone in the map argument: `f ≤ g ⟹ f(x) ≤ g(x)`. -/
+/-- Approximable maps are monotone in the map argument: `f ≤ g ⟹ f(x) ≤ g(x)`.
+@isnad1 id=le.1h7v.s6.6dada019c32f from=translated src=- shape=39ae4425 vocab=747da6c7
+-/
 theorem toElementMap_le_of_le {β₀ β₁ : Type*} {W₀ : NeighborhoodSystem β₀}
     {W₁ : NeighborhoodSystem β₁} {f g : ApproximableMap W₀ W₁} (h : f ≤ g) (x : W₀.Element) :
     f.toElementMap x ≤ g.toElementMap x := by
@@ -202,7 +231,9 @@ def descOp (k : ApproximableMap (prod V E) E) (f : ApproximableMap (iterSys V) E
     ApproximableMap (iterSys V) E :=
   k.comp ((prodMap (idMap V) f).comp (jmap V))
 
-/-- The defining action of the operator: `Op(f)(z) = k(z₀, f(⟨z₁,z₂,…⟩))`. -/
+/-- The defining action of the operator: `Op(f)(z) = k(z₀, f(⟨z₁,z₂,…⟩))`.
+@isnad1 id=eq.0h7v.s6.bf20680dfc63 from=translated src=- shape=7e786283 vocab=d0976378
+-/
 theorem descOp_apply (k : ApproximableMap (prod V E) E) (f : ApproximableMap (iterSys V) E)
     (z : (iterSys V).Element) :
     (descOp k f).toElementMap z
@@ -212,6 +243,9 @@ theorem descOp_apply (k : ApproximableMap (prod V E) E) (f : ApproximableMap (it
   rw [toElementMap_comp, toElementMap_comp, toElementMap_ofIso, iterProdIso_apply,
     toElementMap_prodMap_pair, toElementMap_idMap]
 
+/--
+@isnad1 id=le.1h7v.s7.2c52f2d928a7 from=translated src=- shape=372c6765 vocab=4a0cc613
+-/
 theorem descOp_mono (k : ApproximableMap (prod V E) E) {f f' : ApproximableMap (iterSys V) E}
     (h : f ≤ f') : descOp k f ≤ descOp k f' :=
   comp_mono_gen le_rfl (comp_mono_gen (prodMap_idMap_mono h) le_rfl)
@@ -221,7 +255,9 @@ def descSeq (k : ApproximableMap (prod V E) E) : ℕ → ApproximableMap (iterSy
   | 0 => constMap (iterSys V) E.bot
   | (n + 1) => descOp k (descSeq k n)
 
-/-- The bottom map is below everything. -/
+/-- The bottom map is below everything.
+@isnad1 id=le.0h5v.s6.e53742c6fa1f from=translated src=- shape=c110d6f4 vocab=5c639664
+-/
 theorem constBot_le (f : ApproximableMap (iterSys V) E) :
     constMap (iterSys V) E.bot ≤ f := by
   intro X Y hrel
@@ -229,18 +265,27 @@ theorem constBot_le (f : ApproximableMap (iterSys V) E) :
   rw [mem_bot] at hY; subst hY
   exact f.rel_master hX
 
+/--
+@isnad1 id=le.0h6v.s6.cbe4b9e87fe7 from=translated src=- shape=ba07c191 vocab=0a92dcd3
+-/
 theorem descSeq_mono_succ (k : ApproximableMap (prod V E) E) (n : ℕ) :
     descSeq k n ≤ descSeq k (n + 1) := by
   induction n with
   | zero => exact constBot_le _
   | succ m ih => exact descOp_mono k ih
 
+/--
+@isnad1 id=le.1h7v.s6.da074013e91a from=translated src=- shape=108dcb99 vocab=00832610
+-/
 theorem descSeq_mono (k : ApproximableMap (prod V E) E) {n m : ℕ} (h : n ≤ m) :
     descSeq k n ≤ descSeq k m := by
   induction h with
   | refl => exact le_rfl
   | step _ ih => exact ih.trans (descSeq_mono_succ k _)
 
+/--
+@isnad1 id=ex.0h7v.s6.4d0ac2043cc9 from=translated src=- shape=f6de6331 vocab=061e0a37
+-/
 theorem descSeq_dir (k : ApproximableMap (prod V E) E) :
     ∀ i j, ∃ l, (∀ X Y, (descSeq k i).rel X Y → (descSeq k l).rel X Y) ∧
       (∀ X Y, (descSeq k j).rel X Y → (descSeq k l).rel X Y) :=
@@ -251,6 +296,9 @@ theorem descSeq_dir (k : ApproximableMap (prod V E) E) :
 def descMap (k : ApproximableMap (prod V E) E) : ApproximableMap (iterSys V) E :=
   iSupMap (descSeq k) (descSeq_dir k)
 
+/--
+@isnad1 id=iff.0h7v.s6.74b93f9cb6c2 from=translated src=- shape=7eba0798 vocab=275b8f71
+-/
 theorem descMap_toElementMap (k : ApproximableMap (prod V E) E) (z : (iterSys V).Element)
     {Y : Set γ} :
     ((descMap k).toElementMap z).mem Y ↔ ∃ n, ((descSeq k n).toElementMap z).mem Y :=
@@ -260,14 +308,18 @@ end Target
 
 /-! ## Generic chain helpers -/
 
-/-- A successor-increasing chain is increasing. -/
+/-- A successor-increasing chain is increasing.
+@isnad1 id=le.2h5v.s6.aa456e44117e from=translated src=- shape=23380e7c vocab=c5e84962
+-/
 theorem chain_le_of_succ {β : Type*} {W : NeighborhoodSystem β} {a : ℕ → W.Element}
     (h : ∀ n, a n ≤ a (n + 1)) {i j : ℕ} (hij : i ≤ j) : a i ≤ a j := by
   induction hij with
   | refl => exact le_rfl
   | step _ ih => exact ih.trans (h _)
 
-/-- Directedness of a successor-increasing chain. -/
+/-- Directedness of a successor-increasing chain.
+@isnad1 id=ex.1h5v.s6.a9bc51b73bbc from=translated src=- shape=53d7dd32 vocab=c5e84962
+-/
 theorem succChainDir {β : Type*} {W : NeighborhoodSystem β} (a : ℕ → W.Element)
     (h : ∀ n, a n ≤ a (n + 1)) : ∀ i j, ∃ l, a i ≤ a l ∧ a j ≤ a l :=
   fun i j => ⟨max i j, chain_le_of_succ h (le_max_left i j), chain_le_of_succ h (le_max_right i j)⟩
@@ -276,12 +328,16 @@ section Target
 
 variable {γ : Type*} {E : NeighborhoodSystem γ}
 
-/-- The descent chain is increasing element-wise. -/
+/-- The descent chain is increasing element-wise.
+@isnad1 id=le.0h7v.s6.888640ea92d5 from=translated src=- shape=8fae7ee4 vocab=0c16a5ce
+-/
 theorem descSeqEltMono (k : ApproximableMap (prod V E) E) (x : (iterSys V).Element) :
     ∀ n, (descSeq k n).toElementMap x ≤ (descSeq k (n + 1)).toElementMap x :=
   fun n => toElementMap_le_of_le (descSeq_mono_succ k n) x
 
-/-- **The descent map as a directed union.** `h(x) = ⋃ₙ hₙ(x)`. -/
+/-- **The descent map as a directed union.** `h(x) = ⋃ₙ hₙ(x)`.
+@isnad1 id=eq.0h6v.s6.65fadb36d301 from=translated src=- shape=e04f6143 vocab=59d5dbb2
+-/
 theorem descMap_eq (k : ApproximableMap (prod V E) E) (x : (iterSys V).Element) :
     (descMap k).toElementMap x
       = iSupDirected (fun n => (descSeq k n).toElementMap x)
@@ -295,13 +351,18 @@ def kHead (k : ApproximableMap (prod V E) E) (a : V.Element) :
     ApproximableMap E E :=
   k.comp (paired (constMap E a) (idMap E))
 
+/--
+@isnad1 id=eq.0h7v.s6.d8c47cd5825d from=translated src=- shape=6a282ca9 vocab=b5f3b157
+-/
 theorem kHead_apply (k : ApproximableMap (prod V E) E) (a : V.Element) (u : E.Element) :
     (kHead k a).toElementMap u = k.toElementMap (pair a u) := by
   rw [kHead, toElementMap_comp, toElementMap_paired, toElementMap_constMap, toElementMap_idMap]
 
 /-! ## The fixed-point equation `h = k ∘ T(h) ∘ j` -/
 
-/-- **The descent map is a fixed point** of `Op = k ∘ T(·) ∘ j`. -/
+/-- **The descent map is a fixed point** of `Op = k ∘ T(·) ∘ j`.
+@isnad1 id=eq.0h5v.s5.203aa6cf9ff9 from=translated src=- shape=b2bbd846 vocab=396a91cf
+-/
 theorem descMap_fix (k : ApproximableMap (prod V E) E) : descMap k = descOp k (descMap k) := by
   apply ext_of_toElementMap
   intro z
@@ -327,6 +388,9 @@ theorem descMap_fix (k : ApproximableMap (prod V E) E) : descMap k = descOp k (d
 
 /-! ## Strictness of the descent map -/
 
+/--
+@isnad1 id=isstrict.1h6v.s5.457ba0d0c608 from=translated src=- shape=1249b32f vocab=146ede3f
+-/
 theorem descSeq_strict (k : ApproximableMap (prod V E) E) (hk : IsStrict k) :
     ∀ n, IsStrict (descSeq k n)
   | 0 => isStrict_constBot
@@ -341,6 +405,9 @@ theorem descSeq_strict (k : ApproximableMap (prod V E) E) (hk : IsStrict k) :
       rw [component_bot, htl, ih, pair_bot]
       exact isStrict_iff_apply_bot.mp hk
 
+/--
+@isnad1 id=isstrict.1h5v.s5.52cf32f94eac from=translated src=- shape=60d8053e vocab=207e9655
+-/
 theorem descMap_strict (k : ApproximableMap (prod V E) E) (hk : IsStrict k) :
     IsStrict (descMap k) := by
   rw [isStrict_iff_apply_bot]
@@ -361,7 +428,9 @@ theorem descMap_strict (k : ApproximableMap (prod V E) E) (hk : IsStrict k) :
 
 /-- **Existence of the algebra homomorphism.** The descent map makes the square
 commute:
-`descMap ∘ i = k ∘ T(descMap)` (using `j ∘ i = I` and the fixed-point equation). -/
+`descMap ∘ i = k ∘ T(descMap)` (using `j ∘ i = I` and the fixed-point equation).
+@isnad1 id=eq.0h5v.s6.efe7c3af1b7e from=translated src=- shape=26720fb0 vocab=a7381095
+-/
 theorem descMap_comm (k : ApproximableMap (prod V E) E) :
     (descMap k).comp (imap V) = k.comp (prodMap (idMap V) (descMap k)) := by
   conv_lhs => rw [descMap_fix k]
@@ -380,7 +449,9 @@ sequence to its first `n` coordinates. Its supremum is the identity
 behind uniqueness: every strict homomorphism is determined on the finite
 truncations. -/
 
-/-- **The truncation formula** `ρₙ(⟨x₀,x₁,…⟩) = ⟨x₀,…,x_{n-1},⊥,⊥,…⟩`. -/
+/-- **The truncation formula** `ρₙ(⟨x₀,x₁,…⟩) = ⟨x₀,…,x_{n-1},⊥,⊥,…⟩`.
+@isnad1 id=eq.0h4v.s6.8db27c901091 from=translated src=- shape=6ffa441d vocab=f36963a7
+-/
 theorem rho_apply (n : ℕ) (z : (iterSys V).Element) :
     (descSeq (imap V) n).toElementMap z
       = ofSeq (fun i => if i < n then component z i else V.bot) := by
@@ -405,7 +476,9 @@ theorem rho_apply (n : ℕ) (z : (iterSys V).Element) :
 /-- **`⋃ₙ ρₙ = I`.** Every `z` is the directed union of its truncations: the
 cofinite-`Δ` structure
 of `𝒟^∞` means each neighbourhood of `z` is already realised by a finite
-truncation. -/
+truncation.
+@isnad1 id=eq.0h2v.s5.f7d79b37ab79 from=translated src=- shape=3dd92578 vocab=247ac93d
+-/
 theorem iSupRho_eq_id : descMap (imap V) = idMap (iterSys V) := by
   apply ext_of_toElementMap
   intro z
@@ -448,7 +521,9 @@ section Uniq
 
 variable {γ : Type*} {E : NeighborhoodSystem γ}
 
-/-- The descent chain for any strict `g` starts at the constant `⊥`: `g ∘ ρ₀ = ⊥`. -/
+/-- The descent chain for any strict `g` starts at the constant `⊥`: `g ∘ ρ₀ = ⊥`.
+@isnad1 id=eq.1h5v.s6.10253ede1ccc from=translated src=- shape=9b943c58 vocab=9fdf1c36
+-/
 theorem gcomp_rho_zero (g : ApproximableMap (iterSys V) E) (hg : IsStrict g) :
     g.comp (descSeq (imap V) 0) = constMap (iterSys V) E.bot := by
   apply ext_of_toElementMap
@@ -459,7 +534,9 @@ theorem gcomp_rho_zero (g : ApproximableMap (iterSys V) E) (hg : IsStrict g) :
 
 /-- **`g`-independence step.** If `g` is a homomorphism (`g ∘ i = k ∘ T(g)`) then
 `g ∘ ρₙ₊₁ = k ∘ T(g ∘ ρₙ) ∘ j = Op_k(g ∘ ρₙ)`: the composite depends only on `g ∘
-ρₙ`. -/
+ρₙ`.
+@isnad1 id=eq.1h7v.s7.a35a0a937bbc from=translated src=- shape=2b1e3145 vocab=757b4f9e
+-/
 theorem gcomp_rho_succ (k : ApproximableMap (prod V E) E) (g : ApproximableMap (iterSys V) E)
     (hc : g.comp (imap V) = k.comp (prodMap (idMap V) g)) (n : ℕ) :
     g.comp (descSeq (imap V) (n + 1)) = descOp k (g.comp (descSeq (imap V) n)) := by
@@ -473,7 +550,9 @@ theorem gcomp_rho_succ (k : ApproximableMap (prod V E) E) (g : ApproximableMap (
 `T`-algebra `(E,k)` are
 equal. By `g`-independence they agree on every truncation (`g ∘ ρₙ = g' ∘ ρₙ`),
 and `⋃ₙ ρₙ = I`
-forces `g = g'`. -/
+forces `g = g'`.
+@isnad1 id=eq.4h7v.s7.cf5e860a9e40 from=translated src=- shape=2d9ca880 vocab=b62491d1
+-/
 theorem comm_unique (k : ApproximableMap (prod V E) E)
     {g g' : ApproximableMap (iterSys V) E} (hg : IsStrict g) (hg' : IsStrict g')
     (hc : g.comp (imap V) = k.comp (prodMap (idMap V) g))
@@ -512,7 +591,9 @@ universal property.
 The fixed domain `𝒟` is an arbitrary `StrictDomainObj`. -/
 
 /-- `T(f₀ × f₁)` is strict when both factors are: `(f₀ × f₁)(⊥,⊥) = (f₀ ⊥, f₁ ⊥) =
-(⊥,⊥)`. -/
+(⊥,⊥)`.
+@isnad1 id=isstrict.2h10v.s6.6cadcb477de3 from=translated src=- shape=cde1723b vocab=0751190c
+-/
 theorem isStrict_prodMap {α β α' β' : Type*} {V₀ : NeighborhoodSystem α} {V₁ : NeighborhoodSystem β}
     {V₀' : NeighborhoodSystem α'} {V₁' : NeighborhoodSystem β'}
     {f₀ : ApproximableMap V₀ V₀'} {f₁ : ApproximableMap V₁ V₁'}

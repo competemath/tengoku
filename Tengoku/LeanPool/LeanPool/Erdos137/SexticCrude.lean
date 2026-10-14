@@ -60,7 +60,9 @@ def BlockRadLB6 : Prop :=
       ((∏ j ∈ Finset.range (k / 6), rad (F 6 (n + 6 * j)) : ℕ) : ℝ)
 
 /-- `BlockRadLB6` is exactly the `g = 6` instance of the generic `BlockRadLBg` (the exponents
-`5/6` and `(6-1)/6` agree, and the guard `6 ≤ k` matches `g ≤ k`). -/
+`5/6` and `(6-1)/6` agree, and the guard `6 ≤ k` matches `g ≤ k`).
+@isnad1 id=iff.0h0v.s3.9d7dbcc5f243 from=translated src=- shape=9ae76a30 vocab=a8327848
+-/
 lemma blockRadLB6_iff : BlockRadLB6 ↔ BlockRadLBg 6 := by
   unfold BlockRadLB6 BlockRadLBg
   constructor
@@ -82,10 +84,14 @@ def overlap6 (k n p : ℕ) : ℕ := overlapg 6 k n p
 /-- The over-count `W6 k n`: the `g = 6` instance of the generic `Wg`. -/
 def W6 (k n : ℕ) : ℕ := Wg 6 k n
 
-/-- **`B6 k n` divides `F k n`** (the `g = 6` instance of `Bg_dvd_F`). -/
+/-- **`B6 k n` divides `F k n`** (the `g = 6` instance of `Bg_dvd_F`).
+@isnad1 id=dvd.0h2v.s3.7b1b11b21258 from=translated src=- shape=6c8684e5 vocab=ab92d497
+-/
 lemma B6_dvd_F (k n : ℕ) : B6 k n ∣ F k n := Bg_dvd_F (by norm_num) k n
 
-/-- **Overlap bound (g = 6): `W6 k n ≤ k^k`.** The `g = 6` instance of `Wg_le_pow`. -/
+/-- **Overlap bound (g = 6): `W6 k n ≤ k^k`.** The `g = 6` instance of `Wg_le_pow`.
+@isnad1 id=le.1h2v.s5.e21e6293203d from=translated src=- shape=1d93e500 vocab=1cfac6b0
+-/
 theorem W6_le_pow {k n : ℕ} (hn : 1 ≤ n) : W6 k n ≤ k ^ k :=
   Wg_le_pow (by norm_num) hn
 

@@ -103,18 +103,28 @@ q)`, equivalently
 `gTok p (gTok p q)`. -/
 def fTok (p q : Set Str) : Set Str := gTok p (gTok p q)
 
+/--
+@isnad1 id=mem.0h2v.s4.3e83e4e229ac from=translated src=- shape=717a334b vocab=963a38a3
+-/
 theorem nil_mem_gTok (p q : Set Str) : ([] : Str) ∈ gTok p q := Set.mem_insert _ _
 
+/--
+@isnad1 id=mem.0h2v.s4.46c78b27f4ca from=translated src=- shape=717a334b vocab=0e32c171
+-/
 theorem nil_mem_fTok (p q : Set Str) : ([] : Str) ∈ fTok p q := Set.mem_insert _ _
 
-/-- `gTok` is monotone in both arguments. -/
+/-- `gTok` is monotone in both arguments.
+@isnad1 id=le.2h4v.s5.96e73b35d977 from=translated src=- shape=1e98b407 vocab=a5390d06
+-/
 theorem gTok_mono {p p' q q' : Set Str} (hp : p ⊆ p') (hq : q ⊆ q') : gTok p q ⊆ gTok p' q' := by
   rintro w (rfl | ⟨w', rfl, hw'⟩ | ⟨w', rfl, hw'⟩)
   · exact Set.mem_insert _ _
   · exact Or.inr (Or.inl ⟨w', rfl, hp hw'⟩)
   · exact Or.inr (Or.inr ⟨w', rfl, hq hw'⟩)
 
-/-- `fTok` is monotone in both arguments. -/
+/-- `fTok` is monotone in both arguments.
+@isnad1 id=le.2h4v.s5.ef420972f681 from=translated src=- shape=1e98b407 vocab=f19b46e7
+-/
 theorem fTok_mono {p p' q q' : Set Str} (hp : p ⊆ p') (hq : q ⊆ q') : fTok p q ⊆ fTok p' q' :=
   gTok_mono hp (gTok_mono hp hq)
 
@@ -123,7 +133,9 @@ stage -/
 
 /-- **Additivity of `gTok`.** Every token of `gTok (⋃ₙ aₙ) (⋃ₙ bₙ)` already lies
 in some
-`gTok aₙ bₙ` — each token references at most one coordinate. -/
+`gTok aₙ bₙ` — each token references at most one coordinate.
+@isnad1 id=ex.1h3v.s5.dc100ada3683 from=translated src=- shape=8fc72df0 vocab=93458c11
+-/
 theorem mem_gTok_iUnion {a b : ℕ → Set Str} {w : Str}
     (hw : w ∈ gTok (⋃ n, a n) (⋃ n, b n)) : ∃ n, w ∈ gTok (a n) (b n) := by
   rcases hw with rfl | ⟨w', rfl, hw'⟩ | ⟨w', rfl, hw'⟩
@@ -137,7 +149,9 @@ theorem mem_gTok_iUnion {a b : ℕ → Set Str} {w : Str}
 in some
 `fTok aₙ bₙ`. The nested `true`-branch (the product copy `0p` inside `1(gTok p
 q)`) still references
-at most one coordinate, so a single finite stage suffices. -/
+at most one coordinate, so a single finite stage suffices.
+@isnad1 id=ex.1h3v.s5.2b54f506b82b from=translated src=- shape=8fc72df0 vocab=35c25169
+-/
 theorem mem_fTok_iUnion {a b : ℕ → Set Str} {w : Str}
     (hw : w ∈ fTok (⋃ n, a n) (⋃ n, b n)) : ∃ n, w ∈ fTok (a n) (b n) := by
   rcases hw with rfl | ⟨w', rfl, hw'⟩ | ⟨u, rfl, hu⟩
@@ -165,16 +179,26 @@ def GammaD : Set Str := ⋃ n, (pIter n).1
 /-- The second component of the double fixed point, `Γ_E = ⋃ₙ (Φⁿ).₂`. -/
 def GammaE : Set Str := ⋃ n, (pIter n).2
 
+/--
+@isnad1 id=mem.0h0v.s3.0dd66ef95013 from=translated src=- shape=e19d7905 vocab=f2b65ded
+-/
 theorem nil_mem_GammaD : ([] : Str) ∈ GammaD := Set.mem_iUnion.mpr ⟨0, rfl⟩
 
+/--
+@isnad1 id=mem.0h0v.s3.d606d1e6977e from=translated src=- shape=e19d7905 vocab=428f7a36
+-/
 theorem nil_mem_GammaE : ([] : Str) ∈ GammaE := Set.mem_iUnion.mpr ⟨0, rfl⟩
 
 /-- Each stage sits inside the colimit `Γ_D` (choice-free; avoids
-`Set.subset_iUnion`). -/
+`Set.subset_iUnion`).
+@isnad1 id=le.0h1v.s3.71bdd490c9a6 from=translated src=- shape=8005f07f vocab=7e3006b2
+-/
 theorem pIter_fst_subset_GammaD (m : ℕ) : (pIter m).1 ⊆ GammaD :=
   fun _ hx => Set.mem_iUnion.mpr ⟨m, hx⟩
 
-/-- Each stage sits inside the colimit `Γ_E` (choice-free). -/
+/-- Each stage sits inside the colimit `Γ_E` (choice-free).
+@isnad1 id=le.0h1v.s3.9d407eb50072 from=translated src=- shape=8005f07f vocab=861a348d
+-/
 theorem pIter_snd_subset_GammaE (m : ℕ) : (pIter m).2 ⊆ GammaE :=
   fun _ hx => Set.mem_iUnion.mpr ⟨m, hx⟩
 
@@ -182,7 +206,9 @@ theorem pIter_snd_subset_GammaE (m : ℕ) : (pIter m).2 ⊆ GammaE :=
 
 /-- **First equation of the double fixed point:** `fTok Γ_D Γ_E = Γ_D`, i.e.
 `tok(D + (D×E)) = Γ_D`
-for `D = {Γ_D}`, `E = {Γ_E}`. -/
+for `D = {Γ_D}`, `E = {Γ_E}`.
+@isnad1 id=eq.0h0v.s2.ba1e029f433c from=translated src=- shape=b78922a9 vocab=f9cbfc5b
+-/
 theorem fTok_GammaD_GammaE : fTok GammaD GammaE = GammaD := by
   apply Set.Subset.antisymm
   · intro w hw
@@ -198,7 +224,9 @@ theorem fTok_GammaD_GammaE : fTok GammaD GammaE = GammaD := by
         exact fTok_mono (pIter_fst_subset_GammaD m) (pIter_snd_subset_GammaE m) hn
 
 /-- **Second equation of the double fixed point:** `gTok Γ_D Γ_E = Γ_E`, i.e.
-`tok(D + E) = Γ_E`. -/
+`tok(D + E) = Γ_E`.
+@isnad1 id=eq.0h0v.s2.0cddc200ecba from=translated src=- shape=18f21e71 vocab=17cc8362
+-/
 theorem gTok_GammaD_GammaE : gTok GammaD GammaE = GammaE := by
   apply Set.Subset.antisymm
   · intro w hw
@@ -217,7 +245,9 @@ theorem gTok_GammaD_GammaE : gTok GammaD GammaE = GammaE := by
 Γ_E)`, both
 containing `Λ`, that solve the two coupled token equations `tok(D + (D×E)) = Γ_D`
 and
-`tok(D + E) = Γ_E` simultaneously. -/
+`tok(D + E) = Γ_E` simultaneously.
+@isnad1 id=ex.0h0v.s5.01a45185b359 from=translated src=- shape=f3f8df1d vocab=8408c48a
+-/
 theorem exists_double_fixedPoint :
     ∃ Γd Γe : Set Str, ([] : Str) ∈ Γd ∧ ([] : Str) ∈ Γe ∧
       fTok Γd Γe = Γd ∧ gTok Γd Γe = Γe :=
@@ -239,16 +269,22 @@ def Gsol (D E : ScottSys) : ScottSys := D.sum E
 
 /-- The master (token set) of `D + (D×E)` is `fTok Γ_D Γ_E` — definitionally, the
 sum/product
-masters expand to the tagged-union shape `gTok`/`fTok`. -/
+masters expand to the tagged-union shape `gTok`/`fTok`.
+@isnad1 id=eq.0h0v.s3.438974ae6dec from=translated src=- shape=b2b2f0af vocab=d8353398
+-/
 theorem master_Fsol : (Fsol Dsol Esol).sys.master = fTok GammaD GammaE := rfl
 
-/-- The master (token set) of `D + E` is `gTok Γ_D Γ_E`. -/
+/-- The master (token set) of `D + E` is `gTok Γ_D Γ_E`.
+@isnad1 id=eq.0h0v.s3.92ffc549de81 from=translated src=- shape=b2b2f0af vocab=5a9028fb
+-/
 theorem master_Gsol : (Gsol Dsol Esol).sys.master = gTok GammaD GammaE := rfl
 
 /-- **`{Γ_D} ◁ D + (D × E)`.** The singleton system `D = {Γ_D}` is a subsystem of
 `D + (D×E)`:
 by the
-fixed point its only neighbourhood `Γ_D` is the master of `D + (D×E)`. -/
+fixed point its only neighbourhood `Γ_D` is the master of `D + (D×E)`.
+@isnad1 id=subsyste.0h0v.s3.a0f6c704a81a from=translated src=- shape=0d3591ed vocab=476d553b
+-/
 theorem Dsol_subsystem : Dsol.sys ◁ (Fsol Dsol Esol).sys := by
   have hmaster : (Fsol Dsol Esol).sys.master = GammaD := master_Fsol.trans fTok_GammaD_GammaE
   refine ⟨hmaster.symm, ?_, ?_⟩
@@ -262,7 +298,9 @@ theorem Dsol_subsystem : Dsol.sys ◁ (Fsol Dsol Esol).sys := by
 
 /-- **`{Γ_E} ◁ D + E`.** The singleton system `E = {Γ_E}` is a subsystem of `D +
 E`: by the fixed
-point its only neighbourhood `Γ_E` is the master of `D + E`. -/
+point its only neighbourhood `Γ_E` is the master of `D + E`.
+@isnad1 id=subsyste.0h0v.s3.f89531616100 from=translated src=- shape=5715f1fa vocab=9b152d45
+-/
 theorem Esol_subsystem : Esol.sys ◁ (Gsol Dsol Esol).sys := by
   have hmaster : (Gsol Dsol Esol).sys.master = GammaE := master_Gsol.trans gTok_GammaD_GammaE
   refine ⟨hmaster.symm, ?_, ?_⟩
@@ -280,7 +318,9 @@ theorem Esol_subsystem : Esol.sys ◁ (Gsol Dsol Esol).sys := by
 **simultaneously**. These two
 facts are exactly the joint hypothesis of the simultaneous Theorem 6.14, which
 then yields the
-required isomorphisms `D ≅ D + (D×E)` and `E ≅ D + E`. -/
+required isomorphisms `D ≅ D + (D×E)` and `E ≅ D + E`.
+@isnad1 id=ex.0h0v.s4.0ad587ff1804 from=translated src=- shape=c263aada vocab=6b54d0f1
+-/
 theorem exists_simultaneous_subsystems :
     ∃ D E : ScottSys, D.sys ◁ (D.sum (D.prod E)).sys ∧ E.sys ◁ (D.sum E).sys :=
   ⟨Dsol, Esol, Dsol_subsystem, Esol_subsystem⟩

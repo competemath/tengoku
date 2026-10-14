@@ -62,17 +62,25 @@ def bitNbhd : Bool → Set Token
   | false => Example12.zero
   | true => Example12.one
 
+/--
+@isnad1 id=mem.0h1v.s2.fb49a01adc1b from=translated src=- shape=7000f90d vocab=0e6d2e4c
+-/
 theorem bitNbhd_mem (b : Bool) : T.mem (bitNbhd b) := by
   cases b
   · exact Example12.mem_zero
   · exact Example12.mem_one
 
+/--
+@isnad1 id=ex.0h1v.s4.bca10ae66320 from=translated src=- shape=8501acef vocab=f0f748b1
+-/
 theorem exists_not_mem_bitNbhd (b : Bool) : ∃ t : Token, t ∉ bitNbhd b := by
   cases b
   · exact ⟨1, by simp [bitNbhd, Example12.zero]⟩
   · exact ⟨0, by simp [bitNbhd, Example12.one]⟩
 
-/-- `T`-neighbourhoods are non-empty (`∅ ∉ T`). -/
+/-- `T`-neighbourhoods are non-empty (`∅ ∉ T`).
+@isnad1 id=nonempty.1h1v.s3.2b51eb18aab1 from=translated src=- shape=f671cd81 vocab=ad74eabb
+-/
 theorem T_nbhd_nonempty {F : Set Token} (hF : T.mem F) : F.Nonempty := by
   rcases (Example12.mem_iff F).mp hF with rfl | rfl | rfl
   · exact ⟨0, by simp [Example12.master]⟩
@@ -85,23 +93,37 @@ theorem T_nbhd_nonempty {F : Set Token} (hF : T.mem F) : F.Nonempty := by
 otherwise. -/
 def encSet (σ : Str) : Set (ℕ × Token) := {p | ∀ b, σ[p.1]? = some b → p.2 ∈ bitNbhd b}
 
+/--
+@isnad1 id=iff.0h2v.s6.214cbaaeccdd from=translated src=- shape=04bc194b vocab=5a916307
+-/
 @[simp] theorem mem_encSet {σ : Str} {p : ℕ × Token} :
     p ∈ encSet σ ↔ ∀ b, σ[p.1]? = some b → p.2 ∈ bitNbhd b := Iff.rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.94c36f77ce68 from=translated src=- shape=67f6e7e3 vocab=1e94422d
+-/
 theorem fiber_encSet_some {σ : Str} {i : ℕ} {b : Bool} (h : σ[i]? = some b) :
     fiber (encSet σ) i = bitNbhd b := by
   ext t
   simp_all
 
+/--
+@isnad1 id=eq.1h2v.s5.a7b548b9c01e from=translated src=- shape=f43badf1 vocab=f3e93cf1
+-/
 theorem fiber_encSet_none {σ : Str} {i : ℕ} (h : σ[i]? = none) :
     fiber (encSet σ) i = Set.univ := by
   ext t
   simp_all
 
+/--
+@isnad1 id=eq.0h0v.s3.df6096bfdd55 from=translated src=- shape=f28a9683 vocab=a572e5aa
+-/
 @[simp] theorem encSet_nil : encSet [] = Set.univ := by
   ext p; simp [encSet]
 
-/-- `encSet σ` is a `T^∞`-neighbourhood. -/
+/-- `encSet σ` is a `T^∞`-neighbourhood.
+@isnad1 id=mem.0h1v.s3.c73061880101 from=translated src=- shape=9e55309e vocab=67ce26fb
+-/
 theorem encSet_mem (σ : Str) : (iterSys T).mem (encSet σ) := by
   refine ⟨fun i => ?_, σ.length, fun i hi => ?_⟩
   · cases h : σ[i]? with
@@ -109,7 +131,9 @@ theorem encSet_mem (σ : Str) : (iterSys T).mem (encSet σ) := by
     | some b => rw [fiber_encSet_some h]; exact bitNbhd_mem b
   · rw [fiber_encSet_none (List.getElem?_eq_none_iff.mpr hi)]; rfl
 
-/-- A longer prefix encodes to a *smaller* set: `σ prefix σ' ⟹ encSet σ' ⊆ encSet σ`. -/
+/-- A longer prefix encodes to a *smaller* set: `σ prefix σ' ⟹ encSet σ' ⊆ encSet σ`.
+@isnad1 id=le.1h2v.s4.292f974aa964 from=translated src=- shape=8f448bae vocab=6a2c9aa4
+-/
 theorem encSet_anti {σ σ' : Str} (h : σ <+: σ') : encSet σ' ⊆ encSet σ := by
   obtain ⟨t, rfl⟩ := h
   rintro ⟨i, x⟩ hp b hb
@@ -120,7 +144,9 @@ theorem encSet_anti {σ σ' : Str} (h : σ <+: σ') : encSet σ' ⊆ encSet σ :
 /-! ### Comparability and the prefix recovery lemma. -/
 
 /-- Two prefixes that both bound a common non-empty `T^∞`-neighbourhood agree
-where both defined. -/
+where both defined.
+@isnad1 id=eq.5h6v.s6.3d4fd1f82100 from=translated src=- shape=b6e50333 vocab=699302a4
+-/
 theorem encSet_agree {τ τ' : Str} {W : Set (ℕ × Token)} (hW : (iterSys T).mem W)
     (h : W ⊆ encSet τ) (h' : W ⊆ encSet τ') {i : ℕ} {b b' : Bool}
     (hb : τ[i]? = some b) (hb' : τ'[i]? = some b') : b = b' := by
@@ -130,6 +156,9 @@ theorem encSet_agree {τ τ' : Str} {W : Set (ℕ × Token)} (hW : (iterSys T).m
   by_contra hne
   cases b <;> cases b' <;> simp_all [bitNbhd, Example12.zero, Example12.one]
 
+/--
+@isnad1 id=or.1h2v.s6.e2ee2864a7cb from=translated src=- shape=5e2d7bb5 vocab=37f1a69d
+-/
 theorem comparable_of_agree : ∀ {τ τ' : Str},
     (∀ (i : ℕ) (b b' : Bool), τ[i]? = some b → τ'[i]? = some b' → b = b') → τ <+: τ' ∨ τ' <+: τ
   | [], _, _ => Or.inl (List.nil_prefix)
@@ -145,7 +174,9 @@ theorem comparable_of_agree : ∀ {τ τ' : Str},
       · exact Or.inr (List.cons_prefix_cons.mpr ⟨rfl, h⟩)
 
 /-- **Prefix recovery.** `encSet σ ⊆ encSet τ` forces `τ` to be an initial segment
-of `σ`. -/
+of `σ`.
+@isnad1 id=isprefix.1h2v.s4.6d8b3bdb8759 from=translated src=- shape=bb9a253d vocab=6a2c9aa4
+-/
 theorem prefix_of_encSet_subset {σ τ : Str} (h : encSet σ ⊆ encSet τ) : τ <+: σ := by
   have hag : ∀ (i : ℕ) (b b' : Bool), σ[i]? = some b → τ[i]? = some b' → b = b' :=
     fun i b b' => encSet_agree (encSet_mem σ) subset_rfl h
@@ -208,7 +239,9 @@ def g : ApproximableMap (iterSys T) B where
 
 /-! ### `g ∘ f = I_B` and `f ∘ g ⊑ I_{T^∞}`. -/
 
-/-- **Exercise 3.17 — `g` is a retraction of `f`.** `g ∘ f = I_B`. -/
+/-- **Exercise 3.17 — `g` is a retraction of `f`.** `g ∘ f = I_B`.
+@isnad1 id=eq.0h0v.s4.0800add4c071 from=translated src=- shape=4e11bab6 vocab=e9f9eac9
+-/
 theorem gf_eq_id : g.comp f = idMap B := by
   apply ApproximableMap.ext
   intro X Y
@@ -226,7 +259,9 @@ theorem gf_eq_id : g.comp f = idMap B := by
     exact ⟨encSet σ, ⟨σ, rfl, encSet_mem σ, subset_rfl⟩,
       encSet_mem σ, τ, rfl, encSet_anti hpre⟩
 
-/-- **Exercise 3.17 — `f` is a section of `g`.** `f ∘ g ⊑ I_{T^∞}`. -/
+/-- **Exercise 3.17 — `f` is a section of `g`.** `f ∘ g ⊑ I_{T^∞}`.
+@isnad1 id=le.0h0v.s6.e3f002598586 from=translated src=- shape=bb9ec904 vocab=d28827c7
+-/
 theorem fg_le_id : f.comp g ≤ idMap (iterSys T) := by
   intro W Z
   rw [comp_rel, idMap_rel]
@@ -235,7 +270,9 @@ theorem fg_le_id : f.comp g ≤ idMap (iterSys T) := by
   exact ⟨hW, hZmem, hWτ.trans hσZ⟩
 
 /-- **`f` is one-one.** Since `g ∘ f = I_B`, the elementwise map of `f` is
-injective. -/
+injective.
+@isnad1 id=injectiv.0h0v.s4.70a1ef2fdf01 from=translated src=- shape=b32748f6 vocab=c131ced1
+-/
 theorem f_injective : Function.Injective f.toElementMap := by
   intro x y hxy
   have : (g.comp f).toElementMap x = (g.comp f).toElementMap y := by

@@ -74,7 +74,9 @@ def conflictCovers24 : Array ConflictCover :=
   ⟨6, 2658352, 17179869183, [4, 5, 12, 15, 19, 21]⟩,
   ⟨5, 2151683152, 34359738367, [4, 6, 10, 12, 22, 31]⟩]
 
-/-- Every entry in conflict-cover group 24 passes its audit. -/
+/-- Every entry in conflict-cover group 24 passes its audit.
+@isnad1 id=eq.0h0v.s3.cfaba30087bc from=translated src=- shape=0547e772 vocab=22d75d9f
+-/
 theorem conflictCovers24_valid :
     conflictCovers24.toList.all ConflictCover.validB = true := by
   decide
@@ -140,7 +142,9 @@ def conflictCovers25 : Array ConflictCover :=
   ⟨5, 824634247234, 34326183935, [1, 6, 11, 19, 38, 39]⟩,
   ⟨6, 549756344354, 34326183935, [1, 5, 11, 12, 19, 39]⟩]
 
-/-- Every entry in conflict-cover group 25 passes its audit. -/
+/-- Every entry in conflict-cover group 25 passes its audit.
+@isnad1 id=eq.0h0v.s3.3796a84b8478 from=translated src=- shape=0547e772 vocab=51e34a2c
+-/
 theorem conflictCovers25_valid :
     conflictCovers25.toList.all ConflictCover.validB = true := by
   decide
@@ -201,7 +205,9 @@ def conflictCovers26 : Array ConflictCover :=
   ⟨6, 137707917346, 34057732095, [1, 5, 12, 19, 28, 37]⟩,
   ⟨5, 36028797296316482, 34359738367, [1, 6, 12, 19, 23, 28, 55]⟩]
 
-/-- Every entry in conflict-cover group 26 passes its audit. -/
+/-- Every entry in conflict-cover group 26 passes its audit.
+@isnad1 id=eq.0h0v.s3.430051727430 from=translated src=- shape=0547e772 vocab=27dbafc6
+-/
 theorem conflictCovers26_valid :
     conflictCovers26.toList.all ConflictCover.validB = true := by
   decide
@@ -262,7 +268,9 @@ def conflictCovers27 : Array ConflictCover :=
   ⟨6, 540543010, 33822736383, [1, 5, 11, 19, 20, 21, 29]⟩,
   ⟨5, 549760534594, 34359738367, [1, 6, 11, 19, 22, 39]⟩]
 
-/-- Every entry in conflict-cover group 27 passes its audit. -/
+/-- Every entry in conflict-cover group 27 passes its audit.
+@isnad1 id=eq.0h0v.s3.dbc3a53e4e8a from=translated src=- shape=0547e772 vocab=1ef03da4
+-/
 theorem conflictCovers27_valid :
     conflictCovers27.toList.all ConflictCover.validB = true := by
   decide

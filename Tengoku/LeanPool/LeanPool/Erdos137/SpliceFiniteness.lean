@@ -87,47 +87,67 @@ def overlap5 (k n p : ℕ) : ℕ := overlapg 5 k n p
 /-- The over-count `W5 k n`: the `g = 5` instance of the generic `Wg`. -/
 def W5 (k n : ℕ) : ℕ := Wg 5 k n
 
-/-- `B5 k n = F (5 * (k/5)) n`. The `g = 5` instance of `Bg_eq`. -/
+/-- `B5 k n = F (5 * (k/5)) n`. The `g = 5` instance of `Bg_eq`.
+@isnad1 id=eq.0h2v.s5.27837150ad57 from=translated src=- shape=eade0ef1 vocab=9bd7c82e
+-/
 lemma B5_eq (k n : ℕ) : B5 k n = F (5 * (k / 5)) n := Bg_eq (by norm_num) k n
 
-/-- **`B5 k n` divides `F k n`** (the `g = 5` instance of `Bg_dvd_F`). -/
+/-- **`B5 k n` divides `F k n`** (the `g = 5` instance of `Bg_dvd_F`).
+@isnad1 id=dvd.0h2v.s3.3e2a6bd55ff1 from=translated src=- shape=6c8684e5 vocab=ff6b4155
+-/
 lemma B5_dvd_F (k n : ℕ) : B5 k n ∣ F k n := Bg_dvd_F (by norm_num) k n
 
-/-- `B5 k n ≠ 0` for `n ≥ 1`. The `g = 5` instance of `Bg_ne_zero`. -/
+/-- `B5 k n ≠ 0` for `n ≥ 1`. The `g = 5` instance of `Bg_ne_zero`.
+@isnad1 id=ne.1h2v.s4.0de5964cc910 from=translated src=- shape=962a0625 vocab=e4ec5669
+-/
 lemma B5_ne_zero {n : ℕ} (hn : 1 ≤ n) (k : ℕ) : B5 k n ≠ 0 := Bg_ne_zero (by norm_num) hn k
 
 /-- For `n ≥ 1` each quintic block `F 5 (n + 5j)` is nonzero. The `g = 5` instance of
-`block_ne_zero`. -/
+`block_ne_zero`.
+@isnad1 id=ne.1h2v.s5.7f99d00ff38d from=translated src=- shape=77371aa1 vocab=d01f733b
+-/
 lemma block5_ne_zero {n : ℕ} (hn : 1 ≤ n) (j : ℕ) : F 5 (n + 5 * j) ≠ 0 :=
   block_ne_zero hn 5 j
 
 /-- **Radical-of-product decomposition (g = 5), exact form.**
-`∏_j rad (F 5 (n+5j)) = rad (B5 k n) * W5 k n`. The `g = 5` instance of `rad_blocksg_decomp`. -/
+`∏_j rad (F 5 (n+5j)) = rad (B5 k n) * W5 k n`. The `g = 5` instance of `rad_blocksg_decomp`.
+@isnad1 id=eq.1h2v.s6.8979a391b9ae from=translated src=- shape=c16b7ae0 vocab=8f9fbe50
+-/
 theorem rad_blocks5_decomp {k n : ℕ} (hn : 1 ≤ n) :
     (∏ j ∈ Finset.range (k / 5), rad (F 5 (n + 5 * j))) = rad (B5 k n) * W5 k n :=
   rad_blocksg_decomp (by norm_num) hn
 
-/-- `rad (B5 k n) ∣ rad (F k n)`. The `g = 5` instance of `rad_Bg_dvd_rad_F`. -/
+/-- `rad (B5 k n) ∣ rad (F k n)`. The `g = 5` instance of `rad_Bg_dvd_rad_F`.
+@isnad1 id=dvd.1h2v.s4.98d48f00e34c from=translated src=- shape=40085562 vocab=eebae6d7
+-/
 lemma rad_B5_dvd_rad_F {k n : ℕ} (hn : 1 ≤ n) : rad (B5 k n) ∣ rad (F k n) :=
   rad_Bg_dvd_rad_F (by norm_num) hn
 
 /-- **Decomposition inequality (the usable form, g = 5):**
-`∏_j rad (F 5 (n+5j)) ≤ rad (F k n) * W5 k n`. The `g = 5` instance of `rad_blocksg_le`. -/
+`∏_j rad (F 5 (n+5j)) ≤ rad (F k n) * W5 k n`. The `g = 5` instance of `rad_blocksg_le`.
+@isnad1 id=le.1h2v.s6.1df01eb1ea48 from=translated src=- shape=827a089b vocab=fdfc7757
+-/
 theorem rad_5blocks_le {k n : ℕ} (hn : 1 ≤ n) :
     (∏ j ∈ Finset.range (k / 5), rad (F 5 (n + 5 * j))) ≤ rad (F k n) * W5 k n :=
   rad_blocksg_le (by norm_num) hn
 
 /-- **Overlap bound (combinatorial core, g = 5).** `overlap5 k n p ≤ ⌊k/p⌋ + 1` for `n ≥ 1`.
-The `g = 5` instance of `overlapg_le`. -/
+The `g = 5` instance of `overlapg_le`.
+@isnad1 id=le.1h3v.s5.a378d02a98a4 from=translated src=- shape=c463bf62 vocab=29719973
+-/
 lemma overlap5_le {k n p : ℕ} (hn : 1 ≤ n) : overlap5 k n p ≤ k / p + 1 :=
   overlapg_le (by norm_num) hn
 
 /-- **Overlap product divides `k!` (g = 5).** `W5 k n ∣ k!`. The `g = 5` instance of
-`Wg_dvd_factorial`. -/
+`Wg_dvd_factorial`.
+@isnad1 id=dvd.1h2v.s4.4df6e0149671 from=translated src=- shape=c45dab53 vocab=6e2aedf7
+-/
 theorem W5_dvd_factorial {k n : ℕ} (hn : 1 ≤ n) : W5 k n ∣ Nat.factorial k :=
   Wg_dvd_factorial (by norm_num) hn
 
-/-- **Overlap bound (g = 5): `W5 k n ≤ k^k`.** The `g = 5` instance of `Wg_le_pow`. -/
+/-- **Overlap bound (g = 5): `W5 k n ≤ k^k`.** The `g = 5` instance of `Wg_le_pow`.
+@isnad1 id=le.1h2v.s5.7952fa0291ad from=translated src=- shape=1d93e500 vocab=f89f27f8
+-/
 theorem W5_le_pow {k n : ℕ} (hn : 1 ≤ n) : W5 k n ≤ k ^ k :=
   Wg_le_pow (by norm_num) hn
 
@@ -145,7 +165,9 @@ def BlockRadLB5 : Prop :=
       ((∏ j ∈ Finset.range (k / 5), rad (F 5 (n + 5 * j)) : ℕ) : ℝ)
 
 /-- `BlockRadLB5` is exactly the `g = 5` instance of the generic `BlockRadLBg` (the exponents
-`4/5` and `(5-1)/5` agree, and the guard `5 ≤ k` matches `g ≤ k`). -/
+`4/5` and `(5-1)/5` agree, and the guard `5 ≤ k` matches `g ≤ k`).
+@isnad1 id=iff.0h0v.s3.01e5a2e08f3a from=translated src=- shape=9ae76a30 vocab=c0872d16
+-/
 lemma blockRadLB5_iff : BlockRadLB5 ↔ BlockRadLBg 5 := by
   unfold BlockRadLB5 BlockRadLBg
   constructor
@@ -173,7 +195,9 @@ yields a prime `p` with `N / 2 < p ≤ 2 ⌊N/2⌋ ≤ N`. Hence:
 
 Then `v_p(F k n) = ∑_{i<k} v_p(n+i) = v_p(p) = 1` (every other factor `< 2p` is not a multiple of
 `p`), so `p ∣ F` but `p^2 ∤ F`, contradicting powerfulness. The single occurrence comes from
-`2p > N`, not from `p > k`. -/
+`2p > N`, not from `p > k`.
+@isnad1 id=not.3h2v.s5.4fae01bae4aa from=translated src=- shape=af325ff2 vocab=740c2f1a
+-/
 theorem upper_half_prime_not_powerful {k n : ℕ} (hk : 2 ≤ k) (hn : 1 ≤ n) (hnk : n ≤ k) :
     ¬ Powerful (F k n) := by
   intro hPow
@@ -268,7 +292,9 @@ def PrimeInBlockOnRange (Range : ℕ → ℕ → Prop) : Prop :=
 /-- **Ranged prime deduction.** Given a ranged prime input `PrimeInBlockOnRange Range`, for `k ≥ 3`,
 `1 ≤ n`, and `hR : Range k n`, the product `F k n` is not powerful: the prime `p > k` supplied on
 the range is a term of the block, and `prime_in_block_not_powerful` (TaoPoint) rules out
-powerfulness. -/
+powerfulness.
+@isnad1 id=not.3h4v.s5.fabb7d2fa455 from=translated src=- shape=c2881ec9 vocab=cb9837e8
+-/
 theorem prime_range_not_powerful {Range : ℕ → ℕ → Prop}
     (hPrime : PrimeInBlockOnRange Range) {k n : ℕ}
     (hk : 3 ≤ k) (hn : 1 ≤ n) (hR : Range k n) : ¬ Powerful (F k n) := by
@@ -297,7 +323,9 @@ discharged unconditionally by `upper_half_prime_not_powerful` (Bertrand); the mi
 the exact exponents live entirely inside the three premises — Lean never assumes them, so it never
 assumes "a prime in every block". For `k ≥ 5`, instantiating `Mid` = BHP range and `High` =
 Mertens-sharpened `g = 5` range, with `hHigh` supplied by `not_powerful_g5`, gives the clean
-Pandey-free no-gap splice, whose analytic inputs remain external. -/
+Pandey-free no-gap splice, whose analytic inputs remain external.
+@isnad1 id=not.5h4v.s6.a5aa08c261a7 from=translated src=- shape=f8365e61 vocab=9a7ef14b
+-/
 theorem abstract_splice_no_counterexamples {Mid High : ℕ → ℕ → Prop}
     (hCover : CoversAll Mid High)
     (hMid : PrimeInBlockOnRange Mid)

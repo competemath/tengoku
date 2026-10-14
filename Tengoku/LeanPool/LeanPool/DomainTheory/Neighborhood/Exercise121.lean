@@ -47,7 +47,9 @@ variable {α : Type*} (V : NeighborhoodSystem α)
 neighbourhood
 iff non-empty: a common element `x` gives `X ∩ Y ∈ 𝒟` (via `x.sub (x.inter_mem
 …)`); conversely
-`[W]` always contains the principal filter `↑W`. -/
+`[W]` always contains the principal filter `↑W`.
+@isnad1 id=ispositi.0h2v.s3.dd154baa3b06 from=translated src=- shape=609b34e5 vocab=08f138ec
+-/
 theorem tokenSystem_isPositive : V.tokenSystem.IsPositive := by
   rintro S T ⟨X, hX, rfl⟩ ⟨Y, hY, rfl⟩
   rw [V.bracket_inter hX hY]
@@ -73,7 +75,9 @@ def IsComplete {β : Type*} (V' : NeighborhoodSystem β) : Prop :=
 is fixed by
 the unique point `ofToken y ∈ |𝒟|`: `[W] ∈ y ↔ ofToken y ∈ [W]`. Uniqueness is
 `Element.ext`
-applied through the brackets. -/
+applied through the brackets.
+@isnad1 id=iscomple.0h2v.s3.30dad78d0744 from=translated src=- shape=609b34e5 vocab=e88d1f7b
+-/
 theorem tokenSystem_complete : V.tokenSystem.IsComplete := by
   intro y
   refine ⟨V.ofToken y, ?_, ?_⟩
@@ -104,14 +108,18 @@ def filterFixedBy (x : V.Element) : V.tokenSystem.Element := V.toToken x
 bijection (it is the
 underlying map of the order-iso `tokenIso`), so a complete system identifies
 tokens with
-(partial) elements under a one-one correspondence. -/
+(partial) elements under a one-one correspondence.
+@isnad1 id=bijectiv.0h2v.s4.7e5be43d6c7e from=translated src=- shape=37f34f1a vocab=0dc856ff
+-/
 theorem tokenSystem_toToken_bijective : Function.Bijective V.toToken :=
   V.tokenIso.bijective
 
 /-! ### Consistency iff non-empty intersection of brackets. -/
 
 /-- `[X] ≠ ∅ iff X ∈ 𝒟`. `→` reads `X ∈ 𝒟` off any element of `[X]`; `←` exhibits
-`↑X`. -/
+`↑X`.
+@isnad1 id=iff.0h3v.s4.81a64e6867c4 from=translated src=- shape=72b4e79e vocab=8fcbc2ea
+-/
 theorem bracket_nonempty_iff {X : Set α} : (V.bracket X).Nonempty ↔ V.mem X := by
   constructor
   · rintro ⟨x, hx⟩; exact x.sub hx
@@ -120,7 +128,9 @@ theorem bracket_nonempty_iff {X : Set α} : (V.bracket X).Nonempty ↔ V.mem X :
 /-- **Exercise 1.21 — consistency via the intersection `[⋂]`.** For `X₀, …, Xₙ₋₁ ∈
 𝒟`,
 `⟨Xᵢ⟩` is consistent iff `[⋂_{i<n} Xᵢ] ≠ ∅`. Combines Theorem 1.1c
-(`consistent_iff_interUpTo_mem`) with `bracket_nonempty_iff`. -/
+(`consistent_iff_interUpTo_mem`) with `bracket_nonempty_iff`.
+@isnad1 id=iff.1h4v.s5.2b93442bac32 from=translated src=- shape=baee0048 vocab=6ed98953
+-/
 theorem consistent_iff_bracket_interUpTo_nonempty (X : ℕ → Set α) {n : ℕ}
     (hX : ∀ i, i < n → V.mem (X i)) :
     V.Consistent X n ↔ (V.bracket (V.interUpTo X n)).Nonempty := by
@@ -131,7 +141,9 @@ theorem consistent_iff_bracket_interUpTo_nonempty (X : ℕ → Set α) {n : ℕ}
 Scott's
 equivalence: `⟨Xᵢ⟩` is consistent iff there is a filter lying in every `[Xᵢ]` (`i
 < n`). `→`
-uses upward closure along `⋂_{i<n} Xᵢ ⊆ Xᵢ`; `←` uses `Element.mem_interUpTo`. -/
+uses upward closure along `⋂_{i<n} Xᵢ ⊆ Xᵢ`; `←` uses `Element.mem_interUpTo`.
+@isnad1 id=iff.1h4v.s6.a6e15b0fa689 from=translated src=- shape=ed9a4b79 vocab=a93b2da6
+-/
 theorem consistent_iff_iInter_bracket_nonempty (X : ℕ → Set α) {n : ℕ}
     (hX : ∀ i, i < n → V.mem (X i)) :
     V.Consistent X n ↔ ∃ x : V.Element, ∀ i, i < n → x ∈ V.bracket (X i) := by

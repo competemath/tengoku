@@ -51,7 +51,9 @@ variable {α : Type*} {V : NeighborhoodSystem α}
 
 namespace ApproximableMap
 
-/-- Commutation `f ∘ g = g ∘ f` read elementwise: `f(g(x)) = g(f(x))`. -/
+/-- Commutation `f ∘ g = g ∘ f` read elementwise: `f(g(x)) = g(f(x))`.
+@isnad1 id=eq.1h5v.s6.20e5d3fad73c from=translated src=- shape=8dcda551 vocab=4059f4e4
+-/
 theorem commute_apply {f g : ApproximableMap V V} (hcomm : f.comp g = g.comp f) (x : V.Element) :
     f.toElementMap (g.toElementMap x) = g.toElementMap (f.toElementMap x) := by
   have h1 : (f.comp g).toElementMap x = (g.comp f).toElementMap x := by rw [hcomm]
@@ -59,7 +61,9 @@ theorem commute_apply {f g : ApproximableMap V V} (hcomm : f.comp g = g.comp f) 
 
 /-- **Exercise 5.9 (Scott 1981, PRG-19).** Commuting approximable maps have a
 *least common fixed
-point* `x = f(x) = g(x)`. -/
+point* `x = f(x) = g(x)`.
+@isnad1 id=ex.1h4v.s6.c60bc9f1732b from=translated src=- shape=5a928fb8 vocab=569de926
+-/
 theorem commuting_least_common_fixed {f g : ApproximableMap V V} (hcomm : f.comp g = g.comp f) :
     ∃ x : V.Element, f.toElementMap x = x ∧ g.toElementMap x = x ∧
       ∀ w : V.Element, f.toElementMap w = w → g.toElementMap w = w → x ≤ w := by
@@ -94,12 +98,17 @@ theorem commuting_least_common_fixed {f g : ApproximableMap V V} (hcomm : f.comp
   have haw : a ≤ w := fixElement_le_of_toElementMap_le f (le_of_eq hfw)
   exact fixAbove_least g ha_le haw (le_of_eq hgw)
 
+/--
+@isnad1 id=eq.0h3v.s4.b343239158a0 from=translated src=- shape=5550e632 vocab=1ce62c39
+-/
 theorem iterElem_zero' (f : ApproximableMap V V) : f.iterElem 0 = V.bot := by
   rw [iterElem_eq_iterate, Function.iterate_zero_apply]
 
 /-- **Exercise 5.9 (Scott 1981, PRG-19).** If `f, g` commute and `f(⊥) = g(⊥)`,
 then
-`fix(f) = fix(g)`. -/
+`fix(f) = fix(g)`.
+@isnad1 id=eq.2h4v.s6.de431b2e5ca5 from=translated src=- shape=227fac3c vocab=7d0c5ce1
+-/
 theorem fixElement_eq_of_commuting_bot {f g : ApproximableMap V V} (hcomm : f.comp g = g.comp f)
     (hbot : f.toElementMap V.bot = g.toElementMap V.bot) :
     f.fixElement = g.fixElement := by
@@ -150,7 +159,9 @@ theorem fixElement_eq_of_commuting_bot {f g : ApproximableMap V V} (hcomm : f.co
   · exact fixElement_le_of_toElementMap_le f (le_of_eq hffixg)
   · exact fixElement_le_of_toElementMap_le g (le_of_eq hgfixf)
 
-/-- `(f²)ⁿ(⊥) = f^{2n}(⊥)`. -/
+/-- `(f²)ⁿ(⊥) = f^{2n}(⊥)`.
+@isnad1 id=eq.0h4v.s5.68e3e60b0fa5 from=translated src=- shape=3f2db8cd vocab=cd4e9098
+-/
 theorem comp_self_iterElem (f : ApproximableMap V V) (n : ℕ) :
     (f.comp f).iterElem n = f.iterElem (2 * n) := by
   induction n with
@@ -162,7 +173,9 @@ theorem comp_self_iterElem (f : ApproximableMap V V) (n : ℕ) :
 /-- **Exercise 5.9 (Scott 1981, PRG-19).** In particular `fix(f) = fix(f²)`: the
 `f²`-chain
 `f^{2n}(⊥)` is cofinal in the `f`-chain `fⁿ(⊥)`, so the two least fixed points
-coincide. -/
+coincide.
+@isnad1 id=eq.0h3v.s4.74af52fa5ab5 from=translated src=- shape=d52dc644 vocab=2ccccd0f
+-/
 theorem fixElement_iterTwice (f : ApproximableMap V V) :
     f.fixElement = (f.comp f).fixElement := by
   apply le_antisymm

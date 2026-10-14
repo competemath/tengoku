@@ -43,7 +43,9 @@ noncomputable section
 /-! ## Basic facts about `F` and block tilings -/
 
 /-- `F` splits as a product of an initial block and a shifted tail:
-`F (a + b) n = F a n * F b (n + a)`. -/
+`F (a + b) n = F a n * F b (n + a)`.
+@isnad1 id=eq.0h3v.s5.a5ec3508f796 from=translated src=- shape=bac28b96 vocab=f9dd656f
+-/
 lemma F_add (a b n : ℕ) : F (a + b) n = F a n * F b (n + a) := by
   unfold F
   rw [Finset.prod_range_add]
@@ -52,17 +54,23 @@ lemma F_add (a b n : ℕ) : F (a + b) n = F a n * F b (n + a) := by
   intro i _
   ring_nf
 
-/-- `F a n` divides `F (a + b) n`. -/
+/-- `F a n` divides `F (a + b) n`.
+@isnad1 id=dvd.0h3v.s4.eeb503a213a8 from=translated src=- shape=01132874 vocab=4b351e38
+-/
 lemma F_dvd_F_add (a b n : ℕ) : F a n ∣ F (a + b) n := by
   rw [F_add]; exact Dvd.intro _ rfl
 
 /-! ## The radical's prime support and factorization (general facts) -/
 
-/-- `rad m ∣ m` for `m ≠ 0`. -/
+/-- `rad m ∣ m` for `m ≠ 0`.
+@isnad1 id=dvd.1h1v.s4.21a333b71497 from=translated src=- shape=fc845374 vocab=ac0b3687
+-/
 lemma rad_dvd_self {m : ℕ} (_hm : m ≠ 0) : rad m ∣ m := by
   unfold rad; rw [Nat.support_factorization]; exact Nat.prod_primeFactors_dvd _
 
-/-- The prime support of `rad m` is exactly `m.primeFactors` (for `m ≠ 0`). -/
+/-- The prime support of `rad m` is exactly `m.primeFactors` (for `m ≠ 0`).
+@isnad1 id=eq.1h1v.s4.7800edc91e86 from=translated src=- shape=9acb563c vocab=62f3ae35
+-/
 lemma primeFactors_rad {m : ℕ} (hm : m ≠ 0) : (rad m).primeFactors = m.primeFactors := by
   apply Finset.Subset.antisymm
   · exact Nat.primeFactors_mono (rad_dvd_self hm) hm
@@ -76,7 +84,9 @@ lemma primeFactors_rad {m : ℕ} (hm : m ≠ 0) : (rad m).primeFactors = m.prime
     exact Nat.mem_primeFactors.mpr ⟨hpprime, this, Nat.one_le_iff_ne_zero.mp (rad_pos m)⟩
 
 /-- **General fact:** `rad m` is squarefree, so `(rad m).factorization p = 1` if
-`p ∈ m.primeFactors`, else `0`. -/
+`p ∈ m.primeFactors`, else `0`.
+@isnad1 id=eq.1h2v.s6.222cf267b310 from=translated src=- shape=e2fd72bf vocab=20079f59
+-/
 lemma factorization_rad {m : ℕ} (hm : m ≠ 0) (p : ℕ) :
     (rad m).factorization p = if p ∈ m.primeFactors then 1 else 0 := by
   by_cases hp : p ∈ m.primeFactors
@@ -100,7 +110,9 @@ lemma factorization_rad {m : ℕ} (hm : m ≠ 0) (p : ℕ) :
     · exact Nat.factorization_eq_zero_of_not_prime _ hpp
 
 /-- `rad` is monotone under divisibility: `a ∣ b`, `b ≠ 0` ⟹ `rad a ∣ rad b`
-(their prime supports are nested). -/
+(their prime supports are nested).
+@isnad1 id=dvd.2h2v.s4.860348f7b0cc from=translated src=- shape=fc60dc7a vocab=ac0b3687
+-/
 lemma rad_dvd_rad_of_dvd {a b : ℕ} (hb : b ≠ 0) (hab : a ∣ b) : rad a ∣ rad b := by
   unfold rad
   rw [Nat.support_factorization, Nat.support_factorization]
@@ -109,14 +121,18 @@ lemma rad_dvd_rad_of_dvd {a b : ℕ} (hb : b ≠ 0) (hab : a ∣ b) : rad a ∣ 
 
 /-! ## Elementary size bounds on `F k n` -/
 
-/-- `n ≤ F k n` for `k ≥ 1`, `n ≥ 1` (the first factor is `n`, the rest are `≥ 1`). -/
+/-- `n ≤ F k n` for `k ≥ 1`, `n ≥ 1` (the first factor is `n`, the rest are `≥ 1`).
+@isnad1 id=le.2h2v.s4.7b7c7b25d034 from=translated src=- shape=54f6f2a6 vocab=0ae0e3a6
+-/
 lemma le_F {k n : ℕ} (hk : 1 ≤ k) (hn : 1 ≤ n) : n ≤ F k n := by
   have hmem : (0 : ℕ) ∈ Finset.range k := Finset.mem_range.mpr (by omega)
   have hdvd : (n + 0) ∣ F k n := by
     rw [F]; exact Finset.dvd_prod_of_mem _ hmem
   simpa using Nat.le_of_dvd (F_pos hn) hdvd
 
-/-- `k ≤ F k n` for `k ≥ 1`, `n ≥ 1` (the last factor `n+k-1 ≥ k` divides the product). -/
+/-- `k ≤ F k n` for `k ≥ 1`, `n ≥ 1` (the last factor `n+k-1 ≥ k` divides the product).
+@isnad1 id=le.2h2v.s4.a2c4844b9c25 from=translated src=- shape=fd8db9e9 vocab=0ae0e3a6
+-/
 lemma le_F' {k n : ℕ} (hk : 1 ≤ k) (hn : 1 ≤ n) : k ≤ F k n := by
   have hmem : (k - 1) ∈ Finset.range k := Finset.mem_range.mpr (by omega)
   have hdvd : (n + (k - 1)) ∣ F k n := by
@@ -126,7 +142,9 @@ lemma le_F' {k n : ℕ} (hk : 1 ≤ k) (hn : 1 ≤ n) : k ≤ F k n := by
 
 /-! ## Counting multiples of a prime in an interval (for the overlap bound) -/
 
-/-- **Exact count** of multiples of `p` in `(a, b]`: `#{x ∈ Ioc a b | p ∣ x} = b/p − a/p`. -/
+/-- **Exact count** of multiples of `p` in `(a, b]`: `#{x ∈ Ioc a b | p ∣ x} = b/p − a/p`.
+@isnad1 id=eq.1h3v.s5.19c9f3dcdebb from=translated src=- shape=14983e83 vocab=878cca52
+-/
 theorem Ioc_dvd_count (a b p : ℕ) (hab : a ≤ b) :
     #{x ∈ Finset.Ioc a b | p ∣ x} = b / p - a / p := by
   have h1 : #{x ∈ Finset.Ioc 0 b | p ∣ x} = b / p := Nat.Ioc_filter_dvd_card_eq_div b p
@@ -140,7 +158,9 @@ theorem Ioc_dvd_count (a b p : ℕ) (hab : a ≤ b) :
       rw [Finset.Ioc_disjoint_Ioc]; simp
   omega
 
-/-- The number of multiples of `p` in an interval of length `L` is at most `⌊L/p⌋ + 1`. -/
+/-- The number of multiples of `p` in an interval of length `L` is at most `⌊L/p⌋ + 1`.
+@isnad1 id=le.1h3v.s6.d2fcc2e72048 from=translated src=- shape=e2f720ea vocab=09e98e38
+-/
 theorem Ioc_dvd_le (a L p : ℕ) (hp : 1 ≤ p) :
     #{x ∈ Finset.Ioc a (a + L) | p ∣ x} ≤ L / p + 1 := by
   rw [Ioc_dvd_count a (a + L) p (Nat.le_add_right a L)]
@@ -158,7 +178,9 @@ theorem Ioc_dvd_le (a L p : ℕ) (hp : 1 ≤ p) :
     rw [Nat.div_le_iff_le_mul_add_pred hpp]; omega
   rw [Nat.sub_le_iff_le_add, h6]; omega
 
-/-- For a prime `p`, `⌊k/p⌋ ≤ (k!).factorization p` (the `i = 1` term of Legendre's formula). -/
+/-- For a prime `p`, `⌊k/p⌋ ≤ (k!).factorization p` (the `i = 1` term of Legendre's formula).
+@isnad1 id=le.1h2v.s5.d72b15e16fcc from=translated src=- shape=0c730828 vocab=e92ee4b2
+-/
 lemma div_le_factorization_factorial {k p : ℕ} (hp : p.Prime) :
     k / p ≤ (Nat.factorial k).factorization p := by
   rw [Nat.factorization_factorial hp (Nat.lt_add_one (Nat.log p k))]
@@ -182,16 +204,27 @@ def P (k : ℕ) : ℕ := ∏ p ∈ Nat.primesBelow k, p
 `L = (k!)^{1-o(1)}`). -/
 def L (k : ℕ) : ℕ := ∏ p ∈ Nat.primesBelow k, p ^ (k / p)
 
+/--
+@isnad1 id=le.0h1v.s3.3ec638a3a47a from=translated src=- shape=8a62b088 vocab=96d977a5
+-/
 lemma P_pos (k : ℕ) : 1 ≤ P k :=
   Finset.one_le_prod fun _p hp => (Nat.prime_of_mem_primesBelow hp).one_le
 
+/--
+@isnad1 id=le.0h1v.s3.1ea3bdfc660c from=translated src=- shape=8a62b088 vocab=9f32d364
+-/
 lemma L_pos (k : ℕ) : 1 ≤ L k :=
   Finset.one_le_prod fun _p hp => Nat.one_le_pow _ _ (Nat.prime_of_mem_primesBelow hp).pos
 
+/--
+@isnad1 id=ne.0h1v.s3.bda9b7c50145 from=translated src=- shape=b14ee516 vocab=bb7e4ca9
+-/
 lemma L_ne_zero (k : ℕ) : L k ≠ 0 := Nat.one_le_iff_ne_zero.mp (L_pos k)
 
 /-- `P k ≤ 4 ^ k` (Mathlib's `primorial_le_four_pow`; `primesBelow k` are the primes `≤ k - 1`,
-a subset of the primes counted by `primorial k`). -/
+a subset of the primes counted by `primorial k`).
+@isnad1 id=le.0h1v.s4.ed7270e30f14 from=translated src=- shape=ff508864 vocab=7d0a8f26
+-/
 lemma P_le_4_pow (k : ℕ) : P k ≤ 4 ^ k := by
   have hsub : Nat.primesBelow k ⊆ {p ∈ Finset.range (k + 1) | p.Prime} := by
     intro p hp
@@ -214,24 +247,34 @@ def Ssmooth (k n : ℕ) : ℕ :=
 def Rrough (k n : ℕ) : ℕ :=
   ∏ p ∈ (F k n).primeFactors.filter (fun p => ¬ p < k), p ^ (F k n).factorization p
 
-/-- `S · R = F` for `n ≥ 1`. -/
+/-- `S · R = F` for `n ≥ 1`.
+@isnad1 id=eq.1h2v.s5.4e8d2d519548 from=translated src=- shape=c4f6e16b vocab=a0adb648
+-/
 lemma Ssmooth_mul_Rrough {k n : ℕ} (hn : 1 ≤ n) : Ssmooth k n * Rrough k n = F k n := by
   unfold Ssmooth Rrough
   rw [Finset.prod_filter_mul_prod_filter_not]
   conv_rhs => rw [← Nat.prod_factorization_pow_eq_self (F_ne_zero hn)]
   rw [Nat.prod_factorization_eq_prod_primeFactors]
 
+/--
+@isnad1 id=le.1h2v.s4.1b73af1c019b from=translated src=- shape=61bdc3e7 vocab=50bd04a2
+-/
 lemma Ssmooth_pos {k n : ℕ} (_hn : 1 ≤ n) : 1 ≤ Ssmooth k n :=
   Finset.one_le_prod fun _p hp =>
     Nat.one_le_pow _ _ (Nat.prime_of_mem_primeFactors (Finset.mem_of_mem_filter _ hp)).pos
 
+/--
+@isnad1 id=le.1h2v.s4.5da4a564e852 from=translated src=- shape=61bdc3e7 vocab=aaee85ac
+-/
 lemma Rrough_pos {k n : ℕ} (_hn : 1 ≤ n) : 1 ≤ Rrough k n :=
   Finset.one_le_prod fun _p hp =>
     Nat.one_le_pow _ _ (Nat.prime_of_mem_primeFactors (Finset.mem_of_mem_filter _ hp)).pos
 
 /-! ## Bound on the smooth radical: `rad(S)^2 ≤ P^2` -/
 
-/-- `∏_{p | F, p < k} p ∣ P k`: the smooth prime factors are a subset of `primesBelow k`. -/
+/-- `∏_{p | F, p < k} p ∣ P k`: the smooth prime factors are a subset of `primesBelow k`.
+@isnad1 id=dvd.0h2v.s5.46eb2d7ce0b9 from=translated src=- shape=cb33941d vocab=35028fe6
+-/
 lemma smooth_rad_dvd_P {k n : ℕ} :
     (∏ p ∈ (F k n).primeFactors.filter (· < k), p) ∣ P k := by
   unfold P
@@ -241,7 +284,9 @@ lemma smooth_rad_dvd_P {k n : ℕ} :
   rw [Nat.mem_primesBelow]
   exact ⟨hp.2, Nat.prime_of_mem_primeFactors hp.1⟩
 
-/-- `∏_{p | F, p < k} p ≤ P k`. -/
+/-- `∏_{p | F, p < k} p ≤ P k`.
+@isnad1 id=le.0h2v.s5.a4f3beecf1e8 from=translated src=- shape=cb33941d vocab=b43febdd
+-/
 lemma smooth_rad_le_P {k n : ℕ} :
     (∏ p ∈ (F k n).primeFactors.filter (· < k), p) ≤ P k :=
   Nat.le_of_dvd (P_pos k) smooth_rad_dvd_P
@@ -256,7 +301,9 @@ each such factor contributes at least `1` to `v_p(F)`. -/
 
 /-- The count of multiples of `p` among the `k` consecutive integers `n, …, n+k-1` is at least
 `⌊k/p⌋`. Stated via the exact `Ioc` count:
-`#{x ∈ (n-1, n-1+k] | p ∣ x} = (n-1+k)/p − (n-1)/p ≥ k/p`. -/
+`#{x ∈ (n-1, n-1+k] | p ∣ x} = (n-1+k)/p − (n-1)/p ≥ k/p`.
+@isnad1 id=le.2h3v.s5.217c65a3abfe from=translated src=- shape=d28a7ce2 vocab=154340b2
+-/
 lemma div_le_factorization_F {k n p : ℕ} (hn : 1 ≤ n) (hp : p.Prime) :
     k / p ≤ (F k n).factorization p := by
   -- v_p(F) = ∑_{i<k} v_p(n+i) ≥ #{i<k | p ∣ n+i} = #{x ∈ (n-1, n-1+k] | p∣x} ≥ k/p.
@@ -302,7 +349,9 @@ lemma div_le_factorization_F {k n p : ℕ} (hn : 1 ≤ n) (hp : p.Prime) :
     omega
   omega
 
-/-- `L k ∣ F k n` for `n ≥ 1`: `v_p(L) = ⌊k/p⌋ ≤ v_p(F)` for every prime `p < k`. -/
+/-- `L k ∣ F k n` for `n ≥ 1`: `v_p(L) = ⌊k/p⌋ ≤ v_p(F)` for every prime `p < k`.
+@isnad1 id=dvd.1h2v.s4.2815c4cea56c from=translated src=- shape=b9937f24 vocab=3f5aee8a
+-/
 lemma L_dvd_F {k n : ℕ} (hn : 1 ≤ n) : L k ∣ F k n := by
   rw [← Nat.factorization_le_iff_dvd (L_ne_zero k) (F_ne_zero hn)]
   intro p
@@ -330,7 +379,9 @@ lemma L_dvd_F {k n : ℕ} (hn : 1 ≤ n) : L k ∣ F k n := by
     rw [hzero]; exact Nat.zero_le _
 
 /-- `L k ≤ S k n` (the smooth part): `L ∣ F` and `L`'s primes are exactly the smooth primes, so in
-fact `L ∣ S`; we only need `L ≤ S`. -/
+fact `L ∣ S`; we only need `L ≤ S`.
+@isnad1 id=dvd.1h2v.s4.294c17fd64f2 from=translated src=- shape=b9937f24 vocab=767a2017
+-/
 lemma L_le_smooth {k n : ℕ} (hn : 1 ≤ n) : L k ∣ Ssmooth k n := by
   -- L ∣ F and all prime factors of L are < k, so L ∣ S (the < k part of F).
   rw [← Nat.factorization_le_iff_dvd (L_ne_zero k) (Nat.one_le_iff_ne_zero.mp (Ssmooth_pos hn))]
@@ -374,7 +425,9 @@ lemma L_le_smooth {k n : ℕ} (hn : 1 ≤ n) : L k ∣ Ssmooth k n := by
 
 /-! ## `rad (F k n)` factored through the smooth/rough split -/
 
-/-- `rad (F k n) = (∏_{p|F, p<k} p) · (∏_{p|F, ¬p<k} p)`. -/
+/-- `rad (F k n) = (∏_{p|F, p<k} p) · (∏_{p|F, ¬p<k} p)`.
+@isnad1 id=eq.0h2v.s6.8a05154991ef from=translated src=- shape=526ea6cc vocab=63da6137
+-/
 lemma rad_smooth_rough_split (k n : ℕ) :
     rad (F k n)
       = (∏ p ∈ (F k n).primeFactors.filter (· < k), p)

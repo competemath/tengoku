@@ -68,6 +68,9 @@ instance : Unique (ApproximableMap V unitSys) where
 named. -/
 def toUnit : ApproximableMap V unitSys := default
 
+/--
+@isnad1 id=eq.0h3v.s4.136ac6c14f8c from=translated src=- shape=0f529e72 vocab=25712a08
+-/
 theorem toUnit_unique (f : ApproximableMap V unitSys) : f = toUnit V := Subsingleton.elim _ _
 
 /-! ### The exponential adjunction (cartesian closure). -/

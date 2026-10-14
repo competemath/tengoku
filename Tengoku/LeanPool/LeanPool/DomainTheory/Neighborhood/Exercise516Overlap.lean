@@ -47,14 +47,18 @@ open Domain.Neighborhood
 
 /-! ### The two basic facts about consecutive symbols. -/
 
-/-- An even-indexed symbol differs from its successor: `tm (2x) ≠ tm (2x+1)`. -/
+/-- An even-indexed symbol differs from its successor: `tm (2x) ≠ tm (2x+1)`.
+@isnad1 id=ne.0h1v.s5.53c020b4a874 from=translated src=- shape=af9d9975 vocab=087f1f52
+-/
 theorem tm_two_mul_ne (x : ℕ) : tm (2 * x) ≠ tm (2 * x + 1) := by
   rw [tm_two_mul, tm_two_mul_add_one]
   cases tm x <;> simp
 
 /-- `tm x = tm (x+1)` forces `x` to be **odd**: equal consecutive symbols only
 straddle a block
-boundary `(2m+1, 2m+2)`, never a block `(2m, 2m+1)`. -/
+boundary `(2m+1, 2m+2)`, never a block `(2m, 2m+1)`.
+@isnad1 id=odd.1h1v.s4.90c9c5d89718 from=translated src=- shape=417c81e0 vocab=cd25c8f0
+-/
 theorem odd_of_consec_eq {x : ℕ} (h : tm x = tm (x + 1)) : Odd x := by
   rcases Nat.even_or_odd x with ⟨m, hm⟩ | hodd
   · exfalso; rw [hm, ← two_mul] at h; exact tm_two_mul_ne m h
@@ -62,7 +66,9 @@ theorem odd_of_consec_eq {x : ℕ} (h : tm x = tm (x + 1)) : Odd x := by
 
 /-- **No three consecutive equal symbols** (the period-`1` case): `¬ (tm j = tm
 (j+1) ∧
-tm (j+1) = tm (j+2))`. If both held, `j` and `j+1` would both be odd. -/
+tm (j+1) = tm (j+2))`. If both held, `j` and `j+1` would both be odd.
+@isnad1 id=not.0h1v.s5.6dfcfccd571a from=translated src=- shape=41571b85 vocab=9d285fbf
+-/
 theorem no_three_consec (j : ℕ) : ¬ (tm j = tm (j + 1) ∧ tm (j + 1) = tm (j + 2)) := by
   rintro ⟨h1, h2⟩
   have hj : Odd j := odd_of_consec_eq h1
@@ -73,9 +79,15 @@ theorem no_three_consec (j : ℕ) : ¬ (tm j = tm (j + 1) ∧ tm (j + 1) = tm (j
 
 /-! ### Index reductions for `tm`. -/
 
+/--
+@isnad1 id=eq.1h2v.s4.734b26c6088e from=translated src=- shape=5aa31497 vocab=1d8f55c9
+-/
 theorem tm_of_eq_two_mul {x y : ℕ} (h : x = 2 * y) : tm x = tm y := by
   rw [h, tm_two_mul]
 
+/--
+@isnad1 id=eq.1h2v.s5.a48a630dba13 from=translated src=- shape=af206621 vocab=6243a85c
+-/
 theorem tm_of_eq_two_mul_add_one {x y : ℕ} (h : x = 2 * y + 1) : tm x = !tm y := by
   rw [h, tm_two_mul_add_one]
 
@@ -87,7 +99,9 @@ def Overlap (i p : ℕ) : Prop := 1 ≤ p ∧ ∀ k, k ≤ p → tm (i + k) = tm
 
 /-- **Overlap-freeness of the Thue–Morse sequence** (Scott 1981, PRG-19; Thue
 1912). No overlap
-exists at any offset and period. -/
+exists at any offset and period.
+@isnad1 id=not.0h2v.s3.accd087b70ff from=translated src=- shape=dfa6bb93 vocab=423e35e2
+-/
 theorem no_overlap (p : ℕ) : ∀ i, ¬ Overlap i p := by
   induction p using Nat.strong_induction_on with
   | _ p IH =>
@@ -185,7 +199,9 @@ theorem no_overlap (p : ℕ) : ∀ i, ¬ Overlap i p := by
 
 /-- **The Thue–Morse sequence is cube-free.** A cube of period `p ≥ 1` (the factor
 `a·a·a` with
-`|a| = p`) is in particular an overlap, so none exists. -/
+`|a| = p`) is in particular an overlap, so none exists.
+@isnad1 id=not.1h2v.s6.f2a6f5309ff0 from=translated src=- shape=54312f40 vocab=e788d24f
+-/
 theorem no_cube (i p : ℕ) (hp : 1 ≤ p) :
     ¬ ∀ k, k < 2 * p → tm (i + k) = tm (i + p + k) := by
   intro hcube
@@ -193,14 +209,18 @@ theorem no_cube (i p : ℕ) (hp : 1 ≤ p) :
 
 open Example44 ExampleB NeighborhoodSystem
 
-/-- The `j`-th bit of the length-`n` Thue–Morse prefix is `tm j`. -/
+/-- The `j`-th bit of the length-`n` Thue–Morse prefix is `tm j`.
+@isnad1 id=eq.1h2v.s5.bd428c0c601c from=translated src=- shape=c26a5cd9 vocab=5510e073
+-/
 theorem tmListGetElemOptional {n j : ℕ} (h : j < n) : (tmList n)[j]? = some (tm j) := by
   rw [tmList, List.getElem?_map, List.getElem?_range h]
   rfl
 
 /-- Positions differing by `|a|` inside `a ++ (a ++ a)` carry the same symbol, for
 indices `< 2|a|`
-(the three copies of `a` are identical). -/
+(the three copies of `a` are identical).
+@isnad1 id=eq.1h3v.s7.6c355666108b from=translated src=- shape=ea14452b vocab=0720f609
+-/
 theorem append_three_period {α : Type*} (a : List α) (m : ℕ) (hm : m < 2 * a.length) :
     (a ++ (a ++ a))[m]? = (a ++ (a ++ a))[m + a.length]? := by
   rcases lt_or_ge m a.length with h | h
@@ -217,7 +237,9 @@ theorem append_three_period {α : Type*} (a : List α) (m : ℕ) (hm : m < 2 * a
 statement: `t` is not
 of the form `u·a·a·a·v` for any finite prefix `u` and nonempty finite block `a`.
 (`v` is whatever
-follows; we phrase "`u·a·a·a` is a prefix of `t`" as `(u·a·a·a)⊥ ⊑ t`.) -/
+follows; we phrase "`u·a·a·a` is a prefix of `t`" as `(u·a·a·a)⊥ ⊑ t`.)
+@isnad1 id=not.1h2v.s5.c9e9ae75d622 from=translated src=- shape=93611b3b vocab=773041fa
+-/
 theorem tElt_cube_free (u a : Str) (ha : a ≠ []) :
     ¬ strBot (u ++ a ++ a ++ a) ≤ tElt := by
   intro hle

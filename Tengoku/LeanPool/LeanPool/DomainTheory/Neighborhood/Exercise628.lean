@@ -104,7 +104,9 @@ def projElementEmbedding {α β : Type*} {D : NeighborhoodSystem α} {E : Neighb
 ≅o |D'|` onto a
 subdomain `D' ◁ E`, turn `D' ◁ E` into Proposition 6.12's projection pair, and
 compose its
-injection embedding with the iso. Choice-free. -/
+injection embedding with the iso. Choice-free.
+@isnad1 id=nonempty.1h4v.s5.6b9615508986 from=translated src=- shape=c07c915e vocab=9ecc47f6
+-/
 theorem Trianglelefteq.elementEmbedding (h : D ⊴ E) :
     Nonempty (D.Element ↪o E.Element) := by
   obtain ⟨D', hsub, ⟨e⟩⟩ := h
@@ -119,7 +121,9 @@ between two
 so equal finite
 cardinality forces `f` to be surjective; a surjective strictly-monotone map is an
 order iso. Uses
-`Classical.choice` (via `Fintype`/surjection-section). -/
+`Classical.choice` (via `Fintype`/surjection-section).
+@isnad1 id=nonempty.0h4v.s5.6babaf8a3a80 from=translated src=- shape=7a6cf41c vocab=2ecf5d81
+-/
 theorem orderIso_of_embeddings {P Q : Type*} [PartialOrder P] [PartialOrder Q]
     [Finite P] [Finite Q] (f : P ↪o Q) (g : Q ↪o P) : Nonempty (P ≃o Q) := by
   classical
@@ -137,7 +141,9 @@ theorem orderIso_of_embeddings {P Q : Type*} [PartialOrder P] [PartialOrder Q]
 /-- **Exercise 6.28 (core).** If `|D|` and `|E|` are finite and `D ⊴ E ⊴ D`, then
 `D ≅ᴰ E`.
 The two `⊴`s give mutual order embeddings of the (finite) element domains, and
-`orderIso_of_embeddings` upgrades them to an isomorphism. -/
+`orderIso_of_embeddings` upgrades them to an isomorphism.
+@isnad1 id=isomorph.2h4v.s5.052ca7e23348 from=translated src=- shape=f4c377b5 vocab=0eef6d3f
+-/
 theorem isomorphic_of_trianglelefteq_both [Finite D.Element] [Finite E.Element]
     (h₁ : D ⊴ E) (h₂ : E ⊴ D) : D ≅ᴰ E := by
   obtain ⟨f⟩ := h₁.elementEmbedding
@@ -155,7 +161,9 @@ def NeighborhoodSystem.IsFinite {α : Type*} (D : NeighborhoodSystem α) : Prop 
 determined by which of
 the (finitely many) neighbourhoods it contains, so `x ↦ {p | x.mem p.1}` injects
 `|D|` into the
-finite powerset `Set {X // D.mem X}`. -/
+finite powerset `Set {X // D.mem X}`.
+@isnad1 id=finite.1h2v.s3.d76d0098ddfe from=translated src=- shape=6b7287d1 vocab=f0b80aab
+-/
 theorem finite_element_of_isFinite {α : Type*} {D : NeighborhoodSystem α} (h : D.IsFinite) :
     Finite D.Element := by
   have : Finite {X : Set α // D.mem X} := h
@@ -171,7 +179,9 @@ theorem finite_element_of_isFinite {α : Type*} {D : NeighborhoodSystem α} (h :
 
 /-- **Exercise 6.28 (Scott 1981, PRG-19; suggested by G. Plotkin).** If `𝒟` and
 `ℰ` are *finite*
-neighbourhood systems with `𝒟 ⊴ ℰ` and `ℰ ⊴ 𝒟`, then `𝒟 ≅ ℰ`. -/
+neighbourhood systems with `𝒟 ⊴ ℰ` and `ℰ ⊴ 𝒟`, then `𝒟 ≅ ℰ`.
+@isnad1 id=isomorph.4h4v.s5.64690e6ad44d from=translated src=- shape=e93641f1 vocab=96cd1797
+-/
 theorem isomorphic_of_finite_system (hD : D.IsFinite) (hE : E.IsFinite)
     (h₁ : D ⊴ E) (h₂ : E ⊴ D) : D ≅ᴰ E := by
   have := finite_element_of_isFinite hD

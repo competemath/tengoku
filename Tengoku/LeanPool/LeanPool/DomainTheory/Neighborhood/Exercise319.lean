@@ -52,14 +52,18 @@ def prodMap (f : ApproximableMap V₀ V₀') (g : ApproximableMap V₁ V₁') :
 
 /-- **Exercise 3.19 (Scott 1981, PRG-19).** `(f × g)(w) = ⟨f(w₀), g(w₁)⟩` for
 every product element
-`w` (so in particular `(f × g)(⟨x, y⟩) = ⟨f(x), g(y)⟩`, equation (i)). -/
+`w` (so in particular `(f × g)(⟨x, y⟩) = ⟨f(x), g(y)⟩`, equation (i)).
+@isnad1 id=eq.0h11v.s6.b18af7c0be14 from=translated src=- shape=577b0ab7 vocab=79316897
+-/
 theorem toElementMap_prodMap (f : ApproximableMap V₀ V₀') (g : ApproximableMap V₁ V₁')
     (w : (prod V₀ V₁).Element) :
     (prodMap f g).toElementMap w = pair (f.toElementMap w.fst) (g.toElementMap w.snd) := by
   rw [prodMap, toElementMap_paired, toElementMap_comp, toElementMap_comp, toElementMap_proj₀,
     toElementMap_proj₁]
 
-/-- **Exercise 3.19(i) (Scott 1981, PRG-19).** `(f × g)(⟨x, y⟩) = ⟨f(x), g(y)⟩`. -/
+/-- **Exercise 3.19(i) (Scott 1981, PRG-19).** `(f × g)(⟨x, y⟩) = ⟨f(x), g(y)⟩`.
+@isnad1 id=eq.0h12v.s6.6009129c32a6 from=translated src=- shape=67bf906d vocab=af368a5e
+-/
 theorem toElementMap_prodMap_pair (f : ApproximableMap V₀ V₀') (g : ApproximableMap V₁ V₁')
     (x : V₀.Element) (y : V₁.Element) :
     (prodMap f g).toElementMap (pair x y) = pair (f.toElementMap x) (g.toElementMap y) := by
@@ -67,7 +71,9 @@ theorem toElementMap_prodMap_pair (f : ApproximableMap V₀ V₀') (g : Approxim
 
 /-! ### Exercise 3.20 — `×` is a functor. -/
 
-/-- **Exercise 3.20 (Scott 1981, PRG-19).** `×` preserves identities: `I × I = I`. -/
+/-- **Exercise 3.20 (Scott 1981, PRG-19).** `×` preserves identities: `I × I = I`.
+@isnad1 id=eq.0h4v.s5.b25c378a05bf from=translated src=- shape=010a3a3e vocab=be8094cf
+-/
 theorem prodMap_id : prodMap (idMap V₀) (idMap V₁) = idMap (prod V₀ V₁) := by
   apply ext_of_toElementMap
   intro w
@@ -75,7 +81,9 @@ theorem prodMap_id : prodMap (idMap V₀) (idMap V₁) = idMap (prod V₀ V₁) 
     pair_fst_snd]
 
 /-- **Exercise 3.20 (Scott 1981, PRG-19).** `×` preserves composition:
-`(f' ∘ f) × (g' ∘ g) = (f' × g') ∘ (f × g)`. -/
+`(f' ∘ f) × (g' ∘ g) = (f' × g') ∘ (f × g)`.
+@isnad1 id=eq.0h16v.s7.3368e2711785 from=translated src=- shape=155376bd vocab=2e7a14de
+-/
 theorem prodMap_comp {α'' β'' : Type*}
     {V₀'' : NeighborhoodSystem α''} {V₁'' : NeighborhoodSystem β''}
     (f' : ApproximableMap V₀' V₀'') (f : ApproximableMap V₀ V₀')
@@ -90,7 +98,9 @@ theorem prodMap_comp {α'' β'' : Type*}
 
 /-- **Exercise 3.20 (Scott 1981, PRG-19).** The universal property of the product
 (existence):
-`p₀ ∘ ⟨h₀, h₁⟩ = h₀` and `p₁ ∘ ⟨h₀, h₁⟩ = h₁` (these are Proposition 3.4(i)). -/
+`p₀ ∘ ⟨h₀, h₁⟩ = h₀` and `p₁ ∘ ⟨h₀, h₁⟩ = h₁` (these are Proposition 3.4(i)).
+@isnad1 id=and.0h8v.s6.eb3b2bb2bd9b from=translated src=- shape=8e8ab209 vocab=8ab558e3
+-/
 theorem proj_paired (h₀ : ApproximableMap V₂ V₀) (h₁ : ApproximableMap V₂ V₁) :
     (proj₀ V₀ V₁).comp (paired h₀ h₁) = h₀ ∧ (proj₁ V₀ V₁).comp (paired h₀ h₁) = h₁ :=
   ⟨proj₀_comp_paired h₀ h₁, proj₁_comp_paired h₀ h₁⟩
@@ -99,7 +109,9 @@ theorem proj_paired (h₀ : ApproximableMap V₂ V₀) (h₁ : ApproximableMap V
 (uniqueness):
 any `k` with `p₀ ∘ k = h₀` and `p₁ ∘ k = h₁` equals the pairing `⟨h₀, h₁⟩`. Hence
 `prod` with
-`proj₀`, `proj₁` is the categorical product of `𝒟₀` and `𝒟₁`. -/
+`proj₀`, `proj₁` is the categorical product of `𝒟₀` and `𝒟₁`.
+@isnad1 id=eq.2h9v.s6.ab88f84c3fae from=translated src=- shape=2b5428f8 vocab=8ab558e3
+-/
 theorem paired_unique (h₀ : ApproximableMap V₂ V₀) (h₁ : ApproximableMap V₂ V₁)
     (k : ApproximableMap V₂ (prod V₀ V₁)) (hk₀ : (proj₀ V₀ V₁).comp k = h₀)
     (hk₁ : (proj₁ V₀ V₁).comp k = h₁) : k = paired h₀ h₁ := by

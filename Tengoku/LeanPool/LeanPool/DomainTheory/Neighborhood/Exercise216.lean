@@ -37,7 +37,9 @@ namespace Domain.Neighborhood.Exercise216
 
 open Domain.Neighborhood NeighborhoodSystem ExampleB
 
-/-- Prepending a prefix is monotone: `X' ⊆ X → σX' ⊆ σX`. -/
+/-- Prepending a prefix is monotone: `X' ⊆ X → σX' ⊆ σX`.
+@isnad1 id=le.1h3v.s4.9a7177def061 from=translated src=- shape=b83855b6 vocab=aee13793
+-/
 theorem prepend_mono (σ : Str) {X X' : Set Str} (h : X' ⊆ X) : prepend σ X' ⊆ prepend σ X := by
   rintro w ⟨τ, hτ, rfl⟩
   exact ⟨τ, h hτ, rfl⟩
@@ -64,7 +66,9 @@ def sigmaMap (σ : Str) : ApproximableMap B B where
 
 /-- **Exercise 2.16.** The elementwise action of `sigmaMap σ` is Scott's `σx`:
 `(sigmaMap σ)(x) =
-σx` for every `x ∈ |B|`. -/
+σx` for every `x ∈ |B|`.
+@isnad1 id=eq.0h2v.s4.f63b905e769d from=translated src=- shape=f18a4653 vocab=186a2449
+-/
 theorem toElementMap_sigmaMap (σ : Str) (x : B.Element) :
     (sigmaMap σ).toElementMap x = sigmaElt σ x := by
   apply Element.ext

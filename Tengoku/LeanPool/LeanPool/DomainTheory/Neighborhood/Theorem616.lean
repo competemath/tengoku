@@ -70,7 +70,9 @@ universe w
 on the strict function space, `Op(x)` is the strict map `k ∘ T(toStrictMap x) ∘
 j`. This is the
 content of `homOp_apply_filter` plus the defining property `hΦ` of the Definition
-6.8 witness `Φ`. -/
+6.8 witness `Φ`.
+@isnad1 id=eq.3h7v.s9.db1de7456230 from=translated src=- shape=addf91d0 vocab=65ae5861
+-/
 theorem opStep (T : Endofunctor DomainObj.{w}) (D E : DomainObj.{w})
     (j : ApproximableMap D.sys (T.obj D).sys) (k : ApproximableMap (T.obj E).sys E.sys)
     (hj : IsStrict j) (hk : IsStrict k)
@@ -93,7 +95,9 @@ theorem opStep (T : Endofunctor DomainObj.{w}) (D E : DomainObj.{w})
 /-- The strict map represented by `⊥` of the strict function space relates `X` to
 `Y` exactly when
 `X` is a neighbourhood and `Y` is the master output: it is the constant-`⊥`
-(least) strict map. -/
+(least) strict map.
+@isnad1 id=iff.0h6v.s6.058e31a34f9a from=translated src=- shape=5d41bd94 vocab=c8bfa35f
+-/
 theorem botStrict_rel {α β : Type*} {V₀ : NeighborhoodSystem α} {V₁ : NeighborhoodSystem β}
     {X : Set α} {Y : Set β} :
     (toStrictMap (strictFun V₀ V₁).bot).1.rel X Y ↔ V₀.mem X ∧ Y = V₁.master := by
@@ -113,7 +117,9 @@ theorem botStrict_rel {α β : Type*} {V₀ : NeighborhoodSystem α} {V₁ : Nei
 an initial
 `T`-algebra, then for any system `E ≅ T(E)` we have `D ⊴ E`: the initial algebra
 embeds as a
-subdomain of every solution of the domain equation. -/
+subdomain of every solution of the domain equation.
+@isnad1 id=triangle.1h5v.s5.28ae6a7d736f from=translated src=- shape=727e2349 vocab=54afb47b
+-/
 theorem trianglelefteq_of_isInitial
     (T : Endofunctor DomainObj.{w}) (hT : ContinuousOnMaps T)
     (Dalg : TAlgebra T) (hinit : IsInitial Dalg)

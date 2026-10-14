@@ -64,6 +64,9 @@ smallest subset
 containing `0` and closed under the successor. -/
 def genOp (x : Set M) : Set M := {zero} ∪ succ '' x
 
+/--
+@isnad1 id=monotone.0h3v.s5.b00ed9a574cb from=translated src=- shape=65b4709b vocab=b12604d4
+-/
 theorem genOp_monotone : Monotone (genOp zero succ) := by
   intro x y hxy z hz
   rcases hz with hz | ⟨a, ha, rfl⟩
@@ -74,18 +77,25 @@ theorem genOp_monotone : Monotone (genOp zero succ) := by
 4.13(2)/4.14). -/
 def nats : Set M := lfpSet (genOp zero succ)
 
+/--
+@isnad1 id=eq.0h3v.s4.2184cf8039f8 from=translated src=- shape=18031577 vocab=d080321e
+-/
 theorem genOp_nats : genOp zero succ (nats zero succ) = nats zero succ :=
   lfpSet_isFixed (genOp zero succ) (genOp_monotone zero succ)
 
 /-- `0 ∈ N` — directly from the `lfpSet` definition (no monotonicity needed),
 keeping the
-construction choice-free. -/
+construction choice-free.
+@isnad1 id=mem.0h3v.s4.805054505dcf from=translated src=- shape=5b0ec93b vocab=b485bdc3
+-/
 theorem zero_mem_nats : zero ∈ nats zero succ := by
   intro x hx
   exact hx (Or.inl rfl)
 
 /-- `N` is closed under the successor: `n ∈ N ⟹ n⁺ ∈ N` — again directly from
-`lfpSet`. -/
+`lfpSet`.
+@isnad1 id=mem.1h4v.s5.18d873e62295 from=translated src=- shape=c3a52840 vocab=b485bdc3
+-/
 theorem succ_mem_nats {n : M} (hn : n ∈ nats zero succ) : succ n ∈ nats zero succ := by
   intro x hx
   exact hx (Or.inr ⟨n, hn x hx, rfl⟩)
@@ -94,7 +104,9 @@ theorem succ_mem_nats {n : M} (hn : n ∈ nats zero succ) : succ n ∈ nats zero
 under `⁺` contains
 all of `N`. (This is the heart of axiom (iii): `s` is a pre-fixed point of `g`,
 hence dominates the
-least fixed point `nats`.) -/
+least fixed point `nats`.)
+@isnad1 id=le.2h4v.s5.dadaae91259a from=translated src=- shape=44306776 vocab=5a2abcce
+-/
 theorem nats_induction (s : Set M) (h0 : zero ∈ s) (hsucc : ∀ n ∈ s, succ n ∈ s) :
     nats zero succ ⊆ s := by
   apply lfpSet_subset (genOp zero succ)
@@ -141,7 +153,9 @@ def peanoSub (hzero : ∀ n, zero ≠ succ n) (hinj : Function.Injective succ) :
 /-- **Exercise 4.22 (Scott 1981, PRG-19).** *Yes:* whenever `N*` satisfies (i) and
 (ii), there is a
 subset `N ⊆ N*` (carrying the inherited structure) satisfying (i), (ii), and
-(iii). -/
+(iii).
+@isnad1 id=nonempty.2h3v.s4.281b5e09b40e from=translated src=- shape=8abee0ad vocab=d134ea83
+-/
 theorem exists_peano_submodel (hzero : ∀ n, zero ≠ succ n) (hinj : Function.Injective succ) :
     Nonempty (PeanoModel (Nat' zero succ)) :=
   ⟨peanoSub zero succ hzero hinj⟩

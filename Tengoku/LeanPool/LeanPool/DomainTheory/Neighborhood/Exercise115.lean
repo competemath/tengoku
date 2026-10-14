@@ -52,7 +52,9 @@ namespace Domain.Neighborhood.Exercise115
 
 open Domain.Neighborhood NeighborhoodSystem
 
-/-- `{n} ∩ {m} = ∅` for `n ≠ m`. -/
+/-- `{n} ∩ {m} = ∅` for `n ≠ m`.
+@isnad1 id=eq.1h2v.s5.9f8d110d68b4 from=translated src=- shape=93dee3ae vocab=ea1dd626
+-/
 theorem singleton_disjoint {n m : ℕ} (h : n ≠ m) : ({n} : Set ℕ) ∩ {m} = ∅ := by
   simp_all
 
@@ -61,6 +63,9 @@ theorem singleton_disjoint {n m : ℕ} (h : n ≠ m) : ({n} : Set ℕ) ∩ {m} =
 /-- Neighbourhoods of the flat domain: `Δ = ℕ` together with all singletons. -/
 def flatMem (X : Set ℕ) : Prop := X = Set.univ ∨ ∃ n, X = {n}
 
+/--
+@isnad1 id=nestedor.0h0v.s1.2b603a9e06ca from=translated src=- shape=25b03439 vocab=07d4c557
+-/
 theorem flatNOD : NestedOrDisjoint flatMem := by
   rintro X Y (rfl | ⟨n, rfl⟩) (rfl | ⟨m, rfl⟩)
   · exact Or.inl (subset_refl _)
@@ -74,19 +79,32 @@ theorem flatNOD : NestedOrDisjoint flatMem := by
 def flat : NeighborhoodSystem ℕ :=
   ofNestedOrDisjoint flatMem Set.univ (Or.inl rfl) flatNOD (fun _ => Set.subset_univ _)
 
+/--
+@isnad1 id=iff.0h1v.s4.ce6acc8275bf from=translated src=- shape=aaa99f80 vocab=b5e64c89
+-/
 @[simp] theorem flat_mem {X : Set ℕ} : flat.mem X ↔ X = Set.univ ∨ ∃ n, X = {n} := Iff.rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.9e6dbf8fcbb7 from=translated src=- shape=d672ce25 vocab=e747de8d
+-/
 @[simp] theorem flat_master : flat.master = Set.univ := rfl
 
+/--
+@isnad1 id=not.0h0v.s3.29d46a2aadd8 from=translated src=- shape=7fa2a4d3 vocab=801195c0
+-/
 theorem flat_empty_not_mem : ¬ flat.mem (∅ : Set ℕ) := by
   rintro (h | ⟨n, h⟩)
   · exact Set.empty_ne_univ h
   · exact absurd h.symm (Set.singleton_ne_empty n)
 
-/-- The atom `↑{n}` (a finite element). -/
+/-- The atom `↑{n}` (a finite element).
+@isnad1 id=mem.0h1v.s3.f2d7337368d0 from=translated src=- shape=4c8e040a vocab=48f05727
+-/
 theorem flat_mem_singleton (n : ℕ) : flat.mem {n} := Or.inr ⟨n, rfl⟩
 
-/-- **Flat classification.** Every element is `⊥` or an atom `↑{n}`. *Classical.* -/
+/-- **Flat classification.** Every element is `⊥` or an atom `↑{n}`. *Classical.*
+@isnad1 id=or.0h1v.s5.bc0e8cfe3b42 from=translated src=- shape=bbe19864 vocab=f69c13b9
+-/
 theorem flat_classify (x : flat.Element) :
     x = flat.bot ∨ ∃ n, x = flat.principal (flat_mem_singleton n) := by
   classical
@@ -120,7 +138,9 @@ theorem flat_classify (x : flat.Element) :
     · rintro rfl
       exact x.master_mem
 
-/-- **Flat: every atom is maximal (total).** -/
+/-- **Flat: every atom is maximal (total).**
+@isnad1 id=eq.1h2v.s5.611f3174577e from=translated src=- shape=eb41788a vocab=2336e48b
+-/
 theorem flat_atom_maximal (n : ℕ) (y : flat.Element)
     (hle : flat.principal (flat_mem_singleton n) ≤ y) :
     y = flat.principal (flat_mem_singleton n) := by
@@ -134,27 +154,35 @@ theorem flat_atom_maximal (n : ℕ) (y : flat.Element)
 
 /-- **Flat has no strict 3-chain** (`a ⊏ b ⊏ c` is impossible): `⊥` is least and
 atoms are
-maximal. -/
+maximal.
+@isnad1 id=not.0h0v.s5.4487ae15ab35 from=translated src=- shape=8bfcea47 vocab=22fd5d81
+-/
 theorem flat_no_three_chain : ¬ ∃ a b c : flat.Element, a < b ∧ b < c := by
   rintro ⟨a, b, c, hab, hbc⟩
   rcases flat_classify b with rfl | ⟨n, rfl⟩
   · exact absurd (le_antisymm hab.le (flat.bot_le a)) (ne_of_lt hab)
   · exact (ne_of_lt hbc) (flat_atom_maximal n c hbc.le).symm
 
-/-- **Flat has no infinite ascending chain.** -/
+/-- **Flat has no infinite ascending chain.**
+@isnad1 id=not.0h0v.s4.532d993be593 from=translated src=- shape=4d6c0965 vocab=fdd1e524
+-/
 theorem flat_no_infinite_chain : ¬ ∃ f : ℕ → flat.Element, StrictMono f := by
   rintro ⟨f, hf⟩
   exact flat_no_three_chain
     ⟨f 0, f 1, f 2, hf (by norm_num), hf (by norm_num)⟩
 
-/-- **All elements of `flat` are finite** (principal). -/
+/-- **All elements of `flat` are finite** (principal).
+@isnad1 id=ex.0h1v.s4.a6e6e8393723 from=translated src=- shape=be70e30e vocab=f54101fb
+-/
 theorem flat_all_finite (x : flat.Element) :
   ∃ (X : Set ℕ) (h : flat.mem X), x = flat.principal h := by
   rcases flat_classify x with rfl | ⟨n, rfl⟩
   · exact ⟨flat.master, flat.master_mem, rfl⟩
   · exact ⟨{n}, flat_mem_singleton n, rfl⟩
 
-/-- `flat` is infinite: the atoms `↑{n}` are pairwise distinct. -/
+/-- `flat` is infinite: the atoms `↑{n}` are pairwise distinct.
+@isnad1 id=injectiv.0h0v.s4.a98698cbd2f1 from=translated src=- shape=d20d29b0 vocab=51243232
+-/
 theorem flat_infinite : Function.Injective (fun n => flat.principal (flat_mem_singleton n)) := by
   intro n m h
   have := flat.principal_injective (flat_mem_singleton n) (flat_mem_singleton m) h
@@ -166,6 +194,9 @@ theorem flat_infinite : Function.Injective (fun n => flat.principal (flat_mem_si
 singletons. -/
 def stemMem (X : Set ℕ) : Prop := X = Set.univ ∨ X = {0, 1} ∨ ∃ n, X = {n}
 
+/--
+@isnad1 id=nestedor.0h0v.s1.9aa996df5f7a from=translated src=- shape=25b03439 vocab=c0c58f49
+-/
 theorem stemNOD : NestedOrDisjoint stemMem := by
   have pair_single : ∀ m : ℕ, ({m} : Set ℕ) ⊆ {0, 1} ∨ ({0, 1} : Set ℕ) ∩ {m} = ∅ := by
     intro m
@@ -191,15 +222,29 @@ theorem stemNOD : NestedOrDisjoint stemMem := by
 def stem : NeighborhoodSystem ℕ :=
   ofNestedOrDisjoint stemMem Set.univ (Or.inl rfl) stemNOD (fun _ => Set.subset_univ _)
 
+/--
+@isnad1 id=iff.0h1v.s5.188471417712 from=translated src=- shape=21e32988 vocab=d0ca8717
+-/
 @[simp] theorem stem_mem {X : Set ℕ} :
     stem.mem X ↔ X = Set.univ ∨ X = {0, 1} ∨ ∃ n, X = {n} := Iff.rfl
 
+/--
+@isnad1 id=mem.0h0v.s2.3053bda1190f from=translated src=- shape=f463f024 vocab=74720aef
+-/
 theorem stem_mem_univ : stem.mem Set.univ := Or.inl rfl
+/--
+@isnad1 id=mem.0h0v.s4.d130fa716a60 from=translated src=- shape=03ed56d2 vocab=6f52cebf
+-/
 theorem stem_mem_pair : stem.mem {0, 1} := Or.inr (Or.inl rfl)
+/--
+@isnad1 id=mem.0h0v.s3.fc4c2339541e from=translated src=- shape=805367dd vocab=e0096763
+-/
 theorem stem_mem_zero : stem.mem {0} := Or.inr (Or.inr ⟨0, rfl⟩)
 
 /-- A strict step between principal filters of `stem`: `Y ⊊ X` (proper) gives `↑X
-⊏ ↑Y`. -/
+⊏ ↑Y`.
+@isnad1 id=lt.4h2v.s5.dea866fa3bc8 from=translated src=- shape=ede61b0e vocab=6c182f73
+-/
 theorem stem_principal_lt {X Y : Set ℕ} (hX : stem.mem X) (hY : stem.mem Y)
     (hYX : Y ⊆ X) (hne : X ≠ Y) : stem.principal hX < stem.principal hY := by
   rw [lt_iff_le_and_ne]
@@ -209,7 +254,9 @@ theorem stem_principal_lt {X Y : Set ℕ} (hX : stem.mem X) (hY : stem.mem Y)
 
 /-- **Stem contains a strict 3-chain** `⊥ = ↑ℕ ⊏ ↑{0,1} ⊏ ↑{0}` — the structural
 feature that
-distinguishes it from `flat`. -/
+distinguishes it from `flat`.
+@isnad1 id=ex.0h0v.s5.43ab65b4669c from=translated src=- shape=21c3d438 vocab=236f46aa
+-/
 theorem stem_three_chain : ∃ a b c : stem.Element, a < b ∧ b < c := by
   refine ⟨stem.principal stem_mem_univ, stem.principal stem_mem_pair,
     stem.principal stem_mem_zero, ?_, ?_⟩
@@ -228,7 +275,9 @@ theorem stem_three_chain : ∃ a b c : stem.Element, a < b ∧ b < c := by
 /-- **Exercise 1.15.** `flat` and `stem` are *not* isomorphic: an
 order-isomorphism would transport
 `stem`'s strict 3-chain `⊥ ⊏ ↑{0,1} ⊏ ↑{0}` back to a strict 3-chain in `flat`,
-which has none. -/
+which has none.
+@isnad1 id=not.0h0v.s2.53c4cd2b0992 from=translated src=- shape=d444f804 vocab=1b344a58
+-/
 theorem not_isomorphic : ¬ (flat ≅ᴰ stem) := by
   rintro ⟨e⟩
   obtain ⟨a, b, c, hab, hbc⟩ := stem_three_chain

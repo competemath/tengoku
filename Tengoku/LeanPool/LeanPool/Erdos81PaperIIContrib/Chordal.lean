@@ -56,7 +56,9 @@ def IsMinimalSeparator (G : SimpleGraph V) (S : Set V) (a b : V) : Prop :=
   G.Separates S a b ∧ ∀ T ⊂ S, ¬ G.Separates T a b
 
 /-- Chordality pulls back along an injective vertex map. In particular, every induced subgraph of
-a chordal graph is chordal. -/
+a chordal graph is chordal.
+@isnad1 id=ischorda.1h4v.s5.ed884ebbf3ed from=translated src=- shape=e59a2698 vocab=48d61f04
+-/
 theorem IsChordal.comap {W : Type*} (hG : G.IsChordal) (f : W ↪ V) :
     (G.comap f).IsChordal := by
   intro v c hc hlen
@@ -70,7 +72,9 @@ theorem IsChordal.comap {W : Type*} (hG : G.IsChordal) (f : W ↪ V) :
   rw [Walk.edges_map]
   exact List.mem_map.2 ⟨s(x', y'), hmem, rfl⟩
 
-/-- Every induced subgraph of a chordal graph is chordal. -/
+/-- Every induced subgraph of a chordal graph is chordal.
+@isnad1 id=ischorda.1h3v.s4.76602597752f from=translated src=- shape=f9726a05 vocab=728b726c
+-/
 theorem IsChordal.induce (hG : G.IsChordal) (W : Set V) : (G.induce W).IsChordal :=
   hG.comap (Function.Embedding.subtype (· ∈ W))
 
@@ -894,13 +898,17 @@ private theorem isMinimalSeparatorF_of_set (G : SimpleGraph V) {S : Finset V} {a
 
 end DiracPort
 
-/-- In a chordal graph, every finite minimal separator of two fixed vertices is a clique. -/
+/-- In a chordal graph, every finite minimal separator of two fixed vertices is a clique.
+@isnad1 id=isclique.2h5v.s5.ae32d2e8f280 from=translated src=- shape=8aef8343 vocab=4edaabc4
+-/
 theorem IsChordal.minimalSeparator_isClique (hG : G.IsChordal)
     {S : Finset V} {a b : V} (hS : G.IsMinimalSeparator (S : Set V) a b) :
     G.IsClique (S : Set V) :=
   minimal_separator_isClique G hG (isMinimalSeparatorF_of_set G hS)
 
-/-- **Dirac's theorem (1961).** A nonempty finite chordal graph has a simplicial vertex. -/
+/-- **Dirac's theorem (1961).** A nonempty finite chordal graph has a simplicial vertex.
+@isnad1 id=ex.1h2v.s4.a272eb39ba81 from=translated src=- shape=ce2a55ac vocab=7d9cce8a
+-/
 theorem IsChordal.exists_isSimplicial [Finite V] [Nonempty V]
     (hG : G.IsChordal) : ∃ v : V, G.IsSimplicial v :=
   dirac_simplicial G hG inferInstance
@@ -916,7 +924,9 @@ private theorem rreach_univ_of_reachable [Fintype V] {a b : V} (h : G.Reachable 
         (Relation.ReflTransGen.single ⟨Finset.mem_univ _, Finset.mem_univ _, hadj⟩) ih
 
 /-- **Connected case of Dirac's two-vertex conclusion.** A connected non-complete finite chordal
-graph has two distinct non-adjacent simplicial vertices. -/
+graph has two distinct non-adjacent simplicial vertices.
+@isnad1 id=ex.3h2v.s5.dd9622de6cb1 from=translated src=- shape=ff410b61 vocab=955a7064
+-/
 theorem IsChordal.exists_two_nonadj_isSimplicial [Finite V]
     (hG : G.IsChordal) (hconn : G.Connected) (hnc : ¬ ∀ u v : V, u ≠ v → G.Adj u v) :
     ∃ x y : V, x ≠ y ∧ ¬ G.Adj x y ∧ G.IsSimplicial x ∧ G.IsSimplicial y := by

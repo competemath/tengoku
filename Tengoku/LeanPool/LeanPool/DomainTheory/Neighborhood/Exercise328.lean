@@ -48,7 +48,9 @@ variable {α β : Type*} {V₀ : NeighborhoodSystem α} {V₁ : NeighborhoodSyst
 /-- A filter `z` contains the finite intersection `⋂{Yᵢ ∣ X ⊆ Xᵢ}` (inside `Δ₁`)
 as soon as it
 contains each `Yᵢ` whose input `Xᵢ ⊇ X`. (The element-side analogue of
-`rel_interYs`.) -/
+`rel_interYs`.)
+@isnad1 id=mem.1h6v.s6.658aa9320dfb from=translated src=- shape=39a7cdf5 vocab=8712c064
+-/
 theorem Element.mem_interYs_of (z : V₁.Element) {L : List (Set α × Set β)} {X : Set α}
     (hall : ∀ p ∈ L, X ⊆ p.1 → z.mem p.2) : z.mem (interYs V₁.master L X) := by
   induction L with
@@ -73,7 +75,9 @@ def leastMapVals (L : List (Set α × Set β)) (hL : ∀ p ∈ L, V₀.mem p.1 �
   {z | ∃ (p : Set α × Set β) (hp : p ∈ L), x.mem p.1 ∧ z = V₁.principal (hL p hp).2}
 
 /-- Each active value `↑Yᵢ` (with `Xᵢ ∈ x`) approximates `f₀(x)`, because `Yᵢ ∈
-f₀(x)`. -/
+f₀(x)`.
+@isnad1 id=le.4h7v.s7.853266ec36bc from=translated src=- shape=ba4cfada vocab=d67aeacc
+-/
 theorem val_le_leastMap_toElementMap {L : List (Set α × Set β)}
     (hL : ∀ p ∈ L, V₀.mem p.1 ∧ V₁.mem p.2)
     (hcons : ∀ {X}, V₀.mem X → V₁.mem (interYs V₁.master L X)) {x : V₀.Element}
@@ -84,7 +88,9 @@ theorem val_le_leastMap_toElementMap {L : List (Set α × Set β)}
   intro Z hZ
   exact ((leastMap L hcons).toElementMap x).up_mem hmem hZ.1 hZ.2
 
-/-- The active values are bounded (by `f₀(x)`). -/
+/-- The active values are bounded (by `f₀(x)`).
+@isnad1 id=bounded.2h6v.s6.42984fe52bc9 from=translated src=- shape=b9f81adb vocab=ffe9e227
+-/
 theorem leastMapVals_bounded {L : List (Set α × Set β)} (hL : ∀ p ∈ L, V₀.mem p.1 ∧ V₁.mem p.2)
     (hcons : ∀ {X}, V₀.mem X → V₁.mem (interYs V₁.master L X)) (x : V₀.Element) :
     V₁.Bounded (leastMapVals L hL x) := by
@@ -94,7 +100,9 @@ theorem leastMapVals_bounded {L : List (Set α × Set β)} (hL : ∀ p ∈ L, V�
 
 /-- `f₀(x)` is a *lower* bound of the upper bounds: any upper bound `z` of the
 active values
-dominates `f₀(x)`. (Uses that `z` then contains `⋂{Yᵢ ∣ X ⊆ Xᵢ}`.) -/
+dominates `f₀(x)`. (Uses that `z` then contains `⋂{Yᵢ ∣ X ⊆ Xᵢ}`.)
+@isnad1 id=le.3h7v.s7.0b810a9fbb4c from=translated src=- shape=276b6980 vocab=1c1dfdce
+-/
 theorem leastMap_toElementMap_le_of_ub {L : List (Set α × Set β)}
     (hL : ∀ p ∈ L, V₀.mem p.1 ∧ V₁.mem p.2)
     (hcons : ∀ {X}, V₀.mem X → V₁.mem (interYs V₁.master L X)) {x : V₀.Element} {z : V₁.Element}
@@ -111,7 +119,9 @@ theorem leastMap_toElementMap_le_of_ub {L : List (Set α × Set β)}
 
 /-- **Exercise 3.28 (Scott 1981, PRG-19).** The least map's elementwise action is
 the least upper
-bound of the active principal filters: `f₀(x) = ⊔ { ↑Yᵢ ∣ x ∈ [Xᵢ] }`. -/
+bound of the active principal filters: `f₀(x) = ⊔ { ↑Yᵢ ∣ x ∈ [Xᵢ] }`.
+@isnad1 id=eq.2h6v.s6.705d901d9eb0 from=translated src=- shape=2bf527a3 vocab=ca8bd84c
+-/
 theorem toElementMap_leastMap_eq_sSup (L : List (Set α × Set β))
     (hL : ∀ p ∈ L, V₀.mem p.1 ∧ V₁.mem p.2)
     (hcons : ∀ {X}, V₀.mem X → V₁.mem (interYs V₁.master L X)) (x : V₀.Element) :

@@ -48,7 +48,9 @@ open Egrs75.RepairPaperfaithful
 /-! ## Truncation monotonicity -/
 
 /-- Keeping MORE high digits keeps a larger (or equal) value:
-`n/q^b · q^b ≤ n/q^a · q^a` for `a ≤ b`. -/
+`n/q^b · q^b ≤ n/q^a · q^a` for `a ≤ b`.
+@isnad1 id=le.2h4v.s6.4a4557543fc2 from=translated src=- shape=f02898a1 vocab=2558d175
+-/
 theorem div_mul_pow_mono {q : ℕ} (_hq : 0 < q) (n : ℕ) {a b : ℕ} (hab : a ≤ b) :
     n / q ^ b * q ^ b ≤ n / q ^ a * q ^ a := by
   have hsplit : q ^ b = q ^ a * q ^ (b - a) := by
@@ -63,7 +65,9 @@ theorem div_mul_pow_mono {q : ℕ} (_hq : 0 < q) (n : ℕ) {a b : ℕ} (hab : a 
 /-! ## Single-carry ADD arithmetic -/
 
 /-- The carry decomposition `n + U = R + q^i·(H+1)`, `R = (T+U) − q^i`,
-`H = n / q^i`, valid when `q^i ≤ T + U` with `T = n % q^i`. -/
+`H = n / q^i`, valid when `q^i ≤ T + U` with `T = n % q^i`.
+@isnad1 id=eq.2h4v.s7.adf3a7be03a8 from=translated src=- shape=46ac09b4 vocab=f0592055
+-/
 theorem add_carry_decomp {q : ℕ} (hq : 1 ≤ q) (n U i : ℕ)
     (hlo : q ^ i ≤ n % q ^ i + U) :
     n + U = (n % q ^ i + U - q ^ i) + q ^ i * (n / q ^ i + 1) := by
@@ -73,7 +77,9 @@ theorem add_carry_decomp {q : ℕ} (hq : 1 ≤ q) (n U i : ℕ)
   omega
 
 /-- Under a single carry (`q^i ≤ T+U < 2q^i`), the block above `i` increments:
-`(n+U)/q^i = n/q^i + 1`. -/
+`(n+U)/q^i = n/q^i + 1`.
+@isnad1 id=eq.3h4v.s7.2bf1305c9cdf from=translated src=- shape=68a861e7 vocab=bba90bca
+-/
 theorem add_div_pow_eq {q : ℕ} (hq : 1 < q) (n U i : ℕ)
     (hlo : q ^ i ≤ n % q ^ i + U) (hhi : n % q ^ i + U < 2 * q ^ i) :
     (n + U) / q ^ i = n / q ^ i + 1 := by
@@ -83,7 +89,9 @@ theorem add_div_pow_eq {q : ℕ} (hq : 1 < q) (n U i : ℕ)
   rw [hdecomp, Nat.add_mul_div_left _ _ hqi, Nat.div_eq_of_lt hRlt, Nat.zero_add]
 
 /-- The increment does not cascade: `(H+1)/q^s = H/q^s` for `s ≥ 1` when the
-units digit of `H` is below `q − 1`. -/
+units digit of `H` is below `q − 1`.
+@isnad1 id=eq.3h3v.s6.cbe5d9300178 from=translated src=- shape=8744c2de vocab=c97aa512
+-/
 theorem succ_div_pow_eq {q : ℕ} (hq : 1 < q) {H : ℕ} (hH : H % q < q - 1)
     {s : ℕ} (hs : 1 ≤ s) : (H + 1) / q ^ s = H / q ^ s := by
   have hq0 : 0 < q := by omega
@@ -96,7 +104,9 @@ theorem succ_div_pow_eq {q : ℕ} (hq : 1 < q) {H : ℕ} (hH : H % q < q - 1)
   rw [pow_succ, mul_comm (q ^ t) q, ← Nat.div_div_eq_div_mul,
     ← Nat.div_div_eq_div_mul, hHq]
 
-/-- **Digit at `i` becomes `b_i + 1`** under a single carry, when `b_i < q − 1`. -/
+/-- **Digit at `i` becomes `b_i + 1`** under a single carry, when `b_i < q − 1`.
+@isnad1 id=eq.4h4v.s7.07f7e924c532 from=translated src=- shape=3e3dd5d2 vocab=8979fa8a
+-/
 theorem add_digit_i {q : ℕ} (hq : 1 < q) (n U i : ℕ)
     (hlo : q ^ i ≤ n % q ^ i + U) (hhi : n % q ^ i + U < 2 * q ^ i)
     (hbi : n / q ^ i % q < q - 1) :
@@ -106,7 +116,9 @@ theorem add_digit_i {q : ℕ} (hq : 1 < q) (n U i : ℕ)
   have h1 : n / q ^ i + 1 = q * (n / q ^ i / q) + (n / q ^ i % q + 1) := by omega
   rw [h1, Nat.mul_add_mod, Nat.mod_eq_of_lt (by omega)]
 
-/-- **Digits above `i` are frozen** under a single carry, when `b_i < q − 1`. -/
+/-- **Digits above `i` are frozen** under a single carry, when `b_i < q − 1`.
+@isnad1 id=eq.5h5v.s7.cfa3fa9ac18e from=translated src=- shape=0d08a52c vocab=8979fa8a
+-/
 theorem add_high_frozen {q : ℕ} (hq : 1 < q) (n U i idx : ℕ)
     (hlo : q ^ i ≤ n % q ^ i + U) (hhi : n % q ^ i + U < 2 * q ^ i)
     (hbi : n / q ^ i % q < q - 1) (hidx : i < idx) :
@@ -120,7 +132,9 @@ theorem add_high_frozen {q : ℕ} (hq : 1 < q) (n U i idx : ℕ)
   rw [h1, h2, add_div_pow_eq hq n U i hlo hhi,
     succ_div_pow_eq hq hbi (by omega : 1 ≤ idx - i)]
 
-/-- **Digits below `i` of `n+U` are the digits of the new tail `R`.** -/
+/-- **Digits below `i` of `n+U` are the digits of the new tail `R`.**
+@isnad1 id=eq.3h5v.s7.f62c0d24ca16 from=translated src=- shape=14dd1c00 vocab=c97aa512
+-/
 theorem add_low_digit {q : ℕ} (hq : 1 < q) (n U i t : ℕ) (ht : t < i)
     (hlo : q ^ i ≤ n % q ^ i + U) :
     (n + U) / q ^ t % q = (n % q ^ i + U - q ^ i) / q ^ t % q := by
@@ -133,7 +147,9 @@ theorem add_low_digit {q : ℕ} (hq : 1 < q) (n U i t : ℕ) (ht : t < i)
 /-! ## Top-bad bound from a goodness ray -/
 
 /-- Membership in `badIndexSet` is exactly `BadAt` (local copy; the original
-lives in `EgrsFinish_core`, which this file must not import). -/
+lives in `EgrsFinish_core`, which this file must not import).
+@isnad1 id=iff.1h3v.s5.d69c2fa6bc23 from=translated src=- shape=bb449d4d vocab=e6f3adaf
+-/
 theorem mem_badIndexSet_iff' {q n i : ℕ} (hq : 1 < q) :
     i ∈ badIndexSet q n ↔ BadAt q i n := by
   unfold BadAt digitAt badIndexSet
@@ -150,7 +166,9 @@ theorem mem_badIndexSet_iff' {q n i : ℕ} (hq : 1 < q) :
     refine ⟨hlen, ?_⟩
     rwa [getD_digits n i (by omega)]
 
-/-- If every digit at index `≥ x` is good, the top bad index is `< x`. -/
+/-- If every digit at index `≥ x` is good, the top bad index is `< x`.
+@isnad1 id=lt.3h3v.s6.7b85a34e5c38 from=translated src=- shape=7e0aa6d5 vocab=c516ac2e
+-/
 theorem topBad_lt_of_good_from {q n x : ℕ} (hq : 1 < q) (hbad : 0 < badCountQ q n)
     (hgood : ∀ idx, x ≤ idx → n / q ^ idx % q ≤ (q - 1) / 2) :
     topBadIndex q n < x := by
@@ -169,7 +187,9 @@ has a strictly-good digit `k < i` such that every digit in `(k, i)` is exactly
 `B`.  Consequence: after the tight-window ADD, the new clearing index drops
 strictly below the old one — the μ-measure first coordinate falls. -/
 
-/-- **The staircase lemma (KERNEL-CLEAN).** -/
+/-- **The staircase lemma (KERNEL-CLEAN).**
+@isnad1 id=ex.3h3v.s7.046b94946c3b from=translated src=- shape=a8f5c86a vocab=62594a60
+-/
 theorem staircase {q : ℕ} (hq3 : 3 ≤ q) (hqo : Odd q) :
     ∀ i R : ℕ, 2 * R + 3 ≤ q ^ i →
       ∃ k, k < i ∧ R / q ^ k % q < (q - 1) / 2 ∧

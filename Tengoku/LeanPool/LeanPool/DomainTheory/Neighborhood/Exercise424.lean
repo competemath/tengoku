@@ -59,6 +59,9 @@ variable {A B : Type*} {f : A → B} {g : B → A}
 /-- Tarski's operator `T(X) = (A − g(B)) ∪ g(f(X))` on `P A`. -/
 def sbOp (f : A → B) (g : B → A) (X : Set A) : Set A := (Set.range g)ᶜ ∪ g '' (f '' X)
 
+/--
+@isnad1 id=monotone.0h4v.s5.d0d047e4e5bb from=translated src=- shape=1e75146c vocab=2a35b218
+-/
 theorem sbOp_monotone (f : A → B) (g : B → A) : Monotone (sbOp f g) := by
   intro X Y hXY a ha
   rcases ha with ha | ⟨b, ⟨x, hx, rfl⟩, rfl⟩
@@ -69,11 +72,16 @@ theorem sbOp_monotone (f : A → B) (g : B → A) : Monotone (sbOp f g) := by
 4.14). -/
 def sbSet (f : A → B) (g : B → A) : Set A := lfpSet (sbOp f g)
 
+/--
+@isnad1 id=eq.0h4v.s4.e9dd77ec1147 from=translated src=- shape=bb462633 vocab=f5ac8a2f
+-/
 theorem sbSet_isFixed (f : A → B) (g : B → A) : sbOp f g (sbSet f g) = sbSet f g :=
   lfpSet_isFixed (sbOp f g) (sbOp_monotone f g)
 
 /-- Anything outside the fixed set `X` lies in the range of `g` (so it has a
-`g`-preimage). -/
+`g`-preimage).
+@isnad1 id=mem.1h5v.s5.8a7ca7bfc1ac from=translated src=- shape=4544c586 vocab=1c0964fc
+-/
 theorem mem_range_of_not_mem {a : A} (ha : a ∉ sbSet f g) : a ∈ Set.range g := by
   have hne : a ∉ sbOp f g (sbSet f g) := by rw [sbSet_isFixed]; exact ha
   have : ¬ a ∉ Set.range g := fun h => hne (Or.inl h)
@@ -86,18 +94,28 @@ the fixed set
 noncomputable def sbFun (f : A → B) (g : B → A) (a : A) : B :=
   if ha : a ∈ sbSet f g then f a else Classical.choose (mem_range_of_not_mem ha)
 
+/--
+@isnad1 id=eq.1h5v.s5.519249272563 from=translated src=- shape=2b099469 vocab=fd0e66e7
+-/
 theorem sbFun_mem {a : A} (ha : a ∈ sbSet f g) : sbFun f g a = f a := dite_eq_left ha
 
-/-- Off the fixed set, `h(a)` is a genuine `g`-preimage of `a`: `g(h(a)) = a`. -/
+/-- Off the fixed set, `h(a)` is a genuine `g`-preimage of `a`: `g(h(a)) = a`.
+@isnad1 id=eq.1h5v.s5.b4ab0f98b98f from=translated src=- shape=a19a8abd vocab=fd0e66e7
+-/
 theorem g_sbFun_not_mem {a : A} (ha : a ∉ sbSet f g) : g (sbFun f g a) = a := by
   rw [sbFun, dite_eq_right ha]
   exact Classical.choose_spec (mem_range_of_not_mem ha)
 
-/-- `g(f(a)) ∈ X` whenever `a ∈ X` (the `g(f(X)) ⊆ T(X) = X` half). -/
+/-- `g(f(a)) ∈ X` whenever `a ∈ X` (the `g(f(X)) ⊆ T(X) = X` half).
+@isnad1 id=mem.1h5v.s5.9a2ee1f53b15 from=translated src=- shape=3d25fc79 vocab=19029476
+-/
 theorem g_f_mem_of_mem {a : A} (ha : a ∈ sbSet f g) : g (f a) ∈ sbSet f g := by
   rw [← sbSet_isFixed]
   exact Or.inr ⟨f a, ⟨a, ha, rfl⟩, rfl⟩
 
+/--
+@isnad1 id=injectiv.1h4v.s4.14e3c1b30695 from=translated src=- shape=39228faa vocab=4c3c9e57
+-/
 theorem sbFun_injective (hf : Injective f) : Injective (sbFun f g) := by
   intro a₁ a₂ heq
   by_cases h1 : a₁ ∈ sbSet f g <;> by_cases h2 : a₂ ∈ sbSet f g
@@ -117,6 +135,9 @@ theorem sbFun_injective (hf : Injective f) : Injective (sbFun f g) := by
     rw [g_sbFun_not_mem h1, g_sbFun_not_mem h2] at this
     exact this
 
+/--
+@isnad1 id=surjecti.1h4v.s4.55cf332e3923 from=translated src=- shape=8d5f88c9 vocab=2818d11e
+-/
 theorem sbFun_surjective (hg : Injective g) : Surjective (sbFun f g) := by
   intro b
   by_cases hb : g b ∈ sbSet f g
@@ -132,7 +153,9 @@ theorem sbFun_surjective (hg : Injective g) : Surjective (sbFun f g) := by
 
 /-- **Exercise 4.24 (Scott 1981, PRG-19) — Schröder–Bernstein.** Injections `f : A
 → B` and
-`g : B → A` yield a bijection `A → B`. -/
+`g : B → A` yield a bijection `A → B`.
+@isnad1 id=ex.2h4v.s5.01586d2ae4e4 from=translated src=- shape=53169adc vocab=16ecd862
+-/
 theorem schroeder_bernstein (hf : Injective f) (hg : Injective g) :
     ∃ h : A → B, Bijective h :=
   ⟨sbFun f g, sbFun_injective hf, sbFun_surjective hg⟩

@@ -56,18 +56,24 @@ P A`,
 constructed as the union of all post-fixed points `⋃ {x ∣ x ⊆ f(x)}`. -/
 def gfpSet (f : Set A → Set A) : Set A := {a | ∃ x : Set A, x ⊆ f x ∧ a ∈ x}
 
-/-- Every post-fixed point `x ⊆ f(x)` is contained in `gfpSet f`. -/
+/-- Every post-fixed point `x ⊆ f(x)` is contained in `gfpSet f`.
+@isnad1 id=le.1h3v.s4.fee9ed811ef2 from=translated src=- shape=67079bc2 vocab=42284a77
+-/
 theorem subset_gfpSet (f : Set A → Set A) {x : Set A} (hx : x ⊆ f x) : x ⊆ gfpSet f :=
   fun _ ha => ⟨x, hx, ha⟩
 
-/-- `gfpSet f ⊆ f (gfpSet f)`: it is a post-fixed point. -/
+/-- `gfpSet f ⊆ f (gfpSet f)`: it is a post-fixed point.
+@isnad1 id=le.1h2v.s5.18baffe49bb7 from=translated src=- shape=0aa11ac1 vocab=6b59d1dd
+-/
 theorem gfpSet_subset_f (f : Set A → Set A) (hf : Monotone f) :
     gfpSet f ⊆ f (gfpSet f) := by
   rintro a ⟨x, hx, hax⟩
   exact hf (subset_gfpSet f hx) (hx hax)
 
 /-- **Exercise 4.14 (Scott 1981, PRG-19).** `gfpSet f` is a fixed point: `f(g) =
-g`. -/
+g`.
+@isnad1 id=eq.1h2v.s5.9c31cc8d1462 from=translated src=- shape=67a62109 vocab=0c60c524
+-/
 theorem gfpSet_isFixed (f : Set A → Set A) (hf : Monotone f) :
     f (gfpSet f) = gfpSet f := by
   have hsub : gfpSet f ⊆ f (gfpSet f) := gfpSet_subset_f f hf
@@ -76,7 +82,9 @@ theorem gfpSet_isFixed (f : Set A → Set A) (hf : Monotone f) :
 
 /-- **Exercise 4.14 (Scott 1981, PRG-19).** `gfpSet f` is the *greatest* fixed
 point: any fixed
-point `y = f(y)` satisfies `y ⊆ g`. Hence `f` *does* have a maximum fixed point. -/
+point `y = f(y)` satisfies `y ⊆ g`. Hence `f` *does* have a maximum fixed point.
+@isnad1 id=le.1h3v.s4.5e162dfbf1c1 from=translated src=- shape=3c077c46 vocab=42284a77
+-/
 theorem gfpSet_greatest (f : Set A → Set A) {y : Set A} (hy : f y = y) :
     y ⊆ gfpSet f := subset_gfpSet f (le_of_eq hy.symm)
 
@@ -88,18 +96,24 @@ P A`,
 as the intersection of all pre-fixed points `⋂ {x ∣ f(x) ⊆ x}`. -/
 def lfpSet (f : Set A → Set A) : Set A := {a | ∀ x : Set A, f x ⊆ x → a ∈ x}
 
-/-- `lfpSet f ⊆ x` for every pre-fixed point `f(x) ⊆ x`. -/
+/-- `lfpSet f ⊆ x` for every pre-fixed point `f(x) ⊆ x`.
+@isnad1 id=le.1h3v.s4.7ee3049b35fd from=translated src=- shape=c1b81e0f vocab=495e60b3
+-/
 theorem lfpSet_subset (f : Set A → Set A) {x : Set A} (hx : f x ⊆ x) : lfpSet f ⊆ x :=
   fun _ ha => ha x hx
 
-/-- `f (lfpSet f) ⊆ lfpSet f`: it is a pre-fixed point. -/
+/-- `f (lfpSet f) ⊆ lfpSet f`: it is a pre-fixed point.
+@isnad1 id=le.1h2v.s5.ce8eea19c0e6 from=translated src=- shape=67a62109 vocab=0dd63f9e
+-/
 theorem f_subset_lfpSet (f : Set A → Set A) (hf : Monotone f) :
     f (lfpSet f) ⊆ lfpSet f := by
   intro a ha x hx
   exact hx (hf (lfpSet_subset f hx) ha)
 
 /-- **Exercise 4.13(2) (Scott 1981, PRG-19).** `lfpSet f` is a fixed point: `f(b)
-= b`. -/
+= b`.
+@isnad1 id=eq.1h2v.s5.d8d811cac929 from=translated src=- shape=67a62109 vocab=ca5f6828
+-/
 theorem lfpSet_isFixed (f : Set A → Set A) (hf : Monotone f) :
     f (lfpSet f) = lfpSet f := by
   have hsub : f (lfpSet f) ⊆ lfpSet f := f_subset_lfpSet f hf
@@ -108,7 +122,9 @@ theorem lfpSet_isFixed (f : Set A → Set A) (hf : Monotone f) :
 
 /-- **Exercise 4.13(2) (Scott 1981, PRG-19).** `lfpSet f` is the *least* fixed
 point: any fixed
-point `y = f(y)` satisfies `b ⊆ y`. -/
+point `y = f(y)` satisfies `b ⊆ y`.
+@isnad1 id=le.1h3v.s4.b06e17b19792 from=translated src=- shape=a9a5c023 vocab=495e60b3
+-/
 theorem lfpSet_least (f : Set A → Set A) {y : Set A} (hy : f y = y) :
     lfpSet f ⊆ y := lfpSet_subset f (le_of_eq hy)
 

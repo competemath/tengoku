@@ -30,6 +30,9 @@ open scoped BigOperators
 
 noncomputable section
 
+/--
+@isnad1 id=eq.4h3v.s8.9b1c66385631 from=translated src=- shape=da2b6beb vocab=a3c0ea59
+-/
 theorem sum_of_one_rare_and_double_chords
     (f : Fin 13 → ℝ) (weight : ℝ → ℝ) (rare : ℝ)
     (hcover : ∀ i, f i ∈ insert rare
@@ -102,6 +105,9 @@ theorem sum_of_one_rare_and_double_chords
       simp only [Nat.cast_one, one_mul, Nat.cast_ofNat, add_right_inj]
       rw [Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h3v.s6.111d039f818f from=translated src=- shape=c644b569 vocab=b37d96e5
+-/
 theorem regular_scaled_chords_eq_realized
     {P : Configuration (Fin 14)} (profile : FourteenFailureExactProfile P)
     (h : SimilarTo P profile.remaining regularTridecagon.point) :
@@ -129,6 +135,9 @@ theorem regular_scaled_chords_eq_realized
     profile.remaining_realizedDistance_card]
   simp
 
+/--
+@isnad1 id=eq.0h4v.s6.3bed8088b34d from=translated src=- shape=f67e00db vocab=b1082516
+-/
 theorem regular_remaining_chord_multiplicity
     {P : Configuration (Fin 14)} (profile : FourteenFailureExactProfile P)
     (h : SimilarTo P profile.remaining regularTridecagon.point) (k : Fin 6) :
@@ -137,6 +146,9 @@ theorem regular_remaining_chord_multiplicity
   rw [h.distanceMultiplicity_eq regularTridecagon]
   exact regularTridecagon_chord_multiplicity k
 
+/--
+@isnad1 id=false.1h4v.s6.0f3e10910916 from=translated src=- shape=36c3c2ad vocab=e839f9f7
+-/
 theorem classified_template_with_large_class_impossible
     {P : Configuration (Fin 14)} (profile : FourteenFailureExactProfile P)
     (Q : Configuration (Fin 13))
@@ -160,6 +172,9 @@ theorem classified_template_with_large_class_impossible
     (Finset.subset_univ profile.remaining) d
   omega
 
+/--
+@isnad1 id=eq.0h4v.s6.33818e2e6d88 from=translated src=- shape=e89adca8 vocab=2a22cd33
+-/
 theorem regular_chord_insertion_multiplicity
     {P : Configuration (Fin 14)} (profile : FourteenFailureExactProfile P)
     (h : SimilarTo P profile.remaining regularTridecagon.point) (k : Fin 6) :
@@ -188,6 +203,9 @@ theorem regular_chord_insertion_multiplicity
   change P.insertionMultiplicity profile.deletedVertex profile.remaining d = 2
   omega
 
+/--
+@isnad1 id=eq.0h2v.s5.b7fe17dc01b6 from=translated src=- shape=138f2e97 vocab=65a56a04
+-/
 theorem rare_insertion_multiplicity
     {P : Configuration (Fin 14)} (profile : FourteenFailureExactProfile P) :
     P.insertionMultiplicity profile.deletedVertex profile.remaining
@@ -216,6 +234,9 @@ def normalizedDeletedPoint
     {template : Fin 13 → ℂ} (h : SimilarTo P S template) (v : Fin 14) : ℂ :=
   h.similarity.toEquiv.symm (P.point v)
 
+/--
+@isnad1 id=eq.0h6v.s8.e54589d3d8a9 from=translated src=- shape=8810ef7d vocab=a0b55332
+-/
 theorem deleted_distance_eq_scaled
     {P : Configuration (Fin 14)} {S : Finset (Fin 14)}
     {template : Fin 13 → ℂ} (h : SimilarTo P S template)
@@ -228,6 +249,9 @@ theorem deleted_distance_eq_scaled
     rw [← h.similarity.toEquiv.apply_symm_apply (P.point v)]
   exact h.similarity.map_dist _ _
 
+/--
+@isnad1 id=eq.0h4v.s7.128512b18b76 from=translated src=- shape=bab4e367 vocab=89c4cb91
+-/
 theorem normalized_distance_filter_card
     {P : Configuration (Fin 14)} (profile : FourteenFailureExactProfile P)
     (h : SimilarTo P profile.remaining regularTridecagon.point) (d : ℝ) :
@@ -276,6 +300,9 @@ structure Regular13ExtensionProfile (v : ℂ) where
     ∑ i : Fin 13, Complex.normSq (v - regularTridecagonPoint i) ^ 2 =
       (rareDistance ^ 2) ^ 2 + 78
 
+/--
+@isnad1 id=nonempty.0h3v.s5.d952e3d14056 from=translated src=- shape=c3befa9d vocab=5dc57976
+-/
 theorem regular13_extension_profile_of_failure
     {P : Configuration (Fin 14)} (profile : FourteenFailureExactProfile P)
     (h : SimilarTo P profile.remaining regularTridecagon.point) :
@@ -407,6 +434,9 @@ theorem regular13_extension_profile_of_failure
         rw [Complex.dist_eq, Complex.sq_norm]
       _ = (rare ^ 2) ^ 2 + 78 := hfourthDistances
 
+/--
+@isnad1 id=false.5h3v.s7.fde9cc9c2366 from=translated src=- shape=7caec8d0 vocab=d8e6b3e9
+-/
 theorem regular13_extension_moment_certificate
     (r2 D2 ip : ℝ)
     (hDpos : 0 < D2)
@@ -426,6 +456,9 @@ theorem regular13_extension_moment_certificate
     have hip : ip = -2 := by nlinarith
     nlinarith
 
+/--
+@isnad1 id=false.0h3v.s5.707f792752cc from=translated src=- shape=3f84c907 vocab=a92b0a63
+-/
 theorem regular13_extension_impossible
     {P : Configuration (Fin 14)} (profile : FourteenFailureExactProfile P)
     (h : SimilarTo P profile.remaining regularTridecagon.point) : False := by
@@ -464,7 +497,9 @@ theorem regular13_extension_impossible
 /-- Conditional end-to-end fourteen-point case of Erdős Problem 132. The two
 arguments are precisely the remaining named published interfaces; the planar
 diameter bound, counting, deletion, classified-case elimination, and moment
-steps are proved internally. -/
+steps are proved internally.
+@isnad1 id=erdos132.2h1v.s3.5387bccc2516 from=translated src=- shape=e35fdb22 vocab=0e585b32
+-/
 theorem erdos132_for_fourteen_of_published_inputs
     (publishedCardinality : PublishedAtMostSixDistanceCardinalityBound)
     (classification :

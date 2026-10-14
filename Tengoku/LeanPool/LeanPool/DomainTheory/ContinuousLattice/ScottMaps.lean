@@ -23,6 +23,9 @@ variable {D D' D'' : Type*} [CompleteLattice D] [CompleteLattice D'] [CompleteLa
 def PreservesDirectedSup (f : D → D') : Prop :=
   ∀ ⦃S : Set D⦄, S.Nonempty → DirectedOn (· ≤ ·) S → f (sSup S) = sSup (f '' S)
 
+/--
+@isnad1 id=monotone.1h3v.s5.13310fb4f69b from=translated src=- shape=65287ac1 vocab=138cc853
+-/
 theorem preservesDirectedSup_monotone {f : D → D'} (hf : PreservesDirectedSup f) :
     Monotone f := by
   intro x y hxy
@@ -34,6 +37,9 @@ theorem preservesDirectedSup_monotone {f : D → D'} (hf : PreservesDirectedSup 
   rw [hsup, Set.image_pair] at heq
   exact le_trans (le_sSup (Set.mem_insert _ _)) heq.symm.le
 
+/--
+@isnad1 id=scottope.2h4v.s5.326994bc60db from=translated src=- shape=086a41b9 vocab=eed2f423
+-/
 theorem scottOpen_preimage {f : D → D'} (hf : PreservesDirectedSup f) {U : Set D'}
     (hU : ScottOpen U) : ScottOpen (f ⁻¹' U) := by
   have hmono := preservesDirectedSup_monotone hf
@@ -49,6 +55,9 @@ theorem scottOpen_preimage {f : D → D'} (hf : PreservesDirectedSup f) {U : Set
   obtain ⟨a, haS, rfl⟩ := hsS
   exact ⟨a, haS, Set.mem_preimage.2 hsU⟩
 
+/--
+@isnad1 id=continuo.1h3v.s4.9c09a1219efd from=translated src=- shape=65287ac1 vocab=4e8ca2fb
+-/
 theorem continuous_of_preservesDirectedSup {f : D → D'} (hf : PreservesDirectedSup f) :
     @Continuous D D' scottTopologicalSpace scottTopologicalSpace f := by
   rw [continuous_def]
@@ -56,6 +65,9 @@ theorem continuous_of_preservesDirectedSup {f : D → D'} (hf : PreservesDirecte
   rw [isOpen_iff_scottOpen] at hU ⊢
   exact scottOpen_preimage hf hU
 
+/--
+@isnad1 id=preserve.1h3v.s4.1813e20c1359 from=translated src=- shape=65287ac1 vocab=4e8ca2fb
+-/
 theorem continuous_preservesDirectedSup {f : D → D'}
     (hf : @Continuous D D' scottTopologicalSpace scottTopologicalSpace f) :
     PreservesDirectedSup f := by
@@ -72,7 +84,9 @@ theorem continuous_preservesDirectedSup {f : D → D'}
   exact h.sSup_eq.symm
 
 /-- **Scott 1972, Proposition 2.5.** Scott continuity ↔ preservation of directed
-suprema. -/
+suprema.
+@isnad1 id=iff.0h3v.s4.90a5dbd24c23 from=translated src=- shape=e4491a31 vocab=4e8ca2fb
+-/
 theorem proposition_2_5 (f : D → D') :
     (@Continuous D D' scottTopologicalSpace scottTopologicalSpace f) ↔
       PreservesDirectedSup f :=
@@ -88,7 +102,9 @@ as preservation of directed suprema (Proposition 2.5); it suffices to treat two
 variables, the
 product `D × D'` carrying the componentwise complete-lattice structure (whose
 induced topology is
-the product topology). -/
+the product topology).
+@isnad1 id=iff.0h4v.s6.b33c0d74f641 from=translated src=- shape=ea9f00a6 vocab=ab58c8f6
+-/
 theorem proposition_2_6 (f : D × D' → D'') :
     PreservesDirectedSup f ↔
       (∀ y, PreservesDirectedSup fun x => f (x, y)) ∧
@@ -172,7 +188,9 @@ theorem proposition_2_6 (f : D × D' → D'') :
 
 /-- **Scott 1972, Proposition 2.7 (join).** Binary join is Scott-continuous on
 every complete
-lattice; this is the `⊔`-part of Scott's 2.7. -/
+lattice; this is the `⊔`-part of Scott's 2.7.
+@isnad1 id=continuo.0h1v.s5.364028195182 from=translated src=- shape=f6e86a0b vocab=b7537f81
+-/
 theorem proposition_2_7_sup :
     @Continuous (D × D) D scottTopologicalSpace scottTopologicalSpace (fun p : D × D =>
       p.1 ⊔ p.2) :=
@@ -180,6 +198,9 @@ theorem proposition_2_7_sup :
     intro S hS hSdir
     simpa using (ScottContinuous.sup₂ (β := D) (d := S) hS hSdir (isLUB_sSup S)).sSup_eq.symm
 
+/--
+@isnad1 id=preserve.1h2v.s4.4f966f9e104e from=translated src=- shape=a8c9cb4e vocab=63278434
+-/
 theorem meet_preservesDirectedSup (x : D) (hD : IsContinuousLattice D) :
     PreservesDirectedSup (fun z => x ⊓ z) := by
   intro S hS hSdir
@@ -204,7 +225,9 @@ theorem meet_preservesDirectedSup (x : D) (hD : IsContinuousLattice D) :
 ↦ x ⊓ y`
 and `y ↦ x ⊓ y` are Scott-continuous; Scott's full 2.7 also covers joint
 continuity on the
-product via Proposition 2.6. -/
+product via Proposition 2.6.
+@isnad1 id=continuo.1h2v.s5.ffc2f772bcc0 from=translated src=- shape=536dec8f vocab=11dcdd61
+-/
 theorem proposition_2_7_inf_left (hD : IsContinuousLattice D) (y : D) :
     @Continuous D D scottTopologicalSpace scottTopologicalSpace (fun x => x ⊓ y) :=
   continuous_of_preservesDirectedSup <| by
@@ -213,6 +236,9 @@ theorem proposition_2_7_inf_left (hD : IsContinuousLattice D) (y : D) :
     have h := meet_preservesDirectedSup y hD
     exact h (S := S') hS' hSdir'
 
+/--
+@isnad1 id=continuo.1h2v.s5.9efeaf8e8ac4 from=translated src=- shape=ed5c2b81 vocab=11dcdd61
+-/
 theorem proposition_2_7_inf_right (hD : IsContinuousLattice D) (x : D) :
     @Continuous D D scottTopologicalSpace scottTopologicalSpace (fun y => x ⊓ y) :=
   continuous_of_preservesDirectedSup (meet_preservesDirectedSup x hD)

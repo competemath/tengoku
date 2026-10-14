@@ -51,7 +51,9 @@ rational endpoints. -/
 def ratIntervalMem (X : Set ℝ) : Prop :=
   X = Set.univ ∨ ∃ a b : ℚ, a < b ∧ X = Set.Ioo (a : ℝ) (b : ℝ)
 
-/-- Every neighbourhood is non-empty (`Δ`, or `Ioo a b` with `a < b`). -/
+/-- Every neighbourhood is non-empty (`Δ`, or `Ioo a b` with `a < b`).
+@isnad1 id=nonempty.1h1v.s3.2607ffcb6be6 from=translated src=- shape=f3db9897 vocab=b89b345e
+-/
 theorem ratIntervalMem_nonempty {X : Set ℝ} (hX : ratIntervalMem X) : X.Nonempty := by
   rcases hX with rfl | ⟨a, b, hab, rfl⟩
   · exact ⟨0, Set.mem_univ 0⟩
@@ -61,7 +63,9 @@ theorem ratIntervalMem_nonempty {X : Set ℝ} (hX : ratIntervalMem X) : X.Nonemp
 share a point
 is again a neighbourhood: `Ioo a b ∩ Ioo c d = Ioo (max a c) (min b d)`, with
 rational endpoints,
-non-empty because it contains the shared point. -/
+non-empty because it contains the shared point.
+@isnad1 id=ratinter.3h2v.s4.1635c6987b26 from=translated src=- shape=72e8c3fd vocab=a01a92db
+-/
 theorem inter_mem' {X Y : Set ℝ} (hX : ratIntervalMem X) (hY : ratIntervalMem Y)
     (hne : (X ∩ Y).Nonempty) : ratIntervalMem (X ∩ Y) := by
   rcases hX with rfl | ⟨a, b, hab, rfl⟩
@@ -88,6 +92,9 @@ def ratIntervalSystem : NeighborhoodSystem ℝ where
     exact inter_mem' hX hY ((ratIntervalMem_nonempty hZ).mono hZsub)
   sub_master := fun _ => Set.subset_univ _
 
+/--
+@isnad1 id=iff.0h1v.s3.1f248001ea8e from=translated src=- shape=d213e086 vocab=52dfd3a0
+-/
 @[simp] theorem ratIntervalSystem_mem {X : Set ℝ} :
     ratIntervalSystem.mem X ↔ ratIntervalMem X := Iff.rfl
 
@@ -105,12 +112,17 @@ def filterAt (t : ℝ) : ratIntervalSystem.Element where
     rintro X Y ⟨_, htX⟩ hY hXY
     exact ⟨hY, hXY htX⟩
 
+/--
+@isnad1 id=iff.0h2v.s4.2310baf9f5cf from=translated src=- shape=545c09b8 vocab=bc29e602
+-/
 @[simp] theorem mem_filterAt {t : ℝ} {X : Set ℝ} :
     (filterAt t).mem X ↔ ratIntervalMem X ∧ t ∈ X := Iff.rfl
 
 /-- **Exercise 1.17 — `ℝ ↪ |𝒟|`.** Distinct reals give distinct point filters:
 between any two
-reals lies a rational interval separating them. -/
+reals lies a rational interval separating them.
+@isnad1 id=eq.1h2v.s4.9d55dffdc941 from=translated src=- shape=648d2cea vocab=8669455a
+-/
 theorem filterAt_injective {s t : ℝ} (h : filterAt s = filterAt t) : s = t := by
   by_contra hst
   rcases lt_or_gt_of_ne hst with hlt | hlt
