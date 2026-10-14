@@ -39,8 +39,11 @@ BACKUP = LAKE / ".topup-backup"
 KEEP = re.compile(r"^build/(lib/lean|ir)/Tengoku([/.]|$)")
 
 
+SETUP_JSON = ".setup.json"  # Lake's scratch input for compiling one module (1-2 MB each, 80 of the tree's 102 GB): never read for an up-to-date module, never shipped
+
+
 def wanted(rel: str) -> bool:
-    return bool(KEEP.match(rel)) and "/_candidate_" not in rel and ".." not in Path(rel).parts
+    return bool(KEEP.match(rel)) and "/_candidate_" not in rel and ".." not in Path(rel).parts and not rel.endswith(SETUP_JSON)
 
 
 def sha256(path: Path) -> str:
@@ -154,7 +157,8 @@ def apply(tar_path: Path, manifest_path: Path) -> int:
     if sha256(tar_path) != manifest.get("sha256"):
         print("REFUSED: the top-up's digest does not match its manifest — not unpacking", file=sys.stderr)
         return 1
-    bad = [f for f in manifest.get("files", []) if not wanted(f)]
+    # a top-up published before 2026-10-14 lists *.setup.json files: they are skipped below, the rest is applied
+    bad = [f for f in manifest.get("files", []) if not f.endswith(SETUP_JSON) and not wanted(f)]
     if bad:
         print(f"REFUSED: the top-up names paths outside the module trees: {bad[:3]}", file=sys.stderr)
         return 1
@@ -164,7 +168,7 @@ def apply(tar_path: Path, manifest_path: Path) -> int:
         return 0
     created = set(prev.get("created", []))
     overwritten = set(prev.get("overwritten", []))
-    listed = set(manifest["files"])
+    listed = {f for f in manifest["files"] if not f.endswith(SETUP_JSON)}
     # A module that went back to its base content is absent from the newer top-up: undo it here too.
     for rel in sorted((created | overwritten) - listed):
         target = LAKE / rel
@@ -193,6 +197,8 @@ def apply(tar_path: Path, manifest_path: Path) -> int:
     try:
         with tarfile.open(fileobj=zstd.stdout, mode="r|") as tar:
             for member in tar:
+                if member.isfile() and member.name.endswith(SETUP_JSON):
+                    continue  # an old top-up's scratch file: not written
                 if not member.isfile() or member.name not in listed:
                     problem = f"names an unexpected member {member.name!r}"
                     break
