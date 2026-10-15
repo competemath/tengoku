@@ -20,7 +20,9 @@ variable {E F : Type*}
 
 include hL
 
-/-- Exact naturality of the actual normalized Duhamel solution. -/
+/-- Exact naturality of the actual normalized Duhamel solution.
+@isnad1 id=eq.3h11v.s12.e82fc8d27096 from=translated src=- shape=c5f43fc5 vocab=306efd77
+-/
 theorem weightedSolution_map (g : C(Icc (0 : ℝ) T,ℝ)) (hg : ∀ t, 0 < g t)
     (f : C(Icc (0 : ℝ) T,E)) (a₀ : E) :
     V.weightedSolution g hg (L.compLeftContinuous ℝ (Icc (0 : ℝ) T) f) (L a₀) =

@@ -21,6 +21,9 @@ variable {E F G : Type*}
   [NormedAddCommGroup F] [NormedSpace ℝ F]
   [NormedAddCommGroup G] [NormedSpace ℝ G]
 
+/--
+@isnad1 id=eq.0h6v.s7.0ffa76806755 from=translated src=- shape=d5ca7136 vocab=b917f5a4
+-/
 lemma partition_bound_factorization {n : ℕ} (c : OrderedFinpartition n)
     (A B R S : ℝ) :
     (A * S^c.length * (c.length.factorial : ℝ)^2) *
@@ -33,7 +36,9 @@ lemma partition_bound_factorization {n : ℕ} (c : OrderedFinpartition n)
   ring
 
 /-- A factorial-square bound for a formal Taylor composition, using exactly the
-derivatives that occur in its order-`n` Faà di Bruno formula. -/
+derivatives that occur in its order-`n` Faà di Bruno formula.
+@isnad1 id=le.6h10v.s9.3470b48f4dc0 from=translated src=- shape=5450cbcd vocab=fb644f7b
+-/
 theorem norm_taylorComp_le
     (q : FormalMultilinearSeries ℝ F G) (p : FormalMultilinearSeries ℝ E F)
     (n : ℕ) (A B R S : ℝ) (hA : 0 ≤ A) (hB : 0 ≤ B) (hR : 0 ≤ R) (hS : 0 ≤ S)
@@ -69,7 +74,9 @@ theorem norm_taylorComp_le
     _ = _ := by rw [mul_pow]; ring
 
 /-- The actual derivative of a composition obeys a Gevrey-two bound with a
-single fixed radius.  Only finite jets at the two relevant points are needed. -/
+single fixed radius.  Only finite jets at the two relevant points are needed.
+@isnad1 id=le.8h11v.s9.9f1c7ab31454 from=translated src=- shape=fc0f271f vocab=d1f528b2
+-/
 theorem norm_iteratedFDeriv_comp_gevrey_at
     (f : E → F) (g : F → G) (n : ℕ) (x : E)
     (hf : ContDiffAt ℝ n f x) (hg : ContDiffAt ℝ n g (f x))
@@ -85,7 +92,9 @@ theorem norm_iteratedFDeriv_comp_gevrey_at
     n A B R S hA hB hR hS hgjet hfjet
 
 /-- Uniform all-order composition bound.  In particular the output radius
-does not grow with `n` and the outer amplitude remains linear. -/
+does not grow with `n` and the outer amplitude remains linear.
+@isnad1 id=le.8h11v.s9.77f3a619029c from=translated src=- shape=128c09b3 vocab=1e9fb36c
+-/
 theorem norm_iteratedFDeriv_comp_gevrey
     (f : E → F) (g : F → G) (hf : ContDiff ℝ ∞ f) (hg : ContDiff ℝ ∞ g)
     (A B R S : ℝ) (hA : 0 ≤ A) (hB : 0 ≤ B) (hR : 0 ≤ R) (hS : 0 ≤ S)

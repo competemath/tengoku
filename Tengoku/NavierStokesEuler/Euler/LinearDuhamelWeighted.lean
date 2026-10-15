@@ -33,7 +33,9 @@ def weightedForcing : C(Icc (0 : ℝ) T,E) →L[ℝ] C(Icc (0 : ℝ) T,E) :=
   (normalize g hg).comp (U.forcingOperator.comp (weight g))
 
 omit [CompleteSpace E] in
-/-- The initial-data norm uses just the relative propagator constant. -/
+/-- The initial-data norm uses just the relative propagator constant.
+@isnad1 id=le.5h6v.s10.cc3ea1100e68 from=translated src=- shape=edff1431 vocab=5d9d1308
+-/
 theorem weightedInitial_norm (hg₀ : g ⟨0,le_rfl,hT⟩ = 1) (C : ℝ) (hC : 0 ≤ C)
     (hU : ∀ t s : Icc (0 : ℝ) T, s ≤ t → ‖U.propagator t s‖ ≤ C*g t/g s) :
     ‖U.weightedInitial g hg‖ ≤ C := by
@@ -44,7 +46,9 @@ theorem weightedInitial_norm (hg₀ : g ⟨0,le_rfl,hT⟩ = 1) (C : ℝ) (hC : 0
   exact (U.initialOperator_profile_bound a₀ g hg₀ C hU t).trans_eq (by ring)
 
 /-- The Green-operator norm is interval length times the relative propagator
-constant. Neither the maximum nor minimum of the profile appears. -/
+constant. Neither the maximum nor minimum of the profile appears.
+@isnad1 id=le.5h6v.s10.bc20422bc959 from=translated src=- shape=1529a090 vocab=5d55e8f3
+-/
 theorem weightedForcing_norm (hg₀ : g ⟨0,le_rfl,hT⟩ = 1) (C : ℝ) (hC : 0 ≤ C)
     (hU : ∀ t s : Icc (0 : ℝ) T, s ≤ t → ‖U.propagator t s‖ ≤ C*g t/g s) :
     ‖U.weightedForcing g hg‖ ≤ C*T := by
@@ -63,7 +67,9 @@ theorem weightedForcing_norm (hg₀ : g ⟨0,le_rfl,hT⟩ = 1) (C : ℝ) (hC : 0
 def weightedSolution (f : C(Icc (0 : ℝ) T,E)) (a₀ : E) : C(Icc (0 : ℝ) T,E) :=
   normalize g hg (U.solution (weight g f) a₀)
 
-/-- The normalized solution is still exactly the two actual data maps. -/
+/-- The normalized solution is still exactly the two actual data maps.
+@isnad1 id=eq.2h7v.s11.c9be335a0679 from=translated src=- shape=3e2b9a1e vocab=4c12ae14
+-/
 theorem weightedSolution_eq (f : C(Icc (0 : ℝ) T,E)) (a₀ : E) :
     U.weightedSolution g hg f a₀ = U.weightedInitial g hg a₀ + U.weightedForcing g hg f := by
   unfold weightedSolution
@@ -72,7 +78,9 @@ theorem weightedSolution_eq (f : C(Icc (0 : ℝ) T,E)) (a₀ : E) :
 
 variable {D : C(Icc (0 : ℝ) T,E →L[ℝ] E)} (V : Evolution T hT D)
 
-/-- Freezing the coefficient is an actual identity of constructed solutions. -/
+/-- Freezing the coefficient is an actual identity of constructed solutions.
+@isnad1 id=eq.1h8v.s12.55e3228c84b3 from=translated src=- shape=b8dc6ca2 vocab=26ab5482
+-/
 theorem frozen_solution (f : C(Icc (0 : ℝ) T,E)) (a₀ : E) :
     V.solution f a₀ = U.initialOperator a₀ +
       U.forcingOperator (f + multiplier (D-B) (V.solution f a₀)) := by
@@ -87,7 +95,9 @@ theorem frozen_solution (f : C(Icc (0 : ℝ) T,E)) (a₀ : E) :
   rw [sub_apply]
   abel
 
-/-- The exact frozen identity in the fixed profile-normalized path space. -/
+/-- The exact frozen identity in the fixed profile-normalized path space.
+@isnad1 id=eq.2h9v.s12.791dd5b5f9cb from=translated src=- shape=e9f5145f vocab=479676e8
+-/
 theorem weighted_frozen_solution (f : C(Icc (0 : ℝ) T,E)) (a₀ : E) :
     V.weightedSolution g hg f a₀ = U.weightedInitial g hg a₀ +
       U.weightedForcing g hg (f + multiplier (D-B) (V.weightedSolution g hg f a₀)) := by

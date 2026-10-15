@@ -21,15 +21,24 @@ namespace Euler.ComparatorBridge
 
 local notation "ℝ³" => EuclideanSpace ℝ (Fin 3)
 
+/--
+@isnad1 id=eq.0h2v.s5.4c9084a497b6 from=translated src=- shape=663eec1b vocab=16c466fe
+-/
 theorem divergence_eq_development (v : ℝ³ → ℝ³) (x : ℝ³) :
     Euler.divergence v x = EulerSmoothLimit.divergence v x := rfl
 
+/--
+@isnad1 id=initialv.2h1v.s9.56458b64e628 from=translated src=- shape=cb3f3774 vocab=5203330f
+-/
 theorem admissible_initial_data
     (A : EulerLpTranslation.SmoothL2Field ℝ³) (hc : HasCompactSupport A.field)
     (hd : ∀ x, EulerSmoothLimit.divergence A.field x = 0) :
     InitialVelocityConditionDecay A.field :=
   initialVelocityConditionDecay_of_compact A.field A.smooth hc hd
 
+/--
+@isnad1 id=iff.2h4v.s12.0a4ee1e110e7 from=translated src=- shape=dd06c5e3 vocab=19806053
+-/
 theorem exists_smoothL2Field_iff
     {u₀ : ℝ³ → ℝ³} {v : ℝ³ → ℝ → ℝ³} {p : ℝ³ → ℝ → ℝ}
     (h : EulerExistenceAndSmoothnessR3 u₀ v p) (t : ℝ) (ht : 0 ≤ t) :

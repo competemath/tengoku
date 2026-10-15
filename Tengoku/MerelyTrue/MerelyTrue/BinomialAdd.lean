@@ -38,23 +38,31 @@ when `X ~ f` and `Y ~ g` are drawn independently. -/
 noncomputable def addConv (f g : PMF ℕ) : PMF ℕ :=
   f.bind fun x => g.bind fun y => PMF.pure (x + y)
 
-/-- Additive convolution is commutative. -/
+/-- Additive convolution is commutative.
+@isnad1 id=eq.0h2v.s3.c6a4c2515198 from=translated src=- shape=0ec67bdd vocab=8075a3a7
+-/
 theorem addConv_comm (f g : PMF ℕ) : addConv f g = addConv g f := by
   simp only [addConv]
   rw [PMF.bind_comm f g]
   simp only [add_comm]
 
-/-- Additive convolution is associative. -/
+/-- Additive convolution is associative.
+@isnad1 id=eq.0h3v.s4.48a2ebb65961 from=translated src=- shape=0ea5f583 vocab=8075a3a7
+-/
 theorem addConv_assoc (f g h : PMF ℕ) :
     addConv (addConv f g) h = addConv f (addConv g h) := by
   simp only [addConv, PMF.bind_bind, PMF.pure_bind, add_assoc]
 
-/-- Convolving with `pure 0` on the left is the identity. -/
+/-- Convolving with `pure 0` on the left is the identity.
+@isnad1 id=eq.0h1v.s4.6bff4d8c9b6f from=translated src=- shape=d4c1913d vocab=eb63ad9d
+-/
 @[simp]
 theorem addConv_pure_zero_left (f : PMF ℕ) : addConv (PMF.pure 0) f = f := by
   simp [addConv, PMF.pure_bind]
 
-/-- Convolving with `pure 0` on the right is the identity. -/
+/-- Convolving with `pure 0` on the right is the identity.
+@isnad1 id=eq.0h1v.s4.13d28da73ebc from=translated src=- shape=fb79210c vocab=eb63ad9d
+-/
 @[simp]
 theorem addConv_pure_zero_right (f : PMF ℕ) : addConv f (PMF.pure 0) = f := by
   simp only [addConv, PMF.pure_bind, add_zero, PMF.bind_pure]
@@ -68,9 +76,15 @@ noncomputable def iterAddConv (f : PMF ℕ) : ℕ → PMF ℕ
   | 0 => PMF.pure 0
   | n + 1 => addConv (iterAddConv f n) f
 
+/--
+@isnad1 id=eq.0h1v.s4.fe5abe997e58 from=translated src=- shape=3ab3ca7f vocab=0e10592d
+-/
 @[simp]
 theorem iterAddConv_zero (f : PMF ℕ) : iterAddConv f 0 = PMF.pure 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.e505a731fe44 from=translated src=- shape=cdba16ef vocab=b31580ef
+-/
 @[simp]
 theorem iterAddConv_succ (f : PMF ℕ) (n : ℕ) :
     iterAddConv f (n + 1) = addConv (iterAddConv f n) f := rfl
@@ -78,7 +92,9 @@ theorem iterAddConv_succ (f : PMF ℕ) (n : ℕ) :
 /-- The `(m + n)`-fold convolution splits as the convolution of the `m`-fold
 and `n`-fold convolutions. This is the key algebraic fact used to prove
 `binomial_add_binomial`, and its proof uses only commutativity and associativity
-of `addConv`. -/
+of `addConv`.
+@isnad1 id=eq.0h3v.s4.7fb3317f5348 from=translated src=- shape=7be26983 vocab=b31580ef
+-/
 theorem iterAddConv_add (f : PMF ℕ) (m n : ℕ) :
     iterAddConv f (m + n) = addConv (iterAddConv f m) (iterAddConv f n) := by
   induction m with

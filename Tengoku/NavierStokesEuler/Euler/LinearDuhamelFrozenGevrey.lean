@@ -37,7 +37,9 @@ private local instance : NormedSpace ℝ (C(Icc (0 : ℝ) T,E) →L[ℝ] C(Icc (
 /-- The frozen coefficient amplitude is polynomial in the original coefficient and H3 constant. -/
 def frozenAmplitude (T C CB : ℝ) : ℝ := 1+2*C*T*CB
 
-/-- Actual derivatives of the frozen coefficient have the stated polynomial bound. -/
+/-- Actual derivatives of the frozen coefficient have the stated polynomial bound.
+@isnad1 id=le.9h12v.s13.75533aaa5ee1 from=translated src=- shape=02773de3 vocab=5130bf8d
+-/
 theorem frozenOperator_bound (hB : ContDiff ℝ ∞ B)
     (hg₀ : g ⟨0,le_rfl,hT⟩ = 1) (C CB Rc : ℝ) (hC : 0 ≤ C) (hCB : 0 ≤ CB) (hRc : 0 ≤ Rc)
     (hBb : ∀ n y, ‖iteratedFDeriv ℝ n B y‖ ≤ CB*majorant Rc 0 n)
@@ -70,7 +72,9 @@ theorem frozenOperator_bound (hB : ContDiff ℝ ∞ B)
     (const_bound (ContinuousLinearMap.id ℝ C(Icc (0 : ℝ) T,E)) Rc 1 hRc norm_id_le) hKD n y
   exact h
 
-/-- The transformed right side preserves the original fixed-Sobolev external radius. -/
+/-- The transformed right side preserves the original fixed-Sobolev external radius.
+@isnad1 id=le.9h18v.s10.fd1f4af729fd from=translated src=- shape=1cdaa574 vocab=a6786650
+-/
 theorem frozenForcing_block_bound {ι : Type*} [Fintype ι] (directions : ι → P) (q : ℕ)
     (f : P → C(Icc (0 : ℝ) T,E)) (a₀ : P → E)
     (hf : ContDiff ℝ ∞ f) (ha₀ : ContDiff ℝ ∞ a₀)

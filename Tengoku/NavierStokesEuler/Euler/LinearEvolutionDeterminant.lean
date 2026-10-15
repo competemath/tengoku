@@ -16,6 +16,9 @@ private def determinantRows (ι : Type*) [Fintype ι] [DecidableEq ι] :
   toMultilinearMap := Matrix.detRowAlternating.toMultilinearMap
   cont := continuous_id.matrix_det
 
+/--
+@isnad1 id=hasderiv.1h5v.s7.371cc36c2f01 from=translated src=- shape=c98c2234 vocab=842567e0
+-/
 theorem matrixJacobi {ι : Type*} [Fintype ι] [DecidableEq ι]
     (F M : ℝ → Matrix ι ι ℝ) (S : Set ℝ) (t : ℝ)
     (hF : HasDerivWithinAt F (M t * F t) S t) :
@@ -60,7 +63,9 @@ private theorem operatorCoordinates_trace (A : E →L[ℝ] E) :
     (operatorCoordinates A).trace = LinearMap.trace ℝ E A.toLinearMap :=
   (LinearMap.trace_eq_matrix_trace ℝ (Module.finBasis ℝ E) A.toLinearMap).symm
 
-/-- The finite-dimensional Jacobi formula does not assume invertibility. -/
+/-- The finite-dimensional Jacobi formula does not assume invertibility.
+@isnad1 id=hasderiv.1h5v.s10.72af3d752485 from=translated src=- shape=dfa57329 vocab=7742d340
+-/
 theorem operatorJacobi (F M : ℝ → (E →L[ℝ] E)) (S : Set ℝ) (t : ℝ)
     (hF : HasDerivWithinAt F ((M t).comp (F t)) S t) :
     HasDerivWithinAt (fun s => (F s).det)
@@ -88,6 +93,9 @@ open Set EulerVolterraConvolution EulerLinearEvolutionDeterminant
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
   {T : ℝ} {hT : 0 ≤ T} {B : C(Icc (0 : ℝ) T,E →L[ℝ] E)}
 
+/--
+@isnad1 id=eq.2h5v.s10.d2978655957d from=translated src=- shape=d26d3ef2 vocab=6f55fc8a
+-/
 theorem det_forward_eq_initial (U : Evolution T hT B)
     (htrace : ∀ t, LinearMap.trace ℝ E (B t).toLinearMap = 0)
     (t : Icc (0 : ℝ) T) : (U.forward t).det = (U.forward ⟨0,le_rfl,hT⟩).det := by
@@ -113,6 +121,9 @@ open Set
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
 
+/--
+@isnad1 id=eq.2h4v.s10.02d05a6b5ea1 from=translated src=- shape=82f83065 vocab=203ab1e4
+-/
 theorem constructedEvolution_det_one (T : ℝ) (hT : 0 ≤ T)
     (B : C(Icc (0 : ℝ) T,E →L[ℝ] E))
     (htrace : ∀ t, LinearMap.trace ℝ E (B t).toLinearMap = 0)

@@ -31,7 +31,9 @@ private local instance : NormedAlgebra ℝ (Field (α := α) (V := V)) := inferI
 variable (T : ℝ) (hT : 0 ≤ T) (B : C(Icc (0 : ℝ) T,Field (α := α) (V := V)))
 
 omit [MeasurableSpace α] [BorelSpace α] [SecondCountableTopology α] in
-/-- The constructed fields satisfy the literal pointwise homogeneous ODE. -/
+/-- The constructed fields satisfy the literal pointwise homogeneous ODE.
+@isnad1 id=hasderiv.2h6v.s10.7ea1e893e6c7 from=translated src=- shape=f6cac60e vocab=494576cc
+-/
 theorem fundamental_pointwise_derivative (t : ℝ) (ht : t ∈ Icc (0 : ℝ) T) (x : α) :
     HasDerivWithinAt
       (fun s => extendPath (Y := Field (α := α) (V := V)) T hT (fundamentalPath T hT B).forward s x)
@@ -56,7 +58,9 @@ def constructedSupportedEvolution (μ : Measure α) (S : Set α) (hS : Measurabl
       ((fundamentalPath T hT B).backward_forward t))
     (fundamental_pointwise_derivative T hT B)
 
-/-- The actual supported-L² propagator retains the exact localized H3 bound. -/
+/-- The actual supported-L² propagator retains the exact localized H3 bound.
+@isnad1 id=le.6h10v.s15.a9c02b9cf6d6 from=translated src=- shape=8f3a4e29 vocab=156b46d6
+-/
 theorem constructedSupportedEvolution_propagator_norm
     (μ : Measure α) (S : Set α) (hS : MeasurableSet S)
     (g : Icc (0 : ℝ) T → ℝ) (hg : ∀ t, 0 < g t) (C : ℝ) (hC : 0 ≤ C)

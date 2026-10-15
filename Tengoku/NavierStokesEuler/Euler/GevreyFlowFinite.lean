@@ -20,6 +20,9 @@ variable {E F : Type*}
   [NormedAddCommGroup E] [NormedSpace ℝ E]
   [NormedAddCommGroup F] [NormedSpace ℝ F]
 
+/--
+@isnad1 id=continuo.1h7v.s8.ff12b6ca0694 from=translated src=- shape=eb56e5c6 vocab=dff00f5f
+-/
 theorem derivativeSum_continuousOn (f : ℝ → E → F) (N : ℕ) (z T : ℝ) (x : E)
     (hc : ∀ n ∈ Finset.Icc 1 N,
       ContinuousOn (fun t => iteratedFDeriv ℝ n (f t) x) (Icc 0 T)) :
@@ -27,10 +30,16 @@ theorem derivativeSum_continuousOn (f : ℝ → E → F) (N : ℕ) (z T : ℝ) (
   unfold derivativeSum generatingSum normalizedJet ftaylorSeries
   exact continuousOn_finsetSum _ fun n hn => ((hc n hn).norm.div_const _).mul_const _
 
+/--
+@isnad1 id=eq.0h5v.s6.f6e0550c806b from=translated src=- shape=55837304 vocab=1b6fbbfc
+-/
 theorem derivativeSum_zero (N : ℕ) (z : ℝ) (x : E) :
     derivativeSum (0 : E → F) N z x = 0 := by
   simp [derivativeSum, generatingSum, normalizedJet, ftaylorSeries, iteratedFDeriv_zero]
 
+/--
+@isnad1 id=le.2h7v.s7.58f081013cc6 from=translated src=- shape=25a7da04 vocab=88c568f9
+-/
 theorem derivative_term_le_sum (f : E → F) (N n : ℕ) (z : ℝ) (x : E)
     (hn : n ∈ Finset.Icc 1 N) (hz : 0 ≤ z) :
     ‖iteratedFDeriv ℝ n f x‖/(n.factorial : ℝ)^2*z^n ≤ derivativeSum f N z x := by
@@ -40,6 +49,9 @@ theorem derivative_term_le_sum (f : E → F) (N n : ℕ) (z : ℝ) (x : E)
       (div_nonneg (norm_nonneg (iteratedFDeriv ℝ j f x)) (sq_nonneg (j.factorial : ℝ)))
       (pow_nonneg hz j)) hn
 
+/--
+@isnad1 id=le.4h8v.s9.52a2f62d5a89 from=translated src=- shape=1869a151 vocab=fa8aa4ea
+-/
 theorem derivativeSum_le_integral [CompleteSpace F]
     (f : E → F) (v : ℝ → E → F) (N : ℕ) (z t : ℝ) (x : E)
     (ht : 0 ≤ t) (hz : 0 ≤ z)
@@ -63,7 +75,9 @@ variable [CompleteSpace E]
 
 /-- Uniform finite-order bound for a genuine flow displacement, from its
 actual differentiated integral equation.  The smallness condition and the
-resulting radius are independent of N. -/
+resulting radius are independent of N.
+@isnad1 id=le.12h9v.s10.2576a3b5683c from=translated src=- shape=a3727bdd vocab=a6f9d20c
+-/
 theorem flow_generating_sum_bound
     (ψ b : ℝ → E → E) (N : ℕ) (T B R : ℝ)
     (hT : 0 ≤ T) (hB : 0 ≤ B) (hR : 0 < R) (hsmall : B*R*T ≤ 1/8)
@@ -117,7 +131,9 @@ theorem flow_generating_sum_bound
 
 omit [CompleteSpace E] in
 /-- Extracting one term from the same finite sum gives a single fixed
-Gevrey radius, rather than a radius enlarged at each derivative order. -/
+Gevrey radius, rather than a radius enlarged at each derivative order.
+@isnad1 id=le.3h8v.s8.787c19cbeafa from=translated src=- shape=1479ab4c vocab=c368703b
+-/
 theorem derivative_bound_of_generating_sum (f : E → F) (N n : ℕ) (R A : ℝ)
     (x : E) (hR : 0 < R) (hn : n ∈ Finset.Icc 1 N)
     (hbound : derivativeSum f N ((4*R)⁻¹) x ≤ A) :
@@ -130,7 +146,9 @@ theorem derivative_bound_of_generating_sum (f : E → F) (N n : ℕ) (R A : ℝ)
   exact (div_le_iff₀ (by positivity : 0 < (n.factorial : ℝ)^2)).mp hm
 
 /-- The integral equation used above follows from the actual within-time
-derivative identity on the closed interval, including a degenerate end. -/
+derivative identity on the closed interval, including a degenerate end.
+@isnad1 id=eq.4h7v.s9.e59f8460a00e from=translated src=- shape=048394c0 vocab=8a227108
+-/
 theorem jet_integral_of_hasDerivWithinAt
     (ψ v : ℝ → E → E) (n : ℕ) (T : ℝ) (hψ0 : ψ 0 = 0)
     (hd : ∀ t ∈ Icc 0 T, ∀ x,
@@ -149,7 +167,9 @@ theorem jet_integral_of_hasDerivWithinAt
   simpa only [hψ0, iteratedFDeriv_zero, Pi.zero_apply, sub_zero] using he.symm
 
 /-- The finite flow bound using genuine time derivatives of the spatial
-jets, with no independent integral-equation assumption. -/
+jets, with no independent integral-equation assumption.
+@isnad1 id=le.11h9v.s10.74cc20b684de from=translated src=- shape=cb509b76 vocab=e8b1095e
+-/
 theorem flow_generating_sum_bound_of_jet_derivative
     (ψ b : ℝ → E → E) (N : ℕ) (T B R : ℝ)
     (hT : 0 ≤ T) (hB : 0 ≤ B) (hR : 0 < R) (hsmall : B*R*T ≤ 1/8)
@@ -172,7 +192,9 @@ theorem flow_generating_sum_bound_of_jet_derivative
 
 /-- All positive spatial orders have the same radius 4R and the same
 linear amplitude B*t.  Smoothness and the jet equation are qualitative
-inputs; the derivative estimates are conclusions. -/
+inputs; the derivative estimates are conclusions.
+@isnad1 id=le.12h9v.s10.ed95a3b2d2ff from=translated src=- shape=25bab462 vocab=d628e2f1
+-/
 theorem flow_positive_derivative_bound
     (ψ b : ℝ → E → E) (T B R : ℝ)
     (hT : 0 ≤ T) (hB : 0 ≤ B) (hR : 0 < R) (hsmall : B*R*T ≤ 1/8)

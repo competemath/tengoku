@@ -16,6 +16,9 @@ open scoped ENNReal
 variable {α β E : Type*} [MeasurableSpace α] [MeasurableSpace β]
   [NormedAddCommGroup E] {μ : Measure α} {ν : Measure β}
 
+/--
+@isnad1 id=eq.0h4v.s9.48b0bd1eb489 from=translated src=- shape=8732f352 vocab=77b1772e
+-/
 theorem norm_sq_eq_integral (u : Lp E 2 μ) :
     ‖u‖^2 = ∫ x, ‖u x‖^2 ∂μ := by
   rw [Lp.norm_def, MemLp.eLpNorm_eq_integral_rpow_norm
@@ -24,6 +27,9 @@ theorem norm_sq_eq_integral (u : Lp E 2 μ) :
   rw [ENNReal.toReal_ofReal (Real.rpow_nonneg (integral_nonneg (fun _ => sq_nonneg _)) _)]
   rw [inv_eq_one_div, ← Real.sqrt_eq_rpow, Real.sq_sqrt (integral_nonneg (fun _ => sq_nonneg _))]
 
+/--
+@isnad1 id=eventual.1h7v.s15.1c0586fe75bc from=translated src=- shape=b6fe3a3e vocab=4ebd2f71
+-/
 theorem fiber_integral (w : Lp (Lp E 2 ν) 2 μ) (f : α × β → E)
     (hrep : ∀ᵐ x ∂μ, (w x : β → E) =ᵐ[ν] fun y => f (x,y)) :
     (fun x => ∫ y, ‖f (x,y)‖^2 ∂ν) =ᵐ[μ] fun x => ‖w x‖^2 := by
@@ -35,6 +41,9 @@ theorem fiber_integral (w : Lp (Lp E 2 ν) 2 μ) (f : α × β → E)
 
 variable [SFinite ν]
 
+/--
+@isnad1 id=memlp.2h7v.s14.439dc690aeab from=translated src=- shape=6bc977b5 vocab=0fd947fb
+-/
 theorem field_memLp (w : Lp (Lp E 2 ν) 2 μ) (f : α × β → E)
     (hf : AEStronglyMeasurable f (μ.prod ν))
     (hrep : ∀ᵐ x ∂μ, (w x : β → E) =ᵐ[ν] fun y => f (x,y)) :
@@ -58,6 +67,9 @@ def realization (w : Lp (Lp E 2 ν) 2 μ) (f : α × β → E)
     (hrep : ∀ᵐ x ∂μ, (w x : β → E) =ᵐ[ν] fun y => f (x,y)) : Lp E 2 (μ.prod ν) :=
   (field_memLp w f hf hrep).toLp f
 
+/--
+@isnad1 id=eventual.2h7v.s14.7bd7a6a7edd3 from=translated src=- shape=596f354c vocab=36b7cd4c
+-/
 theorem realization_ae (w : Lp (Lp E 2 ν) 2 μ) (f : α × β → E)
     (hf : AEStronglyMeasurable f (μ.prod ν))
     (hrep : ∀ᵐ x ∂μ, (w x : β → E) =ᵐ[ν] fun y => f (x,y)) :
@@ -66,7 +78,9 @@ theorem realization_ae (w : Lp (Lp E 2 ν) 2 μ) (f : α × β → E)
 
 variable [SFinite μ]
 
-/-- Fubini preserves the exact L² norm, with no angle or dimension factor. -/
+/-- Fubini preserves the exact L² norm, with no angle or dimension factor.
+@isnad1 id=eq.2h7v.s15.1154530675dd from=translated src=- shape=cdbc6d70 vocab=9c44e3f0
+-/
 theorem realization_norm (w : Lp (Lp E 2 ν) 2 μ) (f : α × β → E)
     (hf : AEStronglyMeasurable f (μ.prod ν))
     (hrep : ∀ᵐ x ∂μ, (w x : β → E) =ᵐ[ν] fun y => f (x,y)) :

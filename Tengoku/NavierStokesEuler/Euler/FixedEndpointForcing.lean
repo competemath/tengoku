@@ -48,6 +48,9 @@ def affineForcing : U →L[ℝ] C(Icc (0 : ℝ) T,E) :=
     ((ContinuousLinearMap.const ℝ (Icc (0 : ℝ) T)).comp (T⁻¹ • ContinuousLinearMap.id ℝ U))
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=eq.1h6v.s11.c39cd088450b from=translated src=- shape=591b4946 vocab=b15cbd54
+-/
 theorem affineTrial_eq_pathLp (Y : U) :
     affineTrial T hT Q Q₁ Y = pathLp T hT (affineVelocity T Q Q₁ Y) := by
   apply Lp.ext
@@ -70,6 +73,9 @@ variable (hd : ∀ t : Icc (0 : ℝ) T,
 
 include hd hd₁ in
 omit [CompleteSpace U] [CompleteSpace E] in
+/--
+@isnad1 id=hasderiv.3h8v.s11.38600e279d35 from=translated src=- shape=38c6d3bf vocab=e2494103
+-/
 theorem affineVelocity_hasDerivWithinAt (Y : U) (t : Icc (0 : ℝ) T) :
     HasDerivWithinAt (extendPath T hT (affineVelocity T Q Q₁ Y))
       (affineAcceleration T Q₁ Q₂ Y t) (Icc (0 : ℝ) T) t := by
@@ -90,6 +96,9 @@ theorem affineVelocity_hasDerivWithinAt (Y : U) (t : Icc (0 : ℝ) T) :
   rfl
 
 include hd hframe in
+/--
+@isnad1 id=eq.3h8v.s14.3674d62c3848 from=translated src=- shape=377af9a3 vocab=aa89cc90
+-/
 theorem affineAcceleration_add_potential (Y : U) :
     pathLp T hT (affineAcceleration T Q₁ Q₂ Y)+
       timeMultiplier T hT H (initialPrimitiveTimeLp T hT (affineTrial T hT Q Q₁ Y)) =
@@ -113,7 +122,9 @@ theorem affineAcceleration_add_potential (Y : U) :
   module
 
 include hd hd₁ hframe in
-/-- The exact affine energy pairing, obtained by genuine integration by parts. -/
+/-- The exact affine energy pairing, obtained by genuine integration by parts.
+@isnad1 id=eq.4h9v.s15.78a31c0cb66a from=translated src=- shape=f98b9c98 vocab=1cd64355
+-/
 theorem affine_energy_pairing (Y : U) (v : zeroTraceDerivatives (U := U) T hT) :
     ⟪energyOperator T hT H (affineTrial T hT Q Q₁ Y),fixedFrameDerivative T hT Q Q₁ v⟫_ℝ =
       -⟪pathLp T hT (affineForcing T Q₁ Y),fixedFramePrimitive T hT Q Q₁ v⟫_ℝ := by
@@ -139,7 +150,9 @@ variable (c : ℝ) (hc : 0 < c) (hQ : ∀ t v, c*‖v‖^2 ≤ ‖Q t v‖^2)
 
 include hd₁ hframe in
 /-- The stationary affine correction is exactly the forced inverse applied
-to the explicit source `2 Q₁ Y/T`; no new inverse is assumed. -/
+to the explicit source `2 Q₁ Y/T`; no new inverse is assumed.
+@isnad1 id=eq.9h10v.s15.272336b252eb from=translated src=- shape=406d4508 vocab=33e01a08
+-/
 theorem correction_eq_forced (Y : U) :
     fixedEndpointCorrection T hT Q Q₁ H c hc hQ hd K hK hH hsmall
       (affineTrial T hT Q Q₁) Y =

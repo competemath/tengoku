@@ -19,19 +19,25 @@ variable {T : ℝ} {hT : 0 ≤ T} {B : C(Icc (0 : ℝ) T,E →L[ℝ] E)}
 
 namespace Evolution
 
-/-- The true forced path is independent of the fundamental evolution chosen to represent it. -/
+/-- The true forced path is independent of the fundamental evolution chosen to represent it.
+@isnad1 id=eq.1h7v.s8.4609792c699f from=translated src=- shape=d2c7ab51 vocab=24e4fcd0
+-/
 theorem solution_independent (U V : Evolution T hT B) (f : C(Icc (0 : ℝ) T,E)) (a₀ : E) :
     U.solution f a₀ = V.solution f a₀ := by
   ext t
   exact V.solution_unique f a₀ (U.solutionReal f a₀) (U.solution_derivative f a₀)
     (U.solution_initial f a₀) t
 
-/-- Sign reversal of both data reverses the actual solution. -/
+/-- Sign reversal of both data reverses the actual solution.
+@isnad1 id=eq.1h6v.s9.a399068d5c3b from=translated src=- shape=1e80c0a5 vocab=537ec1b5
+-/
 theorem solution_neg (U : Evolution T hT B) (f : C(Icc (0 : ℝ) T,E)) (a₀ : E) :
     U.solution (-f) (-a₀) = -U.solution f a₀ := by
   rw [U.solution_eq_operators, U.solution_eq_operators, map_neg, map_neg, neg_add]
 
-/-- Zero data vanish identically. -/
+/-- Zero data vanish identically.
+@isnad1 id=eq.1h4v.s9.6b4f0903e6a3 from=translated src=- shape=27f5505c vocab=24e4fcd0
+-/
 @[simp] theorem solution_zero (U : Evolution T hT B) :
     U.solution (0 : C(Icc (0 : ℝ) T,E)) 0 = 0 := by
   rw [U.solution_eq_operators, map_zero, map_zero, add_zero]
@@ -42,7 +48,9 @@ variable {P : Type*} (T : ℝ) (hT : 0 ≤ T)
   (B : P → C(Icc (0 : ℝ) T,E →L[ℝ] E)) (U : ∀ x, Evolution T hT (B x))
 
 /-- Reflection or any other parameter symmetry is inherited from coefficients
-and data; no regularity or symmetry of the chosen propagators is required. -/
+and data; no regularity or symmetry of the chosen propagators is required.
+@isnad1 id=eq.4h9v.s9.4e97b2ba1ddc from=translated src=- shape=9382a684 vocab=537ec1b5
+-/
 theorem solution_odd_under (σ : P → P) (hB : ∀ x, B (σ x) = B x)
     (f : P → C(Icc (0 : ℝ) T,E)) (a₀ : P → E)
     (hf : ∀ x, f (σ x) = -f x) (ha₀ : ∀ x, a₀ (σ x) = -a₀ x) (x : P) :
@@ -60,7 +68,9 @@ theorem solution_odd_under (σ : P → P) (hB : ∀ x, B (σ x) = B x)
       rw [hf x, ha₀ x, map_neg, map_neg, neg_add]
     _ = -(U x).solution (f x) (a₀ x) := by rw [(U x).solution_eq_operators]
 
-/-- The actual forward solution stays in the union of the supports of its data. -/
+/-- The actual forward solution stays in the union of the supports of its data.
+@isnad1 id=le.1h7v.s9.adea7c13386f from=translated src=- shape=6d46375b vocab=d0248954
+-/
 theorem solution_support_subset (f : P → C(Icc (0 : ℝ) T,E)) (a₀ : P → E) :
     Function.support (fun x => (U x).solution (f x) (a₀ x)) ⊆
       Function.support f ∪ Function.support a₀ := by

@@ -11,6 +11,9 @@ namespace EulerParameterWordGevrey
 
 open Finset
 
+/--
+@isnad1 id=le.4h6v.s6.3bf9845442f8 from=translated src=- shape=98d10077 vocab=39c4d38e
+-/
 theorem sobolevCoefficientAmplitude_mono_all {ι : Type*} [Fintype ι]
     (q : ℕ) {R C S D : ℝ} (hR : 0 ≤ R) (hC : 0 ≤ C) (hRS : R ≤ S) (hCD : C ≤ D) :
     sobolevCoefficientAmplitude ι q R C ≤ sobolevCoefficientAmplitude ι q S D := by
@@ -32,6 +35,9 @@ theorem sobolevCoefficientAmplitude_mono_all {ι : Type*} [Fintype ι]
 def coefficientPolynomial (q : ℕ) (R C : Polynomial ℝ) : Polynomial ℝ :=
   (2 : Polynomial ℝ)^q*C*∑ k ∈ range (q+1), (16*R)^k*Polynomial.C ((k.factorial : ℝ)^2)
 
+/--
+@isnad1 id=eq.0h4v.s5.fd6422181c2f from=translated src=- shape=e202c40c vocab=ddefc0b7
+-/
 theorem coefficientPolynomial_eval (q : ℕ) (R C : Polynomial ℝ) (x : ℝ) :
     (coefficientPolynomial q R C).eval x =
       sobolevCoefficientAmplitude (Fin 4) q (R.eval x) (C.eval x) := by
@@ -46,6 +52,9 @@ end EulerParameterWordGevrey
 
 namespace EulerCoefficientJetPressureBounds
 
+/--
+@isnad1 id=le.1h3v.s4.b2f9e31b0e1f from=translated src=- shape=8ca0c19b vocab=84ccad35
+-/
 theorem productCost_mono {B C : ℝ} (hBC : B ≤ C) (q : ℕ) : productCost B q ≤ productCost C q := by
   induction q with
   | zero => exact hBC
@@ -53,6 +62,9 @@ theorem productCost_mono {B C : ℝ} (hBC : B ≤ C) (q : ℕ) : productCost B q
       simp only [productCost]
       gcongr
 
+/--
+@isnad1 id=le.5h5v.s6.1cecd5808d1b from=translated src=- shape=87d6bad1 vocab=f0b354b5
+-/
 theorem pressureCost_mono {c d B C : ℝ} (hc : 0 < c) (hd : 0 < d) (hB : 0 ≤ B)
     (hci : c⁻¹ ≤ d⁻¹) (hBC : B ≤ C) (q : ℕ) : pressureCost c B q ≤ pressureCost d C q := by
   have hC : 0 ≤ C := hB.trans hBC
@@ -75,6 +87,9 @@ def pressurePolynomial (i B : Polynomial ℝ) : ℕ → Polynomial ℝ
   | 0 => i
   | q+1 => i+4*(pressurePolynomial i B q*(1+productPolynomial B q*pressurePolynomial i B q))
 
+/--
+@isnad1 id=eq.0h3v.s4.b79d25433216 from=translated src=- shape=73853024 vocab=46022925
+-/
 theorem productPolynomial_eval (B : Polynomial ℝ) (q : ℕ) (x : ℝ) :
     (productPolynomial B q).eval x=productCost (B.eval x) q := by
   induction q with
@@ -82,6 +97,9 @@ theorem productPolynomial_eval (B : Polynomial ℝ) (q : ℕ) (x : ℝ) :
   | succ q ih => simp only [productPolynomial,productCost,Polynomial.eval_add,
       Polynomial.eval_mul,Polynomial.eval_ofNat,ih]
 
+/--
+@isnad1 id=eq.0h4v.s5.5b26ffda8423 from=translated src=- shape=bbf63c72 vocab=8acb0ec5
+-/
 theorem pressurePolynomial_eval (i B : Polynomial ℝ) (q : ℕ) (x : ℝ) :
     (pressurePolynomial i B q).eval x=pressureCost (i.eval x)⁻¹ (B.eval x) q := by
   induction q with

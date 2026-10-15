@@ -30,6 +30,9 @@ namespace Data
 
 variable {E} [CompleteSpace E] (V : Data E)
 
+/--
+@isnad1 id=ex.0h4v.s6.909461399b43 from=translated src=- shape=fb7ccf7e vocab=165a27b1
+-/
 theorem curve_exists (s : ℝ) (x : E) :
     ∃ α : ℝ → E, α s = x ∧ ∀ t, HasDerivAt α (V.velocity t (α t)) t := by
   have hc : Continuous (Function.uncurry (fun (t : ℝ) (y : E) => V.velocity (t+s) y)) :=
@@ -43,16 +46,28 @@ theorem curve_exists (s : ℝ) (x : E) :
 
 def flow (s t : ℝ) (x : E) : E := (V.curve_exists s x).choose t
 
+/--
+@isnad1 id=eq.0h4v.s5.5d59bbe271f2 from=translated src=- shape=a8fe1e05 vocab=ab287fa5
+-/
 @[simp] theorem flow_initial (s : ℝ) (x : E) : V.flow s s x = x :=
   (V.curve_exists s x).choose_spec.1
 
+/--
+@isnad1 id=hasderiv.0h5v.s6.10e0719a29df from=translated src=- shape=bcc5cea3 vocab=0d81da0b
+-/
 theorem flow_hasDerivAt (s t : ℝ) (x : E) :
     HasDerivAt (fun r => V.flow s r x) (V.velocity t (V.flow s t x)) t :=
   (V.curve_exists s x).choose_spec.2 t
 
+/--
+@isnad1 id=continuo.0h4v.s5.a90009b9409c from=translated src=- shape=28f0f760 vocab=3410ed7c
+-/
 theorem flow_continuous_time (s : ℝ) (x : E) : Continuous (fun t => V.flow s t x) :=
   continuous_iff_continuousAt.mpr (fun t => (V.flow_hasDerivAt s t x).continuousAt)
 
+/--
+@isnad1 id=eq.2h5v.s6.56d81404864c from=translated src=- shape=fab8d048 vocab=0d81da0b
+-/
 theorem flow_unique (s : ℝ) (x : E) (α : ℝ → E)
     (hα : ∀ t, HasDerivAt α (V.velocity t (α t)) t) (hαs : α s = x) :
     α = fun t => V.flow s t x := by
@@ -62,16 +77,25 @@ theorem flow_unique (s : ℝ) (x : E) (α : ℝ → E)
     (fun t => ⟨V.flow_hasDerivAt s t x, Set.mem_univ _⟩)
   simpa only [V.flow_initial] using hαs
 
+/--
+@isnad1 id=eq.0h6v.s5.ebfb18bce65e from=translated src=- shape=37a6efd5 vocab=ab287fa5
+-/
 theorem flow_cocycle (r s t : ℝ) (x : E) :
     V.flow s t (V.flow r s x) = V.flow r t x := by
   have h := V.flow_unique s (V.flow r s x) (fun t => V.flow r t x)
     (fun t => V.flow_hasDerivAt r t x) rfl
   exact (congrFun h t).symm
 
+/--
+@isnad1 id=eq.0h5v.s5.72cac0709ac6 from=translated src=- shape=d2258a0b vocab=ab287fa5
+-/
 @[simp] theorem flow_inverse (s t : ℝ) (x : E) :
     V.flow t s (V.flow s t x) = x := by
   rw [V.flow_cocycle, V.flow_initial]
 
+/--
+@isnad1 id=lipschit.0h4v.s5.1c582077d8b5 from=translated src=- shape=0777cb26 vocab=977d1e84
+-/
 theorem flow_lipschitz_time (s : ℝ) (x : E) :
     LipschitzWith V.speedBound (fun t => V.flow s t x) := by
   apply lipschitzWith_of_nnnorm_deriv_le
@@ -81,7 +105,9 @@ theorem flow_lipschitz_time (s : ℝ) (x : E) :
   exact_mod_cast V.speed t (V.flow s t x)
 
 omit [CompleteSpace E] in
-/-- A two-sided Grönwall estimate for actual global trajectories. -/
+/-- A two-sided Grönwall estimate for actual global trajectories.
+@isnad1 id=le.2h6v.s7.0badec970b2b from=translated src=- shape=47e9c8e8 vocab=bc6fef69
+-/
 theorem trajectory_distance (α β : ℝ → E)
     (hα : ∀ t, HasDerivAt α (V.velocity t (α t)) t)
     (hβ : ∀ t, HasDerivAt β (V.velocity t (β t)) t) (a b : ℝ) :
@@ -113,6 +139,9 @@ theorem trajectory_distance (α β : ℝ → E)
       ring
     simpa only [Function.comp_apply, neg_neg, he] using h
 
+/--
+@isnad1 id=le.0h6v.s6.9eda23cdcc12 from=translated src=- shape=2e8b57fc vocab=75f46368
+-/
 theorem flow_distance_initial (s t : ℝ) (x y : E) :
     dist (V.flow s t x) (V.flow s t y) ≤
       dist x y * Real.exp (V.lipschitzConstant * |t-s|) := by

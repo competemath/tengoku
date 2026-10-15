@@ -15,6 +15,9 @@ def coordinates (ell : ℝ) : (ℝ × E) →L[ℝ] (ℝ × E) :=
   (fst ℝ ℝ E).prod ((ell⁻¹ • ContinuousLinearMap.id ℝ E).comp (snd ℝ ℝ E))
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=eq.0h3v.s8.a0f14a55175a from=translated src=- shape=bd12596c vocab=0e70ea42
+-/
 @[simp] theorem coordinates_apply (ell : ℝ) (q : ℝ × E) :
     coordinates ell q=(q.1,ell⁻¹ • q.2) := rfl
 
@@ -25,6 +28,9 @@ def pressure (ell : ℝ) (p : ℝ × E → ℝ) (q : ℝ × E) : ℝ :=
   ell^2*p (coordinates ell q)
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=hasfderi.1h4v.s10.40df8e101185 from=translated src=- shape=54e49f44 vocab=2ec52eeb
+-/
 theorem velocity_hasFDerivAt (ell : ℝ) (u : ℝ × E → E) (q : ℝ × E)
     (hu : DifferentiableAt ℝ u (coordinates ell q)) :
     HasFDerivAt (velocity ell u) (ell • (fderiv ℝ u (coordinates ell q)).comp (coordinates ell)) q := by
@@ -32,6 +38,9 @@ theorem velocity_hasFDerivAt (ell : ℝ) (u : ℝ × E → E) (q : ℝ × E)
     (coordinates (E := E) ell).hasFDerivAt
   exact (hu.hasFDerivAt.comp q hc).const_smul ell
 
+/--
+@isnad1 id=eq.2h4v.s8.7d0e0771ab94 from=translated src=- shape=47242c0c vocab=c90f63a9
+-/
 theorem pressure_gradient (ell : ℝ) (hell : ell ≠ 0) (p : ℝ × E → ℝ) (q : ℝ × E)
     (hp : DifferentiableAt ℝ (fun y => p (q.1,y)) (ell⁻¹ • q.2)) :
     gradient (fun y => pressure ell p (q.1,y)) q.2 =
@@ -45,6 +54,9 @@ theorem pressure_gradient (ell : ℝ) (hell : ell ≠ 0) (p : ℝ × E → ℝ) 
   simp only [smul_apply,comp_apply,id_apply,map_smul,smul_eq_mul]
   field_simp [hell]
 
+/--
+@isnad1 id=eq.3h5v.s9.bbfbdc270d2f from=translated src=- shape=ab2372e9 vocab=49f1d3bc
+-/
 theorem momentumResidual_eq (ell : ℝ) (hell : ell ≠ 0)
     (u : ℝ × E → E) (p : ℝ × E → ℝ) (q : ℝ × E)
     (hu : DifferentiableAt ℝ u (coordinates ell q))
@@ -59,6 +71,9 @@ theorem momentumResidual_eq (ell : ℝ) (hell : ell ≠ 0)
   rw [hd,← smul_add]
   rfl
 
+/--
+@isnad1 id=eq.4h5v.s9.2bdc2044007a from=translated src=- shape=6ef46f16 vocab=49f1d3bc
+-/
 theorem momentumResidual_zero (ell : ℝ) (hell : ell ≠ 0)
     (u : ℝ × E → E) (p : ℝ × E → ℝ) (q : ℝ × E)
     (hu : DifferentiableAt ℝ u (coordinates ell q))
@@ -68,6 +83,9 @@ theorem momentumResidual_zero (ell : ℝ) (hell : ell ≠ 0)
   rw [momentumResidual_eq ell hell u p q hu hp,hEuler,smul_zero]
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=eq.2h5v.s9.1383f2d19d97 from=translated src=- shape=51e92765 vocab=bbf2026b
+-/
 theorem spatial_derivative (ell : ℝ) (hell : ell ≠ 0)
     (u : ℝ × E → E) (t : ℝ) (x : E)
     (hu : DifferentiableAt ℝ (fun y => u (t,y)) (ell⁻¹ • x)) :

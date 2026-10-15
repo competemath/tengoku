@@ -12,6 +12,9 @@ namespace Euler
 
 local notation "ℝ³" => EuclideanSpace ℝ (Fin 3)
 
+/--
+@isnad1 id=initialv.3h1v.s8.b21c6f69d285 from=translated src=- shape=29a898bd vocab=aa88e9a2
+-/
 theorem initialVelocityConditionDecay_of_compact
     (u₀ : ℝ³ → ℝ³) (hs : ContDiff ℝ ∞ u₀) (hc : HasCompactSupport u₀)
     (hd : ∀ x, divergence u₀ x = 0) : InitialVelocityConditionDecay u₀ := by

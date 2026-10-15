@@ -14,6 +14,9 @@ variable {U V E F : Type*}
   [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
   [NormedAddCommGroup F] [InnerProductSpace ℝ F] [CompleteSpace F]
 
+/--
+@isnad1 id=eq.1h9v.s13.fa982b7dbcbb from=translated src=- shape=ac2e599f vocab=4f2552a1
+-/
 theorem adjoint_intertwines (A : U →L[ℝ] V) (B : E →L[ℝ] F)
     (Q : U →L[ℝ] E) (R : V →L[ℝ] F)
     (hback : ∀ v, Q (A.adjoint v) = B.adjoint (R v)) (f : E) :
@@ -23,6 +26,9 @@ theorem adjoint_intertwines (A : U →L[ℝ] V) (B : E →L[ℝ] F)
   rw [adjoint_inner_left,← adjoint_inner_right,← hback,
     ← adjoint_inner_left,adjoint_inner_right]
 
+/--
+@isnad1 id=eq.2h9v.s12.3cec17a582e4 from=translated src=- shape=cbeb4ede vocab=daf56dcc
+-/
 theorem gram_intertwines (A : U →L[ℝ] V) (B : E →L[ℝ] F)
     (Q : U →L[ℝ] E) (R : V →L[ℝ] F)
     (hforward : ∀ u, R (A u) = B (Q u))
@@ -32,6 +38,9 @@ theorem gram_intertwines (A : U →L[ℝ] V) (B : E →L[ℝ] F)
   rw [hforward,adjoint_intertwines A B Q R hback]
   rfl
 
+/--
+@isnad1 id=eq.6h11v.s12.2c8dead91e41 from=translated src=- shape=294f44f5 vocab=01e8d6dc
+-/
 theorem gramInverse_intertwines (A : U →L[ℝ] V) (B : E →L[ℝ] F)
     (Q : U →L[ℝ] E) (R : V →L[ℝ] F)
     (c : ℝ) (hc : 0 < c) (hQ : ∀ u, c*‖u‖^2 ≤ ‖Q u‖^2)
@@ -46,7 +55,9 @@ theorem gramInverse_intertwines (A : U →L[ℝ] V) (B : E →L[ℝ] F)
   exact hi.symm
 
 /-- In particular the actual acceleration formula respects a compatible
-coordinate map and physical map. -/
+coordinate map and physical map.
+@isnad1 id=eq.7h14v.s13.94df78c6feb1 from=translated src=- shape=957c472d vocab=4824b6cc
+-/
 theorem acceleration_intertwines (A : U →L[ℝ] V) (B : E →L[ℝ] F)
     (Q Q₁ : U →L[ℝ] E) (R R₁ : V →L[ℝ] F)
     (c : ℝ) (hc : 0 < c) (hQ : ∀ u, c*‖u‖^2 ≤ ‖Q u‖^2)

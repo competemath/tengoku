@@ -18,11 +18,17 @@ if `dist x y ≤ δ(ε) → dist (f x) (f y) ≤ ε` for all `x`, `y`. -/
 def IsUniformContinuousWith : Prop :=
   ∀ ⦃ε : ℝ⦄, 0 < ε → ∀ ⦃x y : X⦄, dist x y ≤ δ ε → dist (f x) (f y) ≤ ε
 
+/--
+@isnad1 id=uniformc.2h4v.s5.1a4dca88953b from=translated src=- shape=9e0943a4 vocab=54593f17
+-/
 @[fun_prop]
 lemma IsUniformContinuousWith.uniformContinuous (hδ : ∀ ε > 0, 0 < δ ε)
     (hf : IsUniformContinuousWith δ f) : UniformContinuous f :=
   uniformContinuous_iff_le.2 fun ε hε ↦ ⟨δ ε, hδ _ hε, hf hε⟩
 
+/--
+@isnad1 id=iff.0h3v.s6.e1118006d4e4 from=translated src=- shape=0618768e vocab=54593f17
+-/
 lemma uniformContinuous_iff_exists_isUniformContinuousWith :
     UniformContinuous f ↔ ∃ δ : ℝ → ℝ, (∀ ε > 0, 0 < δ ε) ∧ IsUniformContinuousWith δ f where
   mp hf := by rw [uniformContinuous_iff_le] at hf; choose! δ hδ hf using hf; exact ⟨δ, hδ, hf⟩
@@ -50,20 +56,31 @@ This is the "on a set" version of `IsUniformContinuousWith`, and a quantitative 
 def IsUniformContinuousOnWith (S : Set X) : Prop :=
   ∀ ⦃ε : ℝ⦄, 0 < ε → ∀ ⦃x⦄, x ∈ S → ∀ ⦃y⦄, y ∈ S → dist x y ≤ δ ε → dist (f x) (f y) ≤ ε
 
+/--
+@isnad1 id=iff.0h4v.s5.c966d41552ca from=translated src=- shape=e22d8f04 vocab=ac06c7e1
+-/
 @[simp] lemma isUniformContinuousOnWith_univ :
     IsUniformContinuousOnWith δ f .univ ↔ IsUniformContinuousWith δ f := by
   simp [IsUniformContinuousOnWith, IsUniformContinuousWith]
 
-/-- A uniformly continuous function is uniformly continuous on every set. -/
+/-- A uniformly continuous function is uniformly continuous on every set.
+@isnad1 id=isunifor.1h5v.s5.42f42adf5ff6 from=translated src=- shape=cf4c7366 vocab=8d87b8e9
+-/
 @[fun_prop]
 lemma IsUniformContinuousWith.isUniformContinuousOnWith (hf : IsUniformContinuousWith δ f)
     (S : Set X) : IsUniformContinuousOnWith δ f S := fun _ hε _ _ _ _ hxy ↦ hf hε hxy
 
+/--
+@isnad1 id=uniformc.2h5v.s6.fa657993dfae from=translated src=- shape=2f52fc7d vocab=d7cc11a5
+-/
 @[fun_prop]
 lemma IsUniformContinuousOnWith.uniformContinuousOn {S : Set X} (hδ : ∀ ε > 0, 0 < δ ε)
     (hf : IsUniformContinuousOnWith δ f S) : UniformContinuousOn f S :=
   uniformContinuousOn_iff_le.2 fun ε hε ↦ ⟨δ ε, hδ _ hε, hf hε⟩
 
+/--
+@isnad1 id=iff.0h4v.s6.840c1c577443 from=translated src=- shape=e9e6e478 vocab=d7cc11a5
+-/
 lemma uniformContinuousOn_iff_exists_isUniformContinuousOnWith {S : Set X} :
     UniformContinuousOn f S ↔ ∃ δ, (∀ ε > 0, 0 < δ ε) ∧ IsUniformContinuousOnWith δ f S where
   mp hf := by rw [uniformContinuousOn_iff_le] at hf; choose! δ hδ hf using hf; exact ⟨δ, hδ, hf⟩
@@ -83,7 +100,9 @@ lemma _root_.LipschitzOnWith.isUniformContinuousOnWith {K : ℝ≥0} {S : Set X}
     rfl
 
 /-- If `f` is uniformly continuous on `S` with modulus `ε ↦ ε / K` for some `0 < K`,
-then `f` is `K`-Lipschitz on `S`. -/
+then `f` is `K`-Lipschitz on `S`.
+@isnad1 id=lipschit.2h5v.s6.fc8d45bfc804 from=translated src=- shape=40f1e917 vocab=3fe006f6
+-/
 lemma IsUniformContinuousOnWith.lipschitzOnWith {K : ℝ≥0} {S : Set X} (hK : 0 < K)
     (hf : IsUniformContinuousOnWith (fun ε ↦ ε / K) f S) : LipschitzOnWith K f S := by
   rw [lipschitzOnWith_iff_dist_le_mul]
@@ -93,19 +112,25 @@ lemma IsUniformContinuousOnWith.lipschitzOnWith {K : ℝ≥0} {S : Set X} (hK : 
     nlinarith [ha]
 
 /-- A function is `K`-Lipschitz on `S` iff it is uniformly continuous on `S` with modulus
-`ε ↦ ε / K`, provided `0 < K`. -/
+`ε ↦ ε / K`, provided `0 < K`.
+@isnad1 id=iff.1h5v.s6.643e4528a6e1 from=translated src=- shape=65ecb0b0 vocab=3fe006f6
+-/
 lemma lipschitzOnWith_iff_isUniformContinuousOnWith {K : ℝ≥0} {S : Set X} (hK : 0 < K) :
     LipschitzOnWith K f S ↔ IsUniformContinuousOnWith (fun ε ↦ ε / K) f S :=
   ⟨LipschitzOnWith.isUniformContinuousOnWith, IsUniformContinuousOnWith.lipschitzOnWith hK⟩
 
 /-- Conversely, if `f` is uniformly continuous with modulus `ε ↦ ε / K` for some `0 < K`,
-then `f` is `K`-Lipschitz. -/
+then `f` is `K`-Lipschitz.
+@isnad1 id=lipschit.2h4v.s5.69cb56bc19ff from=translated src=- shape=3216f0b9 vocab=4d4f3640
+-/
 lemma IsUniformContinuousWith.lipschitzWith {K : ℝ≥0} (hK : 0 < K)
     (hf : IsUniformContinuousWith (fun ε ↦ ε / K) f) : LipschitzWith K f :=
   lipschitzOnWith_univ.1 ((isUniformContinuousOnWith_univ.2 hf).lipschitzOnWith hK)
 
 /-- A function is `K`-Lipschitz iff it is uniformly continuous with modulus `ε ↦ ε / K`, provided
-`0 < K`. -/
+`0 < K`.
+@isnad1 id=iff.1h4v.s5.55bb16850c5a from=translated src=- shape=86501b33 vocab=4d4f3640
+-/
 lemma lipschitzWith_iff_isUniformContinuousWith {K : ℝ≥0} (hK : 0 < K) :
     LipschitzWith K f ↔ IsUniformContinuousWith (fun ε ↦ ε / K) f :=
   ⟨LipschitzWith.isUniformContinuousWith, IsUniformContinuousWith.lipschitzWith hK⟩

@@ -10,7 +10,9 @@ open Set
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
-/-- The mean-value bound up to both endpoints, with derivatives required only in the interior. -/
+/-- The mean-value bound up to both endpoints, with derivatives required only in the interior.
+@isnad1 id=le.5h5v.s7.ae66360cda5e from=translated src=- shape=24272d04 vocab=41e88ac0
+-/
 theorem norm_sub_le_mul_of_hasDerivAt_Ioo (X X' : ℝ → E) {T M : ℝ}
     (hT : 0 < T) (hM : 0 ≤ M) (hX : ContinuousOn X (Icc 0 T))
     (hderiv : ∀ s ∈ Ioo 0 T, HasDerivAt X (X' s) s)
@@ -29,7 +31,9 @@ theorem norm_sub_le_mul_of_hasDerivAt_Ioo (X X' : ℝ → E) {T M : ℝ}
   simpa only [dist_eq_norm, sub_zero, Real.norm_eq_abs, abs_of_pos hT] using h
 
 /-- A trajectory cannot first leave the ball before the local speed budget is exhausted.
-No bound on the velocity outside `‖x‖ ≤ B` is used. -/
+No bound on the velocity outside `‖x‖ ≤ B` is used.
+@isnad1 id=lt.8h8v.s7.017a3bdef33c from=translated src=- shape=24c826b3 vocab=41e88ac0
+-/
 theorem norm_lt_of_local_speed_bound (X : ℝ → E) (V : ℝ → E → E)
     {δ A B M : ℝ} (hM : 0 ≤ M) (hAB : A < B) (hsmall : δ * M < B - A)
     (hX : ContinuousOn X (Icc 0 δ))
@@ -72,7 +76,9 @@ theorem norm_lt_of_local_speed_bound (X : ℝ → E) (V : ℝ → E → E)
   nlinarith
 
 omit [NormedSpace ℝ E] in
-/-- Compactness supplies a common speed bound and positive time budget on a fixed ball. -/
+/-- Compactness supplies a common speed bound and positive time budget on a fixed ball.
+@isnad1 id=ex.2h4v.s7.e4f8468f030b from=translated src=- shape=910e9750 vocab=b47f6992
+-/
 theorem exists_local_speed_budget [ProperSpace E] (u : ℝ → E → E) {A B : ℝ}
     (hAB : A < B)
     (hu : ContinuousOn (Function.uncurry u)

@@ -10,6 +10,9 @@ namespace Metric
 variable {X Y : Type*} [PseudoEMetricSpace X] [PseudoEMetricSpace Y] {f : X → Y} {s C P : Set X}
   {t D : Set Y} {K ε : ℝ≥0} {n : ℕ∞}
 
+/--
+@isnad1 id=iscover.4h8v.s6.4e40ede9fc3c from=translated src=- shape=37c87ead vocab=77565a61
+-/
 protected lemma IsCover.image (hf : LipschitzOnWith K f s) (hst : s.SurjOn f t) (hCs : C ⊆ s)
     (hC : IsCover ε s C) : IsCover (K * ε) t (f '' C) := by
   rintro y hy
@@ -20,6 +23,9 @@ protected lemma IsCover.image (hf : LipschitzOnWith K f s) (hst : s.SurjOn f t) 
   grw [hf.edist_le_mul_of_le hx (hCs hc)]
   exact hxc
 
+/--
+@isnad1 id=iscover.2h7v.s6.5829b626d67c from=translated src=- shape=d8d91bd0 vocab=eba78cfa
+-/
 protected lemma IsCover.prod (hC : IsCover ε s C) (hD : IsCover ε t D) :
     IsCover ε (s ×ˢ t) (C ×ˢ D) := by
   rintro ⟨x, y⟩ ⟨hx, hy⟩
@@ -28,6 +34,9 @@ protected lemma IsCover.prod (hC : IsCover ε s C) (hD : IsCover ε t D) :
   dsimp at *
   exact ⟨(c, d), ⟨hc, hd⟩, by simp [Prod.edist_eq, *]⟩
 
+/--
+@isnad1 id=iscover.1h6v.s6.aef85b1728ea from=translated src=- shape=8b5152e1 vocab=95b11f2f
+-/
 protected lemma IsCover.pi {ι : Type*} [Fintype ι] {X : ι → Type*} {I : Set ι}
     [∀ i, PseudoEMetricSpace (X i)] {s C : ∀ i, Set (X i)} (hC : ∀ i ∈ I, IsCover ε (s i) (C i)) :
     IsCover ε (I.pi s) (I.pi C) := by

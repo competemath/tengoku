@@ -26,7 +26,9 @@ variable {U V E F : Type*}
   [NormedAddCommGroup F] [InnerProductSpace ℝ F] [CompleteSpace F]
   (T : ℝ) (hT : 0 ≤ T)
 
-/-- The backward test intertwiner gives the actual adjoint-multiplier identity. -/
+/-- The backward test intertwiner gives the actual adjoint-multiplier identity.
+@isnad1 id=eq.2h10v.s17.b94cf763d803 from=translated src=- shape=89d5d5e9 vocab=7c5e1b6c
+-/
 theorem adjointMultiplier_intertwines (A : U →L[ℝ] V) (B : E →L[ℝ] F)
     (Q : C(Icc (0 : ℝ) T,U →L[ℝ] E)) (R : C(Icc (0 : ℝ) T,V →L[ℝ] F))
     (hRQ : ∀ t v, Q t (A.adjoint v) = B.adjoint (R t v)) (f : TimeLp T E) :
@@ -38,7 +40,9 @@ theorem adjointMultiplier_intertwines (A : U →L[ℝ] V) (B : E →L[ℝ] F)
     ← timeMultiplier_intertwines T hT A.adjoint B.adjoint R Q hRQ,
     ← adjoint_inner_left,← timeLift_adjoint,adjoint_inner_right]
 
-/-- The true Gram operator commutes with compatible rectangular intertwiners. -/
+/-- The true Gram operator commutes with compatible rectangular intertwiners.
+@isnad1 id=eq.3h10v.s14.3b6edb6dec11 from=translated src=- shape=672817b0 vocab=0281a391
+-/
 theorem gramOperator_intertwines (A : U →L[ℝ] V) (B : E →L[ℝ] F)
     (Q : C(Icc (0 : ℝ) T,U →L[ℝ] E)) (R : C(Icc (0 : ℝ) T,V →L[ℝ] F))
     (hQR : ∀ t u, R t (A u) = B (Q t u))
@@ -50,7 +54,9 @@ theorem gramOperator_intertwines (A : U →L[ℝ] V) (B : E →L[ℝ] F)
   rfl
 
 /-- The constructed Gram inverse inherits the intertwining identity by its
-two-sided inverse property. -/
+two-sided inverse property.
+@isnad1 id=eq.7h12v.s14.1c8ec1184020 from=translated src=- shape=3723b225 vocab=c41e1853
+-/
 theorem gramSolver_intertwines (A : U →L[ℝ] V) (B : E →L[ℝ] F)
     (Q : C(Icc (0 : ℝ) T,U →L[ℝ] E)) (R : C(Icc (0 : ℝ) T,V →L[ℝ] F))
     (c : ℝ) (hc : 0 < c) (hQ : ∀ t u, c*‖u‖^2 ≤ ‖Q t u‖^2)
@@ -87,6 +93,9 @@ variable (A : U →L[ℝ] V) (B : E →L[ℝ] F)
   (hHJ : ∀ t u, J t (B u) = B (H t u))
 
 include hQR hQR₁ hRQ hRQ₁ hHJ in
+/--
+@isnad1 id=eq.18h18v.s15.98f8ea686f9b from=translated src=- shape=8c93b77c vocab=a3a24199
+-/
 theorem velocityLp_intertwines (f : TimeLp T E) :
     velocityLp T hT R R₁ J d hd hR hRtime L hL hJ hsmall' (timeLift T B f) =
       timeLift T A (velocityLp T hT Q Q₁ H c hc hQ hQtime K hK hH hsmall f) := by
@@ -97,6 +106,9 @@ theorem velocityLp_intertwines (f : TimeLp T E) :
   exact he'.symm
 
 include hQR hQR₁ hRQ hRQ₁ hHJ in
+/--
+@isnad1 id=eq.18h18v.s15.879410fb9ca6 from=translated src=- shape=8c93b77c vocab=d96a7ca6
+-/
 theorem accelerationLp_intertwines (f : TimeLp T E) :
     accelerationLp T hT R R₁ J d hd hR hRtime L hL hJ hsmall' (timeLift T B f) =
       timeLift T A (accelerationLp T hT Q Q₁ H c hc hQ hQtime K hK hH hsmall f) := by
@@ -112,7 +124,9 @@ theorem accelerationLp_intertwines (f : TimeLp T E) :
 
 include hQR hQR₁ hRQ hRQ₁ hHJ in
 /-- The identity holds at every time, including the endpoint used by the
-subsequent forward solve. -/
+subsequent forward solve.
+@isnad1 id=eq.18h19v.s15.49c66b27df17 from=translated src=- shape=b39aa2fc vocab=9cb1ab28
+-/
 theorem velocityPath_intertwines (f : TimeLp T E) (t : Icc (0 : ℝ) T) :
     velocityPath T hT R R₁ J d hd hR hRtime L hL hJ hsmall' (timeLift T B f) t =
       A (velocityPath T hT Q Q₁ H c hc hQ hQtime K hK hH hsmall f t) := by

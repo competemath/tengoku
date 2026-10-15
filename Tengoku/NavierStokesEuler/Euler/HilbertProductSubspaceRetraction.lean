@@ -30,6 +30,9 @@ def retraction (S : ClosedSubmodule ℝ (ι → E)) : (ι → E) →L[ℝ] S :=
   (restriction S).comp ((hilbertSubspace S).toSubmodule.orthogonalProjectionOnto.comp
     hilbertEquiv.toContinuousLinearMap)
 
+/--
+@isnad1 id=eq.0h4v.s11.7f4738ccb7e7 from=translated src=- shape=cc5722ba vocab=8a8bb391
+-/
 @[simp] theorem retraction_subtype (S : ClosedSubmodule ℝ (ι → E)) (u : S) :
     retraction S (u : ι → E) = u := by
   have hu : hilbertEquiv (u : ι → E) ∈ hilbertSubspace S :=
@@ -55,6 +58,9 @@ def packPaths : (ι → C(K,V)) →L[ℝ] C(K,ι → V) := by
     (ContinuousLinearMap.proj i)
 
 omit [CompactSpace K] in
+/--
+@isnad1 id=eq.0h6v.s9.8037170c3975 from=translated src=- shape=6a99e539 vocab=267baca6
+-/
 @[simp] theorem packPaths_apply (p : ι → C(K,V)) (t : K) (i : ι) :
     packPaths (ι := ι) (K := K) (V := V) p t i = p i t := by
   classical

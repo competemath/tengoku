@@ -19,7 +19,9 @@ variable {P E X : Type*} [NormedAddCommGroup P] [NormedSpace ℝ P]
   [NormedAddCommGroup E] [NormedSpace ℝ E] [NormedAddCommGroup X] [NormedSpace ℝ X]
 
 /-- The triangular recurrence is derived from actual Fréchet derivatives of
-the frozen equation; it is not an assumed sequence estimate. -/
+the frozen equation; it is not an assumed sequence estimate.
+@isnad1 id=le.5h11v.s11.ec596d8ecbc2 from=translated src=- shape=a2abfe85 vocab=e5c12aae
+-/
 theorem derivative_recurrence
     (B : P → X →L[ℝ] X) (u f : P → X) (a : P → E)
     (hB : ContDiff ℝ ∞ B) (hu : ContDiff ℝ ∞ u) (hf : ContDiff ℝ ∞ f) (ha : ContDiff ℝ ∞ a)

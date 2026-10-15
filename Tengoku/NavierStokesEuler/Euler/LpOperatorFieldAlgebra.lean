@@ -28,7 +28,9 @@ variable [NormedAddCommGroup U] [NormedSpace ℝ U]
   [NormedAddCommGroup E] [NormedSpace ℝ E]
   [NormedAddCommGroup F] [NormedSpace ℝ F]
 
-/-- Multiplication by the actual product field is composition on L². -/
+/-- Multiplication by the actual product field is composition on L².
+@isnad1 id=eq.0h7v.s14.089670622521 from=translated src=- shape=977250dd vocab=175a681c
+-/
 theorem full_comp (A : α →ᵇ E →L[ℝ] F) (B : α →ᵇ U →L[ℝ] E) :
     full μ (compositionMap A B) = (full μ A).comp (full μ B) := by
   apply ContinuousLinearMap.ext
@@ -40,11 +42,16 @@ theorem full_comp (A : α →ᵇ E →L[ℝ] F) (B : α →ᵇ U →L[ℝ] E) :
   rw [hab,ha,hb]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.9c609485578e from=translated src=- shape=31d91a7d vocab=bcd3371d
+-/
 theorem full_neg (A : α →ᵇ E →L[ℝ] F) : full μ (-A) = -full μ A :=
   map_neg (fullMap μ) A
 
 /-- A literal coefficient identity can be lifted without introducing a new
-operator hypothesis. -/
+operator hypothesis.
+@isnad1 id=eq.1h8v.s13.488544bf4153 from=translated src=- shape=4bce09df vocab=04fa99ea
+-/
 theorem full_eq_neg_comp (C : α →ᵇ U →L[ℝ] F)
     (A : α →ᵇ E →L[ℝ] F) (B : α →ᵇ U →L[ℝ] E)
     (hC : ∀ x u, C x u = -(A x (B x u))) :
@@ -64,7 +71,9 @@ section Hilbert
 variable [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [NormedAddCommGroup F] [InnerProductSpace ℝ F]
 
-/-- A pointwise lower frame bound is a lower bound on genuine full-space L². -/
+/-- A pointwise lower frame bound is a lower bound on genuine full-space L².
+@isnad1 id=le.2h7v.s12.46845b5fcd7d from=translated src=- shape=f5f12323 vocab=cd923a52
+-/
 theorem full_norm_sq_lower (A : α →ᵇ E →L[ℝ] F) (c : ℝ) (hc : 0 ≤ c)
     (hA : ∀ x v, c*‖v‖^2 ≤ ‖A x v‖^2) (u : Lp E 2 μ) :
     c*‖u‖^2 ≤ ‖full μ A u‖^2 := by
@@ -80,7 +89,9 @@ theorem full_norm_sq_lower (A : α →ᵇ E →L[ℝ] F) (c : ℝ) (hc : 0 ≤ c
   have hs := (sq_le_sq₀ (mul_nonneg (Real.sqrt_nonneg c) (norm_nonneg _)) (norm_nonneg _)).2 h
   simpa only [mul_pow,hroot] using hs
 
-/-- The actual L² Hessian inherits its pointwise quadratic upper bound. -/
+/-- The actual L² Hessian inherits its pointwise quadratic upper bound.
+@isnad1 id=le.1h6v.s12.db3a49a717d3 from=translated src=- shape=d073a56c vocab=2b08d699
+-/
 theorem full_quadratic_upper (A : α →ᵇ E →L[ℝ] E) (C : ℝ)
     (hA : ∀ x v, ⟪A x v,v⟫_ℝ ≤ C*‖v‖^2) (u : Lp E 2 μ) :
     ⟪full μ A u,u⟫_ℝ ≤ C*‖u‖^2 := by
@@ -91,7 +102,9 @@ theorem full_quadratic_upper (A : α →ᵇ E →L[ℝ] E) (C : ℝ)
   rw [hx,real_inner_self_eq_norm_sq]
   exact hA x (u x)
 
-/-- A rectangular coefficient commutes with literal spatial localization. -/
+/-- A rectangular coefficient commutes with literal spatial localization.
+@isnad1 id=eq.1h7v.s14.27573495079f from=translated src=- shape=e4cb200f vocab=fc21e442
+-/
 theorem full_cutoff (S : Set α) (hS : MeasurableSet S)
     (A : α →ᵇ E →L[ℝ] F) (u : Lp E 2 μ) :
     full μ A (cutoffOperator μ S hS u) = cutoffOperator μ S hS (full μ A u) := by
@@ -107,7 +120,9 @@ theorem full_cutoff (S : Set α) (hS : MeasurableSet S)
 
 variable [CompleteSpace E] [CompleteSpace F]
 
-/-- The L² adjoint is multiplication by the pointwise adjoint field. -/
+/-- The L² adjoint is multiplication by the pointwise adjoint field.
+@isnad1 id=eq.0h5v.s16.f18fdd0c3495 from=translated src=- shape=6985e552 vocab=c6dcfc50
+-/
 theorem full_adjoint (A : α →ᵇ E →L[ℝ] F) :
     (full μ A).adjoint = full μ (adjointMap A) := by
   apply ContinuousLinearMap.ext
@@ -131,7 +146,9 @@ variable {α E : Type*} [MeasurableSpace α] (μ : Measure α)
   [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
   (S : Set α) (hS : MeasurableSet S)
 
-/-- The genuine measurable spatial cutoff is an orthogonal projection. -/
+/-- The genuine measurable spatial cutoff is an orthogonal projection.
+@isnad1 id=eq.1h4v.s16.6dad09e1101b from=translated src=- shape=fb9568fa vocab=3a679bf6
+-/
 theorem cutoffOperator_adjoint :
     (cutoffOperator (V := E) μ S hS).adjoint = cutoffOperator μ S hS := by
   apply ContinuousLinearMap.ext

@@ -12,6 +12,9 @@ namespace Euler.ComparatorBridge
 
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
+/--
+@isnad1 id=eq.6h9v.s11.6a5ba8648de0 from=translated src=- shape=6d84e40a vocab=0c875b5c
+-/
 theorem frame_wronskian_constant
     (F G H B : ℝ → E →L[ℝ] E) (T : ℝ) (hT : 0 < T)
     (hF : ∀ t ∈ Icc 0 T, HasDerivWithinAt F (G t) (Icc 0 T) t)
@@ -41,7 +44,9 @@ theorem frame_wronskian_constant
       (uniqueDiffOn_Icc hT r ⟨hr.1, hr.2.le⟩)) t ht
 
 /-- An initially symmetric Eulerian velocity gradient stays symmetric.
-The two frame identities identify that gradient as `G * F⁻¹`. -/
+The two frame identities identify that gradient as `G * F⁻¹`.
+@isnad1 id=issymmet.9h9v.s11.0f2830cd9f35 from=translated src=- shape=aa600691 vocab=e95b9bc4
+-/
 theorem strain_symmetric_of_frame_wronskian
     (F G H B S J : ℝ → E →L[ℝ] E) (T : ℝ) (hT : 0 < T)
     (hF : ∀ t ∈ Icc 0 T, HasDerivWithinAt F (G t) (Icc 0 T) t)

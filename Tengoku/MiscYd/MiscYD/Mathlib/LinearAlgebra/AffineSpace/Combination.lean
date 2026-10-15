@@ -8,6 +8,9 @@ variable {ι k V P : Type*} [Ring k] [AddCommGroup V] [Module k V] [AddTorsor V 
     {p₀ : P} {p : ι → P} {w : ι → k} {s : Finset ι} {t : Set P}
 
 -- TODO: Replace
+/--
+@isnad1 id=mem.2h8v.s8.971d5df3f29e from=translated src=- shape=d39ee573 vocab=bb98636d
+-/
 lemma weightedVSub_mem_vectorSpan' (h : ∑ i ∈ s, w i = 0) (hp : ∀ i ∈ s, p i ∈ t) :
     s.weightedVSub p w ∈ vectorSpan k t := by
   obtain rfl | ⟨i, hi⟩ := s.eq_empty_or_nonempty
@@ -16,6 +19,9 @@ lemma weightedVSub_mem_vectorSpan' (h : ∑ i ∈ s, w i = 0) (hp : ∀ i ∈ s,
   simpa using sum_mem fun j hj ↦ Submodule.smul_mem _ _ <| vsub_mem_vectorSpan _ (hp _ hj) (hp _ hi)
 
 -- TODO: Replace
+/--
+@isnad1 id=mem.2h8v.s7.129610b60114 from=translated src=- shape=2ff27d25 vocab=b50a142d
+-/
 lemma affineCombination_mem_affineSpan' [Nontrivial k] (h : ∑ i ∈ s, w i = 1)
     (hp : ∀ i ∈ s, p i ∈ t) : s.affineCombination k p w ∈ affineSpan k t := by
   classical

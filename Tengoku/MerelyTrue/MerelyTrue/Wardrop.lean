@@ -137,7 +137,9 @@ variational inequality: for every feasible competitor `g`,
 `0 ≤ ∑ r, routeCost f r * (g r - f r)`.
 
 Intuitively, redistributing traffic away from the equilibrium can only increase
-total experienced cost. -/
+total experienced cost.
+@isnad1 id=le.2h5v.s6.1fa52d1a29a9 from=translated src=- shape=3beb24c8 vocab=d096a925
+-/
 theorem wardrop_variational {f g : R → ℝ} (hf : P.IsWardrop f)
     (hg : P.Feasible g) : 0 ≤ ∑ r, P.routeCost f r * (g r - f r) := by
   obtain ⟨⟨hf_nonneg, hf_sum⟩, hf_min⟩ := hf
@@ -194,7 +196,9 @@ omit [Nonempty R] in
 /-- **Route–link bridge.**  The pairing of route costs with a flow difference in
 *route* space equals the pairing of link costs with the induced flow difference
 in *link* space.  This is just Fubini together with the definition of link flow:
-`∑ r, routeCost f r * (g r - f r) = ∑ ℓ, linkCost ℓ (linkFlow f ℓ) * (linkFlow g ℓ - linkFlow f ℓ)`. -/
+`∑ r, routeCost f r * (g r - f r) = ∑ ℓ, linkCost ℓ (linkFlow f ℓ) * (linkFlow g ℓ - linkFlow f ℓ)`.
+@isnad1 id=eq.0h5v.s6.695506252b4d from=translated src=- shape=9d8203f0 vocab=0aea256e
+-/
 theorem routeCost_inner_eq (f g : R → ℝ) :
     ∑ r, P.routeCost f r * (g r - f r)
       = ∑ ℓ, P.linkCost ℓ (P.linkFlow f ℓ) * (P.linkFlow g ℓ - P.linkFlow f ℓ) := by
@@ -247,7 +251,9 @@ private lemma wardrop_term_zero (hmono : ∀ ℓ, Monotone (P.linkCost ℓ)) {f 
   exact (Finset.sum_eq_zero_iff_of_nonneg hterm_nonneg).mp hzero ℓ (mem_univ ℓ)
 
 /-- **Uniqueness of equilibrium link flows.**  If every link cost is *strictly*
-increasing, then any two Wardrop equilibria induce the same usage on every link. -/
+increasing, then any two Wardrop equilibria induce the same usage on every link.
+@isnad1 id=eq.3h6v.s6.a65f45c36c0d from=translated src=- shape=b0313db3 vocab=486b2f2a
+-/
 theorem wardrop_link_unique (hinc : P.Increasing) {f g : R → ℝ}
     (hf : P.IsWardrop f) (hg : P.IsWardrop g) (ℓ : L) :
     P.linkFlow f ℓ = P.linkFlow g ℓ := by
@@ -263,7 +269,9 @@ the same cost to every link, even though the link *flows* may differ.
 
 This is the most that survives when strictness is dropped: the constant-cost
 parallel-links network shows that genuinely distinct equilibrium flows can occur,
-so `wardrop_link_unique` really does require strict monotonicity. -/
+so `wardrop_link_unique` really does require strict monotonicity.
+@isnad1 id=eq.3h6v.s6.049f3b643eb3 from=translated src=- shape=cba621ac vocab=4064d8a0
+-/
 theorem wardrop_linkCost_unique (hmono : ∀ ℓ, Monotone (P.linkCost ℓ)) {f g : R → ℝ}
     (hf : P.IsWardrop f) (hg : P.IsWardrop g) (ℓ : L) :
     P.linkCost ℓ (P.linkFlow f ℓ) = P.linkCost ℓ (P.linkFlow g ℓ) :=

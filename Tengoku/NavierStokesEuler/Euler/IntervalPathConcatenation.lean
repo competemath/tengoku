@@ -17,9 +17,15 @@ def join {E : Type*} (T S : ℝ) (hT : 0 ≤ T) (hS : 0 ≤ S)
 variable {E : Type*} {T S : ℝ} {hT : 0 ≤ T} {hS : 0 ≤ S}
   (f : Icc (0 : ℝ) T → E) (g : Icc (0 : ℝ) S → E)
 
+/--
+@isnad1 id=eq.3h6v.s6.a02c3046bbe4 from=translated src=- shape=92839f9c vocab=916058e9
+-/
 theorem join_left {t : ℝ} (ht : t ≤ T) :
     join T S hT hS f g t=f (projIcc 0 T hT t) := by simp only [join,ht,ite_true]
 
+/--
+@isnad1 id=eq.4h6v.s7.742e3cd8868c from=translated src=- shape=1107b72c vocab=bb4d45c2
+-/
 theorem join_right (hfg : f ⟨T,hT,le_rfl⟩=g ⟨0,le_rfl,hS⟩) {t : ℝ} (ht : T ≤ t) :
     join T S hT hS f g t=g (projIcc 0 S hS (t-T)) := by
   by_cases h : t ≤ T
@@ -30,12 +36,18 @@ theorem join_right (hfg : f ⟨T,hT,le_rfl⟩=g ⟨0,le_rfl,hS⟩) {t : ℝ} (ht
       projIcc_of_mem hS (show (0 : ℝ) ∈ Icc 0 S from ⟨le_rfl,hS⟩)] using hfg
   · simp only [join,h,ite_false]
 
+/--
+@isnad1 id=eq.2h8v.s6.4f2183c51942 from=translated src=- shape=fe3338e9 vocab=b7e05e85
+-/
 theorem map_join {F : Type*} (A : E → F) (t : ℝ) :
     A (join T S hT hS f g t)=
       join T S hT hS (fun s => A (f s)) (fun s => A (g s)) t := by
   unfold join
   split <;> rfl
 
+/--
+@isnad1 id=continuo.5h5v.s8.02c536d2362b from=translated src=- shape=cdc5f4be vocab=ac4bbda2
+-/
 theorem join_continuous [TopologicalSpace E] (hf : Continuous f) (hg : Continuous g)
     (hfg : f ⟨T,hT,le_rfl⟩=g ⟨0,le_rfl,hS⟩) :
     Continuous (join T S hT hS f g) := by
@@ -63,6 +75,9 @@ variable [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 include hTpos hSpos hfg hdf hdg hderiv
 
+/--
+@isnad1 id=hasderiv.8h7v.s9.46bdb7ee8d52 from=translated src=- shape=df2b41f3 vocab=edb32e19
+-/
 theorem join_hasDerivAt_seam :
     HasDerivAt (join T S hT hS f g) (df ⟨T,hT,le_rfl⟩) T := by
   have hleft : HasDerivWithinAt (join T S hT hS f g)
@@ -90,6 +105,9 @@ theorem join_hasDerivAt_seam :
   rw [Icc_union_Icc_eq_Icc hT (le_add_of_nonneg_right hS)] at hu
   exact hu.hasDerivAt (Icc_mem_nhds hTpos (lt_add_of_pos_right T hSpos))
 
+/--
+@isnad1 id=hasderiv.9h8v.s9.8a2264c27270 from=translated src=- shape=8f2fdb28 vocab=44ef8cc4
+-/
 theorem join_hasDerivAt (t : ℝ) (ht : t ∈ Ioo 0 (T+S)) :
     HasDerivAt (join T S hT hS f g) (join T S hT hS df dg t) t := by
   rcases lt_trichotomy t T with hlt | heq | hgt

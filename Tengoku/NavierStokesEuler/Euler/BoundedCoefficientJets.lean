@@ -14,7 +14,9 @@ section BoundedFields
 
 variable {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
 
-/-- Evaluating a parameter derivative gives the ordinary spatial derivative at the translated point. -/
+/-- Evaluating a parameter derivative gives the ordinary spatial derivative at the translated point.
+@isnad1 id=eq.0h6v.s11.fec52006909c from=translated src=- shape=e6074f35 vocab=d07ecc0d
+-/
 theorem BoundedSmoothField.iteratedFDeriv_translation_apply (A : BoundedSmoothField V)
     (n : ℕ) (a x : Space) (v : Fin n → Space) :
     (iteratedFDeriv ℝ n (translated A.field) a v) x =
@@ -29,7 +31,9 @@ theorem BoundedSmoothField.iteratedFDeriv_translation_apply (A : BoundedSmoothFi
   rw [iteratedFDeriv_comp_add_left] at hv
   exact hv.symm
 
-/-- Passing from pointwise spatial bounds to parameter derivatives in sup norm costs no constant. -/
+/-- Passing from pointwise spatial bounds to parameter derivatives in sup norm costs no constant.
+@isnad1 id=le.2h5v.s11.2b79da3f9080 from=translated src=- shape=b893a587 vocab=067c1031
+-/
 theorem BoundedSmoothField.norm_iteratedFDeriv_translation_le (A : BoundedSmoothField V)
     (n : ℕ) (C : ℝ) (hC : 0 ≤ C)
     (hbound : ∀ x, ‖iteratedFDeriv ℝ n (A.field : Space → V) x‖ ≤ C) (a : Space) :
@@ -49,15 +53,24 @@ private local instance : NormedSpace ℝ Field := inferInstance
 private local instance : NormedAddCommGroup (EulerMeanSolenoidal.L2 →L[ℝ] EulerMeanSolenoidal.L2) := inferInstance
 private local instance : NormedSpace ℝ (EulerMeanSolenoidal.L2 →L[ℝ] EulerMeanSolenoidal.L2) := inferInstance
 
+/--
+@isnad1 id=le.0h0v.s17.3a75b7a35f93 from=translated src=- shape=11ea4c9a vocab=c860adeb
+-/
 theorem multiplierMap_norm_le_one : ‖multiplierMap‖ ≤ 1 :=
   multiplierMap.opNorm_le_bound zero_le_one (fun A => by
     simpa only [one_mul, multiplierMap_apply] using multiplier_norm_le A)
 
+/--
+@isnad1 id=contdiff.0h1v.s15.0abaafbd005c from=translated src=- shape=64ff389d vocab=86152869
+-/
 theorem multiplierTranslation_contDiff (A : BoundedSmoothField (Space →L[ℝ] Space)) :
     ContDiff ℝ ∞ (fun a => multiplier (translated A.field a)) := by
   exact (ContinuousLinearMap.contDiff (𝕜 := ℝ) (n := ∞) (E := Field)
     (F := EulerMeanSolenoidal.L2 →L[ℝ] EulerMeanSolenoidal.L2) multiplierMap).comp A.translation_contDiff
 
+/--
+@isnad1 id=le.2h4v.s18.50f78578f854 from=translated src=- shape=e0b877b4 vocab=68b51613
+-/
 theorem norm_iteratedFDeriv_multiplierTranslation_le
     (A : BoundedSmoothField (Space →L[ℝ] Space)) (n : ℕ) (C : ℝ) (hC : 0 ≤ C)
     (hbound : ∀ x, ‖iteratedFDeriv ℝ n (A.field : Space → Space →L[ℝ] Space) x‖ ≤ C)

@@ -37,10 +37,16 @@ def acceleration : U →L[ℝ] C(Icc (0 : ℝ) T,U) :=
   (EulerContinuousTimeIntegral.multiplier (generator T Q Q₁ c hc hQ)).comp
     (continuousCoordinateVelocity T hT Q Q₁ H c hc hQ hd K hK hH hsmall)
 
+/--
+@isnad1 id=eq.7h9v.s11.f7c2e2be1da6 from=translated src=- shape=09921dcb vocab=ef963a7e
+-/
 theorem displacement_initial (Y : U) :
     displacement T hT Q Q₁ H c hc hQ hd K hK hH hsmall Y ⟨0,le_rfl,hT⟩ = 0 :=
   initialPrimitive_initial T hT _
 
+/--
+@isnad1 id=eq.8h9v.s11.3f9545db29cb from=translated src=- shape=58d3d654 vocab=ef963a7e
+-/
 theorem displacement_terminal (hTpos : 0 < T) (Y : U) :
     displacement T hT Q Q₁ H c hc hQ hd K hK hH hsmall Y ⟨T,hT,le_rfl⟩ = Y := by
   let r := fixedEndpointCorrection T hT Q Q₁ H c hc hQ hd K hK hH hsmall
@@ -58,6 +64,9 @@ variable (Q₂ : C(Icc (0 : ℝ) T,U →L[ℝ] E)) (hTpos : 0 < T)
   (hframe : ∀ t, Q₂ t = -((H t).comp (Q t)))
 
 include Q₂ hTpos hd₁ hframe in
+/--
+@isnad1 id=eventual.10h10v.s13.af8bd9ca862b from=translated src=- shape=06a74f82 vocab=6c3fe5cb
+-/
 theorem velocity_ae (Y : U) :
     (coordinateSlope T hT Q Q₁ H c hc hQ hd K hK hH hsmall Y : ℝ → U) =ᵐ[timeMeasure T]
       extendPath T hT (continuousCoordinateVelocity T hT Q Q₁ H c hc hQ hd K hK hH hsmall Y) := by
@@ -70,6 +79,9 @@ theorem velocity_ae (Y : U) :
     hsmall Q₂ hTpos hd₁ hframe Y ⟨t,hm⟩).symm
 
 include Q₂ hTpos hd₁ hframe in
+/--
+@isnad1 id=hasderiv.10h11v.s12.8ae0ced01ac3 from=translated src=- shape=e1dfc011 vocab=a569b531
+-/
 theorem displacement_hasDerivWithinAt (Y : U) (t : Icc (0 : ℝ) T) :
     HasDerivWithinAt (extendPath T hT (displacement T hT Q Q₁ H c hc hQ hd K hK hH hsmall Y))
       (continuousCoordinateVelocity T hT Q Q₁ H c hc hQ hd K hK hH hsmall Y t)
@@ -87,6 +99,9 @@ theorem displacement_hasDerivWithinAt (Y : U) (t : Icc (0 : ℝ) T) :
   rfl
 
 include Q₂ hTpos hd₁ hframe in
+/--
+@isnad1 id=hasderiv.10h11v.s12.0c98436dc6f3 from=translated src=- shape=e1dfc011 vocab=51763713
+-/
 theorem velocity_hasDerivWithinAt (Y : U) (t : Icc (0 : ℝ) T) :
     HasDerivWithinAt
       (extendPath T hT (continuousCoordinateVelocity T hT Q Q₁ H c hc hQ hd K hK hH hsmall Y))
@@ -94,6 +109,9 @@ theorem velocity_hasDerivWithinAt (Y : U) (t : Icc (0 : ℝ) T) :
   EulerFixedEndpointStrong.continuousCoordinateVelocity_hasDerivWithinAt_generator
     T hT Q Q₁ H c hc hQ hd K hK hH hsmall Q₂ hTpos hd₁ hframe Y t
 
+/--
+@isnad1 id=eq.7h10v.s13.2fe71030a08d from=translated src=- shape=ff543ce8 vocab=584426f0
+-/
 theorem projected_equation (Y : U) (t : Icc (0 : ℝ) T) :
     gram (Q t) (acceleration T hT Q Q₁ H c hc hQ hd K hK hH hsmall Y t) =
       (Q t).adjoint ((-2 : ℝ) • Q₁ t
@@ -103,6 +121,9 @@ theorem projected_equation (Y : U) (t : Icc (0 : ℝ) T) :
   rw [map_smul,gram_inverse_apply,map_smul]
 
 include Q₂ hTpos hd₁ hframe in
+/--
+@isnad1 id=and.15h13v.s13.0beaa646d74b from=translated src=- shape=cf9dc62f vocab=a9680a34
+-/
 theorem unique (Y : U) (z v a : C(Icc (0 : ℝ) T,U))
     (hz : ∀ t : Icc (0 : ℝ) T,
       HasDerivWithinAt (extendPath T hT z) (v t) (Icc (0 : ℝ) T) t)

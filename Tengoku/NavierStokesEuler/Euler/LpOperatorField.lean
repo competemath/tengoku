@@ -32,7 +32,9 @@ private local instance : NormedSpace ℝ (Lp F 2 μ) := inferInstance
 private local instance : NormedAddCommGroup (Lp E 2 μ →L[ℝ] Lp F 2 μ) := inferInstance
 private local instance : NormedSpace ℝ (Lp E 2 μ →L[ℝ] Lp F 2 μ) := inferInstance
 
-/-- Literal coefficient application is genuinely square integrable. -/
+/-- Literal coefficient application is genuinely square integrable.
+@isnad1 id=memlp.0h6v.s9.efd510af4f80 from=translated src=- shape=f31b833d vocab=f7063f3a
+-/
 theorem apply_memLp (A : α →ᵇ (E →L[ℝ] F)) (u : Lp E 2 μ) :
     MemLp (fun x => A x (u x)) 2 μ := by
   apply (Lp.memLp u).of_le_mul (c := ‖A‖)
@@ -45,6 +47,9 @@ theorem apply_memLp (A : α →ᵇ (E →L[ℝ] F)) (u : Lp E 2 μ) :
 def applyField (A : α →ᵇ (E →L[ℝ] F)) (u : Lp E 2 μ) : Lp F 2 μ :=
   (apply_memLp μ A u).toLp (fun x => A x (u x))
 
+/--
+@isnad1 id=eventual.0h6v.s10.d5738e356fb6 from=translated src=- shape=323be4d2 vocab=13f67b69
+-/
 theorem applyField_ae (A : α →ᵇ (E →L[ℝ] F)) (u : Lp E 2 μ) :
     applyField μ A u =ᵐ[μ] fun x => A x (u x) := (apply_memLp μ A u).coeFn_toLp
 
@@ -64,6 +69,9 @@ def fullLinear (A : α →ᵇ (E →L[ℝ] F)) : Lp E 2 μ →ₗ[ℝ] Lp F 2 μ
     simp only [Pi.smul_apply] at hin hout
     rw [hru,hout,hu,hin,map_smul]
 
+/--
+@isnad1 id=le.0h6v.s9.1bf2a970a2ab from=translated src=- shape=9265e855 vocab=96861e0b
+-/
 theorem applyField_norm (A : α →ᵇ (E →L[ℝ] F)) (u : Lp E 2 μ) :
     ‖applyField μ A u‖ ≤ ‖A‖*‖u‖ := by
   apply Lp.norm_le_mul_norm_of_ae_le_mul
@@ -76,12 +84,21 @@ theorem applyField_norm (A : α →ᵇ (E →L[ℝ] F)) (u : Lp E 2 μ) :
 def full (A : α →ᵇ (E →L[ℝ] F)) : Lp E 2 μ →L[ℝ] Lp F 2 μ :=
   (fullLinear μ A).mkContinuous ‖A‖ (applyField_norm μ A)
 
+/--
+@isnad1 id=eventual.0h6v.s12.596b70ff0108 from=translated src=- shape=6869fc14 vocab=2626791b
+-/
 theorem full_ae (A : α →ᵇ (E →L[ℝ] F)) (u : Lp E 2 μ) :
     full μ A u =ᵐ[μ] fun x => A x (u x) := applyField_ae μ A u
 
+/--
+@isnad1 id=le.0h5v.s11.e926400656f2 from=translated src=- shape=5999fa73 vocab=10ae98d9
+-/
 theorem full_norm (A : α →ᵇ (E →L[ℝ] F)) : ‖full μ A‖ ≤ ‖A‖ :=
   opNorm_le_bound _ (norm_nonneg A) (applyField_norm μ A)
 
+/--
+@isnad1 id=eq.0h6v.s13.f5d04c5fd86d from=translated src=- shape=fc40723b vocab=9f472c02
+-/
 theorem full_add (A B : α →ᵇ (E →L[ℝ] F)) : full μ (A+B) = full μ A+full μ B := by
   apply ContinuousLinearMap.ext
   intro u
@@ -93,6 +110,9 @@ theorem full_add (A B : α →ᵇ (E →L[ℝ] F)) : full μ (A+B) = full μ A+f
   rw [hab,hout,ha,hb]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s13.d722772f4754 from=translated src=- shape=bf220411 vocab=aee8b579
+-/
 theorem full_smul (r : ℝ) (A : α →ᵇ (E →L[ℝ] F)) : full μ (r • A) = r • full μ A := by
   apply ContinuousLinearMap.ext
   intro u
@@ -113,6 +133,9 @@ def fullMap : (α →ᵇ (E →L[ℝ] F)) →L[ℝ] (Lp E 2 μ →L[ℝ] Lp F 2 
       change ‖full μ A‖ ≤ (1 : ℝ)*‖A‖
       simpa only [one_mul] using full_norm μ A)
 
+/--
+@isnad1 id=le.0h4v.s13.c0c764426bd2 from=translated src=- shape=9ff142f7 vocab=d757ee0b
+-/
 theorem fullMap_norm : ‖fullMap (E := E) (F := F) μ‖ ≤ 1 := by
   apply opNorm_le_bound _ zero_le_one
   intro A
@@ -131,6 +154,9 @@ variable {α E F : Type*} [TopologicalSpace α] [MeasurableSpace α] [BorelSpace
   [NormedAddCommGroup E] [InnerProductSpace ℝ E] [NormedAddCommGroup F] [InnerProductSpace ℝ F]
   (S : Set α) (hS : MeasurableSet S)
 
+/--
+@isnad1 id=mem.1h7v.s13.fbcdfee3bee5 from=translated src=- shape=4f4f10e4 vocab=4fe63852
+-/
 theorem full_mem (A : α →ᵇ (E →L[ℝ] F)) (u : supportedSpace (V := E) μ S hS) :
     full μ A (u : Lp E 2 μ) ∈ supportedSpace μ S hS := by
   apply (mem_supportedSpace_ae μ S hS _).2
@@ -144,11 +170,16 @@ def supported (A : α →ᵇ (E →L[ℝ] F)) :
   ((full μ A).comp (supportedSpace μ S hS).subtypeL).codRestrict
     (supportedSpace μ S hS) (full_mem μ S hS A)
 
+/--
+@isnad1 id=eventual.1h7v.s15.bc0b6e3b7153 from=translated src=- shape=0a4d27cb vocab=f039d056
+-/
 theorem supported_ae (A : α →ᵇ (E →L[ℝ] F)) (u : supportedSpace (V := E) μ S hS) :
     ((supported μ S hS A u : supportedSpace (V := F) μ S hS) : Lp F 2 μ) =ᵐ[μ]
       fun x => A x ((u : Lp E 2 μ) x) := full_ae μ A u
 
-/-- Only values on the supporting region enter the actual operator norm. -/
+/-- Only values on the supporting region enter the actual operator norm.
+@isnad1 id=le.3h7v.s14.3c7a111892f1 from=translated src=- shape=ced13a48 vocab=c4133508
+-/
 theorem supported_norm (A : α →ᵇ (E →L[ℝ] F)) (C : ℝ) (hC : 0 ≤ C)
     (hA : ∀ x ∈ S, ‖A x‖ ≤ C) : ‖supported μ S hS A‖ ≤ C := by
   apply opNorm_le_bound _ hC
@@ -162,7 +193,9 @@ theorem supported_norm (A : α →ᵇ (E →L[ℝ] F)) (C : ℝ) (hC : 0 ≤ C)
   · exact ((A x).le_opNorm _).trans (mul_le_mul_of_nonneg_right (hA x hx) (norm_nonneg _))
   · simp only [hu hx,map_zero,norm_zero,mul_zero,le_refl]
 
-/-- A pointwise lower frame bound becomes the actual spatial-L² lower frame bound. -/
+/-- A pointwise lower frame bound becomes the actual spatial-L² lower frame bound.
+@isnad1 id=le.3h8v.s15.85c8f6232bd3 from=translated src=- shape=220f3c32 vocab=a1015d48
+-/
 theorem supported_norm_sq_lower (A : α →ᵇ (E →L[ℝ] F)) (c : ℝ) (hc : 0 ≤ c)
     (hA : ∀ x ∈ S, ∀ v : E, c*‖v‖^2 ≤ ‖A x v‖^2)
     (u : supportedSpace (V := E) μ S hS) :

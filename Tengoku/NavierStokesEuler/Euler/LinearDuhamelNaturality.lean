@@ -28,7 +28,9 @@ variable {E F : Type*}
 
 include hL
 
-/-- Bounded linear intertwiners commute with the actual forced solution. -/
+/-- Bounded linear intertwiners commute with the actual forced solution.
+@isnad1 id=eq.2h10v.s12.a3be55da3264 from=translated src=- shape=4075fc96 vocab=f1021f7b
+-/
 theorem solution_map (f : C(Icc (0 : ℝ) T,E)) (a₀ : E) :
     V.solution (L.compLeftContinuous ℝ (Icc (0 : ℝ) T) f) (L a₀) =
       L.compLeftContinuous ℝ (Icc (0 : ℝ) T) (U.solution f a₀) := by
@@ -47,7 +49,9 @@ theorem solution_map (f : C(Icc (0 : ℝ) T,E)) (a₀ : E) :
   · change L (U.solution f a₀ ⟨0,le_rfl,hT⟩) = L a₀
     rw [U.solution_initial]
 
-/-- Pointwise form of the same identity, including both endpoints. -/
+/-- Pointwise form of the same identity, including both endpoints.
+@isnad1 id=eq.2h11v.s11.06b9f4c78173 from=translated src=- shape=2e31f295 vocab=f1021f7b
+-/
 theorem solution_map_apply (f : C(Icc (0 : ℝ) T,E)) (a₀ : E)
     (t : Icc (0 : ℝ) T) :
     V.solution (L.compLeftContinuous ℝ (Icc (0 : ℝ) T) f) (L a₀) t =

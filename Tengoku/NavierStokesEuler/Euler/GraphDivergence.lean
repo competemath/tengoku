@@ -14,7 +14,9 @@ open scoped ContDiff Topology
 
 variable (period : ℝ) [Fact (0 < period)]
 
-/-- The physical graph of an actual smooth representative of a lifted solenoidal L² field is classically divergence-free. -/
+/-- The physical graph of an actual smooth representative of a lifted solenoidal L² field is classically divergence-free.
+@isnad1 id=eq.4h7v.s14.ec1dffa8b2a1 from=translated src=- shape=7d003824 vocab=03738f49
+-/
 theorem divergenceFree_graph (κ k : ℝ) (hκ : k*κ=1) (m : Vector3)
     (u : LiftL2 period) (hu : u ∈ divergenceFreeSpace period κ m)
     (g : LiftDomain period → Vector3)

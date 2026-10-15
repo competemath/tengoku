@@ -13,7 +13,9 @@ open Set MeasureTheory
 open scoped Interval
 
 /-- A continuous path cannot first hit a barrier if its bound up to that
-first hit lies strictly below the barrier. -/
+first hit lies strictly below the barrier.
+@isnad1 id=le.8h5v.s7.5a9512fdacb8 from=translated src=- shape=24af2d9d vocab=cf251741
+-/
 theorem continuous_barrier (f : ℝ → ℝ) (T B a : ℝ)
     (_hT : 0 ≤ T) (hB : 0 ≤ B) (ha : 0 < a) (hBa : B*T < a)
     (hf : ContinuousOn f (Icc 0 T)) (hf0 : f 0 = 0)
@@ -53,6 +55,9 @@ theorem continuous_barrier (f : ℝ → ℝ) (T B a : ℝ)
 
 def rationalRate (B R a u : ℝ) : ℝ := B*(R*(a+u))/(1-R*(a+u))
 
+/--
+@isnad1 id=le.2h4v.s6.fe3956e87bcc from=translated src=- shape=278bada6 vocab=3bf1326c
+-/
 theorem rationalRate_le (B R a u : ℝ) (hB : 0 ≤ B)
     (hu : R*(a+u) ≤ 1/2) : rationalRate B R a u ≤ B := by
   have hd : 0 < 1-R*(a+u) := by linarith
@@ -61,7 +66,9 @@ theorem rationalRate_le (B R a u : ℝ) (hB : 0 ≤ B)
   nlinarith [mul_le_mul_of_nonneg_left hu hB]
 
 /-- The nonlinear generating-sum inequality closes at BRT≤1/8.  The bound
-is linear in the velocity size B and time, with no exponential factor. -/
+is linear in the velocity size B and time, with no exponential factor.
+@isnad1 id=and.8h5v.s8.925f2ab6df8f from=translated src=- shape=58f94b1e vocab=1028fbf5
+-/
 theorem rational_integral_bootstrap (f : ℝ → ℝ) (T B R : ℝ)
     (hT : 0 ≤ T) (hB : 0 ≤ B) (hR : 0 < R) (hsmall : B*R*T ≤ 1/8)
     (hf : ContinuousOn f (Icc 0 T)) (hf0 : f 0 = 0)

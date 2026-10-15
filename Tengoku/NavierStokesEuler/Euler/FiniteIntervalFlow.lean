@@ -26,6 +26,9 @@ def ofTimeInterval (T : ℝ) (hT : 0 ≤ T)
     (u.norm_coe_le_norm (projIcc 0 T hT t))
 
 omit [NormedSpace ℝ E] in
+/--
+@isnad1 id=eq.2h6v.s9.05c68fab5b8d from=translated src=- shape=b9c599fe vocab=e86ddcef
+-/
 @[simp] theorem ofTimeInterval_velocity (T : ℝ) (hT : 0 ≤ T)
     (u : C(Icc (0 : ℝ) T, E →ᵇ E)) (K : ℝ≥0)
     (hLip : ∀ t, LipschitzWith K (u t)) (t : Icc (0 : ℝ) T) (x : E) :
@@ -35,7 +38,9 @@ omit [NormedSpace ℝ E] in
 variable [CompleteSpace E]
 
 /-- The actual finite-time flow has an actual two-sided continuous inverse.
-No flow map, inverse map or ODE solution is assumed. -/
+No flow map, inverse map or ODE solution is assumed.
+@isnad1 id=ex.2h4v.s10.f728ff3ad3c8 from=translated src=- shape=9158ea5d vocab=2391d526
+-/
 theorem exists_flow_and_inverse (T : ℝ) (hT : 0 ≤ T)
     (u : C(Icc (0 : ℝ) T, E →ᵇ E)) (K : ℝ≥0)
     (hLip : ∀ t, LipschitzWith K (u t)) :

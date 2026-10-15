@@ -37,7 +37,9 @@ variable (T : ℝ) (hT : 0 ≤ T)
   (hsmall : K * (T ^ 2 / 2) ≤ 1 / 2)
 
 /-- The constructed fixed-coordinate endpoint inverse obeys the literal
-weak momentum identity, for every trial lift. -/
+weak momentum identity, for every trial lift.
+@isnad1 id=other.8h12v.s14.45f3e7043bf3 from=translated src=- shape=73e1ff71 vocab=6abfa368
+-/
 theorem fixedEndpointDerivative_weak
     {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V]
     (L : V →L[ℝ] TimeLp T E) (Y : V)
@@ -62,7 +64,9 @@ theorem fixedEndpointDerivative_weak
   linarith only [ht]
 
 /-- The affine fixed-coordinate solution lies in the actual frame range
-at every time, including the two endpoints. -/
+at every time, including the two endpoints.
+@isnad1 id=ex.7h10v.s12.0df1b862eba9 from=translated src=- shape=f6f37d36 vocab=7c5b5edb
+-/
 theorem coordinateSlope_range (ξ : U) (t : Icc (0 : ℝ) T) :
     ∃ x : U, Q t x = initialRealPrimitive T
       (fixedEndpointDerivative T hT Q Q₁ H c hc hQ hd K hK hH hsmall
@@ -72,7 +76,9 @@ theorem coordinateSlope_range (ξ : U) (t : Icc (0 : ℝ) T) :
     (initialPrimitive_initialProductDerivative T hT Q Q₁ hd _ t).symm⟩
 
 /-- The continuous momentum reconstruction represents the explicit
-coordinate derivative of the fixed affine-terminal solution. -/
+coordinate derivative of the fixed affine-terminal solution.
+@isnad1 id=eventual.8h9v.s13.fc0f4f8d1d0f from=translated src=- shape=8e17bd4a vocab=5d684880
+-/
 theorem coordinateSlope_ae (hTpos : 0 < T) (ξ : U) :
     (coordinateSlope T hT Q Q₁ H c hc hQ hd K hK hH hsmall ξ : ℝ → U) =ᵐ[timeMeasure T]
       coordinateVelocityPath T hT Q Q₁ c hc hQ H
@@ -91,7 +97,9 @@ variable (Q₂ : C(Icc (0 : ℝ) T, U →L[ℝ] E)) (hTpos : 0 < T)
   (hframe : ∀ t, Q₂ t = -((H t).comp (Q t)))
 
 include hd₁ hframe hTpos in
-/-- Equation (10) for the constructed affine-terminal fixed-space inverse. -/
+/-- Equation (10) for the constructed affine-terminal fixed-space inverse.
+@isnad1 id=other.10h11v.s13.b68584b6f21d from=translated src=- shape=daba0809 vocab=abf58e6b
+-/
 theorem coordinate_equation (ξ : U) (t : Icc (0 : ℝ) T) :
     let u := fixedEndpointDerivative T hT Q Q₁ H c hc hQ hd K hK hH hsmall
       (affineTrial T hT Q Q₁) ξ
@@ -109,6 +117,9 @@ theorem coordinate_equation (ξ : U) (t : Icc (0 : ℝ) T) :
       hTpos hd hd₁ hframe _ hw hr t⟩
 
 include hd₁ hframe hTpos in
+/--
+@isnad1 id=other.10h10v.s13.49ff813009f2 from=translated src=- shape=fd325dd1 vocab=20f47461
+-/
 theorem coordinateSlope_h1 (ξ : U) :
     let v := coordinateVelocityPath T hT Q Q₁ c hc hQ H
       (fixedEndpointDerivative T hT Q Q₁ H c hc hQ hd K hK hH hsmall
@@ -154,7 +165,9 @@ theorem coordinateSlope_h1 (ξ : U) :
 
 include hd₁ hframe hTpos in
 /-- The existing bounded reconstruction is this actual stationary coordinate
-velocity at every time. -/
+velocity at every time.
+@isnad1 id=eq.10h11v.s13.66e6c6506105 from=translated src=- shape=d7d11d7e vocab=3064ffec
+-/
 theorem continuousCoordinateVelocity_eq (ξ : U) (t : Icc (0 : ℝ) T) :
     continuousCoordinateVelocity T hT Q Q₁ H c hc hQ hd K hK hH hsmall ξ t =
       coordinateVelocityPath T hT Q Q₁ c hc hQ H
@@ -164,6 +177,9 @@ theorem continuousCoordinateVelocity_eq (ξ : U) (t : Icc (0 : ℝ) T) :
   exact reconstruction_eq_path T hTpos _ _ _ hreg.1 hreg.2.1 hreg.2.2 t
 
 include hd₁ hframe hTpos in
+/--
+@isnad1 id=eq.10h11v.s13.e21ee659ebfd from=translated src=- shape=271d1593 vocab=ef3833db
+-/
 theorem historyVelocity_eq (ξ : U) (t : Icc (0 : ℝ) T) :
     historyVelocity T hT Q Q₁ H c hc hQ hd K hK hH hsmall ξ t =
       Q t (coordinateVelocityPath T hT Q Q₁ c hc hQ H
@@ -173,6 +189,9 @@ theorem historyVelocity_eq (ξ : U) (t : Icc (0 : ℝ) T) :
   rw [continuousCoordinateVelocity_eq T hT Q Q₁ H c hc hQ hd K hK hH hsmall Q₂ hTpos hd₁ hframe]
 
 include hd₁ hframe hTpos in
+/--
+@isnad1 id=hasderiv.10h11v.s12.9f9956976529 from=translated src=- shape=f5c0bb3d vocab=c3e30459
+-/
 theorem continuousCoordinateVelocity_hasDerivWithinAt_generator (ξ : U) (t : Icc (0 : ℝ) T) :
     HasDerivWithinAt
       (extendPath T hT (continuousCoordinateVelocity T hT Q Q₁ H c hc hQ hd K hK hH hsmall ξ))
@@ -188,7 +207,9 @@ theorem continuousCoordinateVelocity_hasDerivWithinAt_generator (ξ : U) (t : Ic
 
 include hd₁ hframe hTpos in
 /-- The affine-terminal coordinate history coincides with the actual
-homogeneous forward solver with its own initial velocity. -/
+homogeneous forward solver with its own initial velocity.
+@isnad1 id=eq.10h12v.s12.f2f8aae6b398 from=translated src=- shape=16849c73 vocab=703508b8
+-/
 theorem continuousCoordinateVelocity_eq_forward
     (evolution : Evolution T hT (generator T Q Q₁ c hc hQ))
     (ξ : U) (t : Icc (0 : ℝ) T) :

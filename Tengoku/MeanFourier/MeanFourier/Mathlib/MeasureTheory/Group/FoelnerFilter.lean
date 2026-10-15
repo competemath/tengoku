@@ -10,6 +10,9 @@ namespace IsFoelner
 variable {G X ι : Type*} [MeasurableSpace X] [Group G] [MulAction G X]
   {μ : Measure X} {l : Filter ι} {u : Ultrafilter ι} {F : ι → Set X}
 
+/--
+@isnad1 id=eventual.1h6v.s6.117525ca7cbe from=translated src=- shape=2541a5f9 vocab=2f734969
+-/
 lemma eventually_measureReal_ne_zero (hF : IsFoelner G μ l F) : ∀ᶠ i in l, μ.real (F i) ≠ 0 := by
   filter_upwards [hF.eventually_meas_ne_zero, hF.eventually_meas_ne_top] with i hi₀ hi
   rwa [measureReal_ne_zero_iff hi]

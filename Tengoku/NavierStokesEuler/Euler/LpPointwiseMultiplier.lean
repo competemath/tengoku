@@ -18,6 +18,9 @@ variable {X E F : Type*} [MeasurableSpace X]
   (hA : AEStronglyMeasurable A μ) (C : ℝ) (hC : ∀ x, ‖A x‖ ≤ C)
 
 include hA hC in
+/--
+@isnad1 id=memlp.2h7v.s9.182a5405688d from=translated src=- shape=01bd7da9 vocab=2e612354
+-/
 theorem apply_memLp (u : Lp E 2 μ) : MemLp (fun x => A x (u x)) 2 μ := by
   apply (Lp.memLp u).of_le_mul (c := C)
   · exact (continuous_fst.clm_apply continuous_snd).comp_aestronglyMeasurable
@@ -28,10 +31,16 @@ theorem apply_memLp (u : Lp E 2 μ) : MemLp (fun x => A x (u x)) 2 μ := by
 def applyLp (u : Lp E 2 μ) : Lp F 2 μ :=
   (apply_memLp μ A hA C hC u).toLp (fun x => A x (u x))
 
+/--
+@isnad1 id=eventual.2h7v.s10.778720fab2b7 from=translated src=- shape=caf2e850 vocab=f1c85f08
+-/
 theorem applyLp_ae (u : Lp E 2 μ) :
     (applyLp μ A hA C hC u : X → F) =ᵐ[μ] fun x => A x (u x) :=
   (apply_memLp μ A hA C hC u).coeFn_toLp
 
+/--
+@isnad1 id=le.2h7v.s9.7318cb32d36c from=translated src=- shape=f6be9cef vocab=a6721527
+-/
 theorem applyLp_norm_le (u : Lp E 2 μ) :
     ‖applyLp μ A hA C hC u‖ ≤ C*‖u‖ := by
   apply Lp.norm_le_mul_norm_of_ae_le_mul
@@ -61,10 +70,16 @@ def linear : Lp E 2 μ →ₗ[ℝ] Lp F 2 μ where
 def operator : Lp E 2 μ →L[ℝ] Lp F 2 μ :=
   (linear μ A hA C hC).mkContinuous C (applyLp_norm_le μ A hA C hC)
 
+/--
+@isnad1 id=eventual.2h7v.s12.a3183c85172e from=translated src=- shape=de55c07e vocab=01977dfe
+-/
 theorem operator_ae (u : Lp E 2 μ) :
     (operator μ A hA C hC u : X → F) =ᵐ[μ] fun x => A x (u x) :=
   applyLp_ae μ A hA C hC u
 
+/--
+@isnad1 id=le.2h7v.s12.a8e5dea36572 from=translated src=- shape=4e004d52 vocab=0561461b
+-/
 theorem operator_bound (u : Lp E 2 μ) : ‖operator μ A hA C hC u‖ ≤ C*‖u‖ :=
   applyLp_norm_le μ A hA C hC u
 
@@ -73,6 +88,9 @@ variable {K : Type*} [TopologicalSpace K] [FirstCountableTopology K]
   (hBt : ∀ x, Continuous (fun t => B t x)) (hBC : ∀ t x, ‖B t x‖ ≤ C)
 
 include hBt in
+/--
+@isnad1 id=continuo.3h8v.s12.496725d3a7cd from=translated src=- shape=200cdb4d vocab=eb4fd54e
+-/
 theorem operator_strongly_continuous (u : Lp E 2 μ) :
     Continuous (fun t => operator μ (B t) (hB t) C (hBC t) u) := by
   apply continuous_iff_continuousAt.mpr
@@ -97,6 +115,9 @@ theorem operator_strongly_continuous (u : Lp E 2 μ) :
   · exact Eventually.of_forall (fun x => ((hBt x).clm_apply continuous_const).tendsto t₀)
 
 include hBt in
+/--
+@isnad1 id=continuo.4h8v.s12.06faddf3213e from=translated src=- shape=a0ea9db9 vocab=eb4fd54e
+-/
 theorem operator_path_continuous (u : K → Lp E 2 μ) (hu : Continuous u) :
     Continuous (fun t => operator μ (B t) (hB t) C (hBC t) (u t)) := by
   apply continuous_iff_continuousAt.mpr

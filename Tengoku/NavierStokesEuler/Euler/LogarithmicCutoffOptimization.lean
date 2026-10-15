@@ -9,6 +9,9 @@ namespace EulerLogarithmicCutoff
 
 open Real
 
+/--
+@isnad1 id=le.4h5v.s7.3531c7c03dad from=translated src=- shape=a275c573 vocab=b74671a8
+-/
 theorem optimize (X c L W H : ℝ) (hc : 0 ≤ c) (hL : 0 ≤ L) (hH : 0 ≤ H)
     (hbound : ∀ ε : ℝ, 0 < ε → ε < 1 →
       X ≤ c*(L+W*(-log ε)+ε^(1/4 : ℝ)*H)) :

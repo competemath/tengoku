@@ -17,15 +17,24 @@ namespace EulerGevreyComposition
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=eq.0h2v.s5.543860fabe2f from=translated src=- shape=1c0a5056 vocab=baa482a8
+-/
 lemma sum_partSize (c : OrderedFinpartition n) :
     ∑ i, c.partSize i = n := by
   simpa only [Fintype.card_sigma, Fintype.card_fin] using
     Fintype.card_congr c.equivSigma
 
+/--
+@isnad1 id=eq.0h2v.s5.b60148e446c3 from=translated src=- shape=00809faf vocab=d8c1937b
+-/
 lemma sum_partSize_real (c : OrderedFinpartition n) :
     ∑ i, (c.partSize i : ℝ) = n := by
   exact_mod_cast sum_partSize c
 
+/--
+@isnad1 id=le.0h2v.s6.a0f739c68ca1 from=translated src=- shape=b17d09d0 vocab=dff4fa19
+-/
 lemma sum_partSize_succ_sq_le (c : OrderedFinpartition n) :
     ∑ i, ((c.partSize i : ℝ) + 1)^2 ≤ 2 * ((n : ℝ) + 1)^2 := by
   have hl : (c.length : ℝ) ≤ n := by exact_mod_cast c.length_le
@@ -49,11 +58,17 @@ def partitionWeight (x : ℝ) (c : OrderedFinpartition n) : ℝ :=
 def partitionSum (n : ℕ) (x : ℝ) : ℝ :=
   ∑ c : OrderedFinpartition n, partitionWeight x c
 
+/--
+@isnad1 id=le.1h3v.s4.bbdc93f01d65 from=translated src=- shape=07de1eae vocab=668726af
+-/
 lemma partitionWeight_nonneg (x : ℝ) (hx : 0 ≤ x) (c : OrderedFinpartition n) :
     0 ≤ partitionWeight x c := by
   unfold partitionWeight
   positivity
 
+/--
+@isnad1 id=eq.0h2v.s4.0d1f140b384c from=translated src=- shape=39cc4c45 vocab=10646013
+-/
 lemma factorialProduct_extendLeft (c : OrderedFinpartition n) :
     factorialProduct c.extendLeft = factorialProduct c := by
   change (∏ i : Fin (c.length+1),
@@ -62,6 +77,9 @@ lemma factorialProduct_extendLeft (c : OrderedFinpartition n) :
   rw [Fin.prod_univ_succ]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s5.6222a07b22db from=translated src=- shape=3815d354 vocab=5b868f1f
+-/
 lemma factorialProduct_extendMiddle (c : OrderedFinpartition n) (i : Fin c.length) :
     factorialProduct (c.extendMiddle i) =
       ((c.partSize i : ℝ) + 1) * factorialProduct c := by
@@ -80,6 +98,9 @@ lemma factorialProduct_extendMiddle (c : OrderedFinpartition n) (i : Fin c.lengt
   rw [he, Finset.prod_mul_distrib]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s6.01b773535fa0 from=translated src=- shape=1b72953b vocab=11f86b65
+-/
 lemma partitionWeight_extendLeft (x : ℝ) (c : OrderedFinpartition n) :
     partitionWeight x c.extendLeft =
       (x * ((c.length : ℝ) + 1)^2) * partitionWeight x c := by
@@ -88,6 +109,9 @@ lemma partitionWeight_extendLeft (x : ℝ) (c : OrderedFinpartition n) :
     Nat.cast_one, pow_succ]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s6.7958a559dc4a from=translated src=- shape=2c83c131 vocab=dcdb9f31
+-/
 lemma partitionWeight_extendMiddle (x : ℝ) (c : OrderedFinpartition n) (i : Fin c.length) :
     partitionWeight x (c.extendMiddle i) =
       ((c.partSize i : ℝ) + 1)^2 * partitionWeight x c := by
@@ -95,6 +119,9 @@ lemma partitionWeight_extendMiddle (x : ℝ) (c : OrderedFinpartition n) (i : Fi
     factorialProduct_extendMiddle]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s7.b65b8b4bdcc4 from=translated src=- shape=ce07d573 vocab=f742a209
+-/
 lemma partitionSum_succ (n : ℕ) (x : ℝ) :
     partitionSum (n+1) x =
       ∑ c : OrderedFinpartition n,
@@ -109,6 +136,9 @@ lemma partitionSum_succ (n : ℕ) (x : ℝ) :
   intro c _
   ring
 
+/--
+@isnad1 id=le.1h2v.s6.56d62dec9eda from=translated src=- shape=1b9ae6f4 vocab=946cffbe
+-/
 lemma partitionSum_succ_le (n : ℕ) (x : ℝ) (hx : 0 ≤ x) :
     partitionSum (n+1) x ≤ ((n : ℝ) + 1)^2 * (x+2) * partitionSum n x := by
   rw [partitionSum_succ, partitionSum, Finset.mul_sum]
@@ -123,7 +153,9 @@ lemma partitionSum_succ_le (n : ℕ) (x : ℝ) (hx : 0 ≤ x) :
     _ = _ := by ring
 
 /-- The entire factorial-square Faà di Bruno partition sum has one fixed
-exponential radius, independent of the differentiation order. -/
+exponential radius, independent of the differentiation order.
+@isnad1 id=le.1h2v.s6.49f7c9542f9b from=translated src=- shape=a8cb8378 vocab=e180da18
+-/
 theorem partitionSum_le (n : ℕ) (x : ℝ) (hx : 0 ≤ x) :
     partitionSum n x ≤ (x+2)^n * (n.factorial : ℝ)^2 := by
   induction n with
