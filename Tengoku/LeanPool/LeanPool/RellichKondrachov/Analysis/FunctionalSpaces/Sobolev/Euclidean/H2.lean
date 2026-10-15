@@ -38,7 +38,13 @@ variable
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceH2 : MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.3e40b7dd3ffc from=translated src=- shape=c6850a32 vocab=1fa15ae3
+-/
 local instance instBorelSpaceH2 : BorelSpace E := ⟨rfl⟩
+/--
+@isnad1 id=opensmea.0h1v.s4.782c24d26569 from=translated src=- shape=c6850a32 vocab=220a3419
+-/
 local instance instOpensMeasurableSpaceH2 : OpensMeasurableSpace E := by infer_instance
 
 variable (μ : Measure E) [IsFiniteMeasureOnCompacts μ]
@@ -63,6 +69,9 @@ def C2c : Submodule ℝ (E → ℝ) where
     exact (HasCompactSupport.smul_left (f := fun _ : E => c) hf.2)
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=le.0h1v.s6.92bebf209363 from=translated src=- shape=b8f7a10e vocab=4e27c7ce
+-/
 lemma C2c_le_C1c : C2c (E := E) ≤ C1c (E := E) := by
   intro f hf
   refine ⟨hf.1.of_le ?_, hf.2⟩
@@ -77,6 +86,9 @@ noncomputable def C2cToC1cLinear : ↥(C2c (E := E)) →ₗ[ℝ] ↥(C1c (E := E
 noncomputable def hess (f : E → ℝ) : E → (E →L[ℝ] E) :=
   fun x => fderiv ℝ (grad (E := E) f) x
 
+/--
+@isnad1 id=contdiff.1h2v.s6.4246baafde4f from=translated src=- shape=9dfb37a0 vocab=86c7716d
+-/
 lemma contDiff_grad_of_contDiff2 {f : E → ℝ} (hf : ContDiff ℝ 2 f) :
     ContDiff ℝ 1 (grad (E := E) f) := by
   have hfderiv : ContDiff ℝ 1 (fderiv ℝ f) :=
@@ -85,23 +97,35 @@ lemma contDiff_grad_of_contDiff2 {f : E → ℝ} (hf : ContDiff ℝ 2 f) :
     exact hfderiv
   exact (InnerProductSpace.toDual ℝ E).symm.contDiff.comp hfderiv'
 
+/--
+@isnad1 id=continuo.1h2v.s7.0d0ab2e81ab1 from=translated src=- shape=f456eef2 vocab=873e1ed2
+-/
 lemma continuous_hess {f : E → ℝ} (hf : ContDiff ℝ 2 f) : Continuous (hess (E := E) f) := by
   have hgrad : ContDiff ℝ 1 (grad (E := E) f) := contDiff_grad_of_contDiff2 (E := E) hf
   have hcont : Continuous (fderiv ℝ (grad (E := E) f)) := hgrad.continuous_fderiv one_ne_zero
   exact hcont
 
+/--
+@isnad1 id=hascompa.1h2v.s7.29f606a03819 from=translated src=- shape=e64024d9 vocab=9fdc7306
+-/
 lemma hasCompactSupport_hess {f : E → ℝ} (hf : HasCompactSupport f) :
     HasCompactSupport (hess (E := E) f) := by
   have hcs_grad : HasCompactSupport (grad (E := E) f) := hasCompactSupport_grad (E := E) hf
   have : HasCompactSupport (fderiv ℝ (grad (E := E) f)) := hcs_grad.fderiv ℝ
   exact this
 
+/--
+@isnad1 id=memlp.1h3v.s9.1863ee66b9d4 from=translated src=- shape=30c7c470 vocab=a8801053
+-/
 lemma memLp_hess_of_mem_C2c {f : E → ℝ} (hf : f ∈ C2c (E := E)) :
     MemLp (hess (E := E) f) 2 μ := by
   have hcont : Continuous (hess (E := E) f) := continuous_hess (E := E) hf.1
   have hcs : HasCompactSupport (hess (E := E) f) := hasCompactSupport_hess (E := E) (f := f) hf.2
   exact hcont.memLp_of_hasCompactSupport (μ := μ) (p := (2 : ℝ≥0∞)) hcs
 
+/--
+@isnad1 id=eq.2h3v.s9.f011704a994e from=translated src=- shape=b2bfc1c1 vocab=f06c8fa2
+-/
 lemma hess_add {f g : E → ℝ} (hf : ContDiff ℝ 2 f) (hg : ContDiff ℝ 2 g) :
     hess (E := E) (f + g) = hess (E := E) f + hess (E := E) g := by
   funext x
@@ -118,6 +142,9 @@ lemma hess_add {f g : E → ℝ} (hf : ContDiff ℝ 2 f) (hg : ContDiff ℝ 2 g)
     ((contDiff_grad_of_contDiff2 (E := E) hg).differentiable one_ne_zero).differentiableAt
   simp [hess, hgradFun, fderiv_add hgradf hgradg]
 
+/--
+@isnad1 id=eq.1h3v.s9.bb1df6916f3b from=translated src=- shape=c08e73d5 vocab=206c3ef6
+-/
 lemma hess_smul (c : ℝ) {f : E → ℝ} (hf : ContDiff ℝ 2 f) :
     hess (E := E) (c • f) = c • hess (E := E) f := by
   funext x

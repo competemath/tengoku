@@ -168,7 +168,9 @@ cover separates the plane.
 The blueprint's argument: a point far enough along the ray direction is crossed by no edge, and the
 whole half-plane of such points is convex — hence connected — and unbounded, so it lies in the
 unbounded region. Parity is constant there (Lemma 2.2), and the value is the one read off the far
-point. -/
+point.
+@isnad1 id=eq.5h3v.s6.82422f8a1154 from=translated src=- shape=a4be2357 vocab=d93e5e64
+-/
 theorem parity_eq_zero_of_mem_outside_cover (hu : Plane.IsDirection u)
     (hL : ∀ Q ∈ L, hgt u Q.1 ≠ hgt u Q.2) (hC : IsClosedChain L)
     (hsep : IsSeparating (cover L)) {x : Plane} (hx : x ∈ outside (cover L)) :
@@ -199,7 +201,9 @@ Those two points cannot be in the same region, since parity is constant on a reg
 is inside and the other outside. The outside carries `0`, hence the inside does not.
 
 For a polygon the two points are supplied by Lemma 2.2: just before and just after an interior
-point of any single edge. -/
+point of any single edge.
+@isnad1 id=eq.8h5v.s7.0f3c93a7d082 from=translated src=- shape=1172f9e0 vocab=4c934c75
+-/
 theorem parity_eq_one_of_mem_inside_cover (hu : Plane.IsDirection u)
     (hL : ∀ Q ∈ L, hgt u Q.1 ≠ hgt u Q.2) (hC : IsClosedChain L)
     (hsep : IsSeparating (cover L)) {a b : Plane} (ha : a ∉ cover L) (hb : b ∉ cover L)
@@ -240,30 +244,40 @@ def pieces (P : PrePolygon m) : List Piece :=
   (List.range (m + 3)).map fun j : ℕ =>
     (P.vertex (j : ZMod (m + 3)), P.vertex ((j : ZMod (m + 3)) + 1))
 
-/-- Forgetting the `corner` field does not change the edge list. -/
+/-- Forgetting the `corner` field does not change the edge list.
+@isnad1 id=eq.0h2v.s4.c3af7973c1d0 from=translated src=- shape=986c8aca vocab=35d976d1
+-/
 @[simp] theorem pieces_toPre (P : ClosedPolygon m) : P.toPre.pieces = P.pieces := rfl
 
-/-- Every edge of the polygon is on the list. -/
+/-- Every edge of the polygon is on the list.
+@isnad1 id=mem.0h3v.s8.ec6b451d9e04 from=translated src=- shape=6d5dd779 vocab=a37a81bd
+-/
 theorem mem_pieces (P : PrePolygon m) (i : ZMod (m + 3)) :
     (P.vertex i, P.vertex (i + 1)) ∈ P.pieces := by
   refine List.mem_map.2 ⟨i.val, List.mem_range.2 (ZMod.val_lt i), ?_⟩
   rw [ZMod.natCast_rightInverse i]
 
-/-- Every piece on the list is an edge of the polygon. -/
+/-- Every piece on the list is an edge of the polygon.
+@isnad1 id=ex.1h3v.s8.82850f5c964a from=translated src=- shape=bf20ac5a vocab=7032a6e2
+-/
 theorem exists_of_mem_pieces {P : PrePolygon m} {Q : Piece} (hQ : Q ∈ P.pieces) :
     ∃ i : ZMod (m + 3), Q = (P.vertex i, P.vertex (i + 1)) := by
   obtain ⟨j, -, rfl⟩ := List.mem_map.1 hQ
   exact ⟨(j : ZMod (m + 3)), rfl⟩
 
 /-- No edge is degenerate: consecutive vertices are distinct. Redundant vertices are allowed, but
-repeated ones are not. -/
+repeated ones are not.
+@isnad1 id=nondeg.1h3v.s4.f7ff8539fb80 from=translated src=- shape=11af3fa9 vocab=f66a31cc
+-/
 theorem pieces_nondeg (P : PrePolygon m) : ∀ Q ∈ P.pieces, Q.Nondeg := by
   intro Q hQ
   obtain ⟨i, rfl⟩ := exists_of_mem_pieces hQ
   exact vertex_ne_succ i
 
 /-- **The edge list is a closed chain.** Each vertex ends one edge and starts the next, so it is
-counted twice; the cycle closes because `m + 3` is `0` in `ZMod (m + 3)`. -/
+counted twice; the cycle closes because `m + 3` is `0` in `ZMod (m + 3)`.
+@isnad1 id=isclosed.0h2v.s3.2652dae64393 from=translated src=- shape=1f8e965c vocab=2782d993
+-/
 theorem isClosedChain_pieces (P : PrePolygon m) : IsClosedChain P.pieces := by
   intro f
   have hmap : (P.pieces.map fun Q => f Q.1 + f Q.2)
@@ -278,7 +292,9 @@ theorem isClosedChain_pieces (P : PrePolygon m) : IsClosedChain P.pieces := by
   exact add_self_zmod_two _
 
 /-- **The edge list carries the polygon.** This is the equation that turns every parity statement,
-which is about `cover`, into a statement about the carrier. -/
+which is about `cover`, into a statement about the carrier.
+@isnad1 id=eq.0h2v.s3.e5ad5c1d21a9 from=translated src=- shape=74e016e8 vocab=6fcb3855
+-/
 theorem cover_pieces (P : PrePolygon m) : cover P.pieces = P.carrier := by
   apply Set.Subset.antisymm
   · rw [cover]
@@ -288,7 +304,9 @@ theorem cover_pieces (P : PrePolygon m) : cover P.pieces = P.carrier := by
   · refine Set.iUnion_subset fun i => ?_
     exact fun z hz => mem_cover (P.mem_pieces i) hz
 
-/-- The edge list has no repeated entry: distinct indices name distinct initial vertices. -/
+/-- The edge list has no repeated entry: distinct indices name distinct initial vertices.
+@isnad1 id=nodup.0h2v.s3.3c077419f79f from=translated src=- shape=595ce0b1 vocab=8db13f63
+-/
 theorem pieces_nodup (P : PrePolygon m) : P.pieces.Nodup := by
   rw [pieces]
   refine List.Nodup.map_on (fun j hj k hk heq => ?_) List.nodup_range
@@ -300,20 +318,29 @@ theorem pieces_nodup (P : PrePolygon m) : P.pieces.Nodup := by
 All three are properties of the carrier as a set, and normalization keeps the carrier, so all three
 come across from the `ClosedPolygon` versions with nothing to check. -/
 
-/-- The carrier is compact: it is what a finite list of segments occupies. -/
+/-- The carrier is compact: it is what a finite list of segments occupies.
+@isnad1 id=iscompac.0h2v.s5.06f8f132b42f from=translated src=- shape=595ce0b1 vocab=da2eed07
+-/
 theorem isCompact_carrier (P : PrePolygon m) : IsCompact P.carrier := by
   rw [← P.cover_pieces]; exact isCompact_cover _
 
+/--
+@isnad1 id=isclosed.0h2v.s5.a07ab89c63a8 from=translated src=- shape=595ce0b1 vocab=bb18e459
+-/
 theorem isClosed_carrier (P : PrePolygon m) : IsClosed P.carrier := P.isCompact_carrier.isClosed
 
 /-- **The carrier is a Jordan curve**, redundant vertices and all. Deleting them does not move the
-curve, and the normalized polygon's carrier is a Jordan curve. -/
+curve, and the normalized polygon's carrier is a Jordan curve.
+@isnad1 id=isjordan.0h2v.s3.4456c2f3eb56 from=translated src=- shape=1f8e965c vocab=9a85f7f1
+-/
 theorem isJordanCurve_carrier (P : PrePolygon m) : IsJordanCurve P.carrier := by
   obtain ⟨m', P', hP'⟩ := exists_closedPolygon_of_prePolygon m P
   rw [← hP']
   exact P'.isJordanCurve_carrier
 
-/-- **The carrier is polygonal.** -/
+/-- **The carrier is polygonal.**
+@isnad1 id=ispolygo.0h2v.s3.1af9af398650 from=translated src=- shape=1f8e965c vocab=726e75d4
+-/
 theorem isPolygonal_carrier (P : PrePolygon m) : IsPolygonal P.carrier := by
   obtain ⟨m', P', hP'⟩ := exists_closedPolygon_of_prePolygon m P
   rw [← hP']
@@ -324,14 +351,18 @@ vertices, in the form Definition 2.4 asks for.
 
 This is the statement the crosscut machinery of `Schoenflies/CrosscutCells.lean` onwards consumes,
 and `IsSeparating` speaks only of the carrier, so normalizing and quoting
-`ClosedPolygon.isSeparating_carrier` is the whole proof. -/
+`ClosedPolygon.isSeparating_carrier` is the whole proof.
+@isnad1 id=issepara.0h2v.s3.b2231bef0659 from=translated src=- shape=1f8e965c vocab=1eeb34f6
+-/
 theorem isSeparating_carrier (P : PrePolygon m) : IsSeparating P.carrier := by
   obtain ⟨m', P', hP'⟩ := exists_closedPolygon_of_prePolygon m P
   rw [← hP']
   exact P'.isSeparating_carrier
 
 /-- Exactly two regions: the component of any point off the polygon is one of the two named
-ones. -/
+ones.
+@isnad1 id=or.1h3v.s7.0fab3c6c4f7d from=translated src=- shape=1ac2909a vocab=f63aec8b
+-/
 theorem connectedComponentIn_eq_inside_or_outside (P : PrePolygon m) {x : Plane}
     (hx : x ∉ P.carrier) :
     connectedComponentIn P.carrierᶜ x = inside P.carrier ∨
@@ -346,13 +377,17 @@ theorem connectedComponentIn_eq_inside_or_outside (P : PrePolygon m) {x : Plane}
 The list-level statements of `Schoenflies/Parity.lean`, read off a `PrePolygon`. -/
 
 /-- A ray direction level for no edge of the polygon; the blueprint's "rotate the coordinate system
-so that no edge is horizontal", with nothing rotated. -/
+so that no edge is horizontal", with nothing rotated.
+@isnad1 id=ex.0h2v.s5.1d0fe961d7e8 from=translated src=- shape=040873bf vocab=004e47b5
+-/
 theorem exists_direction_pieces (P : PrePolygon m) :
     ∃ u : Plane, Plane.IsDirection u ∧ ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2 :=
   exists_direction_hgt_ne P.pieces P.pieces_nondeg
 
 /-- **Crossing parity** (Lemma 2.2): `π_C` is constant on the component of the complement of the
-carrier containing a given point. -/
+carrier containing a given point.
+@isnad1 id=eq.4h5v.s7.50bca0aefc85 from=translated src=- shape=97039401 vocab=7798c932
+-/
 theorem parity_eq_of_mem_connectedComponentIn_carrier (P : PrePolygon m) {u : Plane}
     (hu : Plane.IsDirection u) (hL : ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2) {x y : Plane}
     (hx : x ∉ P.carrier) (hy : y ∈ connectedComponentIn P.carrierᶜ x) :
@@ -361,7 +396,9 @@ theorem parity_eq_of_mem_connectedComponentIn_carrier (P : PrePolygon m) {u : Pl
   exact parity_eq_of_mem_connectedComponentIn hu hL P.isClosedChain_pieces hx hy
 
 /-- An interior point of one edge lies on no other edge: `edges_meet` puts any other edge's meeting
-point at an end of this one, and an interior point is neither end. -/
+point at an end of this one, and an interior point is neither end.
+@isnad1 id=not.2h5v.s8.441f82da4133 from=translated src=- shape=03639f5a vocab=c604f6b5
+-/
 theorem notMem_edge_of_mem_openSegment {P : PrePolygon m} {i j : ZMod (m + 3)} (hij : j ≠ i)
     {p : Plane} (hp : p ∈ openSegment ℝ (P.vertex i) (P.vertex (i + 1))) : p ∉ P.edge j := by
   intro hpj
@@ -378,7 +415,9 @@ differs by one.
 
 The edge being crossed is split out of the list by `List.append_of_mem`; that the two remaining
 fragments miss the crossing point is `edges_meet`, through
-`PrePolygon.notMem_edge_of_mem_openSegment`. -/
+`PrePolygon.notMem_edge_of_mem_openSegment`.
+@isnad1 id=ex.3h5v.s10.46d032195965 from=translated src=- shape=b11026a8 vocab=1a9ab065
+-/
 theorem parity_flip_carrier (P : PrePolygon m) {u : Plane} (hu : Plane.IsDirection u)
     (hL : ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2) (i : ZMod (m + 3)) {p : Plane}
     (hp : p ∈ openSegment ℝ (P.vertex i) (P.vertex (i + 1))) :
@@ -425,7 +464,9 @@ theorem parity_flip_carrier (P : PrePolygon m) {u : Plane} (hu : Plane.IsDirecti
   exact ⟨ha, hb, hc⟩
 
 /-- Two points off the curve at which the parity differs: just before and just after the midpoint
-of the first edge. This is what turns the separation theorem into the two parity *values*. -/
+of the first edge. This is what turns the separation theorem into the two parity *values*.
+@isnad1 id=ex.2h3v.s6.0fcf5f27cea6 from=translated src=- shape=9cdecbd5 vocab=0ddd3932
+-/
 theorem exists_parity_ne (P : PrePolygon m) {u : Plane} (hu : Plane.IsDirection u)
     (hL : ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2) :
     ∃ a b : Plane, a ∉ P.carrier ∧ b ∉ P.carrier ∧
@@ -441,7 +482,9 @@ theorem exists_parity_ne (P : PrePolygon m) {u : Plane} (hu : Plane.IsDirection 
   exact ne_add_one_zmod_two _ hh.symm
 
 /-- **`π_C = 0` on the unbounded region** (Theorem 2.3), for a polygon presented with redundant
-vertices. -/
+vertices.
+@isnad1 id=eq.3h4v.s6.d923d9f7e0cb from=translated src=- shape=f9dff26b vocab=e27ce610
+-/
 theorem parity_eq_zero_of_mem_outside (P : PrePolygon m) {u : Plane} (hu : Plane.IsDirection u)
     (hL : ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2) {x : Plane} (hx : x ∈ outside P.carrier) :
     parity u P.pieces x = 0 := by
@@ -451,7 +494,9 @@ theorem parity_eq_zero_of_mem_outside (P : PrePolygon m) {u : Plane} (hu : Plane
   · rw [hcov]; exact hx
 
 /-- **`π_C = 1` on the bounded region** (Theorem 2.3), for a polygon presented with redundant
-vertices. -/
+vertices.
+@isnad1 id=eq.3h4v.s6.dca5a40491e9 from=translated src=- shape=f9dff26b vocab=74bd594f
+-/
 theorem parity_eq_one_of_mem_inside (P : PrePolygon m) {u : Plane} (hu : Plane.IsDirection u)
     (hL : ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2) {x : Plane} (hx : x ∈ inside P.carrier) :
     parity u P.pieces x = 1 := by
@@ -465,7 +510,9 @@ theorem parity_eq_one_of_mem_inside (P : PrePolygon m) {u : Plane} (hu : Plane.I
   · rw [hcov]; exact hx
 
 /-- **The crossing parity decides the region** (Theorem 2.3): off the curve, `π_C = 1` says
-"inside". -/
+"inside".
+@isnad1 id=iff.3h4v.s7.e86f5b9299a5 from=translated src=- shape=b26af6c8 vocab=74bd594f
+-/
 theorem parity_eq_one_iff (P : PrePolygon m) {u : Plane} (hu : Plane.IsDirection u)
     (hL : ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2) {x : Plane} (hx : x ∉ P.carrier) :
     parity u P.pieces x = 1 ↔ x ∈ inside P.carrier := by
@@ -477,7 +524,9 @@ theorem parity_eq_one_iff (P : PrePolygon m) {u : Plane} (hu : Plane.IsDirection
   · rw [P.parity_eq_zero_of_mem_outside hu hL h] at h1
     exact absurd h1 (by decide)
 
-/-- **The crossing parity decides the region**, the other way round. -/
+/-- **The crossing parity decides the region**, the other way round.
+@isnad1 id=iff.3h4v.s7.f5b29520334f from=translated src=- shape=b26af6c8 vocab=e27ce610
+-/
 theorem parity_eq_zero_iff (P : PrePolygon m) {u : Plane} (hu : Plane.IsDirection u)
     (hL : ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2) {x : Plane} (hx : x ∉ P.carrier) :
     parity u P.pieces x = 0 ↔ x ∈ outside P.carrier := by

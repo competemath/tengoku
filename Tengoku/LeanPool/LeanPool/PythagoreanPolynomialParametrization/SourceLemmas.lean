@@ -42,7 +42,9 @@ def PositiveTParameters (a b c : ℤ) : Prop :=
 
 /-- The introductory source claim: every Pythagorean triple is covered by one of two
 integer-coefficient polynomial families, and every value of those families is a
-Pythagorean triple. -/
+Pythagorean triple.
+@isnad1 id=iff.0h3v.s8.87fc4666aa40 from=translated src=- shape=a63b22cb vocab=cd321d41
+-/
 theorem pythagoreanTriple_two_integer_polynomial_families (x y z : ℤ) :
     IsPythagoreanTriple x y z ↔
       ∃ a b c : ℤ,
@@ -94,7 +96,9 @@ theorem pythagoreanTriple_two_integer_polynomial_families (x y z : ℤ) :
       ring
 
 /-- Source proof handoff lemma: the set of Pythagorean triples is exactly the set of
-integer triples in the range of `TMap`. -/
+integer triples in the range of `TMap`.
+@isnad1 id=iff.0h3v.s5.cd18b134976e from=translated src=- shape=a9bb7515 vocab=85160780
+-/
 theorem pythagorean_iff_mem_TMap_range (x y z : ℤ) :
     IsPythagoreanTriple x y z ↔
       ∃ a b c : ℤ, TMap a b c = ((x : ℚ), (y : ℚ), (z : ℚ)) := by
@@ -144,7 +148,9 @@ private lemma even_sq_add_sq_of_even_sub {a b : ℤ} (h : Even (a - b)) :
   exact Int.even_add.mpr (by simpa [even_sq_iff_even_int] using hab)
 
 /-- Source proof handoff lemma: `T(a,b,c)` has integer coordinates iff the paper's
-parity condition holds. -/
+parity condition holds.
+@isnad1 id=iff.0h3v.s3.f35dd6a3bf74 from=translated src=- shape=1bc181f6 vocab=216cdc5f
+-/
 theorem TMap_integral_iff_parity (a b c : ℤ) :
     IsIntegralTValue a b c ↔ PaperParityCondition a b c := by
   constructor
@@ -175,7 +181,9 @@ theorem TMap_integral_iff_parity (a b c : ℤ) :
     · simpa [TMap, pow_two] using hz
 
 /-- Source proof handoff lemma: the parity condition is parametrized by
-`(y + zw, z - yw, 2x - xw)`. -/
+`(y + zw, z - yw, 2x - xw)`.
+@isnad1 id=iff.0h3v.s6.593d038aff39 from=translated src=- shape=6cb631a5 vocab=b980a156
+-/
 theorem parity_condition_parametrized (a b c : ℤ) :
     PaperParityCondition a b c ↔
       ∃ x y z w : ℤ,
@@ -212,7 +220,9 @@ theorem parity_condition_parametrized (a b c : ℤ) :
       ring
 
 /-- Source proof handoff lemma for the positive remark: the restricted positive
-parameters are parametrized by `(y + (1+w)z, y, x + (1-w)^2 x)`. -/
+parameters are parametrized by `(y + (1+w)z, y, x + (1-w)^2 x)`.
+@isnad1 id=iff.0h3v.s7.67af32d8926e from=translated src=- shape=2fabcd3d vocab=6c1662fa
+-/
 theorem positive_T_parameters_parametrized (a b c : ℤ) :
     PositiveTParameters a b c ↔
       ∃ x y z w : ℤ,
@@ -260,7 +270,9 @@ theorem positive_T_parameters_parametrized (a b c : ℤ) :
         ring
       · simp_all
 
-/-- Lagrange four-square handoff: every nonnegative integer is a sum of four squares. -/
+/-- Lagrange four-square handoff: every nonnegative integer is a sum of four squares.
+@isnad1 id=iff.0h1v.s6.971b9b32251e from=translated src=- shape=132388f7 vocab=25dc866f
+-/
 theorem int_nonneg_iff_four_squares (n : ℤ) :
     0 ≤ n ↔ ∃ a b c d : ℤ, n = a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 := by
   constructor
@@ -274,7 +286,9 @@ theorem int_nonneg_iff_four_squares (n : ℤ) :
     nlinarith [sq_nonneg a, sq_nonneg b, sq_nonneg c, sq_nonneg d]
 
 /-- Four-square corollary used by the 16-parameter substitution: every positive integer
-is one plus a sum of four squares. -/
+is one plus a sum of four squares.
+@isnad1 id=iff.0h1v.s7.0783e2340125 from=translated src=- shape=9640ae4c vocab=5dab6d08
+-/
 theorem int_positive_iff_four_squares_add_one (n : ℤ) :
     0 < n ↔ ∃ a b c d : ℤ, n = a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 + 1 := by
   constructor

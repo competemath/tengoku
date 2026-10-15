@@ -51,12 +51,18 @@ Then the claim that u is on the segment follows by computing
   = u
 -/
 
+/--
+@isnad1 id=mem.2h4v.s7.87c1f996aee1 from=translated src=- shape=d55e9e3d vocab=1c839ec2
+-/
 lemma move_scale {n : ℕ} {s : ℝ} (sgz : s > 0) {v : E n} {Y : Set (E n)} :
      v ∈ s • Y → (1 / s) • v ∈ Y := by
   intro ⟨_, ⟨winy, factor⟩⟩
   rw [← factor, smul_smul, one_div_mul_cancel (ne_of_lt sgz).symm, one_smul]
   exact winy
 
+/--
+@isnad1 id=le.3h4v.s8.37c603e16b53 from=translated src=- shape=8c978df3 vocab=4253d1d8
+-/
 lemma subset_interior_hull' {n : ℕ} {X : Set (E n)} {ε ℓ : ℝ}
     (hε : 0 < ε)
     (hℓ : ℓ ∈ Set.Ioo 0 1)
@@ -90,6 +96,9 @@ lemma subset_interior_hull' {n : ℕ} {X : Set (E n)} {ε ℓ : ℝ}
           by rw [smul_smul, smul_smul]; field_simp; simp ⟩⟩
   exact segment_subset_convexHull seg1_in_X seg2_in_X pt_in_seg
 
+/--
+@isnad1 id=le.3h4v.s9.70848fa50e27 from=translated src=- shape=e0d89bf8 vocab=927eaa3e
+-/
 lemma subset_interior_hull {n : ℕ} {X : Set (E n)} {ε₀ ε₁ : ℝ}
     (hε₀ : 0 < ε₀)
     (hε₁ : ε₁ ∈ Set.Ioo 0 1)
@@ -100,6 +109,9 @@ lemma subset_interior_hull {n : ℕ} {X : Set (E n)} {ε₀ ε₁ : ℝ}
   have h3 := subset_interior_hull' hε₀ (Set.Ioo.one_sub_mem hε₁) h0
   rwa [ClosureOperator.idempotent] at h3
 
+/--
+@isnad1 id=mem.4h5v.s9.090d09f14d78 from=translated src=- shape=1a9f67b0 vocab=16a2965a
+-/
 lemma mem_interior_hull {n : ℕ} {X : Set (E n)} {ε₀ ε₁ : ℝ}
     (hε₀ : 0 < ε₀)
     (hε₁ : ε₁ ∈ Set.Ioo 0 1)
@@ -110,6 +122,9 @@ lemma mem_interior_hull {n : ℕ} {X : Set (E n)} {ε₀ ε₁ : ℝ}
   apply subset_interior_hull hε₀ hε₁ h0
   rwa [← Set.image_smul]
 
+/--
+@isnad1 id=le.5h2v.s10.efbae205db01 from=translated src=- shape=5a0c0849 vocab=cbf9b77a
+-/
 lemma ball_in_hull_of_corners_in_hull {X : Set (E 2)} {ε : ℝ} (hε : ε ∈ Set.Ioo 0 1)
     (h₀ : !₂[ε, ε] ∈ convexHull ℝ X)
     (h₁ : !₂[-ε, ε] ∈ convexHull ℝ X)

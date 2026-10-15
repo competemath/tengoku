@@ -27,9 +27,15 @@ variable {n : ℕ} {F : Finset ℕ} {x : ℤ}
 def redEmb1 : Fin 3 ↪ Fin (n + 5) :=
   ⟨fun i ↦ (i.natAdd 2).natAdd n, fun i j h ↦ by simpa [natAdd_inj 2] using h⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.cedbebb0832b from=translated src=- shape=bdf52eb4 vocab=6ab4ec97
+-/
 @[simp]
 lemma redEmb1_apply (i : Fin 3) : redEmb1 (n := n) i = (i.natAdd 2).natAdd n := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.e1135fa44e26 from=translated src=- shape=8d00c0c9 vocab=bf24a24d
+-/
 lemma sum_redEmb1_compl :
     ∑ i ∈ (univ.map redEmb1)ᶜ, (tup n F x i).natAbs =
     (VW n F).v + (VW n F).w + ∑ i ∈ range n, primeChain (max 8 (F.sup id)) i := by
@@ -54,6 +60,9 @@ lemma sum_redEmb1_compl :
 
 section Inequalities
 
+/--
+@isnad1 id=le.1h1v.s6.4512d906639c from=translated src=- shape=041e05c4 vocab=c9d7d1be
+-/
 lemma b₂_upper_bound (hx : 2 ≤ x.natAbs) : (10 * (x ^ 2 + 1) ^ 2).natAbs ≤ 20 * x.natAbs ^ 4 := by
   wlog nnx : 0 ≤ x
   · rw [← Int.natAbs_neg] at hx
@@ -75,6 +84,9 @@ lemma b₂_upper_bound (hx : 2 ≤ x.natAbs) : (10 * (x ^ 2 + 1) ^ 2).natAbs ≤
       rw [pow_succ' _ 3]
       gcongr
 
+/--
+@isnad1 id=le.1h1v.s6.48f1a4584f4d from=translated src=- shape=c2b195e4 vocab=ebc99741
+-/
 lemma b₁_lower_bound (hx : 26 ≤ x.natAbs) : 21 * x.natAbs ^ 4 ≤ ((x - 1) ^ 5).natAbs := by
   wlog nnx : 0 ≤ x
   · rw [← Int.natAbs_neg] at hx
@@ -91,11 +103,17 @@ lemma b₁_lower_bound (hx : 26 ≤ x.natAbs) : 21 * x.natAbs ^ 4 ≤ ((x - 1) ^
     le_sub_iff_add_le, ← add_assoc, ← add_assoc, ← add_mul, pow_succ' _ 4]
   gcongr <;> lia
 
+/--
+@isnad1 id=le.1h1v.s6.03f37315a3cb from=translated src=- shape=c2b195e4 vocab=c9d7d1be
+-/
 lemma b₃_lower_bound (hx : 26 ≤ x.natAbs) : 21 * x.natAbs ^ 4 ≤ ((x + 1) ^ 5).natAbs := by
   rw [← Int.natAbs_neg] at hx
   have := b₁_lower_bound hx
   rwa [Int.natAbs_neg, ← neg_add', Odd.neg_pow (by decide), Int.natAbs_neg] at this
 
+/--
+@isnad1 id=le.2h4v.s8.53023aabcc20 from=translated src=- shape=6e5230ff vocab=a24ea7cc
+-/
 lemma natAbs_pow_le_redEmb1 {b₁ b₂ b₃ : SignType} (h : b₃ < b₁) (hx : 26 ≤ x.natAbs) :
     x.natAbs ^ 4 ≤ (b₁ * (x - 1) ^ 5 + b₂ * (10 * (x ^ 2 + 1) ^ 2) + b₃ * -(x + 1) ^ 5).natAbs := by
   rw [← one_mul (x.natAbs ^ 4), show 1 = 21 - 20 by rfl, tsub_mul, add_right_comm]
@@ -117,6 +135,9 @@ lemma natAbs_pow_le_redEmb1 {b₁ b₂ b₃ : SignType} (h : b₃ < b₁) (hx : 
   · replace hx : 2 ≤ x.natAbs := by lia
     cases b₂ <;> simp [b₂_upper_bound hx]
 
+/--
+@isnad1 id=le.2h3v.s7.0ae535514c05 from=translated src=- shape=352b73e8 vocab=6566a8d1
+-/
 lemma natAbs_le_redEmb1_reduced {b₁ b₂ : SignType} (h : b₁ ≠ b₂) (hx : 8 ≤ x.natAbs) :
     x.natAbs ≤ ((b₂ - b₁) * (10 * (x ^ 2 + 1) ^ 2) + b₁ * 8).natAbs := by
   rw [← one_mul x.natAbs, show 1 = 2 - 1 by rfl, tsub_one_mul]
@@ -135,6 +156,9 @@ lemma natAbs_le_redEmb1_reduced {b₁ b₂ : SignType} (h : b₁ ≠ b₂) (hx :
         lia
   · cases b₁ <;> simp [hx]
 
+/--
+@isnad1 id=le.2h6v.s7.288478638374 from=translated src=- shape=5bd6dedb vocab=9da223a8
+-/
 lemma Y_le_natAbs_redEmb1 {b₁ b₂ b₃ : SignType} (h : b₁ ≠ b₂ ∨ b₁ ≠ b₃) (hx : Y n F ≤ x.natAbs) :
     Y n F ≤ (b₁ * (x - 1) ^ 5 + b₂ * (10 * (x ^ 2 + 1) ^ 2) + b₃ * -(x + 1) ^ 5).natAbs := by
   by_cases hb₁₃ : b₁ ≠ b₃
@@ -157,6 +181,9 @@ lemma Y_le_natAbs_redEmb1 {b₁ b₂ b₃ : SignType} (h : b₁ ≠ b₂ ∨ b�
 
 end Inequalities
 
+/--
+@isnad1 id=eq.1h3v.s7.f754a383a5e8 from=translated src=- shape=9536b684 vocab=73f4c057
+-/
 lemma tupReduce_tup {c₁ : n + 2 = n + 5 - #(univ.map redEmb1)} :
     tupReduce (tup n F x) (univ.map redEmb1) c₁ = vwTup (VW n F) := by
   ext i

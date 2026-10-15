@@ -56,6 +56,9 @@ def fold (mk : A → List B → B) : Encoding A → B
         simp only [List.length_cons, Fin.val_succ, List.getElem_cons_succ, List.cons.sizeOf_spec]
         grind
 
+/--
+@isnad1 id=eq.0h5v.s5.713f36722d06 from=translated src=- shape=d5eb73e0 vocab=d25b9e11
+-/
 @[simp]
 lemma fold_mk
     (f : A → List B → B) (x : A) (xs : List (Encoding A))
@@ -69,6 +72,9 @@ lemma fold_mk
 def encode : Rose A → Encoding A :=
   Rose.fold mk
 
+/--
+@isnad1 id=eq.0h3v.s4.46918db4b73b from=translated src=- shape=2a92e4ac vocab=c8f4892f
+-/
 @[simp]
 lemma encode_mk (x xs) : encode (A := A) (.mk x xs) = mk x (List.map encode xs) := by
   simp only [encode, Rose.fold.eq_1]

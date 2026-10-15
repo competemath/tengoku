@@ -24,6 +24,9 @@ variable
   {B : Type*} [QuasiBorelSpace B]
   {C : Type*} [QuasiBorelSpace C]
 
+/--
+@isnad1 id=ishom.3h5v.s6.62ecc62ab4e3 from=translated src=- shape=8ffa170b vocab=2a9f78c6
+-/
 @[fun_prop]
 lemma isHom_rec
     {f : A → B} (hf : IsHom f)
@@ -40,10 +43,16 @@ lemma isHom_rec
       simp only
       fun_prop
 
+/--
+@isnad1 id=ishom.0h0v.s4.c6dd97e5a55e from=translated src=- shape=e0cc2553 vocab=3060bd3a
+-/
 @[local fun_prop]
 lemma isHom_lt : IsHom (fun x : ℕ × ℕ ↦ x.1 < x.2) := by
   simp only [isHom_of_discrete_countable]
 
+/--
+@isnad1 id=ishom.2h3v.s5.3f0157d84f84 from=translated src=- shape=813f2e22 vocab=62c0f09e
+-/
 @[fun_prop]
 lemma isHom_lt'
     {f : A → ℕ} (hf : IsHom f)
@@ -51,10 +60,16 @@ lemma isHom_lt'
     : IsHom (fun x ↦ f x < g x) := by
   fun_prop
 
+/--
+@isnad1 id=ishom.0h0v.s4.79d14506a171 from=translated src=- shape=0fef64f0 vocab=e6f16ef9
+-/
 @[local fun_prop]
 lemma isHom_add : IsHom (fun x : ℕ × ℕ ↦ x.1 + x.2) := by
   simp only [isHom_of_discrete_countable]
 
+/--
+@isnad1 id=ishom.2h3v.s5.e05f89f96a83 from=translated src=- shape=11826004 vocab=9b107a1a
+-/
 @[fun_prop]
 lemma isHom_add'
     {f : A → ℕ} (hf : IsHom f)
@@ -62,6 +77,9 @@ lemma isHom_add'
     : IsHom (fun x ↦ f x + g x) := by
   fun_prop
 
+/--
+@isnad1 id=ishom.2h2v.s5.c24a0d2e7305 from=translated src=- shape=e7218a58 vocab=b3dcc7e5
+-/
 @[fun_prop]
 lemma isHom_find
     {p : A → ℕ → Prop}

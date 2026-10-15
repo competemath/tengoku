@@ -57,7 +57,9 @@ noncomputable def gParam : RatPoly 4 := cParam * aParam * bParam
 In the paper: ((2x-xw)((y+zw)²+(z-yw)²))/2 -/
 noncomputable def hParam : RatPoly 4 := C (1 / 2 : ℚ) * cParam * (aParam ^ 2 + bParam ^ 2)
 
-/-- The first coordinate polynomial in the four-variable parametrization is integer-valued. -/
+/-- The first coordinate polynomial in the four-variable parametrization is integer-valued.
+@isnad1 id=isintval.0h0v.s2.d80c179dbb38 from=translated src=- shape=cef8a6bf vocab=95f48e22
+-/
 theorem f_param_intValued : IsIntValued fParam := by
   intro v
   let x : ℤ := v (0 : Fin 4)
@@ -77,7 +79,9 @@ theorem f_param_intValued : IsIntValued fParam := by
   simp [fParam, cParam, aParam, bParam, xVar, yVar, zVar, wVar, A, B, Cc]
   ring
 
-/-- The second coordinate polynomial in the four-variable parametrization is integer-valued. -/
+/-- The second coordinate polynomial in the four-variable parametrization is integer-valued.
+@isnad1 id=isintval.0h0v.s2.1d113ad588d0 from=translated src=- shape=cef8a6bf vocab=70958543
+-/
 theorem g_param_intValued : IsIntValued gParam := by
   intro v
   let x : ℤ := v (0 : Fin 4)
@@ -91,7 +95,9 @@ theorem g_param_intValued : IsIntValued gParam := by
   simp [gParam, cParam, aParam, bParam, xVar, yVar, zVar, wVar, A, B, Cc]
   ring
 
-/-- The third coordinate polynomial in the four-variable parametrization is integer-valued. -/
+/-- The third coordinate polynomial in the four-variable parametrization is integer-valued.
+@isnad1 id=isintval.0h0v.s2.3d62b2c1fe1d from=translated src=- shape=cef8a6bf vocab=d66f53d6
+-/
 theorem h_param_intValued : IsIntValued hParam := by
   intro v
   let x : ℤ := v (0 : Fin 4)
@@ -112,7 +118,9 @@ theorem h_param_intValued : IsIntValued hParam := by
   ring
 
 /-- Frisch--Vaserstein's four-variable integer-valued polynomial parametrization of all
-Pythagorean triples. -/
+Pythagorean triples.
+@isnad1 id=intvalue.0h0v.s3.286879452c38 from=translated src=- shape=4482ab1b vocab=9d9b259e
+-/
 theorem exists_int_valued_parametrization :
     IntValuedParametrizes fParam gParam hParam pythagoreanTriples := by
   refine ⟨f_param_intValued, g_param_intValued, h_param_intValued, ?_⟩

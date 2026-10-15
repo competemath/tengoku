@@ -37,7 +37,9 @@ noncomputable def localizationAlgEquiv (v : HeightOneSpectrum R) :
   IsLocalization.algEquiv v.asIdeal.primeCompl (Localization.AtPrime v.asIdeal)
     (valuationSubringAtPrime K v)
 
-/-- `residueHom` on a localized fraction agrees with the quotient map. -/
+/-- `residueHom` on a localized fraction agrees with the quotient map.
+@isnad1 id=eq.0h5v.s11.71e1a7b094ed from=translated src=- shape=b4d9e8a6 vocab=c74473c2
+-/
 theorem residueHom_mk' (v : HeightOneSpectrum R) (n : R) (d : v.asIdeal.primeCompl) :
     residueHom (K := K) v (IsLocalization.mk' (valuationSubringAtPrime K v) n d) =
       algebraMap R v.asIdeal.ResidueField n *
@@ -45,7 +47,9 @@ theorem residueHom_mk' (v : HeightOneSpectrum R) (n : R) (d : v.asIdeal.primeCom
   dsimp [residueHom]
   simp [IsLocalization.lift_mk', IsUnit.coe_liftRight]
 
-/-- `residueHom` on a localized fraction agrees with the residue map on `AtPrime`. -/
+/-- `residueHom` on a localized fraction agrees with the residue map on `AtPrime`.
+@isnad1 id=eq.0h5v.s10.e839a27573c7 from=translated src=- shape=9d6ed79d vocab=83c1f5f8
+-/
 theorem residueHom_mk'_residue (v : HeightOneSpectrum R) (n : R) (d : v.asIdeal.primeCompl) :
     residueHom (K := K) v (IsLocalization.mk' (valuationSubringAtPrime K v) n d) =
       IsLocalRing.residue (Localization.AtPrime v.asIdeal)
@@ -60,7 +64,9 @@ theorem residueHom_mk'_residue (v : HeightOneSpectrum R) (n : R) (d : v.asIdeal.
   simp only [map_mul, IsLocalRing.residue_def] at h
   exact ((eq_mul_inv_iff_mul_eq₀ hd0).mpr h).symm
 
-/-- `residueHom` agrees with the residue map on the localization model. -/
+/-- `residueHom` agrees with the residue map on the localization model.
+@isnad1 id=eq.0h4v.s10.1eec6b4d9630 from=translated src=- shape=487f96da vocab=130a8026
+-/
 theorem residueHom_apply_localizationAlgEquiv (v : HeightOneSpectrum R)
     (x : Localization.AtPrime v.asIdeal) :
     residueHom (K := K) v (localizationAlgEquiv (K := K) v x) =

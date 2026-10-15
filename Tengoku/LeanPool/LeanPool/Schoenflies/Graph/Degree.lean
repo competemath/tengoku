@@ -90,14 +90,22 @@ class Finite (G : Graph α β) : Prop where
   /-- A finite graph has finitely many edges. -/
   finite_edgeSet : E(G).Finite
 
+/--
+@isnad1 id=finite.0h3v.s4.d01fb7addb1b from=translated src=- shape=7c525ed2 vocab=f7ad846b
+-/
 theorem finite_vertexSet (G : Graph α β) [G.Finite] : V(G).Finite := Finite.finite_vertexSet
 
+/--
+@isnad1 id=finite.0h3v.s4.364f94fde3c0 from=translated src=- shape=639b792f vocab=62371288
+-/
 theorem finite_edgeSet (G : Graph α β) [G.Finite] : E(G).Finite := Finite.finite_edgeSet
 
 instance [G.Finite] : _root_.Finite E(G) := Set.finite_coe_iff.2 (finite_edgeSet G)
 
 /-- A subgraph of a finite graph is finite. This is not an instance — `H` cannot be
-recovered from the goal — so install it with `let _ := Graph.Finite.of_le h`. -/
+recovered from the goal — so install it with `let _ := Graph.Finite.of_le h`.
+@isnad1 id=finite.1h4v.s5.43ee21935e32 from=translated src=- shape=68fef46e vocab=ff59e63f
+-/
 theorem Finite.of_le (h : H ≤ G) [G.Finite] : H.Finite :=
   ⟨(_root_.Graph.finite_vertexSet G).subset h.vertexSet_mono,
    (_root_.Graph.finite_edgeSet G).subset h.edgeSet_mono⟩
@@ -110,41 +118,71 @@ noncomputable def vertexFinset (G : Graph α β) [G.Finite] : Finset α :=
 noncomputable def edgeFinset (G : Graph α β) [G.Finite] : Finset β :=
   (finite_edgeSet G).toFinset
 
+/--
+@isnad1 id=iff.0h4v.s5.a1cada5cc503 from=translated src=- shape=b757d05a vocab=f2087a39
+-/
 @[simp]
 theorem mem_vertexFinset [G.Finite] : x ∈ G.vertexFinset ↔ x ∈ V(G) :=
   Set.Finite.mem_toFinset _
 
+/--
+@isnad1 id=iff.0h4v.s5.879b6daa3bfc from=translated src=- shape=b8e11977 vocab=d761facd
+-/
 @[simp]
 theorem mem_edgeFinset [G.Finite] : e ∈ G.edgeFinset ↔ e ∈ E(G) :=
   Set.Finite.mem_toFinset _
 
+/--
+@isnad1 id=eq.0h3v.s4.35c740bede61 from=translated src=- shape=0bd40a58 vocab=25b7ed9b
+-/
 @[simp, norm_cast]
 theorem coe_vertexFinset [G.Finite] : (G.vertexFinset : Set α) = V(G) :=
   Set.Finite.coe_toFinset _
 
+/--
+@isnad1 id=eq.0h3v.s4.fda1644233fe from=translated src=- shape=643863bf vocab=160320d5
+-/
 @[simp, norm_cast]
 theorem coe_edgeFinset [G.Finite] : (G.edgeFinset : Set β) = E(G) :=
   Set.Finite.coe_toFinset _
 
+/--
+@isnad1 id=eq.0h3v.s4.b0e8b382a0ab from=translated src=- shape=c975594e vocab=9d74580e
+-/
 @[simp]
 theorem card_vertexFinset [G.Finite] : G.vertexFinset.card = V(G).ncard := by
   rw [← Set.ncard_coe_finset, coe_vertexFinset]
 
+/--
+@isnad1 id=eq.0h3v.s4.978d6a8f7f5d from=translated src=- shape=d7701be3 vocab=5287028e
+-/
 @[simp]
 theorem card_edgeFinset [G.Finite] : G.edgeFinset.card = E(G).ncard := by
   rw [← Set.ncard_coe_finset, coe_edgeFinset]
 
 /-! ### Incidence sets, unfolded -/
 
+/--
+@isnad1 id=eq.0h4v.s4.cd826091b0e3 from=translated src=- shape=8e0d204c vocab=228f3f7a
+-/
 theorem incidenceSet_eq_setOf (G : Graph α β) (x : α) : G.incidenceSet x = {e | G.Inc e x} :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.3918cc32c41d from=translated src=- shape=8e0d204c vocab=ef91c2b7
+-/
 theorem loopSet_eq_setOf (G : Graph α β) (x : α) : G.loopSet x = {e | G.IsLoopAt e x} :=
   rfl
 
+/--
+@isnad1 id=finite.0h4v.s4.2e677fbd2778 from=translated src=- shape=b557be0b vocab=0a046927
+-/
 theorem finite_incidenceSet [G.Finite] (x : α) : (G.incidenceSet x).Finite :=
   (finite_edgeSet G).subset (G.incidenceSet_subset_edgeSet x)
 
+/--
+@isnad1 id=finite.0h4v.s4.3946ac3b2d96 from=translated src=- shape=b557be0b vocab=c954e2ae
+-/
 theorem finite_loopSet [G.Finite] (x : α) : (G.loopSet x).Finite :=
   (finite_incidenceSet x).subset (G.loopSet_subset_incidenceSet x)
 
@@ -155,10 +193,15 @@ incident with `x` contributes one, a loop at `x` contributes two. -/
 noncomputable def degree (G : Graph α β) (x : α) : ℕ :=
   (G.incidenceSet x).ncard + (G.loopSet x).ncard
 
+/--
+@isnad1 id=eq.0h4v.s5.3b9a0b2377a6 from=translated src=- shape=04581734 vocab=217d4c23
+-/
 theorem degree_def (G : Graph α β) (x : α) :
     G.degree x = (G.incidenceSet x).ncard + (G.loopSet x).ncard := rfl
 
-/-- A vertex outside the graph has no edge ends. -/
+/-- A vertex outside the graph has no edge ends.
+@isnad1 id=eq.1h4v.s5.d50ae95a8e5b from=translated src=- shape=8214dddd vocab=0c5ab6cf
+-/
 @[simp]
 theorem degree_eq_zero_of_notMem (h : x ∉ V(G)) : G.degree x = 0 := by
   have h1 : G.incidenceSet x = ∅ := by
@@ -171,15 +214,22 @@ theorem degree_eq_zero_of_notMem (h : x ∉ V(G)) : G.degree x = 0 := by
   simp
 
 /-- Loops are counted among the incident edges as well, so they never make the loop term the
-larger of the two. -/
+larger of the two.
+@isnad1 id=le.0h4v.s5.8457b35bcea2 from=translated src=- shape=c3ab0c23 vocab=66e142f1
+-/
 theorem ncard_loopSet_le_ncard_incidenceSet [G.Finite] (x : α) :
     (G.loopSet x).ncard ≤ (G.incidenceSet x).ncard :=
   Set.ncard_le_ncard (G.loopSet_subset_incidenceSet x) (finite_incidenceSet x)
 
+/--
+@isnad1 id=le.0h4v.s4.d0840b0b96bc from=translated src=- shape=47b17340 vocab=29db10da
+-/
 theorem ncard_incidenceSet_le_degree (x : α) : (G.incidenceSet x).ncard ≤ G.degree x :=
   Nat.le_add_right _ _
 
-/-- On a loopless vertex the degree is just the number of incident edges. -/
+/-- On a loopless vertex the degree is just the number of incident edges.
+@isnad1 id=eq.1h4v.s5.03450f4e8d80 from=translated src=- shape=2af394bb vocab=68240d51
+-/
 theorem degree_eq_ncard_incidenceSet (h : ∀ e, ¬ G.IsLoopAt e x) :
     G.degree x = (G.incidenceSet x).ncard := by
   have : G.loopSet x = ∅ := by
@@ -188,7 +238,9 @@ theorem degree_eq_ncard_incidenceSet (h : ∀ e, ¬ G.IsLoopAt e x) :
   rw [degree_def, this]
   simp
 
-/-- A loop at `x` contributes two to the degree of `x`. -/
+/-- A loop at `x` contributes two to the degree of `x`.
+@isnad1 id=le.1h5v.s5.4bc11590a8c9 from=translated src=- shape=ef15e635 vocab=abaf6d22
+-/
 theorem IsLoopAt.two_le_degree [G.Finite] (h : G.IsLoopAt e x) : 2 ≤ G.degree x := by
   have h1 : 1 ≤ (G.loopSet x).ncard :=
     (Set.ncard_pos (finite_loopSet x)).2 ⟨e, h⟩
@@ -197,11 +249,17 @@ theorem IsLoopAt.two_le_degree [G.Finite] (h : G.IsLoopAt e x) : 2 ≤ G.degree 
   rw [degree_def]
   omega
 
+/--
+@isnad1 id=lt.1h5v.s5.8d616fa232a5 from=translated src=- shape=ef15e635 vocab=9b5cbb7f
+-/
 theorem degree_pos_of_inc [G.Finite] (h : G.Inc e x) : 0 < G.degree x := by
   have : 0 < (G.incidenceSet x).ncard := (Set.ncard_pos (finite_incidenceSet x)).2 ⟨e, h⟩
   rw [degree_def]
   omega
 
+/--
+@isnad1 id=iff.0h4v.s5.5a1bce9b2905 from=translated src=- shape=0d065355 vocab=9aa52d8c
+-/
 theorem degree_eq_zero_iff [G.Finite] : G.degree x = 0 ↔ ∀ e, ¬ G.Inc e x := by
   refine ⟨fun h e he => ?_, fun h => ?_⟩
   · exact absurd h (degree_pos_of_inc he).ne'
@@ -221,7 +279,9 @@ ends an edge has there is two, whether the edge is a loop (two ends at one verte
 -/
 
 /-- An edge of `G` has exactly two ends: the vertices it is incident with, counted again at
-the vertex it is a loop at, total two. -/
+the vertex it is a loop at, total two.
+@isnad1 id=eq.1h4v.s5.829b949baf24 from=translated src=- shape=0f17c8f8 vocab=dd722b98
+-/
 theorem ncard_inc_add_ncard_isLoopAt (G : Graph α β) (he : e ∈ E(G)) :
     {x | G.Inc e x}.ncard + {x | G.IsLoopAt e x}.ncard = 2 := by
   obtain ⟨u, v, huv⟩ := exists_isLink_of_mem_edgeSet he
@@ -273,7 +333,9 @@ twice the number of edges.
 The proof is the double count: `G.degree x` is a sum over the edges of the number of ends
 that edge has at `x`, the two sums commute, and each edge contributes exactly two
 (`Graph.ncard_inc_add_ncard_isLoopAt`). Loops are allowed — that is exactly what the loop
-term in `Graph.degree` buys. -/
+term in `Graph.degree` buys.
+@isnad1 id=eq.0h3v.s5.54824dd6f4ac from=translated src=- shape=3f334626 vocab=7e606223
+-/
 theorem sum_degree_eq_two_mul_ncard_edgeSet (G : Graph α β) [G.Finite] :
     ∑ x ∈ G.vertexFinset, G.degree x = 2 * E(G).ncard := by
   classical
@@ -309,13 +371,17 @@ theorem sum_degree_eq_two_mul_ncard_edgeSet (G : Graph α β) [G.Finite] :
     _ = 2 * E(G).ncard := by
         rw [Finset.sum_const, card_edgeFinset, smul_eq_mul, Nat.mul_comm]
 
-/-- The handshake lemma, with the edge count as a `Finset` cardinality. -/
+/-- The handshake lemma, with the edge count as a `Finset` cardinality.
+@isnad1 id=eq.0h3v.s5.298aa63e585e from=translated src=- shape=3f334626 vocab=1f945760
+-/
 theorem sum_degree_eq_two_mul_card_edgeFinset (G : Graph α β) [G.Finite] :
     ∑ x ∈ G.vertexFinset, G.degree x = 2 * G.edgeFinset.card := by
   rw [card_edgeFinset]
   exact G.sum_degree_eq_two_mul_ncard_edgeSet
 
-/-- The degree sum of a finite multigraph is even. -/
+/-- The degree sum of a finite multigraph is even.
+@isnad1 id=even.0h3v.s5.b1ac808d3b88 from=translated src=- shape=0745f816 vocab=ba9c06d0
+-/
 theorem even_sum_degree (G : Graph α β) [G.Finite] :
     Even (∑ x ∈ G.vertexFinset, G.degree x) :=
   ⟨E(G).ncard, by rw [G.sum_degree_eq_two_mul_ncard_edgeSet, two_mul]⟩
@@ -325,33 +391,51 @@ theorem even_sum_degree (G : Graph α β) [G.Finite] :
 /-- `G.IsLeaf x` says that `x` is a vertex of `G` with exactly one edge end at it. -/
 def IsLeaf (G : Graph α β) (x : α) : Prop := x ∈ V(G) ∧ G.degree x = 1
 
+/--
+@isnad1 id=mem.1h4v.s4.1c534e277942 from=translated src=- shape=94bd2ba9 vocab=b44a33e0
+-/
 theorem IsLeaf.mem_vertexSet (h : G.IsLeaf x) : x ∈ V(G) := h.1
 
+/--
+@isnad1 id=eq.1h4v.s4.79d8b6d2cb48 from=translated src=- shape=b23aed59 vocab=a2aea2ce
+-/
 theorem IsLeaf.degree_eq_one (h : G.IsLeaf x) : G.degree x = 1 := h.2
 
+/--
+@isnad1 id=iff.0h4v.s5.a017930fc230 from=translated src=- shape=9f884e4b vocab=c8b27928
+-/
 theorem isLeaf_iff : G.IsLeaf x ↔ x ∈ V(G) ∧ G.degree x = 1 := Iff.rfl
 
-/-- A leaf carries no loop: a loop would contribute two to the degree. -/
+/-- A leaf carries no loop: a loop would contribute two to the degree.
+@isnad1 id=not.1h5v.s4.c5f975d17f6d from=translated src=- shape=b16030ad vocab=20261d9e
+-/
 theorem IsLeaf.not_isLoopAt [G.Finite] (h : G.IsLeaf x) (e : β) : ¬ G.IsLoopAt e x := by
   intro hl
   have h2 := hl.two_le_degree
   have hd := h.2
   omega
 
-/-- The one edge end at a leaf comes from one incident edge. -/
+/-- The one edge end at a leaf comes from one incident edge.
+@isnad1 id=eq.1h4v.s5.4a029e6d33a5 from=translated src=- shape=a86990c2 vocab=d51de47c
+-/
 theorem IsLeaf.ncard_incidenceSet [G.Finite] (h : G.IsLeaf x) :
     (G.incidenceSet x).ncard = 1 := by
   have hle := ncard_loopSet_le_ncard_incidenceSet (G := G) x
   have hd : (G.incidenceSet x).ncard + (G.loopSet x).ncard = 1 := h.2
   omega
 
+/--
+@isnad1 id=eq.1h4v.s5.ae3959323395 from=translated src=- shape=6863887e vocab=743d6a68
+-/
 theorem IsLeaf.loopSet_eq_empty [G.Finite] (h : G.IsLeaf x) : G.loopSet x = ∅ := by
   have hle := ncard_loopSet_le_ncard_incidenceSet (G := G) x
   have hd : (G.incidenceSet x).ncard + (G.loopSet x).ncard = 1 := h.2
   have : (G.loopSet x).ncard = 0 := by omega
   exact (Set.ncard_eq_zero (finite_loopSet x)).1 this
 
-/-- A leaf is incident with exactly one edge. -/
+/-- A leaf is incident with exactly one edge.
+@isnad1 id=existsun.1h4v.s4.a43e55db2b29 from=translated src=- shape=e46f2c7e vocab=44d2d6cd
+-/
 theorem IsLeaf.existsUnique_inc [G.Finite] (h : G.IsLeaf x) : ∃! e, G.Inc e x := by
   obtain ⟨e, he⟩ := Set.ncard_eq_one.1 h.ncard_incidenceSet
   refine ⟨e, ?_, fun f hf => ?_⟩
@@ -361,7 +445,9 @@ theorem IsLeaf.existsUnique_inc [G.Finite] (h : G.IsLeaf x) : ∃! e, G.Inc e x 
     rw [he] at this
     exact this
 
-/-- The unique edge at a leaf is not a loop, so it has a second, different end. -/
+/-- The unique edge at a leaf is not a loop, so it has a second, different end.
+@isnad1 id=ex.1h4v.s5.694d53850503 from=translated src=- shape=9255c93e vocab=fdd555d5
+-/
 theorem IsLeaf.exists_isLink [G.Finite] (h : G.IsLeaf x) :
     ∃ e y, y ≠ x ∧ G.IsLink e x y := by
   obtain ⟨e, he, -⟩ := h.existsUnique_inc
@@ -370,13 +456,17 @@ theorem IsLeaf.exists_isLink [G.Finite] (h : G.IsLeaf x) :
   rintro rfl
   exact h.not_isLoopAt e hy
 
-/-- Every edge at a leaf is a non-loop edge there. -/
+/-- Every edge at a leaf is a non-loop edge there.
+@isnad1 id=isnonloo.2h5v.s5.01f35bb5fe1a from=translated src=- shape=9c324682 vocab=9bb382f2
+-/
 theorem IsLeaf.isNonloopAt [G.Finite] (h : G.IsLeaf x) (he : G.Inc e x) :
     G.IsNonloopAt e x :=
   he.isLoopAt_or_isNonloopAt.resolve_left (h.not_isLoopAt e)
 
 /-- The converse of the two lemmas above: a vertex of `G` whose only incident edge is `e`,
-and for which `e` is not a loop, is a leaf. -/
+and for which `e` is not a loop, is a leaf.
+@isnad1 id=isleaf.3h5v.s5.def8d247d72d from=translated src=- shape=c1d1bf84 vocab=bfcb6a5e
+-/
 theorem isLeaf_of_isNonloopAt (hx : x ∈ V(G))
     (h : ∀ f, G.Inc f x ↔ f = e) (hne : G.IsNonloopAt e x) : G.IsLeaf x := by
   refine ⟨hx, ?_⟩

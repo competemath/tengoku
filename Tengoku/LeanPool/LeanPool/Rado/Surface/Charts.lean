@@ -42,7 +42,9 @@ variable {X : Type*} [TopologicalSpace X] [ChartedSpace ℂ X]
   [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X]
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
-/-- Transition maps between maximal-atlas charts are analytic. -/
+/-- Transition maps between maximal-atlas charts are analytic.
+@isnad1 id=analytic.3h4v.s8.56ed89e09122 from=translated src=- shape=d6add1c9 vocab=4e0ab517
+-/
 theorem transition_analyticAt {e e' : OpenPartialHomeomorph X ℂ}
     (he : e ∈ riemannAtlas X) (he' : e' ∈ riemannAtlas X) {x : X}
     (hx : x ∈ e.source ∩ e'.source) :
@@ -62,7 +64,9 @@ theorem transition_analyticAt {e e' : OpenPartialHomeomorph X ℂ}
   have hana := han _ hxmem
   rwa [OpenPartialHomeomorph.coe_trans] at hana
 
-/-- The preferred chart at a point belongs to the maximal atlas. -/
+/-- The preferred chart at a point belongs to the maximal atlas.
+@isnad1 id=mem.0h2v.s7.131ef16ccf45 from=translated src=- shape=85a92d1b vocab=0376dc6a
+-/
 theorem chartAt_mem_riemannAtlas (x : X) : chartAt ℂ x ∈ riemannAtlas X :=
   IsManifold.chart_mem_maximalAtlas x
 
@@ -75,6 +79,9 @@ namespace HolomorphicOn
 variable {F G : X → ℂ} {s : Set X}
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
+/--
+@isnad1 id=continuo.1h3v.s5.5b6b6e5a3399 from=translated src=- shape=859cfc8b vocab=bbe7fb83
+-/
 theorem continuousOn (hF : HolomorphicOn F s) : ContinuousOn F s := by
   intro x hx
   have h1 : ContinuousAt ((F ∘ (chartAt ℂ x).symm) ∘ (chartAt ℂ x)) x :=
@@ -84,11 +91,16 @@ theorem continuousOn (hF : HolomorphicOn F s) : ContinuousOn F s := by
   simp only [Function.comp_apply, (chartAt ℂ x).left_inv hy]
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
+/--
+@isnad1 id=holomorp.2h4v.s5.cf44cb91b7f3 from=translated src=- shape=7241feae vocab=be9bcf67
+-/
 theorem mono (hF : HolomorphicOn F s) {t : Set X} (hts : t ⊆ s) : HolomorphicOn F t :=
   fun x hx ↦ hF x (hts hx)
 
 /-- Chart independence: a chartwise-holomorphic map reads as analytic through
-every maximal-atlas chart. -/
+every maximal-atlas chart.
+@isnad1 id=analytic.3h5v.s8.dc8b271bbc7d from=translated src=- shape=47cf38a4 vocab=2731ef9c
+-/
 theorem analyticAt_comp_symm (hF : HolomorphicOn F s)
     {e : OpenPartialHomeomorph X ℂ} (he : e ∈ riemannAtlas X) {x : X}
     (hx : x ∈ s ∩ e.source) : AnalyticAt ℂ (F ∘ e.symm) (e x) := by
@@ -112,7 +124,9 @@ theorem analyticAt_comp_symm (hF : HolomorphicOn F s)
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
 /-- If `F` agrees with a holomorphic map near each point of `s`, it is
-holomorphic on `s`. -/
+holomorphic on `s`.
+@isnad1 id=holomorp.2h4v.s6.0589081439b6 from=translated src=- shape=ac222d78 vocab=ebbdd447
+-/
 theorem congr_of_eventuallyEq (hG : HolomorphicOn G s)
     (h : ∀ x ∈ s, F =ᶠ[𝓝 x] G) : HolomorphicOn F s := by
   intro x hx
@@ -122,7 +136,9 @@ theorem congr_of_eventuallyEq (hG : HolomorphicOn G s)
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
 /-- **Identity theorem** on a Riemann surface: two maps holomorphic on a
-connected open set that agree near one of its points agree everywhere on it. -/
+connected open set that agree near one of its points agree everywhere on it.
+@isnad1 id=eqon.6h5v.s6.b3f4452ed2c2 from=translated src=- shape=3e7436c0 vocab=acc40e30
+-/
 theorem eqOn_of_eventuallyEq (hF : HolomorphicOn F s) (hG : HolomorphicOn G s)
     (hs : IsOpen s) (hsc : IsPreconnected s) {x : X} (hx : x ∈ s)
     (hFG : F =ᶠ[𝓝 x] G) : EqOn F G s := by
@@ -163,7 +179,9 @@ end HolomorphicOn
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
 /-- Post-composing a maximal-atlas chart with a complex affine map `z ↦ a z + b`
-(`a ≠ 0`) stays in the maximal atlas. -/
+(`a ≠ 0`) stays in the maximal atlas.
+@isnad1 id=ex.2h4v.s8.4f1d1ae947f7 from=translated src=- shape=0c70194f vocab=006063f8
+-/
 theorem affine_trans_mem_riemannAtlas {e : OpenPartialHomeomorph X ℂ}
     (he : e ∈ riemannAtlas X) {a b : ℂ} (ha : a ≠ 0) :
     ∃ e' ∈ riemannAtlas X, e'.source = e.source ∧
@@ -202,17 +220,23 @@ theorem affine_trans_mem_riemannAtlas {e : OpenPartialHomeomorph X ℂ}
 section Instances
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
-/-- Riemann surfaces are locally compact. -/
+/-- Riemann surfaces are locally compact.
+@isnad1 id=locallyc.0h1v.s4.12430d328e50 from=translated src=- shape=c9705861 vocab=149ef87f
+-/
 theorem locallyCompactSpace : LocallyCompactSpace X :=
   ChartedSpace.locallyCompactSpace ℂ X
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
-/-- Riemann surfaces are locally connected. -/
+/-- Riemann surfaces are locally connected.
+@isnad1 id=locallyc.0h1v.s4.e8b812f28991 from=translated src=- shape=c9705861 vocab=887b9f6e
+-/
 theorem locallyConnectedSpace : LocallyConnectedSpace X :=
   ChartedSpace.locallyConnectedSpace ℂ X
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
-/-- Riemann surfaces are locally second countable. -/
+/-- Riemann surfaces are locally second countable.
+@isnad1 id=ex.0h2v.s5.028565799719 from=translated src=- shape=eeda513c vocab=71b41daa
+-/
 theorem locally_secondCountable (x : X) :
     ∃ U : Set X, x ∈ U ∧ IsOpen U ∧ SecondCountableTopology U :=
   ⟨(chartAt ℂ x).source, mem_chart_source ℂ x, (chartAt ℂ x).open_source,

@@ -30,7 +30,9 @@ open Set Topology
 namespace Rado
 
 /-- A compact set each of whose points has a second-countable open neighbourhood
-is second countable in the subspace topology (cover by finitely many). -/
+is second countable in the subspace topology (cover by finitely many).
+@isnad1 id=secondco.2h2v.s6.efa9bf3926ea from=translated src=- shape=1724d3f2 vocab=b5d560f7
+-/
 theorem IsCompact.secondCountableTopology {Z : Type*} [TopologicalSpace Z] {K : Set Z}
     (hK : IsCompact K)
     (hloc : ∀ z ∈ K, ∃ U : Set Z, z ∈ U ∧ IsOpen U ∧ SecondCountableTopology U) :
@@ -54,7 +56,9 @@ theorem IsCompact.secondCountableTopology {Z : Type*} [TopologicalSpace Z] {K : 
   exact ⟨⟨i, hit⟩, hxi⟩
 
 /-- A countable family of second-countable open sets covering `Z` makes `Z`
-second countable. -/
+second countable.
+@isnad1 id=secondco.4h2v.s6.8cc515819f81 from=translated src=- shape=37e6fb32 vocab=d0163aaa
+-/
 theorem secondCountableTopology_of_countable_setCover {Z : Type*} [TopologicalSpace Z]
     {𝒰 : Set (Set Z)} (hct : 𝒰.Countable) (ho : ∀ U ∈ 𝒰, IsOpen U)
     (hsc : ∀ U ∈ 𝒰, SecondCountableTopology U) (hcov : ⋃₀ 𝒰 = univ) :
@@ -67,7 +71,9 @@ theorem secondCountableTopology_of_countable_setCover {Z : Type*} [TopologicalSp
     (U := fun U : ↥𝒰 ↦ U.1) (fun U ↦ ho U.1 U.2) hcov'
 
 /-- ccc: in a second-countable space, every pairwise-disjoint family of nonempty
-open sets is countable. -/
+open sets is countable.
+@isnad1 id=countabl.3h2v.s6.bbe6357850b8 from=translated src=- shape=d128bf73 vocab=5dd689e9
+-/
 theorem countable_of_pairwiseDisjoint_isOpen {Z : Type*} [TopologicalSpace Z]
     [SecondCountableTopology Z] {𝒰 : Set (Set Z)} (ho : ∀ U ∈ 𝒰, IsOpen U)
     (hne : ∀ U ∈ 𝒰, U.Nonempty) (hdisj : 𝒰.PairwiseDisjoint id) :
@@ -91,7 +97,9 @@ private lemma reachLevel_succ {α : Type*} (r : α → α → Prop) (a₀ : α) 
     reachLevel r a₀ (n + 1) = ⋃ a ∈ reachLevel r a₀ n, {b | r a b} := rfl
 
 /-- The reflexive-transitive closure of a countably-branching relation reaches
-only countably many elements from a fixed start. -/
+only countably many elements from a fixed start.
+@isnad1 id=countabl.1h3v.s5.939650651fba from=translated src=- shape=d96ade12 vocab=b7b35f06
+-/
 theorem countable_setOf_reflTransGen {α : Type*} {r : α → α → Prop} (a₀ : α)
     (h : ∀ a, {b | r a b}.Countable) :
     {b | Relation.ReflTransGen r a₀ b}.Countable := by

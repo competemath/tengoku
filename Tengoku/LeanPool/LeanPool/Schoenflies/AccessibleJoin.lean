@@ -105,17 +105,23 @@ Stated for a chain rather than for a simple arc; see the module docstring. -/
 def PolyAccessible (Ω : Set Plane) (a : Plane) : Prop :=
   ∃ (vs : List Plane) (h : vs ≠ []), vs.head h = a ∧ vs.getLast h ∈ Ω ∧ poly vs \ {a} ⊆ Ω
 
-/-- A point of `Ω` is accessible from it, by the constant chain. -/
+/-- A point of `Ω` is accessible from it, by the constant chain.
+@isnad1 id=polyacce.1h2v.s4.5168934f04d3 from=translated src=- shape=619cbbd1 vocab=f374ed5d
+-/
 theorem polyAccessible_of_mem (ha : a ∈ Ω) : PolyAccessible Ω a :=
   ⟨[a], by simp, rfl, by simpa using ha, by simp⟩
 
-/-- Accessibility passes to a larger set. -/
+/-- Accessibility passes to a larger set.
+@isnad1 id=polyacce.2h3v.s4.c75ccb69009f from=translated src=- shape=a521bc0f vocab=b25cad98
+-/
 theorem PolyAccessible.mono (h : PolyAccessible Ω a) (hsub : Ω ⊆ S) : PolyAccessible S a := by
   obtain ⟨vs, hvs, hhead, hlast, hint⟩ := h
   exact ⟨vs, hvs, hhead, hsub hlast, hint.trans hsub⟩
 
 /-- A straight access segment gives accessibility. This is the form the construction meets:
-`z` is an interior point seen from `a` along a segment that only touches the boundary at `a`. -/
+`z` is an interior point seen from `a` along a segment that only touches the boundary at `a`.
+@isnad1 id=polyacce.2h3v.s7.dd52d767dd9c from=translated src=- shape=d5a67210 vocab=c47f292a
+-/
 theorem PolyAccessible.of_openSegment (hz : z ∈ Ω) (hseg : openSegment ℝ a z ⊆ Ω) :
     PolyAccessible Ω a := by
   refine ⟨[a, z], by simp, rfl, by simpa using hz, ?_⟩
@@ -128,7 +134,9 @@ theorem PolyAccessible.of_openSegment (hz : z ∈ Ω) (hseg : openSegment ℝ a 
   · exact hseg (mem_openSegment_of_ne_left_right (Ne.symm hxa) (Ne.symm hxz) hxseg)
 
 /-- **A strongly accessible point is polygonally accessible.** The straight segment to the
-centre of the tangent disk is the access arc. -/
+centre of the tangent disk is the access arc.
+@isnad1 id=polyacce.1h2v.s3.3936404df2a1 from=translated src=- shape=12d14902 vocab=f37be910
+-/
 theorem StronglyAccessible.polyAccessible (h : StronglyAccessible Ω a) : PolyAccessible Ω a := by
   obtain ⟨z, hz, -, hseg⟩ := h.openSegment_subset
   exact PolyAccessible.of_openSegment hz hseg
@@ -138,13 +146,17 @@ somewhere else, and has all of its other points in `Ω` is an access arc.
 
 This is the converse direction of `lem:accessible-endpoints`: the arc that lemma produces makes
 both of its endpoints accessible again, which is what an induction that extends a partial
-construction one crosscut at a time needs. -/
+construction one crosscut at a time needs.
+@isnad1 id=polyacce.4h3v.s5.349e5c3f2546 from=translated src=- shape=b970ff01 vocab=3d13587d
+-/
 theorem polyAccessible_of_poly {vs : List Plane} (h : vs ≠ []) (hhead : vs.head h = a)
     (hlast : vs.getLast h ≠ a) (hsub : poly vs \ {a} ⊆ Ω) : PolyAccessible Ω a :=
   ⟨vs, h, hhead, hsub ⟨getLast_mem_poly h, hlast⟩, hsub⟩
 
 /-- `Schoenflies.polyAccessible_of_poly` read from the far end: reversing the chain moves the
-distinguished endpoint from the head to the last vertex. -/
+distinguished endpoint from the head to the last vertex.
+@isnad1 id=polyacce.4h3v.s5.9a2deea1b006 from=translated src=- shape=b970ff01 vocab=3d13587d
+-/
 theorem polyAccessible_of_poly' {vs : List Plane} (h : vs ≠ []) (hlast : vs.getLast h = a)
     (hhead : vs.head h ≠ a) (hsub : poly vs \ {a} ⊆ Ω) : PolyAccessible Ω a := by
   have hrev : vs.reverse ≠ [] := by simpa using h
@@ -157,7 +169,9 @@ theorem polyAccessible_of_poly' {vs : List Plane} (h : vs ≠ []) (hlast : vs.ge
 chain can be taken to be a simple polygonal arc.
 
 The far endpoint is returned, so a consumer that needs to know where the arc lands still has
-it. -/
+it.
+@isnad1 id=ex.2h2v.s6.2c4c24f85963 from=translated src=- shape=1cae3569 vocab=dbeaed12
+-/
 theorem PolyAccessible.exists_simple (h : PolyAccessible Ω a) (ha : a ∉ Ω) :
     ∃ z ∈ Ω, a ≠ z ∧ ∃ (vs : List Plane) (hv : vs ≠ []),
       vs.head hv = a ∧ vs.getLast hv = z ∧ poly vs \ {a} ⊆ Ω ∧ IsArcBetween (poly vs) a z := by
@@ -177,7 +191,9 @@ arrives as a finite *set* of edges, so the list is pure friction at the call sit
 paragraph removes it; it belongs in `Schoenflies/SimpleArc.lean`. -/
 
 /-- A union indexed by a list of sets, rewritten as a union indexed by the list of their
-indices. -/
+indices.
+@isnad1 id=eq.0h3v.s6.13077bb55033 from=translated src=- shape=b4428d01 vocab=0ff1871b
+-/
 theorem biUnion_list_map {ι : Type*} (f : ι → Set Plane) (l : List ι) :
     (⋃ A ∈ l.map f, A) = ⋃ i ∈ l, f i := by
   induction l with
@@ -191,7 +207,9 @@ many polygonal sets is connected, any two of its distinct points are joined insi
 simple polygonal arc.
 
 Same conclusion as `Schoenflies.exists_simple_poly_of_union`, with the index a finite set
-instead of a list. -/
+instead of a list.
+@isnad1 id=ex.6h5v.s7.7c35d15987bb from=translated src=- shape=6e786f6a vocab=2462bd10
+-/
 theorem exists_simple_poly_of_biUnion_finite {ι : Type*} {s : Set ι} {A : ι → Set Plane}
     (hs : s.Finite) (hA : ∀ i ∈ s, IsPolygonal (A i))
     (hconn : IsPreconnected (⋃ i ∈ s, A i)) (hab : a ≠ b)
@@ -222,7 +240,9 @@ The last clause is the one the consumers of `lem:accessible-endpoints` and
 `lem:skeleton-crosscuts` actually use, with `E = {a, b}` the two endpoints and `S` the region:
 the extracted arc must keep its endpoints *and* keep everything else inside the region. It is a
 one-line consequence of the arc being a subset of the union, but stating it here means no
-consumer has to rediscover that the extraction is inclusion-preserving. -/
+consumer has to rediscover that the extraction is inclusion-preserving.
+@isnad1 id=ex.7h7v.s8.52026ca22c66 from=translated src=- shape=68f7aa0e vocab=dc03ce56
+-/
 theorem exists_simple_poly_pinned {ι : Type*} {s : Set ι} {A : ι → Set Plane} {E : Set Plane}
     (hs : s.Finite) (hA : ∀ i ∈ s, IsPolygonal (A i))
     (hconn : IsPreconnected (⋃ i ∈ s, A i)) (hab : a ≠ b)
@@ -234,7 +254,9 @@ theorem exists_simple_poly_pinned {ι : Type*} {s : Set ι} {A : ι → Set Plan
     exists_simple_poly_of_biUnion_finite hs hA hconn hab ha hb
   exact ⟨ws, hws, hhead, hlast, hsub, fun x hx => hS ⟨hsub hx.1, hx.2⟩, harc⟩
 
-/-- `Schoenflies.exists_simple_poly_pinned` for a union presented as one polygonal set. -/
+/-- `Schoenflies.exists_simple_poly_pinned` for a union presented as one polygonal set.
+@isnad1 id=ex.6h5v.s7.2649f93aa8ce from=translated src=- shape=97beaaf7 vocab=f635b82a
+-/
 theorem exists_simple_poly_of_isPolygonal_pinned {Y E : Set Plane} (hY : IsPolygonal Y)
     (hconn : IsPreconnected Y) (hab : a ≠ b) (ha : a ∈ Y) (hb : b ∈ Y) (hS : Y \ E ⊆ S) :
     ∃ ws : List Plane, ∃ h : ws ≠ [], ws.head h = a ∧ ws.getLast h = b ∧
@@ -243,7 +265,9 @@ theorem exists_simple_poly_of_isPolygonal_pinned {Y E : Set Plane} (hY : IsPolyg
     exists_simple_poly_of_isPolygonal hY hconn hab ha hb
   exact ⟨ws, hws, hhead, hlast, hsub, fun x hx => hS ⟨hsub hx.1, hx.2⟩, harc⟩
 
-/-- `Schoenflies.exists_simple_poly_of_biUnion_finite`, at the level of sets. -/
+/-- `Schoenflies.exists_simple_poly_of_biUnion_finite`, at the level of sets.
+@isnad1 id=ex.6h5v.s7.7f5efdb5393d from=translated src=- shape=392070f5 vocab=8a58bbbb
+-/
 theorem exists_simple_arc_of_biUnion_finite {ι : Type*} {s : Set ι} {A : ι → Set Plane}
     (hs : s.Finite) (hA : ∀ i ∈ s, IsPolygonal (A i))
     (hconn : IsPreconnected (⋃ i ∈ s, A i)) (hab : a ≠ b)
@@ -269,7 +293,9 @@ which meets `C` in exactly the two distinct points `a, b` carries a simple polyg
 
 The last conclusion, `poly ws \ {a, b} ⊆ D`, is the crosscut condition relative to a region `D`
 containing the part of the union off `C`; for `D = Cᶜ` it is automatic, and the skeleton
-consumer instantiates it with the interior of the Jordan curve. -/
+consumer instantiates it with the interior of the Jordan curve.
+@isnad1 id=ex.10h7v.s8.18e9b377387c from=translated src=- shape=bff9909e vocab=25bc26ba
+-/
 theorem exists_crosscut_of_biUnion_finite {ι : Type*} {s : Set ι} {A : ι → Set Plane}
     (hs : s.Finite) (hA : ∀ i ∈ s, IsPolygonal (A i))
     (hconn : IsPreconnected (⋃ i ∈ s, A i)) (hab : a ≠ b)
@@ -292,7 +318,9 @@ theorem exists_crosscut_of_biUnion_finite {ι : Type*} {s : Set ι} {A : ι → 
     exact hD ⟨hsub hx, fun hxC => hxab (hmeet ⟨hsub hx, hxC⟩)⟩
 
 /-- `Schoenflies.exists_crosscut_of_biUnion_finite`, at the level of sets: the crosscut as a
-polygonal arc rather than as a vertex list. -/
+polygonal arc rather than as a vertex list.
+@isnad1 id=ex.10h7v.s8.8187b16c4f31 from=translated src=- shape=5f396445 vocab=51cac52d
+-/
 theorem exists_crosscut_arc_of_biUnion_finite {ι : Type*} {s : Set ι} {A : ι → Set Plane}
     (hs : s.Finite) (hA : ∀ i ∈ s, IsPolygonal (A i))
     (hconn : IsPreconnected (⋃ i ∈ s, A i)) (hab : a ≠ b)
@@ -315,7 +343,9 @@ The arc is returned as a vertex list with its two ends displayed, matching
 `Schoenflies.exists_simple_poly_of_union`: the consumers that overlay this arc with another
 polygonal object need the vertices, not merely the set.
 
-`a` and `b` are *not* required to lie on `frontier Ω`; the proof never uses it. -/
+`a` and `b` are *not* required to lie on `frontier Ω`; the proof never uses it.
+@isnad1 id=ex.5h3v.s7.d1f6a57c6d99 from=translated src=- shape=dc40e348 vocab=a18f00b3
+-/
 theorem exists_simple_poly_of_polyAccessible (hΩ : IsOpen Ω) (hconn : IsPreconnected Ω)
     (hab : a ≠ b) (ha : PolyAccessible Ω a) (hb : PolyAccessible Ω b) :
     ∃ ws : List Plane, ∃ h : ws ≠ [], ws.head h = a ∧ ws.getLast h = b ∧
@@ -353,7 +383,9 @@ theorem exists_simple_poly_of_polyAccessible (hΩ : IsOpen Ω) (hconn : IsPrecon
   rw [hlist] at hwsub
   exact ⟨ws, hws, hwhead, hwlast, fun x hx => hUΩ ⟨hwsub hx.1, hx.2⟩, hwarc⟩
 
-/-- **`lem:accessible-endpoints`**, at the level of sets. -/
+/-- **`lem:accessible-endpoints`**, at the level of sets.
+@isnad1 id=ex.5h3v.s7.18d71d889f9c from=translated src=- shape=5f6234fa vocab=f24b45e0
+-/
 theorem exists_simple_arc_of_polyAccessible (hΩ : IsOpen Ω) (hconn : IsPreconnected Ω)
     (hab : a ≠ b) (ha : PolyAccessible Ω a) (hb : PolyAccessible Ω b) :
     ∃ P : Set Plane, IsPolygonal P ∧ IsArcBetween P a b ∧ P \ {a, b} ⊆ Ω := by
@@ -363,7 +395,9 @@ theorem exists_simple_arc_of_polyAccessible (hΩ : IsOpen Ω) (hconn : IsPreconn
 
 /-- **`lem:accessible-endpoints` in crosscut form.** If the region `Ω` misses a set `C` that
 carries the two accessible points, the joining arc meets `C` exactly at its endpoints. With `C`
-a Jordan curve and `Ω` its interior this says the arc is a polygonal crosscut. -/
+a Jordan curve and `Ω` its interior this says the arc is a polygonal crosscut.
+@isnad1 id=ex.8h4v.s8.881d8129a8db from=translated src=- shape=492ac882 vocab=9e234add
+-/
 theorem exists_crosscut_of_polyAccessible (hΩ : IsOpen Ω) (hconn : IsPreconnected Ω)
     (hdisj : Disjoint Ω C) (hab : a ≠ b) (haC : a ∈ C) (hbC : b ∈ C)
     (ha : PolyAccessible Ω a) (hb : PolyAccessible Ω b) :
@@ -396,7 +430,9 @@ open Schoenflies Set
 variable {β : Type*} {G : Graph Plane β} {drawing : β → ℝ → Plane} {a b : Plane}
 
 /-- The point set of a plane graph, written as a union indexed by "a vertex or an edge". Each
-piece is polygonal as soon as the edge arcs are: a vertex contributes a singleton. -/
+piece is polygonal as soon as the edge arcs are: a vertex contributes a singleton.
+@isnad1 id=eq.0h3v.s7.233ed497b11d from=translated src=- shape=fb4c283f vocab=522380ce
+-/
 theorem pointSet_eq_biUnion (G : Graph Plane β) (drawing : β → ℝ → Plane) :
     pointSet G drawing =
       ⋃ i ∈ (Sum.inl '' V(G) ∪ Sum.inr '' E(G) : Set (Plane ⊕ β)),
@@ -410,7 +446,9 @@ edges and a connected point set, any two distinct points of that set are joined 
 simple polygonal arc.
 
 No drawing condition is needed: the extraction re-subdivides everything anyway, so the edges may
-cross each other freely. -/
+cross each other freely.
+@isnad1 id=ex.5h5v.s7.c8ff50071de0 from=translated src=- shape=09e39e8c vocab=7243461d
+-/
 theorem exists_simple_poly_of_pointSet [G.Finite]
     (hpoly : ∀ e ∈ E(G), IsPolygonal (edgeArc drawing e))
     (hconn : IsPreconnected (pointSet G drawing)) (hab : a ≠ b)

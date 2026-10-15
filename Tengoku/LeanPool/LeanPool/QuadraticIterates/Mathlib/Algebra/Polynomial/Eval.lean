@@ -17,7 +17,9 @@ polynomials*, Arch. Math. 59 (1992), 239-244; upstreaming candidates for Mathlib
 @[expose] public section
 
 /-- A ring homomorphism intertwines iterated evaluation of `p` with iterated evaluation of the
-mapped polynomial. -/
+mapped polynomial.
+@isnad1 id=eq.0h6v.s7.65ec5b933a2d from=translated src=- shape=469b268f vocab=26b40f73
+-/
 lemma Polynomial.map_iterate_eval {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S)
     (p : Polynomial R) (z : R) (j : ℕ) :
     f ((fun y ↦ p.eval y)^[j] z) = ((p.map f).eval)^[j] (f z) := by
@@ -28,7 +30,9 @@ lemma Polynomial.map_iterate_eval {R S : Type*} [CommRing R] [CommRing S] (f : R
       Polynomial.eval₂_at_apply]
 
 /-- Evaluating the `L`-reduction of an integer polynomial at an integer point of an `L`-algebra
-yields the cast of the integral value. -/
+yields the cast of the integral value.
+@isnad1 id=eq.0h4v.s7.afd03d15f32b from=translated src=- shape=eaaddc72 vocab=a2b2441a
+-/
 lemma Polynomial.aeval_intCast_map {L K : Type*} [CommRing L] [CommRing K] [Algebra L K]
     (p : Polynomial ℤ) (m : ℤ) :
     Polynomial.aeval (m : K) (p.map (Int.castRingHom L)) = ((p.eval m : ℤ) : K) := by

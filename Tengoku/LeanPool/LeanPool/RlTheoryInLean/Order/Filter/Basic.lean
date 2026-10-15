@@ -18,6 +18,9 @@ open scoped BigOperators
 
 namespace Filter
 
+/--
+@isnad1 id=eventual.1h7v.s6.2fb99a12f093 from=translated src=- shape=46d0b439 vocab=f4c6ea94
+-/
 lemma EventuallyEq.finset_sum {α ι β : Type*} [AddCommGroup β] {l : Filter α}
   {s : Finset ι} {f g : ι → α → β} (hfg : ∀ i ∈ s, f i =ᶠ[l] g i) :
   ∑ i ∈ s, f i =ᶠ[l] ∑ i ∈ s, g i := by

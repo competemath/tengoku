@@ -60,6 +60,9 @@ compares any two points, and that it cannot rank two distinct points both ways r
 /-- The lexicographic order on plane points: first coordinate, then second. -/
 def Precedes (p q : Plane) : Prop := p 0 < q 0 ∨ (p 0 = q 0 ∧ p 1 ≤ q 1)
 
+/--
+@isnad1 id=or.0h2v.s3.82fd69a79761 from=translated src=- shape=62a40b99 vocab=b9646d08
+-/
 theorem precedes_total (p q : Plane) : Precedes p q ∨ Precedes q p := by
   rcases lt_trichotomy (p 0) (q 0) with h | h | h
   · exact Or.inl (Or.inl h)
@@ -90,51 +93,73 @@ same name; that is the whole purpose. -/
 noncomputable def orientPiece (P : Piece) : Piece :=
   if Precedes P.1 P.2 then P else (P.2, P.1)
 
+/--
+@isnad1 id=eq.1h1v.s4.674e3d1d6ad6 from=translated src=- shape=e4a64fc2 vocab=e1f44b6e
+-/
 theorem orientPiece_of_precedes {P : Piece} (h : Precedes P.1 P.2) : orientPiece P = P := by
   classical
   exact ite_eq_left h
 
+/--
+@isnad1 id=eq.1h1v.s4.4dcf27121c5f from=translated src=- shape=a237c7a2 vocab=09c77647
+-/
 theorem orientPiece_of_not_precedes {P : Piece} (h : ¬ Precedes P.1 P.2) :
     orientPiece P = (P.2, P.1) := by
   classical
   exact ite_eq_right h
 
-/-- Orienting does not move the segment. -/
+/-- Orienting does not move the segment.
+@isnad1 id=eq.0h1v.s3.cdb73751cfa4 from=translated src=- shape=f589419e vocab=48599a9c
+-/
 @[simp] theorem orientPiece_seg (P : Piece) : (orientPiece P).seg = P.seg := by
   by_cases h : Precedes P.1 P.2
   · rw [orientPiece_of_precedes h]
   · rw [orientPiece_of_not_precedes h]; exact segment_symm ℝ _ _
 
-/-- Nor the interior. -/
+/-- Nor the interior.
+@isnad1 id=eq.0h1v.s3.86b6094de5c4 from=translated src=- shape=f589419e vocab=1c5be22f
+-/
 @[simp] theorem orientPiece_interior (P : Piece) : (orientPiece P).interior = P.interior := by
   by_cases h : Precedes P.1 P.2
   · rw [orientPiece_of_precedes h]
   · rw [orientPiece_of_not_precedes h]; exact openSegment_symm ℝ _ _
 
-/-- Nor which points are its ends. -/
+/-- Nor which points are its ends.
+@isnad1 id=iff.0h2v.s5.66e82afe9aeb from=translated src=- shape=c3eaa284 vocab=deca5799
+-/
 theorem orientPiece_ends (P : Piece) (z : Plane) :
     (z = (orientPiece P).1 ∨ z = (orientPiece P).2) ↔ (z = P.1 ∨ z = P.2) := by
   by_cases h : Precedes P.1 P.2
   · rw [orientPiece_of_precedes h]
   · rw [orientPiece_of_not_precedes h]; exact or_comm
 
+/--
+@isnad1 id=nondeg.1h1v.s3.caef78f5a67a from=translated src=- shape=2c86d966 vocab=f864e3f9
+-/
 theorem orientPiece_nondeg {P : Piece} (h : P.Nondeg) : (orientPiece P).Nondeg := by
   by_cases hp : Precedes P.1 P.2
   · rw [orientPiece_of_precedes hp]; exact h
   · rw [orientPiece_of_not_precedes hp]; exact fun e => h e.symm
 
-/-- The output is oriented — which is what makes `orientPiece` idempotent. -/
+/-- The output is oriented — which is what makes `orientPiece` idempotent.
+@isnad1 id=precedes.0h1v.s3.7fce2f25d6b6 from=translated src=- shape=acf5cb65 vocab=e1f44b6e
+-/
 theorem precedes_orientPiece (P : Piece) : Precedes (orientPiece P).1 (orientPiece P).2 := by
   by_cases h : Precedes P.1 P.2
   · rw [orientPiece_of_precedes h]; exact h
   · rw [orientPiece_of_not_precedes h]
     exact (precedes_total P.1 P.2).resolve_left h
 
+/--
+@isnad1 id=eq.0h1v.s3.f66c7ad2bda8 from=translated src=- shape=9bfe7af5 vocab=ec66e339
+-/
 @[simp] theorem orientPiece_idem (P : Piece) : orientPiece (orientPiece P) = orientPiece P :=
   orientPiece_of_precedes (precedes_orientPiece P)
 
 /-- **Orienting forgets the name it was given.** This is the fact that makes deduplication
-carry no geometry. -/
+carry no geometry.
+@isnad1 id=eq.0h1v.s4.6574b84fccbf from=translated src=- shape=b7e81264 vocab=d626b6df
+-/
 @[simp] theorem orientPiece_swap (P : Piece) : orientPiece (P.2, P.1) = orientPiece P := by
   by_cases h : Precedes P.1 P.2
   · rw [orientPiece_of_precedes h]
@@ -153,12 +178,18 @@ carry no geometry. -/
 `cover` only sees which pieces are in the list, so both steps of the assembly — orienting and
 deduplicating — leave it alone. -/
 
+/--
+@isnad1 id=eq.1h2v.s5.d98212bd6a0a from=translated src=- shape=b37032fa vocab=c9ef4160
+-/
 theorem cover_eq_of_mem_iff {l₁ l₂ : List Piece} (h : ∀ P, P ∈ l₁ ↔ P ∈ l₂) :
     cover l₁ = cover l₂ := by
   ext x
   simp only [cover, mem_iUnion, exists_prop]
   exact ⟨fun ⟨P, hP, hx⟩ => ⟨P, (h P).1 hP, hx⟩, fun ⟨P, hP, hx⟩ => ⟨P, (h P).2 hP, hx⟩⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.caac6e9cd9f8 from=translated src=- shape=e7904688 vocab=6e0d6bf3
+-/
 theorem cover_map_orientPiece (l : List Piece) : cover (l.map orientPiece) = cover l := by
   ext x
   simp only [cover, mem_iUnion, exists_prop, List.mem_map]
@@ -174,22 +205,32 @@ Orienting is what makes the deduplication a plain list operation. -/
 noncomputable def overlayPieces (pieces : List Piece) (points : List Plane) : List Piece :=
   ((subdivide pieces points).map orientPiece).dedup
 
+/--
+@isnad1 id=iff.0h3v.s5.eba152cdccf7 from=translated src=- shape=a8d791be vocab=ac094e7a
+-/
 theorem mem_overlayPieces {pieces : List Piece} {points : List Plane} {P : Piece} :
     P ∈ overlayPieces pieces points ↔ ∃ Q ∈ subdivide pieces points, orientPiece Q = P := by
   rw [overlayPieces, List.mem_dedup, List.mem_map]
 
-/-- The list of edges has no duplicates. -/
+/-- The list of edges has no duplicates.
+@isnad1 id=nodup.0h2v.s3.8d189744007f from=translated src=- shape=69edca47 vocab=d985cc49
+-/
 theorem overlayPieces_nodup (pieces : List Piece) (points : List Plane) :
     (overlayPieces pieces points).Nodup :=
   List.nodup_dedup _
 
-/-- Neither orienting nor deduplicating changes what the pieces occupy. -/
+/-- Neither orienting nor deduplicating changes what the pieces occupy.
+@isnad1 id=eq.0h2v.s3.dadb318721f8 from=translated src=- shape=1bfcc453 vocab=6be37f41
+-/
 theorem overlayPieces_cover (pieces : List Piece) (points : List Plane) :
     cover (overlayPieces pieces points) = cover pieces := by
   rw [overlayPieces,
     cover_eq_of_mem_iff (l₂ := (subdivide pieces points).map orientPiece) fun _ => List.mem_dedup,
     cover_map_orientPiece, subdivide_cover]
 
+/--
+@isnad1 id=nondeg.2h3v.s5.8dc7d820f31a from=translated src=- shape=05cba940 vocab=61176e17
+-/
 theorem overlayPieces_nondeg {pieces : List Piece} (points : List Plane)
     (hnd : ∀ P ∈ pieces, P.Nondeg) : ∀ P ∈ overlayPieces pieces points, P.Nondeg := by
   intro P hP
@@ -197,7 +238,9 @@ theorem overlayPieces_nondeg {pieces : List Piece} (points : List Plane)
   exact orientPiece_nondeg (subdivide_ne points hnd Q hQ)
 
 /-- Every end of every edge is a cut point: orienting does not change which points are ends,
-and `subdivide_ends_are_cuts` covers the subdivision. -/
+and `subdivide_ends_are_cuts` covers the subdivision.
+@isnad1 id=mem.3h4v.s5.b8dc51c9c00f from=translated src=- shape=3461bcb7 vocab=40b9bf12
+-/
 theorem overlayPieces_ends_cut {pieces : List Piece} {points : List Plane}
     (hEnds : EndsAreCut pieces points) :
     ∀ P ∈ overlayPieces pieces points, ∀ z, (z = P.1 ∨ z = P.2) → z ∈ points := by
@@ -205,7 +248,9 @@ theorem overlayPieces_ends_cut {pieces : List Piece} {points : List Plane}
   obtain ⟨Q, hQ, rfl⟩ := mem_overlayPieces.1 hP
   exact subdivide_ends_are_cuts hEnds Q hQ z ((orientPiece_ends Q z).1 hz)
 
-/-- And a cut point is interior to no edge. -/
+/-- And a cut point is interior to no edge.
+@isnad1 id=not.3h4v.s5.727daa030ed4 from=translated src=- shape=2dcf601d vocab=eb6ed919
+-/
 theorem overlayPieces_avoids {pieces : List Piece} {points : List Plane}
     (hnd : ∀ P ∈ pieces, P.Nondeg) :
     ∀ p ∈ points, ∀ P ∈ overlayPieces pieces points, p ∉ P.interior := by
@@ -216,7 +261,9 @@ theorem overlayPieces_avoids {pieces : List Piece} {points : List Plane}
 
 /-- **Distinct edges have disjoint interiors.** This is where separation is spent: two pieces
 sharing an interior point are the same segment, so after orienting they are the same *name*,
-and a deduplicated list holds a name once. -/
+and a deduplicated list holds a name once.
+@isnad1 id=not.7h5v.s6.b24e7284de29 from=translated src=- shape=e3197e75 vocab=40fc6e3c
+-/
 theorem overlayPieces_disjoint_interiors {pieces : List Piece} {points : List Plane}
     (hnd : ∀ P ∈ pieces, P.Nondeg) (hEnds : EndsAreCut pieces points)
     (hMeets : MeetsAreCut pieces points) {P Q : Piece}
@@ -259,21 +306,35 @@ noncomputable def overlayGraph (pieces : List Piece) (points : List Plane) :
 
 variable {pieces : List Piece} {points : List Plane} {P : Piece} {x y v : Plane}
 
+/--
+@isnad1 id=eq.0h2v.s4.a162d11a9b83 from=translated src=- shape=9c0dae06 vocab=759a64f6
+-/
 @[simp] theorem overlayGraph_vertexSet :
     V(overlayGraph pieces points) = endSet (overlayPieces pieces points) := rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.18f0a13ac189 from=translated src=- shape=7eeb0970 vocab=e074b931
+-/
 @[simp] theorem overlayGraph_mem_edgeSet :
     P ∈ E(overlayGraph pieces points) ↔ P ∈ overlayPieces pieces points := Iff.rfl
 
+/--
+@isnad1 id=iff.0h5v.s6.b2bcb37d0285 from=translated src=- shape=8a603368 vocab=69db3df0
+-/
 @[simp] theorem overlayGraph_isLink :
     (overlayGraph pieces points).IsLink P x y ↔
       P ∈ overlayPieces pieces points ∧ ((x = P.1 ∧ y = P.2) ∨ (x = P.2 ∧ y = P.1)) := Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.b41f6473a9e1 from=translated src=- shape=c5eb295f vocab=6ab28d2c
+-/
 theorem overlayGraph_mem_vertexSet :
     v ∈ V(overlayGraph pieces points) ↔ ∃ P ∈ overlayPieces pieces points, v = P.1 ∨ v = P.2 :=
   Iff.rfl
 
-/-- An end of an edge is a vertex. -/
+/-- An end of an edge is a vertex.
+@isnad1 id=inc.2h4v.s5.09dc8b6470dd from=translated src=- shape=6a24a235 vocab=753360b6
+-/
 theorem overlayGraph_inc (hP : P ∈ overlayPieces pieces points) (h : v = P.1 ∨ v = P.2) :
     (overlayGraph pieces points).Inc P v := by
   rcases h with rfl | rfl
@@ -288,11 +349,16 @@ A straight edge is drawn by the affine parametrization of its segment, so the ar
 /-- Every piece is drawn by the affine parametrization of its segment. -/
 noncomputable def segmentDrawing (P : Piece) : ℝ → Plane := AffineMap.lineMap P.1 P.2
 
+/--
+@isnad1 id=eq.0h1v.s3.43c67b82e433 from=translated src=- shape=cc5a62e3 vocab=68ac4d8e
+-/
 @[simp] theorem edgeArc_segmentDrawing (P : Piece) :
     Graph.edgeArc segmentDrawing P = P.seg :=
   (segment_eq_image_lineMap ℝ P.1 P.2).symm
 
-/-- **The overlay graph is a plane graph.** -/
+/-- **The overlay graph is a plane graph.**
+@isnad1 id=isdrawin.3h2v.s5.6523f73137c0 from=translated src=- shape=c93ec252 vocab=2ea4cbd6
+-/
 theorem overlayGraph_isDrawing (pieces : List Piece) (points : List Plane)
     (hnd : ∀ P ∈ pieces, P.Nondeg) (hEnds : EndsAreCut pieces points)
     (hMeets : MeetsAreCut pieces points) :
@@ -345,7 +411,9 @@ theorem overlayGraph_isDrawing (pieces : List Piece) (points : List Plane)
     exact ⟨⟨P, hP, hendP⟩, overlayGraph_inc hP hendP, overlayGraph_inc hQ hendQ⟩
 
 /-- What the graph occupies is what its edges occupy: every vertex is an end of an edge, so
-the vertices add nothing. -/
+the vertices add nothing.
+@isnad1 id=eq.0h2v.s4.1a73679d9ce7 from=translated src=- shape=5607da26 vocab=53f06db5
+-/
 theorem overlayGraph_pointSet (pieces : List Piece) (points : List Plane) :
     Graph.pointSet (overlayGraph pieces points) segmentDrawing = cover pieces := by
   rw [← overlayPieces_cover pieces points]
@@ -369,6 +437,9 @@ Without this the whole face and outer-face machinery of `Schoenflies/Graph/Drawi
 carries a `[G.Finite]` instance. Both sets come from one finite list, so it is immediate — but
 it has to be said, and the instance has to be found by typeclass search at the call site. -/
 
+/--
+@isnad1 id=finite.0h1v.s2.cf48a6d48015 from=translated src=- shape=12d4eb43 vocab=f2b76d87
+-/
 theorem finite_endSet (edges : List Piece) : (endSet edges).Finite := by
   -- The end set is the image of a finite list under the two projections.
   have : endSet edges ⊆ (fun P : Piece => P.1) '' {P | P ∈ edges}
@@ -379,6 +450,9 @@ theorem finite_endSet (edges : List Piece) : (endSet edges).Finite := by
   exact Set.Finite.subset
     ((edges.finite_toSet.image _).union (edges.finite_toSet.image _)) this
 
+/--
+@isnad1 id=finite.0h2v.s3.e4156bc8fede from=translated src=- shape=0a415618 vocab=3f39a627
+-/
 instance overlayGraph_finite (pieces : List Piece) (points : List Plane) :
     Graph.Finite (overlayGraph pieces points) where
   finite_vertexSet := finite_endSet _
@@ -390,7 +464,9 @@ of a *finite* plane graph.
 The finiteness clause is not decoration. Every statement about faces and about the outer face
 carries a `[G.Finite]` instance, and an existential that produced only `IsDrawing` would hide
 the graph behind a binder with no way to recover the instance — so the overlay could not be
-fed to the face machinery at all. -/
+fed to the face machinery at all.
+@isnad1 id=ex.1h1v.s5.cfa447337a18 from=translated src=- shape=10284141 vocab=e94742cd
+-/
 theorem polygonal_overlay (pieces : List Piece) (hnd : ∀ P ∈ pieces, P.Nondeg) :
     ∃ G : Graph Plane Piece, Graph.Finite G ∧ Graph.IsDrawing G segmentDrawing ∧
       Graph.pointSet G segmentDrawing = cover pieces := by

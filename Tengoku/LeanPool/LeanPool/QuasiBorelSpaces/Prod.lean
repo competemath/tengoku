@@ -47,24 +47,39 @@ private lemma isHom_def (f : ℝ → A × B)
   rw [← isVar_iff_isHom]
   rfl
 
+/--
+@isnad1 id=ishom.0h4v.s4.67182af2f733 from=translated src=- shape=0d5e9115 vocab=93aa4772
+-/
 @[simp]
 lemma isHom_fst : IsHom (Prod.fst : A × B → A) := by
   rw [QuasiBorelSpace.isHom_def]
   simp_all only [isHom_def, implies_true]
 
+/--
+@isnad1 id=ishom.1h7v.s5.2fa8216e986d from=translated src=- shape=b7e0affe vocab=93aa4772
+-/
 @[fun_prop]
 lemma isHom_fst' {f : A → B × C} (hf : IsHom f) : IsHom (fun x ↦ (f x).1) :=
   isHom_comp isHom_fst hf
 
+/--
+@isnad1 id=ishom.0h4v.s4.f1ce93b7f19a from=translated src=- shape=c96139da vocab=8795a13d
+-/
 @[simp]
 lemma isHom_snd : IsHom (Prod.snd : A × B → B) := by
   rw [QuasiBorelSpace.isHom_def]
   simp_all only [isHom_def, implies_true]
 
+/--
+@isnad1 id=ishom.1h7v.s5.72d02ef22b38 from=translated src=- shape=e2f63da7 vocab=8795a13d
+-/
 @[fun_prop]
 lemma isHom_snd' {f : A → B × C} (hf : IsHom f) : IsHom (fun x ↦ (f x).2) :=
   isHom_comp isHom_snd hf
 
+/--
+@isnad1 id=ishom.2h8v.s5.b7b1c0a89568 from=translated src=- shape=cc2f1845 vocab=a6d48b04
+-/
 @[fun_prop]
 lemma isHom_mk
     {f : A → B} (hf : IsHom f)
@@ -73,6 +88,9 @@ lemma isHom_mk
   rw [QuasiBorelSpace.isHom_def] at ⊢ hf hg
   simp_all
 
+/--
+@isnad1 id=iff.0h7v.s5.2eff5c8985ee from=translated src=- shape=a1bd7da7 vocab=813a8c29
+-/
 @[simp]
 lemma isHom_iff (f : A → B × C) : IsHom f ↔ IsHom (fun x ↦ (f x).1) ∧ IsHom (fun x ↦ (f x).2) := by
   apply Iff.intro
@@ -93,11 +111,17 @@ instance
     · intro h
       exact ⟨by fun_prop, by fun_prop⟩
 
+/--
+@isnad1 id=ishom.2h10v.s6.8b5c82e8336c from=translated src=- shape=27f79a31 vocab=b9c454c8
+-/
 @[fun_prop]
 lemma isHom_map {f : A → B} {g : C → D} (hf : IsHom f) (hg : IsHom g) : IsHom (Prod.map f g) := by
   simp only [isHom_iff, Prod.map_fst, Prod.map_snd]
   apply And.intro <;> fun_prop
 
+/--
+@isnad1 id=ishom.3h11v.s6.de736f2e7994 from=translated src=- shape=1a9407fa vocab=d2f864ac
+-/
 lemma isHom_of_uncurry
     {f : A → B → C} (hf : IsHom (Function.uncurry f))
     {g : D → A} (hg : IsHom g)
@@ -132,6 +156,9 @@ variable {A B : Type*} [QuasiBorelSpace A] [QuasiBorelSpace B]
 
 namespace Measure
 
+/--
+@isnad1 id=ishom.1h4v.s6.3a7e4e565b2b from=translated src=- shape=0f7ded2e vocab=e10c9e10
+-/
 @[fun_prop]
 lemma isHom_lintegral
     [MeasurableSpace B] [StandardBorelSpace B] [MeasurableQuasiBorelSpace B]

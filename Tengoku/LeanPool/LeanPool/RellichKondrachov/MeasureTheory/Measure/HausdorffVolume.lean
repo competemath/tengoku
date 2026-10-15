@@ -33,9 +33,14 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDim
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceHausdorffVolume : MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.1c48df8d4d49 from=translated src=- shape=c6850a32 vocab=bb589eda
+-/
 local instance instBorelSpaceHausdorffVolume : BorelSpace E := ⟨rfl⟩
 
-/-- `μH[finrank]` is a scalar multiple of `volume` on a finite-dimensional real normed space. -/
+/-- `μH[finrank]` is a scalar multiple of `volume` on a finite-dimensional real normed space.
+@isnad1 id=eq.0h1v.s8.65e1b0308907 from=translated src=- shape=37a1fbc7 vocab=605063e6
+-/
 theorem hausdorffMeasure_eq_smul_volume :
     (μH[(Module.finrank ℝ E : ℝ)] : Measure E) =
       ((μH[(Module.finrank ℝ E : ℝ)] (Metric.closedBall (0 : E) 1)) /
@@ -92,7 +97,9 @@ theorem hausdorffMeasure_eq_smul_volume :
 /-! ### Inverting the proportionality -/
 
 /-- `volume` is a scalar multiple of `μH[finrank]` on a finite-dimensional
-real inner product space. -/
+real inner product space.
+@isnad1 id=eq.0h1v.s8.46118aa428b9 from=translated src=- shape=fe9b0141 vocab=605063e6
+-/
 theorem volume_eq_smul_hausdorffMeasure :
     (volume : Measure E) =
       (((volume : Measure E) (Metric.closedBall (0 : E) 1)) /

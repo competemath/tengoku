@@ -86,6 +86,9 @@ noncomputable def arcParam (f : ℝ → Plane) (p : Plane) : ℝ :=
 
 variable {f f' : ℝ → Plane} {g : Plane → Plane} {p : Plane} {s u : ℝ}
 
+/--
+@isnad1 id=and.1h2v.s5.4677a51fc263 from=translated src=- shape=7f5e09eb vocab=4862de12
+-/
 theorem arcParam_spec (hp : p ∈ f '' I) : arcParam f p ∈ I ∧ f (arcParam f p) = p := by
   have h : ∃ s, s ∈ I ∧ f s = p := by
     obtain ⟨s, hs, rfl⟩ := hp
@@ -93,11 +96,19 @@ theorem arcParam_spec (hp : p ∈ f '' I) : arcParam f p ∈ I ∧ f (arcParam f
   rw [arcParam, dite_eq_left h]
   exact h.choose_spec
 
+/--
+@isnad1 id=mem.1h2v.s4.e0f00ab78c8a from=translated src=- shape=a746a8e0 vocab=4862de12
+-/
 theorem arcParam_mem_I (hp : p ∈ f '' I) : arcParam f p ∈ I := (arcParam_spec hp).1
 
+/--
+@isnad1 id=eq.1h2v.s4.7d41257aa805 from=translated src=- shape=109042f1 vocab=4862de12
+-/
 theorem apply_arcParam (hp : p ∈ f '' I) : f (arcParam f p) = p := (arcParam_spec hp).2
 
-/-- Under injectivity the chosen parameter is the only one. -/
+/-- Under injectivity the chosen parameter is the only one.
+@isnad1 id=eq.3h3v.s5.8c900cbf3540 from=translated src=- shape=04ff7e3a vocab=60bb531c
+-/
 theorem arcParam_eq_of_apply (hi : InjOn f I) (hs : s ∈ I) (hfs : f s = p) : arcParam f p = s :=
   hi (arcParam_mem_I ⟨s, hs, hfs⟩) hs ((apply_arcParam ⟨s, hs, hfs⟩).trans hfs.symm)
 
@@ -137,22 +148,35 @@ namespace ArcMatch
 variable (h : ArcMatch f f' g)
 include h
 
+/--
+@isnad1 id=mem.2h4v.s5.bde9936dce78 from=translated src=- shape=a94fcd12 vocab=77813893
+-/
 theorem mem_image_map (hs : s ∈ I) : g (f s) ∈ f' '' I := by
   rw [← h.image_eq]
   exact ⟨f s, ⟨s, hs, rfl⟩, rfl⟩
 
+/--
+@isnad1 id=mem.2h4v.s5.f69fb4666b09 from=translated src=- shape=e81c6cb5 vocab=258c14fe
+-/
 theorem param_mem_I (hs : s ∈ I) : transferParam f f' g s ∈ I :=
   arcParam_mem_I (h.mem_image_map hs)
 
 /-- **The defining property**: the target parametrization at the transferred parameter is the
-image of the source parametrization. -/
+image of the source parametrization.
+@isnad1 id=eq.2h4v.s5.6c2f1b33a9a6 from=translated src=- shape=e474cd8d vocab=258c14fe
+-/
 theorem apply_param (hs : s ∈ I) : f' (transferParam f f' g s) = g (f s) :=
   apply_arcParam (h.mem_image_map hs)
 
-/-- The transferred parameter is characterized, not merely chosen. -/
+/-- The transferred parameter is characterized, not merely chosen.
+@isnad1 id=eq.3h5v.s5.aeada20bd4ea from=translated src=- shape=2314e1d4 vocab=258c14fe
+-/
 theorem param_eq (hu : u ∈ I) (heq : f' u = g (f s)) : transferParam f f' g s = u :=
   arcParam_eq_of_apply h.injOn_tgt hu heq
 
+/--
+@isnad1 id=injon.1h3v.s4.e7d730804e8c from=translated src=- shape=5a4b8746 vocab=9e57ba08
+-/
 theorem injOn_param : InjOn (transferParam f f' g) I := by
   intro s hs u hu hsu
   -- Equal transferred parameters give equal images, and both maps are injective.
@@ -163,7 +187,9 @@ theorem injOn_param : InjOn (transferParam f f' g) I := by
 /-- **The transfer map is continuous.** This is the continuity of the inverse parametrization
 `f'⁻¹`, in the only form needed, and it is proved from the fact that a parametrization is an open
 map onto its arc: a prescribed parameter window around `transferParam f f' g s` pulls back to a
-ball around `g (f s)`, and continuity of `g ∘ f` turns that into a parameter window around `s`. -/
+ball around `g (f s)`, and continuity of `g ∘ f` turns that into a parameter window around `s`.
+@isnad1 id=continuo.1h3v.s5.341a5602f342 from=translated src=- shape=5a4b8746 vocab=826a6b42
+-/
 theorem continuousOn_param : ContinuousOn (transferParam f f' g) I := by
   intro s hs
   rw [Metric.continuousWithinAt_iff]
@@ -192,25 +218,34 @@ theorem continuousOn_param : ContinuousOn (transferParam f f' g) I := by
 
 /-- **The transfer map is strictly monotone**, in one direction or the other. Which one is
 decided by the endpoints; every conclusion below that does not mention an endpoint holds in
-both cases. -/
+both cases.
+@isnad1 id=or.1h3v.s5.18cf81e54738 from=translated src=- shape=59ea2a29 vocab=b6c81a34
+-/
 theorem strictMonoOn_or_strictAntiOn_param :
     StrictMonoOn (transferParam f f' g) I ∨ StrictAntiOn (transferParam f f' g) I :=
   ContinuousOn.strictMonoOn_of_injOn_Icc' zero_le_one h.continuousOn_param h.injOn_param
 
 /-- **Every target parameter is hit.** `g` is onto the target arc and `f'` parametrizes it, so
-the transfer map is onto `[0, 1]` — this is where `image_eq` earns its keep. -/
+the transfer map is onto `[0, 1]` — this is where `image_eq` earns its keep.
+@isnad1 id=le.1h3v.s4.6e4cffbdae12 from=translated src=- shape=52a08784 vocab=c00cb71a
+-/
 theorem surjOn_param : I ⊆ transferParam f f' g '' I := by
   intro v hv
   have hmem : f' v ∈ g '' (f '' I) := by rw [h.image_eq]; exact ⟨v, hv, rfl⟩
   obtain ⟨y, ⟨x, hx, rfl⟩, hy⟩ := hmem
   exact ⟨x, hx, h.param_eq hv hy.symm⟩
 
-/-- The transfer map is a bijection of the parameter interval. -/
+/-- The transfer map is a bijection of the parameter interval.
+@isnad1 id=eq.1h3v.s4.ce1d7eb889e6 from=translated src=- shape=4ace9131 vocab=4f7e8f7b
+-/
 theorem image_param_I : transferParam f f' g '' I = I :=
   subset_antisymm (by rintro _ ⟨x, hx, rfl⟩; exact h.param_mem_I hx) h.surjOn_param
 
 /-! ### The image of a parameter interval -/
 
+/--
+@isnad1 id=mem.4h6v.s6.c353c8588681 from=translated src=- shape=ceeb7706 vocab=a2d59660
+-/
 theorem param_mem_uIcc (hs : s ∈ I) (hu : u ∈ I) {x : ℝ} (hx : x ∈ uIcc s u) :
     transferParam f f' g x ∈ uIcc (transferParam f f' g s) (transferParam f f' g u) := by
   have hxI : x ∈ I := uIcc_subset_I hs hu hx
@@ -224,7 +259,9 @@ theorem param_mem_uIcc (hs : s ∈ I) (hu : u ∈ I) {x : ℝ} (hx : x ∈ uIcc 
     · exact Or.inl ⟨hm.antitoneOn hxI hs h₂, hm.antitoneOn hu hxI h₁⟩
 
 /-- **The transfer map carries a parameter interval onto the corresponding one.** Stated over
-`uIcc`, so it is indifferent to the direction of either traversal. -/
+`uIcc`, so it is indifferent to the direction of either traversal.
+@isnad1 id=eq.3h5v.s6.0c970ce6368a from=translated src=- shape=5e96affc vocab=069836f1
+-/
 theorem image_param_uIcc (hs : s ∈ I) (hu : u ∈ I) :
     transferParam f f' g '' uIcc s u =
       uIcc (transferParam f f' g s) (transferParam f f' g u) := by
@@ -235,7 +272,9 @@ theorem image_param_uIcc (hs : s ∈ I) (hu : u ∈ I) :
     exact intermediate_value_uIcc (h.continuousOn_param.mono (uIcc_subset_I hs hu))
 
 /-- **The map carries a subarc onto the corresponding subarc.** The form every consumer wants,
-and the reason for this file. -/
+and the reason for this file.
+@isnad1 id=eq.3h5v.s6.6fece78850bc from=translated src=- shape=2e7bb805 vocab=069836f1
+-/
 theorem image_image_uIcc (hs : s ∈ I) (hu : u ∈ I) :
     g '' (f '' uIcc s u) =
       f' '' uIcc (transferParam f f' g s) (transferParam f f' g u) := by
@@ -243,7 +282,9 @@ theorem image_image_uIcc (hs : s ∈ I) (hu : u ∈ I) :
   refine image_congr fun x hx => ?_
   exact (h.apply_param (uIcc_subset_I hs hu hx)).symm
 
-/-- The same in the vocabulary of `Schoenflies/Subarc.lean`. -/
+/-- The same in the vocabulary of `Schoenflies/Subarc.lean`.
+@isnad1 id=eq.3h5v.s6.5e7058121368 from=translated src=- shape=723d43db vocab=fb53ff57
+-/
 theorem image_subarc (hs : s ∈ I) (hu : u ∈ I) :
     g '' (subarc f s u '' I) =
       subarc f' (transferParam f f' g s) (transferParam f f' g u) '' I := by
@@ -256,17 +297,25 @@ section Endpoints
 variable (h0 : g (f 0) = f' 0)
 include h0
 
+/--
+@isnad1 id=eq.2h3v.s5.66ba6cd6f68f from=translated src=- shape=90c7c7a9 vocab=99465f7c
+-/
 theorem param_zero : transferParam f f' g 0 = 0 := h.param_eq zero_mem_I h0.symm
 
 /-- With the starting points matched the transfer map increases. If it decreased, the whole
 interval would map below `transferParam f f' g 0 = 0`, which is impossible since transferred
-parameters lie in `[0, 1]`. -/
+parameters lie in `[0, 1]`.
+@isnad1 id=strictmo.2h3v.s5.b1f25af7fe20 from=translated src=- shape=07a3cce6 vocab=f399252d
+-/
 theorem strictMonoOn_param : StrictMonoOn (transferParam f f' g) I := by
   rcases h.strictMonoOn_or_strictAntiOn_param with hm | hm
   · exact hm
   · exact absurd (hm zero_mem_I one_mem_I zero_lt_one)
       (by rw [h.param_zero h0]; exact not_lt.2 (h.param_mem_I one_mem_I).1)
 
+/--
+@isnad1 id=eq.2h3v.s5.fda6cfb8dbb1 from=translated src=- shape=90c7c7a9 vocab=99465f7c
+-/
 theorem param_one : transferParam f f' g 1 = 1 := by
   -- The parameter `1` is attained somewhere, and the transfer map is largest at `1`.
   obtain ⟨x, hx, hxv⟩ := h.surjOn_param one_mem_I
@@ -274,19 +323,25 @@ theorem param_one : transferParam f f' g 1 = 1 := by
   rw [hxv] at hge
   exact le_antisymm (h.param_mem_I one_mem_I).2 hge
 
-/-- **Initial subarcs correspond.** -/
+/-- **Initial subarcs correspond.**
+@isnad1 id=eq.3h4v.s6.189add5d8700 from=translated src=- shape=32395725 vocab=646ce2e2
+-/
 theorem image_initial (hu : u ∈ I) :
     g '' (f '' Icc 0 u) = f' '' Icc 0 (transferParam f f' g u) := by
   have := h.image_image_uIcc zero_mem_I hu
   rwa [uIcc_of_le hu.1, h.param_zero h0, uIcc_of_le (h.param_mem_I hu).1] at this
 
-/-- **Terminal subarcs correspond.** -/
+/-- **Terminal subarcs correspond.**
+@isnad1 id=eq.3h4v.s6.26509449457f from=translated src=- shape=d6894b4a vocab=646ce2e2
+-/
 theorem image_terminal (hu : u ∈ I) :
     g '' (f '' Icc u 1) = f' '' Icc (transferParam f f' g u) 1 := by
   have := h.image_image_uIcc hu one_mem_I
   rwa [uIcc_of_le hu.2, h.param_one h0, uIcc_of_le (h.param_mem_I hu).2] at this
 
-/-- An interior parameter transfers to an interior parameter. -/
+/-- An interior parameter transfers to an interior parameter.
+@isnad1 id=mem.3h4v.s6.e7fc5d98e752 from=translated src=- shape=03747fef vocab=e6d72647
+-/
 theorem param_mem_Ioo (hu : u ∈ Ioo (0 : ℝ) 1) : transferParam f f' g u ∈ Ioo (0 : ℝ) 1 := by
   have hm := h.strictMonoOn_param h0
   refine ⟨?_, ?_⟩
@@ -299,7 +354,9 @@ end Endpoints
 
 /-- An interior parameter transfers to an interior parameter, without assuming which way the two
 parametrizations run: the two endpoints go to the two endpoints in one order or the other, and
-strict monotonicity keeps the inside inside. -/
+strict monotonicity keeps the inside inside.
+@isnad1 id=mem.3h4v.s7.844638cde350 from=translated src=- shape=f6b9adf0 vocab=e6d72647
+-/
 theorem param_mem_Ioo_of_ends (hends : (transferParam f f' g 0 = 0 ∧ transferParam f f' g 1 = 1) ∨
     (transferParam f f' g 0 = 1 ∧ transferParam f f' g 1 = 0)) (hu : u ∈ Ioo (0 : ℝ) 1) :
     transferParam f f' g u ∈ Ioo (0 : ℝ) 1 := by

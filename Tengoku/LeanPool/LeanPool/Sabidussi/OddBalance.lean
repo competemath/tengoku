@@ -29,12 +29,21 @@ namespace OddBalance
 /-- The field with two elements, used for the parity counting argument. -/
 abbrev F2 := ZMod 2
 
+/--
+@isnad1 id=eq.0h1v.s7.fbb436601e22 from=translated src=- shape=bf2b87a2 vocab=4d49f441
+-/
 lemma F2.indicator_zero (a : F2) : (if a = 0 then 1 else 0) = 1 + a := by
   fin_cases a <;> decide
 
+/--
+@isnad1 id=eq.0h1v.s4.d9f6d962981a from=translated src=- shape=3689129f vocab=2b1e5d2b
+-/
 lemma F2.mul_self (a : F2) : a * a = a := by
   fin_cases a <;> rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.90cde0bcc7ea from=translated src=- shape=1347b6cc vocab=c126bf1a
+-/
 lemma F2.add_self (a : F2) : a + a = 0 := by
   fin_cases a <;> decide
 
@@ -51,6 +60,9 @@ def obstruction (b : V → V → Fin 3 → Fin 3 → F2) (x : V → Fin 3) (v : 
 def solutions (b : V → V → Fin 3 → Fin 3 → F2) : Finset (V → Fin 3) :=
   Finset.univ.filter fun x => ∀ v, obstruction b x v = 0
 
+/--
+@isnad1 id=eq.0h2v.s7.40312de70402 from=translated src=- shape=d96fffbc vocab=827c4ad7
+-/
 lemma cast_solutions_card (b : V → V → Fin 3 → Fin 3 → F2) :
     ((solutions b).card : F2) =
       ∑ x : V → Fin 3, ∏ v : V, (1 + obstruction b x v) := by
@@ -73,12 +85,18 @@ lemma cast_solutions_card (b : V → V → Fin 3 → Fin 3 → F2) :
       exact F2.indicator_zero _
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h2v.s6.48bb029959e7 from=translated src=- shape=c504ba4f vocab=f4696d49
+-/
 lemma prod_one_add_expand (q : V → F2) :
     (∏ v : V, (1 + q v)) =
       ∑ S ∈ Finset.univ.powerset, ∏ v ∈ S, q v := by
   classical
   simpa [add_comm] using Finset.prod_add q (fun _ : V => (1 : F2)) Finset.univ
 
+/--
+@isnad1 id=eq.0h2v.s8.6fb546e949e4 from=translated src=- shape=9775f68b vocab=84147331
+-/
 lemma sum_prod_one_add_expand (q : (V → Fin 3) → V → F2) :
     (∑ x : V → Fin 3, ∏ v : V, (1 + q x v)) =
       ∑ S ∈ Finset.univ.powerset, ∑ x : V → Fin 3, ∏ v ∈ S, q x v := by
@@ -86,6 +104,9 @@ lemma sum_prod_one_add_expand (q : (V → Fin 3) → V → F2) :
   exact Finset.sum_comm
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h4v.s9.15868a3ea29c from=translated src=- shape=2cf70d0c vocab=93cbc9dc
+-/
 lemma prod_sum_expand (S : Finset V) (t : V → Finset V) (a : V → V → F2) :
     (∏ v ∈ S, ∑ u ∈ t v, a v u) =
       ∑ f : (v : {v // v ∈ S}) → {u // u ∈ t v},
@@ -104,6 +125,9 @@ def choiceTerm (b : V → V → Fin 3 → Fin 3 → F2) (S : Finset V)
     (f : Choice S) (x : V → Fin 3) : F2 :=
   ∏ v : {v // v ∈ S}, b v (f v) (x v) (x (f v))
 
+/--
+@isnad1 id=eq.0h4v.s8.70b80df8184d from=translated src=- shape=512efdb3 vocab=415e086c
+-/
 lemma obstruction_product_expand
     (b : V → V → Fin 3 → Fin 3 → F2) (S : Finset V) (x : V → Fin 3) :
     (∏ v ∈ S, obstruction b x v) =
@@ -123,6 +147,9 @@ def totalChoiceTerm (b : V → V → Fin 3 → Fin 3 → F2)
     (S : Finset V) (f : Choice S) : F2 :=
   ∑ x : V → Fin 3, choiceTerm b S f x
 
+/--
+@isnad1 id=eq.0h3v.s8.0deef5bff7fa from=translated src=- shape=77053fcd vocab=87ce574b
+-/
 lemma sum_obstruction_product_expand
     (b : V → V → Fin 3 → Fin 3 → F2) (S : Finset V) :
     (∑ x : V → Fin 3, ∏ v ∈ S, obstruction b x v) =
@@ -130,6 +157,9 @@ lemma sum_obstruction_product_expand
   simp_rw [obstruction_product_expand]
   exact Finset.sum_comm
 
+/--
+@isnad1 id=eq.0h5v.s8.1248e3d55e6a from=translated src=- shape=45ea8b05 vocab=b9170db2
+-/
 lemma sum_fun_split_at {A M : Type*} [Fintype A] [AddCommMonoid M]
     (w : V) (F : (V → A) → M) :
     (∑ x : V → A, F x) =
@@ -144,6 +174,9 @@ lemma sum_fun_split_at {A M : Type*} [Fintype A] [AddCommMonoid M]
             exact congrArg F ((Equiv.funSplitAt w A).symm_apply_apply x).symm
     _ = _ := Fintype.sum_prod_type _
 
+/--
+@isnad1 id=eq.1h5v.s6.75c4f06e7a74 from=translated src=- shape=ef9357ff vocab=62e5a026
+-/
 lemma Fintype.prod_eq_mul_mul_prod_compl_pair {M : Type*} [CommMonoid M]
     {ι : Type*} [Fintype ι] [DecidableEq ι] (a b : ι) (h : a ≠ b) (g : ι → M) :
     (∏ i, g i) = g a * g b * ∏ i ∈ ({a, b} : Finset ι)ᶜ, g i := by
@@ -155,6 +188,9 @@ lemma Fintype.prod_eq_mul_mul_prod_compl_pair {M : Type*} [CommMonoid M]
       Finset.mem_insert, not_or]
   rw [hset, mul_assoc]
 
+/--
+@isnad1 id=eq.4h6v.s8.bc9b42d716a0 from=translated src=- shape=8058a68b vocab=16e7908f
+-/
 lemma totalChoiceTerm_eq_zero_of_source_leaf
     (b : V → V → Fin 3 → Fin 3 → F2)
     (hsymm : ∀ v u a c, b v u a c = b u v c a)
@@ -196,6 +232,9 @@ lemma totalChoiceTerm_eq_zero_of_source_leaf
           exact hsymm _ _ _ _
     _ = 0 := hrow (f v₀) w (y ⟨f v₀, hnotTarget v₀⟩)
 
+/--
+@isnad1 id=eq.4h6v.s8.8d9deec10d05 from=translated src=- shape=0c87b0f9 vocab=16e7908f
+-/
 lemma totalChoiceTerm_eq_zero_of_target_leaf
     (b : V → V → Fin 3 → Fin 3 → F2)
     (hrow : ∀ v u a, ∑ c : Fin 3, b v u a c = 0)
@@ -227,6 +266,9 @@ lemma totalChoiceTerm_eq_zero_of_target_leaf
   rw [← Finset.sum_mul]
   rw [hrow, zero_mul]
 
+/--
+@isnad1 id=eq.7h6v.s8.f9bef1253d70 from=translated src=- shape=55ef12b1 vocab=16e7908f
+-/
 lemma totalChoiceTerm_eq_zero_of_twoCycle
     (b : V → V → Fin 3 → Fin 3 → F2)
     (hsymm : ∀ v u a c, b v u a c = b u v c a)
@@ -308,11 +350,17 @@ def Derangement.inv {S : Finset V} (d : Derangement S) : Derangement S :=
       _ = v := d.1.apply_symm_apply v⟩
 
 omit [DecidableEq V] [Fintype V] in
+/--
+@isnad1 id=eq.0h3v.s4.73ca45971448 from=translated src=- shape=a5bc72c5 vocab=ab25a56b
+-/
 lemma Derangement.inv_inv {S : Finset V} (d : Derangement S) : d.inv.inv = d := by
   apply Subtype.ext
   exact d.1.symm_symm
 
 omit [DecidableEq V] [Fintype V] in
+/--
+@isnad1 id=eq.1h5v.s6.cea01db91bf1 from=translated src=- shape=4f6b4797 vocab=b3c3cd4a
+-/
 lemma choiceTerm_derangement_inv
     (b : V → V → Fin 3 → Fin 3 → F2)
     (hsymm : ∀ v u a c, b v u a c = b u v c a)
@@ -332,6 +380,9 @@ lemma choiceTerm_derangement_inv
         (d.1.symm.prod_comp (fun v : {v // v ∈ S} =>
           b v (d.1 v) (x v) (x (d.1 v))))
 
+/--
+@isnad1 id=eq.1h4v.s6.69e1847fa0c3 from=translated src=- shape=60e39aa8 vocab=7f952dca
+-/
 lemma totalChoiceTerm_derangement_inv
     (b : V → V → Fin 3 → Fin 3 → F2)
     (hsymm : ∀ v u a c, b v u a c = b u v c a)
@@ -341,6 +392,9 @@ lemma totalChoiceTerm_derangement_inv
   intro x
   exact choiceTerm_derangement_inv b hsymm S d x
 
+/--
+@isnad1 id=eq.4h4v.s7.f5cb4c84c8bf from=translated src=- shape=d6e3c629 vocab=a051a4d0
+-/
 lemma totalChoiceTerm_eq_zero_of_derangement_inv_eq_self
     (b : V → V → Fin 3 → Fin 3 → F2)
     (hsymm : ∀ v u a c, b v u a c = b u v c a)
@@ -413,6 +467,9 @@ def Derangement.toCoveredChoice {S : Finset V} (d : Derangement S) : CoveredChoi
     exact congrArg Subtype.val (d.1.apply_symm_apply w)⟩⟩
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h3v.s7.2c829af61320 from=translated src=- shape=c42be8dc vocab=6953b78d
+-/
 lemma CoveredChoice.toDerangement_choice {S : Finset V} (c : CoveredChoice S) :
     c.toDerangement.choice = c.1 := by
   funext v
@@ -420,6 +477,9 @@ lemma CoveredChoice.toDerangement_choice {S : Finset V} (c : CoveredChoice S) :
   rfl
 
 omit [DecidableEq V] [Fintype V] in
+/--
+@isnad1 id=injectiv.0h2v.s4.0b2fa315ea09 from=translated src=- shape=a4dd0a80 vocab=9d8418da
+-/
 lemma Derangement.choice_injective {S : Finset V} :
     Function.Injective (fun d : Derangement S => d.choice) := by
   intro d e h
@@ -441,6 +501,9 @@ noncomputable def coveredChoiceEquivDerangement (S : Finset V) :
     apply Derangement.choice_injective
     exact CoveredChoice.toDerangement_choice d.toCoveredChoice
 
+/--
+@isnad1 id=eq.3h3v.s7.f83b292eb680 from=translated src=- shape=d3428170 vocab=eeef076c
+-/
 lemma sum_derangement_totalChoiceTerm_eq_zero
     (b : V → V → Fin 3 → Fin 3 → F2)
     (hsymm : ∀ v u a c, b v u a c = b u v c a)
@@ -462,6 +525,9 @@ lemma sum_derangement_totalChoiceTerm_eq_zero
   · intro d _
     exact Derangement.inv_inv d
 
+/--
+@isnad1 id=eq.3h3v.s8.7953989d0d50 from=translated src=- shape=082ce751 vocab=d5f23878
+-/
 lemma sum_coveredChoice_totalChoiceTerm_eq_zero
     (b : V → V → Fin 3 → Fin 3 → F2)
     (hsymm : ∀ v u a c, b v u a c = b u v c a)
@@ -479,6 +545,9 @@ lemma sum_coveredChoice_totalChoiceTerm_eq_zero
             (CoveredChoice.toDerangement_choice c).symm
     _ = 0 := sum_derangement_totalChoiceTerm_eq_zero b hsymm hrow S hS
 
+/--
+@isnad1 id=eq.3h3v.s8.fdbd01f6c44e from=translated src=- shape=fc3028be vocab=c0aec709
+-/
 lemma sum_choice_totalChoiceTerm_eq_zero
     (b : V → V → Fin 3 → Fin 3 → F2)
     (hsymm : ∀ v u a c, b v u a c = b u v c a)
@@ -513,6 +582,9 @@ lemma sum_choice_totalChoiceTerm_eq_zero
               (fun f => totalChoiceTerm b S f)).symm
     _ = 0 := by rw [hgood, hbad, add_zero]
 
+/--
+@isnad1 id=eq.3h3v.s8.11c4c6d9e9af from=translated src=- shape=0b248b4f vocab=9e3f9442
+-/
 lemma sum_obstruction_product_eq_zero
     (b : V → V → Fin 3 → Fin 3 → F2)
     (hsymm : ∀ v u a c, b v u a c = b u v c a)
@@ -522,12 +594,18 @@ lemma sum_obstruction_product_eq_zero
   rw [sum_obstruction_product_expand]
   exact sum_choice_totalChoiceTerm_eq_zero b hsymm hrow S hS
 
+/--
+@isnad1 id=eq.0h1v.s6.ba8ba5eb6039 from=translated src=- shape=be2e6238 vocab=09c81bd7
+-/
 lemma sum_one_fin3_assignments : (∑ _x : V → Fin 3, (1 : F2)) = 1 := by
   simp only [Finset.sum_const, Finset.card_univ, Fintype.card_fun,
     Fintype.card_fin, nsmul_eq_mul, mul_one, Nat.cast_pow, Nat.cast_ofNat]
   rw [show (3 : F2) = 1 by decide]
   simp
 
+/--
+@isnad1 id=eq.2h2v.s7.5534c98df52f from=translated src=- shape=202c5930 vocab=0797e53d
+-/
 theorem cast_solutions_card_eq_one
     (b : V → V → Fin 3 → Fin 3 → F2)
     (hsymm : ∀ v u a c, b v u a c = b u v c a)
@@ -542,6 +620,9 @@ theorem cast_solutions_card_eq_one
     simpa only [Finset.nonempty_iff_ne_empty] using hSne
   · simp
 
+/--
+@isnad1 id=odd.2h2v.s7.ce3bf57c2d40 from=translated src=- shape=97e9ef49 vocab=5a1eac10
+-/
 theorem solutions_card_odd
     (b : V → V → Fin 3 → Fin 3 → F2)
     (hsymm : ∀ v u a c, b v u a c = b u v c a)
@@ -549,7 +630,9 @@ theorem solutions_card_odd
     Odd (solutions b).card :=
   ZMod.natCast_eq_one_iff_odd.mp (cast_solutions_card_eq_one b hsymm hrow)
 
-/-- A symmetric row-cancelling interaction has a balanced choice at every vertex. -/
+/-- A symmetric row-cancelling interaction has a balanced choice at every vertex.
+@isnad1 id=ex.2h2v.s7.832bdb152a0d from=translated src=- shape=dcc6ce57 vocab=a741287b
+-/
 theorem exists_balanced
     (b : V → V → Fin 3 → Fin 3 → F2)
     (hsymm : ∀ v u a c, b v u a c = b u v c a)

@@ -35,7 +35,9 @@ section
 
 variable (a : ℤ)
 
-/-- If `-a` is not a rational square then `a ≠ 0`, since `-0` is. -/
+/-- If `-a` is not a rational square then `a ≠ 0`, since `-0` is.
+@isnad1 id=ne.1h1v.s4.2b73c32bc481 from=translated src=- shape=f7f0d792 vocab=ddd0498a
+-/
 lemma ne_zero_of_not_isSquare_neg (ha : ¬IsSquare (-a : ℚ)) : a ≠ 0 := by
   rintro rfl; exact ha (by simp)
 
@@ -44,6 +46,9 @@ private lemma ne_neg_one_of_not_isSquare_neg (ha : ¬IsSquare (-a : ℚ)) : a �
 
 /-! ### Even factorizations and non-square `c_n` -/
 
+/--
+@isnad1 id=le.2h2v.s5.e8b8354a17d6 from=translated src=- shape=accc2331 vocab=3b5406ba
+-/
 lemma abs_le_cSeq (ha : ¬IsSquare (-a : ℚ)) {n : ℕ} (hn : 2 ≤ n) : |a| ≤ cSeq a n := by
   have ha1 := ne_neg_one_of_not_isSquare_neg a ha
   induction n, hn using Nat.le_induction with
@@ -58,12 +63,17 @@ lemma abs_le_cSeq (ha : ¬IsSquare (-a : ℚ)) {n : ℕ} (hn : 2 ≤ n) : |a| �
     · nlinarith [sq_nonneg (cSeq a k)]
     · nlinarith [show a ≤ -2 by lia, sq_nonneg (cSeq a k + a)]
 
-/-- Lemma 1.1 a): `c_n > 0` for all `n ≥ 2`. -/
+/-- Lemma 1.1 a): `c_n > 0` for all `n ≥ 2`.
+@isnad1 id=lt.2h2v.s5.58b7ec012a3d from=translated src=- shape=afee1a4e vocab=ae069cd8
+-/
 theorem cSeq_pos (ha : ¬IsSquare (-a : ℚ)) {n : ℕ} (hn : 2 ≤ n) : 0 < cSeq a n := by
   have h := abs_le_cSeq a ha hn
   have h0 : 0 < |a| := abs_pos.mpr (ne_zero_of_not_isSquare_neg a ha)
   lia
 
+/--
+@isnad1 id=eq.0h2v.s6.699af5a3cf44 from=translated src=- shape=b5b9cd71 vocab=dc7a7ea4
+-/
 lemma map_iteratedPoly_comp_neg_X (k : ℕ) : (fℚ[a, k + 1]).comp (-X) = fℚ[a, k + 1] := by
   rw [map_iteratedPoly_succ, comp_assoc, X_sq_add_C_comp_neg_X]
 
@@ -123,7 +133,9 @@ private theorem exists_normalizedFactors_involution_split {p : ℚ[X]} (hp0 : p 
   exact Multiset.exists_add_map_of_involutive τ M hτinv hinvM hfixM
 
 /-- A reducible monic even polynomial with no nontrivial even divisors factors as
-`(-1) ^ (deg g) · p = g · g(-X)`: its irreducible factors pair up under `X ↦ -X`. -/
+`(-1) ^ (deg g) · p = g · g(-X)`: its irreducible factors pair up under `X ↦ -X`.
+@isnad1 id=ex.4h1v.s8.d08407d80ed0 from=translated src=- shape=e8963476 vocab=472fc6df
+-/
 theorem even_reducible_factorization {p : ℚ[X]} (hmonic : p.Monic)
     (heven : p.comp (-X) = p) (hpirr : ¬ Irreducible p)
     (hnoeven : ∀ d : ℚ[X], d ∣ p → Associated (d.comp (-X)) d → IsUnit d ∨ Associated d p) :
@@ -166,6 +178,9 @@ theorem even_reducible_factorization {p : ℚ[X]} (hmonic : p.Monic)
         rw [← mul_pow, neg_mul_neg, one_mul, one_pow],
       map_one, one_mul]
 
+/--
+@isnad1 id=eq.1h2v.s6.1ae88eca2325 from=translated src=- shape=a4349fe7 vocab=87f6b416
+-/
 lemma intCast_cSeq_eq_ite_mul_eval_zero {m : ℕ} (hm : 1 ≤ m) :
     (cSeq a m : ℚ) = (if m = 1 then -1 else 1) * (fℚ[a, m]).eval 0 := by
   have hkey (k : ℕ) : cSeq a (k + 2) = (iteratedPoly a (k + 2)).eval 0 := by
@@ -182,7 +197,9 @@ lemma intCast_cSeq_eq_ite_mul_eval_zero {m : ℕ} (hm : 1 ≤ m) :
     simp
 
 /-- For irreducible `F`, every even divisor (`d(-X) = d`) of `F ∘ (X² + c)` is trivial — a unit
-or associated to `F ∘ (X² + c)` — since it descends to a divisor of `F`. -/
+or associated to `F ∘ (X² + c)` — since it descends to a divisor of `F`.
+@isnad1 id=or.3h3v.s8.8faaa77d6c2f from=translated src=- shape=f0e55d13 vocab=865669fd
+-/
 theorem isUnit_or_associated_of_dvd_comp (c : ℚ) {F : ℚ[X]} (hF : Irreducible F)
     (d : ℚ[X]) (hd : d ∣ F.comp (X ^ 2 + C c)) (heven : d.comp (-X) = d) :
     IsUnit d ∨ Associated d (F.comp (X ^ 2 + C c)) := by
@@ -222,7 +239,9 @@ theorem isUnit_or_associated_of_dvd_comp (c : ℚ) {F : ℚ[X]} (hF : Irreducibl
 
 /-- Variant of `isUnit_or_associated_of_dvd_comp` for divisors that are even only up to
 associates: if `F` is irreducible and the constant term of `F ∘ (X² + c)` is nonzero, then any
-divisor `d` of `F ∘ (X² + c)` with `d(-X)` associated to `d` is a unit or associated to it. -/
+divisor `d` of `F ∘ (X² + c)` with `d(-X)` associated to `d` is a unit or associated to it.
+@isnad1 id=or.4h3v.s8.8634461f76ae from=translated src=- shape=3e54ec6a vocab=e45c2aae
+-/
 theorem isUnit_or_associated_of_dvd_comp_of_associated (c : ℚ) {F : ℚ[X]} (hF : Irreducible F)
     (hval0 : (F.comp (X ^ 2 + C c)).eval 0 ≠ 0)
     (d : ℚ[X]) (hd : d ∣ F.comp (X ^ 2 + C c)) (hassoc : Associated (d.comp (-X)) d) :
@@ -269,7 +288,9 @@ private lemma isSquare_cSeq_of_even_factorization {j : ℕ} {g : ℚ[X]}
   rw [eval_mul, eval_C, eval_mul, eval_comp, eval_neg, eval_X, neg_zero] at heval
   exact ⟨g.eval 0, by rwa [← hsign]⟩
 
-/-- Lemma 1.2: if none of `c_1, …, c_n` is a square in `ℚ`, then `f_n` is irreducible over `ℚ`. -/
+/-- Lemma 1.2: if none of `c_1, …, c_n` is a square in `ℚ`, then `f_n` is irreducible over `ℚ`.
+@isnad1 id=irreduci.2h2v.s6.17349f1fb88d from=translated src=- shape=96e7b58c vocab=84f222f5
+-/
 theorem irreducible_iteratedPoly_of_not_isSquare_cSeq {n : ℕ} (hn : 1 ≤ n)
     (h : ∀ k ≥ 1, k ≤ n → ¬IsSquare (cSeq a k : ℚ)) :
     Irreducible (fℚ[a, n]) := by
@@ -309,6 +330,9 @@ private lemma not_isSquare_of_sq_lt_of_lt_sq {e m : ℤ} (h1 : e ^ 2 < m)
   have hlt : |r| < e + 1 := lt_of_pow_lt_pow_left₀ 2 (by positivity) (by rwa [hm])
   lia
 
+/--
+@isnad1 id=not.2h2v.s5.55a86409fb63 from=translated src=- shape=2af0db15 vocab=5598fd07
+-/
 lemma not_isSquare_cSeq (ha : ¬IsSquare (-a : ℚ)) {k : ℕ} (hk : 1 ≤ k) :
     ¬IsSquare (cSeq a k : ℚ) := by
   have ha0 := ne_zero_of_not_isSquare_neg a ha
@@ -337,13 +361,17 @@ lemma not_isSquare_cSeq (ha : ¬IsSquare (-a : ℚ)) {k : ℕ} (hk : 1 ≤ k) :
       exact not_isSquare_of_sq_lt_of_lt_sq (e := |d|)
         (by nlinarith [sq_abs d]) (by nlinarith [sq_abs d])
 
-/-- Corollary 1.3: all `f_n` (`n ≥ 1`) are irreducible over `ℚ`. -/
+/-- Corollary 1.3: all `f_n` (`n ≥ 1`) are irreducible over `ℚ`.
+@isnad1 id=irreduci.2h2v.s5.7c51768c6570 from=translated src=- shape=6276b2c3 vocab=aeac3378
+-/
 theorem irreducible_iteratedPoly_of_pos (ha : ¬IsSquare (-a : ℚ)) {n : ℕ} (hn : 1 ≤ n) :
     Irreducible (fℚ[a, n]) :=
   irreducible_iteratedPoly_of_not_isSquare_cSeq a hn fun _ hk1 _ ↦ not_isSquare_cSeq a ha hk1
 
 /-- All `f_n` (including `f_0 = X`) are irreducible over `ℚ` when `-a` is not a square in `ℚ`;
-this extends `irreducible_iteratedPoly_of_pos` to `n = 0`. -/
+this extends `irreducible_iteratedPoly_of_pos` to `n = 0`.
+@isnad1 id=irreduci.1h2v.s5.4bc1ce46440e from=translated src=- shape=91556187 vocab=6e24d346
+-/
 theorem irreducible_iteratedPoly (ha : ¬IsSquare (-a : ℚ)) (n : ℕ) : Irreducible (fℚ[a, n]) := by
   rcases Nat.eq_zero_or_pos n with rfl | hn
   · simpa using irreducible_X (R := ℚ)
@@ -352,7 +380,9 @@ theorem irreducible_iteratedPoly (ha : ¬IsSquare (-a : ℚ)) (n : ℕ) : Irredu
 /-- If `-a = r ^ 2` in `ℚ`, then `f_n = f_{n-1} ^ 2 + a = (f_{n-1} - r) * (f_{n-1} + r)` factors
 nontrivially, so irreducibility of any `f_n` with `n ≥ 1` implies that `-a` is not a square.
 This recovers the standing assumption of the paper from the irreducibility hypothesis of
-Lemma 1.6. -/
+Lemma 1.6.
+@isnad1 id=not.2h2v.s5.237058767837 from=translated src=- shape=e2a00659 vocab=aeac3378
+-/
 theorem not_isSquare_neg_of_irreducible {n : ℕ} (hn : 1 ≤ n) (hirr : Irreducible (fℚ[a, n])) :
     ¬IsSquare (-a : ℚ) := by
   intro ⟨r, hr⟩
@@ -367,6 +397,9 @@ theorem not_isSquare_neg_of_irreducible {n : ℕ} (hn : 1 ≤ n) (hirr : Irreduc
   · exact not_isUnit_of_natDegree_pos _ (by rw [natDegree_sub_C, hdeg]; positivity) hu
   · exact not_isUnit_of_natDegree_pos _ (by rw [natDegree_add_C, hdeg]; positivity) hu
 
+/--
+@isnad1 id=ne.3h3v.s7.0c2dde169401 from=translated src=- shape=f21c5de1 vocab=7a6fd005
+-/
 lemma sub_intCast_ne_zero_of_mem_rootSet (ha : ¬IsSquare (-a : ℚ)) {n : ℕ} (hn : 1 ≤ n)
     {β : AlgebraicClosure ℚ} (hβ : β ∈ (fℚ[a, n]).rootSet (AlgebraicClosure ℚ)) :
     β - (a : AlgebraicClosure ℚ) ≠ 0 := by
@@ -380,6 +413,9 @@ lemma sub_intCast_ne_zero_of_mem_rootSet (ha : ¬IsSquare (-a : ℚ)) {n : ℕ} 
   rw [cSeq_succ_eq_neg_one_pow_mul_eval a n, hevalZ, mul_zero] at hpos
   exact absurd hpos (by norm_num)
 
+/--
+@isnad1 id=eq.1h1v.s8.1a4ef8876ef2 from=translated src=- shape=4b3ffc19 vocab=8159b118
+-/
 lemma splittingField_one_eq_bot_of_isSquare (ha : IsSquare (-a : ℚ)) : splittingField a 1 = ⊥ := by
   obtain ⟨b, hb⟩ := ha
   refine IntermediateField.adjoin_eq_bot_iff.mpr fun β hβ ↦ ?_
@@ -395,6 +431,9 @@ lemma splittingField_one_eq_bot_of_isSquare (ha : IsSquare (-a : ℚ)) : splitti
   · exact ⟨b, h.symm⟩
   · exact ⟨-b, by rw [map_neg]; exact h.symm⟩
 
+/--
+@isnad1 id=le.1h3v.s6.d1af2a4f64d4 from=translated src=- shape=88ef82de vocab=4af58567
+-/
 lemma relfinrank_le_two_pow {m n : ℕ} (hmn : m ≤ n) :
     (splittingField a m).relfinrank (splittingField a n) ≤ 2 ^ (2 ^ n - 2 ^ m) := by
   induction n, hmn using Nat.le_induction with
@@ -405,6 +444,9 @@ lemma relfinrank_le_two_pow {m n : ℕ} (hmn : m ≤ n) :
     refine (Nat.mul_le_mul ih (relfinrank_succ_le a k)).trans ?_
     rw [← pow_add, ← Nat.sub_add_comm (Nat.pow_le_pow_right Nat.zero_lt_two hk), pow_succ, mul_two]
 
+/--
+@isnad1 id=not.2h2v.s9.9f514f51bd20 from=translated src=- shape=6a9949b6 vocab=60ec4fa4
+-/
 lemma not_isSquare_neg_of_finrank_eq {n : ℕ} (hn : 1 ≤ n)
     (hmax : Module.finrank ℚ ↥(splittingField a n) = 2 ^ (2 ^ n - 1)) :
     ¬IsSquare (-a : ℚ) := by
@@ -424,6 +466,9 @@ lemma not_isSquare_neg_of_finrank_eq {n : ℕ} (hn : 1 ≤ n)
     simpa [pow_one] using Nat.pow_le_pow_right (by norm_num : 1 ≤ 2) hn
   lia
 
+/--
+@isnad1 id=eq.1h2v.s7.a216063af1c9 from=translated src=- shape=666c6ad2 vocab=526145c8
+-/
 lemma card_rootSet_iteratedPoly {n : ℕ} (hirr : Irreducible (fℚ[a, n])) :
     Fintype.card ↑((fℚ[a, n]).rootSet (AlgebraicClosure ℚ))
       = 2 ^ n := by

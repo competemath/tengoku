@@ -105,14 +105,25 @@ def SameLinks (G H : Graph α β) : Prop :=
 
 namespace SameLinks
 
+/--
+@isnad1 id=samelink.0h3v.s3.d7738fbc7873 from=translated src=- shape=f0419bd4 vocab=4b884b4f
+-/
 @[refl] theorem refl (G : Graph α β) : SameLinks G G := ⟨rfl, fun _ _ => Iff.rfl⟩
 
+/--
+@isnad1 id=samelink.1h4v.s4.26d1dc466967 from=translated src=- shape=8d6dbb11 vocab=4b884b4f
+-/
 theorem symm (h : SameLinks G H) : SameLinks H G := ⟨h.1.symm, fun x y => (h.2 x y).symm⟩
 
+/--
+@isnad1 id=eq.1h4v.s4.82496b8e81b5 from=translated src=- shape=0abfb955 vocab=8b23fff3
+-/
 theorem vertexSet (h : SameLinks G H) : V(G) = V(H) := h.1
 
 /-- Deleting the same vertices from both sides preserves the relation: the deleted graph's
-links are the old links between surviving vertices. -/
+links are the old links between surviving vertices.
+@isnad1 id=samelink.1h5v.s5.7821a8fbd4bc from=translated src=- shape=6e98736f vocab=809a50fd
+-/
 theorem deleteVerts (h : SameLinks G H) (X : Set α) :
     SameLinks (G.deleteVerts X) (H.deleteVerts X) := by
   refine ⟨by rw [vertexSet_deleteVerts, vertexSet_deleteVerts, h.1], fun x y => ?_⟩
@@ -128,7 +139,9 @@ theorem deleteVerts (h : SameLinks G H) (X : Set α) :
 
 end SameLinks
 
-/-- Reachability only sees which pairs are joined. -/
+/-- Reachability only sees which pairs are joined.
+@isnad1 id=reaches.2h6v.s5.44083bcba245 from=translated src=- shape=a894e003 vocab=78d4a315
+-/
 theorem Reaches.sameLinks (h : SameLinks G H) (hr : G.Reaches u v) : H.Reaches u v := by
   obtain ⟨W, hW⟩ := hr
   induction hW with
@@ -137,15 +150,23 @@ theorem Reaches.sameLinks (h : SameLinks G H) (hr : G.Reaches u v) : H.Reaches u
     obtain ⟨f, hf⟩ := (h.2 p w).1 ⟨g, hl⟩
     exact (Reaches.of_isLink hf).trans ih
 
+/--
+@isnad1 id=connecte.2h4v.s4.66940b43cc41 from=translated src=- shape=d3e5458e vocab=a9b38e46
+-/
 theorem Connected.sameLinks (h : SameLinks G H) (hG : G.Connected) : H.Connected := by
   obtain ⟨z, hz⟩ := hG.nonempty
   exact Connected.of_hub (h.1 ▸ hz) fun w hw =>
     (hG.reaches hz (h.1 ▸ hw : w ∈ V(G))).sameLinks h
 
+/--
+@isnad1 id=hasthree.2h4v.s4.602165cb0407 from=translated src=- shape=d3e5458e vocab=5b6c729f
+-/
 theorem HasThreeVertices.sameLinks (h : SameLinks G H) (hG : G.HasThreeVertices) :
     H.HasThreeVertices := hG.mono (le_of_eq h.1)
 
-/-- **2-connectivity does not see edge names.** -/
+/-- **2-connectivity does not see edge names.**
+@isnad1 id=istwocon.2h4v.s4.693aa35737cb from=translated src=- shape=d3e5458e vocab=6641b091
+-/
 theorem IsTwoConnected.sameLinks (h : SameLinks G H) (hG : G.IsTwoConnected) :
     H.IsTwoConnected where
   hasThreeVertices := hG.hasThreeVertices.sameLinks h
@@ -165,13 +186,17 @@ structure with the same fields, so the equation is `rfl`. Saying it once lets ev
 `pieceListGraph_union`, which turns "glue on another family of segments" into a list append —
 apply to overlays. -/
 
-/-- The overlay graph is the piece-list graph of its own edges. -/
+/-- The overlay graph is the piece-list graph of its own edges.
+@isnad1 id=eq.0h2v.s4.78ad2efe1ead from=translated src=- shape=abf7292d vocab=32e1e27e
+-/
 theorem overlayGraph_eq_pieceListGraph (pieces : List Piece) (points : List Plane) :
     overlayGraph pieces points = pieceListGraph (overlayPieces pieces points) := rfl
 
 /-! ### Orienting and deduplicating do not change which pairs are joined -/
 
-/-- The two ends of a piece, as an unordered pair, are what a link records. -/
+/-- The two ends of a piece, as an unordered pair, are what a link records.
+@isnad1 id=iff.0h3v.s6.7b7bb2e75b8d from=translated src=- shape=164372a0 vocab=deca5799
+-/
 theorem orientPiece_link_iff (P : Piece) (x y : Plane) :
     ((x = (orientPiece P).1 ∧ y = (orientPiece P).2) ∨
         (x = (orientPiece P).2 ∧ y = (orientPiece P).1)) ↔
@@ -182,7 +207,9 @@ theorem orientPiece_link_iff (P : Piece) (x y : Plane) :
 
 /-- **The subdivided list and the overlay's edge list join the same pairs.** This is the bridge
 between `pieceListGraph_subdivide_isTwoConnected`, which knows about the raw subdivision, and
-`overlayGraph`, which is what every plane consumer holds. -/
+`overlayGraph`, which is what every plane consumer holds.
+@isnad1 id=samelink.0h2v.s4.923b62cf542b from=translated src=- shape=b2b29d5f vocab=dfbbdd98
+-/
 theorem sameLinks_overlayGraph (pieces : List Piece) (points : List Plane) :
     Graph.SameLinks (pieceListGraph (subdivide pieces points)) (overlayGraph pieces points) := by
   constructor
@@ -209,13 +236,17 @@ has a 2-connected graph, so does the overlay graph built from it.
 
 Without this the development had no 2-connected overlay at all: every 2-connectivity result
 about segment families is stated for `pieceListGraph`, and every plane result — drawing, faces,
-outer face — is stated for `overlayGraph`. -/
+outer face — is stated for `overlayGraph`.
+@isnad1 id=istwocon.1h2v.s4.9edd8d362702 from=translated src=- shape=efe5f1d6 vocab=5c750cac
+-/
 theorem overlayGraph_isTwoConnected {pieces : List Piece} {points : List Plane}
     (h : (pieceListGraph (subdivide pieces points)).IsTwoConnected) :
     (overlayGraph pieces points).IsTwoConnected :=
   h.sameLinks (sameLinks_overlayGraph pieces points)
 
-/-- The same, from the hypotheses `pieceListGraph_subdivide_isTwoConnected` actually needs. -/
+/-- The same, from the hypotheses `pieceListGraph_subdivide_isTwoConnected` actually needs.
+@isnad1 id=istwocon.3h2v.s5.34be4091f597 from=translated src=- shape=482873d4 vocab=5830ce59
+-/
 theorem overlayGraph_isTwoConnected_of_cleanCut {pieces : List Piece} {points : List Plane}
     (hnd : ∀ P ∈ pieces, P.Nondeg) (hclean : ∀ q ∈ points, CleanCut pieces q)
     (h : (pieceListGraph pieces).IsTwoConnected) :
@@ -228,10 +259,16 @@ The blueprint's `Γ ∪ K` is, at the level of segment lists, a list append, and
 `pieceListGraph_union` turns the graph union into that append. Subdivision has to commute with
 it, which it does because a subdivision is a `flatMap`. -/
 
+/--
+@isnad1 id=eq.0h3v.s5.6bda0d38d34b from=translated src=- shape=ec118bcd vocab=a7182aa6
+-/
 theorem splitAllAt_append (q : Plane) (l l' : List Piece) :
     splitAllAt q (l ++ l') = splitAllAt q l ++ splitAllAt q l' := by
   simp [splitAllAt, List.flatMap_append]
 
+/--
+@isnad1 id=eq.0h3v.s5.410df40315c4 from=translated src=- shape=ee5435fd vocab=9065db2e
+-/
 theorem subdivide_append (points : List Plane) : ∀ l l' : List Piece,
     subdivide (l ++ l') points = subdivide l points ++ subdivide l' points := by
   induction points with
@@ -239,6 +276,9 @@ theorem subdivide_append (points : List Plane) : ∀ l l' : List Piece,
   | cons q qs ih => intro l l'; rw [subdivide_cons, splitAllAt_append, ih, subdivide_cons,
       subdivide_cons]
 
+/--
+@isnad1 id=le.0h2v.s4.bb4b1143119a from=translated src=- shape=97cab048 vocab=2fa01ae9
+-/
 theorem endSet_subset_append_left {l l' : List Piece} : endSet l ⊆ endSet (l ++ l') := by
   rintro v ⟨P, hP, hv⟩
   exact ⟨P, List.mem_append_left _ hP, hv⟩
@@ -248,7 +288,9 @@ theorem endSet_subset_append_left {l l' : List Piece} : endSet l ⊆ endSet (l +
 `Schoenflies/SimpleArc.lean` proves this for `overlayGraph`; the union argument runs on the raw
 subdivision, where the same two facts — `subdivide_cover` and `subdivide_avoids` — give it. -/
 
-/-- **A cut point lying on the pieces is an end of some subpiece.** -/
+/-- **A cut point lying on the pieces is an end of some subpiece.**
+@isnad1 id=mem.3h3v.s5.a170f57f2c56 from=translated src=- shape=45fa6777 vocab=2eb354c1
+-/
 theorem mem_endSet_subdivide_of_mem_cover {pieces : List Piece} {points : List Plane}
     (hnd : ∀ P ∈ pieces, P.Nondeg) {x : Plane} (hxp : x ∈ points) (hx : x ∈ cover pieces) :
     x ∈ endSet (subdivide pieces points) := by
@@ -272,7 +314,9 @@ lie on both families.
 
 This is `lem:union-two-connected` composed with `lem:subdivision-ear-preserve` and with the
 orient-and-dedup bridge: the conclusion is about `overlayGraph`, which is what the plane layer
-(drawing, faces, outer face) is stated for. -/
+(drawing, faces, outer face) is stated for.
+@isnad1 id=istwocon.11h5v.s7.7624aa508394 from=translated src=- shape=76a7744d vocab=1aa6409c
+-/
 theorem overlayGraph_append_isTwoConnected {l l' : List Piece} {points : List Plane}
     (hnd : ∀ P ∈ l, P.Nondeg) (hnd' : ∀ P ∈ l', P.Nondeg)
     (hl : (pieceListGraph (subdivide l points)).IsTwoConnected)
@@ -306,7 +350,9 @@ variable {F : Set Plane} {a b y : Plane}
 /-- **The crosscut of a face along a line.** A face `F` (open, bounded) met by a line `ℓ` at `y`
 supplies a segment `[q₀, q₁]` with distinct ends on `∂F`, open part inside `F`, containing `y` —
 and containing every connected subset of `ℓ ∩ F` through `y`, which is how the blueprint's chosen
-grid edge `J` ends up inside the crosscut. -/
+grid edge `J` ends up inside the crosscut.
+@isnad1 id=ex.4h4v.s9.3ee727fee0e2 from=translated src=- shape=982061d0 vocab=acbee8e4
+-/
 theorem exists_crosscut (hab : a ≠ b) (hFopen : IsOpen F) (hFbdd : Bornology.IsBounded F)
     (hy : y ∈ Plane.line a b ∩ F) :
     ∃ q₀ q₁ : Plane, q₀ ≠ q₁ ∧ q₀ ∈ frontier F ∧ q₁ ∈ frontier F ∧
@@ -325,7 +371,9 @@ theorem exists_crosscut (hab : a ≠ b) (hFopen : IsOpen F) (hFbdd : Bornology.I
     exact hS.subset_connectedComponentIn hyS hSsub
 
 /-- The frontier of a face lies on the graph — which is what makes the crosscut's two endpoints
-points of `Γ`, and hence (after subdivision) vertices of it. -/
+points of `Γ`, and hence (after subdivision) vertices of it.
+@isnad1 id=le.1h4v.s6.4eea5f27a9f7 from=translated src=- shape=4fa96ba4 vocab=02d10a74
+-/
 theorem frontier_face_subset_pointSet {β : Type*} {G : Graph Plane β} [G.Finite]
     {drawing : β → ℝ → Plane} (h : Graph.IsDrawing G drawing) (base : Plane) :
     frontier (Graph.face G drawing base) ⊆ Graph.pointSet G drawing :=
@@ -337,7 +385,9 @@ theorem frontier_face_subset_pointSet {β : Type*} {G : Graph Plane β} [G.Finit
 endpoints are vertices — which they are, being cut points of the overlay lying on `Γ` — the
 segment joining them is a path graph of length one. -/
 
-/-- A single nondegenerate segment is a path graph between its two ends. -/
+/-- A single nondegenerate segment is a path graph between its two ends.
+@isnad1 id=ispathgr.1h2v.s5.b245773a8fd0 from=translated src=- shape=83b9a680 vocab=aff29bde
+-/
 theorem isPathGraph_single {q₀ q₁ : Plane} (hne : q₀ ≠ q₁) :
     (pieceListGraph [(q₀, q₁)]).IsPathGraph q₀ [(q₀, q₁)] q₁ where
   isPath := .single (pieceListGraph_isLink_self (by simp)) hne
@@ -363,7 +413,9 @@ theorem isPathGraph_single {q₀ q₁ : Plane} (hne : q₀ ≠ q₁) :
         exact ⟨(q₀, q₁), hmem, hx'⟩
 
 /-- **A crosscut is an ear.** Adding to a 2-connected family of segments one further segment
-whose two ends are already ends of the family keeps it 2-connected. -/
+whose two ends are already ends of the family keeps it 2-connected.
+@isnad1 id=istwocon.4h3v.s6.a62a0534bc2e from=translated src=- shape=6f12f9eb vocab=7bc1a7d3
+-/
 theorem pieceListGraph_append_crosscut {l : List Piece} {q₀ q₁ : Plane}
     (hl : (pieceListGraph l).IsTwoConnected) (hne : q₀ ≠ q₁)
     (h0 : q₀ ∈ endSet l) (h1 : q₁ ∈ endSet l) :
@@ -389,7 +441,9 @@ then `A` together with all the `T r` is connected.
 
 The `T r` are the blueprint's joining arcs; nothing is assumed about how they meet `A` beyond
 containing their two ends, so an arc that crosses `A` many times is no harder than one that does
-not. -/
+not.
+@isnad1 id=isconnec.5h4v.s8.6b5bc8306a37 from=translated src=- shape=215aae2c vocab=d6e9128e
+-/
 theorem isConnected_union_joins {A : Set Plane} {r₀ : Plane} (hr₀ : r₀ ∈ A)
     {reps : List Plane} {T : Plane → Set Plane}
     (hTconn : ∀ r ∈ reps, IsPreconnected (T r))
@@ -424,13 +478,22 @@ harmless (`EndsAreCut.mono`, `MeetsAreCut.mono`) and is what makes the two commo
 noncomputable def attachPoints (pieces : List Piece) (extra : List Plane) : List Plane :=
   extra ++ (exists_cut_points pieces).choose
 
+/--
+@isnad1 id=mem.1h3v.s4.d9cf23205120 from=translated src=- shape=14158a3e vocab=f2bf5e8f
+-/
 theorem mem_attachPoints_of_mem {pieces : List Piece} {extra : List Plane} {x : Plane}
     (hx : x ∈ extra) : x ∈ attachPoints pieces extra := List.mem_append_left _ hx
 
+/--
+@isnad1 id=endsarec.0h2v.s3.17fa649dcef6 from=translated src=- shape=75453ccc vocab=33530201
+-/
 theorem attachPoints_endsAreCut (pieces : List Piece) (extra : List Plane) :
     EndsAreCut pieces (attachPoints pieces extra) :=
   (exists_cut_points pieces).choose_spec.1.mono (List.subset_append_right _ _)
 
+/--
+@isnad1 id=meetsare.0h2v.s3.f5ba0aa75136 from=translated src=- shape=75453ccc vocab=0d06ab84
+-/
 theorem attachPoints_meetsAreCut (pieces : List Piece) (extra : List Plane) :
     MeetsAreCut pieces (attachPoints pieces extra) :=
   (exists_cut_points pieces).choose_spec.2.mono (List.subset_append_right _ _)
@@ -441,13 +504,22 @@ so is every prescribed extra point. -/
 noncomputable def attachGraph (pieces : List Piece) (extra : List Plane) : Graph Plane Piece :=
   overlayGraph pieces (attachPoints pieces extra)
 
+/--
+@isnad1 id=finite.0h2v.s3.f0928648f5c7 from=translated src=- shape=0a415618 vocab=0b9b1166
+-/
 instance attachGraph_finite (pieces : List Piece) (extra : List Plane) :
     Graph.Finite (attachGraph pieces extra) := overlayGraph_finite _ _
 
+/--
+@isnad1 id=isdrawin.1h2v.s4.88546f09316e from=translated src=- shape=8fcbf962 vocab=b4cb0953
+-/
 theorem attachGraph_isDrawing {pieces : List Piece} (hnd : ∀ P ∈ pieces, P.Nondeg)
     (extra : List Plane) : Graph.IsDrawing (attachGraph pieces extra) segmentDrawing :=
   overlayGraph_isDrawing _ _ hnd (attachPoints_endsAreCut _ _) (attachPoints_meetsAreCut _ _)
 
+/--
+@isnad1 id=eq.0h2v.s4.ded5d572716f from=translated src=- shape=5607da26 vocab=f52bfa9f
+-/
 @[simp] theorem attachGraph_pointSet (pieces : List Piece) (extra : List Plane) :
     Graph.pointSet (attachGraph pieces extra) segmentDrawing = cover pieces :=
   overlayGraph_pointSet _ _
@@ -455,7 +527,9 @@ theorem attachGraph_isDrawing {pieces : List Piece} (hnd : ∀ P ∈ pieces, P.N
 /-- **The three cases of `prop:local-grid-attachment`, in one statement.** The `Γ`-side list `l`
 carries whatever the case needed — the bare skeleton in the main case, the skeleton together with
 the auxiliary crosscut in the two degenerate ones — and the two distinct common points `a`, `b`
-are the ones that case produced. -/
+are the ones that case produced.
+@isnad1 id=istwocon.11h5v.s7.c84d07fd9f78 from=translated src=- shape=8d7ca2db vocab=c65d0b23
+-/
 theorem attachGraph_isTwoConnected {l l' : List Piece} {extra : List Plane}
     (hnd : ∀ P ∈ l, P.Nondeg) (hnd' : ∀ P ∈ l', P.Nondeg)
     (hl : (pieceListGraph (subdivide l (attachPoints (l ++ l') extra))).IsTwoConnected)
@@ -473,7 +547,9 @@ The joining loop, transported from sets to the graph. What the graph occupies is
 
 /-- **`prop:local-grid-attachment` clause 1.** Adding to a family of segments the joining arcs
 of the loop makes what it occupies, minus `C`, connected. Each joining arc must miss `C` — the
-blueprint's *"because the joining arc lies in `D`"* — and that is the only thing asked of it. -/
+blueprint's *"because the joining arc lies in `D`"* — and that is the only thing asked of it.
+@isnad1 id=isconnec.6h5v.s8.fe7928782c87 from=translated src=- shape=230ef832 vocab=2d7f1b66
+-/
 theorem isConnected_cover_diff_of_joins {l : List Piece} {C : Set Plane} {r₀ : Plane}
     {reps : List Plane} {J : Plane → List Piece} (hr₀ : r₀ ∈ cover l \ C)
     (hJconn : ∀ r ∈ reps, IsPreconnected (cover (J r)))
@@ -498,13 +574,18 @@ theorem isConnected_cover_diff_of_joins {l : List Piece} {C : Set Plane} {r₀ :
 
 /-! ### Clause 2: the graph contains the grid, and clause 3: the grid is fine -/
 
+/--
+@isnad1 id=nondeg.3h4v.s5.ab7e6ec67f33 from=translated src=- shape=beaac9cb vocab=c47a96f8
+-/
 theorem localGridEdges_nondeg {p : Plane} {s : ℝ} {k : ℕ} (hs : 0 < s) (hk : 1 ≤ k) :
     ∀ P ∈ localGridEdges p s k, P.Nondeg := fun _ hP =>
   gridEdges_nondeg ((localGridX_strictMono hs hk).strictMonoOn _)
     ((localGridY_strictMono hs hk).strictMonoOn _) hk hk hP
 
 /-- **`prop:local-grid-attachment` clause 2.** The assembled graph contains the whole local
-grid: overlaying only cuts, it never removes. -/
+grid: overlaying only cuts, it never removes.
+@isnad1 id=le.0h5v.s5.04c4874d85a3 from=translated src=- shape=53892061 vocab=5cb7e186
+-/
 theorem localGrid_subset_attachGraph_pointSet {p : Plane} {s : ℝ} {k : ℕ} (l : List Piece)
     (extra : List Plane) :
     cover (localGridEdges p s k) ⊆
@@ -513,7 +594,9 @@ theorem localGrid_subset_attachGraph_pointSet {p : Plane} {s : ℝ} {k : ℕ} (l
   exact subset_union_right
 
 /-- **`prop:local-grid-attachment` clause 3**, restated for the assembled graph: at the mesh
-`localGridCount s ε` every closed grid rectangle has diameter `< ε`. -/
+`localGridCount s ε` every closed grid rectangle has diameter `< ε`.
+@isnad1 id=lt.3h7v.s6.27127e7f54a7 from=translated src=- shape=12e1d3cb vocab=411a95a2
+-/
 theorem attachGraph_localGridCell_diam {p : Plane} {s ε : ℝ} (hε : 0 < ε) (i j : ℕ)
     {x y : Plane} (hx : x ∈ localGridCell p s (localGridCount s ε) i j)
     (hy : y ∈ localGridCell p s (localGridCount s ε) i j) : dist x y < ε :=
@@ -527,7 +610,9 @@ swallowing clause of `exists_crosscut`: the grid edge's relative interior is a c
 of `ℓ ∩ F` through the chosen point, hence lies inside the crosscut's open part, hence the whole
 closed grid edge lies inside the closed crosscut. -/
 
-/-- **The crosscut contains the chosen grid edge.** -/
+/-- **The crosscut contains the chosen grid edge.**
+@isnad1 id=le.3h7v.s8.bfb6991288e2 from=translated src=- shape=2a7eebe3 vocab=33431267
+-/
 theorem seg_subset_crosscut {q₀ q₁ : Plane} {J : Piece}
     (hswallow : ∀ S : Set Plane, IsPreconnected S → S ⊆ Plane.line a b ∩ F → y ∈ S →
       S ⊆ openSegment ℝ q₀ q₁)
@@ -540,16 +625,23 @@ theorem seg_subset_crosscut {q₀ q₁ : Plane} {J : Piece}
     _ = segment ℝ q₀ q₁ := closure_openSegment _ _
 
 /-- A point of the crosscut lies on the `Γ`-side family once the crosscut has been appended
-to it. -/
+to it.
+@isnad1 id=mem.1h4v.s7.ec43ce68af9c from=translated src=- shape=39a02171 vocab=a77449d7
+-/
 theorem mem_cover_append_crosscut {l : List Piece} {q₀ q₁ z : Plane}
     (hz : z ∈ segment ℝ q₀ q₁) : z ∈ cover (l ++ [(q₀, q₁)]) := by
   rw [cover_append]
   exact Or.inr (mem_cover_iff.2 ⟨(q₀, q₁), List.mem_singleton_self _, hz⟩)
 
-/-- An end of a listed piece lies on what the list covers. -/
+/-- An end of a listed piece lies on what the list covers.
+@isnad1 id=mem.1h2v.s4.8a0dc26a089b from=translated src=- shape=8ea5e9a1 vocab=28be8897
+-/
 theorem left_mem_cover {l : List Piece} {P : Piece} (hP : P ∈ l) : P.1 ∈ cover l :=
   mem_cover_iff.2 ⟨P, hP, left_mem_segment ℝ _ _⟩
 
+/--
+@isnad1 id=mem.1h2v.s4.0e5537a61692 from=translated src=- shape=8ea5e9a1 vocab=a4134c7f
+-/
 theorem right_mem_cover {l : List Piece} {P : Piece} (hP : P ∈ l) : P.2 ∈ cover l :=
   mem_cover_iff.2 ⟨P, hP, right_mem_segment ℝ _ _⟩
 
@@ -559,7 +651,9 @@ both families — which is exactly what `attachGraph_isTwoConnected` asks for.
 
 Note what is *not* assumed: nothing about how many vertices `Γ` and `K` had in common. The case
 split of the blueprint is a device for choosing `J` and the line `ℓ`; once they are chosen, the
-three cases run the same argument. -/
+three cases run the same argument.
+@isnad1 id=and.5h9v.s8.5be0fa0c09aa from=translated src=- shape=7a37cf03 vocab=ef911a91
+-/
 theorem two_common_of_crosscut {l l' : List Piece} {q₀ q₁ : Plane} {J : Piece}
     (hJ : J ∈ l') (hJnd : J.Nondeg)
     (hswallow : ∀ S : Set Plane, IsPreconnected S → S ⊆ Plane.line a b ∩ F → y ∈ S →
@@ -578,6 +672,9 @@ One graph, and each clause of the proposition a theorem about it. The graph is a
 an existential: `thm:finite-transfer`(a) takes `H` as an input and reads its drawing, its
 2-connectivity and its point set separately. -/
 
+/--
+@isnad1 id=eq.0h3v.s6.46cc51f412e7 from=translated src=- shape=765d1dd7 vocab=1d619642
+-/
 theorem cover_swap (l₁ l₂ l₃ : List Piece) :
     cover ((l₁ ++ l₂) ++ l₃) = cover ((l₁ ++ l₃) ++ l₂) := by
   simp only [cover_append]
@@ -598,7 +695,9 @@ noncomputable def gridAttachGraph (gsegs : List Piece) (reps : List Plane)
 variable {gsegs : List Piece} {reps : List Plane} {Jarc : Plane → List Piece} {p : Plane}
   {s ε : ℝ} {extra : List Plane} {C : Set Plane} {r₀ : Plane}
 
-/-- The nondegeneracy of every segment in play, which is what `lem:polygonal-overlay` needs. -/
+/-- The nondegeneracy of every segment in play, which is what `lem:polygonal-overlay` needs.
+@isnad1 id=nondeg.4h7v.s6.38de719085ad from=translated src=- shape=1c79c3ab vocab=242ddc80
+-/
 theorem gridAttachPieces_nondeg (hs : 0 < s)
     (hg : ∀ P ∈ gsegs, P.Nondeg) (hj : ∀ P ∈ reps.flatMap Jarc, P.Nondeg) :
     ∀ P ∈ gridAttachPieces gsegs reps Jarc p s ε, P.Nondeg := by
@@ -608,17 +707,24 @@ theorem gridAttachPieces_nondeg (hs : 0 < s)
     exacts [hg P hP'', hj P hP'']
   · exact localGridEdges_nondeg hs (one_le_localGridCount s ε) P hP'
 
-/-- **The extension is a plane graph**, drawn with straight edges — `lem:polygonal-overlay`. -/
+/-- **The extension is a plane graph**, drawn with straight edges — `lem:polygonal-overlay`.
+@isnad1 id=isdrawin.3h7v.s6.ac10e025dd9e from=translated src=- shape=abe42b24 vocab=ec778c1a
+-/
 theorem gridAttachGraph_isDrawing (hs : 0 < s)
     (hg : ∀ P ∈ gsegs, P.Nondeg) (hj : ∀ P ∈ reps.flatMap Jarc, P.Nondeg) :
     Graph.IsDrawing (gridAttachGraph gsegs reps Jarc p s ε extra) segmentDrawing :=
   attachGraph_isDrawing (gridAttachPieces_nondeg hs hg hj) extra
 
+/--
+@isnad1 id=eq.0h7v.s5.915923a7df14 from=translated src=- shape=c13601b5 vocab=f79b5d78
+-/
 @[simp] theorem gridAttachGraph_pointSet :
     Graph.pointSet (gridAttachGraph gsegs reps Jarc p s ε extra) segmentDrawing =
       cover (gridAttachPieces gsegs reps Jarc p s ε) := attachGraph_pointSet _ _
 
-/-- **Clause 2.** The extension contains the whole local grid on `W`. -/
+/-- **Clause 2.** The extension contains the whole local grid on `W`.
+@isnad1 id=le.0h7v.s5.4d26407628f0 from=translated src=- shape=028587b0 vocab=b9e4aa25
+-/
 theorem localGrid_subset_gridAttachGraph :
     cover (localGridEdges p s (localGridCount s ε)) ⊆
       Graph.pointSet (gridAttachGraph gsegs reps Jarc p s ε extra) segmentDrawing := by
@@ -633,7 +739,9 @@ crosscut and the joining arcs appended and everything subdivided at the crossing
 2-connected. For the polygonal part it is `pieceListGraph_subdivide_isTwoConnected`; for the arcs
 of `C` and for the ears it is `Graph.IsTwoConnected.replace_edge_by_path` and
 `Graph.IsTwoConnected.ear` iterated (`pieceListGraph_append_crosscut` above is the single ear
-step, for a straight crosscut). -/
+step, for a straight crosscut).
+@isnad1 id=istwocon.12h9v.s7.3b1d9b59de21 from=translated src=- shape=109f302f vocab=60e151ae
+-/
 theorem gridAttachGraph_isTwoConnected (hs : 0 < s)
     (hg : ∀ P ∈ gsegs, P.Nondeg) (hj : ∀ P ∈ reps.flatMap Jarc, P.Nondeg)
     (hΓ : (pieceListGraph (subdivide (gsegs ++ reps.flatMap Jarc)
@@ -654,7 +762,9 @@ theorem gridAttachGraph_isTwoConnected (hs : 0 < s)
 /-- **Clause 1.** `|H| ∖ C` is connected — the component-joining loop, run once for each
 representative. Nothing is asked of a joining arc except that it be connected, run from the hub
 `r₀` to its representative, and miss `C`; the blueprint's *"because the joining arc lies in `D`"*
-is the last of these. -/
+is the last of these.
+@isnad1 id=isconnec.6h9v.s8.f27b5abfb48b from=translated src=- shape=1e5c2d47 vocab=cfa723b4
+-/
 theorem gridAttachGraph_isConnected_diff
     (hr₀ : r₀ ∈ cover (gsegs ++ localGridEdges p s (localGridCount s ε)) \ C)
     (hJconn : ∀ r ∈ reps, IsPreconnected (cover (Jarc r)))

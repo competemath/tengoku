@@ -20,6 +20,9 @@ namespace MeasureTheory.Measure
 variable {α β γ : Type*}
 variable [MeasurableSpace α] [MeasurableSpace β] [MeasurableSpace γ]
 
+/--
+@isnad1 id=eventual.2h3v.s6.b22e4d0587b3 from=translated src=- shape=f3aaa54f vocab=9b482afc
+-/
 lemma ae_join_of_ae_ae
   {m : Measure (Measure α)}
   {p : α → Prop} (hp : MeasurableSet {a | p a})
@@ -30,6 +33,9 @@ lemma ae_join_of_ae_ae
       ← lintegral_zero (μ := m)]
   exact lintegral_congr_ae (h.mono fun μ hμ => ae_iff.mp hμ)
 
+/--
+@isnad1 id=eventual.3h5v.s6.c3254bde088b from=translated src=- shape=d895e380 vocab=87ba7af6
+-/
 lemma ae_bind_of_ae_ae
   {m : Measure α}
   {p : β → Prop} {hp : MeasurableSet {a | p a}}

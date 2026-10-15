@@ -27,10 +27,16 @@ variable [MeasurableSpace X]
 
 instance : MeasurableSpace (WithRPowDist X α hα₀ hα₁) := .comap WithRPowDist.val ‹_›
 
+/--
+@isnad1 id=measurab.2h2v.s5.74ff796b53ac from=translated src=- shape=e48e4955 vocab=7323ec1a
+-/
 @[fun_prop]
 theorem measurable_val : Measurable (val : WithRPowDist X α hα₀ hα₁ → X) :=
   comap_measurable _
 
+/--
+@isnad1 id=measurab.2h2v.s5.05e603493b77 from=translated src=- shape=ec6931a8 vocab=b135810e
+-/
 @[fun_prop]
 theorem measurable_mk : Measurable (mk : X → WithRPowDist X α hα₀ hα₁) :=
   .of_comap_le <| by
@@ -43,6 +49,9 @@ def measurableEquiv : WithRPowDist X α hα₀ hα₁ ≃ᵐ X where
   measurable_toFun := measurable_val
   measurable_invFun := measurable_mk
 
+/--
+@isnad1 id=measurab.2h2v.s5.bacca79a91a5 from=translated src=- shape=ec6931a8 vocab=3b40896c
+-/
 theorem measurableEmbedding_mk : MeasurableEmbedding (mk : X → WithRPowDist X α hα₀ hα₁) :=
   measurableEquiv.symm.measurableEmbedding
 
@@ -63,6 +72,9 @@ variable (α hα₀ hα₁) in
 def withRPowDist (μ : Measure X) : Measure (WithRPowDist X α hα₀ hα₁) :=
   μ.map .mk
 
+/--
+@isnad1 id=eq.2h4v.s6.da7fe5eb31f4 from=translated src=- shape=5c4d5e7f vocab=38752c58
+-/
 theorem withRPowDist_apply (μ : Measure X) (s : Set (WithRPowDist X α hα₀ hα₁)) :
     μ.withRPowDist α hα₀ hα₁ s = μ (.mk ⁻¹' s) := by
   rw [withRPowDist, measurableEmbedding_mk.map_apply]
@@ -76,6 +88,9 @@ instance [TopologicalSpace X] [IsLocallyFiniteMeasure μ] :
     refine ⟨_, Filter.preimage_mem_comap hsx, ?_⟩
     rwa [withRPowDist, measurableEmbedding_mk.map_apply]
 
+/--
+@isnad1 id=eq.2h3v.s6.95547fbba0e3 from=translated src=- shape=dc85844f vocab=088a6956
+-/
 @[simp]
 theorem withRPowDist_hausdorffMeasure [EMetricSpace X] [BorelSpace X] (d : ℝ) :
     (μH[d] : Measure X).withRPowDist α hα₀ hα₁ = μH[d / α] := by

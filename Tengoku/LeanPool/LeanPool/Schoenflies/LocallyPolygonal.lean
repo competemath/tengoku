@@ -69,7 +69,9 @@ variable {S T : Set Plane} {x y z : Plane}
 and symmetry of polygonal connectedness need the two-list versions; both are general facts about
 `poly` and belong beside `poly_concat` rather than here. -/
 
-/-- Reversing a vertex list does not move its carrier. -/
+/-- Reversing a vertex list does not move its carrier.
+@isnad1 id=eq.0h1v.s3.1e025fd80799 from=translated src=- shape=1261df3d vocab=a054fd00
+-/
 theorem poly_reverse : ∀ vs : List Plane, poly vs.reverse = poly vs
   | [] => by simp
   | [v] => by simp
@@ -93,7 +95,9 @@ def PolyConnIn (S : Set Plane) (x y : Plane) : Prop :=
 one-line packaging that lets a producer of either relation serve a consumer of the other. -/
 
 /-- The vertex-list relation of `LocallyPolygonal.lean` and the inductive relation of
-`PolygonalCarrier.lean` are the same relation. -/
+`PolygonalCarrier.lean` are the same relation.
+@isnad1 id=iff.0h3v.s4.a009d599a601 from=translated src=- shape=aea4f1d0 vocab=af315b79
+-/
 theorem polyConnIn_iff_polyReaches : PolyConnIn S x y ↔ PolyReaches S x y := by
   constructor
   · rintro ⟨vs, hne, hsub, hhead, hlast⟩
@@ -105,32 +109,53 @@ theorem polyConnIn_iff_polyReaches : PolyConnIn S x y ↔ PolyReaches S x y := b
 
 alias ⟨PolyConnIn.polyReaches, PolyReaches.polyConnIn⟩ := polyConnIn_iff_polyReaches
 
+/--
+@isnad1 id=polyconn.1h2v.s4.b62fb67ae057 from=translated src=- shape=d235cc0c vocab=b2048813
+-/
 theorem PolyConnIn.refl (hx : x ∈ S) : PolyConnIn S x x :=
   (PolyReaches.refl hx).polyConnIn
 
-/-- A point joined to anything lies in the carrier. -/
+/-- A point joined to anything lies in the carrier.
+@isnad1 id=mem.1h3v.s4.07f3abbf16a6 from=translated src=- shape=e42577a1 vocab=b2048813
+-/
 theorem PolyConnIn.left_mem (h : PolyConnIn S x y) : x ∈ S :=
   h.polyReaches.left_mem
 
+/--
+@isnad1 id=mem.1h3v.s4.95f7e7a3ec2d from=translated src=- shape=c6429753 vocab=b2048813
+-/
 theorem PolyConnIn.right_mem (h : PolyConnIn S x y) : y ∈ S :=
   h.polyReaches.right_mem
 
+/--
+@isnad1 id=polyconn.2h4v.s4.6b6bbdbfdcd7 from=translated src=- shape=b9b9d0b4 vocab=e87f1c59
+-/
 theorem PolyConnIn.mono (h : PolyConnIn S x y) (hST : S ⊆ T) : PolyConnIn T x y :=
   (h.polyReaches.mono hST).polyConnIn
 
+/--
+@isnad1 id=polyconn.2h4v.s4.e105932970cf from=translated src=- shape=7a4644f4 vocab=8e6b3ce2
+-/
 theorem PolyConnIn.trans (hxy : PolyConnIn S x y) (hyz : PolyConnIn S y z) :
     PolyConnIn S x z :=
   (hxy.polyReaches.trans hyz.polyReaches).polyConnIn
 
+/--
+@isnad1 id=polyconn.1h3v.s4.af5f342e10e7 from=translated src=- shape=18f1d965 vocab=8e6b3ce2
+-/
 theorem PolyConnIn.symm (h : PolyConnIn S x y) : PolyConnIn S y x :=
   h.polyReaches.symm.polyConnIn
 
-/-- Convexity is the base case: the segment is already a polygonal path. -/
+/-- Convexity is the base case: the segment is already a polygonal path.
+@isnad1 id=polyconn.4h4v.s7.5c1b7a0ecc26 from=translated src=- shape=fc2663ce vocab=0dd11de3
+-/
 theorem polyConnIn_of_convex {C : Set Plane} (hC : Convex ℝ C) (hCS : C ⊆ S)
     (hx : x ∈ C) (hy : y ∈ C) : PolyConnIn S x y :=
   (PolyReaches.of_segment ((hC.segment_subset hx hy).trans hCS)).polyConnIn
 
-/-- Two intersecting convex pieces are joined by segments through a common point. -/
+/-- Two intersecting convex pieces are joined by segments through a common point.
+@isnad1 id=polyconn.5h4v.s8.72f334ddbb1c from=translated src=- shape=ecc969f3 vocab=78528a48
+-/
 theorem polyConnIn_union_of_convex {C D : Set Plane} (hC : Convex ℝ C) (hD : Convex ℝ D)
     (hmeet : (C ∩ D).Nonempty) (hx : x ∈ C ∪ D) (hy : y ∈ C ∪ D) : PolyConnIn (C ∪ D) x y :=
   (polyReaches_union_of_convex hC hD hmeet Subset.rfl hx hy).polyConnIn
@@ -149,7 +174,9 @@ def IsLocallyPolyConnAt (S : Set Plane) (p : Plane) : Prop :=
 /-- `S` is locally polygonally connected: polygonally connected near each of its points. -/
 def IsLocallyPolyConn (S : Set Plane) : Prop := ∀ p ∈ S, IsLocallyPolyConnAt S p
 
-/-- If the relative neighbourhood is itself convex there is nothing to do. -/
+/-- If the relative neighbourhood is itself convex there is nothing to do.
+@isnad1 id=islocall.4h3v.s7.8ed484a0d872 from=translated src=- shape=29318836 vocab=0a788889
+-/
 theorem isLocallyPolyConnAt_of_convex {U : Set Plane} {p : Plane} (hU : IsOpen U) (hpU : p ∈ U)
     (hUS : U ⊆ S) (hconv : Convex ℝ U) : IsLocallyPolyConnAt S p :=
   ⟨U, hU, hpU, fun _ hx _ hy => polyConnIn_of_convex hconv hUS hx.1 hy.1⟩
@@ -159,7 +186,9 @@ neighbourhood is covered by convex pieces each of which is either empty or conta
 any two of its points are joined by two segments through `p`.
 
 No piece is required to be nonempty and no piece is named, so the same statement covers the
-disk, the half-disk and the three-quarter disk at once. -/
+disk, the half-disk and the three-quarter disk at once.
+@isnad1 id=islocall.6h5v.s7.e26db31e27c3 from=translated src=- shape=4bc60863 vocab=4d590260
+-/
 theorem isLocallyPolyConnAt_of_star {U : Set Plane} {p : Plane} {ι : Type*} {C : ι → Set Plane}
     (hU : IsOpen U) (hpU : p ∈ U) (hcover : U ∩ S ⊆ ⋃ i, C i) (hsub : ∀ i, C i ⊆ S)
     (hconv : ∀ i, Convex ℝ (C i)) (hstar : ∀ i, ∀ z ∈ C i, p ∈ C i) :
@@ -175,17 +204,23 @@ theorem isLocallyPolyConnAt_of_star {U : Set Plane} {p : Plane} {ι : Type*} {C 
 namespace Plane
 
 /-- A coordinate description of the open square: it is the set of points within `r` of the
-centre in each coordinate separately. -/
+centre in each coordinate separately.
+@isnad1 id=iff.0h3v.s7.9a8613022ab1 from=translated src=- shape=a3cfeac5 vocab=643c3de9
+-/
 theorem mem_openSquare_iff (c : Plane) (r : ℝ) (x : Plane) :
     x ∈ openSquare c r ↔ ∀ i, |x i - c i| < r := by
   simp only [openSquare, Set.mem_ofPred_eq, supDist, supNorm, sub_apply, max_lt_iff,
     Fin.forall_fin_two]
 
-/-- The centre of a square of positive radius is in it. -/
+/-- The centre of a square of positive radius is in it.
+@isnad1 id=mem.1h2v.s4.ec37190900c4 from=translated src=- shape=0ed9cdf3 vocab=8e64ba06
+-/
 theorem mem_openSquare_self {p : Plane} {s : ℝ} (hs : 0 < s) : p ∈ openSquare p s := by
   simpa [openSquare] using hs
 
-/-- Squares about a point grow with the radius. -/
+/-- Squares about a point grow with the radius.
+@isnad1 id=le.1h3v.s4.7b14398f8584 from=translated src=- shape=9a6dd29f vocab=b51492ea
+-/
 theorem openSquare_mono {p : Plane} {s t : ℝ} (h : s ≤ t) : openSquare p s ⊆ openSquare p t :=
   fun _ hx => lt_of_lt_of_le hx h
 
@@ -201,13 +236,18 @@ of `p` clear of it. -/
 noncomputable def sideGap (c : Plane) (r : ℝ) (p : Plane) (i : Fin 2) (b : Bool) : ℝ :=
   cond b ((c i + r) - p i) (p i - (c i - r))
 
+/--
+@isnad1 id=convex.0h4v.s6.b19a1531e4a1 from=translated src=- shape=22b541ea vocab=fed6d9ea
+-/
 theorem convex_sideHalfPlane (c : Plane) (r : ℝ) (i : Fin 2) (b : Bool) :
     Convex ℝ (sideHalfPlane c r i b) := by
   cases b
   · exact convex_coord_le i _
   · exact convex_coord_ge i _
 
-/-- Each of the four half-planes misses the open square. -/
+/-- Each of the four half-planes misses the open square.
+@isnad1 id=le.0h4v.s4.860b1e9c12a5 from=translated src=- shape=1f2ddbde vocab=a51a69b5
+-/
 theorem sideHalfPlane_subset_compl (c : Plane) (r : ℝ) (i : Fin 2) (b : Bool) :
     sideHalfPlane c r i b ⊆ (openSquare c r)ᶜ := by
   intro x hx hmem
@@ -217,7 +257,9 @@ theorem sideHalfPlane_subset_compl (c : Plane) (r : ℝ) (i : Fin 2) (b : Bool) 
   · exact absurd (show x i ≤ c i - r from hx) (by linarith [hlt.1])
   · exact absurd (show c i + r ≤ x i from hx) (by linarith [hlt.2])
 
-/-- The complement of an open square is covered by the four closed half-planes bounding it. -/
+/-- The complement of an open square is covered by the four closed half-planes bounding it.
+@isnad1 id=le.0h2v.s5.caea1819be91 from=translated src=- shape=a16cb97b vocab=414b15d4
+-/
 theorem compl_openSquare_subset_iUnion (c : Plane) (r : ℝ) :
     (openSquare c r)ᶜ ⊆ ⋃ ib : Fin 2 × Bool, sideHalfPlane c r ib.1 ib.2 := by
   intro x hx
@@ -230,7 +272,9 @@ theorem compl_openSquare_subset_iUnion (c : Plane) (r : ℝ) :
 
 /-- If the radius is at most the room between `p` and a half-plane, the square about `p` of that
 radius misses the half-plane. No sign condition on the gap: when it is nonpositive the radius is
-too, and the square is empty. -/
+too, and the square is empty.
+@isnad1 id=not.2h7v.s5.dafb6bb17444 from=translated src=- shape=9044fdc7 vocab=ca30e300
+-/
 theorem openSquare_disjoint_sideHalfPlane {c : Plane} {r s : ℝ} {p : Plane} {i : Fin 2}
     {b : Bool} (hs : s ≤ sideGap c r p i b) :
     ∀ x ∈ openSquare p s, x ∉ sideHalfPlane c r i b := by
@@ -243,7 +287,9 @@ theorem openSquare_disjoint_sideHalfPlane {c : Plane} {r s : ℝ} {p : Plane} {i
   · exact absurd (show c i + r ≤ x i from hmem) (by
       simp only [sideGap, Bool.cond_true] at hs; linarith [hlt.2])
 
-/-- If there is no room between `p` and a half-plane, `p` is in it. -/
+/-- If there is no room between `p` and a half-plane, `p` is in it.
+@isnad1 id=mem.1h5v.s5.c915a6731445 from=translated src=- shape=f0be86ae vocab=d6cb942c
+-/
 theorem mem_sideHalfPlane_of_sideGap_nonpos {c : Plane} {r : ℝ} {p : Plane} {i : Fin 2}
     {b : Bool} (h : sideGap c r p i b ≤ 0) : p ∈ sideHalfPlane c r i b := by
   cases b
@@ -254,7 +300,9 @@ theorem mem_sideHalfPlane_of_sideGap_nonpos {c : Plane} {r : ℝ} {p : Plane} {i
 
 /-- Each piece the sides of one square cut a small square into is an axis-parallel rectangle —
 an intersection of four coordinate strips with one more coordinate half-plane — and is therefore
-convex. This is the only property of the three basic shapes the argument uses. -/
+convex. This is the only property of the three basic shapes the argument uses.
+@isnad1 id=convex.0h6v.s7.084479bbb26e from=translated src=- shape=8eae781b vocab=b89cfe18
+-/
 theorem convex_openSquare_inter_sideHalfPlane (p : Plane) (s : ℝ) (c : Plane) (r : ℝ)
     (i : Fin 2) (b : Bool) : Convex ℝ (openSquare p s ∩ sideHalfPlane c r i b) :=
   (convex_openSquare p s).inter (convex_sideHalfPlane c r i b)
@@ -265,7 +313,9 @@ end Plane
 
 /-- A positive lower bound for whichever members of a finite family happen to be positive.
 This is `exists_pos_le_of_finite` with the selection built in; the members that are nonpositive
-impose nothing. -/
+impose nothing.
+@isnad1 id=ex.0h2v.s5.43e6ac10e541 from=translated src=- shape=03fa689e vocab=3a8e0de2
+-/
 theorem exists_pos_le_of_pos {ι : Type*} [Finite ι] (d : ι → ℝ) :
     ∃ s > 0, ∀ i, 0 < d i → s ≤ d i := by
   obtain ⟨s, hs, hle⟩ :=
@@ -273,7 +323,9 @@ theorem exists_pos_le_of_pos {ι : Type*} [Finite ι] (d : ι → ℝ) :
   exact ⟨s, hs, fun i hi => hle i hi⟩
 
 /-- A radius small enough that the square about `p` misses every side half-plane of the square
-about `c` that `p` itself is outside of. -/
+about `c` that `p` itself is outside of.
+@isnad1 id=ex.0h3v.s6.db2cd9dad5c8 from=translated src=- shape=df8c5c60 vocab=2dd0cd2a
+-/
 theorem Plane.exists_radius_sides (c : Plane) (r : ℝ) (p : Plane) :
     ∃ s > 0, ∀ ib : Fin 2 × Bool,
       ∀ z ∈ openSquare p s ∩ sideHalfPlane c r ib.1 ib.2,
@@ -296,7 +348,9 @@ polygonally connected near every point of the plane.
 The neighbourhood is a small square about `p`; intersected with the complement it becomes the
 union of the four rectangles cut off by the sides of the big square, each convex and each either
 empty or containing `p`. That is the disk / half-disk / three-quarter-disk trichotomy, with the
-cases never distinguished. -/
+cases never distinguished.
+@isnad1 id=islocall.0h3v.s4.abd08c96147a from=translated src=- shape=2e6b6155 vocab=2b2c466c
+-/
 theorem isLocallyPolyConnAt_compl_openSquare (c : Plane) (r : ℝ) (p : Plane) :
     IsLocallyPolyConnAt (openSquare c r)ᶜ p := by
   obtain ⟨s, hs, hstar⟩ := Plane.exists_radius_sides c r p
@@ -317,7 +371,9 @@ are pairwise disjoint is locally polygonally connected.
 Two steps. Away from all the closed squares a small square about `p` is convex and already
 inside `M`. Otherwise `p` lies in exactly one closed square — exactly one, by disjointness — and
 a small enough square about `p` misses all the others, so near `p` the set `M` *is* the
-complement of that one open square and the previous theorem's decomposition applies verbatim. -/
+complement of that one open square and the previous theorem's decomposition applies verbatim.
+@isnad1 id=islocall.2h2v.s6.a06f01c03da8 from=translated src=- shape=2fb33e40 vocab=7eaf7687
+-/
 theorem isLocallyPolyConn_compl_biUnion {A : Set Plane} (hA : A.Finite) (ρ : Plane → ℝ)
     (hdisj : ∀ c ∈ A, ∀ c' ∈ A, c ≠ c' →
       Disjoint (closedSquare c (ρ c)) (closedSquare c' (ρ c'))) :

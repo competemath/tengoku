@@ -68,6 +68,9 @@ inductive IsSubtreeOf : {n₁ : g.NT} → {n₂ : g.NT} → parseTree n₁ → p
 
 variable {n : g.NT} {p : parseTree n}
 
+/--
+@isnad1 id=derives.0h4v.s5.30ac69a90910 from=translated src=- shape=3049a339 vocab=f23eb88f
+-/
 lemma yield_derives : g.Derives [Symbol.nonterminal n] (p.yield.map Symbol.terminal) := by
   induction p with
   | leaf t hg =>
@@ -78,8 +81,14 @@ lemma yield_derives : g.Derives [Symbol.nonterminal n] (p.yield.map Symbol.termi
     rw [ChomskyNormalFormRule.output, List.map_append, ← List.singleton_append]
     exact (ihr.append_left _).trans (ihl.append_right _)
 
+/--
+@isnad1 id=lt.0h4v.s4.ebf08d9f8426 from=translated src=- shape=7f5ace79 vocab=ffc288ef
+-/
 lemma height_pos : p.height > 0 := by cases p <;> simp [height]
 
+/--
+@isnad1 id=le.0h4v.s5.7d27ba6be8fa from=translated src=- shape=270ceaa6 vocab=a3f42c21
+-/
 lemma yield_length_le_two_pow_height : p.yield.length ≤ 2 ^ (p.height - 1) := by
   induction p with
   | leaf => simp [yield, height]
@@ -99,6 +108,9 @@ lemma yield_length_le_two_pow_height : p.yield.length ≤ 2 ^ (p.height - 1) := 
     nth_rewrite 3 [ht'']
     rw [Nat.two_pow_succ]
 
+/--
+@isnad1 id=lt.0h4v.s4.ea0ddae70248 from=translated src=- shape=97503520 vocab=cdb359fa
+-/
 lemma yield_length_pos : p.yield.length > 0 := by
   induction p with
   | leaf => simp [yield]
@@ -106,6 +118,9 @@ lemma yield_length_pos : p.yield.length > 0 := by
     simp only [yield, List.length_append]
     omega
 
+/--
+@isnad1 id=ex.1h6v.s7.8e0f962adc67 from=translated src=- shape=2ceed88e vocab=53437bb5
+-/
 lemma subtree_decomposition {n₁ n₂ : g.NT} {p₁ : parseTree n₁} {p₂ : parseTree n₂}
     (hpp : IsSubtreeOf p₂ p₁) :
     ∃ u v, p₁.yield = u ++ p₂.yield ++ v ∧
@@ -135,6 +150,9 @@ lemma subtree_decomposition {n₁ n₂ : g.NT} {p₁ : parseTree n₁} {p₂ : p
     nth_rewrite 2 [← List.append_assoc]
     exact (hguv.append_left _).trans (Derives.append_right q₁.yield_derives _)
 
+/--
+@isnad1 id=ex.2h5v.s7.d80c8fbb2cdb from=translated src=- shape=0b246558 vocab=0bc050d0
+-/
 lemma strict_subtree_decomposition {n : g.NT} {p₁ : parseTree n} {p₂ : parseTree n}
     (hpp : IsSubtreeOf p₂ p₁) (hne : p₁ ≠ p₂) :
     ∃ u v, p₁.yield = u ++ p₂.yield ++ v ∧ (u ++ v).length > 0
@@ -166,9 +184,15 @@ lemma strict_subtree_decomposition {n : g.NT} {p₁ : parseTree n} {p₂ : parse
       nth_rewrite 2 [← List.append_assoc]
       exact (hguv.append_left _).trans (Derives.append_right q₁.yield_derives _)
 
+/--
+@isnad1 id=issubtre.0h4v.s4.719ffefa46f2 from=translated src=- shape=2dbc3374 vocab=da716a10
+-/
 @[refl]
 lemma IsSubtreeOf.refl {n : g.NT} {p : parseTree n} : p.IsSubtreeOf p := IsSubtreeOf.eq p
 
+/--
+@isnad1 id=issubtre.2h8v.s5.197fc50c09b7 from=translated src=- shape=d1d27499 vocab=da716a10
+-/
 lemma IsSubtreeOf.trans {n₁ n₂ n₃ : g.NT} {p₁ : parseTree n₁} {p₂ : parseTree n₂}
     {p₃ : parseTree n₃} (hp₁ : p₁.IsSubtreeOf p₂) (hp₂ : p₂.IsSubtreeOf p₃) :
     p₁.IsSubtreeOf p₃ := by
@@ -177,6 +201,9 @@ lemma IsSubtreeOf.trans {n₁ n₂ n₃ : g.NT} {p₁ : parseTree n₁} {p₂ : 
   | left_sub _ _ _ _ _ ih => exact left_sub _ _ _ _ (ih hp₁)
   | right_sub _ _ _ _ _ ih => exact right_sub _ _ _ _ (ih hp₁)
 
+/--
+@isnad1 id=le.1h6v.s5.6b7dd66430bc from=translated src=- shape=d56428e5 vocab=67c03039
+-/
 lemma subtree_height {n₁ n₂ : g.NT} {p₁ : parseTree n₁} {p₂ : parseTree n₂}
     (hpp : p₁.IsSubtreeOf p₂) :
     p₁.height ≤ p₂.height := by
@@ -189,6 +216,9 @@ lemma subtree_height {n₁ n₂ : g.NT} {p₁ : parseTree n₁} {p₂ : parseTre
 
 end parseTree
 
+/--
+@isnad1 id=ex.1h4v.s6.f5c84ddd283b from=translated src=- shape=ba3ea607 vocab=c6754b8b
+-/
 lemma Produces.rule {n : g.NT} {u : List (Symbol T g.NT)}
     (hnu : g.Produces [Symbol.nonterminal n] u) :
     ∃ r ∈ g.rules, r.input = n ∧ r.output = u := by
@@ -198,6 +228,9 @@ lemma Produces.rule {n : g.NT} {u : List (Symbol T g.NT)}
   · exact ⟨_, hrg, rfl, rfl⟩
   · contradiction
 
+/--
+@isnad1 id=eq.1h5v.s5.2bac511e92a2 from=translated src=- shape=906c0a80 vocab=f3809947
+-/
 lemma DerivesIn.terminal_refl {u v : List T} {m : ℕ}
     (huv : g.DerivesIn (u.map Symbol.terminal) (v.map Symbol.terminal) m) :
     u = v := by
@@ -244,6 +277,9 @@ private lemma DerivesIn.yield_rec {n : g.NT} {u : List T} {m : ℕ}
       unfold parseTree.yield
       rw [hp₁, hp₂, hu]
 
+/--
+@isnad1 id=ex.1h4v.s6.53e81c288252 from=translated src=- shape=7f0bd476 vocab=501b3d39
+-/
 lemma Derives.yield {n : g.NT} {u : List T}
     (hnu : g.Derives [Symbol.nonterminal n] (u.map Symbol.terminal)) :
     ∃ p : parseTree n, p.yield = u := by

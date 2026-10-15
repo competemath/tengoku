@@ -47,7 +47,9 @@ namespace Graph
 variable {β : Type*} {G H : Graph Plane β} {drawing drawing' : β → ℝ → Plane}
 
 /-- Replacing a drawing by a pointwise equal parametrization on the graph's own edges preserves
-all drawing axioms. -/
+all drawing axioms.
+@isnad1 id=isdrawin.2h4v.s5.98656a17e490 from=translated src=- shape=45e00e3e vocab=23e8562a
+-/
 theorem isDrawing_congr_of_eqOn (h : G.IsDrawing drawing)
     (heq : ∀ {e : β}, e ∈ E(G) → drawing' e = drawing e) :
     G.IsDrawing drawing' where
@@ -66,7 +68,9 @@ theorem isDrawing_congr_of_eqOn (h : G.IsDrawing drawing)
     exact h.edge_inter he hf hef hpe hpf
 
 /-- Compatible plane drawings whose carriers meet only at common vertices form a plane drawing
-on their union. -/
+on their union.
+@isnad1 id=isdrawin.4h4v.s6.fdb9f9a9c49c from=translated src=- shape=ce908e20 vocab=1740191a
+-/
 theorem isDrawing_union_of_common_vertices (hG : G.IsDrawing drawing)
     (hH : H.IsDrawing drawing) (hcompat : G.Compatible H)
     (hcross : ∀ {p : Plane}, p ∈ pointSet G drawing → p ∈ pointSet H drawing →
@@ -119,7 +123,9 @@ theorem isDrawing_union_of_common_vertices (hG : G.IsDrawing drawing)
     · obtain ⟨hpV, hpeInc, hpfInc⟩ := hH.edge_inter heH hfH hef hpe hpf
       exact ⟨Or.inr hpV, hpeInc.mono hHle, hpfInc.mono hHle⟩
 
-/-- A nonempty walk in a plane drawing has connected geometric carrier. -/
+/-- A nonempty walk in a plane drawing has connected geometric carrier.
+@isnad1 id=isconnec.3h6v.s6.d9fa5761cfdd from=translated src=- shape=365c3aaf vocab=94e6f6f2
+-/
 theorem IsDrawing.isConnected_edgesCover_of_isWalk (h : G.IsDrawing drawing)
     {u v : Plane} {W : List β} (hW : G.IsWalk u W v) (hne : W ≠ []) :
     IsConnected (Graph.edgesCover drawing W) := by
@@ -140,7 +146,9 @@ theorem IsDrawing.isConnected_edgesCover_of_isWalk (h : G.IsDrawing drawing)
         rw [Graph.pathGraphOf_vertexSet]
         exact Graph.mem_walkVertices_self
 
-/-- The point set of a connected plane drawing is connected. -/
+/-- The point set of a connected plane drawing is connected.
+@isnad1 id=isconnec.2h3v.s6.787c95247a0b from=translated src=- shape=2adc1b63 vocab=0977a373
+-/
 theorem IsDrawing.isConnected_pointSet (h : G.IsDrawing drawing) (hG : G.Connected) :
     IsConnected (Graph.pointSet G drawing) := by
   obtain ⟨c, hc⟩ := hG.nonempty
@@ -212,7 +220,9 @@ structure SourceNonboundarySegmentCover
 namespace GeneratedPair
 
 /-- Every generated pair has a finite exact segment presentation of its compact polygonal
-nonboundary source skeleton. -/
+nonboundary source skeleton.
+@isnad1 id=nonempty.0h7v.s5.ba3f18bc8103 from=translated src=- shape=cbdbec54 vocab=e843898e
+-/
 theorem exists_sourceNonboundarySegmentCover
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom) :
     Nonempty (SourceNonboundarySegmentCover P) := by
@@ -270,10 +280,15 @@ noncomputable def localOverlay (p : Plane) (s epsilon : ℝ)
   attachGraph (Q.localPieces p s epsilon)
     (extra ++ P.sourceNonboundaryGraph.vertexFinset.toList)
 
+/--
+@isnad1 id=finite.0h12v.s5.843cd1cd455c from=translated src=- shape=c6451482 vocab=3d8f4afb
+-/
 instance localOverlay_finite (p : Plane) (s epsilon : ℝ) (extra : List Plane) :
     (Q.localOverlay p s epsilon extra).Finite := attachGraph_finite _ _
 
-/-- Every source segment of the local overlay is nondegenerate. -/
+/-- Every source segment of the local overlay is nondegenerate.
+@isnad1 id=nondeg.2h12v.s6.0d4c64e25be9 from=translated src=- shape=b02822ee vocab=f7a7d923
+-/
 theorem localPieces_nondeg {p : Plane} {s epsilon : ℝ} (hs : 0 < s) :
     ∀ R ∈ Q.localPieces p s epsilon, R.Nondeg := by
   intro R hR
@@ -281,20 +296,26 @@ theorem localPieces_nondeg {p : Plane} {s epsilon : ℝ} (hs : 0 < s) :
   · exact Q.nondeg R hR
   · exact localGridEdges_nondeg hs (one_le_localGridCount s epsilon) R hR
 
-/-- The source local overlay is a finite straight-line plane graph. -/
+/-- The source local overlay is a finite straight-line plane graph.
+@isnad1 id=isdrawin.1h12v.s6.cac79a3fb69e from=translated src=- shape=c429b36d vocab=d3f55680
+-/
 theorem localOverlay_isDrawing {p : Plane} {s epsilon : ℝ} (hs : 0 < s)
     (extra : List Plane) :
     Graph.IsDrawing (Q.localOverlay p s epsilon extra) segmentDrawing :=
   attachGraph_isDrawing (Q.localPieces_nondeg hs) _
 
-/-- The local overlay occupies exactly the old compact source core together with the grid. -/
+/-- The local overlay occupies exactly the old compact source core together with the grid.
+@isnad1 id=eq.0h12v.s6.bec1b752bfb1 from=translated src=- shape=42be58e1 vocab=d3d7ab04
+-/
 theorem localOverlay_pointSet (p : Plane) (s epsilon : ℝ) (extra : List Plane) :
     Graph.pointSet (Q.localOverlay p s epsilon extra) segmentDrawing =
       Graph.pointSet P.sourceNonboundaryGraph P.src.drawing ∪
         cover (localGridEdges p s (localGridCount s epsilon)) := by
   rw [localOverlay, attachGraph_pointSet, localPieces, cover_append, Q.cover_eq]
 
-/-- The whole old compact source core is retained by the local overlay. -/
+/-- The whole old compact source core is retained by the local overlay.
+@isnad1 id=le.0h12v.s6.89c96f2c65f1 from=translated src=- shape=40789edf vocab=d101792b
+-/
 theorem sourceCore_subset_localOverlay (p : Plane) (s epsilon : ℝ)
     (extra : List Plane) :
     Graph.pointSet P.sourceNonboundaryGraph P.src.drawing ⊆
@@ -302,7 +323,9 @@ theorem sourceCore_subset_localOverlay (p : Plane) (s epsilon : ℝ)
   rw [Q.localOverlay_pointSet]
   exact subset_union_left
 
-/-- The whole fine local grid is retained by the source overlay. -/
+/-- The whole fine local grid is retained by the source overlay.
+@isnad1 id=le.0h12v.s6.ff73bd01666a from=translated src=- shape=fbfd9cf0 vocab=82ad02e6
+-/
 theorem localGrid_subset_localOverlay (p : Plane) (s epsilon : ℝ)
     (extra : List Plane) :
     cover (localGridEdges p s (localGridCount s epsilon)) ⊆
@@ -311,7 +334,9 @@ theorem localGrid_subset_localOverlay (p : Plane) (s epsilon : ℝ)
   exact subset_union_right
 
 /-- Every vertex of the raw local grid is retained as a vertex of the combined straight-line
-overlay. -/
+overlay.
+@isnad1 id=le.1h12v.s6.94e981e5cf69 from=translated src=- shape=e0706234 vocab=44a0bb0b
+-/
 theorem localGridVertices_subset_localOverlay {p : Plane} {s epsilon : ℝ}
     (hs : 0 < s) (extra : List Plane) :
     V(localGrid p s (localGridCount s epsilon)) ⊆
@@ -332,7 +357,9 @@ theorem localGridVertices_subset_localOverlay {p : Plane} {s epsilon : ℝ}
       · exact right_mem_segment ℝ _ _⟩
 
 /-- Away from overlay vertices, an overlay edge meeting a raw local-grid edge is one of its
-subdivision pieces. -/
+subdivision pieces.
+@isnad1 id=le.4h14v.s7.6513236fedd9 from=translated src=- shape=e18d96fc vocab=457b9420
+-/
 theorem localOverlay_grid_edge_subset {p : Plane} {s epsilon : ℝ} (hs : 0 < s)
     (extra : List Plane) :
     ∀ {A : Piece}, A ∈ E(localGrid p s (localGridCount s epsilon)) → ∀ {R : Piece},
@@ -358,7 +385,9 @@ theorem localOverlay_grid_edge_subset {p : Plane} {s epsilon : ℝ} (hs : 0 < s)
   rw [hRR', edgeArc_segmentDrawing, edgeArc_segmentDrawing]
   exact hR'A
 
-/-- The straight-line local overlay contains a plane subdivision of the raw local grid. -/
+/-- The straight-line local overlay contains a plane subdivision of the raw local grid.
+@isnad1 id=isplanes.1h12v.s6.545b9dd0a2de from=translated src=- shape=d6a65514 vocab=1aab0689
+-/
 theorem localGrid_isPlaneSubdivisionExtension {p : Plane} {s epsilon : ℝ}
     (hs : 0 < s) (extra : List Plane) :
     IsPlaneSubdivisionExtension
@@ -376,7 +405,9 @@ theorem localGrid_isPlaneSubdivisionExtension {p : Plane} {s epsilon : ℝ}
     exact Q.localOverlay_grid_edge_subset hs extra hA hR hmeet
 
 /-- Every edge of the source local overlay is a subsegment either of the old nonboundary
-source cover or of the local grid. -/
+source cover or of the local grid.
+@isnad1 id=or.1h13v.s6.729028b5588e from=translated src=- shape=9416cc5b vocab=19c28847
+-/
 theorem localOverlay_edge_source {p : Plane} {s epsilon : ℝ} {extra : List Plane}
     {R : Piece} (hR : R ∈ E(Q.localOverlay p s epsilon extra)) :
     (∃ A ∈ Q.pieces, R.seg ⊆ A.seg) ∨
@@ -392,7 +423,9 @@ theorem localOverlay_edge_source {p : Plane} {s epsilon : ℝ} {extra : List Pla
   · exact Or.inr ⟨A, hA, hsub⟩
 
 /-- Every vertex of the compact old source core is explicitly retained as a vertex of the
-local overlay. -/
+local overlay.
+@isnad1 id=le.1h12v.s6.d26cc047811f from=translated src=- shape=7d6ee003 vocab=79b129ed
+-/
 theorem sourceCoreVertices_subset_localOverlay {p : Plane} {s epsilon : ℝ}
     (hs : 0 < s) (extra : List Plane) :
     V(P.sourceNonboundaryGraph) ⊆ V(Q.localOverlay p s epsilon extra) := by
@@ -408,7 +441,9 @@ theorem sourceCoreVertices_subset_localOverlay {p : Plane} {s epsilon : ℝ}
   · rw [localPieces, cover_append, Q.cover_eq]
     exact Or.inl (Graph.vertexSet_subset_pointSet hx)
 
-/-- Every old nonouter edge belongs to the compact source-core graph. -/
+/-- Every old nonouter edge belongs to the compact source-core graph.
+@isnad1 id=mem.2h8v.s6.a34e59a8de80 from=translated src=- shape=04ce8a85 vocab=809dc7cf
+-/
 theorem sourceNonboundaryGraph_edge_mem {e : γ} (he : e ∈ E(P.str.skel))
     (heOuter : e ∉ E(P.str.outerGraph)) :
     e ∈ E(P.sourceNonboundaryGraph) := by
@@ -426,7 +461,9 @@ theorem sourceNonboundaryGraph_edge_mem {e : γ} (he : e ∈ E(P.str.skel))
   exact ⟨P.src.pos a, P.src.pos b, hdeleted, ha, hb⟩
 
 /-- Away from overlay vertices, an inner-overlay edge meeting an old open nonboundary edge is
-one of that edge's subdivision pieces. -/
+one of that edge's subdivision pieces.
+@isnad1 id=le.5h14v.s7.e1ea344da80e from=translated src=- shape=20d37add vocab=73020b9d
+-/
 theorem localOverlay_edge_subset {p : Plane} {s epsilon : ℝ} (hs : 0 < s)
     (extra : List Plane) :
     ∀ {e : γ}, e ∈ E(P.str.skel) → e ∉ E(P.str.outerGraph) → ∀ {R : Piece},
@@ -475,7 +512,9 @@ theorem localOverlay_edge_subset {p : Plane} {s epsilon : ℝ} (hs : 0 < s)
 
 /-! ### Containment in the source domain -/
 
-/-- Every grid point with indices in range lies in the local grid's closed square. -/
+/-- Every grid point with indices in range lies in the local grid's closed square.
+@isnad1 id=mem.4h5v.s5.ab52069b2ace from=translated src=- shape=6d1b3dd9 vocab=a6815684
+-/
 theorem localGridPoint_mem_closedSquare {p : Plane} {s : ℝ} {k i j : ℕ}
     (hs : 0 < s) (hk : 1 ≤ k) (hi : i ≤ k) (hj : j ≤ k) :
     gridPt (localGridX p s k) (localGridY p s k) i j ∈ Plane.closedSquare p s := by
@@ -499,7 +538,9 @@ theorem localGridPoint_mem_closedSquare {p : Plane} {s : ℝ} {k i j : ℕ}
         localGridY p s k j ≤ localGridY p s k k := hymono hj
         _ = p 1 + s := localGridY_last hk
 
-/-- The complete local grid carrier lies in its closed square window. -/
+/-- The complete local grid carrier lies in its closed square window.
+@isnad1 id=le.2h3v.s5.90c60b5ecd8e from=translated src=- shape=69e5694c vocab=28f1b327
+-/
 theorem cover_localGridEdges_subset_closedSquare {p : Plane} {s : ℝ} {k : ℕ}
     (hs : 0 < s) (hk : 1 ≤ k) :
     cover (localGridEdges p s k) ⊆ Plane.closedSquare p s := by
@@ -515,7 +556,9 @@ theorem cover_localGridEdges_subset_closedSquare {p : Plane} {s : ℝ} {k : ℕ}
       (localGridPoint_mem_closedSquare hs hk hi (by omega)) hzR
 
 /-- If the closed local window lies in the source domain, then so does the complete finite
-inner overlay of the old nonboundary source skeleton with that grid. -/
+inner overlay of the old nonboundary source skeleton with that grid.
+@isnad1 id=le.2h12v.s6.59a5ac7ea574 from=translated src=- shape=6fe6dc62 vocab=43997549
+-/
 theorem localOverlay_pointSet_subset {p : Plane} {s epsilon : ℝ} (hs : 0 < s)
     (hwindow : Plane.closedSquare p s ⊆ srcDom) (extra : List Plane) :
     Graph.pointSet (Q.localOverlay p s epsilon extra) segmentDrawing ⊆ srcDom := by
@@ -529,7 +572,9 @@ theorem localOverlay_pointSet_subset {p : Plane} {s epsilon : ℝ} (hs : 0 < s)
 /-- Every edge of the finite inner overlay is polygonal and its nonvertex points lie in the
 open source domain.  For an old nonouter edge, weak admissibility puts its open 1-cell in the
 interior; if the old arc touches the wild boundary, the touching point is an old core vertex
-and hence an overlay vertex.  Grid-sourced edges lie in the chosen interior window. -/
+and hence an overlay vertex.  Grid-sourced edges lie in the chosen interior window.
+@isnad1 id=and.3h13v.s7.60c7f7fbeb48 from=translated src=- shape=2c810ec3 vocab=c8a4118c
+-/
 theorem localOverlay_edge_dichotomy {p : Plane} {s epsilon : ℝ} (hs : 0 < s)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) (extra : List Plane) :
     ∀ {R : Piece}, R ∈ E(Q.localOverlay p s epsilon extra) →
@@ -567,7 +612,9 @@ theorem localOverlay_edge_dichotomy {p : Plane} {s epsilon : ℝ} (hs : 0 < s)
       (one_le_localGridCount s epsilon) (mem_cover_iff.2 ⟨A, hA, hRA hxSeg⟩))
 
 /-- The compact nonboundary source carrier meets the wild outer curve only at vertices common
-to the nonboundary and outer source graphs. -/
+to the nonboundary and outer source graphs.
+@isnad1 id=and.2h8v.s7.dfd173a0123d from=translated src=- shape=0d3fa058 vocab=2d4bb006
+-/
 theorem sourceCore_inter_outer_vertices {x : Plane}
     (hxCore : x ∈ Graph.pointSet P.sourceNonboundaryGraph P.src.drawing)
     (hxOuter : x ∈ srcOuter) :
@@ -623,7 +670,9 @@ structure LocalOverlayRelabeling (p : Plane) (s epsilon : ℝ) (extra : List Pla
   name_fresh : ∀ R ∈ E(Q.localOverlay p s epsilon extra), name R ∉ P.str.cells
 
 /-- An infinite cell-name type supplies a relabelling of the inner overlay disjoint from every
-name already used by the current generated structure. -/
+name already used by the current generated structure.
+@isnad1 id=nonempty.0h12v.s5.0bc2b14bf2f2 from=translated src=- shape=d360f65f vocab=4312fed4
+-/
 theorem exists_localOverlayRelabeling [Infinite γ]
     (p : Plane) (s epsilon : ℝ) (extra : List Plane) :
     Nonempty (Q.LocalOverlayRelabeling p s epsilon extra) := by
@@ -655,7 +704,9 @@ noncomputable def drawing : γ → ℝ → Plane := by
     if e ∈ E(P.str.outerGraph) then P.src.drawing e
     else (Q.localOverlay p s epsilon extra).relabelDrawing w.name segmentDrawing e
 
-/-- The two edge families are disjoint and therefore compatible. -/
+/-- The two edge families are disjoint and therefore compatible.
+@isnad1 id=compatib.0h13v.s6.613731015ff3 from=translated src=- shape=bbef44bc vocab=5bd4027d
+-/
 theorem compatible : w.outerGraph.Compatible w.innerGraph := by
   apply Graph.Compatible.of_disjoint_edgeSet
   rw [Set.disjoint_left, Graph.edgeSet_map, Graph.edgeSet_relabelEdges]
@@ -665,11 +716,15 @@ theorem compatible : w.outerGraph.Compatible w.innerGraph := by
   exact w.name_fresh R hR
     (P.str.mem_cells_of_mem_edgeSet (P.str.outerGraph_le.edgeSet_mono heOuter))
 
-/-- On an old outer edge the mixed drawing is the old source drawing. -/
+/-- On an old outer edge the mixed drawing is the old source drawing.
+@isnad1 id=eq.1h14v.s6.b4f6f0f52ed8 from=translated src=- shape=5f223525 vocab=f9a47185
+-/
 theorem drawing_of_outer {e : γ} (he : e ∈ E(P.str.outerGraph)) :
     w.drawing e = P.src.drawing e := by simp [drawing, he]
 
-/-- On an inner edge the mixed drawing is the relabelled straight-line drawing. -/
+/-- On an inner edge the mixed drawing is the relabelled straight-line drawing.
+@isnad1 id=eq.1h14v.s7.de7e29dd3afa from=translated src=- shape=adef9dbe vocab=7f99d921
+-/
 theorem drawing_of_inner {e : γ} (he : e ∈ E(w.innerGraph)) :
     w.drawing e =
       (Q.localOverlay p s epsilon extra).relabelDrawing w.name segmentDrawing e := by
@@ -678,7 +733,9 @@ theorem drawing_of_inner {e : γ} (he : e ∈ E(w.innerGraph)) :
   exact fun heOuter => w.name_fresh R hR
     (P.str.mem_cells_of_mem_edgeSet (P.str.outerGraph_le.edgeSet_mono heOuter))
 
-/-- The mixed drawing restricts to a plane drawing on the old wild outer graph. -/
+/-- The mixed drawing restricts to a plane drawing on the old wild outer graph.
+@isnad1 id=isdrawin.0h13v.s6.39074c1c06c7 from=translated src=- shape=165c1d35 vocab=f46cdd3a
+-/
 theorem outer_isDrawing : w.outerGraph.IsDrawing w.drawing := by
   apply Schoenflies.Graph.isDrawing_congr_of_eqOn
     (P.src.isDrawing.mono (P.str.outerGraph_le.map P.src.pos))
@@ -686,14 +743,18 @@ theorem outer_isDrawing : w.outerGraph.IsDrawing w.drawing := by
   apply w.drawing_of_outer
   rwa [Graph.edgeSet_map] at he
 
-/-- The mixed drawing restricts to a plane drawing on the straight-line inner overlay. -/
+/-- The mixed drawing restricts to a plane drawing on the straight-line inner overlay.
+@isnad1 id=isdrawin.1h13v.s6.05d468f42031 from=translated src=- shape=8ef61db5 vocab=e5584d66
+-/
 theorem inner_isDrawing (hs : 0 < s) : w.innerGraph.IsDrawing w.drawing := by
   apply Schoenflies.Graph.isDrawing_congr_of_eqOn
     ((Q.localOverlay_isDrawing hs extra).relabelEdges w.name_inj)
   intro e he
   exact w.drawing_of_inner he
 
-/-- The old outer part of the mixed graph occupies exactly the wild source curve. -/
+/-- The old outer part of the mixed graph occupies exactly the wild source curve.
+@isnad1 id=eq.0h13v.s6.3da9183b8f83 from=translated src=- shape=27abff86 vocab=4a802804
+-/
 theorem outer_pointSet : Graph.pointSet w.outerGraph w.drawing = srcOuter := by
   calc
     Graph.pointSet w.outerGraph w.drawing =
@@ -705,7 +766,9 @@ theorem outer_pointSet : Graph.pointSet w.outerGraph w.drawing = srcOuter := by
     _ = P.src.outerSet := rfl
     _ = srcOuter := P.src_isWeaklyAdmissible.outerSet_eq
 
-/-- The inner part occupies exactly the finite straight-line local overlay. -/
+/-- The inner part occupies exactly the finite straight-line local overlay.
+@isnad1 id=eq.0h13v.s6.610cee76eee6 from=translated src=- shape=f49b5533 vocab=4f7f1261
+-/
 theorem inner_pointSet :
     Graph.pointSet w.innerGraph w.drawing =
       Graph.pointSet (Q.localOverlay p s epsilon extra) segmentDrawing := by
@@ -721,7 +784,9 @@ theorem inner_pointSet :
       Graph.pointSet_relabelEdges w.name_inj
 
 /-- The mixed outer/inner source graph is a plane drawing whenever the local window lies in
-the open source domain. -/
+the open source domain.
+@isnad1 id=isdrawin.2h13v.s6.52ea3a1ffd52 from=translated src=- shape=681114e8 vocab=527639cb
+-/
 theorem graph_isDrawing (hs : 0 < s)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) :
     w.graph.IsDrawing w.drawing := by
@@ -740,7 +805,9 @@ theorem graph_isDrawing (hs : 0 < s)
       (one_le_localGridCount s epsilon) hxGrid
     exact ((hwindow hxWindow).2 hxOuter).elim
 
-/-- The mixed source graph is finite. -/
+/-- The mixed source graph is finite.
+@isnad1 id=finite.0h13v.s6.46c8d3f0684c from=translated src=- shape=80c5e1d7 vocab=06e52e88
+-/
 theorem graph_finite : w.graph.Finite where
   finite_vertexSet := by
     rw [graph, Graph.vertexSet_union, outerGraph, Graph.vertexSet_map,
@@ -754,7 +821,9 @@ theorem graph_finite : w.graph.Finite where
       ((Graph.finite_edgeSet (Q.localOverlay p s epsilon extra)).image w.name)
 
 /-- The mixed source graph occupies the wild outer curve, the old compact nonboundary
-carrier, and the complete local grid. -/
+carrier, and the complete local grid.
+@isnad1 id=eq.0h13v.s7.fdc760e474fd from=translated src=- shape=a75c1d3a vocab=fb7a9e44
+-/
 theorem graph_pointSet :
     Graph.pointSet w.graph w.drawing =
       srcOuter ∪ (Graph.pointSet P.sourceNonboundaryGraph P.src.drawing ∪
@@ -762,7 +831,9 @@ theorem graph_pointSet :
   rw [graph, Graph.pointSet_union, w.outer_pointSet, w.inner_pointSet,
     Q.localOverlay_pointSet]
 
-/-- The complete old source skeleton is retained by the mixed graph. -/
+/-- The complete old source skeleton is retained by the mixed graph.
+@isnad1 id=le.0h13v.s6.20486c677f3e from=translated src=- shape=c844a278 vocab=ece43ab4
+-/
 theorem sourceSkeleton_subset_graph :
     P.src.skeletonSet ⊆ Graph.pointSet w.graph w.drawing := by
   rw [P.skeletonSet_eq_sourceNonboundaryGraph_union, w.graph_pointSet]
@@ -771,7 +842,9 @@ theorem sourceSkeleton_subset_graph :
   · exact Or.inr (Or.inl hxCore)
   · exact Or.inl hxOuter
 
-/-- Every old source vertex is explicitly retained as a mixed-graph vertex. -/
+/-- Every old source vertex is explicitly retained as a mixed-graph vertex.
+@isnad1 id=le.1h13v.s6.c706fb06505e from=translated src=- shape=f0a4fe12 vocab=8fda1a16
+-/
 theorem sourceVertices_subset_graph (hs : 0 < s) :
     V(P.src.graph) ⊆ V(w.graph) := by
   intro x hx
@@ -795,7 +868,9 @@ theorem sourceVertices_subset_graph (hs : 0 < s) :
       rw [Graph.vertexSet_relabelEdges]
       exact Q.sourceCoreVertices_subset_localOverlay hs extra hxCore)
 
-/-- The mixed source graph stays in the closed source domain. -/
+/-- The mixed source graph stays in the closed source domain.
+@isnad1 id=le.2h13v.s6.d7e5cd3b13e5 from=translated src=- shape=0232f599 vocab=fd0faa1c
+-/
 theorem graph_pointSet_subset (hs : 0 < s)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) :
     Graph.pointSet w.graph w.drawing ⊆ srcDom := by
@@ -808,7 +883,9 @@ theorem graph_pointSet_subset (hs : 0 < s)
     exact Q.localOverlay_pointSet_subset hs (hwindow.trans sdiff_subset) extra
 
 /-- Every mixed edge is either an old outer edge on the wild curve or a polygonal inner edge
-whose nonvertex points lie in the open source domain. -/
+whose nonvertex points lie in the open source domain.
+@isnad1 id=or.3h14v.s7.19266f46e9a5 from=translated src=- shape=ff2eb072 vocab=6b36b657
+-/
 theorem graph_edge_dichotomy (hs : 0 < s)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) :
     ∀ {e : γ}, e ∈ E(w.graph) → edgeArc w.drawing e ⊆ srcOuter ∨
@@ -844,7 +921,9 @@ theorem graph_edge_dichotomy (hs : 0 < s)
     exact Or.inr (by rwa [Graph.vertexSet_relabelEdges])
 
 /-- An edge of the mixed graph meeting an old open source edge away from mixed vertices is one
-of that edge's subdivision pieces. -/
+of that edge's subdivision pieces.
+@isnad1 id=le.5h15v.s7.32cc57e79053 from=translated src=- shape=94c185b5 vocab=bbe728ce
+-/
 theorem graph_edge_subset (hs : 0 < s)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) :
     ∀ {e : γ}, e ∈ E(P.str.skel) → ∀ {f : γ}, f ∈ E(w.graph) →
@@ -909,7 +988,9 @@ theorem graph_edge_subset (hs : 0 < s)
       rw [graph, Graph.vertexSet_union]
       exact Or.inr (by rwa [Graph.vertexSet_relabelEdges])
 
-/-- The mixed graph contains a plane subdivision of the complete old source drawing. -/
+/-- The mixed graph contains a plane subdivision of the complete old source drawing.
+@isnad1 id=isplanes.2h13v.s7.edfe779fd282 from=translated src=- shape=909c0955 vocab=b755b7b6
+-/
 theorem source_isPlaneSubdivisionExtension (hs : 0 < s)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) :
     IsPlaneSubdivisionExtension P.src.graph P.src.drawing w.graph w.drawing where
@@ -932,14 +1013,18 @@ theorem source_isPlaneSubdivisionExtension (hs : 0 < s)
     · exact hznot (w.sourceVertices_subset_graph hs (hab.map P.src.pos).left_mem)
     · exact hznot (w.sourceVertices_subset_graph hs (hab.map P.src.pos).right_mem)
 
-/-- The trace of the old source skeleton in the mixed graph remains 2-connected. -/
+/-- The trace of the old source skeleton in the mixed graph remains 2-connected.
+@isnad1 id=istwocon.2h13v.s7.af20900962f9 from=translated src=- shape=a51ae51b vocab=fc51be62
+-/
 theorem sourceTrace_isTwoConnected (hs : 0 < s)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) :
     (Graph.traceGraph w.graph w.drawing P.src.skeletonSet).IsTwoConnected :=
   (w.source_isPlaneSubdivisionExtension hs hwindow).trace_isTwoConnected
     P.src_isWeaklyAdmissible.isTwoConnected
 
-/-- Every raw local-grid vertex is retained in the mixed graph. -/
+/-- Every raw local-grid vertex is retained in the mixed graph.
+@isnad1 id=le.1h13v.s6.e86d1eb51657 from=translated src=- shape=95b6bcb9 vocab=05786695
+-/
 theorem localGridVertices_subset_graph (hs : 0 < s) :
     V(localGrid p s (localGridCount s epsilon)) ⊆ V(w.graph) := by
   intro x hx
@@ -948,7 +1033,9 @@ theorem localGridVertices_subset_graph (hs : 0 < s) :
     rw [Graph.vertexSet_relabelEdges]
     exact Q.localGridVertices_subset_localOverlay hs extra hx)
 
-/-- The entire raw local-grid carrier is retained in the mixed graph. -/
+/-- The entire raw local-grid carrier is retained in the mixed graph.
+@isnad1 id=le.0h13v.s6.82873ba2921d from=translated src=- shape=3e02a3ab vocab=2e4bc644
+-/
 theorem localGrid_subset_graph :
     Graph.pointSet (localGrid p s (localGridCount s epsilon)) segmentDrawing ⊆
       Graph.pointSet w.graph w.drawing := by
@@ -958,7 +1045,9 @@ theorem localGrid_subset_graph :
 
 /-- An edge of the mixed graph meeting a raw local-grid edge away from mixed vertices is a
 subdivision piece of that grid edge.  An old outer edge cannot meet the grid at all because
-the grid window is strictly inside the source domain. -/
+the grid window is strictly inside the source domain.
+@isnad1 id=le.5h15v.s7.567215af04cf from=translated src=- shape=7b8e6d86 vocab=dd221eed
+-/
 theorem graph_grid_edge_subset (hs : 0 < s)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) :
     ∀ {A : Piece}, A ∈ E(localGrid p s (localGridCount s epsilon)) → ∀ {f : γ},
@@ -1000,7 +1089,9 @@ theorem graph_grid_edge_subset (hs : 0 < s)
     rw [graph, Graph.vertexSet_union]
     exact Or.inr (by rwa [Graph.vertexSet_relabelEdges])
 
-/-- The mixed graph also contains a plane subdivision of the raw local grid. -/
+/-- The mixed graph also contains a plane subdivision of the raw local grid.
+@isnad1 id=isplanes.2h13v.s6.77595b2b50c5 from=translated src=- shape=b7ceec83 vocab=1d42196d
+-/
 theorem localGrid_isPlaneSubdivisionExtension (hs : 0 < s)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) :
     IsPlaneSubdivisionExtension
@@ -1015,7 +1106,9 @@ theorem localGrid_isPlaneSubdivisionExtension (hs : 0 < s)
     intro A hA f hf hmeet
     exact w.graph_grid_edge_subset hs hwindow hA hf hmeet
 
-/-- The local-grid trace inside the mixed graph remains 2-connected. -/
+/-- The local-grid trace inside the mixed graph remains 2-connected.
+@isnad1 id=istwocon.2h13v.s6.1ed35a20e99a from=translated src=- shape=5d238ae1 vocab=2782cd2a
+-/
 theorem localGridTrace_isTwoConnected (hs : 0 < s)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) :
     (Graph.traceGraph w.graph w.drawing
@@ -1026,7 +1119,9 @@ theorem localGridTrace_isTwoConnected (hs : 0 < s)
 
 /-- Two distinct mixed vertices lying on both the old source skeleton and the local grid make
 the whole mixed graph 2-connected.  The two plane-subdivision traces are 2-connected and
-together contain every mixed vertex. -/
+together contain every mixed vertex.
+@isnad1 id=istwocon.9h15v.s7.6bc6afd09b28 from=translated src=- shape=c90efcd4 vocab=2959994c
+-/
 theorem graph_isTwoConnected_of_two_common (hs : 0 < s)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter)
     {a b : Plane} (hab : a ≠ b) (haV : a ∈ V(w.graph)) (hbV : b ∈ V(w.graph))
@@ -1078,7 +1173,9 @@ theorem graph_isTwoConnected_of_two_common (hs : 0 < s)
       exact ⟨hx, hxGrid⟩)
 
 /-- If the old open source skeleton is connected and meets the local grid, then the mixed
-carrier remains connected after the wild outer curve is removed. -/
+carrier remains connected after the wild outer curve is removed.
+@isnad1 id=isconnec.4h13v.s8.84da69f3b6ce from=translated src=- shape=13c75660 vocab=4031fbb4
+-/
 theorem graph_isConnected_diff_of_source_connected (hs : 0 < s)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter)
     (hsource : IsConnected (P.src.skeletonSet \ srcOuter))
@@ -1127,7 +1224,9 @@ theorem graph_isConnected_diff_of_source_connected (hs : 0 < s)
 
 /-- The mixed graph is a complete source extension once its two global attachment properties
 are supplied.  All finiteness, drawing, subdivision, containment, and edge-geometry fields are
-automatic from the exact source cover and the interior-window hypothesis. -/
+automatic from the exact source cover and the interior-window hypothesis.
+@isnad1 id=issource.4h13v.s7.1c51c6af9780 from=translated src=- shape=e91a6547 vocab=f96d6b31
+-/
 theorem isSourceExtension (hs : 0 < s)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter)
     (htwo : w.graph.IsTwoConnected)
@@ -1148,7 +1247,9 @@ theorem isSourceExtension (hs : 0 < s)
   isConnected := hconnected
 
 /-- With two common source/grid vertices, only connectedness off the wild outer curve remains
-to obtain the complete source extension. -/
+to obtain the complete source extension.
+@isnad1 id=issource.10h15v.s8.e2f31ffe669a from=translated src=- shape=e7f5533f vocab=c7805a59
+-/
 theorem isSourceExtension_of_two_common (hs : 0 < s)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter)
     {a b : Plane} (hab : a ≠ b) (haV : a ∈ V(w.graph)) (hbV : b ∈ V(w.graph))
@@ -1164,7 +1265,9 @@ theorem isSourceExtension_of_two_common (hs : 0 < s)
 
 /-- At an admissible stage, two distinct common source/grid vertices give the complete source
 extension.  One common point joins the two connected carriers off the boundary; both common
-vertices make their 2-connected subdivision traces glue. -/
+vertices make their 2-connected subdivision traces glue.
+@isnad1 id=issource.10h15v.s8.c589a6ff6e4e from=translated src=- shape=d5c9b255 vocab=0d874b64
+-/
 theorem isSourceExtension_of_source_connected_two_common (hs : 0 < s)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter)
     (hsource : IsConnected P.src.nonboundary)

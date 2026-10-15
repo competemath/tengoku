@@ -89,7 +89,9 @@ private theorem orderedPairSum_succ (k : ℕ) (f : Fin (k + 1) → Color) :
   · rw [Fin.sum_univ_castSucc]
     simp
 
-/-- Polarization of `quadratic` over a linearly ordered finite family. -/
+/-- Polarization of `quadratic` over a linearly ordered finite family.
+@isnad1 id=eq.0h2v.s7.0f0de866de2a from=translated src=- shape=846d07dc vocab=06b58a9b
+-/
 theorem quadratic_sum_fin (k : ℕ) (f : Fin k → Color) :
     quadratic (∑ i, f i) =
       (∑ i, quadratic (f i)) +
@@ -103,7 +105,9 @@ theorem quadratic_sum_fin (k : ℕ) (f : Fin k → Color) :
       abel
 
 /-- The recursively extended local patterns retain the quadratic cancellation of the pair and
-triple base cases. -/
+triple base cases.
+@isnad1 id=eq.0h2v.s5.5a68a431eec3 from=translated src=- shape=c7248f1b vocab=3109bf6a
+-/
 theorem localQuadraticContribution_eq_zero (n : ℕ) (c : Fin 3) :
     localQuadraticContribution n c = 0 := by
   unfold localQuadraticContribution
@@ -134,6 +138,9 @@ noncomputable def frameDifference
   localDifference (Fintype.card (W.Occurrence v) - 2) c (W.occurrenceOrderIsoFin hmin v o)
 
 omit [Fintype V] in
+/--
+@isnad1 id=ne.1h5v.s6.554aad914be9 from=translated src=- shape=ea964729 vocab=68c8fe93
+-/
 theorem frameDifference_ne_zero
     (hmin : ∀ v, 2 ≤ Fintype.card (W.Occurrence v))
     (v : V) (c : Fin 3) (o : W.Occurrence v) :
@@ -141,6 +148,9 @@ theorem frameDifference_ne_zero
   exact localDifference_ne_zero _ _ _
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h4v.s7.34ae167e83d4 from=translated src=- shape=6ab157c2 vocab=5d342eac
+-/
 theorem sum_frameDifference_occurrences
     (hmin : ∀ v, 2 ≤ Fintype.card (W.Occurrence v)) (v : V) (c : Fin 3) :
     ∑ o, W.frameDifference hmin v c o = 0 := by
@@ -149,6 +159,9 @@ theorem sum_frameDifference_occurrences
     (Fintype.card (W.Occurrence v) - 2) c
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h4v.s7.8a947fdcf12c from=translated src=- shape=4f7b510b vocab=5d342eac
+-/
 theorem sum_frameDifference_choices
     (hmin : ∀ v, 2 ≤ Fintype.card (W.Occurrence v))
     (v : V) (o : W.Occurrence v) :
@@ -156,6 +169,9 @@ theorem sum_frameDifference_choices
   exact sum_localDifference_choices _ _
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h4v.s8.fcff8b6259f4 from=translated src=- shape=3773492e vocab=90f8c7c4
+-/
 theorem frameDifference_localQuadratic
     (hmin : ∀ v, 2 ≤ Fintype.card (W.Occurrence v)) (v : V) (c : Fin 3) :
     (∑ o, quadratic (W.frameDifference hmin v c o)) +
@@ -212,6 +228,9 @@ noncomputable def interaction
       else 0
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h6v.s6.11d8bb519d2f from=translated src=- shape=1d924f7c vocab=35160886
+-/
 theorem interaction_symm
     (hmin : ∀ v, 2 ≤ Fintype.card (W.Occurrence v))
     (v u : V) (cv cu : Fin 3) :
@@ -275,6 +294,9 @@ theorem interaction_symm
         rw [← add_assoc, F₂_add_self, zero_add]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h5v.s6.d93f53237141 from=translated src=- shape=9b5d17e8 vocab=9c9dc618
+-/
 theorem sum_interaction_choices
     (hmin : ∀ v, 2 ≤ Fintype.card (W.Occurrence v))
     (v u : V) (cv : Fin 3) :
@@ -300,7 +322,9 @@ theorem sum_interaction_choices
     · simp [hji]
 
 /-- The odd balancing theorem chooses one local frame at every letter so that every external
-interaction obstruction vanishes. -/
+interaction obstruction vanishes.
+@isnad1 id=ex.1h2v.s6.fb1055971120 from=translated src=- shape=96d6be64 vocab=4be1780d
+-/
 theorem exists_balanced_choice
     (hmin : ∀ v, 2 ≤ Fintype.card (W.Occurrence v)) :
     ∃ choice : V → Fin 3,
@@ -321,6 +345,9 @@ noncomputable def chosenDifference
   W.frameDifference hmin (W.letter i) (choice (W.letter i)) ⟨i, rfl⟩
 
 omit [Fintype V] in
+/--
+@isnad1 id=ne.1h4v.s6.229d7581e112 from=translated src=- shape=99aedcf5 vocab=97d36edb
+-/
 theorem chosenDifference_ne_zero
     (hmin : ∀ v, 2 ≤ Fintype.card (W.Occurrence v))
     (choice : V → Fin 3) (i : W.Pos) :
@@ -328,6 +355,9 @@ theorem chosenDifference_ne_zero
   exact W.frameDifference_ne_zero hmin _ _ _
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h5v.s6.921db1a31a76 from=translated src=- shape=4b6c3442 vocab=94b28ef8
+-/
 theorem chosenDifference_at_occurrence
     (hmin : ∀ v, 2 ≤ Fintype.card (W.Occurrence v))
     (choice : V → Fin 3) (v : V) (o : W.Occurrence v) :
@@ -337,6 +367,9 @@ theorem chosenDifference_at_occurrence
   rfl
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h4v.s7.5c2e8d645ee3 from=translated src=- shape=9c31bb7e vocab=0b3f21be
+-/
 theorem sum_chosenDifference_occurrences
     (hmin : ∀ v, 2 ≤ Fintype.card (W.Occurrence v))
     (choice : V → Fin 3) (v : V) :
@@ -351,6 +384,9 @@ theorem sum_chosenDifference_occurrences
     _ = 0 := W.sum_frameDifference_occurrences hmin v (choice v)
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h3v.s7.182be0360d4d from=translated src=- shape=1a827d20 vocab=b2a19b05
+-/
 theorem sum_chosenDifference [Finite V]
     (hmin : ∀ v, 2 ≤ Fintype.card (W.Occurrence v))
     (choice : V → Fin 3) :
@@ -373,6 +409,9 @@ def prefixColor (y : W.Pos → Color) (i : W.Pos) : Color :=
   ∑ j ∈ Finset.Iic i, y j
 
 omit [DecidableEq V] [Fintype V] in
+/--
+@isnad1 id=eq.1h4v.s7.aa01a0d5dda0 from=translated src=- shape=a2aa59f7 vocab=1aa0439d
+-/
 theorem prefixColor_transition
     (y : W.Pos → Color) (htotal : ∑ i, y i = 0) (i : W.Pos) :
     W.prefixColor y (W.prev i) + W.prefixColor y i = y i := by
@@ -398,6 +437,9 @@ theorem prefixColor_transition
       _ = y i := by rw [color_add_self, zero_add]
 
 omit [DecidableEq V] [Fintype V] in
+/--
+@isnad1 id=eq.1h4v.s7.c57b336171ed from=translated src=- shape=e963cc69 vocab=37f0c9e3
+-/
 theorem prefixColor_prev_eq_strictPrefix
     (y : W.Pos → Color) (htotal : ∑ i, y i = 0) (i : W.Pos) :
     W.prefixColor y (W.prev i) = ∑ j ∈ Finset.Iio i, y j := by
@@ -419,7 +461,9 @@ def orderedLetterInteraction (y : W.Pos → Color) (v u : V) : F₂ :=
   ∑ i : W.Occurrence v, ∑ j : W.Occurrence u,
     if j.1 < i.1 then bracket (y i.1) (y j.1) else 0
 
-/-- Partitioning earlier word positions according to their letter. -/
+/-- Partitioning earlier word positions according to their letter.
+@isnad1 id=eq.0h4v.s7.4c64a37ece83 from=translated src=- shape=f0c02612 vocab=b4596e22
+-/
 theorem sum_orderedLetterInteraction (y : W.Pos → Color) (v : V) :
     (∑ u, W.orderedLetterInteraction y v u) =
       ∑ i : W.Occurrence v, ∑ j ∈ Finset.Iio i.1, bracket (y i.1) (y j) := by
@@ -448,6 +492,9 @@ theorem sum_orderedLetterInteraction (y : W.Pos → Color) (v : V) :
             rfl
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.2h5v.s6.fc2c0ffc12ab from=translated src=- shape=1050ec40 vocab=fa274f9f
+-/
 theorem orderedLetterInteraction_chosen_eq_interaction
     (hmin : ∀ v, 2 ≤ Fintype.card (W.Occurrence v))
     (choice : V → Fin 3) {v u : V} (hvu : v ≠ u) :
@@ -463,6 +510,9 @@ theorem orderedLetterInteraction_chosen_eq_interaction
     W.chosenDifference_at_occurrence hmin choice u j]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h4v.s7.34f034286ec8 from=translated src=- shape=9badd337 vocab=afe9842a
+-/
 theorem chosen_localQuadratic
     (hmin : ∀ v, 2 ≤ Fintype.card (W.Occurrence v))
     (choice : V → Fin 3) (v : V) :
@@ -472,6 +522,9 @@ theorem chosen_localQuadratic
   simp_rw [W.chosenDifference_at_occurrence hmin choice v]
   exact W.frameDifference_localQuadratic hmin v (choice v)
 
+/--
+@isnad1 id=eq.2h4v.s7.3c9b58a745db from=translated src=- shape=6c76b875 vocab=00dec9c4
+-/
 theorem chosen_externalInteraction_eq_zero
     (hmin : ∀ v, 2 ≤ Fintype.card (W.Occurrence v))
     (choice : V → Fin 3)
@@ -492,6 +545,9 @@ theorem chosen_externalInteraction_eq_zero
     _ = 0 := hbalanced v
 
 omit [DecidableEq V] [Fintype V] in
+/--
+@isnad1 id=eq.1h4v.s7.6d0c4ef11add from=translated src=- shape=80acba01 vocab=cf6787f5
+-/
 theorem quadratic_prefix_pair
     (y : W.Pos → Color) (htotal : ∑ i, y i = 0) (i : W.Pos) :
     quadratic (W.prefixColor y (W.prev i)) + quadratic (W.prefixColor y i) =
@@ -516,7 +572,9 @@ theorem quadratic_prefix_pair
     _ = quadratic (a + b) + bracket a b := by rw [quadratic_add]
     _ = quadratic (y i) + bracket (y i) a := by rw [hab, hbracket]
 
-/-- The balanced interaction equations are exactly the missing quadratic moment at each letter. -/
+/-- The balanced interaction equations are exactly the missing quadratic moment at each letter.
+@isnad1 id=other.2h4v.s7.6f288b352e25 from=translated src=- shape=c07c146d vocab=585c5a28
+-/
 theorem quadratic_incident_sum_eq_zero
     (hmin : ∀ v, 2 ≤ Fintype.card (W.Occurrence v))
     (choice : V → Fin 3)
@@ -578,6 +636,9 @@ theorem quadratic_incident_sum_eq_zero
       simp
 
 omit [Fintype V] in
+/--
+@isnad1 id=other.1h4v.s7.3fb85eb3c3e6 from=translated src=- shape=32f33e16 vocab=f6f05623
+-/
 theorem incident_sum_eq_zero [Finite V]
     (hmin : ∀ v, 2 ≤ Fintype.card (W.Occurrence v))
     (choice : V → Fin 3) (v : V) :
@@ -604,7 +665,9 @@ theorem incident_sum_eq_zero [Finite V]
 
 omit [Fintype V] in
 /-- Every nonempty cyclic word in which each letter occurs at least twice has the required
-four-colouring of its gaps. -/
+four-colouring of its gaps.
+@isnad1 id=nonempty.1h2v.s5.ba6cee00ba46 from=translated src=- shape=c0c9414f vocab=fe82b3c0
+-/
 theorem exists_coloring [Finite V]
     (hmin : ∀ v, 2 ≤ Fintype.card (W.Occurrence v)) : Nonempty W.Coloring := by
   have : Fintype V := Fintype.ofFinite V

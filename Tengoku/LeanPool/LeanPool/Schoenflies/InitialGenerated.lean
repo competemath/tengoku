@@ -102,34 +102,61 @@ needs and that `thm:finite-transfer` asks for as `[Infinite γ]`; no `aux` name 
 with the spare names ruled out by the membership hypothesis the clause already carries. -/
 
 /-- The spare names are not cells: `cells` is `vertices ∪ edges ∪ faces`, and each of those is a
-range of one of the four named constructors. -/
+range of one of the four named constructors.
+@isnad1 id=not.0h1v.s3.934397394b01 from=translated src=- shape=e8522040 vocab=50933aab
+-/
 theorem aux_notMem_cells (n : ℕ) : (InitialCell.aux n) ∉ initialStructure.cells :=
   aux_notMem_cellNames n
 
+/--
+@isnad1 id=mem.0h1v.s4.c1a31ae3a071 from=translated src=- shape=8dbf2889 vocab=683c9664
+-/
 theorem mem_cells_initialStructure_of_vert (i : Fin 6) :
     (InitialCell.vert i) ∈ initialStructure.cells := Or.inl (Or.inl ⟨i, rfl⟩)
 
+/--
+@isnad1 id=mem.0h1v.s4.0f435e0c1e39 from=translated src=- shape=8dbf2889 vocab=294a1596
+-/
 theorem mem_cells_initialStructure_of_edge (i : Fin 6) :
     (InitialCell.edge i) ∈ initialStructure.cells := Or.inl (Or.inr (Or.inl ⟨i, rfl⟩))
 
+/--
+@isnad1 id=mem.0h0v.s3.3ebee4484184 from=translated src=- shape=e6c08869 vocab=f3a0e658
+-/
 theorem mem_cells_initialStructure_of_chord :
     InitialCell.chord ∈ initialStructure.cells := Or.inl (Or.inr (Or.inr rfl))
 
+/--
+@isnad1 id=mem.0h1v.s3.b7b7056e03e7 from=translated src=- shape=b86112cd vocab=135ee6a9
+-/
 theorem mem_cells_initialStructure_of_face (k : Bool) :
     (InitialCell.face k) ∈ initialStructure.cells := Or.inr ⟨k, rfl⟩
 
-/-- The four named constructors are cell names. -/
+/-- The four named constructors are cell names.
+@isnad1 id=mem.0h1v.s4.cbcf6b41df0c from=translated src=- shape=29b279d8 vocab=b04620b2
+-/
 theorem mem_cellNames_of_vert (i : Fin 6) : (InitialCell.vert i) ∈ cellNames :=
   Or.inl (Or.inl ⟨i, rfl⟩)
 
+/--
+@isnad1 id=mem.0h1v.s4.c6c28eee9bf3 from=translated src=- shape=29b279d8 vocab=ab73cd94
+-/
 theorem mem_cellNames_of_edge (i : Fin 6) : (InitialCell.edge i) ∈ cellNames :=
   Or.inl (Or.inr (Or.inl ⟨i, rfl⟩))
 
+/--
+@isnad1 id=mem.0h0v.s3.4915e5954d97 from=translated src=- shape=d1530203 vocab=dd246bbf
+-/
 theorem mem_cellNames_chord : InitialCell.chord ∈ cellNames := Or.inl (Or.inr (Or.inr rfl))
 
+/--
+@isnad1 id=mem.0h1v.s3.6cff4fe3590c from=translated src=- shape=e95f144f vocab=6f99c746
+-/
 theorem mem_cellNames_of_face (k : Bool) : (InitialCell.face k) ∈ cellNames := Or.inr ⟨k, rfl⟩
 
-/-- Every cell of a 2-cell's boundary walk is a cell. -/
+/-- Every cell of a 2-cell's boundary walk is a cell.
+@isnad1 id=mem.1h2v.s4.8f02973a39d4 from=translated src=- shape=a01a8469 vocab=fcd2c3fe
+-/
 theorem mem_cells_of_mem_faceCells {k : Bool} {c : InitialCell} (h : c ∈ faceCells k) :
     c ∈ initialStructure.cells := by
   cases k <;>
@@ -152,11 +179,15 @@ def recOnCells {motive : InitialCell → Sort*} {c : InitialCell}
   | .face k => exact hf k
   | .aux n => exact absurd hc (aux_notMem_cells n)
 
-/-- A `face` name is never a 0-cell or a 1-cell. -/
+/-- A `face` name is never a 0-cell or a 1-cell.
+@isnad1 id=not.0h2v.s3.abd07c8c708f from=translated src=- shape=e0559cb1 vocab=0d8ec1d8
+-/
 theorem face_notMem_faceCells {k l : Bool} : InitialCell.face k ∉ faceCells l := by
   cases l <;> simp [faceCells]
 
-/-- The subcells of a 0-cell are itself alone. -/
+/-- The subcells of a 0-cell are itself alone.
+@isnad1 id=iff.0h2v.s4.738b86aac0ca from=translated src=- shape=077be77b vocab=b78c76dd
+-/
 theorem initSub_iff_vert {i : Fin 6} {c : InitialCell} :
     initSub c (.vert i) ↔ c = .vert i := by
   refine ⟨fun h => ?_, fun h => by subst h; exact initSub_refl (mem_cellNames_of_vert i)⟩
@@ -165,7 +196,9 @@ theorem initSub_iff_vert {i : Fin 6} {c : InitialCell} :
   · exact absurd h (by simp [InitialCell.edges])
   · exact absurd hk (by simp)
 
-/-- The subcells of an outer 1-cell are itself and its two ends. -/
+/-- The subcells of an outer 1-cell are itself and its two ends.
+@isnad1 id=iff.0h2v.s6.584d87973886 from=translated src=- shape=812fb06f vocab=31cd9add
+-/
 theorem initSub_iff_edge {i : Fin 6} {c : InitialCell} :
     initSub c (.edge i) ↔ c = .edge i ∨ c = .vert i ∨ c = .vert (i + 1) := by
   constructor
@@ -179,7 +212,9 @@ theorem initSub_iff_edge {i : Fin 6} {c : InitialCell} :
     · exact (initSub_ends (InitialCell.edge_mem_edges i)).1
     · exact (initSub_ends (InitialCell.edge_mem_edges i)).2
 
-/-- The subcells of the crosscut are itself and its two ends. -/
+/-- The subcells of the crosscut are itself and its two ends.
+@isnad1 id=iff.0h1v.s5.fbcc4cd2e39d from=translated src=- shape=549c7cfe vocab=76ac420c
+-/
 theorem initSub_iff_chord {c : InitialCell} :
     initSub c .chord ↔ c = .chord ∨ c = .vert 1 ∨ c = .vert 4 := by
   constructor
@@ -193,7 +228,9 @@ theorem initSub_iff_chord {c : InitialCell} :
     · exact (initSub_ends InitialCell.chord_mem_edges).1
     · exact (initSub_ends InitialCell.chord_mem_edges).2
 
-/-- The subcells of a 2-cell are itself together with the cells of its boundary walk. -/
+/-- The subcells of a 2-cell are itself together with the cells of its boundary walk.
+@isnad1 id=iff.0h2v.s4.38bb90f0daa7 from=translated src=- shape=2511bff4 vocab=0efddd66
+-/
 theorem initSub_iff_face {k : Bool} {c : InitialCell} :
     initSub c (.face k) ↔ c = .face k ∨ c ∈ faceCells k := by
   constructor
@@ -213,7 +250,9 @@ the base case. Assertion (vi) is `Schoenflies.outerEdgeUniqueFace_initialStructu
 `main`; the other seven clauses are read off `initSub`. -/
 
 /-- **The combinatorial invariants hold for the initial structure.** The base case of
-`Schoenflies.GeneratedStructure.combInvariants`, hence of `GeneratedPair.combInvariants`. -/
+`Schoenflies.GeneratedStructure.combInvariants`, hence of `GeneratedPair.combInvariants`.
+@isnad1 id=combinva.0h0v.s1.b26700929c2c from=translated src=- shape=25b03439 vocab=42aacfbf
+-/
 theorem combInvariants_initialStructure : initialStructure.CombInvariants where
   sub_mem_left := by
     rintro c d (⟨rfl, hc⟩ | ⟨hd, rfl | rfl⟩ | ⟨k, rfl, hmem⟩)
@@ -266,69 +305,114 @@ namespace HexData
 
 variable (H : HexData)
 
+/--
+@isnad1 id=eq.0h2v.s4.ea2af14573bb from=translated src=- shape=69a48207 vocab=24166498
+-/
 @[simp] theorem cellSet_vert (i : Fin 6) : H.cellSet (.vert i) = {H.pos i} := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.367f155bffa8 from=translated src=- shape=e50ce747 vocab=3a98613b
+-/
 @[simp] theorem cellSet_edge (i : Fin 6) :
     H.cellSet (.edge i) = H.outer i '' I \ {H.pos i, H.pos (i + 1)} := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.83e7085d2b3f from=translated src=- shape=46049ce0 vocab=96dcf743
+-/
 @[simp] theorem cellSet_chord : H.cellSet .chord = H.chordSet \ {H.pos 1, H.pos 4} := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.11aa12f21d13 from=translated src=- shape=9959fb0c vocab=9ba3ae28
+-/
 @[simp] theorem cellSet_face (k : Bool) :
     H.cellSet (.face k) = inside (H.arcOf k ∪ H.chordSet) := rfl
 
+/--
+@isnad1 id=le.0h2v.s4.fd2c785ba5be from=translated src=- shape=9468b4a0 vocab=2cac8b5b
+-/
 theorem cellSet_edge_subset (i : Fin 6) : H.cellSet (.edge i) ⊆ H.outer i '' I := sdiff_subset
 
+/--
+@isnad1 id=le.0h2v.s4.d4ac513cd0e4 from=translated src=- shape=9c361fa4 vocab=565858ba
+-/
 theorem cellSet_edge_subset_outerArcs (i : Fin 6) : H.cellSet (.edge i) ⊆ H.outerArcs :=
   (H.cellSet_edge_subset i).trans (Set.subset_iUnion (fun i : Fin 6 => H.outer i '' I) i)
 
+/--
+@isnad1 id=le.0h1v.s3.26086cc2072f from=translated src=- shape=f093a952 vocab=28d160d7
+-/
 theorem cellSet_chord_subset : H.cellSet .chord ⊆ H.chordSet := sdiff_subset
 
+/--
+@isnad1 id=mem.0h2v.s4.2425a9b58b33 from=translated src=- shape=95f936bd vocab=21105862
+-/
 theorem pos_mem_outerArcs (i : Fin 6) : H.pos i ∈ H.outerArcs :=
   Set.mem_iUnion.2 ⟨i, H.pos_mem_outer i⟩
 
-/-- **The 1-cells are nonempty**: an arc has more points than its two endpoints. -/
+/-- **The 1-cells are nonempty**: an arc has more points than its two endpoints.
+@isnad1 id=nonempty.0h2v.s3.ef24520af89b from=translated src=- shape=43aed161 vocab=4faba55d
+-/
 theorem nonempty_cellSet_edge (i : Fin 6) : (H.cellSet (.edge i)).Nonempty :=
   (H.isArcBetween_outer i).nonempty_diff
 
+/--
+@isnad1 id=nonempty.0h1v.s2.d685c34f1044 from=translated src=- shape=310b2a32 vocab=db5fd92d
+-/
 theorem nonempty_cellSet_chord : (H.cellSet .chord).Nonempty :=
   H.isArcBetween_chordSet.nonempty_diff
 
-/-- **A closed 1-cell is the drawn edge**: an arc is the closure of its interior. -/
+/-- **A closed 1-cell is the drawn edge**: an arc is the closure of its interior.
+@isnad1 id=eq.0h2v.s6.3a35987c1451 from=translated src=- shape=63c39d4f vocab=f3ca9e2f
+-/
 theorem closure_cellSet_edge (i : Fin 6) :
     closure (H.cellSet (.edge i)) = H.outer i '' I :=
   (H.isArcBetween_outer i).closure_diff
 
+/--
+@isnad1 id=eq.0h1v.s5.f2c66960e664 from=translated src=- shape=c05d1e56 vocab=fe84c143
+-/
 theorem closure_cellSet_chord : closure (H.cellSet .chord) = H.chordSet :=
   H.isArcBetween_chordSet.closure_diff
 
 /-- **A 0-cell never lies on an open 1-cell.** A vertex on a drawn outer edge is one of its two
-ends (`HexData.mem_outer_iff`), and the open edge is exactly the drawn edge without them. -/
+ends (`HexData.mem_outer_iff`), and the open edge is exactly the drawn edge without them.
+@isnad1 id=not.0h3v.s4.51ac91ed1920 from=translated src=- shape=ab889872 vocab=c42e9b79
+-/
 theorem pos_notMem_cellSet_edge (k i : Fin 6) : H.pos k ∉ H.cellSet (.edge i) := by
   rintro ⟨hz, hne⟩
   rcases H.mem_outer_iff hz with rfl | rfl
   exacts [hne (Or.inl rfl), hne (Or.inr rfl)]
 
+/--
+@isnad1 id=not.0h2v.s4.c02836767011 from=translated src=- shape=7c001740 vocab=70582855
+-/
 theorem pos_notMem_cellSet_chord (k : Fin 6) : H.pos k ∉ H.cellSet .chord := by
   rintro ⟨hz, hne⟩
   rcases H.mem_chord_iff hz with rfl | rfl
   exacts [hne (Or.inl rfl), hne (Or.inr rfl)]
 
 /-- **Two distinct open outer 1-cells are disjoint.** The two edges meet only at points that are
-ends of both, and those are removed. -/
+ends of both, and those are removed.
+@isnad1 id=disjoint.1h3v.s6.fc7fec481fc6 from=translated src=- shape=b82732de vocab=ffa07d9b
+-/
 theorem disjoint_cellSet_edge {i j : Fin 6} (hij : i ≠ j) :
     Disjoint (H.cellSet (.edge i)) (H.cellSet (.edge j)) := by
   rw [Set.disjoint_left]
   rintro z ⟨hzi, hne⟩ ⟨hzj, -⟩
   exact hne (H.outer_meet i j hij ⟨hzi, hzj⟩).1
 
-/-- **The open crosscut misses every open outer 1-cell.** -/
+/-- **The open crosscut misses every open outer 1-cell.**
+@isnad1 id=disjoint.0h2v.s5.759667c24a05 from=translated src=- shape=d5f07110 vocab=c208ffb4
+-/
 theorem disjoint_cellSet_edge_chord (i : Fin 6) :
     Disjoint (H.cellSet (.edge i)) (H.cellSet .chord) := by
   rw [Set.disjoint_left]
   rintro z ⟨hzi, -⟩ ⟨hzc, hne⟩
   exact hne (H.chord_meet i ⟨hzc, hzi⟩)
 
-/-- A point of a drawn outer edge is on the open edge or is one of its two ends. -/
+/-- A point of a drawn outer edge is on the open edge or is one of its two ends.
+@isnad1 id=or.1h3v.s6.3bbf73194814 from=translated src=- shape=444ba1d0 vocab=57ad3820
+-/
 theorem mem_cellSet_edge_or {i : Fin 6} {z : Plane} (hz : z ∈ H.outer i '' I) :
     z ∈ H.cellSet (.edge i) ∨ z = H.pos i ∨ z = H.pos (i + 1) := by
   by_cases h : z ∈ ({H.pos i, H.pos (i + 1)} : Set Plane)
@@ -336,7 +420,9 @@ theorem mem_cellSet_edge_or {i : Fin 6} {z : Plane} (hz : z ∈ H.outer i '' I) 
     exacts [Or.inr (Or.inl h), Or.inr (Or.inr h)]
   · exact Or.inl ⟨hz, h⟩
 
-/-- A point of the crosscut is on the open crosscut or is one of its two ends. -/
+/-- A point of the crosscut is on the open crosscut or is one of its two ends.
+@isnad1 id=or.1h2v.s6.df149db25fd4 from=translated src=- shape=88a95f0d vocab=87e12abb
+-/
 theorem mem_cellSet_chord_or {z : Plane} (hz : z ∈ H.chordSet) :
     z ∈ H.cellSet .chord ∨ z = H.pos 1 ∨ z = H.pos 4 := by
   by_cases h : z ∈ ({H.pos 1, H.pos 4} : Set Plane)
@@ -344,7 +430,9 @@ theorem mem_cellSet_chord_or {z : Plane} (hz : z ∈ H.chordSet) :
     exacts [Or.inr (Or.inl h), Or.inr (Or.inr h)]
   · exact Or.inl ⟨hz, h⟩
 
-/-- **The 0-cells and the open 1-cells reassemble the skeleton `C ∪ P`.** -/
+/-- **The 0-cells and the open 1-cells reassemble the skeleton `C ∪ P`.**
+@isnad1 id=eq.0h1v.s5.661d51930cf0 from=translated src=- shape=0b9cd7e5 vocab=acff5b36
+-/
 theorem iUnion_cellSet (H : HexData) :
     (⋃ c : InitialCell, H.cellSet c) =
       (H.outerArcs ∪ H.chordSet) ∪ (H.cellSet (.face false) ∪ H.cellSet (.face true)) := by
@@ -373,7 +461,9 @@ theorem iUnion_cellSet (H : HexData) :
 /-- **Three consecutive outer edges and the crosscut reassemble their union.** The two 2-cells of
 the initial structure differ only in *which* three outer edges bound them, so the union over the
 cells of a boundary walk is computed once, for an arbitrary set `F` of cells presented as the
-four vertices, the three edges and the crosscut. -/
+four vertices, the three edges and the crosscut.
+@isnad1 id=eq.13h5v.s8.a25554de9ed8 from=translated src=- shape=a270cc05 vocab=31b0355d
+-/
 theorem biUnion_of_three_edges (H : HexData) (F : Set InitialCell) {i j l : Fin 6}
     (hij : i + 1 = j) (hjl : j + 1 = l)
     (hmem : ∀ c ∈ F, c = .vert i ∨ c = .vert j ∨ c = .vert l ∨ c = .vert (l + 1) ∨
@@ -411,7 +501,9 @@ theorem biUnion_of_three_edges (H : HexData) (F : Set InitialCell) {i j l : Fin 
 
 /-- **The cells of a 2-cell's boundary walk reassemble `Aₖ ∪ P`.** The blueprint declares
 `faceCells k` to be the subcells of `Rₖ`; geometrically that union is exactly the boundary curve
-of `Rₖ`, which is what `closure_eq` has to match at a 2-cell. -/
+of `Rₖ`, which is what `closure_eq` has to match at a 2-cell.
+@isnad1 id=eq.0h2v.s5.2502a8f9ab6d from=translated src=- shape=9405465a vocab=6fbfc44b
+-/
 theorem biUnion_faceCells (H : HexData) (k : Bool) :
     (⋃ c ∈ faceCells k, H.cellSet c) = H.arcOf k ∪ H.chordSet := by
   cases k
@@ -445,7 +537,9 @@ The three hypotheses are exactly `thm:general-crosscut`'s: the chord is a crossc
 cycle, the two boundary arcs are the two arcs it cuts the outer cycle into, and the crosscut has
 collars. On the source side they are `InitialData.isCrosscut`, `.isCutPair` and
 `.hasArcCollarsSource`; on the target side `.isCrosscutTarget`, `.isCutPairTarget` and
-`.hasArcCollarsTarget`. -/
+`.hasArcCollarsTarget`.
+@isnad1 id=iscellde.3h1v.s6.3a7e07d53f91 from=translated src=- shape=29dbae36 vocab=99e21306
+-/
 theorem isCellDecomposition (H : HexData)
     (hcross : IsCrosscut H.outerArcs H.chordSet (H.pos 1) (H.pos 4))
     (hcut : IsCutPair H.outerArcs (H.pos 1) (H.pos 4) (H.arcOf false) (H.arcOf true))
@@ -624,7 +718,9 @@ theorem isCellDecomposition (H : HexData)
 /-- **The two 2-cells are open.** `IsCellDecomposition` does not record this, but
 `IsCellDecomposition.face_eq` — assertion (viii) — takes it as a hypothesis, and
 `thm:general-crosscut` hands it to the producer for free. Exported here so that no consumer has
-to rederive it at stage 0. -/
+to rederive it at stage 0.
+@isnad1 id=isopen.3h2v.s7.00373e704a85 from=translated src=- shape=aaa42494 vocab=8c4964cb
+-/
 theorem isOpen_cellSet_face (H : HexData)
     (hcross : IsCrosscut H.outerArcs H.chordSet (H.pos 1) (H.pos 4))
     (hcut : IsCutPair H.outerArcs (H.pos 1) (H.pos 4) (H.arcOf false) (H.arcOf true))
@@ -637,7 +733,9 @@ theorem isOpen_cellSet_face (H : HexData)
 
 /-- **Assertion (vii) for the initial hexagonal cellulation.**  Each of its two faces was
 defined as the inside of the curve obtained by joining one boundary arc to the crosscut; the
-crosscut theorem says that curve is Jordan. -/
+crosscut theorem says that curve is Jordan.
+@isnad1 id=isfacejo.2h1v.s6.e9053b9b7776 from=translated src=- shape=9d240f1f vocab=7e41e142
+-/
 theorem isFaceJordan (H : HexData)
     (hcross : IsCrosscut H.outerArcs H.chordSet (H.pos 1) (H.pos 4))
     (hcut : IsCutPair H.outerArcs (H.pos 1) (H.pos 4) (H.arcOf false) (H.arcOf true)) :
@@ -672,7 +770,9 @@ polygonal and has its interior in the open domain because it is a crosscut.
 
 `rem:intermediate-disconnection` waives connectedness of the open nonboundary part at
 intermediate stages only. The initial pair does satisfy it — `HexData.isConnected_nonboundary` —
-and `InitialData.generatedPair_isAdmissible` records the strong form. -/
+and `InitialData.generatedPair_isAdmissible` records the strong form.
+@isnad1 id=isweakly.1h1v.s5.283b75869889 from=translated src=- shape=6135b695 vocab=5d50d02e
+-/
 theorem isWeaklyAdmissible (H : HexData)
     (hcross : IsCrosscut H.outerArcs H.chordSet (H.pos 1) (H.pos 4)) :
     H.realization.IsWeaklyAdmissible H.outerArcs (H.outerArcs ∪ inside H.outerArcs) where
@@ -706,7 +806,9 @@ end HexData
 the Jordan domain of `S` with the open square, so the closed domain `S ∪ Int(S)` is literally
 `Q = [-1,1]²`. -/
 
-/-- **`S ∪ Int(S) = Q`.** -/
+/-- **`S ∪ Int(S) = Q`.**
+@isnad1 id=eq.0h0v.s6.108d891b0c75 from=translated src=- shape=a89f609a vocab=2b17f00d
+-/
 theorem modelCurve_union_inside : modelCurve ∪ inside modelCurve = Plane.closedSquare 0 1 := by
   rw [inside_modelCurve]
   ext x
@@ -731,22 +833,30 @@ namespace InitialData
 variable {C : Set Plane} (d : InitialData C)
 
 /-- The crosscut configuration on the source side, with the outer cycle named as the `HexData`
-sees it. -/
+sees it.
+@isnad1 id=iscrossc.0h2v.s5.2313de1054f0 from=translated src=- shape=5f1b85e4 vocab=c08a6b0e
+-/
 theorem isCrosscut_src : IsCrosscut d.src.outerArcs d.src.chordSet (d.src.pos 1) (d.src.pos 4) := by
   rw [d.src_outerArcs]; exact d.isCrosscut
 
-/-- The crosscut configuration on the target side. -/
+/-- The crosscut configuration on the target side.
+@isnad1 id=iscrossc.0h2v.s5.df141c45f691 from=translated src=- shape=5f1b85e4 vocab=cf37071a
+-/
 theorem isCrosscut_tgt : IsCrosscut d.tgt.outerArcs d.tgt.chordSet (d.tgt.pos 1) (d.tgt.pos 4) := by
   rw [d.tgt_outerArcs]; exact d.isCrosscutTarget
 
-/-- **Assertion (i) on the source side**: the fifteen open cells of `Γ` decompose `C ∪ D`. -/
+/-- **Assertion (i) on the source side**: the fifteen open cells of `Γ` decompose `C ∪ D`.
+@isnad1 id=iscellde.0h2v.s4.a22a2c26dfea from=translated src=- shape=52f19d17 vocab=f636e35a
+-/
 theorem src_isCellDecomposition : d.sourceRealization.IsCellDecomposition (C ∪ inside C) := by
   have h := d.src.isCellDecomposition d.isCrosscut_src
     (by rw [d.src_outerArcs]; exact d.isCutPair)
     (by rw [d.src_outerArcs]; exact d.hasArcCollarsSource)
   rwa [d.src_outerArcs] at h
 
-/-- **Assertion (i) on the target side**: the fifteen open cells of `Γ'` decompose `Q`. -/
+/-- **Assertion (i) on the target side**: the fifteen open cells of `Γ'` decompose `Q`.
+@isnad1 id=iscellde.0h2v.s6.bfd976b0b2de from=translated src=- shape=22f5fb15 vocab=147af898
+-/
 theorem tgt_isCellDecomposition :
     d.targetRealization.IsCellDecomposition (Plane.closedSquare 0 1) := by
   have h := d.tgt.isCellDecomposition d.isCrosscut_tgt
@@ -754,25 +864,33 @@ theorem tgt_isCellDecomposition :
     (by rw [d.tgt_outerArcs]; exact d.hasArcCollarsTarget)
   rwa [d.tgt_outerArcs, modelCurve_union_inside] at h
 
-/-- **`def:admissible-graph` (weak form) on the source side.** -/
+/-- **`def:admissible-graph` (weak form) on the source side.**
+@isnad1 id=isweakly.0h2v.s4.4a4dfb57d047 from=translated src=- shape=df698862 vocab=cb2eb069
+-/
 theorem src_isWeaklyAdmissible : d.sourceRealization.IsWeaklyAdmissible C (C ∪ inside C) := by
   have h := d.src.isWeaklyAdmissible d.isCrosscut_src
   rwa [d.src_outerArcs] at h
 
-/-- **`def:admissible-graph` (weak form) on the target side.** -/
+/-- **`def:admissible-graph` (weak form) on the target side.**
+@isnad1 id=isweakly.0h2v.s6.adf239ca4e1a from=translated src=- shape=b02de02d vocab=a9730d99
+-/
 theorem tgt_isWeaklyAdmissible :
     d.targetRealization.IsWeaklyAdmissible modelCurve (Plane.closedSquare 0 1) := by
   have h := d.tgt.isWeaklyAdmissible d.isCrosscut_tgt
   rwa [d.tgt_outerArcs, modelCurve_union_inside] at h
 
 /-- **The two source 2-cells are open** — the hypothesis
-`IsCellDecomposition.face_eq` takes and `IsCellDecomposition` does not record. -/
+`IsCellDecomposition.face_eq` takes and `IsCellDecomposition` does not record.
+@isnad1 id=isopen.0h3v.s5.9632c8b06dd5 from=translated src=- shape=4e00b283 vocab=d5c42606
+-/
 theorem isOpen_sourceRealization_cell_face (k : Bool) :
     IsOpen (d.sourceRealization.cell (.face k)) :=
   d.src.isOpen_cellSet_face d.isCrosscut_src (by rw [d.src_outerArcs]; exact d.isCutPair)
     (by rw [d.src_outerArcs]; exact d.hasArcCollarsSource) k
 
-/-- **The two target 2-cells are open.** -/
+/-- **The two target 2-cells are open.**
+@isnad1 id=isopen.0h3v.s5.37645378278c from=translated src=- shape=4e00b283 vocab=479ac49a
+-/
 theorem isOpen_targetRealization_cell_face (k : Bool) :
     IsOpen (d.targetRealization.cell (.face k)) :=
   d.tgt.isOpen_cellSet_face d.isCrosscut_tgt (by rw [d.tgt_outerArcs]; exact d.isCutPairTarget)
@@ -817,26 +935,45 @@ noncomputable def generatedPair :
   src_isWeaklyAdmissible := d.src_isWeaklyAdmissible
   tgt_isWeaklyAdmissible := d.tgt_isWeaklyAdmissible
 
+/--
+@isnad1 id=eq.0h2v.s6.9909a962f605 from=translated src=- shape=177fb3aa vocab=f7247d4b
+-/
 @[simp] theorem generatedPair_str : d.generatedPair.str = initialStructure := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.959bdb9aaace from=translated src=- shape=e42279a8 vocab=11a82af1
+-/
 @[simp] theorem generatedPair_src : d.generatedPair.src = d.sourceRealization := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.c4c8a0b97d72 from=translated src=- shape=e42279a8 vocab=b31e6575
+-/
 @[simp] theorem generatedPair_tgt : d.generatedPair.tgt = d.targetRealization := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.a70e62a17ff5 from=translated src=- shape=378a37b9 vocab=d14b0a79
+-/
 @[simp] theorem generatedPair_homeo : d.generatedPair.homeo = d.skeletonHomeo := rfl
 
 /-- The combinatorial invariants at stage 0, read off the bundle: this is what
-`GeneratedPair.combInvariants` needs supplied at the base, and what every later stage inherits. -/
+`GeneratedPair.combInvariants` needs supplied at the base, and what every later stage inherits.
+@isnad1 id=combinva.0h2v.s6.a9ae8c4ba833 from=translated src=- shape=199ad3ca vocab=851bdb18
+-/
 theorem generatedPair_combInvariants : d.generatedPair.str.CombInvariants :=
   d.generatedPair.combInvariants combInvariants_initialStructure
 
 /-- **The initial pair is admissible in the strong sense**, on both sides.
 `rem:intermediate-disconnection` waives connectedness of the open nonboundary part at
-intermediate stages; at stage 0 it holds, the open nonboundary part being the open crosscut. -/
+intermediate stages; at stage 0 it holds, the open nonboundary part being the open crosscut.
+@isnad1 id=isadmiss.0h2v.s7.b7d5f5f14592 from=translated src=- shape=e4c796fb vocab=5fe02dbf
+-/
 theorem generatedPair_src_isAdmissible :
     d.generatedPair.src.IsAdmissible C (C ∪ inside C) :=
   d.generatedPair.src_isAdmissible d.isConnected_sourceRealization_nonboundary
 
+/--
+@isnad1 id=isadmiss.0h2v.s8.ab680bb62d5d from=translated src=- shape=e9f956f5 vocab=b99cded6
+-/
 theorem generatedPair_tgt_isAdmissible :
     d.generatedPair.tgt.IsAdmissible modelCurve (Plane.closedSquare 0 1) :=
   d.generatedPair.tgt_isAdmissible d.isConnected_sourceRealization_nonboundary
@@ -878,7 +1015,9 @@ instance : Infinite InitialCell :=
 /-- **The naming type of the initial structure is infinite**, so the base case really can be fed
 to `thm:finite-transfer`, whose `[Infinite γ]` is not decoration: an ear insertion consumes fresh
 cell names, and on a finite naming type `Schoenflies.EarStep` is false. The supply is
-`InitialCell.aux`, and no `aux` name is a cell of `initialStructure`. -/
+`InitialCell.aux`, and no `aux` name is a cell of `initialStructure`.
+@isnad1 id=infinite.0h0v.s1.b18077f8d611 from=translated src=- shape=49959d42 vocab=b1cc1eab
+-/
 theorem infinite_initialCell : Infinite InitialCell := inferInstance
 
 /-! ### The interface, exercised

@@ -53,14 +53,18 @@ variable {P Q T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
   {par₁ par₂ : γ → γ}
 
 /-- Target skeletons grow as well.  This follows from source-skeleton growth and agreement of
-the two skeleton homeomorphisms on the old source skeleton. -/
+the two skeleton homeomorphisms on the old source skeleton.
+@isnad1 id=le.1h9v.s6.b4c78f5ac906 from=translated src=- shape=c4d86fb3 vocab=004d4fa8
+-/
 theorem targetSkeletonSet_subset {par : γ → γ}
     (h : StageTransition T P par) : P.tgt.skeletonSet ⊆ T.tgt.skeletonSet := by
   rw [← P.homeo.image_skeletonSet, ← T.homeo.image_skeletonSet]
   rintro y ⟨x, hx, rfl⟩
   exact ⟨x, h.sourceSkeletonSet_subset hx, h.homeo_eqOn hx⟩
 
-/-- Consecutive stage transitions compose their parent maps and their nesting data. -/
+/-- Consecutive stage transitions compose their parent maps and their nesting data.
+@isnad1 id=stagetra.2h11v.s6.8d29c360a9ce from=translated src=- shape=2ae1e73e vocab=8ebb522f
+-/
 theorem trans (h₂ : StageTransition T Q par₂) (h₁ : StageTransition Q P par₁) :
     StageTransition T P (par₁ ∘ par₂) where
   refines_src := h₂.refines_src.trans h₁.refines_src
@@ -76,7 +80,9 @@ theorem trans (h₂ : StageTransition T Q par₂) (h₁ : StageTransition Q P pa
 
 end StageTransition
 
-/-- Direction (a)'s induction invariant supplies one stage transition. -/
+/-- Direction (a)'s induction invariant supplies one stage transition.
+@isnad1 id=stagetra.1h11v.s6.708ed0851b8a from=translated src=- shape=5160a45e vocab=723a348e
+-/
 theorem IsPartialTransferOf.stageTransition
     {T P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {B : Graph Plane γ} {Hdraw : γ → ℝ → Plane} {par : γ → γ}
@@ -86,7 +92,9 @@ theorem IsPartialTransferOf.stageTransition
   sourceSkeletonSet_subset := h.sourceSkeletonSet_subset
   homeo_eqOn := h.homeo_eqOn
 
-/-- Direction (b)'s induction invariant supplies the identical stage transition. -/
+/-- Direction (b)'s induction invariant supplies the identical stage transition.
+@isnad1 id=stagetra.1h11v.s6.ca72a8169bc6 from=translated src=- shape=5160a45e vocab=89f983a0
+-/
 theorem IsTargetPartialTransferOf.stageTransition
     {T P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {B : Graph Plane γ} {Hdraw : γ → ℝ → Plane} {par : γ → γ}
@@ -96,14 +104,18 @@ theorem IsTargetPartialTransferOf.stageTransition
   sourceSkeletonSet_subset := h.sourceSkeletonSet_subset
   homeo_eqOn := h.homeo_eqOn
 
-/-- The admissible conclusion of direction (a) forgets to the same stage transition. -/
+/-- The admissible conclusion of direction (a) forgets to the same stage transition.
+@isnad1 id=stagetra.1h11v.s6.76dd02819716 from=translated src=- shape=5160a45e vocab=b35f3247
+-/
 theorem IsTransferOf.stageTransition
     {T P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane} {par : γ → γ}
     (h : IsTransferOf T P H Hdraw par) : StageTransition T P par :=
   h.toIsPartialTransferOf.stageTransition
 
-/-- The admissible conclusion of direction (b) forgets to the same stage transition. -/
+/-- The admissible conclusion of direction (b) forgets to the same stage transition.
+@isnad1 id=stagetra.1h11v.s6.8f6c9924d2f8 from=translated src=- shape=5160a45e vocab=2a839821
+-/
 theorem IsTargetTransferOf.stageTransition
     {T P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane} {par : γ → γ}

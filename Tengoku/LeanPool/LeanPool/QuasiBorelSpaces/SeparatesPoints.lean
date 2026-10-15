@@ -36,6 +36,9 @@ class SeparatesPoints (A : Type*) [QuasiBorelSpace A] where
   /-- Two elements are equal iff they agree for all morphism predicates. -/
   separates (x y : A) : (∀ (p : A → Prop), IsHom p → p x → p y) → x = y
 
+/--
+@isnad1 id=eq.0h4v.s5.498b9f9024a0 from=translated src=- shape=e54c73c1 vocab=cfb2a088
+-/
 lemma separatesPoints_def
     [SeparatesPoints A] {x y : A}
     (h : ∀ (p : A → Prop), IsHom p → p x → p y)

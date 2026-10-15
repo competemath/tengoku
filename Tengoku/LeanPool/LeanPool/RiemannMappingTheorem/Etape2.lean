@@ -19,17 +19,26 @@ open Complex ComplexConjugate Set Metric Topology Filter
 
 variable {z u z₀ : ℂ} (U : Set ℂ) [good_domain U]
 
+/--
+@isnad1 id=ne.2h2v.s6.f20c07289397 from=translated src=- shape=e374f789 vocab=8821f26a
+-/
 lemma one_sub_mul_conj_ne_zero (hu : u ∈ 𝔻) (hz : z ∈ 𝔻) : 1 - z * conj u ≠ 0 := by
   rw [mem_𝔻_iff] at hu hz
   refine sub_ne_zero.mpr (mt (congr_arg (‖·‖ : ℂ → _)) (ne_comm.mp (ne_of_lt ?_)))
   simpa using mul_lt_mul'' hz hu (norm_nonneg z) (norm_nonneg u)
 
+/--
+@isnad1 id=ne.1h2v.s7.028ac587bcde from=translated src=- shape=8baff02d vocab=75b250d1
+-/
 lemma one_sub_mul_conj_add_mul_conj_ne_zero (hu : u ∈ 𝔻) :
     1 - z * conj u + (z - u) * conj u ≠ 0 := by
   have h1 := one_sub_mul_conj_ne_zero hu hu
   ring_nf
   simp [h1, mul_comm]
 
+/--
+@isnad1 id=eq.0h2v.s7.a078f32c4083 from=translated src=- shape=65473f0a vocab=072ea9bc
+-/
 lemma normSq_sub_normSq :
     normSq (z - u) - normSq (1 - z * conj u) = (normSq z - 1) * (1 - normSq u) := by
   simp [← ofReal_inj, normSq_eq_conj_mul_self]
@@ -39,6 +48,9 @@ lemma normSq_sub_normSq :
 the disk automorphism `φ`. Maps `𝔻` to itself when `u ∈ 𝔻`. -/
 noncomputable def preΦ (u z : ℂ) : ℂ := (z - u) / (1 - z * conj u)
 
+/--
+@isnad1 id=leftinvo.1h1v.s4.5ee37a55c997 from=translated src=- shape=d44bfe32 vocab=a75abe8b
+-/
 lemma pre_φ_inv (hu : u ∈ 𝔻) : LeftInvOn (preΦ (-u)) (preΦ u) 𝔻 := by
   rintro z hz
   have := one_sub_mul_conj_ne_zero hu hz
@@ -68,6 +80,9 @@ noncomputable def φ (hu : u ∈ 𝔻) : embedding 𝔻 𝔻 :=
     · simpa using mem_𝔻_iff.mp hu
 }
 
+/--
+@isnad1 id=eq.2h2v.s7.f1accd38091f from=translated src=- shape=fe8690e0 vocab=7af8a92b
+-/
 lemma φ_deriv (hu : u ∈ 𝔻) (hz : z ∈ 𝔻) :
     deriv (φ hu) z = (1 - u * conj u) / ((1 - z * conj u) ^ 2) := by
   have h3 : 1 - z * conj u ≠ 0 := one_sub_mul_conj_ne_zero hu hz
@@ -75,9 +90,15 @@ lemma φ_deriv (hu : u ∈ 𝔻) (hz : z ∈ 𝔻) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.2h2v.s5.9391a438191f from=translated src=- shape=ca880455 vocab=cc59a128
+-/
 lemma φ_inv (hu : u ∈ 𝔻) (hz : z ∈ 𝔻) : φ (neg_in_𝔻 hu) (φ hu z) = z :=
   pre_φ_inv hu hz
 
+/--
+@isnad1 id=lt.3h1v.s7.fb6d62fbc63e from=translated src=- shape=0aa676cf vocab=21d99061
+-/
 lemma non_injective_schwarz {f : ℂ → ℂ} (f_diff : DifferentiableOn ℂ f 𝔻)
     (f_img : MapsTo f 𝔻 𝔻) (f_noninj : ¬ InjOn f 𝔻) : ‖deriv f 0‖ < 1 := by
   set u := f 0

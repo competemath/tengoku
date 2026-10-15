@@ -91,12 +91,17 @@ inductive IsIncWalk (G : Graph α β) (f : α → ℝ) : α → List β → α �
 
 namespace IsIncWalk
 
+/--
+@isnad1 id=iswalk.1h7v.s5.c091a2ca14e2 from=translated src=- shape=51c471da vocab=6ece61aa
+-/
 theorem isWalk (h : G.IsIncWalk f u W v) : G.IsWalk u W v := by
   induction h with
   | nil hx => exact .nil hx
   | cons hl _ _ ih => exact .cons hl ih
 
-/-- Every vertex the walk visits has value at least the source's. -/
+/-- Every vertex the walk visits has value at least the source's.
+@isnad1 id=le.2h8v.s5.f87e1487bfb3 from=translated src=- shape=dc8d804e vocab=63a1d8f2
+-/
 theorem source_le (h : G.IsIncWalk f u W v) : ∀ x ∈ G.walkVertices u W, f u ≤ f x := by
   induction h with
   | nil hy =>
@@ -109,7 +114,9 @@ theorem source_le (h : G.IsIncWalk f u W v) : ∀ x ∈ G.walkVertices u W, f u 
     · exact le_rfl
     · exact hf.le.trans (ih x hx')
 
-/-- And at most the target's. -/
+/-- And at most the target's.
+@isnad1 id=le.2h8v.s5.a666a6a631b3 from=translated src=- shape=2c7ee786 vocab=63a1d8f2
+-/
 theorem le_target (h : G.IsIncWalk f u W v) : ∀ x ∈ G.walkVertices u W, f x ≤ f v := by
   induction h with
   | nil hy =>
@@ -123,7 +130,9 @@ theorem le_target (h : G.IsIncWalk f u W v) : ∀ x ∈ G.walkVertices u W, f x 
     · exact ih x hx'
 
 /-- **An increasing walk is a path.**  The vertex a step departs from has a strictly smaller
-value than everything the rest of the walk visits, so it is not among them. -/
+value than everything the rest of the walk visits, so it is not among them.
+@isnad1 id=ispath.1h7v.s5.3fe86634c08e from=translated src=- shape=51c471da vocab=bb7a2da6
+-/
 theorem isPath (h : G.IsIncWalk f u W v) : G.IsPath u W v := by
   induction h with
   | nil hx => exact .nil hx
@@ -131,18 +140,26 @@ theorem isPath (h : G.IsIncWalk f u W v) : G.IsPath u W v := by
     refine .cons hl ih fun hmem => ?_
     exact absurd (hW.source_le u hmem) (not_le.2 hf)
 
+/--
+@isnad1 id=isincwal.2h8v.s5.7a702c6cbf0e from=translated src=- shape=9c7f5c1a vocab=0b56927c
+-/
 theorem mono (hHG : H ≤ G) (h : H.IsIncWalk f u W v) : G.IsIncWalk f u W v := by
   induction h with
   | nil hx => exact .nil (hHG.vertexSet_mono hx)
   | cons hl hf _ ih => exact .cons (hl.mono hHG) hf ih
 
+/--
+@isnad1 id=isincwal.2h9v.s5.a6d37b085c41 from=translated src=- shape=1b88e07c vocab=291df1af
+-/
 theorem append (h₁ : G.IsIncWalk f u W₁ w) (h₂ : G.IsIncWalk f w W₂ v) :
     G.IsIncWalk f u (W₁ ++ W₂) v := by
   induction h₁ with
   | nil => simpa using h₂
   | cons hl hf _ ih => exact .cons hl hf (ih h₂)
 
-/-- The function may be replaced by any function agreeing with it on the visited vertices. -/
+/-- The function may be replaced by any function agreeing with it on the visited vertices.
+@isnad1 id=isincwal.2h8v.s6.7886c101d42a from=translated src=- shape=76277b20 vocab=717efdab
+-/
 theorem congr_walkVertices (h : G.IsIncWalk f u W v)
     (hfg : ∀ x ∈ G.walkVertices u W, f x = g x) : G.IsIncWalk g u W v := by
   induction h with
@@ -154,7 +171,9 @@ theorem congr_walkVertices (h : G.IsIncWalk f u W v)
     exact hf
 
 /-- Shifting the function by a constant changes nothing.  Each side of the square carries the
-distance from its own first corner; the shifts are what glue the four into one coordinate. -/
+distance from its own first corner; the shifts are what glue the four into one coordinate.
+@isnad1 id=isincwal.1h8v.s5.70ed0d588533 from=translated src=- shape=ecd47413 vocab=56640796
+-/
 theorem const_add (h : G.IsIncWalk f u W v) (t : ℝ) :
     G.IsIncWalk (fun x => t + f x) u W v := by
   induction h with
@@ -166,7 +185,9 @@ theorem eq_nil_of_eq (h : G.IsIncWalk f u W u) : W = [] := h.isPath.eq_nil_of_eq
 
 /-- **Splitting off the last step.**  An increasing walk between distinct vertices has a last
 edge, and what precedes it is again an increasing walk.  This is what turns the closed walk
-round the square into the edge plus detour that `Graph.IsCycleThrough` asks for. -/
+round the square into the edge plus detour that `Graph.IsCycleThrough` asks for.
+@isnad1 id=ex.2h7v.s6.e240945658b3 from=translated src=- shape=02b96b40 vocab=c19eb039
+-/
 theorem split_last (h : G.IsIncWalk f u W v) (huv : u ≠ v) :
     ∃ (W' : List β) (e : β) (z : α), W = W' ++ [e] ∧ G.IsIncWalk f u W' z ∧
       G.IsLink e z v ∧ f z < f v := by
@@ -199,7 +220,9 @@ open Plane
 variable {a b p : Plane} {E : Set Piece}
 
 /-- Every point of `[a, b]` at a prescribed distance from `a` — the surjectivity of the
-coordinate, which is what lets an argument name a point "just ahead" of another. -/
+coordinate, which is what lets an argument name a point "just ahead" of another.
+@isnad1 id=ex.3h3v.s7.300fb96a0c9f from=translated src=- shape=fd136fe5 vocab=9d4e0d05
+-/
 theorem exists_mem_segment_dist (hab : a ≠ b) {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ dist a b) :
     ∃ x ∈ segment ℝ a b, dist a x = t := by
   have hd : 0 < dist a b := dist_pos.2 hab
@@ -209,14 +232,18 @@ theorem exists_mem_segment_dist (hab : a ≠ b) {t : ℝ} (ht0 : 0 ≤ t) (ht1 :
   · rw [dist_left_lineMap_of_nonneg a b (by positivity)]
     field_simp
 
-/-- The coordinate of a point of `[a, b]` lies between `0` and the segment's length. -/
+/-- The coordinate of a point of `[a, b]` lies between `0` and the segment's length.
+@isnad1 id=le.2h3v.s7.3f52b2363f76 from=translated src=- shape=142272a7 vocab=9d4e0d05
+-/
 theorem dist_le_dist_of_mem_segment {x : Plane} (hab : a ≠ b) (hx : x ∈ segment ℝ a b) :
     dist a x ≤ dist a b :=
   (dist_le_of_mem_segment hab (left_mem_segment ℝ a b) (right_mem_segment ℝ a b)
     (by rw [dist_self]; exact dist_nonneg) hx).2
 
 /-- **The two ends of a piece, near end first.**  Every one-dimensional citation wants them in
-that order, and which of the two names is the near one is none of the caller's business. -/
+that order, and which of the two names is the near one is none of the caller's business.
+@isnad1 id=ex.0h2v.s8.22398a40d73a from=translated src=- shape=0e5e623f vocab=8105d881
+-/
 theorem exists_ordered_ends (a : Plane) (Q : Piece) :
     ∃ u v : Plane, ((u = Q.1 ∧ v = Q.2) ∨ (u = Q.2 ∧ v = Q.1)) ∧ dist a u ≤ dist a v ∧
       segment ℝ u v = Q.seg ∧ openSegment ℝ u v = Q.interior := by
@@ -224,7 +251,9 @@ theorem exists_ordered_ends (a : Plane) (Q : Piece) :
   · exact ⟨Q.1, Q.2, Or.inl ⟨rfl, rfl⟩, h, rfl, rfl⟩
   · exact ⟨Q.2, Q.1, Or.inr ⟨rfl, rfl⟩, h, segment_symm ℝ _ _, openSegment_symm ℝ _ _⟩
 
-/-- Ordered ends of a nondegenerate piece are distinct. -/
+/-- Ordered ends of a nondegenerate piece are distinct.
+@isnad1 id=ne.2h3v.s5.243fb3eb8974 from=translated src=- shape=771526c8 vocab=c616c6e6
+-/
 theorem ne_of_ordered_ends {Q : Piece} {u v : Plane} (hQ : Q.Nondeg)
     (h : (u = Q.1 ∧ v = Q.2) ∨ (u = Q.2 ∧ v = Q.1)) : u ≠ v := by
   rcases h with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
@@ -256,14 +285,22 @@ namespace IsPieceChain
 variable (hC : IsPieceChain a b p E)
 include hC
 
+/--
+@isnad1 id=le.1h4v.s7.2f1393b10bb2 from=translated src=- shape=ebf64e78 vocab=48545fec
+-/
 theorem segment_subset : segment ℝ p b ⊆ segment ℝ a b :=
   (convex_segment a b).segment_subset hC.memP (right_mem_segment ℝ a b)
 
+/--
+@isnad1 id=le.2h5v.s7.732ffe9916fc from=translated src=- shape=ce66f5be vocab=5a02e928
+-/
 theorem sub_ab : ∀ Q ∈ E, Q.seg ⊆ segment ℝ a b :=
   fun Q hQ => (hC.sub Q hQ).trans hC.segment_subset
 
 /-- The current point is not interior to any piece: every piece lies ahead of it, so its near
-end is already at or beyond `p`. -/
+end is already at or beyond `p`.
+@isnad1 id=not.3h5v.s5.16bee66c5af1 from=translated src=- shape=c6dc77e7 vocab=3ceae9a6
+-/
 theorem notMem_interior (hab : a ≠ b) : ∀ Q ∈ E, p ∉ Q.interior := by
   intro Q hQ hmem
   obtain ⟨u, v, hends, huv, -, hint⟩ := exists_ordered_ends a Q
@@ -298,7 +335,9 @@ far end is beyond `p`.  So the near end **is** `p`.
 
 Stated with explicit hypotheses rather than with `Schoenflies.IsPieceChain`, because it is
 applied once at the current point and once at the point one step ahead, and at the latter
-the family is no longer confined to what lies beyond. -/
+the family is no longer confined to what lies beyond.
+@isnad1 id=ex.7h4v.s9.60e9033f5336 from=translated src=- shape=61b7b745 vocab=f808b3ca
+-/
 theorem exists_next_piece (hab : a ≠ b) (hfin : E.Finite)
     (hsub : ∀ Q ∈ E, Q.seg ⊆ segment ℝ a b) (hp : p ∈ segment ℝ a b)
     (hpnot : ∀ Q ∈ E, p ∉ Q.interior)
@@ -365,7 +404,9 @@ theorem exists_next_piece (hab : a ≠ b) (hfin : E.Finite)
   rcases hends with ⟨h₁, h₂⟩ | ⟨h₁, h₂⟩
   exacts [Or.inl ⟨h₁, h₂⟩, Or.inr ⟨h₁, h₂⟩]
 
-/-- An end of a piece lies on it. -/
+/-- An end of a piece lies on it.
+@isnad1 id=mem.1h2v.s4.cfa822abd77d from=translated src=- shape=ff26e6d4 vocab=d89ba1bb
+-/
 theorem mem_seg_of_end {Q : Piece} {z : Plane} (h : z = Q.1 ∨ z = Q.2) : z ∈ Q.seg := by
   rcases h with rfl | rfl
   exacts [left_mem_segment ℝ _ _, right_mem_segment ℝ _ _]
@@ -376,7 +417,9 @@ at a time, in increasing distance from `a`; the walk's edge list is exactly the 
 The induction is on the number of pieces, and the step removes the piece leaving `p`.  Three
 of the seven clauses of `Schoenflies.IsPieceChain` are inherited verbatim by the smaller
 family; the work is in re-establishing the other two — that everything left lies beyond the
-new point, and that it still covers. -/
+new point, and that it still covers.
+@isnad1 id=ex.5h6v.s7.9620d703c3dc from=translated src=- shape=30cb44bc vocab=1def565d
+-/
 theorem exists_incWalk_of_chain {G : Graph Plane Piece} (hab : a ≠ b) (hbG : b ∈ V(G)) :
     ∀ (n : ℕ) (p : Plane) (E : Set Piece), E.ncard = n → IsPieceChain a b p E →
       (∀ Q ∈ E, G.IsLink Q Q.1 Q.2) →
@@ -525,35 +568,51 @@ variable {c z : Plane} {r : ℝ}
 
 open Plane
 
-/-- The distance between two points at the same height. -/
+/-- The distance between two points at the same height.
+@isnad1 id=eq.1h2v.s8.d2ac11db38b1 from=translated src=- shape=5522c226 vocab=98583dd8
+-/
 theorem dist_eq_abs_fst {z w : Plane} (h : z 1 = w 1) : dist z w = |z 0 - w 0| := by
   rw [EuclideanSpace.dist_eq, Fin.sum_univ_two, Real.dist_eq, Real.dist_eq, h, sub_self,
     abs_zero]
   rw [show |z 0 - w 0| ^ 2 + (0 : ℝ) ^ 2 = |z 0 - w 0| ^ 2 by ring, Real.sqrt_sq_eq_abs,
     abs_abs]
 
-/-- The distance between two points on the same vertical. -/
+/-- The distance between two points on the same vertical.
+@isnad1 id=eq.1h2v.s8.ed5beca5fa75 from=translated src=- shape=5522c226 vocab=98583dd8
+-/
 theorem dist_eq_abs_snd {z w : Plane} (h : z 0 = w 0) : dist z w = |z 1 - w 1| := by
   rw [EuclideanSpace.dist_eq, Fin.sum_univ_two, Real.dist_eq, Real.dist_eq, h, sub_self,
     abs_zero]
   rw [show (0 : ℝ) ^ 2 + |z 1 - w 1| ^ 2 = |z 1 - w 1| ^ 2 by ring, Real.sqrt_sq_eq_abs,
     abs_abs]
 
+/--
+@isnad1 id=eq.1h2v.s6.d74ff24e8a18 from=translated src=- shape=6eca53ae vocab=52731e74
+-/
 theorem dist_sqNE_sqNW (c : Plane) (hr : 0 ≤ r) : dist (sqNE c r) (sqNW c r) = 2 * r := by
   rw [dist_eq_abs_fst (by simp)]
   simp only [sqNE_zero, sqNW_zero]
   rw [show c 0 + r - (c 0 - r) = 2 * r by ring, abs_of_nonneg (by linarith)]
 
+/--
+@isnad1 id=eq.1h2v.s6.3645cb5d4ccd from=translated src=- shape=6eca53ae vocab=6640dbac
+-/
 theorem dist_sqNW_sqSW (c : Plane) (hr : 0 ≤ r) : dist (sqNW c r) (sqSW c r) = 2 * r := by
   rw [dist_eq_abs_snd (by simp)]
   simp only [sqNW_one, sqSW_one]
   rw [show c 1 + r - (c 1 - r) = 2 * r by ring, abs_of_nonneg (by linarith)]
 
+/--
+@isnad1 id=eq.1h2v.s6.c684d032445b from=translated src=- shape=6eca53ae vocab=5341ea0b
+-/
 theorem dist_sqSW_sqSE (c : Plane) (hr : 0 ≤ r) : dist (sqSW c r) (sqSE c r) = 2 * r := by
   rw [dist_eq_abs_fst (by simp)]
   simp only [sqSW_zero, sqSE_zero]
   rw [show c 0 - r - (c 0 + r) = -(2 * r) by ring, abs_neg, abs_of_nonneg (by linarith)]
 
+/--
+@isnad1 id=eq.1h2v.s6.c206c562cb5d from=translated src=- shape=6eca53ae vocab=eeb3787e
+-/
 theorem dist_sqSE_sqNE (c : Plane) (hr : 0 ≤ r) : dist (sqSE c r) (sqNE c r) = 2 * r := by
   rw [dist_eq_abs_snd (by simp)]
   simp only [sqSE_one, sqNE_one]
@@ -561,24 +620,36 @@ theorem dist_sqSE_sqNE (c : Plane) (hr : 0 ≤ r) : dist (sqSE c r) (sqNE c r) =
 
 /-! ### The distance from a side's first corner, in coordinates -/
 
+/--
+@isnad1 id=eq.2h3v.s8.3dc1428eefe4 from=translated src=- shape=ff442743 vocab=5dff91f6
+-/
 theorem dist_sqNE_of_mem_top (hr : 0 ≤ r) (hz : z ∈ segment ℝ (sqNE c r) (sqNW c r)) :
     dist (sqNE c r) z = c 0 + r - z 0 := by
   rw [mem_seg_top hr] at hz
   rw [dist_eq_abs_fst (by simp [hz.1]), sqNE_zero,
     abs_of_nonneg (by have := (abs_le.1 hz.2).2; linarith)]
 
+/--
+@isnad1 id=eq.2h3v.s8.38af9c462b71 from=translated src=- shape=ff442743 vocab=d6dbdd54
+-/
 theorem dist_sqNW_of_mem_left (hr : 0 ≤ r) (hz : z ∈ segment ℝ (sqNW c r) (sqSW c r)) :
     dist (sqNW c r) z = c 1 + r - z 1 := by
   rw [mem_seg_left hr] at hz
   rw [dist_eq_abs_snd (by simp [hz.1]), sqNW_one,
     abs_of_nonneg (by have := (abs_le.1 hz.2).2; linarith)]
 
+/--
+@isnad1 id=eq.2h3v.s8.14bb2dca7051 from=translated src=- shape=a784e4bc vocab=d6de6f73
+-/
 theorem dist_sqSW_of_mem_bottom (hr : 0 ≤ r) (hz : z ∈ segment ℝ (sqSW c r) (sqSE c r)) :
     dist (sqSW c r) z = z 0 - (c 0 - r) := by
   rw [mem_seg_bottom hr] at hz
   rw [dist_eq_abs_fst (by simp [hz.1]), sqSW_zero, abs_sub_comm,
     abs_of_nonneg (by have := (abs_le.1 hz.2).1; linarith)]
 
+/--
+@isnad1 id=eq.2h3v.s8.8a1b459feba2 from=translated src=- shape=a784e4bc vocab=785a7bcb
+-/
 theorem dist_sqSE_of_mem_right (hr : 0 ≤ r) (hz : z ∈ segment ℝ (sqSE c r) (sqNE c r)) :
     dist (sqSE c r) z = z 1 - (c 1 - r) := by
   rw [mem_seg_right hr] at hz
@@ -595,6 +666,9 @@ theorem eq_sqNW_of_mem_top_left (hr : 0 ≤ r) (h₁ : z ∈ segment ℝ (sqNE c
   fin_cases i
   exacts [h₂.1, h₁.1]
 
+/--
+@isnad1 id=not.2h3v.s7.6281cbc4edb0 from=translated src=- shape=eb45b756 vocab=27197647
+-/
 theorem notMem_top_of_mem_bottom (hr : 0 < r) (h₁ : z ∈ segment ℝ (sqSW c r) (sqSE c r)) :
     z ∉ segment ℝ (sqNE c r) (sqNW c r) := by
   rw [mem_seg_bottom hr.le] at h₁
@@ -619,6 +693,9 @@ theorem eq_sqSW_of_mem_left_bottom (hr : 0 ≤ r) (h₁ : z ∈ segment ℝ (sqN
   fin_cases i
   exacts [h₁.1, h₂.1]
 
+/--
+@isnad1 id=not.2h3v.s7.fbe66b6a9eaa from=translated src=- shape=eb45b756 vocab=27197647
+-/
 theorem notMem_left_of_mem_right (hr : 0 < r) (h₁ : z ∈ segment ℝ (sqSE c r) (sqNE c r)) :
     z ∉ segment ℝ (sqNW c r) (sqSW c r) := by
   rw [mem_seg_right hr.le] at h₁
@@ -651,12 +728,18 @@ noncomputable def sqCoord (c : Plane) (r : ℝ) (z : Plane) : ℝ :=
   else if z ∈ segment ℝ (sqSW c r) (sqSE c r) then 4 * r + dist (sqSW c r) z
   else 6 * r + dist (sqSE c r) z
 
+/--
+@isnad1 id=eq.1h3v.s7.64e350e15d24 from=translated src=- shape=45da4606 vocab=0925b994
+-/
 theorem sqCoord_top (hz : z ∈ segment ℝ (sqNE c r) (sqNW c r)) :
     sqCoord c r z = dist (sqNE c r) z := by
   classical
   rw [sqCoord,
           ite_eq_left hz]
 
+/--
+@isnad1 id=eq.2h3v.s7.95b58c474651 from=translated src=- shape=086fbb2c vocab=76a81148
+-/
 theorem sqCoord_left (hr : 0 ≤ r) (hz : z ∈ segment ℝ (sqNW c r) (sqSW c r)) :
     sqCoord c r z = 2 * r + dist (sqNW c r) z := by
   classical
@@ -669,6 +752,9 @@ theorem sqCoord_left (hr : 0 ≤ r) (hz : z ∈ segment ℝ (sqNW c r) (sqSW c r
       ite_eq_right htop,
           ite_eq_left hz]
 
+/--
+@isnad1 id=eq.2h3v.s7.35a5c04d2b6f from=translated src=- shape=086fbb2c vocab=4f197954
+-/
 theorem sqCoord_bottom (hr : 0 < r) (hz : z ∈ segment ℝ (sqSW c r) (sqSE c r)) :
     sqCoord c r z = 4 * r + dist (sqSW c r) z := by
   classical
@@ -684,6 +770,9 @@ theorem sqCoord_bottom (hr : 0 < r) (hz : z ∈ segment ℝ (sqSW c r) (sqSE c r
       ite_eq_right hleft,
           ite_eq_left hz]
 
+/--
+@isnad1 id=eq.3h3v.s7.fef7f9774d5c from=translated src=- shape=bffa57e7 vocab=d0d84672
+-/
 theorem sqCoord_right (hr : 0 < r) (hz : z ∈ segment ℝ (sqSE c r) (sqNE c r))
     (hne : z ≠ sqNE c r) : sqCoord c r z = 6 * r + dist (sqSE c r) z := by
   classical
@@ -718,19 +807,25 @@ def sideEdges (pieces : List Piece) (points : List Plane) (c : Plane) (r : ℝ) 
     Set Piece := {Q | Q ∈ squareEdges pieces points c r ∧ Q.seg ⊆ S.seg}
 
 /-- A coordinate of a point of a segment lies on the segment of the coordinates: the coordinate
-map is linear. -/
+map is linear.
+@isnad1 id=mem.1h4v.s8.45c4dcd89d49 from=translated src=- shape=fe43a720 vocab=541b97b7
+-/
 theorem coord_mem_segment {y u v : Plane} (i : Fin 2) (h : y ∈ segment ℝ u v) :
     y i ∈ segment ℝ (u i) (v i) := by
   obtain ⟨p, q, hp, hq, hpq, rfl⟩ := h
   exact ⟨p, q, hp, hq, hpq, by rw [Plane.smul_add_apply]; simp [smul_eq_mul]⟩
 
-/-- A point of the boundary of a square has both coordinates within `r` of the centre's. -/
+/-- A point of the boundary of a square has both coordinates within `r` of the centre's.
+@isnad1 id=and.1h3v.s9.aac140fd67ce from=translated src=- shape=257891ae vocab=902bb0eb
+-/
 theorem abs_le_of_mem_frontier {y : Plane} (hy : y ∈ frontier (closedSquare c r)) :
     |y 0 - c 0| ≤ r ∧ |y 1 - c 1| ≤ r := by
   rw [mem_frontier_closedSquare] at hy
   exact ⟨hy ▸ le_max_left _ _, hy ▸ le_max_right _ _⟩
 
-/-- **Every edge of the overlay on a square lies on one of the four sides.** -/
+/-- **Every edge of the overlay on a square lies on one of the four sides.**
+@isnad1 id=ex.2h5v.s6.69adfd927c93 from=translated src=- shape=187712e0 vocab=a43ad9cd
+-/
 theorem exists_side_of_mem_squareEdges (hr : 0 < r)
     {Q : Piece} (hQ : Q ∈ squareEdges pieces points c r) :
     ∃ S ∈ squarePieces c r, Q ∈ sideEdges pieces points c r S := by
@@ -786,25 +881,37 @@ theorem exists_side_of_mem_squareEdges (hr : 0 < r)
 Each side of the square is a source segment of the overlay, so the edges lying on it tile it,
 and Part 2 walks through them.  The four walks are then glued at the corners. -/
 
+/--
+@isnad1 id=iff.0h5v.s5.65a951f9bdee from=translated src=- shape=08f59bf5 vocab=6a968815
+-/
 theorem mem_vertexSet_squareGraph_iff {y : Plane} :
     y ∈ V(squareGraph pieces points c r) ↔
       ∃ Q ∈ squareEdges pieces points c r, y = Q.1 ∨ y = Q.2 := Iff.rfl
 
+/--
+@isnad1 id=iff.0h5v.s5.65c52ee2e4d1 from=translated src=- shape=50231f8c vocab=50207333
+-/
 theorem mem_edgeSet_squareGraph_iff {Q : Piece} :
     Q ∈ E(squareGraph pieces points c r) ↔ Q ∈ squareEdges pieces points c r := Iff.rfl
 
-/-- An end of an edge is incident with it. -/
+/-- An end of an edge is incident with it.
+@isnad1 id=inc.2h6v.s5.40fe8082f804 from=translated src=- shape=67046550 vocab=5bf7d6b8
+-/
 theorem inc_of_mem_squareEdges {Q : Piece} {y : Plane}
     (hQ : Q ∈ squareEdges pieces points c r) (hy : y = Q.1 ∨ y = Q.2) :
     (squareGraph pieces points c r).Inc Q y := by
   rcases hy with rfl | rfl
   exacts [⟨Q.2, hQ, Or.inl ⟨rfl, rfl⟩⟩, ⟨Q.1, hQ, Or.inr ⟨rfl, rfl⟩⟩]
 
-/-- Every edge of the graph is drawn where its own name says. -/
+/-- Every edge of the graph is drawn where its own name says.
+@isnad1 id=islink.1h5v.s5.4b43d45d2978 from=translated src=- shape=8c97d888 vocab=16b12169
+-/
 theorem isLink_of_mem_squareEdges {Q : Piece} (hQ : Q ∈ squareEdges pieces points c r) :
     (squareGraph pieces points c r).IsLink Q Q.1 Q.2 := ⟨hQ, Or.inl ⟨rfl, rfl⟩⟩
 
-/-- A side of the square lies on its boundary. -/
+/-- A side of the square lies on its boundary.
+@isnad1 id=le.2h3v.s6.a95f82a8f283 from=translated src=- shape=463dc75f vocab=3a4b39ed
+-/
 theorem side_subset_frontier (hr : 0 ≤ r) {S : Piece} (hS : S ∈ squarePieces c r) :
     S.seg ⊆ frontier (closedSquare c r) := by
   rw [← cover_squarePieces c hr]
@@ -822,7 +929,9 @@ def insideEdges (pieces : List Piece) (points : List Plane) (P₀ : Piece) : Set
 
 /-- **The edges inside one source segment tile it.**  Every clause is a property of the
 polygonal overlay already on `main`; the covering clause is the one that needs `P₀` to be a
-source segment. -/
+source segment.
+@isnad1 id=ispiecec.4h3v.s5.9031b0c9b5b3 from=translated src=- shape=d453f762 vocab=69d5e8c7
+-/
 theorem isPieceChain_insideEdges (hnd : ∀ P ∈ pieces, P.Nondeg)
     (hEnds : EndsAreCut pieces points) (hMeets : MeetsAreCut pieces points) {P₀ : Piece}
     (hP₀ : P₀ ∈ pieces) : IsPieceChain P₀.1 P₀.2 P₀.1 (insideEdges pieces points P₀) where
@@ -841,7 +950,9 @@ theorem isPieceChain_insideEdges (hnd : ∀ P ∈ pieces, P.Nondeg)
 
 /-- **The subdivision of one source segment of an overlay is a path**, from one end of the
 segment to the other, taking every overlay edge inside it exactly once, in increasing distance
-from the first end. -/
+from the first end.
+@isnad1 id=ex.5h3v.s7.2da570e7dba6 from=translated src=- shape=30acd34c vocab=98e273c9
+-/
 theorem exists_incWalk_insideEdges (hnd : ∀ P ∈ pieces, P.Nondeg)
     (hEnds : EndsAreCut pieces points) (hMeets : MeetsAreCut pieces points) {P₀ : Piece}
     (hP₀ : P₀ ∈ pieces) (hP₀nd : P₀.Nondeg) :
@@ -854,14 +965,18 @@ theorem exists_incWalk_insideEdges (hnd : ∀ P ∈ pieces, P.Nondeg)
     _ P₀.1 _ rfl
     (isPieceChain_insideEdges hnd hEnds hMeets hP₀) fun R hR => ⟨hR.1, Or.inl ⟨rfl, rfl⟩⟩
 
-/-- On a side of the square, "inside the boundary" is automatic. -/
+/-- On a side of the square, "inside the boundary" is automatic.
+@isnad1 id=eq.2h5v.s5.c80187fae95c from=translated src=- shape=69fc5ce8 vocab=5057faf7
+-/
 theorem sideEdges_eq_insideEdges (hr : 0 ≤ r) {S : Piece} (hS : S ∈ squarePieces c r) :
     sideEdges pieces points c r S = insideEdges pieces points S := by
   ext Q
   exact ⟨fun h => ⟨h.1.1, h.2⟩,
     fun h => ⟨⟨h.1, h.2.trans (side_subset_frontier hr hS)⟩, h.2⟩⟩
 
-/-- **The edges on one side tile it.** -/
+/-- **The edges on one side tile it.**
+@isnad1 id=ispiecec.6h5v.s6.2165213f0875 from=translated src=- shape=d554e622 vocab=5fadb9da
+-/
 theorem isPieceChain_sideEdges (hnd : ∀ P ∈ pieces, P.Nondeg) (hEnds : EndsAreCut pieces points)
     (hMeets : MeetsAreCut pieces points) (hr : 0 < r)
     (hsub : ∀ P ∈ squarePieces c r, P ∈ pieces) {S : Piece} (hS : S ∈ squarePieces c r) :
@@ -870,7 +985,9 @@ theorem isPieceChain_sideEdges (hnd : ∀ P ∈ pieces, P.Nondeg) (hEnds : EndsA
     isPieceChain_insideEdges hnd hEnds hMeets (hsub S hS)
 
 /-- The far corner of a side is a vertex: it is an end of a source segment, hence a cut
-point, and it lies on the boundary. -/
+point, and it lies on the boundary.
+@isnad1 id=mem.5h5v.s6.605ce69f65a7 from=translated src=- shape=ff18dcd6 vocab=5029cad4
+-/
 theorem corner_mem_vertexSet (hnd : ∀ P ∈ pieces, P.Nondeg) (hEnds : EndsAreCut pieces points)
     (hr : 0 < r) (hsub : ∀ P ∈ squarePieces c r, P ∈ pieces) {S : Piece}
     (hS : S ∈ squarePieces c r) : S.2 ∈ V(squareGraph pieces points c r) :=
@@ -878,7 +995,9 @@ theorem corner_mem_vertexSet (hnd : ∀ P ∈ pieces, P.Nondeg) (hEnds : EndsAre
     (side_subset_frontier hr.le hS (right_mem_segment ℝ S.1 S.2))
 
 /-- **The walk along one side**, from its first corner to its second, taking every edge of the
-overlay that lies on it exactly once, in increasing distance from the first corner. -/
+overlay that lies on it exactly once, in increasing distance from the first corner.
+@isnad1 id=ex.6h6v.s7.1c319099a062 from=translated src=- shape=4906c806 vocab=1b31c26e
+-/
 theorem exists_side_walk (hnd : ∀ P ∈ pieces, P.Nondeg) (hEnds : EndsAreCut pieces points)
     (hMeets : MeetsAreCut pieces points) (hr : 0 < r)
     (hsub : ∀ P ∈ squarePieces c r, P ∈ pieces) {u v : Plane}
@@ -890,7 +1009,9 @@ theorem exists_side_walk (hnd : ∀ P ∈ pieces, P.Nondeg) (hEnds : EndsAreCut 
     (isPieceChain_sideEdges hnd hEnds hMeets hr hsub hS)
     fun _ hQ => isLink_of_mem_squareEdges hQ.1
 
-/-- What a walk of the square graph visits stays inside anything its edges stay inside. -/
+/-- What a walk of the square graph visits stays inside anything its edges stay inside.
+@isnad1 id=le.2h7v.s5.82550fd75a2d from=translated src=- shape=2fab9250 vocab=851d02a7
+-/
 theorem walkVertices_squareGraph_subset {u : Plane} {W : List Piece} {T : Set Plane}
     (hu : u ∈ T) (hW : ∀ Q ∈ W, Q.seg ⊆ T) :
     (squareGraph pieces points c r).walkVertices u W ⊆ T := by
@@ -901,7 +1022,9 @@ theorem walkVertices_squareGraph_subset {u : Plane} {W : List Piece} {T : Set Pl
     rcases hy.2 with ⟨rfl, -⟩ | ⟨rfl, -⟩
     exacts [Or.inl rfl, Or.inr rfl]
 
-/-- A piece all of whose points are one point is degenerate. -/
+/-- A piece all of whose points are one point is degenerate.
+@isnad1 id=not.1h2v.s4.8533bd5cfe67 from=translated src=- shape=cea9f310 vocab=4adf9dd7
+-/
 theorem not_nondeg_of_seg_subset_singleton {Q : Piece} {t : Plane} (h : ∀ y ∈ Q.seg, y = t) :
     ¬ Q.Nondeg := fun hne =>
   hne ((h Q.1 (left_mem_segment ℝ _ _)).trans (h Q.2 (right_mem_segment ℝ _ _)).symm)
@@ -913,12 +1036,18 @@ coordinate increases along the first three sides and along all of the fourth but
 which returns to the corner where the coordinate is `0`; so that step is split off and becomes
 the distinguished edge of `Graph.IsCycleThrough`. -/
 
+/--
+@isnad1 id=ne.1h2v.s4.0f5fdb876875 from=translated src=- shape=b7b125b6 vocab=0c280801
+-/
 theorem sqNW_ne_sqNE (c : Plane) (hr : 0 < r) : sqNW c r ≠ sqNE c r := by
   intro h
   have h0 := congrArg (fun p : Plane => p 0) h
   simp only [sqNW_zero, sqNE_zero] at h0
   linarith
 
+/--
+@isnad1 id=ne.1h2v.s4.62276f249856 from=translated src=- shape=b7b125b6 vocab=31296649
+-/
 theorem sqSE_ne_sqNE (c : Plane) (hr : 0 < r) : sqSE c r ≠ sqNE c r := by
   intro h
   have h1 := congrArg (fun p : Plane => p 1) h
@@ -928,7 +1057,9 @@ theorem sqSE_ne_sqNE (c : Plane) (hr : 0 < r) : sqSE c r ≠ sqNE c r := by
 /-- **The boundary cycle of a subdivided square.**  The whole of `squareGraph` is a cycle: an
 edge `e`, a detour `D` running the other way round, and a third vertex.  The second clause is
 what makes the first usable — `Graph.IsLongCycle.isTwoConnected` proves the *cycle graph*
-2-connected, and here the cycle graph is the graph itself. -/
+2-connected, and here the cycle graph is the graph itself.
+@isnad1 id=ex.5h4v.s6.4d90be8d39e1 from=translated src=- shape=558361c2 vocab=6be117f1
+-/
 theorem exists_isLongCycle_squareGraph (hnd : ∀ P ∈ pieces, P.Nondeg)
     (hEnds : EndsAreCut pieces points) (hMeets : MeetsAreCut pieces points) (hr : 0 < r)
     (hsub : ∀ P ∈ squarePieces c r, P ∈ pieces) :
@@ -1052,7 +1183,9 @@ theorem exists_isLongCycle_squareGraph (hnd : ∀ P ∈ pieces, P.Nondeg)
 
 /-- **The part of a polygonal overlay on the boundary of one of its squares is 2-connected.**
 It is a cycle through at least four vertices — the corners — so
-`Graph.IsLongCycle.isTwoConnected` finishes. -/
+`Graph.IsLongCycle.isTwoConnected` finishes.
+@isnad1 id=istwocon.5h4v.s6.1155285c2b1e from=translated src=- shape=3aec98ad vocab=90c4e219
+-/
 theorem squareGraph_isTwoConnected (hnd : ∀ P ∈ pieces, P.Nondeg)
     (hEnds : EndsAreCut pieces points) (hMeets : MeetsAreCut pieces points) (hr : 0 < r)
     (hsub : ∀ P ∈ squarePieces c r, P ∈ pieces) :
@@ -1063,7 +1196,9 @@ theorem squareGraph_isTwoConnected (hnd : ∀ P ∈ pieces, P.Nondeg)
 
 /-- **`Schoenflies.SquaresTwoConnected`, discharged.**  Substituting this into
 `Schoenflies.exists_face_of_notMem_arc` makes `thm:arc-complement`, `lem:accessible-dense` and
-`thm:jordan` without an auxiliary separation hypothesis. -/
+`thm:jordan` without an auxiliary separation hypothesis.
+@isnad1 id=squarest.0h0v.s0.4521512cb16d from=translated src=- shape=45709ebd vocab=4521512c
+-/
 theorem squaresTwoConnected : SquaresTwoConnected :=
   fun _ _ hnd hEnds hMeets _ _ hr hsub =>
     squareGraph_isTwoConnected hnd hEnds hMeets hr hsub

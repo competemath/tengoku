@@ -87,24 +87,32 @@ variable {S T F : Set Plane} {ps : List Piece} {x y z c d : Plane} {r R ε t : �
 is near enough and points the right way (`mem_radial_iff`), and cutting a longer radius by a
 smaller ball leaves the shorter radius (`radial_inter_closedBall`). -/
 
-/-- The unit vector along a positive multiple of a unit vector is that vector. -/
+/-- The unit vector along a positive multiple of a unit vector is that vector.
+@isnad1 id=eq.2h2v.s6.2204e855b954 from=translated src=- shape=7491e4d1 vocab=35d3ddb0
+-/
 theorem dir_smul_of_isDirection (hd : Plane.IsDirection d) (ht : 0 < t) :
     Plane.dir (t • d) = d := by
   have hn : ‖t • d‖ = t := by
     rw [norm_smul, Real.norm_eq_abs, abs_of_pos ht, hd.norm, mul_one]
   rw [Plane.dir, hn, smul_smul, inv_mul_cancel₀ ht.ne', one_smul]
 
-/-- A nonzero vector is its own length times its own direction. -/
+/-- A nonzero vector is its own length times its own direction.
+@isnad1 id=eq.1h1v.s7.21f2300c6e3f from=translated src=- shape=5786f63e vocab=0a83d95b
+-/
 theorem smul_norm_dir (h : d ≠ 0) : ‖d‖ • Plane.dir d = d := by
   rw [Plane.dir, smul_smul, mul_inv_cancel₀ (norm_ne_zero_iff.2 h), one_smul]
 
-/-- Positive scaling does not move a direction. -/
+/-- Positive scaling does not move a direction.
+@isnad1 id=eq.1h2v.s6.64c2a28e0cf1 from=translated src=- shape=e03ac6c7 vocab=cdb9ab02
+-/
 theorem dir_smul_pos (ht : 0 < t) (u : Plane) : Plane.dir (t • u) = Plane.dir u := by
   have hn : ‖t • u‖ = t * ‖u‖ := by rw [norm_smul, Real.norm_eq_abs, abs_of_pos ht]
   rw [Plane.dir, Plane.dir, hn, smul_smul, mul_inv, mul_comm t⁻¹, mul_assoc,
     inv_mul_cancel₀ ht.ne', mul_one]
 
-/-- Membership in a radius: near enough, and pointing the right way. -/
+/-- Membership in a radius: near enough, and pointing the right way.
+@isnad1 id=iff.2h4v.s8.aa683d3151a9 from=translated src=- shape=647756db vocab=5b2a5bce
+-/
 theorem mem_radial_iff (hd : Plane.IsDirection d) (hr : 0 < r) :
     z ∈ segment ℝ x (x + r • d) ↔ dist z x ≤ r ∧ (z = x ∨ Plane.dir (z - x) = d) := by
   constructor
@@ -135,12 +143,16 @@ theorem mem_radial_iff (hd : Plane.IsDirection d) (hr : 0 < r) :
       _ = x + ‖z - x‖ • d := by rw [hθ]
       _ = z := by rw [hL]; module
 
-/-- A radius of length `r` lies in the closed disk of radius `r`. -/
+/-- A radius of length `r` lies in the closed disk of radius `r`.
+@isnad1 id=le.2h3v.s8.c2dcc2281acb from=translated src=- shape=97ab53be vocab=99713739
+-/
 theorem radial_subset_closedBall (hd : Plane.IsDirection d) (hr : 0 < r) :
     segment ℝ x (x + r • d) ⊆ closedBall x r := fun _ hz =>
   mem_closedBall.2 ((mem_radial_iff hd hr).1 hz).1
 
-/-- Cutting a radius by a smaller concentric disk leaves the shorter radius. -/
+/-- Cutting a radius by a smaller concentric disk leaves the shorter radius.
+@isnad1 id=eq.3h4v.s9.a5b7254411a0 from=translated src=- shape=5d5c94f7 vocab=3d0595ed
+-/
 theorem radial_inter_closedBall (hd : Plane.IsDirection d) (hr : 0 < r) (hrR : r ≤ R) :
     segment ℝ x (x + R • d) ∩ closedBall x r = segment ℝ x (x + r • d) := by
   ext z
@@ -148,7 +160,9 @@ theorem radial_inter_closedBall (hd : Plane.IsDirection d) (hr : 0 < r) (hrR : r
     mem_radial_iff hd hr]
   exact ⟨fun h => ⟨h.2, h.1.2⟩, fun h => ⟨⟨h.1.trans hrR, h.2⟩, h.1⟩⟩
 
-/-- A segment out of `x` is the radius of its own length in its own direction. -/
+/-- A segment out of `x` is the radius of its own length in its own direction.
+@isnad1 id=eq.1h2v.s8.735f3dc1fdb1 from=translated src=- shape=7694b58f vocab=554436d0
+-/
 theorem segment_eq_radial (h : c ≠ x) :
     segment ℝ x c = segment ℝ x (x + dist x c • Plane.dir (c - x)) := by
   have hne : c - x ≠ 0 := sub_ne_zero.2 h
@@ -159,7 +173,9 @@ theorem segment_eq_radial (h : c ≠ x) :
 
 /-- **Inside a disk too small to reach `c`, the segment `[x, c]` is exactly a radius.** This is
 the one geometric step behind the whole module: it turns each straight piece through `x` into
-one or two radial segments. -/
+one or two radial segments.
+@isnad1 id=eq.3h3v.s9.3bf53e2eb2db from=translated src=- shape=817ad3c9 vocab=4cf3aad9
+-/
 theorem segment_inter_closedBall (hcx : c ≠ x) (hr : 0 < r) (hrc : r ≤ dist x c) :
     segment ℝ x c ∩ closedBall x r = segment ℝ x (x + r • Plane.dir (c - x)) := by
   rw [segment_eq_radial hcx]
@@ -176,16 +192,27 @@ distinct — the blueprint's "with pairwise distinct directions". -/
 def localDirs (S : Set Plane) (x : Plane) : Set Plane :=
   {d | Plane.IsDirection d ∧ ∃ ε : ℝ, 0 < ε ∧ segment ℝ x (x + ε • d) ⊆ S}
 
+/--
+@isnad1 id=isdirect.1h3v.s4.46b8e4325a06 from=translated src=- shape=b499679e vocab=44ca18a7
+-/
 theorem isDirection_of_mem_localDirs (h : d ∈ localDirs S x) : Plane.IsDirection d := h.1
 
+/--
+@isnad1 id=mem.3h4v.s8.56110ac842d2 from=translated src=- shape=c367be06 vocab=74b25fb7
+-/
 theorem mem_localDirs (hd : Plane.IsDirection d) (hε : 0 < ε)
     (h : segment ℝ x (x + ε • d) ⊆ S) : d ∈ localDirs S x := ⟨hd, ε, hε, h⟩
 
+/--
+@isnad1 id=le.1h3v.s4.5a1f2757bd48 from=translated src=- shape=ffe88af6 vocab=98fda98e
+-/
 theorem localDirs_mono (h : S ⊆ T) : localDirs S x ⊆ localDirs T x := by
   rintro d ⟨hd, ε, hε, hsub⟩
   exact ⟨hd, ε, hε, hsub.trans h⟩
 
-/-- A local direction witnesses that `x` itself belongs to `S`. -/
+/-- A local direction witnesses that `x` itself belongs to `S`.
+@isnad1 id=mem.1h3v.s4.5ff961a46148 from=translated src=- shape=70009f4e vocab=dfad7cc0
+-/
 theorem mem_of_mem_localDirs (h : d ∈ localDirs S x) : x ∈ S :=
   h.2.choose_spec.2 (left_mem_segment ℝ _ _)
 
@@ -201,11 +228,17 @@ def GoodRadius (x : Plane) (P : Piece) (r : ℝ) : Prop :=
   (x ∉ P.seg → ∀ z ∈ P.seg, r < dist x z) ∧
     (P.1 ≠ x → r ≤ dist x P.1) ∧ (P.2 ≠ x → r ≤ dist x P.2)
 
+/--
+@isnad1 id=goodradi.2h4v.s4.f0b264fbeb7f from=translated src=- shape=400d105e vocab=4b7c703e
+-/
 theorem GoodRadius.mono {P : Piece} (h : GoodRadius x P r) (hle : ε ≤ r) :
     GoodRadius x P ε :=
   ⟨fun hx z hz => lt_of_le_of_lt hle (h.1 hx z hz), fun h1 => hle.trans (h.2.1 h1),
     fun h2 => hle.trans (h.2.2 h2)⟩
 
+/--
+@isnad1 id=ex.0h2v.s4.9cb0e6581261 from=translated src=- shape=71957db1 vocab=9f8d8710
+-/
 theorem exists_goodRadius (x : Plane) (P : Piece) : ∃ r > 0, GoodRadius x P r := by
   by_cases hx : x ∈ P.seg
   · -- Only the endpoints matter; a coincident endpoint imposes nothing.
@@ -235,11 +268,17 @@ def pieceDirs (ps : List Piece) (x : Plane) : Set Plane :=
   {d | ∃ P ∈ ps, x ∈ P.seg ∧
     ((P.1 ≠ x ∧ d = Plane.dir (P.1 - x)) ∨ (P.2 ≠ x ∧ d = Plane.dir (P.2 - x)))}
 
+/--
+@isnad1 id=isdirect.1h3v.s4.a6f46ae91254 from=translated src=- shape=4d631ec1 vocab=88bf0a4b
+-/
 theorem isDirection_of_mem_pieceDirs (h : d ∈ pieceDirs ps x) : Plane.IsDirection d := by
   obtain ⟨P, -, -, (⟨h1, rfl⟩ | ⟨h2, rfl⟩)⟩ := h
   · exact Plane.isDirection_dir (sub_ne_zero.2 h1)
   · exact Plane.isDirection_dir (sub_ne_zero.2 h2)
 
+/--
+@isnad1 id=finite.0h2v.s3.27c1d7f5315f from=translated src=- shape=74f955ca vocab=6b1fe90d
+-/
 theorem pieceDirs_finite (ps : List Piece) (x : Plane) : (pieceDirs ps x).Finite := by
   refine Set.Finite.subset (Set.Finite.image (fun c => Plane.dir (c - x))
     (((List.finite_toSet ps).image Prod.fst).union ((List.finite_toSet ps).image Prod.snd))) ?_
@@ -247,7 +286,9 @@ theorem pieceDirs_finite (ps : List Piece) (x : Plane) : (pieceDirs ps x).Finite
   · exact ⟨P.1, Or.inl ⟨P, hP, rfl⟩, rfl⟩
   · exact ⟨P.2, Or.inr ⟨P, hP, rfl⟩, rfl⟩
 
-/-- A radius in a piece direction, at a good radius, stays inside the pieces. -/
+/-- A radius in a piece direction, at a good radius, stays inside the pieces.
+@isnad1 id=le.3h4v.s8.b1b1ee31c6eb from=translated src=- shape=9dd1b287 vocab=04378972
+-/
 theorem radial_subset_cover (hgood : ∀ P ∈ ps, GoodRadius x P r) (hr : 0 < r)
     (hd : d ∈ pieceDirs ps x) : segment ℝ x (x + r • d) ⊆ cover ps := by
   obtain ⟨P, hP, hxP, hcase⟩ := hd
@@ -264,7 +305,9 @@ theorem radial_subset_cover (hgood : ∀ P ∈ ps, GoodRadius x P r) (hr : 0 < r
   · exact key P.1 (left_mem_segment ℝ _ _) h1 ((hgood P hP).2.1 h1)
   · exact key P.2 (right_mem_segment ℝ _ _) h2 ((hgood P hP).2.2 h2)
 
-/-- At a good radius, the pieces meet the closed disk only in `x` and the radii. -/
+/-- At a good radius, the pieces meet the closed disk only in `x` and the radii.
+@isnad1 id=le.2h3v.s8.1b55f677c163 from=translated src=- shape=6a8a0622 vocab=90958539
+-/
 theorem cover_inter_closedBall_subset (hgood : ∀ P ∈ ps, GoodRadius x P r) (hr : 0 < r) :
     cover ps ∩ closedBall x r ⊆ insert x (⋃ d ∈ pieceDirs ps x, segment ℝ x (x + r • d)) := by
   rintro z ⟨hzc, hzb⟩
@@ -305,8 +348,14 @@ radius below a local radius (`IsLocalRadius.mono`). -/
 def IsLocalRadius (S : Set Plane) (x : Plane) (r : ℝ) : Prop :=
   0 < r ∧ ∀ z, dist z x ≤ r → (z ∈ S ↔ z = x ∨ Plane.dir (z - x) ∈ localDirs S x)
 
+/--
+@isnad1 id=lt.1h3v.s4.81fd8f525f10 from=translated src=- shape=cda494ef vocab=a141f88a
+-/
 theorem IsLocalRadius.pos (h : IsLocalRadius S x r) : 0 < r := h.1
 
+/--
+@isnad1 id=islocalr.3h4v.s5.ebfb29c9fb93 from=translated src=- shape=7f66ff9e vocab=efcf0d0a
+-/
 theorem IsLocalRadius.mono (h : IsLocalRadius S x r) (hε : 0 < ε) (hle : ε ≤ r) :
     IsLocalRadius S x ε :=
   ⟨hε, fun z hz => h.2 z (hz.trans hle)⟩
@@ -316,6 +365,9 @@ theorem IsLocalRadius.mono (h : IsLocalRadius S x r) (hε : 0 < ε) (hle : ε �
 The construction: choose a radius good for every piece and strictly below the distance to
 every stray point other than `x`. -/
 
+/--
+@isnad1 id=ex.1h3v.s6.845eeb64b46f from=translated src=- shape=3bf10011 vocab=32c8cd8f
+-/
 theorem exists_pos_goodRadius (hF : F.Finite) (ps : List Piece) (x : Plane) :
     ∃ r > 0, (∀ P ∈ ps, GoodRadius x P r) ∧ ∀ p ∈ F, p ≠ x → r < dist x p := by
   obtain ⟨r₁, hr₁, h₁⟩ :=
@@ -335,13 +387,17 @@ theorem exists_pos_goodRadius (hF : F.Finite) (ps : List Piece) (x : Plane) :
     fun p hp hne => lt_of_le_of_lt (min_le_right _ _) (h₂ p hp hne)⟩
 
 /-- Every piece direction is a local direction: at a good radius the whole radius fits in the
-pieces. -/
+pieces.
+@isnad1 id=le.3h5v.s6.59744408f19e from=translated src=- shape=dda25790 vocab=41b82f12
+-/
 theorem pieceDirs_subset_localDirs (hS : S = F ∪ cover ps) (hr : 0 < r)
     (hgood : ∀ P ∈ ps, GoodRadius x P r) : pieceDirs ps x ⊆ localDirs S x := fun _ hd =>
   ⟨isDirection_of_mem_pieceDirs hd, r, hr,
     (radial_subset_cover hgood hr hd).trans (hS ▸ subset_union_right)⟩
 
-/-- The membership criterion, phrased with the auxiliary `pieceDirs`. -/
+/-- The membership criterion, phrased with the auxiliary `pieceDirs`.
+@isnad1 id=iff.6h6v.s8.b22c73fd9edf from=translated src=- shape=918acae3 vocab=fedb2bbd
+-/
 theorem mem_iff_of_goodRadius (hS : S = F ∪ cover ps) (hr : 0 < r) (hx : x ∈ S)
     (hgood : ∀ P ∈ ps, GoodRadius x P r) (hFgood : ∀ p ∈ F, p ≠ x → r < dist x p)
     (hz : dist z x ≤ r) : z ∈ S ↔ z = x ∨ Plane.dir (z - x) ∈ pieceDirs ps x := by
@@ -368,7 +424,9 @@ theorem mem_iff_of_goodRadius (hS : S = F ∪ cover ps) (hr : 0 < r) (hx : x ∈
 
 /-- Conversely, at a good radius every local direction comes from a piece. This is where the
 germ hypothesis in `localDirs` is cashed in: a short segment in `S` leaving `x` lands in a
-piece, and that piece must pass through `x`. -/
+piece, and that piece must pass through `x`.
+@isnad1 id=le.4h5v.s7.9b0a2cb112ec from=translated src=- shape=51270edc vocab=b401347a
+-/
 theorem localDirs_subset_pieceDirs (hS : S = F ∪ cover ps) (hr : 0 < r)
     (hgood : ∀ P ∈ ps, GoodRadius x P r) (hFgood : ∀ p ∈ F, p ≠ x → r < dist x p) :
     localDirs S x ⊆ pieceDirs ps x := by
@@ -404,14 +462,18 @@ theorem localDirs_subset_pieceDirs (hS : S = F ∪ cover ps) (hr : 0 < r)
 
 /-- **The local directions of a finite union of segments and points are finitely many.** This
 is the blueprint's "finitely many straight segments from `x` with pairwise distinct
-directions": distinctness is automatic for a set, finiteness is the content. -/
+directions": distinctness is automatic for a set, finiteness is the content.
+@isnad1 id=finite.2h4v.s5.a05ec1dfdd6d from=translated src=- shape=3e5c9ff6 vocab=0ef70bfb
+-/
 theorem localDirs_finite (hF : F.Finite) (hS : S = F ∪ cover ps) (x : Plane) :
     (localDirs S x).Finite := by
   obtain ⟨r, hr, hgood, hFgood⟩ := exists_pos_goodRadius hF ps x
   exact (pieceDirs_finite ps x).subset (localDirs_subset_pieceDirs hS hr hgood hFgood)
 
 /-- **A local radius exists.** Lemma "Local structure of a polygonal skeleton", for a set
-presented as finitely many points together with finitely many segments. -/
+presented as finitely many points together with finitely many segments.
+@isnad1 id=ex.3h4v.s5.80b54a27b242 from=translated src=- shape=dce327f3 vocab=7d2325d3
+-/
 theorem exists_isLocalRadius (hF : F.Finite) (hS : S = F ∪ cover ps) (hx : x ∈ S) :
     ∃ r, IsLocalRadius S x r := by
   obtain ⟨r, hr, hgood, hFgood⟩ := exists_pos_goodRadius hF ps x
@@ -429,7 +491,9 @@ theorem exists_isLocalRadius (hF : F.Finite) (hS : S = F ∪ cover ps) (hx : x �
 
 /-- **The closed disk meets `S` exactly in the radial segments.** The blueprint's "the closed
 disk `B(x,r)` meets `|G|` exactly in finitely many straight segments from `x` with pairwise
-distinct directions". -/
+distinct directions".
+@isnad1 id=eq.2h3v.s8.f24ea20aaa3e from=translated src=- shape=373d7fc8 vocab=1e9f8756
+-/
 theorem IsLocalRadius.closedBall_inter (h : IsLocalRadius S x r) (hx : x ∈ S) :
     closedBall x r ∩ S = insert x (⋃ d ∈ localDirs S x, segment ℝ x (x + r • d)) := by
   ext z
@@ -453,7 +517,9 @@ theorem IsLocalRadius.closedBall_inter (h : IsLocalRadius S x r) (hx : x ∈ S) 
 cone over the directions that are not local directions.
 
 The individual sectors — one per cyclically adjacent pair of local directions — are not
-separated out; see the module docstring. -/
+separated out; see the module docstring.
+@isnad1 id=eq.1h3v.s7.ad3fd7718b66 from=translated src=- shape=bc6c6904 vocab=e215df5c
+-/
 theorem IsLocalRadius.ball_diff_eq_cone (h : IsLocalRadius S x r) :
     ball x r \ S = Plane.cone x {u | u ≠ 0 ∧ Plane.dir u ∉ localDirs S x} r := by
   ext z
@@ -470,7 +536,9 @@ theorem IsLocalRadius.ball_diff_eq_cone (h : IsLocalRadius S x r) :
 disk that misses `S` misses `S` all the way.
 
 Together with connectedness of `openSegment ℝ x y ∪ {y}` it replaces the blueprint's "pick the
-sector containing `y`, then a short segment from `x` into it". -/
+sector containing `y`, then a short segment from `x` into it".
+@isnad1 id=le.3h4v.s7.5ca796e207fc from=translated src=- shape=be154a0c vocab=7ed9d48e
+-/
 theorem IsLocalRadius.openSegment_subset_ball_diff (h : IsLocalRadius S x r) (hy : y ∈ ball x r)
     (hyS : y ∉ S) : openSegment ℝ x y ⊆ ball x r \ S := by
   have hyx : y ≠ x := fun hxy => hyS ((h.2 y (by rw [hxy, dist_self]; exact h.pos.le)).2
@@ -505,7 +573,9 @@ theorem IsLocalRadius.openSegment_subset_ball_diff (h : IsLocalRadius S x r) (hy
     · exact hne h'
   · exact hdy (hdir ▸ hd)
 
-/-- Some direction at `x` is free, so the punctured disk is nonempty. -/
+/-- Some direction at `x` is free, so the punctured disk is nonempty.
+@isnad1 id=ex.2h3v.s6.2ff38f65ecb7 from=translated src=- shape=9e23a3cb vocab=1f914be1
+-/
 theorem IsLocalRadius.exists_mem_ball_diff (h : IsLocalRadius S x r)
     (hfin : (localDirs S x).Finite) : ∃ y ∈ ball x r, y ∉ S := by
   obtain ⟨u, hu, hdet⟩ := Plane.exists_isDirection_det_ne_zero hfin
@@ -537,7 +607,9 @@ variable {β : Type*} {G : Graph Plane β} {drawing : β → ℝ → Plane} {x :
 
 /-- **The point set of a finite plane graph with polygonal edges is its vertex set together
 with finitely many straight segments.** The blueprint's "write every edge as a finite union of
-straight segments". -/
+straight segments".
+@isnad1 id=ex.2h3v.s6.007a6fdafc5d from=translated src=- shape=117a26f4 vocab=0a7282ce
+-/
 theorem IsDrawing.exists_cover [G.Finite] (h : IsDrawing G drawing)
     (hpoly : ∀ e ∈ E(G), IsPolygonal (edgeArc drawing e)) :
     ∃ ps : List Piece, pointSet G drawing = V(G) ∪ cover ps := by
@@ -563,7 +635,9 @@ theorem IsDrawing.exists_cover [G.Finite] (h : IsDrawing G drawing)
 
 /-- A finite polygonal plane graph without isolated vertices is carried exactly by finitely
 many nondegenerate straight segments.  The incidence hypothesis removes the isolated-vertex
-term from `IsDrawing.exists_cover`: every vertex already belongs to the segment cover. -/
+term from `IsDrawing.exists_cover`: every vertex already belongs to the segment cover.
+@isnad1 id=ex.3h3v.s7.fc56e50d017c from=translated src=- shape=f83ac063 vocab=f4605d3d
+-/
 theorem IsDrawing.exists_segmentCover [G.Finite] (h : IsDrawing G drawing)
     (hpoly : ∀ e ∈ E(G), IsPolygonal (edgeArc drawing e))
     (hincident : ∀ z ∈ V(G), ∃ e, G.Inc e z) :
@@ -616,14 +690,18 @@ theorem IsDrawing.exists_segmentCover [G.Finite] (h : IsDrawing G drawing)
 
 /-- **Local structure of a polygonal skeleton** (`lem:local-skeleton-structure`): a point of a
 finite polygonal plane graph has a local radius, hence a disk in which the graph is exactly
-finitely many radial segments. -/
+finitely many radial segments.
+@isnad1 id=ex.3h4v.s6.941cfe04ef78 from=translated src=- shape=c11428ac vocab=b7e32c1d
+-/
 theorem IsDrawing.exists_isLocalRadius [G.Finite] (h : IsDrawing G drawing)
     (hpoly : ∀ e ∈ E(G), IsPolygonal (edgeArc drawing e)) (hx : x ∈ pointSet G drawing) :
     ∃ r, IsLocalRadius (pointSet G drawing) x r := by
   obtain ⟨ps, hps⟩ := h.exists_cover hpoly
   exact Schoenflies.exists_isLocalRadius (Graph.finite_vertexSet G) hps hx
 
-/-- The local branches of a finite polygonal plane graph at a point are finitely many. -/
+/-- The local branches of a finite polygonal plane graph at a point are finitely many.
+@isnad1 id=finite.2h4v.s5.5a7e17057b08 from=translated src=- shape=12d8d401 vocab=663ae3b7
+-/
 theorem IsDrawing.finite_localDirs [G.Finite] (h : IsDrawing G drawing)
     (hpoly : ∀ e ∈ E(G), IsPolygonal (edgeArc drawing e)) (x : Plane) :
     (localDirs (pointSet G drawing) x).Finite := by
@@ -637,7 +715,9 @@ This is `lem:polygonal-side-accessibility` with everything but the choice of `y`
 the consumer picks `y` in the face it cares about (possible because the face accumulates at
 `x`), shrinks the radius with `IsLocalRadius.mono` until the disk also misses whatever else it
 must avoid, and reads off a polygonal access arc. No sector has to be named: the half-open
-segment does the work the blueprint's sector does. -/
+segment does the work the blueprint's sector does.
+@isnad1 id=le.3h6v.s7.b4d6f3b6974e from=translated src=- shape=e59b2bcc vocab=231f00df
+-/
 theorem IsDrawing.openSegment_subset_face {r : ℝ} {y : Plane}
     (hr : IsLocalRadius (pointSet G drawing) x r) (hy : y ∈ ball x r)
     (hyE : y ∈ exterior G drawing) : openSegment ℝ x y ⊆ face G drawing y := by

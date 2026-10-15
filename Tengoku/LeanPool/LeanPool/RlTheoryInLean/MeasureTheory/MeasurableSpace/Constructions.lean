@@ -13,6 +13,9 @@ public import Tengoku
 
 @[expose] public section
 
+/--
+@isnad1 id=measurab.1h4v.s5.8b8fda358a3f from=translated src=- shape=95ecf475 vocab=29d698bf
+-/
 lemma Measurable.of_uncurry
   {α β γ : Type*} [MeasurableSpace α] [MeasurableSpace β] [MeasurableSpace γ]
   {f : α → β → γ} (h : Measurable (Function.uncurry f))

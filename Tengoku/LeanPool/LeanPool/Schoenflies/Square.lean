@@ -40,11 +40,20 @@ namespace Plane
 
 /-! ### Coordinates -/
 
+/--
+@isnad1 id=eq.0h3v.s7.0c16c29805c6 from=translated src=- shape=508d72c2 vocab=fe28a8ab
+-/
 theorem sub_apply (x y : Plane) (i : Fin 2) : (x - y) i = x i - y i := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.82dd76712686 from=translated src=- shape=0a0f6f66 vocab=62be7657
+-/
 theorem smul_add_apply (a b : ℝ) (x y : Plane) (i : Fin 2) :
     (a • x + b • y) i = a * x i + b * y i := by simp
 
+/--
+@isnad1 id=continuo.0h1v.s6.0a8f637d986e from=translated src=- shape=8b3f526a vocab=104bdcf8
+-/
 theorem continuous_coord (i : Fin 2) : Continuous fun x : Plane => x i :=
   PiLp.continuous_apply _ _ i
 
@@ -56,29 +65,55 @@ noncomputable def supNorm (x : Plane) : ℝ := max |x 0| |x 1|
 /-- The sup distance. -/
 noncomputable def supDist (x y : Plane) : ℝ := supNorm (x - y)
 
+/--
+@isnad1 id=le.0h1v.s3.f94838fe889e from=translated src=- shape=b9369acb vocab=2a12f8c5
+-/
 theorem supNorm_nonneg (x : Plane) : 0 ≤ supNorm x :=
   le_trans (abs_nonneg _) (le_max_left _ _)
 
+/--
+@isnad1 id=le.0h2v.s4.88c8f8b86ca0 from=translated src=- shape=5ffe46ab vocab=966fc4d2
+-/
 theorem supDist_nonneg (x y : Plane) : 0 ≤ supDist x y := supNorm_nonneg _
 
+/--
+@isnad1 id=eq.0h1v.s3.7f76ec9cb84c from=translated src=- shape=34c957ae vocab=1362e92b
+-/
 @[simp] theorem supDist_self (x : Plane) : supDist x x = 0 := by
   simp [supDist, supNorm]
 
+/--
+@isnad1 id=eq.0h2v.s3.fb5ce5fdb605 from=translated src=- shape=ab795eaa vocab=1362e92b
+-/
 theorem supDist_comm (x y : Plane) : supDist x y = supDist y x := by
   simp only [supDist, supNorm, sub_apply]
   rw [abs_sub_comm (x 0) (y 0), abs_sub_comm (x 1) (y 1)]
 
+/--
+@isnad1 id=le.0h2v.s8.21dff3dbcdb6 from=translated src=- shape=da25b8a7 vocab=cf5c5e5c
+-/
 theorem abs_sub_zero_le_supDist (x y : Plane) : |x 0 - y 0| ≤ supDist x y :=
   le_max_left _ _
 
+/--
+@isnad1 id=le.0h2v.s8.3965b906aaee from=translated src=- shape=da25b8a7 vocab=cf5c5e5c
+-/
 theorem abs_sub_one_le_supDist (x y : Plane) : |x 1 - y 1| ≤ supDist x y :=
   le_max_right _ _
 
+/--
+@isnad1 id=le.0h1v.s6.657910a322f4 from=translated src=- shape=9b02bde3 vocab=c882ba2c
+-/
 theorem abs_zero_le_supNorm (x : Plane) : |x 0| ≤ supNorm x := le_max_left _ _
 
+/--
+@isnad1 id=le.0h1v.s6.da95ad4caeb6 from=translated src=- shape=9b02bde3 vocab=c882ba2c
+-/
 theorem abs_one_le_supNorm (x : Plane) : |x 1| ≤ supNorm x := le_max_right _ _
 
-/-- The sup distance satisfies the triangle inequality, one coordinate at a time. -/
+/-- The sup distance satisfies the triangle inequality, one coordinate at a time.
+@isnad1 id=le.0h3v.s4.8b3ab6f64bbb from=translated src=- shape=5968a5f3 vocab=3e29c198
+-/
 theorem supDist_triangle (x y z : Plane) : supDist x z ≤ supDist x y + supDist y z := by
   simp only [supDist, supNorm, sub_apply]
   refine max_le ?_ ?_
@@ -89,10 +124,15 @@ theorem supDist_triangle (x y z : Plane) : supDist x z ≤ supDist x y + supDist
       _ ≤ supDist x y + supDist y z :=
           add_le_add (abs_sub_one_le_supDist x y) (abs_sub_one_le_supDist y z)
 
+/--
+@isnad1 id=eq.0h1v.s9.044ff04f58dc from=translated src=- shape=d2488f15 vocab=6d1a8489
+-/
 theorem norm_sq_eq (x : Plane) : ‖x‖ ^ 2 = x 0 ^ 2 + x 1 ^ 2 := by
   rw [EuclideanSpace.real_norm_sq_eq]; simp [Fin.sum_univ_two]
 
-/-- Half of Appendix C item 1's comparison: the sup norm is at most the Euclidean norm. -/
+/-- Half of Appendix C item 1's comparison: the sup norm is at most the Euclidean norm.
+@isnad1 id=le.0h1v.s5.7e0cef1bc4ff from=translated src=- shape=1b9c6b2b vocab=baf6f4f8
+-/
 theorem supNorm_le_norm (x : Plane) : supNorm x ≤ ‖x‖ := by
   have h0 : |x 0| ≤ ‖x‖ := by
     have : |x 0| ^ 2 ≤ ‖x‖ ^ 2 := by rw [sq_abs, norm_sq_eq]; nlinarith [sq_nonneg (x 1)]
@@ -102,7 +142,9 @@ theorem supNorm_le_norm (x : Plane) : supNorm x ≤ ‖x‖ := by
     nlinarith [abs_nonneg (x 1), norm_nonneg x]
   exact max_le h0 h1
 
-/-- The other half: the Euclidean norm is at most `√2` times the sup norm. -/
+/-- The other half: the Euclidean norm is at most `√2` times the sup norm.
+@isnad1 id=le.0h1v.s6.f56724c1ef35 from=translated src=- shape=ea208c5e vocab=478af571
+-/
 theorem norm_le_sqrt_two_mul_supNorm (x : Plane) : ‖x‖ ≤ Real.sqrt 2 * supNorm x := by
   have h0 : x 0 ^ 2 ≤ supNorm x ^ 2 := by
     rw [← sq_abs]; nlinarith [abs_zero_le_supNorm x, abs_nonneg (x 0)]
@@ -118,6 +160,9 @@ theorem norm_le_sqrt_two_mul_supNorm (x : Plane) : ‖x‖ ≤ Real.sqrt 2 * sup
 One convexity proof per direction serves all four sides of a square, and the outside of a
 square is four of them. -/
 
+/--
+@isnad1 id=convex.0h2v.s7.b6634c2efaed from=translated src=- shape=b856fbcb vocab=b21d3bd4
+-/
 theorem convex_coord_le (i : Fin 2) (r : ℝ) : Convex ℝ {x : Plane | x i ≤ r} := by
   intro x hx y hy a b ha hb hab
   simp only [Set.mem_ofPred_eq] at *
@@ -125,6 +170,9 @@ theorem convex_coord_le (i : Fin 2) (r : ℝ) : Convex ℝ {x : Plane | x i ≤ 
   have hr : a * r + b * r = r := by rw [← add_mul, hab, one_mul]
   nlinarith [mul_le_mul_of_nonneg_left hx ha, mul_le_mul_of_nonneg_left hy hb]
 
+/--
+@isnad1 id=convex.0h2v.s7.95cc8e5bc78c from=translated src=- shape=9f764b1c vocab=b21d3bd4
+-/
 theorem convex_coord_ge (i : Fin 2) (r : ℝ) : Convex ℝ {x : Plane | r ≤ x i} := by
   intro x hx y hy a b ha hb hab
   simp only [Set.mem_ofPred_eq] at *
@@ -132,6 +180,9 @@ theorem convex_coord_ge (i : Fin 2) (r : ℝ) : Convex ℝ {x : Plane | r ≤ x 
   have hr : a * r + b * r = r := by rw [← add_mul, hab, one_mul]
   nlinarith [mul_le_mul_of_nonneg_left hx ha, mul_le_mul_of_nonneg_left hy hb]
 
+/--
+@isnad1 id=convex.0h2v.s7.501b5230a456 from=translated src=- shape=b856fbcb vocab=97b55b18
+-/
 theorem convex_coord_lt (i : Fin 2) (r : ℝ) : Convex ℝ {x : Plane | x i < r} := by
   intro x hx y hy a b ha hb hab
   simp only [Set.mem_ofPred_eq] at *
@@ -142,6 +193,9 @@ theorem convex_coord_lt (i : Fin 2) (r : ℝ) : Convex ℝ {x : Plane | x i < r}
     subst hb1; nlinarith
   · nlinarith [mul_lt_mul_of_pos_left hx ha', mul_le_mul_of_nonneg_left hy.le hb]
 
+/--
+@isnad1 id=convex.0h2v.s7.a4dfa9d82689 from=translated src=- shape=9f764b1c vocab=97b55b18
+-/
 theorem convex_coord_gt (i : Fin 2) (r : ℝ) : Convex ℝ {x : Plane | r < x i} := by
   intro x hx y hy a b ha hb hab
   simp only [Set.mem_ofPred_eq] at *
@@ -152,9 +206,15 @@ theorem convex_coord_gt (i : Fin 2) (r : ℝ) : Convex ℝ {x : Plane | r < x i}
     subst hb1; nlinarith
   · nlinarith [mul_lt_mul_of_pos_left hx ha', mul_le_mul_of_nonneg_left hy.le hb]
 
+/--
+@isnad1 id=isopen.0h2v.s6.6ad4c934fd18 from=translated src=- shape=4fa0676a vocab=09e5d788
+-/
 theorem isOpen_coord_lt (i : Fin 2) (r : ℝ) : IsOpen {x : Plane | x i < r} :=
   isOpen_lt (continuous_coord i) continuous_const
 
+/--
+@isnad1 id=isopen.0h2v.s6.29fbdc30db18 from=translated src=- shape=ce014ee4 vocab=09e5d788
+-/
 theorem isOpen_coord_gt (i : Fin 2) (r : ℝ) : IsOpen {x : Plane | r < x i} :=
   isOpen_lt continuous_const (continuous_coord i)
 
@@ -166,6 +226,9 @@ def closedSquare (c : Plane) (r : ℝ) : Set Plane := {x | supDist x c ≤ r}
 /-- The open axis-parallel square of radius `r` about `c`. -/
 def openSquare (c : Plane) (r : ℝ) : Set Plane := {x | supDist x c < r}
 
+/--
+@isnad1 id=eq.0h2v.s9.7a3e9f6e93c6 from=translated src=- shape=0a803413 vocab=22feddf3
+-/
 theorem closedSquare_eq_inter (c : Plane) (r : ℝ) :
     closedSquare c r =
       ({x : Plane | c 0 - r ≤ x 0} ∩ {x : Plane | x 0 ≤ c 0 + r}) ∩
@@ -177,6 +240,9 @@ theorem closedSquare_eq_inter (c : Plane) (r : ℝ) :
   · rintro ⟨⟨h1, h2⟩, h3, h4⟩; exact ⟨⟨by linarith, by linarith⟩, by linarith, by linarith⟩
   · rintro ⟨⟨h1, h2⟩, h3, h4⟩; exact ⟨⟨by linarith, by linarith⟩, by linarith, by linarith⟩
 
+/--
+@isnad1 id=eq.0h2v.s9.358a1c81a7d0 from=translated src=- shape=0a803413 vocab=be797b6a
+-/
 theorem openSquare_eq_inter (c : Plane) (r : ℝ) :
     openSquare c r =
       ({x : Plane | c 0 - r < x 0} ∩ {x : Plane | x 0 < c 0 + r}) ∩
@@ -188,21 +254,33 @@ theorem openSquare_eq_inter (c : Plane) (r : ℝ) :
   · rintro ⟨⟨h1, h2⟩, h3, h4⟩; exact ⟨⟨by linarith, by linarith⟩, by linarith, by linarith⟩
   · rintro ⟨⟨h1, h2⟩, h3, h4⟩; exact ⟨⟨by linarith, by linarith⟩, by linarith, by linarith⟩
 
+/--
+@isnad1 id=convex.0h2v.s6.42d48bb60bf0 from=translated src=- shape=271fd9f8 vocab=3dc08818
+-/
 theorem convex_closedSquare (c : Plane) (r : ℝ) : Convex ℝ (closedSquare c r) := by
   rw [closedSquare_eq_inter]
   exact ((convex_coord_ge 0 _).inter (convex_coord_le 0 _)).inter
     ((convex_coord_ge 1 _).inter (convex_coord_le 1 _))
 
+/--
+@isnad1 id=convex.0h2v.s6.ebde11a483b5 from=translated src=- shape=271fd9f8 vocab=211e0cea
+-/
 theorem convex_openSquare (c : Plane) (r : ℝ) : Convex ℝ (openSquare c r) := by
   rw [openSquare_eq_inter]
   exact ((convex_coord_gt 0 _).inter (convex_coord_lt 0 _)).inter
     ((convex_coord_gt 1 _).inter (convex_coord_lt 1 _))
 
+/--
+@isnad1 id=isopen.0h2v.s5.fb77499c0e00 from=translated src=- shape=1ed02776 vocab=1ecb5778
+-/
 theorem isOpen_openSquare (c : Plane) (r : ℝ) : IsOpen (openSquare c r) := by
   rw [openSquare_eq_inter]
   exact ((isOpen_coord_gt 0 _).inter (isOpen_coord_lt 0 _)).inter
     ((isOpen_coord_gt 1 _).inter (isOpen_coord_lt 1 _))
 
+/--
+@isnad1 id=isclosed.0h2v.s5.c680348ae7de from=translated src=- shape=1ed02776 vocab=68499845
+-/
 theorem isClosed_closedSquare (c : Plane) (r : ℝ) : IsClosed (closedSquare c r) := by
   rw [closedSquare_eq_inter]
   exact ((isClosed_le continuous_const (continuous_coord 0)).inter
@@ -219,7 +297,9 @@ def beyondSquare (r : ℝ) : Set Plane := {x | r < |x 0| ∨ r < |x 1|}
 
 Four half-planes, each convex and hence connected, with consecutive ones sharing a corner.
 No polar decomposition, and no arbitrary union of connected sets. The radius needs no sign
-condition: for `r < 0` the four half-planes already cover the plane. -/
+condition: for `r < 0` the four half-planes already cover the plane.
+@isnad1 id=isconnec.0h1v.s5.89db1ed0f171 from=translated src=- shape=1a6c1393 vocab=ea001eaf
+-/
 theorem isConnected_beyondSquare (r : ℝ) : IsConnected (beyondSquare r) := by
   set R : Set Plane := {x : Plane | r < x 0} with hR
   set L : Set Plane := {x : Plane | x 0 < -r} with hL

@@ -26,6 +26,9 @@ variable
   {B : Type u} [MeasurableSpace B]
   {C : Type u} [MeasurableSpace C]
 
+/--
+@isnad1 id=measurab.0h3v.s5.32e7395e3fe0 from=translated src=- shape=ea79d784 vocab=39a32be5
+-/
 @[fun_prop]
 lemma measurable_mk (i : I) : Measurable (⟨i, ·⟩ : P i → Sigma P) := by
   intro X hX
@@ -35,11 +38,17 @@ lemma measurable_mk (i : I) : Measurable (⟨i, ·⟩ : P i → Sigma P) := by
       MeasurableSpace.measurableSet_iInf] at hX
   exact hX i
 
+/--
+@isnad1 id=measurab.1h5v.s5.524c73a98665 from=translated src=- shape=54b84adb vocab=39a32be5
+-/
 lemma measurable_mk'
     (i : I) {f : A → P i} (hf : Measurable f)
     : Measurable (fun x ↦ (⟨i, f x⟩ : Sigma P)) := by
   fun_prop
 
+/--
+@isnad1 id=measurab.1h4v.s5.c58abccd79de from=translated src=- shape=9e031cce vocab=39a32be5
+-/
 lemma measurable_elim
     {f : Sigma P → A} (hf : ∀ i, Measurable (fun x ↦ f ⟨i, x⟩))
     : Measurable f := by
@@ -53,6 +62,9 @@ lemma measurable_elim
   apply hf
   exact hX
 
+/--
+@isnad1 id=measurab.2h5v.s6.b11b1f2bea42 from=translated src=- shape=0d919752 vocab=7de1a5af
+-/
 lemma measurable_elim'
     {f : ∀ i, P i → A} (hf : ∀ i, Measurable (f i))
     {g : A → (i : I) × P i} (hg : Measurable g)
@@ -60,6 +72,9 @@ lemma measurable_elim'
   exact Measurable.fun_comp (g := fun x : Sigma P ↦ (f x.1 x.2 : A)) (f := g)
     (measurable_elim hf) hg
 
+/--
+@isnad1 id=measurab.0h2v.s4.60cc93efca71 from=translated src=- shape=45d8aa8e vocab=14a0fc8d
+-/
 @[fun_prop, simp]
 lemma measurable_fst [MeasurableSpace I] : Measurable (Sigma.fst : Sigma P → I) := by
   intro X hX
@@ -70,6 +85,9 @@ lemma measurable_fst [MeasurableSpace I] : Measurable (Sigma.fst : Sigma P → I
   rw [MeasurableSpace.map_def]
   simp only [Set.preimage, Set.mem_ofPred_eq, measurableSet_setOfPred, measurable_const]
 
+/--
+@isnad1 id=measurab.2h6v.s6.5d18cea9dea1 from=translated src=- shape=0eee3941 vocab=a1e1a3cd
+-/
 lemma measurable_cast
     (ix : A → I) (i : I)
     (p : ∀ x, ix x = i)
@@ -95,6 +113,9 @@ lemma measurable_cast
       Set.preimage, Set.mem_image, Sigma.mk.injEq, h, false_and,
       and_false, exists_false, Set.ofPred_false, MeasurableSet.empty]
 
+/--
+@isnad1 id=measurab.2h6v.s6.965d355f3ddd from=translated src=- shape=b933d3e7 vocab=c05ec0a4
+-/
 lemma measurable_eq_rec
     (ix : A → I) (i : I)
     (p : ∀ x, ix x = i)
@@ -102,6 +123,9 @@ lemma measurable_eq_rec
     : Measurable fun x : A ↦ p x ▸ f x := by
   simpa only [eqRec_eq_cast] using measurable_cast ix i p f hf
 
+/--
+@isnad1 id=measurab.0h3v.s6.9d31523f7e9e from=translated src=- shape=bdcf932c vocab=e7c566fd
+-/
 lemma measurable_distrib [Countable I]
     : Measurable (fun x : A × Sigma P ↦ (⟨x.2.1, x.1, x.2.2⟩ : (i : I) × A × P i)) := by
   classical
@@ -140,6 +164,9 @@ lemma measurable_distrib [Countable I]
   · fun_prop
   · fun_prop
 
+/--
+@isnad1 id=measurab.1h5v.s7.5a91a5a35b62 from=translated src=- shape=74b3610d vocab=e7c566fd
+-/
 lemma measurable_distrib' [Countable I]
     {f : A × Sigma P → B} (hf : Measurable (fun x : (i : I) × A × P i ↦ f ⟨x.2.1, x.1, x.2.2⟩))
     : Measurable f := by

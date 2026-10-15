@@ -15,7 +15,9 @@ Preliminary lemmas and definitions used by the Polytopes formalization.
 
 open Pointwise Module
 
-/-- Lifts a set whose elements satisfy `property` to the corresponding subtype. -/
+/-- Lifts a set whose elements satisfy `property` to the corresponding subtype.
+@isnad1 id=ex.0h4v.s6.38455065c6ff from=translated src=- shape=5e3c7ef6 vocab=158c0c33
+-/
 lemma Set.Subtype {α : Type*} {property : α → Prop} (S : Set α) (hS : ∀ s ∈ S, property s) :
     ∃ S' : Set {x : α // property x}, Subtype.val '' S' = S ∧ Subtype.val ⁻¹' S = S' := by
   have : ∃ S' : Set {x : α // property x}, Subtype.val '' S' = S := CanLift.prf S hS
@@ -30,11 +32,17 @@ lemma Set.Subtype {α : Type*} {property : α → Prop} (S : Set α) (hS : ∀ s
     intro hx
     exact ⟨x, hx, rfl⟩
 
+/--
+@isnad1 id=finite.1h3v.s5.6f1c930cdb5f from=translated src=- shape=5d1205b9 vocab=67a62ec0
+-/
 lemma Set.Finite.translation {α : Type} [AddGroup α] {S : Set α} (hS : S.Finite) (x : α) :
   (S + ({x} : Set α)).Finite := by
   rw [Set.add_singleton]
   exact Set.Finite.image _ hS
 
+/--
+@isnad1 id=iff.0h4v.s6.805f533e649b from=translated src=- shape=fa02f5e9 vocab=9c19e75c
+-/
 lemma Set.mem_translation {α : Type} [AddGroup α] {S : Set α} (x s : α) :
   s ∈ S + ({x} : Set α) ↔ s - x ∈ S := by
   rw [Set.add_singleton, Set.mem_image]
@@ -46,9 +54,15 @@ lemma Set.mem_translation {α : Type} [AddGroup α] {S : Set α} (x s : α) :
     intro h
     exact ⟨s - x, h, by rw [sub_add_cancel]⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.81e079bbe942 from=translated src=- shape=28e10d5d vocab=26255bf5
+-/
 theorem Set.vsub_eq_sub {G : Type} [AddGroup G] (g1 g2 : Set G)
   : g1 -ᵥ g2 = g1 - g2 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.71ed1f8a0fec from=translated src=- shape=7500f2b9 vocab=71190de3
+-/
 lemma Set.sub_eq_neg_add {α : Type} [AddGroup α] (S : Set α) (x : α) :
   S - {x} = S + {(-x)} := by
   ext y
@@ -57,12 +71,18 @@ lemma Set.sub_eq_neg_add {α : Type} [AddGroup α] (S : Set α) (x : α) :
   rintro ⟨z, hz, rfl⟩
   rwa [sub_add_cancel]
 
+/--
+@isnad1 id=eq.0h3v.s6.bcef5ce3c39e from=translated src=- shape=ec214781 vocab=15c5584b
+-/
 lemma Set.neg_add_cancel_right' {α : Type} [AddGroup α] {S : Set α} (x : α) :
   S - {x} + {x} = S := by
   ext y
   simp only [sub_singleton, add_singleton, mem_image, exists_exists_and_eq_and, sub_add_cancel,
     exists_eq_right]
 
+/--
+@isnad1 id=eq.1h3v.s5.740951f767f9 from=translated src=- shape=7f288d02 vocab=534532ab
+-/
 lemma Set.Nonempty.sInter_inter_comm {α : Type u_1} {s : Set (Set α)} (hs : s.Nonempty)
     {t : Set α} : ⋂₀ ((· ∩ t) '' s) = (⋂₀ s) ∩ t := by
   ext x
@@ -78,6 +98,9 @@ lemma Set.Nonempty.sInter_inter_comm {α : Type u_1} {s : Set (Set α)} (hs : s.
   · -- 2.
     simp_all
 
+/--
+@isnad1 id=eq.2h4v.s6.c37c8248926e from=translated src=- shape=a3fead0d vocab=5782aee6
+-/
 lemma Set.Nonempty.image_sInter {α β : Type*} {S : Set (Set α)} (hS : S.Nonempty)
   {f : α → β} (hf : f.Injective) :
   f '' ⋂₀ S = ⋂ s ∈ S, f '' s := by
@@ -98,6 +121,9 @@ def Equiv.VSubconst {E P : Type} [AddCommGroup E] [AddTorsor E P] (x : P) : P �
   left_inv := fun y => by simp
   right_inv := fun y => by simp
 
+/--
+@isnad1 id=eq.0h3v.s5.cc66d1e8e5ec from=translated src=- shape=a6a80160 vocab=cbf3e685
+-/
 lemma Equiv.coe_VSubconst {E P : Type} [AddCommGroup E] [AddTorsor E P]
     (x : P) : ↑(Equiv.VSubconst x) = (· -ᵥ x) := rfl
 
@@ -108,13 +134,22 @@ def AffineEquiv.VSubconst (𝕜 : Type) {E P : Type} [Field 𝕜] [AddCommGroup 
   linear := LinearEquiv.refl 𝕜 _
   map_vadd' p' v := by simp [(Equiv.coe_VSubconst), vadd_vsub_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s6.1e642dd59f20 from=translated src=- shape=4eeffec4 vocab=3f99713a
+-/
 lemma AffineEquiv.Vsubconst_toEquiv (𝕜 : Type) {E P : Type} [Field 𝕜] [AddCommGroup E]
     [Module 𝕜 E] [AddTorsor E P] (x : P) :
     (AffineEquiv.VSubconst 𝕜 x).toEquiv = Equiv.VSubconst x := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.f7b24ea04e4c from=translated src=- shape=b1735543 vocab=360cbc09
+-/
 lemma AffineEquiv.Vsubconst_linear_apply (𝕜 : Type) {E P : Type} [Field 𝕜] [AddCommGroup E]
     [Module 𝕜 E] [AddTorsor E P] (x : P) (v : E) : (AffineEquiv.VSubconst 𝕜 x).linear v = v := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.49f35ef73bf8 from=translated src=- shape=1161f53e vocab=6e7868f8
+-/
 lemma AffineEquiv.coe_VSubconst (𝕜 : Type) {E P : Type} [Field 𝕜] [AddCommGroup E] [Module 𝕜 E]
     [AddTorsor E P] (x : P) : ↑(AffineEquiv.VSubconst 𝕜 x) = (· -ᵥ x) := rfl
 
@@ -124,11 +159,17 @@ def AffineIsometryEquiv.VSubconst (𝕜 : Type) {E P : Type} [NormedField 𝕜] 
   toAffineEquiv := AffineEquiv.VSubconst 𝕜 x
   norm_map := by simp [AffineEquiv.Vsubconst_linear_apply]
 
+/--
+@isnad1 id=eq.0h4v.s7.625fe9663d74 from=translated src=- shape=625d5ee4 vocab=714a8b54
+-/
 @[simp]
 lemma AffineIsometryEquiv.coe_VSubconst (𝕜 : Type) {E P : Type} [NormedField 𝕜]
     [NormedAddCommGroup E] [NormedSpace 𝕜 E] [PseudoMetricSpace P] [NormedAddTorsor E P] (x : P) :
     ↑(AffineIsometryEquiv.VSubconst 𝕜 x) = (· -ᵥ x) := rfl
 
+/--
+@isnad1 id=iff.0h6v.s10.5e4d9a25c4b2 from=translated src=- shape=4cc615dc vocab=74a2a59b
+-/
 lemma Submodule.mem_orthogonal_Basis {𝕜 : Type u_1} {E : Type u_2} {ι : Type u_3} [RCLike 𝕜]
   [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] (K : Submodule 𝕜 E) (b : Basis ι 𝕜 K) (v : E) :
   v ∈ Kᗮ ↔ ∀ i : ι, inner 𝕜 (↑(b i)) v = (0:𝕜) := by
@@ -143,6 +184,9 @@ lemma Submodule.mem_orthogonal_Basis {𝕜 : Type u_1} {E : Type u_2} {ι : Type
     intro i _
     simp only [inner_smul_left, h i, mul_zero]
 
+/--
+@isnad1 id=eq.2h5v.s8.c3e08885592e from=translated src=- shape=3125c02b vocab=1a4220b3
+-/
 lemma AffineMap.preimage_convexHull {𝕜 : Type u_1} {E : Type u_2} {F : Type u_3} [Ring 𝕜]
   [PartialOrder 𝕜] [AddCommGroup E] [AddCommGroup F] [Module 𝕜 E] [Module 𝕜 F] {s : Set F}
   {f : E →ᵃ[𝕜] F} (hf : f.toFun.Injective) (hs : s ⊆ Set.range f) :
@@ -152,7 +196,9 @@ lemma AffineMap.preimage_convexHull {𝕜 : Type u_1} {E : Type u_2} {F : Type u
   rw [Set.mem_preimage, ← Function.Injective.mem_set_image hf, AffineMap.toFun_eq_coe,
     AffineMap.image_convexHull, h1]
 
-/-- The affine span of a nontrivial set is nontrivial. -/
+/-- The affine span of a nontrivial set is nontrivial.
+@isnad1 id=nontrivi.1h4v.s6.1c5312515db9 from=translated src=- shape=05060bdd vocab=69b28da8
+-/
 lemma affineSpan_nontrivial (k : Type u_1) {V : Type u_2} {P : Type u_3} [Ring k] [AddCommGroup V]
     [Module k V] [AddTorsor V P] {s : Set P} (h : Nontrivial s) :
     Nontrivial (affineSpan k s) := by
@@ -161,7 +207,9 @@ lemma affineSpan_nontrivial (k : Type u_1) {V : Type u_2} {P : Type u_3} [Ring k
   rw [Set.nontrivial_coe_sort, ← hs'] at h
   exact Set.nontrivial_of_nontrivial <| Set.nontrivial_of_image _ _ h
 
-/-- A nontrivial affine subspace has nontrivial direction. -/
+/-- A nontrivial affine subspace has nontrivial direction.
+@isnad1 id=nontrivi.1h4v.s6.e5fca8e3c765 from=translated src=- shape=78f0a76d vocab=2d04f461
+-/
 lemma AffineSubspace.direction_nontrivial_of_nontrivial (k : Type u_1) {V : Type u_2} {P : Type u_3}
     [Ring k] [AddCommGroup V] [Module k V] [AddTorsor V P] (Q : AffineSubspace k P) :
     Nontrivial Q → Nontrivial Q.direction := by
@@ -170,7 +218,9 @@ lemma AffineSubspace.direction_nontrivial_of_nontrivial (k : Type u_1) {V : Type
   have := AffineSubspace.toAddTorsor Q
   exact ⟨ 0, p -ᵥ q, Ne.symm <| vsub_ne_zero.mpr hpq ⟩
 
-/-- If two sets are contained in an affine subspace, their difference lies in its direction. -/
+/-- If two sets are contained in an affine subspace, their difference lies in its direction.
+@isnad1 id=le.2h6v.s7.e6fcad4dfcbc from=translated src=- shape=0e075b80 vocab=6ff2a580
+-/
 lemma AffineSubspace.direction_subset_subset {k : Type u_1} {V : Type u_2} {P : Type u_3} [Ring k]
     [AddCommGroup V] [Module k V] [AddTorsor V P] {Q : AffineSubspace k P} {S T : Set P}
     (hS : S ⊆ Q) (hT : T ⊆ Q) : S -ᵥ T ⊆ Q.direction := by
@@ -191,6 +241,9 @@ def Nat.finListRange (n : ℕ) : List (Fin n) :=
   | 0 => []
   | Nat.succ m => 0 :: (m.finListRange).map Fin.succ
 
+/--
+@isnad1 id=mem.0h2v.s4.b2610311bfc8 from=translated src=- shape=d5a9ac66 vocab=9da38f41
+-/
 lemma Fin.mem_fin_list_range {n : ℕ} (i : Fin n) : i ∈ n.finListRange := by
   induction n with
   | zero => exact i.elim0

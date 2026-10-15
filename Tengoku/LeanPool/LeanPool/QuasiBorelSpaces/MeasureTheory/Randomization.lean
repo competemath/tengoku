@@ -28,11 +28,17 @@ noncomputable def normalize {r : ℝ} (x : Set.Ico 0 r) : I where
   val := x / r
   property := by rw [Set.mem_Icc, le_div_iff₀, div_le_iff₀] <;> grind
 
+/--
+@isnad1 id=measurab.0h1v.s5.47ee36ed8bae from=translated src=- shape=5454f4a5 vocab=1e7f238f
+-/
 @[simp, fun_prop]
 lemma measurable_normalize (r) : Measurable (normalize (r := r)) := by
   unfold normalize
   fun_prop
 
+/--
+@isnad1 id=injectiv.0h1v.s4.5dbfbe393c01 from=translated src=- shape=5454f4a5 vocab=715db876
+-/
 lemma injective_normalize (r) : Function.Injective (normalize (r := r)) := by
   intro i₁ i₂ hi
   simp only [normalize, Subtype.mk.injEq] at hi
@@ -45,6 +51,9 @@ noncomputable instance instMeasureSpaceElemRealIcoOfNatLeanPool (r : ℝ) :
     MeasureSpace (Set.Ico 0 r) where
   volume := ENNReal.ofReal r • volume.comap normalize
 
+/--
+@isnad1 id=eq.0h0v.s7.f80109543f51 from=translated src=- shape=dab4a736 vocab=dc2dd368
+-/
 @[simp]
 lemma volume_zero : (volume : Measure (Set.Ico 0 (0 : ℝ))) = 0 := by
   ext s
@@ -53,6 +62,9 @@ lemma volume_zero : (volume : Measure (Set.Ico 0 (0 : ℝ))) = 0 := by
     simpa using a.property
   simp only [hs, measure_empty]
 
+/--
+@isnad1 id=measurab.0h1v.s5.2a343cb8ecb6 from=translated src=- shape=5454f4a5 vocab=c5965ae5
+-/
 @[simp]
 lemma measurableEmbedding_normalize (r) : MeasurableEmbedding (normalize (r := r)) where
   injective := injective_normalize r
@@ -79,6 +91,9 @@ lemma measurableEmbedding_normalize (r) : MeasurableEmbedding (normalize (r := r
     apply MeasurableMul.measurable_mul_const
     exact hs
 
+/--
+@isnad1 id=eq.1h1v.s6.eb7c517c178f from=translated src=- shape=0b6797b7 vocab=004daa79
+-/
 @[simp]
 lemma range_normalize {r} (hr : 0 < r) : Set.range (normalize (r := r)) = Set.Ico 0 1 := by
   ext x
@@ -94,6 +109,9 @@ lemma range_normalize {r} (hr : 0 < r) : Set.range (normalize (r := r)) = Set.Ic
     rw [Subtype.mk_eq_mk, MulDivCancelClass.mul_div_cancel]
     grind
 
+/--
+@isnad1 id=eq.0h0v.s6.e1f786a80ed2 from=translated src=- shape=15622882 vocab=d40ed130
+-/
 @[simp]
 lemma volume_restrict_normalize : volume.restrict (Set.Ico 0 (1 : I)) = volume := by
   ext s hs

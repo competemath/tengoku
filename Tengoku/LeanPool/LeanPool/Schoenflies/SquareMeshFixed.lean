@@ -127,6 +127,9 @@ The replacement path of a single subdivision: one new vertex `q` between the two
 segment being cut. `Graph.IsTwoConnected.replace_edge_by_path` takes a path of any length, so
 this is the only shape needed. -/
 
+/--
+@isnad1 id=iff.0h3v.s5.9b6f04d437bc from=translated src=- shape=c14481dc vocab=c4f6ba4d
+-/
 theorem pieceListGraph_inc_iff {l : List Piece} {P : Piece} {v : Plane} :
     (pieceListGraph l).Inc P v ↔ P ∈ l ∧ (v = P.1 ∨ v = P.2) := by
   constructor
@@ -135,6 +138,9 @@ theorem pieceListGraph_inc_iff {l : List Piece} {P : Piece} {v : Plane} :
   · rintro ⟨hP, h⟩
     exact pieceListGraph_inc hP h
 
+/--
+@isnad1 id=eq.0h3v.s5.99f69109d692 from=translated src=- shape=72eb89c0 vocab=458747d8
+-/
 theorem endSet_pair (a q b : Plane) : endSet [((a, q) : Piece), (q, b)] = {a, q, b} := by
   ext x
   simp only [endSet, Set.mem_ofPred_eq, List.mem_cons, List.not_mem_nil, or_false, mem_insert_iff,
@@ -147,6 +153,9 @@ theorem endSet_pair (a q b : Plane) : endSet [((a, q) : Piece), (q, b)] = {a, q,
     exacts [⟨(a, q), Or.inl rfl, Or.inl hx⟩, ⟨(a, q), Or.inl rfl, Or.inr hx⟩,
       ⟨(q, b), Or.inr rfl, Or.inr hx⟩]
 
+/--
+@isnad1 id=eq.0h3v.s6.94f2be5e4974 from=translated src=- shape=9d5ee1fb vocab=1e074535
+-/
 theorem coveredVertices_pair (a q b : Plane) :
     (pieceListGraph [((a, q) : Piece), (q, b)]).coveredVertices [((a, q) : Piece), (q, b)]
       = {a, q, b} := by
@@ -165,7 +174,9 @@ theorem coveredVertices_pair (a q b : Plane) :
       ⟨(a, q), Or.inl rfl, pieceListGraph_inc h₁ (Or.inr hx)⟩,
       ⟨(q, b), Or.inr rfl, pieceListGraph_inc h₂ (Or.inr hx)⟩]
 
-/-- **The two halves of a cut segment form a path graph.** -/
+/-- **The two halves of a cut segment form a path graph.**
+@isnad1 id=ispathgr.3h3v.s5.fcbe28483c32 from=translated src=- shape=16f9f1c6 vocab=aff29bde
+-/
 theorem isPathGraph_pair {a q b : Plane} (haq : a ≠ q) (hqb : q ≠ b) (hab : a ≠ b) :
     (pieceListGraph [(a, q), (q, b)]).IsPathGraph a [(a, q), (q, b)] b := by
   have h₁ : ((a, q) : Piece) ∈ [((a, q) : Piece), (q, b)] := by simp
@@ -213,13 +224,18 @@ def CleanCut (l : List Piece) (q : Plane) : Prop :=
   (∀ R ∈ l, ∀ S ∈ l, q ∈ R.interior → q ∈ S.interior → R = S) ∧
     ((∀ R ∈ l, q ∉ R.interior) ∨ q ∉ endSet l)
 
+/--
+@isnad1 id=cleancut.1h2v.s4.da21f482ac95 from=translated src=- shape=dc4f7a14 vocab=16dfd0d9
+-/
 theorem CleanCut.of_no_interior {l : List Piece} {q : Plane} (h : ∀ R ∈ l, q ∉ R.interior) :
     CleanCut l q :=
   ⟨fun R hR _ _ hq _ => absurd hq (h R hR), Or.inl h⟩
 
 /-- **The two halves of a cut segment have disjoint interiors.** The distance from the left
 end is a faithful coordinate along the segment (`Schoenflies/SegmentOrder.lean`), and it is
-`< dist a p` on one half and `> dist a p` on the other. -/
+`< dist a p` on one half and `> dist a p` on the other.
+@isnad1 id=false.4h4v.s8.20e81e81840d from=translated src=- shape=0918b9e1 vocab=fbdf445b
+-/
 theorem openSegment_halves_disjoint {a b p x : Plane} (hab : a ≠ b)
     (hp : p ∈ openSegment ℝ a b) (h₁ : x ∈ openSegment ℝ a p) (h₂ : x ∈ openSegment ℝ p b) :
     False := by
@@ -238,7 +254,9 @@ theorem openSegment_halves_disjoint {a b p x : Plane} (hab : a ≠ b)
     dist_lt_of_mem_openSegment hab hpseg (right_mem_segment ℝ a b) hpb hle h₂
   linarith [hlt₁.2, hlt₂.1]
 
-/-- Splitting at a point that is interior to nothing changes the list not at all. -/
+/-- Splitting at a point that is interior to nothing changes the list not at all.
+@isnad1 id=eq.1h2v.s5.232462f7baeb from=translated src=- shape=7ffcc398 vocab=fed00532
+-/
 theorem splitAllAt_eq_self {l : List Piece} {q : Plane} (h : ∀ R ∈ l, q ∉ R.interior) :
     splitAllAt q l = l := by
   induction l with
@@ -250,7 +268,9 @@ theorem splitAllAt_eq_self {l : List Piece} {q : Plane} (h : ∀ R ∈ l, q ∉ 
     rfl
 
 /-- The members of a split list: everything but the cut piece, and the cut piece's two
-halves. -/
+halves.
+@isnad1 id=iff.3h4v.s6.28dd959c983d from=translated src=- shape=5bf98e88 vocab=e404a8c2
+-/
 theorem mem_splitAllAt_iff {l : List Piece} {P R : Piece} {q : Plane} (hP : P ∈ l)
     (hq : q ∈ P.interior) (huniq : ∀ S ∈ l, q ∈ S.interior → S = P) :
     R ∈ splitAllAt q l ↔ (R ∈ l ∧ R ≠ P) ∨ R ∈ [((P.1, q) : Piece), (q, P.2)] := by
@@ -270,7 +290,9 @@ theorem mem_splitAllAt_iff {l : List Piece} {P R : Piece} {q : Plane} (hP : P �
       exact List.mem_flatMap.2 ⟨R, hR, by rw [splitAt, ite_eq_right hqR]; simp⟩
     · exact List.mem_flatMap.2 ⟨P, hP, by rw [splitAt, ite_eq_left hq]; exact hR⟩
 
-/-- The ends of a split list: the old ends and the cut point. -/
+/-- The ends of a split list: the old ends and the cut point.
+@isnad1 id=eq.3h3v.s6.d5d12942d651 from=translated src=- shape=dab60b2a vocab=70615334
+-/
 theorem endSet_splitAllAt {l : List Piece} {P : Piece} {q : Plane} (hP : P ∈ l)
     (hq : q ∈ P.interior) (huniq : ∀ S ∈ l, q ∈ S.interior → S = P) :
     endSet (splitAllAt q l) = endSet l ∪ {q} := by
@@ -295,7 +317,9 @@ theorem endSet_splitAllAt {l : List Piece} {P : Piece} {q : Plane} (hP : P ∈ l
       · exact ⟨R, (mem_splitAllAt_iff hP hq huniq).2 (Or.inl ⟨hR, hRP⟩), hv⟩
     · exact ⟨(P.1, q), hleft, Or.inr hvq⟩
 
-/-- **One cut, as a replacement of one edge by a two-edge path.** -/
+/-- **One cut, as a replacement of one edge by a two-edge path.**
+@isnad1 id=eq.3h3v.s6.ba986c86dc7d from=translated src=- shape=c5c0c3ce vocab=53c54c02
+-/
 theorem pieceListGraph_splitAllAt_eq {l : List Piece} {P : Piece} {q : Plane} (hP : P ∈ l)
     (hq : q ∈ P.interior) (huniq : ∀ S ∈ l, q ∈ S.interior → S = P) :
     pieceListGraph (splitAllAt q l)
@@ -330,7 +354,9 @@ theorem pieceListGraph_splitAllAt_eq {l : List Piece} {P : Piece} {q : Plane} (h
 
 /-- **`lem:subdivision-ear-preserve`, one cut.** Cutting one segment of a 2-connected list of
 segments at an interior point that is interior to no other segment and is an end of none
-leaves the graph 2-connected. -/
+leaves the graph 2-connected.
+@isnad1 id=istwocon.6h3v.s6.83297b78ca69 from=translated src=- shape=78370a0e vocab=069ce64a
+-/
 theorem pieceListGraph_splitAllAt_isTwoConnected {l : List Piece} {P : Piece} {q : Plane}
     (hP : P ∈ l) (hnd : P.Nondeg) (hq : q ∈ P.interior)
     (huniq : ∀ S ∈ l, q ∈ S.interior → S = P) (hnew : q ∉ endSet l)
@@ -360,7 +386,9 @@ theorem pieceListGraph_splitAllAt_isTwoConnected {l : List Piece} {P : Piece} {q
     exacts [absurd rfl hx1, hnew, hnew, absurd rfl hx2]
 
 /-- Cleanliness survives a cut: interiors only shrink, and the only new end is the cut
-point — which, after its own cut, is interior to nothing. -/
+point — which, after its own cut, is interior to nothing.
+@isnad1 id=cleancut.3h3v.s5.041495c0e7b1 from=translated src=- shape=5775867f vocab=6f53778a
+-/
 theorem CleanCut.splitAllAt {l : List Piece} {q q' : Plane} (hnd : ∀ R ∈ l, R.Nondeg)
     (hq : CleanCut l q) (hq' : CleanCut l q') : CleanCut (splitAllAt q' l) q := by
   classical
@@ -402,7 +430,9 @@ is 2-connected, subdivided at any list of points that cut it cleanly, still has 
 graph.
 
 This is the half of the blueprint's inner-grid argument that `Schoenflies/SquareMeshConnected.lean`
-dropped. -/
+dropped.
+@isnad1 id=istwocon.3h2v.s5.defe6193ce46 from=translated src=- shape=c03d8b32 vocab=cdc66870
+-/
 theorem pieceListGraph_subdivide_isTwoConnected : ∀ (points : List Plane) (l : List Piece),
     (∀ P ∈ l, P.Nondeg) → (∀ q ∈ points, CleanCut l q) →
       (pieceListGraph l).IsTwoConnected →
@@ -435,7 +465,9 @@ grid point (`gridPt_of_mem_two_edges`), a grid point on a grid edge is an end of
 *every* point cuts the grid cleanly, and the subdivision theorem applies with no hypothesis on
 the cut points at all. -/
 
-/-- An end of a nondegenerate segment is not interior to it. -/
+/-- An end of a nondegenerate segment is not interior to it.
+@isnad1 id=not.2h2v.s5.459aac56164c from=translated src=- shape=a539160d vocab=9a2ce3db
+-/
 theorem notMem_interior_of_end {R : Piece} (hnd : R.Nondeg) {q : Plane} (h : q = R.1 ∨ q = R.2) :
     q ∉ R.interior := by
   rcases h with rfl | rfl
@@ -444,7 +476,9 @@ theorem notMem_interior_of_end {R : Piece} (hnd : R.Nondeg) {q : Plane} (h : q =
 
 variable {xc yc : ℕ → ℝ} {m n : ℕ}
 
-/-- **Every point cuts the grid cleanly.** -/
+/-- **Every point cuts the grid cleanly.**
+@isnad1 id=cleancut.4h5v.s5.9827a1a37528 from=translated src=- shape=522a631c vocab=84999a4a
+-/
 theorem cleanCut_gridEdges (hxs : StrictMonoOn xc (Set.Iic m))
     (hys : StrictMonoOn yc (Set.Iic n)) (hm : 1 ≤ m) (hn : 1 ≤ n) (q : Plane) :
     CleanCut (gridEdges xc yc m n) q := by
@@ -472,7 +506,9 @@ theorem cleanCut_gridEdges (hxs : StrictMonoOn xc (Set.Iic m))
 /-- **`prop:anchored-square-mesh`, clause 5 for the inner grid, after subdivision.** This is
 the half of the blueprint's argument — `lem:subdivision-ear-preserve` — that
 `Schoenflies/SquareMeshConnected.lean` dropped. It needs nothing of the cut points: the grid is
-in general position with itself, so any list of points cuts it cleanly. -/
+in general position with itself, so any list of points cuts it cleanly.
+@isnad1 id=istwocon.4h5v.s6.5de30f67ccc1 from=translated src=- shape=b9d21db7 vocab=561198ad
+-/
 theorem gridGraph_subdivide_isTwoConnected (hxs : StrictMonoOn xc (Set.Iic m))
     (hys : StrictMonoOn yc (Set.Iic n)) (hm : 1 ≤ m) (hn : 1 ≤ n) (points : List Plane) :
     (pieceListGraph (subdivide (gridEdges xc yc m n) points)).IsTwoConnected := by
@@ -491,7 +527,9 @@ below, and `r = 1` is exactly the case the mesh cannot use. See the module docst
 
 /-- **What the grid's outer cycle occupies, at any radius.** For a grid on `[-r, r]²` the
 boundary cycle occupies the frame `ringSet r`. The blueprint's inner grid is the case
-`r = λ < 1`, and then the cycle misses `S` entirely. -/
+`r = λ < 1`, and then the cycle misses `S` entirely.
+@isnad1 id=eq.9h5v.s7.5218d3130029 from=translated src=- shape=1109b462 vocab=37c29ad2
+-/
 theorem edgesCover_gridBoundary_ringSet {r : ℝ} (hr : 0 ≤ r) (hm : 1 ≤ m) (hn : 1 ≤ n)
     (hxmono : ∀ i, i < m → xc i ≤ xc (i + 1)) (hymono : ∀ j, j < n → yc j ≤ yc (j + 1))
     (hx0 : xc 0 = -r) (hxm : xc m = r) (hy0 : yc 0 = -r) (hyn : yc n = r) :
@@ -509,7 +547,9 @@ theorem edgesCover_gridBoundary_ringSet {r : ℝ} (hr : 0 ≤ r) (hm : 1 ≤ m) 
 /-- **The distinguished cycle of the blueprint's inner grid.** The grid fills `λQ` for some
 `0 ≤ λ < 1`; its boundary is a cycle of the grid graph, occupies the frame of `λQ`, and misses
 `S`. The last clause is why the inner grid is exempt from the mesh's freshness clauses 3 and 4:
-no edge of it reaches `S` at all. -/
+no edge of it reaches `S` at all.
+@isnad1 id=and.10h5v.s7.1a6eceae17d4 from=translated src=- shape=49cc252e vocab=c243f73c
+-/
 theorem gridGraph_inner_cycle {r : ℝ} (hr : 0 ≤ r) (hr1 : r ≠ 1) (hm : 1 ≤ m) (hn : 1 ≤ n)
     (hxs : StrictMonoOn xc (Set.Iic m)) (hys : StrictMonoOn yc (Set.Iic n))
     (hx0 : xc 0 = -r) (hxm : xc m = r) (hy0 : yc 0 = -r) (hyn : yc n = r) :
@@ -530,12 +570,20 @@ theorem gridGraph_inner_cycle {r : ℝ} (hr : 0 ≤ r) (hr1 : r ≠ 1) (hm : 1 �
 
 The audit's second finding, made explicit. -/
 
+/--
+@isnad1 id=mem.1h1v.s4.78007b2bf7c0 from=translated src=- shape=c2d1dac2 vocab=0a17a97b
+-/
 theorem mem_modelCurve_of_supNorm {z : Plane} (h : Plane.supNorm z = 1) : z ∈ modelCurve := h
 
+/--
+@isnad1 id=eq.0h2v.s4.e299165fdbff from=translated src=- shape=b152074d vocab=7142a861
+-/
 theorem supNorm_mk (a b : ℝ) : Plane.supNorm (Plane.mk a b) = max |a| |b| := rfl
 
 /-- A vertical grid edge inside the open strip `|x| < 1` and inside `|y| ≤ 1` does not lie on
-`S`: its midpoint has sup norm `< 1`. -/
+`S`: its midpoint has sup norm `< 1`.
+@isnad1 id=not.4h4v.s6.c7698b04dc3c from=translated src=- shape=59990b58 vocab=b7528c8f
+-/
 theorem gridVEdge_not_subset_modelCurve {i j : ℕ} (hxi : |xc i| < 1) (h1 : -1 ≤ yc j)
     (h2 : yc (j + 1) ≤ 1) (hlt : yc j < yc (j + 1)) :
     ¬ (gridVEdge xc yc i j).seg ⊆ modelCurve := by
@@ -566,7 +614,9 @@ makes the demand unavoidable: an old boundary vertex on the bottom side forces a
 
 The blueprint's grid therefore fills the *inner* square `λQ` with `λ < 1`, where the clauses
 are vacuous by `gridGraph_inner_cycle`; the collar between `λQ` and `S`, not the grid, carries
-the fresh points and their single spokes. -/
+the fresh points and their single spokes.
+@isnad1 id=and.10h5v.s8.443c1883f87d from=translated src=- shape=019cd63a vocab=2b29a6e9
+-/
 theorem gridGraph_full_square_aligned_ends (hm : 1 ≤ m) (hn : 1 ≤ n)
     (hxs : StrictMonoOn xc (Set.Iic m)) (hys : StrictMonoOn yc (Set.Iic n))
     (hx0 : xc 0 = -1) (hxm : xc m = 1) (hy0 : yc 0 = -1) (hyn : yc n = 1)
@@ -628,7 +678,9 @@ which needs the `MeetsAreCut` clause of the mesh's cut points, and then a separa
 It is recorded so that no consumer states clause 5 for `squareMesh` without a hypothesis
 guaranteeing two distinct fresh points. -/
 
-/-- An end of a source segment of the mesh is a vertex of the mesh graph. -/
+/-- An end of a source segment of the mesh is a vertex of the mesh graph.
+@isnad1 id=mem.2h5v.s5.31d79ee9f281 from=translated src=- shape=1dfe48f4 vocab=4e0429a3
+-/
 theorem end_mem_vertexSet_meshGraph {N : ℕ} {fresh anchors : List Plane} {R : Piece}
     (hR : R ∈ meshSegments N fresh) {z : Plane} (hz : z = R.1 ∨ z = R.2) :
     z ∈ V(meshGraph N fresh anchors) := by
@@ -637,7 +689,9 @@ theorem end_mem_vertexSet_meshGraph {N : ℕ} {fresh anchors : List Plane} {R : 
   exact ⟨orientPiece Q, mem_overlayPieces.2 ⟨Q, hQ, rfl⟩, (orientPiece_ends Q z).2 hend⟩
 
 /-- With no spoke, every edge of the mesh keeps the sup norm: it is a subsegment of a side of
-one ring. -/
+one ring.
+@isnad1 id=eq.2h5v.s5.98811eaa6683 from=translated src=- shape=05b26c8b vocab=c8ef0653
+-/
 theorem supNorm_eq_of_isLink_of_fresh_nil {N : ℕ} (hN : 2 ≤ N) {anchors : List Plane}
     {P : Piece} {x y : Plane} (h : (meshGraph N [] anchors).IsLink P x y) :
     Plane.supNorm x = Plane.supNorm y := by
@@ -651,7 +705,9 @@ theorem supNorm_eq_of_isLink_of_fresh_nil {N : ℕ} (hN : 2 ≤ N) {anchors : Li
     exacts [h1.trans h2.symm, h2.trans h1.symm]
   · exact absurd hz (by simp)
 
-/-- **With no fresh point the mesh is disconnected.** -/
+/-- **With no fresh point the mesh is disconnected.**
+@isnad1 id=not.1h2v.s4.f9e4bfeec071 from=translated src=- shape=74b1b8b4 vocab=df735b2f
+-/
 theorem not_connected_meshGraph_of_fresh_nil {N : ℕ} (hN : 2 ≤ N) (anchors : List Plane) :
     ¬ (meshGraph N [] anchors).Connected := by
   intro hconn
@@ -677,7 +733,9 @@ theorem not_connected_meshGraph_of_fresh_nil {N : ℕ} (hN : 2 ≤ N) (anchors :
 
 /-- **`prop:anchored-square-mesh` clause 5 is false for a mesh with no fresh point.** Every
 statement of 2-connectivity for `squareMesh` must therefore carry a hypothesis on `fresh`; see
-the section docstring for the one-fresh-point case, which is connected but has a cut vertex. -/
+the section docstring for the one-fresh-point case, which is connected but has a cut vertex.
+@isnad1 id=not.0h2v.s3.a5989c954949 from=translated src=- shape=94534125 vocab=e3767634
+-/
 theorem not_isTwoConnected_squareMesh_of_fresh_nil (δ : ℝ) (anchors : List Plane) :
     ¬ (squareMesh δ [] anchors).IsTwoConnected := fun h =>
   not_connected_meshGraph_of_fresh_nil (two_le_meshCount δ) anchors h.connected
@@ -693,7 +751,9 @@ namespace Graph
 
 variable {α β : Type*} {G : Graph α β}
 
-/-- **Two paths that meet only at the vertex they share concatenate to a path.** -/
+/-- **Two paths that meet only at the vertex they share concatenate to a path.**
+@isnad1 id=ispath.3h8v.s6.e196cfe5df0f from=translated src=- shape=1f4768b4 vocab=025ed86b
+-/
 theorem IsPath.append_of_disjoint : ∀ {u v : α} {W₁ : List β}, G.IsPath u W₁ v →
     ∀ {w : α} {W₂ : List β}, G.IsPath v W₂ w →
       (∀ x ∈ G.walkVertices u W₁, x ∈ G.walkVertices v W₂ → x = v) →
@@ -719,7 +779,9 @@ theorem IsPath.append_of_disjoint : ∀ {u v : α} {W₁ : List β}, G.IsPath u 
       exact absurd (IsPath.eq_nil_of_eq (this ▸ IsPath.cons hl hW hfresh)) (by simp)
 
 /-- Reading a path off its first step. `cases` on `Graph.IsPath` needs the edge list to be a
-literal cons before it can discard the `nil` constructor; this packages that. -/
+literal cons before it can discard the `nil` constructor; this packages that.
+@isnad1 id=ex.1h7v.s5.ffb5a57c0ff0 from=translated src=- shape=bde94d27 vocab=e5f85b9a
+-/
 theorem IsPath.cons_cases {u v : α} {e : β} {W : List β} (h : G.IsPath u (e :: W) v) :
     ∃ w, G.IsLink e u w ∧ G.IsPath w W v ∧ u ∉ G.walkVertices w W := by
   cases h with
@@ -745,7 +807,9 @@ def SubdividesToPath (pieces : List Piece) (points : List Plane) : Prop :=
     (overlayGraph pieces points).IsPath P.1 W P.2 ∧
       ∀ Q, Q ∈ W ↔ (Q ∈ E(overlayGraph pieces points) ∧ Q.seg ⊆ P.seg)
 
-/-- A vertex an overlay walk visits lies wherever its source and its edges lie. -/
+/-- A vertex an overlay walk visits lies wherever its source and its edges lie.
+@isnad1 id=mem.3h6v.s6.5804eb3582a8 from=translated src=- shape=b99febd2 vocab=8dd1ade3
+-/
 theorem walkVertices_subset_of_edges {pieces : List Piece} {points : List Plane}
     {A : Set Plane} {u : Plane} {W : List Piece} (hu : u ∈ A) (hW : ∀ Q ∈ W, Q.seg ⊆ A)
     {x : Plane} (hx : x ∈ (overlayGraph pieces points).walkVertices u W) : x ∈ A := by
@@ -755,7 +819,9 @@ theorem walkVertices_subset_of_edges {pieces : List Piece} {points : List Plane}
     rcases hends with ⟨rfl, -⟩ | ⟨rfl, -⟩
     exacts [hW Q hQ (left_mem_segment ℝ _ _), hW Q hQ (right_mem_segment ℝ _ _)]
 
-/-- The edges of an overlay path along `P` occupy all of `P`. -/
+/-- The edges of an overlay path along `P` occupy all of `P`.
+@isnad1 id=eq.2h4v.s6.a490619ddd2c from=translated src=- shape=45bb1ea1 vocab=ed692d7b
+-/
 theorem edgesCover_eq_seg {pieces : List Piece} {points : List Plane} {P : Piece}
     (hP : P ∈ pieces) {W : List Piece}
     (hW : ∀ Q, Q ∈ W ↔ (Q ∈ E(overlayGraph pieces points) ∧ Q.seg ⊆ P.seg)) :
@@ -790,39 +856,83 @@ def sideB : Piece := (Plane.mk (-1) (-1), Plane.mk 1 (-1))
 /-- The right side of `S`, from the south-east corner back to the north-east one. -/
 def sideR : Piece := (Plane.mk 1 (-1), Plane.mk 1 1)
 
+/--
+@isnad1 id=mem.0h0v.s3.62c4ad338517 from=translated src=- shape=075cd1f2 vocab=041d500f
+-/
 theorem sideT_mem_ringPieces : sideT ∈ ringPieces 1 := by simp [ringPieces, sideT]
+/--
+@isnad1 id=mem.0h0v.s3.95aef193add9 from=translated src=- shape=075cd1f2 vocab=ddcdcdc0
+-/
 theorem sideL_mem_ringPieces : sideL ∈ ringPieces 1 := by simp [ringPieces, sideL]
+/--
+@isnad1 id=mem.0h0v.s3.57e9d7eb663c from=translated src=- shape=075cd1f2 vocab=7d923c34
+-/
 theorem sideB_mem_ringPieces : sideB ∈ ringPieces 1 := by simp [ringPieces, sideB]
+/--
+@isnad1 id=mem.0h0v.s3.b4bfc7a58307 from=translated src=- shape=075cd1f2 vocab=59b84ac8
+-/
 theorem sideR_mem_ringPieces : sideR ∈ ringPieces 1 := by simp [ringPieces, sideR]
 
+/--
+@isnad1 id=eq.1h1v.s7.48c59171f9ca from=translated src=- shape=17ac283a vocab=65a7fc36
+-/
 theorem mem_sideT {x : Plane} (h : x ∈ sideT.seg) : x 1 = 1 := (mem_segment_horiz.1 h).1
+/--
+@isnad1 id=eq.1h1v.s7.18c181f1e5ba from=translated src=- shape=7c76ee10 vocab=5352a614
+-/
 theorem mem_sideB {x : Plane} (h : x ∈ sideB.seg) : x 1 = -1 := (mem_segment_horiz.1 h).1
+/--
+@isnad1 id=eq.1h1v.s7.a8e950ddc151 from=translated src=- shape=7c76ee10 vocab=8fe9877d
+-/
 theorem mem_sideL {x : Plane} (h : x ∈ sideL.seg) : x 0 = -1 := (mem_segment_vert.1 h).1
+/--
+@isnad1 id=eq.1h1v.s7.6e5ea1c1628f from=translated src=- shape=17ac283a vocab=14f57e48
+-/
 theorem mem_sideR {x : Plane} (h : x ∈ sideR.seg) : x 0 = 1 := (mem_segment_vert.1 h).1
 
+/--
+@isnad1 id=eq.2h1v.s5.b9eb9da0cd63 from=translated src=- shape=4d4ce446 vocab=fcec761d
+-/
 theorem sideT_inter_sideL {x : Plane} (h : x ∈ sideT.seg) (h' : x ∈ sideL.seg) :
     x = Plane.mk (-1) 1 :=
   plane_eq_of_coords (by rw [mem_sideL h', Plane.mk_zero]) (by rw [mem_sideT h, Plane.mk_one])
 
+/--
+@isnad1 id=eq.2h1v.s5.e5a20953e5d5 from=translated src=- shape=9b82300c vocab=487a6e1a
+-/
 theorem sideL_inter_sideB {x : Plane} (h : x ∈ sideL.seg) (h' : x ∈ sideB.seg) :
     x = Plane.mk (-1) (-1) :=
   plane_eq_of_coords (by rw [mem_sideL h, Plane.mk_zero]) (by rw [mem_sideB h', Plane.mk_one])
 
+/--
+@isnad1 id=eq.2h1v.s5.871572968159 from=translated src=- shape=427b2079 vocab=0255420a
+-/
 theorem sideB_inter_sideR {x : Plane} (h : x ∈ sideB.seg) (h' : x ∈ sideR.seg) :
     x = Plane.mk 1 (-1) :=
   plane_eq_of_coords (by rw [mem_sideR h', Plane.mk_zero]) (by rw [mem_sideB h, Plane.mk_one])
 
+/--
+@isnad1 id=eq.2h1v.s5.ef3533b2ed71 from=translated src=- shape=5b380f81 vocab=05cfd745
+-/
 theorem sideT_inter_sideR {x : Plane} (h : x ∈ sideT.seg) (h' : x ∈ sideR.seg) :
     x = Plane.mk 1 1 :=
   plane_eq_of_coords (by rw [mem_sideR h', Plane.mk_zero]) (by rw [mem_sideT h, Plane.mk_one])
 
+/--
+@isnad1 id=false.2h1v.s4.9be20f385a76 from=translated src=- shape=5f3d874b vocab=3bf56af7
+-/
 theorem sideT_disjoint_sideB {x : Plane} (h : x ∈ sideT.seg) (h' : x ∈ sideB.seg) : False := by
   have := (mem_sideT h).symm.trans (mem_sideB h'); norm_num at this
 
+/--
+@isnad1 id=false.2h1v.s4.0f97b04d6ed1 from=translated src=- shape=5f3d874b vocab=0311fd11
+-/
 theorem sideL_disjoint_sideR {x : Plane} (h : x ∈ sideL.seg) (h' : x ∈ sideR.seg) : False := by
   have := (mem_sideL h).symm.trans (mem_sideR h'); norm_num at this
 
-/-- The four sides occupy `S`. -/
+/-- The four sides occupy `S`.
+@isnad1 id=eq.0h0v.s4.ed2d0579cab8 from=translated src=- shape=d4921559 vocab=67882246
+-/
 theorem sides_cover : sideT.seg ∪ sideL.seg ∪ sideB.seg ∪ sideR.seg = modelCurve := by
   rw [← ringSet_one, ← cover_ringPieces zero_le_one]
   simp only [ringPieces, cover_cons, cover_nil, Set.union_empty, sideT, sideL, sideB, sideR]
@@ -830,6 +940,9 @@ theorem sides_cover : sideT.seg ∪ sideL.seg ∪ sideB.seg ∪ sideR.seg = mode
   simp only [Set.mem_union]
   tauto
 
+/--
+@isnad1 id=le.1h1v.s4.7f22253fade3 from=translated src=- shape=31fd72c3 vocab=989731df
+-/
 theorem side_seg_subset_modelCurve {P : Piece}
     (h : P = sideT ∨ P = sideL ∨ P = sideB ∨ P = sideR) : P.seg ⊆ modelCurve := by
   rw [← sides_cover]
@@ -854,7 +967,9 @@ the statement for `Schoenflies.meshGraph`.
 
 The conclusion is existential because the hypothesis `SubdividesToPath` is: nothing here can
 name the edge list of a side without choosing it. Once that hypothesis is discharged by a
-theorem exporting the chain as a `def`, this should be restated with the cycle as data. -/
+theorem exporting the chain as a `def`, this should be restated with the cycle as data.
+@isnad1 id=ex.3h3v.s6.6288d4fb4503 from=translated src=- shape=3c9f30bc vocab=10307444
+-/
 theorem meshGraph_outer_cycle {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ z ∈ fresh, z ∈ modelCurve) (anchors : List Plane)
     (hsub : SubdividesToPath (meshSegments N fresh) (meshPoints N fresh anchors)) :
@@ -1037,7 +1152,9 @@ theorem meshGraph_outer_cycle {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
       · exact Graph.mem_edgesCover (List.mem_cons_of_mem _
           (List.mem_append_right _ (List.mem_reverse.2 hQ'))) hzQ
 
-/-- **`prop:anchored-square-mesh`, clause 3 as a cycle, for `squareMesh`.** -/
+/-- **`prop:anchored-square-mesh`, clause 3 as a cycle, for `squareMesh`.**
+@isnad1 id=ex.2h3v.s6.4a4d26d4504c from=translated src=- shape=e80969be vocab=f8581f1a
+-/
 theorem squareMesh_outer_cycle_of_subdividesToPath {fresh : List Plane}
     (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     (δ : ℝ) (anchors : List Plane)
@@ -1053,7 +1170,9 @@ theorem squareMesh_outer_cycle_of_subdividesToPath {fresh : List Plane}
 blueprint's assembly of clause 5, for `squareMesh` itself: the cycle carrying `S` is 2-connected
 by `lem:face-cycles`'s `Graph.IsLongCycle.isTwoConnected`. What is still missing is the rest of
 the assembly — the inner rings as cycles, and the spokes attached as ears at their crossings
-with each ring. -/
+with each ring.
+@isnad1 id=ex.2h3v.s6.a826c3a592b1 from=translated src=- shape=86914bc8 vocab=8798c7b0
+-/
 theorem squareMesh_outer_cycleGraph_isTwoConnected_of_subdividesToPath {fresh : List Plane}
     (hfresh : ∀ z ∈ fresh, z ∈ modelCurve) (δ : ℝ) (anchors : List Plane)
     (hsub : SubdividesToPath (meshSegments (meshCount δ) fresh)

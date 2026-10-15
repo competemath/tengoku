@@ -50,12 +50,16 @@ open Set
 
 namespace Schoenflies
 
-/-- **`thm:arc-complement`.** If `A` is a simple arc in the plane, then `ℝ² ∖ A` is connected. -/
+/-- **`thm:arc-complement`.** If `A` is a simple arc in the plane, then `ℝ² ∖ A` is connected.
+@isnad1 id=isconnec.1h1v.s5.6e886fd0843e from=translated src=- shape=35326a45 vocab=72a38881
+-/
 theorem arc_complement {A : Set Plane} (hA : IsArc A) : IsConnected Aᶜ :=
   isConnected_compl_arc hA squaresTwoConnected
 
 /-- **`thm:arc-complement`, the polygonal form.** Two distinct points off a simple arc are
-joined, off the arc, by a simple polygonal arc. -/
+joined, off the arc, by a simple polygonal arc.
+@isnad1 id=ex.4h3v.s5.52293731e098 from=translated src=- shape=fd032624 vocab=02a61663
+-/
 theorem arc_complement_poly {A : Set Plane} (hA : IsArc A) {u w : Plane}
     (huw : u ≠ w) (hu : u ∉ A) (hw : w ∉ A) :
     ∃ P : Set Plane, IsPolygonal P ∧ IsArcBetween P u w ∧ P ⊆ Aᶜ :=
@@ -67,13 +71,17 @@ regions, one bounded and one unbounded, and both have the curve as their boundar
 `IsSeparating` packages all of that, and is the same predicate the polygonal case
 (`Schoenflies.ClosedPolygon.polygonal_jordan`) is stated through — so `Schoenflies.inside`,
 `Schoenflies.outside` and the whole region API of `Schoenflies/CrosscutCells.lean` apply to a
-general Jordan curve with nothing to transport. -/
+general Jordan curve with nothing to transport.
+@isnad1 id=issepara.1h1v.s3.c7bcf3a113e0 from=translated src=- shape=4c88451a vocab=8fe45bc8
+-/
 theorem jordan_curve_theorem {C : Set Plane} (hC : IsJordanCurve C) : IsSeparating C :=
   hC.isSeparating fun _ hA => arc_complement hA
 
 /-- **`thm:general-crosscut`, first sentence.** A polygonal crosscut of a Jordan domain cuts it
 into exactly two components, the interiors of the two curves the crosscut makes with the two
-arcs of `C`. The two sides are labelled by which arc of `C` their closure meets. -/
+arcs of `C`. The two sides are labelled by which arc of `C` their closure meets.
+@isnad1 id=and.2h6v.s9.fa1794e5c5c3 from=translated src=- shape=90a8e11a vocab=b19757db
+-/
 theorem crosscut_theorem {C P A₁ A₂ : Set Plane} {p q : Plane}
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) :
     inside C \ P = inside (A₁ ∪ P) ∪ inside (A₂ ∪ P) ∧

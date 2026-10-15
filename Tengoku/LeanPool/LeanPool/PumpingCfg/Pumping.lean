@@ -26,6 +26,9 @@ This file contains the proof of the pumping lemma for context-free grammars
 
 @[expose] public section
 
+/--
+@isnad1 id=le.1h5v.s6.55d1777288bf from=translated src=- shape=c0e7834d vocab=5ff558c3
+-/
 theorem pidgeonhole {α β : Type*} {A : Finset α} {B : Finset β} {f : A → B}
     (hf : f.Injective) : A.card ≤ B.card := by
   if emptiness : A = ∅ then
@@ -60,6 +63,9 @@ noncomputable def generators (g : ChomskyNormalFormGrammar T) [DecidableEq g.NT]
 
 variable {g : ChomskyNormalFormGrammar T}
 
+/--
+@isnad1 id=derives.1h6v.s7.fbe6813fc53f from=translated src=- shape=fa31e25b vocab=6e40880e
+-/
 lemma pumping_string {u v : List (Symbol T g.NT)} {n : g.NT}
     (hg : g.Derives [Symbol.nonterminal n] (u ++ [Symbol.nonterminal n] ++ v)) (i : ℕ) :
     g.Derives [Symbol.nonterminal n] (u^+^i ++ [Symbol.nonterminal n] ++ v^+^i) := by
@@ -72,6 +78,9 @@ lemma pumping_string {u v : List (Symbol T g.NT)} {n : g.NT}
     rw [List.append_assoc, List.append_assoc, ← nTimes_succ_l, ← List.append_assoc,
       ← List.append_assoc, ← nTimes_succ_r]
 
+/--
+@isnad1 id=le.1h6v.s5.7c993e783784 from=translated src=- shape=f721df06 vocab=67c03039
+-/
 lemma subtree_height_le {n₁ n₂ : g.NT} {p₁ : parseTree n₁} {p₂ : parseTree n₂}
     (hpp : p₂.IsSubtreeOf p₁) :
     p₂.height ≤ p₁.height := by
@@ -82,6 +91,9 @@ lemma subtree_height_le {n₁ n₂ : g.NT} {p₁ : parseTree n₁} {p₂ : parse
 
 variable [DecidableEq g.NT]
 
+/--
+@isnad1 id=mem.1h3v.s6.2eb6ebcfc1fc from=translated src=- shape=ea66e294 vocab=c0679395
+-/
 lemma input_mem_generators {r : ChomskyNormalFormRule T g.NT} (hrg : r ∈ g.rules) :
     r.input ∈ g.generators := by
   unfold generators
@@ -91,6 +103,9 @@ lemma input_mem_generators {r : ChomskyNormalFormRule T g.NT} (hrg : r ∈ g.rul
   | nil => simp
   | cons _ _ ih => aesop
 
+/--
+@isnad1 id=or.3h5v.s9.85ad22cca40e from=translated src=- shape=4b06eb67 vocab=a562501e
+-/
 lemma subtree_repeat_root_height_ind {n : g.NT} {p : parseTree n}
     (s : Finset (Σ _n : g.NT, parseTree _n)) (hs : ∀ e₁ ∈ s, ∀ e₂ ∈ s, e₁.fst = e₂.fst → e₁ = e₂)
     (hp : g.generators.card.succ ≤ p.height + s.card) (hps : ∀ pₛ ∈ s, p.IsSubtreeOf pₛ.snd) :
@@ -257,6 +272,9 @@ lemma subtree_repeat_root_height_ind {n : g.NT} {p : parseTree n}
             simp only [parseTree.height] at htt'
             omega
 
+/--
+@isnad1 id=ex.1h4v.s6.9d7cda2572ea from=translated src=- shape=c37561f2 vocab=8800fd34
+-/
 lemma subtree_repeat_root_height_aux_aux_aux {n : g.NT} {p : parseTree n}
     (hp : g.generators.card.succ = p.height) :
     ∃ n' : g.NT, ∃ p' p'' : parseTree n',
@@ -265,6 +283,9 @@ lemma subtree_repeat_root_height_aux_aux_aux {n : g.NT} {p : parseTree n}
   | inl hp' => exact hp'
   | inr hp' => simp at hp'
 
+/--
+@isnad1 id=ex.1h4v.s6.27901de2aeba from=translated src=- shape=38e47c04 vocab=4bc61542
+-/
 lemma subtree_repeat_root_height_aux_aux {n : g.NT} {p : parseTree n}
     (hgp : g.generators.card.succ = p.height) :
     ∃ n' : g.NT, ∃ p' p'' : parseTree n',
@@ -272,6 +293,9 @@ lemma subtree_repeat_root_height_aux_aux {n : g.NT} {p : parseTree n}
   obtain ⟨n', p', p'', hp', hp'', hp⟩ := subtree_repeat_root_height_aux_aux_aux hgp
   exact ⟨n', p', p'', hp', hp'', hgp ▸ subtree_height_le hp', hp⟩
 
+/--
+@isnad1 id=ex.1h4v.s6.daecb60fa071 from=translated src=- shape=17f5b489 vocab=4bc61542
+-/
 lemma subtree_repeat_root_height_aux {n : g.NT} {p : parseTree n}
     (hgp : g.generators.card.succ ≤ p.height) :
     ∃ n' : g.NT, ∃ p' p'' : parseTree n',
@@ -301,6 +325,9 @@ lemma subtree_repeat_root_height_aux {n : g.NT} {p : parseTree n}
         obtain ⟨n', p', p'', hp', hp'', hpg, hpp⟩ := ih₂ hp₂
         exact ⟨n', p', p'', parseTree.IsSubtreeOf.right_sub t₁ t₂ p' hnc hp', hp'', hpg, hpp⟩
 
+/--
+@isnad1 id=ex.1h4v.s6.a3ecfeb9a7a5 from=translated src=- shape=2e5ed1f3 vocab=d6d47c17
+-/
 lemma subtree_repeat_root_height {n : g.NT} {p : parseTree n}
     (hp : p.yield.length ≥ 2 ^ g.generators.card) :
     ∃ n' : g.NT, ∃ p' p'' : parseTree n',
@@ -310,6 +337,9 @@ lemma subtree_repeat_root_height {n : g.NT} {p : parseTree n}
   have hp2 := hp.trans p.yield_length_le_two_pow_height
   rw [Nat.pow_le_pow_iff_right] at hp2 <;> omega
 
+/--
+@isnad1 id=ex.2h3v.s8.9a0cc5df9446 from=translated src=- shape=ab1686bc vocab=308f81bd
+-/
 lemma pumping {w : List T} (hwg : w ∈ g.language) (hw : w.length ≥ 2 ^ g.generators.card) :
     ∃ u v x y z : List T,
       w = u ++ v ++ x ++ y ++ z ∧
@@ -339,6 +369,9 @@ end ChomskyNormalFormGrammar
 
 variable {T : Type}
 
+/--
+@isnad1 id=ex.1h2v.s7.2d261f011630 from=translated src=- shape=88f4407b vocab=8a1dce8b
+-/
 theorem Language.IsContextFree.pumping {L : Language T} (hL : L.IsContextFree) :
     ∃ p : ℕ, ∀ w ∈ L, w.length ≥ p → ∃ u v x y z : List T,
       w = u ++ v ++ x ++ y ++ z ∧

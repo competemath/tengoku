@@ -44,11 +44,23 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDim
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceEL2CompactnessArzelaAscoli : MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.f8d6e173e68a from=translated src=- shape=c6850a32 vocab=1f7ccf5b
+-/
 local instance instBorelSpaceEL2CompactnessArzelaAscoli : BorelSpace E := ⟨rfl⟩
+/--
+@isnad1 id=opensmea.0h1v.s4.bfe99bc8560d from=translated src=- shape=c6850a32 vocab=16db1689
+-/
 local instance instOpensMeasurableSpaceEL2CompactnessArzelaAscoli : OpensMeasurableSpace E := by
   infer_instance
+/--
+@isnad1 id=measurab.0h1v.s4.de7a00231263 from=translated src=- shape=c6850a32 vocab=a4ea68bb
+-/
 local instance instMeasurableAddEL2CompactnessArzelaAscoli : MeasurableAdd E := by
   infer_instance
+/--
+@isnad1 id=measurab.0h1v.s4.8a8d3049d913 from=translated src=- shape=c6850a32 vocab=94a5072d
+-/
 local instance instMeasurableNegEL2CompactnessArzelaAscoli : MeasurableNeg E := by
   infer_instance
 
@@ -414,6 +426,9 @@ private lemma uniformEquicontinuous_smoothBCF_closedBall (hK : IsCompact K)
       lt_of_le_of_lt hle' hε2lt
     simpa [hu_eq'] using this
 
+/--
+@isnad1 id=iscompac.5h4v.s11.7d95e0760cc7 from=translated src=- shape=9ab3f53b vocab=a4408aa2
+-/
 theorem smoothBCF_image_closedBall_isCompact (hK : IsCompact K) (hKm : MeasurableSet K)
     (hψc : Continuous ψ) (hψcs : HasCompactSupport ψ) {R : ℝ} (hR : 0 ≤ R) :
     IsCompact

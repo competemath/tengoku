@@ -108,14 +108,26 @@ structure IsK33Config (G : Graph α β) (x y : Fin 3 → α) (e : Fin 3 → Fin 
 
 namespace IsK33Config
 
+/--
+@isnad1 id=ne.2h8v.s6.a54aa9d0043c from=translated src=- shape=ed3c0890 vocab=7337c5fd
+-/
 theorem x_ne_x (h : IsK33Config G x y e) (hik : i ≠ k) : x i ≠ x k :=
   fun he ↦ hik (h.x_injective he)
 
+/--
+@isnad1 id=ne.2h8v.s6.e9bfec19405b from=translated src=- shape=bf4b9e1f vocab=7337c5fd
+-/
 theorem y_ne_y (h : IsK33Config G x y e) (hjl : j ≠ l) : y j ≠ y l :=
   fun he ↦ hjl (h.y_injective he)
 
+/--
+@isnad1 id=ne.1h8v.s6.dbdfa3d02987 from=translated src=- shape=59c6e2a6 vocab=7337c5fd
+-/
 theorem x_ne_y (h : IsK33Config G x y e) (i j : Fin 3) : x i ≠ y j := h.ne i j
 
+/--
+@isnad1 id=ne.1h8v.s6.acb046aa07ce from=translated src=- shape=96e0fe97 vocab=7337c5fd
+-/
 theorem y_ne_x (h : IsK33Config G x y e) (j i : Fin 3) : y j ≠ x i := (h.ne i j).symm
 
 /-- **The nine edges carry nine different names.** This is not an axiom of the configuration:
@@ -127,16 +139,23 @@ theorem eq_of_e_eq (h : IsK33Config G x y e) (heq : e i j = e k l) : i = k ∧ j
   · exact ⟨h.x_injective h1, h.y_injective h2⟩
   · exact absurd h1 (h.ne i l)
 
+/--
+@isnad1 id=ne.2h10v.s6.f8673ad82c05 from=translated src=- shape=d40e75a1 vocab=7337c5fd
+-/
 theorem e_ne (h : IsK33Config G x y e) (hne : ¬ (i = k ∧ j = l)) : e i j ≠ e k l :=
   fun heq ↦ hne (h.eq_of_e_eq heq)
 
-/-- A vertex on one of the nine edges is one of that edge's two ends. -/
+/-- A vertex on one of the nine edges is one of that edge's two ends.
+@isnad1 id=or.2h9v.s6.83117a1f802f from=translated src=- shape=c59b9343 vocab=1c6f8b6c
+-/
 theorem inc_elim (h : IsK33Config G x y e) (hz : G.Inc (e i j) z) : z = x i ∨ z = y j :=
   hz.eq_or_eq_of_isLink (h.isLink i j)
 
 /-- **Freshness, in the form the path constructor asks for.** A vertex which is neither the
 source of the rest of the walk nor an end of any of its edges is not among the vertices that
-rest visits. -/
+rest visits.
+@isnad1 id=not.3h9v.s7.07b78e53737c from=translated src=- shape=71ec3320 vocab=2c899a78
+-/
 theorem notMem_walkVertices (h : IsK33Config G x y e) {W : List β} {w : α} (hzw : z ≠ w)
     (hW : ∀ f ∈ W, ∃ i j, f = e i j ∧ z ≠ x i ∧ z ≠ y j) :
     z ∉ G.walkVertices w W := by
@@ -167,9 +186,15 @@ def hexDetour (e : Fin 3 → Fin 3 → β) : List β := [e 0 2, e 2 2, e 2 1, e 
 /-- The six edges of the six-cycle. -/
 def hexList (e : Fin 3 → Fin 3 → β) : List β := e 0 0 :: hexDetour e
 
+/--
+@isnad1 id=eq.0h2v.s6.2fb1e238448b from=translated src=- shape=13de232e vocab=405ae6a8
+-/
 theorem hexList_eq_map (e : Fin 3 → Fin 3 → β) :
     hexList e = hexPairs.map fun p ↦ e p.1 p.2 := rfl
 
+/--
+@isnad1 id=iff.0h3v.s7.352e4f12b09a from=translated src=- shape=d06f3442 vocab=5cbb69b9
+-/
 theorem mem_hexList_iff {f : β} : f ∈ hexList e ↔ ∃ p ∈ hexPairs, f = e p.1 p.2 := by
   rw [hexList_eq_map]
   simp only [List.mem_map, eq_comm]
@@ -177,7 +202,9 @@ theorem mem_hexList_iff {f : β} : f ∈ hexList e ↔ ∃ p ∈ hexPairs, f = e
 namespace IsK33Config
 
 /-- The detour of the six-cycle is a path. Each freshness clause says that the vertex a step
-departs from is none of the six vertices the rest of the detour meets. -/
+departs from is none of the six vertices the rest of the detour meets.
+@isnad1 id=ispath.1h6v.s6.9488403a1a95 from=translated src=- shape=aed1803d vocab=3062e2da
+-/
 theorem hexDetour_isPath (h : IsK33Config G x y e) : G.IsPath (x 0) (hexDetour e) (y 0) := by
   have h5 : G.IsPath (x 1) [e 1 0] (y 0) := .single (h.isLink 1 0) (h.x_ne_y 1 0)
   have h4 : G.IsPath (y 1) [e 1 1, e 1 0] (y 0) := by
@@ -210,7 +237,9 @@ theorem hexDetour_isPath (h : IsK33Config G x y e) : G.IsPath (x 0) (hexDetour e
   · exact ⟨1, 1, rfl, h.x_ne_x (by decide), h.x_ne_y 0 1⟩
   · exact ⟨1, 0, rfl, h.x_ne_x (by decide), h.x_ne_y 0 0⟩
 
-/-- **The six-cycle is a cycle**, presented through the edge `e 0 0`. -/
+/-- **The six-cycle is a cycle**, presented through the edge `e 0 0`.
+@isnad1 id=iscyclet.1h6v.s6.8ef3a76b341a from=translated src=- shape=d7361680 vocab=719c78a1
+-/
 theorem hexagon_isCycleThrough (h : IsK33Config G x y e) :
     G.IsCycleThrough (e 0 0) (x 0) (y 0) (hexDetour e) := by
   refine ⟨h.isLink 0 0, h.hexDetour_isPath, ?_⟩
@@ -222,7 +251,9 @@ theorem hexagon_isCycleThrough (h : IsK33Config G x y e) :
 
 `e s (s+1)`, for `s : Fin 3`, are the three edges of `K(3,3)` that the six-cycle leaves out. -/
 
-/-- The three remaining edges are not edges of the six-cycle. -/
+/-- The three remaining edges are not edges of the six-cycle.
+@isnad1 id=not.1h7v.s6.85dc9ba3224e from=translated src=- shape=ea4d4c81 vocab=482382ad
+-/
 theorem chord_notMem_hexList (h : IsK33Config G x y e) (s : Fin 3) : e s (s + 1) ∉ hexList e := by
   intro hmem
   obtain ⟨p, hp, heq⟩ := mem_hexList_iff.1 hmem
@@ -230,17 +261,24 @@ theorem chord_notMem_hexList (h : IsK33Config G x y e) (s : Fin 3) : e s (s + 1)
     decide
   exact key s p hp (h.eq_of_e_eq heq)
 
-/-- Two distinct remaining edges carry distinct names, and share no end. -/
+/-- Two distinct remaining edges carry distinct names, and share no end.
+@isnad1 id=ne.2h8v.s7.87e3a5ecce53 from=translated src=- shape=e54f581e vocab=5d55ebb3
+-/
 theorem chord_ne (h : IsK33Config G x y e) (hst : s ≠ t) : e s (s + 1) ≠ e t (t + 1) :=
   h.e_ne (fun hc ↦ hst hc.1)
 
-/-- The edges of the six-cycle are edges of the graph. -/
+/-- The edges of the six-cycle are edges of the graph.
+@isnad1 id=mem.2h7v.s6.557810871297 from=translated src=- shape=fba726b4 vocab=876037ed
+-/
 theorem hexList_edge_mem (h : IsK33Config G x y e) {f : β} (hf : f ∈ hexList e) : f ∈ E(G) := by
   obtain ⟨p, -, rfl⟩ := mem_hexList_iff.1 hf
   exact (h.isLink p.1 p.2).edge_mem
 
 end IsK33Config
 
+/--
+@isnad1 id=mem.1h3v.s6.43e76d6deb7c from=translated src=- shape=2c3425f5 vocab=5cbb69b9
+-/
 theorem mem_hexList (e : Fin 3 → Fin 3 → β) {p : Fin 3 × Fin 3} (hp : p ∈ hexPairs) :
     e p.1 p.2 ∈ hexList e :=
   mem_hexList_iff.2 ⟨p, hp, rfl⟩
@@ -266,15 +304,23 @@ def arcA (e : Fin 3 → Fin 3 → β) (s : Fin 3) : List β := [e s s, e (s + 1)
 def arcB (e : Fin 3 → Fin 3 → β) (s : Fin 3) : List β :=
   [e s (s + 2), e (s + 2) (s + 2), e (s + 2) (s + 1)]
 
+/--
+@isnad1 id=eq.0h3v.s6.7d5ef27f3f9b from=translated src=- shape=31815fff vocab=98886cdf
+-/
 theorem arcA_eq_map (e : Fin 3 → Fin 3 → β) (s : Fin 3) :
     arcA e s = (arcAPairs s).map fun p ↦ e p.1 p.2 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.641e43a17780 from=translated src=- shape=31815fff vocab=3048e53e
+-/
 theorem arcB_eq_map (e : Fin 3 → Fin 3 → β) (s : Fin 3) :
     arcB e s = (arcBPairs s).map fun p ↦ e p.1 p.2 := rfl
 
 namespace IsK33Config
 
-/-- The first of the two paths is a path. -/
+/-- The first of the two paths is a path.
+@isnad1 id=ispath.1h7v.s6.8b1ad18d1aa9 from=translated src=- shape=eb5be500 vocab=00630c18
+-/
 theorem arcA_isPath (h : IsK33Config G x y e) (s : Fin 3) :
     G.IsPath (x s) (arcA e s) (y (s + 1)) := by
   have hab : s ≠ s + 1 := by revert s; decide
@@ -293,7 +339,9 @@ theorem arcA_isPath (h : IsK33Config G x y e) (s : Fin 3) :
   · exact ⟨s + 1, s, rfl, h.x_ne_x hab, h.x_ne_y _ _⟩
   · exact ⟨s + 1, s + 1, rfl, h.x_ne_x hab, h.x_ne_y _ _⟩
 
-/-- The second of the two paths is a path. -/
+/-- The second of the two paths is a path.
+@isnad1 id=ispath.1h7v.s6.5ebbfb1a2c69 from=translated src=- shape=eb5be500 vocab=9618be92
+-/
 theorem arcB_isPath (h : IsK33Config G x y e) (s : Fin 3) :
     G.IsPath (x s) (arcB e s) (y (s + 1)) := by
   have hac : s ≠ s + 2 := by revert s; decide
@@ -331,6 +379,9 @@ variable {drawing : β → ℝ → Plane} {s t : Fin 3}
 def hexSet (drawing : β → ℝ → Plane) (e : Fin 3 → Fin 3 → β) : Set Plane :=
   edgesCover drawing (hexList e)
 
+/--
+@isnad1 id=iff.0h5v.s7.d0c9208bcfee from=translated src=- shape=a67fed4c vocab=111b554b
+-/
 theorem mem_edgesCover_map_iff {L : List (Fin 3 × Fin 3)} {p : Plane} :
     p ∈ edgesCover drawing (L.map fun q ↦ e q.1 q.2) ↔
       ∃ q ∈ L, p ∈ edgeArc drawing (e q.1 q.2) := by
@@ -342,14 +393,23 @@ theorem mem_edgesCover_map_iff {L : List (Fin 3 × Fin 3)} {p : Plane} :
   · rintro ⟨q, hq, hpq⟩
     exact mem_edgesCover (List.mem_map_of_mem hq) hpq
 
+/--
+@isnad1 id=iff.0h4v.s7.bb7c8f893dad from=translated src=- shape=cdc4fd43 vocab=acf7870d
+-/
 theorem mem_hexSet_iff {p : Plane} :
     p ∈ hexSet drawing e ↔ ∃ q ∈ hexPairs, p ∈ edgeArc drawing (e q.1 q.2) := by
   rw [hexSet, hexList_eq_map]; exact mem_edgesCover_map_iff
 
+/--
+@isnad1 id=iff.0h5v.s7.32f67d8ec571 from=translated src=- shape=7866cd76 vocab=31c5d754
+-/
 theorem mem_arcA_iff {p : Plane} :
     p ∈ edgesCover drawing (arcA e s) ↔ ∃ q ∈ arcAPairs s, p ∈ edgeArc drawing (e q.1 q.2) := by
   rw [arcA_eq_map]; exact mem_edgesCover_map_iff
 
+/--
+@isnad1 id=iff.0h5v.s7.041c71b4aeb4 from=translated src=- shape=7866cd76 vocab=4f2a7f9d
+-/
 theorem mem_arcB_iff {p : Plane} :
     p ∈ edgesCover drawing (arcB e s) ↔ ∃ q ∈ arcBPairs s, p ∈ edgeArc drawing (e q.1 q.2) := by
   rw [arcB_eq_map]; exact mem_edgesCover_map_iff
@@ -358,25 +418,33 @@ namespace IsK33Config
 
 /-- **The six-cycle of a drawn `K(3,3)` is a Jordan curve.** This is the blueprint's "the
 six-cycle is a polygonal Jordan curve"; polygonality plays no part in it, and is needed only
-where the *polygonal* Jordan curve theorem is applied to the result. -/
+where the *polygonal* Jordan curve theorem is applied to the result.
+@isnad1 id=isjordan.2h6v.s6.b28f250868be from=translated src=- shape=eef6b2c3 vocab=85030e64
+-/
 theorem hexagon_isJordanCurve (h : IsK33Config G x y e) (hd : IsDrawing G drawing) :
     IsJordanCurve (hexSet drawing e) :=
   hd.cycle_isJordanCurve h.hexagon_isCycleThrough
 
-/-- The `i`-th vertex of the first side lies on the six-cycle. -/
+/-- The `i`-th vertex of the first side lies on the six-cycle.
+@isnad1 id=mem.2h7v.s6.d509122c92aa from=translated src=- shape=e3a2ab95 vocab=15c37f56
+-/
 theorem x_mem_hexSet (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (i : Fin 3) :
     x i ∈ hexSet drawing e := by
   have hp : ∀ i : Fin 3, ((i, i) : Fin 3 × Fin 3) ∈ hexPairs := by decide
   exact mem_edgesCover (mem_hexList e (hp i)) (hd.edge_isArcBetween (h.isLink i i)).left_mem
 
-/-- The `j`-th vertex of the second side lies on the six-cycle. -/
+/-- The `j`-th vertex of the second side lies on the six-cycle.
+@isnad1 id=mem.2h7v.s6.6c249e0bba03 from=translated src=- shape=2570a047 vocab=15c37f56
+-/
 theorem y_mem_hexSet (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (j : Fin 3) :
     y j ∈ hexSet drawing e := by
   have hp : ∀ j : Fin 3, ((j, j) : Fin 3 × Fin 3) ∈ hexPairs := by decide
   exact mem_edgesCover (mem_hexList e (hp j)) (hd.edge_isArcBetween (h.isLink j j)).right_mem
 
 /-- **Each of the three remaining edges is a crosscut of the six-cycle**: its arc meets the
-cycle in exactly its own two ends. -/
+cycle in exactly its own two ends.
+@isnad1 id=eq.2h7v.s7.3a1c7703fe10 from=translated src=- shape=c117dcc9 vocab=1c28dc6f
+-/
 theorem chord_inter_hexSet (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (s : Fin 3) :
     edgeArc drawing (e s (s + 1)) ∩ hexSet drawing e = {x s, y (s + 1)} := by
   refine Set.eq_of_subset_of_subset ?_ ?_
@@ -391,7 +459,9 @@ theorem chord_inter_hexSet (h : IsK33Config G x y e) (hd : IsDrawing G drawing) 
     · exact ⟨(hd.edge_isArcBetween (h.isLink s (s + 1))).right_mem, h.y_mem_hexSet hd (s + 1)⟩
 
 /-- The interior of a remaining edge, as the blueprint reads it: its arc without its two
-ends. -/
+ends.
+@isnad1 id=eq.2h7v.s7.c4f0b74ff706 from=translated src=- shape=90f944d0 vocab=04ca7297
+-/
 theorem chord_openArc_eq (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (s : Fin 3) :
     openArc (drawing (e s (s + 1))) = edgeArc drawing (e s (s + 1)) \ {x s, y (s + 1)} := by
   obtain ⟨-, hi, hlink⟩ := hd.edge_param (h.isLink s (s + 1)).edge_mem
@@ -403,25 +473,35 @@ theorem chord_openArc_eq (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (s
   rw [openArc_eq_diff hi, hpair]
   rfl
 
-/-- **A remaining edge lies wholly off the six-cycle except at its ends.** -/
+/-- **A remaining edge lies wholly off the six-cycle except at its ends.**
+@isnad1 id=le.2h7v.s7.99d3c5fa75cd from=translated src=- shape=8232a7b5 vocab=5cc9f4b6
+-/
 theorem chord_openArc_subset_compl (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
     (s : Fin 3) : openArc (drawing (e s (s + 1))) ⊆ (hexSet drawing e)ᶜ := by
   rw [h.chord_openArc_eq hd s]
   rintro p ⟨hpe, hpn⟩ hph
   exact hpn ((h.chord_inter_hexSet hd s).subset ⟨hpe, hph⟩)
 
+/--
+@isnad1 id=isprecon.2h7v.s7.5e36d4c32ae8 from=translated src=- shape=7bb7b9dc vocab=454e801f
+-/
 theorem chord_openArc_isPreconnected (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
     (s : Fin 3) : IsPreconnected (openArc (drawing (e s (s + 1)))) :=
   isPreconnected_Ioo.image _
     ((hd.edge_param (h.isLink s (s + 1)).edge_mem).1.mono Ioo_subset_I)
 
+/--
+@isnad1 id=nonempty.0h4v.s6.a06c612e0d30 from=translated src=- shape=a2d71f5b vocab=83e46e69
+-/
 theorem chord_openArc_nonempty (s : Fin 3) :
     (openArc (drawing (e s (s + 1)))).Nonempty :=
   ⟨drawing (e s (s + 1)) (1 / 2), 1 / 2, by norm_num, rfl⟩
 
 /-- **Each of the three remaining edges lies wholly on one side of the six-cycle**: its
 interior, being connected and disjoint from the cycle, lies in a single connected component of
-the complement. -/
+the complement.
+@isnad1 id=le.3h8v.s7.713be74eea75 from=translated src=- shape=b2e32158 vocab=6619ae47
+-/
 theorem chord_openArc_subset_connectedComponentIn (h : IsK33Config G x y e)
     (hd : IsDrawing G drawing) (s : Fin 3) {p : Plane}
     (hp : p ∈ openArc (drawing (e s (s + 1)))) :
@@ -430,7 +510,9 @@ theorem chord_openArc_subset_connectedComponentIn (h : IsK33Config G x y e)
     (h.chord_openArc_subset_compl hd s)
 
 /-- **Two distinct remaining edges are disjoint.** Their four ends are distinct, and two
-distinct edges of a plane graph meet only at a shared end. -/
+distinct edges of a plane graph meet only at a shared end.
+@isnad1 id=eq.3h8v.s7.7d0ba926d025 from=translated src=- shape=907c81cd vocab=0ed4f3aa
+-/
 theorem chords_disjoint (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (hst : s ≠ t) :
     edgeArc drawing (e s (s + 1)) ∩ edgeArc drawing (e t (t + 1)) = ∅ := by
   refine Set.eq_empty_of_forall_notMem fun p ⟨hps, hpt⟩ ↦ ?_
@@ -446,15 +528,23 @@ theorem chords_disjoint (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (hs
 
 /-! ### The two arcs the ends of a remaining edge cut the six-cycle into -/
 
+/--
+@isnad1 id=isarcbet.2h7v.s7.b3d40d5b4faf from=translated src=- shape=90604eed vocab=c4df67c2
+-/
 theorem arcA_isArcBetween (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (s : Fin 3) :
     IsArcBetween (edgesCover drawing (arcA e s)) (x s) (y (s + 1)) :=
   hd.path_isArcBetween (h.arcA_isPath s) (by simp [arcA])
 
+/--
+@isnad1 id=isarcbet.2h7v.s7.9831c8b0e0d6 from=translated src=- shape=90604eed vocab=2066ac59
+-/
 theorem arcB_isArcBetween (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (s : Fin 3) :
     IsArcBetween (edgesCover drawing (arcB e s)) (x s) (y (s + 1)) :=
   hd.path_isArcBetween (h.arcB_isPath s) (by simp [arcB])
 
-/-- **The two arcs make up the six-cycle.** -/
+/-- **The two arcs make up the six-cycle.**
+@isnad1 id=eq.0h4v.s5.af5100703607 from=translated src=- shape=b2044c93 vocab=91d82967
+-/
 theorem arcs_union (s : Fin 3) :
     edgesCover drawing (arcA e s) ∪ edgesCover drawing (arcB e s) = hexSet drawing e := by
   have hA : ∀ s : Fin 3, ∀ q ∈ arcAPairs s, q ∈ hexPairs := by decide
@@ -471,7 +561,9 @@ theorem arcs_union (s : Fin 3) :
     rcases hC s q hq with hq' | hq'
     exacts [Or.inl (mem_arcA_iff.2 ⟨q, hq', hpq⟩), Or.inr (mem_arcB_iff.2 ⟨q, hq', hpq⟩)]
 
-/-- **The two arcs meet exactly in the two ends of the remaining edge that cuts the cycle.** -/
+/-- **The two arcs meet exactly in the two ends of the remaining edge that cuts the cycle.**
+@isnad1 id=eq.2h7v.s7.b644ec74f310 from=translated src=- shape=eda2d8bb vocab=bfea49f9
+-/
 theorem arcs_inter (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (s : Fin 3) :
     edgesCover drawing (arcA e s) ∩ edgesCover drawing (arcB e s) = {x s, y (s + 1)} := by
   have hne : ∀ s : Fin 3, ∀ q ∈ arcAPairs s, ∀ r ∈ arcBPairs s, ¬ (q.1 = r.1 ∧ q.2 = r.2) := by
@@ -507,7 +599,9 @@ two arcs `A` and `B` meeting only in those two points. The remaining edge indexe
 has ends `x (s+1)` and `y (s+1+1)`, and this says one of them is interior to `A` and the other
 interior to `B`. Since the three remaining edges are indexed by `Fin 3`, every *pair* of them
 is of this form, which is what the blueprint's "their endpoints alternate on the six-cycle"
-asserts. -/
+asserts.
+@isnad1 id=ex.2h7v.s9.00f7c0d25006 from=translated src=- shape=3e4cd24a vocab=52b0bef3
+-/
 theorem chords_alternate (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (s : Fin 3) :
     ∃ A B : Set Plane,
       IsArcBetween A (x s) (y (s + 1)) ∧ IsArcBetween B (x s) (y (s + 1)) ∧
@@ -533,7 +627,9 @@ theorem chords_alternate (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (s
 /-! ### Two of the three remaining edges lie on the same side -/
 
 /-- A remaining edge lies wholly in one of two disjoint open sets covering the complement of
-the six-cycle: its interior is connected and misses the cycle. -/
+the six-cycle: its interior is connected and misses the cycle.
+@isnad1 id=or.6h9v.s8.fd6d9d005816 from=translated src=- shape=c62aabe9 vocab=87adefb1
+-/
 theorem chord_subset_or (h : IsK33Config G x y e) (hd : IsDrawing G drawing) {U V : Set Plane}
     (hUo : IsOpen U) (hVo : IsOpen V) (hUV : Disjoint U V)
     (hcover : (hexSet drawing e)ᶜ ⊆ U ∪ V) (s : Fin 3) :
@@ -550,7 +646,9 @@ theorem chord_subset_or (h : IsK33Config G x y e) (hd : IsDrawing G drawing) {U 
 /-- **Two of the three remaining edges lie on the same side of the six-cycle.** The blueprint's
 "two of the three lie on the same side": three edges, two sides. The two sides arrive here as
 an arbitrary pair of disjoint open sets covering the complement of the cycle, which is the form
-the polygonal Jordan curve theorem supplies them in. -/
+the polygonal Jordan curve theorem supplies them in.
+@isnad1 id=ex.6h8v.s8.9320b91cd4c7 from=translated src=- shape=5b04e4b7 vocab=87adefb1
+-/
 theorem exists_two_chords_same_side (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
     {U V : Set Plane} (hUo : IsOpen U) (hVo : IsOpen V) (hUV : Disjoint U V)
     (hcover : (hexSet drawing e)ᶜ ⊆ U ∪ V) :

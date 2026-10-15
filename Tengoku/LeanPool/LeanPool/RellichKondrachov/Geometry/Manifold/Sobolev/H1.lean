@@ -54,11 +54,20 @@ variable [T2Space M] [CompactSpace M]
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceEH1 : MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.e79c973cd2a3 from=translated src=- shape=c6850a32 vocab=84b79374
+-/
 local instance instBorelSpaceEH1 : BorelSpace E := ⟨rfl⟩
+/--
+@isnad1 id=opensmea.0h1v.s4.9371dab6f4ea from=translated src=- shape=c6850a32 vocab=ab315444
+-/
 local instance instOpensMeasurableSpaceEH1 : OpensMeasurableSpace E := by infer_instance
 
 /-- Borel σ-algebra on the manifold `M`. -/
 local instance instMeasurableSpaceMH1 : MeasurableSpace M := borel M
+/--
+@isnad1 id=borelspa.0h1v.s3.480705bab7b5 from=translated src=- shape=c6850a32 vocab=266a4cab
+-/
 local instance instBorelSpaceMH1 : BorelSpace M := ⟨rfl⟩
 
 namespace FiniteChartData
@@ -231,6 +240,9 @@ noncomputable def h1GraphChart (i : d.ι) :
     (localizeToC1c (d := d) (I := I) i)
 
 omit [T2Space M] in
+/--
+@isnad1 id=mem.0h8v.s13.a7597425a753 from=translated src=- shape=e7f5bbc8 vocab=0f2ec58c
+-/
 lemma h1GraphChart_mem_range_euclidean_graph (i : d.ι)
     (f : ↥(C1 (E := E) (H := H) (M := M) (I := I))) :
     h1GraphChart (d := d) (I := I) (μ := μ) i f ∈
@@ -248,7 +260,9 @@ underlying localized function `localize (d := d) f i`. They are used downstream 
 -/
 
 omit [T2Space M] in
-/-- The scalar `L²` component of `h1GraphChart` is the `L²` class of `localize f i`. -/
+/-- The scalar `L²` component of `h1GraphChart` is the `L²` class of `localize f i`.
+@isnad1 id=eq.0h8v.s13.e0ed6f212831 from=translated src=- shape=c72357da vocab=b43097a2
+-/
 lemma h1GraphChart_fst (i : d.ι) (f : ↥(C1 (E := E) (H := H) (M := M) (I := I))) :
     (h1GraphChart (d := d) (I := I) (μ := μ) i f).1 =
       RellichKondrachov.Analysis.FunctionalSpaces.Sobolev.Euclidean.toL2
@@ -261,7 +275,9 @@ lemma h1GraphChart_fst (i : d.ι) (f : ↥(C1 (E := E) (H := H) (M := M) (I := I
 
 omit [T2Space M] in
 /-- The gradient `L²(E)` component of `h1GraphChart` is the `L²(E)` class
-of `grad (localize f i)`. -/
+of `grad (localize f i)`.
+@isnad1 id=eq.0h8v.s13.a27557dc1d71 from=translated src=- shape=2feb7022 vocab=88586daf
+-/
 lemma h1GraphChart_snd (i : d.ι) (f : ↥(C1 (E := E) (H := H) (M := M) (I := I))) :
     (h1GraphChart (d := d) (I := I) (μ := μ) i f).2 =
       RellichKondrachov.Analysis.FunctionalSpaces.Sobolev.Euclidean.toL2Grad
@@ -284,6 +300,9 @@ noncomputable def h1 : Submodule ℝ (h1Target (d := d) (I := I) μ) :=
   (LinearMap.range (h1Graph (d := d) (I := I) (μ := μ))).topologicalClosure
 
 omit [T2Space M] in
+/--
+@isnad1 id=isclosed.0h6v.s13.d23322271126 from=translated src=- shape=560a2136 vocab=9c3f28c1
+-/
 theorem isClosed_h1 :
     IsClosed (h1 (d := d) (I := I) (μ := μ) : Set (h1Target (d := d) (I := I) μ)) := by
   exact Submodule.isClosed_topologicalClosure (LinearMap.range (h1Graph (d := d) (I := I) (μ := μ)))

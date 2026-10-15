@@ -154,7 +154,9 @@ A point of the disk fails to lie on the radius at `x` in direction `d` for one o
 it is off the line of `d` altogether, or it is on that line but on the far side. Both are sign
 conditions on `Plane.det`, and both are used three times below. -/
 
-/-- A point off the line of `d` through `x` is not on the radius at `x` in direction `d`. -/
+/-- A point off the line of `d` through `x` is not on the radius at `x` in direction `d`.
+@isnad1 id=not.3h4v.s8.083204ef4482 from=translated src=- shape=83d3edb2 vocab=ff7acb4c
+-/
 theorem notMem_radial_of_det_ne_zero (hd : Plane.IsDirection d) (hr : 0 < r)
     (h : Plane.det d (z - x) ≠ 0) : z ∉ segment ℝ x (x + r • d) := by
   intro hseg
@@ -166,7 +168,9 @@ theorem notMem_radial_of_det_ne_zero (hd : Plane.IsDirection d) (hr : 0 < r)
 
 /-- A point on the *far* side of `x` along the line of `d` is not on the radius at `x` in
 direction `d`. The hypothesis `0 < det (perp d) (z - x)` is `⟪d, z - x⟫ < 0` written without an
-inner product (`Plane.det_perp_left`). -/
+inner product (`Plane.det_perp_left`).
+@isnad1 id=not.3h4v.s8.340215d937bf from=translated src=- shape=5a8ddf8e vocab=4093223a
+-/
 theorem notMem_radial_of_det_perp_pos (hd : Plane.IsDirection d) (hr : 0 < r)
     (h : 0 < Plane.det (Plane.perp d) (z - x)) : z ∉ segment ℝ x (x + r • d) := by
   have hpd : Plane.det (Plane.perp d) d = -1 := by
@@ -193,7 +197,9 @@ about a sector, so the blueprint's clause holds at every point with the number o
 to one. -/
 
 /-- A cone over a *convex* set of directions is connected as soon as it is nonempty: it is the
-translate of an intersection of two convex sets. -/
+translate of an intersection of two convex sets.
+@isnad1 id=isconnec.2h3v.s7.0693db8bee45 from=translated src=- shape=63cbff16 vocab=9861c358
+-/
 theorem isConnected_cone_of_convex {A : Set Plane} (hA : Convex ℝ A)
     (hne : (Plane.cone x A r).Nonempty) : IsConnected (Plane.cone x A r) := by
   rw [Plane.cone_eq_image] at hne ⊢
@@ -216,7 +222,9 @@ it is *not* of the form `arcCCW d w` for two local directions, which is why
 
 The proof cuts the slit disk into three convex half-disks — the two open sides of the line of
 `d`, and the open half-disk pointing away from `d` — and glues them along their two overlaps.
-No angle and no cyclic order enters. -/
+No angle and no cyclic order enters.
+@isnad1 id=isconnec.2h3v.s8.e229da91b640 from=translated src=- shape=838f87ec vocab=79e34c34
+-/
 theorem isConnected_ball_diff_radial (hd : Plane.IsDirection d) (hr : 0 < r) :
     IsConnected (ball x r \ segment ℝ x (x + r • d)) := by
   have hd0 : d ≠ 0 := hd.ne_zero
@@ -317,14 +325,18 @@ theorem isConnected_ball_diff_radial (hd : Plane.IsDirection d) (hr : 0 < r) :
   exact IsConnected.union ⟨_, Or.inr hEne, Or.inr hEne⟩
     (IsConnected.union ⟨_, hAE.1, hAE.2⟩ hAc hEc) (IsConnected.union ⟨_, hBE.1, hBE.2⟩ hBc hEc)
 
-/-- The horizontal unit vector, used only to have *some* direction to slit along. -/
+/-- The horizontal unit vector, used only to have *some* direction to slit along.
+@isnad1 id=isdirect.0h0v.s3.7ca13c55337c from=translated src=- shape=90d9b386 vocab=3b7e8422
+-/
 theorem isDirection_mk_one_zero : Plane.IsDirection (Plane.mk 1 0) := by
   rw [Plane.IsDirection, EuclideanSpace.norm_eq]
   simp [Fin.sum_univ_two]
 
 /-- **The punctured disk is connected.** Two disks slit along opposite radii cover it and
 overlap off the line of the slit. This is the "sector" at a point of the skeleton with *no*
-local direction — an isolated vertex. -/
+local direction — an isolated vertex.
+@isnad1 id=isconnec.1h2v.s6.eea2200131fb from=translated src=- shape=0f30f48b vocab=1eddc9cd
+-/
 theorem isConnected_ball_diff_singleton (hr : 0 < r) : IsConnected (ball x r \ {x}) := by
   set d : Plane := Plane.mk 1 0 with hddef
   have hd : Plane.IsDirection d := isDirection_mk_one_zero
@@ -380,11 +392,15 @@ With `Schoenflies.isConnected_ball_diff_radial` and
 `Schoenflies.isConnected_ball_diff_singleton` in hand, the two configurations that
 `Schoenflies/SkeletonSectors.lean` had to exclude are read off the membership criterion. -/
 
-/-- A local radius is a radius *at a point of the set*: take `z = x` in the criterion. -/
+/-- A local radius is a radius *at a point of the set*: take `z = x` in the criterion.
+@isnad1 id=mem.1h3v.s4.200c1e84e899 from=translated src=- shape=f62244cd vocab=c3f80840
+-/
 theorem IsLocalRadius.center_mem (h : IsLocalRadius S x r) : x ∈ S :=
   (h.2 x (by rw [dist_self]; exact h.pos.le)).2 (Or.inl rfl)
 
-/-- **No local branch**: inside the disk the set is the single point `x`. -/
+/-- **No local branch**: inside the disk the set is the single point `x`.
+@isnad1 id=eq.2h3v.s7.4d43984951dd from=translated src=- shape=46c951ca vocab=2cbd2b24
+-/
 theorem IsLocalRadius.ball_diff_eq_punctured (h : IsLocalRadius S x r)
     (hzero : localDirs S x = ∅) : ball x r \ S = ball x r \ {x} := by
   ext z
@@ -393,7 +409,9 @@ theorem IsLocalRadius.ball_diff_eq_punctured (h : IsLocalRadius S x r)
   rw [h.2 z hz.le, hzero]
   simp
 
-/-- **One local branch**: inside the disk the set is the single radius in that direction. -/
+/-- **One local branch**: inside the disk the set is the single radius in that direction.
+@isnad1 id=eq.2h4v.s8.3b1a02cf8798 from=translated src=- shape=ec793ba6 vocab=47bc6ac2
+-/
 theorem IsLocalRadius.ball_diff_eq_slit (h : IsLocalRadius S x r)
     (hone : localDirs S x = {d}) : ball x r \ S = ball x r \ segment ℝ x (x + r • d) := by
   have hdmem : d ∈ localDirs S x := by rw [hone]; rfl
@@ -406,7 +424,9 @@ theorem IsLocalRadius.ball_diff_eq_slit (h : IsLocalRadius S x r)
 
 /-- **The punctured local disk is connected when `x` has fewer than two branches.** This closes
 the two configurations `Schoenflies.IsLocalRadius.ball_diff_eq_iUnion_cone` excludes: there is
-one sector, and it is the whole punctured disk. -/
+one sector, and it is the whole punctured disk.
+@isnad1 id=isconnec.2h3v.s6.b340f87c16ea from=translated src=- shape=39b62420 vocab=d4d2a15a
+-/
 theorem IsLocalRadius.isConnected_ball_diff_of_subsingleton (h : IsLocalRadius S x r)
     (hsub : (localDirs S x).Subsingleton) : IsConnected (ball x r \ S) := by
   rcases hsub.eq_empty_or_singleton with hzero | ⟨e, hone⟩
@@ -417,7 +437,9 @@ theorem IsLocalRadius.isConnected_ball_diff_of_subsingleton (h : IsLocalRadius S
       (isDirection_of_mem_localDirs (show e ∈ localDirs S x by rw [hone]; rfl)) h.pos
 
 /-- The punctured local disk is open. `IsLocalRadius` does not say that `S` is closed, and does
-not have to: inside the disk, `S` is a point together with finitely many closed segments. -/
+not have to: inside the disk, `S` is a point together with finitely many closed segments.
+@isnad1 id=isopen.2h3v.s6.28c2eebe85af from=translated src=- shape=39b62420 vocab=0f5ee468
+-/
 theorem IsLocalRadius.isOpen_ball_diff (h : IsLocalRadius S x r)
     (hfin : (localDirs S x).Finite) : IsOpen (ball x r \ S) := by
   have hclosed : IsClosed (closedBall x r ∩ S) := by
@@ -437,7 +459,9 @@ The blueprint's "shrink the disk at `x` until it also misses the compact set `C`
 meets the *whole* skeleton in the finitely many radial segments". Once the disk is clear of `C`,
 neither the membership criterion nor the set of local directions can tell `S` from `S ∪ C`. -/
 
-/-- A set the closed disk misses contributes no local direction. -/
+/-- A set the closed disk misses contributes no local direction.
+@isnad1 id=eq.2h4v.s6.bbbe54fab1a2 from=translated src=- shape=55c1e35e vocab=28b2ed20
+-/
 theorem localDirs_union_of_disjoint {C : Set Plane} (hr : 0 < r)
     (hC : Disjoint (closedBall x r) C) : localDirs (S ∪ C) x = localDirs S x := by
   refine subset_antisymm ?_ (localDirs_mono subset_union_left)
@@ -451,7 +475,9 @@ theorem localDirs_union_of_disjoint {C : Set Plane} (hr : 0 < r)
       (Metric.closedBall_subset_closedBall (min_le_right t r) hw.2))
 
 /-- **A local radius survives adjoining a set the closed disk misses.** This is the step that
-turns a local radius for the polygonal part of a skeleton into one for the whole skeleton. -/
+turns a local radius for the polygonal part of a skeleton into one for the whole skeleton.
+@isnad1 id=islocalr.2h4v.s6.ebca0ddfe72d from=translated src=- shape=6994671e vocab=ec34403b
+-/
 theorem IsLocalRadius.union_of_disjoint {C : Set Plane} (h : IsLocalRadius S x r)
     (hC : Disjoint (closedBall x r) C) : IsLocalRadius (S ∪ C) x r := by
   refine ⟨h.pos, fun w hw => ?_⟩
@@ -478,32 +504,46 @@ local directions, and there is no such pair when there are fewer than two of the
 def localSectors (S : Set Plane) (x : Plane) (r : ℝ) : Set (Set Plane) :=
   (fun z => connectedComponentIn (ball x r \ S) z) '' (ball x r \ S)
 
+/--
+@isnad1 id=mem.1h4v.s7.78a4e7397e9c from=translated src=- shape=214c44d8 vocab=ca917a0c
+-/
 theorem mem_localSectors (hz : z ∈ ball x r \ S) :
     connectedComponentIn (ball x r \ S) z ∈ localSectors S x r := ⟨z, hz, rfl⟩
 
+/--
+@isnad1 id=le.1h4v.s6.2d2814ad3ec2 from=translated src=- shape=d5ce0012 vocab=e83bf0f9
+-/
 theorem subset_ball_diff_of_mem_localSectors (hN : N ∈ localSectors S x r) :
     N ⊆ ball x r \ S := by
   obtain ⟨z, -, rfl⟩ := hN
   exact connectedComponentIn_subset _ _
 
-/-- Each sector is connected — in particular nonempty. -/
+/-- Each sector is connected — in particular nonempty.
+@isnad1 id=isconnec.1h4v.s6.e7c95b2674bc from=translated src=- shape=7c76247a vocab=3c4af4b3
+-/
 theorem isConnected_of_mem_localSectors (hN : N ∈ localSectors S x r) : IsConnected N := by
   obtain ⟨z, hz, rfl⟩ := hN
   exact ⟨⟨z, mem_connectedComponentIn hz⟩, isPreconnected_connectedComponentIn⟩
 
-/-- Each sector is open. -/
+/-- Each sector is open.
+@isnad1 id=isopen.3h4v.s6.6db456fdc8a5 from=translated src=- shape=6545de8b vocab=9d8e9abf
+-/
 theorem isOpen_of_mem_localSectors (h : IsLocalRadius S x r) (hfin : (localDirs S x).Finite)
     (hN : N ∈ localSectors S x r) : IsOpen N := by
   obtain ⟨z, -, rfl⟩ := hN
   exact Plane.isOpen_connectedComponentIn (h.isOpen_ball_diff hfin)
 
-/-- **The sectors cover the punctured disk.** No hypothesis: this is true of components. -/
+/-- **The sectors cover the punctured disk.** No hypothesis: this is true of components.
+@isnad1 id=eq.0h3v.s6.77138d223764 from=translated src=- shape=92c44348 vocab=f7109487
+-/
 theorem sUnion_localSectors : ⋃₀ localSectors S x r = ball x r \ S := by
   refine subset_antisymm ?_ fun w hw => ⟨_, mem_localSectors hw, mem_connectedComponentIn hw⟩
   rintro w ⟨N, hN, hw⟩
   exact subset_ball_diff_of_mem_localSectors hN hw
 
-/-- **The sectors are pairwise disjoint**, so the cover is a partition. -/
+/-- **The sectors are pairwise disjoint**, so the cover is a partition.
+@isnad1 id=pairwise.0h3v.s5.735db7cdb275 from=translated src=- shape=4edc62ba vocab=bb3a4f73
+-/
 theorem localSectors_pairwiseDisjoint : (localSectors S x r).PairwiseDisjoint id := by
   rintro _ ⟨z₁, -, rfl⟩ _ ⟨z₂, -, rfl⟩ hne
   simp only [Function.onFun, id]
@@ -513,7 +553,9 @@ theorem localSectors_pairwiseDisjoint : (localSectors S x r).PairwiseDisjoint id
 
 /-- **There are finitely many sectors.** With at least two branches each is a cone between a
 consecutive pair of local directions, and there are finitely many such pairs; with fewer there
-is exactly one sector. -/
+is exactly one sector.
+@isnad1 id=finite.2h3v.s4.a4583a8a2637 from=translated src=- shape=cf5e3a9a vocab=f49e8db1
+-/
 theorem localSectors_finite (h : IsLocalRadius S x r) (hfin : (localDirs S x).Finite) :
     (localSectors S x r).Finite := by
   by_cases hsub : (localDirs S x).Subsingleton
@@ -532,7 +574,9 @@ theorem localSectors_finite (h : IsLocalRadius S x r) (hfin : (localDirs S x).Fi
     exact ⟨p, hp, (h.connectedComponentIn_eq_cone hfin h2 (Plane.mem_sectorPairs_iff.1 hp)
       hzp).symm⟩
 
-/-- With at least two branches, every cone between consecutive local directions is a sector. -/
+/-- With at least two branches, every cone between consecutive local directions is a sector.
+@isnad1 id=mem.4h5v.s6.1772886ec6bc from=translated src=- shape=0a2f0326 vocab=3b328b1b
+-/
 theorem cone_mem_localSectors (h : IsLocalRadius S x r) (hfin : (localDirs S x).Finite)
     (h2 : ∃ a ∈ localDirs S x, ∃ b ∈ localDirs S x, a ≠ b) {e w : Plane}
     (hp : Plane.IsSectorPair (localDirs S x) e w) :
@@ -540,7 +584,9 @@ theorem cone_mem_localSectors (h : IsLocalRadius S x r) (hfin : (localDirs S x).
   obtain ⟨z, hz⟩ := (h.isConnected_cone hp).nonempty
   exact ⟨z, h.cone_subset_ball_diff hp hz, h.connectedComponentIn_eq_cone hfin h2 hp hz⟩
 
-/-- With fewer than two branches there is exactly one sector: the whole punctured disk. -/
+/-- With fewer than two branches there is exactly one sector: the whole punctured disk.
+@isnad1 id=eq.3h3v.s6.ad41802ecf4c from=translated src=- shape=25dd8a0f vocab=9d824114
+-/
 theorem localSectors_eq_of_subsingleton (h : IsLocalRadius S x r)
     (hfin : (localDirs S x).Finite) (hsub : (localDirs S x).Subsingleton) :
     localSectors S x r = {ball x r \ S} := by
@@ -561,7 +607,9 @@ from `x` without leaving it.
 
 The sector is named — it is `connectedComponentIn (ball x r \ S) y`, a member of
 `Schoenflies.localSectors` by `Schoenflies.mem_localSectors` — rather than packaged in an `∃`,
-so a consumer can speak about it before producing it. -/
+so a consumer can speak about it before producing it.
+@isnad1 id=le.3h4v.s8.108abde3150b from=translated src=- shape=11e4d161 vocab=718abc15
+-/
 theorem IsLocalRadius.openSegment_subset_connectedComponentIn (h : IsLocalRadius S x r)
     (hy : y ∈ ball x r) (hyS : y ∉ S) :
     openSegment ℝ x y ⊆ connectedComponentIn (ball x r \ S) y := by
@@ -600,7 +648,9 @@ an ambient region whose frontier belongs to the skeleton, by
 def CellsAbsorb (K : Set Plane) (cells : Set (Set Plane)) : Prop :=
   ∀ N : Set Plane, IsPreconnected N → Disjoint N K → ∀ R ∈ cells, (N ∩ R).Nonempty → N ⊆ R
 
-/-- A connected set that misses the frontier of an open set and meets it lies inside it. -/
+/-- A connected set that misses the frontier of an open set and meets it lies inside it.
+@isnad1 id=le.4h2v.s7.9051ebf9ea2d from=translated src=- shape=c104d1a5 vocab=757f8dad
+-/
 theorem subset_of_isPreconnected_of_frontier_disjoint (hQ : IsOpen Q) (hN : IsPreconnected N)
     (hfr : Disjoint N (frontier Q)) (hmeet : (N ∩ Q).Nonempty) : N ⊆ Q := by
   have hcover : N ⊆ Q ∪ (closure Q)ᶜ := by
@@ -621,7 +671,9 @@ theorem subset_of_isPreconnected_of_frontier_disjoint (hQ : IsOpen Q) (hN : IsPr
   · exact absurd ⟨w, hw, hc⟩ hempty
 
 /-- **The discharger for `Schoenflies.CellsAbsorb`**: the 2-cells are the connected components
-of the complement of the skeleton. That is the content of `lem:cellulation-invariants`(i). -/
+of the complement of the skeleton. That is the content of `lem:cellulation-invariants`(i).
+@isnad1 id=cellsabs.1h2v.s6.cda8d3a74bd4 from=translated src=- shape=93046229 vocab=0fba9fa0
+-/
 theorem cellsAbsorb_of_isComponent {cells : Set (Set Plane)}
     (h : ∀ R ∈ cells, ∃ z, R = connectedComponentIn Kᶜ z) : CellsAbsorb K cells := by
   rintro N hN hdisj R hR ⟨w, hwN, hwR⟩
@@ -634,7 +686,9 @@ theorem cellsAbsorb_of_isComponent {cells : Set (Set Plane)}
 left of an ambient open region `Q` after the skeleton is removed, and the frontier of `Q`
 belongs to the skeleton. The second clause is what stops a sector from leaking out of `Q`; in
 the blueprint it is `thm:polygonal-jordan` applied to the square boundary, and here it is
-`Schoenflies.subset_of_isPreconnected_of_frontier_disjoint`. -/
+`Schoenflies.subset_of_isPreconnected_of_frontier_disjoint`.
+@isnad1 id=cellsabs.3h3v.s7.ffaeb28fff37 from=translated src=- shape=81687dc9 vocab=e576b72e
+-/
 theorem cellsAbsorb_of_isComponent_in (hQ : IsOpen Q) (hQK : frontier Q ⊆ K)
     {cells : Set (Set Plane)}
     (h : ∀ R ∈ cells, R ⊆ Q ∧ ∃ z, R = connectedComponentIn (Q \ K) z) : CellsAbsorb K cells := by
@@ -647,7 +701,9 @@ theorem cellsAbsorb_of_isComponent_in (hQ : IsOpen Q) (hQK : frontier Q ⊆ K)
     fun v hv => ⟨hNQ hv, Set.disjoint_left.1 hdisj hv⟩
 
 /-- The frontier of an open axis-parallel square lies in the square's boundary. This is how the
-hypothesis "the boundary of `Q` is part of the skeleton" is checked on the target side. -/
+hypothesis "the boundary of `Q` is part of the skeleton" is checked on the target side.
+@isnad1 id=le.0h2v.s6.0a43013c522b from=translated src=- shape=ebb53f08 vocab=2c4cb9fa
+-/
 theorem frontier_openSquare_subset (c : Plane) (s : ℝ) :
     frontier (Plane.openSquare c s) ⊆ Plane.closedSquare c s \ Plane.openSquare c s := by
   have hsub : Plane.openSquare c s ⊆ Plane.closedSquare c s := by
@@ -683,7 +739,9 @@ compact wild set `C`, a small enough disk is a local disk for `|G| ∪ C`, not m
 
 Not used below — the accessibility proof works with `|G|` inside the disk and disposes of `C`
 by disjointness — but it is the blueprint sentence, and a consumer wanting the sectors of the
-*whole* skeleton wants this. -/
+*whole* skeleton wants this.
+@isnad1 id=ex.5h5v.s7.551ca5c2056b from=translated src=- shape=68e6424e vocab=4df163fc
+-/
 theorem IsDrawing.exists_isLocalRadius_union [G.Finite] (h : IsDrawing G drawing)
     (hpoly : ∀ e ∈ E(G), IsPolygonal (edgeArc drawing e)) (hC : IsCompact C)
     (hx : x ∈ pointSet G drawing) (hxC : x ∉ C) :
@@ -699,14 +757,18 @@ theorem IsDrawing.exists_isLocalRadius_union [G.Finite] (h : IsDrawing G drawing
   have h2 : min r₀ (ρ / 2) ≤ ρ / 2 := min_le_right _ _
   linarith
 
-/-- **There are finitely many sectors at every point of `|G|`.** -/
+/-- **There are finitely many sectors at every point of `|G|`.**
+@isnad1 id=finite.3h5v.s6.a082fec0e340 from=translated src=- shape=06515b1c vocab=791c4beb
+-/
 theorem IsDrawing.localSectors_finite [G.Finite] (h : IsDrawing G drawing)
     (hpoly : ∀ e ∈ E(G), IsPolygonal (edgeArc drawing e))
     (hr : IsLocalRadius (pointSet G drawing) x r) :
     (localSectors (pointSet G drawing) x r).Finite :=
   Schoenflies.localSectors_finite hr (h.finite_localDirs hpoly x)
 
-/-- **Every sector at a point of `|G|` is open.** -/
+/-- **Every sector at a point of `|G|` is open.**
+@isnad1 id=isopen.4h6v.s6.6063ccf70b37 from=translated src=- shape=8508d3cd vocab=c66b2c2b
+-/
 theorem IsDrawing.isOpen_of_mem_localSectors [G.Finite] (h : IsDrawing G drawing)
     (hpoly : ∀ e ∈ E(G), IsPolygonal (edgeArc drawing e))
     (hr : IsLocalRadius (pointSet G drawing) x r) {N : Set Plane}
@@ -716,7 +778,9 @@ theorem IsDrawing.isOpen_of_mem_localSectors [G.Finite] (h : IsDrawing G drawing
 /-- **Each sector lies in a single face**, namely the face of any of its points. This is the
 clause `Graph.exists_access_sector` proves under the two-branch hypothesis, here with none — and
 in fact with no hypothesis on the radius either, since a component of the punctured disk is a
-connected subset of the exterior whatever the radius. -/
+connected subset of the exterior whatever the radius.
+@isnad1 id=le.2h6v.s7.e85dc59f7c18 from=translated src=- shape=186d6767 vocab=37150e22
+-/
 theorem localSector_subset_face (hy : y ∈ ball x r) (hyE : y ∈ exterior G drawing) :
     connectedComponentIn (ball x r \ pointSet G drawing) y ⊆ face G drawing y :=
   isPreconnected_connectedComponentIn.subset_connectedComponentIn
@@ -730,7 +794,9 @@ theorem localSector_subset_face (hy : y ∈ ball x r) (hyE : y ∈ exterior G dr
 The reasoning is the blueprint's, once the disk has been shrunk below the distance to the wild
 set `C`: the sector is connected and misses the whole skeleton `K = |G| ∪ C`, so by
 `lem:cellulation-invariants`(i) it lies in a single 2-cell, and that cell is `F` because the
-sector meets `F` at `y`. -/
+sector meets `F` at `y`.
+@isnad1 id=le.7h10v.s8.10dc6c06e7d2 from=translated src=- shape=fdb29955 vocab=c10638bb
+-/
 theorem localSector_subset_cell (hK : K = pointSet G drawing ∪ C)
     (hcells : CellsAbsorb K cells) (hF : F ∈ cells)
     (hballC : Disjoint (ball x r) C) (hy : y ∈ ball x r) (hyF : y ∈ F)
@@ -764,7 +830,9 @@ statement does not exclude, since `x` need only be a limit of points of `F` — 
 the skeleton entirely and is itself the access region.
 
 The sector is named as the connected component of `y` in the punctured disk, so no hypothesis
-on the number of local branches at `x` is needed anywhere. -/
+on the number of local branches at `x` is needed anywhere.
+@isnad1 id=ex.10h9v.s8.6cb6f4fbe91f from=translated src=- shape=306a8fb9 vocab=56027dd4
+-/
 theorem exists_access_segment [G.Finite] (h : IsDrawing G drawing)
     (hpoly : ∀ e ∈ E(G), IsPolygonal (edgeArc drawing e))
     (hC : IsCompact C) (hK : K = pointSet G drawing ∪ C)
@@ -838,7 +906,9 @@ theorem exists_access_segment [G.Finite] (h : IsDrawing G drawing)
 finite cellulation, lying off the wild outer curve `C`, is polygonally accessible from `F`.
 
 `x ∈ closure F` is assumed rather than `x ∈ frontier F`: the proof never uses `x ∉ F`, and the
-weaker hypothesis is what a consumer holding a limit of points of `F` actually has. -/
+weaker hypothesis is what a consumer holding a limit of points of `F` actually has.
+@isnad1 id=polyacce.9h8v.s7.5dec711e76d8 from=translated src=- shape=5a82722b vocab=ad4a0e82
+-/
 theorem polygonal_side_accessibility [G.Finite] (h : IsDrawing G drawing)
     (hpoly : ∀ e ∈ E(G), IsPolygonal (edgeArc drawing e))
     (hC : IsCompact C) (hK : K = pointSet G drawing ∪ C)
@@ -853,7 +923,9 @@ theorem polygonal_side_accessibility [G.Finite] (h : IsDrawing G drawing)
 including every outer edge, so there is no wild set to avoid; but the 2-cells only fill an
 ambient region `Q` whose frontier belongs to the skeleton, and a sector at a boundary point of
 `Q` may lie outside `Q` and belong to no cell. That is exactly what
-`Schoenflies.cellsAbsorb_of_isComponent_in` handles. -/
+`Schoenflies.cellsAbsorb_of_isComponent_in` handles.
+@isnad1 id=polyacce.7h7v.s8.7e4e15b732b6 from=translated src=- shape=eb566758 vocab=24c3eab1
+-/
 theorem polygonal_side_accessibility_target [G.Finite] (h : IsDrawing G drawing)
     (hpoly : ∀ e ∈ E(G), IsPolygonal (edgeArc drawing e))
     (hQ : IsOpen Q) (hQK : frontier Q ⊆ pointSet G drawing)
@@ -871,7 +943,9 @@ theorem polygonal_side_accessibility_target [G.Finite] (h : IsDrawing G drawing)
 blueprint gets "a sector meeting `F` lies in `Q°`" from `thm:polygonal-jordan` applied to the
 square boundary; here it comes from `Schoenflies.frontier_openSquare_subset` and the clopen
 argument in `Schoenflies.subset_of_isPreconnected_of_frontier_disjoint`, so the polygonal Jordan
-theorem is not needed. -/
+theorem is not needed.
+@isnad1 id=polyacce.6h8v.s7.b951861d150e from=translated src=- shape=1bba4df6 vocab=e4d4b6ee
+-/
 theorem polygonal_side_accessibility_square [G.Finite] (h : IsDrawing G drawing)
     (hpoly : ∀ e ∈ E(G), IsPolygonal (edgeArc drawing e)) (c : Plane) (s : ℝ)
     (hS : Plane.closedSquare c s \ Plane.openSquare c s ⊆ pointSet G drawing)

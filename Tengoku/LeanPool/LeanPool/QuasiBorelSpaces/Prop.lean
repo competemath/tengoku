@@ -24,6 +24,9 @@ variable
 
 namespace QuasiBorelSpace.Prop
 
+/--
+@isnad1 id=ishom.3h7v.s6.4360e546646d from=translated src=- shape=807058b4 vocab=88d4a471
+-/
 @[fun_prop]
 lemma isHom_ite
     {p : A → Prop} (hp : IsHom p) [inst : DecidablePred p]
@@ -37,36 +40,54 @@ lemma isHom_ite
   intro
   split_ifs <;> assumption
 
+/--
+@isnad1 id=ishom.1h3v.s4.47f1ff128182 from=translated src=- shape=5cdf6ada vocab=3fa53d2d
+-/
 @[fun_prop]
 lemma isHom_not
     {f : A → Prop} (hf : IsHom f)
     : IsHom (fun x ↦ ¬f x) := by
   fun_prop
 
+/--
+@isnad1 id=ishom.2h4v.s5.73ae2822e2b5 from=translated src=- shape=091efe82 vocab=3fa53d2d
+-/
 @[fun_prop]
 lemma isHom_and
     {f g : A → Prop} (hf : IsHom f) (hg : IsHom g)
     : IsHom (fun x ↦ f x ∧ g x) := by
   fun_prop
 
+/--
+@isnad1 id=ishom.2h4v.s5.9815a87f379e from=translated src=- shape=091efe82 vocab=3fa53d2d
+-/
 @[fun_prop]
 lemma isHom_or
     {f g : A → Prop} (hf : IsHom f) (hg : IsHom g)
     : IsHom (fun x ↦ f x ∨ g x) := by
   fun_prop
 
+/--
+@isnad1 id=ishom.2h4v.s5.ecee1b52e28d from=translated src=- shape=5c323d91 vocab=3fa53d2d
+-/
 lemma isHom_imp
     {f g : A → Prop} (hf : IsHom f) (hg : IsHom g)
     : IsHom (fun x ↦ f x → g x) := by
   exact isHom_comp' (f := fun x ↦ x.1 → x.2) (g := fun x ↦ (f x, g x))
     (by simp only [isHom_of_discrete_countable]) (by fun_prop)
 
+/--
+@isnad1 id=ishom.2h4v.s5.72bb979d43cd from=translated src=- shape=091efe82 vocab=3fa53d2d
+-/
 @[fun_prop]
 lemma isHom_iff
     {f g : A → Prop} (hf : IsHom f) (hg : IsHom g)
     : IsHom (fun x ↦ f x ↔ g x) := by
   fun_prop
 
+/--
+@isnad1 id=ishom.1h4v.s5.270d23d69bc8 from=translated src=- shape=fdbe6055 vocab=4c4abed3
+-/
 lemma isHom_forall
     {f : I → A → Prop} (hf : ∀ i, IsHom (f i))
     : IsHom (fun x ↦ ∀i, f i x) := by
@@ -78,6 +99,9 @@ lemma isHom_forall
   rw [←isHom_iff_measurable]
   fun_prop
 
+/--
+@isnad1 id=ishom.1h4v.s5.3fe064c756f6 from=translated src=- shape=c8106cd7 vocab=4c4abed3
+-/
 @[fun_prop]
 lemma isHom_exists
     {f : I → A → Prop} (hf : ∀ i, IsHom (f i))
@@ -90,6 +114,9 @@ lemma isHom_exists
   rw [←isHom_iff_measurable]
   fun_prop
 
+/--
+@isnad1 id=ishom.3h7v.s7.c9851cdd601e from=translated src=- shape=4400b416 vocab=5c9f76f1
+-/
 @[fun_prop]
 lemma isHom_dite
     {p : A → Prop} (hp : IsHom p) [inst : DecidablePred p]
@@ -131,6 +158,9 @@ lemma isHom_dite
     simp only [Subtype.isHom_def, apply_dite, dite_eq_ite]
     apply isHom_ite <;> fun_prop
 
+/--
+@isnad1 id=ishom.1h3v.s5.497d96f45795 from=translated src=- shape=cf454921 vocab=6f4f9a61
+-/
 @[fun_prop]
 lemma isHom_decide
     {p : A → Prop} [inst : DecidablePred p] (hp : IsHom p)

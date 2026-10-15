@@ -36,28 +36,43 @@ instance [∀ i, QuasiBorelSpace (P i)] : QuasiBorelSpace (∀i : I, P i) where
   isVar_cases' hix hφ i := by
     exact isHom_cases (by simp only [isHom_ofMeasurableSpace, hix]) (hφ · i)
 
+/--
+@isnad1 id=iff.0h4v.s5.94615f63d6ac from=translated src=- shape=1b16c2c6 vocab=45ea852a
+-/
 @[local simp]
 lemma isHom_def (φ : ℝ → ∀ i, P i) : IsHom φ ↔ ∀ i, IsHom (φ · i) := by
   rw [←isVar_iff_isHom]
   rfl
 
+/--
+@isnad1 id=ishom.0h4v.s5.5cbaf89286fc from=translated src=- shape=a9f7658e vocab=3fa53d2d
+-/
 @[fun_prop]
 lemma isHom_apply (i : I) : IsHom (fun (f : (i : I) → P i) ↦ f i) := by
   rw [QuasiBorelSpace.isHom_def]
   simp_all
 
+/--
+@isnad1 id=ishom.1h6v.s5.0a2294c7f5bb from=translated src=- shape=9cc5cda7 vocab=3fa53d2d
+-/
 @[fun_prop]
 lemma isHom_pi {f : A → ∀ i, P i} (hf : ∀ i, IsHom (f · i)) : IsHom f := by
   rw [QuasiBorelSpace.isHom_def]
   simp only [isHom_def]
   fun_prop
 
+/--
+@isnad1 id=iff.0h6v.s5.0603d5d68257 from=translated src=- shape=07b1ddd5 vocab=3fa53d2d
+-/
 @[simp]
 lemma isHom_iff {f : A → (i : I) → P i} : IsHom f ↔ ∀i, IsHom (f · i) := by
   apply Iff.intro
   · fun_prop
   · exact isHom_pi
 
+/--
+@isnad1 id=ishom.0h4v.s5.be7d8b995b5b from=translated src=- shape=639edbfb vocab=c9508439
+-/
 @[simp, fun_prop]
 lemma isHom_eval (i) : IsHom (Function.eval i : (∀ i, P i) → P i) := by
   unfold Function.eval

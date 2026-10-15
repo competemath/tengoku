@@ -19,6 +19,9 @@ open Complex Metric circleIntegral Topology Filter Set
 
 variable {ι α β : Type*} {U : Set ℂ} {c z₀ : ℂ} {r : ℝ} {f g : ℂ → ℂ}
 
+/--
+@isnad1 id=eq.7h5v.s7.e0e38a03c236 from=translated src=- shape=73cb3baf vocab=9c2398e7
+-/
 lemma crucial (hU : IsOpen U) (hcr : closedBall c r ⊆ U) (hz₀ : z₀ ∈ ball c r)
     (hf : DifferentiableOn ℂ f U)
     (hfz₀ : f z₀ = 0) (hf'z₀ : deriv f z₀ ≠ 0)
@@ -67,10 +70,16 @@ lemma crucial (hU : IsOpen U) (hcr : closedBall c r ⊆ U) (hz₀ : z₀ ∈ bal
     · exact h1.continuousOn.mono (sphere_subset_closedBall.trans hcr)
     · exact fun z hz => h2 z (sphere_subset_closedBall hz)
 
+/--
+@isnad1 id=tendstou.0h6v.s4.ff1fbf694069 from=translated src=- shape=8b1e7c1a vocab=b33eb00f
+-/
 lemma tendsto_uniformly_on_const {f : α → β} [UniformSpace β] {p : Filter ι} {s : Set α} :
     TendstoUniformlyOn (fun _ => f) f p s :=
   UniformOnFun.tendsto_iff_tendstoUniformlyOn.1 tendsto_const_nhds s (Set.mem_singleton _)
 
+/--
+@isnad1 id=eventual.2h2v.s8.cd71933ce54d from=translated src=- shape=0ada990d vocab=3449040d
+-/
 lemma bla (hf : AnalyticAt ℂ f z₀)
     (hf' : HasFPowerSeriesAt (deriv f) (0 : FormalMultilinearSeries ℂ ℂ ℂ) z₀) :
     ∀ᶠ z in 𝓝 z₀, f z = f z₀ := by
@@ -85,6 +94,9 @@ lemma bla (hf : AnalyticAt ℂ f z₀)
   have h4 : DifferentiableOn ℂ f (ball z₀ ε) := fun z hz => (h hz).1.differentiableWithinAt
   exact Convex.is_const_of_fderivWithin_eq_zero (convex_ball z₀ ε) h4 h3 hz (mem_ball_self hε)
 
+/--
+@isnad1 id=le.4h3v.s9.0f3655fb5c7e from=translated src=- shape=c83b202c vocab=062ede60
+-/
 lemma two_le_order_of_deriv_eq_zero {g : ℂ → ℂ} {p : FormalMultilinearSeries ℂ ℂ ℂ}
     (hgp : HasFPowerSeriesAt g p z₀) (hp : p ≠ 0) (hg : g z₀ = 0) (hg' : deriv g z₀ = 0) :
     2 ≤ p.order := by

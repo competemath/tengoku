@@ -67,6 +67,9 @@ noncomputable def Place.ofChart (w : PlaceA k K) : Place k K := by
   exact ⟨h.orderMonoidIso.symm.trans
     (Valuation.IsRankOneDiscrete.valueGroup₀_equiv_withZeroMulInt q)⟩
 
+/--
+@isnad1 id=eq.0h3v.s9.1c9d6ce8a74d from=translated src=- shape=524be2ce vocab=ed690179
+-/
 @[simp]
 theorem Place.ofChart_toValuationSubring (w : PlaceA k K) :
     (Place.ofChart k K w).toValuationSubring =
@@ -74,7 +77,9 @@ theorem Place.ofChart_toValuationSubring (w : PlaceA k K) :
 
 /-- The normalized intrinsic valuation attached to a coordinate place is exactly its coordinate
 valuation. This strengthens equivalence by using uniqueness of the ordered `ℤᵐ⁰`
-normalization. -/
+normalization.
+@isnad1 id=eq.0h3v.s9.3160a5394041 from=translated src=- shape=f469434b vocab=a75cf948
+-/
 theorem Place.ofChart_valuation_eq (w : PlaceA k K) :
     (Place.ofChart k K w).valuation = placeValuation k K w := by
   let q := placeValuation k K w
@@ -105,6 +110,9 @@ theorem Place.ofChart_valuation_eq (w : PlaceA k K) :
         · exact w.valuation_surjective K) x
 
 omit [Algebra k K] [IsScalarTower k k[X] K] in
+/--
+@isnad1 id=le.0h3v.s9.2bb0cdad66d8 from=translated src=- shape=2cd2b4dd vocab=38fe291c
+-/
 theorem Place.finite_X_le_one
     (w : IsDedekindDomain.HeightOneSpectrum (ringOfIntegers k K)) :
     w.valuation K (algebraMap k⟮X⟯ K RatFunc.X) ≤ 1 := by
@@ -132,6 +140,9 @@ noncomputable def centerIdeal (V : ValuationSubring L)
   (IsLocalRing.maximalIdeal V).comap
     ((algebraMap R L).codRestrict V hR)
 
+/--
+@isnad1 id=isprime.1h3v.s6.5810a53a8fc8 from=translated src=- shape=3eb74697 vocab=082a1b0a
+-/
 instance centerIdeal_isPrime (V : ValuationSubring L)
     (hR : ∀ r : R, algebraMap R L r ∈ V) : (centerIdeal V hR).IsPrime :=
   (IsLocalRing.maximalIdeal V).comap_isPrime _
@@ -144,6 +155,9 @@ noncomputable def center (V : ValuationSubring L)
   isPrime := inferInstance
   ne_bot := hne
 
+/--
+@isnad1 id=eq.3h3v.s7.0b62ddc15adf from=translated src=- shape=96d49325 vocab=34b3aa11
+-/
 theorem valuationSubringAtPrime_center (V : ValuationSubring L) (hV : V ≠ ⊤)
     (hR : ∀ r : R, algebraMap R L r ∈ V) (hne : centerIdeal V hR ≠ ⊥) :
     IsDedekindDomain.HeightOneSpectrum.valuationSubringAtPrime L (center V hR hne) = V := by
@@ -197,6 +211,9 @@ end Place
 
 namespace Place
 
+/--
+@isnad1 id=isscalar.0h2v.s9.4c8a6bed6dc0 from=translated src=- shape=837a70e3 vocab=abe59b3d
+-/
 local instance instTowerConstantsRatFunc : IsScalarTower k k⟮X⟯ K :=
   IsScalarTower.of_algebraMap_eq fun c => by
     exact (IsScalarTower.algebraMap_apply k k[X] K c).trans
@@ -206,6 +223,9 @@ local instance instTowerConstantsRatFunc : IsScalarTower k k⟮X⟯ K :=
 noncomputable def restrict (v : Place k K) : Valuation k⟮X⟯ ℤᵐ⁰ :=
   v.valuation.comap (algebraMap k⟮X⟯ K)
 
+/--
+@isnad1 id=istrivia.0h3v.s9.b45a0a3de3db from=translated src=- shape=2ce58a67 vocab=7b74b823
+-/
 instance restrict_isTrivialOn (v : Place k K) : (restrict k K v).IsTrivialOn k where
   eq_one c hc := by
     change v.valuation
@@ -215,6 +235,9 @@ instance restrict_isTrivialOn (v : Place k K) : (restrict k K v).IsTrivialOn k w
 
 omit [Algebra k[X] K] [IsScalarTower k k[X] K] [IsScalarTower k[X] k⟮X⟯ K]
     [FunctionField k K] in
+/--
+@isnad1 id=isnontri.0h3v.s7.09065cbcd2fc from=translated src=- shape=ce27f001 vocab=64121404
+-/
 theorem restrict_isNontrivial (v : Place k K) :
     (restrict k K v).IsNontrivial := by
   let q := restrict k K v
@@ -233,6 +256,9 @@ theorem restrict_isNontrivial (v : Place k K) :
     (Algebra.IsAlgebraic.isAlgebraic y)
 
 omit [FunctionField k K] in
+/--
+@isnad1 id=xor.0h3v.s9.8519dc049ce8 from=translated src=- shape=b66dbeb8 vocab=bd110a15
+-/
 theorem restrict_classification (v : Place k K) :
     Xor ((restrict k K v).IsEquiv (RatFunc.inftyValuation k))
       (∃! u : IsDedekindDomain.HeightOneSpectrum k[X],
@@ -243,6 +269,9 @@ theorem restrict_classification (v : Place k K) :
   exact RatFunc.valuation_isEquiv_infty_or_adic (v := q)
 
 omit [IsScalarTower k k[X] K] [FunctionField k K] [Algebra.IsSeparable k⟮X⟯ K] in
+/--
+@isnad1 id=mem.1h5v.s10.bbf268a9655c from=translated src=- shape=becd2b39 vocab=9ce01d97
+-/
 theorem finiteRing_le (v : Place k K)
     (u : IsDedekindDomain.HeightOneSpectrum k[X])
     (h : (restrict k K v).IsEquiv (u.valuation k⟮X⟯)) :
@@ -262,6 +291,9 @@ theorem finiteRing_le (v : Place k K)
   exact fun r => hle r.property
 
 omit [IsScalarTower k k[X] K] in
+/--
+@isnad1 id=ne.1h4v.s11.5c1f854119b5 from=translated src=- shape=c6696222 vocab=3a6464eb
+-/
 theorem finiteCenter_ne (v : Place k K)
     (u : IsDedekindDomain.HeightOneSpectrum k[X])
     (h : (restrict k K v).IsEquiv (u.valuation k⟮X⟯)) :
@@ -294,6 +326,9 @@ theorem finiteCenter_ne (v : Place k K)
 
 omit [Algebra k[X] K] [IsScalarTower k k[X] K] [IsScalarTower k[X] k⟮X⟯ K]
     [FunctionField k K] [Algebra.IsSeparable k⟮X⟯ K] in
+/--
+@isnad1 id=mem.1h4v.s12.5f703d844ae8 from=translated src=- shape=23eb7d28 vocab=75f606b0
+-/
 theorem infiniteRing_le (v : Place k K)
     (h : (restrict k K v).IsEquiv (RatFunc.inftyValuation k)) :
     ∀ r : infiniteIntegers k K, algebraMap (infiniteIntegers k K) K r ∈
@@ -313,6 +348,9 @@ theorem infiniteRing_le (v : Place k K)
   exact fun r => hle r.property
 
 omit [Algebra k[X] K] [IsScalarTower k k[X] K] [IsScalarTower k[X] k⟮X⟯ K] in
+/--
+@isnad1 id=ne.1h3v.s13.5f3792cdac78 from=translated src=- shape=cd284b5e vocab=0a99775d
+-/
 theorem infiniteCenter_ne (v : Place k K)
     (h : (restrict k K v).IsEquiv (RatFunc.inftyValuation k)) :
     centerIdeal v.toValuationSubring (infiniteRing_le k K v h) ≠ ⊥ := by
@@ -346,6 +384,9 @@ theorem infiniteCenter_ne (v : Place k K)
 
 omit [Algebra k K] [Algebra k[X] K] [IsScalarTower k k[X] K]
     [IsScalarTower k[X] k⟮X⟯ K] in
+/--
+@isnad1 id=lt.0h3v.s10.dffc773e4f9a from=translated src=- shape=36077e4f vocab=6c07a269
+-/
 theorem infinite_X_gt_one
     (w : IsDedekindDomain.HeightOneSpectrum (infiniteIntegers k K)) :
     1 < w.valuation K (algebraMap k⟮X⟯ K RatFunc.X) := by
@@ -376,6 +417,9 @@ theorem infinite_X_gt_one
   rw [u.valuation_liesOver K w RatFunc.X] at hpow
   exact hpow
 
+/--
+@isnad1 id=injectiv.0h2v.s9.34968090ec47 from=translated src=- shape=902dbd6c vocab=3d5c245e
+-/
 theorem ofChart_injective : Function.Injective (Place.ofChart k K) := by
   intro w₁ w₂ hw
   have hsub := congrArg Place.toValuationSubring hw
@@ -396,7 +440,9 @@ theorem ofChart_injective : Function.Injective (Place.ofChart k K) := by
     exact IsDedekindDomain.HeightOneSpectrum.eq_of_valuation_isEquiv_valuation
       ((Valuation.isEquiv_iff_valuationSubring _ _).mpr hsub)
 
-/-- Every intrinsic place occurs on one of the two coordinate charts. -/
+/-- Every intrinsic place occurs on one of the two coordinate charts.
+@isnad1 id=ex.0h3v.s9.abe79e8e25c2 from=translated src=- shape=37783dff vocab=c2ecff1e
+-/
 theorem exists_chart (v : Place k K) :
     ∃ w : PlaceA k K, Place.ofChart k K w = v := by
   rcases restrict_classification k K v with h | h
@@ -423,6 +469,9 @@ theorem exists_chart (v : Place k K) :
 noncomputable def toChart (v : Place k K) : PlaceA k K :=
   Classical.choose (exists_chart k K v)
 
+/--
+@isnad1 id=eq.0h3v.s9.d3ef662ef872 from=translated src=- shape=98971704 vocab=55e7e942
+-/
 theorem ofChart_toChart (v : Place k K) :
     Place.ofChart k K (toChart k K v) = v :=
   Classical.choose_spec (exists_chart k K v)
@@ -440,11 +489,16 @@ end Place
 noncomputable abbrev chartToPlace : PlaceA k K ≃ Place k K :=
   Place.chartToPlaceCore k K
 
+/--
+@isnad1 id=eq.0h3v.s9.96f1d4732593 from=translated src=- shape=755df4a7 vocab=c533d118
+-/
 @[simp]
 theorem chartToPlace_apply (w : PlaceA k K) :
     chartToPlace k K w = Place.ofChart k K w := rfl
 
-/-- Compatibility of the chart and intrinsic normalized valuations. -/
+/-- Compatibility of the chart and intrinsic normalized valuations.
+@isnad1 id=eq.0h3v.s9.76b07947ae1f from=translated src=- shape=9538b487 vocab=76c87e7d
+-/
 theorem placeValuation_eq (w : PlaceA k K) :
     (chartToPlace k K w).valuation = placeValuation k K w :=
   Place.ofChart_valuation_eq k K w

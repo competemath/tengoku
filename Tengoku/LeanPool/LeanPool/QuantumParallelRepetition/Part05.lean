@@ -69,18 +69,27 @@ def exactReverseRightSide
   insert seed.coordinate
     (exactRight seed.coordinate seed.partition)
 
+/--
+@isnad1 id=mem.0h2v.s5.de107ba5a726 from=translated src=- shape=0f3d4dff vocab=f30cbb77
+-/
 @[simp] theorem exactReverseLeftSide_coordinate_mem
     {M : Type*} [Fintype M] [DecidableEq M]
     (seed : ExactForwardSeed M) :
     seed.coordinate ∈ exactReverseLeftSide seed := by
   simp only [exactReverseLeftSide, mem_insert, true_or]
 
+/--
+@isnad1 id=mem.0h2v.s5.b87f76f6be8c from=translated src=- shape=0f3d4dff vocab=df71d65b
+-/
 @[simp] theorem exactReverseRightSide_coordinate_mem
     {M : Type*} [Fintype M] [DecidableEq M]
     (seed : ExactForwardSeed M) :
     seed.coordinate ∈ exactReverseRightSide seed := by
   simp only [exactReverseRightSide, mem_insert, true_or]
 
+/--
+@isnad1 id=eq.0h2v.s5.e1cffd0daa89 from=translated src=- shape=297edd4e vocab=e1c6ec91
+-/
 theorem exactReverseLeftSide_card
     {M : Type*} [Fintype M] [DecidableEq M]
     (seed : ExactForwardSeed M) :
@@ -89,6 +98,9 @@ theorem exactReverseLeftSide_card
   simp only [exactReverseLeftSide, exactLeft_coordinate_not_mem, not_false_eq_true,
     card_insert_of_notMem, Nat.add_comm]
 
+/--
+@isnad1 id=eq.0h2v.s5.022c714e09e7 from=translated src=- shape=297edd4e vocab=804e7c38
+-/
 theorem exactReverseRightSide_card
     {M : Type*} [Fintype M] [DecidableEq M]
     (seed : ExactForwardSeed M) :
@@ -190,6 +202,9 @@ def exactGlobalHistoryVector
         ExactGlobalHistoryLocalIndex G n S D) :=
   taggedTensorVector r z
 
+/--
+@isnad1 id=eq.0h10v.s17.d035c9b85f0c from=translated src=- shape=c1586488 vocab=02340d31
+-/
 theorem exactGlobalHistoryVector_norm
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -320,6 +335,9 @@ def exactSourceTuplePhi
   (exactGlobalHistoryFinPhi
     G n S D t.2.2.2 t.2.2.1).val
 
+/--
+@isnad1 id=eq.0h9v.s18.55fc91784ba8 from=translated src=- shape=6e7103c1 vocab=a22b34c5
+-/
 theorem exactSourceTupleGamma_norm
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -625,6 +643,9 @@ attribute [local instance] Classical.propDecidable
 variable {X Y A B : Type*}
 variable [Fintype X] [Fintype Y] [Fintype A] [Fintype B]
 
+/--
+@isnad1 id=eq.0h6v.s5.e543e581d43d from=translated src=- shape=b21b59b4 vocab=3cca01a8
+-/
 theorem exactGroupedMass_decidableEq_irrel
     {Ω κ : Type*} [Fintype Ω]
     (first second : DecidableEq κ)
@@ -636,7 +657,9 @@ theorem exactGroupedMass_decidableEq_irrel
   rfl
 
 /-- Grouped masses agree when their projections and source weights agree, independently of
-the chosen decidable-equality implementations on the target. -/
+the chosen decidable-equality implementations on the target.
+@isnad1 id=eq.2h8v.s5.391dfce18e22 from=translated src=- shape=9dfc55f9 vocab=3cca01a8
+-/
 theorem exactGroupedMass_congr
     {Ω κ : Type*} [Fintype Ω]
     (first second : DecidableEq κ)
@@ -791,6 +814,9 @@ def exactReverseRightRank
     (exactRight_coordinate_not_mem seed.coordinate seed.partition)
     (exactRightRank seed) seed.rightCut
 
+/--
+@isnad1 id=eq.0h2v.s8.8fd56123242f from=translated src=- shape=0690f2ed vocab=f37babf2
+-/
 @[simp] theorem exactReverseLeftRank_coordinate
     {M : Type*} [Fintype M] [DecidableEq M]
     (seed : ExactForwardSeed M) :
@@ -805,6 +831,9 @@ def exactReverseRightRank
       seed.coordinate seed.partition)
     (exactLeftRank seed) seed.leftCut
 
+/--
+@isnad1 id=eq.0h2v.s8.72d5e2edf532 from=translated src=- shape=0690f2ed vocab=93db6eff
+-/
 @[simp] theorem exactReverseRightRank_coordinate
     {M : Type*} [Fintype M] [DecidableEq M]
     (seed : ExactForwardSeed M) :
@@ -819,6 +848,9 @@ def exactReverseRightRank
       seed.coordinate seed.partition)
     (exactRightRank seed) seed.rightCut
 
+/--
+@isnad1 id=eq.0h3v.s9.c146de9d3c30 from=translated src=- shape=88eb5444 vocab=8c96e364
+-/
 theorem exactReverseLeftRank_old
     {M : Type*} [Fintype M] [DecidableEq M]
     (seed : ExactForwardSeed M)
@@ -834,6 +866,9 @@ theorem exactReverseLeftRank_old
       seed.coordinate seed.partition)
     (exactLeftRank seed) seed.leftCut j
 
+/--
+@isnad1 id=eq.0h3v.s9.98f2b034a696 from=translated src=- shape=88eb5444 vocab=d0525ab5
+-/
 theorem exactReverseRightRank_old
     {M : Type*} [Fintype M] [DecidableEq M]
     (seed : ExactForwardSeed M)
@@ -923,6 +958,9 @@ def exactReverseContextOtherPrefix
   exactOrderedSidePrefix
     context.otherSide context.otherRank context.otherCut
 
+/--
+@isnad1 id=eq.0h2v.s5.382d43666a3a from=translated src=- shape=6cc552aa vocab=8da804e7
+-/
 theorem exactReverseLeftSide_complement
     {M : Type*} [Fintype M] [DecidableEq M]
     (seed : ExactForwardSeed M) :
@@ -937,6 +975,9 @@ theorem exactReverseLeftSide_complement
       simp [exactRight, exactLeft,
         exactReverseLeftSide, hcoordinate, hbit]
 
+/--
+@isnad1 id=eq.0h2v.s5.caf5cf0f2ee0 from=translated src=- shape=6cc552aa vocab=0ee0536a
+-/
 theorem exactReverseRightSide_complement
     {M : Type*} [Fintype M] [DecidableEq M]
     (seed : ExactForwardSeed M) :
@@ -1015,6 +1056,9 @@ def exactReverseBobContextAt
   else
     exactDefaultReverseSideContext side
 
+/--
+@isnad1 id=eq.0h2v.s5.6fbcf521cb9c from=translated src=- shape=f33eba0a vocab=2e4f3e5f
+-/
 @[simp] theorem exactReverseAliceContextAt_actual
     {M : Type*} [Fintype M] [DecidableEq M]
     (seed : ExactForwardSeed M) :
@@ -1023,6 +1067,9 @@ def exactReverseBobContextAt
       exactReverseAliceContext seed := by
   simp only [exactReverseAliceContextAt, ↓reduceDIte]
 
+/--
+@isnad1 id=eq.0h2v.s5.4fb54aa7098d from=translated src=- shape=f33eba0a vocab=8494d508
+-/
 @[simp] theorem exactReverseBobContextAt_actual
     {M : Type*} [Fintype M] [DecidableEq M]
     (seed : ExactForwardSeed M) :
@@ -1031,6 +1078,9 @@ def exactReverseBobContextAt
       exactReverseBobContext seed := by
   simp only [exactReverseBobContextAt, ↓reduceDIte]
 
+/--
+@isnad1 id=eq.0h2v.s5.8427d906e7a1 from=translated src=- shape=d07340ff vocab=c924eb57
+-/
 @[simp] theorem exactReverseAliceContext_otherPrefix
     {M : Type*} [Fintype M] [DecidableEq M]
     (seed : ExactForwardSeed M) :
@@ -1039,6 +1089,9 @@ def exactReverseBobContextAt
       exactRightPrefix seed := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.c754e707910c from=translated src=- shape=d07340ff vocab=f7592f4b
+-/
 @[simp] theorem exactReverseBobContext_otherPrefix
     {M : Type*} [Fintype M] [DecidableEq M]
     (seed : ExactForwardSeed M) :
@@ -1118,6 +1171,9 @@ def exactReverseBobSourceProjection
        (fun j => q.2.2.1 j.val.val)⟩,
       fun k => q.2.1 (context.sideRank.symm k).val.val)
 
+/--
+@isnad1 id=eq.0h2v.s8.de3877a1a86d from=translated src=- shape=ffa6bc51 vocab=ad69494a
+-/
 @[simp] theorem exactReverseAliceContext_marked_rank
     {M : Type*} [Fintype M] [DecidableEq M]
     (seed : ExactForwardSeed M) :
@@ -1128,6 +1184,9 @@ def exactReverseBobSourceProjection
   simp only [exactReverseAliceContext, Equiv.trans_apply, exactReverseLeftRank_coordinate,
     finCongr_apply, Fin.val_cast]
 
+/--
+@isnad1 id=eq.0h2v.s8.6b4a5b66a54b from=translated src=- shape=ffa6bc51 vocab=2ccfbdc8
+-/
 @[simp] theorem exactReverseBobContext_marked_rank
     {M : Type*} [Fintype M] [DecidableEq M]
     (seed : ExactForwardSeed M) :
@@ -1191,6 +1250,9 @@ def exactReverseAliceCanonicalPartition
   fun j => if j = coordinate then ignored
     else if j ∈ side then false else true
 
+/--
+@isnad1 id=eq.1h4v.s5.044f8bb7b5fd from=translated src=- shape=0cca764c vocab=1d22ad32
+-/
 theorem exactReverseAliceCanonicalPartition_side
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M) (coordinate : M)
@@ -1258,6 +1320,9 @@ def exactReverseBobCanonicalPartition
   fun j => if j = coordinate then ignored
     else if j ∈ side then true else false
 
+/--
+@isnad1 id=eq.1h4v.s5.4ffb0dd06b58 from=translated src=- shape=0cca764c vocab=f5355e7a
+-/
 theorem exactReverseBobCanonicalPartition_side
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M) (coordinate : M)
@@ -1318,6 +1383,9 @@ private def exactReverseBobPartitionFiberEquiv
   right_inv ignored := by
     simp only [exactReverseBobCanonicalPartition, ↓reduceIte]
 
+/--
+@isnad1 id=eq.1h3v.s6.8b5dbe4720e3 from=translated src=- shape=0621a19c vocab=4c184299
+-/
 theorem exactReverseAlicePartitionFiber_card
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M) (coordinate : M)
@@ -1330,6 +1398,9 @@ theorem exactReverseAlicePartitionFiber_card
     (exactReverseAlicePartitionFiberEquiv
       side coordinate member)
 
+/--
+@isnad1 id=eq.1h3v.s6.c583513a262c from=translated src=- shape=0621a19c vocab=37949c3f
+-/
 theorem exactReverseBobPartitionFiber_card
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M) (coordinate : M)
@@ -1342,6 +1413,9 @@ theorem exactReverseBobPartitionFiber_card
     (exactReverseBobPartitionFiberEquiv
       side coordinate member)
 
+/--
+@isnad1 id=eq.0h3v.s6.6b1ca325e5db from=translated src=- shape=b6f952bb vocab=a3294c54
+-/
 theorem exactFiniteIndicator_sum
     {T : Type*} [Fintype T]
     (predicate : T → Prop) [DecidablePred predicate]
@@ -1359,6 +1433,9 @@ theorem exactFiniteIndicator_sum
     _ = (Fintype.card {t : T // predicate t} : ℝ) * weight := by
       simp only [sum_boole, Fintype.card_subtype]
 
+/--
+@isnad1 id=eq.1h4v.s6.34b8cf2f3203 from=translated src=- shape=3b33cd72 vocab=59c575ae
+-/
 theorem exactReverseAlicePartitionFiber_sum
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M) (coordinate : M)
@@ -1372,6 +1449,9 @@ theorem exactReverseAlicePartitionFiber_sum
     side coordinate member]
   norm_num
 
+/--
+@isnad1 id=eq.1h4v.s6.d12a70221c3a from=translated src=- shape=3b33cd72 vocab=198ecb71
+-/
 theorem exactReverseBobPartitionFiber_sum
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M) (coordinate : M)
@@ -1385,6 +1465,9 @@ theorem exactReverseBobPartitionFiber_sum
     side coordinate member]
   norm_num
 
+/--
+@isnad1 id=eq.0h3v.s9.11007bb4bb47 from=translated src=- shape=089df08c vocab=ef9ac90d
+-/
 theorem exactReversePartition_orderCut_sum
     {M : Type*} [Fintype M] [DecidableEq M]
     (coordinate : M) (partition : M → Bool) :
@@ -1422,6 +1505,9 @@ theorem exactReversePartition_orderCut_sum
   field_simp [hleft.ne', hright.ne',
     hleft_factorial.ne', hright_factorial.ne']
 
+/--
+@isnad1 id=eq.0h4v.s9.3b6b972caa28 from=translated src=- shape=42d8eb91 vocab=0838b305
+-/
 theorem exactReverseAlicePartition_orderCut_fiber_sum
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M) (coordinate : M) (partition : M → Bool) :
@@ -1454,6 +1540,9 @@ theorem exactReverseAlicePartition_orderCut_fiber_sum
       exactReversePartition_orderCut_sum coordinate partition
   · simp only [exactReverseLeftSide, hside, ↓reduceIte, sum_const_zero]
 
+/--
+@isnad1 id=eq.0h4v.s9.47b2389d9ac8 from=translated src=- shape=a9289ed7 vocab=12fa3ff9
+-/
 theorem exactReverseBobPartition_orderCut_fiber_sum
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M) (coordinate : M) (partition : M → Bool) :
@@ -1486,6 +1575,9 @@ theorem exactReverseBobPartition_orderCut_fiber_sum
       exactReversePartition_orderCut_sum coordinate partition
   · simp only [exactReverseRightSide, hside, ↓reduceIte, sum_const_zero]
 
+/--
+@isnad1 id=eq.0h2v.s5.9ddc3ca454ac from=translated src=- shape=293c9974 vocab=5f5add28
+-/
 theorem exactReverseAliceSide_marginal
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M) :
@@ -1531,6 +1623,9 @@ theorem exactReverseAliceSide_marginal
     fairPartitionWeight, Nat.cast_pow]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s5.164307c46e6b from=translated src=- shape=293c9974 vocab=cdc03659
+-/
 theorem exactReverseBobSide_marginal
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M) :
@@ -1592,6 +1687,9 @@ def exactReverseBobConditionalSeedWeight
     exactSeedWeight seed / reversePartitionWeight side
   else 0
 
+/--
+@isnad1 id=le.0h3v.s4.064eb2268e18 from=translated src=- shape=d8a6215f vocab=1fb41a28
+-/
 theorem exactReverseAliceConditionalSeedWeight_nonneg
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M) (seed : ExactForwardSeed M) :
@@ -1602,6 +1700,9 @@ theorem exactReverseAliceConditionalSeedWeight_nonneg
       (reversePartitionWeight_nonneg side)
   · exact le_rfl
 
+/--
+@isnad1 id=le.0h3v.s4.a046fc58aaa6 from=translated src=- shape=d8a6215f vocab=2ca11b0c
+-/
 theorem exactReverseBobConditionalSeedWeight_nonneg
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M) (seed : ExactForwardSeed M) :
@@ -1612,6 +1713,9 @@ theorem exactReverseBobConditionalSeedWeight_nonneg
       (reversePartitionWeight_nonneg side)
   · exact le_rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.f045d4ca6674 from=translated src=- shape=02db1fad vocab=18dd395c
+-/
 theorem exactReverseAliceConditionalSeedWeight_sum
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M) (nonempty : side.Nonempty) :
@@ -1642,6 +1746,9 @@ theorem exactReverseAliceConditionalSeedWeight_sum
       rw [exactReverseAliceSide_marginal]
       exact div_self hside.ne'
 
+/--
+@isnad1 id=eq.1h2v.s5.dc8111bb9eb1 from=translated src=- shape=02db1fad vocab=f1c69758
+-/
 theorem exactReverseBobConditionalSeedWeight_sum
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M) (nonempty : side.Nonempty) :
@@ -1709,6 +1816,9 @@ def exactReverseBobConditionalSeedLaw
         exactReverseBobConditionalSeedWeight_sum side hside }
   else exactForwardSeedLaw nonempty
 
+/--
+@isnad1 id=eq.2h3v.s5.9eb9edcca38a from=translated src=- shape=72d45cb1 vocab=52263850
+-/
 @[simp] theorem exactReverseAliceConditionalSeedLaw_weight
     {M : Type*} [Fintype M] [DecidableEq M]
     (nonempty : 0 < Fintype.card M)
@@ -1719,6 +1829,9 @@ def exactReverseBobConditionalSeedLaw
       exactReverseAliceConditionalSeedWeight side seed := by
   simp only [exactReverseAliceConditionalSeedLaw, hside, ↓reduceDIte]
 
+/--
+@isnad1 id=eq.2h3v.s5.0cd5055cf87a from=translated src=- shape=72d45cb1 vocab=db10ce2d
+-/
 @[simp] theorem exactReverseBobConditionalSeedLaw_weight
     {M : Type*} [Fintype M] [DecidableEq M]
     (nonempty : 0 < Fintype.card M)
@@ -1928,6 +2041,9 @@ def exactReverseBobMarkerCode
       ⟨seed.coordinate,
         exactReverseRightSide_coordinate_mem seed⟩⟩
 
+/--
+@isnad1 id=eq.0h2v.s9.4489a75f0817 from=translated src=- shape=d9e019ad vocab=b4a765e1
+-/
 @[simp] theorem exactReverseAliceMarkerCode_coordinate
     {M : Type*} [Fintype M] [DecidableEq M]
     (seed : ExactForwardSeed M) :
@@ -1943,6 +2059,9 @@ def exactReverseBobMarkerCode
     ((exactReverseAliceContext seed).sideRank.symm_apply_apply
       ⟨seed.coordinate, exactReverseLeftSide_coordinate_mem seed⟩)
 
+/--
+@isnad1 id=eq.0h2v.s9.ca9bcf2357e4 from=translated src=- shape=d9e019ad vocab=489eeb06
+-/
 @[simp] theorem exactReverseBobMarkerCode_coordinate
     {M : Type*} [Fintype M] [DecidableEq M]
     (seed : ExactForwardSeed M) :
@@ -1958,6 +2077,9 @@ def exactReverseBobMarkerCode
     ((exactReverseBobContext seed).sideRank.symm_apply_apply
       ⟨seed.coordinate, exactReverseRightSide_coordinate_mem seed⟩)
 
+/--
+@isnad1 id=eq.1h3v.s5.c849745f379f from=translated src=- shape=e97d0af9 vocab=5b82fc17
+-/
 theorem exactReverseAliceMarkerCode_coordinate_injective
     {M : Type*} [Fintype M] [DecidableEq M]
     {a b : ExactForwardSeed M}
@@ -1970,6 +2092,9 @@ theorem exactReverseAliceMarkerCode_coordinate_injective
       (t.2.1.sideRank.symm t.2.2).val) same
   simpa only [exactReverseAliceMarkerCode_coordinate] using h
 
+/--
+@isnad1 id=eq.1h3v.s5.9dbbeb9cc969 from=translated src=- shape=e97d0af9 vocab=98aa54ca
+-/
 theorem exactReverseBobMarkerCode_coordinate_injective
     {M : Type*} [Fintype M] [DecidableEq M]
     {a b : ExactForwardSeed M}
@@ -1982,6 +2107,9 @@ theorem exactReverseBobMarkerCode_coordinate_injective
       (t.2.1.sideRank.symm t.2.2).val) same
   simpa only [exactReverseBobMarkerCode_coordinate] using h
 
+/--
+@isnad1 id=eq.1h3v.s5.7f4c72b1767b from=translated src=- shape=05acff80 vocab=be441116
+-/
 theorem exactReverseAliceMarkerCode_partition_injective
     {M : Type*} [Fintype M] [DecidableEq M]
     {a b : ExactForwardSeed M}
@@ -2016,6 +2144,9 @@ theorem exactReverseAliceMarkerCode_partition_injective
       cases hb : b.partition j <;>
       simp_all
 
+/--
+@isnad1 id=eq.1h3v.s5.eaca9d9643de from=translated src=- shape=05acff80 vocab=6e319502
+-/
 theorem exactReverseBobMarkerCode_partition_injective
     {M : Type*} [Fintype M] [DecidableEq M]
     {a b : ExactForwardSeed M}
@@ -2049,6 +2180,9 @@ theorem exactReverseBobMarkerCode_partition_injective
       cases hb : b.partition j <;>
       simp_all
 
+/--
+@isnad1 id=injectiv.0h1v.s5.98da91442438 from=translated src=- shape=6b4289ec vocab=1c3f72c5
+-/
 theorem exactReverseAliceMarkerCode_injective
     {M : Type*} [Fintype M] [DecidableEq M] :
     Function.Injective (exactReverseAliceMarkerCode (M := M)) := by
@@ -2211,6 +2345,9 @@ open QuantumParallelRepetition.ClassicalInformation
 
 attribute [local instance] Classical.propDecidable
 
+/--
+@isnad1 id=injectiv.0h1v.s5.9f36ddab77f6 from=translated src=- shape=6b4289ec vocab=5d524c39
+-/
 theorem exactReverseBobMarkerCode_injective
     {M : Type*} [Fintype M] [DecidableEq M] :
     Function.Injective (exactReverseBobMarkerCode (M := M)) := by
@@ -2501,6 +2638,9 @@ private theorem exactPermutationOfSideRank_rank
   simp only [exactPermutationOfSideRank, Equiv.symm_trans, Equiv.symm_symm, Equiv.trans_apply,
     Equiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.1h4v.s5.b59c582edf03 from=translated src=- shape=c8b132c6 vocab=6f10703f
+-/
 theorem exactReverseAliceCanonicalPartition_otherSide
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M) (coordinate : M)
@@ -2519,6 +2659,9 @@ theorem exactReverseAliceCanonicalPartition_otherSide
         exactReverseAliceCanonicalPartition,
         marked, belongs]
 
+/--
+@isnad1 id=eq.1h4v.s5.020b668a203e from=translated src=- shape=c8b132c6 vocab=cc2f2117
+-/
 theorem exactReverseBobCanonicalPartition_otherSide
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M) (coordinate : M)
@@ -2537,6 +2680,9 @@ theorem exactReverseBobCanonicalPartition_otherSide
         exactReverseBobCanonicalPartition,
         marked, belongs]
 
+/--
+@isnad1 id=eq.1h4v.s5.a303f5cce9c1 from=translated src=- shape=fdb375c6 vocab=c863b1b5
+-/
 theorem exactReverseAliceCanonicalPartition_card
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M) (coordinate : M)
@@ -2549,6 +2695,9 @@ theorem exactReverseAliceCanonicalPartition_card
       side coordinate member ignored)
   simpa only [exactLeft_coordinate_not_mem, not_false_eq_true, card_insert_of_notMem] using h
 
+/--
+@isnad1 id=eq.1h4v.s5.f75c9ff63654 from=translated src=- shape=fdb375c6 vocab=9be6c3c4
+-/
 theorem exactReverseBobCanonicalPartition_card
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M) (coordinate : M)
@@ -2762,6 +2911,9 @@ open QuantumParallelRepetition.ClassicalInformation
 
 attribute [local instance] Classical.propDecidable
 
+/--
+@isnad1 id=eq.0h4v.s7.08c8303e512a from=translated src=- shape=3fb74774 vocab=d6405ea1
+-/
 @[simp] theorem exactReverseAliceMarkerDecode_coordinate
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M)
@@ -2772,6 +2924,9 @@ attribute [local instance] Classical.propDecidable
       (context.sideRank.symm marker).val := by
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.c4c78c73f634 from=translated src=- shape=3fb74774 vocab=45304bb4
+-/
 @[simp] theorem exactReverseBobMarkerDecode_coordinate
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M)
@@ -2782,6 +2937,9 @@ attribute [local instance] Classical.propDecidable
       (context.sideRank.symm marker).val := by
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.987886b41fe8 from=translated src=- shape=1f68b4b3 vocab=ea33586c
+-/
 @[simp] theorem exactReverseAliceMarkerDecode_side
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M)
@@ -2800,6 +2958,9 @@ attribute [local instance] Classical.propDecidable
     side (context.sideRank.symm marker).val
     (context.sideRank.symm marker).property context.ignoredBit
 
+/--
+@isnad1 id=eq.0h4v.s5.7be0435cbb7e from=translated src=- shape=1f68b4b3 vocab=10b741b8
+-/
 @[simp] theorem exactReverseBobMarkerDecode_side
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M)
@@ -2818,6 +2979,9 @@ attribute [local instance] Classical.propDecidable
     side (context.sideRank.symm marker).val
     (context.sideRank.symm marker).property context.ignoredBit
 
+/--
+@isnad1 id=eq.0h4v.s7.4cc85eb7cfd8 from=translated src=- shape=7573ef2f vocab=4e1109f7
+-/
 @[simp] theorem exactReverseAliceMarkerDecode_ignoredBit
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M)
@@ -2829,6 +2993,9 @@ attribute [local instance] Classical.propDecidable
   simp only [exactReverseAliceMarkerDecode, finCongr_apply, exactReverseAliceCanonicalPartition,
     ↓reduceIte]
 
+/--
+@isnad1 id=eq.0h4v.s7.6e8b53014fca from=translated src=- shape=7573ef2f vocab=0131188a
+-/
 @[simp] theorem exactReverseBobMarkerDecode_ignoredBit
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M)
@@ -2840,6 +3007,9 @@ attribute [local instance] Classical.propDecidable
   simp only [exactReverseBobMarkerDecode, finCongr_apply, exactReverseBobCanonicalPartition,
     ↓reduceIte]
 
+/--
+@isnad1 id=eq.1h4v.s8.a061c8e651ca from=translated src=- shape=d4e6a04b vocab=77e8b39b
+-/
 theorem exactSigmaFinCutTransport
     {M : Type*}
     (source target : Finset M) (same : source = target)
@@ -2852,6 +3022,9 @@ theorem exactSigmaFinCutTransport
   subst target
   simp only [finCongr_refl, Equiv.refl_apply]
 
+/--
+@isnad1 id=eq.1h4v.s7.015554c6295e from=translated src=- shape=f2d0beec vocab=ea5ffe1a
+-/
 theorem exactSigmaSideRankTransport
     {M : Type*}
     (source target : Finset M) (same : source = target)
@@ -2871,6 +3044,9 @@ theorem exactSigmaSideRankTransport
     apply Subtype.ext
     rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.80d801cf6306 from=translated src=- shape=2515c33a vocab=c673e685
+-/
 theorem exactReverseAliceMarkerDecode_otherRank
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M)
@@ -2905,6 +3081,9 @@ theorem exactReverseAliceMarkerDecode_otherRank
     exactRightRank,
     exactPermutationOfSideRank_rank] using transported
 
+/--
+@isnad1 id=eq.0h4v.s7.4a22c58995ea from=translated src=- shape=132f9cda vocab=6ab14465
+-/
 theorem exactReverseAliceMarkerDecode_otherCut
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M)
@@ -2935,6 +3114,9 @@ theorem exactReverseAliceMarkerDecode_otherCut
     context.otherSide other context.otherCut
   simpa only [exactReverseAliceMarkerDecode] using transported
 
+/--
+@isnad1 id=eq.0h4v.s7.ad5bbcc2551c from=translated src=- shape=5f9690f6 vocab=46f609ad
+-/
 theorem exactReverseAliceMarkerDecode_sideRank
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M)
@@ -3008,6 +3190,9 @@ theorem exactReverseAliceMarkerDecode_sideRank
               rfl
     _ = ⟨side, context.sideRank⟩ := transported
 
+/--
+@isnad1 id=eq.0h4v.s6.051847d881c1 from=translated src=- shape=72bf49ca vocab=d43c0798
+-/
 theorem exactReverseAliceMarkerDecode_rightInverse
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M)
@@ -3103,6 +3288,9 @@ open QuantumParallelRepetition.ClassicalInformation
 
 attribute [local instance] Classical.propDecidable
 
+/--
+@isnad1 id=eq.0h4v.s7.e7586048ed68 from=translated src=- shape=2515c33a vocab=35d83662
+-/
 theorem exactReverseBobMarkerDecode_otherRank
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M)
@@ -3137,6 +3325,9 @@ theorem exactReverseBobMarkerDecode_otherRank
     exactLeftRank,
     exactPermutationOfSideRank_rank] using transported
 
+/--
+@isnad1 id=eq.0h4v.s7.9a5561b9766f from=translated src=- shape=132f9cda vocab=04829dd3
+-/
 theorem exactReverseBobMarkerDecode_otherCut
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M)
@@ -3167,6 +3358,9 @@ theorem exactReverseBobMarkerDecode_otherCut
     context.otherSide other context.otherCut
   simpa only [exactReverseBobMarkerDecode] using transported
 
+/--
+@isnad1 id=eq.0h4v.s7.87e5ee1c564f from=translated src=- shape=5f9690f6 vocab=260aa6e9
+-/
 theorem exactReverseBobMarkerDecode_sideRank
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M)
@@ -3240,6 +3434,9 @@ theorem exactReverseBobMarkerDecode_sideRank
               rfl
     _ = ⟨side, context.sideRank⟩ := transported
 
+/--
+@isnad1 id=eq.0h4v.s6.2c53aa6f7701 from=translated src=- shape=72bf49ca vocab=e70bcc7e
+-/
 theorem exactReverseBobMarkerDecode_rightInverse
     {M : Type*} [Fintype M] [DecidableEq M]
     (side : Finset M)

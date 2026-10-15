@@ -49,7 +49,9 @@ open Set
 
 /-- Over `ℂ`, the `C^1` chart-transition groupoid is contained in the analytic one.
 `ContDiffOn ℂ 1` is complex differentiability, and a complex-differentiable map on an
-open set is holomorphic, hence analytic. -/
+open set is holomorphic, hence analytic.
+@isnad1 id=le.0h0v.s7.a1b976140d50 from=translated src=- shape=8541e4b2 vocab=f2b38b35
+-/
 theorem contDiffGroupoid_one_le_omega_complex :
     contDiffGroupoid 1 (modelWithCornersSelf ℂ ℂ)
       ≤ contDiffGroupoid ω (modelWithCornersSelf ℂ ℂ) := by
@@ -69,7 +71,9 @@ theorem contDiffGroupoid_one_le_omega_complex :
 modelled on `ℂ` whose transitions are `C^1` over `ℂ` has holomorphic transitions, so it is
 an analytic manifold. This is what makes
 `[ChartedSpace ℂ X] [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X]` a faithful rendering of
-"`X` is a Riemann surface". -/
+"`X` is a Riemann surface".
+@isnad1 id=ismanifo.1h1v.s6.204b0aa8a626 from=translated src=- shape=6901ad3f vocab=fa5c4701
+-/
 theorem isManifold_omega_of_one {X : Type*} [TopologicalSpace X] [ChartedSpace ℂ X]
     (h : IsManifold (modelWithCornersSelf ℂ ℂ) 1 X) :
     IsManifold (modelWithCornersSelf ℂ ℂ) ω X :=

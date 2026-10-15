@@ -48,9 +48,15 @@ variable
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceFiniteness : MeasurableSpace M := borel M
+/--
+@isnad1 id=borelspa.0h1v.s3.b3991828d85c from=translated src=- shape=c6850a32 vocab=4cae7e99
+-/
 local instance instBorelSpaceFiniteness : BorelSpace M := ⟨rfl⟩
 
 omit [IsManifold I n∞ M] in
+/--
+@isnad1 id=isfinite.0h4v.s8.ca2c887cacbb from=translated src=- shape=9be194a6 vocab=c847c943
+-/
 theorem riemannianVolumeMeasure_isFiniteMeasureOnCompacts :
     IsFiniteMeasureOnCompacts (riemannianVolumeMeasure (I := I) (M := M)) := by
   classical
@@ -117,6 +123,9 @@ theorem riemannianVolumeMeasure_isFiniteMeasureOnCompacts :
   simpa [riemannianVolumeMeasure] using hμ
 
 omit [IsManifold I n∞ M] in
+/--
+@isnad1 id=isfinite.0h4v.s8.d905189a3306 from=translated src=- shape=6fca2d73 vocab=3c2957e0
+-/
 theorem riemannianVolumeMeasure_isFiniteMeasure [CompactSpace M] :
     IsFiniteMeasure (riemannianVolumeMeasure (I := I) (M := M)) := by
   classical

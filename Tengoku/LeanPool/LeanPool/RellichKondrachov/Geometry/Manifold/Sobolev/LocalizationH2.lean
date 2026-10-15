@@ -49,6 +49,9 @@ variable [T2Space M] [CompactSpace M]
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceLocalizationH2 : MeasurableSpace M := borel M
+/--
+@isnad1 id=borelspa.0h1v.s3.a9ec5b502780 from=translated src=- shape=c6850a32 vocab=7454cc56
+-/
 local instance instBorelSpaceLocalizationH2 : BorelSpace M := ⟨rfl⟩
 
 namespace FiniteChartData
@@ -102,7 +105,9 @@ section
 omit [CompleteSpace E] [IsManifold I (1 : WithTop ℕ∞) M] [T2Space M]
 
 /-- For a `C²` function on a compact manifold, the chart-localization is a Euclidean `C2c`
-function. -/
+function.
+@isnad1 id=mem.1h7v.s8.ad051689f1a6 from=translated src=- shape=5129df01 vocab=5ad14f7d
+-/
 lemma localize_mem_C2c {f : M → ℝ} (hf : ContMDiff I Iℝ 2 f) (i : d.ι) :
     localize (d := d) f i ∈
       RellichKondrachov.Analysis.FunctionalSpaces.Sobolev.Euclidean.C2c (E := E) := by

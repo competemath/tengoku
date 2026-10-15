@@ -109,8 +109,14 @@ variable {γ : Type*} {S : CellStructure γ}
 /-- The subcells of a cell: the index set of its closed cell in assertion (i). -/
 def subcells (S : CellStructure γ) (τ : γ) : Set γ := {σ | σ ∈ S.cells ∧ S.sub σ τ}
 
+/--
+@isnad1 id=iff.0h4v.s5.0e9da7c3a80d from=translated src=- shape=d2635fd4 vocab=6b16d106
+-/
 theorem mem_subcells_iff {σ τ : γ} : σ ∈ S.subcells τ ↔ σ ∈ S.cells ∧ S.sub σ τ := Iff.rfl
 
+/--
+@isnad1 id=le.0h3v.s4.b0e983275ea9 from=translated src=- shape=9ee97294 vocab=566a6c81
+-/
 theorem subcells_subset_cells {τ : γ} : S.subcells τ ⊆ S.cells := fun _ h => h.1
 
 namespace Realization
@@ -126,35 +132,64 @@ notation serves them all. -/
 /-- The realized point set of a set of abstract cells: the union of their open cells. -/
 def cellUnion (R : S.Realization) (Cs : Set γ) : Set Plane := ⋃ σ ∈ Cs, R.cell σ
 
+/--
+@isnad1 id=iff.0h5v.s5.3d9126f28b68 from=translated src=- shape=3f98cd2a vocab=40fc234e
+-/
 theorem mem_cellUnion_iff {Cs : Set γ} {z : Plane} :
     z ∈ R.cellUnion Cs ↔ ∃ σ ∈ Cs, z ∈ R.cell σ := by
   simp only [cellUnion, Set.mem_iUnion, exists_prop]
 
+/--
+@isnad1 id=le.1h5v.s5.ffbb86c3732b from=translated src=- shape=7214a26c vocab=26453365
+-/
 theorem cellUnion_mono {Cs Ds : Set γ} (h : Cs ⊆ Ds) : R.cellUnion Cs ⊆ R.cellUnion Ds :=
   Set.biUnion_subset_biUnion_left h
 
+/--
+@isnad1 id=le.1h5v.s5.d8b133080fa1 from=translated src=- shape=3cb05efe vocab=23a758b4
+-/
 theorem cell_subset_cellUnion {Cs : Set γ} (h : σ ∈ Cs) : R.cell σ ⊆ R.cellUnion Cs :=
   Set.subset_biUnion_of_mem (u := fun ρ => R.cell ρ) h
 
+/--
+@isnad1 id=eq.0h5v.s5.3709a714ae5c from=translated src=- shape=e4362d7f vocab=e2ded416
+-/
 theorem cellUnion_union (R : S.Realization) (Cs Ds : Set γ) :
     R.cellUnion (Cs ∪ Ds) = R.cellUnion Cs ∪ R.cellUnion Ds := Set.biUnion_union _ _ _
 
+/--
+@isnad1 id=eq.0h5v.s5.7490035f2afa from=translated src=- shape=715bac10 vocab=229296e9
+-/
 theorem cellUnion_insert (R : S.Realization) (σ : γ) (Cs : Set γ) :
     R.cellUnion (insert σ Cs) = R.cell σ ∪ R.cellUnion Cs := Set.biUnion_insert _ _ _
 
+/--
+@isnad1 id=eq.0h3v.s4.0c4dd7d5e1c8 from=translated src=- shape=80829b40 vocab=b7fb8d5f
+-/
 @[simp] theorem cellUnion_empty (R : S.Realization) : R.cellUnion ∅ = ∅ := Set.biUnion_empty _
 
+/--
+@isnad1 id=eq.0h4v.s4.6a1963fa0a05 from=translated src=- shape=2c96033f vocab=cc9f38b5
+-/
 @[simp] theorem cellUnion_singleton (R : S.Realization) (σ : γ) :
     R.cellUnion {σ} = R.cell σ := Set.biUnion_singleton _ _
 
+/--
+@isnad1 id=eq.0h5v.s5.9a7f29f252af from=translated src=- shape=74d744c6 vocab=c8d6fd7c
+-/
 theorem cellUnion_pair (R : S.Realization) (σ τ : γ) :
     R.cellUnion {σ, τ} = R.cell σ ∪ R.cell τ := Set.biUnion_pair _ _ _
 
+/--
+@isnad1 id=le.1h5v.s5.3fb25470b203 from=translated src=- shape=69a2972c vocab=23a758b4
+-/
 theorem cellUnion_subset {Cs : Set γ} {A : Set Plane} (h : ∀ σ ∈ Cs, R.cell σ ⊆ A) :
     R.cellUnion Cs ⊆ A := Set.iUnion₂_subset h
 
 /-- Two realizations — of the same structure or of two different ones over the same names — that
-agree cell by cell on a set of cells realize that set by the same point set. -/
+agree cell by cell on a set of cells realize that set by the same point set.
+@isnad1 id=eq.1h6v.s5.7d3bed464480 from=translated src=- shape=2f5a060b vocab=40fc234e
+-/
 theorem cellUnion_congr {S₁ S₂ : CellStructure γ} {R₁ : S₁.Realization} {R₂ : S₂.Realization}
     {Cs : Set γ} (h : ∀ σ ∈ Cs, R₁.cell σ = R₂.cell σ) : R₁.cellUnion Cs = R₂.cellUnion Cs :=
   Set.iUnion₂_congr h
@@ -167,20 +202,29 @@ def faceBoundary (R : S.Realization) (F : γ) : Set Plane := R.cellUnion (S.subc
 
 namespace IsCellDecomposition
 
-/-- Assertion (i)'s closure clause, in `cellUnion` notation. -/
+/-- Assertion (i)'s closure clause, in `cellUnion` notation.
+@isnad1 id=eq.2h5v.s6.3a7f6395129e from=translated src=- shape=8b748082 vocab=94fd7855
+-/
 theorem closure_cell_eq (h : R.IsCellDecomposition D) (hτ : τ ∈ S.cells) :
     closure (R.cell τ) = R.cellUnion (S.subcells τ) := h.closure_eq hτ
 
+/--
+@isnad1 id=mem.2h5v.s5.75b1b27c95d7 from=translated src=- shape=6dcfc623 vocab=1da7b859
+-/
 theorem mem_subcells_self (h : R.IsCellDecomposition D) (hτ : τ ∈ S.cells) : τ ∈ S.subcells τ :=
   ⟨hτ, h.sub_refl hτ⟩
 
-/-- A closed cell is its open cell together with the open cells strictly below it. -/
+/-- A closed cell is its open cell together with the open cells strictly below it.
+@isnad1 id=eq.2h5v.s6.15ce3a12844e from=translated src=- shape=53b7a524 vocab=a7da9b23
+-/
 theorem closure_cell_eq_union (h : R.IsCellDecomposition D) (hτ : τ ∈ S.cells) :
     closure (R.cell τ) = R.cell τ ∪ R.faceBoundary τ := by
   rw [h.closure_cell_eq hτ, faceBoundary, ← R.cellUnion_insert,
     Set.insert_sdiff_singleton, Set.insert_eq_self.2 (h.mem_subcells_self hτ)]
 
-/-- The open cells strictly below `τ` miss the open cell `τ`. -/
+/-- The open cells strictly below `τ` miss the open cell `τ`.
+@isnad1 id=disjoint.2h5v.s6.61f3bb2659b8 from=translated src=- shape=84546af1 vocab=c93c8943
+-/
 theorem disjoint_faceBoundary (h : R.IsCellDecomposition D) (hτ : τ ∈ S.cells) :
     Disjoint (R.cell τ) (R.faceBoundary τ) := by
   refine Set.disjoint_left.2 fun z hz hz' => ?_
@@ -189,7 +233,9 @@ theorem disjoint_faceBoundary (h : R.IsCellDecomposition D) (hτ : τ ∈ S.cell
 
 /-- **The realized boundary of an open cell is its frontier.** The blueprint reads the boundary
 of a 2-cell off the cells below it; this says that reading agrees with the topology, which is
-what lets assertion (vii) be stated without the boundary-walk datum. -/
+what lets assertion (vii) be stated without the boundary-walk datum.
+@isnad1 id=eq.3h5v.s7.31124478748d from=translated src=- shape=46e6384c vocab=bb926dfd
+-/
 theorem faceBoundary_eq_frontier (h : R.IsCellDecomposition D) (hτ : τ ∈ S.cells)
     (hopen : IsOpen (R.cell τ)) : R.faceBoundary τ = frontier (R.cell τ) := by
   rw [hopen.frontier_eq, h.closure_cell_eq_union hτ, Set.union_sdiff_left,
@@ -222,44 +268,67 @@ structure IsFaceJordan (R : S.Realization) : Prop where
 namespace IsFaceJordan
 
 /-- Each 2-cell boundary separates the plane. This is where `thm:jordan` enters; it is
-independent of `main`. -/
+independent of `main`.
+@isnad1 id=issepara.2h4v.s6.d6cbe83b9e59 from=translated src=- shape=c00943a4 vocab=c9ed8142
+-/
 theorem isSeparating (hJ : R.IsFaceJordan) (hF : F ∈ S.faces) :
     IsSeparating (frontier (R.cell F)) :=
   jordan_curve_theorem (hJ.isJordanCurve hF)
 
 /-- **An open 2-cell is open.** This is the clause `lem:cellulation-invariants`(viii) needs, and
-the only thing the blueprint's proof of (viii) really uses. -/
+the only thing the blueprint's proof of (viii) really uses.
+@isnad1 id=isopen.2h4v.s6.ec0662460b6d from=translated src=- shape=c3b121f0 vocab=96a64e20
+-/
 theorem isOpen (hJ : R.IsFaceJordan) (hF : F ∈ S.faces) : IsOpen (R.cell F) := by
   rw [hJ.cell_eq_inside hF]
   exact (hJ.isSeparating hF).isOpen_inside
 
+/--
+@isnad1 id=isconnec.2h4v.s6.b87e619508f8 from=translated src=- shape=c3b121f0 vocab=4fa5c30b
+-/
 theorem isConnected (hJ : R.IsFaceJordan) (hF : F ∈ S.faces) : IsConnected (R.cell F) := by
   rw [hJ.cell_eq_inside hF]
   exact (hJ.isSeparating hF).isConnected_inside
 
+/--
+@isnad1 id=isbounde.2h4v.s6.33cca7136964 from=translated src=- shape=c3b121f0 vocab=b096292a
+-/
 theorem isBounded (hJ : R.IsFaceJordan) (hF : F ∈ S.faces) : IsBounded (R.cell F) := by
   rw [hJ.cell_eq_inside hF]
   exact (hJ.isSeparating hF).isBounded_inside
 
+/--
+@isnad1 id=nonempty.2h4v.s5.6b40ee583c7e from=translated src=- shape=c3b121f0 vocab=bcbd24d2
+-/
 theorem nonempty (hJ : R.IsFaceJordan) (hF : F ∈ S.faces) : (R.cell F).Nonempty :=
   (hJ.isConnected hF).nonempty
 
 /-- A closed 2-cell is compact. `lem:star-face-mesh` measures diameters of closed 2-cells, and
-this is what makes those diameters finite without a hypothesis on the domain. -/
+this is what makes those diameters finite without a hypothesis on the domain.
+@isnad1 id=iscompac.2h4v.s6.977e9a7abbfe from=translated src=- shape=80f44431 vocab=8c1da929
+-/
 theorem isCompact_closure (hJ : R.IsFaceJordan) (hF : F ∈ S.faces) :
     IsCompact (closure (R.cell F)) :=
   Metric.isCompact_of_isClosed_isBounded isClosed_closure (hJ.isBounded hF).closure
 
 /-- **Assertion (vii) in the blueprint's own words**: the union of the open cells strictly below
-a 2-cell is a Jordan curve, and the open 2-cell is its bounded complementary region. -/
+a 2-cell is a Jordan curve, and the open 2-cell is its bounded complementary region.
+@isnad1 id=eq.3h5v.s6.eda4ec41b4e2 from=translated src=- shape=342b0564 vocab=f4ea7db4
+-/
 theorem faceBoundary_eq (hJ : R.IsFaceJordan) (h : R.IsCellDecomposition D) (hF : F ∈ S.faces) :
     R.faceBoundary F = frontier (R.cell F) :=
   h.faceBoundary_eq_frontier (S.mem_cells_of_mem_faces hF) (hJ.isOpen hF)
 
+/--
+@isnad1 id=isjordan.3h5v.s5.06d3907481df from=translated src=- shape=9240eddc vocab=a6bd27f9
+-/
 theorem isJordanCurve_faceBoundary (hJ : R.IsFaceJordan) (h : R.IsCellDecomposition D)
     (hF : F ∈ S.faces) : IsJordanCurve (R.faceBoundary F) := by
   rw [hJ.faceBoundary_eq h hF]; exact hJ.isJordanCurve hF
 
+/--
+@isnad1 id=eq.3h5v.s5.ec9ffc1097c4 from=translated src=- shape=50c97d68 vocab=53aee42f
+-/
 theorem cell_eq_inside_faceBoundary (hJ : R.IsFaceJordan) (h : R.IsCellDecomposition D)
     (hF : F ∈ S.faces) : R.cell F = inside (R.faceBoundary F) := by
   rw [hJ.faceBoundary_eq h hF]; exact hJ.cell_eq_inside hF
@@ -270,12 +339,16 @@ namespace IsCellDecomposition
 
 /-- **Assertion (viii)**, with the openness hypothesis of
 `IsCellDecomposition.face_eq` discharged by assertion (vii): distinct open 2-cells are never
-comparable. -/
+comparable.
+@isnad1 id=eq.5h6v.s6.f7f891604917 from=translated src=- shape=bcdb2d13 vocab=daf28f52
+-/
 theorem face_eq_of_isFaceJordan (h : R.IsCellDecomposition D) (hJ : R.IsFaceJordan)
     (hF : F ∈ S.faces) (hT : T ∈ S.faces) (hsub : R.cell F ⊆ closure (R.cell T)) : F = T :=
   h.face_eq hF hT (hJ.isOpen hF) hsub
 
-/-- **Assertion (viii)** against the abstract relation. -/
+/-- **Assertion (viii)** against the abstract relation.
+@isnad1 id=eq.5h6v.s5.2f55320fe576 from=translated src=- shape=dc3ee29a vocab=66b0962c
+-/
 theorem sub_face_eq (h : R.IsCellDecomposition D) (hJ : R.IsFaceJordan)
     (hF : F ∈ S.faces) (hT : T ∈ S.faces) (hsub : S.sub F T) : F = T :=
   h.face_eq_of_isFaceJordan hJ hF hT
@@ -295,11 +368,16 @@ namespace SubdivData
 
 variable {d : S.SubdivData} {R : S.Realization} {R' : (S.subdivideEdge d).Realization} {F : γ}
 
+/--
+@isnad1 id=eq.2h6v.s5.297042250e53 from=translated src=- shape=d0fe5ab4 vocab=202bf641
+-/
 theorem IsRefinement.cell_face_eq (href : d.IsRefinement R R') (hF : F ∈ S.faces) :
     R'.cell F = R.cell F :=
   href.cell_eq (S.mem_cells_of_mem_faces hF) (S.faces_ne_edgeSet hF d.edge_mem_edgeSet)
 
-/-- **Assertion (vii) is preserved by an edge subdivision.** -/
+/-- **Assertion (vii) is preserved by an edge subdivision.**
+@isnad1 id=isfacejo.2h5v.s5.af263d18607d from=translated src=- shape=b0dac15c vocab=8a2bd3bb
+-/
 theorem IsRefinement.isFaceJordan (href : d.IsRefinement R R') (hJ : R.IsFaceJordan) :
     R'.IsFaceJordan where
   isJordanCurve := by
@@ -316,6 +394,7 @@ theorem IsRefinement.isFaceJordan (href : d.IsRefinement R R') (hJ : R.IsFaceJor
 /-- **The induction step over the first constructor**, in the shape a consumer building a
 sequence of stages wants: one edge subdivision carries (i), (vii) and `Realization.Refines`
 forward together. The mirror of `SplitData.IsCrosscutSplit.isCellDecomposition_and_isFaceJordan`.
+@isnad1 id=and.4h6v.s6.efafc94861c1 from=translated src=- shape=795d195e vocab=d351d470
 -/
 theorem IsRefinement.isCellDecomposition_and_isFaceJordan (hS : S.CombInvariants)
     (href : d.IsRefinement R R') {D : Set Plane} (h : R.IsCellDecomposition D)
@@ -330,7 +409,9 @@ theorem IsRefinement.isCellDecomposition_and_isFaceJordan (hS : S.CombInvariants
 determined by the walk and not by the edge list.  The data carries one corrected list for each
 face together with the fact that it replaces a closed old boundary walk. -/
 
-/-- Every walk of the old skeleton has an orientation-aware replacement. -/
+/-- Every walk of the old skeleton has an orientation-aware replacement.
+@isnad1 id=ex.1h6v.s5.aff51fd05386 from=translated src=- shape=a718ef26 vocab=6d7ee93a
+-/
 theorem exists_substWalk (d : S.SubdivData) {u v : γ} {W : List γ} (h : S.skel.IsWalk u W v) :
     ∃ W', d.SubstWalk u W W' := by
   induction h with
@@ -344,11 +425,16 @@ theorem exists_substWalk (d : S.SubdivData) {u v : γ} {W : List γ} (h : S.skel
       · subst h₁; subst h₂; exact ⟨_, .backward hW'⟩
     · exact ⟨_, .other hl hf hW'⟩
 
+/--
+@isnad1 id=mem.0h3v.s4.772807e35273 from=translated src=- shape=607d03bb vocab=02b2d9b3
+-/
 theorem newVertex_mem_skeleton_vertexSet (d : S.SubdivData) :
     d.newVertex ∈ V(d.skeleton) := by
   rw [d.skeleton_vertexSet]; exact Set.mem_insert _ _
 
-/-- **The corrected replacement really is a walk of the subdivided skeleton.** -/
+/-- **The corrected replacement really is a walk of the subdivided skeleton.**
+@isnad1 id=iswalk.2h7v.s5.8cf747531bb2 from=translated src=- shape=eba68696 vocab=1b6e40a2
+-/
 theorem SubstWalk.isWalk {d : S.SubdivData} {u v : γ} {W W' : List γ}
     (hsub : d.SubstWalk u W W') (h : S.skel.IsWalk u W v) : d.skeleton.IsWalk u W' v := by
   induction hsub generalizing v with
@@ -391,7 +477,9 @@ theorem SubstWalk.eq_of_notMem {d : S.SubdivData} {u : γ} {W W' : List γ}
   | backward hs ih => exact absurd (List.mem_cons_self ..) h
   | other hl hf hs ih => rw [ih fun hh => h (List.mem_cons_of_mem _ hh)]
 
-/-- Every updated face boundary is a closed walk of the subdivided skeleton. -/
+/-- Every updated face boundary is a closed walk of the subdivided skeleton.
+@isnad1 id=ex.1h4v.s5.302eab3dffc1 from=translated src=- shape=2732e078 vocab=650eeaa6
+-/
 theorem boundary_isWalk (d : S.SubdivData) {F : γ} (hF : F ∈ S.faces) :
     ∃ u, d.skeleton.IsWalk u ((S.subdivideEdge d).boundary F) u := by
   obtain ⟨u, hW, hsub⟩ := d.boundary_subst hF
@@ -419,22 +507,40 @@ variable {d : S.SplitData} {R : S.Realization} {R' : (S.splitFace d).Realization
 are old vertices, and the blueprint is explicit that the split does not create them. -/
 def earNewCells (d : S.SplitData) : Set γ := (V(d.ear) \ {d.source, d.target}) ∪ E(d.ear)
 
+/--
+@isnad1 id=eq.0h3v.s5.b4d612e4171b from=translated src=- shape=d64bf70a vocab=d7b4c894
+-/
 theorem newCells_eq (d : S.SplitData) : d.newCells = d.earNewCells ∪ {d.face₁, d.face₂} := rfl
 
+/--
+@isnad1 id=le.0h3v.s4.7ce62011c322 from=translated src=- shape=0e8f0a2b vocab=67d8da41
+-/
 theorem earNewCells_subset_newCells (d : S.SplitData) : d.earNewCells ⊆ d.newCells :=
   Set.subset_union_left
 
+/--
+@isnad1 id=le.0h3v.s4.66735565beac from=translated src=- shape=0e8f0a2b vocab=334d65d4
+-/
 theorem earNewCells_subset_earCells (d : S.SplitData) : d.earNewCells ⊆ d.earCells := by
   rintro z (⟨hz, -⟩ | hz)
   exacts [Or.inl hz, Or.inr hz]
 
+/--
+@isnad1 id=mem.3h4v.s5.bdf56e7a80a9 from=translated src=- shape=a743afc5 vocab=a32bf8b9
+-/
 theorem mem_earNewCells_of_mem_ear_vertexSet {z : γ} (hz : z ∈ V(d.ear)) (hs : z ≠ d.source)
     (ht : z ≠ d.target) : z ∈ d.earNewCells :=
   Or.inl ⟨hz, by rintro (h | h); exacts [hs h, ht h]⟩
 
+/--
+@isnad1 id=mem.1h4v.s5.a8dbf520fba8 from=translated src=- shape=a3e20e94 vocab=6e50f7c6
+-/
 theorem mem_earNewCells_of_mem_ear_edgeSet {f : γ} (hf : f ∈ E(d.ear)) : f ∈ d.earNewCells :=
   Or.inr hf
 
+/--
+@isnad1 id=mem.1h4v.s5.37f52efc8cf1 from=translated src=- shape=39742e2b vocab=47eb25f8
+-/
 theorem mem_splitFace_cells_of_earNew {z : γ} (hz : z ∈ d.earNewCells) :
     z ∈ (S.splitFace d).cells :=
   d.mem_splitFace_cells_of_new (d.earNewCells_subset_newCells hz)
@@ -443,7 +549,9 @@ theorem mem_splitFace_cells_of_earNew {z : γ} (hz : z ∈ d.earNewCells) :
 
 /-- On old cells other than the split 2-cell the relation is unchanged, and **only** old cells
 lie below such a cell. This is `SplitData.old_subRel_iff` with the membership of `σ` derived
-rather than assumed, which is what the closure clause of assertion (i) needs. -/
+rather than assumed, which is what the closure clause of assertion (i) needs.
+@isnad1 id=iff.3h5v.s6.783a574f13b1 from=translated src=- shape=c878ec4f vocab=01ba7068
+-/
 theorem subRel_iff_of_mem_cells (hS : S.CombInvariants) (d : S.SplitData) {σ τ : γ}
     (hτc : τ ∈ S.cells) (hτf : τ ≠ d.face) :
     d.subRel σ τ ↔ (σ ∈ S.cells ∧ σ ≠ d.face ∧ S.sub σ τ) := by
@@ -455,7 +563,9 @@ theorem subRel_iff_of_mem_cells (hS : S.CombInvariants) (d : S.SplitData) {σ τ
   · exact absurd (heq ▸ hτc) d.face₁_notMem
   · exact absurd (heq ▸ hτc) d.face₂_notMem
 
-/-- The subcells of a surviving cell are its old subcells. -/
+/-- The subcells of a surviving cell are its old subcells.
+@isnad1 id=eq.3h4v.s5.377c3d0e0ca8 from=translated src=- shape=1cee9fd5 vocab=36962285
+-/
 theorem subcells_of_mem_cells (hS : S.CombInvariants) (d : S.SplitData) {τ : γ}
     (hτc : τ ∈ S.cells) (hτf : τ ≠ d.face) : (S.splitFace d).subcells τ = S.subcells τ := by
   ext σ
@@ -470,7 +580,9 @@ theorem subcells_of_mem_cells (hS : S.CombInvariants) (d : S.SplitData) {τ : γ
     exact ⟨d.mem_splitFace_cells_of_old hσc hσf,
       (subRel_iff_of_mem_cells hS d hτc hτf).2 ⟨hσc, hσf, hσ⟩⟩
 
-/-- Nothing lies below an interior vertex of the ear but the vertex itself. -/
+/-- Nothing lies below an interior vertex of the ear but the vertex itself.
+@isnad1 id=iff.3h5v.s5.5939b4787071 from=translated src=- shape=ff37ea01 vocab=c098ab18
+-/
 theorem subRel_earVertex_iff (d : S.SplitData) {z σ : γ} (hz : z ∈ V(d.ear)) (hs : z ≠ d.source)
     (ht : z ≠ d.target) : d.subRel σ z ↔ σ = z := by
   have hzn : z ∈ d.newCells :=
@@ -483,7 +595,9 @@ theorem subRel_earVertex_iff (d : S.SplitData) {z σ : γ} (hz : z ∈ V(d.ear))
   · exact absurd (heq ▸ hz) fun hh => d.face₁_notMem_ear (Or.inl hh)
   · exact absurd (heq ▸ hz) fun hh => d.face₂_notMem_ear (Or.inl hh)
 
-/-- The cells below an ear edge are it and its two endpoints. -/
+/-- The cells below an ear edge are it and its two endpoints.
+@isnad1 id=iff.1h7v.s5.a227b77b8390 from=translated src=- shape=68cb46c0 vocab=9b845e0c
+-/
 theorem subRel_earEdge_iff (d : S.SplitData) {f a b σ : γ} (hl : d.ear.IsLink f a b) :
     d.subRel σ f ↔ (σ = f ∨ σ = a ∨ σ = b) := by
   have hfn : f ∈ d.newCells :=
@@ -501,6 +615,9 @@ theorem subRel_earEdge_iff (d : S.SplitData) {f a b σ : γ} (hl : d.ear.IsLink 
     · exact Or.inr (Or.inr (Or.inl hl.inc_left))
     · exact Or.inr (Or.inr (Or.inl hl.inc_right))
 
+/--
+@isnad1 id=eq.3h4v.s5.3c55eabd3c08 from=translated src=- shape=c8b2d582 vocab=4233c5f4
+-/
 theorem subcells_earVertex (d : S.SplitData) {z : γ} (hz : z ∈ V(d.ear)) (hs : z ≠ d.source)
     (ht : z ≠ d.target) : (S.splitFace d).subcells z = {z} := by
   ext σ
@@ -509,6 +626,9 @@ theorem subcells_earVertex (d : S.SplitData) {z : γ} (hz : z ∈ V(d.ear)) (hs 
   exact ⟨d.mem_splitFace_cells_of_earNew (mem_earNewCells_of_mem_ear_vertexSet hz hs ht),
     (d.subRel_earVertex_iff hz hs ht).2 rfl⟩
 
+/--
+@isnad1 id=eq.1h6v.s5.9a22c320534d from=translated src=- shape=84692530 vocab=d60865ab
+-/
 theorem subcells_earEdge (d : S.SplitData) {f a b : γ} (hl : d.ear.IsLink f a b) :
     (S.splitFace d).subcells f = {f, a, b} := by
   ext σ
@@ -519,6 +639,9 @@ theorem subcells_earEdge (d : S.SplitData) {f a b : γ} (hl : d.ear.IsLink f a b
   · exact d.mem_splitFace_cells_of_ear (Or.inl hl.left_mem)
   · exact d.mem_splitFace_cells_of_ear (Or.inl hl.right_mem)
 
+/--
+@isnad1 id=eq.0h3v.s5.675672527590 from=translated src=- shape=332daea7 vocab=e5dadc52
+-/
 theorem subcells_face₁ (d : S.SplitData) :
     (S.splitFace d).subcells d.face₁ = {d.face₁} ∪ d.earCells ∪ d.cells₁ := by
   ext σ
@@ -536,6 +659,9 @@ theorem subcells_face₁ (d : S.SplitData) :
     rcases hσ with (h | h) | h
     exacts [Or.inl h, Or.inr (Or.inl h), Or.inr (Or.inr h)]
 
+/--
+@isnad1 id=eq.0h3v.s5.e5c8e0bd3114 from=translated src=- shape=332daea7 vocab=1f5d1559
+-/
 theorem subcells_face₂ (d : S.SplitData) :
     (S.splitFace d).subcells d.face₂ = {d.face₂} ∪ d.earCells ∪ d.cells₂ := by
   ext σ
@@ -592,7 +718,9 @@ namespace IsRefinement
 
 variable {D : Set Plane}
 
-/-- Every cell the split creates lies inside the old open 2-cell. -/
+/-- Every cell the split creates lies inside the old open 2-cell.
+@isnad1 id=le.2h6v.s5.cb92b908e093 from=translated src=- shape=7b3a5b23 vocab=1aaf3b25
+-/
 theorem cell_subset_face (href : d.IsRefinement R R') {σ : γ} (hσ : σ ∈ d.newCells) :
     R'.cell σ ⊆ R.cell d.face := by
   rw [href.cell_face]
@@ -601,7 +729,9 @@ theorem cell_subset_face (href : d.IsRefinement R R') {σ : γ} (hσ : σ ∈ d.
   · rcases hσ with rfl | rfl
     exacts [fun _ hz => Or.inl (Or.inl hz), fun _ hz => Or.inl (Or.inr hz)]
 
-/-- **Assertion (i) is preserved by a 2-cell split.** -/
+/-- **Assertion (i) is preserved by a 2-cell split.**
+@isnad1 id=iscellde.3h6v.s5.a3a761b4f61d from=translated src=- shape=8afbaec0 vocab=7352e6d2
+-/
 theorem isCellDecomposition (hS : S.CombInvariants) (href : d.IsRefinement R R')
     (h : R.IsCellDecomposition D) : R'.IsCellDecomposition D where
   nonempty := by
@@ -672,7 +802,9 @@ theorem isCellDecomposition (hS : S.CombInvariants) (href : d.IsRefinement R R')
 
 /-- **A 2-cell split is a refinement**, in the sense of `Realization.Refines`. The one-liner
 `RefinementStars.lean` left for this module, beside `SubdivData.IsRefinement.refines`; it feeds
-`SplitData.refines` the argument `h'` that module could not construct. -/
+`SplitData.refines` the argument `h'` that module could not construct.
+@isnad1 id=refines.3h6v.s5.0ad340724149 from=translated src=- shape=ca52188c vocab=f2c41f56
+-/
 theorem refines (hS : S.CombInvariants) (href : d.IsRefinement R R')
     (h : R.IsCellDecomposition D) : R'.Refines R d.parent :=
   SplitData.refines hS h (href.isCellDecomposition hS h) href.cell_eq
@@ -731,43 +863,64 @@ structure IsCrosscutSplit (d : S.SplitData) (R : S.Realization)
 namespace IsCrosscutSplit
 
 /-- The boundary paths are realized identically before and after the split: their cells are old
-cells, and none of them is the split 2-cell. -/
+cells, and none of them is the split 2-cell.
+@isnad1 id=eq.1h5v.s5.0c1656c32032 from=translated src=- shape=d518446b vocab=4f91e474
+-/
 theorem cellUnion_cells₁ (hc : d.IsCrosscutSplit R R') :
     R'.cellUnion d.cells₁ = R.cellUnion d.cells₁ :=
   Realization.cellUnion_congr fun _ hσ => hc.cell_eq (d.cells₁_subset hσ) (d.cells₁_ne_face hσ)
 
+/--
+@isnad1 id=eq.1h5v.s5.3c92aebcf83d from=translated src=- shape=d518446b vocab=287be622
+-/
 theorem cellUnion_cells₂ (hc : d.IsCrosscutSplit R R') :
     R'.cellUnion d.cells₂ = R.cellUnion d.cells₂ :=
   Realization.cellUnion_congr fun _ hσ => hc.cell_eq (d.cells₂_subset hσ) (d.cells₂_ne_face hσ)
 
-/-- Every open cell the ear creates lies in the open crosscut. -/
+/-- Every open cell the ear creates lies in the open crosscut.
+@isnad1 id=le.2h6v.s6.08423c5de84f from=translated src=- shape=4d2fe719 vocab=08a50ed9
+-/
 theorem cell_earNew_subset (hc : d.IsCrosscutSplit R R') {σ : γ} (hσ : σ ∈ d.earNewCells) :
     R'.cell σ ⊆ R'.cellUnion d.earCells \ {R.pos d.source, R.pos d.target} := by
   rw [← hc.cellUnion_earNewCells]
   exact R'.cell_subset_cellUnion hσ
 
-/-- **The Jordan curve of the first new 2-cell** is `B₁ ∪ P`. -/
+/-- **The Jordan curve of the first new 2-cell** is `B₁ ∪ P`.
+@isnad1 id=eq.1h5v.s6.3bf6093a0db8 from=translated src=- shape=b6ce37e1 vocab=08a149dd
+-/
 theorem frontier_face₁ (hc : d.IsCrosscutSplit R R') :
     frontier (R'.cell d.face₁) = R.cellUnion d.cells₁ ∪ R'.cellUnion d.earCells := by
   rw [hc.cell_face₁]
   exact hc.isCrosscut.frontier_side (fun _ hs => jordan_curve_theorem hs) hc.isCutPair
 
+/--
+@isnad1 id=eq.1h5v.s6.4056f09b10dc from=translated src=- shape=b6ce37e1 vocab=54a6bfa7
+-/
 theorem frontier_face₂ (hc : d.IsCrosscutSplit R R') :
     frontier (R'.cell d.face₂) = R.cellUnion d.cells₂ ∪ R'.cellUnion d.earCells := by
   rw [hc.cell_face₂]
   exact hc.isCrosscut.frontier_side (fun _ hs => jordan_curve_theorem hs) hc.isCutPair.symm
 
+/--
+@isnad1 id=disjoint.1h5v.s6.bf9f065e8460 from=translated src=- shape=ed82d8c5 vocab=430169a0
+-/
 theorem disjoint_faces (hc : d.IsCrosscutSplit R R') :
     Disjoint (R'.cell d.face₁) (R'.cell d.face₂) := by
   rw [hc.cell_face₁, hc.cell_face₂]
   exact hc.isCrosscut.disjoint_sides (fun _ hs => jordan_curve_theorem hs) hc.isCutPair
 
+/--
+@isnad1 id=disjoint.2h6v.s6.048111882393 from=translated src=- shape=bfc46809 vocab=f07e8af8
+-/
 theorem disjoint_face₁_earNew (hc : d.IsCrosscutSplit R R') {σ : γ} (hσ : σ ∈ d.earNewCells) :
     Disjoint (R'.cell d.face₁) (R'.cell σ) := by
   rw [hc.cell_face₁]
   exact (hc.isCrosscut.disjoint_side_crosscut (fun _ hs => jordan_curve_theorem hs)
     hc.isCutPair).mono_right (hc.cell_earNew_subset hσ)
 
+/--
+@isnad1 id=disjoint.2h6v.s6.88c411a59c7d from=translated src=- shape=bfc46809 vocab=cf222589
+-/
 theorem disjoint_face₂_earNew (hc : d.IsCrosscutSplit R R') {σ : γ} (hσ : σ ∈ d.earNewCells) :
     Disjoint (R'.cell d.face₂) (R'.cell σ) := by
   rw [hc.cell_face₂]
@@ -780,7 +933,9 @@ gives `closure Rᵢ = Rᵢ ∪ P ∪ Bᵢ`; those are exactly the fields of `Spl
 are not about the ear's own drawing.
 
 The old instance of assertion (vii) is what identifies the old open 2-cell with the Jordan
-domain the crosscut cuts. -/
+domain the crosscut cuts.
+@isnad1 id=isrefine.2h5v.s5.6b4310a7ca4e from=translated src=- shape=65b56ad2 vocab=d07d1c47
+-/
 theorem isRefinement (hc : d.IsCrosscutSplit R R') (hJ : R.IsFaceJordan) :
     d.IsRefinement R R' where
   cell_eq := hc.cell_eq
@@ -824,7 +979,9 @@ theorem isRefinement (hc : d.IsCrosscutSplit R R') (hJ : R.IsFaceJordan) :
 
 /-- **Assertion (vii) is preserved by a 2-cell split.** The two new open 2-cells are the two
 sides of the crosscut, and `thm:general-crosscut` says each is the bounded complementary region
-of the Jordan curve `Bᵢ ∪ P`; every other 2-cell is unmoved. -/
+of the Jordan curve `Bᵢ ∪ P`; every other 2-cell is unmoved.
+@isnad1 id=isfacejo.2h5v.s5.0ab9c0ff2a74 from=translated src=- shape=b0dac15c vocab=8782a354
+-/
 theorem isFaceJordan (hc : d.IsCrosscutSplit R R') (hJ : R.IsFaceJordan) : R'.IsFaceJordan where
   isJordanCurve := by
     intro F hF
@@ -843,7 +1000,9 @@ theorem isFaceJordan (hc : d.IsCrosscutSplit R R') (hJ : R.IsFaceJordan) : R'.Is
 
 /-- **Both invariants at once**: one 2-cell split of a realization satisfying (i) and (vii)
 produces a realization satisfying (i) and (vii), and the pair is a `Realization.Refines`. This
-is the whole induction step of `lem:cellulation-invariants` over the second constructor. -/
+is the whole induction step of `lem:cellulation-invariants` over the second constructor.
+@isnad1 id=and.4h6v.s6.88102a7b64e5 from=translated src=- shape=fa7586a1 vocab=2d0e736e
+-/
 theorem isCellDecomposition_and_isFaceJordan (hc : d.IsCrosscutSplit R R')
     (hS : S.CombInvariants) {D : Set Plane} (h : R.IsCellDecomposition D)
     (hJ : R.IsFaceJordan) :

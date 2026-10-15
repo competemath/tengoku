@@ -31,6 +31,9 @@ class IsHomDiagonal (A : Type*) [QuasiBorelSpace A] where
 export IsHomDiagonal (isHom_eq)
 attribute [simp, fun_prop] isHom_eq
 
+/--
+@isnad1 id=ishom.2h4v.s5.08540874eea9 from=translated src=- shape=8a465181 vocab=0e3f80ca
+-/
 lemma isHom_eq'
     [IsHomDiagonal B] {f g : A → B} (hf : IsHom f) (hg : IsHom g)
     : IsHom fun x ↦ f x = g x := by

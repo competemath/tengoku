@@ -42,7 +42,9 @@ namespace Plane
 
 variable {U K : Set Plane} {x : Plane}
 
-/-- Components of an open subset of the plane are open. The plane is locally connected. -/
+/-- Components of an open subset of the plane are open. The plane is locally connected.
+@isnad1 id=isopen.1h2v.s7.7e9aa23edd5e from=translated src=- shape=b1fce8d7 vocab=2703a154
+-/
 theorem isOpen_connectedComponentIn (hU : IsOpen U) : IsOpen (connectedComponentIn U x) :=
   hU.connectedComponentIn
 
@@ -50,7 +52,9 @@ theorem isOpen_connectedComponentIn (hU : IsOpen U) : IsOpen (connectedComponent
 that closed set.
 
 A frontier point off `K` would be a point of the open set `Kᶜ` in the closure of the
-component; adjoining it keeps the component connected, so it was in the component already. -/
+component; adjoining it keeps the component connected, so it was in the component already.
+@isnad1 id=le.1h2v.s7.1294768326dd from=translated src=- shape=6b64c0a5 vocab=a51c46a1
+-/
 theorem frontier_connectedComponentIn_compl_subset (hK : IsClosed K) (x : Plane) :
     frontier (connectedComponentIn Kᶜ x) ⊆ K := by
   set C := connectedComponentIn Kᶜ x with hC
@@ -76,7 +80,9 @@ theorem frontier_connectedComponentIn_compl_subset (hK : IsClosed K) (x : Plane)
     hconn.subset_connectedComponentIn (Or.inl (mem_connectedComponentIn hxU)) hsub
   exact hzC (this (Or.inr rfl))
 
-/-- Appendix C item 6, the pasting lemma, two closed pieces. -/
+/-- Appendix C item 6, the pasting lemma, two closed pieces.
+@isnad1 id=continuo.4h3v.s8.820057ed58de from=translated src=- shape=aea8101f vocab=e0438c10
+-/
 theorem continuousOn_union_of_isClosed {f : Plane → Plane} {s t : Set Plane}
     (hs : IsClosed s) (ht : IsClosed t) (hfs : ContinuousOn f s) (hft : ContinuousOn f t) :
     ContinuousOn f (s ∪ t) :=

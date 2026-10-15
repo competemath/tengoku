@@ -24,6 +24,9 @@ namespace OmegaCompletePartialOrder.Chain.Option
 def none : Chain (Option A) where
   toOrderHom := ⟨fun _ ↦ .none, monotone_const⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.4e4700920cb1 from=translated src=- shape=7b04a2b9 vocab=405f9195
+-/
 @[simp]
 lemma none_coe {n} : none (A := A) n = .none := by rfl
 
@@ -43,6 +46,9 @@ def some (i : ℕ) (c : Chain A) : Chain (Option A) where
         apply (OrderHomClass.mono c)
         grind
 
+/--
+@isnad1 id=eq.0h4v.s6.258c4eedb7f5 from=translated src=- shape=5e8350cf vocab=1259824b
+-/
 @[simp]
 lemma some_coe (i n : ℕ) (c : Chain A)
     : some i c n = if n < i then .none else .some (c (n - i)) := by
@@ -71,6 +77,9 @@ noncomputable def project (c : Chain (Option A)) (h : ∃ n, (c n).isSome) : Cha
     | some y =>
     simp_all⟩
 
+/--
+@isnad1 id=eq.1h3v.s7.5e473cd8a38a from=translated src=- shape=b9cefc58 vocab=2c9247bc
+-/
 @[simp]
 lemma project_coe
     (c : Chain (Option A)) (h : ∃ n, (c n).isSome) (n : ℕ)
@@ -86,10 +95,16 @@ noncomputable def distrib (c : Chain (Option A)) : Option (Chain A) :=
   then .some (project c h)
   else .none
 
+/--
+@isnad1 id=eq.0h1v.s4.c8cad47f2046 from=translated src=- shape=012393c7 vocab=24e99118
+-/
 @[simp]
 lemma distrib_none : distrib (none : Chain (Option A)) = .none := by
   simp only [distrib, none_coe, Option.isSome_none, Bool.false_eq_true, exists_const, ↓reduceDIte]
 
+/--
+@isnad1 id=eq.0h3v.s4.e69925b2098a from=translated src=- shape=8d7e27f9 vocab=b16bb33f
+-/
 @[simp]
 lemma distrib_some (i : ℕ) (c : Chain A) : distrib (some i c) = .some c := by
   simp only [
@@ -102,6 +117,9 @@ lemma distrib_some (i : ℕ) (c : Chain A) : distrib (some i c) = .some c := by
     simp only [Nat.find_eq_iff, le_refl, not_le, imp_self, implies_true, and_self]
   grind
 
+/--
+@isnad1 id=var.0h5v.s5.91cfd07572af from=translated src=- shape=5d2591f2 vocab=905dba65
+-/
 @[elab_as_elim]
 lemma distrib_cases
     {p : Chain (Option A) → Prop}

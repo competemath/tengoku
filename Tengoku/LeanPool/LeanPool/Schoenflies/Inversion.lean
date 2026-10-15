@@ -114,50 +114,86 @@ that cares about the centre says so. -/
 by `I_a(a) = a` so that it is an involution of the whole plane. -/
 noncomputable def invert (a x : Plane) : Plane := EuclideanGeometry.inversion a 1 x
 
+/--
+@isnad1 id=eq.0h2v.s8.d6b3a22169fe from=translated src=- shape=4d2a3a1a vocab=dff7dba6
+-/
 theorem invert_apply (a x : Plane) : invert a x = a + (‖x - a‖ ^ 2)⁻¹ • (x - a) := by
   unfold invert EuclideanGeometry.inversion
   rw [dist_eq_norm]
   simp [add_comm]
 
+/--
+@isnad1 id=eq.0h1v.s3.949e618c5689 from=translated src=- shape=ca6c1f5d vocab=ebcb026a
+-/
 @[simp] theorem invert_center (a : Plane) : invert a a = a :=
   EuclideanGeometry.inversion_self a 1
 
-/-- The defining metric identity: inversion inverts the distance to the centre. -/
+/-- The defining metric identity: inversion inverts the distance to the centre.
+@isnad1 id=eq.0h2v.s6.c7bb6cb21740 from=translated src=- shape=489f32cd vocab=d9bcf07d
+-/
 theorem dist_invert_center (a x : Plane) : dist (invert a x) a = (dist x a)⁻¹ := by
   rw [invert, EuclideanGeometry.dist_inversion_center]
   simp
 
+/--
+@isnad1 id=eq.0h2v.s3.de498a4109a4 from=translated src=- shape=94dc243a vocab=ebcb026a
+-/
 theorem invert_invert (a x : Plane) : invert a (invert a x) = x :=
   EuclideanGeometry.inversion_inversion a one_ne_zero x
 
+/--
+@isnad1 id=involuti.0h1v.s2.2acc687d8604 from=translated src=- shape=6da4ece3 vocab=a03fcfec
+-/
 theorem invert_involutive (a : Plane) : Function.Involutive (invert a) := invert_invert a
 
+/--
+@isnad1 id=injectiv.0h1v.s2.696f776a246f from=translated src=- shape=f736e2c1 vocab=1c2268ab
+-/
 theorem invert_injective (a : Plane) : Function.Injective (invert a) :=
   (invert_involutive a).injective
 
 /-- Being an involution, inversion has image and preimage the same operation. This is what
-makes openness of an image as cheap as openness of a preimage. -/
+makes openness of an image as cheap as openness of a preimage.
+@isnad1 id=eq.0h2v.s4.d03212c7f319 from=translated src=- shape=226f593e vocab=ab2ab724
+-/
 theorem invert_image_eq_preimage (a : Plane) (S : Set Plane) :
     invert a '' S = invert a ⁻¹' S :=
   congrFun (invert_involutive a).image_eq_preimage_symm S
 
+/--
+@isnad1 id=eq.0h2v.s4.a57bc7e1d51a from=translated src=- shape=102cb66b vocab=2b72c63b
+-/
 @[simp] theorem invert_image_invert_image (a : Plane) (S : Set Plane) :
     invert a '' (invert a '' S) = S := by
   simp [← Set.image_comp, invert_invert]
 
+/--
+@isnad1 id=iff.0h2v.s3.5c1bb878c401 from=translated src=- shape=2c63c1d4 vocab=ebcb026a
+-/
 theorem invert_eq_center_iff : invert a x = a ↔ x = a :=
   EuclideanGeometry.inversion_eq_center one_ne_zero
 
+/--
+@isnad1 id=ne.1h2v.s3.42e46eca3c1b from=translated src=- shape=82ee1fce vocab=ebcb026a
+-/
 theorem invert_ne_center (h : x ≠ a) : invert a x ≠ a := fun hc => h (invert_eq_center_iff.1 hc)
 
+/--
+@isnad1 id=continuo.1h2v.s6.20389ebeab76 from=translated src=- shape=efa9650e vocab=b1ba0355
+-/
 theorem continuousAt_invert (h : x ≠ a) : ContinuousAt (invert a) x :=
   ContinuousAt.inversion continuousAt_const continuousAt_const continuousAt_id h
 
+/--
+@isnad1 id=continuo.0h1v.s6.80a2948c77d3 from=translated src=- shape=77d5fbc7 vocab=38b541e9
+-/
 theorem continuousOn_invert (a : Plane) : ContinuousOn (invert a) ({a}ᶜ : Set Plane) :=
   fun _ hx => (continuousAt_invert (by simpa using hx)).continuousWithinAt
 
 /-- An open set missing the centre has open image: on the punctured plane, which is itself
-open, inversion is a continuous involution, so the image is a preimage. -/
+open, inversion is a continuous involution, so the image is a preimage.
+@isnad1 id=isopen.2h2v.s6.9dd412a1e56b from=translated src=- shape=110a9888 vocab=3b70f9a1
+-/
 theorem isOpen_invert_image {S : Set Plane} (hS : IsOpen S) (ha : a ∉ S) :
     IsOpen (invert a '' S) := by
   rw [invert_image_eq_preimage]
@@ -185,7 +221,9 @@ Inversion is a homeomorphism on a neighbourhood of a curve avoiding the centre, 
 loops to loops. -/
 
 /-- The first sentence of the proof of `lem:inversion-sides`: `C^a = I_a(C)` is a Jordan
-curve. -/
+curve.
+@isnad1 id=isjordan.2h2v.s4.c75402ab68e5 from=translated src=- shape=ff5330ef vocab=6812dd40
+-/
 theorem IsJordanCurve.invert_image (hC : IsJordanCurve C) (ha : a ∉ C) :
     IsJordanCurve (invert a '' C) := by
   obtain ⟨f, hf, rfl⟩ := hC
@@ -206,7 +244,9 @@ speaks about the same set `U = I_a(Ext C) ∪ {a}`; the consequences that consum
 peeled off afterwards. -/
 
 /-- Everything beyond a large enough closed ball about any point is exterior to a separating
-curve: the curve and its interior together are bounded. -/
+curve: the curve and its interior together are bounded.
+@isnad1 id=ex.1h2v.s6.c79fd3fa726f from=translated src=- shape=037b917b vocab=c4b8be4c
+-/
 theorem exists_radius_compl_closedBall_subset_outside (hC : IsSeparating C) (a : Plane) :
     ∃ R > 0, (closedBall a R)ᶜ ⊆ outside C := by
   obtain ⟨r, hr⟩ := (isBounded_iff_subset_closedBall a).1
@@ -224,7 +264,9 @@ exterior of `C` under inversion about `a`, *together with the centre*, is exactl
 of `C^a = I_a(C)`.
 
 This is the form the proof produces; `Schoenflies.invert_image_outside` is the blueprint's
-statement, obtained by removing `a` from both sides. -/
+statement, obtained by removing `a` from both sides.
+@isnad1 id=eq.3h2v.s6.a542a9ddd10b from=translated src=- shape=cab0639e vocab=aae42d3b
+-/
 theorem invert_image_outside_union_singleton
     (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ)
     (hC : IsJordanCurve C) (ha : a ∈ inside C) :
@@ -343,13 +385,17 @@ theorem invert_image_outside_union_singleton
   have hain : a ∈ inside (invert a '' C) := ⟨hUD haU, by rw [hcomp]; exact hUbdd⟩
   exact hcomp.symm.trans (hsepa.connectedComponentIn_eq_inside hain)
 
-/-- The centre is never on `C^a`, since it is not on `C`. -/
+/-- The centre is never on `C^a`, since it is not on `C`.
+@isnad1 id=not.1h2v.s4.e05d82de8744 from=translated src=- shape=8e003ba4 vocab=ce860990
+-/
 theorem notMem_invert_image (ha : a ∉ C) : a ∉ invert a '' C := by
   rintro ⟨w, hw, hwa⟩
   exact ha (invert_eq_center_iff.1 hwa ▸ hw)
 
 /-- **`lem:inversion-sides`**, the blueprint's statement:
-`I_a(Ext(C)) = Int(C^a) ∖ {a}`. -/
+`I_a(Ext(C)) = Int(C^a) ∖ {a}`.
+@isnad1 id=eq.3h2v.s6.202611d22c2d from=translated src=- shape=65b49003 vocab=79942628
+-/
 theorem invert_image_outside (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ)
     (hC : IsJordanCurve C) (ha : a ∈ inside C) :
     invert a '' outside C = inside (invert a '' C) \ {a} := by
@@ -361,7 +407,9 @@ theorem invert_image_outside (harc : ∀ A : Set Plane, IsArc A → IsConnected 
 
 /-- The other half of the exchange: the punctured *interior* of `C` inverts onto the *exterior*
 of `C^a`. Not used by `prop:exterior-extension`, but it is what makes the name of the lemma
-true. -/
+true.
+@isnad1 id=eq.3h2v.s6.cc8b30a9faa5 from=translated src=- shape=6c738a1d vocab=79942628
+-/
 theorem invert_image_inside_diff (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ)
     (hC : IsJordanCurve C) (ha : a ∈ inside C) :
     invert a '' (inside C \ {a}) = outside (invert a '' C) := by
@@ -405,7 +453,9 @@ theorem invert_image_inside_diff (harc : ∀ A : Set Plane, IsArc A → IsConnec
         rw [← invert_invert a z, mem_singleton_iff.1 hsing, invert_center])
 
 /-- The closed-exterior form of `lem:inversion-sides`: inversion carries `C ∪ Ext(C)` onto
-`(C^a ∪ Int(C^a)) ∖ {a}`. -/
+`(C^a ∪ Int(C^a)) ∖ {a}`.
+@isnad1 id=eq.3h2v.s6.4a17df8688d6 from=translated src=- shape=4c148ea4 vocab=5ad5e2a5
+-/
 theorem invert_image_union_outside (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ)
     (hC : IsJordanCurve C) (ha : a ∈ inside C) :
     invert a '' (C ∪ outside C) =
@@ -417,7 +467,9 @@ theorem invert_image_union_outside (harc : ∀ A : Set Plane, IsArc A → IsConn
 of `C` onto the punctured interior of `C^a`, and it *restricts to a homeomorphism* from
 `C ∪ Ext(C)` onto `(C^a ∪ Int(C^a)) ∖ {a}`: it is injective and continuous on the source, its
 image is the target, and — being an involution — it is its own inverse there, continuous as
-well. -/
+well.
+@isnad1 id=and.3h2v.s8.c865880a3a27 from=translated src=- shape=92b05ab6 vocab=e2752a7e
+-/
 theorem inversion_sides (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ)
     (hC : IsJordanCurve C) (ha : a ∈ inside C) :
     IsJordanCurve (invert a '' C) ∧
@@ -443,7 +495,9 @@ theorem inversion_sides (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ)
     rintro rfl
     exact hz.2 rfl
 
-/-- The centre of the inversion is interior to the inverted curve. -/
+/-- The centre of the inversion is interior to the inverted curve.
+@isnad1 id=mem.3h2v.s6.e827ab4b1a11 from=translated src=- shape=1203a277 vocab=3ff0a04d
+-/
 theorem mem_inside_invert_image (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ)
     (hC : IsJordanCurve C) (ha : a ∈ inside C) : a ∈ inside (invert a '' C) := by
   rw [← invert_image_outside_union_singleton harc hC ha]
@@ -479,6 +533,9 @@ namespace IsHomeoOn
 
 variable {f g f' g' : Plane → Plane} {S T U S' T' : Set Plane}
 
+/--
+@isnad1 id=ishomeoo.1h4v.s4.a647d1e72e74 from=translated src=- shape=686bd36c vocab=8cf018f2
+-/
 theorem symm (h : IsHomeoOn f g S T) : IsHomeoOn g f T S where
   mapsTo := h.mapsTo_inv
   mapsTo_inv := h.mapsTo
@@ -486,14 +543,25 @@ theorem symm (h : IsHomeoOn f g S T) : IsHomeoOn g f T S where
   continuousOn_inv := h.continuousOn
   invOn := h.invOn.symm
 
+/--
+@isnad1 id=bijon.1h4v.s4.3381c56cd480 from=translated src=- shape=d7b89ce1 vocab=8b33cf75
+-/
 theorem bijOn (h : IsHomeoOn f g S T) : BijOn f S T :=
   h.invOn.bijOn h.mapsTo h.mapsTo_inv
 
+/--
+@isnad1 id=injon.1h4v.s4.5333705c6a0f from=translated src=- shape=0e50b5cf vocab=ef7d035c
+-/
 theorem injOn (h : IsHomeoOn f g S T) : InjOn f S := h.bijOn.injOn
 
+/--
+@isnad1 id=eq.1h4v.s4.e8016973f34e from=translated src=- shape=717d58e7 vocab=6ffd9511
+-/
 theorem image_eq (h : IsHomeoOn f g S T) : f '' S = T := h.bijOn.image_eq
 
-/-- Composing two restricted homeomorphisms. -/
+/-- Composing two restricted homeomorphisms.
+@isnad1 id=ishomeoo.2h7v.s5.c8314d1992cf from=translated src=- shape=e2c7878d vocab=e5cac2f7
+-/
 theorem comp (h : IsHomeoOn f g S T) (h' : IsHomeoOn f' g' T U) :
     IsHomeoOn (f' ∘ f) (g ∘ g') S U where
   mapsTo := h'.mapsTo.comp h.mapsTo
@@ -502,7 +570,9 @@ theorem comp (h : IsHomeoOn f g S T) (h' : IsHomeoOn f' g' T U) :
   continuousOn_inv := h.continuousOn_inv.comp h'.continuousOn_inv h'.mapsTo_inv
   invOn := h.invOn.comp h'.invOn h.mapsTo h'.mapsTo_inv
 
-/-- Restricting to a smaller pair of sets, once the two `MapsTo` clauses are known there. -/
+/-- Restricting to a smaller pair of sets, once the two `MapsTo` clauses are known there.
+@isnad1 id=ishomeoo.5h6v.s5.76f226804df7 from=translated src=- shape=a778937a vocab=1814c51d
+-/
 theorem mono (h : IsHomeoOn f g S T) (hS : S' ⊆ S) (hT : T' ⊆ T) (hf : MapsTo f S' T')
     (hg : MapsTo g T' S') : IsHomeoOn f g S' T' where
   mapsTo := hf
@@ -512,7 +582,9 @@ theorem mono (h : IsHomeoOn f g S T) (hS : S' ⊆ S) (hT : T' ⊆ T) (hf : MapsT
   invOn := h.invOn.mono hS hT
 
 /-- Deleting a matched pair of points. This is the step "`Φ*` restricts to a homeomorphism
-after the two points `a, b` are removed" of `prop:exterior-extension`. -/
+after the two points `a, b` are removed" of `prop:exterior-extension`.
+@isnad1 id=ishomeoo.3h6v.s6.c8ef0130555a from=translated src=- shape=0d89eceb vocab=4f4ce146
+-/
 theorem sdiff_singleton (h : IsHomeoOn f g S T) {u v : Plane} (hu : u ∈ S) (huv : f u = v) :
     IsHomeoOn f g (S \ {u}) (T \ {v}) := by
   refine h.mono Set.sdiff_subset Set.sdiff_subset (fun z hz => ⟨h.mapsTo hz.1, ?_⟩)
@@ -528,7 +600,9 @@ theorem sdiff_singleton (h : IsHomeoOn f g S T) {u v : Plane} (hu : u ∈ S) (hu
 
 end IsHomeoOn
 
-/-- Inversion restricts to a homeomorphism of any set missing the centre onto its image. -/
+/-- Inversion restricts to a homeomorphism of any set missing the centre onto its image.
+@isnad1 id=ishomeoo.1h2v.s4.a460a5801270 from=translated src=- shape=502f57f7 vocab=b18da39c
+-/
 theorem isHomeoOn_invert {S : Set Plane} (ha : a ∉ S) :
     IsHomeoOn (invert a) (invert a) S (invert a '' S) where
   mapsTo := Set.mapsTo_image _ _
@@ -571,7 +645,9 @@ Assumes `prop:pointed-extension` (`Schoenflies.PointedInteriorExtension`) and th
 hypothesis `harc` of `thm:jordan`. The proof is the blueprint's: choose `a ∈ Int(C)` and
 `b ∈ Int(C')`, invert about each, extend the conjugated boundary map `I_b ∘ f ∘ I_a` over the
 interior of `C^a` so that `a ↦ b`, delete the two centres, and conjugate back — the deleted
-punctured closed interiors being exactly the closed exteriors, by `lem:inversion-sides`. -/
+punctured closed interiors being exactly the closed exteriors, by `lem:inversion-sides`.
+@isnad1 id=ex.5h4v.s6.c42bcd8c7730 from=translated src=- shape=479c2ddc vocab=662f8513
+-/
 theorem exterior_extension (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ)
     (hpt : PointedInteriorExtension) {C C' : Set Plane} {f g : Plane → Plane}
     (hC : IsJordanCurve C) (hC' : IsJordanCurve C') (hfg : IsHomeoOn f g C C') :
@@ -632,7 +708,9 @@ separating curve is `C = ∂Ω`. -/
 and `Ω` swallows the component in `Cᶜ` of each of its points, then near any `p ∈ C` there is a
 strongly accessible point of `C`: pick `q ∈ Ω` within `ε/2` of `p`, and take the point of `C`
 nearest to `q`; it is strongly accessible by `lem:nearest-strong` and within `2‖q - p‖` of
-`p`. -/
+`p`.
+@isnad1 id=ex.7h4v.s8.8422634fd662 from=translated src=- shape=0aa96918 vocab=0f409923
+-/
 theorem exists_stronglyAccessible_dist_lt (hCcpt : IsCompact C) (hCne : C.Nonempty)
     (hΩC : Ω ⊆ Cᶜ) (hΩmax : ∀ q ∈ Ω, connectedComponentIn Cᶜ q ⊆ Ω) (hCΩ : C ⊆ closure Ω)
     (hp : p ∈ C) (hε : 0 < ε) :
@@ -651,7 +729,9 @@ theorem exists_stronglyAccessible_dist_lt (hCcpt : IsCompact C) (hCne : C.Nonemp
   linarith
 
 /-- **`lem:tangent-dense` (density of strongly accessible points)**, for either region of a
-separating Jordan curve: the points of `C` strongly accessible from `Ω` are dense in `C`. -/
+separating Jordan curve: the points of `C` strongly accessible from `Ω` are dense in `C`.
+@isnad1 id=le.2h2v.s6.6f27d475faa4 from=translated src=- shape=5e056bc6 vocab=7bface7f
+-/
 theorem tangent_dense (hC : IsSeparating C) (hΩ : IsRegionOf C Ω) :
     C ⊆ closure {b ∈ C | StronglyAccessible Ω b} := by
   intro p hp
@@ -662,13 +742,17 @@ theorem tangent_dense (hC : IsSeparating C) (hΩ : IsRegionOf C Ω) :
     (fun q hq => (hΩ.connectedComponentIn_eq hC hq).le) (hΩ.subset_closure hC) hp hε
   exact ⟨b, ⟨hbC, hbacc⟩, by rwa [dist_comm]⟩
 
-/-- `lem:tangent-dense` in the blueprint's own setting, `D = Int(C)`. -/
+/-- `lem:tangent-dense` in the blueprint's own setting, `D = Int(C)`.
+@isnad1 id=le.1h1v.s6.5f28a9564a0e from=translated src=- shape=b4dcc122 vocab=d997cba6
+-/
 theorem tangent_dense_inside (hC : IsSeparating C) :
     C ⊆ closure {b ∈ C | StronglyAccessible (inside C) b} :=
   tangent_dense hC (IsRegionOf.inside C)
 
 /-- `lem:tangent-dense` for a Jordan curve, threading the standing hypothesis of
-`thm:jordan`. -/
+`thm:jordan`.
+@isnad1 id=le.2h1v.s6.16379a5c9593 from=translated src=- shape=1b2de789 vocab=e22685e6
+-/
 theorem IsJordanCurve.tangent_dense (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ)
     (hC : IsJordanCurve C) :
     C ⊆ closure {b ∈ C | StronglyAccessible (inside C) b} :=

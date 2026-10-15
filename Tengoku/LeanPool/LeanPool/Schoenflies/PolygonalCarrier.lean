@@ -55,27 +55,40 @@ inductive PolyReaches (C : Set Plane) (x : Plane) : Plane → Prop
 
 namespace PolyReaches
 
-/-- A single segment inside `C` is already a polygonal path. -/
+/-- A single segment inside `C` is already a polygonal path.
+@isnad1 id=polyreac.1h3v.s6.289f255ea118 from=translated src=- shape=608b182f vocab=f892e2af
+-/
 theorem of_segment (hseg : segment ℝ x y ⊆ C) : PolyReaches C x y :=
   (PolyReaches.refl (hseg (left_mem_segment ℝ x y))).step hseg
 
+/--
+@isnad1 id=mem.1h3v.s4.3556fdb5414f from=translated src=- shape=e42577a1 vocab=c5e7e6f7
+-/
 theorem left_mem (h : PolyReaches C x y) : x ∈ C := by
   induction h with
   | refl hx => exact hx
   | step _ _ ih => exact ih
 
+/--
+@isnad1 id=mem.1h3v.s4.515afd2c1855 from=translated src=- shape=c6429753 vocab=c5e7e6f7
+-/
 theorem right_mem (h : PolyReaches C x y) : y ∈ C := by
   induction h with
   | refl hx => exact hx
   | @step _ z _ hseg _ => exact hseg (right_mem_segment ℝ _ z)
 
+/--
+@isnad1 id=polyreac.2h4v.s4.056cefc57805 from=translated src=- shape=7a4644f4 vocab=9c16bf33
+-/
 theorem trans (h₁ : PolyReaches C x y) (h₂ : PolyReaches C y z) : PolyReaches C x z := by
   induction h₂ with
   | refl _ => exact h₁
   | step _ hseg ih => exact ih.step hseg
 
 /-- Symmetry: a path is run backwards one segment at a time, each reversed segment being the
-same set. -/
+same set.
+@isnad1 id=polyreac.1h3v.s4.e3552b0ade8f from=translated src=- shape=18f1d965 vocab=9c16bf33
+-/
 theorem symm (h : PolyReaches C x y) : PolyReaches C y x := by
   induction h with
   | refl hx => exact PolyReaches.refl hx
@@ -83,6 +96,9 @@ theorem symm (h : PolyReaches C x y) : PolyReaches C y x := by
     -- The last segment, reversed, joins `z` back to `y`; then follow the shorter path back.
     exact (of_segment (by rwa [segment_symm])).trans ih
 
+/--
+@isnad1 id=polyreac.2h4v.s4.e285872f8a5a from=translated src=- shape=85f7c2dc vocab=6e415fe8
+-/
 theorem mono (hCD : C ⊆ D) (h : PolyReaches C x y) : PolyReaches D x y := by
   induction h with
   | refl hx => exact PolyReaches.refl (hCD hx)
@@ -93,7 +109,9 @@ end PolyReaches
 /-! ### The relation and the vertex-list representation agree -/
 
 /-- A polygonal path in the sense of `PolyReaches` yields a vertex list with the carrier of
-its polygon inside `C`. This is `poly_concat` used once per `step`. -/
+its polygon inside `C`. This is `poly_concat` used once per `step`.
+@isnad1 id=ex.1h3v.s5.4a8df2a34883 from=translated src=- shape=e48d1954 vocab=d7c69fee
+-/
 theorem PolyReaches.exists_poly (h : PolyReaches C x y) :
     ∃ vs : List Plane, ∃ hne : vs ≠ [], poly vs ⊆ C ∧ vs.head hne = x ∧ vs.getLast hne = y := by
   induction h with
@@ -106,7 +124,9 @@ theorem PolyReaches.exists_poly (h : PolyReaches C x y) :
     · rw [List.head_append_of_ne_nil hne]; exact hhead
     · simp
 
-/-- Conversely a vertex list whose polygon lies in `C` joins its ends. -/
+/-- Conversely a vertex list whose polygon lies in `C` joins its ends.
+@isnad1 id=polyreac.2h2v.s5.6ee4dd90a6a5 from=translated src=- shape=dbaf17c6 vocab=d7c69fee
+-/
 theorem polyReaches_of_poly_subset : ∀ {vs : List Plane} (hne : vs ≠ []), poly vs ⊆ C →
     PolyReaches C (vs.head hne) (vs.getLast hne)
   | [], hne, _ => absurd rfl hne
@@ -137,7 +157,9 @@ the reachable set and, run backwards, for its relative complement.
 
 A subset of `C` closed under "reach one more point of `C` by a polygonal path" is relatively
 open in `C`. The witness is the union of all ambient open sets that are polygonally attached
-to a point of `S`; no choice is needed to assemble it. -/
+to a point of `S`; no choice is needed to assemble it.
+@isnad1 id=ex.3h2v.s6.fb8df80d212a from=translated src=- shape=5d233288 vocab=f18337e1
+-/
 theorem isRelOpen_of_polyReaches_stable (hloc : IsLocallyPolyConnected C) {S : Set Plane}
     (hS : S ⊆ C) (hstable : ∀ w ∈ S, ∀ z ∈ C, PolyReaches C w z → z ∈ S) :
     ∃ U : Set Plane, IsOpen U ∧ S ⊆ U ∧ U ∩ C ⊆ S := by
@@ -155,7 +177,9 @@ polygonally connected set, any two points are joined by a polygonal path inside 
 
 The proof is the clopen argument. The points reachable from `x` are relatively open in `C`,
 and so are the unreachable ones — the same lemma, since "unreachable" is stable under
-reaching too, by symmetry. `IsPreconnected C` then forbids the split. -/
+reaching too, by symmetry. `IsPreconnected C` then forbids the split.
+@isnad1 id=polyreac.4h3v.s6.f374b7bc1007 from=translated src=- shape=98a71521 vocab=3bac5eaa
+-/
 theorem PolyReaches.of_isPreconnected (hloc : IsLocallyPolyConnected C)
     (hconn : IsPreconnected C) (hx : x ∈ C) (hy : y ∈ C) : PolyReaches C x y := by
   by_contra hxy
@@ -172,7 +196,9 @@ theorem PolyReaches.of_isPreconnected (hloc : IsLocallyPolyConnected C)
     ⟨y, hy, hRU' ⟨hy, fun h => hxy h.2⟩⟩
   exact (hU'R ⟨hwU', hwC⟩).2 (hUR ⟨hwU, hwC⟩)
 
-/-- The vertex-list reading of the carrier theorem, matching the shape `PolyPath` delivers. -/
+/-- The vertex-list reading of the carrier theorem, matching the shape `PolyPath` delivers.
+@isnad1 id=ex.4h3v.s6.8c61ffd12fcd from=translated src=- shape=9d801d5f vocab=d9cf2de8
+-/
 theorem exists_poly_of_isPreconnected_of_locally (hloc : IsLocallyPolyConnected C)
     (hconn : IsPreconnected C) (hx : x ∈ C) (hy : y ∈ C) :
     ∃ vs : List Plane, ∃ h : vs ≠ [], poly vs ⊆ C ∧ vs.head h = x ∧ vs.getLast h = y :=
@@ -182,7 +208,9 @@ theorem exists_poly_of_isPreconnected_of_locally (hloc : IsLocallyPolyConnected 
 
 /-- Two convex pieces of `C` that meet make one polygonally connected piece: the bent path
 through a common point. This is the shape brick B5 needs for the corner neighbourhood, which
-is a disk minus an open quadrant — the union of two half-disks. -/
+is a disk minus an open quadrant — the union of two half-disks.
+@isnad1 id=polyreac.6h5v.s8.118c3063d698 from=translated src=- shape=3269c847 vocab=c966e1ab
+-/
 theorem polyReaches_union_of_convex {S T : Set Plane} (hS : Convex ℝ S) (hT : Convex ℝ T)
     (hST : (S ∩ T).Nonempty) (hsub : S ∪ T ⊆ C) (hx : x ∈ S ∪ T) (hy : y ∈ S ∪ T) :
     PolyReaches C x y := by
@@ -198,7 +226,9 @@ theorem polyReaches_union_of_convex {S T : Set Plane} (hS : Convex ℝ S) (hT : 
   · exact hTC hx hy
 
 /-- An open set is locally polygonally connected: the balls it contains are convex. This is
-the only place a ball appears, and it is what recovers the old statement. -/
+the only place a ball appears, and it is what recovers the old statement.
+@isnad1 id=islocall.1h1v.s5.ce06f382bfb7 from=translated src=- shape=24af0c4d vocab=4579dceb
+-/
 theorem isLocallyPolyConnected_of_isOpen (hC : IsOpen C) : IsLocallyPolyConnected C := by
   intro w hw
   obtain ⟨r, hr, hball⟩ := Metric.isOpen_iff.1 hC w hw
@@ -206,7 +236,9 @@ theorem isLocallyPolyConnected_of_isOpen (hC : IsOpen C) : IsLocallyPolyConnecte
     PolyReaches.of_segment
       (((convex_ball w r).segment_subset (mem_ball_self hr) hz.1).trans hball)⟩
 
-/-- `PolyPath.exists_poly_of_isPreconnected`, re-derived from the carrier version. -/
+/-- `PolyPath.exists_poly_of_isPreconnected`, re-derived from the carrier version.
+@isnad1 id=ex.4h3v.s7.20eebb6a66d6 from=translated src=- shape=db6ba73e vocab=07dc02d4
+-/
 theorem exists_poly_of_isPreconnected' {Ω : Set Plane} {x y : Plane} (hΩ : IsOpen Ω)
     (hconn : IsPreconnected Ω) (hx : x ∈ Ω) (hy : y ∈ Ω) :
     ∃ vs : List Plane, ∃ h : vs ≠ [], poly vs ⊆ Ω ∧ vs.head h = x ∧ vs.getLast h = y :=

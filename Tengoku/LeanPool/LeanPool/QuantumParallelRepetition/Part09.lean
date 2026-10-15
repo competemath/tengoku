@@ -160,6 +160,9 @@ private def exactSourceGlobalCatalystBasisEquiv
       (ExactGlobalHistoryLocalIndex G n S D)
       (Fin e) (Fin e)).trans (Equiv.prodCongr localEquiv localEquiv)
 
+/--
+@isnad1 id=eq.0h16v.s20.bfdd9200e5fb from=translated src=- shape=a7a947de vocab=246c459b
+-/
 @[simp] theorem exactSourceGlobalCatalystAlicePOVM_effect_global
     [DecidableEq A]
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
@@ -340,6 +343,9 @@ def unconditionalConjugatePureVector
     EuclideanSpace ℂ ι :=
   toLp 2 (fun i : ι => star (z i))
 
+/--
+@isnad1 id=eq.0h3v.s7.65f98e26a594 from=translated src=- shape=fe937ca1 vocab=2b5036bd
+-/
 @[simp] theorem unconditionalConjugatePureVector_apply
     {ι : Type*}
     (z : EuclideanSpace ℂ ι) (i : ι) :
@@ -1584,6 +1590,9 @@ def directDSVActualReindexedRetainedPOVM
     (P : POVM C s) : POVM C ι :=
   reindexedPOVM e.symm (purificationAlicePOVM (k := t) P)
 
+/--
+@isnad1 id=eq.0h9v.s8.d5e96f02748c from=translated src=- shape=1bbbdea2 vocab=2e1d8c10
+-/
 @[simp] theorem directDSVActualReindexedRetainedPOVM_effect
     {C s t ι : Type*}
     [Fintype C] [Fintype s] [Fintype t] [Fintype ι]
@@ -1618,7 +1627,9 @@ def directDSVActualLocalPOVMWinningEffect
       PA.effect a ⊗ₖ PB.effect b
     else 0
 
-/-- A stopping branch uses the winning effect of its two selected measurements. -/
+/-- A stopping branch uses the winning effect of its two selected measurements.
+@isnad1 id=eq.0h14v.s7.da1165175b69 from=translated src=- shape=351ffea1 vocab=d9537f14
+-/
 theorem actualStoppingBranchWinningEffect_eq_direct
     {X Y A B R : Type} {ι κ : R → Type}
     [Fintype X] [Fintype Y] [Fintype A] [Fintype B]

@@ -42,7 +42,9 @@ open Schoenflies
 variable {β : Type*} {G : Graph Plane β} {drawing : β → ℝ → Plane}
   {e : β} {x y : Plane}
 
-/-- A finite plane graph with nonempty, preconnected point set is combinatorially connected. -/
+/-- A finite plane graph with nonempty, preconnected point set is combinatorially connected.
+@isnad1 id=connecte.3h3v.s6.929ed646d873 from=translated src=- shape=5e027be2 vocab=6beb67e7
+-/
 theorem connected_of_isPreconnected_pointSet [G.Finite]
     (hdraw : IsDrawing G drawing) (hconn : IsPreconnected (pointSet G drawing))
     (hne : V(G).Nonempty) : G.Connected := by
@@ -131,11 +133,15 @@ def traceGraph (G : Graph Plane β) (drawing : β → ℝ → Plane) (A : Set Pl
     Graph Plane β :=
   (G.restrict {e | edgeArc drawing e ⊆ A}).induce (V(G) ∩ A)
 
-/-- The vertices retained by a trace graph. -/
+/-- The vertices retained by a trace graph.
+@isnad1 id=eq.0h4v.s5.e88fc330db0f from=translated src=- shape=1313b448 vocab=7f40342c
+-/
 @[simp] theorem traceGraph_vertexSet (A : Set Plane) :
     V(traceGraph G drawing A) = V(G) ∩ A := rfl
 
-/-- A trace edge is exactly an ambient edge whose full arc and endpoints lie in the support. -/
+/-- A trace edge is exactly an ambient edge whose full arc and endpoints lie in the support.
+@isnad1 id=iff.0h7v.s6.a2d4317f3c47 from=translated src=- shape=ae280450 vocab=97a91a94
+-/
 @[simp] theorem traceGraph_isLink (A : Set Plane) :
     (traceGraph G drawing A).IsLink e x y ↔
       edgeArc drawing e ⊆ A ∧ G.IsLink e x y ∧ x ∈ A ∧ y ∈ A := by
@@ -147,11 +153,15 @@ def traceGraph (G : Graph Plane β) (drawing : β → ℝ → Plane) (A : Set Pl
   · rintro ⟨hsub, hlink, hxA, hyA⟩
     exact ⟨⟨hsub, hlink⟩, ⟨hlink.left_mem, hxA⟩, ⟨hlink.right_mem, hyA⟩⟩
 
-/-- A trace graph is a subgraph of its ambient graph. -/
+/-- A trace graph is a subgraph of its ambient graph.
+@isnad1 id=le.0h4v.s5.d7e883aa3f68 from=translated src=- shape=3bd2f809 vocab=db31a738
+-/
 theorem traceGraph_le (A : Set Plane) : traceGraph G drawing A ≤ G :=
   le_trans (induce_le Set.inter_subset_left) restrict_le
 
-/-- Enlarging the support enlarges the trace graph. -/
+/-- Enlarging the support enlarges the trace graph.
+@isnad1 id=le.1h5v.s5.57f22c3b2e3a from=translated src=- shape=4e8a9feb vocab=db31a738
+-/
 theorem traceGraph_mono {A B : Set Plane} (hAB : A ⊆ B) :
     traceGraph G drawing A ≤ traceGraph G drawing B where
   vertexSet_mono := by
@@ -162,7 +172,9 @@ theorem traceGraph_mono {A B : Set Plane} (hAB : A ⊆ B) :
     rw [traceGraph_isLink] at hlink ⊢
     exact ⟨hlink.1.trans hAB, hlink.2.1, hAB hlink.2.2.1, hAB hlink.2.2.2⟩
 
-/-- The trace graph occupies only its prescribed support. -/
+/-- The trace graph occupies only its prescribed support.
+@isnad1 id=le.0h4v.s4.d5b4834625e5 from=translated src=- shape=96951d37 vocab=805fc684
+-/
 theorem pointSet_traceGraph_subset (A : Set Plane) :
     pointSet (traceGraph G drawing A) drawing ⊆ A := by
   rintro z (hz | hz)
@@ -172,7 +184,9 @@ theorem pointSet_traceGraph_subset (A : Set Plane) :
     obtain ⟨x, y, hxy⟩ := he
     exact (traceGraph_isLink A).1 hxy |>.1 hze
 
-/-- An absorbed subset of a finite drawing is exactly the point set of its trace graph. -/
+/-- An absorbed subset of a finite drawing is exactly the point set of its trace graph.
+@isnad1 id=eq.3h4v.s6.00e5bef2dbad from=translated src=- shape=7e89c87d vocab=3c2100e8
+-/
 theorem pointSet_traceGraph_eq (hdraw : IsDrawing G drawing) (A : Set Plane)
     (hsub : A ⊆ pointSet G drawing)
     (habsorb : ∀ ⦃e⦄, e ∈ E(G) →
@@ -196,7 +210,9 @@ theorem pointSet_traceGraph_eq (hdraw : IsDrawing G drawing) (A : Set Plane)
             ⟨heA, hxy, heA harc.left_mem, heA harc.right_mem⟩⟩)
         hze)
 
-/-- A graph vertex lying on a drawn walk is one of the walk's combinatorial vertices. -/
+/-- A graph vertex lying on a drawn walk is one of the walk's combinatorial vertices.
+@isnad1 id=mem.4h7v.s6.85169b29c9b1 from=translated src=- shape=10296cb6 vocab=f1f99633
+-/
 theorem IsDrawing.mem_walkVertices_of_mem_edgesCover_walk (hdraw : IsDrawing G drawing)
     {u v z : Plane} {W : List β} (hW : G.IsWalk u W v)
     (hzV : z ∈ V(G)) (hz : z ∈ edgesCover drawing W) : z ∈ G.walkVertices u W := by
@@ -206,7 +222,9 @@ theorem IsDrawing.mem_walkVertices_of_mem_edgesCover_walk (hdraw : IsDrawing G d
   · exact mem_walkVertices_of_mem_covered ⟨e, heW, hxy.inc_left⟩
   · exact mem_walkVertices_of_mem_covered ⟨e, heW, hxy.inc_right⟩
 
-/-- Adding edges without adding vertices preserves 2-connectivity. -/
+/-- Adding edges without adding vertices preserves 2-connectivity.
+@isnad1 id=istwocon.3h4v.s5.416e5ddcbc62 from=translated src=- shape=d9932655 vocab=f4ef15a7
+-/
 theorem IsTwoConnected.spanning_mono {α δ : Type*} {A B : Graph α δ}
     (hA : A.IsTwoConnected) (hAB : A ≤ B) (hV : V(B) ⊆ V(A)) :
     B.IsTwoConnected where
@@ -233,7 +251,9 @@ open Graph
 variable {γ : Type*} {S : CellStructure γ} {R : S.Realization}
   {outer dom : Set Plane} {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
 
-/-- An extension edge meeting the interior of the old skeleton is absorbed by that skeleton. -/
+/-- An extension edge meeting the interior of the old skeleton is absorbed by that skeleton.
+@isnad1 id=le.3h8v.s6.2244d067dc33 from=translated src=- shape=eba17d1c vocab=53cfa246
+-/
 theorem trace_absorb (hH : IsSourceExtension R outer dom H Hdraw) :
     ∀ ⦃f⦄, f ∈ E(H) →
       (edgeArc Hdraw f ∩ (R.skeletonSet \ V(H))).Nonempty →
@@ -264,13 +284,17 @@ theorem trace_absorb (hH : IsSourceExtension R outer dom H Hdraw) :
       exact ⟨hze, by simp [hza, hzb]⟩, hznotH⟩).trans
         (Graph.edgeArc_subset_pointSet heR)
 
-/-- The extension trace on the old skeleton occupies exactly the old skeleton. -/
+/-- The extension trace on the old skeleton occupies exactly the old skeleton.
+@isnad1 id=eq.1h7v.s5.95687ed7e883 from=translated src=- shape=045a7904 vocab=f9293094
+-/
 theorem trace_pointSet (hH : IsSourceExtension R outer dom H Hdraw) :
     Graph.pointSet (Graph.traceGraph H Hdraw R.skeletonSet) Hdraw = R.skeletonSet :=
   Graph.pointSet_traceGraph_eq hH.isDrawing R.skeletonSet hH.skeletonSet_subset
     (trace_absorb hH)
 
-/-- The trace supported on one old edge occupies that entire edge arc. -/
+/-- The trace supported on one old edge occupies that entire edge arc.
+@isnad1 id=eq.2h8v.s6.7258a03bb639 from=translated src=- shape=7151af00 vocab=5be1ba32
+-/
 theorem edge_trace_pointSet (hH : IsSourceExtension R outer dom H Hdraw)
     {e : γ} (he : e ∈ E(S.skel)) :
     Graph.pointSet (Graph.traceGraph H Hdraw (edgeArc R.drawing e)) Hdraw =
@@ -299,7 +323,9 @@ theorem edge_trace_pointSet (hH : IsSourceExtension R outer dom H Hdraw)
     rw [R.cell_edge hab]
     exact ⟨hze, by simp [hza, hzb]⟩, hznotH⟩
 
-/-- Every old edge is the drawn carrier of a path in the extension graph. -/
+/-- Every old edge is the drawn carrier of a path in the extension graph.
+@isnad1 id=ex.2h10v.s6.489ecfc04c5b from=translated src=- shape=49f79653 vocab=bac114d6
+-/
 theorem exists_edge_trace (hH : IsSourceExtension R outer dom H Hdraw)
     {e a b : γ} (hab : S.skel.IsLink e a b) :
     ∃ D : List γ, H.IsPath (R.pos a) D (R.pos b) ∧
@@ -337,7 +363,9 @@ theorem exists_edge_trace (hH : IsSourceExtension R outer dom H Hdraw)
   exact ⟨D, hDH, hPathArc.eq_of_subset_arc hOldArc hOldArc hcoverSub
     (Set.Subset.rfl)⟩
 
-/-- The path tracing an old edge is contained in the trace supported on that edge. -/
+/-- The path tracing an old edge is contained in the trace supported on that edge.
+@isnad1 id=le.4h11v.s6.d7240e585061 from=translated src=- shape=4b3b77c4 vocab=d6ebbc86
+-/
 theorem pathGraph_edge_trace_le (hH : IsSourceExtension R outer dom H Hdraw)
     {e a b : γ} (hab : S.skel.IsLink e a b) {D : List γ}
     (hD : H.IsPath (R.pos a) D (R.pos b))
@@ -365,7 +393,9 @@ theorem pathGraph_edge_trace_le (hH : IsSourceExtension R outer dom H Hdraw)
     exact (Graph.traceGraph_isLink _).2
       ⟨hsub, hlinkH, hsub harc.left_mem, hsub harc.right_mem⟩
 
-/-- Every old skeleton vertex belongs to the full skeleton trace. -/
+/-- Every old skeleton vertex belongs to the full skeleton trace.
+@isnad1 id=mem.2h8v.s6.c3fd3ce5eb5c from=translated src=- shape=6520ae4a vocab=ee41f595
+-/
 theorem old_vertex_mem_trace (hH : IsSourceExtension R outer dom H Hdraw)
     {a : γ} (ha : a ∈ V(S.skel)) :
     R.pos a ∈ V(Graph.traceGraph H Hdraw R.skeletonSet) := by
@@ -373,7 +403,9 @@ theorem old_vertex_mem_trace (hH : IsSourceExtension R outer dom H Hdraw)
   exact ⟨hH.vertexSet_subset (by rw [R.vertexSet_graph]; exact ⟨a, ha, rfl⟩),
     R.pos_mem_skeletonSet ha⟩
 
-/-- An old skeleton walk expands to a reachability witness in the extension trace. -/
+/-- An old skeleton walk expands to a reachability witness in the extension trace.
+@isnad1 id=reaches.2h10v.s6.9228a7c0b2e3 from=translated src=- shape=c716fd2e vocab=18f2feeb
+-/
 theorem reaches_trace_of_isWalk (hH : IsSourceExtension R outer dom H Hdraw)
     {a b : γ} {W : List γ} (hW : S.skel.IsWalk a W b) :
     (Graph.traceGraph H Hdraw R.skeletonSet).Reaches (R.pos a) (R.pos b) := by
@@ -390,7 +422,9 @@ theorem reaches_trace_of_isWalk (hH : IsSourceExtension R outer dom H Hdraw)
       ⟨D, hD.pathGraphOf.isWalk⟩
     exact (hreach.mono hPle).trans ih
 
-/-- Any two old vertices are joined inside the extension trace. -/
+/-- Any two old vertices are joined inside the extension trace.
+@isnad1 id=reaches.4h9v.s6.9479dfdf73fd from=translated src=- shape=c1671c1b vocab=ffef1b58
+-/
 theorem old_vertices_reach_trace (hH : IsSourceExtension R outer dom H Hdraw)
     (hR2 : R.graph.IsTwoConnected) {a b : γ}
     (ha : a ∈ V(S.skel)) (hb : b ∈ V(S.skel)) :
@@ -400,7 +434,9 @@ theorem old_vertices_reach_trace (hH : IsSourceExtension R outer dom H Hdraw)
   obtain ⟨W, hW⟩ := hS2.connected.reaches ha hb
   exact reaches_trace_of_isWalk hH hW
 
-/-- Every trace vertex reaches an old skeleton vertex. -/
+/-- Every trace vertex reaches an old skeleton vertex.
+@isnad1 id=ex.2h8v.s6.dda7405d80c6 from=translated src=- shape=504ad7e7 vocab=fca3c5a8
+-/
 theorem exists_reaches_old_vertex (hH : IsSourceExtension R outer dom H Hdraw)
     {x : Plane} (hx : x ∈ V(Graph.traceGraph H Hdraw R.skeletonSet)) :
     ∃ a ∈ V(S.skel),
@@ -430,7 +466,9 @@ theorem exists_reaches_old_vertex (hH : IsSourceExtension R outer dom H Hdraw)
       exact ⟨a, hab.left_mem,
         ((hD.isPathGraph_pathGraphOf.connected.reaches hxP haP).mono hPle)⟩
 
-/-- After deleting a distinct trace vertex, every remaining vertex still reaches an old one. -/
+/-- After deleting a distinct trace vertex, every remaining vertex still reaches an old one.
+@isnad1 id=ex.3h9v.s6.c5ec53521ce4 from=translated src=- shape=877c13d4 vocab=4862b69b
+-/
 theorem exists_reaches_old_vertex_delete
     (hH : IsSourceExtension R outer dom H Hdraw) {c x : Plane}
     (hx : x ∈ V(Graph.traceGraph H Hdraw R.skeletonSet)) (hxc : x ≠ c) :
@@ -461,7 +499,9 @@ theorem exists_reaches_old_vertex_delete
       · exact ⟨a, hab.left_mem, hreach.mono (Graph.deleteVerts_mono hPle _)⟩
       · exact ⟨b, hab.right_mem, hreach.mono (Graph.deleteVerts_mono hPle _)⟩
 
-/-- An old walk avoiding a vertex expands to a trace walk avoiding its realized point. -/
+/-- An old walk avoiding a vertex expands to a trace walk avoiding its realized point.
+@isnad1 id=reaches.3h11v.s6.6fed73567db6 from=translated src=- shape=5c196db4 vocab=27ce8a98
+-/
 theorem reaches_trace_delete_of_deleteVerts_isWalk
     (hH : IsSourceExtension R outer dom H Hdraw)
     {z a b : γ} {W : List γ}
@@ -508,7 +548,9 @@ theorem reaches_trace_delete_of_deleteVerts_isWalk
         exact hznot)⟩
     exact (hreach.mono (Graph.deleteVerts_mono hPle _)).trans ih
 
-/-- An old walk avoiding an edge expands to a trace walk avoiding an interior point of it. -/
+/-- An old walk avoiding an edge expands to a trace walk avoiding an interior point of it.
+@isnad1 id=reaches.5h12v.s7.5f87677fa07c from=translated src=- shape=916e9c43 vocab=03683b47
+-/
 theorem reaches_trace_delete_of_deleteEdges_isWalk
     (hH : IsSourceExtension R outer dom H Hdraw)
     {c : Plane} (hcold : c ∉ V(R.graph))
@@ -551,7 +593,9 @@ theorem reaches_trace_delete_of_deleteEdges_isWalk
         exact hcnot)⟩
     exact (hreach.mono (Graph.deleteVerts_mono hPle _)).trans ih
 
-/-- The part of an extension graph supported on a 2-connected old skeleton is 2-connected. -/
+/-- The part of an extension graph supported on a 2-connected old skeleton is 2-connected.
+@isnad1 id=istwocon.2h7v.s5.1ac98586a9b9 from=translated src=- shape=1c04752b vocab=78b20475
+-/
 theorem trace_isTwoConnected
     (hH : IsSourceExtension R outer dom H Hdraw)
     (hR2 : R.graph.IsTwoConnected) :
@@ -654,7 +698,9 @@ structure IsPlaneSubdivisionExtension (G : Graph Plane β) (Gdraw : β → ℝ �
 
 namespace IsPlaneSubdivisionExtension
 
-/-- An ambient edge meeting the old carrier away from ambient vertices is absorbed by it. -/
+/-- An ambient edge meeting the old carrier away from ambient vertices is absorbed by it.
+@isnad1 id=le.3h7v.s6.140693ab36dc from=translated src=- shape=ca4a4571 vocab=16ee00a8
+-/
 theorem trace_absorb (h : IsPlaneSubdivisionExtension G Gdraw K Kdraw) :
     ∀ ⦃f⦄, f ∈ E(K) →
       (edgeArc Kdraw f ∩ (pointSet G Gdraw \ V(K))).Nonempty →
@@ -667,12 +713,16 @@ theorem trace_absorb (h : IsPlaneSubdivisionExtension G Gdraw K Kdraw) :
     exact (h.edge_subset he hf ⟨z, hzf, hze, hznotK⟩).trans
       (Graph.edgeArc_subset_pointSet he)
 
-/-- The trace on the old carrier occupies exactly that carrier. -/
+/-- The trace on the old carrier occupies exactly that carrier.
+@isnad1 id=eq.1h6v.s5.62eca95a70e1 from=translated src=- shape=f1dce577 vocab=abdf14c5
+-/
 theorem trace_pointSet (h : IsPlaneSubdivisionExtension G Gdraw K Kdraw) :
     pointSet (Graph.traceGraph K Kdraw (pointSet G Gdraw)) Kdraw = pointSet G Gdraw :=
   Graph.pointSet_traceGraph_eq h.isDrawing _ h.pointSet_subset h.trace_absorb
 
-/-- The trace supported on one old edge occupies the entire old edge. -/
+/-- The trace supported on one old edge occupies the entire old edge.
+@isnad1 id=eq.2h7v.s6.8e4384d86432 from=translated src=- shape=672143fc vocab=e69da9b8
+-/
 theorem edge_trace_pointSet (h : IsPlaneSubdivisionExtension G Gdraw K Kdraw)
     {e : β} (he : e ∈ E(G)) :
     pointSet (Graph.traceGraph K Kdraw (edgeArc Gdraw e)) Kdraw = edgeArc Gdraw e := by
@@ -681,7 +731,9 @@ theorem edge_trace_pointSet (h : IsPlaneSubdivisionExtension G Gdraw K Kdraw)
   intro f hf hmeet
   exact h.edge_subset he hf hmeet
 
-/-- Every old edge is the carrier of an ambient path. -/
+/-- Every old edge is the carrier of an ambient path.
+@isnad1 id=ex.2h9v.s6.d8445a2ad3a4 from=translated src=- shape=cd6877db vocab=a0ff22cc
+-/
 theorem exists_edge_trace (h : IsPlaneSubdivisionExtension G Gdraw K Kdraw)
     {e : β} {a b : Plane} (hab : G.IsLink e a b) :
     ∃ D : List δ, K.IsPath a D b ∧ edgesCover Kdraw D = edgeArc Gdraw e := by
@@ -711,7 +763,9 @@ theorem exists_edge_trace (h : IsPlaneSubdivisionExtension G Gdraw K Kdraw)
     exact Graph.edgesCover_subset_pointSet fun g hg => hD.edge_mem hg
   exact ⟨D, hDK, hPathArc.eq_of_subset_arc hOldArc hOldArc hcoverSub Set.Subset.rfl⟩
 
-/-- The path tracing an old edge lies in the trace supported on that edge. -/
+/-- The path tracing an old edge lies in the trace supported on that edge.
+@isnad1 id=le.4h10v.s6.99d3d35cdf9d from=translated src=- shape=e07e8b53 vocab=32f9eeee
+-/
 theorem pathGraph_edge_trace_le (h : IsPlaneSubdivisionExtension G Gdraw K Kdraw)
     {e : β} {a b : Plane} (hab : G.IsLink e a b) {D : List δ}
     (hD : K.IsPath a D b) (hcover : edgesCover Kdraw D = edgeArc Gdraw e) :
@@ -736,14 +790,18 @@ theorem pathGraph_edge_trace_le (h : IsPlaneSubdivisionExtension G Gdraw K Kdraw
     exact (Graph.traceGraph_isLink _).2
       ⟨hsub, hlinkK, hsub harc.left_mem, hsub harc.right_mem⟩
 
-/-- Every old vertex belongs to the full old-carrier trace. -/
+/-- Every old vertex belongs to the full old-carrier trace.
+@isnad1 id=mem.2h7v.s6.b5c87ab5acf7 from=translated src=- shape=c8a1ba5f vocab=c5144690
+-/
 theorem old_vertex_mem_trace (h : IsPlaneSubdivisionExtension G Gdraw K Kdraw)
     {a : Plane} (ha : a ∈ V(G)) :
     a ∈ V(Graph.traceGraph K Kdraw (pointSet G Gdraw)) := by
   rw [Graph.traceGraph_vertexSet]
   exact ⟨h.vertexSet_subset ha, Or.inl ha⟩
 
-/-- An old walk expands to reachability in the ambient trace. -/
+/-- An old walk expands to reachability in the ambient trace.
+@isnad1 id=reaches.2h9v.s5.ad6b9ef48cca from=translated src=- shape=3133ea6f vocab=fd3adf3a
+-/
 theorem reaches_trace_of_isWalk (h : IsPlaneSubdivisionExtension G Gdraw K Kdraw)
     {a b : Plane} {W : List β} (hW : G.IsWalk a W b) :
     (Graph.traceGraph K Kdraw (pointSet G Gdraw)).Reaches a b := by
@@ -757,14 +815,18 @@ theorem reaches_trace_of_isWalk (h : IsPlaneSubdivisionExtension G Gdraw K Kdraw
     have hreach : (K.pathGraphOf a D).Reaches a w := ⟨D, hD.pathGraphOf.isWalk⟩
     exact (hreach.mono hPle).trans ih
 
-/-- Any two old vertices are joined inside the ambient trace. -/
+/-- Any two old vertices are joined inside the ambient trace.
+@isnad1 id=reaches.4h8v.s6.cb27fc551218 from=translated src=- shape=b6cab727 vocab=c30b3d4e
+-/
 theorem old_vertices_reach_trace (h : IsPlaneSubdivisionExtension G Gdraw K Kdraw)
     (hG2 : G.IsTwoConnected) {a b : Plane} (ha : a ∈ V(G)) (hb : b ∈ V(G)) :
     (Graph.traceGraph K Kdraw (pointSet G Gdraw)).Reaches a b := by
   obtain ⟨W, hW⟩ := hG2.connected.reaches ha hb
   exact h.reaches_trace_of_isWalk hW
 
-/-- Every trace vertex reaches an old vertex. -/
+/-- Every trace vertex reaches an old vertex.
+@isnad1 id=ex.2h7v.s6.3358534008d1 from=translated src=- shape=230e6ae1 vocab=f9d4ff55
+-/
 theorem exists_reaches_old_vertex (h : IsPlaneSubdivisionExtension G Gdraw K Kdraw)
     {x : Plane} (hx : x ∈ V(Graph.traceGraph K Kdraw (pointSet G Gdraw))) :
     ∃ a ∈ V(G), (Graph.traceGraph K Kdraw (pointSet G Gdraw)).Reaches x a := by
@@ -788,7 +850,9 @@ theorem exists_reaches_old_vertex (h : IsPlaneSubdivisionExtension G Gdraw K Kdr
       exact ⟨a, hab.left_mem,
         (hD.isPathGraph_pathGraphOf.connected.reaches hxP haP).mono hPle⟩
 
-/-- After deleting a distinct trace vertex, every remaining vertex still reaches an old one. -/
+/-- After deleting a distinct trace vertex, every remaining vertex still reaches an old one.
+@isnad1 id=ex.3h8v.s6.a5f4cb2187c8 from=translated src=- shape=08d4af5b vocab=e8521c5e
+-/
 theorem exists_reaches_old_vertex_delete
     (h : IsPlaneSubdivisionExtension G Gdraw K Kdraw) {c x : Plane}
     (hx : x ∈ V(Graph.traceGraph K Kdraw (pointSet G Gdraw))) (hxc : x ≠ c) :
@@ -815,7 +879,9 @@ theorem exists_reaches_old_vertex_delete
       · exact ⟨a, hab.left_mem, hreach.mono (Graph.deleteVerts_mono hPle _)⟩
       · exact ⟨b, hab.right_mem, hreach.mono (Graph.deleteVerts_mono hPle _)⟩
 
-/-- An old walk avoiding a vertex expands to a trace walk avoiding that vertex. -/
+/-- An old walk avoiding a vertex expands to a trace walk avoiding that vertex.
+@isnad1 id=reaches.3h10v.s6.cbbcafeefc05 from=translated src=- shape=d54c1b24 vocab=dae8fad5
+-/
 theorem reaches_trace_delete_of_deleteVerts_isWalk
     (h : IsPlaneSubdivisionExtension G Gdraw K Kdraw)
     {z a b : Plane} {W : List β} (hzG : z ∈ V(G))
@@ -850,7 +916,9 @@ theorem reaches_trace_delete_of_deleteVerts_isWalk
         exact hznot)⟩
     exact (hreach.mono (Graph.deleteVerts_mono hPle _)).trans ih
 
-/-- An old walk avoiding an edge expands to a trace walk avoiding an interior point of it. -/
+/-- An old walk avoiding an edge expands to a trace walk avoiding an interior point of it.
+@isnad1 id=reaches.5h11v.s6.f4dbca29b3f5 from=translated src=- shape=13c71fcf vocab=5e77c2bb
+-/
 theorem reaches_trace_delete_of_deleteEdges_isWalk
     (h : IsPlaneSubdivisionExtension G Gdraw K Kdraw)
     {c : Plane} (hcold : c ∉ V(G)) {e₀ : β} (he₀ : e₀ ∈ E(G))
@@ -886,7 +954,9 @@ theorem reaches_trace_delete_of_deleteEdges_isWalk
     exact (hreach.mono (Graph.deleteVerts_mono hPle _)).trans ih
 
 /-- The part of an ambient plane graph supported on a 2-connected old graph is 2-connected.
-No connectivity assumption on the ambient graph is needed. -/
+No connectivity assumption on the ambient graph is needed.
+@isnad1 id=istwocon.2h6v.s5.335ca2d03b6c from=translated src=- shape=14f6e156 vocab=fc121547
+-/
 theorem trace_isTwoConnected (h : IsPlaneSubdivisionExtension G Gdraw K Kdraw)
     (hG2 : G.IsTwoConnected) :
     (Graph.traceGraph K Kdraw (pointSet G Gdraw)).IsTwoConnected := by
@@ -955,7 +1025,9 @@ namespace CellStructure
 
 variable {γ : Type*} {S : CellStructure γ}
 
-/-- Replace every occurrence of a distinguished edge in a walk by its two-edge subdivision. -/
+/-- Replace every occurrence of a distinguished edge in a walk by its two-edge subdivision.
+@isnad1 id=ex.2h10v.s5.3aa41b682ebe from=translated src=- shape=0468923f vocab=fe9a8d57
+-/
 theorem exists_substWalk_raw {edge left right newEdge₁ newEdge₂ u v : γ}
     {W : List γ} (hl : S.skel.IsLink edge left right)
     (h : S.skel.IsWalk u W v) :
@@ -971,7 +1043,9 @@ theorem exists_substWalk_raw {edge left right newEdge₁ newEdge₂ u v : γ}
       · subst h₁; subst h₂; exact ⟨_, .backward hW'⟩
     · exact ⟨_, .other hfw hf hW'⟩
 
-/-- Build subdivision data for an edge from three pairwise distinct fresh cell names. -/
+/-- Build subdivision data for an edge from three pairwise distinct fresh cell names.
+@isnad1 id=ex.8h8v.s7.779efebb7dc6 from=translated src=- shape=76c6333f vocab=c51b58d0
+-/
 theorem exists_subdivData (hcycles : S.BoundaryCycles)
     {edge left right newVertex newEdge₁ newEdge₂ : γ}
     (hl : S.skel.IsLink edge left right)
@@ -1015,7 +1089,9 @@ theorem exists_subdivData (hcycles : S.BoundaryCycles)
 
 namespace SubdivData
 
-/-- Subdividing one edge of a 2-connected skeleton preserves 2-connectivity. -/
+/-- Subdividing one edge of a 2-connected skeleton preserves 2-connectivity.
+@isnad1 id=istwocon.2h3v.s5.69b38e850a7d from=translated src=- shape=db091157 vocab=f3086615
+-/
 theorem skeleton_isTwoConnected {d : S.SubdivData}
     (hS2 : S.skel.IsTwoConnected) (hlr : d.left ≠ d.right) :
     d.skeleton.IsTwoConnected := by
@@ -1064,7 +1140,9 @@ theorem skeleton_isTwoConnected {d : S.SubdivData}
     simp
   · exact Set.mem_union_left _ (by simpa using hx)
 
-/-- A geometric edge subdivision leaves the realized outer set unchanged. -/
+/-- A geometric edge subdivision leaves the realized outer set unchanged.
+@isnad1 id=eq.1h5v.s5.93cc31a72036 from=translated src=- shape=79c9dc25 vocab=5ff3378f
+-/
 theorem outerSet_realize {d : S.SubdivData} {R : S.Realization}
     {t : ℝ} (ht : t ∈ Set.Ioo (0 : ℝ) 1) :
     (d.realize R t ht).outerSet = R.outerSet := by
@@ -1115,7 +1193,9 @@ theorem outerSet_realize {d : S.SubdivData} {R : S.Realization}
     exact d.edgeArc_of_ne (d.ne_newEdge₁_of_mem_cells hfc)
       (d.ne_newEdge₂_of_mem_cells hfc)
 
-/-- An unchanged old edge is outer after subdivision only if it was outer before subdivision. -/
+/-- An unchanged old edge is outer after subdivision only if it was outer before subdivision.
+@isnad1 id=not.2h4v.s5.10b3c69134dd from=translated src=- shape=e6d885b0 vocab=d36e3672
+-/
 theorem old_notMem_outer {d : S.SubdivData} {f : γ}
     (hfe : f ≠ d.edge) (hnew : f ∉ E(d.outer)) :
     f ∉ E(S.outerGraph) := by
@@ -1127,7 +1207,9 @@ theorem old_notMem_outer {d : S.SubdivData} {f : γ}
   · rw [d.outer_eq heO] at hnew
     exact hnew hfO
 
-/-- If the first half of the subdivided edge is not outer, neither was the original edge. -/
+/-- If the first half of the subdivided edge is not outer, neither was the original edge.
+@isnad1 id=not.1h3v.s5.275616db12e7 from=translated src=- shape=28deaf41 vocab=c3d3e576
+-/
 theorem edge_notMem_outer_of_newEdge₁ {d : S.SubdivData}
     (hnew : d.newEdge₁ ∉ E(d.outer)) : d.edge ∉ E(S.outerGraph) := by
   intro heO
@@ -1135,7 +1217,9 @@ theorem edge_notMem_outer_of_newEdge₁ {d : S.SubdivData}
   rw [d.outer_edgeSet_of_mem heO]
   exact Set.mem_insert _ _
 
-/-- If the second half of the subdivided edge is not outer, neither was the original edge. -/
+/-- If the second half of the subdivided edge is not outer, neither was the original edge.
+@isnad1 id=not.1h3v.s5.80ff7d3544ff from=translated src=- shape=28deaf41 vocab=d0cf556c
+-/
 theorem edge_notMem_outer_of_newEdge₂ {d : S.SubdivData}
     (hnew : d.newEdge₂ ∉ E(d.outer)) : d.edge ∉ E(S.outerGraph) := by
   intro heO
@@ -1143,7 +1227,9 @@ theorem edge_notMem_outer_of_newEdge₂ {d : S.SubdivData}
   rw [d.outer_edgeSet_of_mem heO]
   exact Set.mem_insert_of_mem _ (Set.mem_insert _ _)
 
-/-- Realizing an interior edge subdivision preserves weak admissibility. -/
+/-- Realizing an interior edge subdivision preserves weak admissibility.
+@isnad1 id=isweakly.2h7v.s6.0195287699b5 from=translated src=- shape=358b41b6 vocab=3372d759
+-/
 theorem isWeaklyAdmissible_realize {d : S.SubdivData} {R : S.Realization}
     {outer dom : Set Plane} {t : ℝ} (ht : t ∈ Set.Ioo (0 : ℝ) 1)
     (hR : R.IsWeaklyAdmissible outer dom) :
@@ -1255,13 +1341,17 @@ noncomputable def subdivide
   tgt_isWeaklyAdmissible := d.isWeaklyAdmissible_realize
     (d.targetParam_mem_Ioo P.homeo ht) P.tgt_isWeaklyAdmissible
 
-/-- The source realization of a subdivided pair is the source subdivision. -/
+/-- The source realization of a subdivided pair is the source subdivision.
+@isnad1 id=eq.1h9v.s6.7e474ca80ed2 from=translated src=- shape=fb1d8a28 vocab=b90edfbc
+-/
 @[simp] theorem subdivide_src
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     (d : P.str.SubdivData) {t : ℝ} (ht : t ∈ Set.Ioo (0 : ℝ) 1) :
     (P.subdivide d ht).src = d.realize P.src t ht := rfl
 
-/-- The target realization uses the parameter transported by the skeleton homeomorphism. -/
+/-- The target realization uses the parameter transported by the skeleton homeomorphism.
+@isnad1 id=eq.1h9v.s7.9df7a5e4dcbb from=translated src=- shape=0e5674e5 vocab=f126e64f
+-/
 @[simp] theorem subdivide_tgt
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     (d : P.str.SubdivData) {t : ℝ} (ht : t ∈ Set.Ioo (0 : ℝ) 1) :
@@ -1291,7 +1381,9 @@ structure SubdivideAtData
   targetVertexSet_eq :
     V(pair.tgt.graph) = insert (P.homeo.toFun p) V(P.tgt.graph)
 
-/-- Every point of the source skeleton can be made a vertex by one matched subdivision. -/
+/-- Every point of the source skeleton can be made a vertex by one matched subdivision.
+@isnad1 id=nonempty.1h8v.s6.0b12a593c209 from=translated src=- shape=f4678a88 vocab=dd215384
+-/
 theorem exists_subdivideAtData [Infinite γ]
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom) {p : Plane}
     (hp : p ∈ P.src.skeletonSet) : Nonempty (SubdivideAtData P p) := by
@@ -1389,7 +1481,9 @@ structure SubdivideTargetAtData
   /-- The requested point and every old vertex are target vertices of the new pair. -/
   vertexSet_eq : V(pair.tgt.graph) = insert p V(P.tgt.graph)
 
-/-- Every target skeleton point can be made a vertex by one matched subdivision. -/
+/-- Every target skeleton point can be made a vertex by one matched subdivision.
+@isnad1 id=nonempty.1h8v.s6.f839763f1399 from=translated src=- shape=f4678a88 vocab=35749e30
+-/
 theorem exists_subdivideTargetAtData [Infinite γ]
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom) {p : Plane}
     (hp : p ∈ P.tgt.skeletonSet) : Nonempty (SubdivideTargetAtData P p) := by
@@ -1428,7 +1522,9 @@ structure SubdivideSetData
   /-- Every requested point is a vertex of the final source graph. -/
   vertexSet_subset : s ⊆ V(pair.src.graph)
 
-/-- Every finite set of source skeleton points can simultaneously be made vertices. -/
+/-- Every finite set of source skeleton points can simultaneously be made vertices.
+@isnad1 id=nonempty.2h8v.s6.c793521d156e from=translated src=- shape=0994734c vocab=7f169eff
+-/
 theorem exists_subdivideSetData [Infinite γ]
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom) {s : Set Plane}
     (hs : s.Finite) (hsub : s ⊆ P.src.skeletonSet) :
@@ -1493,7 +1589,9 @@ structure SubdivideTargetSetData
   /-- Every requested point is a vertex of the final target graph. -/
   vertexSet_subset : s ⊆ V(pair.tgt.graph)
 
-/-- Every finite set of target skeleton points can simultaneously be made vertices. -/
+/-- Every finite set of target skeleton points can simultaneously be made vertices.
+@isnad1 id=nonempty.2h8v.s6.a79052dc4009 from=translated src=- shape=0994734c vocab=24d8f60c
+-/
 theorem exists_subdivideTargetSetData [Infinite γ]
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom) {s : Set Plane}
     (hs : s.Finite) (hsub : s ⊆ P.tgt.skeletonSet) :
@@ -1603,7 +1701,9 @@ noncomputable def commonSubdivisionData [Infinite γ]
     }
   }
 
-/-- **Step 1 of finite transfer:** construct the common matched subdivision. -/
+/-- **Step 1 of finite transfer:** construct the common matched subdivision.
+@isnad1 id=commonsu.1h9v.s6.cc066b00c40b from=translated src=- shape=d111a96a vocab=1d2df9d5
+-/
 theorem commonSubdivision [Infinite γ]
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1613,7 +1713,9 @@ theorem commonSubdivision [Infinite γ]
   exact ⟨w.graph, w.pair, w.parent, w.graph_isTwoConnected, w.graph_le,
     w.isPartialTransferOf⟩
 
-/-- Steps 1–3 of finite transfer, with the common subdivision and every ear constructed. -/
+/-- Steps 1–3 of finite transfer, with the common subdivision and every ear constructed.
+@isnad1 id=ex.1h9v.s6.64d9a6402317 from=translated src=- shape=a7962172 vocab=2ca9a03b
+-/
 theorem transfer_of_ears [Infinite γ]
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1622,7 +1724,9 @@ theorem transfer_of_ears [Infinite γ]
       IsPartialTransferOf T P H Hdraw par :=
   transfer_of_ears_of_commonSubdivision hH (commonSubdivision hH)
 
-/-- **`thm:finite-transfer`, direction (a).** -/
+/-- **`thm:finite-transfer`, direction (a).**
+@isnad1 id=ex.1h9v.s6.0dcceb861f03 from=translated src=- shape=a7962172 vocab=2ea382f7
+-/
 theorem finite_transfer_toward_square [Infinite γ]
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}

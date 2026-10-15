@@ -116,7 +116,9 @@ instead.
 
 The premise about `e` is universally quantified over its ends rather than stated for a named
 pair, so that it is *vacuous* when `e` is not an edge of `G` — which is the case a vertex
-deletion produces, and the reason this is the shape that gets used. -/
+deletion produces, and the reason this is the shape that gets used.
+@isnad1 id=reaches.4h7v.s6.6a1d94f407dd from=translated src=- shape=17eb262b vocab=9101a696
+-/
 theorem Reaches.reroute (hV : V(G) ⊆ V(H))
     (hE : ∀ ⦃g p q⦄, G.IsLink g p q → g ≠ e → H.IsLink g p q)
     (hends : ∀ ⦃p q⦄, G.IsLink e p q → H.Reaches p q)
@@ -137,7 +139,9 @@ incident to the deleted vertex — in which case no walk of `G - c` could have t
 `hends` premise of `Graph.Reaches.reroute` is vacuous.
 
 That disjunction is the blueprint's three-way case analysis: route along the replacement,
-route around the old graph, or do not route at all. -/
+route around the old graph, or do not route at all.
+@isnad1 id=reaches.5h10v.s7.d9ce298c46ff from=translated src=- shape=a6a0ec03 vocab=9fce64b8
+-/
 theorem Reaches.across_edge_replacement (hV : V(G.deleteVerts {c}) ⊆ V(H))
     (hl : G.IsLink e u v)
     (hE : ∀ ⦃g p q⦄, (G.deleteVerts {c}).IsLink g p q → g ≠ e → H.IsLink g p q)
@@ -165,7 +169,9 @@ The blueprint's hypothesis that the ear's internal vertices are new is **not** n
 a vertex `c`. One of the ear's two ends survives, and it is the hub: `G - c` is connected and
 contains it, and every surviving vertex of the ear reaches one of the two ends inside the ear
 (`Graph.IsPathGraph.reaches_an_end`) — an end which, having been reached after the deletion, is
-itself not `c`, so it lies in `G - c` too. -/
+itself not `c`, so it lies in `G - c` too.
+@isnad1 id=istwocon.6h7v.s6.ebe11f097b15 from=translated src=- shape=37e3a5d7 vocab=a6955f75
+-/
 theorem IsTwoConnected.ear (hG : G.IsTwoConnected) (hcompat : G.Compatible P)
     (hP : P.IsPathGraph u W v) (huv : u ≠ v) (hu : u ∈ V(G)) (hv : v ∈ V(G)) :
     (G.union P).IsTwoConnected where
@@ -220,7 +226,9 @@ discharged by the three-way case analysis: if `c` is an end of the replaced edge
 nothing to route; if `c` is an old vertex then it is not on the path — this is where the
 freshness hypothesis `hnew` is used — and the path itself joins the ends; and if `c` is new
 then the old graph is untouched and has no bridge. Everything on the path side reaches an end
-of the path, and an end reached after the deletion survived it. -/
+of the path, and an end reached after the deletion survived it.
+@isnad1 id=istwocon.6h8v.s6.6c4f718787d6 from=translated src=- shape=f65ba7b9 vocab=a2ef6761
+-/
 theorem IsTwoConnected.replace_edge_by_path (hG : G.IsTwoConnected) (hl : G.IsLink e u v)
     (huv : u ≠ v) (hcompat : (G.deleteEdges {e}).Compatible P) (hP : P.IsPathGraph u W v)
     (hnew : ∀ x ∈ V(P), x ≠ u → x ≠ v → x ∉ V(G)) :
@@ -317,7 +325,9 @@ deleting the crossing edge's inner end leaves `G` connected, so the outer end wa
 *different* vertex of the subgraph without passing through the first.
 
 The looplessness hypothesis is used only in the first, degenerate branch, and it cannot be
-dropped: a 2-connected graph plus a loop is 2-connected, and no ear is missing from it. -/
+dropped: a 2-connected graph plus a loop is 2-connected, and no ear is missing from it.
+@isnad1 id=ex.5h4v.s7.b21158703f8f from=translated src=- shape=3d8f45f4 vocab=3c5d5fae
+-/
 theorem IsTwoConnected.ear_exists (hG : G.IsTwoConnected) (hK : K.IsTwoConnected) (hKG : K ≤ G)
     (hnl : ∀ ⦃g x⦄, ¬ G.IsLoopAt g x)
     (hproper : (∃ x ∈ V(G), x ∉ V(K)) ∨ (∃ g ∈ E(G), g ∉ E(K))) :
@@ -357,7 +367,9 @@ theorem IsTwoConnected.ear_exists (hG : G.IsTwoConnected) (hK : K.IsTwoConnected
 /-- **H5: a 2-connected subgraph of a 2-connected graph grows to it by adding ears.** One
 step: the subgraph gains an ear and at least one edge, and is still a 2-connected subgraph of
 the big graph. Iterating on the number of missing edges is the caller's business — the
-blueprint's "finiteness terminates the process". -/
+blueprint's "finiteness terminates the process".
+@isnad1 id=ex.5h4v.s7.9a9b15b5eee9 from=translated src=- shape=59069f93 vocab=f6325c99
+-/
 theorem IsTwoConnected.grows_by_ear (hG : G.IsTwoConnected) (hK : K.IsTwoConnected)
     (hKG : K ≤ G) (hnl : ∀ ⦃g x⦄, ¬ G.IsLoopAt g x)
     (hproper : (∃ x ∈ V(G), x ∉ V(K)) ∨ (∃ g ∈ E(G), g ∉ E(K))) :

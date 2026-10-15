@@ -90,7 +90,9 @@ namespace Schoenflies
 /-- **`thm:jordan` in the shape `thm:general-crosscut` consumes.** Every consumer below feeds
 this to a lemma whose separating hypothesis is universally quantified over curves.
 (`Schoenflies.isSeparating_of_isJordanCurve` is the *polygonal* statement of `Jordan.lean`, and
-is a different hypothesis; this is the general one, now a theorem.) -/
+is a different hypothesis; this is the general one, now a theorem.)
+@isnad1 id=issepara.1h1v.s3.c7bcf3a113e0 from=translated src=- shape=4c88451a vocab=8fe45bc8
+-/
 theorem forall_isSeparating_of_isJordanCurve : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S :=
   fun _ h => jordan_curve_theorem h
 
@@ -107,23 +109,36 @@ variable (H : HexData)
 -- Deliberately *not* `@[simp]`: `HexData.arcOf_union`, `.arcOf_inter` and the two labelling
 -- theorems are all stated about `arcOf`, and a global unfolding lemma would take `simp` apart
 -- underneath them.
+/--
+@isnad1 id=eq.0h1v.s6.012a6406fa5a from=translated src=- shape=57ea9c1a vocab=933bc994
+-/
 theorem arcOf_false :
     H.arcOf false = H.outer 1 '' I ∪ (H.outer 2 '' I ∪ H.outer 3 '' I) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.2b1c9a4d4084 from=translated src=- shape=57ea9c1a vocab=c5d13801
+-/
 theorem arcOf_true :
     H.arcOf true = H.outer 4 '' I ∪ (H.outer 5 '' I ∪ H.outer 0 '' I) := rfl
 
+/--
+@isnad1 id=le.0h2v.s3.d4654df58d54 from=translated src=- shape=f0e93b54 vocab=7b9b8347
+-/
 theorem arcOf_subset_outerArcs (k : Bool) : H.arcOf k ⊆ H.outerArcs := by
   rw [← H.arcOf_union]
   cases k
   exacts [Set.subset_union_left, Set.subset_union_right]
 
-/-- The vertex an outer edge ends at, named. -/
+/-- The vertex an outer edge ends at, named.
+@isnad1 id=mem.1h3v.s6.daa7f439bb5d from=translated src=- shape=e7b8841f vocab=a5b657a4
+-/
 theorem pos_mem_outer_of_succ {i j : Fin 6} (h : i + 1 = j) : H.pos j ∈ H.outer i '' I := by
   subst h; exact H.pos_succ_mem_outer i
 
 /-- **Each boundary arc is polygonal when the outer edges are.** Three consecutive segments,
-glued at the two vertices between them. -/
+glued at the two vertices between them.
+@isnad1 id=ispolygo.1h2v.s4.b246886d5f8b from=translated src=- shape=51a0cb26 vocab=583c7a07
+-/
 theorem isPolygonal_arcOf (hp : ∀ i, IsPolygonal (H.outer i '' I)) (k : Bool) :
     IsPolygonal (H.arcOf k) := by
   cases k
@@ -136,7 +151,9 @@ theorem isPolygonal_arcOf (hp : ∀ i, IsPolygonal (H.outer i '' I)) (k : Bool) 
       ⟨H.pos 0, H.pos_mem_outer_of_succ (by decide), H.pos_mem_outer 0⟩) ?_
     exact ⟨H.pos 5, H.pos_mem_outer_of_succ (by decide), Or.inl (H.pos_mem_outer 5)⟩
 
-/-- **The whole outer cycle is polygonal when the six outer edges are.** -/
+/-- **The whole outer cycle is polygonal when the six outer edges are.**
+@isnad1 id=ispolygo.1h1v.s4.5ad1b956b61f from=translated src=- shape=4ea2c520 vocab=f64a017f
+-/
 theorem isPolygonal_outerArcs (hp : ∀ i, IsPolygonal (H.outer i '' I)) :
     IsPolygonal H.outerArcs := by
   rw [H.outerArcs_eq]
@@ -154,7 +171,9 @@ theorem isPolygonal_outerArcs (hp : ∀ i, IsPolygonal (H.outer i '' I)) :
 end HexData
 
 /-- **The model curve is polygonal.** Instantiate the target realization at `α = β = 0`: its
-outer cycle is `S` and each of its six edges is a straight segment. -/
+outer cycle is `S` and each of its six edges is a straight segment.
+@isnad1 id=ispolygo.0h0v.s1.83fc8cea1461 from=translated src=- shape=49959d42 vocab=71949e87
+-/
 theorem isPolygonal_modelCurve : IsPolygonal modelCurve := by
   have h : |(0 : ℝ)| < 1 := by norm_num
   have hp : ∀ i, IsPolygonal ((targetHex h h).outer i '' I) := by
@@ -172,16 +191,22 @@ anywhere. For `initialStructure` it does. Both lists are *closed* walks of `init
 cells they run through are exactly the `faceCells` that `initSub` declares to be subcells of the
 corresponding 2-cell — so the base value of `≼_abs` is not an independent choice. -/
 
-/-- An outer edge links its two consecutive vertices, with the second one named. -/
+/-- An outer edge links its two consecutive vertices, with the second one named.
+@isnad1 id=islink.1h2v.s6.960c71381d32 from=translated src=- shape=020d2c54 vocab=4cfe2e68
+-/
 theorem initSkel_isLink_edge {i j : Fin 6} (h : i + 1 = j) :
     initSkel.IsLink (.edge i) (.vert i) (.vert j) := by
   subst h; exact initSkel_isLink_ends (InitialCell.edge_mem_edges i)
 
-/-- The chord links `a` and `b`. -/
+/-- The chord links `a` and `b`.
+@isnad1 id=islink.0h0v.s5.edaa5361d3e6 from=translated src=- shape=6fe1b812 vocab=246e2aea
+-/
 theorem initSkel_isLink_chord : initSkel.IsLink .chord (.vert 1) (.vert 4) :=
   initSkel_isLink_ends InitialCell.chord_mem_edges
 
-/-- **`B₁ ∪ P` is a closed walk at `a`.** -/
+/-- **`B₁ ∪ P` is a closed walk at `a`.**
+@isnad1 id=iswalk.0h0v.s5.535d1168f0a0 from=translated src=- shape=713949c6 vocab=48cb9fea
+-/
 theorem isWalk_initBoundary_false :
     initSkel.IsWalk (.vert 1) (initBoundary (.face false)) (.vert 1) := by
   change initSkel.IsWalk (.vert 1) [.edge 1, .edge 2, .edge 3, .chord] (.vert 1)
@@ -190,7 +215,9 @@ theorem isWalk_initBoundary_false :
       (.cons (initSkel_isLink_edge (by decide : (3 : Fin 6) + 1 = 4))
         (.cons initSkel_isLink_chord.symm (.nil (InitialCell.vert_mem_vertices 1)))))
 
-/-- **`B₂ ∪ P` is a closed walk at `b`.** -/
+/-- **`B₂ ∪ P` is a closed walk at `b`.**
+@isnad1 id=iswalk.0h0v.s5.7fbffec4fae7 from=translated src=- shape=713949c6 vocab=1f9b03c3
+-/
 theorem isWalk_initBoundary_true :
     initSkel.IsWalk (.vert 4) (initBoundary (.face true)) (.vert 4) := by
   change initSkel.IsWalk (.vert 4) [.edge 4, .edge 5, .edge 0, .chord] (.vert 4)
@@ -199,13 +226,17 @@ theorem isWalk_initBoundary_true :
       (.cons (initSkel_isLink_edge (by decide : (0 : Fin 6) + 1 = 1))
         (.cons initSkel_isLink_chord (.nil (InitialCell.vert_mem_vertices 4)))))
 
-/-- Each 2-cell of the initial structure has a closed boundary walk. -/
+/-- Each 2-cell of the initial structure has a closed boundary walk.
+@isnad1 id=ex.0h1v.s4.192e837dac25 from=translated src=- shape=5e56a9fd vocab=eb916d3f
+-/
 theorem exists_isWalk_initBoundary (k : Bool) :
     ∃ v, initSkel.IsWalk v (initialStructure.boundary (.face k)) v := by
   cases k
   exacts [⟨_, isWalk_initBoundary_false⟩, ⟨_, isWalk_initBoundary_true⟩]
 
-/-- Incidence in `initSkel` is membership among the two ends. -/
+/-- Incidence in `initSkel` is membership among the two ends.
+@isnad1 id=iff.0h2v.s5.cc7576d33c78 from=translated src=- shape=25eb3253 vocab=2fc5fe4e
+-/
 theorem initSkel_inc_iff {e x : InitialCell} :
     initSkel.Inc e x ↔ e ∈ InitialCell.edges ∧ (x = e.ends.1 ∨ x = e.ends.2) := by
   constructor
@@ -218,7 +249,9 @@ theorem initSkel_inc_iff {e x : InitialCell} :
 
 /-- **The cells of a 2-cell are the cells of its boundary walk.** The base value of `≼_abs`
 declares `faceCells k` to be the subcells of `face k`; this says `faceCells k` is exactly the
-set of edges the boundary walk takes together with the vertices it visits. -/
+set of edges the boundary walk takes together with the vertices it visits.
+@isnad1 id=iff.0h2v.s5.4062dafcc442 from=translated src=- shape=bcbfde33 vocab=adef6001
+-/
 theorem mem_faceCells_iff {k : Bool} {c : InitialCell} :
     c ∈ faceCells k ↔
       c ∈ initBoundary (.face k) ∨ ∃ e ∈ initBoundary (.face k), initSkel.Inc e c := by
@@ -245,7 +278,9 @@ The closed-walk facts above are strengthened here to the maintained data needed 
 `thm:finite-transfer`: each boundary is a simple cycle of length at least three, and its cells
 are exactly the strict subcells of the corresponding face. -/
 
-/-- The complementary part of the first face boundary is a simple path. -/
+/-- The complementary part of the first face boundary is a simple path.
+@isnad1 id=ispath.0h0v.s6.fb2f6d198eb5 from=translated src=- shape=c56bd766 vocab=446bd7cb
+-/
 theorem isPath_initBoundary_false_tail :
     initSkel.IsPath (.vert 2) [.edge 2, .edge 3, .chord] (.vert 1) := by
   refine .cons (initSkel_isLink_edge (by decide : (2 : Fin 6) + 1 = 3))
@@ -256,7 +291,9 @@ theorem isPath_initBoundary_false_tail :
   · simp [Graph.walkVertices, Graph.coveredVertices, initSkel_inc_iff, InitialCell.ends,
       InitialCell.edges]
 
-/-- The complementary part of the second face boundary is a simple path. -/
+/-- The complementary part of the second face boundary is a simple path.
+@isnad1 id=ispath.0h0v.s6.0b360e32e18d from=translated src=- shape=c56bd766 vocab=446bd7cb
+-/
 theorem isPath_initBoundary_true_tail :
     initSkel.IsPath (.vert 5) [.edge 5, .edge 0, .chord] (.vert 4) := by
   refine .cons (initSkel_isLink_edge (by decide : (5 : Fin 6) + 1 = 0))
@@ -267,7 +304,9 @@ theorem isPath_initBoundary_true_tail :
   · simp [Graph.walkVertices, Graph.coveredVertices, initSkel_inc_iff, InitialCell.ends,
       InitialCell.edges]
 
-/-- The first declared boundary list presents a long simple cycle. -/
+/-- The first declared boundary list presents a long simple cycle.
+@isnad1 id=islongcy.0h0v.s6.48a6b494d096 from=translated src=- shape=9b2ac6bd vocab=b5156402
+-/
 theorem isLongCycle_initBoundary_false :
     initSkel.IsLongCycle (.edge 1) (.vert 2) (.vert 1)
       [.edge 2, .edge 3, .chord] (.vert 3) where
@@ -279,7 +318,9 @@ theorem isLongCycle_initBoundary_false :
   ne_left := by simp
   ne_right := by simp
 
-/-- The second declared boundary list presents a long simple cycle. -/
+/-- The second declared boundary list presents a long simple cycle.
+@isnad1 id=islongcy.0h0v.s6.3560af818b59 from=translated src=- shape=9b2ac6bd vocab=b5156402
+-/
 theorem isLongCycle_initBoundary_true :
     initSkel.IsLongCycle (.edge 4) (.vert 5) (.vert 4)
       [.edge 5, .edge 0, .chord] (.vert 0) where
@@ -292,7 +333,9 @@ theorem isLongCycle_initBoundary_true :
   ne_right := by simp
 
 /-- Incidence below an initial face consists of the face itself and its declared boundary
-cells. -/
+cells.
+@isnad1 id=iff.0h2v.s4.38bb90f0daa7 from=translated src=- shape=2511bff4 vocab=0efddd66
+-/
 theorem initSub_face_iff {k : Bool} {c : InitialCell} :
     initSub c (.face k) ↔ c = .face k ∨ c ∈ faceCells k := by
   constructor
@@ -305,7 +348,9 @@ theorem initSub_face_iff {k : Bool} {c : InitialCell} :
     · exact initSub_face hc
 
 /-- A declared initial boundary has exactly the cells recorded by `faceCells`, once its
-starting vertex is known to occur on the boundary. -/
+starting vertex is known to occur on the boundary.
+@isnad1 id=iff.1h3v.s5.390436b4f7e3 from=translated src=- shape=df6443b8 vocab=c2f9a2d4
+-/
 theorem mem_faceCells_iff_mem_pathCells {k : Bool} {u c : InitialCell}
     (hu : ∃ e ∈ initBoundary (.face k), initSkel.Inc e u) :
     c ∈ faceCells k ↔
@@ -322,7 +367,9 @@ theorem mem_faceCells_iff_mem_pathCells {k : Bool} {u c : InitialCell}
     · exact Or.inr hu
     · exact Or.inr hc
 
-/-- The two faces of the initial matched cellulation carry chosen simple boundary cycles. -/
+/-- The two faces of the initial matched cellulation carry chosen simple boundary cycles.
+@isnad1 id=boundary.0h0v.s1.d7ba4fdee015 from=translated src=- shape=25b03439 vocab=341887ea
+-/
 theorem boundaryCycles_initialStructure : initialStructure.BoundaryCycles where
   cycle F hF := by
     obtain ⟨k, rfl⟩ := hF
@@ -381,26 +428,34 @@ namespace AnchorSet
 
 variable (A : AnchorSet C)
 
-/-- An anchor is the endpoint of a straight access segment into `D` — `lem:tangent-cone`. -/
+/-- An anchor is the endpoint of a straight access segment into `D` — `lem:tangent-cone`.
+@isnad1 id=ex.1h3v.s7.5e5b283b6d2d from=translated src=- shape=8c10bbf5 vocab=3bc1925f
+-/
 theorem exists_access_segment {p : Plane} (hp : p ∈ A.carrier) :
     ∃ z ∈ inside C, p ≠ z ∧ openSegment ℝ p z ⊆ inside C :=
   (A.stronglyAccessible p hp).openSegment_subset
 
 /-- An anchor has a whole open cone of straight access segments, truncatable at any radius —
 `lem:tangent-cone` in the form the later stages need, where the segment must also avoid a
-compact set already drawn. -/
+compact set already drawn.
+@isnad1 id=ex.1h3v.s6.8e800244bbd2 from=translated src=- shape=fa67831c vocab=d571ff5d
+-/
 theorem exists_cone {p : Plane} (hp : p ∈ A.carrier) :
     ∃ v : Plane, ‖v‖ = 1 ∧ ∃ r > 0, ∀ s ≤ r, accessCone p v s ⊆ inside C :=
   (A.stronglyAccessible p hp).exists_cone
 
-/-- An anchor is polygonally accessible, the hypothesis `lem:accessible-endpoints` consumes. -/
+/-- An anchor is polygonally accessible, the hypothesis `lem:accessible-endpoints` consumes.
+@isnad1 id=polyacce.1h3v.s4.1b079234d8eb from=translated src=- shape=42efdf01 vocab=0a10875c
+-/
 theorem polyAccessible {p : Plane} (hp : p ∈ A.carrier) : PolyAccessible (inside C) p :=
   (A.stronglyAccessible p hp).polyAccessible
 
 end AnchorSet
 
 /-- **`prop:countable-strong-access`, as the fixed set `𝒜`.** This uses the proved Jordan
-curve theorem. -/
+curve theorem.
+@isnad1 id=nonempty.1h1v.s3.1dd1b267a1e9 from=translated src=- shape=80a4b622 vocab=ddabbdb3
+-/
 theorem nonempty_anchorSet (hC : IsJordanCurve C) : Nonempty (AnchorSet C) := by
   have hsep : IsSeparating C := jordan_curve_theorem hC
   -- `inside C` swallows the component in `Cᶜ` of each of its points, being a union of them
@@ -441,30 +496,42 @@ namespace AnchoredInitialData
 variable {A : AnchorSet C} (D : AnchoredInitialData C A)
 
 /-- **`a` is strongly accessible** — the clause `def:generated-structure` and
-`thm:finite-transfer` need and `InitialData` does not record. -/
+`thm:finite-transfer` need and `InitialData` does not record.
+@isnad1 id=strongly.0h3v.s4.4ce64f88ac8b from=translated src=- shape=57fea8cd vocab=b144b070
+-/
 theorem stronglyAccessible_a : StronglyAccessible (inside C) D.toInitialData.a :=
   A.stronglyAccessible _ D.a_mem_anchors
 
-/-- **`b` is strongly accessible.** -/
+/-- **`b` is strongly accessible.**
+@isnad1 id=strongly.0h3v.s4.d9b4c42c45bb from=translated src=- shape=57fea8cd vocab=c2408ead
+-/
 theorem stronglyAccessible_b : StronglyAccessible (inside C) D.toInitialData.b :=
   A.stronglyAccessible _ D.b_mem_anchors
 
-/-- A straight access segment at `a` — `lem:tangent-cone`. -/
+/-- A straight access segment at `a` — `lem:tangent-cone`.
+@isnad1 id=ex.0h3v.s7.e658ae3f1d41 from=translated src=- shape=21af7096 vocab=e9fb22ae
+-/
 theorem exists_access_segment_a :
     ∃ z ∈ inside C, D.toInitialData.a ≠ z ∧ openSegment ℝ D.toInitialData.a z ⊆ inside C :=
   A.exists_access_segment D.a_mem_anchors
 
-/-- A straight access segment at `b`. -/
+/-- A straight access segment at `b`.
+@isnad1 id=ex.0h3v.s7.25bfa67de4a7 from=translated src=- shape=21af7096 vocab=822cf394
+-/
 theorem exists_access_segment_b :
     ∃ z ∈ inside C, D.toInitialData.b ≠ z ∧ openSegment ℝ D.toInitialData.b z ⊆ inside C :=
   A.exists_access_segment D.b_mem_anchors
 
-/-- The access cone at `a`, truncatable — what a later crosscut ending at `a` is built from. -/
+/-- The access cone at `a`, truncatable — what a later crosscut ending at `a` is built from.
+@isnad1 id=ex.0h3v.s6.9b86944e6f5d from=translated src=- shape=c8d69dba vocab=3a1f02cb
+-/
 theorem exists_cone_a :
     ∃ v : Plane, ‖v‖ = 1 ∧ ∃ r > 0, ∀ s ≤ r, accessCone D.toInitialData.a v s ⊆ inside C :=
   A.exists_cone D.a_mem_anchors
 
-/-- The access cone at `b`. -/
+/-- The access cone at `b`.
+@isnad1 id=ex.0h3v.s6.314a6ab52287 from=translated src=- shape=c8d69dba vocab=5fce7589
+-/
 theorem exists_cone_b :
     ∃ v : Plane, ‖v‖ = 1 ∧ ∃ r > 0, ∀ s ≤ r, accessCone D.toInitialData.b v s ⊆ inside C :=
   A.exists_cone D.b_mem_anchors
@@ -478,7 +545,9 @@ later stage, so it must be an input, not an output.
 The proof is that of `Schoenflies.exists_initialData` with the anchor set supplied rather than
 manufactured: the two open corner arcs are relatively open and nonempty in `C`, `𝒜` is dense in
 `C`, so `𝒜` meets both; `lem:tangent-cone` (through `StronglyAccessible.polyAccessible`) and
-`lem:accessible-endpoints` then supply the polygonal crosscut. -/
+`lem:accessible-endpoints` then supply the polygonal crosscut.
+@isnad1 id=ex.2h4v.s5.edbad915f217 from=translated src=- shape=decb3a43 vocab=e0f88fa3
+-/
 theorem exists_anchoredInitialData_of_homeo (hC : IsJordanCurve C) (A : AnchorSet C)
     (u w : Plane → Plane) (hhom : IsSetHomeoOn u w C modelCurve) :
     ∃ D : AnchoredInitialData C A,
@@ -539,7 +608,9 @@ theorem exists_anchoredInitialData_of_homeo (hC : IsJordanCurve C) (A : AnchorSe
     rw [← hq₂eq]
     exact hb₀A
 
-/-- The anchored initial pair with a boundary parametrization chosen internally. -/
+/-- The anchored initial pair with a boundary parametrization chosen internally.
+@isnad1 id=nonempty.1h2v.s3.0b150ab4e8a8 from=translated src=- shape=42f4e864 vocab=3c029ecb
+-/
 theorem exists_anchoredInitialData (hC : IsJordanCurve C) (A : AnchorSet C) :
     Nonempty (AnchoredInitialData C A) := by
   obtain ⟨u, w, hhom⟩ := exists_isSetHomeoOn_modelCurve hC
@@ -553,7 +624,9 @@ noncomputable def anchoredInitialData (hC : IsJordanCurve C) (A : AnchorSet C) :
     AnchoredInitialData C A := (exists_anchoredInitialData hC A).some
 
 /-- **`prop:initial-pair`**, in the shape `Schoenflies.exists_initialData` should have had:
-`harc` is supplied by `arc_complement` and the two chosen points are anchors. -/
+`harc` is supplied by `arc_complement` and the two chosen points are anchors.
+@isnad1 id=ex.1h2v.s5.cc5dd2e7d286 from=translated src=- shape=e3aed627 vocab=00ee12d9
+-/
 theorem exists_initialData' (hC : IsJordanCurve C) (A : AnchorSet C) :
     ∃ d : InitialData C, d.a ∈ A.carrier ∧ d.b ∈ A.carrier := by
   obtain ⟨D⟩ := exists_anchoredInitialData hC A
@@ -570,22 +643,32 @@ choice independent of the proof supplied), so all its uses agree. -/
 noncomputable def initialData (hC : IsJordanCurve C) : InitialData C :=
   (anchoredInitialData hC (anchorSet hC)).toInitialData
 
+/--
+@isnad1 id=mem.1h1v.s4.d60a9a82f6ed from=translated src=- shape=42544f64 vocab=e1f31aad
+-/
 theorem initialData_a_mem_anchorSet (hC : IsJordanCurve C) :
     (initialData hC).a ∈ (anchorSet hC).carrier :=
   (anchoredInitialData hC (anchorSet hC)).a_mem_anchors
 
+/--
+@isnad1 id=mem.1h1v.s4.7bfb8f24d0c5 from=translated src=- shape=42544f64 vocab=0941402c
+-/
 theorem initialData_b_mem_anchorSet (hC : IsJordanCurve C) :
     (initialData hC).b ∈ (anchorSet hC).carrier :=
   (anchoredInitialData hC (anchorSet hC)).b_mem_anchors
 
 /-- **The first chosen point of the canonical initial pair is strongly accessible.** This is
 the clause `prop:initial-pair` asserts, `InitialData` drops, and `def:generated-structure` and
-`thm:finite-transfer` need in order to run a further crosscut into `a`. -/
+`thm:finite-transfer` need in order to run a further crosscut into `a`.
+@isnad1 id=strongly.1h1v.s3.8babd129b971 from=translated src=- shape=e6586168 vocab=3828e9b0
+-/
 theorem stronglyAccessible_initialData_a (hC : IsJordanCurve C) :
     StronglyAccessible (inside C) (initialData hC).a :=
   (anchoredInitialData hC (anchorSet hC)).stronglyAccessible_a
 
-/-- **The second chosen point of the canonical initial pair is strongly accessible.** -/
+/-- **The second chosen point of the canonical initial pair is strongly accessible.**
+@isnad1 id=strongly.1h1v.s3.e715b70cc73f from=translated src=- shape=e6586168 vocab=31e6d658
+-/
 theorem stronglyAccessible_initialData_b (hC : IsJordanCurve C) :
     StronglyAccessible (inside C) (initialData hC).b :=
   (anchoredInitialData hC (anchorSet hC)).stronglyAccessible_b
@@ -601,45 +684,61 @@ namespace InitialData
 
 variable (d : InitialData C)
 
-/-- The collar hypothesis on the source side, discharged: the crosscut is polygonal. -/
+/-- The collar hypothesis on the source side, discharged: the crosscut is polygonal.
+@isnad1 id=hasarcco.0h2v.s3.3c604d04bf71 from=translated src=- shape=c10d80c5 vocab=52aa0f3d
+-/
 theorem hasArcCollarsSource : HasArcCollars (inside C) d.crossSet :=
   d.isCrosscut.hasArcCollars
 
-/-- **The two source 2-cells exhaust `D ∖ P`.** -/
+/-- **The two source 2-cells exhaust `D ∖ P`.**
+@isnad1 id=eq.0h2v.s5.1a8eee1ba952 from=translated src=- shape=50e154c5 vocab=68ed469c
+-/
 theorem source_cells_cover' :
     inside C \ d.crossSet =
       d.sourceRealization.cell (.face false) ∪ d.sourceRealization.cell (.face true) :=
   d.source_cells_cover (fun _ hA => arc_complement hA) d.hasArcCollarsSource
 
-/-- **Each source 2-cell is a component of `D ∖ P`.** -/
+/-- **Each source 2-cell is a component of `D ∖ P`.**
+@isnad1 id=eq.1h4v.s6.a0fa45e91449 from=translated src=- shape=3660c527 vocab=65fbdff4
+-/
 theorem source_cell_isComponent' (k : Bool) :
     ∀ z ∈ d.sourceRealization.cell (.face k),
       connectedComponentIn (inside C \ d.crossSet) z = d.sourceRealization.cell (.face k) :=
   d.source_cell_isComponent (fun _ hA => arc_complement hA) k
 
-/-- **The labelling of the two source 2-cells.** -/
+/-- **The labelling of the two source 2-cells.**
+@isnad1 id=eq.0h3v.s6.0f321c5559b1 from=translated src=- shape=87c8142d vocab=a62850a8
+-/
 theorem source_closure_cell_inter' (k : Bool) :
     closure (d.sourceRealization.cell (.face k)) ∩ C = d.src.arcOf k :=
   d.source_closure_cell_inter (fun _ hA => arc_complement hA) k
 
-/-- **The two source 2-cells are distinct.** -/
+/-- **The two source 2-cells are distinct.**
+@isnad1 id=ne.0h2v.s4.143653ca3897 from=translated src=- shape=cc9fbb85 vocab=4182e10a
+-/
 theorem source_cells_ne' :
     d.sourceRealization.cell (.face false) ≠ d.sourceRealization.cell (.face true) :=
   d.source_cells_ne (fun _ hA => arc_complement hA)
 
-/-- **The two target 2-cells exhaust `Q° ∖ [u(a), u(b)]`.** -/
+/-- **The two target 2-cells exhaust `Q° ∖ [u(a), u(b)]`.**
+@isnad1 id=eq.0h2v.s5.41f80f1b1c36 from=translated src=- shape=163e950d vocab=574be715
+-/
 theorem target_cells_cover' :
     inside modelCurve \ d.tgt.chordSet =
       d.targetRealization.cell (.face false) ∪ d.targetRealization.cell (.face true) :=
   d.target_cells_cover (fun _ hA => arc_complement hA)
 
-/-- **The labelling of the two target 2-cells.** -/
+/-- **The labelling of the two target 2-cells.**
+@isnad1 id=eq.0h3v.s6.68bce1c37a77 from=translated src=- shape=1c1c9ddc vocab=3dadc44b
+-/
 theorem target_closure_cell_inter' (k : Bool) :
     closure (d.targetRealization.cell (.face k)) ∩ modelCurve = d.tgt.arcOf k :=
   d.target_closure_cell_inter (fun _ hA => arc_complement hA) k
 
 /-- **Each target 2-cell is a component of `Q° ∖ [u(a), u(b)]`.** The source side had this
-already; the target side did not. -/
+already; the target side did not.
+@isnad1 id=eq.1h4v.s6.805550b863d1 from=translated src=- shape=53c809fe vocab=bce0a755
+-/
 theorem target_cell_isComponent (k : Bool) :
     ∀ z ∈ d.targetRealization.cell (.face k),
       connectedComponentIn (inside modelCurve \ d.tgt.chordSet) z =
@@ -650,7 +749,9 @@ theorem target_cell_isComponent (k : Bool) :
   · exact d.isCrosscutTarget.side_isComponent forall_isSeparating_of_isJordanCurve
       d.isCutPairTarget.symm
 
-/-- **The two target 2-cells are distinct.** -/
+/-- **The two target 2-cells are distinct.**
+@isnad1 id=ne.0h2v.s4.393f577b1dea from=translated src=- shape=cc9fbb85 vocab=27127810
+-/
 theorem target_cells_ne :
     d.targetRealization.cell (.face false) ≠ d.targetRealization.cell (.face true) :=
   d.isCrosscutTarget.side_ne forall_isSeparating_of_isJordanCurve d.isCutPairTarget
@@ -663,43 +764,67 @@ initial pair this is not automatic from the abstract structure alone: `arcOf` is
 `target_closure_cell_inter'` — are made independently. They correspond because the source
 outer edges are, by construction, the `w`-images of the target ones. -/
 
+/--
+@isnad1 id=eq.0h3v.s5.796b13f5ce49 from=translated src=- shape=771d5131 vocab=79178a49
+-/
 theorem src_outer (i : Fin 6) : d.src.outer i = fun t => d.w (tgtOuter d.xa d.xb i t) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.e2ad7b4233fc from=translated src=- shape=27382bdc vocab=98f47b6d
+-/
 theorem tgt_outer (i : Fin 6) : d.tgt.outer i = tgtOuter d.xa d.xb i := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.fb1f9117fba9 from=translated src=- shape=0fdc7c68 vocab=cb33f708
+-/
 theorem src_pos (i : Fin 6) : d.src.pos i = d.w (d.tgt.pos i) := rfl
 
 /-- **Corresponding 0-cells correspond**, in the geometric form `prop:initial-pair` states it:
 the six source subdivision points are the `u`-preimages of the four corners of `Q` and of
-`u(a), u(b)`. (`SkeletonHomeo.pos_apply` says the same thing about the *abstract* 0-cells.) -/
+`u(a), u(b)`. (`SkeletonHomeo.pos_apply` says the same thing about the *abstract* 0-cells.)
+@isnad1 id=eq.0h3v.s4.f79d00205152 from=translated src=- shape=76342e91 vocab=5bbbd763
+-/
 theorem u_src_pos (i : Fin 6) : d.u (d.src.pos i) = d.tgt.pos i :=
   d.homeo.rightInvOn (tgtPos_mem_modelCurve d.abs_xa d.abs_xb i)
 
-/-- The four target corners, named. -/
+/-- The four target corners, named.
+@isnad1 id=and.0h2v.s7.f2c4a6926e26 from=translated src=- shape=0e1ad004 vocab=f8d677dd
+-/
 theorem tgt_pos_corners :
     d.tgt.pos 0 = Plane.mk 1 1 ∧ d.tgt.pos 2 = Plane.mk (-1) 1 ∧
       d.tgt.pos 3 = Plane.mk (-1) (-1) ∧ d.tgt.pos 5 = Plane.mk 1 (-1) :=
   ⟨rfl, rfl, rfl, rfl⟩
 
 /-- **The nonadjacency clause of `prop:initial-pair`, geometrically**: `u(a)` lies in the
-relative interior of the top side of `S`. -/
+relative interior of the top side of `S`.
+@isnad1 id=mem.0h2v.s4.5a1c7c26239d from=translated src=- shape=f20b3f61 vocab=a005382f
+-/
 theorem u_a_mem_openTop : d.u d.a ∈ openTop := by
   rw [d.u_apply_a]
   exact mem_openTop.2 ⟨by simp, by simpa using d.abs_xa⟩
 
-/-- `u(b)` lies in the relative interior of the *opposite*, bottom side. -/
+/-- `u(b)` lies in the relative interior of the *opposite*, bottom side.
+@isnad1 id=mem.0h2v.s4.8f23c13af696 from=translated src=- shape=f20b3f61 vocab=92953a6d
+-/
 theorem u_b_mem_openBottom : d.u d.b ∈ openBottom := by
   rw [d.u_apply_b]
   exact mem_openBottom.2 ⟨by simp, by simpa using d.abs_xb⟩
 
-/-- Each source outer edge is the `w`-image of the corresponding target one. -/
+/-- Each source outer edge is the `w`-image of the corresponding target one.
+@isnad1 id=eq.0h3v.s5.a38638863b06 from=translated src=- shape=129428e3 vocab=2f82cca5
+-/
 theorem src_outer_image (i : Fin 6) : d.src.outer i '' I = d.w '' (d.tgt.outer i '' I) := by
   rw [← Set.image_comp]; rfl
 
+/--
+@isnad1 id=le.0h3v.s4.07bee3864b43 from=translated src=- shape=c18fef54 vocab=357f0cdd
+-/
 theorem tgt_outer_subset_modelCurve (i : Fin 6) : d.tgt.outer i '' I ⊆ modelCurve :=
   tgtOuter_subset_modelCurve d.abs_xa d.abs_xb i
 
-/-- `u` undoes `w` on any subset of the model curve. -/
+/-- `u` undoes `w` on any subset of the model curve.
+@isnad1 id=eq.1h3v.s5.ef2a489f88cd from=translated src=- shape=8af09031 vocab=8ba97005
+-/
 theorem u_image_w_image {X : Set Plane} (hX : X ⊆ modelCurve) : d.u '' (d.w '' X) = X := by
   ext y
   constructor
@@ -707,29 +832,41 @@ theorem u_image_w_image {X : Set Plane} (hX : X ⊆ modelCurve) : d.u '' (d.w ''
     rwa [d.homeo.rightInvOn (hX hx)]
   · exact fun hy => ⟨d.w y, ⟨y, hy, rfl⟩, d.homeo.rightInvOn (hX hy)⟩
 
+/--
+@isnad1 id=le.0h3v.s4.bda9817581a6 from=translated src=- shape=f5dae143 vocab=4fc42b26
+-/
 theorem tgt_arcOf_subset_modelCurve (k : Bool) : d.tgt.arcOf k ⊆ modelCurve := by
   intro z hz
   rw [← d.tgt_outerArcs]
   exact d.tgt.arcOf_subset_outerArcs k hz
 
+/--
+@isnad1 id=le.0h3v.s4.dfff66c2d345 from=translated src=- shape=5a99580d vocab=79c9dd05
+-/
 theorem src_arcOf_subset_curve (k : Bool) : d.src.arcOf k ⊆ C := by
   intro z hz
   rw [← d.src_outerArcs]
   exact d.src.arcOf_subset_outerArcs k hz
 
-/-- **The source boundary arc is the `w`-image of the target one.** -/
+/-- **The source boundary arc is the `w`-image of the target one.**
+@isnad1 id=eq.0h3v.s4.443a699bbc1e from=translated src=- shape=e05909b0 vocab=b14cf373
+-/
 theorem src_arcOf_eq_image (k : Bool) : d.src.arcOf k = d.w '' d.tgt.arcOf k := by
   cases k <;>
     simp only [HexData.arcOf_false, HexData.arcOf_true, Set.image_union, d.src_outer_image]
 
 /-- **The target half of the 2-cell labelling is the `u`-image of the source half.** This is
 what makes the pair *matched*: `A₁, A₂` on the source and `u(A₁), u(A₂)` on the target are not
-two independent choices of labelling, they are the same one. -/
+two independent choices of labelling, they are the same one.
+@isnad1 id=eq.0h3v.s4.a32835c49fc8 from=translated src=- shape=e05909b0 vocab=674de30a
+-/
 theorem tgt_arcOf_eq_image (k : Bool) : d.tgt.arcOf k = d.u '' d.src.arcOf k := by
   rw [d.src_arcOf_eq_image k, d.u_image_w_image (d.tgt_arcOf_subset_modelCurve k)]
 
 /-- The same statement through the skeleton homeomorphism `g` of `def:matched-pair`, which is
-`u` on the outer cycle. -/
+`u` on the outer cycle.
+@isnad1 id=eq.0h3v.s5.cdfa73ca5994 from=translated src=- shape=0b79b81d vocab=e96e303c
+-/
 theorem skeletonHomeo_image_arcOf (k : Bool) :
     d.skeletonHomeo.toFun '' d.src.arcOf k = d.tgt.arcOf k := by
   rw [d.tgt_arcOf_eq_image k]
@@ -737,13 +874,17 @@ theorem skeletonHomeo_image_arcOf (k : Bool) :
 
 /-- **The two 2-cell labellings correspond.** `lem:crosscut-side-correspondence` reads the
 labelling of a crosscut side off the closure of the side; on a matched pair the source and the
-target answers are `u`-images of one another, for the *same* abstract 2-cell `face k`. -/
+target answers are `u`-images of one another, for the *same* abstract 2-cell `face k`.
+@isnad1 id=eq.0h3v.s6.8c45c797d2ba from=translated src=- shape=bd50434f vocab=e5d699c0
+-/
 theorem closure_cell_face_link (k : Bool) :
     closure (d.targetRealization.cell (.face k)) ∩ modelCurve =
       d.u '' (closure (d.sourceRealization.cell (.face k)) ∩ C) := by
   rw [d.target_closure_cell_inter' k, d.source_closure_cell_inter' k, d.tgt_arcOf_eq_image k]
 
-/-- The same through `g`. -/
+/-- The same through `g`.
+@isnad1 id=eq.0h3v.s7.83c96dad2ab3 from=translated src=- shape=8131d7f2 vocab=af74e132
+-/
 theorem closure_cell_face_link_homeo (k : Bool) :
     d.skeletonHomeo.toFun '' (closure (d.sourceRealization.cell (.face k)) ∩ C) =
       closure (d.targetRealization.cell (.face k)) ∩ modelCurve := by
@@ -752,13 +893,17 @@ theorem closure_cell_face_link_homeo (k : Bool) :
 
 /-! ### `def:admissible-graph` for the target: every edge is polygonal -/
 
-/-- Each target outer edge is a straight segment, hence polygonal. -/
+/-- Each target outer edge is a straight segment, hence polygonal.
+@isnad1 id=ispolygo.0h3v.s4.4090a853c859 from=translated src=- shape=8e47347c vocab=15616395
+-/
 theorem isPolygonal_tgt_outer (i : Fin 6) : IsPolygonal (d.tgt.outer i '' I) := by
   rw [d.tgt_outer i, tgtOuter_image]
   exact isPolygonal_segment _ _
 
 /-- **Every edge of the target realization is polygonal** — the clause of
-`def:admissible-graph` for an admissible graph in `Q` that `InitialPair.lean` leaves unstated. -/
+`def:admissible-graph` for an admissible graph in `Q` that `InitialPair.lean` leaves unstated.
+@isnad1 id=ispolygo.1h3v.s4.98f328722774 from=translated src=- shape=a45316cb vocab=0912dcb4
+-/
 theorem isPolygonal_tgt_edgeArc {e : InitialCell} (he : e ∈ E(initSkel)) :
     IsPolygonal (Graph.edgeArc d.tgt.draw e) := by
   rcases (he : e ∈ InitialCell.edges) with ⟨i, rfl⟩ | rfl
@@ -769,11 +914,15 @@ theorem isPolygonal_tgt_edgeArc {e : InitialCell} (he : e ∈ E(initSkel)) :
     rw [d.tgt_chordSet]
     exact isPolygonal_segment _ _
 
-/-- Both target boundary arcs are polygonal. -/
+/-- Both target boundary arcs are polygonal.
+@isnad1 id=ispolygo.0h3v.s3.439725d1dcf2 from=translated src=- shape=5258a19f vocab=84bb7498
+-/
 theorem isPolygonal_tgt_arcOf (k : Bool) : IsPolygonal (d.tgt.arcOf k) :=
   d.tgt.isPolygonal_arcOf d.isPolygonal_tgt_outer k
 
-/-- **The whole target skeleton is polygonal.** -/
+/-- **The whole target skeleton is polygonal.**
+@isnad1 id=ispolygo.0h2v.s3.809fed7955f6 from=translated src=- shape=b3ed21a6 vocab=a544d361
+-/
 theorem isPolygonal_targetRealization_skeletonSet :
     IsPolygonal d.targetRealization.skeletonSet := by
   rw [d.targetRealization_skeletonSet]
@@ -784,7 +933,9 @@ theorem isPolygonal_targetRealization_skeletonSet :
     exact left_mem_segment ℝ _ _
 
 /-- The source realization satisfies the source form of `def:admissible-graph`: its edges *not*
-contained in `C` — here only the crosscut — are polygonal, with interior in `D`. -/
+contained in `C` — here only the crosscut — are polygonal, with interior in `D`.
+@isnad1 id=and.0h2v.s5.02165741ef59 from=translated src=- shape=21b722ec vocab=e5ca1a8c
+-/
 theorem isPolygonal_src_nonboundary_edgeArc :
     IsPolygonal (Graph.edgeArc d.src.draw .chord) ∧
       Graph.edgeArc d.src.draw .chord \ C ⊆ inside C := by
@@ -806,7 +957,9 @@ with the straight chord `[u(a), u(b)]`.
 
 Beyond `Schoenflies.initial_pair` this adds: no hypotheses at all; the anchor clause with its
 consequence that `a` and `b` are strongly accessible; the polygonality of every target edge; and
-the fact that the two 2-cell labellings correspond. -/
+the fact that the two 2-cell labellings correspond.
+@isnad1 id=ex.1h2v.s9.e93b760ebbbf from=translated src=- shape=5c9397c3 vocab=fadc5e4c
+-/
 theorem initial_pair' (hC : IsJordanCurve C) (A : AnchorSet C) :
     ∃ d : InitialData C,
       -- the anchor clause of `prop:initial-pair`, and what it is for

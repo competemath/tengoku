@@ -58,25 +58,38 @@ def relabelEdges (G : Graph α β) (f : β → δ) (hf : InjOn f E(G)) : Graph �
     rintro d x y ⟨e, -, -, hxy⟩
     exact hxy.left_mem
 
+/--
+@isnad1 id=eq.1h5v.s5.502b34f2e4bb from=translated src=- shape=4e867876 vocab=21ea65da
+-/
 @[simp] theorem vertexSet_relabelEdges (G : Graph α β) (f : β → δ) (hf : InjOn f E(G)) :
     V(G.relabelEdges f hf) = V(G) := rfl
 
+/--
+@isnad1 id=eq.1h5v.s5.8250ab121d5a from=translated src=- shape=35f4679f vocab=a1b597ea
+-/
 @[simp] theorem edgeSet_relabelEdges (G : Graph α β) (f : β → δ) (hf : InjOn f E(G)) :
     E(G.relabelEdges f hf) = f '' E(G) := rfl
 
+/--
+@isnad1 id=iff.1h8v.s6.6a014a43e216 from=translated src=- shape=3eef31dc vocab=b4fefda0
+-/
 @[simp] theorem relabelEdges_isLink (G : Graph α β) (f : β → δ) (hf : InjOn f E(G))
     (d : δ) (x y : α) :
     (G.relabelEdges f hf).IsLink d x y ↔
       ∃ e ∈ E(G), f e = d ∧ G.IsLink e x y :=
   Iff.rfl
 
-/-- An old link survives after its edge receives its new name. -/
+/-- An old link survives after its edge receives its new name.
+@isnad1 id=islink.2h8v.s5.ac688af92d2d from=translated src=- shape=9b1d4399 vocab=89adaa44
+-/
 theorem IsLink.relabelEdges (hf : InjOn f E(G)) (h : G.IsLink e x y) :
     (G.relabelEdges f hf).IsLink (f e) x y :=
   ⟨e, h.edge_mem, rfl, h⟩
 
 /-- Incidence in an edge-relabelled graph is exactly incidence of the uniquely represented
-old edge. -/
+old edge.
+@isnad1 id=iff.1h7v.s6.78e9a060be39 from=translated src=- shape=f8098206 vocab=2ca1dd6c
+-/
 theorem relabelEdges_inc (G : Graph α β) (f : β → δ) (hf : InjOn f E(G))
     (d : δ) (x : α) :
     (G.relabelEdges f hf).Inc d x ↔
@@ -87,7 +100,9 @@ theorem relabelEdges_inc (G : Graph α β) (f : β → δ) (hf : InjOn f E(G))
   · rintro ⟨e, he, rfl, y, hxy⟩
     exact ⟨y, hxy.relabelEdges hf⟩
 
-/-- Relabelling an edge list does not change the vertices it covers. -/
+/-- Relabelling an edge list does not change the vertices it covers.
+@isnad1 id=eq.2h6v.s6.1b36092207e4 from=translated src=- shape=db1529f6 vocab=3425e35a
+-/
 theorem coveredVertices_relabelEdges (hf : InjOn f E(G)) {W : List β}
     (hW : ∀ e ∈ W, e ∈ E(G)) :
     (G.relabelEdges f hf).coveredVertices (W.map f) = G.coveredVertices W := by
@@ -101,20 +116,26 @@ theorem coveredVertices_relabelEdges (hf : InjOn f E(G)) {W : List β}
   · rintro ⟨e, heW, y, hey⟩
     exact ⟨f e, List.mem_map_of_mem heW, y, hey.relabelEdges hf⟩
 
-/-- Relabelling a walk's edge list does not change its visited vertices. -/
+/-- Relabelling a walk's edge list does not change its visited vertices.
+@isnad1 id=eq.2h7v.s6.fd6765b3bf91 from=translated src=- shape=b471ae2c vocab=03db4609
+-/
 theorem walkVertices_relabelEdges (hf : InjOn f E(G)) (u : α) {W : List β}
     (hW : ∀ e ∈ W, e ∈ E(G)) :
     (G.relabelEdges f hf).walkVertices u (W.map f) = G.walkVertices u W := by
   rw [walkVertices, walkVertices, coveredVertices_relabelEdges hf hW]
 
-/-- A walk pushes forward along an injective relabelling of its edges. -/
+/-- A walk pushes forward along an injective relabelling of its edges.
+@isnad1 id=iswalk.2h8v.s5.2e89518875e1 from=translated src=- shape=0fe82cfb vocab=03eb6b3c
+-/
 theorem IsWalk.relabelEdges (hf : InjOn f E(G)) (h : G.IsWalk u W v) :
     (G.relabelEdges f hf).IsWalk u (W.map f) v := by
   induction h with
   | nil hx => exact .nil hx
   | cons hl _ ih => exact .cons (hl.relabelEdges hf) ih
 
-/-- A path pushes forward along an injective relabelling of its edges. -/
+/-- A path pushes forward along an injective relabelling of its edges.
+@isnad1 id=ispath.2h8v.s5.fb12afd8561a from=translated src=- shape=0fe82cfb vocab=7341536c
+-/
 theorem IsPath.relabelEdges (hf : InjOn f E(G)) (h : G.IsPath u W v) :
     (G.relabelEdges f hf).IsPath u (W.map f) v := by
   induction h with
@@ -124,7 +145,9 @@ theorem IsPath.relabelEdges (hf : InjOn f E(G)) (h : G.IsPath u W v) :
     rw [walkVertices_relabelEdges hf w hW.isWalk.edgeSet_subset]
     exact fresh
 
-/-- A graph which is exactly a path remains so after an injective edge relabelling. -/
+/-- A graph which is exactly a path remains so after an injective edge relabelling.
+@isnad1 id=ispathgr.2h8v.s5.7d225a97a7a1 from=translated src=- shape=05649e2e vocab=d3e256bd
+-/
 theorem IsPathGraph.relabelEdges {P : Graph α β} (hf : InjOn f E(P))
     (h : P.IsPathGraph u W v) :
     (P.relabelEdges f hf).IsPathGraph u (W.map f) v where
@@ -137,7 +160,9 @@ theorem IsPathGraph.relabelEdges {P : Graph α β} (hf : InjOn f E(P))
     rw [vertexSet_relabelEdges, walkVertices_relabelEdges hf u h.isWalk.edgeSet_subset,
       h.vertexSet_eq]
 
-/-- Relabelling preserves graph finiteness. -/
+/-- Relabelling preserves graph finiteness.
+@isnad1 id=finite.1h5v.s5.753168a22e77 from=translated src=- shape=4d340c6d vocab=05b8b349
+-/
 theorem Finite.relabelEdges [G.Finite] (hf : InjOn f E(G)) :
     (G.relabelEdges f hf).Finite where
   finite_vertexSet := by
@@ -147,7 +172,9 @@ theorem Finite.relabelEdges [G.Finite] (hf : InjOn f E(G)) :
     rw [edgeSet_relabelEdges]
     exact (_root_.Graph.finite_edgeSet G).image f
 
-/-- Relabelling preserves connectedness because every old walk pushes forward. -/
+/-- Relabelling preserves connectedness because every old walk pushes forward.
+@isnad1 id=connecte.2h5v.s5.1f960b6c090f from=translated src=- shape=4d340c6d vocab=7658f94d
+-/
 theorem Connected.relabelEdges (h : G.Connected) (hf : InjOn f E(G)) :
     (G.relabelEdges f hf).Connected := by
   constructor
@@ -156,7 +183,9 @@ theorem Connected.relabelEdges (h : G.Connected) (hf : InjOn f E(G)) :
     obtain ⟨W, hW⟩ := h.reaches (by simpa using hu) (by simpa using hv)
     exact ⟨W.map f, hW.relabelEdges hf⟩
 
-/-- A walk surviving a vertex deletion still survives that deletion after edge relabelling. -/
+/-- A walk surviving a vertex deletion still survives that deletion after edge relabelling.
+@isnad1 id=iswalk.2h9v.s6.92e92ba2ce10 from=translated src=- shape=7748ff23 vocab=77be5549
+-/
 theorem IsWalk.relabelEdges_deleteVerts {X : Set α} {u v : α} {W : List β}
     (hf : InjOn f E(G)) (h : (G.deleteVerts X).IsWalk u W v) :
     ((G.relabelEdges f hf).deleteVerts X).IsWalk u (W.map f) v := by
@@ -171,7 +200,9 @@ theorem IsWalk.relabelEdges_deleteVerts {X : Set α} {u v : α} {W : List β}
       exact ⟨hl.1.relabelEdges hf, hl.2.1, hl.2.2⟩
 
 /-- Edge relabelling preserves 2-connectivity, including connectedness after deleting any one
-vertex. -/
+vertex.
+@isnad1 id=istwocon.2h5v.s5.ed812b6d9d55 from=translated src=- shape=4d340c6d vocab=f8ba520f
+-/
 theorem IsTwoConnected.relabelEdges (h : G.IsTwoConnected) (hf : InjOn f E(G)) :
     (G.relabelEdges f hf).IsTwoConnected where
   hasThreeVertices := by
@@ -203,18 +234,26 @@ noncomputable def relabelDrawing [Nonempty β] (G : Graph α β) (f : β → δ)
     (drawing : β → ℝ → Plane) : δ → ℝ → Plane :=
   fun d => drawing (Function.invFunOn f E(G) d)
 
+/--
+@isnad1 id=eq.2h6v.s5.7339cb6dc248 from=translated src=- shape=0dbe878f vocab=5b5daa02
+-/
 @[simp] theorem relabelDrawing_apply [Nonempty β] (hf : InjOn f E(G))
     {e : β} (he : e ∈ E(G)) :
     relabelDrawing G f drawing (f e) = drawing e := by
   rw [relabelDrawing, hf.leftInvOn_invFunOn he]
 
+/--
+@isnad1 id=eq.2h6v.s6.9a671d83e0bf from=translated src=- shape=138f7ac6 vocab=d4272275
+-/
 theorem edgeArc_relabelDrawing [Nonempty β] (hf : InjOn f E(G))
     {e : β} (he : e ∈ E(G)) :
     edgeArc (relabelDrawing G f drawing) (f e) = edgeArc drawing e := by
   change relabelDrawing G f drawing (f e) '' I = drawing e '' I
   rw [relabelDrawing_apply hf he]
 
-/-- Edge relabelling changes neither the occupied point set nor any geometric edge arc. -/
+/-- Edge relabelling changes neither the occupied point set nor any geometric edge arc.
+@isnad1 id=eq.1h5v.s5.3468eccbb90e from=translated src=- shape=f017ed77 vocab=1c620bad
+-/
 theorem pointSet_relabelEdges [Nonempty β] (hf : InjOn f E(G)) :
     pointSet (G.relabelEdges f hf) (relabelDrawing G f drawing) = pointSet G drawing := by
   rw [pointSet, pointSet, vertexSet_relabelEdges, edgeSet_relabelEdges]
@@ -230,7 +269,9 @@ theorem pointSet_relabelEdges [Nonempty β] (hf : InjOn f E(G)) :
     intro x hx
     exact Set.mem_iUnion₂_of_mem (show f e ∈ f '' E(G) from ⟨e, he, rfl⟩) hx
 
-/-- Injectively changing edge names preserves a plane drawing and all of its drawn arcs. -/
+/-- Injectively changing edge names preserves a plane drawing and all of its drawn arcs.
+@isnad1 id=isdrawin.2h5v.s5.48d7073c771c from=translated src=- shape=db98768e vocab=c1964237
+-/
 theorem IsDrawing.relabelEdges [Nonempty β] (h : IsDrawing G drawing)
     (hf : InjOn f E(G)) :
     IsDrawing (G.relabelEdges f hf) (relabelDrawing G f drawing) where

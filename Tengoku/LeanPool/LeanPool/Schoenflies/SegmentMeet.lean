@@ -31,7 +31,9 @@ open Metric Set
 
 namespace Schoenflies
 
-/-- Two segments meet in nothing, or in a segment. -/
+/-- Two segments meet in nothing, or in a segment.
+@isnad1 id=ex.1h4v.s9.1815db8108ec from=translated src=- shape=61e1fe50 vocab=c192e1e5
+-/
 theorem segment_inter_segment (a b c d : Plane)
     (hne : (segment ℝ a b ∩ segment ℝ c d).Nonempty) :
     ∃ p q : Plane, segment ℝ a b ∩ segment ℝ c d = segment ℝ p q := by

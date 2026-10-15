@@ -86,15 +86,22 @@ Mathlib's `Graph.deleteVerts` takes a set; a single deleted vertex is `{c}`. -/
 
 /-- Pushing the visited set down an inclusion: a subgraph's edges have ends the big graph's
 edges have too. This is the direction the freshness clause of a path travels in, and the
-whole content of `Graph.IsPath.anti`. -/
+whole content of `Graph.IsPath.anti`.
+@isnad1 id=le.1h5v.s5.fe88a6ef241f from=translated src=- shape=98dc0d5d vocab=509f5e9c
+-/
 theorem coveredVertices_anti (hHG : H ≤ G) : H.coveredVertices W ⊆ G.coveredVertices W :=
   fun _ ⟨e, he, y, hy⟩ ↦ ⟨e, he, y, hy.mono hHG⟩
 
+/--
+@isnad1 id=le.1h6v.s5.a4b418666167 from=translated src=- shape=7e948081 vocab=927ce3b5
+-/
 theorem walkVertices_anti (hHG : H ≤ G) : H.walkVertices u W ⊆ G.walkVertices u W :=
   Set.insert_subset_insert (coveredVertices_anti hHG)
 
 /-- **A walk that never visits `c` survives the deletion of `c`.** Every deletion argument in
-the ear layer reduces to this. -/
+the ear layer reduces to this.
+@isnad1 id=iswalk.2h7v.s5.88578ffe44c3 from=translated src=- shape=4017dc22 vocab=275a4acb
+-/
 theorem IsWalk.avoiding (h : G.IsWalk u W v) (hc : c ∉ G.walkVertices u W) :
     (G.deleteVerts {c}).IsWalk u W v := by
   induction h with
@@ -115,7 +122,9 @@ theorem IsWalk.avoiding (h : G.IsWalk u W v) (hc : c ∉ G.walkVertices u W) :
       exact hc hw
 
 /-- Reversal does not change which vertices a walk visits — but it does change the source, so
-this is not `Graph.walkVertices_reverse`, which keeps it. -/
+this is not `Graph.walkVertices_reverse`, which keeps it.
+@isnad1 id=eq.1h6v.s5.3a352d643419 from=translated src=- shape=69b6b33a vocab=f4bdb508
+-/
 theorem IsWalk.reverse_walkVertices (h : G.IsWalk u W v) :
     G.walkVertices v W.reverse = G.walkVertices u W := by
   have h₁ : v ∈ G.walkVertices u W := h.target_mem_walkVertices
@@ -128,7 +137,9 @@ theorem IsWalk.reverse_walkVertices (h : G.IsWalk u W v) :
   exacts [h₁, mem_walkVertices_of_mem_covered hcov, h₂, mem_walkVertices_of_mem_covered hcov]
 
 /-- Splitting the visited set along a concatenation. Purely about lists: no walk is needed,
-and the middle vertex `w` is arbitrary. -/
+and the middle vertex `w` is arbitrary.
+@isnad1 id=le.0h7v.s5.ca990af685c2 from=translated src=- shape=f954afd3 vocab=1d27fddb
+-/
 theorem walkVertices_append_subset :
     G.walkVertices u (W₁ ++ W₂) ⊆ G.walkVertices u W₁ ∪ G.walkVertices w W₂ := by
   rintro y hy
@@ -140,13 +151,17 @@ theorem walkVertices_append_subset :
 /-! ### Reaching an end of a path after a deletion -/
 
 /-- A vertex of a path other than its source still reaches the target once the source is
-deleted: cut the path at the vertex, and the far half never returns to the source. -/
+deleted: cut the path at the vertex, and the far half never returns to the source.
+@isnad1 id=reaches.3h7v.s5.55f44d5d70ba from=translated src=- shape=0210690d vocab=80f1f444
+-/
 theorem IsPath.reaches_target_of_ne_source (h : G.IsPath u W v)
     (hx : x ∈ G.walkVertices u W) (hxu : x ≠ u) : (G.deleteVerts {u}).Reaches x v := by
   obtain ⟨-, W₂, -, -, h₂, hback⟩ := h.split hx
   exact ⟨W₂, h₂.isWalk.avoiding (hback.resolve_left hxu)⟩
 
-/-- The mirror image, run on the reversed path. -/
+/-- The mirror image, run on the reversed path.
+@isnad1 id=reaches.3h7v.s5.04fc442df151 from=translated src=- shape=e8597444 vocab=80f1f444
+-/
 theorem IsPath.reaches_source_of_ne_target (h : G.IsPath u W v)
     (hx : x ∈ G.walkVertices u W) (hxv : x ≠ v) : (G.deleteVerts {v}).Reaches x u :=
   h.reverse.reaches_target_of_ne_source (by rwa [h.isWalk.reverse_walkVertices]) hxv
@@ -154,7 +169,9 @@ theorem IsPath.reaches_source_of_ne_target (h : G.IsPath u W v)
 /-- **Deleting any vertex leaves every other vertex of a path able to reach an end.**
 Uniform in the deleted vertex `c`: if `c` is on the path the path is cut there and each
 remaining vertex sits on a half that runs to that half's far end; if `c` is off the path the
-path is cut at the vertex itself and its near half, reversed, runs to the source. -/
+path is cut at the vertex itself and its near half, reversed, runs to the source.
+@isnad1 id=or.3h8v.s6.3bd44e2d4dba from=translated src=- shape=0dec35e3 vocab=80f1f444
+-/
 theorem IsPath.reaches_an_end (h : G.IsPath u W v) (hx : x ∈ G.walkVertices u W)
     (hxc : x ≠ c) :
     (G.deleteVerts {c}).Reaches x u ∨ (G.deleteVerts {c}).Reaches x v := by
@@ -187,34 +204,57 @@ structure IsPathGraph (P : Graph α β) (u : α) (W : List β) (v : α) : Prop w
 
 namespace IsPathGraph
 
+/--
+@isnad1 id=iswalk.1h6v.s4.d5fc18453c3e from=translated src=- shape=d82f5f6b vocab=df359d75
+-/
 theorem isWalk (h : P.IsPathGraph u W v) : P.IsWalk u W v := h.isPath.isWalk
 
-/-- A vertex of a path graph is visited by its path. -/
+/-- A vertex of a path graph is visited by its path.
+@isnad1 id=mem.2h7v.s5.714b3a833868 from=translated src=- shape=3e062587 vocab=8712132a
+-/
 theorem mem_walkVertices (h : P.IsPathGraph u W v) (hx : x ∈ V(P)) :
     x ∈ P.walkVertices u W := h.vertexSet_eq ▸ hx
 
-/-- Conversely, whatever the path visits is a vertex. -/
+/-- Conversely, whatever the path visits is a vertex.
+@isnad1 id=mem.2h7v.s5.d9c74c304032 from=translated src=- shape=a7a8a7cf vocab=8712132a
+-/
 theorem mem_vertexSet (h : P.IsPathGraph u W v) (hx : x ∈ P.walkVertices u W) : x ∈ V(P) :=
   h.vertexSet_eq ▸ hx
 
+/--
+@isnad1 id=mem.2h7v.s5.a3b464135acd from=translated src=- shape=81ebd62b vocab=3caadb2f
+-/
 theorem mem_edgeSet (h : P.IsPathGraph u W v) (he : e ∈ W) : e ∈ E(P) := by
   rw [h.edgeSet_eq]; exact he
 
+/--
+@isnad1 id=mem.2h7v.s5.8c1d3c6703d5 from=translated src=- shape=db1862fb vocab=3caadb2f
+-/
 theorem mem_list (h : P.IsPathGraph u W v) (he : e ∈ E(P)) : e ∈ W := by
   rw [h.edgeSet_eq] at he; exact he
 
+/--
+@isnad1 id=mem.1h6v.s5.645c1ef3476a from=translated src=- shape=e55a492d vocab=3ff03290
+-/
 theorem source_mem (h : P.IsPathGraph u W v) : u ∈ V(P) := h.isPath.left_mem
 
+/--
+@isnad1 id=mem.1h6v.s5.3f342e52b35d from=translated src=- shape=8b2e9f57 vocab=3ff03290
+-/
 theorem target_mem (h : P.IsPathGraph u W v) : v ∈ V(P) := h.isPath.right_mem
 
-/-- A path graph read from the other end. -/
+/-- A path graph read from the other end.
+@isnad1 id=ispathgr.1h6v.s5.8b37b3285782 from=translated src=- shape=70f871b9 vocab=f0cb1453
+-/
 theorem reverse (h : P.IsPathGraph u W v) : P.IsPathGraph v W.reverse u where
   isPath := h.isPath.reverse
   edgeSet_eq := by rw [h.edgeSet_eq]; ext e; simp
   vertexSet_eq := by rw [h.isWalk.reverse_walkVertices]; exact h.vertexSet_eq
 
 /-- A path graph is connected: every vertex is visited, so the path's own prefix runs to it
-from the source. -/
+from the source.
+@isnad1 id=connecte.1h6v.s4.8ad0b30c630a from=translated src=- shape=9a85c080 vocab=75318be2
+-/
 theorem connected (h : P.IsPathGraph u W v) : P.Connected := by
   refine Connected.of_hub h.source_mem fun x hx ↦ ?_
   obtain ⟨W₁, -, -, h₁, -, -⟩ := h.isPath.split (h.mem_walkVertices hx)
@@ -223,7 +263,9 @@ theorem connected (h : P.IsPathGraph u W v) : P.Connected := by
 /-- **Whatever vertex is deleted, every remaining vertex of a path graph still reaches one of
 its two ends.** This is what the ear argument turns on: the ear's two ends are the only
 vertices it shares with the graph it is glued to, so a surviving vertex of the ear has to
-reach one of them inside the ear itself. -/
+reach one of them inside the ear itself.
+@isnad1 id=or.3h8v.s6.2064098beb9e from=translated src=- shape=f86b67aa vocab=62a524aa
+-/
 theorem reaches_an_end (h : P.IsPathGraph u W v) (hx : x ∈ V(P)) (hxc : x ≠ c) :
     (P.deleteVerts {c}).Reaches x u ∨ (P.deleteVerts {c}).Reaches x v :=
   h.isPath.reaches_an_end (h.mem_walkVertices hx) hxc
@@ -241,9 +283,15 @@ into a graph of its own so that it can be unioned back in. It is built from Math
 def pathGraphOf (G : Graph α β) (u : α) (W : List β) : Graph α β :=
   (G.restrict {e | e ∈ W}).induce (G.walkVertices u W)
 
+/--
+@isnad1 id=eq.0h5v.s4.fc85a596d9ec from=translated src=- shape=d7de0032 vocab=65b8ddd7
+-/
 @[simp]
 theorem pathGraphOf_vertexSet : V(G.pathGraphOf u W) = G.walkVertices u W := rfl
 
+/--
+@isnad1 id=iff.0h8v.s6.ab17a82eba3a from=translated src=- shape=67d6abbd vocab=a721cabe
+-/
 @[simp]
 theorem pathGraphOf_isLink :
     (G.pathGraphOf u W).IsLink e x y ↔
@@ -251,14 +299,21 @@ theorem pathGraphOf_isLink :
   simp only [pathGraphOf, induce_isLink, restrict_isLink, Set.mem_ofPred_eq]
   tauto
 
+/--
+@isnad1 id=mem.0h5v.s4.2aeaefd3ef7c from=translated src=- shape=4175afcf vocab=fb570daa
+-/
 theorem mem_vertexSet_pathGraphOf_self : u ∈ V(G.pathGraphOf u W) := mem_walkVertices_self
 
-/-- The spanned subgraph really is a subgraph. -/
+/-- The spanned subgraph really is a subgraph.
+@isnad1 id=le.1h6v.s5.61eaae43a324 from=translated src=- shape=f6eeeb98 vocab=2de912ca
+-/
 theorem pathGraphOf_le (h : G.IsWalk u W v) : G.pathGraphOf u W ≤ G :=
   le_trans (induce_le h.walkVertices_subset) restrict_le
 
 /-- Its edges are exactly the walk's. One inclusion is the definition; the other needs the
-walk, to know that an entry of `W` is an edge of `G` at all and that its ends are visited. -/
+walk, to know that an entry of `W` is an edge of `G` at all and that its ends are visited.
+@isnad1 id=eq.1h6v.s5.68cd76c0a9cc from=translated src=- shape=aac5a004 vocab=139fc54b
+-/
 theorem pathGraphOf_edgeSet (h : G.IsWalk u W v) : E(G.pathGraphOf u W) = {e | e ∈ W} := by
   ext f
   rw [edgeSet_eq_setOfPred_exists_isLink]
@@ -270,7 +325,9 @@ theorem pathGraphOf_edgeSet (h : G.IsWalk u W v) : E(G.pathGraphOf u W) = {e | e
 
 /-- The spanned subgraph visits the same vertices as the ambient graph does along `W`: its
 edges are the same edges, joining the same pairs. No walk is needed — an end of an edge of
-`W` is visited by definition, so it survives the induced subgraph. -/
+`W` is visited by definition, so it survives the induced subgraph.
+@isnad1 id=eq.0h5v.s4.2b92e32f84e8 from=translated src=- shape=15619249 vocab=9f0eb7c0
+-/
 theorem coveredVertices_pathGraphOf :
     (G.pathGraphOf u W).coveredVertices W = G.coveredVertices W := by
   refine Set.Subset.antisymm (fun z ⟨f, hf, y, hy⟩ ↦ ⟨f, hf, y, (pathGraphOf_isLink.1 hy).2.1⟩)
@@ -279,22 +336,31 @@ theorem coveredVertices_pathGraphOf :
       mem_walkVertices_of_mem_covered ⟨f, hf, hy.inc_left⟩,
       mem_walkVertices_of_mem_covered ⟨f, hf, hy.inc_right⟩⟩⟩
 
+/--
+@isnad1 id=eq.0h5v.s5.7317a0b9fabf from=translated src=- shape=41a6f3b3 vocab=b829c85f
+-/
 theorem walkVertices_pathGraphOf :
     (G.pathGraphOf u W).walkVertices u W = G.walkVertices u W := by
   rw [walkVertices, walkVertices, coveredVertices_pathGraphOf]
 
-/-- The walk runs inside the subgraph it spans. -/
+/-- The walk runs inside the subgraph it spans.
+@isnad1 id=iswalk.1h6v.s5.4fccd1e89c37 from=translated src=- shape=35cc9303 vocab=ff83f32e
+-/
 theorem IsWalk.pathGraphOf (h : G.IsWalk u W v) : (G.pathGraphOf u W).IsWalk u W v :=
   h.anti (pathGraphOf_le h) mem_vertexSet_pathGraphOf_self
     fun _ he ↦ (pathGraphOf_edgeSet h) ▸ he
 
-/-- The path runs inside the subgraph it spans. -/
+/-- The path runs inside the subgraph it spans.
+@isnad1 id=ispath.1h6v.s5.51b5555bec1d from=translated src=- shape=35cc9303 vocab=1d168bc4
+-/
 theorem IsPath.pathGraphOf (h : G.IsPath u W v) : (G.pathGraphOf u W).IsPath u W v :=
   h.anti (pathGraphOf_le h.isWalk) mem_vertexSet_pathGraphOf_self
     fun _ he ↦ (pathGraphOf_edgeSet h.isWalk) ▸ he
 
 /-- **A path of `G` spans a path graph.** This is the construction the whole file exists
-for: the object every `Graph.IsPathGraph` hypothesis elsewhere is discharged by. -/
+for: the object every `Graph.IsPathGraph` hypothesis elsewhere is discharged by.
+@isnad1 id=ispathgr.1h6v.s5.7b4caeeba0d6 from=translated src=- shape=c59185eb vocab=7d488d1c
+-/
 theorem IsPath.isPathGraph_pathGraphOf (h : G.IsPath u W v) :
     (G.pathGraphOf u W).IsPathGraph u W v where
   isPath := h.pathGraphOf
@@ -306,7 +372,9 @@ theorem IsPath.isPathGraph_pathGraphOf (h : G.IsPath u W v) :
 A walk visits finitely many vertices and takes finitely many edges, so the graph it spans is
 finite with no hypothesis on the ambient graph. -/
 
-/-- A step of a walk adds exactly one vertex to the visited set. -/
+/-- A step of a walk adds exactly one vertex to the visited set.
+@isnad1 id=eq.1h7v.s5.a2d22fe3fc34 from=translated src=- shape=4d9ba387 vocab=3400aaea
+-/
 theorem walkVertices_cons (hl : G.IsLink e u w) :
     G.walkVertices u (e :: W) = insert u (G.walkVertices w W) := by
   ext x
@@ -318,6 +386,9 @@ theorem walkVertices_cons (hl : G.IsLink e u w) :
     rcases Set.mem_insert_iff.1 hx with rfl | hx'
     exacts [mem_walkVertices_self, mem_walkVertices_cons_of_mem hl hx']
 
+/--
+@isnad1 id=finite.1h6v.s4.00067a98c0e6 from=translated src=- shape=6abbaa98 vocab=80a97726
+-/
 theorem IsWalk.finite_walkVertices (h : G.IsWalk u W v) : (G.walkVertices u W).Finite := by
   induction h with
   | nil => rw [walkVertices_nil]; exact Set.finite_singleton _
@@ -325,11 +396,16 @@ theorem IsWalk.finite_walkVertices (h : G.IsWalk u W v) : (G.walkVertices u W).F
 
 /-- The graph spanned by a walk has finitely many vertices, whatever the ambient graph.
 Stated as a `Set.Finite` rather than as a `Graph.Finite` instance so that this file does not
-have to depend on `Schoenflies/Graph/Degree.lean`; the two halves build one in a line. -/
+have to depend on `Schoenflies/Graph/Degree.lean`; the two halves build one in a line.
+@isnad1 id=finite.1h6v.s5.1ac047ada6da from=translated src=- shape=0ee2646e vocab=12c5c5ea
+-/
 theorem IsWalk.finite_vertexSet_pathGraphOf (h : G.IsWalk u W v) :
     V(G.pathGraphOf u W).Finite := by
   simpa using h.finite_walkVertices
 
+/--
+@isnad1 id=finite.1h6v.s5.986cc67237f3 from=translated src=- shape=fecb1304 vocab=482271f1
+-/
 theorem IsWalk.finite_edgeSet_pathGraphOf (h : G.IsWalk u W v) :
     E(G.pathGraphOf u W).Finite := by
   rw [pathGraphOf_edgeSet h]; exact List.finite_toSet W

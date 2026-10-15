@@ -61,13 +61,28 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDim
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceRellich : MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.9ed419abd325 from=translated src=- shape=c6850a32 vocab=8717b763
+-/
 local instance instBorelSpaceRellich : BorelSpace E := ⟨rfl⟩
+/--
+@isnad1 id=opensmea.0h1v.s4.1994b77212c9 from=translated src=- shape=c6850a32 vocab=d11cbabb
+-/
 local instance instOpensMeasurableSpaceRellich : OpensMeasurableSpace E := by
   infer_instance
+/--
+@isnad1 id=measurab.0h1v.s4.929c14fac594 from=translated src=- shape=c6850a32 vocab=8a8c43e2
+-/
 local instance instMeasurableAddRellich : MeasurableAdd E := by
   infer_instance
+/--
+@isnad1 id=measurab.0h1v.s4.243226fd04be from=translated src=- shape=c6850a32 vocab=508efd96
+-/
 local instance instMeasurableNegRellich : MeasurableNeg E := by
   infer_instance
+/--
+@isnad1 id=fact.0h0v.s4.4a02ed8498a3 from=translated src=- shape=3a68cc91 vocab=30c49e41
+-/
 local instance instFactOneLeTwoSobolevEuclideanRellich : Fact (1 ≤ (2 : ℝ≥0∞)) := ⟨by norm_num⟩
 
 /-! ### Supported `H¹` subspace -/
@@ -100,6 +115,9 @@ convenient compact map to the restricted `L²` space.
 -/
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=isclosed.1h2v.s13.2887c1b27d61 from=translated src=- shape=6b32104e vocab=4ae5fc59
+-/
 lemma isClosed_range_extendByZero (K : Set E) (hKm : MeasurableSet K) :
     IsClosed
       (LinearMap.range

@@ -54,6 +54,9 @@ noncomputable def toCNF [DecidableEq T] (g : ContextFreeGrammar T) [DecidableEq 
 
 variable {g : ContextFreeGrammar T}
 
+/--
+@isnad1 id=ex.1h4v.s6.b6759c5225ff from=translated src=- shape=43daeb1a vocab=dbb38d85
+-/
 lemma newTerminalRules_terminal_output {r : ContextFreeRule T g.NT} :
     ∀ r' ∈ newTerminalRules r, ∃ t, r'.output = [Symbol.terminal t] := by
   simp only [newTerminalRules, List.mem_filterMap, forall_exists_index, and_imp]
@@ -63,6 +66,9 @@ lemma newTerminalRules_terminal_output {r : ContextFreeRule T g.NT} :
 
 variable [DecidableEq T] [DecidableEq g.NT]
 
+/--
+@isnad1 id=nonunit.2h3v.s7.c4121720f699 from=translated src=- shape=9a198576 vocab=0c58664f
+-/
 lemma restrictTerminals_nonUnit_output (hrₒ : ∀ r ∈ g.rules, NonUnit r.output) :
     ∀ r' ∈ g.restrictTerminals.rules, NonUnit r'.output := by
   suffices h : ∀ r' ∈ (g.rules.toList.map restrictTerminalRule).flatten.toFinset,
@@ -82,6 +88,9 @@ lemma restrictTerminals_nonUnit_output (hrₒ : ∀ r ∈ g.rules, NonUnit r.out
     rw [← hsr]
     trivial
 
+/--
+@isnad1 id=ne.2h3v.s7.283aaf732b28 from=translated src=- shape=76106a0e vocab=1d998b80
+-/
 lemma restrictTerminals_not_empty_output (hne : ∀ r ∈ g.rules, r.output ≠ []) :
     ∀ r' ∈ g.restrictTerminals.rules, r'.output ≠ [] := by
   suffices h : ∀ r' ∈ (g.rules.toList.map restrictTerminalRule).flatten.toFinset,
@@ -99,6 +108,9 @@ lemma restrictTerminals_not_empty_output (hne : ∀ r ∈ g.rules, r.output ≠ 
     rw [← hsr]
     simp
 
+/--
+@isnad1 id=or.1h3v.s7.796cb5b121ff from=translated src=- shape=543be074 vocab=fdee4fa3
+-/
 lemma restrictTerminals_terminal_or_nonterminals :
     ∀ r ∈ g.restrictTerminals.rules, (∃ t, r.output = [Symbol.terminal t])
       ∨ (∀ s ∈ r.output, ∃ nt, s = Symbol.nonterminal nt) := by
@@ -127,6 +139,9 @@ lemma restrictTerminals_terminal_or_nonterminals :
       left
       exact newTerminalRules_terminal_output r' hr
 
+/--
+@isnad1 id=ne.2h3v.s7.7c8d95c3d348 from=translated src=- shape=76106a0e vocab=bf323b0e
+-/
 lemma eliminateUnitRules_not_empty_output (hne : ∀ r ∈ g.rules, r.output ≠ []) :
     ∀ r' ∈ g.eliminateUnitRules.rules, r'.output ≠ [] := by
   suffices h : ∀ r' ∈
@@ -147,11 +162,17 @@ lemma eliminateUnitRules_not_empty_output (hne : ∀ r ∈ g.rules, r.output ≠
     rw [← hr]
     apply hne _ hrg
 
+/--
+@isnad1 id=ne.1h3v.s6.1a8537998e04 from=translated src=- shape=23ee9af1 vocab=924de14b
+-/
 lemma eliminateEmpty_not_empty_output : ∀ r ∈ g.eliminateEmpty.rules, r.output ≠ [] := by
   simp only [eliminateEmpty]
   intro r hrg
   exact output_mem_removeNullables hrg
 
+/--
+@isnad1 id=nonunit.1h3v.s6.d783ee36e2e2 from=translated src=- shape=d066061a vocab=f490eb09
+-/
 lemma eliminateUnitRules_output_nonUnit :
     ∀ r ∈ g.eliminateUnitRules.rules, NonUnit r.output := by
   suffices h : ∀ r' ∈
@@ -170,6 +191,9 @@ lemma eliminateUnitRules_output_nonUnit :
     unfold NonUnit
     split <;> tauto
 
+/--
+@isnad1 id=eq.0h2v.s5.d357f9555dd9 from=translated src=- shape=146d64e9 vocab=a5fb8ab1
+-/
 theorem toCNF_correct : g.language \ {[]} = g.toCNF.language := by
   let : DecidableEq g.eliminateEmpty.NT := inferInstanceAs (DecidableEq g.NT)
   let : DecidableEq g.eliminateEmpty.eliminateUnitRules.NT :=

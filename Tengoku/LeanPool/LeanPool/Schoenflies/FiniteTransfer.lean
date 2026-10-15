@@ -200,7 +200,9 @@ variable {d : S.SplitData} {R : S.Realization} {outer dom : Set Plane}
   {earPos : γ → Plane} {earDraw : γ → ℝ → Plane}
 
 /-- Weak admissibility is preserved by adjoining a polygonal ear inside one old face.  This is
-the geometric bookkeeping common to the source and target halves of every ear step. -/
+the geometric bookkeeping common to the source and target halves of every ear step.
+@isnad1 id=isweakly.4h8v.s6.118658940b1e from=translated src=- shape=e3e0eb6b vocab=693d07b4
+-/
 theorem isWeaklyAdmissible_realize (hE : d.EarCrosscut R earPos earDraw)
     (hR : R.IsWeaklyAdmissible outer dom) (hcd : R.IsCellDecomposition dom)
     (hpoly : ∀ ⦃e⦄, e ∈ E(d.ear) → IsPolygonal (edgeArc earDraw e)) :
@@ -288,7 +290,9 @@ variable {S : CellStructure γ} {d : S.SplitData} {R₁ R₂ : S.Realization}
 drawn source ear.  The division is obtained by matching the parameters of the two whole arcs:
 each target edge is the image of its source counterpart.  Closed subarcs of the polygonal
 target crosscut are polygonal, so no relation between the number of straight segments on the
-two sides is needed. -/
+two sides is needed.
+@isnad1 id=ex.5h8v.s7.9a380ee47f40 from=translated src=- shape=a3fc0bd1 vocab=c3a2af2d
+-/
 theorem exists_matched_target (hsrc : d.EarCrosscut R₁ srcPos srcDraw)
     {A : Set Plane} (hApoly : IsPolygonal A)
     (hAarc : IsArcBetween A (R₂.pos d.source) (R₂.pos d.target))
@@ -380,7 +384,9 @@ The only input beyond assertion (i) is `Schoenflies.CellsAbsorb` — assertion (
 
 variable {R : S.Realization} {D N Q : Set Plane} {F σ : γ} {z : Plane}
 
-/-- A cell whose open part contains a point off the skeleton is a 2-cell. -/
+/-- A cell whose open part contains a point off the skeleton is a 2-cell.
+@isnad1 id=mem.3h5v.s5.bead83278e6a from=translated src=- shape=25c41c4b vocab=92cf8445
+-/
 theorem mem_faces_of_notMem_skeletonSet (R : S.Realization) (hσ : σ ∈ S.cells)
     (hz : z ∈ R.cell σ) (hznot : z ∉ R.skeletonSet) : σ ∈ S.faces := by
   rcases hσ with hσ | hσ
@@ -391,7 +397,9 @@ namespace IsCellDecomposition
 
 /-- The frontier of a Jordan face is part of the realized 1-skeleton.  Assertion (i) writes the
 frontier as the union of strict subcells; assertion (vii) rules out a second face among those
-subcells, leaving only vertices and edges. -/
+subcells, leaving only vertices and edges.
+@isnad1 id=le.3h5v.s6.8d4cf83a4030 from=translated src=- shape=8fa4c35e vocab=692eb34e
+-/
 theorem frontier_cell_subset_skeletonSet (h : R.IsCellDecomposition D)
     (hJ : R.IsFaceJordan) (hF : F ∈ S.faces) : frontier (R.cell F) ⊆ R.skeletonSet := by
   rw [← hJ.faceBoundary_eq h hF, Realization.faceBoundary]
@@ -403,7 +411,9 @@ theorem frontier_cell_subset_skeletonSet (h : R.IsCellDecomposition D)
   · exact absurd (h.sub_face_eq hJ hface hF hσF) hσne
 
 /-- Assertions (i) and (vii) discharge the `CellsAbsorb` reading of the cellulation invariant:
-a connected set missing the skeleton cannot cross the Jordan frontier of a face it meets. -/
+a connected set missing the skeleton cannot cross the Jordan frontier of a face it meets.
+@isnad1 id=cellsabs.2h4v.s5.330b2c173466 from=translated src=- shape=87a973f8 vocab=927bfbcf
+-/
 theorem cellsAbsorb (h : R.IsCellDecomposition D) (hJ : R.IsFaceJordan) :
     CellsAbsorb R.skeletonSet {A | ∃ F ∈ S.faces, A = R.cell F} := by
   rintro N hN hNdisj A ⟨F, hF, rfl⟩ hmeet
@@ -411,7 +421,9 @@ theorem cellsAbsorb (h : R.IsCellDecomposition D) (hJ : R.IsFaceJordan) :
     (hNdisj.mono_right (h.frontier_cell_subset_skeletonSet hJ hF)) hmeet
 
 /-- A Jordan face contained in an ambient open set `Q` is a connected component of
-`Q \ skeleton` as soon as its frontier belongs to the skeleton. -/
+`Q \ skeleton` as soon as its frontier belongs to the skeleton.
+@isnad1 id=eq.5h7v.s6.2f481aa5daa9 from=translated src=- shape=165cc398 vocab=d4a6b04e
+-/
 theorem face_eq_connectedComponentIn (h : R.IsCellDecomposition D) (hJ : R.IsFaceJordan)
     (hF : F ∈ S.faces) (hFQ : R.cell F ⊆ Q) (z : Plane)
     (hz : z ∈ R.cell F) :
@@ -427,7 +439,9 @@ theorem face_eq_connectedComponentIn (h : R.IsCellDecomposition D) (hJ : R.IsFac
 
 /-- A 0-cell in the closure of an open 2-cell is a subcell of it — assertion (ix) read at a
 vertex. This is how an ear's endpoint is recognised as lying on the boundary cycle of the face
-its interior occupies. -/
+its interior occupies.
+@isnad1 id=sub.4h6v.s6.00ef245e93e0 from=translated src=- shape=472faaa2 vocab=2eb45bf3
+-/
 theorem sub_of_pos_mem_closure_cell (h : R.IsCellDecomposition D) {a F : γ}
     (ha : a ∈ V(S.skel)) (hF : F ∈ S.faces) (hmem : R.pos a ∈ closure (R.cell F)) :
     S.sub a F := by
@@ -437,7 +451,9 @@ theorem sub_of_pos_mem_closure_cell (h : R.IsCellDecomposition D) {a F : γ}
   exact Set.singleton_subset_iff.2 hmem
 
 /-- **An ear lies in a single current face.** A nonempty connected subset of the closed domain
-disjoint from the realized skeleton lies inside one open 2-cell, and inside only that one. -/
+disjoint from the realized skeleton lies inside one open 2-cell, and inside only that one.
+@isnad1 id=ex.6h5v.s7.62e902c0aa05 from=translated src=- shape=1a918c7a vocab=fc7f2d25
+-/
 theorem exists_unique_face_subset_cell (h : R.IsCellDecomposition D)
     (hcells : CellsAbsorb R.skeletonSet {A | ∃ F ∈ S.faces, A = R.cell F})
     (hN : IsPreconnected N) (hNne : N.Nonempty) (hND : N ⊆ D)
@@ -457,7 +473,9 @@ a unique current 2-cell `F`; and each endpoint of the ear, being a 0-cell in the
 is a subcell of `F`, i.e. lies on its boundary cycle.
 
 Feeding the two `S.sub` conclusions back through `IsCellDecomposition.subset_closure` in the
-*other* realization is exactly `Schoenflies.exists_target_ear`'s two closure hypotheses. -/
+*other* realization is exactly `Schoenflies.exists_target_ear`'s two closure hypotheses.
+@isnad1 id=ex.10h7v.s8.54fd011a1c96 from=translated src=- shape=fd5f610c vocab=6140f40e
+-/
 theorem exists_face_of_ear (h : R.IsCellDecomposition D)
     (hcells : CellsAbsorb R.skeletonSet {A | ∃ F ∈ S.faces, A = R.cell F})
     (hN : IsPreconnected N) (hNne : N.Nonempty) (hND : N ⊆ D)
@@ -532,20 +550,26 @@ namespace GeneratedPair
 variable {S₀ : CellStructure γ} {srcOuter srcDom tgtOuter tgtDom : Set Plane}
 
 /-- The combinatorial invariants hold at every generated stage, once they hold at the base —
-`Schoenflies.GeneratedStructure.combInvariants`, read off the bundle. -/
+`Schoenflies.GeneratedStructure.combInvariants`, read off the bundle.
+@isnad1 id=combinva.1h7v.s5.16720d65cf21 from=translated src=- shape=66d2e6e0 vocab=14a59b37
+-/
 theorem combInvariants (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     (h₀ : S₀.CombInvariants) : P.str.CombInvariants :=
   P.generated.combInvariants h₀
 
 /-- Every face of a generated pair has a simple cyclic boundary once this is true at the base.
-This is the source of the two abstract boundary paths consumed by an ear split. -/
+This is the source of the two abstract boundary paths consumed by an ear split.
+@isnad1 id=boundary.2h7v.s5.5f7a3e856c20 from=translated src=- shape=3daea248 vocab=3d35b5b5
+-/
 theorem boundaryCycles (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     (hcycles : S₀.BoundaryCycles) (h₀ : S₀.CombInvariants) :
     P.str.BoundaryCycles :=
   P.generated.boundaryCycles hcycles h₀
 
 /-- The open nonboundary part of the source realization, read off the two clauses that pin the
-skeleton and the outer cycle. -/
+skeleton and the outer cycle.
+@isnad1 id=eq.0h7v.s6.e30b93da614e from=translated src=- shape=02599cff vocab=85cc4eff
+-/
 theorem src_nonboundary_eq (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom) :
     P.src.nonboundary = P.src.skeletonSet \ srcOuter := by
   rw [CellStructure.Realization.nonboundary, P.src_isWeaklyAdmissible.outerSet_eq]
@@ -553,18 +577,24 @@ theorem src_nonboundary_eq (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtD
 /-- **The last paragraph of the proof of `thm:finite-transfer`, target half.** Once the source
 realization's open nonboundary part is connected, so is the target's — this is part (b) of
 `lem:combinatorial-invariance` — and the target realization, weakly admissible by construction,
-is therefore admissible. -/
+is therefore admissible.
+@isnad1 id=isadmiss.1h7v.s6.1880c48ad17f from=translated src=- shape=b810258c vocab=bacfa50d
+-/
 theorem tgt_isAdmissible (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     (h : IsConnected P.src.nonboundary) : P.tgt.IsAdmissible tgtOuter tgtDom :=
   { P.tgt_isWeaklyAdmissible with
     isConnected_nonboundary := P.homeo.isConnected_nonboundary_iff.1 h }
 
-/-- **The last paragraph of the proof, source half.** -/
+/-- **The last paragraph of the proof, source half.**
+@isnad1 id=isadmiss.1h7v.s6.e538e8800fc2 from=translated src=- shape=40a02f98 vocab=2e2fab67
+-/
 theorem src_isAdmissible (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     (h : IsConnected P.src.nonboundary) : P.src.IsAdmissible srcOuter srcDom :=
   { P.src_isWeaklyAdmissible with isConnected_nonboundary := h }
 
-/-- Every target face lies in the open part of the prescribed target domain. -/
+/-- Every target face lies in the open part of the prescribed target domain.
+@isnad1 id=le.1h8v.s6.8ad97b95ef99 from=translated src=- shape=998d37ab vocab=7f07edc7
+-/
 theorem tgt_face_subset_interior (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     {F : γ} (hF : F ∈ P.str.faces) : P.tgt.cell F ⊆ tgtDom \ tgtOuter := by
   intro x hx
@@ -577,7 +607,9 @@ theorem tgt_face_subset_interior (P : GeneratedPair S₀ srcOuter srcDom tgtOute
   exact Set.disjoint_left.1
     (P.tgt.disjoint_cell_skeletonSet P.tgt_isCellDecomposition hF) hx hxSkel
 
-/-- Target faces have the component presentation consumed by polygonal side accessibility. -/
+/-- Target faces have the component presentation consumed by polygonal side accessibility.
+@isnad1 id=and.1h8v.s7.930215b3da23 from=translated src=- shape=00eb66b6 vocab=a0870cc5
+-/
 theorem tgt_face_isComponent (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     {F : γ} (hF : F ∈ P.str.faces) :
     P.tgt.cell F ⊆ tgtDom \ tgtOuter ∧
@@ -646,6 +678,9 @@ noncomputable def split (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
   tgt_isWeaklyAdmissible := htgt.isWeaklyAdmissible_realize P.tgt_isWeaklyAdmissible
     P.tgt_isCellDecomposition htgtEdgePoly
 
+/--
+@isnad1 id=eq.5h13v.s7.1b9bb3b27a63 from=translated src=- shape=cfcb3eb8 vocab=864fdad1
+-/
 @[simp] theorem split_str (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     (hS : P.str.CombInvariants) (d : P.str.SplitData)
     (srcPos : γ → Plane) (srcDraw : γ → ℝ → Plane)
@@ -712,7 +747,9 @@ namespace IsSourceExtension
 variable {S : CellStructure γ} {R : S.Realization} {outer dom : Set Plane}
   {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
 
-/-- A plane graph has no loops, so `lem:relative-ear` applies to `H`. -/
+/-- A plane graph has no loops, so `lem:relative-ear` applies to `H`.
+@isnad1 id=not.1h9v.s5.90f8a8a9d076 from=translated src=- shape=ce938d66 vocab=fa89e03d
+-/
 theorem not_isLoopAt (h : IsSourceExtension R outer dom H Hdraw) ⦃f : γ⦄ ⦃x : Plane⦄ :
     ¬ H.IsLoopAt f x := h.isDrawing.not_isLoopAt f x
 
@@ -734,7 +771,9 @@ variable {S₀ : CellStructure γ} {srcOuter srcDom tgtOuter tgtDom : Set Plane}
 
 /-- A finite family of fresh names can be chosen injectively outside any finite used set.  This
 is the name-supply lemma used by the concrete ear relabelling: vertex, edge, and face requests
-are put in one finite sum type so their chosen names are automatically pairwise distinct. -/
+are put in one finite sum type so their chosen names are automatically pairwise distinct.
+@isnad1 id=ex.1h3v.s5.fd3f334e1770 from=translated src=- shape=4186ff91 vocab=e2277e24
+-/
 theorem exists_injective_avoiding [Infinite γ] (used : Set γ) (hused : used.Finite)
     (ι : Type*) [Finite ι] :
     ∃ fresh : ι → γ, Function.Injective fresh ∧ ∀ i, fresh i ∉ used := by
@@ -747,7 +786,9 @@ theorem exists_injective_avoiding [Infinite γ] (used : Set γ) (hused : used.Fi
   intro i j hij
   exact code.injective (supply.injective (Subtype.ext hij))
 
-/-- Extend a finite injection of fresh names to a total function for graph relabelling. -/
+/-- Extend a finite injection of fresh names to a total function for graph relabelling.
+@isnad1 id=ex.2h5v.s5.0a2f24956936 from=translated src=- shape=3aa0142f vocab=301b3859
+-/
 theorem exists_injOn_avoiding [Infinite γ] (used : Set γ) (hused : used.Finite)
     {s : Set α} (hs : s.Finite) (fallback : γ) :
     ∃ name : α → γ, InjOn name s ∧ ∀ x ∈ s, name x ∉ used := by
@@ -763,7 +804,9 @@ theorem exists_injOn_avoiding [Infinite γ] (used : Set γ) (hused : used.Finite
   exact congrArg Subtype.val hsub
 
 /-- Extend two prescribed, distinct names to an injection on a finite set, with every other
-value fresh outside a prescribed finite set. -/
+value fresh outside a prescribed finite set.
+@isnad1 id=ex.6h8v.s6.1adc13cccd32 from=translated src=- shape=06407015 vocab=301b3859
+-/
 theorem exists_injective_pinned_avoiding [Infinite γ]
     {used : Set γ} (hused : used.Finite) {u v : γ}
     (hu : u ∈ used) (hv : v ∈ used) (huv : u ≠ v)
@@ -897,15 +940,23 @@ noncomputable def pair (w : EarStepData T B H Hdraw a D) :
   T.split T.str_combInvariants w.splitData w.srcPos w.srcDraw w.tgtPos w.tgtDraw
     w.srcCrosscut w.tgtCrosscut w.earHomeo w.srcEdgePolygonal w.tgtEdgePolygonal
 
+/--
+@isnad1 id=eq.0h13v.s7.16cc30529657 from=translated src=- shape=bb6310dd vocab=0dac3ec1
+-/
 @[simp] theorem pair_src (w : EarStepData T B H Hdraw a D) :
     w.pair.src = w.splitData.realize T.src w.srcPos w.srcDraw w.srcCrosscut := rfl
 
+/--
+@isnad1 id=eq.0h13v.s7.1f208710d265 from=translated src=- shape=bb6310dd vocab=c0de70a5
+-/
 @[simp] theorem pair_tgt (w : EarStepData T B H Hdraw a D) :
     w.pair.tgt = w.splitData.realize T.tgt w.tgtPos w.tgtDraw w.tgtCrosscut := rfl
 
 /-- The exposed constructor data really performs one `EarStep`: the pair it builds refines the
 original pair along the composite parent map, occupies the enlarged source graph, and contains
-all of that graph's vertices as 0-cells. -/
+all of that graph's vertices as 0-cells.
+@isnad1 id=ispartia.4h16v.s7.e2520eabfa71 from=translated src=- shape=2cdb0b08 vocab=e83ce118
+-/
 theorem isPartialTransferOf_pair
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom} {b : Plane}
     {par : γ → γ} (w : EarStepData T B H Hdraw a D)
@@ -946,7 +997,9 @@ end EarStepData
 /-- A nontrivial graph-theoretic ear determines two abstract endpoint vertices and a unique
 source face containing its open arc.  This is the complete source-side input needed to choose
 the boundary paths of `SplitData`; in particular `CellsAbsorb` is no longer an extra
-hypothesis. -/
+hypothesis.
+@isnad1 id=ex.9h15v.s8.93a195daea79 from=translated src=- shape=0891765e vocab=2eaffd24
+-/
 theorem exists_source_face_of_ear
     {P T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {B H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -993,7 +1046,9 @@ theorem exists_source_face_of_ear
 /-- Every edge of a genuine source ear is polygonal.  The source-extension dichotomy allows an
 edge to be nonpolygonal only when its whole arc lies in the outer curve.  But that curve is in
 the current skeleton, whereas the open ear lies in one current face and hence misses the
-skeleton; a nondegenerate drawn edge cannot then remain. -/
+skeleton; a nondegenerate drawn edge cannot then remain.
+@isnad1 id=ispolygo.5h15v.s7.3840cd10490e from=translated src=- shape=e98e85c5 vocab=ca30dec0
+-/
 theorem source_ear_edge_polygonal
     {P T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1119,7 +1174,9 @@ structure SourceEarStepData (T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgt
       V((splitData.realize T.src srcPos srcDraw srcCrosscut).graph)
 
 /-- The ambient path is injectively renamed with fresh abstract vertex and edge cells, two more
-fresh names become the new faces, and the resulting abstract split is realized on the source. -/
+fresh names become the new faces, and the resulting abstract split is realized on the source.
+@isnad1 id=nonempty.10h15v.s7.ffe2682eb095 from=translated src=- shape=8e8fb030 vocab=bc345f9a
+-/
 theorem exists_sourceEarStepData [Infinite γ]
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     (H : Graph Plane γ) (Hdraw : γ → ℝ → Plane)
@@ -1320,7 +1377,9 @@ theorem exists_sourceEarStepData [Infinite γ]
 /-- **`EarStep`, assembled from explicit constructor data.**  This is the end-to-end
 bookkeeping theorem: the nontrivial branch is realized by `EarStepData.pair`; if the proposed
 ear contains an old edge, `Graph.ear_edges_notMem_or_union_eq` shows that the union did not
-change and the current transfer itself is the answer. -/
+change and the current transfer itself is the answer.
+@isnad1 id=earstep.2h9v.s6.15a96116780d from=translated src=- shape=a66fe84b vocab=46caeee7
+-/
 theorem earStep_of_data
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1345,7 +1404,9 @@ is a generated matched cell structure. Given step 1 and one ear, the whole exten
 
 The invariant carried through the induction is `IsPartialTransferOf`, which does **not** mention
 connectedness of the open nonboundary part: `rem:intermediate-disconnection` says an
-intermediate stage may genuinely have it disconnected, and nothing here assumes otherwise. -/
+intermediate stage may genuinely have it disconnected, and nothing here assumes otherwise.
+@isnad1 id=ex.3h9v.s6.81f6183970d9 from=translated src=- shape=d247f773 vocab=8ed64226
+-/
 theorem transfer_of_ears_of_commonSubdivision_of_earStep
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1372,7 +1433,9 @@ transferred to an admissible target realization `H'`; the resulting generated ma
 refines the old one by an explicit parent map.
 
 This compatibility form accepts both step interfaces as arguments. `earStep` discharges the
-second, while `commonSubdivision` in `CommonSubdivision.lean` discharges the first. -/
+second, while `commonSubdivision` in `CommonSubdivision.lean` discharges the first.
+@isnad1 id=ex.3h9v.s6.ca197da8cd96 from=translated src=- shape=d247f773 vocab=88d60992
+-/
 theorem finite_transfer_toward_square_of_commonSubdivision_of_earStep
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1411,7 +1474,9 @@ variable {β : Type*} {G : Graph Plane β} {drawing : β → ℝ → Plane}
   {Q F J P A₁ A₂ : Set Plane} {cells : Set (Set Plane)} {v w : Plane}
 
 /-- A target 2-cell is an open connected set disjoint from the skeleton. Everything the crosscut
-construction needs about it, read off the presentation as a component of `Q ∖ |G|`. -/
+construction needs about it, read off the presentation as a component of `Q ∖ |G|`.
+@isnad1 id=and.4h6v.s8.4eadb83fd12c from=translated src=- shape=77dc8d37 vocab=b07103fb
+-/
 theorem isOpen_isPreconnected_disjoint_of_target_cell [G.Finite] (h : IsDrawing G drawing)
     (hQ : IsOpen Q)
     (hcell : ∀ R ∈ cells, R ⊆ Q ∧ ∃ z, R = connectedComponentIn (Q \ pointSet G drawing) z)
@@ -1428,7 +1493,9 @@ simple polygonal arc lying in `F` apart from its two endpoints and meeting `J` e
 
 The three inputs are the three the blueprint names: `lem:polygonal-side-accessibility` on the
 target side for the accessibility of each endpoint, and `lem:accessible-endpoints` in its
-crosscut form for the join. Nothing is assumed. -/
+crosscut form for the join. Nothing is assumed.
+@isnad1 id=ex.12h9v.s8.ff9c6f25e305 from=translated src=- shape=3d25a7df vocab=0854826d
+-/
 theorem exists_target_crosscut [G.Finite] (h : IsDrawing G drawing)
     (hpoly : ∀ e ∈ E(G), IsPolygonal (edgeArc drawing e))
     (hQ : IsOpen Q) (hQK : frontier Q ⊆ pointSet G drawing)
@@ -1455,7 +1522,9 @@ together with the two boundary paths.
 The conclusion is returned in the shape assertion (i) consumes at a 2-cell split
 (`Schoenflies.crosscut_cell_partition`): the old open 2-cell is the disjoint union of the two new
 open 2-cells and the open crosscut, each new 2-cell is open and nonempty, and the closure of each
-is that open 2-cell together with its own boundary curve. -/
+is that open 2-cell together with its own boundary curve.
+@isnad1 id=ex.15h11v.s9.95217eaf8994 from=translated src=- shape=7c745759 vocab=185ad2ba
+-/
 theorem exists_target_crosscut_split [G.Finite] (h : IsDrawing G drawing)
     (hpoly : ∀ e ∈ E(G), IsPolygonal (edgeArc drawing e))
     (hQ : IsOpen Q) (hQK : frontier Q ⊆ pointSet G drawing)
@@ -1487,7 +1556,9 @@ end TargetEar
 
 /-- A face and two distinct boundary vertices of a generated pair admit the target polygonal
 crosscut needed by an ear insertion.  All accessibility hypotheses are discharged from the
-fields maintained by `GeneratedPair`. -/
+fields maintained by `GeneratedPair`.
+@isnad1 id=ex.6h10v.s8.cf073bb0bde9 from=translated src=- shape=c96f3327 vocab=a288ab5a
+-/
 theorem GeneratedPair.exists_target_crosscut
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     {u v F : γ} (hu : u ∈ V(P.str.skel)) (hv : v ∈ V(P.str.skel))
@@ -1544,7 +1615,9 @@ theorem GeneratedPair.exists_target_crosscut
 
 /-- **The constructive ear interface.** The source half is the freshly
 renamed path supplied by `exists_sourceEarStepData`; the target half is a polygonal crosscut of
-the corresponding face, divided edge-for-edge by `EarCrosscut.exists_matched_target`. -/
+the corresponding face, divided edge-for-edge by `EarCrosscut.exists_matched_target`.
+@isnad1 id=earstepc.1h9v.s6.1b3c364934b6 from=translated src=- shape=f67898ed vocab=2ff04bd0
+-/
 theorem earStepConstruction [Infinite γ]
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     (H : Graph Plane γ) (Hdraw : γ → ℝ → Plane)
@@ -1579,14 +1652,18 @@ theorem earStepConstruction [Infinite γ]
     vertexSet_subset := w.vertexSet_subset
   }⟩
 
-/-- **One ear insertion, with no remaining hypothesis.** -/
+/-- **One ear insertion, with no remaining hypothesis.**
+@isnad1 id=earstep.1h9v.s6.c6abffd958fc from=translated src=- shape=d111a96a vocab=837cc409
+-/
 theorem earStep [Infinite γ]
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     (H : Graph Plane γ) (Hdraw : γ → ℝ → Plane)
     (hH : IsSourceExtension P.src srcOuter srcDom H Hdraw) : EarStep P H Hdraw :=
   earStep_of_data hH (earStepConstruction P H Hdraw hH)
 
-/-- Steps 2 and 3 of finite transfer, parametrized by the step-1 interface. -/
+/-- Steps 2 and 3 of finite transfer, parametrized by the step-1 interface.
+@isnad1 id=ex.2h9v.s6.bdf5f2cad959 from=translated src=- shape=08141606 vocab=8ac458fb
+-/
 theorem transfer_of_ears_of_commonSubdivision [Infinite γ]
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1596,7 +1673,9 @@ theorem transfer_of_ears_of_commonSubdivision [Infinite γ]
       IsPartialTransferOf T P H Hdraw par :=
   transfer_of_ears_of_commonSubdivision_of_earStep hH hsub (earStep P H Hdraw hH)
 
-/-- **Finite transfer toward the square from an explicitly supplied common subdivision.** -/
+/-- **Finite transfer toward the square from an explicitly supplied common subdivision.**
+@isnad1 id=ex.2h9v.s6.202281beaa50 from=translated src=- shape=08141606 vocab=8df71474
+-/
 theorem finite_transfer_toward_square_of_commonSubdivision [Infinite γ]
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1620,7 +1699,9 @@ section EndpointTransfer
 variable {S : CellStructure γ} {R₁ R₂ : S.Realization} {D₁ D₂ Q J A₁ A₂ : Set Plane} {a b F : γ}
 
 /-- **The endpoints of the ear transfer to the other realization.** A 0-cell on the boundary of a
-2-cell in one realization is on the boundary of the same 2-cell in the other. -/
+2-cell in one realization is on the boundary of the same 2-cell in the other.
+@isnad1 id=mem.5h8v.s7.7c1efbb7308a from=translated src=- shape=9ff4a2ee vocab=10a9a7fb
+-/
 theorem CellStructure.Realization.pos_mem_closure_cell_congr
     (h₁ : R₁.IsCellDecomposition D₁) (h₂ : R₂.IsCellDecomposition D₂)
     (ha : a ∈ V(S.skel)) (hF : F ∈ S.faces) (hmem : R₁.pos a ∈ closure (R₁.cell F)) :
@@ -1640,7 +1721,9 @@ are joined by a polygonal crosscut inside the closure of the target face, which 
 into exactly the two Jordan regions bounded by the crosscut and the two boundary paths.
 
 This is the fourth paragraph of the blueprint's proof of `thm:finite-transfer`(a), assembled;
-what is left of the induction step is the abstract-data bookkeeping around it. -/
+what is left of the induction step is the abstract-data bookkeeping around it.
+@isnad1 id=ex.18h13v.s10.525c109e7d14 from=translated src=- shape=11b0fdd2 vocab=9725b1d3
+-/
 theorem exists_target_ear (h₁ : R₁.IsCellDecomposition D₁) (h₂ : R₂.IsCellDecomposition D₂)
     (hpoly : ∀ ⦃e⦄, e ∈ E(S.skel) → IsPolygonal (edgeArc R₂.drawing e))
     (hQ : IsOpen Q) (hQK : frontier Q ⊆ R₂.skeletonSet)
@@ -1705,7 +1788,9 @@ realization. -/
 nondegenerate polygonal sets is the point set of a finite plane graph whose edges are straight
 segments — the overlay, subdivided at every intersection.
 
-This is the first half of step 1 of the proof of `thm:finite-transfer`. -/
+This is the first half of step 1 of the proof of `thm:finite-transfer`.
+@isnad1 id=ex.3h3v.s7.d3cb46246f89 from=translated src=- shape=c5e9f222 vocab=e644265c
+-/
 theorem exists_overlay_of_biUnion_finite {ι : Type*} {s : Set ι} {A : ι → Set Plane}
     (hs : s.Finite) (hA : ∀ i ∈ s, IsPolygonal (A i))
     (hnd : ∀ i ∈ s, ∃ a ∈ A i, ∃ b ∈ A i, a ≠ b) :

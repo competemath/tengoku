@@ -38,35 +38,60 @@ def θ' : R := ⟨1, -1⟩
 
 /-! ## Stoll's `rfl` claims -/
 
+/--
+@isnad1 id=eq.0h0v.s6.8932a3d5e55b from=translated src=- shape=7dc6ab06 vocab=87a2aca0
+-/
 lemma theta_sq : θ ^ 2 = θ - 2 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s5.3031391a0b8c from=translated src=- shape=33aceabd vocab=874d8836
+-/
 lemma theta_mul_theta' : θ * θ' = 2 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s5.e6ddb6c30ddb from=translated src=- shape=33aceabd vocab=f78f8e91
+-/
 lemma theta_add_theta' : θ + θ' = 1 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s5.677cbbe54605 from=translated src=- shape=f464b020 vocab=351f0cc1
+-/
 lemma theta'_eq_one_sub_theta : θ' = 1 - θ := rfl
 
-/-- For backward compatibility with the old Helpers API. -/
+/-- For backward compatibility with the old Helpers API.
+@isnad1 id=eq.0h0v.s6.bbe45756e696 from=translated src=- shape=4909fd7e vocab=0317b9e8
+-/
 lemma two_factorisation_R : θ * (1 - θ) = 2 := rfl
 
 /-! ## Norm form and positivity
 
 `norm ⟨x, y⟩ = x² + xy + 2y²`; the key identity is `4·N = (2x + y)² + 7y²`. -/
 
+/--
+@isnad1 id=eq.0h2v.s8.adf0cdd7686e from=translated src=- shape=604b4a28 vocab=687c12ea
+-/
 lemma norm_eq (x y : ℤ) : QuadraticAlgebra.norm (⟨x, y⟩ : R) = x ^ 2 + x * y + 2 * y ^ 2 := by
   rw [QuadraticAlgebra.norm_def]; ring
 
-/-- The completing-the-square identity. -/
+/-- The completing-the-square identity.
+@isnad1 id=eq.0h1v.s8.63b90ade54c6 from=translated src=- shape=4ad0708f vocab=c3596174
+-/
 lemma four_norm_eq (z : R) :
     4 * QuadraticAlgebra.norm z = (2 * z.re + z.im) ^ 2 + 7 * z.im ^ 2 := by
   rw [QuadraticAlgebra.norm_def]; ring
 
+/--
+@isnad1 id=le.0h1v.s8.61bb1ced1f41 from=translated src=- shape=016b060b vocab=d54873c0
+-/
 lemma norm_nonneg (z : R) : 0 ≤ QuadraticAlgebra.norm z := by
   have h := four_norm_eq z
   have h1 : 0 ≤ (2 * z.re + z.im) ^ 2 := sq_nonneg _
   have h2 : 0 ≤ 7 * z.im ^ 2 := by positivity
   linarith
 
+/--
+@isnad1 id=iff.0h1v.s8.61dc8ee67d64 from=translated src=- shape=7c95c982 vocab=33e79ba7
+-/
 lemma norm_eq_zero_iff (z : R) : QuadraticAlgebra.norm z = 0 ↔ z = 0 := by
   refine ⟨fun h => ?_, fun h => h ▸ QuadraticAlgebra.norm_zero⟩
   have h4 := four_norm_eq z
@@ -75,6 +100,9 @@ lemma norm_eq_zero_iff (z : R) : QuadraticAlgebra.norm z = 0 ↔ z = 0 := by
   have hu : z.re = 0 := by nlinarith [h4, hv, sq_nonneg z.re]
   exact QuadraticAlgebra.ext hu hv
 
+/--
+@isnad1 id=lt.1h1v.s8.81481f71aa82 from=translated src=- shape=696ee058 vocab=f3c3a7c2
+-/
 lemma norm_pos {z : R} (hz : z ≠ 0) : 0 < QuadraticAlgebra.norm z := by
   rcases lt_or_eq_of_le (norm_nonneg z) with h | h
   · exact h
@@ -82,6 +110,9 @@ lemma norm_pos {z : R} (hz : z ≠ 0) : 0 < QuadraticAlgebra.norm z := by
 
 /-! ## Units are ±1 -/
 
+/--
+@isnad1 id=or.0h1v.s8.e3462ac6934f from=translated src=- shape=b8546b79 vocab=a964f6e2
+-/
 lemma units_pm_one (u : Rˣ) : u = 1 ∨ u = -1 := by
   have hunit : IsUnit (QuadraticAlgebra.norm (u : R)) :=
     QuadraticAlgebra.isUnit_iff_norm_isUnit.mp u.isUnit
@@ -131,8 +162,14 @@ private lemma irreducible_of_norm_two {z : R} (hz : QuadraticAlgebra.norm z = 2)
     · exact Or.inl (isUnit_of_norm_one h)
     · exact Or.inr (isUnit_of_norm_one h)
 
+/--
+@isnad1 id=irreduci.0h0v.s4.23eaa3d3c6ef from=translated src=- shape=25b03439 vocab=6b6bd3b7
+-/
 lemma theta_irreducible : Irreducible θ := irreducible_of_norm_two rfl
 
+/--
+@isnad1 id=irreduci.0h0v.s4.dbaf6dd15373 from=translated src=- shape=25b03439 vocab=d4fe5113
+-/
 lemma theta'_irreducible : Irreducible θ' := irreducible_of_norm_two rfl
 
 /-! ## EuclideanDomain instance via smart rounding
@@ -196,8 +233,14 @@ noncomputable def quot (a b : R) : R :=
 /-- Smart-rounded remainder: `rem a b = a - b * quot a b`. -/
 noncomputable def rem (a b : R) : R := a - b * quot a b
 
+/--
+@isnad1 id=eq.0h1v.s5.fd88c28adbe4 from=translated src=- shape=1d838610 vocab=486d07ea
+-/
 @[simp] lemma quot_zero (a : R) : quot a 0 = 0 := by unfold quot; simp
 
+/--
+@isnad1 id=eq.0h2v.s5.f6edc9c8956e from=translated src=- shape=d5e8f1fa vocab=15dc10ac
+-/
 lemma quot_mul_add_rem_eq (a b : R) : b * quot a b + rem a b = a := by
   unfold rem; ring
 
@@ -287,18 +330,28 @@ noncomputable instance instEuclideanDomain : EuclideanDomain R where
   remainder_lt := by exact natAbs_norm_rem_lt
   mul_left_not_lt := by exact norm_mul_left_not_lt
 
-/-- `R` is a principal ideal ring, since every Euclidean domain is one. -/
+/-- `R` is a principal ideal ring, since every Euclidean domain is one.
+@isnad1 id=isprinci.0h0v.s4.0d682b35b077 from=translated src=- shape=49959d42 vocab=868110b8
+-/
 instance instPrincipalIdealRing : IsPrincipalIdealRing R :=
   EuclideanDomain.instIsPrincipalIdealRing
 
-/-- `R` is a unique factorization domain, since every principal ideal ring is one. -/
+/-- `R` is a unique factorization domain, since every principal ideal ring is one.
+@isnad1 id=uniquefa.0h0v.s4.8ae871719602 from=translated src=- shape=49959d42 vocab=cb444f91
+-/
 instance instUniqueFactorizationMonoid : UniqueFactorizationMonoid R := inferInstance
 
 /-! ## θ, θ' are prime -/
 
+/--
+@isnad1 id=prime.0h0v.s4.9104830d0e5d from=translated src=- shape=25b03439 vocab=33a10d2a
+-/
 lemma theta_prime : Prime θ :=
   UniqueFactorizationMonoid.irreducible_iff_prime.mp theta_irreducible
 
+/--
+@isnad1 id=prime.0h0v.s4.8d61406f3711 from=translated src=- shape=25b03439 vocab=8f420d44
+-/
 lemma theta'_prime : Prime θ' :=
   UniqueFactorizationMonoid.irreducible_iff_prime.mp theta'_irreducible
 
@@ -307,21 +360,33 @@ lemma theta'_prime : Prime θ' :=
 These lemmas combine `units_pm_one` with `UniqueFactorizationMonoid R` to give
 the key dichotomy `α * β = θ^m · θ'^m ∧ IsCoprime α β → α = ±θ^m ∨ α = ±θ'^m`. -/
 
+/--
+@isnad1 id=not.0h0v.s4.ba106f208cc4 from=translated src=- shape=6516253f vocab=7d5d3287
+-/
 lemma theta_theta'_not_associated : ¬ Associated θ θ' := by
   rintro ⟨u, hu⟩
   rcases units_pm_one u with rfl | rfl <;>
     · have h := congrArg QuadraticAlgebra.re hu
       simp [θ, θ'] at h
 
+/--
+@isnad1 id=not.0h0v.s5.b2210d606043 from=translated src=- shape=6516253f vocab=8fa992a0
+-/
 lemma theta_not_dvd_theta' : ¬ (θ ∣ θ') := by
   intro h
   exact theta_theta'_not_associated (theta_irreducible.associated_of_dvd theta'_irreducible h)
 
+/--
+@isnad1 id=not.0h0v.s5.b37adea8fd15 from=translated src=- shape=6516253f vocab=8fa992a0
+-/
 lemma theta'_not_dvd_theta : ¬ (θ' ∣ θ) := by
   intro h
   exact theta_theta'_not_associated
     (theta'_irreducible.associated_of_dvd theta_irreducible h).symm
 
+/--
+@isnad1 id=or.2h3v.s8.227bc3ca07a7 from=translated src=- shape=49e5188c vocab=e746a0fd
+-/
 lemma theta_pow_dvd_of_coprime_prod (α β : R) (m : ℕ)
     (h_prod : α * β = θ ^ m * θ' ^ m)
     (h_coprime : IsCoprime α β) :
@@ -340,6 +405,9 @@ lemma theta_pow_dvd_of_coprime_prod (α β : R) (m : ℕ)
       hθ_prime.not_isUnit (h_coprime.isUnit_of_dvd' h_dvd_α h_dvd_β)
     exact Or.inr (hθ_prime.pow_dvd_of_dvd_mul_left m h_not_dvd_α h_dvd_prod)
 
+/--
+@isnad1 id=associat.5h3v.s8.ec24509d6258 from=translated src=- shape=989a2b50 vocab=b58a0e28
+-/
 lemma associated_of_theta_pow_dvd (α β : R) (m : ℕ)
     (h_prod : α * β = θ ^ m * θ' ^ m)
     (h_coprime : IsCoprime α β)
@@ -380,6 +448,9 @@ lemma associated_of_theta_pow_dvd (α β : R) (m : ℕ)
   rw [hγ]
   exact associated_mul_unit_left (θ ^ m) γ hγ_unit
 
+/--
+@isnad1 id=associat.5h3v.s8.c6a6610f1851 from=translated src=- shape=eb210ab5 vocab=b58a0e28
+-/
 lemma associated_of_theta_pow_dvd_right (α β : R) (m : ℕ)
     (h_prod : α * β = θ ^ m * θ' ^ m)
     (h_coprime : IsCoprime α β)
@@ -420,6 +491,9 @@ lemma associated_of_theta_pow_dvd_right (α β : R) (m : ℕ)
   rw [hε]
   exact associated_mul_unit_left (θ' ^ m) ε hε_unit
 
+/--
+@isnad1 id=or.4h3v.s8.6125f702317a from=translated src=- shape=2619ca67 vocab=af21160d
+-/
 lemma ufd_associated_dichotomy (α β : R) (m : ℕ)
     (h_prod : α * β = θ ^ m * θ' ^ m)
     (h_coprime : IsCoprime α β)
@@ -429,6 +503,9 @@ lemma ufd_associated_dichotomy (α β : R) (m : ℕ)
   · exact Or.inl (associated_of_theta_pow_dvd α β m h_prod h_coprime hα hβ h)
   · exact Or.inr (associated_of_theta_pow_dvd_right α β m h_prod h_coprime hα hβ h)
 
+/--
+@isnad1 id=or.1h2v.s5.e75c242dfad8 from=translated src=- shape=1d31b535 vocab=e919e667
+-/
 lemma associated_eq_or_neg (α γ : R) (h : Associated α γ) :
     α = γ ∨ α = -γ := by
   rcases h with ⟨u, rfl⟩
@@ -436,6 +513,9 @@ lemma associated_eq_or_neg (α γ : R) (h : Associated α γ) :
   · left; simp
   · right; simp
 
+/--
+@isnad1 id=or.4h3v.s8.f8cb3253a1e7 from=translated src=- shape=ddca0880 vocab=fa85ec89
+-/
 lemma ufd_power_association (α β : R) (m : ℕ)
     (h_prod : α * β = θ ^ m * θ' ^ m)
     (h_coprime : IsCoprime α β)

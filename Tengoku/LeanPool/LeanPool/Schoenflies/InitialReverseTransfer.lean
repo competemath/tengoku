@@ -37,7 +37,9 @@ namespace Schoenflies
 
 open Graph
 
-/-- Every finite square mesh can be renamed into currently unused `InitialCell` names. -/
+/-- Every finite square mesh can be renamed into currently unused `InitialCell` names.
+@isnad1 id=ex.0h7v.s6.9a8cc5b1305c from=translated src=- shape=72d3d4e9 vocab=9289dc43
+-/
 theorem exists_initialCell_squareMesh_edgeRelabeling
     {srcOuter srcDom tgtDom : Set Plane}
     (P : GeneratedPair initialStructure srcOuter srcDom modelCurve tgtDom)
@@ -51,7 +53,9 @@ theorem exists_initialCell_squareMesh_edgeRelabeling
 /-- **Finite transfer, direction (b), over the concrete initial naming type.**  Once the stage
 constructor supplies the relabelled square mesh as a target extension, the reverse transfer is
 available directly: boundary anchoring, boundary-edge uniqueness, and the initial outer cycle are
-all discharged here. -/
+all discharged here.
+@isnad1 id=ex.4h8v.s7.2fd4812b0ef3 from=translated src=- shape=e0cf0138 vocab=09878496
+-/
 theorem finite_transfer_toward_source_initial_relabelledSquareMesh
     {srcOuter srcDom tgtDom : Set Plane}
     (P : GeneratedPair initialStructure srcOuter srcDom modelCurve tgtDom)
@@ -76,7 +80,9 @@ chosen automatically.  The square-mesh theorems discharge finiteness, drawing, 2
 domain containment, boundary-edge geometry, and connectedness off the model curve.  The three
 remaining hypotheses assert that this particular mesh subdivides the current target skeleton;
 they need not hold for an arbitrary current polygonal skeleton, whose stage construction uses
-the combined overlay in `Schoenflies.TargetOverlay`. -/
+the combined overlay in `Schoenflies.TargetOverlay`.
+@isnad1 id=ex.7h6v.s10.5315e67088ac from=translated src=- shape=23e55153 vocab=cd6635f2
+-/
 theorem exists_finite_transfer_toward_source_initial_squareMesh
     {srcOuter srcDom : Set Plane}
     (P : GeneratedPair initialStructure srcOuter srcDom modelCurve

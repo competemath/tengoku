@@ -25,16 +25,25 @@ variable
 
 instance [QuasiBorelSpace A] : QuasiBorelSpace (Subtype P) := lift Subtype.val
 
+/--
+@isnad1 id=iff.0h6v.s5.9b06d2db43e0 from=translated src=- shape=39753427 vocab=fd426cc3
+-/
 @[simp]
 lemma isHom_def {P : B → Prop} (f : A → Subtype P) : IsHom f ↔ IsHom fun x ↦ (f x).val := by
   rw [isHom_to_lift]
 
+/--
+@isnad1 id=ishom.1h7v.s5.e9a4c6883cf5 from=translated src=- shape=134bc2bc vocab=44d3fbc4
+-/
 @[fun_prop]
 lemma isHom_mk {P : B → Prop}
     {f : A → B} (hf₁ : IsHom f) (hf₂ : (x : A) → P (f x))
     : IsHom (fun x ↦ Subtype.mk (f x) (hf₂ x)) := by
   simp_all
 
+/--
+@isnad1 id=ishom.1h6v.s5.d6e476e4e790 from=translated src=- shape=dd1468ec vocab=fd426cc3
+-/
 @[fun_prop]
 lemma isHom_val {P : B → Prop} {f : A → Subtype P} (hf : IsHom f) : IsHom (fun x ↦ (f x).val) := by
   rwa [← isHom_def]

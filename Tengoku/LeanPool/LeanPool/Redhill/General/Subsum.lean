@@ -26,6 +26,9 @@ variable {n : ℕ} {F : Finset ℕ} {h : ℕ}
 def redEmb1 : Fin 4 ↪ Fin (n + 6) :=
   ⟨fun i ↦ (i.natAdd 2).natAdd n, fun i j h ↦ by simpa [natAdd_inj 2] using h⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.4d9261536de5 from=translated src=- shape=bdf52eb4 vocab=69647c0f
+-/
 @[simp]
 lemma redEmb1_apply (i : Fin 4) : redEmb1 (n := n) i = (i.natAdd 2).natAdd n := rfl
 
@@ -33,6 +36,9 @@ variable (n F) in
 /-- The sum of `tup n F h`'s first `n + 2` elements, not depending on `h`. -/
 def tailK : ℕ := (VW n F).v + (VW n F).w + ∑ i ∈ range n, primeChain (100 * Y F ^ 6) i
 
+/--
+@isnad1 id=eq.0h3v.s7.972f5729373c from=translated src=- shape=ed9ed7a2 vocab=b3e0b5b0
+-/
 lemma sum_redEmb1_compl : ∑ i ∉ univ.map redEmb1, (tup n F h i).natAbs = tailK n F := by
   have cnn (i : Fin n) (j : Fin 6) : castAdd 6 i ≠ natAdd n j := ne_of_lt (by grind)
   have s₁ : univ.map (@castAddEmb n 6) ⊆ (univ.map redEmb1)ᶜ := fun i mi ↦ by
@@ -55,6 +61,9 @@ lemma sum_redEmb1_compl : ∑ i ∉ univ.map redEmb1, (tup n F h i).natAbs = tai
 
 section Inequalities
 
+/--
+@isnad1 id=le.0h2v.s5.2b836a5e9619 from=translated src=- shape=fbb5ec54 vocab=a5620f66
+-/
 lemma tailK_lower_bound : 196 * Y F ^ 6 ≤ tailK n F :=
   calc
     _ = 2 * (98 * Y F * Y F ^ 5) := by ring
@@ -65,9 +74,15 @@ variable (hh : tailK n F < X F h)
 
 include hh
 
+/--
+@isnad1 id=le.1h3v.s5.70e65d7b66ef from=translated src=- shape=56fac6ee vocab=fcba2ffd
+-/
 lemma Y6_le_X : 196 * Y F ^ 6 ≤ X F h :=
   tailK_lower_bound.trans hh.le
 
+/--
+@isnad1 id=le.1h3v.s7.887e20577383 from=translated src=- shape=50472f81 vocab=30b41378
+-/
 lemma b₁_upper_bound : ((X F h ^ 2 + 10 * Y F ^ 3 : ℤ) ^ 2).natAbs ≤ 4 * X F h ^ 4 := by
   norm_cast
   calc
@@ -83,6 +98,9 @@ lemma b₁_upper_bound : ((X F h ^ 2 + 10 * Y F ^ 3 : ℤ) ^ 2).natAbs ≤ 4 * X
       gcongr
       exact le_pow zero_lt_two
 
+/--
+@isnad1 id=le.1h3v.s6.ab12d7aedff3 from=translated src=- shape=a5701677 vocab=4816d664
+-/
 lemma b₃_lower_bound : 12 * Y F * X F h ^ 4 ≤ ((X F h - Y F : ℤ) ^ 5).natAbs := by
   rw [Int.natAbs_pow, ← cast_sub (by grind [Y_lt_X]), Int.natAbs_natCast,
     ← Nat.mul_le_mul_left_iff (show 0 < 16 by decide),
@@ -95,6 +113,9 @@ lemma b₃_lower_bound : 12 * Y F * X F h ^ 4 ≤ ((X F h - Y F : ℤ) ^ 5).natA
     · exact le_pow (by decide)
   gcongr <;> lia
 
+/--
+@isnad1 id=le.1h3v.s6.624b0e0406a4 from=translated src=- shape=269640d2 vocab=e2380353
+-/
 lemma b₄_lower_bound : 12 * Y F * X F h ^ 4 ≤ (-(X F h + Y F : ℤ) ^ 5).natAbs := by
   apply (b₃_lower_bound hh).trans
   rw [← cast_sub (by grind [Y_lt_X]), ← cast_add]
@@ -102,6 +123,9 @@ lemma b₄_lower_bound : 12 * Y F * X F h ^ 4 ≤ (-(X F h + Y F : ℤ) ^ 5).nat
   gcongr
   lia
 
+/--
+@isnad1 id=le.2h7v.s8.90e0e954451e from=translated src=- shape=4f458cdb vocab=d3a68b94
+-/
 lemma X4_le_natAbs_b4 {b₁ b₂ b₃ b₄ : SignType} (hl : b₄ < b₃) :
     X F h ^ 4 ≤ (b₁ * (X F h ^ 2 + 10 * Y F ^ 3 : ℤ) ^ 2 + b₂ * ((10 * Y F - 1) * X F h ^ 4) +
       b₃ * (X F h - Y F) ^ 5 + b₄ * -(X F h + Y F) ^ 5).natAbs :=
@@ -145,6 +169,9 @@ lemma X4_le_natAbs_b4 {b₁ b₂ b₃ b₄ : SignType} (hl : b₄ < b₃) :
       exact Int.sub_le_add_natAbs
 
 omit hh in
+/--
+@isnad1 id=le.0h2v.s7.85743931ed73 from=translated src=- shape=db808064 vocab=166cbbec
+-/
 lemma b₃_lower_bound_2 :
     5 * X F h ^ 4 ≤
     (-2 * Y F * (5 * X F h ^ 4 + 10 * X F h ^ 2 * Y F ^ 2 + Y F ^ 4 : ℤ)).natAbs := by
@@ -152,6 +179,9 @@ lemma b₃_lower_bound_2 :
   suffices 5 * X F h ^ 4 ≤ 10 * Y F * X F h ^ 4 by lia
   exact Nat.mul_le_mul_right _ (by grind [Y_pos])
 
+/--
+@isnad1 id=le.2h6v.s8.f32268cb03d8 from=translated src=- shape=62bc746f vocab=d3a68b94
+-/
 lemma X4_le_natAbs_b3 {b₁ b₂ b₃ : SignType} (hl : b₃ < b₂) :
     X F h ^ 4 ≤ (b₁ * (X F h ^ 2 + 10 * Y F ^ 3 : ℤ) ^ 2 + b₂ * ((10 * Y F - 1) * X F h ^ 4) +
       b₃ * (-2 * Y F * (5 * X F h ^ 4 + 10 * X F h ^ 2 * Y F ^ 2 + Y F ^ 4))).natAbs := by
@@ -188,6 +218,9 @@ lemma X4_le_natAbs_b3 {b₁ b₂ b₃ : SignType} (hl : b₃ < b₂) :
       rw [add_rotate ((b₁ : ℤ) * _)]
       exact Int.sub_le_add_natAbs
 
+/--
+@isnad1 id=le.2h7v.s8.5be4409e7345 from=translated src=- shape=0094977e vocab=d3a68b94
+-/
 lemma X_le_natAbs_redEmb1 {b₁ b₂ b₃ b₄ : SignType} (hb : b₁ ≠ b₂ ∨ b₂ ≠ b₃ ∨ b₃ ≠ b₄) :
     X F h ≤ (b₁ * (X F h ^ 2 + 10 * Y F ^ 3 : ℤ) ^ 2 + b₂ * ((10 * Y F - 1) * X F h ^ 4) +
       b₃ * (X F h - Y F) ^ 5 + b₄ * -(X F h + Y F) ^ 5).natAbs := by
@@ -253,12 +286,18 @@ lemma X_le_natAbs_redEmb1 {b₁ b₂ b₃ b₄ : SignType} (hb : b₁ ≠ b₂ �
 
 end Inequalities
 
+/--
+@isnad1 id=eventual.0h2v.s4.bee97147c439 from=translated src=- shape=f862305b vocab=9fc93fb1
+-/
 lemma eventually_X_gt (K : Finset ℕ → ℕ) : ∀ᶠ h in Filter.atTop, K F < X F h := by
   rw [Filter.eventually_atTop]
   obtain ⟨n, hn⟩ : ∃ n, K F < (Y F + 1) ^ n := add_one_pow_unbounded_of_pos _ (by grind [Y_pos])
   refine ⟨n, fun h hh ↦ hn.trans_le ?_⟩
   exact Nat.pow_le_pow_right (zero_lt_succ _) (hh.trans (self_le_factorial _))
 
+/--
+@isnad1 id=eventual.0h2v.s6.9ffad6cbc9f4 from=translated src=- shape=81d21361 vocab=6b81de3d
+-/
 lemma isSubsumBlock_redEmb1 :
     ∀ᶠ h in Filter.atTop, IsSubsumBlock (tup n F h) (univ.map redEmb1) := by
   filter_upwards [eventually_X_gt (F := F) (tailK n)] with h hh
@@ -275,6 +314,9 @@ lemma isSubsumBlock_redEmb1 :
     exact ⟨b 0, fun i ↦ by fin_cases i <;> lia⟩
   exact fun hb ↦ X_le_natAbs_redEmb1 hh hb
 
+/--
+@isnad1 id=eq.1h3v.s8.e0de723e4b60 from=translated src=- shape=f7684db2 vocab=cc9b6b6c
+-/
 lemma tupReduce_tup {c₁ : n + 2 = n + 6 - #(univ.map redEmb1)} :
     tupReduce (tup n F h) (univ.map redEmb1) c₁ = vwTup (VW n F) := by
   ext i
@@ -301,6 +343,9 @@ lemma tupReduce_tup {c₁ : n + 2 = n + 6 - #(univ.map redEmb1)} :
       rw [castAdd_natAdd, cast_eq_self, addCases_right, castSucc_natAdd, addCases_right]
       fin_cases i <;> rfl
 
+/--
+@isnad1 id=eventual.0h2v.s5.db78f1dcb5ce from=translated src=- shape=34ada73e vocab=872d7292
+-/
 lemma maxAbs_tup : ∀ᶠ h in Filter.atTop, maxAbs (tup n F h) = (X F h + Y F) ^ 5 := by
   filter_upwards [eventually_X_gt (F := F) (tailK n)] with h hh
   have na5 : (tup n F h (natAdd n 5)).natAbs = (X F h + Y F) ^ 5 := by

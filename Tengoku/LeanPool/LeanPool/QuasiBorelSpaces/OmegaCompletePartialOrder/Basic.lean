@@ -31,9 +31,15 @@ attribute [fun_prop]
   ωScottContinuous.comp
   ωScottContinuous.const
 
+/--
+@isnad1 id=scottcon.0h3v.s4.bc340cc090d4 from=translated src=- shape=e5f2b370 vocab=fa5d7e67
+-/
 @[fun_prop]
 lemma ωScottContinuous_const (x : B) : ωScottContinuous (fun _ : A ↦ x) := ωScottContinuous.const
 
+/--
+@isnad1 id=scottcon.2h5v.s5.b728859eb568 from=translated src=- shape=eb2465ba vocab=57c827bb
+-/
 @[fun_prop]
 lemma ωScottContinuous_mk
     {f : A → B} {g : A → C} (hf : ωScottContinuous f) (hg : ωScottContinuous g)
@@ -49,6 +55,9 @@ lemma ωScottContinuous_mk
       rw [hg.map_ωSup]
       rfl
 
+/--
+@isnad1 id=scottcon.1h4v.s5.0cd6c5a17d13 from=translated src=- shape=7e4233bf vocab=f4adac6c
+-/
 @[fun_prop]
 lemma ωScottContinuous_fst
     {f : A → B × C} (hf : ωScottContinuous f)
@@ -58,6 +67,9 @@ lemma ωScottContinuous_fst
   rw [hf.map_ωSup]
   rfl
 
+/--
+@isnad1 id=scottcon.1h4v.s5.6a27be04c525 from=translated src=- shape=07135cee vocab=13f1e9c6
+-/
 @[fun_prop]
 lemma ωScottContinuous_snd
     {f : A → B × C} (hf : ωScottContinuous f)
@@ -67,6 +79,9 @@ lemma ωScottContinuous_snd
   rw [hf.map_ωSup]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.c4c9b3c01d00 from=translated src=- shape=1c9622f3 vocab=daf66d6b
+-/
 @[simp]
 lemma ωSup_const (x : A) : ωSup (Chain.const x) = x := by
   apply antisymm (r := (· ≤ ·))
@@ -76,6 +91,9 @@ lemma ωSup_const (x : A) : ωSup (Chain.const x) = x := by
 
 namespace Measure
 
+/--
+@isnad1 id=scottcon.2h4v.s6.309b68bc4485 from=translated src=- shape=9bd833fa vocab=c18bb3b8
+-/
 @[fun_prop]
 lemma ωScottContinuous_lintegral
     [MeasurableSpace B]
@@ -102,6 +120,9 @@ lemma ωScottContinuous_lintegral
 
 end Measure
 
+/--
+@isnad1 id=scottcon.3h5v.s6.bd2b2e372449 from=translated src=- shape=62e205b7 vocab=16af51b1
+-/
 lemma ωScottContinuous_ite
     {f : A → Prop} (hf : ∀ {x y}, x ≤ y → f x = f y) [DecidablePred f]
     {g : A → B} (hg : ωScottContinuous g)

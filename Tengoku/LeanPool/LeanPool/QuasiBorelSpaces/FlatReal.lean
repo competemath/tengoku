@@ -37,11 +37,17 @@ noncomputable instance : MeasureSpace FlatReal where
 
 namespace R
 
+/--
+@isnad1 id=measurab.0h0v.s2.42ffaf860c22 from=translated src=- shape=54c8eceb vocab=d8a8af92
+-/
 @[simp, fun_prop]
 lemma measurable_mk : Measurable FlatReal.mk := by
   rw [measurable_comap_iff]
   apply measurable_id
 
+/--
+@isnad1 id=measurab.0h0v.s2.3de9483f96eb from=translated src=- shape=54c8eceb vocab=a0b9c7a3
+-/
 @[simp, fun_prop]
 lemma measurable_val : Measurable FlatReal.val := by
   apply comap_measurable
@@ -71,11 +77,17 @@ instance : OmegaQuasiBorelSpace FlatReal where
 instance : TopologicalSpace FlatReal :=
   TopologicalSpace.induced val inferInstance
 
+/--
+@isnad1 id=iff.0h2v.s4.e8701193b14f from=translated src=- shape=64317b01 vocab=c0891417
+-/
 @[simp]
 lemma le_iff_eq {x y : FlatReal} : x ≤ y ↔ x = y := by rfl
 
 open OmegaCompletePartialOrder
 
+/--
+@isnad1 id=scottcon.0h2v.s3.e44402c03c50 from=translated src=- shape=04cfd3de vocab=e9626403
+-/
 @[simp, fun_prop]
 lemma ωScottContinuous_of
     {A : Type*} [OmegaCompletePartialOrder A] (f : FlatReal → A)

@@ -49,7 +49,9 @@ nonconsecutive ones disjoint. If `x` is in the outer face of every consecutive p
 the outer face of the whole chain.
 
 "In the outer face" is spelled as everywhere in this development: off the drawing, with an
-unbounded face through it. -/
+unbounded face through it.
+@isnad1 id=and.2h6v.s6.0b0dbf57757c from=translated src=- shape=6cb30867 vocab=17288b18
+-/
 theorem outer_chain' (h : IsPlaneChain Γ drawing G n) (hout : OuterOnPairs Γ drawing n x) :
     x ∈ exterior (chainUnion Γ 0 n) drawing ∧
       ¬ Bornology.IsBounded (face (chainUnion Γ 0 n) drawing x) :=

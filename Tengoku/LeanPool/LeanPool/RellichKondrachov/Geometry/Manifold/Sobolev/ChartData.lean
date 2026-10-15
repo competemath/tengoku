@@ -68,6 +68,9 @@ namespace FiniteChartData
 variable (d : FiniteChartData (H := H) (M := M) I)
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=le.0h6v.s8.2ea2e404f85a from=translated src=- shape=956399f8 vocab=28fa78bd
+-/
 @[simp] lemma subordinate_apply (i : d.ι) :
     closure (Function.support (d.ρ i : M → ℝ)) ⊆ (chartAt H (d.center i)).source :=
   d.subordinate i
@@ -89,7 +92,9 @@ private lemma isOpen_chartAt_source (x : M) : IsOpen ((chartAt H x).source : Set
   (chartAt H x).open_source
 
 /-- On a compact smooth manifold, there exists finite chart data subordinate
-to `chartAt` sources. -/
+to `chartAt` sources.
+@isnad1 id=nonempty.0h4v.s6.1c6b7fbf27f7 from=translated src=- shape=cc48be7e vocab=ca2e578e
+-/
 theorem exists_finiteChartData_chartAt :
     Nonempty (FiniteChartData.{uE, uH, uM, uM} (H := H) (M := M) I) := by
   classical

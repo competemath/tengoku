@@ -46,6 +46,9 @@ def ePRState (m : ℕ) :
     else
       0
 
+/--
+@isnad1 id=mem.0h2v.s6.5b544cd1644f from=translated src=- shape=5ea862ca vocab=3445821a
+-/
 theorem permutationMatrix_mem_unitary
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (σ : Equiv.Perm ι) :
@@ -60,6 +63,9 @@ def permutationUnitary
     (σ : Equiv.Perm ι) : Matrix.unitaryGroup ι ℂ :=
   ⟨σ.permMatrix ℂ, permutationMatrix_mem_unitary σ⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.4ac034a099a1 from=translated src=- shape=3ba9fedf vocab=14a629a6
+-/
 @[simp] theorem permutationUnitary_val
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (σ : Equiv.Perm ι) :
@@ -202,6 +208,9 @@ def spectralPartitionPOVM
           simp only [sum_filter, sum_comm, sum_ite_eq, mem_univ, ↓reduceIte]
       _ = 1 := positiveMatrixSpectralAtom_sum F hF
 
+/--
+@isnad1 id=eq.1h5v.s6.00fa32bd7eaf from=translated src=- shape=3c18b57a vocab=ee5cb3bb
+-/
 theorem spectralPartitionPOVM_projective
     {κ d : Type*}
     [Fintype κ] [Fintype d] [DecidableEq κ] [DecidableEq d]
@@ -500,6 +509,9 @@ section
 open WithLp
 open scoped BigOperators Kronecker ComplexOrder MatrixOrder
 
+/--
+@isnad1 id=possemid.2h2v.s6.ee9144ef5d0b from=translated src=- shape=3a077c7a vocab=d0a6a4df
+-/
 theorem dSVProjectorComplement_posSemidef
     {d : Type*} [Fintype d] [DecidableEq d]
     (P : Matrix d d ℂ) (positive : P.PosSemidef)
@@ -591,6 +603,9 @@ open scoped BigOperators
 def dSVRationalSoftPass (t x : ℝ) : ℝ :=
   x / (x + t)
 
+/--
+@isnad1 id=and.2h2v.s5.5ea0b256a3bf from=translated src=- shape=0a333a6b vocab=82892b9d
+-/
 theorem dSVRationalSoftPass_mem_unit
     {t x : ℝ} (positive : 0 < t) (nonnegative : 0 ≤ x) :
     0 ≤ dSVRationalSoftPass t x ∧
@@ -625,12 +640,18 @@ def dSVSoftBobLeftReducedDensity
   targetCoefficientMatrix ζ *
     (targetCoefficientMatrix ζ).conjTranspose
 
+/--
+@isnad1 id=possemid.0h2v.s3.d81ad1bbf790 from=translated src=- shape=cc4c7d09 vocab=d51fff8e
+-/
 theorem dSVSoftBobLeftReducedDensity_posSemidef
     {d : ℕ} (ζ : BipartiteUnitVector d) :
     (dSVSoftBobLeftReducedDensity ζ).PosSemidef := by
   exact Matrix.posSemidef_self_mul_conjTranspose
     (targetCoefficientMatrix ζ)
 
+/--
+@isnad1 id=eq.0h2v.s4.1e76543d4911 from=translated src=- shape=07b30d77 vocab=8873951b
+-/
 theorem dSVSoftBobLeftReducedDensity_trace
     {d : ℕ} (ζ : BipartiteUnitVector d) :
     Matrix.trace (dSVSoftBobLeftReducedDensity ζ) = 1 := by
@@ -705,6 +726,9 @@ def dSVUniformDensityThresholdSharedState
   sharedThresholdResource (d := Fin d)
     (fun _ : Fin N => (1 : ℝ))
 
+/--
+@isnad1 id=eq.2h2v.s6.08d1888cceb9 from=translated src=- shape=8212d33d vocab=d30e17af
+-/
 theorem dSVUniformDensityThresholdSharedState_norm
     {N d : ℕ} (grid : 0 < N) (dimension : 0 < d) :
     ‖dSVUniformDensityThresholdSharedState N d‖ = 1 := by
@@ -903,7 +927,9 @@ def groupedMass (map : ι → κ) (p : ι → ℝ) (j : κ) : ℝ :=
   ∑ i ∈ (Finset.univ.filter fun i => map i = j), p i
 
 omit [DecidableEq ι] [Fintype κ] in
-/-- Express a grouped mass as an indicator-weighted sum over its source. -/
+/-- Express a grouped mass as an indicator-weighted sum over its source.
+@isnad1 id=eq.0h5v.s5.774936e6d607 from=translated src=- shape=58970463 vocab=021b122e
+-/
 theorem groupedMass_eq_sum_ite (map : ι → κ) (p : ι → ℝ) (j : κ) :
     groupedMass map p j = ∑ i, if map i = j then p i else 0 := by
   classical
@@ -1039,6 +1065,9 @@ def dSVUniformDensityThresholdGrid
   finiteUniformThresholdGrid
     (1 / (N : ℝ)) (1 + 1 / (N : ℝ)) N k
 
+/--
+@isnad1 id=eq.1h2v.s5.76c0bd507f30 from=translated src=- shape=bd9a4f01 vocab=d7791624
+-/
 theorem dSVUniformDensityThresholdGrid_apply
     {N : ℕ} (positive : 0 < N) (k : Fin N) :
     dSVUniformDensityThresholdGrid N k =
@@ -1055,6 +1084,9 @@ def dSVUniformDensityThresholdWeight
     (N : ℕ) (_k : Fin N) : ℝ :=
   1 / (N : ℝ)
 
+/--
+@isnad1 id=le.0h2v.s4.07c37ec9fd9b from=translated src=- shape=9363a417 vocab=d30b2f88
+-/
 theorem dSVUniformDensityThresholdWeight_nonneg
     (N : ℕ) (k : Fin N) :
     0 ≤ dSVUniformDensityThresholdWeight N k := by
@@ -1072,6 +1104,9 @@ def dSVUniformDensityGridPrefix
       if dSVUniformDensityThresholdGrid N k ≤ density
       then 1 else 0
 
+/--
+@isnad1 id=eq.0h2v.s5.2b13ab4f02b4 from=translated src=- shape=a653a937 vocab=edb76c4a
+-/
 theorem dSVUniformDensityGridPrefix_eq_count
     (N : ℕ) (density : ℝ) :
     dSVUniformDensityGridPrefix N density =
@@ -1097,6 +1132,9 @@ def dSVUniformDensityThresholdMismatch
         (dSVUniformDensityThresholdGrid N k ≤ bob))
       then 0 else 1
 
+/--
+@isnad1 id=eq.3h2v.s6.1c17c954c725 from=translated src=- shape=ac8e1c19 vocab=b3887112
+-/
 theorem dSVUniformDensityThresholdGrid_count_eq_floor
     {N : ℕ} (positive : 0 < N)
     (density : ℝ) (nonnegative : 0 ≤ density) (bounded : density ≤ 1) :
@@ -1159,6 +1197,9 @@ attribute [local instance] Classical.propDecidable
 def normalizeOrDefault (fallback z : E) : E :=
   if z = 0 then fallback else NormedSpace.normalize z
 
+/--
+@isnad1 id=eq.1h3v.s5.3fff0c1c53dd from=translated src=- shape=ab06a75b vocab=0ac31309
+-/
 theorem normalizeOrDefault_norm
     (fallback z : E) (hfallback : ‖fallback‖ = 1) :
     ‖normalizeOrDefault fallback z‖ = 1 := by
@@ -1212,6 +1253,9 @@ section
 open WithLp
 open scoped BigOperators ComplexOrder MatrixOrder
 
+/--
+@isnad1 id=ex.0h2v.s8.65c885d25beb from=translated src=- shape=1d139398 vocab=7ca80e29
+-/
 theorem exists_proofDSVUniformDensityPolarLeftCanonicalSchmidt
     {d : ℕ} (ξ : BipartiteUnitVector d) :
     ∃ A : Matrix.unitaryGroup (Fin d) ℂ,
@@ -1264,6 +1308,9 @@ def finiteTensorLocalUnitaryMatrix
     Matrix (ι → β) (ι → β) ℂ :=
   fun q r => ∏ i : ι, (U i : Matrix β β ℂ) (q i) (r i)
 
+/--
+@isnad1 id=eq.0h3v.s8.ba12fe4c2d87 from=translated src=- shape=1b316f46 vocab=bde8a4f0
+-/
 theorem finiteTensorLocalUnitaryMatrix_gram
     {ι β : Type*}
     [Fintype ι] [DecidableEq ι]
@@ -1492,6 +1539,9 @@ def commonPurificationSubspace
   Submodule.span ℂ
     (Set.range (commonPurificationGenerator F M positive hM))
 
+/--
+@isnad1 id=finitedi.2h4v.s12.8f7ddd4c5fff from=translated src=- shape=d3046cd2 vocab=963364fb
+-/
 theorem commonPurificationSubspace_finiteDimensional
     {ι d : Type*} [Finite ι] [Fintype d] [DecidableEq d]
     (F : ι → Matrix d d ℂ) (M : Matrix d d ℂ)
@@ -1547,6 +1597,9 @@ def spectralPurificationFilterEntryLp
   (((spectralPurificationFilter_memLp_two F hF).eval i).eval j).toLp
     (fun s : ℝ => spectralPurificationFilter F hF s i j)
 
+/--
+@isnad1 id=eventual.1h4v.s8.03db6da02761 from=translated src=- shape=10bcd809 vocab=da49920e
+-/
 theorem spectralPurificationFilterEntryLp_coeFn
     {d : Type*} [Fintype d] [DecidableEq d]
     (F : Matrix d d ℂ) (hF : F.PosSemidef) (i j : d) :
@@ -1611,6 +1664,9 @@ private theorem spectralPurificationFilterEntryLp_eq_eigen_sum
     ite_mul, zero_mul, sum_ite_eq', Finset.mem_univ, ↓reduceIte, star_apply, RCLike.star_def,
     mul_assoc, coefficient]
 
+/--
+@isnad1 id=mem.2h7v.s11.65005ae7d481 from=translated src=- shape=0b794c24 vocab=78e39401
+-/
 theorem ensemble_spectralPurificationFilterEntryLp_mem_common
     {ι d : Type*} [Fintype d] [DecidableEq d]
     (F : ι → Matrix d d ℂ) (M : Matrix d d ℂ)
@@ -1626,6 +1682,9 @@ theorem ensemble_spectralPurificationFilterEntryLp_mem_common
   exact ensemble_scalarPurificationLp_mem_common
     F M positive hM a k
 
+/--
+@isnad1 id=mem.2h6v.s11.a084872cae6c from=translated src=- shape=4bd16187 vocab=78e39401
+-/
 theorem mean_spectralPurificationFilterEntryLp_mem_common
     {ι d : Type*} [Fintype d] [DecidableEq d]
     (F : ι → Matrix d d ℂ) (M : Matrix d d ℂ)
@@ -1725,6 +1784,9 @@ open scoped BigOperators Topology ComplexOrder MatrixOrder
 
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
+/--
+@isnad1 id=eq.2h7v.s17.390b532da88c from=translated src=- shape=6447dfb3 vocab=bf0f27ab
+-/
 theorem finitePurificationMatrix_gram_apply
     {ι d : Type*} [Fintype ι] [Fintype d] [DecidableEq d]
     (F : ι → Matrix d d ℂ) (M : Matrix d d ℂ)
@@ -1752,6 +1814,9 @@ theorem finitePurificationMatrix_gram_apply
   rw [← hisometry, EuclideanSpace.inner_eq_star_dotProduct]
   simp only [RCLike.star_def, mul_comm, dotProduct, Pi.star_apply]
 
+/--
+@isnad1 id=eq.2h8v.s17.f6a34722bcf8 from=translated src=- shape=1d34443b vocab=55f9e3f0
+-/
 theorem ensemblePurificationSubspaceEntry_inner_eq_integral
     {ι d : Type*} [Fintype d] [DecidableEq d]
     (F : ι → Matrix d d ℂ) (M : Matrix d d ℂ)
@@ -1780,6 +1845,9 @@ theorem ensemblePurificationSubspaceEntry_inner_eq_integral
   rw [hs, ht]
   simp only [RCLike.inner_apply, RCLike.star_def, mul_comm]
 
+/--
+@isnad1 id=eq.2h5v.s15.60ca841cdf2a from=translated src=- shape=e05d4869 vocab=43d705eb
+-/
 theorem finitePurificationMatrix_gram_eq_integral
     {ι d : Type*} [Fintype ι] [Fintype d] [DecidableEq d]
     (F : ι → Matrix d d ℂ) (M : Matrix d d ℂ)
@@ -1836,6 +1904,9 @@ theorem finitePurificationMatrix_gram_eq_integral
   filter_upwards with s
   simp only [RCLike.star_def, Matrix.mul_apply, star_apply]
 
+/--
+@isnad1 id=eq.2h5v.s15.176bbc269f7b from=translated src=- shape=ba6697a5 vocab=ca0bdf7e
+-/
 theorem finitePurificationMatrix_gram
     {ι d : Type*} [Fintype ι] [Fintype d] [DecidableEq d]
     (F : ι → Matrix d d ℂ) (M : Matrix d d ℂ)
@@ -1924,6 +1995,9 @@ private theorem strategyPurificationVector_norm_sq
         ‖Matrix.vec
           (spectralSupportSqrt S.state.matrix S.state.positive) q‖ ^ 2)
 
+/--
+@isnad1 id=eq.0h6v.s8.95d01d1151d7 from=translated src=- shape=bb32324f vocab=09840133
+-/
 theorem strategyPurificationVector_norm
     {X Y A B : Type*}
     [Fintype X] [Fintype Y] [Fintype A] [Fintype B]
@@ -2119,6 +2193,9 @@ def dSVDensityRationalProjectiveThresholdPOVM
     (fun i : ι => dSVDensityRationalProjectiveThresholdBin
       w N k (positive.isHermitian.eigenvalues i))
 
+/--
+@isnad1 id=eq.1h6v.s6.5cdaf3029cb6 from=translated src=- shape=a50e2a59 vocab=700d44cd
+-/
 theorem dSVDensityRationalProjectiveThresholdPOVM_projective
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (w : ℝ) (N : ℕ) (k : Fin N)
@@ -2163,6 +2240,9 @@ def dSVDensityRationalLeftProjectiveThresholdAtomMismatch
         (dSVRationalSoftPass w
           (hG.isHermitian.eigenvalues j))
 
+/--
+@isnad1 id=lt.3h2v.s6.2dc3d9f47cf3 from=translated src=- shape=0761750d vocab=40e25d6c
+-/
 theorem dSVUniformDensityGridPrefix_density_sub_lt
     {N : ℕ} (positive : 0 < N)
     {a : ℝ} (nonnegative : 0 ≤ a) (bounded : a ≤ 1) :
@@ -2180,6 +2260,9 @@ theorem dSVUniformDensityGridPrefix_density_sub_lt
         field_simp
     _ < 1 := by linarith
 
+/--
+@isnad1 id=le.3h2v.s6.0dca38fff298 from=translated src=- shape=5d4a1b9b vocab=40e25d6c
+-/
 theorem dSVUniformDensityGridPrefix_density_sub_le
     {N : ℕ} (positive : 0 < N)
     {a : ℝ} (nonnegative : 0 ≤ a) (bounded : a ≤ 1) :
@@ -2197,6 +2280,9 @@ def dSVDensityRationalLeftProjectiveDiagonalMass
       (dSVRationalSoftPass w
         (hF.isHermitian.eigenvalues i))
 
+/--
+@isnad1 id=le.0h3v.s4.ec124c7e7dbb from=translated src=- shape=67104c07 vocab=4327e6f1
+-/
 theorem dSVSoftBobLeftReducedDensity_eigenvalue_le_one
     {d : ℕ} (ξ : BipartiteUnitVector d) (i : Fin d) :
     (dSVSoftBobLeftReducedDensity_posSemidef ξ).isHermitian.eigenvalues i
@@ -2213,6 +2299,9 @@ theorem dSVSoftBobLeftReducedDensity_eigenvalue_le_one
     _ = 1 := positiveDensity_eigenvalues_sum F hF
       (dSVSoftBobLeftReducedDensity_trace ξ)
 
+/--
+@isnad1 id=le.3h2v.s6.272c4124fe84 from=translated src=- shape=58233553 vocab=1b24fc0b
+-/
 theorem dSVRationalSoftPass_ge_density_div_width_add_one
     {w a : ℝ} (width : 0 < w)
     (nonnegative : 0 ≤ a) (bounded : a ≤ 1) :
@@ -2223,6 +2312,9 @@ theorem dSVRationalSoftPass_ge_density_div_width_add_one
   apply (div_le_div_iff₀ wider denominator).mpr
   nlinarith
 
+/--
+@isnad1 id=le.2h4v.s6.8b80944edef3 from=translated src=- shape=c728b84f vocab=62ef45a2
+-/
 theorem dSVDensityRationalLeftProjectiveDiagonalMass_lower
     {d N : ℕ} {w : ℝ} (width : 0 < w) (grid : 0 < N)
     (ξ : BipartiteUnitVector d) :

@@ -119,23 +119,39 @@ namespace IsSetHomeoOn
 
 variable {u w : Plane → Plane} {X Y : Set Plane}
 
-/-- Running the homeomorphism backwards. -/
+/-- Running the homeomorphism backwards.
+@isnad1 id=issethom.1h4v.s4.47022f0f0bb6 from=translated src=- shape=686bd36c vocab=04ceb989
+-/
 theorem symm (h : IsSetHomeoOn u w X Y) : IsSetHomeoOn w u Y X :=
   ⟨h.continuousOn_inv, h.continuousOn, h.mapsTo_inv, h.mapsTo, h.rightInvOn, h.leftInvOn⟩
 
+/--
+@isnad1 id=injon.1h4v.s4.085f2af8d6fb from=translated src=- shape=0e50b5cf vocab=d05e6fc0
+-/
 theorem injOn (h : IsSetHomeoOn u w X Y) : InjOn u X := h.leftInvOn.injOn
 
+/--
+@isnad1 id=injon.1h4v.s4.4ab2fbca9de1 from=translated src=- shape=d41c6262 vocab=d05e6fc0
+-/
 theorem injOn_inv (h : IsSetHomeoOn u w X Y) : InjOn w Y := h.rightInvOn.injOn
 
+/--
+@isnad1 id=eq.1h4v.s4.70268705e0c4 from=translated src=- shape=717d58e7 vocab=3f885010
+-/
 theorem image_eq (h : IsSetHomeoOn u w X Y) : u '' X = Y :=
   Subset.antisymm (image_subset_iff.2 h.mapsTo) fun y hy =>
     ⟨w y, h.mapsTo_inv hy, h.rightInvOn hy⟩
 
+/--
+@isnad1 id=eq.1h4v.s4.39b4d4f5cf6c from=translated src=- shape=4e07d918 vocab=3f885010
+-/
 theorem image_inv_eq (h : IsSetHomeoOn u w X Y) : w '' Y = X := h.symm.image_eq
 
 /-- The image of a relatively open subset of the domain is relatively open in the codomain.
 This is what makes the two open arcs of `prop:initial-pair` relatively open in `C`, hence able
-to meet the countable dense set of strongly accessible points. -/
+to meet the countable dense set of strongly accessible points.
+@isnad1 id=ex.3h6v.s7.352ffe504f28 from=translated src=- shape=81d8436c vocab=afab5ca1
+-/
 theorem image_isRelOpen (h : IsSetHomeoOn u w X Y) {U V : Set Plane} (hV : IsOpen V)
     (hU : U = V ∩ X) : ∃ W : Set Plane, IsOpen W ∧ u '' U = W ∩ Y := by
   obtain ⟨W, hWopen, hW⟩ := (_root_.continuousOn_iff'.1 h.continuousOn_inv) V hV
@@ -151,7 +167,9 @@ theorem image_isRelOpen (h : IsSetHomeoOn u w X Y) {U V : Set Plane} (hV : IsOpe
 end IsSetHomeoOn
 
 /-- **`lem:jordan-circle`, in set-level form.** A Jordan curve carries a homeomorphism onto the
-model curve, presented as a pair of maps of the plane. -/
+model curve, presented as a pair of maps of the plane.
+@isnad1 id=ex.1h1v.s4.a9d02f28804d from=translated src=- shape=f556f456 vocab=2294c61d
+-/
 theorem exists_isSetHomeoOn_modelCurve {C : Set Plane} (hC : IsJordanCurve C) :
     ∃ u w : Plane → Plane, IsSetHomeoOn u w C modelCurve := by
   classical
@@ -246,36 +264,68 @@ def outerEdges : Set InitialCell := Set.range InitialCell.edge
 /-- The two 2-cells. -/
 def faces : Set InitialCell := Set.range InitialCell.face
 
+/--
+@isnad1 id=le.0h0v.s2.a6817eb02f1d from=translated src=- shape=836e6cbb vocab=9f6d1c17
+-/
 theorem outerEdges_subset_edges : outerEdges ⊆ edges := Set.subset_union_left
 
+/--
+@isnad1 id=mem.0h1v.s4.7a02d4dcabc2 from=translated src=- shape=29b279d8 vocab=21d45170
+-/
 theorem edge_mem_edges (i : Fin 6) : InitialCell.edge i ∈ edges := Or.inl ⟨i, rfl⟩
 
+/--
+@isnad1 id=mem.0h0v.s3.f32f4c7c3ed1 from=translated src=- shape=d1530203 vocab=5922266c
+-/
 theorem chord_mem_edges : InitialCell.chord ∈ edges := Or.inr rfl
 
+/--
+@isnad1 id=mem.0h1v.s4.fac80396f234 from=translated src=- shape=29b279d8 vocab=551da094
+-/
 theorem vert_mem_vertices (i : Fin 6) : InitialCell.vert i ∈ vertices := ⟨i, rfl⟩
 
-/-- Both ends of a 1-cell are 0-cells. -/
+/-- Both ends of a 1-cell are 0-cells.
+@isnad1 id=and.1h1v.s5.a36177b49873 from=translated src=- shape=54e9cde0 vocab=d520c14b
+-/
 theorem ends_mem_vertices {e : InitialCell} (he : e ∈ edges) :
     e.ends.1 ∈ vertices ∧ e.ends.2 ∈ vertices := by
   rcases he with ⟨i, rfl⟩ | rfl
   · exact ⟨⟨i, rfl⟩, ⟨i + 1, rfl⟩⟩
   · exact ⟨⟨1, rfl⟩, ⟨4, rfl⟩⟩
 
+/--
+@isnad1 id=finite.0h0v.s1.9c142a9a4f34 from=translated src=- shape=25b03439 vocab=472899c7
+-/
 theorem finite_vertices : vertices.Finite := Set.finite_range _
 
+/--
+@isnad1 id=finite.0h0v.s1.42e1ae2506cb from=translated src=- shape=25b03439 vocab=abf3a046
+-/
 theorem finite_edges : edges.Finite := (Set.finite_range _).union (Set.finite_singleton _)
 
+/--
+@isnad1 id=finite.0h0v.s1.0318e3cab7aa from=translated src=- shape=25b03439 vocab=c833bc40
+-/
 theorem finite_faces : faces.Finite := Set.finite_range _
 
+/--
+@isnad1 id=disjoint.0h0v.s5.d23a13fc3f31 from=translated src=- shape=836e6cbb vocab=f472d8fb
+-/
 theorem disjoint_vertices_edges : Disjoint vertices edges := by
   rw [Set.disjoint_left]
   rintro c ⟨i, rfl⟩ (⟨j, hj⟩ | hj) <;> exact absurd hj (by simp)
 
+/--
+@isnad1 id=disjoint.0h0v.s5.233cc7429aa9 from=translated src=- shape=836e6cbb vocab=18beb05a
+-/
 theorem disjoint_faces_vertices : Disjoint faces vertices := by
   rw [Set.disjoint_left]
   rintro c ⟨i, rfl⟩ ⟨j, hj⟩
   exact absurd hj (by simp)
 
+/--
+@isnad1 id=disjoint.0h0v.s5.065b2633bb55 from=translated src=- shape=836e6cbb vocab=aedc3409
+-/
 theorem disjoint_faces_edges : Disjoint faces edges := by
   rw [Set.disjoint_left]
   rintro c ⟨i, rfl⟩ (⟨j, hj⟩ | hj) <;> exact absurd hj (by simp)
@@ -310,21 +360,42 @@ def initOuter : Graph InitialCell InitialCell where
     exacts [hxy.1 ▸ (InitialCell.ends_mem_vertices (InitialCell.outerEdges_subset_edges he)).1,
       hxy.1 ▸ (InitialCell.ends_mem_vertices (InitialCell.outerEdges_subset_edges he)).2]
 
+/--
+@isnad1 id=eq.0h0v.s3.ecfff5cd430d from=translated src=- shape=ad6acd2f vocab=94f10df3
+-/
 @[simp] theorem vertexSet_initSkel : V(initSkel) = InitialCell.vertices := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.586fd0756008 from=translated src=- shape=ad6acd2f vocab=13e7b992
+-/
 @[simp] theorem edgeSet_initSkel : E(initSkel) = InitialCell.edges := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.d6eb1b7792ec from=translated src=- shape=ad6acd2f vocab=2d533d39
+-/
 @[simp] theorem vertexSet_initOuter : V(initOuter) = InitialCell.vertices := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.4d31c96038b4 from=translated src=- shape=ad6acd2f vocab=ff055cdd
+-/
 @[simp] theorem edgeSet_initOuter : E(initOuter) = InitialCell.outerEdges := rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.fa2c609415b7 from=translated src=- shape=2c8cf755 vocab=51f6789a
+-/
 theorem initSkel_isLink {e x y : InitialCell} :
     initSkel.IsLink e x y ↔ e ∈ InitialCell.edges ∧
       ((x = e.ends.1 ∧ y = e.ends.2) ∨ (x = e.ends.2 ∧ y = e.ends.1)) := Iff.rfl
 
+/--
+@isnad1 id=islink.1h1v.s4.45092e197fca from=translated src=- shape=5553ce8d vocab=51f6789a
+-/
 theorem initSkel_isLink_ends {e : InitialCell} (he : e ∈ InitialCell.edges) :
     initSkel.IsLink e e.ends.1 e.ends.2 := ⟨he, Or.inl ⟨rfl, rfl⟩⟩
 
+/--
+@isnad1 id=le.0h0v.s4.84fe45f9f9d6 from=translated src=- shape=f7148d33 vocab=048e31ca
+-/
 theorem initOuter_le_initSkel : initOuter ≤ initSkel :=
   ⟨subset_rfl, fun _ _ _ h => ⟨InitialCell.outerEdges_subset_edges h.1, h.2⟩⟩
 
@@ -347,6 +418,9 @@ and the two 2-cells. This is `initialStructure.cells` unfolded, written out here
 def cellNames : Set InitialCell :=
   InitialCell.vertices ∪ InitialCell.edges ∪ InitialCell.faces
 
+/--
+@isnad1 id=not.0h1v.s3.0a7e0d1d1c97 from=translated src=- shape=61eaa0a0 vocab=51c8005e
+-/
 theorem aux_notMem_cellNames (n : ℕ) : InitialCell.aux n ∉ cellNames := by
   rintro ((⟨i, hi⟩ | ⟨i, hi⟩ | hi) | ⟨k, hk⟩)
   · exact InitialCell.noConfusion hi
@@ -366,12 +440,21 @@ def initSub (c d : InitialCell) : Prop :=
   (c = d ∧ d ∈ cellNames) ∨ (d ∈ InitialCell.edges ∧ (c = d.ends.1 ∨ c = d.ends.2)) ∨
     (∃ k, d = .face k ∧ c ∈ faceCells k)
 
+/--
+@isnad1 id=initsub.1h1v.s3.61e1339cd022 from=translated src=- shape=5af7597a vocab=08f5c090
+-/
 theorem initSub_refl {c : InitialCell} (hc : c ∈ cellNames) : initSub c c := Or.inl ⟨rfl, hc⟩
 
+/--
+@isnad1 id=and.1h1v.s4.2e267aa0fcdf from=translated src=- shape=d04222c8 vocab=4395e4d3
+-/
 theorem initSub_ends {e : InitialCell} (he : e ∈ InitialCell.edges) :
     initSub e.ends.1 e ∧ initSub e.ends.2 e :=
   ⟨Or.inr (Or.inl ⟨he, Or.inl rfl⟩), Or.inr (Or.inl ⟨he, Or.inr rfl⟩)⟩
 
+/--
+@isnad1 id=initsub.1h2v.s4.1f582f882407 from=translated src=- shape=c2054c82 vocab=0efddd66
+-/
 theorem initSub_face {k : Bool} {c : InitialCell} (h : c ∈ faceCells k) :
     initSub c (.face k) := Or.inr (Or.inr ⟨k, rfl, h⟩)
 
@@ -390,18 +473,32 @@ def initialStructure : CellStructure InitialCell where
   disjoint_faces_vertexSet := InitialCell.disjoint_faces_vertices
   disjoint_faces_edgeSet := InitialCell.disjoint_faces_edges
 
+/--
+@isnad1 id=eq.0h0v.s3.eb09e79913d7 from=translated src=- shape=362b4161 vocab=779ffa45
+-/
 @[simp] theorem initialStructure_skel : initialStructure.skel = initSkel := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.f7917d2421ab from=translated src=- shape=93f91ac4 vocab=86ef653b
+-/
 @[simp] theorem initialStructure_sub : initialStructure.sub = initSub := rfl
 
+/--
+@isnad1 id=eq.0h0v.s2.1ebc4dd410cf from=translated src=- shape=93ea8593 vocab=9fe11fe1
+-/
 @[simp] theorem initialStructure_faces : initialStructure.faces = InitialCell.faces := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.82cb4a476bcc from=translated src=- shape=362b4161 vocab=bc069570
+-/
 @[simp] theorem initialStructure_outerGraph : initialStructure.outerGraph = initOuter := rfl
 
 /-- **Every outer edge is a subcell of exactly one 2-cell** — assertion (vi) of
 `lem:cellulation-invariants` for the base structure, and the hypothesis of
 `CellStructure.outerEdge_face_corresponds`. The edges of `B₁` bound `R₁` only and those of
-`B₂` bound `R₂` only, which is the whole content. -/
+`B₂` bound `R₂` only, which is the whole content.
+@isnad1 id=outeredg.0h0v.s1.11f97f2d6a04 from=translated src=- shape=25b03439 vocab=05774c8a
+-/
 theorem outerEdgeUniqueFace_initialStructure :
     CellStructure.OuterEdgeUniqueFace initialStructure := by
   rintro e ⟨i, rfl⟩
@@ -510,26 +607,49 @@ def cellSet : InitialCell → Set Plane
   | .face k => inside (H.arcOf k ∪ H.chordSet)
   | .aux _ => ∅
 
+/--
+@isnad1 id=eq.0h2v.s4.8ae785eab783 from=translated src=- shape=fca52203 vocab=ac5cc603
+-/
 @[simp] theorem point_vert (i : Fin 6) : H.point (.vert i) = H.pos i := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.96ae99782af3 from=translated src=- shape=d258cd97 vocab=afc38421
+-/
 @[simp] theorem draw_edge (i : Fin 6) : H.draw (.edge i) = H.outer i := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.253d37c89e7c from=translated src=- shape=d14f920d vocab=cd90b613
+-/
 @[simp] theorem draw_chord : H.draw .chord = H.chordParam := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.4578544f1ef2 from=translated src=- shape=a234d988 vocab=68612af7
+-/
 @[simp] theorem edgeArc_edge (i : Fin 6) :
     Graph.edgeArc H.draw (.edge i) = H.outer i '' I := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.0f7908007542 from=translated src=- shape=bbf5d96a vocab=fe9841a7
+-/
 @[simp] theorem edgeArc_chord : Graph.edgeArc H.draw .chord = H.chordParam '' I := rfl
 
+/--
+@isnad1 id=mem.0h2v.s4.a440748991d6 from=translated src=- shape=9bb062e8 vocab=1b2e6b33
+-/
 theorem pos_mem_outer (i : Fin 6) : H.pos i ∈ H.outer i '' I :=
   ⟨0, zero_mem_I, H.outer_zero i⟩
 
+/--
+@isnad1 id=mem.0h2v.s6.55545d53e560 from=translated src=- shape=948837ff vocab=a5b657a4
+-/
 theorem pos_succ_mem_outer (i : Fin 6) : H.pos (i + 1) ∈ H.outer i '' I :=
   ⟨1, one_mem_I, H.outer_one i⟩
 
 /-- **A vertex lies on an outer edge only if it is one of its two ends.** Not an axiom of
 `HexData`: a vertex is an end of *its own* outer edge, so a vertex on a second edge is a point
-of two edges, and the meeting condition places it among the ends of both. -/
+of two edges, and the meeting condition places it among the ends of both.
+@isnad1 id=or.1h3v.s6.c5dec6954b16 from=translated src=- shape=48b071dd vocab=a5b657a4
+-/
 theorem mem_outer_iff {k i : Fin 6} (h : H.pos k ∈ H.outer i '' I) : k = i ∨ k = i + 1 := by
   by_cases hki : k = i
   · exact Or.inl hki
@@ -538,17 +658,24 @@ theorem mem_outer_iff {k i : Fin 6} (h : H.pos k ∈ H.outer i '' I) : k = i ∨
   · exact Or.inl (H.injective_pos h')
   · exact Or.inr (H.injective_pos h')
 
-/-- **A vertex lies on the crosscut only if it is one of its two ends.** -/
+/-- **A vertex lies on the crosscut only if it is one of its two ends.**
+@isnad1 id=or.1h2v.s6.18b9c800d1b9 from=translated src=- shape=882d3765 vocab=139a639a
+-/
 theorem mem_chord_iff {k : Fin 6} (h : H.pos k ∈ H.chordParam '' I) : k = 1 ∨ k = 4 := by
   rcases H.chord_meet k ⟨h, H.pos_mem_outer k⟩ with h' | h'
   · exact Or.inl (H.injective_pos h')
   · exact Or.inr (H.injective_pos h')
 
+/--
+@isnad1 id=injon.0h1v.s3.52f2fa6f023b from=translated src=- shape=061b9904 vocab=dcb0a12f
+-/
 theorem injOn_point : InjOn H.point V(initSkel) := by
   rintro _ ⟨i, rfl⟩ _ ⟨j, rfl⟩ hij
   exact congrArg InitialCell.vert (H.injective_pos hij)
 
-/-- The drawn skeleton: the pushforward of `initSkel` along the six positions. -/
+/-- The drawn skeleton: the pushforward of `initSkel` along the six positions.
+@isnad1 id=isdrawin.0h1v.s3.6888443ecf5c from=translated src=- shape=03f1ab68 vocab=1eaac7da
+-/
 theorem isDrawing : Graph.IsDrawing (initSkel.map H.point) H.draw where
   edge_param := by
     intro e he
@@ -631,31 +758,53 @@ def realization : initialStructure.Realization where
       rcases hxy with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ <;>
       simp [cellSet, InitialCell.ends, Set.pair_comm]
 
+/--
+@isnad1 id=eq.0h1v.s3.2691833e4824 from=translated src=- shape=9bf4ece8 vocab=56a274b5
+-/
 @[simp] theorem realization_pos : H.realization.pos = H.point := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.013f9a8fbfd3 from=translated src=- shape=73a94c16 vocab=31944eb4
+-/
 @[simp] theorem realization_drawing : H.realization.drawing = H.draw := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.9989377c3526 from=translated src=- shape=32efd977 vocab=ea0fa6c1
+-/
 @[simp] theorem realization_cell : H.realization.cell = H.cellSet := rfl
 
 /-! #### The realized skeleton and the two boundary arcs -/
 
+/--
+@isnad1 id=ne.1h3v.s5.e3c14ab470bd from=translated src=- shape=a4b59f54 vocab=016aa081
+-/
 theorem pos_ne {i j : Fin 6} (h : i ≠ j) : H.pos i ≠ H.pos j :=
   fun he => h (H.injective_pos he)
 
+/--
+@isnad1 id=and.3h4v.s7.3f3ba45ab89f from=translated src=- shape=8756e432 vocab=a5b657a4
+-/
 theorem outer_meet_pair {i j : Fin 6} (hij : i ≠ j) {z : Plane} (hi : z ∈ H.outer i '' I)
     (hj : z ∈ H.outer j '' I) :
     (z = H.pos i ∨ z = H.pos (i + 1)) ∧ (z = H.pos j ∨ z = H.pos (j + 1)) :=
   H.outer_meet i j hij ⟨hi, hj⟩
 
-/-- Each outer edge is drawn as an arc between consecutive vertices. -/
+/-- Each outer edge is drawn as an arc between consecutive vertices.
+@isnad1 id=isarcbet.0h2v.s6.693412caba42 from=translated src=- shape=22f29271 vocab=c63132ee
+-/
 theorem isArcBetween_outer (i : Fin 6) :
     IsArcBetween (H.outer i '' I) (H.pos i) (H.pos (i + 1)) :=
   ⟨H.outer i, H.continuousOn_outer i, H.injOn_outer i, rfl, H.outer_zero i, H.outer_one i⟩
 
-/-- The crosscut is drawn as an arc from `a` to `b`. -/
+/-- The crosscut is drawn as an arc from `a` to `b`.
+@isnad1 id=isarcbet.0h1v.s5.aba8ec26921b from=translated src=- shape=1e0af92b vocab=3b7655af
+-/
 theorem isArcBetween_chordSet : IsArcBetween H.chordSet (H.pos 1) (H.pos 4) :=
   ⟨H.chordParam, H.continuousOn_chord, H.injOn_chord, rfl, H.chord_zero, H.chord_one⟩
 
+/--
+@isnad1 id=eq.0h1v.s7.40091faad619 from=translated src=- shape=19c6f41d vocab=99d5b2e1
+-/
 theorem outerArcs_eq :
     H.outerArcs = H.outer 0 '' I ∪ (H.outer 1 '' I ∪ (H.outer 2 '' I ∪ (H.outer 3 '' I ∪
       (H.outer 4 '' I ∪ H.outer 5 '' I)))) := by
@@ -666,6 +815,9 @@ theorem outerArcs_eq :
   · rintro (h | h | h | h | h | h)
     exacts [⟨0, h⟩, ⟨1, h⟩, ⟨2, h⟩, ⟨3, h⟩, ⟨4, h⟩, ⟨5, h⟩]
 
+/--
+@isnad1 id=eq.0h1v.s4.a37bf9706570 from=translated src=- shape=3226c9f2 vocab=c1812894
+-/
 theorem arcOf_union : H.arcOf false ∪ H.arcOf true = H.outerArcs := by
   rw [outerArcs_eq]
   simp only [arcOf]
@@ -674,7 +826,9 @@ theorem arcOf_union : H.arcOf false ∪ H.arcOf true = H.outerArcs := by
   constructor <;> (intro h; tauto)
 
 /-- **`A₁` is an arc from `a` to `b`.** Three consecutive outer edges, glued at the two corner
-vertices between them. -/
+vertices between them.
+@isnad1 id=isarcbet.0h1v.s5.aa9bdd366648 from=translated src=- shape=96bc7c1a vocab=0043bd76
+-/
 theorem arcOf_false_isArcBetween : IsArcBetween (H.arcOf false) (H.pos 1) (H.pos 4) := by
   have h23 : IsArcBetween (H.outer 2 '' I ∪ H.outer 3 '' I) (H.pos 2) (H.pos 4) := by
     refine (H.isArcBetween_outer 2).concatenate (H.isArcBetween_outer 3) fun z hz hz' => ?_
@@ -694,7 +848,9 @@ theorem arcOf_false_isArcBetween : IsArcBetween (H.arcOf false) (H.pos 1) (H.pos
     rcases h₁ with rfl | rfl <;> rcases h₂ with h | h <;>
       exact absurd h (H.pos_ne (by decide))
 
-/-- **`A₂` is an arc from `b` to `a`.** -/
+/-- **`A₂` is an arc from `b` to `a`.**
+@isnad1 id=isarcbet.0h1v.s5.b6a371603e1f from=translated src=- shape=96bc7c1a vocab=68cc13e4
+-/
 theorem arcOf_true_isArcBetween : IsArcBetween (H.arcOf true) (H.pos 4) (H.pos 1) := by
   have h50 : IsArcBetween (H.outer 5 '' I ∪ H.outer 0 '' I) (H.pos 5) (H.pos 1) := by
     refine (H.isArcBetween_outer 5).concatenate (H.isArcBetween_outer 0) fun z hz hz' => ?_
@@ -715,7 +871,9 @@ theorem arcOf_true_isArcBetween : IsArcBetween (H.arcOf true) (H.pos 4) (H.pos 1
       exact absurd h (H.pos_ne (by decide))
 
 /-- **The two boundary arcs meet exactly at `a` and `b`.** Nine pairs of outer edges; six of
-them have no vertex in common at all and contribute nothing. -/
+them have no vertex in common at all and contribute nothing.
+@isnad1 id=eq.0h1v.s6.6349138cf7db from=translated src=- shape=f1c28190 vocab=77f9bce8
+-/
 theorem arcOf_inter : H.arcOf false ∩ H.arcOf true = ({H.pos 1, H.pos 4} : Set Plane) := by
   refine Subset.antisymm ?_ ?_
   · rintro z ⟨hz, hz'⟩
@@ -733,7 +891,9 @@ theorem arcOf_inter : H.arcOf false ∩ H.arcOf true = ({H.pos 1, H.pos 4} : Set
     · refine ⟨Or.inr (Or.inr ?_), Or.inl (H.pos_mem_outer 4)⟩
       simpa using H.pos_succ_mem_outer 3
 
-/-- The crosscut meets the outer cycle exactly at its two endpoints. -/
+/-- The crosscut meets the outer cycle exactly at its two endpoints.
+@isnad1 id=eq.0h1v.s5.6b6e0f828056 from=translated src=- shape=6f28020a vocab=e27805ee
+-/
 theorem chordSet_inter_outerArcs : H.chordSet ∩ H.outerArcs = ({H.pos 1, H.pos 4} : Set Plane) := by
   refine Subset.antisymm ?_ ?_
   · rintro z ⟨hz, hz'⟩
@@ -745,6 +905,9 @@ theorem chordSet_inter_outerArcs : H.chordSet ∩ H.outerArcs = ({H.pos 1, H.pos
     · exact ⟨by simpa [chordSet, H.chord_one] using
         Set.mem_image_of_mem H.chordParam one_mem_I, Set.mem_iUnion.2 ⟨4, H.pos_mem_outer 4⟩⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.39036ec92e4b from=translated src=- shape=7a49c0b6 vocab=725c3702
+-/
 theorem outerSet_realization : H.realization.outerSet = H.outerArcs := by
   change V(initOuter.map H.point) ∪ (⋃ e ∈ E(initOuter.map H.point), Graph.edgeArc H.draw e) = _
   refine Subset.antisymm (Set.union_subset ?_ ?_) ?_
@@ -759,6 +922,9 @@ theorem outerSet_realization : H.realization.outerSet = H.outerArcs := by
     exact Set.subset_biUnion_of_mem (u := fun e => Graph.edgeArc H.draw e)
       (show InitialCell.edge i ∈ E(initOuter.map H.point) from ⟨i, rfl⟩)
 
+/--
+@isnad1 id=eq.0h1v.s4.b29d57a0be5b from=translated src=- shape=9854f601 vocab=93eab98d
+-/
 theorem skeletonSet_realization : H.realization.skeletonSet = H.outerArcs ∪ H.chordSet := by
   change V(initSkel.map H.point) ∪ (⋃ e ∈ E(initSkel.map H.point), Graph.edgeArc H.draw e) = _
   refine Subset.antisymm (Set.union_subset ?_ ?_) (Set.union_subset ?_ ?_)
@@ -779,7 +945,9 @@ theorem skeletonSet_realization : H.realization.skeletonSet = H.outerArcs ∪ H.
 
 /-- **The open nonboundary part is the crosscut without its two endpoints.** With
 `chord_meet` this is the connectedness clause of `def:admissible-graph` in one line: an arc
-minus its endpoints is connected. -/
+minus its endpoints is connected.
+@isnad1 id=eq.0h1v.s4.4a503f29ee0b from=translated src=- shape=9854f601 vocab=750d41e3
+-/
 theorem nonboundary_realization : H.realization.nonboundary = H.chordSet \ H.outerArcs := by
   have h : H.realization.nonboundary = H.realization.skeletonSet \ H.realization.outerSet := rfl
   rw [h, H.skeletonSet_realization, H.outerSet_realization]
@@ -790,7 +958,9 @@ theorem nonboundary_realization : H.realization.nonboundary = H.chordSet \ H.out
   · rintro ⟨h, h'⟩
     exact ⟨Or.inr h, h'⟩
 
-/-- The open nonboundary part is the crosscut without its endpoints — the open arc. -/
+/-- The open nonboundary part is the crosscut without its endpoints — the open arc.
+@isnad1 id=eq.0h1v.s6.c61a6a2e41f0 from=translated src=- shape=3cca4e8d vocab=be5b4c5b
+-/
 theorem nonboundary_eq : H.realization.nonboundary = H.chordSet \ {H.pos 1, H.pos 4} := by
   rw [H.nonboundary_realization]
   ext z
@@ -806,7 +976,9 @@ theorem nonboundary_eq : H.realization.nonboundary = H.chordSet \ {H.pos 1, H.po
 
 /-- **The open nonboundary part is connected** — the last clause of `def:admissible-graph`.
 With a single crosscut it is the open arc of the chord, a continuous injective image of
-`(0, 1)`. -/
+`(0, 1)`.
+@isnad1 id=isconnec.0h1v.s5.178b5c9726c5 from=translated src=- shape=cde8dc6e vocab=0b634902
+-/
 theorem isConnected_nonboundary : IsConnected H.realization.nonboundary := by
   rw [H.nonboundary_eq]
   have hopen : H.chordSet \ ({H.pos 1, H.pos 4} : Set Plane) = H.chordParam '' Set.Ioo 0 1 := by
@@ -837,7 +1009,9 @@ private theorem stepFull {m m' : Fin 6} (h : m + 1 = m') :
   subst h
   exact Graph.Reaches.of_isLink (initSkel_isLink_ends (InitialCell.edge_mem_edges m))
 
-/-- The abstract hexagon-with-chord is connected. -/
+/-- The abstract hexagon-with-chord is connected.
+@isnad1 id=connecte.0h0v.s2.c96dd93ce1a0 from=translated src=- shape=e3d48bcb vocab=162d8c22
+-/
 theorem connected_initSkel : initSkel.Connected := by
   refine Graph.Connected.of_hub (u := .vert 0) ⟨0, rfl⟩ ?_
   rintro _ ⟨j, rfl⟩
@@ -869,7 +1043,9 @@ private theorem stepDel (k : Fin 6) {m m' : Fin 6} (hmm : m + 1 = m') (hm : m �
   rw [Graph.deleteVerts_isLink]
   exact ⟨h0, vert_notMem_del hm, vert_notMem_del hm'⟩
 
-/-- Deleting one vertex of the hexagon leaves a path, hence a connected graph. -/
+/-- Deleting one vertex of the hexagon leaves a path, hence a connected graph.
+@isnad1 id=connecte.0h1v.s4.c571c6351fdf from=translated src=- shape=8d6f3a63 vocab=29ef9476
+-/
 theorem deleteVert_connected_initSkel (k : Fin 6) :
     (initSkel.deleteVerts {InitialCell.vert k}).Connected := by
   have h12 := stepDel k (m := 1) (m' := 2) (by decide) (by decide) (by decide)
@@ -894,7 +1070,9 @@ theorem deleteVert_connected_initSkel (k : Fin 6) :
   · exact (h12.trans h23).trans h34
   · exact ((h12.trans h23).trans h34).trans h45
 
-/-- **The initial skeleton is 2-connected** — the first clause of `def:admissible-graph`. -/
+/-- **The initial skeleton is 2-connected** — the first clause of `def:admissible-graph`.
+@isnad1 id=istwocon.0h0v.s2.6995552d2dfb from=translated src=- shape=e3d48bcb vocab=dc0833c5
+-/
 theorem isTwoConnected_initSkel : initSkel.IsTwoConnected where
   hasThreeVertices :=
     ⟨.vert 0, ⟨0, rfl⟩, .vert 1, ⟨1, rfl⟩, .vert 2, ⟨2, rfl⟩, by decide, by decide, by decide⟩
@@ -902,7 +1080,9 @@ theorem isTwoConnected_initSkel : initSkel.IsTwoConnected where
   deleteVerts_connected := by rintro _ ⟨k, rfl⟩; exact deleteVert_connected_initSkel k
 
 /-- **Both drawn skeleta are 2-connected.** By `lem:combinatorial-invariance` (a) there is only
-one statement to prove, and it is the abstract one. -/
+one statement to prove, and it is the abstract one.
+@isnad1 id=istwocon.0h1v.s3.4e39d72672ae from=translated src=- shape=b08ed664 vocab=2391b9a7
+-/
 theorem HexData.isTwoConnected_graph (H : HexData) : (H.realization.graph).IsTwoConnected :=
   (Graph.isTwoConnected_map_iff H.injOn_point).2 isTwoConnected_initSkel
 
@@ -928,6 +1108,9 @@ theorem eq_mk {p : Plane} {x y : ℝ} (h0 : p 0 = x) (h1 : p 1 = y) : p = Plane.
   · simpa using h0
   · simpa using h1
 
+/--
+@isnad1 id=and.1h4v.s4.2c788e6264c8 from=translated src=- shape=9a65b32b vocab=8f3a4b10
+-/
 theorem mk_inj {x y x' y' : ℝ} (h : Plane.mk x y = Plane.mk x' y') : x = x' ∧ y = y' :=
   ⟨congrArg (fun p : Plane => p 0) h, congrArg (fun p : Plane => p 1) h⟩
 
@@ -940,18 +1123,27 @@ def hPiece (c lo hi : ℝ) : Set Plane := {p : Plane | p 1 = c ∧ lo ≤ p 0 �
 /-- A vertical piece of the square boundary. -/
 def vPiece (c lo hi : ℝ) : Set Plane := {p : Plane | p 0 = c ∧ lo ≤ p 1 ∧ p 1 ≤ hi}
 
+/--
+@isnad1 id=eq.1h3v.s7.8d9e5675279a from=translated src=- shape=cfeb516e vocab=b4ab3b6a
+-/
 theorem segment_eq_hPiece (c : ℝ) {lo hi : ℝ} (h : lo ≤ hi) :
     segment ℝ (Plane.mk lo c) (Plane.mk hi c) = hPiece c lo hi := by
   ext p
   rw [mem_segment_horiz, segment_eq_Icc h]
   simp [hPiece, Set.mem_Icc]
 
+/--
+@isnad1 id=eq.1h3v.s7.c015e8b60db9 from=translated src=- shape=63802922 vocab=d14e6d3a
+-/
 theorem segment_eq_vPiece (c : ℝ) {lo hi : ℝ} (h : lo ≤ hi) :
     segment ℝ (Plane.mk c lo) (Plane.mk c hi) = vPiece c lo hi := by
   ext p
   rw [mem_segment_vert, segment_eq_Icc h]
   simp [vPiece, Set.mem_Icc]
 
+/--
+@isnad1 id=le.3h3v.s5.24a8a7a9c95f from=translated src=- shape=353683c0 vocab=eb1e30d6
+-/
 theorem hPiece_subset_modelCurve {c lo hi : ℝ} (hc : |c| = 1) (hlo : -1 ≤ lo) (hhi : hi ≤ 1) :
     hPiece c lo hi ⊆ modelCurve := by
   rintro p ⟨h1, h2, h3⟩
@@ -959,6 +1151,9 @@ theorem hPiece_subset_modelCurve {c lo hi : ℝ} (hc : |c| = 1) (hlo : -1 ≤ lo
   simp only [Plane.supNorm, h1, hc]
   exact max_eq_right (by rw [abs_le]; constructor <;> linarith)
 
+/--
+@isnad1 id=le.3h3v.s5.0511d922f3d9 from=translated src=- shape=353683c0 vocab=dfa8dd8a
+-/
 theorem vPiece_subset_modelCurve {c lo hi : ℝ} (hc : |c| = 1) (hlo : -1 ≤ lo) (hhi : hi ≤ 1) :
     vPiece c lo hi ⊆ modelCurve := by
   rintro p ⟨h1, h2, h3⟩
@@ -982,17 +1177,25 @@ noncomputable def tgtOuter (α β : ℝ) (i : Fin 6) : ℝ → Plane :=
 noncomputable def tgtChord (α β : ℝ) : ℝ → Plane :=
   AffineMap.lineMap (tgtPos α β 1) (tgtPos α β 4)
 
+/--
+@isnad1 id=eq.0h3v.s7.f1085f4f8558 from=translated src=- shape=a8f3abdb vocab=2b27ece6
+-/
 theorem tgtOuter_image (α β : ℝ) (i : Fin 6) :
     tgtOuter α β i '' I = segment ℝ (tgtPos α β i) (tgtPos α β (i + 1)) := by
   rw [segment_eq_image_lineMap]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.cae93d971fe8 from=translated src=- shape=ef95e561 vocab=a1b74d25
+-/
 theorem tgtChord_image (α β : ℝ) :
     tgtChord α β '' I = segment ℝ (Plane.mk α 1) (Plane.mk β (-1)) := by
   rw [segment_eq_image_lineMap]
   rfl
 
-/-- The six target arcs, in the pinned-coordinate normal form. -/
+/-- The six target arcs, in the pinned-coordinate normal form.
+@isnad1 id=eq.2h3v.s8.cfece6a4d369 from=translated src=- shape=38e69620 vocab=39f2a757
+-/
 theorem segment_tgtPos (hα : |α| < 1) (hβ : |β| < 1) (i : Fin 6) :
     segment ℝ (tgtPos α β i) (tgtPos α β (i + 1)) =
       ![hPiece 1 α 1, hPiece 1 (-1) α, vPiece (-1) (-1) 1, hPiece (-1) (-1) β, hPiece (-1) β 1,
@@ -1013,6 +1216,9 @@ theorem segment_tgtPos (hα : |α| < 1) (hβ : |β| < 1) (i : Fin 6) :
   · change segment ℝ (Plane.mk 1 (-1)) (Plane.mk 1 1) = vPiece 1 (-1) 1
     rw [segment_eq_vPiece 1 (by norm_num : (-1:ℝ) ≤ 1)]
 
+/--
+@isnad1 id=injectiv.2h2v.s5.8c4bd2119e7e from=translated src=- shape=cae64d32 vocab=18523fc1
+-/
 theorem injective_tgtPos (hα : |α| < 1) (hβ : |β| < 1) : Function.Injective (tgtPos α β) := by
   obtain ⟨hα1, hα2⟩ := abs_lt.1 hα
   obtain ⟨hβ1, hβ2⟩ := abs_lt.1 hβ
@@ -1022,6 +1228,9 @@ theorem injective_tgtPos (hα : |α| < 1) (hβ : |β| < 1) : Function.Injective 
       | rfl
       | (exfalso; obtain ⟨h0, h1⟩ := Plane.mk_inj h; linarith)
 
+/--
+@isnad1 id=le.2h3v.s5.9914c65c3038 from=translated src=- shape=8e459924 vocab=6326f857
+-/
 theorem tgtOuter_subset_modelCurve (hα : |α| < 1) (hβ : |β| < 1) (i : Fin 6) :
     tgtOuter α β i '' I ⊆ modelCurve := by
   obtain ⟨hα1, hα2⟩ := abs_lt.1 hα
@@ -1039,7 +1248,9 @@ theorem tgtOuter_subset_modelCurve (hα : |α| < 1) (hβ : |β| < 1) (i : Fin 6)
 of the square overlap in at most the marked point between them; two on adjacent sides meet at
 most in the corner they share, and the four cases where a corner is not on the piece in
 question are empty because `|α|, |β| < 1`; two on opposite sides never meet. Every one of them
-is a comparison of two real intervals. -/
+is a comparison of two real intervals.
+@isnad1 id=le.3h4v.s7.a8feb2102258 from=translated src=- shape=a9b309c9 vocab=3e763188
+-/
 theorem tgtOuter_meet (hα : |α| < 1) (hβ : |β| < 1) (i j : Fin 6) (hij : i ≠ j) :
     tgtOuter α β i '' I ∩ tgtOuter α β j '' I ⊆
       ({tgtPos α β i, tgtPos α β (i + 1)} : Set Plane) ∩
@@ -1063,7 +1274,9 @@ theorem tgtOuter_meet (hα : |α| < 1) (hβ : |β| < 1) (i j : Fin 6) (hij : i �
                 Or.inl (Plane.eq_mk (by linarith) (by linarith))⟩
 
 /-- **The straight chord between opposite sides has all its other points in the open square.**
-This is the single use of the nonadjacency hypothesis of `prop:initial-pair`. -/
+This is the single use of the nonadjacency hypothesis of `prop:initial-pair`.
+@isnad1 id=lt.3h3v.s7.a47cac440725 from=translated src=- shape=5f0d2db5 vocab=5e6f299c
+-/
 theorem openSegment_chord_supNorm_lt (hα : |α| < 1) (hβ : |β| < 1) :
     ∀ p ∈ openSegment ℝ (Plane.mk α 1) (Plane.mk β (-1)), Plane.supNorm p < 1 := by
   obtain ⟨hα1, hα2⟩ := abs_lt.1 hα
@@ -1078,12 +1291,17 @@ theorem openSegment_chord_supNorm_lt (hα : |α| < 1) (hβ : |β| < 1) :
   rw [Plane.supNorm, h0, h1]
   exact max_lt hb0 hb1
 
+/--
+@isnad1 id=not.3h3v.s7.5ba4e5809f7b from=translated src=- shape=a918f3bc vocab=6cc449f9
+-/
 theorem openSegment_chord_notMem_modelCurve (hα : |α| < 1) (hβ : |β| < 1) :
     ∀ p ∈ openSegment ℝ (Plane.mk α 1) (Plane.mk β (-1)), p ∉ modelCurve := fun p hp hmem =>
   absurd (show Plane.supNorm p = 1 from hmem)
     (ne_of_lt (openSegment_chord_supNorm_lt hα hβ p hp))
 
-/-- The chord meets each outer edge only at its own two ends. -/
+/-- The chord meets each outer edge only at its own two ends.
+@isnad1 id=le.2h3v.s6.cfe2dd7c5202 from=translated src=- shape=ab70f55c vocab=d301eee8
+-/
 theorem tgtChord_meet (hα : |α| < 1) (hβ : |β| < 1) (i : Fin 6) :
     tgtChord α β '' I ∩ tgtOuter α β i '' I ⊆
       ({tgtPos α β 1, tgtPos α β 4} : Set Plane) := by
@@ -1095,6 +1313,9 @@ theorem tgtChord_meet (hα : |α| < 1) (hβ : |β| < 1) (i : Fin 6) :
   · exact absurd (tgtOuter_subset_modelCurve hα hβ i hp')
       (openSegment_chord_notMem_modelCurve hα hβ _ hp)
 
+/--
+@isnad1 id=eq.2h3v.s7.f3c2f332661d from=translated src=- shape=946d37a9 vocab=c01fb358
+-/
 theorem tgtOuter_image_eq (hα : |α| < 1) (hβ : |β| < 1) (i : Fin 6) :
     tgtOuter α β i '' I =
       ![hPiece 1 α 1, hPiece 1 (-1) α, vPiece (-1) (-1) 1, hPiece (-1) (-1) β, hPiece (-1) β 1,
@@ -1102,7 +1323,9 @@ theorem tgtOuter_image_eq (hα : |α| < 1) (hβ : |β| < 1) (i : Fin 6) :
   rw [tgtOuter_image, segment_tgtPos hα hβ]
 
 /-- **The six target edges cover `S`.** Each side of the square is one piece, except the top
-and the bottom, which are cut in two at `u(a)` and `u(b)`. -/
+and the bottom, which are cut in two at `u(a)` and `u(b)`.
+@isnad1 id=eq.2h2v.s5.29a9f4c73812 from=translated src=- shape=baf5a0ac vocab=72ebaf35
+-/
 theorem iUnion_tgtOuter (hα : |α| < 1) (hβ : |β| < 1) :
     (⋃ i : Fin 6, tgtOuter α β i '' I) = modelCurve := by
   obtain ⟨hα1, hα2⟩ := abs_lt.1 hα
@@ -1127,11 +1350,17 @@ theorem iUnion_tgtOuter (hα : |α| < 1) (hβ : |β| < 1) :
     obtain ⟨h0, h1⟩ := hp
     exact Set.mem_iUnion.2 ⟨5, by rw [tgtOuter_image_eq hα hβ 5]; exact ⟨h0, h1.1, h1.2⟩⟩
 
+/--
+@isnad1 id=mem.2h3v.s5.880ef7c7e29b from=translated src=- shape=7f37d286 vocab=57a8b62e
+-/
 theorem tgtPos_mem_modelCurve (hα : |α| < 1) (hβ : |β| < 1) (i : Fin 6) :
     tgtPos α β i ∈ modelCurve := by
   refine tgtOuter_subset_modelCurve hα hβ i ⟨0, zero_mem_I, ?_⟩
   exact AffineMap.lineMap_apply_zero _ _
 
+/--
+@isnad1 id=ne.2h3v.s6.c9e8de53fa67 from=translated src=- shape=de16da6b vocab=c325a482
+-/
 theorem tgtPos_succ_ne (hα : |α| < 1) (hβ : |β| < 1) (i : Fin 6) :
     tgtPos α β i ≠ tgtPos α β (i + 1) := by
   have hne : i ≠ i + 1 := by revert i; decide
@@ -1159,16 +1388,27 @@ noncomputable def targetHex (hα : |α| < 1) (hβ : |β| < 1) : HexData where
   outer_meet := tgtOuter_meet hα hβ
   chord_meet := tgtChord_meet hα hβ
 
+/--
+@isnad1 id=eq.2h2v.s5.3c9fdb8ae4e4 from=translated src=- shape=c7a70826 vocab=72e8f4ea
+-/
 @[simp] theorem targetHex_pos (hα : |α| < 1) (hβ : |β| < 1) :
     (targetHex hα hβ).pos = tgtPos α β := rfl
 
+/--
+@isnad1 id=eq.2h2v.s5.b9de8427a363 from=translated src=- shape=0b99ff8c vocab=c356b634
+-/
 @[simp] theorem targetHex_outer (hα : |α| < 1) (hβ : |β| < 1) :
     (targetHex hα hβ).outer = tgtOuter α β := rfl
 
+/--
+@isnad1 id=eq.2h2v.s5.6835640a32ed from=translated src=- shape=7598d6fd vocab=3d3debfb
+-/
 @[simp] theorem targetHex_chordParam (hα : |α| < 1) (hβ : |β| < 1) :
     (targetHex hα hβ).chordParam = tgtChord α β := rfl
 
-/-- **The target outer cycle is exactly `S`.** -/
+/-- **The target outer cycle is exactly `S`.**
+@isnad1 id=eq.2h2v.s5.3fdba31ad613 from=translated src=- shape=ba61cb39 vocab=6cf66cd7
+-/
 theorem targetHex_outerArcs (hα : |α| < 1) (hβ : |β| < 1) :
     (targetHex hα hβ).outerArcs = modelCurve := iUnion_tgtOuter hα hβ
 
@@ -1228,6 +1468,9 @@ noncomputable def sourceHex {u w : Plane → Plane} {sp : ℝ → Plane}
     have hmem : tgtOuter α β i t ∈ modelCurve := tgtOuter_subset_modelCurve hα hβ i ⟨t, ht, rfl⟩
     exact inside_subset_compl (hspin ⟨hz, hzc⟩) (hw.mapsTo_inv hmem)
 
+/--
+@isnad1 id=eq.8h6v.s8.bd5f0464c5a0 from=translated src=- shape=6bf7d193 vocab=b694f903
+-/
 @[simp] theorem sourceHex_pos {u w : Plane → Plane} {sp : ℝ → Plane}
     (hw : IsSetHomeoOn u w C modelCurve) (hα : |α| < 1) (hβ : |β| < 1)
     (hspc : ContinuousOn sp I) (hspi : InjOn sp I)
@@ -1235,6 +1478,9 @@ noncomputable def sourceHex {u w : Plane → Plane} {sp : ℝ → Plane}
     (hspin : sp '' I \ {w (tgtPos α β 1), w (tgtPos α β 4)} ⊆ inside C) :
     (sourceHex hw hα hβ hspc hspi hsp0 hsp1 hspin).pos = fun i => w (tgtPos α β i) := rfl
 
+/--
+@isnad1 id=eq.8h6v.s8.499a53d555df from=translated src=- shape=97b87788 vocab=50716c56
+-/
 @[simp] theorem sourceHex_chordParam {u w : Plane → Plane} {sp : ℝ → Plane}
     (hw : IsSetHomeoOn u w C modelCurve) (hα : |α| < 1) (hβ : |β| < 1)
     (hspc : ContinuousOn sp I) (hspi : InjOn sp I)
@@ -1242,7 +1488,9 @@ noncomputable def sourceHex {u w : Plane → Plane} {sp : ℝ → Plane}
     (hspin : sp '' I \ {w (tgtPos α β 1), w (tgtPos α β 4)} ⊆ inside C) :
     (sourceHex hw hα hβ hspc hspi hsp0 hsp1 hspin).chordParam = sp := rfl
 
-/-- **The source outer cycle is exactly `C`.** -/
+/-- **The source outer cycle is exactly `C`.**
+@isnad1 id=eq.8h6v.s8.e7107ceb99af from=translated src=- shape=33492df9 vocab=198c5e04
+-/
 theorem sourceHex_outerArcs {u w : Plane → Plane} {sp : ℝ → Plane}
     (hw : IsSetHomeoOn u w C modelCurve) (hα : |α| < 1) (hβ : |β| < 1)
     (hspc : ContinuousOn sp I) (hspi : InjOn sp I)
@@ -1265,7 +1513,9 @@ definitions agree at `a` and `b`, which is where `C` and `P` meet, so the pastin
 to the two closed pieces of the skeleton. -/
 
 /-- A continuous injection of a compact set has a continuous inverse on its image. Stated for
-the set-level `Function.invFunOn`, which is what a parametrized arc has to be inverted with. -/
+the set-level `Function.invFunOn`, which is what a parametrized arc has to be inverted with.
+@isnad1 id=continuo.3h2v.s7.098e026c3e0c from=translated src=- shape=bcca0f90 vocab=13110089
+-/
 theorem continuousOn_invFunOn_image {f : ℝ → Plane} {s : Set ℝ} (hs : IsCompact s)
     (hf : ContinuousOn f s) (hinj : InjOn f s) :
     ContinuousOn (Function.invFunOn f s) (f '' s) := by
@@ -1349,67 +1599,136 @@ noncomputable def sourceRealization : initialStructure.Realization := d.src.real
 /-- **The target realization of `initialStructure`** — `Γ'` of `prop:initial-pair`. -/
 noncomputable def targetRealization : initialStructure.Realization := d.tgt.realization
 
+/--
+@isnad1 id=eq.0h2v.s4.30d4325cb508 from=translated src=- shape=d7e48a51 vocab=8424301e
+-/
 @[simp] theorem src_pos_one : d.src.pos 1 = d.a := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.a7535480f1fa from=translated src=- shape=d7e48a51 vocab=c1366ce7
+-/
 @[simp] theorem src_pos_four : d.src.pos 4 = d.b := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.814531a953d0 from=translated src=- shape=6e918c76 vocab=bb08b30f
+-/
 @[simp] theorem src_chordSet : d.src.chordSet = d.crossSet := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.f26a89a3d113 from=translated src=- shape=74e128f7 vocab=f5bdb4e3
+-/
 @[simp] theorem tgt_pos_one : d.tgt.pos 1 = Plane.mk d.xa 1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.e6362b2a5756 from=translated src=- shape=4b7e56f9 vocab=942aa9d5
+-/
 @[simp] theorem tgt_pos_four : d.tgt.pos 4 = Plane.mk d.xb (-1) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.2e84d20dce1d from=translated src=- shape=8b2e3d0a vocab=e1217791
+-/
 theorem tgt_chordSet : d.tgt.chordSet = segment ℝ (Plane.mk d.xa 1) (Plane.mk d.xb (-1)) :=
   tgtChord_image d.xa d.xb
 
+/--
+@isnad1 id=eq.0h2v.s3.a3631b74d9bc from=translated src=- shape=d39890f3 vocab=c330450a
+-/
 theorem src_outerArcs : d.src.outerArcs = C :=
   sourceHex_outerArcs d.homeo d.abs_xa d.abs_xb d.continuousOn_cross d.injOn_cross d.cross_zero
     d.cross_one d.cross_inside
 
+/--
+@isnad1 id=eq.0h2v.s3.8c921ea70e5c from=translated src=- shape=d9204af4 vocab=76e01023
+-/
 theorem tgt_outerArcs : d.tgt.outerArcs = modelCurve := targetHex_outerArcs d.abs_xa d.abs_xb
 
+/--
+@isnad1 id=mem.0h2v.s4.cfd0b84fb205 from=translated src=- shape=39e04e2b vocab=9c3219f8
+-/
 theorem a_mem : d.a ∈ C := d.homeo.mapsTo_inv (tgtPos_mem_modelCurve d.abs_xa d.abs_xb 1)
 
+/--
+@isnad1 id=mem.0h2v.s4.dbe362cd0fcd from=translated src=- shape=39e04e2b vocab=621f3a8e
+-/
 theorem b_mem : d.b ∈ C := d.homeo.mapsTo_inv (tgtPos_mem_modelCurve d.abs_xa d.abs_xb 4)
 
+/--
+@isnad1 id=eq.0h2v.s5.2b641251f371 from=translated src=- shape=888fc48e vocab=9a05adc5
+-/
 theorem u_a : d.u (d.w (tgtPos d.xa d.xb 1)) = tgtPos d.xa d.xb 1 :=
   d.homeo.rightInvOn (tgtPos_mem_modelCurve d.abs_xa d.abs_xb 1)
 
+/--
+@isnad1 id=eq.0h2v.s5.16724ebe2b32 from=translated src=- shape=888fc48e vocab=9a05adc5
+-/
 theorem u_b : d.u (d.w (tgtPos d.xa d.xb 4)) = tgtPos d.xa d.xb 4 :=
   d.homeo.rightInvOn (tgtPos_mem_modelCurve d.abs_xa d.abs_xb 4)
 
+/--
+@isnad1 id=eq.0h2v.s4.037fff72f199 from=translated src=- shape=f7b06a90 vocab=7089c6d8
+-/
 @[simp] theorem u_apply_a : d.u d.a = Plane.mk d.xa 1 := d.u_a
 
+/--
+@isnad1 id=eq.0h2v.s4.d2f50673dc6d from=translated src=- shape=0ce860d4 vocab=5859f4f6
+-/
 @[simp] theorem u_apply_b : d.u d.b = Plane.mk d.xb (-1) := d.u_b
 
+/--
+@isnad1 id=eq.0h2v.s4.a18310cfc47a from=translated src=- shape=04dd67bd vocab=29006281
+-/
 theorem sourceRealization_skeletonSet : d.sourceRealization.skeletonSet = C ∪ d.crossSet := by
   rw [sourceRealization, HexData.skeletonSet_realization, d.src_outerArcs]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.5b14da370e73 from=translated src=- shape=25f78e4b vocab=fa6f4035
+-/
 theorem targetRealization_skeletonSet :
     d.targetRealization.skeletonSet = modelCurve ∪ d.tgt.chordSet := by
   rw [targetRealization, HexData.skeletonSet_realization, d.tgt_outerArcs]
 
+/--
+@isnad1 id=eq.0h2v.s4.7e1fbda555ba from=translated src=- shape=49260807 vocab=74edd398
+-/
 theorem sourceRealization_outerSet : d.sourceRealization.outerSet = C := by
   rw [sourceRealization, HexData.outerSet_realization, d.src_outerArcs]
 
+/--
+@isnad1 id=eq.0h2v.s4.6433e01808b4 from=translated src=- shape=7f98be0f vocab=d3ff906a
+-/
 theorem targetRealization_outerSet : d.targetRealization.outerSet = modelCurve := by
   rw [targetRealization, HexData.outerSet_realization, d.tgt_outerArcs]
 
+/--
+@isnad1 id=isconnec.0h2v.s5.1d4eb38b5f09 from=translated src=- shape=2f59edd3 vocab=03042ebb
+-/
 theorem isConnected_sourceRealization_nonboundary :
     IsConnected d.sourceRealization.nonboundary := d.src.isConnected_nonboundary
 
+/--
+@isnad1 id=isconnec.0h2v.s5.c9d3814fcc36 from=translated src=- shape=2f59edd3 vocab=4b482491
+-/
 theorem isConnected_targetRealization_nonboundary :
     IsConnected d.targetRealization.nonboundary := d.tgt.isConnected_nonboundary
 
+/--
+@isnad1 id=istwocon.0h2v.s3.17818d45d732 from=translated src=- shape=1d9629d3 vocab=c88d09b8
+-/
 theorem isTwoConnected_sourceRealization : (d.sourceRealization.graph).IsTwoConnected :=
   d.src.isTwoConnected_graph
 
+/--
+@isnad1 id=istwocon.0h2v.s3.bc045c0c6ae1 from=translated src=- shape=1d9629d3 vocab=f4e57d39
+-/
 theorem isTwoConnected_targetRealization : (d.targetRealization.graph).IsTwoConnected :=
   d.tgt.isTwoConnected_graph
 
 /-! #### `a` and `b` are the only points the crosscut shares with the curve -/
 
+/--
+@isnad1 id=iff.1h3v.s5.7517159e6dc9 from=translated src=- shape=17de902a vocab=db4d946c
+-/
 theorem cross_mem_curve_iff {t : ℝ} (ht : t ∈ I) : d.cross t ∈ C ↔ t = 0 ∨ t = 1 := by
   constructor
   · intro hmem
@@ -1423,6 +1742,9 @@ theorem cross_mem_curve_iff {t : ℝ} (ht : t ∈ I) : d.cross t ∈ C ↔ t = 0
     · rw [d.cross_zero]; exact d.a_mem
     · rw [d.cross_one]; exact d.b_mem
 
+/--
+@isnad1 id=eq.0h2v.s5.c9bbccd23627 from=translated src=- shape=a50435e0 vocab=fe5e24f2
+-/
 theorem crossSet_inter_curve : d.crossSet ∩ C = ({d.a, d.b} : Set Plane) := by
   refine Subset.antisymm ?_ ?_
   · rintro z ⟨⟨t, ht, rfl⟩, hz⟩
@@ -1446,13 +1768,21 @@ noncomputable def skelInv (d : InitialData C) : Plane → Plane :=
   fun y => if y ∈ modelCurve then d.w y else
     d.cross (Function.invFunOn (tgtChord d.xa d.xb) I y)
 
+/--
+@isnad1 id=eq.1h3v.s4.0a605ce2c365 from=translated src=- shape=49dac75f vocab=d54cebe5
+-/
 theorem skelMap_of_mem {x : Plane} (hx : x ∈ C) : d.skelMap x = d.u x := by
   simp only [skelMap, ite_eq_left hx]
 
+/--
+@isnad1 id=eq.1h3v.s4.7d8307793f83 from=translated src=- shape=899fcc8c vocab=c0690f6c
+-/
 theorem skelInv_of_mem {y : Plane} (hy : y ∈ modelCurve) : d.skelInv y = d.w y := by
   simp only [skelInv, ite_eq_left hy]
 
-/-- **The skeleton map matches parameters on the crosscut.** -/
+/-- **The skeleton map matches parameters on the crosscut.**
+@isnad1 id=eq.1h3v.s5.a2dc82822b64 from=translated src=- shape=5593e817 vocab=26f4f0c6
+-/
 theorem skelMap_cross {t : ℝ} (ht : t ∈ I) :
     d.skelMap (d.cross t) = tgtChord d.xa d.xb t := by
   by_cases hmem : d.cross t ∈ C
@@ -1463,6 +1793,9 @@ theorem skelMap_cross {t : ℝ} (ht : t ∈ I) :
       simp [tgtChord]
   · simp only [skelMap, ite_eq_right hmem, d.injOn_cross.leftInvOn_invFunOn ht]
 
+/--
+@isnad1 id=iff.1h3v.s5.2189cc2aba52 from=translated src=- shape=b2a9e558 vocab=b147c4c9
+-/
 theorem tgtChord_mem_modelCurve_iff {t : ℝ} (ht : t ∈ I) :
     tgtChord d.xa d.xb t ∈ modelCurve ↔ t = 0 ∨ t = 1 := by
   constructor
@@ -1478,9 +1811,15 @@ theorem tgtChord_mem_modelCurve_iff {t : ℝ} (ht : t ∈ I) :
     · simp only [tgtChord, AffineMap.lineMap_apply_one]
       exact tgtPos_mem_modelCurve d.abs_xa d.abs_xb 4
 
+/--
+@isnad1 id=injon.0h2v.s4.84670c7ed341 from=translated src=- shape=86671ddb vocab=60b6b308
+-/
 theorem injOn_tgtChord : InjOn (tgtChord d.xa d.xb) I :=
   d.tgt.injOn_chord
 
+/--
+@isnad1 id=eq.1h3v.s5.b99d7c7bb312 from=translated src=- shape=a804c862 vocab=7d0457df
+-/
 theorem skelInv_tgtChord {t : ℝ} (ht : t ∈ I) :
     d.skelInv (tgtChord d.xa d.xb t) = d.cross t := by
   by_cases hmem : tgtChord d.xa d.xb t ∈ modelCurve
@@ -1493,6 +1832,9 @@ theorem skelInv_tgtChord {t : ℝ} (ht : t ∈ I) :
 
 /-! #### Continuity and inversion -/
 
+/--
+@isnad1 id=continuo.0h2v.s6.ed1c4c9550e0 from=translated src=- shape=bf861fba vocab=58da58a9
+-/
 theorem continuousOn_skelMap : ContinuousOn d.skelMap d.sourceRealization.skeletonSet := by
   rw [d.sourceRealization_skeletonSet]
   refine Plane.continuousOn_union_of_isClosed d.curve.isClosed ?_ ?_ ?_
@@ -1506,6 +1848,9 @@ theorem continuousOn_skelMap : ContinuousOn d.skelMap d.sourceRealization.skelet
     · rintro x ⟨t, ht, rfl⟩
       simp only [d.skelMap_cross ht, d.injOn_cross.leftInvOn_invFunOn ht]
 
+/--
+@isnad1 id=continuo.0h2v.s6.b501fcf6312c from=translated src=- shape=bf861fba vocab=cef63ae2
+-/
 theorem continuousOn_skelInv : ContinuousOn d.skelInv d.targetRealization.skeletonSet := by
   rw [d.targetRealization_skeletonSet]
   refine Plane.continuousOn_union_of_isClosed isCompact_modelCurve.isClosed ?_ ?_ ?_
@@ -1522,6 +1867,9 @@ theorem continuousOn_skelInv : ContinuousOn d.skelInv d.targetRealization.skelet
     · rintro y ⟨t, ht, rfl⟩
       simp only [d.skelInv_tgtChord ht, d.injOn_tgtChord.leftInvOn_invFunOn ht]
 
+/--
+@isnad1 id=leftinvo.0h2v.s4.ca717d4488a8 from=translated src=- shape=84bc693c vocab=d936ad4b
+-/
 theorem leftInvOn_skel :
     LeftInvOn d.skelInv d.skelMap d.sourceRealization.skeletonSet := by
   rw [d.sourceRealization_skeletonSet]
@@ -1529,6 +1877,9 @@ theorem leftInvOn_skel :
   · rw [d.skelMap_of_mem hx, d.skelInv_of_mem (d.homeo.mapsTo hx), d.homeo.leftInvOn hx]
   · rw [d.skelMap_cross ht, d.skelInv_tgtChord ht]
 
+/--
+@isnad1 id=rightinv.0h2v.s4.4aaebb73a27b from=translated src=- shape=84bc693c vocab=5fbd82dd
+-/
 theorem rightInvOn_skel :
     RightInvOn d.skelInv d.skelMap d.targetRealization.skeletonSet := by
   rw [d.targetRealization_skeletonSet, d.tgt_chordSet, ← tgtChord_image]
@@ -1569,14 +1920,21 @@ noncomputable def skeletonHomeo :
       rw [← Set.image_comp]
       exact Set.image_congr fun t ht => d.skelMap_cross ht
 
+/--
+@isnad1 id=eq.0h2v.s4.3ab086d560c1 from=translated src=- shape=577dfbba vocab=ed343427
+-/
 @[simp] theorem skeletonHomeo_toFun : d.skeletonHomeo.toFun = d.skelMap := rfl
 
-/-- **Clause 2 of `def:matched-pair`: `g = u` on `C`.** -/
+/-- **Clause 2 of `def:matched-pair`: `g = u` on `C`.**
+@isnad1 id=eq.1h3v.s5.5284b32c90d8 from=translated src=- shape=86dc6f50 vocab=91ce409f
+-/
 theorem skeletonHomeo_eq_u {x : Plane} (hx : x ∈ C) : d.skeletonHomeo.toFun x = d.u x :=
   d.skelMap_of_mem hx
 
 /-- **Clause 3 of `def:matched-pair` for the crosscut**: the chosen homeomorphism
-`P → [u(a), u(b)]` matches the two parametrizations, hence the endpoints. -/
+`P → [u(a), u(b)]` matches the two parametrizations, hence the endpoints.
+@isnad1 id=eq.1h3v.s5.071882619da9 from=translated src=- shape=f82e7eee vocab=3f0306e5
+-/
 theorem skeletonHomeo_cross {t : ℝ} (ht : t ∈ I) :
     d.skeletonHomeo.toFun (d.cross t) = tgtChord d.xa d.xb t := d.skelMap_cross ht
 
@@ -1587,7 +1945,9 @@ theorem skeletonHomeo_cross {t : ℝ} (ht : t ∈ I) :
 target side the chord is straight, so `Schoenflies.hasArcCollars_segment` discharges it
 outright. -/
 
-/-- **`P` is a crosscut of `D`** — the configuration `thm:general-crosscut` consumes. -/
+/-- **`P` is a crosscut of `D`** — the configuration `thm:general-crosscut` consumes.
+@isnad1 id=iscrossc.0h2v.s4.3b4e0f7ffcf7 from=translated src=- shape=6ef4bfb8 vocab=7ccec3b7
+-/
 theorem isCrosscut : IsCrosscut C d.crossSet d.a d.b where
   curve := d.curve
   arc := d.src.isArcBetween_chordSet
@@ -1597,24 +1957,33 @@ theorem isCrosscut : IsCrosscut C d.crossSet d.a d.b where
   sdiff_subset := d.cross_inside
 
 /-- **`A₁, A₂` are the two arcs of `C` from `a` to `b`.** They are the geometric unions of the
-two boundary edge-paths `B₁, B₂` of the abstract structure. -/
+two boundary edge-paths `B₁, B₂` of the abstract structure.
+@isnad1 id=iscutpai.0h2v.s4.8881f0504502 from=translated src=- shape=16c23f44 vocab=7ed8804f
+-/
 theorem isCutPair : IsCutPair C d.a d.b (d.src.arcOf false) (d.src.arcOf true) where
   fst := d.src.arcOf_false_isArcBetween
   snd := d.src.arcOf_true_isArcBetween.reverse
   union_eq := by rw [d.src.arcOf_union, d.src_outerArcs]
   inter_eq := d.src.arcOf_inter
 
+/--
+@isnad1 id=eq.0h3v.s5.c498cbbdaf22 from=translated src=- shape=6e1642a5 vocab=da1a20ce
+-/
 theorem sourceRealization_cell_face (k : Bool) :
     d.sourceRealization.cell (.face k) = inside (d.src.arcOf k ∪ d.crossSet) := rfl
 
-/-- **The two source 2-cells exhaust `D ∖ P`** — `thm:general-crosscut`, first sentence. -/
+/-- **The two source 2-cells exhaust `D ∖ P`** — `thm:general-crosscut`, first sentence.
+@isnad1 id=eq.2h2v.s6.3f3165f2df22 from=translated src=- shape=3ea3f6c4 vocab=4f8f7835
+-/
 theorem source_cells_cover (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ)
     (hcollars : HasArcCollars (inside C) d.crossSet) :
     inside C \ d.crossSet =
       d.sourceRealization.cell (.face false) ∪ d.sourceRealization.cell (.face true) :=
   d.isCrosscut.inside_diff_eq (fun _ h => h.isSeparating harc) d.isCutPair hcollars
 
-/-- **Each source 2-cell is a component of `D ∖ P`.** -/
+/-- **Each source 2-cell is a component of `D ∖ P`.**
+@isnad1 id=eq.2h4v.s7.795439f30f17 from=translated src=- shape=0ae8a805 vocab=cdecba6f
+-/
 theorem source_cell_isComponent (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ)
     (k : Bool) : ∀ z ∈ d.sourceRealization.cell (.face k),
       connectedComponentIn (inside C \ d.crossSet) z = d.sourceRealization.cell (.face k) := by
@@ -1624,13 +1993,18 @@ theorem source_cell_isComponent (harc : ∀ A : Set Plane, IsArc A → IsConnect
 
 /-- **The labelling of the two source 2-cells**: the closure of `Rₖ` meets `C` exactly in
 `Aₖ`. This is what makes `k ↦ face k` the correspondence `lem:crosscut-side-correspondence`
-asks for. -/
+asks for.
+@isnad1 id=eq.1h3v.s6.f95cd3d86000 from=translated src=- shape=96e4132d vocab=ab3823a4
+-/
 theorem source_closure_cell_inter (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ)
     (k : Bool) : closure (d.sourceRealization.cell (.face k)) ∩ C = d.src.arcOf k := by
   cases k
   · exact d.isCrosscut.closure_side_inter (fun _ h => h.isSeparating harc) d.isCutPair
   · exact d.isCrosscut.closure_side_inter (fun _ h => h.isSeparating harc) d.isCutPair.symm
 
+/--
+@isnad1 id=ne.1h2v.s6.2d13a335f7d7 from=translated src=- shape=cee21d36 vocab=cba0b218
+-/
 theorem source_cells_ne (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ) :
     d.sourceRealization.cell (.face false) ≠ d.sourceRealization.cell (.face true) :=
   d.isCrosscut.side_ne (fun _ h => h.isSeparating harc) d.isCutPair
@@ -1638,7 +2012,9 @@ theorem source_cells_ne (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ)
 /-! #### The target side -/
 
 /-- The open square is the bounded region of the model curve: it is open, convex and bounded,
-and its frontier is contained in `S`. -/
+and its frontier is contained in `S`.
+@isnad1 id=le.0h0v.s6.55017e5efc11 from=translated src=- shape=745d9af3 vocab=2560a0bd
+-/
 theorem openSquare_subset_inside_modelCurve : Plane.openSquare 0 1 ⊆ inside modelCurve := by
   have hbdd : Bornology.IsBounded (Plane.openSquare 0 1) := by
     refine (Metric.isBounded_closedBall (x := (0 : Plane)) (r := 2)).subset fun x hx => ?_
@@ -1669,7 +2045,9 @@ theorem openSquare_subset_inside_modelCurve : Plane.openSquare 0 1 ⊆ inside mo
     (Plane.convex_openSquare 0 1).isPreconnected hsub hfr hz]
   exact hbdd
 
-/-- **The straight chord is a crosscut of the open square.** -/
+/-- **The straight chord is a crosscut of the open square.**
+@isnad1 id=iscrossc.0h2v.s5.36673a53c890 from=translated src=- shape=8b0985cf vocab=8b5ca8bd
+-/
 theorem isCrosscutTarget :
     IsCrosscut modelCurve (d.tgt.chordSet) (Plane.mk d.xa 1) (Plane.mk d.xb (-1)) where
   curve := isJordanCurve_modelCurve
@@ -1687,7 +2065,9 @@ theorem isCrosscutTarget :
     · exact openSquare_subset_inside_modelCurve (mem_openSquare_zero_one.2
         (openSegment_chord_supNorm_lt d.abs_xa d.abs_xb _ hz))
 
-/-- **`u(A₁), u(A₂)` are the two arcs of `S` from `u(a)` to `u(b)`.** -/
+/-- **`u(A₁), u(A₂)` are the two arcs of `S` from `u(a)` to `u(b)`.**
+@isnad1 id=iscutpai.0h2v.s5.4c108e5f7d4f from=translated src=- shape=9514dfdf vocab=e775c94a
+-/
 theorem isCutPairTarget :
     IsCutPair modelCurve (Plane.mk d.xa 1) (Plane.mk d.xb (-1))
       (d.tgt.arcOf false) (d.tgt.arcOf true) where
@@ -1696,7 +2076,9 @@ theorem isCutPairTarget :
   union_eq := by rw [d.tgt.arcOf_union, d.tgt_outerArcs]
   inter_eq := d.tgt.arcOf_inter
 
-/-- The collar hypothesis is not needed on the target side: the chord is a segment. -/
+/-- The collar hypothesis is not needed on the target side: the chord is a segment.
+@isnad1 id=hasarcco.0h2v.s3.710eb490296d from=translated src=- shape=f3ec1176 vocab=81e94d4a
+-/
 theorem hasArcCollarsTarget : HasArcCollars (inside modelCurve) d.tgt.chordSet := by
   rw [d.tgt_chordSet]
   refine hasArcCollars_segment ?_ (isOpen_inside isJordanCurve_modelCurve.isClosed) ?_ ?_ ?_
@@ -1707,17 +2089,24 @@ theorem hasArcCollarsTarget : HasArcCollars (inside modelCurve) d.tgt.chordSet :
   · exact fun h => inside_subset_compl h (tgtPos_mem_modelCurve d.abs_xa d.abs_xb 4)
   · rw [← d.tgt_chordSet]; exact d.isCrosscutTarget.sdiff_subset
 
+/--
+@isnad1 id=eq.0h3v.s5.6d93ea1d9403 from=translated src=- shape=bc62c181 vocab=2d3d43f1
+-/
 theorem targetRealization_cell_face (k : Bool) :
     d.targetRealization.cell (.face k) = inside (d.tgt.arcOf k ∪ d.tgt.chordSet) := rfl
 
-/-- **The two target 2-cells exhaust `Q° ∖ [u(a), u(b)]`.** -/
+/-- **The two target 2-cells exhaust `Q° ∖ [u(a), u(b)]`.**
+@isnad1 id=eq.1h2v.s6.07665b0c3afb from=translated src=- shape=7b5bc559 vocab=09157d55
+-/
 theorem target_cells_cover (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ) :
     inside modelCurve \ d.tgt.chordSet =
       d.targetRealization.cell (.face false) ∪ d.targetRealization.cell (.face true) :=
   d.isCrosscutTarget.inside_diff_eq (fun _ h => h.isSeparating harc) d.isCutPairTarget
     d.hasArcCollarsTarget
 
-/-- **The labelling of the two target 2-cells.** -/
+/-- **The labelling of the two target 2-cells.**
+@isnad1 id=eq.1h3v.s6.25a6ce9b5ef9 from=translated src=- shape=74958c83 vocab=888c410b
+-/
 theorem target_closure_cell_inter (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ)
     (k : Bool) :
     closure (d.targetRealization.cell (.face k)) ∩ modelCurve = d.tgt.arcOf k := by
@@ -1742,18 +2131,27 @@ def openTop : Set Plane := {p : Plane | |p 0| < 1 ∧ 0 < p 1} ∩ modelCurve
 /-- The relative interior of the bottom side — the side *opposite* the top one. -/
 def openBottom : Set Plane := {p : Plane | |p 0| < 1 ∧ p 1 < 0} ∩ modelCurve
 
+/--
+@isnad1 id=isopen.0h0v.s8.69f87ce1e714 from=translated src=- shape=0e1702ab vocab=ad593368
+-/
 theorem isOpen_topBand : IsOpen {p : Plane | |p 0| < 1 ∧ 0 < p 1} := by
   have h1 : IsOpen {p : Plane | |p 0| < 1} :=
     isOpen_lt (continuous_abs.comp (Plane.continuous_coord 0)) continuous_const
   have h2 : IsOpen {p : Plane | 0 < p 1} := isOpen_lt continuous_const (Plane.continuous_coord 1)
   exact h1.inter h2
 
+/--
+@isnad1 id=isopen.0h0v.s8.3b83499fba64 from=translated src=- shape=143bb693 vocab=ad593368
+-/
 theorem isOpen_bottomBand : IsOpen {p : Plane | |p 0| < 1 ∧ p 1 < 0} := by
   have h1 : IsOpen {p : Plane | |p 0| < 1} :=
     isOpen_lt (continuous_abs.comp (Plane.continuous_coord 0)) continuous_const
   have h2 : IsOpen {p : Plane | p 1 < 0} := isOpen_lt (Plane.continuous_coord 1) continuous_const
   exact h1.inter h2
 
+/--
+@isnad1 id=iff.0h1v.s8.11d2acd28078 from=translated src=- shape=eec2548a vocab=0393cc4f
+-/
 theorem mem_openTop {p : Plane} : p ∈ openTop ↔ p 1 = 1 ∧ |p 0| < 1 := by
   constructor
   · rintro ⟨⟨h0, hpos⟩, hm⟩
@@ -1770,6 +2168,9 @@ theorem mem_openTop {p : Plane} : p ∈ openTop ↔ p 1 = 1 ∧ |p 0| < 1 := by
     rw [h1, show |(1:ℝ)| = 1 by norm_num]
     exact max_eq_right h0.le
 
+/--
+@isnad1 id=iff.0h1v.s8.425de7fc6ce5 from=translated src=- shape=8fbb3d9c vocab=2cb835a9
+-/
 theorem mem_openBottom {p : Plane} : p ∈ openBottom ↔ p 1 = -1 ∧ |p 0| < 1 := by
   constructor
   · rintro ⟨⟨h0, hneg⟩, hm⟩
@@ -1786,13 +2187,21 @@ theorem mem_openBottom {p : Plane} : p ∈ openBottom ↔ p 1 = -1 ∧ |p 0| < 1
     rw [h1, show |(-1:ℝ)| = 1 by norm_num]
     exact max_eq_right h0.le
 
+/--
+@isnad1 id=nonempty.0h0v.s1.11a11c3ddfc2 from=translated src=- shape=25b03439 vocab=f3c037f5
+-/
 theorem openTop_nonempty : (openTop).Nonempty :=
   ⟨Plane.mk 0 1, mem_openTop.2 ⟨rfl, by norm_num⟩⟩
 
+/--
+@isnad1 id=nonempty.0h0v.s1.1a2203cfbfd4 from=translated src=- shape=25b03439 vocab=3048c5e0
+-/
 theorem openBottom_nonempty : (openBottom).Nonempty :=
   ⟨Plane.mk 0 (-1), mem_openBottom.2 ⟨rfl, by norm_num⟩⟩
 
-/-- A dense subset of `C` meets every nonempty relatively open subset of `C`. -/
+/-- A dense subset of `C` meets every nonempty relatively open subset of `C`.
+@isnad1 id=nonempty.5h4v.s7.074df0d20ed9 from=translated src=- shape=7d7d260b vocab=5fbcaf40
+-/
 theorem exists_mem_inter_of_dense {C A U W : Set Plane} (hAC : A ⊆ C) (hdense : C ⊆ closure A)
     (hW : IsOpen W) (hU : U = W ∩ C) (hne : U.Nonempty) : (A ∩ U).Nonempty := by
   obtain ⟨z, hz⟩ := hne
@@ -1810,7 +2219,9 @@ corner arcs, together with a polygonal crosscut of `D` from `a` to `b` — and a
 realization in `Q`, namely `S` correspondingly subdivided together with the straight chord
 `[u(a), u(b)]`.
 
-`harc` is `thm:arc-complement`, the standing hypothesis of `thm:jordan` in this library. -/
+`harc` is `thm:arc-complement`, the standing hypothesis of `thm:jordan` in this library.
+@isnad1 id=nonempty.2h1v.s5.4006cc566480 from=translated src=- shape=a23681fe vocab=18d1de9c
+-/
 theorem exists_initialData (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ)
     (hC : IsJordanCurve C) : Nonempty (InitialData C) := by
   have hsep : IsSeparating C := hC.isSeparating harc
@@ -1889,7 +2300,9 @@ Everything here is available separately, as a function of the `InitialData` prod
 bundle exists so that the blueprint statement appears once, in one place. `def:generated-
 structure` builds every later stage from `InitialData.sourceRealization`,
 `InitialData.targetRealization` and `InitialData.skeletonHomeo`, and needs them as data, not as
-the content of an existential. -/
+the content of an existential.
+@isnad1 id=ex.2h1v.s8.5f7f17b74ac9 from=translated src=- shape=e0d68454 vocab=f123ce8e
+-/
 theorem initial_pair (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ) (hC : IsJordanCurve C) :
     ∃ d : InitialData C,
       (d.sourceRealization.graph).IsTwoConnected ∧

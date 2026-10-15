@@ -117,11 +117,17 @@ def s {n : ℕ} (J K : SignedInterval n) : SignedInterval n :=
 noncomputable abbrev ZnPairing (n : ℕ) : Zn n →ₗ[ℤ] ZnDual n →ₗ[ℤ] ℤ :=
   Module.Dual.eval ℤ (Zn n)
 
+/--
+@isnad1 id=eq.3h3v.s5.2782c72dbfff from=translated src=- shape=12d064a0 vocab=cd3c8bd9
+-/
 @[ext]
 theorem SignedInterval.ext' {n : ℕ} {J K : SignedInterval n}
     (hi : J.i = K.i) (hj : J.j = K.j) (hε : J.ε = K.ε) : J = K := by
   cases J; cases K; simp_all
 
+/--
+@isnad1 id=eq.0h3v.s4.343cbd2b7271 from=translated src=- shape=a1f2d8cb vocab=ea4919d1
+-/
 theorem s_involutive {n : ℕ} (J K : SignedInterval n) :
     s J (s J K) = K := by
   cases J; cases K; simp +decide only [s, Bool.not_false, Bool.ite_true_right, Bool.decide_eq_true,
@@ -155,7 +161,9 @@ theorem s_involutive {n : ℕ} (J K : SignedInterval n) :
     · aesop
 
 /-- The key formula: sum of Ae columns over an interval `[p,q]` evaluated at `t`
-gives `δ_{t,p} + δ_{t,q} - δ_{t+1,p} - δ_{q+1,t}` (using `ℕ` comparisons). -/
+gives `δ_{t,p} + δ_{t,q} - δ_{t+1,p} - δ_{q+1,t}` (using `ℕ` comparisons).
+@isnad1 id=eq.1h4v.s7.f386e30c487a from=translated src=- shape=2454952f vocab=2dff0b90
+-/
 theorem Ae_sum_eq {n : ℕ} [NeZero n] (p q : Fin n) (hpq : p ≤ q) (t : Fin n) :
     (∑ u ∈ Finset.Icc p q, Ae u) t =
     (if t = p then 1 else 0) + (if t = q then 1 else 0)
@@ -179,7 +187,9 @@ theorem Ae_sum_eq {n : ℕ} [NeZero n] (p q : Fin n) (hpq : p ≤ q) (t : Fin n)
         grind;
       · grind
 
-/-- `α J` evaluated at `t`, expressed in terms of Kronecker deltas. -/
+/-- `α J` evaluated at `t`, expressed in terms of Kronecker deltas.
+@isnad1 id=eq.0h3v.s7.f0fa554c24d2 from=translated src=- shape=3d36bf3f vocab=b0ff37cf
+-/
 theorem α_eval {n : ℕ} [NeZero n] (J : SignedInterval n) (t : Fin n) :
     α J t = J.sign * ((if t = J.i then 1 else 0) + (if t = J.j then 1 else 0)
     - (if (t : ℕ) + 1 = (J.i : ℕ) then 1 else 0)
@@ -188,13 +198,17 @@ theorem α_eval {n : ℕ} [NeZero n] (J : SignedInterval n) (t : Fin n) :
   convert congr_arg ( fun x : ℤ => J.sign * x ) ( this J.i J.j J.hij t ) using 1
   simp [α, Pi.smul_apply, Finset.sum_apply]
 
-/-- `αDual J` evaluated on a test function. -/
+/-- `αDual J` evaluated on a test function.
+@isnad1 id=eq.0h3v.s6.d74680cf11a3 from=translated src=- shape=3701cf18 vocab=cdf52cd4
+-/
 theorem α_dual_eval {n : ℕ} (J : SignedInterval n) (f : Zn n) :
     αDual J f = J.sign * ∑ v ∈ Finset.Icc J.i J.j, f v := by
   unfold αDual; simp +decide [Finset.mul_sum _ _ _]; ring_nf;
   rfl
 
-/-- Pairing computation: `L(α K, α^v J)` in terms of interval endpoints. -/
+/-- Pairing computation: `L(α K, α^v J)` in terms of interval endpoints.
+@isnad1 id=eq.0h3v.s10.cfcd1ecdecec from=translated src=- shape=6215fbf6 vocab=ecdc7d65
+-/
 theorem pairing_formula {n : ℕ} [NeZero n] (J K : SignedInterval n) :
     (ZnPairing n (α K)) (αDual J) = J.sign * K.sign *
     ((if J.i = K.i then 1 else 0) + (if J.j = K.j then 1 else 0)
@@ -239,12 +253,18 @@ theorem pairing_formula {n : ℕ} [NeZero n] (J K : SignedInterval n) :
   simp_all +decide [Finset.sum_add_distrib, Finset.sum_sub_distrib]
   grind +suggestions
 
+/--
+@isnad1 id=eq.0h2v.s10.e3cf52f8e2f3 from=translated src=- shape=9516faa1 vocab=37920885
+-/
 theorem pairing_self {n : ℕ} [NeZero n] (J : SignedInterval n) :
     (ZnPairing n (α J)) (αDual J) = 2 := by
   rw [pairing_formula J J]
   obtain ⟨i, j, hij, ε⟩ := J
   cases ε <;> simp +decide [SignedInterval.sign] <;> omega
 
+/--
+@isnad1 id=iff.0h3v.s10.afe3400fbd51 from=translated src=- shape=d7d89009 vocab=37920885
+-/
 theorem pairing_eq_two_iff_eq {n : ℕ} [NeZero n] (J K : SignedInterval n) :
     (ZnPairing n (α K)) (αDual J) = 2 ↔ K = J := by
   constructor
@@ -259,18 +279,27 @@ theorem pairing_eq_two_iff_eq {n : ℕ} [NeZero n] (J K : SignedInterval n) :
     subst K
     exact pairing_self J
 
+/--
+@isnad1 id=injectiv.0h1v.s4.1ea1d9678dcb from=translated src=- shape=63275252 vocab=688503cf
+-/
 theorem α_injective {n : ℕ} [NeZero n] : Function.Injective (α (n := n)) := by
   intro J K h
   exact ((pairing_eq_two_iff_eq J K).mp (by
     rw [← h]
     exact pairing_self J)).symm
 
+/--
+@isnad1 id=injectiv.0h1v.s4.1fe4ef732379 from=translated src=- shape=63275252 vocab=4d97d54a
+-/
 theorem α_dual_injective {n : ℕ} [NeZero n] : Function.Injective (αDual (n := n)) := by
   intro J K h
   exact (pairing_eq_two_iff_eq K J).mp (by
     rw [← h]
     exact pairing_self J)
 
+/--
+@isnad1 id=eq.0h2v.s10.e3cf52f8e2f3 from=translated src=- shape=9516faa1 vocab=37920885
+-/
 theorem root_coroot_two' {n : ℕ} [NeZero n] (J : SignedInterval n) :
     (ZnPairing n) (α J) (αDual J) = 2 :=
   pairing_self J
@@ -413,16 +442,25 @@ private theorem signedInterval_sum_reflection {n : ℕ} {M : Type*} [AddCommGrou
     cases Jε <;> cases Kε <;>
       simp [s, hJiKi, hJjKj, h₁, h₂, SignedInterval.sign]
 
+/--
+@isnad1 id=eq.0h4v.s10.050eb272af7f from=translated src=- shape=98e35113 vocab=c80ae72e
+-/
 theorem reflectionPerm_root_eval {n : ℕ} [NeZero n] (J K : SignedInterval n) (t : Fin n) :
     (α K - (ZnPairing n (α K)) (αDual J) • α J) t = α (s J K) t := by
   rw [pairing_formula J K]
   exact congrFun (signedInterval_sum_reflection Ae J K) t
 
+/--
+@isnad1 id=eq.0h3v.s10.b3ae53a97695 from=translated src=- shape=5ef28662 vocab=c80ae72e
+-/
 theorem reflectionPerm_root' {n : ℕ} [NeZero n] (J K : SignedInterval n) :
     α K - (ZnPairing n (α K)) (αDual J) • α J = α (s J K) := by
   ext t
   exact reflectionPerm_root_eval J K t
 
+/--
+@isnad1 id=eq.0h3v.s11.18700420104e from=translated src=- shape=da3a6706 vocab=37920885
+-/
 theorem pairing_symm {n : ℕ} [NeZero n] (J K : SignedInterval n) :
     (ZnPairing n (α J)) (αDual K) = (ZnPairing n (α K)) (αDual J) := by
   rw [pairing_formula J K, pairing_formula K J]
@@ -431,6 +469,9 @@ theorem pairing_symm {n : ℕ} [NeZero n] (J K : SignedInterval n) :
   unfold SignedInterval.sign
   cases Jε <;> cases Kε <;> simp only [ite_true] <;> split_ifs <;> omega
 
+/--
+@isnad1 id=eq.0h4v.s10.bb883dbabdc8 from=translated src=- shape=b951da93 vocab=ad5dc999
+-/
 theorem reflectionPerm_coroot_single {n : ℕ} [NeZero n] (J K : SignedInterval n) (t : Fin n) :
     ((αDual K - (ZnPairing n (α J)) (αDual K) • αDual J) ∘ₗ
         LinearMap.single ℤ (fun _ : Fin n => ℤ) t) 1 =
@@ -443,6 +484,9 @@ theorem reflectionPerm_coroot_single {n : ℕ} [NeZero n] (J K : SignedInterval 
   exact LinearMap.congr_fun (signedInterval_sum_reflection eTranspose J K)
     (LinearMap.single ℤ (fun _ : Fin n => ℤ) t 1)
 
+/--
+@isnad1 id=eq.0h3v.s10.f274c256ab9a from=translated src=- shape=e9f63969 vocab=c80ae72e
+-/
 theorem reflectionPerm_coroot' {n : ℕ} [NeZero n] (J K : SignedInterval n) :
     αDual K - (ZnPairing n (α J)) (αDual K) • αDual J = αDual (s J K) := by
   ext t
@@ -484,10 +528,16 @@ instance finite (n : ℕ) : Fintype (SignedInterval n) := by
         intro J
         simp_all }
 
+/--
+@isnad1 id=finite.0h1v.s2.a5d1082460b0 from=translated src=- shape=76a08d12 vocab=3abad880
+-/
 lemma An_is_finite (n : ℕ) : Finite (SignedInterval n) := by
   infer_instance
 
 -- Proof that the root pairing is reduced
+/--
+@isnad1 id=isreduce.0h1v.s7.378f6ae27fd2 from=translated src=- shape=104405a2 vocab=9949b599
+-/
 lemma An_is_reduced (n : ℕ) [NeZero n] : (rootPairing n).IsReduced := by
   rw [RootPairing.isReduced_iff]
   intro J K hlin
@@ -517,6 +567,9 @@ lemma An_is_reduced (n : ℕ) [NeZero n] : (rootPairing n).IsReduced := by
     simp [SignedInterval.sign]
   · left; rfl
 
+/--
+@isnad1 id=iscrysta.0h1v.s7.ad1cf05826f3 from=translated src=- shape=104405a2 vocab=bc5d4465
+-/
 lemma An_is_crystallographic (n : ℕ) [NeZero n] : (rootPairing n).IsCrystallographic :=
   ⟨fun i j => ⟨(rootPairing n).pairing i j, by simp⟩⟩
 

@@ -16,6 +16,9 @@ public import Tengoku
 open Filter
 open scoped Topology
 
+/--
+@isnad1 id=iff.1h4v.s5.7856e5b233f4 from=translated src=- shape=8fd5e85d vocab=f4497fe8
+-/
 theorem eventually_nhdsWithin_nhds {X : Type*} [TopologicalSpace X] {U : Set X} (hU : IsOpen U)
     {p : X → Prop} {x : X} :
     (∀ᶠ y in 𝓝[U] x, ∀ᶠ z in 𝓝 y, p z) ↔ ∀ᶠ y in 𝓝[U] x, p y := by

@@ -60,7 +60,9 @@ private lemma parametrization_not_C_two_dvd_second {n : ℕ} {f g h : IntPoly n}
   omega
 
 /-- Frisch--Vaserstein's obstruction: no finite-variable triple of integer-coefficient
-polynomials parametrizes all Pythagorean triples. -/
+polynomials parametrizes all Pythagorean triples.
+@isnad1 id=not.0h0v.s4.3670c65dced6 from=translated src=- shape=51e7b078 vocab=160d1471
+-/
 theorem no_int_poly_parametrization :
     ¬∃ (n : ℕ) (f g h : IntPoly n), IntPolyParametrizes f g h pythagoreanTriples := by
   rintro ⟨n, f, g, h, hp⟩

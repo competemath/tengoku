@@ -109,7 +109,9 @@ hoist them. -/
 
 /-- **An edge of a subgraph has its ends in the subgraph**, even when the incidence is only
 known in the big graph. This is what turns "every edge of the ear has an end outside `V(K)`"
-into "no edge of the ear is an edge of `K`". -/
+into "no edge of the ear is an edge of `K`".
+@isnad1 id=mem.3h6v.s6.d5db4075f5ee from=translated src=- shape=6f23483d vocab=7ca3c3a9
+-/
 theorem mem_vertexSet_of_inc_of_mem_edgeSet (hKG : K ≤ G) (hf : f ∈ E(K)) (h : G.Inc f y) :
     y ∈ V(K) :=
   ((hKG.inc_congr hf).2 h).vertex_mem
@@ -133,7 +135,9 @@ distinguishes it from `Graph.IsTwoConnected.ear_exists`. The first branch takes 
 (`Graph.IsTwoConnected.exists_path_through_component`); the two distinct vertices of `V(K)`
 that construction needs are supplied by the counting clause of `K.IsTwoConnected`. The second
 branch is the blueprint's "if all vertices are already present, add a missing edge as an ear
-of length one", and it is the only place looplessness is used. -/
+of length one", and it is the only place looplessness is used.
+@isnad1 id=ex.5h4v.s7.ed89d87db826 from=translated src=- shape=44697252 vocab=2129c0d5
+-/
 theorem IsTwoConnected.relative_ear_exists (hG : G.IsTwoConnected) (hK : K.IsTwoConnected)
     (hKG : K ≤ G) (hnl : ∀ ⦃g x⦄, ¬ G.IsLoopAt g x)
     (hproper : (∃ x ∈ V(G), x ∉ V(K)) ∨ (∃ g ∈ E(G), g ∉ E(K))) :
@@ -170,7 +174,9 @@ enlarged graph is again a 2-connected subgraph of `G` between `K` and `G`, and i
 that `K` did not have.
 
 The ear data is handed back alongside the enlarged graph, because a consumer of the geometric
-version needs the *path*, not merely the fact that the subgraph grew. -/
+version needs the *path*, not merely the fact that the subgraph grew.
+@isnad1 id=ex.5h4v.s8.5a93bae4555d from=translated src=- shape=62e34f1d vocab=1e550778
+-/
 theorem IsTwoConnected.relative_grows_by_ear (hG : G.IsTwoConnected) (hK : K.IsTwoConnected)
     (hKG : K ≤ G) (hnl : ∀ ⦃g x⦄, ¬ G.IsLoopAt g x)
     (hproper : (∃ x ∈ V(G), x ∉ V(K)) ∨ (∃ g ∈ E(G), g ∉ E(K))) :
@@ -199,10 +205,16 @@ conclusion is about `B.union (G.pathGraphOf a D)`. Both are immediate from the s
 `Schoenflies/Graph/TwoConnected.lean` and `Schoenflies/Graph/PathGraph.lean`; they are here
 only so that no consumer has to rediscover which two to combine. -/
 
+/--
+@isnad1 id=eq.0h6v.s5.67721728ed6a from=translated src=- shape=d6ca23a1 vocab=d55ec3df
+-/
 @[simp]
 theorem vertexSet_union_pathGraphOf (B G : Graph α β) (a : α) (D : List β) :
     V(B.union (G.pathGraphOf a D)) = V(B) ∪ G.walkVertices a D := rfl
 
+/--
+@isnad1 id=eq.1h7v.s6.5d655bd55497 from=translated src=- shape=a5e7d94d vocab=eadf8ac8
+-/
 theorem edgeSet_union_pathGraphOf (h : G.IsWalk a D b) :
     E(B.union (G.pathGraphOf a D)) = E(B) ∪ {e | e ∈ D} := by
   rw [edgeSet_union, pathGraphOf_edgeSet h]
@@ -219,7 +231,9 @@ subgraph `B`, and the fact that its other vertices are outside `B` — together 
 
 "Finiteness terminates the process" is the strong induction below on `(E(G) \ E(B)).ncard`:
 every ear contributes an edge of `G` that `B` was missing, and the process can only be stuck
-when `B` has all of `G`'s vertices and edges, which makes `B = G`. -/
+when `B` has all of `G`'s vertices and edges, which makes `B = G`.
+@isnad1 id=var.4h7v.s7.f9fbd11e6a5d from=translated src=- shape=fc090760 vocab=72815280
+-/
 theorem IsTwoConnected.ear_decomposition {motive : Graph α β → Prop} [G.Finite]
     (hG : G.IsTwoConnected) (hnl : ∀ ⦃g x⦄, ¬ G.IsLoopAt g x)
     (hK : K.IsTwoConnected) (hKG : K ≤ G) (base : motive K)

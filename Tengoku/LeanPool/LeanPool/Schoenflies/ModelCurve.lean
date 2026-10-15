@@ -69,7 +69,9 @@ The four sides of the square are axis-parallel, so each is pinned by one coordin
 by the other. Two lemmas serve all four. -/
 
 /-- A horizontal segment: constant second coordinate, first coordinate sweeping a real
-segment. -/
+segment.
+@isnad1 id=iff.0h4v.s8.a7bff525ae47 from=translated src=- shape=f48d4e54 vocab=378066a7
+-/
 theorem mem_segment_horiz {u v c : ℝ} {x : Plane} :
     x ∈ segment ℝ (Plane.mk u c) (Plane.mk v c) ↔ x 1 = c ∧ x 0 ∈ segment ℝ u v := by
   constructor
@@ -91,7 +93,9 @@ theorem mem_segment_horiz {u v c : ℝ} {x : Plane} :
       linear_combination c * hpq
 
 /-- A vertical segment: constant first coordinate, second coordinate sweeping a real
-segment. -/
+segment.
+@isnad1 id=iff.0h4v.s8.4627d45926ec from=translated src=- shape=f6d51f49 vocab=378066a7
+-/
 theorem mem_segment_vert {c u v : ℝ} {x : Plane} :
     x ∈ segment ℝ (Plane.mk c u) (Plane.mk c v) ↔ x 0 = c ∧ x 1 ∈ segment ℝ u v := by
   constructor
@@ -112,10 +116,16 @@ theorem mem_segment_vert {c u v : ℝ} {x : Plane} :
       rw [Plane.smul_add_apply, Plane.mk_one, Plane.mk_one, ← hx1]
       simp [smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h0v.s5.165fcd7c9d8d from=translated src=- shape=4729167e vocab=7d9246b5
+-/
 theorem segment_one_neg_one : segment ℝ (1 : ℝ) (-1) = Icc (-1) 1 := by
   rw [segment_symm]
   exact segment_eq_Icc (by norm_num)
 
+/--
+@isnad1 id=eq.0h0v.s5.77219195faf1 from=translated src=- shape=fbc80029 vocab=7d9246b5
+-/
 theorem segment_neg_one_one : segment ℝ (-1 : ℝ) 1 = Icc (-1) 1 :=
   segment_eq_Icc (by norm_num)
 
@@ -149,24 +159,38 @@ def sideBottom : Set Plane := segment ℝ cornerSW cornerSE
 /-- The right side of the square, traversed from `(1,-1)` to `(1,1)`. -/
 def sideRight : Set Plane := segment ℝ cornerSE cornerNE
 
+/--
+@isnad1 id=iff.0h1v.s8.42b50babc9a4 from=translated src=- shape=eec2548a vocab=cf8d7cb5
+-/
 theorem mem_sideTop {x : Plane} : x ∈ sideTop ↔ x 1 = 1 ∧ |x 0| ≤ 1 := by
   rw [sideTop, cornerNE, cornerNW, mem_segment_horiz, segment_one_neg_one]
   simp [abs_le, and_comm]
 
+/--
+@isnad1 id=iff.0h1v.s8.b2ad3a39a43a from=translated src=- shape=8fbb3d9c vocab=b501232d
+-/
 theorem mem_sideLeft {x : Plane} : x ∈ sideLeft ↔ x 0 = -1 ∧ |x 1| ≤ 1 := by
   rw [sideLeft, cornerNW, cornerSW, mem_segment_vert, segment_one_neg_one]
   simp [abs_le]
 
+/--
+@isnad1 id=iff.0h1v.s8.233be1a356aa from=translated src=- shape=8fbb3d9c vocab=85be37b7
+-/
 theorem mem_sideBottom {x : Plane} : x ∈ sideBottom ↔ x 1 = -1 ∧ |x 0| ≤ 1 := by
   rw [sideBottom, cornerSW, cornerSE, mem_segment_horiz, segment_neg_one_one]
   simp [abs_le]
 
+/--
+@isnad1 id=iff.0h1v.s8.8ef8c42ad423 from=translated src=- shape=eec2548a vocab=976957b1
+-/
 theorem mem_sideRight {x : Plane} : x ∈ sideRight ↔ x 0 = 1 ∧ |x 1| ≤ 1 := by
   rw [sideRight, cornerSE, cornerNE, mem_segment_vert, segment_neg_one_one]
   simp [abs_le]
 
 /-- The model curve is the union of the four sides. The sup norm reaches `1` exactly when one
-coordinate is `±1` and the other is dominated by it. -/
+coordinate is `±1` and the other is dominated by it.
+@isnad1 id=eq.0h0v.s4.4b269b13ef34 from=translated src=- shape=394e7cf1 vocab=bbf2cd86
+-/
 theorem modelCurve_eq_sides :
     modelCurve = (sideTop ∪ sideLeft) ∪ (sideBottom ∪ sideRight) := by
   ext x
@@ -198,39 +222,65 @@ theorem modelCurve_eq_sides :
 
 /-! ### The model curve is a Jordan curve -/
 
+/--
+@isnad1 id=ne.0h0v.s2.0846e2e4e84b from=translated src=- shape=54c8eceb vocab=60a5dbaa
+-/
 theorem cornerNE_ne_cornerNW : cornerNE ≠ cornerNW := by
   intro h
   have := congrArg (fun p : Plane => p 0) h
   norm_num [cornerNE, cornerNW] at this
 
+/--
+@isnad1 id=ne.0h0v.s2.b2e98ebf764c from=translated src=- shape=54c8eceb vocab=036a419a
+-/
 theorem cornerNW_ne_cornerSW : cornerNW ≠ cornerSW := by
   intro h
   have := congrArg (fun p : Plane => p 1) h
   norm_num [cornerNW, cornerSW] at this
 
+/--
+@isnad1 id=ne.0h0v.s2.326ab69ce9b3 from=translated src=- shape=54c8eceb vocab=10da05fb
+-/
 theorem cornerSW_ne_cornerSE : cornerSW ≠ cornerSE := by
   intro h
   have := congrArg (fun p : Plane => p 0) h
   norm_num [cornerSW, cornerSE] at this
 
+/--
+@isnad1 id=ne.0h0v.s2.483ff8e58639 from=translated src=- shape=54c8eceb vocab=73d80f93
+-/
 theorem cornerSE_ne_cornerNE : cornerSE ≠ cornerNE := by
   intro h
   have := congrArg (fun p : Plane => p 1) h
   norm_num [cornerSE, cornerNE] at this
 
+/--
+@isnad1 id=isarcbet.0h0v.s2.0dd28ff49c8b from=translated src=- shape=54c8eceb vocab=d04dbfbc
+-/
 theorem isArcBetween_sideTop : IsArcBetween sideTop cornerNE cornerNW :=
   isArcBetween_segment cornerNE_ne_cornerNW
 
+/--
+@isnad1 id=isarcbet.0h0v.s2.305bbf96c754 from=translated src=- shape=54c8eceb vocab=fe47ea97
+-/
 theorem isArcBetween_sideLeft : IsArcBetween sideLeft cornerNW cornerSW :=
   isArcBetween_segment cornerNW_ne_cornerSW
 
+/--
+@isnad1 id=isarcbet.0h0v.s2.6a17df199418 from=translated src=- shape=54c8eceb vocab=7a2cfdb6
+-/
 theorem isArcBetween_sideBottom : IsArcBetween sideBottom cornerSW cornerSE :=
   isArcBetween_segment cornerSW_ne_cornerSE
 
+/--
+@isnad1 id=isarcbet.0h0v.s2.93b1bb9c7064 from=translated src=- shape=54c8eceb vocab=83e8c24e
+-/
 theorem isArcBetween_sideRight : IsArcBetween sideRight cornerSE cornerNE :=
   isArcBetween_segment cornerSE_ne_cornerNE
 
-/-- Consecutive sides meet only in the corner they share. -/
+/-- Consecutive sides meet only in the corner they share.
+@isnad1 id=eq.2h1v.s4.75c6d350ab9f from=translated src=- shape=372d185e vocab=66fbcffe
+-/
 theorem sideTop_meet_sideLeft : ∀ z ∈ sideTop, z ∈ sideLeft → z = cornerNW := by
   intro z hz hz'
   rw [mem_sideTop] at hz
@@ -240,6 +290,9 @@ theorem sideTop_meet_sideLeft : ∀ z ∈ sideTop, z ∈ sideLeft → z = corner
   · simpa [cornerNW] using hz'.1
   · simpa [cornerNW] using hz.1
 
+/--
+@isnad1 id=eq.2h1v.s4.2405d00eb81a from=translated src=- shape=372d185e vocab=f61fdfdf
+-/
 theorem sideBottom_meet_sideRight : ∀ z ∈ sideBottom, z ∈ sideRight → z = cornerSE := by
   intro z hz hz'
   rw [mem_sideBottom] at hz
@@ -249,16 +302,22 @@ theorem sideBottom_meet_sideRight : ∀ z ∈ sideBottom, z ∈ sideRight → z 
   · simpa [cornerSE] using hz'.1
   · simpa [cornerSE] using hz.1
 
-/-- The upper half of the model curve: two sides from `(1,1)` to `(-1,-1)`. -/
+/-- The upper half of the model curve: two sides from `(1,1)` to `(-1,-1)`.
+@isnad1 id=isarcbet.0h0v.s3.1385daa24402 from=translated src=- shape=f2a42bd3 vocab=ec749128
+-/
 theorem isArcBetween_upperSides : IsArcBetween (sideTop ∪ sideLeft) cornerNE cornerSW :=
   isArcBetween_sideTop.concatenate isArcBetween_sideLeft sideTop_meet_sideLeft
 
-/-- The lower half of the model curve: two sides back from `(-1,-1)` to `(1,1)`. -/
+/-- The lower half of the model curve: two sides back from `(-1,-1)` to `(1,1)`.
+@isnad1 id=isarcbet.0h0v.s3.5ae5283efaa7 from=translated src=- shape=f2a42bd3 vocab=0dd2267a
+-/
 theorem isArcBetween_lowerSides : IsArcBetween (sideBottom ∪ sideRight) cornerSW cornerNE :=
   isArcBetween_sideBottom.concatenate isArcBetween_sideRight sideBottom_meet_sideRight
 
 /-- The two halves of the model curve meet exactly in the two corners they share: opposite
-sides are pinned to opposite values of one coordinate, so they are disjoint. -/
+sides are pinned to opposite values of one coordinate, so they are disjoint.
+@isnad1 id=or.2h1v.s5.92fe19332eb0 from=translated src=- shape=538ef838 vocab=7f41cd58
+-/
 theorem upperSides_meet_lowerSides :
     ∀ z ∈ sideTop ∪ sideLeft, z ∈ sideBottom ∪ sideRight → z = cornerNE ∨ z = cornerSW := by
   rintro z (hz | hz) (hz' | hz')
@@ -290,15 +349,23 @@ theorem upperSides_meet_lowerSides :
     norm_num at hz'
 
 /-- **The model curve is a Jordan curve.** Four segments glued end to end; no trigonometry
-anywhere. -/
+anywhere.
+@isnad1 id=isjordan.0h0v.s1.7b2c90cf4579 from=translated src=- shape=49959d42 vocab=2f184cf7
+-/
 theorem isJordanCurve_modelCurve : IsJordanCurve modelCurve := by
   rw [modelCurve_eq_sides]
   exact IsJordanCurve.of_two_arcs isArcBetween_upperSides isArcBetween_lowerSides
     upperSides_meet_lowerSides
 
+/--
+@isnad1 id=iscompac.0h0v.s5.805c33d9b4c0 from=translated src=- shape=25b03439 vocab=b0b50b45
+-/
 theorem isCompact_modelCurve : IsCompact modelCurve :=
   isJordanCurve_modelCurve.isCompact
 
+/--
+@isnad1 id=mem.0h0v.s3.9f1cd7a111b7 from=translated src=- shape=d1530203 vocab=26be0782
+-/
 theorem cornerNE_mem_modelCurve : cornerNE ∈ modelCurve := by
   rw [modelCurve_eq_sides]
   exact Or.inl isArcBetween_upperSides.left_mem
@@ -310,21 +377,35 @@ definition above is the intended one. The only content is that a point of sup no
 is *not* interior to the square: scaling it out by a factor `1 + δ` leaves the square while
 moving an arbitrarily small distance. -/
 
+/--
+@isnad1 id=eq.0h3v.s7.48fc7f031017 from=translated src=- shape=be86b003 vocab=f1955862
+-/
 theorem smul_coord (a : ℝ) (x : Plane) (i : Fin 2) : (a • x) i = a * x i := by simp
 
+/--
+@isnad1 id=iff.0h1v.s6.778f0cdb0d56 from=translated src=- shape=b8340284 vocab=ee6f246d
+-/
 theorem mem_closedSquare_zero_one {x : Plane} :
     x ∈ Plane.closedSquare 0 1 ↔ Plane.supNorm x ≤ 1 := by
   simp [Plane.closedSquare]
 
+/--
+@isnad1 id=iff.0h1v.s6.6553659182e6 from=translated src=- shape=b8340284 vocab=90d636c4
+-/
 theorem mem_openSquare_zero_one {x : Plane} :
     x ∈ Plane.openSquare 0 1 ↔ Plane.supNorm x < 1 := by
   simp [Plane.openSquare]
 
+/--
+@isnad1 id=le.0h0v.s6.add7fa8f5cb5 from=translated src=- shape=af7ad331 vocab=c528ff32
+-/
 theorem modelCurve_subset_closedSquare : modelCurve ⊆ Plane.closedSquare 0 1 :=
   fun _ hx => mem_closedSquare_zero_one.mpr (le_of_eq hx)
 
 /-- A point of the model curve is not interior to the square: pushing it radially outwards by
-a factor `1 + δ` leaves the square, and `δ` may be taken as small as one likes. -/
+a factor `1 + δ` leaves the square, and `δ` may be taken as small as one likes.
+@isnad1 id=not.1h1v.s7.b951c6468b95 from=translated src=- shape=63811e95 vocab=a5ddd30d
+-/
 theorem notMem_interior_closedSquare {x : Plane} (hx : Plane.supNorm x = 1) :
     x ∉ interior (Plane.closedSquare 0 1) := by
   intro hmem
@@ -362,6 +443,9 @@ theorem notMem_interior_closedSquare {x : Plane} (hx : Plane.supNorm x = 1) :
         _ ≤ Plane.supNorm ((1 + δ) • x) := Plane.abs_one_le_supNorm _
   linarith
 
+/--
+@isnad1 id=eq.0h0v.s7.2f3d1d2715f3 from=translated src=- shape=35f4c62d vocab=5bc021d6
+-/
 theorem interior_closedSquare_zero_one :
     interior (Plane.closedSquare 0 1) = Plane.openSquare 0 1 := by
   refine subset_antisymm (fun x hx => ?_) ?_
@@ -372,7 +456,9 @@ theorem interior_closedSquare_zero_one :
   · exact (Plane.isOpen_openSquare 0 1).subset_interior_iff.mpr fun x hx =>
       mem_closedSquare_zero_one.mpr (mem_openSquare_zero_one.mp hx).le
 
-/-- **The model curve is `∂Q`**, the topological boundary of the closed square `Q = [-1,1]²`. -/
+/-- **The model curve is `∂Q`**, the topological boundary of the closed square `Q = [-1,1]²`.
+@isnad1 id=eq.0h0v.s6.8cc1e197a22b from=translated src=- shape=2d6d5959 vocab=7f4a4486
+-/
 theorem modelCurve_eq_frontier : modelCurve = frontier (Plane.closedSquare 0 1) := by
   rw [(Plane.isClosed_closedSquare 0 1).frontier_eq, interior_closedSquare_zero_one]
   ext x
@@ -387,7 +473,9 @@ namespace IsLoop
 variable {f g : ℝ → Plane}
 
 /-- Two parameters of `[0,1]` with the same image under a loop are equal, or are the two ends
-of the interval. This is the whole of a loop's non-injectivity. -/
+of the interval. This is the whole of a loop's non-injectivity.
+@isnad1 id=or.4h3v.s6.7aabc2b0740c from=translated src=- shape=50e0b243 vocab=46d7482c
+-/
 theorem param_eq_or (hf : IsLoop f) {s t : ℝ} (hs : s ∈ I) (ht : t ∈ I) (h : f s = f t) :
     s = t ∨ (s = 0 ∧ t = 1) ∨ (s = 1 ∧ t = 0) := by
   by_cases hs1 : s = 1 <;> by_cases ht1 : t = 1
@@ -418,7 +506,9 @@ theorem eq_of_eq (hf : IsLoop f) (hg : IsLoop g) {s t : ℝ} (hs : s ∈ I) (ht 
 `t ↦ f t` is a continuous surjection of the compact `[0,1]` onto the Hausdorff image, hence a
 closed map, hence a quotient map; so a map out of the image is continuous as soon as its
 composite with the parametrization is. The induced map is well defined by `eq_of_eq`, and
-bijective because `eq_of_eq` runs in both directions. -/
+bijective because `eq_of_eq` runs in both directions.
+@isnad1 id=ex.2h2v.s9.eda728ed575f from=translated src=- shape=8ea382ad vocab=3b74aa46
+-/
 theorem exists_homeomorph (hf : IsLoop f) (hg : IsLoop g) :
     ∃ h : ↥(f '' I) ≃ₜ ↥(g '' I),
       ∀ (t : ℝ) (ht : t ∈ I), (h ⟨f t, mem_image_of_mem f ht⟩ : Plane) = g t := by
@@ -470,7 +560,9 @@ end IsLoop
 
 namespace IsJordanCurve
 
-/-- **Any two Jordan curves are homeomorphic.** -/
+/-- **Any two Jordan curves are homeomorphic.**
+@isnad1 id=nonempty.2h2v.s6.3142fe7f3cf4 from=translated src=- shape=ab524926 vocab=cdde3e3c
+-/
 theorem homeomorph {C D : Set Plane} (hC : IsJordanCurve C) (hD : IsJordanCurve D) :
     Nonempty (↥C ≃ₜ ↥D) := by
   obtain ⟨f, hf, rfl⟩ := hC
@@ -478,14 +570,18 @@ theorem homeomorph {C D : Set Plane} (hC : IsJordanCurve C) (hD : IsJordanCurve 
   obtain ⟨h, -⟩ := hf.exists_homeomorph hg
   exact ⟨h⟩
 
-/-- **Lemma 3.1.** A Jordan curve is homeomorphic to the model curve `S = ∂Q`. -/
+/-- **Lemma 3.1.** A Jordan curve is homeomorphic to the model curve `S = ∂Q`.
+@isnad1 id=nonempty.1h1v.s6.623a60c1b1db from=translated src=- shape=a8cd2456 vocab=259abb58
+-/
 theorem homeomorph_modelCurve {C : Set Plane} (hC : IsJordanCurve C) :
     Nonempty (↥C ≃ₜ ↥modelCurve) :=
   hC.homeomorph isJordanCurve_modelCurve
 
 /-- **Lemma 3.1**, the other direction: the model curve maps homeomorphically onto any Jordan
 curve. This is the form the blueprint states — `γ` induces a homeomorphism from `S` onto
-`C`. -/
+`C`.
+@isnad1 id=nonempty.1h1v.s6.d2750165e415 from=translated src=- shape=63534330 vocab=259abb58
+-/
 theorem modelCurve_homeomorph {C : Set Plane} (hC : IsJordanCurve C) :
     Nonempty (↥modelCurve ≃ₜ ↥C) :=
   isJordanCurve_modelCurve.homeomorph hC

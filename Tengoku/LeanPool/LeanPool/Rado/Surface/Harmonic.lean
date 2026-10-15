@@ -36,20 +36,32 @@ def chartImage (e : OpenPartialHomeomorph X ℂ) (s : Set X) : Set ℂ :=
   e '' (s ∩ e.source)
 
 omit [ChartedSpace ℂ X] [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
+/--
+@isnad1 id=isopen.1h3v.s5.98969a930d85 from=translated src=- shape=82194d63 vocab=de3b9023
+-/
 theorem isOpen_chartImage (e : OpenPartialHomeomorph X ℂ) {s : Set X} (hs : IsOpen s) :
     IsOpen (chartImage e s) :=
   e.isOpen_image_of_subset_source (hs.inter e.open_source) inter_subset_right
 
 omit [ChartedSpace ℂ X] [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
+/--
+@isnad1 id=le.0h3v.s6.6aceff9f4daa from=translated src=- shape=6ed8fc05 vocab=3727cbc6
+-/
 theorem chartImage_subset_target (e : OpenPartialHomeomorph X ℂ) (s : Set X) :
     chartImage e s ⊆ e.target := fun _ ⟨_, hx, hex⟩ ↦ hex ▸ e.map_source hx.2
 
 omit [ChartedSpace ℂ X] [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
+/--
+@isnad1 id=mem.2h4v.s6.97c7143f56b6 from=translated src=- shape=d246a225 vocab=c3ee4222
+-/
 theorem mem_chartImage_of_mem {e : OpenPartialHomeomorph X ℂ} {s : Set X} {x : X}
     (hx : x ∈ s) (hxe : x ∈ e.source) : e x ∈ chartImage e s :=
   ⟨x, ⟨hx, hxe⟩, rfl⟩
 
 omit [ChartedSpace ℂ X] [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
+/--
+@isnad1 id=mapsto.0h3v.s6.b630d2d07043 from=translated src=- shape=c813b5a2 vocab=6ad12c1d
+-/
 theorem mapsTo_symm_chartImage {e : OpenPartialHomeomorph X ℂ} {s : Set X} :
     MapsTo e.symm (chartImage e s) s := by
   rintro w ⟨x, ⟨hxs, hxe⟩, rfl⟩
@@ -57,7 +69,9 @@ theorem mapsTo_symm_chartImage {e : OpenPartialHomeomorph X ℂ} {s : Set X} :
   exact hxs
 
 omit [ChartedSpace ℂ X] [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
-/-- A continuous function on `s` reads as continuous through any chart. -/
+/-- A continuous function on `s` reads as continuous through any chart.
+@isnad1 id=continuo.1h4v.s6.3e908d86fc59 from=translated src=- shape=230bed09 vocab=67cc9d52
+-/
 theorem continuousOn_comp_chart_symm {g : X → ℝ} (e : OpenPartialHomeomorph X ℂ) {s : Set X}
     (hg : ContinuousOn g s) : ContinuousOn (g ∘ e.symm) (chartImage e s) :=
   hg.comp (e.symm.continuousOn.mono (chartImage_subset_target e s)) mapsTo_symm_chartImage
@@ -78,6 +92,9 @@ namespace SurfaceHarmonicOn
 
 variable {u v : X → ℝ} {s : Set X}
 
+/--
+@isnad1 id=continuo.1h3v.s6.0b0503633bc3 from=translated src=- shape=3870b57c vocab=794182f1
+-/
 theorem continuousOn (hu : SurfaceHarmonicOn u s) : ContinuousOn u s := by
   intro x hx
   have h1 : ContinuousAt (u ∘ (chartAt ℂ x).symm) (chartAt ℂ x x) :=
@@ -90,13 +107,18 @@ theorem continuousOn (hu : SurfaceHarmonicOn u s) : ContinuousOn u s := by
   simp [(chartAt ℂ x).left_inv hz]
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
+/--
+@isnad1 id=surfaceh.2h4v.s5.743d8f046177 from=translated src=- shape=2a649a31 vocab=d8a347fe
+-/
 theorem mono (hu : SurfaceHarmonicOn u s) {t : Set X} (hts : t ⊆ s) :
     SurfaceHarmonicOn u t := fun e he z hz ↦
   hu e he z (image_mono (inter_subset_inter_left _ hts) hz)
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
 /-- To be harmonic it suffices to be harmonic in one maximal-atlas chart around
-each point (chart invariance, via `HarmonicOnNhd.comp_analytic`). -/
+each point (chart invariance, via `HarmonicOnNhd.comp_analytic`).
+@isnad1 id=surfaceh.1h3v.s8.19747fcb0ae9 from=translated src=- shape=7262c830 vocab=11417a35
+-/
 theorem of_chartwise
     (h : ∀ x ∈ s, ∃ e ∈ riemannAtlas X, x ∈ e.source ∧ HarmonicAt (u ∘ e.symm) (e x)) :
     SurfaceHarmonicOn u s := by
@@ -131,6 +153,9 @@ theorem of_chartwise
     simp [Function.comp, e.left_inv hw.2]
   exact (harmonicAt_congr_nhds hcongr).mpr (hcomp _ (mem_ball_self hδpos))
 
+/--
+@isnad1 id=surfaces.1h3v.s6.0f93a2bda5f0 from=translated src=- shape=e8c42588 vocab=542739bf
+-/
 theorem surfaceSubharmonicOn (hu : SurfaceHarmonicOn u s) :
     SurfaceSubharmonicOn u s where
   continuousOn := hu.continuousOn
@@ -138,6 +163,9 @@ theorem surfaceSubharmonicOn (hu : SurfaceHarmonicOn u s) :
     (HarmonicOnNhd.meanEqOn (hu e he)).subMeanOn
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
+/--
+@isnad1 id=surfaceh.1h3v.s5.e713d557cc85 from=translated src=- shape=9b501ba8 vocab=691a22fc
+-/
 theorem neg (hu : SurfaceHarmonicOn u s) : SurfaceHarmonicOn (-u) s :=
   fun e he z hz ↦ (hu e he z hz).neg
 
@@ -148,6 +176,9 @@ namespace SurfaceSubharmonicOn
 variable {g g₁ g₂ : X → ℝ} {s : Set X}
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
+/--
+@isnad1 id=surfaces.2h4v.s6.b9c8f233a37a from=translated src=- shape=1824acee vocab=c3c87ab5
+-/
 theorem max (h₁ : SurfaceSubharmonicOn g₁ s) (h₂ : SurfaceSubharmonicOn g₂ s) :
     SurfaceSubharmonicOn (fun x ↦ Max.max (g₁ x) (g₂ x)) s where
   continuousOn := ContinuousOn.sup h₁.continuousOn h₂.continuousOn
@@ -168,7 +199,9 @@ gives the inequality on the full circle
 
 /-- The bridge: on an open set, the sub-mean-value inequality on small circles
 implies it on all circles (compare with the Poisson extension on any legal
-closed disk). -/
+closed disk).
+@isnad1 id=submeano.1h2v.s3.c5eb9978c54c from=translated src=- shape=b662ce60 vocab=c1ac1565
+-/
 theorem SubMeanLocalOn.subMeanOn {g : ℂ → ℝ} {s : Set ℂ}
     (hg : SubMeanLocalOn g s) : SubMeanOn g s := by
   refine ⟨hg.continuousOn, fun c R hR hsub ↦ ?_⟩
@@ -234,7 +267,9 @@ theorem SubMeanLocalOn.subMeanOn {g : ℂ → ℝ} {s : Set ℂ}
     _ = Real.circleAverage g c R := hcongr
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
-/-- Subharmonicity is local. -/
+/-- Subharmonicity is local.
+@isnad1 id=surfaces.1h3v.s6.59df4956560f from=translated src=- shape=990206c7 vocab=e0fa8f36
+-/
 theorem SurfaceSubharmonicOn.of_locally {g : X → ℝ} {s : Set X}
     (h : ∀ x ∈ s, ∃ V, IsOpen V ∧ x ∈ V ∧ V ⊆ s ∧ SurfaceSubharmonicOn g V) :
     SurfaceSubharmonicOn g s := by

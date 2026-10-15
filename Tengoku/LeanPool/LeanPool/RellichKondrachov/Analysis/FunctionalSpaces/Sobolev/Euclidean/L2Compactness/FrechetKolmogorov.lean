@@ -56,16 +56,31 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDim
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceEL2CompactnessFrechetKolmogorov : MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.5c87412819ed from=translated src=- shape=c6850a32 vocab=b6f59dc9
+-/
 local instance instBorelSpaceEL2CompactnessFrechetKolmogorov : BorelSpace E := ⟨rfl⟩
+/--
+@isnad1 id=opensmea.0h1v.s4.907df99ddafe from=translated src=- shape=c6850a32 vocab=8ae86b2f
+-/
 local instance instOpensMeasurableSpaceEL2CompactnessFrechetKolmogorov :
     OpensMeasurableSpace E := by infer_instance
+/--
+@isnad1 id=measurab.0h1v.s4.ab72f71eea23 from=translated src=- shape=c6850a32 vocab=dd954f96
+-/
 local instance instMeasurableAddEL2CompactnessFrechetKolmogorov : MeasurableAdd E := by
   infer_instance
+/--
+@isnad1 id=measurab.0h1v.s4.2a14b15a77ea from=translated src=- shape=c6850a32 vocab=5acaec51
+-/
 local instance instMeasurableNegEL2CompactnessFrechetKolmogorov : MeasurableNeg E := by
   infer_instance
 
 variable {K : Set E} {ψ : E → ℝ}
 
+/--
+@isnad1 id=le.8h5v.s13.80f6e687a278 from=translated src=- shape=8fd44326 vocab=c7a37c2f
+-/
 lemma norm_smoothL2_sub_extendByZeroL2_le_of_integral_translateL2_sub_extendByZeroL2_le
     (hK : IsCompact K) (hKm : MeasurableSet K)
     (hψc : Continuous ψ) (hψcs : HasCompactSupport ψ) (hψ0 : ∀ x, 0 ≤ ψ x)
@@ -88,6 +103,9 @@ lemma norm_smoothL2_sub_extendByZeroL2_le_of_integral_translateL2_sub_extendByZe
         (E := E) (K := K) (ψ := ψ) (hK := hK) (hKm := hKm) hψc hψcs hψ0 hψint u
   exact (sq_le_sq₀ (norm_nonneg _) hη).1 hsq
 
+/--
+@isnad1 id=totallyb.5h4v.s13.d0474d10f661 from=translated src=- shape=90299930 vocab=7f14108d
+-/
 theorem totallyBounded_extendByZeroL2_image_of_forall_exists_translationIntegral_small
     (hK : IsCompact K) (hKm : MeasurableSet K) {R : ℝ} (hR : 0 ≤ R)
     {A : Set (MeasureTheory.Lp ℝ (2 : ℝ≥0∞) (volume.restrict K))}
@@ -162,6 +180,9 @@ theorem totallyBounded_extendByZeroL2_image_of_forall_exists_translationIntegral
     simpa [Metric.ball, Set.mem_ofPred_eq] using hxDist
   exact Set.mem_iUnion.2 ⟨y, Set.mem_iUnion.2 ⟨hyT, hxBall⟩⟩
 
+/--
+@isnad1 id=iscompac.5h4v.s14.9ec4c8a17925 from=translated src=- shape=89ae5125 vocab=98abb47e
+-/
 theorem isCompact_closure_extendByZeroL2_image_of_forall_exists_translationIntegral_small
     (hK : IsCompact K) (hKm : MeasurableSet K) {R : ℝ} (hR : 0 ≤ R)
     {A : Set (MeasureTheory.Lp ℝ (2 : ℝ≥0∞) (volume.restrict K))}

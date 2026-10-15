@@ -29,6 +29,7 @@ With this lemma, once can instead do
 ```
 apply all_fin_8_vec <;> norm_num
 ```
+@isnad1 id=var.0h19v.s7.1e1575d581c0 from=translated src=- shape=f73cb8dc vocab=4e3792ea
 -/
 lemma all_fin_8_vec {α : Type} {a b c d e f g h : α} (p : α → Prop) :
     p a → p b → p c → p d → p e → p f → p g → p h →

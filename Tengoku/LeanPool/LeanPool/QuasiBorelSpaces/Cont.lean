@@ -30,6 +30,9 @@ namespace Cont
 
 variable {R A B : Type*} [OmegaQuasiBorelSpace R] [OmegaQuasiBorelSpace A]
 
+/--
+@isnad1 id=eq.1h4v.s5.9064f9f58a09 from=translated src=- shape=b28f9e64 vocab=5470313d
+-/
 @[ext]
 lemma ext {x y : Cont R A} (h : x.apply = y.apply) : x = y := by
   cases x
@@ -56,27 +59,42 @@ instance : OmegaCompletePartialOrder (Cont R A) := by
 instance : QuasiBorelSpace (Cont R A) :=
   QuasiBorelSpace.lift apply
 
+/--
+@isnad1 id=ishom.0h2v.s5.730551c579f0 from=translated src=- shape=d1c0322c vocab=243dd151
+-/
 @[local fun_prop]
 lemma isHom_val : IsHom (apply (R := R) (A := A)) := by
   rw [← isHom_to_lift]
   simp only [isHom_id']
 
+/--
+@isnad1 id=ishom.1h4v.s6.7444e0944dda from=translated src=- shape=c62f77a0 vocab=1582c845
+-/
 @[fun_prop]
 lemma isHom_val'
     [QuasiBorelSpace B] {f : B → Cont R A} (hf : IsHom f)
     : IsHom (fun x ↦ (f x).apply) := by
   fun_prop
 
+/--
+@isnad1 id=ishom.0h2v.s5.17b43a4da911 from=translated src=- shape=2e088bf8 vocab=7b3c844c
+-/
 @[simp, local fun_prop]
 lemma isHom_mk : IsHom (mk (R := R) (A := A)) := by
   apply isHom_of_lift
 
+/--
+@isnad1 id=ishom.1h4v.s6.0a23cbd28313 from=translated src=- shape=2f498ad6 vocab=622889cf
+-/
 @[fun_prop]
 lemma isHom_mk'
     [QuasiBorelSpace B] {f : B → (A →ω𝒒 R) →ω𝒒 R} (hf : IsHom f)
     : IsHom (fun x ↦ mk (f x)) := by
   fun_prop
 
+/--
+@isnad1 id=scottcon.0h2v.s5.74332c6b8611 from=translated src=- shape=2e088bf8 vocab=644e4e1b
+-/
 @[simp, local fun_prop]
 lemma ωScottContinuous_mk : ωScottContinuous (mk (R := R) (A := A)) := by
   rw [ωScottContinuous_iff_monotone_map_ωSup]
@@ -84,12 +102,18 @@ lemma ωScottContinuous_mk : ωScottContinuous (mk (R := R) (A := A)) := by
   · apply h
   · rfl
 
+/--
+@isnad1 id=scottcon.1h4v.s6.647cb3378352 from=translated src=- shape=2f498ad6 vocab=d44c3824
+-/
 @[fun_prop]
 lemma ωScottContinuous_mk'
      [OmegaCompletePartialOrder B] {f : B → (A →ω𝒒 R) →ω𝒒 R} (hf : ωScottContinuous f)
      : ωScottContinuous (fun x ↦ mk (f x)) := by
   fun_prop
 
+/--
+@isnad1 id=scottcon.0h2v.s5.647c6af21106 from=translated src=- shape=d1c0322c vocab=0be7ecc2
+-/
 @[simp, local fun_prop]
 lemma ωScottContinuous_val : ωScottContinuous (apply (R := R) (A := A)) := by
   rw [ωScottContinuous_iff_monotone_map_ωSup]
@@ -97,6 +121,9 @@ lemma ωScottContinuous_val : ωScottContinuous (apply (R := R) (A := A)) := by
   · apply h
   · rfl
 
+/--
+@isnad1 id=scottcon.1h4v.s6.0e534d768cb1 from=translated src=- shape=c62f77a0 vocab=9232b771
+-/
 @[fun_prop]
 lemma ωScottContinuous_val'
     [OmegaCompletePartialOrder B] {f : B → Cont R A} (hf : ωScottContinuous f)
@@ -129,12 +156,21 @@ def unit : A →ω𝒒 Cont R A where
 def bind [OmegaQuasiBorelSpace B] : (A →ω𝒒 Cont R B) →ω𝒒 (Cont R A →ω𝒒 Cont R B) where
   toFun f := { toFun x := ⟨{ toFun k := x.apply { toFun y := (f y).apply k } }⟩ }
 
+/--
+@isnad1 id=eq.0h5v.s8.34e266263232 from=translated src=- shape=d2497c19 vocab=c6c82ef5
+-/
 @[simp]
 lemma bind_unit [OmegaQuasiBorelSpace B] (f : A →ω𝒒 Cont R B) (x : A) : bind f (unit x) = f x := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.e0ce24eb0a05 from=translated src=- shape=46f9ef29 vocab=0b8b8e82
+-/
 @[simp]
 lemma unit_bind : bind (unit (R := R) (A := A)) = .id := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.13523ebbf2cf from=translated src=- shape=5d8dd11b vocab=cf456de9
+-/
 @[simp]
 lemma bind_bind {C : Type*}
     [OmegaQuasiBorelSpace B] [OmegaQuasiBorelSpace C]

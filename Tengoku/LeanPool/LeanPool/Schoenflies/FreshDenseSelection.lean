@@ -42,7 +42,9 @@ namespace Schoenflies
 
 /-- Removing finitely many forbidden points from a relatively dense subset of a Jordan curve
 leaves it relatively dense.  The proof works in the curve subtype, which is a nontrivial
-connected T₁ space and therefore has no isolated points. -/
+connected T₁ space and therefore has no isolated points.
+@isnad1 id=le.4h3v.s6.b89669490671 from=translated src=- shape=ce3fd4b1 vocab=bfd1270e
+-/
 theorem IsJordanCurve.subset_closure_sdiff_finite
     {C eligible forbidden : Set Plane} (hC : IsJordanCurve C)
     (heligible : eligible ⊆ C) (hdense : C ⊆ closure eligible)
@@ -80,7 +82,9 @@ theorem IsJordanCurve.subset_closure_sdiff_finite
   rwa [hcleanImage] at hcleanDense
 
 /-- A dense eligible subset of the model curve contains a finite list which separates every
-pair of model-curve points at distance more than `delta / 2`. -/
+pair of model-curve points at distance more than `delta / 2`.
+@isnad1 id=ex.3h2v.s6.25fc9dd0a61e from=translated src=- shape=f7c0f3ee vocab=b1e5b717
+-/
 theorem exists_finite_freshDense_of_dense {eligible : Set Plane}
     (heligible : eligible ⊆ modelCurve) (hdense : modelCurve ⊆ closure eligible)
     {delta : ℝ} (hdelta : 0 < delta) :
@@ -186,6 +190,9 @@ connected-component estimate needed by the target mesh. -/
 def FreshNet (fresh : List Plane) (delta : ℝ) : Prop :=
   ∀ x ∈ modelCurve, ∃ z ∈ fresh, dist x z < delta
 
+/--
+@isnad1 id=freshden.2h3v.s5.ee2fe55390bb from=translated src=- shape=4905bd97 vocab=1cc2e165
+-/
 theorem FreshDense.mono {fresh fresh' : List Plane} {delta : ℝ}
     (h : FreshDense fresh delta) (hsub : ∀ z ∈ fresh, z ∈ fresh') :
     FreshDense fresh' delta := by
@@ -195,6 +202,9 @@ theorem FreshDense.mono {fresh fresh' : List Plane} {delta : ℝ}
   have hz' := hA hz
   exact ⟨hz'.1, fun hzf => hz'.2 (hsub z hzf)⟩
 
+/--
+@isnad1 id=freshnet.2h3v.s5.2336b9eb7ef0 from=translated src=- shape=4905bd97 vocab=33263bbe
+-/
 theorem FreshNet.mono {fresh fresh' : List Plane} {delta : ℝ}
     (h : FreshNet fresh delta) (hsub : ∀ z ∈ fresh, z ∈ fresh') :
     FreshNet fresh' delta := by
@@ -203,7 +213,9 @@ theorem FreshNet.mono {fresh fresh' : List Plane} {delta : ℝ}
   exact ⟨z, hsub z hz, hzx⟩
 
 /-- A relatively dense eligible subset of the compact model curve supplies a finite metric
-net consisting entirely of eligible points. -/
+net consisting entirely of eligible points.
+@isnad1 id=ex.2h2v.s6.66eead5bcdf6 from=translated src=- shape=c932fe12 vocab=9b80ac30
+-/
 theorem exists_finite_freshNet_of_dense {eligible : Set Plane}
     (hdense : modelCurve ⊆ closure eligible)
     {delta : ℝ} (hdelta : 0 < delta) :
@@ -230,7 +242,9 @@ theorem exists_finite_freshNet_of_dense {eligible : Set Plane}
       exact ⟨z, by simpa using hzi, rfl⟩
     · exact mem_ball.1 hz
 
-/-- The two finite selections can be combined without losing either property. -/
+/-- The two finite selections can be combined without losing either property.
+@isnad1 id=ex.3h2v.s6.8a682c659f2e from=translated src=- shape=5dfeeb17 vocab=f4b9d866
+-/
 theorem exists_finite_freshDenseNet_of_dense {eligible : Set Plane}
     (heligible : eligible ⊆ modelCurve) (hdense : modelCurve ⊆ closure eligible)
     {delta : ℝ} (hdelta : 0 < delta) :
@@ -269,7 +283,9 @@ def accessibleTargetBoundary
     StronglyAccessible (srcDom \ srcOuter) (P.homeo.invFun z)}
 
 /-- Relative density of strongly accessible source-boundary points transports through the
-current skeleton homeomorphism to relative density on the model curve. -/
+current skeleton homeomorphism to relative density on the model curve.
+@isnad1 id=le.1h5v.s7.28fbd13afb85 from=translated src=- shape=d1a4a072 vocab=d9ad878c
+-/
 theorem accessibleTargetBoundary_dense_of_source
     (P : GeneratedPair S₀ srcOuter srcDom modelCurve (Plane.closedSquare 0 1))
     (hsource : srcOuter ⊆ closure (accessibleSourceBoundary P)) :
@@ -316,7 +332,9 @@ theorem accessibleTargetBoundary_dense_of_source
     rwa [hright, dist_comm] at this
 
 /-- In the standard generated-pair setting, tangent density on the source region supplies the
-density hypothesis needed by finite fresh-list selection. -/
+density hypothesis needed by finite fresh-list selection.
+@isnad1 id=le.2h5v.s7.48d5d6cf0522 from=translated src=- shape=15891c52 vocab=8fe8c144
+-/
 theorem accessibleTargetBoundary_dense_of_region
     (P : GeneratedPair S₀ srcOuter srcDom modelCurve (Plane.closedSquare 0 1))
     (hsep : IsSeparating srcOuter)
@@ -326,7 +344,9 @@ theorem accessibleTargetBoundary_dense_of_region
 
 /-- For the closed Jordan domain used by the stage tower, the required source region is
 literally `inside srcOuter`, so accessible target-boundary density follows from
-separation of the source curve. -/
+separation of the source curve.
+@isnad1 id=le.1h4v.s7.752452ab83a4 from=translated src=- shape=2a90ed49 vocab=ac1bb3a7
+-/
 theorem accessibleTargetBoundary_dense_inside
     {C : Set Plane}
     (P : GeneratedPair S₀ C (C ∪ inside C) modelCurve (Plane.closedSquare 0 1))
@@ -338,7 +358,9 @@ theorem accessibleTargetBoundary_dense_inside
 
 /-- If accessible target-boundary points are relatively dense, then at every positive scale
 there is a finite dense list of accessible points avoiding all old target vertices and hence
-all old nonouter target-edge carriers. -/
+all old nonouter target-edge carriers.
+@isnad1 id=ex.2h6v.s9.1459cf48eac8 from=translated src=- shape=abf56749 vocab=f0c89998
+-/
 theorem exists_clean_freshDense_of_accessibleTargetBoundary_dense
     (P : GeneratedPair S₀ srcOuter srcDom modelCurve (Plane.closedSquare 0 1))
     (haccessible : modelCurve ⊆ closure (accessibleTargetBoundary P))
@@ -375,7 +397,9 @@ theorem exists_clean_freshDense_of_accessibleTargetBoundary_dense
 
 /-- Dense accessible boundary points now suffice for the full overlay reverse transfer.  The
 mesh scale, finite clean fresh list, fresh abstract edge names, and transferred generated pair
-are all selected internally. -/
+are all selected internally.
+@isnad1 id=ex.2h7v.s9.20f81a09a71e from=translated src=- shape=92d6cf0a vocab=b06bd74c
+-/
 theorem exists_finite_transfer_toward_source_meshOverlay_of_accessibleBoundary_dense
     [Infinite γ] (Q : TargetSegmentCover P)
     (haccessible : modelCurve ⊆ closure (accessibleTargetBoundary P))
@@ -432,7 +456,9 @@ structure MeshOverlayTransferData (Q : TargetSegmentCover P) (anchors : List Pla
     ((Q.meshOverlay delta fresh anchors).relabelDrawing name segmentDrawing) parent
 
 /-- Dense accessible target-boundary points construct the packaged data for one complete
-reverse overlay-transfer stage. -/
+reverse overlay-transfer stage.
+@isnad1 id=nonempty.2h7v.s7.9955124b8b0a from=translated src=- shape=a9d0be69 vocab=184f23b0
+-/
 theorem nonempty_meshOverlayTransferData_of_accessibleBoundary_dense
     [Infinite γ] (Q : TargetSegmentCover P)
     (haccessible : modelCurve ⊆ closure (accessibleTargetBoundary P))
@@ -460,7 +486,9 @@ theorem nonempty_meshOverlayTransferData_of_accessibleBoundary_dense
 
 /-- **Reverse overlay-transfer stage for a closed Jordan domain.** Tangent
 density supplies the accessible anchors, finite deletion avoids the old target vertices, and
-compactness selects a finite `FreshDense` list at the internally chosen mesh scale. -/
+compactness selects a finite `FreshDense` list at the internally chosen mesh scale.
+@isnad1 id=nonempty.2h6v.s7.edb5e827c2c2 from=translated src=- shape=b8ec2846 vocab=3f54df66
+-/
 theorem nonempty_meshOverlayTransferData_inside
     [Infinite γ] {C : Set Plane}
     {P : GeneratedPair S₀ C (C ∪ inside C) modelCurve (Plane.closedSquare 0 1)}
@@ -470,7 +498,9 @@ theorem nonempty_meshOverlayTransferData_inside
   nonempty_meshOverlayTransferData_of_accessibleBoundary_dense Q
     (accessibleTargetBoundary_dense_inside P hsep) hcycle anchors
 
-/-- The packaged reverse-transfer data can be selected below any positive prescribed scale. -/
+/-- The packaged reverse-transfer data can be selected below any positive prescribed scale.
+@isnad1 id=ex.3h8v.s8.63631f7c351e from=translated src=- shape=efe78108 vocab=b9854e53
+-/
 theorem exists_meshOverlayTransferData_lt_of_accessibleBoundary_dense
     [Infinite γ] (Q : TargetSegmentCover P)
     (haccessible : modelCurve ⊆ closure (accessibleTargetBoundary P))
@@ -501,7 +531,9 @@ theorem exists_meshOverlayTransferData_lt_of_accessibleBoundary_dense
     transfer := hT }, hdeltabound⟩
 
 /-- In the standard closed Jordan domain, a reverse-transfer stage exists below every positive
-prescribed scale. -/
+prescribed scale.
+@isnad1 id=ex.3h7v.s8.be56dfb4d5df from=translated src=- shape=cd3c0afb vocab=20d59589
+-/
 theorem exists_meshOverlayTransferData_lt_inside
     [Infinite γ] {C : Set Plane}
     {P : GeneratedPair S₀ C (C ∪ inside C) modelCurve (Plane.closedSquare 0 1)}
@@ -518,7 +550,9 @@ variable {Q : TargetSegmentCover P} {anchors : List Plane}
 
 /-- Every target face created by the reverse overlay transfer has diameter below the selected
 mesh scale.  The target cell is connected and misses the new skeleton, hence lies in one bounded
-face of the contained square mesh; `squareMesh_face_small` supplies the bound. -/
+face of the contained square mesh; `squareMesh_face_small` supplies the bound.
+@isnad1 id=lt.1h9v.s9.84a1ca40c64d from=translated src=- shape=e38e3354 vocab=5084cb90
+-/
 theorem diam_closure_targetFace_lt (w : MeshOverlayTransferData Q anchors)
     {F : γ} (hF : F ∈ w.pair.str.faces) :
     Metric.diam (closure (w.pair.tgt.cell F)) < w.delta := by
@@ -571,7 +605,9 @@ theorem diam_closure_targetFace_lt (w : MeshOverlayTransferData Q anchors)
       Metric.diam_mono hcellFace hfaceBounded
     _ < w.delta := hsmall.2
 
-/-- Consequently every closed target star has diameter less than twice the selected scale. -/
+/-- Consequently every closed target star has diameter less than twice the selected scale.
+@isnad1 id=lt.1h9v.s9.f67a0c8afed7 from=translated src=- shape=6109982e vocab=dcbada55
+-/
 theorem diam_targetStar_lt (w : MeshOverlayTransferData Q anchors)
     {σ : γ} (hσ : σ ∈ w.pair.str.cells) :
     Metric.diam (w.pair.tgt.star σ) < 2 * w.delta :=

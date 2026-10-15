@@ -71,7 +71,9 @@ attribute [local instance] normedSpaceTangentSpaceVectorSpace
 
 omit [FiniteDimensional ℝ E] [IsManifold I n∞ M] in
 /-- Around any point `x`, the inverse extended chart is Lipschitz on a small ball in chart
-coordinates, with respect to the Riemannian distance. -/
+coordinates, with respect to the Riemannian distance.
+@isnad1 id=ex.0h5v.s8.6ffb3a76bd38 from=translated src=- shape=5e67d742 vocab=ff7dc170
+-/
 theorem lipschitzOnWith_symm_extChartAt_ofRiemannianMetric
     [EMetricSpace M] [IsRiemannianManifold I M] (x : M) :
     ∃ (C : ℝ≥0), 0 < C ∧ ∃ (r : ℝ), 0 < r ∧

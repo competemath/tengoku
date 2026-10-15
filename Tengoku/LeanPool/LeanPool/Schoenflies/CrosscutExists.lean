@@ -93,7 +93,9 @@ variable {α β : Type*} {G : Graph α β}
 `Graph.IsCycleThrough.split_aux` asks for: the near half never returns to the far end of the
 cut edge, and a vertex reached by both halves is the near end of it.
 
-This is the edge-indexed companion of `Graph.IsPath.split_meet`, which cuts at a vertex. -/
+This is the edge-indexed companion of `Graph.IsPath.split_meet`, which cuts at a vertex.
+@isnad1 id=ex.2h7v.s7.76e1ddfc6318 from=translated src=- shape=f2bc6ac5 vocab=8b80d5c0
+-/
 theorem IsPath.split_at_edge {u v : α} {W : List β} {g : β} (h : G.IsPath u W v) (hg : g ∈ W) :
     ∃ (W₁ W₂ : List β) (c d : α), W = W₁ ++ g :: W₂ ∧ G.IsPath u W₁ c ∧ G.IsLink g c d ∧
       G.IsPath d W₂ v ∧ c ∉ G.walkVertices d W₂ ∧
@@ -121,7 +123,9 @@ theorem IsPath.split_at_edge {u v : α} {W : List β} {g : β} (h : G.IsPath u W
 
 /-- **A cycle presented through any one of its edges.** `Graph.IsCycleThrough` names one edge
 and one path; this re-presents the same cycle with a different edge named, which is what an
-argument that has to start walking at a *given* edge needs. -/
+argument that has to start walking at a *given* edge needs.
+@isnad1 id=ex.2h8v.s6.210014ced2bf from=translated src=- shape=07e798ee vocab=0f7f5689
+-/
 theorem IsCycleThrough.rotate {e g : β} {u v : α} {D : List β} (hc : G.IsCycleThrough e u v D)
     (hg : g ∈ e :: D) :
     ∃ (c d : α) (W : List β), G.IsCycleThrough g c d W ∧ (g :: W).Perm (e :: D) := by
@@ -152,7 +156,9 @@ theorem IsCycleThrough.rotate {e g : β} {u v : α} {D : List β} (hc : G.IsCycl
   simp only [List.mem_append, List.mem_cons, not_or]
   exact ⟨hgB, hge, hgA⟩
 
-/-- Both ends of an edge of a cycle are vertices of the cycle. -/
+/-- Both ends of an edge of a cycle are vertices of the cycle.
+@isnad1 id=mem.3h9v.s5.d1e963dfb7ae from=translated src=- shape=c51aa948 vocab=3a9ff8a4
+-/
 theorem IsCycleThrough.mem_walkVertices_of_inc {e f : β} {u v z : α} {D : List β}
     (hc : G.IsCycleThrough e u v D) (hf : f ∈ e :: D) (hz : G.Inc f z) :
     z ∈ G.walkVertices u D := by
@@ -166,7 +172,9 @@ theorem IsCycleThrough.mem_walkVertices_of_inc {e f : β} {u v z : α} {D : List
 `a, b` in the relative interiors of these two edges; the two arcs of the cycle `C` from `a` to
 `b` are internally disjoint", with the two interior points replaced by the two edges
 themselves: the closed walk reads `… ─g₁→ p ─W₁→ q ─g₂→ q' ─W₂→ p' ─g₁→ …`, and the two arcs
-`W₁, W₂` visit disjoint sets of vertices which together are all the vertices of the cycle. -/
+`W₁, W₂` visit disjoint sets of vertices which together are all the vertices of the cycle.
+@isnad1 id=ex.4h9v.s7.1f10de113a8d from=translated src=- shape=95ac7139 vocab=d0f5c91d
+-/
 theorem IsCycleThrough.split_at_edges {e g₁ g₂ : β} {u v : α} {D : List β}
     (hc : G.IsCycleThrough e u v D) (hg₁ : g₁ ∈ e :: D) (hg₂ : g₂ ∈ e :: D) (hne : g₁ ≠ g₂) :
     ∃ (p p' q q' : α) (W₁ W₂ : List β),
@@ -235,7 +243,9 @@ the other is a crosscut of the cycle in the sense of `Graph.IsCycleCrosscut`.
 
 `hpres` is what the blueprint's *maximal subpaths of `C ∩ Γ (j-1)`* are for: it is the only
 property of them the argument uses, and here it is a one-line consequence of the two cut edges
-being outside `F`. -/
+being outside `F`.
+@isnad1 id=ex.8h10v.s8.670242bfac5b from=translated src=- shape=349632de vocab=d3131feb
+-/
 theorem exists_isCycleCrosscut {H F : Graph α β} {e : β} {u v : α} {D : List β}
     (hcyc : H.IsCycleThrough e u v D) (hFH : F ≤ H) {S₁ S₂ : Set α}
     (hdisj : Disjoint S₁ S₂) (hcover : H.walkVertices u D = S₁ ∪ S₂)
@@ -381,7 +391,9 @@ the earlier chain leaves `V(Γ (i+m+2))` at some edge, and that edge belongs nei
 `Γ (i+m+2)` (both its ends would stay inside) nor to the earlier chain (its end inside
 `V(Γ (i+m+2))` would then lie on both, which
 `Graph.IsPlaneChain.disjoint_block_far` forbids), so it belongs to `Γ (i+m+1)`. The rest is
-`Graph.exists_isCycleCrosscut`. -/
+`Graph.exists_isCycleCrosscut`.
+@isnad1 id=crosscut.1h6v.s5.bdd3e6612669 from=translated src=- shape=769d3458 vocab=3f6093d3
+-/
 theorem IsPlaneChain.crosscutExists (h : IsPlaneChain Γ drawing G n) {x : Plane} :
     CrosscutExists Γ drawing n x := by
   intro i m him e u v D hcyc _hin hA hB

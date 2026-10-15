@@ -17,7 +17,9 @@ polynomials*, Arch. Math. 59 (1992), 239-244; upstreaming candidates for Mathlib
 @[expose] public section
 
 /-- Between finite groups, an injective homomorphism extends to an isomorphism iff the two groups
-have the same cardinality. -/
+have the same cardinality.
+@isnad1 id=iff.1h3v.s6.8cfeef224701 from=translated src=- shape=79266738 vocab=1eda57cc
+-/
 theorem MonoidHom.nonempty_mulEquiv_iff_card_eq {G H : Type*} [Group G] [Group H] [Finite H]
     (φ : G →* H) (hφ : Function.Injective φ) :
     Nonempty (G ≃* H) ↔ Nat.card G = Nat.card H :=

@@ -21,6 +21,9 @@ section filter
 
 variable {α 𝕜 : Type*} {s : Set α} {z₀ : α} {P : α → Prop} {p : Filter α} {φ : ℝ → Set α}
 
+/--
+@isnad1 id=iff.2h4v.s6.2780655e255c from=translated src=- shape=7d957f5f vocab=105791f2
+-/
 lemma mem_iff_eventually_subset (hp : p.HasBasis (fun t : ℝ => 0 < t) φ) (hφ : Monotone φ) :
     s ∈ p ↔ (∀ᶠ t in 𝓝[>] 0, φ t ⊆ s) := by
   rw [(nhdsWithin_hasBasis nhds_basis_closedBall (Ioi (0 : ℝ))).eventually_iff]
@@ -28,10 +31,16 @@ lemma mem_iff_eventually_subset (hp : p.HasBasis (fun t : ℝ => 0 < t) φ) (hφ
   refine exists₂_congr (fun ε hε => ⟨fun h r h' => (hφ (le_of_abs_le h'.1)).trans h,
     fun h => h ⟨Eq.le (abs_eq_self.mpr hε.le), hε⟩⟩)
 
+/--
+@isnad1 id=iff.0h3v.s6.def6a002563a from=translated src=- shape=c6a30b2a vocab=b7e45e40
+-/
 lemma eventually_nhds_iff_eventually_ball [PseudoMetricSpace α] :
     (∀ᶠ z in 𝓝 z₀, P z) ↔ (∀ᶠ r in 𝓝[>] 0, ∀ z ∈ ball z₀ r, P z) :=
   mem_iff_eventually_subset nhds_basis_ball (fun _ _ => ball_subset_ball)
 
+/--
+@isnad1 id=iff.0h3v.s6.22770333d3c4 from=translated src=- shape=c6a30b2a vocab=4c6a3aa7
+-/
 lemma eventually_nhds_iff_eventually_closed_ball [PseudoMetricSpace α] :
     (∀ᶠ z in 𝓝 z₀, P z) ↔ (∀ᶠ r in 𝓝[>] 0, ∀ z ∈ closedBall z₀ r, P z) :=
   mem_iff_eventually_subset nhds_basis_closedBall (fun _ _ => closedBall_subset_closedBall)
@@ -43,12 +52,18 @@ section unifops
 variable {𝕜 ι α : Type*} {s K : Set α} [NormedField 𝕜] {F G : ι → α → 𝕜} {f g : α → 𝕜} {x y : 𝕜}
   {η η' : ℝ} {p : Filter ι} {mf mg : ℝ}
 
+/--
+@isnad1 id=le.4h5v.s7.1b49ee43dcec from=translated src=- shape=92955eec vocab=1adaf07f
+-/
 lemma dist_inv_le_dist_div (hη : 0 < η) (hη' : 0 < η') (hx : x ∉ ball 0 η) (hy : y ∉ ball 0 η') :
     dist x⁻¹ y⁻¹ ≤ dist x y / (η * η') := by
   simp only [mem_ball, dist_eq_norm, sub_zero, not_lt] at hx hy
   rw [dist_inv_inv₀ (norm_pos_iff.mp (hη.trans_le hx)) (norm_pos_iff.mp (hη'.trans_le hy))]
   gcongr
 
+/--
+@isnad1 id=le.2h3v.s7.79eac9ef75c4 from=translated src=- shape=3b43356b vocab=2e81b180
+-/
 lemma titi {p q : Filter 𝕜} (hp : p ⊓ 𝓝 0 = ⊥) (hq : q ⊓ 𝓝 0 = ⊥) :
     map (fun x : 𝕜 × 𝕜 => (x.1⁻¹, x.2⁻¹)) (𝓤 𝕜 ⊓ (p ×ˢ q)) ≤ 𝓤 𝕜 := by
   obtain ⟨U, hU, V, hV, hUV⟩ := inf_eq_bot_iff.mp hp
@@ -69,10 +84,16 @@ lemma titi {p q : Filter 𝕜} (hp : p ⊓ 𝓝 0 = ⊥) (hq : q ⊓ 𝓝 0 = �
   convert (div_lt_div_iff_of_pos_right hηη').mpr hx1
   field_simp [hη.lt.ne.symm, hη'.lt.ne.symm]
 
+/--
+@isnad1 id=uniformc.1h2v.s6.a56d4e619a18 from=translated src=- shape=82631045 vocab=2129df94
+-/
 lemma uniform_ContinuousOn_inv {s : Set 𝕜} (hs : 𝓟 s ⊓ 𝓝 0 = ⊥) :
     UniformContinuousOn Inv.inv s := by
   simpa only [UniformContinuousOn, Tendsto, ← prod_principal_principal] using titi hs hs
 
+/--
+@isnad1 id=tendstou.2h7v.s7.da1fa814381c from=translated src=- shape=a00c51c5 vocab=b3da91e7
+-/
 lemma TendstoUniformlyOn.inv_of_isolated_zero (hF : TendstoUniformlyOn F f p s)
     (hf : 𝓟 (f '' s) ⊓ 𝓝 0 = ⊥) :
     TendstoUniformlyOn F⁻¹ f⁻¹ p s := by
@@ -83,8 +104,14 @@ lemma TendstoUniformlyOn.inv_of_isolated_zero (hF : TendstoUniformlyOn F f p s)
   rw [tendstoUniformlyOn_iff_tendsto] at hF ⊢
   refine (Filter.map_mono (le_inf hF h1)).trans (titi hf this)
 
+/--
+@isnad1 id=eq.0h5v.s7.70332746ee55 from=translated src=- shape=06d82a81 vocab=2e85461e
+-/
 lemma lxyab {x y a b : 𝕜} : x * a - y * b = (x - y) * a + y * (a - b) := by ring
 
+/--
+@isnad1 id=tendstou.4h11v.s7.f4fba7463068 from=translated src=- shape=de38fb89 vocab=4d04e609
+-/
 lemma TendstoUniformlyOn.mul_of_le
     (hF : TendstoUniformlyOn F f p s) (hG : TendstoUniformlyOn G g p s)
     (hf : ∀ᶠ i in p, ∀ x ∈ s, ‖F i x‖ ≤ mf) (hg : ∀ᶠ i in p, ∀ x ∈ s, ‖G i x‖ ≤ mg) :
@@ -135,6 +162,9 @@ private lemma bound_of_tendstoUniformlyOn (hF : TendstoUniformlyOn F f p s)
     (by simpa [← norm_neg (F i x - f x)] using norm_add_le (F i x - f x) (f x) :
       ‖F i x‖ ≤ ‖f x - F i x‖ + ‖f x‖)]
 
+/--
+@isnad1 id=tendstou.4h11v.s7.2b02b633c8c7 from=translated src=- shape=c63acd0d vocab=23e88f95
+-/
 lemma TendstoUniformlyOn.mul_of_bound
     (hF : TendstoUniformlyOn F f p s) (hG : TendstoUniformlyOn G g p s)
     (hf : ∀ x ∈ s, ‖f x‖ ≤ mf) (hg : ∀ x ∈ s, ‖g x‖ ≤ mg) :
@@ -143,6 +173,9 @@ lemma TendstoUniformlyOn.mul_of_bound
 
 variable [TopologicalSpace α]
 
+/--
+@isnad1 id=tendstou.4h7v.s7.cc077f22b765 from=translated src=- shape=ba469e82 vocab=50ec58f4
+-/
 lemma TendstoUniformlyOn.inv_of_compact (hF : TendstoUniformlyOn F f p K)
     (hf : ContinuousOn f K) (hK : IsCompact K) (hfz : ∀ x ∈ K, f x ≠ 0) :
     TendstoUniformlyOn F⁻¹ f⁻¹ p K := by
@@ -150,6 +183,9 @@ lemma TendstoUniformlyOn.inv_of_compact (hF : TendstoUniformlyOn F f p K)
   rw [inf_comm, inf_principal_eq_bot]
   exact (hK.image_of_continuousOn hf).isClosed.compl_mem_nhds (fun ⟨z, h1, h2⟩ => hfz z h1 h2)
 
+/--
+@isnad1 id=tendstou.5h9v.s7.8b979293f598 from=translated src=- shape=31ebbdaf vocab=27e22911
+-/
 lemma TendstoUniformlyOn.mul_of_compact
     (hF : TendstoUniformlyOn F f p K) (hG : TendstoUniformlyOn G g p K)
     (hf : ContinuousOn f K) (hg : ContinuousOn g K) (hK : IsCompact K) :
@@ -164,6 +200,9 @@ lemma TendstoUniformlyOn.mul_of_compact
     obtain ⟨xg, _, h5⟩ : ∃ x ∈ K, ∀ y ∈ K, ‖g y‖ ≤ ‖g x‖ := hK.exists_isMaxOn h h3
     exact hF.mul_of_bound hG h4 h5
 
+/--
+@isnad1 id=tendstou.6h9v.s8.a11b499f1dd3 from=translated src=- shape=cb2eb5fc vocab=ba74daa3
+-/
 lemma TendstoUniformlyOn.div_of_compact
     (hF : TendstoUniformlyOn F f p K) (hG : TendstoUniformlyOn G g p K)
     (hf : ContinuousOn f K) (hg : ContinuousOn g K) (hgK : ∀ z ∈ K, g z ≠ 0) (hK : IsCompact K) :
@@ -175,10 +214,16 @@ end unifops
 
 variable {ι : Type*} {F : ι → ℂ → ℂ} {f : ℂ → ℂ} {z₀ : ℂ} {p : Filter ι} {r : ℝ} {U : Set ℂ}
 
+/--
+@isnad1 id=ex.1h2v.s5.3bca129bce5b from=translated src=- shape=1b972951 vocab=bab7eb83
+-/
 lemma Filter.Eventually.exists' {P : ℝ → Prop} {t₀} (h : ∀ᶠ t in 𝓝[>] t₀, P t) :
     ∃ t > t₀, P t := by
   simpa [and_comm, exists_prop] using (frequently_nhdsWithin_iff.mp h.frequently).exists
 
+/--
+@isnad1 id=iff.2h3v.s7.f35e53e7903f from=translated src=- shape=a733b422 vocab=242edc42
+-/
 lemma order_eq_zero_iff {p : FormalMultilinearSeries ℂ ℂ ℂ}
     (hp : HasFPowerSeriesAt f p z₀) (hz₀ : f z₀ = 0) :
     p.order = 0 ↔ ∀ᶠ z in 𝓝 z₀, f z = 0 := by
@@ -190,11 +235,17 @@ lemma order_eq_zero_iff {p : FormalMultilinearSeries ℂ ℂ ℂ}
     ext1
     rw [hp.coeff_zero, hz₀]; rfl
 
+/--
+@isnad1 id=iff.2h3v.s7.6472e92dedb1 from=translated src=- shape=de846848 vocab=b788bd64
+-/
 lemma order_pos_iff {p : FormalMultilinearSeries ℂ ℂ ℂ}
     (hp : HasFPowerSeriesAt f p z₀) (hz₀ : f z₀ = 0) :
     0 < p.order ↔ ∃ᶠ z in 𝓝 z₀, f z ≠ 0 := by
   simp [pos_iff_ne_zero, (order_eq_zero_iff hp hz₀).not]
 
+/--
+@isnad1 id=eventual.3h2v.s6.e8d3c247e75d from=translated src=- shape=af1cea03 vocab=b8608793
+-/
 lemma cindex_pos (h1 : AnalyticAt ℂ f z₀) (h2 : f z₀ = 0) (h3 : ∀ᶠ z in 𝓝[≠] z₀, f z ≠ 0) :
     ∀ᶠ r in 𝓝[>] 0, cindex z₀ r f ≠ 0 := by
   obtain ⟨p, hp⟩ := h1
@@ -202,6 +253,9 @@ lemma cindex_pos (h1 : AnalyticAt ℂ f z₀) (h2 : f z₀ = 0) (h3 : ∀ᶠ z i
   simpa [h4, order_eq_zero_iff hp h2] using h3.frequently.filter_mono nhdsWithin_le_nhds
 
 -- TODO: this can be generalized a lot
+/--
+@isnad1 id=eventual.4h5v.s7.d3f24ca5543d from=translated src=- shape=e6bf53c0 vocab=3d7f1e9c
+-/
 lemma hurwitz2_1 {K : Set ℂ} (hK : IsCompact K) (F_conv : TendstoUniformlyOn F f p K)
     (hf1 : ContinuousOn f K) (hf2 : ∀ z ∈ K, f z ≠ 0) :
     ∀ᶠ n in p, ∀ z ∈ K, F n z ≠ 0 := by
@@ -217,6 +271,9 @@ lemma hurwitz2_1 {K : Set ℂ} (hK : IsCompact K) (F_conv : TendstoUniformlyOn F
     simp [h] at hnz
     linarith
 
+/--
+@isnad1 id=tendsto.3h6v.s7.f62c5941a842 from=translated src=- shape=56a39791 vocab=eaa1e093
+-/
 lemma TendstoUniformlyOn.tendsto_circle_integral (hr : 0 < r)
     (F_cont : ∀ᶠ n in p, ContinuousOn (F n) (sphere z₀ r))
     (F_conv : TendstoUniformlyOn F f p (sphere z₀ r)) :
@@ -240,6 +297,9 @@ lemma TendstoUniformlyOn.tendsto_circle_integral (hr : 0 < r)
       (fun z hz => (h z hz).le) ⟨z₀ + r, hpt, h _ hpt⟩
     all_goals first | rfl | field_simp [hr.ne, Real.pi_ne_zero, two_ne_zero]
 
+/--
+@isnad1 id=tendsto.6h7v.s7.7581eeefabcd from=translated src=- shape=1d0b58ef vocab=a0d39923
+-/
 lemma hurwitz2_2 (hU : IsOpen U) (hF : ∀ᶠ n in p, DifferentiableOn ℂ (F n) U)
     (hf : TendstoLocallyUniformlyOn F f p U) (hr1 : 0 < r) (hr2 : sphere z₀ r ⊆ U)
     (hf1 : ∀ (z : ℂ), z ∈ sphere z₀ r → f z ≠ 0) :
@@ -262,6 +322,9 @@ lemma hurwitz2_2 (hU : IsOpen U) (hF : ∀ᶠ n in p, DifferentiableOn ℂ (F n)
     · exact TendstoUniformlyOn.div_of_compact H7 H2
         ((H3.deriv hU).continuousOn.mono hr2) H4 hf1 H1
 
+/--
+@isnad1 id=eventual.7h7v.s8.99e05d0f9bff from=translated src=- shape=87f1e3d5 vocab=2e19c237
+-/
 lemma hurwitz2
     (hU : IsOpen U)
     (hF : ∀ᶠ n in p, DifferentiableOn ℂ (F n) U)
@@ -286,6 +349,9 @@ lemma hurwitz2
     rw [← ball_union_sphere]
     exact fun z hz => hz.casesOn (h z) (h' z)
 
+/--
+@isnad1 id=eventual.7h7v.s8.ed0688ee7c85 from=translated src=- shape=f5f69880 vocab=69ec3237
+-/
 lemma hurwitz3 {s : Set ℂ}
     (hU : IsOpen U)
     (hF : ∀ᶠ n in p, DifferentiableOn ℂ (F n) U)
@@ -314,6 +380,9 @@ lemma hurwitz3 {s : Set ℂ}
 
 ----------------
 
+/--
+@isnad1 id=eventual.6h6v.s7.28049bb5b361 from=translated src=- shape=3332b3da vocab=d6330e33
+-/
 theorem local_hurwitz [NeBot p]
     (hU : IsOpen U)
     (F_holo : ∀ᶠ n in p, DifferentiableOn ℂ (F n) U)
@@ -341,6 +410,9 @@ theorem local_hurwitz [NeBot p]
     obtain ⟨n, z, h5, h6⟩ := (hurwitz2 hU F_holo F_conv h1 h2 h3 h4).exists
     cases F_noz n z (h2 (ball_subset_closedBall (mem_ball.mpr h5))) h6
 
+/--
+@isnad1 id=eq.8h7v.s7.44d056b94042 from=translated src=- shape=3fe4a0b4 vocab=2e7765e1
+-/
 theorem hurwitz [NeBot p]
     (hU : IsOpen U)
     (hU' : IsPreconnected U)
@@ -354,6 +426,9 @@ theorem hurwitz [NeBot p]
   exact h.eqOn_zero_of_preconnected_of_eventuallyEq_zero hU' hz₀
     (local_hurwitz hU F_holo F_noz F_conv hz₀ hfz₀)
 
+/--
+@isnad1 id=or.5h5v.s7.6f3a0a41ae01 from=translated src=- shape=31efcaba vocab=2e7765e1
+-/
 theorem hurwitz' [NeBot p]
     (hU : IsOpen U)
     (hU' : IsPreconnected U)
@@ -366,6 +441,9 @@ theorem hurwitz' [NeBot p]
   obtain ⟨z₀, h1, h2⟩ := h
   exact hurwitz hU hU' F_holo F_noz F_conv h1 h2
 
+/--
+@isnad1 id=or.3h2v.s7.6e51cfc3b391 from=translated src=- shape=1ab7ac08 vocab=b0629c82
+-/
 lemma hurwitz_1 (hU : IsOpen U) (hU' : IsPreconnected U) (hf : DifferentiableOn ℂ f U) :
     (EqOn f 0 U) ∨ (∀ z₀ ∈ U, ∀ᶠ z in 𝓝[≠] z₀, f z ≠ 0) := by
   refine or_iff_not_imp_right.2 (fun h => ?_)
@@ -373,12 +451,18 @@ lemma hurwitz_1 (hU : IsOpen U) (hU' : IsPreconnected U) (hf : DifferentiableOn 
   obtain ⟨z₀, h1, h2⟩ := h
   exact (hf.analyticOnNhd hU).eqOn_zero_of_preconnected_of_frequently_eq_zero hU' h1 h2
 
+/--
+@isnad1 id=tendstol.2h9v.s6.34ca8fdd972c from=translated src=- shape=cd3617ae vocab=55da22c5
+-/
 lemma hurwitz4 {α β γ : Type*} {U : Set α} [TopologicalSpace α] [UniformSpace β] [UniformSpace γ]
     {F : ι → α → β} {f : α → β} {φ : β → γ}
     (hf : TendstoLocallyUniformlyOn F f p U) (hφ : UniformContinuous φ) :
     TendstoLocallyUniformlyOn (fun n => φ ∘ F n) (φ ∘ f) p U :=
   fun _ hu z hz => hf _ (mem_map.1 (hφ hu)) z hz
 
+/--
+@isnad1 id=or.5h5v.s7.2b472037cb81 from=translated src=- shape=a62a2af5 vocab=cdbde75d
+-/
 theorem hurwitz_inj [NeBot p]
     (hU : IsOpen U)
     (hU' : IsPreconnected U)

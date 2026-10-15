@@ -51,6 +51,9 @@ variable [T2Space M] [CompactSpace M]
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceLocalization : MeasurableSpace M := borel M
+/--
+@isnad1 id=borelspa.0h1v.s3.e58f5c9ff29e from=translated src=- shape=c6850a32 vocab=2fef4b46
+-/
 local instance instBorelSpaceLocalization : BorelSpace M := ⟨rfl⟩
 
 /-- The standard model with corners on the real line. -/
@@ -75,12 +78,18 @@ def rhoSupportClosure (i : d.ι) : Set M :=
 
 omit [CompleteSpace E] [FiniteDimensional ℝ E] [IsManifold I (1 : WithTop ℕ∞) M]
     [I.Boundaryless] [T2Space M] [CompactSpace M] in
+/--
+@isnad1 id=le.0h6v.s7.88536cceb1fb from=translated src=- shape=dad9fb42 vocab=7ee0ab9e
+-/
 lemma rhoSupportClosure_subset_source (i : d.ι) :
     rhoSupportClosure (d := d) i ⊆ (chart (d := d) i).source := by
   simp [rhoSupportClosure, chart]
 
 omit [CompleteSpace E] [FiniteDimensional ℝ E] [IsManifold I (1 : WithTop ℕ∞) M] [I.Boundaryless]
     [T2Space M] in
+/--
+@isnad1 id=iscompac.0h6v.s7.1e1150ebd836 from=translated src=- shape=b13b238e vocab=9726eaab
+-/
 lemma isCompact_rhoSupportClosure (i : d.ι) : IsCompact (rhoSupportClosure (d := d) i) :=
   (isClosed_closure.isCompact)
 
@@ -90,6 +99,9 @@ def rhoSupportImage (i : d.ι) : Set E :=
 
 omit [CompleteSpace E] [FiniteDimensional ℝ E] [IsManifold I (1 : WithTop ℕ∞) M] [I.Boundaryless]
     [T2Space M] in
+/--
+@isnad1 id=iscompac.0h6v.s7.40271e7c9058 from=translated src=- shape=20360d2e vocab=962906dc
+-/
 lemma isCompact_rhoSupportImage (i : d.ι) : IsCompact (rhoSupportImage (d := d) i) := by
   classical
   -- `extChartAt` is continuous on its source, hence on `rhoSupportClosure`
@@ -100,6 +112,9 @@ lemma isCompact_rhoSupportImage (i : d.ι) : IsCompact (rhoSupportImage (d := d)
 
 omit [CompleteSpace E] [FiniteDimensional ℝ E] [IsManifold I (1 : WithTop ℕ∞) M] [I.Boundaryless]
     [T2Space M] [CompactSpace M] in
+/--
+@isnad1 id=le.0h7v.s7.1a7951760da2 from=translated src=- shape=a8b34920 vocab=0a9bdf23
+-/
 lemma support_localize_subset_rhoSupportImage (f : M → ℝ) (i : d.ι) :
     Function.support (localize (d := d) f i) ⊆ rhoSupportImage (d := d) i := by
   intro y hy
@@ -144,6 +159,9 @@ lemma support_localize_subset_rhoSupportImage (f : M → ℝ) (i : d.ι) :
 
 omit [CompleteSpace E] [FiniteDimensional ℝ E] [IsManifold I (1 : WithTop ℕ∞) M] [I.Boundaryless]
     [T2Space M] in
+/--
+@isnad1 id=le.0h7v.s7.b50f6fcc1d22 from=translated src=- shape=5e3dc910 vocab=c67da831
+-/
 lemma tsupport_localize_subset_rhoSupportImage (f : M → ℝ) (i : d.ι) :
     tsupport (localize (d := d) f i) ⊆ rhoSupportImage (d := d) i := by
   have hImgClosed : IsClosed (rhoSupportImage (d := d) i) :=
@@ -152,6 +170,9 @@ lemma tsupport_localize_subset_rhoSupportImage (f : M → ℝ) (i : d.ι) :
 
 omit [CompleteSpace E] [FiniteDimensional ℝ E] [IsManifold I (1 : WithTop ℕ∞) M] [I.Boundaryless]
     [T2Space M] [CompactSpace M] in
+/--
+@isnad1 id=le.0h6v.s7.022869edd990 from=translated src=- shape=b2fcf57b vocab=dcb38ae7
+-/
 lemma rhoSupportImage_subset_target (i : d.ι) :
     rhoSupportImage (d := d) i ⊆ (chart (d := d) i).target := by
   intro y hy
@@ -160,6 +181,9 @@ lemma rhoSupportImage_subset_target (i : d.ι) :
 
 omit [CompleteSpace E] [FiniteDimensional ℝ E] [IsManifold I (1 : WithTop ℕ∞) M] [I.Boundaryless]
     [T2Space M] in
+/--
+@isnad1 id=le.0h7v.s7.7fee850532d3 from=translated src=- shape=6e834b5c vocab=07789eb1
+-/
 lemma tsupport_localize_subset_target (f : M → ℝ) (i : d.ι) :
     tsupport (localize (d := d) f i) ⊆ (chart (d := d) i).target :=
   (tsupport_localize_subset_rhoSupportImage (d := d) f i).trans
@@ -167,6 +191,9 @@ lemma tsupport_localize_subset_target (f : M → ℝ) (i : d.ι) :
 
 omit [CompleteSpace E] [FiniteDimensional ℝ E] [IsManifold I (1 : WithTop ℕ∞) M] [I.Boundaryless]
     [T2Space M] in
+/--
+@isnad1 id=hascompa.0h7v.s7.4eaa33fafc2a from=translated src=- shape=dcb94c24 vocab=43ca01c8
+-/
 lemma hasCompactSupport_localize (f : M → ℝ) (i : d.ι) :
     HasCompactSupport (localize (d := d) f i) := by
   -- `HasCompactSupport` is `IsCompact` of `tsupport`.
@@ -226,7 +253,9 @@ section
 omit [CompleteSpace E] [FiniteDimensional ℝ E] [T2Space M]
 
 /-- For a `C^1` function on a compact manifold, the chart-localization is a Euclidean `C1c`
-function. -/
+function.
+@isnad1 id=mem.1h7v.s8.911285c7d65d from=translated src=- shape=d7b3e9a4 vocab=33d972f3
+-/
 lemma localize_mem_C1c {f : M → ℝ} (hf : ContMDiff I Iℝ 1 f) (i : d.ι) :
     localize (d := d) f i ∈
       RellichKondrachov.Analysis.FunctionalSpaces.Sobolev.Euclidean.C1c (E := E) := by

@@ -99,24 +99,40 @@ component of `y`. For a separating curve this really is the other region
 (`IsSeparating.isRegionPair_farRegion`); no hypothesis is needed to define it. -/
 def farRegion (C : Set Plane) (y : Plane) : Set Plane := Cᶜ \ connectedComponentIn Cᶜ y
 
+/--
+@isnad1 id=iff.0h3v.s6.246dfc6922fe from=translated src=- shape=f46e56b8 vocab=5afb24ef
+-/
 theorem mem_farRegion_iff : x ∈ farRegion C y ↔ x ∉ C ∧ x ∉ connectedComponentIn Cᶜ y := Iff.rfl
 
+/--
+@isnad1 id=le.0h2v.s4.13fc1c16ded7 from=translated src=- shape=67c7b8ad vocab=cddea829
+-/
 theorem farRegion_subset_compl : farRegion C y ⊆ Cᶜ := fun _ hx => hx.1
 
+/--
+@isnad1 id=not.1h2v.s4.a05402d62fb3 from=translated src=- shape=5dc85be0 vocab=6019a600
+-/
 theorem notMem_farRegion_self (hy : y ∉ C) : y ∉ farRegion C y :=
   fun h => h.2 (mem_connectedComponentIn hy)
 
-/-- Off the curve, being in the far region is exactly being in another component. -/
+/-- Off the curve, being in the far region is exactly being in another component.
+@isnad1 id=iff.1h3v.s6.c74b79b820f6 from=translated src=- shape=5243fc5b vocab=5afb24ef
+-/
 theorem mem_farRegion_iff_connectedComponentIn_ne (hx : x ∉ C) :
     x ∈ farRegion C y ↔ connectedComponentIn Cᶜ x ≠ connectedComponentIn Cᶜ y := by
   refine ⟨fun h hEq => h.2 (hEq ▸ mem_connectedComponentIn hx), fun h => ⟨hx, fun hmem => ?_⟩⟩
   exact h (connectedComponentIn_eq hmem).symm
 
-/-- The crosscut misses the region of `y`, so all of it off the curve is in the far region. -/
+/-- The crosscut misses the region of `y`, so all of it off the curve is in the far region.
+@isnad1 id=le.1h3v.s6.b670a896580f from=translated src=- shape=7e0201e6 vocab=fb6d2ac4
+-/
 theorem diff_subset_farRegion (hdis : Disjoint P (connectedComponentIn Cᶜ y)) :
     P \ C ⊆ farRegion C y :=
   fun _ hz => ⟨hz.2, fun hmem => Set.disjoint_left.1 hdis hz.1 hmem⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.d0a1fcc58f1b from=translated src=- shape=cf0df21c vocab=c4e3d2dd
+-/
 theorem compl_diff_inside (C : Set Plane) : Cᶜ \ inside C = outside C := by
   ext w
   constructor
@@ -125,6 +141,9 @@ theorem compl_diff_inside (C : Set Plane) : Cᶜ \ inside C = outside C := by
     exact hcov.resolve_left hwin
   · exact fun hw => ⟨hw.1, fun h => Set.disjoint_left.1 disjoint_inside_outside h hw⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.fe06a31cbe12 from=translated src=- shape=cf0df21c vocab=c4e3d2dd
+-/
 theorem compl_diff_outside (C : Set Plane) : Cᶜ \ outside C = inside C := by
   ext w
   constructor
@@ -133,23 +152,32 @@ theorem compl_diff_outside (C : Set Plane) : Cᶜ \ outside C = inside C := by
     exact hcov.resolve_right hwout
   · exact fun hw => ⟨hw.1, fun h => Set.disjoint_left.1 disjoint_inside_outside hw h⟩
 
-/-- The component of `y` and the far region are *the* two regions of `ℝ² ∖ C`. -/
+/-- The component of `y` and the far region are *the* two regions of `ℝ² ∖ C`.
+@isnad1 id=isregion.2h2v.s6.9ffb69d03b44 from=translated src=- shape=70adc4b5 vocab=5727ef70
+-/
 theorem IsSeparating.isRegionPair_farRegion (hC : IsSeparating C) (hy : y ∉ C) :
     IsRegionPair C (connectedComponentIn Cᶜ y) (farRegion C y) := by
   rcases hC.isRegionOf_connectedComponentIn hy with hc | hc
   · exact Or.inl ⟨hc, by rw [farRegion, hc, compl_diff_inside]⟩
   · exact Or.inr ⟨hc, by rw [farRegion, hc, compl_diff_outside]⟩
 
+/--
+@isnad1 id=isregion.2h2v.s4.e0479a56abc4 from=translated src=- shape=f4c86f17 vocab=4d98337c
+-/
 theorem IsSeparating.isRegionOf_farRegion (hC : IsSeparating C) (hy : y ∉ C) :
     IsRegionOf C (farRegion C y) := (hC.isRegionPair_farRegion hy).right
 
 /-- Seen from the unbounded region, the far region is the bounded one — the blueprint's case
-(a), where `Vᵢ = Int(Jᵢ)`. -/
+(a), where `Vᵢ = Int(Jᵢ)`.
+@isnad1 id=eq.2h2v.s4.ffcf6894a6c4 from=translated src=- shape=34b3d73a vocab=c4352bb1
+-/
 theorem IsSeparating.farRegion_eq_inside (hC : IsSeparating C) (hy : y ∈ outside C) :
     farRegion C y = inside C := by
   rw [farRegion, hC.connectedComponentIn_eq_outside hy, compl_diff_outside]
 
-/-- Seen from the bounded region, the far region is the unbounded one. -/
+/-- Seen from the bounded region, the far region is the unbounded one.
+@isnad1 id=eq.2h2v.s4.2817fb5fac5f from=translated src=- shape=34b3d73a vocab=c4352bb1
+-/
 theorem IsSeparating.farRegion_eq_outside (hC : IsSeparating C) (hy : y ∈ inside C) :
     farRegion C y = outside C := by
   rw [farRegion, hC.connectedComponentIn_eq_inside hy, compl_diff_inside]
@@ -160,7 +188,9 @@ Lemma 2.6 places the two cells inside `Ω ∖ P`; the last paragraph of the proo
 places all three regions inside `ℝ² ∖ (C ∪ P)`, and the argument is the same each time: an open
 connected set whose frontier misses the ambient open set is a component of it (Lemma 1.7). -/
 
-/-- `ℝ² ∖ (C ∪ P)` is `Ω ∖ P` together with the untouched region `Ω'`. -/
+/-- `ℝ² ∖ (C ∪ P)` is `Ω ∖ P` together with the untouched region `Ω'`.
+@isnad1 id=eq.2h4v.s6.fef108a31605 from=translated src=- shape=0af89fd5 vocab=881cd6aa
+-/
 theorem compl_union_eq_of_isRegionPair (hΩ : IsRegionPair C Ω Ω') (hdis : Disjoint P Ω') :
     (C ∪ P)ᶜ = (Ω \ P) ∪ Ω' := by
   ext w
@@ -173,7 +203,9 @@ theorem compl_union_eq_of_isRegionPair (hΩ : IsRegionPair C Ω Ω') (hdis : Dis
     · exact ⟨hΩ.left.subset_compl hwΩ, hwP⟩
     · exact ⟨hΩ.right.subset_compl hwΩ', fun hwP => Set.disjoint_left.1 hdis hwP hwΩ'⟩
 
-/-- The untouched region is a component of `ℝ² ∖ (C ∪ P)`: its frontier is `C`. -/
+/-- The untouched region is a component of `ℝ² ∖ (C ∪ P)`: its frontier is `C`.
+@isnad1 id=eq.4h5v.s6.a03a0b1ca689 from=translated src=- shape=b145498e vocab=7b2995bb
+-/
 theorem far_isComponent (hC : IsSeparating C) (hΩ : IsRegionPair C Ω Ω')
     (hdis : Disjoint P Ω') (hz : z ∈ Ω') : connectedComponentIn (C ∪ P)ᶜ z = Ω' := by
   refine Plane.connectedComponentIn_eq_of_frontier_disjoint (hΩ.right.isOpen hC)
@@ -186,7 +218,9 @@ theorem far_isComponent (hC : IsSeparating C) (hΩ : IsRegionPair C Ω Ω')
     rintro w ⟨hwC, hw⟩
     exact hw (Or.inl hwC)
 
-/-- A cell is a component of `ℝ² ∖ (C ∪ P)`: its frontier is `J ⊆ C ∪ P`. -/
+/-- A cell is a component of `ℝ² ∖ (C ∪ P)`: its frontier is `J ⊆ C ∪ P`.
+@isnad1 id=eq.5h6v.s6.3187e0b45102 from=translated src=- shape=183b6bd0 vocab=f8f7a9eb
+-/
 theorem cell_isComponent_compl (hJ : IsSeparating J) (hWV : IsRegionPair J W V)
     (hJCP : J ⊆ C ∪ P) (hV : V ⊆ (C ∪ P)ᶜ) (hz : z ∈ V) :
     connectedComponentIn (C ∪ P)ᶜ z = V := by
@@ -200,7 +234,9 @@ theorem cell_isComponent_compl (hJ : IsSeparating J) (hWV : IsRegionPair J W V)
 /-! ## The arcs of a polygon, and parity as a separation criterion -/
 
 /-- Going `k` steps forward and then the remaining `m + 3 - k` returns to where one started:
-the second arc of a split ends at the first arc's starting vertex. -/
+the second arc of a split ends at the first arc's starting vertex.
+@isnad1 id=eq.1h3v.s9.be72011d0833 from=translated src=- shape=9a192ba8 vocab=c166b747
+-/
 theorem zmod_add_sub_cancel {m k : ℕ} (hk : k ≤ m + 3) (a : ZMod (m + 3)) :
     a + (k : ZMod (m + 3)) + ((m + 3 - k : ℕ) : ZMod (m + 3)) = a := by
   have hcast : ((k : ℕ) : ZMod (m + 3)) + ((m + 3 - k : ℕ) : ZMod (m + 3)) = 0 := by
@@ -216,14 +252,21 @@ variable {m : ℕ} {C : ClosedPolygon m} {a : ZMod (m + 3)} {k : ℕ}
 blueprint's `A₁` for `k` edges and `A₂` for the remaining `m + 3 - k`. -/
 def arc (C : ClosedPolygon m) (a : ZMod (m + 3)) (k : ℕ) : Set Plane := cover (C.arcPieces a k)
 
+/--
+@isnad1 id=le.0h4v.s5.7eed84e1ddc3 from=translated src=- shape=48ae1a01 vocab=36f01fff
+-/
 theorem arc_subset_carrier (C : ClosedPolygon m) (a : ZMod (m + 3)) (k : ℕ) :
     C.arc a k ⊆ C.carrier := cover_arcPieces_subset C a k
 
-/-- The two arcs cover the polygon. -/
+/-- The two arcs cover the polygon.
+@isnad1 id=eq.1h4v.s8.edaa0ed43aaa from=translated src=- shape=a5dc207f vocab=c3dd8e12
+-/
 theorem arc_union (C : ClosedPolygon m) (a : ZMod (m + 3)) (hk : k ≤ m + 3) :
     C.arc a k ∪ C.arc (a + k) (m + 3 - k) = C.carrier := cover_arcPieces_union C a hk
 
-/-- A curve of the split occupies its arc together with the crosscut. -/
+/-- A curve of the split occupies its arc together with the crosscut.
+@isnad1 id=eq.1h7v.s6.e5b9d5075dd5 from=translated src=- shape=6e0fbf2a vocab=3768bb04
+-/
 theorem carrier_eq_arc_union {m' : ℕ} {J : ClosedPolygon m'} {K : List Piece}
     (h : SameEdges J.pieces (C.arcPieces a k ++ K)) : J.carrier = C.arc a k ∪ cover K :=
   carrier_eq_of_sameEdges h
@@ -231,7 +274,9 @@ theorem carrier_eq_arc_union {m' : ℕ} {J : ClosedPolygon m'} {K : List Piece}
 /-- **The crossing count separates points exactly as the polygon does** (Theorem 2.3, read as a
 criterion). Two points off the polygon lie in different regions precisely when their crossing
 counts differ: equal components force equal counts by Lemma 2.2, and different components are
-the bounded and the unbounded one, whose counts are `1` and `0`. -/
+the bounded and the unbounded one, whose counts are `1` and `0`.
+@isnad1 id=iff.4h5v.s6.636f6d641ff1 from=translated src=- shape=01a6a1b4 vocab=a20f2f5c
+-/
 theorem parity_ne_iff_mem_farRegion (C : ClosedPolygon m) {u : Plane} (hu : Plane.IsDirection u)
     (hL : ∀ Q ∈ C.pieces, hgt u Q.1 ≠ hgt u Q.2) {x y : Plane}
     (hx : x ∉ C.carrier) (hy : y ∉ C.carrier) :
@@ -253,7 +298,9 @@ theorem parity_ne_iff_mem_farRegion (C : ClosedPolygon m) {u : Plane} (hu : Plan
       decide
     · exact absurd (hxr.trans hyr.symm) hne
 
-/-- The first vertex of a nonempty arc lies on it. -/
+/-- The first vertex of a nonempty arc lies on it.
+@isnad1 id=mem.1h4v.s5.ff6c45496648 from=translated src=- shape=229e9496 vocab=6566caa3
+-/
 theorem vertex_mem_arc (C : ClosedPolygon m) (a : ZMod (m + 3)) (hk : 1 ≤ k) :
     C.vertex a ∈ C.arc a k := by
   have h0 : a + ((0 : ℕ) : ZMod (m + 3)) = a := by rw [Nat.cast_zero, add_zero]
@@ -261,7 +308,9 @@ theorem vertex_mem_arc (C : ClosedPolygon m) (a : ZMod (m + 3)) (hk : 1 ≤ k) :
   · exact List.mem_map.2 ⟨0, List.mem_range.2 hk, by rw [h0]⟩
   · exact left_mem_segment ℝ _ _
 
-/-- The last vertex of a nonempty arc lies on it. -/
+/-- The last vertex of a nonempty arc lies on it.
+@isnad1 id=mem.1h4v.s8.f3ad8faf8487 from=translated src=- shape=2bcf3361 vocab=4bb0bed8
+-/
 theorem vertex_add_mem_arc (C : ClosedPolygon m) (a : ZMod (m + 3)) (hk : 1 ≤ k) :
     C.vertex (a + k) ∈ C.arc a k := by
   have hlast : a + ((k - 1 : ℕ) : ZMod (m + 3)) + 1 = a + (k : ZMod (m + 3)) := by
@@ -276,7 +325,9 @@ theorem vertex_add_mem_arc (C : ClosedPolygon m) (a : ZMod (m + 3)) (hk : 1 ≤ 
     exact right_mem_segment ℝ _ _
 
 /-- **The two cut vertices lie on both arcs.** This is what turns the blueprint's "the crosscut
-meets `C` only in its two endpoints" into the hypotheses `meets₁` and `meets₂`. -/
+meets `C` only in its two endpoints" into the hypotheses `meets₁` and `meets₂`.
+@isnad1 id=le.1h4v.s8.404003814591 from=translated src=- shape=d04b9f92 vocab=065fb636
+-/
 theorem endpoints_subset_arc (C : ClosedPolygon m) (a : ZMod (m + 3)) (hk : 1 ≤ k) :
     ({C.vertex a, C.vertex (a + k)} : Set Plane) ⊆ C.arc a k := by
   rintro w (rfl | rfl)
@@ -284,7 +335,9 @@ theorem endpoints_subset_arc (C : ClosedPolygon m) (a : ZMod (m + 3)) (hk : 1 �
   · exact C.vertex_add_mem_arc a hk
 
 /-- The same for the complementary arc, whose two ends are the same two vertices in the other
-order. -/
+order.
+@isnad1 id=le.1h4v.s9.35cbbbbdbffb from=translated src=- shape=8288095f vocab=08aabfff
+-/
 theorem endpoints_subset_arc' (C : ClosedPolygon m) (a : ZMod (m + 3)) (hk2 : k ≤ m + 2) :
     ({C.vertex a, C.vertex (a + k)} : Set Plane) ⊆ C.arc (a + k) (m + 3 - k) := by
   have hpos : 1 ≤ m + 3 - k := by omega
@@ -332,7 +385,9 @@ structure IsPolygonalCrosscut (C : ClosedPolygon m) (J₁ : ClosedPolygon m₁)
 /-- **The front door.** A crosscut is normally presented by saying that it meets `C` exactly in
 its two endpoints, and that those endpoints are the two cut vertices; `meets₁` and `meets₂`
 follow, because both cut vertices lie on both arcs. The bound `k ≤ m + 2` says the second arc is
-nonempty, as `1 ≤ k` says the first one is. -/
+nonempty, as `1 ≤ k` says the first one is.
+@isnad1 id=ispolygo.7h10v.s9.75c4cbf7ea1b from=translated src=- shape=a81597cd vocab=6d54308d
+-/
 theorem IsPolygonalCrosscut.of_endpoints {y : Plane} (hk1 : 1 ≤ k) (hk2 : k ≤ m + 2)
     (edges₁ : SameEdges J₁.pieces (C.arcPieces a k ++ K))
     (edges₂ : SameEdges J₂.pieces (C.arcPieces (a + k) (m + 3 - k) ++ K))
@@ -348,7 +403,9 @@ namespace IsPolygonalCrosscut
 variable {y : Plane} (h : IsPolygonalCrosscut C J₁ J₂ K a k y)
 include h
 
-/-- **The two arcs may be swapped.** Every statement below is therefore proved for `J₁` only. -/
+/-- **The two arcs may be swapped.** Every statement below is therefore proved for `J₁` only.
+@isnad1 id=ispolygo.1h10v.s8.1f0b26e5f750 from=translated src=- shape=a3e92833 vocab=28bef25a
+-/
 theorem symm : IsPolygonalCrosscut C J₂ J₁ K (a + k) (m + 3 - k) y := by
   have hk : k ≤ m + 3 := h.le
   have hnat : m + 3 - (m + 3 - k) = k := by omega
@@ -359,23 +416,40 @@ theorem symm : IsPolygonalCrosscut C J₂ J₁ K (a + k) (m + 3 - k) y := by
 
 /-! ### The elementary consequences -/
 
+/--
+@isnad1 id=not.1h10v.s5.3f98f78eb735 from=translated src=- shape=5b4edec4 vocab=c19656c9
+-/
 theorem notMem_cover : y ∉ cover K :=
   fun hy => Set.disjoint_left.1 h.avoids hy (mem_connectedComponentIn h.notMem)
 
+/--
+@isnad1 id=eq.1h10v.s6.b4132b36921f from=translated src=- shape=72aee180 vocab=a8f18d8e
+-/
 theorem carrier₁ : J₁.carrier = C.arc a k ∪ cover K :=
   ClosedPolygon.carrier_eq_arc_union h.edges₁
 
+/--
+@isnad1 id=not.1h10v.s5.8a8743f6f2bd from=translated src=- shape=1650823f vocab=fc98a5b9
+-/
 theorem notMem_carrier₁ : y ∉ J₁.carrier :=
   ClosedPolygon.notMem_carrier_of_sameEdges h.edges₁ h.notMem h.notMem_cover
 
+/--
+@isnad1 id=le.1h10v.s5.fcf4b8fbf29a from=translated src=- shape=6c7f70fc vocab=154461fb
+-/
 theorem cover_subset_carrier₁ : cover K ⊆ J₁.carrier := by
   rw [h.carrier₁]; exact Set.subset_union_right
 
+/--
+@isnad1 id=le.1h10v.s6.dd7b908744ee from=translated src=- shape=c9322084 vocab=df557a98
+-/
 theorem carrier₁_subset : J₁.carrier ⊆ C.carrier ∪ cover K := by
   rw [h.carrier₁]
   exact Set.union_subset_union_left _ (C.arc_subset_carrier a k)
 
-/-- The edges of the crosscut are nondegenerate, because they are edges of `J₁`. -/
+/-- The edges of the crosscut are nondegenerate, because they are edges of `J₁`.
+@isnad1 id=nondeg.2h11v.s5.cfc0afc8e847 from=translated src=- shape=225bfa5a vocab=da0257a7
+-/
 theorem nondeg : ∀ Q ∈ K, Q.Nondeg := by
   intro Q hQ
   obtain ⟨R, hR, hRQ⟩ := h.edges₁.symm.exists_mem (List.mem_append_right _ hQ)
@@ -385,7 +459,9 @@ theorem nondeg : ∀ Q ∈ K, Q.Nondeg := by
   · rw [e] at hRn; exact hRn
   · rw [e] at hRn; exact fun hh => hRn hh.symm
 
-/-- A ray direction transverse to every edge of `C` and of the crosscut at once. -/
+/-- A ray direction transverse to every edge of `C` and of the crosscut at once.
+@isnad1 id=ex.1h10v.s6.8ad2b19e00bf from=translated src=- shape=700a10de vocab=7984c86e
+-/
 theorem exists_direction : ∃ u : Plane, Plane.IsDirection u ∧
     (∀ Q ∈ C.pieces, hgt u Q.1 ≠ hgt u Q.2) ∧ (∀ Q ∈ K, hgt u Q.1 ≠ hgt u Q.2) := by
   obtain ⟨u, hu, hlev⟩ := exists_direction_hgt_ne (C.pieces ++ K) (by
@@ -403,15 +479,23 @@ Lemma 2.6 applies with `Ω = farRegion C.carrier y`, `Ω' = connectedComponentIn
 `Ω' ⊆ Wᵢ` — the blueprint's "being connected it lies in one region of `ℝ² ∖ Jᵢ`" — is
 `near_subset₁`, and needs no separation hypothesis at all. -/
 
+/--
+@isnad1 id=isregion.1h10v.s6.5a32dd2247cc from=translated src=- shape=1d183d01 vocab=504db084
+-/
 theorem regionPairC :
     IsRegionPair C.carrier (farRegion C.carrier y) (connectedComponentIn C.carrierᶜ y) :=
   (C.isSeparating_carrier.isRegionPair_farRegion h.notMem).symm
 
+/--
+@isnad1 id=isregion.1h10v.s6.02b2ee78f992 from=translated src=- shape=675dc908 vocab=504db084
+-/
 theorem regionPair₁ :
     IsRegionPair J₁.carrier (connectedComponentIn J₁.carrierᶜ y) (farRegion J₁.carrier y) :=
   J₁.isSeparating_carrier.isRegionPair_farRegion h.notMem_carrier₁
 
-/-- The untouched region of `ℝ² ∖ C` lies in one region of `ℝ² ∖ J₁`, namely the one of `y`. -/
+/-- The untouched region of `ℝ² ∖ C` lies in one region of `ℝ² ∖ J₁`, namely the one of `y`.
+@isnad1 id=le.1h10v.s7.7ad83d4f5c94 from=translated src=- shape=211d2416 vocab=9c072d90
+-/
 theorem near_subset₁ :
     connectedComponentIn C.carrierᶜ y ⊆ connectedComponentIn J₁.carrierᶜ y := by
   refine IsPreconnected.subset_connectedComponentIn isPreconnected_connectedComponentIn
@@ -420,25 +504,37 @@ theorem near_subset₁ :
   have hwK : w ∉ cover K := fun hK => Set.disjoint_left.1 h.avoids hK hw
   exact ClosedPolygon.notMem_carrier_of_sameEdges h.edges₁ hwC hwK
 
-/-- **Lemma 2.6(a), first half**: the cell lies in `Ω ∖ P`. -/
+/-- **Lemma 2.6(a), first half**: the cell lies in `Ω ∖ P`.
+@isnad1 id=le.1h10v.s6.de8a5017100b from=translated src=- shape=af2a1e7c vocab=ea16708a
+-/
 theorem cell_subset₁ : farRegion J₁.carrier y ⊆ farRegion C.carrier y \ cover K :=
   cell_subset_region_diff (P := cover K) C.isSeparating_carrier J₁.isSeparating_carrier
     h.regionPairC h.regionPair₁ h.near_subset₁ h.cover_subset_carrier₁
 
+/--
+@isnad1 id=le.1h10v.s6.33fea067f80e from=translated src=- shape=20ccc8b9 vocab=ea16708a
+-/
 theorem cell_subset₂ : farRegion J₂.carrier y ⊆ farRegion C.carrier y \ cover K :=
   h.symm.cell_subset₁
 
-/-- **Lemma 2.6(a)**: the cell is a connected component of `Ω ∖ P`. -/
+/-- **Lemma 2.6(a)**: the cell is a connected component of `Ω ∖ P`.
+@isnad1 id=eq.2h11v.s6.21fb83f0039f from=translated src=- shape=931fa217 vocab=0dab45c4
+-/
 theorem cell_isComponent₁ : ∀ z ∈ farRegion J₁.carrier y,
     connectedComponentIn (farRegion C.carrier y \ cover K) z = farRegion J₁.carrier y :=
   cell_isComponent (P := cover K) C.isSeparating_carrier J₁.isSeparating_carrier
     h.regionPairC h.regionPair₁ h.near_subset₁ h.cover_subset_carrier₁ h.carrier₁_subset
 
+/--
+@isnad1 id=eq.2h11v.s6.e315cb095e1b from=translated src=- shape=0ec751a8 vocab=0dab45c4
+-/
 theorem cell_isComponent₂ : ∀ z ∈ farRegion J₂.carrier y,
     connectedComponentIn (farRegion C.carrier y \ cover K) z = farRegion J₂.carrier y :=
   h.symm.cell_isComponent₁
 
-/-- **Lemma 2.6(c)**: the closure of the cell meets the polygon exactly in its arc. -/
+/-- **Lemma 2.6(c)**: the closure of the cell meets the polygon exactly in its arc.
+@isnad1 id=eq.1h10v.s6.3a9b121fcdc4 from=translated src=- shape=fb45688d vocab=648ed1ab
+-/
 theorem closure_cell_inter₁ : closure (farRegion J₁.carrier y) ∩ C.carrier = C.arc a k := by
   rw [closure_cell_inter_curve C.isSeparating_carrier J₁.isSeparating_carrier
     h.regionPairC.right h.regionPair₁ h.near_subset₁, h.carrier₁]
@@ -447,17 +543,28 @@ theorem closure_cell_inter₁ : closure (farRegion J₁.carrier y) ∩ C.carrier
   · exact hw
   · exact h.meets₁ ⟨hw, hwC⟩
 
+/--
+@isnad1 id=eq.1h10v.s8.708f04ed0b2d from=translated src=- shape=99c3dd4f vocab=220ec364
+-/
 theorem closure_cell_inter₂ :
     closure (farRegion J₂.carrier y) ∩ C.carrier = C.arc (a + k) (m + 3 - k) :=
   h.symm.closure_cell_inter₁
 
-/-- The cell has `J₁` as its frontier. -/
+/-- The cell has `J₁` as its frontier.
+@isnad1 id=eq.1h10v.s6.ab88e00a8549 from=translated src=- shape=5799fa2f vocab=a013c23f
+-/
 theorem frontier_cell₁ : frontier (farRegion J₁.carrier y) = J₁.carrier :=
   h.regionPair₁.right.frontier_eq J₁.isSeparating_carrier
 
+/--
+@isnad1 id=eq.1h10v.s6.05802f7c0e3d from=translated src=- shape=1be720a3 vocab=a013c23f
+-/
 theorem frontier_cell₂ : frontier (farRegion J₂.carrier y) = J₂.carrier :=
   h.symm.frontier_cell₁
 
+/--
+@isnad1 id=nonempty.1h10v.s5.a6f30853ae1c from=translated src=- shape=0046b2fa vocab=62b924d6
+-/
 theorem cell_nonempty₁ : (farRegion J₁.carrier y).Nonempty :=
   (h.regionPair₁.right.isConnected J₁.isSeparating_carrier).nonempty
 
@@ -468,7 +575,9 @@ This is the whole of Theorem 2.8 beyond Lemma 2.6, and it is one `ZMod 2` comput
 /-- **A point off `C ∪ P` is separated from `y` by `C` exactly when it is separated from `y` by
 exactly one of `J₁, J₂`.** Lemma 2.7 gives `πJ₁ + πJ₂ = πC` at every point; evaluating it at `x`
 and at `y` and subtracting turns the three "different region" statements — which Theorem 2.3
-reads off the three crossing counts — into the exclusive disjunction. -/
+reads off the three crossing counts — into the exclusive disjunction.
+@isnad1 id=iff.3h11v.s6.e372ff19075e from=translated src=- shape=d92fc67c vocab=4ecc5e59
+-/
 theorem separates_xor {x : Plane} (hxC : x ∉ C.carrier) (hxK : x ∉ cover K) :
     x ∈ farRegion C.carrier y ↔
       (x ∈ farRegion J₁.carrier y ↔ ¬ x ∈ farRegion J₂.carrier y) := by
@@ -487,7 +596,9 @@ theorem separates_xor {x : Plane} (hxC : x ∉ C.carrier) (hxK : x ∉ cover K) 
   exact key _ _ _ _ _ _ hsx hsy
 
 /-- **Theorem 2.8, the two cells.** The region the crosscut enters, with the crosscut removed,
-is the disjoint union of the two cells. -/
+is the disjoint union of the two cells.
+@isnad1 id=eq.1h10v.s6.0dd86a9d25c3 from=translated src=- shape=1fd6404e vocab=fc41d6c6
+-/
 theorem region_eq :
     farRegion C.carrier y \ cover K = farRegion J₁.carrier y ∪ farRegion J₂.carrier y := by
   refine Set.Subset.antisymm ?_ (Set.union_subset h.cell_subset₁ h.cell_subset₂)
@@ -498,28 +609,42 @@ theorem region_eq :
     by_contra hw₂
     exact hw₁ (((h.separates_xor hwΩ.1 hwK).1 hwΩ).2 hw₂)
 
+/--
+@isnad1 id=disjoint.1h10v.s6.228943e5cbd9 from=translated src=- shape=45959db0 vocab=6c492ce8
+-/
 theorem cells_disjoint : Disjoint (farRegion J₁.carrier y) (farRegion J₂.carrier y) := by
   rw [Set.disjoint_left]
   intro w hw₁ hw₂
   obtain ⟨hwΩ, hwK⟩ := h.cell_subset₁ hw₁
   exact ((h.separates_xor hwΩ.1 hwK).1 hwΩ).1 hw₁ hw₂
 
+/--
+@isnad1 id=ne.1h10v.s5.77dcbed3ac84 from=translated src=- shape=45959db0 vocab=def02930
+-/
 theorem cells_ne : farRegion J₁.carrier y ≠ farRegion J₂.carrier y := by
   intro heq
   obtain ⟨w, hw⟩ := h.cell_nonempty₁
   exact Set.disjoint_left.1 h.cells_disjoint hw (heq ▸ hw)
 
-/-- A cell is not the untouched region: it lies on the other side of `C`. -/
+/-- A cell is not the untouched region: it lies on the other side of `C`.
+@isnad1 id=ne.1h10v.s6.42e945936996 from=translated src=- shape=ea2ffee5 vocab=d0833906
+-/
 theorem cell_ne_near₁ : farRegion J₁.carrier y ≠ connectedComponentIn C.carrierᶜ y := by
   intro heq
   obtain ⟨w, hw⟩ := h.cell_nonempty₁
   exact Set.disjoint_left.1 h.regionPairC.disjoint (h.cell_subset₁ hw).1 (heq ▸ hw)
 
+/--
+@isnad1 id=ne.1h10v.s6.5d975e7f3d57 from=translated src=- shape=9c197847 vocab=d0833906
+-/
 theorem cell_ne_near₂ : farRegion J₂.carrier y ≠ connectedComponentIn C.carrierᶜ y :=
   h.symm.cell_ne_near₁
 
 /-! ### The three regions of `ℝ² ∖ (C ∪ P)` -/
 
+/--
+@isnad1 id=le.1h10v.s6.e5099bd2c2a9 from=translated src=- shape=e520d6d6 vocab=4debdc2d
+-/
 theorem cell_subset_compl₁ : farRegion J₁.carrier y ⊆ (C.carrier ∪ cover K)ᶜ := by
   intro w hw
   obtain ⟨hwΩ, hwK⟩ := h.cell_subset₁ hw
@@ -527,34 +652,48 @@ theorem cell_subset_compl₁ : farRegion J₁.carrier y ⊆ (C.carrier ∪ cover
   · exact hwΩ.1 hw'
   · exact hwK hw'
 
-/-- The three regions together are the whole of `ℝ² ∖ (C ∪ P)`. -/
+/-- The three regions together are the whole of `ℝ² ∖ (C ∪ P)`.
+@isnad1 id=eq.1h10v.s7.a21f1bba82a3 from=translated src=- shape=e1363d9b vocab=cc51dd98
+-/
 theorem compl_eq : (C.carrier ∪ cover K)ᶜ =
     (farRegion J₁.carrier y ∪ farRegion J₂.carrier y) ∪ connectedComponentIn C.carrierᶜ y := by
   rw [← h.region_eq]
   exact compl_union_eq_of_isRegionPair h.regionPairC h.avoids
 
-/-- The untouched region is a component of `ℝ² ∖ (C ∪ P)`, with frontier `C`. -/
+/-- The untouched region is a component of `ℝ² ∖ (C ∪ P)`, with frontier `C`.
+@isnad1 id=eq.2h11v.s7.efbe5c22b012 from=translated src=- shape=22cb6bc7 vocab=c649cdac
+-/
 theorem near_isComponent {z : Plane} (hz : z ∈ connectedComponentIn C.carrierᶜ y) :
     connectedComponentIn (C.carrier ∪ cover K)ᶜ z = connectedComponentIn C.carrierᶜ y :=
   far_isComponent C.isSeparating_carrier h.regionPairC h.avoids hz
 
+/--
+@isnad1 id=eq.1h10v.s7.309bc2dab967 from=translated src=- shape=0602b077 vocab=e52c761f
+-/
 theorem frontier_near :
     frontier (connectedComponentIn C.carrierᶜ y) = C.carrier :=
   h.regionPairC.right.frontier_eq C.isSeparating_carrier
 
-/-- The first cell is a component of `ℝ² ∖ (C ∪ P)`, with frontier `J₁`. -/
+/-- The first cell is a component of `ℝ² ∖ (C ∪ P)`, with frontier `J₁`.
+@isnad1 id=eq.2h11v.s7.8f90f35dbc0d from=translated src=- shape=b9040012 vocab=9e413959
+-/
 theorem cell_isComponent_compl₁ {z : Plane} (hz : z ∈ farRegion J₁.carrier y) :
     connectedComponentIn (C.carrier ∪ cover K)ᶜ z = farRegion J₁.carrier y :=
   cell_isComponent_compl J₁.isSeparating_carrier h.regionPair₁ h.carrier₁_subset
     h.cell_subset_compl₁ hz
 
+/--
+@isnad1 id=eq.2h11v.s7.6490128ee283 from=translated src=- shape=55047310 vocab=9e413959
+-/
 theorem cell_isComponent_compl₂ {z : Plane} (hz : z ∈ farRegion J₂.carrier y) :
     connectedComponentIn (C.carrier ∪ cover K)ᶜ z = farRegion J₂.carrier y :=
   h.symm.cell_isComponent_compl₁ hz
 
 /-- **"`ℝ² ∖ (C ∪ P)` has exactly three regions."** Every component is one of the three named
 sets, and each of the three is a component (`cell_isComponent_compl₁`, `…₂`,
-`near_isComponent`). Their frontiers are `J₁`, `J₂` and `C`. -/
+`near_isComponent`). Their frontiers are `J₁`, `J₂` and `C`.
+@isnad1 id=or.2h11v.s8.9759532602f5 from=translated src=- shape=2a9c2263 vocab=9e413959
+-/
 theorem isComponent {z : Plane} (hz : z ∉ C.carrier ∪ cover K) :
     connectedComponentIn (C.carrier ∪ cover K)ᶜ z = farRegion J₁.carrier y ∨
       connectedComponentIn (C.carrier ∪ cover K)ᶜ z = farRegion J₂.carrier y ∨
@@ -569,7 +708,9 @@ theorem isComponent {z : Plane} (hz : z ∉ C.carrier ∪ cover K) :
 /-! ### The blueprint's two cases -/
 
 /-- Seen from the unbounded region of `C`, `J₁` too has `y` outside it: otherwise the unbounded
-`Ext(C)` would sit inside the bounded `Int(J₁)`. -/
+`Ext(C)` would sit inside the bounded `Int(J₁)`.
+@isnad1 id=mem.2h10v.s6.2db3ed6b64eb from=translated src=- shape=28d42fbe vocab=fe1a4b55
+-/
 theorem mem_outside₁ (hy : y ∈ outside C.carrier) : y ∈ outside J₁.carrier := by
   rcases J₁.isSeparating_carrier.isRegionOf_connectedComponentIn h.notMem_carrier₁ with hc | hc
   · refine absurd ?_ C.isSeparating_carrier.not_isBounded_outside
@@ -578,17 +719,25 @@ theorem mem_outside₁ (hy : y ∈ outside C.carrier) : y ∈ outside J₁.carri
     exact h.near_subset₁
   · exact hc ▸ mem_connectedComponentIn h.notMem_carrier₁
 
+/--
+@isnad1 id=eq.2h10v.s6.a3e91d656d06 from=translated src=- shape=e26419af vocab=f86462ef
+-/
 theorem cell₁_eq_inside (hy : y ∈ outside C.carrier) :
     farRegion J₁.carrier y = inside J₁.carrier :=
   J₁.isSeparating_carrier.farRegion_eq_inside (h.mem_outside₁ hy)
 
+/--
+@isnad1 id=eq.2h10v.s6.483e23ec27a9 from=translated src=- shape=b87e1541 vocab=f86462ef
+-/
 theorem cell₂_eq_inside (hy : y ∈ outside C.carrier) :
     farRegion J₂.carrier y = inside J₂.carrier :=
   h.symm.cell₁_eq_inside hy
 
 /-- **Theorem 2.8(a).** If the crosscut runs inside `C` — that is, if the reference point `y`
 lies in `Ext(C)` — then `Int(C) ∖ P` is exactly the union of the two bounded regions of `J₁` and
-`J₂`, and those two are disjoint. -/
+`J₂`, and those two are disjoint.
+@isnad1 id=eq.2h10v.s6.73b9ed1ca020 from=translated src=- shape=abb08145 vocab=45bd4a4f
+-/
 theorem inside_diff_eq (hy : y ∈ outside C.carrier) :
     inside C.carrier \ cover K = inside J₁.carrier ∪ inside J₂.carrier := by
   rw [← C.isSeparating_carrier.farRegion_eq_inside hy, ← h.cell₁_eq_inside hy,
@@ -599,14 +748,18 @@ theorem inside_diff_eq (hy : y ∈ outside C.carrier) :
 `Ext(C) ∖ P` has exactly the two regions `farRegion Jᵢ.carrier y`, whose frontiers are `J₁` and
 `J₂` (`frontier_cell₁`, `frontier_cell₂`) and which are components of it
 (`cell_isComponent₁`, `…₂`). Which of the two is `Int(Jᵢ)` and which `Ext(Jᵢ)` is settled by
-`inside_exactly_one`. -/
+`inside_exactly_one`.
+@isnad1 id=eq.2h10v.s6.140a4e9a73bb from=translated src=- shape=96da7f49 vocab=ae426333
+-/
 theorem outside_diff_eq (hy : y ∈ inside C.carrier) :
     outside C.carrier \ cover K = farRegion J₁.carrier y ∪ farRegion J₂.carrier y := by
   rw [← C.isSeparating_carrier.farRegion_eq_outside hy]
   exact h.region_eq
 
 /-- In case (b), `Int(C)` lies inside exactly one of `J₁, J₂` — the blueprint's "relabel so that
-it lies inside `J₁`". -/
+it lies inside `J₁`".
+@isnad1 id=iff.2h10v.s6.fafc3255e96d from=translated src=- shape=fcefd0ec vocab=afcf0488
+-/
 theorem inside_exactly_one (hy : y ∈ inside C.carrier) :
     y ∈ inside J₁.carrier ↔ y ∉ inside J₂.carrier := by
   obtain ⟨u, hu, hlevC, hlevK⟩ := h.exists_direction
@@ -627,7 +780,9 @@ other region and `Vᵢ = farRegion Jᵢ.carrier y` for the region of `ℝ² ∖ 
 * `ℝ² ∖ (C ∪ P)` has exactly three regions, `V₁`, `V₂` and the region of `y`.
 
 Case (a) of the blueprint is `IsPolygonalCrosscut.inside_diff_eq`, which rewrites `Ω` as
-`Int(C)` and `Vᵢ` as `Int(Jᵢ)`; case (b) is `IsPolygonalCrosscut.outside_diff_eq`. -/
+`Int(C)` and `Vᵢ` as `Int(Jᵢ)`; case (b) is `IsPolygonalCrosscut.outside_diff_eq`.
+@isnad1 id=and.1h10v.s9.4be641648fc5 from=translated src=- shape=8cde6c50 vocab=fa876273
+-/
 theorem polygonal_crosscut {y : Plane} (h : IsPolygonalCrosscut C J₁ J₂ K a k y) :
     farRegion C.carrier y \ cover K = farRegion J₁.carrier y ∪ farRegion J₂.carrier y ∧
       Disjoint (farRegion J₁.carrier y) (farRegion J₂.carrier y) ∧

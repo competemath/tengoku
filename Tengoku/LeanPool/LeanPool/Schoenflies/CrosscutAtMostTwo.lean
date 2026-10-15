@@ -140,18 +140,33 @@ def HasArcCollars (D P : Set Plane) : Prop :=
 
 namespace ArcCollar
 
+/--
+@isnad1 id=le.0h4v.s5.3484fc112d43 from=translated src=- shape=949e1695 vocab=c2bc0b66
+-/
 theorem left_subset_nbhd_diff (C : ArcCollar D P K) : C.left ⊆ C.nbhd \ P := by
   rw [C.nbhd_diff]; exact subset_union_left
 
+/--
+@isnad1 id=le.0h4v.s5.a4b1e9c14b65 from=translated src=- shape=949e1695 vocab=9b629fd6
+-/
 theorem right_subset_nbhd_diff (C : ArcCollar D P K) : C.right ⊆ C.nbhd \ P := by
   rw [C.nbhd_diff]; exact subset_union_right
 
+/--
+@isnad1 id=le.0h4v.s5.2b12acc53c6e from=translated src=- shape=40012451 vocab=b588854c
+-/
 theorem nbhd_diff_subset_diff (C : ArcCollar D P K) : C.nbhd \ P ⊆ D \ P :=
   fun _ hy => ⟨C.nbhd_subset hy.1, hy.2⟩
 
+/--
+@isnad1 id=le.0h4v.s4.5a516936bce0 from=translated src=- shape=1c8236a0 vocab=c3bf2c66
+-/
 theorem left_subset_diff (C : ArcCollar D P K) : C.left ⊆ D \ P :=
   C.left_subset_nbhd_diff.trans C.nbhd_diff_subset_diff
 
+/--
+@isnad1 id=le.0h4v.s4.371ed93c3970 from=translated src=- shape=1c8236a0 vocab=1060bb05
+-/
 theorem right_subset_diff (C : ArcCollar D P K) : C.right ⊆ D \ P :=
   C.right_subset_nbhd_diff.trans C.nbhd_diff_subset_diff
 
@@ -162,12 +177,24 @@ noncomputable def ptL (C : ArcCollar D P K) : Plane := C.isConnected_left.nonemp
 /-- The reference point on the right of the arc. -/
 noncomputable def ptR (C : ArcCollar D P K) : Plane := C.isConnected_right.nonempty.some
 
+/--
+@isnad1 id=mem.0h4v.s4.ed6cd94c1efe from=translated src=- shape=0ca1d46a vocab=9928440d
+-/
 theorem ptL_mem (C : ArcCollar D P K) : C.ptL ∈ C.left := C.isConnected_left.nonempty.some_mem
 
+/--
+@isnad1 id=mem.0h4v.s4.ccea75cda826 from=translated src=- shape=0ca1d46a vocab=b7878154
+-/
 theorem ptR_mem (C : ArcCollar D P K) : C.ptR ∈ C.right := C.isConnected_right.nonempty.some_mem
 
+/--
+@isnad1 id=mem.0h4v.s5.ea261c807ff8 from=translated src=- shape=1d61b63c vocab=f8f0fb7e
+-/
 theorem ptL_mem_diff (C : ArcCollar D P K) : C.ptL ∈ D \ P := C.left_subset_diff C.ptL_mem
 
+/--
+@isnad1 id=mem.0h4v.s5.fc2fb6de4169 from=translated src=- shape=1d61b63c vocab=8e9f41b4
+-/
 theorem ptR_mem_diff (C : ArcCollar D P K) : C.ptR ∈ D \ P := C.right_subset_diff C.ptR_mem
 
 /-- A connected piece of `D ∖ P` that meets the neighbourhood of a collar lies in one of the
@@ -175,7 +202,9 @@ two components that collar's reference points name.
 
 The piece meets `nbhd` in a point off `P`, which is therefore in one of the two tracks; the
 piece and that track together are connected inside `D ∖ P` and contain the corresponding
-reference point. -/
+reference point.
+@isnad1 id=le.3h5v.s7.4179d39a3966 from=translated src=- shape=13d0871b vocab=83acfacb
+-/
 theorem meeting_subset_components (C₀ : ArcCollar D P K') {S : Set Plane}
     (hS : IsPreconnected S) (hSsub : S ⊆ D \ P) (hmeet : (C₀.nbhd ∩ S).Nonempty) :
     S ⊆ connectedComponentIn (D \ P) C₀.ptL ∪ connectedComponentIn (D \ P) C₀.ptR := by
@@ -202,7 +231,9 @@ soon as the two subarcs share a point.
 Both tracks of `C` approach the shared point `z`, and `C₀.nbhd` is an open neighbourhood of it,
 so each track of `C` meets `C₀.nbhd`; `meeting_subset_components` then places each of them in
 one of the two components. This is the blueprint's "one track meets `B_L` and the other meets
-`B_R`", with the two half-disks replaced by the fixed collar. -/
+`B_R`", with the two half-disks replaced by the fixed collar.
+@isnad1 id=le.2h7v.s7.45a5beb8acde from=translated src=- shape=cf9228b7 vocab=7fadc2ca
+-/
 theorem nbhd_diff_subset_components (C₀ : ArcCollar D P K') (C : ArcCollar D P K)
     {z : Plane} (hz' : z ∈ K') (hz : z ∈ K) :
     C.nbhd \ P ⊆ connectedComponentIn (D \ P) C₀.ptL ∪ connectedComponentIn (D \ P) C₀.ptR := by
@@ -221,7 +252,9 @@ end ArcCollar
 
 /-- The points of an open set that are in neither of two prescribed components form an open
 set: each such point drags its whole component with it, and a component of an open subset of
-the plane is open. -/
+the plane is open.
+@isnad1 id=isopen.1h3v.s7.451a4f2eb782 from=translated src=- shape=3a90d79c vocab=324b0570
+-/
 theorem isOpen_notMem_two_components {S : Set Plane} (hS : IsOpen S) (zL zR : Plane) :
     IsOpen {y | y ∈ S ∧ y ∉ connectedComponentIn S zL ∧ y ∉ connectedComponentIn S zR} := by
   rw [isOpen_iff_forall_mem_open]
@@ -247,7 +280,9 @@ those two components.
 
 The set `T` of points of `D ∖ P` in neither component is open; the union `U` of the two
 components with all the good neighbourhoods is open, contains `P ∩ D` and meets `D`; the two
-are disjoint and cover `D`. Connectedness of `D` kills `T`. -/
+are disjoint and cover `D`. Connectedness of `D` kills `T`.
+@isnad1 id=or.6h5v.s8.f7a3d9376b90 from=translated src=- shape=8e13769d vocab=9175d2a9
+-/
 theorem covered_by_two_of_local (hDopen : IsOpen D) (hDconn : IsPreconnected D)
     (hPclosed : IsClosed P) {zL zR : Plane} (hzL : zL ∈ D \ P)
     (hloc : ∀ w ∈ D ∩ P, ∃ V : Set Plane, IsOpen V ∧ w ∈ V ∧ V ⊆ D ∧
@@ -312,7 +347,9 @@ inside the collar.
 The reference points are the two reference points of the collar of the middle third of the arc:
 `K₀ = f '' [1/4, 3/4]` for a parametrisation `f` of `P`. Any other nondegenerate compact subarc
 would do, and `ArcCollar.nbhd_diff_subset_components` is stated so that a consumer that has a
-collar of its own can use *its* reference points instead. -/
+collar of its own can use *its* reference points instead.
+@isnad1 id=ex.8h4v.s8.8c48d7d57970 from=translated src=- shape=9ce30041 vocab=eef2e9a7
+-/
 theorem crosscut_at_most_two {a b : Plane}
     (hDopen : IsOpen D) (hDconn : IsPreconnected D)
     (hP : IsArcBetween P a b) (_hPpoly : IsPolygonal P)
@@ -373,7 +410,9 @@ Theorem "Crosscut theorem" cites: the crosscut-cells lemma hands it two *distinc
 
 Stated for an arbitrary set `S`, since it is pure component bookkeeping: if everything is
 covered by the components of `z_L, z_R` and `v₁, v₂` have different components, then those two
-components are the two, in one order or the other. -/
+components are the two, in one order or the other.
+@isnad1 id=or.5h6v.s8.b2c337d81718 from=translated src=- shape=34714274 vocab=ca799358
+-/
 theorem covered_by_two_components_of_ne {S : Set Plane} {zL zR v₁ v₂ : Plane}
     (h : ∀ x ∈ S, x ∈ connectedComponentIn S zL ∨ x ∈ connectedComponentIn S zR)
     (h₁ : v₁ ∈ S) (h₂ : v₂ ∈ S)
@@ -409,7 +448,9 @@ namespace Plane
 Stated as an existential so that the direction and the length are *opaque* to the consumer.
 Writing them as `dir (b - a)` and `‖b - a‖` makes every subsequent rewrite of `b` reach inside
 them, which is exactly the friction the strip apparatus avoids by carrying `tang` and `len` as
-fields. -/
+fields.
+@isnad1 id=ex.1h2v.s7.55ce9eeb9d2c from=translated src=- shape=dee764a8 vocab=4d99ca4e
+-/
 theorem exists_direction_length {a b : Plane} (hab : a ≠ b) :
     ∃ (u : Plane) (L : ℝ), 0 < L ∧ IsDirection u ∧ L • u = b - a := by
   have hne : b - a ≠ 0 := sub_ne_zero.2 (Ne.symm hab)
@@ -421,7 +462,9 @@ theorem exists_direction_length {a b : Plane} (hab : a ≠ b) :
 at signed distance zero whose progress along the direction lies between `0` and the length.
 
 This is the segment analogue of `ClosedPolygon.mem_edge_iff`, which is stated for an edge of a
-closed polygon and so is unavailable for a lone segment. -/
+closed polygon and so is unavailable for a lone segment.
+@isnad1 id=iff.3h5v.s8.ff13205c1ca5 from=translated src=- shape=e565e5b1 vocab=543e936e
+-/
 theorem mem_segment_iff_coord {a b u x : Plane} {L : ℝ} (hL : 0 < L) (hu : IsDirection u)
     (hLu : L • u = b - a) :
     x ∈ segment ℝ a b ↔ coordAcross a u x = 0 ∧ coordAlong a u x ∈ Icc 0 L := by
@@ -460,7 +503,9 @@ region, split by the line of the segment into two convex halves.
 
 This discharges `HasArcCollars` in the one case the existing strip apparatus reaches without an
 arc collar being built, and so certifies that the hypothesis of `crosscut_at_most_two` is
-satisfiable. -/
+satisfiable.
+@isnad1 id=hasarcco.5h3v.s8.885027c51a9b from=translated src=- shape=17ae4cb4 vocab=53aace06
+-/
 theorem hasArcCollars_segment {a b : Plane} (hab : a ≠ b) (hDopen : IsOpen D)
     (ha : a ∉ D) (hb : b ∉ D) (hPD : segment ℝ a b \ {a, b} ⊆ D) :
     HasArcCollars D (segment ℝ a b) := by
@@ -607,7 +652,9 @@ theorem hasArcCollars_segment {a b : Plane} (hab : a ≠ b) (hDopen : IsOpen D)
     exact lt_of_le_of_lt (min_le_right _ _) (by linarith)
 
 /-- **A straight crosscut cuts a region into at most two pieces**, with no hypothesis left
-standing: `hasArcCollars_segment` discharges the collar. -/
+standing: `hasArcCollars_segment` discharges the collar.
+@isnad1 id=ex.6h3v.s9.4eb2a9b10123 from=translated src=- shape=51e471e9 vocab=ae2d5ed4
+-/
 theorem segment_crosscut_at_most_two {a b : Plane} (hab : a ≠ b)
     (hDopen : IsOpen D) (hDconn : IsPreconnected D) (ha : a ∉ D) (hb : b ∉ D)
     (hPD : segment ℝ a b \ {a, b} ⊆ D) :
@@ -618,7 +665,9 @@ theorem segment_crosscut_at_most_two {a b : Plane} (hab : a ≠ b)
     hPD (hasArcCollars_segment hab hDopen ha hb hPD)
 
 /-- **Lemma "At most two sides", in the form the crosscut theorem consumes.** Two distinct
-components of `D ∖ P` exhaust it. -/
+components of `D ∖ P` exhaust it.
+@isnad1 id=or.12h7v.s8.c1d0d1a6597b from=translated src=- shape=f26c3504 vocab=eef2e9a7
+-/
 theorem crosscut_components_exhaust {a b v₁ v₂ : Plane}
     (hDopen : IsOpen D) (hDconn : IsPreconnected D)
     (hP : IsArcBetween P a b) (hPpoly : IsPolygonal P)

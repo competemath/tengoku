@@ -20,6 +20,9 @@ namespace MeasureTheory.Measure
 
 variable {A B C : Type*} [MeasurableSpace A] [MeasurableSpace B] [MeasurableSpace C]
 
+/--
+@isnad1 id=measurab.2h5v.s6.e7dd68b41033 from=translated src=- shape=e4e76a30 vocab=0b41d7e2
+-/
 lemma measurable_map'
     {f : A → B → C} (hf : Measurable fun (x, y) ↦ f x y)
     {μ : A → Measure B} (hμ₁ : Measurable μ) [∀ x, IsFiniteMeasure (μ x)]
@@ -34,6 +37,9 @@ lemma measurable_map'
   · apply hf hX
   · infer_instance
 
+/--
+@isnad1 id=measurab.3h4v.s6.67fd6f1b1ccc from=translated src=- shape=445c4527 vocab=b362242e
+-/
 lemma measurable_apply
     {μ : A → Measure B} (hμ : Measurable μ) (hμ' : ProbabilityTheory.IsSFiniteKernel ⟨μ, hμ⟩)
     {i : A → Set B} (hi : Measurable fun x : _ × _ ↦ x.1 ∈ i x.2)
@@ -71,6 +77,9 @@ noncomputable def mapOption (f : A → Option B) (μ : Measure A) : Measure B :=
   else
     0
 
+/--
+@isnad1 id=eq.2h5v.s6.a595109f8d08 from=translated src=- shape=28416f00 vocab=eae9f954
+-/
 @[simp]
 lemma lintegral_mapOption
     {k : B → ENNReal} (hk : Measurable k)

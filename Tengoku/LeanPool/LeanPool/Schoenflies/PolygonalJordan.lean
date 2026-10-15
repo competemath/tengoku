@@ -171,24 +171,41 @@ namespace ClosedPolygon
 
 variable {P : ClosedPolygon m}
 
+/--
+@isnad1 id=isclosed.0h2v.s5.8f547d00760b from=translated src=- shape=595ce0b1 vocab=5d1031e7
+-/
 theorem isClosed_carrier (P : ClosedPolygon m) : IsClosed P.carrier :=
   P.isCompact_carrier.isClosed
 
+/--
+@isnad1 id=isopen.0h2v.s5.dd24cbf9ca91 from=translated src=- shape=634863e1 vocab=bc069533
+-/
 theorem isOpen_compl_carrier (P : ClosedPolygon m) : IsOpen P.carrierᶜ :=
   P.isClosed_carrier.isOpen_compl
 
+/--
+@isnad1 id=nonempty.0h2v.s3.1726ad6b6b9b from=translated src=- shape=595ce0b1 vocab=1ccc24fe
+-/
 theorem carrier_nonempty (P : ClosedPolygon m) : P.carrier.Nonempty :=
   ⟨P.vertex 0, vertex_mem_carrier⟩
 
+/--
+@isnad1 id=le.0h3v.s4.dcbdda7f375c from=translated src=- shape=f5a4de64 vocab=ca592eb9
+-/
 theorem sideL_subset_compl (D : StripData P) : D.sideL ⊆ P.carrierᶜ :=
   fun _ hz => Set.disjoint_left.1 D.sideL_disjoint_carrier hz
 
+/--
+@isnad1 id=le.0h3v.s4.2c730d52d627 from=translated src=- shape=f5a4de64 vocab=8c73ff69
+-/
 theorem sideR_subset_compl (D : StripData P) : D.sideR ⊆ P.carrierᶜ :=
   fun _ hz => Set.disjoint_left.1 D.sideR_disjoint_carrier hz
 
 /-- **No edge is parallel to an admissible ray direction.** "No edge is horizontal" says exactly
 that the two ends of an edge are at different heights, which is that the edge's tangent and the
-ray direction span the plane. -/
+ray direction span the plane.
+@isnad1 id=ne.1h4v.s6.3698f47d3335 from=translated src=- shape=09e66107 vocab=641ef7c4
+-/
 theorem det_tang_ne_zero {u : Plane} (hL : ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2)
     (i : ZMod (m + 3)) : det (P.tang i) u ≠ 0 := by
   have hne : hgt u (P.vertex i) ≠ hgt u (P.vertex (i + 1)) := hL _ (P.mem_pieces i)
@@ -214,7 +231,9 @@ opposite and nonzero because `det (tang i) u ≠ 0` — the edge is not parallel
 
 /-- **The two tracks of the collar carry different parities.** The witnesses are a point just
 before and a point just after the midpoint of the edge `i` in the ray direction: they lie in the
-two different tracks, and the crossing count changes by one between them. -/
+two different tracks, and the crossing count changes by one between them.
+@isnad1 id=ex.2h5v.s6.629b3887bc09 from=translated src=- shape=74b46c8e vocab=dbaafc23
+-/
 theorem exists_opposite_parity_sides (P : ClosedPolygon m) (D : StripData P)
     (i : ZMod (m + 3)) {u : Plane} (hu : Plane.IsDirection u)
     (hL : ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2) :
@@ -290,14 +309,18 @@ theorem exists_opposite_parity_sides (P : ClosedPolygon m) (D : StripData P)
       · exact h
     · rw [hpar]; exact zmod_two_ne_add_one _
 
-/-- The crossing parity is constant on the left track: it is connected and misses the polygon. -/
+/-- The crossing parity is constant on the left track: it is connected and misses the polygon.
+@isnad1 id=eq.4h6v.s6.9ec9c9088321 from=translated src=- shape=f0e6dbaa vocab=88481fad
+-/
 theorem parity_eq_of_mem_sideL (P : ClosedPolygon m) (D : StripData P) {u : Plane}
     (hu : Plane.IsDirection u) (hL : ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2) {x y : Plane}
     (hx : x ∈ D.sideL) (hy : y ∈ D.sideL) : parity u P.pieces x = parity u P.pieces y :=
   parity_eq_of_isPreconnected hu hL P.isClosedChain_pieces D.isConnected_sideL.isPreconnected
     (fun z hz => by rw [P.cover_pieces]; exact sideL_subset_compl D hz) hx hy
 
-/-- The crossing parity is constant on the right track. -/
+/-- The crossing parity is constant on the right track.
+@isnad1 id=eq.4h6v.s6.bb7f95d6a232 from=translated src=- shape=f0e6dbaa vocab=5c35cf51
+-/
 theorem parity_eq_of_mem_sideR (P : ClosedPolygon m) (D : StripData P) {u : Plane}
     (hu : Plane.IsDirection u) (hL : ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2) {x y : Plane}
     (hx : x ∈ D.sideR) (hy : y ∈ D.sideR) : parity u P.pieces x = parity u P.pieces y :=
@@ -306,7 +329,9 @@ theorem parity_eq_of_mem_sideR (P : ClosedPolygon m) (D : StripData P) {u : Plan
 
 /-- **The two tracks of the collar have opposite parity**, whichever points of them are chosen.
 This is the "at least two regions" half of Theorem 2.3: no connected subset of the complement
-meets both tracks, since parity is constant on such a subset. -/
+meets both tracks, since parity is constant on such a subset.
+@isnad1 id=ne.4h6v.s6.8b2f7aa30518 from=translated src=- shape=3b220576 vocab=b25fae3e
+-/
 theorem parity_ne_of_mem_sides (P : ClosedPolygon m) (D : StripData P) {u : Plane}
     (hu : Plane.IsDirection u) (hL : ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2) {x y : Plane}
     (hx : x ∈ D.sideL) (hy : y ∈ D.sideR) : parity u P.pieces x ≠ parity u P.pieces y := by
@@ -314,7 +339,9 @@ theorem parity_ne_of_mem_sides (P : ClosedPolygon m) (D : StripData P) {u : Plan
   rw [P.parity_eq_of_mem_sideL D hu hL hx hzL, P.parity_eq_of_mem_sideR D hu hL hy hzR]
   exact hne
 
-/-- The two tracks lie in different components of the complement. -/
+/-- The two tracks lie in different components of the complement.
+@isnad1 id=ne.2h5v.s7.4ea73335afff from=translated src=- shape=50acda14 vocab=ebaf1475
+-/
 theorem connectedComponentIn_ne_of_mem_sides (P : ClosedPolygon m) (D : StripData P) {x y : Plane}
     (hx : x ∈ D.sideL) (hy : y ∈ D.sideR) :
     connectedComponentIn P.carrierᶜ x ≠ connectedComponentIn P.carrierᶜ y := by
@@ -333,7 +360,9 @@ component of either `z_L` or `z_R`." -/
 
 /-- **At most two regions.** Every point of the complement lies in the component of a point of one
 of the two tracks: walk towards a nearest point of the polygon — Lemma 1.3 says the walk misses
-the polygon — and stop just short of it, inside the collar. -/
+the polygon — and stop just short of it, inside the collar.
+@isnad1 id=ex.1h4v.s7.9692b7831565 from=translated src=- shape=9b675a09 vocab=77894aba
+-/
 theorem exists_mem_sides_connectedComponentIn (P : ClosedPolygon m) (D : StripData P) {x : Plane}
     (hx : x ∉ P.carrier) :
     ∃ y ∈ D.sideL ∪ D.sideR,
@@ -387,7 +416,9 @@ theorem exists_mem_sides_connectedComponentIn (P : ClosedPolygon m) (D : StripDa
 
 /-- Every point of the complement lies in the component of one of two fixed reference points,
 one on each track. This is `exists_mem_sides_connectedComponentIn` with the track collapsed to a
-point, which is possible because each track is connected. -/
+point, which is possible because each track is connected.
+@isnad1 id=or.3h6v.s8.6b01e4f75f50 from=translated src=- shape=c7b1a3aa vocab=ebaf1475
+-/
 theorem connectedComponentIn_eq_of_notMem (P : ClosedPolygon m) (D : StripData P)
     {zL zR : Plane} (hzL : zL ∈ D.sideL) (hzR : zR ∈ D.sideR) {x : Plane} (hx : x ∉ P.carrier) :
     connectedComponentIn P.carrierᶜ x = connectedComponentIn P.carrierᶜ zL ∨
@@ -485,7 +516,9 @@ and each has the polygon as its frontier.
 
 The bounded region is `Schoenflies.inside P.carrier` and the unbounded one
 `Schoenflies.outside P.carrier`; everything the blueprint writes `Int(C)` and `Ext(C)` for, and
-the whole `IsSeparating` API of `Schoenflies/CrosscutCells.lean`, comes with this statement. -/
+the whole `IsSeparating` API of `Schoenflies/CrosscutCells.lean`, comes with this statement.
+@isnad1 id=issepara.0h2v.s3.82d7bca9e399 from=translated src=- shape=1f8e965c vocab=8e05c4d2
+-/
 theorem isSeparating_carrier (P : ClosedPolygon m) : IsSeparating P.carrier := by
   obtain ⟨D⟩ := exists_stripData P
   obtain ⟨zL, hzL⟩ := D.isConnected_sideL.nonempty
@@ -520,7 +553,9 @@ theorem isSeparating_carrier (P : ClosedPolygon m) : IsSeparating P.carrier := b
       hne hall hclL hclR (hcw ▸ hbeysub)
 
 /-- Exactly two regions, explicitly: the component of any point off the polygon is one of the two
-named regions. -/
+named regions.
+@isnad1 id=or.1h3v.s7.f76494dfe52d from=translated src=- shape=1ac2909a vocab=af1ceaaf
+-/
 theorem connectedComponentIn_eq_inside_or_outside (P : ClosedPolygon m) {x : Plane}
     (hx : x ∉ P.carrier) :
     connectedComponentIn P.carrierᶜ x = inside P.carrier ∨
@@ -538,7 +573,9 @@ lies in the unbounded region." Here `q` is chosen to be beyond a containing *squ
 that it visibly lies in the unbounded region: the outside of that square is connected, misses the
 polygon, and is unbounded. -/
 
-/-- **`π_C = 0` on the unbounded region.** Every admissible ray direction gives the same answer. -/
+/-- **`π_C = 0` on the unbounded region.** Every admissible ray direction gives the same answer.
+@isnad1 id=eq.3h4v.s6.a09e5d063896 from=translated src=- shape=f9dff26b vocab=1d5e22d7
+-/
 theorem parity_eq_zero_of_mem_outside (P : ClosedPolygon m) {u : Plane}
     (hu : Plane.IsDirection u) (hL : ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2)
     {x : Plane} (hx : x ∈ outside P.carrier) : parity u P.pieces x = 0 := by
@@ -566,7 +603,9 @@ theorem parity_eq_zero_of_mem_outside (P : ClosedPolygon m) {u : Plane}
 
 /-- **`π_C = 1` on the bounded region.** The two tracks of the collar have opposite parity and lie
 in the two different regions, so the region that is not the unbounded one carries the parity that
-is not `0`. -/
+is not `0`.
+@isnad1 id=eq.3h4v.s6.8bc13f0c907c from=translated src=- shape=f9dff26b vocab=cd429e76
+-/
 theorem parity_eq_one_of_mem_inside (P : ClosedPolygon m) {u : Plane}
     (hu : Plane.IsDirection u) (hL : ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2)
     {x : Plane} (hx : x ∈ inside P.carrier) : parity u P.pieces x = 1 := by
@@ -597,7 +636,9 @@ theorem parity_eq_one_of_mem_inside (P : ClosedPolygon m) {u : Plane}
 /-- **The polygonal Jordan curve theorem** (Theorem 2.3), spelled out. The complement of a simple
 closed polygon is the disjoint union of two nonempty connected open sets, one bounded and one
 unbounded, each a connected component of the complement and each with the polygon as its
-frontier. -/
+frontier.
+@isnad1 id=and.0h2v.s9.8e6cfd3c3f52 from=translated src=- shape=b9ae4043 vocab=d3d38100
+-/
 theorem polygonal_jordan (P : ClosedPolygon m) :
     IsJordanCurve P.carrier ∧ IsPolygonal P.carrier ∧
       IsOpen (inside P.carrier) ∧ IsOpen (outside P.carrier) ∧
@@ -623,7 +664,9 @@ end ClosedPolygon
 `Schoenflies.unitTriangle` is the one `ClosedPolygon` the development exhibits, and this is the
 check that the whole chain applies to it: the collar constants `exists_stripData`, the collar
 itself, the crossing parity, and the separation above. Without it every statement in this file
-would formally be a statement about a structure with no known inhabitant. -/
+would formally be a statement about a structure with no known inhabitant.
+@isnad1 id=issepara.0h0v.s3.326f611d288c from=translated src=- shape=20980aaf vocab=fa3abcbd
+-/
 theorem isSeparating_unitTriangle : IsSeparating unitTriangle.carrier :=
   unitTriangle.isSeparating_carrier
 

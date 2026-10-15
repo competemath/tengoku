@@ -109,10 +109,15 @@ axis-parallel squares. On a compact nonempty set the infimum is attained
 (`exists_supRadius_eq`), which is all that is ever used. -/
 noncomputable def supRadius (C : Set Plane) (p : Plane) : ℝ := sInf (Plane.supDist p '' C)
 
+/--
+@isnad1 id=continuo.0h1v.s5.ae5e539acf11 from=translated src=- shape=9bb0b988 vocab=4653e56f
+-/
 theorem supDist_continuousOn (p : Plane) : Continuous (Plane.supDist p) :=
   continuous_supNorm.comp (continuous_const.sub continuous_id)
 
-/-- The ℓ^∞ distance to a nonempty compact set is attained. -/
+/-- The ℓ^∞ distance to a nonempty compact set is attained.
+@isnad1 id=ex.2h2v.s6.4f752e7914d3 from=translated src=- shape=81c4c83e vocab=87588882
+-/
 theorem exists_supRadius_eq (hC : IsCompact C) (hCne : C.Nonempty) (p : Plane) :
     ∃ q ∈ C, supRadius C p = Plane.supDist p q ∧
       ∀ z ∈ C, Plane.supDist p q ≤ Plane.supDist p z := by
@@ -123,18 +128,25 @@ theorem exists_supRadius_eq (hC : IsCompact C) (hCne : C.Nonempty) (p : Plane) :
   rintro _ ⟨z, hz, rfl⟩
   exact hle z hz
 
-/-- Every point of the set is at least `r(p)` away, in the ℓ^∞ metric. -/
+/-- Every point of the set is at least `r(p)` away, in the ℓ^∞ metric.
+@isnad1 id=le.3h3v.s6.3cc350b985cb from=translated src=- shape=856bf4e3 vocab=87588882
+-/
 theorem supRadius_le (hC : IsCompact C) (hCne : C.Nonempty) (p : Plane) (hq : q ∈ C) :
     supRadius C p ≤ Plane.supDist p q := by
   obtain ⟨z, -, heq, hmin⟩ := exists_supRadius_eq hC hCne p
   rw [heq]; exact hmin q hq
 
+/--
+@isnad1 id=le.2h2v.s6.0c7dff28bbbf from=translated src=- shape=cea29c39 vocab=d0d35e89
+-/
 theorem supRadius_nonneg (hC : IsCompact C) (hCne : C.Nonempty) (p : Plane) :
     0 ≤ supRadius C p := by
   obtain ⟨z, -, heq, -⟩ := exists_supRadius_eq hC hCne p
   rw [heq]; exact Plane.supDist_nonneg _ _
 
-/-- Off a compact set the ℓ^∞ distance to it is positive. -/
+/-- Off a compact set the ℓ^∞ distance to it is positive.
+@isnad1 id=lt.3h2v.s6.53700ff6cc15 from=translated src=- shape=75c76db5 vocab=bbdff680
+-/
 theorem supRadius_pos (hC : IsCompact C) (hCne : C.Nonempty) (hp : p ∉ C) :
     0 < supRadius C p := by
   obtain ⟨q, hqC, heq, -⟩ := exists_supRadius_eq hC hCne p
@@ -144,7 +156,9 @@ theorem supRadius_pos (hC : IsCompact C) (hCne : C.Nonempty) (hp : p ∉ C) :
   · exact absurd (Plane.eq_of_supDist_eq_zero h.symm ▸ hqC) hp
 
 /-- A point strictly nearer than `r(p)` is off the set: this is the definition read backwards,
-and it is what makes the window miss `C`. -/
+and it is what makes the window miss `C`.
+@isnad1 id=not.3h3v.s6.3c16be0d6dcc from=translated src=- shape=ed3a18e1 vocab=da4bd19f
+-/
 theorem notMem_of_supDist_lt_supRadius (hC : IsCompact C) (hCne : C.Nonempty)
     (h : Plane.supDist x p < supRadius C p) : x ∉ C := by
   intro hx
@@ -155,7 +169,9 @@ theorem notMem_of_supDist_lt_supRadius (hC : IsCompact C) (hCne : C.Nonempty)
 *"The distance-to-`C` function is 1-Lipschitz in the ℓ^∞ metric."* Only the one-sided form is
 used — `r(b) ≥ r(x) - ‖b - x‖_∞` — but both are recorded. -/
 
-/-- `r(p) ≤ r(q) + ‖p - q‖_∞`. -/
+/-- `r(p) ≤ r(q) + ‖p - q‖_∞`.
+@isnad1 id=le.2h3v.s6.1198809c0cfe from=translated src=- shape=08c556af vocab=b8ccb9af
+-/
 theorem supRadius_le_add (hC : IsCompact C) (hCne : C.Nonempty) (p q : Plane) :
     supRadius C p ≤ supRadius C q + Plane.supDist p q := by
   obtain ⟨z, hzC, heq, -⟩ := exists_supRadius_eq hC hCne q
@@ -163,7 +179,9 @@ theorem supRadius_le_add (hC : IsCompact C) (hCne : C.Nonempty) (p q : Plane) :
   rw [heq, add_comm]
   exact Plane.supDist_triangle p q z
 
-/-- The 1-Lipschitz property in its symmetric form. -/
+/-- The 1-Lipschitz property in its symmetric form.
+@isnad1 id=le.2h3v.s6.45df6eeb19af from=translated src=- shape=11f626bf vocab=1003333a
+-/
 theorem abs_supRadius_sub_le (hC : IsCompact C) (hCne : C.Nonempty) (p q : Plane) :
     |supRadius C p - supRadius C q| ≤ Plane.supDist p q := by
   rw [abs_sub_le_iff]
@@ -177,7 +195,9 @@ theorem abs_supRadius_sub_le (hC : IsCompact C) (hCne : C.Nonempty) (p q : Plane
 /-- **"The open axis-parallel square of radius `r(p)` centred at `p` lies in `D`."** The square
 is convex, hence connected; it misses `C` because every one of its points is nearer to `p` than
 `r(p)`; and it contains `p`. So it lies in the connected component of `Cᶜ` through `p`, which
-is `inside C` by `thm:jordan`. -/
+is `inside C` by `thm:jordan`.
+@isnad1 id=le.4h2v.s6.2acaf86e71f1 from=translated src=- shape=184fd59f vocab=a32ec96f
+-/
 theorem openSquare_supRadius_subset_inside (hC : IsCompact C) (hCne : C.Nonempty)
     (hsep : IsSeparating C) (hp : p ∈ inside C) :
     Plane.openSquare p (supRadius C p) ⊆ inside C := by
@@ -207,32 +227,42 @@ noncomputable def window (C : Set Plane) (ε : ℝ) (p : Plane) : Set Plane :=
 noncomputable def openWindow (C : Set Plane) (ε : ℝ) (p : Plane) : Set Plane :=
   Plane.openSquare p (windowRadius C ε p)
 
-/-- **`0 < s_n(p)`.** -/
+/-- **`0 < s_n(p)`.**
+@isnad1 id=lt.3h3v.s6.fd21e8b9f467 from=translated src=- shape=486bbb4d vocab=bf55cd2d
+-/
 theorem windowRadius_pos (hC : IsCompact C) (hCne : C.Nonempty) (hp : p ∉ C) :
     0 < windowRadius C ε p := by
   have hr := supRadius_pos hC hCne hp
   have : min (supRadius C p / 2) ε ≤ supRadius C p / 2 := min_le_left _ _
   rw [windowRadius]; linarith
 
-/-- **`s_n(p) < r(p)`.** -/
+/-- **`s_n(p) < r(p)`.**
+@isnad1 id=lt.4h3v.s6.d76945f98287 from=translated src=- shape=70985841 vocab=2e1f68dd
+-/
 theorem windowRadius_lt_supRadius (hC : IsCompact C) (hCne : C.Nonempty) (hp : p ∉ C)
     (hε : 0 < ε) : windowRadius C ε p < supRadius C p := by
   have hr := supRadius_pos hC hCne hp
   have : 0 < min (supRadius C p / 2) ε := lt_min (by linarith) hε
   rw [windowRadius]; linarith
 
-/-- **`r(p) - s_n(p) ≤ ε_n`.** -/
+/-- **`r(p) - s_n(p) ≤ ε_n`.**
+@isnad1 id=le.0h3v.s4.22c47b4ffbe9 from=translated src=- shape=cb1fa9c8 vocab=adbb7093
+-/
 theorem sub_windowRadius_le (C : Set Plane) (ε : ℝ) (p : Plane) :
     supRadius C p - windowRadius C ε p ≤ ε := by
   rw [windowRadius]
   simp
 
-/-- The lower bound `s_n(p) ≥ r(p) - ε_n`, which is the form `prop:shrinking-stars` uses. -/
+/-- The lower bound `s_n(p) ≥ r(p) - ε_n`, which is the form `prop:shrinking-stars` uses.
+@isnad1 id=le.0h3v.s4.0197c3363ff1 from=translated src=- shape=17c8c4a4 vocab=adbb7093
+-/
 theorem le_windowRadius (C : Set Plane) (ε : ℝ) (p : Plane) :
     supRadius C p - ε ≤ windowRadius C ε p := by
   have := sub_windowRadius_le C ε p; linarith
 
-/-- **`W_n(p) ⊆ D`**: the closed window sits strictly inside the square of radius `r(p)`. -/
+/-- **`W_n(p) ⊆ D`**: the closed window sits strictly inside the square of radius `r(p)`.
+@isnad1 id=le.5h3v.s6.8739a931daa9 from=translated src=- shape=5c4a7f0d vocab=8898a402
+-/
 theorem window_subset_inside (hC : IsCompact C) (hCne : C.Nonempty) (hsep : IsSeparating C)
     (hp : p ∈ inside C) (hε : 0 < ε) : window C ε p ⊆ inside C := by
   have hpC : p ∉ C := fun h => (inside_subset_compl hp) h
@@ -246,7 +276,9 @@ mesh parameter `ε` is below `d/8`, where `d = dist_∞(x, C)`, then `x` lies in
 the window `W(b)`.
 
 This is the displayed chain of the proof of `prop:shrinking-stars`: `r(b) > 7d/8` by
-1-Lipschitzness, hence `s(b) ≥ r(b) - ε > 3d/4`, and `‖b - x‖_∞ < d/8 < 3d/4`. -/
+1-Lipschitzness, hence `s(b) ≥ r(b) - ε > 3d/4`, and `‖b - x‖_∞ < d/8 < 3d/4`.
+@isnad1 id=mem.4h4v.s6.6e513c76a7b8 from=translated src=- shape=0eca746c vocab=7b633f6f
+-/
 theorem mem_openWindow_of_supDist_lt (hC : IsCompact C) (hCne : C.Nonempty)
     (hbx : Plane.supDist b x < supRadius C x / 8) (hε : ε < supRadius C x / 8) :
     x ∈ openWindow C ε b := by
@@ -275,20 +307,29 @@ def recur {α : Type*} (f : ℕ → α) (n : ℕ) : α := f (Nat.unpair n).1
 
 /-- **"The point `b` occurs at arbitrarily large indices."** This is the step of
 `prop:shrinking-stars` that lets the mesh parameter be taken as small as the point requires: the
-window centre is fixed first, and only then is a late enough stage chosen. -/
+window centre is fixed first, and only then is a late enough stage chosen.
+@isnad1 id=ex.0h4v.s4.bf2919e864f2 from=translated src=- shape=4e1d8ae9 vocab=b734a6db
+-/
 theorem exists_le_recur_eq {α : Type*} (f : ℕ → α) (k N : ℕ) :
     ∃ n, N ≤ n ∧ recur f n = f k :=
   ⟨Nat.pair k N, Nat.right_le_pair k N, by rw [recur, Nat.unpair_pair]⟩
 
-/-- **`ε_n = 2^{-n}` is a null sequence.** -/
+/-- **`ε_n = 2^{-n}` is a null sequence.**
+@isnad1 id=tendsto.0h0v.s5.51ee72e0df92 from=translated src=- shape=295419fc vocab=5034efeb
+-/
 theorem tendsto_two_pow_neg :
     Tendsto (fun n : ℕ => ((2 : ℝ) ^ n)⁻¹) atTop (nhds 0) :=
   tendsto_inv_atTop_zero.comp (tendsto_pow_atTop_atTop_of_one_lt (by norm_num : (1:ℝ) < 2))
 
+/--
+@isnad1 id=lt.0h1v.s5.f48bdbdbe581 from=translated src=- shape=75b92053 vocab=346282d9
+-/
 theorem two_pow_neg_pos (n : ℕ) : 0 < ((2 : ℝ) ^ n)⁻¹ := by positivity
 
 /-- The only property of `B = ℚ² ∩ D` that `prop:shrinking-stars` uses: an open set contains
-points of a dense subset of the plane as close to any of its points as asked. -/
+points of a dense subset of the plane as close to any of its points as asked.
+@isnad1 id=ex.4h4v.s7.e9e5ab18fd1f from=translated src=- shape=4bf000d9 vocab=882480f4
+-/
 theorem exists_mem_rat_supDist_lt {B : Set Plane} (hB : Dense B) (hU : IsOpen U)
     (hx : x ∈ U) (hδ : 0 < δ) : ∃ b ∈ B, b ∈ U ∧ Plane.supDist b x < δ := by
   obtain ⟨ρ, hρ, hball⟩ := Metric.isOpen_iff.1 hU x hx

@@ -18,6 +18,9 @@ import Tengoku.LeanPool.LeanPool.SardMoreira.ToMathlib.PR32186
 open scoped Topology NNReal ENNReal unitInterval
 open Asymptotics Filter MeasureTheory AffineMap Set Metric
 
+/--
+@isnad1 id=hasfderi.0h3v.s7.51bdacb8e08f from=translated src=- shape=be7fd5ba vocab=74f81484
+-/
 theorem UniformSpace.Completion.hasFDerivAt_coe {𝕜 E : Type*}
     [NontriviallyNormedField 𝕜] [NormedAddCommGroup E] [NormedSpace 𝕜 E] {a : E} :
     HasFDerivAt ((↑) : E → Completion E) (toComplL : E →L[𝕜] Completion E) a := by
@@ -28,6 +31,9 @@ section NormedField
 variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   [NormedAddCommGroup F] [NormedSpace ℝ F]
 
+/--
+@isnad1 id=le.1h3v.s7.5d23c844c294 from=translated src=- shape=d1b4d58a vocab=2620a244
+-/
 theorem openSegment_subset_ball_left {x y : E} (h : x ≠ y) :
     openSegment ℝ x y ⊆ ball x ‖y - x‖ := by
   rw [openSegment_eq_image_lineMap, ← mapsTo_iff_image_subset]
@@ -35,6 +41,9 @@ theorem openSegment_subset_ball_left {x y : E} (h : x ≠ y) :
   rw [mem_ball, dist_lineMap_left, dist_eq_norm_sub', Real.norm_of_nonneg ht.1.le]
   exact mul_lt_of_lt_one_left (by simpa [sub_eq_zero, eq_comm] using h) ht.2
 
+/--
+@isnad1 id=le.3h6v.s9.9d144930c9ee from=translated src=- shape=e80ba0ff vocab=96f2c920
+-/
 lemma dist_le_mul_volume_of_norm_lineDeriv_le {f : E → F} {a b : E} {C : ℝ}
     (hfc : ContinuousOn f (segment ℝ a b))
     (hfd : ∀ t ∈ Ioo (0 : ℝ) 1, LineDifferentiableAt ℝ f (lineMap a b t) (b - a))
@@ -58,6 +67,9 @@ lemma dist_le_mul_volume_of_norm_lineDeriv_le {f : E → F} {a b : E} {C : ℝ}
   · exact fun t ht ↦ (hdg t ht).differentiableAt.differentiableWithinAt
   · exact hf'.mono fun t ht ht_mem ↦ by simpa only [(hdg t ht_mem).deriv] using ht ht_mem
 
+/--
+@isnad1 id=le.4h7v.s9.13b377316542 from=translated src=- shape=445d92b9 vocab=1a753147
+-/
 lemma dist_le_mul_volume_of_norm_fderiv_le {f : E → F} {a b : E} {C : ℝ} {s : Set E}
     (hs : IsOpen s) (hf : DiffContOnCl ℝ f s) (hab : openSegment ℝ a b ⊆ s)
     (hC : ∀ x ∈ s, ‖fderiv ℝ f x‖ ≤ C) :
@@ -82,6 +94,9 @@ lemma dist_le_mul_volume_of_norm_fderiv_le {f : E → F} {a b : E} {C : ℝ} {s 
   · simp +contextual [(hf.differentiableAt hs <| hmem_s _ ‹_›).lineDeriv_eq_fderiv]
 
 open UniformSpace (Completion) in
+/--
+@isnad1 id=islittle.5h7v.s10.b75a012fa038 from=translated src=- shape=a937e364 vocab=55d7e81b
+-/
 theorem sub_isLittleO_norm_rpow_add_one_of_fderiv_of_density_point [FiniteDimensional ℝ E]
     [MeasurableSpace E] [BorelSpace E] {f : E → F} {a : E} {r : ℝ}
     {μ : Measure E} [μ.IsAddHaarMeasure] {s : Set E}
@@ -222,6 +237,9 @@ theorem sub_isLittleO_norm_rpow_add_one_of_fderiv_of_density_point [FiniteDimens
   field_simp
   ring
 
+/--
+@isnad1 id=islittle.6h7v.s9.4db25e84837a from=translated src=- shape=3480449e vocab=8bf3a936
+-/
 theorem isLittleO_norm_rpow_add_one_of_fderiv_of_density_point_of_apply_eq_zero
    [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] {f : E → F} {a : E} {r : ℝ}
     {μ : Measure E} [μ.IsAddHaarMeasure] {s : Set E}

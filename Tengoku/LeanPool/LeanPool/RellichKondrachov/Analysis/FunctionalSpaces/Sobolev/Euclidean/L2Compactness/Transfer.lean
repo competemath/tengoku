@@ -43,11 +43,23 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDim
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceEL2CompactnessTransfer : MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.e4ae852b562c from=translated src=- shape=c6850a32 vocab=05a0f59e
+-/
 local instance instBorelSpaceEL2CompactnessTransfer : BorelSpace E := ⟨rfl⟩
+/--
+@isnad1 id=opensmea.0h1v.s4.f745128f7035 from=translated src=- shape=c6850a32 vocab=9a8a77db
+-/
 local instance instOpensMeasurableSpaceEL2CompactnessTransfer : OpensMeasurableSpace E := by
   infer_instance
+/--
+@isnad1 id=measurab.0h1v.s4.35b46aada36b from=translated src=- shape=c6850a32 vocab=2a41c222
+-/
 local instance instMeasurableAddEL2CompactnessTransfer : MeasurableAdd E := by
   infer_instance
+/--
+@isnad1 id=measurab.0h1v.s4.4337ec925c6a from=translated src=- shape=c6850a32 vocab=523718e4
+-/
 local instance instMeasurableNegEL2CompactnessTransfer : MeasurableNeg E := by
   infer_instance
 
@@ -237,6 +249,9 @@ private lemma dist_smoothL2_le_mul_dist_smoothBCF (hK : IsCompact K) (hKm : Meas
   -- Convert to the `dist` statement.
   simpa [Su, Sv, Bu, Bv, F, dist_eq_norm, mS, mul_assoc] using hnorm_F
 
+/--
+@isnad1 id=iscompac.5h4v.s13.361af9ae3df5 from=translated src=- shape=f3bf9fb4 vocab=18b08e29
+-/
 theorem smoothL2_image_closedBall_isCompact (hK : IsCompact K) (hKm : MeasurableSet K)
     (hψc : Continuous ψ) (hψcs : HasCompactSupport ψ) {R : ℝ} (hR : 0 ≤ R) :
     IsCompact

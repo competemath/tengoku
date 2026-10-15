@@ -53,7 +53,9 @@ variable {S₀ : CellStructure Piece} {srcOuter srcDom tgtDom : Set Plane}
 
 /-- At a point of the model curve, two nonouter square-mesh edges cannot both be incident.
 Clause 4 first recognizes the point as fresh from either edge, then its uniqueness half
-identifies the two pieces. -/
+identifies the two pieces.
+@isnad1 id=eq.8h6v.s6.0d978959eeac from=translated src=- shape=c44cdea8 vocab=af50ba82
+-/
 theorem squareMesh_nonouter_incident_eq
     {fresh anchors : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     (delta : ℝ) {z : Plane} (hz : z ∈ modelCurve) {P Q : Piece}
@@ -91,7 +93,9 @@ theorem squareMesh_nonouter_incident_eq
     (huniq Q ⟨hQd.1, hQd.2.1, hQd.2.2.1⟩).symm
 
 /-- The name-independent form of square-mesh clause 4: at a point of the model curve there is
-at most one incident mesh edge which is not contained in the curve. -/
+at most one incident mesh edge which is not contained in the curve.
+@isnad1 id=nonouter.1h3v.s5.401193614298 from=translated src=- shape=0441f66f vocab=e3c38d92
+-/
 theorem nonouterIncidenceUniqueAtBoundary_squareMesh
     {fresh anchors : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     (delta : ℝ) :
@@ -101,7 +105,9 @@ theorem nonouterIncidenceUniqueAtBoundary_squareMesh
   exact squareMesh_nonouter_incident_eq hfresh delta hz hP hQ hPinc hQinc hPnot hQnot
 
 /-- The edges of any finite graph can be injectively renamed into an infinite type while
-avoiding a prescribed finite set of names. -/
+avoiding a prescribed finite set of names.
+@isnad1 id=ex.1h4v.s6.392c222085bb from=translated src=- shape=560851d0 vocab=805dd582
+-/
 theorem exists_finiteGraph_edgeRelabeling_avoiding
     {β : Type*} (γ : Type*) [Infinite γ] (H : Graph Plane β) [H.Finite]
     (used : Set γ) (hused : used.Finite) :
@@ -125,21 +131,27 @@ theorem exists_finiteGraph_edgeRelabeling_avoiding
     exact havoid (⟨e, he⟩ : E(H))
 
 /-- A finite square mesh can have all of its edges injectively renamed into any infinite cell
-name type, avoiding any prescribed finite set of names. -/
+name type, avoiding any prescribed finite set of names.
+@isnad1 id=ex.1h5v.s6.3cfbf8a3cbd5 from=translated src=- shape=785a7333 vocab=dd1da6e9
+-/
 theorem exists_squareMesh_edgeRelabeling_avoiding (γ : Type*) [Infinite γ]
     (delta : ℝ) (fresh anchors : List Plane) (used : Set γ) (hused : used.Finite) :
     ∃ name : Piece → γ, InjOn name E(squareMesh delta fresh anchors) ∧
       ∀ e ∈ E(squareMesh delta fresh anchors), name e ∉ used :=
   exists_finiteGraph_edgeRelabeling_avoiding γ (squareMesh delta fresh anchors) used hused
 
-/-- A relabelled square mesh is finite. -/
+/-- A relabelled square mesh is finite.
+@isnad1 id=finite.1h5v.s5.461482c055a3 from=translated src=- shape=608cc04c vocab=782a2c42
+-/
 theorem squareMesh_relabelEdges_finite {γ : Type*}
     (delta : ℝ) (fresh anchors : List Plane) (name : Piece → γ)
     (hname : InjOn name E(squareMesh delta fresh anchors)) :
     ((squareMesh delta fresh anchors).relabelEdges name hname).Finite :=
   Graph.Finite.relabelEdges hname
 
-/-- The straight-line square-mesh drawing transports to the new edge names. -/
+/-- The straight-line square-mesh drawing transports to the new edge names.
+@isnad1 id=isdrawin.2h5v.s6.9c1aa2828acd from=translated src=- shape=44e8b5c9 vocab=a15fb5a1
+-/
 theorem squareMesh_relabelEdges_isDrawing {γ : Type*}
     {fresh anchors : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     (delta : ℝ) (name : Piece → γ)
@@ -148,7 +160,9 @@ theorem squareMesh_relabelEdges_isDrawing {γ : Type*}
       ((squareMesh delta fresh anchors).relabelDrawing name segmentDrawing) :=
   (squareMesh_isDrawing hfresh delta anchors).relabelEdges hname
 
-/-- Relabelling does not change the geometric carrier of the square mesh. -/
+/-- Relabelling does not change the geometric carrier of the square mesh.
+@isnad1 id=eq.1h5v.s5.1dc2066ba296 from=translated src=- shape=628dc372 vocab=8eb4ecaf
+-/
 theorem squareMesh_pointSet_relabelEdges {γ : Type*}
     (delta : ℝ) (fresh anchors : List Plane) (name : Piece → γ)
     (hname : InjOn name E(squareMesh delta fresh anchors)) :
@@ -157,7 +171,9 @@ theorem squareMesh_pointSet_relabelEdges {γ : Type*}
       Graph.pointSet (squareMesh delta fresh anchors) segmentDrawing :=
   Graph.pointSet_relabelEdges hname
 
-/-- The relabelled mesh remains 2-connected under the same density hypotheses. -/
+/-- The relabelled mesh remains 2-connected under the same density hypotheses.
+@isnad1 id=istwocon.4h5v.s6.2c5c8bbe84db from=translated src=- shape=8d83811f vocab=a09c1bec
+-/
 theorem squareMesh_relabelEdges_isTwoConnected {γ : Type*}
     {fresh anchors : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     {delta : ℝ} (hdense : FreshDense fresh delta) (hdelta : delta < 4)
@@ -167,7 +183,9 @@ theorem squareMesh_relabelEdges_isTwoConnected {γ : Type*}
 
 /-- Every square-mesh edge is either contained in the model curve or is a polygonal edge whose
 nonvertex points avoid that curve.  A nonouter edge can meet the curve only at its unique fresh
-endpoint, and that endpoint is a graph vertex. -/
+endpoint, and that endpoint is a graph vertex.
+@isnad1 id=or.3h5v.s6.aa42dda40607 from=translated src=- shape=6b708f35 vocab=4d479ba4
+-/
 theorem squareMesh_edge_dichotomy
     {fresh anchors : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     (delta : ℝ) {dom : Set Plane}
@@ -205,7 +223,9 @@ theorem squareMesh_edge_dichotomy
 
 /-- Assemble the relabelled square mesh as a target extension from hypotheses stated entirely
 against the original `Piece`-named mesh.  Finiteness, planarity, 2-connectivity, and every
-geometric carrier equality are transported automatically. -/
+geometric carrier equality are transported automatically.
+@isnad1 id=issource.10h10v.s8.28840f63478e from=translated src=- shape=45f82583 vocab=730cee80
+-/
 theorem isSourceExtension_relabelledSquareMesh
     {γ : Type*} {Sbase : CellStructure γ}
     {srcOuter srcDom tgtDom : Set Plane}
@@ -261,7 +281,9 @@ theorem isSourceExtension_relabelledSquareMesh
 
 /-- For the model closed square, the square-mesh construction itself supplies the domain
 containment, edge dichotomy, connected complement, planarity, and 2-connectivity.  A caller only
-has to say that the current target skeleton is subdivided by the mesh. -/
+has to say that the current target skeleton is subdivided by the mesh.
+@isnad1 id=issource.7h9v.s10.5e7ca7a67de8 from=translated src=- shape=1e6a00af vocab=9e29b22a
+-/
 theorem isSourceExtension_relabelledSquareMesh_closedSquare
     {γ : Type*} {Sbase : CellStructure γ} {srcOuter srcDom : Set Plane}
     (P : GeneratedPair Sbase srcOuter srcDom modelCurve (Plane.closedSquare 0 1))
@@ -288,7 +310,9 @@ theorem isSourceExtension_relabelledSquareMesh_closedSquare
 /-- An anchored square mesh satisfies the fixed boundary-anchor condition for reverse finite
 transfer.  The only hypothesis beyond membership in the model curve is the one the stage
 constructor records: every prescribed fresh target point pulls back to a strongly accessible
-source anchor. -/
+source anchor.
+@isnad1 id=targetbo.2h9v.s6.9a71d520bcf2 from=translated src=- shape=9b864609 vocab=534ae603
+-/
 theorem targetBoundaryAnchored_squareMesh
     {γ : Type*} {Sbase : CellStructure γ}
     (P : GeneratedPair Sbase srcOuter srcDom modelCurve tgtDom)
@@ -318,7 +342,9 @@ theorem targetBoundaryAnchored_squareMesh
 /-- A wild-boundary endpoint of the next square-mesh ear is outer-only in the current
 abstract skeleton.  If a current nonouter abstract edge reached it, local carrier reflection
 would produce a current ambient nonouter edge there.  Clause 4 identifies that edge with the
-new ear edge, contradicting that every edge of the ear is absent from the current graph. -/
+new ear edge, contradicting that every edge of the ear is absent from the current graph.
+@isnad1 id=and.9h15v.s8.953ff3d8f56d from=translated src=- shape=6b7c8cc0 vocab=592fef68
+-/
 theorem targetEarEndpointsOuterOnly_squareMesh
     (P : GeneratedPair S₀ srcOuter srcDom modelCurve tgtDom)
     {fresh anchors : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
@@ -345,7 +371,9 @@ theorem targetEarEndpointsOuterOnly_squareMesh
 /-- For a square mesh, the reverse-ear fresh-incidence invariant follows from the static fact
 that every generated outer graph is locally at most two-branched.  Clause 4 makes each new
 wild-boundary endpoint outer-only; the local two-branch bound then makes its selected face the
-unique incident face. -/
+unique incident face.
+@isnad1 id=targetea.3h8v.s6.d3c40f4357ae from=translated src=- shape=bd5c8a10 vocab=a793bb37
+-/
 theorem targetEarFreshCombinatorics_squareMesh_of_outerIncidenceAtMostTwo
     (P : GeneratedPair S₀ srcOuter srcDom modelCurve tgtDom)
     {fresh anchors : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
@@ -378,7 +406,9 @@ theorem targetEarFreshCombinatorics_squareMesh_of_outerIncidenceAtMostTwo
         houter (htwoT d.target)⟩
 
 /-- It is enough to verify once, on the base cell structure, that the distinguished outer
-edges form a simple cycle.  The two generated-structure constructors preserve that fact. -/
+edges form a simple cycle.  The two generated-structure constructors preserve that fact.
+@isnad1 id=targetea.3h8v.s6.edf11312e7cc from=translated src=- shape=5e3fdcea vocab=bc117fb6
+-/
 theorem targetEarFreshCombinatorics_squareMesh_of_outerCycle
     (P : GeneratedPair S₀ srcOuter srcDom modelCurve tgtDom)
     {fresh anchors : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
@@ -392,7 +422,9 @@ theorem targetEarFreshCombinatorics_squareMesh_of_outerCycle
 
 /-- Reverse finite transfer for an anchored square mesh.  Strong accessibility is completely
 discharged from the mesh's fresh-point clause; only carrier freshness and unique current-face
-incidence remain for the prescribed ear order. -/
+incidence remain for the prescribed ear order.
+@isnad1 id=ex.4h8v.s7.9634d28b0598 from=translated src=- shape=1131b047 vocab=7aadd97a
+-/
 theorem finite_transfer_toward_source_squareMesh
     (P : GeneratedPair S₀ srcOuter srcDom modelCurve tgtDom)
     {fresh anchors : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
@@ -409,7 +441,9 @@ theorem finite_transfer_toward_source_squareMesh
     (targetBoundaryAnchored_squareMesh P hfresh hstrong delta) hcomb
 
 /-- Reverse finite transfer for an anchored square mesh, reduced to a supplied propagation of
-the static local outer-cycle invariant. -/
+the static local outer-cycle invariant.
+@isnad1 id=ex.4h8v.s7.50f9d1ee4730 from=translated src=- shape=10f8d81d vocab=9856ba03
+-/
 theorem finite_transfer_toward_source_squareMesh_of_outerIncidenceAtMostTwo
     (P : GeneratedPair S₀ srcOuter srcDom modelCurve tgtDom)
     {fresh anchors : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
@@ -427,7 +461,9 @@ theorem finite_transfer_toward_source_squareMesh_of_outerIncidenceAtMostTwo
       P hfresh delta hH htwo)
 
 /-- Reverse finite transfer for an anchored square mesh from the natural base invariant: its
-distinguished outer edges form a simple cycle. -/
+distinguished outer edges form a simple cycle.
+@isnad1 id=ex.4h8v.s7.ad3087ab6d55 from=translated src=- shape=8a5a9139 vocab=f5215ae4
+-/
 theorem finite_transfer_toward_source_squareMesh_of_outerCycle
     (P : GeneratedPair S₀ srcOuter srcDom modelCurve tgtDom)
     {fresh anchors : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
@@ -444,7 +480,9 @@ theorem finite_transfer_toward_source_squareMesh_of_outerCycle
 
 /-- Reverse finite transfer for a square mesh whose finitely many `Piece` edge labels have been
 injectively renamed into the abstract cell-name type.  This is the integration form used by the
-`InitialCell`-named initial pair. -/
+`InitialCell`-named initial pair.
+@isnad1 id=ex.5h10v.s7.422310f44df3 from=translated src=- shape=730f4331 vocab=6a7c580f
+-/
 theorem finite_transfer_toward_source_relabelledSquareMesh_of_outerCycle
     {γ : Type*} [Infinite γ] {Sbase : CellStructure γ}
     (P : GeneratedPair Sbase srcOuter srcDom modelCurve tgtDom)

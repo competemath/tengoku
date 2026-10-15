@@ -53,7 +53,9 @@ def configFamily : Set (X → ℝ) :=
       ∧ ∀ x ∈ closure (configY e) ∩ e.symm '' closedBall (-4) 1, g x ≤ 0}
 
 /-- Both configuration disks (in fact, both surrounding annuli) lie inside the
-standard ball. -/
+standard ball.
+@isnad1 id=le.2h2v.s6.ec686faf935f from=translated src=- shape=3e79569f vocab=e3ff13ae
+-/
 theorem closedBall_config_subset {c : ℂ} (hc : ‖c‖ = 4) {r : ℝ} (hr : r ≤ 2) :
     closedBall c r ⊆ ball (0 : ℂ) 8 := by
   intro z hz
@@ -96,7 +98,9 @@ private theorem notMem_image_of_dist_gt (hb : ball (0 : ℂ) 8 ⊆ e.target) {w 
 include he hb
 
 omit he [ChartedSpace ℂ X] [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
-/-- `configY` is open. -/
+/-- `configY` is open.
+@isnad1 id=isopen.1h2v.s6.0838d2357cc3 from=translated src=- shape=7b22aa9b vocab=25595481
+-/
 theorem isOpen_configY [T2Space X] : IsOpen (configY e) := by
   have hb₁ : closedBall (-4 : ℂ) 1 ⊆ e.target :=
     (closedBall_config_subset (by simp) (by norm_num)).trans hb
@@ -114,7 +118,9 @@ theorem isOpen_configY [T2Space X] : IsOpen (configY e) := by
   exact hcl.isOpen_compl
 
 omit he [ChartedSpace ℂ X] [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
-/-- Both witness points lie in `configY`. -/
+/-- Both witness points lie in `configY`.
+@isnad1 id=and.1h2v.s8.14c8a5dc4299 from=translated src=- shape=ddb7946d vocab=42bfbafe
+-/
 theorem witness_mem_configY :
     e.symm (4 + (2 : ℂ) ^ ((1 : ℂ) / 4)) ∈ configY e ∧
       e.symm (-4 + (2 : ℂ) ^ ((1 : ℂ) / 4)) ∈ configY e := by
@@ -168,7 +174,9 @@ theorem witness_mem_configY :
 
 omit he [ChartedSpace ℂ X] [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
 /-- `configY` is connected when `X` is (clopen argument through the chart,
-using `isPathConnected_ball_diff_two_disks`). -/
+using `isPathConnected_ball_diff_two_disks`).
+@isnad1 id=isconnec.1h2v.s6.8b4d95598935 from=translated src=- shape=a7a3b3eb vocab=3ba3851f
+-/
 theorem isConnected_configY [ConnectedSpace X] [T2Space X] : IsConnected (configY e) := by
   have hYo : IsOpen (configY e) := isOpen_configY hb
   -- the connected chart core `P`
@@ -271,7 +279,9 @@ theorem isConnected_configY [ConnectedSpace X] [T2Space X] : IsConnected (config
     · rwa [inter_comm v u]
 
 omit he [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
-/-- The configuration family is a Perron family. -/
+/-- The configuration family is a Perron family.
+@isnad1 id=isperron.1h2v.s6.9f21b0fc8771 from=translated src=- shape=6f796c19 vocab=15d779ac
+-/
 theorem isPerronFamily_configFamily [T2Space X] :
     IsPerronFamily (configFamily e) (configY e) := by
   have hYo : IsOpen (configY e) := isOpen_configY hb
@@ -324,7 +334,9 @@ theorem isPerronFamily_configFamily [T2Space X] :
       exact hgbd x hx
 
 /-- The lower barrier: forced value `≥ 3/4` at the witness point near the disk
-at `+4` (the function `max 0 (log(2/|ζ-4|)/log 2)` belongs to the family). -/
+at `+4` (the function `max 0 (log(2/|ζ-4|)/log 2)` belongs to the family).
+@isnad1 id=le.2h2v.s8.1edc72214341 from=translated src=- shape=5821c3ff vocab=919e62df
+-/
 theorem perronSup_ge_witness [T2Space X] :
     3 / 4 ≤ perronSup (configFamily e) (e.symm (4 + (2 : ℂ) ^ ((1 : ℂ) / 4))) := by
   classical
@@ -516,7 +528,9 @@ theorem perronSup_ge_witness [T2Space X] :
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
 /-- The upper barrier: forced value `≤ 1/4` at the witness point near the disk
 at `-4` (every family member is dominated on the annulus by
-`1 - log(2/|ζ+4|)/log 2`, by the boundary comparison principle). -/
+`1 - log(2/|ζ+4|)/log 2`, by the boundary comparison principle).
+@isnad1 id=le.2h2v.s8.9522f0a15c4f from=translated src=- shape=6070abd1 vocab=c1e978f0
+-/
 theorem perronSup_le_witness [T2Space X] :
     perronSup (configFamily e) (e.symm (-4 + (2 : ℂ) ^ ((1 : ℂ) / 4))) ≤ 1 / 4 := by
   set t := (2 : ℂ) ^ ((1 : ℂ) / 4) with ht

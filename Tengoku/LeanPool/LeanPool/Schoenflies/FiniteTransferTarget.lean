@@ -88,7 +88,9 @@ structure IsTargetPartialTransferOf
   vertexSet_subset : V(B) ⊆ V(T.tgt.graph)
 
 /-- The evolving target skeleton contains the original target skeleton.  This is transported
-from the corresponding source inclusion through the two compatible skeleton homeomorphisms. -/
+from the corresponding source inclusion through the two compatible skeleton homeomorphisms.
+@isnad1 id=le.1h11v.s6.1a1a3e637faf from=translated src=- shape=3d312650 vocab=4a963b84
+-/
 theorem IsTargetPartialTransferOf.targetSkeletonSet_subset
     {T P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {B : Graph Plane γ} {Hdraw : γ → ℝ → Plane} {par : γ → γ}
@@ -105,7 +107,9 @@ theorem IsTargetPartialTransferOf.targetSkeletonSet_subset
 
 /-- A current abstract vertex lying over the original target skeleton has the original source
 preimage.  This is the pointwise compatibility needed to recognize prescribed source anchors
-after any number of reverse-ear insertions. -/
+after any number of reverse-ear insertions.
+@isnad1 id=eq.3h12v.s7.4ef9f10870c6 from=translated src=- shape=b3d7f55d vocab=31e6d245
+-/
 theorem IsTargetPartialTransferOf.source_pos_eq_invFun_target_pos
     {T P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {B : Graph Plane γ} {Hdraw : γ → ℝ → Plane} {par : γ → γ}
@@ -193,15 +197,23 @@ noncomputable def pair (w : TargetEarStepData T B H Hdraw a D) :
   T.split T.str_combInvariants w.splitData w.srcPos w.srcDraw w.tgtPos w.tgtDraw
     w.srcCrosscut w.tgtCrosscut w.earHomeo w.srcEdgePolygonal w.tgtEdgePolygonal
 
+/--
+@isnad1 id=eq.0h13v.s7.91a82c8e6358 from=translated src=- shape=bb6310dd vocab=f74ccf6d
+-/
 @[simp] theorem pair_src (w : TargetEarStepData T B H Hdraw a D) :
     w.pair.src =
       w.splitData.realize T.src w.srcPos w.srcDraw w.srcCrosscut := rfl
 
+/--
+@isnad1 id=eq.0h13v.s7.34a105c11513 from=translated src=- shape=bb6310dd vocab=9d07cf8f
+-/
 @[simp] theorem pair_tgt (w : TargetEarStepData T B H Hdraw a D) :
     w.pair.tgt =
       w.splitData.realize T.tgt w.tgtPos w.tgtDraw w.tgtCrosscut := rfl
 
-/-- The assembled pair realizes the enlarged target subgraph and refines the original pair. -/
+/-- The assembled pair realizes the enlarged target subgraph and refines the original pair.
+@isnad1 id=istarget.4h16v.s7.ffa848eabd73 from=translated src=- shape=2cdb0b08 vocab=f0148d70
+-/
 theorem isTargetPartialTransferOf_pair
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom} {b : Plane}
     {par : γ → γ} (w : TargetEarStepData T B H Hdraw a D)
@@ -254,7 +266,9 @@ def TargetEarStepConstruction
       Nonempty (TargetEarStepData T B H Hdraw a D)
 
 /-- Fold the explicit nontrivial reverse-ear constructor into the total `TargetEarStep`
-interface. -/
+interface.
+@isnad1 id=targetea.2h9v.s6.971fe90d789b from=translated src=- shape=48765cf1 vocab=08f9f4d7
+-/
 theorem targetEarStep_of_data
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -273,7 +287,9 @@ theorem targetEarStep_of_data
 /-! ### Locating and realizing the target half of a reverse ear -/
 
 /-- A nontrivial target ear lies in one current target face and determines its two abstract
-endpoint vertices. -/
+endpoint vertices.
+@isnad1 id=ex.9h15v.s8.5bb7af387a9c from=translated src=- shape=e90a68d3 vocab=726f0b13
+-/
 theorem exists_target_face_of_ear
     {P T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {B H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -318,7 +334,9 @@ theorem exists_target_face_of_ear
   exact ⟨u, v, F, hu, hv, huv, hua, hvb, hF, hNF, huF, hvF⟩
 
 /-- No edge of a genuine target ear is contained in the outer curve.  Such an edge would lie
-simultaneously in the old target skeleton and in the open current face. -/
+simultaneously in the old target skeleton and in the open current face.
+@isnad1 id=not.5h15v.s7.ed0df6911147 from=translated src=- shape=88a7e3fa vocab=ef369578
+-/
 theorem target_ear_edge_not_outer
     {P T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -351,7 +369,9 @@ theorem target_ear_edge_not_outer
   · exact harc.not_subset_pair (by simpa [Set.pair_comm] using harcPair)
   · exact hxyne rfl
 
-/-- Every edge of a genuine target ear is polygonal. -/
+/-- Every edge of a genuine target ear is polygonal.
+@isnad1 id=ispolygo.5h15v.s7.bc1fc495637f from=translated src=- shape=5bc235a4 vocab=ace43089
+-/
 theorem target_ear_edge_polygonal
     {P T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -386,7 +406,9 @@ def NewTargetBoundaryAnchored {β : Type*}
       ¬ edgeArc Hdraw f ⊆ tgtOuter →
       StronglyAccessible (srcDom \ srcOuter) (P.homeo.invFun y)
 
-/-- Anchoring every nonouter boundary edge implies the relative new-edge condition. -/
+/-- Anchoring every nonouter boundary edge implies the relative new-edge condition.
+@isnad1 id=newtarge.1h11v.s6.4120c06d396c from=translated src=- shape=cae39699 vocab=46e85098
+-/
 theorem TargetBoundaryAnchored.new
     {β : Type*} {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane β} {Hdraw : β → ℝ → Plane}
@@ -417,7 +439,9 @@ def NoNewNonouterIncidenceAtBoundary {β : Type*}
       ¬ edgeArc Hdraw e ⊆ outer → ¬ edgeArc Hdraw f ⊆ outer →
       e ∉ E(B) → False
 
-/-- Global uniqueness implies the weaker relative no-new-incidence condition. -/
+/-- Global uniqueness implies the weaker relative no-new-incidence condition.
+@isnad1 id=nonewnon.1h5v.s4.2334bb59c969 from=translated src=- shape=9c7f3442 vocab=d99aa061
+-/
 theorem NonouterIncidenceUniqueAtBoundary.noNew
     {β : Type*} {H : Graph Plane β} {Hdraw : β → ℝ → Plane} {outer : Set Plane}
     (h : NonouterIncidenceUniqueAtBoundary H Hdraw outer) (base : Set Plane) :
@@ -430,7 +454,9 @@ theorem NonouterIncidenceUniqueAtBoundary.noNew
 
 /-- An edge of a plane graph whose whole carrier is already covered by a subgraph is itself an
 edge of that subgraph.  An interior point of the arc cannot be a subgraph vertex, nor lie on a
-different subgraph edge, by the drawing intersection axioms. -/
+different subgraph edge, by the drawing intersection axioms.
+@isnad1 id=mem.4h5v.s6.08b5b3d9ac61 from=translated src=- shape=d1cf7d06 vocab=59444693
+-/
 theorem edge_mem_of_edgeArc_subset_pointSet
     {β : Type*} {G B : Graph Plane β} {drawing : β → ℝ → Plane}
     (hdraw : G.IsDrawing drawing) (hBG : B ≤ G) {e : β} (he : e ∈ E(G))
@@ -467,7 +493,9 @@ theorem eq_of_edgeArc_subset
   · exact hpEnds (Or.inr rfl)
 
 /-- Boundary anchoring is geometric, hence survives an injective change of the ambient edge
-names. -/
+names.
+@isnad1 id=targetbo.2h12v.s6.197791abbdac from=translated src=- shape=2ca46343 vocab=f088f8d8
+-/
 theorem TargetBoundaryAnchored.relabelEdges {β δ : Type*} [Nonempty β]
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane β} {Hdraw : β → ℝ → Plane} {f : β → δ}
@@ -485,7 +513,9 @@ theorem TargetBoundaryAnchored.relabelEdges {β δ : Type*} [Nonempty β]
   rwa [Graph.edgeArc_relabelDrawing hf he]
 
 /-- Uniqueness of the nonouter boundary edge is likewise invariant under injective edge
-relabelling. -/
+relabelling.
+@isnad1 id=nonouter.2h6v.s5.85e62b87dc2a from=translated src=- shape=035aaf11 vocab=0640561a
+-/
 theorem NonouterIncidenceUniqueAtBoundary.relabelEdges {β δ : Type*} [Nonempty β]
     {H : Graph Plane β} {Hdraw : β → ℝ → Plane} {outer : Set Plane}
     {f : β → δ} (h : NonouterIncidenceUniqueAtBoundary H Hdraw outer)
@@ -533,7 +563,9 @@ structure TargetSideEarStepData (T : GeneratedPair S₀ srcOuter srcDom tgtOuter
       V((splitData.realize T.tgt tgtPos tgtDraw tgtCrosscut).graph)
 
 /-- Injectively rename a nontrivial ambient target ear with fresh abstract cells and realize it
-as a crosscut of the target face that contains its open arc. -/
+as a crosscut of the target face that contains its open arc.
+@isnad1 id=nonempty.10h15v.s7.28dca59ce5d3 from=translated src=- shape=0cc47d6b vocab=f446def9
+-/
 theorem exists_targetSideEarStepData [Infinite γ]
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     (H : Graph Plane γ) (Hdraw : γ → ℝ → Plane)
@@ -733,7 +765,9 @@ theorem exists_targetSideEarStepData [Infinite γ]
     exact hxQ
 
 /-- The skeleton homeomorphism sends an abstract vertex on the source outer curve to the
-corresponding abstract vertex on the target outer curve. -/
+corresponding abstract vertex on the target outer curve.
+@isnad1 id=mem.2h8v.s6.c96944006e3a from=translated src=- shape=e6849604 vocab=fa77ad06
+-/
 theorem GeneratedPair.target_pos_mem_outer_of_source_pos_mem_outer
     (T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom) {v : γ}
     (hv : v ∈ V(T.str.skel)) (hx : T.src.pos v ∈ srcOuter) :
@@ -749,7 +783,9 @@ theorem GeneratedPair.target_pos_mem_outer_of_source_pos_mem_outer
 /-- The relative anchored-boundary condition supplies the strong-accessibility half of
 readiness at both outer endpoints of a nontrivial target ear.  Compatibility of the evolving
 skeleton map with the original one identifies those endpoints with the original inverse
-images. -/
+images.
+@isnad1 id=and.7h16v.s8.b8a4f0ce8d4e from=translated src=- shape=05a111ca vocab=b00a765e
+-/
 theorem targetEarEndpointStronglyAccessible_of_newBoundaryAnchored
     {P T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {B H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -824,7 +860,9 @@ def CellStructure.OuterEdgesFormCycle (S : CellStructure γ) : Prop :=
 
 /-- A graph whose outer edges form one simple cycle is locally at most two-branched.  Rotate
 the cycle to one incident edge; every other edge at that endpoint lies on the complementary
-simple path, which has only one incident edge at either end. -/
+simple path, which has only one incident edge at either end.
+@isnad1 id=outerinc.1h2v.s3.3e3633008cea from=translated src=- shape=11db0672 vocab=3a19cdc2
+-/
 theorem CellStructure.OuterEdgesFormCycle.outerIncidenceAtMostTwoEverywhere
     {S : CellStructure γ} (h : S.OuterEdgesFormCycle) :
     S.OuterIncidenceAtMostTwoEverywhere := by
@@ -862,7 +900,9 @@ theorem CellStructure.OuterEdgesFormCycle.outerIncidenceAtMostTwoEverywhere
 namespace CellStructure.SubdivData
 
 /-- Every abstract walk admits the orientation-aware edge substitution prescribed by a
-subdivision. -/
+subdivision.
+@isnad1 id=ex.1h6v.s5.aff51fd05386 from=translated src=- shape=a718ef26 vocab=6d7ee93a
+-/
 theorem exists_substWalk_of_isWalk {S : CellStructure γ} (d : S.SubdivData)
     {u v : γ} {W : List γ} (hW : S.skel.IsWalk u W v) :
   ∃ W', d.SubstWalk u W W' := by
@@ -881,7 +921,9 @@ theorem exists_substWalk_of_isWalk {S : CellStructure γ} (d : S.SubdivData)
         · exact ⟨d.newEdge₂ :: d.newEdge₁ :: W', .backward hsub⟩
       · exact ⟨f :: W', .other hl hfe hsub⟩
 
-/-- If the subdivided edge occurs in the input, both replacement edges occur in the output. -/
+/-- If the subdivided edge occurs in the input, both replacement edges occur in the output.
+@isnad1 id=and.2h6v.s5.fbc5a47ad74e from=translated src=- shape=0b967acb vocab=52a14b5c
+-/
 theorem SubstWalk.newEdges_mem_output_of_mem_input {S : CellStructure γ}
     {d : S.SubdivData} {u : γ} {W W' : List γ}
     (hsub : d.SubstWalk u W W') (he : d.edge ∈ W) :
@@ -898,7 +940,9 @@ theorem SubstWalk.newEdges_mem_output_of_mem_input {S : CellStructure γ}
       exact ⟨List.mem_cons_of_mem _ (ih heW).1, List.mem_cons_of_mem _ (ih heW).2⟩
 
 /-- With the subdivided edge present, the output edge names are exactly the two replacements
-and the surviving input names. -/
+and the surviving input names.
+@isnad1 id=iff.2h7v.s6.eac691515e5c from=translated src=- shape=93e4764e vocab=52a14b5c
+-/
 theorem SubstWalk.mem_output_iff_of_mem_input {S : CellStructure γ}
     {d : S.SubdivData} {u x : γ} {W W' : List γ}
     (hsub : d.SubstWalk u W W') (he : d.edge ∈ W) :
@@ -916,7 +960,9 @@ theorem SubstWalk.mem_output_iff_of_mem_input {S : CellStructure γ}
 
 /-- Edge subdivision preserves the fact that the distinguished outer edges form one simple
 cycle.  When the subdivided edge is outer, substitute it in the closed cycle walk and pull the
-resulting cycle down from the new skeleton to the new outer graph. -/
+resulting cycle down from the new skeleton to the new outer graph.
+@isnad1 id=outeredg.1h3v.s4.d51b290abcde from=translated src=- shape=ecdd8167 vocab=2bfe08d3
+-/
 theorem outerEdgesFormCycle {S : CellStructure γ} (d : S.SubdivData)
     (hcycle : S.OuterEdgesFormCycle) :
     (S.subdivideEdge d).OuterEdgesFormCycle := by
@@ -974,7 +1020,9 @@ theorem outerEdgesFormCycle {S : CellStructure γ} (d : S.SubdivData)
 
 end CellStructure.SubdivData
 
-/-- Splitting a face leaves the distinguished outer graph unchanged. -/
+/-- Splitting a face leaves the distinguished outer graph unchanged.
+@isnad1 id=outeredg.1h3v.s4.0708324b7fea from=translated src=- shape=ecdd8167 vocab=11b889e7
+-/
 theorem CellStructure.SplitData.outerEdgesFormCycle {S : CellStructure γ}
     (d : S.SplitData) (hcycle : S.OuterEdgesFormCycle) :
     (S.splitFace d).OuterEdgesFormCycle := by
@@ -982,7 +1030,9 @@ theorem CellStructure.SplitData.outerEdgesFormCycle {S : CellStructure γ}
   rw [CellStructure.splitFace_outerGraph]
   exact hcycle
 
-/-- Every generated structure keeps one simple cycle as its distinguished outer edge set. -/
+/-- Every generated structure keeps one simple cycle as its distinguished outer edge set.
+@isnad1 id=outeredg.2h3v.s4.3b8ec0e2a2a9 from=translated src=- shape=2c44deae vocab=530a970a
+-/
 theorem GeneratedStructure.outerEdgesFormCycle {S₀ S : CellStructure γ}
     (h : GeneratedStructure S₀ S) (h₀ : S₀.OuterEdgesFormCycle) :
     S.OuterEdgesFormCycle := by
@@ -992,14 +1042,18 @@ theorem GeneratedStructure.outerEdgesFormCycle {S₀ S : CellStructure γ}
   | splitFace _ d ih => exact d.outerEdgesFormCycle ih
 
 /-- The local two-branch condition needed by square-mesh reverse transfer is therefore a
-generated-structure invariant as soon as the base outer edges form a simple cycle. -/
+generated-structure invariant as soon as the base outer edges form a simple cycle.
+@isnad1 id=outerinc.2h3v.s4.8dce681e0679 from=translated src=- shape=2c44deae vocab=330be141
+-/
 theorem GeneratedStructure.outerIncidenceAtMostTwoEverywhere
     {S₀ S : CellStructure γ} (h : GeneratedStructure S₀ S)
     (h₀ : S₀.OuterEdgesFormCycle) : S.OuterIncidenceAtMostTwoEverywhere :=
   (h.outerEdgesFormCycle h₀).outerIncidenceAtMostTwoEverywhere
 
 /-- A vertex on a nonloop simple cycle has two distinct incident cycle edges.  The face-cycle
-application obtains nonloopness from either geometric realization. -/
+application obtains nonloopness from either geometric realization.
+@isnad1 id=ex.3h5v.s6.24f144b252e0 from=translated src=- shape=61bcc8b9 vocab=e694c715
+-/
 theorem CellStructure.FaceCycle.exists_distinct_incident_edges
     {S : CellStructure γ} {F v : γ} (c : S.FaceCycle F)
     (hloopless : ∀ ⦃e x y : γ⦄, S.skel.IsLink e x y → x ≠ y)
@@ -1038,7 +1092,9 @@ theorem CellStructure.FaceCycle.exists_distinct_incident_edges
 /-- A nonouter edge of the evolving abstract skeleton incident at a current ambient vertex
 produces a nonouter edge of the ambient graph incident at the same geometric point.  No edge
 labels need to agree: a sufficiently small vertex square meets only ambient edges incident at
-that vertex, while the open cell of the abstract edge accumulates at its endpoint. -/
+that vertex, while the open cell of the abstract edge accumulates at its endpoint.
+@isnad1 id=ex.6h13v.s7.d94069cbcf7b from=translated src=- shape=7fc927da vocab=4e94aa04
+-/
 theorem IsTargetPartialTransferOf.exists_ambient_nonouter_incident
     {P T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {B : Graph Plane γ} {Hdraw : γ → ℝ → Plane} {par : γ → γ}
@@ -1081,7 +1137,9 @@ theorem IsTargetPartialTransferOf.exists_ambient_nonouter_incident
 /-- If no new nonouter ambient edge can coexist at the boundary with a nonouter edge of the
 current trace, then both boundary endpoints of the next reverse ear are outer-only in the
 current abstract skeleton.  Any current nonouter abstract edge would reflect to just such a
-current ambient edge. -/
+current ambient edge.
+@isnad1 id=and.9h16v.s8.152af0b5e2ac from=translated src=- shape=fae606a1 vocab=832dbbf3
+-/
 theorem targetEarEndpointsOuterOnly_of_noNewNonouterIncidence
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1144,7 +1202,9 @@ theorem targetEarEndpointsOuterOnly_of_noNewNonouterIncidence
       heₜD hincₜ (hnotOuter eₜ heₜD) hx
 
 /-- Global uniqueness of the nonouter ambient edge is a convenient sufficient condition for
-the relative boundary-incidence hypothesis used above. -/
+the relative boundary-incidence hypothesis used above.
+@isnad1 id=and.9h16v.s8.6e9f24d626d9 from=translated src=- shape=67916600 vocab=3073a605
+-/
 theorem targetEarEndpointsOuterOnly_of_nonouterIncidenceUnique
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1167,7 +1227,9 @@ theorem targetEarEndpointsOuterOnly_of_nonouterIncidenceUnique
 /-- At an outer-only vertex with at most two outer branches, the selected incident face is the
 only incident face.  Each simple face boundary contributes two distinct edges at the vertex;
 the two-branch bound forces two such face boundaries to share an outer edge, and
-`CombInvariants.outerEdge_unique` then identifies their face names. -/
+`CombInvariants.outerEdge_unique` then identifies their face names.
+@isnad1 id=eq.7h10v.s8.4dbf7b14c4ea from=translated src=- shape=72ee6d30 vocab=88b05a02
+-/
 theorem GeneratedPair.unique_source_face_of_outerOnly
     (T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom) {v F : γ}
     (hv : v ∈ V(T.str.skel)) (hF : F ∈ T.str.faces) (hvF : T.str.sub v F)
@@ -1223,6 +1285,9 @@ def GeneratedPair.sourceNonboundaryGraph
     (T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom) : Graph Plane γ :=
   (T.src.graph.deleteEdges E(T.str.outerGraph)).induce T.sourceNonboundaryVertices
 
+/--
+@isnad1 id=le.0h7v.s6.8a5be88101b1 from=translated src=- shape=aa77396f vocab=aedf2f8e
+-/
 theorem GeneratedPair.sourceNonboundaryGraph_le
     (T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom) :
     T.sourceNonboundaryGraph ≤ T.src.graph := by
@@ -1230,6 +1295,9 @@ theorem GeneratedPair.sourceNonboundaryGraph_le
   rintro x ⟨e, -, -, hinc⟩
   exact hinc.vertex_mem
 
+/--
+@isnad1 id=finite.0h7v.s5.372b48bac523 from=translated src=- shape=adc5b909 vocab=bc98b3cc
+-/
 instance GeneratedPair.sourceNonboundaryGraph_finite
     (T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom) :
     T.sourceNonboundaryGraph.Finite :=
@@ -1237,7 +1305,9 @@ instance GeneratedPair.sourceNonboundaryGraph_finite
 
 /-- An outer-only abstract vertex is absent from the compact nonboundary-edge carrier.  The
 point-set statement includes the possible case where the vertex lies on the arc of an edge;
-the drawing axiom turns that case back into incidence with the same edge. -/
+the drawing axiom turns that case back into incidence with the same edge.
+@isnad1 id=not.2h8v.s6.6650534ac0c3 from=translated src=- shape=a6b68f2a vocab=ef5b3232
+-/
 theorem GeneratedPair.source_pos_notMem_nonboundaryGraph_of_outerOnlyAt
     (T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom) {v : γ}
     (hv : v ∈ V(T.str.skel)) (houter : T.str.OuterOnlyAt v) :
@@ -1274,7 +1344,9 @@ theorem GeneratedPair.source_pos_notMem_nonboundaryGraph_of_outerOnlyAt
     exact heOuter (houter (abstract_incident hinc))
 
 /-- The source skeleton is the union of its compact nonboundary-edge carrier and its outer
-curve. -/
+curve.
+@isnad1 id=eq.0h7v.s6.fab800854f0e from=translated src=- shape=71cb506b vocab=1e911d79
+-/
 theorem GeneratedPair.skeletonSet_eq_sourceNonboundaryGraph_union
     (T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom) :
     T.src.skeletonSet = pointSet T.sourceNonboundaryGraph T.src.drawing ∪ srcOuter := by
@@ -1317,13 +1389,18 @@ theorem GeneratedPair.skeletonSet_eq_sourceNonboundaryGraph_union
   exact hdecomp.trans (congrArg (pointSet T.sourceNonboundaryGraph T.src.drawing ∪ ·)
     T.src_isWeaklyAdmissible.outerSet_eq)
 
+/--
+@isnad1 id=iscompac.0h7v.s6.bb9eff319da0 from=translated src=- shape=256e2e6c vocab=c94832c0
+-/
 theorem GeneratedPair.isCompact_sourceNonboundaryGraph
     (T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom) :
     IsCompact (pointSet T.sourceNonboundaryGraph T.src.drawing) :=
   (T.src.isDrawing.mono T.sourceNonboundaryGraph_le).isCompact_pointSet
 
 /-- Inside the open Jordan domain, avoiding the compact nonboundary-edge carrier is equivalent
-to avoiding the whole current skeleton; the remaining part of the latter is the outer curve. -/
+to avoiding the whole current skeleton; the remaining part of the latter is the outer curve.
+@isnad1 id=cellsabs.0h7v.s6.04dcd0df96de from=translated src=- shape=f351f529 vocab=4b309eb2
+-/
 theorem GeneratedPair.source_cellsAbsorbIn_nonboundary
     (T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom) :
     CellsAbsorbIn (srcDom \ srcOuter)
@@ -1340,7 +1417,9 @@ theorem GeneratedPair.source_cellsAbsorbIn_nonboundary
   · exact (hND hxN).2 hxOuter
 
 /-- Every point of the open source domain outside the compact nonboundary-edge carrier lies in
-one current source face. -/
+one current source face.
+@isnad1 id=ex.2h8v.s7.529f6a48209c from=translated src=- shape=bce0a8fd vocab=d6ecb7b5
+-/
 theorem GeneratedPair.exists_source_face_of_mem_interior_notMem_nonboundary
     (T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom) {x : Plane}
     (hx : x ∈ srcDom \ srcOuter)
@@ -1364,7 +1443,9 @@ theorem GeneratedPair.exists_source_face_of_mem_interior_notMem_nonboundary
 
 /-- A fresh strongly accessible boundary anchor is accessible from its unique incident current
 source face.  Compactness, absorption, and coverage are all discharged from the generated-pair
-invariants; the three hypotheses are exactly the data maintained by the prescribed ear order. -/
+invariants; the three hypotheses are exactly the data maintained by the prescribed ear order.
+@isnad1 id=polyacce.3h9v.s7.6f3b50ce0f34 from=translated src=- shape=ee35a93c vocab=9f1f0134
+-/
 theorem GeneratedPair.source_polyAccessible_of_fresh
     (T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     {F : γ} {x : Plane}
@@ -1381,7 +1462,9 @@ theorem GeneratedPair.source_polyAccessible_of_fresh
 /-- A point in the closure of a current source face is polygonally accessible whenever it is
 off the wild outer curve.  The polygonal graph used by `polygonal_side_accessibility` is the
 current skeleton with its outer edges deleted; adjoining the compact outer curve recovers the
-whole source skeleton. -/
+whole source skeleton.
+@isnad1 id=polyacce.3h9v.s7.94bc0f1a9c16 from=translated src=- shape=140cd28e vocab=fe300981
+-/
 theorem GeneratedPair.source_polyAccessible_of_notMem_outer
     (T : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     {F : γ} {x : Plane} (hF : F ∈ T.str.faces) (hx : x ∈ closure (T.src.cell F))
@@ -1458,7 +1541,9 @@ def TargetEarFreshCombinatorics
             (T.src.pos w.splitData.target)
 
 /-- The relative no-new-incidence boundary condition, together with the static two-branch
-invariant of generated outer graphs, supplies all reverse-ear fresh combinatorics. -/
+invariant of generated outer graphs, supplies all reverse-ear fresh combinatorics.
+@isnad1 id=targetea.3h9v.s6.500acf5c5974 from=translated src=- shape=e87e6628 vocab=ce4979e5
+-/
 theorem targetEarFreshCombinatorics_of_noNewNonouterIncidence_of_outerIncidenceAtMostTwo
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1491,7 +1576,9 @@ theorem targetEarFreshCombinatorics_of_noNewNonouterIncidence_of_outerIncidenceA
         houter (htwoT d.target)⟩
 
 /-- Global uniqueness is a sufficient special case of the relative no-new-incidence
-condition. -/
+condition.
+@isnad1 id=targetea.3h9v.s6.f4177c03456e from=translated src=- shape=fb66e4b2 vocab=ad5c5248
+-/
 theorem targetEarFreshCombinatorics_of_nonouterIncidenceUnique_of_outerIncidenceAtMostTwo
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1504,7 +1591,9 @@ theorem targetEarFreshCombinatorics_of_nonouterIncidenceUnique_of_outerIncidence
     P hH (hunique.noNew P.tgt.skeletonSet) htwo
 
 /-- The relative no-new-incidence condition and an outer cycle on the base structure supply
-the reverse-ear fresh combinatorics. -/
+the reverse-ear fresh combinatorics.
+@isnad1 id=targetea.3h9v.s6.fe91cbc00d02 from=translated src=- shape=4407ec1b vocab=c37ec38e
+-/
 theorem targetEarFreshCombinatorics_of_noNewNonouterIncidence_of_outerCycle
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1517,7 +1606,9 @@ theorem targetEarFreshCombinatorics_of_noNewNonouterIncidence_of_outerCycle
     P hH hnoNew fun _ h => h.outerIncidenceAtMostTwoEverywhere hcycle
 
 /-- The preceding reverse-ear combinatorics follows from the natural base invariant that the
-distinguished outer edges form one simple cycle. -/
+distinguished outer edges form one simple cycle.
+@isnad1 id=targetea.3h9v.s6.9f1fef2eb4dd from=translated src=- shape=77c3f5f6 vocab=18844279
+-/
 theorem targetEarFreshCombinatorics_of_nonouterIncidenceUnique_of_outerCycle
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1544,7 +1635,9 @@ def TargetEarFreshInvariant
         T.SourceEndpointReady w.splitData.face (T.src.pos w.splitData.target)
 
 /-- Relative anchoring of new ambient boundary edges and the remaining fresh-incidence
-combinatorics together give the complete reverse-ear readiness invariant. -/
+combinatorics together give the complete reverse-ear readiness invariant.
+@isnad1 id=targetea.3h9v.s6.b7324029c659 from=translated src=- shape=68660528 vocab=2dfd6031
+-/
 theorem targetEarFreshInvariant_of_newBoundaryAnchored
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     (H : Graph Plane γ) (Hdraw : γ → ℝ → Plane)
@@ -1569,7 +1662,9 @@ theorem targetEarFreshInvariant_of_newBoundaryAnchored
     · exact Or.inl hx
 
 /-- Anchoring every nonouter boundary edge is a sufficient special case of relative
-new-edge anchoring. -/
+new-edge anchoring.
+@isnad1 id=targetea.3h9v.s6.3b8857898159 from=translated src=- shape=a3d165c6 vocab=9f83af1a
+-/
 theorem targetEarFreshInvariant_of_boundaryAnchored
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     (H : Graph Plane γ) (Hdraw : γ → ℝ → Plane)
@@ -1599,7 +1694,9 @@ def TargetEarEndpointAccessibility
 
 /-- The fresh-anchor invariant implies the endpoint-accessibility invariant: the off-curve
 branch uses polygonal-side accessibility, and the fresh branch uses the compact carrier and
-unique-face theorem above. -/
+unique-face theorem above.
+@isnad1 id=targetea.1h9v.s5.0674cc760523 from=translated src=- shape=2f5143de vocab=d1e20857
+-/
 theorem targetEarEndpointAccessibility_of_freshInvariant
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     (H : Graph Plane γ) (Hdraw : γ → ℝ → Plane)
@@ -1634,7 +1731,9 @@ theorem targetEarEndpointAccessibility_of_freshInvariant
     · exact T.source_polyAccessible_of_fresh hstrong hnew hunique
 
 /-- Endpoint accessibility supplies the missing source crosscut, after which the already-proved
-arc matching and split constructor complete one nontrivial reverse ear. -/
+arc matching and split constructor complete one nontrivial reverse ear.
+@isnad1 id=targetea.2h9v.s6.a76f6e514d7d from=translated src=- shape=bf94ac46 vocab=053362f9
+-/
 theorem targetEarStepConstruction_of_endpointAccessibility [Infinite γ]
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     (H : Graph Plane γ) (Hdraw : γ → ℝ → Plane)
@@ -1672,7 +1771,9 @@ theorem targetEarStepConstruction_of_endpointAccessibility [Infinite γ]
     vertexSet_subset := w.vertexSet_subset
   }⟩
 
-/-- One reverse ear follows from the endpoint-accessibility invariant. -/
+/-- One reverse ear follows from the endpoint-accessibility invariant.
+@isnad1 id=targetea.2h9v.s6.1877da7b45ce from=translated src=- shape=c28ccce2 vocab=2d450564
+-/
 theorem targetEarStep_of_endpointAccessibility [Infinite γ]
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     (H : Graph Plane γ) (Hdraw : γ → ℝ → Plane)
@@ -1682,7 +1783,9 @@ theorem targetEarStep_of_endpointAccessibility [Infinite γ]
   targetEarStep_of_data hH
     (targetEarStepConstruction_of_endpointAccessibility P H Hdraw hH haccess)
 
-/-- One reverse ear follows from the concrete fresh-anchor/unique-face invariant. -/
+/-- One reverse ear follows from the concrete fresh-anchor/unique-face invariant.
+@isnad1 id=targetea.2h9v.s6.d0207b866887 from=translated src=- shape=c28ccce2 vocab=e801f240
+-/
 theorem targetEarStep_of_freshInvariant [Infinite γ]
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom)
     (H : Graph Plane γ) (Hdraw : γ → ℝ → Plane)
@@ -1745,7 +1848,9 @@ noncomputable def targetCommonSubdivisionData [Infinite γ]
     }
   }
 
-/-- **Step 1 of finite transfer, direction (b): construct the target common subdivision.** -/
+/-- **Step 1 of finite transfer, direction (b): construct the target common subdivision.**
+@isnad1 id=targetco.1h9v.s6.e42527c715d2 from=translated src=- shape=bf693f07 vocab=29a01792
+-/
 theorem targetCommonSubdivision [Infinite γ]
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1755,7 +1860,9 @@ theorem targetCommonSubdivision [Infinite γ]
   exact ⟨w.graph, w.pair, w.parent, w.graph_isTwoConnected, w.graph_le,
     w.isTargetPartialTransferOf⟩
 
-/-- Iterate a target ear step from a common subdivision through the whole extension graph. -/
+/-- Iterate a target ear step from a common subdivision through the whole extension graph.
+@isnad1 id=ex.3h9v.s6.da61077f5928 from=translated src=- shape=d55fcbc5 vocab=e1e786d7
+-/
 theorem targetTransferOfEars
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1771,7 +1878,9 @@ theorem targetTransferOfEars
   rintro B a b D hB - hBH ⟨T, par, hT⟩ hpath hab haB hbB hint
   exact hstep B a b D hB hBH hpath hab haB hbB hint T par hT
 
-/-- Direction (b), assuming only the target ear step. -/
+/-- Direction (b), assuming only the target ear step.
+@isnad1 id=ex.2h9v.s6.162884844bb7 from=translated src=- shape=f73be878 vocab=979221ac
+-/
 theorem finite_transfer_toward_source_of_targetEarStep [Infinite γ]
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1790,7 +1899,9 @@ theorem finite_transfer_toward_source_of_targetEarStep [Infinite γ]
   exact ⟨T, par, hT, T.src_isAdmissible hconnSrc, T.tgt_isAdmissible hconnSrc⟩
 
 /-- Direction (b), reduced to the precise geometric endpoint-accessibility invariant maintained
-by the prescribed outer-cycle ear order. -/
+by the prescribed outer-cycle ear order.
+@isnad1 id=ex.2h9v.s6.d675e00b3527 from=translated src=- shape=f73be878 vocab=c2f2f8c1
+-/
 theorem finite_transfer_toward_source_of_endpointAccessibility [Infinite γ]
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1803,7 +1914,9 @@ theorem finite_transfer_toward_source_of_endpointAccessibility [Infinite γ]
 
 /-- Direction (b), reduced to the prescribed ear order's concrete fresh-anchor and
 unique-incident-face invariant.  All geometric accessibility and reverse-split construction is
-discharged. -/
+discharged.
+@isnad1 id=ex.2h9v.s6.3e29b8310fd8 from=translated src=- shape=f73be878 vocab=e1159842
+-/
 theorem finite_transfer_toward_source_of_freshInvariant [Infinite γ]
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1816,7 +1929,9 @@ theorem finite_transfer_toward_source_of_freshInvariant [Infinite γ]
 
 /-- Direction (b), with strong accessibility discharged by relative anchoring of new target
 boundary edges.  The only remaining hypothesis is the fresh-carrier and unique-face
-combinatorics of the ear order. -/
+combinatorics of the ear order.
+@isnad1 id=ex.3h9v.s7.66e48f1c58ee from=translated src=- shape=54499074 vocab=c9245a05
+-/
 theorem finite_transfer_toward_source_of_newBoundaryAnchored [Infinite γ]
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1828,7 +1943,9 @@ theorem finite_transfer_toward_source_of_newBoundaryAnchored [Infinite γ]
   finite_transfer_toward_source_of_freshInvariant hH
     (targetEarFreshInvariant_of_newBoundaryAnchored P H Hdraw hH hanchor hcomb)
 
-/-- Anchoring every nonouter target-boundary edge is a sufficient special case. -/
+/-- Anchoring every nonouter target-boundary edge is a sufficient special case.
+@isnad1 id=ex.3h9v.s6.cc5a41924d18 from=translated src=- shape=5f7f73bc vocab=03683c1b
+-/
 theorem finite_transfer_toward_source_of_boundaryAnchored [Infinite γ]
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1843,7 +1960,9 @@ theorem finite_transfer_toward_source_of_boundaryAnchored [Infinite γ]
 /-- **Finite transfer, direction (b), from relative ambient boundary geometry.**  Boundary
 endpoints must be anchored, and a genuinely new nonouter edge must not coexist there with a
 nonouter edge already in the current trace.  The abstract base needs one distinguished outer
-cycle. -/
+cycle.
+@isnad1 id=ex.4h9v.s7.c0afc9b54493 from=translated src=- shape=b3d0b58a vocab=fb010a29
+-/
 theorem finite_transfer_toward_source_of_relativeBoundaryGeometry [Infinite γ]
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
@@ -1860,7 +1979,9 @@ theorem finite_transfer_toward_source_of_relativeBoundaryGeometry [Infinite γ]
 
 /-- **Finite transfer, direction (b), from name-independent ambient boundary geometry.**
 Global uniqueness of the incident nonouter edge implies the relative condition used by reverse
-ear insertion. -/
+ear insertion.
+@isnad1 id=ex.4h9v.s6.284dffee9e03 from=translated src=- shape=cc3b94d0 vocab=fc410c35
+-/
 theorem finite_transfer_toward_source_of_boundaryGeometry [Infinite γ]
     {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}

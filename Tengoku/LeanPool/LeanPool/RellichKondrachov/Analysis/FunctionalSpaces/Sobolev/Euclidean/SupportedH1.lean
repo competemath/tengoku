@@ -48,9 +48,18 @@ variable [CompleteSpace E]
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceSupportedH1 : MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.201e878da982 from=translated src=- shape=c6850a32 vocab=23bad3d1
+-/
 local instance instBorelSpaceSupportedH1 : BorelSpace E := ⟨rfl⟩
+/--
+@isnad1 id=opensmea.0h1v.s4.956783cd90df from=translated src=- shape=c6850a32 vocab=af84a69b
+-/
 local instance instOpensMeasurableSpaceSupportedH1 : OpensMeasurableSpace E := by
   infer_instance
+/--
+@isnad1 id=fact.0h0v.s4.4a02ed8498a3 from=translated src=- shape=3a68cc91 vocab=30c49e41
+-/
 local instance instFactOneLeTwoSobolevEuclideanSupportedH1 : Fact (1 ≤ (2 : ℝ≥0∞)) := ⟨by norm_num⟩
 
 variable (μ : Measure E) [IsFiniteMeasureOnCompacts μ] {K : Set E} (hKm : MeasurableSet K)
@@ -60,7 +69,9 @@ variable (μ : Measure E) [IsFiniteMeasureOnCompacts μ] {K : Set E} (hKm : Meas
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
   [CompleteSpace E] [IsFiniteMeasureOnCompacts μ] in
 /-- If a function is supported in `K`, then its `Lp` class belongs to the range of `extendByZeroₗᵢ`
-from the restricted measure `μ.restrict K`. -/
+from the restricted measure `μ.restrict K`.
+@isnad1 id=mem.3h5v.s12.227c8474843b from=translated src=- shape=0ed73ed9 vocab=b3e844b0
+-/
 lemma mem_range_extendByZeroₗᵢ_toLp_of_tsupport_subset {F : Type*} [NormedAddCommGroup F]
     [NormedSpace ℝ F] (f : E → F) (hf : MeasureTheory.MemLp f (2 : ℝ≥0∞) μ) (hK : tsupport f ⊆ K) :
     (hf.toLp f) ∈

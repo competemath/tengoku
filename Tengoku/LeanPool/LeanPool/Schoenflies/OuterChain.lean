@@ -123,17 +123,28 @@ def chainUnion (Γ : ℕ → Graph α β) (i : ℕ) : ℕ → Graph α β
   | 0 => Γ i
   | m + 1 => (chainUnion Γ i m).union (Γ (i + m + 1))
 
+/--
+@isnad1 id=eq.0h4v.s4.4bada6f8e05f from=translated src=- shape=65ab7255 vocab=c0a68c8c
+-/
 @[simp]
 theorem chainUnion_zero (Γ : ℕ → Graph α β) (i : ℕ) : chainUnion Γ i 0 = Γ i := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.aa5be91ee98b from=translated src=- shape=93dc20d5 vocab=65dd33e4
+-/
 @[simp]
 theorem chainUnion_succ (Γ : ℕ → Graph α β) (i m : ℕ) :
     chainUnion Γ i (m + 1) = (chainUnion Γ i m).union (Γ (i + m + 1)) := rfl
 
-/-- A block of length one is a consecutive pair. -/
+/-- A block of length one is a consecutive pair.
+@isnad1 id=eq.0h4v.s5.216426f162fd from=translated src=- shape=83c42a4f vocab=65dd33e4
+-/
 theorem chainUnion_one (Γ : ℕ → Graph α β) (i : ℕ) :
     chainUnion Γ i 1 = (Γ i).union (Γ (i + 1)) := rfl
 
+/--
+@isnad1 id=iff.0h6v.s6.c88acd154992 from=translated src=- shape=e82a3863 vocab=649c34ea
+-/
 theorem mem_vertexSet_chainUnion {x : α} :
     x ∈ V(chainUnion Γ i m) ↔ ∃ p, i ≤ p ∧ p ≤ i + m ∧ x ∈ V(Γ p) := by
   induction m with
@@ -154,6 +165,9 @@ theorem mem_vertexSet_chainUnion {x : α} :
       · obtain rfl : p = i + m + 1 := by omega
         exact Or.inr hx
 
+/--
+@isnad1 id=iff.0h6v.s6.ec9a37ebe10c from=translated src=- shape=ae43148e vocab=e484659e
+-/
 theorem mem_edgeSet_chainUnion {e : β} :
     e ∈ E(chainUnion Γ i m) ↔ ∃ p, i ≤ p ∧ p ≤ i + m ∧ e ∈ E(Γ p) := by
   induction m with
@@ -174,7 +188,9 @@ theorem mem_edgeSet_chainUnion {e : β} :
       · obtain rfl : p = i + m + 1 := by omega
         exact Or.inr he
 
-/-- A block sits inside any graph containing all of its members. -/
+/-- A block sits inside any graph containing all of its members.
+@isnad1 id=le.1h6v.s6.7da5f63a5486 from=translated src=- shape=c09ef243 vocab=06776e04
+-/
 theorem chainUnion_le (h : ∀ p, i ≤ p → p ≤ i + m → Γ p ≤ G) : chainUnion Γ i m ≤ G := by
   induction m with
   | zero => exact h i le_rfl le_rfl
@@ -183,7 +199,9 @@ theorem chainUnion_le (h : ∀ p, i ≤ p → p ≤ i + m → Γ p ≤ G) : chai
 
 /-- Each member of a block is a subgraph of it. The compatibility hypothesis is what makes the
 *right*-hand summand of a `Graph.union` a subgraph, and it is free once every member lies in one
-ambient graph. -/
+ambient graph.
+@isnad1 id=le.3h7v.s6.9f7f5317eb22 from=translated src=- shape=a8d01dc6 vocab=06776e04
+-/
 theorem le_chainUnion (hle : ∀ q, i ≤ q → q ≤ i + m → Γ q ≤ G) (hp : i ≤ p) (hp' : p ≤ i + m) :
     Γ p ≤ chainUnion Γ i m := by
   induction m with
@@ -199,7 +217,9 @@ theorem le_chainUnion (hle : ∀ q, i ≤ q → q ≤ i + m → Γ q ≤ G) (hp 
           (hle _ (by omega) le_rfl)
       exact hcompat.right_le_union
 
-/-- A block of finite graphs is finite. -/
+/-- A block of finite graphs is finite.
+@isnad1 id=finite.1h5v.s5.d6f08c77eedb from=translated src=- shape=e685d39f vocab=9b032f1c
+-/
 theorem chainUnion_finite (h : ∀ p, i ≤ p → p ≤ i + m → (Γ p).Finite) :
     (chainUnion Γ i m).Finite := by
   induction m with
@@ -215,7 +235,9 @@ theorem chainUnion_finite (h : ∀ p, i ≤ p → p ≤ i + m → (Γ p).Finite)
               exact h1.finite_edgeSet.union h2.finite_edgeSet }
 
 /-- **`lem:union-two-connected`, iterated.** A block of 2-connected graphs in which consecutive
-members share two distinct vertices is 2-connected. -/
+members share two distinct vertices is 2-connected.
+@isnad1 id=istwocon.3h6v.s7.50df4cc1c14f from=translated src=- shape=d0229ba6 vocab=3409eedc
+-/
 theorem chainUnion_isTwoConnected (hle : ∀ q, i ≤ q → q ≤ i + m → Γ q ≤ G)
     (htc : ∀ q, i ≤ q → q ≤ i + m → (Γ q).IsTwoConnected)
     (hmeet : ∀ q, i ≤ q → q < i + m → ∃ a b : α, a ≠ b ∧ a ∈ V(Γ q) ∧ a ∈ V(Γ (q + 1)) ∧
@@ -239,14 +261,18 @@ theorem chainUnion_isTwoConnected (hle : ∀ q, i ≤ q → q ≤ i + m → Γ q
 `Graph.IsCycleThrough.anti` is the cycle counterpart of `Graph.IsPath.anti`; it is what turns
 "no edge of `C` is outside this block" into "`C` is a cycle of this block". -/
 
-/-- Every edge on a cycle is an edge of the graph. -/
+/-- Every edge on a cycle is an edge of the graph.
+@isnad1 id=mem.2h8v.s5.64e7df4d55b3 from=translated src=- shape=70d7e8b1 vocab=bafbe0ca
+-/
 theorem IsCycleThrough.mem_edgeSet_cons {e g : β} {u v : α} {D : List β}
     (h : G.IsCycleThrough e u v D) (hg : g ∈ e :: D) : g ∈ E(G) := by
   rcases List.mem_cons.1 hg with rfl | hg
   · exact h.isLink.edge_mem
   · exact h.isPath.edge_mem hg
 
-/-- A cycle all of whose edges belong to a subgraph is a cycle of that subgraph. -/
+/-- A cycle all of whose edges belong to a subgraph is a cycle of that subgraph.
+@isnad1 id=iscyclet.3h8v.s6.dc29f1a6e9c5 from=translated src=- shape=9b002e34 vocab=326c7175
+-/
 theorem IsCycleThrough.anti {e : β} {u v : α} {D : List β} (h : G.IsCycleThrough e u v D)
     (hKG : K ≤ G) (hE : ∀ g ∈ e :: D, g ∈ E(K)) : K.IsCycleThrough e u v D := by
   have he : e ∈ E(K) := hE e List.mem_cons_self
@@ -254,7 +280,9 @@ theorem IsCycleThrough.anti {e : β} {u v : α} {D : List β} (h : G.IsCycleThro
   exact ⟨hl, h.isPath.anti hKG hl.left_mem fun g hg => hE g (List.mem_cons_of_mem _ hg),
     h.notMem⟩
 
-/-- A cycle of a subgraph is a cycle of the graph. -/
+/-- A cycle of a subgraph is a cycle of the graph.
+@isnad1 id=iscyclet.2h8v.s5.7694d63cebbd from=translated src=- shape=f120d166 vocab=bfbb7b8a
+-/
 theorem IsCycleThrough.mono {e : β} {u v : α} {D : List β} (h : K.IsCycleThrough e u v D)
     (hKG : K ≤ G) : G.IsCycleThrough e u v D :=
   ⟨h.isLink.mono hKG, h.isPath.mono hKG, h.notMem⟩
@@ -300,7 +328,9 @@ structure IsCycleCrosscut (H F : Graph α β) (e : β) (u v : α) (D : List β) 
 
 /-- **The two cycles a crosscut splices**, `R ∪ C₁` and `R ∪ C₂`, as cycles of the ambient graph
 with their edge lists named. Both are produced by `Graph.exists_spliced_cycle`, applied to the
-cycle's own subgraph and to each arc in turn. -/
+cycle's own subgraph and to each arc in turn.
+@isnad1 id=ex.2h13v.s7.98b776e20592 from=translated src=- shape=a3fe55d4 vocab=142e7659
+-/
 theorem exists_spliced_cycles {H F : Graph α β} {e : β} {u v a b : α} {D R D₁ D₂ : List β}
     (hcyc : H.IsCycleThrough e u v D) (hcc : IsCycleCrosscut H F e u v D a b R D₁ D₂) :
     ∃ (e₁ e₂ : β) (u₁ v₁ u₂ v₂ : α) (T₁ T₂ : List β),
@@ -345,23 +375,38 @@ theorem exists_spliced_cycles {H F : Graph α β} {e : β} {u v a b : α} {D R D
 minimal-counterexample argument is the size of this set for `H = Γ (j-1)`. -/
 def edgesOutside (H : Graph α β) (W : List β) : Set β := {g | g ∈ W ∧ g ∉ E(H)}
 
+/--
+@isnad1 id=iff.0h5v.s5.04fe701f5f72 from=translated src=- shape=25078a20 vocab=8ad496ef
+-/
 theorem mem_edgesOutside {H : Graph α β} {W : List β} {g : β} :
     g ∈ edgesOutside H W ↔ g ∈ W ∧ g ∉ E(H) := Iff.rfl
 
+/--
+@isnad1 id=finite.0h4v.s4.7431be9a5681 from=translated src=- shape=4ca85881 vocab=821db6cf
+-/
 theorem finite_edgesOutside (H : Graph α β) (W : List β) : (edgesOutside H W).Finite :=
   (W.finite_toSet).subset fun _ hg => hg.1
 
+/--
+@isnad1 id=eq.0h5v.s5.ffbd8513075e from=translated src=- shape=babe1e8a vocab=2dabf48a
+-/
 theorem edgesOutside_append (H : Graph α β) (W₁ W₂ : List β) :
     edgesOutside H (W₁ ++ W₂) = edgesOutside H W₁ ∪ edgesOutside H W₂ := by
   ext g
   simp only [mem_edgesOutside, List.mem_append, Set.mem_union]
   tauto
 
+/--
+@isnad1 id=eq.1h5v.s5.324af458a14f from=translated src=- shape=b51241ee vocab=ca5662a4
+-/
 theorem edgesOutside_perm {H : Graph α β} {W₁ W₂ : List β} (hp : W₁.Perm W₂) :
     edgesOutside H W₁ = edgesOutside H W₂ := by
   ext g
   simp only [mem_edgesOutside, hp.mem_iff]
 
+/--
+@isnad1 id=eq.1h4v.s5.cbb1b55b2df3 from=translated src=- shape=4563d9fb vocab=9e9bfde9
+-/
 theorem edgesOutside_eq_empty {H : Graph α β} {W : List β} (h : ∀ g ∈ W, g ∈ E(H)) :
     edgesOutside H W = ∅ := by
   ext g
@@ -375,7 +420,9 @@ discarded arc had at least one such edge.
 The two arcs of a cycle share no edge, which is why the discarded edge is not silently still
 present on the arc that was kept: that is what the `Nodup` hypothesis on the cycle's edge list
 supplies. It holds for a cycle because the detour of `Graph.IsCycleThrough` is a path and does
-not contain the named edge. -/
+not contain the named edge.
+@isnad1 id=lt.5h8v.s7.40dabe6aa13a from=translated src=- shape=a55de6b7 vocab=00af7923
+-/
 theorem edgesOutside_splice_lt {H : Graph α β} {W W' D₁ D₂ R : List β} (hnodup : W.Nodup)
     (hperm : W.Perm (D₁ ++ D₂)) (hperm' : W'.Perm (D₁ ++ R)) (hR : ∀ g ∈ R, g ∈ E(H))
     (hD₂ : ∃ g ∈ D₂, g ∉ E(H)) :
@@ -410,13 +457,17 @@ def Encloses (H : Graph Plane β) (drawing : β → ℝ → Plane) (x : Plane) :
   ∃ (e : β) (u v : Plane) (D : List β),
     H.IsCycleThrough e u v D ∧ x ∈ inside (edgesCover drawing (e :: D))
 
-/-- A cycle of a subgraph encloses whatever it enclosed. -/
+/-- A cycle of a subgraph encloses whatever it enclosed.
+@isnad1 id=encloses.2h5v.s5.9d8d020bc506 from=translated src=- shape=8f0131dd vocab=c6b3786b
+-/
 theorem Encloses.mono (hHK : H ≤ K) (h : Encloses H drawing x) : Encloses K drawing x := by
   obtain ⟨e, u, v, D, hc, hin⟩ := h
   exact ⟨e, u, v, D, ⟨hc.isLink.mono hHK, hc.isPath.mono hHK, hc.notMem⟩, hin⟩
 
 /-- **"The face of `H` containing `x` is connected and disjoint from `C`; since it contains
-`x ∈ Int(C)` it lies in the bounded set `Int(C)`."** An enclosed point has a bounded face. -/
+`x ∈ Int(C)` it lies in the bounded set `Int(C)`."** An enclosed point has a bounded face.
+@isnad1 id=isbounde.2h4v.s6.c43d6387b796 from=translated src=- shape=40139c63 vocab=1e957c52
+-/
 theorem isBounded_face_of_encloses (hx : x ∈ exterior H drawing)
     (henc : Encloses H drawing x) : Bornology.IsBounded (face H drawing x) := by
   obtain ⟨e, u, v, D, hcyc, hin⟩ := henc
@@ -430,7 +481,9 @@ theorem isBounded_face_of_encloses (hx : x ∈ exterior H drawing)
   exact (mem_inside_iff.1 hin).2.subset h1
 
 /-- **"By `lem:face-cycles`, that face is the interior of its boundary cycle."** A point in a
-bounded face of a finite 2-connected polygonal plane graph is enclosed by a cycle of it. -/
+bounded face of a finite 2-connected polygonal plane graph is enclosed by a cycle of it.
+@isnad1 id=encloses.5h4v.s6.723e0f038d60 from=translated src=- shape=7bd7c899 vocab=d4d13c08
+-/
 theorem encloses_of_isBounded_face [H.Finite] (hd : IsDrawing H drawing)
     (hpoly : ∀ g ∈ E(H), IsPolygonal (edgeArc drawing g)) (h2 : H.IsTwoConnected)
     (hx : x ∈ exterior H drawing) (hb : Bornology.IsBounded (face H drawing x)) :
@@ -448,7 +501,9 @@ This is everything in the blueprint's crosscut paragraph after "exactly one of t
 `R ∪ C₁`, `R ∪ C₂` encloses `x`", so a discharger of `Graph.Descent` has only to produce the
 crosscut and decide which side. The splitting of the cycle is `Graph.IsCycleThrough.split_at`
 and the two spliced cycles are `Graph.exists_spliced_cycle`; both hand back exactly the
-permutation statements assumed here. -/
+permutation statements assumed here.
+@isnad1 id=ex.10h20v.s8.3a4069f24c8d from=translated src=- shape=0546080f vocab=deaa1288
+-/
 theorem exists_cycle_edgesOutside_lt {H F : Graph Plane β} {e : β} {u v : Plane} {D : List β}
     (hcyc : H.IsCycleThrough e u v D) {D₁ D₂ R : List β} (hperm : (e :: D).Perm (D₁ ++ D₂))
     (hR : ∀ g ∈ R, g ∈ E(F)) (h₁ : ∃ g ∈ D₁, g ∉ E(F)) (h₂ : ∃ g ∈ D₂, g ∉ E(F))
@@ -507,31 +562,51 @@ namespace IsPlaneChain
 
 variable {i m p : ℕ}
 
+/--
+@isnad1 id=le.2h7v.s6.1b9e1e97ffe0 from=translated src=- shape=d9939973 vocab=ec1b8001
+-/
 theorem block_le (h : IsPlaneChain Γ drawing G n) (hm : i + m ≤ n) : chainUnion Γ i m ≤ G :=
   chainUnion_le fun p _ hp' => h.le_ambient p (by omega)
 
+/--
+@isnad1 id=le.4h8v.s6.96ff54d0ec4c from=translated src=- shape=0ebd9381 vocab=ec1b8001
+-/
 theorem le_block (h : IsPlaneChain Γ drawing G n) (hm : i + m ≤ n) (hp : i ≤ p)
     (hp' : p ≤ i + m) : Γ p ≤ chainUnion Γ i m :=
   le_chainUnion (G := G) (fun q _ hq' => h.le_ambient q (by omega)) hp hp'
 
+/--
+@isnad1 id=finite.2h7v.s5.394af0e2040e from=translated src=- shape=d4835b00 vocab=fe1dbef4
+-/
 theorem block_finite (h : IsPlaneChain Γ drawing G n) (hm : i + m ≤ n) :
     (chainUnion Γ i m).Finite :=
   chainUnion_finite fun p _ hp' => h.finite p (by omega)
 
+/--
+@isnad1 id=isdrawin.2h7v.s5.6ce41767ba07 from=translated src=- shape=f0cca74f vocab=1256d243
+-/
 theorem block_isDrawing (h : IsPlaneChain Γ drawing G n) (hm : i + m ≤ n) :
     IsDrawing (chainUnion Γ i m) drawing :=
   h.isDrawing.mono (h.block_le hm)
 
+/--
+@isnad1 id=ispolygo.3h8v.s6.94a02a0b8643 from=translated src=- shape=ce888f56 vocab=a34cb173
+-/
 theorem block_polygonal (h : IsPlaneChain Γ drawing G n) (hm : i + m ≤ n) :
     ∀ g ∈ E(chainUnion Γ i m), IsPolygonal (edgeArc drawing g) :=
   fun g hg => h.polygonal g ((h.block_le hm).edgeSet_mono hg)
 
+/--
+@isnad1 id=istwocon.2h7v.s5.ec9f459fbd58 from=translated src=- shape=d4835b00 vocab=6ac36b5e
+-/
 theorem block_isTwoConnected (h : IsPlaneChain Γ drawing G n) (hm : i + m ≤ n) :
     (chainUnion Γ i m).IsTwoConnected :=
   chainUnion_isTwoConnected (G := G) (fun q _ hq' => h.le_ambient q (by omega))
     (fun q _ hq' => h.twoConnected q (by omega)) fun q _ hq' => h.meet q (by omega)
 
-/-- A point of a block's drawing lies on one of its members. -/
+/-- A point of a block's drawing lies on one of its members.
+@isnad1 id=ex.1h6v.s6.0a6fb93a9c6e from=translated src=- shape=02470fd6 vocab=b396722b
+-/
 theorem mem_pointSet_block {z : Plane} (hz : z ∈ pointSet (chainUnion Γ i m) drawing) :
     ∃ p, i ≤ p ∧ p ≤ i + m ∧ z ∈ pointSet (Γ p) drawing := by
   induction m with
@@ -545,7 +620,9 @@ theorem mem_pointSet_block {z : Plane} (hz : z ∈ pointSet (chainUnion Γ i m) 
 
 /-- **"`Γ j` meets the earlier chain only through `Γ (j-1)`."** The block `Γ i ∪ ⋯ ∪ Γ (i+m)` and
 the member `Γ (i+m+2)` are disjoint, every pair of indices involved being nonconsecutive. This
-is the form the descent step consumes. -/
+is the form the descent step consumes.
+@isnad1 id=disjoint.2h7v.s6.6fefba17ff58 from=translated src=- shape=2bb3444f vocab=746ce062
+-/
 theorem disjoint_block_far (h : IsPlaneChain Γ drawing G n) (hm : i + m + 2 ≤ n) :
     Disjoint (pointSet (chainUnion Γ i m) drawing) (pointSet (Γ (i + m + 2)) drawing) := by
   rw [Set.disjoint_left]
@@ -553,13 +630,17 @@ theorem disjoint_block_far (h : IsPlaneChain Γ drawing G n) (hm : i + m + 2 ≤
   obtain ⟨q, -, hq', hzq⟩ := mem_pointSet_block hz
   exact Set.disjoint_left.1 (h.disjoint q (i + m + 2) (by omega) (by omega) (by omega)) hzq hz'
 
-/-- Nonconsecutive members share no vertex. -/
+/-- Nonconsecutive members share no vertex.
+@isnad1 id=disjoint.4h7v.s6.e00da785ea45 from=translated src=- shape=28a4f03d vocab=337c5be6
+-/
 theorem disjoint_vertexSet (h : IsPlaneChain Γ drawing G n) {q : ℕ} (hp : p ≤ n) (hq : q ≤ n)
     (hpq : p + 1 < q) : Disjoint V(Γ p) V(Γ q) :=
   (h.disjoint p q hp hq hpq).mono vertexSet_subset_pointSet vertexSet_subset_pointSet
 
 /-- Nonconsecutive members share no edge: an edge of both would be drawn inside both point
-sets. -/
+sets.
+@isnad1 id=disjoint.4h7v.s6.9c669f6b39ff from=translated src=- shape=e0a791b5 vocab=1462afc2
+-/
 theorem disjoint_edgeSet (h : IsPlaneChain Γ drawing G n) {q : ℕ} (hp : p ≤ n) (hq : q ≤ n)
     (hpq : p + 1 < q) : Disjoint E(Γ p) E(Γ q) := by
   rw [Set.disjoint_left]
@@ -664,13 +745,17 @@ namespace IsPlaneChain
 
 variable {i m p : ℕ}
 /-- **The base case, `j = i + 1`.** No cycle of a consecutive pair encloses a point of that
-pair's outer face. -/
+pair's outer face.
+@isnad1 id=not.2h6v.s5.44e8112fe16f from=translated src=- shape=dd958fa0 vocab=44fe2433
+-/
 theorem not_encloses_pair (hout : OuterOnPairs Γ drawing n x) (hp : p + 1 ≤ n) :
     ¬ Encloses (chainUnion Γ p 1) drawing x := fun henc =>
   (hout p hp).2 (isBounded_face_of_encloses (hout p hp).1 henc)
 
 /-- **The base case, `j = i`.** A single member of the chain is contained in a consecutive pair
-— the one after it, or, at the far end, the one before it. -/
+— the one after it, or, at the far end, the one before it.
+@isnad1 id=not.3h7v.s5.e65ffea41dd9 from=translated src=- shape=86076655 vocab=e215ca66
+-/
 theorem not_encloses_single (h : IsPlaneChain Γ drawing G n) (hout : OuterOnPairs Γ drawing n x)
     (hp : p ≤ n) : ¬ Encloses (Γ p) drawing x := by
   intro henc
@@ -688,7 +773,9 @@ theorem not_encloses_single (h : IsPlaneChain Γ drawing G n) (hout : OuterOnPai
 
 The outer induction is on the length `m` of the block — the blueprint's "choose indices `i ≤ j`
 with `j - i` minimum". Inside it, for a block of length at least two, the induction on `c` is
-the blueprint's "choose `C` so that the number of its edges outside `Γ (j-1)` is minimum". -/
+the blueprint's "choose `C` so that the number of its edges outside `Γ (j-1)` is minimum".
+@isnad1 id=not.4h8v.s6.19b720668bd2 from=translated src=- shape=6970481f vocab=2fac64d0
+-/
 theorem not_encloses (h : IsPlaneChain Γ drawing G n) (hout : OuterOnPairs Γ drawing n x)
     (hdesc : Descent Γ drawing n x) :
     ∀ m i, i + m ≤ n → ¬ Encloses (chainUnion Γ i m) drawing x := by
@@ -753,7 +840,9 @@ theorem not_encloses (h : IsPlaneChain Γ drawing G n) (hout : OuterOnPairs Γ d
       exact inner _ e u v D hcyc hin (Nat.lt_succ_self _)
 
 /-- `x` is off the whole chain: it is off every consecutive pair, and every member belongs to
-one. -/
+one.
+@isnad1 id=mem.2h6v.s5.093cfca0aea4 from=translated src=- shape=7804a6b3 vocab=4e0876fb
+-/
 theorem mem_exterior_chain (h : IsPlaneChain Γ drawing G n) (hout : OuterOnPairs Γ drawing n x) :
     x ∈ exterior (chainUnion Γ 0 n) drawing := by
   intro hx
@@ -776,7 +865,9 @@ consecutive pair `Γ p ∪ Γ (p+1)`, then `x` is in the outer face of `Γ 0 ∪
 
 "In the outer face" is `x ∈ exterior … ∧ ¬ IsBounded (face … x)`; by
 `Graph.unbounded_face_unique` there is only one unbounded face, so this really does say `x` is
-in *the* outer face. -/
+in *the* outer face.
+@isnad1 id=and.3h6v.s6.bb0ce1ff586b from=translated src=- shape=a9f8d3c9 vocab=9c0ab971
+-/
 theorem outer_chain (h : IsPlaneChain Γ drawing G n) (hout : OuterOnPairs Γ drawing n x)
     (hdesc : Descent Γ drawing n x) :
     x ∈ exterior (chainUnion Γ 0 n) drawing ∧

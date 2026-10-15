@@ -49,11 +49,20 @@ variable {I : ModelWithCorners ℝ E H} [IsManifold I (⊤ : WithTop ℕ∞) M]
 
 /-- Borel σ-algebra on the manifold `M`. -/
 local instance instMeasurableSpaceMChartMeasureLp : MeasurableSpace M := borel M
+/--
+@isnad1 id=borelspa.0h1v.s3.5eab1a28e225 from=translated src=- shape=c6850a32 vocab=b818768e
+-/
 local instance instBorelSpaceMChartMeasureLp : BorelSpace M := ⟨rfl⟩
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceEChartMeasureLp : MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.44c4d32545c1 from=translated src=- shape=c6850a32 vocab=b3af6048
+-/
 local instance instBorelSpaceEChartMeasureLp : BorelSpace E := ⟨rfl⟩
+/--
+@isnad1 id=opensmea.0h1v.s4.bbf40005eb95 from=translated src=- shape=c6850a32 vocab=bbeb9219
+-/
 local instance instOpensMeasurableSpaceChartMeasureLp :
     OpensMeasurableSpace E := by
   infer_instance
@@ -67,13 +76,18 @@ on the chart source. -/
 noncomputable def extChartAtMk (μ : Measure M) (i : d.ι) : M → E :=
   (aemeasurable_extChartAt (d := d) (I := I) (μ := μ) i).mk
 
+/--
+@isnad1 id=eventual.0h7v.s7.dc77151c4cd8 from=translated src=- shape=018094b4 vocab=0e2cc862
+-/
 lemma extChartAt_ae_eq_extChartAtMk (μ : Measure M) (i : d.ι) :
     extChartAt I (d.center i) =ᵐ[μ.restrict (extChartAt I (d.center i)).source]
       extChartAtMk (d := d) (I := I) μ i :=
   (aemeasurable_extChartAt (d := d) (I := I) (μ := μ) i).ae_eq_mk
 
 /-- The measurable modification `extChartAtMk` is measure-preserving from the restricted measure on
-the chart source to `chartMeasure`. -/
+the chart source to `chartMeasure`.
+@isnad1 id=measurep.0h7v.s7.84e31860dd39 from=translated src=- shape=0d1ce199 vocab=948d7089
+-/
 lemma measurePreserving_extChartAtMk (μ : Measure M) (i : d.ι) :
     MeasurePreserving (extChartAtMk (d := d) (I := I) μ i)
       (μ.restrict (extChartAt I (d.center i)).source) (chartMeasure (d := d) (I := I) μ i) := by

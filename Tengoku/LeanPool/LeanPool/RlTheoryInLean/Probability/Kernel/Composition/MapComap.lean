@@ -32,6 +32,9 @@ noncomputable def comapLast
   have hg : Measurable g := by apply measurable_pi_apply
   exact κ.comap g hg
 
+/--
+@isnad1 id=eq.0h5v.s6.fa98a624ace3 from=translated src=- shape=6c366368 vocab=275a4387
+-/
 lemma prodMap_fst
 (κ : Kernel α β) [IsSFiniteKernel κ] (η : Kernel α γ) [IsMarkovKernel η] :
 (κ.prod η).map Prod.fst = κ := by
@@ -43,6 +46,9 @@ lemma prodMap_fst
   · exact hs
   · measurability
 
+/--
+@isnad1 id=eq.0h5v.s6.ea8a986ea93f from=translated src=- shape=01a55081 vocab=5ce980bd
+-/
 lemma prodMap_snd
   (κ : Kernel α β) [IsMarkovKernel κ] (η : Kernel α γ) [IsSFiniteKernel η] :
   (κ.prod η).map Prod.snd = η := by

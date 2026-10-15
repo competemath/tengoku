@@ -38,10 +38,16 @@ namespace EulerTour
 variable (T : G.EulerTour)
 
 omit [DecidableEq E] [DecidableEq V] in
+/--
+@isnad1 id=eq.0h5v.s5.e9a7ebf83bff from=translated src=- shape=6d098441 vocab=2f8c176e
+-/
 @[simp]
 theorem eulerWord_letter (i : T.Pos) : T.eulerWord.letter i = T.vertexAt i := rfl
 
 omit [DecidableEq E] [DecidableEq V] in
+/--
+@isnad1 id=eq.0h5v.s5.1ab65a3ac083 from=translated src=- shape=4803abaf vocab=934aca5b
+-/
 @[simp]
 theorem eulerWord_prev (i : T.Pos) : T.eulerWord.prev i = T.prev i := rfl
 
@@ -57,7 +63,9 @@ def wordOccurrenceSideEquivHalfEdgesAt (v : V) :
 
 omit [DecidableEq E] [DecidableEq V] in
 /-- Under the preceding equivalence, the gap incident with a word-occurrence side is the edge
-underlying the corresponding half-edge. -/
+underlying the corresponding half-edge.
+@isnad1 id=eq.0h7v.s8.a9ae86e598e3 from=translated src=- shape=6c958439 vocab=8ebb0d94
+-/
 theorem incidentColor_eq_halfEdgeColor
     (x : T.eulerWord.Pos → Color) {v : V}
     (os : T.eulerWord.Occurrence v × Fin 2) :
@@ -124,7 +132,9 @@ noncomputable def compatibleFourColoringOfWordColoring
 
 end EulerTour
 
-/-- Sabidussi compatibility for finite endpoint multigraphs, including loops. -/
+/-- Sabidussi compatibility for finite endpoint multigraphs, including loops.
+@isnad1 id=ex.1h4v.s6.38a0a4eeae2c from=translated src=- shape=69e98af6 vocab=f2794dac
+-/
 theorem loop_sabidussi_compatibility (T : G.EulerTour)
     (hmin : ∀ v : V, 4 ≤ G.degree v) :
     ∃ S : G.CircuitDecomposition, S.Compatible T := by

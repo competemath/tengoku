@@ -59,10 +59,16 @@ variable
 
 /-- Borel σ-algebra on the manifold `M`. -/
 local instance instMeasurableSpaceMChartDataRiemannian : MeasurableSpace M := borel M
+/--
+@isnad1 id=borelspa.0h1v.s3.cf01531018b3 from=translated src=- shape=c6850a32 vocab=9d5a6063
+-/
 local instance instBorelSpaceMChartDataRiemannian : BorelSpace M := ⟨rfl⟩
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceEChartDataRiemannian : MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.8d84a763e86b from=translated src=- shape=c6850a32 vocab=f13f9467
+-/
 local instance instBorelSpaceEChartDataRiemannian : BorelSpace E := ⟨rfl⟩
 
 /-- A `FiniteChartData` together with explicit Lipschitz neighborhoods (in
@@ -157,7 +163,9 @@ private lemma isOpen_chartBallSource (x : M) (r : ℝ) :
 
 /-- On a compact Riemannian manifold, there exists finite chart data together with explicit
 Lipschitz neighborhoods (in chart coordinates) for chart inverses and a partition-of-unity
-subordination to those neighborhoods. -/
+subordination to those neighborhoods.
+@isnad1 id=nonempty.0h4v.s8.077cda8b1665 from=translated src=- shape=52f3a840 vocab=a9e4ea3c
+-/
 theorem exists_riemannianFiniteChartData :
     Nonempty (RiemannianFiniteChartData (H := H) (M := M) I) := by
   classical

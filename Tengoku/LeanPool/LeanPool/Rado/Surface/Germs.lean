@@ -40,7 +40,9 @@ def IsConjugate (u : X → ℝ) (F : X → ℂ) (V : Set X) : Prop :=
 
 /-- Existence of conjugates on small connected neighbourhoods of any point of a
 harmonic function's domain (Schwarz integral in a chart;
-`InnerProductSpace.HarmonicOnNhd.exists_analyticOnNhd_ball_re_eq`). -/
+`InnerProductSpace.HarmonicOnNhd.exists_analyticOnNhd_ball_re_eq`).
+@isnad1 id=ex.3h4v.s7.035f255b772c from=translated src=- shape=d60ece91 vocab=18ff75a3
+-/
 theorem exists_conjugate {u : X → ℝ} {s : Set X} (hu : SurfaceHarmonicOn u s)
     (hs : IsOpen s) {x : X} (hx : x ∈ s) :
     ∃ V F, IsOpen V ∧ IsPreconnected V ∧ x ∈ V ∧ V ⊆ s ∧ IsConjugate u F V := by
@@ -86,7 +88,9 @@ theorem exists_conjugate {u : X → ℝ} {s : Set X} (hu : SurfaceHarmonicOn u s
 
 /-- Local rigidity: two conjugates near a point agree near that point up to an
 imaginary constant; in particular a conjugate germ over a preconnected open `V`
-extends to all of `V` once one conjugate exists on `V`. -/
+extends to all of `V` once one conjugate exists on `V`.
+@isnad1 id=ex.6h7v.s7.8447230e488c from=translated src=- shape=be73dbd3 vocab=099285e6
+-/
 theorem IsConjugate.eventuallyEq_add_const {u : X → ℝ} {F G : X → ℂ} {V W : Set X}
     (hV : IsOpen V) (hW : IsOpen W) (hF : IsConjugate u F V) (hG : IsConjugate u G W)
     {y : X} (hyV : y ∈ V) (hyW : y ∈ W) :
@@ -150,20 +154,26 @@ theorem IsConjugate.eventuallyEq_add_const {u : X → ℝ} {F G : X → ℂ} {V 
   exact h1
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
-/-- Adding an imaginary constant preserves conjugacy. -/
+/-- Adding an imaginary constant preserves conjugacy.
+@isnad1 id=isconjug.1h5v.s6.a5e75fc16cbf from=translated src=- shape=bb495527 vocab=15d8bfe0
+-/
 theorem IsConjugate.add_const_mul_I {u : X → ℝ} {F : X → ℂ} {V : Set X}
     (hF : IsConjugate u F V) (t : ℝ) : IsConjugate u (fun z ↦ F z + t * I) V := by
   refine ⟨fun x hx ↦ ?_, fun x hx ↦ by simp [hF.2 x hx]⟩
   exact (hF.1 x hx).add analyticAt_const
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
-/-- Conjugates restrict to subsets. -/
+/-- Conjugates restrict to subsets.
+@isnad1 id=isconjug.2h5v.s5.7843a0522198 from=translated src=- shape=ac85cef7 vocab=43e142c3
+-/
 theorem IsConjugate.mono {u : X → ℝ} {F : X → ℂ} {V W : Set X} (hF : IsConjugate u F V)
     (hWV : W ⊆ V) : IsConjugate u F W :=
   ⟨hF.1.mono hWV, fun x hx ↦ hF.2 x (hWV hx)⟩
 
 /-- Rigidity: two conjugates on a preconnected open set differ by an imaginary
-constant. -/
+constant.
+@isnad1 id=ex.4h5v.s7.d5921a0f2e70 from=translated src=- shape=dfac21f1 vocab=23d0b33f
+-/
 theorem IsConjugate.exists_sub_const {u : X → ℝ} {F G : X → ℂ} {V : Set X}
     (hV : IsOpen V) (hVc : IsPreconnected V) (hF : IsConjugate u F V)
     (hG : IsConjugate u G V) : ∃ t : ℝ, EqOn G (fun z ↦ F z + t * I) V := by
@@ -176,7 +186,9 @@ theorem IsConjugate.exists_sub_const {u : X → ℝ} {F G : X → ℂ} {V : Set 
 /-- A harmonic function that is locally constant near an accumulation of
 constancy cannot avoid being constant: on a preconnected open set, if `u` is
 locally constant near one point, it is constant. (Via conjugates and the
-identity theorem for the chart derivative.) -/
+identity theorem for the chart derivative.)
+@isnad1 id=eqon.5h4v.s7.d80d3e94e7be from=translated src=- shape=d735b501 vocab=cda1f088
+-/
 theorem SurfaceHarmonicOn.eqOn_const_of_locallyConstant {u : X → ℝ} {s : Set X}
     (hu : SurfaceHarmonicOn u s) (hs : IsOpen s)
     (hsc : IsPreconnected s) {y : X} (hy : y ∈ s) (hloc : ∀ᶠ z in 𝓝 y, u z = u y) :
@@ -265,11 +277,16 @@ noncomputable def germValue {y : X} (γ : Germ (𝓝 y) ℂ) : ℂ :=
   γ.liftOn (fun f ↦ f y) fun _ _ h ↦ h.self_of_nhds
 
 omit [ChartedSpace ℂ X] [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
+/--
+@isnad1 id=eq.0h3v.s4.83b5791c9222 from=translated src=- shape=0c0020af vocab=8cef3ddb
+-/
 @[simp] theorem germValue_coe {y : X} (F : X → ℂ) :
     germValue (F : Germ (𝓝 y) ℂ) = F y := rfl
 
 omit [ChartedSpace ℂ X] [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
-/-- The set of points where two functions have the same germ is open. -/
+/-- The set of points where two functions have the same germ is open.
+@isnad1 id=isopen.0h3v.s4.f58e21e571f3 from=translated src=- shape=ae269588 vocab=87429f65
+-/
 theorem isOpen_eventuallyEq_nhds {F G : X → ℂ} : IsOpen {x : X | F =ᶠ[𝓝 x] G} := by
   rw [isOpen_iff_mem_nhds]
   intro x hx
@@ -309,18 +326,24 @@ section Etale
 variable (hu : SurfaceHarmonicOn u Y) (hY : IsOpen Y)
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
-/-- Membership in a sheet, unfolded. -/
+/-- Membership in a sheet, unfolded.
+@isnad1 id=iff.0h6v.s9.22be0d5d8265 from=translated src=- shape=11c6dd07 vocab=f6aaac4d
+-/
 theorem mem_sheet_iff {V : Set X} {F : X → ℂ} {q : ConjEtale u Y} :
     q ∈ sheet V F ↔ q.1.1 ∈ V ∧ q.1.2 = (F : Germ (𝓝 q.1.1) ℂ) := Iff.rfl
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
-/-- Basic sets are open. -/
+/-- Basic sets are open.
+@isnad1 id=isopen.1h4v.s6.5b620d45932e from=translated src=- shape=4624068f vocab=294a5c51
+-/
 theorem isOpen_of_mem_basicSets {S : Set (ConjEtale u Y)} (hS : S ∈ basicSets u Y) :
     IsOpen S :=
   TopologicalSpace.isOpen_generateFrom_of_mem hS
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
-/-- The sheets form a topological basis. -/
+/-- The sheets form a topological basis.
+@isnad1 id=istopolo.0h3v.s5.3bb4b60fe847 from=translated src=- shape=cd111fd3 vocab=49e1684f
+-/
 theorem isTopologicalBasis_basicSets :
     TopologicalSpace.IsTopologicalBasis (basicSets u Y) := by
   have : LocallyConnectedSpace X := Rado.locallyConnectedSpace
@@ -352,6 +375,9 @@ theorem isTopologicalBasis_basicSets :
       hWsub.trans hVY, hF.mono hWsub, rfl⟩, mem_connectedComponentIn hqV, hgerm⟩
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
+/--
+@isnad1 id=continuo.0h3v.s5.48aaa71c0a53 from=translated src=- shape=37f563b1 vocab=721ea07e
+-/
 theorem continuous_proj : Continuous (proj (u := u) (Y := Y)) := by
   have : LocallyConnectedSpace X := Rado.locallyConnectedSpace
   rw [continuous_def]
@@ -368,6 +394,9 @@ theorem continuous_proj : Continuous (proj (u := u) (Y := Y)) := by
   exact (hsub hpW).2
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
+/--
+@isnad1 id=isopenma.0h3v.s5.d9060f12abcf from=translated src=- shape=37f563b1 vocab=54e13fc5
+-/
 theorem isOpenMap_proj : IsOpenMap (proj (u := u) (Y := Y)) := by
   intro O hO
   rw [isOpen_iff_mem_nhds]
@@ -380,7 +409,9 @@ theorem isOpenMap_proj : IsOpenMap (proj (u := u) (Y := Y)) := by
   exact Filter.mem_of_superset (hVo.mem_nhds hqS.1) himg
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
-/-- `proj` restricted to a sheet is injective (germs of a single `F`). -/
+/-- `proj` restricted to a sheet is injective (germs of a single `F`).
+@isnad1 id=injon.0h5v.s5.40c586ae4136 from=translated src=- shape=454be2bb vocab=64c44da9
+-/
 theorem injOn_proj_sheet {V : Set X} {F : X → ℂ} :
     InjOn (proj (u := u) (Y := Y)) (sheet V F) := by
   rintro ⟨⟨y, γ⟩, hq⟩ hmem ⟨⟨y', γ'⟩, hq'⟩ hmem' h
@@ -394,7 +425,9 @@ theorem injOn_proj_sheet {V : Set X} {F : X → ℂ} :
   rfl
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
-/-- Hausdorffness of the étale space (identity theorem). -/
+/-- Hausdorffness of the étale space (identity theorem).
+@isnad1 id=t2space.0h3v.s5.eb78d083f444 from=translated src=- shape=d444d8fe vocab=646d59a4
+-/
 theorem t2Space [T2Space X] : T2Space (ConjEtale u Y) := by
   have : LocallyConnectedSpace X := Rado.locallyConnectedSpace
   constructor
@@ -441,7 +474,9 @@ theorem t2Space [T2Space X] : T2Space (ConjEtale u Y) := by
     exact ⟨proj ⁻¹' O₁, proj ⁻¹' O₂, hO₁.preimage continuous_proj,
       hO₂.preimage continuous_proj, h₁, h₂, hdisj.preimage _⟩
 
-/-- Every point of `Y` has a conjugate germ over it. -/
+/-- Every point of `Y` has a conjugate germ over it.
+@isnad1 id=ex.3h4v.s7.493df9fefd86 from=translated src=- shape=115abc8c vocab=db808ca9
+-/
 theorem exists_mk (hu : SurfaceHarmonicOn u Y) (hY : IsOpen Y) {y : X} (hy : y ∈ Y) :
     ∃ q : ConjEtale u Y, proj q = y := by
   obtain ⟨V, F, hVo, hVc, hyV, hVY, hF⟩ := exists_conjugate hu hY hy
@@ -502,7 +537,9 @@ private theorem sheetSec_image_mem_nhds {W : Set X} {G : X → ℂ} (hWo : IsOpe
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
 /-- The étale space inherits the local properties needed by Poincaré–Volterra:
-local compactness, local connectedness, local second countability. -/
+local compactness, local connectedness, local second countability.
+@isnad1 id=locallyc.0h3v.s5.dc9905c557bc from=translated src=- shape=cb404b08 vocab=445e1983
+-/
 theorem locallyCompactSpace :
     LocallyCompactSpace (ConjEtale u Y) := by
   have : LocallyCompactSpace X := Rado.locallyCompactSpace
@@ -523,6 +560,9 @@ theorem locallyCompactSpace :
     exact hKcomp.image (continuous_sheetSec hWo hWY hG)
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
+/--
+@isnad1 id=locallyc.0h3v.s5.334f6cbf03a7 from=translated src=- shape=cb404b08 vocab=cb769853
+-/
 theorem locallyConnectedSpace :
     LocallyConnectedSpace (ConjEtale u Y) := by
   have hX : LocallyConnectedSpace X := Rado.locallyConnectedSpace
@@ -581,6 +621,9 @@ private theorem secondCountable_sheet {W : Set X} {F : X → ℂ} (hWo : IsOpen 
     hρopen).isEmbedding.secondCountableTopology
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
+/--
+@isnad1 id=ex.0h4v.s7.18cad1cfe50b from=translated src=- shape=8f412178 vocab=4a977710
+-/
 theorem locally_secondCountable
     (q : ConjEtale u Y) :
     ∃ U : Set (ConjEtale u Y), q ∈ U ∧ IsOpen U ∧ SecondCountableTopology U := by
@@ -604,6 +647,9 @@ theorem locally_secondCountable
     secondCountable_sheet hWo hWc hWY hGW hWsc⟩
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
+/--
+@isnad1 id=continuo.0h3v.s5.17385e07cff4 from=translated src=- shape=ae63fcce vocab=2f08d29c
+-/
 theorem continuous_eval :
     Continuous (eval (u := u) (Y := Y)) := by
   rw [continuous_iff_continuousAt]
@@ -623,7 +669,9 @@ theorem continuous_eval :
 /-- Discreteness of the fibers of `eval`: if evaluation were constant near a
 germ, `u` would be locally constant near the base point, hence constant on all
 of connected `Y` (`SurfaceHarmonicOn.eqOn_const_of_locallyConstant`) —
-contradicting nonconstancy. -/
+contradicting nonconstancy.
+@isnad1 id=ex.6h6v.s7.dedde9754baf from=translated src=- shape=087432aa vocab=f997f455
+-/
 theorem eval_discrete_fibers (hu : SurfaceHarmonicOn u Y) (hY : IsOpen Y)
     (hYc : IsPreconnected Y) {x₀ x₁ : X} (h₀ : x₀ ∈ Y) (h₁ : x₁ ∈ Y)
     (hne : u x₀ ≠ u x₁) (q : ConjEtale u Y) :
@@ -680,7 +728,9 @@ theorem eval_discrete_fibers (hu : SurfaceHarmonicOn u Y) (hY : IsOpen Y)
 
 /-- Over a connected `Y`, every connected component of the étale space projects
 onto all of `Y` (openness and closedness of the image of a component, via local
-triviality of `proj` over small preconnected chart neighbourhoods). -/
+triviality of `proj` over small preconnected chart neighbourhoods).
+@isnad1 id=surjon.3h4v.s7.780b56cbc4e0 from=translated src=- shape=287601c8 vocab=6042f90a
+-/
 theorem surjOn_proj_connectedComponent (hu : SurfaceHarmonicOn u Y)
     (hY : IsOpen Y) (hYc : IsPreconnected Y) (q₀ : ConjEtale u Y) :
     SurjOn (proj (u := u) (Y := Y)) (connectedComponent q₀) Y := by

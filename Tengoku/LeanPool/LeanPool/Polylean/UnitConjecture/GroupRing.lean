@@ -53,6 +53,9 @@ namespace GroupRing
 open FormalSum
 -- multiplication by the zero monomial
 omit [DecidableEq R] in
+/--
+@isnad1 id=eq.0h5v.s5.a0e06b727d27 from=translated src=- shape=ff22bc8f vocab=90ba240d
+-/
 theorem mul_monom_zero (g x₀ : G) (s : FormalSum R G) :
     coords (mulMonom 0 g s) x₀ = 0 := by
   induction s with
@@ -61,6 +64,9 @@ theorem mul_monom_zero (g x₀ : G) (s : FormalSum R G) :
 
 -- distributivity of multiplication by a monomial
 omit [DecidableEq R] in
+/--
+@isnad1 id=eq.0h7v.s6.a7eaa841a348 from=translated src=- shape=65a766ff vocab=74fafd1d
+-/
 theorem mul_monom_dist (b : R) (h x₀ : G)
     (s₁ s₂ : FormalSum R G) :
     coords (mulMonom b h (s₁ ++ s₂)) x₀ =
@@ -72,6 +78,9 @@ theorem mul_monom_dist (b : R) (h x₀ : G)
 
 -- right distributivity
 omit [DecidableEq R] in
+/--
+@isnad1 id=eq.0h6v.s6.5fb305e24820 from=translated src=- shape=8c541b7f vocab=823dbe73
+-/
 theorem mul_dist (x₀ : G) (s₁ s₂ s₃ : FormalSum R G) :
     coords (mul s₁ (s₂ ++ s₃)) x₀ =
       coords (mul s₁ s₂) x₀ + coords (mul s₁ s₃) x₀ := by
@@ -82,6 +91,9 @@ theorem mul_dist (x₀ : G) (s₁ s₂ s₃ : FormalSum R G) :
 
 -- associativity with two terms monomials
 omit [DecidableEq R] in
+/--
+@isnad1 id=eq.0h8v.s6.b18d613a56da from=translated src=- shape=aaf26cca vocab=a9ad667e
+-/
 theorem mul_monom_monom_assoc (a b : R) (h x₀ : G)
     (s : FormalSum R G) :
     coords (mulMonom b h (mulMonom a x s)) x₀ =
@@ -94,6 +106,9 @@ theorem mul_monom_monom_assoc (a b : R) (h x₀ : G)
 
 -- associativity with one term a monomial
 omit [DecidableEq R] in
+/--
+@isnad1 id=eq.0h7v.s6.f1b8a3876a33 from=translated src=- shape=d36e8258 vocab=0c370088
+-/
 theorem mul_monom_assoc (b : R) (h x₀ : G)
     (s₁ s₂ : FormalSum R G) :
     coords (mulMonom b h (mul s₁ s₂)) x₀ =
@@ -106,6 +121,9 @@ theorem mul_monom_assoc (b : R) (h x₀ : G)
 
 -- left distributivity for multiplication by a monomial
 omit [DecidableEq R] in
+/--
+@isnad1 id=eq.0h7v.s6.8bb46a51aa78 from=translated src=- shape=2c289324 vocab=d8db1a6f
+-/
 theorem mul_monom_add (b₁ b₂ : R) (h x₀ : G)
     (s : FormalSum R G) :
     coords (mulMonom (b₁ + b₂) h s) x₀ =
@@ -117,7 +135,9 @@ theorem mul_monom_add (b₁ b₂ : R) (h x₀ : G)
     simp only [mulMonom, coords, left_distrib, monom_coords_hom, ih, add_assoc,
       add_left_comm]
 
-/-- multiplication equivalent when adding term with `0` coefficient -/
+/-- multiplication equivalent when adding term with `0` coefficient
+@isnad1 id=equiv.0h5v.s6.75fe4b6e5260 from=translated src=- shape=b7a9c887 vocab=c194f0c2
+-/
 theorem mul_zero_cons (s t : FormalSum R G) : mul s ((0, h) :: t) ≈ mul s t := by
     induction s with
     | nil =>
@@ -178,7 +198,9 @@ def mulAux : FormalSum R G → R[G] → R[G] := by
     rw [lc]
 
 open ElementaryMove
-/-- invariance under moves of multiplication by monomials -/
+/-- invariance under moves of multiplication by monomials
+@isnad1 id=eq.1h7v.s6.0f9fbf7dcb38 from=translated src=- shape=05a7f2d1 vocab=1c08567f
+-/
 theorem mul_monom_invariant (b : R) (h x₀ : G) (s₁ s₂ : FormalSum R G)
     (rel : ElementaryMove R G s₁ s₂) :
     coords (mulMonom b h s₁) x₀ = coords (mulMonom b h s₂) x₀ := by
@@ -193,7 +215,9 @@ theorem mul_monom_invariant (b : R) (h x₀ : G) (s₁ s₂ : FormalSum R G)
       | swap a₁ a₂ x₁ x₂ tail =>
         simp only [mulMonom, coords, add_left_comm]
 
-/-- invariance under moves for the first argument for multipilication -/
+/-- invariance under moves for the first argument for multipilication
+@isnad1 id=equiv.1h5v.s6.a7127bb69656 from=translated src=- shape=dc5ad08d vocab=389bf2ff
+-/
 theorem first_arg_invariant (s₁ s₂ t : FormalSum R G)
     (rel : ElementaryMove R G s₁ s₂) :
     FormalSum.mul s₁ t ≈ FormalSum.mul s₂ t := by
@@ -228,7 +252,9 @@ theorem first_arg_invariant (s₁ s₂ t : FormalSum R G)
         rw [congrFun prev x₀]
         simp only [add_left_comm]
 
-/-- The empty right factor is preserved by elementary moves in the first factor. -/
+/-- The empty right factor is preserved by elementary moves in the first factor.
+@isnad1 id=equiv.1h4v.s6.713cc41d3b04 from=translated src=- shape=59e3bfe9 vocab=8ca806ef
+-/
 theorem first_arg_invariant_nil (s₁ s₂ : FormalSum R G)
     (rel : ElementaryMove R G s₁ s₂) :
     FormalSum.mul s₁ [] ≈ FormalSum.mul s₂ [] :=
@@ -440,7 +466,9 @@ end GroupRing
 instance groupRingMul {R G : Type _} [Ring R] [DecidableEq G] [DecidableEq R] :
     HMul R G (FreeModule R G) := ⟨fun r g ↦ ⟦[(r, g)]⟧⟩
 
-/-- Scalar multiplication by a group element is represented by the singleton formal sum. -/
+/-- Scalar multiplication by a group element is represented by the singleton formal sum.
+@isnad1 id=eq.0h4v.s6.472a6e022a89 from=translated src=- shape=4381471d vocab=40245ccb
+-/
 theorem groupRingMul_apply {R G : Type _} [Ring R] [DecidableEq G] [DecidableEq R]
     (r : R) (g : G) : r * g = (⟦[(r, g)]⟧ : FreeModule R G) := rfl
 

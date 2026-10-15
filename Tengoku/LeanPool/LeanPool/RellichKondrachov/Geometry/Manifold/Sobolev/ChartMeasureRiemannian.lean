@@ -59,11 +59,20 @@ variable
 
 /-- Borel σ-algebra on the manifold `M`. -/
 local instance instMeasurableSpaceMChartMeasureRiemannian : MeasurableSpace M := borel M
+/--
+@isnad1 id=borelspa.0h1v.s3.7b2981648402 from=translated src=- shape=c6850a32 vocab=646cd899
+-/
 local instance instBorelSpaceMChartMeasureRiemannian : BorelSpace M := ⟨rfl⟩
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceEChartMeasureRiemannian : MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.b89dbf5947c6 from=translated src=- shape=c6850a32 vocab=f68d71c2
+-/
 local instance instBorelSpaceEChartMeasureRiemannian : BorelSpace E := ⟨rfl⟩
+/--
+@isnad1 id=opensmea.0h1v.s4.69f2773079d1 from=translated src=- shape=c6850a32 vocab=90edc0c3
+-/
 local instance instOpensMeasurableSpaceChartMeasureRiemannian :
     OpensMeasurableSpace E := by
   infer_instance
@@ -84,7 +93,9 @@ private lemma chartBall_subset_ball_range (i : dR.d.ι) :
   exact extChartAt_target_subset_range (I := I) (x := dR.d.center i) hy.2
 
 /-- On the chart ball, the chart pushforward measure of the Riemannian Hausdorff volume measure is
-dominated by Euclidean Hausdorff measure, with an explicit Lipschitz constant. -/
+dominated by Euclidean Hausdorff measure, with an explicit Lipschitz constant.
+@isnad1 id=le.0h6v.s9.637d694b422d from=translated src=- shape=5e565a3e vocab=e97c1170
+-/
 lemma chartMeasure_restrict_le_hausdorff (i : dR.d.ι) :
     (FiniteChartData.chartMeasure (d := dR.d) (I := I)
         (RellichKondrachov.Geometry.Manifold.Riemannian.riemannianVolumeMeasure
@@ -210,7 +221,9 @@ lemma chartMeasure_restrict_le_hausdorff (i : dR.d.ι) :
 /-! ### Reverse domination on chart balls -/
 
 /-- On the chart ball, Euclidean Hausdorff measure is dominated by the chart pushforward measure of
-the Riemannian Hausdorff volume measure. -/
+the Riemannian Hausdorff volume measure.
+@isnad1 id=le.0h6v.s9.184728170ca1 from=translated src=- shape=bb61dacf vocab=60709bf0
+-/
 lemma hausdorff_restrict_le_chartMeasure (i : dR.d.ι) :
     (μH[(Module.finrank ℝ E : ℝ)] : Measure E).restrict (chartBall (dR := dR) (I := I) i) ≤
       ((dR.Cfwd i : ℝ≥0∞) ^ (Module.finrank ℝ E : ℝ)) •

@@ -123,7 +123,9 @@ namespace Schoenflies
 The counterclockwise order of directions is a bare relation, not an order instance, so the
 sorting step is stated for a relation that is total and transitive *on the set in question*. -/
 
-/-- A finite nonempty set on which a relation is total and transitive has a greatest element. -/
+/-- A finite nonempty set on which a relation is total and transitive has a greatest element.
+@isnad1 id=ex.3h4v.s7.22b7e67b4ea8 from=translated src=- shape=a26d65de vocab=70001ecc
+-/
 theorem exists_greatest_of_finite {α : Type*} {R : α → α → Prop} {D : Set α}
     (hfin : D.Finite) (hne : D.Nonempty)
     (htot : ∀ a ∈ D, ∀ b ∈ D, a ≠ b → R a b ∨ R b a)
@@ -173,25 +175,33 @@ nondegeneracy hypothesis at all. -/
 
 /-- The Grassmann identity for four vectors of the plane: any three of them are linearly
 dependent, and expanding that dependence against the fourth gives this relation among the six
-orientation forms. Every transitivity below is one instance of it. -/
+orientation forms. Every transitivity below is one instance of it.
+@isnad1 id=eq.0h4v.s6.91ca204da2b5 from=translated src=- shape=2d0f951b vocab=74eb74b2
+-/
 theorem det_mul_det_add (a b c e : Plane) :
     det a b * det c e - det a c * det b e + det a e * det b c = 0 := by
   simp only [det]; ring
 
 /-- **Rotation.** The cyclic order is invariant under rotating its triple: `d` lies on the arc
 counterclockwise from `u` to `w` exactly when `w` lies on the arc counterclockwise from `d` to
-`u`. -/
+`u`.
+@isnad1 id=iff.0h3v.s4.c46eb0193ee5 from=translated src=- shape=9a9d218b vocab=bedb5245
+-/
 theorem mem_arcCCW_rotate : d ∈ arcCCW u w ↔ w ∈ arcCCW d u := by
   simp only [arcCCW, Set.mem_ofPred_eq]
   tauto
 
-/-- A bounding ray is not on its own arc. -/
+/-- A bounding ray is not on its own arc.
+@isnad1 id=not.0h2v.s3.84dec397c25f from=translated src=- shape=490b82e7 vocab=bedb5245
+-/
 theorem left_notMem_arcCCW (u w : Plane) : u ∉ arcCCW u w := by
   have h : det w u = -det u w := det_comm w u
   simp only [arcCCW, Set.mem_ofPred_eq, det_self, h]
   rintro (⟨h1, _⟩ | ⟨h1, h2⟩ | ⟨_, h2⟩) <;> linarith
 
-/-- The other bounding ray is not on the arc either. -/
+/-- The other bounding ray is not on the arc either.
+@isnad1 id=not.0h2v.s3.eae35380a631 from=translated src=- shape=305f58be vocab=bedb5245
+-/
 theorem right_notMem_arcCCW (u w : Plane) : w ∉ arcCCW u w := by
   have h : det w u = -det u w := det_comm w u
   simp only [arcCCW, Set.mem_ofPred_eq, det_self, h]
@@ -199,7 +209,9 @@ theorem right_notMem_arcCCW (u w : Plane) : w ∉ arcCCW u w := by
 
 /-- **Asymmetry.** Transposing the first two entries of the triple negates the cyclic order:
 if `v` is counterclockwise of `u` before `w`, then `u` is not counterclockwise of `v` before
-`w`. Two of the three orientation forms would have to be positive and two negative. -/
+`w`. Two of the three orientation forms would have to be positive and two negative.
+@isnad1 id=not.1h3v.s4.c09528bbe8e9 from=translated src=- shape=d80ff8ab vocab=bedb5245
+-/
 theorem notMem_arcCCW_swap (h : v ∈ arcCCW u w) : u ∉ arcCCW v w := by
   have e1 : det v u = -det u v := det_comm v u
   have e2 : det u w = -det w u := det_comm u w
@@ -270,7 +282,9 @@ private theorem grassmann (u w v d : Plane) :
 
 /-- **Transitivity, first form.** Counterclockwise order seen from a fixed ray `u` is
 transitive: if `w` comes before `v` and `v` before `d`, then `w` comes before `d`. This is what
-makes a finite set of directions linearly ordered once a ray to cut at has been chosen. -/
+makes a finite set of directions linearly ordered once a ray to cut at has been chosen.
+@isnad1 id=mem.2h4v.s5.80be66a5cf1e from=translated src=- shape=f4037c84 vocab=bedb5245
+-/
 theorem arcCCW_trans (h₁ : w ∈ arcCCW u v) (h₂ : v ∈ arcCCW u d) : w ∈ arcCCW u d := by
   simp only [arcCCW, Set.mem_ofPred_eq] at h₁ h₂ ⊢
   have hv : det u v = -det v u := det_comm u v
@@ -280,7 +294,9 @@ theorem arcCCW_trans (h₁ : w ∈ arcCCW u v) (h₂ : v ∈ arcCCW u d) : w ∈
 /-- **Transitivity, second form.** The same three rays, read from `w` instead of from `u`: if
 `w` comes before `v` and `v` before `d` as seen from `u`, then `v` lies on the arc
 counterclockwise from `w` to `d`. This is the step that turns "nothing of the finite set lies
-between `u` and the extreme rays" into "nothing lies inside the sector". -/
+between `u` and the extreme rays" into "nothing lies inside the sector".
+@isnad1 id=mem.2h4v.s5.7acd7d532570 from=translated src=- shape=e282892c vocab=bedb5245
+-/
 theorem arcCCW_trans' (h₁ : w ∈ arcCCW u v) (h₂ : v ∈ arcCCW u d) : v ∈ arcCCW w d := by
   simp only [arcCCW, Set.mem_ofPred_eq] at h₁ h₂ ⊢
   have hv : det u v = -det v u := det_comm u v
@@ -346,7 +362,9 @@ private theorem total_aux {A B C : ℝ} (hA : A = 0 → 0 < B * C) (hB : B = 0 �
 /-- **Totality.** Two distinct directions, neither of them the direction of `u`, are comparable
 in the counterclockwise order seen from `u`. The three degenerate configurations — one of them
 opposite to `u`, or the two opposite to each other — are exactly the three hypotheses of
-`total_aux`. -/
+`total_aux`.
+@isnad1 id=or.6h3v.s6.108b9c0c8316 from=translated src=- shape=9c67cef2 vocab=82c81811
+-/
 theorem mem_arcCCW_total (hu : u ≠ 0) (hv : IsDirection v) (hw : IsDirection w) (hvw : v ≠ w)
     (hvu : v ≠ dir u) (hwu : w ≠ dir u) : v ∈ arcCCW u w ∨ w ∈ arcCCW u v := by
   have hupos : (0 : ℝ) < ‖u‖ := norm_pos_iff.2 hu
@@ -425,13 +443,17 @@ The existence proof does sort, but only relative to a *free* direction `u` — o
 `D`. Seen from `u` the cyclic order becomes the linear order `v ≺ w ↔ v ∈ arcCCW u w`, whose
 greatest and least elements are the two rays bounding the sector `u` lies in. -/
 
-/-- **Asymmetry, transposing the last two entries.** -/
+/-- **Asymmetry, transposing the last two entries.**
+@isnad1 id=not.1h3v.s4.03b1e03aebb7 from=translated src=- shape=2df2aae0 vocab=bedb5245
+-/
 theorem notMem_arcCCW_asymm (h : v ∈ arcCCW u w) : w ∉ arcCCW u v := by
   rw [mem_arcCCW_rotate] at h
   rw [mem_arcCCW_rotate]
   exact notMem_arcCCW_swap h
 
-/-- A unit vector is its own direction. -/
+/-- A unit vector is its own direction.
+@isnad1 id=eq.1h1v.s3.5354f6b4fa06 from=translated src=- shape=5b131564 vocab=6f6240a6
+-/
 theorem dir_self (hu : IsDirection u) : dir u = u := by
   rw [dir, hu.norm, inv_one, one_smul]
 
@@ -443,7 +465,9 @@ theorem eq_neg_of_det_eq_zero (hu : IsDirection u) (hw : IsDirection w) (hne : u
   · rwa [dir_self hu] at h1
 
 /-- The arc counterclockwise from a ray to its opposite is the open half-plane on its left.
-This is the sector of a point with exactly two local branches, in a straight line. -/
+This is the sector of a point with exactly two local branches, in a straight line.
+@isnad1 id=eq.0h1v.s6.c3cf37a6a4ec from=translated src=- shape=4b21e05f vocab=ce620bb0
+-/
 theorem arcCCW_neg (u : Plane) : arcCCW u (-u) = {v | 0 < det u v} := by
   have hsm : (-u : Plane) = (-1 : ℝ) • u := by module
   have e1 : ∀ v : Plane, det v (-u) = det u v := by
@@ -457,7 +481,9 @@ theorem arcCCW_neg (u : Plane) : arcCCW u (-u) = {v | 0 < det u v} := by
 
 /-- **The sector between two distinct directions is connected**, whether or not they are
 opposite. `Plane.isConnected_arcCCW_ball` assumes `det u w ≠ 0`, which excludes the straight
-case; there the arc is a half-plane, and convex. -/
+case; there the arc is a half-plane, and convex.
+@isnad1 id=isconnec.4h3v.s7.7c8fb3a61aa4 from=translated src=- shape=762b41c2 vocab=06ebd533
+-/
 theorem isConnected_arcCCW_ball_of_ne (hu : IsDirection u) (hw : IsDirection w) (hne : u ≠ w)
     (hρ : 0 < ρ) : IsConnected (arcCCW u w ∩ ball (0 : Plane) ρ) := by
   rcases eq_or_ne (det u w) 0 with h | h
@@ -472,7 +498,9 @@ theorem isConnected_arcCCW_ball_of_ne (hu : IsDirection u) (hw : IsDirection w) 
       linarith
   · exact isConnected_arcCCW_ball h hρ
 
-/-- The sector of radius `ρ` at `x` between two distinct directions is connected. -/
+/-- The sector of radius `ρ` at `x` between two distinct directions is connected.
+@isnad1 id=isconnec.4h4v.s6.a61c83c3cb02 from=translated src=- shape=71910d8a vocab=bec92ae2
+-/
 theorem isConnected_cone_arcCCW_of_ne (x : Plane) (hu : IsDirection u) (hw : IsDirection w)
     (hne : u ≠ w) (hρ : 0 < ρ) : IsConnected (cone x (arcCCW u w) ρ) := by
   rw [cone_eq_image]
@@ -489,16 +517,24 @@ def IsSectorPair (D : Set Plane) (d w : Plane) : Prop :=
 set rather than by a chosen cyclic successor keeps the construction choice-free. -/
 def sectorPairs (D : Set Plane) : Set (Plane × Plane) := {p | IsSectorPair D p.1 p.2}
 
+/--
+@isnad1 id=iff.0h2v.s5.eec2f5a20428 from=translated src=- shape=d8f39cbc vocab=4012774b
+-/
 theorem mem_sectorPairs_iff {D : Set Plane} {p : Plane × Plane} :
     p ∈ sectorPairs D ↔ IsSectorPair D p.1 p.2 := Iff.rfl
 
+/--
+@isnad1 id=finite.1h1v.s3.ebc8c2efa488 from=translated src=- shape=44e5592c vocab=7c4da87f
+-/
 theorem sectorPairs_finite {D : Set Plane} (hfin : D.Finite) : (sectorPairs D).Finite :=
   (hfin.prod hfin).subset fun _ hp => ⟨hp.1, hp.2.1⟩
 
 /-- **Every free direction lies in a sector.** Given a finite set `D` of at least two
 directions and a direction not in `D`, there is a consecutive pair of `D` whose arc contains
 it. The two bounding rays are the greatest and the least element of `D` in the counterclockwise
-order seen from the free direction. -/
+order seen from the free direction.
+@isnad1 id=ex.5h2v.s7.67d58068824a from=translated src=- shape=6bd1d207 vocab=adf49395
+-/
 theorem exists_isSectorPair {D : Set Plane} (hfin : D.Finite) (hdir : ∀ v ∈ D, IsDirection v)
     (h2 : ∃ a ∈ D, ∃ b ∈ D, a ≠ b) (hu : u ≠ 0) (hud : dir u ∉ D) :
     ∃ d w, IsSectorPair D d w ∧ u ∈ arcCCW d w := by
@@ -548,7 +584,9 @@ private theorem eq_of_smul {c : ℝ} (hc : 0 < c) (hd : IsDirection d) (hz : IsD
   rw [h, hc1, one_smul]
 
 /-- A direction that is neither bounding ray of an arc and is not on it lies on the
-complementary arc. Both the generic case and the straight case `w = -d` are covered. -/
+complementary arc. Both the generic case and the straight case `w = -d` are covered.
+@isnad1 id=mem.7h3v.s5.a970fbd8ad8c from=translated src=- shape=4857d0cb vocab=1b7c28bf
+-/
 theorem mem_arcCCW_rev_of_notMem {d w z : Plane} (hd : IsDirection d) (hw : IsDirection w)
     (hdw : d ≠ w) (hz : IsDirection z) (hzd : z ≠ d) (hzw : z ≠ w) (h : z ∉ arcCCW d w) :
     z ∈ arcCCW w d := by
@@ -578,7 +616,9 @@ theorem mem_arcCCW_rev_of_notMem {d w z : Plane} (hd : IsDirection d) (hw : IsDi
     · exact absurd harc h
     · exact harc
 
-/-- **`d` is the greatest element of `D` seen from a direction of its sector.** -/
+/-- **`d` is the greatest element of `D` seen from a direction of its sector.**
+@isnad1 id=mem.5h5v.s6.a9c3ce1ac6d4 from=translated src=- shape=613327c4 vocab=14427763
+-/
 theorem IsSectorPair.mem_arcCCW_left {D : Set Plane} {d w v z : Plane} (hp : IsSectorPair D d w)
     (hdir : ∀ y ∈ D, IsDirection y) (hv : v ∈ arcCCW d w) (hz : z ∈ D) (hzd : z ≠ d) :
     z ∈ arcCCW v d := by
@@ -590,7 +630,9 @@ theorem IsSectorPair.mem_arcCCW_left {D : Set Plane} {d w v z : Plane} (hp : IsS
   rw [mem_arcCCW_rotate]
   exact arcCCW_trans' hzarc (mem_arcCCW_rotate.1 hrot)
 
-/-- **`w` is the least element of `D` seen from a direction of its sector.** -/
+/-- **`w` is the least element of `D` seen from a direction of its sector.**
+@isnad1 id=mem.5h5v.s6.7554bd53bc07 from=translated src=- shape=ff1a2f16 vocab=14427763
+-/
 theorem IsSectorPair.mem_arcCCW_right {D : Set Plane} {d w v z : Plane} (hp : IsSectorPair D d w)
     (hdir : ∀ y ∈ D, IsDirection y) (hv : v ∈ arcCCW d w) (hz : z ∈ D) (hzw : z ≠ w) :
     w ∈ arcCCW v z := by
@@ -600,7 +642,9 @@ theorem IsSectorPair.mem_arcCCW_right {D : Set Plane} {d w v z : Plane} (hp : Is
     hp.2.2.1 (hdir z hz) hzd hzw (hp.2.2.2 z hz)
   exact arcCCW_trans' hv (mem_arcCCW_rotate.1 (mem_arcCCW_rotate.1 hzarc))
 
-/-- **The sector containing a free direction is unique.** -/
+/-- **The sector containing a free direction is unique.**
+@isnad1 id=and.5h6v.s6.fe535dee6df3 from=translated src=- shape=c4dc66f7 vocab=14427763
+-/
 theorem IsSectorPair.unique {D : Set Plane} {d w d' w' v : Plane} (hdir : ∀ y ∈ D, IsDirection y)
     (hp : IsSectorPair D d w) (hp' : IsSectorPair D d' w') (hv : v ∈ arcCCW d w)
     (hv' : v ∈ arcCCW d' w') : d = d' ∧ w = w' := by
@@ -612,7 +656,9 @@ theorem IsSectorPair.unique {D : Set Plane} {d w d' w' v : Plane} (hdir : ∀ y 
     exact notMem_arcCCW_asymm (hp.mem_arcCCW_right hdir hv hp'.2.1 (Ne.symm hne))
       (hp'.mem_arcCCW_right hdir hv' hp.2.1 hne)
 
-/-- **Distinct consecutive pairs bound disjoint arcs.** -/
+/-- **Distinct consecutive pairs bound disjoint arcs.**
+@isnad1 id=disjoint.4h5v.s6.0393e026df1a from=translated src=- shape=82e3e5a2 vocab=0149f3ef
+-/
 theorem arcCCW_disjoint_of_isSectorPair {D : Set Plane} {d w d' w' : Plane}
     (hdir : ∀ y ∈ D, IsDirection y) (hp : IsSectorPair D d w) (hp' : IsSectorPair D d' w')
     (hne : d ≠ d' ∨ w ≠ w') : Disjoint (arcCCW d w) (arcCCW d' w') := by
@@ -633,7 +679,9 @@ directions. -/
 variable {S : Set Plane} {x y z : Plane} {r : ℝ}
 
 /-- A sector between two consecutive local directions misses `S` entirely: no point of it is
-`x`, because the origin lies on no arc, and no point of it points along a local direction. -/
+`x`, because the origin lies on no arc, and no point of it points along a local direction.
+@isnad1 id=le.2h5v.s6.4936da8cb9e2 from=translated src=- shape=6baa7ca7 vocab=b4d712c2
+-/
 theorem IsLocalRadius.cone_subset_ball_diff (h : IsLocalRadius S x r) {d w : Plane}
     (hp : Plane.IsSectorPair (localDirs S x) d w) :
     Plane.cone x (Plane.arcCCW d w) r ⊆ ball x r \ S := by
@@ -649,21 +697,27 @@ theorem IsLocalRadius.cone_subset_ball_diff (h : IsLocalRadius S x r) {d w : Pla
   · exact hne (by rw [hzx, sub_self])
   · exact hp.2.2.2 _ hd ((Plane.dir_mem_arcCCW_iff hne).2 harc)
 
-/-- Each sector is connected — and in particular nonempty. -/
+/-- Each sector is connected — and in particular nonempty.
+@isnad1 id=isconnec.2h5v.s6.3faa8fed6acd from=translated src=- shape=28520da9 vocab=db0b3027
+-/
 theorem IsLocalRadius.isConnected_cone (h : IsLocalRadius S x r) {d w : Plane}
     (hp : Plane.IsSectorPair (localDirs S x) d w) :
     IsConnected (Plane.cone x (Plane.arcCCW d w) r) :=
   Plane.isConnected_cone_arcCCW_of_ne x (isDirection_of_mem_localDirs hp.1)
     (isDirection_of_mem_localDirs hp.2.1) hp.2.2.1 h.pos
 
-/-- Each sector is open. -/
+/-- Each sector is open.
+@isnad1 id=isopen.0h4v.s5.982397eacf78 from=translated src=- shape=79dedeb7 vocab=bad684bf
+-/
 theorem isOpen_cone_arcCCW (x d w : Plane) (r : ℝ) :
     IsOpen (Plane.cone x (Plane.arcCCW d w) r) :=
   Plane.isOpen_cone (Plane.isOpen_arcCCW d w)
 
 /-- **A sector is star-shaped about the apex.** A straight segment from `x` towards a point of
 a sector stays in that sector: this is the blueprint's "a short straight segment from `x` into
-that sector is a polygonal access arc", with no shortening needed. -/
+that sector is a polygonal access arc", with no shortening needed.
+@isnad1 id=le.1h5v.s7.9c4e2193113b from=translated src=- shape=c896e0b3 vocab=77980c3d
+-/
 theorem openSegment_subset_cone_arcCCW {d w : Plane}
     (hz : z ∈ Plane.cone x (Plane.arcCCW d w) r) :
     openSegment ℝ x z ⊆ Plane.cone x (Plane.arcCCW d w) r := by
@@ -681,7 +735,9 @@ theorem openSegment_subset_cone_arcCCW {d w : Plane}
 /-- **The punctured local disk is the union of the sectors between consecutive local
 directions.** The last clause of `lem:local-skeleton-structure`. The hypothesis is that `x` has
 at least two local branches; with fewer, `B(x,r) \ S` is connected and is not an arc sector
-(see the module note). -/
+(see the module note).
+@isnad1 id=eq.3h3v.s7.dcbe61c5dbe8 from=translated src=- shape=338664b3 vocab=280814ca
+-/
 theorem IsLocalRadius.ball_diff_eq_iUnion_cone (h : IsLocalRadius S x r)
     (hfin : (localDirs S x).Finite)
     (h2 : ∃ a ∈ localDirs S x, ∃ b ∈ localDirs S x, a ≠ b) :
@@ -704,7 +760,9 @@ theorem IsLocalRadius.ball_diff_eq_iUnion_cone (h : IsLocalRadius S x r)
     exact h.cone_subset_ball_diff hp hzp
 
 /-- **The sectors are pairwise disjoint**, so the decomposition of the punctured disk is a
-partition and not merely a cover. -/
+partition and not merely a cover.
+@isnad1 id=disjoint.3h7v.s6.27bdc16bddd0 from=translated src=- shape=b81106a0 vocab=d4e72aa5
+-/
 theorem cone_disjoint_of_isSectorPair {d w d' w' : Plane}
     (hp : Plane.IsSectorPair (localDirs S x) d w)
     (hp' : Plane.IsSectorPair (localDirs S x) d' w') (hne : d ≠ d' ∨ w ≠ w') :
@@ -718,7 +776,9 @@ theorem cone_disjoint_of_isSectorPair {d w d' w' : Plane}
 /-- **Each sector is a connected component of the punctured disk.** The sectors are open,
 connected, pairwise disjoint and cover, so each is exactly the component of any of its points.
 This is what makes "the sector `y` lies in" and "the component of `y`" the same set, and hence
-`Graph.exists_access_region` and `Graph.exists_access_sector` two readings of one theorem. -/
+`Graph.exists_access_region` and `Graph.exists_access_sector` two readings of one theorem.
+@isnad1 id=eq.5h6v.s7.71d78f1e9ef5 from=translated src=- shape=cb6b213e vocab=72461d4f
+-/
 theorem IsLocalRadius.connectedComponentIn_eq_cone (h : IsLocalRadius S x r)
     (hfin : (localDirs S x).Finite)
     (h2 : ∃ a ∈ localDirs S x, ∃ b ∈ localDirs S x, a ≠ b) {d w : Plane}
@@ -762,7 +822,9 @@ of a radial segment stays strictly inside the disk and off the centre. These are
 that turn the drawing axioms into the distinct-directions clause of
 `lem:local-skeleton-structure`. -/
 
-/-- A radius in a local direction lies in the set. -/
+/-- A radius in a local direction lies in the set.
+@isnad1 id=le.2h4v.s7.444da6d6cfc7 from=translated src=- shape=827c4107 vocab=4d2e42fd
+-/
 theorem IsLocalRadius.radial_subset (h : IsLocalRadius S x r) {d : Plane}
     (hd : d ∈ localDirs S x) : segment ℝ x (x + r • d) ⊆ S := by
   intro z hz
@@ -772,7 +834,9 @@ theorem IsLocalRadius.radial_subset (h : IsLocalRadius S x r) {d : Plane}
   · exact Or.inl hzx
   · exact Or.inr (hdir ▸ hd)
 
-/-- **Two radial segments with distinct directions meet only at the centre.** -/
+/-- **Two radial segments with distinct directions meet only at the centre.**
+@isnad1 id=le.4h4v.s8.ad858a1d1ee4 from=translated src=- shape=ba50fb27 vocab=2e8f9920
+-/
 theorem radial_inter_radial {d₁ d₂ : Plane} (hd₁ : Plane.IsDirection d₁)
     (hd₂ : Plane.IsDirection d₂) (hne : d₁ ≠ d₂) (hr : 0 < r) :
     segment ℝ x (x + r • d₁) ∩ segment ℝ x (x + r • d₂) ⊆ {x} := by
@@ -785,7 +849,9 @@ theorem radial_inter_radial {d₁ d₂ : Plane} (hd₁ : Plane.IsDirection d₁)
   · exact hzx
   exact absurd (hdir₁ ▸ hdir₂) hne
 
-/-- The relative interior of a radius avoids the centre and stays strictly inside the disk. -/
+/-- The relative interior of a radius avoids the centre and stays strictly inside the disk.
+@isnad1 id=and.3h4v.s8.b6220ae5cdc3 from=translated src=- shape=221824d0 vocab=1935bcfa
+-/
 theorem mem_openSegment_radial {d : Plane} (hd : Plane.IsDirection d) (hr : 0 < r)
     (hz : z ∈ openSegment ℝ x (x + r • d)) : z ≠ x ∧ dist z x < r := by
   rw [openSegment_eq_image'] at hz
@@ -829,14 +895,22 @@ structure IsLocalDisk (G : Graph Plane β) (drawing : β → ℝ → Plane) (x :
   /-- No vertex other than `x` is within `r` of `x`. -/
   vertex_eq : ∀ v ∈ V(G), dist v x ≤ r → v = x
 
+/--
+@isnad1 id=lt.1h5v.s5.b4f1b545f6f1 from=translated src=- shape=3444c576 vocab=4f3b1f0b
+-/
 theorem IsLocalDisk.pos (h : IsLocalDisk G drawing x r) : 0 < r := h.isLocalRadius.pos
 
+/--
+@isnad1 id=islocald.3h6v.s5.bbe2a34fb8a0 from=translated src=- shape=e5428375 vocab=bdb774b3
+-/
 theorem IsLocalDisk.mono (h : IsLocalDisk G drawing x r) {ε : ℝ} (hε : 0 < ε) (hle : ε ≤ r) :
     IsLocalDisk G drawing x ε :=
   ⟨h.isLocalRadius.mono hε hle, fun v hv hd => h.vertex_eq v hv (hd.trans hle)⟩
 
 /-- **A local disk exists**, by shrinking a local radius below the distance to the other
-vertices. -/
+vertices.
+@isnad1 id=ex.3h4v.s6.b2df13da7f04 from=translated src=- shape=133fa4e0 vocab=6c9d3bcc
+-/
 theorem IsDrawing.exists_isLocalDisk [G.Finite] (h : IsDrawing G drawing)
     (hpoly : ∀ e ∈ E(G), IsPolygonal (edgeArc drawing e)) (hx : x ∈ pointSet G drawing) :
     ∃ r, IsLocalDisk G drawing x r := by
@@ -861,7 +935,9 @@ The relative interior of a radial segment is connected and meets no vertex, so
 `IsDrawing.unique_edge_at` makes "the edge through this point" a locally constant function on
 it; the edge arcs being closed and finitely many turns local constancy into global constancy. -/
 
-/-- **Existence.** At a local disk radius, a radial segment lies inside a single edge arc. -/
+/-- **Existence.** At a local disk radius, a radial segment lies inside a single edge arc.
+@isnad1 id=ex.3h6v.s8.7af0be097741 from=translated src=- shape=f9fbb559 vocab=f8aa611e
+-/
 theorem IsDrawing.exists_edge_radial [G.Finite] (h : IsDrawing G drawing)
     (hr : IsLocalDisk G drawing x r) (hd : d ∈ localDirs (pointSet G drawing) x) :
     ∃ e ∈ E(G), segment ℝ x (x + r • d) ⊆ edgeArc drawing e := by
@@ -913,7 +989,9 @@ theorem IsDrawing.exists_edge_radial [G.Finite] (h : IsDrawing G drawing)
     (closure_minimal hOsub (h.isCompact_edgeArc he₀).isClosed)
 
 /-- **Uniqueness.** Two edges carrying the same radial segment are the same edge: the relative
-interior of the segment is off the vertex set, and there a point lies on only one edge. -/
+interior of the segment is off the vertex set, and there a point lies on only one edge.
+@isnad1 id=eq.7h8v.s9.e47365a69fd6 from=translated src=- shape=1e96973c vocab=2fb83412
+-/
 theorem IsDrawing.edge_radial_unique (h : IsDrawing G drawing)
     (hr : IsLocalDisk G drawing x r) (hdir : Plane.IsDirection d) {e f : β}
     (he : e ∈ E(G)) (hf : f ∈ E(G)) (hse : segment ℝ x (x + r • d) ⊆ edgeArc drawing e)
@@ -969,7 +1047,9 @@ impossible", in the shape it is actually used: three distinct directions cannot 
 by one edge. Together with `IsDrawing.exists_edge_radial` and `IsDrawing.edge_radial_unique`
 this says that the local directions at `x` are in bijection with the local branches, so the
 radial segments of `lem:local-skeleton-structure` really do have pairwise distinct
-directions. -/
+directions.
+@isnad1 id=false.12h9v.s9.a251568282b0 from=translated src=- shape=2e99f579 vocab=2fb83412
+-/
 theorem IsDrawing.not_three_localDirs_on_edge (h : IsDrawing G drawing)
     (hr : IsLocalDisk G drawing x r) {e : β} (he : e ∈ E(G)) {d₁ d₂ d₃ : Plane}
     (hd₁ : Plane.IsDirection d₁) (hd₂ : Plane.IsDirection d₂) (hd₃ : Plane.IsDirection d₃)
@@ -1035,7 +1115,9 @@ theorem IsDrawing.not_three_localDirs_on_edge (h : IsDrawing G drawing)
 exactly one edge and each edge carries at most two of them, so there are at most twice as many
 local directions as edges. This is the quantitative packaging of the blueprint's
 "finitely many straight segments from `x` with pairwise distinct directions": the count is a
-count of *branches*, not of an unrelated set of rays. -/
+count of *branches*, not of an unrelated set of rays.
+@isnad1 id=le.3h5v.s6.00ceaec065db from=translated src=- shape=ee8865c2 vocab=976cc566
+-/
 theorem IsDrawing.localDirs_ncard_le [G.Finite] (h : IsDrawing G drawing)
     (hr : IsLocalDisk G drawing x r) (hfin : (localDirs (pointSet G drawing) x).Finite) :
     (localDirs (pointSet G drawing) x).ncard ≤ 2 * E(G).ncard := by
@@ -1088,7 +1170,9 @@ single named sector, so that the consumer never has to compose three lemmas. -/
 /-- **The access sector** (`lem:polygonal-side-accessibility`, the local step). A point `y` of
 the exterior inside a local disk about `x` lies in one of the sectors between consecutive local
 directions, and that sector is open, connected, nonempty, disjoint from the graph, contained in
-`y`'s own face, and reached from `x` by the straight segment `(x, y)`. -/
+`y`'s own face, and reached from `x` by the straight segment `(x, y)`.
+@isnad1 id=ex.5h6v.s8.f2ff3b3f6032 from=translated src=- shape=8fcb7b7b vocab=0a63b424
+-/
 theorem exists_access_sector {y : Plane}
     (hr : IsLocalRadius (pointSet G drawing) x r)
     (hfin : (localDirs (pointSet G drawing) x).Finite)
@@ -1125,7 +1209,9 @@ of `y` in the punctured disk has every property `lem:polygonal-side-accessibilit
 sector: it is open, connected, misses the graph, lies in `y`'s face, and contains the straight
 segment from `x` to `y`. When `x` has at least two local branches it *is* a sector, by
 `Graph.exists_access_sector`; with fewer it is the whole punctured disk, which is not an arc
-sector, and this is the form to use. -/
+sector, and this is the form to use.
+@isnad1 id=ex.4h6v.s8.aca1b4673ec8 from=translated src=- shape=f7a11d73 vocab=e25cd5de
+-/
 theorem IsDrawing.exists_access_region [G.Finite] (h : IsDrawing G drawing) {y : Plane}
     (hr : IsLocalRadius (pointSet G drawing) x r) (hy : y ∈ ball x r)
     (hyE : y ∈ exterior G drawing) :

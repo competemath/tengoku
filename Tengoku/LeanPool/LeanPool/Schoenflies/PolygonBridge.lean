@@ -100,7 +100,9 @@ the conclusion is sharper and the proof shorter. -/
 
 /-- Two segments sharing the endpoint `b`, whose far ends are off the line through the other,
 meet only at `b`. Taking the orientation form against `b - a` annihilates the first segment's
-own parameter, so the second segment's parameter must vanish. -/
+own parameter, so the second segment's parameter must vanish.
+@isnad1 id=le.1h3v.s8.27c465002656 from=translated src=- shape=3a8119e4 vocab=2355118a
+-/
 theorem segment_inter_shared {a b c : Plane} (h : det (b - a) (c - b) ≠ 0) :
     segment ℝ a b ∩ segment ℝ b c ⊆ {b} := by
   rintro z ⟨hz1, hz2⟩
@@ -221,12 +223,21 @@ def triangle (h : det (b - a) (c - a) ≠ 0) : ClosedPolygon 0 where
       simp only [Plane.det, Plane.sub_apply] at hc ⊢
       linarith
 
+/--
+@isnad1 id=eq.1h3v.s8.5f5e6521f289 from=translated src=- shape=8e9402ed vocab=0a1de5e3
+-/
 @[simp] theorem triangle_vertex_zero (h : det (b - a) (c - a) ≠ 0) :
     (triangle h).vertex 0 = a := rfl
 
+/--
+@isnad1 id=eq.1h3v.s8.40f453ccde26 from=translated src=- shape=da22f545 vocab=0a1de5e3
+-/
 @[simp] theorem triangle_vertex_one (h : det (b - a) (c - a) ≠ 0) :
     (triangle h).vertex 1 = b := rfl
 
+/--
+@isnad1 id=eq.1h3v.s8.329e58deb59c from=translated src=- shape=0c1b22fd vocab=0a1de5e3
+-/
 @[simp] theorem triangle_vertex_two (h : det (b - a) (c - a) ≠ 0) :
     (triangle h).vertex 2 = c := rfl
 
@@ -241,7 +252,9 @@ def unitTriangle : ClosedPolygon 0 :=
 /-! ## A telescoping sum mod two -/
 
 /-- The mod-`2` boundary of the chain `0 → 1 → ⋯ → n` is the sum of its two ends: every
-interior vertex is counted twice. This is the whole content of "a cycle is a closed chain". -/
+interior vertex is counted twice. This is the whole content of "a cycle is a closed chain".
+@isnad1 id=eq.0h2v.s8.85eba4a0a641 from=translated src=- shape=1cd31b6d vocab=5e19d39d
+-/
 theorem sum_range_boundary (g : ℕ → ZMod 2) :
     ∀ n : ℕ, ((List.range n).map fun j => g j + g (j + 1)).sum = g 0 + g n
   | 0 => by simpa using (add_self_zmod_two (g 0)).symm
@@ -258,19 +271,25 @@ Both bridges run over the vertices with a natural number and cast into `ZMod (m 
 the modulus the cast is injective, which is what turns "these two indices are different
 naturals" into "these are different edges" and back. -/
 
-/-- Below the modulus, casting a natural number into `ZMod (m + 3)` is injective. -/
+/-- Below the modulus, casting a natural number into `ZMod (m + 3)` is injective.
+@isnad1 id=eq.3h3v.s7.5865e0d45e57 from=translated src=- shape=2a47b478 vocab=ddf5093c
+-/
 theorem natCast_inj {j k : ℕ} (hj : j < m + 3) (hk : k < m + 3)
     (h : (j : ZMod (m + 3)) = (k : ZMod (m + 3))) : j = k := by
   have hval := congrArg ZMod.val h
   rwa [ZMod.val_cast_of_lt hj, ZMod.val_cast_of_lt hk] at hval
 
-/-- The successor, pushed through the cast. -/
+/-- The successor, pushed through the cast.
+@isnad1 id=eq.0h2v.s8.4c14ae409218 from=translated src=- shape=8d773ff8 vocab=e7dbe9e2
+-/
 theorem natCast_succ (j : ℕ) : ((j + 1 : ℕ) : ZMod (m + 3)) = (j : ZMod (m + 3)) + 1 := by
   push_cast; ring
 
 variable {P : ClosedPolygon m}
 
-/-- Distinct indices below the modulus name distinct vertices. -/
+/-- Distinct indices below the modulus name distinct vertices.
+@isnad1 id=ne.3h4v.s7.59d3d554d0af from=translated src=- shape=a1830660 vocab=a80427c6
+-/
 theorem vertex_natCast_ne {j k : ℕ} (hj : j < m + 3) (hk : k < m + 3) (hjk : j ≠ k) :
     P.vertex (j : ZMod (m + 3)) ≠ P.vertex (k : ZMod (m + 3)) :=
   fun heq => hjk (natCast_inj hj hk (P.vertex_inj heq))
@@ -279,7 +298,9 @@ theorem vertex_natCast_ne {j k : ℕ} (hj : j < m + 3) (hk : k < m + 3) (hjk : j
 meeting point at one of the two ends of the later edge; the far end is ruled out by applying
 `edges_meet` the other way round, which would put the later edge's *terminal* vertex on the
 earlier edge and hence make it one of two vertices it cannot be. This is what stops the
-polygon from closing before it has run through all its vertices. -/
+polygon from closing before it has run through all its vertices.
+@isnad1 id=eq.4h5v.s8.04217fb997d9 from=translated src=- shape=d5de6ba1 vocab=cfe39a81
+-/
 theorem edge_meet_earlier {j k : ℕ} (hjk : j < k) (hk : k + 1 < m + 3) {z : Plane}
     (hzj : z ∈ P.edge (j : ZMod (m + 3))) (hzk : z ∈ P.edge (k : ZMod (m + 3))) :
     z = P.vertex (k : ZMod (m + 3)) := by
@@ -306,7 +327,9 @@ theorem edge_meet_earlier {j k : ℕ} (hjk : j < k) (hk : k + 1 < m + 3) {z : Pl
 /-- **The last edge meets every earlier edge only at a vertex it shares with the cycle's ends.**
 Here the far end is *not* excluded: the last edge runs back to vertex `0`, so both of its ends
 are legitimate meeting points, and that is precisely what makes the carrier a closed curve
-rather than an arc. -/
+rather than an arc.
+@isnad1 id=or.3h4v.s8.41887694eddd from=translated src=- shape=59e49ed4 vocab=cfe39a81
+-/
 theorem edge_meet_last {j : ℕ} (hj : j < m + 2) {z : Plane}
     (hzj : z ∈ P.edge (j : ZMod (m + 3)))
     (hz : z ∈ P.edge ((m + 2 : ℕ) : ZMod (m + 3))) :
@@ -336,19 +359,25 @@ def pieces (P : ClosedPolygon m) : List Piece :=
   (List.range (m + 3)).map fun j : ℕ =>
     (P.vertex (j : ZMod (m + 3)), P.vertex ((j : ZMod (m + 3)) + 1))
 
-/-- Every edge of the polygon is on the list. -/
+/-- Every edge of the polygon is on the list.
+@isnad1 id=mem.0h3v.s8.32a2c4bc5e14 from=translated src=- shape=6d5dd779 vocab=6ee3c5e0
+-/
 theorem mem_pieces (P : ClosedPolygon m) (i : ZMod (m + 3)) :
     (P.vertex i, P.vertex (i + 1)) ∈ P.pieces := by
   refine List.mem_map.2 ⟨i.val, List.mem_range.2 (ZMod.val_lt i), ?_⟩
   rw [ZMod.natCast_rightInverse i]
 
-/-- Every piece on the list is an edge of the polygon. -/
+/-- Every piece on the list is an edge of the polygon.
+@isnad1 id=ex.1h3v.s8.a66931acb19c from=translated src=- shape=bf20ac5a vocab=5ff42a4e
+-/
 theorem exists_of_mem_pieces {P : ClosedPolygon m} {Q : Piece} (hQ : Q ∈ P.pieces) :
     ∃ i : ZMod (m + 3), Q = (P.vertex i, P.vertex (i + 1)) := by
   obtain ⟨j, -, rfl⟩ := List.mem_map.1 hQ
   exact ⟨(j : ZMod (m + 3)), rfl⟩
 
-/-- No edge of a simple closed polygon is degenerate: consecutive vertices are distinct. -/
+/-- No edge of a simple closed polygon is degenerate: consecutive vertices are distinct.
+@isnad1 id=nondeg.1h3v.s4.7269cadf1733 from=translated src=- shape=11af3fa9 vocab=3239b340
+-/
 theorem pieces_nondeg (P : ClosedPolygon m) : ∀ Q ∈ P.pieces, Q.Nondeg := by
   intro Q hQ
   obtain ⟨i, rfl⟩ := exists_of_mem_pieces hQ
@@ -356,7 +385,9 @@ theorem pieces_nondeg (P : ClosedPolygon m) : ∀ Q ∈ P.pieces, Q.Nondeg := by
 
 /-- **The edge list is a closed chain.** Each vertex is the terminal end of one edge and the
 initial end of the next, so it is counted twice; the cycle closes because `m + 3` is `0` in
-`ZMod (m + 3)`, which makes the two ends of the telescoping sum the same vertex. -/
+`ZMod (m + 3)`, which makes the two ends of the telescoping sum the same vertex.
+@isnad1 id=isclosed.0h2v.s3.abdd9ebe3a87 from=translated src=- shape=1f8e965c vocab=dd5f74b5
+-/
 theorem isClosedChain_pieces (P : ClosedPolygon m) : IsClosedChain P.pieces := by
   intro f
   have hmap : (P.pieces.map fun Q => f Q.1 + f Q.2)
@@ -372,7 +403,9 @@ theorem isClosedChain_pieces (P : ClosedPolygon m) : IsClosedChain P.pieces := b
 
 /-- **The edge list carries the polygon.** Without this equation no parity statement says
 anything about a `ClosedPolygon`: the crossing count is defined against `cover`, and the collar
-against `carrier`. -/
+against `carrier`.
+@isnad1 id=eq.0h2v.s3.99f3f608541f from=translated src=- shape=74e016e8 vocab=97c16c55
+-/
 theorem cover_pieces (P : ClosedPolygon m) : cover P.pieces = P.carrier := by
   apply Set.Subset.antisymm
   · rw [cover]
@@ -393,6 +426,9 @@ def chain (P : ClosedPolygon m) : ℕ → Set Plane
   | 0 => P.edge 0
   | k + 1 => chain P k ∪ P.edge ((k + 1 : ℕ) : ZMod (m + 3))
 
+/--
+@isnad1 id=iff.0h4v.s7.50687e6bd593 from=translated src=- shape=5aa231ae vocab=869447ad
+-/
 theorem mem_chain_iff {z : Plane} {k : ℕ} :
     z ∈ P.chain k ↔ ∃ j ≤ k, z ∈ P.edge (j : ZMod (m + 3)) := by
   induction k with
@@ -416,7 +452,9 @@ theorem mem_chain_iff {z : Plane} {k : ℕ} :
       · obtain rfl : j = k + 1 := le_antisymm hj hge
         exact Or.inr hzj
 
-/-- Running through all `m + 3` edges exhausts the carrier. -/
+/-- Running through all `m + 3` edges exhausts the carrier.
+@isnad1 id=eq.0h2v.s4.2adc498eca5a from=translated src=- shape=abb8221e vocab=6da6fdd5
+-/
 theorem chain_eq_carrier (P : ClosedPolygon m) : P.chain (m + 2) = P.carrier := by
   ext z
   rw [mem_chain_iff]
@@ -432,7 +470,9 @@ theorem chain_eq_carrier (P : ClosedPolygon m) : P.chain (m + 2) = P.carrier := 
 
 /-- **The partial chains are arcs.** One edge at a time, glued at the vertex they share:
 `edge_meet_earlier` is exactly the hypothesis `IsArcBetween.concatenate` asks for. The bound
-`k + 1 < m + 3` is what keeps the growing arc from meeting its own start. -/
+`k + 1 < m + 3` is what keeps the growing arc from meeting its own start.
+@isnad1 id=isarcbet.1h3v.s7.2edc825b91a7 from=translated src=- shape=ac321ca1 vocab=4d1987f9
+-/
 theorem isArcBetween_chain (P : ClosedPolygon m) :
     ∀ k : ℕ, k + 1 < m + 3 →
       IsArcBetween (P.chain k) (P.vertex 0) (P.vertex ((k + 1 : ℕ) : ZMod (m + 3))) := by
@@ -459,7 +499,9 @@ theorem isArcBetween_chain (P : ClosedPolygon m) :
 
 /-- **The carrier of a simple closed polygon is a Jordan curve.** The arc through all but the
 last edge, and the last edge running back to where it started, meet exactly at their two
-shared endpoints. -/
+shared endpoints.
+@isnad1 id=isjordan.0h2v.s3.40f3dfcca72a from=translated src=- shape=1f8e965c vocab=e71da7ae
+-/
 theorem isJordanCurve_carrier (P : ClosedPolygon m) : IsJordanCurve P.carrier := by
   have hlast : ((m + 2 : ℕ) : ZMod (m + 3)) + 1 = 0 := by
     rw [← natCast_succ]
@@ -495,15 +537,24 @@ def vlist (P : ClosedPolygon m) : ℕ → List Plane
   | 0 => [P.vertex 0, P.vertex ((1 : ℕ) : ZMod (m + 3))]
   | k + 1 => vlist P k ++ [P.vertex ((k + 1 + 1 : ℕ) : ZMod (m + 3))]
 
+/--
+@isnad1 id=ne.0h3v.s4.0e7a8598dbf5 from=translated src=- shape=eda88379 vocab=b02043f5
+-/
 theorem vlist_ne_nil (P : ClosedPolygon m) (k : ℕ) : P.vlist k ≠ [] := by
   cases k <;> simp [vlist]
 
+/--
+@isnad1 id=eq.0h3v.s6.8345f08a65c2 from=translated src=- shape=bc2699c1 vocab=a49a7f10
+-/
 theorem getLast_vlist (P : ClosedPolygon m) (k : ℕ) :
     (P.vlist k).getLast (P.vlist_ne_nil k) = P.vertex ((k + 1 : ℕ) : ZMod (m + 3)) := by
   cases k with
   | zero => simp [vlist]
   | succ k => simp [vlist]
 
+/--
+@isnad1 id=eq.0h3v.s4.71e09dc5a830 from=translated src=- shape=bfdd298e vocab=02d2c1ec
+-/
 theorem poly_vlist (P : ClosedPolygon m) (k : ℕ) : poly (P.vlist k) = P.chain k := by
   induction k with
   | zero =>
@@ -514,7 +565,9 @@ theorem poly_vlist (P : ClosedPolygon m) (k : ℕ) : poly (P.vlist k) = P.chain 
       natCast_succ (k + 1)]
 
 /-- **The carrier of a simple closed polygon is polygonal**: it is the carrier of the vertex
-list that runs once round the cycle and back to its first vertex. -/
+list that runs once round the cycle and back to its first vertex.
+@isnad1 id=ispolygo.0h2v.s3.e01b9219ef37 from=translated src=- shape=1f8e965c vocab=4102f31c
+-/
 theorem isPolygonal_carrier (P : ClosedPolygon m) : IsPolygonal P.carrier :=
   ⟨P.vlist (m + 2), by rw [poly_vlist, chain_eq_carrier]⟩
 
@@ -523,13 +576,17 @@ theorem isPolygonal_carrier (P : ClosedPolygon m) : IsPolygonal P.carrier :=
 With both halves in place a parity statement can be read off a `ClosedPolygon` directly. -/
 
 /-- A ray direction level for no edge of the polygon; the blueprint's "rotate the coordinate
-system so that no edge is horizontal", with nothing rotated. -/
+system so that no edge is horizontal", with nothing rotated.
+@isnad1 id=ex.0h2v.s5.3b19700c598e from=translated src=- shape=040873bf vocab=e3776e23
+-/
 theorem exists_direction_pieces (P : ClosedPolygon m) :
     ∃ u : Plane, Plane.IsDirection u ∧ ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2 :=
   exists_direction_hgt_ne P.pieces P.pieces_nondeg
 
 /-- **Crossing parity for a closed polygon** (Lemma 2.2): `π_C` is constant on the component
-of the complement of the *carrier* containing a given point. -/
+of the complement of the *carrier* containing a given point.
+@isnad1 id=eq.4h5v.s7.41f84cf9de52 from=translated src=- shape=97039401 vocab=a3a56581
+-/
 theorem parity_eq_of_mem_connectedComponentIn_carrier (P : ClosedPolygon m) {u : Plane}
     (hu : Plane.IsDirection u) (hL : ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2) {x y : Plane}
     (hx : x ∉ P.carrier) (hy : y ∈ connectedComponentIn P.carrierᶜ x) :
@@ -546,14 +603,18 @@ can reach an interior point of this one only at one of this one's two ends, whic
 point is not. -/
 
 /-- What a list of pieces occupies, taken apart. The counterpart of `Schoenflies.mem_cover`,
-which only builds; **this belongs next to it in `Schoenflies/Parity.lean`.** -/
+which only builds; **this belongs next to it in `Schoenflies/Parity.lean`.**
+@isnad1 id=ex.1h2v.s5.bbb59db6bd2c from=translated src=- shape=b38ed1d9 vocab=0e094345
+-/
 theorem exists_of_mem_cover {L : List Piece} {z : Plane} (hz : z ∈ cover L) :
     ∃ R ∈ L, z ∈ R.seg := by
   rw [cover] at hz
   simpa using hz
 
 /-- An interior point of one edge lies on no other edge: `edges_meet` puts any other edge's
-meeting point at an end of this one, and an interior point is neither end. -/
+meeting point at an end of this one, and an interior point is neither end.
+@isnad1 id=not.2h5v.s8.2ec7d7747e71 from=translated src=- shape=03639f5a vocab=d943e717
+-/
 theorem notMem_edge_of_mem_openSegment {i j : ZMod (m + 3)} (hij : j ≠ i) {p : Plane}
     (hp : p ∈ openSegment ℝ (P.vertex i) (P.vertex (i + 1))) : p ∉ P.edge j := by
   intro hpj
@@ -564,7 +625,9 @@ theorem notMem_edge_of_mem_openSegment {i j : ZMod (m + 3)} (hij : j ≠ i) {p :
   · exact P.vertex_ne i (left_mem_openSegment_iff.1 hp)
   · exact P.vertex_ne i (right_mem_openSegment_iff.1 hp)
 
-/-- The edge list has no repeated entry: distinct indices name distinct initial vertices. -/
+/-- The edge list has no repeated entry: distinct indices name distinct initial vertices.
+@isnad1 id=nodup.0h2v.s3.a4ef0c8b10e1 from=translated src=- shape=595ce0b1 vocab=a2e40007
+-/
 theorem pieces_nodup (P : ClosedPolygon m) : P.pieces.Nodup := by
   rw [pieces]
   refine List.Nodup.map_on (fun j hj k hk heq => ?_) List.nodup_range
@@ -573,7 +636,9 @@ theorem pieces_nodup (P : ClosedPolygon m) : P.pieces.Nodup := by
 
 /-- **Opposite sides of an edge, for a closed polygon** (Lemma 2.2, second half). Just before
 and just after an interior point of an edge, in the ray direction, the base point is off the
-carrier and the crossing parity differs by one. -/
+carrier and the crossing parity differs by one.
+@isnad1 id=ex.3h5v.s10.154a2c96fae1 from=translated src=- shape=b11026a8 vocab=a2f88b58
+-/
 theorem parity_flip_carrier (P : ClosedPolygon m) {u : Plane} (hu : Plane.IsDirection u)
     (hL : ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2) (i : ZMod (m + 3)) {p : Plane}
     (hp : p ∈ openSegment ℝ (P.vertex i) (P.vertex (i + 1))) :

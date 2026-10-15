@@ -98,42 +98,78 @@ takes. Defined for any edge list, not just for one that walks — the freshness 
 path reads it about the *rest* of the path before that rest is known to be a walk at all. -/
 def walkVertices (G : Graph α β) (u : α) (W : List β) : Set α := insert u (G.coveredVertices W)
 
+/--
+@isnad1 id=iff.0h5v.s5.8c5f16289749 from=translated src=- shape=4d1340ab vocab=34844072
+-/
 theorem mem_coveredVertices_iff : x ∈ G.coveredVertices W ↔ ∃ e ∈ W, G.Inc e x := Iff.rfl
 
+/--
+@isnad1 id=iff.0h6v.s5.ec086c646f14 from=translated src=- shape=b1561831 vocab=3812c433
+-/
 theorem mem_walkVertices_iff : x ∈ G.walkVertices u W ↔ x = u ∨ x ∈ G.coveredVertices W :=
   Set.mem_insert_iff
 
+/--
+@isnad1 id=eq.0h3v.s4.6a9e8715590a from=translated src=- shape=e1a4d7f4 vocab=4438c90a
+-/
 @[simp]
 theorem coveredVertices_nil : G.coveredVertices ([] : List β) = ∅ := by
   simp [coveredVertices]
 
+/--
+@isnad1 id=eq.0h4v.s4.f784af8af2a4 from=translated src=- shape=96d1a899 vocab=6974ef3e
+-/
 @[simp]
 theorem walkVertices_nil : G.walkVertices u ([] : List β) = {u} := by
   simp [walkVertices]
 
+/--
+@isnad1 id=mem.2h6v.s5.11943304f2e8 from=translated src=- shape=bc21e5c2 vocab=34844072
+-/
 theorem mem_coveredVertices (he : e ∈ W) (hx : G.Inc e x) : x ∈ G.coveredVertices W :=
   ⟨e, he, hx⟩
 
+/--
+@isnad1 id=mem.0h5v.s4.73699a928e79 from=translated src=- shape=db7aee36 vocab=ee86c261
+-/
 theorem mem_walkVertices_self : u ∈ G.walkVertices u W := Set.mem_insert _ _
 
+/--
+@isnad1 id=mem.1h6v.s5.af37c07991b2 from=translated src=- shape=ac58a35e vocab=3812c433
+-/
 theorem mem_walkVertices_of_mem_covered (hx : x ∈ G.coveredVertices W) :
     x ∈ G.walkVertices u W :=
   Set.mem_insert_of_mem _ hx
 
+/--
+@isnad1 id=le.1h5v.s5.2b6b0e0ded8b from=translated src=- shape=edf85003 vocab=83a0ca74
+-/
 theorem coveredVertices_mono (h : W₁ ⊆ W₂) : G.coveredVertices W₁ ⊆ G.coveredVertices W₂ :=
   fun _ ⟨e, he, hx⟩ ↦ ⟨e, h he, hx⟩
 
+/--
+@isnad1 id=le.1h6v.s5.bc795bb57d48 from=translated src=- shape=1f6b3a17 vocab=6db1cbde
+-/
 theorem walkVertices_mono (h : W₁ ⊆ W₂) : G.walkVertices u W₁ ⊆ G.walkVertices u W₂ :=
   Set.insert_subset_insert (coveredVertices_mono h)
 
+/--
+@isnad1 id=eq.0h4v.s4.666073b34769 from=translated src=- shape=b010fc1a vocab=617ef687
+-/
 @[simp]
 theorem coveredVertices_reverse : G.coveredVertices W.reverse = G.coveredVertices W := by
   simp [coveredVertices]
 
+/--
+@isnad1 id=eq.0h5v.s4.8d23e5a93944 from=translated src=- shape=2985dd5a vocab=cf8e0420
+-/
 @[simp]
 theorem walkVertices_reverse : G.walkVertices u W.reverse = G.walkVertices u W := by
   simp [walkVertices]
 
+/--
+@isnad1 id=eq.0h5v.s5.116381dc75f4 from=translated src=- shape=93f06891 vocab=197fcc4d
+-/
 theorem coveredVertices_append :
     G.coveredVertices (W₁ ++ W₂) = G.coveredVertices W₁ ∪ G.coveredVertices W₂ := by
   ext x
@@ -144,16 +180,23 @@ theorem coveredVertices_append :
   · rintro (⟨e, he, hx⟩ | ⟨e, he, hx⟩)
     exacts [⟨e, Or.inl he, hx⟩, ⟨e, Or.inr he, hx⟩]
 
-/-- Every vertex on an edge of the graph is a vertex of the graph. -/
+/-- Every vertex on an edge of the graph is a vertex of the graph.
+@isnad1 id=le.0h4v.s4.9a613dbb8c5e from=translated src=- shape=a8f66725 vocab=e44c86b9
+-/
 theorem coveredVertices_subset_vertexSet : G.coveredVertices W ⊆ V(G) :=
   fun _ ⟨_, _, hx⟩ ↦ hx.vertex_mem
 
+/--
+@isnad1 id=le.1h5v.s5.9184a88e608f from=translated src=- shape=fcb0f176 vocab=ac94f99f
+-/
 theorem walkVertices_subset_vertexSet (hu : u ∈ V(G)) : G.walkVertices u W ⊆ V(G) :=
   Set.insert_subset hu coveredVertices_subset_vertexSet
 
 /-- Moving the visited set across a first step, forwards: a vertex the walk visits is either
 the vertex it departs from or a vertex the rest of it visits. This is where the step lemma is
-used — the edge `e` has only the two ends `u` and `w`, so a vertex on `e` is one of them. -/
+used — the edge `e` has only the two ends `u` and `w`, so a vertex on `e` is one of them.
+@isnad1 id=or.2h8v.s5.a8da5aad8d67 from=translated src=- shape=6afa543e vocab=0c737137
+-/
 theorem mem_walkVertices_cons (hl : G.IsLink e u w) (hx : x ∈ G.walkVertices u (e :: W)) :
     x = u ∨ x ∈ G.walkVertices w W := by
   rcases mem_walkVertices_iff.1 hx with rfl | ⟨f, hf, hxf⟩
@@ -163,7 +206,9 @@ theorem mem_walkVertices_cons (hl : G.IsLink e u w) (hx : x ∈ G.walkVertices u
     exacts [Or.inl rfl, Or.inr mem_walkVertices_self]
   · exact Or.inr (mem_walkVertices_of_mem_covered ⟨f, hf, hxf⟩)
 
-/-- Moving the visited set across a first step, backwards. -/
+/-- Moving the visited set across a first step, backwards.
+@isnad1 id=mem.2h8v.s5.48da37382435 from=translated src=- shape=8f52a11e vocab=0c737137
+-/
 theorem mem_walkVertices_cons_of_mem (hl : G.IsLink e u w) (hx : x ∈ G.walkVertices w W) :
     x ∈ G.walkVertices u (e :: W) := by
   rcases mem_walkVertices_iff.1 hx with rfl | hx
@@ -182,20 +227,31 @@ inductive IsWalk (G : Graph α β) : α → List β → α → Prop
   | cons {u w v : α} {e : β} {W : List β} (hl : G.IsLink e u w) (hW : G.IsWalk w W v) :
       G.IsWalk u (e :: W) v
 
+/--
+@isnad1 id=iswalk.1h6v.s5.722784edfe61 from=translated src=- shape=4fb5c56f vocab=9a03b94b
+-/
 theorem IsWalk.single (hl : G.IsLink e u v) : G.IsWalk u [e] v :=
   .cons hl (.nil hl.right_mem)
 
+/--
+@isnad1 id=mem.1h6v.s5.1e09cf1d8506 from=translated src=- shape=e55a492d vocab=ca93f830
+-/
 theorem IsWalk.left_mem (h : G.IsWalk u W v) : u ∈ V(G) := by
   cases h with
   | nil hx => exact hx
   | cons hl _ => exact hl.left_mem
 
+/--
+@isnad1 id=mem.1h6v.s5.66b163d15d4e from=translated src=- shape=8b2e9f57 vocab=ca93f830
+-/
 theorem IsWalk.right_mem (h : G.IsWalk u W v) : v ∈ V(G) := by
   induction h with
   | nil hx => exact hx
   | cons _ _ ih => exact ih
 
-/-- The edges of a walk are edges of the graph. -/
+/-- The edges of a walk are edges of the graph.
+@isnad1 id=mem.2h7v.s5.023573d34c32 from=translated src=- shape=81ebd62b vocab=073fa91c
+-/
 theorem IsWalk.edge_mem (h : G.IsWalk u W v) (he : e ∈ W) : e ∈ E(G) := by
   induction h with
   | nil => simp at he
@@ -203,18 +259,29 @@ theorem IsWalk.edge_mem (h : G.IsWalk u W v) (he : e ∈ W) : e ∈ E(G) := by
     rcases List.mem_cons.1 he with rfl | he
     exacts [hl.edge_mem, ih he]
 
+/--
+@isnad1 id=mem.2h7v.s5.a1fe33355b1b from=translated src=- shape=6d49de63 vocab=073fa91c
+-/
 theorem IsWalk.edgeSet_subset (h : G.IsWalk u W v) : ∀ e ∈ W, e ∈ E(G) := fun _ he ↦ h.edge_mem he
 
+/--
+@isnad1 id=mem.1h6v.s5.9bdb84e08823 from=translated src=- shape=3244e9b9 vocab=39efaa70
+-/
 theorem IsWalk.target_mem_walkVertices (h : G.IsWalk u W v) : v ∈ G.walkVertices u W := by
   induction h with
   | nil => exact mem_walkVertices_self
   | cons hl _ ih => exact mem_walkVertices_cons_of_mem hl ih
 
 /-- Every vertex a walk visits is a vertex of the graph — with no hypothesis, since the
-empty walk already stands at one. -/
+empty walk already stands at one.
+@isnad1 id=le.1h6v.s5.889bc182896d from=translated src=- shape=d2f98a59 vocab=cf4684ef
+-/
 theorem IsWalk.walkVertices_subset (h : G.IsWalk u W v) : G.walkVertices u W ⊆ V(G) :=
   walkVertices_subset_vertexSet h.left_mem
 
+/--
+@isnad1 id=iff.0h5v.s5.6e7b3c51fb42 from=translated src=- shape=c18a32a8 vocab=7e670e29
+-/
 @[simp]
 theorem isWalk_nil_iff : G.IsWalk u [] v ↔ u = v ∧ u ∈ V(G) := by
   constructor
@@ -226,7 +293,9 @@ theorem IsWalk.eq_of_nil (h : G.IsWalk u [] v) : u = v := (isWalk_nil_iff.1 h).1
 /-- The step lemma, run along a whole walk: naming the edges determines the vertices, so a
 walk from a given source along a given edge list arrives nowhere else. Its engine is that an
 edge has only two ends, `Graph.IsLink.right_unique`, which holds in Mathlib's `Graph` with no
-distinctness hypothesis (a loop arrives back where it started, deterministically). -/
+distinctness hypothesis (a loop arrives back where it started, deterministically).
+@isnad1 id=eq.2h7v.s5.6052fa67073d from=translated src=- shape=3e379b18 vocab=2eb71766
+-/
 theorem IsWalk.target_unique (h : G.IsWalk u W v) (h' : G.IsWalk u W w) : v = w := by
   induction h generalizing w with
   | nil hx => exact h'.eq_of_nil.symm ▸ rfl
@@ -234,14 +303,18 @@ theorem IsWalk.target_unique (h : G.IsWalk u W v) (h' : G.IsWalk u W w) : v = w 
     cases h' with
     | cons hl' hW' => exact ih (hl.right_unique hl' ▸ hW')
 
-/-- Walks concatenate, with no side condition. -/
+/-- Walks concatenate, with no side condition.
+@isnad1 id=iswalk.2h8v.s5.e1463eeff717 from=translated src=- shape=638e41ad vocab=6b11cb52
+-/
 theorem IsWalk.append (h₁ : G.IsWalk u W₁ w) (h₂ : G.IsWalk w W₂ v) :
     G.IsWalk u (W₁ ++ W₂) v := by
   induction h₁ with
   | nil => simpa using h₂
   | cons hl _ ih => exact .cons hl (ih h₂)
 
-/-- A walk runs backwards along the reverse of its edge list, with no side condition. -/
+/-- A walk runs backwards along the reverse of its edge list, with no side condition.
+@isnad1 id=iswalk.1h6v.s5.fe38cba563f6 from=translated src=- shape=70f871b9 vocab=fe9a14be
+-/
 theorem IsWalk.reverse (h : G.IsWalk u W v) : G.IsWalk v W.reverse u := by
   induction h with
   | nil hx => simpa using IsWalk.nil hx
@@ -249,7 +322,9 @@ theorem IsWalk.reverse (h : G.IsWalk u W v) : G.IsWalk v W.reverse u := by
     rw [List.reverse_cons]
     exact ih.append (IsWalk.single hl.symm)
 
-/-- A walk in a subgraph is a walk in the graph. -/
+/-- A walk in a subgraph is a walk in the graph.
+@isnad1 id=iswalk.2h7v.s5.51de630ea6c8 from=translated src=- shape=fbeb1d6c vocab=2b913de5
+-/
 theorem IsWalk.mono (hHG : H ≤ G) (h : H.IsWalk u W v) : G.IsWalk u W v := by
   induction h with
   | nil hx => exact .nil (hHG.vertexSet_mono hx)
@@ -257,7 +332,9 @@ theorem IsWalk.mono (hHG : H ≤ G) (h : H.IsWalk u W v) : G.IsWalk u W v := by
 
 /-- A walk of a graph whose edges all survive into a subgraph is a walk of that subgraph.
 This is the direction a deletion argument needs: an edge is removed, and a walk that never
-used it is still there. -/
+used it is still there.
+@isnad1 id=iswalk.4h7v.s6.1989d94a2090 from=translated src=- shape=d53fe64f vocab=be816373
+-/
 theorem IsWalk.anti (hHG : H ≤ G) (h : G.IsWalk u W v) (hu : u ∈ V(H))
     (hE : ∀ e ∈ W, e ∈ E(H)) : H.IsWalk u W v := by
   induction h with
@@ -268,7 +345,9 @@ theorem IsWalk.anti (hHG : H ≤ G) (h : G.IsWalk u W v) (hu : u ∈ V(H))
     exact .cons hl' (ih hl'.right_mem fun f hf ↦ hE f (List.mem_cons_of_mem _ hf))
 
 /-- A walk that starts inside a set of vertices and ends outside it crosses the boundary
-along one of its own edges. -/
+along one of its own edges.
+@isnad1 id=ex.3h7v.s6.6c050ec4fbd7 from=translated src=- shape=70174bc2 vocab=3139d820
+-/
 theorem IsWalk.crossing {S : Set α} (h : G.IsWalk u W v) (hu : u ∈ S) (hv : v ∉ S) :
     ∃ e ∈ W, ∃ x y, G.IsLink e x y ∧ x ∈ S ∧ y ∉ S := by
   induction h with
@@ -291,30 +370,48 @@ inductive IsPath (G : Graph α β) : α → List β → α → Prop
   | cons {u w v : α} {e : β} {W : List β} (hl : G.IsLink e u w) (hW : G.IsPath w W v)
       (hfresh : u ∉ G.walkVertices w W) : G.IsPath u (e :: W) v
 
+/--
+@isnad1 id=iswalk.1h6v.s4.d2bc8f57184d from=translated src=- shape=d82f5f6b vocab=6a3cabfc
+-/
 theorem IsPath.isWalk (h : G.IsPath u W v) : G.IsWalk u W v := by
   induction h with
   | nil hx => exact .nil hx
   | cons hl _ _ ih => exact .cons hl ih
 
+/--
+@isnad1 id=mem.1h6v.s5.d7173f9e8557 from=translated src=- shape=e55a492d vocab=4edc40a4
+-/
 theorem IsPath.left_mem (h : G.IsPath u W v) : u ∈ V(G) := h.isWalk.left_mem
 
+/--
+@isnad1 id=mem.1h6v.s5.630578a1b90d from=translated src=- shape=8b2e9f57 vocab=4edc40a4
+-/
 theorem IsPath.right_mem (h : G.IsPath u W v) : v ∈ V(G) := h.isWalk.right_mem
 
+/--
+@isnad1 id=mem.2h7v.s5.d97a3538a7e1 from=translated src=- shape=81ebd62b vocab=55d6a812
+-/
 theorem IsPath.edge_mem (h : G.IsPath u W v) (he : e ∈ W) : e ∈ E(G) := h.isWalk.edge_mem he
 
-/-- One edge between two distinct vertices is a path. -/
+/-- One edge between two distinct vertices is a path.
+@isnad1 id=ispath.2h6v.s5.f226e43faa4d from=translated src=- shape=8042053b vocab=16643b72
+-/
 theorem IsPath.single (hl : G.IsLink e u v) (huv : u ≠ v) : G.IsPath u [e] v :=
   .cons hl (.nil hl.right_mem) (by simpa using huv)
 
 /-- A path's step never departs from where it arrives: the freshness clause already says so,
-because a walk always visits its own source. -/
+because a walk always visits its own source.
+@isnad1 id=ne.2h7v.s5.a7cbe18f03d4 from=translated src=- shape=2dd2e385 vocab=cde36156
+-/
 theorem IsPath.cons_ne (hW : G.IsPath w W v) (hfresh : u ∉ G.walkVertices w W) : u ≠ w := by
   rintro rfl
   exact hfresh mem_walkVertices_self
 
 /-- **A path never takes a loop.** This is why nothing in this file has to assume the graph is
 loopless: a step along a loop would depart from the vertex it arrives at, which the freshness
-clause forbids. -/
+clause forbids.
+@isnad1 id=not.2h8v.s5.361d72e59680 from=translated src=- shape=92e8d07d vocab=18e443b7
+-/
 theorem IsPath.not_isLoopAt (h : G.IsPath u W v) (he : e ∈ W) (x : α) : ¬ G.IsLoopAt e x := by
   induction h with
   | nil => simp at he
@@ -327,7 +424,9 @@ theorem IsPath.not_isLoopAt (h : G.IsPath u W v) (he : e ∈ W) (x : α) : ¬ G.
     · exact ih he
 
 /-- A path takes no edge twice: an edge it took again would put the vertex it departed from
-back among the ones the rest of the path visits. -/
+back among the ones the rest of the path visits.
+@isnad1 id=nodup.1h6v.s4.4abc1ce73e05 from=translated src=- shape=e9cb66de vocab=529c5289
+-/
 theorem IsPath.nodup (h : G.IsPath u W v) : W.Nodup := by
   induction h with
   | nil => exact List.nodup_nil
@@ -336,7 +435,9 @@ theorem IsPath.nodup (h : G.IsPath u W v) : W.Nodup := by
     exact mem_walkVertices_of_mem_covered ⟨e, he, hl.inc_left⟩
 
 /-- A path in a subgraph is a path in the graph: the freshness clause reads only which
-vertices the remaining edges touch, and a subgraph's edges have the same ends there. -/
+vertices the remaining edges touch, and a subgraph's edges have the same ends there.
+@isnad1 id=ispath.2h7v.s5.1ece681de02a from=translated src=- shape=fbeb1d6c vocab=fe356372
+-/
 theorem IsPath.mono (hHG : H ≤ G) (h : H.IsPath u W v) : G.IsPath u W v := by
   induction h with
   | nil hx => exact .nil (hHG.vertexSet_mono hx)
@@ -349,11 +450,16 @@ theorem IsPath.mono (hHG : H ≤ G) (h : H.IsPath u W v) : G.IsPath u W v := by
       exact mem_walkVertices_of_mem_covered
         ⟨f, hf, ((hHG.isLink_iff (hW.isWalk.edge_mem hf)).2 hy).inc_left⟩
 
+/--
+@isnad1 id=mem.1h6v.s5.b690d2f863a9 from=translated src=- shape=3244e9b9 vocab=cde36156
+-/
 theorem IsPath.target_mem_walkVertices (h : G.IsPath u W v) : v ∈ G.walkVertices u W :=
   h.isWalk.target_mem_walkVertices
 
 /-- A path grows at its **target** end. The relation is built at the source end, so this is
-the direction that has to be worked for; it is what reversal runs on. -/
+the direction that has to be worked for; it is what reversal runs on.
+@isnad1 id=ispath.3h8v.s6.0099685d20c9 from=translated src=- shape=52e5f0cd vocab=2037df3e
+-/
 theorem IsPath.extend_at_target (h : G.IsPath u P w) (hl : G.IsLink e w v)
     (hv : v ∉ G.walkVertices u P) : G.IsPath u (P ++ [e]) v := by
   induction h with
@@ -375,7 +481,9 @@ theorem IsPath.extend_at_target (h : G.IsPath u P w) (hl : G.IsLink e w v)
       · exact hfresh hP₀.target_mem_walkVertices
       · exact hv mem_walkVertices_self
 
-/-- A path runs backwards over the same edges. -/
+/-- A path runs backwards over the same edges.
+@isnad1 id=ispath.1h6v.s5.33e49b6ac645 from=translated src=- shape=70f871b9 vocab=cbdcf638
+-/
 theorem IsPath.reverse (h : G.IsPath u W v) : G.IsPath v W.reverse u := by
   induction h with
   | nil hx => simpa using IsPath.nil hx
@@ -391,7 +499,9 @@ theorem IsPath.reverse (h : G.IsPath u W v) : G.IsPath v W.reverse u := by
 /-- **Cutting a path at a vertex it passes through.** A path through `x` has a piece of itself
 running from `x` to its target, and that piece uses only the path's own edges. This is the
 engine of `Graph.IsWalk.contains_path`: when the next vertex is already on the path built so
-far, the path is cut there instead of extended, so nothing ever gets longer. -/
+far, the path is cut there instead of extended, so nothing ever gets longer.
+@isnad1 id=ex.2h7v.s5.bacc5aacc5b9 from=translated src=- shape=9aa9cd4c vocab=c856cb6c
+-/
 theorem IsPath.from_visited (h : G.IsPath u W v) (hx : x ∈ G.walkVertices u W) :
     ∃ T, G.IsPath x T v ∧ T ⊆ W := by
   induction h with
@@ -408,7 +518,9 @@ theorem IsPath.from_visited (h : G.IsPath u W v) (hx : x ∈ G.walkVertices u W)
 /-- A path splits at any vertex it visits, and the far half never returns to the source.
 `Graph.IsPath.from_visited` is the suffix alone; the prefix is the awkward half, since the
 relation is built at the source end and the prefix is what the induction has to carry
-forward. -/
+forward.
+@isnad1 id=ex.2h7v.s6.556bd138d668 from=translated src=- shape=4ffc1d02 vocab=025ed86b
+-/
 theorem IsPath.split (h : G.IsPath u W v) (hx : x ∈ G.walkVertices u W) :
     ∃ W₁ W₂, W = W₁ ++ W₂ ∧ G.IsPath u W₁ x ∧ G.IsPath x W₂ v ∧
       (x = u ∨ u ∉ G.walkVertices x W₂) := by
@@ -433,7 +545,9 @@ theorem IsPath.split (h : G.IsPath u W v) (hx : x ∈ G.walkVertices u W) :
 /-- **Every walk contains a path** between the same two vertices, using only the walk's own
 edges. This is the blueprint's "shorten an arbitrary walk at repeated vertices"; the
 induction never lengthens anything, because the only alternative to prepending an edge is to
-cut the path already built (`Graph.IsPath.from_visited`). -/
+cut the path already built (`Graph.IsPath.from_visited`).
+@isnad1 id=ex.1h6v.s5.56ede6182cb6 from=translated src=- shape=4f904ed3 vocab=6e236aa3
+-/
 theorem IsWalk.contains_path (h : G.IsWalk u W v) : ∃ P, G.IsPath u P v ∧ P ⊆ W := by
   induction h with
   | nil hx => exact ⟨[], .nil hx, List.Subset.refl _⟩
@@ -452,30 +566,59 @@ path because walks are what arguments build — they concatenate and reverse wit
 condition — and a path is recovered on demand (`Graph.Reaches.exists_isPath`). -/
 def Reaches (G : Graph α β) (u v : α) : Prop := ∃ W, G.IsWalk u W v
 
+/--
+@isnad1 id=mem.1h5v.s4.d17325d9c51e from=translated src=- shape=8c0eff3f vocab=fc599cc6
+-/
 theorem Reaches.left_mem (h : G.Reaches u v) : u ∈ V(G) := h.choose_spec.left_mem
 
+/--
+@isnad1 id=mem.1h5v.s4.368b47d176d7 from=translated src=- shape=e2d6d7e4 vocab=fc599cc6
+-/
 theorem Reaches.right_mem (h : G.Reaches u v) : v ∈ V(G) := h.choose_spec.right_mem
 
+/--
+@isnad1 id=reaches.1h4v.s4.89bb59b21178 from=translated src=- shape=9ed984f1 vocab=fc599cc6
+-/
 @[refl]
 theorem Reaches.refl (hu : u ∈ V(G)) : G.Reaches u u := ⟨[], .nil hu⟩
 
+/--
+@isnad1 id=reaches.1h5v.s4.dfb3dd467578 from=translated src=- shape=d7804e90 vocab=d92238c6
+-/
 theorem Reaches.symm (h : G.Reaches u v) : G.Reaches v u :=
   let ⟨W, hW⟩ := h; ⟨W.reverse, hW.reverse⟩
 
+/--
+@isnad1 id=reaches.2h6v.s5.a1537ffbd938 from=translated src=- shape=6583263f vocab=d92238c6
+-/
 theorem Reaches.trans (h₁ : G.Reaches u v) (h₂ : G.Reaches v w) : G.Reaches u w :=
   let ⟨W₁, hW₁⟩ := h₁; let ⟨W₂, hW₂⟩ := h₂; ⟨W₁ ++ W₂, hW₁.append hW₂⟩
 
+/--
+@isnad1 id=iff.0h5v.s4.1d67d6a9d30f from=translated src=- shape=304b2d08 vocab=d92238c6
+-/
 theorem reaches_comm : G.Reaches u v ↔ G.Reaches v u := ⟨Reaches.symm, Reaches.symm⟩
 
+/--
+@isnad1 id=reaches.1h6v.s4.b67eaf11b305 from=translated src=- shape=c0ad434e vocab=98dbeaf4
+-/
 theorem Reaches.of_isLink (hl : G.IsLink e u v) : G.Reaches u v := ⟨[e], .single hl⟩
 
+/--
+@isnad1 id=reaches.1h5v.s4.0ffe214ede3c from=translated src=- shape=d3d1c24e vocab=fa9ae414
+-/
 theorem Reaches.of_adj (h : G.Adj u v) : G.Reaches u v :=
   let ⟨_, hl⟩ := h; .of_isLink hl
 
-/-- Whatever a walk reaches, a path reaches. -/
+/-- Whatever a walk reaches, a path reaches.
+@isnad1 id=ex.1h5v.s5.75bfa51d1547 from=translated src=- shape=347f38fe vocab=b5f8843c
+-/
 theorem Reaches.exists_isPath (h : G.Reaches u v) : ∃ P, G.IsPath u P v :=
   let ⟨_, hW⟩ := h; let ⟨P, hP, _⟩ := hW.contains_path; ⟨P, hP⟩
 
+/--
+@isnad1 id=reaches.2h6v.s5.c608b42f64d6 from=translated src=- shape=71fb3425 vocab=73ffe17c
+-/
 theorem Reaches.mono (hHG : H ≤ G) (h : H.Reaches u v) : G.Reaches u v :=
   let ⟨W, hW⟩ := h; ⟨W, hW.mono hHG⟩
 
@@ -487,18 +630,28 @@ true as stated. -/
 def Connected (G : Graph α β) : Prop :=
   V(G).Nonempty ∧ ∀ ⦃u⦄, u ∈ V(G) → ∀ ⦃v⦄, v ∈ V(G) → G.Reaches u v
 
+/--
+@isnad1 id=nonempty.1h3v.s4.8561e2976a4e from=translated src=- shape=7c525ed2 vocab=17a07851
+-/
 theorem Connected.nonempty (h : G.Connected) : V(G).Nonempty := h.1
 
+/--
+@isnad1 id=reaches.3h5v.s5.f9b850f1b03f from=translated src=- shape=71b5ba51 vocab=c7783aab
+-/
 theorem Connected.reaches (h : G.Connected) (hu : u ∈ V(G)) (hv : v ∈ V(G)) : G.Reaches u v :=
   h.2 hu hv
 
 /-- A graph is connected as soon as one vertex reaches all the others: reachability is
-symmetric and transitive, so a common hub joins every pair. -/
+symmetric and transitive, so a common hub joins every pair.
+@isnad1 id=connecte.2h4v.s5.2a6b7ca6f917 from=translated src=- shape=96734d01 vocab=c7783aab
+-/
 theorem Connected.of_hub (hu : u ∈ V(G)) (h : ∀ v ∈ V(G), G.Reaches u v) : G.Connected :=
   ⟨⟨u, hu⟩, fun _ hx _ hy ↦ ((h _ hx).symm).trans (h _ hy)⟩
 
 /-- In a connected graph any two vertices are joined by a path — the blueprint's imported
-fact about finite graphs, with the finiteness it does not actually need dropped. -/
+fact about finite graphs, with the finiteness it does not actually need dropped.
+@isnad1 id=ex.3h5v.s5.633cd00855a8 from=translated src=- shape=8999635b vocab=152885a4
+-/
 theorem Connected.exists_isPath (h : G.Connected) (hu : u ∈ V(G)) (hv : v ∈ V(G)) :
     ∃ P, G.IsPath u P v :=
   (h.reaches hu hv).exists_isPath
@@ -509,15 +662,23 @@ theorem Connected.exists_isPath (h : G.Connected) (hu : u ∈ V(G)) (hv : v ∈ 
 because both the cycle module and the two-connectivity module reached for them independently.
 -/
 
+/--
+@isnad1 id=le.1h5v.s5.fe88a6ef241f from=translated src=- shape=98dc0d5d vocab=509f5e9c
+-/
 theorem coveredVertices_mono_of_le (hHG : H ≤ G) : H.coveredVertices W ⊆ G.coveredVertices W :=
   fun _ ⟨f, hf, y, hy⟩ ↦ ⟨f, hf, y, hy.mono hHG⟩
 
+/--
+@isnad1 id=le.1h6v.s5.a4b418666167 from=translated src=- shape=7e948081 vocab=927ce3b5
+-/
 theorem walkVertices_mono_of_le (hHG : H ≤ G) : H.walkVertices u W ⊆ G.walkVertices u W :=
   Set.insert_subset_insert (coveredVertices_mono_of_le hHG)
 
 /-- A path of a graph whose edges all survive into a subgraph is a path of that subgraph —
 the companion of `Graph.IsWalk.anti`, which it is otherwise identical to. Freshness comes
-down the inclusion because the subgraph's edges touch no vertices the graph's do not. -/
+down the inclusion because the subgraph's edges touch no vertices the graph's do not.
+@isnad1 id=ispath.4h7v.s6.2118f66974c3 from=translated src=- shape=d53fe64f vocab=e6ad9e88
+-/
 theorem IsPath.anti (hHG : H ≤ G) (h : G.IsPath u W v) (hu : u ∈ V(H))
     (hE : ∀ e ∈ W, e ∈ E(H)) : H.IsPath u W v := by
   induction h with
@@ -528,11 +689,16 @@ theorem IsPath.anti (hHG : H ≤ G) (h : G.IsPath u W v) (hu : u ∈ V(H))
     exact .cons hl' (ih hl'.right_mem fun f hf ↦ hE f (List.mem_cons_of_mem _ hf))
       fun hmem ↦ hfresh (walkVertices_mono_of_le hHG hmem)
 
+/--
+@isnad1 id=iff.0h5v.s5.4782aaa57a84 from=translated src=- shape=221246f2 vocab=3ef435f2
+-/
 theorem mem_edgeSet_deleteEdges_iff {F : Set β} {f : β} :
     f ∈ E(G.deleteEdges F) ↔ f ∈ E(G) ∧ f ∉ F := by
   simp
 
-/-- A walk that avoids the deleted names survives the deletion. -/
+/-- A walk that avoids the deleted names survives the deletion.
+@isnad1 id=iswalk.2h7v.s5.877f33a40d6c from=translated src=- shape=211e0676 vocab=07c56eb2
+-/
 theorem IsWalk.deleteEdges {F : Set β} (h : G.IsWalk u W v) (hW : ∀ f ∈ W, f ∉ F) :
     (G.deleteEdges F).IsWalk u W v :=
   h.anti deleteEdges_le (by simpa using h.left_mem)

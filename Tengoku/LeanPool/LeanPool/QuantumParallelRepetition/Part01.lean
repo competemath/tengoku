@@ -62,11 +62,17 @@ def marginalX (G : Game X Y A B) (x : X) : ℝ :=
 def marginalY (G : Game X Y A B) (y : Y) : ℝ :=
   ∑ x : X, G.questionWeight x y
 
+/--
+@isnad1 id=le.0h6v.s5.23dd5b301a83 from=translated src=- shape=02254200 vocab=6b3273ab
+-/
 theorem marginalX_nonneg (G : Game X Y A B) (x : X) :
     0 ≤ G.marginalX x := by
   unfold marginalX
   exact Finset.sum_nonneg fun y _ => G.weight_nonneg x y
 
+/--
+@isnad1 id=le.0h6v.s5.8e0e45c5d09b from=translated src=- shape=9569fe2b vocab=44486f45
+-/
 theorem marginalY_nonneg (G : Game X Y A B) (y : Y) :
     0 ≤ G.marginalY y := by
   unfold marginalY
@@ -98,11 +104,17 @@ def «repeat» (G : Game X Y A B) (n : ℕ) :
   predicate xs ys as bs :=
     decide (∀ i : Fin n, G.predicate (xs i) (ys i) (as i) (bs i) = true)
 
+/--
+@isnad1 id=eq.0h8v.s7.01e39c814763 from=translated src=- shape=30d00d5d vocab=ca3ecda3
+-/
 @[simp] theorem repeat_questionWeight (G : Game X Y A B) (n : ℕ)
     (xs : Fin n → X) (ys : Fin n → Y) :
     (G.repeat n).questionWeight xs ys =
       ∏ i : Fin n, G.questionWeight (xs i) (ys i) := rfl
 
+/--
+@isnad1 id=iff.0h10v.s7.e576bf84e13c from=translated src=- shape=925c9eb4 vocab=8cdc97e9
+-/
 @[simp] theorem repeat_predicate_eq_true (G : Game X Y A B) (n : ℕ)
     (xs : Fin n → X) (ys : Fin n → Y)
     (as : Fin n → A) (bs : Fin n → B) :
@@ -147,6 +159,9 @@ structure Strategy [Fintype X] [Fintype Y] [Fintype A] [Fintype B]
 attribute [instance] Strategy.aliceFintype Strategy.bobFintype
   Strategy.aliceDecidableEq Strategy.bobDecidableEq
 
+/--
+@isnad1 id=le.2h3v.s6.f522a6094be5 from=translated src=- shape=fea69071 vocab=32511440
+-/
 theorem trace_mul_posSemidef_nonneg {d : Type*} [Fintype d]
     {R E : Matrix d d ℂ} (hR : R.PosSemidef) (hE : E.PosSemidef) :
     0 ≤ (Matrix.trace (R * E)).re := by
@@ -178,6 +193,9 @@ private theorem jointEffect_positive (S : Strategy G) (x : X) (y : Y) (a : A) (b
 def outcomeProbability (S : Strategy G) (x : X) (y : Y) (a : A) (b : B) : ℝ :=
   (Matrix.trace (S.state.matrix * S.jointEffect x y a b)).re
 
+/--
+@isnad1 id=le.0h10v.s6.53922c9e8bbf from=translated src=- shape=6e8d6d22 vocab=e575a5d0
+-/
 theorem outcomeProbability_nonneg (S : Strategy G)
     (x : X) (y : Y) (a : A) (b : B) :
     0 ≤ S.outcomeProbability x y a b := by
@@ -199,6 +217,9 @@ private theorem jointEffect_complete (S : Strategy G) (x : X) (y : Y) :
       rw [(S.aliceMeasurement x).complete, (S.bobMeasurement y).complete]
       exact Matrix.one_kronecker_one
 
+/--
+@isnad1 id=eq.0h8v.s6.97c03a48b02c from=translated src=- shape=387dd337 vocab=0d65db48
+-/
 theorem outcomeProbability_normalized (S : Strategy G) (x : X) (y : Y) :
     (∑ a : A, ∑ b : B, S.outcomeProbability x y a b) = 1 := by
   classical
@@ -274,6 +295,9 @@ variable [Fintype X] [Fintype Y] [Fintype A] [Fintype B]
 variable [Fintype J] [DecidableEq J]
 variable {G : Game X Y A B}
 
+/--
+@isnad1 id=possemid.1h3v.s6.258b96fda66d from=translated src=- shape=d334933c vocab=3b2e22f7
+-/
 theorem posSemidef_blockDiagonal'
     {ι : Type*} [Finite ι] [DecidableEq ι]
     {d : ι → Type*} [∀ j, Finite (d j)]
@@ -332,6 +356,9 @@ def mixtureEmbedding (S : J → Strategy G) :
   classical
   exact fun q r => if q = mixtureMatchedIndex S r then 1 else 0
 
+/--
+@isnad1 id=eq.0h7v.s9.7566137976d3 from=translated src=- shape=d9ed5d12 vocab=eee95902
+-/
 theorem mixtureEmbedding_isometry (S : J → Strategy G) :
     (mixtureEmbedding S)ᴴ * mixtureEmbedding S = 1 := by
   classical
@@ -353,6 +380,9 @@ def mixtureBlockMatrix (p : J → ℝ) (S : J → Strategy G) :
   Matrix.blockDiagonal' fun j => p j • (S j).state.matrix
 
 omit [Fintype J] in
+/--
+@isnad1 id=possemid.1h8v.s6.c7ba94bf79f6 from=translated src=- shape=2e1afdc1 vocab=d8f08fe1
+-/
 theorem mixtureBlockMatrix_posSemidef
     [Finite J]
     (p : J → ℝ) (hp : ∀ j, 0 ≤ p j) (S : J → Strategy G) :
@@ -362,6 +392,9 @@ theorem mixtureBlockMatrix_posSemidef
   intro j
   exact (S j).state.positive.smul (hp j)
 
+/--
+@isnad1 id=eq.0h8v.s7.da08e790f73b from=translated src=- shape=c739b16a vocab=96b2e536
+-/
 theorem mixtureBlockMatrix_trace
     (p : J → ℝ) (S : J → Strategy G) :
     Matrix.trace (mixtureBlockMatrix p S) =
@@ -523,7 +556,9 @@ def winEvent
     (wins : ι → Ω → Bool) (D : Finset ι) : Finset Ω :=
   Finset.univ.filter (fun ω => ∀ i ∈ D, wins i ω = true)
 
-/-- Membership in a finite-law win event is pointwise winning at every selected index. -/
+/-- Membership in a finite-law win event is pointwise winning at every selected index.
+@isnad1 id=iff.0h5v.s5.5c0ca8756728 from=translated src=- shape=a0c71414 vocab=f221b575
+-/
 theorem mem_winEvent_iff
     (wins : ι → Ω → Bool) (D : Finset ι) (ω : Ω) :
     ω ∈ winEvent wins D ↔ ∀ i ∈ D, wins i ω = true := by
@@ -632,6 +667,9 @@ section
 open MeasureTheory Filter Set
 open scoped BigOperators Topology
 
+/--
+@isnad1 id=integrab.1h1v.s6.ece481bf128c from=translated src=- shape=fd09ba71 vocab=63c20184
+-/
 theorem scalar_resolvent_purification_integrable_of_pos
     {z : ℝ} (hz : 0 < z) :
     IntegrableOn (fun s : ℝ => (z / (z + s)) ^ 2) (Ioi 0) := by
@@ -654,6 +692,9 @@ theorem scalar_resolvent_purification_integrable_of_pos
   rw [div_pow]
   simp only [add_comm, div_eq_mul_inv]
 
+/--
+@isnad1 id=integrab.1h1v.s6.0e3d18934f5b from=translated src=- shape=fd09ba71 vocab=2aeea046
+-/
 theorem scalar_resolvent_purification_integrable
     {z : ℝ} (hz : 0 ≤ z) :
     IntegrableOn (fun s : ℝ => (z / (z + s)) ^ 2) (Ioi 0) := by
@@ -663,6 +704,9 @@ theorem scalar_resolvent_purification_integrable
       or_false]
   · exact scalar_resolvent_purification_integrable_of_pos hzpos
 
+/--
+@isnad1 id=eq.1h1v.s6.a57988f5bf97 from=translated src=- shape=91ffb982 vocab=3748f528
+-/
 theorem scalar_resolvent_purification_integral
     {z : ℝ} (hz : 0 ≤ z) :
     (∫ s in Ioi (0 : ℝ), (z / (z + s)) ^ 2) = z := by
@@ -798,6 +842,9 @@ def spectralConjugationCLM
   LinearMap.toContinuousLinearMap
     (Unitary.conjStarAlgAut ℝ (Matrix d d ℂ) U).toAlgEquiv.toLinearEquiv.toLinearMap
 
+/--
+@isnad1 id=eq.0h3v.s9.6ea5e8058a35 from=translated src=- shape=23b0bde2 vocab=87cb93c2
+-/
 @[simp] theorem spectralConjugationCLM_apply
     {d : Type*} [Fintype d] [DecidableEq d]
     (U : Matrix.unitaryGroup d ℂ) (A : Matrix d d ℂ) :
@@ -899,6 +946,9 @@ private theorem spectralPurificationFilter_gram
     _ = e (diagonalPurificationGram eigenvalue s) := by
       rw [hDstar, hDsquare]
 
+/--
+@isnad1 id=eq.1h2v.s7.6038a54e4318 from=translated src=- shape=2fb803af vocab=e615d543
+-/
 theorem integral_spectralPurificationFilter_gram
     {d : Type*} [Fintype d] [DecidableEq d]
     (F : Matrix d d ℂ) (hF : F.PosSemidef) :
@@ -908,6 +958,9 @@ theorem integral_spectralPurificationFilter_gram
   simp_rw [spectralPurificationFilter_gram]
   exact integral_spectralPurificationGram F hF
 
+/--
+@isnad1 id=integrab.1h2v.s7.3adfd0fb92a6 from=translated src=- shape=542ddd93 vocab=ba153a8d
+-/
 theorem spectralPurificationFilter_gram_integrable
     {d : Type*} [Fintype d] [DecidableEq d]
     (F : Matrix d d ℂ) (hF : F.PosSemidef) :
@@ -963,12 +1016,18 @@ def conditionalYGivenX (G : Game X Y A B) (x : X) (y : Y) : ℝ :=
 def conditionalXGivenY (G : Game X Y A B) (y : Y) (x : X) : ℝ :=
   G.questionWeight x y / G.marginalY y
 
+/--
+@isnad1 id=le.0h7v.s5.e00c682e7bff from=translated src=- shape=71367199 vocab=6adbae34
+-/
 theorem conditionalYGivenX_nonneg
     (G : Game X Y A B) (x : X) (y : Y) :
     0 ≤ G.conditionalYGivenX x y := by
   exact div_nonneg (G.weight_nonneg x y)
     (G.marginalX_nonneg x)
 
+/--
+@isnad1 id=le.0h7v.s5.fbb030e4bb93 from=translated src=- shape=9ae037ac vocab=8baaa9a8
+-/
 theorem conditionalXGivenY_nonneg
     (G : Game X Y A B) (y : Y) (x : X) :
     0 ≤ G.conditionalXGivenY y x := by
@@ -1035,6 +1094,9 @@ def conditionedBobEffect
       then (S.bobMeasurement ys).effect answers
       else 0
 
+/--
+@isnad1 id=possemid.0h10v.s8.80fa037f126c from=translated src=- shape=a69f8ba6 vocab=0eda5753
+-/
 theorem conditionedAliceEffect_positive
     (G : Game X Y A B) (n : ℕ)
     (S : Strategy (G.repeat n))
@@ -1050,6 +1112,9 @@ theorem conditionedAliceEffect_positive
   · exact (S.aliceMeasurement xs).positive answers
   · exact Matrix.PosSemidef.zero
 
+/--
+@isnad1 id=possemid.0h10v.s8.5be3b7678790 from=translated src=- shape=aa4ebc38 vocab=c1eab505
+-/
 theorem conditionedBobEffect_positive
     (G : Game X Y A B) (n : ℕ)
     (S : Strategy (G.repeat n))
@@ -1084,6 +1149,9 @@ def spectralSupportFunctional
     hF.isHermitian.eigenvectorUnitary)
       (Matrix.diagonal fun i => (f (hF.isHermitian.eigenvalues i) : ℂ))
 
+/--
+@isnad1 id=eq.1h4v.s6.f4757fd3cc95 from=translated src=- shape=0db68c27 vocab=a88b3fd1
+-/
 theorem spectralSupportFunctional_mul
     {d : Type*} [Fintype d] [DecidableEq d]
     (F : Matrix d d ℂ) (hF : F.PosSemidef)
@@ -1101,6 +1169,9 @@ theorem spectralSupportFunctional_mul
   push_cast
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.6d51bedf9439 from=translated src=- shape=42961da1 vocab=ba802103
+-/
 theorem spectralSupportFunctional_id
     {d : Type*} [Fintype d] [DecidableEq d]
     (F : Matrix d d ℂ) (hF : F.PosSemidef) :
@@ -1109,6 +1180,9 @@ theorem spectralSupportFunctional_id
     Function.comp_def] using
     hF.isHermitian.spectral_theorem.symm
 
+/--
+@isnad1 id=eq.2h4v.s6.4f0597d2f7eb from=translated src=- shape=b6c17202 vocab=392f79f9
+-/
 theorem spectralSupportFunctional_congr
     {d : Type*} [Fintype d] [DecidableEq d]
     (F : Matrix d d ℂ) (hF : F.PosSemidef)
@@ -1123,6 +1197,9 @@ theorem spectralSupportFunctional_congr
   funext i
   exact_mod_cast h i
 
+/--
+@isnad1 id=ishermit.1h3v.s5.5a0146ebf1de from=translated src=- shape=a9da451d vocab=71bff156
+-/
 theorem spectralSupportFunctional_isHermitian
     {d : Type*} [Fintype d] [DecidableEq d]
     (F : Matrix d d ℂ) (hF : F.PosSemidef)
@@ -1193,6 +1270,9 @@ private theorem spectralSupportInverse_penrose
       · simp only [hi, inv_zero, mul_zero]
       · simp only [ne_eq, hi, not_false_eq_true, inv_mul_cancel₀, one_mul])
 
+/--
+@isnad1 id=eq.1h2v.s5.01af7a3bbb0c from=translated src=- shape=1ef1334b vocab=8e712272
+-/
 theorem spectralSupportSqrt_sq
     {d : Type*} [Fintype d] [DecidableEq d]
     (F : Matrix d d ℂ) (hF : F.PosSemidef) :
@@ -1358,6 +1438,9 @@ def purifiedRefinedEffect
   purifiedRefinementCore F hF Γ effect a +
     if a = a₀ then 1 - purificationRangeProjection F hF Γ else 0
 
+/--
+@isnad1 id=possemid.3h8v.s7.b7002356b915 from=translated src=- shape=f6c02b54 vocab=81514e6a
+-/
 theorem purifiedRefinedEffect_posSemidef
     {ι d e : Type*} [DecidableEq ι]
     [Fintype d] [DecidableEq d]
@@ -1377,6 +1460,9 @@ theorem purifiedRefinedEffect_posSemidef
   · exact purificationRangeProjection_complement_posSemidef F hF Γ hΓ
   · exact Matrix.PosSemidef.zero
 
+/--
+@isnad1 id=eq.2h7v.s6.f8fa7d16d3ab from=translated src=- shape=8ce3ab3d vocab=a151e4f9
+-/
 theorem purifiedRefinedEffect_complete
     {ι d e : Type*} [Fintype ι] [DecidableEq ι]
     [Fintype d] [DecidableEq d]
@@ -1713,6 +1799,9 @@ open scoped BigOperators Topology ComplexOrder MatrixOrder Matrix.Norms.Elementw
 
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
+/--
+@isnad1 id=memlp.1h1v.s6.5f2833173b23 from=translated src=- shape=af0a8e25 vocab=85c82fb7
+-/
 theorem scalarResolventFilter_memLp_two
     {z : ℝ} (hz : 0 ≤ z) :
     MemLp (fun s : ℝ => z / (z + s)) 2
@@ -1725,6 +1814,9 @@ theorem scalarResolventFilter_memLp_two
   exact (memLp_two_iff_integrable_sq hmeas).mpr
     (scalar_resolvent_purification_integrable hz)
 
+/--
+@isnad1 id=memlp.1h2v.s6.0d5e64a84bb0 from=translated src=- shape=79ee4e34 vocab=e963b1b4
+-/
 theorem spectralPurificationFilter_memLp_two
     {d : Type*} [Fintype d] [DecidableEq d]
     (F : Matrix d d ℂ) (hF : F.PosSemidef) :
@@ -1883,6 +1975,9 @@ def positiveMatrixSpectralAtom
   spectralConjugationCLM hF.isHermitian.eigenvectorUnitary
     (Matrix.diagonal (Pi.single i (1 : ℂ)))
 
+/--
+@isnad1 id=possemid.1h3v.s5.8f154fb98c65 from=translated src=- shape=3432c47d vocab=ecab4a9d
+-/
 theorem positiveMatrixSpectralAtom_posSemidef
     {d : Type*} [Fintype d] [DecidableEq d]
     (F : Matrix d d ℂ) (hF : F.PosSemidef) (i : d) :
@@ -1902,6 +1997,9 @@ theorem positiveMatrixSpectralAtom_posSemidef
     hdiag.mul_mul_conjTranspose_same
       (hF.isHermitian.eigenvectorUnitary : Matrix d d ℂ)
 
+/--
+@isnad1 id=eq.1h2v.s6.a3c5beb78074 from=translated src=- shape=568b97d9 vocab=516cbe40
+-/
 theorem positiveMatrixSpectralAtom_sum
     {d : Type*} [Fintype d] [DecidableEq d]
     (F : Matrix d d ℂ) (hF : F.PosSemidef) :
@@ -1952,6 +2050,9 @@ def rawEmbezzlementState (n : ℕ) :
     else
       0
 
+/--
+@isnad1 id=ne.1h1v.s6.29665a685a9d from=translated src=- shape=943be05a vocab=cf09c58e
+-/
 theorem rawEmbezzlementState_ne_zero
     (n : ℕ) (hn : 0 < n) :
     rawEmbezzlementState n ≠ 0 := by
@@ -1972,6 +2073,9 @@ def embezzlementState (n : ℕ) :
   (‖rawEmbezzlementState n‖⁻¹ : ℝ) •
     rawEmbezzlementState n
 
+/--
+@isnad1 id=eq.1h1v.s6.718f4227a557 from=translated src=- shape=33c2324f vocab=e4af7ad6
+-/
 theorem embezzlementState_norm
     (n : ℕ) (hn : 0 < n) :
     ‖embezzlementState n‖ = 1 := by
@@ -1994,6 +2098,9 @@ def spectralAtomOverlap
     (positiveMatrixSpectralAtom F hF i *
       positiveMatrixSpectralAtom G hG j)).re
 
+/--
+@isnad1 id=eq.1h4v.s6.fed9644e8213 from=translated src=- shape=5354e9fe vocab=9c7d43cc
+-/
 theorem spectralAtom_mul
     {d : Type*} [Fintype d] [DecidableEq d]
     (F : Matrix d d ℂ) (hF : F.PosSemidef)
@@ -2030,6 +2137,9 @@ theorem spectralAtom_mul
     · simp only [Pi.single_apply, mul_ite, mul_one, mul_zero, Matrix.diagonal_apply, hik,
         ↓reduceIte, ite_self, Matrix.zero_apply]
 
+/--
+@isnad1 id=eq.1h3v.s6.0c6f70664951 from=translated src=- shape=a98905b3 vocab=c294eba6
+-/
 theorem spectralAtomSum_mul_self
     {d : Type*} [Fintype d] [DecidableEq d]
     (F : Matrix d d ℂ) (hF : F.PosSemidef)
@@ -2068,6 +2178,9 @@ def finiteTensorVector
     EuclideanSpace ℂ (ι → d) :=
   toLp 2 fun q : ι → d => ∏ i : ι, v i (q i)
 
+/--
+@isnad1 id=eq.2h2v.s5.3abb603cd05f from=translated src=- shape=680cac4f vocab=bf60399c
+-/
 theorem positiveDensity_eigenvalues_sum
     {d : Type*} [Fintype d] [DecidableEq d]
     (F : Matrix d d ℂ) (hF : F.PosSemidef)
@@ -2127,6 +2240,9 @@ def sharedThresholdResourceRaw
     else
       0
 
+/--
+@isnad1 id=ne.1h5v.s7.c7d6c9f96005 from=translated src=- shape=3d261b93 vocab=d109ab46
+-/
 theorem sharedThresholdResourceRaw_ne_zero
     {κ d : Type*}
     [DecidableEq κ] [DecidableEq d]
@@ -2151,6 +2267,9 @@ def sharedThresholdResource
   (‖sharedThresholdResourceRaw (d := d) τ‖⁻¹ : ℝ) •
     sharedThresholdResourceRaw (d := d) τ
 
+/--
+@isnad1 id=eq.1h5v.s7.103c6e29de45 from=translated src=- shape=5b30e986 vocab=7953662a
+-/
 theorem sharedThresholdResource_norm
     {κ d : Type*} [Fintype κ] [Fintype d]
     [DecidableEq κ] [DecidableEq d]
@@ -2176,6 +2295,9 @@ def transposePOVM
       (fun M : Matrix d d ℂ => M j i) P.complete
     simpa only [Matrix.sum_apply, Matrix.transpose_apply, Matrix.one_apply, eq_comm] using hc
 
+/--
+@isnad1 id=eq.0h3v.s7.9611d0cf38a2 from=translated src=- shape=bd604f6c vocab=2a0c88df
+-/
 theorem matrixVectorization_norm_sq
     {d e : Type*} [Fintype d] [Fintype e]
     (K : Matrix d e ℂ) :
@@ -2221,6 +2343,9 @@ def localUnitaryAction {n : ℕ}
     (((U : Matrix (Fin n) (Fin n) ℂ) ⊗ₖ
       (V : Matrix (Fin n) (Fin n) ℂ)).mulVec (ofLp ψ))
 
+/--
+@isnad1 id=mem.0h3v.s9.2372343ab3ff from=translated src=- shape=c4c0de1a vocab=09e071b3
+-/
 theorem localUnitaryAction_matrix_mem_unitary {n : ℕ}
     (U V : Matrix.unitaryGroup (Fin n) ℂ) :
     ((U : Matrix (Fin n) (Fin n) ℂ) ⊗ₖ
@@ -2228,6 +2353,9 @@ theorem localUnitaryAction_matrix_mem_unitary {n : ℕ}
         Matrix.unitaryGroup (Fin n × Fin n) ℂ := by
   exact Matrix.kronecker_mem_unitary U.property V.property
 
+/--
+@isnad1 id=eq.0h4v.s8.1e58157e4817 from=translated src=- shape=d02ff03d vocab=c4da35d6
+-/
 theorem localUnitaryAction_norm {n : ℕ}
     (U V : Matrix.unitaryGroup (Fin n) ℂ)
     (ψ : EuclideanSpace ℂ (Fin n × Fin n)) :
@@ -2259,6 +2387,9 @@ def diagonalSchmidtState
   toLp 2 fun q : d × d =>
     if q.1 = q.2 then (σ q.1 : ℂ) else 0
 
+/--
+@isnad1 id=eq.0h2v.s6.6f07fe7974f7 from=translated src=- shape=2b522462 vocab=26a4bcca
+-/
 theorem diagonalSchmidtState_norm_sq
     {d : Type*} [Fintype d] [DecidableEq d]
     (σ : d → ℝ) :
@@ -2286,6 +2417,9 @@ def schmidtVector
   localUnitaryAction U V
     (diagonalSchmidtState σ)
 
+/--
+@isnad1 id=eq.0h4v.s8.e278e8cdc0d9 from=translated src=- shape=449c9efe vocab=4836586a
+-/
 theorem schmidtVector_norm_sq
     {d : ℕ}
     (σ : Fin d → ℝ)
@@ -2296,6 +2430,9 @@ theorem schmidtVector_norm_sq
     localUnitaryAction_norm,
     diagonalSchmidtState_norm_sq]
 
+/--
+@isnad1 id=eq.0h6v.s9.f4a53050d5f7 from=translated src=- shape=272e1032 vocab=852dbb6e
+-/
 theorem schmidtVector_apply
     {d : ℕ}
     (σ : Fin d → ℝ)
@@ -2308,6 +2445,9 @@ theorem schmidtVector_apply
     Matrix.kroneckerMap_apply, mul_comm, ite_mul, zero_mul, Fintype.sum_prod_type,
     Finset.sum_ite_eq, Finset.mem_univ, ↓reduceIte, mul_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s10.6a3a040dc107 from=translated src=- shape=a8512a3a vocab=418e65ae
+-/
 theorem matrixVectorization_inner
     {d e : Type*} [Fintype d] [Fintype e]
     (X Y : Matrix d e ℂ) :
@@ -2320,6 +2460,9 @@ theorem matrixVectorization_inner
       Matrix.trace (X.conjTranspose * Y)
   rw [dotProduct_comm, Matrix.star_vec_dotProduct_vec]
 
+/--
+@isnad1 id=eq.0h5v.s9.54515f7ea016 from=translated src=- shape=7677c98a vocab=44f1caf2
+-/
 @[simp] theorem unitaryBasisOverlap_apply
     {d : Type*} [Fintype d] [DecidableEq d]
     (U V : Matrix.unitaryGroup d ℂ) (i j : d) :
@@ -2351,6 +2494,9 @@ def orthonormalBasisUnitary
   ⟨(EuclideanSpace.basisFun (Fin d) ℂ).toBasis.toMatrix b.toBasis,
     (EuclideanSpace.basisFun (Fin d) ℂ).toMatrix_orthonormalBasis_mem_unitary b⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.1fd53221ca19 from=translated src=- shape=9adc4696 vocab=aff6e49d
+-/
 @[simp] theorem orthonormalBasisUnitary_apply
     {d : ℕ}
     (b : OrthonormalBasis (Fin d) ℂ
@@ -2379,6 +2525,9 @@ def conjugateUnitary
   have h := congrArg Matrix.transpose U.property.1
   simpa only [star_eq_conjTranspose, transpose_mul, transpose_one] using h
 
+/--
+@isnad1 id=eq.0h4v.s8.da446852637f from=translated src=- shape=34d40d55 vocab=9c0e575f
+-/
 @[simp] theorem conjugateUnitary_apply
     {d : ℕ}
     (U : Matrix.unitaryGroup (Fin d) ℂ)

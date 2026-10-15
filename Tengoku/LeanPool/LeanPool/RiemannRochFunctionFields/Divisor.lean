@@ -45,6 +45,9 @@ noncomputable def divisor (I : (FractionalIdeal R⁰ K)ˣ) : Divisor R :=
   Finsupp.mk (finite_factors (I : FractionalIdeal R⁰ K)).toFinset
     (fun v ↦ count K v I) fun _ ↦ (finite_factors (I : FractionalIdeal R⁰ K)).mem_toFinset
 
+/--
+@isnad1 id=eq.0h4v.s7.7ada3b66e607 from=translated src=- shape=3dcb887f vocab=a9cbfa1d
+-/
 @[simp]
 theorem divisor_apply (I : (FractionalIdeal R⁰ K)ˣ) (v : HeightOneSpectrum R) :
     divisor I v = count K v I := by
@@ -60,6 +63,9 @@ noncomputable def ofDivisor (K : Type*) [Field K] [Algebra R K] [IsFractionRing 
     exact Finset.prod_ne_zero_iff.mpr fun v _ ↦
       zpow_ne_zero _ (coeIdeal_ne_zero.mpr v.ne_bot)
 
+/--
+@isnad1 id=eq.0h4v.s7.4ae396a93c4e from=translated src=- shape=7ce98801 vocab=9318d21e
+-/
 @[simp]
 theorem count_ofDivisor (D : Divisor R) (v : HeightOneSpectrum R) :
     count K v (ofDivisor K D : FractionalIdeal R⁰ K) = D v := by
@@ -102,6 +108,9 @@ noncomputable def principalFractionalIdeal : Kˣ →* (FractionalIdeal R⁰ K)ˣ
   map_one' := Units.ext spanSingleton_one
   map_mul' x y := Units.ext (spanSingleton_mul_spanSingleton (R := R) (x : K) y).symm
 
+/--
+@isnad1 id=eq.0h3v.s9.428f9dfb47b7 from=translated src=- shape=73f919a3 vocab=0061880b
+-/
 @[simp]
 theorem principalFractionalIdeal_apply_coe (x : Kˣ) :
     (principalFractionalIdeal (R := R) (K := K) x : FractionalIdeal R⁰ K) =
@@ -111,6 +120,9 @@ theorem principalFractionalIdeal_apply_coe (x : Kˣ) :
 noncomputable def principalDivisor : Additive Kˣ →+ Divisor R :=
   divisorEquiv.toAddMonoidHom.comp principalFractionalIdeal.toAdditive
 
+/--
+@isnad1 id=eq.0h4v.s8.f3654ee86f65 from=translated src=- shape=3bf1badf vocab=94685c77
+-/
 @[simp]
 theorem principalDivisor_apply (x : Additive Kˣ) (v : HeightOneSpectrum R) :
     principalDivisor (R := R) (K := K) x v =
@@ -127,6 +139,9 @@ noncomputable def weightedDegree (w : Ideal R → ℕ) : Divisor R →+ ℤ wher
     simp [Finsupp.sum_add_index, add_mul]
 
 omit [IsDedekindDomain R] in
+/--
+@isnad1 id=eq.0h3v.s6.e622d1380ee2 from=translated src=- shape=c83aa345 vocab=7292e664
+-/
 @[simp]
 theorem weightedDegree_apply (w : Ideal R → ℕ) (D : Divisor R) :
     weightedDegree (R := R) w D =
@@ -134,7 +149,9 @@ theorem weightedDegree_apply (w : Ideal R → ℕ) (D : Divisor R) :
 
 /-- The weighted degree of the divisor of a nonzero integral ideal is the weighted sum of its
 normalized prime factors.  The weight is stated on ideals, so that it can later be chosen as a
-residue-field degree or an inertia-weighted residue-field degree. -/
+residue-field degree or an inertia-weighted residue-field degree.
+@isnad1 id=other.1h4v.s8.fe07e141a0c7 from=translated src=- shape=47fbc955 vocab=68c57445
+-/
 theorem divisor_ideal_sum_eq_normalizedFactors_sum (J : Ideal R) (hJ : J ≠ ⊥)
     (w : Ideal R → ℕ) :
     let JU : (FractionalIdeal R⁰ K)ˣ :=
@@ -182,7 +199,9 @@ theorem divisor_ideal_sum_eq_normalizedFactors_sum (J : Ideal R) (hJ : J ≠ ⊥
   push_cast
   rfl
 
-/-- Weighted degree of the divisor of a nonzero integral ideal. -/
+/-- Weighted degree of the divisor of a nonzero integral ideal.
+@isnad1 id=eq.1h4v.s8.ca568999cd4f from=translated src=- shape=f6f19a5b vocab=228957b2
+-/
 theorem weightedDegree_divisor_ideal (J : Ideal R) (hJ : J ≠ ⊥)
     (w : Ideal R → ℕ) :
     weightedDegree (R := R) w
@@ -191,7 +210,9 @@ theorem weightedDegree_divisor_ideal (J : Ideal R) (hJ : J ≠ ⊥)
   divisor_ideal_sum_eq_normalizedFactors_sum J hJ w
 
 /-- If a nonzero fraction is represented by `n / d`, its weighted principal-divisor degree is
-the weighted factor degree of `n` minus that of `d`. -/
+the weighted factor degree of `n` minus that of `d`.
+@isnad1 id=eq.1h6v.s9.b35b72f09c95 from=translated src=- shape=a314adb1 vocab=2dc218cb
+-/
 theorem weightedDegree_principal_mk' (w : Ideal R → ℕ) (x : Kˣ) (n : R)
     (d : nonZeroDivisors R) (hnd : IsLocalization.mk' K n d = (x : K)) :
     weightedDegree (R := R) w (principalDivisor (Additive.ofMul x)) =

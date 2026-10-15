@@ -103,17 +103,23 @@ namespace FaceCycle
 
 variable {S : CellStructure γ} {F : γ}
 
-/-- The boundary list is a closed walk, in the orientation recorded by `boundary_eq`. -/
+/-- The boundary list is a closed walk, in the orientation recorded by `boundary_eq`.
+@isnad1 id=iswalk.0h4v.s5.d02e17f92197 from=translated src=- shape=3a8d26a1 vocab=c0487418
+-/
 theorem isWalk (h : S.FaceCycle F) : S.skel.IsWalk h.target (S.boundary F) h.target := by
   rw [h.boundary_eq]
   exact .cons h.isCycle.isLink.symm h.isCycle.isPath.isWalk
 
-/-- Every cell of the displayed boundary cycle is a strict subcell of its face. -/
+/-- Every cell of the displayed boundary cycle is a strict subcell of its face.
+@isnad1 id=sub.1h5v.s5.4a73d2363d07 from=translated src=- shape=148807c0 vocab=382bc465
+-/
 theorem sub_of_mem_pathCells (h : S.FaceCycle F) {σ : γ}
     (hσ : σ ∈ S.pathCells h.target (h.edge :: h.walk)) : S.sub σ F :=
   h.sub_face.2 (Or.inr hσ)
 
-/-- Path cells split over the concatenation of two composable walks. -/
+/-- Path cells split over the concatenation of two composable walks.
+@isnad1 id=eq.2h7v.s6.98deb730be5e from=translated src=- shape=0d7f9b9c vocab=92c4c527
+-/
 theorem pathCells_append {u w v : γ} {W₁ W₂ : List γ}
     (h₁ : S.skel.IsWalk u W₁ w) (h₂ : S.skel.IsWalk w W₂ v) :
     S.pathCells u (W₁ ++ W₂) = S.pathCells u W₁ ∪ S.pathCells w W₂ := by
@@ -138,13 +144,17 @@ theorem pathCells_append {u w v : γ} {W₁ W₂ : List γ}
         · exact Or.inr (Graph.mem_walkVertices_of_mem_covered
             (Graph.coveredVertices_append.symm ▸ Or.inr hcov))
 
-/-- Reversing a walk changes neither its edge cells nor its vertex cells. -/
+/-- Reversing a walk changes neither its edge cells nor its vertex cells.
+@isnad1 id=eq.1h5v.s5.8536732609a1 from=translated src=- shape=673e7e00 vocab=372dbb5b
+-/
 theorem pathCells_reverse {u v : γ} {W : List γ} (h : S.skel.IsWalk u W v) :
     S.pathCells v W.reverse = S.pathCells u W := by
   rw [CellStructure.pathCells, CellStructure.pathCells, h.reverse_walkVertices]
   simp
 
-/-- Nonempty walks with permuted edge lists have the same path cells. -/
+/-- Nonempty walks with permuted edge lists have the same path cells.
+@isnad1 id=eq.5h8v.s6.e0b7832ac9bb from=translated src=- shape=07f4e1b6 vocab=c98009b2
+-/
 theorem pathCells_eq_of_perm {u₁ v₁ u₂ v₂ : γ} {W₁ W₂ : List γ}
     (h₁ : S.skel.IsWalk u₁ W₁ v₁) (h₂ : S.skel.IsWalk u₂ W₂ v₂)
     (hp : W₁.Perm W₂) (hne₁ : W₁ ≠ []) (hne₂ : W₂ ≠ []) :
@@ -161,7 +171,9 @@ theorem pathCells_eq_of_perm {u₁ v₁ u₂ v₂ : γ} {W₁ W₂ : List γ}
     · exact Or.inl (hp.mem_iff.2 hσ)
     · exact Or.inr ⟨e, hp.mem_iff.2 he, hi⟩
 
-/-- A vertex below a cyclic face lies on the complementary path used to present the cycle. -/
+/-- A vertex below a cyclic face lies on the complementary path used to present the cycle.
+@isnad1 id=mem.2h5v.s5.8f147c35b15d from=translated src=- shape=c49167e9 vocab=611a82da
+-/
 theorem mem_walk_of_vertex_sub (h : S.FaceCycle F) {a : γ} (ha : a ∈ V(S.skel))
     (haF : S.sub a F) : a ∈ S.skel.walkVertices h.source h.walk := by
   rcases h.sub_face.1 haF with rfl | haC
@@ -176,7 +188,9 @@ theorem mem_walk_of_vertex_sub (h : S.FaceCycle F) {a : γ} (ha : a ∈ V(S.skel
 
 /-- Cutting a cyclic face at two distinct boundary vertices gives the two pieces required by
 `SplitData`.  The second path returned by `Graph.IsCycleThrough.split_at` is reversed so that
-both displayed paths run from `a` to `b`. -/
+both displayed paths run from `a` to `b`.
+@isnad1 id=nonempty.5h6v.s6.34f689a64032 from=translated src=- shape=afdd8fc6 vocab=a4aeaf9a
+-/
 theorem boundaryPaths (h : S.FaceCycle F) {a b : γ} (ha : a ∈ V(S.skel))
     (hb : b ∈ V(S.skel)) (haF : S.sub a F) (hbF : S.sub b F) (hab : a ≠ b) :
     Nonempty (S.BoundaryPaths F a b) := by

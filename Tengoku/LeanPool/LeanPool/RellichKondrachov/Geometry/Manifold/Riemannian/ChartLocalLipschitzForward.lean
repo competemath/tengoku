@@ -64,7 +64,9 @@ attribute [local instance] normedSpaceTangentSpaceVectorSpace
 
 omit [FiniteDimensional ℝ E] [IsManifold I n∞ M] in
 /-- Around any point `x`, the (forward) extended chart is Lipschitz on a small Riemannian ball
-centered at `x`, with respect to the Riemannian distance. -/
+centered at `x`, with respect to the Riemannian distance.
+@isnad1 id=ex.0h5v.s9.03d7660299dd from=translated src=- shape=6855ca11 vocab=b652a1d9
+-/
 theorem lipschitzOnWith_extChartAt_ofRiemannianMetric
     [EMetricSpace M] [IsRiemannianManifold I M] [RegularSpace M] (x : M) :
     ∃ (C : ℝ≥0), 0 < C ∧ ∃ (r : ℝ≥0), 0 < r ∧

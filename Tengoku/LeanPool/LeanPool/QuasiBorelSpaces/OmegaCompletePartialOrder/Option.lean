@@ -55,6 +55,9 @@ noncomputable instance instOptionLeanPool : OmegaCompletePartialOrder (Option A)
 
 variable {B C : Type*} [OmegaCompletePartialOrder B] [OmegaCompletePartialOrder C]
 
+/--
+@isnad1 id=scottcon.1h3v.s5.8749c8d1f210 from=translated src=- shape=a136cfc5 vocab=d07d40d6
+-/
 @[fun_prop]
 lemma ωScottContinuous_some
     {f : A → B} (hf : ωScottContinuous f)
@@ -79,6 +82,9 @@ lemma ωScottContinuous_some
       rfl
     simp only [this, Chain.Option.distrib_some, Option.map_some]
 
+/--
+@isnad1 id=scottcon.2h7v.s6.6f6eb2fe5fad from=translated src=- shape=6abafcd7 vocab=dbbcf118
+-/
 @[fun_prop]
 lemma ωScottContinuous_elim
     [OrderBot C]
@@ -151,6 +157,9 @@ lemma ωScottContinuous_elim
           apply c''.monotone
           simp only [tsub_le_iff_right, le_add_iff_nonneg_right, zero_le]
 
+/--
+@isnad1 id=scottcon.2h5v.s6.30e7cbd9ec0b from=translated src=- shape=14d32973 vocab=d1b4e71a
+-/
 @[fun_prop]
 lemma ωScottContinuous_map
     {f : A → B → C} (hf : ωScottContinuous fun (x, y) ↦ f x y)
@@ -161,6 +170,9 @@ lemma ωScottContinuous_map
   simp only [this]
   exact ωScottContinuous_elim hg rfl (by fun_prop)
 
+/--
+@isnad1 id=scottcon.2h5v.s6.ffd8f6ab4bbe from=translated src=- shape=92773ca0 vocab=d2428a03
+-/
 @[fun_prop]
 lemma ωScottContinuous_bind
     {f : A → B → Option C} (hf : ωScottContinuous fun (x, y) ↦ f x y)
@@ -171,6 +183,9 @@ lemma ωScottContinuous_bind
   simp only [this]
   exact ωScottContinuous_elim hg rfl (by fun_prop)
 
+/--
+@isnad1 id=scottcon.2h5v.s6.1bffa3b3beb7 from=translated src=- shape=afed4e8e vocab=40aa5028
+-/
 @[fun_prop]
 lemma ωScottContinuous_bind'
     {C : Type _} [OmegaCompletePartialOrder C]

@@ -55,9 +55,15 @@ inductive UnitPair : g.NT → g.NT → Prop where
   /- UnitPair is transitive -/
   | trans {n₁ n₂ n₃ : g.NT} (hng : unitRule n₁ n₂ ∈ g.rules) (hnn : UnitPair n₂ n₃) : UnitPair n₁ n₃
 
+/--
+@isnad1 id=unitpair.1h3v.s5.9d832ed4fd6b from=translated src=- shape=7ea8adf0 vocab=e05e1548
+-/
 @[refl]
 lemma UnitPair.rfl {n : g.NT} (hn : n ∈ g.generators) : UnitPair n n := UnitPair.refl hn
 
+/--
+@isnad1 id=derives.1h4v.s6.09aef5dc1efd from=translated src=- shape=cc409ac1 vocab=9ae96e1e
+-/
 lemma UnitPair.derives {n₁ n₂ : g.NT} (hnn : UnitPair n₁ n₂) :
     g.Derives [Symbol.nonterminal n₁] [Symbol.nonterminal n₂] := by
   induction hnn with
@@ -70,6 +76,9 @@ abbrev NonUnit {N : Type*} (u : List (Symbol T N)) : Prop :=
   | [Symbol.nonterminal _] => False
   | _ => True
 
+/--
+@isnad1 id=ex.3h6v.s7.07e3956c4d2d from=translated src=- shape=a1c9649f vocab=7cf849c5
+-/
 lemma DerivesIn.unitPair_prefix {u : List T} {v : List (Symbol T g.NT)} {n : g.NT} {m : ℕ}
     (hvu : g.DerivesIn v (u.map Symbol.terminal) m) (hng : n ∈ g.generators)
     (hv : [Symbol.nonterminal n] = v) :
@@ -112,6 +121,9 @@ variable {g : ContextFreeGrammar T} [DecidableEq g.NT]
 noncomputable def generatorsProdDiag : Finset (g.NT × g.NT) :=
   (g.rules.toList.map (fun r ↦ (r.input, r.input))).toFinset
 
+/--
+@isnad1 id=le.0h2v.s6.4bcc2b97f8e5 from=translated src=- shape=22bed283 vocab=343e4a0b
+-/
 lemma generatorsProdDiag_subset_generators_prod :
     g.generatorsProdDiag ⊆ g.generators ×ˢ g.generators := by
   unfold generatorsProdDiag generators
@@ -130,6 +142,9 @@ lemma generatorsProdDiag_subset_generators_prod :
       right
       use p'
 
+/--
+@isnad1 id=unitpair.1h3v.s6.10ed96fb3834 from=translated src=- shape=80498d57 vocab=b44520b4
+-/
 lemma generatorsProdDiag_unitPairs {p : g.NT × g.NT} (hp : p ∈ g.generatorsProdDiag) :
     UnitPair p.1 p.2 := by
   unfold generatorsProdDiag at hp
@@ -168,6 +183,9 @@ def collectUnitPairs (r : ContextFreeRule T g.NT) (l : List (g.NT × g.NT)) :=
   | [Symbol.nonterminal v] => l.foldr (addUnitPair r.input v) ∅
   | _ => ∅
 
+/--
+@isnad1 id=or.1h7v.s7.c2ea6de0afb7 from=translated src=- shape=9d435c02 vocab=f1294fb9
+-/
 lemma collectUnitPairs_unitPair_rec {nᵢ nₒ : g.NT} {p : g.NT × g.NT} {l : List (g.NT × g.NT)}
     {x : Finset (g.NT × g.NT)} (hp : p ∈ l.foldr (addUnitPair nᵢ nₒ) x) :
     p ∈ x ∨ ∃ v, (nₒ, v) ∈ l ∧ p = (nᵢ, v) := by
@@ -195,6 +213,9 @@ lemma collectUnitPairs_unitPair_rec {nᵢ nₒ : g.NT} {p : g.NT × g.NT} {l : L
         obtain ⟨v, hvl, hpv⟩ := hlp
         simp_all
 
+/--
+@isnad1 id=unitpair.3h5v.s7.db122ddeadb6 from=translated src=- shape=57553926 vocab=06859780
+-/
 lemma collectUnitPairs_unitPair {r : ContextFreeRule T g.NT} {l : List (g.NT × g.NT)}
     (hrg : r ∈ g.rules) (hp : ∀ p ∈ l, UnitPair p.1 p.2) :
     ∀ p ∈ collectUnitPairs r l, UnitPair p.1 p.2 := by
@@ -216,6 +237,9 @@ lemma collectUnitPairs_unitPair {r : ContextFreeRule T g.NT} {l : List (g.NT × 
 noncomputable def addUnitPairs (l : Finset (g.NT × g.NT)) : Finset (g.NT × g.NT) :=
   g.rules.toList.attach.foldr (fun r p ↦ collectUnitPairs r l.toList ∪ p) l
 
+/--
+@isnad1 id=le.2h4v.s7.638ee7fc71f8 from=translated src=- shape=3f67b7be vocab=053b42f0
+-/
 lemma collectUnitPairs_subset_generatorsProd {r : ContextFreeRule T g.NT} (l : Finset (g.NT × g.NT))
     (hlg : l ⊆ g.generators ×ˢ g.generators) (hrg : r ∈ g.rules) :
     collectUnitPairs r l.toList ⊆ g.generators ×ˢ g.generators := by
@@ -240,6 +264,9 @@ lemma collectUnitPairs_subset_generatorsProd {r : ContextFreeRule T g.NT} (l : F
   | [Symbol.terminal _] => simp [heq] at hp
   | _ :: _ :: _ => simp [heq] at hp
 
+/--
+@isnad1 id=le.1h3v.s7.dda07844bd70 from=translated src=- shape=18d985b1 vocab=64ec6a95
+-/
 lemma addUnitPairs_subset_generatorsProd (l : Finset (g.NT × g.NT))
     (hlg : l ⊆ g.generators ×ˢ g.generators) :
     addUnitPairs l ⊆ g.generators ×ˢ g.generators := by
@@ -252,12 +279,18 @@ lemma addUnitPairs_subset_generatorsProd (l : Finset (g.NT × g.NT))
     exact Finset.union_subset
       (collectUnitPairs_subset_generatorsProd _ hlg (Finset.mem_toList.1 d.2)) ih
 
+/--
+@isnad1 id=le.0h3v.s5.438a88aada32 from=translated src=- shape=54f7b2cf vocab=9d3164bd
+-/
 lemma subset_addUnitPairs (l : Finset (g.NT × g.NT)) : l ⊆ (addUnitPairs l) := by
   unfold addUnitPairs
   induction g.rules.toList.attach with
   | nil => rfl
   | cons _ _ ih => simp [subset_trans ih]
 
+/--
+@isnad1 id=lt.2h3v.s7.2bd34cf87732 from=translated src=- shape=d1c0a834 vocab=5c3661ff
+-/
 lemma generatorsProd_limits_unitPairs {l : Finset (g.NT × g.NT)}
     (hlg : l ⊆ g.generators ×ˢ g.generators)
     (hne : l ≠ addUnitPairs l) :
@@ -285,6 +318,9 @@ noncomputable def addUnitPairsIter (l : Finset (g.NT × g.NT))
 noncomputable def computeUnitPairs : Finset (g.NT × g.NT) :=
   addUnitPairsIter g.generatorsProdDiag generatorsProdDiag_subset_generators_prod
 
+/--
+@isnad1 id=unitpair.2h4v.s7.dee08056a318 from=translated src=- shape=32b0523a vocab=a927c8d6
+-/
 lemma mem_addUnitPairs_unitPair (l : Finset (g.NT × g.NT)) (hl : ∀ p ∈ l, UnitPair p.1 p.2) :
     ∀ p ∈ addUnitPairs l, UnitPair p.1 p.2 := by
   unfold addUnitPairs
@@ -303,6 +339,9 @@ lemma mem_addUnitPairs_unitPair (l : Finset (g.NT × g.NT)) (hl : ∀ p ∈ l, U
     | inr hpl =>
       simp_all
 
+/--
+@isnad1 id=unitpair.3h4v.s7.c6801ffac801 from=translated src=- shape=2fb507a3 vocab=5b5665bb
+-/
 lemma mem_addUnitPairIter_unitPair (l : Finset (g.NT × g.NT))
     (hlg : l ⊆ g.generators ×ˢ g.generators) (hl : ∀ p ∈ l, UnitPair p.1 p.2) :
     ∀ p ∈ (addUnitPairsIter l hlg), UnitPair p.1 p.2 := by
@@ -318,6 +357,9 @@ lemma mem_addUnitPairIter_unitPair (l : Finset (g.NT × g.NT))
     rename_i hl
     exact generatorsProd_limits_unitPairs hlg hl
 
+/--
+@isnad1 id=eq.1h3v.s6.dddd550fb8bb from=translated src=- shape=ffc81489 vocab=4ff75538
+-/
 lemma addUnitPairsIter_fixpoint (l : Finset (g.NT × g.NT))
     (hlg : l ⊆ g.generators ×ˢ g.generators) :
     addUnitPairsIter l hlg = addUnitPairs (addUnitPairsIter l hlg) := by
@@ -331,6 +373,9 @@ lemma addUnitPairsIter_fixpoint (l : Finset (g.NT × g.NT))
     rename_i hl
     exact generatorsProd_limits_unitPairs hlg hl
 
+/--
+@isnad1 id=le.1h3v.s7.d8c0194ee5e8 from=translated src=- shape=61542ac3 vocab=dbd8372d
+-/
 lemma subset_addUnitPairsIter {l : Finset (g.NT × g.NT)} {hlg : l ⊆ g.generators ×ˢ g.generators} :
     l ⊆ (addUnitPairsIter l hlg) := by
   unfold addUnitPairsIter
@@ -344,6 +389,9 @@ lemma subset_addUnitPairsIter {l : Finset (g.NT × g.NT)} {hlg : l ⊆ g.generat
     rename_i hl
     exact generatorsProd_limits_unitPairs hlg hl
 
+/--
+@isnad1 id=mem.1h6v.s6.1b87a01d9d3b from=translated src=- shape=6b0022d9 vocab=f0a2a504
+-/
 lemma mem_collectUnitPairs {l : List (g.NT × g.NT)} {n₁ n₂ n₃ : g.NT} (hl : (n₂, n₃) ∈ l) :
     (n₁, n₃) ∈ collectUnitPairs (unitRule n₁ n₂) l := by
   unfold collectUnitPairs
@@ -362,6 +410,9 @@ lemma mem_collectUnitPairs {l : List (g.NT × g.NT)} {n₁ n₂ n₃ : g.NT} (hl
         exact ih hl
       · exact ih hl
 
+/--
+@isnad1 id=mem.2h6v.s7.b3db5f7cfb2f from=translated src=- shape=0e8bd444 vocab=a905dd39
+-/
 lemma mem_addUnitPairs {l : Finset (g.NT × g.NT)} {n₁ n₂ n₃ : g.NT} (hl : (n₂, n₃) ∈ l)
     (hg : ⟨n₁, [Symbol.nonterminal n₂]⟩ ∈ g.rules) :
     (n₁, n₃) ∈ addUnitPairs l := by
@@ -386,6 +437,9 @@ lemma mem_addUnitPairs {l : Finset (g.NT × g.NT)} {n₁ n₂ n₃ : g.NT} (hl :
       rename_i ht
       exact Or.inr (ih hl hg ht)
 
+/--
+@isnad1 id=mem.3h5v.s7.767322767e18 from=translated src=- shape=a48c6753 vocab=5aa86ec5
+-/
 lemma unitPair_mem_addUnitPairsIter {l : Finset (g.NT × g.NT)} {n₁ n₂ : g.NT}
     (hlg : l ⊆ g.generators ×ˢ g.generators) (hgl : generatorsProdDiag ⊆ l) (hp : UnitPair n₁ n₂) :
     (n₁, n₂) ∈ addUnitPairsIter l hlg := by
@@ -400,6 +454,9 @@ lemma unitPair_mem_addUnitPairsIter {l : Finset (g.NT × g.NT)} {n₁ n₂ : g.N
     rw [addUnitPairsIter_fixpoint]
     exact mem_addUnitPairs ih hur
 
+/--
+@isnad1 id=iff.0h4v.s6.577dd5d07183 from=translated src=- shape=66490b09 vocab=ef5b45a9
+-/
 lemma computeUnitPairs_iff {n₁ n₂ : g.NT} :
     (n₁, n₂) ∈ computeUnitPairs ↔ UnitPair n₁ n₂ := by
   constructor
@@ -442,6 +499,9 @@ noncomputable def eliminateUnitRules [DecidableEq T] (g : ContextFreeGrammar T)
     [DecidableEq g.NT] :=
   ContextFreeGrammar.mk g.NT g.initial (removeUnitRules computeUnitPairs)
 
+/--
+@isnad1 id=and.1h4v.s7.a87a7d43e105 from=translated src=- shape=2f8949f8 vocab=f070f26f
+-/
 lemma nonUnit_rules_mem {p : g.NT × g.NT} {r : ContextFreeRule T g.NT}
     (hrp : r ∈ computeUnitPairRules p) :
     r.input = p.1 ∧ ∃ r' ∈ g.rules, r.output = r'.output ∧ r'.input = p.2 := by
@@ -455,6 +515,9 @@ lemma nonUnit_rules_mem {p : g.NT × g.NT} {r : ContextFreeRule T g.NT}
     simp only [true_and]
     use r'
 
+/--
+@isnad1 id=ex.1h4v.s7.28316ec03c8b from=translated src=- shape=5119850b vocab=b78c02a6
+-/
 lemma mem_removeUnitRules_exists_UnitPair [DecidableEq T] {l : Finset (g.NT × g.NT)}
     {r : ContextFreeRule T g.NT} (hrl : r ∈ removeUnitRules l) :
     ∃ p r', p ∈ l ∧ r' ∈ g.rules ∧ r.input = p.1 ∧ r.output = r'.output ∧ r'.input = p.2 := by
@@ -464,6 +527,9 @@ lemma mem_removeUnitRules_exists_UnitPair [DecidableEq T] {l : Finset (g.NT × g
   obtain ⟨_, ⟨r', _, _, _⟩⟩ := nonUnit_rules_mem hruv
   use (u, v), r'
 
+/--
+@isnad1 id=derives.1h4v.s5.ff5bace52003 from=translated src=- shape=8545ecec vocab=f677ff3f
+-/
 lemma eliminateUnitRules_derives_to_derives [DecidableEq T] {u v : List (Symbol T g.NT)}
     (huv : g.eliminateUnitRules.Derives u v) : g.Derives u v := by
   change List (Symbol T g.eliminateUnitRules.NT) at u v
@@ -488,6 +554,9 @@ lemma eliminateUnitRules_derives_to_derives [DecidableEq T] {u v : List (Symbol 
     · rw [← heq2]
       exact hu ▸ ih
 
+/--
+@isnad1 id=mem.2h5v.s6.41d4ed1f1ac2 from=translated src=- shape=c2efc0a7 vocab=e8a27f12
+-/
 lemma nonUnit_mem_computeUnitPairRules {n₁ n₂ : g.NT} {w : List (Symbol T g.NT)}
     (hg : ⟨n₁, w⟩ ∈ g.rules) (hw : NonUnit w) :
     ⟨n₂, w⟩ ∈ computeUnitPairRules (n₂, n₁) := by
@@ -502,6 +571,9 @@ lemma nonUnit_mem_computeUnitPairRules {n₁ n₂ : g.NT} {w : List (Symbol T g.
   | [] => rfl
   | _ :: _ :: _ => simp
 
+/--
+@isnad1 id=mem.3h6v.s7.5fadc12fdafe from=translated src=- shape=32a7ba0c vocab=dbe615a0
+-/
 lemma nonUnit_mem_removeUnitRules [DecidableEq T] {n₁ n₂ : g.NT} {u : List (Symbol T g.NT)}
     {l : Finset (g.NT × g.NT)} (hug : ⟨n₂, u⟩ ∈ g.rules) (hu : NonUnit u) (hnn : (n₁, n₂) ∈ l) :
     ⟨n₁, u⟩ ∈ removeUnitRules l := by
@@ -509,6 +581,9 @@ lemma nonUnit_mem_removeUnitRules [DecidableEq T] {n₁ n₂ : g.NT} {u : List (
     Finset.mem_toList, Prod.exists]
   exact ⟨computeUnitPairRules (n₁, n₂), ⟨n₁, n₂, hnn, rfl⟩, nonUnit_mem_computeUnitPairRules hug hu⟩
 
+/--
+@isnad1 id=produces.3h5v.s6.87414e3e2dbe from=translated src=- shape=ae4b28c3 vocab=b9a520af
+-/
 lemma produces_nonUnit_eliminateUnitRules_produces [DecidableEq T] {n₁ n₂ : g.NT}
     {u : List (Symbol T g.NT)} (hu : NonUnit u)
     (hnn : UnitPair n₁ n₂) (hgu : g.Produces [Symbol.nonterminal n₂] u) :
@@ -519,6 +594,9 @@ lemma produces_nonUnit_eliminateUnitRules_produces [DecidableEq T] {n₁ n₂ : 
 
 variable [DecidableEq T]
 
+/--
+@isnad1 id=mem.2h3v.s6.c77d1c8e7398 from=translated src=- shape=fd977321 vocab=f490eb09
+-/
 lemma nonUnit_output_mem_eliminateUnitRules {r : ContextFreeRule T g.NT}
     (hrg : r ∈ g.rules) (hro : NonUnit r.output) :
     r ∈ g.eliminateUnitRules.rules := by
@@ -531,6 +609,9 @@ lemma nonUnit_output_mem_eliminateUnitRules {r : ContextFreeRule T g.NT}
       nonUnit_mem_computeUnitPairRules hrg hro⟩
   exact List.mem_toFinset.2 hr
 
+/--
+@isnad1 id=derives.1h5v.s6.68c4bc1d56e2 from=translated src=- shape=ea7854c2 vocab=7536267c
+-/
 lemma derives_to_eliminateUnitRules_derives {u : List (Symbol T g.NT)} {v : List T} {m : ℕ}
     (huv : g.DerivesIn u (v.map Symbol.terminal) m) :
     g.eliminateUnitRules.Derives u (v.map Symbol.terminal) := by
@@ -577,6 +658,9 @@ lemma derives_to_eliminateUnitRules_derives {u : List (Symbol T g.NT)} {v : List
       | [] => rw [hr'] at hro; simp at hro
       | _ :: _ :: _ => rw [hr'] at hro; simp [NonUnit] at hro
 
+/--
+@isnad1 id=eq.0h2v.s4.03470fe5a817 from=translated src=- shape=1b83d3e1 vocab=fbd2d30d
+-/
 theorem eliminateUnitRules_correct :
     g.language = g.eliminateUnitRules.language := by
   apply Set.eq_of_subset_of_subset <;> intro w hw

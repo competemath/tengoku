@@ -41,11 +41,23 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDim
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceEL2CompactnessTranslationIntegral : MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.96994f1f3d1b from=translated src=- shape=c6850a32 vocab=98499e70
+-/
 local instance instBorelSpaceEL2CompactnessTranslationIntegral : BorelSpace E := ⟨rfl⟩
+/--
+@isnad1 id=opensmea.0h1v.s4.04119bfd9d61 from=translated src=- shape=c6850a32 vocab=68d3f995
+-/
 local instance instOpensMeasurableSpaceEL2CompactnessTranslationIntegral :
     OpensMeasurableSpace E := by infer_instance
+/--
+@isnad1 id=measurab.0h1v.s4.c39a98016a21 from=translated src=- shape=c6850a32 vocab=294c3a63
+-/
 local instance instMeasurableAddEL2CompactnessTranslationIntegral : MeasurableAdd E := by
   infer_instance
+/--
+@isnad1 id=measurab.0h1v.s4.fafcb20168a6 from=translated src=- shape=c6850a32 vocab=4e8ddbc0
+-/
 local instance instMeasurableNegEL2CompactnessTranslationIntegral : MeasurableNeg E := by
   infer_instance
 
@@ -73,6 +85,9 @@ private lemma kernelMeasure_compl_ball_eq_zero_of_tsupport_subset {δ : ℝ}
       (μ := (volume : Measure E))
       (s := (Metric.ball (0 : E) δ)ᶜ) hmeas hEq]
 
+/--
+@isnad1 id=le.7h5v.s13.7babdcaffa7d from=translated src=- shape=ae0fb15b vocab=1ebcd278
+-/
 theorem integral_norm_sq_translateL2_sub_le_sq_of_tsupport_subset_ball
     (hψc : Continuous ψ) (hψcs : HasCompactSupport ψ) (hψ0 : ∀ x, 0 ≤ ψ x)
     (hψint : ∫ x, ψ x ∂(volume : Measure E) = 1)

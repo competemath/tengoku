@@ -77,27 +77,44 @@ so this is what a walk of a plane graph draws. -/
 def edgesCover (drawing : β → ℝ → Plane) (W : List β) : Set Plane :=
   ⋃ e ∈ W, edgeArc drawing e
 
+/--
+@isnad1 id=iff.0h4v.s5.4a1d0dca2f43 from=translated src=- shape=c8b62a23 vocab=0666329f
+-/
 theorem mem_edgesCover_iff :
     z ∈ edgesCover drawing W ↔ ∃ e ∈ W, z ∈ edgeArc drawing e := by
   simp [edgesCover]
 
+/--
+@isnad1 id=mem.2h5v.s5.e11b39c517d6 from=translated src=- shape=5e4b45ff vocab=0666329f
+-/
 theorem mem_edgesCover (he : e ∈ W) (hz : z ∈ edgeArc drawing e) : z ∈ edgesCover drawing W :=
   mem_edgesCover_iff.2 ⟨e, he, hz⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.186272fd9917 from=translated src=- shape=e94f6735 vocab=8d4a3d0c
+-/
 @[simp]
 theorem edgesCover_nil : edgesCover drawing ([] : List β) = ∅ := by
   simp [edgesCover]
 
+/--
+@isnad1 id=eq.0h4v.s5.c03910a9eb5f from=translated src=- shape=c08c49be vocab=bfdee4c4
+-/
 @[simp]
 theorem edgesCover_cons :
     edgesCover drawing (e :: W) = edgeArc drawing e ∪ edgesCover drawing W := by
   ext z
   simp [edgesCover]
 
+/--
+@isnad1 id=le.1h4v.s5.6994a2641078 from=translated src=- shape=b0f0cff6 vocab=a83f88a1
+-/
 theorem edgesCover_mono (h : W ⊆ D) : edgesCover drawing W ⊆ edgesCover drawing D :=
   fun _ hz ↦ let ⟨_, he, hze⟩ := mem_edgesCover_iff.1 hz; mem_edgesCover (h he) hze
 
-/-- A list of edges of the graph occupies part of what the graph occupies. -/
+/-- A list of edges of the graph occupies part of what the graph occupies.
+@isnad1 id=le.1h4v.s5.d6565280ba67 from=translated src=- shape=06bd46d5 vocab=51b31ea6
+-/
 theorem edgesCover_subset_pointSet (hW : ∀ e ∈ W, e ∈ E(G)) :
     edgesCover drawing W ⊆ pointSet G drawing := by
   intro z hz
@@ -110,13 +127,18 @@ This is not a hypothesis anywhere in this file; it is a consequence of the drawi
 and it is what makes the degenerate cycle — a loop, with the empty path back — impossible. -/
 
 /-- **An edge of a plane graph has two distinct ends.** An edge with equal ends would be drawn
-by an arc whose parametrisation returns to its start, which its injectivity forbids. -/
+by an arc whose parametrisation returns to its start, which its injectivity forbids.
+@isnad1 id=ne.2h6v.s5.685ab2c9d787 from=translated src=- shape=7f85c173 vocab=ef9c1a75
+-/
 theorem IsDrawing.ne_of_isLink (h : IsDrawing G drawing) (hl : G.IsLink e u v) : u ≠ v := by
   rintro rfl
   obtain ⟨g, -, hinj, -, hg0, hg1⟩ := h.edge_isArcBetween hl
   have : (0 : ℝ) = 1 := hinj zero_mem_I one_mem_I (hg0.trans hg1.symm)
   norm_num at this
 
+/--
+@isnad1 id=not.1h5v.s4.204647b7753f from=translated src=- shape=acd79070 vocab=b9f7e71a
+-/
 theorem IsDrawing.not_isLoopAt (h : IsDrawing G drawing) (e : β) (u : Plane) :
     ¬ G.IsLoopAt e u :=
   fun hloop ↦ h.ne_of_isLink hloop rfl
@@ -131,7 +153,9 @@ neither is geometric beyond the workhorse `Graph.IsDrawing.arcs_meet_at_vertex`:
 takes the same edge again, the source is one of its ends; if it takes a different one, a
 common point is a vertex incident with both, so it is the source or the waypoint. Either way a
 point that was the source would put the source among the vertices the rest visits, which is
-what the path's freshness clause forbids. -/
+what the path's freshness clause forbids.
+@isnad1 id=eq.6h8v.s6.dfc9f3305bc1 from=translated src=- shape=313acada vocab=ab54790d
+-/
 theorem IsDrawing.first_edge_meets_rest (h : IsDrawing G drawing) (hl : G.IsLink e u w)
     (hW : ∀ f ∈ W, f ∈ E(G)) (hfresh : u ∉ G.walkVertices w W)
     (hze : z ∈ edgeArc drawing e) (hzW : z ∈ edgesCover drawing W) : z = w := by
@@ -151,7 +175,9 @@ the empty path draws the empty set, which is not an arc.
 The induction is on the path, at the source end, and what it carries is the existence of the
 arc. At each step the first edge's arc and the rest's arc meet only at the waypoint
 (`Graph.IsDrawing.first_edge_meets_rest`), so `Schoenflies.IsArcBetween.concatenate` glues
-them. -/
+them.
+@isnad1 id=isarcbet.3h6v.s5.42354416fed9 from=translated src=- shape=958fa6f2 vocab=f95a4b24
+-/
 theorem IsDrawing.path_isArcBetween (h : IsDrawing G drawing) (hP : G.IsPath u W v)
     (hne : W ≠ []) : IsArcBetween (edgesCover drawing W) u v := by
   induction hP with
@@ -169,7 +195,9 @@ theorem IsDrawing.path_isArcBetween (h : IsDrawing G drawing) (hP : G.IsPath u W
 
 /-- The detour of a cycle is a path with at least one edge — an empty detour would return to
 where it set out, and the edge it is a detour for has two distinct ends — so it is drawn by an
-arc between those ends. -/
+arc between those ends.
+@isnad1 id=isarcbet.2h7v.s5.07ce18da6dad from=translated src=- shape=349a5a5f vocab=c23d5ea8
+-/
 theorem IsDrawing.detour_isArcBetween (h : IsDrawing G drawing) (hc : G.IsCycleThrough e u v D) :
     IsArcBetween (edgesCover drawing D) u v := by
   refine h.path_isArcBetween hc.isPath fun hD ↦ ?_
@@ -177,7 +205,9 @@ theorem IsDrawing.detour_isArcBetween (h : IsDrawing G drawing) (hc : G.IsCycleT
 
 /-- **The detour of a cycle meets the edge only at the edge's two ends.** A common point lies
 on the edge and on some edge of the detour, which the detour does not contain, so it is a
-vertex incident with the edge — and an edge has only its two ends. -/
+vertex incident with the edge — and an edge has only its two ends.
+@isnad1 id=or.4h8v.s6.02c05cca0244 from=translated src=- shape=01ef5130 vocab=cdc7371b
+-/
 theorem IsDrawing.detour_meets_edge (h : IsDrawing G drawing) (hc : G.IsCycleThrough e u v D)
     (hzD : z ∈ edgesCover drawing D) (hze : z ∈ edgeArc drawing e) : z = u ∨ z = v := by
   obtain ⟨f, hf, hzf⟩ := mem_edgesCover_iff.1 hzD
@@ -188,7 +218,9 @@ theorem IsDrawing.detour_meets_edge (h : IsDrawing G drawing) (hc : G.IsCycleThr
 
 /-- **The detour and the edge meet in exactly the edge's two ends.** The inclusion
 `Graph.IsDrawing.detour_meets_edge` is what `Schoenflies.IsJordanCurve.of_two_arcs` consumes;
-the reverse one is free, since both ends are endpoints of both arcs. -/
+the reverse one is free, since both ends are endpoints of both arcs.
+@isnad1 id=eq.2h7v.s6.a52afc4792c6 from=translated src=- shape=2408d30a vocab=a839b335
+-/
 theorem IsDrawing.cycle_inter (h : IsDrawing G drawing) (hc : G.IsCycleThrough e u v D) :
     edgesCover drawing D ∩ edgeArc drawing e = {u, v} := by
   have hD := h.detour_isArcBetween hc
@@ -199,7 +231,9 @@ theorem IsDrawing.cycle_inter (h : IsDrawing G drawing) (hc : G.IsCycleThrough e
 
 /-- **The realisation of a cycle is a Jordan curve.** The detour is drawn by an arc from one
 end of the edge to the other, the edge is drawn by an arc back, and the two meet only at those
-two ends, so `Schoenflies.IsJordanCurve.of_two_arcs` closes the loop. -/
+two ends, so `Schoenflies.IsJordanCurve.of_two_arcs` closes the loop.
+@isnad1 id=isjordan.2h7v.s5.487fc72872e3 from=translated src=- shape=6b6b934e vocab=c9a296f7
+-/
 theorem IsDrawing.cycle_isJordanCurve (h : IsDrawing G drawing)
     (hc : G.IsCycleThrough e u v D) : IsJordanCurve (edgesCover drawing (e :: D)) := by
   have hJ : IsJordanCurve (edgesCover drawing D ∪ edgeArc drawing e) :=
@@ -208,7 +242,9 @@ theorem IsDrawing.cycle_isJordanCurve (h : IsDrawing G drawing)
   rw [edgesCover_cons, Set.union_comm]
   exact hJ
 
-/-- The source of a nonempty walk lies on what the walk draws. -/
+/-- The source of a nonempty walk lies on what the walk draws.
+@isnad1 id=mem.3h6v.s5.b0048d7328c8 from=translated src=- shape=343a00de vocab=fbfe50c6
+-/
 theorem IsWalk.left_mem_edgesCover {u v : Plane} {W : List β} (hW : G.IsWalk u W v)
     (hd : IsDrawing G drawing) (hne : W ≠ []) : u ∈ edgesCover drawing W := by
   cases hW with
@@ -216,7 +252,9 @@ theorem IsWalk.left_mem_edgesCover {u v : Plane} {W : List β} (hW : G.IsWalk u 
   | cons hl _ => exact mem_edgesCover (List.mem_cons_self ..) (hd.edge_isArcBetween hl).left_mem
 
 /-- **A walk of a polygonal plane graph draws a polygonal set.** Consecutive edges share the
-vertex between them, so the union stays a single vertex list. -/
+vertex between them, so the union stays a single vertex list.
+@isnad1 id=ispolygo.4h6v.s6.30d65f1fd7fa from=translated src=- shape=aad7822b vocab=040ac2c5
+-/
 theorem IsDrawing.isPolygonal_edgesCover (hd : IsDrawing G drawing)
     (hpoly : ∀ f ∈ E(G), Schoenflies.IsPolygonal (edgeArc drawing f)) :
     ∀ {u v : Plane} {W : List β}, G.IsWalk u W v → W ≠ [] →

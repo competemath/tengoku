@@ -34,6 +34,9 @@ instance (n : ℕ) (κ : Kernel α α) [IsMarkovKernel κ] :
   | succ n ih => simp only [iter]
                  infer_instance
 
+/--
+@isnad1 id=eq.0h3v.s5.8b7a8ea09779 from=translated src=- shape=402bb4e1 vocab=f957761b
+-/
 lemma iter_comm (κ : Kernel α α) (n : ℕ) :
   κ ∘ₖ κ.iter n = κ.iter n ∘ₖ κ := by
   induction n with
@@ -43,6 +46,9 @@ lemma iter_comm (κ : Kernel α α) (n : ℕ) :
     conv_rhs => rw [← ih]
     simp [comp_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s5.d63d70492bb1 from=translated src=- shape=5c0f661e vocab=ff2be41e
+-/
 lemma iter_comp (κ : Kernel α α) (m n : ℕ) :
   (κ.iter m).comp (κ.iter n) = κ.iter (m + n) := by
   induction m with

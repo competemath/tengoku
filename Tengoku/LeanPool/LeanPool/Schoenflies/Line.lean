@@ -65,7 +65,9 @@ missing from the set. Everything the plane statement says about a component of `
 fact transported along the parametrization. -/
 
 /-- A connected component of a bounded open subset of `ℝ` is an open interval `Ioo t₀ t₁` with
-`t₀ < t₁`, and neither endpoint belongs to the set. -/
+`t₀ < t₁`, and neither endpoint belongs to the set.
+@isnad1 id=ex.3h2v.s6.7ab4516d3dc4 from=translated src=- shape=8918dae1 vocab=71a92fe8
+-/
 theorem exists_Ioo_eq_connectedComponentIn {T : Set ℝ} (hopen : IsOpen T) (hbdd : IsBounded T)
     {s : ℝ} (hs : s ∈ T) :
     ∃ t₀ t₁ : ℝ, t₀ < t₁ ∧ connectedComponentIn T s = Ioo t₀ t₁ ∧ t₀ ∉ T ∧ t₁ ∉ T := by
@@ -136,28 +138,47 @@ parametrization. It is defined on the whole plane — off the line it returns th
 orthogonal projection, which is harmless and buys continuity everywhere. -/
 noncomputable def lineCoord (a b x : Plane) : ℝ := inner ℝ (x - a) (b - a) / ‖b - a‖ ^ 2
 
+/--
+@isnad1 id=iff.0h3v.s9.739a560a8fa3 from=translated src=- shape=71219547 vocab=7e8e236b
+-/
 theorem mem_line_iff : x ∈ line a b ↔ ∃ t : ℝ, AffineMap.lineMap a b t = x := Iff.rfl
 
+/--
+@isnad1 id=mem.0h3v.s9.d3be99008719 from=translated src=- shape=1bd27711 vocab=7e8e236b
+-/
 theorem lineMap_mem_line (a b : Plane) (t : ℝ) : AffineMap.lineMap a b t ∈ line a b :=
   mem_range_self t
 
+/--
+@isnad1 id=mem.0h2v.s3.cb594198203b from=translated src=- shape=e75ebf4c vocab=75c04e89
+-/
 @[simp] theorem left_mem_line (a b : Plane) : a ∈ line a b :=
   ⟨0, AffineMap.lineMap_apply_zero a b⟩
 
+/--
+@isnad1 id=mem.0h2v.s3.3b25a66a78fd from=translated src=- shape=56a4adfc vocab=75c04e89
+-/
 @[simp] theorem right_mem_line (a b : Plane) : b ∈ line a b :=
   ⟨1, AffineMap.lineMap_apply_one a b⟩
 
-/-- The range of the parametrization is the affine span of the two points. -/
+/-- The range of the parametrization is the affine span of the two points.
+@isnad1 id=eq.0h2v.s9.6376dc742f4e from=translated src=- shape=4b2642b7 vocab=276fcdc8
+-/
 theorem line_eq_affineSpan (a b : Plane) :
     line a b = (affineSpan ℝ ({a, b} : Set Plane) : Set Plane) := by
   ext x
   rw [mem_line_iff, SetLike.mem_coe, mem_affineSpan_pair_iff_exists_lineMap_eq]
 
+/--
+@isnad1 id=continuo.0h2v.s5.6c1182d341ca from=translated src=- shape=30e1f344 vocab=3388417d
+-/
 theorem continuous_lineCoord (a b : Plane) : Continuous (lineCoord a b) := by
   unfold lineCoord
   fun_prop
 
-/-- `lineCoord` inverts the parametrization on the left. -/
+/-- `lineCoord` inverts the parametrization on the left.
+@isnad1 id=eq.1h3v.s9.ba69c3f44bd4 from=translated src=- shape=504439f6 vocab=5ef11f48
+-/
 @[simp] theorem lineCoord_lineMap (hab : a ≠ b) (t : ℝ) :
     lineCoord a b (AffineMap.lineMap a b t) = t := by
   have hne : ‖b - a‖ ≠ 0 := by
@@ -170,7 +191,9 @@ theorem continuous_lineCoord (a b : Plane) : Continuous (lineCoord a b) := by
   field_simp
 
 /-- `lineCoord` inverts the parametrization on the right, on the line. This needs no
-nondegeneracy hypothesis: for `a = b` both sides are `a`. -/
+nondegeneracy hypothesis: for `a = b` both sides are `a`.
+@isnad1 id=eq.1h3v.s9.22adf124ee44 from=translated src=- shape=eca43465 vocab=66434d23
+-/
 theorem lineMap_lineCoord (hx : x ∈ line a b) :
     AffineMap.lineMap a b (lineCoord a b x) = x := by
   obtain ⟨t, rfl⟩ := hx
@@ -178,11 +201,16 @@ theorem lineMap_lineCoord (hx : x ∈ line a b) :
   · simp
   · rw [lineCoord_lineMap hab]
 
+/--
+@isnad1 id=injectiv.1h2v.s9.ec5b94062f8b from=translated src=- shape=60ba8e84 vocab=aefcf8d2
+-/
 theorem lineMap_injective (hab : a ≠ b) :
     Function.Injective (AffineMap.lineMap a b : ℝ → Plane) :=
   Function.LeftInverse.injective (g := lineCoord a b) (lineCoord_lineMap hab)
 
-/-- A line is closed: it is the set where the parametrization undoes the coordinate. -/
+/-- A line is closed: it is the set where the parametrization undoes the coordinate.
+@isnad1 id=isclosed.0h2v.s5.e2a56909a326 from=translated src=- shape=80310a19 vocab=b35143e9
+-/
 theorem isClosed_line (a b : Plane) : IsClosed (line a b) := by
   have hchar : line a b = {x : Plane | AffineMap.lineMap a b (lineCoord a b x) = x} :=
     Set.ext fun x => ⟨fun hx => lineMap_lineCoord hx, fun hx => hx ▸ lineMap_mem_line a b _⟩
@@ -190,7 +218,9 @@ theorem isClosed_line (a b : Plane) : IsClosed (line a b) := by
   exact isClosed_eq (AffineMap.lineMap_continuous.comp (continuous_lineCoord a b)) continuous_id
 
 /-- The angle-free membership test: `x` lies on the line through `a ≠ b` exactly when the
-orientation form kills the two directions. -/
+orientation form kills the two directions.
+@isnad1 id=iff.1h3v.s7.26bb13480b1f from=translated src=- shape=9bdf935b vocab=74d18e4d
+-/
 theorem mem_line_iff_det_eq_zero (hab : a ≠ b) :
     x ∈ line a b ↔ det (b - a) (x - a) = 0 := by
   have hu : b - a ≠ 0 := sub_ne_zero.2 (Ne.symm hab)
@@ -204,7 +234,9 @@ theorem mem_line_iff_det_eq_zero (hab : a ≠ b) :
 /-! ### A compact connected subset of a line is a segment -/
 
 /-- Appendix C, item 1. A nonempty compact connected subset of a line is a closed segment, whose
-endpoints belong to the set. -/
+endpoints belong to the set.
+@isnad1 id=ex.3h3v.s7.02a28b4d8d6b from=translated src=- shape=1ca3b0b3 vocab=ae00b045
+-/
 theorem exists_segment_eq_of_isCompact_isConnected (hS : S ⊆ line a b) (hcompact : IsCompact S)
     (hconn : IsConnected S) :
     ∃ p q : Plane, p ∈ S ∧ q ∈ S ∧ S = segment ℝ p q := by
@@ -227,7 +259,9 @@ theorem exists_segment_eq_of_isCompact_isConnected (hS : S ⊆ line a b) (hcompa
   rw [← himage, hT, ← segment_eq_Icc hle, image_segment]
 
 /-- Appendix C, item 1, in the form the blueprint states it: a *nondegenerate* compact connected
-subset of a line is a closed segment with distinct endpoints. -/
+subset of a line is a closed segment with distinct endpoints.
+@isnad1 id=ex.4h3v.s7.e297ce556299 from=translated src=- shape=1ed2b79b vocab=ba873df6
+-/
 theorem exists_segment_eq_of_not_subsingleton (hS : S ⊆ line a b) (hcompact : IsCompact S)
     (hconn : IsConnected S) (hnontriv : ¬ S.Subsingleton) :
     ∃ p q : Plane, p ≠ q ∧ p ∈ S ∧ q ∈ S ∧ S = segment ℝ p q := by
@@ -244,7 +278,9 @@ set `U` is an open segment of the line; its closure is the closed segment on the
 distinct endpoints, and both endpoints lie in the frontier of `U`.
 
 This is the crosscut factory: the closed segment meets `U` in exactly the component, and touches
-`∂U` exactly at its two ends. -/
+`∂U` exactly at its two ends.
+@isnad1 id=ex.4h4v.s9.d062ead466a4 from=translated src=- shape=3c15822c vocab=94bdf54d
+-/
 theorem exists_openSegment_eq_connectedComponentIn (hab : a ≠ b) (hU : IsOpen U)
     (hbdd : IsBounded U) (hy : y ∈ line a b ∩ U) :
     ∃ p q : Plane, p ≠ q ∧ p ∈ line a b ∧ q ∈ line a b ∧
@@ -309,14 +345,18 @@ theorem exists_openSegment_eq_connectedComponentIn (hab : a ≠ b) (hU : IsOpen 
 
 /-! ### Affine maps -/
 
-/-- Appendix C, item 1. An affine map fixing two points fixes their line pointwise. -/
+/-- Appendix C, item 1. An affine map fixing two points fixes their line pointwise.
+@isnad1 id=eqon.2h3v.s12.024cda542467 from=translated src=- shape=e02d476b vocab=fd15d1ff
+-/
 theorem eqOn_line_of_fixed (F : Plane →ᵃ[ℝ] Plane) (ha : F a = a) (hb : F b = b) :
     EqOn F id (line a b) := by
   rintro _ ⟨t, rfl⟩
   rw [id, F.apply_lineMap, ha, hb]
 
 /-- Appendix C, item 1. An affine map of the plane is determined by its values at three affinely
-independent points. -/
+independent points.
+@isnad1 id=eq.2h3v.s12.8c4fbc47e22a from=translated src=- shape=e8706b02 vocab=83882895
+-/
 theorem affineMap_ext_of_affineIndependent {p : Fin 3 → Plane} (hp : AffineIndependent ℝ p)
     (F G : Plane →ᵃ[ℝ] Plane) (h : ∀ i, F (p i) = G (p i)) : F = G := by
   refine AffineMap.ext_on (s := Set.range p) ?_ ?_

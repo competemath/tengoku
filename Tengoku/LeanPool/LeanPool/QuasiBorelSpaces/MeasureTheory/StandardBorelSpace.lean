@@ -17,6 +17,9 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.MeasureTheory.Standar
 
 namespace MeasureTheory
 
+/--
+@isnad1 id=iff.0h1v.s4.172ee57b1f65 from=translated src=- shape=f982f9cf vocab=df207305
+-/
 lemma standardBorelSpace_iff (A : Type*) [MeasurableSpace A]
     : StandardBorelSpace A
     ↔ Countable A ∧ DiscreteMeasurableSpace A ∨ Nonempty (A ≃ᵐ ℝ) := by

@@ -23,6 +23,9 @@ variable
   {A B : Type*} [MeasurableSpace A] [MeasurableSpace B]
   {I : Type*} [Countable I]
 
+/--
+@isnad1 id=measurab.2h5v.s6.336da2fb503c from=translated src=- shape=ddf97086 vocab=4ff03d91
+-/
 lemma measurable_cases
     {ix : A → I} {f : I → A → B}
     (hix : Measurable[_, ⊤] ix) (hf : ∀ i, Measurable (f i))
@@ -36,6 +39,9 @@ lemma measurable_cases
   · exact hix MeasurableSpace.measurableSet_top
   · exact hf i hs
 
+/--
+@isnad1 id=measurab.1h2v.s5.2d46a26a79a3 from=translated src=- shape=cf454921 vocab=c0fc0e13
+-/
 @[fun_prop]
 lemma measurable_decide
     {p : A → Prop} [inst : DecidablePred p] (hp : Measurable p)
@@ -46,6 +52,9 @@ lemma measurable_decide
   apply measurable_cases (f := fun p _ ↦ decide p) hp
   simp only [measurable_const, implies_true]
 
+/--
+@isnad1 id=measurab.3h6v.s7.8b32dae4e871 from=translated src=- shape=06af0ca4 vocab=c7c36d6c
+-/
 @[fun_prop]
 lemma measurable_dite
     {p : A → Prop} (hp₁ : Measurable p) (hp₂ : DecidablePred p)

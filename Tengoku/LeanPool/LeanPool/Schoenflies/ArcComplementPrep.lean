@@ -91,21 +91,30 @@ namespace Plane
 
 variable {c z : Plane} {r : ℝ}
 
-/-- The sup distance in coordinates. -/
+/-- The sup distance in coordinates.
+@isnad1 id=eq.0h2v.s8.5867a54bce5e from=translated src=- shape=dcff6e58 vocab=0c2ddfde
+-/
 theorem supDist_eq_max (z c : Plane) : supDist z c = max |z 0 - c 0| |z 1 - c 1| := rfl
 
+/--
+@isnad1 id=iff.0h3v.s9.2fd176908f84 from=translated src=- shape=5b0e8988 vocab=78ed2a86
+-/
 theorem mem_frontier_closedSquare :
     z ∈ frontier (closedSquare c r) ↔ max |z 0 - c 0| |z 1 - c 1| = r := by
   rw [frontier_closedSquare]
   exact Iff.rfl
 
 /-- A point whose first coordinate is extreme and whose second is dominated is on the
-boundary. -/
+boundary.
+@isnad1 id=mem.2h3v.s9.f31610d6ca98 from=translated src=- shape=144b53be vocab=902bb0eb
+-/
 theorem mem_frontier_closedSquare_of_fst (h0 : |z 0 - c 0| = r) (h1 : |z 1 - c 1| ≤ r) :
     z ∈ frontier (closedSquare c r) :=
   mem_frontier_closedSquare.2 (by rw [max_eq_left (h0 ▸ h1), h0])
 
-/-- The same with the roles of the two coordinates exchanged. -/
+/-- The same with the roles of the two coordinates exchanged.
+@isnad1 id=mem.2h3v.s9.db5dae0697d0 from=translated src=- shape=144b53be vocab=902bb0eb
+-/
 theorem mem_frontier_closedSquare_of_snd (h1 : |z 1 - c 1| = r) (h0 : |z 0 - c 0| ≤ r) :
     z ∈ frontier (closedSquare c r) :=
   mem_frontier_closedSquare.2 (by rw [max_eq_right (h1 ▸ h0), h1])
@@ -122,47 +131,86 @@ def sqSW (c : Plane) (r : ℝ) : Plane := mk (c 0 - r) (c 1 - r)
 /-- The south-east corner. -/
 def sqSE (c : Plane) (r : ℝ) : Plane := mk (c 0 + r) (c 1 - r)
 
+/--
+@isnad1 id=eq.0h2v.s7.f2b4076ce3aa from=translated src=- shape=33075101 vocab=9ae8119d
+-/
 @[simp] theorem sqNE_zero : sqNE c r 0 = c 0 + r := rfl
+/--
+@isnad1 id=eq.0h2v.s7.fc185b7995d9 from=translated src=- shape=33075101 vocab=9ae8119d
+-/
 @[simp] theorem sqNE_one : sqNE c r 1 = c 1 + r := rfl
+/--
+@isnad1 id=eq.0h2v.s7.517670ecc3bb from=translated src=- shape=33075101 vocab=03eaec24
+-/
 @[simp] theorem sqNW_zero : sqNW c r 0 = c 0 - r := rfl
+/--
+@isnad1 id=eq.0h2v.s7.468897fa7df2 from=translated src=- shape=33075101 vocab=b270a0cb
+-/
 @[simp] theorem sqNW_one : sqNW c r 1 = c 1 + r := rfl
+/--
+@isnad1 id=eq.0h2v.s7.c7acbb1b51b6 from=translated src=- shape=33075101 vocab=d53a9207
+-/
 @[simp] theorem sqSW_zero : sqSW c r 0 = c 0 - r := rfl
+/--
+@isnad1 id=eq.0h2v.s7.f648738545b7 from=translated src=- shape=33075101 vocab=d53a9207
+-/
 @[simp] theorem sqSW_one : sqSW c r 1 = c 1 - r := rfl
+/--
+@isnad1 id=eq.0h2v.s7.3c6986f943cd from=translated src=- shape=33075101 vocab=10879c50
+-/
 @[simp] theorem sqSE_zero : sqSE c r 0 = c 0 + r := rfl
+/--
+@isnad1 id=eq.0h2v.s7.cd88cd39fc0b from=translated src=- shape=33075101 vocab=20c19305
+-/
 @[simp] theorem sqSE_one : sqSE c r 1 = c 1 - r := rfl
 
 /-- A real number is within `r` of `a` exactly when it lies on the segment from `a - r` to
-`a + r`, in either order. Stated through `uIcc` so that the two orders are one lemma. -/
+`a + r`, in either order. Stated through `uIcc` so that the two orders are one lemma.
+@isnad1 id=iff.1h3v.s6.5b43babc02a0 from=translated src=- shape=41979f20 vocab=d52b6190
+-/
 theorem mem_segment_abs {a r x : ℝ} (hr : 0 ≤ r) :
     x ∈ segment ℝ (a - r) (a + r) ↔ |x - a| ≤ r := by
   rw [segment_eq_Icc (by linarith), mem_Icc, abs_le]
   constructor <;> intro h <;> exact ⟨by linarith [h.1], by linarith [h.2]⟩
 
+/--
+@isnad1 id=iff.1h3v.s6.39e40ee03ff7 from=translated src=- shape=ad7e007e vocab=d52b6190
+-/
 theorem mem_segment_abs' {a r x : ℝ} (hr : 0 ≤ r) :
     x ∈ segment ℝ (a + r) (a - r) ↔ |x - a| ≤ r := by
   rw [segment_symm]; exact mem_segment_abs hr
 
-/-- The top side. -/
+/-- The top side.
+@isnad1 id=iff.1h3v.s9.98ecdf60609e from=translated src=- shape=b6da8cc5 vocab=b21998cd
+-/
 theorem mem_seg_top (hr : 0 ≤ r) :
     z ∈ segment ℝ (sqNE c r) (sqNW c r) ↔ z 1 = c 1 + r ∧ |z 0 - c 0| ≤ r := by
   rw [sqNE, sqNW, mem_segment_horiz, mem_segment_abs' hr]
 
-/-- The left side. -/
+/-- The left side.
+@isnad1 id=iff.1h3v.s9.7863cb1a67dd from=translated src=- shape=5afb8fbb vocab=a5b496cf
+-/
 theorem mem_seg_left (hr : 0 ≤ r) :
     z ∈ segment ℝ (sqNW c r) (sqSW c r) ↔ z 0 = c 0 - r ∧ |z 1 - c 1| ≤ r := by
   rw [sqNW, sqSW, mem_segment_vert, mem_segment_abs' hr]
 
-/-- The bottom side. -/
+/-- The bottom side.
+@isnad1 id=iff.1h3v.s9.f840f28e789e from=translated src=- shape=5afb8fbb vocab=9dba1168
+-/
 theorem mem_seg_bottom (hr : 0 ≤ r) :
     z ∈ segment ℝ (sqSW c r) (sqSE c r) ↔ z 1 = c 1 - r ∧ |z 0 - c 0| ≤ r := by
   rw [sqSW, sqSE, mem_segment_horiz, mem_segment_abs hr]
 
-/-- The right side. -/
+/-- The right side.
+@isnad1 id=iff.1h3v.s9.3f78ae6ac510 from=translated src=- shape=b6da8cc5 vocab=1fb9561c
+-/
 theorem mem_seg_right (hr : 0 ≤ r) :
     z ∈ segment ℝ (sqSE c r) (sqNE c r) ↔ z 0 = c 0 + r ∧ |z 1 - c 1| ≤ r := by
   rw [sqSE, sqNE, mem_segment_vert, mem_segment_abs hr]
 
-/-- **The boundary of a square is the union of its four sides.** -/
+/-- **The boundary of a square is the union of its four sides.**
+@isnad1 id=iff.1h3v.s9.e977a07a70d2 from=translated src=- shape=7edbfc7a vocab=b74c9ca6
+-/
 theorem mem_frontier_closedSquare_iff_sides (hr : 0 ≤ r) :
     z ∈ frontier (closedSquare c r) ↔
       z ∈ segment ℝ (sqNE c r) (sqNW c r) ∨ z ∈ segment ℝ (sqNW c r) (sqSW c r) ∨
@@ -349,33 +397,59 @@ def squarePolygon (c : Plane) {r : ℝ} (hr : 0 < r) : ClosedPolygon 1 where
         sqNE_zero, sqNE_one] at h
       nlinarith
 
+/--
+@isnad1 id=eq.1h2v.s7.e6ff68a4e23d from=translated src=- shape=d70ea867 vocab=d5406533
+-/
 @[simp] theorem squarePolygon_vertex_zero (hr : 0 < r) :
     (squarePolygon c hr).vertex 0 = sqNE c r := rfl
 
+/--
+@isnad1 id=eq.1h2v.s7.46b7eefdd988 from=translated src=- shape=d70ea867 vocab=a87831a1
+-/
 @[simp] theorem squarePolygon_vertex_one (hr : 0 < r) :
     (squarePolygon c hr).vertex 1 = sqNW c r := rfl
 
+/--
+@isnad1 id=eq.1h2v.s7.f75cd76f7df2 from=translated src=- shape=d70ea867 vocab=49efc3f5
+-/
 @[simp] theorem squarePolygon_vertex_two (hr : 0 < r) :
     (squarePolygon c hr).vertex 2 = sqSW c r := rfl
 
+/--
+@isnad1 id=eq.1h2v.s7.e6540bd97fdb from=translated src=- shape=d70ea867 vocab=dd2d9dc7
+-/
 @[simp] theorem squarePolygon_vertex_three (hr : 0 < r) :
     (squarePolygon c hr).vertex 3 = sqSE c r := rfl
 
+/--
+@isnad1 id=eq.1h2v.s8.7401935e092c from=translated src=- shape=593dddd4 vocab=49ad99bd
+-/
 theorem edge_squarePolygon_zero (hr : 0 < r) :
     (squarePolygon c hr).edge 0 = segment ℝ (sqNE c r) (sqNW c r) := rfl
 
+/--
+@isnad1 id=eq.1h2v.s8.76b0172de9d3 from=translated src=- shape=593dddd4 vocab=f204b940
+-/
 theorem edge_squarePolygon_one (hr : 0 < r) :
     (squarePolygon c hr).edge 1 = segment ℝ (sqNW c r) (sqSW c r) := rfl
 
+/--
+@isnad1 id=eq.1h2v.s8.7161a326d6fc from=translated src=- shape=593dddd4 vocab=b967d151
+-/
 theorem edge_squarePolygon_two (hr : 0 < r) :
     (squarePolygon c hr).edge 2 = segment ℝ (sqSW c r) (sqSE c r) := rfl
 
+/--
+@isnad1 id=eq.1h2v.s8.2c51d0761d47 from=translated src=- shape=593dddd4 vocab=c94c4176
+-/
 theorem edge_squarePolygon_three (hr : 0 < r) :
     (squarePolygon c hr).edge 3 = segment ℝ (sqSE c r) (sqNE c r) := rfl
 
 /-- **The polygon carries the boundary of the square.** This is the identification that lets
 the polygonal Jordan curve theorem be read as a statement about `frontier (closedSquare c r)`,
-and it is what the overlay consumes. -/
+and it is what the overlay consumes.
+@isnad1 id=eq.1h2v.s6.fb61c8ea4af2 from=translated src=- shape=fe26dfa1 vocab=df2c27d9
+-/
 theorem carrier_squarePolygon (hr : 0 < r) :
     (squarePolygon c hr).carrier = frontier (closedSquare c r) := by
   ext z
@@ -398,14 +472,23 @@ All four clauses come from `main`; only the identification of the two regions is
 is `Plane.connectedComponentIn_eq_of_frontier_disjoint` twice: once for the open square and
 once for its complement. -/
 
+/--
+@isnad1 id=isjordan.1h2v.s5.8462c25e11b5 from=translated src=- shape=6db8cda3 vocab=7e731090
+-/
 theorem isJordanCurve_frontier_closedSquare (c : Plane) (hr : 0 < r) :
     IsJordanCurve (frontier (closedSquare c r)) :=
   carrier_squarePolygon hr ▸ (squarePolygon c hr).isJordanCurve_carrier
 
+/--
+@isnad1 id=ispolygo.1h2v.s5.125e3df83899 from=translated src=- shape=6db8cda3 vocab=8cf74976
+-/
 theorem isPolygonal_frontier_closedSquare (c : Plane) (hr : 0 < r) :
     IsPolygonal (frontier (closedSquare c r)) :=
   carrier_squarePolygon hr ▸ (squarePolygon c hr).isPolygonal_carrier
 
+/--
+@isnad1 id=issepara.1h2v.s5.e0b8387cb849 from=translated src=- shape=6db8cda3 vocab=cf0c457a
+-/
 theorem isSeparating_frontier_closedSquare (c : Plane) (hr : 0 < r) :
     IsSeparating (frontier (closedSquare c r)) :=
   carrier_squarePolygon hr ▸ (squarePolygon c hr).isSeparating_carrier
@@ -413,7 +496,9 @@ theorem isSeparating_frontier_closedSquare (c : Plane) (hr : 0 < r) :
 namespace Plane
 
 /-- A closed square is bounded — the statement for an arbitrary centre.
-`Graph.isBounded_closedSquare` is the same fact for the centre `0` only. -/
+`Graph.isBounded_closedSquare` is the same fact for the centre `0` only.
+@isnad1 id=isbounde.0h2v.s5.712ea40ea824 from=translated src=- shape=1ed02776 vocab=f360f119
+-/
 theorem isBounded_closedSquare (c : Plane) (r : ℝ) :
     Bornology.IsBounded (closedSquare c r) := by
   refine (Metric.isBounded_closedBall (x := c) (r := Real.sqrt 2 * r)).subset fun z hz => ?_
@@ -423,7 +508,9 @@ theorem isBounded_closedSquare (c : Plane) (r : ℝ) :
     (mul_le_mul_of_nonneg_left hsup (Real.sqrt_nonneg 2))
 
 /-- The outside of a square about `c` contains the outside of a large square about the
-origin, hence is unbounded. -/
+origin, hence is unbounded.
+@isnad1 id=le.0h2v.s4.d037fe6179f9 from=translated src=- shape=07ffa0c8 vocab=a91e5388
+-/
 theorem beyondSquare_subset_compl_closedSquare (c : Plane) (r : ℝ) :
     beyondSquare (r + supNorm c) ⊆ (closedSquare c r)ᶜ := by
   intro x hx
@@ -436,18 +523,26 @@ theorem beyondSquare_subset_compl_closedSquare (c : Plane) (r : ℝ) :
   have h1 : supNorm x ≤ supDist x c + supNorm c := by simpa using supDist_triangle x c 0
   exact hx' (by linarith)
 
+/--
+@isnad1 id=not.0h2v.s5.fc4c27a9db15 from=translated src=- shape=812e170d vocab=f98a52a7
+-/
 theorem not_isBounded_compl_closedSquare (c : Plane) (r : ℝ) :
     ¬ Bornology.IsBounded (closedSquare c r)ᶜ := fun h =>
   Graph.not_isBounded_beyondSquare (r + supNorm c)
     (h.subset (beyondSquare_subset_compl_closedSquare c r))
 
-/-- Membership in the outside of a square, as membership in a translate of `beyondSquare`. -/
+/-- Membership in the outside of a square, as membership in a translate of `beyondSquare`.
+@isnad1 id=iff.0h3v.s6.928cbd340df9 from=translated src=- shape=3a41690d vocab=faeef326
+-/
 theorem mem_compl_closedSquare_iff (c : Plane) (r : ℝ) (x : Plane) :
     x ∈ (closedSquare c r)ᶜ ↔ x - c ∈ beyondSquare r := by
   rw [beyondSquare_eq_compl]
   simp only [mem_compl_iff, closedSquare, Set.mem_ofPred_eq, supDist_zero]
   exact Iff.rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.978962f8fd93 from=translated src=- shape=4be4d6c1 vocab=e795a71e
+-/
 theorem compl_closedSquare_eq_image (c : Plane) (r : ℝ) :
     (closedSquare c r)ᶜ = (fun x => x + c) '' beyondSquare r := by
   ext z
@@ -458,13 +553,17 @@ theorem compl_closedSquare_eq_image (c : Plane) (r : ℝ) :
   · rintro ⟨w, hw, rfl⟩
     simpa using hw
 
-/-- The plane outside a closed square is connected: a translate of `beyondSquare`. -/
+/-- The plane outside a closed square is connected: a translate of `beyondSquare`.
+@isnad1 id=isconnec.0h2v.s5.1304f5312752 from=translated src=- shape=11eca4f0 vocab=3fb83989
+-/
 theorem isConnected_compl_closedSquare (c : Plane) (r : ℝ) :
     IsConnected (closedSquare c r)ᶜ := by
   rw [compl_closedSquare_eq_image]
   exact (isConnected_beyondSquare r).image _ (by fun_prop)
 
-/-- The complement of the boundary is the open square together with the outside. -/
+/-- The complement of the boundary is the open square together with the outside.
+@isnad1 id=eq.0h2v.s6.257ad9bfdca7 from=translated src=- shape=663f85b6 vocab=869f4630
+-/
 theorem compl_frontier_closedSquare (c : Plane) (r : ℝ) :
     (frontier (closedSquare c r))ᶜ = openSquare c r ∪ (closedSquare c r)ᶜ := by
   ext z
@@ -488,7 +587,9 @@ private theorem openSquare_subset_closedSquare' (c : Plane) (r : ℝ) :
   fun z hz => show supDist z c ≤ r from le_of_lt hz
 
 /-- The frontier of the *open* square lies in the frontier of the closed one. That inclusion
-is all `lem:recognizing-a-component` needs. -/
+is all `lem:recognizing-a-component` needs.
+@isnad1 id=le.0h2v.s6.3bfb8b61801d from=translated src=- shape=c9b97c46 vocab=e5733cdb
+-/
 theorem frontier_openSquare_subset (c : Plane) (r : ℝ) :
     frontier (openSquare c r) ⊆ frontier (closedSquare c r) := by
   rw [(isOpen_openSquare c r).frontier_eq, frontier_closedSquare]
@@ -499,7 +600,9 @@ theorem frontier_openSquare_subset (c : Plane) (r : ℝ) :
 
 end Plane
 
-/-- **The inside of a square boundary is the open square.** -/
+/-- **The inside of a square boundary is the open square.**
+@isnad1 id=eq.0h2v.s5.6f6f7e167baa from=translated src=- shape=a74f2195 vocab=5fe85a03
+-/
 theorem inside_frontier_closedSquare (c : Plane) (r : ℝ) :
     inside (frontier (closedSquare c r)) = openSquare c r := by
   have hcompl := Plane.compl_frontier_closedSquare c r
@@ -538,7 +641,9 @@ theorem inside_frontier_closedSquare (c : Plane) (r : ℝ) :
     rw [hcomp₁ x hx]
     exact (Plane.isBounded_closedSquare c r).subset (Plane.openSquare_subset_closedSquare' c r)
 
-/-- **The outside of a square boundary is the complement of the closed square.** -/
+/-- **The outside of a square boundary is the complement of the closed square.**
+@isnad1 id=eq.0h2v.s5.133c8038457c from=translated src=- shape=26b1eb66 vocab=4f36a5b8
+-/
 theorem outside_frontier_closedSquare (c : Plane) (r : ℝ) :
     outside (frontier (closedSquare c r)) = (closedSquare c r)ᶜ := by
   have hin := inside_frontier_closedSquare c r
@@ -586,6 +691,9 @@ order as `squarePolygon`. -/
 def squarePieces (c : Plane) (r : ℝ) : List Piece :=
   [(sqNE c r, sqNW c r), (sqNW c r, sqSW c r), (sqSW c r, sqSE c r), (sqSE c r, sqNE c r)]
 
+/--
+@isnad1 id=eq.1h2v.s6.73b87f0711b0 from=translated src=- shape=dac7ef27 vocab=1426a2c3
+-/
 theorem cover_squarePieces (c : Plane) (hr : 0 ≤ r) :
     cover (squarePieces c r) = frontier (closedSquare c r) := by
   ext z
@@ -593,6 +701,9 @@ theorem cover_squarePieces (c : Plane) (hr : 0 ≤ r) :
   simp only [squarePieces, cover_cons, cover_nil, Piece.seg, mem_union, mem_empty_iff_false,
     or_false]
 
+/--
+@isnad1 id=nondeg.2h3v.s4.a28abddcc493 from=translated src=- shape=691b9782 vocab=8ca79e32
+-/
 theorem squarePieces_nondeg (c : Plane) (hr : 0 < r) :
     ∀ P ∈ squarePieces c r, P.Nondeg := by
   have hfst : ∀ p q : Plane, p 0 ≠ q 0 → p ≠ q := fun _ _ h e => h (by rw [e])
@@ -607,14 +718,18 @@ theorem squarePieces_nondeg (c : Plane) (hr : 0 < r) :
 
 /-! ### A vertical side crosses a horizontal side in one point -/
 
-/-- Membership in a real segment from two inequalities, in whichever order the ends come. -/
+/-- Membership in a real segment from two inequalities, in whichever order the ends come.
+@isnad1 id=mem.1h3v.s5.4eca7016e5ce from=translated src=- shape=63bbdd34 vocab=159c57c1
+-/
 theorem mem_segment_of_bounds {u v y : ℝ} (h : u ≤ y ∧ y ≤ v ∨ v ≤ y ∧ y ≤ u) :
     y ∈ segment ℝ u v := by
   rw [segment_eq_uIcc, Set.mem_uIcc]
   exact h
 
 /-- **A vertical segment and a horizontal segment that reach each other meet in exactly one
-point.** Both coordinates are pinned, one by each segment. -/
+point.** Both coordinates are pinned, one by each segment.
+@isnad1 id=eq.2h6v.s6.26016880d60f from=translated src=- shape=b5f94ea4 vocab=7834cded
+-/
 theorem meetOf_vert_horiz {x₀ y₀ u v s t : ℝ}
     (hy : y₀ ∈ segment ℝ u v) (hx : x₀ ∈ segment ℝ s t) :
     meetOf (Plane.mk x₀ u, Plane.mk x₀ v) (Plane.mk s y₀, Plane.mk t y₀) =
@@ -631,7 +746,9 @@ theorem meetOf_vert_horiz {x₀ y₀ u v s t : ℝ}
   · rintro rfl
     exact ⟨⟨rfl, hy⟩, ⟨rfl, hx⟩⟩
 
-/-- The same crossing with the two pieces in the other order. -/
+/-- The same crossing with the two pieces in the other order.
+@isnad1 id=eq.2h6v.s6.efe1c25a9573 from=translated src=- shape=88a91362 vocab=7834cded
+-/
 theorem meetOf_horiz_vert {x₀ y₀ u v s t : ℝ}
     (hx : x₀ ∈ segment ℝ s t) (hy : y₀ ∈ segment ℝ u v) :
     meetOf (Plane.mk s y₀, Plane.mk t y₀) (Plane.mk x₀ u, Plane.mk x₀ v) =
@@ -645,7 +762,9 @@ crossing: the two sides that produce it meet in a singleton.
 
 The two centres are not required to be distinct — for equal centres the two squares coincide
 and the two points produced are two of the four corners, which is what the blueprint's "or
-coincide" allows. -/
+coincide" allows.
+@isnad1 id=ex.2h3v.s6.1f825bdc1b0c from=translated src=- shape=e557efc6 vocab=6374f256
+-/
 theorem exists_two_meets {c₁ c₂ : Plane} {r : ℝ} (hr : 0 < r)
     (hd : Plane.supDist c₁ c₂ < r) :
     ∃ p q : Plane, p ≠ q ∧
@@ -731,7 +850,9 @@ point on the union to a vertex.  This is the whole bridge, and it is why `exists
 stated with singleton meets rather than with mere common points. -/
 
 /-- A transversal crossing of two source pieces is a **cut point** of any overlay built on
-them, hence a vertex of the overlay graph. -/
+them, hence a vertex of the overlay graph.
+@isnad1 id=mem.5h5v.s6.10f11e6340b4 from=translated src=- shape=e5f26def vocab=9a10480f
+-/
 theorem overlayGraph_mem_vertexSet_of_meetOf_eq_singleton {pieces : List Piece}
     {points : List Plane} (hnd : ∀ P ∈ pieces, P.Nondeg) (hMeets : MeetsAreCut pieces points)
     {P Q : Piece} (hP : P ∈ pieces) (hQ : Q ∈ pieces) {p : Plane}
@@ -755,7 +876,9 @@ theorem overlayGraph_mem_vertexSet_of_meetOf_eq_singleton {pieces : List Piece}
   exact overlayGraph_mem_vertexSet_of_mem_cover hnd (hup ▸ hu)
     (Set.mem_iUnion₂.2 ⟨P, hP, hp.1⟩)
 
-/-- The crossing point lies on both square boundaries. -/
+/-- The crossing point lies on both square boundaries.
+@isnad1 id=and.4h6v.s7.1f2a7eec4c57 from=translated src=- shape=8f295d6a vocab=2c57e5dc
+-/
 theorem mem_frontier_of_meetOf_eq_singleton {c₁ c₂ : Plane} {r : ℝ} (hr : 0 ≤ r)
     {P Q : Piece} {p : Plane} (hP : P ∈ squarePieces c₁ r) (hQ : Q ∈ squarePieces c₂ r)
     (h : meetOf P Q = {p}) :
@@ -767,7 +890,9 @@ theorem mem_frontier_of_meetOf_eq_singleton {c₁ c₂ : Plane} {r : ℝ} (hr : 
   · rw [← cover_squarePieces c₂ hr]
     exact Set.mem_iUnion₂.2 ⟨Q, hQ, hp.2⟩
 
-/-- **The blueprint's statement**: the two boundaries meet in at least two points. -/
+/-- **The blueprint's statement**: the two boundaries meet in at least two points.
+@isnad1 id=ex.2h3v.s7.0aea28a8ebac from=translated src=- shape=31288353 vocab=aac62931
+-/
 theorem exists_two_frontier_inter {c₁ c₂ : Plane} {r : ℝ} (hr : 0 < r)
     (hd : Plane.supDist c₁ c₂ < r) :
     ∃ p q : Plane, p ≠ q ∧
@@ -785,7 +910,9 @@ wave splits one overlay into the pieces it unions — is that `p` and `q` are ve
 *sub*graphs `Γ` and `Γ'` separately.  The extra fact needed for that is recorded by
 `exists_two_cut_points` below: `p` and `q` are cut points lying on each of the two boundaries,
 so `overlayGraph_mem_vertexSet_of_mem_cover` places them in the vertex set of whichever
-sub-overlay covers the boundary in question. -/
+sub-overlay covers the boundary in question.
+@isnad1 id=ex.6h5v.s7.3468ba954de5 from=translated src=- shape=56a0af6e vocab=ee5c8300
+-/
 theorem exists_two_common_vertices {pieces : List Piece} {points : List Plane}
     (hnd : ∀ P ∈ pieces, P.Nondeg) (hMeets : MeetsAreCut pieces points)
     {c₁ c₂ : Plane} {r : ℝ} (hr : 0 < r) (hd : Plane.supDist c₁ c₂ < r)
@@ -805,7 +932,9 @@ points of two neighbouring squares in the vertex sets of the two graphs being un
 that the edge must be pinned inside the boundary it came from.  The three lemmas below do that;
 the first two are general facts about `subdivide` whose home is `Schoenflies/Subdivide.lean`. -/
 
-/-- Subdividing is monotone in the piece list. -/
+/-- Subdividing is monotone in the piece list.
+@isnad1 id=mem.2h4v.s5.2d57fc3fc307 from=translated src=- shape=68c751df vocab=7bb750d2
+-/
 theorem subdivide_mono : ∀ (points : List Plane) {l pieces : List Piece},
     (∀ P ∈ l, P ∈ pieces) → ∀ Q ∈ subdivide l points, Q ∈ subdivide pieces points := by
   intro points
@@ -823,7 +952,9 @@ theorem subdivide_mono : ∀ (points : List Plane) {l pieces : List Piece},
 /-- **A cut point on a source piece is an end of an overlay edge inside that source piece.**
 This is `overlayGraph_mem_vertexSet_of_mem_cover` with the witnessing edge named and pinned:
 the edge lies inside the prescribed source segment, so a subgraph spanned by the edges inside
-that segment has the point among its vertices. -/
+that segment has the point among its vertices.
+@isnad1 id=ex.4h4v.s6.16e6a819b75e from=translated src=- shape=0dfd2200 vocab=f0036fd1
+-/
 theorem exists_overlayPiece_end_subset {pieces : List Piece} {points : List Plane}
     (hnd : ∀ P ∈ pieces, P.Nondeg) {x : Plane} (hxp : x ∈ points)
     {P₀ : Piece} (hP₀ : P₀ ∈ pieces) (hx : x ∈ P₀.seg) :
@@ -852,7 +983,9 @@ theorem exists_overlayPiece_end_subset {pieces : List Piece} {points : List Plan
 
 /-- The localizable form: two distinct **cut points**, each lying on both square boundaries.
 Feed a cut point together with "it lies on the union carried by `Γ`" to
-`overlayGraph_mem_vertexSet_of_mem_cover` to get a vertex of `Γ`. -/
+`overlayGraph_mem_vertexSet_of_mem_cover` to get a vertex of `Γ`.
+@isnad1 id=ex.6h5v.s8.ebd30a7a9db5 from=translated src=- shape=7a2d6892 vocab=7e5b8acb
+-/
 theorem exists_two_cut_points {pieces : List Piece} {points : List Plane}
     (hnd : ∀ P ∈ pieces, P.Nondeg) (hMeets : MeetsAreCut pieces points)
     {c₁ c₂ : Plane} {r : ℝ} (hr : 0 < r) (hd : Plane.supDist c₁ c₂ < r)
@@ -895,21 +1028,36 @@ clause. -/
 /-- The `i`-th point of the even partition of `[0,1]` into `n` pieces. -/
 noncomputable def sample (n i : ℕ) : ℝ := (i : ℝ) / n
 
+/--
+@isnad1 id=eq.0h1v.s4.09ac2e07ad99 from=translated src=- shape=8fc7241c vocab=d444cf95
+-/
 @[simp] theorem sample_zero (n : ℕ) : sample n 0 = 0 := by simp [sample]
 
+/--
+@isnad1 id=eq.1h1v.s4.653b5d44ad0e from=translated src=- shape=9d19c5de vocab=91055cfe
+-/
 theorem sample_last {n : ℕ} (hn : 0 < n) : sample n n = 1 := by
   have hne : (n : ℝ) ≠ 0 := Nat.cast_ne_zero.2 hn.ne'
   rw [sample, div_self hne]
 
+/--
+@isnad1 id=le.0h2v.s4.966bcb071ee5 from=translated src=- shape=5ffe46ab vocab=223de52c
+-/
 theorem sample_nonneg (n i : ℕ) : 0 ≤ sample n i :=
   div_nonneg (Nat.cast_nonneg i) (Nat.cast_nonneg n)
 
+/--
+@isnad1 id=le.1h3v.s4.c72754a1eced from=translated src=- shape=a8e0f8bd vocab=223de52c
+-/
 theorem sample_mono {n i j : ℕ} (h : i ≤ j) : sample n i ≤ sample n j := by
   have hij : (i : ℝ) ≤ j := by exact_mod_cast h
   have key : sample n j - sample n i = ((j : ℝ) - i) / n := by simp only [sample]; ring
   have hpos : 0 ≤ ((j : ℝ) - i) / n := div_nonneg (by linarith) (Nat.cast_nonneg n)
   linarith [key, hpos]
 
+/--
+@isnad1 id=lt.2h3v.s4.57c923122527 from=translated src=- shape=7b8314a4 vocab=91055cfe
+-/
 theorem sample_strictMono {n i j : ℕ} (hn : 0 < n) (h : i < j) :
     sample n i < sample n j := by
   have hnR : (0 : ℝ) < n := by exact_mod_cast hn
@@ -918,15 +1066,23 @@ theorem sample_strictMono {n i j : ℕ} (hn : 0 < n) (h : i < j) :
   have hpos : 0 < ((j : ℝ) - i) / n := div_pos (by linarith) hnR
   linarith [key, hpos]
 
+/--
+@isnad1 id=le.1h2v.s4.cec049d6568a from=translated src=- shape=e926c72c vocab=223de52c
+-/
 theorem sample_le_one {n i : ℕ} (h : i ≤ n) : sample n i ≤ 1 := by
   rcases Nat.eq_zero_or_pos n with rfl | hn
   · simp [sample, Nat.le_zero.1 h]
   · rw [← sample_last hn]; exact sample_mono h
 
+/--
+@isnad1 id=mem.1h2v.s4.57596b076326 from=translated src=- shape=d747a3c7 vocab=d8d7f7d4
+-/
 theorem sample_mem_I {n i : ℕ} (h : i ≤ n) : sample n i ∈ I :=
   ⟨sample_nonneg n i, sample_le_one h⟩
 
-/-- Consecutive samples are `1/n` apart. -/
+/-- Consecutive samples are `1/n` apart.
+@isnad1 id=eq.0h2v.s5.a6a864356277 from=translated src=- shape=a902a0d7 vocab=493aebf4
+-/
 theorem sample_succ_sub (n i : ℕ) :
     sample n (i + 1) - sample n i = 1 / n := by
   simp only [sample, Nat.cast_add, Nat.cast_one]
@@ -934,17 +1090,24 @@ theorem sample_succ_sub (n i : ℕ) :
   norm_num
 
 /-- The fine partition refines the coarse one: the multiples of `m` among the `k*m` samples
-are the `k` samples. -/
+are the `k` samples.
+@isnad1 id=eq.1h3v.s5.af9520b478d2 from=translated src=- shape=8e121d41 vocab=95051ee7
+-/
 theorem sample_mul {k m i : ℕ} (hm : 0 < m) : sample (k * m) (i * m) = sample k i := by
   have hmR : (m : ℝ) ≠ 0 := Nat.cast_ne_zero.2 hm.ne'
   simp only [sample, Nat.cast_mul]
   rw [mul_comm (i : ℝ) (m : ℝ), mul_comm (k : ℝ) (m : ℝ), mul_div_mul_left _ _ hmR]
 
+/--
+@isnad1 id=le.1h2v.s5.2bc785de7656 from=translated src=- shape=a749a2b7 vocab=fdb94bfd
+-/
 theorem Icc_sample_subset_I {n i : ℕ} (h : i + 1 ≤ n) :
     Icc (sample n i) (sample n (i + 1)) ⊆ I := fun _ hs =>
   ⟨le_trans (sample_nonneg n i) hs.1, le_trans hs.2 (sample_le_one h)⟩
 
-/-- Every parameter lies in one of the `n` closed cells of the even partition. -/
+/-- Every parameter lies in one of the `n` closed cells of the even partition.
+@isnad1 id=ex.2h2v.s5.b04c8812d76b from=translated src=- shape=d54379f0 vocab=c02116db
+-/
 theorem exists_mem_Icc_sample {n : ℕ} (hn : 0 < n) {s : ℝ} (hs : s ∈ I) :
     ∃ i < n, s ∈ Icc (sample n i) (sample n (i + 1)) := by
   have hnR : (0 : ℝ) < n := by exact_mod_cast hn
@@ -970,7 +1133,9 @@ theorem exists_mem_Icc_sample {n : ℕ} (hn : 0 < n) {s : ℝ} (hs : s ∈ I) :
 /-- **The uniform-continuity partition.**  For every `ε > 0` and every prescribed `k > 0` there
 is a multiple `k * m` of `k` such that on each cell of the even partition into `k * m` pieces
 the map moves by less than `ε`.  Taking `k = 1` gives the plain statement; taking `k` to be the
-size of a coarser partition makes this one a refinement of it, by `sample_mul`. -/
+size of a coarser partition makes this one a refinement of it, by `sample_mul`.
+@isnad1 id=ex.3h3v.s7.f57ee3369ac5 from=translated src=- shape=111d3b90 vocab=0e97470b
+-/
 theorem exists_mesh {α : ℝ → Plane} (hα : ContinuousOn α I) {ε : ℝ} (hε : 0 < ε)
     (k : ℕ) (hk : 0 < k) :
     ∃ m : ℕ, 0 < m ∧ ∀ i < k * m, ∀ s ∈ Icc (sample (k * m) i) (sample (k * m) (i + 1)),
@@ -1006,15 +1171,23 @@ theorem exists_mesh {α : ℝ → Plane} (hα : ContinuousOn α I) {ε : ℝ} (h
 def subarcCell (α : ℝ → Plane) (n i : ℕ) : Set Plane :=
   α '' Icc (sample n i) (sample n (i + 1))
 
+/--
+@isnad1 id=iscompac.2h3v.s6.b6be734f098d from=translated src=- shape=92755f3e vocab=c17216af
+-/
 theorem isCompact_subarcCell {α : ℝ → Plane} (hα : ContinuousOn α I) {n i : ℕ}
     (h : i + 1 ≤ n) : IsCompact (subarcCell α n i) :=
   isCompact_image_of_subset_I hα (Icc_sample_subset_I h) isClosed_Icc
 
+/--
+@isnad1 id=nonempty.0h3v.s3.98fd75dfbca3 from=translated src=- shape=815c71e3 vocab=c6ec377c
+-/
 theorem subarcCell_nonempty {α : ℝ → Plane} {n i : ℕ} : (subarcCell α n i).Nonempty :=
   ⟨α (sample n i), ⟨sample n i, ⟨le_refl _, sample_mono (Nat.le_succ i)⟩, rfl⟩⟩
 
 /-- Nonadjacent cells of an injective parametrisation are disjoint: their parameter intervals
-are, and injectivity carries that to the images. -/
+are, and injectivity carries that to the images.
+@isnad1 id=disjoint.4h4v.s6.1b10c07525ac from=translated src=- shape=3a29e61b vocab=d6856a10
+-/
 theorem disjoint_subarcCell {α : ℝ → Plane} (hinj : InjOn α I) {n i j : ℕ}
     (hi : i + 1 ≤ n) (hj : j + 1 ≤ n) (hij : i + 2 ≤ j) :
     Disjoint (subarcCell α n i) (subarcCell α n j) := by
@@ -1031,7 +1204,9 @@ theorem disjoint_subarcCell {α : ℝ → Plane} (hinj : InjOn α I) {n i j : �
   exact absurd (lt_of_le_of_lt h2 (lt_of_le_of_lt h1 hlt)) (lt_irrefl _)
 
 /-- **Nonadjacent subarcs are at positive distance** — the blueprint's `δ'`.  A finite family
-of positive separations, merged by `exists_pos_forall_of_finite`. -/
+of positive separations, merged by `exists_pos_forall_of_finite`.
+@isnad1 id=ex.2h2v.s7.b136d5f5ac54 from=translated src=- shape=97f37f0f vocab=50490432
+-/
 theorem exists_pos_dist_nonadjacent {α : ℝ → Plane} (hα : ContinuousOn α I) (hinj : InjOn α I)
     {n : ℕ} :
     ∃ ρ > 0, ∀ i < n, ∀ j < n, i + 2 ≤ j →
@@ -1064,7 +1239,9 @@ theorem exists_pos_dist_nonadjacent {α : ℝ → Plane} (hα : ContinuousOn α 
 /-- **Every point of the arc lies in or on one of the small squares.**  This is what makes the
 outer face of the assembled graph disjoint from the arc: a point of the arc is either inside
 one of the squares — and then separated from the outer face by that square's boundary cycle —
-or on one, and then it is a point of the graph. -/
+or on one, and then it is a point of the graph.
+@isnad1 id=le.2h3v.s7.b86d0e497f42 from=translated src=- shape=d6d25370 vocab=43cf8715
+-/
 theorem image_subset_iUnion_closedSquare {α : ℝ → Plane} {n : ℕ} (hn : 0 < n) {ε : ℝ}
     (hmesh : ∀ i < n, ∀ s ∈ Icc (sample n i) (sample n (i + 1)),
       dist (α s) (α (sample n i)) < ε) :

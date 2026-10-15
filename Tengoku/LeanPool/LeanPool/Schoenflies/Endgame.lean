@@ -109,7 +109,9 @@ hoisted, so these should travel with it. -/
 `IsHomeoOn` between honest self-maps of the plane: extend both by the identity.
 
 This is the bridge from `lem:jordan-circle`, which produces `Nonempty (↥C ≃ₜ ↥S)`, to the
-unbundled language everything downstream is written in. -/
+unbundled language everything downstream is written in.
+@isnad1 id=ex.0h3v.s9.6379090fca24 from=translated src=- shape=019b7908 vocab=22e57525
+-/
 theorem exists_isHomeoOn_of_homeomorph {S T : Set Plane} (e : ↥S ≃ₜ ↥T) :
     ∃ f g : Plane → Plane, IsHomeoOn f g S T ∧ ∀ (z : Plane) (hz : z ∈ S),
       f z = (e ⟨z, hz⟩ : Plane) := by
@@ -154,11 +156,16 @@ noncomputable def homeomorphOfUniv (h : IsHomeoOn f g univ univ) : Plane ≃ₜ 
   continuous_toFun := continuousOn_univ.1 h.continuousOn
   continuous_invFun := continuousOn_univ.1 h.continuousOn_inv
 
+/--
+@isnad1 id=eq.1h3v.s8.4c1a42f8b2d9 from=translated src=- shape=c0ab5e2e vocab=7fa5fda6
+-/
 @[simp] theorem homeomorphOfUniv_apply (h : IsHomeoOn f g univ univ) (z : Plane) :
     h.homeomorphOfUniv z = f z := rfl
 
 /-- The inverse of a restricted homeomorphism undoes it on images: if `f` carries `A ⊆ S` onto
-`A'`, then `g` carries `A'` back onto `A`. -/
+`A'`, then `g` carries `A'` back onto `A`.
+@isnad1 id=eq.3h6v.s5.b48ff4705ab0 from=translated src=- shape=979cb846 vocab=752b28ad
+-/
 theorem image_inv_eq (h : IsHomeoOn f g S T) {A A' : Set Plane} (hA : A ⊆ S)
     (hA' : f '' A = A') : g '' A' = A := by
   rw [← hA', Set.image_image]
@@ -171,7 +178,9 @@ onto `T` carrying the disjoint piece `A` onto `A'`, it carries `B` onto `T ∖ A
 
 Used three times below: `Θ` carries `Int(C')` onto `Q ∖ ∂Q`, and each of the interior and the
 exterior extension carries a region onto the corresponding region — which is exactly what makes
-the two pasted pieces of `thm:main` injective together. -/
+the two pasted pieces of `thm:main` injective together.
+@isnad1 id=eq.3h5v.s6.8a1c5226a9a6 from=translated src=- shape=350e3335 vocab=8357066a
+-/
 theorem image_eq_diff_of_bijOn_union {F : Plane → Plane} {A B T A' : Set Plane}
     (hF : BijOn F (A ∪ B) T) (hA : F '' A = A') (hdisj : Disjoint A B) :
     F '' B = T \ A' := by
@@ -198,10 +207,16 @@ closed interior and by `F_ext` on the closed exterior". -/
 noncomputable def paste (S : Set Plane) (f₁ f₂ : Plane → Plane) : Plane → Plane :=
   fun z => if z ∈ S then f₁ z else f₂ z
 
+/--
+@isnad1 id=eq.1h4v.s5.059de10bf07f from=translated src=- shape=565f0fee vocab=0dd86268
+-/
 theorem paste_of_mem {S : Set Plane} {f₁ f₂ : Plane → Plane} {z : Plane} (hz : z ∈ S) :
     paste S f₁ f₂ z = f₁ z := by
   classical exact ite_eq_left hz
 
+/--
+@isnad1 id=eq.1h4v.s5.5375b57fcd1a from=translated src=- shape=358a0cf2 vocab=0dd86268
+-/
 theorem paste_of_notMem {S : Set Plane} {f₁ f₂ : Plane → Plane} {z : Plane} (hz : z ∉ S) :
     paste S f₁ f₂ z = f₂ z := by
   classical exact ite_eq_right hz
@@ -213,7 +228,9 @@ The blueprint's `Q = [-1,1]²` is `Plane.closedSquare 0 1` and its boundary `S =
 from the closed square leaves the open square, which is where `lem:square-point-mover` wants
 its two points. -/
 
-/-- `Q ∖ S = Q°`. -/
+/-- `Q ∖ S = Q°`.
+@isnad1 id=eq.0h0v.s7.4630241f1913 from=translated src=- shape=2468adae vocab=124338e4
+-/
 theorem closedSquare_sdiff_modelCurve :
     Plane.closedSquare 0 1 \ modelCurve = Plane.openSquare 0 1 := by
   rw [modelCurve_eq_frontier, Plane.frontier_closedSquare]
@@ -225,7 +242,9 @@ theorem closedSquare_sdiff_modelCurve :
     have h' : Plane.supDist z 0 < 1 := h
     exact ⟨h'.le, ne_of_lt h'⟩
 
-/-- A mover of the square, read as a restricted homeomorphism. -/
+/-- A mover of the square, read as a restricted homeomorphism.
+@isnad1 id=ishomeoo.1h4v.s4.9b176df308c6 from=translated src=- shape=2288fe4f vocab=294d9186
+-/
 theorem Plane.IsSquareMover.isHomeoOn {c : Plane} {r : ℝ} {M N : Plane → Plane}
     (h : Plane.IsSquareMover c r M N) :
     IsHomeoOn M N (Plane.closedSquare c r) (Plane.closedSquare c r) where
@@ -259,21 +278,35 @@ identity. The pastings below use these constantly. -/
 
 variable {C C' : Set Plane}
 
+/--
+@isnad1 id=disjoint.0h1v.s5.b6704a7b714e from=translated src=- shape=b357b47d vocab=6c447768
+-/
 theorem disjoint_curve_inside (C : Set Plane) : Disjoint C (inside C) :=
   Set.disjoint_left.2 fun _ hzC hz => hz.1 hzC
 
+/--
+@isnad1 id=disjoint.0h1v.s5.ced643c5a86f from=translated src=- shape=b357b47d vocab=054a23fa
+-/
 theorem disjoint_curve_outside (C : Set Plane) : Disjoint C (outside C) :=
   Set.disjoint_left.2 fun _ hzC hz => hz.1 hzC
 
+/--
+@isnad1 id=eq.0h1v.s4.40c70d312338 from=translated src=- shape=e742a233 vocab=6c42d680
+-/
 theorem union_inside_sdiff (C : Set Plane) : (C ∪ inside C) \ C = inside C :=
   Set.union_sdiff_cancel_left (Set.disjoint_iff_inter_eq_empty.1 (disjoint_curve_inside C)).le
 
+/--
+@isnad1 id=eq.0h1v.s4.0f1a7e6f4acf from=translated src=- shape=e742a233 vocab=c0446582
+-/
 theorem union_outside_sdiff (C : Set Plane) : (C ∪ outside C) \ C = outside C :=
   Set.union_sdiff_cancel_left (Set.disjoint_iff_inter_eq_empty.1 (disjoint_curve_outside C)).le
 
 /-- An extension of a boundary homeomorphism to the closed interiors carries the interior onto
 the interior. The blueprint never says this; the pointed extension and `thm:main` both need
-it. -/
+it.
+@isnad1 id=eq.3h5v.s6.0c43cbe524f6 from=translated src=- shape=bb6e1055 vocab=2d5015c0
+-/
 theorem image_inside_eq {F G f : Plane → Plane}
     (hF : IsHomeoOn F G (C ∪ inside C) (C' ∪ inside C')) (hf : EqOn F f C) (hfC : f '' C = C') :
     F '' inside C = inside C' := by
@@ -281,7 +314,9 @@ theorem image_inside_eq {F G f : Plane → Plane}
   have := image_eq_diff_of_bijOn_union hF.bijOn hFC (disjoint_curve_inside C)
   rwa [union_inside_sdiff] at this
 
-/-- The same for the closed exteriors. -/
+/-- The same for the closed exteriors.
+@isnad1 id=eq.3h5v.s6.cb217b452cf1 from=translated src=- shape=bb6e1055 vocab=ed25c18e
+-/
 theorem image_outside_eq {F G f : Plane → Plane}
     (hF : IsHomeoOn F G (C ∪ outside C) (C' ∪ outside C')) (hf : EqOn F f C)
     (hfC : f '' C = C') : F '' outside C = outside C' := by
@@ -296,7 +331,9 @@ The blueprint's proof verbatim: choose `h : C' → S` by `lem:jordan-circle`, ex
 
 /-- **`prop:square-reduction` (reduction to the square).** If every boundary homeomorphism from
 a Jordan curve to `S` has a closed-interior extension, then every homeomorphism `f : C → C'`
-between Jordan curves extends to a homeomorphism `C ∪ Int(C) → C' ∪ Int(C')`. -/
+between Jordan curves extends to a homeomorphism `C ∪ Int(C) → C' ∪ Int(C')`.
+@isnad1 id=ex.4h4v.s6.792790969166 from=translated src=- shape=1420cb58 vocab=9d0721d0
+-/
 theorem square_reduction (hsq : SquareExtension) {f g : Plane → Plane} (hC : IsJordanCurve C)
     (hC' : IsJordanCurve C') (hfg : IsHomeoOn f g C C') :
     ∃ F G : Plane → Plane, IsHomeoOn F G (C ∪ inside C) (C' ∪ inside C') ∧ EqOn F f C := by
@@ -316,7 +353,9 @@ theorem square_reduction (hsq : SquareExtension) {f g : Plane → Plane} (hC : I
 `f : C → C'` between Jordan curves extends to a homeomorphism of the closed interiors.
 
 Under the standing assumption `SquareExtension` this is literally `prop:square-reduction`; it
-is recorded under its own name because everything downstream cites it by that name. -/
+is recorded under its own name because everything downstream cites it by that name.
+@isnad1 id=ex.4h4v.s6.792790969166 from=translated src=- shape=1420cb58 vocab=9d0721d0
+-/
 theorem closed_interior_extension (hsq : SquareExtension) {f g : Plane → Plane}
     (hC : IsJordanCurve C) (hC' : IsJordanCurve C') (hfg : IsHomeoOn f g C C') :
     ∃ F G : Plane → Plane, IsHomeoOn F G (C ∪ inside C) (C' ∪ inside C') ∧ EqOn F f C :=
@@ -334,7 +373,9 @@ square, where `lem:square-point-mover` lives. -/
 extension `H` with `H(a) = b`.
 
 This is `Schoenflies.PointedInteriorExtension`, the hypothesis of
-`Schoenflies.exterior_extension`, discharged. -/
+`Schoenflies.exterior_extension`, discharged.
+@isnad1 id=pointedi.1h0v.s1.e2ee51eadd88 from=translated src=- shape=1d48f1ac vocab=a209d646
+-/
 theorem pointed_extension (hsq : SquareExtension) : PointedInteriorExtension := by
   intro C C' f g a b hC hC' hfg ha hb
   -- The unpointed extension, and a square chart of the target disc.
@@ -378,7 +419,9 @@ second, so only `SquareExtension` survives. -/
 
 /-- **`prop:exterior-extension` (closed-exterior extension)**, with everything discharged but
 the square extension: every homeomorphism between two Jordan curves extends to a homeomorphism
-of their closed exteriors. -/
+of their closed exteriors.
+@isnad1 id=ex.4h4v.s6.4c684a358848 from=translated src=- shape=1420cb58 vocab=7043ba2d
+-/
 theorem exterior_extension_of_squareExtension (hsq : SquareExtension) {f g : Plane → Plane}
     (hC : IsJordanCurve C) (hC' : IsJordanCurve C') (hfg : IsHomeoOn f g C C') :
     ∃ F G : Plane → Plane, IsHomeoOn F G (C ∪ outside C) (C' ∪ outside C') ∧ EqOn F f C :=
@@ -391,17 +434,23 @@ leaves implicit are that the closed interior and the closed exterior are *closed
 closures of the two regions, `IsRegionOf.closure_eq`) and that the pasted map is injective,
 which is `image_inside_eq` and `image_outside_eq`. -/
 
-/-- The closed interior of a Jordan curve is closed: it is the closure of the interior. -/
+/-- The closed interior of a Jordan curve is closed: it is the closure of the interior.
+@isnad1 id=isclosed.1h1v.s5.1836f546993e from=translated src=- shape=f8777f39 vocab=2d412c49
+-/
 theorem isClosed_union_inside (hC : IsSeparating C) : IsClosed (C ∪ inside C) := by
   rw [Set.union_comm, ← (IsRegionOf.inside C).closure_eq hC]
   exact isClosed_closure
 
-/-- The closed exterior of a Jordan curve is closed. -/
+/-- The closed exterior of a Jordan curve is closed.
+@isnad1 id=isclosed.1h1v.s5.fccf7ea9a7f1 from=translated src=- shape=f8777f39 vocab=a29d0c80
+-/
 theorem isClosed_union_outside (hC : IsSeparating C) : IsClosed (C ∪ outside C) := by
   rw [Set.union_comm, ← (IsRegionOf.outside C).closure_eq hC]
   exact isClosed_closure
 
-/-- The two closed sides cover the plane. -/
+/-- The two closed sides cover the plane.
+@isnad1 id=eq.0h1v.s4.da1f3f8693c5 from=translated src=- shape=1091e209 vocab=2a3c9a54
+-/
 theorem union_inside_union_outside (C : Set Plane) :
     (C ∪ inside C) ∪ (C ∪ outside C) = univ := by
   refine Set.eq_univ_of_forall fun z => ?_
@@ -410,7 +459,9 @@ theorem union_inside_union_outside (C : Set Plane) :
   · have hz' : z ∈ inside C ∪ outside C := by rw [inside_union_outside]; exact hz
     exact hz'.imp Or.inr Or.inr
 
-/-- A point outside the closed interior is exterior. -/
+/-- A point outside the closed interior is exterior.
+@isnad1 id=mem.1h2v.s4.103be6116827 from=translated src=- shape=83eabf90 vocab=ab5a7046
+-/
 theorem mem_outside_of_notMem_union_inside {z : Plane} (hz : z ∉ C ∪ inside C) :
     z ∈ outside C := by
   have hzC : z ∉ C := fun h => hz (Or.inl h)
@@ -422,7 +473,9 @@ Jordan curves extends to a homeomorphism of the whole plane.
 
 This form takes `Schoenflies.SquareExtension` as its sole auxiliary theorem. It is the unbundled
 form; `Schoenflies.jordan_schoenflies_homeomorph_of_squareExtension` packages the result as a
-self-homeomorphism of the plane. -/
+self-homeomorphism of the plane.
+@isnad1 id=ex.4h4v.s5.280ca420ab01 from=translated src=- shape=b3effcaf vocab=b0e36606
+-/
 theorem jordan_schoenflies_of_squareExtension (hsq : SquareExtension)
     {f g : Plane → Plane} (hC : IsJordanCurve C)
     (hC' : IsJordanCurve C') (hfg : IsHomeoOn f g C C') :
@@ -499,7 +552,9 @@ theorem jordan_schoenflies_of_squareExtension (hsq : SquareExtension)
 
 /-- **`thm:main`**, with the extension packaged as a self-homeomorphism of the plane. This is
 the blueprint's statement: *there is a homeomorphism `F : ℝ² → ℝ²` whose restriction to `C` is
-`f`*. -/
+`f`*.
+@isnad1 id=ex.4h4v.s8.3e1c53e6df44 from=translated src=- shape=91152817 vocab=0d4facf9
+-/
 theorem jordan_schoenflies_homeomorph_of_squareExtension (hsq : SquareExtension)
     {f g : Plane → Plane}
     (hC : IsJordanCurve C) (hC' : IsJordanCurve C') (hfg : IsHomeoOn f g C C') :
@@ -508,7 +563,9 @@ theorem jordan_schoenflies_homeomorph_of_squareExtension (hsq : SquareExtension)
   exact ⟨hFG.homeomorphOfUniv, hFeq⟩
 
 /-- **`thm:main`**, taking the boundary homeomorphism in bundled form, which is how the
-blueprint states it: `f : C → C'` a homeomorphism of subspaces. -/
+blueprint states it: `f : C → C'` a homeomorphism of subspaces.
+@isnad1 id=ex.3h3v.s9.e4c52c70995b from=translated src=- shape=f36f7141 vocab=95c3b11e
+-/
 theorem jordan_schoenflies_of_homeomorph_of_squareExtension (hsq : SquareExtension)
     (hC : IsJordanCurve C)
     (hC' : IsJordanCurve C') (e : ↥C ≃ₜ ↥C') :

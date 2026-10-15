@@ -40,17 +40,26 @@ private lemma isHom_def [Preorder A] (φ : ℝ → Chain A) : IsHom φ ↔ ∀ i
   rw [←isVar_iff_isHom]
   rfl
 
+/--
+@isnad1 id=ishom.0h3v.s5.c4148e35c3ca from=translated src=- shape=83e6c098 vocab=42abf072
+-/
 @[fun_prop]
 lemma isHom_apply [Preorder A] (i : ℕ) : IsHom (fun (f : Chain A) ↦ f i) := by
   rw [QuasiBorelSpace.isHom_def]
   simp_all
 
+/--
+@isnad1 id=ishom.1h5v.s5.7390c2492318 from=translated src=- shape=01565171 vocab=42abf072
+-/
 @[fun_prop]
 lemma isHom_pi [Preorder B] {f : A → Chain B} (hf : ∀ i, IsHom (f · i)) : IsHom f := by
   rw [QuasiBorelSpace.isHom_def]
   simp only [isHom_def]
   fun_prop
 
+/--
+@isnad1 id=iff.0h5v.s5.05342c98bd15 from=translated src=- shape=07b03ae5 vocab=42abf072
+-/
 @[simp]
 lemma isHom_iff [Preorder B] {f : A → Chain B} : IsHom f ↔ ∀i, IsHom (f · i) := by
   apply Iff.intro

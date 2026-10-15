@@ -83,19 +83,27 @@ distance scaling along a segment. -/
 
 namespace Plane
 
+/--
+@isnad1 id=eq.0h2v.s6.c1b8ea62ea7a from=translated src=- shape=81171e50 vocab=57073119
+-/
 theorem supNorm_smul (a : ℝ) (x : Plane) : supNorm (a • x) = |a| * supNorm x := by
   have h0 : (a • x) 0 = a * x 0 := by simp
   have h1 : (a • x) 1 = a * x 1 := by simp
   simp only [supNorm, h0, h1, abs_mul]
   exact (mul_max_of_nonneg _ _ (abs_nonneg a)).symm
 
+/--
+@isnad1 id=eq.0h3v.s7.f1d46c074c11 from=translated src=- shape=de53a27a vocab=f416a122
+-/
 theorem supDist_add_smul (c u : Plane) (t : ℝ) : supDist (c + t • u) c = |t| * supNorm u := by
   have h : c + t • u - c = t • u := by abel
   rw [supDist, h, supNorm_smul]
 
 /-- Everything on the segment from `c` to `p` except `p` itself is strictly nearer to `c` than
 `p` is, in the sup metric. This is why a radial segment meets the frame of its square only at
-its far end. -/
+its far end.
+@isnad1 id=lt.3h3v.s7.5f6778373893 from=translated src=- shape=68db2247 vocab=43e4e395
+-/
 theorem supDist_lt_of_mem_segment {c p x : Plane} (hpc : 0 < supDist p c)
     (hx : x ∈ segment ℝ c p) (hne : x ≠ p) : supDist x c < supDist p c := by
   rw [segment_eq_image' ℝ c p] at hx
@@ -112,10 +120,15 @@ theorem supDist_lt_of_mem_segment {c p x : Plane} (hpc : 0 < supDist p c)
   rw [hval]
   nlinarith
 
-/-- A radial segment stays inside its square. -/
+/-- A radial segment stays inside its square.
+@isnad1 id=le.0h2v.s3.062e9be70d66 from=translated src=- shape=74d6d0d6 vocab=f20da9da
+-/
 theorem openSquare_subset_closedSquare (c : Plane) (r : ℝ) :
     openSquare c r ⊆ closedSquare c r := fun x hx => show supDist x c ≤ r from le_of_lt hx
 
+/--
+@isnad1 id=le.2h3v.s7.3b1cc386de8c from=translated src=- shape=763dc113 vocab=1047658a
+-/
 theorem segment_subset_closedSquare {c p : Plane} {r : ℝ} (hr : 0 ≤ r)
     (hpc : supDist p c ≤ r) : segment ℝ c p ⊆ closedSquare c r :=
   (convex_closedSquare c r).segment_subset (mem_closedSquare_self c hr) hpc
@@ -123,7 +136,9 @@ theorem segment_subset_closedSquare {c p : Plane} {r : ℝ} (hr : 0 ≤ r)
 /-- **Two radials meet only at the centre.** Two segments from the centres of two squares of a
 common radius `r` to points of their frames meet only where they can: if the centres are
 distinct the squares are disjoint, and if they agree the two far ends are pinned by the sup
-distance, which is injective along a radius. -/
+distance, which is injective along a radius.
+@isnad1 id=eq.7h6v.s8.776cb228f1f0 from=translated src=- shape=11e57c81 vocab=37875f2e
+-/
 theorem radial_meet {c c' p p' z : Plane} {r : ℝ} (hr : 0 < r) (hp : supDist p c = r)
     (hp' : supDist p' c' = r) (hpp' : p ≠ p')
     (hdisj : c ≠ c' → Disjoint (closedSquare c r) (closedSquare c' r))
@@ -174,20 +189,34 @@ polygon already built, truncates there and appends. -/
 the statements below. -/
 def lastP (u : Plane) (t : List Plane) : Plane := (u :: t).getLast (List.cons_ne_nil u t)
 
+/--
+@isnad1 id=eq.0h1v.s3.ad9b4671b27a from=translated src=- shape=33b353e1 vocab=ed26c208
+-/
 @[simp] theorem lastP_nil (u : Plane) : lastP u [] = u := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.d9292f067ef4 from=translated src=- shape=f781159d vocab=4ed46188
+-/
 @[simp] theorem lastP_cons (u v : Plane) (t : List Plane) : lastP u (v :: t) = lastP v t :=
   List.getLast_cons (List.cons_ne_nil v t)
 
+/--
+@isnad1 id=eq.0h3v.s4.51ad18c5a306 from=translated src=- shape=fd89c686 vocab=9b7ae771
+-/
 theorem lastP_append : ∀ (u : Plane) (t : List Plane) (z : Plane), lastP u (t ++ [z]) = z
   | _, [], _ => rfl
   | u, v :: t, z => by
     rw [List.cons_append, lastP_cons, lastP_append v t z]
 
+/--
+@isnad1 id=mem.0h2v.s4.097f57ad0e34 from=translated src=- shape=0e146632 vocab=dfbc0034
+-/
 theorem lastP_mem_poly (u : Plane) (t : List Plane) : lastP u t ∈ poly (u :: t) :=
   getLast_mem_poly (List.cons_ne_nil u t)
 
-/-- Appending one vertex, in the `u :: t` presentation. -/
+/-- Appending one vertex, in the `u :: t` presentation.
+@isnad1 id=eq.0h3v.s7.3542ee0cc06a from=translated src=- shape=92ecb5c5 vocab=adc703f2
+-/
 theorem poly_snoc (u : Plane) (t : List Plane) (z : Plane) :
     poly (u :: (t ++ [z])) = poly (u :: t) ∪ segment ℝ (lastP u t) z := by
   rw [← List.cons_append, poly_concat (List.cons_ne_nil u t) z]
@@ -201,17 +230,28 @@ def IsArcList : List Plane → Prop
   | [_] => True
   | u :: v :: rest => u ≠ v ∧ segment ℝ u v ∩ poly (v :: rest) = {v} ∧ IsArcList (v :: rest)
 
+/--
+@isnad1 id=isarclis.0h0v.s1.2e108f22b951 from=translated src=- shape=87ceb31f vocab=db7bc916
+-/
 @[simp] theorem isArcList_nil : IsArcList [] := trivial
 
+/--
+@isnad1 id=isarclis.0h1v.s3.1909945133f6 from=translated src=- shape=fbce7c01 vocab=e75a8e18
+-/
 @[simp] theorem isArcList_singleton (v : Plane) : IsArcList [v] := trivial
 
+/--
+@isnad1 id=iff.0h3v.s7.51cd273a23eb from=translated src=- shape=3124333f vocab=595af762
+-/
 theorem isArcList_cons_cons {u v : Plane} {rest : List Plane} :
     IsArcList (u :: v :: rest) ↔
       u ≠ v ∧ segment ℝ u v ∩ poly (v :: rest) = {v} ∧ IsArcList (v :: rest) := Iff.rfl
 
 /-- The carrier of a simple polygonal path is an arc between its ends. The induction glues one
 segment at a time with `Schoenflies.IsArcBetween.concatenate`; the meeting hypothesis is the
-second clause of `IsArcList`. -/
+second clause of `IsArcList`.
+@isnad1 id=isarcbet.1h3v.s4.80ee7443c0ce from=translated src=- shape=f8e781a0 vocab=abe36009
+-/
 theorem isArcBetween_poly : ∀ (u v : Plane) (rest : List Plane), IsArcList (u :: v :: rest) →
     IsArcBetween (poly (u :: v :: rest)) u (lastP v rest)
   | u, v, [], h => by
@@ -229,7 +269,9 @@ theorem isArcBetween_poly : ∀ (u v : Plane) (rest : List Plane), IsArcList (u 
     exact this
 
 /-- **Truncation.** A simple polygonal path may be cut at any point of its carrier: the piece
-up to that point is again a simple polygonal path, inside the original one. -/
+up to that point is again a simple polygonal path, inside the original one.
+@isnad1 id=ex.2h3v.s5.0e2c5be685b6 from=translated src=- shape=09f74b43 vocab=5ee44a0f
+-/
 theorem IsArcList.truncate : ∀ (u : Plane) (t : List Plane), IsArcList (u :: t) →
     ∀ {w : Plane}, w ∈ poly (u :: t) →
       ∃ t' : List Plane, IsArcList (u :: t') ∧ poly (u :: t') ⊆ poly (u :: t) ∧
@@ -265,7 +307,9 @@ theorem IsArcList.truncate : ∀ (u : Plane) (t : List Plane), IsArcList (u :: t
             ((convex_segment u v).segment_subset (left_mem_segment ℝ u v) hseg) _
 
 /-- **Extension.** A simple polygonal path may be extended by a segment that meets it only at
-its own last vertex. -/
+its own last vertex.
+@isnad1 id=isarclis.3h3v.s7.aff2767cef7d from=translated src=- shape=979c7196 vocab=52923608
+-/
 theorem IsArcList.snoc : ∀ (u : Plane) (t : List Plane), IsArcList (u :: t) →
     ∀ {z : Plane}, z ≠ lastP u t →
       segment ℝ (lastP u t) z ∩ poly (u :: t) = {lastP u t} →
@@ -312,7 +356,9 @@ The induction is on `PolyReaches`. At a `step` the new segment is run *backwards
 end and stopped the first time it touches the polygon already built — `exists_first_mem_Icc`
 of `Schoenflies/Graph/VertexSquares.lean` is exactly that. The old path is truncated there and
 the stub appended; the stub meets the truncation only at the join, because everything strictly
-before the stopping parameter misses the old polygon altogether. -/
+before the stopping parameter misses the old polygon altogether.
+@isnad1 id=ex.1h3v.s5.1f79ebe39144 from=translated src=- shape=3d791fd3 vocab=c053212b
+-/
 theorem PolyReaches.exists_arcList {S : Set Plane} {x y : Plane} (h : PolyReaches S x y) :
     ∃ t : List Plane, IsArcList (x :: t) ∧ poly (x :: t) ⊆ S ∧ lastP x t = y := by
   induction h with
@@ -371,7 +417,9 @@ namespace Plane
 
 /-- If a connected set meets a closed square in exactly one point and is not contained in that
 square, the meeting point is on the frame: its sup distance to the centre is exactly the
-radius. -/
+radius.
+@isnad1 id=eq.4h5v.s6.126ac5800885 from=translated src=- shape=adc810e2 vocab=6e1249d8
+-/
 theorem supDist_eq_of_inter_eq_singleton {K : Set Plane} {c p q : Plane} {r : ℝ}
     (hK : IsPreconnected K) (hp : K ∩ closedSquare c r = {p}) (hq : q ∈ K)
     (hqc : q ∉ closedSquare c r) : supDist p c = r := by
@@ -401,7 +449,9 @@ open Schoenflies
 namespace Graph
 
 /-- Join a polygonal path to disjoint radial segments meeting its ambient carrier
-only at their endpoints. The graph redrawing applies this independently to each edge. -/
+only at their endpoints. The graph redrawing applies this independently to each edge.
+@isnad1 id=ex.7h6v.s9.d6c5e71b1038 from=translated src=- shape=1d7e3a7e vocab=f7639cff
+-/
 theorem exists_polygonal_arc_with_radials {U M : Set Plane} {a b p q : Plane}
     (hpath : PolyReaches U p q) (hUM : U ⊆ M) (hAP : a ≠ p) (hBQ : b ≠ q)
     (hnear : ∀ z ∈ segment ℝ a p, z ∈ M → z = p)
@@ -470,7 +520,9 @@ The construction, in the order the proof takes it.
   (`Schoenflies.PolyReaches.exists_arcList`), then a radial segment is prepended at each end.
   A radial meets `M` only at its far end and two radials meet only at their common centre, so
   the three pieces glue to an arc; `Schoenflies.isArcBetween_poly` produces the
-  parametrisation that `IsDrawing.edge_param` demands. -/
+  parametrisation that `IsDrawing.edge_param` demands.
+@isnad1 id=ex.1h3v.s5.741ccbe9c6d1 from=translated src=- shape=9a0b278f vocab=1f9ce54f
+-/
 theorem polygonal_redrawing {β : Type*} (G : Graph Plane β) [G.Finite]
     (drawing : β → ℝ → Plane) (h : IsDrawing G drawing) :
     ∃ redrawing : β → ℝ → Plane, IsDrawing G redrawing ∧

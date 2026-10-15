@@ -64,14 +64,18 @@ as neither parameter is the finish, the other says the finish can always be avoi
 
 /-- Two parameters short of the finish carrying the same point are equal. This is `IsLoop.injOn`
 with the half-open interval spelled as "in `[0,1]` and not `1`", which is the form every use
-below produces. -/
+below produces.
+@isnad1 id=eq.6h3v.s5.69f69aa28156 from=translated src=- shape=c34dc424 vocab=46d7482c
+-/
 theorem injective_before_finish (hf : IsLoop f) {u v : ℝ} (hu : u ∈ I) (hv : v ∈ I)
     (hu1 : u ≠ 1) (hv1 : v ≠ 1) (h : f u = f v) : u = v :=
   hf.injOn ⟨hu.1, hu.2.lt_of_ne hu1⟩ ⟨hv.1, hv.2.lt_of_ne hv1⟩ h
 
 /-- **Every point of the curve has a parameter short of the finish.** A parameter at the finish
 is replaced by the start, which carries the same point. This is the only use the closing
-condition gets. -/
+condition gets.
+@isnad1 id=ex.2h2v.s5.47eff006c764 from=translated src=- shape=c103a3a5 vocab=8c23f3b8
+-/
 theorem parameter_before_finish (hf : IsLoop f) {p : Plane} (hp : p ∈ f '' I) :
     ∃ u ∈ I, u ≠ 1 ∧ f u = p := by
   obtain ⟨u, hu, rfl⟩ := hp
@@ -80,7 +84,9 @@ theorem parameter_before_finish (hf : IsLoop f) {p : Plane} (hp : p ∈ f '' I) 
   · exact ⟨u, hu, hu1, rfl⟩
 
 /-- The start and the finish are the same point of the curve; recorded in the direction the
-proofs below read it. -/
+proofs below read it.
+@isnad1 id=eq.1h1v.s4.ea2020c4f8be from=translated src=- shape=c416c412 vocab=cd9e8727
+-/
 theorem finish_eq_start (hf : IsLoop f) : f 1 = f 0 := hf.closes.symm
 
 /-! ### The three pieces of parameters
@@ -91,14 +97,25 @@ parameters. On the middle and the front that is injectivity off the finish, sinc
 contains it; the back piece *does* contain the finish, and there the extra argument is that
 the only other parameter carrying `f 1` is the start, which lies strictly before `t`. -/
 
+/--
+@isnad1 id=le.1h1v.s4.a242671062e1 from=translated src=- shape=685307ac vocab=db21c007
+-/
 theorem front_subset_I (hs : s ∈ I) : Icc 0 s ⊆ I := Icc_subset_Icc le_rfl hs.2
 
+/--
+@isnad1 id=le.2h2v.s5.ffafb7c9d627 from=translated src=- shape=5b804914 vocab=db21c007
+-/
 theorem middle_subset_I (hs : s ∈ I) (ht : t ∈ I) : Icc s t ⊆ I := Icc_subset_Icc hs.1 ht.2
 
+/--
+@isnad1 id=le.1h1v.s4.a4632220f165 from=translated src=- shape=6217d6d0 vocab=db21c007
+-/
 theorem back_subset_I (ht : t ∈ I) : Icc t 1 ⊆ I := Icc_subset_Icc ht.1 le_rfl
 
 /-- Injectivity on the front piece: no parameter of `[0, s]` is the finish, because `s` is
-not. -/
+not.
+@isnad1 id=injon.3h2v.s5.a2e192accdaf from=translated src=- shape=a214b633 vocab=3bb1d4ec
+-/
 theorem injective_on_front (hf : IsLoop f) (hs : s ∈ I) (hs1 : s ≠ 1) : InjOn f (Icc 0 s) := by
   have hs' : s < 1 := hs.2.lt_of_ne hs1
   intro u hu v hv h
@@ -106,7 +123,9 @@ theorem injective_on_front (hf : IsLoop f) (hs : s ∈ I) (hs1 : s ≠ 1) : InjO
     (ne_of_lt (lt_of_le_of_lt hu.2 hs')) (ne_of_lt (lt_of_le_of_lt hv.2 hs')) h
 
 /-- Injectivity on the middle piece: no parameter of `[s, t]` is the finish, because `t` is
-not. -/
+not.
+@isnad1 id=injon.4h3v.s5.3cbcd119c961 from=translated src=- shape=7faba966 vocab=3bb1d4ec
+-/
 theorem injective_on_middle (hf : IsLoop f) (hs : s ∈ I) (ht : t ∈ I) (ht1 : t ≠ 1) :
     InjOn f (Icc s t) := by
   have ht' : t < 1 := ht.2.lt_of_ne ht1
@@ -116,7 +135,9 @@ theorem injective_on_middle (hf : IsLoop f) (hs : s ∈ I) (ht : t ∈ I) (ht1 :
 
 /-- On the back piece the finish is the *only* parameter carrying `f 1`. A second one would be
 the start, by injectivity off the finish and the closing condition — but the start lies
-strictly before `t`. -/
+strictly before `t`.
+@isnad1 id=eq.5h3v.s6.1a01be11ce20 from=translated src=- shape=b0860ac8 vocab=5fb78804
+-/
 theorem back_at_finish (hf : IsLoop f) (ht : t ∈ I) (ht0 : 0 < t) {w : ℝ} (hw : w ∈ Icc t 1)
     (h : f w = f 1) : w = 1 := by
   by_contra hw1
@@ -126,7 +147,9 @@ theorem back_at_finish (hf : IsLoop f) (ht : t ∈ I) (ht0 : 0 < t) {w : ℝ} (h
   exact absurd (this ▸ hw.1) (not_le.mpr ht0)
 
 /-- Injectivity on the back piece. Unlike the other two this piece contains the finish, so
-injectivity off the finish is not enough on its own; `back_at_finish` supplies the rest. -/
+injectivity off the finish is not enough on its own; `back_at_finish` supplies the rest.
+@isnad1 id=injon.3h2v.s5.626fa73228e8 from=translated src=- shape=f0133044 vocab=461eab3f
+-/
 theorem injective_on_back (hf : IsLoop f) (ht : t ∈ I) (ht0 : 0 < t) : InjOn f (Icc t 1) := by
   intro u hu v hv h
   rcases eq_or_ne u 1 with rfl | hu1
@@ -137,7 +160,9 @@ theorem injective_on_back (hf : IsLoop f) (ht : t ∈ I) (ht0 : 0 < t) : InjOn f
 
 /-! ### The three pieces are arcs -/
 
-/-- The middle piece is an arc between the two cut points. -/
+/-- The middle piece is an arc between the two cut points.
+@isnad1 id=isarcbet.5h3v.s5.21edda572f88 from=translated src=- shape=986ecf35 vocab=93f1460e
+-/
 theorem middle_IsArcBetween (hf : IsLoop f) (hs : s ∈ I) (ht : t ∈ I) (ht1 : t ≠ 1)
     (hst : s < t) : IsArcBetween (f '' Icc s t) (f s) (f t) := by
   rw [← uIcc_of_le hst.le]
@@ -145,7 +170,9 @@ theorem middle_IsArcBetween (hf : IsLoop f) (hs : s ∈ I) (ht : t ∈ I) (ht1 :
   rw [uIcc_of_le hst.le]
   exact hf.injective_on_middle hs ht ht1
 
-/-- The front piece is an arc from the start to the first cut point. -/
+/-- The front piece is an arc from the start to the first cut point.
+@isnad1 id=isarcbet.4h2v.s6.73394d5e3d31 from=translated src=- shape=690f0ae3 vocab=93f1460e
+-/
 theorem front_IsArcBetween (hf : IsLoop f) (hs : s ∈ I) (hs1 : s ≠ 1) (hs0 : 0 < s) :
     IsArcBetween (f '' Icc 0 s) (f 0) (f s) := by
   rw [← uIcc_of_le hs0.le]
@@ -153,7 +180,9 @@ theorem front_IsArcBetween (hf : IsLoop f) (hs : s ∈ I) (hs1 : s ≠ 1) (hs0 :
   rw [uIcc_of_le hs0.le]
   exact hf.injective_on_front hs hs1
 
-/-- The back piece is an arc from the second cut point to the finish. -/
+/-- The back piece is an arc from the second cut point to the finish.
+@isnad1 id=isarcbet.4h2v.s6.6c9e82fbb2f5 from=translated src=- shape=d3d63915 vocab=93f1460e
+-/
 theorem back_IsArcBetween (hf : IsLoop f) (ht : t ∈ I) (ht1 : t ≠ 1) (ht0 : 0 < t) :
     IsArcBetween (f '' Icc t 1) (f t) (f 1) := by
   rw [← uIcc_of_le ht.2]
@@ -171,7 +200,9 @@ end already carries the point the front piece would have contributed. -/
 /-- The back and front pieces meet only where the loop closes up. A point on both comes from a
 parameter at or past `t` and from one at or before `s`; two distinct parameters short of the
 finish cannot carry the same point, and `t ≤ s` is false, so the back parameter is the
-finish. -/
+finish.
+@isnad1 id=eq.7h4v.s6.e72ba2220617 from=translated src=- shape=91573748 vocab=5095a519
+-/
 theorem back_meet_front (hf : IsLoop f) (hs : s ∈ I) (ht : t ∈ I) (hs1 : s ≠ 1) (hst : s < t)
     {z : Plane} (hzb : z ∈ f '' Icc t 1) (hzf : z ∈ f '' Icc 0 s) : z = f 1 := by
   obtain ⟨b, hb, rfl⟩ := hzb
@@ -185,7 +216,9 @@ theorem back_meet_front (hf : IsLoop f) (hs : s ∈ I) (ht : t ∈ I) (hs1 : s �
       hf.injective_before_finish (back_subset_I ht hb) (front_subset_I hs ha) hb1 ha1 hab.symm
     exact absurd (this ▸ hb.1) (not_le.mpr (lt_of_le_of_lt ha.2 hst))
 
-/-- **The outside piece is an arc between the two cut points.** -/
+/-- **The outside piece is an arc between the two cut points.**
+@isnad1 id=isarcbet.6h3v.s6.cd8b774644b3 from=translated src=- shape=8a099f98 vocab=e8748457
+-/
 theorem outside_IsArcBetween (hf : IsLoop f) (hs : s ∈ I) (ht : t ∈ I) (hs1 : s ≠ 1)
     (ht1 : t ≠ 1) (hst : s < t) :
     IsArcBetween (f '' Icc 0 s ∪ f '' Icc t 1) (f t) (f s) := by
@@ -210,7 +243,9 @@ theorem outside_IsArcBetween (hf : IsLoop f) (hs : s ∈ I) (ht : t ∈ I) (hs1 
 
 /-- The parameter interval splits three ways around any two of its points. Linearity of the
 order, and nothing else — the split does not even need the two points ordered, since when they
-are not the middle interval is empty and the two end intervals already overlap. -/
+are not the middle interval is empty and the two end intervals already overlap.
+@isnad1 id=eq.2h2v.s5.e13edfbc902c from=translated src=- shape=d46d6816 vocab=e05b1f5a
+-/
 theorem parameters_split (hs : s ∈ I) (ht : t ∈ I) :
     I = Icc s t ∪ (Icc 0 s ∪ Icc t 1) := by
   ext x
@@ -226,7 +261,9 @@ theorem parameters_split (hs : s ∈ I) (ht : t ∈ I) :
     · exact ⟨h1, h2.trans hs.2⟩
     · exact ⟨ht.1.trans h1, h2⟩
 
-/-- The loop's images of the middle and of the outside cover the curve. -/
+/-- The loop's images of the middle and of the outside cover the curve.
+@isnad1 id=eq.2h3v.s6.99cf58a9416a from=translated src=- shape=cf15bc7c vocab=13821fac
+-/
 theorem pieces_cover (hs : s ∈ I) (ht : t ∈ I) :
     f '' Icc s t ∪ (f '' Icc 0 s ∪ f '' Icc t 1) = f '' I := by
   rw [parameters_split hs ht, image_union, image_union]
@@ -236,7 +273,9 @@ theorem pieces_cover (hs : s ∈ I) (ht : t ∈ I) :
 Three cases, one for each way an outside parameter can be placed. The one that matters is the
 outside parameter being the finish: it carries the same point as the start, so the middle
 parameter is the start, which forces `s` to be it. That case is why the argument needs a loop
-rather than an arc. -/
+rather than an arc.
+@isnad1 id=eq.6h3v.s6.71620d923487 from=translated src=- shape=eea7f8d5 vocab=35f372da
+-/
 theorem pieces_meet_at_ends (hf : IsLoop f) (hs : s ∈ I) (ht : t ∈ I) (hs1 : s ≠ 1)
     (ht1 : t ≠ 1) (hst : s < t) :
     f '' Icc s t ∩ (f '' Icc 0 s ∪ f '' Icc t 1) = {f s, f t} := by
@@ -276,7 +315,9 @@ theorem pieces_meet_at_ends (hf : IsLoop f) (hs : s ∈ I) (ht : t ∈ I) (hs1 :
 they carry, which cover it and meet in exactly those two points.**
 
 The pieces are named by the parameters, not chosen: the first is the middle interval's image,
-the second the outside's. -/
+the second the outside's.
+@isnad1 id=ex.6h3v.s7.1c106bf84e96 from=translated src=- shape=b81adc91 vocab=f7619744
+-/
 theorem two_arcs_at_parameters (hf : IsLoop f) (hs : s ∈ I) (ht : t ∈ I) (hs1 : s ≠ 1)
     (ht1 : t ≠ 1) (hst : s < t) :
     ∃ A B, IsArcBetween A (f s) (f t) ∧ IsArcBetween B (f t) (f s) ∧
@@ -300,7 +341,9 @@ union and the intersection commute, and the unordered pair does too.
 
 This is the exact converse of `IsJordanCurve.of_two_arcs`: that theorem's hypotheses are two
 arcs between the same two points meeting only there, which is what the two pieces produced
-here are — see `IsJordanCurve.two_arcs_of_two_arcs`. -/
+here are — see `IsJordanCurve.two_arcs_of_two_arcs`.
+@isnad1 id=ex.4h3v.s6.f4850889ece4 from=translated src=- shape=6021c176 vocab=0a592007
+-/
 theorem IsJordanCurve.two_arcs {C : Set Plane} (hC : IsJordanCurve C) {p q : Plane}
     (hp : p ∈ C) (hq : q ∈ C) (hpq : p ≠ q) :
     ∃ A B, IsArcBetween A p q ∧ IsArcBetween B p q ∧ A ∪ B = C ∧ A ∩ B = {p, q} := by
@@ -318,7 +361,9 @@ theorem IsJordanCurve.two_arcs {C : Set Plane} (hC : IsJordanCurve C) {p q : Pla
     · rw [inter_comm, hmeet, pair_comm]
 
 /-- The composition check: the two arcs `IsJordanCurve.two_arcs` produces are exactly what
-`IsJordanCurve.of_two_arcs` consumes, and glue back to the curve one started from. -/
+`IsJordanCurve.of_two_arcs` consumes, and glue back to the curve one started from.
+@isnad1 id=isjordan.3h4v.s5.477cc82f36c1 from=translated src=- shape=3e4a980c vocab=fd4b47df
+-/
 theorem IsJordanCurve.two_arcs_of_two_arcs {A B : Set Plane} {p q : Plane}
     (hA : IsArcBetween A p q) (hB : IsArcBetween B p q) (hmeet : A ∩ B = {p, q}) :
     IsJordanCurve (A ∪ B) :=

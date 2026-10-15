@@ -41,7 +41,9 @@ segment and its interior off the source's interior, and it needs both at the sam
 end all along. Without it the case of two pieces from different sources does not close: two
 different subpieces can both sit inside one long overlap. -/
 
-/-- Cutting one piece keeps each half inside the whole, closed and open at once. -/
+/-- Cutting one piece keeps each half inside the whole, closed and open at once.
+@isnad1 id=and.1h3v.s5.bf72a783f903 from=translated src=- shape=208bf08d vocab=bcb48717
+-/
 theorem splitAt_subset (p : Plane) (P : Piece) :
     ∀ Q ∈ splitAt p P, Q.seg ⊆ P.seg ∧ Q.interior ⊆ P.interior := by
   classical
@@ -59,6 +61,9 @@ theorem splitAt_subset (p : Plane) (P : Piece) :
     rcases List.mem_singleton.1 hQ with rfl
     exact ⟨subset_rfl, subset_rfl⟩
 
+/--
+@isnad1 id=ex.1h3v.s5.4bdcc67c0a66 from=translated src=- shape=756d7fed vocab=ccedb2ae
+-/
 theorem splitAllAt_subset (p : Plane) (pieces : List Piece) :
     ∀ Q ∈ splitAllAt p pieces, ∃ P ∈ pieces, Q.seg ⊆ P.seg ∧ Q.interior ⊆ P.interior := by
   intro Q hQ
@@ -66,7 +71,9 @@ theorem splitAllAt_subset (p : Plane) (pieces : List Piece) :
   exact ⟨P, hP, splitAt_subset p P Q hQP⟩
 
 /-- Every piece of a subdivision lies inside a piece it came from, both as a segment and as an
-interior — and at the **same** source. -/
+interior — and at the **same** source.
+@isnad1 id=ex.1h3v.s5.bf17a6408276 from=translated src=- shape=4617cab8 vocab=76492765
+-/
 theorem subdivide_subset (pieces : List Piece) (points : List Plane) :
     ∀ Q ∈ subdivide pieces points, ∃ P ∈ pieces, Q.seg ⊆ P.seg ∧ Q.interior ⊆ P.interior := by
   induction points generalizing pieces with
@@ -77,7 +84,9 @@ theorem subdivide_subset (pieces : List Piece) (points : List Plane) :
     obtain ⟨P, hP, hRP, hRP'⟩ := splitAllAt_subset p pieces R hR
     exact ⟨P, hP, hQR.trans hRP, hQR'.trans hRP'⟩
 
-/-- Cutting one piece introduces only the cut point as a new end. -/
+/-- Cutting one piece introduces only the cut point as a new end.
+@isnad1 id=or.2h4v.s5.e8bcb25f1c96 from=translated src=- shape=8a43c92a vocab=3363c204
+-/
 theorem splitAt_ends (p : Plane) (P : Piece) :
     ∀ Q ∈ splitAt p P, ∀ z, (z = Q.1 ∨ z = Q.2) → z = p ∨ (z = P.1 ∨ z = P.2) := by
   classical
@@ -96,6 +105,9 @@ theorem splitAt_ends (p : Plane) (P : Piece) :
     rcases List.mem_singleton.1 hQ with rfl
     exact Or.inr hz
 
+/--
+@isnad1 id=or.2h4v.s6.831b398aa05e from=translated src=- shape=50f820a5 vocab=b6f0ff33
+-/
 theorem splitAllAt_ends (p : Plane) (pieces : List Piece) :
     ∀ Q ∈ splitAllAt p pieces, ∀ z, (z = Q.1 ∨ z = Q.2) →
       z = p ∨ ∃ P ∈ pieces, (z = P.1 ∨ z = P.2) := by
@@ -106,7 +118,9 @@ theorem splitAllAt_ends (p : Plane) (pieces : List Piece) :
   · exact Or.inr ⟨P, hP, h⟩
 
 /-- **The endpoint criterion.** An end of a piece of the subdivision is either a cut point or
-was an end of a source piece all along. -/
+was an end of a source piece all along.
+@isnad1 id=or.2h4v.s6.e787aa345bf4 from=translated src=- shape=d800e808 vocab=c7f26de5
+-/
 theorem subdivide_ends (pieces : List Piece) (points : List Plane) :
     ∀ Q ∈ subdivide pieces points, ∀ z, (z = Q.1 ∨ z = Q.2) →
       z ∈ points ∨ ∃ P ∈ pieces, (z = P.1 ∨ z = P.2) := by
@@ -132,6 +146,9 @@ does not need. -/
 /-- Where two pieces meet. -/
 def meetOf (P Q : Piece) : Set Plane := P.seg ∩ Q.seg
 
+/--
+@isnad1 id=eq.0h2v.s3.71f7dd285709 from=translated src=- shape=7836f715 vocab=6b60edb6
+-/
 theorem meetOf_comm (P Q : Piece) : meetOf P Q = meetOf Q P := inter_comm _ _
 
 /-- Every end of every source piece is a cut point. -/
@@ -145,7 +162,9 @@ def MeetsAreCut (pieces : List Piece) (points : List Plane) : Prop :=
     ∃ u v, meetOf P Q = segment ℝ u v ∧ u ∈ points ∧ v ∈ points
 
 /-- With the source ends cut too, the endpoint criterion says outright that every end of every
-piece of the subdivision is a cut point. -/
+piece of the subdivision is a cut point.
+@isnad1 id=mem.3h4v.s5.ee9463e087be from=translated src=- shape=3461bcb7 vocab=4a8f518b
+-/
 theorem subdivide_ends_are_cuts {pieces : List Piece} {points : List Plane}
     (h : EndsAreCut pieces points) :
     ∀ Q ∈ subdivide pieces points, ∀ z, (z = Q.1 ∨ z = Q.2) → z ∈ points := by
@@ -161,7 +180,9 @@ induction that proves it exists, and `segment_inter_segment` hands over the ends
 moment the meet is known to be nonempty. That is what keeps the choice operator out: the
 witnesses of `segment_inter_segment` are not unique, so there is nothing to name. -/
 
-/-- One piece against a list: a point list holding both ends of every meet. -/
+/-- One piece against a list: a point list holding both ends of every meet.
+@isnad1 id=ex.0h2v.s7.40fdb32768d9 from=translated src=- shape=740bc60a vocab=de60f69c
+-/
 theorem exists_meet_points (P : Piece) (others : List Piece) :
     ∃ points : List Plane, ∀ Q ∈ others, (meetOf P Q).Nonempty →
       ∃ u v, meetOf P Q = segment ℝ u v ∧ u ∈ points ∧ v ∈ points := by
@@ -182,7 +203,9 @@ theorem exists_meet_points (P : Piece) (others : List Piece) :
       · exact htail Q hQ hne
 
 /-- The whole list: the ends of each piece, and both ends of each meet. No sort and no choice
-operator — the point list is existential throughout. -/
+operator — the point list is existential throughout.
+@isnad1 id=ex.0h1v.s4.a3e2ca9bbf38 from=translated src=- shape=c6a809af vocab=6124d5cf
+-/
 theorem exists_cut_points (pieces : List Piece) :
     ∃ points : List Plane, EndsAreCut pieces points ∧ MeetsAreCut pieces points := by
   induction pieces with
@@ -223,7 +246,9 @@ coincide, which is what the blueprint's deduplication clause is for. -/
 /-- Collinearity: two pieces of the subdivision that share an interior point lie inside one
 nondegenerate segment. If they came from the same source piece, that piece; if from different
 ones, the sources' overlap — nondegenerate because the shared point is interior to it, the
-overlap's ends being cut points and so interior to nothing. -/
+overlap's ends being cut points and so interior to nothing.
+@isnad1 id=ex.6h5v.s6.6cdcfbd13c61 from=translated src=- shape=6fd7ddc7 vocab=6cc68f21
+-/
 theorem subdivide_common_segment {pieces : List Piece} {points : List Plane}
     (hnd : ∀ P ∈ pieces, P.Nondeg) (hMeets : MeetsAreCut pieces points)
     {P Q : Piece} (hP : P ∈ subdivide pieces points) (hQ : Q ∈ subdivide pieces points)
@@ -266,7 +291,9 @@ theorem subdivide_common_segment {pieces : List Piece} {points : List Plane}
       hxQ hxopen huy hvy
 
 /-- **Separation.** Two pieces of the subdivision that share an interior point are the same
-segment, in one order or the other. -/
+segment, in one order or the other.
+@isnad1 id=or.7h5v.s6.b0a931b74326 from=translated src=- shape=9abbb52a vocab=89feec46
+-/
 theorem subdivide_separated {pieces : List Piece} {points : List Plane}
     (hnd : ∀ P ∈ pieces, P.Nondeg) (hEnds : EndsAreCut pieces points)
     (hMeets : MeetsAreCut pieces points)

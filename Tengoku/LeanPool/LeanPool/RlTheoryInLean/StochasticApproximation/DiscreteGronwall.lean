@@ -19,6 +19,9 @@ namespace StochasticApproximation
 
 variable {u b c : ℕ → ℝ}
 
+/--
+@isnad1 id=le.3h5v.s7.465851c5fc29 from=translated src=- shape=3f4b5c28 vocab=531f1568
+-/
 theorem discrete_gronwall_aux
   {n₀ : ℕ}
   (hu : ∀ n ≥ n₀, u (n + 1) ≤ (1 + c n) * u n + b n)

@@ -19,7 +19,9 @@ polynomials*, Arch. Math. 59 (1992), 239-244; upstreaming candidates for Mathlib
 @[expose] public section
 
 /-- A multiset `M` invariant under an involution `τ` that is fixed-point-free on its support
-splits as `N + N.map τ`. -/
+splits as `N + N.map τ`.
+@isnad1 id=ex.3h3v.s6.c788880eef2d from=translated src=- shape=12b96cd2 vocab=6ab1198b
+-/
 theorem Multiset.exists_add_map_of_involutive {β : Type*} (τ : β → β) (M : Multiset β)
     (hτ : ∀ x ∈ M, τ (τ x) = x) (hinv : M.map τ = M) (hfix : ∀ x ∈ M, τ x ≠ x) :
     ∃ N : Multiset β, M = N + N.map τ := by

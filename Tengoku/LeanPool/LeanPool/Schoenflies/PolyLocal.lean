@@ -75,14 +75,18 @@ variable {S T A B C W : Set Plane} {p x y z : Plane}
 `IsLocallyPolyConnected` only over paths *from the centre*; symmetry and transitivity of the
 relation make the two equivalent. -/
 
-/-- Brick B5's conclusion, read as brick B6's hypothesis. -/
+/-- Brick B5's conclusion, read as brick B6's hypothesis.
+@isnad1 id=islocall.1h1v.s3.6cda93313ffb from=translated src=- shape=4c88451a vocab=481ae386
+-/
 theorem IsLocallyPolyConn.isLocallyPolyConnected (h : IsLocallyPolyConn S) :
     IsLocallyPolyConnected S := by
   intro w hw
   obtain ⟨U, hU, hwU, hconn⟩ := h w hw
   exact ⟨U, hU, hwU, fun z hz => (hconn w ⟨hwU, hw⟩ z hz).polyReaches⟩
 
-/-- The converse: a path from the centre to each of two points, run backwards and forwards. -/
+/-- The converse: a path from the centre to each of two points, run backwards and forwards.
+@isnad1 id=islocall.1h1v.s3.15bc228c3ec5 from=translated src=- shape=4c88451a vocab=481ae386
+-/
 theorem IsLocallyPolyConnected.isLocallyPolyConn (h : IsLocallyPolyConnected S) :
     IsLocallyPolyConn S := by
   intro p hp
@@ -99,7 +103,9 @@ namespace Plane
 /-- A square of half a radius sits inside the ball of that radius, because `√2 < 2`. The open
 counterpart of `Plane.closedSquare_subset_ball`, restated here so that this module does not
 have to import the graph layer. No sign condition on the radius: for `ε ≤ 0` the square is
-already empty. -/
+already empty.
+@isnad1 id=le.0h2v.s6.64d685f74d47 from=translated src=- shape=f08756b4 vocab=16003878
+-/
 theorem openSquare_subset_ball (p : Plane) (ε : ℝ) : openSquare p (ε / 2) ⊆ ball p ε := by
   have hsqrt : Real.sqrt 2 < 2 := by
     nlinarith [Real.sq_sqrt (by norm_num : (0 : ℝ) ≤ 2), Real.sqrt_nonneg 2]
@@ -110,7 +116,9 @@ theorem openSquare_subset_ball (p : Plane) (ε : ℝ) : openSquare p (ε / 2) �
   nlinarith [supDist_nonneg x p]
 
 /-- Inside any open set around `p` there is a square about `p`, of radius at most any
-prescribed positive bound. -/
+prescribed positive bound.
+@isnad1 id=ex.3h3v.s6.e63a188bd92b from=translated src=- shape=07f43903 vocab=046d7e8b
+-/
 theorem exists_openSquare_subset {W : Set Plane} {p : Plane} (hW : IsOpen W) (hp : p ∈ W)
     {s₀ : ℝ} (hs₀ : 0 < s₀) : ∃ s, 0 < s ∧ s ≤ s₀ ∧ openSquare p s ⊆ W := by
   obtain ⟨ε, hε, hball⟩ := Metric.isOpen_iff.1 hW p hp
@@ -137,22 +145,31 @@ def IsLocallyPolyConnAt' (S : Set Plane) (p : Plane) : Prop :=
 /-- `S` is locally polygonally connected in the strengthened sense. -/
 def IsLocallyPolyConn' (S : Set Plane) : Prop := ∀ p ∈ S, IsLocallyPolyConnAt' S p
 
+/--
+@isnad1 id=islocall.1h2v.s3.823505586e29 from=translated src=- shape=12d14902 vocab=6a5d27cc
+-/
 theorem IsLocallyPolyConnAt'.weaken (h : IsLocallyPolyConnAt' S p) :
     IsLocallyPolyConnAt S p := by
   obtain ⟨U, hU, hpU, -, hpath⟩ := h univ isOpen_univ (mem_univ p)
   exact ⟨U, hU, hpU, fun x hx y hy => ((hpath x hx y hy).mono inter_subset_right).polyConnIn⟩
 
 /-- The strengthened form implies the original brick B5 statement, so nothing is lost by
-replacing one with the other. -/
+replacing one with the other.
+@isnad1 id=islocall.1h1v.s3.2bd3b7bdef16 from=translated src=- shape=4c88451a vocab=23071432
+-/
 theorem IsLocallyPolyConn'.weaken (h : IsLocallyPolyConn' S) : IsLocallyPolyConn S :=
   fun p hp => (h p hp).weaken
 
-/-- What brick B6 consumes. -/
+/-- What brick B6 consumes.
+@isnad1 id=islocall.1h1v.s3.4abdbe4f4aee from=translated src=- shape=4c88451a vocab=4497796e
+-/
 theorem IsLocallyPolyConn'.isLocallyPolyConnected (h : IsLocallyPolyConn' S) :
     IsLocallyPolyConnected S := h.weaken.isLocallyPolyConnected
 
 /-- The property is local: only the trace of `S` on a neighbourhood of `p` matters. This is
-what reduces "finitely many squares" to "one square". -/
+what reduces "finitely many squares" to "one square".
+@isnad1 id=islocall.4h4v.s6.c9109fbcbe10 from=translated src=- shape=13d4d7c6 vocab=e735df2d
+-/
 theorem IsLocallyPolyConnAt'.congr_nhds {V : Set Plane} (h : IsLocallyPolyConnAt' T p)
     (hV : IsOpen V) (hpV : p ∈ V) (heq : S ∩ V = T ∩ V) : IsLocallyPolyConnAt' S p := by
   intro W hW hpW
@@ -170,7 +187,9 @@ theorem IsLocallyPolyConnAt'.congr_nhds {V : Set Plane} (h : IsLocallyPolyConnAt
   exact hpath
 
 /-- A neighbourhood of `p` already inside `S` settles the point: shrink it to a square, which
-is convex, so a single segment joins any two of its points. -/
+is convex, so a single segment joins any two of its points.
+@isnad1 id=islocall.3h3v.s6.55ca1084219e from=translated src=- shape=9b68f7a2 vocab=eb331988
+-/
 theorem isLocallyPolyConnAt'_of_nbhd_subset {V : Set Plane} (hV : IsOpen V) (hpV : p ∈ V)
     (hVS : V ⊆ S) : IsLocallyPolyConnAt' S p := by
   intro W hW hpW
@@ -180,7 +199,9 @@ theorem isLocallyPolyConnAt'_of_nbhd_subset {V : Set Plane} (hV : IsOpen V) (hpV
   exact ((convex_openSquare p s).segment_subset hx.1 hy.1).trans
     fun w hw => ⟨hw, hVS (hsub hw).1⟩
 
-/-- An open set is locally polygonally connected in the strengthened sense. -/
+/-- An open set is locally polygonally connected in the strengthened sense.
+@isnad1 id=islocall.1h1v.s5.bc9b77ae78e6 from=translated src=- shape=24af0c4d vocab=918fba68
+-/
 theorem isLocallyPolyConn'_of_isOpen (hS : IsOpen S) : IsLocallyPolyConn' S :=
   fun _ hp => isLocallyPolyConnAt'_of_nbhd_subset hS hp Subset.rfl
 
@@ -193,7 +214,9 @@ sense.
 Two points of a small square about `p` are then joined by two segments through `p`, each
 inside one convex piece of that *small* square — which is why the path never leaves the
 neighbourhood. No piece is required to be nonempty and none is named, so the disk, the
-half-disk and the three-quarter disk are all this statement. -/
+half-disk and the three-quarter disk are all this statement.
+@isnad1 id=islocall.5h5v.s7.3b25b9343869 from=translated src=- shape=d50e0fde vocab=9dde1516
+-/
 theorem isLocallyPolyConnAt'_of_convex_cover {ι : Type*} {H : ι → Set Plane} {s₀ : ℝ}
     (hs₀ : 0 < s₀) (hconv : ∀ i, Convex ℝ (H i))
     (hsub : ∀ i, openSquare p s₀ ∩ H i ⊆ S)
@@ -223,7 +246,9 @@ old proof used were already inside the neighbourhood; only the statement moves. 
 
 /-- **The one-square case of brick B5, strengthened.** The complement of an open axis-parallel
 square is polygonally connected near every point of the plane, by paths confined to the
-neighbourhood. -/
+neighbourhood.
+@isnad1 id=islocall.0h3v.s4.0c76f7aefe2a from=translated src=- shape=2e6b6155 vocab=828008bb
+-/
 theorem isLocallyPolyConnAt'_compl_openSquare (c : Plane) (r : ℝ) (p : Plane) :
     IsLocallyPolyConnAt' (openSquare c r)ᶜ p := by
   obtain ⟨s, hs, hstar⟩ := Plane.exists_radius_sides c r p
@@ -241,7 +266,9 @@ paths confined to the neighbourhood.
 The two cases are unchanged. Away from all the closed squares a small square about `p` lies
 inside `M` outright. Otherwise `p` lies in exactly one closed square, and a small enough square
 about `p` misses all the others, so near `p` the set `M` *is* the complement of that one open
-square — which is what `IsLocallyPolyConnAt'.congr_nhds` says suffices. -/
+square — which is what `IsLocallyPolyConnAt'.congr_nhds` says suffices.
+@isnad1 id=islocall.2h2v.s6.9f34fc612dcd from=translated src=- shape=2fb33e40 vocab=028cdca8
+-/
 theorem isLocallyPolyConn'_compl_biUnion {Q : Set Plane} (hQ : Q.Finite) (ρ : Plane → ℝ)
     (hdisj : ∀ c ∈ Q, ∀ c' ∈ Q, c ≠ c' →
       Disjoint (closedSquare c (ρ c)) (closedSquare c' (ρ c'))) :
@@ -305,7 +332,9 @@ intersection with a thin open strip about `y = 1` is not locally polygonally con
 
 /-- **Shrinkability.** A relatively open piece of a locally polygonally connected set is
 locally polygonally connected. Taking the neighbourhood inside `W` is what makes this work,
-and it is the reason `IsLocallyPolyConnAt'` quantifies over all open `W ∋ p`. -/
+and it is the reason `IsLocallyPolyConnAt'` quantifies over all open `W ∋ p`.
+@isnad1 id=islocall.3h3v.s6.cc6b3d5adaaf from=translated src=- shape=c0cb3d8b vocab=e735df2d
+-/
 theorem IsLocallyPolyConnAt'.inter_isOpen (h : IsLocallyPolyConnAt' S p) (hW : IsOpen W)
     (hpW : p ∈ W) : IsLocallyPolyConnAt' (S ∩ W) p := by
   intro W' hW' hpW'
@@ -317,6 +346,9 @@ theorem IsLocallyPolyConnAt'.inter_isOpen (h : IsLocallyPolyConnAt' S p) (hW : I
   rw [hUS]
   exact hpath
 
+/--
+@isnad1 id=islocall.2h2v.s5.afc1c66e6a47 from=translated src=- shape=ed1229e5 vocab=9ff592ec
+-/
 theorem IsLocallyPolyConn'.inter_isOpen (h : IsLocallyPolyConn' S) (hW : IsOpen W) :
     IsLocallyPolyConn' (S ∩ W) :=
   fun _ hp => (h _ hp.1).inter_isOpen hW hp.2
@@ -326,30 +358,45 @@ theorem IsLocallyPolyConn'.inter_isOpen (h : IsLocallyPolyConn' S) (hW : IsOpen 
 /-- `A` is relatively open in `S`: cut out of `S` by an ambient open set. -/
 def IsRelOpenIn (S A : Set Plane) : Prop := ∃ W : Set Plane, IsOpen W ∧ A = S ∩ W
 
+/--
+@isnad1 id=le.1h2v.s4.e31b7762c145 from=translated src=- shape=a4cb2cbb vocab=69990bf5
+-/
 theorem IsRelOpenIn.subset (h : IsRelOpenIn S A) : A ⊆ S := by
   obtain ⟨W, -, rfl⟩ := h
   exact inter_subset_left
 
+/--
+@isnad1 id=isrelope.0h1v.s2.43bf06561771 from=translated src=- shape=3bd27ae8 vocab=54d47c5f
+-/
 theorem isRelOpenIn_self (S : Set Plane) : IsRelOpenIn S S :=
   ⟨univ, isOpen_univ, (inter_univ S).symm⟩
 
+/--
+@isnad1 id=isrelope.2h2v.s5.b2f8497b128a from=translated src=- shape=af2d90a0 vocab=c92f8375
+-/
 theorem IsOpen.isRelOpenIn (hA : IsOpen A) (hAS : A ⊆ S) : IsRelOpenIn S A :=
   ⟨A, hA, (inter_eq_self_of_subset_right hAS).symm⟩
 
-/-- The shape `isRelOpen_of_polyReaches_stable` delivers, read as relative openness. -/
+/-- The shape `isRelOpen_of_polyReaches_stable` delivers, read as relative openness.
+@isnad1 id=isrelope.2h2v.s6.85b92ba06556 from=translated src=- shape=0569f780 vocab=8e49574c
+-/
 theorem isRelOpenIn_of_exists (hAS : A ⊆ S) (h : ∃ U : Set Plane, IsOpen U ∧ A ⊆ U ∧ U ∩ S ⊆ A) :
     IsRelOpenIn S A := by
   obtain ⟨U, hU, hAU, hUA⟩ := h
   exact ⟨U, hU, Subset.antisymm (fun _ hx => ⟨hAS hx, hAU hx⟩) fun _ hx => hUA ⟨hx.2, hx.1⟩⟩
 
 /-- Relative openness is transitive, which is how a component of a relatively open piece is
-seen to be relatively open in the ambient set. -/
+seen to be relatively open in the ambient set.
+@isnad1 id=isrelope.2h3v.s4.ba602ddb0cef from=translated src=- shape=11350b13 vocab=54d47c5f
+-/
 theorem IsRelOpenIn.trans (hA : IsRelOpenIn S A) (hB : IsRelOpenIn A B) : IsRelOpenIn S B := by
   obtain ⟨W, hW, rfl⟩ := hA
   obtain ⟨W', hW', rfl⟩ := hB
   exact ⟨W ∩ W', hW.inter hW', by rw [inter_assoc]⟩
 
-/-- Shrinkability, phrased for a relatively open piece. -/
+/-- Shrinkability, phrased for a relatively open piece.
+@isnad1 id=islocall.2h2v.s3.20c8df9c7182 from=translated src=- shape=e2475655 vocab=f7d73985
+-/
 theorem IsLocallyPolyConn'.of_isRelOpenIn (h : IsLocallyPolyConn' S) (hA : IsRelOpenIn S A) :
     IsLocallyPolyConn' A := by
   obtain ⟨W, hW, rfl⟩ := hA
@@ -361,7 +408,9 @@ in `S`.
 
 The proof is `isRelOpen_of_polyReaches_stable`: a polygonal path inside `A` is a connected
 subset of `A`, so it cannot leave the component it starts in, which is exactly the stability
-that lemma asks for. -/
+that lemma asks for.
+@isnad1 id=isrelope.2h3v.s5.63bbaec68a84 from=translated src=- shape=0bc1361e vocab=878ad371
+-/
 theorem isRelOpenIn_connectedComponentIn (h : IsLocallyPolyConn' S) (hA : IsRelOpenIn S A)
     (x : Plane) : IsRelOpenIn S (connectedComponentIn A x) := by
   refine hA.trans (isRelOpenIn_of_exists (connectedComponentIn_subset A x) ?_)
@@ -376,7 +425,9 @@ theorem isRelOpenIn_connectedComponentIn (h : IsLocallyPolyConn' S) (hA : IsRelO
   exact hpoly (hlast ▸ getLast_mem_poly hne)
 
 /-- A component of a relatively open piece is itself locally polygonally connected, so the
-whole interface applies again one level down. -/
+whole interface applies again one level down.
+@isnad1 id=islocall.2h3v.s5.5e00536f43a0 from=translated src=- shape=ca7c39c7 vocab=878ad371
+-/
 theorem isLocallyPolyConn'_connectedComponentIn (h : IsLocallyPolyConn' S) (hA : IsRelOpenIn S A)
     (x : Plane) : IsLocallyPolyConn' (connectedComponentIn A x) :=
   h.of_isRelOpenIn (isRelOpenIn_connectedComponentIn h hA x)
@@ -384,20 +435,26 @@ theorem isLocallyPolyConn'_connectedComponentIn (h : IsLocallyPolyConn' S) (hA :
 /-! ### The payoff -/
 
 /-- **What brick B7 uses.** In a locally polygonally connected `S`, any two points of a
-connected relatively open subset are joined by a polygonal path *inside that subset*. -/
+connected relatively open subset are joined by a polygonal path *inside that subset*.
+@isnad1 id=polyreac.5h4v.s6.1f89faf43651 from=translated src=- shape=ae44554a vocab=0a3837c1
+-/
 theorem polyReaches_of_isPreconnected_of_isRelOpenIn (h : IsLocallyPolyConn' S)
     (hC : IsRelOpenIn S C) (hconn : IsPreconnected C) (hx : x ∈ C) (hy : y ∈ C) :
     PolyReaches C x y :=
   PolyReaches.of_isPreconnected (h.of_isRelOpenIn hC).isLocallyPolyConnected hconn hx hy
 
-/-- The same, as a vertex list. -/
+/-- The same, as a vertex list.
+@isnad1 id=ex.5h4v.s6.62084f2e3989 from=translated src=- shape=2e8e1172 vocab=46027879
+-/
 theorem exists_poly_of_isPreconnected_of_isRelOpenIn (h : IsLocallyPolyConn' S)
     (hC : IsRelOpenIn S C) (hconn : IsPreconnected C) (hx : x ∈ C) (hy : y ∈ C) :
     ∃ vs : List Plane, ∃ hne : vs ≠ [], poly vs ⊆ C ∧ vs.head hne = x ∧ vs.getLast hne = y :=
   (polyReaches_of_isPreconnected_of_isRelOpenIn h hC hconn hx hy).exists_poly
 
 /-- The component form, which is how `U_e` arises: a component of a relatively open piece is
-both relatively open and polygonally connected in itself. -/
+both relatively open and polygonally connected in itself.
+@isnad1 id=polyreac.4h5v.s7.40638400d9a2 from=translated src=- shape=a9be32ed vocab=863c0bda
+-/
 theorem polyReaches_connectedComponentIn (h : IsLocallyPolyConn' S) (hA : IsRelOpenIn S A)
     {w : Plane} (hx : x ∈ connectedComponentIn A w) (hy : y ∈ connectedComponentIn A w) :
     PolyReaches (connectedComponentIn A w) x y :=

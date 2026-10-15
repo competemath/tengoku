@@ -31,7 +31,9 @@ namespace Schoenflies
 variable {γ : Type*} {S₀ : CellStructure γ} {C : Set Plane}
 
 /-- An admissible realization of the closed Jordan domain is exactly a finite stage in the
-form consumed by the skeleton-crosscut theorem. -/
+form consumed by the skeleton-crosscut theorem.
+@isnad1 id=isstageo.1h4v.s5.2359a8dda6c7 from=translated src=- shape=e8c19f95 vocab=662b2d96
+-/
 theorem CellStructure.Realization.IsAdmissible.isStageOn
     {S : CellStructure γ} {R : S.Realization}
     (h : R.IsAdmissible C (C ∪ inside C)) :
@@ -79,7 +81,9 @@ theorem CellStructure.Realization.IsAdmissible.isStageOn
 
 /-- A vertex approached by points of the graph off `C` is incident with an edge not contained
 in `C`.  A sufficiently small vertex square excludes every other vertex and every nonincident
-edge. -/
+edge.
+@isnad1 id=ex.4h5v.s6.5da4b73489f4 from=translated src=- shape=908daae9 vocab=8df55e69
+-/
 theorem Graph.IsDrawing.exists_nonboundary_incident_of_mem_closure
     {G : Graph Plane γ} {drawing : γ → ℝ → Plane} [G.Finite]
     (h : G.IsDrawing drawing) {c : Plane} (hcV : c ∈ V(G)) (hcC : c ∈ C)
@@ -102,7 +106,9 @@ theorem Graph.IsDrawing.exists_nonboundary_incident_of_mem_closure
     exact ⟨e, hinc, fun hsub => hzC (hsub hze)⟩
 
 /-- The set-level interior part of a finite stage is the point set of the trace subgraph whose
-support is the open region. -/
+support is the open region.
+@isnad1 id=eq.1h4v.s5.79245636f797 from=translated src=- shape=9510eb6a vocab=0fee0105
+-/
 theorem Graph.pointSet_traceGraph_eq_interiorPart
     {G : Graph Plane γ} {drawing : γ → ℝ → Plane}
     (h : G.IsDrawing drawing) (D : Set Plane) :
@@ -128,7 +134,9 @@ theorem Graph.pointSet_traceGraph_eq_interiorPart
           ⟨heD, hxy, heD harc.left_mem, heD harc.right_mem⟩⟩, hze⟩
 
 /-- A nonempty walk is polygonal when the edge arcs actually used by that walk are polygonal;
-no condition on unused (and possibly wild outer) edges is needed. -/
+no condition on unused (and possibly wild outer) edges is needed.
+@isnad1 id=ispolygo.4h6v.s5.e62e0806356c from=translated src=- shape=01cbe7ab vocab=528030ec
+-/
 theorem Graph.IsDrawing.isPolygonal_edgesCover_of_mem
     {G : Graph Plane γ} {drawing : γ → ℝ → Plane}
     (h : G.IsDrawing drawing) {a b : Plane} {W : List γ}
@@ -147,7 +155,9 @@ theorem Graph.IsDrawing.isPolygonal_edgesCover_of_mem
             hW.left_mem_edgesCover h hWne⟩
 
 /-- A walk in an injectively mapped graph lifts to a walk in the original graph, starting at
-the prescribed preimage vertex. -/
+the prescribed preimage vertex.
+@isnad1 id=ex.3h8v.s6.f425b929daa8 from=translated src=- shape=d933cf90 vocab=b5b1aa59
+-/
 theorem Graph.IsWalk.exists_lift_map
     {α α' β : Type*} {G : Graph α β} {f : α → α'}
     (hf : Set.InjOn f V(G)) {u : α} (hu : u ∈ V(G))
@@ -167,7 +177,9 @@ theorem Graph.IsWalk.exists_lift_map
           obtain ⟨v, hv, hfv⟩ := ih hlink₀.right_mem htail
           exact ⟨v, Graph.IsWalk.cons hlink₀ hv, hfv⟩
 
-/-- The corresponding lifting statement for a simple path. -/
+/-- The corresponding lifting statement for a simple path.
+@isnad1 id=ex.3h8v.s6.b287ac9891f4 from=translated src=- shape=d933cf90 vocab=a3495678
+-/
 theorem Graph.IsPath.exists_lift_map
     {α α' β : Type*} {G : Graph α β} {f : α → α'}
     (hf : Set.InjOn f V(G)) {u : α} (hu : u ∈ V(G))
@@ -192,7 +204,9 @@ theorem Graph.IsPath.exists_lift_map
           exact ⟨u, huTail, rfl⟩
 
 /-- A skeleton homeomorphism carries the union of any finite list of corresponding edges onto
-the union of the same edge list in the target realization. -/
+the union of the same edge list in the target realization.
+@isnad1 id=eq.1h6v.s6.e5e127c85d85 from=translated src=- shape=c3631272 vocab=2eb46ebe
+-/
 theorem CellStructure.SkeletonHomeo.image_edgesCover
     {S : CellStructure γ} {R₁ R₂ : S.Realization}
     (g : CellStructure.SkeletonHomeo R₁ R₂) {W : List γ}
@@ -207,7 +221,9 @@ theorem CellStructure.SkeletonHomeo.image_edgesCover
 
 /-- Strengthened skeleton-crosscut extraction: the crosscut is the carrier of a simple graph
 path all of whose edges are nonboundary.  This edge-list form can be transported to a matched
-realization edge by edge. -/
+realization edge by edge.
+@isnad1 id=ex.7h6v.s7.e2ee82d34c23 from=translated src=- shape=f136f8ba vocab=3de7d062
+-/
 theorem Graph.IsStageOn.exists_crosscut_path
     {G : Graph Plane γ} {drawing : γ → ℝ → Plane} [G.Finite]
     (h : G.IsStageOn drawing C (inside C)) (hC : IsJordanCurve C)
@@ -348,7 +364,9 @@ theorem Graph.IsStageOn.exists_crosscut_path
         haC, hbC, hinter⟩⟩
 
 /-- Every radial half-spoke has arbitrarily small connected tails accumulating at its missing
-outer endpoint. -/
+outer endpoint.
+@isnad1 id=ex.2h3v.s7.faf2f2c75add from=translated src=- shape=69bf9974 vocab=6887fe8e
+-/
 theorem exists_halfSpoke_tail {N : ℕ} (hN : 2 ≤ N) (z : Plane)
     {delta : ℝ} (hdelta : 0 < delta) :
     ∃ A : Set Plane, A ⊆ halfSpoke N z ∧ IsPreconnected A ∧ A ⊆ ball z delta ∧
@@ -396,6 +414,9 @@ def quantitativeFreshTargetSet [Infinite γ]
   {z | ∃ n, z ∈ (scheduledQuantitativeSuccessor hC hcycle q n
     (quantitativeStage P₀ hC hcycle q n)).reverse.overlay.fresh}
 
+/--
+@isnad1 id=le.2h5v.s6.433f166d5f33 from=translated src=- shape=58e070aa vocab=5ac067a0
+-/
 theorem quantitativeFreshTargetSet_subset [Infinite γ]
     (P₀ : GeneratedPair S₀ C (C ∪ inside C) modelCurve (Plane.closedSquare 0 1))
     (hC : IsSeparating C) (hcycle : S₀.OuterEdgesFormCycle)
@@ -406,7 +427,9 @@ theorem quantitativeFreshTargetSet_subset [Infinite γ]
     (quantitativeStage P₀ hC hcycle q n)).reverse.overlay.fresh_mem z hn
 
 /-- The radial half-spoke attached to a fresh target anchor at successor `n` is retained by
-the target skeleton of the complete two-sided successor. -/
+the target skeleton of the complete two-sided successor.
+@isnad1 id=le.3h7v.s9.087e8f6e8d6b from=translated src=- shape=a4563af9 vocab=709fea4a
+-/
 theorem quantitativeFresh_halfSpoke_subset_targetSkeleton [Infinite γ]
     (P₀ : GeneratedPair S₀ C (C ∪ inside C) modelCurve (Plane.closedSquare 0 1))
     (hC : IsSeparating C) (hcycle : S₀.OuterEdgesFormCycle)
@@ -433,7 +456,9 @@ theorem quantitativeFresh_halfSpoke_subset_targetSkeleton [Infinite γ]
   rw [w.reverse.overlay.transfer.skeletonSet_eq, Graph.pointSet_relabelEdges]
   exact hyOverlay
 
-/-- The selected target anchors are dense on the model curve. -/
+/-- The selected target anchors are dense on the model curve.
+@isnad1 id=le.2h5v.s7.afa1d2cb94a2 from=translated src=- shape=893aa524 vocab=bd3eaf2f
+-/
 theorem quantitativeFreshTargetSet_dense [Infinite γ]
     (P₀ : GeneratedPair S₀ C (C ∪ inside C) modelCurve (Plane.closedSquare 0 1))
     (hC : IsSeparating C) (hcycle : S₀.OuterEdgesFormCycle)
@@ -467,6 +492,9 @@ noncomputable def prescribedTargetAnchorSet : Set Plane :=
 noncomputable def prescribedSourceAnchorSet : Set Plane :=
   v '' prescribedTargetAnchorSet hC hu
 
+/--
+@isnad1 id=le.2h3v.s5.c3bf5896ab06 from=translated src=- shape=f4d58392 vocab=76e85b27
+-/
 theorem prescribedTargetAnchorSet_subset :
     prescribedTargetAnchorSet hC hu ⊆ modelCurve := by
   exact quantitativeFreshTargetSet_subset
@@ -474,6 +502,9 @@ theorem prescribedTargetAnchorSet_subset :
     (jordan_curve_theorem hC) outerEdgesFormCycle_initialStructure
       (denseQuantitativeSchedule (jordan_curve_theorem hC))
 
+/--
+@isnad1 id=le.2h3v.s6.6c6ae1cf6f5f from=translated src=- shape=9d43eadd vocab=9372b142
+-/
 theorem prescribedTargetAnchorSet_dense :
     modelCurve ⊆ closure (prescribedTargetAnchorSet hC hu) := by
   exact quantitativeFreshTargetSet_dense
@@ -481,12 +512,17 @@ theorem prescribedTargetAnchorSet_dense :
     (jordan_curve_theorem hC) outerEdgesFormCycle_initialStructure
       (denseQuantitativeSchedule (jordan_curve_theorem hC))
 
+/--
+@isnad1 id=le.2h3v.s5.80158c5d7984 from=translated src=- shape=242d2784 vocab=445a7176
+-/
 theorem prescribedSourceAnchorSet_subset :
     prescribedSourceAnchorSet hC hu ⊆ C := by
   rintro x ⟨z, hz, rfl⟩
   exact hu.mapsTo_inv (prescribedTargetAnchorSet_subset hC hu hz)
 
-/-- Density pulls back through the inverse side of a relative homeomorphism. -/
+/-- Density pulls back through the inverse side of a relative homeomorphism.
+@isnad1 id=le.3h5v.s7.b494fa6f22ae from=translated src=- shape=f5ae1fb1 vocab=db20b6dd
+-/
 theorem IsHomeoOn.subset_closure_image_inv
     {f g : Plane → Plane} {s t A : Set Plane}
     (h : IsHomeoOn f g s t) (hA : A ⊆ t) (hdense : t ⊆ closure A) :
@@ -500,13 +536,18 @@ theorem IsHomeoOn.subset_closure_image_inv
   rwa [h.invOn.1 hx] at hcl
 
 /- Density transports back through the prescribed boundary homeomorphism. -/
+/--
+@isnad1 id=le.2h3v.s6.04909e631250 from=translated src=- shape=3d90e708 vocab=cb0f5710
+-/
 theorem prescribedSourceAnchorSet_dense :
     C ⊆ closure (prescribedSourceAnchorSet hC hu) := by
   exact IsHomeoOn.subset_closure_image_inv hu
     (prescribedTargetAnchorSet_subset hC hu)
     (prescribedTargetAnchorSet_dense hC hu)
 
-/-- Every stage skeleton homeomorphism still agrees with the prescribed boundary map. -/
+/-- Every stage skeleton homeomorphism still agrees with the prescribed boundary map.
+@isnad1 id=eqon.2h4v.s8.25d0511cc4df from=translated src=- shape=98aa6575 vocab=23768883
+-/
 theorem prescribedJordanStage_homeo_eq_boundary (n : ℕ) :
     EqOn ((prescribedJordanStageSequence hC u v hu).stage n).homeo.toFun u C := by
   intro x hx
@@ -520,7 +561,9 @@ theorem prescribedJordanStage_homeo_eq_boundary (n : ℕ) :
     (prescribedJordanStageSequence_F_eq_boundary hC u v hu hx)
 
 /-- On the model curve, the inverse of every finite-stage skeleton map is the prescribed
-boundary inverse. -/
+boundary inverse.
+@isnad1 id=eq.3h5v.s8.a1e85a203249 from=translated src=- shape=20217670 vocab=1e87cc6e
+-/
 theorem prescribedJordanStage_invFun_eq_boundaryInv (n : ℕ) {z : Plane}
     (hz : z ∈ modelCurve) :
     ((prescribedJordanStageSequence hC u v hu).stage n).homeo.invFun z = v z := by
@@ -545,7 +588,9 @@ theorem prescribedJordanStage_invFun_eq_boundaryInv (n : ℕ) {z : Plane}
     _ = u (v z) := (hu.invOn.2 hz).symm
 
 /-- Every noninitial prescribed stage is source-admissible; it is the output of the forward
-half of the preceding quantitative successor. -/
+half of the preceding quantitative successor.
+@isnad1 id=isadmiss.2h4v.s8.10816ebe9c23 from=translated src=- shape=1f73e6b4 vocab=b9fc9c7b
+-/
 theorem prescribedJordanStage_succ_src_isAdmissible (n : ℕ) :
     ((prescribedJordanStageSequence hC u v hu).stage (n + 1)).src.IsAdmissible
       C (C ∪ inside C) := by
@@ -564,7 +609,9 @@ theorem prescribedJordanStage_succ_src_isAdmissible (n : ℕ) :
       (denseQuantitativeSchedule (jordan_curve_theorem hC)) n)).forward.forward.src_isAdmissible
 
 /-- Each transported source anchor comes with the reverse stage at which it was selected and
-the exact finite-stage source endpoint realizing it. -/
+the exact finite-stage source endpoint realizing it.
+@isnad1 id=ex.3h4v.s9.6c2270930d8e from=translated src=- shape=b08fa2fb vocab=0b7e48ac
+-/
 theorem prescribedSourceAnchorSet_stageWitness {c : Plane}
     (hc : c ∈ prescribedSourceAnchorSet hC hu) :
     ∃ n z, z ∈ (scheduledQuantitativeSuccessor
@@ -581,7 +628,9 @@ theorem prescribedSourceAnchorSet_stageWitness {c : Plane}
 
 /-- Every selected source anchor is approached by the open nonboundary part of one finite-stage
 skeleton.  This retains precisely the finite combinatorial germ needed to find an incident
-nonboundary edge after making the anchor a vertex. -/
+nonboundary edge after making the anchor a vertex.
+@isnad1 id=ex.3h4v.s8.22dbebfac0f1 from=translated src=- shape=cb329a2b vocab=f52d7fb5
+-/
 theorem prescribedSourceAnchorSet_stageClosure {c : Plane}
     (hc : c ∈ prescribedSourceAnchorSet hC hu) :
     ∃ n, c ∈ closure
@@ -651,7 +700,9 @@ theorem prescribedSourceAnchorSet_stageClosure {c : Plane}
 /-- The dense prescribed anchor set has the spoke germs required by boundary continuity.  A
 fresh radial target segment is already present at the reverse half-stage; target-skeleton
 monotonicity retains it through the following forward refinement, and the finite-stage inverse
-transports an arbitrarily short tail into the Jordan domain. -/
+transports an arbitrarily short tail into the Jordan domain.
+@isnad1 id=hasspoke.2h3v.s5.2b38099b5c05 from=translated src=- shape=a697a9ec vocab=823bf610
+-/
 theorem prescribedSourceAnchorSet_hasSpokes :
     HasSpokes C (prescribedSourceAnchorSet hC hu) u
       (prescribedJordanStageSequence hC u v hu).limitTower.F := by
@@ -745,7 +796,9 @@ theorem prescribedSourceAnchorSet_hasSpokes :
 
 /-- Any two distinct prescribed anchors are joined by a finite-stage crosscut, and the same
 abstract edge path in the matched target skeleton is its image.  The limit map agrees with
-that finite skeleton map on the source crosscut. -/
+that finite skeleton map on the source crosscut.
+@isnad1 id=hasancho.2h3v.s5.f3a9ec65b594 from=translated src=- shape=a697a9ec vocab=19f3d7b5
+-/
 theorem prescribedSourceAnchorSet_hasAnchorCrosscuts :
     HasAnchorCrosscuts C (prescribedSourceAnchorSet hC hu) u
       (prescribedJordanStageSequence hC u v hu).limitTower.F := by

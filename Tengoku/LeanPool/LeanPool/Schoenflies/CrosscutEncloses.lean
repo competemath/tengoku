@@ -122,7 +122,9 @@ The proof is the `key` step of `Schoenflies.two_arcs_unique_of_isClosed` run aga
 splitting: an arc from `p` to `q` inside the curve has connected complement-of-endpoints, so it
 lands in one piece of any splitting whose two pieces meet exactly at `p, q`; the two arcs cannot
 land in the same piece, since the other piece would then be just `{p, q}`; and once they land in
-different pieces they exhaust them. -/
+different pieces they exhaust them.
+@isnad1 id=eq.4h5v.s5.e30000a3b78f from=translated src=- shape=0e2fad1c vocab=fd4b47df
+-/
 theorem two_arcs_inter_of_union {C A₁ A₂ : Set Plane} {p q : Plane} (hC : IsJordanCurve C)
     (hA1 : IsArcBetween A₁ p q) (hA2 : IsArcBetween A₂ p q) (hunion : A₁ ∪ A₂ = C) :
     A₁ ∩ A₂ = {p, q} := by
@@ -224,7 +226,9 @@ presentation (`Schoenflies.two_arcs_unique_of_isClosed`), and read the parity id
 `π_{A₁ ∪ P} + π_{A₂ ∪ P} = π_J` (`Schoenflies.parity_split`) at the point. Were the point outside
 both spliced curves both left-hand terms would vanish
 (`Schoenflies.parity_eq_zero_of_mem_outside_cover`, which needs no realization of `Aᵢ ∪ P`),
-while the right-hand side is `1` because the point is inside `J`. -/
+while the right-hand side is `1` because the point is inside `J`.
+@isnad1 id=or.10h7v.s7.87ee16499c21 from=translated src=- shape=a42fde06 vocab=dfa52a10
+-/
 theorem crosscut_inside_at_least_one {J A₁ A₂ P : Set Plane} {p q x : Plane}
     (hJ : IsJordanCurve J) (hJpoly : IsPolygonal J) (hPpoly : IsPolygonal P)
     (hA1 : IsArcBetween A₁ p q) (hA2 : IsArcBetween A₂ p q) (hunion : A₁ ∪ A₂ = J)
@@ -385,7 +389,9 @@ variable {β : Type*} {H F : Graph Plane β} {drawing : β → ℝ → Plane}
 first half of the proof of `Graph.IsDrawing.pointSet_pathGraphOf`, extracted. -/
 
 /-- **Every vertex a nonempty walk visits lies on what the walk draws.** The source is an end of
-the first edge; every other visited vertex is an end of one of the edges by definition. -/
+the first edge; every other visited vertex is an end of one of the edges by definition.
+@isnad1 id=mem.4h7v.s6.afa537551700 from=translated src=- shape=fca15464 vocab=8434e0e2
+-/
 theorem IsDrawing.mem_edgesCover_of_mem_walkVertices (h : IsDrawing H drawing) {u v y : Plane}
     {W : List β} (hW : H.IsWalk u W v) (hne : W ≠ []) (hy : y ∈ H.walkVertices u W) :
     y ∈ edgesCover drawing W := by
@@ -428,7 +434,9 @@ by `Graph.IsDrawing.path_isArcBetween`, they cover the cycle's realisation becau
 do, and they meet exactly at the two cut points by `Schoenflies.two_arcs_inter_of_union` — which is
 why `Graph.IsCycleCrosscut` gets away with not recording that. That the crosscut meets the cycle
 only at its ends is the `edges_new` and `interior` clauses read through
-`Graph.IsDrawing.edge_inter`. -/
+`Graph.IsDrawing.edge_inter`.
+@isnad1 id=crosscut.0h3v.s3.514a97ee48ec from=translated src=- shape=d56a7b23 vocab=4132e463
+-/
 theorem crosscutEnclosesOff (drawing : β → ℝ → Plane) (x : Plane) :
     CrosscutEnclosesOff drawing x := by
   intro H F _ hd hpoly hxext e u v a b D R D₁ D₂ hcyc hcc hin e₁ e₂ u₁ v₁ u₂ v₂ T₁ T₂ _ _ hp₁ hp₂
@@ -520,6 +528,7 @@ variable {Γ : ℕ → Graph Plane β} {G : Graph Plane β} {n : ℕ} {x : Plane
 /-- **The descent step from its two halves**, with the geometric half taken in the corrected form
 `Graph.CrosscutEnclosesOff`. The missing clause "`x` is off the drawing of the block" is supplied
 from `Graph.OuterOnPairs`, so `Graph.Descent` is produced with its statement on `main` unchanged.
+@isnad1 id=descent.4h6v.s5.3e3cf7d21bde from=translated src=- shape=0241d28b vocab=0c0bbbb7
 -/
 theorem descent_of_crosscutOff (h : IsPlaneChain Γ drawing G n)
     (hout : OuterOnPairs Γ drawing n x) (hce : CrosscutExists Γ drawing n x)
@@ -544,7 +553,9 @@ discharged.** Only `Graph.CrosscutExists` — the purely combinatorial construct
 — is still assumed.
 
 This is `Graph.IsPlaneChain.outer_chain_of_crosscut` with the argument `hcen` supplied by
-`Graph.crosscutEnclosesOff`. -/
+`Graph.crosscutEnclosesOff`.
+@isnad1 id=and.3h6v.s6.887e93ee84cf from=translated src=- shape=b1bdb8a7 vocab=53ae9ffc
+-/
 theorem outer_chain_of_crosscutExists (h : IsPlaneChain Γ drawing G n)
     (hout : OuterOnPairs Γ drawing n x) (hce : CrosscutExists Γ drawing n x) :
     x ∈ exterior (chainUnion Γ 0 n) drawing ∧
