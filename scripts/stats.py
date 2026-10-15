@@ -105,7 +105,7 @@ def trusted_tokens(trusted: Path, manifest: Path) -> TrustedTokens:
 def count_already_trusted(tentative: Path, trusted: Path, manifest: Path) -> int:
     """How many records of a library's tentative file are theorems the tree already holds as trusted: in its intake bundle's
     manifest, or as a promoted record. Tentative files are append-only, so a record stays when its library arrives as a bundle
-    or when it is promoted; counting it as well counted the theorem twice (56,411 records, 2026-10-15). Each trusted record or
+    or when it is promoted; counting it as well counted the theorem twice (56,395 records, 2026-10-15). Each trusted record or
     manifest line accounts for at most one tentative record (TrustedTokens)."""
     tokens = trusted_tokens(trusted, manifest)
     if len(tokens) == 0:

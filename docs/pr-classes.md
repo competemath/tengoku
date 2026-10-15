@@ -150,7 +150,8 @@ A bundle's theorems are trusted by the tree's rule (it builds with them) and hav
 manifest lines as trusted (`scripts/stats.py`, with `intake` saying how many). A tentative record of a theorem the tree already trusts
 stays in its append-only file (its library arrived as a bundle after the harvest, or the record was promoted) and is the same theorem:
 `stats.py` counts it once, as trusted, with `tentative_already_trusted` saying how many (`count_already_trusted`: the same name as a
-trusted record, or the same statement, attributes and whitespace aside, as a manifest line or a trusted record). The nightly independent check audits every
+trusted record, or the same statement, attributes and whitespace aside, as a manifest line or a trusted record; each trusted record or
+manifest line accounts for at most one tentative record). The nightly independent check audits every
 manifest name like a trusted record (`scripts/ci/axiom_scan.py`: only the three standard axioms; a name the export does not hold,
 an instance Lean renamed when the module moved into the tree, is reported, not failed, since every declaration of the tree is
 scanned for `sorryAx` regardless).
