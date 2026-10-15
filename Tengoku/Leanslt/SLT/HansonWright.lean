@@ -50,6 +50,9 @@ namespace HansonWright
 
 variable {Ω : Type*} [MeasurableSpace Ω]
 
+/--
+@isnad1 id=eq.0h3v.s7.8120f0f03d34 from=translated src=- shape=8a070499 vocab=79f0fef2
+-/
 lemma mgf_innerSL_stdGaussian {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] (v : E) (t : ℝ) :
     mgf (fun x : E => inner ℝ v x) (stdGaussian E) t =
@@ -67,6 +70,9 @@ lemma mgf_innerSL_stdGaussian {E : Type*} [NormedAddCommGroup E] [InnerProductSp
   rw [hmgf, hmean, hvar]
   ring_nf
 
+/--
+@isnad1 id=integrab.0h3v.s6.fd7626b41612 from=translated src=- shape=61ec910d vocab=adf257f3
+-/
 lemma integrable_exp_innerSL_stdGaussian {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
     (v : E) (t : ℝ) :
@@ -75,6 +81,9 @@ lemma integrable_exp_innerSL_stdGaussian {E : Type*} [NormedAddCommGroup E]
   rw [mgf_innerSL_stdGaussian v t]
   exact exp_pos _
 
+/--
+@isnad1 id=eq.0h3v.s7.5d3b7f1d2f13 from=translated src=- shape=188c7358 vocab=3ddde641
+-/
 lemma integral_exp_innerSL_stdGaussian {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
     (v : E) (t : ℝ) :
@@ -82,6 +91,9 @@ lemma integral_exp_innerSL_stdGaussian {E : Type*} [NormedAddCommGroup E]
       exp (‖v‖ ^ 2 * t ^ 2 / 2) := by
   exact mgf_innerSL_stdGaussian v t
 
+/--
+@isnad1 id=hassubga.0h0v.s4.26deb8845110 from=translated src=- shape=0659819f vocab=1cc04934
+-/
 lemma hasSubgaussianMGF_id_gaussianReal_zero_one :
     HasSubgaussianMGF id (1 : ℝ≥0) (gaussianReal 0 1) where
   integrable_exp_mul t := by
@@ -91,6 +103,9 @@ lemma hasSubgaussianMGF_id_gaussianReal_zero_one :
     simp only [zero_mul, NNReal.coe_one, one_mul, zero_add]
     rfl
 
+/--
+@isnad1 id=eq.1h3v.s11.b22848c4caed from=translated src=- shape=ed606ed9 vocab=500fc424
+-/
 lemma symmetric_inner_apply_eq_sum_eigenvalues_repr {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     (T : E →ₗ[ℝ] E) (hT : T.IsSymmetric) (x : E) :
@@ -117,6 +132,9 @@ lemma symmetric_inner_apply_eq_sum_eigenvalues_repr {E : Type*} [NormedAddCommGr
       simp [b]
       ring_nf
 
+/--
+@isnad1 id=eq.0h4v.s11.19df1df08e29 from=translated src=- shape=96654b90 vocab=6c4dfcf4
+-/
 lemma orthonormalBasis_repr_sum_smul {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     (b : OrthonormalBasis (Fin (Module.finrank ℝ E)) ℝ E)
@@ -145,10 +163,16 @@ def randomVector {n : ℕ} (X : Fin n → Ω → ℝ) : Ω → EuclideanSpace �
   fun ω => WithLp.toLp 2 fun i => X i ω
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h5v.s5.f218f647b74a from=translated src=- shape=0087a9b0 vocab=3e79af88
+-/
 @[simp]
 lemma randomVector_apply {n : ℕ} (X : Fin n → Ω → ℝ) (ω : Ω) (i : Fin n) :
     randomVector X ω i = X i ω := rfl
 
+/--
+@isnad1 id=aemeasur.1h4v.s6.0901ba5af0a7 from=translated src=- shape=3b6b38e4 vocab=67a00f63
+-/
 lemma randomVector_aemeasurable {μ : Measure Ω} {n : ℕ} {X : Fin n → Ω → ℝ}
     (hX_meas : ∀ i, AEMeasurable (X i) μ) :
     AEMeasurable (randomVector X) μ := by
@@ -156,6 +180,9 @@ lemma randomVector_aemeasurable {μ : Measure Ω} {n : ℕ} {X : Fin n → Ω �
     (aemeasurable_pi_lambda _ hX_meas)
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.2h8v.s7.4187b54502ad from=translated src=- shape=4abb8df6 vocab=8d4ab0d1
+-/
 lemma measure_map_prod_map_of_aemeasurable {α β γ δ : Type*}
     [MeasurableSpace α] [MeasurableSpace β] [MeasurableSpace γ] [MeasurableSpace δ]
     {μ : Measure α} {ν : Measure β} [SFinite μ] [SFinite ν]
@@ -216,6 +243,9 @@ def coordinateMask {n : ℕ} (s : Finset (Fin n))
     (x : EuclideanSpace ℝ (Fin n)) : EuclideanSpace ℝ (Fin n) :=
   WithLp.toLp 2 fun i => if i ∈ s then x i else 0
 
+/--
+@isnad1 id=eq.0h4v.s6.634a401ae3da from=translated src=- shape=8df1c64f vocab=e6a074ed
+-/
 @[simp]
 lemma coordinateMask_apply {n : ℕ} (s : Finset (Fin n))
     (x : EuclideanSpace ℝ (Fin n)) (i : Fin n) :
@@ -226,10 +256,16 @@ def subtypeMask {n : ℕ} (s : Finset (Fin n)) (x : s → ℝ) :
     EuclideanSpace ℝ (Fin n) :=
   WithLp.toLp 2 fun i => if h : i ∈ s then x ⟨i, h⟩ else 0
 
+/--
+@isnad1 id=eq.0h4v.s7.416fffc2d30a from=translated src=- shape=9e360639 vocab=d3973a96
+-/
 @[simp]
 lemma subtypeMask_apply {n : ℕ} (s : Finset (Fin n)) (x : s → ℝ) (i : Fin n) :
     subtypeMask s x i = if h : i ∈ s then x ⟨i, h⟩ else 0 := rfl
 
+/--
+@isnad1 id=measurab.0h2v.s7.cd20fe96228d from=translated src=- shape=1d334c38 vocab=e85c81da
+-/
 lemma measurable_subtypeMask {n : ℕ} (s : Finset (Fin n)) :
     Measurable (subtypeMask (n := n) s) := by
   exact (MeasurableEquiv.toLp 2 (Fin n → ℝ)).measurable.comp
@@ -240,6 +276,9 @@ lemma measurable_subtypeMask {n : ℕ} (s : Finset (Fin n)) :
       · simp [hi])
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h4v.s6.07e4333ad092 from=translated src=- shape=7fb0f6c3 vocab=a7ff05f4
+-/
 lemma subtypeMask_subtype_randomVector {n : ℕ} (s : Finset (Fin n))
     (X : Fin n → Ω → ℝ) :
     (fun ω => subtypeMask s (fun i : s => X i ω)) =
@@ -249,6 +288,9 @@ lemma subtypeMask_subtype_randomVector {n : ℕ} (s : Finset (Fin n))
   · simp [hi]
   · simp [hi]
 
+/--
+@isnad1 id=aemeasur.1h5v.s6.0dff4ce333de from=translated src=- shape=94632e81 vocab=1704530a
+-/
 lemma coordinateMask_aemeasurable {μ : Measure Ω} {n : ℕ} (s : Finset (Fin n))
     {X : Fin n → Ω → ℝ} (hX_meas : ∀ i, AEMeasurable (X i) μ) :
     AEMeasurable (fun ω => coordinateMask s (randomVector X ω)) μ := by
@@ -256,6 +298,9 @@ lemma coordinateMask_aemeasurable {μ : Measure Ω} {n : ℕ} (s : Finset (Fin n
   exact (measurable_subtypeMask s).aemeasurable.comp_aemeasurable
     (aemeasurable_pi_lambda _ fun i => hX_meas i)
 
+/--
+@isnad1 id=indepfun.2h5v.s7.c8e5e17c2394 from=translated src=- shape=809f4f40 vocab=c835306a
+-/
 lemma coordinateMask_indepFun_compl {μ : Measure Ω} {n : ℕ} {X : Fin n → Ω → ℝ}
     (h_indep : iIndepFun X μ) (hX_meas : ∀ i, AEMeasurable (X i) μ)
     (s : Finset (Fin n)) :
@@ -286,24 +331,39 @@ lemma coordinateMask_indepFun_compl {μ : Measure Ω} {n : ℕ} {X : Fin n → �
     · simp [coordinateMask, subtypeMask, hi]
     · simp [coordinateMask, subtypeMask, hi]
 
+/--
+@isnad1 id=le.0h2v.s4.3eb08f25f9b6 from=translated src=- shape=11b054b7 vocab=e6dd598a
+-/
 lemma frobeniusNormSq_nonneg {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     0 ≤ frobeniusNormSq A := by
   unfold frobeniusNormSq
   exact Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => sq_nonneg _
 
+/--
+@isnad1 id=le.0h2v.s4.a466d28e55ba from=translated src=- shape=11b054b7 vocab=0ec35390
+-/
 lemma frobeniusNorm_nonneg {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     0 ≤ frobeniusNorm A :=
   sqrt_nonneg _
 
+/--
+@isnad1 id=le.0h2v.s4.9b949bb01d64 from=translated src=- shape=11b054b7 vocab=2fe8f549
+-/
 lemma operatorNorm_nonneg {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     0 ≤ operatorNorm A :=
   norm_nonneg _
 
+/--
+@isnad1 id=le.0h2v.s4.9f595475f2d8 from=translated src=- shape=11b054b7 vocab=bfa1f22d
+-/
 lemma entrywiseL1Norm_nonneg {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     0 ≤ entrywiseL1Norm A := by
   unfold entrywiseL1Norm
   exact Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => abs_nonneg _
 
+/--
+@isnad1 id=le.0h3v.s6.3dcd64436400 from=translated src=- shape=ac441963 vocab=3a7659f5
+-/
 lemma coordinateMask_norm_le {n : ℕ} (s : Finset (Fin n))
     (x : EuclideanSpace ℝ (Fin n)) :
     ‖coordinateMask s x‖ ≤ ‖x‖ := by
@@ -320,6 +380,9 @@ lemma coordinateMask_norm_le {n : ℕ} (s : Finset (Fin n))
     _ = ‖x‖ ^ 2 := by
         rw [EuclideanSpace.real_norm_sq_eq]
 
+/--
+@isnad1 id=eq.0h4v.s13.086c0593a19d from=translated src=- shape=9df4c9fc vocab=cb82c5be
+-/
 lemma toEuclideanCLM_cutMatrix_apply {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     (s : Finset (Fin n)) (x : EuclideanSpace ℝ (Fin n)) :
     Matrix.toEuclideanCLM (𝕜 := ℝ) (cutMatrix A s) x =
@@ -331,6 +394,9 @@ lemma toEuclideanCLM_cutMatrix_apply {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
   · simp [Matrix.toEuclideanCLM_toLp, coordinateMask, cutMatrix, Matrix.mulVec, dotProduct, hi]
   · simp [Matrix.toEuclideanCLM_toLp, coordinateMask, cutMatrix, Matrix.mulVec, dotProduct, hi]
 
+/--
+@isnad1 id=eq.0h5v.s13.26b29b3b61b1 from=translated src=- shape=7ecd946b vocab=5c10315b
+-/
 lemma inner_toEuclideanCLM_cutMatrix_eq_inner_masks {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) (s : Finset (Fin n))
     (x y : EuclideanSpace ℝ (Fin n)) :
@@ -348,6 +414,9 @@ lemma inner_toEuclideanCLM_cutMatrix_eq_inner_masks {n : ℕ}
   · simp [hi]
   · simp [hi]
 
+/--
+@isnad1 id=le.0h3v.s4.25261ef0481f from=translated src=- shape=845e4e53 vocab=037467b7
+-/
 lemma operatorNorm_cutMatrix_le {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     (s : Finset (Fin n)) :
     operatorNorm (cutMatrix A s) ≤ operatorNorm A := by
@@ -366,6 +435,9 @@ lemma operatorNorm_cutMatrix_le {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
           mul_le_mul_of_nonneg_left
             (coordinateMask_norm_le ((Finset.univ : Finset (Fin n)) \ s) x) (norm_nonneg T)
 
+/--
+@isnad1 id=le.0h3v.s4.bcf055d6461b from=translated src=- shape=845e4e53 vocab=a20637bc
+-/
 lemma frobeniusNormSq_cutMatrix_le {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     (s : Finset (Fin n)) :
     frobeniusNormSq (cutMatrix A s) ≤ frobeniusNormSq A := by
@@ -375,17 +447,26 @@ lemma frobeniusNormSq_cutMatrix_le {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
   · simp [h]
   · simp [h, sq_nonneg]
 
+/--
+@isnad1 id=eq.0h2v.s5.1d206ae523b2 from=translated src=- shape=993644e7 vocab=5554944c
+-/
 lemma frobeniusNorm_sq {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     frobeniusNorm A ^ 2 = frobeniusNormSq A := by
   unfold frobeniusNorm
   rw [sq_sqrt (frobeniusNormSq_nonneg A)]
 
+/--
+@isnad1 id=le.0h3v.s5.34363be3f21e from=translated src=- shape=e0ad5d36 vocab=f972a9a4
+-/
 lemma frobeniusNorm_cutMatrix_sq_le {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     (s : Finset (Fin n)) :
     frobeniusNorm (cutMatrix A s) ^ 2 ≤ frobeniusNorm A ^ 2 := by
   rw [frobeniusNorm_sq, frobeniusNorm_sq]
   exact frobeniusNormSq_cutMatrix_le A s
 
+/--
+@isnad1 id=eq.1h3v.s7.88d513bc00d2 from=translated src=- shape=ad08bfee vocab=44e2abb9
+-/
 lemma card_powerset_filter_mem_notMem_eq {n : ℕ} {i j : Fin n} (hij : i ≠ j) :
     (((Finset.univ : Finset (Fin n)).powerset.filter
       (fun s => i ∈ s ∧ j ∉ s)).card) =
@@ -452,6 +533,9 @@ lemma card_powerset_filter_mem_notMem_eq {n : ℕ} {i j : Fin n} (hij : i ≠ j)
       exact (Finset.mem_erase.mp (Finset.mem_erase.mp hi_erase).2).1 rfl
     exact Finset.erase_insert hi_not
 
+/--
+@isnad1 id=eq.1h3v.s7.672fed23b6ab from=translated src=- shape=a9620bec vocab=49f3c634
+-/
 lemma four_mul_card_powerset_filter_mem_notMem {n : ℕ} {i j : Fin n} (hij : i ≠ j) :
     4 * (((Finset.univ : Finset (Fin n)).powerset.filter
       (fun s => i ∈ s ∧ j ∉ s)).card) =
@@ -482,6 +566,9 @@ lemma four_mul_card_powerset_filter_mem_notMem {n : ℕ} {i j : Fin n} (hij : i 
   norm_num
   rw [Nat.mul_comm]
 
+/--
+@isnad1 id=eq.0h4v.s8.61f921ed9098 from=translated src=- shape=bedd57af vocab=0997aad9
+-/
 lemma sum_powerset_cut_indicator {n : ℕ} (i j : Fin n) (a : ℝ) :
     (∑ s ∈ (Finset.univ : Finset (Fin n)).powerset,
       (if i ∈ s ∧ j ∉ s then a else 0)) =
@@ -491,6 +578,9 @@ lemma sum_powerset_cut_indicator {n : ℕ} (i j : Fin n) (a : ℝ) :
   rw [← Finset.sum_filter]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s6.d6a4d624ba4f from=translated src=- shape=6d1d03e0 vocab=ad02ff44
+-/
 lemma four_mul_sum_cut_quadraticForm_eq_card_mul_offDiagonal {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) (x : Fin n → ℝ) :
     4 * (∑ s ∈ (Finset.univ : Finset (Fin n)).powerset,
@@ -560,6 +650,9 @@ lemma four_mul_sum_cut_quadraticForm_eq_card_mul_offDiagonal {n : ℕ}
             intro i _
             rw [Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h3v.s6.2ca21bd3b880 from=translated src=- shape=20e1185f vocab=e9bc2181
+-/
 lemma quadraticForm_offDiagonal_eq_average_cut {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) (x : Fin n → ℝ) :
     quadraticForm (offDiagonalMatrix A) x =
@@ -584,6 +677,9 @@ lemma quadraticForm_offDiagonal_eq_average_cut {n : ℕ}
     _ = (4 / (P.card : ℝ)) * ∑ s ∈ P, quadraticForm (cutMatrix A s) x := by
             field_simp [ne_of_gt hP_pos]
 
+/--
+@isnad1 id=le.0h4v.s6.dff1985f54c3 from=translated src=- shape=08180fc8 vocab=ff42c0a7
+-/
 lemma exp_mul_quadraticForm_offDiagonal_le_average_cut {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) (x : Fin n → ℝ) (l : ℝ) :
     exp (l * quadraticForm (offDiagonalMatrix A) x) ≤
@@ -625,6 +721,9 @@ lemma exp_mul_quadraticForm_offDiagonal_le_average_cut {n : ℕ}
   rw [harg, hrhs] at hconv
   simpa [P] using hconv
 
+/--
+@isnad1 id=eq.0h3v.s12.3d3fb38f6e3a from=translated src=- shape=00f5e36c vocab=dd761bfe
+-/
 lemma quadraticForm_eq_inner_toEuclideanCLM {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) (x : Fin n → ℝ) :
     quadraticForm A x =
@@ -639,17 +738,26 @@ lemma quadraticForm_eq_inner_toEuclideanCLM {n : ℕ}
   intro j _
   ring
 
+/--
+@isnad1 id=le.0h2v.s5.b1f2c5dde1aa from=translated src=- shape=548cae6a vocab=4105e679
+-/
 lemma sum_diag_sq_le_frobeniusNormSq {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     (∑ i, A i i ^ 2) ≤ frobeniusNormSq A := by
   unfold frobeniusNormSq
   exact Finset.sum_le_sum fun i _ => by
     exact Finset.single_le_sum (fun j _ => sq_nonneg (A i j)) (Finset.mem_univ i)
 
+/--
+@isnad1 id=le.0h2v.s6.859bf3120862 from=translated src=- shape=8ce1cb46 vocab=4ab758bd
+-/
 lemma sum_diag_sq_le_frobeniusNorm_sq {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     (∑ i, A i i ^ 2) ≤ frobeniusNorm A ^ 2 := by
   rw [frobeniusNorm_sq]
   exact sum_diag_sq_le_frobeniusNormSq A
 
+/--
+@isnad1 id=le.0h3v.s4.a2c641711494 from=translated src=- shape=acaa0884 vocab=a03a60c6
+-/
 lemma abs_diag_le_operatorNorm {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) (i : Fin n) :
     |A i i| ≤ operatorNorm A := by
   let e : EuclideanSpace ℝ (Fin n) := EuclideanSpace.single i (1 : ℝ)
@@ -671,6 +779,9 @@ lemma abs_diag_le_operatorNorm {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) (i : F
       rw [he_norm, mul_one]
       rfl
 
+/--
+@isnad1 id=le.2h4v.s6.acf873fff9c6 from=translated src=- shape=16f86750 vocab=d3a1ff8c
+-/
 lemma abs_quadraticForm_le {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     {x : Fin n → ℝ} {K : ℝ} (hK : 0 ≤ K) (hx : ∀ i, |x i| ≤ K) :
     |quadraticForm A x| ≤ K ^ 2 * entrywiseL1Norm A := by
@@ -701,6 +812,9 @@ lemma abs_quadraticForm_le {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
         intro j _
         ring
 
+/--
+@isnad1 id=aemeasur.1h5v.s5.54eab8190f75 from=translated src=- shape=b16738a3 vocab=c4c6252e
+-/
 lemma randomQuadraticForm_aemeasurable {μ : Measure Ω} {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) {X : Fin n → Ω → ℝ}
     (hX_meas : ∀ i, AEMeasurable (X i) μ) :
@@ -711,6 +825,9 @@ lemma randomQuadraticForm_aemeasurable {μ : Measure Ω} {n : ℕ}
       (((hX_meas i).mul (hX_meas j)).const_mul (A i j)).congr
         (ae_of_all _ fun ω => by simp only [Pi.mul_apply, mul_assoc])
 
+/--
+@isnad1 id=eventual.2h6v.s7.aed37aecda27 from=translated src=- shape=286fdb7b vocab=f63cacb0
+-/
 lemma randomQuadraticForm_mem_Icc_of_ae_coord_bound {μ : Measure Ω} {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) {X : Fin n → Ω → ℝ} {K : ℝ}
     (hK : 0 ≤ K) (hX_bound : ∀ i, ∀ᵐ ω ∂μ, |X i ω| ≤ K) :
@@ -721,6 +838,9 @@ lemma randomQuadraticForm_mem_Icc_of_ae_coord_bound {μ : Measure Ω} {n : ℕ}
   have h_abs := abs_quadraticForm_le A hK (fun i => hω i)
   exact abs_le.mp h_abs
 
+/--
+@isnad1 id=le.1h5v.s7.1eaab05b3206 from=translated src=- shape=d5c386db vocab=85da0393
+-/
 lemma bounded_hansonWright_cgf_constant_le {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) {K C : ℝ}
     (hC_bound : 2 * entrywiseL1Norm A ^ 2 ≤ C * frobeniusNorm A ^ 2) (l : ℝ) :
@@ -746,7 +866,9 @@ def HasHansonWrightMGF {n : ℕ} (μ : Measure Ω) (A : Matrix (Fin n) (Fin n) �
   ∀ l : ℝ, |l| ≤ (2 * C * K ^ 2 * operatorNorm A)⁻¹ →
     Integrable (fun ω => exp (l * centeredQuadraticForm μ A X ω)) μ
 
-/-- Convexity of `exp` gives the chord bound on a compact interval. -/
+/-- Convexity of `exp` gives the chord bound on a compact interval.
+@isnad1 id=le.2h3v.s7.93493e221d1e from=translated src=- shape=cba0441d vocab=f60f421b
+-/
 lemma exp_le_chord {R t x : ℝ} (hR : 0 < R) (hx : x ∈ Set.Icc (-R) R) :
     exp (t * x) ≤ ((R - x) / (2 * R)) * exp (t * (-R)) +
       ((x + R) / (2 * R)) * exp (t * R) := by
@@ -783,7 +905,9 @@ lemma exp_le_chord {R t x : ℝ} (hR : 0 < R) (hx : x ∈ Set.Icc (-R) R) :
   rw [harg, hrhs] at hconv
   simpa [smul_eq_mul] using hconv
 
-/-- A two-sided exponential consequence of a sub-Gaussian MGF bound. -/
+/-- A two-sided exponential consequence of a sub-Gaussian MGF bound.
+@isnad1 id=le.1h5v.s6.02cb7a596eb1 from=translated src=- shape=2c3ff134 vocab=20706c0e
+-/
 lemma integral_cosh_mul_le_of_hasSubgaussianMGF {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {c : ℝ≥0} (h : HasSubgaussianMGF X c μ) (t : ℝ) :
     ∫ ω, cosh (t * X ω) ∂μ ≤ exp ((c : ℝ) * t ^ 2 / 2) := by
@@ -813,7 +937,9 @@ lemma integral_cosh_mul_le_of_hasSubgaussianMGF {μ : Measure Ω} [IsProbability
     simpa [sq] using h.mgf_le (-t)
   nlinarith [hpos_le, hneg_le]
 
-/-- Each nonnegative Taylor term of `cosh` is bounded by `cosh` itself. -/
+/-- Each nonnegative Taylor term of `cosh` is bounded by `cosh` itself.
+@isnad1 id=le.0h2v.s5.88cd5907a438 from=translated src=- shape=eceb4e02 vocab=564bd2b9
+-/
 lemma cosh_taylor_term_le (y : ℝ) (m : ℕ) :
     y ^ (2 * m) / (Nat.factorial (2 * m) : ℝ) ≤ cosh y := by
   rw [Real.cosh_eq_tsum]
@@ -826,7 +952,9 @@ lemma cosh_taylor_term_le (y : ℝ) (m : ℕ) :
     hs.sum_le_tsum ({m} : Finset ℕ) (fun n _ => hnonneg n)
   simpa using hsingle
 
-/-- Sub-Gaussian MGF control bounds every integrated even Taylor term. -/
+/-- Sub-Gaussian MGF control bounds every integrated even Taylor term.
+@isnad1 id=le.1h6v.s7.2b72e0a75058 from=translated src=- shape=fe0553b1 vocab=feeedbfd
+-/
 lemma integral_even_taylor_term_le_of_hasSubgaussianMGF {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) (t : ℝ) (m : ℕ) :
@@ -867,7 +995,9 @@ lemma integral_even_taylor_term_le_of_hasSubgaussianMGF {μ : Measure Ω}
     _ ≤ exp ((c : ℝ) * t ^ 2 / 2) :=
         integral_cosh_mul_le_of_hasSubgaussianMGF h t
 
-/-- Even moment bound obtained from sub-Gaussian MGF control at an arbitrary scale. -/
+/-- Even moment bound obtained from sub-Gaussian MGF control at an arbitrary scale.
+@isnad1 id=le.2h6v.s7.96139ae329ed from=translated src=- shape=4e161cce vocab=9da64e31
+-/
 lemma integral_even_power_le_of_hasSubgaussianMGF {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {s : ℝ} (hs : 0 < s) (m : ℕ) :
@@ -906,7 +1036,9 @@ lemma integral_even_power_le_of_hasSubgaussianMGF {μ : Measure Ω}
         exp ((c : ℝ) * s ^ 2 / 2) := by
         field_simp [ne_of_gt hs, Nat.cast_ne_zero.mpr (Nat.factorial_ne_zero (2 * m))]
 
-/-- Pointwise power-series expansion of `exp (θ x²)`. -/
+/-- Pointwise power-series expansion of `exp (θ x²)`.
+@isnad1 id=eq.0h2v.s6.876b932250af from=translated src=- shape=f9357634 vocab=79ca90af
+-/
 lemma exp_mul_sq_eq_tsum (θ x : ℝ) :
     exp (θ * x ^ 2) =
       ∑' m : ℕ, θ ^ m * x ^ (2 * m) / (Nat.factorial m : ℝ) := by
@@ -915,7 +1047,9 @@ lemma exp_mul_sq_eq_tsum (θ x : ℝ) :
   congr with m
   rw [mul_pow, ← pow_mul]
 
-/-- A factorial estimate used to sum the square-exponential moment series. -/
+/-- A factorial estimate used to sum the square-exponential moment series.
+@isnad1 id=le.0h1v.s6.558a8105761f from=translated src=- shape=d24eb0c1 vocab=975ff2ed
+-/
 lemma factorial_two_mul_div_factorial_le_succ_pow (m : ℕ) :
     (Nat.factorial (2 * m) : ℝ) / (Nat.factorial m : ℝ) ≤
       ((2 * m + 1 : ℕ) : ℝ) ^ m := by
@@ -928,7 +1062,9 @@ lemma factorial_two_mul_div_factorial_le_succ_pow (m : ℕ) :
   rw [div_le_iff₀ hfac_pos]
   exact_mod_cast hnat
 
-/-- A geometric bound for each integrated square-exponential Taylor term. -/
+/-- A geometric bound for each integrated square-exponential Taylor term.
+@isnad1 id=le.2h6v.s7.4e2ec8531bb9 from=translated src=- shape=385531a1 vocab=045c9f0e
+-/
 lemma integral_exp_sq_series_term_le_of_hasSubgaussianMGF {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ : ℝ} (hθ : 0 ≤ θ) (m : ℕ) :
@@ -1024,7 +1160,9 @@ lemma integral_exp_sq_series_term_le_of_hasSubgaussianMGF {μ : Measure Ω}
         rw [mul_pow, mul_pow]
         ring
 
-/-- A geometric Taylor-term bound using any positive real proxy above the sub-Gaussian parameter. -/
+/-- A geometric Taylor-term bound using any positive real proxy above the sub-Gaussian parameter.
+@isnad1 id=le.4h7v.s7.d01fd825f2f4 from=translated src=- shape=eb2b4547 vocab=9da64e31
+-/
 lemma integral_exp_sq_series_term_le_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ} (hθ : 0 ≤ θ)
@@ -1120,7 +1258,9 @@ lemma integral_exp_sq_series_term_le_of_hasSubgaussianMGF_of_le {μ : Measure Ω
         rw [mul_pow, mul_pow]
         ring
 
-/-- The square-exponential Taylor integrals are summable below the explicit radius. -/
+/-- The square-exponential Taylor integrals are summable below the explicit radius.
+@isnad1 id=summable.3h5v.s7.033b67e95b05 from=translated src=- shape=615c2b98 vocab=445a3daf
+-/
 lemma summable_integral_exp_sq_series_of_hasSubgaussianMGF {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ : ℝ} (hθ : 0 ≤ θ)
@@ -1143,7 +1283,9 @@ lemma summable_integral_exp_sq_series_of_hasSubgaussianMGF {μ : Measure Ω}
   · intro m
     simpa [r, hr_def] using integral_exp_sq_series_term_le_of_hasSubgaussianMGF h hθ m
 
-/-- Summability of square-exponential Taylor integrals using a positive proxy `C0 ≥ c`. -/
+/-- Summability of square-exponential Taylor integrals using a positive proxy `C0 ≥ c`.
+@isnad1 id=summable.5h6v.s7.3fe7dd348fb4 from=translated src=- shape=98b74c0e vocab=97bd1791
+-/
 lemma summable_integral_exp_sq_series_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ} (hθ : 0 ≤ θ)
@@ -1168,7 +1310,9 @@ lemma summable_integral_exp_sq_series_of_hasSubgaussianMGF_of_le {μ : Measure �
     simpa [r, hr_def] using
       integral_exp_sq_series_term_le_of_hasSubgaussianMGF_of_le h hθ hC0 hc_le m
 
-/-- Integral form of the square-exponential Taylor expansion. -/
+/-- Integral form of the square-exponential Taylor expansion.
+@isnad1 id=eq.3h5v.s8.febd61bdda25 from=translated src=- shape=aaf2ccb7 vocab=3e17eaf2
+-/
 lemma integral_exp_mul_sq_eq_tsum_integrals {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ : ℝ} (hθ : 0 ≤ θ)
@@ -1209,7 +1353,9 @@ lemma integral_exp_mul_sq_eq_tsum_integrals {μ : Measure Ω}
   dsimp [F]
   rw [exp_mul_sq_eq_tsum θ (X ω)]
 
-/-- A quantitative square-exponential integral bound below the proxy radius. -/
+/-- A quantitative square-exponential integral bound below the proxy radius.
+@isnad1 id=le.5h6v.s7.46cd796039fb from=translated src=- shape=0948afc5 vocab=45402c9d
+-/
 lemma integral_exp_mul_sq_le_inv_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ} (hθ : 0 ≤ θ)
@@ -1236,7 +1382,9 @@ lemma integral_exp_mul_sq_le_inv_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
           rw [tsum_geometric_of_lt_one hr_nonneg hr_lt]
     _ = exp 1 * (1 - θ * C0 * exp 1)⁻¹ := by rw [hr_def]
 
-/-- A sharper square-exponential bound with the exact zeroth Taylor term isolated. -/
+/-- A sharper square-exponential bound with the exact zeroth Taylor term isolated.
+@isnad1 id=le.5h6v.s7.aa11acd3da69 from=translated src=- shape=b5e225cb vocab=c1d1585c
+-/
 lemma integral_exp_mul_sq_le_one_add_tail_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ} (hθ : 0 ≤ θ)
@@ -1287,7 +1435,9 @@ lemma integral_exp_mul_sq_le_one_add_tail_of_hasSubgaussianMGF_of_le {μ : Measu
         field_simp [hden]
         ring]
 
-/-- A square-exponential bound with the zeroth and first Taylor terms isolated. -/
+/-- A square-exponential bound with the zeroth and first Taylor terms isolated.
+@isnad1 id=le.5h6v.s8.7ea3ead6ce30 from=translated src=- shape=7c7993f0 vocab=c1d1585c
+-/
 lemma integral_exp_mul_sq_le_one_add_linear_add_tail_of_hasSubgaussianMGF_of_le
     {μ : Measure Ω} [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ} (hθ : 0 ≤ θ)
@@ -1347,7 +1497,9 @@ lemma integral_exp_mul_sq_le_one_add_linear_add_tail_of_hasSubgaussianMGF_of_le
         field_simp [hden]
         ring]
 
-/-- A linear-in-`θ` square-exponential bound at half the explicit radius. -/
+/-- A linear-in-`θ` square-exponential bound at half the explicit radius.
+@isnad1 id=le.5h6v.s7.cdb6a9a24ced from=translated src=- shape=6e0488a7 vocab=2a72b7fe
+-/
 lemma integral_exp_mul_sq_le_exp_linear_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ} (hθ : 0 ≤ θ)
@@ -1383,7 +1535,9 @@ lemma integral_exp_mul_sq_le_exp_linear_of_hasSubgaussianMGF_of_le {μ : Measure
     _ = exp (2 * exp 1 * (θ * C0 * exp 1)) := by rw [hr_def]
 
 /-- Gaussian square-form bound for a positive symmetric operator, proved by spectral
-diagonalization and one-dimensional square-exponential estimates. -/
+diagonalization and one-dimensional square-exponential estimates.
+@isnad1 id=le.3h3v.s9.a528ce4a306d from=translated src=- shape=3ac3cb42 vocab=547d69ef
+-/
 lemma integral_exp_quadratic_stdGaussian_le {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
     (T : E →L[ℝ] E) (hTpos : T.toLinearMap.IsPositive) {θ : ℝ} (hθ : 0 ≤ θ)
@@ -1476,6 +1630,9 @@ lemma integral_exp_quadratic_stdGaussian_le {E : Type*} [NormedAddCommGroup E]
           intro i _
           ring
 
+/--
+@isnad1 id=eq.0h2v.s6.0f49fea5c9d7 from=translated src=- shape=94b19c2c vocab=eafd7e5b
+-/
 lemma matrix_trace_conjTranspose_mul_self_eq_frobeniusNormSq {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) :
     (A.conjTranspose * A).trace = frobeniusNormSq A := by
@@ -1489,6 +1646,9 @@ lemma matrix_trace_conjTranspose_mul_self_eq_frobeniusNormSq {n : ℕ}
   intro j _
   ring
 
+/--
+@isnad1 id=eq.0h2v.s14.ffcffde5fa25 from=translated src=- shape=995b3d0a vocab=25611d74
+-/
 lemma toEuclideanCLM_adjoint {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     ContinuousLinearMap.adjoint (Matrix.toEuclideanCLM (𝕜 := ℝ) A) =
       Matrix.toEuclideanCLM (𝕜 := ℝ) A.conjTranspose := by
@@ -1498,22 +1658,34 @@ lemma toEuclideanCLM_adjoint {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
   rw [← Matrix.toEuclideanLin_conjTranspose_eq_adjoint]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.b784ff047c76 from=translated src=- shape=8da526cd vocab=b2c968bb
+-/
 lemma operatorNorm_conjTranspose {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     operatorNorm A.conjTranspose = operatorNorm A := by
   unfold operatorNorm
   rw [← toEuclideanCLM_adjoint A]
   exact ContinuousLinearMap.adjoint.norm_map _
 
+/--
+@isnad1 id=eq.0h2v.s5.8ce592784878 from=translated src=- shape=8da526cd vocab=64df4d3e
+-/
 lemma frobeniusNormSq_conjTranspose {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     frobeniusNormSq A.conjTranspose = frobeniusNormSq A := by
   unfold frobeniusNormSq
   simp only [Matrix.conjTranspose_apply, star_trivial]
   rw [Finset.sum_comm]
 
+/--
+@isnad1 id=eq.0h2v.s6.6483874e7883 from=translated src=- shape=aa588b6e vocab=8e489b3e
+-/
 lemma frobeniusNorm_conjTranspose_sq {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     frobeniusNorm A.conjTranspose ^ 2 = frobeniusNorm A ^ 2 := by
   rw [frobeniusNorm_sq, frobeniusNorm_sq, frobeniusNormSq_conjTranspose]
 
+/--
+@isnad1 id=eq.0h2v.s14.f8a577869432 from=translated src=- shape=67ac42e4 vocab=ecc87d38
+-/
 lemma trace_adjoint_comp_toEuclideanCLM_eq_frobeniusNormSq {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) :
     (LinearMap.trace ℝ (EuclideanSpace ℝ (Fin n)))
@@ -1547,6 +1719,9 @@ lemma trace_adjoint_comp_toEuclideanCLM_eq_frobeniusNormSq {n : ℕ}
   · intro hj
     exact (hj (Finset.mem_univ j)).elim
 
+/--
+@isnad1 id=other.0h3v.s11.c69039261e4b from=translated src=- shape=10989050 vocab=2f74c79b
+-/
 lemma eigenvalue_adjoint_comp_le_opNorm_sq {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     (T : E →L[ℝ] E) (i : Fin (Module.finrank ℝ E)) :
@@ -1577,7 +1752,9 @@ lemma eigenvalue_adjoint_comp_le_opNorm_sq {E : Type*} [NormedAddCommGroup E]
     lam = ‖T e‖ ^ 2 := by rw [← hinner, ← hnorm_sq]
     _ ≤ ‖T‖ ^ 2 := by nlinarith
 
-/-- A second-moment bound from the square-exponential Taylor-term estimate. -/
+/-- A second-moment bound from the square-exponential Taylor-term estimate.
+@isnad1 id=le.3h5v.s6.0a14517c3fb7 from=translated src=- shape=1244c1aa vocab=947bedb3
+-/
 lemma integral_sq_le_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {C0 : ℝ}
@@ -1588,7 +1765,9 @@ lemma integral_sq_le_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
       (θ := 1) (C0 := C0) (by norm_num) hC0 hc_le 1
   simpa using hterm
 
-/-- A fourth-moment bound from the square-exponential Taylor-term estimate. -/
+/-- A fourth-moment bound from the square-exponential Taylor-term estimate.
+@isnad1 id=le.3h5v.s7.7de75474d1e3 from=translated src=- shape=5c195e21 vocab=947bedb3
+-/
 lemma integral_fourth_le_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {C0 : ℝ}
@@ -1610,7 +1789,9 @@ lemma integral_fourth_le_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
   rw [hscale] at hterm'
   nlinarith
 
-/-- A global quadratic upper bound for the negative exponential on the nonnegative half-line. -/
+/-- A global quadratic upper bound for the negative exponential on the nonnegative half-line.
+@isnad1 id=le.1h1v.s5.c7c6bbc9d82a from=translated src=- shape=776c7eda vocab=cf72a9b2
+-/
 lemma exp_neg_le_one_sub_add_sq {u : ℝ} (hu : 0 ≤ u) :
     exp (-u) ≤ 1 - u + u ^ 2 := by
   have hden_pos : 0 < 1 + u := by linarith
@@ -1628,7 +1809,9 @@ lemma exp_neg_le_one_sub_add_sq {u : ℝ} (hu : 0 ≤ u) :
     _ ≤ (1 + u)⁻¹ := hinv
     _ ≤ 1 - u + u ^ 2 := hrat
 
-/-- The linear Taylor term cancels after multiplying by `exp (-u)`. -/
+/-- The linear Taylor term cancels after multiplying by `exp (-u)`.
+@isnad1 id=le.0h1v.s5.db8c3d9a2dc4 from=translated src=- shape=f45a4e7f vocab=3923db87
+-/
 lemma exp_neg_mul_one_add_le_one (u : ℝ) :
     exp (-u) * (1 + u) ≤ 1 := by
   have h_exp_ge : 1 + u ≤ exp u := by
@@ -1641,7 +1824,9 @@ lemma exp_neg_mul_one_add_le_one (u : ℝ) :
       ring_nf
       simp
 
-/-- Positive-parameter MGF bound for a centered square of a sub-Gaussian variable. -/
+/-- Positive-parameter MGF bound for a centered square of a sub-Gaussian variable.
+@isnad1 id=le.5h6v.s8.f1e997a038f1 from=translated src=- shape=66acff7f vocab=05ced90b
+-/
 lemma integral_exp_centered_sq_le_exp_quadratic_nonneg {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ} (hθ : 0 ≤ θ)
@@ -1731,7 +1916,9 @@ lemma integral_exp_centered_sq_le_exp_quadratic_nonneg {μ : Measure Ω}
       simpa [add_comm] using Real.add_one_le_exp (2 * exp 1 * r ^ 2)
     _ = exp (2 * exp 1 * (θ * C0 * exp 1) ^ 2) := by rw [hr_def]
 
-/-- Negative-parameter MGF bound for a centered square of a sub-Gaussian variable. -/
+/-- Negative-parameter MGF bound for a centered square of a sub-Gaussian variable.
+@isnad1 id=le.4h6v.s7.f382795d126a from=translated src=- shape=b0203d49 vocab=2bb51c6f
+-/
 lemma integral_exp_centered_sq_le_exp_quadratic_nonpos {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ} (hθ : θ ≤ 0)
@@ -1837,7 +2024,9 @@ lemma integral_exp_centered_sq_le_exp_quadratic_nonpos {μ : Measure Ω}
         rw [ha_def]
         ring_nf
 
-/-- Square-exponential integrability from summability of the nonnegative moment series. -/
+/-- Square-exponential integrability from summability of the nonnegative moment series.
+@isnad1 id=integrab.3h5v.s7.b2e09f691a6c from=translated src=- shape=8dcf2990 vocab=7300c4da
+-/
 lemma integrable_exp_mul_sq_of_summable_integrals {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ : ℝ} (hθ : 0 ≤ θ)
@@ -1908,7 +2097,9 @@ lemma integrable_exp_mul_sq_of_summable_integrals {μ : Measure Ω}
     ((h.aemeasurable.pow_const 2).const_mul θ).exp.aestronglyMeasurable
     (ae_of_all _ fun ω => (exp_pos _).le)).mp h_exp_lintegral_ne_top
 
-/-- Square-exponential integrability for a sub-Gaussian variable at small positive parameter. -/
+/-- Square-exponential integrability for a sub-Gaussian variable at small positive parameter.
+@isnad1 id=integrab.3h5v.s7.35d40bb8fcb5 from=translated src=- shape=30ca9a4f vocab=fa315e22
+-/
 lemma integrable_exp_mul_sq_of_hasSubgaussianMGF {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ : ℝ} (hθ : 0 ≤ θ)
@@ -1917,7 +2108,9 @@ lemma integrable_exp_mul_sq_of_hasSubgaussianMGF {μ : Measure Ω}
   integrable_exp_mul_sq_of_summable_integrals h hθ
     (summable_integral_exp_sq_series_of_hasSubgaussianMGF h hθ hθ_small)
 
-/-- Small-parameter square-exponential integrability using a positive proxy `C0 ≥ c`. -/
+/-- Small-parameter square-exponential integrability using a positive proxy `C0 ≥ c`.
+@isnad1 id=integrab.5h6v.s7.db5fc1384a5f from=translated src=- shape=54fc0c54 vocab=66b291e3
+-/
 lemma integrable_exp_mul_sq_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ} (hθ : 0 ≤ θ)
@@ -1928,7 +2121,9 @@ lemma integrable_exp_mul_sq_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     (summable_integral_exp_sq_series_of_hasSubgaussianMGF_of_le h hθ hC0 hc_le hθ_small)
 
 /-- Gaussian square-form integrability for a positive symmetric operator, under the
-strict version of the same coordinate smallness condition. -/
+strict version of the same coordinate smallness condition.
+@isnad1 id=integrab.3h3v.s9.32b3d18e6410 from=translated src=- shape=438018d6 vocab=f50f3fa1
+-/
 lemma integrable_exp_quadratic_stdGaussian {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
     (T : E →L[ℝ] E) (hTpos : T.toLinearMap.IsPositive) {θ : ℝ} (hθ : 0 ≤ θ)
@@ -1995,7 +2190,9 @@ lemma integrable_exp_quadratic_stdGaussian {E : Type*} [NormedAddCommGroup E]
   · filter_upwards with z
     exact (hpoint z).symm
 
-/-- Integrability of the exponential of a Gaussian bilinear form. -/
+/-- Integrability of the exponential of a Gaussian bilinear form.
+@isnad1 id=integrab.1h3v.s12.ebd54c2c2976 from=translated src=- shape=9dc28e69 vocab=683f9bdf
+-/
 lemma integrable_exp_inner_toEuclideanCLM_prod_stdGaussian {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) {l : ℝ}
     (hsmall : (l ^ 2 / 2) * operatorNorm A ^ 2 * exp 1 < 1) :
@@ -2053,7 +2250,9 @@ lemma integrable_exp_inner_toEuclideanCLM_prod_stdGaussian {n : ℕ}
       ring_nf
     exact hquad_int.congr houter_eq.symm
 
-/-- A Frobenius-scale bound for the exponential moment of a Gaussian bilinear form. -/
+/-- A Frobenius-scale bound for the exponential moment of a Gaussian bilinear form.
+@isnad1 id=le.1h3v.s12.3a440b261d6d from=translated src=- shape=e4242524 vocab=0f372a7a
+-/
 lemma integral_exp_inner_toEuclideanCLM_prod_stdGaussian_le {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) {l : ℝ}
     (hsmall : (l ^ 2 / 2) * operatorNorm A ^ 2 * exp 1 ≤ 1 / 2) :
@@ -2121,7 +2320,9 @@ lemma integral_exp_inner_toEuclideanCLM_prod_stdGaussian_le {n : ℕ}
           congr 1
           ring
 
-/-- Local exponential integrability for centered squares of sub-Gaussian variables. -/
+/-- Local exponential integrability for centered squares of sub-Gaussian variables.
+@isnad1 id=integrab.4h6v.s7.306b3a5b16f9 from=translated src=- shape=60aede8c vocab=7dc333c4
+-/
 lemma integrable_exp_centered_sq_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ}
@@ -2159,7 +2360,9 @@ lemma integrable_exp_centered_sq_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     rw [hm_def, ha_def]
     ring_nf
 
-/-- The MGF of the identity under a push-forward law is the MGF of the original variable. -/
+/-- The MGF of the identity under a push-forward law is the MGF of the original variable.
+@isnad1 id=eq.1h4v.s5.340d7093b588 from=translated src=- shape=41132657 vocab=e3ff767d
+-/
 lemma mgf_id_map_eq {μ : Measure Ω} {X : Ω → ℝ}
     (hX : AEMeasurable X μ) (t : ℝ) :
     mgf id (μ.map X) t = mgf X μ t := by
@@ -2167,6 +2370,9 @@ lemma mgf_id_map_eq {μ : Measure Ω} {X : Ω → ℝ}
     (integral_map hX ((measurable_id'.const_mul t).exp.aestronglyMeasurable)
       (f := fun x : ℝ => exp (t * id x)))
 
+/--
+@isnad1 id=integrab.2h4v.s6.bcaf570d9b86 from=translated src=- shape=00d7a7b8 vocab=d9161285
+-/
 lemma integrable_exp_mul_id_map {μ : Measure Ω} {X : Ω → ℝ}
     {t : ℝ} (hX : AEMeasurable X μ) (h : Integrable (fun ω => exp (t * X ω)) μ) :
     Integrable (fun x : ℝ => exp (t * id x)) (μ.map X) := by
@@ -2175,6 +2381,9 @@ lemma integrable_exp_mul_id_map {μ : Measure Ω} {X : Ω → ℝ}
   · fun_prop
   · exact hX
 
+/--
+@isnad1 id=hassubga.1h4v.s5.e4796e9f7ccd from=translated src=- shape=83476dd7 vocab=acd23e1a
+-/
 lemma hasSubgaussianMGF_id_map {μ : Measure Ω} {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) :
     HasSubgaussianMGF id c (μ.map X) where
@@ -2183,6 +2392,9 @@ lemma hasSubgaussianMGF_id_map {μ : Measure Ω} {X : Ω → ℝ} {c : ℝ≥0}
     rw [mgf_id_map_eq h.aemeasurable t]
     exact h.mgf_le t
 
+/--
+@isnad1 id=integrab.6h6v.s7.b49b10d21a1f from=translated src=- shape=a009a430 vocab=434ebf1a
+-/
 lemma integrable_exp_mul_snd_fst_prod_of_hasSubgaussianMGF_of_le
     {νX νY : Measure ℝ} [IsProbabilityMeasure νX] [IsProbabilityMeasure νY]
     {cX cY : ℝ≥0} (hX : HasSubgaussianMGF id cX νX)
@@ -2238,6 +2450,9 @@ lemma integrable_exp_mul_snd_fst_prod_of_hasSubgaussianMGF_of_le
       · exact hle
       · exact integral_nonneg fun x => norm_nonneg _
 
+/--
+@isnad1 id=le.6h6v.s8.d0bb6bd28015 from=translated src=- shape=cbfcafe2 vocab=be16ba5d
+-/
 lemma integral_exp_mul_snd_fst_prod_le_of_hasSubgaussianMGF_of_le
     {νX νY : Measure ℝ} [IsProbabilityMeasure νX] [IsProbabilityMeasure νY]
     {cX cY : ℝ≥0} (hX : HasSubgaussianMGF id cX νX)
@@ -2294,6 +2509,9 @@ lemma integral_exp_mul_snd_fst_prod_le_of_hasSubgaussianMGF_of_le
           congr 1
           ring_nf
 
+/--
+@isnad1 id=integrab.7h8v.s7.f3bc4c157cba from=translated src=- shape=70079cd8 vocab=a4d0458b
+-/
 lemma integrable_exp_mul_prod_of_indepFun_hasSubgaussianMGF_of_le
     {μ : Measure Ω} [IsProbabilityMeasure μ] {X Y : Ω → ℝ}
     (h_indep : X ⟂ᵢ[μ] Y)
@@ -2329,6 +2547,9 @@ lemma integrable_exp_mul_prod_of_indepFun_hasSubgaussianMGF_of_le
   ext ω
   dsimp [g, φ]
 
+/--
+@isnad1 id=le.7h8v.s8.a43a3ebaca58 from=translated src=- shape=eadae9cf vocab=bc3c5817
+-/
 lemma integral_exp_mul_prod_le_of_indepFun_hasSubgaussianMGF_of_le
     {μ : Measure Ω} [IsProbabilityMeasure μ] {X Y : Ω → ℝ}
     (h_indep : X ⟂ᵢ[μ] Y)
@@ -2365,7 +2586,9 @@ lemma integral_exp_mul_prod_le_of_indepFun_hasSubgaussianMGF_of_le
     _ = ∫ p : ℝ × ℝ, g p ∂((μ.map Y).prod (μ.map X)) := by rw [hmap_eq]
     _ ≤ exp (exp 1 ^ 2 * C0 ^ 2 * θ ^ 2) := hprod_bound
 
-/-- CGF bound for a centered square of a sub-Gaussian variable. -/
+/-- CGF bound for a centered square of a sub-Gaussian variable.
+@isnad1 id=le.4h6v.s7.4c7cf96b226d from=translated src=- shape=5c083975 vocab=216f159f
+-/
 lemma centered_sq_cgf_le_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ}
@@ -2406,10 +2629,16 @@ def diagonalCenteredQuadraticForm {n : ℕ} (μ : Measure Ω)
     (A : Matrix (Fin n) (Fin n) ℝ) (X : Fin n → Ω → ℝ) : Ω → ℝ :=
   fun ω => ∑ i, A i i * (X i ω ^ 2 - ∫ ω, X i ω ^ 2 ∂μ)
 
+/--
+@isnad1 id=eq.0h5v.s5.5ada9278912b from=translated src=- shape=92646de7 vocab=b8e34207
+-/
 lemma cgf_const_mul {μ : Measure Ω} {Y : Ω → ℝ} (a θ : ℝ) :
     cgf (fun ω => a * Y ω) μ θ = cgf Y μ (a * θ) := by
   rw [cgf, cgf, mgf_const_mul]
 
+/--
+@isnad1 id=iindepfu.1h4v.s6.543bc3d5e071 from=translated src=- shape=e4018a3c vocab=4baf1e71
+-/
 lemma iIndepFun_centered_sq {μ : Measure Ω} {n : ℕ} {X : Fin n → Ω → ℝ}
     (h_indep : iIndepFun X μ) :
     iIndepFun (fun i => fun ω => X i ω ^ 2 - ∫ ω, X i ω ^ 2 ∂μ) μ := by
@@ -2418,6 +2647,9 @@ lemma iIndepFun_centered_sq {μ : Measure Ω} {n : ℕ} {X : Fin n → Ω → �
       (fun i x => x ^ 2 - ∫ ω, X i ω ^ 2 ∂μ)
       (fun _ => by fun_prop)
 
+/--
+@isnad1 id=integrab.3h6v.s7.d1aaaac79fdf from=translated src=- shape=25b150fe vocab=6e4f113e
+-/
 lemma iIndepFun.integrable_exp_mul_sum₀ {ι : Type*} {μ : Measure Ω} [IsFiniteMeasure μ]
     {X : ι → Ω → ℝ}
     (h_indep : iIndepFun X μ) (h_meas : ∀ i, AEMeasurable (X i) μ)
@@ -2436,6 +2668,9 @@ lemma iIndepFun.integrable_exp_mul_sum₀ {ι : Type*} {μ : Measure Ω} [IsFini
       refine IndepFun.integrable_exp_mul_add ?_ (h_int i (Finset.mem_insert_self _ _)) h_rec
       exact (h_indep.indepFun_finsetSum_of_notMem₀ h_meas hi_notin_s).symm
 
+/--
+@isnad1 id=le.8h8v.s8.06ad31ca1f88 from=translated src=- shape=9b2d8f15 vocab=f7011b54
+-/
 lemma diagonalCenteredQuadraticForm_cgf_le {μ : Measure Ω} [IsProbabilityMeasure μ]
     {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} {X : Fin n → Ω → ℝ}
     {K C θ : ℝ} (hK : 0 < K) (hC : 0 < C)
@@ -2565,6 +2800,9 @@ lemma diagonalCenteredQuadraticForm_cgf_le {μ : Measure Ω} [IsProbabilityMeasu
     _ = (2 * exp 1 ^ 3) * θ ^ 2 * K ^ 4 * ∑ i, A i i ^ 2 := hsum_eq
     _ ≤ C * θ ^ 2 * K ^ 4 * frobeniusNorm A ^ 2 := hconst_le
 
+/--
+@isnad1 id=integrab.7h8v.s7.117af32f7347 from=translated src=- shape=91e7fb43 vocab=ecb25561
+-/
 lemma diagonalCenteredQuadraticForm_integrable_exp {μ : Measure Ω} [IsProbabilityMeasure μ]
     {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} {X : Fin n → Ω → ℝ}
     {K C θ : ℝ} (hK : 0 < K) (hC : 0 < C)
@@ -2644,6 +2882,9 @@ lemma diagonalCenteredQuadraticForm_integrable_exp {μ : Measure Ω} [IsProbabil
   ext ω
   simp [diagonalCenteredQuadraticForm, Z, Y]
 
+/--
+@isnad1 id=eq.1h3v.s6.ea28c1ecced2 from=translated src=- shape=c26f1b23 vocab=7f8822e9
+-/
 lemma quadraticForm_eq_sum_diag_of_offdiag_eq_zero {n : ℕ}
     {A : Matrix (Fin n) (Fin n) ℝ} {x : Fin n → ℝ}
     (hA_diag : ∀ i j, i ≠ j → A i j = 0) :
@@ -2660,6 +2901,9 @@ lemma quadraticForm_eq_sum_diag_of_offdiag_eq_zero {n : ℕ}
         (fun hi => (hi (Finset.mem_univ i)).elim)
     _ = A i i * x i ^ 2 := by ring_nf
 
+/--
+@isnad1 id=eq.2h6v.s6.a0fae8e1b34c from=translated src=- shape=545c7bef vocab=8b2d4a56
+-/
 lemma centeredQuadraticForm_eq_diagonalCentered_of_offdiag_eq_zero
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} {X : Fin n → Ω → ℝ}
@@ -2700,7 +2944,9 @@ lemma centeredQuadraticForm_eq_diagonalCentered_of_offdiag_eq_zero
         rw [integral_const_mul]
         ring_nf
 
-/-- Hanson-Wright MGF certificate for diagonal quadratic forms with sub-Gaussian coordinates. -/
+/-- Hanson-Wright MGF certificate for diagonal quadratic forms with sub-Gaussian coordinates.
+@isnad1 id=hashanso.8h7v.s7.91c48fb98467 from=translated src=- shape=da3c9cf0 vocab=1ee88c6b
+-/
 theorem hasHansonWrightMGF_diagonal_of_subgaussian {μ : Measure Ω} [IsProbabilityMeasure μ]
     {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} {X : Fin n → Ω → ℝ}
     {K C : ℝ} (hK : 0 < K) (hC : 0 < C)
@@ -2753,7 +2999,9 @@ private lemma hasSubgaussianMGF_integral_le_zero {μ : Measure Ω} [IsProbabilit
         _ ≤ ε := by linarith
     _ = 0 + ε := by ring
 
-/-- A random variable satisfying the global sub-Gaussian MGF bound is centered. -/
+/-- A random variable satisfying the global sub-Gaussian MGF bound is centered.
+@isnad1 id=eq.1h4v.s5.997ef35fcb82 from=translated src=- shape=50c5986f vocab=74231ee6
+-/
 lemma hasSubgaussianMGF_integral_eq_zero {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {c : ℝ≥0} (h : HasSubgaussianMGF X c μ) :
     ∫ ω, X ω ∂μ = 0 := by
@@ -2764,6 +3012,9 @@ lemma hasSubgaussianMGF_integral_eq_zero {μ : Measure Ω} [IsProbabilityMeasure
     linarith
   exact le_antisymm hle hge
 
+/--
+@isnad1 id=eq.0h3v.s6.933da1453dc0 from=translated src=- shape=f767c3c0 vocab=9268157c
+-/
 lemma quadraticForm_eq_diag_add_offDiagonal {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) (x : Fin n → ℝ) :
     quadraticForm A x =
@@ -2805,6 +3056,9 @@ lemma quadraticForm_eq_diag_add_offDiagonal {n : ℕ}
           ∑ i, ∑ j, (if i = j then 0 else A i j) * x i * x j := by
           rw [Finset.sum_add_distrib]
 
+/--
+@isnad1 id=integrab.2h6v.s6.55b5d1990c8a from=translated src=- shape=d725b920 vocab=1204f4a3
+-/
 lemma integrable_randomQuadraticForm_offDiagonal_of_subgaussian {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     {X : Fin n → Ω → ℝ} {K : ℝ}
@@ -2829,6 +3083,9 @@ lemma integrable_randomQuadraticForm_offDiagonal_of_subgaussian {μ : Measure Ω
   exact integrable_finsetSum _ fun i _ =>
     integrable_finsetSum _ fun j _ => hterm i j
 
+/--
+@isnad1 id=eq.2h6v.s7.76538767a96c from=translated src=- shape=4b64fa8e vocab=431c271b
+-/
 lemma integral_randomQuadraticForm_offDiagonal_eq_zero {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     {X : Fin n → Ω → ℝ} {K : ℝ}
@@ -2898,6 +3155,9 @@ lemma integral_randomQuadraticForm_offDiagonal_eq_zero {μ : Measure Ω}
                     rw [hasSubgaussianMGF_integral_eq_zero (hX_subG i)]
                     ring
 
+/--
+@isnad1 id=eq.2h6v.s7.f72eecb4ddb2 from=translated src=- shape=74373c2d vocab=d96082a7
+-/
 lemma centeredQuadraticForm_eq_diagonal_add_offDiagonal {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     {X : Fin n → Ω → ℝ} {K : ℝ}
@@ -2966,6 +3226,9 @@ lemma centeredQuadraticForm_eq_diagonal_add_offDiagonal {μ : Measure Ω}
   · intro i _
     exact hdiag_term_int i
 
+/--
+@isnad1 id=hassubga.2h5v.s5.147bf622856b from=translated src=- shape=b90a323e vocab=4edfee3a
+-/
 lemma hasSubgaussianMGF_mono_param {μ : Measure Ω} {X : Ω → ℝ} {c d : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) (hcd : (c : ℝ) ≤ d) :
     HasSubgaussianMGF X d μ where
@@ -2978,7 +3241,9 @@ lemma hasSubgaussianMGF_mono_param {μ : Measure Ω} {X : Ω → ℝ} {c d : ℝ
       _ ≤ exp ((d : ℝ) * t ^ 2 / 2) := by
           exact exp_le_exp.mpr (by linarith)
 
-/-- A finite independent linear combination of sub-Gaussian variables is sub-Gaussian. -/
+/-- A finite independent linear combination of sub-Gaussian variables is sub-Gaussian.
+@isnad1 id=hassubga.2h7v.s7.9df5daeff1dc from=translated src=- shape=678e33cb vocab=2ecee99c
+-/
 lemma hasSubgaussianMGF_finset_sum_const_mul_of_iIndepFun {ι : Type*} {μ : Measure Ω}
     {X : ι → Ω → ℝ} (h_indep : iIndepFun X μ) {c : ι → ℝ≥0}
     {s : Finset ι} (h_subG : ∀ i ∈ s, HasSubgaussianMGF (X i) (c i) μ)
@@ -2998,7 +3263,9 @@ lemma hasSubgaussianMGF_finset_sum_const_mul_of_iIndepFun {ι : Type*} {μ : Mea
     congr 1
   exact HasSubgaussianMGF.sum_of_iIndepFun h_indep_mul h_subG_mul
 
-/-- Fixed linear forms of an independent sub-Gaussian coordinate vector are sub-Gaussian. -/
+/-- Fixed linear forms of an independent sub-Gaussian coordinate vector are sub-Gaussian.
+@isnad1 id=hassubga.2h6v.s8.9954a8eb8a41 from=translated src=- shape=1706ee9f vocab=56b03c3f
+-/
 lemma inner_randomVector_hasSubgaussianMGF_of_iIndepFun {μ : Measure Ω}
     {n : ℕ} {X : Fin n → Ω → ℝ} {K : ℝ}
     (h_indep : iIndepFun X μ)
@@ -3043,7 +3310,9 @@ lemma inner_randomVector_hasSubgaussianMGF_of_iIndepFun {μ : Measure Ω}
   exact hasSubgaussianMGF_mono_param hsum_inner hparam
 
 /-- Gaussian-comparison square-exponential bound for a linear image of an independent
-sub-Gaussian vector. -/
+sub-Gaussian vector.
+@isnad1 id=le.4h7v.s12.7bae02a147c3 from=translated src=- shape=8444f504 vocab=5c9c4832
+-/
 lemma integral_exp_norm_toEuclideanCLM_randomVector_sq_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     {X : Fin n → Ω → ℝ} {K θ : ℝ} (hθ : 0 ≤ θ)
@@ -3216,6 +3485,9 @@ lemma integral_exp_norm_toEuclideanCLM_randomVector_sq_le {μ : Measure Ω}
           rw [integral_prod_swap f]
           exact hprod_bound
 
+/--
+@isnad1 id=integrab.4h7v.s12.adfdfce6c400 from=translated src=- shape=105aa480 vocab=4c8f515d
+-/
 lemma integrable_exp_norm_toEuclideanCLM_randomVector_sq {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     {X : Fin n → Ω → ℝ} {K θ : ℝ} (hθ : 0 ≤ θ)
@@ -3330,6 +3602,9 @@ lemma integrable_exp_norm_toEuclideanCLM_randomVector_sq {μ : Measure Ω}
     (hf_int.swap).integral_prod_left
   simpa [T, hleft_eq] using hprod_inner_int
 
+/--
+@isnad1 id=integrab.3h7v.s12.7d6cf488cd62 from=translated src=- shape=9c5abb99 vocab=77a7decd
+-/
 lemma integrable_exp_inner_toEuclideanCLM_randomVector_prod {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     {X : Fin n → Ω → ℝ} {K l : ℝ}
@@ -3410,6 +3685,9 @@ lemma integrable_exp_inner_toEuclideanCLM_randomVector_prod {μ : Measure Ω}
     exact Integrable.mono' (by simpa [θ, T] using hsquare_int)
       hf_aesm.norm.integral_prod_right' houter_bound
 
+/--
+@isnad1 id=le.3h7v.s12.22241d89e10a from=translated src=- shape=73880b55 vocab=6b61d0fe
+-/
 lemma integral_exp_inner_toEuclideanCLM_randomVector_prod_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     {X : Fin n → Ω → ℝ} {K l : ℝ}
@@ -3477,6 +3755,9 @@ lemma integral_exp_inner_toEuclideanCLM_randomVector_prod_le {μ : Measure Ω}
             dsimp [θ]
             ring
 
+/--
+@isnad1 id=eq.3h7v.s13.3b16f4d07757 from=translated src=- shape=64a8b7e2 vocab=8a010247
+-/
 lemma integral_exp_quadraticForm_cutMatrix_eq_prod {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     (s : Finset (Fin n)) {X : Fin n → Ω → ℝ} {l : ℝ}
@@ -3565,6 +3846,9 @@ lemma integral_exp_quadraticForm_cutMatrix_eq_prod {μ : Measure Ω}
     _ = ∫ p : Ω × Ω, (g ∘ φ) p ∂(μ.prod μ) := by rfl
     _ = ∫ p : Ω × Ω, F p ∂(μ.prod μ) := by rw [hF_eq]
 
+/--
+@isnad1 id=integrab.3h8v.s8.d0d4e3d9a898 from=translated src=- shape=1101ded7 vocab=a489d5e4
+-/
 lemma integrable_exp_quadraticForm_cutMatrix {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     (s : Finset (Fin n)) {X : Fin n → Ω → ℝ} {K l : ℝ}
@@ -3643,6 +3927,9 @@ lemma integrable_exp_quadraticForm_cutMatrix {μ : Measure Ω}
   rw [hH_eq]
   exact hcomp_same
 
+/--
+@isnad1 id=le.3h8v.s8.8ba933f4145b from=translated src=- shape=92cd72c9 vocab=94337913
+-/
 lemma integral_exp_quadraticForm_cutMatrix_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     (s : Finset (Fin n)) {X : Fin n → Ω → ℝ} {K l : ℝ}
@@ -3667,6 +3954,9 @@ lemma integral_exp_quadraticForm_cutMatrix_le {μ : Measure Ω}
   exact integral_exp_inner_toEuclideanCLM_randomVector_prod_le (cutMatrix A s)
     h_indep hX_subG hsmall
 
+/--
+@isnad1 id=integrab.3h7v.s8.659df18cba42 from=translated src=- shape=01e8f88b vocab=2e54237d
+-/
 lemma integrable_exp_quadraticForm_offDiagonal {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     {X : Fin n → Ω → ℝ} {K l : ℝ}
@@ -3725,6 +4015,9 @@ lemma integrable_exp_quadraticForm_offDiagonal {μ : Measure Ω}
   rw [Real.norm_eq_abs, abs_of_nonneg (exp_nonneg _)]
   exact hω
 
+/--
+@isnad1 id=le.3h7v.s8.942437ea1ab9 from=translated src=- shape=e2c82aa4 vocab=1b1022db
+-/
 lemma integral_exp_quadraticForm_offDiagonal_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     {X : Fin n → Ω → ℝ} {K l : ℝ}
@@ -3822,6 +4115,9 @@ lemma integral_exp_quadraticForm_offDiagonal_le {μ : Measure Ω}
           simp
           field_simp [ne_of_gt hP_pos]
 
+/--
+@isnad1 id=le.0h2v.s6.7eea4290d2f0 from=translated src=- shape=605ff4d7 vocab=5e246283
+-/
 lemma exp_add_le_average_exp_two (a b : ℝ) :
     exp (a + b) ≤ (exp (2 * a) + exp (2 * b)) / 2 := by
   have hconv := convexOn_exp.2 (Set.mem_univ (2 * a)) (Set.mem_univ (2 * b))
@@ -3835,6 +4131,9 @@ lemma exp_add_le_average_exp_two (a b : ℝ) :
     _ ≤ (1 / 2 : ℝ) * exp (2 * a) + (1 / 2 : ℝ) * exp (2 * b) := hconv
     _ = (exp (2 * a) + exp (2 * b)) / 2 := by ring
 
+/--
+@isnad1 id=le.3h3v.s7.cb15dc12ec38 from=translated src=- shape=15d0edd0 vocab=476d6a88
+-/
 lemma abs_two_mul_le_inv_quarter_of_abs_le {a C l : ℝ}
     (ha : 0 < a) (hC : 0 < C)
     (hl : |l| ≤ (2 * C * a)⁻¹) :
@@ -3855,6 +4154,9 @@ lemma abs_two_mul_le_inv_quarter_of_abs_le {a C l : ℝ}
       exact le_mul_of_one_le_left (inv_nonneg.mpr (mul_nonneg hC.le ha.le)) (by norm_num)
     _ = (2 * (C / 4) * a)⁻¹ := hright.symm
 
+/--
+@isnad1 id=le.3h3v.s6.f9778226a5a3 from=translated src=- shape=78b15ebc vocab=476d6a88
+-/
 lemma abs_mul_le_inv_two_of_abs_le {a C l : ℝ}
     (ha : 0 < a) (hC : 0 < C)
     (hl : |l| ≤ (2 * C * a)⁻¹) :
@@ -3865,6 +4167,9 @@ lemma abs_mul_le_inv_two_of_abs_le {a C l : ℝ}
     _ = 1 / (2 * C) := by
       field_simp [hC.ne', ha.ne']
 
+/--
+@isnad1 id=le.5h4v.s8.027d376a8061 from=translated src=- shape=4bacb51f vocab=4e456b77
+-/
 lemma offDiagonal_small_two_mul_of_abs_le {K C op l : ℝ}
     (hK : 0 < K) (hC : 0 < C) (hop : 0 < op)
     (hC_sq : 16 * exp 1 ≤ C ^ 2)
@@ -3905,6 +4210,9 @@ lemma offDiagonal_small_two_mul_of_abs_le {K C op l : ℝ}
       rw [div_le_iff₀ hC2_pos]
       nlinarith [hC_sq]
 
+/--
+@isnad1 id=le.1h4v.s8.d6aea505134d from=translated src=- shape=52b65e5b vocab=fc917557
+-/
 lemma offDiagonal_exponent_two_mul_le {K C F l : ℝ}
     (hC_offdiag_quad : 64 * exp 1 ^ 2 ≤ C) :
     exp 1 ^ 2 * (4 * (2 * l)) ^ 2 * K ^ 4 * F ^ 2 ≤
@@ -3917,7 +4225,9 @@ lemma offDiagonal_exponent_two_mul_le {K C F l : ℝ}
       mul_le_mul_of_nonneg_right hC_offdiag_quad hnonneg
     _ = C * l ^ 2 * K ^ 4 * F ^ 2 := by ring
 
-/-- Hanson-Wright MGF certificate from independent sub-Gaussian coordinates. -/
+/-- Hanson-Wright MGF certificate from independent sub-Gaussian coordinates.
+@isnad1 id=hashanso.9h7v.s8.ebb235b89138 from=translated src=- shape=be0c8263 vocab=1ee88c6b
+-/
 theorem hasHansonWrightMGF_of_subgaussian {μ : Measure Ω} [IsProbabilityMeasure μ]
     {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} {X : Fin n → Ω → ℝ}
     {K C : ℝ} (hK : 0 < K) (hC : 0 < C)
@@ -4145,7 +4455,9 @@ private lemma one_sided_tail_of_cgf_bound {μ : Measure Ω} [IsProbabilityMeasur
         rw [h_rate]
         ring_nf
 
-/-- A two-sided sub-exponential tail bound from a local quadratic CGF estimate. -/
+/-- A two-sided sub-exponential tail bound from a local quadratic CGF estimate.
+@isnad1 id=le.6h7v.s8.8bd4984aafe8 from=translated src=- shape=a8980abd vocab=9e5ff95e
+-/
 theorem two_sided_tail_of_cgf_bound {μ : Measure Ω} [IsProbabilityMeasure μ]
     {Y : Ω → ℝ} {v b C t : ℝ} (hC : 0 < C) (hv : 0 < v) (hb : 0 < b)
     (hcgf : ∀ l : ℝ, |l| ≤ (2 * C * b)⁻¹ → cgf Y μ l ≤ C * l ^ 2 * v)
@@ -4201,7 +4513,9 @@ theorem two_sided_tail_of_cgf_bound {μ : Measure Ω} [IsProbabilityMeasure μ]
 
 This theorem does not take `HasHansonWrightMGF` as a hypothesis.  Instead it proves
 that certificate from independence and coordinate sub-Gaussian MGF bounds, then
-optimizes the resulting Chernoff bound. -/
+optimizes the resulting Chernoff bound.
+@isnad1 id=le.11h8v.s9.79bc0b521d72 from=translated src=- shape=04deb6b9 vocab=690f3cf6
+-/
 theorem hanson_wright_inequality {μ : Measure Ω} [IsProbabilityMeasure μ]
     {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} {X : Fin n → Ω → ℝ}
     {K C t : ℝ} (hK : 0 < K) (hC : 0 < C)
@@ -4238,7 +4552,9 @@ theorem hanson_wright_inequality {μ : Measure Ω} [IsProbabilityMeasure μ]
 /-- Hanson-Wright inequality in the HDP normalization.
 
 The scale `K` is the maximum coordinate ψ₂ scale.  The proof expands this
-definition into the exact MGF bounds required by `hanson_wright_inequality`. -/
+definition into the exact MGF bounds required by `hanson_wright_inequality`.
+@isnad1 id=le.13h8v.s9.42241acf4108 from=translated src=- shape=8519652c vocab=b94f61b7
+-/
 theorem hanson_wright_inequality_hdp_explicit {μ : Measure Ω} [IsProbabilityMeasure μ]
     {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} {X : Fin n → Ω → ℝ}
     {K C t : ℝ} (hK_def : K = maxSubGaussianPsi2Norm X μ) (hK : 0 < K)
@@ -4272,7 +4588,9 @@ theorem hanson_wright_inequality_hdp_explicit {μ : Measure Ω} [IsProbabilityMe
 
 For independent mean-zero coordinates and `K = max_i ‖X_i‖_{ψ₂}`, there is an
 absolute positive constant `c` such that the usual Hanson-Wright tail bound
-holds for every `t ≥ 0`. -/
+holds for every `t ≥ 0`.
+@isnad1 id=ex.5h6v.s8.61986d9be1af from=translated src=- shape=33e45bbb vocab=b94f61b7
+-/
 theorem hanson_wright_inequality_hdp {μ : Measure Ω} [IsProbabilityMeasure μ]
     {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} {X : Fin n → Ω → ℝ}
     {K : ℝ} (hK_def : K = maxSubGaussianPsi2Norm X μ) (hK : 0 < K)

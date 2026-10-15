@@ -44,11 +44,16 @@ namespace PwC1Immersion
 def crossingSet (γ : PwC1Immersion x y) (z₀ : E) : Set ℝ :=
   {t ∈ Icc (0 : ℝ) 1 | (γ : ℝ → E) t = z₀}
 
+/--
+@isnad1 id=le.0h5v.s5.cdf8d2174cf5 from=translated src=- shape=a02b1e8f vocab=8cc92d11
+-/
 theorem crossingSet_subset_Icc (γ : PwC1Immersion x y) (z₀ : E) :
     γ.crossingSet z₀ ⊆ Icc (0 : ℝ) 1 :=
   fun _ ht => ht.1
 
-/-- The crossing set is closed. -/
+/-- The crossing set is closed.
+@isnad1 id=isclosed.0h5v.s5.1dea956af060 from=translated src=- shape=837f0739 vocab=aff8b3c7
+-/
 theorem crossingSet_isClosed (γ : PwC1Immersion x y) (z₀ : E) :
     _root_.IsClosed (γ.crossingSet z₀) := by
   have : γ.crossingSet z₀ = Icc (0 : ℝ) 1 ∩ (γ : ℝ → E) ⁻¹' {z₀} := by
@@ -90,7 +95,9 @@ private theorem Icc_subset_of_Ioo_subset {q p : ℝ} (hqp : q < p)
   rwa [closure_Ioo (ne_of_lt hqp), closure_Ioo (by norm_num : (0:ℝ) ≠ 1)] at this
 
 /-- At a smooth point where `γ(t₀) = z₀`, there is a punctured neighborhood in which
-`γ(t) ≠ z₀`. -/
+`γ(t) ≠ z₀`.
+@isnad1 id=eventual.3h6v.s7.0fccd7dd6ec5 from=translated src=- shape=5ab03f5f vocab=d6561759
+-/
 theorem crossing_isolated_smooth (γ : PwC1Immersion x y) (z₀ : E) (t₀ : ℝ)
     (ht₀ : t₀ ∈ Ioo (0 : ℝ) 1) (hcross : (γ : ℝ → E) t₀ = z₀)
     (hsmooth : t₀ ∉ γ.toPiecewiseC1Path.partition) :
@@ -100,7 +107,9 @@ theorem crossing_isolated_smooth (γ : PwC1Immersion x y) (z₀ : E) (t₀ : ℝ
     (γ.deriv_ne_zero t₀ ht₀ hsmooth)
 
 /-- At a partition point `p` with `0 < p`, `γ(t) ≠ γ(p)` for `t` sufficiently close
-to `p` from the left. -/
+to `p` from the left.
+@isnad1 id=eventual.3h6v.s7.38446a0e989e from=translated src=- shape=6730bcf6 vocab=6a88a434
+-/
 theorem crossing_isolated_left (γ : PwC1Immersion x y) (z₀ : E) (p : ℝ)
     (hp_part : p ∈ γ.toPiecewiseC1Path.partition) (hp_pos : 0 < p)
     (hcross : (γ : ℝ → E) p = z₀) :
@@ -148,7 +157,9 @@ theorem crossing_isolated_left (γ : PwC1Immersion x y) (z₀ : E) (p : ℝ)
     linarith⟩
 
 /-- At a partition point `p` with `p < 1`, `γ(t) ≠ γ(p)` for `t` sufficiently close
-to `p` from the right. -/
+to `p` from the right.
+@isnad1 id=eventual.3h6v.s7.721b49cd58ce from=translated src=- shape=a999cc18 vocab=6c5f5974
+-/
 theorem crossing_isolated_right (γ : PwC1Immersion x y) (z₀ : E) (p : ℝ)
     (hp_part : p ∈ γ.toPiecewiseC1Path.partition) (hp_lt_one : p < 1)
     (hcross : (γ : ℝ → E) p = z₀) :
@@ -196,7 +207,9 @@ theorem crossing_isolated_right (γ : PwC1Immersion x y) (z₀ : E) (p : ℝ)
     linarith⟩
 
 /-- At any crossing `t₀ ∈ (0, 1)`, there is a punctured neighborhood with no other
-crossings in `[0, 1]`. Combines the smooth-point and partition-point cases. -/
+crossings in `[0, 1]`. Combines the smooth-point and partition-point cases.
+@isnad1 id=eventual.2h6v.s7.39bb137ac80d from=translated src=- shape=db4b5952 vocab=c5110396
+-/
 theorem crossing_isolated (γ : PwC1Immersion x y) (z₀ : E) (t₀ : ℝ)
     (ht₀ : t₀ ∈ Ioo (0 : ℝ) 1) (hcross : (γ : ℝ → E) t₀ = z₀) :
     ∀ᶠ t in 𝓝[≠] t₀, (γ : ℝ → E) t ≠ z₀ ∨ t ∉ Icc (0 : ℝ) 1 := by
@@ -206,7 +219,9 @@ theorem crossing_isolated (γ : PwC1Immersion x y) (z₀ : E) (t₀ : ℝ)
            (crossing_isolated_right γ z₀ t₀ hpart ht₀.2 hcross).mono fun t ht => Or.inl ht⟩
   · exact (crossing_isolated_smooth γ z₀ t₀ ht₀ hcross hpart).mono fun t ht => Or.inl ht
 
-/-- No point of the crossing set in `(0, 1)` is an accumulation point. -/
+/-- No point of the crossing set in `(0, 1)` is an accumulation point.
+@isnad1 id=not.2h6v.s6.b35b9ba5c485 from=translated src=- shape=e1453ea6 vocab=accf68f0
+-/
 theorem crossing_not_accPt (γ : PwC1Immersion x y) (z₀ : E) (t₀ : ℝ)
     (ht₀ : t₀ ∈ Ioo (0 : ℝ) 1) (hcross : (γ : ℝ → E) t₀ = z₀) :
     ¬AccPt t₀ (𝓟 (γ.crossingSet z₀)) := by
@@ -216,7 +231,9 @@ theorem crossing_not_accPt (γ : PwC1Immersion x y) (z₀ : E) (t₀ : ℝ)
     exact ht.elim (fun h => h ht_mem.2) (fun h => h ht_mem.1)
 
 /-- **Proposition 2.2** (Hungerbühler–Wasem): The crossing set of a piecewise C¹
-immersion is finite, provided the endpoints avoid `z₀`. -/
+immersion is finite, provided the endpoints avoid `z₀`.
+@isnad1 id=finite.2h5v.s6.0fc7efa5bd7a from=translated src=- shape=f1c3fee1 vocab=8d01813f
+-/
 theorem crossingSet_finite (γ : PwC1Immersion x y) (z₀ : E)
     (h0 : (γ : ℝ → E) 0 ≠ z₀) (h1 : (γ : ℝ → E) 1 ≠ z₀) :
     Set.Finite (γ.crossingSet z₀) := by

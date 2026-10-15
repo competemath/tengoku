@@ -121,7 +121,9 @@ since `g.D_nonneg` gives pointwise nonnegativity.
 
 Proof sketch for lean-prover:
 Apply `intervalIntegral.integral_nonneg_of_forall` with `hab := hst` and
-`hf := fun τ => g.D_nonneg (g.u τ)`. -/
+`hf := fun τ => g.D_nonneg (g.u τ)`.
+@isnad1 id=le.2h4v.s6.15469b7b0fd8 from=translated src=- shape=9a242bf8 vocab=ea3461ec
+-/
 theorem AbstractEnergyLaw.accumulatedDissipation_nonneg
     {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]
     (g : AbstractEnergyLaw H) {s t : ℝ} (hs : 0 ≤ s) (hst : s ≤ t) :

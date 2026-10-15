@@ -32,13 +32,17 @@ No `axiom`/`opaque`/`constant`/`unsafe` in this file.
 noncomputable def reLp : L2C_R3 →L[ℝ] Lp ℝ 2 (volume : Measure Domain3) :=
   Complex.reCLM.compLpL 2 (volume : Measure Domain3)
 
-/-- The `Lp`-coercion of `reLp f` agrees a.e. with the pointwise real part of `f`. -/
+/-- The `Lp`-coercion of `reLp f` agrees a.e. with the pointwise real part of `f`.
+@isnad1 id=eventual.0h1v.s16.31f84e207d51 from=translated src=- shape=8b6543c2 vocab=9eff3b34
+-/
 theorem reLp_coeFn (f : L2C_R3) :
     (reLp f : Domain3 → ℝ) =ᵐ[volume] fun x => (f x).re := by
   filter_upwards [ContinuousLinearMap.coeFn_compLpL Complex.reCLM f] with x hx
   rw [reLp]; rw [hx]; rfl
 
-/-- The real-part map contracts the `L²` norm: `‖reLp f‖ ≤ ‖f‖`. -/
+/-- The real-part map contracts the `L²` norm: `‖reLp f‖ ≤ ‖f‖`.
+@isnad1 id=le.0h1v.s16.2f10eda07354 from=translated src=- shape=d90e1b7e vocab=8b9bb872
+-/
 theorem norm_reLp_le (f : L2C_R3) : ‖reLp f‖ ≤ ‖f‖ := by
   have hcoe : (reLp f : Domain3 → ℝ) =ᵐ[volume] fun x => (f x).re := reLp_coeFn f
   rw [Lp.norm_def, Lp.norm_def, eLpNorm_congr_ae hcoe]
@@ -54,7 +58,9 @@ noncomputable def mulRBdd (h : Domain3 → ℝ)
     Lp ℝ 2 (volume : Measure Domain3) :=
   (((Lp.memLp a).smul (p := ⊤) (q := 2) (r := 2) hh)).toLp
 
-/-- The `Lp`-coercion of `mulRBdd h a` agrees a.e. with the pointwise product `h · a`. -/
+/-- The `Lp`-coercion of `mulRBdd h a` agrees a.e. with the pointwise product `h · a`.
+@isnad1 id=eventual.1h2v.s13.116f686d6a3c from=translated src=- shape=ec80534c vocab=72416426
+-/
 theorem mulRBdd_coeFn (h : Domain3 → ℝ)
     (hh : MemLp h ⊤ (volume : Measure Domain3)) (a : Lp ℝ 2 (volume : Measure Domain3)) :
     (mulRBdd h hh a : Domain3 → ℝ) =ᵐ[volume] fun x => h x * a x := by
@@ -62,7 +68,9 @@ theorem mulRBdd_coeFn (h : Domain3 → ℝ)
     with x hx
   rw [mulRBdd]; rw [hx]; rfl
 
-/-- `mulRBdd` is additive (used to express the difference of two multiplier images). -/
+/-- `mulRBdd` is additive (used to express the difference of two multiplier images).
+@isnad1 id=eq.1h3v.s15.61ec6cde08d7 from=translated src=- shape=718a18c1 vocab=eef4b308
+-/
 theorem mulRBdd_sub (h : Domain3 → ℝ)
     (hh : MemLp h ⊤ (volume : Measure Domain3)) (a b : Lp ℝ 2 (volume : Measure Domain3)) :
     mulRBdd h hh a - mulRBdd h hh b = mulRBdd h hh (a - b) := by
@@ -71,7 +79,9 @@ theorem mulRBdd_sub (h : Domain3 → ℝ)
     mulRBdd_coeFn h hh b, mulRBdd_coeFn h hh (a - b), Lp.coeFn_sub a b] with x h1 h2 h3 h4 h5
   rw [h1, Pi.sub_apply, h2, h3, h4, h5, Pi.sub_apply, mul_sub]
 
-/-- `L²`-norm bound for the multiplier: `‖mulRBdd h c‖ ≤ ‖h‖_∞ · ‖c‖`. -/
+/-- `L²`-norm bound for the multiplier: `‖mulRBdd h c‖ ≤ ‖h‖_∞ · ‖c‖`.
+@isnad1 id=le.1h2v.s13.44e347d72e89 from=translated src=- shape=ebcb5f2a vocab=d1469218
+-/
 theorem norm_mulRBdd_le (h : Domain3 → ℝ)
     (hh : MemLp h ⊤ (volume : Measure Domain3)) (c : Lp ℝ 2 (volume : Measure Domain3)) :
     ‖mulRBdd h hh c‖ ≤ (eLpNorm h ⊤ (volume : Measure Domain3)).toReal * ‖c‖ := by
@@ -84,7 +94,9 @@ theorem norm_mulRBdd_le (h : Domain3 → ℝ)
     (ENNReal.mul_ne_top hh.eLpNorm_lt_top.ne (Lp.memLp c).eLpNorm_lt_top.ne) ?_
   exact eLpNorm_smul_le_mul_eLpNorm (Lp.aestronglyMeasurable _) hh.aestronglyMeasurable
 
-/-- The bounded multiplier sends an `L²`-convergent sequence to an `L²`-convergent sequence. -/
+/-- The bounded multiplier sends an `L²`-convergent sequence to an `L²`-convergent sequence.
+@isnad1 id=tendsto.2h3v.s15.358570bc7eb9 from=translated src=- shape=c5a8a089 vocab=ba3dae45
+-/
 theorem tendsto_mulRBdd (h : Domain3 → ℝ)
     (hh : MemLp h ⊤ (volume : Measure Domain3))
     {a : ℕ → Lp ℝ 2 (volume : Measure Domain3)} {a₀ : Lp ℝ 2 (volume : Measure Domain3)}
@@ -98,7 +110,9 @@ theorem tendsto_mulRBdd (h : Domain3 → ℝ)
   simpa using ha.const_mul C
 
 /-- The integral `∫ a·b·h` over `ℝ³` for real `L²` elements `a, b` and bounded `h` equals the
-real `L²` inner product `⟪a, mulRBdd h b⟫`. -/
+real `L²` inner product `⟪a, mulRBdd h b⟫`.
+@isnad1 id=eq.1h3v.s14.a44b2a84ec0f from=translated src=- shape=1b51ee5e vocab=355ba859
+-/
 theorem integral_mul_mul_eq_inner (h : Domain3 → ℝ)
     (hh : MemLp h ⊤ (volume : Measure Domain3))
     (a b : Lp ℝ 2 (volume : Measure Domain3)) :
@@ -110,7 +124,9 @@ theorem integral_mul_mul_eq_inner (h : Domain3 → ℝ)
   rw [RCLike.inner_apply, hx, conj_trivial]; ring
 
 /-- **Core limit lemma.** If `aₙ → a` and `bₙ → b` in `L²(ℝ³;ℝ)` and `h` is essentially bounded,
-then `∫ aₙ·bₙ·h → ∫ a·b·h`. (Real `L²` inner product is jointly continuous.) -/
+then `∫ aₙ·bₙ·h → ∫ a·b·h`. (Real `L²` inner product is jointly continuous.)
+@isnad1 id=tendsto.3h5v.s16.f6aa2f2bcb76 from=translated src=- shape=86153c73 vocab=343a020b
+-/
 theorem tendsto_integral_mul_mul (h : Domain3 → ℝ)
     (hh : MemLp h ⊤ (volume : Measure Domain3))
     {a b : ℕ → Lp ℝ 2 (volume : Measure Domain3)}

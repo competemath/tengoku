@@ -26,7 +26,9 @@ open scoped ENNReal InnerProductSpace
 section R1
 variable {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X] [CompleteSpace X]
 
-/-- The Bochner primitive of an interval-integrable curve is continuous on `[0,T]`. -/
+/-- The Bochner primitive of an interval-integrable curve is continuous on `[0,T]`.
+@isnad1 id=continuo.1h3v.s6.98dfea689e97 from=translated src=- shape=e4703532 vocab=a4a73113
+-/
 theorem continuousOn_primitive_of_integrableOn {T : ℝ} {v : ℝ → X}
     (hv : IntegrableOn v (Set.Icc 0 T) volume) :
     ContinuousOn (fun t => ∫ s in (0:ℝ)..t, v s) (Set.Icc 0 T) := by
@@ -39,7 +41,9 @@ theorem continuousOn_primitive_of_integrableOn {T : ℝ} {v : ℝ → X}
   · rw [Set.Icc_eq_empty (by exact not_le.2 hT)]
     exact continuousOn_empty _
 
-/-- The primitive `G(t) = ∫ 0..t g` of a continuous scalar function is `C¹`, with `deriv G = g`. -/
+/-- The primitive `G(t) = ∫ 0..t g` of a continuous scalar function is `C¹`, with `deriv G = g`.
+@isnad1 id=and.1h1v.s7.e51ccca02d61 from=translated src=- shape=612f3a30 vocab=d08adee6
+-/
 theorem contDiff_primitive_of_continuous {g : ℝ → ℝ} (hg : Continuous g) :
     ContDiff ℝ 1 (fun t => ∫ x in (0:ℝ)..t, g x) ∧
       deriv (fun t => ∫ x in (0:ℝ)..t, g x) = g := by
@@ -55,7 +59,9 @@ end R1
 section Keystone
 
 /-- The primitive `G(t) = ∫ a..t g` (based at `a`) of a continuous scalar `g` supported in
-`Icc a b` with `∫ a..b g = 0` vanishes outside `Icc a b`, hence is compactly supported. -/
+`Icc a b` with `∫ a..b g = 0` vanishes outside `Icc a b`, hence is compactly supported.
+@isnad1 id=eq.5h4v.s7.1f1231bf47d0 from=translated src=- shape=d2926245 vocab=6001216a
+-/
 theorem primitive_baseA_props {a b : ℝ} (hab : a ≤ b) {g : ℝ → ℝ}
     (hgc : Continuous g) (hgz : ∀ x, x ∉ Set.Icc a b → g x = 0)
     (hmean : ∫ x in a..b, g x = 0) :
@@ -90,7 +96,9 @@ theorem primitive_baseA_props {a b : ℝ} (hab : a ≤ b) {g : ℝ → ℝ}
 /-- A fixed continuous unit-mass "weight" supported strictly inside `Ioo 0 T`: there is a
 continuous `ρ : ℝ → ℝ` with `tsupport ρ ⊆ Icc a b` for some `0 < a ≤ b < T`, and
 `∫ x, ρ x ∂volume = 1` (equivalently `∫ 0..T ρ = 1`). Built from a normalized `ContDiffBump`
-centered at `T/2`. -/
+centered at `T/2`.
+@isnad1 id=ex.1h1v.s7.596a2e51bd19 from=translated src=- shape=752faab9 vocab=75fb78aa
+-/
 theorem exists_unitMass_weight {T : ℝ} (hT : 0 < T) :
     ∃ (ρ : ℝ → ℝ) (a b : ℝ), 0 < a ∧ a ≤ b ∧ b < T ∧ Continuous ρ ∧
       (∀ x, x ∉ Set.Icc a b → ρ x = 0) ∧ (∫ x, ρ x ∂volume) = 1 := by

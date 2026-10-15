@@ -316,7 +316,9 @@ For a `MollifierKernel K`, the map `h ↦ ‖translate_L2R h (kernelL2R K) − k
 as `h → 0` in `Domain3`.  `K.η` is smooth with compact support, hence uniformly continuous and
 dominated by a fixed compactly supported `L²` envelope, so dominated convergence gives L²-continuity
 of translation of the kernel.  This is the *uniform* (g-independent) modulus that drives the
-equicontinuity of the mollified family. -/
+equicontinuity of the mollified family.
+@isnad1 id=tendsto.0h1v.s14.05fa83cf5c7c from=translated src=- shape=3eb89f3d vocab=a56d8e2a
+-/
 theorem kernel_translate_L2_tendsto (K : MollifierKernel) :
     Filter.Tendsto
       (fun h : Domain3 => ‖translate_L2R h (kernelL2R K) - kernelL2R K‖)
@@ -367,7 +369,9 @@ For `x ∈ closedBall 0 R`, the convolution value `mollifyRep K f x = ∫ y, K.�
 by `‖kernelL2R K‖ · ‖restrictToBall (R + K.supportRadius) f‖`.  Cauchy–Schwarz on the integrand
 `K.η(x−y) • f y` gives `‖kernel‖₂ · ‖f‖₂`, and because `K.η` is supported in
 `closedBall 0 K.supportRadius` the integral only sees `f` over `y ∈ B_{R + K.supportRadius}`
-(kernel reach from `B_R`), localizing the mass factor to the enlarged ball. -/
+(kernel reach from `B_R`), localizing the mass factor to the enlarged ball.
+@isnad1 id=le.1h4v.s13.015dd82f8a62 from=translated src=- shape=a48e4673 vocab=6edfabcc
+-/
 theorem mollifyRep_sup_le (K : MollifierKernel) (f : L2VF_R3) (R : ℝ)
     {x : Domain3} (hx : x ∈ Metric.closedBall (0 : Domain3) R) :
     ‖mollifyRep K f x‖
@@ -539,7 +543,9 @@ mass of `f` times the kernel's own L²-translation modulus at the shift `x − y
       `≤ ‖restrictToBall (R + K.supportRadius) f‖ · ‖translate_L2R (x − y) (kernelL2R K) − kernelL2R K‖`.
 
 After the change of variables `z = x − y'` the difference is `∫ (K.η(x−·) − K.η(y−·)) • f`, and
-Cauchy–Schwarz factors it as (kernel translation-modulus)·(enlarged-ball mass of `f`). -/
+Cauchy–Schwarz factors it as (kernel translation-modulus)·(enlarged-ball mass of `f`).
+@isnad1 id=le.2h5v.s14.bb5e358c8b9b from=translated src=- shape=22927c52 vocab=86c82657
+-/
 theorem mollifyRep_sub_le (K : MollifierKernel) (f : L2VF_R3) (R : ℝ)
     {x y : Domain3} (hx : x ∈ Metric.closedBall (0 : Domain3) R)
     (hy : y ∈ Metric.closedBall (0 : Domain3) R) :
@@ -1131,7 +1137,9 @@ private theorem mollifyRep_eq_lp_integral (K : MollifierKernel) (g : L2VF_R3)
 
 The mollified field `mollifyRep K g = K.η ⋆ g` lies in `L²(ℝ³)` globally, with
 `‖mollifyRep K g‖_{L²} ≤ ‖kernelL1R K‖ · ‖g‖`.  The `MemLp` witness is bundled with the bound on its
-`toLp` class so callers can both form `(mollifyRep K g : L2VF_R3)` and control its norm. -/
+`toLp` class so callers can both form `(mollifyRep K g : L2VF_R3)` and control its norm.
+@isnad1 id=ex.0h2v.s14.4496ccef94ce from=translated src=- shape=9419164b vocab=415d85da
+-/
 theorem young_convolution_memLp_L2 (K : MollifierKernel) (g : L2VF_R3) :
     ∃ hmem : MemLp (mollifyRep K g) 2 (volume : Measure Domain3),
       ‖hmem.toLp‖ ≤ ‖kernelL1R K‖ * ‖g‖ := by
@@ -1153,7 +1161,9 @@ controlled by the kernel-weighted integral of the translation modulus:
   `‖toLp(mollifyRep K g) − g‖ ≤ ∫ h, K.η h • ‖translate_L2VF h g − g‖ ∂volume`.
 
 Composed with `K.supportRadius < δ` (so the integration variable `h` ranges over `‖h‖ < δ` on the
-kernel support) and the FK uniform translation modulus, this delivers the uniform `< ε` rate. -/
+kernel support) and the FK uniform translation modulus, this delivers the uniform `< ε` rate.
+@isnad1 id=le.1h2v.s15.ad33dd225277 from=translated src=- shape=33db2e80 vocab=1f40d892
+-/
 theorem convolution_sub_L2_le_translation_modulus (K : MollifierKernel) (g : L2VF_R3)
     (hmem : MemLp (mollifyRep K g) 2 (volume : Measure Domain3)) :
     ‖hmem.toLp - g‖
@@ -1209,7 +1219,9 @@ on the kernel-support enlargement `B_{R+r}` — exactly what Young needs on `B_R
 supplied at the call site directly from `FrechetKolmogorovInput`'s GLOBAL bound
 `hbddGlobal : ‖rep f‖ ≤ C` by ball-mass monotonicity (`‖restrictToBall (R+r) g‖ ≤ ‖g‖`), so
 there is no longer any upstream gap: the criterion's own strengthened data furnishes it.  The
-output bound is stated for `x ∈ B_R` only. -/
+output bound is stated for `x ∈ B_R` only.
+@isnad1 id=ex.1h5v.s16.7aae826abedb from=translated src=- shape=d8292ffc vocab=a4cdac09
+-/
 theorem mollified_family_uniformly_bounded (R C : ℝ) (S : Set (L2ballR3 R))
     (rep : L2ballR3 R → L2VF_R3) (K : MollifierKernel)
     (hbdEnl : ∀ f ∈ S, ‖restrictToBall (R + K.supportRadius) (rep f)‖ ≤ C) :
@@ -1241,7 +1253,9 @@ the relevant inequality is
 `x, y ∈ B_R`.  Hence the local hypothesis is the ENLARGED-BALL bound `hbdEnl` on `B_{R+r}`, which
 the call site supplies from `FrechetKolmogorovInput`'s GLOBAL bound `hbddGlobal : ‖rep f‖ ≤ C`
 by ball-mass monotonicity (no upstream gap).  The equicontinuity conclusion is stated for
-`x, y ∈ B_R` only. -/
+`x, y ∈ B_R` only.
+@isnad1 id=ex.2h6v.s16.0fe3988809c6 from=translated src=- shape=dfe782fb vocab=f4aeff58
+-/
 theorem mollified_family_equicontinuous (R C : ℝ) (S : Set (L2ballR3 R))
     (rep : L2ballR3 R → L2VF_R3) (K : MollifierKernel)
     (hbdEnl : ∀ f ∈ S, ‖restrictToBall (R + K.supportRadius) (rep f)‖ ≤ C) :
@@ -1291,7 +1305,9 @@ theorem mollified_family_equicontinuous (R C : ℝ) (S : Set (L2ballR3 R))
 
 /-- The volume of the closed ball `B_R ⊆ ℝ³` is finite (it is compact in a proper space), so the
 restricted measure `volume.restrict B_R` is a finite measure: needed to invoke
-`Lp.norm_le_of_ae_bound` for the sup→L² transfer. -/
+`Lp.norm_le_of_ae_bound` for the sup→L² transfer.
+@isnad1 id=isfinite.0h1v.s9.4cf98a369c6f from=translated src=- shape=fdd72906 vocab=254aadde
+-/
 instance isFiniteMeasure_volume_restrict_closedBall (R : ℝ) :
     IsFiniteMeasure ((volume : Measure Domain3).restrict (Metric.closedBall (0 : Domain3) R)) := by
   refine ⟨?_⟩
@@ -1303,14 +1319,18 @@ noncomputable def ballMassSqrt (R : ℝ) : ℝ :=
   (measureUnivNNReal ((volume : Measure Domain3).restrict
     (Metric.closedBall (0 : Domain3) R)) : ℝ) ^ ((2 : ℝ)⁻¹)
 
-/-- The ball-mass factor `ballMassSqrt R` is nonnegative, as a square root of a measure. -/
+/-- The ball-mass factor `ballMassSqrt R` is nonnegative, as a square root of a measure.
+@isnad1 id=le.0h1v.s3.ae7de3342a3f from=translated src=- shape=8a62b088 vocab=0d5cff91
+-/
 theorem ballMassSqrt_nonneg (R : ℝ) : 0 ≤ ballMassSqrt R := by
   unfold ballMassSqrt
   positivity
 
 /-- **Sup→L²(B_R) transfer.**  If two L²(ℝ³) fields `u, v` agree a.e. on `B_R` with functions
 whose pointwise difference is `≤ c` everywhere on `B_R`, then their ball-restrictions are within
-`ballMassSqrt R · c` in `L²(B_R)`. -/
+`ballMassSqrt R · c` in `L²(B_R)`.
+@isnad1 id=le.4h6v.s14.aa324a34b7a3 from=translated src=- shape=d45a1c98 vocab=402bf5c3
+-/
 theorem dist_restrictToBall_le_of_ae_bound (R c : ℝ) (hc : 0 ≤ c) (u v : L2VF_R3)
     (g₁ g₂ : Domain3 → EuclideanSpace ℝ (Fin 3))
     (hu : (u : Domain3 → EuclideanSpace ℝ (Fin 3))
@@ -1421,7 +1441,9 @@ compact `B_R` (with `δ` from equicontinuity), a finite value-net of the bounded
 each `f` by the tuple of nearest value-net points at the centers, choose one representative per
 class; equicontinuity plus the value-net make functions in the same class uniformly close on
 `B_R`, and `dist_restrictToBall_le_of_ae_bound` (finite-measure sup→L² bound) turns that into
-L²(B_R)-closeness. -/
+L²(B_R)-closeness.
+@isnad1 id=totallyb.3h5v.s17.c3db368985fc from=translated src=- shape=6d45e32b vocab=762eec1d
+-/
 theorem totallyBounded_image_of_equicont_bdd (R : ℝ) (S : Set (L2ballR3 R))
     (ρf : L2ballR3 R → L2VF_R3)
     (Φ : L2ballR3 R → Domain3 → EuclideanSpace ℝ (Fin 3))
@@ -1560,7 +1582,9 @@ stated on `B_R` only and rest on the ENLARGED-BALL bound
 `FrechetKolmogorovInput`'s GLOBAL bound `hbddGlobal : ‖rep f‖ ≤ C` by ball-mass monotonicity.
 Arzelà–Ascoli runs on the COMPACT ball `B_R`, where
 the ball-restriction `restrictToBall R (ρf f)` lives, so the enlarged-ball sup/equicontinuity bounds
-on `B_R` are exactly enough.  This lemma threads the same enlarged-ball bound `hbdEnl`. -/
+on `B_R` are exactly enough.  This lemma threads the same enlarged-ball bound `hbdEnl`.
+@isnad1 id=totallyb.2h6v.s17.15adc34cf74e from=translated src=- shape=fc3b7039 vocab=3a3ed144
+-/
 theorem mollified_family_totallyBounded_L2 (R C : ℝ) (S : Set (L2ballR3 R))
     (rep : L2ballR3 R → L2VF_R3) (K : MollifierKernel)
     (ρf : L2ballR3 R → L2VF_R3)
@@ -1609,7 +1633,9 @@ the global bound, so the enlarged bound is immediate).  The kernel `K` produced 
 radius `K.supportRadius ≤ r₀`, so by monotonicity of ball mass in the radius the step-3 bound on
 `B_{R + K.supportRadius}` follows from `hbdEnl`.  The ball restriction bound `‖f‖ ≤ C` is retained
 as `hbd` only for the L²-approximation conjunct (which compares ball-restrictions); it does NOT
-control the convolution. -/
+control the convolution.
+@isnad1 id=ex.6h6v.s18.7d229ee6fb35 from=translated src=- shape=f67d1116 vocab=fdc7e831
+-/
 theorem convolution_l2_tendsto_uniform (R C r₀ : ℝ) (S : Set (L2ballR3 R))
     (rep : L2ballR3 R → L2VF_R3)
     (hrep : ∀ f ∈ S, restrictToBall R (rep f) = f)
@@ -1725,7 +1751,9 @@ theorem convolution_l2_tendsto_uniform (R C r₀ : ℝ) (S : Set (L2ballR3 R))
 
 This is the abstract glue between step 3 (uniform mollification approximation) and step 2
 (total boundedness of the mollified family): an ε-net of the approximant, fattened by ε, is a
-`2ε`-net of `S`. -/
+`2ε`-net of `S`.
+@isnad1 id=totallyb.1h2v.s6.2c9ae078bb1a from=translated src=- shape=f241c7d3 vocab=7c93b5c7
+-/
 theorem totallyBounded_of_uniform_approx {α : Type*} [PseudoMetricSpace α] (S : Set α)
     (happrox : ∀ ε > 0, ∃ T : Set α, TotallyBounded T ∧
       ∀ s ∈ S, ∃ t ∈ T, dist s t < ε) :
@@ -1782,7 +1810,9 @@ ball-mass monotonicity; feed `hbdEnl`, `hbd`, `hrep`, `hmod` into `convolution_l
 (step 3) to get, for each `ε`, a totally bounded mollified image approximating `S` within `ε`;
 `totallyBounded_of_uniform_approx` (step 4) makes `S` totally bounded; closure of the totally
 bounded `S` is compact (`isCompact_iff_totallyBounded_isComplete`, `L2ballR3 R` complete); take
-`K := closure S`. -/
+`K := closure S`.
+@isnad1 id=frechetk.0h0v.s0.be8b23ed4c4d from=translated src=- shape=45709ebd vocab=be8b23ed
+-/
 theorem frechetKolmogorov_holds : FrechetKolmogorovInput := by
   refine ⟨fun R C S rep hrep hbd hbddGlobal hmod => ?_⟩
   -- Enlarged-ball bound at budget `r₀ = 1`, from the GLOBAL bound by ball-mass monotonicity.

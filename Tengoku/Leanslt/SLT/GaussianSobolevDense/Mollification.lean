@@ -45,7 +45,9 @@ noncomputable abbrev mulLR : ℝ →L[ℝ] ℝ →L[ℝ] ℝ := ContinuousLinear
 /-- Our mollify definition equals Mathlib's convolution with swapped arguments.
     mollify ε f x = ∫ y, f(x-y) * ρ_ε(y)
                   = ∫ t, f(t) * ρ_ε(x-t)   [with t = x - y]
-                  = (f ⋆ ρ_ε)(x)          [Mathlib convolution] -/
+                  = (f ⋆ ρ_ε)(x)          [Mathlib convolution]
+@isnad1 id=eq.0h3v.s8.00bf7b14c6ce from=translated src=- shape=b0ca65f4 vocab=36164466
+-/
 lemma mollify_eq_convolution {n : ℕ} {ε : ℝ} (f : E n → ℝ) :
     mollify ε f = f ⋆[mulLR, volume] (stdMollifierPi n ε) := by
   ext x
@@ -67,7 +69,9 @@ lemma mollify_eq_convolution {n : ℕ} {ε : ℝ} (f : E n → ℝ) :
 /-! ### Smoothness of Mollification -/
 
 /-- Mollification of a locally integrable function with a smooth compactly supported
-    mollifier is smooth (C^∞). -/
+    mollifier is smooth (C^∞).
+@isnad1 id=contdiff.3h3v.s8.3dd3074c5a01 from=translated src=- shape=78954e46 vocab=1d3c8663
+-/
 lemma mollify_smooth {n : ℕ} {g : E n → ℝ} (_hg : HasCompactSupport g)
     (hg_int : LocallyIntegrable g volume) {ε : ℝ} (hε : 0 < ε) :
     ContDiff ℝ (⊤ : ℕ∞) (mollify ε g) := by
@@ -80,7 +84,9 @@ lemma mollify_smooth {n : ℕ} {g : E n → ℝ} (_hg : HasCompactSupport g)
 /-- Mollification preserves compact support up to ε√n-enlargement.
 
     The n-dimensional mollifier has support in the ball of radius ε√n (in l² norm),
-    so supp(g ⋆ ρ_ε) ⊆ supp(g) + supp(ρ_ε) ⊆ B(0, 2R) + B(0, ε√n) ⊆ B(0, 2R + ε√n). -/
+    so supp(g ⋆ ρ_ε) ⊆ supp(g) + supp(ρ_ε) ⊆ B(0, 2R) + B(0, ε√n) ⊆ B(0, 2R + ε√n).
+@isnad1 id=le.3h4v.s8.3ddb09ac7083 from=translated src=- shape=92b48e81 vocab=e11bd388
+-/
 lemma mollify_compact_support {n : ℕ} {g : E n → ℝ} {R : ℝ} (_hR : 0 < R)
     (hg : tsupport g ⊆ Metric.closedBall (0 : E n) (2 * R))
     {ε : ℝ} (hε : 0 < ε) :
@@ -100,7 +106,9 @@ lemma mollify_compact_support {n : ℕ} {g : E n → ℝ} {R : ℝ} (_hR : 0 < R
     simp
   rw [h_add, IsClosed.closure_eq Metric.isClosed_closedBall]
 
-/-- Combined: mollification of cutoff function has compact support and is smooth. -/
+/-- Combined: mollification of cutoff function has compact support and is smooth.
+@isnad1 id=and.3h4v.s8.fa2015096a27 from=translated src=- shape=c48a9de0 vocab=ec9d8751
+-/
 lemma mollify_cutoff_smooth_compactSupport (f : E n → ℝ) {R ε : ℝ} (hR : 0 < R) (hε : 0 < ε)
     (hf_int : LocallyIntegrable f volume) :
     ContDiff ℝ (⊤ : ℕ∞) (mollify ε (f * smoothCutoffR R)) ∧
@@ -142,17 +150,23 @@ Pointwise convergence → uniform on compact sets → L² convergence via finite
 /-! #### Pointwise Convergence -/
 
 /-- For any positive ε, the mollifier ρ_ε is nonnegative and integrates to 1.
-    These are the key properties of an approximate identity. -/
+    These are the key properties of an approximate identity.
+@isnad1 id=and.1h2v.s7.f70201d9f1ff from=translated src=- shape=24cc7000 vocab=55f57c4b
+-/
 lemma stdMollifierPi_pos_integral {n : ℕ} {ε : ℝ} (hε : 0 < ε) :
     (∀ x, 0 ≤ stdMollifierPi n ε x) ∧ ∫ x, stdMollifierPi n ε x = 1 :=
   ⟨stdMollifierPi_nonneg ε hε, stdMollifierPi_integral_eq_one hε⟩
 
-/-- The support of ρ_ε is contained in B(0, ε√n). -/
+/-- The support of ρ_ε is contained in B(0, ε√n).
+@isnad1 id=le.1h2v.s6.72fa862368ab from=translated src=- shape=9b59822c vocab=ce268bc8
+-/
 lemma stdMollifierPi_support_shrinks {n : ℕ} {ε : ℝ} (hε : 0 < ε) :
     Function.support (stdMollifierPi n ε) ⊆ Metric.closedBall (0 : E n) (ε * Real.sqrt n) :=
   subset_trans subset_closure (stdMollifierPi_tsupport_subset hε)
 
-/-- For continuous g, mollify ε g x → g x as ε → 0. -/
+/-- For continuous g, mollify ε g x → g x as ε → 0.
+@isnad1 id=tendsto.1h3v.s6.7f6665321d30 from=translated src=- shape=9143aed4 vocab=fa18cab3
+-/
 lemma mollify_tendsto_pointwise {n : ℕ} {g : E n → ℝ} (hg_cont : Continuous g) (x : E n) :
     Filter.Tendsto (fun ε => mollify ε g x) (nhdsWithin 0 (Set.Ioi 0)) (nhds (g x)) := by
   rw [Metric.tendsto_nhdsWithin_nhds]
@@ -275,7 +289,9 @@ lemma mollify_tendsto_pointwise {n : ℕ} {g : E n → ℝ} (hg_cont : Continuou
 /-! #### Uniform Convergence on Compact Sets -/
 
 set_option maxHeartbeats 400000 in
-/-- For uniformly continuous functions on a compact set, mollification converges uniformly. -/
+/-- For uniformly continuous functions on a compact set, mollification converges uniformly.
+@isnad1 id=tendstou.2h3v.s6.8ba37f2c77ff from=translated src=- shape=39c55282 vocab=69f9efc4
+-/
 lemma mollify_tendsto_uniformly_on_compact {n : ℕ} {g : E n → ℝ} {K : Set (E n)}
     (hK : IsCompact K) (hg_cont : Continuous g) :
     TendstoUniformlyOn (fun ε => mollify ε g) g (nhdsWithin 0 (Set.Ioi 0)) K := by
@@ -395,7 +411,9 @@ lemma mollify_tendsto_uniformly_on_compact {n : ℕ} {g : E n → ℝ} {K : Set 
 /-! #### L² Convergence from Uniform Convergence -/
 
 /-- Uniform convergence implies L² convergence for functions vanishing outside a
-    finite-measure set. Bounds the L² norm by sup-norm times measure^(1/2). -/
+    finite-measure set. Bounds the L² norm by sup-norm times measure^(1/2).
+@isnad1 id=tendsto.4h4v.s9.7fcfd28deb05 from=translated src=- shape=7bf49bf6 vocab=d29768c1
+-/
 lemma eLpNorm_tendsto_zero_of_tendstoUniformly_restrict {n : ℕ} {f : ℕ → E n → ℝ} {g : E n → ℝ}
     {s : Set (E n)} (hμ : volume s < ⊤)
     (hf_zero : ∀ i x, x ∉ s → f i x = 0) (hg_zero : ∀ x, x ∉ s → g x = 0)
@@ -480,7 +498,9 @@ lemma eLpNorm_tendsto_zero_of_tendstoUniformly_restrict {n : ℕ} {f : ℕ → E
             _ ≤ ε := ENNReal.ofReal_toReal_le
 
 /-- General version: for ANY measure μ with μ s < ⊤, uniform convergence implies L² convergence.
-    This is essential for transferring L² convergence from Lebesgue to Gaussian measure. -/
+    This is essential for transferring L² convergence from Lebesgue to Gaussian measure.
+@isnad1 id=tendsto.4h5v.s8.7af6df2fbe9c from=translated src=- shape=f4a23cc3 vocab=c922853f
+-/
 lemma eLpNorm_tendsto_zero_of_tendstoUniformly_general {n : ℕ} {μ : Measure (E n)}
     {f : ℕ → E n → ℝ} {g : E n → ℝ}
     {s : Set (E n)} (hμ : μ s < ⊤)
@@ -569,7 +589,9 @@ lemma eLpNorm_tendsto_zero_of_tendstoUniformly_general {n : ℕ} {μ : Measure (
 
 set_option maxHeartbeats 400000 in
 /-- Mollification of continuous compactly supported functions converges in L².
-    This uses uniform convergence on compact sets + finite measure on the support. -/
+    This uses uniform convergence on compact sets + finite measure on the support.
+@isnad1 id=tendsto.3h3v.s8.f2a21981814a from=translated src=- shape=865463df vocab=595feb23
+-/
 lemma mollify_L2_convergence_continuous {n : ℕ} {g : E n → ℝ} {R : ℝ} (hR : 0 < R)
     (hg_cont : Continuous g) (hg_supp : tsupport g ⊆ Metric.closedBall 0 (2 * R)) :
     Filter.Tendsto (fun ε => eLpNorm (mollify ε g - g) 2 volume)
@@ -741,7 +763,9 @@ lemma mollify_L2_convergence_continuous {n : ℕ} {g : E n → ℝ} {R : ℝ} (h
 set_option maxHeartbeats 4000000 in
 /-- For any probability measure μ, mollification of continuous compactly supported
     functions converges in L²(μ). Since stdGaussianE is a probability measure,
-    μ s ≤ 1 < ⊤ for any set s, so we can use uniform convergence. -/
+    μ s ≤ 1 < ⊤ for any set s, so we can use uniform convergence.
+@isnad1 id=tendsto.3h3v.s8.12d5dfbd92a5 from=translated src=- shape=afa295c2 vocab=3ff1fb65
+-/
 lemma mollify_L2_convergence_gaussian_continuous {n : ℕ} {g : E n → ℝ} {R : ℝ} (hR : 0 < R)
     (hg_cont : Continuous g) (hg_supp : tsupport g ⊆ Metric.closedBall 0 (2 * R)) :
     Filter.Tendsto (fun ε => eLpNorm (mollify ε g - g) 2 (stdGaussianE n))
@@ -949,7 +973,9 @@ lemma mollify_L2_convergence_gaussian_continuous {n : ℕ} {g : E n → ℝ} {R 
     avoiding the need for measure comparison constants.
 
     Note: The L² and gradient hypotheses are kept for compatibility but aren't
-    needed for the proof (they would be needed for a rate-of-convergence bound). -/
+    needed for the proof (they would be needed for a rate-of-convergence bound).
+@isnad1 id=tendsto.5h3v.s11.feb0fc998429 from=translated src=- shape=3835d550 vocab=8fa7c473
+-/
 lemma mollify_L2_convergence_gaussian {n : ℕ} {g : E n → ℝ} {R : ℝ} (hR : 0 < R)
     (hg_supp : tsupport g ⊆ Metric.closedBall 0 (2 * R))
     (_hg : MemLp g 2 (stdGaussianE n)) (hg_diff : Differentiable ℝ g)
@@ -962,7 +988,9 @@ lemma mollify_L2_convergence_gaussian {n : ℕ} {g : E n → ℝ} {R : ℝ} (hR 
 /-! ### Main Mollification Theorem -/
 
 /-- Helper: The support of f * smoothCutoffR R is contained in the closed ball of radius 2R.
-    This follows from the compact support of smoothCutoffR. -/
+    This follows from the compact support of smoothCutoffR.
+@isnad1 id=le.1h3v.s7.47968a31d938 from=translated src=- shape=26e07e31 vocab=453db7b0
+-/
 lemma cutoff_product_support {f : E n → ℝ} {R : ℝ} (hR : 0 < R) :
     tsupport (f * smoothCutoffR R) ⊆ Metric.closedBall 0 (2 * R) := by
   apply subset_trans tsupport_mul_subset_right
@@ -971,20 +999,26 @@ lemma cutoff_product_support {f : E n → ℝ} {R : ℝ} (hR : 0 < R) :
   exact smoothCutoffR_support_subset hR
 
 /-- Helper: f * smoothCutoffR R is continuous if f is continuous.
-    Uses the fact that smoothCutoffR is smooth hence continuous. -/
+    Uses the fact that smoothCutoffR is smooth hence continuous.
+@isnad1 id=continuo.2h3v.s6.288a8b5bae34 from=translated src=- shape=3f44800f vocab=c8b51784
+-/
 lemma cutoff_product_continuous {f : E n → ℝ} {R : ℝ} (hR : 0 < R)
     (hf_cont : Continuous f) : Continuous (f * smoothCutoffR R) := by
   apply Continuous.mul hf_cont
   exact (smoothCutoffR_contDiff hR).continuous
 
-/-- Helper: f * smoothCutoffR R is differentiable if f is differentiable. -/
+/-- Helper: f * smoothCutoffR R is differentiable if f is differentiable.
+@isnad1 id=differen.2h3v.s8.24ac184df5e1 from=translated src=- shape=610a19d9 vocab=a4597dac
+-/
 lemma cutoff_product_differentiable {f : E n → ℝ} {R : ℝ} (hR : 0 < R)
     (hf_diff : Differentiable ℝ f) : Differentiable ℝ (f * smoothCutoffR R) := by
   apply Differentiable.mul hf_diff
   exact (smoothCutoffR_contDiff hR).differentiable (WithTop.coe_ne_zero.mpr ENat.top_ne_zero)
 
 /-- Helper: The gradient of f * smoothCutoffR R is continuous if f has continuous gradient
-    and f is differentiable. -/
+    and f is differentiable.
+@isnad1 id=continuo.3h3v.s10.717a129498ec from=translated src=- shape=a274a3c9 vocab=bf5aaf45
+-/
 lemma cutoff_product_fderiv_continuous {f : E n → ℝ} {R : ℝ} (hR : 0 < R)
     (hf_diff : Differentiable ℝ f)
     (hf_grad_cont : Continuous (fun x => fderiv ℝ f x)) :
@@ -1006,7 +1040,9 @@ lemma cutoff_product_fderiv_continuous {f : E n → ℝ} {R : ℝ} (hR : 0 < R)
   · apply Continuous.smul hχ_cont hf_grad_cont
   · apply Continuous.smul hf_diff.continuous hχ_fderiv_cont
 
-/-- Helper: f * smoothCutoffR R is C¹ if f is differentiable with continuous gradient. -/
+/-- Helper: f * smoothCutoffR R is C¹ if f is differentiable with continuous gradient.
+@isnad1 id=contdiff.3h3v.s9.3a99f1da7c6e from=translated src=- shape=ad944099 vocab=78353ff2
+-/
 lemma cutoff_product_contDiff_one {f : E n → ℝ} {R : ℝ} (hR : 0 < R)
     (hf_diff : Differentiable ℝ f)
     (hf_grad_cont : Continuous (fun x => fderiv ℝ f x)) :
@@ -1016,7 +1052,9 @@ lemma cutoff_product_contDiff_one {f : E n → ℝ} {R : ℝ} (hR : 0 < R)
          cutoff_product_fderiv_continuous hR hf_diff hf_grad_cont⟩
 
 /-- Helper: f * smoothCutoffR R has compact support contained in closedBall 0 (2R).
-    This gives HasCompactSupport. -/
+    This gives HasCompactSupport.
+@isnad1 id=hascompa.1h3v.s6.b94a219f7960 from=translated src=- shape=c1fc2209 vocab=844a830a
+-/
 lemma cutoff_product_hasCompactSupport {f : E n → ℝ} {R : ℝ} (hR : 0 < R) :
     HasCompactSupport (f * smoothCutoffR R) := by
   apply HasCompactSupport.of_support_subset_isCompact (isCompact_closedBall 0 (2 * R))
@@ -1025,7 +1063,9 @@ lemma cutoff_product_hasCompactSupport {f : E n → ℝ} {R : ℝ} (hR : 0 < R) 
 
 /-- The derivative-convolution commutation lemma for our mollification.
     For C¹ functions g with compact support, fderiv (mollify ε g) = mollify ε (fderiv g)
-    in the appropriate sense. -/
+    in the appropriate sense.
+@isnad1 id=eq.3h5v.s10.2e2888850354 from=translated src=- shape=4289bce5 vocab=02cb77df
+-/
 lemma fderiv_mollify_eq_mollify_fderiv_apply {g : E n → ℝ} {ε : ℝ} (hε : 0 < ε)
     (hg_c1 : ContDiff ℝ 1 g) (hg_supp : HasCompactSupport g) (x : E n) (v : E n) :
     fderiv ℝ (mollify ε g) x v = mollify ε (fun y => fderiv ℝ g y v) x := by
@@ -1059,7 +1099,9 @@ lemma fderiv_mollify_eq_mollify_fderiv_apply {g : E n → ℝ} {ε : ℝ} (hε :
 /-- Gradient of mollification converges in L²(γ) for C¹ functions with compact support.
 
     **Key insight**: Uses ∇(f ⋆ ρ_ε) = (∇f) ⋆ ρ_ε (derivative-convolution commutation) and
-    finite-dimensional compactness of the unit sphere to get uniform convergence in v. -/
+    finite-dimensional compactness of the unit sphere to get uniform convergence in v.
+@isnad1 id=tendsto.4h3v.s11.55e2f257203c from=translated src=- shape=d58fbc01 vocab=3450d2ec
+-/
 lemma gradient_L2_convergence_gaussian {g : E n → ℝ} {R : ℝ} (hR : 0 < R)
     (hg_diff : Differentiable ℝ g)
     (hg_grad_cont : Continuous (fun x => fderiv ℝ g x))
@@ -1299,7 +1341,9 @@ lemma gradient_L2_convergence_gaussian {g : E n → ℝ} {R : ℝ} (hR : 0 < R)
       _ ≤ δ := ENNReal.half_le_self
 
 /-- Main mollification theorem: For fixed R, the mollified cutoff f^(R,ε) := (f·χ_R) ⋆ ρ_ε
-    converges to f^(R) := f·χ_R in the W^{1,2}(γ) Sobolev norm as ε → 0. -/
+    converges to f^(R) := f·χ_R in the W^{1,2}(γ) Sobolev norm as ε → 0.
+@isnad1 id=tendsto.3h3v.s9.d697f1410231 from=translated src=- shape=1b178a1c vocab=c8a8de37
+-/
 lemma tendsto_mollify_W12 {n : ℕ} (f : E n → ℝ) {R : ℝ} (hR : 0 < R)
     (hf_diff : Differentiable ℝ f)
     (hf_grad_cont : Continuous (fun x => fderiv ℝ f x)) :

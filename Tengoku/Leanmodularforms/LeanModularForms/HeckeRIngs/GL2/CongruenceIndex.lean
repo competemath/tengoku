@@ -102,7 +102,9 @@ private lemma Gamma0_prime_index_surj :
     simp only [Gamma0Rep, ZMod.val_lt j₀, ite_true]
     rwa [TjS_inv_mul_10, ZMod.intCast_zmod_eq_zero_iff_dvd, dvd_sub_comm]
 
-/-- `[SL₂(ℤ) : Γ₀(p)] = p + 1` for prime `p`. -/
+/-- `[SL₂(ℤ) : Γ₀(p)] = p + 1` for prime `p`.
+@isnad1 id=eq.1h1v.s6.caf0db4565c0 from=translated src=- shape=5a0099f3 vocab=c0ea8513
+-/
 theorem Gamma0_prime_index : (Gamma0 p).index = p + 1 :=
   Nat.card_eq_of_equiv_fin (Equiv.ofBijective _
     ⟨Gamma0_prime_index_inj p hp, Gamma0_prime_index_surj p hp⟩).symm

@@ -58,7 +58,9 @@ Named `curlSchwartzDense_holds` (same as the former axiom) so that downstream
 consumers (`nonempty_schwartzGalerkinBasis`, `GalerkinODECapstone`, etc.) see no
 name change.  The `axiom` form was removed from `SchwartzDivFreeBasis.lean` as part
 of this restructure; `#print axioms exists_lerayHopf_r3` no longer lists
-`LerayHopf.curlSchwartzDense_holds` after this wiring. -/
+`LerayHopf.curlSchwartzDense_holds` after this wiring.
+@isnad1 id=curlschw.0h0v.s0.f4f2f2de865e from=translated src=- shape=45709ebd vocab=f4f2f2de
+-/
 theorem curlSchwartzDense_holds : CurlSchwartzDense :=
   curlSchwartzDense_provedRoute
 
@@ -71,7 +73,9 @@ body is identical but the dependency on the axiom is replaced by a dependency on
 proved theorem `curlSchwartzDense_holds` (above).
 
 The name is preserved so every downstream consumer (`GalerkinODECapstone.lean`) is
-unchanged. -/
+unchanged.
+@isnad1 id=nonempty.0h0v.s1.a392204391b6 from=translated src=- shape=49959d42 vocab=891e4df5
+-/
 theorem nonempty_schwartzGalerkinBasis : Nonempty SchwartzGalerkinBasis :=
   schwartzGalerkinBasis_of_curlDense curlSchwartzDense_holds
 
@@ -83,7 +87,9 @@ additionally axiom-free because `curlSchwartzDense_holds` is itself a proved the
 
 Body is unchanged: assembled from `nonempty_r3GalerkinScheme_of_basis` applied to a
 basis `B` from `nonempty_schwartzGalerkinBasis`.  The name is preserved so every
-downstream consumer is unchanged. -/
+downstream consumer is unchanged.
+@isnad1 id=nonempty.0h0v.s1.0d3e84f59f42 from=translated src=- shape=49959d42 vocab=4338ed8d
+-/
 theorem r3GalerkinScheme_exists : Nonempty R3GalerkinScheme :=
   (nonempty_schwartzGalerkinBasis).elim fun B => nonempty_r3GalerkinScheme_of_basis B
 

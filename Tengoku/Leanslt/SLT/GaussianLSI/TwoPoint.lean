@@ -49,16 +49,28 @@ def phi (t : ℝ) : ℝ := gPlus t + gMinus t
 ## Part 2: Values at zero
 -/
 
+/--
+@isnad1 id=eq.0h0v.s3.6487c72a5724 from=translated src=- shape=3c26ae4f vocab=68976c92
+-/
 @[simp] theorem gPlus_zero : gPlus 0 = 0 := by simp [gPlus]
 
+/--
+@isnad1 id=eq.0h0v.s3.bfd848caa938 from=translated src=- shape=3c26ae4f vocab=3a762e72
+-/
 @[simp] theorem gMinus_zero : gMinus 0 = 0 := by simp [gMinus]
 
+/--
+@isnad1 id=eq.0h0v.s3.32960462b47d from=translated src=- shape=3c26ae4f vocab=5fee3968
+-/
 @[simp] theorem phi_zero : phi 0 = 0 := by simp [phi]
 
 /-!
 ## Part 3: Symmetry
 -/
 
+/--
+@isnad1 id=eq.0h1v.s3.a1ad9d23676a from=translated src=- shape=cd419dad vocab=8fbfdc5c
+-/
 theorem phi_neg (t : ℝ) : phi (-t) = phi t := by
   simp only [phi, gPlus, gMinus]
   ring_nf
@@ -67,6 +79,9 @@ theorem phi_neg (t : ℝ) : phi (-t) = phi t := by
 ## Part 4: Differentiability of components
 -/
 
+/--
+@isnad1 id=differen.1h1v.s6.f55dea965737 from=translated src=- shape=f6a6a150 vocab=3b3076c6
+-/
 theorem differentiableAt_gPlus {t : ℝ} (ht : -1 < t) : DifferentiableAt ℝ gPlus t := by
   unfold gPlus
   have h : 0 < 1 + t := by linarith
@@ -75,6 +90,9 @@ theorem differentiableAt_gPlus {t : ℝ} (ht : -1 < t) : DifferentiableAt ℝ gP
     (differentiableAt_log h.ne').comp t h1
   exact h1.mul h2
 
+/--
+@isnad1 id=differen.1h1v.s6.01808cd531f5 from=translated src=- shape=d04ac3e0 vocab=68efb3c2
+-/
 theorem differentiableAt_gMinus {t : ℝ} (ht : t < 1) : DifferentiableAt ℝ gMinus t := by
   unfold gMinus
   have h : 0 < 1 - t := by linarith
@@ -83,6 +101,9 @@ theorem differentiableAt_gMinus {t : ℝ} (ht : t < 1) : DifferentiableAt ℝ gM
     (differentiableAt_log h.ne').comp t h1
   exact h1.mul h2
 
+/--
+@isnad1 id=differen.1h1v.s6.f30c5fd85969 from=translated src=- shape=f4d9df4d vocab=20c616fe
+-/
 theorem differentiableAt_phi {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) : DifferentiableAt ℝ phi t := by
   unfold phi
   exact (differentiableAt_gPlus ht.1).add (differentiableAt_gMinus ht.2)
@@ -91,6 +112,9 @@ theorem differentiableAt_phi {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) : Different
 ## Part 5: First derivatives
 -/
 
+/--
+@isnad1 id=eq.1h1v.s6.e70998dd086b from=translated src=- shape=0807a407 vocab=43f49a7b
+-/
 theorem deriv_gPlus {t : ℝ} (ht : -1 < t) : deriv gPlus t = log (1 + t) + 1 := by
   unfold gPlus
   have h : 0 < 1 + t := by linarith
@@ -113,6 +137,9 @@ theorem deriv_gPlus {t : ℝ} (ht : -1 < t) : deriv gPlus t = log (1 + t) + 1 :=
   rw [d1, d2]
   field_simp
 
+/--
+@isnad1 id=eq.1h1v.s6.734557d1f464 from=translated src=- shape=acc46c66 vocab=e37047d8
+-/
 theorem deriv_gMinus {t : ℝ} (ht : t < 1) : deriv gMinus t = -log (1 - t) - 1 := by
   unfold gMinus
   have h : 0 < 1 - t := by linarith
@@ -136,6 +163,9 @@ theorem deriv_gMinus {t : ℝ} (ht : t < 1) : deriv gMinus t = -log (1 - t) - 1 
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h1v.s6.c5091c7325c5 from=translated src=- shape=cf8771c0 vocab=2721d008
+-/
 theorem deriv_phi {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) :
     deriv phi t = log (1 + t) - log (1 - t) := by
   unfold phi
@@ -145,6 +175,9 @@ theorem deriv_phi {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) :
   rw [h_deriv, deriv_gPlus ht.1, deriv_gMinus ht.2]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s5.5b893e658632 from=translated src=- shape=874afe33 vocab=92482eaa
+-/
 theorem deriv_phi_zero : deriv phi 0 = 0 := by
   have h : (0 : ℝ) ∈ Ioo (-1 : ℝ) 1 := ⟨by linarith, by linarith⟩
   rw [deriv_phi h]
@@ -154,6 +187,9 @@ theorem deriv_phi_zero : deriv phi 0 = 0 := by
 ## Part 6: Second derivatives
 -/
 
+/--
+@isnad1 id=eq.1h1v.s6.216e92f96ab7 from=translated src=- shape=c89719d3 vocab=6107972b
+-/
 theorem deriv_deriv_gPlus {t : ℝ} (ht : -1 < t) : deriv (deriv gPlus) t = 1 / (1 + t) := by
   have h : 0 < 1 + t := by linarith
   have hdiff : (fun s => deriv gPlus s) =ᶠ[𝓝 t] (fun s => log (1 + s) + 1) := by
@@ -175,6 +211,9 @@ theorem deriv_deriv_gPlus {t : ℝ} (ht : -1 < t) : deriv (deriv gPlus) t = 1 / 
     exact hd.deriv
   rw [d1]
 
+/--
+@isnad1 id=eq.1h1v.s6.995c68d663f7 from=translated src=- shape=ff6e9421 vocab=e60e6dec
+-/
 theorem deriv_deriv_gMinus {t : ℝ} (ht : t < 1) : deriv (deriv gMinus) t = 1 / (1 - t) := by
   have h : 0 < 1 - t := by linarith
   have hdiff : (fun s => deriv gMinus s) =ᶠ[𝓝 t] (fun s => -log (1 - s) - 1) := by
@@ -199,6 +238,9 @@ theorem deriv_deriv_gMinus {t : ℝ} (ht : t < 1) : deriv (deriv gMinus) t = 1 /
   rw [d1]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s7.bb46f2aac283 from=translated src=- shape=7e13f0e6 vocab=793833bc
+-/
 theorem deriv2_phi {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) :
     deriv (deriv phi) t = 2 / (1 - t^2) := by
   have h1 : 0 < 1 + t := by linarith [ht.1]
@@ -234,6 +276,9 @@ theorem deriv2_phi {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) :
 ## Part 7: Key bound on second derivative
 -/
 
+/--
+@isnad1 id=le.1h1v.s6.006eba1cd65e from=translated src=- shape=85b8b9b4 vocab=fc2e806a
+-/
 theorem deriv2_phi_ge_two {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) :
     2 ≤ deriv (deriv phi) t := by
   rw [deriv2_phi ht]
@@ -249,7 +294,9 @@ theorem deriv2_phi_ge_two {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) :
 -/
 
 /-- φ(t) ≥ 0 for t ∈ (-1, 1).
-    Proof: φ is strictly convex with minimum at 0 where φ(0) = 0. -/
+    Proof: φ is strictly convex with minimum at 0 where φ(0) = 0.
+@isnad1 id=le.1h1v.s5.8b8777f2cfb5 from=translated src=- shape=e8e92299 vocab=cd84a74f
+-/
 theorem phi_nonneg {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) : 0 ≤ phi t := by
   -- φ(t) ≥ 0 follows from strict convexity: φ''(t) > 0, φ(0) = 0, φ'(0) = 0
   -- The minimum of a strictly convex function is where the derivative vanishes
@@ -328,7 +375,9 @@ theorem phi_nonneg {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) : 0 ≤ phi t := by
 /-- The two-point inequality:
     For a, b > 0, the midpoint entropy excess is bounded by the squared root difference.
 
-    (a+b)/2 * log((a+b)/2) - (a*log(a) + b*log(b))/2 ≤ (√a - √b)²/2 -/
+    (a+b)/2 * log((a+b)/2) - (a*log(a) + b*log(b))/2 ≤ (√a - √b)²/2
+@isnad1 id=le.2h2v.s7.b639af7d2424 from=translated src=- shape=88c47603 vocab=720fc62b
+-/
 theorem two_point_inequality {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
     (a + b) / 2 * log ((a + b) / 2) - (a * log a + b * log b) / 2
     ≤ (sqrt a - sqrt b) ^ 2 / 2 := by
@@ -356,7 +405,9 @@ theorem two_point_inequality {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
     · norm_num
   linarith
 
-/-- Equivalent form: entropy of the two-point distribution is bounded below. -/
+/-- Equivalent form: entropy of the two-point distribution is bounded below.
+@isnad1 id=le.2h2v.s7.38a719bb4ebc from=translated src=- shape=a979d903 vocab=e725ab43
+-/
 theorem two_point_entropy_lower_bound {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
     -(sqrt a - sqrt b)^2 / 2 ≤
     (a * log a + b * log b) / 2 - (a + b) / 2 * log ((a + b) / 2) := by
@@ -367,7 +418,9 @@ theorem two_point_entropy_lower_bound {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
 ## Part 10: The Rothaus Lemma
 -/
 
-/-- The RHS term in Rothaus: 2 - 2√(1-t²) = (√(1+t) - √(1-t))² -/
+/-- The RHS term in Rothaus: 2 - 2√(1-t²) = (√(1+t) - √(1-t))²
+@isnad1 id=eq.1h1v.s7.30ee624c695f from=translated src=- shape=6ab01b2e vocab=aa46f245
+-/
 theorem sqrt_diff_sq_eq {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) :
     (sqrt (1 + t) - sqrt (1 - t))^2 = 2 - 2 * sqrt (1 - t^2) := by
   have h1 : 0 ≤ 1 + t := by linarith [ht.1]
@@ -385,16 +438,24 @@ theorem sqrt_diff_sq_eq {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) :
 /-- Key function: g(t) = 2 - 2√(1-t²) - φ(t). The Rothaus lemma says g ≥ 0. -/
 def rothausDefect (t : ℝ) : ℝ := 2 - 2 * sqrt (1 - t^2) - phi t
 
+/--
+@isnad1 id=eq.0h0v.s3.92e6a6f7f552 from=translated src=- shape=3c26ae4f vocab=951a4eff
+-/
 @[simp] theorem rothausDefect_zero : rothausDefect 0 = 0 := by
   simp only [rothausDefect, sq, mul_zero, sub_zero, sqrt_one, mul_one, sub_self, phi_zero]
 
 /-- The sqrt term in rothausDefect: s(t) = 2 - 2√(1-t²) -/
 def sqrtTerm (t : ℝ) : ℝ := 2 - 2 * sqrt (1 - t^2)
 
+/--
+@isnad1 id=eq.0h0v.s3.5516f7384290 from=translated src=- shape=3c26ae4f vocab=57b009d3
+-/
 @[simp] theorem sqrtTerm_zero : sqrtTerm 0 = 0 := by
   simp [sqrtTerm]
 
-/-- First derivative of sqrtTerm -/
+/-- First derivative of sqrtTerm
+@isnad1 id=eq.1h1v.s6.9821ed1d1b3d from=translated src=- shape=eaf5c626 vocab=dbf5bcbd
+-/
 theorem deriv_sqrtTerm {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) :
     deriv sqrtTerm t = 2 * t / sqrt (1 - t^2) := by
   have h1 : 0 < 1 - t^2 := by nlinarith [ht.1, ht.2, sq_nonneg t]
@@ -428,7 +489,9 @@ theorem deriv_sqrtTerm {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) :
   field_simp [(sqrt_pos.mpr h1).ne']
   ring
 
-/-- sqrtTerm is nonnegative for all reals (minimum value 0 at t = 0) -/
+/-- sqrtTerm is nonnegative for all reals (minimum value 0 at t = 0)
+@isnad1 id=le.0h1v.s3.e4a9659cf349 from=translated src=- shape=8a62b088 vocab=24811b15
+-/
 theorem sqrtTerm_ge_zero (t : ℝ) : 0 ≤ sqrtTerm t := by
   unfold sqrtTerm
   have h' : sqrt (1 - t^2) ≤ 1 := by
@@ -436,13 +499,17 @@ theorem sqrtTerm_ge_zero (t : ℝ) : 0 ≤ sqrtTerm t := by
     nlinarith [sq_nonneg t]
   linarith
 
-/-- The derivative of sqrtTerm at 0 is 0 -/
+/-- The derivative of sqrtTerm at 0 is 0
+@isnad1 id=eq.0h0v.s5.d853df350ef9 from=translated src=- shape=874afe33 vocab=74769eb7
+-/
 theorem deriv_sqrtTerm_zero : deriv sqrtTerm 0 = 0 := by
   have h0 : (0 : ℝ) ∈ Ioo (-1 : ℝ) 1 := ⟨by linarith, by linarith⟩
   rw [deriv_sqrtTerm h0]
   simp
 
-/-- Differentiability of rothausDefect on (-1, 1) -/
+/-- Differentiability of rothausDefect on (-1, 1)
+@isnad1 id=differen.1h1v.s6.e390bda1a344 from=translated src=- shape=f4d9df4d vocab=8fdd2730
+-/
 theorem differentiableAt_rothausDefect {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) :
     DifferentiableAt ℝ rothausDefect t := by
   unfold rothausDefect
@@ -453,7 +520,9 @@ theorem differentiableAt_rothausDefect {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) :
     exact (differentiableAt_const 2).sub (h'.sqrt h1.ne' |>.const_mul 2)
   exact hd1.sub (differentiableAt_phi ht)
 
-/-- The derivative of rothausDefect -/
+/-- The derivative of rothausDefect
+@isnad1 id=eq.1h1v.s7.bfdb094d01ee from=translated src=- shape=eaca3704 vocab=328be252
+-/
 theorem deriv_rothausDefect {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) :
     deriv rothausDefect t = 2 * t / sqrt (1 - t^2) - (log (1 + t) - log (1 - t)) := by
   unfold rothausDefect
@@ -473,13 +542,17 @@ theorem deriv_rothausDefect {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) :
     rw [this]
   rw [h_sqrtTerm_eq, deriv_sqrtTerm ht, deriv_phi ht]
 
-/-- The derivative of rothausDefect at 0 is 0 -/
+/-- The derivative of rothausDefect at 0 is 0
+@isnad1 id=eq.0h0v.s5.2a8f544c99d2 from=translated src=- shape=874afe33 vocab=3e38245a
+-/
 theorem deriv_rothausDefect_zero : deriv rothausDefect 0 = 0 := by
   have h0 : (0 : ℝ) ∈ Ioo (-1 : ℝ) 1 := ⟨by linarith, by linarith⟩
   rw [deriv_rothausDefect h0]
   simp
 
-/-- Second derivative of sqrtTerm: d²/dt²[2 - 2√(1-t²)] = 2/(1-t²)^(3/2) -/
+/-- Second derivative of sqrtTerm: d²/dt²[2 - 2√(1-t²)] = 2/(1-t²)^(3/2)
+@isnad1 id=eq.1h1v.s7.b025bf07b8f5 from=translated src=- shape=e9fce087 vocab=dbf5bcbd
+-/
 theorem deriv2_sqrtTerm {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) :
     deriv (deriv sqrtTerm) t = 2 / (1 - t^2) * (1 / sqrt (1 - t^2)) := by
   have h1 : 0 < 1 - t^2 := by nlinarith [ht.1, ht.2, sq_nonneg t]
@@ -530,7 +603,9 @@ theorem deriv2_sqrtTerm {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) :
   ring
 
 /-- The second derivative of rothausDefect is nonnegative:
-    g''(t) = 2/(1-t²)^(3/2) - 2/(1-t²) = 2/(1-t²) · (1/√(1-t²) - 1) ≥ 0 -/
+    g''(t) = 2/(1-t²)^(3/2) - 2/(1-t²) = 2/(1-t²) · (1/√(1-t²) - 1) ≥ 0
+@isnad1 id=le.1h1v.s6.422fda9277d6 from=translated src=- shape=85b8b9b4 vocab=bf3fec28
+-/
 theorem deriv2_rothausDefect_nonneg {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) :
     0 ≤ deriv (deriv rothausDefect) t := by
   have h1 : 0 < 1 - t^2 := by nlinarith [ht.1, ht.2, sq_nonneg t]
@@ -587,7 +662,9 @@ theorem deriv2_rothausDefect_nonneg {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) :
   · rw [sub_nonneg, one_le_div hsqrt_pos]
     exact hsqrt_le_one
 
-/-- Differentiability of deriv rothausDefect on (-1, 1) -/
+/-- Differentiability of deriv rothausDefect on (-1, 1)
+@isnad1 id=differen.1h1v.s6.aa5b00f91586 from=translated src=- shape=f4fcb291 vocab=8f07ec87
+-/
 theorem differentiableAt_deriv_rothausDefect {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) :
     DifferentiableAt ℝ (deriv rothausDefect) t := by
   have h1 : 0 < 1 - t^2 := by nlinarith [ht.1, ht.2, sq_nonneg t]
@@ -609,7 +686,9 @@ theorem differentiableAt_deriv_rothausDefect {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ
       (((differentiableAt_log h1p.ne').comp t hd1).sub ((differentiableAt_log h1m.ne').comp t hd2))
   exact hdiff_rhs.congr_of_eventuallyEq heq
 
-/-- The Rothaus defect is nonnegative: 2 - 2√(1-t²) ≥ φ(t). -/
+/-- The Rothaus defect is nonnegative: 2 - 2√(1-t²) ≥ φ(t).
+@isnad1 id=le.1h1v.s5.dcd819aee85c from=translated src=- shape=e8e92299 vocab=e651afa5
+-/
 theorem rothausDefect_nonneg {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) : 0 ≤ rothausDefect t := by
   by_cases ht0 : t = 0
   · simp [ht0]
@@ -722,7 +801,9 @@ theorem rothausDefect_nonneg {t : ℝ} (ht : t ∈ Ioo (-1 : ℝ) 1) : 0 ≤ rot
 /-- The Rothaus lemma: entropy of the two-point distribution is bounded ABOVE.
 
     For a, b > 0:
-    (a * log a + b * log b) / 2 - (a + b) / 2 * log ((a + b) / 2) ≤ (√a - √b)² / 2 -/
+    (a * log a + b * log b) / 2 - (a + b) / 2 * log ((a + b) / 2) ≤ (√a - √b)² / 2
+@isnad1 id=le.2h2v.s7.23a44d4eed32 from=translated src=- shape=0603c314 vocab=720fc62b
+-/
 theorem rothaus_lemma {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
     (a * log a + b * log b) / 2 - (a + b) / 2 * log ((a + b) / 2) ≤
     (sqrt a - sqrt b)^2 / 2 := by

@@ -28,7 +28,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 
 /-! ## Part (a): MGF bound for non-negative random variables with bounded density -/
 
-/-- The integral of exp(-t*x) over [0, ∞) equals 1/t for t > 0. -/
+/-- The integral of exp(-t*x) over [0, ∞) equals 1/t for t > 0.
+@isnad1 id=eq.1h1v.s6.c4c94bda815e from=translated src=- shape=3d193e80 vocab=70fd039b
+-/
 lemma integral_exp_neg_mul_Ioi_zero (t : ℝ) (ht : 0 < t) :
     ∫ x : ℝ in Ioi 0, exp (-t * x) = 1 / t := by
   have h1 : ∫ x : ℝ in Ioi 0, exp (-t * x) = t⁻¹ • ∫ y : ℝ in Ioi 0, exp (-y) := by
@@ -39,7 +41,9 @@ lemma integral_exp_neg_mul_Ioi_zero (t : ℝ) (ht : 0 < t) :
   rw [h1, integral_exp_neg_Ioi_zero, smul_eq_mul, mul_one, one_div]
 
 /-- For a function f : ℝ → ℝ≥0∞ bounded by 1 and supported on [0, ∞),
-    the integral of f(x).toReal * exp(-tx) is at most 1/t. -/
+    the integral of f(x).toReal * exp(-tx) is at most 1/t.
+@isnad1 id=le.4h2v.s7.c1e6c5f9f3bc from=translated src=- shape=27dc9910 vocab=a45df106
+-/
 lemma integral_exp_neg_mul_le_inv_of_dens_le_one
     {f : ℝ → ℝ≥0∞} (hf_meas : Measurable f) (hf_le : ∀ x, f x ≤ 1)
     (hf_supp : ∀ x, x < 0 → f x = 0)
@@ -114,7 +118,9 @@ lemma integral_exp_neg_mul_le_inv_of_dens_le_one
     _ = 1 / t := integral_exp_neg_mul_Ioi_zero t ht
 
 /-- Variant with a.e. conditions: For a function f : ℝ → ℝ≥0∞ bounded by 1 a.e.
-    and equal to 0 a.e. on (-∞, 0), the integral of f(x).toReal * exp(-tx) is at most 1/t. -/
+    and equal to 0 a.e. on (-∞, 0), the integral of f(x).toReal * exp(-tx) is at most 1/t.
+@isnad1 id=le.4h2v.s7.bafdb6c729ad from=translated src=- shape=cc0a4611 vocab=403c3a6f
+-/
 lemma integral_exp_neg_mul_le_inv_of_dens_le_one_ae
     {f : ℝ → ℝ≥0∞} (hf_meas : Measurable f)
     (hf_le : ∀ᵐ x ∂volume, f x ≤ 1)
@@ -193,7 +199,9 @@ lemma integral_exp_neg_mul_le_inv_of_dens_le_one_ae
 /-! ## Part (b): Small ball probability bound -/
 
 /-- The MGF bound for a single random variable: if X has pdf bounded by 1 supported on [0, ∞),
-    then mgf(X, -t) ≤ 1/t for t > 0. This is a corollary stated in terms of the mgf function. -/
+    then mgf(X, -t) ≤ 1/t for t > 0. This is a corollary stated in terms of the mgf function.
+@isnad1 id=le.4h4v.s7.7925704db98b from=translated src=- shape=929bb896 vocab=6db672a7
+-/
 theorem mgf_neg_le_inv_of_pdf_bounded
     {X : Ω → ℝ} [IsProbabilityMeasure μ] (hX : Measurable X)
     [hpdf : HasPDF X μ volume]
@@ -251,6 +259,7 @@ private lemma integrable_exp_neg_mul_of_nonneg {X : Ω → ℝ}
     P(∑Xᵢ ≤ εN) = P(∑Xᵢ/ε ≤ N) ≤ exp(N) * E[exp(-∑Xᵢ/ε)]
                 = exp(N) * ∏ᵢ E[exp(-Xᵢ/ε)]  (by independence)
                 ≤ exp(N) * ε^N = (eε)^N       (using part (a) with t=1/ε)
+@isnad1 id=le.7h6v.s7.21c1e5c40002 from=translated src=- shape=d187b286 vocab=53ab9663
 -/
 theorem small_ball_prob {ι : Type*} [Fintype ι] (X : ι → Ω → ℝ)
     [hμ : IsProbabilityMeasure μ]

@@ -29,11 +29,20 @@ def nestedComp (e : ℕ → ℕ → ℕ) : ℕ → ℕ → ℕ
   | 0 => e 0
   | m + 1 => nestedComp e m ∘ e (m + 1)
 
+/--
+@isnad1 id=eq.0h1v.s4.5e6595a38ee0 from=translated src=- shape=84983e70 vocab=48988f1e
+-/
 @[simp] theorem nestedComp_zero (e : ℕ → ℕ → ℕ) : nestedComp e 0 = e 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.108ecedaf501 from=translated src=- shape=a2f89a99 vocab=be8799fe
+-/
 @[simp] theorem nestedComp_succ (e : ℕ → ℕ → ℕ) (m : ℕ) :
     nestedComp e (m + 1) = nestedComp e m ∘ e (m + 1) := rfl
 
+/--
+@isnad1 id=strictmo.1h2v.s4.c68199dacca0 from=translated src=- shape=fcac847e vocab=3815c48e
+-/
 theorem nestedComp_strictMono {e : ℕ → ℕ → ℕ} (he : ∀ m, StrictMono (e m)) :
     ∀ m, StrictMono (nestedComp e m)
   | 0 => he 0
@@ -45,12 +54,17 @@ def tailComp (e : ℕ → ℕ → ℕ) (m : ℕ) : ℕ → ℕ → ℕ
   | 0 => id
   | j + 1 => tailComp e m j ∘ e (m + j + 1)
 
+/--
+@isnad1 id=strictmo.1h3v.s4.b432983363a2 from=translated src=- shape=771ba48b vocab=f40de37c
+-/
 theorem tailComp_strictMono {e : ℕ → ℕ → ℕ} (he : ∀ m, StrictMono (e m)) (m : ℕ) :
     ∀ j, StrictMono (tailComp e m j)
   | 0 => strictMono_id
   | j + 1 => (tailComp_strictMono he m j).comp (he (m + j + 1))
 
-/-- Stage decomposition: the absolute stage-(m+j) extraction factors through stage m. -/
+/-- Stage decomposition: the absolute stage-(m+j) extraction factors through stage m.
+@isnad1 id=eq.0h3v.s5.56360db3185f from=translated src=- shape=e81c0a46 vocab=0e90ebc2
+-/
 theorem nestedComp_add (e : ℕ → ℕ → ℕ) (m : ℕ) :
     ∀ j, nestedComp e (m + j) = nestedComp e m ∘ tailComp e m j
   | 0 => rfl
@@ -63,6 +77,9 @@ theorem nestedComp_add (e : ℕ → ℕ → ℕ) (m : ℕ) :
 /-- The diagonal extraction `δ k = (e 0 ∘ ⋯ ∘ e k) k`. -/
 def diagExtraction (e : ℕ → ℕ → ℕ) (k : ℕ) : ℕ := nestedComp e k k
 
+/--
+@isnad1 id=strictmo.1h1v.s4.169a571263a1 from=translated src=- shape=eaccd9d6 vocab=335a7f25
+-/
 theorem diagExtraction_strictMono {e : ℕ → ℕ → ℕ} (he : ∀ m, StrictMono (e m)) :
     StrictMono (diagExtraction e) := by
   apply strictMono_nat_of_lt_succ
@@ -75,7 +92,9 @@ theorem diagExtraction_strictMono {e : ℕ → ℕ → ℕ} (he : ∀ m, StrictM
     _ = diagExtraction e (k + 1) := h1.symm
 
 /-- The `m`-shifted diagonal is an extraction of stage `m`, via the strictly
-monotone reindexing `ψ j = tailComp e m j (m + j)`. -/
+monotone reindexing `ψ j = tailComp e m j (m + j)`.
+@isnad1 id=ex.1h2v.s5.4ea8dcca320c from=translated src=- shape=cf45388b vocab=140fb28e
+-/
 theorem diagExtraction_tail {e : ℕ → ℕ → ℕ} (he : ∀ m, StrictMono (e m)) (m : ℕ) :
     ∃ ψ : ℕ → ℕ, StrictMono ψ ∧
       ∀ j, diagExtraction e (m + j) = nestedComp e m (ψ j) := by
@@ -99,7 +118,9 @@ theorem diagExtraction_tail {e : ℕ → ℕ → ℕ} (he : ∀ m, StrictMono (e
 /-- **The abstract diagonal-subsequence lemma** (packaged form).  From any family of
 per-stage strictly monotone extractions there is ONE strictly monotone diagonal `δ`
 such that, for every stage `m`, the `m`-shifted tail of `δ` is an extraction of the
-stage-`m` composed subsequence. -/
+stage-`m` composed subsequence.
+@isnad1 id=ex.1h1v.s6.94ba885bed4c from=translated src=- shape=2287f8f7 vocab=0d42dbc6
+-/
 theorem exists_diagonal_extraction (e : ℕ → ℕ → ℕ) (he : ∀ m, StrictMono (e m)) :
     ∃ δ : ℕ → ℕ, StrictMono δ ∧
       ∀ m, ∃ ψ : ℕ → ℕ, StrictMono ψ ∧ ∀ j, δ (m + j) = nestedComp e m (ψ j) :=
@@ -107,7 +128,9 @@ theorem exists_diagonal_extraction (e : ℕ → ℕ → ℕ) (he : ∀ m, Strict
 
 /-- **Limit-transfer workhorse:** any filter limit that holds along the stage-`m`
 subsequence holds along the diagonal.  This is exactly the shape used at each fixed
-time `t ∈ [0, m]` for the weak pairings `k ↦ ⟪u_{δ(k)}(t), z⟫`. -/
+time `t ∈ [0, m]` for the weak pairings `k ↦ ⟪u_{δ(k)}(t), z⟫`.
+@isnad1 id=tendsto.2h5v.s5.7f7ef202cd82 from=translated src=- shape=5351a2c8 vocab=06657d3e
+-/
 theorem tendsto_diag_of_tendsto_stage {α : Type*} {e : ℕ → ℕ → ℕ}
     (he : ∀ m, StrictMono (e m)) {f : ℕ → α} {l : Filter α} (m : ℕ)
     (hf : Tendsto (fun j => f (nestedComp e m j)) atTop l) :

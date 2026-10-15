@@ -66,7 +66,9 @@ open scoped Topology
 
 /-! ### M0 — H¹ regularity of a Galerkin-subspace curve -/
 
-/-- H¹ regularity of any vector staying in the Schwartz Galerkin subspace. -/
+/-- H¹ regularity of any vector staying in the Schwartz Galerkin subspace.
+@isnad1 id=memh1vfr.1h3v.s16.e66c8a38b658 from=translated src=- shape=0a585b13 vocab=0647fd36
+-/
 theorem galerkinCurve_reg_mem (𝔊 : R3GalerkinScheme) (n : ℕ) (v : L2VF_R3)
     (hv : v = 𝔊.P n v) : memH1VF_R3 v := by
   -- `𝔊.range_schwartz n v` gives a real Schwartz `ψ` with the j-th real component of
@@ -161,7 +163,9 @@ structure GalerkinODEInput (𝔊 : R3GalerkinScheme) (F : R3NSForms 𝔊)
 /-- The viscous dissipation form scales linearly in `ν`:
 `viscousFormSq_R3 ν u = ν • viscousFormSq_R3 1 u`.  Immediate from the leading `ν *` in
 the definition.  Used to relate the `ν`-scaled `reg_bound` integrand (E3) to the
-`ν = 1` energy identity (E1). -/
+`ν = 1` energy identity (E1).
+@isnad1 id=eq.0h2v.s11.73c27908a45f from=translated src=- shape=0ca54893 vocab=12c63f95
+-/
 theorem viscousFormSq_R3_eq_smul (ν : ℝ) (u : L2VF_R3) :
     viscousFormSq_R3 ν u = ν • viscousFormSq_R3 1 u := by
   unfold viscousFormSq_R3
@@ -176,7 +180,9 @@ open scoped FourierTransform in
 Promoted from a `private` copy in `R3/GalerkinODESolve.lean` (issue #112 PR-B): both
 `GalerkinODESolve.lean` and `GalerkinODEExistence.lean` already import this file, so hosting
 the one public copy here lets `r3FieldForms` (`GalerkinODEExistence.lean`) cite it directly
-without an import cycle. Proof body unchanged from the original. -/
+without an import cycle. Proof body unchanged from the original.
+@isnad1 id=eq.0h2v.s12.f34bd4189f5e from=translated src=- shape=64363131 vocab=a43896aa
+-/
 theorem stokesTestPairing_R3_symm (u w : L2VF_R3) :
     stokesTestPairing_R3 u w = stokesTestPairing_R3 w u := by
   unfold stokesTestPairing_R3
@@ -197,7 +203,9 @@ theorem stokesTestPairing_R3_symm (u w : L2VF_R3) :
 /-! ### N1 — diagonal viscous pairing -/
 
 /-- On the diagonal the viscous pairing is the dissipation:
-`stokesTestPairing_R3 u u = viscousFormSq_R3 1 u`. -/
+`stokesTestPairing_R3 u u = viscousFormSq_R3 1 u`.
+@isnad1 id=eq.0h1v.s11.e901b218861d from=translated src=- shape=3253a254 vocab=a77be927
+-/
 theorem stokesTestPairing_R3_diag (u : L2VF_R3) :
     stokesTestPairing_R3 u u = viscousFormSq_R3 1 u := by
   unfold stokesTestPairing_R3 viscousFormSq_R3
@@ -213,7 +221,9 @@ theorem stokesTestPairing_R3_diag (u : L2VF_R3) :
 /-- Energy identity at forward times `t ≥ 0`: `½ d/dt ‖u(t)‖² = −ν · viscousFormSq_R3 1 (u t)`
 along the ODE.  Equivalently `HasDerivAt (fun s => ½‖u s‖²) (−ν·viscousFormSq_R3 1 (u t)) t`.
 
-Forward-only: it consumes `u_hasDeriv`/`u_ode`, both now restricted to `0 ≤ t`. -/
+Forward-only: it consumes `u_hasDeriv`/`u_ode`, both now restricted to `0 ≤ t`.
+@isnad1 id=hasderiv.1h7v.s16.a82e1c3ad3ad from=translated src=- shape=08b34612 vocab=943ed663
+-/
 theorem galerkin_energy_identity (𝔊 : R3GalerkinScheme) (F : R3NSForms 𝔊)
     (ν : ℝ) (u₀ : L2Sigma_R3) (n : ℕ) (I : GalerkinODEInput 𝔊 F ν u₀ n) (t : Time)
     (ht : 0 ≤ t) :
@@ -251,7 +261,9 @@ theorem galerkin_energy_identity (𝔊 : R3GalerkinScheme) (F : R3NSForms 𝔊)
 
 /-! ### E2 — the uniform energy bound (→ `energy_bound` field) -/
 
-/-- Uniform energy bound: `½‖u(t)‖² ≤ ½‖𝔊.P n u₀‖²` for `t ≥ 0`. -/
+/-- Uniform energy bound: `½‖u(t)‖² ≤ ½‖𝔊.P n u₀‖²` for `t ≥ 0`.
+@isnad1 id=le.2h7v.s17.5b07f6324343 from=translated src=- shape=fc922f47 vocab=03368a3a
+-/
 theorem galerkin_energy_bound (𝔊 : R3GalerkinScheme) (F : R3NSForms 𝔊)
     (ν : ℝ) (hν : 0 < ν) (u₀ : L2Sigma_R3) (n : ℕ) (I : GalerkinODEInput 𝔊 F ν u₀ n)
     (t : Time) (ht : 0 ≤ t) :
@@ -288,7 +300,9 @@ theorem galerkin_energy_bound (𝔊 : R3GalerkinScheme) (F : R3NSForms 𝔊)
 
 /-- Uniform (n-independent, `T`-independent) dissipation bound:
 `∫₀ᵀ viscousFormSq_R3 ν (u t) dt ≤ ½‖u₀‖²`.  Since `viscousFormSq_R3` already carries the
-`ν` factor (`= ν · ‖∇u‖²`), this RHS is `ν`-independent. -/
+`ν` factor (`= ν · ‖∇u‖²`), this RHS is `ν`-independent.
+@isnad1 id=le.2h7v.s16.82f009e33d7f from=translated src=- shape=1e09ccef vocab=7825ccd1
+-/
 theorem galerkin_reg_bound (𝔊 : R3GalerkinScheme) (F : R3NSForms 𝔊)
     (ν : ℝ) (_hν : 0 < ν) (u₀ : L2Sigma_R3) (n : ℕ) (I : GalerkinODEInput 𝔊 F ν u₀ n)
     (T : ℝ) (hT : 0 < T) :

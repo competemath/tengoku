@@ -190,14 +190,18 @@ The proof splits the cutoff integral into three pieces at `t₀ ± δ(ε)`:
 - On `[0, t₀-δ]` and `[t₀+δ, 1]`: the cutoff is inactive (by `h_far`),
   so the integrand matches the full function.
 - On `[t₀-δ, t₀+δ]`: the cutoff zeroes the integrand (by `h_near`).
-The sum of the two outer pieces equals `E(ε)` (by `h_ftc`), which tends to `L`. -/
+The sum of the two outer pieces equals `E(ε)` (by `h_ftc`), which tends to `L`.
+@isnad1 id=hascauch.0h5v.s5.70ce87adc6e3 from=translated src=- shape=12fea987 vocab=0d793c78
+-/
 theorem hasCauchyPV (D : SingleCrossingData γ z₀) :
     HasCauchyPV (fun z => (z - z₀)⁻¹) γ z₀ D.L := by
   refine D.h_limit.congr' ?_
   filter_upwards [Ioo_mem_nhdsGT D.hthresh] with ε hε
   exact (D.cutoff_integral_eq_E hε.1 hε.2).symm
 
-/-- The generalized winding number at `z₀` equals `L / (2πi)`. -/
+/-- The generalized winding number at `z₀` equals `L / (2πi)`.
+@isnad1 id=hasgener.0h5v.s6.1d7dcbdc6cb5 from=translated src=- shape=02cdb995 vocab=57766117
+-/
 theorem hasWindingNumber (D : SingleCrossingData γ z₀) :
     HasGeneralizedWindingNumber γ z₀ (D.L / (2 * ↑Real.pi * I)) := by
   rw [div_eq_inv_mul]

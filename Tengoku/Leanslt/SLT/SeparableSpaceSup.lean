@@ -9,6 +9,9 @@ universe u v
 
 open TopologicalSpace
 
+/--
+@isnad1 id=le.2h3v.s6.5c6e29b868d0 from=translated src=- shape=bcf2857b vocab=e6507836
+-/
 lemma closure_mem_le_sSup {E : Type v} [ConditionallyCompleteLattice E] [TopologicalSpace E] [OrderClosedTopology E]
   {s : Set E} (hs' : BddAbove s) {b : E} (hb : b ∈ closure s) :
   b ≤ sSup s := by
@@ -19,6 +22,9 @@ lemma closure_mem_le_sSup {E : Type v} [ConditionallyCompleteLattice E] [Topolog
       apply closure_minimal this isClosed_Iic
     exact this hb
 
+/--
+@isnad1 id=eq.2h2v.s6.e1291463315a from=translated src=- shape=788743d1 vocab=64c7f5e8
+-/
 lemma sSup_eq_closure_sSup {E : Type v} [ConditionallyCompleteLattice E] [TopologicalSpace E] [OrderClosedTopology E]
   {s : Set E} (hs : s.Nonempty) (hs' : BddAbove s) :
   sSup s = sSup (closure s) := by
@@ -32,6 +38,9 @@ lemma sSup_eq_closure_sSup {E : Type v} [ConditionallyCompleteLattice E] [Topolo
   · apply csSup_le (by aesop)
     exact fun b hb ↦ closure_mem_le_sSup hs' hb
 
+/--
+@isnad1 id=eq.1h3v.s6.7cfc7947ce9a from=translated src=- shape=bde5a292 vocab=f167afc4
+-/
 lemma closure_range_eq_closure_denseSeq {X : Type u} [TopologicalSpace X] [SeparableSpace X] [Nonempty X]
   {E : Type v} [ConditionallyCompleteLattice E] [TopologicalSpace E] [OrderClosedTopology E]
   {f : X → E} (hf : Continuous f) :
@@ -44,6 +53,9 @@ lemma closure_range_eq_closure_denseSeq {X : Type u} [TopologicalSpace X] [Separ
   · apply closure_mono
     exact Set.image_subset_range f (Set.range (denseSeq X))
 
+/--
+@isnad1 id=eq.2h3v.s6.a33e8d64b31f from=translated src=- shape=b100b7d2 vocab=297c905b
+-/
 theorem separableSpaceSup_eq {X : Type u} [TopologicalSpace X] [SeparableSpace X] [Nonempty X]
   {E : Type v} [ConditionallyCompleteLattice E] [TopologicalSpace E] [OrderClosedTopology E]
   {f : X → E} (hf : Continuous f) (hf' : BddAbove (Set.range f)) :
@@ -60,6 +72,9 @@ theorem separableSpaceSup_eq {X : Type u} [TopologicalSpace X] [SeparableSpace X
         exact BddAbove.mono this hf'
       exact (sSup_eq_closure_sSup (Set.range_nonempty (f ∘ denseSeq X)) hf'').symm
 
+/--
+@isnad1 id=eq.1h2v.s5.fc1c9435e611 from=translated src=- shape=36f0e889 vocab=66d24d4a
+-/
 theorem separableSpaceSup_eq_real {X : Type u} [TopologicalSpace X] [SeparableSpace X] [Nonempty X]
   {f : X → ℝ} (hf : Continuous f) :
   ⨆ x : X, f x = ⨆ i : Nat, f (denseSeq X i) := by

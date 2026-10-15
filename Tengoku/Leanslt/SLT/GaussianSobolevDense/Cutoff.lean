@@ -29,7 +29,9 @@ variable {n : ℕ}
 /-! ### Helper Lemmas for Cutoff Derivative -/
 
 /-- The derivative of smoothCutoff is bounded.
-    This follows from smoothCutoff being smooth with compact support. -/
+    This follows from smoothCutoff being smooth with compact support.
+@isnad1 id=ex.0h0v.s5.99fb48019a78 from=translated src=- shape=cc00ae9f vocab=6fb32078
+-/
 lemma smoothCutoff_deriv_bounded :
     ∃ C : ℝ, 0 < C ∧ ∀ x : ℝ, ‖deriv smoothCutoff x‖ ≤ C := by
   -- smoothCutoff is smooth with compact support, so its derivative is bounded
@@ -77,7 +79,9 @@ lemma smoothCutoff_deriv_bounded :
       _ ≤ max C 1 := le_max_left C 1
 
 /-- The norm function scaled by 1/R has fderiv with operator norm at most 1/R.
-    Proof: ‖·‖/R is (1/R)-Lipschitz, so its fderiv has operator norm ≤ 1/R. -/
+    Proof: ‖·‖/R is (1/R)-Lipschitz, so its fderiv has operator norm ≤ 1/R.
+@isnad1 id=le.1h3v.s9.6076c3d43eb3 from=translated src=- shape=3c90cca0 vocab=c6ed75b5
+-/
 lemma fderiv_norm_div_bound {R : ℝ} (hR : 0 < R) (x : E n) :
     ‖fderiv ℝ (fun y : E n => ‖y‖ / R) x‖ ≤ 1 / R := by
   -- The function ‖·‖/R is (1/R)-Lipschitz since ‖·‖ is 1-Lipschitz
@@ -95,7 +99,9 @@ lemma fderiv_norm_div_bound {R : ℝ} (hR : 0 < R) (x : E n) :
 
 /-- The gradient of smoothCutoffR has norm bounded by C/R.
     Proof sketch: χ_R(x) = χ(‖x‖/R), so by chain rule
-    ∇χ_R(x) = χ'(‖x‖/R) · ∇(‖·‖/R)(x), and ‖∇(‖·‖/R)‖ ≤ 1/R. -/
+    ∇χ_R(x) = χ'(‖x‖/R) · ∇(‖·‖/R)(x), and ‖∇(‖·‖/R)‖ ≤ 1/R.
+@isnad1 id=ex.1h2v.s9.a46829c2cb0c from=translated src=- shape=78e399ad vocab=612a0f0e
+-/
 lemma smoothCutoffR_fderiv_bound {R : ℝ} (hR : 0 < R) :
     ∃ C : ℝ, 0 < C ∧ ∀ x : E n, ‖fderiv ℝ (smoothCutoffR R) x‖ ≤ C / R := by
   -- Get the bound C from smoothCutoff_deriv_bounded
@@ -170,7 +176,9 @@ lemma smoothCutoffR_fderiv_bound {R : ℝ} (hR : 0 < R) :
 
 /-- The cutoff of f converges to f in L²(γ) as R → ∞.
     This follows from dominated convergence: |f - f·χ_R|² ≤ |f|² and
-    (1-χ_R)(x) → 0 for all x as R → ∞. -/
+    (1-χ_R)(x) → 0 for all x as R → ∞.
+@isnad1 id=tendsto.1h2v.s8.e5e39652cb88 from=translated src=- shape=67db0f08 vocab=68dd6f06
+-/
 lemma cutoff_L2_convergence (f : E n → ℝ) (hf : MemLp f 2 (stdGaussianE n)) :
     Filter.Tendsto (fun R => eLpNorm (f - f * smoothCutoffR R) 2 (stdGaussianE n))
       Filter.atTop (nhds 0) := by
@@ -327,7 +335,9 @@ lemma cutoff_L2_convergence (f : E n → ℝ) (hf : MemLp f 2 (stdGaussianE n)) 
     exact h_cont.tendsto 0 |>.comp hlintegral_tendsto
   exact h_rpow_tendsto
 
-/-- The product rule for the gradient of f·χ_R at a point. -/
+/-- The product rule for the gradient of f·χ_R at a point.
+@isnad1 id=eq.2h4v.s11.307fd1042b87 from=translated src=- shape=9d3db3a9 vocab=e8848a28
+-/
 lemma cutoff_product_rule (f : E n → ℝ) (hf : Differentiable ℝ f) (R : ℝ) (hR : 0 < R) (x : E n) :
     fderiv ℝ (f * smoothCutoffR R) x =
       f x • fderiv ℝ (smoothCutoffR R) x + smoothCutoffR R x • fderiv ℝ f x := by
@@ -336,7 +346,9 @@ lemma cutoff_product_rule (f : E n → ℝ) (hf : Differentiable ℝ f) (R : ℝ
     (smoothCutoffR_contDiff hR).differentiable (WithTop.coe_ne_zero.mpr WithTop.top_ne_zero) x
   exact fderiv_mul hf_at hχ_at
 
-/-- The gradient error term from (1-χ_R)·∇f converges to 0 as R → ∞. -/
+/-- The gradient error term from (1-χ_R)·∇f converges to 0 as R → ∞.
+@isnad1 id=tendsto.1h2v.s12.78e3bb9f5ebb from=translated src=- shape=acc5bec5 vocab=cb402df4
+-/
 lemma cutoff_gradient_error_bound (f : E n → ℝ)
     (hf_grad : MemLp (fun x => fderiv ℝ f x) 2 (stdGaussianE n)) :
     Filter.Tendsto (fun R =>
@@ -478,7 +490,9 @@ lemma cutoff_gradient_error_bound (f : E n → ℝ)
     exact h_cont.tendsto 0 |>.comp hlintegral_tendsto
   exact h_rpow_tendsto
 
-/-- The extra gradient term f·∇χ_R converges to 0 as R → ∞. -/
+/-- The extra gradient term f·∇χ_R converges to 0 as R → ∞.
+@isnad1 id=tendsto.1h2v.s11.45e5e0d33d24 from=translated src=- shape=5bc29d7b vocab=a6ca7fcb
+-/
 lemma cutoff_gradient_extra_term (f : E n → ℝ) (hf : MemLp f 2 (stdGaussianE n)) :
     Filter.Tendsto (fun R =>
         eLpNorm (fun x => f x • fderiv ℝ (smoothCutoffR R) x) 2 (stdGaussianE n))
@@ -637,7 +651,9 @@ lemma cutoff_gradient_extra_term (f : E n → ℝ) (hf : MemLp f 2 (stdGaussianE
 /-- For x on the sphere ‖x‖ = R and w ⊥ x, a convex combination moving inward stays inside.
 
     Key calculation: ‖(1-t)x + tw‖² = (1-t)²R² + t²‖w‖² < R² when t is small enough.
-    The condition t ≤ R²/(R² + ‖w‖² + 1) ensures t(R² + ‖w‖²) < R² which gives the bound. -/
+    The condition t ≤ R²/(R² + ‖w‖² + 1) ensures t(R² + ‖w‖²) < R² which gives the bound.
+@isnad1 id=lt.6h5v.s8.28ecd53c1866 from=translated src=- shape=9a1b311a vocab=69096b8d
+-/
 lemma ball_containment_perp {R t : ℝ} {x w : E n}
     (hR : 0 < R) (hnorm_eq : ‖x‖ = R) (hw : @inner ℝ (E n) _ x w = 0)
     (ht_pos : 0 < t) (ht_le : t ≤ 1/2)
@@ -665,7 +681,9 @@ lemma ball_containment_perp {R t : ℝ} {x w : E n}
 
 /-- A continuous linear map E n →L[ℝ] ℝ is zero if it vanishes on x and all w ⊥ x.
 
-    Proof: decompose any v = ax + w where w ⊥ x, then L(v) = aL(x) + L(w) = 0. -/
+    Proof: decompose any v = ax + w where w ⊥ x, then L(v) = aL(x) + L(w) = 0.
+@isnad1 id=eq.3h3v.s10.1dcc8e0fba18 from=translated src=- shape=8cceeefd vocab=5c7fe714
+-/
 lemma clm_zero_of_vanishes_inward {x : E n} (hx_ne : x ≠ 0)
     (L : E n →L[ℝ] ℝ) (hL_x : L x = 0)
     (hL_perp : ∀ w, @inner ℝ (E n) _ x w = 0 → L w = 0) :
@@ -691,7 +709,9 @@ lemma clm_zero_of_vanishes_inward {x : E n} (hx_ne : x ≠ 0)
     The key insight is that the function is identically 0 on the closed ball {y : ‖y‖ ≤ R},
     and x is on the boundary. For any direction pointing "inward" (toward the ball's interior),
     the function values are all 0, so the directional derivative is 0. Since these directions
-    span the space, the full fderiv must be 0. -/
+    span the space, the full fderiv must be 0.
+@isnad1 id=eq.5h5v.s10.9120f9a81675 from=translated src=- shape=3c90ddc8 vocab=39c2ffb8
+-/
 lemma fderiv_zero_at_ball_boundary {R : ℝ} {f g : E n → ℝ} {x : E n}
     (hR : 0 < R) (hnorm_eq : ‖x‖ = R) (hx_ne : x ≠ 0)
     (h_zero_ball : ∀ y, ‖y‖ ≤ R → (f * g) y = 0)
@@ -808,7 +828,9 @@ lemma fderiv_zero_at_ball_boundary {R : ℝ} {f g : E n → ℝ} {x : E n}
 /-! ### Main Cutoff Theorem -/
 
 set_option maxHeartbeats 2000000 in
-/-- Helper for triangle inequality with norm composition. -/
+/-- Helper for triangle inequality with norm composition.
+@isnad1 id=le.2h5v.s7.4cb26ea04e98 from=translated src=- shape=b0fa8653 vocab=22d1c427
+-/
 lemma eLpNorm_norm_add_le {α : Type*} [MeasurableSpace α] {μ : Measure α}
     {E : Type*} [NormedAddCommGroup E] {f g : α → E}
     (hf : AEStronglyMeasurable f μ) (hg : AEStronglyMeasurable g μ) :
@@ -823,7 +845,9 @@ lemma eLpNorm_norm_add_le {α : Type*} [MeasurableSpace α] {μ : Measure α}
   exact hadd
 
 set_option maxHeartbeats 8000000 in
-/-- The cutoff f^(R) = f·χ_R converges to f in the W^{1,2}(γ) Sobolev norm as R → ∞. -/
+/-- The cutoff f^(R) = f·χ_R converges to f in the W^{1,2}(γ) Sobolev norm as R → ∞.
+@isnad1 id=tendsto.1h2v.s6.849b290fb876 from=translated src=- shape=b5f841b2 vocab=194cdcae
+-/
 theorem tendsto_cutoff_W12 (f : E n → ℝ) (hf : MemW12Gaussian n f (stdGaussianE n)) :
     Filter.Tendsto (fun R =>
         GaussianSobolevNormSq n (f * smoothCutoffR R - f) (stdGaussianE n))

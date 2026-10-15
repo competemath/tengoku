@@ -122,7 +122,9 @@ private theorem stepCurve_stronglyMeasurable (T : ℝ) {m : ℕ} (hm : 0 < m) (y
 
 /-- **A2.** A step curve is in `L²(0,T; X)`: it takes finitely many values on the finite
 measure space `volume.restrict (Icc 0 T)`, hence is (strongly measurable and) `MemLp` at
-exponent `2`. -/
+exponent `2`.
+@isnad1 id=memlp.2h4v.s6.c0ce137a5bf5 from=translated src=- shape=84118fa7 vocab=e339ffe3
+-/
 theorem stepCurve_memLp (T : ℝ) (_hT : 0 < T) (m : ℕ) (hm : 0 < m) (y : Fin m → X) :
     MemLp (stepCurve T m y) 2 (volume.restrict (Set.Icc (0 : ℝ) T)) := by
   haveI : IsFiniteMeasure (volume.restrict (Set.Icc (0 : ℝ) T)) :=
@@ -133,7 +135,9 @@ theorem stepCurve_memLp (T : ℝ) (_hT : 0 < T) (m : ℕ) (hm : 0 < m) (y : Fin 
   exact Finset.single_le_sum (fun i _ => norm_nonneg (y i)) (Finset.mem_univ _)
 
 /-- **A3 (membership half).** The difference of an `L²(0,T; X)` curve and a step curve is
-again in `L²(0,T; X)` (both terms are `MemLp`, and `MemLp` is closed under subtraction). -/
+again in `L²(0,T; X)` (both terms are `MemLp`, and `MemLp` is closed under subtraction).
+@isnad1 id=memlp.3h5v.s7.2649b08a294a from=translated src=- shape=b7bc99a8 vocab=3af5181e
+-/
 theorem stepCurve_sub_memLp (T : ℝ) (hT : 0 < T) (m : ℕ) (hm : 0 < m) (y : Fin m → X)
     {f : ℝ → X} (hf : MemLp f 2 (volume.restrict (Set.Icc (0 : ℝ) T))) :
     MemLp (fun t => f t - stepCurve T m y t) 2 (volume.restrict (Set.Icc (0 : ℝ) T)) :=
@@ -142,7 +146,9 @@ theorem stepCurve_sub_memLp (T : ℝ) (hT : 0 < T) (m : ℕ) (hm : 0 < m) (y : F
 /-- **A3 (eLpNorm half).** The `Lp`-distance between the `toLp` classes of an `L²` curve and
 a step curve is the `toReal` of the `eLpNorm` of the pointwise difference.  This is the
 bridge from metric estimates in `Lp X 2 μ_T` (A4/A5/A6) back to the concrete
-`eLpNorm`-of-difference form used by the axiom's conclusion. -/
+`eLpNorm`-of-difference form used by the axiom's conclusion.
+@isnad1 id=eq.3h5v.s9.eb5fd90a7525 from=translated src=- shape=b27c3639 vocab=5a6486d4
+-/
 theorem dist_toLp_stepCurve (T : ℝ) (hT : 0 < T) (m : ℕ) (hm : 0 < m) (y : Fin m → X)
     {f : ℝ → X} (hf : MemLp f 2 (volume.restrict (Set.Icc (0 : ℝ) T))) :
     dist (hf.toLp f) ((stepCurve_memLp T hT m hm y).toLp (stepCurve T m y))
@@ -159,7 +165,9 @@ with values in `K` is COMPACT in `Lp X 2 μ_T`.
 Route (plan §3 A4): the assembly map `y ↦ (stepCurve_memLp …).toLp` is Lipschitz from
 `Fin m → X` with the sup metric (`‖stepCurve y − stepCurve y'‖_{L²} ≤ √T · max_i ‖y i − y' i‖`),
 and `{y | ∀ i, y i ∈ K}` is compact (`IsCompact.pi` on `Set.pi Set.univ (fun _ => K)`), so the
-image is compact by `IsCompact.image`. -/
+image is compact by `IsCompact.image`.
+@isnad1 id=iscompac.3h4v.s11.789d6b377028 from=translated src=- shape=e1ba03b4 vocab=720887db
+-/
 theorem isCompact_stepCurve_toLp (T : ℝ) (hT : 0 < T) (m : ℕ) (hm : 0 < m)
     {K : Set X} (hK : IsCompact K) :
     IsCompact ((fun y : Fin m → X =>
@@ -221,7 +229,9 @@ EVERY `ε > 0`, uniformly ε-approximable by a totally bounded set is itself tot
 
 FRESH mathlib-only copy of the public `totallyBounded_of_uniform_approx`
 (`LerayHopf/R3/FrechetKolmogorov.lean:1806`), duplicated by design so this file stays free
-of R3 imports (plan §2 fresh-build note; A5 decision recorded in the file header). -/
+of R3 imports (plan §2 fresh-build note; A5 decision recorded in the file header).
+@isnad1 id=totallyb.1h2v.s6.2c9ae078bb1a from=translated src=- shape=f241c7d3 vocab=7c93b5c7
+-/
 theorem totallyBounded_of_uniform_approx' {α : Type*} [PseudoMetricSpace α] (S : Set α)
     (happrox : ∀ ε > 0, ∃ A : Set α, TotallyBounded A ∧
       ∀ s ∈ S, ∃ a ∈ A, dist s a < ε) :
@@ -254,7 +264,9 @@ strictly monotone `ρ` and a limit `G : Lp X 2 μ_T` with
 Route (plan §3 A6): `TotallyBounded.closure` + completeness make the closure of the range
 compact; `IsCompact.tendsto_subseq` extracts `ρ` and `G`; `Lp.norm_def` plus the
 `coeFn`-congruences `(hf n).coeFn_toLp` / `Lp.coeFn_sub` and an `ENNReal.toReal` conversion
-turn norm convergence into the stated `eLpNorm` convergence (all eLpNorms are finite). -/
+turn norm convergence into the stated `eLpNorm` convergence (all eLpNorms are finite).
+@isnad1 id=ex.2h3v.s11.064904adfb72 from=translated src=- shape=af9e6cdc vocab=ff988dde
+-/
 theorem exists_subseq_tendsto_eLpNorm_of_totallyBounded [CompleteSpace X]
     (T : ℝ) (f : ℕ → ℝ → X)
     (hf : ∀ n, MemLp (f n) 2 (volume.restrict (Set.Icc (0 : ℝ) T)))

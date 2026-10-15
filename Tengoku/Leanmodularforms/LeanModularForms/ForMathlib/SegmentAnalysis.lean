@@ -71,7 +71,9 @@ private lemma transfer_integrand_ae {H : ℝ} (z : ℂ) {a b : ℝ} (hab : a ≤
       hγ s (Ioo_subset_Icc_self hs)
   rw [← hγ t (Ioo_subset_Icc_self ht01), ← hev.deriv_eq]
 
-/-- Transfer integrability from `fdBoundaryFun`-based to `γ`-based integrand. -/
+/-- Transfer integrability from `fdBoundaryFun`-based to `γ`-based integrand.
+@isnad1 id=interval.5h5v.s8.6a2354b34ec8 from=translated src=- shape=e15c763c vocab=8395841e
+-/
 theorem transfer_integrability {H : ℝ} (z : ℂ) {a b : ℝ}
     (hab : a ≤ b) (ha : 0 ≤ a) (hb : b ≤ 1)
     {γ : PiecewiseC1Path (fdStart H) (fdStart H)}
@@ -84,7 +86,9 @@ theorem transfer_integrability {H : ℝ} (z : ℂ) {a b : ℝ}
   rw [EventuallyEq, ae_restrict_iff' measurableSet_uIoc]
   exact transfer_integrand_ae z hab ha hb hγ
 
-/-- Transfer integral equality from `fdBoundaryFun`-based to `γ`-based integrand. -/
+/-- Transfer integral equality from `fdBoundaryFun`-based to `γ`-based integrand.
+@isnad1 id=eq.4h5v.s8.1e93f386f970 from=translated src=- shape=b85d4501 vocab=b4d04178
+-/
 theorem transfer_integral {H : ℝ} (z : ℂ) {a b : ℝ}
     (hab : a ≤ b) (ha : 0 ≤ a) (hb : b ≤ 1)
     {γ : PiecewiseC1Path (fdStart H) (fdStart H)}
@@ -222,7 +226,9 @@ private lemma integrand_form_eq (f : ℝ → ℂ) (z : ℂ) (t : ℝ) :
   rw [show (fun s => f s - z) = (fun s => f s + (-z)) from by ext; ring,
     deriv_add_const, div_eq_mul_inv, mul_comm]
 
-/-- Integrability + FTC on seg1 `[0, a]` for `a ≤ 1/5`, shifted by `I`. -/
+/-- Integrability + FTC on seg1 `[0, a]` for `a ≤ 1/5`, shifted by `I`.
+@isnad1 id=and.2h2v.s8.071ddf95070a from=translated src=- shape=966557c2 vocab=dba7b5c1
+-/
 theorem seg1_ftc_I (H : ℝ) {a : ℝ} (ha : 0 ≤ a) (ha' : a ≤ 1/5) :
     IntervalIntegrable (fun t => deriv (fun s => fdBoundaryFun H s - I) t /
       (fdBoundaryFun H t - I)) volume 0 a ∧
@@ -239,7 +245,9 @@ theorem seg1_ftc_I (H : ℝ) {a : ℝ} (ha : 0 ≤ a) (ha' : a ≤ 1/5) :
     (fdBoundary_sub_I_eq_ref_seg1 H 0 (by norm_num))
     (fdBoundary_sub_I_eq_ref_seg1 H a ha')
 
-/-- Integrability in the standard form on seg1. -/
+/-- Integrability in the standard form on seg1.
+@isnad1 id=interval.2h2v.s7.5d9b9f7b627b from=translated src=- shape=db39c143 vocab=a0cc0642
+-/
 theorem fdBoundary_seg1_intervalIntegrable_I (H : ℝ) {a : ℝ}
     (ha : 0 ≤ a) (ha' : a ≤ 1/5) :
     IntervalIntegrable
@@ -263,7 +271,9 @@ private lemma arcSeg_intervalIntegrable_aux (H : ℝ) {α β : ℝ} (hαβ : α 
   rw [fdBoundaryFun_arc_eq_exp H t ht1 ht2.le, ← fdBoundary_arc_deriv_eq,
     ← (fdBoundary_eventuallyEq_arc H ht1 ht2).deriv_eq]
 
-/-- Integrability on seg2 `[1/5, a]` for `a < 2/5`, shifted by `I`. -/
+/-- Integrability on seg2 `[1/5, a]` for `a < 2/5`, shifted by `I`.
+@isnad1 id=interval.2h2v.s7.e59be1dd9089 from=translated src=- shape=ff4dc555 vocab=a710f1c4
+-/
 theorem seg2_intervalIntegrable_I (H : ℝ) {a : ℝ} (ha : 1/5 ≤ a) (ha' : a < 2/5) :
     IntervalIntegrable
       (fun t => (fdBoundaryFun H t - I)⁻¹ * deriv (fdBoundaryFun H) t) volume (1/5) a :=
@@ -275,7 +285,9 @@ theorem seg2_intervalIntegrable_I (H : ℝ) {a : ℝ} (ha : 1/5 ≤ a) (ha' : a 
       (fun t ht => arc_sub_I_ne_zero_seg2 ht.1 (by linarith [ht.2]))).mul
       (continuous_const.mul arc_exp_continuous).continuousOn)
 
-/-- Integrability on seg3 `[a, 3/5]` for `2/5 < a`, shifted by `I`. -/
+/-- Integrability on seg3 `[a, 3/5]` for `2/5 < a`, shifted by `I`.
+@isnad1 id=interval.2h2v.s7.116270eebf19 from=translated src=- shape=381985e3 vocab=a710f1c4
+-/
 theorem seg3_intervalIntegrable_I (H : ℝ) {a : ℝ} (ha : 2/5 < a) (ha' : a ≤ 3/5) :
     IntervalIntegrable
       (fun t => (fdBoundaryFun H t - I)⁻¹ * deriv (fdBoundaryFun H) t) volume a (3/5) :=
@@ -307,7 +319,9 @@ private lemma refSeg_intervalIntegrable_aux (H : ℝ) (g : ℝ → ℂ) {α β :
   simp [deriv_sub_const]
 
 /-- Integrability on seg4 `[3/5, 4/5]`, shifted by `I`.
-Uses the globally nonvanishing reference `ref_seg4_I` (Re = -1/2 ≠ 0). -/
+Uses the globally nonvanishing reference `ref_seg4_I` (Re = -1/2 ≠ 0).
+@isnad1 id=interval.0h1v.s7.058a5528901d from=translated src=- shape=50aa83b0 vocab=4917272c
+-/
 theorem seg4_full_intervalIntegrable_I (H : ℝ) :
     IntervalIntegrable
       (fun t => (fdBoundaryFun H t - I)⁻¹ * deriv (fdBoundaryFun H) t) volume (3/5) (4/5) :=
@@ -315,7 +329,9 @@ theorem seg4_full_intervalIntegrable_I (H : ℝ) :
     (ref_seg4_I_ne_zero H) fun _ ht => fdBoundary_sub_I_eventuallyEq_ref_seg4 H ht.1 ht.2
 
 /-- Integrability on seg5 `[4/5, 1]`, shifted by `I`.
-Uses the globally nonvanishing reference `ref_seg5_I` (Im = H-1 > 0). -/
+Uses the globally nonvanishing reference `ref_seg5_I` (Im = H-1 > 0).
+@isnad1 id=interval.1h1v.s7.fb0fe36a62c9 from=translated src=- shape=f0eab4ac vocab=80d9b679
+-/
 theorem seg5_full_intervalIntegrable_I (H : ℝ) (hH : 1 < H) :
     IntervalIntegrable
       (fun t => (fdBoundaryFun H t - I)⁻¹ * deriv (fdBoundaryFun H) t) volume (4/5) 1 :=
@@ -323,7 +339,9 @@ theorem seg5_full_intervalIntegrable_I (H : ℝ) (hH : 1 < H) :
     (ref_seg5_I_ne_zero H hH) fun _ ht => fdBoundary_sub_I_eventuallyEq_ref_seg5 H ht.1
 
 /-- Integrability on `[0, 2/5 - δ]` for the crossing at `I`.
-Combines seg1 `[0, 1/5]` and seg2 `[1/5, 2/5 - δ]`. -/
+Combines seg1 `[0, 1/5]` and seg2 `[1/5, 2/5 - δ]`.
+@isnad1 id=interval.2h2v.s7.7d9706902504 from=translated src=- shape=cc8a7b8b vocab=80d9b679
+-/
 theorem fdBoundary_integrable_left_of_I (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδ' : δ < 1/5) :
     IntervalIntegrable
       (fun t => (fdBoundaryFun H t - I)⁻¹ * deriv (fdBoundaryFun H) t)
@@ -332,7 +350,9 @@ theorem fdBoundary_integrable_left_of_I (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδ
     (seg2_intervalIntegrable_I H (by linarith) (by linarith))
 
 /-- Integrability on `[2/5 + δ, 1]` for the crossing at `I`.
-Combines seg3 `[2/5 + δ, 3/5]`, seg4 `[3/5, 4/5]`, and seg5 `[4/5, 1]`. -/
+Combines seg3 `[2/5 + δ, 3/5]`, seg4 `[3/5, 4/5]`, and seg5 `[4/5, 1]`.
+@isnad1 id=interval.3h2v.s7.81666dc79775 from=translated src=- shape=e645ee45 vocab=324a844f
+-/
 theorem fdBoundary_integrable_right_of_I (H : ℝ) (hH : 1 < H)
     {δ : ℝ} (hδ : 0 < δ) (hδ' : δ < 1/5) :
     IntervalIntegrable
@@ -342,7 +362,9 @@ theorem fdBoundary_integrable_right_of_I (H : ℝ) (hH : 1 < H)
     (seg4_full_intervalIntegrable_I H)).trans
     (seg5_full_intervalIntegrable_I H hH)
 
-/-- Integrability of the `γ`-based integrand on `[0, 2/5 - δ]`. -/
+/-- Integrability of the `γ`-based integrand on `[0, 2/5 - δ]`.
+@isnad1 id=interval.4h3v.s8.4edba5b19b69 from=translated src=- shape=6b21c7c8 vocab=57412194
+-/
 theorem gamma_integrable_left_of_I {H : ℝ} (_hH : 1 < H)
     {γ : PiecewiseC1Path (fdStart H) (fdStart H)}
     (hγ : ∀ t ∈ Icc (0 : ℝ) 1, γ.toPath.extend t = fdBoundaryFun H t)
@@ -353,7 +375,9 @@ theorem gamma_integrable_left_of_I {H : ℝ} (_hH : 1 < H)
   transfer_integrability I (by linarith) (le_refl 0) (by linarith) hγ
     (fdBoundary_integrable_left_of_I H hδ hδ')
 
-/-- Integrability of the `γ`-based integrand on `[2/5 + δ, 1]`. -/
+/-- Integrability of the `γ`-based integrand on `[2/5 + δ, 1]`.
+@isnad1 id=interval.4h3v.s8.3828c6dfb72d from=translated src=- shape=7a24ef31 vocab=067d0848
+-/
 theorem gamma_integrable_right_of_I {H : ℝ} (hH : 1 < H)
     {γ : PiecewiseC1Path (fdStart H) (fdStart H)}
     (hγ : ∀ t ∈ Icc (0 : ℝ) 1, γ.toPath.extend t = fdBoundaryFun H t)

@@ -49,7 +49,9 @@ private lemma circleIntegral_eq_zero_of_analyticOnNhd_ball {f : ℂ → ℂ} {z�
     (hf.continuousOn.mono (closedBall_subset_ball hrR))
     (fun z ⟨hz, _⟩ => (hf z (ball_subset_ball hrR.le hz)).differentiableAt)
 
-/-- A function that is analytic at `z₀` has residue zero. -/
+/-- A function that is analytic at `z₀` has residue zero.
+@isnad1 id=eq.1h2v.s5.f275db79459b from=translated src=- shape=64e000da vocab=9641dc87
+-/
 theorem residue_eq_zero_of_analyticAt {f : ℂ → ℂ} {z₀ : ℂ}
     (hf : AnalyticAt ℂ f z₀) : residue f z₀ = 0 := by
   obtain ⟨R, hR_pos, hR_an⟩ := hf.exists_ball_analyticOnNhd
@@ -60,7 +62,9 @@ theorem residue_eq_zero_of_analyticAt {f : ℂ → ℂ} {z₀ : ℂ}
 
 /-- If `f` and `g` agree in a punctured neighborhood of `z₀`, they have the same
 residue. The proof shows that the circle integrals agree for all sufficiently small
-radii, so the `limUnder`s coincide. -/
+radii, so the `limUnder`s coincide.
+@isnad1 id=eq.1h3v.s5.4a9a06bd1dd7 from=translated src=- shape=8faa453f vocab=191f0b20
+-/
 theorem residue_congr {f g : ℂ → ℂ} {z₀ : ℂ}
     (h : ∀ᶠ z in 𝓝[≠] z₀, f z = g z) : residue f z₀ = residue g z₀ := by
   apply limUnder_eq_of_eventuallyEq

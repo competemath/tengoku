@@ -41,7 +41,9 @@ variable {x y : ℂ}
 /-- **Contour integral as a sum of segment logs.** For γ : PiecewiseC1Path with γ avoiding
 w (positive distance), choose any monotone partition `s : ℕ → ℝ` of `[0, 1]` such that
 each segment ratio lies in `slitPlane`. Then the contour integral telescopes through
-`Complex.log`. -/
+`Complex.log`.
+@isnad1 id=eq.7h6v.s9.05cfc50490fc from=translated src=- shape=c7ad0983 vocab=fa760d7a
+-/
 theorem contourIntegral_inv_eq_sum_log_segRatio
     (γ : PiecewiseC1Path x y) {w : ℂ}
     {N : ℕ} {s : ℕ → ℝ}
@@ -88,7 +90,9 @@ theorem contourIntegral_inv_eq_sum_log_segRatio
 
 /-- **Real-imaginary decomposition of contour integral.** Under the same fine-partition
 hypotheses, the contour integral splits as `↑(log‖γ 1 - w‖ - log‖γ 0 - w‖) + I · ↑(sum
-of imaginary parts of segment logs)`. -/
+of imaginary parts of segment logs)`.
+@isnad1 id=eq.7h6v.s10.64d85bd8e2e4 from=translated src=- shape=8de76609 vocab=ed67f100
+-/
 theorem contourIntegral_inv_decomp
     (γ : PiecewiseC1Path x y) {w : ℂ}
     {N : ℕ} {s : ℕ → ℝ}
@@ -133,7 +137,9 @@ theorem contourIntegral_inv_decomp
 
 /-- **W-2 (Winding via arg difference).** For a closed piecewise C¹ path `γ` avoiding `w`
 with positive distance, there exists a continuous arg lift `θ` of `γ - w` such that
-the generalized winding number of `γ` around `w` equals `(θ(1) - θ(0)) / (2π)`. -/
+the generalized winding number of `γ` around `w` equals `(θ(1) - θ(0)) / (2π)`.
+@isnad1 id=ex.2h3v.s9.a8a4df37bd2e from=translated src=- shape=ec58096c vocab=0d129171
+-/
 theorem hasGeneralizedWindingNumber_eq_arg_diff_W1_closed
     (γ : PiecewiseC1Path x x) {w : ℂ}
     (hδ : ∃ δ > 0, ∀ t ∈ Icc (0 : ℝ) 1, δ ≤ ‖γ.toPath.extend t - w‖)
@@ -196,7 +202,9 @@ theorem hasGeneralizedWindingNumber_eq_arg_diff_W1_closed
   exact h_w
 
 /-- **W-3 (Winding integer-valued).** For a closed piecewise C¹ path `γ` avoiding `w`
-with positive distance, the generalized winding number is an integer. -/
+with positive distance, the generalized winding number is an integer.
+@isnad1 id=ex.2h3v.s8.fb1cd201c36f from=translated src=- shape=1242fb6a vocab=aa255020
+-/
 theorem hasGeneralizedWindingNumber_integer_of_closed
     (γ : PiecewiseC1Path x x) {w : ℂ}
     (hδ : ∃ δ > 0, ∀ t ∈ Icc (0 : ℝ) 1, δ ≤ ‖γ.toPath.extend t - w‖)
@@ -241,7 +249,9 @@ theorem hasGeneralizedWindingNumber_integer_of_closed
   exact ⟨n, h_winding_eq ▸ h_winding⟩
 
 /-- For a Lipschitz `γ` avoiding `w` with positive distance, the integrand
-`γ'(t)/(γ(t) − w)` is interval-integrable on `[0, 1]`. -/
+`γ'(t)/(γ(t) − w)` is interval-integrable on `[0, 1]`.
+@isnad1 id=interval.3h6v.s8.1645b983265e from=translated src=- shape=4b37f76f vocab=031efeb0
+-/
 theorem intervalIntegrable_div_lipschitz
     (γ : PiecewiseC1Path x y) {w : ℂ}
     {δ : ℝ} (hδ_pos : 0 < δ)
@@ -267,7 +277,9 @@ theorem intervalIntegrable_div_lipschitz
   exact h_deriv_int.mul_continuousOn h_cont
 
 /-- **W-4 (Winding locally constant).** For a closed Lipschitz piecewise C¹ path `γ`
-avoiding `w`, the generalized winding number is constant on a neighborhood of `w`. -/
+avoiding `w`, the generalized winding number is constant on a neighborhood of `w`.
+@isnad1 id=ex.2h4v.s7.b71c7612617c from=translated src=- shape=119e6f37 vocab=7a95e39f
+-/
 theorem generalizedWindingNumber_locally_const_of_closed
     (γ : PiecewiseC1Path x x) {w : ℂ}
     (h_avoid : ∀ t ∈ Icc (0 : ℝ) 1, γ.toPath.extend t ≠ w)

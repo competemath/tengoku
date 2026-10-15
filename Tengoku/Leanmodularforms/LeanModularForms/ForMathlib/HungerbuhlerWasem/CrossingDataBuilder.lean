@@ -90,7 +90,9 @@ namespace HungerbuhlerWasem
 
 variable {x : ℂ}
 
-/-- At any `t₀ ∈ Ioo 0 1`, the right derivative limit `L_+` exists and is nonzero. -/
+/-- At any `t₀ ∈ Ioo 0 1`, the right derivative limit `L_+` exists and is nonzero.
+@isnad1 id=ex.1h3v.s7.fffd44eb150c from=translated src=- shape=aab6251c vocab=77abb081
+-/
 theorem exists_right_deriv_limit
     (γ : ClosedPwC1Immersion x) {t₀ : ℝ} (ht₀ : t₀ ∈ Ioo (0 : ℝ) 1) :
     ∃ L : ℂ, L ≠ 0 ∧
@@ -103,7 +105,9 @@ theorem exists_right_deriv_limit
       (γ.toPwC1Immersion.toPiecewiseC1Path.deriv_continuous_off_extend t₀ ht₀
         h_part).tendsto.mono_left nhdsWithin_le_nhds⟩
 
-/-- At any `t₀ ∈ Ioo 0 1`, the left derivative limit `L_-` exists and is nonzero. -/
+/-- At any `t₀ ∈ Ioo 0 1`, the left derivative limit `L_-` exists and is nonzero.
+@isnad1 id=ex.1h3v.s7.a66ba5af2d18 from=translated src=- shape=aab6251c vocab=9d83519a
+-/
 theorem exists_left_deriv_limit
     (γ : ClosedPwC1Immersion x) {t₀ : ℝ} (ht₀ : t₀ ∈ Ioo (0 : ℝ) 1) :
     ∃ L : ℂ, L ≠ 0 ∧
@@ -116,7 +120,9 @@ theorem exists_left_deriv_limit
       (γ.toPwC1Immersion.toPiecewiseC1Path.deriv_continuous_off_extend t₀ ht₀
         h_part).tendsto.mono_left nhdsWithin_le_nhds⟩
 
-/-- Differentiability is eventual on `𝓝[>] t₀` for an immersion at interior `t₀`. -/
+/-- Differentiability is eventual on `𝓝[>] t₀` for an immersion at interior `t₀`.
+@isnad1 id=eventual.1h3v.s7.d9d13b72e2e5 from=translated src=- shape=26bed553 vocab=d2f0c644
+-/
 theorem eventually_differentiable_right
     (γ : ClosedPwC1Immersion x) {t₀ : ℝ} (ht₀ : t₀ ∈ Ioo (0 : ℝ) 1) :
     ∀ᶠ t in 𝓝[>] t₀,
@@ -132,7 +138,9 @@ theorem eventually_differentiable_right
   exact γ.toPwC1Immersion.toPiecewiseC1Path.differentiable_off_extend t ht₂
     fun hm => ht₁ ⟨hm, ne_of_gt (mem_Ioi.mp ht₃)⟩
 
-/-- Differentiability is eventual on `𝓝[<] t₀` for an immersion at interior `t₀`. -/
+/-- Differentiability is eventual on `𝓝[<] t₀` for an immersion at interior `t₀`.
+@isnad1 id=eventual.1h3v.s7.340ef5468791 from=translated src=- shape=26bed553 vocab=3815d89f
+-/
 theorem eventually_differentiable_left
     (γ : ClosedPwC1Immersion x) {t₀ : ℝ} (ht₀ : t₀ ∈ Ioo (0 : ℝ) 1) :
     ∀ᶠ t in 𝓝[<] t₀,
@@ -230,7 +238,9 @@ private lemma reInner_eq_inner_real (z w : ℂ) :
 `t ↦ ‖γ(t) - s‖` is strictly monotone-increasing on `[t₀, t₀+r]`.
 
 This is the key one-sided strict-monotonicity property used to define the
-exit-time cutoff `δ(ε)` via IVT. -/
+exit-time cutoff `δ(ε)` via IVT.
+@isnad1 id=ex.5h4v.s8.81fe43b1dfcd from=translated src=- shape=26329741 vocab=944f2025
+-/
 theorem norm_sub_strictMonoOn_right
     {γ : ℝ → ℂ} {t₀ : ℝ} {s : ℂ} (h_at : γ t₀ = s)
     {L : ℂ} (hL : L ≠ 0)
@@ -327,7 +337,9 @@ private theorem reInner_upper_bound_left_eventually
 /-- **Strict ANTI-monotonicity left side**: for some `r > 0`, the function
 `t ↦ ‖γ(t) - s‖` is strictly anti-monotone (decreasing) on `[t₀ - r, t₀]`.
 
-Symmetric to `norm_sub_strictMonoOn_right`. -/
+Symmetric to `norm_sub_strictMonoOn_right`.
+@isnad1 id=ex.5h4v.s8.3c2aa7f80ae3 from=translated src=- shape=7d5e1195 vocab=f067e1cd
+-/
 theorem norm_sub_strictAntiOn_left
     {γ : ℝ → ℂ} {t₀ : ℝ} {s : ℂ} (h_at : γ t₀ = s)
     {L : ℂ} (hL : L ≠ 0)

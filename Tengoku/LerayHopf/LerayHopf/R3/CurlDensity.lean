@@ -199,7 +199,9 @@ components `potentialComponentC ψ k` — so the statement is NOT circular.
 Blocker: mathlib's `SchwartzMap` Fourier API has the derivative→multiplier identity in the
 shape `𝓕 (∂ ψ) = (multiplier) • 𝓕 ψ`, but threading it through `lineDerivOpCLM`, the
 `Lp`-level `𝓕` on components, and the cyclic-index assembly is real (non-mechanical) work that
-belongs to `lean-prover`. -/
+belongs to `lean-prover`.
+@isnad1 id=eventual.0h2v.s16.a61efd2d615e from=translated src=- shape=41152551 vocab=b582c1cf
+-/
 theorem fourier_curlSchwartz_eq_cross
     (ψ : Fin 3 → SchwartzMap Domain3 ℝ) (j : Fin 3) :
     ((𝓕 (L2VF_projComponentC_R3 j (curlSchwartzL2 ψ)) : L2C_R3) : Domain3 → ℂ)
@@ -511,7 +513,9 @@ against the (dense set of) Schwartz `φ̂`.
 Blocker: requires Plancherel for the `divTestFunctional` pairing plus the
 fundamental lemma of the calculus of variations on the Fourier side (a transverse symbol that
 pairs to zero against all Schwartz `φ̂` vanishes a.e.).  Genuine analysis; lean-prover target
-on `FourierL2` (`normSq_eq_integral_normSq_C`, `fourierComponentC_ae_schwartz`). -/
+on `FourierL2` (`normSq_eq_integral_normSq_C`, `fourierComponentC_ae_schwartz`).
+@isnad1 id=iff.0h1v.s17.d3de1ec80b58 from=translated src=- shape=628840a5 vocab=c879ec9e
+-/
 theorem mem_sigma_iff_fourier_transverse (u : L2VF_R3) :
     u ∈ L2Sigma_R3 ↔
       (fun ξ =>
@@ -641,7 +645,9 @@ This is pure (finite-dimensional) cross-product linear algebra: in ℝ³/ℂ³ t
 
 Blocker: while finite-dimensional, the explicit cross-product/orthogonality computation in
 `crossWithIξ`'s cyclic-index form is bookkeeping that lean-prover should carry; left as a
-clean isolated lemma. -/
+clean isolated lemma.
+@isnad1 id=ex.2h2v.s7.4d91bda10312 from=translated src=- shape=69c85c58 vocab=c8f5090a
+-/
 theorem cross_iξ_spans_transverse
     (ξ : Domain3) (hξ : ξ ≠ 0) (b : Fin 3 → ℂ)
     (hb : ∑ j : Fin 3, (ξ j : ℂ) * b j = 0) :
@@ -957,7 +963,9 @@ the two meet only at `v̂ = 0`, whence `v = 0` by the L² Fourier isometry `Lp.f
 Status: PROVED, `sorry`-free.  The orthogonal-complement reduction below uses
 `Submodule.orthogonal_orthogonal_eq_closure` and `Submodule.mem_orthogonal'` to reduce the goal to
 the analytic core `l2sigma_inner_orthogonalCurl_eq_zero` (every `w ⊥ all curls` is orthogonal to
-every `u ∈ L2Sigma_R3`), which is itself proved. -/
+every `u ∈ L2Sigma_R3`), which is itself proved.
+@isnad1 id=le.0h0v.s16.c1a438501af2 from=translated src=- shape=04921133 vocab=68b66ca3
+-/
 theorem l2sigma_le_closure_span_curl :
     (L2Sigma_R3 : Submodule ℝ L2VF_R3) ≤
       (Submodule.span ℝ (Set.range curlSchwartzL2)).topologicalClosure := by
@@ -980,7 +988,9 @@ Schwartz vector potentials contains the whole weakly-divergence-free subspace `L
 This is a complete, `sorry`-free, axiom-free PROOF of `CurlSchwartzDense` (no extra hypotheses).
 The axiom `curlSchwartzDense_holds` is RETIRED: `CurlDensityCapstone.lean` (Route A, issue #3)
 re-anchors all consumers to this theorem; `#print axioms exists_lerayHopf_r3` no
-longer lists `curlSchwartzDense_holds` (R3 project axioms: 5 → 4). -/
+longer lists `curlSchwartzDense_holds` (R3 project axioms: 5 → 4).
+@isnad1 id=curlschw.0h0v.s0.f4f2f2de865e from=translated src=- shape=45709ebd vocab=f4f2f2de
+-/
 theorem curlSchwartzDense_provedRoute : CurlSchwartzDense :=
   l2sigma_le_closure_span_curl
 

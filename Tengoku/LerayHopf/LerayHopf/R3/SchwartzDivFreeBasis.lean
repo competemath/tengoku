@@ -98,7 +98,9 @@ conditional deliverable, axiom-free modulo its `CurlSchwartzDense` hypothesis.
 -/
 
 /-- A3.  The `e_schwartz`-shape witness for `curlSchwartzL2 ψ`: its components have
-Schwartz representatives.  This is what feeds `SchwartzGalerkinBasis.e_schwartz`. -/
+Schwartz representatives.  This is what feeds `SchwartzGalerkinBasis.e_schwartz`.
+@isnad1 id=ex.0h1v.s16.4d8499b9f206 from=translated src=- shape=ae743689 vocab=0d63bd8c
+-/
 theorem curlSchwartz_isSchwartz (ψ : Fin 3 → SchwartzMap Domain3 ℝ) :
     ∃ φ : Fin 3 → SchwartzMap Domain3 ℝ, ∀ j : Fin 3,
       L2VF_projComponent_R3 j (curlSchwartzL2 ψ)
@@ -177,7 +179,9 @@ PROVED, not assumed (Codex point C-B).
 
 Mathematically this is `div (curl ψ) = 0`: for every Schwartz test `φ`,
 `∑ j ∫ (curl ψ)_j · ∂_j φ = − ∫ φ · div (curl ψ) = 0`, by Schwartz integration-by-parts
-and Clairaut (mixed partials of Schwartz functions commute). -/
+and Clairaut (mixed partials of Schwartz functions commute).
+@isnad1 id=mem.0h1v.s15.db6702fe5408 from=translated src=- shape=4f4b38fa vocab=a7439601
+-/
 theorem curlSchwartzL2_mem_sigma (ψ : Fin 3 → SchwartzMap Domain3 ℝ) :
     curlSchwartzL2 ψ ∈ L2Sigma_R3 := by
   rw [L2Sigma_R3, Submodule.mem_iInf]
@@ -226,14 +230,18 @@ theorem curlSchwartzL2_mem_sigma (ψ : Fin 3 → SchwartzMap Domain3 ℝ) :
 
 `volume` on `Domain3` is a separable measure and `EuclideanSpace ℝ (Fin 3)` is
 second-countable, so `Lp.SecondCountableTopology` makes `L2VF_R3` second-countable,
-hence separable. -/
+hence separable.
+@isnad1 id=separabl.0h0v.s14.2e3fb2de2fa9 from=translated src=- shape=268e3c3c vocab=2193e770
+-/
 instance instSeparableSpace_L2VF_R3 : SeparableSpace L2VF_R3 :=
   haveI : Fact ((2 : ENNReal) ≠ ⊤) := ⟨by norm_num⟩
   haveI : SecondCountableTopology L2VF_R3 := Lp.SecondCountableTopology
   SecondCountableTopology.to_separableSpace
 
 /-- Helper: the supremum of finite prefix spans of an enumeration `e` equals the span of
-its entire range. -/
+its entire range.
+@isnad1 id=eq.0h1v.s16.84e090c4eec4 from=translated src=- shape=0ed91de8 vocab=b7ed5375
+-/
 theorem iSup_prefixSpan_eq_span_range (e : ℕ → L2VF_R3) :
     (⨆ n : ℕ, Submodule.span ℝ (Set.range (fun k : Fin n => e (k : ℕ))))
       = Submodule.span ℝ (Set.range e) := by
@@ -252,7 +260,9 @@ dense in `L2Sigma_R3`.
 
 This is the separability-thinning of the (uncountable) curl family
 `Set.range curlSchwartzL2` to one countable prefix-span enumeration; it is bookkeeping,
-not analysis (Codex point C-D). -/
+not analysis (Codex point C-D).
+@isnad1 id=ex.1h0v.s16.8c7693bb2296 from=translated src=- shape=8ee36e76 vocab=f5c34d35
+-/
 theorem exists_denseSeq_curlSchwartz (h : CurlSchwartzDense) :
     ∃ e : ℕ → L2VF_R3,
       (∀ k : ℕ, ∃ ψ : Fin 3 → SchwartzMap Domain3 ℝ, e k = curlSchwartzL2 ψ) ∧
@@ -298,7 +308,9 @@ Schwartz divergence-free basis interface is inhabited.
 
 This is the genuine, axiom-free-MODULO-`h` headline: it assembles
 `SchwartzGalerkinBasis` from the constructed curl family —
-`e` from B2, `e_schwartz` from A3, `e_mem_sigma` from A4, `dense_span` from B2 + `h`. -/
+`e` from B2, `e_schwartz` from A3, `e_mem_sigma` from A4, `dense_span` from B2 + `h`.
+@isnad1 id=nonempty.1h0v.s2.447993052d6c from=translated src=- shape=ffc494c5 vocab=23bb89e4
+-/
 theorem schwartzGalerkinBasis_of_curlDense (h : CurlSchwartzDense) :
     Nonempty SchwartzGalerkinBasis := by
   obtain ⟨e, he_curl, he_dense⟩ := exists_denseSeq_curlSchwartz h

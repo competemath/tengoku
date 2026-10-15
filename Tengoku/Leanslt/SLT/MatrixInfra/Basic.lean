@@ -78,33 +78,46 @@ linear map between Euclidean spaces. -/
 noncomputable def singularValues (A : Matrix m n 𝕜) : ℕ →₀ ℝ :=
   A.toEuclideanLin.singularValues
 
+/--
+@isnad1 id=eq.0h4v.s12.b1dc1ce1b47a from=translated src=- shape=7cafc374 vocab=f7e20e9c
+-/
 @[simp]
 theorem singularValues_toEuclideanLin (A : Matrix m n 𝕜) :
     A.singularValues = A.toEuclideanLin.singularValues :=
   rfl
 
-/-- Singular values are nonnegative. -/
+/-- Singular values are nonnegative.
+@isnad1 id=le.0h5v.s5.0ef9f1612963 from=translated src=- shape=22dc4dc5 vocab=3bae3c1d
+-/
 theorem singularValues_nonneg (A : Matrix m n 𝕜) (i : ℕ) : 0 ≤ A.singularValues i :=
   A.toEuclideanLin.singularValues_nonneg i
 
-/-- Singular values are arranged in weakly decreasing order. -/
+/-- Singular values are arranged in weakly decreasing order.
+@isnad1 id=antitone.0h4v.s5.e8859fdc88cd from=translated src=- shape=393a7ec3 vocab=67b2bc3a
+-/
 theorem singularValues_antitone (A : Matrix m n 𝕜) : Antitone A.singularValues :=
   A.toEuclideanLin.singularValues_antitone
 
-/-- Singular values are square roots of the eigenvalues of `A†A`. -/
+/-- Singular values are square roots of the eigenvalues of `A†A`.
+@isnad1 id=eq.0h5v.s14.0598d0dc0314 from=translated src=- shape=2a4c28d7 vocab=be6db6bf
+-/
 theorem singularValues_fin (A : Matrix m n 𝕜) (i : Fin (Fintype.card n)) :
     A.singularValues i =
       √(A.toEuclideanLin.isSymmetric_adjoint_comp_self.eigenvalues finrank_euclideanSpace i) :=
   A.toEuclideanLin.singularValues_fin finrank_euclideanSpace i
 
-/-- The singular values after the domain dimension are zero. -/
+/-- The singular values after the domain dimension are zero.
+@isnad1 id=eq.1h5v.s6.4b2c9baac9a0 from=translated src=- shape=32731e62 vocab=3a05456b
+-/
 theorem singularValues_of_card_le (A : Matrix m n 𝕜) {i : ℕ} (hi : Fintype.card n ≤ i) :
     A.singularValues i = 0 := by
   have hfin : finrank 𝕜 (EuclideanSpace 𝕜 n) ≤ i := by
     simpa [finrank_euclideanSpace] using hi
   exact A.toEuclideanLin.singularValues_of_finrank_le hfin
 
-/-- On the first `dim(domain)` indices, singular values square to the eigenvalues of `A†A`. -/
+/-- On the first `dim(domain)` indices, singular values square to the eigenvalues of `A†A`.
+@isnad1 id=eq.0h5v.s14.b343e969eaa9 from=translated src=- shape=c3ce668d vocab=aefd6e9f
+-/
 theorem sq_singularValues_fin (A : Matrix m n 𝕜) (i : Fin (Fintype.card n)) :
     A.singularValues i ^ 2 =
       A.toEuclideanLin.isSymmetric_adjoint_comp_self.eigenvalues finrank_euclideanSpace i :=
@@ -113,6 +126,7 @@ theorem sq_singularValues_fin (A : Matrix m n 𝕜) (i : Fin (Fintype.card n)) :
 /--
 The HDP Remark 4.1.4 statement in linear-map form: the square of each singular value is an
 eigenvalue of the self-adjoint positive operator `A†A`.
+@isnad1 id=haseigen.1h5v.s14.86c5f74e5557 from=translated src=- shape=eaf9dd71 vocab=93b6fa5d
 -/
 theorem hasEigenvalue_adjoint_comp_self_sq_singularValues
     (A : Matrix m n 𝕜) {i : ℕ} (hi : i < Fintype.card n) :
@@ -122,7 +136,9 @@ theorem hasEigenvalue_adjoint_comp_self_sq_singularValues
     simpa [finrank_euclideanSpace] using hi
   exact A.toEuclideanLin.hasEigenvalue_adjoint_comp_self_sq_singularValues hfin
 
-/-- The Euclidean linear map associated to `Aᴴ * A` is `A† ∘ A`. -/
+/-- The Euclidean linear map associated to `Aᴴ * A` is `A† ∘ A`.
+@isnad1 id=eq.0h4v.s14.60cd8a9f6e8a from=translated src=- shape=dc7dc17f vocab=bce614bb
+-/
 theorem conjTranspose_mul_self_toEuclideanLin [DecidableEq m] (A : Matrix m n 𝕜) :
     (Aᴴ * A).toEuclideanLin = LinearMap.adjoint A.toEuclideanLin ∘ₗ A.toEuclideanLin := by
   rw [← Matrix.toEuclideanLin_conjTranspose_eq_adjoint A]
@@ -131,29 +147,39 @@ theorem conjTranspose_mul_self_toEuclideanLin [DecidableEq m] (A : Matrix m n �
     (v₂ := (EuclideanSpace.basisFun m 𝕜).toBasis)
     (v₃ := (EuclideanSpace.basisFun n 𝕜).toBasis) Aᴴ A
 
-/-- The square of each singular value is an eigenvalue of the literal matrix `Aᴴ * A`. -/
+/-- The square of each singular value is an eigenvalue of the literal matrix `Aᴴ * A`.
+@isnad1 id=haseigen.1h5v.s12.f7418be10b62 from=translated src=- shape=ec3415ee vocab=5114ce72
+-/
 theorem hasEigenvalue_conjTranspose_mul_self_sq_singularValues [DecidableEq m]
     (A : Matrix m n 𝕜) {i : ℕ} (hi : i < Fintype.card n) :
     Module.End.HasEigenvalue (Aᴴ * A).toEuclideanLin (A.singularValues i ^ 2) := by
   rw [conjTranspose_mul_self_toEuclideanLin]
   exact A.hasEigenvalue_adjoint_comp_self_sq_singularValues hi
 
-/-- The support of the singular-value sequence has cardinality equal to the rank. -/
+/-- The support of the singular-value sequence has cardinality equal to the rank.
+@isnad1 id=eq.0h4v.s13.0a8d1675d84a from=translated src=- shape=8befe63d vocab=e6f5d04d
+-/
 theorem support_singularValues (A : Matrix m n 𝕜) :
     A.singularValues.support = Finset.range (finrank 𝕜 A.toEuclideanLin.range) :=
   A.toEuclideanLin.support_singularValues
 
-/-- A singular value is positive exactly before the rank of the associated linear map. -/
+/-- A singular value is positive exactly before the rank of the associated linear map.
+@isnad1 id=iff.0h5v.s13.e03bb02b3078 from=translated src=- shape=18c3f6f3 vocab=30e26149
+-/
 theorem singularValues_pos_iff_lt_finrank_range (A : Matrix m n 𝕜) {i : ℕ} :
     0 < A.singularValues i ↔ i < finrank 𝕜 A.toEuclideanLin.range :=
   A.toEuclideanLin.singularValues_pos_iff_lt_finrank_range
 
-/-- A singular value vanishes exactly at or after the rank of the associated linear map. -/
+/-- A singular value vanishes exactly at or after the rank of the associated linear map.
+@isnad1 id=iff.0h5v.s13.f8770daee7d5 from=translated src=- shape=4fd32c95 vocab=19732506
+-/
 theorem singularValues_eq_zero_iff_le_finrank_range (A : Matrix m n 𝕜) {i : ℕ} :
     A.singularValues i = 0 ↔ finrank 𝕜 A.toEuclideanLin.range ≤ i :=
   A.toEuclideanLin.singularValues_eq_zero_iff_le_finrank_range
 
-/-- A matrix has injective associated map iff all domain-indexed singular values are positive. -/
+/-- A matrix has injective associated map iff all domain-indexed singular values are positive.
+@isnad1 id=iff.0h4v.s12.a5817d81e6f2 from=translated src=- shape=ca17055c vocab=51235ccc
+-/
 theorem injective_toEuclideanLin_iff_singularValues_pos (A : Matrix m n 𝕜) :
     Function.Injective A.toEuclideanLin ↔ ∀ i < Fintype.card n, 0 < A.singularValues i := by
   simpa [finrank_euclideanSpace]
@@ -170,6 +196,7 @@ noncomputable def rightSingularVectorBasis (A : Matrix m n 𝕜) :
 /--
 The right singular vectors diagonalize `A†A`, with eigenvalues equal to squared singular values:
 `A†A v_i = s_i^2 v_i`.
+@isnad1 id=eq.0h5v.s14.e1decb864420 from=translated src=- shape=1ef98fd6 vocab=b5034693
 -/
 theorem adjoint_comp_self_apply_rightSingularVectorBasis
     (A : Matrix m n 𝕜) (i : Fin (Fintype.card n)) :
@@ -192,7 +219,9 @@ noncomputable def leftSingularVector (A : Matrix m n 𝕜) (i : Fin (Fintype.car
     EuclideanSpace 𝕜 m :=
   (((A.singularValues i : ℝ) : 𝕜)⁻¹) • A.toEuclideanLin (A.rightSingularVectorBasis i)
 
-/-- The SVD proof relation `A v_i = s_i u_i` for nonzero singular values. -/
+/-- The SVD proof relation `A v_i = s_i u_i` for nonzero singular values.
+@isnad1 id=eq.1h5v.s12.df8be753e0c1 from=translated src=- shape=734dc9ab vocab=4ba55c49
+-/
 theorem apply_rightSingularVectorBasis_eq_smul_leftSingularVector
     (A : Matrix m n 𝕜) {i : Fin (Fintype.card n)} (hi : A.singularValues i ≠ 0) :
     A.toEuclideanLin (A.rightSingularVectorBasis i) =
@@ -204,7 +233,9 @@ theorem apply_rightSingularVectorBasis_eq_smul_leftSingularVector
   rw [mul_inv_cancel₀ hci]
   simp
 
-/-- Right singular vectors with zero singular value lie in the kernel of `A`. -/
+/-- Right singular vectors with zero singular value lie in the kernel of `A`.
+@isnad1 id=eq.1h5v.s12.6ce7bd28f9ce from=translated src=- shape=e2e520a6 vocab=b6715bea
+-/
 theorem apply_rightSingularVectorBasis_eq_zero_of_singularValues_eq_zero
     (A : Matrix m n 𝕜) {i : Fin (Fintype.card n)} (hi : A.singularValues i = 0) :
     A.toEuclideanLin (A.rightSingularVectorBasis i) = 0 := by
@@ -223,6 +254,7 @@ theorem apply_rightSingularVectorBasis_eq_zero_of_singularValues_eq_zero
 /--
 The SVD proof relation `A v_i = s_i u_i`, with the zero singular-value case included by the
 kernel lemma above.
+@isnad1 id=eq.0h5v.s12.f734e4b853d9 from=translated src=- shape=6f7f066b vocab=4ba55c49
 -/
 theorem apply_rightSingularVectorBasis_eq_smul_leftSingularVector'
     (A : Matrix m n 𝕜) (i : Fin (Fintype.card n)) :
@@ -234,7 +266,9 @@ theorem apply_rightSingularVectorBasis_eq_smul_leftSingularVector'
     simp
   · exact A.apply_rightSingularVectorBasis_eq_smul_leftSingularVector hi
 
-/-- Applying `A` to a right singular vector has norm equal to the corresponding singular value. -/
+/-- Applying `A` to a right singular vector has norm equal to the corresponding singular value.
+@isnad1 id=eq.0h5v.s12.7eae5f3eac9a from=translated src=- shape=310576d2 vocab=dd1f0853
+-/
 theorem norm_apply_rightSingularVectorBasis
     (A : Matrix m n 𝕜) (i : Fin (Fintype.card n)) :
     ‖A.toEuclideanLin (A.rightSingularVectorBasis i)‖ = A.singularValues i := by
@@ -256,7 +290,9 @@ theorem norm_apply_rightSingularVectorBasis
     _ = A.singularValues i ^ 2 := by
       simp [inner_smul_left, OrthonormalBasis.norm_eq_one, RCLike.ofReal_pow]
 
-/-- Nonzero left singular vectors are unit vectors. -/
+/-- Nonzero left singular vectors are unit vectors.
+@isnad1 id=eq.1h5v.s6.8c219fa9a0d1 from=translated src=- shape=6457c81d vocab=2005470d
+-/
 theorem norm_leftSingularVector_of_singularValues_ne_zero
     (A : Matrix m n 𝕜) {i : Fin (Fintype.card n)} (hi : A.singularValues i ≠ 0) :
     ‖A.leftSingularVector i‖ = 1 := by
@@ -271,6 +307,7 @@ theorem norm_leftSingularVector_of_singularValues_ne_zero
 The left singular vectors indexed by nonzero singular values are orthonormal. Together with the
 right singular-vector orthonormal basis, this records the orthonormal-family part of HDP
 Theorem 4.1.1.
+@isnad1 id=orthonor.0h4v.s7.4625341f0960 from=translated src=- shape=c4a5d310 vocab=6d79e2c1
 -/
 theorem orthonormal_leftSingularVector_of_singularValues_ne_zero
     (A : Matrix m n 𝕜) :
@@ -322,6 +359,7 @@ theorem orthonormal_leftSingularVector_of_singularValues_ne_zero
 Operator-action form of the finite-dimensional SVD reconstruction: expanding `x` in the right
 singular-vector orthonormal basis and applying `A` gives the sum of the singular-value weighted
 left singular vectors.
+@isnad1 id=eq.0h5v.s12.82faafa49fb9 from=translated src=- shape=980666cf vocab=f7ed7566
 -/
 theorem toEuclideanLin_apply_eq_sum_singularValue_leftSingularVector
     (A : Matrix m n 𝕜) (x : EuclideanSpace 𝕜 n) :
@@ -348,6 +386,7 @@ theorem toEuclideanLin_apply_eq_sum_singularValue_leftSingularVector
 /--
 Rank-one form of the SVD reconstruction after applying to a vector:
 `A x = Σ i, s_i (u_i ⊗ v_i*) x`.
+@isnad1 id=eq.0h5v.s15.34577a5765d2 from=translated src=- shape=5d82fcc9 vocab=add02235
 -/
 theorem toEuclideanLin_apply_eq_sum_singularValue_rankOne
     (A : Matrix m n 𝕜) (x : EuclideanSpace 𝕜 n) :
@@ -367,7 +406,9 @@ theorem toEuclideanLin_apply_eq_sum_singularValue_rankOne
   rw [smul_smul, smul_smul]
   exact congrArg (fun c : 𝕜 ↦ c • A.leftSingularVector i) (mul_comm _ _)
 
-/-- The Euclidean linear map of `vecMulVec u (star v)` is the rank-one operator `u ⊗ v*`. -/
+/-- The Euclidean linear map of `vecMulVec u (star v)` is the rank-one operator `u ⊗ v*`.
+@isnad1 id=eq.0h5v.s14.7073e1cc1bfe from=translated src=- shape=3bba8b9b vocab=b1e56a19
+-/
 theorem vecMulVec_star_toEuclideanLin_eq_rankOne
     (u : EuclideanSpace 𝕜 m) (v : EuclideanSpace 𝕜 n) :
     (Matrix.vecMulVec u (star v)).toEuclideanLin =
@@ -410,12 +451,16 @@ noncomputable def rightSingularMatrix (A : Matrix m n 𝕜) :
     Matrix n (Fin (Fintype.card n)) 𝕜 :=
   (EuclideanSpace.basisFun n 𝕜).toBasis.toMatrix A.rightSingularVectorBasis
 
-/-- The right-singular-vector matrix has orthonormal columns: `VᴴV = I`. -/
+/-- The right-singular-vector matrix has orthonormal columns: `VᴴV = I`.
+@isnad1 id=eq.0h4v.s7.237844a0880e from=translated src=- shape=0592e5b2 vocab=da756a80
+-/
 theorem rightSingularMatrix_conjTranspose_mul_self (A : Matrix m n 𝕜) :
     A.rightSingularMatrixᴴ * A.rightSingularMatrix = 1 := by
   simp [rightSingularMatrix]
 
-/-- The right-singular-vector matrix is unitary after identifying its two finite index types. -/
+/-- The right-singular-vector matrix is unitary after identifying its two finite index types.
+@isnad1 id=eq.0h4v.s7.dbc515556be5 from=translated src=- shape=782d244a vocab=da756a80
+-/
 theorem rightSingularMatrix_mul_conjTranspose (A : Matrix m n 𝕜) :
     A.rightSingularMatrix * A.rightSingularMatrixᴴ = 1 := by
   simp [rightSingularMatrix]
@@ -441,6 +486,7 @@ theorem eq_leftSingularMatrix_mul_diagonal_mul_conjTranspose_rightSingularMatrix
 /--
 Operator-action form of the right Gram decomposition:
 `A† A x = Σ i, s_i^2 (v_i ⊗ v_i*) x`.
+@isnad1 id=eq.0h5v.s15.81be46398e9b from=translated src=- shape=cc3921b3 vocab=0e71e231
 -/
 theorem adjoint_comp_self_apply_eq_sum_sq_singularValue_rankOne
     (A : Matrix m n 𝕜) (x : EuclideanSpace 𝕜 n) :
@@ -482,6 +528,7 @@ theorem adjoint_comp_self_apply_eq_sum_sq_singularValue_rankOne
 /--
 Literal matrix form of HDP Remark 4.1.4 for the right Gram matrix:
 `Aᴴ * A = Σ i, s_i^2 • vecMulVec v_i (star v_i)`.
+@isnad1 id=eq.0h4v.s9.0b54b8461163 from=translated src=- shape=54b7c7b7 vocab=5c5a260a
 -/
 theorem conjTranspose_mul_self_eq_sum_sq_singularValue_vecMulVec [DecidableEq m]
     (A : Matrix m n 𝕜) :
@@ -499,7 +546,9 @@ theorem conjTranspose_mul_self_eq_sum_sq_singularValue_vecMulVec [DecidableEq m]
   rw [vecMulVec_star_toEuclideanLin_eq_rankOne]
   rfl
 
-/-- The Euclidean linear map associated to `A * Aᴴ` is `A ∘ A†`. -/
+/-- The Euclidean linear map associated to `A * Aᴴ` is `A ∘ A†`.
+@isnad1 id=eq.0h4v.s14.c79e405a6da5 from=translated src=- shape=42782b82 vocab=bce614bb
+-/
 theorem mul_conjTranspose_toEuclideanLin [DecidableEq m] (A : Matrix m n 𝕜) :
     (A * Aᴴ).toEuclideanLin = A.toEuclideanLin ∘ₗ LinearMap.adjoint A.toEuclideanLin := by
   rw [← Matrix.toEuclideanLin_conjTranspose_eq_adjoint A]
@@ -511,6 +560,7 @@ theorem mul_conjTranspose_toEuclideanLin [DecidableEq m] (A : Matrix m n 𝕜) :
 /--
 Operator-action form of the left Gram decomposition:
 `A A† y = Σ i, s_i^2 (u_i ⊗ u_i*) y`.
+@isnad1 id=eq.0h5v.s15.47240fdede44 from=translated src=- shape=8186964b vocab=770c4e79
 -/
 theorem self_adjoint_apply_eq_sum_sq_singularValue_leftRankOne
     (A : Matrix m n 𝕜) (y : EuclideanSpace 𝕜 m) :
@@ -558,6 +608,7 @@ theorem self_adjoint_apply_eq_sum_sq_singularValue_leftRankOne
 /--
 Literal matrix form of HDP Remark 4.1.4 for the left Gram matrix:
 `A * Aᴴ = Σ i, s_i^2 • vecMulVec u_i (star u_i)`.
+@isnad1 id=eq.0h4v.s8.17328122e787 from=translated src=- shape=8260031d vocab=89df9d85
 -/
 theorem mul_conjTranspose_eq_sum_sq_singularValue_vecMulVec [DecidableEq m]
     (A : Matrix m n 𝕜) :
@@ -575,7 +626,9 @@ theorem mul_conjTranspose_eq_sum_sq_singularValue_vecMulVec [DecidableEq m]
   rw [vecMulVec_star_toEuclideanLin_eq_rankOne]
   rfl
 
-/-- The left singular vectors satisfy `A A† u_i = s_i² u_i`. -/
+/-- The left singular vectors satisfy `A A† u_i = s_i² u_i`.
+@isnad1 id=eq.0h5v.s14.cbf8694f44c5 from=translated src=- shape=6a4ba118 vocab=55631240
+-/
 theorem self_adjoint_apply_leftSingularVector
     (A : Matrix m n 𝕜) (i : Fin (Fintype.card n)) :
     (A.toEuclideanLin ∘ₗ LinearMap.adjoint A.toEuclideanLin) (A.leftSingularVector i) =
@@ -619,7 +672,9 @@ noncomputable def eigenvectorBasisToEuclideanLin :
     OrthonormalBasis (Fin (Fintype.card n)) 𝕜 (EuclideanSpace 𝕜 n) :=
   (Matrix.isSymmetric_toEuclideanLin_iff.mpr hA).eigenvectorBasis finrank_euclideanSpace
 
-/-- A Hermitian matrix acts diagonally on its Euclidean eigenbasis. -/
+/-- A Hermitian matrix acts diagonally on its Euclidean eigenbasis.
+@isnad1 id=eq.1h4v.s12.f5b6dc89cda6 from=translated src=- shape=92834d22 vocab=30970446
+-/
 theorem apply_eigenvectorBasisToEuclideanLin (i : Fin (Fintype.card n)) :
     A.toEuclideanLin (hA.eigenvectorBasisToEuclideanLin i) =
       (hA.eigenvaluesToEuclideanLin i : 𝕜) • hA.eigenvectorBasisToEuclideanLin i := by
@@ -629,6 +684,7 @@ theorem apply_eigenvectorBasisToEuclideanLin (i : Fin (Fintype.card n)) :
 /--
 Matrix-form spectral decomposition of a Hermitian matrix in its orthonormal eigenbasis:
 the matrix of `A` in that basis is diagonal with the real eigenvalues on the diagonal.
+@isnad1 id=eq.1h3v.s13.0d7ae793c2a6 from=translated src=- shape=19356bdf vocab=572de4f5
 -/
 theorem spectral_decomposition_toEuclideanLin :
     letI b := hA.eigenvectorBasisToEuclideanLin.toBasis
@@ -702,16 +758,22 @@ variable {𝕜 E : Type*} [RCLike 𝕜] [NormedAddCommGroup E] [InnerProductSpac
 variable (U : Submodule 𝕜 E) [U.HasOrthogonalProjection]
 variable {ι : Type*} [Fintype ι]
 
-/-- Orthogonal projection onto a subspace, as an endomorphism, is a symmetric projection. -/
+/-- Orthogonal projection onto a subspace, as an endomorphism, is a symmetric projection.
+@isnad1 id=issymmet.0h3v.s7.d00ed5866f94 from=translated src=- shape=bc1e45a3 vocab=d281540c
+-/
 theorem starProjection_isSymmetricProjection :
     (U.starProjection : E →ₗ[𝕜] E).IsSymmetricProjection :=
   U.isSymmetricProjection_starProjection
 
-/-- The fixed points of the orthogonal projection onto `U` are exactly the vectors in `U`. -/
+/-- The fixed points of the orthogonal projection onto `U` are exactly the vectors in `U`.
+@isnad1 id=iff.0h4v.s8.721abf87bb62 from=translated src=- shape=3af3f5a1 vocab=76fce27e
+-/
 theorem starProjection_eq_self_iff_mem {x : E} : U.starProjection x = x ↔ x ∈ U :=
   U.starProjection_eq_self_iff
 
-/-- Orthogonal projection onto `U`, valued in `U`, expanded in an orthonormal basis of `U`. -/
+/-- Orthogonal projection onto `U`, valued in `U`, expanded in an orthonormal basis of `U`.
+@isnad1 id=eq.0h6v.s11.fe481911b96e from=translated src=- shape=ae650ee8 vocab=b8bee117
+-/
 theorem orthogonalProjectionOnto_apply_eq_sum
     (b : OrthonormalBasis ι 𝕜 U) (x : E) :
     U.orthogonalProjectionOnto x =
@@ -721,13 +783,16 @@ theorem orthogonalProjectionOnto_apply_eq_sum
 /--
 Orthogonal projection onto `U`, valued in `U`, as a sum of rank-one maps associated to an
 orthonormal basis of `U`.
+@isnad1 id=eq.0h5v.s15.d2b81c79344d from=translated src=- shape=106d1936 vocab=62c88ab1
 -/
 theorem orthogonalProjectionOnto_eq_sum_rankOne (b : OrthonormalBasis ι 𝕜 U) :
     U.orthogonalProjectionOnto =
       ∑ i : ι, InnerProductSpace.rankOne 𝕜 (b i) (b i : E) :=
   b.orthogonalProjectionOnto_eq_sum_rankOne
 
-/-- Orthogonal projection onto `U`, as an endomorphism, expanded in an orthonormal basis of `U`. -/
+/-- Orthogonal projection onto `U`, as an endomorphism, expanded in an orthonormal basis of `U`.
+@isnad1 id=eq.0h6v.s10.1362be3d56c5 from=translated src=- shape=04b1ba4c vocab=dbf94539
+-/
 theorem starProjection_apply_eq_sum (b : OrthonormalBasis ι 𝕜 U) (x : E) :
     U.starProjection x =
       ∑ i : ι, inner 𝕜 (b i : E) x • (b i : E) := by
@@ -737,6 +802,7 @@ theorem starProjection_apply_eq_sum (b : OrthonormalBasis ι 𝕜 U) (x : E) :
 /--
 Orthogonal projection onto `U`, as an endomorphism, is the sum of rank-one projections associated
 to an orthonormal basis of `U`.
+@isnad1 id=eq.0h5v.s13.d3da63deead7 from=translated src=- shape=54ca2d8e vocab=51cf6430
 -/
 theorem starProjection_eq_sum_rankOne (b : OrthonormalBasis ι 𝕜 U) :
     U.starProjection =

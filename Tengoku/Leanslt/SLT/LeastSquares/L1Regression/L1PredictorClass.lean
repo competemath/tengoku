@@ -43,28 +43,38 @@ for θ ∈ B₁^d(R), i.e., ‖θ‖₁ ≤ R. -/
 def l1PredictorClass (d : ℕ) (R : ℝ) : Set ((EuclideanSpace ℝ (Fin d)) → ℝ) :=
   {f | ∃ θ : EuclideanSpace ℝ (Fin d), l1norm θ ≤ R ∧ f = fun x => @inner ℝ _ _ θ x}
 
-/-- Membership characterization for l1PredictorClass -/
+/-- Membership characterization for l1PredictorClass
+@isnad1 id=iff.0h3v.s7.c76057995446 from=translated src=- shape=41d4bfc7 vocab=425ee697
+-/
 lemma mem_l1PredictorClass_iff {f : (EuclideanSpace ℝ (Fin d)) → ℝ} {R : ℝ} :
     f ∈ l1PredictorClass d R ↔
     ∃ θ : EuclideanSpace ℝ (Fin d), l1norm θ ≤ R ∧ f = fun x => @inner ℝ _ _ θ x := by
   rfl
 
-/-- ℓ₁ norm is non-negative -/
+/-- ℓ₁ norm is non-negative
+@isnad1 id=le.0h2v.s4.3c1c9ba0b564 from=translated src=- shape=f6cb2d94 vocab=395f6765
+-/
 lemma l1norm_nonneg (θ : EuclideanSpace ℝ (Fin d)) : 0 ≤ l1norm θ :=
   Finset.sum_nonneg fun i _ => norm_nonneg (θ i)
 
-/-- ℓ₁ norm of zero is zero -/
+/-- ℓ₁ norm of zero is zero
+@isnad1 id=eq.0h1v.s6.4744b962d722 from=translated src=- shape=f92abf0b vocab=ff00252a
+-/
 lemma l1norm_zero : l1norm (0 : EuclideanSpace ℝ (Fin d)) = 0 := by
   simp [l1norm]
 
-/-- ℓ₁ norm scales by |c| -/
+/-- ℓ₁ norm scales by |c|
+@isnad1 id=eq.0h3v.s6.362b18ac4212 from=translated src=- shape=1f2ebe9d vocab=41a7b3de
+-/
 lemma l1norm_smul (c : ℝ) (θ : EuclideanSpace ℝ (Fin d)) :
     l1norm (c • θ) = |c| * l1norm θ := by
   unfold l1norm
   simp only [PiLp.smul_apply, norm_smul, Real.norm_eq_abs]
   rw [Finset.mul_sum]
 
-/-- Zero function is in l1PredictorClass (with θ = 0) when R ≥ 0 -/
+/-- Zero function is in l1PredictorClass (with θ = 0) when R ≥ 0
+@isnad1 id=mem.1h2v.s6.935e83dc9334 from=translated src=- shape=513708ac vocab=b12da1ca
+-/
 lemma zero_mem_l1PredictorClass {R : ℝ} (hR : 0 ≤ R) :
     (0 : (EuclideanSpace ℝ (Fin d)) → ℝ) ∈ l1PredictorClass d R := by
   use 0
@@ -74,7 +84,9 @@ lemma zero_mem_l1PredictorClass {R : ℝ} (hR : 0 ≤ R) :
   · ext x
     simp only [Pi.zero_apply, inner_zero_left]
 
-/-- Scalar multiplication preserves membership for α ∈ [0,1] -/
+/-- Scalar multiplication preserves membership for α ∈ [0,1]
+@isnad1 id=mem.3h4v.s6.a55fbb4a6435 from=translated src=- shape=4e44ec4f vocab=a129eb1e
+-/
 lemma smul_mem_l1PredictorClass {f : (EuclideanSpace ℝ (Fin d)) → ℝ} {R : ℝ} {α : ℝ}
     (hf : f ∈ l1PredictorClass d R) (hα_pos : 0 ≤ α) (hα_le : α ≤ 1) :
     α • f ∈ l1PredictorClass d R := by
@@ -90,7 +102,9 @@ lemma smul_mem_l1PredictorClass {f : (EuclideanSpace ℝ (Fin d)) → ℝ} {R : 
   · ext x
     simp only [Pi.smul_apply, smul_eq_mul, hθ_eq, inner_smul_left, RCLike.conj_to_real]
 
-/-- The ℓ₁-constrained predictor class is star-shaped when R ≥ 0 -/
+/-- The ℓ₁-constrained predictor class is star-shaped when R ≥ 0
+@isnad1 id=isstarsh.1h2v.s4.b310f7972da1 from=translated src=- shape=92c6fd92 vocab=62e5ba1c
+-/
 theorem l1PredictorClass_isStarShaped {R : ℝ} (hR : 0 ≤ R) :
     IsStarShaped (l1PredictorClass d R) := by
   constructor
@@ -98,13 +112,17 @@ theorem l1PredictorClass_isStarShaped {R : ℝ} (hR : 0 ≤ R) :
   · intro h hh α hα_pos hα_le
     exact smul_mem_l1PredictorClass hh hα_pos hα_le
 
-/-- Any linear predictor (without norm constraint) is in l1PredictorClass for large enough R -/
+/-- Any linear predictor (without norm constraint) is in l1PredictorClass for large enough R
+@isnad1 id=mem.1h3v.s6.74f65c05b0d1 from=translated src=- shape=7a9403cb vocab=425ee697
+-/
 lemma linearPredictor_mem_l1PredictorClass {θ : EuclideanSpace ℝ (Fin d)} {R : ℝ}
     (hθ : l1norm θ ≤ R) :
     (fun x => @inner ℝ _ _ θ x) ∈ l1PredictorClass d R :=
   ⟨θ, hθ, rfl⟩
 
-/-- ℓ₁ norm satisfies triangle inequality -/
+/-- ℓ₁ norm satisfies triangle inequality
+@isnad1 id=le.0h3v.s6.9450b7f16b39 from=translated src=- shape=96641b00 vocab=9a773125
+-/
 lemma l1norm_add_le (θ₁ θ₂ : EuclideanSpace ℝ (Fin d)) :
     l1norm (θ₁ + θ₂) ≤ l1norm θ₁ + l1norm θ₂ := by
   unfold l1norm
@@ -116,7 +134,9 @@ lemma l1norm_add_le (θ₁ θ₂ : EuclideanSpace ℝ (Fin d)) :
         exact norm_add_le (θ₁ i) (θ₂ i)
     _ = (∑ i, ‖θ₁ i‖) + (∑ i, ‖θ₂ i‖) := Finset.sum_add_distrib
 
-/-- Addition in l1PredictorClass: if f, g ∈ F with radii R₁, R₂, then f + g is in F with radius R₁ + R₂ -/
+/-- Addition in l1PredictorClass: if f, g ∈ F with radii R₁, R₂, then f + g is in F with radius R₁ + R₂
+@isnad1 id=mem.2h5v.s7.a9fc8a86a9ab from=translated src=- shape=ff00ee63 vocab=69facb80
+-/
 lemma add_mem_l1PredictorClass_of_radii {f g : (EuclideanSpace ℝ (Fin d)) → ℝ} {R₁ R₂ : ℝ}
     (hf : f ∈ l1PredictorClass d R₁) (hg : g ∈ l1PredictorClass d R₂) :
     f + g ∈ l1PredictorClass d (R₁ + R₂) := by
@@ -130,14 +150,18 @@ lemma add_mem_l1PredictorClass_of_radii {f g : (EuclideanSpace ℝ (Fin d)) → 
   · ext x
     simp only [Pi.add_apply, hθ₁_eq, hθ₂_eq, inner_add_left]
 
-/-- ℓ₁ norm of negation equals ℓ₁ norm -/
+/-- ℓ₁ norm of negation equals ℓ₁ norm
+@isnad1 id=eq.0h2v.s6.5ead4018957a from=translated src=- shape=c843543a vocab=2f8b0274
+-/
 lemma l1norm_neg (θ : EuclideanSpace ℝ (Fin d)) : l1norm (-θ) = l1norm θ := by
   unfold l1norm
   congr 1
   ext i
   simp only [PiLp.neg_apply, norm_neg]
 
-/-- Negation preserves l1PredictorClass membership -/
+/-- Negation preserves l1PredictorClass membership
+@isnad1 id=mem.1h3v.s6.e4f1f5fd7c25 from=translated src=- shape=a9829e3e vocab=8755fe01
+-/
 lemma neg_mem_l1PredictorClass {f : (EuclideanSpace ℝ (Fin d)) → ℝ} {R : ℝ}
     (hf : f ∈ l1PredictorClass d R) :
     -f ∈ l1PredictorClass d R := by
@@ -148,7 +172,9 @@ lemma neg_mem_l1PredictorClass {f : (EuclideanSpace ℝ (Fin d)) → ℝ} {R : �
   · ext x
     simp only [Pi.neg_apply, hθ_eq, inner_neg_left]
 
-/-- Subtraction: if f ∈ F(R₁) and g ∈ F(R₂), then f - g ∈ F(R₁ + R₂) -/
+/-- Subtraction: if f ∈ F(R₁) and g ∈ F(R₂), then f - g ∈ F(R₁ + R₂)
+@isnad1 id=mem.2h5v.s7.1ceb9da92a86 from=translated src=- shape=ff00ee63 vocab=8968b070
+-/
 lemma sub_mem_l1PredictorClass_of_radii {f g : (EuclideanSpace ℝ (Fin d)) → ℝ} {R₁ R₂ : ℝ}
     (hf : f ∈ l1PredictorClass d R₁) (hg : g ∈ l1PredictorClass d R₂) :
     f - g ∈ l1PredictorClass d (R₁ + R₂) := by
@@ -156,14 +182,18 @@ lemma sub_mem_l1PredictorClass_of_radii {f g : (EuclideanSpace ℝ (Fin d)) → 
   rw [hsub]
   exact add_mem_l1PredictorClass_of_radii hf (neg_mem_l1PredictorClass hg)
 
-/-- Get the parameter θ from a function in l1PredictorClass -/
+/-- Get the parameter θ from a function in l1PredictorClass
+@isnad1 id=ex.1h3v.s7.c84f2aa47a55 from=translated src=- shape=f7ea47f8 vocab=425ee697
+-/
 lemma exists_param_of_mem_l1PredictorClass {f : (EuclideanSpace ℝ (Fin d)) → ℝ} {R : ℝ}
     (hf : f ∈ l1PredictorClass d R) :
     ∃ θ : EuclideanSpace ℝ (Fin d), l1norm θ ≤ R ∧ ∀ x, f x = @inner ℝ _ _ θ x := by
   obtain ⟨θ, hθ_norm, hθ_eq⟩ := hf
   exact ⟨θ, hθ_norm, fun x => congrFun hθ_eq x⟩
 
-/-- Convex combination stays in l1PredictorClass -/
+/-- Convex combination stays in l1PredictorClass
+@isnad1 id=mem.4h5v.s7.e511cf5a4aff from=translated src=- shape=487921e2 vocab=0e82fd66
+-/
 lemma convex_comb_mem_l1PredictorClass {f g : (EuclideanSpace ℝ (Fin d)) → ℝ} {R : ℝ} {t : ℝ}
     (hf : f ∈ l1PredictorClass d R) (hg : g ∈ l1PredictorClass d R)
     (ht_pos : 0 ≤ t) (ht_le : t ≤ 1) :

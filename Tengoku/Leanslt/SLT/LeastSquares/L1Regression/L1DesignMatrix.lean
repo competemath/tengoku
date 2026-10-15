@@ -45,7 +45,9 @@ noncomputable def designMatrixColumn (x : Fin n → EuclideanSpace ℝ (Fin d)) 
 def columnNormBound (x : Fin n → EuclideanSpace ℝ (Fin d)) : Prop :=
   ∀ j : Fin d, ‖designMatrixColumn x j‖ ≤ Real.sqrt n
 
-/-- The squared norm of column j equals Σᵢ (xᵢ)ⱼ² -/
+/-- The squared norm of column j equals Σᵢ (xᵢ)ⱼ²
+@isnad1 id=eq.0h4v.s7.97ad2a8d7a09 from=translated src=- shape=d5dddb7b vocab=04bc3caa
+-/
 lemma designMatrixColumn_norm_sq (x : Fin n → EuclideanSpace ℝ (Fin d)) (j : Fin d) :
     ‖designMatrixColumn x j‖^2 = ∑ i : Fin n, ((x i) j)^2 := by
   unfold designMatrixColumn
@@ -55,11 +57,15 @@ lemma designMatrixColumn_norm_sq (x : Fin n → EuclideanSpace ℝ (Fin d)) (j :
   simp only [Real.norm_eq_abs, sq_abs]
   rfl
 
-/-- Column access lemma -/
+/-- Column access lemma
+@isnad1 id=eq.0h5v.s6.df43d87cd917 from=translated src=- shape=0e7db00c vocab=190b704f
+-/
 lemma designMatrixColumn_apply (x : Fin n → EuclideanSpace ℝ (Fin d)) (j : Fin d) (i : Fin n) :
     (designMatrixColumn x j) i = (x i) j := rfl
 
-/-- Design matrix applied to θ at index i can be expressed using columns -/
+/-- Design matrix applied to θ at index i can be expressed using columns
+@isnad1 id=eq.0h5v.s7.ff3d28e0d98a from=translated src=- shape=f22faf4a vocab=2391a7ac
+-/
 lemma designMatrixMul_apply_sum_columns (x : Fin n → EuclideanSpace ℝ (Fin d))
     (θ : EuclideanSpace ℝ (Fin d)) (i : Fin n) :
     (designMatrixMul x θ) i = ∑ j, θ j * (designMatrixColumn x j) i := by
@@ -70,7 +76,9 @@ lemma designMatrixMul_apply_sum_columns (x : Fin n → EuclideanSpace ℝ (Fin d
     simp [mul_comm]
   simp [PiLp.inner_apply, designMatrixColumn_apply, mul_comm]
 
-/-- The design matrix multiplication can be written as Σⱼ θⱼ · Xⱼ -/
+/-- The design matrix multiplication can be written as Σⱼ θⱼ · Xⱼ
+@isnad1 id=eq.0h4v.s7.9de78ef74935 from=translated src=- shape=8aa44936 vocab=a9acbe40
+-/
 lemma designMatrixMul_eq_sum_columns (x : Fin n → EuclideanSpace ℝ (Fin d))
     (θ : EuclideanSpace ℝ (Fin d)) :
     designMatrixMul x θ = ∑ j : Fin d, (θ j) • designMatrixColumn x j := by
@@ -82,7 +90,9 @@ lemma designMatrixMul_eq_sum_columns (x : Fin n → EuclideanSpace ℝ (Fin d))
   simp only [WithLp.ofLp_smul, Pi.smul_apply, smul_eq_mul]
 
 /-- Key triangle inequality for design matrix multiplication:
-‖Xθ‖₂ ≤ Σⱼ |θⱼ| · ‖Xⱼ‖₂ -/
+‖Xθ‖₂ ≤ Σⱼ |θⱼ| · ‖Xⱼ‖₂
+@isnad1 id=le.0h4v.s7.fca5d4134770 from=translated src=- shape=a2f48893 vocab=3cbd263f
+-/
 lemma designMatrixMul_norm_le_sum (x : Fin n → EuclideanSpace ℝ (Fin d))
     (θ : EuclideanSpace ℝ (Fin d)) :
     ‖designMatrixMul x θ‖ ≤ ∑ j : Fin d, ‖θ j‖ * ‖designMatrixColumn x j‖ := by
@@ -95,7 +105,9 @@ lemma designMatrixMul_norm_le_sum (x : Fin n → EuclideanSpace ℝ (Fin d))
         rw [norm_smul, Real.norm_eq_abs]
 
 /-- Main theorem: Under column norm bound, ‖f_θ‖_n ≤ ‖θ‖₁
-This is the key insight for high-dimensional ℓ₁ regression. -/
+This is the key insight for high-dimensional ℓ₁ regression.
+@isnad1 id=le.2h4v.s6.69ea3e068bf9 from=translated src=- shape=23b4e3fa vocab=6676b69f
+-/
 theorem empiricalNorm_le_l1norm_of_columnNormBound (x : Fin n → EuclideanSpace ℝ (Fin d))
     (θ : EuclideanSpace ℝ (Fin d)) (hcol : columnNormBound x) (hn : 0 < n) :
     empiricalNorm n (fun i => @inner ℝ _ _ θ (x i)) ≤ l1norm θ := by
@@ -124,7 +136,9 @@ theorem empiricalNorm_le_l1norm_of_columnNormBound (x : Fin n → EuclideanSpace
         · exact norm_nonneg _
     _ = l1norm θ := by simp only [mul_one, l1norm]
 
-/-- Corollary: Under column norm bound, covering in ‖·‖₁ gives covering in ‖·‖_n -/
+/-- Corollary: Under column norm bound, covering in ‖·‖₁ gives covering in ‖·‖_n
+@isnad1 id=ex.4h7v.s8.23659961475f from=translated src=- shape=f5e5d194 vocab=d4371e4d
+-/
 theorem l1_covering_implies_empirical_covering (x : Fin n → EuclideanSpace ℝ (Fin d))
     (hcol : columnNormBound x) (hn : 0 < n)
     {S : Set (EuclideanSpace ℝ (Fin d))} {T : Finset (EuclideanSpace ℝ (Fin d))} {ε : ℝ}
@@ -139,7 +153,9 @@ theorem l1_covering_implies_empirical_covering (x : Fin n → EuclideanSpace ℝ
         ≤ l1norm (θ - θ') := empiricalNorm_le_l1norm_of_columnNormBound x (θ - θ') hcol hn
       _ ≤ ε := hθ'_dist
 
-/-- Trivial column norm bound: all columns have norm ≤ √n when n = 0 -/
+/-- Trivial column norm bound: all columns have norm ≤ √n when n = 0
+@isnad1 id=columnno.0h2v.s4.6247e102f701 from=translated src=- shape=4e4e7f1c vocab=064ec441
+-/
 lemma columnNormBound_of_n_eq_zero (x : Fin 0 → EuclideanSpace ℝ (Fin d)) :
     columnNormBound x := by
   intro j
@@ -148,7 +164,9 @@ lemma columnNormBound_of_n_eq_zero (x : Fin 0 → EuclideanSpace ℝ (Fin d)) :
   simp only [Fintype.sum_empty, Real.sqrt_zero]
   exact Real.sqrt_nonneg _
 
-/-- The empirical norm is zero when n = 0 -/
+/-- The empirical norm is zero when n = 0
+@isnad1 id=eq.0h1v.s4.677c0a1a425a from=translated src=- shape=4442d2e8 vocab=3a73142a
+-/
 lemma empiricalNorm_eq_zero_of_n_eq_zero (f : Fin 0 → ℝ) :
     empiricalNorm 0 f = 0 := by
   unfold empiricalNorm

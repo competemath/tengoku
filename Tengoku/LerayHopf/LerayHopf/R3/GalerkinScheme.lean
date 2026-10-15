@@ -115,14 +115,18 @@ noncomputable def galerkinSpan (B : SchwartzGalerkinBasis) (n : ℕ) :
 
 -- Proof sketch: `FiniteDimensional.span_of_finite (Set.finite_range _)`.
 /-- The prefix span `galerkinSpan B n`, being spanned by a finite generating set, is
-finite-dimensional (S2). -/
+finite-dimensional (S2).
+@isnad1 id=finitedi.0h2v.s15.9589851fb97d from=translated src=- shape=47600682 vocab=53060cd1
+-/
 instance galerkinSpan_finiteDimensional (B : SchwartzGalerkinBasis) (n : ℕ) :
     FiniteDimensional ℝ (galerkinSpan B n) :=
   FiniteDimensional.span_of_finite ℝ (Set.finite_range _)
 
 /-- A finite-dimensional subspace is complete, hence has an orthogonal projection (Gating
 note G1). This explicit instance guarantees `galerkinP` (S4) typechecks even if the
-`HasOrthogonalProjection` instance does not synthesize transitively from S2. -/
+`HasOrthogonalProjection` instance does not synthesize transitively from S2.
+@isnad1 id=hasortho.0h2v.s12.46d971e012bc from=translated src=- shape=caea76a7 vocab=776dd500
+-/
 instance galerkinSpan_hasOrthogonalProjection (B : SchwartzGalerkinBasis) (n : ℕ) :
     (galerkinSpan B n).HasOrthogonalProjection :=
   inferInstance
@@ -132,7 +136,9 @@ instance galerkinSpan_hasOrthogonalProjection (B : SchwartzGalerkinBasis) (n : �
 -- Proof sketch: span is monotone in the generating set; the `Fin n` range is contained
 -- in the `Fin m` range for `n ≤ m`, so `Submodule.span_mono`.
 /-- The prefix spans `galerkinSpan B` are monotone in `n` (S3): more generators only grow
-the span. -/
+the span.
+@isnad1 id=monotone.0h1v.s14.4f8cb5bb6e3b from=translated src=- shape=70c26f54 vocab=9f222ac9
+-/
 theorem galerkinSpan_mono (B : SchwartzGalerkinBasis) : Monotone (galerkinSpan B) := by
   intro n m hnm
   refine Submodule.span_mono ?_
@@ -150,7 +156,9 @@ noncomputable def galerkinP (B : SchwartzGalerkinBasis) (n : ℕ) :
 
 -- Proof sketch: exact `Submodule.norm_starProjection_apply_le`.
 /-- The Galerkin projector `galerkinP B n` is non-expansive (D1, field `norm_le`): it never
-increases the `L²` norm. -/
+increases the `L²` norm.
+@isnad1 id=le.0h3v.s16.3afda69c02ba from=translated src=- shape=3d63604e vocab=fdfbb746
+-/
 theorem galerkinP_norm_le (B : SchwartzGalerkinBasis) (n : ℕ) (u : L2VF_R3) :
     ‖galerkinP B n u‖ ≤ ‖u‖ :=
   Submodule.norm_starProjection_apply_le _ u
@@ -159,7 +167,9 @@ theorem galerkinP_norm_le (B : SchwartzGalerkinBasis) (n : ℕ) (u : L2VF_R3) :
 
 -- Proof sketch: from `Submodule.isIdempotentElem_starProjection`
 -- (`IsIdempotentElem f` ↔ `f ∘ f = f`); apply at `u`.
-/-- The Galerkin projector `galerkinP B n` is idempotent (D2, field `idem`). -/
+/-- The Galerkin projector `galerkinP B n` is idempotent (D2, field `idem`).
+@isnad1 id=eq.0h3v.s18.0a4a35520ba8 from=translated src=- shape=4ee0d2b8 vocab=0c9ec8f1
+-/
 theorem galerkinP_idem (B : SchwartzGalerkinBasis) (n : ℕ) (u : L2VF_R3) :
     galerkinP B n (galerkinP B n u) = galerkinP B n u := by
   have h := (galerkinSpan B n).isIdempotentElem_starProjection
@@ -169,7 +179,9 @@ theorem galerkinP_idem (B : SchwartzGalerkinBasis) (n : ℕ) (u : L2VF_R3) :
 
 -- Proof sketch: `Submodule.starProjection_apply_mem`.
 /-- The Galerkin projector `galerkinP B n` lands in the prefix span `galerkinSpan B n` (D3,
-used to derive D4 and D6). -/
+used to derive D4 and D6).
+@isnad1 id=mem.0h3v.s17.66261032c442 from=translated src=- shape=75a485a7 vocab=c53e214b
+-/
 theorem galerkinP_mem_span (B : SchwartzGalerkinBasis) (n : ℕ) (u : L2VF_R3) :
     galerkinP B n u ∈ galerkinSpan B n :=
   Submodule.starProjection_apply_mem _ u
@@ -183,7 +195,9 @@ theorem galerkinP_mem_span (B : SchwartzGalerkinBasis) (n : ℕ) (u : L2VF_R3) :
 -- is part of the `R3GalerkinScheme.preserves_sigma` field signature, so keep it for the
 -- assembly statement (underscore-named since the proof discards it).
 /-- The Galerkin projector `galerkinP B n` preserves the divergence-free subspace `L2Sigma_R3`
-(D4, field `preserves_sigma`). -/
+(D4, field `preserves_sigma`).
+@isnad1 id=mem.1h3v.s17.119f63631b09 from=translated src=- shape=573fba7f vocab=3436ff3b
+-/
 theorem galerkinP_preserves_sigma (B : SchwartzGalerkinBasis) (n : ℕ) (u : L2VF_R3)
     (_hu : u ∈ L2Sigma_R3) : galerkinP B n u ∈ L2Sigma_R3 := by
   have hspan : galerkinSpan B n ≤ L2Sigma_R3 := by
@@ -203,7 +217,9 @@ theorem galerkinP_preserves_sigma (B : SchwartzGalerkinBasis) (n : ℕ) (u : L2V
 -- basis and is intentionally NOT claimed here.
 /-- The Galerkin projectors converge strongly to the identity on `L2Sigma_R3` (D5, field
 `tendsto_id`, honest restricted form — see gating note G2: the unrestricted `∀ u : L2VF_R3`
-statement is too strong for a divergence-free basis and is intentionally not claimed). -/
+statement is too strong for a divergence-free basis and is intentionally not claimed).
+@isnad1 id=tendsto.1h2v.s17.b0cc0e6b0220 from=translated src=- shape=47f171c0 vocab=b27a4a26
+-/
 theorem galerkinP_tendsto_id (B : SchwartzGalerkinBasis) (u : L2VF_R3)
     (hu : u ∈ L2Sigma_R3) :
     Filter.Tendsto (fun n => galerkinP B n u) Filter.atTop (𝓝 u) := by
@@ -289,7 +305,9 @@ private theorem hasSchwartzComponents_of_basis (B : SchwartzGalerkinBasis) (k : 
 -- `L2VF_projComponent_R3 j (·) = (·).toLp` level throughout.
 /-- The image of the Galerkin projector `galerkinP B n` has Schwartz component representatives
 in every coordinate (D6, field `range_schwartz`) — inherited from the basis vectors via
-`Submodule.span_induction`. -/
+`Submodule.span_induction`.
+@isnad1 id=ex.0h3v.s17.09e76c575e50 from=translated src=- shape=91547d00 vocab=297cca64
+-/
 theorem galerkinP_range_schwartz (B : SchwartzGalerkinBasis) (n : ℕ) (u : L2VF_R3) :
     ∃ ψ : Fin 3 → SchwartzMap Domain3 ℝ,
       ∀ j : Fin 3,
@@ -313,7 +331,9 @@ theorem galerkinP_range_schwartz (B : SchwartzGalerkinBasis) (n : ℕ) (u : L2VF
 
 /-- **Nesting for the concrete projector.** A point fixed by `galerkinP B m` stays fixed by
 `galerkinP B n` for `n ≥ m` (its subspace `galerkinSpan B m ⊆ galerkinSpan B n` and the
-orthogonal projection fixes points of its subspace). Discharges `R3GalerkinScheme.mono_range`. -/
+orthogonal projection fixes points of its subspace). Discharges `R3GalerkinScheme.mono_range`.
+@isnad1 id=eq.2h4v.s17.e2879235f2e0 from=translated src=- shape=521e8545 vocab=9fcb8389
+-/
 theorem galerkinP_mono_range (B : SchwartzGalerkinBasis) :
     ∀ (m n : ℕ), m ≤ n → ∀ (w : L2VF_R3), galerkinP B m w = w → galerkinP B n w = w := by
   intro m n hmn w hw
@@ -338,7 +358,9 @@ actual `R3GalerkinScheme`.
 The `tendsto_id` conjunct is the Σ-restricted form, which (after the soundness fix in
 `SolutionInterfaces.lean`) now matches the `R3GalerkinScheme.tendsto_id` field exactly: a
 divergence-free basis is total only in `L2Sigma_R3`, so convergence is claimed precisely
-where it is true. -/
+where it is true.
+@isnad1 id=and.0h1v.s19.dec49d22abb5 from=translated src=- shape=c61fd53f vocab=eb3cd9c3
+-/
 theorem galerkinScheme_properties_of_basis (B : SchwartzGalerkinBasis) :
     (∀ n u, u ∈ L2Sigma_R3 → galerkinP B n u ∈ L2Sigma_R3)            -- preserves_sigma
   ∧ (∀ u, u ∈ L2Sigma_R3 →
@@ -363,7 +385,9 @@ input is the bundled density hypothesis `B.dense_span` (a Helmholtz/Weyl-lemma f
 as a hypothesis, not axiomatized).
 
 D5 (`galerkinP_tendsto_id`) now matches the weakened `R3GalerkinScheme.tendsto_id` field
-shape `∀ u, u ∈ L2Sigma_R3 → Tendsto …` exactly, so the assembly is direct. -/
+shape `∀ u, u ∈ L2Sigma_R3 → Tendsto …` exactly, so the assembly is direct.
+@isnad1 id=nonempty.0h1v.s2.f2dcd057bd5a from=translated src=- shape=ffc494c5 vocab=208b6d5a
+-/
 theorem nonempty_r3GalerkinScheme_of_basis (B : SchwartzGalerkinBasis) :
     Nonempty R3GalerkinScheme := by
   -- Proof sketch: assemble

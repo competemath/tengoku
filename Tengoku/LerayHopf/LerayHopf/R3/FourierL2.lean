@@ -84,7 +84,9 @@ noncomputable def phaseFun (h : Domain3) : Domain3 → ℂ :=
 /-- The modulation phase is unimodular: `‖phaseFun h ξ‖ = 1`.
 
 Proof sketch: `Real.fourierChar t` lands in `Circle`, and `‖(c : ℂ)‖ = 1` for `c : Circle`
-(`Circle.norm_coe` / `Complex.norm_exp_ofReal_mul_I`-style unimodularity). -/
+(`Circle.norm_coe` / `Complex.norm_exp_ofReal_mul_I`-style unimodularity).
+@isnad1 id=eq.0h2v.s4.0eb74536cfa5 from=translated src=- shape=6a85ccc7 vocab=95887388
+-/
 theorem norm_phaseFun_eq_one (h : Domain3) (ξ : Domain3) : ‖phaseFun h ξ‖ = 1 := by
   simp only [phaseFun]
   exact Circle.norm_coe _
@@ -112,7 +114,9 @@ operator of operator-norm ≤ 1.  Mathlib has no `boundedMulLp`, so it is built 
 
 Proof sketch: `Lp.memLp g` gives `MemLp (g : Domain3 → ℂ) 2 volume`; bound the product
 pointwise by `1 * ‖g ξ‖` via `norm_phaseFun_eq_one` and conclude with the `MemLp` mapping
-under an a.e.-bounded measurable multiplier (`MemLp.of_le_mul` / `eLpNorm` monotonicity). -/
+under an a.e.-bounded measurable multiplier (`MemLp.of_le_mul` / `eLpNorm` monotonicity).
+@isnad1 id=memlp.0h2v.s12.cf11dc931ba1 from=translated src=- shape=178b1efa vocab=49c99a65
+-/
 theorem phaseMulMemLp (h : Domain3) (g : L2C_R3) :
     MemLp (fun ξ : Domain3 => phaseFun h ξ * (g : Domain3 → ℂ) ξ) 2
       (volume : Measure Domain3) := by
@@ -170,7 +174,9 @@ noncomputable def phaseMulCLM (h : Domain3) : L2C_R3 →L[ℂ] L2C_R3 :=
 This pins `phaseMulCLM` down as the genuine phase multiplier.
 
 Proof sketch: unfold `phaseMulCLM`/`phaseMulLM` to `(phaseMulMemLp h g).toLp`, then
-`MemLp.coeFn_toLp`. -/
+`MemLp.coeFn_toLp`.
+@isnad1 id=eventual.0h2v.s16.5f6b10f66f4c from=translated src=- shape=31244194 vocab=3983489e
+-/
 theorem coeFn_phaseMulCLM (h : Domain3) (g : L2C_R3) :
     (phaseMulCLM h g : Domain3 → ℂ)
       =ᵐ[volume] fun ξ => phaseFun h ξ * (g : Domain3 → ℂ) ξ := by
@@ -267,7 +273,9 @@ the form consumed by F5's density base case.
 Proof sketch: `fourier_coe` reduces both sides to the raw `VectorFourier.fourierIntegral`;
 `VectorFourier.fourierIntegral_comp_add_right` (with `L = innerₗ Domain3`, `v₀ = h`) yields the
 phase factor `𝐞 ⟪h, ·⟫ = phaseFun h`; conclude a.e. with `F3` and `SchwartzMap.toLp_fourier_eq`.
-The convention bookkeeping (the `(2π)`, the sign, `innerₗ` vs `⟪·,·⟫`) is the substance. -/
+The convention bookkeeping (the `(2π)`, the sign, `innerₗ` vs `⟪·,·⟫`) is the substance.
+@isnad1 id=eq.0h2v.s17.b1adf263bf18 from=translated src=- shape=1e877dff vocab=5fe7a6fc
+-/
 theorem toLp_fourier_compMeasurePreserving_eq (h : Domain3) (ψ : SchwartzMap Domain3 ℂ) :
     𝓕 (Lp.compMeasurePreserving (· + h)
         (measurePreserving_add_right (volume : Measure Domain3) h) (ψ.toLp 2))
@@ -292,7 +300,9 @@ Proof sketch: `DenseRange.induction_on` over `SchwartzMap.denseRange_toLpCLM` (t
 Schwartz-dense engine).  The predicate is `isClosed_eq` of the two continuous maps
 `f ↦ 𝓕 (compMeasurePreserving … f)` and `f ↦ phaseMulCLM h (𝓕 f)` (continuity of
 `compMeasurePreserving`, `𝓕`, and `phaseMulCLM`).  The base case on Schwartz reps is F4.
-Template: `MeasureTheory.Lp.fourier_toTemperedDistribution_eq`. -/
+Template: `MeasureTheory.Lp.fourier_toTemperedDistribution_eq`.
+@isnad1 id=eq.0h2v.s17.422503c222bb from=translated src=- shape=9514d643 vocab=e96d3600
+-/
 theorem fourier_translate_eq (h : Domain3) (f : L2C_R3) :
     𝓕 (Lp.compMeasurePreserving (· + h)
         (measurePreserving_add_right (volume : Measure Domain3) h) f)
@@ -327,7 +337,9 @@ hypothesis-form lemma reusable by both consumers.
 
 Proof sketch: from the Schwartz rep `hφ : component = (φ).toLp 2`, rewrite and apply
 `SchwartzMap.toLp_fourier_eq` then `coeFn_toLp` (exactly the `galerkinSpan_fourier_ae`
-argument). -/
+argument).
+@isnad1 id=eventual.1h3v.s17.bd172c2b85a5 from=translated src=- shape=594eccbc vocab=6c7f442f
+-/
 theorem fourierComponentC_ae_schwartz (j : Fin 3) (u : L2VF_R3)
     (φ : SchwartzMap Domain3 ℂ)
     (hφ : L2VF_projComponentC_R3 j u = φ.toLp 2 (volume : Measure Domain3)) :
@@ -346,7 +358,9 @@ consumers cite a stable name rather than `unfold`ing:
 
   `viscousFormSq_R3 1 w = ∑ j, ∫ ξ, (2π)² ‖ξ‖² ‖(𝓕 (L2VF_projComponentC_R3 j w)) ξ‖² dξ`.
 
-Proof sketch: `simp [viscousFormSq_R3, one_mul]` (definitional). -/
+Proof sketch: `simp [viscousFormSq_R3, one_mul]` (definitional).
+@isnad1 id=eq.0h1v.s16.98c3bf396171 from=translated src=- shape=18f2cb1d vocab=a91fb651
+-/
 theorem viscousFormSq_R3_eq_integral_normSq_fourier (w : L2VF_R3) :
     viscousFormSq_R3 1 w
       = ∑ j : Fin 3, ∫ ξ : Domain3,
@@ -358,7 +372,9 @@ theorem viscousFormSq_R3_eq_integral_normSq_fourier (w : L2VF_R3) :
 /-! ### F8 — Plancherel core helper -/
 
 /-- L²-norm-squared of a complex-scalar `L²` element as an integral of the pointwise squared
-norm. -/
+norm.
+@isnad1 id=eq.0h1v.s13.28c5a4969195 from=translated src=- shape=4ab45302 vocab=053cc61c
+-/
 theorem normSq_eq_integral_normSq_C (g : L2C_R3) :
     ‖g‖ ^ 2 = ∫ ξ : Domain3, ‖(g : Domain3 → ℂ) ξ‖ ^ 2 ∂(volume : Measure Domain3) := by
   have hre : ‖g‖ ^ 2 = RCLike.re (inner ℂ g g) := norm_sq_eq_re_inner (𝕜 := ℂ) g
@@ -377,7 +393,9 @@ of `𝓕 (τ_h c) − 𝓕 c` is the integral of `‖phaseFun h ξ − 1‖² �
 
 Proof sketch: F5 rewrites `𝓕 (τ_h c) = phaseMulCLM h (𝓕 c)`; F3 gives the a.e. pointwise form
 `(phaseFun h ξ − 1) * (𝓕 c) ξ`; `Lp.norm_sq` as an integral of the pointwise squared norm
-(via `Lp.norm_def`/`eLpNorm` and `‖·‖²` integrand) closes it. -/
+(via `Lp.norm_def`/`eLpNorm` and `‖·‖²` integrand) closes it.
+@isnad1 id=eq.0h2v.s16.fbf1fb7caa30 from=translated src=- shape=70a358f0 vocab=c36e39f7
+-/
 theorem normSq_sub_eq_integral_phase_sub (h : Domain3) (c : L2C_R3) :
     ‖𝓕 (Lp.compMeasurePreserving (· + h)
           (measurePreserving_add_right (volume : Measure Domain3) h) c) - 𝓕 c‖ ^ 2
@@ -414,7 +432,9 @@ integrates up to `‖h‖² · viscousFormSq_R3 1 w` (consumed by `RellichBall.l
 
 Proof sketch: `phaseFun h ξ = 𝐞 ⟪h,ξ⟫ = exp(2π i ⟪h,ξ⟫)`; `|e^{iθ} − 1| ≤ |θ|` with
 `θ = 2π ⟪h,ξ⟫` gives `‖phaseFun h ξ − 1‖ ≤ 2π |⟪h,ξ⟫|`; Cauchy–Schwarz
-`|⟪h,ξ⟫| ≤ ‖h‖ ‖ξ‖` and squaring give the claim. -/
+`|⟪h,ξ⟫| ≤ ‖h‖ ‖ξ‖` and squaring give the claim.
+@isnad1 id=le.0h2v.s7.925030cd5837 from=translated src=- shape=6d6a5fba vocab=4a9a2b9e
+-/
 theorem normSq_phaseFun_sub_one_le (h : Domain3) (ξ : Domain3) :
     ‖phaseFun h ξ - 1‖ ^ 2 ≤ (2 * Real.pi) ^ 2 * ‖h‖ ^ 2 * ‖ξ‖ ^ 2 := by
   -- write `phaseFun h ξ = exp (I * (2π⟪h,ξ⟫ : ℝ))`

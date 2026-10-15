@@ -63,6 +63,9 @@ def fdBoundary : ℝ → ℂ := fun t =>
 /-- Full partition including endpoints. -/
 def fdBoundaryFullPartition : Finset ℝ := {0, 1, 2, 3, 4, 5}
 
+/--
+@isnad1 id=eq.0h0v.s3.b5efca2a00ca from=translated src=- shape=d3a93718 vocab=e608431e
+-/
 lemma fdBoundary_at_three :
     fdBoundary 3 = ellipticPointRho := by
   simp only [fdBoundary, show ¬(3 : ℝ) ≤ 1 by norm_num,
@@ -120,14 +123,23 @@ def fdBoundary_H_partition : Finset ℝ := {1, 3, 4}
 /-- The q-expansion radius at height H: e^(-2πH). -/
 def seg5_q_radius_H (H : ℝ) : ℝ := Real.exp (-2 * Real.pi * H)
 
+/--
+@isnad1 id=eq.0h1v.s5.b9c539fde513 from=translated src=- shape=ec367fbd vocab=f1d6a463
+-/
 lemma fdBoundary_H_at_zero (H : ℝ) :
     fdBoundary_H H 0 = 1 / 2 + H * I := by
   simp [fdBoundary_H]
 
+/--
+@isnad1 id=eq.0h1v.s3.6d36ee547da9 from=translated src=- shape=a62063d2 vocab=2b055d7f
+-/
 lemma fdBoundary_H_at_one (H : ℝ) :
     fdBoundary_H H 1 = ellipticPointRhoPlusOne := by
   simp [fdBoundary_H, ellipticPointRhoPlusOne, ellipticPointRhoPlusOne']
 
+/--
+@isnad1 id=eq.0h1v.s3.b821226779cf from=translated src=- shape=a62063d2 vocab=d0075599
+-/
 lemma fdBoundary_H_at_three (H : ℝ) :
     fdBoundary_H H 3 = ellipticPointRho := by
   simp only [fdBoundary_H, show ¬(3 : ℝ) ≤ 1 by norm_num,
@@ -140,6 +152,9 @@ lemma fdBoundary_H_at_three (H : ℝ) :
   simp [ellipticPointRho, ellipticPointRho', UpperHalfPlane.coe_mk]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.787f557493f6 from=translated src=- shape=a0bf8e68 vocab=eee1d659
+-/
 lemma fdBoundary_H_at_four (H : ℝ) :
     fdBoundary_H H 4 = -1 / 2 + H * I := by
   simp only [fdBoundary_H, show ¬(4 : ℝ) ≤ 1 by norm_num,
@@ -148,6 +163,9 @@ lemma fdBoundary_H_at_four (H : ℝ) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.3fd4077ab67a from=translated src=- shape=ec367fbd vocab=f1d6a463
+-/
 lemma fdBoundary_H_at_five (H : ℝ) :
     fdBoundary_H H 5 = 1 / 2 + H * I := by
   simp only [fdBoundary_H, show ¬(5 : ℝ) ≤ 1 by norm_num,
@@ -156,6 +174,9 @@ lemma fdBoundary_H_at_five (H : ℝ) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h1v.s4.9cc2c905b902 from=translated src=- shape=b4d3c9b0 vocab=8623160f
+-/
 lemma fdBoundary_H_closed (H : ℝ) :
     fdBoundary_H H 0 = fdBoundary_H H 5 := by
   rw [fdBoundary_H_at_zero, fdBoundary_H_at_five]
@@ -240,6 +261,9 @@ private lemma fdBoundary_H_eq_layered (H : ℝ) (t : ℝ) :
   unfold fdBoundary_H fdBoundary_H_inner1234 fdBoundary_H_inner234 fdBoundary_H_inner34
   split_ifs <;> rfl
 
+/--
+@isnad1 id=continuo.0h1v.s4.7d418fe73b86 from=translated src=- shape=9bb0b988 vocab=508d2231
+-/
 @[fun_prop]
 theorem fdBoundary_H_continuous (H : ℝ) :
     Continuous (fdBoundary_H H) := by

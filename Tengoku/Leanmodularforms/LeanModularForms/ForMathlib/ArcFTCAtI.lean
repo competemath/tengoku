@@ -287,7 +287,9 @@ private lemma right_integral_34_branch_corrected (H : ℝ) (hH : 1 < H) {δ : �
     log_neg_eq_sub_pi_I (fdBoundary_sub_I_at_45_im_pos H hH)
   rw [hright34, h_branch_45, h_branch_2pδ]; ring
 
-/-- Full FTC telescope for the crossing at `i`. -/
+/-- Full FTC telescope for the crossing at `i`.
+@isnad1 id=eq.3h2v.s8.a0e94d33a345 from=translated src=- shape=9c5d2277 vocab=4d95f59d
+-/
 theorem fdBoundary_ftc_telescope_I (H : ℝ) (hH : 1 < H) {δ : ℝ}
     (hδ : 0 < δ) (hδ' : δ < 1/5) :
     (∫ t in (0 : ℝ)..(2/5 - δ),

@@ -35,13 +35,17 @@ variable {n : ℕ} {X : Type*}
 These lemmas establish that star-shaped sets are closed under scaling.
 -/
 
-/-- For star-shaped H, h ∈ H and α ∈ [0,1] implies α • h ∈ H -/
+/-- For star-shaped H, h ∈ H and α ∈ [0,1] implies α • h ∈ H
+@isnad1 id=mem.4h4v.s6.f994beda4987 from=translated src=- shape=44900996 vocab=3ddf50e0
+-/
 lemma IsStarShaped.smul_mem {H : Set (X → ℝ)} (hH : IsStarShaped H)
     {h : X → ℝ} (hh : h ∈ H) {α : ℝ} (hα0 : 0 ≤ α) (hα1 : α ≤ 1) :
     α • h ∈ H :=
   hH.2 h hh α hα0 hα1
 
-/-- Zero is in any star-shaped set -/
+/-- Zero is in any star-shaped set
+@isnad1 id=mem.1h2v.s5.34c50bdfb45b from=translated src=- shape=6ce89ffd vocab=7cdb651b
+-/
 lemma IsStarShaped.zero_mem {H : Set (X → ℝ)} (hH : IsStarShaped H) :
     (0 : X → ℝ) ∈ H :=
   hH.1
@@ -52,15 +56,21 @@ lemma IsStarShaped.zero_mem {H : Set (X → ℝ)} (hH : IsStarShaped H) :
 For 0 < δ ≤ t, the ratio δ/t is in (0, 1].
 -/
 
-/-- For 0 < δ ≤ t, we have 0 < δ/t -/
+/-- For 0 < δ ≤ t, we have 0 < δ/t
+@isnad1 id=lt.2h2v.s5.25edaa65e073 from=translated src=- shape=947ce12c vocab=763d4bd0
+-/
 lemma ratio_pos {δ t : ℝ} (hδ : 0 < δ) (ht : 0 < t) : 0 < δ / t :=
   div_pos hδ ht
 
-/-- For 0 < δ ≤ t, we have 0 ≤ δ/t -/
+/-- For 0 < δ ≤ t, we have 0 ≤ δ/t
+@isnad1 id=le.2h2v.s5.56380304a7aa from=translated src=- shape=e233feb9 vocab=7645ee28
+-/
 lemma ratio_nonneg {δ t : ℝ} (hδ : 0 < δ) (ht : 0 < t) : 0 ≤ δ / t :=
   le_of_lt (ratio_pos hδ ht)
 
-/-- For 0 < δ ≤ t, we have δ/t ≤ 1 -/
+/-- For 0 < δ ≤ t, we have δ/t ≤ 1
+@isnad1 id=le.2h2v.s5.1c39dcefd7b1 from=translated src=- shape=c43fb04a vocab=7645ee28
+-/
 lemma ratio_le_one {δ t : ℝ} (hδt : δ ≤ t) (ht : 0 < t) : δ / t ≤ 1 :=
   div_le_one_of_le₀ hδt (le_of_lt ht)
 
@@ -70,7 +80,9 @@ lemma ratio_le_one {δ t : ℝ} (hδt : δ ≤ t) (ht : 0 < t) : δ / t ≤ 1 :=
 The empirical norm scales linearly for non-negative scalars.
 -/
 
-/-- For α ≥ 0, ‖α • h‖_n = α * ‖h‖_n -/
+/-- For α ≥ 0, ‖α • h‖_n = α * ‖h‖_n
+@isnad1 id=eq.1h3v.s5.b5c535b37078 from=translated src=- shape=e3e78023 vocab=3a5790ff
+-/
 lemma empiricalNorm_smul_of_nonneg {f : Fin n → ℝ} {α : ℝ} (hα : 0 ≤ α) :
     empiricalNorm n (α • f) = α * empiricalNorm n f := by
   unfold empiricalNorm
@@ -91,13 +103,17 @@ lemma empiricalNorm_smul_of_nonneg {f : Fin n → ℝ} {α : ℝ} (hα : 0 ≤ �
 Scaling by δ/t maps B_n(t; H) into B_n(δ; H) for star-shaped H.
 -/
 
-/-- For star-shaped H, h ∈ H, and 0 < δ ≤ t: (δ/t) • h ∈ H -/
+/-- For star-shaped H, h ∈ H, and 0 < δ ≤ t: (δ/t) • h ∈ H
+@isnad1 id=mem.5h5v.s6.3f2e6bfdf335 from=translated src=- shape=75c9e3d7 vocab=70ebf4c9
+-/
 lemma IsStarShaped.smul_ratio_mem {H : Set (X → ℝ)} (hH : IsStarShaped H)
     {h : X → ℝ} (hh : h ∈ H) {δ t : ℝ} (hδ : 0 < δ) (ht : 0 < t) (hδt : δ ≤ t) :
     (δ / t) • h ∈ H :=
   hH.smul_mem hh (ratio_nonneg hδ ht) (ratio_le_one hδt ht)
 
-/-- Scaled norm bound -/
+/-- Scaled norm bound
+@isnad1 id=le.3h4v.s6.2b292dffbc78 from=translated src=- shape=bb8ec2f3 vocab=8ee68839
+-/
 lemma smul_ratio_empiricalNorm_le {f : Fin n → ℝ} {δ t : ℝ}
     (hδ : 0 < δ) (ht : 0 < t)
     (hf : empiricalNorm n f ≤ t) :
@@ -107,7 +123,9 @@ lemma smul_ratio_empiricalNorm_le {f : Fin n → ℝ} {δ t : ℝ}
       ≤ (δ / t) * t := by apply mul_le_mul_of_nonneg_left hf (ratio_nonneg hδ ht)
     _ = δ := div_mul_cancel₀ δ (ne_of_gt ht)
 
-/-- Scaling maps localized ball B_n(t) into B_n(δ) -/
+/-- Scaling maps localized ball B_n(t) into B_n(δ)
+@isnad1 id=mem.5h7v.s6.a228f010604d from=translated src=- shape=700e230f vocab=c419e763
+-/
 lemma localizedBall_smul_mem {H : Set (X → ℝ)} (hH : IsStarShaped H)
     {x : Fin n → X} {h : X → ℝ} {δ t : ℝ}
     (hδ : 0 < δ) (ht : 0 < t) (hδt : δ ≤ t)
@@ -127,7 +145,9 @@ lemma localizedBall_smul_mem {H : Set (X → ℝ)} (hH : IsStarShaped H)
 Scaling properties for the empirical process.
 -/
 
-/-- Process scaling identity -/
+/-- Process scaling identity
+@isnad1 id=eq.0h6v.s7.e6154fa0e39c from=translated src=- shape=e31dadd0 vocab=84e575ab
+-/
 lemma process_smul_eq {w : Fin n → ℝ} {h : X → ℝ} {x : Fin n → X} {α : ℝ} :
     α * ((n : ℝ)⁻¹ * ∑ i, w i * h (x i)) =
     (n : ℝ)⁻¹ * ∑ i, w i * (α • h) (x i) := by
@@ -138,7 +158,9 @@ lemma process_smul_eq {w : Fin n → ℝ} {h : X → ℝ} {x : Fin n → X} {α 
   rw [← Finset.mul_sum]
   ring
 
-/-- Absolute value scaling for non-negative -/
+/-- Absolute value scaling for non-negative
+@isnad1 id=eq.1h2v.s5.4ba05038c1ba from=translated src=- shape=edadbc6c vocab=d96afd66
+-/
 lemma abs_smul_of_nonneg {α x : ℝ} (hα : 0 ≤ α) :
     |α * x| = α * |x| := by
   rw [abs_mul, abs_of_nonneg hα]
@@ -149,7 +171,9 @@ lemma abs_smul_of_nonneg {α x : ℝ} (hα : 0 ≤ α) :
 Key lemmas for the monotonicity proof.
 -/
 
-/-- The zero function is in the localized ball for any positive radius -/
+/-- The zero function is in the localized ball for any positive radius
+@isnad1 id=mem.2h5v.s6.47e71c713d7b from=translated src=- shape=88f8e0ad vocab=fbc4b433
+-/
 lemma zero_mem_localizedBall {H : Set (X → ℝ)} (hH : IsStarShaped H)
     {δ : ℝ} (hδ : 0 < δ) {x : Fin n → X} :
     (0 : X → ℝ) ∈ localizedBall H δ x := by
@@ -159,19 +183,25 @@ lemma zero_mem_localizedBall {H : Set (X → ℝ)} (hH : IsStarShaped H)
     simp only [Pi.zero_apply, sq, mul_zero, Finset.sum_const_zero, mul_zero, Real.sqrt_zero]
     exact le_of_lt hδ
 
-/-- The localized ball is nonempty for star-shaped H and positive radius -/
+/-- The localized ball is nonempty for star-shaped H and positive radius
+@isnad1 id=nonempty.2h5v.s5.47970f186bf9 from=translated src=- shape=0eb0686b vocab=95cb5851
+-/
 lemma localizedBall_nonempty {H : Set (X → ℝ)} (hH : IsStarShaped H)
     {δ : ℝ} (hδ : 0 < δ) {x : Fin n → X} :
     (localizedBall H δ x).Nonempty :=
   ⟨0, zero_mem_localizedBall hH hδ⟩
 
-/-- Localized balls are monotone in radius: B_n(δ; H) ⊆ B_n(t; H) when δ ≤ t -/
+/-- Localized balls are monotone in radius: B_n(δ; H) ⊆ B_n(t; H) when δ ≤ t
+@isnad1 id=le.1h6v.s5.2d05101789cb from=translated src=- shape=9b144e76 vocab=0e2d55d9
+-/
 lemma localizedBall_mono {H : Set (X → ℝ)} {δ t : ℝ} (hδt : δ ≤ t) {x : Fin n → X} :
     localizedBall H δ x ⊆ localizedBall H t x := by
   intro _ hh
   exact ⟨hh.1, le_trans hh.2 hδt⟩
 
-/-- The empirical process at zero is zero -/
+/-- The empirical process at zero is zero
+@isnad1 id=eq.0h4v.s6.d288dcea242a from=translated src=- shape=120f6f0f vocab=2f56ccb3
+-/
 lemma process_at_zero {w : Fin n → ℝ} {x : Fin n → X} :
     (n : ℝ)⁻¹ * ∑ i, w i * (0 : X → ℝ) (x i) = 0 := by
   simp only [Pi.zero_apply, mul_zero, Finset.sum_const_zero, mul_zero]
@@ -181,7 +211,9 @@ lemma process_at_zero {w : Fin n → ℝ} {x : Fin n → X} :
 For any w, the scaled supremum over B_n(t;H) is bounded by the supremum over B_n(δ;H).
 
 Key idea: For each h ∈ B_n(t;H), the scaled function g = (δ/t)•h ∈ B_n(δ;H),
-and (δ/t) * |process(h)| = |process(g)| ≤ sup over B_n(δ). -/
+and (δ/t) * |process(h)| = |process(g)| ≤ sup over B_n(δ).
+@isnad1 id=le.5h7v.s8.85b3da389fc3 from=translated src=- shape=82001aec vocab=721903d0
+-/
 lemma scaled_biSup_le {H : Set (X → ℝ)} (hH : IsStarShaped H)
     {x : Fin n → X} {w : Fin n → ℝ} {δ t : ℝ}
     (hδ : 0 < δ) (ht : 0 < t) (hδt : δ ≤ t)
@@ -336,6 +368,7 @@ The proof uses:
 1. scaled_biSup_le to show pointwise (δ/t) * sup_h |...| ≤ sup_g |...|
 2. Integration preserves this inequality
 3. Linearity of integration with scalars
+@isnad1 id=le.7h6v.s8.149cb348b3b0 from=translated src=- shape=02b71d2c vocab=27076ac0
 -/
 theorem gaussian_complexity_monotone {H : Set (X → ℝ)} (hH : IsStarShaped H)
     {x : Fin n → X} {δ t : ℝ}

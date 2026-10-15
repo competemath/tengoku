@@ -33,7 +33,9 @@ namespace LerayHopf.Galerkin
 on `(b, c]` then its Bochner integrals over `Ioc a c` and `Ioc a b` coincide: the two
 indicator functions are *pointwise equal*, so the integrals agree even when `f` is not
 integrable on either set (both sides are then the same junk value `0`).  This is the
-exact step `WeakFormNS.mono` needs, and it never invokes interval additivity. -/
+exact step `WeakFormNS.mono` needs, and it never invokes interval additivity.
+@isnad1 id=eq.2h5v.s6.f8d0388dc30c from=translated src=- shape=022c12c5 vocab=3b653962
+-/
 theorem setIntegral_Ioc_eq_of_tail_zero {X : Type*} [NormedAddCommGroup X]
     [NormedSpace ℝ X] {f : ℝ → X} {a b c : ℝ} (hbc : b ≤ c)
     (hf : ∀ t, b < t → t ≤ c → f t = 0) :
@@ -56,13 +58,18 @@ theorem setIntegral_Ioc_eq_of_tail_zero {X : Type*} [NormedAddCommGroup X]
 /-- Concrete NON-integrable branch witness: `1/t` up to time `1`, then `0`. -/
 noncomputable def badTail : ℝ → ℝ := fun t => if t ≤ 1 then t⁻¹ else 0
 
+/--
+@isnad1 id=eq.2h1v.s5.a02f69875dd5 from=translated src=- shape=8bbe90a8 vocab=8d0a7822
+-/
 theorem badTail_tail_zero : ∀ t : ℝ, 1 < t → t ≤ 2 → badTail t = 0 := by
   intro t ht _
   simp [badTail, not_le.mpr ht]
 
 /-- `badTail` is genuinely non-integrable on `Ioc 0 2` (it dominates `1/t` near `0`),
 so `badTail_truncation` below exercises the junk-value branch of
-`setIntegral_Ioc_eq_of_tail_zero`, where interval additivity is NOT available. -/
+`setIntegral_Ioc_eq_of_tail_zero`, where interval additivity is NOT available.
+@isnad1 id=not.0h0v.s5.a5b67f837cd3 from=translated src=- shape=69d17921 vocab=6748541c
+-/
 theorem badTail_not_integrableOn :
     ¬ IntegrableOn badTail (Set.Ioc 0 2) volume := by
   intro hInt
@@ -78,7 +85,9 @@ theorem badTail_not_integrableOn :
 
 /-- The truncation identity holds for the non-integrable `badTail` — compiled evidence
 that the `WeakFormNS.mono` restriction step is sound with NO integrability side
-condition (codex finding 4's "non-integrable prefix" scenario). -/
+condition (codex finding 4's "non-integrable prefix" scenario).
+@isnad1 id=eq.0h0v.s6.c54e02da9a38 from=translated src=- shape=e64e8611 vocab=526657d3
+-/
 theorem badTail_truncation :
     ∫ t in Set.Ioc (0 : ℝ) 2, badTail t = ∫ t in Set.Ioc (0 : ℝ) 1, badTail t :=
   setIntegral_Ioc_eq_of_tail_zero one_le_two badTail_tail_zero
@@ -88,7 +97,9 @@ under integrability, `Ioc 0 c = Ioc 0 b ∪ Ioc b c` and `setIntegral_union` giv
 union additivity — the first conjunct is proved by ADDITIVITY, not by re-running the
 indicator route — and the tail integral vanishes.  Both `0 ≤ b` (for the union
 decomposition) and integrability (for `setIntegral_union`, restricted to each piece by
-`mono_set`) are genuinely consumed. -/
+`mono_set`) are genuinely consumed.
+@isnad1 id=and.4h3v.s8.4e0132b90fcc from=translated src=- shape=7556dd63 vocab=1b59bb0c
+-/
 theorem truncation_agrees_with_additivity {f : ℝ → ℝ} {b c : ℝ}
     (hb : 0 ≤ b) (hbc : b ≤ c)
     (hfint : IntegrableOn f (Set.Ioc 0 c) volume)
@@ -111,7 +122,9 @@ theorem truncation_agrees_with_additivity {f : ℝ → ℝ} {b c : ℝ}
 /-- **The two routes agree on the integrable branch**: classical additivity plus the
 vanishing tail yields exactly the equation `setIntegral_Ioc_eq_of_tail_zero` produces
 with no integrability at all — so the indicator route is conservative over the
-standard argument, now as a THEOREM rather than a prose claim. -/
+standard argument, now as a THEOREM rather than a prose claim.
+@isnad1 id=eq.4h3v.s7.8059bd8b33de from=translated src=- shape=e0172d31 vocab=5036e6aa
+-/
 theorem truncation_routes_agree {f : ℝ → ℝ} {b c : ℝ}
     (hb : 0 ≤ b) (hbc : b ≤ c)
     (hfint : IntegrableOn f (Set.Ioc 0 c) volume)
@@ -172,12 +185,16 @@ def GlobalLerayHopfSolution.toSolution (g : GlobalLerayHopfSolution D C ν u₀)
   LerayHopfSolution.ofIsOn (g.isOn T hT)
 
 /-- **No-curve-duplication witness** (definitional): every horizon slice carries the
-one global curve. -/
+one global curve.
+@isnad1 id=eq.1h6v.s8.b2b605465647 from=translated src=- shape=0c9e4627 vocab=ae366cf5
+-/
 theorem GlobalLerayHopfSolution.toSolution_u (g : GlobalLerayHopfSolution D C ν u₀)
     (T : ℝ) (hT : 0 < T) : (g.toSolution T hT).u = g.u := rfl
 
 /-- The global contract implies the existing per-horizon contract (with one uniform
-curve) — the strengthening direction of the quantifier swap. -/
+curve) — the strengthening direction of the quantifier swap.
+@isnad1 id=nonempty.1h6v.s7.ea98558b3d34 from=translated src=- shape=75b2db51 vocab=2f5ccffc
+-/
 theorem GlobalLerayHopfSolution.nonempty_solution (g : GlobalLerayHopfSolution D C ν u₀)
     (T : ℝ) (hT : 0 < T) : Nonempty (Galerkin.LerayHopfSolution D C ν T u₀) :=
   ⟨g.toSolution T hT⟩

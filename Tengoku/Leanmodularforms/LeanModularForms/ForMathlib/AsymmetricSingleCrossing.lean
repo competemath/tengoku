@@ -194,7 +194,9 @@ private theorem cutoff_integral_eq_E (D : AsymmetricSingleCrossingData γ z₀)
     intervalIntegral.integral_congr_ae hF_right, add_zero]
   exact D.h_ftc ε hε_pos hε_lt
 
-/-- The CPV of `(z - z₀)⁻¹` along `γ` exists and equals `D.L`. -/
+/-- The CPV of `(z - z₀)⁻¹` along `γ` exists and equals `D.L`.
+@isnad1 id=hascauch.0h5v.s5.0f8472da9f24 from=translated src=- shape=12fea987 vocab=789af60a
+-/
 theorem hasCauchyPV (D : AsymmetricSingleCrossingData γ z₀) :
     HasCauchyPV (fun z => (z - z₀)⁻¹) γ z₀ D.L := by
   simp only [HasCauchyPV]
@@ -205,7 +207,9 @@ theorem hasCauchyPV (D : AsymmetricSingleCrossingData γ z₀) :
     exact D.cutoff_integral_eq_E hε.1 hε.2
   exact D.h_limit.congr' h_ev.symm
 
-/-- The generalized winding number at `z₀` equals `L / (2πi)`. -/
+/-- The generalized winding number at `z₀` equals `L / (2πi)`.
+@isnad1 id=hasgener.0h5v.s6.1e13be7f8ae6 from=translated src=- shape=02cdb995 vocab=3e7431b1
+-/
 theorem hasWindingNumber (D : AsymmetricSingleCrossingData γ z₀) :
     HasGeneralizedWindingNumber γ z₀ (D.L / (2 * ↑Real.pi * I)) := by
   rw [show D.L / (2 * ↑Real.pi * I) = (2 * ↑Real.pi * I)⁻¹ * D.L by ring]

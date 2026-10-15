@@ -389,7 +389,9 @@ of `smulLeftCLM` applied to an `Lp`-coerced distribution for an **unbounded** mu
 `weight = (1+‖ξ‖²)^(1/2)`; mathlib's `Lp.toTemperedDistribution_smul_eq` only covers
 `MemLp`-bounded multipliers (and `weight ∉ Lᵖ`), so this a.e.-extraction-for-unbounded-weights
 is the missing piece.  Once it lands, `‖ξ‖² ≤ 1 + ‖ξ‖²` gives the claim by domination.
-Everything else in T0b is fully proved and consumes only this lemma. -/
+Everything else in T0b is fully proved and consumes only this lemma.
+@isnad1 id=integrab.1h2v.s16.5814667f6df8 from=translated src=- shape=540ef434 vocab=257373cf
+-/
 theorem integrable_viscous_integrand_of_memH1 (w : L2VF_R3) (hw : memH1VF_R3 w)
     (j : Fin 3) :
     Integrable (fun ξ : Domain3 =>
@@ -432,7 +434,9 @@ estimate `FourierL2.normSq_phaseFun_sub_one_le` (F9) integrated up to recognize
 `FourierL2.viscousFormSq_R3_eq_integral_normSq_fourier` (F7).
 
 Everything downstream (T0c, T1b, T2/deliverable) consumes ONLY this statement, so closing it
-discharges the whole pillar modulo the `FrechetKolmogorovInput` hypothesis. -/
+discharges the whole pillar modulo the `FrechetKolmogorovInput` hypothesis.
+@isnad1 id=le.1h2v.s14.666ba51c406b from=translated src=- shape=f476ceb8 vocab=cbf6d3e4
+-/
 theorem normSq_translate_sub_le_viscousFormSq (h : Domain3) (w : L2VF_R3)
     (hw : memH1VF_R3 w) :
     ‖translate_L2VF h w - w‖ ^ 2 ≤ ‖h‖ ^ 2 * viscousFormSq_R3 1 w := by
@@ -552,7 +556,9 @@ The sign hypothesis `hM : 0 ≤ M` is REQUIRED: the squared bound `viscousFormSq
 alone does not control the sign of `M` (e.g. `M = -1`, `w = 0` would give the false
 `0 ≤ -‖h‖`).  Taking square roots of the T0b estimate only yields `‖h‖·|M|`; the conclusion
 `‖h‖·M` is correct precisely when `M ≥ 0`.  Downstream (`localRellichInput_of_frechetKolmogorov`)
-`0 ≤ M` is discharged from `‖w‖ ≤ M` on any admissible witness. -/
+`0 ≤ M` is discharged from `‖w‖ ≤ M` on any admissible witness.
+@isnad1 id=le.3h3v.s14.2ddaf7543cc7 from=translated src=- shape=3fde4a94 vocab=cbf6d3e4
+-/
 theorem norm_translate_sub_le_of_viscousBound (M : ℝ) (h : Domain3) (w : L2VF_R3)
     (hw : memH1VF_R3 w) (hM : 0 ≤ M) (hvf : viscousFormSq_R3 1 w ≤ M ^ 2) :
     ‖translate_L2VF h w - w‖ ≤ ‖h‖ * M := by
@@ -568,7 +574,9 @@ theorem norm_translate_sub_le_of_viscousBound (M : ℝ) (h : Domain3) (w : L2VF_
 /-! ### Tier 1 — assemble the modulus into the FK-criterion input -/
 
 /-- **T1b.** The restricted admissible family `S_{M,R} := {restrictToBall R w | w admissible}`
-is uniformly `‖·‖ ≤ M`: each restriction does not increase the norm and `‖w‖ ≤ M`. -/
+is uniformly `‖·‖ ≤ M`: each restriction does not increase the norm and `‖w‖ ≤ M`.
+@isnad1 id=le.1h3v.s13.95061807084f from=translated src=- shape=110c660b vocab=9ad1da80
+-/
 theorem admissible_family_uniform_bound (M R : ℝ) (w : L2VF_R3) (hbd : ‖w‖ ≤ M) :
     ‖restrictToBall R w‖ ≤ M :=
   -- `norm_restrictToBall_le` is public in `SpatialCompactness` (issue #111 PR-3).
@@ -584,7 +592,9 @@ from `FrechetKolmogorovInput`.  The Navier–Stokes-specific content (gradient b
 translation modulus, via Plancherel on `viscousFormSq_R3`) is ASSEMBLED axiom-free here, and
 its Plancherel core T0b is fully proved, so this deliverable is `sorry`-free; only the
 domain-agnostic FK precompactness criterion is assumed as a hypothesis.  The conclusion
-reproduces `LocalRellichInput` verbatim (no weakening; Hard rule 3). -/
+reproduces `LocalRellichInput` verbatim (no weakening; Hard rule 3).
+@isnad1 id=localrel.1h0v.s1.4a1883991d1c from=translated src=- shape=1d48f1ac vocab=6a494131
+-/
 theorem localRellichInput_of_frechetKolmogorov (FK : FrechetKolmogorovInput) :
     LocalRellichInput := by
   classical

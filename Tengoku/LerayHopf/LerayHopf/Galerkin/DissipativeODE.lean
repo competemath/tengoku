@@ -37,7 +37,9 @@ open Metric Set
 variable {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V] [FiniteDimensional ℝ V]
 
 omit [FiniteDimensional ℝ V] in
-/-- Energy derivative along a solution of `c' = g c`: `d/dt ½‖c t‖² = ⟪c t, g (c t)⟫`. -/
+/-- Energy derivative along a solution of `c' = g c`: `d/dt ½‖c t‖² = ⟪c t, g (c t)⟫`.
+@isnad1 id=hasderiv.1h4v.s7.53345ac53a15 from=translated src=- shape=37f2066f vocab=0c61d364
+-/
 theorem energy_hasDerivAt_of_solution (g : V → V) (c : ℝ → V) (t : ℝ)
     (hc : HasDerivAt c (g (c t)) t) :
     HasDerivAt (fun s => (1 / 2 : ℝ) * ‖c s‖ ^ 2) (inner (𝕜 := ℝ) (c t) (g (c t))) t := by
@@ -56,7 +58,9 @@ theorem energy_hasDerivAt_of_solution (g : V → V) (c : ℝ → V) (t : ℝ)
   exact hinner.const_mul (1 / 2 : ℝ)
 
 omit [FiniteDimensional ℝ V] in
-/-- A-priori bound: any forward solution of a dissipative field stays in the initial ball. -/
+/-- A-priori bound: any forward solution of a dissipative field stays in the initial ball.
+@isnad1 id=le.4h5v.s7.0157aca60510 from=translated src=- shape=95b4c388 vocab=78260b9b
+-/
 theorem norm_le_of_forwardSolution_of_dissipative (g : V → V)
     (hdiss : ∀ v : V, inner (𝕜 := ℝ) v (g v) ≤ (0 : ℝ))
     (c : ℝ → V) {T : ℝ} (hT : 0 ≤ T)
@@ -81,7 +85,9 @@ theorem norm_le_of_forwardSolution_of_dissipative (g : V → V)
   rwa [Real.sqrt_sq (norm_nonneg _), Real.sqrt_sq (norm_nonneg _)] at this
 
 /-- Uniform local-existence time on a ball: a single `δ` works for every start point in
-`closedBall 0 R` and every start time `t₀`. -/
+`closedBall 0 R` and every start time `t₀`.
+@isnad1 id=ex.1h3v.s7.1c633b2f895b from=translated src=- shape=a8c43dbb vocab=d9a05439
+-/
 theorem uniform_local_time (g : V → V) (hg : ContDiff ℝ 1 g) (R : ℝ) :
     ∃ δ : ℝ, 0 < δ ∧ ∀ x₀ ∈ Metric.closedBall (0 : V) R, ∀ t₀ : ℝ,
       ∃ α : ℝ → V, α t₀ = x₀ ∧
@@ -207,7 +213,9 @@ private theorem solve_exists_on_step (g : V → V)
         exact hαsol t htmem
 
 /-- Splice uniqueness: two local solutions agreeing at one point agree on the whole
-overlap interval. -/
+overlap interval.
+@isnad1 id=eq.7h8v.s8.5ad0d2b797b3 from=translated src=- shape=efd42cf9 vocab=3643a155
+-/
 theorem solution_agree (g : V → V) (hg : ContDiff ℝ 1 g)
     (α β : ℝ → V) {a b t₀ : ℝ} (_hab : a ≤ b) (ht₀ : t₀ ∈ Set.Icc a b)
     (hαβ : α t₀ = β t₀)
@@ -260,7 +268,9 @@ theorem solution_agree (g : V → V) (hg : ContDiff ℝ 1 g)
 /-- **Forward-global existence** for a dissipative `C¹` field on a finite-dimensional real
 inner-product space, by tiling `[0,∞)` with the uniform local-existence time on the
 a-priori ball and gluing by uniqueness. This is the abstract core that both lanes'
-`forwardGlobalSolution_exists` will specialize to (PR-B). -/
+`forwardGlobalSolution_exists` will specialize to (PR-B).
+@isnad1 id=ex.2h3v.s7.210c1d17efc3 from=translated src=- shape=74e05e12 vocab=33a35bf4
+-/
 theorem forwardGlobalSolution_exists (g : V → V) (hg : ContDiff ℝ 1 g)
     (hdiss : ∀ v : V, inner (𝕜 := ℝ) v (g v) ≤ (0 : ℝ)) (x₀ : V) :
     ∃ c : ℝ → V, c 0 = x₀ ∧ ∀ t, 0 ≤ t → HasDerivAt c (g (c t)) t := by
@@ -329,7 +339,9 @@ theorem forwardGlobalSolution_exists (g : V → V) (hg : ContDiff ℝ 1 g)
 
 /-- Generic ambient transport: an intrinsic `HasDerivAt` in a submodule lifts to a
 `HasDerivAt` of the coerced ambient curve. This is the generic form of both lanes'
-private `solve_hasDerivAt_ambient` transport steps. -/
+private `solve_hasDerivAt_ambient` transport steps.
+@isnad1 id=hasderiv.1h5v.s8.e6862e9b8eef from=translated src=- shape=13709a8e vocab=16fa8e83
+-/
 theorem coe_hasDerivAt {H : Type*} [NormedAddCommGroup H] [NormedSpace ℝ H]
     (W : Submodule ℝ H) (c : ℝ → W) (v : W) (t : ℝ) (h : HasDerivAt c v t) :
     HasDerivAt (fun s => (c s : H)) (v : H) t := by

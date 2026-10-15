@@ -112,7 +112,9 @@ Names/statements unchanged. -/
 /-- If `u, v ∈ L2VF_R3` both satisfy `memH1VF_R3`, then so does `u + v`.
 
 Proof: `L2VF_projComponentC_R3 j` is ℝ-linear, so the j-th component of `u + v` equals
-the sum of the j-th components of `u` and `v`. Then `MemSobolev.add` closes the goal. -/
+the sum of the j-th components of `u` and `v`. Then `MemSobolev.add` closes the goal.
+@isnad1 id=memh1vfr.2h2v.s14.418a3543f33a from=translated src=- shape=fb76338a vocab=15eb2c05
+-/
 theorem memH1VF_R3_add {u v : L2VF_R3} (hu : memH1VF_R3 u) (hv : memH1VF_R3 v) :
     memH1VF_R3 (u + v) := by
   intro j
@@ -137,7 +139,9 @@ theorem memH1VF_R3_add {u v : L2VF_R3} (hu : memH1VF_R3 u) (hv : memH1VF_R3 v) :
 Proof: `L2VF_projComponentC_R3 j (c • u) = c • L2VF_projComponentC_R3 j u` (ℝ-linearity).
 The Lp coercion `(c • f : Lp ℂ 2 μ) = (c : ℂ) • f` as tempered distributions
 (since `c` acts via real scalar multiplication, which equals complex multiplication by `c`).
-Then `MemSobolev.smul (c : ℂ)` closes the goal. -/
+Then `MemSobolev.smul (c : ℂ)` closes the goal.
+@isnad1 id=memh1vfr.1h2v.s16.3044591637f5 from=translated src=- shape=d15f5516 vocab=be43f6aa
+-/
 theorem memH1VF_R3_smul {u : L2VF_R3} (c : ℝ) (hu : memH1VF_R3 u) :
     memH1VF_R3 (c • u) := by
   intro j
@@ -168,7 +172,9 @@ theorem memH1VF_R3_smul {u : L2VF_R3} (c : ℝ) (hu : memH1VF_R3 u) :
 
 /-- `memH1VF_R3 (0 : L2VF_R3)`.
 
-Proof: the j-th component of `0` is `0`, and `memSobolev_fun_zero` gives `MemSobolev 1 2 0`. -/
+Proof: the j-th component of `0` is `0`, and `memSobolev_fun_zero` gives `MemSobolev 1 2 0`.
+@isnad1 id=memh1vfr.0h0v.s13.71725f4fe356 from=translated src=- shape=b586fdac vocab=64828946
+-/
 theorem memH1VF_R3_zero : memH1VF_R3 (0 : L2VF_R3) := by
   intro j
   -- L2VF_projComponentC_R3 j 0 = 0 (CLM preserves zero).
@@ -223,7 +229,9 @@ noncomputable def viscousFormSq_R3 (ν : ℝ) (u : L2VF_R3) : ℝ :=
 
 Proof: `mul_nonneg hν` reduces to the sum being nonneg; `Finset.sum_nonneg` reduces to
 each integral being nonneg; `integral_nonneg` reduces to the pointwise integrand being
-nonneg, which follows by `positivity` (product of squares and (2π)²). -/
+nonneg, which follows by `positivity` (product of squares and (2π)²).
+@isnad1 id=le.1h2v.s11.a220c6f2ceec from=translated src=- shape=83450558 vocab=bf094f9a
+-/
 theorem viscousFormSq_R3_nonneg {ν : ℝ} (hν : 0 ≤ ν) (u : L2VF_R3) :
     0 ≤ viscousFormSq_R3 ν u := by
   apply mul_nonneg hν

@@ -91,7 +91,9 @@ noncomputable def FieldForms.vectorField (D : FieldForms V) (ν : ℝ) : V → V
   fun u => (InnerProductSpace.toDual ℝ V).symm (vectorFieldFunctional D ν u)
 
 /-- `vectorField` is the Riesz representative of the functional it was built from: pairing
-against any `w` recovers `-ν * D.sV u w - D.bV u u w`. -/
+against any `w` recovers `-ν * D.sV u w - D.bV u u w`.
+@isnad1 id=eq.0h5v.s6.64e2cb065418 from=translated src=- shape=4ab32825 vocab=4db168cd
+-/
 theorem FieldForms.vectorField_spec (D : FieldForms V) (ν : ℝ) (u w : V) :
     inner (𝕜 := ℝ) (D.vectorField ν u) w = -ν * D.sV u w - D.bV u u w := by
   show inner (𝕜 := ℝ) ((InnerProductSpace.toDual ℝ V).symm (vectorFieldFunctional D ν u)) w
@@ -228,7 +230,9 @@ private theorem vectorField_eq_parts (D : FieldForms V) (ν : ℝ) (u : V) :
   rw [D.vectorField_spec, inner_add_left, hbil, hlin]; ring
 
 /-- `vectorField ν` is `C¹` in its argument: as the sum of the bilinear part `bilinearPart D u u`
-(quadratic, hence `C¹`) and the linear part `linearPart D ν` (continuous linear, hence smooth). -/
+(quadratic, hence `C¹`) and the linear part `linearPart D ν` (continuous linear, hence smooth).
+@isnad1 id=contdiff.0h3v.s6.7d99521d90a5 from=translated src=- shape=5de55488 vocab=9a2e8b35
+-/
 theorem FieldForms.vectorField_contDiff (D : FieldForms V) (ν : ℝ) :
     ContDiff ℝ 1 (D.vectorField ν) := by
   have hfun : D.vectorField ν
@@ -243,20 +247,26 @@ theorem FieldForms.vectorField_contDiff (D : FieldForms V) (ν : ℝ) :
 
 /-- The diagonal pairing `⟨v, vectorField ν v⟩` collapses to `-(ν * D.sV v v)`: the bilinear
 part `D.bV v v v` vanishes by the antisymmetry-driven diagonal identity `bV_diag_zero`, leaving
-only the dissipative (linear-part) contribution. -/
+only the dissipative (linear-part) contribution.
+@isnad1 id=eq.0h4v.s6.b62e08ff65a6 from=translated src=- shape=3ab08efe vocab=e5b12e1a
+-/
 theorem FieldForms.inner_self_vectorField (D : FieldForms V) (ν : ℝ) (v : V) :
     inner (𝕜 := ℝ) v (D.vectorField ν v) = -(ν * D.sV v v) := by
   rw [real_inner_comm, D.vectorField_spec, D.bV_diag_zero, sub_zero, neg_mul]
 
 /-- For `ν > 0`, the diagonal pairing `⟨v, vectorField ν v⟩` is nonpositive — the dissipativity
-condition that drives the energy inequality for solutions of `c' = vectorField ν c`. -/
+condition that drives the energy inequality for solutions of `c' = vectorField ν c`.
+@isnad1 id=le.1h4v.s6.0a2a4b3da696 from=translated src=- shape=5c09f3a8 vocab=4b04511c
+-/
 theorem FieldForms.inner_self_vectorField_nonpos (D : FieldForms V) {ν : ℝ}
     (hν : 0 < ν) (v : V) : inner (𝕜 := ℝ) v (D.vectorField ν v) ≤ 0 := by
   rw [D.inner_self_vectorField ν v]
   exact neg_nonpos.mpr (mul_nonneg hν.le (D.sV_diag_nonneg v))
 
 /-- Along a solution `c` of `c' = vectorField ν c`, the kinetic energy `½‖c‖²` has derivative
-`-(ν * D.sV (c t) (c t))` — the abstract energy identity for the quadratic-field ODE. -/
+`-(ν * D.sV (c t) (c t))` — the abstract energy identity for the quadratic-field ODE.
+@isnad1 id=hasderiv.1h5v.s7.81ecfd75c40a from=translated src=- shape=2bb53c8f vocab=2b1890f8
+-/
 theorem FieldForms.energy_hasDerivAt (D : FieldForms V) (ν : ℝ) (c : ℝ → V) (t : ℝ)
     (hc : HasDerivAt c (D.vectorField ν (c t)) t) :
     HasDerivAt (fun s => (1 / 2 : ℝ) * ‖c s‖ ^ 2) (-(ν * D.sV (c t) (c t))) t := by
@@ -266,7 +276,9 @@ theorem FieldForms.energy_hasDerivAt (D : FieldForms V) (ν : ℝ) (c : ℝ → 
 /-- For `ν > 0`, the ODE `c' = vectorField ν c` has a global forward-in-time solution from any
 initial data `x₀` — assembled from `C¹`-regularity (`vectorField_contDiff`) and dissipativity
 (`inner_self_vectorField_nonpos`) via the abstract global-existence lemma
-`forwardGlobalSolution_exists`. -/
+`forwardGlobalSolution_exists`.
+@isnad1 id=ex.1h4v.s7.ae4ea30c4aba from=translated src=- shape=554e362b vocab=137ccc3e
+-/
 theorem FieldForms.forwardGlobalSolution_exists (D : FieldForms V) {ν : ℝ}
     (hν : 0 < ν) (x₀ : V) :
     ∃ c : ℝ → V, c 0 = x₀ ∧ ∀ t, 0 ≤ t → HasDerivAt c (D.vectorField ν (c t)) t :=

@@ -72,6 +72,9 @@ def toFun (γ : PiecewiseC1Curve) : ℝ → ℂ := γ.toPiecewiseC1PathOn.toFun
 
 instance : CoeFun PiecewiseC1Curve fun _ ↦ ℝ → ℂ where coe := toFun
 
+/--
+@isnad1 id=continuo.0h1v.s5.7df42f330a22 from=translated src=- shape=21d96725 vocab=3a0136e7
+-/
 theorem continuous_toFun (γ : PiecewiseC1Curve) :
     ContinuousOn γ.toFun (Icc γ.a γ.b) := γ.toPiecewiseC1PathOn.continuous_toFun
 
@@ -79,7 +82,9 @@ private theorem notMem_innerPartition_of_notMem_partition (γ : PiecewiseC1Curve
     (htn : t ∉ γ.partition) : t ∉ γ.toPiecewiseC1PathOn.partition := fun h_in => htn <| by
   rw [γ.partition_eq]; exact Finset.mem_insert_of_mem (Finset.mem_insert_of_mem h_in)
 
-/-- Differentiability off the (Icc-style) partition. -/
+/-- Differentiability off the (Icc-style) partition.
+@isnad1 id=differen.2h2v.s6.80f5775486b7 from=translated src=- shape=44508a61 vocab=43666d52
+-/
 theorem smooth_off_partition (γ : PiecewiseC1Curve) :
     ∀ t ∈ Icc γ.a γ.b, t ∉ γ.partition → DifferentiableAt ℝ γ.toFun t := fun t ht htn => by
   have h_ne_a : t ≠ γ.a := fun h => htn (h ▸ γ.endpoints_in_partition.1)
@@ -88,6 +93,9 @@ theorem smooth_off_partition (γ : PiecewiseC1Curve) :
     ⟨lt_of_le_of_ne ht.1 (Ne.symm h_ne_a), lt_of_le_of_ne ht.2 h_ne_b⟩
     (γ.notMem_innerPartition_of_notMem_partition htn)
 
+/--
+@isnad1 id=continuo.2h2v.s6.db24d049f712 from=translated src=- shape=3860fe84 vocab=461f02d7
+-/
 theorem deriv_continuous_off_partition (γ : PiecewiseC1Curve) :
     ∀ t ∈ Ioo γ.a γ.b, t ∉ γ.partition → ContinuousAt (deriv γ.toFun) t := fun t ht htn =>
   γ.toPiecewiseC1PathOn.deriv_continuous_off t ht
@@ -134,14 +142,23 @@ def ofIccPartition (toFun : ℝ → ℂ) (a b : ℝ) (hab : a < b) (partition : 
       endpoints_in_partition := endpoints_in_partition
       partition_eq := h_eq }
 
+/--
+@isnad1 id=eq.6h4v.s8.f01f9c268389 from=translated src=- shape=4c029a89 vocab=4b986563
+-/
 @[simp] theorem ofIccPartition_toFun (toFun : ℝ → ℂ) (a b : ℝ) (hab : a < b)
     (part : Finset ℝ) (h1 h2 h3 h4 h5) :
     (PiecewiseC1Curve.ofIccPartition toFun a b hab part h1 h2 h3 h4 h5).toFun = toFun := rfl
 
+/--
+@isnad1 id=eq.6h4v.s8.3c2c3b59dec4 from=translated src=- shape=d7f58ba0 vocab=81675d27
+-/
 @[simp] theorem ofIccPartition_a (toFun : ℝ → ℂ) (a b : ℝ) (hab : a < b)
     (part : Finset ℝ) (h1 h2 h3 h4 h5) :
     (PiecewiseC1Curve.ofIccPartition toFun a b hab part h1 h2 h3 h4 h5).a = a := rfl
 
+/--
+@isnad1 id=eq.6h4v.s8.3462818cb13a from=translated src=- shape=ba6a1438 vocab=fcd30ea9
+-/
 @[simp] theorem ofIccPartition_b (toFun : ℝ → ℂ) (a b : ℝ) (hab : a < b)
     (part : Finset ℝ) (h1 h2 h3 h4 h5) :
     (PiecewiseC1Curve.ofIccPartition toFun a b hab part h1 h2 h3 h4 h5).b = b := rfl
@@ -186,13 +203,17 @@ def CauchyPrincipalValueExists' (f : ℂ → ℂ) (γ : ℝ → ℂ)
   ∃ L : ℂ, HasCauchyPV' f γ a b z₀ L
 
 /-- Bridge theorem: if `HasCauchyPV' f γ a b z₀ L`, then
-`cauchyPrincipalValue' f γ a b z₀ = L`. -/
+`cauchyPrincipalValue' f γ a b z₀ = L`.
+@isnad1 id=eq.1h6v.s5.b4365312aa2f from=translated src=- shape=cfe81e18 vocab=cb5eea94
+-/
 theorem HasCauchyPV'.cauchyPV_eq {f : ℂ → ℂ} {γ : ℝ → ℂ}
     {a b : ℝ} {z₀ : ℂ} {L : ℂ} (h : HasCauchyPV' f γ a b z₀ L) :
     cauchyPrincipalValue' f γ a b z₀ = L :=
   h.limUnder_eq
 
-/-- The limit in `HasCauchyPV'` is unique. -/
+/-- The limit in `HasCauchyPV'` is unique.
+@isnad1 id=eq.2h7v.s5.4a9b625ef927 from=translated src=- shape=cd526d90 vocab=a650366e
+-/
 theorem HasCauchyPV'.unique {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
     {L₁ L₂ : ℂ} (h₁ : HasCauchyPV' f γ a b z₀ L₁) (h₂ : HasCauchyPV' f γ a b z₀ L₂) :
     L₁ = L₂ :=
@@ -204,7 +225,9 @@ These lemmas let downstream sites stop hand-rolling the `Tendsto` manipulation t
 arises whenever one CPV is built from another via an algebraic identity on the
 integrand. -/
 
-/-- The CPV integrand `if ε < ‖γ t - z₀‖ then f(γ t) * deriv γ t else 0` is congr in `f`. -/
+/-- The CPV integrand `if ε < ‖γ t - z₀‖ then f(γ t) * deriv γ t else 0` is congr in `f`.
+@isnad1 id=hascauch.2h7v.s5.7ab9aa84a9cd from=translated src=- shape=731396d0 vocab=a650366e
+-/
 theorem HasCauchyPV'.congr_along_curve {f g : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ} {L : ℂ}
     (h : HasCauchyPV' f γ a b z₀ L) (h_eq : ∀ t, f (γ t) = g (γ t)) :
     HasCauchyPV' g γ a b z₀ L := by
@@ -212,7 +235,9 @@ theorem HasCauchyPV'.congr_along_curve {f g : ℂ → ℂ} {γ : ℝ → ℂ} {a
   refine Filter.Tendsto.congr (fun ε => intervalIntegral.integral_congr fun t _ => ?_) h
   split_ifs <;> simp [h_eq]
 
-/-- Scalar multiplication: if the CPV of `f` is `L`, then the CPV of `c * f` is `c * L`. -/
+/-- Scalar multiplication: if the CPV of `f` is `L`, then the CPV of `c * f` is `c * L`.
+@isnad1 id=hascauch.1h7v.s5.e5b544c69b4d from=translated src=- shape=a583240e vocab=17c472ef
+-/
 theorem HasCauchyPV'.const_mul {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ} {L : ℂ}
     (h : HasCauchyPV' f γ a b z₀ L) (c : ℂ) :
     HasCauchyPV' (fun z => c * f z) γ a b z₀ (c * L) := by
@@ -228,14 +253,18 @@ theorem HasCauchyPV'.const_mul {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} 
   rw [h_eq]
   exact Filter.Tendsto.const_mul c h
 
-/-- Right-multiplication by a scalar: CPV of `f * c` is `L * c`. -/
+/-- Right-multiplication by a scalar: CPV of `f * c` is `L * c`.
+@isnad1 id=hascauch.1h7v.s5.0fd32da02f71 from=translated src=- shape=22cdfc27 vocab=17c472ef
+-/
 theorem HasCauchyPV'.mul_const {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ} {L : ℂ}
     (h : HasCauchyPV' f γ a b z₀ L) (c : ℂ) :
     HasCauchyPV' (fun z => f z * c) γ a b z₀ (L * c) := by
   simpa [mul_comm] using h.const_mul c
 
 /-- The shift `f z = g (z - c)` translates the CPV: if `HasCauchyPV' g (γ - c) … L`,
-then `HasCauchyPV' f γ … L` (when `f` agrees with `g (· - c)` on the curve). -/
+then `HasCauchyPV' f γ … L` (when `f` agrees with `g (· - c)` on the curve).
+@isnad1 id=hascauch.2h7v.s5.2fc549c35745 from=translated src=- shape=b5952611 vocab=a650366e
+-/
 theorem HasCauchyPV'.of_eventuallyEq_along_curve
     {f g : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ} {L : ℂ}
     (h : HasCauchyPV' g γ a b z₀ L) (h_eq : ∀ t, g (γ t) = f (γ t)) :
@@ -243,7 +272,9 @@ theorem HasCauchyPV'.of_eventuallyEq_along_curve
   h.congr_along_curve h_eq
 
 /-- Avoidance: if `γ` stays away from `z₀` on `[a, b]`, then the CPV equals the
-ordinary integral; in particular it exists. -/
+ordinary integral; in particular it exists.
+@isnad1 id=hascauch.3h5v.s7.9fe22835f423 from=translated src=- shape=99209ce4 vocab=f35c4302
+-/
 theorem HasCauchyPV'.of_avoidance {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
     (h_cont : ContinuousOn γ (Icc a b)) (hab : a ≤ b)
     (h_avoid : ∀ t ∈ Icc a b, γ t ≠ z₀) :
@@ -258,7 +289,9 @@ theorem HasCauchyPV'.of_avoidance {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : �
     rw [uIcc_of_le hab] at ht
     exact (ite_eq_left (lt_of_lt_of_le hε.2 (ht₀_min ht))).symm
 
-/-- Concatenation: CPV on adjacent intervals `[a, b]` and `[b, c]` glues to `[a, c]`. -/
+/-- Concatenation: CPV on adjacent intervals `[a, b]` and `[b, c]` glues to `[a, c]`.
+@isnad1 id=hascauch.5h8v.s7.41c09a87f2ec from=translated src=- shape=26152bef vocab=085b0958
+-/
 theorem HasCauchyPV'.concat {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b c : ℝ} {z₀ : ℂ}
     {L₁ L₂ : ℂ}
     (h_ab : HasCauchyPV' f γ a b z₀ L₁) (h_bc : HasCauchyPV' f γ b c z₀ L₂)
@@ -275,14 +308,18 @@ theorem HasCauchyPV'.concat {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b c : ℝ} {
     (hII.mono_set <| by rw [uIcc_of_le hab, uIcc_of_le hac]; exact Icc_subset_Icc_right hbc)
     (hII.mono_set <| by rw [uIcc_of_le hbc, uIcc_of_le hac]; exact Icc_subset_Icc_left hab)
 
-/-- Existence version of avoidance. -/
+/-- Existence version of avoidance.
+@isnad1 id=cauchypr.3h5v.s6.be97786af8ac from=translated src=- shape=e3ea94e6 vocab=61652196
+-/
 theorem cauchyPrincipalValueExists'_of_avoidance {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ}
     {z₀ : ℂ} (h_cont : ContinuousOn γ (Icc a b)) (hab : a ≤ b)
     (h_avoid : ∀ t ∈ Icc a b, γ t ≠ z₀) :
     CauchyPrincipalValueExists' f γ a b z₀ :=
   ⟨_, HasCauchyPV'.of_avoidance h_cont hab h_avoid⟩
 
-/-- Existence version of concatenation. -/
+/-- Existence version of concatenation.
+@isnad1 id=cauchypr.5h6v.s7.41f1dd094c7f from=translated src=- shape=6a886021 vocab=b17dc581
+-/
 theorem CauchyPrincipalValueExists'.concat {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b c : ℝ}
     {z₀ : ℂ} (h_ab : CauchyPrincipalValueExists' f γ a b z₀)
     (h_bc : CauchyPrincipalValueExists' f γ b c z₀) (hab : a ≤ b) (hbc : b ≤ c)

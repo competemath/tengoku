@@ -111,7 +111,9 @@ private lemma aestronglyMeasurable_mul_deriv {γ : PiecewiseC1Path x x} {g : ℝ
 
 Uses the parametric Leibniz rule (differentiation under the integral sign).
 The integrability, bounds, and measurability hypotheses are provided externally
-since they depend on the curve's regularity structure. -/
+since they depend on the curve's regularity structure.
+@isnad1 id=differen.6h4v.s10.51b7cadbfabd from=translated src=- shape=190f6079 vocab=8c709e41
+-/
 theorem dixonH2_differentiableAt {f : ℂ → ℂ}
     {γ : PiecewiseC1Path x x} {w : ℂ}
     (hoff : ∀ t ∈ Icc (0 : ℝ) 1, γ t ≠ w)
@@ -185,7 +187,9 @@ continuity + Lipschitz regularity hypotheses.
 Discharges the six oracles of `dixonH2_differentiableAt`:
 * `h_int`, `h_F'_meas`, `h_meas` — via strong measurability + bounds (finite volume)
 * `h_fγ_bound` — from continuity of `f ∘ γ` on compact `Icc 0 1`
-* `h_deriv_bound` — from `LipschitzWith K γ.extend` via `norm_deriv_le_of_lipschitz`. -/
+* `h_deriv_bound` — from `LipschitzWith K γ.extend` via `norm_deriv_le_of_lipschitz`.
+@isnad1 id=differen.3h5v.s8.982f4ef27185 from=translated src=- shape=d1df000a vocab=0e546052
+-/
 theorem dixonH2_differentiableAt_of_regular {f : ℂ → ℂ}
     {γ : PiecewiseC1Path x x} {w : ℂ}
     (hoff : ∀ t ∈ Icc (0 : ℝ) 1, γ t ≠ w)
@@ -283,7 +287,9 @@ private lemma dslope_deriv_product_bound
 
 /-- **h1 is holomorphic on U.**
 
-Uses the parametric Leibniz rule with Cauchy estimates for the derivative of dslope. -/
+Uses the parametric Leibniz rule with Cauchy estimates for the derivative of dslope.
+@isnad1 id=differen.9h4v.s10.8991ec5963f0 from=translated src=- shape=84127c86 vocab=7108c862
+-/
 theorem dixonH1_differentiableOn {f : ℂ → ℂ} {U : Set ℂ}
     (_hU : IsOpen U) (_hf : DifferentiableOn ℂ f U)
     (γ : PwC1Immersion x x) (_hγ : ∀ t ∈ Icc (0 : ℝ) 1, γ.toPiecewiseC1Path t ∈ U)
@@ -355,7 +361,9 @@ Auto-discharges the other 5 oracles of `dixonH1_differentiableOn`:
 * `h_int`, `h_meas` — via strong measurability + bounded + finite volume
 * `_h_dslope_bound` — via continuity of dslope on compact γ.image
 * `h_deriv_bound` — via `norm_deriv_le_of_lipschitz`
-* `h_dslope_hasDerivAt` — via `dslope_hasDerivAt_first_arg`. -/
+* `h_dslope_hasDerivAt` — via `dslope_hasDerivAt_first_arg`.
+@isnad1 id=differen.6h5v.s9.e29f31cb1d5b from=translated src=- shape=0be2da05 vocab=ebbcb12c
+-/
 theorem dixonH1_differentiableOn_of_regular {f : ℂ → ℂ} {U : Set ℂ}
     (hU : IsOpen U) (hf : DifferentiableOn ℂ f U)
     (γ : PwC1Immersion x x) (hγ : ∀ t ∈ Icc (0 : ℝ) 1, γ.toPiecewiseC1Path t ∈ U)
@@ -419,7 +427,9 @@ On `U`: equals `h1`, which is holomorphic.
 Off `U`: equals `h2`, which is holomorphic. The curve lies in `U`, so
 off `U` means off the curve.
 Patching at `boundary(U)`: null-homologous gives winding number 0 near `boundary(U)`,
-so `h1 = h2` by the fundamental identity. -/
+so `h1 = h2` by the fundamental identity.
+@isnad1 id=differen.7h4v.s9.1df64139897e from=translated src=- shape=69d8f334 vocab=de0a6366
+-/
 theorem dixonFunction_differentiable {f : ℂ → ℂ} {U : Set ℂ} (hU : IsOpen U)
     (_hf : DifferentiableOn ℂ f U)
     (γ : PwC1Immersion x x) (h_null : IsNullHomologous γ U)

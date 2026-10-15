@@ -44,12 +44,16 @@ noncomputable def designMatrixMul (x : Fin n → EuclideanSpace ℝ (Fin d)) (θ
     EuclideanSpace ℝ (Fin n) :=
   (WithLp.equiv 2 (Fin n → ℝ)).symm (fun i => @inner ℝ _ _ θ (x i))
 
-/-- The design matrix applied to θ gives inner products at each sample point -/
+/-- The design matrix applied to θ gives inner products at each sample point
+@isnad1 id=eq.0h5v.s6.99fb5b4131b1 from=translated src=- shape=b623bd60 vocab=7b6299a3
+-/
 lemma designMatrixMul_apply (x : Fin n → EuclideanSpace ℝ (Fin d))
     (θ : EuclideanSpace ℝ (Fin d)) (i : Fin n) :
     (designMatrixMul x θ) i = @inner ℝ _ _ θ (x i) := rfl
 
-/-- Design matrix multiplication is linear in θ -/
+/-- Design matrix multiplication is linear in θ
+@isnad1 id=eq.0h5v.s7.0bc631734dbb from=translated src=- shape=8c69baf7 vocab=29bf05ae
+-/
 lemma designMatrixMul_add (x : Fin n → EuclideanSpace ℝ (Fin d))
     (θ₁ θ₂ : EuclideanSpace ℝ (Fin d)) :
     designMatrixMul x (θ₁ + θ₂) = designMatrixMul x θ₁ + designMatrixMul x θ₂ := by
@@ -57,6 +61,9 @@ lemma designMatrixMul_add (x : Fin n → EuclideanSpace ℝ (Fin d))
   simp only [designMatrixMul, inner_add_left]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.8f385e0f6e97 from=translated src=- shape=75c45afe vocab=4a22ce30
+-/
 lemma designMatrixMul_smul (x : Fin n → EuclideanSpace ℝ (Fin d))
     (c : ℝ) (θ : EuclideanSpace ℝ (Fin d)) :
     designMatrixMul x (c • θ) = c • designMatrixMul x θ := by
@@ -71,7 +78,9 @@ noncomputable def designMatrixLinearMap (x : Fin n → EuclideanSpace ℝ (Fin d
   map_add' := designMatrixMul_add x
   map_smul' := designMatrixMul_smul x
 
-/-- The squared empirical norm of a linear predictor equals (1/n)‖Xθ‖₂² -/
+/-- The squared empirical norm of a linear predictor equals (1/n)‖Xθ‖₂²
+@isnad1 id=eq.0h4v.s7.296b9054e834 from=translated src=- shape=c7895c34 vocab=3be6d4b1
+-/
 lemma empiricalNorm_linear_sq (x : Fin n → EuclideanSpace ℝ (Fin d))
     (θ : EuclideanSpace ℝ (Fin d)) :
     (empiricalNorm n (fun i => @inner ℝ _ _ θ (x i)))^2 =
@@ -85,7 +94,9 @@ lemma empiricalNorm_linear_sq (x : Fin n → EuclideanSpace ℝ (Fin d))
   have h := WithLp.equiv_symm_apply_ofLp 2 (Fin n → ℝ) (fun i => @inner ℝ _ _ θ (x i))
   simp only [Real.norm_eq_abs, sq_abs, congrFun h i]
 
-/-- The empirical norm of a linear predictor in terms of the design matrix -/
+/-- The empirical norm of a linear predictor in terms of the design matrix
+@isnad1 id=eq.0h4v.s7.74f21e409d7a from=translated src=- shape=88126b39 vocab=6e8f93a1
+-/
 lemma empiricalNorm_linear (x : Fin n → EuclideanSpace ℝ (Fin d))
     (θ : EuclideanSpace ℝ (Fin d)) :
     empiricalNorm n (fun i => @inner ℝ _ _ θ (x i)) =

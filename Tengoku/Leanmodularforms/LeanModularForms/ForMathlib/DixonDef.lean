@@ -128,7 +128,9 @@ where `n(γ, w)` is the generalized winding number.
 
 The proof expands `dslope f w (γ t) = (f(γ t) - f(w)) / (γ t - w)` (since `γ t ≠ w`),
 splits into `f(γ t)/(γ t - w) - f(w)/(γ t - w)`, and identifies the second term as
-`f(w) · ∮ (z - w)⁻¹ dz = 2πi · n(γ, w) · f(w)`. -/
+`f(w) · ∮ (z - w)⁻¹ dz = 2πi · n(γ, w) · f(w)`.
+@isnad1 id=eq.3h4v.s9.1ace2f95c4a2 from=translated src=- shape=e788f2e1 vocab=a99943d5
+-/
 theorem dixonH1_eq_dixonH2_sub_winding_f {f : ℂ → ℂ} {γ : PiecewiseC1Path x x} (w : ℂ)
     (hoff : ∀ t ∈ Icc (0 : ℝ) 1, γ t ≠ w)
     (h_cauchy_int : IntervalIntegrable
@@ -146,7 +148,9 @@ theorem dixonH1_eq_dixonH2_sub_winding_f {f : ℂ → ℂ} {γ : PiecewiseC1Path
     integral_inv_sub_eq_winding (avoids_delta_bound γ w hoff)]
   ring
 
-/-- On `U`, the Dixon function equals `h1`. -/
+/-- On `U`, the Dixon function equals `h1`.
+@isnad1 id=eq.1h5v.s5.739859c0a36f from=translated src=- shape=d58fd084 vocab=e6c8b65d
+-/
 theorem dixonFunction_eq_dixonH1 {f : ℂ → ℂ} {U : Set ℂ}
     {γ : PiecewiseC1Path x x} {w : ℂ} (hw : w ∈ U) :
     dixonFunction f U γ w = dixonH1 f γ w :=

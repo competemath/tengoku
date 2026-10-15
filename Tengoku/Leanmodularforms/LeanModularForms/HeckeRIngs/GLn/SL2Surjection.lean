@@ -67,7 +67,9 @@ private lemma isCoprime_emod {d : ℕ} [NeZero d] {a₁ c₁ : ℤ}
 Given `IsCoprime a₁ c₁` in `ZMod d`, apply the extended Euclidean algorithm to
 `(a₁, c₁)` in `ℤ`, swapping at each step. The coprimality in `ZMod d` is preserved
 under the Euclidean step `(a₁, c₁) ↦ (c₁, a₁ % c₁)`, and the back-substitution
-`a₀ = r₀ + q * c₀` recovers the correct congruence class modulo `d`. -/
+`a₀ = r₀ + q * c₀` recovers the correct congruence class modulo `d`.
+@isnad1 id=ex.1h3v.s6.c4e5caa55069 from=translated src=- shape=46ab7aef vocab=380c03ef
+-/
 theorem IsCoprime.lift_to_int {d : ℕ} [NeZero d] {a c : ZMod d} (hac : IsCoprime a c) :
     ∃ a₀ c₀ : ℤ, (a₀ : ZMod d) = a ∧ (c₀ : ZMod d) = c ∧ IsCoprime a₀ c₀ := by
   obtain ⟨a₁, rfl⟩ := ZMod.intCast_surjective a
@@ -102,12 +104,16 @@ theorem IsCoprime.lift_to_int {d : ℕ} [NeZero d] {a c : ZMod d} (hac : IsCopri
     push_cast
     rw [hr₀, hc₀]
 
-/-- The first column of an SL₂ matrix is coprime (from the determinant condition). -/
+/-- The first column of an SL₂ matrix is coprime (from the determinant condition).
+@isnad1 id=iscoprim.1h5v.s6.45f8a8fdbc7a from=translated src=- shape=edaddadc vocab=e685bf3e
+-/
 theorem isCoprime_of_det_eq_one {R : Type*} [CommRing R]
     {a b c d : R} (h : a * d - b * c = 1) : IsCoprime a c :=
   ⟨d, -b, by linear_combination h⟩
 
-/-- An SL₂ element with first column `(1, 0)` is upper unitriangular. -/
+/-- An SL₂ element with first column `(1, 0)` is upper unitriangular.
+@isnad1 id=eq.2h2v.s9.9417a8060332 from=translated src=- shape=71d6b05b vocab=5fb0fa55
+-/
 theorem SL2_eq_upperUniTri {R : Type*} [CommRing R] (h : SpecialLinearGroup (Fin 2) R)
     (h00 : h 0 0 = 1) (h10 : h 1 0 = 0) :
     h = ⟨!![1, h 0 1; 0, 1], by

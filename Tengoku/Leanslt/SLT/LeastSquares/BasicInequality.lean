@@ -24,7 +24,9 @@ namespace LeastSquares
 variable {n : ℕ} {X : Type*}
 
 /-- Basic inequality: (1/2)‖Δ̂‖_n² ≤ (σ/n) Σᵢ wᵢΔ̂(xᵢ)
-where Δ̂ = f̂ - f* is the estimation error. -/
+where Δ̂ = f̂ - f* is the estimation error.
+@isnad1 id=le.3h6v.s7.f8b5be0f065b from=translated src=- shape=cf7fe8d7 vocab=93b3bb4c
+-/
 theorem basic_inequality (hn : 0 < n)
     (M : RegressionModel n X) (F : Set (X → ℝ))
     (f_hat : X → ℝ) (w : Fin n → ℝ)

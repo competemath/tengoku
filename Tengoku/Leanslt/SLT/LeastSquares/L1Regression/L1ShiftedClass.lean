@@ -43,7 +43,9 @@ def l1ShiftedClass (d : ℕ) (R : ℝ) (θ_star : EuclideanSpace ℝ (Fin d)) :
   {h | ∃ θ : EuclideanSpace ℝ (Fin d), l1norm θ ≤ R ∧
        h = fun x => @inner ℝ _ _ (θ - θ_star) x}
 
-/-- Membership characterization for l1ShiftedClass -/
+/-- Membership characterization for l1ShiftedClass
+@isnad1 id=iff.0h4v.s7.fedc7ff71b41 from=translated src=- shape=e3aac634 vocab=89ca6056
+-/
 lemma mem_l1ShiftedClass_iff {h : (EuclideanSpace ℝ (Fin d)) → ℝ} {R : ℝ}
     {θ_star : EuclideanSpace ℝ (Fin d)} :
     h ∈ l1ShiftedClass d R θ_star ↔
@@ -51,7 +53,9 @@ lemma mem_l1ShiftedClass_iff {h : (EuclideanSpace ℝ (Fin d)) → ℝ} {R : ℝ
       h = fun x => @inner ℝ _ _ (θ - θ_star) x := by
   rfl
 
-/-- Zero is in the shifted class when θ* ∈ B₁^d(R) -/
+/-- Zero is in the shifted class when θ* ∈ B₁^d(R)
+@isnad1 id=mem.1h3v.s6.905c280de058 from=translated src=- shape=e954db91 vocab=d46dcaed
+-/
 lemma zero_mem_l1ShiftedClass {R : ℝ} {θ_star : EuclideanSpace ℝ (Fin d)}
     (hθ_star : l1norm θ_star ≤ R) :
     (0 : (EuclideanSpace ℝ (Fin d)) → ℝ) ∈ l1ShiftedClass d R θ_star := by
@@ -61,7 +65,9 @@ lemma zero_mem_l1ShiftedClass {R : ℝ} {θ_star : EuclideanSpace ℝ (Fin d)}
   · ext x
     simp only [Pi.zero_apply, sub_self, inner_zero_left]
 
-/-- Scalar multiplication preserves membership in shifted class for α ∈ [0,1] -/
+/-- Scalar multiplication preserves membership in shifted class for α ∈ [0,1]
+@isnad1 id=mem.4h5v.s7.aa8f2425a9b7 from=translated src=- shape=f641b7f1 vocab=39d14977
+-/
 lemma smul_mem_l1ShiftedClass {h : (EuclideanSpace ℝ (Fin d)) → ℝ} {R : ℝ}
     {θ_star : EuclideanSpace ℝ (Fin d)} {α : ℝ}
     (hθ_star : l1norm θ_star ≤ R) (hh : h ∈ l1ShiftedClass d R θ_star)
@@ -89,7 +95,9 @@ lemma smul_mem_l1ShiftedClass {h : (EuclideanSpace ℝ (Fin d)) → ℝ} {R : �
                inner_smul_left, RCLike.conj_to_real]
     ring
 
-/-- The shifted class is star-shaped when θ* ∈ B₁^d(R) -/
+/-- The shifted class is star-shaped when θ* ∈ B₁^d(R)
+@isnad1 id=isstarsh.1h3v.s4.eb063af41593 from=translated src=- shape=fb16d498 vocab=5e84f3fd
+-/
 theorem l1ShiftedClass_isStarShaped {R : ℝ} {θ_star : EuclideanSpace ℝ (Fin d)}
     (hθ_star : l1norm θ_star ≤ R) :
     IsStarShaped (l1ShiftedClass d R θ_star) := by
@@ -98,7 +106,9 @@ theorem l1ShiftedClass_isStarShaped {R : ℝ} {θ_star : EuclideanSpace ℝ (Fin
   · intro h hh α hα_pos hα_le
     exact smul_mem_l1ShiftedClass hθ_star hh hα_pos hα_le
 
-/-- The shifted class equals the standard shiftedClass when f* is a linear predictor in F -/
+/-- The shifted class equals the standard shiftedClass when f* is a linear predictor in F
+@isnad1 id=eq.0h3v.s6.242f4c9f5ba1 from=translated src=- shape=0b755713 vocab=9ab334d3
+-/
 theorem shiftedClass_eq_l1ShiftedClass {R : ℝ} {θ_star : EuclideanSpace ℝ (Fin d)} :
     shiftedClass (l1PredictorClass d R) (fun x => @inner ℝ _ _ θ_star x) =
     l1ShiftedClass d R θ_star := by
@@ -123,7 +133,9 @@ theorem shiftedClass_eq_l1ShiftedClass {R : ℝ} {θ_star : EuclideanSpace ℝ (
       simp only [Pi.sub_apply, inner_sub_left]
 
 /-- Parameter bound: if h = ⟨Δ, ·⟩ is in H* with both θ and θ* in B₁^d(R),
-then ‖Δ‖₁ ≤ 2R -/
+then ‖Δ‖₁ ≤ 2R
+@isnad1 id=ex.2h4v.s7.dba04f0fb3a5 from=translated src=- shape=badd7f2d vocab=beebe365
+-/
 lemma l1ShiftedClass_param_bound {R : ℝ} {θ_star : EuclideanSpace ℝ (Fin d)}
     (hθ_star : l1norm θ_star ≤ R) {h : (EuclideanSpace ℝ (Fin d)) → ℝ}
     (hh : h ∈ l1ShiftedClass d R θ_star) :
@@ -141,7 +153,9 @@ lemma l1ShiftedClass_param_bound {R : ℝ} {θ_star : EuclideanSpace ℝ (Fin d)
   · exact hθ_eq
 
 /-- Alternative characterization: l1ShiftedClass contains functions ⟨Δ, ·⟩
-where θ* + Δ ∈ B₁^d(R), which implies ‖Δ‖₁ ≤ 2R -/
+where θ* + Δ ∈ B₁^d(R), which implies ‖Δ‖₁ ≤ 2R
+@isnad1 id=mem.1h4v.s7.69a5d43773c4 from=translated src=- shape=4415dcd2 vocab=837a6a6f
+-/
 lemma mem_l1ShiftedClass_of_delta {R : ℝ} {θ_star : EuclideanSpace ℝ (Fin d)}
     {Δ : EuclideanSpace ℝ (Fin d)}
     (hsum : l1norm (θ_star + Δ) ≤ R) :
@@ -152,7 +166,9 @@ lemma mem_l1ShiftedClass_of_delta {R : ℝ} {θ_star : EuclideanSpace ℝ (Fin d
   · ext x
     simp only [add_sub_cancel_left]
 
-/-- The full ℓ₁ shifted class with radius 2R contains all linear predictors with ‖Δ‖₁ ≤ 2R -/
+/-- The full ℓ₁ shifted class with radius 2R contains all linear predictors with ‖Δ‖₁ ≤ 2R
+@isnad1 id=le.1h3v.s7.0e694e8ba1b3 from=translated src=- shape=157c4d3f vocab=e8a4ab1b
+-/
 lemma l1ShiftedClass_superset {R : ℝ} {θ_star : EuclideanSpace ℝ (Fin d)}
     (hθ_star : l1norm θ_star ≤ R) :
     l1ShiftedClass d R θ_star ⊆

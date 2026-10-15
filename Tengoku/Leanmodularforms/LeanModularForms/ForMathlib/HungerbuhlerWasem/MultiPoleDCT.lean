@@ -58,6 +58,9 @@ to `γ⁻¹(T) ∩ [0,1]`. -/
 def badSetIcc (γP : PiecewiseC1Path x x) (T : Finset ℂ) (ε : ℝ) : Set ℝ :=
   {t ∈ Icc (0 : ℝ) 1 | ∃ s' ∈ T, ‖γP.toPath.extend t - s'‖ ≤ ε}
 
+/--
+@isnad1 id=measurab.0h4v.s4.9c92d5166ff8 from=translated src=- shape=c677a4c8 vocab=77939890
+-/
 theorem badSetIcc_measurableSet (γP : PiecewiseC1Path x x) (T : Finset ℂ)
     (ε : ℝ) : MeasurableSet (badSetIcc γP T ε) := by
   classical
@@ -69,18 +72,29 @@ theorem badSetIcc_measurableSet (γP : PiecewiseC1Path x x) (T : Finset ℂ)
   exact (isClosed_le ((γP.toPath.continuous_extend.sub continuous_const).norm)
     continuous_const).measurableSet
 
+/--
+@isnad1 id=monotone.0h3v.s5.dbbb965d661c from=translated src=- shape=98371b46 vocab=3d3e4222
+-/
 theorem badSetIcc_mono (γP : PiecewiseC1Path x x) (T : Finset ℂ) :
     Monotone (badSetIcc γP T) :=
   fun _ _ hε _ ⟨ht_Icc, s', hs'T, h_le⟩ => ⟨ht_Icc, s', hs'T, h_le.trans hε⟩
 
+/--
+@isnad1 id=le.0h4v.s5.2f2c3f13099a from=translated src=- shape=f9e5020c vocab=5b12ad20
+-/
 theorem badSetIcc_subset_Icc (γP : PiecewiseC1Path x x) (T : Finset ℂ) (ε : ℝ) :
     badSetIcc γP T ε ⊆ Icc (0 : ℝ) 1 := fun _ ht => ht.1
 
+/--
+@isnad1 id=ne.0h4v.s5.3278b77bf570 from=translated src=- shape=19678e90 vocab=adca7c74
+-/
 theorem badSetIcc_volume_ne_top (γP : PiecewiseC1Path x x) (T : Finset ℂ) (ε : ℝ) :
     volume (badSetIcc γP T ε) ≠ ⊤ :=
   ((measure_mono (badSetIcc_subset_Icc γP T ε)).trans_lt measure_Icc_lt_top).ne
 
-/-- Intersection of all bad sets (over ε > 0) equals the preimage of `T` in `[0,1]`. -/
+/-- Intersection of all bad sets (over ε > 0) equals the preimage of `T` in `[0,1]`.
+@isnad1 id=eq.0h3v.s7.14f2a7d4f693 from=translated src=- shape=645506da vocab=874822cb
+-/
 theorem badSetIcc_iInter_pos (γP : PiecewiseC1Path x x) (T : Finset ℂ) :
     (⋂ ε ∈ Set.Ioi (0 : ℝ), badSetIcc γP T ε) =
       {t ∈ Icc (0 : ℝ) 1 | γP.toPath.extend t ∈ (↑T : Set ℂ)} := by
@@ -109,7 +123,9 @@ theorem badSetIcc_iInter_pos (γP : PiecewiseC1Path x x) (T : Finset ℂ) :
     exact hε_pos.le
 
 /-- The volume of the bad set tends to zero as `ε → 0+` for a closed piecewise-`C¹`
-immersion `γ`. -/
+immersion `γ`.
+@isnad1 id=tendsto.0h3v.s6.2a936fafbb68 from=translated src=- shape=5449c24f vocab=60b8c884
+-/
 theorem badSet_volume_tendsto_zero (γ : ClosedPwC1Immersion x) (T : Finset ℂ) :
     Tendsto (fun ε : ℝ => volume (badSetIcc γ.toPwC1Immersion.toPiecewiseC1Path T ε))
       (𝓝[>] 0) (𝓝 0) := by
@@ -129,7 +145,9 @@ theorem badSet_volume_tendsto_zero (γ : ClosedPwC1Immersion x) (T : Finset ℂ)
 
 /-- The singleton-CPV cutoff integrand for the polar part `decomp.polarPart s`
 is interval-integrable on `[0, 1]` for every `ε > 0`. Mirrors
-`cpvIntegrandOn_polarPart_intervalIntegrable` but for the singleton form. -/
+`cpvIntegrandOn_polarPart_intervalIntegrable` but for the singleton form.
+@isnad1 id=interval.2h8v.s7.448705ccdbc3 from=translated src=- shape=6eb10470 vocab=7adea302
+-/
 theorem cpvIntegrand_polarPart_intervalIntegrable
     (γ : ClosedPwC1Immersion x) {U : Set ℂ} {S : Finset ℂ}
     {f : ℂ → ℂ} (decomp : PolarPartDecomposition f S U) {s : ℂ} (hs : s ∈ S)

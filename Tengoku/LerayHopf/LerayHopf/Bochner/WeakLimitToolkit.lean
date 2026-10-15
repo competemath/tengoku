@@ -39,7 +39,9 @@ section HilbertToolkit
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
 /-- **Cauchy extension along norm-approximation:** if `‖xₖ‖ ≤ M` and `z` can be approximated
-in norm by vectors `z'` for which `k ↦ ⟪xₖ, z'⟫` is Cauchy, then `k ↦ ⟪xₖ, z⟫` is Cauchy. -/
+in norm by vectors `z'` for which `k ↦ ⟪xₖ, z'⟫` is Cauchy, then `k ↦ ⟪xₖ, z⟫` is Cauchy.
+@isnad1 id=cauchyse.2h4v.s7.dbdef4286440 from=translated src=- shape=48bf4bdc vocab=bd7411da
+-/
 theorem cauchySeq_inner_extend (x : ℕ → E) (M : ℝ) (hM : ∀ k, ‖x k‖ ≤ M)
     (z : E)
     (happrox : ∀ ε : ℝ, 0 < ε → ∃ z' : E, ‖z - z'‖ < ε ∧
@@ -87,7 +89,9 @@ theorem cauchySeq_inner_extend (x : ℕ → E) (M : ℝ) (hM : ∀ k, ‖x k‖ 
 /-- **Weak limit inside a closed submodule.**  If `xₖ ∈ K`, `‖xₖ‖ ≤ M`, and every inner-product
 sequence `k ↦ ⟪xₖ, z⟫` is Cauchy, then there is `y ∈ K` with `‖y‖ ≤ M` and `⟪xₖ, z⟫ → ⟪y, z⟫`
 for every `z` (Riesz representation of the limit functional; membership by the
-orthogonal-projection argument). -/
+orthogonal-projection argument).
+@isnad1 id=ex.3h4v.s8.628d2f7c12f1 from=translated src=- shape=ff376855 vocab=d70b5fca
+-/
 theorem exists_weak_limit_in_submodule [CompleteSpace E] (K : Submodule ℝ E)
     [K.HasOrthogonalProjection] (x : ℕ → E) (hxK : ∀ k, x k ∈ K) (M : ℝ)
     (hM : ∀ k, ‖x k‖ ≤ M)
@@ -159,7 +163,9 @@ end HilbertToolkit
 
 /-! ### Density of an a.e.-full subset of `[0, T]` -/
 
-/-- A set of full measure in `[0, T]` meets every `ε`-neighborhood of every point of `[0, T]`. -/
+/-- A set of full measure in `[0, T]` meets every `ε`-neighborhood of every point of `[0, T]`.
+@isnad1 id=ex.4h4v.s7.64b1e4350353 from=translated src=- shape=7653a7bb vocab=90331557
+-/
 theorem exists_mem_of_ae_full {T : ℝ} (hT : 0 < T) (S : Set ℝ)
     (hS : ∀ᵐ t ∂(volume.restrict (Set.Icc (0 : ℝ) T)), t ∈ S)
     {t : ℝ} (ht : t ∈ Set.Icc (0 : ℝ) T) {ε : ℝ} (hε : 0 < ε) :
@@ -199,7 +205,9 @@ theorem exists_mem_of_ae_full {T : ℝ} (hT : 0 < T) (S : Set ℝ)
 /-! ### Equi-Lipschitz + dense convergence ⇒ Cauchy everywhere -/
 
 /-- A family of eventually-equi-Lipschitz real functions on `[0, T]` that is Cauchy on a
-dense-in-`[0,T]` subset is Cauchy at every point of `[0, T]`. -/
+dense-in-`[0,T]` subset is Cauchy at every point of `[0, T]`.
+@isnad1 id=cauchyse.5h6v.s8.d82f41c5aed1 from=translated src=- shape=e571b5fe vocab=5c249578
+-/
 theorem cauchySeq_of_equiLipschitz_of_dense {T : ℝ} (f : ℕ → ℝ → ℝ) (L : ℝ) (hL : 0 ≤ L)
     (K : ℕ)
     (hLip : ∀ k, K ≤ k → ∀ s ∈ Set.Icc (0 : ℝ) T, ∀ t' ∈ Set.Icc (0 : ℝ) T,

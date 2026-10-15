@@ -28,14 +28,18 @@ open MeasureTheory Measure Set Filter Topology
 namespace ForMathlib
 
 /-- The 2-dimensional Hausdorff measure on `ℝ` is zero on any set, since
-`finrank ℝ ℝ = 1 < 2`. -/
+`finrank ℝ ℝ = 1 < 2`.
+@isnad1 id=eq.0h1v.s5.ba37315ef9bd from=translated src=- shape=dcaf5e58 vocab=15b14184
+-/
 theorem hausdorffMeasure_two_real_zero (s : Set ℝ) : (μH[2] : Measure ℝ) s = 0 := by
   have h : (μH[2] : Measure ℝ) = 0 :=
     Real.hausdorffMeasure_of_finrank_lt (by simp [Module.finrank_self])
   simp [h]
 
 /-- The 2-dimensional Hausdorff measure of the image of a set `s ⊆ ℝ` under a
-Lipschitz map `f : ℝ → ℂ` is zero. -/
+Lipschitz map `f : ℝ → ℂ` is zero.
+@isnad1 id=eq.1h3v.s6.da3745a2d5bc from=translated src=- shape=bada6c68 vocab=3b4f7216
+-/
 theorem hausdorffMeasure_two_lipschitz_image_zero {K : NNReal} {f : ℝ → ℂ}
     (hf : LipschitzWith K f) (s : Set ℝ) : μH[2] (f '' s) = 0 := by
   have h_le := hf.hausdorffMeasure_image_le (d := 2) (by norm_num) s
@@ -47,7 +51,9 @@ map `f : ℝ → ℂ` is zero.
 
 Volume on `ℂ` is absolutely continuous w.r.t. the 2-dimensional Hausdorff measure
 (both are `AddHaarMeasure`s on a 2-dim real normed space), so vanishing of
-Hausdorff 2-measure implies vanishing of volume. -/
+Hausdorff 2-measure implies vanishing of volume.
+@isnad1 id=eq.1h3v.s6.62ee1bcb1da9 from=translated src=- shape=a2f29296 vocab=26d8a9c1
+-/
 theorem volume_image_lipschitz_real_zero {K : NNReal} {f : ℝ → ℂ}
     (hf : LipschitzWith K f) (s : Set ℝ) : volume (f '' s) = 0 := by
   have h_finrank : ((Module.finrank ℝ ℂ : ℕ) : ℝ) = 2 := by
@@ -61,7 +67,9 @@ theorem volume_image_lipschitz_real_zero {K : NNReal} {f : ℝ → ℂ}
 
 /-- For open nonempty `U ⊆ ℂ` and Lipschitz `f : ℝ → ℂ`, there exists `w₀ ∈ U`
 off `f '' s`: Lipschitz images have measure zero, so their complement in `U`
-has positive measure and in particular is nonempty. -/
+has positive measure and in particular is nonempty.
+@isnad1 id=ex.3h4v.s6.00f25a6bea8d from=translated src=- shape=7227bdc0 vocab=71f754c4
+-/
 theorem exists_mem_not_mem_image_of_isOpen_of_lipschitz {U : Set ℂ} (hU_open : IsOpen U)
     (hU_ne : U.Nonempty) {K : NNReal} {f : ℝ → ℂ} (hf : LipschitzWith K f) (s : Set ℝ) :
     ∃ w₀ ∈ U, w₀ ∉ f '' s := by
@@ -75,7 +83,9 @@ theorem exists_mem_not_mem_image_of_isOpen_of_lipschitz {U : Set ℂ} (hU_open :
 `w₀ ∈ U` with `γ` avoiding `w₀`.
 
 The Lipschitz hypothesis is supplied by the caller; it holds automatically for
-`PwC1Immersion` with bounded derivative (typical case). -/
+`PwC1Immersion` with bounded derivative (typical case).
+@isnad1 id=ex.3h5v.s7.4f3b0c0219e8 from=translated src=- shape=18dbff02 vocab=6c95b0b6
+-/
 theorem exists_mem_not_mem_path_image_of_isOpen {x y : ℂ} (γ : PiecewiseC1Path x y)
     {U : Set ℂ} (hU_open : IsOpen U) (hU_ne : U.Nonempty) {K : NNReal}
     (hLip : LipschitzWith K γ.toPath.extend) :

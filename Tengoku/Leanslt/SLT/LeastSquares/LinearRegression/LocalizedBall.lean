@@ -41,7 +41,9 @@ The empirical norm satisfies ‖g‖_n² = n⁻¹ · ‖Xu‖₂².
 Thus ‖g‖_n ≤ δ ⟺ ‖Xu‖₂ ≤ δ√n.
 -/
 
-/-- The shifted class of linear predictors is star-shaped. -/
+/-- The shifted class of linear predictors is star-shaped.
+@isnad1 id=isstarsh.1h2v.s5.7b728b24fa1a from=translated src=- shape=227eb73e vocab=0d01aa76
+-/
 theorem shiftedClass_isStarShaped_of_linear {f_star : (EuclideanSpace ℝ (Fin d)) → ℝ}
     (hf_star : f_star ∈ linearPredictorClass d) :
     IsStarShaped (shiftedClass (linearPredictorClass d) f_star) := by
@@ -53,7 +55,9 @@ def linearLocalizedBall (n d : ℕ) (δ : ℝ) (x : Fin n → EuclideanSpace ℝ
     Set ((EuclideanSpace ℝ (Fin d)) → ℝ) :=
   localizedBall (linearPredictorClass d) δ x
 
-/-- A linear predictor ⟨θ, ·⟩ is in the localized ball iff ‖Xθ‖ ≤ δ√n -/
+/-- A linear predictor ⟨θ, ·⟩ is in the localized ball iff ‖Xθ‖ ≤ δ√n
+@isnad1 id=iff.1h5v.s7.703f9f4a4325 from=translated src=- shape=7eb37868 vocab=9919ddbb
+-/
 theorem mem_linearLocalizedBall_iff (hn : 0 < n)
     (x : Fin n → EuclideanSpace ℝ (Fin d)) (δ : ℝ) (θ : EuclideanSpace ℝ (Fin d)) :
     (fun z => @inner ℝ _ _ θ z) ∈ linearLocalizedBall n d δ x ↔
@@ -90,7 +94,9 @@ theorem mem_linearLocalizedBall_iff (hn : 0 < n)
       rw [mul_comm]
       exact hnorm
 
-/-- Membership in the localized ball for zero parameter -/
+/-- Membership in the localized ball for zero parameter
+@isnad1 id=mem.1h4v.s5.6e3b7a3ba2fa from=translated src=- shape=9dcd4afd vocab=a2de2b40
+-/
 lemma zero_mem_linearLocalizedBall (x : Fin n → EuclideanSpace ℝ (Fin d)) {δ : ℝ} (hδ : 0 ≤ δ) :
     (fun _ => (0 : ℝ)) ∈ linearLocalizedBall n d δ x := by
   unfold linearLocalizedBall localizedBall
@@ -117,7 +123,9 @@ noncomputable def linearCoveringNumber (n d : ℕ) (s δ : ℝ) (x : Fin n → E
     WithTop ℕ :=
   coveringNumber s (linearLocalizedBallImage n d δ x)
 
-/-- Characterization of the empirical image of the localized ball -/
+/-- Characterization of the empirical image of the localized ball
+@isnad1 id=eq.1h4v.s7.a3440e9ec50b from=translated src=- shape=acbda7ff vocab=3bde0f66
+-/
 theorem linearLocalizedBallImage_eq (hn : 0 < n)
     (x : Fin n → EuclideanSpace ℝ (Fin d)) (δ : ℝ) :
     linearLocalizedBallImage n d δ x =
@@ -148,7 +156,9 @@ theorem linearLocalizedBallImage_eq (hn : 0 < n)
       exact hnorm
     · rfl
 
-/-- Zero is in the empirical image when δ ≥ 0 -/
+/-- Zero is in the empirical image when δ ≥ 0
+@isnad1 id=mem.1h4v.s5.59256176b86c from=translated src=- shape=ea5a8eba vocab=4ca44daf
+-/
 lemma zero_mem_linearLocalizedBallImage (x : Fin n → EuclideanSpace ℝ (Fin d))
     {δ : ℝ} (hδ : 0 ≤ δ) :
     (0 : EmpiricalSpace n) ∈ linearLocalizedBallImage n d δ x := by
@@ -158,13 +168,17 @@ lemma zero_mem_linearLocalizedBallImage (x : Fin n → EuclideanSpace ℝ (Fin d
   · exact zero_mem_linearLocalizedBall x hδ
   · rfl
 
-/-- The localized ball image is nonempty when δ ≥ 0 -/
+/-- The localized ball image is nonempty when δ ≥ 0
+@isnad1 id=nonempty.1h4v.s5.60b231204de6 from=translated src=- shape=d2acff63 vocab=f41e107d
+-/
 lemma linearLocalizedBallImage_nonempty (x : Fin n → EuclideanSpace ℝ (Fin d))
     {δ : ℝ} (hδ : 0 ≤ δ) :
     (linearLocalizedBallImage n d δ x).Nonempty :=
   ⟨0, zero_mem_linearLocalizedBallImage x hδ⟩
 
-/-- Diameter bound: the diameter of the localized ball image is at most 2δ -/
+/-- Diameter bound: the diameter of the localized ball image is at most 2δ
+@isnad1 id=le.2h4v.s6.3f8272b14876 from=translated src=- shape=034586a2 vocab=83f3d62a
+-/
 theorem diam_linearLocalizedBallImage_le (hn : 0 < n)
     (x : Fin n → EuclideanSpace ℝ (Fin d)) {δ : ℝ} (hδ : 0 ≤ δ) :
     Metric.diam (linearLocalizedBallImage n d δ x) ≤ 2 * δ := by

@@ -41,7 +41,9 @@ namespace LeanModularForms
 /-- **Pythagoras for `orthogonalProjectionComplex` and `tangentDeviation`.**
 The squared norm of `w` decomposes into the squared norms of its parallel
 projection on `L` and its orthogonal complement: this is the standard
-orthogonal-decomposition identity in ℝ² (viewing ℂ as ℝ²). -/
+orthogonal-decomposition identity in ℝ² (viewing ℂ as ℝ²).
+@isnad1 id=eq.0h2v.s6.ce38a7b8fcd1 from=translated src=- shape=b5b4b38c vocab=36a3f1ac
+-/
 theorem orthogonal_pythagoras (w L : ℂ) :
     ‖orthogonalProjectionComplex w L‖^2 + ‖tangentDeviation w L‖^2 = ‖w‖^2 := by
   rcases eq_or_ne L 0 with rfl | hL
@@ -69,7 +71,9 @@ theorem orthogonal_pythagoras (w L : ℂ) :
 projection's distance to the same-magnitude target on the +L ray equals the
 difference in magnitudes:
 
-`‖orthogonalProj w L − (‖w‖/‖L‖) • L‖ = ‖w‖ − ‖orthogonalProj w L‖`. -/
+`‖orthogonalProj w L − (‖w‖/‖L‖) • L‖ = ‖w‖ − ‖orthogonalProj w L‖`.
+@isnad1 id=eq.2h2v.s7.b30cbd752969 from=translated src=- shape=352ae52b vocab=29b65139
+-/
 theorem norm_orthogonalProjection_minus_target_eq {w L : ℂ} (hL : L ≠ 0)
     (h_pos : 0 ≤ (w * starRingEnd ℂ L).re) :
     ‖orthogonalProjectionComplex w L - (‖w‖ / ‖L‖ : ℝ) • L‖ =

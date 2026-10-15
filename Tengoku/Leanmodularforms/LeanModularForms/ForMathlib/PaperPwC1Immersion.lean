@@ -105,13 +105,17 @@ namespace ClosedPwC1Curve
 
 variable {x : E}
 
-/-- The underlying extended path is continuous. -/
+/-- The underlying extended path is continuous.
+@isnad1 id=continuo.0h3v.s6.f95838d0b441 from=translated src=- shape=9bd43f01 vocab=1c5e11e5
+-/
 @[fun_prop]
 theorem continuous (γ : ClosedPwC1Curve x) : Continuous γ.toPath.extend :=
   γ.toPath.continuous_extend
 
 /-- Membership in the inherited Ioo-style `partition` is equivalent to lying in
-`closedPartition` while not being an endpoint. -/
+`closedPartition` while not being an endpoint.
+@isnad1 id=iff.0h4v.s6.fca3be9c9c57 from=translated src=- shape=12c008cc vocab=44358f7a
+-/
 theorem mem_partition_iff (γ : ClosedPwC1Curve x) {t : ℝ} :
     t ∈ γ.partition ↔ t ∈ γ.closedPartition ∧ t ≠ 0 ∧ t ≠ 1 := by
   refine ⟨fun ht => ?_, fun ⟨h_in, h_ne0, h_ne1⟩ => ?_⟩
@@ -138,7 +142,9 @@ private lemma derivWithin_eq_deriv_on_Ioo (f : ℝ → E) {a b t : ℝ}
 
 /-- **Piece-wise integrability of the derivative.** On each closed sub-interval
 `[a, b]` between consecutive partition members, `deriv γ.toPath.extend` is
-interval-integrable. This is `TIGHT-6` for one piece. -/
+interval-integrable. This is `TIGHT-6` for one piece.
+@isnad1 id=interval.1h5v.s7.657d99ac52cd from=translated src=- shape=4acfc202 vocab=1804369a
+-/
 theorem deriv_intervalIntegrable_piece (γ : ClosedPwC1Curve x) {a b : ℝ}
     (h : γ.closedPartition.IsConsecutive a b) :
     IntervalIntegrable (deriv γ.toPath.extend) volume a b := by
@@ -220,7 +226,9 @@ namespace ClosedPwC1Curve
 variable {x : E}
 
 /-- **TIGHT-6 (global form).** For a paper-faithful closed piecewise `C¹` curve
-`γ`, the derivative `deriv γ.toPath.extend` is interval-integrable on `[0, 1]`. -/
+`γ`, the derivative `deriv γ.toPath.extend` is interval-integrable on `[0, 1]`.
+@isnad1 id=interval.0h3v.s7.0c3657e2a9c2 from=translated src=- shape=cda6fb59 vocab=bb8cfbca
+-/
 theorem deriv_extend_intervalIntegrable (γ : ClosedPwC1Curve x) :
     IntervalIntegrable (deriv γ.toPath.extend) volume 0 1 :=
   intervalIntegrable_of_consecutive_pieces γ.closedPartition 0 1
@@ -413,7 +421,9 @@ variable {x : E}
 
 /-- On each closed piece between consecutive partition members, `γ.toPath.extend`
 is Lipschitz with the maximum of `‖derivWithin γ.toPath.extend (Icc a b) t‖`
-on the piece. -/
+on the piece.
+@isnad1 id=ex.1h5v.s6.b2a8ceff0c99 from=translated src=- shape=9ebdfa15 vocab=a00194e4
+-/
 theorem lipschitzOnWith_piece (γ : ClosedPwC1Curve x) {a b : ℝ}
     (h : γ.closedPartition.IsConsecutive a b) :
     ∃ K : NNReal, LipschitzOnWith K γ.toPath.extend (Icc a b) := by
@@ -428,7 +438,9 @@ theorem lipschitzOnWith_piece (γ : ClosedPwC1Curve x) {a b : ℝ}
     hcd.differentiableOn_one fun u hu => ht₀_max hu
 
 /-- Existence of a global Lipschitz constant on `Icc 0 1`, by gluing the
-piece-wise constants. -/
+piece-wise constants.
+@isnad1 id=ex.0h3v.s6.edf66fcb5c9f from=translated src=- shape=213b7867 vocab=6210efe2
+-/
 theorem lipschitzOnWith_Icc01 (γ : ClosedPwC1Curve x) :
     ∃ K : NNReal, LipschitzOnWith K γ.toPath.extend (Icc (0 : ℝ) 1) := by
   classical
@@ -449,7 +461,9 @@ theorem lipschitzOnWith_Icc01 (γ : ClosedPwC1Curve x) :
     (f := fun p => K p.1 p.2) (Finset.mem_attach pairs ⟨(p, q), hpq_in⟩)
 
 /-- A `ClosedPwC1Curve` extends to a globally Lipschitz function `ℝ → E`.
-Outside `[0, 1]`, the extended path is constant. -/
+Outside `[0, 1]`, the extended path is constant.
+@isnad1 id=ex.0h3v.s6.1ad65e665f7c from=translated src=- shape=0533ac46 vocab=3701060a
+-/
 theorem lipschitzWith_extend (γ : ClosedPwC1Curve x) :
     ∃ K : NNReal, LipschitzWith K γ.toPath.extend := by
   obtain ⟨K, hK⟩ := γ.lipschitzOnWith_Icc01
@@ -489,7 +503,9 @@ namespace ClosedPwC1Immersion
 
 variable {x : E}
 
-/-- A `ClosedPwC1Immersion` extends to a globally Lipschitz function `ℝ → E`. -/
+/-- A `ClosedPwC1Immersion` extends to a globally Lipschitz function `ℝ → E`.
+@isnad1 id=ex.0h3v.s6.2f8a78ffafc1 from=translated src=- shape=127958de vocab=01604752
+-/
 theorem lipschitzWith_extend (γ : ClosedPwC1Immersion x) :
     ∃ K : NNReal, LipschitzWith K γ.toPath.extend :=
   γ.toClosedPwC1Curve.lipschitzWith_extend

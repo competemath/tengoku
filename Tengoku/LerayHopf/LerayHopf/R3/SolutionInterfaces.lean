@@ -368,7 +368,9 @@ LONGER an axiom anywhere in the codebase.
 
 /-- **b(u, u, u) = 0** follows purely from antisymmetry.
 
-Proof: `b(u, u, u) = -b(u, u, u)` by `b_antisymm u u u`, so `b(u, u, u) = 0`. -/
+Proof: `b(u, u, u) = -b(u, u, u)` by `b_antisymm u u u`, so `b(u, u, u) = 0`.
+@isnad1 id=eq.0h3v.s15.88120fe6d142 from=translated src=- shape=9d5bb6ba vocab=ae7e6da3
+-/
 theorem R3NSForms.b_self_zero {𝔊 : R3GalerkinScheme} (F : R3NSForms 𝔊) (u : L2Sigma_R3) :
     F.b u u u = 0 := by
   have h := F.b_antisymm u u u
@@ -377,7 +379,9 @@ theorem R3NSForms.b_self_zero {𝔊 : R3GalerkinScheme} (F : R3NSForms 𝔊) (u 
 /-- The convection trilinear form vanishes when its last two arguments coincide —
 the energy-estimate workhorse.
 
-Proof: `b(u, v, v) = -b(u, v, v)` by `b_antisymm u v v`, so `b(u, v, v) = 0`. -/
+Proof: `b(u, v, v) = -b(u, v, v)` by `b_antisymm u v v`, so `b(u, v, v) = 0`.
+@isnad1 id=eq.0h4v.s16.0ee9d01ce28c from=translated src=- shape=7c96d14e vocab=ae7e6da3
+-/
 theorem R3NSForms.b_self_zero_right {𝔊 : R3GalerkinScheme} (F : R3NSForms 𝔊) (u v : L2Sigma_R3) :
     F.b u v v = 0 := by
   have h := F.b_antisymm u v v
