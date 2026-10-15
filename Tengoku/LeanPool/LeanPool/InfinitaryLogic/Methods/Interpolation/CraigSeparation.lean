@@ -44,7 +44,9 @@ variable {L : Language.{0, 0}}
 
 /-- **Craig separation (PC-separation), relational.** If `ψ₁` and `ψ₂` have no common model
 (`ψ₁ ⊨ ¬ψ₂`), a single shared-vocabulary sentence `θ₀` separates them: it holds in the
-shared-vocabulary reduct of every model of `ψ₁` and fails in that of every model of `ψ₂`. -/
+shared-vocabulary reduct of every model of `ψ₁` and fails in that of every model of `ψ₂`.
+@isnad1 id=ex.1h3v.s9.e83851a6984a from=translated src=- shape=7a18ef0f vocab=dd155bbb
+-/
 theorem craig_pcSeparation_relational [L.IsRelational] (ψ₁ ψ₂ : L.Sentenceω)
     (h : Sentenceω.Entails ψ₁ ψ₂.not) :
     ∃ θ₀ : (symbSublang (ψ₁.functionsIn ∩ ψ₂.functionsIn)

@@ -74,7 +74,9 @@ end Lomega1omegaTemplate
 /-- Realizing `templateSentence φ t` in an `L[[J]]`-expansion of `M` (built from
 a function `σ : J → M` via `constantsOn.structure σ`) is equivalent to realizing
 `φ` itself on the tuple `σ ∘ t : Fin n → M`. The proof composes
-`realize_subst`, `realize_openBounds`, and `realize_mapLanguage`. -/
+`realize_subst`, `realize_openBounds`, and `realize_mapLanguage`.
+@isnad1 id=iff.0h7v.s6.29fe81ae997d from=translated src=- shape=75742970 vocab=0e2150b9
+-/
 theorem realize_templateSentence
     {M : Type*} [L.Structure M]
     {J : Type u} [LinearOrder J] (σ : J → M)

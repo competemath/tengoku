@@ -49,6 +49,9 @@ def ungraphTerm {β : Type*} : (graphLanguage L).Term β → L.Term β
   | .var z => .var z
   | .func f _ => isEmptyElim f
 
+/--
+@isnad1 id=eq.0h6v.s5.dfa79ec7406c from=translated src=- shape=64316e4f vocab=0baf06a2
+-/
 @[simp] theorem realize_ungraphTerm {M : Type} [L.Structure M]
     (S : (graphLanguage L).Structure M) {β : Type*} (t : (graphLanguage L).Term β)
     (env : β → M) :
@@ -57,6 +60,9 @@ def ungraphTerm {β : Type*} : (graphLanguage L).Term β → L.Term β
   | var z => rfl
   | func f ts => exact isEmptyElim f
 
+/--
+@isnad1 id=eq.0h3v.s5.2b32a68ae7be from=translated src=- shape=70806b0e vocab=fe0dd0da
+-/
 @[simp] theorem functionsIn_ungraphTerm_eq_empty (t : (graphLanguage L).Term α) :
     (ungraphTerm t).functionsIn = ∅ := by
   cases t with
@@ -89,7 +95,9 @@ variable {M : Type} [L.Structure M]
 
 /-- **The back-translation semantics**: over the graph expansion of any `L`-structure, the
 back-translation realizes exactly as the graph-language formula. No symbol set, graph axioms,
-choice, or reconstruction. -/
+choice, or reconstruction.
+@isnad1 id=iff.0h7v.s5.9ad9cace4e59 from=translated src=- shape=65f4f15c vocab=7094d46a
+-/
 theorem realize_backTranslateFormula :
     ∀ {n : ℕ} (θ : (graphLanguage L).BoundedFormulaω α n) (v : α → M) (xs : Fin n → M),
       (backTranslateFormula θ).Realize v xs ↔
@@ -208,7 +216,9 @@ private theorem relationsIn_backTranslateFormula :
 /-! ## The consumer lemmas for the Craig assembly (Unit 7) -/
 
 /-- An interpolant whose relation symbols lie in `relSym L F R` back-translates with function
-symbols in `F`. -/
+symbols in `F`.
+@isnad1 id=le.1h6v.s6.dc6da172508b from=translated src=- shape=433fc73c vocab=d007a542
+-/
 theorem functionsIn_backTranslate_subset {n : ℕ} {θ : (graphLanguage L).BoundedFormulaω α n}
     {F : Set (Σ n, L.Functions n)} {R : Set (Σ n, L.Relations n)}
     (h : θ.relationsIn ⊆ relSym L F R) :
@@ -220,7 +230,9 @@ theorem functionsIn_backTranslate_subset {n : ℕ} {θ : (graphLanguage L).Bound
   · exact graphRelSym_injective heq ▸ hp
 
 /-- An interpolant whose relation symbols lie in `relSym L F R` back-translates with relation
-symbols in `R`. -/
+symbols in `R`.
+@isnad1 id=le.1h6v.s6.46671aa257a4 from=translated src=- shape=b5b46dce vocab=ca49f7b6
+-/
 theorem relationsIn_backTranslate_subset {n : ℕ} {θ : (graphLanguage L).BoundedFormulaω α n}
     {F : Set (Σ n, L.Functions n)} {R : Set (Σ n, L.Relations n)}
     (h : θ.relationsIn ⊆ relSym L F R) :

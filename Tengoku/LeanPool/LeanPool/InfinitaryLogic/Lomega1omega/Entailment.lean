@@ -39,14 +39,21 @@ namespace Theoryω
 
 variable {T T' : L.Theoryω} {φ ψ χ : L.Sentenceω}
 
+/--
+@isnad1 id=entails.1h3v.s4.034c2a1cec11 from=translated src=- shape=e9c5801b vocab=019e3f32
+-/
 theorem entails_of_mem (h : φ ∈ T) : T.Entails φ :=
   fun _M _ _ hM => hM φ h
 
-/-- Entailment is monotone in the theory. -/
+/-- Entailment is monotone in the theory.
+@isnad1 id=entails.2h4v.s4.d00a9e108bae from=translated src=- shape=b5714f87 vocab=9aec9736
+-/
 theorem Entails.mono (h : T.Entails φ) (hT : T ⊆ T') : T'.Entails φ :=
   fun _M _ _ hM => h _M (hM.mono hT)
 
-/-- Cut: an entailed sentence can be added to the premises without changing entailments. -/
+/-- Cut: an entailed sentence can be added to the premises without changing entailments.
+@isnad1 id=entails.2h4v.s5.d89704e3b3a2 from=translated src=- shape=411d4596 vocab=baa4afd1
+-/
 theorem Entails.cut (hφ : T.Entails φ) (hψ : (insert φ T).Entails ψ) : T.Entails ψ :=
   fun M _ _ hM => hψ M fun χ hχ => by
     rcases Set.mem_insert_iff.mp hχ with rfl | hχ
@@ -59,9 +66,15 @@ namespace Sentenceω
 
 variable {φ ψ χ : L.Sentenceω}
 
+/--
+@isnad1 id=entails.0h2v.s3.535dfecaea22 from=translated src=- shape=f3577ae2 vocab=3a332ff3
+-/
 theorem Entails.refl (φ : L.Sentenceω) : φ.Entails φ :=
   Theoryω.entails_of_mem rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.dc79a1b8a8d1 from=translated src=- shape=37cae7ed vocab=71ae580c
+-/
 theorem entails_iff :
     φ.Entails ψ ↔ ∀ (M : Type) [L.Structure M] [Nonempty M],
       Sentenceω.Realize φ M → Sentenceω.Realize ψ M := by
@@ -71,6 +84,9 @@ theorem entails_iff :
   · intro h M _ _ hM
     exact h M (hM φ rfl)
 
+/--
+@isnad1 id=entails.2h4v.s4.620ab832bb90 from=translated src=- shape=de5dbc67 vocab=3a332ff3
+-/
 theorem Entails.trans (h₁ : φ.Entails ψ) (h₂ : ψ.Entails χ) : φ.Entails χ :=
   entails_iff.mpr fun M _ _ hφ => entails_iff.mp h₂ M (entails_iff.mp h₁ M hφ)
 

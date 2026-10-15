@@ -76,7 +76,9 @@ structure PippengerRowCertificate (α : ℚ) (r : ℕ) (θ : ℚ) (c : ℕ) (δ 
 
 /-! ## Tail bound proofs -/
 
-/-- Tail bound for E₁: `e² · (1/3)^{-3} · (1/100)^2 < 1/20` -/
+/-- Tail bound for E₁: `e² · (1/3)^{-3} · (1/100)^2 < 1/20`
+@isnad1 id=lt.0h0v.s7.c68a74745c38 from=translated src=- shape=7747d42f vocab=5a354024
+-/
 theorem tail_bound_real_E₁ :
     Real.exp 2 * ((1 / 3 : ℚ) : ℝ) ^ (1 - (4 : ℤ)) * ((1 / 100 : ℚ) : ℝ) ^ ((4 : ℤ) - 2) < 1 / 20 :=
       by
@@ -87,7 +89,9 @@ theorem tail_bound_real_E₁ :
     push_cast; norm_num [zpow_natCast]
   rw [h1, h2]; nlinarith
 
-/-- Tail bound for E₂: `e² · (4/7)^{-3} · (1/100)^2 < 1/20` -/
+/-- Tail bound for E₂: `e² · (4/7)^{-3} · (1/100)^2 < 1/20`
+@isnad1 id=lt.0h0v.s7.64240bb3cb56 from=translated src=- shape=7747d42f vocab=5a354024
+-/
 theorem tail_bound_real_E₂ :
     Real.exp 2 * ((4 / 7 : ℚ) : ℝ) ^ (1 - (4 : ℤ)) * ((1 / 100 : ℚ) : ℝ) ^ ((4 : ℤ) - 2) < 1 / 20 :=
       by
@@ -100,7 +104,9 @@ theorem tail_bound_real_E₂ :
   have h3 : (7 / 4 : ℝ) ^ (3 : ℕ) = 343 / 64 := by norm_num
   rw [h3]; nlinarith
 
-/-- Tail bound for E₃: `e² · (2/7)^{-3} · (1/100)^2 < 1/20` -/
+/-- Tail bound for E₃: `e² · (2/7)^{-3} · (1/100)^2 < 1/20`
+@isnad1 id=lt.0h0v.s7.fae8c973f6e7 from=translated src=- shape=7747d42f vocab=5a354024
+-/
 theorem tail_bound_real_E₃ :
     Real.exp 2 * ((2 / 7 : ℚ) : ℝ) ^ (1 - (4 : ℤ)) * ((1 / 100 : ℚ) : ℝ) ^ ((4 : ℤ) - 2) < 1 / 20 :=
       by
@@ -113,7 +119,9 @@ theorem tail_bound_real_E₃ :
   have h3 : (7 / 2 : ℝ) ^ (3 : ℕ) = 343 / 8 := by norm_num
   rw [h3]; nlinarith
 
-/-- Tail bound for E₄: `e² · (5/11)^{-4} · (1/100)^3 < 1/20` -/
+/-- Tail bound for E₄: `e² · (5/11)^{-4} · (1/100)^3 < 1/20`
+@isnad1 id=lt.0h0v.s7.e7604c03a148 from=translated src=- shape=7747d42f vocab=5a354024
+-/
 theorem tail_bound_real_E₄ :
     Real.exp 2 * ((5 / 11 : ℚ) : ℝ) ^ (1 - (5 : ℤ)) * ((1 / 100 : ℚ) : ℝ) ^ ((5 : ℤ) - 2) < 1 / 20
       := by
@@ -140,12 +148,18 @@ For each Pippenger row, the proof combines:
 
 /-! ## Row-specific bad-ratio estimates -/
 
+/--
+@isnad1 id=lt.0h0v.s6.80356d209fff from=translated src=- shape=3fc2e9b4 vocab=022baa84
+-/
 theorem tail_bound_E₁_simplified :
     Real.exp 2 * 27 * ((1 / 100 : ℝ) ^ 2) < 1 / 20 := by
   have h := tail_bound_real_E₁
   norm_num at h ⊢
   exact h
 
+/--
+@isnad1 id=le.7h3v.s8.de732794f7bb from=translated src=- shape=f0c81e5a vocab=0e79e5cc
+-/
 theorem small_term_E₁
     (N L m : ℕ) (hN : 0 < N) (hm : 0 < m) (hmN : m ≤ N) (hmL : m ≤ L)
     (hNL : 4 * N = 12 * L) (hLreal : (L : ℝ) = (1 / 3 : ℝ) * (N : ℝ))
@@ -180,12 +194,18 @@ theorem small_term_E₁
   rw [hbase_eq]
   exact pow_le_pow_left₀ (by positivity) hbase_le m
 
+/--
+@isnad1 id=lt.0h0v.s7.7603bac49a57 from=translated src=- shape=a4911323 vocab=022baa84
+-/
 theorem tail_bound_E₂_simplified :
     Real.exp 2 * ((7 / 4 : ℝ) ^ 3) * ((1 / 100 : ℝ) ^ 2) < 1 / 20 := by
   have h := tail_bound_real_E₂
   norm_num at h ⊢
   exact h
 
+/--
+@isnad1 id=le.7h3v.s8.edae5930a2fa from=translated src=- shape=f0c81e5a vocab=0e79e5cc
+-/
 theorem small_term_E₂
     (N L m : ℕ) (hN : 0 < N) (hm : 0 < m) (hmN : m ≤ N) (hmL : m ≤ L)
     (hNL : 4 * N = 7 * L) (hLreal : (L : ℝ) = (4 / 7 : ℝ) * (N : ℝ))
@@ -221,12 +241,18 @@ theorem small_term_E₂
   rw [hbase_eq]
   exact pow_le_pow_left₀ (by positivity) hbase_le m
 
+/--
+@isnad1 id=lt.0h0v.s7.147da1546951 from=translated src=- shape=a4911323 vocab=022baa84
+-/
 theorem tail_bound_E₃_simplified :
     Real.exp 2 * ((7 / 2 : ℝ) ^ 3) * ((1 / 100 : ℝ) ^ 2) < 1 / 20 := by
   have h := tail_bound_real_E₃
   norm_num at h ⊢
   exact h
 
+/--
+@isnad1 id=le.7h3v.s8.ab23df48257e from=translated src=- shape=f0c81e5a vocab=0e79e5cc
+-/
 theorem small_term_E₃
     (N L m : ℕ) (hN : 0 < N) (hm : 0 < m) (hmN : m ≤ N) (hmL : m ≤ L)
     (hNL : 4 * N = 14 * L) (hLreal : (L : ℝ) = (2 / 7 : ℝ) * (N : ℝ))
@@ -262,12 +288,18 @@ theorem small_term_E₃
   rw [hbase_eq]
   exact pow_le_pow_left₀ (by positivity) hbase_le m
 
+/--
+@isnad1 id=lt.0h0v.s7.3c4e067b7d9c from=translated src=- shape=a4911323 vocab=022baa84
+-/
 theorem tail_bound_E₄_simplified :
     Real.exp 2 * ((11 / 5 : ℝ) ^ 4) * ((1 / 100 : ℝ) ^ 3) < 1 / 20 := by
   have h := tail_bound_real_E₄
   norm_num at h ⊢
   exact h
 
+/--
+@isnad1 id=le.7h3v.s8.0932b0fa7a34 from=translated src=- shape=f0c81e5a vocab=0e79e5cc
+-/
 theorem small_term_E₄
     (N L m : ℕ) (hN : 0 < N) (hm : 0 < m) (hmN : m ≤ N) (hmL : m ≤ L)
     (hNL : 5 * N = 11 * L) (hLreal : (L : ℝ) = (5 / 11 : ℝ) * (N : ℝ))

@@ -75,6 +75,9 @@ private theorem exists_chart_nhds (γ : Path x y) (τ : ↥unitInterval) :
   exact ⟨V, hVopen, hτV, eτ, eτ (γ.extend (τ : ℝ)), rτ, chart_mem_maximalAtlas _, hrτ, hballτ,
     fun u hu => hu⟩
 
+/--
+@isnad1 id=nonempty.0h4v.s6.48a1caec5305 from=translated src=- shape=ddfdb270 vocab=bf6734b2
+-/
 theorem exists_chartChain (γ : Path x y) : Nonempty (ChartChain γ) := by
   choose V hVopen hτV e c r he hr hballsub hmaps using exists_chart_nhds γ
   obtain ⟨t, ht0, hmono, ⟨n, htn⟩, hsub⟩ :=

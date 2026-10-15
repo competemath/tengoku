@@ -145,6 +145,9 @@ private theorem relInst_congr_iff (hsc : HenkinComplete U S) {l : ℕ} (R : L.Re
 
 /-! ## The `L[[ℕ]]`-structure on the quotient -/
 
+/--
+@isnad1 id=isempty.0h2v.s4.3ba5df25e138 from=translated src=- shape=faa0e63a vocab=bfc75a00
+-/
 instance qfuncSuccIsEmpty (n : ℕ) : IsEmpty (L[[ℕ]].Functions (n + 1)) := by
   have : IsEmpty (L.Functions (n + 1)) := ‹L.IsRelational› (n + 1)
   have : IsEmpty ((constantsOn ℕ).Functions (n + 1)) := isEmpty_functions_constantsOn_succ
@@ -163,7 +166,9 @@ noncomputable instance qModelStructure (hsc : HenkinComplete U S) :
     (∀ i, ts i = qmk hsc (constTerm (g i))) ∧
     BoundedFormulaω.rel R (fun i => constTermS (g i)) ∈ S
 
-/-- **Closed-term evaluation is its quotient class.** -/
+/-- **Closed-term evaluation is its quotient class.**
+@isnad1 id=eq.1h4v.s6.0d77ca72f4da from=translated src=- shape=aba98aaf vocab=0027d014
+-/
 theorem qterm_realize_eq_mk (hsc : HenkinComplete U S) (t : L[[ℕ]].Term Empty) :
     @Term.realize L[[ℕ]] (QModel hsc) (qModelStructure hsc) Empty Empty.elim t = qmk hsc t := by
   obtain ⟨c, rfl⟩ := exists_eq_constTerm t
@@ -189,26 +194,34 @@ private theorem relMap_qmk_iff (hsc : HenkinComplete U S) {l : ℕ} (R : L.Relat
   · intro hmem
     exact ⟨g, fun _ => rfl, hmem⟩
 
-/-- **Positive atomic (equality).** -/
+/-- **Positive atomic (equality).**
+@isnad1 id=eq.2h5v.s6.ab4a56f6b955 from=translated src=- shape=f25ff780 vocab=63a590dd
+-/
 theorem qmk_eq_of_mem (hsc : HenkinComplete U S) (a b : ℕ) (hmem : constEq a b ∈ S) :
     qmk hsc (constTerm a) = qmk hsc (constTerm b) :=
   (qmk_constTerm_eq_iff hsc a b).mpr hmem
 
-/-- **Negative atomic (equality).** Closes with `C0` — not maximality. -/
+/-- **Negative atomic (equality).** Closes with `C0` — not maximality.
+@isnad1 id=ne.2h5v.s6.ad999ece9da9 from=translated src=- shape=0fbda8d8 vocab=54e9d22a
+-/
 theorem qmk_ne_of_neg_mem (hsc : HenkinComplete U S) (a b : ℕ)
     (hmem : (constEq a b).not ∈ S) :
     qmk hsc (constTerm a) ≠ qmk hsc (constTerm b) := fun heq =>
   HenkinComplete.no_contradiction hsc (constEq a b)
     ⟨(qmk_constTerm_eq_iff hsc a b).mp heq, hmem⟩
 
-/-- **Positive atomic (relation).** -/
+/-- **Positive atomic (relation).**
+@isnad1 id=relmap.2h6v.s6.bcaaec187b99 from=translated src=- shape=68478f4b vocab=1d94705a
+-/
 theorem relMap_of_mem (hsc : HenkinComplete U S) {l : ℕ} (R : L.Relations l) (g : Fin l → ℕ)
     (hmem : relInst R g ∈ S) :
     (qModelStructure hsc).RelMap (Sum.inl R) (fun i => qmk hsc (constTerm (g i))) :=
   (relMap_qmk_iff hsc R g).mpr hmem
 
 /-- **Negative atomic (relation).** Reflects through the relation map's chosen representatives, then
-closes with `C0` — not maximality. -/
+closes with `C0` — not maximality.
+@isnad1 id=not.2h6v.s6.19aec7fe41a7 from=translated src=- shape=8db55a95 vocab=e6fa2ef0
+-/
 theorem not_relMap_of_neg_mem (hsc : HenkinComplete U S) {l : ℕ} (R : L.Relations l) (g : Fin l → ℕ)
     (hmem : (relInst R g).not ∈ S) :
     ¬ (qModelStructure hsc).RelMap (Sum.inl R) (fun i => qmk hsc (constTerm (g i))) := fun hrel =>

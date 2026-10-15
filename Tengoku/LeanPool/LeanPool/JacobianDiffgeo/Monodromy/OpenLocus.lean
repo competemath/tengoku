@@ -46,10 +46,16 @@ The standing surface is compact, so this is the case actually used in `LogContin
 def openLocusOfFinite {S : Set X} (hS : S.Finite) : Opens X := openLocus hS.isClosed
 
 omit [T2Space X] [ChartedSpace ℂ X] [IsManifold 𝓘(ℂ) ω X] in
+/--
+@isnad1 id=iff.1h3v.s5.f5a975c80a51 from=translated src=- shape=de052223 vocab=5e332dc6
+-/
 @[simp] theorem mem_openLocus {S : Set X} (hS : IsClosed S) {x : X} :
     x ∈ openLocus hS ↔ x ∉ S := Set.mem_compl_iff S x
 
 omit [ChartedSpace ℂ X] [IsManifold 𝓘(ℂ) ω X] in
+/--
+@isnad1 id=iff.1h3v.s5.189a70523038 from=translated src=- shape=77186a25 vocab=7d4791b1
+-/
 @[simp] theorem mem_openLocusOfFinite {S : Set X} (hS : S.Finite) {x : X} :
     x ∈ openLocusOfFinite hS ↔ x ∉ S := mem_openLocus hS.isClosed
 
@@ -69,7 +75,9 @@ facts about the lift back into statements about `γ.extend`, `f.holoRepr`, etc.)
 NB: called with the fully-qualified name `Path.liftOpenLocus`, not dot notation — `Path` is a
 mathlib root-namespace type, so a declaration named `Path.foo` nested inside `RS.Monodromy` is
 *not* found by the dot-notation mechanism (only by ordinary name resolution, which does see it
-since we are inside the `RS.Monodromy` namespace). -/
+since we are inside the `RS.Monodromy` namespace).
+@isnad1 id=eq.2h6v.s9.2e77f256f1d0 from=translated src=- shape=8ac6af2b vocab=77ee0f7b
+-/
 theorem Path.liftOpenLocus_extend {S : Set X} (hS : IsClosed S) {x y : X} (γ : Path x y)
     (hγ : ∀ t : ↥unitInterval, γ t ∉ S) (t : ℝ) :
     ((Path.liftOpenLocus hS γ hγ).extend t : X) = γ.extend t := by

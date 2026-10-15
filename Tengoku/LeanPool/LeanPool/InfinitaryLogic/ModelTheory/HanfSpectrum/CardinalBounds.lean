@@ -76,7 +76,9 @@ universe w
 /-- The lifted form of `mk_iUnion_le_of_countable`, for a bound outside the ambient universe.
 
 The index type gets its own universe: an index fixed independently of the ambient type (a stage
-count, say) would otherwise drag that type down to the index's universe. -/
+count, say) would otherwise drag that type down to the index's universe.
+@isnad1 id=le.2h4v.s5.ec2ed3fc8781 from=translated src=- shape=24dc4ff5 vocab=cde7872b
+-/
 theorem lift_mk_iUnion_le_of_countable {M : Type u} {ι : Type w} [Countable ι] {X : ι → Set M}
     {κ : Cardinal.{max u v w}} (hκ : Cardinal.aleph0 ≤ κ)
     (hX : ∀ i, Cardinal.lift.{max v w} (Cardinal.mk (X i)) ≤ κ) :
@@ -87,7 +89,9 @@ theorem lift_mk_iUnion_le_of_countable {M : Type u} {ι : Type w} [Countable ι]
   rw [Cardinal.lift_lift]
   exact hX i
 
-/-- A countable dependent sum of types each of size `≤ κ` has size `≤ κ`, for infinite `κ`. -/
+/-- A countable dependent sum of types each of size `≤ κ` has size `≤ κ`, for infinite `κ`.
+@isnad1 id=le.2h3v.s5.14048a1c3c46 from=translated src=- shape=8e10e41b vocab=670d311b
+-/
 theorem mk_sigma_le_of_countable {ι : Type u} [Countable ι] {X : ι → Type u} {κ : Cardinal.{u}}
     (hκ : Cardinal.aleph0 ≤ κ) (hX : ∀ i, Cardinal.mk (X i) ≤ κ) :
     Cardinal.mk (Σ i, X i) ≤ κ := by
@@ -95,20 +99,26 @@ theorem mk_sigma_le_of_countable {ι : Type u} [Countable ι] {X : ι → Type u
   exact sum_le_of_countable hκ hX
 
 /-- A countable union of sets each of size `≤ κ` has size `≤ κ`, for infinite `κ` — the
-limit-level case of the ladder induction. -/
+limit-level case of the ladder induction.
+@isnad1 id=le.2h4v.s5.b4140d81c2db from=translated src=- shape=dee3d6e1 vocab=8c6c6c9e
+-/
 theorem mk_iUnion_le_of_countable {M : Type u} {ι : Type u} [Countable ι] {X : ι → Set M}
     {κ : Cardinal.{u}} (hκ : Cardinal.aleph0 ≤ κ) (hX : ∀ i, Cardinal.mk (X i) ≤ κ) :
     Cardinal.mk (⋃ i, X i) ≤ κ :=
   le_trans (Cardinal.mk_iUnion_le_sum_mk) (sum_le_of_countable hκ hX)
 
 /-- An injection into a powerset bounds by `2 ^ ·` — the successor-level case of the ladder
-induction. -/
+induction.
+@isnad1 id=le.1h3v.s5.1fd5e0b9e171 from=translated src=- shape=65d8fe0b vocab=7ad4a545
+-/
 theorem mk_le_two_power_of_injective_set {X Y : Type u} {f : X → Set Y}
     (hf : Function.Injective f) : Cardinal.mk X ≤ 2 ^ Cardinal.mk Y :=
   (Cardinal.mk_le_of_injective hf).trans_eq (Cardinal.mk_set)
 
 /-- The successor-cofinal supremum at `ω₁`: `⨆_{α<ω₁} ℶ_{α+1} = ℶ_{ω₁}` — the ladder's
-endpoint. -/
+endpoint.
+@isnad1 id=eq.0h0v.s7.25052e58a1c9 from=translated src=- shape=642eb84d vocab=c3fc5a20
+-/
 theorem iSup_beth_add_one_omega1 :
     ⨆ α : Set.Iio (Ordinal.omega 1), Cardinal.beth (α.1 + 1) = Cardinal.beth (Ordinal.omega 1) := by
   have hlim : Order.IsSuccLimit (Ordinal.omega 1) := Cardinal.isSuccLimit_omega 1

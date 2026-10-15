@@ -40,10 +40,25 @@ def fer (K : Type*) [Field K] : WeierstrassCurve K := ⟨0, 0, 1, 0, 1⟩
 
 /-! The Weierstrass coefficients of `fer`, as `simp` lemmas. -/
 
+/--
+@isnad1 id=eq.0h1v.s4.ff54c67050ed from=translated src=- shape=5f1ef773 vocab=dd36eb14
+-/
 @[simp] lemma fer_a1 : (fer K).a₁ = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.f7bcaa3c36a4 from=translated src=- shape=5f1ef773 vocab=af27ef81
+-/
 @[simp] lemma fer_a2 : (fer K).a₂ = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.ca3d5f55f906 from=translated src=- shape=5f1ef773 vocab=f1c14272
+-/
 @[simp] lemma fer_a3 : (fer K).a₃ = 1 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.85ed6ae03596 from=translated src=- shape=5f1ef773 vocab=452b02b0
+-/
 @[simp] lemma fer_a4 : (fer K).a₄ = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.9c6334bf40ee from=translated src=- shape=5f1ef773 vocab=d5803a88
+-/
 @[simp] lemma fer_a6 : (fer K).a₆ = 1 := rfl
 
 /-- The Weierstrass equation of `fer` in the form `y^2 + y = x^3 + 1`. -/
@@ -54,13 +69,17 @@ lemma eq_of_nonsingular {x y : K} (h : (fer K).toAffine.Nonsingular x y) :
   simp only [WeierstrassCurve.toAffine, fer_a1, fer_a2, fer_a3, fer_a4, fer_a6] at h1
   linear_combination h1
 
-/-- Two affine points of `fer` agree once their coordinates do. -/
+/-- Two affine points of `fer` agree once their coordinates do.
+@isnad1 id=eq.4h5v.s6.0a4bb6eb518b from=translated src=- shape=30a5ca8a vocab=6e1b3fd5
+-/
 lemma some_eq_some {x₁ y₁ x₂ y₂ : K} (h₁ : (fer K).toAffine.Nonsingular x₁ y₁)
     (h₂ : (fer K).toAffine.Nonsingular x₂ y₂) (hx : x₁ = x₂) (hy : y₁ = y₂) :
     Affine.Point.some _ _ h₁ = Affine.Point.some _ _ h₂ := by
   subst hx; subst hy; rfl
 
-/-- Equal affine points of `fer` have equal coordinates. -/
+/-- Equal affine points of `fer` have equal coordinates.
+@isnad1 id=and.3h5v.s6.b2922f33a7dc from=translated src=- shape=4df8d1bf vocab=6e1b3fd5
+-/
 lemma some_inj {x₁ y₁ x₂ y₂ : K} {h₁ : (fer K).toAffine.Nonsingular x₁ y₁}
     {h₂ : (fer K).toAffine.Nonsingular x₂ y₂}
     (h : Affine.Point.some _ _ h₁ = Affine.Point.some _ _ h₂) : x₁ = x₂ ∧ y₁ = y₂ := by
@@ -75,7 +94,9 @@ variable [CharP K 2]
 private lemma sub_eq_add' (a b : K) : a - b = a + b := by
   linear_combination -CharTwo.add_self_eq_zero b
 
-/-- Nonsingularity is automatic on `y^2+y = x^3+1` in characteristic two. -/
+/-- Nonsingularity is automatic on `y^2+y = x^3+1` in characteristic two.
+@isnad1 id=nonsingu.1h3v.s7.e0172f1aabaa from=translated src=- shape=22fed19a vocab=fbb67710
+-/
 lemma nonsingular_of_eq {x y : K} (h : y ^ 2 + y = x ^ 3 + 1) :
     (fer K).toAffine.Nonsingular x y := by
   rw [WeierstrassCurve.Affine.nonsingular_iff]
@@ -89,17 +110,23 @@ lemma nonsingular_of_eq {x y : K} (h : y ^ 2 + y = x ^ 3 + 1) :
     rw [CharTwo.two_eq_zero] at h2
     simp at h2
 
-/-- The negation on `fer` is `(x,y) ↦ (x, y+1)`. -/
+/-- The negation on `fer` is `(x,y) ↦ (x, y+1)`.
+@isnad1 id=eq.0h3v.s6.3eef81f4d026 from=translated src=- shape=26ee7df3 vocab=51afc828
+-/
 lemma negY_eq (x y : K) : (fer K).toAffine.negY x y = y + 1 := by
   simp only [WeierstrassCurve.toAffine, Affine.negY, fer_a1, fer_a3]
   linear_combination -CharTwo.add_self_eq_zero y - CharTwo.add_self_eq_zero (1 : K)
 
-/-- Char-two form of `addX`: `l^2 + x₁ + x₂`. -/
+/-- Char-two form of `addX`: `l^2 + x₁ + x₂`.
+@isnad1 id=eq.0h4v.s6.76cd94d2a552 from=translated src=- shape=50be6e65 vocab=06e7f1a4
+-/
 lemma addX_eq (x₁ x₂ l : K) : (fer K).toAffine.addX x₁ x₂ l = l ^ 2 + x₁ + x₂ := by
   simp only [WeierstrassCurve.toAffine, Affine.addX, fer_a1, fer_a2]
   linear_combination (-x₁ - x₂) * CharTwo.two_eq_zero (R := K)
 
-/-- Char-two form of `addY`: `l * (addX + x₁) + y₁ + 1`. -/
+/-- Char-two form of `addY`: `l * (addX + x₁) + y₁ + 1`.
+@isnad1 id=eq.0h5v.s7.38b628aab4e7 from=translated src=- shape=219e81c2 vocab=e752ab77
+-/
 lemma addY_eq (x₁ x₂ y₁ l : K) :
     (fer K).toAffine.addY x₁ x₂ y₁ l =
       l * ((fer K).toAffine.addX x₁ x₂ l + x₁) + y₁ + 1 := by
@@ -111,14 +138,18 @@ section Group
 variable [DecidableEq K]
 
 omit [DecidableEq K] in
-/-- `y` and `negY x y = y + 1` differ, so no affine point of `fer` is `2`-torsion. -/
+/-- `y` and `negY x y = y + 1` differ, so no affine point of `fer` is `2`-torsion.
+@isnad1 id=ne.0h3v.s5.4b4563190c1b from=translated src=- shape=731673f3 vocab=735bff7d
+-/
 lemma Y_ne_negY (x y : K) : y ≠ (fer K).toAffine.negY x y := by
   rw [negY_eq]
   intro hc
   have : (1 : K) = 0 := by linear_combination -hc
   exact one_ne_zero this
 
-/-- The tangent slope at `(x,y)` is `x^2`. -/
+/-- The tangent slope at `(x,y)` is `x^2`.
+@isnad1 id=eq.0h3v.s6.e1edead38078 from=translated src=- shape=c1c3fa17 vocab=d97f0dd8
+-/
 lemma slope_self (x y : K) : (fer K).toAffine.slope x x y y = x ^ 2 := by
   rw [Affine.slope_of_Y_ne rfl (Y_ne_negY x y), negY_eq]
   simp only [WeierstrassCurve.toAffine, fer_a1, fer_a2, fer_a4]
@@ -126,13 +157,17 @@ lemma slope_self (x y : K) : (fer K).toAffine.slope x x y y = x ^ 2 := by
   field_simp
   linear_combination (-2 * x ^ 2) * CharTwo.two_eq_zero (R := K)
 
-/-- The secant slope is `(y₁ + y₂) / (x₁ + x₂)`. -/
+/-- The secant slope is `(y₁ + y₂) / (x₁ + x₂)`.
+@isnad1 id=eq.1h5v.s6.3ca0152781c5 from=translated src=- shape=e351db18 vocab=2180b865
+-/
 lemma slope_ne {x₁ x₂ y₁ y₂ : K} (hx : x₁ ≠ x₂) :
     (fer K).toAffine.slope x₁ x₂ y₁ y₂ = (y₁ + y₂) / (x₁ + x₂) := by
   rw [Affine.slope_of_X_ne hx, sub_eq_add' y₁ y₂, sub_eq_add' x₁ x₂]
 
 /-- An affine point of `fer` is `3`-torsion exactly when its `x`-coordinate
-satisfies `x^4 = x`. -/
+satisfies `x^4 = x`.
+@isnad1 id=iff.1h3v.s7.d68ac5a400be from=translated src=- shape=ffded094 vocab=316ba086
+-/
 lemma three_torsion_some_iff {x y : K} (h : (fer K).toAffine.Nonsingular x y) :
     (3 : ℕ) • (Affine.Point.some _ _ h) = 0 ↔ x ^ 4 = x := by
   have hdbl : Affine.Point.some _ _ h + Affine.Point.some _ _ h =

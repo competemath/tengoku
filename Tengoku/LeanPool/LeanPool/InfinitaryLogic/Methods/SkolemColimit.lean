@@ -30,7 +30,9 @@ def DirectedColim.incl {F : ℕ → Type} {φ : ∀ k, F k → F (k + 1)} (k : �
   Quot.mk _ ⟨k, x⟩
 
 /-- Inclusions commute with the tower maps: a stage-`k` element and its image at stage `k+1` have
-the same colimit class. -/
+the same colimit class.
+@isnad1 id=eq.0h4v.s5.8af05883e561 from=translated src=- shape=2aeb8aeb vocab=baef69cc
+-/
 theorem DirectedColim.incl_step {F : ℕ → Type} {φ : ∀ k, F k → F (k + 1)} (k : ℕ) (x : F k) :
     DirectedColim.incl (φ := φ) (k + 1) (φ k x) = DirectedColim.incl (φ := φ) k x := by
   symm

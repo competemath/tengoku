@@ -36,6 +36,9 @@ variable {L : Language.{0, 0}}
 The dual of the `baseFunctionsIn_*_subset` union bounds: a subformula's base symbols are contained
 in the whole's. -/
 
+/--
+@isnad1 id=le.0h3v.s5.306030d67c94 from=translated src=- shape=db2029cb vocab=cc6fa700
+-/
 theorem baseFunctionsIn_imp_left {φ ψ : L[[ℕ]].Sentenceω} :
     φ.baseFunctionsIn ⊆ (φ.imp ψ).baseFunctionsIn := by
   intro s hs
@@ -43,6 +46,9 @@ theorem baseFunctionsIn_imp_left {φ ψ : L[[ℕ]].Sentenceω} :
     Set.mem_union] at hs ⊢
   exact Or.inl hs
 
+/--
+@isnad1 id=le.0h3v.s5.44c2463b7cea from=translated src=- shape=c6fb0ab6 vocab=cc6fa700
+-/
 theorem baseFunctionsIn_imp_right {φ ψ : L[[ℕ]].Sentenceω} :
     ψ.baseFunctionsIn ⊆ (φ.imp ψ).baseFunctionsIn := by
   intro s hs
@@ -50,6 +56,9 @@ theorem baseFunctionsIn_imp_right {φ ψ : L[[ℕ]].Sentenceω} :
     Set.mem_union] at hs ⊢
   exact Or.inr hs
 
+/--
+@isnad1 id=le.0h3v.s5.744fa73c2fcf from=translated src=- shape=db2029cb vocab=9fd600a9
+-/
 theorem baseRelationsIn_imp_left {φ ψ : L[[ℕ]].Sentenceω} :
     φ.baseRelationsIn ⊆ (φ.imp ψ).baseRelationsIn := by
   intro s hs
@@ -57,6 +66,9 @@ theorem baseRelationsIn_imp_left {φ ψ : L[[ℕ]].Sentenceω} :
     Set.mem_union] at hs ⊢
   exact Or.inl hs
 
+/--
+@isnad1 id=le.0h3v.s5.105302a757ad from=translated src=- shape=c6fb0ab6 vocab=9fd600a9
+-/
 theorem baseRelationsIn_imp_right {φ ψ : L[[ℕ]].Sentenceω} :
     ψ.baseRelationsIn ⊆ (φ.imp ψ).baseRelationsIn := by
   intro s hs
@@ -64,6 +76,9 @@ theorem baseRelationsIn_imp_right {φ ψ : L[[ℕ]].Sentenceω} :
     Set.mem_union] at hs ⊢
   exact Or.inr hs
 
+/--
+@isnad1 id=le.0h3v.s5.b0ebe3b52aa7 from=translated src=- shape=97440fc5 vocab=3ff0e968
+-/
 theorem baseFunctionsIn_component_iInf {φs : ℕ → L[[ℕ]].Sentenceω} (k : ℕ) :
     (φs k).baseFunctionsIn ⊆ (BoundedFormulaω.iInf φs).baseFunctionsIn := by
   intro s hs
@@ -71,6 +86,9 @@ theorem baseFunctionsIn_component_iInf {φs : ℕ → L[[ℕ]].Sentenceω} (k : 
     Set.mem_iUnion] at hs ⊢
   exact ⟨k, hs⟩
 
+/--
+@isnad1 id=le.0h3v.s5.0342bb5ae807 from=translated src=- shape=97440fc5 vocab=bc0074a7
+-/
 theorem baseRelationsIn_component_iInf {φs : ℕ → L[[ℕ]].Sentenceω} (k : ℕ) :
     (φs k).baseRelationsIn ⊆ (BoundedFormulaω.iInf φs).baseRelationsIn := by
   intro s hs
@@ -78,6 +96,9 @@ theorem baseRelationsIn_component_iInf {φs : ℕ → L[[ℕ]].Sentenceω} (k : 
     Set.mem_iUnion] at hs ⊢
   exact ⟨k, hs⟩
 
+/--
+@isnad1 id=le.0h3v.s5.c01d8408c330 from=translated src=- shape=97440fc5 vocab=1c929533
+-/
 theorem baseFunctionsIn_component_iSup {φs : ℕ → L[[ℕ]].Sentenceω} (k : ℕ) :
     (φs k).baseFunctionsIn ⊆ (BoundedFormulaω.iSup φs).baseFunctionsIn := by
   intro s hs
@@ -85,6 +106,9 @@ theorem baseFunctionsIn_component_iSup {φs : ℕ → L[[ℕ]].Sentenceω} (k : 
     Set.mem_iUnion] at hs ⊢
   exact ⟨k, hs⟩
 
+/--
+@isnad1 id=le.0h3v.s5.b071a206b701 from=translated src=- shape=97440fc5 vocab=51f8cc38
+-/
 theorem baseRelationsIn_component_iSup {φs : ℕ → L[[ℕ]].Sentenceω} (k : ℕ) :
     (φs k).baseRelationsIn ⊆ (BoundedFormulaω.iSup φs).baseRelationsIn := by
   intro s hs
@@ -127,6 +151,9 @@ private theorem relationsIn_openBounds_eq {n : ℕ} (φ : L[[ℕ]].BoundedFormul
     simp only [BoundedFormulaω.openBounds, BoundedFormulaω.relationsIn]
     exact iSup_congr fun k => ih k
 
+/--
+@isnad1 id=le.0h3v.s6.897e1ec1a87b from=translated src=- shape=48ecfe85 vocab=8eb3bdde
+-/
 theorem baseFunctionsIn_instConst_subset (c : ℕ) (φ : L[[ℕ]].BoundedFormulaω Empty 1) :
     (instConst c φ).baseFunctionsIn ⊆ (BoundedFormulaω.all φ).baseFunctionsIn := by
   intro s hs
@@ -147,6 +174,9 @@ theorem baseFunctionsIn_instConst_subset (c : ℕ) (φ : L[[ℕ]].BoundedFormula
     -- `rcases` now discharges the `Sum.inl`/`Sum.inr` clash itself.
     obtain ⟨rfl, ha2⟩ := ha
 
+/--
+@isnad1 id=le.0h3v.s6.190df2acf795 from=translated src=- shape=48ecfe85 vocab=76a393e6
+-/
 theorem baseRelationsIn_instConst_subset (c : ℕ) (φ : L[[ℕ]].BoundedFormulaω Empty 1) :
     (instConst c φ).baseRelationsIn ⊆ (BoundedFormulaω.all φ).baseRelationsIn := by
   have h1 : (instConst c φ).relationsIn = (BoundedFormulaω.all φ).relationsIn := by
@@ -161,6 +191,9 @@ theorem baseRelationsIn_instConst_subset (c : ℕ) (φ : L[[ℕ]].BoundedFormula
 Constant equalities have no base symbols; a relation instance has only its own relation symbol,
 independent of the argument constants. -/
 
+/--
+@isnad1 id=eq.0h3v.s5.a81617639f24 from=translated src=- shape=0e352b4d vocab=22eb2da0
+-/
 theorem baseFunctionsIn_constEq (a b : ℕ) :
     (constEq (L := L) a b).baseFunctionsIn = ∅ := by
   ext s
@@ -171,12 +204,18 @@ theorem baseFunctionsIn_constEq (a b : ℕ) :
   -- `rintro` closes both goals outright: the `rfl` pattern is already contradictory
   refine ⟨?_, ?_⟩ <;> rintro ⟨rfl, h⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.6de02a1d29a7 from=translated src=- shape=0e352b4d vocab=ee8bbe44
+-/
 theorem baseRelationsIn_constEq (a b : ℕ) :
     (constEq (L := L) a b).baseRelationsIn = ∅ := by
   ext s
   simp only [constEq, BoundedFormulaω.baseRelationsIn, BoundedFormulaω.relationsIn,
     Set.mem_ofPred_eq, Set.mem_empty_iff_false]
 
+/--
+@isnad1 id=eq.0h4v.s5.89021c149983 from=translated src=- shape=01fa1f18 vocab=079033e3
+-/
 theorem baseFunctionsIn_relInst {l : ℕ} (Rr : L.Relations l) (g : Fin l → ℕ) :
     (relInst Rr g).baseFunctionsIn = ∅ := by
   ext s
@@ -187,6 +226,9 @@ theorem baseFunctionsIn_relInst {l : ℕ} (Rr : L.Relations l) (g : Fin l → �
   -- `rintro` now discharges the `Sum.inl`/`Sum.inr` clash itself.
   rintro i ⟨rfl, h⟩
 
+/--
+@isnad1 id=eq.0h5v.s5.554b6217f3f5 from=translated src=- shape=f593ea11 vocab=2652b3a5
+-/
 theorem baseRelationsIn_relInst {l : ℕ} (Rr : L.Relations l) (g g' : Fin l → ℕ) :
     (relInst Rr g).baseRelationsIn = (relInst Rr g').baseRelationsIn := by
   ext s
@@ -209,7 +251,9 @@ private theorem tag_inl_rel_injective :
   obtain ⟨rfl, h2⟩ := Sigma.mk.inj_iff.mp h
   exact Sigma.ext rfl (heq_of_eq (Sum.inl_injective (eq_of_heq h2)))
 
-/-- **Base functions of a constant-expansion image** are the sentence's own functions. -/
+/-- **Base functions of a constant-expansion image** are the sentence's own functions.
+@isnad1 id=eq.0h2v.s5.1b2296dd06cb from=translated src=- shape=2c831d53 vocab=0400b706
+-/
 theorem baseFunctionsIn_mapLanguage_withConstants (r : L.Sentenceω) :
     (BoundedFormulaω.mapLanguage (L.lhomWithConstants ℕ) r).baseFunctionsIn = r.functionsIn := by
   ext s
@@ -217,7 +261,9 @@ theorem baseFunctionsIn_mapLanguage_withConstants (r : L.Sentenceω) :
     BoundedFormulaω.functionsIn_mapLanguage]
   exact tag_inl_fun_injective.mem_set_image
 
-/-- **Base relations of a constant-expansion image** are the sentence's own relations. -/
+/-- **Base relations of a constant-expansion image** are the sentence's own relations.
+@isnad1 id=eq.0h2v.s5.b12224e543c4 from=translated src=- shape=2c831d53 vocab=eed546d5
+-/
 theorem baseRelationsIn_mapLanguage_withConstants (r : L.Sentenceω) :
     (BoundedFormulaω.mapLanguage (L.lhomWithConstants ℕ) r).baseRelationsIn = r.relationsIn := by
   ext s

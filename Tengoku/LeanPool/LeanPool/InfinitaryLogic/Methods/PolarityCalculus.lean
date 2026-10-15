@@ -45,7 +45,9 @@ variable {L : Language.{0, 0}} {α β : Type}
 
 /-- **Acceptance gate**: the relation symbols of a formula are exactly those occurring with one
 of the two signs.  This is what makes Craig interpolation a corollary of Lyndon interpolation at
-the occurrence level. -/
+the occurrence level.
+@isnad1 id=eq.0h4v.s5.93ea31a9b8b4 from=translated src=- shape=989d5654 vocab=1775907d
+-/
 theorem relationsIn_eq_signed_union :
     ∀ {n : ℕ} (φ : L.BoundedFormulaω α n),
       φ.relationsIn = φ.positiveRelationsIn ∪ φ.negativeRelationsIn
@@ -68,6 +70,9 @@ theorem relationsIn_eq_signed_union :
     rw [← Set.iUnion_union_distrib]
     exact Set.iUnion_congr fun i => relationsIn_eq_signed_union (φs i)
 
+/--
+@isnad1 id=le.0h5v.s5.179f2db1d7a8 from=translated src=- shape=8fccd051 vocab=4117ccc9
+-/
 theorem relationsInSigned_subset_relationsIn {n : ℕ} (s : Bool) (φ : L.BoundedFormulaω α n) :
     relationsInSigned s φ ⊆ φ.relationsIn := by
   rw [relationsIn_eq_signed_union]
@@ -78,7 +83,9 @@ theorem relationsInSigned_subset_relationsIn {n : ℕ} (s : Bool) (φ : L.Bounde
 /-! ## Language maps, relabelling, casting, substitution -/
 
 /-- **Acceptance gate (exact image law)**: a language map moves the signed occurrence sets by the
-symbol map, sign by sign. -/
+symbol map, sign by sign.
+@isnad1 id=eq.0h7v.s6.933bd429e9df from=translated src=- shape=567633ea vocab=06ad5bc3
+-/
 theorem relationsInSigned_mapLanguage {L' : Language.{0, 0}} (g : L →ᴸ L') (s : Bool) :
     ∀ {n : ℕ} (φ : L.BoundedFormulaω α n),
       relationsInSigned s (φ.mapLanguage g) =
@@ -172,6 +179,9 @@ private theorem relationsInSigned_openBounds (s : Bool) :
 
 /-! ## Finite quantifier blocks -/
 
+/--
+@isnad1 id=eq.0h6v.s5.36591ced9c79 from=translated src=- shape=d5ec8d57 vocab=e0a10873
+-/
 theorem relationsInSigned_existsBlock (s : Bool) {n : ℕ} :
     ∀ {k : ℕ} (φ : L.BoundedFormulaω α (n + k)),
       relationsInSigned s (φ.existsBlock) = relationsInSigned s φ
@@ -258,35 +268,53 @@ private theorem relationsInSigned_rel_inl {n l : ℕ} (s : Bool) (R : L'.Relatio
     relationsInSigned s (BoundedFormulaω.rel (Sum.inl R : L'[[J]].Relations l) ts)
       = if s then {(⟨l, Sum.inl R⟩ : Σ n, L'[[J]].Relations n)} else ∅ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.0b2e665cda7f from=translated src=- shape=6020e2bd vocab=488813a4
+-/
 @[simp] theorem baseRelationsInSigned_falsum {n : ℕ} (s : Bool) :
     baseRelationsInSigned s (BoundedFormulaω.falsum : L'[[J]].BoundedFormulaω α n) = ∅ := by
   ext p; simp [baseRelationsInSigned]
 
-/-- **Negation swaps the base signs.** -/
+/-- **Negation swaps the base signs.**
+@isnad1 id=eq.0h6v.s5.dca5b2723529 from=translated src=- shape=265af313 vocab=57273b31
+-/
 theorem baseRelationsInSigned_not {n : ℕ} (s : Bool) (φ : L'[[J]].BoundedFormulaω α n) :
     baseRelationsInSigned s φ.not = baseRelationsInSigned (!s) φ := by
   ext p; simp [baseRelationsInSigned]
 
-/-- Alias gate: positive base occurrences of `¬φ` are the negative ones of `φ`. -/
+/-- Alias gate: positive base occurrences of `¬φ` are the negative ones of `φ`.
+@isnad1 id=eq.0h5v.s5.12685822851b from=translated src=- shape=14c9a53c vocab=2b41114c
+-/
 theorem basePositiveRelations_not {n : ℕ} (φ : L'[[J]].BoundedFormulaω α n) :
     basePositiveRelations φ.not = baseNegativeRelations φ := baseRelationsInSigned_not true φ
 
-/-- Alias gate: negative base occurrences of `¬φ` are the positive ones of `φ`. -/
+/-- Alias gate: negative base occurrences of `¬φ` are the positive ones of `φ`.
+@isnad1 id=eq.0h5v.s5.9669b46e825e from=translated src=- shape=14c9a53c vocab=2b41114c
+-/
 theorem baseNegativeRelations_not {n : ℕ} (φ : L'[[J]].BoundedFormulaω α n) :
     baseNegativeRelations φ.not = basePositiveRelations φ := baseRelationsInSigned_not false φ
 
+/--
+@isnad1 id=le.0h7v.s5.114e0fb56229 from=translated src=- shape=e4ba1e71 vocab=2c736c04
+-/
 theorem baseRelationsInSigned_imp_left {s : Bool} {φ ψ : L'[[J]].BoundedFormulaω α n} :
     baseRelationsInSigned (!s) φ ⊆ baseRelationsInSigned s (φ.imp ψ) := by
   intro p hp
   simp only [baseRelationsInSigned, Set.mem_ofPred_eq, relationsInSigned_imp, Set.mem_union] at hp ⊢
   exact Or.inl hp
 
+/--
+@isnad1 id=le.0h7v.s5.6c3ecd281acf from=translated src=- shape=4fad5e37 vocab=f8d927b2
+-/
 theorem baseRelationsInSigned_imp_right {s : Bool} {φ ψ : L'[[J]].BoundedFormulaω α n} :
     baseRelationsInSigned s ψ ⊆ baseRelationsInSigned s (φ.imp ψ) := by
   intro p hp
   simp only [baseRelationsInSigned, Set.mem_ofPred_eq, relationsInSigned_imp, Set.mem_union] at hp ⊢
   exact Or.inr hp
 
+/--
+@isnad1 id=le.2h8v.s6.42c87932d35f from=translated src=- shape=cf7626f5 vocab=2c736c04
+-/
 theorem baseRelationsInSigned_imp_subset {A : Set (Σ n, L'.Relations n)} {s : Bool}
     {φ ψ : L'[[J]].BoundedFormulaω α n}
     (h₁ : baseRelationsInSigned (!s) φ ⊆ A) (h₂ : baseRelationsInSigned s ψ ⊆ A) :
@@ -297,6 +325,9 @@ theorem baseRelationsInSigned_imp_subset {A : Set (Σ n, L'.Relations n)} {s : B
   · exact h₁ hp
   · exact h₂ hp
 
+/--
+@isnad1 id=le.0h7v.s5.60b8733a23c4 from=translated src=- shape=0fd850d3 vocab=59bd6704
+-/
 theorem baseRelationsInSigned_component_iInf {s : Bool} {φs : ℕ → L'[[J]].BoundedFormulaω α n}
     (k : ℕ) :
     baseRelationsInSigned s (φs k) ⊆ baseRelationsInSigned s (BoundedFormulaω.iInf φs) := by
@@ -305,6 +336,9 @@ theorem baseRelationsInSigned_component_iInf {s : Bool} {φs : ℕ → L'[[J]].B
     Set.mem_iUnion] at hp ⊢
   exact ⟨k, hp⟩
 
+/--
+@isnad1 id=le.0h7v.s5.9bfbce23fd83 from=translated src=- shape=0fd850d3 vocab=e3a5a936
+-/
 theorem baseRelationsInSigned_component_iSup {s : Bool} {φs : ℕ → L'[[J]].BoundedFormulaω α n}
     (k : ℕ) :
     baseRelationsInSigned s (φs k) ⊆ baseRelationsInSigned s (BoundedFormulaω.iSup φs) := by
@@ -313,6 +347,9 @@ theorem baseRelationsInSigned_component_iSup {s : Bool} {φs : ℕ → L'[[J]].B
     Set.mem_iUnion] at hp ⊢
   exact ⟨k, hp⟩
 
+/--
+@isnad1 id=le.1h7v.s6.9150caabc3eb from=translated src=- shape=a1db5037 vocab=e3a5a936
+-/
 theorem baseRelationsInSigned_iSup_subset {A : Set (Σ n, L'.Relations n)} {s : Bool}
     (φs : ℕ → L'[[J]].BoundedFormulaω α n) (h : ∀ k, baseRelationsInSigned s (φs k) ⊆ A) :
     baseRelationsInSigned s (BoundedFormulaω.iSup φs) ⊆ A := by
@@ -335,12 +372,16 @@ variable {L : Language.{0, 0}}
 open BoundedFormulaω
 
 /-- A constant equality has **no** signed base occurrences, in either sign — the syntactic form of
-"equality is logical". -/
+"equality is logical".
+@isnad1 id=eq.0h4v.s5.b0adf262bdf1 from=translated src=- shape=77137f0f vocab=4c99f377
+-/
 @[simp] theorem baseRelationsInSigned_constEq (s : Bool) (a b : ℕ) :
     baseRelationsInSigned s (constEq (L := L) a b) = ∅ := by
   ext p; simp [baseRelationsInSigned, constEq]
 
-/-- An atomic relation instance's base **positive** set is exactly its own symbol. -/
+/-- An atomic relation instance's base **positive** set is exactly its own symbol.
+@isnad1 id=eq.0h4v.s6.1654f26122aa from=translated src=- shape=dafb16e6 vocab=8a89103e
+-/
 theorem basePositiveRelations_relInst_eq {l : ℕ} (R : L.Relations l) (g : Fin l → ℕ) :
     basePositiveRelations (relInst R g) = {(⟨l, R⟩ : Σ n, L.Relations n)} := by
   ext p
@@ -356,11 +397,16 @@ theorem basePositiveRelations_relInst_eq {l : ℕ} (R : L.Relations l) (g : Fin 
     obtain ⟨rfl, h2⟩ := Sigma.mk.inj_iff.mp h
     exact congrArg _ (congrArg Sum.inl (eq_of_heq h2))
 
+/--
+@isnad1 id=eq.0h4v.s5.6288aabfc474 from=translated src=- shape=c1b29efd vocab=9c7fccab
+-/
 @[simp] theorem baseNegativeRelations_relInst {l : ℕ} (R : L.Relations l) (g : Fin l → ℕ) :
     baseNegativeRelations (relInst R g) = ∅ :=
   Set.eq_empty_iff_forall_notMem.mpr fun _ h => h
 
-/-- Universal instantiation does not enlarge the base signed sets. -/
+/-- Universal instantiation does not enlarge the base signed sets.
+@isnad1 id=eq.0h4v.s5.44271b768a41 from=translated src=- shape=cd57247f vocab=0c90c86b
+-/
 theorem baseRelationsInSigned_instConst (c : ℕ) (s : Bool)
     (φ : L[[ℕ]].BoundedFormulaω Empty 1) :
     baseRelationsInSigned s (instConst c φ) = baseRelationsInSigned s (BoundedFormulaω.all φ) := by
@@ -368,7 +414,9 @@ theorem baseRelationsInSigned_instConst (c : ℕ) (s : Bool)
   simp only [baseRelationsInSigned, Set.mem_ofPred_eq, relationsInSigned_instConst,
     relationsInSigned_all]
 
-/-- Existential generalization of a constant does not move the base signed sets. -/
+/-- Existential generalization of a constant does not move the base signed sets.
+@isnad1 id=eq.0h4v.s5.eef8968417ff from=translated src=- shape=830111e7 vocab=54c9adcc
+-/
 theorem baseRelationsInSigned_genEx (j : ℕ) (s : Bool) (ρ : L[[ℕ]].Sentenceω) :
     baseRelationsInSigned s (genEx j ρ) = baseRelationsInSigned s ρ := by
   ext p
@@ -383,6 +431,9 @@ private theorem tag_inl_rel_inj :
   obtain ⟨rfl, h2⟩ := Sigma.mk.inj_iff.mp h
   exact Sigma.ext rfl (heq_of_eq (Sum.inl_injective (eq_of_heq h2)))
 
+/--
+@isnad1 id=eq.0h3v.s5.2aa6f3d67908 from=translated src=- shape=b0144365 vocab=007a7d96
+-/
 theorem baseRelationsInSigned_mapLanguage_withConstants (s : Bool) (r : L.Sentenceω) :
     baseRelationsInSigned s (BoundedFormulaω.mapLanguage (L.lhomWithConstants ℕ) r) =
       relationsInSigned s r := by
@@ -392,19 +443,25 @@ theorem baseRelationsInSigned_mapLanguage_withConstants (s : Bool) (r : L.Senten
   exact tag_inl_rel_inj.mem_set_image
 
 /-- Alias form of the constant-expansion image law, positive sign (matches the `abbrev` shape, so
-`rw` fires on goals stated with `basePositiveRelations`). -/
+`rw` fires on goals stated with `basePositiveRelations`).
+@isnad1 id=eq.0h2v.s5.f8120b9df1e2 from=translated src=- shape=2c831d53 vocab=a9bc1c67
+-/
 theorem basePositiveRelations_mapLanguage_withConstants (r : L.Sentenceω) :
     (BoundedFormulaω.mapLanguage (L.lhomWithConstants ℕ) r).basePositiveRelations =
       r.positiveRelationsIn :=
   baseRelationsInSigned_mapLanguage_withConstants true r
 
-/-- Alias form of the constant-expansion image law, negative sign. -/
+/-- Alias form of the constant-expansion image law, negative sign.
+@isnad1 id=eq.0h2v.s5.3c562eb8663f from=translated src=- shape=2c831d53 vocab=b6bfd9cc
+-/
 theorem baseNegativeRelations_mapLanguage_withConstants (r : L.Sentenceω) :
     (BoundedFormulaω.mapLanguage (L.lhomWithConstants ℕ) r).baseNegativeRelations =
       r.negativeRelationsIn :=
   baseRelationsInSigned_mapLanguage_withConstants false r
 
-/-- Stripping a constant-free formula keeps the signed occurrences inside the base signed set. -/
+/-- Stripping a constant-free formula keeps the signed occurrences inside the base signed set.
+@isnad1 id=le.1h5v.s6.5a130219b087 from=translated src=- shape=3a96f076 vocab=4707392f
+-/
 theorem relationsInSigned_stripConsts (s : Bool) :
     ∀ {n : ℕ} (φ : L[[ℕ]].BoundedFormulaω α n) (h : sentenceJConsts (L' := L) φ ⊆ ∅),
       relationsInSigned s (φ.stripConsts h) ⊆ baseRelationsInSigned s φ := by

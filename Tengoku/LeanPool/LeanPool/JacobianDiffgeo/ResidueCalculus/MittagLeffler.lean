@@ -92,10 +92,19 @@ noncomputable instance : Module ℂ (PrincipalPartData U) :=
 /-- Coefficient tail at each point. -/
 def coeff (D : PrincipalPartData U) : ℂ → (ℤ →₀ ℂ) := D.1
 
+/--
+@isnad1 id=lt.1h4v.s5.d5120fa1b13d from=translated src=- shape=dbf77aa2 vocab=a4572fec
+-/
 theorem coeff_neg (D : PrincipalPartData U) : ∀ p, ∀ k ∈ (D.coeff p).support, k < 0 := D.2.1
 
+/--
+@isnad1 id=mem.1h3v.s5.abe3f547c7d4 from=translated src=- shape=129adfe0 vocab=03844cc5
+-/
 theorem mem_of_ne_zero (D : PrincipalPartData U) : ∀ p, D.coeff p ≠ 0 → p ∈ U := D.2.2.1
 
+/--
+@isnad1 id=finite.0h2v.s5.22d45c2f9af5 from=translated src=- shape=204fc5cd vocab=95733f9d
+-/
 theorem finite_support (D : PrincipalPartData U) : {p | D.coeff p ≠ 0}.Finite := D.2.2.2
 
 /-- Constructor matching the structure-literal API. -/
@@ -104,13 +113,28 @@ def mk' (coeff : ℂ → (ℤ →₀ ℂ)) (coeff_neg : ∀ p, ∀ k ∈ (coeff 
     PrincipalPartData U :=
   ⟨coeff, coeff_neg, mem_of_ne_zero, finite_support⟩
 
+/--
+@isnad1 id=eq.3h2v.s6.c7962c6ac203 from=translated src=- shape=2efabe59 vocab=50b6e127
+-/
 @[simp] theorem coeff_mk' (coeff) (coeff_neg) (mem_of_ne_zero) (finite_support) :
     (mk' coeff coeff_neg mem_of_ne_zero finite_support : PrincipalPartData U).coeff = coeff := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.7369be37c0e5 from=translated src=- shape=733700c8 vocab=d8d7591a
+-/
 @[simp] theorem coeff_zero : (0 : PrincipalPartData U).coeff = 0 := rfl
+/--
+@isnad1 id=eq.0h3v.s6.88c33a738a34 from=translated src=- shape=117307b7 vocab=f647fa4c
+-/
 @[simp] theorem coeff_add (D E : PrincipalPartData U) :
     (D + E).coeff = D.coeff + E.coeff := rfl
+/--
+@isnad1 id=eq.0h2v.s6.039e3c8d24c0 from=translated src=- shape=c9ff4eb2 vocab=c43e7090
+-/
 @[simp] theorem coeff_neg_fun (D : PrincipalPartData U) : (-D).coeff = -D.coeff := rfl
+/--
+@isnad1 id=eq.0h3v.s7.520ff050973a from=translated src=- shape=f9a4b758 vocab=db869fc7
+-/
 @[simp] theorem coeff_smul (c : ℂ) (D : PrincipalPartData U) :
     (c • D).coeff = c • D.coeff := rfl
 
@@ -152,10 +176,16 @@ noncomputable def mlCoeff (f : ℂ → ℂ) (U : Set ℂ) (p : ℂ) : ℤ →₀
       · simp [hp] at hk)
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h4v.s6.bfbd43eddfd4 from=translated src=- shape=98c25c42 vocab=cf82b64c
+-/
 theorem mlCoeff_apply {f : ℂ → ℂ} {U : Set ℂ} (p : ℂ) (k : ℤ) :
     mlCoeff f U p k = if p ∈ U ∧ k < 0 then laurentCoeffAt f p k else 0 :=
   Finsupp.onFinset_apply
 
+/--
+@isnad1 id=lt.1h4v.s5.f51453b3f63c from=translated src=- shape=866dba6d vocab=3a2a7ac6
+-/
 theorem mlCoeff_coeff_neg (f : ℂ → ℂ) (U : Set ℂ) :
     ∀ p, ∀ k ∈ (mlCoeff f U p).support, k < 0 := by
   intro p k hk
@@ -163,6 +193,9 @@ theorem mlCoeff_coeff_neg (f : ℂ → ℂ) (U : Set ℂ) :
   by_contra hk0
   exact hk (by simp [hk0])
 
+/--
+@isnad1 id=mem.1h3v.s5.ec8ccdc44bd9 from=translated src=- shape=05024216 vocab=061f8f94
+-/
 theorem mlCoeff_mem_of_ne_zero (f : ℂ → ℂ) (U : Set ℂ) :
     ∀ p, mlCoeff f U p ≠ 0 → p ∈ U := by
   intro p h
@@ -172,6 +205,9 @@ theorem mlCoeff_mem_of_ne_zero (f : ℂ → ℂ) (U : Set ℂ) :
   rw [mlCoeff_apply]
   simp [hpU]
 
+/--
+@isnad1 id=finite.1h2v.s6.dd1ca0c67e47 from=translated src=- shape=bcd37689 vocab=fb78e54c
+-/
 theorem mlCoeff_finite_support {f : ℂ → ℂ} {U : Set ℂ}
     (hfin : {p ∈ U | meromorphicOrderAt f p < 0}.Finite) :
     {p | mlCoeff f U p ≠ 0}.Finite := by

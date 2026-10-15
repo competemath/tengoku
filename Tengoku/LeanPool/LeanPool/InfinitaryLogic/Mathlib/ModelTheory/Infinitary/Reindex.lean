@@ -57,7 +57,9 @@ section Realize
 variable {M : Type w} [L.Structure M] {v : α → M} {xs : Fin n → M}
 
 /-- The `⊤`-padding of a coded conjunction is semantically neutral, generically in the
-coding. -/
+coding.
+@isnad1 id=iff.0h10v.s6.292069e452f0 from=translated src=- shape=4c6844bf vocab=9332f780
+-/
 @[simp]
 theorem realize_iInfAlong {c : IndexCoding ι κ} {φs : ι → L.BoundedFormulaInf κ α n} :
     (iInfAlong c φs).Realize v xs ↔ ∀ i, (φs i).Realize v xs := by
@@ -74,7 +76,9 @@ theorem realize_iInfAlong {c : IndexCoding ι κ} {φs : ι → L.BoundedFormula
       exact h i
 
 /-- The `⊥`-padding of a coded disjunction is semantically neutral, generically in the
-coding. -/
+coding.
+@isnad1 id=iff.0h10v.s6.adc439f9e00b from=translated src=- shape=c6d8c7d3 vocab=2d496071
+-/
 @[simp]
 theorem realize_iSupAlong {c : IndexCoding ι κ} {φs : ι → L.BoundedFormulaInf κ α n} :
     (iSupAlong c φs).Realize v xs ↔ ∃ i, (φs i).Realize v xs := by

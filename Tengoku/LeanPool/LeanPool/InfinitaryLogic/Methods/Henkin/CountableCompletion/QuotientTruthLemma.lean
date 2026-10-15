@@ -91,7 +91,9 @@ private theorem Term.realize_toGround {M : Type*} [L[[ℕ]].Structure M]
 
 /-! ## `closeBy` and its realization (validated commit-5b foundation) -/
 
-/-- Realizing `closeBy φ τ` in `QModel hsc` is realizing `φ` at the classes of the constants `τ`. -/
+/-- Realizing `closeBy φ τ` in `QModel hsc` is realizing `φ` at the classes of the constants `τ`.
+@isnad1 id=iff.1h6v.s6.cafb5e317abd from=translated src=- shape=8102bbd9 vocab=e269df8f
+-/
 theorem realize_closeBy (hsc : HenkinComplete U S) (φ : L[[ℕ]].BoundedFormulaω Empty n)
     (τ : Fin n → ℕ) :
     @Sentenceω.Realize L[[ℕ]] (closeBy φ τ) (QModel hsc) (qModelStructure hsc)
@@ -279,7 +281,9 @@ private theorem truth_both (hsc : HenkinComplete U S) :
 
 /-- **Model existence from a Henkin-complete set.**  The quotient term model is a nonempty
 `L[[ℕ]]`-structure realizing every member of `S` and falsifying every sentence whose negation is in
-`S`.  Both polarities are exposed for members of `S`. -/
+`S`.  Both polarities are exposed for members of `S`.
+@isnad1 id=ex.1h3v.s6.9a6c6f93bbf9 from=translated src=- shape=5366c629 vocab=e48b86ce
+-/
 theorem exists_model_of_henkinComplete (hsc : HenkinComplete U S) :
     ∃ (M : Type) (_ : L[[ℕ]].Structure M) (_ : Nonempty M),
       (∀ φ : L[[ℕ]].Sentenceω, φ ∈ S → Sentenceω.Realize φ M) ∧

@@ -50,7 +50,9 @@ omit [DecidableEq K] in
 denominator `G(χ³)` could vanish the right-hand side of
 `DillonKashyapPhaseFormula` would silently become the junk value `0` and the
 whole property could be satisfiable only by accident.  For a primitive additive
-character no Gauss sum vanishes, so the quotient is a genuine division. -/
+character no Gauss sum vanishes, so the quotient is a genuine division.
+@isnad1 id=ne.1h3v.s7.54ca163967e2 from=translated src=- shape=f3de874c vocab=367e2eee
+-/
 lemma gaussSum_cube_ne_zero {ψ : AddChar K ℂ} (hψ : ψ.IsPrimitive)
     (χ : MulChar K ℂ) : gaussSum (χ ^ 3) ψ ≠ 0 :=
   gaussSum_ne_zero_of_primitive hψ _

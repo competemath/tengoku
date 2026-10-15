@@ -44,13 +44,17 @@ noncomputable def complementFrobeniusEquiv (k : ℕ) : K ≃+* K := by
   exact RingEquiv.ofBijective (iterateFrobenius K 2 (2 * k)) hbij
 
 omit [DecidableEq K] in
-/-- `complementFrobeniusEquiv k` acts as the `2 ^ (2k)`-power Frobenius. -/
+/-- `complementFrobeniusEquiv k` acts as the `2 ^ (2k)`-power Frobenius.
+@isnad1 id=eq.0h3v.s8.014cdf1f87f5 from=translated src=- shape=ce8ce874 vocab=a8b07967
+-/
 @[simp] theorem complementFrobeniusEquiv_apply (k : ℕ) (x : K) :
     complementFrobeniusEquiv k x = iterateFrobenius K 2 (2 * k) x := rfl
 
 /-! ### Frobenius transport of the derivative image -/
 
-/-- The Kasami exponent over `ℤ`, free of truncated subtraction. -/
+/-- The Kasami exponent over `ℤ`, free of truncated subtraction.
+@isnad1 id=eq.0h1v.s6.660bbe3ad934 from=translated src=- shape=b155b08b vocab=6fb00dde
+-/
 theorem kasamiExponent_cast (k : ℕ) :
     ((kasamiExponent k : ℕ) : ℤ) = 4 ^ k - 2 ^ k + 1 := by
   have h : (2 : ℕ) ^ k ≤ 4 ^ k := Nat.pow_le_pow_left (by norm_num) k
@@ -59,7 +63,9 @@ theorem kasamiExponent_cast (k : ℕ) :
   ring
 
 /-- `2 ^ (2k)` times the complementary Kasami exponent differs from the Kasami
-exponent at `k` by a multiple of `2 ^ n - 1`. -/
+exponent at `k` by a multiple of `2 ^ n - 1`.
+@isnad1 id=eq.1h2v.s7.e620df29b87f from=translated src=- shape=f7e3d078 vocab=cfb83c5f
+-/
 theorem kasamiExponent_complement {n k : ℕ} (hk : k ≤ n) :
     2 ^ (2 * k) * kasamiExponent (n - k)
       = kasamiExponent k + (2 ^ n - 1) * ((2 ^ n - 2 ^ k) + 1) := by
@@ -76,7 +82,9 @@ theorem kasamiExponent_complement {n k : ℕ} (hk : k ≤ n) :
   exact_mod_cast hZ
 
 omit [DecidableEq K] [CharP K 2] in
-/-- Exponents may be shifted by multiples of `#K - 1` on all of `K`. -/
+/-- Exponents may be shifted by multiples of `#K - 1` on all of `K`.
+@isnad1 id=eq.1h4v.s6.14faa2de4e19 from=translated src=- shape=5ac9fb90 vocab=15c1f955
+-/
 theorem pow_add_card_sub_one_mul (x : K) (e c : ℕ) (he : e ≠ 0) :
     x ^ (e + (Fintype.card K - 1) * c) = x ^ e := by
   rcases eq_or_ne x 0 with rfl | hx
@@ -85,7 +93,9 @@ theorem pow_add_card_sub_one_mul (x : K) (e c : ℕ) (he : e ≠ 0) :
 
 omit [DecidableEq K] [CharP K 2] in
 /-- On a field of order `2 ^ n` the two exponents therefore act alike:
-`x ^ (d_(n-k) * 2 ^ (2k)) = x ^ d_k`. -/
+`x ^ (d_(n-k) * 2 ^ (2k)) = x ^ d_k`.
+@isnad1 id=eq.2h4v.s7.7aed0f9e00dd from=translated src=- shape=bcd38f5d vocab=cf380e8b
+-/
 theorem pow_kasamiExponent_complement {n k : ℕ} (hk : k ≤ n)
     (hcard : Fintype.card K = 2 ^ n) (x : K) :
     x ^ (kasamiExponent (n - k) * 2 ^ (2 * k)) = x ^ kasamiExponent k := by
@@ -94,7 +104,9 @@ theorem pow_kasamiExponent_complement {n k : ℕ} (hk : k ≤ n)
 
 omit [DecidableEq K] in
 /-- The derivative at `k` is the `2 ^ (2k)`-power Frobenius image of the
-derivative at `n - k`. -/
+derivative at `n - k`.
+@isnad1 id=eq.2h4v.s7.169d2ebfcb56 from=translated src=- shape=beb6b4b0 vocab=368d80c9
+-/
 theorem kasamiDerivative_complement {n k : ℕ} (hk : k ≤ n)
     (hcard : Fintype.card K = 2 ^ n) (b : K) :
     kasamiDerivative k b = iterateFrobenius K 2 (2 * k) (kasamiDerivative (n - k) b) := by
@@ -104,7 +116,9 @@ theorem kasamiDerivative_complement {n k : ℕ} (hk : k ≤ n)
     pow_kasamiExponent_complement hk hcard]
 
 /-- The complementary derivative image is the Frobenius image of the original
-derivative image. -/
+derivative image.
+@isnad1 id=eq.2h3v.s7.2aaad1a086a2 from=translated src=- shape=40a16bfb vocab=273defab
+-/
 theorem derivativeImage_complement_eq_image {n k : ℕ} (hk : k ≤ n)
     (hcard : Fintype.card K = 2 ^ n) :
     derivativeImage k K =
@@ -123,7 +137,9 @@ theorem derivativeImage_complement_eq_image {n k : ℕ} (hk : k ≤ n)
     exact ⟨b, by rw [hdt b]⟩
 
 /-- Frobenius transport preserves the size of the Kasami derivative image:
-`|Δ_k| = |Δ_(n-k)|`. -/
+`|Δ_k| = |Δ_(n-k)|`.
+@isnad1 id=eq.2h3v.s6.aca1526a0adc from=translated src=- shape=64f03ca6 vocab=f4a00ae4
+-/
 theorem card_derivativeImage_complement {n k : ℕ} (hk : k ≤ n)
     (hcard : Fintype.card K = 2 ^ n) :
     (derivativeImage k K).card = (derivativeImage (n - k) K).card := by
@@ -132,7 +148,9 @@ theorem card_derivativeImage_complement {n k : ℕ} (hk : k ≤ n)
 
 /-! ### Zero always lies in the derivative image -/
 
-/-- Zero belongs to every Kasami derivative image. -/
+/-- Zero belongs to every Kasami derivative image.
+@isnad1 id=mem.0h2v.s5.36e1167e43a7 from=translated src=- shape=2d6eebbc vocab=c0a17d6d
+-/
 theorem zero_mem_derivativeImage (k : ℕ) : (0 : K) ∈ derivativeImage k K := by
   have hd : kasamiExponent k ≠ 0 := by simp [kasamiExponent]
   have h2 : (2 : K) = 0 := CharTwo.two_eq_zero

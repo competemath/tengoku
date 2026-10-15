@@ -169,6 +169,9 @@ private lemma weight_penalty_deriv {N : ℕ} (lam : ℝ) (W : Fin N → Fin N �
   rw [hval]
   exact hscaled
 
+/--
+@isnad1 id=eq.0h7v.s6.368643144a75 from=translated src=- shape=af23d326 vocab=9bec45d4
+-/
 theorem hebbian_weight_gradient_identity
     (K lam : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ)
     (θ : Fin N → ℝ) (i j : Fin N) :
@@ -191,6 +194,9 @@ theorem hebbian_weight_gradient_identity
   simp [hebbianWeightF]
   ring
 
+/--
+@isnad1 id=eq.1h6v.s6.ea38b7da7633 from=translated src=- shape=13563729 vocab=d50d4992
+-/
 theorem hebbian_phase_gradient_identity
     (K lam : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ) (hW : ∀ i j, W i j = W j i)
     (θ : Fin N → ℝ) (i : Fin N) :
@@ -204,6 +210,9 @@ theorem hebbian_phase_gradient_identity
   rw [hderivL]
   exact hV
 
+/--
+@isnad1 id=le.1h5v.s7.c6c845d6e4f0 from=translated src=- shape=52a9aa65 vocab=f30b32b4
+-/
 theorem hebbian_joint_lyapunov_descent
     (K lam : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ) (hW : ∀ i j, W i j = W j i)
     (θ : Fin N → ℝ) :

@@ -37,6 +37,9 @@ noncomputable def kuramotoVectorField (K : ℝ) (N : ℕ) (W : Fin N → Fin N �
 /-
 The Kuramoto vector field is smooth (infinitely differentiable).
 -/
+/--
+@isnad1 id=contdiff.0h3v.s7.c5f22ee05d1f from=translated src=- shape=5be15aa8 vocab=9f055ceb
+-/
 theorem kuramotoVectorField_contDiff (K : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ) :
     ContDiff ℝ ⊤ (kuramotoVectorField K N W) := by
       apply_rules [ ContDiff.mul, ContDiff.sum, contDiff_const, contDiff_apply ];
@@ -44,6 +47,9 @@ theorem kuramotoVectorField_contDiff (K : ℝ) (N : ℕ) (W : Fin N → Fin N �
 
 /-
 The Kuramoto vector field is locally Lipschitz at every point.
+-/
+/--
+@isnad1 id=ex.0h4v.s6.007a9b72ce55 from=translated src=- shape=af822750 vocab=8acd0e5c
 -/
 theorem kuramotoVectorField_locallyLipschitz (K : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ) :
     ∀ θ₀ : Fin N → ℝ, ∃ (ε : ℝ) (_ : 0 < ε) (L : NNReal),
@@ -79,6 +85,9 @@ theorem kuramotoVectorField_locallyLipschitz (K : ℝ) (N : ℕ) (W : Fin N → 
 /-
 ODE existence for the Kuramoto system.
 -/
+/--
+@isnad1 id=ex.0h4v.s7.4b6cf202cde1 from=translated src=- shape=b7783a8b vocab=c5d75aed
+-/
 theorem kuramoto_ode_exists (K : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ)
     (θ₀ : Fin N → ℝ) :
     ∃ (θ : ℝ → Fin N → ℝ),
@@ -92,6 +101,9 @@ theorem kuramoto_ode_exists (K : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ)
 
 /-
 ODE forward uniqueness.
+-/
+/--
+@isnad1 id=eqon.7h6v.s8.bbd2221d2a56 from=translated src=- shape=71667226 vocab=a222b3dd
 -/
 theorem kuramoto_ode_unique (K : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ)
     (θ θ' : ℝ → Fin N → ℝ) {T : ℝ} (_hT : 0 ≤ T)
@@ -116,6 +128,9 @@ theorem kuramoto_ode_unique (K : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ)
 
 /-! ## Target 2: Lyapunov stability along trajectories -/
 
+/--
+@isnad1 id=eq.1h4v.s7.889f2d45381e from=translated src=- shape=06385e3b vocab=cb58ae14
+-/
 theorem lyapunov_derivative_eq
     (K : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ) (hW : ∀ i j, W i j = W j i)
     (θ : Fin N → ℝ) :
@@ -126,6 +141,9 @@ theorem lyapunov_derivative_eq
       exact Finset.sum_congr rfl fun i _ => by rw [ weighted_gradient_identity K N W hW θ
                                                    i ]; ring;
 
+/--
+@isnad1 id=le.2h4v.s7.ae91f4e5dcda from=translated src=- shape=608726db vocab=f7442e53
+-/
 theorem lyapunov_derivative_nonpos
     (K : ℝ) (hK : 0 < K) (N : ℕ) (W : Fin N → Fin N → ℝ) (hW : ∀ i j, W i j = W j i)
     (θ : Fin N → ℝ) :
@@ -133,6 +151,9 @@ theorem lyapunov_derivative_nonpos
       deriv (fun x => weightedKuramotoV K N W (Function.update θ i x)) (θ i) ≤ 0 := by
         apply weighted_lyapunov_descent K hK N W hW θ
 
+/--
+@isnad1 id=hasderiv.3h5v.s7.40a421c32ea9 from=translated src=- shape=80fa6633 vocab=9e529d34
+-/
 theorem lyapunov_nonincreasing_along_trajectory
     (K : ℝ) (_hK : 0 < K) (N : ℕ) (W : Fin N → Fin N → ℝ) (_hW : ∀ i j, W i j = W j i)
     (θ : ℝ → Fin N → ℝ)
@@ -172,6 +193,9 @@ theorem lyapunov_nonincreasing_along_trajectory
 
 /-! ## Target 3: Local synchronisation under the semicircle condition -/
 
+/--
+@isnad1 id=le.10h6v.s7.bdb04ac66a79 from=translated src=- shape=054b70f0 vocab=85e5d037
+-/
 theorem semicircle_extremal_contraction
     (K : ℝ) (_hK : 0 < K) (N : ℕ) (_hN : 0 < N)
     (W : Fin N → Fin N → ℝ) (_hW : ∀ i j, W i j = W j i)
@@ -191,6 +215,9 @@ theorem semicircle_extremal_contraction
           ( Real.sin_nonneg_of_nonneg_of_le_pi ( by linarith [ hmax k, hmin k ] )
             ( by linarith [ hmax k, hmin k ] ) ));
 
+/--
+@isnad1 id=and.3h5v.s6.222a06254216 from=translated src=- shape=5c751b4d vocab=e6a5a591
+-/
 lemma sin_nonneg_of_phase_between
     (θ : Fin N → ℝ) (i j k : Fin N)
     (hmax : θ k ≤ θ i) (hmin : θ j ≤ θ k)
@@ -200,6 +227,9 @@ lemma sin_nonneg_of_phase_between
 
 /-! ## Target 4: Phase diameter non-expansion -/
 
+/--
+@isnad1 id=and.11h7v.s8.9b6fe4520a17 from=translated src=- shape=16ef5b6e vocab=b7a35ada
+-/
 theorem extremal_gap_derivative_nonpos
     (K : ℝ) (hK : 0 < K) (N : ℕ) (hN : 0 < N)
     (W : Fin N → Fin N → ℝ) (hW : ∀ i j, W i j = W j i)
@@ -221,6 +251,9 @@ theorem extremal_gap_derivative_nonpos
 
 /-! ## Target 5: Convergence to synchrony -/
 
+/--
+@isnad1 id=eq.2h2v.s5.120a91cd498f from=translated src=- shape=0eb5afd2 vocab=cd5700b0
+-/
 theorem kuramotoR_norm_eq_one_at_synchrony
     (N : ℕ) (hN : 0 < N) (θ : Fin N → ℝ)
     (hsync : ∀ i j : Fin N, θ i = θ j) :
@@ -228,6 +261,9 @@ theorem kuramotoR_norm_eq_one_at_synchrony
       unfold kuramotoR; norm_num [ ← hsync ⟨ 0, hN ⟩ ];
       linarith
 
+/--
+@isnad1 id=le.3h4v.s6.f797731c9e27 from=translated src=- shape=51bd798a vocab=c5062955
+-/
 theorem weightedKuramotoV_bounded_below
     (K : ℝ) (hK : 0 < K) (N : ℕ)
     (W : Fin N → Fin N → ℝ) (hWnn : ∀ i j, 0 ≤ W i j) (hWle : ∀ i j, W i j ≤ 1)
@@ -1009,7 +1045,9 @@ private theorem R_norm_of_phase_convergence
                                                                                 by linarith ]
 
 /-- Full convergence to synchrony under all-to-all coupling, K > 0, and
-    initial phases in an open semicircle. -/
+    initial phases in an open semicircle.
+@isnad1 id=tendsto.6h4v.s7.ea227388882c from=translated src=- shape=e4c8a1e9 vocab=ee4b370f
+-/
 theorem allToAll_convergence_to_synchrony
     (K : ℝ) (hK : 0 < K) (N : ℕ) (hN : 2 ≤ N)
     (W : Fin N → Fin N → ℝ) (hWdiag : ∀ i, W i i = 0)

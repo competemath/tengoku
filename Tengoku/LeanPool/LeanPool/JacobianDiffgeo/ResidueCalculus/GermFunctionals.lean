@@ -36,6 +36,9 @@ variable {z₀ : ℂ}
 def MeromorphicGerm (z₀ : ℂ) (γ : Filter.Germ (𝓝[≠] z₀) ℂ) : Prop :=
   γ.liftOn (MeromorphicAt · z₀) fun _ _ hfg => propext (MeromorphicAt.meromorphicAt_congr hfg)
 
+/--
+@isnad1 id=iff.0h2v.s5.241bd644ec73 from=translated src=- shape=1a9f5f8f vocab=512c6aa3
+-/
 @[simp] theorem meromorphicGerm_coe {f : ℂ → ℂ} :
     MeromorphicGerm z₀ (f : Filter.Germ (𝓝[≠] z₀) ℂ) ↔ MeromorphicAt f z₀ := Iff.rfl
 
@@ -61,6 +64,9 @@ def meromorphicGermsAt (z₀ : ℂ) : Submodule ℂ (Filter.Germ (𝓝[≠] z₀
       rw [← Filter.Germ.coe_smul]
       exact (MeromorphicAt.const c z₀).mul hf
 
+/--
+@isnad1 id=iff.0h2v.s8.2623994cd0a7 from=translated src=- shape=d7daafeb vocab=e80a468b
+-/
 @[simp] theorem mem_meromorphicGermsAt {f : ℂ → ℂ} :
     (f : Filter.Germ (𝓝[≠] z₀) ℂ) ∈ meromorphicGermsAt z₀ ↔ MeromorphicAt f z₀ := Iff.rfl
 
@@ -90,6 +96,9 @@ noncomputable def laurentCoeffL (z₀ : ℂ) (k : ℤ) : meromorphicGermsAt z₀
 /-- The residue functional. -/
 noncomputable def resL (z₀ : ℂ) : meromorphicGermsAt z₀ →ₗ[ℂ] ℂ := laurentCoeffL z₀ (-1)
 
+/--
+@isnad1 id=eq.1h3v.s11.44a92fa6106b from=translated src=- shape=7d6c25ba vocab=854a9c31
+-/
 @[simp] theorem laurentCoeffL_mk {f : ℂ → ℂ} (hf : MeromorphicAt f z₀) (k : ℤ) :
     laurentCoeffL z₀ k ⟨(f : Filter.Germ (𝓝[≠] z₀) ℂ), hf⟩ = laurentCoeffAt f z₀ k := rfl
 

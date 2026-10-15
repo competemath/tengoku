@@ -201,7 +201,9 @@ private theorem PotentialIso.buildChain_coherent_snd_general
 /-- For countable structures, a potential isomorphism implies actual isomorphism.
 
 This is a direct back-and-forth construction that doesn't go through Scott sentences
-or Karp's theorem, avoiding circular dependencies in the formalization. -/
+or Karp's theorem, avoiding circular dependencies in the formalization.
+@isnad1 id=nonempty.0h4v.s5.b364991cb5a2 from=translated src=- shape=86fb1eae vocab=1f52d5b4
+-/
 theorem PotentialIso.countable_toEquiv
     {M : Type w} [L.Structure M] [Countable M]
     {N : Type w} [L.Structure N] [Countable N]
@@ -319,7 +321,9 @@ contradiction argument.
 
 **Universe constraint**: The proof requires the ordinal universe to match the type universe
 `w` (via `Ordinal.bddAbove_of_small`). This is because the contradiction argument takes a
-supremum of ordinals indexed by `N : Type w`, which requires `Ordinal.{w}`. -/
+supremum of ordinals indexed by `N : Type w`, which requires `Ordinal.{w}`.
+@isnad1 id=nonempty.1h3v.s5.8b0f15e53b44 from=translated src=- shape=d8737817 vocab=b54097e2
+-/
 theorem BFEquiv_all_implies_potentialIso
     {M : Type w} [L.Structure M]
     {N : Type w} [L.Structure N]

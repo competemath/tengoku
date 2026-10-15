@@ -36,7 +36,9 @@ open FirstOrder Structure
 variable {L : Language.{0, 0}} {φ : L.Sentenceω} {lt : L.Relations 2}
 
 /-- **The initial member**: the base diagram satisfies the member predicate, from
-`HasWellOrderedChains` alone. -/
+`HasWellOrderedChains` alone.
+@isnad1 id=womem.1h3v.s4.5fb4f62d0028 from=translated src=- shape=a9fa7866 vocab=1038a486
+-/
 theorem baseDiagram_mem (h : HasWellOrderedChains φ lt) :
     WOMem φ lt (baseDiagram φ lt) := by
   refine ⟨subset_rfl, ?_, ?_, ?_, ?_⟩

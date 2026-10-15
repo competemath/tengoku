@@ -39,7 +39,9 @@ open FirstOrder Structure BoundedFormulaω
 
 variable {L : Language.{0, 0}}
 
-/-- **Malitz interpolation, countable relational core.** -/
+/-- **Malitz interpolation, countable relational core.**
+@isnad1 id=ex.2h3v.s7.a79dcfaf2198 from=translated src=- shape=e4ec3c71 vocab=8666897d
+-/
 theorem malitz_interpolation_relational_countable [L.IsRelational]
     [Countable (Σ n, L.Relations n)] (r₁ r₂ : L.Sentenceω) (h₂ : IsUniversal r₂)
     (h : Sentenceω.Entails r₁ r₂) :

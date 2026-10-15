@@ -46,7 +46,9 @@ variable {X : Type*} [TopologicalSpace X] [ChartedSpace ℂ X] [IsManifold 𝓘(
 
 /-- The preferred-chart coefficient, read against a *fixed* reference chart `e₀` valid at `x`:
 a pure chain-rule identity (`RS.coeffIn_trans` applied between `e₀` and `chartAt ℂ x`), no
-continuity-in-`x` involved. -/
+continuity-in-`x` involved.
+@isnad1 id=eq.2h4v.s8.251235c69526 from=translated src=- shape=10faf420 vocab=7cc38cfe
+-/
 theorem coeffAt_eq_deriv_mul_coeffIn (η : Form1 X) {e₀ : OpenPartialHomeomorph X ℂ}
     (he₀ : e₀ ∈ maximalAtlas 𝓘(ℂ) ω X) {x : X} (hx : x ∈ e₀.source) :
     coeffAt x η =
@@ -57,7 +59,9 @@ theorem coeffAt_eq_deriv_mul_coeffIn (η : Form1 X) {e₀ : OpenPartialHomeomorp
   rwa [(chartAt ℂ x).left_inv (mem_chart_source ℂ x)] at h
 
 /-- The chart-transition factor above never vanishes (a chart composed with its own inverse is
-the identity; `RS.analyticAt_transition`'s nonvanishing-derivative half). -/
+the identity; `RS.analyticAt_transition`'s nonvanishing-derivative half).
+@isnad1 id=ne.2h3v.s8.6e0b8557823b from=translated src=- shape=5e1c8cce vocab=89214579
+-/
 theorem deriv_transition_ne_zero {e₀ : OpenPartialHomeomorph X ℂ}
     (he₀ : e₀ ∈ maximalAtlas 𝓘(ℂ) ω X) {x : X} (hx : x ∈ e₀.source) :
     deriv (⇑e₀ ∘ ⇑(chartAt ℂ x).symm) (chartAt ℂ x x) ≠ 0 :=
@@ -65,7 +69,9 @@ theorem deriv_transition_ne_zero {e₀ : OpenPartialHomeomorph X ℂ}
 
 /-- Two continuous-on-`U` planar functions agreeing on a subset `T` whose closure covers `U`
 agree on all of `U` (elementary filter/uniqueness-of-limits argument; the standard "dense ⟹
-everywhere" fact specialized to an open domain, avoiding the need for global `Continuous`). -/
+everywhere" fact specialized to an open domain, avoiding the need for global `Continuous`).
+@isnad1 id=eqon.5h4v.s7.603726445b2a from=translated src=- shape=5a321dcf vocab=a130b918
+-/
 theorem ContinuousOn.eqOn_of_subset_closure {f g : ℂ → ℂ} {U : Set ℂ} (hUo : IsOpen U)
     (hf : ContinuousOn f U) (hg : ContinuousOn g U) {T : Set ℂ} (hTU : U ⊆ closure T)
     (heq : Set.EqOn f g T) : Set.EqOn f g U := by
@@ -81,7 +87,9 @@ theorem ContinuousOn.eqOn_of_subset_closure {f g : ℂ → ℂ} {U : Set ℂ} (h
 
 omit [ChartedSpace ℂ X] [IsManifold 𝓘(ℂ) ω X] in
 /-- Density transports along a chart: if `s` is dense in `X`, then every point of `e₀.target` is
-in the closure of `e₀ '' (s ∩ e₀.source)`. -/
+in the closure of `e₀ '' (s ∩ e₀.source)`.
+@isnad1 id=le.1h3v.s7.594b87341b6a from=translated src=- shape=01b492c9 vocab=821d1fce
+-/
 theorem target_subset_closure_image_inter {e₀ : OpenPartialHomeomorph X ℂ} {s : Set X}
     (hs : Dense s) : e₀.target ⊆ closure (⇑e₀ '' (s ∩ e₀.source)) := by
   intro z hz

@@ -36,12 +36,16 @@ noncomputable instance instFintypeMulCharComplex (K : Type*) [Field K] [Fintype 
 
 variable {K : Type*} [Field K] [Fintype K] [DecidableEq K]
 
-/-- The number of `ℂ`-valued multiplicative characters of `K` is `#Kˣ`. -/
+/-- The number of `ℂ`-valued multiplicative characters of `K` is `#Kˣ`.
+@isnad1 id=eq.0h1v.s5.86c7ad8234b4 from=translated src=- shape=753fa118 vocab=6f97c959
+-/
 lemma card_mulChar : Fintype.card (MulChar K ℂ) = Fintype.card Kˣ := by
   have := MulChar.card_eq_card_units_of_hasEnoughRootsOfUnity K ℂ
   simpa [Nat.card_eq_fintype_card] using this
 
-/-- First orthogonality relation: summing the value at a fixed unit over all characters. -/
+/-- First orthogonality relation: summing the value at a fixed unit over all characters.
+@isnad1 id=eq.0h2v.s8.be311ec4db6f from=translated src=- shape=f519b885 vocab=e99f2a67
+-/
 lemma sum_char_apply (a : Kˣ) :
     ∑ χ : MulChar K ℂ, χ (a : K) = if a = 1 then (Fintype.card Kˣ : ℂ) else 0 := by
   split_ifs with ha
@@ -52,7 +56,9 @@ lemma sum_char_apply (a : Kˣ) :
     simp only [Finset.mul_sum, ← MulChar.mul_apply]
     exact Fintype.sum_bijective _ (Group.mulLeft_bijective χ₀) _ _ fun χ' ↦ rfl
 
-/-- Second orthogonality relation: summing a fixed character over all units. -/
+/-- Second orthogonality relation: summing a fixed character over all units.
+@isnad1 id=eq.0h2v.s8.aac31c7c41c9 from=translated src=- shape=d4de9812 vocab=e99f2a67
+-/
 lemma sum_units_char (θ : MulChar K ℂ) :
     ∑ b : Kˣ, θ ((b : K)) = if θ = 1 then (Fintype.card Kˣ : ℂ) else 0 := by
   split_ifs with h
@@ -63,7 +69,9 @@ lemma sum_units_char (θ : MulChar K ℂ) :
 /-- The sum of `χ a` over the cubic characters `χ` (those with `χ ^ 3 = 1`) equals the
 number of cube roots of `a` in `Kˣ`.  This packages both the vanishing at non-cubes and
 the count at cubes into a single identity, and needs only the two orthogonality
-relations. -/
+relations.
+@isnad1 id=eq.0h2v.s9.94e3f826ee94 from=translated src=- shape=cd6514df vocab=cca7a504
+-/
 lemma sum_cubic_char_apply (a : Kˣ) :
     ∑ χ ∈ Finset.univ.filter (fun χ : MulChar K ℂ => χ ^ 3 = 1), χ (a : K) =
       (#{b : Kˣ | b ^ 3 = a} : ℂ) := by
@@ -106,14 +114,18 @@ namespace KasamiCyclicAdditive
 variable {K : Type*} [Field K] [Fintype K] [DecidableEq K]
 
 omit [Fintype K] [DecidableEq K] in
-/-- In characteristic two an additive character is its own inverse. -/
+/-- In characteristic two an additive character is its own inverse.
+@isnad1 id=eq.0h2v.s7.dfe27a8f79e2 from=translated src=- shape=6664cb7a vocab=f31b1fc0
+-/
 lemma addChar_inv_self [CharP K 2] (psi : AddChar K ℂ) : psi⁻¹ = psi := by
   ext x
   rw [AddChar.inv_apply, CharTwo.neg_eq]
 
 omit [DecidableEq K] in
 /-- A primitive additive character sums to zero over `K` after any nonzero
-rescaling. -/
+rescaling.
+@isnad1 id=eq.1h3v.s7.e03e6f765a99 from=translated src=- shape=c11ba926 vocab=b95dba71
+-/
 lemma sum_addChar_eq_zero {psi : AddChar K ℂ} (hpsi : psi.IsPrimitive) (a : Kˣ) :
     ∑ x : K, psi ((a : K) * x) = 0 := by
   classical
@@ -122,7 +134,9 @@ lemma sum_addChar_eq_zero {psi : AddChar K ℂ} (hpsi : psi.IsPrimitive) (a : K�
   simp only [ha, ite_false] at h
   simpa [mul_comm] using h
 
-/-- Removing the term at `0`, the same sum over `Kˣ` is `-1`. -/
+/-- Removing the term at `0`, the same sum over `Kˣ` is `-1`.
+@isnad1 id=eq.1h3v.s7.320dde24a9f9 from=translated src=- shape=a8f928c8 vocab=50e309b8
+-/
 lemma sum_units_addChar {psi : AddChar K ℂ} (hpsi : psi.IsPrimitive) (a : Kˣ) :
     ∑ x : Kˣ, psi ((a : K) * (x : K)) = -1 := by
   have h := KasamiCyclicAdditive.sum_units_add (fun x : K => psi ((a : K) * x))
@@ -131,7 +145,9 @@ lemma sum_units_addChar {psi : AddChar K ℂ} (hpsi : psi.IsPrimitive) (a : Kˣ)
   linear_combination h
 
 omit [DecidableEq K] in
-/-- The Gauss sum of the principal character is `-1`. -/
+/-- The Gauss sum of the principal character is `-1`.
+@isnad1 id=eq.1h2v.s6.5c816d7e2b30 from=translated src=- shape=5e8ee475 vocab=ead4f9b3
+-/
 lemma gaussSum_principal {psi : AddChar K ℂ} (hpsi : psi.IsPrimitive) :
     gaussSum (1 : MulChar K ℂ) psi = -1 := by
   classical
@@ -146,7 +162,9 @@ lemma gaussSum_principal {psi : AddChar K ℂ} (hpsi : psi.IsPrimitive) :
   rw [gaussSum, ← h2]
 
 omit [DecidableEq K] in
-/-- In characteristic two, `G(θ) G(θ⁻¹) = |K|` for nonprincipal `θ`. -/
+/-- In characteristic two, `G(θ) G(θ⁻¹) = |K|` for nonprincipal `θ`.
+@isnad1 id=eq.2h3v.s7.31649ef09be0 from=translated src=- shape=6cd50ec6 vocab=d0f75ca1
+-/
 lemma gaussSum_mul_inv [CharP K 2] {psi : AddChar K ℂ} (hpsi : psi.IsPrimitive)
     {theta : MulChar K ℂ} (h : theta ≠ 1) :
     gaussSum theta psi * gaussSum theta⁻¹ psi = (Fintype.card K : ℂ) := by
@@ -155,7 +173,9 @@ lemma gaussSum_mul_inv [CharP K 2] {psi : AddChar K ℂ} (hpsi : psi.IsPrimitive
 
 omit [DecidableEq K] in
 /-- Against a primitive additive character no Gauss sum vanishes, principal
-character included. -/
+character included.
+@isnad1 id=ne.1h3v.s6.8746cf17bde0 from=translated src=- shape=b8c1b91f vocab=0f213c22
+-/
 lemma gaussSum_ne_zero_of_primitive {psi : AddChar K ℂ} (hpsi : psi.IsPrimitive)
     (chi : MulChar K ℂ) : gaussSum chi psi ≠ 0 := by
   classical

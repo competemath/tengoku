@@ -35,7 +35,9 @@ open FirstOrder Structure
 
 variable {L : Language.{0, 0}}
 
-/-- A symbol-generated sublanguage of a relational language is relational. -/
+/-- A symbol-generated sublanguage of a relational language is relational.
+@isnad1 id=isrelati.0h3v.s4.e2245d9eb831 from=translated src=- shape=ba83ed8e vocab=9dab87af
+-/
 instance symbSublang_isRelational [h : L.IsRelational] (F : Set (Σ n, L.Functions n))
     (R : Set (Σ n, L.Relations n)) : (symbSublang (L := L) F R).IsRelational :=
   fun n => ⟨fun f => (h n).false f.1⟩
@@ -59,7 +61,9 @@ generating sets are interpreted by the sublanguage structure; the rest are fille
             (⟨r, h⟩ : (symbSublang (L := L) F R).Relations m) xs
         else False }
 
-/-- The reduct along `symbSublangIncl` recovers the original sublanguage structure. -/
+/-- The reduct along `symbSublangIncl` recovers the original sublanguage structure.
+@isnad1 id=eq.0h4v.s5.86123306a603 from=translated src=- shape=50a642a0 vocab=a15184cd
+-/
 theorem reduct_expandSymbStructureBase
     (F : Set (Σ n, L.Functions n)) (R : Set (Σ n, L.Relations n)) {M : Type} [Nonempty M]
     [instM : (symbSublang (L := L) F R).Structure M] :
@@ -81,7 +85,9 @@ theorem reduct_expandSymbStructureBase
     exact dite_eq_left r.2
 
 /-- **Realization transport**: realizing `φ.restrictSymbols` in the sublanguage structure is
-realizing `φ` in the base expansion. -/
+realizing `φ` in the base expansion.
+@isnad1 id=iff.2h8v.s7.0fbbe6335a6a from=translated src=- shape=4c8ede86 vocab=0c5a4a58
+-/
 theorem realize_restrictSymbols_expandSymbStructureBase
     (F : Set (Σ n, L.Functions n)) (R : Set (Σ n, L.Relations n)) {M : Type} [Nonempty M]
     [instM : (symbSublang (L := L) F R).Structure M]
@@ -110,7 +116,9 @@ theorem realize_restrictSymbols_expandSymbStructureBase
   exact h.symm
 
 /-- **Entailment transport (singleton form)**: a base-`L` entailment restricts to the
-sublanguage, via the base expansion of any sublanguage model. -/
+sublanguage, via the base expansion of any sublanguage model.
+@isnad1 id=entails.5h5v.s7.837a04ddbabe from=translated src=- shape=ba24c172 vocab=661f7787
+-/
 theorem entails_restrictSymbols_singleton
     (F : Set (Σ n, L.Functions n)) (R : Set (Σ n, L.Relations n)) (r₁ r₂ : L.Sentenceω)
     (hr₁F : r₁.functionsIn ⊆ F) (hr₁R : r₁.relationsIn ⊆ R)

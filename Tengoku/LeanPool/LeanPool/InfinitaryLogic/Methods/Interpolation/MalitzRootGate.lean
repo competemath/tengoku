@@ -34,7 +34,9 @@ variable {L : Language.{0, 0}}
 whose function and relation occurrences are bounded by the separator's base sets.
 
 Constant-freeness has done its work by this point and disappears from the conclusion, which is what
-lets the public theorem avoid exposing any Henkin bookkeeping. -/
+lets the public theorem avoid exposing any Henkin bookkeeping.
+@isnad1 id=ex.4h4v.s7.9fd1203a4605 from=translated src=- shape=28630e67 vocab=fb057557
+-/
 theorem base_malitz_interpolant_of_empty_support_separator {Γ₀ Δ₀ : Set L.Sentenceω}
     (σ : L[[ℕ]].Sentenceω)
     (hσU : IsUniversal σ)

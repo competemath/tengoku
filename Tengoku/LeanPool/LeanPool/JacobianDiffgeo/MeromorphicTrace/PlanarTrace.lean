@@ -59,15 +59,23 @@ to `0` in the latter case unless `h` itself has finite support there. -/
 noncomputable def traceZk (h : ℂ → ℂ) (k : ℕ) (w : ℂ) : ℂ :=
   ∑ᶠ z ∈ {z : ℂ | z ^ k = w}, h z
 
+/--
+@isnad1 id=eq.0h3v.s6.67a270adf4e9 from=translated src=- shape=557013e6 vocab=bb3416c5
+-/
 theorem traceZk_def (h : ℂ → ℂ) (k : ℕ) (w : ℂ) :
     traceZk h k w = ∑ᶠ z ∈ {z : ℂ | z ^ k = w}, h z := rfl
 
 /-- Master conversion to a `Finset` sum, valid for every `w` (the root set is always finite once
-`k ≠ 0`, regardless of `w`). -/
+`k ≠ 0`, regardless of `w`).
+@isnad1 id=eq.1h3v.s5.f01c67e2ed9d from=translated src=- shape=593ed6bf vocab=8c364b32
+-/
 theorem traceZk_eq_finset_sum (h : ℂ → ℂ) (hk : k ≠ 0) (w : ℂ) :
     traceZk h k w = ∑ z ∈ (RS.setOf_pow_eq_finite hk w).toFinset, h z :=
   finsum_mem_eq_finite_toFinset_sum _ (RS.setOf_pow_eq_finite hk w)
 
+/--
+@isnad1 id=eq.2h3v.s6.d89fbc662c7d from=translated src=- shape=9cfb3ecc vocab=8c364b32
+-/
 theorem traceZk_apply_of_ne_zero (hk : k ≠ 0) (_hw : w ≠ 0) :
     traceZk h k w = ∑ z ∈ (RS.setOf_pow_eq_finite hk w).toFinset, h z :=
   traceZk_eq_finset_sum h hk w
@@ -75,7 +83,9 @@ theorem traceZk_apply_of_ne_zero (hk : k ≠ 0) (_hw : w ≠ 0) :
 /-- Honest but junk value at the branch point: `traceZk h k 0 = h 0` (the root set of `z ^ k = 0`
 is the singleton `{0}`). Never used to reason about `MeromorphicAt`/`laurentCoeffAt`/`resAt` at
 `0`, all of which are `𝓝[≠]0`-germ notions and hence blind to this junk (see the design's junk
-ledger, §6). -/
+ledger, §6).
+@isnad1 id=eq.1h2v.s5.db70996cdcdc from=translated src=- shape=0b6eecff vocab=e50a904d
+-/
 theorem traceZk_zero_apply (hk : k ≠ 0) : traceZk h k 0 = h 0 := by
   rw [traceZk_def, RS.setOf_pow_eq_zero hk, finsum_mem_singleton]
 
@@ -84,18 +94,25 @@ theorem traceZk_zero_apply (hk : k ≠ 0) : traceZk h k 0 = h 0 := by
 /-- Additivity, guarded by `k ≠ 0` (deviation from the design's unconditional statement: at
 `k = 0`, `w = 1` the root set is all of `ℂ`, and additivity fails there whenever one summand has
 finite support on `ℂ` and the other does not — e.g. `h₁ = Set.indicator {0} 1`, `h₂ = 1`. With
-`k ≠ 0` the root set is always finite, so this is not an issue.). -/
+`k ≠ 0` the root set is always finite, so this is not an issue.).
+@isnad1 id=eq.1h3v.s6.e830f414a863 from=translated src=- shape=c65a886e vocab=8ba5a6d9
+-/
 theorem traceZk_add (hk : k ≠ 0) : traceZk (h + g) k = traceZk h k + traceZk g k := by
   funext w
   simp only [Pi.add_apply, traceZk_eq_finset_sum _ hk]
   exact Finset.sum_add_distrib
 
+/--
+@isnad1 id=eq.1h3v.s5.c0a3cbbbd7b0 from=translated src=- shape=b0841845 vocab=8ba5a6d9
+-/
 theorem traceZk_fun_add (hk : k ≠ 0) :
     traceZk (fun z => h z + g z) k = fun w => traceZk h k w + traceZk g k w :=
   traceZk_add hk
 
 /-- Unconditional in `k` (scalar multiplication by `c` does not change support-finiteness, so no
-`k ≠ 0` guard is needed, unlike `traceZk_add`). -/
+`k ≠ 0` guard is needed, unlike `traceZk_add`).
+@isnad1 id=eq.0h3v.s5.f5998ca9af2b from=translated src=- shape=65b9ec52 vocab=05d4becd
+-/
 theorem traceZk_const_mul (c : ℂ) (k : ℕ) :
     traceZk (fun z => c * h z) k = fun w => c * traceZk h k w := by
   funext w
@@ -109,7 +126,9 @@ theorem traceZk_const_mul (c : ℂ) (k : ℕ) :
   simpa using (smul_finsum c (s.indicator h)).symm
 
 /-- Trace of a pullback (branch-point caveat: only away from `0`, see the design's junk ledger,
-§6 — the identity is genuinely false at `w = 0`). -/
+§6 — the identity is genuinely false at `w = 0`).
+@isnad1 id=eq.2h3v.s6.f72cb5369ff4 from=translated src=- shape=050841e1 vocab=d2203467
+-/
 theorem traceZk_comp_pow (g : ℂ → ℂ) (hk : k ≠ 0) {w : ℂ} (hw : w ≠ 0) :
     traceZk (fun z => g (z ^ k)) k w = k * g w := by
   rw [traceZk_apply_of_ne_zero hk hw]
@@ -126,7 +145,9 @@ theorem traceZk_comp_pow (g : ℂ → ℂ) (hk : k ≠ 0) {w : ℂ} (hw : w ≠ 
 
 /-- `traceZk h k` is analytic at any `w₀ ≠ 0` all of whose `k`-th roots lie in `h`'s domain of
 analyticity `ball 0 ρ \ {0}`. Local branches (`AnalyticAt.exists_pow_eq`) witness analyticity;
-no monodromy — the branches are never assembled into a global formula across a branch cut. -/
+no monodromy — the branches are never assembled into a global formula across a branch cut.
+@isnad1 id=analytic.5h4v.s7.5ab6ef1bcbdc from=translated src=- shape=c2babda9 vocab=ec5b88c1
+-/
 theorem analyticAt_traceZk (hk : k ≠ 0) {ρ : ℝ} (hρ : 0 < ρ)
     (hh : AnalyticOnNhd ℂ h (Metric.ball (0 : ℂ) ρ \ {0})) {w₀ : ℂ} (hw₀ : w₀ ≠ 0)
     (hw₀ρ : ‖w₀‖ < ρ ^ k) : AnalyticAt ℂ (traceZk h k) w₀ := by
@@ -216,7 +237,9 @@ theorem analyticAt_traceZk (hk : k ≠ 0) {ρ : ℝ} (hρ : 0 < ρ)
 /-- `traceZk h k` is meromorphic at `0` whenever `h` is, via a norm/`zpow` growth bound on the
 root-sum and Riemann's removable-singularity theorem
 (`Complex.differentiableOn_update_limUnder_of_bddAbove`) — no monodromy, no convergent global
-Laurent series needed for existence. -/
+Laurent series needed for existence.
+@isnad1 id=meromorp.2h2v.s5.e853d38546d0 from=translated src=- shape=14a71d55 vocab=97472d77
+-/
 theorem meromorphicAt_traceZk (hh : MeromorphicAt h 0) (hk : k ≠ 0) :
     MeromorphicAt (traceZk h k) 0 := by
   classical
@@ -406,7 +429,9 @@ private theorem bijOn_pow_mul_root (hk : k ≠ 0) {w z₁ ζ : ℂ} (hw : w ≠ 
 
 /-- Closed form for the trace of a `zpow` monomial (`w ≠ 0`): the sum of `z ^ e` over the `k`
 roots of `w` collapses by the geometric sum of roots of unity to `k * w ^ (e / k)` when `k ∣ e`
-and to `0` otherwise. Purely algebraic — no branches, no analyticity. -/
+and to `0` otherwise. Purely algebraic — no branches, no analyticity.
+@isnad1 id=eq.2h3v.s6.5feac95809fe from=translated src=- shape=56f69460 vocab=2e658c13
+-/
 theorem traceZk_zpow (hk : k ≠ 0) (e : ℤ) {w : ℂ} (hw : w ≠ 0) :
     traceZk (fun z => z ^ e) k w = if (k : ℤ) ∣ e then (k : ℂ) * w ^ (e / (k : ℤ)) else 0 := by
   classical
@@ -489,7 +514,9 @@ private theorem exists_analyticAt_traceZk (hk : k ≠ 0) {g : ℂ → ℂ} {ρ C
   exact (Function.update_of_ne hz _ _).symm
 
 /-- THE Laurent-coefficient formula for `traceZk` (P6): tracing along `z ↦ z ^ k` keeps exactly
-every `k`-th Laurent coefficient, scaled by `k`. See the section header for the proof route. -/
+every `k`-th Laurent coefficient, scaled by `k`. See the section header for the proof route.
+@isnad1 id=eq.2h3v.s6.b365c52ebb3a from=translated src=- shape=f1d1c707 vocab=fb59ce4f
+-/
 theorem laurentCoeffAt_traceZk (hh : MeromorphicAt h 0) (hk : k ≠ 0) (m : ℤ) :
     laurentCoeffAt (traceZk h k) 0 m = (k : ℂ) * laurentCoeffAt h 0 (k * m) := by
   classical
@@ -704,7 +731,9 @@ theorem laurentCoeffAt_traceZk (hh : MeromorphicAt h 0) (hk : k ≠ 0) (m : ℤ)
 /-- Residue corollary of P6 (design §4.4): the residue of the trace is `k` times `h`'s
 coefficient at index `-k` — NOT `h`'s residue unless `k = 1`. (Miranda's residue identity
 `Res(Tr(h·ω)) = ∑ Res(h·ω)` needs the form's Jacobian factor to compensate this shift; that is
-`form-trace-tower`'s job, confirming the scope split.) -/
+`form-trace-tower`'s job, confirming the scope split.)
+@isnad1 id=eq.2h2v.s6.d93f29cd7fd0 from=translated src=- shape=ad1c713c vocab=2070b00e
+-/
 theorem resAt_traceZk (hh : MeromorphicAt h 0) (hk : k ≠ 0) :
     resAt (traceZk h k) 0 = (k : ℂ) * laurentCoeffAt h 0 (-(k : ℤ)) := by
   have h1 := laurentCoeffAt_traceZk hh hk (-1)

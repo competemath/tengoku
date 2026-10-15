@@ -58,59 +58,90 @@ def Realize {M : Type w} [L.Structure M] :
 
 variable {M : Type w} [L.Structure M] {v : α → M} {xs : Fin n → M}
 
+/--
+@isnad1 id=iff.0h7v.s5.62ec39c94034 from=translated src=- shape=997ed758 vocab=fcdfd916
+-/
 @[simp]
 theorem realize_falsum : (falsum : L.BoundedFormulaInf ι α n).Realize v xs ↔ False :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h9v.s6.a142e385d1f9 from=translated src=- shape=4daa0fe0 vocab=bea5eff9
+-/
 @[simp]
 theorem realize_equal {t₁ t₂ : L.Term (α ⊕ Fin n)} :
     (equal t₁ t₂ : L.BoundedFormulaInf ι α n).Realize v xs ↔
       t₁.realize (Sum.elim v xs) = t₂.realize (Sum.elim v xs) :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h10v.s6.c391c5bd7952 from=translated src=- shape=e0c970f9 vocab=81ba3db1
+-/
 @[simp]
 theorem realize_rel {l : ℕ} {R : L.Relations l} {ts : Fin l → L.Term (α ⊕ Fin n)} :
     (rel R ts : L.BoundedFormulaInf ι α n).Realize v xs ↔
       Structure.RelMap R fun i ↦ (ts i).realize (Sum.elim v xs) :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h9v.s6.97288bf1fa68 from=translated src=- shape=7bf9f15c vocab=150896ed
+-/
 @[simp]
 theorem realize_imp {φ ψ : L.BoundedFormulaInf ι α n} :
     (φ.imp ψ).Realize v xs ↔ φ.Realize v xs → ψ.Realize v xs :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h8v.s6.9f0649328e64 from=translated src=- shape=d5a64fe2 vocab=87cc7cfd
+-/
 @[simp]
 theorem realize_all {φ : L.BoundedFormulaInf ι α (n + 1)} :
     φ.all.Realize v xs ↔ ∀ y : M, φ.Realize v (Fin.snoc xs y) :=
   Iff.rfl
 
 /-- Realization of an infinitary disjunction: one equation, generic in the carrier and its
-universe. -/
+universe.
+@isnad1 id=iff.0h8v.s5.a913e08b4e9e from=translated src=- shape=94bb0a92 vocab=5478be6f
+-/
 @[simp]
 theorem realize_iSup {φs : ι → L.BoundedFormulaInf ι α n} :
     (iSup φs).Realize v xs ↔ ∃ i, (φs i).Realize v xs :=
   Iff.rfl
 
 /-- Realization of an infinitary conjunction: one equation, generic in the carrier and its
-universe. -/
+universe.
+@isnad1 id=iff.0h8v.s5.c1e2ab1d7893 from=translated src=- shape=a83a7650 vocab=d13564bb
+-/
 @[simp]
 theorem realize_iInf {φs : ι → L.BoundedFormulaInf ι α n} :
     (iInf φs).Realize v xs ↔ ∀ i, (φs i).Realize v xs :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h8v.s5.f68e7fdf05b7 from=translated src=- shape=c34abf1e vocab=16925796
+-/
 @[simp]
 theorem realize_not {φ : L.BoundedFormulaInf ι α n} :
     φ.not.Realize v xs ↔ ¬φ.Realize v xs :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h7v.s5.2559a24ae406 from=translated src=- shape=7ee5e42b vocab=4148714b
+-/
 @[simp]
 theorem realize_top : (⊤ : L.BoundedFormulaInf ι α n).Realize v xs ↔ True := by
   simp [Top.top, BoundedFormulaInf.verum, BoundedFormulaInf.not, Realize]
 
+/--
+@isnad1 id=iff.0h7v.s5.6041cfd86698 from=translated src=- shape=7ee5e42b vocab=d37a6db3
+-/
 @[simp]
 theorem realize_bot : (⊥ : L.BoundedFormulaInf ι α n).Realize v xs ↔ False :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h8v.s6.a6d1a7ee9445 from=translated src=- shape=18b14aec vocab=ce801d63
+-/
 @[simp]
 theorem realize_ex {φ : L.BoundedFormulaInf ι α (n + 1)} :
     φ.ex.Realize v xs ↔ ∃ y : M, φ.Realize v (Fin.snoc xs y) := by

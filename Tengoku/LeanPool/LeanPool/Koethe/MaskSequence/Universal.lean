@@ -28,13 +28,17 @@ namespace MaskSequence
 
 variable {k : Type*} [Field k] {d : ℕ}
 
-/-- Split a forward window at a specified length. -/
+/-- Split a forward window at a specified length.
+@isnad1 id=eq.0h7v.s8.f225f3d9ae4f from=translated src=- shape=15890986 vocab=c8e69d75
+-/
 theorem window_add (P : Pencil k d) (v : ℕ → Triple k) (start a b : ℕ) :
     P.window v start (a + b) = P.window v start a * P.window v (start + a) b := by
   simp [Pencil.window, List.ofFn_add, Nat.add_assoc]
 
 /-- A window containing a zero contiguous subwindow is itself zero.
-No commutation or rearrangement of the matrix factors is used. -/
+No commutation or rearrangement of the matrix factors is used.
+@isnad1 id=eq.2h8v.s8.e3647ece792a from=translated src=- shape=8fd0c9be vocab=e777b007
+-/
 theorem window_eq_zero_of_subwindow (P : Pencil k d) (v : ℕ → Triple k)
     (start N offset len : ℕ) (hfit : offset + len ≤ N)
     (hz : P.window v (start + offset) len = 0) : P.window v start N = 0 := by
@@ -42,7 +46,9 @@ theorem window_eq_zero_of_subwindow (P : Pencil k d) (v : ℕ → Triple k)
   rw [hN, window_add, window_add, hz, mul_zero, zero_mul]
 
 /-- An installed word occurs at every nonnegative multiple of the mask period
-in every compatible sequence. -/
+in every compatible sequence.
+@isnad1 id=eq.3h7v.s6.ca86b624ecd7 from=translated src=- shape=524228b4 vocab=25780e24
+-/
 theorem carries_window (P : Pencil k d) (M : PeriodicMask k)
     {w : List (Triple k)} (hw : Carries M w) {v : ℕ → Triple k}
     (hv : M.SeqCompatible v) {b : ℕ} (hb : b % M.period = 0) :
@@ -58,7 +64,9 @@ theorem carries_window (P : Pencil k d) (M : PeriodicMask k)
       _ = w := List.ofFn_get w
   rw [Pencil.window, hword]
 
-/-- Twice the mask period is one bound that works at *every* starting site. -/
+/-- Twice the mask period is one bound that works at *every* starting site.
+@isnad1 id=eq.2h6v.s7.32df4cd83ae8 from=translated src=- shape=6ba0e087 vocab=ad74390c
+-/
 theorem kills_windows (P : Pencil k d) (M : PeriodicMask k)
     {v : ℕ → Triple k} (hv : M.SeqCompatible v) (hkill : Kills M P) :
     ∀ start, P.window v start (2 * M.period) = 0 := by
@@ -82,7 +90,9 @@ theorem kills_windows (P : Pencil k d) (M : PeriodicMask k)
 end MaskSequence
 
 /-- The complete combinatorial construction, independent of any proof of
-matrix mortality.  Countability is used only to enumerate all pencils. -/
+matrix mortality.  Countability is used only to enumerate all pencils.
+@isnad1 id=ex.1h1v.s4.bec516a2bd08 from=translated src=- shape=6cb92189 vocab=bfb7b2ee
+-/
 theorem exists_universalMortalSequence (k : Type*) [Field k] [Countable k]
     (hm : MaskMortality k) : ∃ v : ℕ → Triple k, UniversalMortalSequence k v := by
   classical

@@ -45,7 +45,9 @@ Craig — so they are exported for the Lyndon refinement (issue #14, Unit 5), wh
 entailment and function-occurrence transports alongside its own *signed* relation transport. -/
 
 /-- Left entailment transport: a sublanguage entailment `r₁.restrictSymbols ⊨ θ'` lifts, along the
-inclusion, to `r₁ ⊨ θ'.mapLanguage incl` in `L` (via the sublanguage reduct of an `L`-model). -/
+inclusion, to `r₁ ⊨ θ'.mapLanguage incl` in `L` (via the sublanguage reduct of an `L`-model).
+@isnad1 id=entails.3h5v.s6.e8c9dc8cbf36 from=translated src=- shape=a1178516 vocab=2afc6ddc
+-/
 theorem entails_mapLanguage_restrictSymbols_left (F : Set (Σ n, L.Functions n))
     (R : Set (Σ n, L.Relations n)) (r : L.Sentenceω) (hF : r.functionsIn ⊆ F)
     (hR : r.relationsIn ⊆ R) (θ' : (symbSublang (L := L) F R).Sentenceω)
@@ -66,7 +68,9 @@ theorem entails_mapLanguage_restrictSymbols_left (F : Set (Σ n, L.Functions n))
       (Empty.elim : Empty → M) Fin.elim0).mpr ((Sentenceω.entails_iff.mp hE) M hr')
 
 /-- Right entailment transport: a sublanguage entailment `θ' ⊨ r₂.restrictSymbols` lifts to
-`θ'.mapLanguage incl ⊨ r₂` in `L`. -/
+`θ'.mapLanguage incl ⊨ r₂` in `L`.
+@isnad1 id=entails.3h5v.s6.44b07a82e4d5 from=translated src=- shape=fadd8d71 vocab=2afc6ddc
+-/
 theorem entails_mapLanguage_restrictSymbols_right (F : Set (Σ n, L.Functions n))
     (R : Set (Σ n, L.Relations n)) (r : L.Sentenceω) (hF : r.functionsIn ⊆ F)
     (hR : r.relationsIn ⊆ R) (θ' : (symbSublang (L := L) F R).Sentenceω)
@@ -85,7 +89,9 @@ theorem entails_mapLanguage_restrictSymbols_right (F : Set (Σ n, L.Functions n)
   rwa [BoundedFormulaω.mapLanguage_restrictSymbols] at hr
 
 /-- Function-occurrence transport: the mapped interpolant's functions stay within `r`'s functions,
-given the sublanguage bound against the restriction. -/
+given the sublanguage bound against the restriction.
+@isnad1 id=le.3h5v.s7.6a68f075262b from=translated src=- shape=2d2b2e20 vocab=607e1152
+-/
 theorem functionsIn_mapLanguage_incl_subset (F : Set (Σ n, L.Functions n))
     (R : Set (Σ n, L.Relations n)) (r : L.Sentenceω) (hF : r.functionsIn ⊆ F)
     (hR : r.relationsIn ⊆ R) (θ' : (symbSublang (L := L) F R).Sentenceω)
@@ -95,7 +101,9 @@ theorem functionsIn_mapLanguage_incl_subset (F : Set (Σ n, L.Functions n))
     ← BoundedFormulaω.mapLanguage_restrictSymbols r hF hR, BoundedFormulaω.functionsIn_mapLanguage]
   exact Set.image_mono hsub
 
-/-- Relation-occurrence transport (companion of the above for relation symbols). -/
+/-- Relation-occurrence transport (companion of the above for relation symbols).
+@isnad1 id=le.3h5v.s7.42a1ea81d910 from=translated src=- shape=66abd868 vocab=607e1152
+-/
 theorem relationsIn_mapLanguage_incl_subset (F : Set (Σ n, L.Functions n))
     (R : Set (Σ n, L.Relations n)) (r : L.Sentenceω) (hF : r.functionsIn ⊆ F)
     (hR : r.relationsIn ⊆ R) (θ' : (symbSublang (L := L) F R).Sentenceω)
@@ -109,7 +117,9 @@ theorem relationsIn_mapLanguage_incl_subset (F : Set (Σ n, L.Functions n))
 
 /-- **Craig interpolation for `L_ω₁ω` — relational, no global countability hypothesis.** Over a
 purely relational language (of arbitrarily many symbols), an `L_ω₁ω`-entailment `r₁ ⊨ r₂` has a
-base-`L` interpolant whose symbols lie in the intersection of the roots' occurrence sets. -/
+base-`L` interpolant whose symbols lie in the intersection of the roots' occurrence sets.
+@isnad1 id=ex.1h3v.s7.e910a01f7c18 from=translated src=- shape=65da4013 vocab=93d1f044
+-/
 theorem craig_interpolation_relational [L.IsRelational] (r₁ r₂ : L.Sentenceω)
     (h : Sentenceω.Entails r₁ r₂) :
     ∃ θ : L.Sentenceω,

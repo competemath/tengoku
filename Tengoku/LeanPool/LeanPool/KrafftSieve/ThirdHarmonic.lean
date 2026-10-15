@@ -70,6 +70,7 @@ private lemma natCast_im_helper (x : ℕ) : (x : ℂ).im = 0 := rfl
 /--
 Plancherel's Theorem for the custom Fourier transform definition:
 $$ \sum_{x} f(x) \overline{g(x)} = q \sum_{h} \hat{f}(h) \overline{\hat{g}(h)} $$
+@isnad1 id=eq.0h3v.s8.ccab4c1b3383 from=translated src=- shape=e92a8904 vocab=566c311e
 -/
 lemma plancherel_theorem_custom (n : ℕ) (f g : ZMod (q n) → ℂ) :
     ∑ x : ZMod (q n), f x * starRingEnd ℂ (g x) = (q n : ℂ) * ∑ h : ZMod (q n),
@@ -321,6 +322,9 @@ private lemma dirac_comb_nonzero_sum_final (n : ℕ) (i : Fin (w n)) (k : Fin (p
           · linarith
           · norm_num
 
+/--
+@isnad1 id=eq.0h3v.s7.b4331a5dd816 from=translated src=- shape=bd7d334d vocab=087104ea
+-/
 lemma dirac_comb_nonzero (n : ℕ) (i : Fin (w n)) (k : Fin (p n i)) :
     gHat n i (((k : ℕ) * (q n / p n i) : ℕ) : ZMod (q n)) =
     ((2 : ℝ) / (p n i : ℝ) * Real.cos
@@ -393,6 +397,7 @@ Using the definition $r^K_i = \lfloor(p_i+1)/6\rfloor$, admit that for all prime
 the cosine at the third harmonic evaluates exactly to the negative cosine of a microscopic
 angle:
 $$ \cos\left( \frac{2\pi \cdot 3 \cdot r^K_i}{p_i} \right) = -\cos\left( \frac{\pi}{p_i} \right) $$
+@isnad1 id=eq.0h2v.s6.e6c99ca3e8d8 from=translated src=- shape=5ddf5e04 vocab=aeceee09
 -/
 lemma exact_krafft_cosine (n : ℕ) (i : Fin (w n)) :
     Real.cos (2 * Real.pi * 3 * (krafftResidue n i : ℝ) / (p n i : ℝ)) =
@@ -445,6 +450,7 @@ The Harmonic Deficit (Parity Barrier Collision)
 The resonance capacity of any purely one-dimensional 3rd harmonic weight system is strictly
 overpowered by the sieve aggregate main density. This formalizes the collision with the
 Sieve Parity limit.
+@isnad1 id=lt.1h1v.s4.e90618898322 from=translated src=- shape=8008fe06 vocab=b32909dd
 -/
 lemma resonance_lt_mainTerm (n : ℕ) (hn : primeWindow n ≠ ∅) :
     resonanceCapacity n < mainTerm n := by

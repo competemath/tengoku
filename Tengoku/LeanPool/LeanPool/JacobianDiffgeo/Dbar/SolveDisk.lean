@@ -33,7 +33,9 @@ namespace RS
 variable (g : ℂ → ℂ) (c : ℂ) (R : ℝ)
 
 /-- Extension by zero of a bump-cutoff of a function smooth on an open set: the cutoff
-`s.indicator (φ • g)` is smooth everywhere, provided `φ`'s (closed) support stays inside `s`. -/
+`s.indicator (φ • g)` is smooth everywhere, provided `φ`'s (closed) support stays inside `s`.
+@isnad1 id=contdiff.3h4v.s7.52f9ca7e2d47 from=translated src=- shape=d1cd59f0 vocab=224f27a7
+-/
 theorem contDiff_indicator_bump_smul {s : Set ℂ} (φ : ContDiffBump c) (hs : IsOpen s)
     (hg : ContDiffOn ℝ ∞ g s) (hsub : closedBall c φ.rOut ⊆ s) :
     ContDiff ℝ ∞ (s.indicator fun z => φ z • g z) := by
@@ -57,6 +59,9 @@ theorem contDiff_indicator_bump_smul {s : Set ℂ} (φ : ContDiffBump c) (hs : I
       · exact Set.indicator_of_notMem hw' _
     exact contDiffAt_const.congr_of_eventuallyEq heq
 
+/--
+@isnad1 id=hascompa.0h4v.s6.4702bddb9ecf from=translated src=- shape=da352453 vocab=45f53644
+-/
 theorem hasCompactSupport_indicator_bump_smul {s : Set ℂ} (φ : ContDiffBump c) :
     HasCompactSupport (s.indicator fun z => φ z • g z) := by
   apply HasCompactSupport.intro (isCompact_closedBall c φ.rOut)
@@ -67,6 +72,9 @@ theorem hasCompactSupport_indicator_bump_smul {s : Set ℂ} (φ : ContDiffBump c
   · rw [Set.indicator_of_mem hws, φ.zero_of_le_dist hw.le, zero_smul]
   · exact Set.indicator_of_notMem hws _
 
+/--
+@isnad1 id=eqon.1h4v.s7.e0db3063a805 from=translated src=- shape=e14cc0c4 vocab=0e92d3aa
+-/
 theorem eqOn_indicator_bump_smul {s : Set ℂ} (φ : ContDiffBump c) (hsub : closedBall c φ.rOut ⊆ s) :
     Set.EqOn (s.indicator fun z => φ z • g z) (fun z => φ z • g z) (closedBall c φ.rIn) := by
   intro z hz
@@ -294,7 +302,9 @@ private theorem solveState_bound (hR : 0 < R) (hg : ContDiffOn ℝ ∞ g (ball c
   rw [solveState_succ]
   exact (solveStepData g c R hR hg n (solveState g c R hR hg n)).2.2.2 w hw
 
-/-- Forster 13.2: Dolbeault's lemma on a finite open disk. -/
+/-- Forster 13.2: Dolbeault's lemma on a finite open disk.
+@isnad1 id=ex.2h3v.s7.1fd64ff300db from=translated src=- shape=ecb7f286 vocab=632b330f
+-/
 theorem exists_dbar_solution_ball (hR : 0 < R) (hg : ContDiffOn ℝ ∞ g (ball c R)) :
     ∃ u : ℂ → ℂ, ContDiffOn ℝ ∞ u (ball c R) ∧
       ∀ z ∈ ball c R, wirtingerDbar u z = g z := by

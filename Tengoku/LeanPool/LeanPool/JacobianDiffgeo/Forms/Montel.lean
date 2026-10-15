@@ -33,7 +33,9 @@ open scoped BoundedContinuousFunction
 
 /-- **Cauchy estimate**: if `g` is holomorphic on an open set `Ω` and bounded by `C` there, then
 its derivative at the center of any closed ball of radius `r` contained in `Ω` is bounded by
-`C / r`. -/
+`C / r`.
+@isnad1 id=le.5h5v.s7.13e319342fbc from=translated src=- shape=8b49290e vocab=63a410a0
+-/
 theorem norm_deriv_le_of_bounded {Ω : Set ℂ} {g : ℂ → ℂ} {C : ℝ} (hΩ : IsOpen Ω)
     (hg : DifferentiableOn ℂ g Ω) (hC : ∀ w ∈ Ω, ‖g w‖ ≤ C) {z : ℂ} {r : ℝ}
     (hr : 0 < r) (hball : Metric.closedBall z r ⊆ Ω) : ‖deriv g z‖ ≤ C / r := by
@@ -46,7 +48,9 @@ def montelFamily (Ω K : Set ℂ) (C : ℝ) : Set C(K, ℂ) :=
   {f | ∃ g : ℂ → ℂ, DifferentiableOn ℂ g Ω ∧ (∀ z ∈ Ω, ‖g z‖ ≤ C) ∧ ∀ z : K, f z = g z}
 
 /-- Interior Lipschitz estimate for a bounded holomorphic function: on the half-thickening of a
-set `K` whose `δ`-thickening stays in `Ω`, `g` is `(2C/δ)`-Lipschitz. -/
+set `K` whose `δ`-thickening stays in `Ω`, `g` is `(2C/δ)`-Lipschitz.
+@isnad1 id=le.7h7v.s8.32aecaf55297 from=translated src=- shape=2433239b vocab=838e64c1
+-/
 theorem norm_sub_le_of_bounded_of_cthickening_subset {Ω K : Set ℂ} (hΩ : IsOpen Ω)
     {δ C : ℝ} (hδ : 0 < δ) (hsub : Metric.cthickening δ K ⊆ Ω) {g : ℂ → ℂ}
     (hg : DifferentiableOn ℂ g Ω) (hC : ∀ z ∈ Ω, ‖g z‖ ≤ C) {z w : ℂ} (hz : z ∈ K)
@@ -72,7 +76,9 @@ theorem norm_sub_le_of_bounded_of_cthickening_subset {Ω K : Set ℂ} (hΩ : IsO
     _ = 2 * C / δ := by rw [div_div_eq_mul_div, mul_comm]
 
 /-- **Montel's theorem**, compactness form: a family of holomorphic functions on an open
-`Ω ⊇ K` with a common bound, restricted to the compact `K`, has compact closure in `C(K, ℂ)`. -/
+`Ω ⊇ K` with a common bound, restricted to the compact `K`, has compact closure in `C(K, ℂ)`.
+@isnad1 id=iscompac.3h3v.s7.ef4fce2196d8 from=translated src=- shape=4844cc02 vocab=940422a6
+-/
 theorem isCompact_closure_montelFamily {Ω K : Set ℂ} (hΩ : IsOpen Ω) (hK : IsCompact K)
     (hKΩ : K ⊆ Ω) (C : ℝ) : IsCompact (closure (montelFamily Ω K C)) := by
   have : CompactSpace K := isCompact_iff_compactSpace.mp hK

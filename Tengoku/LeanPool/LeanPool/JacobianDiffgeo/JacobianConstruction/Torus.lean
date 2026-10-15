@@ -66,7 +66,9 @@ variable (L : AddSubgroup V) [DiscreteTopology L]
 
 omit [NormedSpace ℂ V] in
 /-- Every discrete additive subgroup of a normed space has a uniform injectivity radius: some
-`ρ > 0` such that every nonzero element has norm at least `2ρ`. -/
+`ρ > 0` such that every nonzero element has norm at least `2ρ`.
+@isnad1 id=ex.0h2v.s7.1b8c6ced7790 from=translated src=- shape=d46373f6 vocab=6d83d746
+-/
 theorem exists_uniform_injRadius :
     ∃ ρ : ℝ, 0 < ρ ∧ ∀ ℓ ∈ L, ℓ ≠ 0 → 2 * ρ ≤ ‖ℓ‖ := by
   have h0 : ({(0 : L)} : Set L) ∈ 𝓝 (0 : L) := mem_nhds_discrete.mpr rfl
@@ -88,14 +90,22 @@ theorem exists_uniform_injRadius :
 def injRadius : ℝ := (exists_uniform_injRadius L).choose
 
 omit [NormedSpace ℂ V] in
+/--
+@isnad1 id=lt.0h2v.s6.ea04038f44e7 from=translated src=- shape=f44967e4 vocab=1721978e
+-/
 theorem injRadius_pos : 0 < injRadius L := (exists_uniform_injRadius L).choose_spec.1
 
 omit [NormedSpace ℂ V] in
+/--
+@isnad1 id=le.2h3v.s7.0006c8306985 from=translated src=- shape=3f6181e8 vocab=011e2c9d
+-/
 theorem norm_le_of_mem_injRadius {ℓ : V} (hℓ : ℓ ∈ L) (hne : ℓ ≠ 0) :
     2 * injRadius L ≤ ‖ℓ‖ := (exists_uniform_injRadius L).choose_spec.2 ℓ hℓ hne
 
 omit [NormedSpace ℂ V] in
-/-- `QuotientAddGroup.mk` is injective on any ball of radius `injRadius L`. -/
+/-- `QuotientAddGroup.mk` is injective on any ball of radius `injRadius L`.
+@isnad1 id=injon.0h3v.s7.5430e1fd1f3a from=translated src=- shape=bdd38379 vocab=1dcd5a9e
+-/
 theorem mk_injOn_ball (x : V) :
     Set.InjOn (QuotientAddGroup.mk (s := L)) (ball x (injRadius L)) := by
   intro z₁ hz₁ z₂ hz₂ heq
@@ -133,9 +143,15 @@ def rawChartAux (x : V) : OpenPartialHomeomorph V (V ⧸ L) :=
     Metric.isOpen_ball
 
 omit [NormedSpace ℂ V] in
+/--
+@isnad1 id=eq.0h4v.s7.730e3225ed91 from=translated src=- shape=95b80aa9 vocab=67d15404
+-/
 @[simp] theorem rawChartAux_apply (x z : V) : rawChartAux L x z = QuotientAddGroup.mk z := rfl
 
 omit [NormedSpace ℂ V] in
+/--
+@isnad1 id=eq.0h3v.s7.f96ed9d98510 from=translated src=- shape=e1e156d5 vocab=e07cff9a
+-/
 @[simp] theorem rawChartAux_source (x : V) : (rawChartAux L x).source = ball x (injRadius L) := rfl
 
 /-- The chart at representative `x : V`: sends a class near `x` to its unique representative in
@@ -143,18 +159,29 @@ omit [NormedSpace ℂ V] in
 def chartAt' (x : V) : OpenPartialHomeomorph (V ⧸ L) V := (rawChartAux L x).symm
 
 omit [NormedSpace ℂ V] in
+/--
+@isnad1 id=eq.0h3v.s7.159c7c70b350 from=translated src=- shape=8a33a035 vocab=61f2db11
+-/
 @[simp] theorem chartAt'_symm (x : V) : (chartAt' L x).symm = rawChartAux L x := rfl
 
 omit [NormedSpace ℂ V] in
+/--
+@isnad1 id=eq.0h3v.s7.dadb404045f9 from=translated src=- shape=f5e9b0ec vocab=cf996779
+-/
 @[simp] theorem chartAt'_source (x : V) :
     (chartAt' L x).source = QuotientAddGroup.mk '' ball x (injRadius L) := rfl
 
 omit [NormedSpace ℂ V] in
+/--
+@isnad1 id=eq.0h3v.s7.923937982564 from=translated src=- shape=3b0fbc6d vocab=18cc172b
+-/
 @[simp] theorem chartAt'_target (x : V) : (chartAt' L x).target = ball x (injRadius L) := rfl
 
 omit [NormedSpace ℂ V] in
 /-- The defining property of `chartAt'`: on a representative `z` inside the ball, the chart
-recovers `z`. -/
+recovers `z`.
+@isnad1 id=eq.1h4v.s7.a72088e6b751 from=translated src=- shape=59d7cb38 vocab=c6c862ed
+-/
 theorem chartAt'_apply_mk {x z : V} (hz : z ∈ ball x (injRadius L)) :
     chartAt' L x (QuotientAddGroup.mk z) = z :=
   (rawChartAux L x).left_inv hz
@@ -162,7 +189,9 @@ theorem chartAt'_apply_mk {x z : V} (hz : z ∈ ball x (injRadius L)) :
 omit [NormedSpace ℂ V] in
 /-- If `w + ℓ` lands in the ball around `x'` for some `ℓ ∈ L`, the chart at `x'` reads the class
 of `w` as `w + ℓ`. This is the single computation underlying every transition/smoothness proof
-below. -/
+below.
+@isnad1 id=eq.2h5v.s7.7a47eea0f599 from=translated src=- shape=9364ccaa vocab=41235607
+-/
 theorem chartAt'_eq_add_of_mem_ball {x' w ℓ : V} (hℓ : ℓ ∈ L)
     (hmem : w + ℓ ∈ ball x' (injRadius L)) :
     chartAt' L x' (QuotientAddGroup.mk w) = w + ℓ := by
@@ -174,7 +203,9 @@ theorem chartAt'_eq_add_of_mem_ball {x' w ℓ : V} (hℓ : ℓ ∈ L)
 
 omit [NormedSpace ℂ V] in
 /-- Local constancy: the identity `chartAt' L x' (mk w) = w + ℓ` persists on a whole neighborhood
-of `w`, for the *same* `ℓ`. -/
+of `w`, for the *same* `ℓ`.
+@isnad1 id=eventual.2h5v.s7.01a21a552017 from=translated src=- shape=4d60de8b vocab=9adbf9ab
+-/
 theorem chartAt'_eventuallyEq_add {x' w ℓ : V} (hℓ : ℓ ∈ L)
     (hmem : w + ℓ ∈ ball x' (injRadius L)) :
     (fun w => chartAt' L x' (QuotientAddGroup.mk w)) =ᶠ[𝓝 w] (fun w => w + ℓ) := by
@@ -186,6 +217,9 @@ theorem chartAt'_eventuallyEq_add {x' w ℓ : V} (hℓ : ℓ ∈ L)
   simpa [add_sub_add_right_eq_sub] using hw'
 
 omit [NormedSpace ℂ V] in
+/--
+@isnad1 id=mem.0h3v.s8.5352b946f241 from=translated src=- shape=47a19e79 vocab=93244b26
+-/
 theorem chartAt'_mem_source (q : V ⧸ L) :
     q ∈ (chartAt' L (Function.surjInv QuotientAddGroup.mk_surjective q)).source := by
   set x := Function.surjInv QuotientAddGroup.mk_surjective q with hx_def
@@ -199,21 +233,32 @@ instance instChartedSpace : ChartedSpace V (V ⧸ L) :=
     (chartAt'_mem_source L)
 
 omit [NormedSpace ℂ V] in
+/--
+@isnad1 id=eq.0h3v.s7.c2c39955d6a1 from=translated src=- shape=2009e785 vocab=86260520
+-/
 @[simp] theorem chartAt_eq (q : V ⧸ L) :
     chartAt V q = chartAt' L (Function.surjInv QuotientAddGroup.mk_surjective q) := rfl
 
 /-- The canonical chart at `q`, evaluated at any point, agrees with `chartAt'` at the same
-representative. -/
+representative.
+@isnad1 id=eq.0h4v.s8.3b9e4a23dfe2 from=translated src=- shape=e3c333eb vocab=9fa754b4
+-/
 theorem extChartAt_apply_eq (q q' : V ⧸ L) :
     extChartAt 𝓘(ℂ, V) q q' = chartAt' L (Function.surjInv QuotientAddGroup.mk_surjective q) q' :=
         by
   rw [extChartAt_coe, Function.comp_apply, modelWithCornersSelf_coe, id_eq, chartAt_eq]
 
+/--
+@isnad1 id=eq.0h4v.s7.83074503d6cb from=translated src=- shape=eab161c1 vocab=d1323de1
+-/
 theorem extChartAt_symm_apply_eq (q : V ⧸ L) (w : V) :
     (extChartAt 𝓘(ℂ, V) q).symm w = QuotientAddGroup.mk w := by
   rw [extChartAt_coe_symm, Function.comp_apply, modelWithCornersSelf_coe_symm, id_eq, chartAt_eq]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.66b05899c4c6 from=translated src=- shape=e5ea285d vocab=f5670364
+-/
 theorem extChartAt_self_eq (q : V ⧸ L) :
     extChartAt 𝓘(ℂ, V) q q = Function.surjInv QuotientAddGroup.mk_surjective q := by
   rw [extChartAt_apply_eq]
@@ -232,7 +277,9 @@ variable (L : AddSubgroup V) [DiscreteTopology L]
 
 /-- The transition map between two raw representative charts is analytic on its whole source
 (translation by a locally-constant lattice element). Exposed standalone (not just inside the
-`IsManifold` instance) so the `ULift` transport toolkit can reuse it verbatim. -/
+`IsManifold` instance) so the `ULift` transport toolkit can reuse it verbatim.
+@isnad1 id=analytic.0h4v.s8.cb9d7726fff5 from=translated src=- shape=cb55562b vocab=d4afa67a
+-/
 theorem analyticOnNhd_chartAt'_trans (x x' : V) :
     AnalyticOnNhd ℂ ((chartAt' L x).symm ≫ₕ chartAt' L x')
       ((chartAt' L x).symm ≫ₕ chartAt' L x').source := by
@@ -264,18 +311,26 @@ section LieGroupAux
 variable (L : AddSubgroup V) [DiscreteTopology L] [CompleteSpace V]
 
 omit [NormedSpace ℂ V] [DiscreteTopology ↥L] [CompleteSpace V] in
+/--
+@isnad1 id=continuo.0h2v.s8.3412c3120b88 from=translated src=- shape=4e3edb54 vocab=6d99d93d
+-/
 theorem continuous_add_torus : Continuous (fun p : (V ⧸ L) × (V ⧸ L) => p.1 + p.2) := by
   have : IsTopologicalAddGroup (V ⧸ L) := QuotientAddGroup.instIsTopologicalAddGroup L
   fun_prop
 
 omit [NormedSpace ℂ V] [DiscreteTopology ↥L] [CompleteSpace V] in
+/--
+@isnad1 id=continuo.0h2v.s7.8d12273c1320 from=translated src=- shape=5f1bc6ab vocab=d275c0f0
+-/
 theorem continuous_neg_torus : Continuous (fun q : V ⧸ L => -q) := by
   have : IsTopologicalAddGroup (V ⧸ L) := QuotientAddGroup.instIsTopologicalAddGroup L
   fun_prop
 
 /-- Addition on the torus is `ω`-smooth: in aligned raw charts (codomain chart representative
 chosen at a fixed lattice offset from the sum of the domain representatives), the chart composite
-is affine. -/
+is affine.
+@isnad1 id=contmdif.0h2v.s9.4a0d655f32fb from=translated src=- shape=16d5336c vocab=55829703
+-/
 theorem contMDiff_add_torus :
     ContMDiff (𝓘(ℂ, V).prod 𝓘(ℂ, V)) 𝓘(ℂ, V) ω (fun p : (V ⧸ L) × (V ⧸ L) => p.1 + p.2) := by
   rintro ⟨q₁, q₂⟩
@@ -337,7 +392,9 @@ theorem contMDiff_add_torus :
     exact hp
   exact (hAnalytic.congr hgoal_eq.symm).contDiffAt
 
-/-- Negation on the torus is `ω`-smooth: same affine-chart-composite argument as addition. -/
+/-- Negation on the torus is `ω`-smooth: same affine-chart-composite argument as addition.
+@isnad1 id=contmdif.0h2v.s8.547737376d82 from=translated src=- shape=1fd68609 vocab=cbd81876
+-/
 theorem contMDiff_neg_torus : ContMDiff 𝓘(ℂ, V) 𝓘(ℂ, V) ω (fun q : V ⧸ L => -q) := by
   intro q
   set x := Function.surjInv QuotientAddGroup.mk_surjective q with hx_def
@@ -407,6 +464,9 @@ def inducedHom (L : AddSubgroup V) (L' : AddSubgroup V') (T : V →ₗ[ℂ] V')
       exact QuotientAddGroup.continuous_mk.comp T.continuous_of_finiteDimensional }
 
 omit [CompleteSpace V'] [FiniteDimensional ℂ V'] in
+/--
+@isnad1 id=eq.1h6v.s9.f70bfe7d5daf from=translated src=- shape=b60f73e1 vocab=41b49537
+-/
 @[simp] theorem inducedHom_apply_mk {L : AddSubgroup V} {L' : AddSubgroup V'}
     {T : V →ₗ[ℂ] V'} (hT : L ≤ L'.comap T.toAddMonoidHom) (x : V) :
     inducedHom L L' T hT (QuotientAddGroup.mk x) = QuotientAddGroup.mk (T x) :=
@@ -415,13 +475,17 @@ omit [CompleteSpace V'] [FiniteDimensional ℂ V'] in
 omit [CompleteSpace V'] [FiniteDimensional ℂ V'] in
 /-- Any `ℂ`-linear map between finite-dimensional normed spaces is entire (analytic at every
 point): it is continuous (finite-dimensional domain), hence bounded, hence its own convergent
-power series. -/
+power series.
+@isnad1 id=analytic.0h4v.s7.8851d79dbbc0 from=translated src=- shape=0c766629 vocab=d13a043b
+-/
 theorem analyticAt_linearMap (T : V →ₗ[ℂ] V') (x : V) : AnalyticAt ℂ (⇑T) x :=
   (⟨T, T.continuous_of_finiteDimensional⟩ : V →L[ℂ] V').analyticAt x
 
 omit [FiniteDimensional ℂ V'] in
 /-- The induced map on tori is `ω`-smooth, given discreteness of both lattices (needed for the
-manifold structure on either side; no further hypothesis on `T`/`hT` beyond linearity). -/
+manifold structure on either side; no further hypothesis on `T`/`hT` beyond linearity).
+@isnad1 id=contmdif.1h5v.s9.8aa216f93949 from=translated src=- shape=0c8383b8 vocab=a41a815f
+-/
 theorem contMDiff_inducedHom {L : AddSubgroup V} {L' : AddSubgroup V'}
     [DiscreteTopology L] [DiscreteTopology L']
     {T : V →ₗ[ℂ] V'} (hT : L ≤ L'.comap T.toAddMonoidHom) :
@@ -469,7 +533,9 @@ theorem contMDiff_inducedHom {L : AddSubgroup V} {L' : AddSubgroup V'}
 `docs/requests/jacobian-construction.md`) -/
 
 omit [FiniteDimensional ℂ V] in
-/-- `inducedHom` at the identity is the identity (`QuotientAddGroup.map` functoriality). -/
+/-- `inducedHom` at the identity is the identity (`QuotientAddGroup.map` functoriality).
+@isnad1 id=eq.1h2v.s8.2eb05948a506 from=translated src=- shape=03017962 vocab=2cb7606c
+-/
 theorem inducedHom_id [FiniteDimensional ℂ V] (L : AddSubgroup V)
     (hT : L ≤ L.comap (LinearMap.id (R := ℂ) (M := V)).toAddMonoidHom) :
     inducedHom L L LinearMap.id hT = ContinuousAddMonoidHom.id (V ⧸ L) := by
@@ -480,7 +546,9 @@ theorem inducedHom_id [FiniteDimensional ℂ V] (L : AddSubgroup V)
   rfl
 
 omit [CompleteSpace V'] in
-/-- `inducedHom` is compositional (`QuotientAddGroup.map` functoriality). -/
+/-- `inducedHom` is compositional (`QuotientAddGroup.map` functoriality).
+@isnad1 id=eq.3h8v.s9.11ba4e70b466 from=translated src=- shape=ebfc8b63 vocab=924d96ce
+-/
 theorem inducedHom_comp {V'' : Type*} [NormedAddCommGroup V''] [NormedSpace ℂ V'']
     (L : AddSubgroup V) (L' : AddSubgroup V') (L'' : AddSubgroup V'')
     (T : V →ₗ[ℂ] V') (T' : V' →ₗ[ℂ] V'')

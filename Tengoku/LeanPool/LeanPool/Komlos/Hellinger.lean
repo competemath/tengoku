@@ -28,14 +28,18 @@ open Finset
 
 variable {E : Type*}
 
-/-- For `L²`-normalised `p` and `q`, the squared distance is `2 - 2 ⟨p, q⟩`. -/
+/-- For `L²`-normalised `p` and `q`, the squared distance is `2 - 2 ⟨p, q⟩`.
+@isnad1 id=eq.2h4v.s7.c20e73713207 from=translated src=- shape=14840ce1 vocab=aedfba5d
+-/
 lemma sum_sub_sq_eq {ι : Type*} {s : Finset ι} {p q : ι → ℝ} (hp : ∑ i ∈ s, p i ^ 2 = 1)
     (hq : ∑ i ∈ s, q i ^ 2 = 1) : ∑ i ∈ s, (p i - q i) ^ 2 = 2 - 2 * ∑ i ∈ s, p i * q i := by
   simp only [sub_sq, sum_add_distrib, sum_sub_distrib, hp, hq, mul_assoc, ← mul_sum]
   ring
 
 /-- Cauchy–Schwarz: the total variation distance between `p ^ 2` and `q ^ 2` is at most the
-`L²` distance between `p` and `q`. -/
+`L²` distance between `p` and `q`.
+@isnad1 id=le.6h6v.s8.ffeab05905ff from=translated src=- shape=186aed08 vocab=9ac93d18
+-/
 lemma tvDist_sq_le {P Q : E →₀ ℝ} {s : Finset E} (hPs : P.support ⊆ s) (hQs : Q.support ⊆ s)
     {p q : E → ℝ} (hP : ∀ x ∈ s, P x = p x ^ 2) (hQ : ∀ x ∈ s, Q x = q x ^ 2)
     (hp : ∑ x ∈ s, p x ^ 2 = 1) (hq : ∑ x ∈ s, q x ^ 2 = 1) :

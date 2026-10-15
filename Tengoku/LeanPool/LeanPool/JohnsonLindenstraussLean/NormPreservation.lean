@@ -30,7 +30,9 @@ namespace JL
 
 /-- **Two-sided chi-squared concentration / JL norm preservation.**
 The probability that the chi-squared sum leaves the window `((1-ε)k, (1+ε)k)` is at
-most `2·exp(-(ε² - ε³) k / 4)`. -/
+most `2·exp(-(ε² - ε³) k / 4)`.
+@isnad1 id=le.2h2v.s7.bf4ee497c320 from=translated src=- shape=1799b410 vocab=fcfa531a
+-/
 theorem chiSq_concentration (k : ℕ) {ε : ℝ} (h0 : 0 < ε) (h1 : ε < 1) :
     (gaussianVec k).real
         {ω | (1 + ε) * (k : ℝ) ≤ chiSq k ω ∨ chiSq k ω ≤ (1 - ε) * (k : ℝ)}
@@ -43,7 +45,9 @@ theorem chiSq_concentration (k : ℕ) {ε : ℝ} (h0 : 0 < ε) (h1 : ε < 1) :
 
 /-- The same guarantee phrased through the normalised squared norm `S / k`: the
 relative deviation `|S/k - 1|` reaches `ε` with probability at most
-`2·exp(-(ε² - ε³) k / 4)`. -/
+`2·exp(-(ε² - ε³) k / 4)`.
+@isnad1 id=le.3h2v.s7.e0773f8467ad from=translated src=- shape=08a675ca vocab=b87a8929
+-/
 theorem jl_norm_preservation (k : ℕ) (hk : 0 < k) {ε : ℝ} (h0 : 0 < ε) (h1 : ε < 1) :
     (gaussianVec k).real {ω | ε ≤ |chiSq k ω / (k : ℝ) - 1|}
       ≤ 2 * rexp (-(ε ^ 2 - ε ^ 3) * (k : ℝ) / 4) := by

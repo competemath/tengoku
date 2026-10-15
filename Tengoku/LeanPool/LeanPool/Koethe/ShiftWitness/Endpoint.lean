@@ -34,12 +34,17 @@ def matrixAction (φ : R →+* Module.End K M) :
     Matrix (Fin 2) (Fin 2) R →+* Module.End K (Fin 2 → M) :=
   (endVecRingEquivMatrixEnd (Fin 2) K M).symm.toRingHom.comp φ.mapMatrix
 
+/--
+@isnad1 id=eq.0h7v.s10.35ab701bf081 from=translated src=- shape=158ba196 vocab=c2bc4a1b
+-/
 @[simp] theorem matrixAction_apply (φ : R →+* Module.End K M)
     (H : Matrix (Fin 2) (Fin 2) R) (z : Fin 2 → M) (i : Fin 2) :
     matrixAction φ H z i = ∑ j, φ (H i j) (z j) := rfl
 
 /-- A nonzero eigenvalue on a nonzero vector excludes nilpotence, without
-finite-dimensionality assumptions. -/
+finite-dimensionality assumptions.
+@isnad1 id=not.3h5v.s8.3b57888a7a67 from=translated src=- shape=7ec98d54 vocab=a45159ac
+-/
 theorem not_nilpotent_of_eigenvector (f : Module.End K M) (t : K) (z : M)
     (ht : t ≠ 0) (hz : z ≠ 0) (he : f z = t • z) : ¬ IsNilpotent f := by
   have hp : ∀ n : ℕ, (f ^ n) z = t ^ n • z := by
@@ -54,7 +59,9 @@ theorem not_nilpotent_of_eigenvector (f : Module.End K M) (t : K) (z : M)
   exact (smul_ne_zero (pow_ne_zero n ht) hz) hz'
 
 /-- General companion-matrix endpoint. The scalar `t` lives in the
-representation field, not necessarily in the ground field of the nil ideal. -/
+representation field, not necessarily in the ground field of the nil ideal.
+@isnad1 id=ex.5h8v.s10.d4c577968c06 from=translated src=- shape=02f49016 vocab=65aabe54
+-/
 theorem nonnil_matrix_of_fixed_vector
     (I : TwoSidedIdeal R) (hI : ∀ x ∈ I, IsNilpotent x)
     (φ : R →+* Module.End K M) (a : Fin 3 → R) (ha : ∀ i, a i ∈ I)
@@ -119,19 +126,26 @@ def augmentationIdeal (A : NonUnitalSubalgebra k B) : TwoSidedIdeal (Unitization
   TwoSidedIdeal.ker (Unitization.fstHom k A)
 
 omit [Nontrivial B] in
+/--
+@isnad1 id=iff.0h4v.s10.bfd2f271f66f from=translated src=- shape=8e2beca6 vocab=1d02ceec
+-/
 @[simp] theorem mem_augmentationIdeal (A : NonUnitalSubalgebra k B) (x : Unitization k A) :
     x ∈ augmentationIdeal A ↔ x.fst = 0 := by
   rw [augmentationIdeal, TwoSidedIdeal.mem_ker]
   rfl
 
-/-- A nil positive algebra omits the ambient identity. -/
+/-- A nil positive algebra omits the ambient identity.
+@isnad1 id=not.1h3v.s8.63c8b74f6764 from=translated src=- shape=d2c64990 vocab=45400472
+-/
 theorem one_not_mem_of_nil (A : NonUnitalSubalgebra k B)
     (hA : ∀ x ∈ A, IsNilpotent x) : (1 : B) ∉ A := by
   intro h
   exact not_isNilpotent_one (hA 1 h)
 
 /-- The augmentation ideal is nil. We reflect nilpotence along the faithful
-unitization map instead of treating a nonunital algebra as if it had a unit. -/
+unitization map instead of treating a nonunital algebra as if it had a unit.
+@isnad1 id=isnilpot.2h4v.s11.41a619fa1774 from=translated src=- shape=b61595e5 vocab=c0cc0e20
+-/
 theorem augmentationIdeal_nil (A : NonUnitalSubalgebra k B)
     (hA : ∀ x ∈ A, IsNilpotent x) :
     ∀ x ∈ augmentationIdeal A, IsNilpotent x := by
@@ -144,7 +158,9 @@ theorem augmentationIdeal_nil (A : NonUnitalSubalgebra k B)
 /-- A nil nonunital subalgebra with a transcendental-scalar fixed vector gives
 an actual nil ideal in a unital ring. The ring is its unitization; its action
 need not be faithful, although nilness is reflected using the faithful natural
-unitization map into the ambient algebra. -/
+unitization map into the ambient algebra.
+@isnad1 id=ex.5h9v.s10.cac3e9f17c29 from=translated src=- shape=8afc74bd vocab=3936d75d
+-/
 theorem exists_witness_of_nil_subalgebra
     {K : Type w} [Field K] {M : Type*} [AddCommGroup M] [Module K M]
     (A : NonUnitalSubalgebra k B) (hA : ∀ x ∈ A, IsNilpotent x)

@@ -28,7 +28,9 @@ noncomputable section
 
 local notation "rexp" => Real.exp
 
-/-- There is a uniform bound `‖Fₚ(t a)‖ ≤ ‖a‖ᵖ⁻¹ Mᵖ` for `0 < t ≤ 1`. -/
+/-- There is a uniform bound `‖Fₚ(t a)‖ ≤ ‖a‖ᵖ⁻¹ Mᵖ` for `0 < t ≤ 1`.
+@isnad1 id=ex.0h2v.s7.6312e48a0e2c from=translated src=- shape=9b32ed2c vocab=03087b7e
+-/
 lemma Fp_bounded
   (T : ℤ[X]) (a : ℂ) :
     ∃ M : ℝ, 0 ≤ M ∧ ∀ p : ℕ, ∀ t ∈ Set.uIoc (0 : ℝ) 1,
@@ -50,7 +52,9 @@ lemma Fp_bounded
   exact mul_le_mul hpow1 hpow2 (pow_nonneg (norm_nonneg _) _) (pow_nonneg (norm_nonneg _) _)
 
 /-- There is a uniform bound
-`‖a * exp(-(t a)) * Fₚ(t a)‖ ≤ ‖a‖ᵖ * exp(‖a‖) * Mᵖ` for `0 < t ≤ 1`. -/
+`‖a * exp(-(t a)) * Fₚ(t a)‖ ≤ ‖a‖ᵖ * exp(‖a‖) * Mᵖ` for `0 < t ≤ 1`.
+@isnad1 id=ex.0h2v.s7.c7fdee077489 from=translated src=- shape=645b6735 vocab=48112d7e
+-/
 lemma Fp_cexp_bounded (T : ℤ[X]) (a : ℂ) :
     ∃ M : ℝ, 0 ≤ M ∧ ∀ p : ℕ, 0 < p → ∀ t ∈ Set.uIoc (0 : ℝ) 1,
       ‖a * cexp (-(t * a)) * aeval (t * a) (Fp T p)‖ ≤ ‖a‖ ^ p * rexp ‖a‖ * M ^ p := by
@@ -68,7 +72,9 @@ lemma Fp_cexp_bounded (T : ℤ[X]) (a : ℂ) :
           le_of_eq (by simp [mul_assoc, mul_left_comm, mul_comm])
     _ = _ := by rw [hp', pow_succ, Nat.add_sub_cancel, mul_comm ‖a‖ (‖a‖ ^ (p - 1)), ← pow_succ]
 
-/-- The integral ``∫₀¹ a * exp(-(t a)) * T(t a) dt` is `≤ ‖a‖ᵖ * exp(‖a‖) * Mᵖ`. -/
+/-- The integral ``∫₀¹ a * exp(-(t a)) * T(t a) dt` is `≤ ‖a‖ᵖ * exp(‖a‖) * Mᵖ`.
+@isnad1 id=ex.0h2v.s6.06a877c1e52a from=translated src=- shape=3a9374bf vocab=8f01265c
+-/
 lemma intExpNegPoly_bounded
   (T : ℤ[X]) (a : ℂ) :
     ∃ M : ℝ, 0 ≤ M ∧ ∀ p : ℕ, 0 < p → ‖intExpNegPoly (Fp T p) a‖
@@ -84,7 +90,9 @@ lemma intExpNegPoly_bounded
     (by
       simp_all))
 
-/-- The weighted sum `∑ᵢ bᵢ exp(aᵢ) ∫₀¹ aᵢ * exp(-(t aᵢ)) * T(t aᵢ) dt` is `≤ A Bᵖ`. -/
+/-- The weighted sum `∑ᵢ bᵢ exp(aᵢ) ∫₀¹ aᵢ * exp(-(t aᵢ)) * T(t aᵢ) dt` is `≤ A Bᵖ`.
+@isnad1 id=ex.1h4v.s7.22bd117e80eb from=translated src=- shape=5335d16b vocab=a0a953e0
+-/
 lemma sum_intExpNegPoly_bound
   (n : ℕ) (T : ℤ[X]) (hn : 0 < n) (a b : Fin n → ℂ) :
     ∃ A B : ℝ, 0 ≤ A ∧ 0 ≤ B ∧
@@ -121,7 +129,9 @@ lemma sum_intExpNegPoly_bound
                         (f := fun i : Fin n => ‖b i * cexp (a i)‖ * rexp ‖a i‖)
                         (a := B ^ p)).symm
 
-/-- For `p` large, `cᵖ ‖∑ᵢ bᵢ exp(aᵢ) ∫₀¹ aᵢ * exp(-(t aᵢ)) * T(t aᵢ) dt‖` is `≤ (p - 1)!`. -/
+/-- For `p` large, `cᵖ ‖∑ᵢ bᵢ exp(aᵢ) ∫₀¹ aᵢ * exp(-(t aᵢ)) * T(t aᵢ) dt‖` is `≤ (p - 1)!`.
+@isnad1 id=eventual.1h5v.s6.4e36d5d01625 from=translated src=- shape=b686ba8b vocab=12d4b55e
+-/
 lemma sum_intExpNegPoly_asym_ubound
   (n : ℕ) (T : ℤ[X]) (hn : 0 < n) (a b : Fin n → ℂ) (c : ℂ) :
     ∀ᶠ (p : ℕ) in Filter.atTop,
@@ -145,7 +155,9 @@ lemma sum_intExpNegPoly_asym_ubound
     _ ≤ _ := by gcongr
 
 /-- We have that `F_{p,d}(0) ∑ᵢ₌₀ⁿ⁻¹ bᵢ eᵃⁱ − ∑ᵢ₌₀ⁿ⁻¹ bᵢ F_{p,d}(aᵢ)` can be written as
-`((p−1)! T(0)ᵖ + p! Gₚ(0)) ∑ᵢ₌₀ⁿ⁻¹ bᵢ eᵃⁱ − p! ∑ᵢ₌₀ⁿ⁻¹ bᵢ Gₚ(aᵢ)`. -/
+`((p−1)! T(0)ᵖ + p! Gₚ(0)) ∑ᵢ₌₀ⁿ⁻¹ bᵢ eᵃⁱ − p! ∑ᵢ₌₀ⁿ⁻¹ bᵢ Gₚ(aᵢ)`.
+@isnad1 id=eq.4h5v.s9.8bc641506c90 from=translated src=- shape=7debce63 vocab=e3a8eb16
+-/
 lemma sum_cexp_simp
   (n p : ℕ) (T : ℤ[X]) (a b : Fin n → ℂ)
   (hn : 0 < n) (hp : 0 < p)
@@ -165,7 +177,9 @@ lemma sum_cexp_simp
   exact Finset.sum_congr rfl fun i hi => by ac_rfl
 
 /-- The sum `∑ᵢ bᵢ exp(aᵢ) ∫₀¹ aᵢ * exp(-(t aᵢ)) * T(t aᵢ) dt`
-can be as `((p−1)! T(0)ᵖ + p! Gₚ(0)) ∑ᵢ₌₀ⁿ⁻¹ bᵢ eᵃⁱ − p! ∑ᵢ₌₀ⁿ⁻¹ bᵢ Gₚ(aᵢ)`. -/
+can be as `((p−1)! T(0)ᵖ + p! Gₚ(0)) ∑ᵢ₌₀ⁿ⁻¹ bᵢ eᵃⁱ − p! ∑ᵢ₌₀ⁿ⁻¹ bᵢ Gₚ(aᵢ)`.
+@isnad1 id=eq.4h5v.s9.89bf207f757a from=translated src=- shape=4e349064 vocab=996cf139
+-/
 lemma intExpNegPoly_eq
     (n p : ℕ) (T : ℤ[X]) (a b : Fin n → ℂ)
     (hn : 0 < n) (hp : 0 < p)
@@ -181,7 +195,9 @@ lemma intExpNegPoly_eq
 
 /-- If `cᵖ ∑ᵢ₌₀ⁿ⁻¹ bᵢ Gₚ(aᵢ) = f(p) ∈ ℤ`, then
 `cᵖ (((p−1)! T(0)ᵖ + p! Gₚ(0)) · (-k) − p! ∑ᵢ₌₀ⁿ⁻¹ bᵢ Gₚ(aᵢ))` is equal to
-`− (p−1)! (k cᵖ T(0)ᵖ + p (k cᵖ Gₚ(0) + f(p)))`. -/
+`− (p−1)! (k cᵖ T(0)ᵖ + p (k cᵖ Gₚ(0) + f(p)))`.
+@isnad1 id=eq.2h8v.s9.9f39155bd59b from=translated src=- shape=eb3e587e vocab=7ee84f32
+-/
 lemma sum_cexp_eq
   (n p : ℕ) (T : ℤ[X]) (a b : Fin n → ℂ) (c k : ℤ) (f : ℕ → ℤ) (hp : 0 < p)
   (hfp : c ^ p * (∑ i : Fin n, b i * aeval (a i) (Gp T p)) = f p) :
@@ -208,7 +224,9 @@ lemma sum_cexp_eq
     _ = _ := by ring_nf
 
 /-- If `cᵖ ∑ᵢ₌₀ⁿ⁻¹ bᵢ Gₚ(aᵢ) = f(p) ∈ ℤ`, then for sufficiently large primes `p`,
-`‖cᵖ (((p−1)! T(0)ᵖ + p! Gₚ(0)) · (-k) − p! ∑ᵢ₌₀ⁿ⁻¹ bᵢ Gₚ(aᵢ))‖ ≥ (p - 1)!`. -/
+`‖cᵖ (((p−1)! T(0)ᵖ + p! Gₚ(0)) · (-k) − p! ∑ᵢ₌₀ⁿ⁻¹ bᵢ Gₚ(aᵢ))‖ ≥ (p - 1)!`.
+@isnad1 id=eventual.4h7v.s9.f070899cd053 from=translated src=- shape=bf9c313c vocab=ecfcaa3d
+-/
 lemma sum_Gp_asym_lbound
   (n : ℕ) (T : ℤ[X]) (a b : Fin n → ℂ) (c k : ℤ) (f : ℕ → ℤ)
   (hc : c ≠ 0) (hk : k ≠ 0) (hT : aeval (0 : ℂ) T ≠ 0)

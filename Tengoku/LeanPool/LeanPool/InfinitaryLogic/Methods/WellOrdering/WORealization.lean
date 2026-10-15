@@ -42,7 +42,9 @@ variable {L : Language.{0, 0}}
 /-! ## The constant-free lift -/
 
 /-- The lift bridge: the lifted root holds at the controlled expansion iff the root holds in
-the base structure. -/
+the base structure.
+@isnad1 id=iff.0h5v.s5.7df294b7fd46 from=translated src=- shape=de8def9a vocab=647cff00
+-/
 theorem realize_lift_wc {M : Type} (base : L.Structure M) (h : ℕ → M) (φ : L.Sentenceω) :
     @Sentenceω.Realize L[[ℕ]] (φ.mapLanguage (L.lhomWithConstants ℕ)) M (wc base h) ↔
       Sentenceω.Realize φ M := by
@@ -50,7 +52,9 @@ theorem realize_lift_wc {M : Type} (base : L.Structure M) (h : ℕ → M) (φ : 
   let : (constantsOn ℕ).Structure M := constantsOn.structure h
   exact BoundedFormulaω.realize_mapLanguage (L.lhomWithConstants ℕ) φ _ _
 
-/-- The lift mentions no constants. -/
+/-- The lift mentions no constants.
+@isnad1 id=eq.0h2v.s5.dc692a6ba961 from=translated src=- shape=19ba5916 vocab=7a7b141f
+-/
 theorem sentenceJConsts_lift_eq_empty (φ : L.Sentenceω) :
     sentenceJConsts (L' := L) (J := ℕ) (φ.mapLanguage (L.lhomWithConstants ℕ)) = ∅ := by
   rw [Set.eq_empty_iff_forall_notMem]
@@ -63,7 +67,9 @@ theorem sentenceJConsts_lift_eq_empty (φ : L.Sentenceω) :
 
 /-! ## Shape and support of base-diagram members -/
 
-/-- A base-diagram member is the lifted root or a positive diagram atom. -/
+/-- A base-diagram member is the lifted root or a positive diagram atom.
+@isnad1 id=or.1h4v.s6.59c888780a3e from=translated src=- shape=dc6dcec0 vocab=c4ede386
+-/
 theorem mem_baseDiagram_elim {φ : L.Sentenceω} {lt : L.Relations 2}
     {χ : L[[ℕ]].Sentenceω} (h : χ ∈ baseDiagram φ lt) :
     χ = φ.mapLanguage (L.lhomWithConstants ℕ) ∨ ∃ q r : ℚ, q < r ∧ χ = ratLtAtom lt q r := by
@@ -72,7 +78,9 @@ theorem mem_baseDiagram_elim {φ : L.Sentenceω} {lt : L.Relations 2}
   · obtain ⟨q, r, hqr, rfl⟩ := h
     exact Or.inr ⟨q, r, hqr, rfl⟩
 
-/-- No formula equals its own negation. -/
+/-- No formula equals its own negation.
+@isnad1 id=ne.0h4v.s4.892cc42b444e from=translated src=- shape=aaaed272 vocab=f9147daa
+-/
 theorem BoundedFormulaω.not_ne_self {L' : Language.{0, 0}} {α : Type} {n : ℕ}
     (φ : L'.BoundedFormulaω α n) : φ.not ≠ φ := by
   intro h
@@ -80,7 +88,9 @@ theorem BoundedFormulaω.not_ne_self {L' : Language.{0, 0}} {α : Type} {n : ℕ
   simp only [BoundedFormulaω.not, BoundedFormulaInf.not] at this
   cases φ <;> simp_all <;> omega
 
-/-- The constant support of a positive diagram atom. -/
+/-- The constant support of a positive diagram atom.
+@isnad1 id=eq.0h4v.s5.5fa63dcc3dc0 from=translated src=- shape=42ac36bb vocab=0fe447b9
+-/
 theorem sentenceJConsts_ratLtAtom (lt : L.Relations 2) (q r : ℚ) :
     sentenceJConsts (L' := L) (J := ℕ) (ratLtAtom lt q r) =
       {ratConstIdx q, ratConstIdx r} := by
@@ -88,7 +98,9 @@ theorem sentenceJConsts_ratLtAtom (lt : L.Relations 2) (q r : ℚ) :
   ext c
   simp [or_comm]
 
-/-- The lift reflects `falsum`. -/
+/-- The lift reflects `falsum`.
+@isnad1 id=eq.1h2v.s5.094700d988bc from=translated src=- shape=c3b1cb4f vocab=2013ba84
+-/
 theorem lift_eq_falsum_reflect {φ : L.Sentenceω}
     (h : φ.mapLanguage (L.lhomWithConstants ℕ) =
       (BoundedFormulaω.falsum : L[[ℕ]].Sentenceω)) : φ = BoundedFormulaω.falsum := by
@@ -98,7 +110,9 @@ theorem lift_eq_falsum_reflect {φ : L.Sentenceω}
 
 /-- **A base member whose opposite lies in the finite remainder is realized at level `1`**:
 the lifted root through the bridge, a positive diagram atom through the opponent's support,
-`mark_cover`, and the derived diagram. -/
+`mark_cover`, and the derived diagram.
+@isnad1 id=realize.2h6v.s7.6d41b0e786be from=translated src=- shape=4116f640 vocab=decc009e
+-/
 theorem StarWitness.realize_base_of_opposite {φ : L.Sentenceω} {lt : L.Relations 2}
     {Γ : Set L[[ℕ]].Sentenceω} (W : StarWitness φ lt Γ 1) {χ : L[[ℕ]].Sentenceω}
     (hχ : χ ∈ baseDiagram φ lt) (hopp : χ.not ∈ Γ) :
@@ -126,7 +140,9 @@ theorem StarWitness.realize_base_of_opposite {φ : L.Sentenceω} {lt : L.Relatio
 
 /-- **Repointing a constant absent from the remainder's support preserves remainder
 realization** — the invariant behind every constant rule (`eq_refl`, `all_inst`, the fresh
-witness). -/
+witness).
+@isnad1 id=realize.2h9v.s7.a4e34fec384e from=translated src=- shape=475e0751 vocab=0b23b465
+-/
 theorem StarWitness.rem_realize_update {φ : L.Sentenceω} {lt : L.Relations 2}
     {Γ : Set L[[ℕ]].Sentenceω} {α : Ordinal.{0}} (W : StarWitness φ lt Γ α) {c : ℕ}
     (hc : ∀ χ ∈ Γ, c ∉ sentenceJConsts (L' := L) (J := ℕ) χ) (x : W.M) :

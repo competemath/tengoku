@@ -53,7 +53,9 @@ private theorem schemaCompletionTheory_not_mem_iff_sentence
 
 /-- **The schema term model satisfies the Skolem-universality mixin** — the full arbitrary-stage
 form. This is what plugs the schema term model into the generic local-EM truth lemma
-(`truthLemmaStage_of_skolemUniversal`) and the cross-source acceptance. -/
+(`truthLemmaStage_of_skolemUniversal`) and the cross-source acceptance.
+@isnad1 id=localsko.1h2v.s6.951b71f84301 from=translated src=- shape=9d37ae95 vocab=8e56c78d
+-/
 theorem schemaTerm_localSkolemUniversalForColim
     (hM : Cardinal.beth (Ordinal.omega 1) ≤ Cardinal.mk M) :
     letI : (localColim s₀).Structure M := localColimStructure s₀
@@ -222,7 +224,9 @@ noncomputable def schemaTermLocalEMContext
 
 /-- **The schema context is Ω-complete** — the discharged `TailTemplateOmegaWitnessed`
 (the completion's pinned `iSup`/negative-`iInf` witnesses) converted through the Layer-7a
-bridge. -/
+bridge.
+@isnad1 id=omegacom.1h3v.s7.7f248903d1f4 from=translated src=- shape=6677a421 vocab=543501df
+-/
 theorem schemaTermLocalEMContext_omegaCompleteForColim
     (hM : Cardinal.beth (Ordinal.omega 1) ≤ Cardinal.mk M) (J : Type) [LinearOrder J] :
     letI : (localColim s₀).Structure M := localColimStructure s₀
@@ -244,7 +248,9 @@ theorem schemaTermLocalEMContext_omegaCompleteForColim
 /-- **Seed-sentence realization**: a stage-`0` family sentence true in the source `M` is realized
 by the schema term model (in its seed-language reduct). The route: validity of its lifted
 template under every body interpretation forces the positive sign; the sequence-realization
-bridge reads it into the quotient; the seed reduct peels off `LlocalInclusion`. -/
+bridge reads it into the quotient; the seed reduct peels off `LlocalInclusion`.
+@isnad1 id=realize.3h3v.s7.07a197481f6a from=translated src=- shape=e0e22a30 vocab=f0f7128a
+-/
 theorem schemaTerm_realizes_stage0_sentence
     (hM : Cardinal.beth (Ordinal.omega 1) ≤ Cardinal.mk M)
     (φ : s₀.Lang.Sentenceω)
@@ -307,7 +313,9 @@ pairwise distinctness. This discharges the honest residual
 from: a well-ordering of the source (`exists_wellFoundedLT`), the schema completion over
 `LocalStage.ofSeq L' (morleySeed φ)`, the schema context and its Ω-completeness, the seed
 realization + pairwise distinctness feeding the cross-model seed agreement, and the cross-source
-acceptance with the schema term model's Skolem-universality mixin. -/
+acceptance with the schema term model's Skolem-universality mixin.
+@isnad1 id=ex.3h5v.s7.c6aae1e72282 from=translated src=- shape=57d1f1b4 vocab=fb45e9f4
+-/
 theorem morleySeed_tailTemplate_model_of_schemaSource {L' : Language.{0, 0}}
     [Countable (Σ n, L'.Functions n)] [Countable (Σ n, L'.Relations n)]
     (φ : L'.Sentenceω) (M : Type) [L'.Structure M] (a : ℕ → M) (J : Type) [LinearOrder J]

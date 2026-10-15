@@ -35,14 +35,18 @@ noncomputable def stdGaussian : Measure ℝ := gaussianReal 0 1
 instance : IsProbabilityMeasure stdGaussian := by
   unfold stdGaussian; infer_instance
 
-/-- The density of the standard Gaussian, written out. -/
+/-- The density of the standard Gaussian, written out.
+@isnad1 id=eq.0h1v.s6.e002d98a3422 from=translated src=- shape=7c0780bc vocab=a3228582
+-/
 lemma stdGaussian_pdf (x : ℝ) :
     gaussianPDFReal 0 1 x = (√(2 * π))⁻¹ * rexp (-x ^ 2 / 2) := by
   rw [gaussianPDFReal]
   norm_num
 
 /-- **Squared-Gaussian MGF.** For `t < 1/2`, the moment generating function of `Z²`
-with `Z ~ N(0,1)` is `(1 - 2t)^(-1/2) = (√(1 - 2t))⁻¹`. -/
+with `Z ~ N(0,1)` is `(1 - 2t)^(-1/2) = (√(1 - 2t))⁻¹`.
+@isnad1 id=eq.1h1v.s6.d4dbd015529e from=translated src=- shape=dee25217 vocab=023ff827
+-/
 theorem sqGaussian_mgf {t : ℝ} (ht : t < 1 / 2) :
     mgf (fun x => x ^ 2) stdGaussian t = (√(1 - 2 * t))⁻¹ := by
   have hb : (0 : ℝ) < 1 / 2 - t := by linarith

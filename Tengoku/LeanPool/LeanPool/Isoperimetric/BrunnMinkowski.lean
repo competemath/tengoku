@@ -21,7 +21,9 @@ Euclidean structure `EuclideanSpace ℝ (Fin n)`.
 open MeasureTheory Set
 open scoped Pointwise
 
-/-- Brunn–Minkowski when `A` has infinite volume. -/
+/-- Brunn–Minkowski when `A` has infinite volume.
+@isnad1 id=le.3h4v.s10.fe0acea58880 from=translated src=- shape=1e556bd9 vocab=f3e3004d
+-/
 lemma brunn_minkowski_infinite
     {d : ℕ} {A B C : Set (Fin (d + 1) → ℝ)}
     (hA : volume A = ⊤) (hB : B.Nonempty) (hABC : A + B ⊆ C)
@@ -35,7 +37,9 @@ lemma brunn_minkowski_infinite
     _ ≤ (volume (A + B))^((d:ℝ)+1)⁻¹ := by gcongr; exact singleton_subset_iff.mpr hB.some_mem
     _ ≤ (volume C)^((d:ℝ)+1)⁻¹ := by gcongr
 
-/-- Brunn–Minkowski when `A` has zero volume. -/
+/-- Brunn–Minkowski when `A` has zero volume.
+@isnad1 id=le.3h4v.s10.6f59659841fc from=translated src=- shape=68d010c4 vocab=070e6bc8
+-/
 lemma brunn_minkowski_zero
     {d : ℕ} {A B C : Set (Fin (d + 1) → ℝ)}
     (hA_zero : volume A = 0) (hA_nonempty : A.Nonempty) (hABC : A + B ⊆ C)

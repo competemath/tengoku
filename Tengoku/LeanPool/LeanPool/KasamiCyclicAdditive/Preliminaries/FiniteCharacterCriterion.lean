@@ -47,7 +47,9 @@ private def sumPullbackDiff (f : G → G) : (G → ℂ) →ₗ[ℂ] ℂ where
 
 omit [DecidableEq G] in
 /-- A self-map of a finite abelian group is bijective if it preserves the sum
-of every complex-valued additive character. -/
+of every complex-valued additive character.
+@isnad1 id=bijectiv.1h2v.s6.6142fa000a2d from=translated src=- shape=7b8cd508 vocab=828a5279
+-/
 theorem bijective_of_addChar_sum_eq (f : G → G)
     (hchar : ∀ ψ : AddChar G ℂ, (∑ x : G, ψ (f x)) = ∑ x : G, ψ x) :
     Function.Bijective f := by
@@ -132,7 +134,9 @@ private lemma bijective_of_bijective_units {f : K → K} {g : Kˣ → Kˣ}
 
 omit [DecidableEq K] in
 /-- A finite-field self-map is bijective if zero is its unique zero and it
-preserves the sum of every complex-valued multiplicative character. -/
+preserves the sum of every complex-valued multiplicative character.
+@isnad1 id=bijectiv.2h2v.s7.21174e0b0764 from=translated src=- shape=6582c413 vocab=c067859a
+-/
 theorem bijective_of_mulChar_sum_eq (f : K → K)
     (hzero : ∀ x : K, f x = 0 ↔ x = 0)
     (hchar : ∀ χ : MulChar K ℂ, (∑ x : K, χ (f x)) = ∑ x : K, χ x) :

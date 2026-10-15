@@ -112,7 +112,9 @@ private theorem realize_castLE_of_eq {m n : ℕ} (φ : L.BoundedFormulaω α m) 
 
 /-- `castLE` over any proof `h : n ≤ n` preserves semantics.
 This handles the case where the proof term is not definitionally `le_refl`
-(e.g., constructed via rewriting or other means). -/
+(e.g., constructed via rewriting or other means).
+@isnad1 id=iff.1h7v.s5.7b3245a2f3ee from=translated src=- shape=3cb0c0ae vocab=dc723548
+-/
 theorem realize_castLE_self {n : ℕ} (φ : L.BoundedFormulaω α n) (h : n ≤ n)
     (v : α → M) (xs : Fin n → M) :
     (φ.castLE h).Realize v xs ↔ φ.Realize v xs :=
@@ -205,7 +207,9 @@ For `φ : L.BoundedFormulaω (Fin n) k`:
 - The relabeled formula `φ.relabel Sum.inr` has type `L.BoundedFormulaω Empty (n + k)`
 - Realizing with `Empty.elim` and `xs : Fin (n + k) → M` is equivalent to
   realizing the original formula with `xs ∘ Fin.castAdd k` for free variables
-  and `xs ∘ Fin.natAdd n` for bound variables. -/
+  and `xs ∘ Fin.natAdd n` for bound variables.
+@isnad1 id=iff.0h6v.s6.51826997bdde from=translated src=- shape=ab2186f4 vocab=a12a86aa
+-/
 theorem realize_relabel_sumInr {n : ℕ} :
     ∀ {k : ℕ} (φ : L.BoundedFormulaω (Fin n) k) (xs : Fin (n + k) → M),
     (φ.relabel (Sum.inr : Fin n → Empty ⊕ Fin n)).Realize (Empty.elim : Empty → M) xs ↔
@@ -243,7 +247,9 @@ theorem realize_relabel_sumInr {n : ℕ} :
 For `φ : L.Formulaω (Fin n)` (a formula with n free variables and 0 bound variables):
 - `φ.relabel Sum.inr : L.BoundedFormulaω Empty n` has 0 free vars and n bound vars
 - Realizing the relabeled formula with bound assignment `xs : Fin n → M` is equivalent
-  to realizing the original formula with free variable assignment `xs`. -/
+  to realizing the original formula with free variable assignment `xs`.
+@isnad1 id=iff.0h5v.s6.568dc14e2c8c from=translated src=- shape=6cd7defc vocab=f0213510
+-/
 theorem realize_relabel_sumInr_zero {n : ℕ} (φ : L.Formulaω (Fin n)) (xs : Fin n → M) :
     (φ.relabel (Sum.inr : Fin n → Empty ⊕ Fin n)).Realize (Empty.elim : Empty → M) xs ↔
     Formulaω.Realize φ xs := by
@@ -279,7 +285,9 @@ private theorem sum_elim_subst_tf {M : Type*} [L.Structure M]
 
 /-- Realization commutes with free variable substitution.
 
-This is the Lω₁ω analogue of Mathlib's `BoundedFormula.realize_subst`. -/
+This is the Lω₁ω analogue of Mathlib's `BoundedFormula.realize_subst`.
+@isnad1 id=iff.0h9v.s6.cd03c17744a6 from=translated src=- shape=307731d4 vocab=112f1435
+-/
 @[simp]
 theorem realize_subst {M : Type*} [L.Structure M]
     (tf : α → L.Term β) (φ : L.BoundedFormulaω α n) (v : β → M) (xs : Fin n → M) :
@@ -349,7 +357,9 @@ def mapLanguage {L' : Language.{u, v}} (g : L →ᴸ L') :
 
 If `g : L →ᴸ L'` is an expansion on `M` (i.e., `g` maps symbols to the corresponding
 symbols in `M`'s `L'`-structure), then `(φ.mapLanguage g).Realize v xs ↔ φ.Realize v xs`
-where the left side uses the `L'`-structure and the right side uses the `L`-structure. -/
+where the left side uses the `L'`-structure and the right side uses the `L`-structure.
+@isnad1 id=iff.0h9v.s6.e0a748efe937 from=translated src=- shape=dce22e35 vocab=0cd5b9ab
+-/
 theorem realize_mapLanguage {L' : Language.{u, v}} (g : L →ᴸ L')
     {M : Type*} [L.Structure M] [L'.Structure M] [g.IsExpansionOn M]
     (φ : L.BoundedFormulaω α n) (v : α → M) (xs : Fin n → M) :
@@ -372,14 +382,18 @@ theorem realize_mapLanguage {L' : Language.{u, v}} (g : L →ᴸ L')
     simp only [mapLanguage, realize_iInf]
     exact forall_congr' fun k => ih k xs
 
-/-- `mapLanguage` commutes with `not`. -/
+/-- `mapLanguage` commutes with `not`.
+@isnad1 id=eq.0h6v.s5.c77a10316463 from=translated src=- shape=8ae83894 vocab=e5c12472
+-/
 @[simp]
 theorem mapLanguage_not {L' : Language.{u, v}} (g : L →ᴸ L') (φ : L.BoundedFormulaω α n) :
     (φ.not).mapLanguage g = (φ.mapLanguage g).not := by
   change (φ.imp falsum).mapLanguage g = (φ.mapLanguage g).imp falsum
   rfl
 
-/-- `mapLanguage` commutes with `imp`. -/
+/-- `mapLanguage` commutes with `imp`.
+@isnad1 id=eq.0h7v.s5.8dea72d9116d from=translated src=- shape=49227122 vocab=872eee33
+-/
 @[simp]
 theorem mapLanguage_imp {L' : Language.{u, v}} (g : L →ᴸ L')
     (φ ψ : L.BoundedFormulaω α n) :
@@ -392,7 +406,9 @@ end BoundedFormulaω
 
 /-- Substituting a closed term into a term with no real variables reduces to the plain
 relabel.  Shared by the maximal-consistency term model and the proof-theoretic consistency
-family; it lives here so that neither needs to import the other. -/
+family; it lives here so that neither needs to import the other.
+@isnad1 id=eq.0h3v.s7.b9dd78301989 from=translated src=- shape=7423f92e vocab=65a46980
+-/
 theorem term_subst_empty_aux (t t' : L.Term Empty) :
     (t.relabel (Sum.inl ∘ Empty.elim : Empty → Fin 1 ⊕ Fin 0)).subst
       (Sum.elim (Term.relabel Sum.inl ∘ fun (_ : Fin 1) => t') (Term.var ∘ Sum.inr)) =
@@ -415,6 +431,9 @@ def toLω : ∀ {n : ℕ}, L.BoundedFormula α n → L.BoundedFormulaω α n
 
 variable {M : Type*} [L.Structure M] {v : α → M} {xs : Fin n → M}
 
+/--
+@isnad1 id=iff.0h7v.s5.384f37b95aa1 from=translated src=- shape=84a61cf4 vocab=2c33746a
+-/
 @[simp]
 theorem realize_toLω (φ : L.BoundedFormula α n) :
     φ.toLω.Realize v xs ↔ φ.Realize v xs := by
@@ -434,6 +453,9 @@ namespace Formula
 /-- Embeds a first-order formula into Lω₁ω. -/
 def toLω (φ : L.Formula α) : L.Formulaω α := BoundedFormula.toLω φ
 
+/--
+@isnad1 id=iff.0h5v.s5.303e025ee542 from=translated src=- shape=8b53593a vocab=c5f5018e
+-/
 @[simp]
 theorem realize_toLω {M : Type*} [L.Structure M] {v : α → M} (φ : L.Formula α) :
     Formulaω.Realize φ.toLω v ↔ φ.Realize v :=
@@ -446,6 +468,9 @@ namespace Sentence
 /-- Embeds a first-order sentence into Lω₁ω. -/
 def toLω (φ : L.Sentence) : L.Sentenceω := Formula.toLω φ
 
+/--
+@isnad1 id=iff.0h3v.s4.e5fde93f30a1 from=translated src=- shape=302163ac vocab=8492e8f8
+-/
 @[simp]
 theorem realize_toLω {M : Type*} [L.Structure M] [_nonemptyM : Nonempty M]
     (φ : L.Sentence) :

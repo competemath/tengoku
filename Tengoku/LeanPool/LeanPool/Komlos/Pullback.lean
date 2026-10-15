@@ -30,7 +30,9 @@ open Finsupp Finset
 
 variable {E : Type*} [AddCommGroup E] [Module ℝ E]
 
-/-- If `β ≥ 1 / 3` and `|a| ≤ 1 - β`, some `c ∈ [-1, 1]` satisfies `c * β + a = ±1 / 3`. -/
+/-- If `β ≥ 1 / 3` and `|a| ≤ 1 - β`, some `c ∈ [-1, 1]` satisfies `c * β + a = ±1 / 3`.
+@isnad1 id=ex.2h2v.s6.25e7abb7b680 from=translated src=- shape=b085a815 vocab=b6793b58
+-/
 lemma exists_sign_mul_add_eq {β a : ℝ} (hβ : 3⁻¹ ≤ β) (ha : |a| ≤ 1 - β) :
     ∃ e c : ℝ, (e = 1 ∨ e = -1) ∧ |c| ≤ 1 ∧ c * β + a = e / 3 := by
   have hβ0 : 0 < β := by linarith
@@ -44,7 +46,9 @@ lemma exists_sign_mul_add_eq {β a : ℝ} (hβ : 3⁻¹ ≤ β) (ha : |a| ≤ 1 
     constructor <;> linarith
 
 /-- A point of the segment between `x - v` and `x + v` lies in the convex hull of any set
-containing both endpoints. -/
+containing both endpoints.
+@isnad1 id=mem.3h5v.s7.a6df39a0041f from=translated src=- shape=99d6d69a vocab=cc0166bd
+-/
 lemma add_smul_mem_convexHull {s : Set E} {x v : E} (h₁ : x - v ∈ s) (h₂ : x + v ∈ s) {c : ℝ}
     (hc : |c| ≤ 1) : x + c • v ∈ convexHull ℝ s := by
   obtain ⟨hc₁, hc₂⟩ := abs_le.1 hc
@@ -54,7 +58,9 @@ lemma add_smul_mem_convexHull {s : Set E} {x v : E} (h₁ : x - v ∈ s) (h₂ :
 
 /-- If `(z, β)` belongs to the convex hull of the support of `split (3 • w) P` and
 `β ≥ 1 / 3`, then `z + e • w` belongs to the convex hull of the support of `P` for some
-sign `e`. -/
+sign `e`.
+@isnad1 id=ex.3h5v.s8.f955302159b7 from=translated src=- shape=9331da8d vocab=f0fb2851
+-/
 lemma pullback {P : E →₀ ℝ} (hP : IsDist P) (w : E) {β : ℝ} (hβ : 3⁻¹ ≤ β) {z : E}
     (hmem : ((z, β) : E × ℝ) ∈ convexHull ℝ ((split ((3 : ℝ) • w) P).support : Set (E × ℝ))) :
     ∃ e : ℝ, (e = 1 ∨ e = -1) ∧ z + e • w ∈ convexHull ℝ (P.support : Set E) := by

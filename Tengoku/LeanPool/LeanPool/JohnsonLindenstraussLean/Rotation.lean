@@ -44,7 +44,9 @@ namespace JL
 
 /-- **Single-coordinate Gaussian rotation invariance.** For a unit vector `u`
 (`∑ⱼ uⱼ² = 1`), the linear form `row ↦ ∑ⱼ rowⱼ · uⱼ` pushes the i.i.d. standard Gaussian
-product measure forward to the standard normal `N(0,1)`. -/
+product measure forward to the standard normal `N(0,1)`.
+@isnad1 id=eq.1h2v.s6.3fef4207f56d from=translated src=- shape=a58c58ce vocab=942edffa
+-/
 theorem map_dotProduct_gaussianReal {n : ℕ} (u : Fin n → ℝ) (hu : ∑ j, u j ^ 2 = 1) :
     (gaussianVec n).map (fun row : Fin n → ℝ => ∑ j, row j * u j) = gaussianReal 0 1 := by
   classical
@@ -88,7 +90,9 @@ instance (k n : ℕ) : IsProbabilityMeasure (gaussianMatrix k n) := by
 
 /-- **Projection ↔ chi-squared link.** For a unit vector `u`, the i.i.d. Gaussian matrix
 pushes forward under `A ↦ A.mulVec u` to `gaussianVec k`: the `k` row–vector products are
-i.i.d. `N(0,1)`. -/
+i.i.d. `N(0,1)`.
+@isnad1 id=eq.1h3v.s7.05485ecb3370 from=translated src=- shape=be819953 vocab=622ed0ad
+-/
 theorem gaussianMatrix_map_dotProduct {k n : ℕ} (u : Fin n → ℝ) (hu : ∑ j, u j ^ 2 = 1) :
     (gaussianMatrix k n).map (fun A i => ∑ j, A i j * u j) = gaussianVec k := by
   have hAE : AEMeasurable (fun row : Fin n → ℝ => ∑ j, row j * u j) (gaussianVec n) :=
@@ -115,7 +119,9 @@ theorem gaussianMatrix_map_dotProduct {k n : ℕ} (u : Fin n → ℝ) (hu : ∑ 
 vector `w`, the squared norm `∑ᵢ (jlMap A w i)²` of its Gaussian projection deviates from
 `‖w‖² = ∑ⱼ wⱼ²` by a relative factor `ε` with probability at most
 `2·exp(-(ε² - ε³) k / 4)`. This is `jl_norm_preservation` transported to the real
-projection via Gaussian rotation invariance. -/
+projection via Gaussian rotation invariance.
+@isnad1 id=le.4h4v.s8.d27c1b93ee87 from=translated src=- shape=e45477d8 vocab=2c99349d
+-/
 theorem jlMap_concentration {k n : ℕ} (hk : 0 < k) (w : Fin n → ℝ)
     (hw : ∑ j, w j ^ 2 ≠ 0) {ε : ℝ} (h0 : 0 < ε) (h1 : ε < 1) :
     (gaussianMatrix k n).real

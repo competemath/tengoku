@@ -22,7 +22,9 @@ variable {L : Language.{0, 0}}
 
 variable [L.IsRelational]
 
-/-- Isomorphism invariance is closed under complement. -/
+/-- Isomorphism invariance is closed under complement.
+@isnad1 id=isomorph.1h2v.s4.c2d4907f9181 from=translated src=- shape=af9269ee vocab=0d3aa1e2
+-/
 theorem IsomorphismInvariant.compl {B : Set (StructureSpace L)} (h : IsomorphismInvariant B) :
     IsomorphismInvariant Bᶜ := fun c d hcd => by
   simp only [Set.mem_compl_iff]; rw [h c d hcd]

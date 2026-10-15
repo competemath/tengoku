@@ -136,11 +136,17 @@ noncomputable def BFEquiv (α : Ordinal) (n : ℕ) (a : Fin n → M) (b : Fin n 
 variable {n : ℕ}
 
 omit [L.IsRelational] in
+/--
+@isnad1 id=iff.0h6v.s5.c0b6ac5e86d2 from=translated src=- shape=6cb9e177 vocab=8eae0e26
+-/
 theorem BFEquiv.zero (a : Fin n → M) (b : Fin n → N) :
     BFEquiv (L := L) 0 n a b ↔ SameAtomicType (L := L) (M := M) (N := N) a b := by
   simp only [BFEquiv, Ordinal.limitRecOn_zero]
 
 omit [L.IsRelational] in
+/--
+@isnad1 id=iff.0h7v.s7.3c2f35618bd9 from=translated src=- shape=dc294f57 vocab=d1c47940
+-/
 theorem BFEquiv.succ (α : Ordinal) (a : Fin n → M) (b : Fin n → N) :
     BFEquiv (L := L) (Order.succ α) n a b ↔
       BFEquiv (L := L) α n a b ∧
@@ -149,19 +155,26 @@ theorem BFEquiv.succ (α : Ordinal) (a : Fin n → M) (b : Fin n → N) :
   simp only [BFEquiv, Order.succ_eq_add_one, Ordinal.limitRecOn_add_one]
 
 omit [L.IsRelational] in
+/--
+@isnad1 id=iff.1h7v.s6.60eb1633dc2b from=translated src=- shape=dee57e2f vocab=3402b6b6
+-/
 theorem BFEquiv.limit (α : Ordinal) (hα : Order.IsSuccLimit α) (a : Fin n → M) (b : Fin n → N) :
     BFEquiv (L := L) α n a b ↔ ∀ β, β < α → BFEquiv (L := L) β n a b := by
   unfold BFEquiv
   rw [Ordinal.limitRecOn_limit _ _ _ _ hα]
 
 omit [L.IsRelational] in
-/-- BF-equivalence at level α + 1 implies BF-equivalence at level α. -/
+/-- BF-equivalence at level α + 1 implies BF-equivalence at level α.
+@isnad1 id=bfequiv.1h7v.s5.456fdd70da16 from=translated src=- shape=85fd8dd5 vocab=f9e95116
+-/
 theorem BFEquiv.of_succ {α : Ordinal} {a : Fin n → M} {b : Fin n → N}
     (h : BFEquiv (L := L) (Order.succ α) n a b) : BFEquiv (L := L) α n a b :=
   ((BFEquiv.succ α a b).mp h).1
 
 omit [L.IsRelational] in
-/-- BF-equivalence is monotone: higher ordinals imply lower ordinals. -/
+/-- BF-equivalence is monotone: higher ordinals imply lower ordinals.
+@isnad1 id=bfequiv.2h8v.s5.8ee7b3a2e232 from=translated src=- shape=7499fad1 vocab=64f4302d
+-/
 theorem BFEquiv.monotone {α β : Ordinal} (hαβ : α ≤ β)
     {a : Fin n → M} {b : Fin n → N} (h : BFEquiv (L := L) β n a b) :
     BFEquiv (L := L) α n a b := by
@@ -181,21 +194,27 @@ theorem BFEquiv.monotone {α β : Ordinal} (hαβ : α ≤ β)
     · exact h
 
 omit [L.IsRelational] in
-/-- The "forth" property at a successor level. -/
+/-- The "forth" property at a successor level.
+@isnad1 id=ex.1h8v.s6.a459c6eb6e2a from=translated src=- shape=e904a345 vocab=d1c47940
+-/
 theorem BFEquiv.forth {α : Ordinal} {a : Fin n → M} {b : Fin n → N}
     (h : BFEquiv (L := L) (Order.succ α) n a b) (m : M) :
     ∃ n' : N, BFEquiv (L := L) α (n + 1) (snoc a m) (snoc b n') :=
   ((BFEquiv.succ α a b).mp h).2.1 m
 
 omit [L.IsRelational] in
-/-- The "back" property at a successor level. -/
+/-- The "back" property at a successor level.
+@isnad1 id=ex.1h8v.s6.6fe9ecd8c85c from=translated src=- shape=6e17ab36 vocab=d1c47940
+-/
 theorem BFEquiv.back {α : Ordinal} {a : Fin n → M} {b : Fin n → N}
     (h : BFEquiv (L := L) (Order.succ α) n a b) (n' : N) :
     ∃ m : M, BFEquiv (L := L) α (n + 1) (snoc a m) (snoc b n') :=
   ((BFEquiv.succ α a b).mp h).2.2 n'
 
 omit [L.IsRelational] in
-/-- BF-equivalence is reflexive at all levels. -/
+/-- BF-equivalence is reflexive at all levels.
+@isnad1 id=bfequiv.0h5v.s4.4c1da4d61129 from=translated src=- shape=8da93345 vocab=67ac3ebb
+-/
 theorem BFEquiv.refl (α : Ordinal) (a : Fin n → M) :
     BFEquiv (L := L) (M := M) (N := M) α n a a := by
   induction α using Ordinal.limitRecOn generalizing n a with
@@ -208,7 +227,9 @@ theorem BFEquiv.refl (α : Ordinal) (a : Fin n → M) :
     exact fun γ hγ => ih γ hγ a
 
 omit [L.IsRelational] in
-/-- BF-equivalence is symmetric at all levels. -/
+/-- BF-equivalence is symmetric at all levels.
+@isnad1 id=bfequiv.1h7v.s5.cb87c4760d2f from=translated src=- shape=ced1dad5 vocab=67ac3ebb
+-/
 theorem BFEquiv.symm {α : Ordinal} {a : Fin n → M} {b : Fin n → N}
     (h : BFEquiv (L := L) α n a b) : BFEquiv (L := L) (M := N) (N := M) α n b a := by
   induction α using Ordinal.limitRecOn generalizing n a b with
@@ -226,7 +247,9 @@ theorem BFEquiv.symm {α : Ordinal} {a : Fin n → M} {b : Fin n → N}
 omit [L.IsRelational] in
 /-- BF-equivalence is transitive at all levels.
 If a and b are BF-equivalent, and b and c are BF-equivalent, then a and c are BF-equivalent.
-Note that a, b, c may be tuples in different structures. -/
+Note that a, b, c may be tuples in different structures.
+@isnad1 id=bfequiv.2h9v.s6.7f7f2b1e4193 from=translated src=- shape=c02ac8c7 vocab=67ac3ebb
+-/
 theorem BFEquiv.trans {P : Type*} [L.Structure P]
     {α : Ordinal} {a : Fin n → M} {b : Fin n → N} {c : Fin n → P}
     (hab : BFEquiv (L := L) α n a b) (hbc : BFEquiv (L := L) α n b c) :

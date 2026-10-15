@@ -55,14 +55,18 @@ noncomputable def queryCode (c : StructureSpace L) (n : ℕ) : Bool :=
 private noncomputable def decodeCode (x : ℕ → Bool) : StructureSpace L :=
   fun q => x (queryEmbedding (L := L) q)
 
-/-- **Gate 1**: every query is recovered at its encoded coordinate. -/
+/-- **Gate 1**: every query is recovered at its encoded coordinate.
+@isnad1 id=eq.0h3v.s5.2c41be9cb1fd from=translated src=- shape=3a5fee09 vocab=4952bba0
+-/
 @[simp] theorem queryCode_embedding (c : StructureSpace L) (q : RelQuery L) :
     queryCode c (queryEmbedding (L := L) q) = c q := by
   have hex : ∃ q', queryEmbedding (L := L) q' = queryEmbedding (L := L) q := ⟨q, rfl⟩
   unfold queryCode
   rw [dite_eq_left hex, queryEmbedding.injective hex.choose_spec]
 
-/-- **Gate 2**: coordinates outside the embedding's range are `false`. -/
+/-- **Gate 2**: coordinates outside the embedding's range are `false`.
+@isnad1 id=eq.1h3v.s5.db05c04a8e26 from=translated src=- shape=d27e54ab vocab=6eb8c65e
+-/
 theorem queryCode_of_notMem_range (c : StructureSpace L) {n : ℕ}
     (h : n ∉ Set.range (queryEmbedding (L := L))) : queryCode c n = false := by
   unfold queryCode
@@ -73,9 +77,15 @@ private theorem decodeCode_queryCode : Function.LeftInverse (decodeCode (L := L)
   funext q
   exact queryCode_embedding c q
 
+/--
+@isnad1 id=injectiv.0h1v.s4.ff05011802a4 from=translated src=- shape=8d5017a1 vocab=f969f753
+-/
 theorem queryCode_injective : Function.Injective (queryCode (L := L)) :=
   decodeCode_queryCode.injective
 
+/--
+@isnad1 id=continuo.0h1v.s4.a3bbc5cd4428 from=translated src=- shape=8d5017a1 vocab=b8e85ee5
+-/
 theorem continuous_queryCode : Continuous (queryCode (L := L)) := by
   refine continuous_pi fun n => ?_
   unfold queryCode

@@ -35,14 +35,18 @@ namespace RS
 open Complex Metric Set
 open scoped Topology Convex
 
-/-- Primitive with prescribed value on a ball inside a domain of analyticity. -/
+/-- Primitive with prescribed value on a ball inside a domain of analyticity.
+@isnad1 id=ex.3h6v.s7.1e71e221fa24 from=translated src=- shape=da7f7b98 vocab=031bf572
+-/
 theorem exists_hasDerivAt_ball {f : ℂ → ℂ} {U : Set ℂ} (hf : AnalyticOnNhd ℂ f U)
     {c z₀ w : ℂ} {r : ℝ} (hb : ball c r ⊆ U) (_hz₀ : z₀ ∈ ball c r) :
     ∃ g : ℂ → ℂ, g z₀ = w ∧ ∀ z ∈ ball c r, HasDerivAt g (f z) z := by
   obtain ⟨g, hg₀, hg⟩ := (hf.differentiableOn.mono hb).isExactOn_ball.with_val_at z₀ w
   exact ⟨g, hg₀, hg⟩
 
-/-- Two local primitives of the same function with equal value agree nearby. -/
+/-- Two local primitives of the same function with equal value agree nearby.
+@isnad1 id=eventual.3h4v.s7.058a73826ccf from=translated src=- shape=9d7acb0b vocab=c84daa40
+-/
 theorem eventuallyEq_of_hasDerivAt_eq {f g d : ℂ → ℂ} {z₀ : ℂ}
     (hf : ∀ᶠ z in 𝓝 z₀, HasDerivAt f (d z) z) (hg : ∀ᶠ z in 𝓝 z₀, HasDerivAt g (d z) z)
     (h : f z₀ = g z₀) : f =ᶠ[𝓝 z₀] g := by
@@ -69,6 +73,9 @@ Adaptation of `Set.Countable.isPathConnected_compl_of_one_lt_rank`
 the whole space: the auxiliary point `z t := c + t • y` is kept inside a ball around the
 midpoint `c` that lies in `s` (openness), instead of ranging over all of `t : ℝ`. -/
 
+/--
+@isnad1 id=ispathco.4h2v.s6.fcc51123958a from=translated src=- shape=7a176e1c vocab=0b0596eb
+-/
 theorem Convex.isPathConnected_diff_countable {s : Set ℂ} (hs : Convex ℝ s) (ho : IsOpen s)
     (hne : s.Nonempty) {T : Set ℂ} (hT : T.Countable) : IsPathConnected (s \ T) := by
   -- `s \ T` is nonempty: `Tᶜ` is dense, `s` is open nonempty.
@@ -158,7 +165,9 @@ theorem Convex.isPathConnected_diff_countable {s : Set ℂ} (hs : Convex ℝ s) 
   exact JA.trans JB.symm
 
 /-- Any two paths with the same endpoints inside a convex planar set are homotopic
-rel endpoints, through the set. -/
+rel endpoints, through the set.
+@isnad1 id=ex.3h5v.s9.7bbb9beb8182 from=translated src=- shape=722011f9 vocab=bb8cd64b
+-/
 theorem exists_homotopy_range_subset_of_convex {a b : ℂ} {s : Set ℂ} (hs : Convex ℝ s)
     {p q : Path a b} (hp : range ⇑p ⊆ s) (hq : range ⇑q ⊆ s) :
     ∃ H : p.Homotopy q, ∀ z, H z ∈ s := by

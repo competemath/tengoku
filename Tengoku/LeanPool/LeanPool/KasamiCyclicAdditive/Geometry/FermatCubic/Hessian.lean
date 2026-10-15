@@ -43,7 +43,9 @@ def hessY (w1 t1 w2 t2 : K) : K := w1 ^ 2 * t2 + w2 ^ 2 * t1
 variable {w1 t1 w2 t2 : K}
 
 /-- The Hessian numerators and denominator again satisfy the Fermat equation:
-`N_x^3 + N_y^3 = D0^3`. -/
+`N_x^3 + N_y^3 = D0^3`.
+@isnad1 id=eq.2h5v.s8.c6e12acd3548 from=translated src=- shape=f5946d8b vocab=f694174c
+-/
 theorem hess_cubic (h1 : w1 ^ 3 + t1 ^ 3 = 1) (h2 : w2 ^ 3 + t2 ^ 3 = 1) :
     hessX w1 t1 w2 t2 ^ 3 + hessY w1 t1 w2 t2 ^ 3 = hessD w1 t1 w2 t2 ^ 3 := by
   simp only [hessX, hessY, hessD]
@@ -61,7 +63,9 @@ theorem hess_cubic (h1 : w1 ^ 3 + t1 ^ 3 = 1) (h2 : w2 ^ 3 + t2 ^ 3 = 1) :
     + 3 * w1^2 * t1^2 * w2 * t2) * h2 +
     (t2^6 + (-2) * t1^3 * t2^3 + t1^6) * CharTwo.two_eq_zero (R := K)
 
-/-- The `x`-coordinate identity behind the Hessian addition formula. -/
+/-- The `x`-coordinate identity behind the Hessian addition formula.
+@isnad1 id=eq.2h5v.s9.deb5bb24879b from=translated src=- shape=5be911f1 vocab=152a4dc6
+-/
 theorem hess_addX_aux (h1 : w1 ^ 3 + t1 ^ 3 = 1) (h2 : w2 ^ 3 + t2 ^ 3 = 1) :
     ((w1 * (w2 + t2) + w2 * (w1 + t1)) ^ 2 * ((w1 + t1) * (w2 + t2))
         + ((w1 + t1) + (w2 + t2)) ^ 3) * (hessX w1 t1 w2 t2 + hessY w1 t1 w2 t2)
@@ -193,7 +197,9 @@ theorem hess_addX_aux (h1 : w1 ^ 3 + t1 ^ 3 = 1) (h2 : w2 ^ 3 + t2 ^ 3 = 1) :
     + 4 * w1^2 * t1^3 * w2
     + (-6) * w1^2 * t1^3 * w2 * t2^3) * CharTwo.two_eq_zero (R := K)
 
-/-- The `y`-coordinate identity behind the Hessian addition formula. -/
+/-- The `y`-coordinate identity behind the Hessian addition formula.
+@isnad1 id=eq.2h5v.s9.5f24b0653dba from=translated src=- shape=3ca37e55 vocab=152a4dc6
+-/
 theorem hess_addY_aux (h1 : w1 ^ 3 + t1 ^ 3 = 1) (h2 : w2 ^ 3 + t2 ^ 3 = 1) :
     (w1 * (w2 + t2) + w2 * (w1 + t1))
           * (hessD w1 t1 w2 t2 * (w1 + t1) + (hessX w1 t1 w2 t2 + hessY w1 t1 w2 t2))

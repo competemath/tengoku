@@ -33,7 +33,9 @@ open FirstOrder Structure
 variable {L : Language.{0, 0}} {M : Type} [L.Structure M] {lt : L.Relations 2}
 
 /-- **The descending sequence**: the negative rationals turn a relation-preserving map into
-an infinite strictly descending sequence for the interpreted relation. -/
+an infinite strictly descending sequence for the interpreted relation.
+@isnad1 id=relmap.1h5v.s6.1d7c54815aa3 from=translated src=- shape=6490493c vocab=6c81ffeb
+-/
 theorem RelPreserving.descending {f : ℚ → M} (hf : RelPreserving lt f) (n : ℕ) :
     RelMap lt ![f (-(n + 1 : ℕ) : ℚ), f (-(n : ℕ) : ℚ)] :=
   hf _ _ (by push_cast; exact neg_lt_neg (lt_add_one _))
@@ -48,7 +50,9 @@ private theorem not_descending_of_wellFounded {α : Type*} {r : α → α → Pr
   exact hmin (g (n + 1)) ⟨n + 1, rfl⟩ (hg n)
 
 /-- **No relation-preserving map into a well-founded relation**: the target of the step-5
-theorem can never have a well-founded interpreted relation. -/
+theorem can never have a well-founded interpreted relation.
+@isnad1 id=not.1h4v.s5.1bbfde710b00 from=translated src=- shape=ea5350d7 vocab=a0446c5b
+-/
 theorem not_relPreserving_of_wellFounded
     (hwf : WellFounded fun x y : M => RelMap lt ![x, y]) (f : ℚ → M) :
     ¬ RelPreserving lt f := fun hf =>

@@ -33,6 +33,9 @@ in the indexing functions; their determinants are automatically zero. -/
 def MinorsVanish (A : Matrix n n R) (r : ℕ) : Prop :=
   ∀ I J : Fin r → n, (A.submatrix I J).det = 0
 
+/--
+@isnad1 id=eq.1h7v.s6.fd0ea442b42a from=translated src=- shape=c8e8d5d0 vocab=fea3ccf8
+-/
 theorem det_submatrix_zero_of_not_injective (A : Matrix n m R)
     (I : Fin r → n) (J : Fin r → m) (hI : ¬ Function.Injective I) :
     (A.submatrix I J).det = 0 := by
@@ -40,12 +43,18 @@ theorem det_submatrix_zero_of_not_injective (A : Matrix n m R)
   obtain ⟨i, j, hij, hne⟩ := Function.not_injective_iff.mp hI
   exact Matrix.det_zero_of_row_eq hne (by ext c; simp [hij])
 
+/--
+@isnad1 id=injectiv.1h7v.s6.d5666c4ff82b from=translated src=- shape=a1e320e7 vocab=fea3ccf8
+-/
 theorem injective_of_det_submatrix_ne_zero (A : Matrix n m R)
     (I : Fin r → n) (J : Fin r → m) (h : (A.submatrix I J).det ≠ 0) :
     Function.Injective I := by
   by_contra hi
   exact h (det_submatrix_zero_of_not_injective A I J hi)
 
+/--
+@isnad1 id=minorsva.1h4v.s4.dad5a1f10740 from=translated src=- shape=9b8dbad6 vocab=46c96923
+-/
 theorem minorsVanish_above [Fintype n] (A : Matrix n n R) (h : Fintype.card n < r) :
     MinorsVanish A r := by
   intro I J
@@ -61,7 +70,9 @@ theorem eq_zero_of_minorsVanish_one (A : Matrix n n R) (h : MinorsVanish A 1) :
   simpa using h (fun _ => i) (fun _ => j)
 
 /-- Expansion by multilinearity in the rows.  Unlike a compound-matrix formula,
-this involves no ordering of subsets and no division by a factorial. -/
+this involves no ordering of subsets and no division by a factorial.
+@isnad1 id=eq.0h5v.s7.ec223fcd9799 from=translated src=- shape=d9194791 vocab=a2e091dd
+-/
 theorem det_mul_expand_rows [Fintype n] (A : Matrix (Fin r) n R) (B : Matrix n (Fin r) R) :
     (A * B).det = ∑ f : Fin r → n,
       (∏ i : Fin r, A i (f i)) * (B.submatrix f id).det := by
@@ -77,12 +88,17 @@ theorem det_mul_expand_rows [Fintype n] (A : Matrix (Fin r) n R) (B : Matrix n (
   rw [D.map_smul_univ]
   rfl
 
-/-- Restricting only the outside indices of a rectangular product. -/
+/-- Restricting only the outside indices of a rectangular product.
+@isnad1 id=eq.0h10v.s7.7934ac80d11a from=translated src=- shape=0f68ad38 vocab=b8bc7fc0
+-/
 theorem submatrix_mul_outer [Fintype n] {l o p q : Type*}
     (A : Matrix l n R) (B : Matrix n o R) (I : p → l) (J : q → o) :
     (A * B).submatrix I J = A.submatrix I id * B.submatrix id J := by
   simpa using (Matrix.submatrix_mul_equiv A B I (Equiv.refl n) J).symm
 
+/--
+@isnad1 id=eq.0h5v.s7.9ee541141e60 from=translated src=- shape=e0a4a7e9 vocab=ea8f197b
+-/
 theorem det_map {S : Type*} [CommRing S] (φ : R →+* S)
     (A : Matrix (Fin r) (Fin r) R) :
     (A.map φ).det = φ A.det := (φ.map_det A).symm
@@ -94,7 +110,9 @@ section Compression
 variable {K : Type*} [Field K] {n : Type*} {r : ℕ}
 
 /-- A nonzero `r`-minor, together with vanishing `(r+1)`-minors, gives the
-usual pivot factorization.  The inverse is taken only over a field. -/
+usual pivot factorization.  The inverse is taken only over a field.
+@isnad1 id=eq.2h6v.s7.6050d0367e8c from=translated src=- shape=749c10f4 vocab=c51c5249
+-/
 theorem pivot_factorization (P : Matrix n n K)
     (I J : Fin r → n) (hp : (P.submatrix I J).det ≠ 0)
     (hnext : MinorsVanish P (r + 1)) :
@@ -122,7 +140,9 @@ theorem pivot_factorization (P : Matrix n n K)
     P.submatrix I id) i j = 0 at hz'
   exact sub_eq_zero.mp hz'
 
-/-- The pivot detects every `r`-minor of a sandwiched product. -/
+/-- The pivot detects every `r`-minor of a sandwiched product.
+@isnad1 id=minorsva.3h7v.s8.029d7421b336 from=translated src=- shape=4a4be805 vocab=aaf4657e
+-/
 theorem sandwich_minors_vanish_field [Fintype n] (P C : Matrix n n K)
     (I J : Fin r → n) (hp : (P.submatrix I J).det ≠ 0)
     (hnext : MinorsVanish P (r + 1))
@@ -154,7 +174,9 @@ variable {R : Type*} [CommRing R] [IsDomain R] {n : Type*} [Fintype n] {r : ℕ}
 
 /-- Polynomial/domain version of sandwich compression.  Localization is used
 only to invert the fixed nonzero pivot; injectivity returns the identity to
-its original commutative domain. -/
+its original commutative domain.
+@isnad1 id=minorsva.3h7v.s8.57e3df4592cb from=translated src=- shape=91f279b7 vocab=311f7bcd
+-/
 theorem sandwich_minors_vanish (P C : Matrix n n R)
     (I J : Fin r → n) (hp : (P.submatrix I J).det ≠ 0)
     (hnext : MinorsVanish P (r + 1))

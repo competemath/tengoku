@@ -113,6 +113,7 @@ private lemma Q_1_sum_sq (n : ℕ) (lambda : Finset (Fin (w n)) → ℝ) :
 
 /--
 The truly multidimensional weight function is non-negative everywhere.
+@isnad1 id=le.0h3v.s4.586bc27365af from=translated src=- shape=53213d2a vocab=0a06c4b2
 -/
 lemma W_truly_multi_nonneg (n : ℕ) (lambda : Finset (Fin (w n)) → ℝ) (x : ZMod (q n)) :
     wTrulyMulti n lambda x ≥ 0 := by
@@ -123,6 +124,7 @@ lemma W_truly_multi_nonneg (n : ℕ) (lambda : Finset (Fin (w n)) → ℝ) (x : 
 
 /--
 The truly multidimensional weight function is supported on $\mathcal{A}_n$.
+@isnad1 id=eq.1h3v.s5.7499a733e031 from=translated src=- shape=21c2660a vocab=922fd4c3
 -/
 lemma W_truly_multi_support (n : ℕ) (lambda : Finset (Fin (w n)) → ℝ) (x : ZMod (q n))
     (hx : x.val ∉ evalInterval n) :
@@ -203,6 +205,7 @@ def kernelQ1 (n : ℕ) : Submodule ℝ (Idx n → ℝ) :=
 
 /--
 Lemma: $q1(\lambda) = 0$ if and only if $P_{multi}(\lambda, x) = 0$ for all $x \in \mathcal{A}_n$.
+@isnad1 id=iff.0h2v.s6.07c3f559721f from=translated src=- shape=5bccd26b vocab=46c6479d
 -/
 lemma Q_1_eq_zero_iff (n : ℕ) (lambda : Idx n → ℝ) :
     q1 n lambda = 0 ↔ ∀ x ∈ evalInterval n, pMulti n lambda x = 0 := by
@@ -212,6 +215,7 @@ lemma Q_1_eq_zero_iff (n : ℕ) (lambda : Idx n → ℝ) :
 
 /--
 Lemma: $q1$ is non-negative for all $\lambda$.
+@isnad1 id=le.0h2v.s4.844ba820c0ab from=translated src=- shape=d428f414 vocab=6a981b34
 -/
 lemma Q_1_nonneg (n : ℕ) (lambda : Idx n → ℝ) : q1 n lambda ≥ 0 :=
   (Q_1_sum_sq n lambda).symm ▸ Finset.sum_nonneg fun _ _ => sq_nonneg _
@@ -254,6 +258,7 @@ def spherePerp (n : ℕ) : Set (Idx n → ℝ) :=
 
 /--
 Lemma: $q1$ is strictly positive on the unit sphere of the orthogonal complement.
+@isnad1 id=lt.1h2v.s5.090476649065 from=translated src=- shape=efa02bc0 vocab=a0fb6173
 -/
 lemma Q_1_pos_on_sphere_perp (n : ℕ) (lambda : Idx n → ℝ) (h : lambda ∈ spherePerp n) :
     q1 n lambda > 0 := by
@@ -268,6 +273,7 @@ lemma Q_1_pos_on_sphere_perp (n : ℕ) (lambda : Idx n → ℝ) (h : lambda ∈ 
 
 /--
 Lemma: The Rayleigh quotient is scale-invariant.
+@isnad1 id=eq.1h3v.s5.82f53130a610 from=translated src=- shape=dc4ef6af vocab=916ac0f5
 -/
 lemma Ratio_scale (n : ℕ) (lambda : Idx n → ℝ) (c : ℝ) (hc : c ≠ 0) :
     Ratio n (c • lambda) = Ratio n lambda := by
@@ -301,6 +307,7 @@ lemma Ratio_scale (n : ℕ) (lambda : Idx n → ℝ) (c : ℝ) (hc : c ≠ 0) :
 
 /--
 Lemma: For any vector $v$, the square of any component is bounded by the dot product.
+@isnad1 id=le.0h3v.s5.3aeda1b1ce90 from=translated src=- shape=1c4294d1 vocab=e07ffe03
 -/
 lemma sq_le_dot_product (n : ℕ) (v : Idx n → ℝ) (i : Idx n) :
     (v i)^2 ≤ dotProduct n v v :=
@@ -310,6 +317,7 @@ lemma sq_le_dot_product (n : ℕ) (v : Idx n → ℝ) (i : Idx n) :
 /--
 Lemma: Any vector can be decomposed into a component in the kernel of $q1$ and a component
 in the orthogonal complement.
+@isnad1 id=ex.0h2v.s8.269441fa4818 from=translated src=- shape=e440d14e vocab=964c14de
 -/
 lemma decomposition (n : ℕ) (x : Idx n → ℝ) :
   ∃ u ∈ kernelQ1 n, ∃ v ∈ kernelQ1Perp n, x = u + v := by
@@ -370,6 +378,7 @@ lemma decomposition (n : ℕ) (x : Idx n → ℝ) :
 
 /--
 Lemma: The polynomial $P_{multi}$ is linear in $\lambda$.
+@isnad1 id=eq.0h4v.s6.c879e4f998a7 from=translated src=- shape=8299e92a vocab=921ecd87
 -/
 lemma P_multi_add (n : ℕ) (u v : Idx n → ℝ) (x : ZMod (q n)) :
     pMulti n (u + v) x = pMulti n u x + pMulti n v x := by
@@ -378,6 +387,7 @@ lemma P_multi_add (n : ℕ) (u v : Idx n → ℝ) (x : ZMod (q n)) :
 
 /--
 Lemma: The unit sphere in the orthogonal complement is compact.
+@isnad1 id=iscompac.0h1v.s4.5224cbf0feb5 from=translated src=- shape=fe6f4f64 vocab=1f9f4e0f
 -/
 lemma sphere_perp_compact (n : ℕ) : IsCompact (spherePerp n) := by
   rw [Metric.isCompact_iff_isClosed_bounded]
@@ -410,6 +420,7 @@ lemma sphere_perp_compact (n : ℕ) : IsCompact (spherePerp n) := by
 
 /--
 Lemma: If $u \in \text{kernel}(q1)$, then $q2(u + v) = q2(v)$.
+@isnad1 id=eq.1h3v.s7.41263a853358 from=translated src=- shape=0c8ee123 vocab=8d58ccfd
 -/
 lemma Q_2_add_kernel (n : ℕ) (u v : Idx n → ℝ) (hu : u ∈ kernelQ1 n) :
     q2 n (u + v) = q2 n v := by
@@ -443,6 +454,7 @@ lemma Q_2_add_kernel (n : ℕ) (u v : Idx n → ℝ) (hu : u ∈ kernelQ1 n) :
 
 /--
 Lemma: The Rayleigh quotient is invariant under adding a vector from the kernel of $q1$.
+@isnad1 id=eq.1h3v.s7.c0d88f5244f9 from=translated src=- shape=0c8ee123 vocab=7c7a1c43
 -/
 lemma Ratio_add_kernel (n : ℕ) (u v : Idx n → ℝ) (hu : u ∈ kernelQ1 n) :
     Ratio n (u + v) = Ratio n v := by
@@ -468,6 +480,7 @@ lemma Ratio_add_kernel (n : ℕ) (u v : Idx n → ℝ) (hu : u ∈ kernelQ1 n) :
 /--
 Lemma: For any $\lambda$ with $q1(\lambda) > 0$, there exists $v \in \text{sphere\_perp}(n)$
 such that $\text{Ratio}(n, \lambda) = \text{Ratio}(n, v)$.
+@isnad1 id=ex.1h2v.s5.eb2a0e6f4749 from=translated src=- shape=65c499c9 vocab=182bac18
 -/
 lemma exists_sphere_perp_ratio_eq (n : ℕ) (lambda : Idx n → ℝ) (hQ1 : q1 n lambda > 0) :
     ∃ v ∈ spherePerp n, Ratio n lambda = Ratio n v := by
@@ -504,6 +517,7 @@ lemma exists_sphere_perp_ratio_eq (n : ℕ) (lambda : Idx n → ℝ) (hQ1 : q1 n
 /--
 Lemma: The set of attainable ratios is the image of the unit sphere in the orthogonal complement
 under the Rayleigh quotient map.
+@isnad1 id=eq.0h1v.s4.5ad43a599163 from=translated src=- shape=c8e1c701 vocab=644b9176
 -/
 lemma attainable_ratios_eq_image_sphere_perp (n : ℕ) :
     attainableRatios n = (spherePerp n).image (Ratio n) := by
@@ -523,6 +537,7 @@ lemma attainable_ratios_eq_image_sphere_perp (n : ℕ) :
 
 /--
 Lemma: The set of attainable ratios is compact.
+@isnad1 id=iscompac.0h1v.s3.5e8f3538f6de from=translated src=- shape=1a6c1393 vocab=9d05ce12
 -/
 lemma attainable_ratios_compact (n : ℕ) : IsCompact (attainableRatios n) := by
   rw [ attainable_ratios_eq_image_sphere_perp ]

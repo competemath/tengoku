@@ -35,16 +35,27 @@ variable (g : ℂ → ℂ)
 /-- The Cauchy kernel `1/(π w)`. -/
 def cauchyKernel : ℂ → ℂ := fun w => (Real.pi * w)⁻¹
 
+/--
+@isnad1 id=measurab.0h0v.s2.d8a4ae19a73a from=translated src=- shape=e3d48bcb vocab=8a970a1f
+-/
 theorem measurable_cauchyKernel : Measurable cauchyKernel :=
   (measurable_id.const_mul _).inv
 
+/--
+@isnad1 id=aestrong.0h0v.s5.f7b1d389d73f from=translated src=- shape=e14394ff vocab=f076f75b
+-/
 theorem aestronglyMeasurable_cauchyKernel : AEStronglyMeasurable cauchyKernel volume :=
   measurable_cauchyKernel.aestronglyMeasurable
 
+/--
+@isnad1 id=eq.0h1v.s4.2997021ccd54 from=translated src=- shape=8ccc717e vocab=29a24d45
+-/
 theorem norm_cauchyKernel (w : ℂ) : ‖cauchyKernel w‖ = (Real.pi * ‖w‖)⁻¹ := by
   simp [cauchyKernel, norm_inv, Real.norm_of_nonneg Real.pi_pos.le]
 
-/-- Step 1 of the design: `cauchyKernel` is integrable on every ball centred at `0`. -/
+/-- Step 1 of the design: `cauchyKernel` is integrable on every ball centred at `0`.
+@isnad1 id=integrab.0h1v.s6.341d096b2cd5 from=translated src=- shape=e9f22080 vocab=fe1296d3
+-/
 theorem integrableOn_cauchyKernel_ball (ρ : ℝ) :
     IntegrableOn cauchyKernel (ball (0 : ℂ) ρ) volume := by
   by_cases hρ0 : ρ ≤ 0
@@ -105,6 +116,9 @@ theorem integrableOn_cauchyKernel_ball (ρ : ℝ) :
         exact ENNReal.mul_lt_top ENNReal.ofReal_lt_top
           (ENNReal.mul_lt_top ENNReal.ofReal_lt_top ENNReal.ofReal_lt_top)
 
+/--
+@isnad1 id=locallyi.0h0v.s5.05b8ff2b6a8b from=translated src=- shape=a94d82b8 vocab=4da5bd32
+-/
 theorem locallyIntegrable_cauchyKernel : LocallyIntegrable cauchyKernel volume := by
   rw [locallyIntegrable_iff]
   intro K hK
@@ -117,11 +131,16 @@ theorem locallyIntegrable_cauchyKernel : LocallyIntegrable cauchyKernel volume :
 noncomputable def cauchyTransform (g : ℂ → ℂ) : ℂ → ℂ :=
   cauchyKernel ⋆[ContinuousLinearMap.mul ℝ ℂ] g
 
+/--
+@isnad1 id=contdiff.2h1v.s6.0693a83591f2 from=translated src=- shape=0e35440b vocab=bf4ce959
+-/
 theorem contDiff_cauchyTransform (hg : ContDiff ℝ ∞ g) (hcs : HasCompactSupport g) :
     ContDiff ℝ ∞ (cauchyTransform g) :=
   hcs.contDiff_convolution_right _ locallyIntegrable_cauchyKernel hg
 
-/-- Step 2: differentiation under the integral, via the convolution-derivative package. -/
+/-- Step 2: differentiation under the integral, via the convolution-derivative package.
+@isnad1 id=eq.2h2v.s6.3babc6aad47f from=translated src=- shape=f5e72019 vocab=d5ce143b
+-/
 theorem wirtingerDbar_cauchyTransform (hg : ContDiff ℝ ∞ g) (hcs : HasCompactSupport g) (z : ℂ) :
     wirtingerDbar (cauchyTransform g) z = ∫ w : ℂ, cauchyKernel w * wirtingerDbar g (z - w) := by
   have hg1 : ContDiff ℝ (1 : ℕ∞) g := hg.of_le (by norm_num)
@@ -280,7 +299,9 @@ private theorem hasDerivAt_radial {g : ℂ → ℂ} (hgdiff : Differentiable ℝ
   simp only [map_neg] at h4
   exact h4
 
-/-- Forster 13.1 / Cauchy–Pompeiu, proved by the polar-FTC computation of design §5. -/
+/-- Forster 13.1 / Cauchy–Pompeiu, proved by the polar-FTC computation of design §5.
+@isnad1 id=eq.2h2v.s6.7977aca300a5 from=translated src=- shape=da8ed1d3 vocab=0104c030
+-/
 theorem cauchyPompeiu (hg : ContDiff ℝ 1 g) (hcs : HasCompactSupport g) (z : ℂ) :
     ∫ w : ℂ, cauchyKernel w * wirtingerDbar g (z - w) = g z := by
   have hgdiff : Differentiable ℝ g := hg.differentiable (by norm_num)
@@ -488,14 +509,18 @@ theorem cauchyPompeiu (hg : ContDiff ℝ 1 g) (hcs : HasCompactSupport g) (z : �
   field_simp
   ring
 
-/-- Forster 13.1: `dbar` of the Cauchy transform recovers `g`. -/
+/-- Forster 13.1: `dbar` of the Cauchy transform recovers `g`.
+@isnad1 id=eq.2h2v.s6.11fb2e57ab95 from=translated src=- shape=8ed3490c vocab=31b6b7e1
+-/
 theorem wirtingerDbar_cauchyTransform_eq (hg : ContDiff ℝ ∞ g) (hcs : HasCompactSupport g) :
     ∀ z, wirtingerDbar (cauchyTransform g) z = g z := by
   intro z
   rw [wirtingerDbar_cauchyTransform g hg hcs z]
   exact cauchyPompeiu g (hg.of_le (by norm_num)) hcs z
 
-/-- Forster 13.1, existential form: `dbaru = g` is solvable for compactly supported smooth `g`. -/
+/-- Forster 13.1, existential form: `dbaru = g` is solvable for compactly supported smooth `g`.
+@isnad1 id=ex.2h1v.s6.e8f2b6a863aa from=translated src=- shape=bc72a449 vocab=95bdb4aa
+-/
 theorem exists_dbar_solution_of_hasCompactSupport (hg : ContDiff ℝ ∞ g)
     (hcs : HasCompactSupport g) : ∃ u, ContDiff ℝ ∞ u ∧ ∀ z, wirtingerDbar u z = g z :=
   ⟨cauchyTransform g, contDiff_cauchyTransform g hg hcs, wirtingerDbar_cauchyTransform_eq g hg hcs⟩

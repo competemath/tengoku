@@ -24,7 +24,9 @@ namespace KasamiCyclicAdditive
 variable {K : Type*} [Field K] [Fintype K] [DecidableEq K]
 
 /-- A sum over the unit group equals the sum over the whole field, for a function
-vanishing at `0`. -/
+vanishing at `0`.
+@isnad1 id=eq.1h3v.s7.847b8e733103 from=translated src=- shape=a66870c6 vocab=163c6202
+-/
 lemma sum_units_eq_sum {M : Type*} [AddCommMonoid M] (f : K → M) (hf : f 0 = 0) :
     ∑ b : Kˣ, f (b : K) = ∑ a : K, f a := by
   have h0 : ∀ x ∈ (Finset.univ : Finset K), x ∉ ({0}ᶜ : Finset K) → f x = 0 := by
@@ -35,7 +37,9 @@ lemma sum_units_eq_sum {M : Type*} [AddCommMonoid M] (f : K → M) (hf : f 0 = 0
   refine Finset.sum_nbij' (fun b => (b : K)) (fun a => if h : a = 0 then 1 else Units.mk0 a h)
     ?_ ?_ ?_ ?_ ?_ <;> intro a ha <;> simp_all
 
-/-- Splitting off the value at `0` from a sum over the whole field. -/
+/-- Splitting off the value at `0` from a sum over the whole field.
+@isnad1 id=eq.0h3v.s7.7afb693d0b79 from=translated src=- shape=c73c6f40 vocab=5ba51d51
+-/
 lemma sum_units_add {M : Type*} [AddCommMonoid M] (f : K → M) :
     f 0 + ∑ b : Kˣ, f (b : K) = ∑ a : K, f a := by
   have h1 : ∑ b : Kˣ, f (b : K) = ∑ a ∈ ({0} : Finset K)ᶜ, f a := by

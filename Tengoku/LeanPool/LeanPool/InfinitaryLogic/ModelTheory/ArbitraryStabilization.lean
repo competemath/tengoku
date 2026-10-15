@@ -44,7 +44,9 @@ variable {L : Language.{u, v}}
 /-! ## The generic extension-family bridge (two arbitrary structures) -/
 
 /-- The two-structure form of the audited thin bridge: any tuple relation with atomic
-agreement and the forth/back extensions is `BFEquiv` at every ordinal. -/
+agreement and the forth/back extensions is `BFEquiv` at every ordinal.
+@isnad1 id=bfequiv.3h9v.s7.eed00796a686 from=translated src=- shape=e5876b68 vocab=0e6386bc
+-/
 theorem bfEquiv_all_of_extensionFamily {M' N' : Type w} [L.Structure M'] [L.Structure N']
     (R : ∀ n : ℕ, (Fin n → M') → (Fin n → N') → Prop)
     (hzero : ∀ {n : ℕ} {a : Fin n → M'} {b : Fin n → N'}, R n a b →
@@ -124,7 +126,9 @@ private theorem realize_closedScott_iff {P : Type w} [L.Structure P] (α : Ordin
 variable {P : Type w} [L.Structure P]
 
 omit [Countable (Σ l, L.Relations l)] in
-/-- Relational languages have (vacuously) countably many function symbols. -/
+/-- Relational languages have (vacuously) countably many function symbols.
+@isnad1 id=countabl.0h1v.s3.0efb7f5d68e0 from=translated src=- shape=8e460528 vocab=17930343
+-/
 theorem countable_functions_of_isRelational :
     Countable (Σ n, L.Functions n) := by
   have : ∀ n, IsEmpty (L.Functions n) := ‹L.IsRelational›
@@ -195,7 +199,9 @@ private theorem bfEquiv_succ_of_stabilizesCompletely_arbitrary {α : Ordinal}
       rfl] at hup
 
 /-- **Stabilized `BFEquiv` holds at every ordinal against arbitrary targets** — the extension
-family is `BFEquiv α` itself. -/
+family is `BFEquiv α` itself.
+@isnad1 id=bfequiv.3h8v.s6.d6bdea3987a7 from=translated src=- shape=8c98567e vocab=9c998444
+-/
 theorem bfEquiv_all_of_stabilizesCompletely_arbitrary {α : Ordinal}
     (hα : α < Ordinal.omega 1) (hstab : StabilizesCompletely (L := L) N α)
     {n : ℕ} {a : Fin n → N} {b : Fin n → P} (h : BFEquiv (L := L) α n a b) (β : Ordinal) :

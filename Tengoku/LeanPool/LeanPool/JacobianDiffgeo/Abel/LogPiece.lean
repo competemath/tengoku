@@ -72,6 +72,9 @@ namespace LogPieceData
 
 variable (P : LogPieceData)
 
+/--
+@isnad1 id=lt.0h1v.s4.578d0c641e0f from=translated src=- shape=2d3cbcd8 vocab=d26919d9
+-/
 theorem hρOut : P.ρ < P.χ.rOut := P.hρχ.trans P.χ.rIn_lt_rOut
 
 /-- The piece. -/
@@ -79,7 +82,9 @@ def g : ℂ → ℂ := fun z =>
   if ‖z - P.c‖ ≤ P.ρ then (z - P.β) / (z - P.α)
   else Complex.exp ((P.χ (z - P.c) : ℝ) * P.L (z - P.c))
 
-/-- The recentred branch composite and its derivative. -/
+/-- The recentred branch composite and its derivative.
+@isnad1 id=hasderiv.1h2v.s7.a03725093c1c from=translated src=- shape=404a6c74 vocab=70c6c43c
+-/
 theorem hasDerivAt_L_sub {z : ℂ} (hz : P.ρ < ‖z - P.c‖) :
     HasDerivAt (fun w => P.L (w - P.c)) (1 / (z - P.β) - 1 / (z - P.α)) z := by
   have h1 := (P.hL (z - P.c) hz).comp z ((hasDerivAt_id z).sub_const P.c)
@@ -88,12 +93,17 @@ theorem hasDerivAt_L_sub {z : ℂ} (hz : P.ρ < ‖z - P.c‖) :
     rw [mul_one, sub_sub_sub_cancel_right, sub_sub_sub_cancel_right]
   rwa [h2] at h1
 
+/--
+@isnad1 id=eq.1h2v.s6.5e8bd47eaf03 from=translated src=- shape=abb43b6e vocab=425492bb
+-/
 theorem exp_L_sub {z : ℂ} (hz : P.ρ < ‖z - P.c‖) :
     Complex.exp (P.L (z - P.c)) = (z - P.β) / (z - P.α) := by
   have := P.hLexp (z - P.c) hz
   rw [this, sub_sub_sub_cancel_right, sub_sub_sub_cancel_right]
 
-/-- Consistency on the transition annulus. -/
+/-- Consistency on the transition annulus.
+@isnad1 id=eq.2h2v.s6.b439dc31fa1b from=translated src=- shape=d28cc4d3 vocab=c0832744
+-/
 theorem g_consistent {z : ℂ} (hz1 : P.ρ < ‖z - P.c‖) (hz2 : ‖z - P.c‖ ≤ P.χ.rIn) :
     P.g z = (z - P.β) / (z - P.α) := by
   have hχ1 : P.χ (z - P.c) = 1 := P.χ.one_of_mem_closedBall (by
@@ -102,14 +112,18 @@ theorem g_consistent {z : ℂ} (hz1 : P.ρ < ‖z - P.c‖) (hz2 : ‖z - P.c‖
   rw [show ((1 : ℝ) : ℂ) * P.L (z - P.c) = P.L (z - P.c) by push_cast; ring]
   exact P.exp_L_sub hz1
 
-/-- The piece is `1` far from the center. -/
+/-- The piece is `1` far from the center.
+@isnad1 id=eq.1h2v.s5.8c9cb3f19919 from=translated src=- shape=268574c5 vocab=1a01ba6b
+-/
 theorem g_one {z : ℂ} (hz : P.χ.rOut ≤ ‖z - P.c‖) : P.g z = 1 := by
   have hzρ : P.ρ < ‖z - P.c‖ := lt_of_lt_of_le P.hρOut hz
   have hχ0 : P.χ (z - P.c) = 0 := P.χ.zero_of_le_dist (by rw [dist_zero_right]; exact hz)
   rw [g, ite_eq_right (not_le.mpr hzρ), hχ0]
   simp
 
-/-- The piece is the rational function on the whole inner ball. -/
+/-- The piece is the rational function on the whole inner ball.
+@isnad1 id=eqon.0h1v.s5.8afc793c66b5 from=translated src=- shape=8788e400 vocab=a789df2b
+-/
 theorem g_eqOn_inner : Set.EqOn P.g (fun z => (z - P.β) / (z - P.α)) (ball P.c P.χ.rIn) := by
   intro z hz
   rw [Metric.mem_ball, dist_eq_norm] at hz
@@ -117,21 +131,34 @@ theorem g_eqOn_inner : Set.EqOn P.g (fun z => (z - P.β) / (z - P.α)) (ball P.c
   · rw [g, ite_eq_left h]
   · exact P.g_consistent (not_le.mp h) hz.le
 
-/-- The piece agrees with `exp (χ L)` on the exterior region. -/
+/-- The piece agrees with `exp (χ L)` on the exterior region.
+@isnad1 id=eq.1h2v.s6.fc189c86370d from=translated src=- shape=4c404c5d vocab=3031216a
+-/
 theorem g_exp {z : ℂ} (hz : P.ρ < ‖z - P.c‖) :
     P.g z = Complex.exp ((P.χ (z - P.c) : ℝ) * P.L (z - P.c)) := by
   rw [g, ite_eq_right (not_le.mpr hz)]
 
+/--
+@isnad1 id=isopen.0h1v.s5.b467ffe45dc7 from=translated src=- shape=b89183f7 vocab=067f4b23
+-/
 theorem isOpen_exterior : IsOpen {w : ℂ | P.ρ < ‖w - P.c‖} :=
   isOpen_lt continuous_const (continuous_norm.comp (continuous_id.sub continuous_const))
 
+/--
+@isnad1 id=mem.1h2v.s5.b9dbe41df4c8 from=translated src=- shape=d876aab2 vocab=e7971aed
+-/
 theorem mem_exterior {z : ℂ} (hz : P.ρ < ‖z - P.c‖) :
     z ∈ {w : ℂ | P.ρ < ‖w - P.c‖} := hz
 
+/--
+@isnad1 id=not.1h2v.s5.4a596e8de9eb from=translated src=- shape=beb9bce1 vocab=e7971aed
+-/
 theorem notMem_exterior {z : ℂ} (hz : ¬ P.ρ < ‖z - P.c‖) :
     z ∉ {w : ℂ | P.ρ < ‖w - P.c‖} := hz
 
-/-- The bump-log product is real-smooth on the exterior region. -/
+/-- The bump-log product is real-smooth on the exterior region.
+@isnad1 id=contdiff.1h2v.s6.d0b64d82a2b5 from=translated src=- shape=7dc51695 vocab=0332baa9
+-/
 theorem contDiffAt_chiL {z : ℂ} (hz : P.ρ < ‖z - P.c‖) :
     ContDiffAt ℝ ∞ (fun w => ((P.χ (w - P.c) : ℝ) : ℂ) * P.L (w - P.c)) z := by
   have hL_diffOn : DifferentiableOn ℂ P.L {w : ℂ | P.ρ < ‖w‖} :=
@@ -148,7 +175,9 @@ theorem contDiffAt_chiL {z : ℂ} (hz : P.ρ < ‖z - P.c‖) :
     exact Complex.ofRealCLM.contDiff.contDiffAt.comp z hcomp
   exact hχ_contDiffAt.mul hL_contDiffAt
 
-/-- Real-smoothness of the piece off the pole. -/
+/-- Real-smoothness of the piece off the pole.
+@isnad1 id=contdiff.1h2v.s5.7d2866fd34e8 from=translated src=- shape=1627c2f9 vocab=16436681
+-/
 theorem g_contDiffAt {z : ℂ} (hz : z ≠ P.α) : ContDiffAt ℝ ∞ P.g z := by
   by_cases hcase : ‖z - P.c‖ < P.χ.rIn
   · have hzmem : z ∈ ball P.c P.χ.rIn := by rw [Metric.mem_ball, dist_eq_norm]; exact hcase
@@ -171,7 +200,9 @@ theorem g_contDiffAt {z : ℂ} (hz : z ≠ P.α) : ContDiffAt ℝ ∞ P.g z := b
       (Complex.contDiff_exp (𝕜 := ℝ)).contDiffAt.comp z (P.contDiffAt_chiL hzρ)
     exact hexp.congr_of_eventuallyEq heq
 
-/-- Non-vanishing off the divisor. -/
+/-- Non-vanishing off the divisor.
+@isnad1 id=ne.2h2v.s4.8f7947f8e9db from=translated src=- shape=1dd7c9fb vocab=55a5077c
+-/
 theorem g_ne_zero {z : ℂ} (hzα : z ≠ P.α) (hzβ : z ≠ P.β) : P.g z ≠ 0 := by
   by_cases hcase : ‖z - P.c‖ ≤ P.ρ
   · rw [g, ite_eq_left hcase]
@@ -179,6 +210,9 @@ theorem g_ne_zero {z : ℂ} (hzα : z ≠ P.α) (hzβ : z ≠ P.β) : P.g z ≠ 
   · rw [g, ite_eq_right hcase]
     exact Complex.exp_ne_zero _
 
+/--
+@isnad1 id=eq.0h1v.s3.d6cf29afa045 from=translated src=- shape=6ae13bdd vocab=7ba87af1
+-/
 theorem g_zero_at_zero : P.g P.β = 0 := by
   have hβmem : ‖P.β - P.c‖ < P.ρ := by
     have := P.hβ
@@ -192,7 +226,9 @@ def dlog : ℂ → ℂ :=
   {w : ℂ | P.ρ < ‖w - P.c‖}.indicator
     (RS.wirtingerDbar (fun w => ((P.χ (w - P.c) : ℝ) : ℂ) * P.L (w - P.c)))
 
-/-- The coefficient vanishes on the inner ball (where `χ ≡ 1` and `L` is holomorphic). -/
+/-- The coefficient vanishes on the inner ball (where `χ ≡ 1` and `L` is holomorphic).
+@isnad1 id=eq.1h2v.s5.8bf014d85678 from=translated src=- shape=ff8cbdda vocab=bd086a32
+-/
 theorem dlog_eq_zero_inner {z : ℂ} (hz : ‖z - P.c‖ < P.χ.rIn) : P.dlog z = 0 := by
   by_cases hzρ : P.ρ < ‖z - P.c‖
   · rw [dlog, Set.indicator_of_mem (P.mem_exterior hzρ)]
@@ -212,7 +248,9 @@ theorem dlog_eq_zero_inner {z : ℂ} (hz : ‖z - P.c‖ < P.χ.rIn) : P.dlog z 
       ((P.hasDerivAt_L_sub hzρ).differentiableAt)
   · rw [dlog, Set.indicator_of_notMem (P.notMem_exterior hzρ)]
 
-/-- The coefficient vanishes outside the closed bump ball. -/
+/-- The coefficient vanishes outside the closed bump ball.
+@isnad1 id=eq.1h2v.s5.0c963e61c608 from=translated src=- shape=268574c5 vocab=3047ed4c
+-/
 theorem dlog_eq_zero_outer {z : ℂ} (hz : P.χ.rOut < ‖z - P.c‖) : P.dlog z = 0 := by
   have hzρ : P.ρ < ‖z - P.c‖ := P.hρOut.trans hz
   rw [dlog, Set.indicator_of_mem (P.mem_exterior hzρ)]
@@ -229,7 +267,9 @@ theorem dlog_eq_zero_outer {z : ℂ} (hz : P.χ.rOut < ‖z - P.c‖) : P.dlog z
   rw [RS.wirtingerDbar_congr_nhds _ _ z hev]
   exact RS.wirtingerDbar_const z 0
 
-/-- The support of the coefficient sits in the closed bump annulus. -/
+/-- The support of the coefficient sits in the closed bump annulus.
+@isnad1 id=le.0h1v.s6.11902cd10737 from=translated src=- shape=adb3a833 vocab=44f5ad87
+-/
 theorem support_dlog_subset :
     Function.support P.dlog ⊆ closedBall P.c P.χ.rOut \ ball P.c P.χ.rIn := by
   intro z hz
@@ -242,7 +282,9 @@ theorem support_dlog_subset :
     intro hin
     exact hz (P.dlog_eq_zero_inner hin)
 
-/-- Global smoothness of the coefficient. -/
+/-- Global smoothness of the coefficient.
+@isnad1 id=contdiff.0h1v.s5.f986726c68c9 from=translated src=- shape=a7a00f31 vocab=77316407
+-/
 theorem contDiff_dlog : ContDiff ℝ ∞ P.dlog := by
   rw [contDiff_iff_contDiffAt]
   intro z
@@ -270,7 +312,9 @@ theorem contDiff_dlog : ContDiff ℝ ∞ P.dlog := by
 
 /-! ## The exponential chain rule and the logarithmic-derivative identity -/
 
-/-- `dbar(exp v) = exp v · dbarv` for real-differentiable `v`. -/
+/-- `dbar(exp v) = exp v · dbarv` for real-differentiable `v`.
+@isnad1 id=eq.1h2v.s7.9900f2f3b534 from=translated src=- shape=cfbaad99 vocab=97a12214
+-/
 theorem wirtingerDbar_cexp (v : ℂ → ℂ) (z : ℂ) (hv : DifferentiableAt ℝ v z) :
     RS.wirtingerDbar (fun w => Complex.exp (v w)) z
       = Complex.exp (v z) * RS.wirtingerDbar v z := by
@@ -281,7 +325,9 @@ theorem wirtingerDbar_cexp (v : ℂ → ℂ) (z : ℂ) (hv : DifferentiableAt �
   simp only [smul_apply, smul_eq_mul]
   ring
 
-/-- **The logarithmic-derivative identity**: `dbarg = dlog · g` off the divisor. -/
+/-- **The logarithmic-derivative identity**: `dbarg = dlog · g` off the divisor.
+@isnad1 id=eq.2h2v.s5.c7e26d9f09cf from=translated src=- shape=eedbfc76 vocab=f0b5ab91
+-/
 theorem wirtingerDbar_g {z : ℂ} (hzα : z ≠ P.α) (_hzβ : z ≠ P.β) :
     RS.wirtingerDbar P.g z = P.dlog z * P.g z := by
   by_cases hcase : ‖z - P.c‖ < P.χ.rIn
@@ -308,7 +354,9 @@ theorem wirtingerDbar_g {z : ℂ} (hzα : z ≠ P.α) (_hzβ : z ≠ P.β) :
 
 /-! ## Punctured-limit factorizations (order bookkeeping inputs) -/
 
-/-- At the zero `β`: `g(z)/(z - β) → (β - α)⁻¹ ≠ 0`. -/
+/-- At the zero `β`: `g(z)/(z - β) → (β - α)⁻¹ ≠ 0`.
+@isnad1 id=tendsto.0h1v.s6.45766f8c795c from=translated src=- shape=107e44d4 vocab=7faa4668
+-/
 theorem tendsto_zero_factor :
     Tendsto (fun z => P.g z * (z - P.β)⁻¹) (nhdsWithin P.β {P.β}ᶜ)
       (nhds ((P.β - P.α)⁻¹)) := by
@@ -330,7 +378,9 @@ theorem tendsto_zero_factor :
     exact ((continuous_id.sub continuous_const).continuousAt).inv₀ hne
   exact hcont.continuousWithinAt.tendsto
 
-/-- At the pole `α`: `g(z)·(z - α) → α - β ≠ 0`. -/
+/-- At the pole `α`: `g(z)·(z - α) → α - β ≠ 0`.
+@isnad1 id=tendsto.0h1v.s6.5db2954ad04c from=translated src=- shape=7710493e vocab=1356e73f
+-/
 theorem tendsto_pole_factor :
     Tendsto (fun z => P.g z * (z - P.α)) (nhdsWithin P.α {P.α}ᶜ)
       (nhds (P.α - P.β)) := by
@@ -423,7 +473,9 @@ private theorem circleIntegral_two_pole {r : ℝ} (hr : P.χ.rOut < r) {Gp : ℂ
   ring
 
 /-- **The residue identity**: for a holomorphic primitive `Gp` of `w` on a ball containing the
-whole piece, `∫ dlog · w dA = π (Gp β - Gp α)`. -/
+whole piece, `∫ dlog · w dA = π (Gp β - Gp α)`.
+@isnad1 id=eq.2h4v.s7.5ff6e14d5146 from=translated src=- shape=b23344e5 vocab=a94ad9cc
+-/
 theorem integral_dlog_mul {r : ℝ} (hr : P.χ.rOut < r) {w Gp : ℂ → ℂ}
     (hprim : ∀ z ∈ ball P.c r, HasDerivAt Gp (w z) z) :
     ∫ z : ℂ, P.dlog z * w z = (Real.pi : ℂ) * (Gp P.β - Gp P.α) := by

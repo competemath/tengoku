@@ -35,7 +35,9 @@ variable {L : Language.{0, 0}} {α : Type}
 /-- **Cross-language entailment bridge**: if the `mapLanguage`-images of `Γ₀` entail the
 `mapLanguage`-image of `φ` over `L[[ℕ]]`, then `Γ₀` entails `φ` over `L`. Proof: lift an
 arbitrary base model by interpreting every fresh constant as a fixed element; realization of a
-`mapLanguage`-image equals realization in the reduct (`realize_mapLanguage`). -/
+`mapLanguage`-image equals realization in the reduct (`realize_mapLanguage`).
+@isnad1 id=entails.1h3v.s5.4858cabde9d5 from=translated src=- shape=027f04c5 vocab=29f6a132
+-/
 theorem entails_reduct_of_entails_map {Γ₀ : Set L.Sentenceω} {φ : L.Sentenceω}
     (hE : Theoryω.Entails (BoundedFormulaω.mapLanguage (L.lhomWithConstants ℕ) '' Γ₀)
             (φ.mapLanguage (L.lhomWithConstants ℕ))) :
@@ -53,7 +55,9 @@ theorem entails_reduct_of_entails_map {Γ₀ : Set L.Sentenceω} {φ : L.Sentenc
 
 /-- **The root gate**: an empty-support `L[[ℕ]]`-separator of the `mapLanguage`-images of
 `(Γ₀, Δ₀)` strips to a genuine base-language interpolant — a sentence with symbols bounded by
-the separator's base symbols, entailed by `Γ₀` and refuting `Δ₀`. -/
+the separator's base symbols, entailed by `Γ₀` and refuting `Δ₀`.
+@isnad1 id=ex.3h4v.s7.df5d5eca655a from=translated src=- shape=7464ef50 vocab=2c6773ca
+-/
 theorem base_interpolant_of_empty_support_separator {Γ₀ Δ₀ : Set L.Sentenceω}
     (σ : L[[ℕ]].Sentenceω)
     (hsupp : sentenceJConsts (L' := L) (J := ℕ) σ ⊆ ∅)
@@ -73,7 +77,9 @@ theorem base_interpolant_of_empty_support_separator {Γ₀ Δ₀ : Set L.Sentenc
 
 /-! ## The semantic contraposition / singleton bridge -/
 
-/-- **Semantic contraposition (singleton form)**: `{r₂.not} ⊨ θ.not` is `{θ} ⊨ r₂`. -/
+/-- **Semantic contraposition (singleton form)**: `{r₂.not} ⊨ θ.not` is `{θ} ⊨ r₂`.
+@isnad1 id=entails.1h3v.s5.ba323f3a1283 from=translated src=- shape=764390b1 vocab=718e7658
+-/
 theorem entails_singleton_of_neg_entails_neg {r₂ θ : L.Sentenceω}
     (hE : Theoryω.Entails {r₂.not} θ.not) : Theoryω.Entails {θ} r₂ := by
   intro M _ _ hmodel

@@ -95,6 +95,9 @@ private lemma pairDeriv_sum_eq {N : ℕ} (θ : Fin N → ℝ) (i : Fin N) :
     _ = 2 * ∑ j : Fin N, Real.sin (θ j - θ i) := by
           ring
 
+/--
+@isnad1 id=eq.2h4v.s6.6c0d3e9d2318 from=translated src=- shape=b5468c2e vocab=92763880
+-/
 theorem kuramoto_gradient_identity
     (K : ℝ) (N : ℕ) (hN : 0 < N) (hK : 0 < K)
     (θ : Fin N → ℝ) (i : Fin N) :

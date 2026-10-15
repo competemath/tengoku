@@ -70,7 +70,9 @@ private theorem graphValue_unique (hAx : Sentenceω.Realize (graphAxioms F) M) {
   funMap f xs := graphValue hAx f xs
   RelMap R xs := RelMap (L := graphLanguage L) (GraphRelation.base R) xs
 
-/-- Base relations are copied directly — definitionally. -/
+/-- Base relations are copied directly — definitionally.
+@isnad1 id=iff.1h6v.s6.be762fc45666 from=translated src=- shape=c8fc0b34 vocab=860930fd
+-/
 theorem reconstruct_relMap_base (hAx : Sentenceω.Realize (graphAxioms F) M) {n : ℕ}
     (R : L.Relations n) (v : Fin n → M) :
     (reconstructStructure F hAx).RelMap R v ↔
@@ -95,7 +97,9 @@ private theorem graphExpansion_reconstruct_relMap_graph (hAx : Sentenceω.Realiz
 
 /-- **The capstone** (consumer-shaped): for formulas whose function support lies in `F`, the
 relationalized formula in the ambient graph structure realizes exactly as the original formula
-in the reconstruction. The choice outside `F` never enters. -/
+in the reconstruction. The choice outside `F` never enters.
+@isnad1 id=iff.2h8v.s6.ab21a1a86085 from=translated src=- shape=8df22c23 vocab=62cc54f4
+-/
 theorem realize_relationalize_reconstruct {α : Type}
     (hAx : Sentenceω.Realize (graphAxioms F) M) {n : ℕ} (φ : L.BoundedFormulaω α n)
     (hφ : φ.functionsIn ⊆ F) (v : α → M) (xs : Fin n → M) :

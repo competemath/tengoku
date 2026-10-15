@@ -28,24 +28,32 @@ open scoped BigOperators
 
 noncomputable section
 
-/-- If `π` is not transcendental over `ℚ`, then `π` is algebraic over `ℚ`. -/
+/-- If `π` is not transcendental over `ℚ`, then `π` is algebraic over `ℚ`.
+@isnad1 id=isalgebr.1h0v.s4.9f1bf8b56665 from=translated src=- shape=e55dc602 vocab=dea50079
+-/
 lemma isAlgebraic_pi_of_not_transcendental_pi
     (hpi : ¬ Transcendental ℚ (Real.pi : ℂ)) : IsAlgebraic ℚ (Real.pi : ℂ) := by
   simpa [Transcendental] using hpi
 
-/-- If `π` is algebraic over `ℚ`, then so is `π i`. -/
+/-- If `π` is algebraic over `ℚ`, then so is `π i`.
+@isnad1 id=isalgebr.1h0v.s5.9567ab4dcb2d from=translated src=- shape=a83b3448 vocab=9b925c3e
+-/
 lemma isAlgebraic_I_mul_pi_of_isAlgebraic_pi
     (hpi : IsAlgebraic ℚ (Real.pi : ℂ)) : IsAlgebraic ℚ (Real.pi * I : ℂ) := by
   simpa [mul_comm] using (isAlgebraic_iff_isIntegral.2 (Complex.isIntegral_I ℚ)).mul hpi
 
-/-- If `π i` is algebraic over `ℚ`, there is a monic rational polynomial vanishing at `π i`. -/
+/-- If `π i` is algebraic over `ℚ`, there is a monic rational polynomial vanishing at `π i`.
+@isnad1 id=ex.1h0v.s7.a8edc2fac426 from=translated src=- shape=01ecf70f vocab=d71f4aa0
+-/
 lemma exists_monic_rat_poly_aeval_Ipi_eq_zero
     (hpi : IsAlgebraic ℚ (Real.pi * I : ℂ)) :
     ∃ B : ℚ[X], B.Monic ∧ aeval (Real.pi * I) B = 0 := by
   exact ⟨minpoly ℚ (Real.pi * I : ℂ), minpoly.monic hpi.isIntegral,
     minpoly.aeval ℚ (Real.pi * I : ℂ)⟩
 
-/-- The complex number `π` is transcendental over `ℚ`. -/
+/-- The complex number `π` is transcendental over `ℚ`.
+@isnad1 id=transcen.0h0v.s3.8d0cd2a2af41 from=translated src=- shape=8a3f668c vocab=f2c4d7b0
+-/
 theorem IsTranscendentalPi : Transcendental ℚ (Real.pi : ℂ) := by
   by_contra hpi
   obtain ⟨B, hBmonic, hBroot⟩ := exists_monic_rat_poly_aeval_Ipi_eq_zero
@@ -112,7 +120,9 @@ theorem IsTranscendentalPi : Transcendental ℚ (Real.pi : ℂ) := by
         change (q : ℕ) ≤ p
         exact le_trans (le_max_right N (q : ℕ)) hp)
 
-/-- The real number `π` is transcendental over `ℚ`. -/
+/-- The real number `π` is transcendental over `ℚ`.
+@isnad1 id=transcen.0h0v.s3.a352772cc0ad from=translated src=- shape=54c8eceb vocab=dce33b3d
+-/
 theorem IsTranscendentalPiReal : Transcendental ℚ (Real.pi : ℝ) :=
   (transcendental_algebraMap_iff
     (R := ℚ) (S := ℝ) (A := ℂ) Complex.ofReal_injective).1 IsTranscendentalPi

@@ -45,16 +45,24 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
   chart_mem_atlas _ := Set.mem_range_self _
 
 omit [NormedSpace ℂ E] in
+/--
+@isnad1 id=eq.1h6v.s6.585c198f0432 from=translated src=- shape=0b04ba4d vocab=74999d10
+-/
 @[simp] theorem chartedSpaceOfFamily'_chartAt (c : ι → OpenPartialHomeomorph Z E)
     (idx : Z → ι) (h : ∀ z, z ∈ (c (idx z)).source) (z : Z) :
     @chartAt E _ Z _ (chartedSpaceOfFamily' c idx h) z = c (idx z) := rfl
 
 omit [NormedSpace ℂ E] in
+/--
+@isnad1 id=eq.1h5v.s7.b5f1f66558c2 from=translated src=- shape=163fa300 vocab=7dd2701f
+-/
 @[simp] theorem chartedSpaceOfFamily'_atlas (c : ι → OpenPartialHomeomorph Z E)
     (idx : Z → ι) (h : ∀ z, z ∈ (c (idx z)).source) :
     @atlas E _ Z _ (chartedSpaceOfFamily' c idx h) = Set.range c := rfl
 
-/-- An atlas with `ℂ`-analytic transition maps is an `ω`-manifold (model `𝓘(ℂ, E)`). -/
+/-- An atlas with `ℂ`-analytic transition maps is an `ω`-manifold (model `𝓘(ℂ, E)`).
+@isnad1 id=ismanifo.1h2v.s8.945abfff2c6a from=translated src=- shape=05eea01a vocab=61a2c66f
+-/
 theorem isManifold_of_analyticOn_transitions' [ChartedSpace E Z]
     (h : ∀ e ∈ atlas E Z, ∀ e' ∈ atlas E Z,
       AnalyticOnNhd ℂ (e.symm ≫ₕ e') (e.symm ≫ₕ e').source) :
@@ -64,7 +72,9 @@ theorem isManifold_of_analyticOn_transitions' [ChartedSpace E Z]
   have hs : IsOpen (e.symm ≫ₕ e').source := (e.symm ≫ₕ e').open_source
   simpa using (contDiffOn_omega_iff_analyticOn hs.uniqueDiffOn).2 ((h e he e' he').analyticOn)
 
-/-- Family version: pairwise-analytic transitions of the generating family suffice. -/
+/-- Family version: pairwise-analytic transitions of the generating family suffice.
+@isnad1 id=ismanifo.2h5v.s8.5b5c2f81c0be from=translated src=- shape=ca66d863 vocab=79206ffb
+-/
 theorem isManifold_of_family' (c : ι → OpenPartialHomeomorph Z E) (idx : Z → ι)
     (h : ∀ z, z ∈ (c (idx z)).source)
     (htrans : ∀ i j, AnalyticOnNhd ℂ ((c i).symm ≫ₕ c j) ((c i).symm ≫ₕ c j).source) :

@@ -42,12 +42,18 @@ noncomputable def principalPartAt (f : ℂ → ℂ) (z₀ : ℂ) : ℂ → ℂ :
   ∑ k ∈ Finset.Icc (meromorphicOrderAt f z₀).untop₀ (-1),
     laurentCoeffAt f z₀ k * (z - z₀) ^ k
 
+/--
+@isnad1 id=meromorp.0h2v.s4.c4b168a78ca3 from=translated src=- shape=134d61c1 vocab=5a97e47b
+-/
 theorem meromorphicAt_principalPartAt : MeromorphicAt (principalPartAt f z₀) z₀ := by
   unfold principalPartAt
   apply MeromorphicAt.fun_sum
   intro i _
   fun_prop
 
+/--
+@isnad1 id=analytic.0h2v.s5.7122b411a7a0 from=translated src=- shape=dca1bf33 vocab=f83aa0e2
+-/
 theorem analyticOnNhd_principalPartAt : AnalyticOnNhd ℂ (principalPartAt f z₀) {z₀}ᶜ := by
   intro w hw
   have hwne : w ≠ z₀ := hw
@@ -61,6 +67,9 @@ theorem analyticOnNhd_principalPartAt : AnalyticOnNhd ℂ (principalPartAt f z�
     analyticAt_const.mul hz
   exact this
 
+/--
+@isnad1 id=eq.1h2v.s6.56800a947810 from=translated src=- shape=49c7dbb0 vocab=de9317f6
+-/
 theorem principalPartAt_eq_zero_of_order_nonneg (h : 0 ≤ meromorphicOrderAt f z₀) :
     principalPartAt f z₀ = 0 := by
   have huntop : (0 : ℤ) ≤ (meromorphicOrderAt f z₀).untop₀ := WithTop.untop₀_nonneg.2 h
@@ -70,12 +79,17 @@ theorem principalPartAt_eq_zero_of_order_nonneg (h : 0 ≤ meromorphicOrderAt f 
     Finset.sum_empty]
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.798c29e98ffa from=translated src=- shape=8efae710 vocab=64b750a7
+-/
 theorem principalPartAt_of_order_eq_top (h : meromorphicOrderAt f z₀ = ⊤) :
     principalPartAt f z₀ = 0 :=
   principalPartAt_eq_zero_of_order_nonneg (by rw [h]; exact le_top)
 
 /-- THE decomposition: `f = (principal part) + (analytic)` on a punctured neighborhood.
-The analytic part's Taylor coefficients are the nonnegative Laurent coefficients of `f`. -/
+The analytic part's Taylor coefficients are the nonnegative Laurent coefficients of `f`.
+@isnad1 id=ex.1h2v.s6.433e7bc23bce from=translated src=- shape=b774090f vocab=e9ee8ffb
+-/
 theorem MeromorphicAt.exists_principalPart_add_analyticAt (hf : MeromorphicAt f z₀) :
     ∃ h : ℂ → ℂ, AnalyticAt ℂ h z₀ ∧
       (∀ j : ℕ, taylorCoeffAt h z₀ j = laurentCoeffAt f z₀ (j : ℤ)) ∧
@@ -161,7 +175,9 @@ theorem MeromorphicAt.exists_principalPart_add_analyticAt (hf : MeromorphicAt f 
         omega
 
 /-- Repair form (`MeromorphicNFAt`-compatible corollary): subtracting the principal part
-leaves a germ of nonnegative order. -/
+leaves a germ of nonnegative order.
+@isnad1 id=le.1h2v.s6.a6c56eb118bf from=translated src=- shape=af79c091 vocab=bd31ca35
+-/
 theorem MeromorphicAt.orderAt_sub_principalPartAt_nonneg (hf : MeromorphicAt f z₀) :
     0 ≤ meromorphicOrderAt (fun z => f z - principalPartAt f z₀ z) z₀ := by
   obtain ⟨h, hh, _, hdecomp⟩ := MeromorphicAt.exists_principalPart_add_analyticAt hf

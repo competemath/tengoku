@@ -44,7 +44,9 @@ variable {L : Language.{0, 0}}
 
 /-! ## The range split -/
 
-/-- Odd (Henkin) constants lie outside the rational range — parity. -/
+/-- Odd (Henkin) constants lie outside the rational range — parity.
+@isnad1 id=not.0h1v.s3.7296a8d32657 from=translated src=- shape=d2b0b838 vocab=54340210
+-/
 theorem henkinConstIdx_notMem_range_ratConstIdx (n : ℕ) :
     henkinConstIdx n ∉ Set.range ratConstIdx := by
   rintro ⟨q, hq⟩
@@ -52,7 +54,9 @@ theorem henkinConstIdx_notMem_range_ratConstIdx (n : ℕ) :
 
 /-! ## `ω₁` arithmetic -/
 
-/-- `ω₁` is closed under addition. -/
+/-- `ω₁` is closed under addition.
+@isnad1 id=lt.2h2v.s7.35f5f1cce817 from=translated src=- shape=6f528d7a vocab=f815fa3e
+-/
 theorem add_lt_omega1 {α β : Ordinal.{0}} (hα : α < (Cardinal.aleph 1).ord)
     (hβ : β < (Cardinal.aleph 1).ord) : α + β < (Cardinal.aleph 1).ord := by
   rw [Cardinal.lt_ord] at hα hβ ⊢
@@ -60,7 +64,9 @@ theorem add_lt_omega1 {α β : Ordinal.{0}} (hα : α < (Cardinal.aleph 1).ord)
     _ < Cardinal.aleph 1 :=
       Cardinal.add_lt_of_lt (le_of_lt Cardinal.aleph0_lt_aleph_one) hα hβ
 
-/-- `ω₁` is closed under successor. -/
+/-- `ω₁` is closed under successor.
+@isnad1 id=lt.1h1v.s6.9a191529f27f from=translated src=- shape=76da80c9 vocab=f815fa3e
+-/
 theorem add_one_lt_omega1 {α : Ordinal.{0}} (hα : α < (Cardinal.aleph 1).ord) :
     α + 1 < (Cardinal.aleph 1).ord := by
   have hlim : Order.IsSuccLimit ((Cardinal.aleph 1).ord) :=
@@ -193,7 +199,9 @@ def StarWitness.addSentence {φ : L.Sentenceω} {lt : L.Relations 2}
 produce a witness at `α` whose marking covers `q₀`.  Already-marked rationals need only
 downward closure; an unmarked rational is automatically fresh for the remainder
 (`mark_cover`), so its constant re-points to the engine's chain point at the
-strict-monotonicity slot. -/
+strict-monotonicity slot.
+@isnad1 id=ex.1h8v.s7.db0808d95fc8 from=translated src=- shape=0d797807 vocab=43fa940d
+-/
 theorem StarWitness.mark_rat {φ : L.Sentenceω} {lt : L.Relations 2}
     {Γ : Set L[[ℕ]].Sentenceω} {α β : Ordinal.{0}} (W : StarWitness φ lt Γ β)
     (hβ : α + α < β) (q₀ : ℚ) :

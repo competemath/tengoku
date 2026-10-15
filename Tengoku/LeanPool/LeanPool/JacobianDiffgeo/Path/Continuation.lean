@@ -42,20 +42,34 @@ variable {x y z : X}
 /-- Clamp a real number into `[0,1]`. -/
 def clampI (u : ℝ) : ℝ := max 0 (min u 1)
 
+/--
+@isnad1 id=mem.0h1v.s4.8fdd2bc3df64 from=translated src=- shape=828ff9db vocab=93d6aa2d
+-/
 theorem clampI_mem (u : ℝ) : clampI u ∈ Icc (0 : ℝ) 1 :=
   ⟨le_max_left _ _, max_le zero_le_one (min_le_right _ _)⟩
 
+/--
+@isnad1 id=continuo.0h0v.s3.421ec56fea74 from=translated src=- shape=e3d48bcb vocab=62375df3
+-/
 theorem continuous_clampI : Continuous clampI :=
   continuous_const.max (continuous_id.min continuous_const)
 
+/--
+@isnad1 id=eq.0h0v.s3.451e30fdcdc5 from=translated src=- shape=3c26ae4f vocab=7f034e9e
+-/
 theorem clampI_zero : clampI 0 = 0 := by
   unfold clampI; rw [min_eq_left zero_le_one, max_eq_right le_rfl]
 
+/--
+@isnad1 id=eq.0h0v.s3.825ff9b20846 from=translated src=- shape=3c26ae4f vocab=7f034e9e
+-/
 theorem clampI_one : clampI 1 = 1 := by
   unfold clampI; rw [min_eq_right le_rfl, max_eq_right zero_le_one]
 
 omit [ChartedSpace ℂ X] [IsManifold 𝓘(ℂ) ω X] in
-/-- `γ.extend` is invariant under clamping its argument into `[0,1]`. -/
+/-- `γ.extend` is invariant under clamping its argument into `[0,1]`.
+@isnad1 id=eq.0h5v.s6.6e9c8b06486c from=translated src=- shape=4f0bb84d vocab=7716f8f8
+-/
 theorem extend_clampI (γ : Path x y) (u : ℝ) : γ.extend (clampI u) = γ.extend u := by
   by_cases h0 : u ≤ 0
   · have hc : clampI u = 0 := by
@@ -108,6 +122,9 @@ private theorem isPreconnected_adjacent_inter {l c d : ℝ} (hlc : l ≤ c) (hcd
     rw [Icc_inter_Icc, sup_eq_right.mpr hlc, inf_eq_left.mpr hcd, Icc_self]
   rw [heq]; exact isPreconnected_singleton
 
+/--
+@isnad1 id=ex.0h5v.s6.a62cd554592b from=translated src=- shape=b7f976f1 vocab=a02525eb
+-/
 theorem exists_isPrimitiveAlong (γ : Path x y) (η : Form1 X) :
     ∃ F : ℝ → ℂ, IsPrimitiveAlong γ η F ∧ F 0 = 0 := by
   obtain ⟨C⟩ := exists_chartChain γ
@@ -168,6 +185,9 @@ primitive: `pathIntegral γ η = F 1 - F 0`. -/
 noncomputable def pathIntegral (γ : Path x y) (η : Form1 X) : ℂ :=
   (exists_isPrimitiveAlong γ η).choose 1
 
+/--
+@isnad1 id=eq.1h6v.s7.3dfc0b36d186 from=translated src=- shape=7e8064df vocab=f3ccbc45
+-/
 theorem IsPrimitiveAlong.pathIntegral_eq {γ : Path x y} {η : Form1 X} {F : ℝ → ℂ}
     (hF : IsPrimitiveAlong γ η F) : pathIntegral γ η = F 1 - F 0 := by
   obtain ⟨hF', hF'0⟩ := (exists_isPrimitiveAlong γ η).choose_spec
@@ -179,6 +199,9 @@ theorem IsPrimitiveAlong.pathIntegral_eq {γ : Path x y} {η : Form1 X} {F : ℝ
 
 /-! ### Path algebra -/
 
+/--
+@isnad1 id=eq.0h3v.s6.ff097fce1f87 from=translated src=- shape=63ddf99e vocab=a338bcfa
+-/
 @[simp]
 theorem pathIntegral_refl (x : X) (η : Form1 X) : pathIntegral (Path.refl x) η = 0 := by
   set e := chartAt ℂ x with he_def
@@ -193,6 +216,9 @@ theorem pathIntegral_refl (x : X) (η : Form1 X) : pathIntegral (Path.refl x) η
   rw [hF.pathIntegral_eq]
   simp [Path.refl_extend]
 
+/--
+@isnad1 id=eq.0h5v.s6.6bb510f3f170 from=translated src=- shape=a13a067f vocab=8a0de6dc
+-/
 @[simp]
 theorem pathIntegral_symm (γ : Path x y) (η : Form1 X) :
     pathIntegral γ.symm η = -pathIntegral γ η := by
@@ -209,6 +235,9 @@ theorem pathIntegral_symm (γ : Path x y) (η : Form1 X) :
   rw [hF.pathIntegral_eq]
   ring
 
+/--
+@isnad1 id=eq.0h7v.s7.40c252c02c2f from=translated src=- shape=c245addc vocab=79491d8d
+-/
 theorem pathIntegral_trans (γ : Path x y) (γ' : Path y z) (η : Form1 X) :
     pathIntegral (γ.trans γ') η = pathIntegral γ η + pathIntegral γ' η := by
   obtain ⟨H, hH, hH0⟩ := exists_isPrimitiveAlong (γ.trans γ') η
@@ -245,6 +274,9 @@ theorem pathIntegral_trans (γ : Path x y) (γ' : Path y z) (η : Form1 X) :
   rw [clampI_zero, clampI_one]
   norm_num
 
+/--
+@isnad1 id=eq.3h6v.s7.15faecee62e3 from=translated src=- shape=c14b1ed9 vocab=4d13ae66
+-/
 theorem pathIntegral_reparam (γ : Path x y) {f : I → I} (hf : Continuous f)
     (h₀ : f 0 = 0) (h₁ : f 1 = 1) (η : Form1 X) :
     pathIntegral (γ.reparam f hf h₀ h₁) η = pathIntegral γ η := by
@@ -284,6 +316,9 @@ theorem pathIntegral_reparam (γ : Path x y) {f : I → I} (hf : Continuous f)
     rw [hp, h₀, Set.Icc.coe_zero]
   rw [hφ1, hφ0]
 
+/--
+@isnad1 id=eq.2h7v.s7.e9376a859f12 from=translated src=- shape=d8cd91c0 vocab=11c102eb
+-/
 @[simp]
 theorem pathIntegral_cast {x' y' : X} (γ : Path x y) (hx : x' = x) (hy : y' = y) (η : Form1 X) :
     pathIntegral (γ.cast hx hy) η = pathIntegral γ η := by
@@ -292,6 +327,9 @@ theorem pathIntegral_cast {x' y' : X} (γ : Path x y) (hx : x' = x) (hy : y' = y
 
 /-! ### ℂ-linearity in the form -/
 
+/--
+@isnad1 id=eq.0h6v.s11.3dd56037e8bd from=translated src=- shape=469a71ea vocab=e4212154
+-/
 theorem pathIntegral_add (γ : Path x y) (η θ : Form1 X) :
     pathIntegral γ (η + θ) = pathIntegral γ η + pathIntegral γ θ := by
   obtain ⟨F, hF, hF0⟩ := exists_isPrimitiveAlong γ η
@@ -309,6 +347,9 @@ theorem pathIntegral_add (γ : Path x y) (η θ : Form1 X) :
   rw [hsum.pathIntegral_eq, hF.pathIntegral_eq, hG.pathIntegral_eq]
   ring
 
+/--
+@isnad1 id=eq.0h6v.s11.ffa26b7e1c98 from=translated src=- shape=51adff71 vocab=f4349675
+-/
 theorem pathIntegral_smul (γ : Path x y) (c : ℂ) (η : Form1 X) :
     pathIntegral γ (c • η) = c * pathIntegral γ η := by
   obtain ⟨F, hF, hF0⟩ := exists_isPrimitiveAlong γ η
@@ -323,6 +364,9 @@ theorem pathIntegral_smul (γ : Path x y) (c : ℂ) (η : Form1 X) :
   rw [hsmul.pathIntegral_eq, hF.pathIntegral_eq]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s11.1f15985d5484 from=translated src=- shape=68f5e441 vocab=c71ade1d
+-/
 @[simp]
 theorem pathIntegral_zero_form (γ : Path x y) : pathIntegral γ (0 : Form1 X) = 0 := by
   have hz : IsPrimitiveAlong γ (0 : Form1 X) (fun _ => (0:ℂ)) := by

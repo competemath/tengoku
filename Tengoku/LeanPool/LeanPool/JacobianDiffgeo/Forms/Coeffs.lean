@@ -55,12 +55,17 @@ def coeffIn (e : OpenPartialHomeomorph X ℂ) (η : Form1 X) (z : ℂ) : ℂ :=
 def coeffAt (x : X) (η : Form1 X) : ℂ := coeffIn (chartAt ℂ x) η (chartAt ℂ x x)
 
 /-- Restricting a chart does not change the coefficient function (the underlying chart maps are
-unchanged by `restr`). -/
+unchanged by `restr`).
+@isnad1 id=eq.0h4v.s7.da63b5175b85 from=translated src=- shape=ae8e498c vocab=15f7b685
+-/
 @[simp]
 theorem coeffIn_restr (e : OpenPartialHomeomorph X ℂ) (V : Set X) (η : Form1 X) :
     coeffIn (e.restr V) η = coeffIn e η := rfl
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=eq.0h4v.s8.e6a5bb88ad58 from=translated src=- shape=c17a6d42 vocab=96c21ab7
+-/
 @[simp]
 theorem coeffInFun_restr (e : OpenPartialHomeomorph X ℂ) (V : Set X)
     (σ : ∀ x : X, TangentSpace 𝓘(ℂ) x →L[ℂ] Bundle.Trivial X ℂ x) :
@@ -68,45 +73,75 @@ theorem coeffInFun_restr (e : OpenPartialHomeomorph X ℂ) (V : Set X)
 
 /-! ### Linearity in the form -/
 
+/--
+@isnad1 id=eq.0h5v.s11.fa77541bc8d8 from=translated src=- shape=1444575c vocab=2763dd0b
+-/
 @[simp]
 theorem coeffIn_add (e : OpenPartialHomeomorph X ℂ) (η η' : Form1 X) (z : ℂ) :
     coeffIn e (η + η') z = coeffIn e η z + coeffIn e η' z := by
   simp [coeffIn, coeffInFun]
 
+/--
+@isnad1 id=eq.0h5v.s11.e04c390438db from=translated src=- shape=1615d85a vocab=b9b65c1c
+-/
 @[simp]
 theorem coeffIn_smul (e : OpenPartialHomeomorph X ℂ) (c : ℂ) (η : Form1 X) (z : ℂ) :
     coeffIn e (c • η) z = c * coeffIn e η z := by
   simp [coeffIn, coeffInFun]
 
+/--
+@isnad1 id=eq.0h3v.s11.c9aeef1dbc60 from=translated src=- shape=d0e236e7 vocab=4d845f8b
+-/
 @[simp]
 theorem coeffIn_zero (e : OpenPartialHomeomorph X ℂ) (z : ℂ) :
     coeffIn e (0 : Form1 X) z = 0 := by
   simp [coeffIn, coeffInFun]
 
+/--
+@isnad1 id=eq.0h4v.s11.6ea75956ce77 from=translated src=- shape=eb0ebd16 vocab=c31a6665
+-/
 @[simp]
 theorem coeffIn_neg (e : OpenPartialHomeomorph X ℂ) (η : Form1 X) (z : ℂ) :
     coeffIn e (-η) z = -coeffIn e η z := by
   simp [coeffIn, coeffInFun]
 
+/--
+@isnad1 id=eq.0h5v.s11.14c7cbf951fc from=translated src=- shape=1444575c vocab=26c67249
+-/
 @[simp]
 theorem coeffIn_sub (e : OpenPartialHomeomorph X ℂ) (η η' : Form1 X) (z : ℂ) :
     coeffIn e (η - η') z = coeffIn e η z - coeffIn e η' z := by
   simp [coeffIn, coeffInFun]
 
+/--
+@isnad1 id=eq.0h4v.s11.ce09c8e47798 from=translated src=- shape=da5c5ecc vocab=7cd67708
+-/
 @[simp]
 theorem coeffAt_add (x : X) (η η' : Form1 X) :
     coeffAt x (η + η') = coeffAt x η + coeffAt x η' := coeffIn_add ..
 
+/--
+@isnad1 id=eq.0h4v.s11.45f170d6263f from=translated src=- shape=3710de19 vocab=3ac5d6c1
+-/
 @[simp]
 theorem coeffAt_smul (x : X) (c : ℂ) (η : Form1 X) :
     coeffAt x (c • η) = c * coeffAt x η := coeffIn_smul ..
 
+/--
+@isnad1 id=eq.0h2v.s11.a4fe2da73c66 from=translated src=- shape=e96805c4 vocab=b0a55aa8
+-/
 @[simp]
 theorem coeffAt_zero (x : X) : coeffAt x (0 : Form1 X) = 0 := coeffIn_zero ..
 
+/--
+@isnad1 id=eq.0h3v.s11.e854fc32080b from=translated src=- shape=6b272a5e vocab=ccf7d160
+-/
 @[simp]
 theorem coeffAt_neg (x : X) (η : Form1 X) : coeffAt x (-η) = -coeffAt x η := coeffIn_neg ..
 
+/--
+@isnad1 id=eq.0h4v.s11.80e0b2fbfc0d from=translated src=- shape=da5c5ecc vocab=ca6e69a8
+-/
 @[simp]
 theorem coeffAt_sub (x : X) (η η' : Form1 X) :
     coeffAt x (η - η') = coeffAt x η - coeffAt x η' := coeffIn_sub ..
@@ -129,19 +164,26 @@ def evalC (σ : ∀ x : X, TangentSpace 𝓘(ℂ) x →L[ℂ] Bundle.Trivial X �
   σ q w
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=eq.0h4v.s11.c65a26d4d64d from=translated src=- shape=5273ee17 vocab=4b0a0781
+-/
 theorem coeffInFun_eq_evalC (e : OpenPartialHomeomorph X ℂ)
     (σ : ∀ x : X, TangentSpace 𝓘(ℂ) x →L[ℂ] Bundle.Trivial X ℂ x) (z : ℂ) :
     coeffInFun e σ z = evalC σ (e.symm z) (mfderiv 𝓘(ℂ) 𝓘(ℂ) e.symm z (1 : ℂ)) := rfl
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
-/-- Scalars pull out of the non-dependent evaluation (the fiberwise CLM is `ℂ`-linear). -/
+/-- Scalars pull out of the non-dependent evaluation (the fiberwise CLM is `ℂ`-linear).
+@isnad1 id=eq.0h5v.s8.c71b9363e7e8 from=translated src=- shape=c3a2f0da vocab=facbf475
+-/
 theorem evalC_mul (σ : ∀ x : X, TangentSpace 𝓘(ℂ) x →L[ℂ] Bundle.Trivial X ℂ x)
     (q : X) (c w : ℂ) : evalC σ q (c * w) = c * evalC σ q w :=
   (σ q).map_smul c w
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
 /-- A continuous linear map between a tangent fiber of the model `ℂ` and a tangent fiber of `X`
-(both definitionally `ℂ`) is multiplication by its value at `1`. -/
+(both definitionally `ℂ`) is multiplication by its value at `1`.
+@isnad1 id=eq.0h5v.s11.6f6f4aa3c780 from=translated src=- shape=e47626a1 vocab=7b268576
+-/
 theorem tangentCLM_apply_eq_mul {w : ℂ} {q : X}
     (T : TangentSpace 𝓘(ℂ) w →L[ℂ] TangentSpace 𝓘(ℂ) q) (c : ℂ) :
     tangentCoord (T c) = c * tangentCoord (T (1 : ℂ)) := by
@@ -157,7 +199,9 @@ theorem tangentCLM_apply_eq_mul {w : ℂ} {q : X}
   rfl
 
 /-- The `mfderiv` of the inverse of the preferred chart, at the image of the base point, is the
-identity (canonical identification of the tangent fiber with `ℂ`). -/
+identity (canonical identification of the tangent fiber with `ℂ`).
+@isnad1 id=eq.0h2v.s10.8e7107962665 from=translated src=- shape=1dca7ead vocab=b25b42a2
+-/
 theorem mfderiv_chartAt_symm_chartAt_self (x : X) :
     mfderiv 𝓘(ℂ) 𝓘(ℂ) (chartAt ℂ x).symm (chartAt ℂ x x) = ContinuousLinearMap.id ℂ ℂ := by
   have h := mfderivWithin_range_extChartAt_symm (I := 𝓘(ℂ)) (x := x)
@@ -167,7 +211,9 @@ theorem mfderiv_chartAt_symm_chartAt_self (x : X) :
   exact h
 
 /-- In the preferred chart, the coefficient at the base point is the evaluation at the canonical
-tangent vector `1`. -/
+tangent vector `1`.
+@isnad1 id=eq.0h3v.s11.9702d65f7117 from=translated src=- shape=9f1d3690 vocab=b921c221
+-/
 theorem coeffAt_eq_apply_one (η : Form1 X) (x : X) : coeffAt x η = η x (1 : ℂ) := by
   have h0 : coeffAt x η =
       evalC (⇑η) ((chartAt ℂ x).symm (chartAt ℂ x x))
@@ -182,7 +228,9 @@ theorem coeffAt_eq_apply_one (η : Form1 X) (x : X) : coeffAt x η = η x (1 : �
     _ = η x (1 : ℂ) := by rw [ContinuousLinearMap.id_apply]; rfl
 
 /-- Evaluation of a 1-form on a tangent vector, via the canonical identification: the fiber is
-one-dimensional and `η x v = v * coeffAt x η`. -/
+one-dimensional and `η x v = v * coeffAt x η`.
+@isnad1 id=eq.0h4v.s11.4b1afd461777 from=translated src=- shape=4691a7fd vocab=3c7e1c61
+-/
 theorem Form1.apply_eq_smul_coeffAt (η : Form1 X) (x : X) (v : TangentSpace 𝓘(ℂ) x) :
     η x v = tangentCoord v * coeffAt x η := by
   rw [coeffAt_eq_apply_one]
@@ -193,12 +241,16 @@ theorem Form1.apply_eq_smul_coeffAt (η : Form1 X) (x : X) (v : TangentSpace �
     _ = tangentCoord v * η x (1 : ℂ) :=
         (η x).map_smul (tangentCoord v) ((1 : ℂ) : TangentSpace 𝓘(ℂ) x)
 
-/-- The non-dependent-evaluation version of `Form1.apply_eq_smul_coeffAt`. -/
+/-- The non-dependent-evaluation version of `Form1.apply_eq_smul_coeffAt`.
+@isnad1 id=eq.0h4v.s10.19683b4d2f47 from=translated src=- shape=c3e131b8 vocab=0d45f444
+-/
 theorem evalC_eq_mul_coeffAt (η : Form1 X) (q : X) (w : ℂ) :
     evalC (⇑η) q w = w * coeffAt q η :=
   Form1.apply_eq_smul_coeffAt η q w
 
-/-- A holomorphic 1-form is determined by its preferred-chart coefficients. -/
+/-- A holomorphic 1-form is determined by its preferred-chart coefficients.
+@isnad1 id=eq.1h3v.s6.042195f72db4 from=translated src=- shape=de5d8d0b vocab=69147e11
+-/
 @[ext]
 theorem Form1.ext_coeffAt {η η' : Form1 X} (h : ∀ x, coeffAt x η = coeffAt x η') : η = η' :=
   Form1.ext_apply fun x v => by
@@ -210,7 +262,9 @@ open IsManifold
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
 /-- The transition map between two charts, as read in the maximal atlas, is `C^ω` (hence
-differentiable) at every point of the image of the overlap. -/
+differentiable) at every point of the image of the overlap.
+@isnad1 id=differen.4h4v.s8.da70e6bbecaa from=translated src=- shape=5a615e1a vocab=bfda310b
+-/
 theorem differentiableAt_trans {e e' : OpenPartialHomeomorph X ℂ}
     (he : e ∈ maximalAtlas 𝓘(ℂ) ω X) (he' : e' ∈ maximalAtlas 𝓘(ℂ) ω X) {z : ℂ}
     (hzt : z ∈ e'.target) (hzs : e'.symm z ∈ e.source) :
@@ -231,7 +285,9 @@ theorem differentiableAt_trans {e e' : OpenPartialHomeomorph X ℂ}
   rwa [hcoe] at hD
 
 /-- **Transition rule** for chart coefficients (CC1 orientation): on the image of a chart
-overlap, `coeffIn e' η z = deriv (e ∘ e'.symm) z * coeffIn e η (e (e'.symm z))`. -/
+overlap, `coeffIn e' η z = deriv (e ∘ e'.symm) z * coeffIn e η (e (e'.symm z))`.
+@isnad1 id=eq.3h5v.s9.7b07b7ce96dd from=translated src=- shape=8db75550 vocab=72331aae
+-/
 theorem coeffIn_trans {e e' : OpenPartialHomeomorph X ℂ}
     (he : e ∈ maximalAtlas 𝓘(ℂ) ω X) (he' : e' ∈ maximalAtlas 𝓘(ℂ) ω X)
     (η : Form1 X) {z : ℂ} (hz : z ∈ ⇑e' '' (e.source ∩ e'.source)) :

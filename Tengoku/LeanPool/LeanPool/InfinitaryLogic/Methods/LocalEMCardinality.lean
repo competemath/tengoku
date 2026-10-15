@@ -144,7 +144,9 @@ private theorem LocalEMContext.mk_le_mk_carrier (ctx : LocalEMContext Λ J (M :=
   Cardinal.mk_le_of_injective (ctx.mkClass_const_injective hinj)
 
 /-- **Exact carrier cardinality** (issue #11 unit 5): for an infinite skeleton, a countable
-base language, and an injective deep sequence, `mk ctx.Carrier = max ℵ₀ (mk J)`. -/
+base language, and an injective deep sequence, `mk ctx.Carrier = max ℵ₀ (mk J)`.
+@isnad1 id=eq.1h4v.s6.d2c60619e11a from=translated src=- shape=c68bb0ed vocab=08013224
+-/
 theorem LocalEMContext.mk_carrier_eq (ctx : LocalEMContext Λ J (M := M))
     [Countable (Σ l, Λ.Functions l)] [Infinite J] (hinj : Function.Injective ctx.a) :
     Cardinal.mk ctx.Carrier = max Cardinal.aleph0 (Cardinal.mk J) := by

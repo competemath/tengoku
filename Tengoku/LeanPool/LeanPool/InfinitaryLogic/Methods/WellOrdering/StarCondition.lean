@@ -82,7 +82,9 @@ def StarCondition (φ : L.Sentenceω) (lt : L.Relations 2) (Γ : Set L[[ℕ]].Se
   Nonempty (StarWitness φ lt Γ α)
 
 /-- Downward closure of (*) in `α` (via `GapWitness.mono`) — the consumer of the cofinal-fiber
-argument. -/
+argument.
+@isnad1 id=starcond.2h6v.s5.b9daf16c232f from=translated src=- shape=e5b6ebc0 vocab=2c63ff59
+-/
 theorem StarCondition.mono {φ : L.Sentenceω} {lt : L.Relations 2}
     {Γ : Set L[[ℕ]].Sentenceω} {α β : Ordinal.{0}} (hβ : β ≤ α)
     (h : StarCondition φ lt Γ α) : StarCondition φ lt Γ β := by
@@ -96,13 +98,17 @@ section AtomicRealize
 variable {M : Type} {base : L.Structure M} {h : ℕ → M}
 
 /-- A constant relation instance realizes at the controlled expansion to the base relation on
-the constant values. -/
+the constant values.
+@isnad1 id=iff.0h7v.s5.e3f2b6c88eb0 from=translated src=- shape=aee809ee vocab=b2d89e51
+-/
 theorem realize_relInst_wc {l : ℕ} (R : L.Relations l) (g : Fin l → ℕ) :
     @Sentenceω.Realize L[[ℕ]] (relInst R g) M (wc base h) ↔
       @Structure.RelMap L M base l R (fun i => h (g i)) :=
   Iff.rfl
 
-/-- A constant equality realizes at the controlled expansion to equality of the values. -/
+/-- A constant equality realizes at the controlled expansion to equality of the values.
+@isnad1 id=iff.0h6v.s5.c16cf2dd1924 from=translated src=- shape=6131b5c0 vocab=707b8bcf
+-/
 theorem realize_constEq_wc (a b : ℕ) :
     @Sentenceω.Realize L[[ℕ]] (constEq a b) M (wc base h) ↔ h a = h b :=
   Iff.rfl
@@ -114,7 +120,9 @@ end AtomicRealize
 /-- **The mentioned-diagram derivation** (review acceptance check 5): a positive diagram atom
 whose rationals are both marked holds in the witness's expansion — through `RelChain` and the
 marks, never by assuming the model realizes the diagram. Requires `0 < α` (at `α = 0` the
-margins are vacuous); consumers instantiate (*) at any positive level. -/
+margins are vacuous); consumers instantiate (*) at any positive level.
+@isnad1 id=realize.2h8v.s7.63fc1ce8140e from=translated src=- shape=cda009a7 vocab=70b88f1b
+-/
 theorem StarWitness.realize_marked_atom {φ : L.Sentenceω} {lt : L.Relations 2}
     {Γ : Set L[[ℕ]].Sentenceω} {α : Ordinal.{0}} (W : StarWitness φ lt Γ α)
     (hα : 0 < α) {i j : Fin W.m} (hij : i < j) :

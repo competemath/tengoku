@@ -45,7 +45,9 @@ namespace FirstOrder.Language
 
 /-- A sequential colimit of countable types is countable: the colimit is a quotient of the
 countable total space `Σ k, F k`. (Generic companion to `DirectedColim`; the reason the *local*
-colimit stays countable while `skolemColim` does not.) -/
+colimit stays countable while `skolemColim` does not.)
+@isnad1 id=countabl.1h2v.s5.0815b10e0552 from=translated src=- shape=5c4c05b9 vocab=71ff0fd5
+-/
 theorem DirectedColim.countable {F : ℕ → Type} {φ : ∀ k, F k → F (k + 1)}
     (h : ∀ k, Countable (F k)) : Countable (DirectedColim F φ) := by
   have : ∀ k, Countable (F k) := h
@@ -53,7 +55,9 @@ theorem DirectedColim.countable {F : ℕ → Type} {φ : ∀ k, F k → F (k + 1
 
 /-- `mapLanguage` composes: transporting along `g` then `h` is transporting along `h.comp g`.
 (A Mathlib-gap-style generic lemma; belongs in `Lomega1omega/Operations.lean` eventually —
-localized here, where the cocone coherence needs it, to keep the default build path untouched.) -/
+localized here, where the cocone coherence needs it, to keep the default build path untouched.)
+@isnad1 id=eq.0h8v.s5.bb61f48d23f5 from=translated src=- shape=5cebbb6a vocab=4d2f2ce6
+-/
 theorem BoundedFormulaω.mapLanguage_mapLanguage {L₁ L₂ L₃ : Language} (g : L₁ →ᴸ L₂)
     (h : L₂ →ᴸ L₃) {α : Type*} {n : ℕ} (φ : L₁.BoundedFormulaω α n) :
     (φ.mapLanguage g).mapLanguage h = φ.mapLanguage (h.comp g) := by
@@ -123,7 +127,9 @@ private theorem LlocalInclusion_onRelation_step {k m : ℕ} (r : (Llocal s₀ k)
 
 /-- **Cocone compatibility as an `LHom` equation**: including stage `k` via stage `k+1` is the
 direct inclusion. The formula-level coherence (`toLocalColimFormula_step`) is this plus
-`mapLanguage` composition. -/
+`mapLanguage` composition.
+@isnad1 id=eq.0h2v.s5.ea68924061ba from=translated src=- shape=2234e8ad vocab=0cd0fd52
+-/
 theorem LlocalInclusion_comp_LlocalHom (k : ℕ) :
     (LlocalInclusion s₀ (k + 1)).comp (LlocalHom s₀ k) = LlocalInclusion s₀ k :=
   LHom.funext
@@ -145,12 +151,16 @@ private theorem localColim_relations_countable (m : ℕ) : Countable ((localColi
     (fun k => Llocal_relations_countable s₀ k m)
 
 /-- **The local colimit language has countably many function symbols** — in contrast to
-`skolemColim`, whose function-symbol type has the cardinality of the continuum. -/
+`skolemColim`, whose function-symbol type has the cardinality of the continuum.
+@isnad1 id=countabl.0h1v.s3.1f6925f34f61 from=translated src=- shape=f452c5eb vocab=b21d7a1d
+-/
 theorem localColim_fun_countable : Countable (Σ n, (localColim s₀).Functions n) := by
   have : ∀ n, Countable ((localColim s₀).Functions n) := localColim_functions_countable s₀
   infer_instance
 
-/-- **The local colimit language has countably many relation symbols.** -/
+/-- **The local colimit language has countably many relation symbols.**
+@isnad1 id=countabl.0h1v.s3.5c68c6934811 from=translated src=- shape=f452c5eb vocab=390bc022
+-/
 theorem localColim_rel_countable : Countable (Σ n, (localColim s₀).Relations n) := by
   have : ∀ n, Countable ((localColim s₀).Relations n) := localColim_relations_countable s₀
   infer_instance
@@ -215,7 +225,9 @@ private theorem LlocalInclusion_isExpansionOn (k : ℕ) :
 
 /-- **Semantic preservation by stage inclusion**: transporting a stage-`k` formula into `L_Γ`
 along `LlocalInclusion` preserves its realization in `M`. Immediate from `realize_mapLanguage`
-and the expansion property above. -/
+and the expansion property above.
+@isnad1 id=iff.0h7v.s6.b3c0bcbd4258 from=translated src=- shape=4b45b235 vocab=6c1bf8c4
+-/
 theorem realize_map_LlocalInclusion (k : ℕ) {n : ℕ}
     (φ : (Llocal s₀ k).BoundedFormulaω Empty n) (v : Empty → M) (xs : Fin n → M) :
     letI : (Llocal s₀ k).Structure M := localStageStructure s₀ k
@@ -242,7 +254,9 @@ truth lemma will run. -/
 def ΓlocalColim : Set (Σ n, (localColim s₀).BoundedFormulaω Empty n) :=
   ⋃ k, toLocalColimFormula s₀ k '' Γlocal s₀ k
 
-/-- Stage membership transports into the colimit family. -/
+/-- Stage membership transports into the colimit family.
+@isnad1 id=mem.1h3v.s6.bc794678a6be from=translated src=- shape=85fd653d vocab=f5a8ca4f
+-/
 theorem toLocalColimFormula_mem_ΓlocalColim {k : ℕ}
     {p : Σ n, (Llocal s₀ k).BoundedFormulaω Empty n} (hp : p ∈ Γlocal s₀ k) :
     toLocalColimFormula s₀ k p ∈ ΓlocalColim s₀ :=
@@ -251,7 +265,9 @@ theorem toLocalColimFormula_mem_ΓlocalColim {k : ℕ}
 /-- **The colimit family is countable**: a countable union of images of the (stagewise countable)
 families. Together with `localColim_fun_countable`/`_rel_countable`, this says the local Skolem
 construction really does produce a countable language *and* family in the colimit — the exact
-size interface the tail extraction (`MorleyHanfExtractionTail`) can serve. -/
+size interface the tail extraction (`MorleyHanfExtractionTail`) can serve.
+@isnad1 id=countabl.0h1v.s3.ff114a5fef39 from=translated src=- shape=2a8f093c vocab=ff44a466
+-/
 theorem ΓlocalColim_countable : (ΓlocalColim s₀).Countable :=
   Set.countable_iUnion fun k => (Γlocal_countable s₀ k).image _
 

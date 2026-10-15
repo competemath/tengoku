@@ -60,6 +60,9 @@ private theorem isolatorFragment_countable (hsmall : Lomega1omegaSmall (L := L) 
     (isolatorFragment hsmall).toSet.Countable :=
   Fragment.generated_countable (isolatorSeed_countable hsmall)
 
+/--
+@isnad1 id=mem.2h4v.s6.aaa5b99a2b82 from=translated src=- shape=12fe567d vocab=9fe14b3f
+-/
 theorem isolatingFormula_mem_isolatorFragment (hsmall : Lomega1omegaSmall (L := L) M)
     {n : ℕ} {p : Set (L.BoundedFormulaω Empty n)}
     (hp : p ∈ RealizedInfinitaryTypes (L := L) M n) :
@@ -68,6 +71,9 @@ theorem isolatingFormula_mem_isolatorFragment (hsmall : Lomega1omegaSmall (L := 
   Fragment.subset_generated _ (Set.mem_union_left _
     (Set.mem_iUnion.mpr ⟨n, Set.mem_image_of_mem _ hp⟩))
 
+/--
+@isnad1 id=mem.2h4v.s7.5ba4736bbf7c from=translated src=- shape=cc898642 vocab=bf285ecd
+-/
 theorem isolatingFormula_ex_mem_isolatorFragment (hsmall : Lomega1omegaSmall (L := L) M)
     {n : ℕ} {p : Set (L.BoundedFormulaω Empty (n + 1))}
     (hp : p ∈ RealizedInfinitaryTypes (L := L) M (n + 1)) :
@@ -78,7 +84,9 @@ theorem isolatingFormula_ex_mem_isolatorFragment (hsmall : Lomega1omegaSmall (L 
 
 /-- **The countable companion** (issue #17 chunk 2 endpoint): a small structure over countably
 many function symbols has a countable substructure that is elementary for the controlling
-fragment. -/
+fragment.
+@isnad1 id=ex.1h2v.s6.67b7f31daf0b from=translated src=- shape=ee6011de vocab=6164e8a0
+-/
 theorem exists_countable_companion [Countable (Σ n, L.Functions n)]
     (hsmall : Lomega1omegaSmall (L := L) M) :
     ∃ N : L.Substructure M, Countable N ∧ AElementary (isolatorFragment hsmall) N.subtype := by

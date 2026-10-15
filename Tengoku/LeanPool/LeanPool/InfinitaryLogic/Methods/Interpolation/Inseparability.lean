@@ -46,7 +46,9 @@ variable {F : Set (Σ n, L.Functions n)} {R : Set (Σ n, L.Relations n)}
 support `A`, then the witness-instantiated pair is inseparable at support `insert c A`, for a
 constant `c` fresh for both sides. This is the contrapositive of the acceptance pair: a
 separator of `(Γ ∪ {φ(c)}, Δ)` at `insert c A` abstracts to the separator `genEx c σ` of
-`(Γ ∪ {∃x φ}, Δ)` at `A`. -/
+`(Γ ∪ {∃x φ}, Δ)` at `A`.
+@isnad1 id=insepat.3h8v.s7.7857f7b5cd48 from=translated src=- shape=0827620b vocab=efb43c52
+-/
 theorem insepAt_witness_of_insepAt_genEx (c : ℕ) (φc : L[[ℕ]].Sentenceω)
     (hcΓ : ∀ γ ∈ Γ, c ∉ sentenceJConsts (L' := L) (J := ℕ) γ)
     (hcΔ : ∀ δ ∈ Δ, c ∉ sentenceJConsts (L' := L) (J := ℕ) δ)

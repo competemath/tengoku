@@ -74,6 +74,7 @@ noncomputable def sigmaSq (n : ℕ) (r : Fin (w n) → ℕ) : ℝ :=
 
 /--
 The Fourier coefficient at 0 is equal to the mean density μ.
+@isnad1 id=eq.0h2v.s5.47ea805ed144 from=translated src=- shape=85a38ffe vocab=678e0c29
 -/
 theorem f_hat_zero_eq_mu (n : ℕ) (r : Fin (w n) → ℕ) :
     fHat n r 0 = μ n r := by
@@ -89,6 +90,7 @@ theorem f_hat_zero_eq_mu (n : ℕ) (r : Fin (w n) → ℕ) :
 
 /--
 Orthogonality of the exponential sum.
+@isnad1 id=eq.0h2v.s7.665205e40fd2 from=translated src=- shape=4da1e5ce vocab=45cd649e
 -/
 lemma sum_exp_orthogonality (n : ℕ) (k : ZMod (q n)) :
     ∑ h : ZMod (q n), Complex.exp (2 * Real.pi * Complex.I * h.val * k.val / (q n : ℂ)) =
@@ -137,6 +139,7 @@ lemma sum_exp_orthogonality (n : ℕ) (k : ZMod (q n)) :
 
 /--
 Orthogonality of the exponential sum over $x$.
+@isnad1 id=eq.0h2v.s7.ed56ab071be1 from=translated src=- shape=844fa8b9 vocab=45cd649e
 -/
 lemma orthogonality_x (n : ℕ) (k : ZMod (q n)) :
     ∑ x : ZMod (q n), Complex.exp (2 * Real.pi * Complex.I * k.val * x.val / (q n : ℂ)) =
@@ -147,6 +150,7 @@ lemma orthogonality_x (n : ℕ) (k : ZMod (q n)) :
 /--
 Application of orthogonality to simplify the double
 sum of function values.
+@isnad1 id=eq.0h2v.s7.fdf8cba1c168 from=translated src=- shape=b0ad6324 vocab=67bd9e4d
 -/
 lemma sum_orthogonality_application (n : ℕ) (r : Fin (w n) → ℕ) :
     ∑ x : ZMod (q n), ∑ y : ZMod (q n), (f n r x : ℂ) * (f n r y : ℂ) *
@@ -166,6 +170,7 @@ lemma sum_orthogonality_application (n : ℕ) (r : Fin (w n) → ℕ) :
 
 /--
 Expansion of the squared magnitude of a single Fourier coefficient.
+@isnad1 id=eq.0h3v.s7.e5becd3056ce from=translated src=- shape=d7fd0aaa vocab=e3599f53
 -/
 lemma f_hat_normSq_expansion (n : ℕ) (r : Fin (w n) → ℕ) (h : ZMod (q n)) :
     Complex.normSq (fHat n r h) =
@@ -229,6 +234,7 @@ lemma f_hat_normSq_expansion (n : ℕ) (r : Fin (w n) → ℕ) (h : ZMod (q n)) 
 /--
 Standard Parseval's Identity: The sum of the squared magnitudes of the Fourier coefficients equals
 the average of the squared function values.
+@isnad1 id=eq.0h2v.s6.799d19d26ad2 from=translated src=- shape=4047cc5d vocab=703d6a69
 -/
 lemma parseval_standard (n : ℕ) (r : Fin (w n) → ℕ) :
     ∑ h : ZMod (q n), Complex.normSq (fHat n r h) = (1 / (q n : ℝ)) *
@@ -263,6 +269,7 @@ lemma parseval_standard (n : ℕ) (r : Fin (w n) → ℕ) :
 
 /--
 Expansion of the variance formula.
+@isnad1 id=eq.0h2v.s6.1ba81d890e46 from=translated src=- shape=e7b813e6 vocab=5719e59d
 -/
 lemma variance_expansion (n : ℕ) (r : Fin (w n) → ℕ) :
     sigmaSq n r = (1 / (q n : ℝ)) * ∑ x : ZMod (q n), (f n r x)^2 - (μ n r)^2 := by
@@ -279,6 +286,7 @@ lemma variance_expansion (n : ℕ) (r : Fin (w n) → ℕ) :
 Parseval's Identity for the Sieve: The variance of the
 indicator function f is strictly equal to the sum of the
 squared magnitudes of its non-zero Fourier coefficients.
+@isnad1 id=eq.0h2v.s7.acfebe21ae05 from=translated src=- shape=1b2da1e3 vocab=b3746671
 -/
 theorem parseval_identity (n : ℕ) (r : Fin (w n) → ℕ) :
     sigmaSq n r = ∑ h : ZMod (q n), if h = 0 then 0 else Complex.normSq (fHat n r h) := by
@@ -292,6 +300,7 @@ theorem parseval_identity (n : ℕ) (r : Fin (w n) → ℕ) :
 
 /--
 The primorial $q$ is odd.
+@isnad1 id=odd.0h1v.s2.6141317920c9 from=translated src=- shape=6da4ece3 vocab=c99de4ad
 -/
 lemma q_odd (n : ℕ) : Odd (q n) := by
   -- Each prime $p$ in $\mathcal{P}_n$ is odd, and
@@ -306,6 +315,7 @@ lemma q_odd (n : ℕ) : Odd (q n) := by
 /--
 Conjugate symmetry of the Fourier transform for
 real-valued functions.
+@isnad1 id=eq.0h3v.s6.2805242eb7a2 from=translated src=- shape=32026bb5 vocab=fd364b3f
 -/
 lemma f_hat_conj_symm (n : ℕ) (r : Fin (w n) → ℕ) (h : ZMod (q n)) :
     fHat n r (-h) = starRingEnd ℂ (fHat n r h) := by
@@ -345,6 +355,7 @@ lemma f_hat_conj_symm (n : ℕ) (r : Fin (w n) → ℕ) (h : ZMod (q n)) :
 Harmonic Variance Lower Bound: For any non-zero
 frequency $h$, the variance is at least twice the squared
 magnitude of the Fourier coefficient at $h$.
+@isnad1 id=le.1h3v.s6.4232ce24c15e from=translated src=- shape=295539af vocab=35ad236b
 -/
 lemma harmonic_variance_lower_bound (n : ℕ) (r : Fin (w n) → ℕ) (h : ZMod (q n))
     (h_ne_zero : h ≠ 0) : sigmaSq n r ≥ 2 * Complex.normSq (fHat n r h) := by

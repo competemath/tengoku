@@ -38,7 +38,9 @@ open scoped Topology
 namespace RS
 
 /-- `k`-th roots exist in `ℂ` (via `exp`/`log`; deliberately avoids
-`IsAlgClosed.exists_pow_nat_eq`, whose instance would drag in the FTA import). -/
+`IsAlgClosed.exists_pow_nat_eq`, whose instance would drag in the FTA import).
+@isnad1 id=ex.2h2v.s5.57fe338e47a1 from=translated src=- shape=608dc465 vocab=d256a53d
+-/
 theorem exists_pow_eq {k : ℕ} (hk : k ≠ 0) {w : ℂ} (hw : w ≠ 0) : ∃ α : ℂ, α ^ k = w := by
   refine ⟨Complex.exp (Complex.log w / k), ?_⟩
   rw [← Complex.exp_nat_mul]
@@ -47,43 +49,65 @@ theorem exists_pow_eq {k : ℕ} (hk : k ≠ 0) {w : ℂ} (hw : w ≠ 0) : ∃ α
     exact mul_div_cancel_left₀ _ (Nat.cast_ne_zero.mpr hk)
   rw [h, Complex.exp_log hw]
 
+/--
+@isnad1 id=eq.1h1v.s5.bfd811b88f09 from=translated src=- shape=b2607872 vocab=4df9b806
+-/
 theorem setOf_pow_eq_zero {k : ℕ} (hk : k ≠ 0) : {z : ℂ | z ^ k = 0} = {0} := by
   ext z
   simp [pow_eq_zero_iff hk]
 
-/-- The root set of `z ^ k = w`, as the coercion of the `nthRoots` finset. -/
+/-- The root set of `z ^ k = w`, as the coercion of the `nthRoots` finset.
+@isnad1 id=eq.1h2v.s5.e86c52736644 from=translated src=- shape=36d1f88f vocab=dc5ac6d9
+-/
 theorem setOf_pow_eq_coe_toFinset {k : ℕ} (hk : k ≠ 0) (w : ℂ) :
     {z : ℂ | z ^ k = w} = ↑(nthRoots k w).toFinset := by
   ext z
   simp [Polynomial.mem_nthRoots (Nat.pos_of_ne_zero hk)]
 
+/--
+@isnad1 id=finite.1h2v.s5.fd64153161e9 from=translated src=- shape=4d0e46a1 vocab=73acc78c
+-/
 theorem setOf_pow_eq_finite {k : ℕ} (hk : k ≠ 0) (w : ℂ) : {z : ℂ | z ^ k = w}.Finite := by
   rw [setOf_pow_eq_coe_toFinset hk w]
   exact (nthRoots k w).toFinset.finite_toSet
 
+/--
+@isnad1 id=eq.2h2v.s5.db52f505bdfa from=translated src=- shape=8021776a vocab=911718ea
+-/
 theorem card_nthRoots_toFinset {k : ℕ} (hk : k ≠ 0) {w : ℂ} (hw : w ≠ 0) :
     (nthRoots k w).toFinset.card = k := by
   have hprim := Complex.isPrimitiveRoot_exp k hk
   rw [Multiset.toFinset_card_of_nodup (hprim.nthRoots_nodup hw), hprim.card_nthRoots,
     ite_eq_left (exists_pow_eq hk hw)]
 
+/--
+@isnad1 id=eq.2h2v.s5.2d91d65b6af9 from=translated src=- shape=3f5a7fbe vocab=62e39ec0
+-/
 theorem ncard_setOf_pow_eq {k : ℕ} (hk : k ≠ 0) {w : ℂ} (hw : w ≠ 0) :
     {z : ℂ | z ^ k = w}.ncard = k := by
   rw [setOf_pow_eq_coe_toFinset hk w, Set.ncard_coe_finset]
   exact card_nthRoots_toFinset hk hw
 
-/-- Roots are trapped in the ball whose `k`-th power ball contains `w`. -/
+/-- Roots are trapped in the ball whose `k`-th power ball contains `w`.
+@isnad1 id=lt.4h4v.s6.8dbfed9ecf0f from=translated src=- shape=520a8a76 vocab=34211d5f
+-/
 theorem norm_lt_of_pow_eq {k : ℕ} (hk : k ≠ 0) {z w : ℂ} {ρ : ℝ} (hρ : 0 ≤ ρ)
     (h : z ^ k = w) (hw : ‖w‖ < ρ ^ k) : ‖z‖ < ρ := by
   have h1 : ‖z‖ ^ k < ρ ^ k := by rw [← norm_pow, h]; exact hw
   exact (pow_lt_pow_iff_left₀ (norm_nonneg z) hρ hk).mp h1
 
+/--
+@isnad1 id=eq.0h1v.s5.f500ab3bb751 from=translated src=- shape=6c6ad184 vocab=7b32b8de
+-/
 theorem analyticOrderAt_pow_zero (k : ℕ) :
     analyticOrderAt (fun z : ℂ ↦ z ^ k) 0 = (k : ℕ∞) := by
   have ha : AnalyticAt ℂ (fun z : ℂ ↦ z ^ k) 0 := by fun_prop
   rw [ha.analyticOrderAt_eq_natCast]
   exact ⟨fun _ ↦ 1, analyticAt_const, one_ne_zero, Eventually.of_forall fun z ↦ by simp⟩
 
+/--
+@isnad1 id=eq.2h2v.s6.c90a7065fd83 from=translated src=- shape=d841b13a vocab=357d5b9d
+-/
 theorem analyticOrderAt_pow_sub_pow {k : ℕ} (hk : k ≠ 0) {ζ : ℂ} (hζ : ζ ≠ 0) :
     analyticOrderAt (fun z : ℂ ↦ z ^ k - ζ ^ k) ζ = 1 := by
   have hpow : AnalyticAt ℂ (fun z : ℂ ↦ z ^ k) ζ := by fun_prop
@@ -94,7 +118,9 @@ theorem analyticOrderAt_pow_sub_pow {k : ℕ} (hk : k ≠ 0) {ζ : ℂ} (hζ : �
 
 /-- **THE planar counting identity**: the total multiplicity of `z ↦ z ^ k` over any `w` is `k`
 (one root of order `k` when `w = 0`; `k` simple roots otherwise). Uniform in `w`, so surface
-consumers need no branched/unbranched case split. -/
+consumers need no branched/unbranched case split.
+@isnad1 id=eq.1h2v.s7.6df266e935ac from=translated src=- shape=61498b1f vocab=4f483b49
+-/
 theorem sum_toNat_analyticOrderAt_pow_sub {k : ℕ} (hk : k ≠ 0) (w : ℂ) :
     ∑ᶠ ζ ∈ {z : ℂ | z ^ k = w}, (analyticOrderAt (fun z : ℂ ↦ z ^ k - w) ζ).toNat = k := by
   rcases eq_or_ne w 0 with rfl | hw

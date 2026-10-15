@@ -674,7 +674,9 @@ private theorem exists_lyndon_paired_model [L.IsRelational] [Countable (Σ l, L.
 
 /-- **The Unit-5 consumer endpoint**: instantiating the right root at `r₂.not` gives one model
 realizing the left root and **refuting** the (un-negated) right root.  Root inseparability is a
-hypothesis here; establishing it from a failed interpolant is Unit 5's business. -/
+hypothesis here; establishing it from a failed interpolant is Unit 5's business.
+@isnad1 id=ex.6h10v.s8.0757452ba5c3 from=translated src=- shape=323a1c3b vocab=c18f58dd
+-/
 theorem exists_lyndon_paired_model_neg [L.IsRelational] [Countable (Σ l, L.Relations l)]
     (F₁ : Set (Σ n, L.Functions n)) (P₁ N₁ : Set (Σ n, L.Relations n))
     (F₂ : Set (Σ n, L.Functions n)) (P₂ N₂ : Set (Σ n, L.Relations n))

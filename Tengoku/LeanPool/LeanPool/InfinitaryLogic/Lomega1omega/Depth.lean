@@ -51,26 +51,41 @@ noncomputable def BoundedFormulaω.depth : L.BoundedFormulaω α n → Ordinal.{
   | .iSup φs => (⨆ k, (φs k).depth) + 1
   | .iInf φs => (⨆ k, (φs k).depth) + 1
 
+/--
+@isnad1 id=lt.0h5v.s5.4ea3432d142d from=translated src=- shape=bbc3bb6c vocab=624d31b8
+-/
 theorem depth_lt_imp_left {φ ψ : L.BoundedFormulaω α n} :
     φ.depth < (φ.imp ψ).depth := by
   simp only [BoundedFormulaω.depth]
   exact lt_of_le_of_lt (le_max_left _ _) (Order.lt_succ _)
 
+/--
+@isnad1 id=lt.0h5v.s5.339bc03b9d6a from=translated src=- shape=58532ca0 vocab=624d31b8
+-/
 theorem depth_lt_imp_right {φ ψ : L.BoundedFormulaω α n} :
     ψ.depth < (φ.imp ψ).depth := by
   simp only [BoundedFormulaω.depth]
   exact lt_of_le_of_lt (le_max_right _ _) (Order.lt_succ _)
 
+/--
+@isnad1 id=lt.0h5v.s5.e46fdf190cfa from=translated src=- shape=6b8c2b12 vocab=7487a796
+-/
 theorem depth_lt_iSup {φs : ℕ → L.BoundedFormulaω α n} (k : ℕ) :
     (φs k).depth < (BoundedFormulaω.iSup φs).depth := by
   simp only [BoundedFormulaω.depth]
   exact lt_of_le_of_lt (Ordinal.le_iSup _ k) (Order.lt_succ _)
 
+/--
+@isnad1 id=lt.0h5v.s5.d5af547da885 from=translated src=- shape=6b8c2b12 vocab=d3fdd445
+-/
 theorem depth_lt_iInf {φs : ℕ → L.BoundedFormulaω α n} (k : ℕ) :
     (φs k).depth < (BoundedFormulaω.iInf φs).depth := by
   simp only [BoundedFormulaω.depth]
   exact lt_of_le_of_lt (Ordinal.le_iSup _ k) (Order.lt_succ _)
 
+/--
+@isnad1 id=lt.0h4v.s5.02989c5879d1 from=translated src=- shape=392c1a72 vocab=723b700b
+-/
 theorem depth_lt_all {φ : L.BoundedFormulaω α (n + 1)} :
     φ.depth < (BoundedFormulaω.all φ).depth := by
   simp only [BoundedFormulaω.depth]
@@ -111,6 +126,9 @@ private theorem depth_relabel (g : α → β ⊕ Fin p)
     simp only [BoundedFormulaω.relabel, BoundedFormulaω.depth]
     congr 1; exact iSup_congr (fun k => ih k)
 
+/--
+@isnad1 id=eq.0h3v.s4.964a9d21911d from=translated src=- shape=21cc4a8b vocab=8e600ff7
+-/
 theorem depth_openBounds (φ : L.BoundedFormulaω Empty n) :
     φ.openBounds.depth = φ.depth := by
   induction φ with
@@ -129,6 +147,9 @@ theorem depth_openBounds (φ : L.BoundedFormulaω Empty n) :
     simp only [BoundedFormulaω.openBounds, BoundedFormulaω.depth]
     congr 1; exact iSup_congr (fun k => ih k)
 
+/--
+@isnad1 id=eq.0h6v.s5.67e8152ed7f0 from=translated src=- shape=9dca30fe vocab=d2989c77
+-/
 theorem depth_subst (φ : L.BoundedFormulaω α n) (tf : α → L.Term β) :
     (φ.subst tf).depth = φ.depth := by
   induction φ with
@@ -144,7 +165,9 @@ theorem depth_subst (φ : L.BoundedFormulaω α n) (tf : α → L.Term β) :
     simp only [BoundedFormulaω.subst, BoundedFormulaω.depth]
     congr 1; exact iSup_congr (fun k => ih k)
 
-/-- `depth (openBounds φ).subst t < depth (all φ)` for the truthLemma termination proof. -/
+/-- `depth (openBounds φ).subst t < depth (all φ)` for the truthLemma termination proof.
+@isnad1 id=lt.0h5v.s6.47b36c366dfa from=translated src=- shape=48d322cc vocab=2139df9e
+-/
 theorem depth_openBounds_subst_lt
     {φ : L.BoundedFormulaω Empty (n + 1)} (tf : Fin (n + 1) → L.Term β) :
     (φ.openBounds.subst tf).depth < (BoundedFormulaω.all φ).depth := by

@@ -23,7 +23,9 @@ namespace Komlos
 
 open Finset
 
-/-- Truncation toward zero on the grid `N⁻¹ • ℤ`. -/
+/-- Truncation toward zero on the grid `N⁻¹ • ℤ`.
+@isnad1 id=ex.1h2v.s6.ccd74edd5061 from=translated src=- shape=079c0c5d vocab=bdab19b2
+-/
 lemma exists_int_approx (x : ℝ) {N : ℕ} (hN : 0 < N) :
     ∃ m : ℤ, |(m : ℝ) / N| ≤ |x| ∧ |x - (m : ℝ) / N| ≤ 1 / N := by
   have hN' : (0 : ℝ) < N := Nat.cast_pos.2 hN
@@ -41,7 +43,9 @@ lemma exists_int_approx (x : ℝ) {N : ℕ} (hN : 0 < N) :
     exact div_le_div_of_nonneg_right (Int.fract_lt_one _).le hN'.le
 
 /-- Approximate finitely many vectors on a common grid within `η` in each coordinate,
-without increasing any coordinate in absolute value. -/
+without increasing any coordinate in absolute value.
+@isnad1 id=ex.1h4v.s7.2c37baf3826d from=translated src=- shape=d696478d vocab=6b139aaf
+-/
 lemma exists_grid_approx {d n : ℕ} (v : Fin n → Fin d → ℝ) {η : ℝ} (hη : 0 < η) :
     ∃ (N : ℕ) (g : Fin n → Fin d → ℤ), 0 < N ∧ (∀ i k, |(g i k : ℝ) / N| ≤ |v i k|) ∧
       ∀ i k, |v i k - (g i k : ℝ) / N| ≤ η := by

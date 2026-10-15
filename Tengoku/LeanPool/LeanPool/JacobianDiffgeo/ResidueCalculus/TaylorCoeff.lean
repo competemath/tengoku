@@ -39,26 +39,38 @@ For `g` analytic at `z₀` with power series `p` this equals `p.coeff j`. Junk f
 noncomputable def taylorCoeffAt (g : ℂ → ℂ) (z₀ : ℂ) (j : ℕ) : ℂ :=
   (Function.swap dslope z₀)^[j] g z₀
 
+/--
+@isnad1 id=eq.0h2v.s4.6edf57f69b58 from=translated src=- shape=b6e4bd8b vocab=1e464a6e
+-/
 @[simp] theorem taylorCoeffAt_zero_apply : taylorCoeffAt g z₀ 0 = g z₀ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.9bbb5dffe31e from=translated src=- shape=43ce64f5 vocab=ec236d09
+-/
 theorem taylorCoeffAt_succ (j : ℕ) :
     taylorCoeffAt g z₀ (j + 1) = taylorCoeffAt (dslope g z₀) z₀ j := rfl
 
-/-- `dslope` iterates of analytic germs are analytic. -/
+/-- `dslope` iterates of analytic germs are analytic.
+@isnad1 id=analytic.1h3v.s6.739cf36fc9e8 from=translated src=- shape=efc9333b vocab=5cca8615
+-/
 theorem AnalyticAt.iterate_dslope (hg : AnalyticAt ℂ g z₀) (j : ℕ) :
     AnalyticAt ℂ ((Function.swap dslope z₀)^[j] g) z₀ := by
   obtain ⟨p, hp⟩ := hg
   exact ⟨_, hp.has_fpower_series_iterate_dslope_fslope j⟩
 
 /-- Bridge to power series (for consumers that hold a `HasFPowerSeriesAt`; not used
-internally). -/
+internally).
+@isnad1 id=eq.1h4v.s6.9a103ce1f02e from=translated src=- shape=99fbf2ec vocab=55e69b59
+-/
 theorem HasFPowerSeriesAt.taylorCoeffAt_eq {p : FormalMultilinearSeries ℂ ℂ ℂ}
     (hp : HasFPowerSeriesAt g p z₀) (j : ℕ) : taylorCoeffAt g z₀ j = p.coeff j := by
   have h := (hp.has_fpower_series_iterate_dslope_fslope j).coeff_zero 1
   calc taylorCoeffAt g z₀ j = (FormalMultilinearSeries.fslope^[j] p).coeff 0 := h.symm
     _ = p.coeff j := by rw [FormalMultilinearSeries.coeff_iterate_fslope, zero_add]
 
-/-- `dslope` respects `𝓝 z₀`-germs. -/
+/-- `dslope` respects `𝓝 z₀`-germs.
+@isnad1 id=eventual.1h3v.s6.5efb949efcda from=translated src=- shape=47f30c89 vocab=52310d4b
+-/
 theorem Filter.EventuallyEq.dslope_eq (hfg : f =ᶠ[𝓝 z₀] g) :
     dslope f z₀ =ᶠ[𝓝 z₀] dslope g z₀ := by
   have hz : f z₀ = g z₀ := hfg.eq_of_nhds
@@ -67,7 +79,9 @@ theorem Filter.EventuallyEq.dslope_eq (hfg : f =ᶠ[𝓝 z₀] g) :
   · simp only [dslope_same, hfg.deriv_eq]
   · rw [dslope_of_ne _ hbz, dslope_of_ne _ hbz, slope_def_field, slope_def_field, hb, hz]
 
-/-- Germ invariance: `taylorCoeffAt` only depends on the `𝓝 z₀`-germ. -/
+/-- Germ invariance: `taylorCoeffAt` only depends on the `𝓝 z₀`-germ.
+@isnad1 id=eq.1h4v.s5.6bb682559af8 from=translated src=- shape=11271820 vocab=0b2ca9e8
+-/
 theorem taylorCoeffAt_congr (hfg : f =ᶠ[𝓝 z₀] g) (j : ℕ) :
     taylorCoeffAt f z₀ j = taylorCoeffAt g z₀ j := by
   induction j generalizing f g with
@@ -76,6 +90,9 @@ theorem taylorCoeffAt_congr (hfg : f =ᶠ[𝓝 z₀] g) (j : ℕ) :
     rw [taylorCoeffAt_succ, taylorCoeffAt_succ]
     exact ih (Filter.EventuallyEq.dslope_eq hfg)
 
+/--
+@isnad1 id=eq.0h3v.s6.fc039a5c8eea from=translated src=- shape=4f8b62d8 vocab=94a9187b
+-/
 theorem dslope_const_mul (c : ℂ) (g : ℂ → ℂ) (z₀ : ℂ) :
     dslope (fun z => c * g z) z₀ = fun b => c * dslope g z₀ b := by
   funext b
@@ -84,6 +101,9 @@ theorem dslope_const_mul (c : ℂ) (g : ℂ → ℂ) (z₀ : ℂ) :
   · rw [dslope_of_ne _ hbz, dslope_of_ne _ hbz, slope_def_field, slope_def_field]
     ring
 
+/--
+@isnad1 id=eq.0h2v.s5.5f9ab37a2265 from=translated src=- shape=b98a05ab vocab=65802696
+-/
 theorem dslope_const (c : ℂ) (z₀ : ℂ) : dslope (fun _ => c) z₀ = fun _ => 0 := by
   funext b
   rcases eq_or_ne b z₀ with rfl | hbz
@@ -91,6 +111,9 @@ theorem dslope_const (c : ℂ) (z₀ : ℂ) : dslope (fun _ => c) z₀ = fun _ =
   · rw [dslope_of_ne _ hbz, slope_def_field]
     simp
 
+/--
+@isnad1 id=eq.0h4v.s5.546ba062eba4 from=translated src=- shape=45940614 vocab=ad98e02d
+-/
 theorem taylorCoeffAt_const_mul (c : ℂ) (j : ℕ) :
     taylorCoeffAt (fun z => c * g z) z₀ j = c * taylorCoeffAt g z₀ j := by
   induction j generalizing g with
@@ -99,22 +122,33 @@ theorem taylorCoeffAt_const_mul (c : ℂ) (j : ℕ) :
     rw [taylorCoeffAt_succ, taylorCoeffAt_succ, dslope_const_mul]
     exact ih
 
+/--
+@isnad1 id=eq.0h2v.s4.02fddf815ddb from=translated src=- shape=7dd589f7 vocab=1e464a6e
+-/
 theorem taylorCoeffAt_zero_fun (j : ℕ) : taylorCoeffAt (fun _ => (0 : ℂ)) z₀ j = 0 := by
   induction j with
   | zero => rfl
   | succ j ih => rw [taylorCoeffAt_succ, dslope_const]; exact ih
 
+/--
+@isnad1 id=eq.0h3v.s5.217b1fb369f7 from=translated src=- shape=22d6c22c vocab=c538ca07
+-/
 @[simp] theorem taylorCoeffAt_const (c : ℂ) (j : ℕ) :
     taylorCoeffAt (fun _ => c) z₀ j = if j = 0 then c else 0 := by
   cases j with
   | zero => rfl
   | succ j => rw [taylorCoeffAt_succ, dslope_const, taylorCoeffAt_zero_fun]; simp
 
+/--
+@isnad1 id=eq.0h3v.s4.df424cd24eb7 from=translated src=- shape=c9599c72 vocab=43833207
+-/
 theorem taylorCoeffAt_neg (j : ℕ) :
     taylorCoeffAt (fun z => -g z) z₀ j = -taylorCoeffAt g z₀ j := by
   simpa [neg_one_mul] using taylorCoeffAt_const_mul (g := g) (z₀ := z₀) (-1) j
 
-/-- ℂ-additivity of Taylor coefficients on analytic germs. -/
+/-- ℂ-additivity of Taylor coefficients on analytic germs.
+@isnad1 id=eq.2h4v.s6.5c21ea45d577 from=translated src=- shape=f7c516f2 vocab=c6b078b8
+-/
 theorem taylorCoeffAt_add (hf : AnalyticAt ℂ f z₀) (hg : AnalyticAt ℂ g z₀) (j : ℕ) :
     taylorCoeffAt (f + g) z₀ j = taylorCoeffAt f z₀ j + taylorCoeffAt g z₀ j := by
   obtain ⟨p, hp⟩ := hf
@@ -123,10 +157,16 @@ theorem taylorCoeffAt_add (hf : AnalyticAt ℂ f z₀) (hg : AnalyticAt ℂ g z�
     HasFPowerSeriesAt.taylorCoeffAt_eq hp j, HasFPowerSeriesAt.taylorCoeffAt_eq hq j]
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s6.ea865525e036 from=translated src=- shape=265a979c vocab=c6b078b8
+-/
 theorem taylorCoeffAt_fun_add (hf : AnalyticAt ℂ f z₀) (hg : AnalyticAt ℂ g z₀) (j : ℕ) :
     taylorCoeffAt (fun z => f z + g z) z₀ j = taylorCoeffAt f z₀ j + taylorCoeffAt g z₀ j :=
   taylorCoeffAt_add hf hg j
 
+/--
+@isnad1 id=eq.2h4v.s6.287c88dbe50b from=translated src=- shape=265a979c vocab=ea542cbe
+-/
 theorem taylorCoeffAt_sub (hf : AnalyticAt ℂ f z₀) (hg : AnalyticAt ℂ g z₀) (j : ℕ) :
     taylorCoeffAt (fun z => f z - g z) z₀ j = taylorCoeffAt f z₀ j - taylorCoeffAt g z₀ j := by
   have hneg : AnalyticAt ℂ (fun z => -g z) z₀ := by fun_prop
@@ -135,6 +175,9 @@ theorem taylorCoeffAt_sub (hf : AnalyticAt ℂ f z₀) (hg : AnalyticAt ℂ g z�
   have h1 : (fun z => f z - g z) = fun z => f z + -g z := by funext z; ring
   rw [h1, h2, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.1h5v.s6.80788f93d28a from=translated src=- shape=37a74dde vocab=664b0398
+-/
 theorem taylorCoeffAt_fun_sum {ι : Type*} {s : Finset ι} {G : ι → ℂ → ℂ}
     (hG : ∀ i ∈ s, AnalyticAt ℂ (G i) z₀) (j : ℕ) :
     taylorCoeffAt (fun z => ∑ i ∈ s, G i z) z₀ j = ∑ i ∈ s, taylorCoeffAt (G i) z₀ j := by
@@ -150,6 +193,9 @@ theorem taylorCoeffAt_fun_sum {ι : Type*} {s : Finset ι} {G : ι → ℂ → �
         (Finset.analyticAt_fun_sum s fun i hi => hG i (Finset.mem_insert_of_mem hi)),
       ih fun i hi => hG i (Finset.mem_insert_of_mem hi)]
 
+/--
+@isnad1 id=eq.1h2v.s6.dd84d79b922d from=translated src=- shape=7fde358c vocab=ead829df
+-/
 theorem dslope_sub_mul (hF : DifferentiableAt ℂ F z₀) :
     dslope (fun z => (z - z₀) * F z) z₀ = F := by
   funext b
@@ -162,7 +208,9 @@ theorem dslope_sub_mul (hF : DifferentiableAt ℂ F z₀) :
   · have h2 := dslope_sub_smul_of_ne F hbz
     simpa only [smul_eq_mul] using h2
 
-/-- Shift: prepending a monomial factor shifts Taylor coefficients. THE workhorse identity. -/
+/-- Shift: prepending a monomial factor shifts Taylor coefficients. THE workhorse identity.
+@isnad1 id=eq.1h4v.s6.ea06a81d2c80 from=translated src=- shape=1dc4cc65 vocab=25a2a320
+-/
 theorem taylorCoeffAt_sub_pow_mul (hg : AnalyticAt ℂ g z₀) (d j : ℕ) :
     taylorCoeffAt (fun z => (z - z₀) ^ d * g z) z₀ j
       = if j < d then 0 else taylorCoeffAt g z₀ (j - d) := by
@@ -182,6 +230,9 @@ theorem taylorCoeffAt_sub_pow_mul (hg : AnalyticAt ℂ g z₀) (d j : ℕ) :
       rw [hfun, taylorCoeffAt_succ, dslope_sub_mul hdiff, ih j]
       simp only [Nat.succ_lt_succ_iff, Nat.succ_sub_succ]
 
+/--
+@isnad1 id=eq.0h3v.s5.8271e1869f08 from=translated src=- shape=45ce7d3c vocab=57692269
+-/
 @[simp] theorem taylorCoeffAt_monomial (d j : ℕ) :
     taylorCoeffAt (fun z => (z - z₀) ^ d) z₀ j = if j = d then 1 else 0 := by
   have h := taylorCoeffAt_sub_pow_mul (g := fun _ => (1 : ℂ)) (z₀ := z₀) analyticAt_const d j
@@ -190,7 +241,9 @@ theorem taylorCoeffAt_sub_pow_mul (hg : AnalyticAt ℂ g z₀) (d j : ℕ) :
   split_ifs <;> first | rfl | omega
 
 /-- Taylor remainder factorization, EXACT (pointwise): subtracting the degree-`< m` Taylor
-polynomial leaves an honest `(z - z₀) ^ m`-divisible function with analytic quotient. -/
+polynomial leaves an honest `(z - z₀) ^ m`-divisible function with analytic quotient.
+@isnad1 id=ex.1h3v.s7.858cbc574693 from=translated src=- shape=2d58cb3d vocab=7541d6fe
+-/
 theorem AnalyticAt.exists_taylor_remainder (hg : AnalyticAt ℂ g z₀) (m : ℕ) :
     ∃ r : ℂ → ℂ, AnalyticAt ℂ r z₀ ∧
       (∀ j, taylorCoeffAt r z₀ j = taylorCoeffAt g z₀ (j + m)) ∧

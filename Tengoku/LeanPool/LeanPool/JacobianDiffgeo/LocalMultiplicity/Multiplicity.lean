@@ -51,19 +51,30 @@ noncomputable def multiplicity (F : X → Y) (x : X) : ℕ := (multiplicityENat 
 /-- `F` is ramified at `x` iff its local multiplicity is at least `2`. -/
 def IsRamifiedAt (F : X → Y) (x : X) : Prop := 2 ≤ multiplicity F x
 
+/--
+@isnad1 id=eq.0h4v.s6.532a412f655a from=translated src=- shape=c1340648 vocab=df1b2847
+-/
 theorem multiplicityENat_def (F : X → Y) (x : X) :
     multiplicityENat F x = analyticOrderAt (inChartAt F x) (chartAt ℂ x x) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.14f0c9702d6e from=translated src=- shape=ceee719e vocab=1027b5c4
+-/
 theorem multiplicity_def (F : X → Y) (x : X) :
     multiplicity F x = (multiplicityENat F x).toNat := rfl
 
 /-- Planar specialization: on `ℂ` the charts are `refl`, so the multiplicity is the recentered
-vanishing order itself. -/
+vanishing order itself.
+@isnad1 id=eq.0h2v.s6.26963144b607 from=translated src=- shape=1221cc14 vocab=51d9852b
+-/
 @[simp] theorem multiplicityENat_planar (f : ℂ → ℂ) (z₀ : ℂ) :
     multiplicityENat f z₀ = analyticOrderAt (f · - f z₀) z₀ := rfl
 
 section Junk
 
+/--
+@isnad1 id=eq.1h4v.s6.db356ff1c315 from=translated src=- shape=5e550b9f vocab=c57a1935
+-/
 theorem multiplicityENat_eq_top_of_eventuallyConst {F : X → Y} {x : X}
     (h : EventuallyConst F (𝓝 x)) : multiplicityENat F x = ⊤ := by
   have h1 := eventuallyConst_inChartAt h
@@ -72,6 +83,9 @@ theorem multiplicityENat_eq_top_of_eventuallyConst {F : X → Y} {x : X}
   rw [multiplicityENat_def, analyticOrderAt_eq_top]
   exact h1
 
+/--
+@isnad1 id=eq.1h4v.s6.dc5668734755 from=translated src=- shape=63d7b2dd vocab=37c0ab50
+-/
 @[simp] theorem multiplicity_of_eventuallyConst {F : X → Y} {x : X}
     (h : EventuallyConst F (𝓝 x)) : multiplicity F x = 0 := by
   rw [multiplicity_def, multiplicityENat_eq_top_of_eventuallyConst h]
@@ -83,11 +97,17 @@ section Honest
 
 variable {F : X → Y} {x : X}
 
+/--
+@isnad1 id=ne.1h4v.s7.a310b545d3e9 from=translated src=- shape=578e5d67 vocab=b1fb25a8
+-/
 theorem multiplicityENat_ne_zero (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x) :
     multiplicityENat F x ≠ 0 := by
   rw [multiplicityENat_def, analyticOrderAt_ne_zero]
   exact ⟨(LMCompat.contMDiffAt_iff_analyticAt_inChartAt.mp hF).2, inChartAt_apply_chart F x⟩
 
+/--
+@isnad1 id=iff.1h4v.s7.15d88e1d7604 from=translated src=- shape=251195f3 vocab=c7a6f5f7
+-/
 theorem multiplicityENat_eq_top_iff (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x) :
     multiplicityENat F x = ⊤ ↔ EventuallyConst F (𝓝 x) := by
   constructor
@@ -98,15 +118,24 @@ theorem multiplicityENat_eq_top_iff (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x
     simpa [inChartAt_apply_chart] using h
   · exact multiplicityENat_eq_top_of_eventuallyConst
 
+/--
+@isnad1 id=ne.2h4v.s7.c777a06610af from=translated src=- shape=7b079c52 vocab=c7a6f5f7
+-/
 theorem multiplicityENat_ne_top (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x)
     (hnc : ¬ EventuallyConst F (𝓝 x)) : multiplicityENat F x ≠ ⊤ :=
   fun h ↦ hnc ((multiplicityENat_eq_top_iff hF).mp h)
 
+/--
+@isnad1 id=eq.2h4v.s7.486c26c94294 from=translated src=- shape=02cce27d vocab=3dd302b8
+-/
 theorem natCast_multiplicity (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x)
     (hnc : ¬ EventuallyConst F (𝓝 x)) :
     (multiplicity F x : ℕ∞) = multiplicityENat F x :=
   ENat.natCast_toNat (multiplicityENat_ne_top hF hnc)
 
+/--
+@isnad1 id=le.2h4v.s7.04e11b56aeca from=translated src=- shape=f52a24a5 vocab=836eee54
+-/
 theorem one_le_multiplicity (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x)
     (hnc : ¬ EventuallyConst F (𝓝 x)) : 1 ≤ multiplicity F x := by
   rw [multiplicity_def, Nat.one_le_iff_ne_zero]
@@ -120,7 +149,9 @@ section ChartInvariance
 
 variable [IsManifold 𝓘(ℂ) ω X] [IsManifold 𝓘(ℂ) ω Y]
 
-/-- CHART INVARIANCE: the defining order is the same in any admissible chart pair. -/
+/-- CHART INVARIANCE: the defining order is the same in any admissible chart pair.
+@isnad1 id=eq.5h6v.s9.430fd8020b87 from=translated src=- shape=39736939 vocab=923907d9
+-/
 theorem analyticOrderAt_charts_eq_multiplicityENat
     {F : X → Y} {x : X} (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x)
     {e : OpenPartialHomeomorph X ℂ} {e' : OpenPartialHomeomorph Y ℂ}
@@ -197,7 +228,9 @@ section IsolatedFibers
 
 variable {F : X → Y} {x : X}
 
-/-- Isolated points of the fibre: near `x` (but off `x`), `F` avoids the value `F x`. -/
+/-- Isolated points of the fibre: near `x` (but off `x`), `F` avoids the value `F x`.
+@isnad1 id=eventual.2h4v.s7.5ed99ab191b6 from=translated src=- shape=ecbf4474 vocab=e6f1f6a4
+-/
 theorem eventually_ne (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x)
     (hnc : ¬ EventuallyConst F (𝓝 x)) : ∀ᶠ y in 𝓝[≠] x, F y ≠ F x := by
   obtain ⟨hFc, hA⟩ := LMCompat.contMDiffAt_iff_analyticAt_inChartAt.mp hF
@@ -215,7 +248,9 @@ theorem eventually_ne (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x)
     apply hy
     simp only [inChartAt, h1y, hFy, sub_self]
 
-/-- The fibre of `F x` meets a suitable neighborhood of `x` only in `x`. -/
+/-- The fibre of `F x` meets a suitable neighborhood of `x` only in `x`.
+@isnad1 id=ex.2h4v.s7.2144730ff3f0 from=translated src=- shape=b6d87fda vocab=e3f12dde
+-/
 theorem exists_nhds_fiber_eq_singleton (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x)
     (hnc : ¬ EventuallyConst F (𝓝 x)) :
     ∃ U ∈ 𝓝 x, ∀ y ∈ U, F y = F x → y = x := by
@@ -231,7 +266,9 @@ end IsolatedFibers
 section CC3Compat
 
 /-- CC3 COMPATIBILITY: our multiplicity vs `meromorphicOrderAt` in the chart at `x`
-(for target `ℂ` the target chart is `refl`). -/
+(for target `ℂ` the target chart is `refl`).
+@isnad1 id=eq.1h3v.s8.470f86c4afe4 from=translated src=- shape=38c5a1c1 vocab=da9d02a4
+-/
 theorem meromorphicOrderAt_chart_sub {f : X → ℂ} {x : X}
     (hf : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω f x) :
     meromorphicOrderAt (fun z ↦ f ((chartAt ℂ x).symm z) - f x) (chartAt ℂ x x)
@@ -241,7 +278,9 @@ theorem meromorphicOrderAt_chart_sub {f : X → ℂ} {x : X}
   exact hA.meromorphicOrderAt_eq
 
 /-- CC3 compatibility for functions vanishing at `x`: `meromorphic-and-divisors` reads the LHS
-as `ordAtX f x`. -/
+as `ordAtX f x`.
+@isnad1 id=eq.2h3v.s8.766fa14f72fe from=translated src=- shape=4cb7dc59 vocab=cfbcd9e7
+-/
 theorem meromorphicOrderAt_chart_of_eq_zero {f : X → ℂ} {x : X}
     (hf : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω f x) (h0 : f x = 0) :
     meromorphicOrderAt (f ∘ (chartAt ℂ x).symm) (chartAt ℂ x x)

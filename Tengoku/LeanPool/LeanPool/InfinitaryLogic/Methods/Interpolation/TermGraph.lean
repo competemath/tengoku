@@ -98,6 +98,9 @@ attribute [local instance] graphExpansion
 
 variable {M : Type} [L.Structure M]
 
+/--
+@isnad1 id=eq.0h9v.s6.e512607b0264 from=translated src=- shape=f18de526 vocab=9ed6cf12
+-/
 @[simp] theorem realize_graphTermLift {k : ℕ} (u : (graphLanguage L).Term (α ⊕ Fin m))
     (v : α → M) (xs : Fin m → M) (ws : Fin k → M) :
     (graphTermLift k u).realize (Sum.elim v (Fin.append xs ws)) = u.realize (Sum.elim v xs) := by
@@ -108,6 +111,9 @@ variable {M : Type} [L.Structure M]
     · exact Fin.append_left xs ws i
   rw [graphTermLift, Term.realize_relabel, henv]
 
+/--
+@isnad1 id=eq.0h9v.s6.d1751b76aa80 from=translated src=- shape=e614301e vocab=2ba5baf1
+-/
 @[simp] theorem realize_graphWitnessVar {k : ℕ} (i : Fin k)
     (v : α → M) (xs : Fin m → M) (ws : Fin k → M) :
     (graphWitnessVar (L := L) m i).realize (Sum.elim v (Fin.append xs ws)) = ws i :=
@@ -115,7 +121,9 @@ variable {M : Type} [L.Structure M]
 
 /-- **Auxiliary semantics** (the stronger, context-polymorphic form): over the graph expansion,
 `termGraphAux t ρ y` holds iff the value of `t` — its variables read through `ρ` — equals the
-value of `y`. Oriented *term value equals output*, matching `graphExpansion_relMap_graph`. -/
+value of `y`. Oriented *term value equals output*, matching `graphExpansion_relMap_graph`.
+@isnad1 id=iff.0h10v.s6.eef01443e337 from=translated src=- shape=b8e738df vocab=dc80ec20
+-/
 theorem realize_termGraphAux :
     ∀ {m : ℕ} (t : L.Term β) (ρ : β → (graphLanguage L).Term (α ⊕ Fin m))
       (y : (graphLanguage L).Term (α ⊕ Fin m)) (v : α → M) (xs : Fin m → M),
@@ -176,7 +184,9 @@ end Semantics
 
 /-- The relation symbols of the auxiliary term-graph formula are exactly the graph relations of
 the term's function symbols — independent of the embedding `ρ` and the output `y` (graph-language
-terms are pure variables and contribute nothing). -/
+terms are pure variables and contribute nothing).
+@isnad1 id=eq.0h7v.s6.ef1dbd6a571f from=translated src=- shape=b23a4dc1 vocab=e669590f
+-/
 theorem relationsIn_termGraphAux :
     ∀ {m : ℕ} (t : L.Term β) (ρ : β → (graphLanguage L).Term (α ⊕ Fin m))
       (y : (graphLanguage L).Term (α ⊕ Fin m)),

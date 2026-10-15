@@ -45,14 +45,18 @@ def hMap
     (pi : G →+ G) (a b : ℤ) (x : G) : G :=
   a • x + b • pi x
 
-/-- `gMap` commutes with multiplication by an integer. -/
+/-- `gMap` commutes with multiplication by an integer.
+@isnad1 id=eq.0h6v.s6.6e7cae5ccd95 from=translated src=- shape=26959274 vocab=942f6c5b
+-/
 lemma gMap_zsmul
     {G : Type*} [AddCommGroup G]
     (pi : G →+ G) (a b c : ℤ) (x : G) :
     gMap pi a b (c • x) = c • gMap pi a b x := by
   simp only [gMap, smul_sub, smul_smul, map_zsmul, mul_comm c]
 
-/-- `gMap` commutes with `1 + pi`. -/
+/-- `gMap` commutes with `1 + pi`.
+@isnad1 id=eq.0h5v.s7.c1abc1b4b992 from=translated src=- shape=c52d8308 vocab=2f8f879c
+-/
 lemma gMap_add_map
     {G : Type*} [AddCommGroup G]
     (pi : G →+ G) (a b : ℤ) (x : G) :
@@ -60,7 +64,9 @@ lemma gMap_add_map
   simp only [gMap, map_add, map_sub, map_zsmul]
   module
 
-/-- `(-2)^r` is congruent to `1` modulo `3`. -/
+/-- `(-2)^r` is congruent to `1` modulo `3`.
+@isnad1 id=ex.0h1v.s5.384263271212 from=translated src=- shape=cec0fa74 vocab=b0c84f33
+-/
 lemma neg_two_pow_eq_one_add_three_mul (r : ℕ) :
     ∃ c : ℤ, (-2 : ℤ) ^ r = 1 + 3 * c := by
   induction r with
@@ -83,6 +89,7 @@ Explicitly one may take
 
     b = (1 - (-2)^r)/3,
     a = (1 + 2*(-2)^r)/3.
+@isnad1 id=ex.1h2v.s7.5410cbf7d3ac from=translated src=- shape=1f6eca10 vocab=b3bf38c5
 -/
 theorem exists_factor_coefficients
     {r m : ℕ}
@@ -105,7 +112,9 @@ theorem exists_factor_coefficients
     rw [← heZ]; ring
   exact mul_left_cancel₀ (by norm_num) this
 
-/-- Iterating `π² = [-2]`: the even powers of `π` are integer multiplications. -/
+/-- Iterating `π² = [-2]`: the even powers of `π` are integer multiplications.
+@isnad1 id=eq.1h4v.s7.1060ff714299 from=translated src=- shape=1639abfa vocab=fff78543
+-/
 theorem piIter_even
     {G : Type*} [AddCommGroup G] (pi : G →+ G)
     (hpi2 : ∀ x : G, pi (pi x) = (-2 : ℤ) • x) (n : ℕ) (x : G) :
@@ -121,7 +130,9 @@ theorem piIter_even
 
 /-- The factorization `(1 + π) ∘ G = 1 + π^(2r+1)`, with no invertibility
 hypothesis.  Stated separately because it is needed over the algebraic closure,
-where the group has no finite annihilator and `G` need not be bijective. -/
+where the group has no finite annihilator and `G` need not be bijective.
+@isnad1 id=eq.3h6v.s8.7076bc4526a8 from=translated src=- shape=3a4a9055 vocab=f768641a
+-/
 theorem gMap_factor
     {G : Type*} [AddCommGroup G]
     (pi : G →+ G)
@@ -157,6 +168,7 @@ by Bezout and hence `G` is bijective.
 
 This needs neither `r` nor the coefficient identities: the factorization
 `(1 + pi) G = 1 + pi^(2r+1)` is the separate statement `gMap_factor`.
+@isnad1 id=bijectiv.4h6v.s8.dc9447bcda74 from=translated src=- shape=9f08acdc vocab=ca516f7c
 -/
 theorem gMap_bijective
     {G : Type*} [AddCommGroup G]

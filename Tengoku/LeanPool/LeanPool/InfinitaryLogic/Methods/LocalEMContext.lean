@@ -59,7 +59,9 @@ variable (Λ : Language.{0, 0}) (J : Type) [LinearOrder J]
 for the free variables of a base-language term `(onTerm t)` (which itself carries no
 `J`-constants, being a `Λ`-image) produces only the `J`-constants of the `ts`. The bridge from a
 uniform support hypothesis `S ⊇ ⋃ locJSupport (ts i)` to the per-atom support hypotheses of the
-congruence layer. -/
+congruence layer.
+@isnad1 id=le.0h5v.s6.ee391af1b1b8 from=translated src=- shape=34108eca vocab=da35cff0
+-/
 theorem locJSupport_onTerm_subst_subset {n : ℕ} (t : Λ.Term (Empty ⊕ Fin n))
     (ts : Fin n → Λ[[J]].Term Empty) :
     locJSupport Λ J (((lhomWithConstants Λ J).onTerm t).subst (Sum.elim (fun e => e.elim) ts))
@@ -92,7 +94,9 @@ noncomputable def locDeepInterp (d : ℕ) (S : Finset J) (t : Λ[[J]].Term Empty
   t.realize Empty.elim
 
 /-- Deep interpretation commutes with function application (same depth and support): it is the
-structure's `funMap` of the argument interpretations. Immediate from `Term.realize`. -/
+structure's `funMap` of the argument interpretations. Immediate from `Term.realize`.
+@isnad1 id=eq.0h9v.s6.621ee5047dfb from=translated src=- shape=0fd1cfa9 vocab=81cef037
+-/
 theorem locDeepInterp_func (d : ℕ) (S : Finset J) {n : ℕ}
     (f : Λ[[J]].Functions n) (ts : Fin n → Λ[[J]].Term Empty) :
     locDeepInterp Λ J a d S (.func f ts) =
@@ -104,7 +108,9 @@ theorem locDeepInterp_func (d : ℕ) (S : Finset J) {n : ℕ}
 *de-substituted* `Λ`-term `constantsToVars t` (each skeleton constant `c_j` turned into the
 variable `Sum.inl j`) realized with `j ↦ a (d + deepRank S j)`. Turns the support machinery from
 combinatorial into semantic — the right-hand side is a genuine formula realization, so tail
-indiscernibility applies. -/
+indiscernibility applies.
+@isnad1 id=eq.0h7v.s6.d0291a2534bf from=translated src=- shape=011a8087 vocab=c2bc40e8
+-/
 theorem locDeepInterp_eq_realize (d : ℕ) (S : Finset J) (t : Λ[[J]].Term Empty) :
     locDeepInterp Λ J a d S t =
       t.constantsToVars.realize (Sum.elim (fun j => a (d + deepRank J S j)) Empty.elim) := by
@@ -132,7 +138,9 @@ private theorem locDeepInterp_subst (d : ℕ) (S : Finset J) {n : ℕ}
 
 /-- **Deep interpretation of a base-language substituted term**: combining `locDeepInterp_subst`
 with `realize_onTerm`, the deep interpretation of `(onTerm t).subst ts` equals `t` realized in
-`M`'s ambient `Λ`-structure on the deep interpretations of the substituted terms. -/
+`M`'s ambient `Λ`-structure on the deep interpretations of the substituted terms.
+@isnad1 id=eq.0h9v.s6.cd5262448dd0 from=translated src=- shape=0c803195 vocab=e3c0048e
+-/
 theorem locDeepInterp_onTerm_subst (d : ℕ) (S : Finset J) {n : ℕ}
     (t : Λ.Term (Empty ⊕ Fin n)) (ts : Fin n → Λ[[J]].Term Empty) :
     locDeepInterp Λ J a d S
@@ -158,7 +166,9 @@ private theorem locDeepInterp_eq_realize_pos (d : ℕ) (S : Finset J) (t : Λ[[J
 
 /-- **`Fin`-arity realize bridge**: the deep interpretation is the realize of the
 `Fin S.card`-indexed de-substituted term on the consecutive deep tuple `i ↦ a (d + i)`, directly
-feeding the atoms. -/
+feeding the atoms.
+@isnad1 id=eq.1h7v.s6.fa043ca795b2 from=translated src=- shape=ee638b9f vocab=e96eb065
+-/
 theorem locDeTermFin_realize (d : ℕ) (S : Finset J) (t : Λ[[J]].Term Empty)
     (hsub : locJSupport Λ J t ⊆ S) :
     locDeepInterp Λ J a d S t
@@ -171,7 +181,9 @@ theorem locDeTermFin_realize (d : ℕ) (S : Finset J) (t : Λ[[J]].Term Empty)
 on the `T`-induced deep tuple `i ↦ a (d + deepRank T (orderEmbOfFin S i))`, equals the deep
 interpretation over the larger support `T`. The core shared by the equality- and relation-atom
 superset bridges (restrictVar realize with a `dite`-extended assignment, then
-`realize_eq_of_eq_on_varFinset` to discard the junk, then `orderEmbOfFin_deepRank`). -/
+`realize_eq_of_eq_on_varFinset` to discard the junk, then `orderEmbOfFin_deepRank`).
+@isnad1 id=eq.1h8v.s7.49bf216663b7 from=translated src=- shape=ee16d5ba vocab=a27bb39d
+-/
 theorem locDeTermFin_realize_superset (d : ℕ) (S T : Finset J) (w : Λ[[J]].Term Empty)
     (hw : locJSupport Λ J w ⊆ S) :
     (locDeTermFin Λ J S w hw).realize
@@ -257,7 +269,9 @@ private theorem realize_locDeRelAtom_superset (d : ℕ) {S T : Finset J} (_hST :
 
 /-- **General formula realize bridge** (generalizes the atom bridges): the local de-substituted
 formula holds on the consecutive deep tuple `i ↦ a (d + i)` iff `φ` holds in `M`'s ambient
-`Λ`-structure on the deep interpretations of `ts` at depth `d` over `S`. -/
+`Λ`-structure on the deep interpretations of `ts` at depth `d` over `S`.
+@isnad1 id=iff.1h9v.s6.59a89665aa50 from=translated src=- shape=70fc96b7 vocab=23e1e06a
+-/
 theorem realize_locDeForm (d : ℕ) (S : Finset J) {n : ℕ}
     (φ : Λ.BoundedFormulaω Empty n)
     (ts : Fin n → Λ[[J]].Term Empty) (hsub : ∀ i, locJSupport Λ J (ts i) ⊆ S) :
@@ -274,7 +288,9 @@ theorem realize_locDeForm (d : ℕ) (S : Finset J) {n : ℕ}
 
 /-- Deep interpretation commutes with `Fin.snoc`: interpreting the one-point extension
 `Fin.snoc ts u` gives the snoc of the interpretations. Semantic prep for the later truth lemma's
-`all` case (relating the carrier's `∀x` over term-classes to the body's argument tuple). -/
+`all` case (relating the carrier's `∀x` over term-classes to the body's argument tuple).
+@isnad1 id=eq.0h9v.s7.39c6033ea52f from=translated src=- shape=e99a201b vocab=2de815c8
+-/
 theorem locDeepInterp_snoc (d : ℕ) (S : Finset J) {n : ℕ}
     (ts : Fin n → Λ[[J]].Term Empty) (u : Λ[[J]].Term Empty) :
     (fun i => locDeepInterp Λ J a d S
@@ -295,9 +311,15 @@ def LocalEMEq (t u : Λ[[J]].Term Empty) : Prop :=
     locDeepInterp Λ J a d (locJSupport Λ J t ∪ locJSupport Λ J u) t =
       locDeepInterp Λ J a d (locJSupport Λ J t ∪ locJSupport Λ J u) u
 
+/--
+@isnad1 id=localeme.0h5v.s5.c471180ef984 from=translated src=- shape=1a00045f vocab=7d88bf5e
+-/
 theorem LocalEMEq.refl (t : Λ[[J]].Term Empty) : LocalEMEq Λ J a t t :=
   Filter.Eventually.of_forall fun _ => rfl
 
+/--
+@isnad1 id=localeme.1h6v.s5.900dc2ebe275 from=translated src=- shape=433ce9e6 vocab=7d88bf5e
+-/
 theorem LocalEMEq.symm {t u : Λ[[J]].Term Empty} (h : LocalEMEq Λ J a t u) :
     LocalEMEq Λ J a u t := by
   unfold LocalEMEq
@@ -344,7 +366,9 @@ private theorem LocalEMEq_eventually_on_superset
 
 /-- **Support-enlargement *iff*** (the symmetric core): on the deep tail the deep equality over the
 combined support `S₀` is *equivalent* to the deep equality over any larger support `S ⊇ S₀`. Both
-directions — descending from a larger support back to `S₀` is what `LocalEMContext.trans` needs. -/
+directions — descending from a larger support back to `S₀` is what `LocalEMContext.trans` needs.
+@isnad1 id=eventual.3h8v.s8.3ce8e98e3d49 from=translated src=- shape=58dc97fd vocab=65f70873
+-/
 theorem eventually_locDeepInterp_superset_iff
     {Γ : Set (Σ n, Λ.BoundedFormulaω Empty n)}
     (hind : IsLomega1omegaIndiscernibleOnTail (L := Λ) a Γ)
@@ -449,7 +473,9 @@ structure LocalEMContext where
     (ts : Fin l → Λ[[J]].Term Empty) (ht : ∀ i, locJSupport Λ J (ts i) ⊆ S),
     (⟨S.card, locDeRelAtom Λ J S R ts ht⟩ : Σ n, Λ.BoundedFormulaω Empty n) ∈ Γ
 
-/-- Support monotonicity: an argument's skeleton support is contained in the whole term's. -/
+/-- Support monotonicity: an argument's skeleton support is contained in the whole term's.
+@isnad1 id=le.0h7v.s5.be7f217d4eaf from=translated src=- shape=b98861e1 vocab=46750cd2
+-/
 theorem locJSupport_subterm {α : Type} {n : ℕ} (f : Λ[[J]].Functions n)
     (ts : Fin n → Λ[[J]].Term α) (i : Fin n) :
     locJSupport Λ J (ts i) ⊆ locJSupport Λ J (.func f ts) := fun _ hx =>
@@ -457,7 +483,9 @@ theorem locJSupport_subterm {α : Type} {n : ℕ} (f : Λ[[J]].Functions n)
 
 /-- **Transitivity of `LocalEMEq`** (the congruence engine's first payoff): enlarge to the union of
 all three supports, transport both hypotheses up to it via the enlargement *iff*, chain the
-equalities in `M`, and descend back to the `(t,v)`-support. -/
+equalities in `M`, and descend back to the `(t,v)`-support.
+@isnad1 id=localeme.2h7v.s6.08cf9fba1b28 from=translated src=- shape=4cfc48c7 vocab=8af8a22c
+-/
 theorem LocalEMContext.trans (ctx : LocalEMContext Λ J (M := M))
     {t u v : Λ[[J]].Term Empty}
     (h1 : LocalEMEq Λ J ctx.a t u) (h2 : LocalEMEq Λ J ctx.a u v) : LocalEMEq Λ J ctx.a t v := by
@@ -482,7 +510,9 @@ theorem LocalEMContext.trans (ctx : LocalEMContext Λ J (M := M))
 
 /-- **Function congruence**: if the arguments are pairwise `LocalEMEq`, so are the function terms.
 Enlarge every argument's deep equality up to the whole term's support, combine the finitely many
-eventual equalities, and apply `locDeepInterp_func`. -/
+eventual equalities, and apply `locDeepInterp_func`.
+@isnad1 id=localeme.1h8v.s6.7231f61f4326 from=translated src=- shape=36f6949a vocab=0c18346d
+-/
 theorem LocalEMContext.func_congr (ctx : LocalEMContext Λ J (M := M)) {n : ℕ}
     (f : Λ[[J]].Functions n) {ts ts' : Fin n → Λ[[J]].Term Empty}
     (h : ∀ i, LocalEMEq Λ J ctx.a (ts i) (ts' i)) :
@@ -545,7 +575,9 @@ arguments). Well-definedness is proved separately via the enlargement-invariance
 
 /-- **Function interpretation computes on classes** (well-definedness): applying the interpreted
 function symbol to a tuple of term-classes gives the class of the function term. Immediate from
-`func_congr` and `Quotient.out_eq`. (The arity-0 case is `constMap_mkClass`.) -/
+`func_congr` and `Quotient.out_eq`. (The arity-0 case is `constMap_mkClass`.)
+@isnad1 id=eq.0h7v.s6.2096e46b0c7d from=translated src=- shape=791a8beb vocab=a87368bf
+-/
 theorem LocalEMContext.funMap_mkClass (ctx : LocalEMContext Λ J (M := M)) {n : ℕ}
     (f : Λ[[J]].Functions n) (ts : Fin n → Λ[[J]].Term Empty) :
     @Structure.funMap (Λ[[J]]) ctx.Carrier ctx.structure n f
@@ -555,7 +587,9 @@ theorem LocalEMContext.funMap_mkClass (ctx : LocalEMContext Λ J (M := M)) {n : 
   exact fun i => Quotient.exact (Quotient.out_eq (ctx.mkClass (t := ts i)))
 
 /-- The arity-0 case: a skeleton constant `c_j` (or any `Λ`-constant) interprets as the class of its
-constant term. -/
+constant term.
+@isnad1 id=eq.0h5v.s6.7777d1ef7dc2 from=translated src=- shape=dca99f52 vocab=f4d650d1
+-/
 theorem LocalEMContext.constMap_mkClass (ctx : LocalEMContext Λ J (M := M))
     (c : Λ[[J]].Functions 0) :
     @Structure.funMap (Λ[[J]]) ctx.Carrier ctx.structure 0 c Fin.elim0
@@ -587,7 +621,9 @@ holds on a tuple of term-classes iff it holds in `M` on the deep interpretations
 sufficiently
 deep `d`, over *any* support `S` covering the arguments — independent of the representatives and of
 the chosen support. The relation analogue of `funMap_mkClass`, via a bridge support `T = S ∪
-  Sout`. -/
+  Sout`.
+@isnad1 id=iff.1h8v.s7.8034bf9cfcb8 from=translated src=- shape=56815d40 vocab=7c8b2237
+-/
 theorem LocalEMContext.relMap_mkClass_iff (ctx : LocalEMContext Λ J (M := M)) {l : ℕ}
     (R : Λ.Relations l) (ts : Fin l → Λ[[J]].Term Empty)
     {S : Finset J} (hS : (Finset.univ.biUnion fun i => locJSupport Λ J (ts i)) ⊆ S) :
@@ -644,7 +680,9 @@ the skeleton-constant inclusion (a base function/relation symbol acts as its `Su
 carrier's base structure to its term-model `[[J]]`-structure (definitional, as the `[[J]]`-structure
 interprets `Sum.inl` symbols by the base reduct). Lets `realize_mapLanguage` transfer
 realizations of
-base-language formulas. -/
+base-language formulas.
+@isnad1 id=isexpans.0h4v.s5.9a7d311996e7 from=translated src=- shape=342c2cbd vocab=17e2ae1d
+-/
 theorem LocalEMContext.lhomWithConstants_isExpansionOn (ctx : LocalEMContext Λ J (M := M)) :
     @LHom.IsExpansionOn Λ (Λ[[J]])
       (lhomWithConstants Λ J) ctx.Carrier ctx.structureBase ctx.structure := by

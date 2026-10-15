@@ -57,7 +57,9 @@ noncomputable def LocalEMContext.tupleCode (ctx : LocalEMContext Λ J (M := M)) 
 
 /-- **The orbit theorem**: over a highly order-transitive skeleton, tuples with equal codes lie
 in the same orbit of the induced structure automorphisms — some order automorphism of `J`
-carries one tuple to the other through the descended equivalence. -/
+carries one tuple to the other through the descended equivalence.
+@isnad1 id=ex.2h7v.s7.7b8e8c861d27 from=translated src=- shape=1cdec6ac vocab=6ffba1fd
+-/
 theorem LocalEMContext.exists_carrierEquiv_of_tupleCode_eq
     (ctx : LocalEMContext Λ J (M := M)) (hJ : HighlyOrderTransitive J) {n : ℕ}
     {a b : Fin n → ctx.Carrier} (h : ctx.tupleCode a = ctx.tupleCode b) :

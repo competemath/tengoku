@@ -64,7 +64,9 @@ private theorem realize_genAll (base : L.Structure M) (h : ℕ → M) (j : ℕ) 
     hval x]
   exact BoundedFormulaω.realize_abstractConst base h j x ρ Fin.elim0
 
-/-- `c_j` is not in the constant support of its own universal generalization. -/
+/-- `c_j` is not in the constant support of its own universal generalization.
+@isnad1 id=not.0h3v.s4.70d69ea7a57b from=translated src=- shape=7e5fc536 vocab=ebaee0af
+-/
 theorem notMem_sentenceJConsts_genAll (j : ℕ) (ρ : L[[ℕ]].Sentenceω) :
     j ∉ sentenceJConsts (L' := L) (J := ℕ) (genAll j ρ) := by
   rw [genAll]
@@ -89,6 +91,9 @@ private theorem functionsIn_genAll_subset (j : ℕ) (ρ : L[[ℕ]].Sentenceω) :
     BoundedFormulaω.functionsIn_relabel]
   exact BoundedFormulaω.functionsIn_abstractConst_subset j ρ
 
+/--
+@isnad1 id=le.0h3v.s5.45f3820179b8 from=translated src=- shape=5545e67e vocab=3cf60fff
+-/
 theorem baseFunctionsIn_genAll_subset (j : ℕ) (ρ : L[[ℕ]].Sentenceω) :
     (genAll j ρ).baseFunctionsIn ⊆ ρ.baseFunctionsIn :=
   fun _ hs => functionsIn_genAll_subset j ρ hs
@@ -100,11 +105,17 @@ private theorem relationsIn_genAll (j : ℕ) (ρ : L[[ℕ]].Sentenceω) :
       = ((ρ.abstractConst j).relabel (Sum.inr : Fin 1 → Empty ⊕ Fin 1)).relationsIn from rfl,
     BoundedFormulaω.relationsIn_relabel, BoundedFormulaω.relationsIn_abstractConst]
 
+/--
+@isnad1 id=eq.0h3v.s5.a7af2f1449cc from=translated src=- shape=5545e67e vocab=a8b8dbb2
+-/
 theorem baseRelationsIn_genAll (j : ℕ) (ρ : L[[ℕ]].Sentenceω) :
     (genAll j ρ).baseRelationsIn = ρ.baseRelationsIn := by
   unfold BoundedFormulaω.baseRelationsIn
   rw [relationsIn_genAll]
 
+/--
+@isnad1 id=le.0h3v.s5.01b9a0bad106 from=translated src=- shape=ca23caa7 vocab=e29bb505
+-/
 theorem sentenceJConsts_genAll_subset (j : ℕ) (ρ : L[[ℕ]].Sentenceω) :
     sentenceJConsts (L' := L) (J := ℕ) (genAll j ρ) ⊆ sentenceJConsts (L' := L) (J := ℕ) ρ :=
   fun _ hs => functionsIn_genAll_subset j ρ hs
@@ -140,7 +151,9 @@ positive occurrence and moves nothing else: at sign `true` the right disjunct is
 sign `false` the occurrences are exactly those of `ρ`.
 
 This is what lets a labelled budget absorb a generalization whose universal parent already sits on
-the same side. -/
+the same side.
+@isnad1 id=iff.0h4v.s5.412be88296b1 from=translated src=- shape=d5fccb8c vocab=345b4154
+-/
 theorem hasQuantSigned_genAll (j : ℕ) (s : Bool) (ρ : L[[ℕ]].Sentenceω) :
     hasQuantSigned s (genAll j ρ) ↔ (s = true ∨ hasQuantSigned s ρ) := by
   rw [genAll, BoundedFormulaω.hasQuantSigned_all, BoundedFormulaω.hasQuantSigned_relabel]
@@ -151,7 +164,9 @@ theorem hasQuantSigned_genAll (j : ℕ) (s : Bool) (ρ : L[[ℕ]].Sentenceω) :
   rw [← not_iff_not, ← h1, ← h2, BoundedFormulaω.universalSigned_abstractConst]
 
 /-- **The exact signed-occurrence equation for `genEx`**, the dual of `hasQuantSigned_genAll`:
-existential generalization adds one negative occurrence and moves nothing else. -/
+existential generalization adds one negative occurrence and moves nothing else.
+@isnad1 id=iff.0h4v.s5.3c1b2f34db84 from=translated src=- shape=d5fccb8c vocab=37cb0d89
+-/
 theorem hasQuantSigned_genEx (j : ℕ) (s : Bool) (ρ : L[[ℕ]].Sentenceω) :
     hasQuantSigned s (genEx j ρ) ↔ (s = false ∨ hasQuantSigned s ρ) := by
   rw [genEx, BoundedFormulaω.hasQuantSigned_ex, BoundedFormulaω.hasQuantSigned_relabel]
@@ -167,7 +182,9 @@ variable {j : ℕ} {φc σc : L[[ℕ]].Sentenceω} {Γ Δ : Set L[[ℕ]].Sentenc
 
 /-- **Acceptance, `Γ` side**: `Γ ⊨ σ(c)` upgrades to `Γ ⊨ ∀x σ(x)` when `c_j` is fresh for `Γ`.
 Unlike `genEx`'s `Γ`-side sequent this genuinely needs freshness — `∀`-introduction is not
-weakening. -/
+weakening.
+@isnad1 id=entails.2h4v.s6.ae4a35220007 from=translated src=- shape=6c54d1e7 vocab=f9f7f2ac
+-/
 theorem entails_genAll_of_entails
     (hfresh : ∀ γ ∈ Γ, j ∉ sentenceJConsts (L' := L) (J := ℕ) γ)
     (hyp : Theoryω.Entails Γ σc) : Theoryω.Entails Γ (genAll j σc) := by
@@ -197,7 +214,9 @@ theorem entails_genAll_of_entails
 be fresh for `Δ` and no witness is consumed.
 
 This is the shape a labelled pair needs when the separator is abstracted on the side that does not
-own `c`; `entails_not_genAll_of_entails_not` is the different, witness-passing sequent. -/
+own `c`; `entails_not_genAll_of_entails_not` is the different, witness-passing sequent.
+@isnad1 id=entails.1h4v.s5.c4203426a6e8 from=translated src=- shape=46765d6c vocab=835bcd23
+-/
 theorem entails_not_genAll_of_entails_not_self
     (hyp : Theoryω.Entails Δ σc.not) :
     Theoryω.Entails Δ (genAll j σc).not := by

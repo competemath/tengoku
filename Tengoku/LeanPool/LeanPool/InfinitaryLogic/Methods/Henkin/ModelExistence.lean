@@ -52,7 +52,9 @@ The countability assumptions on the language and S are essential: without them,
 a consistent set like {c_i ≠ c_j | i ≠ j} for uncountably many constants can
 force any model to be uncountable.
 
-This is the fundamental model-building tool for infinitary logic. -/
+This is the fundamental model-building tool for infinitary logic.
+@isnad1 id=ex.2h3v.s6.57663d8bf947 from=translated src=- shape=84e086c3 vocab=11a3817e
+-/
 theorem model_existence [Countable (Σ l, L.Functions l)]
     [_countableRelations : Countable (Σ l, L.Relations l)]
     (C : ConsistencyPropertyEq L)

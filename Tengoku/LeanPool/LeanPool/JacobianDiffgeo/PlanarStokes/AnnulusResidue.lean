@@ -480,7 +480,9 @@ private theorem iterated_eq_setIntegral_reProdIm {a b : ℝ} (hab : a < b)
     (z := (⟨a, 0⟩ : ℂ)) (w := (⟨b, 2 * π⟩ : ℂ)) hab.le Real.two_pi_pos.le hHi).symm
 
 /-- **Atom 1′** (annulus Stokes, general — no meromorphy, no residue): area-to-boundary identity
-for the `dbar` of an arbitrary `C¹` function on a closed annulus. -/
+for the `dbar` of an arbitrary `C¹` function on a closed annulus.
+@isnad1 id=eq.3h4v.s7.3d11a9b17e2d from=translated src=- shape=6ee8c823 vocab=aa836df4
+-/
 theorem circleIntegral_sub_circleIntegral_eq_two_mul_I_mul_integral_wirtingerDbar
     {u : ℂ → ℂ} {c : ℂ} {r R : ℝ} (h0 : 0 < r) (hle : r ≤ R)
     (hu : ContDiffOn ℝ 1 u (Metric.closedBall c R \ Metric.ball c r)) :
@@ -700,7 +702,9 @@ theorem circleIntegral_sub_circleIntegral_eq_two_mul_I_mul_integral_wirtingerDba
 
 /-- **Atom 2** (the smeared residue theorem — the "one honest integration atom" routing decision
 #2 budgets for): `g` compactly supported in `U`, locally CONSTANT near the puncture `p` (§D4),
-`f` holomorphic on `U \ {p}` and meromorphic at `p`. -/
+`f` holomorphic on `U \ {p}` and meromorphic at `p`.
+@isnad1 id=eq.8h4v.s8.bb6583f78b5c from=translated src=- shape=557ec6d6 vocab=d5089b37
+-/
 theorem integral_wirtingerDbar_mul_eq_neg_pi_mul_resAt {g f : ℂ → ℂ} {U : Set ℂ} {p : ℂ}
     (hU : IsOpen U) (_hpU : p ∈ U)
     (hg : ContDiffOn ℝ 1 g U) (hcs : HasCompactSupport g) (hsub : tsupport g ⊆ U)
@@ -863,7 +867,9 @@ special case"). Dropped here because `abel-weak-solutions` (this unit's downstre
 `docs/design/abel-weak-solutions.md` §7.3/§10/§11 risk R1) needs *exactly* this hypothesis-free
 form: its `g` is a genuine holomorphic primitive, not locally constant near its punctures, so it
 cannot supply `hconst`. See `integral_wirtingerDbar_mul_inv_sub_sub_inv_sub_eq` below for the exact
-two-puncture shape that unit's Lemma 20.3 step assembles. -/
+two-puncture shape that unit's Lemma 20.3 step assembles.
+@isnad1 id=eq.4h3v.s7.ba2da225d4ff from=translated src=- shape=d94bc527 vocab=dc9126c9
+-/
 theorem integral_wirtingerDbar_mul_inv_sub_eq {g : ℂ → ℂ} {U : Set ℂ} {p : ℂ}
     (hU : IsOpen U)
     (hg : ContDiffOn ℝ 1 g U) (hcs : HasCompactSupport g) (hsub : tsupport g ⊆ U) :
@@ -906,7 +912,9 @@ into one multi-puncture identity — `integral_wirtingerDbar_mul_inv_sub_sub_inv
 Proved the same way: transport the convolution-integrability fact already available for
 `cauchyKernel * wirtingerDbar g (p - ·)` (`HasCompactSupport.convolutionExists_right`, the same
 mathlib fact `RS.cauchyPompeiu`'s own proof relies on) through the measure-preserving substitution
-`w ↦ p - w`. -/
+`w ↦ p - w`.
+@isnad1 id=integrab.4h3v.s7.505e8c15207a from=translated src=- shape=e1b611f7 vocab=7d3bfa66
+-/
 theorem integrable_wirtingerDbar_mul_inv_sub {g : ℂ → ℂ} {U : Set ℂ} {p : ℂ}
     (hU : IsOpen U)
     (hg : ContDiffOn ℝ 1 g U) (hcs : HasCompactSupport g) (hsub : tsupport g ⊆ U) :
@@ -949,7 +957,9 @@ directly, for **any** `C¹` compactly-supported `g` — no local constancy neede
 since both poles are simple (the same reasoning as `integral_wirtingerDbar_mul_inv_sub_eq`).
 Assembled from two instances of that lemma plus linearity of the Bochner integral
 (`integrable_wirtingerDbar_mul_inv_sub` supplies the integrability `MeasureTheory.integral_sub`
-needs). -/
+needs).
+@isnad1 id=eq.4h4v.s7.e94647be52e8 from=translated src=- shape=cab29dc8 vocab=dc9126c9
+-/
 theorem integral_wirtingerDbar_mul_inv_sub_sub_inv_sub_eq {g : ℂ → ℂ} {U : Set ℂ} {a b : ℂ}
     (hU : IsOpen U)
     (hg : ContDiffOn ℝ 1 g U) (hcs : HasCompactSupport g) (hsub : tsupport g ⊆ U) :

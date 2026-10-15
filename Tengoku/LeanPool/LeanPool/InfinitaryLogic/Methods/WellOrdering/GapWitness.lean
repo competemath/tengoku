@@ -52,10 +52,16 @@ to every consistency-property member. -/
 def baseDiagram (φ : L.Sentenceω) (lt : L.Relations 2) : Set L[[ℕ]].Sentenceω :=
   insert (φ.mapLanguage (L.lhomWithConstants ℕ)) {χ | ∃ q r : ℚ, q < r ∧ χ = ratLtAtom lt q r}
 
+/--
+@isnad1 id=mem.0h3v.s5.121f76256e43 from=translated src=- shape=9217f89b vocab=4c7636aa
+-/
 theorem mapLanguage_mem_baseDiagram (φ : L.Sentenceω) (lt : L.Relations 2) :
     φ.mapLanguage (L.lhomWithConstants ℕ) ∈ baseDiagram φ lt :=
   Set.mem_insert _ _
 
+/--
+@isnad1 id=mem.1h5v.s5.22ccd4c0ae50 from=translated src=- shape=5390468b vocab=7e586cf9
+-/
 theorem ratLtAtom_mem_baseDiagram (φ : L.Sentenceω) (lt : L.Relations 2) {q r : ℚ}
     (h : q < r) : ratLtAtom lt q r ∈ baseDiagram φ lt :=
   Set.mem_insert_of_mem _ ⟨q, r, h, rfl⟩

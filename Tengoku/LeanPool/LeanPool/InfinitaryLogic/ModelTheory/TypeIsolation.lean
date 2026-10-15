@@ -80,7 +80,9 @@ noncomputable def isolatingFormula
     else (private_decl% (exists_separator (M := M) fun he => h he.symm)).choose
 
 /-- **The decisive characterization**: `χ_p` holds at a tuple exactly when its complete type is
-`p`. -/
+`p`.
+@isnad1 id=iff.1h5v.s5.d62bf5d6a1b2 from=translated src=- shape=a9cef960 vocab=64260557
+-/
 theorem realize_isolatingFormula_iff
     (hcount : (RealizedInfinitaryTypes (L := L) M n).Countable)
     (p : Set (L.BoundedFormulaω Empty n)) (a : Fin n → M) :

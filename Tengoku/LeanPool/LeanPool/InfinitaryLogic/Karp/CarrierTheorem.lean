@@ -158,7 +158,9 @@ private theorem potentialIso_agree_aux (P : PotentialIso L M N) :
     exact forall_congr' fun i => ih i xs ys hmem
 
 /-- **Forward direction**: a potential isomorphism yields agreement at every carrier, in
-every index universe. -/
+every index universe.
+@isnad1 id=infequiv.0h5v.s5.6da141006aa6 from=translated src=- shape=d7aa8c4e vocab=16fcabe6
+-/
 theorem PotentialIso.infEquivAt (P : PotentialIso L M N) (ι : Type uι) : InfEquivAt L ι M N :=
   fun φ => potentialIso_agree_aux P φ Fin.elim0 Fin.elim0 P.empty_mem
 
@@ -255,7 +257,9 @@ variable [L.IsRelational] {M N : Type w} [L.Structure M] [L.Structure N]
 agreement on all `L∞ω` sentences branching over carriers in the structures' universe.
 
 Forward instantiates the generic direction at each `ι`; backward specializes to the single
-carrier `M ⊕ N`. Pure packaging around `karp_theorem_at`. -/
+carrier `M ⊕ N`. Pure packaging around `karp_theorem_at`.
+@isnad1 id=iff.0h3v.s5.f8122e3313a3 from=translated src=- shape=0192c5a6 vocab=5259063d
+-/
 theorem karp_theorem_w :
     Nonempty (PotentialIso L M N) ↔ InfEquivW L M N :=
   ⟨fun ⟨P⟩ ι => P.infEquivAt ι,

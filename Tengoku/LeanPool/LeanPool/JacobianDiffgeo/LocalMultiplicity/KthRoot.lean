@@ -29,7 +29,9 @@ open scoped Topology
 
 namespace RS
 
-/-- Local analytic k-th root of a non-vanishing analytic function. -/
+/-- Local analytic k-th root of a non-vanishing analytic function.
+@isnad1 id=ex.3h3v.s7.8b8217875db5 from=translated src=- shape=2c7feb64 vocab=ff8ee9b4
+-/
 theorem AnalyticAt.exists_pow_eq {u : ℂ → ℂ} {z₀ : ℂ} (hu : AnalyticAt ℂ u z₀)
     (hu₀ : u z₀ ≠ 0) {k : ℕ} (hk : k ≠ 0) :
     ∃ r : ℂ → ℂ, AnalyticAt ℂ r z₀ ∧ r z₀ ≠ 0 ∧ ∀ᶠ z in 𝓝 z₀, r z ^ k = u z := by

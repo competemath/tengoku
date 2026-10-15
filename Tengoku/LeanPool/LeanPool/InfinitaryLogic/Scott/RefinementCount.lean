@@ -160,7 +160,9 @@ internal BFEquiv on M is frozen. For any ε above γ = sup_k(α₀+k) with BFEqu
 the monotonicity of BFEquiv gives BFEquiv (α₀+k) for all k. The "constant chain" argument
 (`witness_at_all_levels`) shows that forth/back witnesses at level α₀ work at all higher
 levels (via self-stabilization + transitivity), so `BFEquiv_of_all_finite_levels` upgrades
-BFEquiv to the successor. Hence no refinement ordinals exist above γ < ω₁. -/
+BFEquiv to the successor. Hence no refinement ordinals exist above γ < ω₁.
+@isnad1 id=countabl.0h1v.s4.6429efcc871e from=translated src=- shape=d8045f47 vocab=3766898a
+-/
 theorem countableRefinementHypothesis : CountableRefinementHypothesis.{u, v, w} L := by
   intro M inst_struct inst_count n a
   obtain ⟨α₀, hα₀_lt, hstab⟩ := exists_complete_self_stabilization (L := L) M
@@ -190,12 +192,16 @@ theorem countableRefinementHypothesis : CountableRefinementHypothesis.{u, v, w} 
 Each theorem below is a one-liner applying `countableRefinementHypothesis` to the
 corresponding `_of` variant in Sentence.lean. -/
 
-/-- Complete stabilization below ω₁. -/
+/-- Complete stabilization below ω₁.
+@isnad1 id=ex.0h2v.s6.8d75fcd62c16 from=translated src=- shape=6836394d vocab=5f5f1c93
+-/
 theorem exists_complete_stabilization (M : Type w) [L.Structure M] [Countable M] :
     ∃ α < (Ordinal.omega 1 : Ordinal.{0}), StabilizesCompletely (L := L) M α :=
   exists_complete_stabilization_of countableRefinementHypothesis M
 
-/-- The Scott sentence of M characterizes M up to isomorphism among countable structures. -/
+/-- The Scott sentence of M characterizes M up to isomorphism among countable structures.
+@isnad1 id=iff.0h3v.s5.284d3376ce0a from=translated src=- shape=b3c51dc5 vocab=a6689903
+-/
 theorem scottSentence_characterizes (M : Type w) [L.Structure M] [Countable M]
     (N : Type w) [L.Structure N] [Countable N] :
     (scottSentence (L := L) M).realizeAsSentence N ↔ Nonempty (M ≃[L] N) :=

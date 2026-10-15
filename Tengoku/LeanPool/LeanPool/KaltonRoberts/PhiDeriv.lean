@@ -29,6 +29,9 @@ open Real
 
 /-! ## Second derivatives -/
 
+/--
+@isnad1 id=hasderiv.2h1v.s7.553082e2941e from=translated src=- shape=fb3ab49e vocab=28077fde
+-/
 theorem hasDerivAt_binEntropy_deriv (x : ℝ) (hx : 0 < x) (hx1 : x < 1) :
     HasDerivAt (fun x => Real.log (1 - x) - Real.log x) (-1/(1-x) - 1/x) x := by
   convert
@@ -47,6 +50,9 @@ theorem hasDerivAt_binEntropy_deriv (x : ℝ) (hx : 0 < x) (hx1 : x < 1) :
     | (all_goals decide; done)
     | (all_goals tauto; done)
 
+/--
+@isnad1 id=hasderiv.2h2v.s6.f59bf3acc589 from=translated src=- shape=f2495296 vocab=28077fde
+-/
 theorem hasDerivAt_h_entropy_second_deriv (θ x : ℝ) (hx : 0 < x) (hxθ : x < θ) :
     HasDerivAt (fun x => Real.log (θ - x) - Real.log x) (-1/(θ-x) - 1/x) x := by
   convert

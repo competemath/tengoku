@@ -35,7 +35,9 @@ namespace KasamiCyclicAdditive
 /-! ## Auxiliary lemmas for the permutation criterion -/
 
 /-- Every element `x` of a finite field `K` is of the form `u + u⁻¹` for a nonzero `u`
-in the algebraic closure of `K`: take `u` to be a root of `Y² - x*Y + 1`. -/
+in the algebraic closure of `K`: take `u` to be a root of `Y² - x*Y + 1`.
+@isnad1 id=ex.0h2v.s7.463ffbd2563a from=translated src=- shape=1000f54c vocab=3a215c1b
+-/
 theorem exists_add_inv_eq (K : Type*) [Field K] (x : K) :
     ∃ u : AlgebraicClosure K, u ≠ 0 ∧ u + u⁻¹ = algebraMap K (AlgebraicClosure K) x := by
   obtain ⟨u, hu⟩ := IsAlgClosed.exists_root
@@ -55,7 +57,9 @@ theorem exists_add_inv_eq (K : Type*) [Field K] (x : K) :
 /-- If `u + u⁻¹` lies in the finite field `K` (of cardinality `q`), then `u` lies in a
 quadratic extension of `K`, i.e. `u ^ (q ^ 2) = u`.  Proof: the `q`-power map is a ring
 homomorphism fixing `K`, so it sends the root `u` of `Y² - x*Y + 1` to a root, and the two
-roots are `u` and `u⁻¹`. -/
+roots are `u` and `u⁻¹`.
+@isnad1 id=eq.2h3v.s8.f11e172e23e1 from=translated src=- shape=c724337c vocab=e329fe8d
+-/
 theorem pow_card_sq_eq_self (K : Type*) [Field K] [Fintype K] (x : K)
     (u : AlgebraicClosure K) (hu0 : u ≠ 0)
     (hx : u + u⁻¹ = algebraMap K (AlgebraicClosure K) x) :
@@ -89,7 +93,9 @@ theorem pow_card_sq_eq_self (K : Type*) [Field K] [Fintype K] (x : K)
   · rw [sq, pow_mul, h, inv_pow, h, inv_inv]
 
 /-- An element of the quadratic extension with `u + u⁻¹` in `K` is an
-`(q² - 1)`-th root of unity. -/
+`(q² - 1)`-th root of unity.
+@isnad1 id=eq.2h3v.s8.2f33d430ae70 from=translated src=- shape=0652471f vocab=f32e315a
+-/
 theorem pow_card_sq_sub_one_eq_one (K : Type*) [Field K] [Fintype K] (x : K)
     {u : AlgebraicClosure K} (hu0 : u ≠ 0)
     (hux : u + u⁻¹ = algebraMap K (AlgebraicClosure K) x) :
@@ -104,7 +110,9 @@ theorem pow_card_sq_sub_one_eq_one (K : Type*) [Field K] [Fintype K] (x : K)
     exact h
   exact mul_right_cancel₀ hu0 h'
 
-/-- Dickson evaluation in the quadratic extension: `D_m(u + u⁻¹) = u^m + u^(-m)`. -/
+/-- Dickson evaluation in the quadratic extension: `D_m(u + u⁻¹) = u^m + u^(-m)`.
+@isnad1 id=eq.2h4v.s9.f8f827f67b55 from=translated src=- shape=e7c9ce6f vocab=70d54f18
+-/
 theorem dickson_eval_eq_pow_add_inv_pow (K : Type*) [Field K] (x : K)
     {u : AlgebraicClosure K} (hu0 : u ≠ 0)
     (hux : u + u⁻¹ = algebraMap K (AlgebraicClosure K) x) (m : ℕ) :
@@ -141,7 +149,9 @@ elements.  Every `x : K` is `u + u⁻¹` for some `u : Lˣ`: the polynomial
 `m` with `q² - 1 = |Lˣ|` makes `u ↦ u^m` a bijection of `Lˣ` commuting with
 `u ↦ u⁻¹`, hence a bijection of the set of unordered pairs `{u, u⁻¹}`, which is
 exactly `K` under `u ↦ u + u⁻¹`.  Since `K` is finite it is enough to prove
-injectivity. -/
+injectivity.
+@isnad1 id=bijectiv.1h2v.s6.4ad18df91c75 from=translated src=- shape=3ec3f4d8 vocab=67d1536e
+-/
 theorem dickson_bijective {K : Type*} [Field K] [Fintype K] {m : ℕ}
     (hm : Nat.Coprime m (Fintype.card K ^ 2 - 1)) :
     Function.Bijective (fun x : K => (dickson 1 1 m).eval x) := by
@@ -187,7 +197,9 @@ theorem dickson_bijective {K : Type*} [Field K] [Fintype K] {m : ℕ}
 
 Immediate from
 `Nat.pow_sub_one_gcd_pow_sub_one`: `gcd(2^a - 1, 2^b - 1) = 2^gcd(a,b) - 1`,
-here `2^1 - 1 = 1`. -/
+here `2^1 - 1 = 1`.
+@isnad1 id=coprime.1h2v.s6.bbd396228998 from=translated src=- shape=040af514 vocab=d19d94e1
+-/
 theorem coprime_two_pow_sub_one {k n : ℕ} (hkn : Nat.Coprime k (2 * n)) :
     Nat.Coprime (2 ^ k - 1) (2 ^ (2 * n) - 1) := by
   have hg := Nat.pow_sub_one_gcd_pow_sub_one 2 k (2 * n)
@@ -205,7 +217,9 @@ Proof.  `2^k + 1` divides `2^(2k) - 1`, and by `Nat.pow_sub_one_gcd_pow_sub_one`
 `gcd(2^(2k) - 1, 2^(2n) - 1) = 2^(2 gcd(k,n)) - 1 = 3`. So
 `gcd(2^k + 1, 2^(2n) - 1)` divides `3`; it *is* `3`, since `3` divides both.
 Hence `gcd(3h, 2^(2n) - 1) = 3`, so `d := gcd(h, 2^(2n) - 1)` divides `3` and is
-`1` or `3`.  It is `3` only if `3 ∣ h`, which is excluded. -/
+`1` or `3`.  It is `3` only if `3 ∣ h`, which is excluded.
+@isnad1 id=coprime.3h3v.s6.c4bf6f954e22 from=translated src=- shape=3cb083c1 vocab=3bd1b68c
+-/
 theorem coprime_third_of_two_pow_add_one {k n h : ℕ} (hkn : Nat.Coprime k n)
     (hh : 3 * h = 2 ^ k + 1) (h3 : ¬ (3 ∣ h)) :
     Nat.Coprime h (2 ^ (2 * n) - 1) := by
@@ -234,7 +248,9 @@ value distribution, in the strong sense that they give equal sums against any
 function.
 
 `dickson_one_one_mul` gives `D_e = D_3 ∘ D_h`, so the substitution `y = D_h x`
-— a bijection by `dickson_bijective` — turns one sum into the other. -/
+— a bijection by `dickson_bijective` — turns one sum into the other.
+@isnad1 id=eq.2h5v.s7.3e3e81eedaf9 from=translated src=- shape=f117bd79 vocab=a2fc791a
+-/
 theorem sum_dickson_eq_cubic {K : Type*} [Field K] [Fintype K]
     {M : Type*} [AddCommMonoid M] {e h : ℕ} (he : e = 3 * h)
     (hh : Nat.Coprime h (Fintype.card K ^ 2 - 1)) (f : K → M) :

@@ -57,7 +57,9 @@ noncomputable instance localSkolemStructure {M : Type w} [L.Structure M] [Nonemp
 witnessed
 body `φ` holds at `x` extended by the Skolem value `funMap φ x`. This is `Classical.epsilon_spec`;
 the local analogue of `skolem₁ω_funMap_spec`, powering the local EM term model's Skolem-witness
-transport. -/
+transport.
+@isnad1 id=realize.1h6v.s8.79110a30d511 from=translated src=- shape=62d2cf33 vocab=51867045
+-/
 theorem localSkolem_funMap_spec {M : Type w} [L.Structure M] [Nonempty M]
     {Γ : Set (Σ n, L.BoundedFormulaω Empty n)} {n : ℕ}
     (φ : (localSkolem L Γ).Functions n) (x : Fin n → M)
@@ -68,7 +70,9 @@ theorem localSkolem_funMap_spec {M : Type w} [L.Structure M] [Nonempty M]
     (Fin.snoc x (Classical.epsilon fun a => φ.1.Realize (Empty.elim : Empty → M) (Fin.snoc x a)))
   exact Classical.epsilon_spec h
 
-/-- The full (all-arity) function-symbol type of `localSkolem L Γ` is countable when `Γ` is. -/
+/-- The full (all-arity) function-symbol type of `localSkolem L Γ` is countable when `Γ` is.
+@isnad1 id=countabl.1h2v.s5.3e4cc2519130 from=translated src=- shape=a9465c54 vocab=cf886884
+-/
 theorem localSkolem_sigma_functions_countable (Γ : Set (Σ n, L.BoundedFormulaω Empty n))
     (hΓ : Γ.Countable) : Countable (Σ n, (localSkolem L Γ).Functions n) := by
   have : Countable ↥Γ := hΓ.to_subtype
@@ -82,7 +86,9 @@ theorem localSkolem_sigma_functions_countable (Γ : Set (Σ n, L.BoundedFormula�
     rfl
   exact hinj.countable
 
-/-- `localSkolem L Γ` has no relation symbols, so its relation-symbol type is countable. -/
+/-- `localSkolem L Γ` has no relation symbols, so its relation-symbol type is countable.
+@isnad1 id=countabl.0h2v.s4.2aaf299b8120 from=translated src=- shape=a68506f8 vocab=6aa9f6b0
+-/
 theorem localSkolem_sigma_relations_countable
     (Γ : Set (Σ n, L.BoundedFormulaω Empty n)) :
     Countable (Σ n, (localSkolem L Γ).Relations n) :=

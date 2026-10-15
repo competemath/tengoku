@@ -211,6 +211,9 @@ noncomputable def LocalEMContext.carrierEquiv (ctx : LocalEMContext Λ J (M := M
   Quotient.congr (locJRenameEquiv e) fun t u => by
     exact (LocalEMContext.setoid_locJRename_iff Λ J ctx e t u).symm
 
+/--
+@isnad1 id=eq.0h6v.s7.601770062a80 from=translated src=- shape=8d357984 vocab=13563011
+-/
 theorem LocalEMContext.carrierEquiv_mkClass (ctx : LocalEMContext Λ J (M := M))
     (e : J ≃o J) (t : Λ[[J]].Term Empty) :
     ctx.carrierEquiv e (ctx.mkClass (t := t)) = ctx.mkClass (t := locJRename Λ J e t) :=
@@ -276,7 +279,9 @@ private noncomputable def LocalEMContext.baseAutomorphism (ctx : LocalEMContext 
     map_rel' := fun R xs => ctx.carrierEquiv_relMap e R xs }
 
 /-- **The semantic endpoint of the packaging**: every base-language infinitary formula is
-invariant under the induced automorphism. -/
+invariant under the induced automorphism.
+@isnad1 id=iff.0h10v.s8.ccb73c23103a from=translated src=- shape=21fe711e vocab=53067497
+-/
 theorem LocalEMContext.realize_carrierEquiv (ctx : LocalEMContext Λ J (M := M))
     (e : J ≃o J) {α : Type} {n : ℕ} (φ : Λ.BoundedFormulaω α n)
     (v : α → ctx.Carrier) (xs : Fin n → ctx.Carrier) :

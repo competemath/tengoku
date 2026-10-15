@@ -55,7 +55,9 @@ private theorem infinitaryType_equiv {M N : Type w} [L.Structure M] [L.Structure
   have h := BoundedFormulaω.realize_equiv e ψ Empty.elim a
   rwa [show (⇑e ∘ Empty.elim : Empty → N) = Empty.elim from funext fun x => x.elim] at h
 
-/-- **Smallness is invariant under structure isomorphism.** -/
+/-- **Smallness is invariant under structure isomorphism.**
+@isnad1 id=lomega1o.1h4v.s4.786c1b959f29 from=translated src=- shape=21f66505 vocab=b76742df
+-/
 theorem Lomega1omegaSmall.of_equiv {M N : Type w} [L.Structure M] [L.Structure N]
     (e : M ≃[L] N) (h : Lomega1omegaSmall (L := L) M) : Lomega1omegaSmall (L := L) N := by
   intro n
@@ -74,7 +76,9 @@ theorem Lomega1omegaSmall.of_equiv {M N : Type w} [L.Structure M] [L.Structure N
 
 /-- **Smallness descends along reducts**: if `M` is small as an `L'`-structure and `g : L →ᴸ L'`
 is an expansion on `M`, then `M` is small as an `L`-structure. (The converse FAILS for
-arbitrary expansions — new symbols can realize new types.) -/
+arbitrary expansions — new symbols can realize new types.)
+@isnad1 id=lomega1o.1h4v.s5.32b03d3d8451 from=translated src=- shape=ce5ff2f0 vocab=8acc78d2
+-/
 theorem Lomega1omegaSmall.of_expansion {L' : Language.{u, v}} (g : L →ᴸ L')
     {M : Type w} [L.Structure M] [L'.Structure M] [g.IsExpansionOn M]
     (h : Lomega1omegaSmall (L := L') M) : Lomega1omegaSmall (L := L) M := by

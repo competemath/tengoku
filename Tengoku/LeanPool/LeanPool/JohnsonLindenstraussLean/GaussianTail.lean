@@ -41,7 +41,9 @@ namespace JL
 noncomputable def gTail (t : ℝ) : ℝ := ∫ x in Ioi (0 : ℝ), rexp (-(x - t) ^ 2 / 2)
 
 /-- `exp (t · |x|)` is integrable against the standard Gaussian (dominated by
-`exp (t·x) + exp (−t·x)`). -/
+`exp (t·x) + exp (−t·x)`).
+@isnad1 id=integrab.0h1v.s5.65df214430b2 from=translated src=- shape=3cb1cf7d vocab=e056eb7a
+-/
 theorem integrable_exp_mul_abs (t : ℝ) :
     Integrable (fun x : ℝ => rexp (t * |x|)) (gaussianReal 0 1) := by
   have hdom : Integrable (fun x : ℝ => rexp (t * x) + rexp (-t * x)) (gaussianReal 0 1) :=
@@ -57,7 +59,9 @@ theorem integrable_exp_mul_abs (t : ℝ) :
     · rw [abs_of_nonneg hx]; linarith
     · rw [abs_of_neg hx, show t * -x = -t * x by ring]; linarith
 
-/-- The constant `2·(√(2π))⁻¹ = √(2/π)`. -/
+/-- The constant `2·(√(2π))⁻¹ = √(2/π)`.
+@isnad1 id=eq.0h0v.s5.a22e06912fd2 from=translated src=- shape=249600d8 vocab=f49166d3
+-/
 theorem two_mul_inv_sqrt : 2 * (√(2 * π))⁻¹ = √(2 / π) := by
   have h2 : (0 : ℝ) ≤ 2 * (√(2 * π))⁻¹ := by positivity
   calc 2 * (√(2 * π))⁻¹
@@ -68,7 +72,9 @@ theorem two_mul_inv_sqrt : 2 * (√(2 * π))⁻¹ = √(2 / π) := by
         field_simp
 
 /-- **Folded-normal moment generating function (closed form).** For `Z ~ N(0,1)`,
-`∫ exp(t·|x|) = √(2/π) · exp(t²/2) · g t`, where `g t = ∫ x in Ioi 0, exp(−(x−t)²/2)`. -/
+`∫ exp(t·|x|) = √(2/π) · exp(t²/2) · g t`, where `g t = ∫ x in Ioi 0, exp(−(x−t)²/2)`.
+@isnad1 id=eq.0h1v.s6.836fa53235b7 from=translated src=- shape=8aef6812 vocab=434c4d30
+-/
 theorem gaussian_foldedMGF (t : ℝ) :
     ∫ x, rexp (t * |x|) ∂(gaussianReal 0 1) = √(2 / π) * rexp (t ^ 2 / 2) * gTail t := by
   have hseteq : ∫ x in Ioi (0 : ℝ), rexp (t * x - x ^ 2 / 2) = rexp (t ^ 2 / 2) * gTail t := by
@@ -93,14 +99,18 @@ theorem gaussian_foldedMGF (t : ℝ) :
 
 /-! ## The derivative of `gTail` -/
 
-/-- The half-line Gaussian density `y ↦ exp(−y²/2)` is integrable on `ℝ`. -/
+/-- The half-line Gaussian density `y ↦ exp(−y²/2)` is integrable on `ℝ`.
+@isnad1 id=integrab.0h0v.s6.af612d74b615 from=translated src=- shape=dd2349d4 vocab=dbabdb6d
+-/
 theorem integrable_exp_neg_half_sq : Integrable (fun y : ℝ => rexp (-y ^ 2 / 2)) := by
   have h := integrable_exp_neg_mul_sq (show (0 : ℝ) < 1 / 2 by norm_num)
   refine h.congr ?_
   filter_upwards with y
   congr 1; ring
 
-/-- The total Gaussian integral `∫ exp(−y²/2) = √(2π)`. -/
+/-- The total Gaussian integral `∫ exp(−y²/2) = √(2π)`.
+@isnad1 id=eq.0h0v.s6.6291efb944d1 from=translated src=- shape=481e08d9 vocab=063c71ef
+-/
 theorem integral_exp_neg_half_sq : ∫ y : ℝ, rexp (-y ^ 2 / 2) = √(2 * π) := by
   have h := integral_gaussian (1 / 2)
   rw [show (π / (1 / 2) : ℝ) = 2 * π by ring] at h
@@ -111,7 +121,9 @@ theorem integral_exp_neg_half_sq : ∫ y : ℝ, rexp (-y ^ 2 / 2) = √(2 * π) 
 
 /-- **Derivative of `gTail`.** `g' t = exp(−t²/2)`. The parameter sits inside the integrand, but a
 translation `x ↦ x − t` moves it into the lower integration limit, after which the result follows
-from the fundamental theorem of calculus for the lower-tail integral `s ↦ ∫_{Iic s} exp(−y²/2)`. -/
+from the fundamental theorem of calculus for the lower-tail integral `s ↦ ∫_{Iic s} exp(−y²/2)`.
+@isnad1 id=hasderiv.0h1v.s6.90d776ed5003 from=translated src=- shape=f14319ac vocab=55fbfc56
+-/
 theorem hasDerivAt_gTail (t : ℝ) : HasDerivAt gTail (rexp (-t ^ 2 / 2)) t := by
   have hφcont : Continuous (fun y : ℝ => rexp (-y ^ 2 / 2)) := by fun_prop
   have hφint : Integrable (fun y : ℝ => rexp (-y ^ 2 / 2)) := integrable_exp_neg_half_sq
@@ -164,7 +176,9 @@ theorem hasDerivAt_gTail (t : ℝ) : HasDerivAt gTail (rexp (-t ^ 2 / 2)) t := b
 
 /-! ## The sharp inequality `√(2/π) · gTail t ≤ exp(t · √(2/π))` -/
 
-/-- The normalising identity `√(2/π) · gTail 0 = 1`. -/
+/-- The normalising identity `√(2/π) · gTail 0 = 1`.
+@isnad1 id=eq.0h0v.s5.2bc8f22c17c5 from=translated src=- shape=76f9a18a vocab=93f6a7d6
+-/
 theorem sqrt_two_div_pi_mul_gTail_zero : √(2 / π) * gTail 0 = 1 := by
   have hgTail0 : gTail 0 = √(2 * π) / 2 := by
     have hcomp : ∫ x : ℝ, rexp (-(|x|) ^ 2 / 2) = 2 * ∫ x in Ioi (0 : ℝ), rexp (-x ^ 2 / 2) :=
@@ -191,7 +205,9 @@ This is equivalent to `2·Φ(t) ≤ exp(t·√(2/π))` for the standard normal C
 The proof studies `f t = exp(t·√(2/π)) − √(2/π)·gTail t`, which has `f 0 = 0` and derivative
 `f' t = √(2/π)·(exp(t·√(2/π)) − exp(−t²/2))`. On `[−2√(2/π), ∞)` the sign of `f'` shows `0` is a
 minimum (`isMinOn_Ici_of_deriv`), giving `f ≥ 0`; on the far-negative tail `t < −2√(2/π)` the bound
-`exp(t·|x|) ≤ 1` yields `√(2/π)·gTail t ≤ exp(−t²/2) ≤ exp(t·√(2/π))`. -/
+`exp(t·|x|) ≤ 1` yields `√(2/π)·gTail t ≤ exp(−t²/2) ≤ exp(t·√(2/π))`.
+@isnad1 id=le.0h1v.s5.a6bfeac64b55 from=translated src=- shape=7b326120 vocab=ae516a1a
+-/
 theorem two_g_le (t : ℝ) : √(2 / π) * gTail t ≤ rexp (t * √(2 / π)) := by
   set c : ℝ := √(2 / π) with hc
   have hcpos : 0 < c := Real.sqrt_pos.mpr (by positivity)
@@ -266,7 +282,9 @@ theorem two_g_le (t : ℝ) : √(2 / π) * gTail t ≤ rexp (t * √(2 / π)) :=
 
 /-- **The centered folded normal is `1`-sub-Gaussian.** For `Z ~ N(0,1)`, the centered absolute
 value `|Z| − √(2/π)` has a sub-Gaussian moment generating function with variance proxy `1`:
-`∫ exp(t·(|Z| − √(2/π))) ≤ exp(t²/2)` for all `t`. -/
+`∫ exp(t·(|Z| − √(2/π))) ≤ exp(t²/2)` for all `t`.
+@isnad1 id=hassubga.0h0v.s6.8ded70f82db0 from=translated src=- shape=a1bd49b7 vocab=c6e98043
+-/
 theorem foldedNormal_subgaussian :
     HasSubgaussianMGF (fun z : ℝ => |z| - √(2 / π)) ⟨1, by norm_num⟩ (gaussianReal 0 1) where
   integrable_exp_mul t := by

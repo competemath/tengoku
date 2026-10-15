@@ -70,7 +70,9 @@ def SchemaTermEq (t u : (localColim s₀)[[ℕ]].Term Empty) : Prop :=
 
 /-- **The shared body-extraction engine.** A finite fragment of `Tσ` is `MarkerHenkinConsistent`,
 so it has a body: a source interpretation `(σ, h)` realizing every member. Every equality law
-derives its contradiction from this. -/
+derives its contradiction from this.
+@isnad1 id=ex.2h3v.s7.bb1566f69a3b from=translated src=- shape=c5fef885 vocab=f2697b28
+-/
 theorem exists_body_of_subset (F : Finset (((localColim s₀)[[ℕ]])[[ℕ]].Sentenceω))
     (hF : ∀ τ ∈ F, τ ∈ schemaCompletionTheory (schemaEnumeration s₀) hM) :
     ∃ (σ : ℕ → M) (h : ℕ → M), ∀ τ ∈ F,
@@ -150,7 +152,9 @@ private theorem schemaTermEq_refl (t : (localColim s₀)[[ℕ]].Term Empty) : Sc
 omit [LinearOrder M] [WellFoundedLT M] in
 /-- **The exported equality bridge.** Under a body interpretation `(σ, h)`, `schemaEqSentence t u`
 is realized iff `t` and `u` have the same `σ`-value — the semantically meaningful form every
-equality law consumes. -/
+equality law consumes.
+@isnad1 id=iff.0h6v.s6.a91b9c745075 from=translated src=- shape=5f356302 vocab=18e221e7
+-/
 theorem realize_schemaEqSentence_iff (σ h : ℕ → M) (t u : (localColim s₀)[[ℕ]].Term Empty) :
     realizeWith σ h (schemaEqSentence t u) (Empty.elim : Empty → M) Fin.elim0 ↔
       letI : (constantsOn ℕ).Structure M := constantsOn.structure σ
@@ -253,6 +257,9 @@ def schemaRelSupport {l : ℕ} (ts : Fin l → (localColim s₀)[[ℕ]].Term Emp
   Finset.univ.biUnion fun i => locJSupport (localColim s₀) ℕ (ts i)
 
 omit [(localColim s₀).Structure M] [LinearOrder M] [WellFoundedLT M] in
+/--
+@isnad1 id=le.0h4v.s5.8c3e004bff90 from=translated src=- shape=f4456161 vocab=c1496d45
+-/
 theorem locJSupport_subset_schemaRelSupport {l : ℕ}
     (ts : Fin l → (localColim s₀)[[ℕ]].Term Empty) (i : Fin l) :
     locJSupport (localColim s₀) ℕ (ts i) ⊆ schemaRelSupport ts := fun _ hj =>
@@ -281,7 +288,9 @@ private theorem schemaRelSentence_mem_universe {l : ℕ} (R : (localColim s₀).
 
 omit [LinearOrder M] [WellFoundedLT M] in
 /-- **The exported relation bridge.** Under a body interpretation `(σ, h)`, `schemaRelSentence R ts`
-is realized iff `R` holds in `M` on the `σ`-values of the terms. -/
+is realized iff `R` holds in `M` on the `σ`-values of the terms.
+@isnad1 id=iff.0h7v.s6.de0b28f5a728 from=translated src=- shape=ea587da8 vocab=9732bfcc
+-/
 theorem realize_schemaRelSentence_iff (σ h : ℕ → M) {l : ℕ} (R : (localColim s₀).Relations l)
     (ts : Fin l → (localColim s₀)[[ℕ]].Term Empty) :
     realizeWith σ h (schemaRelSentence R ts) (Empty.elim : Empty → M) Fin.elim0 ↔
@@ -355,7 +364,9 @@ abbrev SchemaTermCarrier.mk (t : (localColim s₀)[[ℕ]].Term Empty) :
     SchemaTermCarrier (s₀ := s₀) (M := M) hM :=
   Quotient.mk (schemaTermSetoid hM) t
 
-/-- Two terms have the same class iff the completed theory contains their equality sentence. -/
+/-- Two terms have the same class iff the completed theory contains their equality sentence.
+@isnad1 id=iff.1h4v.s6.685aaf417748 from=translated src=- shape=6644a392 vocab=feec9350
+-/
 theorem SchemaTermCarrier.mk_eq_mk_iff {t u : (localColim s₀)[[ℕ]].Term Empty} :
     SchemaTermCarrier.mk hM t = SchemaTermCarrier.mk hM u ↔ SchemaTermEq hM t u := by
   rw [SchemaTermCarrier.mk, SchemaTermCarrier.mk, Quotient.eq]
@@ -379,7 +390,9 @@ atomic API below (via `schemaTermEq_func`/`schemaTermRel_congr`), not baked into
     | Sum.inr e => e.elim
 
 /-- **Atomic API, function symbols**: `funMap` computes on classes — applying an interpreted symbol
-to classes gives the class of the function term (well-definedness via `schemaTermEq_func`). -/
+to classes gives the class of the function term (well-definedness via `schemaTermEq_func`).
+@isnad1 id=eq.1h5v.s7.be5ea1213e2d from=translated src=- shape=dd75f046 vocab=a9c99391
+-/
 theorem schemaTerm_funMap_mk {n : ℕ} (f : (localColim s₀)[[ℕ]].Functions n)
     (ts : Fin n → (localColim s₀)[[ℕ]].Term Empty) :
     @Structure.funMap _ _ (schemaTermStructure (s₀ := s₀) (M := M) hM) n f
@@ -388,7 +401,9 @@ theorem schemaTerm_funMap_mk {n : ℕ} (f : (localColim s₀)[[ℕ]].Functions n
   apply schemaTermEq_func hM f
   exact fun i => SchemaTermCarrier.mk_out_eq hM (ts i)
 
-/-- **Atomic API, terms**: every closed term realizes in the term model to its own class. -/
+/-- **Atomic API, terms**: every closed term realizes in the term model to its own class.
+@isnad1 id=eq.1h3v.s6.308a77d4101f from=translated src=- shape=674c3676 vocab=b655c1f3
+-/
 theorem schemaTerm_realize_eq_mk (t : (localColim s₀)[[ℕ]].Term Empty) :
     letI := schemaTermStructure (s₀ := s₀) (M := M) hM
     t.realize (Empty.elim : Empty → SchemaTermCarrier (s₀ := s₀) (M := M) hM)
@@ -402,7 +417,9 @@ theorem schemaTerm_realize_eq_mk (t : (localColim s₀)[[ℕ]].Term Empty) :
     exact schemaTerm_funMap_mk hM f ts
 
 /-- **Atomic API, relations**: a base relation holds in the term model on classes iff the completed
-theory contains the relation sentence (well-definedness via `schemaTermRel_congr`). -/
+theory contains the relation sentence (well-definedness via `schemaTermRel_congr`).
+@isnad1 id=iff.1h5v.s7.b83ee4ee19b3 from=translated src=- shape=db84ea43 vocab=8847410d
+-/
 theorem schemaTerm_relMap_mk_iff {l : ℕ} (R : (localColim s₀).Relations l)
     (ts : Fin l → (localColim s₀)[[ℕ]].Term Empty) :
     @Structure.RelMap _ _ (schemaTermStructure (s₀ := s₀) (M := M) hM) l
@@ -446,7 +463,9 @@ def schemaFormulaSentence {n : ℕ} (φ : (localColim s₀).BoundedFormulaω Emp
     (((localColim s₀)[[ℕ]]).lhomWithConstants ℕ)
 
 /-- `schemaFormulaSentence φ ts` of a colimit-family member is a schema-universe member (its
-de-substituted formula is in the `canonDeForms` component of `ΓEMlocal`). -/
+de-substituted formula is in the `canonDeForms` component of `ΓEMlocal`).
+@isnad1 id=mem.1h4v.s6.2c93da32c469 from=translated src=- shape=a056bd7b vocab=4e9381c0
+-/
 theorem schemaFormulaSentence_mem_universe {n : ℕ}
     {φ : (localColim s₀).BoundedFormulaω Empty n}
     (hφ : (⟨n, φ⟩ : Σ n, (localColim s₀).BoundedFormulaω Empty n) ∈ ΓlocalColim s₀)
@@ -463,7 +482,9 @@ omit [LinearOrder M] [WellFoundedLT M] in
 /-- **The exported formula bridge — the truth lemma's semantic engine.** Under a body
 interpretation `(σ, h)`, `schemaFormulaSentence φ ts` is realized iff `φ` holds in `M` on the
 `σ`-values of the closed terms. Generalizes `realize_schemaEqSentence_iff`/
-`realize_schemaRelSentence_iff` to arbitrary formulas via the same σ-generalized term bridge. -/
+`realize_schemaRelSentence_iff` to arbitrary formulas via the same σ-generalized term bridge.
+@isnad1 id=iff.0h7v.s6.4aef58e1e673 from=translated src=- shape=a2ab1212 vocab=02f82c41
+-/
 theorem realize_schemaFormulaSentence_iff (σ h : ℕ → M) {n : ℕ}
     (φ : (localColim s₀).BoundedFormulaω Empty n)
     (ts : Fin n → (localColim s₀)[[ℕ]].Term Empty) :
@@ -516,7 +537,9 @@ private theorem schemaLift_mem_of_semantic_imp {m : ℕ}
 /-- **Semantic sign transport.** Two universe sentences semantically equivalent under every body
 interpretation receive the same sign from the completed theory. The workhorse for normalizing
 between `schemaFormulaSentence`, the atomic sentences, and canonical deForms in the truth
-lemma — one body extraction per equivalence, no quotient induction. -/
+lemma — one body extraction per equivalence, no quotient induction.
+@isnad1 id=iff.4h8v.s8.64550213b839 from=translated src=- shape=985b1dfe vocab=7b575724
+-/
 theorem schema_mem_iff_of_semantic_iff {m : ℕ}
     {ψ : (localColim s₀).BoundedFormulaω Empty m}
     (hψ : (⟨m, ψ⟩ : Σ n, (localColim s₀).BoundedFormulaω Empty n) ∈ ΓEMlocal s₀)

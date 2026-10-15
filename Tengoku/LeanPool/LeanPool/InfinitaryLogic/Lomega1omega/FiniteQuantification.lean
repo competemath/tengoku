@@ -71,7 +71,9 @@ private theorem snoc_append_eq_append_snoc {γ : Type*} {k : ℕ}
 variable {v : α → M} {xs : Fin n → M}
 
 /-- Realization of a finite existential block: witnesses for the last `k` bound variables,
-in `Fin.append` form. -/
+in `Fin.append` form.
+@isnad1 id=iff.0h8v.s6.6d9e22ed41c0 from=translated src=- shape=29cfb455 vocab=cf30caf6
+-/
 theorem realize_existsBlock :
     ∀ {k : ℕ} (φ : L.BoundedFormulaω α (n + k)),
       (existsBlock φ).Realize v xs ↔ ∃ ys : Fin k → M, φ.Realize v (Fin.append xs ys)
@@ -95,7 +97,9 @@ theorem realize_existsBlock :
       rwa [snoc_append_eq_append_snoc, Fin.snoc_init_self]
 
 /-- Realization of a finite universal block: all values of the last `k` bound variables,
-in `Fin.append` form. -/
+in `Fin.append` form.
+@isnad1 id=iff.0h8v.s6.7144a431a9e2 from=translated src=- shape=04360d56 vocab=e611b78f
+-/
 theorem realize_forallBlock :
     ∀ {k : ℕ} (φ : L.BoundedFormulaω α (n + k)),
       (forallBlock φ).Realize v xs ↔ ∀ ys : Fin k → M, φ.Realize v (Fin.append xs ys)

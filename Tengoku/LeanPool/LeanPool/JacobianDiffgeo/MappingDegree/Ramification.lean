@@ -54,10 +54,15 @@ multiplicity exactly `1`.) Values NOT attained are regular (empty fiber) — har
 nonconstant `F` every value is attained. -/
 def IsRegularValue (F : X → Y) (y : Y) : Prop := ∀ x ∈ F ⁻¹' {y}, ¬ IsRamifiedAt F x
 
+/--
+@isnad1 id=iff.0h4v.s6.46ef8a5c5103 from=translated src=- shape=faf2e74f vocab=1a98d220
+-/
 theorem mem_ramificationLocus_iff {F : X → Y} {x : X} :
     x ∈ ramificationLocus F ↔ 2 ≤ multiplicity F x := Iff.rfl
 
-/-- Pure set algebra: regular values are exactly the non-branch values. -/
+/-- Pure set algebra: regular values are exactly the non-branch values.
+@isnad1 id=iff.0h4v.s6.ad7337f9e034 from=translated src=- shape=42210c53 vocab=efc977f3
+-/
 theorem isRegularValue_iff_notMem_branchLocus (F : X → Y) (y : Y) :
     IsRegularValue F y ↔ y ∉ branchLocus F := by
   constructor

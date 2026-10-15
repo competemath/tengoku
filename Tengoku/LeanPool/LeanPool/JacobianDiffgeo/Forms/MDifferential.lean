@@ -43,7 +43,9 @@ def mdifferentialSection (f : X → ℂ) (x : X) :
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
 /-- The raw chart coefficient of the differential section is the derivative of the chart
-composite. -/
+composite.
+@isnad1 id=eq.3h4v.s8.c4263586dfad from=translated src=- shape=e84bd9f4 vocab=079bc9d6
+-/
 theorem coeffInFun_mdifferentialSection {f : X → ℂ} {e : OpenPartialHomeomorph X ℂ}
     (he : e ∈ maximalAtlas 𝓘(ℂ) ω X) {z : ℂ} (hz : z ∈ e.target)
     (hf : MDifferentiableAt 𝓘(ℂ) 𝓘(ℂ) f (e.symm z)) :
@@ -68,13 +70,17 @@ def mdifferential (f : X → ℂ) (hf : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω f) : Fo
     exact hb.deriv.congr heq.symm)
 
 /-- Chart-coefficient formula for the differential: `coeffIn e (df) = deriv (f ∘ e.symm)` on
-`e.target` (CC1's `d`-rule). -/
+`e.target` (CC1's `d`-rule).
+@isnad1 id=eqon.2h3v.s8.361c86a80c91 from=translated src=- shape=a467c592 vocab=1e0dbce4
+-/
 theorem coeffIn_mdifferential {e : OpenPartialHomeomorph X ℂ}
     (he : e ∈ maximalAtlas 𝓘(ℂ) ω X) {f : X → ℂ} (hf : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω f) :
     Set.EqOn (coeffIn e (mdifferential f hf)) (deriv (f ∘ ⇑e.symm)) e.target :=
   fun _z hz => coeffInFun_mdifferentialSection he hz ((hf _).mdifferentiableAt (by simp))
 
-/-- Preferred-chart coefficient of the differential. -/
+/-- Preferred-chart coefficient of the differential.
+@isnad1 id=eq.1h3v.s8.1cb8138e24c4 from=translated src=- shape=0350bde8 vocab=34496daa
+-/
 theorem coeffAt_mdifferential (f : X → ℂ) (hf : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω f) (x : X) :
     coeffAt x (mdifferential f hf) = deriv (f ∘ ⇑(chartAt ℂ x).symm) (chartAt ℂ x x) :=
   coeffIn_mdifferential (chart_mem_maximalAtlas x) hf (mem_chart_target ℂ x)
@@ -84,6 +90,9 @@ theorem coeffAt_mdifferential (f : X → ℂ) (hf : ContMDiff 𝓘(ℂ) 𝓘(ℂ
 The smoothness proofs of the combined functions are taken as hypotheses (no smooth-algebra
 instances needed; the value of `mdifferential` does not depend on the proof argument). -/
 
+/--
+@isnad1 id=eq.3h3v.s11.dab38158e608 from=translated src=- shape=8512b970 vocab=867f529d
+-/
 @[simp]
 theorem mdifferential_add {f g : X → ℂ} (hf : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω f)
     (hg : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω g) (hfg : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω (f + g)) :
@@ -98,6 +107,9 @@ theorem mdifferential_add {f g : X → ℂ} (hf : ContMDiff 𝓘(ℂ) 𝓘(ℂ) 
   rw [coeffAt_add, coeffAt_mdifferential, coeffAt_mdifferential, coeffAt_mdifferential,
     hcomp, deriv_add hdf hdg]
 
+/--
+@isnad1 id=eq.2h3v.s11.e8809b301bbb from=translated src=- shape=45be9626 vocab=16f71afc
+-/
 @[simp]
 theorem mdifferential_smul (c : ℂ) {f : X → ℂ} (hf : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω f)
     (hcf : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω (c • f)) :
@@ -109,6 +121,9 @@ theorem mdifferential_smul (c : ℂ) {f : X → ℂ} (hf : ContMDiff 𝓘(ℂ) �
   rw [coeffAt_smul, coeffAt_mdifferential, coeffAt_mdifferential, hcomp,
     deriv_const_smul c hdf, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h2v.s11.e575837a8312 from=translated src=- shape=a4beac71 vocab=8093ccdf
+-/
 @[simp]
 theorem mdifferential_const (c : ℂ) :
     mdifferential (fun _ : X => c) contMDiff_const = 0 := by

@@ -62,12 +62,17 @@ instance : FunLike (SmoothC X) X ℂ where
   coe_injective _ _ h := Subtype.ext h
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=contmdif.0h2v.s7.bd2132418d1a from=translated src=- shape=07fc2c20 vocab=9b035c01
+-/
 theorem contMDiff (f : SmoothC X) : ContMDiff 𝓘(ℝ, ℂ) 𝓘(ℝ, ℂ) ∞ (⇑f) := f.2
 
 /-- **Compat** (design §4.7): the chart representative of a `SmoothC` function is planar-smooth
 on the whole chart target (not just at the chart's own centre): compose the globally `ContMDiff`
 function with the (mathlib) chart-inverse smoothness `contMDiffOn_extChartAt_symm`, then reduce
-`ContMDiff` on planar sets to `ContDiff` via `contMDiffOn_iff_contDiffOn`. -/
+`ContMDiff` on planar sets to `ContDiff` via `contMDiffOn_iff_contDiffOn`.
+@isnad1 id=contdiff.0h3v.s7.152e7d61d567 from=translated src=- shape=1bff1ddf vocab=834a8edf
+-/
 theorem contDiffOn_comp_chartAt_symm (f : SmoothC X) (x : X) :
     ContDiffOn ℝ ∞ (⇑f ∘ ⇑(chartAt ℂ x).symm) (chartAt ℂ x).target := by
   have hg : ContMDiffOn 𝓘(ℝ, ℂ) 𝓘(ℝ, ℂ) ∞ (⇑f) Set.univ := f.contMDiff.contMDiffOn
@@ -79,11 +84,17 @@ theorem contDiffOn_comp_chartAt_symm (f : SmoothC X) (x : X) :
     hg.comp hf' (fun z _ => Set.mem_univ _)
   exact contMDiffOn_iff_contDiffOn.1 hcomp
 
+/--
+@isnad1 id=contdiff.0h3v.s7.4d04b20583d6 from=translated src=- shape=9853b825 vocab=530c8ab9
+-/
 theorem contDiffAt_comp_chartAt_symm_self (f : SmoothC X) (x : X) :
     ContDiffAt ℝ ∞ (⇑f ∘ ⇑(chartAt ℂ x).symm) (chartAt ℂ x x) :=
   (f.contDiffOn_comp_chartAt_symm x).contDiffAt
     ((chartAt ℂ x).open_target.mem_nhds (mem_chart_target ℂ x))
 
+/--
+@isnad1 id=differen.1h4v.s8.0aab8e82d9a6 from=translated src=- shape=ad9646f7 vocab=fea62630
+-/
 theorem differentiableAt_comp_chartAt_symm (f : SmoothC X) (x : X) {z : ℂ}
     (hz : z ∈ (chartAt ℂ x).target) :
     DifferentiableAt ℝ (⇑f ∘ ⇑(chartAt ℂ x).symm) z :=
@@ -116,13 +127,31 @@ instance : SMul ℂ (SmoothC X) where
     (ContinuousLinearMap.mul ℝ ℂ c).contDiff.contDiffAt.comp _
       (f.contDiffAt_comp_chartAt_symm_self x))⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.21a1438867dd from=translated src=- shape=2949b89d vocab=fded70fe
+-/
 @[simp] theorem coe_add (f g : SmoothC X) (x : X) : (f + g) x = f x + g x := rfl
+/--
+@isnad1 id=eq.0h3v.s6.b3df9dd42c64 from=translated src=- shape=c05bbead vocab=5fc3aac6
+-/
 @[simp] theorem coe_neg (f : SmoothC X) (x : X) : (-f) x = -f x := rfl
+/--
+@isnad1 id=eq.0h4v.s7.112a5d988891 from=translated src=- shape=2949b89d vocab=df2ab8d3
+-/
 @[simp] theorem coe_sub (f g : SmoothC X) (x : X) : (f - g) x = f x - g x := rfl
+/--
+@isnad1 id=eq.0h2v.s6.3f93d969c26a from=translated src=- shape=fd54cc20 vocab=de3caf55
+-/
 @[simp] theorem coe_zero (x : X) : (0 : SmoothC X) x = 0 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.d48df8e1811e from=translated src=- shape=1b62a455 vocab=d2d4e47d
+-/
 @[simp] theorem coe_smul (c : ℂ) (f : SmoothC X) (x : X) : (c • f) x = c * f x := rfl
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=eq.1h3v.s6.9d0fff9e8688 from=translated src=- shape=198b49fc vocab=86c4f4bc
+-/
 theorem ext' {f g : SmoothC X} (h : ∀ x, f x = g x) : f = g :=
   DFunLike.coe_injective (funext h)
 
@@ -224,6 +253,9 @@ noncomputable def dbar : SmoothC X →ₗ[ℂ] Form01 X where
       funext w; simp
     rw [heq, wirtingerDbar_const_mul _ z c (f.differentiableAt_comp_chartAt_symm x hz)]
 
+/--
+@isnad1 id=eq.1h4v.s8.9fc7d9b31412 from=translated src=- shape=6a460a68 vocab=65ba270b
+-/
 @[simp]
 theorem coeffAt_dbar (f : SmoothC X) (x : X) {z : ℂ} (hz : z ∈ (chartAt ℂ x).target) :
     (dbar f).coeffAt x z = wirtingerDbar (⇑f ∘ ⇑(chartAt ℂ x).symm) z :=

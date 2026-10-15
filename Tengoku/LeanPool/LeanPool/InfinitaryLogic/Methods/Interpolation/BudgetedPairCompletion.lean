@@ -42,7 +42,9 @@ root pair.
 
 Stated with finite support of `r₂` rather than of `r₂.not`; the two are equal, but the
 former is what
-an interpolation consumer has to hand. -/
+an interpolation consumer has to hand.
+@isnad1 id=ex.3h7v.s8.c36acc2bb16a from=translated src=- shape=5a362953 vocab=d7abbf2d
+-/
 theorem exists_henkinComplete_budgetedPairRoot {r₁ r₂ : L[[ℕ]].Sentenceω}
     (hr₁ : (sentenceJConsts (L' := L) (J := ℕ) r₁).Finite)
     (hr₂ : (sentenceJConsts (L' := L) (J := ℕ) r₂).Finite)

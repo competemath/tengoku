@@ -44,11 +44,16 @@ Junk (from the charts' junk values) away from the chart sources; only its germ m
 noncomputable def inChartAt (F : X → Y) (x : X) : ℂ → ℂ :=
   fun z ↦ chartAt ℂ (F x) (F ((chartAt ℂ x).symm z)) - chartAt ℂ (F x) (F x)
 
+/--
+@isnad1 id=eq.0h4v.s6.32e8e12c40b1 from=translated src=- shape=1fa61b6d vocab=ba1e337e
+-/
 @[simp] theorem inChartAt_apply_chart (F : X → Y) (x : X) :
     inChartAt F x (chartAt ℂ x x) = 0 := by
   simp only [inChartAt, (chartAt ℂ x).left_inv (mem_chart_source ℂ x), sub_self]
 
-/-- Recentering does not matter for analyticity of the chart representative. -/
+/-- Recentering does not matter for analyticity of the chart representative.
+@isnad1 id=iff.0h4v.s8.fb32dce9884c from=translated src=- shape=2accdfed vocab=8afb0f33
+-/
 theorem analyticAt_inChartAt_iff {F : X → Y} {x : X} :
     AnalyticAt ℂ (inChartAt F x) (chartAt ℂ x x) ↔
       AnalyticAt ℂ (⇑(chartAt ℂ (F x)) ∘ F ∘ ⇑(chartAt ℂ x).symm) (chartAt ℂ x x) := by
@@ -63,7 +68,9 @@ theorem analyticAt_inChartAt_iff {F : X → Y} {x : X} :
 namespace LMCompat
 
 /-- CC7 holomorphy bridge (temporary local copy; canonical version owned by
-surfaces-and-charts — see `docs/requests/surfaces-and-charts.md`). -/
+surfaces-and-charts — see `docs/requests/surfaces-and-charts.md`).
+@isnad1 id=iff.0h4v.s7.04a18de0c855 from=translated src=- shape=5eae58db vocab=ce6ee321
+-/
 theorem contMDiffAt_iff_analyticAt_inChartAt {F : X → Y} {x : X} :
     ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x ↔
       ContinuousAt F x ∧ AnalyticAt ℂ (inChartAt F x) (chartAt ℂ x x) := by
@@ -79,7 +86,9 @@ end LMCompat
 
 section EventuallyConst
 
-/-- `EventuallyConst` at a neighborhood filter pins the constant to the value at the point. -/
+/-- `EventuallyConst` at a neighborhood filter pins the constant to the value at the point.
+@isnad1 id=iff.0h4v.s5.29f38337b2ae from=translated src=- shape=ea62d329 vocab=1b8754c6
+-/
 theorem eventuallyConst_nhds_iff {α β : Type*} [TopologicalSpace α] {f : α → β} {x : α} :
     EventuallyConst f (𝓝 x) ↔ ∀ᶠ y in 𝓝 x, f y = f x := by
   have : Nonempty β := ⟨f x⟩
@@ -91,6 +100,9 @@ theorem eventuallyConst_nhds_iff {α β : Type*} [TopologicalSpace α] {f : α �
   · intro h
     exact ⟨f x, h⟩
 
+/--
+@isnad1 id=eventual.1h4v.s6.6aec7f59b1dd from=translated src=- shape=e868b4f6 vocab=f8bae723
+-/
 theorem eventuallyConst_inChartAt {F : X → Y} {x : X} (h : EventuallyConst F (𝓝 x)) :
     EventuallyConst (inChartAt F x) (𝓝 (chartAt ℂ x x)) := by
   have hmap : Filter.map (chartAt ℂ x).symm (𝓝 (chartAt ℂ x x)) = 𝓝 x :=
@@ -101,6 +113,9 @@ theorem eventuallyConst_inChartAt {F : X → Y} {x : X} (h : EventuallyConst F (
     exact h
   exact h1.comp (fun y ↦ chartAt ℂ (F x) y - chartAt ℂ (F x) (F x))
 
+/--
+@isnad1 id=iff.1h4v.s7.0beaa3f35feb from=translated src=- shape=9176292b vocab=e2e9af02
+-/
 theorem eventuallyConst_inChartAt_iff {F : X → Y} {x : X} (hFc : ContinuousAt F x) :
     EventuallyConst (inChartAt F x) (𝓝 (chartAt ℂ x x)) ↔ EventuallyConst F (𝓝 x) := by
   refine ⟨fun h ↦ ?_, eventuallyConst_inChartAt⟩
@@ -125,7 +140,9 @@ end EventuallyConst
 
 section Transitions
 
-/-- `contDiffGroupoid ω 𝓘(ℂ)` membership is analyticity of both directions. -/
+/-- `contDiffGroupoid ω 𝓘(ℂ)` membership is analyticity of both directions.
+@isnad1 id=iff.0h1v.s8.8e4fdf20d444 from=translated src=- shape=e1e9eb62 vocab=254cbd31
+-/
 theorem mem_contDiffGroupoid_iff_analytic {Φ : OpenPartialHomeomorph ℂ ℂ} :
     Φ ∈ contDiffGroupoid ω 𝓘(ℂ) ↔
       AnalyticOnNhd ℂ Φ Φ.source ∧ AnalyticOnNhd ℂ Φ.symm Φ.target := by
@@ -140,7 +157,9 @@ theorem mem_contDiffGroupoid_iff_analytic {Φ : OpenPartialHomeomorph ℂ ℂ} :
     exact ⟨fun z hz ↦ (h1 z hz).contDiffAt.contDiffWithinAt,
       fun z hz ↦ (h2 z hz).contDiffAt.contDiffWithinAt⟩
 
-/-- Transitions between maximal-atlas charts are analytic (one direction). -/
+/-- Transitions between maximal-atlas charts are analytic (one direction).
+@isnad1 id=analytic.4h4v.s8.052436c2f995 from=translated src=- shape=b6766fe7 vocab=74bde108
+-/
 theorem analyticAt_transition_fun {e e' : OpenPartialHomeomorph X ℂ}
     (he : e ∈ IsManifold.maximalAtlas 𝓘(ℂ) ω X) (he' : e' ∈ IsManifold.maximalAtlas 𝓘(ℂ) ω X)
     {x : X} (hx : x ∈ e.source) (hx' : x ∈ e'.source) :
@@ -155,7 +174,9 @@ theorem analyticAt_transition_fun {e e' : OpenPartialHomeomorph X ℂ}
       rw [e.left_inv hx]; exact hx'⟩
   exact hmem.1 (e x) hxmem
 
-/-- Transitions between maximal-atlas charts are analytic with nonvanishing derivative. -/
+/-- Transitions between maximal-atlas charts are analytic with nonvanishing derivative.
+@isnad1 id=and.4h4v.s9.b6c9db101c31 from=translated src=- shape=d4e28935 vocab=8d7f90fe
+-/
 theorem analyticAt_transition {e e' : OpenPartialHomeomorph X ℂ}
     (he : e ∈ IsManifold.maximalAtlas 𝓘(ℂ) ω X) (he' : e' ∈ IsManifold.maximalAtlas 𝓘(ℂ) ω X)
     {x : X} (hx : x ∈ e.source) (hx' : x ∈ e'.source) :
@@ -186,7 +207,9 @@ theorem analyticAt_transition {e e' : OpenPartialHomeomorph X ℂ}
   rw [hchain, hzero, mul_zero] at hone
   exact zero_ne_one hone
 
-/-- Trans with a groupoid element stays in the maximal atlas (upstreamable helper). -/
+/-- Trans with a groupoid element stays in the maximal atlas (upstreamable helper).
+@isnad1 id=mem.2h3v.s8.660ebafa8f35 from=translated src=- shape=38d1ee1d vocab=31d4e8a6
+-/
 theorem trans_mem_maximalAtlas {e : OpenPartialHomeomorph X ℂ}
     (he : e ∈ IsManifold.maximalAtlas 𝓘(ℂ) ω X) {Φ : OpenPartialHomeomorph ℂ ℂ}
     (hΦ : Φ ∈ contDiffGroupoid ω 𝓘(ℂ)) :
@@ -202,7 +225,9 @@ theorem trans_mem_maximalAtlas {e : OpenPartialHomeomorph X ℂ}
 end Transitions
 
 /-- An `OpenPartialHomeomorph` maps punctured neighborhoods of source points to punctured
-neighborhoods. -/
+neighborhoods.
+@isnad1 id=eq.1h4v.s6.0644ab3cba62 from=translated src=- shape=0e0e1ff2 vocab=1800c079
+-/
 theorem map_nhdsNE {α β : Type*} [TopologicalSpace α] [TopologicalSpace β]
     (e : OpenPartialHomeomorph α β) {x : α} (hx : x ∈ e.source) :
     Filter.map e (𝓝[≠] x) = 𝓝[≠] (e x) := by

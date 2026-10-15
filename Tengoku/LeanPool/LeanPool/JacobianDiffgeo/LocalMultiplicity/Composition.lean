@@ -42,7 +42,9 @@ variable {X Y Z : Type*}
 
 section Composition
 
-/-- Multiplicities multiply under composition (ℕ∞ version; honest, no junk interference). -/
+/-- Multiplicities multiply under composition (ℕ∞ version; honest, no junk interference).
+@isnad1 id=eq.2h6v.s8.360cdaccb9ed from=translated src=- shape=7a1d55e1 vocab=e1028640
+-/
 theorem multiplicityENat_comp {G : Y → Z} {F : X → Y} {x : X}
     (hG : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω G (F x)) (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x) :
     multiplicityENat (G ∘ F) x = multiplicityENat G (F x) * multiplicityENat F x := by
@@ -92,7 +94,9 @@ theorem multiplicityENat_comp {G : Y → Z} {F : X → Y} {x : X}
           simp only [inChartAt, hg_def]
 
 /-- Multiplicities multiply under composition (ℕ version; junk-robust thanks to
-`ENat.toNat_mul`). -/
+`ENat.toNat_mul`).
+@isnad1 id=eq.2h6v.s8.00af3cafd259 from=translated src=- shape=4a473d2e vocab=390cb9f3
+-/
 theorem multiplicity_comp {G : Y → Z} {F : X → Y} {x : X}
     (hG : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω G (F x)) (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x) :
     multiplicity (G ∘ F) x = multiplicity G (F x) * multiplicity F x := by
@@ -105,7 +109,9 @@ section ChartPrecomposition
 variable [IsManifold 𝓘(ℂ) ω X] [IsManifold 𝓘(ℂ) ω Y]
 
 /-- Behavior under precomposition with charts: reading a map through any admissible chart
-does not change the multiplicity. (`F ∘ e.symm : ℂ → Y`, multiplicity at a planar point.) -/
+does not change the multiplicity. (`F ∘ e.symm : ℂ → Y`, multiplicity at a planar point.)
+@isnad1 id=eq.3h5v.s9.d0f8d75573c6 from=translated src=- shape=aa4c9136 vocab=9cf6753c
+-/
 theorem multiplicityENat_comp_chart_symm {F : X → Y}
     {e : OpenPartialHomeomorph X ℂ} (he : e ∈ IsManifold.maximalAtlas 𝓘(ℂ) ω X)
     {z : ℂ} (hz : z ∈ e.target) (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F (e.symm z)) :
@@ -116,7 +122,9 @@ theorem multiplicityENat_comp_chart_symm {F : X → Y}
   rw [← hinv]
   rfl
 
-/-- ℕ version of `multiplicityENat_comp_chart_symm`. -/
+/-- ℕ version of `multiplicityENat_comp_chart_symm`.
+@isnad1 id=eq.3h5v.s9.ba914f437ab3 from=translated src=- shape=17e8ea04 vocab=2d55ec19
+-/
 theorem multiplicity_comp_chart_symm {F : X → Y}
     {e : OpenPartialHomeomorph X ℂ} (he : e ∈ IsManifold.maximalAtlas 𝓘(ℂ) ω X)
     {z : ℂ} (hz : z ∈ e.target) (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F (e.symm z)) :
@@ -131,7 +139,9 @@ variable [IsManifold 𝓘(ℂ) ω X] [IsManifold 𝓘(ℂ) ω Y]
 
 variable {F : X → Y} {x : X}
 
-/-- `multiplicity = 1` ↔ local injectivity (Forster 2.5 direction of the normal form). -/
+/-- `multiplicity = 1` ↔ local injectivity (Forster 2.5 direction of the normal form).
+@isnad1 id=iff.2h4v.s8.29bec442f2f6 from=translated src=- shape=7be93808 vocab=c8261a96
+-/
 theorem multiplicity_eq_one_iff_injOn (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x)
     (hnc : ¬ EventuallyConst F (𝓝 x)) :
     multiplicity F x = 1 ↔ ∃ U ∈ 𝓝 x, Set.InjOn F U := by
@@ -187,7 +197,9 @@ theorem multiplicity_eq_one_iff_injOn (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F
       exact hδζ
     exact (mul_left_cancel₀ hδne h1).symm
 
-/-- `multiplicity = 1` gives a local homeomorphism agreeing with `F` (Forster 2.5 germ). -/
+/-- `multiplicity = 1` gives a local homeomorphism agreeing with `F` (Forster 2.5 germ).
+@isnad1 id=ex.3h4v.s8.8a519a10fb18 from=translated src=- shape=eff7d7a4 vocab=7a476d93
+-/
 theorem exists_openPartialHomeomorph_of_multiplicity_eq_one
     (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x) (hnc : ¬ EventuallyConst F (𝓝 x))
     (h1 : multiplicity F x = 1) :
@@ -205,6 +217,9 @@ theorem exists_openPartialHomeomorph_of_multiplicity_eq_one
     have h := (A.eqOn_symm z hz.1).symm
     rwa [pow_one] at h
 
+/--
+@isnad1 id=iff.2h4v.s8.1d1cdbba310e from=translated src=- shape=11c2a23a vocab=8f0b14fc
+-/
 theorem isRamifiedAt_iff_not_injOn (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x)
     (hnc : ¬ EventuallyConst F (𝓝 x)) :
     IsRamifiedAt F x ↔ ¬ ∃ U ∈ 𝓝 x, Set.InjOn F U := by
@@ -214,7 +229,9 @@ theorem isRamifiedAt_iff_not_injOn (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x)
   omega
 
 /-- Ramification is isolated: nearby points are unramified (mapping-degree's
-"critical values are discrete" seed). -/
+"critical values are discrete" seed).
+@isnad1 id=eventual.2h4v.s8.11fbfa82ccda from=translated src=- shape=28bfac7d vocab=d05dd10f
+-/
 theorem eventually_multiplicity_eq_one (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x)
     (hnc : ¬ EventuallyConst F (𝓝 x)) : ∀ᶠ y in 𝓝[≠] x, multiplicity F y = 1 := by
   obtain ⟨A, -⟩ := exists_adaptedChartsAt hF hnc univ_mem

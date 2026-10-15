@@ -82,26 +82,47 @@ def relationalizeFormula : ∀ {n : ℕ}, L.BoundedFormulaω α n →
 
 /-! Stable rewrite points for Units 5–7 (all definitional). -/
 
+/--
+@isnad1 id=eq.0h3v.s4.aee4ec0cf9db from=translated src=- shape=b5f83ba6 vocab=5adff7b3
+-/
 @[simp] theorem relationalizeFormula_falsum :
     relationalizeFormula (.falsum : L.BoundedFormulaω α n) = .falsum := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.29e760c60f16 from=translated src=- shape=05be0f91 vocab=a6632e96
+-/
 @[simp] theorem relationalizeFormula_equal (t u : L.Term (α ⊕ Fin n)) :
     relationalizeFormula (.equal t u) = equalGraph t u := rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.5d3561b638a6 from=translated src=- shape=ea0ace64 vocab=51dbbc9b
+-/
 @[simp] theorem relationalizeFormula_rel {k : ℕ} (R : L.Relations k)
     (ts : Fin k → L.Term (α ⊕ Fin n)) :
     relationalizeFormula (.rel R ts) = relGraph R ts := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.f540120e329c from=translated src=- shape=667ce989 vocab=accca263
+-/
 @[simp] theorem relationalizeFormula_imp (φ ψ : L.BoundedFormulaω α n) :
     relationalizeFormula (φ.imp ψ) =
       (relationalizeFormula φ).imp (relationalizeFormula ψ) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.2b630299ce82 from=translated src=- shape=b5d16990 vocab=1ab637e2
+-/
 @[simp] theorem relationalizeFormula_all (φ : L.BoundedFormulaω α (n + 1)) :
     relationalizeFormula φ.all = (relationalizeFormula φ).all := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.0319b430344b from=translated src=- shape=48579ef4 vocab=5436bca1
+-/
 @[simp] theorem relationalizeFormula_iSup (φs : ℕ → L.BoundedFormulaω α n) :
     relationalizeFormula (.iSup φs) = .iSup fun i => relationalizeFormula (φs i) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.81d51fd39d31 from=translated src=- shape=48579ef4 vocab=b96f71a9
+-/
 @[simp] theorem relationalizeFormula_iInf (φs : ℕ → L.BoundedFormulaω α n) :
     relationalizeFormula (.iInf φs) = .iInf fun i => relationalizeFormula (φs i) := rfl
 
@@ -113,6 +134,9 @@ attribute [local instance] graphExpansion
 
 variable {M : Type} [L.Structure M]
 
+/--
+@isnad1 id=eq.0h9v.s6.403c8524dd95 from=translated src=- shape=2f2fe48b vocab=3f3c5c2f
+-/
 @[simp] theorem realize_ctxLiftEmb {k : ℕ} (z : α ⊕ Fin n)
     (v : α → M) (xs : Fin n → M) (ws : Fin k → M) :
     (ctxLiftEmb (L := L) k z).realize (Sum.elim v (Fin.append xs ws)) = Sum.elim v xs z := by
@@ -168,7 +192,9 @@ private theorem realize_relGraph {k : ℕ} (R : L.Relations k) (ts : Fin k → L
     simpa only [realize_graphWitnessVar] using h
 
 /-- **The realize bridge**: over the graph expansion, the relationalized formula is
-realization-equivalent to the original. -/
+realization-equivalent to the original.
+@isnad1 id=iff.0h7v.s5.b882d6d7361b from=translated src=- shape=1d519bdc vocab=3b516c10
+-/
 theorem realize_relationalizeFormula :
     ∀ {n : ℕ} (φ : L.BoundedFormulaω α n) (v : α → M) (xs : Fin n → M),
       (relationalizeFormula φ).Realize v xs ↔ φ.Realize v xs
@@ -215,7 +241,9 @@ private theorem relationsIn_relGraph {k : ℕ} (R : L.Relations k) (ts : Fin k �
 
 /-- **The exact occurrence identity**: the relationalized formula's relation symbols are exactly
 the relationalization `relSym` of the original formula's symbols. Composes immediately with
-`relSym_inter` for the sharp shared-vocabulary bound. -/
+`relSym_inter` for the sharp shared-vocabulary bound.
+@isnad1 id=eq.0h4v.s5.3ee21e6244e7 from=translated src=- shape=1c5c8daf vocab=f07e5391
+-/
 theorem relationsIn_relationalizeFormula :
     ∀ {n : ℕ} (φ : L.BoundedFormulaω α n),
       (relationalizeFormula φ).relationsIn = relSym L φ.functionsIn φ.relationsIn
@@ -242,7 +270,9 @@ theorem relationsIn_relationalizeFormula :
     rw [Set.iUnion_congr fun i => relationsIn_relationalizeFormula (φs i)]
     exact (relSym_iUnion _ _).symm
 
-/-- No function symbol occurs in a relationalized formula (the graph language is relational). -/
+/-- No function symbol occurs in a relationalized formula (the graph language is relational).
+@isnad1 id=eq.0h4v.s5.c15e2faf7964 from=translated src=- shape=d2fd2da9 vocab=d154758e
+-/
 theorem functionsIn_relationalizeFormula (φ : L.BoundedFormulaω α n) :
     (relationalizeFormula φ).functionsIn = ∅ :=
   BoundedFormulaω.functionsIn_of_isRelational _

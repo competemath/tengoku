@@ -20,7 +20,9 @@ permutation argument.
 
 namespace KasamiCyclicAdditive
 
-/-- If `gcd(k,n)=1`, then `gcd(2k,n)` divides `2`. -/
+/-- If `gcd(k,n)=1`, then `gcd(2k,n)` divides `2`.
+@isnad1 id=dvd.1h2v.s4.b2a896598b38 from=translated src=- shape=caf31c1f vocab=6edf32cf
+-/
 theorem gcd_two_mul_dvd_two {k n : ℕ} (hkn : Nat.Coprime k n) :
     Nat.gcd (2 * k) n ∣ 2 := by
   by_cases h2n : 2 ∣ n
@@ -35,7 +37,9 @@ theorem gcd_two_mul_dvd_two {k n : ℕ} (hkn : Nat.Coprime k n) :
     rw [hprod]
     norm_num
 
-/-- A common divisor of `2^k+1` and `2^n-1`, with `gcd(k,n)=1`, divides `3`. -/
+/-- A common divisor of `2^k+1` and `2^n-1`, with `gcd(k,n)=1`, divides `3`.
+@isnad1 id=dvd.3h3v.s6.64863d68976d from=translated src=- shape=618e825b vocab=6bc00cb7
+-/
 theorem dvd_three_of_dvd_two_pow_add_one_two_pow_sub_one
     {d k n : ℕ} (hkn : Nat.Coprime k n)
     (hplus : d ∣ 2 ^ k + 1) (hminus : d ∣ 2 ^ n - 1) :
@@ -62,7 +66,9 @@ theorem dvd_three_of_dvd_two_pow_add_one_two_pow_sub_one
 variable {K : Type*} [Field K] [Fintype K]
 
 /-- On a field of order `2^n`, a character satisfying `χ^(2^k+1)=1` is cubic
-whenever `gcd(k,n)=1`. -/
+whenever `gcd(k,n)=1`.
+@isnad1 id=eq.3h4v.s8.c246d4537db7 from=translated src=- shape=33a93814 vocab=1b845e48
+-/
 theorem mulChar_cube_eq_one_of_kasami_exceptional
     {n k : ℕ} (hcard : Fintype.card K = 2 ^ n) (hkn : Nat.Coprime k n)
     (χ : MulChar K ℂ) (he : χ ^ (2 ^ k + 1) = 1) :

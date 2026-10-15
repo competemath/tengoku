@@ -36,7 +36,9 @@ private theorem realize_constTerm (base : L.Structure M) (h : ℕ → M) (c : �
   change @Structure.funMap L[[ℕ]] M (wc base h) 0 (Sum.inr c) _ = h c
   rw [wc_funMap_inr]
 
-/-- Realizing the constant instance `ψ(c)` is realizing `ψ` at the constant's interpretation. -/
+/-- Realizing the constant instance `ψ(c)` is realizing `ψ` at the constant's interpretation.
+@isnad1 id=iff.0h6v.s6.4fee6a32d35f from=translated src=- shape=5a77014a vocab=19887e7b
+-/
 theorem realize_instConst (base : L.Structure M) (h : ℕ → M) (c : ℕ)
     (ψ : L[[ℕ]].BoundedFormulaω Empty 1) :
     @BoundedFormulaω.Realize L[[ℕ]] M (wc base h) Empty 0 (instConst c ψ) Empty.elim Fin.elim0
@@ -70,7 +72,9 @@ private theorem realize_genEx_instConst (base : L.Structure M) (h : ℕ → M) (
 
 /-! ## Ambient semantic equivalence and premise congruence -/
 
-/-- The round-trip as a semantic equivalence over arbitrary ambient structures. -/
+/-- The round-trip as a semantic equivalence over arbitrary ambient structures.
+@isnad1 id=iff.1h4v.s6.02ae97728dc9 from=translated src=- shape=61b1bd8b vocab=76962b39
+-/
 theorem realize_genEx_instConst_iff_ex (c : ℕ) (ψ : L[[ℕ]].BoundedFormulaω Empty 1)
     (hfresh : c ∉ sentenceJConsts (L' := L) (J := ℕ) ψ)
     (M : Type) [S : L[[ℕ]].Structure M] :
@@ -86,7 +90,9 @@ variable {F : Set (Σ n, L.Functions n)} {R : Set (Σ n, L.Relations n)}
   {A : Finset ℕ} {Γ Δ : Set L[[ℕ]].Sentenceω}
 
 /-- Entailment is invariant under replacing an inserted premise by a semantically equivalent
-sentence. -/
+sentence.
+@isnad1 id=iff.1h5v.s6.01e70c77a58e from=translated src=- shape=997be2b2 vocab=024b9a0e
+-/
 theorem entails_insert_congr {σ₁ σ₂ τ : L[[ℕ]].Sentenceω}
     (hequiv : ∀ (M : Type) [L[[ℕ]].Structure M] [Nonempty M],
       Sentenceω.Realize σ₁ M ↔ Sentenceω.Realize σ₂ M) :
@@ -124,7 +130,9 @@ private theorem insepAt_instConst_of_insepAt_ex (c : ℕ) (ψ : L[[ℕ]].Bounded
     (insepAt_insert_congr (fun M _ _ => realize_genEx_instConst_iff_ex c ψ hcψ M)).mpr h
   exact insepAt_witness_of_insepAt_genEx c (instConst c ψ) hcΓ hcΔ h'
 
-/-- **C7 consumer (negated universal)**: `¬∀x ψ` is `∃x ¬ψ`; the witness is `¬ψ(c)`. -/
+/-- **C7 consumer (negated universal)**: `¬∀x ψ` is `∃x ¬ψ`; the witness is `¬ψ(c)`.
+@isnad1 id=insepat.4h8v.s7.9296c0b92e34 from=translated src=- shape=85fb2256 vocab=51d6d3da
+-/
 theorem insepAt_not_instConst_of_insepAt_not_all (c : ℕ) (ψ : L[[ℕ]].BoundedFormulaω Empty 1)
     (hcψ : c ∉ sentenceJConsts (L' := L) (J := ℕ) ψ.not)
     (hcΓ : ∀ γ ∈ Γ, c ∉ sentenceJConsts (L' := L) (J := ℕ) γ)
