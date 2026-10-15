@@ -50,13 +50,30 @@ noncomputable def coeChart : OpenPartialHomeomorph (OnePoint ℂ) ℂ where
     exact (continuousAt_coe.mpr (by exact continuousAt_id)).continuousWithinAt
   continuousOn_invFun := continuous_coe.continuousOn
 
+/--
+@isnad1 id=eq.0h1v.s5.a0a2faa12e9e from=translated src=- shape=622fe4cb vocab=cd32b45c
+-/
 @[simp] theorem coeChart_apply_coe (z : ℂ) : coeChart (z : OnePoint ℂ) = z := rfl
+/--
+@isnad1 id=eq.0h0v.s5.6e516ee682b2 from=translated src=- shape=28905829 vocab=e8e6cb91
+-/
 @[simp] theorem coeChart_apply_infty : coeChart (∞ : OnePoint ℂ) = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s6.d332bca34b31 from=translated src=- shape=a5383136 vocab=b380ceb8
+-/
 @[simp] theorem coeChart_symm_apply (z : ℂ) : coeChart.symm z = (z : OnePoint ℂ) := rfl
+/--
+@isnad1 id=eq.0h0v.s6.c8110f6d0669 from=translated src=- shape=912b58b7 vocab=8f3af860
+-/
 @[simp] theorem coeChart_source : coeChart.source = {(∞ : OnePoint ℂ)}ᶜ := rfl
+/--
+@isnad1 id=eq.0h0v.s6.66b3935385f9 from=translated src=- shape=962ede41 vocab=7b70cf58
+-/
 @[simp] theorem coeChart_target : coeChart.target = Set.univ := rfl
 
-/-- `inversion` never sends a finite point to `↑(0:ℂ)`. -/
+/-- `inversion` never sends a finite point to `↑(0:ℂ)`.
+@isnad1 id=ne.0h1v.s4.cf7a696877fb from=translated src=- shape=ee03a2d5 vocab=351750af
+-/
 theorem inversion_coe_ne_coe_zero (w : ℂ) : inversion (w : OnePoint ℂ) ≠ ((0 : ℂ) : OnePoint ℂ) :=
     by
   by_cases hw : w = 0
@@ -96,33 +113,55 @@ noncomputable def invChart : OpenPartialHomeomorph (OnePoint ℂ) ℂ where
   continuousOn_invFun :=
     (continuous_inversion.comp continuous_coe).continuousOn
 
+/--
+@isnad1 id=eq.0h1v.s5.b58fd31280ce from=translated src=- shape=d30bfb5e vocab=f32bd1a0
+-/
 @[simp] theorem invChart_apply_coe (z : ℂ) : invChart (z : OnePoint ℂ) = z⁻¹ := by
   change coeChart (inversion (z : OnePoint ℂ)) = z⁻¹
   by_cases hz : z = 0
   · subst hz; simp
   · rw [inversion_coe hz, coeChart_apply_coe]
 
+/--
+@isnad1 id=eq.0h0v.s5.a7d3221ee325 from=translated src=- shape=28905829 vocab=f733e41a
+-/
 @[simp] theorem invChart_apply_infty : invChart (∞ : OnePoint ℂ) = 0 := by
   change coeChart (inversion ∞) = 0
   simp
 
+/--
+@isnad1 id=eq.0h1v.s6.cd333376d784 from=translated src=- shape=5c77fd90 vocab=0d1c4cbb
+-/
 @[simp] theorem invChart_symm_apply (w : ℂ) : invChart.symm w = inversion (w : OnePoint ℂ) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.11cf6f4c061c from=translated src=- shape=98b0e200 vocab=19375f85
+-/
 @[simp] theorem invChart_source : invChart.source = {((0 : ℂ) : OnePoint ℂ)}ᶜ := rfl
+/--
+@isnad1 id=eq.0h0v.s6.5cc52bbbff1f from=translated src=- shape=962ede41 vocab=9678aba2
+-/
 @[simp] theorem invChart_target : invChart.target = Set.univ := rfl
 
+/--
+@isnad1 id=eq.0h0v.s5.94f05daff9a6 from=translated src=- shape=664dc9a3 vocab=ccaf11f0
+-/
 theorem invChart_comp_coe : ⇑invChart ∘ ((↑) : ℂ → OnePoint ℂ) = Inv.inv := by
   funext z
   simp [Function.comp_apply]
 
-/-- `inversion` read through `coeChart` on both ends is inversion itself (unconditional). -/
+/-- `inversion` read through `coeChart` on both ends is inversion itself (unconditional).
+@isnad1 id=eq.0h1v.s5.c388ce942924 from=translated src=- shape=445b8c39 vocab=8a77cc0e
+-/
 theorem coeChart_inversion_coe (z : ℂ) : coeChart (inversion (z : OnePoint ℂ)) = z⁻¹ := by
   by_cases hz : z = 0
   · subst hz; simp
   · rw [inversion_coe hz, coeChart_apply_coe]
 
 /-- `inversion` read through `invChart` on both ends is the identity (unconditional;
-this is `invChart.right_inv` unfolded through `invChart_symm_apply`). -/
+this is `invChart.right_inv` unfolded through `invChart_symm_apply`).
+@isnad1 id=eq.0h1v.s5.13566d3ebd46 from=translated src=- shape=130207fd vocab=b58cbfda
+-/
 theorem invChart_inversion_coe (z : ℂ) : invChart (inversion (z : OnePoint ℂ)) = z := by
   have h := invChart.right_inv (x := z) (Set.mem_univ z)
   rwa [invChart_symm_apply] at h
@@ -132,15 +171,30 @@ noncomputable def chartFamily : Bool → OpenPartialHomeomorph (OnePoint ℂ) �
   | false => coeChart
   | true => invChart
 
+/--
+@isnad1 id=eq.0h0v.s5.c80c25750ec5 from=translated src=- shape=099c7ab7 vocab=27810fb5
+-/
 @[simp] theorem chartFamily_false : chartFamily false = coeChart := rfl
+/--
+@isnad1 id=eq.0h0v.s5.a29566204a30 from=translated src=- shape=099c7ab7 vocab=b966d4e7
+-/
 @[simp] theorem chartFamily_true : chartFamily true = invChart := rfl
 
 /-- Index map: `∞ ↦ true` (use `invChart`), `↑z ↦ false` (use `coeChart`). -/
 def chartIndex : OnePoint ℂ → Bool := fun p => p.elim true (fun _ => false)
 
+/--
+@isnad1 id=eq.0h0v.s2.54974a4818ff from=translated src=- shape=fb946a67 vocab=2f98cc15
+-/
 @[simp] theorem chartIndex_infty : chartIndex ∞ = true := rfl
+/--
+@isnad1 id=eq.0h1v.s3.2facea959d65 from=translated src=- shape=13856f5c vocab=de940cc7
+-/
 @[simp] theorem chartIndex_coe (z : ℂ) : chartIndex (z : OnePoint ℂ) = false := rfl
 
+/--
+@isnad1 id=mem.0h1v.s6.ba5923ddc566 from=translated src=- shape=e4249cd8 vocab=1f00e9a8
+-/
 theorem mem_chartFamily_source (p : OnePoint ℂ) : p ∈ (chartFamily (chartIndex p)).source := by
   induction p using OnePoint.rec with
   | infty => simp
@@ -149,12 +203,21 @@ theorem mem_chartFamily_source (p : OnePoint ℂ) : p ∈ (chartFamily (chartInd
 noncomputable instance instChartedSpace : ChartedSpace ℂ (OnePoint ℂ) :=
   RS.chartedSpaceOfFamily chartFamily chartIndex mem_chartFamily_source
 
+/--
+@isnad1 id=eq.0h1v.s6.288e7361c47f from=translated src=- shape=4d5a921c vocab=ad66b73d
+-/
 @[simp] theorem chartAt_coe (z : ℂ) : chartAt ℂ ((z : ℂ) : OnePoint ℂ) = coeChart := by
   rw [RS.chartedSpaceOfFamily_chartAt]; simp
 
+/--
+@isnad1 id=eq.0h0v.s6.4cae53db0136 from=translated src=- shape=072ba5c8 vocab=775830bb
+-/
 @[simp] theorem chartAt_infty : chartAt ℂ (∞ : OnePoint ℂ) = invChart := by
   rw [RS.chartedSpaceOfFamily_chartAt]; simp
 
+/--
+@isnad1 id=eq.0h0v.s8.6513eeb073ce from=translated src=- shape=30a5eee1 vocab=fc13a8dd
+-/
 theorem atlas_eq : atlas ℂ (OnePoint ℂ) = {coeChart, invChart} := by
   rw [RS.chartedSpaceOfFamily_atlas]
   ext e
@@ -218,14 +281,23 @@ private theorem htrans : ∀ i j : Bool, AnalyticOnNhd ℂ ((chartFamily i).symm
     rw [hfun]
     exact fun z _ => analyticAt_id
 
+/--
+@isnad1 id=ismanifo.0h0v.s5.cd9bebb1cc36 from=translated src=- shape=7ca810b2 vocab=fd82d934
+-/
 noncomputable instance instIsManifold : IsManifold 𝓘(ℂ) ω (OnePoint ℂ) :=
   RS.isManifold_of_family chartFamily chartIndex mem_chartFamily_source htrans
 
 open IsManifold in
+/--
+@isnad1 id=mem.0h0v.s7.3307a09e16a1 from=translated src=- shape=e2a7b8e4 vocab=4bc17eaf
+-/
 theorem coeChart_mem_maximalAtlas : coeChart ∈ maximalAtlas 𝓘(ℂ) ω (OnePoint ℂ) :=
   subset_maximalAtlas (by rw [atlas_eq]; exact Set.mem_insert _ _)
 
 open IsManifold in
+/--
+@isnad1 id=mem.0h0v.s7.9146cad62abc from=translated src=- shape=e2a7b8e4 vocab=d859a4e2
+-/
 theorem invChart_mem_maximalAtlas : invChart ∈ maximalAtlas 𝓘(ℂ) ω (OnePoint ℂ) :=
   subset_maximalAtlas (by rw [atlas_eq]; exact Set.mem_insert_iff.2 (Or.inr rfl))
 

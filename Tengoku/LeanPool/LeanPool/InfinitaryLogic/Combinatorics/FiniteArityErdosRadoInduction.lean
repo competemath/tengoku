@@ -191,7 +191,9 @@ section Factoring
 
 /-- Factor a finite tuple through an order embedding: a tuple whose values lie in the range
 of `f : J ↪o I` is the `f`-image of a (unique) tuple in `J`. The order structure transports
-back through `f.lt_iff_lt`, so the preimage tuple is again an order embedding. -/
+back through `f.lt_iff_lt`, so the preimage tuple is again an order embedding.
+@isnad1 id=ex.1h5v.s8.cd372eb7b802 from=translated src=- shape=f589c606 vocab=b7824b33
+-/
 theorem exists_orderEmbedding_factor {J I : Type*} [LinearOrder J] [LinearOrder I]
     {m : ℕ} (f : J ↪o I) (t : Fin m ↪o I) (ht : ∀ k, t k ∈ Set.range f) :
     ∃ s : Fin m ↪o J, s.trans f = t := by
@@ -388,7 +390,9 @@ Morley/Hanf consistency-property schedule consumes [Marker, *Lectures on Infinit
 Theory*, §5.2]: for each finite formula/arity budget `N` and cofinally many `α < ω₁`, a
 `ℶ_{ω₁}`-sized source dominates the demanded `ℶ_{α + 2N + 2}` (the beth index stays below
 `ω₁`), yielding `ℶ_α`-large approximations of the EM template; the indiscernible sequence
-itself materializes only in the model built by Model Existence, never in the source. -/
+itself materializes only in the model built by Model Existence, never in the source.
+@isnad1 id=ex.2h5v.s9.7316cd007360 from=translated src=- shape=67001ede vocab=088ddc92
+-/
 theorem finiteArityHomogeneousUpTo_beth_stage (α : Ordinal.{0}) (N : ℕ)
     {I : Type} [LinearOrder I] [WellFoundedLT I]
     (hI : Cardinal.beth (α + ((2 * N + 2 : ℕ) : Ordinal)) ≤ Cardinal.mk I)

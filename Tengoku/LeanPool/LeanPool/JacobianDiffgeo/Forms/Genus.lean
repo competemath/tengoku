@@ -38,6 +38,8 @@ variable {X : Type*} [TopologicalSpace X] [T2Space X] [CompactSpace X] [Connecte
   [ChartedSpace ℂ X] [IsManifold 𝓘(ℂ) ω X]
 
 omit [ConnectedSpace X] in
-/-- The genus vanishes iff there are no nonzero global holomorphic 1-forms. -/
+/-- The genus vanishes iff there are no nonzero global holomorphic 1-forms.
+@isnad1 id=iff.0h1v.s6.19973a289ce4 from=translated src=- shape=9df18ae9 vocab=361da35f
+-/
 theorem genus_eq_zero_iff_subsingleton : genus X = 0 ↔ Subsingleton (RS.Form1 X) :=
   Module.finrank_zero_iff

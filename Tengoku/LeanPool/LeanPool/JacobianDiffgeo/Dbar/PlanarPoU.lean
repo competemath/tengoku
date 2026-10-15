@@ -35,7 +35,9 @@ namespace RS
 
 /-- A finite smooth partition of unity on an open planar set `V`, subordinate to a finite open
 cover `W`: each `ψ i` is smooth on `V`, nonnegative, supported in `W i`, summing to `1` on `V`,
-and eventually zero near any point of `V` outside `W i`. -/
+and eventually zero near any point of `V` outside `W i`.
+@isnad1 id=ex.4h3v.s8.61a944f260cc from=translated src=- shape=b30e44ca vocab=e22747ce
+-/
 theorem exists_smooth_partition_of_finite_cover {V : Set ℂ} (hV : IsOpen V) {n : ℕ}
     {W : Fin n → Set ℂ} (hWo : ∀ i, IsOpen (W i)) (_hWV : ∀ i, W i ⊆ V)
     (hcov : V ⊆ ⋃ i, W i) :
@@ -113,7 +115,9 @@ theorem exists_smooth_partition_of_finite_cover {V : Set ℂ} (hV : IsOpen V) {n
     rw [this, zero_div]
 
 /-- Extending a `PoU`-weighted term by zero outside its supporting open set stays smooth on `U`,
-provided `ψ` vanishes near any point of `U` outside `W`. -/
+provided `ψ` vanishes near any point of `U` outside `W`.
+@isnad1 id=contdiff.6h5v.s8.838b4417e0b9 from=translated src=- shape=b1f5a098 vocab=a4272260
+-/
 theorem contDiffOn_indicator_smul_of_eventually_zero {U W V : Set ℂ} (_hU : IsOpen U)
     (hW : IsOpen W) {ψ : ℂ → ℝ} {f : ℂ → ℂ} (hUV : U ⊆ V)
     (hψ : ContDiffOn ℝ ∞ ψ V) (hf : ContDiffOn ℝ ∞ f (U ∩ W))

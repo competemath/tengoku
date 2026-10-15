@@ -34,7 +34,9 @@ variable {f : ℂ → ℂ} {z₀ : ℂ}
 
 open Real Complex in
 /-- Fixed-radius residue formula: if `f` is meromorphic at `z₀` and differentiable on the
-punctured closed disk, the circle integral computes the residue. -/
+punctured closed disk, the circle integral computes the residue.
+@isnad1 id=eq.3h3v.s7.0b790aaeb54a from=translated src=- shape=0adedd4d vocab=8dadcbfd
+-/
 theorem circleIntegral_eq_two_pi_I_mul_resAt {R : ℝ} (hR : 0 < R) (hf : MeromorphicAt f z₀)
     (hd : ∀ z ∈ closedBall z₀ R \ {z₀}, DifferentiableAt ℂ f z) :
     (∮ z in C(z₀, R), f z) = (2 * π * I) * resAt f z₀ := by
@@ -150,7 +152,9 @@ theorem circleIntegral_eq_two_pi_I_mul_resAt {R : ℝ} (hR : 0 < R) (hf : Meromo
     rw [resAt_of_order_nonneg (WithTop.untop₀_nonneg.mp h0a), mul_zero]
 
 open Real Complex in
-/-- Small-radius form for consumers that only know meromorphy (they pick their own `ρ`). -/
+/-- Small-radius form for consumers that only know meromorphy (they pick their own `ρ`).
+@isnad1 id=eventual.1h2v.s6.e842cebd5cf2 from=translated src=- shape=35b2e026 vocab=f2515454
+-/
 theorem MeromorphicAt.eventually_circleIntegral_eq_two_pi_I_mul_resAt
     (hf : MeromorphicAt f z₀) :
     ∀ᶠ R in 𝓝[>] (0 : ℝ), (∮ z in C(z₀, R), f z) = (2 * π * I) * resAt f z₀ := by

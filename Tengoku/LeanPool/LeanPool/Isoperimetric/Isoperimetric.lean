@@ -23,7 +23,9 @@ open MeasureTheory Set
 open scoped Pointwise
 
 /-- The volume of a Euclidean ball of radius `ε` raised to the `1/(d+1)`-th power equals the
-corresponding power for the unit ball times `ε`. -/
+corresponding power for the unit ball times `ε`.
+@isnad1 id=eq.0h2v.s11.ee931b0df2e3 from=translated src=- shape=7d8f1859 vocab=5d6e73d4
+-/
 lemma volume_ball_relation {d : ℕ} {ε : ℝ} :
     volume (Metric.ball (0 : EuclideanSpace ℝ (Fin (d + 1))) ε) ^ ((d:ℝ)+1)⁻¹
     = volume (Metric.ball (0 : EuclideanSpace ℝ (Fin (d + 1))) 1) ^ ((d:ℝ)+1)⁻¹

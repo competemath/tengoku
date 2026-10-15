@@ -50,7 +50,9 @@ variable {X : Type*} [TopologicalSpace X] [T2Space X] [ChartedSpace ℂ X] [IsMa
 /-! ## Inverse-derivative units -/
 
 omit [T2Space X] [IsManifold 𝓘(ℂ, ℂ) ω X] in
-/-- The two transition derivatives at matched points multiply to `1`. -/
+/-- The two transition derivatives at matched points multiply to `1`.
+@isnad1 id=eq.3h4v.s9.33c41cbb756c from=translated src=- shape=9cff45f4 vocab=7906ce87
+-/
 theorem deriv_trans_mul_deriv_trans_symm {e e' : OpenPartialHomeomorph X ℂ}
     (he : e ∈ maximalAtlas 𝓘(ℂ) ω X) (he' : e' ∈ maximalAtlas 𝓘(ℂ) ω X) {w : ℂ}
     (hw : w ∈ ⇑e' '' (e.source ∩ e'.source)) :
@@ -72,7 +74,9 @@ theorem deriv_trans_mul_deriv_trans_symm {e e' : OpenPartialHomeomorph X ℂ}
   linear_combination -hcomp
 
 omit [T2Space X] [IsManifold 𝓘(ℂ, ℂ) ω X] in
-/-- Transition derivatives never vanish. -/
+/-- Transition derivatives never vanish.
+@isnad1 id=ne.3h4v.s8.aea2857e69ff from=translated src=- shape=eda5975c vocab=2ae33f17
+-/
 theorem deriv_trans_ne_zero {e e' : OpenPartialHomeomorph X ℂ}
     (he : e ∈ maximalAtlas 𝓘(ℂ) ω X) (he' : e' ∈ maximalAtlas 𝓘(ℂ) ω X) {w : ℂ}
     (hw : w ∈ ⇑e' '' (e.source ∩ e'.source)) :
@@ -106,15 +110,24 @@ variable (D : ChartSupportedData X)
 def Ksrc : Set X := ⇑D.e.symm '' D.K
 
 omit [T2Space X] [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=iscompac.0h2v.s5.56912d9f44ca from=translated src=- shape=12b3e946 vocab=e109d97a
+-/
 theorem isCompact_Ksrc : IsCompact D.Ksrc :=
   D.hK.image_of_continuousOn (D.e.symm.continuousOn.mono (by simpa using D.hKsub))
 
 omit [T2Space X] [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=le.0h2v.s6.0244370af0ba from=translated src=- shape=2af42a0f vocab=85a30769
+-/
 theorem Ksrc_subset_source : D.Ksrc ⊆ D.e.source := by
   rintro y ⟨z, hz, rfl⟩
   exact D.e.map_target (D.hKsub hz)
 
 omit [T2Space X] [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=eq.2h3v.s7.b1a537448ed0 from=translated src=- shape=6a8ffb67 vocab=75c28e95
+-/
 theorem h_eq_zero_of_notMem_Ksrc {y : X} (hy : y ∈ D.e.source) (hyK : y ∉ D.Ksrc) :
     D.h (D.e y) = 0 := by
   by_contra hne
@@ -128,6 +141,9 @@ def coeff (x : X) : ℂ → ℂ :=
       D.h (D.e ((chartAt ℂ x).symm z)))
 
 omit [T2Space X] [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=iff.1h4v.s8.00ddeef52247 from=translated src=- shape=a2f2c89c vocab=b1bd89c8
+-/
 theorem mem_coeffSet_iff (x : X) {z : ℂ} (hz : z ∈ (chartAt ℂ x).target) :
     (chartAt ℂ x).symm z ∈ D.e.source ↔
       z ∈ ⇑(chartAt ℂ x) '' ((chartAt ℂ x).source ∩ D.e.source) := by
@@ -140,6 +156,9 @@ theorem mem_coeffSet_iff (x : X) {z : ℂ} (hz : z ∈ (chartAt ℂ x).target) :
     exact hq.2
 
 omit [T2Space X] [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=le.0h3v.s7.d5db8b9388f7 from=translated src=- shape=e53cff88 vocab=d4858976
+-/
 theorem coeffSet_subset_target (x : X) :
     ⇑(chartAt ℂ x) '' ((chartAt ℂ x).source ∩ D.e.source) ⊆ (chartAt ℂ x).target := by
   rintro z ⟨q, hq, rfl⟩
@@ -147,7 +166,9 @@ theorem coeffSet_subset_target (x : X) :
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
 /-- The coefficient vanishes near any target point whose source point avoids the compact
-source carrier. -/
+source carrier.
+@isnad1 id=eventual.2h4v.s7.736818a3a93a from=translated src=- shape=ca3bbbeb vocab=51abf6d3
+-/
 theorem coeff_eventuallyEq_zero (x : X) {z : ℂ} (hz : z ∈ (chartAt ℂ x).target)
     (hy : (chartAt ℂ x).symm z ∉ D.Ksrc) : D.coeff x =ᶠ[nhds z] 0 := by
   have hcont : ContinuousAt (⇑(chartAt ℂ x).symm) z :=

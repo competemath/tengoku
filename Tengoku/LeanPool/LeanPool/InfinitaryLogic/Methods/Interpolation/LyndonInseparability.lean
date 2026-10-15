@@ -66,7 +66,9 @@ variable {F : Set (Σ n, L.Functions n)} {P N : Set (Σ n, L.Relations n)}
 
 /-- **Dualization is class-exchanging.** Inseparability at `(F, P, N)` for `(Γ, Δ)` is
 inseparability at `(F, N, P)` for `(Δ, Γ)`: the separator map `σ ↦ σ.not` swaps the polarity
-classes. -/
+classes.
+@isnad1 id=lyndonin.1h7v.s5.157edfc8086e from=translated src=- shape=065ed56d vocab=e3ee6391
+-/
 theorem lyndonInsepAt_swap (h : LyndonInsepAt F P N A Γ Δ) : LyndonInsepAt F N P A Δ Γ := by
   rintro ⟨σ, hbf, hbp, hbn, hsupp, hΔσ, hΓσnot⟩
   refine h ⟨σ.not, ?_, ?_, ?_, ?_, hΓσnot, ?_⟩
@@ -83,7 +85,9 @@ theorem lyndonInsepAt_swap (h : LyndonInsepAt F P N A Γ Δ) : LyndonInsepAt F N
 
 /-- **C1 (implication), polarity-refined.** An implication in `Γ` yields one of the two possible
 refinements.  The combined separator `(σ₁.not).imp σ₂` stays in the *same* class: the antecedent
-is negated and then flipped again by the implication, so the two flips cancel. -/
+is negated and then flipped again by the implication, so the two flips cancel.
+@isnad1 id=or.2h9v.s7.172fdbae6fd7 from=translated src=- shape=87af516d vocab=822f8c3d
+-/
 theorem lyndonInsepAt_imp_dichotomy {φ ψ : L[[ℕ]].Sentenceω} (hmem : φ.imp ψ ∈ Γ)
     (h : LyndonInsepAt F P N A Γ Δ) :
     LyndonInsepAt F P N A (insert φ.not Γ) Δ ∨ LyndonInsepAt F P N A (insert ψ Γ) Δ := by
@@ -174,7 +178,9 @@ private theorem lyndonInsepAt_insert_of_shared_entails {σ φ : L[[ℕ]].Sentenc
 /-- **The equality specialization** — the form the kernel's four cross-coordinate transfers
 actually consume.  A constant equality has empty base polarity sets in both signs, so the
 swapped-class hypotheses of the general gate are discharged outright: this is exactly where
-"equality is logical" does its work, in the open. -/
+"equality is logical" does its work, in the open.
+@isnad1 id=lyndonin.4h10v.s7.8c324183cc54 from=translated src=- shape=c0d849e6 vocab=bc506f98
+-/
 theorem lyndonInsepAt_insert_of_shared_constEq_entails {φ : L[[ℕ]].Sentenceω} (a b : ℕ)
     (hσA : sentenceJConsts (L' := L) (J := ℕ) (constEq (L := L) a b) ⊆ (↑A : Set ℕ))
     (hΔσ : Theoryω.Entails Δ (constEq (L := L) a b))
@@ -192,7 +198,9 @@ theorem lyndonInsepAt_insert_of_shared_constEq_entails {φ : L[[ℕ]].Sentenceω
 `(Pos φ, Neg φ)` and the `Δ`-root `ψ.not` bounded by `(Pos (ψ.not), Neg (ψ.not))`, maintaining
 the separator class `(P₁ ∩ N₂, N₁ ∩ P₂)`.  That class **is** the endpoint's pair of
 intersections — which is the machine-checked form of the side flip in López–Escobar 1965,
-Theorem 4.0(.4). -/
+Theorem 4.0(.4).
+@isnad1 id=eq.0h3v.s7.44e9731054bd from=translated src=- shape=88835fa9 vocab=75fad4b4
+-/
 theorem lyndon_root_class_eq (φ ψ : L.Sentenceω) :
     (φ.positiveRelationsIn ∩ (ψ.not).negativeRelationsIn,
       φ.negativeRelationsIn ∩ (ψ.not).positiveRelationsIn) =

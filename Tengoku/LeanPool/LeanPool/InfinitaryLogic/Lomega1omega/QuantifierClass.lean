@@ -54,25 +54,46 @@ abbrev IsUniversal {n : ℕ} (φ : L.BoundedFormulaω α n) : Prop := universalS
 
 /-! ## Constructor equations -/
 
+/--
+@isnad1 id=universa.0h4v.s4.5f5f36a29b68 from=translated src=- shape=74a0f4d5 vocab=eec0a367
+-/
 @[simp] theorem universalSigned_falsum {n : ℕ} (s : Bool) :
     universalSigned s (BoundedFormulaω.falsum : L.BoundedFormulaω α n) := trivial
 
+/--
+@isnad1 id=universa.0h6v.s5.d47253e820bf from=translated src=- shape=d4a0c46e vocab=81f07333
+-/
 @[simp] theorem universalSigned_equal {n : ℕ} (s : Bool) (t₁ t₂ : L.Term (α ⊕ Fin n)) :
     universalSigned s (BoundedFormulaω.equal t₁ t₂) := trivial
 
+/--
+@isnad1 id=universa.0h7v.s5.afa2c5d41626 from=translated src=- shape=e6297459 vocab=5cae38ab
+-/
 @[simp] theorem universalSigned_rel {n l : ℕ} (s : Bool) (R : L.Relations l)
     (ts : Fin l → L.Term (α ⊕ Fin n)) :
     universalSigned s (BoundedFormulaω.rel R ts) := trivial
 
+/--
+@isnad1 id=iff.0h6v.s5.0788d8be748b from=translated src=- shape=804f03b7 vocab=fcffde2e
+-/
 @[simp] theorem universalSigned_imp {n : ℕ} (s : Bool) (φ ψ : L.BoundedFormulaω α n) :
     universalSigned s (φ.imp ψ) ↔ universalSigned (!s) φ ∧ universalSigned s ψ := Iff.rfl
 
+/--
+@isnad1 id=iff.0h5v.s5.17a869c2b559 from=translated src=- shape=60cbe6cc vocab=89a97a47
+-/
 @[simp] theorem universalSigned_all {n : ℕ} (s : Bool) (φ : L.BoundedFormulaω α (n + 1)) :
     universalSigned s φ.all ↔ s = true ∧ universalSigned s φ := Iff.rfl
 
+/--
+@isnad1 id=iff.0h5v.s5.b1e0ef05e8c3 from=translated src=- shape=340d897c vocab=59416c6a
+-/
 @[simp] theorem universalSigned_iSup {n : ℕ} (s : Bool) (φs : ℕ → L.BoundedFormulaω α n) :
     universalSigned s (BoundedFormulaω.iSup φs) ↔ ∀ i, universalSigned s (φs i) := Iff.rfl
 
+/--
+@isnad1 id=iff.0h5v.s5.3de4da2b3312 from=translated src=- shape=340d897c vocab=a718f613
+-/
 @[simp] theorem universalSigned_iInf {n : ℕ} (s : Bool) (φs : ℕ → L.BoundedFormulaω α n) :
     universalSigned s (BoundedFormulaω.iInf φs) ↔ ∀ i, universalSigned s (φs i) := Iff.rfl
 
@@ -104,7 +125,9 @@ private theorem universalSigned_castLE (s : Bool) :
     exact forall_congr' fun i => universalSigned_castLE s h (φs i)
 
 /-- **Quantifier class is invariant under language maps.**  `mapLanguage` rewrites terms and symbol
-tags only; every quantifier node is preserved, so the signed universal class is exact. -/
+tags only; every quantifier node is preserved, so the signed universal class is exact.
+@isnad1 id=iff.0h7v.s5.acc4c5ff5a23 from=translated src=- shape=a28aa626 vocab=eb1afaea
+-/
 theorem universalSigned_mapLanguage {L' : Language.{0, 0}} (g : L →ᴸ L') (s : Bool) :
     ∀ {k : ℕ} (φ : L.BoundedFormulaω α k),
       universalSigned s (φ.mapLanguage g) ↔ universalSigned s φ := by
@@ -126,6 +149,9 @@ theorem universalSigned_mapLanguage {L' : Language.{0, 0}} (g : L →ᴸ L') (s 
     change (∀ i, universalSigned s _) ↔ _
     exact forall_congr' fun i => ih i s
 
+/--
+@isnad1 id=iff.0h8v.s5.3b40f7c5adc9 from=translated src=- shape=55abfce7 vocab=0dc476b1
+-/
 theorem universalSigned_relabel (s : Bool) (g : α → β ⊕ Fin n) :
     ∀ {k : ℕ} (φ : L.BoundedFormulaω α k),
       universalSigned s (φ.relabel g) ↔ universalSigned s φ := by
@@ -148,6 +174,9 @@ theorem universalSigned_relabel (s : Bool) (g : α → β ⊕ Fin n) :
     change (∀ i, universalSigned s _) ↔ _
     exact forall_congr' fun i => ih i s
 
+/--
+@isnad1 id=iff.0h7v.s5.fbb9289bd2a7 from=translated src=- shape=769f9327 vocab=cbdbf648
+-/
 theorem universalSigned_subst (s : Bool) :
     ∀ {n : ℕ} (φ : L.BoundedFormulaω α n) (tf : α → L.Term β),
       universalSigned s (φ.subst tf) ↔ universalSigned s φ

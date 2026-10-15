@@ -54,7 +54,9 @@ structure LocalSkolemUniversalForColim (s₀ : LocalStage) {M : Type}
 /-- **Deep-term transport from the mixin**: the exact Skolem input the truth lemma's `all` case
 consumes (`locSkWitness_universal`), derived from the mixin alone — the deep interpretations of
 the argument terms supply the value assignment, and the witness term's value is the symbol's
-value on them by `locDeepInterp_func`. -/
+value on them by `locDeepInterp_func`.
+@isnad1 id=realize.3h11v.s8.797317bcf50b from=translated src=- shape=a4ae03e9 vocab=062c1411
+-/
 theorem locSkWitness_universal_of_mixin (s₀ : LocalStage) (J : Type) [LinearOrder J]
     {M : Type} [(localColim s₀).Structure M]
     (hsk : LocalSkolemUniversalForColim s₀ (M := M))

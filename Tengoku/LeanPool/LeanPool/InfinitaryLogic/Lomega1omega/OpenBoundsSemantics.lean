@@ -135,7 +135,9 @@ For `φ : L.Formulaω (Fin (n+1))` (a formula with n+1 free vars and 0 bound var
 - `φ.relabel insertLastBound : L.BoundedFormulaω (Fin n) 1` has n free vars and 1 bound var
 - When we evaluate with free var assignment `v : Fin n → N` and bound var assignment
   `xs : Fin 1 → N`, this corresponds to evaluating the original formula with
-  `snoc v (xs 0) : Fin (n+1) → N` -/
+  `snoc v (xs 0) : Fin (n+1) → N`
+@isnad1 id=iff.0h6v.s7.975c86cb72f1 from=translated src=- shape=aad46cdc vocab=ff09a606
+-/
 theorem realize_relabel_insertLastBound_zero {n : ℕ} (φ : L.Formulaω (Fin (n + 1)))
     (v : Fin n → N) (xs : Fin 1 → N) :
     (φ.relabel insertLastBound).Realize v xs ↔ φ.Realize (snoc v (xs 0)) := by
@@ -154,14 +156,18 @@ private theorem term_realize_openBounds {M : Type*} [L.Structure M]
   · exact Empty.elim e
   · simp [Sum.elim, Function.comp]
 
-/-- Helper: `snoc Fin.elim0 x` evaluated at `0 : Fin 1` gives `x`. -/
+/-- Helper: `snoc Fin.elim0 x` evaluated at `0 : Fin 1` gives `x`.
+@isnad1 id=eq.0h2v.s5.07c3423c56ec from=translated src=- shape=c2ff2ed4 vocab=9f2372fd
+-/
 lemma snoc_elim0_zero_eq {M : Type*} (x : M) :
     (Fin.snoc (α := fun _ => M) Fin.elim0 x) (0 : Fin 1) = x :=
   congrFun (Fin.snoc_elim0_eq x) 0
 
 /-- Semantic roundtrip: `openBounds` preserves semantics.
 For `φ : BoundedFormulaω Empty n`, evaluating `openBounds φ` with free variable assignment
-`xs : Fin n → M` is equivalent to evaluating `φ` with bound variable assignment `xs`. -/
+`xs : Fin n → M` is equivalent to evaluating `φ` with bound variable assignment `xs`.
+@isnad1 id=iff.0h5v.s5.995a74830b09 from=translated src=- shape=44fa3590 vocab=e135867f
+-/
 theorem realize_openBounds {M : Type*} [L.Structure M] :
     ∀ {n : ℕ} (φ : L.BoundedFormulaω Empty n) (xs : Fin n → M),
     Formulaω.Realize (φ.openBounds) xs ↔ φ.Realize Empty.elim xs := by

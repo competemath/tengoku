@@ -153,6 +153,7 @@ be the lift `((1+x+y)/(x+y))/W`.  Then
 This is the explicit algebraic statement that `(x,y)` is the image of
 `(W,T)` under the quotient map represented by `Q ↦ Q + Frobenius(Q)`,
 established from the formulas above alone, with no elliptic-curve group law.
+@isnad1 id=other.4h4v.s9.3e2fafa87a67 from=translated src=- shape=ca8e688a vocab=76a8d197
 -/
 theorem explicit_quotient_coordinates
     {K : Type*}

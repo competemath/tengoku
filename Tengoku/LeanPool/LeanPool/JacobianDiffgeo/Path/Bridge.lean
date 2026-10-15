@@ -40,7 +40,9 @@ variable {X : Type*} [TopologicalSpace X] [ChartedSpace ℂ X] [IsManifold 𝓘(
 variable {x y : X}
 
 /-- On a path contained in a single chart, `pathIntegral` is the classical integral
-`∫ coeff · (chart∘γ)'`. -/
+`∫ coeff · (chart∘γ)'`.
+@isnad1 id=eq.4h7v.s9.5944548f5835 from=translated src=- shape=aa54b695 vocab=f0e13ff2
+-/
 theorem pathIntegral_eq_intervalIntegral {γ : Path x y} {η : Form1 X}
     {e : OpenPartialHomeomorph X ℂ} (he : e ∈ maximalAtlas 𝓘(ℂ) ω X)
     (hγ : range ⇑γ ⊆ e.source) {u' : ℝ → ℂ}

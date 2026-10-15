@@ -42,21 +42,27 @@ namespace JL
 
 /-! ## Part 1: the Gaussian absolute moment `E|Z| = √(2/π)` -/
 
-/-- Measurability of the real sign function. -/
+/-- Measurability of the real sign function.
+@isnad1 id=measurab.0h0v.s2.a80752595feb from=translated src=- shape=e3d48bcb vocab=5b40c355
+-/
 theorem measurable_real_sign : Measurable Real.sign := by
   unfold Real.sign
   refine Measurable.ite (measurableSet_lt measurable_id measurable_const) measurable_const ?_
   exact Measurable.ite (measurableSet_lt measurable_const measurable_id)
     measurable_const measurable_const
 
-/-- `Real.sign r * r = |r|`. -/
+/-- `Real.sign r * r = |r|`.
+@isnad1 id=eq.0h1v.s4.0b875dbcd90b from=translated src=- shape=9a232c61 vocab=8ff2c5e7
+-/
 theorem sign_mul_self (r : ℝ) : Real.sign r * r = |r| := by
   obtain hn | rfl | hp := lt_trichotomy r 0
   · rw [Real.sign_of_neg hn, abs_of_neg hn]; ring
   · simp
   · rw [Real.sign_of_pos hp, abs_of_pos hp]; ring
 
-/-- The half-line first moment: `∫_{x>0} x·exp(-x²/2) dx = 1`. -/
+/-- The half-line first moment: `∫_{x>0} x·exp(-x²/2) dx = 1`.
+@isnad1 id=eq.0h0v.s6.90433bc5eaad from=translated src=- shape=8b64a75a vocab=eda7bdef
+-/
 theorem integral_Ioi_mul_exp : ∫ x in Set.Ioi (0 : ℝ), x * rexp (-(1 / 2) * x ^ 2) = 1 := by
   have hcont : ContinuousWithinAt (fun x : ℝ => -rexp (-(1 / 2) * x ^ 2)) (Set.Ici 0) 0 :=
     (by fun_prop : Continuous (fun x : ℝ => -rexp (-(1 / 2) * x ^ 2))).continuousWithinAt
@@ -83,7 +89,9 @@ theorem integral_Ioi_mul_exp : ∫ x in Set.Ioi (0 : ℝ), x * rexp (-(1 / 2) * 
   rw [hmain]
   simp [Real.exp_zero]
 
-/-- **Gaussian absolute moment.** `E|Z| = √(2/π)` for `Z ~ N(0,1)`. -/
+/-- **Gaussian absolute moment.** `E|Z| = √(2/π)` for `Z ~ N(0,1)`.
+@isnad1 id=eq.0h0v.s5.40254ba0a4a5 from=translated src=- shape=8ffa1f0d vocab=87fa01e6
+-/
 theorem integral_abs_gaussianReal :
     ∫ x, |x| ∂(gaussianReal 0 1) = Real.sqrt (2 / π) := by
   -- `∫ |x| · exp(-x²/2) dx = 2`, via the even-function reduction `∫ f|x| = 2∫_{Ioi 0} f`.
@@ -120,7 +128,9 @@ theorem integral_abs_gaussianReal :
 
 /-! ## Part 2: the asymmetric sign-product identity -/
 
-/-- Integrability of a Gaussian linear functional `g ↦ ⟪w, g⟫`. -/
+/-- Integrability of a Gaussian linear functional `g ↦ ⟪w, g⟫`.
+@isnad1 id=integrab.0h2v.s7.79bc1b0427df from=translated src=- shape=0a69030e vocab=6bea89ef
+-/
 theorem integrable_inner_stdGaussian {d : ℕ} (w : EuclideanSpace ℝ (Fin d)) :
     Integrable (fun g : EuclideanSpace ℝ (Fin d) => ⟪w, g⟫)
       (ProbabilityTheory.stdGaussian (EuclideanSpace ℝ (Fin d))) := by
@@ -141,7 +151,9 @@ Grothendieck arcsin identity `E[ sign ⟪u,g⟫ · sign ⟪v,g⟫ ] = (2/π)·ar
 The proof writes `v = ⟪u,v⟫·u + v⊥` with `v⊥ ⟂ u`. The `v⊥` part contributes
 `E[ sign ⟪u,g⟫ · ⟪v⊥,g⟫ ] = E[sign ⟪u,g⟫]·E[⟪v⊥,g⟫] = 0` because the two orthogonal linear
 functionals are independent (`HasGaussianLaw.indepFun_of_covariance_eq_zero`) and `E⟪v⊥,g⟫ = 0`;
-the `u` part contributes `⟪u,v⟫·E|⟪u,g⟫| = ⟪u,v⟫·√(2/π)`. -/
+the `u` part contributes `⟪u,v⟫·E|⟪u,g⟫| = ⟪u,v⟫·√(2/π)`.
+@isnad1 id=eq.1h3v.s8.b1990338278d from=translated src=- shape=5dc25121 vocab=746e34c7
+-/
 theorem sign_product_identity {d : ℕ} (u v : EuclideanSpace ℝ (Fin d)) (hu : ‖u‖ = 1) :
     ∫ g, Real.sign (⟪u, g⟫) * ⟪v, g⟫ ∂(ProbabilityTheory.stdGaussian (EuclideanSpace ℝ (Fin d)))
       = Real.sqrt (2 / π) * ⟪u, v⟫ := by
@@ -217,7 +229,9 @@ theorem sign_product_identity {d : ℕ} (u v : EuclideanSpace ℝ (Fin d)) (hu :
 /-! ## Part 3: QJL asymmetric 1-bit estimator unbiasedness -/
 
 /-- Integrability of `g ↦ sign ⟪u,g⟫ · ⟪w,g⟫` under a standard Gaussian: the sign factor is
-bounded by `1` and `g ↦ ⟪w,g⟫` is integrable. -/
+bounded by `1` and `g ↦ ⟪w,g⟫` is integrable.
+@isnad1 id=integrab.0h3v.s8.1bbed84229d5 from=translated src=- shape=37f9b248 vocab=9fc631e8
+-/
 theorem integrable_sign_inner_mul {d : ℕ} (u w : EuclideanSpace ℝ (Fin d)) :
     Integrable (fun g : EuclideanSpace ℝ (Fin d) => Real.sign (⟪u, g⟫) * ⟪w, g⟫)
       (ProbabilityTheory.stdGaussian (EuclideanSpace ℝ (Fin d))) := by
@@ -228,7 +242,9 @@ theorem integrable_sign_inner_mul {d : ℕ} (u w : EuclideanSpace ℝ (Fin d)) :
     rcases Real.sign_apply_eq (⟪u, g⟫) with h | h | h <;> rw [h] <;> norm_num
 
 /-- Marginalization: integrating a function of a single coordinate against a product of i.i.d.
-probability measures equals the single-coordinate integral. -/
+probability measures equals the single-coordinate integral.
+@isnad1 id=eq.1h5v.s6.928cf2524c05 from=translated src=- shape=46cfc3ad vocab=a3e54077
+-/
 theorem integral_eval_pi {m : ℕ} {E : Type*} [MeasurableSpace E] (P : Measure E)
     [IsProbabilityMeasure P] (i : Fin m) (f : E → ℝ) (hf : AEStronglyMeasurable f P) :
     ∫ S : Fin m → E, f (S i) ∂(Measure.pi (fun _ => P)) = ∫ x, f x ∂P := by
@@ -248,7 +264,9 @@ noncomputable def qjlEstimator {m d : ℕ} (key q : EuclideanSpace ℝ (Fin d))
     ((m : ℝ)⁻¹ * ∑ i, Real.sign (⟪‖key‖⁻¹ • key, S i⟫) * ⟪q, S i⟫)
 
 /-- **QJL unbiasedness.** Over an `m × d` i.i.d. standard-Gaussian sketch, the asymmetric 1-bit
-estimator is unbiased for the normalized inner product `⟪key/‖key‖, q⟫`. -/
+estimator is unbiased for the normalized inner product `⟪key/‖key‖, q⟫`.
+@isnad1 id=eq.2h4v.s8.548345d5a0d9 from=translated src=- shape=61faf47f vocab=23474dcb
+-/
 theorem qjlEstimator_unbiased {m d : ℕ} (hm : 0 < m)
     (key q : EuclideanSpace ℝ (Fin d)) (hkey : key ≠ 0) :
     ∫ S, qjlEstimator key q S
@@ -308,7 +326,9 @@ theorem qjlEstimator_unbiased {m d : ℕ} (hm : 0 < m)
     _ = 1 * (1 * ⟪‖key‖⁻¹ • key, q⟫) := by rw [hsqrt, inv_mul_cancel₀ hmne]
     _ = ⟪‖key‖⁻¹ • key, q⟫ := by ring
 
-/-- **QJL unbiasedness, un-normalized form.** `‖key‖ · E[estimator] = ⟪key, q⟫`. -/
+/-- **QJL unbiasedness, un-normalized form.** `‖key‖ · E[estimator] = ⟪key, q⟫`.
+@isnad1 id=eq.2h4v.s8.91e6315fa135 from=translated src=- shape=f049f4c1 vocab=2e3ed5ca
+-/
 theorem qjlEstimator_unbiased_inner {m d : ℕ} (hm : 0 < m)
     (key q : EuclideanSpace ℝ (Fin d)) (hkey : key ≠ 0) :
     ‖key‖ * (∫ S, qjlEstimator key q S

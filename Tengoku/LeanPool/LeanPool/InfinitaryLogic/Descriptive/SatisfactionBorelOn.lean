@@ -158,7 +158,9 @@ private theorem modelsOfBoundedOn_measurableSet [Countable α]
     rw [modelsOfBoundedOn_iInf]; exact MeasurableSet.iInter (fun i => ih i xs)
 
 /-- Satisfaction of any Lω₁ω sentence in a countable relational language
-is measurable on the carrier-parametric structure space. -/
+is measurable on the carrier-parametric structure space.
+@isnad1 id=measurab.0h3v.s5.505b62804d7d from=translated src=- shape=ecf760a8 vocab=1cb72e63
+-/
 theorem modelsOfOn_measurableSet [Countable α]
     (φ : L.Sentenceω) :
     MeasurableSet (ModelsOfOn (α := α) φ) :=

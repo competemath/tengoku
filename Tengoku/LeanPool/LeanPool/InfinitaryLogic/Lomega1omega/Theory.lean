@@ -60,12 +60,16 @@ variable {T T' : L.Theoryω} {φ : L.Sentenceω}
 def Model (T : L.Theoryω) (M : Type w) [L.Structure M] : Prop :=
   ∀ φ ∈ T, Sentenceω.Realize φ M
 
-/-- The empty theory has every structure as a model. -/
+/-- The empty theory has every structure as a model.
+@isnad1 id=model.0h2v.s4.6bec40d291b2 from=translated src=- shape=24fb07f6 vocab=603918f1
+-/
 theorem Model.empty (M : Type w) [L.Structure M] : Model (∅ : L.Theoryω) M := by
   intro φ hφ
   exact False.elim (Set.notMem_empty φ hφ)
 
-/-- If T ⊆ T' and M ⊨ T', then M ⊨ T. -/
+/-- If T ⊆ T' and M ⊨ T', then M ⊨ T.
+@isnad1 id=model.2h4v.s5.48a2825aed35 from=translated src=- shape=60737c1c vocab=7933056d
+-/
 theorem Model.mono (h : T ⊆ T') {M : Type w} [L.Structure M] (hM : T'.Model M) : T.Model M :=
   fun φ hφ => hM φ (h hφ)
 
@@ -99,12 +103,17 @@ instead; at `A = HF` the two coincide, and nowhere else. -/
 def IsFinitelySatisfiable (T : L.Theoryω) : Prop :=
   ∀ T₀ ⊆ T, T₀.Finite → T₀.IsSatisfiable
 
-/-- Satisfiability in a fixed carrier universe is monotone under shrinking the theory. -/
+/-- Satisfiability in a fixed carrier universe is monotone under shrinking the theory.
+@isnad1 id=issatisf.2h3v.s4.196afbe75b37 from=translated src=- shape=0efe859a vocab=ac165b41
+-/
 theorem IsSatisfiableIn.mono {T T' : L.Theoryω} (h : T ⊆ T')
     (hT' : IsSatisfiableIn.{u, v, w} T') : IsSatisfiableIn.{u, v, w} T := by
   obtain ⟨M, inst, ne, hM⟩ := hT'
   exact ⟨M, inst, ne, hM.mono h⟩
 
+/--
+@isnad1 id=issatisf.2h3v.s4.a293c7b962d2 from=translated src=- shape=0efe859a vocab=bfb2bb1e
+-/
 theorem IsSatisfiable.mono {T T' : L.Theoryω} (h : T ⊆ T') (hT' : T'.IsSatisfiable) :
     T.IsSatisfiable := by
   obtain ⟨M, inst, ne, hM⟩ := hT'
@@ -117,7 +126,9 @@ end Theoryω
 /-- Realization of Lω₁ω formulas is preserved by language isomorphisms.
 
 Given an isomorphism `e : M ≃[L] N`, a formula realized in M with variable assignments
-`v` and `xs` is also realized in N with the transported assignments `e ∘ v` and `e ∘ xs`. -/
+`v` and `xs` is also realized in N with the transported assignments `e ∘ v` and `e ∘ xs`.
+@isnad1 id=iff.0h9v.s6.bfaa3eb583d0 from=translated src=- shape=812cd1a9 vocab=e7cd9546
+-/
 theorem BoundedFormulaω.realize_equiv {M N : Type w} [L.Structure M] [L.Structure N]
     (e : M ≃[L] N) {α : Type*} {n : ℕ} (φ : L.BoundedFormulaω α n)
     (v : α → M) (xs : Fin n → M) :
@@ -166,13 +177,19 @@ variable {M : Type w} [L.Structure M]
 variable {N : Type w'} [L.Structure N]
 variable {P : Type*} [L.Structure P]
 
-/-- Lω₁ω-equivalence is reflexive. -/
+/-- Lω₁ω-equivalence is reflexive.
+@isnad1 id=lomegaeq.0h2v.s3.2636f000e8e8 from=translated src=- shape=b7bec306 vocab=d5405290
+-/
 theorem refl : LomegaEquiv L M M := fun _ => Iff.rfl
 
-/-- Lω₁ω-equivalence is symmetric. -/
+/-- Lω₁ω-equivalence is symmetric.
+@isnad1 id=lomegaeq.1h3v.s4.88ce8c375422 from=translated src=- shape=68a37238 vocab=d5405290
+-/
 theorem symm (h : LomegaEquiv L M N) : LomegaEquiv L N M := fun φ => (h φ).symm
 
-/-- Lω₁ω-equivalence is transitive. -/
+/-- Lω₁ω-equivalence is transitive.
+@isnad1 id=lomegaeq.2h4v.s5.8f6131efe080 from=translated src=- shape=48ef6966 vocab=d5405290
+-/
 theorem trans (h₁ : LomegaEquiv L M N) (h₂ : LomegaEquiv L N P) : LomegaEquiv L M P :=
   fun φ => (h₁ φ).trans (h₂ φ)
 
@@ -180,7 +197,9 @@ theorem trans (h₁ : LomegaEquiv L M N) (h₂ : LomegaEquiv L N P) : LomegaEqui
 
 The proof transports variable assignments along the isomorphism using
 `BoundedFormulaω.realize_equiv`, then observes that `e ∘ Empty.elim = Empty.elim`
-and `e ∘ Fin.elim0 = Fin.elim0` since both domains are empty. -/
+and `e ∘ Fin.elim0 = Fin.elim0` since both domains are empty.
+@isnad1 id=lomegaeq.0h4v.s4.4207f64061dc from=translated src=- shape=12014f4f vocab=9580c8a2
+-/
 theorem of_equiv {M N : Type w} [L.Structure M] [L.Structure N] (e : M ≃[L] N) :
     LomegaEquiv L M N := by
   intro φ
@@ -191,7 +210,9 @@ end LomegaEquiv
 
 /-! ### Invariance under Isomorphism -/
 
-/-- Models of a theory are preserved under isomorphism. -/
+/-- Models of a theory are preserved under isomorphism.
+@isnad1 id=model.1h5v.s5.a876fe3df0f6 from=translated src=- shape=179b9c14 vocab=cb549e49
+-/
 theorem Theoryω.Model.of_equiv {T : L.Theoryω} {M N : Type w} [L.Structure M]
     [L.Structure N] (hM : T.Model M) (e : M ≃[L] N) : T.Model N := by
   intro φ hφ

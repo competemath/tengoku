@@ -43,7 +43,9 @@ def positiveAlgebra (v : ℕ → Triple k) : NonUnitalSubalgebra k (End (RatFunc
   NonUnitalAlgebra.adjoin k (Set.range (backShift (K := RatFunc k) v))
 
 /-- Once the positive shift algebra is nil, the rational-function eigenvector
-gives a nil ideal and nonnilpotent matrix in its actual unitization. -/
+gives a nil ideal and nonnilpotent matrix in its actual unitization.
+@isnad1 id=ex.2h2v.s10.f828fdddc4a2 from=translated src=- shape=729f13d1 vocab=87c7933e
+-/
 theorem witness_from_nil_positive (v : ℕ → Triple k) (hv : ∀ n, v n ≠ 0)
     (hA : ∀ x ∈ positiveAlgebra v, IsNilpotent x) :
     ∃ (R : Type u) (_ : Ring R) (I : TwoSidedIdeal R),
@@ -60,7 +62,9 @@ theorem witness_from_nil_positive (v : ℕ → Triple k) (hv : ∀ n, v n ≠ 0)
 /-- Universe-preserving existential form of the requested nil-ideal plus
 nonnilpotent `Fin 2` matrix witness. Scalar linearization is an explicit theorem
 argument, not an axiom. Only its specialization to the concrete operator algebra
-is needed, so a universe-polymorphic linearization theorem plugs in directly. -/
+is needed, so a universe-polymorphic linearization theorem plugs in directly.
+@isnad1 id=ex.2h2v.s12.b96db56ef235 from=translated src=- shape=44f60573 vocab=9768984c
+-/
 theorem exists_nilideal_nonnil_matrix
     (v : ℕ → Triple k) (hv : UniversalMortalSequence k v)
     (hlinear : ∀ (a : Fin 3 → End (RatFunc k)),

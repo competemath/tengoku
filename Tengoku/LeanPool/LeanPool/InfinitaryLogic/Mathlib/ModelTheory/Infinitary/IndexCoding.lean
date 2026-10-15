@@ -52,7 +52,9 @@ structure IndexCoding (ι : Type uι) (κ : Type uκ) where
 namespace IndexCoding
 
 /-- Two codings with the same `encode` and `decode` are equal; the coherence proof is
-irrelevant. -/
+irrelevant.
+@isnad1 id=eq.2h4v.s5.c7f652db8be2 from=translated src=- shape=864267c7 vocab=be6f8e0b
+-/
 @[ext]
 theorem ext {c₁ c₂ : IndexCoding ι κ} (he : c₁.encode = c₂.encode)
     (hd : c₁.decode = c₂.decode) : c₁ = c₂ := by
@@ -62,7 +64,9 @@ theorem ext {c₁ c₂ : IndexCoding ι κ} (he : c₁.encode = c₂.encode)
   cases hd
   rfl
 
-/-- `encode` is injective: `decode_encode` already provides a retraction. -/
+/-- `encode` is injective: `decode_encode` already provides a retraction.
+@isnad1 id=injectiv.0h3v.s3.9735669d1813 from=translated src=- shape=3a096960 vocab=600e3947
+-/
 theorem encode_injective (c : IndexCoding ι κ) : Function.Injective c.encode := fun i j h ↦
   Option.some_injective ι (by rw [← c.decode_encode i, h, c.decode_encode])
 
@@ -98,15 +102,24 @@ ones get the default. -/
 def pad {β : Sort*} (c : IndexCoding ι κ) (default : β) (f : ι → β) : κ → β :=
   fun k ↦ (c.decode k).elim default f
 
+/--
+@isnad1 id=eq.0h7v.s5.d67eabe5ce96 from=translated src=- shape=4a67035c vocab=ffe60fff
+-/
 @[simp]
 theorem pad_encode {β : Sort*} (c : IndexCoding ι κ) (default : β) (f : ι → β) (i : ι) :
     c.pad default f (c.encode i) = f i := by
   rw [pad, c.decode_encode]; rfl
 
+/--
+@isnad1 id=eq.1h7v.s5.c89bf4527a34 from=translated src=- shape=e547ebbf vocab=ae33d9e3
+-/
 theorem pad_of_decode_none {β : Sort*} (c : IndexCoding ι κ) {default : β} {f : ι → β} {k : κ}
     (h : c.decode k = none) : c.pad default f k = default := by
   rw [pad, h]; rfl
 
+/--
+@isnad1 id=eq.1h8v.s5.3c7eb002ae74 from=translated src=- shape=b69bb3c7 vocab=da488d64
+-/
 theorem pad_of_decode_some {β : Sort*} (c : IndexCoding ι κ) {default : β} {f : ι → β} {k : κ}
     {i : ι} (h : c.decode k = some i) : c.pad default f k = f i := by
   rw [pad, h]; rfl

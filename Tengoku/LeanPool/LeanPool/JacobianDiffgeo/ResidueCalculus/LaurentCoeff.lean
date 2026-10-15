@@ -54,10 +54,16 @@ noncomputable def laurentCoeffAt (f : ℂ → ℂ) (z₀ : ℂ) (k : ℤ) : ℂ 
       else 0
   · exact 0
 
+/--
+@isnad1 id=eq.1h3v.s5.0e0290240546 from=translated src=- shape=b8f69ee8 vocab=767c6afc
+-/
 @[simp] theorem laurentCoeffAt_of_not_meromorphicAt (h : ¬ MeromorphicAt f z₀) (k : ℤ) :
     laurentCoeffAt f z₀ k = 0 := by
   simp [laurentCoeffAt, h]
 
+/--
+@isnad1 id=eq.1h3v.s5.a3fbd0434c97 from=translated src=- shape=33afcde2 vocab=a21c4ecc
+-/
 @[simp] theorem laurentCoeffAt_of_order_eq_top (h : meromorphicOrderAt f z₀ = ⊤) (k : ℤ) :
     laurentCoeffAt f z₀ k = 0 := by
   by_cases h₁ : MeromorphicAt f z₀
@@ -114,7 +120,9 @@ private theorem taylor_eq_of_two_presentations {m : ℤ} {u : ℂ → ℂ}
 
 /-- THE characterization (workhorse; the only lemma that unfolds the definition).
 Any zpow-presentation computes every Laurent coefficient — `n` need NOT be the order and
-`g z₀ = 0` is allowed. -/
+`g z₀ = 0` is allowed.
+@isnad1 id=eq.2h5v.s7.d703bc34f38c from=translated src=- shape=8fcfd0e7 vocab=4fa8ff05
+-/
 theorem laurentCoeffAt_of_eventuallyEq (hg : AnalyticAt ℂ g z₀)
     (hfg : f =ᶠ[𝓝[≠] z₀] fun z => (z - z₀) ^ n * g z) (k : ℤ) :
     laurentCoeffAt f z₀ k = if n ≤ k then taylorCoeffAt g z₀ (k - n).toNat else 0 := by
@@ -146,6 +154,9 @@ theorem laurentCoeffAt_of_eventuallyEq (hg : AnalyticAt ℂ g z₀)
     simp only [hf, reduceDIte, h₂]
     exact hcomp
 
+/--
+@isnad1 id=eq.1h3v.s5.a2fb2b87aece from=translated src=- shape=8e087639 vocab=a6b05adf
+-/
 theorem laurentCoeffAt_eq_zero_of_lt_order (h : (k : WithTop ℤ) < meromorphicOrderAt f z₀) :
     laurentCoeffAt f z₀ k = 0 := by
   by_cases hf : MeromorphicAt f z₀
@@ -159,7 +170,9 @@ theorem laurentCoeffAt_eq_zero_of_lt_order (h : (k : WithTop ℤ) < meromorphicO
       exact absurd (WithTop.coe_le_coe.2 hle) (not_le.2 h)
   · exact laurentCoeffAt_of_not_meromorphicAt hf k
 
-/-- Congruence: Laurent coefficients live on the punctured germ. -/
+/-- Congruence: Laurent coefficients live on the punctured germ.
+@isnad1 id=eq.1h4v.s5.5a3574d841d2 from=translated src=- shape=f3b7b967 vocab=7c41b8cd
+-/
 theorem laurentCoeffAt_congr (hfg : f =ᶠ[𝓝[≠] z₀] g) (k : ℤ) :
     laurentCoeffAt f z₀ k = laurentCoeffAt g z₀ k := by
   by_cases hf : MeromorphicAt f z₀
@@ -173,7 +186,9 @@ theorem laurentCoeffAt_congr (hfg : f =ᶠ[𝓝[≠] z₀] g) (k : ℤ) :
   · rw [laurentCoeffAt_of_not_meromorphicAt hf,
       laurentCoeffAt_of_not_meromorphicAt ((MeromorphicAt.meromorphicAt_congr hfg).not.1 hf)]
 
-/-- At the order, the Laurent coefficient is mathlib's trailing coefficient. -/
+/-- At the order, the Laurent coefficient is mathlib's trailing coefficient.
+@isnad1 id=eq.2h2v.s6.8ffa225c035f from=translated src=- shape=9249c7b9 vocab=667854b1
+-/
 theorem laurentCoeffAt_order (hf : MeromorphicAt f z₀) (h : meromorphicOrderAt f z₀ ≠ ⊤) :
     laurentCoeffAt f z₀ (meromorphicOrderAt f z₀).untop₀ = meromorphicTrailingCoeffAt f z₀ := by
   obtain ⟨u, h₁u, h₂u, h₃u⟩ := (meromorphicOrderAt_ne_top_iff hf).1 h
@@ -183,13 +198,18 @@ theorem laurentCoeffAt_order (hf : MeromorphicAt f z₀) (h : meromorphicOrderAt
     AnalyticAt.meromorphicTrailingCoeffAt_of_ne_zero_of_eq_nhdsNE h₁u h₂u h₃u]
   rfl
 
+/--
+@isnad1 id=ne.2h2v.s6.253eb43463c2 from=translated src=- shape=62c590b1 vocab=0d28b851
+-/
 theorem laurentCoeffAt_order_ne_zero (hf : MeromorphicAt f z₀)
     (h : meromorphicOrderAt f z₀ ≠ ⊤) :
     laurentCoeffAt f z₀ (meromorphicOrderAt f z₀).untop₀ ≠ 0 := by
   rw [laurentCoeffAt_order hf h]
   exact hf.meromorphicTrailingCoeffAt_ne_zero h
 
-/-- For analytic `f` the Laurent coefficients are the Taylor coefficients. -/
+/-- For analytic `f` the Laurent coefficients are the Taylor coefficients.
+@isnad1 id=eq.1h3v.s6.f516c4a0c9c8 from=translated src=- shape=33b33be4 vocab=ca1316ee
+-/
 theorem laurentCoeffAt_of_analyticAt (hf : AnalyticAt ℂ f z₀) (k : ℤ) :
     laurentCoeffAt f z₀ k = if 0 ≤ k then taylorCoeffAt f z₀ k.toNat else 0 := by
   have hpres : f =ᶠ[𝓝[≠] z₀] fun z => (z - z₀) ^ (0 : ℤ) * f z := by
@@ -198,11 +218,16 @@ theorem laurentCoeffAt_of_analyticAt (hf : AnalyticAt ℂ f z₀) (k : ℤ) :
   rw [laurentCoeffAt_of_eventuallyEq hf hpres k]
   simp only [sub_zero]
 
+/--
+@isnad1 id=eq.0h2v.s4.0ec2addbcf80 from=translated src=- shape=7dd589f7 vocab=3f982d74
+-/
 theorem laurentCoeffAt_zero_fun (k : ℤ) : laurentCoeffAt (fun _ => (0 : ℂ)) z₀ k = 0 :=
   laurentCoeffAt_of_order_eq_top
     (meromorphicOrderAt_eq_top_iff.2 (Eventually.of_forall fun _ => rfl)) k
 
-/-- ℂ-additivity of Laurent coefficients on meromorphic germs. -/
+/-- ℂ-additivity of Laurent coefficients on meromorphic germs.
+@isnad1 id=eq.2h4v.s6.7c67fb218f4e from=translated src=- shape=a4f28bb9 vocab=193bbc9b
+-/
 theorem laurentCoeffAt_fun_add (hf : MeromorphicAt f z₀) (hg : MeromorphicAt g z₀) (k : ℤ) :
     laurentCoeffAt (fun z => f z + g z) z₀ k
       = laurentCoeffAt f z₀ k + laurentCoeffAt g z₀ k := by
@@ -263,10 +288,16 @@ theorem laurentCoeffAt_fun_add (hf : MeromorphicAt f z₀) (hg : MeromorphicAt g
   · rw [taylorCoeffAt_fun_add hU hV]
   · rw [add_zero]
 
+/--
+@isnad1 id=eq.2h4v.s6.4a47bf81a9ac from=translated src=- shape=bd3eb584 vocab=193bbc9b
+-/
 theorem laurentCoeffAt_add (hf : MeromorphicAt f z₀) (hg : MeromorphicAt g z₀) (k : ℤ) :
     laurentCoeffAt (f + g) z₀ k = laurentCoeffAt f z₀ k + laurentCoeffAt g z₀ k :=
   laurentCoeffAt_fun_add hf hg k
 
+/--
+@isnad1 id=eq.0h4v.s5.8e2345096747 from=translated src=- shape=45940614 vocab=12b4b5d4
+-/
 theorem laurentCoeffAt_const_mul (c : ℂ) (k : ℤ) :
     laurentCoeffAt (fun z => c * f z) z₀ k = c * laurentCoeffAt f z₀ k := by
   rcases eq_or_ne c 0 with rfl | hc
@@ -304,10 +335,16 @@ theorem laurentCoeffAt_const_mul (c : ℂ) (k : ℤ) :
     rw [laurentCoeffAt_of_not_meromorphicAt hf, laurentCoeffAt_of_not_meromorphicAt hcf,
       mul_zero]
 
+/--
+@isnad1 id=eq.0h3v.s4.de8e0d51c8f3 from=translated src=- shape=c9599c72 vocab=6ea7262e
+-/
 theorem laurentCoeffAt_neg (k : ℤ) :
     laurentCoeffAt (fun z => -f z) z₀ k = -laurentCoeffAt f z₀ k := by
   simpa [neg_one_mul] using laurentCoeffAt_const_mul (f := f) (z₀ := z₀) (-1) k
 
+/--
+@isnad1 id=eq.2h4v.s6.affa92a9aa5c from=translated src=- shape=a4f28bb9 vocab=9d0945a2
+-/
 theorem laurentCoeffAt_sub (hf : MeromorphicAt f z₀) (hg : MeromorphicAt g z₀) (k : ℤ) :
     laurentCoeffAt (fun z => f z - g z) z₀ k
       = laurentCoeffAt f z₀ k - laurentCoeffAt g z₀ k := by
@@ -319,6 +356,9 @@ theorem laurentCoeffAt_sub (hf : MeromorphicAt f z₀) (hg : MeromorphicAt g z�
     ring
   rw [h1, h2, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.1h5v.s6.09c96c7a45c9 from=translated src=- shape=e929630b vocab=08b8042d
+-/
 theorem laurentCoeffAt_fun_sum {ι : Type*} {s : Finset ι} {G : ι → ℂ → ℂ}
     (hG : ∀ i ∈ s, MeromorphicAt (G i) z₀) (k : ℤ) :
     laurentCoeffAt (fun z => ∑ i ∈ s, G i z) z₀ k = ∑ i ∈ s, laurentCoeffAt (G i) z₀ k := by
@@ -335,6 +375,9 @@ theorem laurentCoeffAt_fun_sum {ι : Type*} {s : Finset ι} {G : ι → ℂ → 
       laurentCoeffAt_fun_add (hG a (Finset.mem_insert_self a s)) hsum k,
       ih fun i hi => hG i (Finset.mem_insert_of_mem hi)]
 
+/--
+@isnad1 id=eq.0h3v.s5.6c291c4c2a78 from=translated src=- shape=45ce7d3c vocab=03fc10ad
+-/
 @[simp] theorem laurentCoeffAt_zpow_monomial (m k : ℤ) :
     laurentCoeffAt (fun z => (z - z₀) ^ m) z₀ k = if k = m then 1 else 0 := by
   have hpres : (fun z => (z - z₀) ^ m) =ᶠ[𝓝[≠] z₀]
@@ -346,7 +389,9 @@ theorem laurentCoeffAt_fun_sum {ι : Type*} {s : Finset ι} {G : ι → ℂ → 
   rw [h]
   split_ifs <;> first | rfl | omega
 
-/-- Multiplying by `(· - z₀) ^ m` shifts Laurent coefficients. -/
+/-- Multiplying by `(· - z₀) ^ m` shifts Laurent coefficients.
+@isnad1 id=eq.1h4v.s6.65e0b17d70ba from=translated src=- shape=9405e49d vocab=c74f3ee3
+-/
 theorem laurentCoeffAt_zpow_mul (hg : MeromorphicAt g z₀) (m k : ℤ) :
     laurentCoeffAt (fun z => (z - z₀) ^ m * g z) z₀ k = laurentCoeffAt g z₀ (k - m) := by
   by_cases h₂ : meromorphicOrderAt g z₀ = ⊤
@@ -372,7 +417,9 @@ theorem laurentCoeffAt_zpow_mul (hg : MeromorphicAt g z₀) (m k : ℤ) :
     · omega
     · rfl
 
-/-- Vanishing principal tail ↔ analytic-after-repair (Mittag-Leffler-facing). -/
+/-- Vanishing principal tail ↔ analytic-after-repair (Mittag-Leffler-facing).
+@isnad1 id=iff.1h2v.s6.8be942152d0c from=translated src=- shape=79e22f85 vocab=482e2a83
+-/
 theorem forall_neg_laurentCoeffAt_eq_zero_iff (hf : MeromorphicAt f z₀) :
     (∀ k < 0, laurentCoeffAt f z₀ k = 0) ↔ 0 ≤ meromorphicOrderAt f z₀ := by
   constructor

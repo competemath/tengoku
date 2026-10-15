@@ -65,64 +65,101 @@ abbrev negativeRelationsIn {n : ℕ} (φ : L.BoundedFormulaω α n) : Set (Σ n,
 
 /-! ## Constructor equations -/
 
+/--
+@isnad1 id=eq.0h4v.s5.10130d9191b6 from=translated src=- shape=bc44d994 vocab=4ea22176
+-/
 @[simp] theorem relationsInSigned_falsum {n : ℕ} (s : Bool) :
     relationsInSigned s (BoundedFormulaω.falsum : L.BoundedFormulaω α n) = ∅ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.fc27415c57f6 from=translated src=- shape=00be7139 vocab=5c5cf454
+-/
 @[simp] theorem relationsInSigned_equal {n : ℕ} (s : Bool)
     (t₁ t₂ : L.Term (α ⊕ Fin n)) :
     relationsInSigned s (BoundedFormulaω.equal t₁ t₂) = ∅ := rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.3d415252bc73 from=translated src=- shape=dab1829f vocab=4f60a948
+-/
 @[simp] theorem relationsInSigned_rel {n l : ℕ} (s : Bool) (R : L.Relations l)
     (ts : Fin l → L.Term (α ⊕ Fin n)) :
     relationsInSigned s (BoundedFormulaω.rel R ts) = if s then {⟨l, R⟩} else ∅ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.da9a97e188c1 from=translated src=- shape=72fb428a vocab=a82dfe4a
+-/
 @[simp] theorem relationsInSigned_imp {n : ℕ} (s : Bool) (φ ψ : L.BoundedFormulaω α n) :
     relationsInSigned s (φ.imp ψ) = relationsInSigned (!s) φ ∪ relationsInSigned s ψ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.9d893bddcfe7 from=translated src=- shape=1bd824fa vocab=22c27473
+-/
 @[simp] theorem relationsInSigned_all {n : ℕ} (s : Bool) (φ : L.BoundedFormulaω α (n + 1)) :
     relationsInSigned s φ.all = relationsInSigned s φ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.efb1c3e706ae from=translated src=- shape=6e75138a vocab=f0beac7c
+-/
 @[simp] theorem relationsInSigned_iSup {n : ℕ} (s : Bool) (φs : ℕ → L.BoundedFormulaω α n) :
     relationsInSigned s (BoundedFormulaω.iSup φs) = ⋃ i, relationsInSigned s (φs i) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.db5c69700d60 from=translated src=- shape=6e75138a vocab=08b79741
+-/
 @[simp] theorem relationsInSigned_iInf {n : ℕ} (s : Bool) (φs : ℕ → L.BoundedFormulaω α n) :
     relationsInSigned s (BoundedFormulaω.iInf φs) = ⋃ i, relationsInSigned s (φs i) := rfl
 
 /-! ## Negation swaps and the derived connectives -/
 
-/-- **Negation swaps the signs** (the acceptance gate, generic form). -/
+/-- **Negation swaps the signs** (the acceptance gate, generic form).
+@isnad1 id=eq.0h5v.s5.c58b774aab6d from=translated src=- shape=734ea891 vocab=d9ffd2a6
+-/
 @[simp] theorem relationsInSigned_not {n : ℕ} (s : Bool) (φ : L.BoundedFormulaω α n) :
     relationsInSigned s φ.not = relationsInSigned (!s) φ := by
   change relationsInSigned (!s) φ ∪ relationsInSigned s
     (BoundedFormulaω.falsum : L.BoundedFormulaω α n) = _
   rw [relationsInSigned_falsum, Set.union_empty]
 
-/-- Acceptance gate: positive occurrences of `¬φ` are the negative occurrences of `φ`. -/
+/-- Acceptance gate: positive occurrences of `¬φ` are the negative occurrences of `φ`.
+@isnad1 id=eq.0h4v.s5.e1420173bf11 from=translated src=- shape=c72e3845 vocab=18a08031
+-/
 theorem positiveRelationsIn_not {n : ℕ} (φ : L.BoundedFormulaω α n) :
     positiveRelationsIn φ.not = negativeRelationsIn φ := relationsInSigned_not true φ
 
-/-- Acceptance gate: negative occurrences of `¬φ` are the positive occurrences of `φ`. -/
+/-- Acceptance gate: negative occurrences of `¬φ` are the positive occurrences of `φ`.
+@isnad1 id=eq.0h4v.s5.a82e6841ed8b from=translated src=- shape=c72e3845 vocab=18a08031
+-/
 theorem negativeRelationsIn_not {n : ℕ} (φ : L.BoundedFormulaω α n) :
     negativeRelationsIn φ.not = positiveRelationsIn φ := relationsInSigned_not false φ
 
+/--
+@isnad1 id=eq.0h4v.s5.3c1e4c2d147e from=translated src=- shape=96fde7a7 vocab=f2f9e056
+-/
 @[simp] theorem relationsInSigned_top {n : ℕ} (s : Bool) :
     relationsInSigned s (⊤ : L.BoundedFormulaω α n) = ∅ := by
   change relationsInSigned s (BoundedFormulaω.imp .falsum .falsum) = _
   simp
 
+/--
+@isnad1 id=eq.0h6v.s6.49752c6a7737 from=translated src=- shape=f36370c5 vocab=d5ef8085
+-/
 @[simp] theorem relationsInSigned_and {n : ℕ} (s : Bool) (φ ψ : L.BoundedFormulaω α n) :
     relationsInSigned s (φ.and ψ) = relationsInSigned s φ ∪ relationsInSigned s ψ := by
   change relationsInSigned s ((φ.imp ψ.not).not) = _
   rw [relationsInSigned_not, relationsInSigned_imp, relationsInSigned_not, Bool.not_not]
 
-/-- **Existential quantification preserves the signs** (two flips cancel). -/
+/-- **Existential quantification preserves the signs** (two flips cancel).
+@isnad1 id=eq.0h5v.s5.ddb477b8be01 from=translated src=- shape=1bd824fa vocab=d6cc694d
+-/
 @[simp] theorem relationsInSigned_ex {n : ℕ} (s : Bool) (φ : L.BoundedFormulaω α (n + 1)) :
     relationsInSigned s φ.ex = relationsInSigned s φ := by
   change relationsInSigned s (φ.not.all.not) = _
   rw [relationsInSigned_not, relationsInSigned_all, relationsInSigned_not, Bool.not_not]
 
 /-- An `Encodable`-indexed conjunction collects the branches' signed occurrences (the `⊤` padding
-of undecodable indices contributes nothing). -/
+of undecodable indices contributes nothing).
+@isnad1 id=eq.0h6v.s5.c659ca4d8c96 from=translated src=- shape=05b62ecd vocab=0b1fe8a3
+-/
 theorem relationsInSigned_einf {ι : Type*} [Encodable ι] {n : ℕ} (s : Bool)
     (φs : ι → L.BoundedFormulaω α n) :
     relationsInSigned s (BoundedFormulaω.einf φs) = ⋃ i, relationsInSigned s (φs i) := by

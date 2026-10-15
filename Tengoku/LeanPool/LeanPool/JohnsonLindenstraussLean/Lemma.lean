@@ -33,7 +33,9 @@ namespace JL
 
 /-- **Probabilistic method / union bound.** In a probability space, if the total
 measure of a finite family of "bad" events is `< 1`, then some point avoids all of
-them. -/
+them.
+@isnad1 id=ex.1h5v.s6.4e8ea9fc655e from=translated src=- shape=3e407ad8 vocab=2e87d34f
+-/
 theorem exists_avoiding {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     [IsProbabilityMeasure μ] {ι : Type*} (s : Finset ι) (B : ι → Set Ω)
     (hsum : ∑ i ∈ s, μ.real (B i) < 1) :
@@ -55,7 +57,9 @@ theorem exists_avoiding {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 `D a b` and the realized squared projected distances `r a b ω`, if every pair's
 distortion exceeds `ε · D a b` with probability at most `C`, and the union-bound
 condition `n² · C < 1` holds, then there is a single realization `ω` that preserves
-**all** pairwise (squared) distances within a factor `1 ± ε`. -/
+**all** pairwise (squared) distances within a factor `1 ± ε`.
+@isnad1 id=ex.3h7v.s7.4545eafc3b3e from=translated src=- shape=863f2316 vocab=7268afed
+-/
 theorem johnson_lindenstrauss {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} {ε C : ℝ}
     (r : Fin n → Fin n → Ω → ℝ) (D : Fin n → Fin n → ℝ)

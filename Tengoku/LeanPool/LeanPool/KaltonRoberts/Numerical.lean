@@ -33,33 +33,43 @@ open Finset BigOperators
 /-! ## Parameter identities and range checks (Section 5) -/
 
 /-- `p₀ = 1 − q₀`.
-**Reference**: Equation (9) in Section 5 of the companion paper. -/
+**Reference**: Equation (9) in Section 5 of the companion paper.
+@isnad1 id=eq.0h0v.s4.11e9cb271741 from=translated src=- shape=f464b020 vocab=630407a3
+-/
 theorem p₀_eq : p₀ = 1 - q₀ := by simp only [p₀, q₀]; norm_num
 
 /-- `0 ≤ τ₁`.
 **Reference**: paragraph after Equation (10) in Section 5 of
-the companion paper. -/
+the companion paper.
+@isnad1 id=le.0h0v.s3.fbb1148ddf53 from=translated src=- shape=ff3a10fc vocab=5669877b
+-/
 theorem τ₁_nonneg : 0 ≤ τ₁ := by
   change (0 : ℚ) ≤ (q₀ ^ 3 - α₁) / (q₀ ^ 3 - q₀ ^ 4)
   simp only [q₀, α₁]; norm_num
 
 /-- `τ₁ ≤ 1`.
 **Reference**: paragraph after Equation (10) in Section 5 of
-the companion paper. -/
+the companion paper.
+@isnad1 id=le.0h0v.s3.f5f2db962dde from=translated src=- shape=ffdda526 vocab=5669877b
+-/
 theorem τ₁_le_one : τ₁ ≤ 1 := by
   change (q₀ ^ 3 - α₁) / (q₀ ^ 3 - q₀ ^ 4) ≤ (1 : ℚ)
   simp only [q₀, α₁]; norm_num
 
 /-- `0 ≤ τ₂`.
 **Reference**: paragraph after Equation (10) in Section 5 of
-the companion paper. -/
+the companion paper.
+@isnad1 id=le.0h0v.s3.4e559779c9af from=translated src=- shape=ff3a10fc vocab=41abb05c
+-/
 theorem τ₂_nonneg : 0 ≤ τ₂ := by
   change (0 : ℚ) ≤ (p₀ ^ 4 - α₂) / (p₀ ^ 4 - p₀ ^ 5)
   simp only [p₀, α₂]; norm_num
 
 /-- `τ₂ ≤ 1`.
 **Reference**: paragraph after Equation (10) in Section 5 of
-the companion paper. -/
+the companion paper.
+@isnad1 id=le.0h0v.s3.4055ac3665c6 from=translated src=- shape=ffdda526 vocab=41abb05c
+-/
 theorem τ₂_le_one : τ₂ ≤ 1 := by
   change (p₀ ^ 4 - α₂) / (p₀ ^ 4 - p₀ ^ 5) ≤ (1 : ℚ)
   simp only [p₀, α₂]; norm_num
@@ -67,7 +77,9 @@ theorem τ₂_le_one : τ₂ ≤ 1 := by
 /-- The frequency identity for Case 1:
 `(1 − τ₁) q₀³ + τ₁ q₀⁴ = α₁`.
 **Reference**: Equation (10) and the display after it in Section 5 of
-the companion paper. -/
+the companion paper.
+@isnad1 id=eq.0h0v.s6.bb61105f9ebe from=translated src=- shape=60f1da44 vocab=4dfff882
+-/
 theorem frequency_identity_case1 :
     (1 - τ₁) * q₀ ^ 3 + τ₁ * q₀ ^ 4 = α₁ := by
   change (1 - (q₀ ^ 3 - α₁) / (q₀ ^ 3 - q₀ ^ 4)) * q₀ ^ 3 +
@@ -77,7 +89,9 @@ theorem frequency_identity_case1 :
 /-- The frequency identity for Case 2:
 `(1 − τ₂) p₀⁴ + τ₂ p₀⁵ = α₂`.
 **Reference**: Equation (10) and the display in Case 2 of Section 5 of
-the companion paper. -/
+the companion paper.
+@isnad1 id=eq.0h0v.s6.7f3b7c941614 from=translated src=- shape=60f1da44 vocab=6c7375c4
+-/
 theorem frequency_identity_case2 :
     (1 - τ₂) * p₀ ^ 4 + τ₂ * p₀ ^ 5 = α₂ := by
   change (1 - (p₀ ^ 4 - α₂) / (p₀ ^ 4 - p₀ ^ 5)) * p₀ ^ 4 +
@@ -86,7 +100,9 @@ theorem frequency_identity_case2 :
 
 /-- `C₁ < C₂`.
 **Reference**: the display after Equation (17) in Section 5 of
-the companion paper. -/
+the companion paper.
+@isnad1 id=lt.0h0v.s2.b24fee5ef24f from=translated src=- shape=54c8eceb vocab=22e77a09
+-/
 theorem C₁_lt_C₂ : C₁ < C₂ := by
   change (23662339508853784054849 : ℚ) / 1192830849380162250000 <
     694198146664396294486127753 / 34994834677886019996000000
@@ -94,14 +110,18 @@ theorem C₁_lt_C₂ : C₁ < C₂ := by
 
 /-- `C₂ < 9919/500`.
 **Reference**: the display after Equation (17) in Section 5 of
-the companion paper. -/
+the companion paper.
+@isnad1 id=lt.0h0v.s2.d10ab938b92b from=translated src=- shape=54c8eceb vocab=2747bd1c
+-/
 theorem C₂_lt_KR_upper : C₂ < krUpper := by
   change (694198146664396294486127753 : ℚ) / 34994834677886019996000000 < 9919 / 500
   norm_num
 
 /-- The combined chain `C₁ < C₂ < 9919/500`.
 **Reference**: the final verification in Section 5 of
-the companion paper. -/
+the companion paper.
+@isnad1 id=and.0h0v.s3.216e418ad7a5 from=translated src=- shape=9cf45692 vocab=cdacf9b8
+-/
 theorem C₁_lt_C₂_lt_KR_upper : C₁ < C₂ ∧ C₂ < krUpper :=
   ⟨C₁_lt_C₂, C₂_lt_KR_upper⟩
 
@@ -118,38 +138,50 @@ def expanderParams : List (ℚ × ℕ × ℚ) :=
 /-- Expander E₁ target frequency check: `α₁/(1/3) = 3009/10000`.
 This verifies that the target of E₁ feeds into E₂.
 **Reference**: display after Equation (13) in Section 5 of
-the companion paper. -/
+the companion paper.
+@isnad1 id=eq.0h0v.s5.9e01cd23409c from=translated src=- shape=329804b2 vocab=3434cc6e
+-/
 theorem E₁_target_frequency : α₁ / (1 / 3 : ℚ) = 3009 / 10000 := by
   simp only [α₁]; norm_num
 
 /-- Expander E₃ target frequency check: `α₂/(2/7) = 329/1250`.
 This verifies that the target of E₃ feeds into E₄.
 **Reference**: display after Equation (16) in Section 5 of
-the companion paper. -/
+the companion paper.
+@isnad1 id=eq.0h0v.s5.9b1f68d9af9f from=translated src=- shape=329804b2 vocab=71a91e00
+-/
 theorem E₃_target_frequency : α₂ / (2 / 7 : ℚ) = 329 / 1250 := by
   simp only [α₂]; norm_num
 
 /-- The small-set tail bound for `δ = 1/100` and E₁: `(739/100)(1/3)^{-3}(1/100)^2 < 1/20`.
 **Reference**: Equation (7) in Section 4 of the companion paper,
-using `e² < 739/100`. -/
+using `e² < 739/100`.
+@isnad1 id=lt.0h0v.s7.da4158972bf8 from=translated src=- shape=761f33f6 vocab=80bee728
+-/
 theorem small_set_bound_E₁ :
     (739 / 100 : ℚ) * (1 / 3) ^ (1 - 4 : ℤ) * (1 / 100) ^ (4 - 2 : ℤ) < 1 / 20 := by
   norm_num
 
 /-- Small-set tail bound for E₂.
-**Reference**: Equation (7) in Section 4 of the companion paper. -/
+**Reference**: Equation (7) in Section 4 of the companion paper.
+@isnad1 id=lt.0h0v.s7.3d18a203684a from=translated src=- shape=761f33f6 vocab=80bee728
+-/
 theorem small_set_bound_E₂ :
     (739 / 100 : ℚ) * (4 / 7) ^ (1 - 4 : ℤ) * (1 / 100) ^ (4 - 2 : ℤ) < 1 / 20 := by
   norm_num
 
 /-- Small-set tail bound for E₃.
-**Reference**: Equation (7) in Section 4 of the companion paper. -/
+**Reference**: Equation (7) in Section 4 of the companion paper.
+@isnad1 id=lt.0h0v.s7.fc5647f7a73e from=translated src=- shape=761f33f6 vocab=80bee728
+-/
 theorem small_set_bound_E₃ :
     (739 / 100 : ℚ) * (2 / 7) ^ (1 - 4 : ℤ) * (1 / 100) ^ (4 - 2 : ℤ) < 1 / 20 := by
   norm_num
 
 /-- Small-set tail bound for E₄.
-**Reference**: Equation (7) in Section 4 of the companion paper. -/
+**Reference**: Equation (7) in Section 4 of the companion paper.
+@isnad1 id=lt.0h0v.s7.477ecb01681f from=translated src=- shape=761f33f6 vocab=80bee728
+-/
 theorem small_set_bound_E₄ :
     (739 / 100 : ℚ) * (5 / 11) ^ (1 - 5 : ℤ) * (1 / 100) ^ (5 - 2 : ℤ) < 1 / 20 := by
   norm_num
@@ -160,6 +192,9 @@ theorem small_set_bound_E₄ :
 "Here we use `e² < 739/100`, an elementary consequence of the exponential series
 with a geometric tail bound."
 -/
+/--
+@isnad1 id=lt.0h0v.s5.47e80a42c5f2 from=translated src=- shape=d4f6e56f vocab=7b78fbf0
+-/
 theorem e_sq_lt : Real.exp 2 < 739 / 100 := by
   have := Real.exp_one_lt_d9.le
   norm_num at *
@@ -169,12 +204,16 @@ theorem e_sq_lt : Real.exp 2 < 739 / 100 := by
 /-- `q₀⁴ ≤ 1/16`, which ensures that in Case 2 the pure fourfold intersection
 has item frequencies at most `α₂`.
 **Reference**: Case 2 of Section 5 of the companion paper:
-"Its item frequencies are at most `q⁴ ≤ 1/16 < α₂`". -/
+"Its item frequencies are at most `q⁴ ≤ 1/16 < α₂`".
+@isnad1 id=le.0h0v.s5.0463f5057e65 from=translated src=- shape=bce64568 vocab=7d01246e
+-/
 theorem q₀_pow4_le : q₀ ^ 4 ≤ 1 / 16 := by
   simp only [q₀]; norm_num
 
 /-- `1/16 < α₂`.
-**Reference**: Case 2 of Section 5 of the companion paper. -/
+**Reference**: Case 2 of Section 5 of the companion paper.
+@isnad1 id=lt.0h0v.s4.558f342a07e1 from=translated src=- shape=5ccaf027 vocab=2dbbc854
+-/
 theorem one_sixteenth_lt_α₂ : (1 : ℚ) / 16 < α₂ := by
   change (1 : ℚ) / 16 < 47 / 625; norm_num
 
@@ -189,7 +228,9 @@ and `D₁ = 6 q₀ + 4 + τ₁ (2 q₀ + 2)`.
 Eliminating `D'` gives `M ≤ (7/3 · A₁ + 1/2 · 15) / (7/3 + 1/2) = C₁`.
 
 **Reference**: Equations (12)–(14) in Section 5 of
-the companion paper. -/
+the companion paper.
+@isnad1 id=other.0h0v.s7.8abc6620cdb0 from=translated src=- shape=cb221bea vocab=5e165977
+-/
 theorem case1_balance :
     let D₁ : ℚ := 6 * q₀ + 4 + τ₁ * (2 * q₀ + 2)
     let A₁ : ℚ := 10 + 3 / 2 * D₁
@@ -207,7 +248,9 @@ and `X₀ = 4 p₀ + 6 + τ₂ (p₀ + 1)`.
 Eliminating `Y` gives `M ≤ (11/6 · A₂ + 2/5 · 47/3) / (11/6 + 2/5) = C₂`.
 
 **Reference**: Equations (15)–(17) in Section 5 of
-the companion paper. -/
+the companion paper.
+@isnad1 id=other.0h0v.s7.291e5357cbac from=translated src=- shape=2092ae05 vocab=7ad40784
+-/
 theorem case2_balance :
     let X₀ : ℚ := 4 * p₀ + 6 + τ₂ * (p₀ + 1)
     let A₂ : ℚ := 47 / 5 + 7 / 5 * X₀
@@ -228,6 +271,9 @@ endpoint (minimum point for each row).
 
 Φ'' lower bound for E₁: `(α, r, θ) = (1003/10000, 4, 1/3)`.
 -/
+/--
+@isnad1 id=lt.2h1v.s7.9598ee855871 from=translated src=- shape=6722572a vocab=6082a192
+-/
 theorem Phi''_lower_E₁ :
     ∀ x : ℚ, 1 / 100 ≤ x → x ≤ 1003 / 10000 →
       3 < (4 - 2 : ℚ) / x + (4 - 1) / (1 - x) - 1 / (1 / 3 - x) := by
@@ -238,6 +284,9 @@ theorem Phi''_lower_E₁ :
 /-
 Φ'' lower bound for E₂: `(α, r, θ) = (3009/10000, 4, 4/7)`.
 **Reference**: Equation (8) in Section 4 of the companion paper.
+-/
+/--
+@isnad1 id=lt.2h1v.s7.b424b06bb97f from=translated src=- shape=6722572a vocab=6082a192
 -/
 theorem Phi''_lower_E₂ :
     ∀ x : ℚ, 1 / 100 ≤ x → x ≤ 3009 / 10000 →
@@ -250,6 +299,9 @@ theorem Phi''_lower_E₂ :
 Φ'' lower bound for E₃: `(α, r, θ) = (47/625, 4, 2/7)`.
 **Reference**: Equation (8) in Section 4 of the companion paper.
 -/
+/--
+@isnad1 id=lt.2h1v.s7.bd20d6c42ac8 from=translated src=- shape=6722572a vocab=6082a192
+-/
 theorem Phi''_lower_E₃ :
     ∀ x : ℚ, 1 / 100 ≤ x → x ≤ 47 / 625 →
       3 < (4 - 2 : ℚ) / x + (4 - 1) / (1 - x) - 1 / (2 / 7 - x) := by
@@ -261,6 +313,9 @@ theorem Phi''_lower_E₃ :
 /-
 Φ'' lower bound for E₄: `(α, r, θ) = (329/1250, 5, 5/11)`.
 **Reference**: Equation (8) in Section 4 of the companion paper.
+-/
+/--
+@isnad1 id=lt.2h1v.s7.6d8d0c9f325b from=translated src=- shape=6722572a vocab=6082a192
 -/
 theorem Phi''_lower_E₄ :
     ∀ x : ℚ, 1 / 100 ≤ x → x ≤ 329 / 1250 →

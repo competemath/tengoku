@@ -30,7 +30,9 @@ namespace KasamiCyclicAdditive
 variable {K : Type*} [Field K] [Fintype K] [DecidableEq K]
 
 /-- The Kasami exponent is periodic in `k` modulo `n`, modulo the
-multiplicative exponent `2^n - 1` of `GF(2^n)^×`. -/
+multiplicative exponent `2^n - 1` of `GF(2^n)^×`.
+@isnad1 id=modeq.0h2v.s5.aeb6adfe73af from=translated src=- shape=a083f78c vocab=a6dc0bc4
+-/
 theorem kasamiExponent_modEq_degree (n k : ℕ) :
     kasamiExponent k ≡ kasamiExponent (k % n) [MOD 2 ^ n - 1] := by
   have hk : k = k % n + n * (k / n) := (Nat.mod_add_div k n).symm
@@ -57,7 +59,9 @@ theorem kasamiExponent_modEq_degree (n k : ℕ) :
 omit [DecidableEq K] in
 /-- In a finite field, nonzero powers only depend on the exponent modulo
 `|K| - 1`.  The nonzero hypotheses on the exponents handle the base `0`
-without a separate convention. -/
+without a separate convention.
+@isnad1 id=eq.3h4v.s6.91bc7fe07610 from=translated src=- shape=05dcacef vocab=f646ed3d
+-/
 theorem pow_eq_of_modEq_card_sub_one
     (x : K) {a b : ℕ} (ha : a ≠ 0) (hb : b ≠ 0)
     (h : a ≡ b [MOD Fintype.card K - 1]) :
@@ -84,7 +88,9 @@ theorem pow_eq_of_modEq_card_sub_one
 omit [DecidableEq K] in
 /-- Two distinct nonzero coefficients provide the three distinct field
 elements `0`, `v₁`, and `v₂`.  If `|K| = 2^n`, this already forces
-`n ≥ 2`; characteristic two is not needed for this cardinality argument. -/
+`n ≥ 2`; characteristic two is not needed for this cardinality argument.
+@isnad1 id=le.4h4v.s6.687946995322 from=translated src=- shape=b2326cdc vocab=cc58d8c6
+-/
 theorem extension_degree_at_least_two_of_coefficients
     {n : ℕ} (hcard : Fintype.card K = 2 ^ n)
     {v₁ v₂ : K} (hv₁ : v₁ ≠ 0) (hv₂ : v₂ ≠ 0) (hne : v₁ ≠ v₂) :
@@ -106,7 +112,9 @@ theorem extension_degree_at_least_two_of_coefficients
 
 /-- If `n ≥ 2` and `k` is coprime to `n`, then `k % n` is the
 unique normalized representative needed by the proof: it is positive, below
-`n`, and remains coprime to `n`. -/
+`n`, and remains coprime to `n`.
+@isnad1 id=and.2h2v.s5.c675d6e5dae4 from=translated src=- shape=619f980c vocab=dc42b2a7
+-/
 theorem mod_parameter_admissible
     {n k : ℕ} (hn : 2 ≤ n) (hkn : Nat.Coprime k n) :
     1 ≤ k % n ∧ k % n < n ∧ Nat.Coprime (k % n) n := by
@@ -128,7 +136,9 @@ theorem mod_parameter_admissible
 
 omit [DecidableEq K] in
 /-- Over a field with `2^n` elements, the normalized Kasami derivative is
-unchanged when the parameter is reduced modulo `n`. -/
+unchanged when the parameter is reduced modulo `n`.
+@isnad1 id=eq.1h4v.s5.9d5de80a8a59 from=translated src=- shape=c718e9cc vocab=beb25216
+-/
 theorem kasamiDerivative_mod_degree
     {n k : ℕ} (hcard : Fintype.card K = 2 ^ n) (b : K) :
     kasamiDerivative k b = kasamiDerivative (k % n) b := by
@@ -143,7 +153,9 @@ theorem kasamiDerivative_mod_degree
   unfold kasamiDerivative
   rw [hp (b + 1), hp b]
 
-/-- The derivative image is unchanged under `k ↦ k % n`. -/
+/-- The derivative image is unchanged under `k ↦ k % n`.
+@isnad1 id=eq.1h3v.s5.54d5fc4b27f3 from=translated src=- shape=4748b0d1 vocab=34490a0c
+-/
 theorem derivativeImage_mod_degree
     {n k : ℕ} (hcard : Fintype.card K = 2 ^ n) :
     derivativeImage k K = derivativeImage (k % n) K := by
@@ -151,7 +163,9 @@ theorem derivativeImage_mod_degree
   intro b _hb
   exact kasamiDerivative_mod_degree hcard b
 
-/-- The coefficient triple count is unchanged under `k ↦ k % n`. -/
+/-- The coefficient triple count is unchanged under `k ↦ k % n`.
+@isnad1 id=eq.1h5v.s6.156068c215e2 from=translated src=- shape=8dd50138 vocab=6730386c
+-/
 theorem coefficientTripleCount_mod_degree
     {n k : ℕ} (hcard : Fintype.card K = 2 ^ n)
     {v₁ v₂ : K} :

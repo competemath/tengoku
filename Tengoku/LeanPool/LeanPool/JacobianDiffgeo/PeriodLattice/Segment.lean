@@ -56,7 +56,9 @@ noncomputable def segmentPath {e : OpenPartialHomeomorph X ℂ} {c : ℂ} {r : �
 
 /-- The path integral of `η` along `segmentPath` is the difference of a local primitive's values,
 via the constant-chart cell primitive (`isPrimitiveAlongMap_of_ball`) and well-definedness
-(`IsPrimitiveAlong.pathIntegral_eq`). -/
+(`IsPrimitiveAlong.pathIntegral_eq`).
+@isnad1 id=eq.7h8v.s9.fa062214fad8 from=translated src=- shape=4fc3752a vocab=78192160
+-/
 theorem pathIntegral_segmentPath {η : Form1 X} {e : OpenPartialHomeomorph X ℂ}
     (he : e ∈ IsManifold.maximalAtlas 𝓘(ℂ) ω X) {c : ℂ} {r : ℝ}
     (hballsub : ball c r ⊆ e.target) {p q : X} (hp_src : p ∈ e.source) (hq_src : q ∈ e.source)

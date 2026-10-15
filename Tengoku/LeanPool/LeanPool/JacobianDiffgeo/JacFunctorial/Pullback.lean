@@ -50,7 +50,9 @@ variable {Y : Type*} [TopologicalSpace Y] [ChartedSpace ℂ Y] [IsManifold 𝓘(
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] [IsManifold 𝓘(ℂ, ℂ) ω Y] in
 /-- Reading a `ContMDiffAt` map through arbitrary maximal-atlas charts on both source and target
 is analytic. Generalizes `RS.contMDiffAt_iff_analyticAt_of_mem_source` (`f : X → ℂ`) to an
-arbitrary charted target `Y`. -/
+arbitrary charted target `Y`.
+@isnad1 id=analytic.5h6v.s9.68018feac527 from=translated src=- shape=cc3f07e0 vocab=2560a16c
+-/
 theorem analyticAt_of_mem_maximalAtlas {f : X → Y} {x : X} (hf : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω f x)
     {e : OpenPartialHomeomorph X ℂ} (he : e ∈ maximalAtlas 𝓘(ℂ) ω X) (hx : x ∈ e.source)
     {e' : OpenPartialHomeomorph Y ℂ} (he' : e' ∈ maximalAtlas 𝓘(ℂ) ω Y) (hy : f x ∈ e'.source) :
@@ -62,7 +64,9 @@ theorem analyticAt_of_mem_maximalAtlas {f : X → Y} {x : X} (hf : ContMDiffAt �
   exact h.2.analyticAt
 
 /-- The (forward) preferred chart's own `mfderiv` at its base point is the identity — the
-symmetric counterpart of `RS.mfderiv_chartAt_symm_chartAt_self`. -/
+symmetric counterpart of `RS.mfderiv_chartAt_symm_chartAt_self`.
+@isnad1 id=eq.0h2v.s9.35fb6805402c from=translated src=- shape=44c1c20e vocab=c46fa682
+-/
 theorem mfderiv_chartAt_self (y : Y) :
     mfderiv 𝓘(ℂ) 𝓘(ℂ) (chartAt ℂ y) y = ContinuousLinearMap.id ℂ ℂ := by
   have h := mfderiv_extChartAt_self (I := 𝓘(ℂ)) (x := y)
@@ -71,7 +75,9 @@ theorem mfderiv_chartAt_self (y : Y) :
 
 omit [IsManifold 𝓘(ℂ) ω X] in
 /-- Two-manifold generalization of `RS.tangentCoord_mfderiv_comp`: the composite `mfderiv`,
-read in the *target's own preferred chart*, is the planar derivative of the chart-composite. -/
+read in the *target's own preferred chart*, is the planar derivative of the chart-composite.
+@isnad1 id=eq.2h5v.s11.038506b260d3 from=translated src=- shape=97f6bcbb vocab=8dc4e05e
+-/
 theorem tangentCoord_mfderiv_chart_comp {F : X → Y} {g : ℂ → X} {z : ℂ}
     (hF : MDifferentiableAt 𝓘(ℂ) 𝓘(ℂ) F (g z)) (hg : MDifferentiableAt 𝓘(ℂ) 𝓘(ℂ) g z) :
     tangentCoord (mfderiv 𝓘(ℂ) 𝓘(ℂ) F (g z) (mfderiv 𝓘(ℂ) 𝓘(ℂ) g z (1 : ℂ))) =
@@ -114,7 +120,9 @@ private theorem deriv_eq_of_eventuallyEq_comp {g h k : ℂ → ℂ} {z : ℂ}
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
 /-- **Master computation** (mirrors `Form1CoeffData.coeffInFun_toSection`): in any maximal-atlas
 source chart `e` and target chart `e'` (with `f` mapping the relevant point into `e'.source`),
-the raw coefficient of `pullbackSection f η` is the chain-rule pullback formula. -/
+the raw coefficient of `pullbackSection f η` is the chain-rule pullback formula.
+@isnad1 id=eq.5h7v.s9.9dea0e036c7e from=translated src=- shape=c0202abc vocab=6e1168a7
+-/
 theorem coeffInFun_pullbackSection {f : X → Y} (hf : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω f) (η : Form1 Y)
     {e : OpenPartialHomeomorph X ℂ} (he : e ∈ maximalAtlas 𝓘(ℂ) ω X)
     {e' : OpenPartialHomeomorph Y ℂ} (he' : e' ∈ maximalAtlas 𝓘(ℂ) ω Y)
@@ -200,6 +208,9 @@ def pullbackForm (f : X → Y) (hf : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω f) (η : F
         (chart_mem_maximalAtlas (f x)) hzt hz
     exact (hφ.deriv.fun_mul hcoeff).congr heq.symm)
 
+/--
+@isnad1 id=eq.5h7v.s9.c050e474c37d from=translated src=- shape=1388ad43 vocab=4ccb8f6a
+-/
 theorem coeffIn_pullbackForm {f : X → Y} (hf : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω f) (η : Form1 Y)
     {e : OpenPartialHomeomorph X ℂ} (he : e ∈ maximalAtlas 𝓘(ℂ) ω X)
     {e' : OpenPartialHomeomorph Y ℂ} (he' : e' ∈ maximalAtlas 𝓘(ℂ) ω Y)
@@ -208,7 +219,9 @@ theorem coeffIn_pullbackForm {f : X → Y} (hf : ContMDiff 𝓘(ℂ) 𝓘(ℂ) �
       deriv (⇑e' ∘ f ∘ ⇑e.symm) z * coeffIn e' η (e' (f (e.symm z))) :=
   coeffInFun_pullbackSection hf η he he' hz hy
 
-/-- The preferred-chart coefficient formula (§3.1). -/
+/-- The preferred-chart coefficient formula (§3.1).
+@isnad1 id=eq.1h5v.s8.b7751670b7d1 from=translated src=- shape=61cef677 vocab=071ba01a
+-/
 theorem coeffAt_pullbackForm (f : X → Y) (hf : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω f) (η : Form1 Y) (x : X) :
     coeffAt x (pullbackForm f hf η) =
       deriv (⇑(chartAt ℂ (f x)) ∘ f ∘ ⇑(chartAt ℂ x).symm) (chartAt ℂ x x) *
@@ -233,10 +246,15 @@ noncomputable def Form1.pullback (f : X → Y) (hf : ContMDiff 𝓘(ℂ) 𝓘(�
     simp only [RingHom.id_apply, coeffAt_pullbackForm, coeffAt_smul]
     ring)
 
+/--
+@isnad1 id=eq.1h4v.s13.057e0fec8f2a from=translated src=- shape=7000ff27 vocab=349ac35f
+-/
 @[simp] theorem Form1.pullback_apply (f : X → Y) (hf : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω f) (η : Form1 Y) :
     Form1.pullback f hf η = pullbackForm f hf η := rfl
 
-/-- The any-maximal-atlas-chart coefficient formula, restated for `Form1.pullback` (§3.3). -/
+/-- The any-maximal-atlas-chart coefficient formula, restated for `Form1.pullback` (§3.3).
+@isnad1 id=eq.5h7v.s14.a67d111ee644 from=translated src=- shape=22ebfa4c vocab=e612984c
+-/
 theorem coeffIn_pullback (f : X → Y) (hf : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω f) (η : Form1 Y)
     {e : OpenPartialHomeomorph X ℂ} (he : e ∈ maximalAtlas 𝓘(ℂ) ω X)
     {e' : OpenPartialHomeomorph Y ℂ} (he' : e' ∈ maximalAtlas 𝓘(ℂ) ω Y)

@@ -26,7 +26,9 @@ Language-independent lemmas consumed by BOTH the original `skolemColim`-based EM
 
 namespace FirstOrder.Language
 
-/-- The variables of a relabeled term are the image of the original variables (a Mathlib gap). -/
+/-- The variables of a relabeled term are the image of the original variables (a Mathlib gap).
+@isnad1 id=eq.0h5v.s5.31932e7889ba from=translated src=- shape=76ed07c3 vocab=0c6cdf32
+-/
 theorem Term.varFinset_relabel {L' : Language} {α β : Type} [DecidableEq α] [DecidableEq β]
     (g : α → β) (t : L'.Term α) : (t.relabel g).varFinset = t.varFinset.image g := by
   induction t with
@@ -38,7 +40,9 @@ theorem Term.varFinset_relabel {L' : Language} {α β : Type} [DecidableEq α] [
     tauto
 
 /-- A term's realization depends only on the assignment of the variables that actually appear (a
-Mathlib gap). -/
+Mathlib gap).
+@isnad1 id=eq.1h6v.s6.ceb63642a701 from=translated src=- shape=b7264c3f vocab=f9a2245a
+-/
 theorem Term.realize_eq_of_eq_on_varFinset {L' : Language} {M' : Type} [L'.Structure M']
     {α : Type} [DecidableEq α] {v w : α → M'} :
     ∀ t : L'.Term α, (∀ x ∈ t.varFinset, v x = w x) → t.realize v = t.realize w := by
@@ -64,7 +68,9 @@ and the deep interpretation sends it to `a_d, a_{d+1}, …` (a strictly-increasi
 def deepRank (S : Finset J) (j : J) : ℕ := (S.filter (· < j)).card
 
 /-- On the support, ranks strictly increase with `J`-order: the deep tuple is strictly increasing,
-hence injective on the support. -/
+hence injective on the support.
+@isnad1 id=lt.2h4v.s5.1cf6285a01f3 from=translated src=- shape=b2e7a4c2 vocab=d8ac9e80
+-/
 theorem deepRank_lt_of_lt {S : Finset J} {j j' : J} (hj : j ∈ S) (hjj' : j < j') :
     deepRank J S j < deepRank J S j' := by
   apply Finset.card_lt_card
@@ -75,7 +81,9 @@ theorem deepRank_lt_of_lt {S : Finset J} {j j' : J} (hj : j ∈ S) (hjj' : j < j
 
 /-- The rank of the `i`-th support element (in increasing order) is `i`: the enumeration
 `orderEmbOfFin` and the rank are mutually inverse. The elements of `S` strictly below the `i`-th
-are exactly the first `i`. -/
+are exactly the first `i`.
+@isnad1 id=eq.1h4v.s6.c0f5662cc6ae from=translated src=- shape=fecff622 vocab=65adf81c
+-/
 theorem deepRank_orderEmbOfFin (S : Finset J) {k : ℕ} (h : S.card = k) (i : Fin k) :
     deepRank J S (S.orderEmbOfFin h i) = (i : ℕ) := by
   have step : S.filter (· < S.orderEmbOfFin h i)
@@ -89,7 +97,9 @@ theorem deepRank_orderEmbOfFin (S : Finset J) {k : ℕ} (h : S.card = k) (i : Fi
   rw [step, Finset.card_image_of_injective _ (S.orderEmbOfFin h).injective,
     Finset.filter_gt_eq_Iio, Fin.card_Iio]
 
-/-- The rank of a support element is below the cardinality: a valid `Fin S.card` position. -/
+/-- The rank of a support element is below the cardinality: a valid `Fin S.card` position.
+@isnad1 id=lt.1h3v.s5.901df02f7fc8 from=translated src=- shape=9e9ab3b3 vocab=b91e7722
+-/
 theorem deepRank_lt_card {S : Finset J} {j : J} (hj : j ∈ S) : deepRank J S j < S.card := by
   have hmem : (j : J) ∈ Set.range (S.orderEmbOfFin rfl) := by
     rw [Finset.range_orderEmbOfFin S rfl]; exact hj
@@ -97,7 +107,9 @@ theorem deepRank_lt_card {S : Finset J} {j : J} (hj : j ∈ S) : deepRank J S j 
   rw [deepRank_orderEmbOfFin]; exact i.2
 
 /-- The enumeration recovers a support element from its rank: `orderEmbOfFin` at position
-`deepRank S j` is `j`, for `j ∈ S`. -/
+`deepRank S j` is `j`, for `j ∈ S`.
+@isnad1 id=eq.3h4v.s6.4db4524fb4a3 from=translated src=- shape=cb226201 vocab=cf99f3e0
+-/
 theorem orderEmbOfFin_deepRank (S : Finset J) {k : ℕ} (h : S.card = k) {j : J} (hj : j ∈ S)
     (hlt : deepRank J S j < k) : S.orderEmbOfFin h ⟨deepRank J S j, hlt⟩ = j := by
   have hmem : (j : J) ∈ Set.range (S.orderEmbOfFin h) := by

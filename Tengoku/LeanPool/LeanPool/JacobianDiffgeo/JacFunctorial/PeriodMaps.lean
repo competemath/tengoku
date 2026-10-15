@@ -48,6 +48,9 @@ noncomputable def periodCoordEquiv : Module.Dual ℂ (RS.Form1 X) ≃ₗ[ℂ] (F
   (RS.basis X).dualBasis.equivFun
 
 omit [ConnectedSpace X] in
+/--
+@isnad1 id=eq.0h3v.s16.d2337d518787 from=translated src=- shape=3d72888f vocab=0d4f0a5f
+-/
 theorem periodCoordEquiv_apply (φ : Module.Dual ℂ (Form1 X)) (i : Fin (genus X)) :
     periodCoordEquiv X φ i = φ (basis X i) :=
   (basis X).dualBasis_equivFun φ i
@@ -67,7 +70,9 @@ noncomputable def pushforwardT (f : X → Y) (hf : ContMDiff 𝓘(ℂ) 𝓘(ℂ)
 omit [ConnectedSpace X] [ConnectedSpace Y] in
 /-- The pushforward map on period vectors, computed at a based loop: `pushforwardT` sends the
 period vector of `γ` to the period vector of its image loop `γ.map hf.continuous`
-(`pathIntegral_pullback`'s naturality, transported through the coordinatization). -/
+(`pathIntegral_pullback`'s naturality, transported through the coordinatization).
+@isnad1 id=eq.1h5v.s9.f8731ef03f34 from=translated src=- shape=f366dd5e vocab=974ad1c0
+-/
 theorem pushforwardT_periodVector (f : X → Y) (hf : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω f) {x : X}
     (γ : Path x x) :
     pushforwardT f hf (periodVector (basis X) γ) = periodVector (basis Y) (γ.map hf.continuous) :=
@@ -87,7 +92,9 @@ theorem pushforwardT_periodVector (f : X → Y) (hf : ContMDiff 𝓘(ℂ) 𝓘(�
   rw [pathIntegral_pullback hf γ (basis Y i)]
   rfl
 
-/-- `hT` for the pushforward direction (§8.2 — exact containment, no closure/density needed). -/
+/-- `hT` for the pushforward direction (§8.2 — exact containment, no closure/density needed).
+@isnad1 id=le.1h3v.s9.3bc163a4eb59 from=translated src=- shape=a3f29f29 vocab=1e2e92a9
+-/
 theorem periodSubgroup_le_comap_pushforwardT (f : X → Y) (hf : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω f) :
     RS.periodSubgroup X ≤ (RS.periodSubgroup Y).topologicalClosure.comap
       (pushforwardT f hf).toAddMonoidHom := by

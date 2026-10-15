@@ -61,7 +61,9 @@ section Planar
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- Indicator-extension smoothness gadget: if `F` is smooth on the open set `T` and vanishes on
-`T \ K` for a compact `K ⊆ T`, then the indicator extension of `F` by `0` is globally smooth. -/
+`T \ K` for a compact `K ⊆ T`, then the indicator extension of `F` by `0` is globally smooth.
+@isnad1 id=contdiff.5h4v.s7.f695208aa6fc from=translated src=- shape=c77d3c26 vocab=7c31bef2
+-/
 theorem contDiff_indicator_of_eq_zero_off {F : ℂ → E} {T K : Set ℂ} (hT : IsOpen T)
     (hK : IsCompact K) (hKT : K ⊆ T) (hF : ContDiffOn ℝ ∞ F T)
     (h0 : ∀ z ∈ T, z ∉ K → F z = 0) : ContDiff ℝ ∞ (T.indicator F) := by
@@ -80,7 +82,9 @@ theorem contDiff_indicator_of_eq_zero_off {F : ℂ → E} {T K : Set ℂ} (hT : 
 
 omit [NormedSpace ℝ E] in
 /-- Companion to `contDiff_indicator_of_eq_zero_off`: the indicator extension has compact
-support (inside `K`). -/
+support (inside `K`).
+@isnad1 id=hascompa.2h4v.s6.fd4cbcec447e from=translated src=- shape=39033f99 vocab=4ec6b3e0
+-/
 theorem hasCompactSupport_indicator_of_eq_zero_off {F : ℂ → E} {T K : Set ℂ}
     (hK : IsCompact K) (h0 : ∀ z ∈ T, z ∉ K → F z = 0) :
     HasCompactSupport (T.indicator F) := by
@@ -89,7 +93,9 @@ theorem hasCompactSupport_indicator_of_eq_zero_off {F : ℂ → E} {T K : Set �
   · rw [Set.indicator_of_mem hzT, h0 z hzT hz]
   · exact Set.indicator_of_notMem hzT F
 
-/-- Integrability of the indicator-extension gadget. -/
+/-- Integrability of the indicator-extension gadget.
+@isnad1 id=integrab.5h4v.s7.a66f77168425 from=translated src=- shape=4d817844 vocab=ca1085b7
+-/
 theorem integrable_indicator_of_eq_zero_off {F : ℂ → E} {T K : Set ℂ} (hT : IsOpen T)
     (hK : IsCompact K) (hKT : K ⊆ T) (hF : ContDiffOn ℝ ∞ F T)
     (h0 : ∀ z ∈ T, z ∉ K → F z = 0) : Integrable (T.indicator F) := by
@@ -103,7 +109,9 @@ end Planar
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
 /-- `ContMDiffOn` data on `X` reads as planar `ContDiffOn` data through the inverse of any
-maximal-atlas chart (the "any-chart" analogue of `SmoothC.contDiffOn_comp_chartAt_symm`). -/
+maximal-atlas chart (the "any-chart" analogue of `SmoothC.contDiffOn_comp_chartAt_symm`).
+@isnad1 id=contdiff.2h4v.s8.d940e90a1103 from=translated src=- shape=f8d30b5a vocab=ec3e4a39
+-/
 theorem contDiffOn_comp_symm_of_contMDiffOn {u : X → ℂ} {s : Set X}
     (hu : ContMDiffOn 𝓘(ℝ, ℂ) 𝓘(ℝ, ℂ) ∞ u s) {e : OpenPartialHomeomorph X ℂ}
     (he : e ∈ maximalAtlas 𝓘(ℂ) ω X) :
@@ -120,7 +128,9 @@ theorem contDiffOn_comp_symm_of_contMDiffOn {u : X → ℂ} {s : Set X}
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
 /-- The real-valued global version: a `ContMDiff` real function on `X` reads as planar
-`ContDiffOn` data on any maximal-atlas chart target. -/
+`ContDiffOn` data on any maximal-atlas chart target.
+@isnad1 id=contdiff.2h3v.s8.9649d0beb6dd from=translated src=- shape=d00cd458 vocab=86b2feff
+-/
 theorem contDiffOn_comp_symm_real {ψ : X → ℝ}
     (hψ : ContMDiff 𝓘(ℝ, ℂ) 𝓘(ℝ, ℝ) ∞ ψ) {e : OpenPartialHomeomorph X ℂ}
     (he : e ∈ maximalAtlas 𝓘(ℂ) ω X) :
@@ -133,7 +143,9 @@ theorem contDiffOn_comp_symm_real {ψ : X → ℝ}
   exact contMDiffOn_iff_contDiffOn.mp hcomp
 
 /-- Holomorphic-coefficient smoothness: the chart coefficient of a holomorphic `1`-form is
-real-smooth on the chart target. -/
+real-smooth on the chart target.
+@isnad1 id=contdiff.1h3v.s8.ef932eda3a94 from=translated src=- shape=aea8adcd vocab=3324213c
+-/
 theorem contDiffOn_coeffIn (θ : RS.Form1 X) {e : OpenPartialHomeomorph X ℂ}
     (he : e ∈ maximalAtlas 𝓘(ℂ) ω X) :
     ContDiffOn ℝ ∞ (RS.coeffIn e θ) e.target := fun _z hz =>
@@ -142,7 +154,9 @@ theorem contDiffOn_coeffIn (θ : RS.Form1 X) {e : OpenPartialHomeomorph X ℂ}
 /-! ## The holomorphic Jacobian determinant (residue-theorem design §1.6, spike-verified) -/
 
 /-- The planar real Jacobian determinant of a holomorphic map is `normSq` of its complex
-derivative. -/
+derivative.
+@isnad1 id=eq.1h2v.s8.aae0ea5a8e8b from=translated src=- shape=45961987 vocab=161b8dd5
+-/
 theorem det_fderiv_eq_normSq_deriv {τ : ℂ → ℂ} {ζ : ℂ} (hτ : DifferentiableAt ℂ τ ζ) :
     (fderiv ℝ τ ζ).det = Complex.normSq (deriv τ ζ) := by
   have hr : fderiv ℝ τ ζ = (fderiv ℂ τ ζ).restrictScalars ℝ := hτ.fderiv_restrictScalars ℝ
@@ -159,7 +173,9 @@ omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
 /-- **The `(1,1)`-density change of variables between charts** (the "honest integration atom"'s
 transport step): if `F` vanishes off `e '' (e.source ∩ e'.source)`, `G` vanishes off
 `e' '' (e.source ∩ e'.source)`, and on that overlap image `G` is the `normSq (deriv τ)`-weighted
-transport of `F` along the transition `τ = e ∘ e'.symm`, then the two plane integrals agree. -/
+transport of `F` along the transition `τ = e ∘ e'.symm`, then the two plane integrals agree.
+@isnad1 id=eq.5h5v.s9.11d252a558aa from=translated src=- shape=1813669e vocab=2597d55f
+-/
 theorem integral_eq_integral_transition {e e' : OpenPartialHomeomorph X ℂ}
     (he : e ∈ maximalAtlas 𝓘(ℂ) ω X) (he' : e' ∈ maximalAtlas 𝓘(ℂ) ω X) {F G : ℂ → ℂ}
     (hF0 : ∀ z, z ∉ ⇑e '' (e.source ∩ e'.source) → F z = 0)
@@ -250,6 +266,9 @@ variable [T2Space X] [CompactSpace X] (PU : SurfPoU X)
 abbrev chart (i : Fin PU.n) : OpenPartialHomeomorph X ℂ := chartAt ℂ (PU.pt i)
 
 omit [T2Space X] [CompactSpace X] in
+/--
+@isnad1 id=mem.0h3v.s7.1484851bf93d from=translated src=- shape=e27591f5 vocab=48bf71ce
+-/
 theorem chart_mem_maximalAtlas (i : Fin PU.n) : PU.chart i ∈ maximalAtlas 𝓘(ℂ) ω X :=
   IsManifold.chart_mem_maximalAtlas _
 
@@ -257,6 +276,9 @@ theorem chart_mem_maximalAtlas (i : Fin PU.n) : PU.chart i ∈ maximalAtlas 𝓘
 def K (i : Fin PU.n) : Set ℂ := ⇑(PU.chart i) '' tsupport (PU.ψ i)
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] [T2Space X] in
+/--
+@isnad1 id=iscompac.0h3v.s5.9c9b4052117c from=translated src=- shape=c7150b69 vocab=9b01ebe7
+-/
 theorem isCompact_K (i : Fin PU.n) : IsCompact (PU.K i) := by
   have hts : IsCompact (tsupport (PU.ψ i)) := IsCompact.of_isClosed_subset isCompact_univ
     (isClosed_tsupport _) (Set.subset_univ _)
@@ -264,12 +286,17 @@ theorem isCompact_K (i : Fin PU.n) : IsCompact (PU.K i) := by
     ((PU.chart i).continuousOn.mono (PU.tsupport_subset i))
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] [T2Space X] [CompactSpace X] in
+/--
+@isnad1 id=le.0h3v.s6.3386bff8e20d from=translated src=- shape=e8d54f9f vocab=5ea3c8a4
+-/
 theorem K_subset_target (i : Fin PU.n) : PU.K i ⊆ (PU.chart i).target := by
   rintro z ⟨x, hx, rfl⟩
   exact (PU.chart i).map_source (PU.tsupport_subset i hx)
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] [T2Space X] [CompactSpace X] in
-/-- Off the compact carrier, the transported partition function vanishes. -/
+/-- Off the compact carrier, the transported partition function vanishes.
+@isnad1 id=eq.2h4v.s7.6305a68a6614 from=translated src=- shape=c8cc2552 vocab=ed4e974c
+-/
 theorem psi_symm_eq_zero (i : Fin PU.n) {z : ℂ} (hz : z ∈ (PU.chart i).target)
     (hzK : z ∉ PU.K i) : PU.ψ i ((PU.chart i).symm z) = 0 := by
   by_contra h
@@ -281,6 +308,9 @@ def psiC (i : Fin PU.n) (e : OpenPartialHomeomorph X ℂ) : ℂ → ℂ :=
   fun w => ((PU.ψ i (e.symm w) : ℝ) : ℂ)
 
 omit [T2Space X] [CompactSpace X] [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=contdiff.1h4v.s7.dfe7edf7133b from=translated src=- shape=9ee850fa vocab=ce5f8dd2
+-/
 theorem contDiffOn_psiC (i : Fin PU.n) {e : OpenPartialHomeomorph X ℂ}
     (he : e ∈ maximalAtlas 𝓘(ℂ) ω X) : ContDiffOn ℝ ∞ (PU.psiC i e) e.target :=
   Complex.ofRealCLM.contDiff.comp_contDiffOn
@@ -288,7 +318,9 @@ theorem contDiffOn_psiC (i : Fin PU.n) {e : OpenPartialHomeomorph X ℂ}
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] [T2Space X] [CompactSpace X] in
 /-- The complexified partition function vanishes near any target point whose source point is
-outside the support. -/
+outside the support.
+@isnad1 id=eventual.2h5v.s7.88a505cc1d8d from=translated src=- shape=b1857eda vocab=a2a295f6
+-/
 theorem psiC_eventuallyEq_zero (i : Fin PU.n) {e : OpenPartialHomeomorph X ℂ} {z : ℂ}
     (hz : z ∈ e.target) (hy : e.symm z ∉ tsupport (PU.ψ i)) :
     PU.psiC i e =ᶠ[nhds z] 0 := by
@@ -300,6 +332,9 @@ theorem psiC_eventuallyEq_zero (i : Fin PU.n) {e : OpenPartialHomeomorph X ℂ} 
   exact image_eq_zero_of_notMem_tsupport hw
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] [T2Space X] [CompactSpace X] in
+/--
+@isnad1 id=eq.2h5v.s7.d424fbfa46af from=translated src=- shape=44b6a0d4 vocab=028ccc60
+-/
 theorem wirtingerDbar_psiC_eq_zero (i : Fin PU.n) {e : OpenPartialHomeomorph X ℂ} {z : ℂ}
     (hz : z ∈ e.target) (hy : e.symm z ∉ tsupport (PU.ψ i)) :
     RS.wirtingerDbar (PU.psiC i e) z = 0 := by
@@ -307,6 +342,9 @@ theorem wirtingerDbar_psiC_eq_zero (i : Fin PU.n) {e : OpenPartialHomeomorph X �
   exact RS.wirtingerDbar_const z 0
 
 omit [T2Space X] [CompactSpace X] [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=differen.2h5v.s8.47d222e5c270 from=translated src=- shape=3118aa52 vocab=40acd10d
+-/
 theorem differentiableAt_psiC (i : Fin PU.n) {e : OpenPartialHomeomorph X ℂ}
     (he : e ∈ maximalAtlas 𝓘(ℂ) ω X) {z : ℂ} (hz : z ∈ e.target) :
     DifferentiableAt ℝ (PU.psiC i e) z :=
@@ -314,7 +352,9 @@ theorem differentiableAt_psiC (i : Fin PU.n) {e : OpenPartialHomeomorph X ℂ}
     (by norm_num))
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] [T2Space X] [CompactSpace X] in
-/-- On a chart target, the complexified partition functions sum to `1` near every point. -/
+/-- On a chart target, the complexified partition functions sum to `1` near every point.
+@isnad1 id=eventual.1h4v.s7.98e6cc3f38fa from=translated src=- shape=2225245e vocab=811a5dd3
+-/
 theorem sum_psiC_eventuallyEq_one {e : OpenPartialHomeomorph X ℂ} {z : ℂ}
     (hz : z ∈ e.target) :
     (fun w => ∑ i, PU.psiC i e w) =ᶠ[nhds z] (fun _ => (1 : ℂ)) := by
@@ -326,6 +366,9 @@ end SurfPoU
 
 /-! ## Planar sum rule for `dbar` and eventual-vanishing helpers -/
 
+/--
+@isnad1 id=eq.1h4v.s7.cd916d1fe6e9 from=translated src=- shape=6021be05 vocab=21fcc5ac
+-/
 theorem wirtingerDbar_finset_sum {ι' : Type*} (s : Finset ι') {f : ι' → ℂ → ℂ} {z : ℂ}
     (hf : ∀ i ∈ s, DifferentiableAt ℝ (f i) z) :
     RS.wirtingerDbar (fun w => ∑ i ∈ s, f i w) z = ∑ i ∈ s, RS.wirtingerDbar (f i) z := by
@@ -342,7 +385,9 @@ theorem wirtingerDbar_finset_sum {ι' : Type*} (s : Finset ι') {f : ι' → ℂ
       rw [hshape, hadd, ih (fun i hi => hf i (Finset.mem_cons_of_mem hi)), Finset.sum_cons]
 
 /-- Indicator functions vanishing off a compact carrier vanish on a neighborhood of any point
-outside the carrier. -/
+outside the carrier.
+@isnad1 id=eventual.3h5v.s6.54fb5ec1bd4c from=translated src=- shape=64268f78 vocab=e4132545
+-/
 theorem indicator_eventuallyEq_zero_of_notMem {E : Type*} [Zero E] {F : ℂ → E} {T K : Set ℂ}
     (hK : IsCompact K) (h0 : ∀ z ∈ T, z ∉ K → F z = 0) {z : ℂ} (hz : z ∉ K) :
     T.indicator F =ᶠ[nhds z] 0 := by
@@ -363,7 +408,9 @@ def pairingTerm (PU : SurfPoU X) (σ : RS.Form01 X) (θ : RS.Form1 X) (i : Fin P
       (σ.coeffAt (PU.pt i) z * RS.coeffIn (PU.chart i) θ z))
 
 omit [T2Space X] [CompactSpace X] in
-/-- The core of the pairing integrand vanishes on the chart target off the compact carrier. -/
+/-- The core of the pairing integrand vanishes on the chart target off the compact carrier.
+@isnad1 id=eq.2h6v.s8.3aa89f030146 from=translated src=- shape=5631cf17 vocab=0223205f
+-/
 theorem pairingTerm_core_eq_zero_off (PU : SurfPoU X) (σ : RS.Form01 X) (θ : RS.Form1 X)
     (i : Fin PU.n) : ∀ z ∈ (PU.chart i).target, z ∉ PU.K i →
       PU.ψ i ((PU.chart i).symm z) • (σ.coeffAt (PU.pt i) z * RS.coeffIn (PU.chart i) θ z) = 0 := by
@@ -371,7 +418,9 @@ theorem pairingTerm_core_eq_zero_off (PU : SurfPoU X) (σ : RS.Form01 X) (θ : R
   rw [PU.psi_symm_eq_zero i hz hzK, zero_smul]
 
 omit [T2Space X] [CompactSpace X] in
-/-- Smoothness of the pairing integrand core on the chart target. -/
+/-- Smoothness of the pairing integrand core on the chart target.
+@isnad1 id=contdiff.0h5v.s8.a3bffeff5e6c from=translated src=- shape=6c012c06 vocab=97f92d97
+-/
 theorem contDiffOn_pairingTerm_core (PU : SurfPoU X) (σ : RS.Form01 X) (θ : RS.Form1 X)
     (i : Fin PU.n) : ContDiffOn ℝ ∞
       (fun z => PU.ψ i ((PU.chart i).symm z) •
@@ -384,6 +433,9 @@ theorem contDiffOn_pairingTerm_core (PU : SurfPoU X) (σ : RS.Form01 X) (θ : RS
   exact h1.smul h2
 
 omit [T2Space X] in
+/--
+@isnad1 id=contdiff.0h5v.s7.2cb879fb8b89 from=translated src=- shape=05cdeb9a vocab=33797623
+-/
 theorem contDiff_pairingTerm (PU : SurfPoU X) (σ : RS.Form01 X) (θ : RS.Form1 X)
     (i : Fin PU.n) : ContDiff ℝ ∞ (pairingTerm PU σ θ i) :=
   contDiff_indicator_of_eq_zero_off (PU.chart i).open_target (PU.isCompact_K i)
@@ -391,12 +443,18 @@ theorem contDiff_pairingTerm (PU : SurfPoU X) (σ : RS.Form01 X) (θ : RS.Form1 
     (pairingTerm_core_eq_zero_off PU σ θ i)
 
 omit [T2Space X] in
+/--
+@isnad1 id=hascompa.0h5v.s6.6ef16df38091 from=translated src=- shape=18eadd24 vocab=93177d3e
+-/
 theorem hasCompactSupport_pairingTerm (PU : SurfPoU X) (σ : RS.Form01 X) (θ : RS.Form1 X)
     (i : Fin PU.n) : HasCompactSupport (pairingTerm PU σ θ i) :=
   hasCompactSupport_indicator_of_eq_zero_off (PU.isCompact_K i)
     (pairingTerm_core_eq_zero_off PU σ θ i)
 
 omit [T2Space X] in
+/--
+@isnad1 id=integrab.0h5v.s7.7ff8d3858b0c from=translated src=- shape=b0686414 vocab=89cab271
+-/
 theorem integrable_pairingTerm (PU : SurfPoU X) (σ : RS.Form01 X) (θ : RS.Form1 X)
     (i : Fin PU.n) : Integrable (pairingTerm PU σ θ i) :=
   ((contDiff_pairingTerm PU σ θ i).continuous).integrable_of_hasCompactSupport
@@ -410,6 +468,9 @@ def pairing (PU : SurfPoU X) (σ : RS.Form01 X) (θ : RS.Form1 X) : ℂ :=
 /-! ### Bilinearity -/
 
 omit [T2Space X] [CompactSpace X] in
+/--
+@isnad1 id=eq.0h6v.s7.aebfbb7700df from=translated src=- shape=901abbc1 vocab=4a3938da
+-/
 theorem pairingTerm_add_left (PU : SurfPoU X) (σ σ' : RS.Form01 X) (θ : RS.Form1 X)
     (i : Fin PU.n) : pairingTerm PU (σ + σ') θ i =
       fun z => pairingTerm PU σ θ i z + pairingTerm PU σ' θ i z := by
@@ -422,6 +483,9 @@ theorem pairingTerm_add_left (PU : SurfPoU X) (σ σ' : RS.Form01 X) (θ : RS.Fo
   · simp [Set.indicator_of_notMem hz]
 
 omit [T2Space X] [CompactSpace X] in
+/--
+@isnad1 id=eq.0h6v.s7.ea8eb1b33808 from=translated src=- shape=fd3b9162 vocab=aa1baf13
+-/
 theorem pairingTerm_smul_left (PU : SurfPoU X) (c : ℂ) (σ : RS.Form01 X) (θ : RS.Form1 X)
     (i : Fin PU.n) : pairingTerm PU (c • σ) θ i = fun z => c * pairingTerm PU σ θ i z := by
   funext z
@@ -433,6 +497,9 @@ theorem pairingTerm_smul_left (PU : SurfPoU X) (c : ℂ) (σ : RS.Form01 X) (θ 
   · simp [Set.indicator_of_notMem hz]
 
 omit [T2Space X] [CompactSpace X] in
+/--
+@isnad1 id=eq.0h6v.s11.c90441e1706c from=translated src=- shape=0c70a626 vocab=35dd867e
+-/
 theorem pairingTerm_add_right (PU : SurfPoU X) (σ : RS.Form01 X) (θ θ' : RS.Form1 X)
     (i : Fin PU.n) : pairingTerm PU σ (θ + θ') i =
       fun z => pairingTerm PU σ θ i z + pairingTerm PU σ θ' i z := by
@@ -444,6 +511,9 @@ theorem pairingTerm_add_right (PU : SurfPoU X) (σ : RS.Form01 X) (θ θ' : RS.F
   · simp [Set.indicator_of_notMem hz]
 
 omit [T2Space X] [CompactSpace X] in
+/--
+@isnad1 id=eq.0h6v.s11.2ff3006ec6f7 from=translated src=- shape=8a909941 vocab=34a95c87
+-/
 theorem pairingTerm_smul_right (PU : SurfPoU X) (c : ℂ) (σ : RS.Form01 X) (θ : RS.Form1 X)
     (i : Fin PU.n) : pairingTerm PU σ (c • θ) i = fun z => c * pairingTerm PU σ θ i z := by
   funext z
@@ -454,6 +524,9 @@ theorem pairingTerm_smul_right (PU : SurfPoU X) (c : ℂ) (σ : RS.Form01 X) (θ
   · simp [Set.indicator_of_notMem hz]
 
 omit [T2Space X] in
+/--
+@isnad1 id=eq.0h5v.s7.b79f4bba9829 from=translated src=- shape=567da709 vocab=458ec709
+-/
 theorem pairing_add_left (PU : SurfPoU X) (σ σ' : RS.Form01 X) (θ : RS.Form1 X) :
     pairing PU (σ + σ') θ = pairing PU σ θ + pairing PU σ' θ := by
   rw [pairing, pairing, pairing, ← Finset.sum_add_distrib]
@@ -463,6 +536,9 @@ theorem pairing_add_left (PU : SurfPoU X) (σ σ' : RS.Form01 X) (θ : RS.Form1 
     (integrable_pairingTerm PU σ' θ i)
 
 omit [T2Space X] [CompactSpace X] in
+/--
+@isnad1 id=eq.0h5v.s7.84b9c3c6f13c from=translated src=- shape=eb907622 vocab=6a3731c0
+-/
 theorem pairing_smul_left (PU : SurfPoU X) (c : ℂ) (σ : RS.Form01 X) (θ : RS.Form1 X) :
     pairing PU (c • σ) θ = c * pairing PU σ θ := by
   rw [pairing, pairing, Finset.mul_sum]
@@ -471,6 +547,9 @@ theorem pairing_smul_left (PU : SurfPoU X) (c : ℂ) (σ : RS.Form01 X) (θ : RS
   exact MeasureTheory.integral_const_mul c _
 
 omit [T2Space X] in
+/--
+@isnad1 id=eq.0h5v.s11.feb137d7f4cd from=translated src=- shape=4ee1ae4d vocab=9bed741b
+-/
 theorem pairing_add_right (PU : SurfPoU X) (σ : RS.Form01 X) (θ θ' : RS.Form1 X) :
     pairing PU σ (θ + θ') = pairing PU σ θ + pairing PU σ θ' := by
   rw [pairing, pairing, pairing, ← Finset.sum_add_distrib]
@@ -480,6 +559,9 @@ theorem pairing_add_right (PU : SurfPoU X) (σ : RS.Form01 X) (θ θ' : RS.Form1
     (integrable_pairingTerm PU σ θ' i)
 
 omit [T2Space X] [CompactSpace X] in
+/--
+@isnad1 id=eq.0h5v.s11.a93135a86e57 from=translated src=- shape=7d71a675 vocab=571a39d5
+-/
 theorem pairing_smul_right (PU : SurfPoU X) (c : ℂ) (σ : RS.Form01 X) (θ : RS.Form1 X) :
     pairing PU σ (c • θ) = c * pairing PU σ θ := by
   rw [pairing, pairing, Finset.mul_sum]

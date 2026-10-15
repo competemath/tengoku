@@ -31,7 +31,9 @@ open WeierstrassCurve
 
 variable {K : Type*} [Field K] [CharP K 2]
 
-/-- An affine Fermat point has `w + t ≠ 0`. -/
+/-- An affine Fermat point has `w + t ≠ 0`.
+@isnad1 id=ne.1h3v.s7.8712f0cb35da from=translated src=- shape=c7972c55 vocab=3729ae20
+-/
 lemma den_ne_zero {w t : K} (h : w ^ 3 + t ^ 3 = 1) : w + t ≠ 0 := by
   intro h0
   have ht : t = w := by linear_combination h0 - CharTwo.add_self_eq_zero w
@@ -43,7 +45,9 @@ private lemma prod_den {w t : K} (h : w ^ 3 + t ^ 3 = 1) : w * t * (w + t) = 1 +
   linear_combination -h + (-(w ^ 2 * t) - w * t ^ 2 - 1) * CharTwo.two_eq_zero (R := K)
 
 /-- The chart coordinates `((w+t)⁻¹, w * (w+t)⁻¹)` of an affine Fermat point are
-nonsingular on `fer K`. -/
+nonsingular on `fer K`.
+@isnad1 id=nonsingu.1h3v.s7.6dde0b4ababb from=translated src=- shape=01734e88 vocab=da9615f1
+-/
 lemma chart_nonsingular {w t : K} (h : w ^ 3 + t ^ 3 = 1) :
     (fer K).toAffine.Nonsingular ((w + t)⁻¹) (w * (w + t)⁻¹) := by
   refine nonsingular_of_eq ?_
@@ -55,7 +59,9 @@ lemma chart_nonsingular {w t : K} (h : w ^ 3 + t ^ 3 = 1) :
 def pt (w t : K) (h : w ^ 3 + t ^ 3 = 1) : (fer K).toAffine.Point :=
   Affine.Point.some _ _ (chart_nonsingular h)
 
-/-- `pt` is injective in its two coordinates. -/
+/-- `pt` is injective in its two coordinates.
+@isnad1 id=and.3h5v.s7.194c941b5631 from=translated src=- shape=3c0bd914 vocab=61a0ffe4
+-/
 lemma pt_inj {w t w' t' : K} {h : w ^ 3 + t ^ 3 = 1} {h' : w' ^ 3 + t' ^ 3 = 1}
     (he : pt w t h = pt w' t' h') : w = w' ∧ t = t' := by
   obtain ⟨hx, hy⟩ := some_inj he
@@ -77,7 +83,9 @@ omit [CharP K 2] in
 private lemma fermat_symm {w t : K} (h : w ^ 3 + t ^ 3 = 1) : t ^ 3 + w ^ 3 = 1 := by
   linear_combination h
 
-/-- Negation on the Fermat cubic swaps the two affine coordinates. -/
+/-- Negation on the Fermat cubic swaps the two affine coordinates.
+@isnad1 id=eq.1h3v.s7.963ec1b59713 from=translated src=- shape=17668135 vocab=520fbec3
+-/
 theorem neg_pt {w t : K} (h : w ^ 3 + t ^ 3 = 1) :
     -(pt w t h) = pt t w (by exact fermat_symm h) := by
   rw [pt, pt, Affine.Point.neg_some]
@@ -95,7 +103,9 @@ variable {w1 t1 w2 t2 : K}
 
 omit [DecidableEq K] in
 /-- If two affine Fermat points have the same `x`-coordinate in the Weierstrass model,
-then the Hessian denominator vanishes. -/
+then the Hessian denominator vanishes.
+@isnad1 id=eq.3h5v.s8.38132a610832 from=translated src=- shape=22cb351a vocab=35bd15ea
+-/
 lemma hessD_eq_zero_of_den_eq (h1 : w1 ^ 3 + t1 ^ 3 = 1) (h2 : w2 ^ 3 + t2 ^ 3 = 1)
     (hdd : w1 + t1 = w2 + t2) : hessD w1 t1 w2 t2 = 0 := by
   have hd1 := den_ne_zero h1
@@ -109,7 +119,9 @@ lemma hessD_eq_zero_of_den_eq (h1 : w1 ^ 3 + t1 ^ 3 = 1) (h2 : w2 ^ 3 + t2 ^ 3 =
   exact CharTwo.add_self_eq_zero _
 
 omit [DecidableEq K] in
-/-- A nonzero Hessian denominator forces the two Hessian numerators to differ. -/
+/-- A nonzero Hessian denominator forces the two Hessian numerators to differ.
+@isnad1 id=ne.3h5v.s8.9387068c978f from=translated src=- shape=d5e72c3e vocab=f694174c
+-/
 lemma hessS_ne_zero (h1 : w1 ^ 3 + t1 ^ 3 = 1) (h2 : w2 ^ 3 + t2 ^ 3 = 1)
     (hD : hessD w1 t1 w2 t2 ≠ 0) : hessX w1 t1 w2 t2 + hessY w1 t1 w2 t2 ≠ 0 := by
   intro hS
@@ -123,7 +135,9 @@ lemma hessS_ne_zero (h1 : w1 ^ 3 + t1 ^ 3 = 1) (h2 : w2 ^ 3 + t2 ^ 3 = 1)
 
 omit [DecidableEq K] in
 /-- The Hessian sum of two affine Fermat points is again an affine Fermat point,
-provided the denominator is nonzero. -/
+provided the denominator is nonzero.
+@isnad1 id=eq.3h5v.s8.26dd12da6312 from=translated src=- shape=5bebadfe vocab=e85769a8
+-/
 lemma hess_fermat (h1 : w1 ^ 3 + t1 ^ 3 = 1) (h2 : w2 ^ 3 + t2 ^ 3 = 1)
     (hD : hessD w1 t1 w2 t2 ≠ 0) :
     (hessX w1 t1 w2 t2 / hessD w1 t1 w2 t2) ^ 3 + (hessY w1 t1 w2 t2 / hessD w1 t1 w2 t2) ^ 3
@@ -133,17 +147,23 @@ lemma hess_fermat (h1 : w1 ^ 3 + t1 ^ 3 = 1) (h2 : w2 ^ 3 + t2 ^ 3 = 1)
   linear_combination hc
 
 omit [DecidableEq K] in
-/-- If the two points have distinct `w+t`, then `(w1+t1)+(w2+t2) ≠ 0`. -/
+/-- If the two points have distinct `w+t`, then `(w1+t1)+(w2+t2) ≠ 0`.
+@isnad1 id=ne.1h5v.s7.4234576cc201 from=translated src=- shape=17cf26fa vocab=a118377a
+-/
 lemma sum_den_ne_zero (hdd : w1 + t1 ≠ w2 + t2) : (w1 + t1) + (w2 + t2) ≠ 0 := by
   intro hc
   exact hdd (by linear_combination hc - CharTwo.add_self_eq_zero (w2 + t2))
 
 omit [CharP K 2] [DecidableEq K] in
-/-- Distinct `w+t` give distinct Weierstrass `x`-coordinates. -/
+/-- Distinct `w+t` give distinct Weierstrass `x`-coordinates.
+@isnad1 id=ne.1h5v.s7.077b4eb19976 from=translated src=- shape=29fc3017 vocab=d2f8cdce
+-/
 lemma x_ne_of_den_ne (hdd : w1 + t1 ≠ w2 + t2) : ((w1 + t1)⁻¹ : K) ≠ (w2 + t2)⁻¹ :=
   fun hc => hdd (inv_injective hc)
 
-/-- The secant slope through two affine Fermat points with distinct `w+t`. -/
+/-- The secant slope through two affine Fermat points with distinct `w+t`.
+@isnad1 id=eq.3h5v.s9.e1692376431e from=translated src=- shape=7b7ce78b vocab=581c64cb
+-/
 lemma secant_slope (h1 : w1 ^ 3 + t1 ^ 3 = 1) (h2 : w2 ^ 3 + t2 ^ 3 = 1)
     (hdd : w1 + t1 ≠ w2 + t2) :
     (fer K).toAffine.slope ((w1 + t1)⁻¹) ((w2 + t2)⁻¹) (w1 * (w1 + t1)⁻¹) (w2 * (w2 + t2)⁻¹)
@@ -160,7 +180,9 @@ lemma secant_slope (h1 : w1 ^ 3 + t1 ^ 3 = 1) (h2 : w2 ^ 3 + t2 ^ 3 = 1)
   field_simp
   ring
 
-/-- The `x`-coordinate of the sum of two affine Fermat points with distinct `w+t`. -/
+/-- The `x`-coordinate of the sum of two affine Fermat points with distinct `w+t`.
+@isnad1 id=eq.3h5v.s9.c9fcc84d504a from=translated src=- shape=19235374 vocab=b28712a8
+-/
 lemma addX_secant (h1 : w1 ^ 3 + t1 ^ 3 = 1) (h2 : w2 ^ 3 + t2 ^ 3 = 1)
     (hdd : w1 + t1 ≠ w2 + t2) :
     (fer K).toAffine.addX ((w1 + t1)⁻¹) ((w2 + t2)⁻¹)
@@ -178,7 +200,9 @@ lemma addX_secant (h1 : w1 ^ 3 + t1 ^ 3 = 1) (h2 : w2 ^ 3 + t2 ^ 3 = 1)
 
 /-- **The affine Hessian addition formula.**  If the denominator `D0 = w1*t1 + w2*t2` is
 nonzero, the sum of the two affine Fermat points is the affine Fermat point
-`(N_x/D0, N_y/D0)`. -/
+`(N_x/D0, N_y/D0)`.
+@isnad1 id=eq.3h5v.s8.8c38f27db20b from=translated src=- shape=5a5fd197 vocab=46329511
+-/
 theorem add_pt (h1 : w1 ^ 3 + t1 ^ 3 = 1) (h2 : w2 ^ 3 + t2 ^ 3 = 1)
     (hD : hessD w1 t1 w2 t2 ≠ 0) :
     pt w1 t1 h1 + pt w2 t2 h2 =
@@ -217,7 +241,9 @@ theorem add_pt (h1 : w1 ^ 3 + t1 ^ 3 = 1) (h2 : w2 ^ 3 + t2 ^ 3 = 1)
 
 /-- If the Hessian denominator vanishes while the two Hessian numerators differ,
 and the two points have distinct `w+t`, then the sum is a point at infinity: its
-`x`-coordinate is `0`. -/
+`x`-coordinate is `0`.
+@isnad1 id=eq.5h5v.s9.3865f95ed8ed from=translated src=- shape=e89d8278 vocab=3738980a
+-/
 theorem add_pt_x_eq_zero (h1 : w1 ^ 3 + t1 ^ 3 = 1) (h2 : w2 ^ 3 + t2 ^ 3 = 1)
     (hdd : w1 + t1 ≠ w2 + t2) (hD : hessD w1 t1 w2 t2 = 0)
     (hS : hessX w1 t1 w2 t2 + hessY w1 t1 w2 t2 ≠ 0) :
@@ -233,7 +259,9 @@ theorem add_pt_x_eq_zero (h1 : w1 ^ 3 + t1 ^ 3 = 1) (h2 : w2 ^ 3 + t2 ^ 3 = 1)
 
 /-- An affine Fermat point is `3`-torsion if and only if one of its two
 affine coordinates vanishes.  (The remaining three points of `E[3]` are the points at
-infinity.) -/
+infinity.)
+@isnad1 id=iff.1h3v.s8.fe5900c2b3fc from=translated src=- shape=84d5e969 vocab=ede9b4fc
+-/
 theorem three_torsion_pt_iff {w t : K} (h : w ^ 3 + t ^ 3 = 1) :
     (3 : ℕ) • pt w t h = 0 ↔ w = 0 ∨ t = 0 := by
   have hd := den_ne_zero h

@@ -35,7 +35,9 @@ def infiniteAxiom : L.Sentenceω :=
 
 variable {L} {M : Type} [L.Structure M] [Nonempty M]
 
-/-- A nonempty structure realizes the infiniteness axiom exactly when it is infinite. -/
+/-- A nonempty structure realizes the infiniteness axiom exactly when it is infinite.
+@isnad1 id=iff.0h2v.s4.56608d35be63 from=translated src=- shape=1e1e0229 vocab=7d2d8c91
+-/
 @[simp] theorem realize_infiniteAxiom :
     Sentenceω.Realize (infiniteAxiom L) M ↔ Infinite M := by
   rw [show Sentenceω.Realize (infiniteAxiom L) M ↔ ∀ n : ℕ, (M ⊨ Sentence.cardGe L n) from by

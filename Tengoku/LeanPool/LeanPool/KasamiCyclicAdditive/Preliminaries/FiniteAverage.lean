@@ -20,7 +20,9 @@ open Finset
 namespace KasamiCyclicAdditive
 
 /-- If `N i = c + Z i / Q` on a nonempty finite index set, the mean of `N` is
-`c`, and `Z ≥ 0` pointwise, then `N` is constantly `c` and `Z` vanishes. -/
+`c`, and `Z ≥ 0` pointwise, then `N` is constantly `c` and `Z` vanishes.
+@isnad1 id=and.6h7v.s7.0859b4453265 from=translated src=- shape=f33342d6 vocab=0f32e69b
+-/
 theorem forcing_of_average_and_nonneg {ι : Type*} (s : Finset ι) (hs : s.Nonempty)
     (N Z : ι → ℝ) (c Q : ℝ) (hQ : 0 < Q)
     (hN : ∀ i ∈ s, N i = c + Z i / Q)

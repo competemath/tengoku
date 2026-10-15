@@ -69,6 +69,9 @@ noncomputable def f (n : ℕ) (r : Fin (w n) → ℕ) (x : ZMod (q n)) : ℝ :=
 As defined previously, an integer x survives the sieve (i.e., f(x) = 1) if and only if
 x is not congruent to ±r^K_i mod p_i for all 1 <= i <= w.
 -/
+/--
+@isnad1 id=iff.0h2v.s7.86a74a17c786 from=translated src=- shape=1071203c vocab=9c17a255
+-/
 theorem survives_iff (n : ℕ) (x : ZMod (q n)) :
     f n (krafftResidue n) x = 1 ↔ ∀ i : Fin (w n),
        (x.cast : ZMod (p n i)) ≠ krafftResidue n i ∧
@@ -79,6 +82,9 @@ theorem survives_iff (n : ℕ) (x : ZMod (q n)) :
 Krafft Algebraic Equivalence: For any prime p >= 5
 and any integer x, let r = floor((p+1)/6). Then x = ±r (mod p) if and only if
 p | (6x-1) or p | (6x+1).
+-/
+/--
+@isnad1 id=other.2h2v.s7.389c3dce795c from=translated src=- shape=a6bd4d38 vocab=322c834a
 -/
 lemma krafft_algebraic_equivalence (p : ℕ) (hp : p.Prime) (h_ge_5 : p ≥ 5) (x : ℤ) :
     let r := (p + 1) / 6
@@ -112,6 +118,9 @@ Interval Projection Bound: For any x in evalInterval, the
 value 6x+1 is strictly bounded by the square of the next possible prime after primeWindow:
 6x + 1 < (6n+5)^2.
 -/
+/--
+@isnad1 id=lt.1h2v.s6.7743838f1886 from=translated src=- shape=bc0e14c2 vocab=5af29c2d
+-/
 lemma interval_projection_bound (n : ℕ) (x : ℕ) (hx : x ∈ evalInterval n) :
     6 * x + 1 < (6 * n + 5) ^ 2 := by
   unfold evalInterval at hx
@@ -123,6 +132,9 @@ lemma interval_projection_bound (n : ℕ) (x : ℕ) (hx : x ∈ evalInterval n) 
 /-
 Any prime p such that 5 <= p < 6n+5 must be in primeWindow. This is because the integers 6n+2, 6n+3,
 6n+4 are all composite (divisible by 2 or 3), so there are no primes in the interval [6n+2, 6n+4].
+-/
+/--
+@isnad1 id=mem.3h2v.s5.6e7713247c4c from=translated src=- shape=7e6e117a vocab=26ed28d1
 -/
 lemma primes_in_range_eq_P_n (n : ℕ) (p : ℕ) (hp : p.Prime)
     (h_ge_5 : 5 ≤ p) (h_lt : p < 6 * n + 5) :
@@ -144,6 +156,9 @@ lemma primes_in_range_eq_P_n (n : ℕ) (p : ℕ) (hp : p.Prime)
 /-
 If k >= 2 and k < m^2, and k has no prime factors less than m, then k is prime.
 -/
+/--
+@isnad1 id=prime.3h2v.s5.a512278c5189 from=translated src=- shape=9c37a099 vocab=d0028da9
+-/
 lemma prime_of_no_prime_factors_lt {k m : ℕ} (hk : 2 ≤ k) (h_sq : k < m ^ 2)
     (h_no_factors : ∀ p, p.Prime → p < m → ¬ p ∣ k) : k.Prime := by
   by_contra h_not_prime
@@ -161,6 +176,9 @@ lemma prime_of_no_prime_factors_lt {k m : ℕ} (hk : 2 ≤ k) (h_sq : k < m ^ 2)
 
 /-
 If x survives, then for any p in primeWindow, p does not divide 6x-1 and p does not divide 6x+1.
+-/
+/--
+@isnad1 id=and.2h3v.s7.bdcc173caf8a from=translated src=- shape=84fd3158 vocab=0ddde5a6
 -/
 lemma not_dvd_of_survives (n : ℕ) (x : ℕ) (h_survives : f n (krafftResidue n) x = 1) (p_val : ℕ)
     (hp : p_val ∈ primeWindow n) : ¬(p_val : ℤ) ∣ (6 * x - 1) ∧ ¬(p_val : ℤ) ∣ (6 * x + 1) := by
@@ -189,6 +207,9 @@ lemma not_dvd_of_survives (n : ℕ) (x : ℕ) (h_survives : f n (krafftResidue n
 The Sieve Isomorphism: Assume x in evalInterval. By the Fundamental
 Theorem of Arithmetic and the Sieve of Eratosthenes bound from earlier, x survives the Krafft
 sieve if and only if both 6x-1 and 6x+1 are prime numbers.
+-/
+/--
+@isnad1 id=iff.2h2v.s6.9e54357715be from=translated src=- shape=5493a315 vocab=ab8d4820
 -/
 lemma sieve_equivalence (n : ℕ) (hn : n ≥ 1) (x : ℕ) (hx : x ∈ evalInterval n) :
     f n (krafftResidue n) x = 1 ↔ Nat.Prime (6 * x - 1) ∧ Nat.Prime (6 * x + 1) := by
@@ -287,6 +308,7 @@ Additive Sieve Equivalence:
 Prove that an integer $x \in \mathcal{A}_n$ survives the Krafft sieve (meaning both $6x-1$
 and $6x+1$ are prime) if and only if its global hit counter is exactly zero:
 $$ c(x) = 0 \iff x \text{ survives the Krafft sieve} $$
+@isnad1 id=iff.2h2v.s6.6035c8ee3fcf from=translated src=- shape=3fb24de9 vocab=c084dd06
 -/
 lemma additive_sieve_equivalence (n : ℕ) (hn : n ≥ 1) (x : ℕ) (hx : x ∈ evalInterval n) :
     c n x = 0 ↔ Nat.Prime (6 * x - 1) ∧ Nat.Prime (6 * x + 1) := by
@@ -301,6 +323,7 @@ Non-negative Hits:
 Using the definition of $g_i(x)$ and $c(x)$, prove that for any $x$, the hit counter is
 non-negative: $c(x) \ge 0$. Furthermore, note that because $c(x)$ is a sum of indicator
 functions, if $c(x) < 1$, then $c(x) = 0$.
+@isnad1 id=and.0h2v.s5.fc2606fbf667 from=translated src=- shape=f3a5fb01 vocab=d4465df2
 -/
 lemma non_negative_hits (n : ℕ) (x : ZMod (q n)) :
     c n x ≥ 0 ∧ (c n x < 1 → c n x = 0) := by unfold c; unfold g; aesop
@@ -309,6 +332,7 @@ lemma non_negative_hits (n : ℕ) (x : ZMod (q n)) :
 The Weighted Existence Principle:
 Assume there exists a specific configuration such that $sum2(n, W) < sum1(n, W)$. Prove that
 there must exist at least one integer $x \in \mathcal{A}_n$ such that $W(x) > 0$ and $c(x) = 0$.
+@isnad1 id=ex.2h2v.s6.5dfe35002288 from=translated src=- shape=af6f86b8 vocab=12a8f4ef
 -/
 theorem weighted_existence_principle (n : ℕ) (W : ZMod (q n) → ℝ) (hW : ∀ x, W x ≥ 0)
     (h_ineq : sum2 n W < sum1 n W) :
@@ -343,6 +367,9 @@ overpowers the main term, yielding:
 $$ sum2(n, W) < sum1(n, W) $$
 Conclude that by the Weighted Existence Principle and the Additive Sieve Equivalence, a Twin Prime
 index is unconditionally guaranteed in $\mathcal{A}_n$.
+-/
+/--
+@isnad1 id=ex.2h1v.s6.6c19c7b824a5 from=translated src=- shape=11e977b8 vocab=1690fe21
 -/
 theorem krafft_sieve_guarantee (n : ℕ) (hn : n ≥ 1) (h_admit : KrafftSufficiency n) :
     ∃ x ∈ evalInterval n, Nat.Prime (6 * x - 1) ∧ Nat.Prime (6 * x + 1) := by

@@ -38,10 +38,16 @@ def AElementary (A : Fragment L) (f : N ↪[L] M) : Prop :=
 
 namespace AElementary
 
+/--
+@isnad1 id=aelement.0h3v.s4.146fdafd53f4 from=translated src=- shape=2652911b vocab=416844cd
+-/
 theorem refl (A : Fragment L) : AElementary A (Embedding.refl L M) := by
   intro n φ _ a
   exact Iff.of_eq (congrArg _ (funext fun i => rfl))
 
+/--
+@isnad1 id=aelement.2h7v.s6.b880965a4165 from=translated src=- shape=f64e32fe vocab=5dfbfbe3
+-/
 theorem comp {A : Fragment L} {f : N ↪[L] M} {g : P ↪[L] N}
     (hf : AElementary A f) (hg : AElementary A g) : AElementary A (f.comp g) := by
   intro n φ hφ a
@@ -50,7 +56,9 @@ theorem comp {A : Fragment L} {f : N ↪[L] M} {g : P ↪[L] N}
   exact (Iff.of_eq (congrArg (φ.Realize Empty.elim)
     (funext fun i => rfl))).trans (h1.trans h2)
 
-/-- Sentence transport: for a fragment sentence, truth agrees between the two structures. -/
+/-- Sentence transport: for a fragment sentence, truth agrees between the two structures.
+@isnad1 id=iff.2h6v.s6.e2cac741ea0e from=translated src=- shape=1d868fb0 vocab=81e38ec7
+-/
 theorem realize_sentence_iff {A : Fragment L} {f : N ↪[L] M} (h : AElementary A f)
     {φ : L.Sentenceω} (hφ : (⟨0, φ⟩ : Σ n, L.BoundedFormulaω Empty n) ∈ A.toSet) :
     Sentenceω.Realize φ M ↔ Sentenceω.Realize φ N := by
@@ -60,7 +68,9 @@ theorem realize_sentence_iff {A : Fragment L} {f : N ↪[L] M} (h : AElementary 
 end AElementary
 
 /-- **The fragment Tarski–Vaught criterion**: if every fragment-controlled universal admits
-element witnesses in `N` for its failures in `M`, then the embedding is A-elementary. -/
+element witnesses in `N` for its failures in `M`, then the embedding is A-elementary.
+@isnad1 id=aelement.1h5v.s8.2f67dbf56354 from=translated src=- shape=8e62e260 vocab=745754a2
+-/
 theorem aElementary_of_tarskiVaught {A : Fragment L} (f : N ↪[L] M)
     (hTV : ∀ {n : ℕ} (φ : L.BoundedFormulaω Empty (n + 1)),
       (⟨n, φ.all⟩ : Σ n, L.BoundedFormulaω Empty n) ∈ A.toSet → ∀ a : Fin n → N,

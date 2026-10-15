@@ -53,6 +53,9 @@ def uliftChartAt (x : V) : OpenPartialHomeomorph (ULift.{u} (V ⧸ L)) V :=
   (Homeomorph.ulift (X := V ⧸ L)).toOpenPartialHomeomorph.trans (chartAt' L x)
 
 omit [CompleteSpace V] [NormedSpace ℂ V] in
+/--
+@isnad1 id=mem.0h3v.s8.150f8b887f40 from=translated src=- shape=60b17563 vocab=36287fde
+-/
 theorem uliftChartAt_mem_source (q : ULift.{u} (V ⧸ L)) :
     q ∈ (uliftChartAt L (Function.surjInv QuotientAddGroup.mk_surjective q.down)).source := by
   rw [uliftChartAt, OpenPartialHomeomorph.trans_source]
@@ -63,21 +66,32 @@ instance instChartedSpaceULift : ChartedSpace V (ULift.{u} (V ⧸ L)) :=
     (fun q => Function.surjInv QuotientAddGroup.mk_surjective q.down) (uliftChartAt_mem_source L)
 
 omit [CompleteSpace V] [NormedSpace ℂ V] in
+/--
+@isnad1 id=eq.0h3v.s8.0773a3fe5767 from=translated src=- shape=0952d375 vocab=f9ff7343
+-/
 theorem chartAt_ulift_eq (q : ULift.{u} (V ⧸ L)) :
     chartAt V q = uliftChartAt L (Function.surjInv QuotientAddGroup.mk_surjective q.down) := rfl
 
 omit [CompleteSpace V] [NormedSpace ℂ V] in
 /-- `Homeomorph.ulift`'s associated `OpenPartialHomeomorph.symm`, precomposed into a
-`uliftChartAt`, cancels by `rfl` (`PartialEquiv.coe_trans_symm`). -/
+`uliftChartAt`, cancels by `rfl` (`PartialEquiv.coe_trans_symm`).
+@isnad1 id=eq.0h4v.s8.09c7ac2ec127 from=translated src=- shape=cccd0770 vocab=533d69bd
+-/
 theorem uliftChartAt_symm_apply (x w : V) :
     (uliftChartAt L x).symm w = ULift.up ((chartAt' L x).symm w) := rfl
 
 omit [CompleteSpace V] [NormedSpace ℂ V] in
+/--
+@isnad1 id=eq.0h3v.s8.42b10c7c0d7b from=translated src=- shape=690c0722 vocab=8034e840
+-/
 theorem uliftChartAt_target (x : V) : (uliftChartAt L x).target = (chartAt' L x).target := by
   rw [uliftChartAt, OpenPartialHomeomorph.trans_target]
   simp
 
 omit [CompleteSpace V] [NormedSpace ℂ V] in
+/--
+@isnad1 id=eq.0h3v.s8.56b286832e46 from=translated src=- shape=18e04f2b vocab=04ef377b
+-/
 theorem uliftChartAt_source' (x : V) :
     (uliftChartAt L x).source = ULift.down ⁻¹' (chartAt' L x).source := by
   rw [uliftChartAt, OpenPartialHomeomorph.trans_source]
@@ -86,7 +100,9 @@ theorem uliftChartAt_source' (x : V) :
 
 omit [CompleteSpace V] [NormedSpace ℂ V] in
 /-- The `ULift`-wrapped transition function agrees *exactly* with the unwrapped one (no
-neighborhood needed: `ULift.up`/`.down` cancel by `rfl`). -/
+neighborhood needed: `ULift.up`/`.down` cancel by `rfl`).
+@isnad1 id=eq.0h4v.s8.022eca8c975b from=translated src=- shape=b4b235db vocab=571cc45c
+-/
 theorem uliftChartAt_trans_eq (x x' : V) :
     (⇑((uliftChartAt L x).symm ≫ₕ uliftChartAt L x') : V → V)
       = ⇑((chartAt' L x).symm ≫ₕ chartAt' L x') := by
@@ -95,6 +111,9 @@ theorem uliftChartAt_trans_eq (x x' : V) :
   rfl
 
 omit [CompleteSpace V] [NormedSpace ℂ V] in
+/--
+@isnad1 id=eq.0h4v.s8.9492b6025324 from=translated src=- shape=2c92c7e5 vocab=bffc4632
+-/
 theorem uliftChartAt_trans_source (x x' : V) :
     ((uliftChartAt L x).symm ≫ₕ uliftChartAt L x').source
       = ((chartAt' L x).symm ≫ₕ chartAt' L x').source := by
@@ -107,20 +126,32 @@ theorem uliftChartAt_trans_source (x x' : V) :
 /-! ## `ULift.down`/`ULift.up` are `ω`-smooth -/
 
 omit [NormedSpace ℂ V] [CompleteSpace V] [DiscreteTopology ↥L] in
+/--
+@isnad1 id=continuo.0h2v.s6.e06eb78c3aaf from=translated src=- shape=2fc58f48 vocab=c774cffb
+-/
 theorem continuous_uliftDown : Continuous (ULift.down : ULift.{u} (V ⧸ L) → V ⧸ L) :=
   (Homeomorph.ulift (X := V ⧸ L)).continuous
 
 omit [NormedSpace ℂ V] [CompleteSpace V] [DiscreteTopology ↥L] in
+/--
+@isnad1 id=continuo.0h2v.s6.8c5f1eff6b3c from=translated src=- shape=f8074b23 vocab=0fc56631
+-/
 theorem continuous_uliftUp : Continuous (ULift.up.{u} : V ⧸ L → ULift.{u} (V ⧸ L)) :=
   (Homeomorph.ulift (X := V ⧸ L)).symm.continuous
 
 omit [CompleteSpace V] in
+/--
+@isnad1 id=eq.0h4v.s8.65019929a119 from=translated src=- shape=4c965b4e vocab=c163a214
+-/
 theorem extChartAt_ulift_apply_eq (q q' : ULift.{u} (V ⧸ L)) :
     extChartAt 𝓘(ℂ, V) q q'
       = uliftChartAt L (Function.surjInv QuotientAddGroup.mk_surjective q.down) q' := by
   rw [extChartAt_coe, Function.comp_apply, modelWithCornersSelf_coe, id_eq, chartAt_ulift_eq]
 
 omit [CompleteSpace V] in
+/--
+@isnad1 id=eq.0h4v.s8.dc170ea0315d from=translated src=- shape=e8c9036d vocab=ccca200d
+-/
 theorem extChartAt_ulift_symm_apply_eq (q : ULift.{u} (V ⧸ L)) (w : V) :
     (extChartAt 𝓘(ℂ, V) q).symm w
       = ULift.up ((chartAt' L (Function.surjInv QuotientAddGroup.mk_surjective q.down)).symm w) :=
@@ -130,6 +161,9 @@ theorem extChartAt_ulift_symm_apply_eq (q : ULift.{u} (V ⧸ L)) (w : V) :
   rfl
 
 omit [CompleteSpace V] in
+/--
+@isnad1 id=eq.0h3v.s7.507f46bdb81a from=translated src=- shape=34cca749 vocab=21aa08cc
+-/
 theorem extChartAt_ulift_self_eq (q : ULift.{u} (V ⧸ L)) :
     extChartAt 𝓘(ℂ, V) q q = Function.surjInv QuotientAddGroup.mk_surjective q.down := by
   rw [extChartAt_ulift_apply_eq]
@@ -142,7 +176,9 @@ theorem extChartAt_ulift_self_eq (q : ULift.{u} (V ⧸ L)) :
   exact chartAt'_apply_mk L (Metric.mem_ball_self (injRadius_pos L))
 
 /-- `ULift.down` is `ω`-smooth: in matching charts at the *same* representative, the composite is
-the identity on the (open) chart target. -/
+the identity on the (open) chart target.
+@isnad1 id=contmdif.0h2v.s7.ad240db8dd85 from=translated src=- shape=9206bfb4 vocab=d53e91a3
+-/
 theorem contMDiff_uliftDown : ContMDiff 𝓘(ℂ, V) 𝓘(ℂ, V) ω
     (ULift.down : ULift.{u} (V ⧸ L) → V ⧸ L) := by
   intro q
@@ -166,7 +202,9 @@ theorem contMDiff_uliftDown : ContMDiff 𝓘(ℂ, V) 𝓘(ℂ, V) ω
     exact (chartAt' L x).right_inv hw
   exact ((analyticAt_id).congr hgoal_eq.symm).contDiffAt
 
-/-- `ULift.up` is `ω`-smooth: mirror-image argument to `contMDiff_uliftDown`. -/
+/-- `ULift.up` is `ω`-smooth: mirror-image argument to `contMDiff_uliftDown`.
+@isnad1 id=contmdif.0h2v.s7.dbc33342ec1c from=translated src=- shape=f28c539e vocab=57b03b2c
+-/
 theorem contMDiff_uliftUp : ContMDiff 𝓘(ℂ, V) 𝓘(ℂ, V) ω
     (ULift.up.{u} : V ⧸ L → ULift.{u} (V ⧸ L)) := by
   intro q
@@ -193,6 +231,9 @@ theorem contMDiff_uliftUp : ContMDiff 𝓘(ℂ, V) 𝓘(ℂ, V) ω
 
 /-! ## `LieAddGroup` for `ULift (V ⧸ L)` -/
 
+/--
+@isnad1 id=contmdif.0h2v.s9.fa0de9cadf29 from=translated src=- shape=e64a1892 vocab=b0e0c14f
+-/
 theorem contMDiff_add_ulift :
     ContMDiff (𝓘(ℂ, V).prod 𝓘(ℂ, V)) 𝓘(ℂ, V) ω
       (fun p : ULift.{u} (V ⧸ L) × ULift.{u} (V ⧸ L) => p.1 + p.2) := by
@@ -204,6 +245,9 @@ theorem contMDiff_add_ulift :
   exact (contMDiff_uliftUp L).comp
     ((contMDiff_add_torus L).comp ((contMDiff_uliftDown L).prodMap (contMDiff_uliftDown L)))
 
+/--
+@isnad1 id=contmdif.0h2v.s8.8b535c213e33 from=translated src=- shape=6ed8cc46 vocab=80a13629
+-/
 theorem contMDiff_neg_ulift :
     ContMDiff 𝓘(ℂ, V) 𝓘(ℂ, V) ω (fun q : ULift.{u} (V ⧸ L) => -q) := by
   have heq : (fun q : ULift.{u} (V ⧸ L) => -q) = ULift.up ∘ (fun q : V ⧸ L => -q) ∘ ULift.down := by

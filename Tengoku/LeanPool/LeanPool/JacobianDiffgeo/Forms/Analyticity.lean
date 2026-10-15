@@ -46,7 +46,9 @@ variable {X : Type*} [TopologicalSpace X] [ChartedSpace ℂ X] [IsManifold 𝓘(
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
 /-- The transition map between two maximal-atlas charts is analytic at every point of the image
-of the overlap. -/
+of the overlap.
+@isnad1 id=analytic.4h4v.s8.c9048a3ce05d from=translated src=- shape=5a615e1a vocab=1ebd4170
+-/
 theorem analyticAt_trans {e e' : OpenPartialHomeomorph X ℂ}
     (he : e ∈ maximalAtlas 𝓘(ℂ) ω X) (he' : e' ∈ maximalAtlas 𝓘(ℂ) ω X) {z : ℂ}
     (hzt : z ∈ e'.target) (hzs : e'.symm z ∈ e.source) :
@@ -68,7 +70,9 @@ theorem analyticAt_trans {e e' : OpenPartialHomeomorph X ℂ}
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
 /-- Chain rule for transition derivatives: reading the transition from `f` to `e` through an
-intermediate chart `e'` multiplies the derivatives. -/
+intermediate chart `e'` multiplies the derivatives.
+@isnad1 id=eq.6h5v.s9.1a7826985ca0 from=translated src=- shape=dae22575 vocab=456b42a6
+-/
 theorem deriv_trans_comp {e e' f : OpenPartialHomeomorph X ℂ}
     (he : e ∈ maximalAtlas 𝓘(ℂ) ω X) (he' : e' ∈ maximalAtlas 𝓘(ℂ) ω X)
     (hf : f ∈ maximalAtlas 𝓘(ℂ) ω X) {z : ℂ} (hzt : z ∈ f.target)
@@ -93,7 +97,9 @@ theorem deriv_trans_comp {e e' f : OpenPartialHomeomorph X ℂ}
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
 /-- **Scalar chain rule**: the composite of `mfderiv`s applied to the canonical tangent vector
-`1`, read in the canonical coordinate, is the planar derivative of the composite. -/
+`1`, read in the canonical coordinate, is the planar derivative of the composite.
+@isnad1 id=eq.2h4v.s11.1d13c1db5e57 from=translated src=- shape=19d98bcb vocab=e520d5cf
+-/
 theorem tangentCoord_mfderiv_comp {f : X → ℂ} {g : ℂ → X} {z : ℂ}
     (hf : MDifferentiableAt 𝓘(ℂ) 𝓘(ℂ) f (g z)) (hg : MDifferentiableAt 𝓘(ℂ) 𝓘(ℂ) g z) :
     tangentCoord (mfderiv 𝓘(ℂ) 𝓘(ℂ) f (g z) (mfderiv 𝓘(ℂ) 𝓘(ℂ) g z (1 : ℂ))) =
@@ -107,7 +113,9 @@ theorem tangentCoord_mfderiv_comp {f : X → ℂ} {g : ℂ → X} {z : ℂ}
 /-! ### The planar `(ℂ →L[ℂ] ℂ)`-valued analyticity reduction -/
 
 /-- A `ℂ →L[ℂ] ℂ`-valued map is analytic iff its pointwise evaluation at `1` is (the fiber is
-one-dimensional; evaluation at `1` is a linear isometry equivalence). -/
+one-dimensional; evaluation at `1` is a linear isometry equivalence).
+@isnad1 id=iff.0h2v.s8.2cc263a30ee7 from=translated src=- shape=33a3395a vocab=e62dd8a6
+-/
 theorem analyticAt_clm_iff_apply_one {F : ℂ → ℂ →L[ℂ] ℂ} {z : ℂ} :
     AnalyticAt ℂ F z ↔ AnalyticAt ℂ (fun w => F w 1) z := by
   set L := (ContinuousLinearMap.toSpanSingletonLIE ℂ ℂ).symm with hL
@@ -126,7 +134,9 @@ theorem analyticAt_clm_iff_apply_one {F : ℂ → ℂ →L[ℂ] ℂ} {z : ℂ} :
     exact L.toContinuousLinearEquiv.symm_apply_apply (F w)
 
 /-- Defeq bridge: the hom-bundle trivialization representative of a covector section, evaluated
-at the canonical tangent vector `1`, is the chart coefficient function. -/
+at the canonical tangent vector `1`, is the chart coefficient function.
+@isnad1 id=eq.1h4v.s10.aa6260598e2e from=translated src=- shape=4528cd1c vocab=a6b0382e
+-/
 theorem inCoordinates_apply_one (σ : ∀ x : X, TangentSpace 𝓘(ℂ) x →L[ℂ] Bundle.Trivial X ℂ x)
     (x : X) {z : ℂ} (hz : z ∈ (chartAt ℂ x).target) :
     inCoordinates ℂ (TangentSpace 𝓘(ℂ)) ℂ (Bundle.Trivial X ℂ) x ((chartAt ℂ x).symm z) x
@@ -166,7 +176,9 @@ theorem inCoordinates_apply_one (σ : ∀ x : X, TangentSpace 𝓘(ℂ) x →L[�
 /-! ### The section characterization -/
 
 /-- **Smoothness ↔ analytic coefficients** (CC1): a covector section is `C^ω` at `x` iff its
-coefficient function in the preferred chart at `x` is analytic at the chart image of `x`. -/
+coefficient function in the preferred chart at `x` is analytic at the chart image of `x`.
+@isnad1 id=iff.0h3v.s12.c5ca99f06131 from=translated src=- shape=650044d5 vocab=02ff74d1
+-/
 theorem contMDiffAt_section_iff_analyticAt_coeffInFun
     (σ : ∀ x : X, TangentSpace 𝓘(ℂ) x →L[ℂ] Bundle.Trivial X ℂ x) (x : X) :
     ContMDiffAt 𝓘(ℂ) (𝓘(ℂ).prod 𝓘(ℂ, ℂ →L[ℂ] ℂ)) ω
@@ -184,6 +196,9 @@ def Form1.ofSectionAnalytic (σ : ∀ x : X, TangentSpace 𝓘(ℂ) x →L[ℂ] 
     (h : ∀ x, AnalyticAt ℂ (coeffInFun (chartAt ℂ x) σ) (chartAt ℂ x x)) : Form1 X :=
   ⟨σ, fun x => (contMDiffAt_section_iff_analyticAt_coeffInFun σ x).mpr (h x)⟩
 
+/--
+@isnad1 id=eq.1h2v.s11.909a2ec7f4ea from=translated src=- shape=e12f64c2 vocab=fbc918c9
+-/
 @[simp]
 theorem Form1.coe_ofSectionAnalytic (σ : ∀ x : X, TangentSpace 𝓘(ℂ) x →L[ℂ] Bundle.Trivial X ℂ x)
     (h : ∀ x, AnalyticAt ℂ (coeffInFun (chartAt ℂ x) σ) (chartAt ℂ x x)) :
@@ -192,13 +207,17 @@ theorem Form1.coe_ofSectionAnalytic (σ : ∀ x : X, TangentSpace 𝓘(ℂ) x �
 /-! ### Analyticity of the coefficients of a holomorphic 1-form -/
 
 /-- The coefficient of a holomorphic 1-form in the preferred chart at `x` is analytic at the
-chart image of `x`. -/
+chart image of `x`.
+@isnad1 id=analytic.0h3v.s7.d39c6b896ba7 from=translated src=- shape=1938b0aa vocab=6469fbd3
+-/
 theorem Form1.analyticAt_coeffAt (η : Form1 X) (x : X) :
     AnalyticAt ℂ (coeffIn (chartAt ℂ x) η) (chartAt ℂ x x) :=
   (contMDiffAt_section_iff_analyticAt_coeffInFun (⇑η) x).mp (η.contMDiff x)
 
 /-- The coefficient of a holomorphic 1-form in any maximal-atlas chart is analytic on the whole
-chart target. -/
+chart target.
+@isnad1 id=analytic.1h3v.s8.cf7fd3ed3952 from=translated src=- shape=fd860a02 vocab=2bb6dde1
+-/
 theorem Form1.analyticOnNhd_coeffIn (η : Form1 X) {e : OpenPartialHomeomorph X ℂ}
     (he : e ∈ maximalAtlas 𝓘(ℂ) ω X) : AnalyticOnNhd ℂ (coeffIn e η) e.target := by
   intro z hz
@@ -228,13 +247,17 @@ theorem Form1.analyticOnNhd_coeffIn (η : Form1 X) {e : OpenPartialHomeomorph X 
   exact (AnalyticAt.fun_mul hτ.deriv hcoeff).congr heq.symm
 
 /-- The coefficient of a holomorphic 1-form in a maximal-atlas chart is analytic at each target
-point (pointwise form). -/
+point (pointwise form).
+@isnad1 id=analytic.2h4v.s8.df8340b6cced from=translated src=- shape=d8bc6855 vocab=36044ada
+-/
 theorem Form1.analyticAt_coeffIn (η : Form1 X) {e : OpenPartialHomeomorph X ℂ}
     (he : e ∈ maximalAtlas 𝓘(ℂ) ω X) {z : ℂ} (hz : z ∈ e.target) :
     AnalyticAt ℂ (coeffIn e η) z :=
   η.analyticOnNhd_coeffIn he z hz
 
-/-- Coefficients of holomorphic 1-forms are continuous on chart targets. -/
+/-- Coefficients of holomorphic 1-forms are continuous on chart targets.
+@isnad1 id=continuo.1h3v.s8.0b5bf2aa6088 from=translated src=- shape=fdaab68d vocab=ac872050
+-/
 theorem Form1.continuousOn_coeffIn (η : Form1 X) {e : OpenPartialHomeomorph X ℂ}
     (he : e ∈ maximalAtlas 𝓘(ℂ) ω X) : ContinuousOn (coeffIn e η) e.target :=
   (η.analyticOnNhd_coeffIn he).continuousOn

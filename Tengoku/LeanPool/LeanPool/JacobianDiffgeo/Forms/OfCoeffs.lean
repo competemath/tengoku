@@ -60,6 +60,9 @@ variable {ι : Type*} (D : Form1CoeffData X ι)
 /-- A chosen chart index for each point. -/
 def idx (x : X) : ι := (D.exists_mem x).choose
 
+/--
+@isnad1 id=mem.0h4v.s7.559ccef999d3 from=translated src=- shape=7c6bfa7f vocab=6dfca011
+-/
 theorem mem_source_idx (x : X) : x ∈ (D.chart (D.idx x)).source := (D.exists_mem x).choose_spec
 
 /-- The underlying covector section: at `x`, the covector `coeff · d(chart)ₓ` read through the
@@ -71,7 +74,9 @@ def toSection (x : X) : TangentSpace 𝓘(ℂ) x →L[ℂ] Bundle.Trivial X ℂ 
 
 /-- **Master computation**: in any maximal-atlas chart `e'`, at a target point `z` whose base
 point lies in the `i`-th chart, the raw coefficient of `D.toSection` is the `i`-th coefficient
-transported by the transition derivative. -/
+transported by the transition derivative.
+@isnad1 id=eq.3h6v.s9.22e23fa875e2 from=translated src=- shape=df2489e2 vocab=f7ab1978
+-/
 theorem coeffInFun_toSection {e' : OpenPartialHomeomorph X ℂ}
     (he' : e' ∈ maximalAtlas 𝓘(ℂ) ω X) (i : ι) {z : ℂ} (hz : z ∈ e'.target)
     (hp : e'.symm z ∈ (D.chart i).source) :
@@ -100,7 +105,9 @@ theorem coeffInFun_toSection {e' : OpenPartialHomeomorph X ℂ}
   ring
 
 /-- The preferred-chart coefficient functions of `D.toSection` are analytic (feeds the
-`Form1.ofSectionAnalytic` constructor). -/
+`Form1.ofSectionAnalytic` constructor).
+@isnad1 id=analytic.0h4v.s7.0d9252ee750e from=translated src=- shape=671969d1 vocab=049f88e4
+-/
 theorem analyticAt_coeffInFun_toSection (x : X) :
     AnalyticAt ℂ (coeffInFun (chartAt ℂ x) D.toSection) (chartAt ℂ x x) := by
   obtain ⟨i, hi⟩ := D.exists_mem x
@@ -140,7 +147,9 @@ def Form1.ofCoeffs {ι : Type*} (D : Form1CoeffData X ι) : Form1 X :=
   Form1.ofSectionAnalytic D.toSection D.analyticAt_coeffInFun_toSection
 
 /-- The coefficients of `Form1.ofCoeffs D` in the `i`-th chart of the data are the given
-coefficients, on the whole chart target. -/
+coefficients, on the whole chart target.
+@isnad1 id=eqon.0h4v.s7.e75c6138bc36 from=translated src=- shape=0511069c vocab=a2ce879b
+-/
 theorem Form1.coeffIn_ofCoeffs {ι : Type*} (D : Form1CoeffData X ι) (i : ι) :
     Set.EqOn (coeffIn (D.chart i) (Form1.ofCoeffs D)) (D.coeff i) (D.chart i).target := by
   intro z hz

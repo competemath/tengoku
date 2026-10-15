@@ -57,7 +57,9 @@ def IsLomega1omegaIndiscernibleOn (a : I → M)
       φ.Realize (Empty.elim : Empty → M) (a ∘ t)
 
 /-- Restricting an `On`-indiscernible sequence to a sub-order preserves
-restricted indiscernibility on the same family. -/
+restricted indiscernibility on the same family.
+@isnad1 id=islomega.1h7v.s7.06ac1f5592b2 from=translated src=- shape=424d8788 vocab=7a8ddca9
+-/
 theorem IsLomega1omegaIndiscernibleOn.restrict {a : I → M}
     {Γ : Set (Σ n, L.BoundedFormulaω Empty n)}
     (h : IsLomega1omegaIndiscernibleOn (L := L) a Γ)
@@ -67,7 +69,9 @@ theorem IsLomega1omegaIndiscernibleOn.restrict {a : I → M}
   exact h hφ (e ∘ s) (e ∘ t) (e.strictMono.comp hs) (e.strictMono.comp ht)
 
 /-- Monotonicity: shrinking the formula family preserves restricted
-indiscernibility. -/
+indiscernibility.
+@isnad1 id=islomega.2h6v.s6.a6fa492c847e from=translated src=- shape=9eaf394a vocab=c635b072
+-/
 theorem IsLomega1omegaIndiscernibleOn.mono {a : I → M}
     {Γ Γ' : Set (Σ n, L.BoundedFormulaω Empty n)} (hΓ : Γ ⊆ Γ')
     (h : IsLomega1omegaIndiscernibleOn (L := L) a Γ') :
@@ -75,7 +79,9 @@ theorem IsLomega1omegaIndiscernibleOn.mono {a : I → M}
   intro n φ hφ s t hs ht
   exact h (hΓ hφ) s t hs ht
 
-/-- Restricting an indiscernible sequence to a sub-order. -/
+/-- Restricting an indiscernible sequence to a sub-order.
+@isnad1 id=islomega.1h6v.s7.29418faf1d03 from=translated src=- shape=90577a60 vocab=84c9be54
+-/
 theorem IsLomega1omegaIndiscernible.restrict {a : I → M}
     (h : IsLomega1omegaIndiscernible (L := L) a)
     {J : Type*} [LinearOrder J] (e : J ↪o I) :

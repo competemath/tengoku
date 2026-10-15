@@ -41,7 +41,9 @@ variable {L : Language.{0, 0}}
 /-! ## The relational-core collapse lemma -/
 
 /-- **Collapse** (relational core): over a relational base, every closed `L[[ℕ]]`-term is a
-constant. -/
+constant.
+@isnad1 id=ex.0h2v.s4.31e5775cb93c from=translated src=- shape=c3f47954 vocab=be091421
+-/
 theorem exists_eq_constTerm [L.IsRelational] (t : L[[ℕ]].Term Empty) :
     ∃ c : ℕ, t = constTerm c := by
   cases t with
@@ -61,7 +63,9 @@ def constTermS (c : ℕ) : L[[ℕ]].Term (Empty ⊕ Fin 0) :=
   Term.func (Sum.inr c : L[[ℕ]].Functions 0) Fin.elim0
 
 /-- The closed constant `constTerm a`, relabeled into the sentence-term context, is
-`constTermS a`. -/
+`constTermS a`.
+@isnad1 id=eq.0h2v.s5.10ab8a19a03a from=translated src=- shape=a4a9dc84 vocab=8db56db9
+-/
 theorem constTerm_relabel_inl (a : ℕ) :
     (constTerm (L' := L) (J := ℕ) a).relabel (Sum.inl : Empty → Empty ⊕ Fin 0) =
       constTermS a := by
@@ -112,46 +116,94 @@ def GenU (r₁ r₂ : L[[ℕ]].Sentenceω) : Set L[[ℕ]].Sentenceω :=
 
 variable {r₁ r₂ : L[[ℕ]].Sentenceω}
 
+/--
+@isnad1 id=mem.0h3v.s5.e3a45e07fd1b from=translated src=- shape=d9af95fd vocab=b71588c5
+-/
 theorem root₁_mem : r₁ ∈ GenU r₁ r₂ :=
   .base (Or.inl (Or.inl (Set.mem_insert _ _)))
 
+/--
+@isnad1 id=mem.0h3v.s5.e9d075edfa53 from=translated src=- shape=7a4bd6cd vocab=b71588c5
+-/
 theorem root₂_mem : r₂ ∈ GenU r₁ r₂ :=
   .base (Or.inl (Or.inl (Set.mem_insert_of_mem _ rfl)))
 
+/--
+@isnad1 id=mem.0h5v.s5.73e389f67988 from=translated src=- shape=17589bda vocab=aca39cf7
+-/
 theorem constEq_mem (a b : ℕ) : constEq a b ∈ GenU r₁ r₂ :=
   .base (Or.inl (Or.inr ⟨(a, b), rfl⟩))
 
+/--
+@isnad1 id=mem.0h4v.s5.0e9fafb1c67a from=translated src=- shape=4b9166f4 vocab=aca39cf7
+-/
 theorem eqRefl_mem (c : ℕ) : constEq c c ∈ GenU r₁ r₂ := constEq_mem c c
 
+/--
+@isnad1 id=mem.0h6v.s5.87b7ea345345 from=translated src=- shape=4d1442d1 vocab=ac8928dd
+-/
 theorem relInst_mem {l : ℕ} (R : L.Relations l) (g : Fin l → ℕ) :
     relInst R g ∈ GenU r₁ r₂ :=
   .base (Or.inr ⟨l, R, g, rfl⟩)
 
 /-! ## Closure under the decomposition targets -/
 
+/--
+@isnad1 id=mem.1h5v.s6.75c1286ed8d7 from=translated src=- shape=4e91d0f3 vocab=25ffca81
+-/
 theorem imp_negleft_mem {φ ψ : L[[ℕ]].Sentenceω} (h : φ.imp ψ ∈ GenU r₁ r₂) :
     φ.not ∈ GenU r₁ r₂ := h.imp_negleft
+/--
+@isnad1 id=mem.1h5v.s6.c73e753e1f1d from=translated src=- shape=0e205e0b vocab=e199f14a
+-/
 theorem imp_right_mem {φ ψ : L[[ℕ]].Sentenceω} (h : φ.imp ψ ∈ GenU r₁ r₂) :
     ψ ∈ GenU r₁ r₂ := h.imp_right
+/--
+@isnad1 id=mem.1h5v.s6.21fb53dd5ebc from=translated src=- shape=c50e9afa vocab=25ffca81
+-/
 theorem negimp_left_mem {φ ψ : L[[ℕ]].Sentenceω} (h : (φ.imp ψ).not ∈ GenU r₁ r₂) :
     φ ∈ GenU r₁ r₂ := h.negimp_left
+/--
+@isnad1 id=mem.1h5v.s6.af2511947946 from=translated src=- shape=fcf81e89 vocab=25ffca81
+-/
 theorem negimp_right_mem {φ ψ : L[[ℕ]].Sentenceω} (h : (φ.imp ψ).not ∈ GenU r₁ r₂) :
     ψ.not ∈ GenU r₁ r₂ := h.negimp_right
+/--
+@isnad1 id=mem.1h5v.s6.2e1e076f4e0b from=translated src=- shape=4e4b2c82 vocab=d8b5927f
+-/
 theorem iInf_comp_mem {φs : ℕ → L[[ℕ]].Sentenceω} (k) (h : BoundedFormulaω.iInf φs ∈ GenU r₁ r₂) :
     φs k ∈ GenU r₁ r₂ := h.iInf_comp k
+/--
+@isnad1 id=mem.1h5v.s6.ac39b952a24e from=translated src=- shape=20721f91 vocab=7a729ba1
+-/
 theorem negiInf_comp_mem {φs : ℕ → L[[ℕ]].Sentenceω} (k)
     (h : (BoundedFormulaω.iInf φs).not ∈ GenU r₁ r₂) : (φs k).not ∈ GenU r₁ r₂ := h.negiInf_comp k
+/--
+@isnad1 id=mem.1h5v.s6.508754de57bb from=translated src=- shape=4e4b2c82 vocab=7f31e9df
+-/
 theorem iSup_comp_mem {φs : ℕ → L[[ℕ]].Sentenceω} (k) (h : BoundedFormulaω.iSup φs ∈ GenU r₁ r₂) :
     φs k ∈ GenU r₁ r₂ := h.iSup_comp k
+/--
+@isnad1 id=mem.1h5v.s6.96547768423a from=translated src=- shape=20721f91 vocab=247366d1
+-/
 theorem negiSup_comp_mem {φs : ℕ → L[[ℕ]].Sentenceω} (k)
     (h : (BoundedFormulaω.iSup φs).not ∈ GenU r₁ r₂) : (φs k).not ∈ GenU r₁ r₂ := h.negiSup_comp k
+/--
+@isnad1 id=mem.1h5v.s6.263d4bde06bb from=translated src=- shape=e0f1e3ac vocab=1566a077
+-/
 theorem all_inst_mem {φ : L[[ℕ]].BoundedFormulaω Empty 1} (c) (h : φ.all ∈ GenU r₁ r₂) :
     instConst c φ ∈ GenU r₁ r₂ := h.all_inst c
+/--
+@isnad1 id=mem.1h5v.s6.a85a46ff63c3 from=translated src=- shape=1fe3dcce vocab=b97142c7
+-/
 theorem negall_inst_mem {φ : L[[ℕ]].BoundedFormulaω Empty 1} (c) (h : φ.all.not ∈ GenU r₁ r₂) :
     (instConst c φ).not ∈ GenU r₁ r₂ := h.negall_inst c
 
 /-! ## Countability of the seed -/
 
+/--
+@isnad1 id=countabl.0h2v.s4.7661903f6ea2 from=translated src=- shape=6b740296 vocab=936d6085
+-/
 theorem countable_relations_each [Countable (Σ l, L.Relations l)] (l : ℕ) :
     Countable (L.Relations l) :=
   Function.Injective.countable (f := fun r => (⟨l, r⟩ : Σ l, L.Relations l))
@@ -276,7 +328,9 @@ private theorem reachFrom_iff_path {S : Set L[[ℕ]].Sentenceω} {p : L[[ℕ]].S
         | some r => rw [hstep] at hl; exact ih r (hq.of_uStep hstep) hl
     exact hgen l s (.base hs) hl
 
-/-- **Countability of `U`**. -/
+/-- **Countability of `U`**.
+@isnad1 id=countabl.0h3v.s4.25aaa8e21a77 from=translated src=- shape=1e459e3e vocab=44708404
+-/
 theorem genU_countable [Countable (Σ l, L.Relations l)] : (GenU r₁ r₂).Countable := by
   have hchar : GenU r₁ r₂
       = ⋃ s ∈ seed r₁ r₂, Option.some ⁻¹' Set.range (fun l : List (ℕ × ℕ) => uPath s l) := by
@@ -290,9 +344,15 @@ theorem genU_countable [Countable (Σ l, L.Relations l)] : (GenU r₁ r₂).Coun
 
 /-! ## Finite constant support -/
 
+/--
+@isnad1 id=eq.0h2v.s5.a844978c60df from=translated src=- shape=043eb96e vocab=9e9d9ad7
+-/
 theorem sentenceJConsts_all (φ : L[[ℕ]].BoundedFormulaω Empty 1) :
     sentenceJConsts (L' := L) (J := ℕ) φ.all = sentenceJConsts (L' := L) (J := ℕ) φ := rfl
 
+/--
+@isnad1 id=le.0h3v.s6.590ef0f37d66 from=translated src=- shape=eb901cac vocab=6dbe4fba
+-/
 theorem sentenceJConsts_instConst_subset (c : ℕ) (φ : L[[ℕ]].BoundedFormulaω Empty 1) :
     sentenceJConsts (L' := L) (J := ℕ) (instConst c φ)
       ⊆ sentenceJConsts (L' := L) (J := ℕ) φ.all ∪ {c} := by
@@ -300,6 +360,9 @@ theorem sentenceJConsts_instConst_subset (c : ℕ) (φ : L[[ℕ]].BoundedFormula
   refine (sentenceJConsts_subst_constTerm (L' := L) φ.openBounds c).trans ?_
   rw [sentenceJConsts_openBounds]
 
+/--
+@isnad1 id=le.0h2v.s4.6ec52be5aed1 from=translated src=- shape=3df03a7a vocab=08fa265e
+-/
 theorem constTermS_jConsts (c : ℕ) :
     Term.jConsts (L' := L) (constTermS (L := L) c) ⊆ {c} := by
   intro k hk
@@ -308,7 +371,9 @@ theorem constTermS_jConsts (c : ℕ) :
   exact Set.mem_singleton_iff.mpr (Sum.inr.inj (eq_of_heq (Sigma.mk.inj_iff.mp hk).2))
 
 /-- **Finite constant support**: assuming the roots have finite constant support, every member
-of `U` does. -/
+of `U` does.
+@isnad1 id=finite.3h4v.s6.45cadb8af796 from=translated src=- shape=1d090d5e vocab=c01ed61d
+-/
 theorem genU_finite_support (hr₁ : (sentenceJConsts (L' := L) (J := ℕ) r₁).Finite)
     (hr₂ : (sentenceJConsts (L' := L) (J := ℕ) r₂).Finite) :
     ∀ p ∈ GenU r₁ r₂, (sentenceJConsts (L' := L) (J := ℕ) p).Finite := by

@@ -153,11 +153,17 @@ noncomputable def scottFormula {n : ℕ} (a : Fin n → M) (α : Ordinal) : L.Fo
     n a
 
 omit [L.IsRelational] in
+/--
+@isnad1 id=eq.0h4v.s5.740984d4a2b0 from=translated src=- shape=7872cb7b vocab=ed2f6717
+-/
 theorem scottFormula_zero {n : ℕ} (a : Fin n → M) :
     scottFormula (L := L) a 0 = atomicDiagram a := by
   simp only [scottFormula, Ordinal.limitRecOn_zero]
 
 omit [L.IsRelational] in
+/--
+@isnad1 id=eq.0h5v.s7.9647d1224b7c from=translated src=- shape=65cca2a2 vocab=c0c98faf
+-/
 theorem scottFormula_succ {n : ℕ} (a : Fin n → M) (α : Ordinal) :
     scottFormula (L := L) a (Order.succ α) =
       scottFormula a α ⊓
@@ -178,6 +184,7 @@ The proof proceeds by ordinal induction using `limitRecOn`:
 - Zero case: follows from `sameAtomicType_iff_realize_atomicDiagram`
 - Successor case: uses `realize_existsLastVar` and `realize_forallLastVar`
 - Limit case: uses `realize_einf`
+@isnad1 id=iff.1h7v.s6.c3bdf34db102 from=translated src=- shape=a0eedbdd vocab=5191f195
 -/
 theorem realize_scottFormula_iff_BFEquiv
     {N : Type w'} [L.Structure N] {n : ℕ}

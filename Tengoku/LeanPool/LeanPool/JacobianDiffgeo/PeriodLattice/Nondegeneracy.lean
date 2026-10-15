@@ -39,7 +39,9 @@ variable {X : Type*} [TopologicalSpace X] [T2Space X] [CompactSpace X] [Connecte
 omit [T2Space X] in
 /-- **Nondegeneracy** (Forster 21.4(c)): if every based loop's period has vanishing real part, the
 form is identically zero. Proof: the maximum principle (§5.1), replacing Forster's
-19.4+19.5+19.7+10.15 chain. -/
+19.4+19.5+19.7+10.15 chain.
+@isnad1 id=eq.1h2v.s11.67cbb22fa383 from=translated src=- shape=788c1bbc vocab=64786ec1
+-/
 theorem form1_eq_zero_of_re_period_eq_zero {η : Form1 X}
     (h : ∀ γ : Path (Classical.arbitrary X) (Classical.arbitrary X), (period γ η).re = 0) :
     η = 0 := by

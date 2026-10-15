@@ -43,12 +43,18 @@ section FunctionsIn
 
 variable {L : Language.{0, 0}} {α β : Type}
 
+/--
+@isnad1 id=eq.0h5v.s5.6eb728d3b313 from=translated src=- shape=a9c391cd vocab=5055b017
+-/
 theorem Term.functionsIn_relabel (g : α → β) (t : L.Term α) :
     (t.relabel g).functionsIn = t.functionsIn := by
   induction t with
   | var x => rfl
   | func f ts ih => simp only [Term.relabel, Term.functionsIn, ih]
 
+/--
+@isnad1 id=le.0h5v.s6.c7ff77d51547 from=translated src=- shape=85f67209 vocab=58c9ec81
+-/
 theorem Term.functionsIn_subst (tf : α → L.Term β) (t : L.Term α) :
     (t.subst tf).functionsIn ⊆ t.functionsIn ∪ ⋃ a, (tf a).functionsIn := by
   induction t with
@@ -76,6 +82,9 @@ private theorem BoundedFormulaω.functionsIn_castLE {m n : ℕ} (h : m ≤ n)
   | iSup φs ih => simp only [BoundedFormulaω.castLE, BoundedFormulaω.functionsIn, ih]
   | iInf φs ih => simp only [BoundedFormulaω.castLE, BoundedFormulaω.functionsIn, ih]
 
+/--
+@isnad1 id=eq.0h7v.s5.ce7de8082a58 from=translated src=- shape=968fd34a vocab=e910f820
+-/
 theorem BoundedFormulaω.functionsIn_relabel {n : ℕ} (g : α → β ⊕ Fin n) :
     ∀ {k : ℕ} (φ : L.BoundedFormulaω α k), (φ.relabel g).functionsIn = φ.functionsIn := by
   intro k φ
@@ -102,6 +111,9 @@ private theorem BoundedFormulaω.relationsIn_castLE {m n : ℕ} (h : m ≤ n)
   | iSup φs ih => simp only [BoundedFormulaω.castLE, BoundedFormulaω.relationsIn, ih]
   | iInf φs ih => simp only [BoundedFormulaω.castLE, BoundedFormulaω.relationsIn, ih]
 
+/--
+@isnad1 id=eq.0h7v.s5.3775b328600e from=translated src=- shape=968fd34a vocab=dceeaa66
+-/
 theorem BoundedFormulaω.relationsIn_relabel {n : ℕ} (g : α → β ⊕ Fin n) :
     ∀ {k : ℕ} (φ : L.BoundedFormulaω α k), (φ.relabel g).relationsIn = φ.relationsIn := by
   intro k φ
@@ -115,6 +127,9 @@ theorem BoundedFormulaω.relationsIn_relabel {n : ℕ} (g : α → β ⊕ Fin n)
   | iSup φs ih => simp only [BoundedFormulaω.relabel, BoundedFormulaω.relationsIn, ih]
   | iInf φs ih => simp only [BoundedFormulaω.relabel, BoundedFormulaω.relationsIn, ih]
 
+/--
+@isnad1 id=le.0h6v.s6.5abf7556c53f from=translated src=- shape=628346a4 vocab=2d65325e
+-/
 theorem BoundedFormulaω.functionsIn_subst (tf : α → L.Term β) :
     ∀ {k : ℕ} (φ : L.BoundedFormulaω α k),
       (φ.subst tf).functionsIn ⊆ φ.functionsIn ∪ ⋃ a, (tf a).functionsIn := by
@@ -162,6 +177,9 @@ theorem BoundedFormulaω.functionsIn_subst (tf : α → L.Term β) :
       (Set.union_subset_union_left _ (Set.subset_iUnion (fun i =>
         BoundedFormulaω.functionsIn (φs i)) i))
 
+/--
+@isnad1 id=eq.0h3v.s5.ec22515ba164 from=translated src=- shape=aae9c5b0 vocab=4a60d433
+-/
 theorem BoundedFormulaω.functionsIn_openBounds :
     ∀ {n : ℕ} (φ : L.BoundedFormulaω Empty n),
       (φ.openBounds).functionsIn = φ.functionsIn := by
@@ -179,19 +197,25 @@ theorem BoundedFormulaω.functionsIn_openBounds :
   | iSup φs ih => simp only [BoundedFormulaω.openBounds, BoundedFormulaω.functionsIn, ih]
   | iInf φs ih => simp only [BoundedFormulaω.openBounds, BoundedFormulaω.functionsIn, ih]
 
-/-- A term mentions only finitely many function symbols (it is a finite tree). -/
+/-- A term mentions only finitely many function symbols (it is a finite tree).
+@isnad1 id=finite.0h3v.s4.49db88ad329e from=translated src=- shape=f7053bab vocab=47bcf507
+-/
 theorem Term.functionsIn_finite (t : L.Term α) : t.functionsIn.Finite := by
   induction t with
   | var x => simp [Term.functionsIn]
   | func f ts ih => exact (Set.finite_iUnion ih).insert _
 
-/-- Negation does not change the mentioned function symbols (`not` is `imp · ⊥`). -/
+/-- Negation does not change the mentioned function symbols (`not` is `imp · ⊥`).
+@isnad1 id=eq.0h4v.s5.5d862ad71d2f from=translated src=- shape=7485ef56 vocab=92c9f1c2
+-/
 theorem BoundedFormulaω.functionsIn_not {n : ℕ} (φ : L.BoundedFormulaω α n) :
     (φ.not).functionsIn = φ.functionsIn := by
   change φ.functionsIn ∪ (BoundedFormulaω.falsum : L.BoundedFormulaω α n).functionsIn = _
   simp only [BoundedFormulaω.functionsIn, Set.union_empty]
 
-/-- Existential quantification (`¬∀¬`) does not change the mentioned function symbols. -/
+/-- Existential quantification (`¬∀¬`) does not change the mentioned function symbols.
+@isnad1 id=eq.0h4v.s5.128be2d22814 from=translated src=- shape=d2b2f868 vocab=311f0fe7
+-/
 theorem BoundedFormulaω.functionsIn_ex {n : ℕ} (φ : L.BoundedFormulaω α (n + 1)) :
     (φ.ex).functionsIn = φ.functionsIn := by
   change (φ.not.all.not).functionsIn = _
@@ -199,13 +223,17 @@ theorem BoundedFormulaω.functionsIn_ex {n : ℕ} (φ : L.BoundedFormulaω α (n
   change (φ.not).functionsIn = _
   rw [BoundedFormulaω.functionsIn_not]
 
-/-- Negation does not change the mentioned relation symbols. -/
+/-- Negation does not change the mentioned relation symbols.
+@isnad1 id=eq.0h4v.s5.f90cceda723c from=translated src=- shape=7485ef56 vocab=83c88d52
+-/
 theorem BoundedFormulaω.relationsIn_not {n : ℕ} (φ : L.BoundedFormulaω α n) :
     (φ.not).relationsIn = φ.relationsIn := by
   change φ.relationsIn ∪ (BoundedFormulaω.falsum : L.BoundedFormulaω α n).relationsIn = _
   simp only [BoundedFormulaω.relationsIn, Set.union_empty]
 
-/-- Existential quantification does not change the mentioned relation symbols. -/
+/-- Existential quantification does not change the mentioned relation symbols.
+@isnad1 id=eq.0h4v.s5.1f7bd21ecefb from=translated src=- shape=d2b2f868 vocab=ae828f90
+-/
 theorem BoundedFormulaω.relationsIn_ex {n : ℕ} (φ : L.BoundedFormulaω α (n + 1)) :
     (φ.ex).relationsIn = φ.relationsIn := by
   change (φ.not.all.not).relationsIn = _
@@ -213,14 +241,18 @@ theorem BoundedFormulaω.relationsIn_ex {n : ℕ} (φ : L.BoundedFormulaω α (n
   change (φ.not).relationsIn = _
   rw [BoundedFormulaω.relationsIn_not]
 
-/-- A finite existential block does not change the mentioned relation symbols. -/
+/-- A finite existential block does not change the mentioned relation symbols.
+@isnad1 id=eq.0h5v.s5.d37c87bba270 from=translated src=- shape=48efff30 vocab=90b43d5c
+-/
 theorem BoundedFormulaω.relationsIn_existsBlock {n : ℕ} :
     ∀ {k : ℕ} (φ : L.BoundedFormulaω α (n + k)),
       (φ.existsBlock).relationsIn = φ.relationsIn
   | 0, _ => rfl
   | _ + 1, φ => (relationsIn_existsBlock φ.ex).trans (BoundedFormulaω.relationsIn_ex φ)
 
-/-- A finite universal block does not change the mentioned relation symbols. -/
+/-- A finite universal block does not change the mentioned relation symbols.
+@isnad1 id=eq.0h5v.s5.bb32affc529f from=translated src=- shape=48efff30 vocab=a7aa4e04
+-/
 theorem BoundedFormulaω.relationsIn_forallBlock {n : ℕ} :
     ∀ {k : ℕ} (φ : L.BoundedFormulaω α (n + k)),
       (φ.forallBlock).relationsIn = φ.relationsIn
@@ -232,7 +264,9 @@ private theorem BoundedFormulaω.relationsIn_top {n : ℕ} :
     (⊤ : L.BoundedFormulaω α n).relationsIn = ∅ :=
   Set.union_empty ∅
 
-/-- Binary conjunction collects both sides' relation symbols. -/
+/-- Binary conjunction collects both sides' relation symbols.
+@isnad1 id=eq.0h5v.s5.7b07046800ee from=translated src=- shape=d7fc488e vocab=1ac3f1b9
+-/
 theorem BoundedFormulaω.relationsIn_and {n : ℕ} (φ ψ : L.BoundedFormulaω α n) :
     (φ.and ψ).relationsIn = φ.relationsIn ∪ ψ.relationsIn := by
   change ((φ.imp ψ.not).not).relationsIn = _
@@ -240,7 +274,9 @@ theorem BoundedFormulaω.relationsIn_and {n : ℕ} (φ ψ : L.BoundedFormulaω �
   change φ.relationsIn ∪ (ψ.not).relationsIn = _
   rw [BoundedFormulaω.relationsIn_not]
 
-/-- An `Encodable`-indexed conjunction collects the branches' relation symbols. -/
+/-- An `Encodable`-indexed conjunction collects the branches' relation symbols.
+@isnad1 id=eq.0h5v.s5.a4653f6432e2 from=translated src=- shape=d93fbd71 vocab=73683248
+-/
 theorem BoundedFormulaω.relationsIn_einf {ι : Type*} [Encodable ι] {n : ℕ}
     (φs : ι → L.BoundedFormulaω α n) :
     (BoundedFormulaω.einf φs).relationsIn = ⋃ i, (φs i).relationsIn := by
@@ -254,7 +290,9 @@ theorem BoundedFormulaω.relationsIn_einf {ι : Type*} [Encodable ι] {n : ℕ}
   · rintro ⟨i, hi⟩
     exact ⟨Encodable.encode i, by rw [Encodable.encodek]; exact hi⟩
 
-/-- In a relational language no formula mentions a function symbol. -/
+/-- In a relational language no formula mentions a function symbol.
+@isnad1 id=eq.0h4v.s5.e03a5ec6f65a from=translated src=- shape=f60d143e vocab=7ed29746
+-/
 theorem BoundedFormulaω.functionsIn_of_isRelational {L' : Language.{0, 0}} [L'.IsRelational]
     {α : Type} {n : ℕ} (φ : L'.BoundedFormulaω α n) : φ.functionsIn = ∅ := by
   rw [Set.eq_empty_iff_forall_notMem]
@@ -277,7 +315,9 @@ private theorem Term.realize_congr_functionsIn {M : Type} (S S' : L.Structure M)
 
 /-- **Occurrence-aware realization congruence**: two structure instances agreeing on the
 symbols occurring in `φ` realize `φ` identically. The tool that localizes semantic transport
-to a formula's own vocabulary. -/
+to a formula's own vocabulary.
+@isnad1 id=iff.2h9v.s7.c7693582635e from=translated src=- shape=3143c923 vocab=64bb86f6
+-/
 theorem BoundedFormulaω.realize_congr_symbolsIn {M : Type} (S S' : L.Structure M) :
     ∀ {n : ℕ} (φ : L.BoundedFormulaω α n)
       (_ : ∀ p ∈ φ.functionsIn, ∀ x : Fin p.1 → M,
@@ -338,13 +378,17 @@ def sentenceJConsts {α : Type} {n : ℕ} (φ : L'[[J]].BoundedFormulaω α n) :
   {j | (⟨0, (Sum.inr j : L'[[J]].Functions 0)⟩ : Σ n, L'[[J]].Functions n) ∈
     BoundedFormulaω.functionsIn φ}
 
-/-- Negation does not change the constant support (`not` is `imp · falsum`). -/
+/-- Negation does not change the constant support (`not` is `imp · falsum`).
+@isnad1 id=eq.0h5v.s5.6542d52e0c81 from=translated src=- shape=e5d5b978 vocab=814f4c14
+-/
 theorem sentenceJConsts_not {α : Type} {n : ℕ} (φ : L'[[J]].BoundedFormulaω α n) :
     sentenceJConsts (L' := L') φ.not = sentenceJConsts (L' := L') φ := by
   ext j
   simp [sentenceJConsts, BoundedFormulaω.functionsIn]
 
-/-- A conjunction component's constant support is contained in the conjunction's. -/
+/-- A conjunction component's constant support is contained in the conjunction's.
+@isnad1 id=le.0h6v.s5.cd7c20188221 from=translated src=- shape=09778f65 vocab=a1bdd4ea
+-/
 theorem sentenceJConsts_component_iInf {α : Type} {n : ℕ}
     (φs : ℕ → L'[[J]].BoundedFormulaω α n) (k : ℕ) :
     sentenceJConsts (L' := L') (φs k) ⊆
@@ -353,7 +397,9 @@ theorem sentenceJConsts_component_iInf {α : Type} {n : ℕ}
   simp only [sentenceJConsts, Set.mem_ofPred_eq, BoundedFormulaω.functionsIn] at hj ⊢
   exact Set.mem_iUnion.mpr ⟨k, hj⟩
 
-/-- A disjunction component's constant support is contained in the disjunction's. -/
+/-- A disjunction component's constant support is contained in the disjunction's.
+@isnad1 id=le.0h6v.s5.a68f11a3d190 from=translated src=- shape=09778f65 vocab=67785438
+-/
 theorem sentenceJConsts_component_iSup {α : Type} {n : ℕ}
     (φs : ℕ → L'[[J]].BoundedFormulaω α n) (k : ℕ) :
     sentenceJConsts (L' := L') (φs k) ⊆
@@ -362,14 +408,18 @@ theorem sentenceJConsts_component_iSup {α : Type} {n : ℕ}
   simp only [sentenceJConsts, Set.mem_ofPred_eq, BoundedFormulaω.functionsIn] at hj ⊢
   exact Set.mem_iUnion.mpr ⟨k, hj⟩
 
-/-- An implication's antecedent support is contained in the implication's. -/
+/-- An implication's antecedent support is contained in the implication's.
+@isnad1 id=le.0h6v.s5.f0cb3baf870d from=translated src=- shape=61433963 vocab=fc43b3b3
+-/
 theorem sentenceJConsts_imp_left {α : Type} {n : ℕ} (φ ψ : L'[[J]].BoundedFormulaω α n) :
     sentenceJConsts (L' := L') φ ⊆ sentenceJConsts (L' := L') (φ.imp ψ) := by
   intro j hj
   simp only [sentenceJConsts, Set.mem_ofPred_eq, BoundedFormulaω.functionsIn] at hj ⊢
   exact Set.mem_union_left _ hj
 
-/-- An implication's consequent support is contained in the implication's. -/
+/-- An implication's consequent support is contained in the implication's.
+@isnad1 id=le.0h6v.s5.525e5e7f76b5 from=translated src=- shape=b9e98ea7 vocab=fc43b3b3
+-/
 theorem sentenceJConsts_imp_right {α : Type} {n : ℕ} (φ ψ : L'[[J]].BoundedFormulaω α n) :
     sentenceJConsts (L' := L') ψ ⊆ sentenceJConsts (L' := L') (φ.imp ψ) := by
   intro j hj
@@ -385,25 +435,34 @@ def Term.jConsts {β : Type} (t : L'[[J]].Term β) : Set J :=
 def constTerm (j : J) : L'[[J]].Term Empty :=
   Term.func (Sum.inr j : L'[[J]].Functions 0) Fin.elim0
 
+/--
+@isnad1 id=eq.0h3v.s6.e8bcd948f509 from=translated src=- shape=1c4fb5a4 vocab=c4991c00
+-/
 theorem constTerm_functionsIn (j : J) :
     (constTerm (L' := L') j).functionsIn =
       {(⟨0, (Sum.inr j : L'[[J]].Functions 0)⟩ : Σ n, L'[[J]].Functions n)} := by
   simp [constTerm, Term.functionsIn, Set.iUnion_of_empty]
 
-/-- `openBounds` does not change the constant support. -/
+/-- `openBounds` does not change the constant support.
+@isnad1 id=eq.0h4v.s5.9fa37f42b6ad from=translated src=- shape=1a34f9df vocab=c388bbc6
+-/
 theorem sentenceJConsts_openBounds {n : ℕ} (φ : L'[[J]].BoundedFormulaω Empty n) :
     sentenceJConsts (L' := L') φ.openBounds = sentenceJConsts (L' := L') φ := by
   unfold sentenceJConsts
   rw [BoundedFormulaω.functionsIn_openBounds]
 
-/-- Existential quantification does not change the constant support. -/
+/-- Existential quantification does not change the constant support.
+@isnad1 id=eq.0h5v.s5.2f5c8a2a937f from=translated src=- shape=59be6322 vocab=e23404a2
+-/
 theorem sentenceJConsts_ex {α : Type} {n : ℕ} (φ : L'[[J]].BoundedFormulaω α (n + 1)) :
     sentenceJConsts (L' := L') φ.ex = sentenceJConsts (L' := L') φ := by
   unfold sentenceJConsts
   rw [BoundedFormulaω.functionsIn_ex]
 
 /-- **Instantiation support bound**: substituting the constant `j` into a one-variable
-formula adds at most `j` to the constant support. -/
+formula adds at most `j` to the constant support.
+@isnad1 id=le.0h4v.s6.1c1bc314ef77 from=translated src=- shape=bfed599e vocab=10fba2c6
+-/
 theorem sentenceJConsts_subst_constTerm (φ : L'[[J]].Formulaω (Fin 1)) (j : J) :
     sentenceJConsts (L' := L') (φ.subst fun _ => constTerm j) ⊆
       sentenceJConsts (L' := L') φ ∪ {j} := by
@@ -470,7 +529,9 @@ private theorem Term.onTerm_stripConsts {β : Type} :
       | succ l => exact nomatch c
 
 /-- Occurrence transport for term stripping: the stripped term's symbols are the base
-symbols of the original. -/
+symbols of the original.
+@isnad1 id=le.1h4v.s7.198329d52d44 from=translated src=- shape=b36ac6ba vocab=b284c191
+-/
 theorem Term.functionsIn_stripConsts {β : Type} :
     ∀ (t : L'[[J]].Term β) (h : Term.jConsts (L' := L') t ⊆ ∅),
       (t.stripConsts h).functionsIn ⊆
@@ -512,7 +573,9 @@ def BoundedFormulaω.stripConsts {α : Type} :
     .iInf fun i => (φs i).stripConsts fun _ hj => h (Set.mem_iUnion.mpr ⟨i, hj⟩)
 
 /-- **Quantifier class is invariant under stripping constants.**  `stripConsts` rewrites only terms
-and the relation tag; it touches no quantifier node, so the signed universal class is exact. -/
+and the relation tag; it touches no quantifier node, so the signed universal class is exact.
+@isnad1 id=iff.1h6v.s5.420570ab1c0b from=translated src=- shape=42ffe39a vocab=a1ce7a64
+-/
 theorem BoundedFormulaω.universalSigned_stripConsts {α : Type} (s : Bool) :
     ∀ {n : ℕ} (φ : L'[[J]].BoundedFormulaω α n)
       (h : sentenceJConsts (L' := L') φ ⊆ ∅),
@@ -543,7 +606,9 @@ theorem BoundedFormulaω.universalSigned_stripConsts {α : Type} (s : Bool) :
     change (∀ i, universalSigned s _) ↔ _
     exact forall_congr' fun i => ih i s _
 
-/-- The `withConstants` inclusion is a left inverse of formula stripping. -/
+/-- The `withConstants` inclusion is a left inverse of formula stripping.
+@isnad1 id=eq.1h5v.s5.8d1fc79d8e09 from=translated src=- shape=c4f6bd44 vocab=09c5b6ba
+-/
 theorem BoundedFormulaω.mapLanguage_stripConsts {α : Type} :
     ∀ {n : ℕ} (φ : L'[[J]].BoundedFormulaω α n) (h : sentenceJConsts (L' := L') φ ⊆ ∅),
       (φ.stripConsts h).mapLanguage (L'.lhomWithConstants J) = φ := by
@@ -577,7 +642,9 @@ theorem BoundedFormulaω.mapLanguage_stripConsts {α : Type} :
     simp only [BoundedFormulaω.stripConsts, BoundedFormulaω.mapLanguage]
     exact congrArg _ (funext fun i => ih i _)
 
-/-- Occurrence transport for formula stripping (function symbols). -/
+/-- Occurrence transport for formula stripping (function symbols).
+@isnad1 id=le.1h5v.s6.10aa474ce63d from=translated src=- shape=9a333921 vocab=27439132
+-/
 theorem BoundedFormulaω.functionsIn_stripConsts {α : Type} :
     ∀ {n : ℕ} (φ : L'[[J]].BoundedFormulaω α n) (h : sentenceJConsts (L' := L') φ ⊆ ∅),
       (φ.stripConsts h).functionsIn ⊆ φ.baseFunctionsIn := by
@@ -610,7 +677,9 @@ theorem BoundedFormulaω.functionsIn_stripConsts {α : Type} :
     obtain ⟨_, ⟨i, rfl⟩, hmem⟩ := hs
     exact Set.mem_iUnion.mpr ⟨i, ih i _ hmem⟩
 
-/-- Occurrence transport for formula stripping (relation symbols). -/
+/-- Occurrence transport for formula stripping (relation symbols).
+@isnad1 id=le.1h5v.s6.802165759b0d from=translated src=- shape=9a333921 vocab=fbb5ace2
+-/
 theorem BoundedFormulaω.relationsIn_stripConsts {α : Type} :
     ∀ {n : ℕ} (φ : L'[[J]].BoundedFormulaω α n) (h : sentenceJConsts (L' := L') φ ⊆ ∅),
       (φ.stripConsts h).relationsIn ⊆ φ.baseRelationsIn := by
@@ -641,7 +710,9 @@ theorem BoundedFormulaω.relationsIn_stripConsts {α : Type} :
 
 end Strip
 
-/-- **A constant-expansion image carries no constants**: its constant support is empty. -/
+/-- **A constant-expansion image carries no constants**: its constant support is empty.
+@isnad1 id=eq.0h2v.s5.dc692a6ba961 from=translated src=- shape=19ba5916 vocab=7a7b141f
+-/
 theorem sentenceJConsts_mapLanguage_withConstants (r : L.Sentenceω) :
     sentenceJConsts (L' := L) (J := ℕ)
       (BoundedFormulaω.mapLanguage (L.lhomWithConstants ℕ) r) = ∅ := by

@@ -22,7 +22,9 @@ then induction on the dimension.
 open MeasureTheory Set
 open scoped Pointwise
 
-/-- Brunn–Minkowski in one dimension for compact sets. -/
+/-- Brunn–Minkowski in one dimension for compact sets.
+@isnad1 id=le.5h3v.s7.7a536faa2fa7 from=translated src=- shape=45a30c8a vocab=1e96eec8
+-/
 lemma brunn_minkowski_1d_compact
     {A B C : Set ℝ}
     (h : A + B ⊆ C)
@@ -60,7 +62,9 @@ lemma brunn_minkowski_1d_compact
       exact (hB_compact.add isCompact_singleton).measurableSet
     _ = volume A + volume B := by simp [A', B']
 
-/-- Brunn–Minkowski in one dimension when one of the sets has infinite volume. -/
+/-- Brunn–Minkowski in one dimension when one of the sets has infinite volume.
+@isnad1 id=le.3h3v.s7.ad0962d3c099 from=translated src=- shape=940cc6bf vocab=2f92a496
+-/
 lemma brunn_minkowski_1d_infinite
     {A B C : Set ℝ} (ha : volume A = ⊤) (hb : B.Nonempty) (hc : A + B ⊆ C) :
     volume A + volume B ≤ volume C := calc
@@ -68,7 +72,9 @@ lemma brunn_minkowski_1d_infinite
   _ ≤ volume (A + B) := measure_mono (add_subset_add_left (singleton_subset_iff.mpr hb.some_mem))
   _ ≤ volume C := measure_mono hc
 
-/-- Brunn–Minkowski in one dimension for measurable sets. -/
+/-- Brunn–Minkowski in one dimension for measurable sets.
+@isnad1 id=le.5h3v.s6.55a9be0acac9 from=translated src=- shape=45a30c8a vocab=ae0479b0
+-/
 lemma brunn_minkowski_1d
     {A B C : Set ℝ}
     (h : A + B ⊆ C)
@@ -137,7 +143,9 @@ lemma brunn_minkowski_1d
     _ ⊆ C := h
   exact brunn_minkowski_1d_compact hKplusLsubC hKnonempty hKcompact hLnonempty hLcompact
 
-/-- The volume of the superlevel set `{x | t ≤ f x}` is measurable in `t`. -/
+/-- The volume of the superlevel set `{x | t ≤ f x}` is measurable in `t`.
+@isnad1 id=measurab.0h1v.s5.8fedd6701852 from=translated src=- shape=48756ddf vocab=8e1c3bff
+-/
 lemma vol_superlevelset_measurable (f : ℝ → ENNReal)
     : Measurable (fun t : ℝ ↦ volume {x | ENNReal.ofReal t ≤ f x}) := by
   apply Antitone.measurable
@@ -149,7 +157,9 @@ lemma vol_superlevelset_measurable (f : ℝ → ENNReal)
     ENNReal.ofReal a ≤ ENNReal.ofReal b := ENNReal.ofReal_le_ofReal hab
     _ ≤ f z := hz
 
-/-- The layer-cake formula for `ENNReal`-valued functions on `ℝ`. -/
+/-- The layer-cake formula for `ENNReal`-valued functions on `ℝ`.
+@isnad1 id=eq.1h1v.s6.af9237893fc4 from=translated src=- shape=5cc22b19 vocab=6bb8df12
+-/
 lemma layercake {f : ℝ → ENNReal} (hf_measurable : Measurable f) :
     ∫⁻ (x : ℝ), f x = ∫⁻ (t : ℝ) in Ioi 0, volume {x : ℝ | ENNReal.ofReal t ≤ f x} := by
   let ind (x t : ℝ) : ENNReal := if ENNReal.ofReal t ≤ f x then 1 else 0
@@ -189,7 +199,9 @@ lemma layercake {f : ℝ → ENNReal} (hf_measurable : Measurable f) :
           exact measurableSet_le measurable_const hf_measurable
         _ = volume {x | ENNReal.ofReal t ≤ f x} := by apply setLIntegral_one
 
-/-- Layer-cake formula on `(0, 1)` for functions bounded by `1`. -/
+/-- Layer-cake formula on `(0, 1)` for functions bounded by `1`.
+@isnad1 id=eq.2h1v.s6.5af26ea66a7d from=translated src=- shape=23e0a024 vocab=f3394373
+-/
 lemma lintegral_eq_vol_superlevelset_lintegral_01
     {f : ℝ → ENNReal} (hf_bound : f ≤ 1) (hf_measurable : Measurable f)
     : ∫⁻ x, f x = ∫⁻ t in Ioo 0 1, (fun t ↦ volume {x | ENNReal.ofReal t ≤ f x}) t := by
@@ -215,7 +227,9 @@ lemma lintegral_eq_vol_superlevelset_lintegral_01
         _ ≤ f x := hx
       exact absurd this (not_lt.mpr (hf_bound x))
 
-/-- A weighted AM–GM inequality. -/
+/-- A weighted AM–GM inequality.
+@isnad1 id=le.3h3v.s7.dca4ab49eb05 from=translated src=- shape=254be0c1 vocab=d436dc98
+-/
 lemma weighted_amgm {θ a b : ℝ} (hθ : 0 < θ ∧ θ < 1) (ha : 0 ≤ a) (hb : 0 ≤ b)
     : ((1-θ)^(1-θ) * θ^θ)⁻¹ * a^(1-θ) * b^θ ≤ a + b := calc
   ((1-θ)^(1-θ) * θ^θ)⁻¹ * a^(1-θ) * b^θ = ((1-θ)^(1-θ))⁻¹ * a^(1-θ) * (θ^θ)⁻¹ * b^θ := by grind
@@ -230,7 +244,9 @@ lemma weighted_amgm {θ a b : ℝ} (hθ : 0 < θ ∧ θ < 1) (ha : 0 ≤ a) (hb 
       (by linarith) (by linarith) (by simp [hθ.2, ha]) (by simp [hθ.1, hb]) (by ring)
   _ = a + b := by grind
 
-/-- Prékopa–Leindler in one dimension assuming sup norm 1. -/
+/-- Prékopa–Leindler in one dimension assuming sup norm 1.
+@isnad1 id=le.7h4v.s8.51f88b59dcc0 from=translated src=- shape=dfe50b0a vocab=15deaf70
+-/
 lemma prekopa_leindler_1d_normalized
     {θ : ℝ} {f g h : ℝ → ENNReal}
     (hθ : 0 < θ ∧ θ < 1)
@@ -346,7 +362,9 @@ lemma prekopa_leindler_1d_normalized
     _ ≤ hint := by exact h_ineq_integral
 
 /-- Prékopa–Leindler in one dimension assuming bounded sup norm. This removes the
-sup norm 1 assumption of `prekopa_leindler_1d_normalized` by scaling. -/
+sup norm 1 assumption of `prekopa_leindler_1d_normalized` by scaling.
+@isnad1 id=le.7h4v.s8.74e43be84508 from=translated src=- shape=383f251f vocab=c7970a0e
+-/
 lemma prekopa_leindler_1d_bounded {θ : ℝ} {f g h : ℝ → ENNReal}
     (hθ : 0 < θ ∧ θ < 1)
     (hf_measurable : Measurable f) (hf_bounded : iSup f ≠ ⊤)
@@ -445,7 +463,9 @@ lemma prekopa_leindler_1d_bounded {θ : ℝ} {f g h : ℝ → ENNReal}
     _ = hint := by ring
 
 /-- Prékopa–Leindler in one dimension. This removes the boundedness assumption of
-`prekopa_leindler_1d_bounded` using an approximation argument. -/
+`prekopa_leindler_1d_bounded` using an approximation argument.
+@isnad1 id=le.5h4v.s8.24be6282f6ff from=translated src=- shape=dd4b7179 vocab=e41b5650
+-/
 lemma prekopa_leindler_1d {θ : ℝ} {f g h : ℝ → ENNReal}
     (hθ : 0 < θ ∧ θ < 1)
     (hf_measurable : Measurable f)
@@ -490,7 +510,9 @@ lemma prekopa_leindler_1d {θ : ℝ} {f g h : ℝ → ENNReal}
       congr; ext; rw [← ENNReal.mul_iSup, iSup_rpow_of_pos hθ.1]
     _ ≤ ∫⁻ x, h x := by apply iSup₂_le; exact result_for_bounded
 
-/-- Lebesgue integral over `Fin 1 → ℝ` rewritten as an integral over `ℝ`. -/
+/-- Lebesgue integral over `Fin 1 → ℝ` rewritten as an integral over `ℝ`.
+@isnad1 id=eq.0h1v.s7.0e517ab8ca7b from=translated src=- shape=a968859a vocab=1bcc1cab
+-/
 lemma lintegral_fin1 (F : (Fin 1 → ℝ) → ENNReal) :
     ∫⁻ v : (Fin 1 → ℝ), F v = ∫⁻ x : ℝ, F (fun _ ↦ x) := by
   have h : (Measure.map (MeasurableEquiv.funUnique (Fin 1) ℝ).symm volume :
@@ -503,7 +525,9 @@ lemma lintegral_fin1 (F : (Fin 1 → ℝ) → ENNReal) :
 def append {d : ℕ} (x : Fin d → ℝ) (t : Fin 1 → ℝ) : Fin (d + 1) → ℝ :=
   fun i ↦ if h : i.val < d then x ⟨i.val, h⟩ else t default
 
-/-- `append` distributes over addition. -/
+/-- `append` distributes over addition.
+@isnad1 id=eq.0h5v.s8.c8c9d3ebb37c from=translated src=- shape=ce51339a vocab=f67f01fe
+-/
 lemma append_linear {d : ℕ} (x1 y1 : Fin (d + 1) → ℝ) (x y : Fin 1 → ℝ)
     : append x1 x + append y1 y = append (x1 + y1) (x + y) := by
   unfold append
@@ -514,12 +538,16 @@ first `d` components to `x`. -/
 def fix {d : ℕ} (F : (Fin (d + 1) → ℝ) → ENNReal) (x : Fin d → ℝ) : (Fin 1 → ℝ) → ENNReal :=
   F ∘ (append x)
 
-/-- Application form of `fix`. -/
+/-- Application form of `fix`.
+@isnad1 id=eq.0h4v.s5.7d3e94e4e675 from=translated src=- shape=a68ef176 vocab=de01b6d1
+-/
 lemma fix_apply {d : ℕ} (F : (Fin (d + 1) → ℝ) → ENNReal) (x : Fin d → ℝ) (y : Fin 1 → ℝ)
     : fix F x y = F (append x y) := by
   rfl
 
-/-- The integral of `fix F x1` over `Fin 1 → ℝ` equals an `lmarginal` of `F`. -/
+/-- The integral of `fix F x1` over `Fin 1 → ℝ` equals an `lmarginal` of `F`.
+@isnad1 id=eq.0h3v.s8.a976caf4ab6e from=translated src=- shape=529042d4 vocab=0d69db90
+-/
 lemma lintegral_fix_eq_lmarginal {d : ℕ}
     (F : (Fin (d + 2) → ℝ) → ENNReal) (x1 : Fin (d + 1) → ℝ)
     : ∫⁻ y : Fin 1 → ℝ, (fix F x1) y = (∫⋯∫⁻_{⟨d+1, by simp⟩}, F) (append x1 default) := by
@@ -535,7 +563,9 @@ lemma lintegral_fix_eq_lmarginal {d : ℕ}
   case e_f.isTrue => simp_all
   case e_f.isFalse h => simp [Fin.val_lt_last h]
 
-/-- Iterated integral of `fix f` recovers the integral of `f`. -/
+/-- Iterated integral of `fix f` recovers the integral of `f`.
+@isnad1 id=eq.1h2v.s9.e3f48687c385 from=translated src=- shape=50613dbf vocab=b3d4a227
+-/
 lemma lintegral_fix_lintegral_eq_lintegral
     {d : ℕ} {f : (Fin (d + 2) → ℝ) → ENNReal} (hf_measurable : Measurable f) :
     ∫⁻ (x : Fin (d + 1) → ℝ), ∫⁻ (t : Fin 1 → ℝ), (fix f x) t
@@ -577,7 +607,9 @@ def PLConditions (n : ℕ) (θ : ℝ) (f g h : (Fin n → ℝ) → ENNReal) : Pr
   Measurable f ∧ Measurable g ∧ Measurable h ∧
   (∀ x y, (f x)^(1-θ) * (g y)^θ ≤ h (x + y))
 
-/-- Prékopa–Leindler for `Fin 1 → ℝ` (a small wrapper around `prekopa_leindler_1d`). -/
+/-- Prékopa–Leindler for `Fin 1 → ℝ` (a small wrapper around `prekopa_leindler_1d`).
+@isnad1 id=le.1h4v.s8.2c2cb3363d4f from=translated src=- shape=c1204489 vocab=99fa66a9
+-/
 lemma prekopa_leindler_1d_fin1
     {θ : ℝ} {f g h : (Fin 1 → ℝ) → ENNReal} (hθfgh : PLConditions 1 θ f g h)
     : ENNReal.ofReal ((1-θ)^(1-θ) * θ^θ)⁻¹ * (∫⁻ x, f x)^(1-θ) * (∫⁻ x, g x)^θ ≤ ∫⁻ x, h x := by

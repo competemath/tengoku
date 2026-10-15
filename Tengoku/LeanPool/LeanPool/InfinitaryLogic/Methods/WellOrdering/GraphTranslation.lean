@@ -42,7 +42,9 @@ variable {L : Language.{0, 0}}
 /-- **Marker Theorem 4.26 (arbitrary language)**: if `φ` has models with `lt`-chains of
 every countable length, then some nonempty model of `φ` carries a relation-preserving map
 `f : ℚ → M` — the raw positive conclusion; injectivity is a corollary under irreflexivity
-(`RelPreserving.injective_of_irreflexive`). -/
+(`RelPreserving.injective_of_irreflexive`).
+@isnad1 id=ex.1h3v.s5.2f49337bccd6 from=translated src=- shape=ec9c1909 vocab=7e38848a
+-/
 theorem exists_model_relPreserving (φ : L.Sentenceω) (lt : L.Relations 2)
     (h : HasWellOrderedChains φ lt) :
     ∃ (M : Type) (_ : L.Structure M) (_ : Nonempty M) (f : ℚ → M),
@@ -100,7 +102,9 @@ private theorem wellFounded_boundedness (φ : L.Sentenceω) (lt : L.Relations 2)
 
 /-- **Boundedness, order-type form (Marker Corollary 4.27, arbitrary language)**: if every
 model of `φ` interprets `lt` as a well-order, some countable ordinal strictly bounds every
-model's order type. -/
+model's order type.
+@isnad1 id=ex.1h3v.s7.57086e4ecb63 from=translated src=- shape=9ed9f45c vocab=1bbf3e42
+-/
 theorem wellOrder_type_boundedness (φ : L.Sentenceω) (lt : L.Relations 2)
     (hwo : ∀ (M : Type) (_ : L.Structure M), Sentenceω.Realize φ M →
       IsWellOrder M fun x y : M => RelMap lt ![x, y]) :
@@ -125,7 +129,9 @@ interpreted arbitrarily (the carrier must be nonempty — the undefinability pro
   funMap _ _ := Classical.arbitrary _
   RelMap {n} _ v := ordRel α n v
 
-/-- Any binary relation symbol of the full comparison structure is the ordinal order. -/
+/-- Any binary relation symbol of the full comparison structure is the ordinal order.
+@isnad1 id=iff.0h5v.s6.5b3909df0d09 from=translated src=- shape=e5b06946 vocab=55167468
+-/
 theorem ordinalStructureFull_relMap (L : Language.{0, 0}) (α : Ordinal.{0})
     [Nonempty α.ToType] (lt : L.Relations 2) (x y : α.ToType) :
     @RelMap L α.ToType (ordinalStructureFull L α) 2 lt ![x, y] ↔ x < y := by
@@ -135,7 +141,9 @@ theorem ordinalStructureFull_relMap (L : Language.{0, 0}) (α : Ordinal.{0})
 /-- **Undefinability of well-ordering (arbitrary language, weak form)**: no sentence has as
 models exactly the structures whose interpreted relation is a well-order.  The comparison
 structure on `α + 1` (nonempty, so functions can be interpreted) violates the uniform
-order-type bound `α`. -/
+order-type bound `α`.
+@isnad1 id=not.0h2v.s5.55a721c30483 from=translated src=- shape=7fd1c091 vocab=a9ec6401
+-/
 theorem wellOrdering_undefinable (lt : L.Relations 2) :
     ¬ ∃ φ : L.Sentenceω, ∀ (M : Type) (_ : L.Structure M),
         (Sentenceω.Realize φ M ↔ IsWellOrder M fun x y : M => RelMap lt ![x, y]) := by

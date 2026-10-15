@@ -37,7 +37,9 @@ An entailment with **universal** consequent has a **universal** interpolant, who
 relation symbols occur in both sides.
 
 This is López–Escobar / Malitz's Theorem 4.5 in the function-free case: the interpolant may be taken
-in the same quantifier class as the consequent. -/
+in the same quantifier class as the consequent.
+@isnad1 id=ex.2h3v.s7.94bda25711a0 from=translated src=- shape=90c000d6 vocab=3a50c12d
+-/
 theorem malitz_interpolation [L.IsRelational] (φ ψ : L.Sentenceω) (hψ : IsUniversal ψ)
     (h : Sentenceω.Entails φ ψ) :
     ∃ θ : L.Sentenceω,

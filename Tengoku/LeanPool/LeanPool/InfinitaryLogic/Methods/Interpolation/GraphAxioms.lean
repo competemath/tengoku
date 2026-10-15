@@ -78,7 +78,9 @@ section Semantics
 
 variable {M : Type} [(graphLanguage L).Structure M]
 
-/-- Totality realizes to: every argument tuple has an output related by `G_f`. -/
+/-- Totality realizes to: every argument tuple has an output related by `G_f`.
+@isnad1 id=iff.0h4v.s6.f5b57148ca54 from=translated src=- shape=57277914 vocab=9c5dbafd
+-/
 theorem realize_graphTotality {n : ℕ} (f : L.Functions n) :
     Sentenceω.Realize (graphTotality f) M ↔
       ∀ ws : Fin n → M, ∃ y : M,
@@ -115,7 +117,9 @@ theorem realize_graphTotality {n : ℕ} (f : L.Functions n) :
     rw [BoundedFormulaω.realize_rel, htuple ws fun _ => y]
     exact hy
 
-/-- Functionality realizes to: `G_f` relates each argument tuple to at most one output. -/
+/-- Functionality realizes to: `G_f` relates each argument tuple to at most one output.
+@isnad1 id=iff.0h4v.s6.70eab082deb7 from=translated src=- shape=104c8cde vocab=afcdc292
+-/
 theorem realize_graphFunctionality {n : ℕ} (f : L.Functions n) :
     Sentenceω.Realize (graphFunctionality f) M ↔
       ∀ (ws : Fin n → M) (y z : M),
@@ -167,7 +171,9 @@ theorem realize_graphFunctionality {n : ℕ} (f : L.Functions n) :
       htuple _ 0, htuple _ 1, hvar, hvar]
     exact h _ _ _
 
-/-- The bundle realizes iff both gates realize for every symbol of `F`. -/
+/-- The bundle realizes iff both gates realize for every symbol of `F`.
+@isnad1 id=iff.0h3v.s8.57eba9ecf8c6 from=translated src=- shape=4007aaed vocab=903a917b
+-/
 theorem realize_graphAxioms_iff (F : Set (Σ n, L.Functions n)) [Countable ↥F] :
     Sentenceω.Realize (graphAxioms F) M ↔
       ∀ p : ↥F,
@@ -178,7 +184,9 @@ theorem realize_graphAxioms_iff (F : Set (Σ n, L.Functions n)) [Countable ↥F]
   rw [graphAxioms, BoundedFormulaω.realize_einf]
   exact forall_congr' fun p => BoundedFormulaω.realize_and _ _
 
-/-- The semantic union lemma: the axioms of a union are the conjunction of the axioms. -/
+/-- The semantic union lemma: the axioms of a union are the conjunction of the axioms.
+@isnad1 id=iff.0h4v.s6.7eeef16723c9 from=translated src=- shape=4c87f00f vocab=c669018f
+-/
 theorem realize_graphAxioms_union (F₁ F₂ : Set (Σ n, L.Functions n))
     [Countable ↥F₁] [Countable ↥F₂] :
     haveI : Countable ↥(F₁ ∪ F₂) :=
@@ -196,7 +204,9 @@ theorem realize_graphAxioms_union (F₁ F₂ : Set (Σ n, L.Functions n))
 
 end Semantics
 
-/-- The graph expansion of an `L`-structure satisfies the graph axioms of every symbol set. -/
+/-- The graph expansion of an `L`-structure satisfies the graph axioms of every symbol set.
+@isnad1 id=realize.0h3v.s5.701b8924cbcc from=translated src=- shape=454af31a vocab=8874a326
+-/
 theorem graphExpansion_realizes_graphAxioms (F : Set (Σ n, L.Functions n)) [Countable ↥F]
     (M : Type) [L.Structure M] :
     letI := graphExpansion L M
@@ -230,7 +240,9 @@ private theorem relationsIn_graphFunctionality {n : ℕ} (f : L.Functions n) :
   rw [Set.union_empty, Set.union_self]
 
 /-- **The exact occurrence identity**: the graph axioms of `F` mention exactly the graph
-relations of `F`. -/
+relations of `F`.
+@isnad1 id=eq.0h2v.s5.ee2f87c757ad from=translated src=- shape=e9a4eeb3 vocab=37dd1b74
+-/
 theorem relationsIn_graphAxioms (F : Set (Σ n, L.Functions n)) [Countable ↥F] :
     (graphAxioms F).relationsIn = graphRelSym L '' F := by
   let : Encodable ↥F := Encodable.ofCountable _

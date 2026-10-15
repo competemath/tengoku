@@ -30,7 +30,9 @@ open Komlos Finset
 
 variable {α : Type*} {H : Hypergraph α}
 
-/-- A hypergraph with finitely many vertices has finitely many edges. -/
+/-- A hypergraph with finitely many vertices has finitely many edges.
+@isnad1 id=finite.1h2v.s4.da21a2077c29 from=translated src=- shape=b35f515b vocab=876107b5
+-/
 lemma edgeSet_finite (hV : V(H).Finite) : E(H).Finite :=
   hV.finite_subsets.subset edgeSet_subset_powerset_vertexSet
 
@@ -43,12 +45,17 @@ noncomputable def incidenceMatrix (H : Hypergraph α) (hV : V(H).Finite) :
   Matrix.of fun e x ↦ if (x : α) ∈ (e : Set α) then 1 else 0
 
 open Classical in
+/--
+@isnad1 id=eq.1h4v.s7.0144ca3f9ea4 from=translated src=- shape=457ec3d4 vocab=5fe4330d
+-/
 lemma incidenceMatrix_apply (hV : V(H).Finite) (e : (edgeSet_finite hV).toFinset)
     (x : hV.toFinset) :
     H.incidenceMatrix hV e x = if (x : α) ∈ (e : Set α) then 1 else 0 := rfl
 
 /-- The squared entries of a column of the incidence matrix count the edges containing the
-vertex. -/
+vertex.
+@isnad1 id=eq.1h3v.s7.ecfff909eedf from=translated src=- shape=ea3ee290 vocab=2693cd4a
+-/
 lemma sum_incidenceMatrix_sq (hV : V(H).Finite) (x : hV.toFinset) :
     ∑ e, H.incidenceMatrix hV e x ^ 2 = {e ∈ E(H) | (x : α) ∈ e}.ncard := by
   classical

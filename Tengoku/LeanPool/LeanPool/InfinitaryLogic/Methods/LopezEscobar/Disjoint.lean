@@ -106,7 +106,9 @@ private theorem pcMem_disjoint {B : Set (StructureSpace L)}
   exact hInBc hInB
 
 /-- **The entailment endpoint** — exactly what Unit 5 feeds to Craig PC-separation: no model
-satisfies both side sentences, so the left entails the negation of the right. -/
+satisfies both side sentences, so the left entails the negation of the right.
+@isnad1 id=entails.3h4v.s7.3a3c24c776e8 from=translated src=- shape=6f328803 vocab=a5594493
+-/
 theorem pcSentences_entails_not {B : Set (StructureSpace L)}
     (T₀ T₁ : (n : ℕ) → Set ((Fin n → Bool) × (Fin n → ℕ)))
     (hT₀ : ∀ c : StructureSpace L, c ∈ B ↔ ∃ g : ℕ → ℕ,

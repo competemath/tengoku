@@ -39,7 +39,9 @@ abbrev SparseMask (k : Type*) [Field k] :=
   {M : PeriodicMask k // 4 * M.assigned < M.period}
 
 /-- Apply mortality only to a mask with more than half its positions free,
-then preserve every old assignment while installing the resulting word. -/
+then preserve every old assignment while installing the resulting word.
+@isnad1 id=ex.1h4v.s7.870cac0c59c6 from=translated src=- shape=1817c7cb vocab=de3380d7
+-/
 theorem exists_mortal_extension (hm : MaskMortality k) (M : SparseMask k)
     {d : ℕ} (P : Pencil k d) :
     ∃ N : SparseMask k, Extends N.val M.val ∧ M.val.period ∣ N.val.period ∧
@@ -55,18 +57,27 @@ def masks (hm : MaskMortality k) (e : ℕ → Σ d : ℕ, Pencil k d) : ℕ → 
       (emptyMask (k := k)).period_pos⟩
   | j + 1 => (exists_mortal_extension hm (masks hm e j) (e j).2).choose
 
+/--
+@isnad1 id=and.1h3v.s8.0018f2183be1 from=translated src=- shape=7bb3cf77 vocab=85f3f7c3
+-/
 theorem masks_succ (hm : MaskMortality k) (e : ℕ → Σ d : ℕ, Pencil k d) (j : ℕ) :
     Extends (masks hm e (j + 1)).val (masks hm e j).val ∧
       (masks hm e j).val.period ∣ (masks hm e (j + 1)).val.period ∧
       Kills (masks hm e (j + 1)).val (e j).2 :=
   (exists_mortal_extension hm (masks hm e j) (e j).2).choose_spec
 
+/--
+@isnad1 id=extends.2h4v.s6.263fbc135f20 from=translated src=- shape=06cfa6b6 vocab=6c2afc67
+-/
 theorem masks_extends (hm : MaskMortality k) (e : ℕ → Σ d : ℕ, Pencil k d)
     {i j : ℕ} (hij : i ≤ j) : Extends (masks hm e j).val (masks hm e i).val := by
   induction j, hij using Nat.le_induction with
   | base => exact Extends.refl _
   | succ j _ ih => exact (masks_succ hm e j).1.trans ih
 
+/--
+@isnad1 id=dvd.2h4v.s6.a3d5e7f74b0b from=translated src=- shape=312b58c8 vocab=356b8900
+-/
 theorem masks_period_dvd (hm : MaskMortality k) (e : ℕ → Σ d : ℕ, Pencil k d)
     {i j : ℕ} (hij : i ≤ j) :
     (masks hm e i).val.period ∣ (masks hm e j).val.period := by
@@ -78,7 +89,9 @@ theorem masks_period_dvd (hm : MaskMortality k) (e : ℕ → Σ d : ℕ, Pencil 
 completion.  A site assigned at any stage retains that exact vector forever.
 Sites that are never assigned can harmlessly be filled with a fixed nonzero
 vector; consequently no assertion about the density of the infinite union
-is required. -/
+is required.
+@isnad1 id=ex.1h2v.s6.0cd42f2c8d85 from=translated src=- shape=34add17f vocab=67b5c4ee
+-/
 theorem exists_compatible_sequence (M : ℕ → PeriodicMask k)
     (hM : ∀ i j, i ≤ j → Extends (M j) (M i)) :
     ∃ v : ℕ → Triple k, (∀ n, v n ≠ 0) ∧ ∀ j, (M j).SeqCompatible v := by
@@ -101,7 +114,9 @@ theorem exists_compatible_sequence (M : ℕ → PeriodicMask k)
   choose v hvzero hv using hpoint
   exact ⟨v, hvzero, fun j n z hz => hv n j z hz⟩
 
-/-- A nonzero sequence respecting all the periodic mortal words in the chain. -/
+/-- A nonzero sequence respecting all the periodic mortal words in the chain.
+@isnad1 id=ex.1h2v.s6.e11d60d5da02 from=translated src=- shape=c4824d70 vocab=db292073
+-/
 theorem exists_sequence_for_enumeration (hm : MaskMortality k)
     (e : ℕ → Σ d : ℕ, Pencil k d) :
     ∃ v : ℕ → Triple k, (∀ n, v n ≠ 0) ∧

@@ -62,7 +62,9 @@ def IsHanfBound (φ : L.Sentenceω) (κ : Cardinal) : Prop :=
 
 /-! ## The universal property of the Hanf number -/
 
-/-- A Hanf bound stays a bound at every larger cardinal — the premise only weakens. -/
+/-- A Hanf bound stays a bound at every larger cardinal — the premise only weakens.
+@isnad1 id=ishanfbo.2h4v.s4.a028f15e3a0d from=translated src=- shape=2fcafde4 vocab=a6974f37
+-/
 theorem IsHanfBound.mono {φ : L.Sentenceω} {κ μ : Cardinal}
     (hκ : IsHanfBound φ κ) (hκμ : κ ≤ μ) : IsHanfBound φ μ :=
   fun ⟨M, hStr, hφ, hge⟩ => hκ ⟨M, hStr, hφ, le_trans hκμ hge⟩

@@ -25,7 +25,9 @@ universe u
 
 namespace InfinitaryLogic
 
-/-- For `β < ω₁`, the ordinals below `β` form a countable **type**. -/
+/-- For `β < ω₁`, the ordinals below `β` form a countable **type**.
+@isnad1 id=countabl.1h1v.s5.6b349f0aacaa from=translated src=- shape=e8a28ae6 vocab=3fd4cc49
+-/
 theorem countable_Iio_of_lt_omega1 (β : Ordinal.{0}) (hβ : β < Ordinal.omega 1) :
     Countable (Set.Iio β) := by
   have hle : β.card ≤ Cardinal.aleph0 := by
@@ -38,7 +40,9 @@ theorem countable_Iio_of_lt_omega1 (β : Ordinal.{0}) (hβ : β < Ordinal.omega 
     _ ≤ Cardinal.lift.{1, 0} Cardinal.aleph0 := Cardinal.lift_le.mpr hle
     _ = Cardinal.aleph0 := by simp
 
-/-- The same fact as a `Set.Countable`. -/
+/-- The same fact as a `Set.Countable`.
+@isnad1 id=countabl.1h1v.s5.122ff985e6d7 from=translated src=- shape=c37f6f4c vocab=26e50e0a
+-/
 theorem setCountable_Iio_of_lt_omega1 (β : Ordinal.{0}) (hβ : β < Ordinal.omega 1) :
     Set.Countable (Set.Iio β) :=
   Set.countable_coe_iff.mp (countable_Iio_of_lt_omega1 β hβ)
@@ -47,7 +51,9 @@ theorem setCountable_Iio_of_lt_omega1 (β : Ordinal.{0}) (hβ : β < Ordinal.ome
 
 The standard way to exceed a bound `α < ω₁` while staying countable — `α + ω` is at least `α`,
 infinite, and still countable — which is what order-type diagonalizations against a boundedness
-theorem need. -/
+theorem need.
+@isnad1 id=lt.1h1v.s6.206e7e895fd6 from=translated src=- shape=a1cd8215 vocab=df8a2b94
+-/
 theorem add_omega0_lt_omega1 {α : Ordinal.{0}} (hα : α < (Cardinal.aleph 1).ord) :
     α + Ordinal.omega0 < (Cardinal.aleph 1).ord := by
   rw [Cardinal.ord_aleph, Cardinal.lt_omega_iff_card_lt] at hα ⊢

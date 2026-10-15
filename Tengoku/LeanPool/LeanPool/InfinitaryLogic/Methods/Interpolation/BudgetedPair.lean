@@ -84,6 +84,9 @@ private theorem theoryJConsts_mono (h : T ⊆ T') : theoryJConsts (L := L) T ⊆
   obtain ⟨ρ, hρ, hk⟩ := hk
   exact ⟨ρ, h hρ, hk⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.9f180fc25c51 from=translated src=- shape=89f9997c vocab=88c5eb6b
+-/
 @[simp] theorem theoryJConsts_insert :
     theoryJConsts (L := L) (insert σ T)
       = sentenceJConsts (L' := L) (J := ℕ) σ ∪ theoryJConsts T := by
@@ -564,12 +567,17 @@ private theorem budgetedPairInsep_witness_right (c : ℕ) (φ : L[[ℕ]].Bounded
 /-! ## The root collapse and the interpolant equation -/
 
 /-- **Root collapse.**  A budgeted separator against a right side with no universal occurrence is
-universal; against constant-free sides it is constant-free. -/
+universal; against constant-free sides it is constant-free.
+@isnad1 id=isuniver.2h8v.s6.65559a08cd13 from=translated src=- shape=fc819a3e vocab=93ea1f4f
+-/
 theorem isUniversal_of_budgetedPairSeparates {θ : L[[ℕ]].Sentenceω}
     (h : BudgetedPairSeparates F₁ R₁ F₂ R₂ Γ Δ θ) (hΔ : ¬ Theoryω.HasQuantSigned true Δ) :
     IsUniversal θ :=
   (isUniversal_iff_not_hasExistential θ).mpr fun hq => hΔ (h.2.2.2.2.2 hq)
 
+/--
+@isnad1 id=eq.2h8v.s6.31af3507c2e8 from=translated src=- shape=188e86a8 vocab=62790259
+-/
 theorem sentenceJConsts_eq_empty_of_budgetedPairSeparates {θ : L[[ℕ]].Sentenceω}
     (h : BudgetedPairSeparates F₁ R₁ F₂ R₂ Γ Δ θ) (hΓ : theoryJConsts (L := L) Γ = ∅) :
     sentenceJConsts (L' := L) (J := ℕ) θ = ∅ := by
@@ -2542,7 +2550,9 @@ interpolation assumption enters — note the root pair is inseparable *because n
 interpolant exists*, not because of the entailment `r₁ ⊨ r₂`, which is consumed only at the very end
 against the extracted model. -/
 
-/-- **Structural root member.**  Packaging only; no semantic content. -/
+/-- **Structural root member.**  Packaging only; no semantic content.
+@isnad1 id=budgeted.3h7v.s7.6df2708b16b2 from=translated src=- shape=bf5c54f1 vocab=67d71688
+-/
 theorem budgetedPairMem_root {ρ₁ ρ₂ : L[[ℕ]].Sentenceω}
     (hb₁ : ρ₁ ∈ SentBnd (L := L) F₁ R₁) (hb₂ : ρ₂ ∈ SentBnd (L := L) F₂ R₂)
     (h : BudgetedPairInsep F₁ R₁ F₂ R₂ {ρ₁} {ρ₂}) :

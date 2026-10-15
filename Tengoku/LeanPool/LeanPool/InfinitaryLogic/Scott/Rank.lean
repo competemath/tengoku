@@ -78,7 +78,9 @@ private theorem completeStab_mem_elementRank_set {M : Type w} [L.Structure M]
   exact ⟨fun _ => (hstab 1 N' ![m] b').mp hBFN', fun _ => (hstab 1 N ![m] b).mp hBFN⟩
 
 omit [L.IsRelational] [Countable (Σ l, L.Relations l)] in
-/-- The elementRank of any element is bounded by any complete stabilization ordinal. -/
+/-- The elementRank of any element is bounded by any complete stabilization ordinal.
+@isnad1 id=le.1h4v.s5.2970e3131795 from=translated src=- shape=052e4a93 vocab=0dde452a
+-/
 theorem elementRank_le_completeStab {M : Type w} [L.Structure M] [Countable M]
     {α : Ordinal.{0}} (hstab : StabilizesCompletely (L := L) M α) (m : M) :
     elementRank (L := L) m ≤ α :=
@@ -112,7 +114,9 @@ private theorem scottRank_lt_omega1_of
 
 /-! ### Unconditional Wrappers (via CRH) -/
 
-/-- Scott rank of a countable structure is a countable ordinal. -/
+/-- Scott rank of a countable structure is a countable ordinal.
+@isnad1 id=lt.0h2v.s6.8fec6a9bc0f3 from=translated src=- shape=24868c1f vocab=b67c2f4a
+-/
 theorem scottRank_lt_omega1 (M : Type w) [L.Structure M] [Countable M] :
     scottRank (L := L) M < (Ordinal.omega 1 : Ordinal.{0}) :=
   scottRank_lt_omega1_of countableRefinementHypothesis M

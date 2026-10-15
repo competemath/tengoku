@@ -36,7 +36,9 @@ private theorem Term.functionsIn_onTerm {α : Type} (t : L.Term α) :
     simp only [LHom.onTerm, Term.functionsIn, Set.image_insert_eq, Set.image_iUnion, ih]
 
 /-- `functionsIn` of a language-mapped formula is the image of the formula's `functionsIn` under
-the symbol map `⟨n, f⟩ ↦ ⟨n, g.onFunction f⟩`. -/
+the symbol map `⟨n, f⟩ ↦ ⟨n, g.onFunction f⟩`.
+@isnad1 id=eq.0h6v.s6.52a471114e13 from=translated src=- shape=153f55c8 vocab=29e402eb
+-/
 theorem BoundedFormulaω.functionsIn_mapLanguage {α : Type} {n : ℕ}
     (φ : L.BoundedFormulaω α n) :
     (φ.mapLanguage g).functionsIn =
@@ -59,6 +61,9 @@ theorem BoundedFormulaω.functionsIn_mapLanguage {α : Type} {n : ℕ}
 
 /-! ## `relationsIn` of a language-mapped formula (companion to `functionsIn_mapLanguage`) -/
 
+/--
+@isnad1 id=eq.0h6v.s6.6f61ec5f7b47 from=translated src=- shape=153f55c8 vocab=af8d9d98
+-/
 theorem BoundedFormulaω.relationsIn_mapLanguage {L L' : Language} (g : L →ᴸ L') {α : Type} {n : ℕ}
     (φ : L.BoundedFormulaω α n) :
     (φ.mapLanguage g).relationsIn =

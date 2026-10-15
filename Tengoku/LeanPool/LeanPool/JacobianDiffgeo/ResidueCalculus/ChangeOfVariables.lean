@@ -43,7 +43,9 @@ private theorem hasDerivAt_sub_zpow_comp {φ : ℂ → ℂ} {w z₀ : ℂ} (hφ 
 /-- Chart invariance of the residue of a 1-form integrand (Forster 9.9-flavored): for a local
 analytic isomorphism `φ` at `w₀` with `φ w₀ = z₀`, the residue of `(f ∘ φ)·φ'` at `w₀` equals
 the residue of `f` at `z₀`. Makes `Res_p(ω)` on a surface chart-independent (residue-theorem
-unit). -/
+unit).
+@isnad1 id=eq.4h4v.s7.0e3a2a49fb61 from=translated src=- shape=1f463c15 vocab=210490b2
+-/
 theorem resAt_comp_mul_deriv {φ : ℂ → ℂ} (hφ : AnalyticAt ℂ φ w₀) (hφ' : deriv φ w₀ ≠ 0)
     (hφ₀ : φ w₀ = z₀) (hf : MeromorphicAt f z₀) :
     resAt (fun w => f (φ w) * deriv φ w) w₀ = resAt f z₀ := by
@@ -159,7 +161,9 @@ theorem resAt_comp_mul_deriv {φ : ℂ → ℂ} (hφ : AnalyticAt ℂ φ w₀) (
     exact WithTop.untop₀_nonneg.mp h0a
 
 /-- Corollary (residue-theorem convenience): the chart-invariance identity survives replacing
-the integrand by anything `=ᶠ[𝓝[≠] w₀]`-equal to it. -/
+the integrand by anything `=ᶠ[𝓝[≠] w₀]`-equal to it.
+@isnad1 id=eq.5h5v.s7.05db7ef5bd1f from=translated src=- shape=ff3bec74 vocab=a387b4fa
+-/
 theorem resAt_comp_mul_deriv_of_eventuallyEq {φ : ℂ → ℂ} (hφ : AnalyticAt ℂ φ w₀)
     (hφ' : deriv φ w₀ ≠ 0) (hφ₀ : φ w₀ = z₀) (hf : MeromorphicAt f z₀)
     {F : ℂ → ℂ} (hF : F =ᶠ[𝓝[≠] w₀] fun w => f (φ w) * deriv φ w) :

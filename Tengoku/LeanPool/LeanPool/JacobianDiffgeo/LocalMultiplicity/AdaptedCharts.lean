@@ -62,6 +62,9 @@ namespace AdaptedChartsAt
 
 variable {F : X → Y} {x : X} {k : ℕ}
 
+/--
+@isnad1 id=eq.1h7v.s7.34b98966b30c from=translated src=- shape=e26230eb vocab=3d1924f6
+-/
 theorem eqOn_symm (A : AdaptedChartsAt F x k) : ∀ z ∈ A.e.source, F z = A.e'.symm (A.e z ^ k) := by
   intro z hz
   rw [← A.eqOn_pow z hz, A.e'.left_inv (A.mapsTo hz)]
@@ -79,7 +82,9 @@ section Existence
 variable [IsManifold 𝓘(ℂ) ω X] [IsManifold 𝓘(ℂ) ω Y]
 
 /-- Existence of adapted charts (Forster Thm 2.1), with source shrinkable into any given
-neighborhood. Here `k = multiplicity F x ≥ 1`. -/
+neighborhood. Here `k = multiplicity F x ≥ 1`.
+@isnad1 id=ex.3h5v.s8.3107c180b0e6 from=translated src=- shape=b429ce70 vocab=7216deba
+-/
 theorem exists_adaptedChartsAt {F : X → Y} {x : X}
     (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x) (hnc : ¬ EventuallyConst F (𝓝 x))
     {U : Set X} (hU : U ∈ 𝓝 x) :

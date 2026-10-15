@@ -847,7 +847,9 @@ def canonicalLabellingOfOracle (n : Nat) (f : Nat → Nat → Bool) : Array Nat 
   let a := (canonical (Graph.ofOracle n f)).lab
   if isPermArray n a then a else Array.range n
 
-/-- Two graphs are equal when their stored representations are equal. -/
+/-- Two graphs are equal when their stored representations are equal.
+@isnad1 id=eq.3h2v.s5.8cc01a1bbf99 from=translated src=- shape=e11f0733 vocab=d56fd4d9
+-/
 @[ext]
 theorem Graph.ext {G H : Graph} (hn : G.n = H.n) (hadj : G.adj = H.adj)
     (hnbr : G.nbr = H.nbr) : G = H := by

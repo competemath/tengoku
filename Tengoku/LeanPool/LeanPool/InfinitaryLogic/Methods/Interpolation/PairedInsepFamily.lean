@@ -53,28 +53,49 @@ def SentBnd (F : Set (Σ n, L.Functions n)) (R : Set (Σ n, L.Relations n)) :
 
 variable {F : Set (Σ n, L.Functions n)} {R : Set (Σ n, L.Relations n)}
 
+/--
+@isnad1 id=iff.0h4v.s6.02c8008ffb04 from=translated src=- shape=174d7961 vocab=5537e378
+-/
 theorem sentBnd_not_iff {σ : L[[ℕ]].Sentenceω} : σ.not ∈ SentBnd F R ↔ σ ∈ SentBnd F R := by
   simp only [SentBnd, Set.mem_ofPred_eq, baseFunctionsIn_not, baseRelationsIn_not]
 
+/--
+@isnad1 id=mem.1h5v.s6.88bc60f55ff8 from=translated src=- shape=1314c1de vocab=2017b403
+-/
 theorem sentBnd_imp_left {φ ψ : L[[ℕ]].Sentenceω} (h : φ.imp ψ ∈ SentBnd F R) : φ ∈ SentBnd F R :=
   ⟨baseFunctionsIn_imp_left.trans h.1, baseRelationsIn_imp_left.trans h.2⟩
 
+/--
+@isnad1 id=mem.1h5v.s6.a1572739b06e from=translated src=- shape=dac5daeb vocab=2017b403
+-/
 theorem sentBnd_imp_right {φ ψ : L[[ℕ]].Sentenceω} (h : φ.imp ψ ∈ SentBnd F R) : ψ ∈ SentBnd F R :=
   ⟨baseFunctionsIn_imp_right.trans h.1, baseRelationsIn_imp_right.trans h.2⟩
 
+/--
+@isnad1 id=mem.1h5v.s6.8b005200f564 from=translated src=- shape=dc582af8 vocab=216fe501
+-/
 theorem sentBnd_component_iInf {φs : ℕ → L[[ℕ]].Sentenceω} (k : ℕ)
     (h : BoundedFormulaω.iInf φs ∈ SentBnd F R) : φs k ∈ SentBnd F R :=
   ⟨(baseFunctionsIn_component_iInf k).trans h.1, (baseRelationsIn_component_iInf k).trans h.2⟩
 
+/--
+@isnad1 id=mem.1h5v.s6.6f73facc85d3 from=translated src=- shape=dc582af8 vocab=c7a5c5ca
+-/
 theorem sentBnd_component_iSup {φs : ℕ → L[[ℕ]].Sentenceω} (k : ℕ)
     (h : BoundedFormulaω.iSup φs ∈ SentBnd F R) : φs k ∈ SentBnd F R :=
   ⟨(baseFunctionsIn_component_iSup k).trans h.1, (baseRelationsIn_component_iSup k).trans h.2⟩
 
+/--
+@isnad1 id=mem.1h5v.s6.7b9c641153d9 from=translated src=- shape=0ec32872 vocab=54640f2a
+-/
 theorem sentBnd_instConst {φ : L[[ℕ]].BoundedFormulaω Empty 1} (c : ℕ)
     (h : BoundedFormulaω.all φ ∈ SentBnd F R) : instConst c φ ∈ SentBnd F R :=
   ⟨(baseFunctionsIn_instConst_subset c φ).trans h.1,
    (baseRelationsIn_instConst_subset c φ).trans h.2⟩
 
+/--
+@isnad1 id=mem.0h5v.s5.0461a4d8b973 from=translated src=- shape=4e3b2993 vocab=cff072be
+-/
 theorem sentBnd_constEq (a b : ℕ) : constEq (L := L) a b ∈ SentBnd F R :=
   ⟨by rw [baseFunctionsIn_constEq]; exact Set.empty_subset _,
    by rw [baseRelationsIn_constEq]; exact Set.empty_subset _⟩
@@ -84,19 +105,26 @@ theorem sentBnd_constEq (a b : ℕ) : constEq (L := L) a b ∈ SentBnd F R :=
 The two shapes every countable interpolation core needs of its labelled roots.  Each replaces a
 four-part tuple of base-occurrence and negation rewrites at the call site. -/
 
-/-- A constant-expansion image is bounded by its own base symbols. -/
+/-- A constant-expansion image is bounded by its own base symbols.
+@isnad1 id=mem.0h2v.s5.abd389799358 from=translated src=- shape=3e207fa0 vocab=f0d0dd7b
+-/
 theorem mapLanguage_withConstants_mem_sentBnd (r : L.Sentenceω) :
     BoundedFormulaω.mapLanguage (L.lhomWithConstants ℕ) r ∈ SentBnd r.functionsIn r.relationsIn :=
   ⟨(baseFunctionsIn_mapLanguage_withConstants r).le,
     (baseRelationsIn_mapLanguage_withConstants r).le⟩
 
-/-- …and so is its negation, `SentBnd` being negation-invariant. -/
+/-- …and so is its negation, `SentBnd` being negation-invariant.
+@isnad1 id=mem.0h2v.s6.4b8b4829aefc from=translated src=- shape=38027e2e vocab=bdef4de0
+-/
 theorem mapLanguage_withConstants_not_mem_sentBnd (r : L.Sentenceω) :
     (BoundedFormulaω.mapLanguage (L.lhomWithConstants ℕ) r).not
       ∈ SentBnd r.functionsIn r.relationsIn :=
   ⟨((baseFunctionsIn_not _).trans (baseFunctionsIn_mapLanguage_withConstants r)).le,
     ((baseRelationsIn_not _).trans (baseRelationsIn_mapLanguage_withConstants r)).le⟩
 
+/--
+@isnad1 id=mem.1h7v.s6.822c331ca1b3 from=translated src=- shape=41d6a1ae vocab=902aee1c
+-/
 theorem sentBnd_relInst_congr {l : ℕ} (Rr : L.Relations l) {g : Fin l → ℕ} (g' : Fin l → ℕ)
     (h : relInst Rr g ∈ SentBnd F R) : relInst Rr g' ∈ SentBnd F R :=
   ⟨by rw [baseFunctionsIn_relInst]; exact Set.empty_subset _,
@@ -110,14 +138,23 @@ private theorem mem_constTermS_jConsts (c : ℕ) :
   simp only [constTermS, Term.functionsIn, Set.iUnion_of_empty, Set.mem_insert_iff,
     Set.mem_empty_iff_false, or_false]
 
+/--
+@isnad1 id=mem.0h3v.s4.d0aa23b856b2 from=translated src=- shape=268fedb7 vocab=d90afd2f
+-/
 theorem mem_sentenceJConsts_constEq_left (a b : ℕ) :
     a ∈ sentenceJConsts (L' := L) (J := ℕ) (constEq a b) :=
   Set.mem_union_left _ (mem_constTermS_jConsts a)
 
+/--
+@isnad1 id=mem.0h3v.s4.a841d7bc7031 from=translated src=- shape=f42c9867 vocab=d90afd2f
+-/
 theorem mem_sentenceJConsts_constEq_right (a b : ℕ) :
     b ∈ sentenceJConsts (L' := L) (J := ℕ) (constEq a b) :=
   Set.mem_union_right _ (mem_constTermS_jConsts b)
 
+/--
+@isnad1 id=le.0h3v.s5.f8d6cea66c70 from=translated src=- shape=c585a78d vocab=310108c0
+-/
 theorem sentenceJConsts_constEq_subset (a b : ℕ) :
     sentenceJConsts (L' := L) (J := ℕ) (constEq a b) ⊆ ({a, b} : Set ℕ) := by
   intro k hk
@@ -125,6 +162,9 @@ theorem sentenceJConsts_constEq_subset (a b : ℕ) :
   · exact Or.inl (constTermS_jConsts a hk)
   · exact Or.inr (constTermS_jConsts b hk)
 
+/--
+@isnad1 id=eq.0h3v.s5.985052411c2e from=translated src=- shape=015e688b vocab=823ce5e5
+-/
 theorem sentenceJConsts_constEq_comm (a b : ℕ) :
     sentenceJConsts (L' := L) (J := ℕ) (constEq a b) =
       sentenceJConsts (L' := L) (J := ℕ) (constEq b a) := by
@@ -133,6 +173,9 @@ theorem sentenceJConsts_constEq_comm (a b : ℕ) :
     Set.mem_union]
   tauto
 
+/--
+@isnad1 id=eq.0h4v.s5.39f3cc29751e from=translated src=- shape=764f6d3c vocab=6b359a78
+-/
 theorem sentenceJConsts_relInst_eq {l : ℕ} (Rr : L.Relations l) (g : Fin l → ℕ) :
     sentenceJConsts (L' := L) (J := ℕ) (relInst Rr g) = Set.range g := by
   ext k
@@ -162,6 +205,9 @@ variable {F₁ : Set (Σ n, L.Functions n)} {R₁ : Set (Σ n, L.Relations n)}
 
 /-! ### Support and freshness bookkeeping -/
 
+/--
+@isnad1 id=le.2h5v.s7.539509a739e9 from=translated src=- shape=d51ae69c vocab=b90636d1
+-/
 theorem support_mem_left {Γ Δ : Set L[[ℕ]].Sentenceω} {A : Finset ℕ} {φ : L[[ℕ]].Sentenceω}
     (hmem : φ ∈ Γ)
     (hsupp : ((⋃ γ ∈ Γ, sentenceJConsts (L' := L) (J := ℕ) γ) ∪
@@ -169,6 +215,9 @@ theorem support_mem_left {Γ Δ : Set L[[ℕ]].Sentenceω} {A : Finset ℕ} {φ 
     sentenceJConsts (L' := L) (J := ℕ) φ ⊆ (↑A : Set ℕ) :=
   (Set.subset_biUnion_of_mem hmem).trans (Set.subset_union_left.trans hsupp)
 
+/--
+@isnad1 id=le.2h5v.s7.d1ae47590855 from=translated src=- shape=00060423 vocab=b90636d1
+-/
 theorem support_mem_right {Γ Δ : Set L[[ℕ]].Sentenceω} {A : Finset ℕ} {φ : L[[ℕ]].Sentenceω}
     (hmem : φ ∈ Δ)
     (hsupp : ((⋃ γ ∈ Γ, sentenceJConsts (L' := L) (J := ℕ) γ) ∪
@@ -176,6 +225,9 @@ theorem support_mem_right {Γ Δ : Set L[[ℕ]].Sentenceω} {A : Finset ℕ} {φ
     sentenceJConsts (L' := L) (J := ℕ) φ ⊆ (↑A : Set ℕ) :=
   (Set.subset_biUnion_of_mem hmem).trans (Set.subset_union_right.trans hsupp)
 
+/--
+@isnad1 id=le.2h5v.s7.f02c3674f500 from=translated src=- shape=d74f594a vocab=b90636d1
+-/
 theorem support_mem {Γ Δ : Set L[[ℕ]].Sentenceω} {A : Finset ℕ} {φ : L[[ℕ]].Sentenceω}
     (hmem : φ ∈ Γ ∪ Δ)
     (hsupp : ((⋃ γ ∈ Γ, sentenceJConsts (L' := L) (J := ℕ) γ) ∪
@@ -185,6 +237,9 @@ theorem support_mem {Γ Δ : Set L[[ℕ]].Sentenceω} {A : Finset ℕ} {φ : L[[
   · exact support_mem_left h hsupp
   · exact support_mem_right h hsupp
 
+/--
+@isnad1 id=le.2h5v.s8.2c120021924d from=translated src=- shape=a200706e vocab=01b21a1a
+-/
 theorem support_insert_left {Γ Δ : Set L[[ℕ]].Sentenceω} {φ : L[[ℕ]].Sentenceω} {A : Finset ℕ}
     (hφ : sentenceJConsts (L' := L) (J := ℕ) φ ⊆ (↑A : Set ℕ))
     (h : ((⋃ γ ∈ Γ, sentenceJConsts (L' := L) (J := ℕ) γ) ∪
@@ -194,6 +249,9 @@ theorem support_insert_left {Γ Δ : Set L[[ℕ]].Sentenceω} {φ : L[[ℕ]].Sen
   rw [Set.biUnion_insert, Set.union_assoc]
   exact Set.union_subset hφ h
 
+/--
+@isnad1 id=le.2h5v.s8.c2b61a5b3751 from=translated src=- shape=8afd5a42 vocab=01b21a1a
+-/
 theorem support_insert_right {Γ Δ : Set L[[ℕ]].Sentenceω} {φ : L[[ℕ]].Sentenceω} {A : Finset ℕ}
     (hφ : sentenceJConsts (L' := L) (J := ℕ) φ ⊆ (↑A : Set ℕ))
     (h : ((⋃ γ ∈ Γ, sentenceJConsts (L' := L) (J := ℕ) γ) ∪
@@ -204,12 +262,18 @@ theorem support_insert_right {Γ Δ : Set L[[ℕ]].Sentenceω} {φ : L[[ℕ]].Se
   exact Set.union_subset ((Set.subset_union_left).trans h)
     (Set.union_subset hφ ((Set.subset_union_right).trans h))
 
+/--
+@isnad1 id=not.3h6v.s7.5324315a72f8 from=translated src=- shape=4b38fbf6 vocab=b90636d1
+-/
 theorem fresh_left {Γ Δ : Set L[[ℕ]].Sentenceω} {A : Finset ℕ} (c : ℕ) (hc : c ∉ (↑A : Set ℕ))
     (hsupp : ((⋃ γ ∈ Γ, sentenceJConsts (L' := L) (J := ℕ) γ) ∪
       (⋃ δ ∈ Δ, sentenceJConsts (L' := L) (J := ℕ) δ)) ⊆ (↑A : Set ℕ)) :
     ∀ γ ∈ Γ, c ∉ sentenceJConsts (L' := L) (J := ℕ) γ :=
   fun _ hγ hmem => hc (hsupp (Set.mem_union_left _ (Set.mem_biUnion hγ hmem)))
 
+/--
+@isnad1 id=not.3h6v.s7.3e0ae89f4aac from=translated src=- shape=a613f669 vocab=b90636d1
+-/
 theorem fresh_right {Γ Δ : Set L[[ℕ]].Sentenceω} {A : Finset ℕ} (c : ℕ) (hc : c ∉ (↑A : Set ℕ))
     (hsupp : ((⋃ γ ∈ Γ, sentenceJConsts (L' := L) (J := ℕ) γ) ∪
       (⋃ δ ∈ Δ, sentenceJConsts (L' := L) (J := ℕ) δ)) ⊆ (↑A : Set ℕ)) :
@@ -814,7 +878,9 @@ private theorem exists_paired_model [L.IsRelational] [Countable (Σ l, L.Relatio
     hpos rR (hsub (Set.mem_union_right _ rfl))⟩
 
 /-- **Public wrapper (interpolation polarity).** Instantiating `rR := r₂.not` yields a single model
-with `M ⊨ r₁` and `¬ M ⊨ r₂` — the seed `{r₁, r₂.not}` (not `{r₁, r₂}`). -/
+with `M ⊨ r₁` and `¬ M ⊨ r₂` — the seed `{r₁, r₂.not}` (not `{r₁, r₂}`).
+@isnad1 id=ex.6h8v.s8.aad7b3646ef1 from=translated src=- shape=a2f39274 vocab=7c5c9d04
+-/
 theorem exists_paired_model_neg [L.IsRelational] [Countable (Σ l, L.Relations l)]
     (F₁ : Set (Σ n, L.Functions n)) (R₁ : Set (Σ n, L.Relations n))
     (F₂ : Set (Σ n, L.Functions n)) (R₂ : Set (Σ n, L.Relations n))

@@ -55,7 +55,9 @@ noncomputable def scottHeight (M : Type w) [L.Structure M]
     (N : Type w) [L.Structure N] [Countable N] (b : Fin n → N),
     BFEquiv (L := L) α n a b → BFEquiv (L := L) (Order.succ α) n a b}
 
-/-- Conditional variant of `scottHeight_lt_omega1`. -/
+/-- Conditional variant of `scottHeight_lt_omega1`.
+@isnad1 id=lt.1h2v.s6.9f96eebe62af from=translated src=- shape=fe430e1e vocab=fec857cc
+-/
 theorem scottHeight_lt_omega1_of
     (hcount : CountableRefinementHypothesis.{u, v, w} L)
     (M : Type w) [L.Structure M] [Countable M] :
@@ -68,7 +70,9 @@ theorem scottHeight_lt_omega1_of
     exact (hstab n N a b).mp hBF
   exact lt_of_le_of_lt (csInf_le ⟨0, fun _ _ => bot_le⟩ h_mem) hα_lt
 
-/-- Conditional variant of `scottHeight_stabilizesCompletely`. -/
+/-- Conditional variant of `scottHeight_stabilizesCompletely`.
+@isnad1 id=stabiliz.1h2v.s5.ab656f80e303 from=translated src=- shape=42b1d7c2 vocab=830ad64c
+-/
 theorem scottHeight_stabilizesCompletely_of
     (hcount : CountableRefinementHypothesis.{u, v, w} L)
     (M : Type w) [L.Structure M] [Countable M] :
@@ -89,7 +93,9 @@ theorem scottHeight_stabilizesCompletely_of
   · exact BFEquiv.of_succ
 
 /-- At any ordinal ≥ scottHeight, the structure stabilizes completely.
-Conditional on `CountableRefinementHypothesis`. -/
+Conditional on `CountableRefinementHypothesis`.
+@isnad1 id=stabiliz.2h3v.s5.fbf910ced126 from=translated src=- shape=39f76075 vocab=14fe5bb1
+-/
 theorem scottHeight_le_implies_stabilizesCompletely_of
     (hcount : CountableRefinementHypothesis.{u, v, w} L)
     (M : Type w) [L.Structure M] [Countable M]
@@ -106,17 +112,23 @@ theorem scottHeight_le_implies_stabilizesCompletely_of
       (le_trans hα (Order.le_succ α))
   · exact BFEquiv.of_succ
 
-/-- Scott height is less than ω₁ for countable structures. -/
+/-- Scott height is less than ω₁ for countable structures.
+@isnad1 id=lt.0h2v.s6.3a1956afdb2b from=translated src=- shape=24868c1f vocab=caddfb14
+-/
 theorem scottHeight_lt_omega1 (M : Type w) [L.Structure M] [Countable M] :
     scottHeight (L := L) M < Ordinal.omega 1 :=
   scottHeight_lt_omega1_of countableRefinementHypothesis M
 
-/-- At Scott height, all tuple sizes have stabilized (BFEquiv α ↔ BFEquiv (succ α)). -/
+/-- At Scott height, all tuple sizes have stabilized (BFEquiv α ↔ BFEquiv (succ α)).
+@isnad1 id=stabiliz.0h2v.s5.655472831f4c from=translated src=- shape=3b88972b vocab=10104821
+-/
 theorem scottHeight_stabilizesCompletely (M : Type w) [L.Structure M] [Countable M] :
     StabilizesCompletely (L := L) M (scottHeight (L := L) M) :=
   scottHeight_stabilizesCompletely_of countableRefinementHypothesis M
 
-/-- Scott height is invariant under L-isomorphism. -/
+/-- Scott height is invariant under L-isomorphism.
+@isnad1 id=eq.0h4v.s5.587ff516e22c from=translated src=- shape=41f3ec03 vocab=3937110e
+-/
 theorem scottHeight_eq_of_equiv
     {M : Type w} [L.Structure M] [Countable M]
     {N : Type w} [L.Structure N] [Countable N]

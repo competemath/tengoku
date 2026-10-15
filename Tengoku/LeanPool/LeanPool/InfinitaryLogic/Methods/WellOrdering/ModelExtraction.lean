@@ -84,7 +84,9 @@ language with countable relational core): under the well-ordered-chains hypothes
 nonempty model of `φ` carries a relation-preserving map `f : ℚ → M` — the rational map of
 the extracted expansion, through its reduct `L`-structure.  The raw positive conclusion
 (D2): no injectivity, no order-embedding packaging; those are derived corollaries tracked
-for subsequent commits, and the arbitrary-language form is the later transport step. -/
+for subsequent commits, and the arbitrary-language form is the later transport step.
+@isnad1 id=ex.1h3v.s6.03b98c03d9b2 from=translated src=- shape=43087415 vocab=94673d80
+-/
 theorem exists_model_relPreserving_relational [L.IsRelational]
     [Countable (Σ l, L.Relations l)] (h : HasWellOrderedChains φ lt) :
     ∃ (M : Type) (_ : L.Structure M) (_ : Nonempty M) (f : ℚ → M),

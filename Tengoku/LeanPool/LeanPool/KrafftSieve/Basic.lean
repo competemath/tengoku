@@ -33,11 +33,15 @@ open scoped BigOperators Real Nat Pointwise
 
 noncomputable section
 
-/-- Instance proof that q is non-zero. -/
+/-- Instance proof that q is non-zero.
+@isnad1 id=nezero.0h1v.s3.35add947d97a from=translated src=- shape=6da4ece3 vocab=aad14451
+-/
 instance q_ne_zero (n : ℕ) : NeZero (q n) := ⟨by
   exact Finset.prod_ne_zero_iff.mpr fun p hp => (Finset.mem_filter.mp hp).2.2.ne_zero⟩
 
-/-- A number p is in primeWindow if and only if it equals p_i for some index i. -/
+/-- A number p is in primeWindow if and only if it equals p_i for some index i.
+@isnad1 id=iff.0h2v.s5.490c0a1ad3ce from=translated src=- shape=2c7df158 vocab=c1b0f906
+-/
 lemma mem_P_n_iff_exists_index (n : ℕ) (p_val : ℕ) :
   p_val ∈ primeWindow n ↔ ∃ i : Fin (w n), p n i = p_val := by
   constructor
@@ -47,46 +51,66 @@ lemma mem_P_n_iff_exists_index (n : ℕ) (p_val : ℕ) :
   · rintro ⟨i, rfl⟩
     exact (Finset.mem_sort (α := ℕ) (· ≤ ·)).mp (List.get_mem _ _)
 
-/-- primeWindow is a subset of P_{n+1}. -/
+/-- primeWindow is a subset of P_{n+1}.
+@isnad1 id=le.0h1v.s4.d3f21f419a3c from=translated src=- shape=9c1a1925 vocab=b4ad6043
+-/
 lemma P_n_mono (n : ℕ) : primeWindow n ⊆ primeWindow (n + 1) := by
   intro x hx
   have := Finset.mem_filter.mp hx
   exact Finset.mem_filter.mpr ⟨Finset.mem_range.mpr (by
     linarith [Finset.mem_range.mp this.1, this.2.2.two_le]), this.2.1, this.2.2⟩
 
-/-- q(n) divides q(n+1). -/
+/-- q(n) divides q(n+1).
+@isnad1 id=dvd.0h1v.s4.c029f8a51a4a from=translated src=- shape=0dd30c50 vocab=fa9372ac
+-/
 lemma q_mono (n : ℕ) : q n ∣ q (n + 1) := by
   apply Finset.prod_dvd_prod_of_subset; exact P_n_mono n
 
-/-- Every `p n i` is in `primeWindow n`. -/
+/-- Every `p n i` is in `primeWindow n`.
+@isnad1 id=mem.0h2v.s4.262147f22c07 from=translated src=- shape=ee7aa78c vocab=c1b0f906
+-/
 lemma p_mem_P_n (n : ℕ) (i : Fin (w n)) : p n i ∈ primeWindow n :=
   (Finset.mem_sort (α := ℕ) (· ≤ ·)).mp (List.get_mem _ _)
 
-/-- Every `p n i` is prime. -/
+/-- Every `p n i` is prime.
+@isnad1 id=prime.0h2v.s3.e422fed4df38 from=translated src=- shape=5293442f vocab=22fc8325
+-/
 lemma p_prime (n : ℕ) (i : Fin (w n)) : (p n i).Prime :=
   (Finset.mem_filter.mp (p_mem_P_n n i)).2.2
 
-/-- Every `p n i` is at least 5. -/
+/-- Every `p n i` is at least 5.
+@isnad1 id=le.0h2v.s4.6038a08e5bb6 from=translated src=- shape=161cbf40 vocab=d39cb84c
+-/
 lemma p_ge_5 (n : ℕ) (i : Fin (w n)) : 5 ≤ p n i :=
   (Finset.mem_filter.mp (p_mem_P_n n i)).2.1
 
-/-- Every `p n i` is positive. -/
+/-- Every `p n i` is positive.
+@isnad1 id=lt.0h2v.s4.4af66b36f29b from=translated src=- shape=161cbf40 vocab=9d5e2f07
+-/
 lemma p_pos (n : ℕ) (i : Fin (w n)) : 0 < p n i :=
   (p_prime n i).pos
 
-/-- Every `p n i` is nonzero. -/
+/-- Every `p n i` is nonzero.
+@isnad1 id=ne.0h2v.s4.3be1ab5a1935 from=translated src=- shape=f87137ba vocab=e4fa797e
+-/
 lemma p_ne_zero (n : ℕ) (i : Fin (w n)) : p n i ≠ 0 :=
   (p_pos n i).ne'
 
-/-- `p n i` is in the range `[5, 6n+2)`. -/
+/-- `p n i` is in the range `[5, 6n+2)`.
+@isnad1 id=lt.0h2v.s5.7b73e28ba7cb from=translated src=- shape=7f40e552 vocab=dec795d9
+-/
 lemma p_lt_range (n : ℕ) (i : Fin (w n)) : p n i < 6 * n + 2 :=
   Finset.mem_range.mp (Finset.mem_filter.mp (p_mem_P_n n i)).1
 
-/-- `p n i` divides `q n`. -/
+/-- `p n i` divides `q n`.
+@isnad1 id=dvd.0h2v.s3.15b2ad743a7c from=translated src=- shape=cbca4ee8 vocab=07ec00d8
+-/
 lemma p_dvd_q (n : ℕ) (i : Fin (w n)) : p n i ∣ q n :=
   Finset.dvd_prod_of_mem _ (p_mem_P_n n i)
 
-/-- $q(n)$ is at least $10^{20}$ for $n \ge 10$. -/
+/-- $q(n)$ is at least $10^{20}$ for $n \ge 10$.
+@isnad1 id=le.1h1v.s5.2eb2ced821ec from=translated src=- shape=918fb286 vocab=b5eca99c
+-/
 lemma q_ge_q10_very_large (n : ℕ) (hn : n ≥ 10) : q n ≥ 10^20 := by
   induction hn with
   | refl => decide

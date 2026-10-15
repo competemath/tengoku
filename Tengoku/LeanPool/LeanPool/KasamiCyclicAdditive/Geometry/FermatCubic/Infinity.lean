@@ -32,7 +32,9 @@ open WeierstrassCurve
 
 variable {K : Type*} [Field K] [CharP K 2]
 
-/-- A cube root of unity other than `1` satisfies `a^2 + a + 1 = 0`. -/
+/-- A cube root of unity other than `1` satisfies `a^2 + a + 1 = 0`.
+@isnad1 id=eq.2h2v.s7.0f8c027594b1 from=translated src=- shape=c2e341d0 vocab=3729ae20
+-/
 lemma cube_root_rel {a : K} (ha : a ^ 3 = 1) (ha1 : a ≠ 1) : a ^ 2 + a + 1 = 0 := by
   have hfac : (a + 1) * (a ^ 2 + a + 1) = 0 := by
     linear_combination ha + (a ^ 2 + a + 1) * CharTwo.two_eq_zero (R := K)
@@ -40,11 +42,15 @@ lemma cube_root_rel {a : K} (ha : a ^ 3 = 1) (ha1 : a ≠ 1) : a ^ 2 + a + 1 = 0
   · exact absurd (by linear_combination h - CharTwo.two_eq_zero (R := K) : a = 1) ha1
   · exact h
 
-/-- Conversely, `a^2 + a + 1 = 0` makes `a` a cube root of unity. -/
+/-- Conversely, `a^2 + a + 1 = 0` makes `a` a cube root of unity.
+@isnad1 id=eq.1h2v.s7.4a44f505cbc0 from=translated src=- shape=f84e6cfe vocab=3729ae20
+-/
 lemma cube_root_of_rel {a : K} (ha2 : a ^ 2 + a + 1 = 0) : a ^ 3 = 1 := by
   linear_combination (a + 1) * ha2 - (a ^ 2 + a + 1) * CharTwo.two_eq_zero (R := K)
 
-/-- `(0, a)` with `a^2 + a + 1 = 0` is a nonsingular point of `fer K`. -/
+/-- `(0, a)` with `a^2 + a + 1 = 0` is a nonsingular point of `fer K`.
+@isnad1 id=nonsingu.1h2v.s7.25694d32aa80 from=translated src=- shape=7c887b31 vocab=fbb67710
+-/
 lemma inf_nonsingular {a : K} (ha2 : a ^ 2 + a + 1 = 0) :
     (fer K).toAffine.Nonsingular (0 : K) a :=
   nonsingular_of_eq (by linear_combination ha2 - CharTwo.two_eq_zero (R := K))
@@ -56,16 +62,22 @@ model.  For `a = 1` this is the origin `O = [1:1:0]`. -/
 def ptInf (a : K) (ha : a ^ 3 = 1) : (fer K).toAffine.Point :=
   if ha1 : a = 1 then 0 else Affine.Point.some _ _ (inf_nonsingular (cube_root_rel ha ha1))
 
-/-- `P_1` is the origin. -/
+/-- `P_1` is the origin.
+@isnad1 id=eq.0h1v.s6.eea630831ba5 from=translated src=- shape=4c78afe0 vocab=29a2f674
+-/
 @[simp] lemma ptInf_one : ptInf (1 : K) (one_pow 3) = 0 := by
   simp [ptInf]
 
-/-- For `a ≠ 1` the point at infinity `P_a` is the affine point `(0, a)`. -/
+/-- For `a ≠ 1` the point at infinity `P_a` is the affine point `(0, a)`.
+@isnad1 id=eq.2h2v.s7.9809d4e5739c from=translated src=- shape=7cae22b7 vocab=e7d62c0c
+-/
 lemma ptInf_ne_one {a : K} (ha : a ^ 3 = 1) (ha1 : a ≠ 1) :
     ptInf a ha = Affine.Point.some _ _ (inf_nonsingular (cube_root_rel ha ha1)) := by
   simp [ptInf, ha1]
 
-/-- Every point at infinity is `3`-torsion: `K0 ⊆ E[3]`. -/
+/-- Every point at infinity is `3`-torsion: `K0 ⊆ E[3]`.
+@isnad1 id=eq.1h2v.s7.fc5460f4fc2b from=translated src=- shape=4e743caa vocab=03d6fb60
+-/
 theorem three_torsion_ptInf {a : K} (ha : a ^ 3 = 1) : (3 : ℕ) • ptInf a ha = 0 := by
   by_cases ha1 : a = 1
   · subst ha1; simp
@@ -80,12 +92,16 @@ private lemma fermat_rotate {w t a : K} (h : w ^ 3 + t ^ 3 = 1) (ha : a ^ 3 = 1)
 
 omit [DecidableEq K] in
 /-- Affine Fermat points with equal coordinates are equal, whatever proof of the
-Fermat equation each carries. -/
+Fermat equation each carries.
+@isnad1 id=eq.4h5v.s7.f4e819856839 from=translated src=- shape=795f4988 vocab=61a0ffe4
+-/
 lemma pt_congr {w t w' t' : K} (h : w ^ 3 + t ^ 3 = 1) (h' : w' ^ 3 + t' ^ 3 = 1)
     (hw : w = w') (ht : t = t') : pt w t h = pt w' t' h' := by
   subst hw; subst ht; rfl
 
-/-- **The diagonal translation formula**: `(w,t) + P_a = (a*w, a^{-1}*t)`. -/
+/-- **The diagonal translation formula**: `(w,t) + P_a = (a*w, a^{-1}*t)`.
+@isnad1 id=eq.2h4v.s8.966b6fcd11e0 from=translated src=- shape=d79c76df vocab=f3854da8
+-/
 theorem add_ptInf {w t a : K} (h : w ^ 3 + t ^ 3 = 1) (ha : a ^ 3 = 1) :
     pt w t h + ptInf a ha = pt (a * w) (a ^ 2 * t) (private_decl% (fermat_rotate h ha)) := by
   by_cases ha1 : a = 1

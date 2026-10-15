@@ -44,7 +44,9 @@ open FirstOrder Structure
 variable {L : Language.{0, 0}}
 
 /-- Every formula mentions only countably many function symbols — as an instance on the
-subtype, so `graphAxioms φ.functionsIn` needs no explicit countability bookkeeping. -/
+subtype, so `graphAxioms φ.functionsIn` needs no explicit countability bookkeeping.
+@isnad1 id=countabl.0h4v.s4.84d8bebcff28 from=translated src=- shape=fd52eeb1 vocab=75557f14
+-/
 instance BoundedFormulaω.instCountableFunctionsIn {α : Type} {n : ℕ}
     (φ : L.BoundedFormulaω α n) : Countable ↥φ.functionsIn :=
   φ.functionsIn_countable.to_subtype
@@ -52,7 +54,9 @@ instance BoundedFormulaω.instCountableFunctionsIn {α : Type} {n : ℕ}
 /-! ## The exact occurrence identities of the two translated sides -/
 
 /-- The graph antecedent `Ax(F₁) ∧ r₁ʳᵉˡ` mentions exactly the relationalization of `r₁`'s own
-symbols. -/
+symbols.
+@isnad1 id=eq.0h2v.s6.df4dacdc0c21 from=translated src=- shape=d444ca24 vocab=c4ffe018
+-/
 theorem relationsIn_graphAntecedent (r : L.Sentenceω) :
     ((graphAxioms r.functionsIn).and (relationalizeFormula r)).relationsIn =
       relSym L r.functionsIn r.relationsIn := by
@@ -61,7 +65,9 @@ theorem relationsIn_graphAntecedent (r : L.Sentenceω) :
   exact Set.union_eq_self_of_subset_left Set.subset_union_right
 
 /-- The graph consequent `Ax(F₂) → r₂ʳᵉˡ` mentions exactly the relationalization of `r₂`'s own
-symbols. -/
+symbols.
+@isnad1 id=eq.0h2v.s6.2760aff7e6ab from=translated src=- shape=d444ca24 vocab=8407d0fa
+-/
 theorem relationsIn_graphConsequent (r : L.Sentenceω) :
     ((graphAxioms r.functionsIn).imp (relationalizeFormula r)).relationsIn =
       relSym L r.functionsIn r.relationsIn := by
@@ -74,7 +80,9 @@ theorem relationsIn_graphConsequent (r : L.Sentenceω) :
 /-- **The graph translation of an entailment** — the one semantic gate of the assembly, and the
 only place reconstruction is used: a model of `Ax(F₁) ∧ r₁ʳᵉˡ` that also satisfies `Ax(F₂)`
 carries the graph axioms of `F₁ ∪ F₂`, so it reconstructs to an `L`-structure in which `r₁`
-holds; `r₁ ⊨ r₂` there, and `r₂` translates back. -/
+holds; `r₁ ⊨ r₂` there, and `r₂` translates back.
+@isnad1 id=entails.1h3v.s6.bf224fe81727 from=translated src=- shape=8fd2adb9 vocab=1bfd2265
+-/
 theorem entails_graphTranslation (r₁ r₂ : L.Sentenceω) (h : Sentenceω.Entails r₁ r₂) :
     Sentenceω.Entails ((graphAxioms r₁.functionsIn).and (relationalizeFormula r₁))
       ((graphAxioms r₂.functionsIn).imp (relationalizeFormula r₂)) := by
@@ -100,7 +108,9 @@ theorem entails_graphTranslation (r₁ r₂ : L.Sentenceω) (h : Sentenceω.Enta
 
 /-- **Craig interpolation for `L_ω₁ω`, arbitrary language.** An `L_ω₁ω`-entailment `r₁ ⊨ r₂`
 over *any* language has an interpolant `θ` whose function and relation symbols each lie in the
-intersection of the two roots' occurrence sets, with `r₁ ⊨ θ` and `θ ⊨ r₂`. -/
+intersection of the two roots' occurrence sets, with `r₁ ⊨ θ` and `θ ⊨ r₂`.
+@isnad1 id=ex.1h3v.s7.3a0df7977605 from=translated src=- shape=12b6f887 vocab=14190af3
+-/
 theorem craig_interpolation (r₁ r₂ : L.Sentenceω) (h : Sentenceω.Entails r₁ r₂) :
     ∃ θ : L.Sentenceω,
       θ.functionsIn ⊆ r₁.functionsIn ∩ r₂.functionsIn ∧
@@ -145,7 +155,9 @@ theorem craig_interpolation (r₁ r₂ : L.Sentenceω) (h : Sentenceω.Entails r
 
 /-- **Craig separation (PC-separation), arbitrary language.** If `ψ₁` and `ψ₂` have no common
 model (`ψ₁ ⊨ ¬ψ₂`), a single shared-vocabulary sentence `θ₀` separates them: it holds in the
-shared-vocabulary reduct of every model of `ψ₁` and fails in that of every model of `ψ₂`. -/
+shared-vocabulary reduct of every model of `ψ₁` and fails in that of every model of `ψ₂`.
+@isnad1 id=ex.1h3v.s9.f34d32f22734 from=translated src=- shape=b120e456 vocab=7e245399
+-/
 theorem craig_pcSeparation (ψ₁ ψ₂ : L.Sentenceω) (h : Sentenceω.Entails ψ₁ ψ₂.not) :
     ∃ θ₀ : (symbSublang (ψ₁.functionsIn ∩ ψ₂.functionsIn)
         (ψ₁.relationsIn ∩ ψ₂.relationsIn)).Sentenceω,

@@ -49,7 +49,9 @@ open Cardinal
 variable {s₀ : LocalStage}
 
 /-- Increasing `ℕ`-tuples of any fixed length are countable: the coercion to `Fin m → ℕ` is
-injective, and `Fin m → ℕ` is countable. -/
+injective, and `Fin m → ℕ` is countable.
+@isnad1 id=countabl.0h1v.s3.74ebf5801796 from=translated src=- shape=879c57c4 vocab=7ef989df
+-/
 instance instCountableFinOrderEmbNat (m : ℕ) : Countable (Fin m ↪o ℕ) :=
   (DFunLike.coe_injective (F := Fin m ↪o ℕ) (α := Fin m) (β := fun _ => ℕ)).countable
 
@@ -77,7 +79,9 @@ Marker double expansion `((L''[[J]])[[ℕ]])` along the Henkin inclusion, realiz
 interpretation `σ : J → M` and any Henkin interpretation `h : ℕ → M` iff `ψ` holds on the tuple
 `i ↦ σ (t i)`. Composes `sentenceRealize_iff_realizeWith`, `realize_mapLanguage` (the Henkin
 inclusion is an expansion, `withConstants_expansion`), and the existing
-  `realize_templateSentence`. -/
+  `realize_templateSentence`.
+@isnad1 id=iff.0h8v.s7.8891aa18b0df from=translated src=- shape=d97ba92e vocab=703c9a69
+-/
 theorem realizeWith_templateSentence (σ : J → M) (h : ℕ → M)
     {n : ℕ} (ψ : L''.BoundedFormulaω Empty n) (t : Fin n ↪o J) :
     realizeWith σ h
@@ -211,7 +215,9 @@ private theorem sentenceJConsts_templateSentence {n : ℕ} (ψ : L''.BoundedForm
     exact ⟨i, (Sum.inr_injective hi3).symm⟩
 
 /-- **Every lifted `templateSentence` is an `FSentence`.** Its expansion `J`-support is the finite
-tuple image `image t`, and its Henkin support is empty. -/
+tuple image `image t`, and its Henkin support is empty.
+@isnad1 id=hasfinit.0h5v.s6.b39dac5e15c2 from=translated src=- shape=e1f7b7fa vocab=62e4cd9c
+-/
 theorem hasFiniteConstSupport_mapLanguage_templateSentence {n : ℕ}
     (ψ : L''.BoundedFormulaω Empty n) (t : Fin n ↪o J) :
     HasFiniteConstSupport (L'' := L'')
@@ -334,7 +340,9 @@ noncomputable def schemaCompletionStage
 
 omit [WellFoundedLT M] in
 /-- **`C0` at the consistency level**: a `MarkerHenkinConsistent` fragment contains no sentence
-together with its negation (a body at some level realizes both, contradicting `realizeWith_not`). -/
+together with its negation (a body at some level realizes both, contradicting `realizeWith_not`).
+@isnad1 id=not.1h4v.s7.ba782b9fb9ff from=translated src=- shape=cc1d707a vocab=4333109f
+-/
 theorem markerHenkinConsistent_not_mem_and_not_mem
     {F : Finset (((localColim s₀)[[ℕ]])[[ℕ]].Sentenceω)} (h : MarkerHenkinConsistent M F)
     (τ : ((localColim s₀)[[ℕ]])[[ℕ]].Sentenceω) : ¬(τ ∈ F ∧ τ.not ∈ F) := by
@@ -603,7 +611,9 @@ structure SchemaCompletionTheorySpec (hM : Cardinal.beth (Ordinal.omega 1) ≤ C
           schemaCompletionTheory (schemaEnumeration s₀) hM
 
 /-- **Checkpoint 3c complete**: the completed schema theory over `schemaEnumeration s₀` satisfies
-the bundle — the witnessed schema object the extraction (checkpoint 5) consumes. -/
+the bundle — the witnessed schema object the extraction (checkpoint 5) consumes.
+@isnad1 id=schemaco.1h2v.s6.a97e132b97d7 from=translated src=- shape=f4131709 vocab=94e74a43
+-/
 theorem schemaCompletionTheorySpec (hM : Cardinal.beth (Ordinal.omega 1) ≤ Cardinal.mk M) :
     SchemaCompletionTheorySpec (s₀ := s₀) (M := M) hM where
   finite_consistent := schemaCompletionTheory_finite_consistent (schemaEnumeration s₀) hM
@@ -782,7 +792,9 @@ abbrev schemaLift {s₀ : LocalStage} {m : ℕ}
     (((localColim s₀)[[ℕ]]).lhomWithConstants ℕ)
 
 /-- Every schema lift of a `ΓEMlocal` member is a universe member (with its canonical
-finite-support proof). -/
+finite-support proof).
+@isnad1 id=mem.1h4v.s6.066b8150ce9b from=translated src=- shape=43f8c1b0 vocab=850c693f
+-/
 theorem schemaLift_mem_universe {s₀ : LocalStage} {m : ℕ}
     {ψ : (localColim s₀).BoundedFormulaω Empty m}
     (hψ : (⟨m, ψ⟩ : Σ n, (localColim s₀).BoundedFormulaω Empty n) ∈ ΓEMlocal s₀)
@@ -796,7 +808,9 @@ variable {M : Type} [(localColim s₀).Structure M] [LinearOrder M]
 
 /-- **Checkpoint 5b-1 — tuple uniformity.** The completed schema theory gives every `ΓEMlocal`
 body a tuple-independent sign: for same-arity increasing tuples `t t'`, the lifted
-`templateSentence ψ t` is in the theory iff the lifted `templateSentence ψ t'` is. -/
+`templateSentence ψ t` is in the theory iff the lifted `templateSentence ψ t'` is.
+@isnad1 id=iff.2h6v.s7.423a3a4a94ce from=translated src=- shape=425c681f vocab=53fe6686
+-/
 theorem schemaCompletionTheory_tuple_uniform
     {m : ℕ} {ψ : (localColim s₀).BoundedFormulaω Empty m}
     (hψ : (⟨m, ψ⟩ : Σ n, (localColim s₀).BoundedFormulaω Empty n) ∈ ΓEMlocal s₀)
@@ -869,7 +883,9 @@ variable {M : Type} [(localColim s₀).Structure M] [LinearOrder M]
   [WellFoundedLT M] (hM : Cardinal.beth (Ordinal.omega 1) ≤ Cardinal.mk M)
 
 /-- **Positive `iSup` witness, canonical-deForm form.** If the lifted template sentence of a
-`ΓlocalColim` disjunction's deForm is in the completed theory, so is some component's. -/
+`ΓlocalColim` disjunction's deForm is in the completed theory, so is some component's.
+@isnad1 id=ex.3h7v.s7.ad0c3dea77a6 from=translated src=- shape=7c9baafd vocab=84067a0f
+-/
 theorem schemaCompletionTheory_iSup_witness_canonDeForm
     {m : ℕ} {φs : ℕ → (localColim s₀).BoundedFormulaω Empty m}
     (hmem : (⟨m, BoundedFormulaω.iSup φs⟩ : Σ n, (localColim s₀).BoundedFormulaω Empty n)
@@ -887,7 +903,9 @@ theorem schemaCompletionTheory_iSup_witness_canonDeForm
 
 /-- **Negative `iInf` witness, canonical-deForm form.** If the negation of the lifted template
 sentence of a `ΓlocalColim` conjunction's deForm is in the completed theory, some component's
-negation is too — the fixed refuted conjunct the restricted truth lemma's `iInf` case consumes. -/
+negation is too — the fixed refuted conjunct the restricted truth lemma's `iInf` case consumes.
+@isnad1 id=ex.3h7v.s8.35f22ddb5b63 from=translated src=- shape=bb01e29f vocab=27fc930d
+-/
 theorem schemaCompletionTheory_neg_iInf_witness_canonDeForm
     {m : ℕ} {φs : ℕ → (localColim s₀).BoundedFormulaω Empty m}
     (hmem : (⟨m, BoundedFormulaω.iInf φs⟩ : Σ n, (localColim s₀).BoundedFormulaω Empty n)

@@ -39,7 +39,9 @@ variable {U : Type*} [DecidableEq U] [Fintype U]
 /-! ## Mixed intersection construction -/
 
 omit [Fintype U] in
-/-- **Corollary 3.1** (Mixed intersections, deficit version). -/
+/-- **Corollary 3.1** (Mixed intersections, deficit version).
+@isnad1 id=ex.10h8v.s8.3e48fb601c86 from=translated src=- shape=7dd54177 vocab=09d878f4
+-/
 theorem mixed_intersection_weighted
     [Finite U]
     (f : Finset U → ℝ) (hf : IsApproxAdditive f 1) (M : ℝ)
@@ -60,7 +62,9 @@ theorem mixed_intersection_weighted
       f hf M hM D hD hdeficit⟩
 
 omit [Fintype U] in
-/-- **Corollary 3.1** (Mixed intersections, surplus version). -/
+/-- **Corollary 3.1** (Mixed intersections, surplus version).
+@isnad1 id=ex.10h8v.s8.251b9f6ffa67 from=translated src=- shape=7dd54177 vocab=d376b2b8
+-/
 theorem mixed_intersection_weighted_surplus
     [Finite U]
     (f : Finset U → ℝ) (hf : IsApproxAdditive f 1) (M : ℝ)
@@ -103,6 +107,9 @@ The theorems are re-exported here for use in the spine proof. -/
 /-! ## Normalization helpers -/
 
 omit [Fintype U] in
+/--
+@isnad1 id=isapprox.1h3v.s5.0f9ddfa1eb03 from=translated src=- shape=fc7df02d vocab=ddc14aba
+-/
 lemma IsApproxAdditive_sub_additive
     (f : Finset U → ℝ) (hf : IsApproxAdditive f 1) (a : U → ℝ) :
     IsApproxAdditive (fun S => f S - additiveFunction a S) 1 := by
@@ -111,6 +118,9 @@ lemma IsApproxAdditive_sub_additive
   · convert hf.2 A B hAB using 1; simp +decide [ additiveFunction, Finset.sum_union hAB ]; ring_nf
 
 omit [DecidableEq U] [Fintype U] in
+/--
+@isnad1 id=eq.0h3v.s5.f9de7a544f4d from=translated src=- shape=7051d99f vocab=431f7019
+-/
 lemma distToAdditive_sub_additive
     (f : Finset U → ℝ) (a : U → ℝ) :
     distToAdditive (fun S => f S - additiveFunction a S) = distToAdditive f := by
@@ -146,17 +156,26 @@ noncomputable def DualCertificate.neg
   neg_support := by
     intro S hS; have := cert.pos_support S (by linarith); linarith
 
+/--
+@isnad1 id=eq.0h4v.s5.b1c4bd441639 from=translated src=- shape=423d84c8 vocab=c759e063
+-/
 lemma DualCertificate.neg_negMass
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M) :
     cert.neg.negMass = cert.posMass := by
   simp [DualCertificate.negMass, DualCertificate.neg, DualCertificate.posMass]
 
+/--
+@isnad1 id=eq.0h4v.s5.42ca995fcb05 from=translated src=- shape=423d84c8 vocab=c759e063
+-/
 lemma DualCertificate.neg_posMass
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M) :
     cert.neg.posMass = cert.negMass := by
   simp [DualCertificate.posMass, DualCertificate.neg, DualCertificate.negMass]
 
 omit [Fintype U] in
+/--
+@isnad1 id=isapprox.1h2v.s5.f22778118ddf from=translated src=- shape=7ca02f4b vocab=bc41cdf8
+-/
 lemma IsApproxAdditive_neg (f : Finset U → ℝ) (hf : IsApproxAdditive f 1) :
     IsApproxAdditive (fun S => -f S) 1 := by
   constructor
@@ -166,6 +185,9 @@ lemma IsApproxAdditive_neg (f : Finset U → ℝ) (hf : IsApproxAdditive f 1) :
     exact hf.2 A B hAB
 
 omit [DecidableEq U] [Fintype U] in
+/--
+@isnad1 id=eq.0h2v.s4.27d6b1acc7bc from=translated src=- shape=6ec248dc vocab=97b82bc5
+-/
 lemma distToAdditive_neg (f : Finset U → ℝ) :
     distToAdditive (fun S => -f S) = distToAdditive f := by
   classical
@@ -187,6 +209,9 @@ lemma distToAdditive_neg (f : Finset U → ℝ) :
 Helper: the best-approximation property from distToAdditive.
 -/
 omit [DecidableEq U] [Fintype U] in
+/--
+@isnad1 id=ex.2h4v.s6.ec8c1cbd0d00 from=translated src=- shape=36aa3ead vocab=adaa5df1
+-/
 lemma best_approx_property [Finite U] (g : Finset U → ℝ) (M : ℝ)
     (_hM_bound : ∀ S : Finset U, |g S| ≤ M)
     (hM_eq : distToAdditive g = M) :
@@ -226,6 +251,9 @@ When M > 0 and a dual certificate exists, both masses are positive.
 This follows because if all weights were non-negative (or non-positive),
 the zero-marginal property forces all non-empty-set weights to 0,
 which means lam(∅) has norm 1, forcing g(∅) = ±M = 0, contradiction.
+-/
+/--
+@isnad1 id=lt.3h4v.s6.c02f938e0e24 from=translated src=- shape=64d1898c vocab=0b18fa00
 -/
 lemma cert_posMass_pos
     {g : Finset U → ℝ} {M : ℝ} (cert : DualCertificate g M)
@@ -274,6 +302,9 @@ lemma cert_posMass_pos
         linarith [ hg.1 ]
       exact absurd h_contra (by linarith)
 
+/--
+@isnad1 id=lt.3h4v.s6.e0d23ce8a2de from=translated src=- shape=64d1898c vocab=1cb4dfc8
+-/
 lemma cert_negMass_pos
     {g : Finset U → ℝ} {M : ℝ} (cert : DualCertificate g M)
     (hg : IsApproxAdditive g 1) (hM : 0 < M)
@@ -286,6 +317,9 @@ lemma cert_negMass_pos
 /-
 |g(U)| ≤ 1 for a 1-additive function with |g(S)| ≤ M,
 given existence of both positive and negative active sets.
+-/
+/--
+@isnad1 id=le.3h4v.s6.ea4988f06c2d from=translated src=- shape=4d98ea8e vocab=637ee884
 -/
 lemma g_univ_le_one
     {g : Finset U → ℝ} {M : ℝ} (cert : DualCertificate g M)
@@ -341,6 +375,9 @@ lemma g_univ_le_one
 Case 1 of the spine theorem (q ≤ q₀).
 Given a dual certificate with q ≤ q₀ ≤ 1/2, using mixed intersection
 and two rounds of one-sided recombination, derive M ≤ C₂.
+-/
+/--
+@isnad1 id=le.9h4v.s9.2c4006c6b11e from=translated src=- shape=1622bf13 vocab=da7d171e
 -/
 lemma spine_case1
     (g : Finset U → ℝ) (hg : IsApproxAdditive g 1) (M : ℝ) (hM_pos : 0 < M)
@@ -439,6 +476,9 @@ lemma spine_case1
 Case 2 of the spine theorem (q₀ < q ≤ 1/2, so p ≤ p₀).
 Uses both deficit and surplus augmented collections, mixed intersections,
 and two rounds of two-sided recombination.
+-/
+/--
+@isnad1 id=le.10h4v.s10.6bac516ed83a from=translated src=- shape=fe80eb57 vocab=e270d2d6
 -/
 lemma spine_case2
     (g : Finset U → ℝ) (hg : IsApproxAdditive g 1) (M : ℝ) (hM_pos : 0 < M)

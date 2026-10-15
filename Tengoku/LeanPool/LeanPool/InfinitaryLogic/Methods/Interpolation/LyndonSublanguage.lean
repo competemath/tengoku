@@ -65,7 +65,9 @@ occurrences, whose **positively** occurring relation symbols lie in the intersec
 roots' **negative** occurrences.
 
 The relation-polarity / logical-equality form of López–Escobar 1965, Theorem 4.1 — clause (.4) in
-full; clause (.3)'s equality-occurrence condition is not claimed. -/
+full; clause (.3)'s equality-occurrence condition is not claimed.
+@isnad1 id=ex.1h3v.s7.a903ec59ac09 from=translated src=- shape=63d8e6ec vocab=3a3c4eb3
+-/
 theorem lyndon_interpolation_relational [L.IsRelational] (r₁ r₂ : L.Sentenceω)
     (h : Sentenceω.Entails r₁ r₂) :
     ∃ θ : L.Sentenceω,
@@ -108,7 +110,9 @@ theorem lyndon_interpolation_relational [L.IsRelational] (r₁ r₂ : L.Sentence
 /-- **Craig from Lyndon, at the occurrence level.** The unsigned shared-vocabulary bound follows
 from the two signed bounds through `relationsIn = positive ∪ negative`.  Stated as a consumer
 lemma so that the recovery of Craig interpolation is explicit, without duplicating the existing
-`craig_interpolation_relational`. -/
+`craig_interpolation_relational`.
+@isnad1 id=le.2h4v.s7.f5903bce1891 from=translated src=- shape=c6fc67f8 vocab=23764e68
+-/
 theorem lyndon_interpolant_is_craig {θ r₁ r₂ : L.Sentenceω}
     (hp : θ.positiveRelationsIn ⊆ r₁.positiveRelationsIn ∩ r₂.positiveRelationsIn)
     (hn : θ.negativeRelationsIn ⊆ r₁.negativeRelationsIn ∩ r₂.negativeRelationsIn) :

@@ -37,7 +37,9 @@ root-count-specific argument.
 
 omit [CharP K 2] in
 /-- Summing over the cube roots of unity in `Kˣ` is the same as summing over
-`μ₃(K)` inside `K`. -/
+`μ₃(K)` inside `K`.
+@isnad1 id=eq.0h3v.s8.5049108fff33 from=translated src=- shape=ed817c9a vocab=0857e4ba
+-/
 lemma sum_mu3Units {M : Type*} [AddCommMonoid M] (f : K → M) :
     ∑ u ∈ Finset.univ.filter (fun u : Kˣ => u ^ 3 = 1), f ((u : K))
       = ∑ u ∈ cubeRootsOne K, f u := by
@@ -62,13 +64,17 @@ lemma sum_mu3Units {M : Type*} [AddCommMonoid M] (f : K → M) :
   · intro u _; rfl
 
 omit [CharP K 2] in
-/-- The cube roots of unity in `Kˣ` number `mu3Card K`. -/
+/-- The cube roots of unity in `Kˣ` number `mu3Card K`.
+@isnad1 id=eq.0h1v.s8.1a39b0c530d6 from=translated src=- shape=d992dd61 vocab=a955f380
+-/
 lemma card_mu3Units : (Finset.univ.filter (fun u : Kˣ => u ^ 3 = 1)).card = mu3Card K := by
   have h := sum_mu3Units (K := K) (M := ℕ) (fun _ => 1)
   simpa [mu3Card] using h
 
 omit [CharP K 2] in
-/-- Every cube in `Kˣ` has exactly `c` cube roots. -/
+/-- Every cube in `Kˣ` has exactly `c` cube roots.
+@isnad1 id=eq.0h2v.s8.7889f1c88a88 from=translated src=- shape=2d9df3c9 vocab=a955f380
+-/
 lemma card_cubeRoots_units (A : Kˣ) : #{b : Kˣ | b ^ 3 = A ^ 3} = mu3Card K := by
   rw [← card_mu3Units]
   refine Finset.card_nbij' (fun b => b * A⁻¹) (fun u => u * A) ?_ ?_ ?_ ?_
@@ -84,7 +90,9 @@ lemma card_cubeRoots_units (A : Kˣ) : #{b : Kˣ | b ^ 3 = A ^ 3} = mu3Card K :=
 /-! ### Step 1: the closed form of `S` -/
 
 omit [DecidableEq K] in
-/-- The Gauss-sum ratio of the Walsh formula, rewritten using `G(θ) G(θ⁻¹) = Q`. -/
+/-- The Gauss-sum ratio of the Walsh formula, rewritten using `G(θ) G(θ⁻¹) = Q`.
+@isnad1 id=eq.1h4v.s10.5959e64de4f7 from=translated src=- shape=e2753ba9 vocab=d538219d
+-/
 lemma ratio_eq {ψ : AddChar K ℂ} (hψ : ψ.IsPrimitive) (m : ℕ) (χ : MulChar K ℂ) :
     gaussSum (χ ^ (3 * m)) ψ / gaussSum (χ ^ 3) ψ
       = gaussSum ((χ ^ 3) ^ m) ψ * gaussSum ((χ ^ 3)⁻¹) ψ / (Fintype.card K : ℂ)
@@ -104,7 +112,9 @@ lemma ratio_eq {ψ : AddChar K ℂ} (hψ : ψ.IsPrimitive) (m : ℕ) (χ : MulCh
     linear_combination (-gaussSum ((χ ^ 3) ^ m) ψ) * hmi
 
 omit [CharP K 2] in
-/-- Orthogonality turns the character sum into a count of solutions of `y³ = a x^{3m}`. -/
+/-- Orthogonality turns the character sum into a count of solutions of `y³ = a x^{3m}`.
+@isnad1 id=eq.0h4v.s10.f41ff05387c5 from=translated src=- shape=5dc50df6 vocab=bfffb989
+-/
 lemma sum_gaussSum_prod {ψ : AddChar K ℂ} {m : ℕ} (a : Kˣ) :
     ∑ χ : MulChar K ℂ, gaussSum ((χ ^ 3) ^ m) ψ * gaussSum ((χ ^ 3)⁻¹) ψ * χ ((a : K))
       = (Fintype.card Kˣ : ℂ) * ∑ x : Kˣ,
@@ -154,7 +164,9 @@ lemma sum_gaussSum_prod {ψ : AddChar K ℂ} {m : ℕ} (a : Kˣ) :
         · rw [ite_eq_right (fun hc => h ((hiff x y).mp hc)), ite_eq_right h, zero_mul, mul_zero]
 
 /-- The closed form of the Walsh phase obtained from the supplied
-all-character Walsh formula `hS`. -/
+all-character Walsh formula `hS`.
+@isnad1 id=eq.3h6v.s10.f21095dfd057 from=translated src=- shape=53b86912 vocab=9041acc2
+-/
 lemma walshCoefficient_closed_form {ψ : AddChar K ℂ} {m e : ℕ} {S : K → ℂ} (hψ : ψ.IsPrimitive)
     (he : e = 3 * m) (hS : WalshCharacterFormula ψ e S) (a : Kˣ) :
     2 * S (a : K) = (#{b : Kˣ | b ^ 3 = a} : ℂ)
@@ -187,7 +199,9 @@ lemma walshCoefficient_closed_form {ψ : AddChar K ℂ} {m e : ℕ} {S : K → �
   ring
 
 /-- For `A ∈ Kˣ`, twice the phase at the cube `A³` is the additive Fourier transform
-of `Φ` at `A`. -/
+of `Φ` at `A`.
+@isnad1 id=eq.6h7v.s7.40055546c971 from=translated src=- shape=0a285553 vocab=012b97cf
+-/
 lemma two_S_cube {ψ : AddChar K ℂ} {m D e : ℕ} {S : K → ℂ} (hψ : ψ.IsPrimitive)
     (hm : m ≠ 0) (hD : D ≠ 0) (hmD : m * D ≡ 1 [MOD Fintype.card Kˣ]) (he : e = 3 * m)
     (hS : WalshCharacterFormula ψ e S) (A : Kˣ) :
@@ -270,7 +284,9 @@ lemma two_S_cube {ψ : AddChar K ℂ} {m D e : ℕ} {S : K → ℂ} (hψ : ψ.Is
   exact Finset.sum_congr rfl fun v _ => Finset.sum_congr rfl fun t _ =>
     ψ.map_add_eq_mul _ _
 
-/-- If `c = 3`, the phase vanishes at non-cubes. -/
+/-- If `c = 3`, the phase vanishes at non-cubes.
+@isnad1 id=eq.4h6v.s7.7cbad9bb94cc from=translated src=- shape=7be0759a vocab=6cae4de5
+-/
 lemma S_eq_zero_of_not_cube {ψ : AddChar K ℂ} {m e : ℕ} {S : K → ℂ} (hψ : ψ.IsPrimitive)
     (he : e = 3 * m) (hS : WalshCharacterFormula ψ e S) (a : Kˣ) (ha : ¬ ∃ b : Kˣ, b ^ 3 = a) :
     S ((a : K)) = 0 := by
@@ -288,7 +304,9 @@ lemma S_eq_zero_of_not_cube {ψ : AddChar K ℂ} {m e : ℕ} {S : K → ℂ} (h�
   simp only [h1, h2, Nat.cast_zero, Finset.sum_empty, Finset.sum_const_zero, add_zero] at key
   linear_combination key / 2
 
-/-- Reindexing `Z` over `G/U`, combined with the closed form of `S`. -/
+/-- Reindexing `Z` over `G/U`, combined with the closed form of `S`.
+@isnad1 id=eq.8h8v.s8.9f339718cf13 from=translated src=- shape=ac9ef798 vocab=e4bf2824
+-/
 lemma eight_phaseTripleSum {ψ : AddChar K ℂ} {m D e : ℕ} {S : K → ℂ} {A B : K}
     (hψ : ψ.IsPrimitive) (hm : m ≠ 0) (hD : D ≠ 0)
     (hmD : m * D ≡ 1 [MOD Fintype.card Kˣ]) (he : e = 3 * m) (hS : WalshCharacterFormula ψ e S)
@@ -342,7 +360,9 @@ lemma eight_phaseTripleSum {ψ : AddChar K ℂ} {m D e : ℕ} {S : K → ℂ} {A
 /-! ### Fourier analysis of `Φ` -/
 
 omit [CharP K 2] in
-/-- `Φ` has vanishing total mass, i.e. `Φ̂(0) = 0`. -/
+/-- `Φ` has vanishing total mass, i.e. `Φ̂(0) = 0`.
+@isnad1 id=eq.4h4v.s7.9d29761f5dfa from=translated src=- shape=fbf2eb08 vocab=67ae664a
+-/
 lemma sum_phi_eq_zero {ψ : AddChar K ℂ} {m D : ℕ} (hψ : ψ.IsPrimitive)
     (hm : m ≠ 0) (hD : D ≠ 0) (hmD : m * D ≡ 1 [MOD Fintype.card Kˣ]) :
     ∑ t : K, phi ψ D t = 0 := by
@@ -352,7 +372,9 @@ lemma sum_phi_eq_zero {ψ : AddChar K ℂ} {m D : ℕ} (hψ : ψ.IsPrimitive)
   rw [sum_psi_mul_powD hψ hm hD hmD u, ite_eq_right (cubeRootsOne_ne_zero hu)]
 
 omit [CharP K 2] in
-/-- The transform `phiHat` vanishes at `0`. -/
+/-- The transform `phiHat` vanishes at `0`.
+@isnad1 id=eq.4h4v.s7.e242d4699c88 from=translated src=- shape=cd679a6c vocab=bda6c30a
+-/
 lemma phiHat_zero {ψ : AddChar K ℂ} {m D : ℕ} (hψ : ψ.IsPrimitive)
     (hm : m ≠ 0) (hD : D ≠ 0) (hmD : m * D ≡ 1 [MOD Fintype.card Kˣ]) :
     phiHat ψ D 0 = 0 := by
@@ -367,7 +389,9 @@ private lemma triple_sum_mul {f g h : K → ℂ} :
   refine Finset.sum_congr rfl fun x _ => ?_
   rw [Finset.sum_mul_sum]
 
-/-- The Parseval-type identity replacing the spectral computation of Steps 4–7. -/
+/-- The Parseval-type identity replacing the spectral computation of Steps 4–7.
+@isnad1 id=eq.1h5v.s8.cefdfbf58d10 from=translated src=- shape=792df57b vocab=dbbd300b
+-/
 lemma fourier_triple {ψ : AddChar K ℂ} {D : ℕ} (hψ : ψ.IsPrimitive) (A B : K) :
     ∑ z : K, phiHat ψ D z * phiHat ψ D (A * z) * phiHat ψ D (B * z)
       = (Fintype.card K : ℂ) * ∑ x : K, ∑ y : K,
@@ -437,7 +461,9 @@ private lemma sum_reorder5 {ι : Type*} (s : Finset ι) (F : K → K → ι → 
         rw [Finset.sum_comm]
 
 omit [CharP K 2] in
-/-- Symmetrizing the Weil sum over the cube roots of unity. -/
+/-- Symmetrizing the Weil sum over the cube roots of unity.
+@isnad1 id=eq.3h6v.s7.e371f4792bd6 from=translated src=- shape=a6a7e1b7 vocab=f86ead87
+-/
 lemma symmetrization {ψ : AddChar K ℂ} {m D : ℕ} (hm : m ≠ 0) (hD : D ≠ 0)
     (hmD : m * D ≡ 1 [MOD Fintype.card Kˣ]) (A B : K) :
     ∑ x : K, ∑ y : K, phi ψ D x * phi ψ D y * phi ψ D (A * x + B * y)
@@ -515,7 +541,9 @@ lemma symmetrization {ψ : AddChar K ℂ} {m D : ℕ} (hm : m ≠ 0) (hD : D ≠
 
 /-! ### Step 2: the root-count Weil sum -/
 
-/-- The Weil sum in terms of the root count. -/
+/-- The Weil sum in terms of the root count.
+@isnad1 id=eq.7h8v.s8.2ffa499abe14 from=translated src=- shape=5d7bd075 vocab=f1981ee5
+-/
 lemma weilSum_eq {ψ : AddChar K ℂ} {m D : ℕ} (hψ : ψ.IsPrimitive) (hm : m ≠ 0) (hD : D ≠ 0)
     (hmD : m * D ≡ 1 [MOD Fintype.card Kˣ]) {A B : K} (hA3 : A ^ 3 ≠ 1)
     {u v : K} (hu : u ∈ cubeRootsOne K) (hv : v ∈ cubeRootsOne K) :
@@ -629,7 +657,9 @@ Let `S : K → ℂ` satisfy the all-character Walsh formula. If `A, B ∈ K`, wi
 then `Z(A³) = Q²/8 (∑_{u,v ∈ μ₃(K)} R_{u,v}(A,B) - c²)`.
 
 (The source's hypothesis `B ≠ 0` is not stated separately here: it is implied by
-`A³ + B³ = 1` together with `A³ ≠ 1`, and is derived inside the proof.) -/
+`A³ + B³ = 1` together with `A³ ≠ 1`, and is derived inside the proof.)
+@isnad1 id=eq.9h8v.s8.36e3d80d7a00 from=translated src=- shape=34e82cd8 vocab=3c118fb0
+-/
 theorem phase_to_root_count {ψ : AddChar K ℂ} {m D e : ℕ} {S : K → ℂ} {A B : K}
     (hψ : ψ.IsPrimitive) (hm : m ≠ 0) (hD : D ≠ 0)
     (hmD : m * D ≡ 1 [MOD Fintype.card Kˣ]) (he : e = 3 * m) (hS : WalshCharacterFormula ψ e S)

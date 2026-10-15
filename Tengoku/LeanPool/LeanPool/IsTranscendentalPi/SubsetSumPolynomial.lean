@@ -30,7 +30,9 @@ noncomputable section
 def polyOfMultiset {S : Type*} [CommRing S] (s : Multiset S) : Polynomial S :=
   (Multiset.map (fun a : S => X - C a) s).prod
 
-/-- `∏_{a ∈ s} (X - a) = X^{#{a ∈ s, a = 0}} ∏_{a ∈ s, a ≠ 0} (X - a)`. -/
+/-- `∏_{a ∈ s} (X - a) = X^{#{a ∈ s, a = 0}} ∏_{a ∈ s, a ≠ 0} (X - a)`.
+@isnad1 id=eq.0h2v.s7.d6171d5e9551 from=translated src=- shape=7da2d4c5 vocab=333c1d45
+-/
 lemma polyOfMultiset_split_zero {S : Type*} [CommRing S] [DecidableEq S] (s : Multiset S) :
     polyOfMultiset s = X ^ (s.count 0) * polyOfMultiset (s.filter (fun x => x ≠ 0)) := by
   rw [polyOfMultiset, ← Multiset.filter_add_not (s := s) (p := fun x => x = 0),
@@ -50,12 +52,16 @@ def polyOfNonzeroSubsetSums {S : Type*} [CommRing S] [DecidableEq S] (s : Multis
     Polynomial S := polyOfMultiset (nonzeroSubsetSums s)
 
 /-- The polynomial whose roots are `{ ∑_{x ∈ t} x ≠ 0 | t ⊆ s }` for a given multiset `s`
-is monic. -/
+is monic.
+@isnad1 id=monic.0h2v.s4.61cb00ce4a9c from=translated src=- shape=10965991 vocab=b5dbd786
+-/
 lemma polyOfNonzeroSubsetSums_monic {S : Type*} [CommRing S] [DecidableEq S] (s : Multiset S) :
     (polyOfNonzeroSubsetSums s).Monic :=
   Polynomial.monic_multisetProd_X_sub_C (nonzeroSubsetSums s)
 
-/-- If `{ ∑_{x ∈ t} x ≠ 0 | t ⊆ s }` is indexed by `a : Fin n → S`, then every `a i` is nonzero. -/
+/-- If `{ ∑_{x ∈ t} x ≠ 0 | t ⊆ s }` is indexed by `a : Fin n → S`, then every `a i` is nonzero.
+@isnad1 id=ne.1h5v.s5.baeeaf938245 from=translated src=- shape=3e2de82d vocab=a8f8f8fd
+-/
 lemma ne_zero_of_nonzeroSubsetSums_eq_valuesFin
     {S : Type*} [AddCommMonoid S] [DecidableEq S] {s : Multiset S} {n : ℕ} {a : Fin n → S}
     (ha : nonzeroSubsetSums s = valuesFin a) (i : Fin n) : a i ≠ 0 :=
@@ -65,14 +71,18 @@ lemma ne_zero_of_nonzeroSubsetSums_eq_valuesFin
 /-- The `r`-th elementary symmetric polynomial in `{ ∑_{i ∈ I} Xᵢ | I ⊆ {0, …, n-1} }`. -/
 def esymmVarsFinSubsetSums (n r : ℕ) : MvPolynomial (Fin n) ℤ := (subsetSums (varsFin n)).esymm r
 
-/-- Taking powersets commutes with mapping a function over a multiset. -/
+/-- Taking powersets commutes with mapping a function over a multiset.
+@isnad1 id=eq.0h4v.s5.1de74e45c687 from=translated src=- shape=2bd4dc81 vocab=d7668004
+-/
 lemma powerset_map_eq {α β : Type*} (f : α → β) (s : Multiset α) :
     Multiset.map (Multiset.map f) s.powerset = (Multiset.map f s).powerset := by
   rw [← Multiset.bind_powerset_len s, Multiset.map_bind]
   simp_rw [← Multiset.powersetCard_map]
   rw [← Multiset.bind_powerset_len (Multiset.map f s), Multiset.card_map]
 
-/-- The multiset `{X₀, …, Xₙ₋₁}` is invariant under permutation of the variables. -/
+/-- The multiset `{X₀, …, Xₙ₋₁}` is invariant under permutation of the variables.
+@isnad1 id=eq.0h2v.s8.461c63ac555f from=translated src=- shape=23d38812 vocab=4fd97b91
+-/
 lemma varsFin_IsSymmetric (n : ℕ) (e : Equiv.Perm (Fin n)) :
     Multiset.map (MvPolynomial.rename e) (varsFin n) = varsFin n := by
   rw [varsFin, Multiset.map_map]
@@ -80,7 +90,9 @@ lemma varsFin_IsSymmetric (n : ℕ) (e : Equiv.Perm (Fin n)) :
     e.ofFn_comp_perm (fun i : Fin n => (MvPolynomial.X i : MvPolynomial (Fin n) ℤ))
 
 /-- The multiset of subset sums of `X₀, …, Xₙ₋₁` is invariant under permutation of the
-variables. -/
+variables.
+@isnad1 id=eq.0h2v.s8.2a7bb8dd66f2 from=translated src=- shape=817ab81a vocab=6ec203c8
+-/
 lemma varsFinSubsetSums_IsSymmetric (n : ℕ) (e : Equiv.Perm (Fin n)) :
     Multiset.map (MvPolynomial.rename e) (subsetSums (varsFin n)) = subsetSums (varsFin n) := by
   rw [subsetSums, Multiset.map_map]
@@ -88,27 +100,35 @@ lemma varsFinSubsetSums_IsSymmetric (n : ℕ) (e : Equiv.Perm (Fin n)) :
     congrArg (Multiset.map Multiset.sum)
       ((powerset_map_eq (MvPolynomial.rename e) (varsFin n)).trans (by rw [varsFin_IsSymmetric]))
 
-/-- Renaming variables commutes with the elementary symmetric polynomial of a multiset. -/
+/-- Renaming variables commutes with the elementary symmetric polynomial of a multiset.
+@isnad1 id=eq.0h4v.s9.6a1cbc0a40fd from=translated src=- shape=3e9549e8 vocab=3e5a025d
+-/
 lemma multisetEsymm_IsSymmetric {n r : ℕ} (e : Equiv.Perm (Fin n))
     (s : Multiset (MvPolynomial (Fin n) ℤ)) :
     (MvPolynomial.rename e) (s.esymm r) = (Multiset.map (MvPolynomial.rename e) s).esymm r := by
   simp [Multiset.esymm, map_multiset_sum, map_multiset_prod, Multiset.powersetCard_map]
 
 /-- The r-th elementary symmetric polynomial in `{ ∑_{i ∈ I} Xᵢ | I ⊆ {0, …, n-1} }`
- is symmetric. -/
+ is symmetric.
+@isnad1 id=issymmet.0h2v.s3.8beeb0632aff from=translated src=- shape=5f4cdcf6 vocab=db282af6
+-/
 lemma esymmVarsFinSubsetSums_isSymmetric (n r : ℕ) :
     MvPolynomial.IsSymmetric (esymmVarsFinSubsetSums n r) := by
   intro e
   simp [esymmVarsFinSubsetSums, multisetEsymm_IsSymmetric, varsFinSubsetSums_IsSymmetric]
 
-/-- Evaluating `{X₀, …, Xₙ₋₁}` at `b` gives the multiset `{b₀, …, bₙ₋₁}`. -/
+/-- Evaluating `{X₀, …, Xₙ₋₁}` at `b` gives the multiset `{b₀, …, bₙ₋₁}`.
+@isnad1 id=eq.0h3v.s7.32152a9550fc from=translated src=- shape=44cfffc9 vocab=29cf30cb
+-/
 lemma aeval_varsFin {S : Type*} [CommRing S] (n : ℕ) (b : Fin n → S) :
     Multiset.map (MvPolynomial.aeval (σ := Fin n) (R := ℤ) (S₁ := S) b) (varsFin n) =
       valuesFin b := by
   rw [varsFin, valuesFin, Multiset.map_map]
   simp
 
-/-- Evaluating the subset sums of `{X₀, …, Xₙ₋₁}` at `b` is the subset sums of `{b₀, …, bₙ₋₁}`. -/
+/-- Evaluating the subset sums of `{X₀, …, Xₙ₋₁}` at `b` is the subset sums of `{b₀, …, bₙ₋₁}`.
+@isnad1 id=eq.0h3v.s7.ade2436d9106 from=translated src=- shape=3da06a0b vocab=b0dfebbf
+-/
 lemma aeval_subsetSums {S : Type*} [CommRing S] (n : ℕ) (b : Fin n → S) :
     Multiset.map
         (MvPolynomial.aeval (σ := Fin n) (R := ℤ) (S₁ := S) b)
@@ -122,7 +142,9 @@ lemma aeval_subsetSums {S : Type*} [CommRing S] (n : ℕ) (b : Fin n → S) :
         ((MvPolynomial.aeval (σ := Fin n) (R := ℤ) (S₁ := S) b).toAddMonoidHom) (varsFin n))
 
 /-- Evaluating the `r`-th elementary symmetric polynomial in `{ ∑_{i ∈ I} Xᵢ | I ⊆ {0, …, n-1} }`
-at `b` gives the `r`-th elementary symmetric polynomial in the subset sums of `{b₀, …, bₙ₋₁}`. -/
+at `b` gives the `r`-th elementary symmetric polynomial in the subset sums of `{b₀, …, bₙ₋₁}`.
+@isnad1 id=eq.0h4v.s7.b7a35294cb04 from=translated src=- shape=714857f3 vocab=b7c6f018
+-/
 lemma aeval_esymmVarsFinSubsetSums
     {S : Type*} [CommRing S] (n r : ℕ) (b : Fin n → S) :
     MvPolynomial.aeval (σ := Fin n) (R := ℤ) (S₁ := S) b (esymmVarsFinSubsetSums n r) =
@@ -133,7 +155,9 @@ lemma aeval_esymmVarsFinSubsetSums
     congrArg (fun t : Multiset S => t.esymm r) (aeval_subsetSums n b)
 
 /-- The `k`-th coefficient of the polynomial whose roots are `{ ∑_{x ∈ t} x | t ⊆ b }`
-is given by an elementary symmetric polynomial in `{ ∑_{i ∈ I} Xᵢ | I ⊆ {0, …, n-1} }` at `b`. -/
+is given by an elementary symmetric polynomial in `{ ∑_{i ∈ I} Xᵢ | I ⊆ {0, …, n-1} }` at `b`.
+@isnad1 id=eq.1h4v.s8.7c5c6bda8104 from=translated src=- shape=e0ae47e0 vocab=448632b2
+-/
 lemma coeff_polyOfSubsetSums
     {S : Type*} [CommRing S] (n : ℕ) (b : Fin n → S) (k : ℕ)
     (hk : k ≤ (subsetSums (valuesFin b)).card) :
@@ -147,7 +171,9 @@ lemma coeff_polyOfSubsetSums
   simp
 
 /-- If `B` is monic with roots `b₀, …, bₙ₋₁`, then the coefficients of the polynomial
-whose roots are `{ ∑_{x ∈ t} x | t ⊆ b }` are polynomials in the coefficients of `B`. -/
+whose roots are `{ ∑_{x ∈ t} x | t ⊆ b }` are polynomials in the coefficients of `B`.
+@isnad1 id=ex.3h6v.s8.cf43146cfd84 from=translated src=- shape=06bfa211 vocab=b5d46011
+-/
 lemma coeff_polyOfSubsetSums_as_coeff_poly
     {R S : Type*} [CommRing R] [Field S] [Algebra R S] [IsAlgClosed S]
     {n : ℕ} (B : R[X]) (b : Fin n → S) (hmonic : B.Monic) (hroots : B.aroots S = valuesFin b)
@@ -167,7 +193,9 @@ lemma coeff_polyOfSubsetSums_as_coeff_poly
   simpa [smul_eq_mul] using hQ
 
 /-- If `B` is monic with roots `b₀, …, bₙ₋₁`, then the coefficients of the polynomial
-whose roots are `{ ∑_{x ∈ t} x ≠ 0 | t ⊆ b }` are polynomials in the coefficients of `B`. -/
+whose roots are `{ ∑_{x ∈ t} x ≠ 0 | t ⊆ b }` are polynomials in the coefficients of `B`.
+@isnad1 id=ex.3h6v.s8.5461f5d1c537 from=translated src=- shape=0b1ac67f vocab=a3ebfb4f
+-/
 lemma coeff_polyOfNonzeroSubsetSums_as_coeff_poly
     {R S : Type*} [CommRing R] [Field S] [Algebra R S] [IsAlgClosed S] [DecidableEq S]
     {n k : ℕ} (B : R[X]) (b : Fin n → S)
@@ -186,7 +214,9 @@ lemma coeff_polyOfNonzeroSubsetSums_as_coeff_poly
   exact hQ
 
 /-- From a monic polynomial `B` with roots `a₀, …, aₙ₋₁`, one obtains a polynomial over the
-base ring whose image has roots the nonzero subset sums of the `a_i`. -/
+base ring whose image has roots the nonzero subset sums of the `a_i`.
+@isnad1 id=ex.2h5v.s7.104fff12314c from=translated src=- shape=9150b9cc vocab=c1f49abd
+-/
 lemma polyOfNonzeroSubsetSums_as_poly
     {R S : Type*} [CommRing R] [Field S] [Algebra R S] [IsAlgClosed S] [DecidableEq S]
     {n : ℕ} (B : R[X]) (a : Fin n → S) (hmonic : B.Monic) (hroots : B.aroots S = valuesFin a) :
@@ -211,7 +241,9 @@ lemma polyOfNonzeroSubsetSums_as_poly
     omega
 
 /-- Clearing denominators for a polynomial over `ℚ`: every rational polynomial
-is a nonzero integer multiple of the image of some polynomial over `ℤ`. -/
+is a nonzero integer multiple of the image of some polynomial over `ℤ`.
+@isnad1 id=ex.0h1v.s6.1cf8f593b4c8 from=translated src=- shape=05437862 vocab=8d8f9177
+-/
 lemma ClearDenominatorOf (T' : ℚ[X]) :
     ∃ (T : ℤ[X]) (c : ℤ), c ≠ 0 ∧ Polynomial.map (algebraMap ℤ ℚ) T = c • T' := by
   obtain ⟨c, hc, hT'⟩ := IsLocalization.integerNormalization_spec (nonZeroDivisors ℤ) T'
@@ -229,7 +261,9 @@ def monicRescaleOf (T : ℤ[X]) (d : ℕ) (c : ℤ) : ℤ[X] :=
   Polynomial.ofFn (d + 1) fun i : Fin (d + 1) =>
     if (i : ℕ) = d then 1 else c ^ (d - 1 - i) * T.coeff i
 
-/-- The coefficients of `Xᵈ + ∑ₖ₌₀ᵈ⁻¹ cᵈ⁻¹⁻ᵏ Tₖ Xᵏ`. -/
+/-- The coefficients of `Xᵈ + ∑ₖ₌₀ᵈ⁻¹ cᵈ⁻¹⁻ᵏ Tₖ Xᵏ`.
+@isnad1 id=eq.0h4v.s4.cee7324ae448 from=translated src=- shape=fe01096f vocab=abf7ff0a
+-/
 lemma coeff_monicRescaleOf (T : ℤ[X]) (d : ℕ) (c : ℤ) (k : ℕ) :
     (monicRescaleOf T d c).coeff k = monicRescaleCoeff T d c k := by
   by_cases hk : k < d + 1
@@ -244,7 +278,9 @@ lemma coeff_monicRescaleOf (T : ℤ[X]) (d : ℕ) (c : ℤ) (k : ℕ) :
       simp [monicRescaleCoeff, Nat.not_lt_of_ge (Nat.le_of_lt hkd), Nat.ne_of_gt hkd]
     · exact Nat.le_of_not_lt hk
 
-/-- `Xᵈ + ∑ₖ₌₀ᵈ⁻¹ cᵈ⁻¹⁻ᵏ Tₖ Xᵏ` has degree `d`. -/
+/-- `Xᵈ + ∑ₖ₌₀ᵈ⁻¹ cᵈ⁻¹⁻ᵏ Tₖ Xᵏ` has degree `d`.
+@isnad1 id=eq.0h3v.s4.a6c0cca715d6 from=translated src=- shape=dc82b44a vocab=b31d885b
+-/
 lemma natDegree_monicRescaleOf (T : ℤ[X]) (d : ℕ) (c : ℤ) :
     (monicRescaleOf T d c).natDegree = d := by
   refine Polynomial.natDegree_eq_of_le_of_coeff_ne_zero ?_ ?_
@@ -253,14 +289,18 @@ lemma natDegree_monicRescaleOf (T : ℤ[X]) (d : ℕ) (c : ℤ) :
         (fun i : Fin (d + 1) => if (i : ℕ) = d then 1 else c ^ (d - 1 - i) * T.coeff i))
   · simp [coeff_monicRescaleOf, monicRescaleCoeff]
 
-/-- `Xᵈ + ∑ₖ₌₀ᵈ⁻¹ cᵈ⁻¹⁻ᵏ Tₖ Xᵏ` is monic. -/
+/-- `Xᵈ + ∑ₖ₌₀ᵈ⁻¹ cᵈ⁻¹⁻ᵏ Tₖ Xᵏ` is monic.
+@isnad1 id=monic.0h3v.s3.cf6fd67cb3e2 from=translated src=- shape=a75f8c5c vocab=a55f62fc
+-/
 lemma monic_monicRescaleOf (T : ℤ[X]) (d : ℕ) (c : ℤ) :
     (monicRescaleOf T d c).Monic := by
   apply Polynomial.monic_of_natDegree_le_of_coeff_eq_one d
   · rw [natDegree_monicRescaleOf]
   · simp [coeff_monicRescaleOf, monicRescaleCoeff]
 
-/-- Coefficients of `Xᵈ + ∑ₖ₌₀ᵈ⁻¹ cᵈ⁻¹⁻ᵏ Tₖ Xᵏ` correspond to the coefficients of scaleRoots. -/
+/-- Coefficients of `Xᵈ + ∑ₖ₌₀ᵈ⁻¹ cᵈ⁻¹⁻ᵏ Tₖ Xᵏ` correspond to the coefficients of scaleRoots.
+@isnad1 id=eq.3h5v.s7.5772d4081e6f from=translated src=- shape=73475675 vocab=2e617ba8
+-/
 lemma coeff_monicRescaleOf_scaleRoots
     (T : ℤ[X]) (T' : ℚ[X]) (d : ℕ) (c : ℤ)
     (hmonic : T'.Monic) (hd : T'.natDegree = d)
@@ -293,7 +333,9 @@ lemma coeff_monicRescaleOf_scaleRoots
     simp [monicRescaleCoeff, Nat.not_lt_of_ge hk.le, hne, hzero]
 
 /-- After mapping to `ℚ`, the monic rescaling is the `scaleRoots` of the monic rational
-polynomial `T'`. -/
+polynomial `T'`.
+@isnad1 id=eq.3h4v.s7.bad9f67d9048 from=translated src=- shape=8116022d vocab=4aaa2c6e
+-/
 lemma monicRescaleOf_scaleRoots
     (T : ℤ[X]) (T' : ℚ[X]) (d : ℕ) (c : ℤ)
     (hmonic : T'.Monic) (hd : T'.natDegree = d)
@@ -302,7 +344,9 @@ lemma monicRescaleOf_scaleRoots
   Polynomial.ext fun k => coeff_monicRescaleOf_scaleRoots T T' d c hmonic hd hT k
 
 /-- If `T = c T'` with `T'` monic of degree `d` and roots `a₀, …, a_{d-1}`,
-then `Xᵈ + ∑ₖ₌₀ᵈ⁻¹ cᵈ⁻¹⁻ᵏ Tₖ Xᵏ` is the monic polynomial whose roots are `c a₀, …, c a_{d-1}`. -/
+then `Xᵈ + ∑ₖ₌₀ᵈ⁻¹ cᵈ⁻¹⁻ᵏ Tₖ Xᵏ` is the monic polynomial whose roots are `c a₀, …, c a_{d-1}`.
+@isnad1 id=eq.5h5v.s7.081e5c8e914f from=translated src=- shape=f2af2226 vocab=4306384c
+-/
 lemma aroots_monicRescaleOf
     (T : ℤ[X]) (T' : ℚ[X]) (d : ℕ) (c : ℤ) (a : Fin d → ℂ)
     (hc : c ≠ 0) (hmonic : T'.Monic) (hd : T'.natDegree = d)
@@ -321,14 +365,18 @@ lemma aroots_monicRescaleOf
   simp [Function.comp]
 
 /-- If `T'` is the polynomial whose roots are `{ ∑_{x ∈ t} x ≠ 0 | t ⊆ s }`,
-then `T'` is monic. -/
+then `T'` is monic.
+@isnad1 id=monic.1h3v.s5.b8b85b1ba34f from=translated src=- shape=06fdf5a6 vocab=e1e65b35
+-/
 lemma monic_of_T' (T' : ℚ[X]) (d : ℕ) (r : Fin d → ℂ)
     (hT' : T'.map (algebraMap ℚ ℂ) = polyOfNonzeroSubsetSums (valuesFin r)) : T'.Monic := by
   apply Polynomial.monic_of_injective (algebraMap ℚ ℂ).injective
   simpa [hT'] using polyOfNonzeroSubsetSums_monic (valuesFin r)
 
 /-- If `T'` is the polynomial whose roots are `{ ∑_{x ∈ t} x ≠ 0 | t ⊆ s }`,
-then `deg(T')` is the number of those roots. -/
+then `deg(T')` is the number of those roots.
+@isnad1 id=eq.2h5v.s6.fcde8131b39e from=translated src=- shape=c9558223 vocab=ef3559e7
+-/
 lemma natDegree_of_T'
     (T' : ℚ[X]) (d n : ℕ) (r : Fin d → ℂ) (a : Fin n → ℂ)
     (hT' : T'.map (algebraMap ℚ ℂ) = polyOfNonzeroSubsetSums (valuesFin r))
@@ -341,7 +389,9 @@ lemma natDegree_of_T'
       simpa [valuesFin] using congrArg Multiset.card ha
 
 /-- If `T'` is the polynomial whose roots are `{ ∑_{x ∈ t} x ≠ 0 | t ⊆ s }`,
-then its roots are exactly that multiset. -/
+then its roots are exactly that multiset.
+@isnad1 id=eq.2h5v.s6.ee345e288b9c from=translated src=- shape=a03b6cf5 vocab=a6a89adb
+-/
 lemma aroots_of_T'
     (T' : ℚ[X]) (d n : ℕ) (r : Fin d → ℂ) (a : Fin n → ℂ)
     (hT' : T'.map (algebraMap ℚ ℂ) = polyOfNonzeroSubsetSums (valuesFin r))
@@ -353,7 +403,9 @@ lemma aroots_of_T'
       simp [polyOfNonzeroSubsetSums, polyOfMultiset]
     _ = _ := ha
 
-/-- If `T'` is the polynomial whose roots are `{ ∑_{x ∈ t} x ≠ 0 | t ⊆ s }`, then `T'(0) ≠ 0`. -/
+/-- If `T'` is the polynomial whose roots are `{ ∑_{x ∈ t} x ≠ 0 | t ⊆ s }`, then `T'(0) ≠ 0`.
+@isnad1 id=ne.2h5v.s7.d9800cb9a8a5 from=translated src=- shape=f0c48299 vocab=832e1d55
+-/
 lemma aeval_zero_ne_zero_of_T'
     (T' : ℚ[X]) (d n : ℕ) (r : Fin d → ℂ) (a : Fin n → ℂ)
     (hT' : T'.map (algebraMap ℚ ℂ) = polyOfNonzeroSubsetSums (valuesFin r))
@@ -366,7 +418,9 @@ lemma aeval_zero_ne_zero_of_T'
     rfl
 
 /-- If `T = c • T'`, and `T'` is the polynomial whose roots are `{ ∑_{x ∈ t} x ≠ 0 | t ⊆ s }`,
-then the roots of `T` are also `{ ∑_{x ∈ t} x ≠ 0 | t ⊆ s }`. -/
+then the roots of `T` are also `{ ∑_{x ∈ t} x ≠ 0 | t ⊆ s }`.
+@isnad1 id=eq.4h7v.s7.370ae356b76e from=translated src=- shape=e4ba61cd vocab=d33bcaa1
+-/
 lemma aroots_of_T
     (T : ℤ[X]) (T' : ℚ[X]) (c : ℤ) (d n : ℕ) (r : Fin d → ℂ) (a : Fin n → ℂ) (hc : c ≠ 0)
     (hT : T.map (Int.castRingHom ℚ) = c • T')
@@ -386,21 +440,27 @@ lemma aroots_of_T
     _ = T'.aroots ℂ := by simp [Polynomial.aroots_def]
     _ = _ := aroots_of_T' T' d n r a hT' ha
 
-/-- If `c ≠ 0`, `T' ≠ 0`, and `c * T' = T ∈ ℤ[X]`, then `T ≠ 0`. -/
+/-- If `c ≠ 0`, `T' ≠ 0`, and `c * T' = T ∈ ℤ[X]`, then `T ≠ 0`.
+@isnad1 id=ne.3h3v.s7.48d5285ceea3 from=translated src=- shape=42f8ec88 vocab=681db60f
+-/
 lemma RescaledOf_nonZero
     (T : ℤ[X]) (T' : ℚ[X]) (c : ℤ) (hc : c ≠ 0) (hT' : T' ≠ 0)
     (hT : T.map (algebraMap ℤ ℚ) = C (c : ℚ) * T') : T ≠ 0 := by
   intro h0
   simp_all
 
-/-- If `c ≠ 0` and `c * T' = T ∈ ℤ[X]`, then `deg(T) = deg(T')`. -/
+/-- If `c ≠ 0` and `c * T' = T ∈ ℤ[X]`, then `deg(T) = deg(T')`.
+@isnad1 id=eq.2h3v.s6.feb146957d8b from=translated src=- shape=9d70aa01 vocab=2ff82937
+-/
 lemma RescaledOf_natDegree
     (T : ℤ[X]) (T' : ℚ[X]) (c : ℤ) (hc : c ≠ 0)
     (hT : T.map (Int.castRingHom ℚ) = C (c : ℚ) * T') : T.natDegree = T'.natDegree := by
   rw [← Polynomial.natDegree_map_eq_of_injective (f := Int.castRingHom ℚ) Int.cast_injective T,
     hT, Polynomial.natDegree_C_mul (by exact_mod_cast hc)]
 
-/-- If `T'(0) ≠ 0` and `c * T' = T ∈ ℤ[X]`, then `T(0) ≠ 0`. -/
+/-- If `T'(0) ≠ 0` and `c * T' = T ∈ ℤ[X]`, then `T(0) ≠ 0`.
+@isnad1 id=ne.3h3v.s8.07c33c23306e from=translated src=- shape=c7f8d540 vocab=5c3f06ce
+-/
 lemma RescaledOf_nonZero_at_Zero
     (T : ℤ[X]) (T' : ℚ[X]) (c : ℤ) (hc : c ≠ 0) (hT : T.map (Int.castRingHom ℚ) = C (c : ℚ) * T')
     (hT'0 : aeval (0 : ℂ) T' ≠ 0) : aeval (0 : ℂ) T ≠ 0 := by
@@ -414,7 +474,9 @@ lemma RescaledOf_nonZero_at_Zero
       (by norm_num [hc])
 
 /-- If `T = c • T'`, and `T'` is the polynomial whose roots are
-`{ ∑_{x ∈ t} x ≠ 0 | t ⊆ s }`, then `T(0) ≠ 0`. -/
+`{ ∑_{x ∈ t} x ≠ 0 | t ⊆ s }`, then `T(0) ≠ 0`.
+@isnad1 id=ne.4h7v.s7.aba67a248bf8 from=translated src=- shape=c8676ae3 vocab=0dcdc125
+-/
 lemma aeval_zero_ne_zero_of_T
     (T : ℤ[X]) (T' : ℚ[X]) (c : ℤ) (d n : ℕ) (r : Fin d → ℂ) (a : Fin n → ℂ)
     (hc : c ≠ 0) (hT : T.map (Int.castRingHom ℚ) = c • T')

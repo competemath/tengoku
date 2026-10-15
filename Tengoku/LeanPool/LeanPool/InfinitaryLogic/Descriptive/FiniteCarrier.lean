@@ -59,7 +59,9 @@ private theorem perm_smul_apply (n : ℕ) (σ : Equiv.Perm (Fin n))
 /-! ### Isomorphism = orbit equivalence -/
 
 omit [Countable ((l : ℕ) × L.Relations l)] in
-/-- Two `Fin n`-structures are L-isomorphic iff they lie in the same `Sym(Fin n)` orbit. -/
+/-- Two `Fin n`-structures are L-isomorphic iff they lie in the same `Sym(Fin n)` orbit.
+@isnad1 id=iff.0h4v.s6.18d54dfaa5ac from=translated src=- shape=204bf7e7 vocab=de091fea
+-/
 theorem iso_iff_orbit (n : ℕ) (c₁ c₂ : StructureSpaceOn L (Fin n)) :
     Nonempty (@Language.Equiv L (Fin n) (Fin n) c₁.toStructure c₂.toStructure) ↔
     ∃ σ : Equiv.Perm (Fin n), σ • c₁ = c₂ := by
@@ -166,7 +168,9 @@ private theorem isoSetoidOn_measurableSet (φ : L.Sentenceω) (n : ℕ) :
 /-! ### Per-tier counting dichotomy -/
 
 /-- Per-tier counting dichotomy: for each n, the iso classes among `Fin n`-models
-of φ are either ≤ ℵ₀ or = 2^ℵ₀. Does NOT need bounded Scott height. -/
+of φ are either ≤ ℵ₀ or = 2^ℵ₀. Does NOT need bounded Scott height.
+@isnad1 id=or.1h3v.s6.ae363db5d151 from=translated src=- shape=29d0f7e8 vocab=0607355b
+-/
 theorem counting_fin_models_dichotomy
     (silver : SilverBurgessDichotomy.{v})
     (φ : L.Sentenceω) (n : ℕ) :
@@ -189,7 +193,9 @@ each single tier has at most `bound`.
 
 There are countably many tiers, so this is the whole of the cardinal arithmetic the counting
 theorems need on the finite side.  Stated once because three of them need it at two different
-bounds (`ℵ₀` and `continuum`). -/
+bounds (`ℵ₀` and `continuum`).
+@isnad1 id=le.1h3v.s6.85ff849d128f from=translated src=- shape=d2fe26b6 vocab=5dd0cadc
+-/
 theorem mk_sigma_isoSetoidOn_le (φ : L.Sentenceω) (bound : Cardinal.{v})
     (hle : ∀ n, #(Quotient (isoSetoidOn φ n)) ≤ bound) :
     #(Σ n, Quotient (isoSetoidOn φ n)) ≤ ℵ₀ * bound :=

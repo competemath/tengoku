@@ -32,7 +32,9 @@ namespace JL
 
 /-- **Inner-product preservation via polarization.** A linear map `f` preserving the
 squared norms of `u+v` and `u-v` within relative error `ε` preserves `⟪u, v⟫` within
-`ε · (‖u‖² + ‖v‖²)/2`. -/
+`ε · (‖u‖² + ‖v‖²)/2`.
+@isnad1 id=le.2h6v.s9.8ff90db4ad7a from=translated src=- shape=6b977710 vocab=66c1c8a4
+-/
 theorem inner_product_preservation {E F : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [NormedAddCommGroup F] [InnerProductSpace ℝ F]

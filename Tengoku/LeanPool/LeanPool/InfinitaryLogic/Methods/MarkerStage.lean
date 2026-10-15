@@ -141,7 +141,9 @@ the support) is independent of the choice of increasing `k`-tuple.
 This is the per-fragment certification of the Marker consistency property: available at
 every `α < ω₁` simultaneously (the cofinal schedule), from the single hypothesis
 `|M| ≥ ℶ_{ω₁}` — per-`α`, per-finite-fragment approximations, never one `ω₁`-suborder
-homogeneous for all arities at once (that jump is ZFC-refutable; see the audit fences). -/
+homogeneous for all arities at once (that jump is ZFC-refutable; see the audit fences).
+@isnad1 id=ex.2h8v.s10.f16274d20673 from=translated src=- shape=13ac7a2c vocab=e7d49e56
+-/
 theorem markerStage_homogeneous {L' : Language.{0, 0}} (M : Type) [L'.Structure M]
     [LinearOrder M] [WellFoundedLT M]
     (hM : Cardinal.mk M ≥ Cardinal.beth (Ordinal.omega 1))
@@ -213,7 +215,9 @@ def MarkerCofinalConsistent (Sset : Set L'[[J]].Sentenceω) : Prop :=
 
 variable {M}
 
-/-- Cofinal consistency is monotone (downward-closed) in the sentence set. -/
+/-- Cofinal consistency is monotone (downward-closed) in the sentence set.
+@isnad1 id=markerco.2h5v.s5.ca8a87d3d005 from=translated src=- shape=9936847d vocab=39d2c07c
+-/
 theorem MarkerCofinalConsistent.mono {Sset Sset' : Set L'[[J]].Sentenceω}
     (hSS : Sset' ⊆ Sset) (h : MarkerCofinalConsistent M Sset) :
     MarkerCofinalConsistent M Sset' :=
@@ -221,7 +225,9 @@ theorem MarkerCofinalConsistent.mono {Sset Sset' : Set L'[[J]].Sentenceω}
 
 /-- There is always an interpretation that is increasing on a given finite support into the
 range of a `(ℶ_α)⁺`-suborder — the suborder's domain is infinite, so it contains increasing
-tuples of every finite length. Supplies the "evaluation point" for the `C0` lemmas. -/
+tuples of every finite length. Supplies the "evaluation point" for the `C0` lemmas.
+@isnad1 id=ex.0h5v.s8.4c80710f3197 from=translated src=- shape=69f80938 vocab=0b2e8794
+-/
 theorem exists_strictMonoOn_interp {α : Ordinal.{0}}
     (e : (Order.succ (Cardinal.beth α)).ord.ToType ↪o M) (S : Finset J) :
     ∃ σ : J → M, StrictMonoOn σ ↑S ∧ ∀ j ∈ S, σ j ∈ Set.range e := by
@@ -290,7 +296,9 @@ private theorem MarkerCofinalConsistent.extend_of_semantic {Sset : Set L'[[J]].S
     · rw [Set.mem_singleton_iff.mp h1] at hτ
       exact absurd hτ hnew
 
-/-- **`C2` (double negation)**: `¬¬φ ∈ Sset` allows adjoining `φ`. -/
+/-- **`C2` (double negation)**: `¬¬φ ∈ Sset` allows adjoining `φ`.
+@isnad1 id=markerco.2h5v.s6.af79a678c5ea from=translated src=- shape=3b432b72 vocab=9fa90631
+-/
 theorem MarkerCofinalConsistent.not_not {Sset : Set L'[[J]].Sentenceω}
     (h : MarkerCofinalConsistent M Sset) {φ : L'[[J]].Sentenceω}
     (hmem : φ.not.not ∈ Sset) : MarkerCofinalConsistent M (Sset ∪ {φ}) :=
@@ -385,6 +393,9 @@ def realizeWith (σ : J → M) (h : ℕ → M) {α : Type} {n : ℕ}
 
 /-! ### Constructor unfolds (term level) -/
 
+/--
+@isnad1 id=eq.0h10v.s6.fc4be28d5b60 from=translated src=- shape=b0197d65 vocab=fa7175d0
+-/
 @[simp] theorem termValueWith_base (σ : J → M) (h : ℕ → M) {β : Type} {l : ℕ}
     (f : L''.Functions l) (ts : Fin l → ((L''[[J]])[[ℕ]]).Term β) (v : β → M) :
     termValueWith σ h (Term.func (Sum.inl (Sum.inl f)) ts) v =
@@ -399,12 +410,18 @@ def baseRel {l : ℕ} : ((L''[[J]])[[ℕ]]).Relations l → L''.Relations l
   | Sum.inl (Sum.inr e) => e.elim
   | Sum.inr e => e.elim
 
+/--
+@isnad1 id=iff.0h11v.s6.1942f0e08dd6 from=translated src=- shape=bb364f42 vocab=cf53da14
+-/
 @[simp] theorem realizeWith_equal (σ : J → M) (h : ℕ → M) {α : Type} {n : ℕ}
     (t₁ t₂ : ((L''[[J]])[[ℕ]]).Term (α ⊕ Fin n)) (v : α → M) (xs : Fin n → M) :
     realizeWith σ h (BoundedFormulaω.equal t₁ t₂) v xs ↔
       termValueWith σ h t₁ (Sum.elim v xs) = termValueWith σ h t₂ (Sum.elim v xs) :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h12v.s6.a8173ad8e617 from=translated src=- shape=20c12b5a vocab=e86b76e4
+-/
 @[simp] theorem realizeWith_rel (σ : J → M) (h : ℕ → M) {α : Type} {n l : ℕ}
     (R : ((L''[[J]])[[ℕ]]).Relations l) (ts : Fin l → ((L''[[J]])[[ℕ]]).Term (α ⊕ Fin n))
     (v : α → M) (xs : Fin n → M) :
@@ -416,29 +433,47 @@ def baseRel {l : ℕ} : ((L''[[J]])[[ℕ]]).Relations l → L''.Relations l
   · exact e.elim
   · exact e.elim
 
+/--
+@isnad1 id=iff.0h11v.s6.3dd4e1befdbc from=translated src=- shape=8cb8f70c vocab=8f76fc9f
+-/
 @[simp] theorem realizeWith_imp (σ : J → M) (h : ℕ → M) {α : Type} {n : ℕ}
     (φ ψ : ((L''[[J]])[[ℕ]]).BoundedFormulaω α n) (v : α → M) (xs : Fin n → M) :
     realizeWith σ h (φ.imp ψ) v xs ↔ (realizeWith σ h φ v xs → realizeWith σ h ψ v xs) :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h10v.s6.4b79f5475876 from=translated src=- shape=92faa6cb vocab=a8f2835c
+-/
 @[simp] theorem realizeWith_all (σ : J → M) (h : ℕ → M) {α : Type} {n : ℕ}
     (φ : ((L''[[J]])[[ℕ]]).BoundedFormulaω α (n + 1)) (v : α → M) (xs : Fin n → M) :
     realizeWith σ h φ.all v xs ↔ ∀ x, realizeWith σ h φ v (Fin.snoc xs x) := Iff.rfl
 
+/--
+@isnad1 id=iff.0h10v.s6.b9693e5c1019 from=translated src=- shape=dde46b59 vocab=2215a7f2
+-/
 @[simp] theorem realizeWith_iSup (σ : J → M) (h : ℕ → M) {α : Type} {n : ℕ}
     (φs : ℕ → ((L''[[J]])[[ℕ]]).BoundedFormulaω α n) (v : α → M) (xs : Fin n → M) :
     realizeWith σ h (BoundedFormulaω.iSup φs) v xs ↔
       ∃ i, realizeWith σ h (φs i) v xs := Iff.rfl
 
+/--
+@isnad1 id=iff.0h10v.s6.85b8073b4e48 from=translated src=- shape=e9322d05 vocab=096881b5
+-/
 @[simp] theorem realizeWith_iInf (σ : J → M) (h : ℕ → M) {α : Type} {n : ℕ}
     (φs : ℕ → ((L''[[J]])[[ℕ]]).BoundedFormulaω α n) (v : α → M) (xs : Fin n → M) :
     realizeWith σ h (BoundedFormulaω.iInf φs) v xs ↔
       ∀ i, realizeWith σ h (φs i) v xs := Iff.rfl
 
+/--
+@isnad1 id=iff.0h10v.s6.37f78732bbc6 from=translated src=- shape=83c72384 vocab=ab389db1
+-/
 @[simp] theorem realizeWith_not (σ : J → M) (h : ℕ → M) {α : Type} {n : ℕ}
     (φ : ((L''[[J]])[[ℕ]]).BoundedFormulaω α n) (v : α → M) (xs : Fin n → M) :
     realizeWith σ h φ.not v xs ↔ ¬realizeWith σ h φ v xs := Iff.rfl
 
+/--
+@isnad1 id=iff.0h10v.s6.4ccef0b23248 from=translated src=- shape=fc1a6b5c vocab=d67bcde2
+-/
 @[simp] theorem realizeWith_ex (σ : J → M) (h : ℕ → M) {α : Type} {n : ℕ}
     (φ : ((L''[[J]])[[ℕ]]).BoundedFormulaω α (n + 1)) (v : α → M) (xs : Fin n → M) :
     realizeWith σ h φ.ex v xs ↔ ∃ x, realizeWith σ h φ v (Fin.snoc xs x) := by
@@ -446,7 +481,9 @@ def baseRel {l : ℕ} : ((L''[[J]])[[ℕ]]).Relations l → L''.Relations l
   let : (constantsOn ℕ).Structure M := constantsOn.structure h
   exact BoundedFormulaω.realize_ex φ
 
-/-- Bridge to the raw sentence satisfaction used by `MarkerHenkinCert`. -/
+/-- Bridge to the raw sentence satisfaction used by `MarkerHenkinCert`.
+@isnad1 id=iff.0h6v.s6.7d4a03f5adfb from=translated src=- shape=da32ec91 vocab=1b90be65
+-/
 theorem sentenceRealize_iff_realizeWith (σ : J → M) (h : ℕ → M)
     (τ : ((L''[[J]])[[ℕ]]).Sentenceω) :
     (letI : (constantsOn J).Structure M := constantsOn.structure σ
@@ -684,7 +721,9 @@ def MarkerHenkinConsistent (F : Finset ((L''[[J]])[[ℕ]].Sentenceω)) : Prop :=
 
 variable {M}
 
-/-- The body is monotone (downward-closed) in the fragment, at fixed support. -/
+/-- The body is monotone (downward-closed) in the fragment, at fixed support.
+@isnad1 id=markerhe.2h7v.s6.bb1a068e6e1d from=translated src=- shape=6b3f91f6 vocab=9fcde627
+-/
 theorem MarkerHenkinBody.mono {α : Ordinal.{0}} {S : Finset J}
     {F F' : Set ((L''[[J]])[[ℕ]].Sentenceω)} (hFF : F' ⊆ F)
     (hb : MarkerHenkinBody M α S F) : MarkerHenkinBody M α S F' := by
@@ -711,13 +750,17 @@ private theorem MarkerHenkinBody.insert_of_semantic {α : Ordinal.{0}} {S : Fins
   · exact hder σ h (hh trigger hmem)
   · exact hh τ hτ
 
-/-- Certification is monotone (downward-closed) in the fragment. -/
+/-- Certification is monotone (downward-closed) in the fragment.
+@isnad1 id=markerhe.2h6v.s6.801887bd5acd from=translated src=- shape=2c8d464a vocab=0e72ab46
+-/
 theorem MarkerHenkinCert.mono {α : Ordinal.{0}} {F F' : Set ((L''[[J]])[[ℕ]].Sentenceω)}
     (hFF : F' ⊆ F) (hc : MarkerHenkinCert M α F) : MarkerHenkinCert M α F' := by
   obtain ⟨S, H, hS, hH, hb⟩ := hc
   exact ⟨S, H, fun τ hτ => hS τ (hFF hτ), fun τ hτ => hH τ (hFF hτ), hb.mono hFF⟩
 
-/-- Finite-member consistency is monotone (downward-closed). -/
+/-- Finite-member consistency is monotone (downward-closed).
+@isnad1 id=markerhe.2h5v.s6.37a010022f48 from=translated src=- shape=8fb55987 vocab=77744343
+-/
 theorem MarkerHenkinConsistent.mono {F F' : Finset ((L''[[J]])[[ℕ]].Sentenceω)}
     (hFF : F' ⊆ F) (h : MarkerHenkinConsistent M F) : MarkerHenkinConsistent M F' := by
   obtain ⟨S, H, hS, hH, hcof⟩ := h
@@ -774,7 +817,9 @@ private theorem MarkerHenkinConsistent.insert_of_semantic
     exact hb.insert_of_semantic hmem' hder
 
 open scoped Classical in
-/-- **`C2` (double negation)**: `¬¬φ ∈ F` allows adjoining `φ`. -/
+/-- **`C2` (double negation)**: `¬¬φ ∈ F` allows adjoining `φ`.
+@isnad1 id=markerhe.2h5v.s7.60252b4dcf1f from=translated src=- shape=bedca96b vocab=5148f015
+-/
 theorem MarkerHenkinConsistent.not_not
     {F : Finset ((L''[[J]])[[ℕ]].Sentenceω)} (h : MarkerHenkinConsistent M F)
     {φ : (L''[[J]])[[ℕ]].Sentenceω} (hmem : φ.not.not ∈ F) :
@@ -836,7 +881,9 @@ private theorem tupleInterp_eqOn (S : Finset J) (e : D ↪o M) (t : Fin S.card �
   obtain ⟨i, rfl⟩ := this
   rw [tupleInterp_orderEmbOfFin, h i]
 
-/-- A finite tuple order-embedding into any infinite linear order exists. -/
+/-- A finite tuple order-embedding into any infinite linear order exists.
+@isnad1 id=nonempty.0h2v.s4.8dd0e44c01b1 from=translated src=- shape=4c31893a vocab=b07461bf
+-/
 theorem exists_orderEmb_fin {D : Type} [LinearOrder D] [Infinite D] (m : ℕ) :
     Nonempty (Fin m ↪o D) := by
   obtain ⟨s, -, hcard⟩ := (Set.infinite_univ (α := D)).exists_subset_card_eq m
@@ -867,7 +914,9 @@ have skeleton support inside `S`, produce ONE branch `k` and a body of `insert (
 at the target level `α₀`. The branch is uniform on the support tuples of the output suborder
 (read off `finiteArityHomogeneousUpTo_beth_stage`); every admissible interpretation of the
 output suborder factors through a support tuple, whose realizing interpretation selects
-`branch k`, and constant-agreement congruence transfers realization back. -/
+`branch k`, and constant-agreement congruence transfers realization back.
+@isnad1 id=ex.5h9v.s8.0ff08bd03b5f from=translated src=- shape=256f2fce vocab=e951f5b7
+-/
 theorem MarkerHenkinBody.branch_choice
     {α₀ α : Ordinal.{0}} {S : Finset J} {F : Set ((L''[[J]])[[ℕ]].Sentenceω)}
     (hroom : α₀ + ((2 * S.card + 2 : ℕ) : Ordinal) ≤ α)
@@ -945,7 +994,9 @@ a covering branch family for a `trigger ∈ F`, whose members' constant supports
 trigger's, yields ONE branch `k` with `insert (branch k) F` consistent. Per target level the
 body comes from `MarkerHenkinBody.branch_choice` (asked at the ladder-cost-offset level, kept
 below `ω₁` by `add_natCast_lt_omega_one`); the single uniform `k` comes from
-`exists_uniform_of_cofinal_countable` (`ω₁` is regular). Uniform support `(S, H)` is preserved. -/
+`exists_uniform_of_cofinal_countable` (`ω₁` is regular). Uniform support `(S, H)` is preserved.
+@isnad1 id=ex.5h7v.s8.86d21b146a61 from=translated src=- shape=782187dd vocab=19562421
+-/
 theorem MarkerHenkinConsistent.branch_choice
     {F : Finset ((L''[[J]])[[ℕ]].Sentenceω)} (h : MarkerHenkinConsistent M F)
     {K : Type} [Countable K] (branch : K → (L''[[J]])[[ℕ]].Sentenceω)
@@ -982,7 +1033,9 @@ theorem MarkerHenkinConsistent.branch_choice
 
 open scoped Classical in
 /-- **`C4` (disjunction witness)**: `⋁ᵢ φᵢ ∈ F` yields a uniform disjunct `k` with
-`insert (φs k) F` consistent. -/
+`insert (φs k) F` consistent.
+@isnad1 id=ex.2h5v.s7.365a23262bf9 from=translated src=- shape=6cebc03b vocab=7ca7ba8e
+-/
 theorem MarkerHenkinConsistent.iSup_choice
     {F : Finset ((L''[[J]])[[ℕ]].Sentenceω)} (h : MarkerHenkinConsistent M F)
     {φs : ℕ → (L''[[J]])[[ℕ]].Sentenceω} (hmem : BoundedFormulaω.iSup φs ∈ F) :
@@ -993,7 +1046,9 @@ theorem MarkerHenkinConsistent.iSup_choice
 
 open scoped Classical in
 /-- **`C3'` (negated-conjunction witness)**: `¬⋀ᵢ φᵢ ∈ F` yields a uniform index `k` with
-`insert (φs k).not F` consistent. -/
+`insert (φs k).not F` consistent.
+@isnad1 id=ex.2h5v.s7.41988ef75347 from=translated src=- shape=d120c1fe vocab=227734be
+-/
 theorem MarkerHenkinConsistent.neg_iInf_choice
     {F : Finset ((L''[[J]])[[ℕ]].Sentenceω)} (h : MarkerHenkinConsistent M F)
     {φs : ℕ → (L''[[J]])[[ℕ]].Sentenceω} (hmem : (BoundedFormulaω.iInf φs).not ∈ F) :
@@ -1021,7 +1076,9 @@ noncomputable def witnessSentence
   (φ.openBounds).subst (fun _ => henkinConst n)
 
 omit [LinearOrder J] in
-/-- `∃` does not change the mentioned function symbols. -/
+/-- `∃` does not change the mentioned function symbols.
+@isnad1 id=eq.0h5v.s6.1a3d162277f9 from=translated src=- shape=7ff1a21e vocab=66854702
+-/
 theorem functionsIn_ex {α : Type} {m : ℕ}
     (φ : ((L''[[J]])[[ℕ]]).BoundedFormulaω α (m + 1)) :
     BoundedFormulaω.functionsIn φ.ex = BoundedFormulaω.functionsIn φ := by
@@ -1050,13 +1107,17 @@ finite-support theory. -/
 abbrev FSentence := {τ : ((L''[[J]])[[ℕ]]).Sentenceω // HasFiniteConstSupport (L'' := L'') τ}
 
 omit [LinearOrder J] in
-/-- Negation preserves finite constant support. -/
+/-- Negation preserves finite constant support.
+@isnad1 id=hasfinit.1h3v.s5.e0f014e96878 from=translated src=- shape=b60eebd9 vocab=7e71be66
+-/
 theorem HasFiniteConstSupport.not {τ : ((L''[[J]])[[ℕ]]).Sentenceω}
     (hτ : HasFiniteConstSupport (L'' := L'') τ) : HasFiniteConstSupport (L'' := L'') τ.not := by
   obtain ⟨S, H, hS, hH⟩ := hτ
   exact ⟨S, H, by rw [expJConstsIn_not]; exact hS, by rw [henkinConstsIn_not]; exact hH⟩
 
-/-- A body over `S` is a body over any larger support (fewer admissible interpretations). -/
+/-- A body over `S` is a body over any larger support (fewer admissible interpretations).
+@isnad1 id=markerhe.2h7v.s6.4691703820a8 from=translated src=- shape=f5e22078 vocab=9fcde627
+-/
 theorem MarkerHenkinBody.enlarge_support {α : Ordinal.{0}} {S S' : Finset J}
     {F : Set ((L''[[J]])[[ℕ]].Sentenceω)} (hSS : S ⊆ S') (hb : MarkerHenkinBody M α S F) :
     MarkerHenkinBody M α S' F := by
@@ -1071,7 +1132,9 @@ any finite-constant-support sentence `τ` can be decided — one of `insert τ F
 is Marker-consistent. Enlarge the uniform support by `τ`'s finite supports, re-homogenize the
 Boolean "is `τ` realized" colouring of the support tuples (`MarkerHenkinBody.branch_choice`,
 covering is the unconditional tautology `τ ∨ ¬τ`), and uniformize the branch over the cofinal
-`α`-schedule. -/
+`α`-schedule.
+@isnad1 id=or.2h5v.s7.4913f6942e17 from=translated src=- shape=7856115f vocab=d96776fc
+-/
 theorem MarkerHenkinConsistent.extension
     {F : Finset ((L''[[J]])[[ℕ]].Sentenceω)} (h : MarkerHenkinConsistent M F)
     (τ : ((L''[[J]])[[ℕ]]).Sentenceω) (hτ : HasFiniteConstSupport (L'' := L'') τ) :
@@ -1225,7 +1288,9 @@ def MarkerConsistentFamily (X : Set (FSentence (L'' := L'') (J := J))) : Prop :=
 
 variable {M}
 
-/-- Finite-character consistency is downward-closed in the set. -/
+/-- Finite-character consistency is downward-closed in the set.
+@isnad1 id=markerco.2h5v.s5.b53ecf3bf0f1 from=translated src=- shape=6058a6d6 vocab=ae9918aa
+-/
 theorem MarkerConsistentFamily.mono {X X' : Set (FSentence (L'' := L'') (J := J))}
     (hXX : X' ⊆ X) (h : MarkerConsistentFamily M X) : MarkerConsistentFamily M X' :=
   fun F hF => h F (hF.trans hXX)

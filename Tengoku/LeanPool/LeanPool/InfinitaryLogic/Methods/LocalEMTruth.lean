@@ -98,7 +98,9 @@ private theorem LocalEMContext.realize_term_mkClass (ctx : LocalEMContext Λ J (
 local EM term
 model on a tuple of term-classes is equivalent to its eventual deep truth. Carrier side via
 `realize_term_mkClass`; quotient side via `Quotient.eq`; deep side via
-`eventually_locDeepInterp_superset_iff` and `locDeepInterp_onTerm_subst`. -/
+`eventually_locDeepInterp_superset_iff` and `locDeepInterp_onTerm_subst`.
+@isnad1 id=iff.1h9v.s7.06aa0e03f35e from=translated src=- shape=7ec24362 vocab=a8c74854
+-/
 theorem LocalEMContext.eventualDeepTruth_equal_iff (ctx : LocalEMContext Λ J (M := M)) {n : ℕ}
     (t₁ t₂ : Λ.Term (Empty ⊕ Fin n))
     (ts : Fin n → Λ[[J]].Term Empty) {S : Finset J}
@@ -144,7 +146,9 @@ theorem LocalEMContext.eventualDeepTruth_equal_iff (ctx : LocalEMContext Λ J (M
 /-- **Truth lemma, relation-atom case**: realizing a base-language relation atom in the
 local EM term
 model on a tuple of term-classes is equivalent to its eventual deep truth. Carrier side via
-`realize_term_mkClass`; then `relMap_mkClass_iff`; deep side via `locDeepInterp_onTerm_subst`. -/
+`realize_term_mkClass`; then `relMap_mkClass_iff`; deep side via `locDeepInterp_onTerm_subst`.
+@isnad1 id=iff.1h10v.s7.626bbc701373 from=translated src=- shape=30abd87c vocab=f9231b34
+-/
 theorem LocalEMContext.eventualDeepTruth_rel_iff (ctx : LocalEMContext Λ J (M := M)) {n l : ℕ}
     (R : Λ.Relations l) (args : Fin l → Λ.Term (Empty ⊕ Fin n))
     (ts : Fin n → Λ[[J]].Term Empty) {S : Finset J}
@@ -193,7 +197,9 @@ eventual deep truth is *decided*. The value is eventually constant because tail
 indiscernibility makes
 all sufficiently-deep consecutive tuples agree on the single arity-`S.card` formula. Local
 analogue of
-`EMContext.eventualDeepTruth_decided`. -/
+`EMContext.eventualDeepTruth_decided`.
+@isnad1 id=or.2h8v.s7.843d22dc1b66 from=translated src=- shape=fefb7e84 vocab=a87922e2
+-/
 theorem LocalEMContext.eventualDeepTruth_decided (ctx : LocalEMContext Λ J (M := M)) {n : ℕ}
     (φ : Λ.BoundedFormulaω Empty n)
     (ts : Fin n → Λ[[J]].Term Empty) (S : Finset J)
@@ -232,7 +238,9 @@ private theorem eventually_imp_iff_imp_eventually {α : Type*} {f : Filter α} {
     · exact hP.mono fun _ hnp hp => absurd hp hnp
 
 /-- **Truth lemma, falsum case** (eventual-deep-truth side): `falsum` has no eventual deep truth.
-Immediate from `Filter.eventually_const` (`atTop` on `ℕ` is `NeBot`). -/
+Immediate from `Filter.eventually_const` (`atTop` on `ℕ` is `NeBot`).
+@isnad1 id=iff.0h7v.s5.2b4145679a70 from=translated src=- shape=991f21bb vocab=ea889877
+-/
 theorem LocalEMContext.eventualDeepTruth_falsum_iff (ctx : LocalEMContext Λ J (M := M)) {n : ℕ}
     (ts : Fin n → Λ[[J]].Term Empty) (S : Finset J) :
     LocalEMContext.eventualDeepTruth (Λ := Λ) (J := J) ctx (BoundedFormulaω.falsum) ts S ↔
@@ -243,7 +251,9 @@ theorem LocalEMContext.eventualDeepTruth_falsum_iff (ctx : LocalEMContext Λ J (
 /-- **Truth lemma, imp case** (eventual-deep-truth side): the eventual deep truth of `φ ⟹ ψ` is the
 implication of their eventual deep truths, *provided* `φ`'s eventual deep truth is decided
 (supplied by
-`eventualDeepTruth_decided`). Local analogue of `EMContext.eventualDeepTruth_imp_iff`. -/
+`eventualDeepTruth_decided`). Local analogue of `EMContext.eventualDeepTruth_imp_iff`.
+@isnad1 id=iff.1h9v.s7.11424acff282 from=translated src=- shape=7a9768ea vocab=5f281e26
+-/
 theorem LocalEMContext.eventualDeepTruth_imp_iff (ctx : LocalEMContext Λ J (M := M)) {n : ℕ}
     (φ ψ : Λ.BoundedFormulaω Empty n)
     (ts : Fin n → Λ[[J]].Term Empty) (S : Finset J)
@@ -260,7 +270,9 @@ theorem LocalEMContext.eventualDeepTruth_imp_iff (ctx : LocalEMContext Λ J (M :
 /-- Forming classes commutes with `Fin.snoc`: the carrier tuple obtained by snocing `mkClass u` onto
 `mkClass ∘ ts` is `mkClass ∘ (Fin.snoc ts u)`. The bridge between the carrier-side `∀x` (over
 term-classes) and the term-side `Fin.snoc ts u` in the `all` case. Local analogue of
-`EMContext.mkClass_snoc`. -/
+`EMContext.mkClass_snoc`.
+@isnad1 id=eq.0h7v.s7.3deaba7e6591 from=translated src=- shape=8279d3aa vocab=c404f28c
+-/
 theorem LocalEMContext.mkClass_snoc (ctx : LocalEMContext Λ J (M := M)) {m : ℕ}
     (ts : Fin m → Λ[[J]].Term Empty) (u : Λ[[J]].Term Empty) :
     Fin.snoc (fun i => ctx.mkClass (t := ts i)) (ctx.mkClass (t := u))
@@ -293,7 +305,9 @@ def locSkWitnessTerm {k n : ℕ} {ψ : (Llocal s₀ k).BoundedFormulaω Empty (n
 
 /-- The witness term mentions only the `J`-constants of its arguments (its head is an
 `L`-function symbol, not a skeleton constant), so its support is covered whenever the arguments' is.
-Local analogue of `jSupport_skWitnessTerm`. -/
+Local analogue of `jSupport_skWitnessTerm`.
+@isnad1 id=eq.1h6v.s7.6dde4aa40d19 from=translated src=- shape=dcaa1c3c vocab=df4a4d83
+-/
 theorem locJSupport_locSkWitnessTerm {k n : ℕ}
     {ψ : (Llocal s₀ k).BoundedFormulaω Empty (n + 1)}
     (h : (⟨n, .all ψ⟩ : Σ n, (Llocal s₀ k).BoundedFormulaω Empty n) ∈ Γlocal s₀ k)

@@ -37,7 +37,9 @@ variable {U : Type*} [DecidableEq U]
 /-! ## Approximate-additivity partition lemmas -/
 
 /-- If `f` is `1`-additive and `pieces : Fin n → Finset U` are pairwise disjoint
-with union `A`, then `f(A) ≥ ∑ f(pieces) - (n - 1)`. -/
+with union `A`, then `f(A) ≥ ∑ f(pieces) - (n - 1)`.
+@isnad1 id=le.4h5v.s7.158dc4224197 from=translated src=- shape=86985a44 vocab=c1a9a2b6
+-/
 theorem approx_additive_finset_partition_lower
     (f : Finset U → ℝ) (hf : IsApproxAdditive f 1)
     (n : ℕ) (hn : 1 ≤ n) (pieces : Fin n → Finset U)
@@ -94,7 +96,9 @@ theorem approx_additive_finset_partition_lower
         hpw _ _ (by simpa [Fin.ext_iff] using hij)]
 
 /-- If `f` is `1`-additive and `pieces : Fin n → Finset U` are pairwise disjoint
-with union `A`, then `∑ f(pieces) ≤ f(A) + (n - 1)`. -/
+with union `A`, then `∑ f(pieces) ≤ f(A) + (n - 1)`.
+@isnad1 id=le.4h5v.s7.54e5f950b40b from=translated src=- shape=0762b6a7 vocab=1c1c0e98
+-/
 theorem approx_additive_finset_partition_upper
     (f : Finset U → ℝ) (hf : IsApproxAdditive f 1)
     (n : ℕ) (hn : 1 ≤ n) (pieces : Fin n → Finset U)
@@ -132,6 +136,9 @@ theorem approx_additive_finset_partition_upper
 Reverse direction: `∑ f(pieces) ≥ f(A) - (n - 1)`. Used for the source-side
 bound in recombination.
 -/
+/--
+@isnad1 id=le.4h5v.s7.e6201b866864 from=translated src=- shape=f0a317c5 vocab=c1a9a2b6
+-/
 theorem approx_additive_finset_partition_sum_lower
     (f : Finset U → ℝ) (hf : IsApproxAdditive f 1)
     (n : ℕ) (hn : 1 ≤ n) (pieces : Fin n → Finset U)
@@ -151,7 +158,9 @@ theorem approx_additive_finset_partition_sum_lower
 /-! ## Hall matching from expansion -/
 
 /-- From an expander's expansion property, derive Hall's matching for any
-subset of left vertices of size at most the expansion threshold. -/
+subset of left vertices of size at most the expansion threshold.
+@isnad1 id=ex.2h6v.s7.785bfa6f462d from=translated src=- shape=c895ce2d vocab=105adf8c
+-/
 theorem hall_matching_from_expansion
     {V W : Type*} [_hV : Finite V] [_hW : Finite W] [DecidableEq W]
     {r : ℕ} (edge : V → Fin r → W)
@@ -202,6 +211,9 @@ def perItemMatch
     (i : U) : ↥(sourceVertices C i) → W :=
   (hall_matching_from_expansion edge threshold hexp (sourceVertices C i) (hfreq i)).choose
 
+/--
+@isnad1 id=injectiv.2h8v.s6.0a46adfdf592 from=translated src=- shape=f8c9d56f vocab=56144761
+-/
 lemma perItemMatch_injective
     (threshold : ℕ)
     (hexp : ∀ S : Finset V, S.card ≤ threshold →
@@ -210,6 +222,9 @@ lemma perItemMatch_injective
     (i : U) : Function.Injective (perItemMatch edge C threshold hexp hfreq i) :=
   (hall_matching_from_expansion edge threshold hexp (sourceVertices C i) (hfreq i)).choose_spec.1
 
+/--
+@isnad1 id=mem.2h9v.s7.33953848cbcc from=translated src=- shape=91e9e2db vocab=00399f93
+-/
 lemma perItemMatch_mem_neighbors
     (threshold : ℕ)
     (hexp : ∀ S : Finset V, S.card ≤ threshold →
@@ -234,6 +249,9 @@ def assignLabel
   (Finset.mem_image.mp (perItemMatch_mem_neighbors edge C threshold hexp hfreq i
     ⟨v, Finset.mem_filter.mpr ⟨Finset.mem_univ v, hi⟩⟩)).choose
 
+/--
+@isnad1 id=eq.3h9v.s7.5e06fc569c5b from=translated src=- shape=dde60a2e vocab=6c00129c
+-/
 lemma assignLabel_spec
     (threshold : ℕ)
     (hexp : ∀ S : Finset V, S.card ≤ threshold →
@@ -272,6 +290,9 @@ def targetSet
 /-
 Edge pieces partition `C v`: their union is `C v`.
 -/
+/--
+@isnad1 id=eq.2h8v.s6.423a783333c4 from=translated src=- shape=470f646f vocab=00c892a3
+-/
 lemma edgePiece_union
     (threshold : ℕ)
     (hexp : ∀ S : Finset V, S.card ≤ threshold →
@@ -284,6 +305,9 @@ lemma edgePiece_union
 
 /-
 Edge pieces are pairwise disjoint.
+-/
+/--
+@isnad1 id=disjoint.3h10v.s7.ff9c7b4e4933 from=translated src=- shape=8a5ac595 vocab=cfda2886
 -/
 lemma edgePiece_pairwise_disjoint
     (threshold : ℕ)
@@ -301,6 +325,9 @@ lemma edgePiece_pairwise_disjoint
 Each item appears in at most as many target sets as source sets containing it.
 This is the key strengthening: the per-item matching injects source occurrences
 into target vertices, so target count ≤ source count.
+-/
+/--
+@isnad1 id=le.2h8v.s7.369e16f05a6a from=translated src=- shape=5093ca2e vocab=b4ef2a4f
 -/
 lemma targetSet_freq_source_count_bound
     (threshold : ℕ)
@@ -322,6 +349,9 @@ lemma targetSet_freq_source_count_bound
 /-
 Corollary: each item appears in at most `threshold` target sets.
 -/
+/--
+@isnad1 id=le.2h8v.s7.d2cf99544c2d from=translated src=- shape=0fd4bc35 vocab=b4ef2a4f
+-/
 lemma targetSet_freq_bound
     (threshold : ℕ)
     (hexp : ∀ S : Finset V, S.card ≤ threshold →
@@ -338,6 +368,9 @@ Derived from:
 - Source partition: `∑_{v,e} f(P v e) ≥ ∑_v f(C v) - N(r-1)` (partition_sum_lower)
 - Target partition: `∑_{v,e} f(P v e) ≤ ∑_w f(T w) + (rN - L)` (partition_upper + right coverage)
 - Sum rearrangement: `∑_v ∑_e f(P v e) = ∑_w ∑_{(v,e): edge v e = w} f(P v e)`
+-/
+/--
+@isnad1 id=le.5h9v.s7.f0fce8065503 from=translated src=- shape=08e00ed8 vocab=8520c3fc
 -/
 lemma recombination_source_target_ineq
     (edge : V → Fin r → W)
@@ -489,6 +522,9 @@ with bounded item frequency and average deficit, constructs target sets
 `T : W → Finset U` and proves the recombination inequality.
 
 **Reference**: Lemma 3.2 in Section 3 of the companion paper.
+-/
+/--
+@isnad1 id=ex.10h10v.s9.b57ae48a937e from=translated src=- shape=73dcd2ee vocab=de0d0df3
 -/
 theorem one_sided_recombination_witness_core
     {V W : Type*} [Fintype V] [Fintype W] [DecidableEq W]

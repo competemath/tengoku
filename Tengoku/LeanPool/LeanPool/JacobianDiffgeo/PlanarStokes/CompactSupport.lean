@@ -33,7 +33,9 @@ namespace RS
 variable {g f : ℂ → ℂ} {U : Set ℂ}
 
 /-- **Atom 1** (compact-support planar Stokes for `dbar`): the `dbar` of a compactly-supported `C¹`
-function integrates to zero over the whole plane. -/
+function integrates to zero over the whole plane.
+@isnad1 id=eq.4h2v.s7.413d0d4fd4f4 from=translated src=- shape=d820dd29 vocab=5e3b9464
+-/
 theorem integral_wirtingerDbar_eq_zero (hU : IsOpen U) (hg : ContDiffOn ℝ 1 g U)
     (hcs : HasCompactSupport g) (hsub : tsupport g ⊆ U) :
     ∫ w : ℂ, wirtingerDbar g w = 0 := by
@@ -144,7 +146,9 @@ theorem integral_wirtingerDbar_eq_zero (hU : IsOpen U) (hg : ContDiffOn ℝ 1 g 
 
 /-- **Atom 1b** (immediate corollary, the "no pole in this chart" case residue-theorem needs for
 every PoU piece that does not touch a pole): if `f` is holomorphic throughout `U`, the
-`dbar`-weighted integral against `f` also vanishes. -/
+`dbar`-weighted integral against `f` also vanishes.
+@isnad1 id=eq.5h3v.s7.5c4b1befb1ed from=translated src=- shape=5240c3fb vocab=e8ddeae7
+-/
 theorem integral_wirtingerDbar_mul_eq_zero_of_differentiableOn (hU : IsOpen U)
     (hg : ContDiffOn ℝ 1 g U) (hcs : HasCompactSupport g) (hsub : tsupport g ⊆ U)
     (hf : DifferentiableOn ℂ f U) :

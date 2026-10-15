@@ -44,7 +44,9 @@ noncomputable def walshCoefficient (Delta : Finset K) (psi : AddChar K ℂ) (a :
 
 /-! ### Auxiliary lemmas -/
 
-/-- Orthogonality: the sum of `psi (a * t)` over all `a` is `|K|` if `t = 0`, else `0`. -/
+/-- Orthogonality: the sum of `psi (a * t)` over all `a` is `|K|` if `t = 0`, else `0`.
+@isnad1 id=eq.1h3v.s7.fb31d9c42d9c from=translated src=- shape=d30fa834 vocab=ee6c3a7b
+-/
 lemma sum_char_mul (psi : AddChar K ℂ) (hpsi : psi.IsPrimitive) (t : K) :
     ∑ a : K, psi (a * t) = if t = 0 then (Fintype.card K : ℂ) else 0 := by
   by_cases ht : t = 0
@@ -55,7 +57,9 @@ lemma sum_char_mul (psi : AddChar K ℂ) (hpsi : psi.IsPrimitive) (t : K) :
     simp_rw [h]
     exact AddChar.sum_eq_zero_of_ne_one (hpsi ht)
 
-/-- Sum over the units of `K` equals the sum over the nonzero elements. -/
+/-- Sum over the units of `K` equals the sum over the nonzero elements.
+@isnad1 id=eq.0h2v.s6.23619c565a9a from=translated src=- shape=bdd093b2 vocab=b9fe0075
+-/
 lemma sum_units_eq (f : K → ℂ) :
     ∑ u : Kˣ, f (u : K) = ∑ a ∈ Finset.univ.erase (0 : K), f a := by
   rw [Finset.sum_subtype (p := fun a : K => a ≠ 0) (Finset.univ.erase (0 : K))
@@ -63,14 +67,18 @@ lemma sum_units_eq (f : K → ℂ) :
   exact Fintype.sum_equiv unitsEquivNeZero _ _ (fun u => rfl)
 
 omit [Fintype K] [DecidableEq K] in
-/-- The Walsh coefficient at `0` is `|Δ|`. -/
+/-- The Walsh coefficient at `0` is `|Δ|`.
+@isnad1 id=eq.0h3v.s5.018dfddd2cb0 from=translated src=- shape=dd1f8465 vocab=261df2e3
+-/
 lemma walshCoefficient_zero (Delta : Finset K) (psi : AddChar K ℂ) :
     walshCoefficient Delta psi 0 = (Delta.card : ℂ) := by
   simp [walshCoefficient]
 
 omit [Field K] [Fintype K] [DecidableEq K] in
 /-- A sum over `Δ³` of a product of three one-variable functions factors into
-the product of the three sums. -/
+the product of the three sums.
+@isnad1 id=eq.0h5v.s7.3fff0aebc6fe from=translated src=- shape=3d91935f vocab=4069ad1d
+-/
 lemma sum_triple_prod (Delta : Finset K) (f g h : K → ℂ) :
     ∑ p ∈ Delta ×ˢ Delta ×ˢ Delta, f p.1 * g p.2.1 * h p.2.2
       = (∑ x ∈ Delta, f x) * (∑ y ∈ Delta, g y) * (∑ z ∈ Delta, h z) := by
@@ -116,7 +124,9 @@ private lemma sum_walsh_triple_eq_card_pow_add_phase
     exact (sum_units_eq (fun a => walshCoefficient Delta psi a * walshCoefficient Delta psi (ρ * a)
       * walshCoefficient Delta psi ((1 + ρ) * a))).symm
 
-/-- The count as a complex identity: `(|Δ|³ + Z(ρ)) / |K|`. -/
+/-- The count as a complex identity: `(|Δ|³ + Z(ρ)) / |K|`.
+@isnad1 id=eq.1h4v.s7.5fd1d1e971c4 from=translated src=- shape=99e9daae vocab=60700200
+-/
 lemma slopeTripleCount_complex (Delta : Finset K) (psi : AddChar K ℂ) (hpsi : psi.IsPrimitive)
     (ρ : K) :
     (slopeTripleCount Delta ρ : ℂ)
@@ -146,7 +156,9 @@ lemma slopeTripleCount_complex (Delta : Finset K) (psi : AddChar K ℂ) (hpsi : 
 
 /-! ### Combinatorial lemmas for the average -/
 
-/-- `slopes K` is `K` with `0` and `1` removed, hence has `|K| - 2` elements. -/
+/-- `slopes K` is `K` with `0` and `1` removed, hence has `|K| - 2` elements.
+@isnad1 id=eq.1h1v.s5.181d80f32eb6 from=translated src=- shape=4af42a88 vocab=77e935d1
+-/
 lemma slopes_card (hK : 2 < Fintype.card K) : (slopes K).card = Fintype.card K - 2 := by
   have hset : slopes K = (Finset.univ.erase (0 : K)).erase 1 := by
     ext r
@@ -158,7 +170,9 @@ lemma slopes_card (hK : 2 < Fintype.card K) : (slopes K).card = Fintype.card K -
   simp only [Finset.card_univ]
   omega
 
-/-- Membership in `slopes K` is being neither `0` nor `1`. -/
+/-- Membership in `slopes K` is being neither `0` nor `1`.
+@isnad1 id=iff.0h2v.s6.dab529aac252 from=translated src=- shape=732a82e7 vocab=145a33e4
+-/
 lemma mem_slopes_iff (r : K) : r ∈ slopes K ↔ r ≠ 0 ∧ r ≠ 1 := by
   simp [slopes]
 
@@ -204,7 +218,9 @@ private lemma div_mem_slopes_iff [CharP K 2] {x y z : K} (hyz : y ≠ z) :
 
 /-- For a fixed triple, the number of admissible slopes solving the equation:
 `|K| - 2` on the diagonal `x = y = z`, one for a pairwise-distinct triple, and
-none otherwise. -/
+none otherwise.
+@isnad1 id=eq.1h4v.s8.011db750bb79 from=translated src=- shape=39bb6f30 vocab=28319eae
+-/
 lemma slope_filter_card [CharP K 2] (hK : 2 < Fintype.card K) (x y z : K) :
     ((slopes K).filter (fun ρ => x + ρ * y + (1 + ρ) * z = 0)).card
       = (Fintype.card K - 2) * (if x = y ∧ y = z then 1 else 0)
@@ -236,7 +252,9 @@ lemma slope_filter_card [CharP K 2] (hK : 2 < Fintype.card K) (x y z : K) :
       simp
 
 omit [Field K] [Fintype K] in
-/-- The diagonal `x = y = z` of `Δ³` has `|Δ|` points. -/
+/-- The diagonal `x = y = z` of `Δ³` has `|Δ|` points.
+@isnad1 id=eq.0h2v.s7.350b686021b2 from=translated src=- shape=dbc7a293 vocab=ebd7dc07
+-/
 lemma diag_card (Delta : Finset K) :
     ((Delta ×ˢ Delta ×ˢ Delta).filter (fun p => p.1 = p.2.1 ∧ p.2.1 = p.2.2)).card
       = Delta.card := by
@@ -255,7 +273,9 @@ private lemma card_filter_ne_one (Delta : Finset K) {x : K} (hx : x ∈ Delta) :
 
 omit [Field K] [Fintype K] in
 /-- Removing two specified distinct elements of a finite set lowers its
-cardinality by two. -/
+cardinality by two.
+@isnad1 id=eq.3h4v.s6.24b0c063c3ce from=translated src=- shape=d5941e59 vocab=2df639cd
+-/
 lemma card_filter_ne_two (Delta : Finset K) {x y : K} (hx : x ∈ Delta) (hy : y ∈ Delta)
     (hxy : x ≠ y) : (Delta.filter (fun z => x ≠ z ∧ y ≠ z)).card = Delta.card - 2 := by
   have hset : Delta.filter (fun z => x ≠ z ∧ y ≠ z) = (Delta.erase x).erase y := by
@@ -269,7 +289,9 @@ lemma card_filter_ne_two (Delta : Finset K) {x y : K} (hx : x ∈ Delta) (hy : y
   omega
 
 omit [Field K] [Fintype K] in
-/-- `Δ³` has `|Δ| * (|Δ| - 1) * (|Δ| - 2)` pairwise-distinct triples. -/
+/-- `Δ³` has `|Δ| * (|Δ| - 1) * (|Δ| - 2)` pairwise-distinct triples.
+@isnad1 id=eq.0h2v.s8.effb6251113b from=translated src=- shape=1d0c1799 vocab=9110a467
+-/
 lemma distinct_card (Delta : Finset K) :
     ((Delta ×ˢ Delta ×ˢ Delta).filter
         (fun p => p.1 ≠ p.2.1 ∧ p.1 ≠ p.2.2 ∧ p.2.1 ≠ p.2.2)).card
@@ -303,7 +325,9 @@ lemma distinct_card (Delta : Finset K) :
 
 /-- Double-counting over the admissible slopes: a diagonal triple is counted by
 all `|K| - 2` slopes, a pairwise-distinct triple by exactly one, and no other
-triple contributes. -/
+triple contributes.
+@isnad1 id=eq.1h2v.s7.ced1eb13c6ab from=translated src=- shape=df0fe404 vocab=34e367dd
+-/
 lemma sum_tripleCount [CharP K 2] (Delta : Finset K) (hK : 2 < Fintype.card K) :
     ∑ ρ ∈ slopes K, slopeTripleCount Delta ρ
       = (Fintype.card K - 2) * Delta.card
@@ -329,7 +353,9 @@ lemma sum_tripleCount [CharP K 2] (Delta : Finset K) (hK : 2 < Fintype.card K) :
 
 /-- The count formula under half-size: additive-character orthogonality turns
 `2|Δ| = |K|` into `|K|²/8` plus the real part of the phase correction, at every
-slope `ρ`. -/
+slope `ρ`.
+@isnad1 id=eq.2h4v.s7.6c983382c12c from=translated src=- shape=6259b505 vocab=c390db53
+-/
 theorem count_formula_of_half_size
     (Delta : Finset K) (psi : AddChar K ℂ) (hpsi : psi.IsPrimitive)
     (hhalf : 2 * Delta.card = Fintype.card K) :
@@ -363,7 +389,9 @@ theorem count_formula_of_half_size
 /-- Under half-size the admissible-slope average of the triple count is exactly
 `|K|²/8`, by double-counting `(ρ,x,y,z)`.  The assumption `2 < |K|` only makes
 the average's denominator nonzero; in the final Kasami theorem `|K| = 2^n` with
-`n ≥ 2`. -/
+`n ≥ 2`.
+@isnad1 id=eq.2h2v.s7.1f70bff9b32d from=translated src=- shape=79971df1 vocab=99f59910
+-/
 theorem average_of_half_size [CharP K 2]
     (Delta : Finset K) (hhalf : 2 * Delta.card = Fintype.card K)
     (hK : 2 < Fintype.card K) :
@@ -400,7 +428,9 @@ variable {K : Type*} [Field K] [Fintype K] [DecidableEq K]
 
 /-- The Walsh triple-count formula follows from the derivative-image half-size
 equation alone.  `AdmissibleSlope` is retained here because this theorem is the
-downstream slope-interface, although the generic identity holds for every `ρ`. -/
+downstream slope-interface, although the generic identity holds for every `ρ`.
+@isnad1 id=eq.2h3v.s7.1c80b9ae6ba5 from=translated src=- shape=37331ed6 vocab=23a275d3
+-/
 theorem walshTripleCountFormula_of_half_size {k : ℕ}
     (hhalf : 2 * (derivativeImage k K).card = Fintype.card K) :
     ∀ ρ : K, AdmissibleSlope ρ →
@@ -412,7 +442,9 @@ theorem walshTripleCountFormula_of_half_size {k : ℕ}
     primitiveAddChar_isPrimitive hhalf ρ
 
 /-- The slope-average formula follows from the derivative-image half-size
-equation (and `|K| > 2`) alone. -/
+equation (and `|K| > 2`) alone.
+@isnad1 id=eq.2h2v.s7.3dd2fc247fc8 from=translated src=- shape=0f91bbcb vocab=42bea4b5
+-/
 theorem slopeAverageFormula_of_half_size [CharP K 2] {k : ℕ}
     (hhalf : 2 * (derivativeImage k K).card = Fintype.card K) (hK : 2 < Fintype.card K) :
     (∑ ρ ∈ slopes K, (slopeTripleCount k ρ : ℝ)) / ((slopes K).card : ℝ)

@@ -49,11 +49,15 @@ def periodRange : AddSubgroup (Fin (genus X) → ℂ) where
     exact ⟨γ.symm, periodVector_symm (basis X) γ⟩
 
 /-- The closure defining `periodSubgroup` is redundant: the generating set is already a subgroup
-(Forster's observation that `Per` is literally the range, not merely its span). -/
+(Forster's observation that `Per` is literally the range, not merely its span).
+@isnad1 id=eq.0h1v.s7.8890f185b2d6 from=translated src=- shape=284e6002 vocab=ea013bf6
+-/
 theorem periodSubgroup_eq_periodRange : periodSubgroup X = periodRange X :=
   AddSubgroup.closure_eq (periodRange X)
 
-/-- A vector lies in the period subgroup iff it is the period vector of a SINGLE based loop. -/
+/-- A vector lies in the period subgroup iff it is the period vector of a SINGLE based loop.
+@isnad1 id=iff.0h2v.s8.13804dfa44a7 from=translated src=- shape=a7417686 vocab=54fce239
+-/
 theorem mem_periodSubgroup_iff {t : Fin (genus X) → ℂ} :
     t ∈ periodSubgroup X ↔ ∃ γ : Path (Classical.arbitrary X) (Classical.arbitrary X),
       periodVector (basis X) γ = t := by

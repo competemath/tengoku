@@ -80,7 +80,9 @@ Relations are determined by the code; functions are eliminated by `IsRelational`
   funMap := fun f => isEmptyElim f
   RelMap := fun {_} R v => c ⟨⟨_, R⟩, v⟩ = true
 
-/-- The relation holding in the decoded structure corresponds to the code value. -/
+/-- The relation holding in the decoded structure corresponds to the code value.
+@isnad1 id=iff.0h6v.s6.b1c374589828 from=translated src=- shape=8cb66b7b vocab=3479d0a0
+-/
 @[simp]
 theorem relMap_toStructure [L.IsRelational] (c : StructureSpaceOn L α)
     {l : ℕ} (R : L.Relations l) (v : Fin l → α) :
@@ -93,7 +95,9 @@ noncomputable def ofStructure [_isRelational : L.IsRelational]
     (inst : L.Structure α) : StructureSpaceOn L α :=
   fun ⟨⟨_, R⟩, v⟩ => @decide _ (Classical.dec (@Structure.RelMap _ _ inst _ R v))
 
-/-- Round-trip: decoding the code of a structure preserves relation satisfaction. -/
+/-- Round-trip: decoding the code of a structure preserves relation satisfaction.
+@isnad1 id=iff.0h6v.s5.2b7f87075071 from=translated src=- shape=82fe80ad vocab=74515be8
+-/
 theorem toStructure_ofStructure [L.IsRelational]
     (inst : L.Structure α) {l : ℕ} (R : L.Relations l) (v : Fin l → α) :
     @Structure.RelMap _ _ (ofStructure inst).toStructure _ R v ↔
@@ -110,7 +114,9 @@ namespace StructureSpace
     (c : StructureSpace L) : L.Structure ℕ :=
   StructureSpaceOn.toStructure c
 
-/-- The relation holding in the decoded structure corresponds to the code value. -/
+/-- The relation holding in the decoded structure corresponds to the code value.
+@isnad1 id=iff.0h5v.s6.d26933139955 from=translated src=- shape=23022401 vocab=3c52fd04
+-/
 @[simp]
 theorem relMap_toStructure [L.IsRelational] (c : StructureSpace L)
     {l : ℕ} (R : L.Relations l) (v : Fin l → ℕ) :
@@ -122,7 +128,9 @@ noncomputable def ofStructure [L.IsRelational]
     (inst : L.Structure ℕ) : StructureSpace L :=
   StructureSpaceOn.ofStructure inst
 
-/-- Round-trip: decoding the code of a structure preserves relation satisfaction. -/
+/-- Round-trip: decoding the code of a structure preserves relation satisfaction.
+@isnad1 id=iff.0h5v.s5.baeefc0d6420 from=translated src=- shape=abccaf53 vocab=d3b80904
+-/
 theorem toStructure_ofStructure [L.IsRelational]
     (inst : L.Structure ℕ) {l : ℕ} (R : L.Relations l) (v : Fin l → ℕ) :
     @Structure.RelMap _ _ (ofStructure inst).toStructure _ R v ↔

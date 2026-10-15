@@ -34,29 +34,50 @@ variable {k : Type*} [Field k]
 def Extends (N M : PeriodicMask k) : Prop :=
   ∀ n z, M.lookup n = some z → N.lookup n = some z
 
+/--
+@isnad1 id=extends.0h2v.s3.336c1da79b9e from=translated src=- shape=82448d51 vocab=fdd02dde
+-/
 @[refl] theorem Extends.refl (M : PeriodicMask k) : Extends M M :=
   fun _ _ h => h
 
+/--
+@isnad1 id=extends.2h4v.s5.09fe8a29bd2b from=translated src=- shape=8d808b8f vocab=fdd02dde
+-/
 theorem Extends.trans {L M N : PeriodicMask k}
     (hNM : Extends N M) (hML : Extends M L) : Extends N L :=
   fun n z h => hNM n z (hML n z h)
 
+/--
+@isnad1 id=ne.1h4v.s6.0f085f8fcea2 from=translated src=- shape=1c6f5283 vocab=dcfa5ee3
+-/
 theorem lookup_nonzero (M : PeriodicMask k) {n : ℕ} {z : Triple k}
     (h : M.lookup n = some z) : z ≠ 0 :=
   M.nonzero _ z h
 
+/--
+@isnad1 id=eq.0h3v.s5.0fa98df269a4 from=translated src=- shape=456cc255 vocab=ae317dfa
+-/
 @[simp] theorem lookup_fin (M : PeriodicMask k) (i : Fin M.period) :
     M.lookup i.val = M.value i := by
   simp [PeriodicMask.lookup, Nat.mod_eq_of_lt i.is_lt]
 
+/--
+@isnad1 id=eq.1h4v.s5.d71a5becc5b3 from=translated src=- shape=8c805758 vocab=ed059497
+-/
 theorem lookup_mod_of_dvd (M : PeriodicMask k) {p : ℕ}
     (hp : M.period ∣ p) (n : ℕ) : M.lookup (n % p) = M.lookup n := by
   simp only [PeriodicMask.lookup, Nat.mod_mod_of_dvd n hp]
 
+/--
+@isnad1 id=eq.1h4v.s5.9bd1c4449e2c from=translated src=- shape=272babfe vocab=d55fc909
+-/
 theorem lookup_add_of_mod_eq_zero (M : PeriodicMask k) {b : ℕ}
     (hb : b % M.period = 0) (i : ℕ) : M.lookup (b + i) = M.lookup i := by
   simp [PeriodicMask.lookup, Nat.add_mod, hb]
 
+/--
+@isnad1 id=eq.0h2v.s4.9ba8836894c8 from=translated src=- shape=03d036a5 vocab=6ed72b4f
+-/
 theorem holes_add_assigned (M : PeriodicMask k) :
     M.holes + M.assigned = M.period := by
   classical
@@ -64,6 +85,9 @@ theorem holes_add_assigned (M : PeriodicMask k) :
     (Finset.card_filter_add_card_filter_not (s := Finset.univ)
       (fun i : Fin M.period => M.value i = none))
 
+/--
+@isnad1 id=lt.1h2v.s5.8b5c22ef0f13 from=translated src=- shape=0627e664 vocab=20b869ae
+-/
 theorem enough_holes (M : PeriodicMask k)
     (h : 4 * M.assigned < M.period) : M.period < 2 * M.holes := by
   have := holes_add_assigned M
@@ -76,11 +100,16 @@ def emptyMask : PeriodicMask k where
   value := fun _ => none
   nonzero := by simp
 
+/--
+@isnad1 id=eq.0h1v.s4.b78d8f8a0c20 from=translated src=- shape=a4033e76 vocab=b697581f
+-/
 @[simp] theorem emptyMask_assigned : (emptyMask (k := k)).assigned = 0 := by
   classical
   simp [PeriodicMask.assigned, emptyMask]
 
-/-- Exact cardinal count for lifting *all* old assignments to `c` periods. -/
+/-- Exact cardinal count for lifting *all* old assignments to `c` periods.
+@isnad1 id=eq.0h3v.s7.4d1ac0c10a95 from=translated src=- shape=0f721be7 vocab=9001facb
+-/
 theorem lifted_assigned_card (M : PeriodicMask k) (c : ℕ) :
     (Finset.univ.filter fun i : Fin (c * M.period) => M.lookup i.val ≠ none).card =
       c * M.assigned := by
@@ -126,20 +155,32 @@ def install (M : PeriodicMask k) (w : List (Triple k))
       exact hw _ (List.get_mem w _)
     · exact lookup_nonzero M hz
 
+/--
+@isnad1 id=eq.1h3v.s6.2452e0e36274 from=translated src=- shape=28f3d08f vocab=d6c00ca2
+-/
 @[simp] theorem install_period (M : PeriodicMask k) (w : List (Triple k))
     (hw : ∀ z ∈ w, z ≠ 0) :
     (install M w hw).period = (4 * w.length + 1) * M.period := rfl
 
+/--
+@isnad1 id=dvd.1h3v.s6.e60085038be0 from=translated src=- shape=de4c5229 vocab=dccdff1c
+-/
 theorem period_dvd_install (M : PeriodicMask k) (w : List (Triple k))
     (hw : ∀ z ∈ w, z ≠ 0) : M.period ∣ (install M w hw).period :=
   dvd_mul_left _ _
 
+/--
+@isnad1 id=le.1h3v.s6.38fbe2d859e9 from=translated src=- shape=33b352e7 vocab=dab8d2c2
+-/
 theorem length_le_install_period (M : PeriodicMask k) (w : List (Triple k))
     (hw : ∀ z ∈ w, z ≠ 0) : w.length ≤ (install M w hw).period := by
   have hQ : 1 ≤ M.period := M.period_pos
   change w.length ≤ (4 * w.length + 1) * M.period
   nlinarith
 
+/--
+@isnad1 id=extends.2h3v.s6.dfc73e1ec1d9 from=translated src=- shape=0b8a2fe5 vocab=b672edf6
+-/
 theorem install_extends (M : PeriodicMask k) (w : List (Triple k))
     (hw : ∀ z ∈ w, z ≠ 0) (hc : M.Compatible w) : Extends (install M w hw) M := by
   intro n z hz
@@ -152,6 +193,9 @@ theorem install_extends (M : PeriodicMask k) (w : List (Triple k))
   · rw [hc ⟨n % N.period, hn⟩ z hlookup]
   · exact hlookup
 
+/--
+@isnad1 id=eq.1h4v.s6.627586d4ea8a from=translated src=- shape=fbd63b99 vocab=177efc96
+-/
 theorem install_word (M : PeriodicMask k) (w : List (Triple k))
     (hw : ∀ z ∈ w, z ≠ 0) (i : Fin w.length) :
     (install M w hw).lookup i.val = some (w.get i) := by
@@ -161,7 +205,9 @@ theorem install_word (M : PeriodicMask k) (w : List (Triple k))
   rw [lookup_fin]
   exact dite_eq_left i.is_lt
 
-/-- Installing the word adds at most its length to the lifted assigned set. -/
+/-- Installing the word adds at most its length to the lifted assigned set.
+@isnad1 id=le.1h3v.s7.27fec6d936b5 from=translated src=- shape=f3f5f620 vocab=04311a13
+-/
 theorem install_assigned_le (M : PeriodicMask k) (w : List (Triple k))
     (hw : ∀ z ∈ w, z ≠ 0) :
     (install M w hw).assigned ≤
@@ -188,7 +234,9 @@ theorem install_assigned_le (M : PeriodicMask k) (w : List (Triple k))
 
 /-- An adaptive integral density budget: the positive old slack is amplified
 by `4 * length + 1`, whereas the cost of the new block is at most `4 * length`.
-The new slack is therefore still at least one. -/
+The new slack is therefore still at least one.
+@isnad1 id=lt.2h3v.s7.e10c32b3b418 from=translated src=- shape=b36ffc9c vocab=b248e5ee
+-/
 theorem install_sparse (M : PeriodicMask k) (w : List (Triple k))
     (hw : ∀ z ∈ w, z ≠ 0) (hM : 4 * M.assigned < M.period) :
     4 * (install M w hw).assigned < (install M w hw).period := by

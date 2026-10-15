@@ -326,7 +326,9 @@ distinct sequence. So the templates of ANY two pairwise-distinct sequences agree
 which frees the realizing context's sequence from being a subsequence of the input. -/
 
 /-- The tail template of any sequence assigns a **sentence** its absolute truth value (arity-`0`
-formulas ignore the tuple). -/
+formulas ignore the tuple).
+@isnad1 id=iff.0h4v.s5.6cefdef242fb from=translated src=- shape=7b4df945 vocab=d3e1d94a
+-/
 theorem tailTemplateOfSeq_truth_sentence_iff {L : Language.{u, v}} {M : Type*} [L.Structure M]
     (c : ℕ → M) (φ : L.Sentenceω) :
     (tailTemplateOfSeq (L := L) c).truth φ ↔ Sentenceω.Realize φ M := by
@@ -344,7 +346,9 @@ the small-model assembly (issue #11 unit 7a): a stage-0 sentence of `Γlocal s�
 source is true in the seed-language reduct of the context's carrier. Arity zero of the
 realization equivalence: `tailTemplateOfSeq_truth_sentence_iff` turns source truth into
 template truth, `realize_templateSentence_localEM_iff_of_skolemUniversal` transfers it to the
-carrier, and `realize_templateSentence_of_structure` removes the vacuous skeleton constants. -/
+carrier, and `realize_templateSentence_of_structure` removes the vacuous skeleton constants.
+@isnad1 id=realize.5h5v.s7.fdc901269dc6 from=translated src=- shape=6e5f4587 vocab=b1cd6132
+-/
 theorem LocalEMContext.realizes_stage0_sentence_of_skolemUniversal (s₀ : LocalStage)
     (J : Type) [LinearOrder J] {M : Type} [(localColim s₀).Structure M]
     (hsk : LocalSkolemUniversalForColim s₀ (M := M))
@@ -377,7 +381,9 @@ theorem LocalEMContext.realizes_stage0_sentence_of_skolemUniversal (s₀ : Local
       Fin.elim0 : (s₀.Lang)[[J]].Term Empty).realize (Empty.elim : Empty → ctx.Carrier))
       = (Fin.elim0 : Fin 0 → ctx.Carrier) from funext fun i => i.elim0] at hbase
 
-/-- The tail template of any **pairwise distinct** sequence declares the disequality true. -/
+/-- The tail template of any **pairwise distinct** sequence declares the disequality true.
+@isnad1 id=truth.1h3v.s5.58f3f7058ecd from=translated src=- shape=b31f9379 vocab=1613eb6b
+-/
 theorem tailTemplateOfSeq_truth_disEq {L : Language.{u, v}} {M : Type*} [L.Structure M]
     {c : ℕ → M} (hc : ∀ i j : ℕ, i ≠ j → c i ≠ c j) :
     (tailTemplateOfSeq (L := L) c).truth (disEqFormula : L.BoundedFormulaω Empty 2) := by
@@ -390,7 +396,9 @@ theorem tailTemplateOfSeq_truth_disEq {L : Language.{u, v}} {M : Type*} [L.Struc
 /-- **Cross-model Morley-seed template agreement**: the seed construction does not require the two
 sequences to live in the same model — the tail templates of pairwise-distinct sequences in any two
 models both realizing the seed sentence agree on `Set.range (morleySeed φ)`. This is the form the
-schema term model consumes (its sequence lives in the constructed quotient, not in the source). -/
+schema term model consumes (its sequence lives in the constructed quotient, not in the source).
+@isnad1 id=iff.5h8v.s7.e0071f6f083a from=translated src=- shape=dd05a3c2 vocab=3eac548f
+-/
 theorem morleySeed_template_agreement_cross {L' : Language.{0, 0}} {M N : Type}
     [L'.Structure M] [L'.Structure N]
     (φ : L'.Sentenceω) {a : ℕ → M} {b : ℕ → N}
@@ -414,7 +422,9 @@ theorem morleySeed_template_agreement_cross {L' : Language.{0, 0}} {M N : Type}
 
 /-- **The `IsEmpty J` degenerate case**: over an empty target order, the Morley-seed template
 theory contains only the arity-`0` (sentence) members, and the source model `M` itself realizes
-them — no EM construction needed. -/
+them — no EM construction needed.
+@isnad1 id=ex.1h5v.s5.d06e2eb2f8a4 from=translated src=- shape=d25d8a9b vocab=90dc750c
+-/
 theorem morleySeed_theory_model_of_isEmptyJ {L' : Language.{0, 0}} {M : Type}
     [L'.Structure M] (φ : L'.Sentenceω) (a : ℕ → M) (J : Type) [LinearOrder J]
     [IsEmpty J] (hφreal : Sentenceω.Realize φ M) :
@@ -454,7 +464,9 @@ separated from the input sequence's carrier — `ctx.a` lives in a mixin-satisfy
 schema term model), while the input `a` lives in an arbitrary `L'`-structure `A` (the large
 model). The template agreement hypothesis is the cross-model Morley-seed agreement's shape. The
 source's seed semantics are read through the seed-language reduct; no `Nonempty Source` is
-needed. -/
+needed.
+@isnad1 id=ex.4h7v.s8.ee00ac441eb8 from=translated src=- shape=438d7bdd vocab=ea6bcbd9
+-/
 theorem tailTemplateRealizable_of_localEMContext_cross {L' : Language.{0, 0}}
     [Countable (Σ n, L'.Functions n)] [Countable (Σ n, L'.Relations n)]
     (s : ℕ → Σ n, L'.BoundedFormulaω Empty n)

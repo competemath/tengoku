@@ -42,7 +42,9 @@ open FirstOrder Structure Set
 variable {L : Language.{0, 0}} [L.IsRelational] [Countable (Σ l, L.Relations l)]
 
 /-- **López–Escobar, hard direction**: an isomorphism-invariant Borel class of coded
-countable `L`-structures is the model class of a single `L_ω₁ω`-sentence. -/
+countable `L`-structures is the model class of a single `L_ω₁ω`-sentence.
+@isnad1 id=ex.2h2v.s5.5a888ad04137 from=translated src=- shape=f99465ef vocab=b216bc30
+-/
 theorem lopez_escobar {B : Set (StructureSpace L)}
     (hB : MeasurableSet B) (hinv : IsomorphismInvariant B) :
     ∃ φ : L.Sentenceω, B = ModelsOf φ := by

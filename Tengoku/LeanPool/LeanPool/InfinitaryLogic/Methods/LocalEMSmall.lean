@@ -73,7 +73,9 @@ private theorem LocalEMContext.realizedTypes_eq_iUnion_codeTypes (ctx : LocalEMC
 
 /-- **The conditional smallness theorem** (issue #11 unit 4): over a highly order-transitive
 skeleton and a countable base language, the local EM carrier — with its rich `localColim`-reduct
-structure — realizes only countably many complete `L_{ω₁ω}`-types at every arity. -/
+structure — realizes only countably many complete `L_{ω₁ω}`-types at every arity.
+@isnad1 id=lomega1o.1h4v.s5.bea37295d725 from=translated src=- shape=e6264357 vocab=772b292d
+-/
 theorem LocalEMContext.lomega1omegaSmall (ctx : LocalEMContext Λ J (M := M))
     (hJ : HighlyOrderTransitive J) [Countable (Σ l, Λ.Functions l)] :
     letI := ctx.structureBase

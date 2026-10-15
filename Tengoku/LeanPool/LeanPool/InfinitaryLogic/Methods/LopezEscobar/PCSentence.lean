@@ -128,7 +128,9 @@ noncomputable def pcSentence [Countable (Σ l, L.Relations l)]
 
 variable [Countable (Σ l, L.Relations l)] [Countable (Σ n, L.Functions n)]
 
-/-- Realizing the PC sentence splits into the two conjuncts. -/
+/-- Realizing the PC sentence splits into the two conjuncts.
+@isnad1 id=iff.0h4v.s6.25e609f0f652 from=translated src=- shape=634f1be5 vocab=9274de1c
+-/
 theorem realize_pcSentence_iff {N : Type} [(graphLanguage (KLang L)).Structure N]
     (side : PCSide) (T : (n : ℕ) → Set ((Fin n → Bool) × (Fin n → ℕ))) :
     Sentenceω.Realize (pcSentence L side T) N ↔
@@ -138,7 +140,9 @@ theorem realize_pcSentence_iff {N : Type} [(graphLanguage (KLang L)).Structure N
   rw [pcSentence, BoundedFormulaω.realize_and]
   rfl
 
-/-- **Gate (a)**: the graph expansion of a functional model satisfies the PC sentence. -/
+/-- **Gate (a)**: the graph expansion of a functional model satisfies the PC sentence.
+@isnad1 id=realize.1h4v.s6.0fd26d044c5d from=translated src=- shape=f1d6edce vocab=824decaf
+-/
 theorem graphExpansion_realizes_pcSentence {M : Type} [_nonemptyM : Nonempty M]
     [instM : (KLang L).Structure M] (side : PCSide)
     (T : (n : ℕ) → Set ((Fin n → Bool) × (Fin n → ℕ)))
@@ -151,7 +155,9 @@ theorem graphExpansion_realizes_pcSentence {M : Type} [_nonemptyM : Nonempty M]
     (realize_relationalizeFormula _ _ _).mpr hreal⟩
 
 /-- **Gate (b)**: the reconstruction of any model of the PC sentence's conjuncts satisfies
-the functional sentence. -/
+the functional sentence.
+@isnad1 id=realize.2h4v.s6.baed546631c6 from=translated src=- shape=8ccdd3bf vocab=d0025528
+-/
 theorem reconstruct_realizes_functionalPCSentence {N : Type} [Nonempty N]
     [(graphLanguage (KLang L)).Structure N] (side : PCSide)
     (T : (n : ℕ) → Set ((Fin n → Bool) × (Fin n → ℕ)))
@@ -162,14 +168,18 @@ theorem reconstruct_realizes_functionalPCSentence {N : Type} [Nonempty N]
   (realize_relationalize_reconstruct hAx _
     (functionsIn_functionalPCSentence side T) Empty.elim Fin.elim0).mp hrel
 
-/-- **Gate (c)**: the PC sentence has no function symbols. -/
+/-- **Gate (c)**: the PC sentence has no function symbols.
+@isnad1 id=eq.0h3v.s6.2afa3a989d49 from=translated src=- shape=205f9a29 vocab=eb13cdd4
+-/
 theorem functionsIn_pcSentence (side : PCSide)
     (T : (n : ℕ) → Set ((Fin n → Bool) × (Fin n → ℕ))) :
     (pcSentence L side T).functionsIn = ∅ :=
   BoundedFormulaω.functionsIn_of_isRelational _
 
 /-- **Gate (d)**: the PC sentence's relation symbols lie in the graph images of the base
-symbols plus that side's tagged witness symbols. -/
+symbols plus that side's tagged witness symbols.
+@isnad1 id=le.0h3v.s6.6e774be725f3 from=translated src=- shape=b1d04c9b vocab=300ad049
+-/
 theorem relationsIn_pcSentence (side : PCSide)
     (T : (n : ℕ) → Set ((Fin n → Bool) × (Fin n → ℕ))) :
     (pcSentence L side T).relationsIn ⊆
@@ -188,7 +198,9 @@ theorem relationsIn_pcSentence (side : PCSide)
           (fun _ h => h) (functionsIn_functionalPCSentence side T hq)))
 
 /-- **Gate (e)**: the two presentations' relation symbols meet only in graph images of base
-symbols — no witness symbol survives. -/
+symbols — no witness symbol survives.
+@isnad1 id=le.0h3v.s6.aca9ce7dac42 from=translated src=- shape=1501cc2b vocab=9dd47c6e
+-/
 theorem pcSentence_relationsIn_inter
     (T₀ T₁ : (n : ℕ) → Set ((Fin n → Bool) × (Fin n → ℕ))) :
     (pcSentence L .left T₀).relationsIn ∩ (pcSentence L .right T₁).relationsIn ⊆

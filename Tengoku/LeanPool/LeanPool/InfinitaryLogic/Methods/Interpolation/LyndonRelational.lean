@@ -44,7 +44,9 @@ open FirstOrder Structure BoundedFormulaω
 
 variable {L : Language.{0, 0}}
 
-/-- **Lyndon interpolation, countable relational core.** -/
+/-- **Lyndon interpolation, countable relational core.**
+@isnad1 id=ex.1h3v.s7.3ec0601ea812 from=translated src=- shape=cd29ed1d vocab=0dba1b17
+-/
 theorem lyndon_interpolation_relational_countable [L.IsRelational]
     [Countable (Σ n, L.Relations n)] (r₁ r₂ : L.Sentenceω) (h : Sentenceω.Entails r₁ r₂) :
     ∃ θ : L.Sentenceω,

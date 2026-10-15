@@ -290,13 +290,17 @@ private theorem relationsInSigned_backTranslateFormula (s : Bool) {n : ℕ}
   ext p
   exact mem_relationsInSigned_backTranslateFormula s p θ
 
-/-- Gate 3, positive corollary. -/
+/-- Gate 3, positive corollary.
+@isnad1 id=eq.0h4v.s5.a98d66212a88 from=translated src=- shape=c41d26ee vocab=a7b1b7f1
+-/
 theorem positiveRelationsIn_backTranslateFormula {n : ℕ}
     (θ : (graphLanguage L).BoundedFormulaω α n) :
     (backTranslateFormula θ).positiveRelationsIn = baseRelSym L ⁻¹' θ.positiveRelationsIn :=
   relationsInSigned_backTranslateFormula true θ
 
-/-- Gate 3, negative corollary. -/
+/-- Gate 3, negative corollary.
+@isnad1 id=eq.0h4v.s5.3c74787923ea from=translated src=- shape=c41d26ee vocab=25ee47cc
+-/
 theorem negativeRelationsIn_backTranslateFormula {n : ℕ}
     (θ : (graphLanguage L).BoundedFormulaω α n) :
     (backTranslateFormula θ).negativeRelationsIn = baseRelSym L ⁻¹' θ.negativeRelationsIn :=
@@ -305,7 +309,9 @@ theorem negativeRelationsIn_backTranslateFormula {n : ℕ}
 /-! ## The base-polarity identities for Craig's graph roots -/
 
 /-- Preimage form of the graph-antecedent identity — the shape the endpoint consumes, so that no
-`Sigma`/definitional-equality friction leaks into the assembly. -/
+`Sigma`/definitional-equality friction leaks into the assembly.
+@isnad1 id=eq.0h4v.s6.c41cded1742e from=translated src=- shape=2b0054fe vocab=52def81e
+-/
 theorem preimage_baseRelSym_graphAnd (s : Bool) (F : Set (Σ n, L.Functions n)) [Countable ↥F]
     (φ : L.Sentenceω) :
     baseRelSym L ⁻¹' relationsInSigned s ((graphAxioms F).and (relationalizeFormula φ)) =
@@ -322,7 +328,9 @@ theorem preimage_baseRelSym_graphAnd (s : Bool) (F : Set (Σ n, L.Functions n)) 
     exact Or.inr ((mem_relationsInSigned_relationalizeFormula s p φ).mpr hp)
 
 /-- Preimage form of the graph-consequent identity: the axioms sit in an antecedent, so the
-implication flips their sign — and they still contribute nothing to the base part. -/
+implication flips their sign — and they still contribute nothing to the base part.
+@isnad1 id=eq.0h4v.s6.24374ec604f8 from=translated src=- shape=2b0054fe vocab=ba2bf90b
+-/
 theorem preimage_baseRelSym_graphImp (s : Bool) (F : Set (Σ n, L.Functions n)) [Countable ↥F]
     (φ : L.Sentenceω) :
     baseRelSym L ⁻¹' relationsInSigned s ((graphAxioms F).imp (relationalizeFormula φ)) =

@@ -61,7 +61,9 @@ codomain of cardinality `≤ μ` (with `μ ≥ ℵ_0`) has some fiber of cardina
 
 Routes through `Cardinal.infinite_pigeonhole_card` with parameter `θ := succ μ`. The
 regularity of `succ μ` (successor cardinals are regular) supplies the cofinality
-hypothesis. -/
+hypothesis.
+@isnad1 id=ex.3h4v.s6.97825dcd458a from=translated src=- shape=448bb839 vocab=3e2504c3
+-/
 theorem exists_large_fiber_of_small_codomain
     {α β : Type u} {μ : Cardinal.{u}}
     (hμ : Cardinal.aleph0 ≤ μ)
@@ -89,7 +91,9 @@ noncomputable def initialSegOfLe {α β : Ordinal.{u}} (h : α ≤ β) : α.ToTy
 
 /-- A well-ordered source of cardinality at least `c` admits an order-embedding from the
 initial-ordinal well-order of cardinality `c`. Used by the abstract-source wrapper
-`pairErdosRado_general_of_large` to pull the coloring back to `Source κ`. -/
+`pairErdosRado_general_of_large` to pull the coloring back to `Source κ`.
+@isnad1 id=nonempty.1h2v.s6.9fdeafb4bfaf from=translated src=- shape=bdb9bc2f vocab=44b1042b
+-/
 theorem exists_ordToType_embedding_of_card_ge
     {I : Type} [LinearOrder I] [WellFoundedLT I]
     {c : Cardinal} (hI : Cardinal.mk I ≥ c) :
@@ -113,7 +117,9 @@ theorem exists_ordToType_embedding_of_card_ge
 
 /-- Composition of `initialSegOfLe` via `InitialSeg.eq` uniqueness on well-orders.
 Two initial segments from `α.ToType` to `γ.ToType` (both well-ordered) agree
-pointwise.  (Shared with `EndHomogER`, which previously carried a private copy.) -/
+pointwise.  (Shared with `EndHomogER`, which previously carried a private copy.)
+@isnad1 id=eq.2h4v.s8.8ee4a6eee6d8 from=translated src=- shape=a29dc44c vocab=d544ac78
+-/
 lemma initialSegOfLe_compose
     {α β γ : Ordinal.{0}} (h_αβ : α ≤ β) (h_βγ : β ≤ γ) (x : α.ToType) :
     haveI : IsWellOrder α.ToType (· < ·) := isWellOrder_lt
@@ -153,11 +159,15 @@ instance (κ : Cardinal.{0}) : Nonempty (Source κ) :=
   Ordinal.nonempty_toType_iff.mpr fun h =>
     Cardinal.succ_ne_zero _ (Cardinal.ord_eq_zero.mp h)
 
-/-- `2 ^ κ ≠ 0` (needed for `power_le_power_left` monotonicity). -/
+/-- `2 ^ κ ≠ 0` (needed for `power_le_power_left` monotonicity).
+@isnad1 id=ne.0h1v.s4.a6c164535511 from=translated src=- shape=8c4189b2 vocab=50a2fb69
+-/
 lemma two_power_ne_zero (κ : Cardinal.{0}) : (2 : Cardinal.{0}) ^ κ ≠ 0 :=
   Cardinal.power_ne_zero κ two_ne_zero
 
-/-- `succ κ ≤ 2 ^ κ` — Cantor plus successor minimality; holds for every `κ`. -/
+/-- `succ κ ≤ 2 ^ κ` — Cantor plus successor minimality; holds for every `κ`.
+@isnad1 id=le.0h1v.s4.6b0f8726abbb from=translated src=- shape=76b2d254 vocab=eb17e001
+-/
 lemma succ_le_two_power (κ : Cardinal.{0}) :
     Order.succ κ ≤ 2 ^ κ :=
   Order.succ_le_of_lt (Cardinal.cantor κ)
@@ -169,7 +179,9 @@ private lemma aleph0_le_two_power (hκ : Cardinal.aleph0 ≤ κ) :
     Cardinal.aleph0 ≤ (2 : Cardinal.{0}) ^ κ :=
   hκ.trans (Cardinal.cantor κ).le
 
-/-- `ℵ_0 ≤ succ (2 ^ κ)` for infinite `κ`. -/
+/-- `ℵ_0 ≤ succ (2 ^ κ)` for infinite `κ`.
+@isnad1 id=le.1h1v.s5.cd7fe2cff703 from=translated src=- shape=f7613962 vocab=6402d9b3
+-/
 lemma aleph0_le_succ_two_power (hκ : Cardinal.aleph0 ≤ κ) :
     Cardinal.aleph0 ≤ Order.succ ((2 : Cardinal.{0}) ^ κ) :=
   (aleph0_le_two_power hκ).trans (Order.le_succ _)
@@ -180,7 +192,9 @@ private lemma aleph0_le_succ_self (hκ : Cardinal.aleph0 ≤ κ) :
   hκ.trans (Order.le_succ κ)
 
 /-- Ordinals below `(succ κ).ord` have `ToType` of cardinality `≤ κ` (the generalization
-of "ordinals below `ω_1` are countable"). -/
+of "ordinals below `ω_1` are countable").
+@isnad1 id=le.1h2v.s4.e1d9080ac854 from=translated src=- shape=dcb07b76 vocab=a0b24c6c
+-/
 theorem toType_card_le_of_lt_succ_ord {α : Ordinal.{0}}
     (hα : α < (Order.succ κ).ord) :
     Cardinal.mk α.ToType ≤ κ := by
@@ -188,14 +202,18 @@ theorem toType_card_le_of_lt_succ_ord {α : Ordinal.{0}}
   exact Order.lt_succ_iff.mp (Cardinal.lt_ord.mp hα)
 
 /-- `(succ κ).ord` is closed under ordinal successor for infinite `κ` (it is a limit
-ordinal, being the initial ordinal of an uncountable-cofinality cardinal). -/
+ordinal, being the initial ordinal of an uncountable-cofinality cardinal).
+@isnad1 id=lt.2h2v.s5.86336522d6f6 from=translated src=- shape=7168551f vocab=517e9858
+-/
 theorem succ_lt_ord_of_lt (hκ : Cardinal.aleph0 ≤ κ) {δ : Ordinal.{0}}
     (hδ : δ < (Order.succ κ).ord) :
     Order.succ δ < (Order.succ κ).ord :=
   (Cardinal.isSuccLimit_ord (aleph0_le_succ_self hκ)).succ_lt hδ
 
 /-- **Counting-core product.** `succ κ * 2 ^ κ = 2 ^ κ` for infinite `κ`
-(the generalization of `ℵ_1 * ℶ_1 = ℶ_1`). -/
+(the generalization of `ℵ_1 * ℶ_1 = ℶ_1`).
+@isnad1 id=eq.1h1v.s5.151fb2c8d2f0 from=translated src=- shape=58b3c59e vocab=a038a3c9
+-/
 theorem succ_mul_two_power (hκ : Cardinal.aleph0 ≤ κ) :
     Order.succ κ * (2 : Cardinal.{0}) ^ κ = 2 ^ κ := by
   rw [Cardinal.mul_eq_max (aleph0_le_succ_self hκ) (aleph0_le_two_power hκ)]
@@ -227,7 +245,9 @@ variable {κ : Cardinal.{0}} {C : Type}
 /-- **[EHMR §14, Lemma 14.2 + |E| counting — coverage/counting engine]** If the
 "used-up" sets `R i` cover `Source κ` and each is a subsingleton, then the node index
 set has cardinality `≥ succ (2 ^ κ) = #(Source κ)`. This is the counting feeding the
-branch-length theorem. -/
+branch-length theorem.
+@isnad1 id=le.2h3v.s6.5ec4353582f8 from=translated src=- shape=600553de vocab=fa607875
+-/
 theorem ehmr_partitionTree_card_lower
     {ι : Type} (R : ι → Set (Source κ))
     (hcover : ∀ y : Source κ, ∃ i : ι, y ∈ R i)

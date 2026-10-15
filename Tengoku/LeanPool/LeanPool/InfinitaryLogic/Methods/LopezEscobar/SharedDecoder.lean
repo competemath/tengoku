@@ -108,7 +108,9 @@ private theorem sharedToBase_isExpansionOn
 
 /-- **The semantic square** (the Unit-5a gate): a shared sentence holds in the sublanguage
 reduct of a graph code exactly when its decoding along `sharedToBase` holds in the code
-reduct.  This is what lets the Craig separator be read as an `L`-sentence about base codes. -/
+reduct.  This is what lets the Craig separator be read as an `L`-sentence about base codes.
+@isnad1 id=iff.0h5v.s7.b935123a5071 from=translated src=- shape=eb9d1bb3 vocab=b44862bb
+-/
 theorem realize_sharedToBase (T₀ T₁ : (n : ℕ) → Set ((Fin n → Bool) × (Fin n → ℕ)))
     (θ₀ : (sharedLang L T₀ T₁).Sentenceω)
     (d : StructureSpace (graphLanguage (KLang L))) :

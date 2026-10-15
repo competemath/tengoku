@@ -30,6 +30,9 @@ open FirstOrder Structure Set
 
 variable {L : Language.{0, 0}} [L.IsRelational] [Countable (Σ l, L.Relations l)]
 
+/--
+@isnad1 id=countabl.0h1v.s3.28d444217e22 from=translated src=- shape=8e460528 vocab=17930343
+-/
 instance instCountableFunctionsOfRelational : Countable (Σ n, L.Functions n) := by
   have : IsEmpty (Σ n, L.Functions n) := ⟨fun p => (‹L.IsRelational› p.1).false p.2⟩
   infer_instance
@@ -158,7 +161,9 @@ private theorem pcClass_subset {B : Set (StructureSpace L)} (side : PCSide)
   pcClass_subset_of_invariant_superset side T hT subset_rfl hinv
 
 /-- **The code-class equality** (needs invariance): the base reducts of the PC class are
-exactly `B`. -/
+exactly `B`.
+@isnad1 id=eq.2h4v.s7.5b14f35fe4aa from=translated src=- shape=7be6a73a vocab=aca39734
+-/
 theorem pcClass_eq {B : Set (StructureSpace L)} (side : PCSide)
     (T : (n : ℕ) → Set ((Fin n → Bool) × (Fin n → ℕ)))
     (hT : ∀ c : StructureSpace L, c ∈ B ↔ ∃ g : ℕ → ℕ,

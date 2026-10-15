@@ -40,7 +40,9 @@ open Cardinal
 
 /-- **The countable-symbol small-model theorem** (Marker, Theorem 11.2 core): a sentence with
 arbitrarily large models has, at every infinite `κ`, a model of size exactly `κ` realizing only
-countably many complete `L_{ω₁ω}`-types. -/
+countably many complete `L_{ω₁ω}`-types.
+@isnad1 id=ex.2h3v.s5.6af17a17b3c6 from=translated src=- shape=330206dc vocab=42e266b7
+-/
 theorem exists_small_model_of_hasArbLargeModels_countable_symbols {L' : Language.{0, 0}}
     [Countable (Σ n, L'.Functions n)] [Countable (Σ n, L'.Relations n)]
     {φ : L'.Sentenceω} (hφarb : HasArbLargeModels φ) {κ : Cardinal.{0}}

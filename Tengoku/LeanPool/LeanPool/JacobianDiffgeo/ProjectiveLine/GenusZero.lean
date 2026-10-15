@@ -28,7 +28,9 @@ open Set Filter Topology OnePoint
 namespace RS.P1
 
 /-- There are no nonzero holomorphic 1-forms on `ℙ¹` (Forster 5-adjacent; "the sphere has
-genus 0"). -/
+genus 0").
+@isnad1 id=eq.0h1v.s11.b28705a64bf6 from=translated src=- shape=6b1f7d0b vocab=a40d1b62
+-/
 theorem form1_eq_zero (η : RS.Form1 (OnePoint ℂ)) : η = 0 := by
   -- Step 1: both chart coefficients are entire.
   have hf_an : AnalyticOnNhd ℂ (RS.coeffIn coeChart η) Set.univ := by
@@ -136,12 +138,16 @@ instance : Subsingleton (RS.Form1 (OnePoint ℂ)) :=
   ⟨fun η η' => by rw [form1_eq_zero η, form1_eq_zero η']⟩
 
 /-- `Module.finrank ℂ (RS.Form1 (OnePoint ℂ)) = 0`, i.e. the space of holomorphic 1-forms on
-`ℙ¹` is trivial. -/
+`ℙ¹` is trivial.
+@isnad1 id=eq.0h0v.s12.71c8d5d92e87 from=translated src=- shape=43ef2eb5 vocab=c9056648
+-/
 theorem finrank_form1 : Module.finrank ℂ (RS.Form1 (OnePoint ℂ)) = 0 :=
   Module.finrank_zero_of_subsingleton
 
 end RS.P1
 
-/-- `genus ℙ¹ = 0`: the Riemann sphere has genus zero. -/
+/-- `genus ℙ¹ = 0`: the Riemann sphere has genus zero.
+@isnad1 id=eq.0h0v.s4.e21bfec39d33 from=translated src=- shape=35225b15 vocab=c723dd0d
+-/
 theorem RS.genus_onePoint : genus (OnePoint ℂ) = 0 :=
   RS.P1.finrank_form1

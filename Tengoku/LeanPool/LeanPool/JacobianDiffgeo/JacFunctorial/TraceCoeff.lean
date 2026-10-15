@@ -44,12 +44,18 @@ variable {h h' : ℂ → ℂ} {k : ℕ} {w : ℂ}
 
 /-! ### `k = 1` trivializations -/
 
+/--
+@isnad1 id=eq.0h2v.s4.6dbf0c1dfd36 from=translated src=- shape=0f092ac8 vocab=e50a904d
+-/
 theorem MTrace.traceZk_one (h : ℂ → ℂ) (w : ℂ) : RS.MTrace.traceZk h 1 w = h w := by
   rw [RS.MTrace.traceZk_def]
   have hset : {z : ℂ | z ^ 1 = w} = {w} := by
     ext z; simp [pow_one]
   rw [hset, finsum_mem_singleton]
 
+/--
+@isnad1 id=eq.0h1v.s4.ae7ef3f8f7ff from=translated src=- shape=a8e85303 vocab=89e99359
+-/
 theorem FormTrace.traceZkForm_one (h : ℂ → ℂ) : traceZkForm h 1 = h := by
   funext w
   rw [traceZkForm_def, RS.MTrace.traceZk_one]
@@ -57,6 +63,9 @@ theorem FormTrace.traceZkForm_one (h : ℂ → ℂ) : traceZkForm h 1 = h := by
 
 /-! ### Linearity of `traceZkForm` in `h` (valid at every `w`, including `0`) -/
 
+/--
+@isnad1 id=eq.1h3v.s5.5fc3c9fb79eb from=translated src=- shape=b0841845 vocab=e0f7e23e
+-/
 theorem FormTrace.traceZkForm_fun_add (hk : k ≠ 0) :
     traceZkForm (fun v => h v + h' v) k
       = fun w => traceZkForm h k w + traceZkForm h' k w := by
@@ -68,6 +77,9 @@ theorem FormTrace.traceZkForm_fun_add (hk : k ≠ 0) :
     funext v; ring
   rw [heq, RS.MTrace.traceZk_fun_add hk]
 
+/--
+@isnad1 id=eq.0h3v.s5.4b0e9b5ed74f from=translated src=- shape=65b9ec52 vocab=ac72731e
+-/
 theorem FormTrace.traceZkForm_const_mul (c : ℂ) (k : ℕ) :
     traceZkForm (fun v => c * h v) k = fun w => c * traceZkForm h k w := by
   funext w
@@ -84,18 +96,25 @@ the branch coordinate `0` repaired via mathlib's meromorphic normal form. -/
 noncomputable def traceCoeff (h : ℂ → ℂ) (k : ℕ) : ℂ → ℂ :=
   toMeromorphicNFAt (traceZkForm h k) 0
 
+/--
+@isnad1 id=meromorp.2h2v.s6.f27a22309a27 from=translated src=- shape=7b6cb675 vocab=97a7bc96
+-/
 theorem meromorphicAt_traceZkForm_of_analyticAt (hh : AnalyticAt ℂ h 0) (hk : k ≠ 0) :
     MeromorphicAt (traceZkForm h k) 0 :=
   meromorphicAt_traceZkForm hh.meromorphicAt hk
 
-/-- Off the branch coordinate, the repair is literal. -/
+/-- Off the branch coordinate, the repair is literal.
+@isnad1 id=eq.3h3v.s6.8b9dc577c0fb from=translated src=- shape=2abbc705 vocab=01d71db3
+-/
 theorem traceCoeff_apply_of_ne_zero (hh : AnalyticAt ℂ h 0) (hk : k ≠ 0) (hw : w ≠ 0) :
     traceCoeff h k w = traceZkForm h k w :=
   ((meromorphicAt_traceZkForm_of_analyticAt hh hk).eqOn_compl_singleton_toMeromorphicNFAt
     (by simpa using hw)).symm
 
 /-- `traceZkForm h k` has no negative Laurent coefficients at `0` when `h` is analytic there:
-its meromorphic order is nonnegative (design §6.3, the Laurent route). -/
+its meromorphic order is nonnegative (design §6.3, the Laurent route).
+@isnad1 id=le.2h2v.s6.87366375f60c from=translated src=- shape=69c0deaa vocab=713688db
+-/
 theorem meromorphicOrderAt_traceZkForm_nonneg (hh : AnalyticAt ℂ h 0) (hk : k ≠ 0) :
     0 ≤ meromorphicOrderAt (traceZkForm h k) 0 := by
   rw [← forall_neg_laurentCoeffAt_eq_zero_iff (meromorphicAt_traceZkForm_of_analyticAt hh hk)]
@@ -110,7 +129,9 @@ theorem meromorphicOrderAt_traceZkForm_nonneg (hh : AnalyticAt ℂ h 0) (hk : k 
 
 /-- **The branch-point analyticity of the repaired coefficient** (the previous builder's
 blocker, resolved): once `h` is analytic at `0`, the repaired `traceCoeff h k` is honestly
-analytic at the branch coordinate `0`. -/
+analytic at the branch coordinate `0`.
+@isnad1 id=analytic.2h2v.s6.0a2965cce2a3 from=translated src=- shape=54d49636 vocab=f4699c5e
+-/
 theorem analyticAt_traceCoeff_zero (hh : AnalyticAt ℂ h 0) (hk : k ≠ 0) :
     AnalyticAt ℂ (traceCoeff h k) 0 := by
   have hmero := meromorphicAt_traceZkForm_of_analyticAt hh hk
@@ -121,7 +142,9 @@ theorem analyticAt_traceCoeff_zero (hh : AnalyticAt ℂ h 0) (hk : k ≠ 0) :
   exact meromorphicOrderAt_traceZkForm_nonneg hh hk
 
 /-- Off-branch analyticity of the un-repaired `traceZkForm` (a re-packaging of
-`RS.MTrace.analyticAt_traceZk` with the Jacobian factor divided in). -/
+`RS.MTrace.analyticAt_traceZk` with the Jacobian factor divided in).
+@isnad1 id=analytic.5h4v.s7.63a8ea7772ba from=translated src=- shape=bff3d665 vocab=1b749f15
+-/
 theorem analyticAt_traceZkForm_of_ne_zero {ρ : ℝ} (hρ : 0 < ρ) (hk : k ≠ 0)
     (hh : AnalyticOnNhd ℂ h (Metric.ball 0 ρ)) (hw : w ≠ 0) (hwρ : ‖w‖ < ρ ^ k) :
     AnalyticAt ℂ (traceZkForm h k) w := by
@@ -140,7 +163,9 @@ theorem analyticAt_traceZkForm_of_ne_zero {ρ : ℝ} (hρ : 0 < ρ) (hk : k ≠ 
 
 /-- **The master repair lemma**: if `h` is analytic on `ball 0 ρ`, the repaired trace
 coefficient `traceCoeff h k` is analytic on the whole ball `ball 0 (ρ ^ k)` — branch point
-included. -/
+included.
+@isnad1 id=analytic.3h3v.s7.0db45d4a9303 from=translated src=- shape=defcb8dc vocab=fe109c06
+-/
 theorem analyticOnNhd_traceCoeff {ρ : ℝ} (hρ : 0 < ρ) (hk : k ≠ 0)
     (hh : AnalyticOnNhd ℂ h (Metric.ball 0 ρ)) :
     AnalyticOnNhd ℂ (traceCoeff h k) (Metric.ball 0 (ρ ^ k)) := by
@@ -155,7 +180,9 @@ theorem analyticOnNhd_traceCoeff {ρ : ℝ} (hρ : 0 < ρ) (hk : k ≠ 0)
     exact (meromorphicAt_traceZkForm_of_analyticAt hh0 hk).eqOn_compl_singleton_toMeromorphicNFAt
       hz
 
-/-- `k = 1`: the repair is literally `h` (no branching, nothing to repair). -/
+/-- `k = 1`: the repair is literally `h` (no branching, nothing to repair).
+@isnad1 id=eq.1h1v.s5.67e98fdb0bf6 from=translated src=- shape=b9393d69 vocab=f4699c5e
+-/
 theorem traceCoeff_one (hh : AnalyticAt ℂ h 0) : traceCoeff h 1 = h := by
   unfold traceCoeff
   rw [FormTrace.traceZkForm_one]

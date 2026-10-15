@@ -29,18 +29,26 @@ namespace KoetheCounterexample.Mortality
 
 variable {k R : Type*} [Field k] [CommRing R] [Algebra k R] {d r : ℕ}
 
+/--
+@isnad1 id=le.0h7v.s6.9780d3a7c3f1 from=translated src=- shape=d960fbfb vocab=30cea310
+-/
 theorem lift_entry_natDegree_le (P : Pencil k d) (a : Fin 3 → R)
     (i j : Fin (d + 1)) : (P.lift a i j).natDegree ≤ 1 := by
   apply Polynomial.natDegree_add_le_of_degree_le
   · simp only [Polynomial.natDegree_C, Nat.zero_le]
   · exact (Polynomial.natDegree_mul_C_le _ _).trans Polynomial.natDegree_X_le
 
+/--
+@isnad1 id=eq.1h7v.s7.5582a75fed47 from=translated src=- shape=1bc4dbae vocab=d7b0614a
+-/
 theorem lift_entry_natDegree_off_root (P : Pencil k d) (a : Fin 3 → R)
     (i j : Fin (d + 1)) (hi : i ≠ 0) : (P.lift a i j).natDegree = 0 := by
   simp only [Pencil.lift, P.linear_off_root _ _ _ hi, map_zero, zero_mul,
     Finset.sum_const_zero, mul_zero, add_zero, Polynomial.natDegree_C]
 
-/-- A product using distinct rows of one factor has parameter degree at most one. -/
+/-- A product using distinct rows of one factor has parameter degree at most one.
+@isnad1 id=le.1h8v.s7.af0f592ffc23 from=translated src=- shape=3364e317 vocab=874b4bbd
+-/
 theorem lift_row_prod_natDegree_le (P : Pencil k d) (a : Fin 3 → R)
     (I : Fin r → Fin (d + 1)) (f : Fin r → Fin (d + 1))
     (hI : Function.Injective I) :
@@ -62,7 +70,9 @@ theorem lift_row_prod_natDegree_le (P : Pencil k d) (a : Fin 3 → R)
     omega
 
 /-- Every minor of a forward word of lifted letters has degree at most the
-word length.  The coefficient ring is an arbitrary commutative `k`-algebra. -/
+word length.  The coefficient ring is an arbitrary commutative `k`-algebra.
+@isnad1 id=le.1h8v.s8.0c2f440241e4 from=translated src=- shape=1421a81f vocab=b6b4ab0f
+-/
 theorem det_liftWord_natDegree_le (P : Pencil k d) (w : List (Fin 3 → R))
     (I J : Fin r → Fin (d + 1)) (hI : Function.Injective I) :
     ((((w.map P.lift).prod).submatrix I J).det).natDegree ≤ w.length := by

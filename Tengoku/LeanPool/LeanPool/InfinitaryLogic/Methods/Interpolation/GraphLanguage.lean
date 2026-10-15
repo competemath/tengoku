@@ -62,6 +62,9 @@ a direct structure literal with no proof content, so reducibility costs nothing.
   Functions _ := Empty
   Relations n := GraphRelation L n
 
+/--
+@isnad1 id=isrelati.0h1v.s2.9e33a1fb8c36 from=translated src=- shape=76a08d12 vocab=fb23fc7d
+-/
 instance graphLanguage_isRelational (L : Language.{0, 0}) : (graphLanguage L).IsRelational :=
   fun _ => inferInstanceAs (IsEmpty Empty)
 
@@ -84,10 +87,16 @@ def graphRelMap (M : Type) [L.Structure M] :
   funMap f _ := nomatch f
   RelMap := graphRelMap M
 
+/--
+@isnad1 id=iff.0h5v.s5.56d42559bf4b from=translated src=- shape=8b9eed53 vocab=8293ef5a
+-/
 @[simp] theorem graphExpansion_relMap_base (M : Type) [L.Structure M] {n : ℕ}
     (r : L.Relations n) (v : Fin n → M) :
     (graphExpansion L M).RelMap (GraphRelation.base r) v ↔ Structure.RelMap r v := Iff.rfl
 
+/--
+@isnad1 id=iff.0h5v.s6.db1c371e50b4 from=translated src=- shape=8bc86e11 vocab=b378c5f4
+-/
 @[simp] theorem graphExpansion_relMap_graph (M : Type) [L.Structure M] {n : ℕ}
     (f : L.Functions n) (v : Fin (n + 1) → M) :
     (graphExpansion L M).RelMap (GraphRelation.graph f) v ↔
@@ -107,6 +116,9 @@ def graphRelSym (L : Language.{0, 0}) :
     (Σ n, L.Functions n) → (Σ n, GraphRelation L n) :=
   fun p => ⟨p.1 + 1, GraphRelation.graph p.2⟩
 
+/--
+@isnad1 id=injectiv.0h1v.s4.6cf0ad165dc3 from=translated src=- shape=e43509e7 vocab=c89c533a
+-/
 theorem baseRelSym_injective : Function.Injective (baseRelSym L) := by
   rintro ⟨n, r⟩ ⟨n', r'⟩ h
   rw [baseRelSym, baseRelSym, Sigma.mk.injEq] at h
@@ -114,6 +126,9 @@ theorem baseRelSym_injective : Function.Injective (baseRelSym L) := by
   rw [heq_eq_eq, GraphRelation.base.injEq] at h2
   subst h2; rfl
 
+/--
+@isnad1 id=injectiv.0h1v.s4.59a700f1e99b from=translated src=- shape=e43509e7 vocab=34baa024
+-/
 theorem graphRelSym_injective : Function.Injective (graphRelSym L) := by
   rintro ⟨n, f⟩ ⟨n', f'⟩ h
   rw [graphRelSym, graphRelSym, Sigma.mk.injEq] at h
@@ -122,6 +137,9 @@ theorem graphRelSym_injective : Function.Injective (graphRelSym L) := by
   rw [heq_eq_eq, GraphRelation.graph.injEq] at h2
   subst h2; rfl
 
+/--
+@isnad1 id=ne.0h3v.s5.6c9a25cffb5b from=translated src=- shape=eac69d54 vocab=b36652c7
+-/
 theorem baseRelSym_ne_graphRelSym (p : Σ n, L.Relations n) (q : Σ n, L.Functions n) :
     baseRelSym L p ≠ graphRelSym L q := by
   obtain ⟨pn, pr⟩ := p
@@ -135,22 +153,34 @@ theorem baseRelSym_ne_graphRelSym (p : Σ n, L.Relations n) (q : Σ n, L.Functio
 /-! Singleton preimages of the two embeddings — the Sigma-free interface the back-translation
 occurrence calculus computes with. -/
 
+/--
+@isnad1 id=eq.0h2v.s6.7565c88350a1 from=translated src=- shape=ece7c065 vocab=34c91746
+-/
 theorem baseRelSym_preimage_base_singleton (p : Σ n, L.Relations n) :
     baseRelSym L ⁻¹' {baseRelSym L p} = {p} := by
   ext q
   simp [baseRelSym_injective.eq_iff]
 
+/--
+@isnad1 id=eq.0h2v.s6.4bf946637782 from=translated src=- shape=ece7c065 vocab=380ba35c
+-/
 theorem graphRelSym_preimage_graph_singleton (q : Σ n, L.Functions n) :
     graphRelSym L ⁻¹' {graphRelSym L q} = {q} := by
   ext p
   simp [graphRelSym_injective.eq_iff]
 
+/--
+@isnad1 id=eq.0h2v.s6.3ecc9c7f26b2 from=translated src=- shape=12f33872 vocab=e58c8a60
+-/
 theorem graphRelSym_preimage_base_singleton (p : Σ n, L.Relations n) :
     graphRelSym L ⁻¹' {baseRelSym L p} = ∅ := by
   rw [Set.eq_empty_iff_forall_notMem]
   intro q hq
   exact baseRelSym_ne_graphRelSym p q (Set.mem_singleton_iff.mp hq).symm
 
+/--
+@isnad1 id=eq.0h2v.s6.e3953a2d5453 from=translated src=- shape=12f33872 vocab=e58c8a60
+-/
 theorem baseRelSym_preimage_graph_singleton (q : Σ n, L.Functions n) :
     baseRelSym L ⁻¹' {graphRelSym L q} = ∅ := by
   rw [Set.eq_empty_iff_forall_notMem]
@@ -171,12 +201,17 @@ private theorem baseRelSym_image_inter_graphRelSym_image (R : Set (Σ n, L.Relat
   rintro x ⟨⟨p, _, rfl⟩, ⟨q, _, hq⟩⟩
   exact baseRelSym_ne_graphRelSym p q hq.symm
 
+/--
+@isnad1 id=eq.0h3v.s6.2abfbaca4ef9 from=translated src=- shape=39c9636d vocab=ccaad26d
+-/
 theorem graphRelSym_image_inter_baseRelSym_image (F : Set (Σ n, L.Functions n))
     (R : Set (Σ n, L.Relations n)) : graphRelSym L '' F ∩ baseRelSym L '' R = ∅ := by
   rw [Set.inter_comm]; exact baseRelSym_image_inter_graphRelSym_image R F
 
 /-- **The shared-vocabulary identity** (Unit 1 correctness gate): the relation-symbol sets of two
-relationalizations meet exactly in the relationalization of the shared symbols. -/
+relationalizations meet exactly in the relationalization of the shared symbols.
+@isnad1 id=eq.0h5v.s6.d2fe2f78ab30 from=translated src=- shape=b17bfb76 vocab=66114c47
+-/
 theorem relSym_inter (F₁ : Set (Σ n, L.Functions n)) (R₁ : Set (Σ n, L.Relations n))
     (F₂ : Set (Σ n, L.Functions n)) (R₂ : Set (Σ n, L.Relations n)) :
     relSym L F₁ R₁ ∩ relSym L F₂ R₂ = relSym L (F₁ ∩ F₂) (R₁ ∩ R₂) := by
@@ -186,18 +221,25 @@ theorem relSym_inter (F₁ : Set (Σ n, L.Functions n)) (R₁ : Set (Σ n, L.Rel
     Set.union_empty, Set.empty_union,
     ← Set.image_inter baseRelSym_injective, ← Set.image_inter graphRelSym_injective]
 
+/--
+@isnad1 id=eq.0h1v.s6.f4f997264c04 from=translated src=- shape=bc5daabf vocab=da1cc6d8
+-/
 @[simp] theorem relSym_empty : relSym L ∅ ∅ = ∅ := by
   simp [relSym]
 
 /-- `relSym` turns unions of symbol sets into unions — the algebra the exact occurrence
-identity of the formula translation steps through at binary connectives. -/
+identity of the formula translation steps through at binary connectives.
+@isnad1 id=eq.0h5v.s6.8d5ef770f933 from=translated src=- shape=7a5dd78e vocab=7ecdc136
+-/
 theorem relSym_union (F₁ F₂ : Set (Σ n, L.Functions n)) (R₁ R₂ : Set (Σ n, L.Relations n)) :
     relSym L (F₁ ∪ F₂) (R₁ ∪ R₂) = relSym L F₁ R₁ ∪ relSym L F₂ R₂ := by
   simp only [relSym, Set.image_union]
   exact Set.union_union_union_comm _ _ _ _
 
 /-- `relSym` commutes with indexed unions — the countable-connective step of the exact
-occurrence identity. -/
+occurrence identity.
+@isnad1 id=eq.0h4v.s6.d1f747496dd6 from=translated src=- shape=e2e097b9 vocab=1a61f31a
+-/
 theorem relSym_iUnion {ι : Sort*} (F : ι → Set (Σ n, L.Functions n))
     (R : ι → Set (Σ n, L.Relations n)) :
     relSym L (⋃ i, F i) (⋃ i, R i) = ⋃ i, relSym L (F i) (R i) := by

@@ -45,6 +45,9 @@ def gridK (H : C(↥unitInterval × ↥unitInterval, X)) (p : ℝ × ℝ) : X :=
   H (projIcc 0 1 zero_le_one p.1, projIcc 0 1 zero_le_one p.2)
 
 omit [ChartedSpace ℂ X] [IsManifold 𝓘(ℂ) ω X] in
+/--
+@isnad1 id=continuo.0h2v.s6.edd5dd18a5a0 from=translated src=- shape=22717f39 vocab=bcb45ecd
+-/
 theorem continuous_gridK (H : C(↥unitInterval × ↥unitInterval, X)) : Continuous (gridK H) :=
   H.continuous.comp ((continuous_projIcc.comp continuous_fst).prodMk
     (continuous_projIcc.comp continuous_snd))
@@ -88,6 +91,9 @@ private theorem exists_chart_nhds2 (H : C(↥unitInterval × ↥unitInterval, X)
   have hpV : p ∈ V := ⟨mem_chart_source ℂ (H p), mem_ball_self hrτ⟩
   exact ⟨V, hVopen, hpV, eτ, eτ (H p), rτ, chart_mem_maximalAtlas _, hrτ, hballτ, fun q hq => hq⟩
 
+/--
+@isnad1 id=nonempty.0h2v.s7.55ecc9315882 from=translated src=- shape=e3709145 vocab=3fc347db
+-/
 theorem exists_gridChain (H : C(↥unitInterval × ↥unitInterval, X)) : Nonempty (GridChain H) := by
   choose V hVopen hpV e c r he hr hballsub hmaps using exists_chart_nhds2 H
   obtain ⟨t, ht0, hmono, ⟨m, htm⟩, hsub⟩ :=
@@ -258,7 +264,9 @@ private theorem projIcc_clampI (u : ℝ) :
 /-! ### Column stacking (outer induction) and the square theorem -/
 
 /-- A primitive of `η` along a continuous square `H : C(I × I, X)` exists (along the clamped
-map on all of `ℝ × ℝ`). -/
+map on all of `ℝ × ℝ`).
+@isnad1 id=ex.0h3v.s7.c1ec5318bb1a from=translated src=- shape=f372d413 vocab=30ceb9af
+-/
 theorem exists_primitive_along_square {H : C(↥unitInterval × ↥unitInterval, X)} (η : Form1 X) :
     ∃ F : ℝ × ℝ → ℂ, IsPrimitiveAlongMap (gridK H) η F Set.univ := by
   obtain ⟨C⟩ := exists_gridChain H
@@ -362,6 +370,9 @@ private theorem gridK_edge_snd (H : C(↥unitInterval × ↥unitInterval, X)) (c
         γ.extend_of_one_le hv1.le]
       exact (hev 1).trans γ.target
 
+/--
+@isnad1 id=eq.1h6v.s6.f13ca1c03c0f from=translated src=- shape=293a8d18 vocab=63dab4fa
+-/
 theorem pathIntegral_congr_homotopic {γ₀ γ₁ : Path x y} (h : γ₀.Homotopic γ₁) (η : Form1 X) :
     pathIntegral γ₀ η = pathIntegral γ₁ η := by
   obtain ⟨Hh⟩ := h
@@ -407,9 +418,15 @@ theorem pathIntegral_congr_homotopic {γ₀ γ₁ : Path x y} (h : γ₀.Homotop
 noncomputable def pathIntegralQ (η : Form1 X) (q : Path.Homotopic.Quotient x y) : ℂ :=
   Quotient.liftOn q (pathIntegral · η) fun _ _ h => pathIntegral_congr_homotopic h η
 
+/--
+@isnad1 id=eq.0h5v.s6.b3ac1b2f92c2 from=translated src=- shape=15aaa7fe vocab=0be4685e
+-/
 @[simp] theorem pathIntegralQ_mk (γ : Path x y) (η : Form1 X) :
     pathIntegralQ η (Path.Homotopic.Quotient.mk γ) = pathIntegral γ η := rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.54e0feba56c7 from=translated src=- shape=f461fe5f vocab=c277c792
+-/
 theorem pathIntegralQ_trans (p : Path.Homotopic.Quotient x y) (q : Path.Homotopic.Quotient y z)
     (η : Form1 X) : pathIntegralQ η (p.trans q) = pathIntegralQ η p + pathIntegralQ η q := by
   induction p using Path.Homotopic.Quotient.ind with
@@ -419,7 +436,9 @@ theorem pathIntegralQ_trans (p : Path.Homotopic.Quotient x y) (q : Path.Homotopi
       simp only [pathIntegralQ_mk]
       exact pathIntegral_trans p q η
 
-/-- Free homotopy of loops (moving basepoint) preserves periods. -/
+/-- Free homotopy of loops (moving basepoint) preserves periods.
+@isnad1 id=eq.1h7v.s8.ae8b7154c09a from=translated src=- shape=e806dd06 vocab=53b0301e
+-/
 theorem pathIntegral_congr_freeHomotopic {x₀ x₁ : X} {γ₀ : Path x₀ x₀} {γ₁ : Path x₁ x₁}
     (H : ContinuousMap.Homotopy γ₀.toContinuousMap γ₁.toContinuousMap)
     (hloop : ∀ s : ↥unitInterval, H (s, 0) = H (s, 1)) (η : Form1 X) :
@@ -464,10 +483,16 @@ theorem pathIntegral_congr_freeHomotopic {x₀ x₁ : X} {γ₀ : Path x₀ x₀
   rw [hbpeq] at e1
   linear_combination e2 - e1
 
+/--
+@isnad1 id=eq.0h6v.s6.ad51a654850d from=translated src=- shape=b1aabc3b vocab=c71e297f
+-/
 theorem pathIntegral_eq_of_simplyConnected [SimplyConnectedSpace X] (γ₀ γ₁ : Path x y)
     (η : Form1 X) : pathIntegral γ₀ η = pathIntegral γ₁ η :=
   pathIntegral_congr_homotopic (SimplyConnectedSpace.paths_homotopic γ₀ γ₁) η
 
+/--
+@isnad1 id=eq.1h4v.s6.11588585e08a from=translated src=- shape=527d641a vocab=11062919
+-/
 theorem period_eq_zero_of_homotopic_refl {γ : Path x x} (h : γ.Homotopic (Path.refl x))
     (η : Form1 X) : pathIntegral γ η = 0 := by
   rw [pathIntegral_congr_homotopic h η, pathIntegral_refl]

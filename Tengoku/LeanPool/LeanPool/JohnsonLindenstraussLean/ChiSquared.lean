@@ -36,7 +36,9 @@ namespace JL
 
 /-! ## Scalar logarithmic inequalities -/
 
-/-- `log (1 + ε) ≤ ε - ε²/2 + ε³/2` for `ε ≥ 0`. -/
+/-- `log (1 + ε) ≤ ε - ε²/2 + ε³/2` for `ε ≥ 0`.
+@isnad1 id=le.1h1v.s6.d80beb97c92e from=translated src=- shape=44f63e00 vocab=1789be8f
+-/
 lemma log_one_add_le {ε : ℝ} (hε : 0 ≤ ε) :
     Real.log (1 + ε) ≤ ε - ε ^ 2 / 2 + ε ^ 3 / 2 := by
   have hderiv : ∀ x : ℝ, -1 < x →
@@ -79,7 +81,9 @@ lemma log_one_add_le {ε : ℝ} (hε : 0 ≤ ε) :
   rw [lhs0, rhsε] at key
   linarith
 
-/-- `log (1 - ε) ≤ -ε - ε²/2 + ε³/2` for `0 ≤ ε < 1`. -/
+/-- `log (1 - ε) ≤ -ε - ε²/2 + ε³/2` for `0 ≤ ε < 1`.
+@isnad1 id=le.2h1v.s7.c99762d369a5 from=translated src=- shape=1adc4dff vocab=f7d62b05
+-/
 lemma log_one_sub_le {ε : ℝ} (hε : 0 ≤ ε) (hε1 : ε < 1) :
     Real.log (1 - ε) ≤ -ε - ε ^ 2 / 2 + ε ^ 3 / 2 := by
   have hderiv : ∀ x : ℝ, x < 1 →
@@ -119,7 +123,9 @@ lemma log_one_sub_le {ε : ℝ} (hε : 0 ≤ ε) (hε1 : ε < 1) :
   rw [lhs0, rhsε] at key
   linarith
 
-/-- The base scalar inequality controlling the upper chi-squared tail. -/
+/-- The base scalar inequality controlling the upper chi-squared tail.
+@isnad1 id=le.1h1v.s6.60e4b41c54ae from=translated src=- shape=9758164a vocab=0bdeb37b
+-/
 lemma scalar_upper {ε : ℝ} (h0 : 0 < ε) :
     rexp (-(ε / 2)) * √(1 + ε) ≤ rexp (-(ε ^ 2 - ε ^ 3) / 4) := by
   have hb : (0 : ℝ) < 1 + ε := by linarith
@@ -130,7 +136,9 @@ lemma scalar_upper {ε : ℝ} (h0 : 0 < ε) :
   have := log_one_add_le h0.le
   linarith
 
-/-- The base scalar inequality controlling the lower chi-squared tail. -/
+/-- The base scalar inequality controlling the lower chi-squared tail.
+@isnad1 id=le.2h1v.s7.994e73c364ab from=translated src=- shape=63c175f4 vocab=1254ddc8
+-/
 lemma scalar_lower {ε : ℝ} (h0 : 0 < ε) (h1 : ε < 1) :
     rexp (ε / 2) * √(1 - ε) ≤ rexp (-(ε ^ 2 - ε ^ 3) / 4) := by
   have hb : (0 : ℝ) < 1 - ε := by linarith
@@ -154,7 +162,9 @@ instance (k : ℕ) : IsProbabilityMeasure (gaussianVec k) := by
 squared coordinates. -/
 noncomputable def chiSq (k : ℕ) : (Fin k → ℝ) → ℝ := fun ω => ∑ i, (ω i) ^ 2
 
-/-- **Chi-squared MGF.** For `t < 1/2`, `E[exp (t · S)] = ((1 - 2t)^(-1/2))^k`. -/
+/-- **Chi-squared MGF.** For `t < 1/2`, `E[exp (t · S)] = ((1 - 2t)^(-1/2))^k`.
+@isnad1 id=eq.1h2v.s6.e726e25a6850 from=translated src=- shape=02971095 vocab=311d24a5
+-/
 theorem chiSq_mgf (k : ℕ) {t : ℝ} (ht : t < 1 / 2) :
     mgf (chiSq k) (gaussianVec k) t = ((√(1 - 2 * t))⁻¹) ^ k := by
   have hpi : gaussianVec k = Measure.pi (fun _ : Fin k => stdGaussian) := rfl
@@ -191,7 +201,9 @@ theorem chiSq_mgf (k : ℕ) {t : ℝ} (ht : t < 1 / 2) :
   · rw [mgf_sum_of_identDistrib hmeas hindep (fun i _ j _ => hident i j)
       (Finset.mem_univ (⟨0, hk⟩ : Fin k)) t, hmgf_single, Finset.card_univ, Fintype.card_fin]
 
-/-- Integrability of `exp (t · Z²)` against `N(0,1)` for `t < 1/2`. -/
+/-- Integrability of `exp (t · Z²)` against `N(0,1)` for `t < 1/2`.
+@isnad1 id=integrab.1h1v.s6.74aedb5107d6 from=translated src=- shape=457da54c vocab=febfb547
+-/
 lemma integrable_exp_mul_sq {t : ℝ} (ht : t < 1 / 2) :
     Integrable (fun x : ℝ => rexp (t * x ^ 2)) stdGaussian := by
   have hb : (0 : ℝ) < 1 / 2 - t := by linarith
@@ -208,7 +220,9 @@ lemma integrable_exp_mul_sq {t : ℝ} (ht : t < 1 / 2) :
   rw [heq]
   exact (integrable_exp_neg_mul_sq hb).const_mul _
 
-/-- Integrability of `exp (t · S)` for `t < 1/2`. -/
+/-- Integrability of `exp (t · S)` for `t < 1/2`.
+@isnad1 id=integrab.1h2v.s6.88a7f5162f7f from=translated src=- shape=467b7a33 vocab=70727e84
+-/
 theorem integrable_exp_mul_chiSq (k : ℕ) {t : ℝ} (ht : t < 1 / 2) :
     Integrable (fun ω => rexp (t * chiSq k ω)) (gaussianVec k) := by
   have hfac : (fun ω => rexp (t * chiSq k ω))
@@ -221,7 +235,9 @@ theorem integrable_exp_mul_chiSq (k : ℕ) {t : ℝ} (ht : t < 1 / 2) :
 
 /-! ## Two-sided chi-squared tail bounds -/
 
-/-- **Upper chi-squared tail.** `P(S ≥ (1+ε)k) ≤ exp(-(ε² - ε³) k / 4)`. -/
+/-- **Upper chi-squared tail.** `P(S ≥ (1+ε)k) ≤ exp(-(ε² - ε³) k / 4)`.
+@isnad1 id=le.1h2v.s7.38953f9d1395 from=translated src=- shape=779e3ce3 vocab=fcfa531a
+-/
 theorem chiSq_upper_tail (k : ℕ) {ε : ℝ} (h0 : 0 < ε) :
     (gaussianVec k).real {ω | (1 + ε) * (k : ℝ) ≤ chiSq k ω}
       ≤ rexp (-(ε ^ 2 - ε ^ 3) * (k : ℝ) / 4) := by
@@ -243,7 +259,9 @@ theorem chiSq_upper_tail (k : ℕ) {ε : ℝ} (h0 : 0 < ε) :
   rw [hexp1, hexp2, Real.exp_nat_mul, Real.exp_nat_mul, ← mul_pow]
   exact pow_le_pow_left₀ (by positivity) (scalar_upper h0) k
 
-/-- **Lower chi-squared tail.** `P(S ≤ (1-ε)k) ≤ exp(-(ε² - ε³) k / 4)`. -/
+/-- **Lower chi-squared tail.** `P(S ≤ (1-ε)k) ≤ exp(-(ε² - ε³) k / 4)`.
+@isnad1 id=le.2h2v.s7.678dff17c38f from=translated src=- shape=fc967285 vocab=5951da41
+-/
 theorem chiSq_lower_tail (k : ℕ) {ε : ℝ} (h0 : 0 < ε) (h1 : ε < 1) :
     (gaussianVec k).real {ω | chiSq k ω ≤ (1 - ε) * (k : ℝ)}
       ≤ rexp (-(ε ^ 2 - ε ^ 3) * (k : ℝ) / 4) := by

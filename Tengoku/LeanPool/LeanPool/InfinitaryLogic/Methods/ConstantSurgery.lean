@@ -53,7 +53,9 @@ abstraction/instantiation pair. -/
 noncomputable def substConst (b a : ℕ) (ρ : L[[ℕ]].Sentenceω) : L[[ℕ]].Sentenceω :=
   instConst a ((ρ.abstractConst b).relabel (Sum.inr : Fin 1 → Empty ⊕ Fin 1))
 
-/-- Realizing the substitution is realizing the original with `b` reinterpreted at `a`'s value. -/
+/-- Realizing the substitution is realizing the original with `b` reinterpreted at `a`'s value.
+@isnad1 id=iff.0h7v.s6.b84bdc52dfb1 from=translated src=- shape=f3361e21 vocab=58f215ce
+-/
 theorem realize_substConst (base : L.Structure M) (h : ℕ → M) (b a : ℕ) (ρ : L[[ℕ]].Sentenceω) :
     @BoundedFormulaω.Realize L[[ℕ]] M (wc base h) Empty 0 (substConst b a ρ) Empty.elim Fin.elim0
       ↔ @BoundedFormulaω.Realize L[[ℕ]] M (wc base (Function.update h b (h a))) Empty 0 ρ
@@ -63,6 +65,9 @@ theorem realize_substConst (base : L.Structure M) (h : ℕ → M) (b a : ℕ) (�
     BoundedFormulaω.realize_relabel_sumInr_zero (ρ.abstractConst b) (fun _ : Fin 1 => h a)]
   exact BoundedFormulaω.realize_abstractConst base h b (h a) ρ Fin.elim0
 
+/--
+@isnad1 id=le.0h4v.s5.743664634ea1 from=translated src=- shape=417b0539 vocab=58d46ed3
+-/
 theorem baseFunctionsIn_substConst_subset (b a : ℕ) (ρ : L[[ℕ]].Sentenceω) :
     (substConst b a ρ).baseFunctionsIn ⊆ ρ.baseFunctionsIn := by
   refine (baseFunctionsIn_instConst_subset a _).trans ?_
@@ -74,6 +79,9 @@ theorem baseFunctionsIn_substConst_subset (b a : ℕ) (ρ : L[[ℕ]].Sentenceω)
     BoundedFormulaω.functionsIn_relabel] at hs
   exact BoundedFormulaω.functionsIn_abstractConst_subset b ρ hs
 
+/--
+@isnad1 id=le.0h4v.s5.03255a2238c9 from=translated src=- shape=417b0539 vocab=4156bd08
+-/
 theorem baseRelationsIn_substConst (b a : ℕ) (ρ : L[[ℕ]].Sentenceω) :
     (substConst b a ρ).baseRelationsIn ⊆ ρ.baseRelationsIn := by
   refine (baseRelationsIn_instConst_subset a _).trans ?_
@@ -85,6 +93,9 @@ theorem baseRelationsIn_substConst (b a : ℕ) (ρ : L[[ℕ]].Sentenceω) :
     BoundedFormulaω.relationsIn_relabel, BoundedFormulaω.relationsIn_abstractConst] at hs
   exact hs
 
+/--
+@isnad1 id=le.0h4v.s5.5d849cf7df79 from=translated src=- shape=6d339c56 vocab=c9241b2a
+-/
 theorem sentenceJConsts_substConst_subset (b a : ℕ) (ρ : L[[ℕ]].Sentenceω) :
     sentenceJConsts (L' := L) (J := ℕ) (substConst b a ρ)
       ⊆ sentenceJConsts (L' := L) (J := ℕ) ρ ∪ {a} := by
@@ -98,7 +109,9 @@ theorem sentenceJConsts_substConst_subset (b a : ℕ) (ρ : L[[ℕ]].Sentenceω)
     BoundedFormulaω.functionsIn_relabel] at hk
   exact BoundedFormulaω.functionsIn_abstractConst_subset b ρ hk
 
-/-- The substituted constant is gone, provided it was not the substitute. -/
+/-- The substituted constant is gone, provided it was not the substitute.
+@isnad1 id=not.1h4v.s5.d9b4cb4c83d2 from=translated src=- shape=d2c98329 vocab=a1c80f6b
+-/
 theorem notMem_sentenceJConsts_substConst (b a : ℕ) (hne : b ≠ a) (ρ : L[[ℕ]].Sentenceω) :
     b ∉ sentenceJConsts (L' := L) (J := ℕ) (substConst b a ρ) := by
   intro hk
@@ -135,7 +148,9 @@ private theorem hasQuantSigned_abstractConst (j : ℕ) (s : Bool) :
     change (∃ i, hasQuantSigned s (BoundedFormulaω.abstractConst j (φs i))) ↔ _
     exact exists_congr fun i => ih i s
 
-/-- Substitution does not move the signed quantifier occurrences: the budgets are untouched. -/
+/-- Substitution does not move the signed quantifier occurrences: the budgets are untouched.
+@isnad1 id=iff.0h5v.s5.b50e02639169 from=translated src=- shape=81c993a9 vocab=c45c3e14
+-/
 theorem hasQuantSigned_substConst (b a : ℕ) (s : Bool) (ρ : L[[ℕ]].Sentenceω) :
     hasQuantSigned s (substConst b a ρ) ↔ hasQuantSigned s ρ := by
   rw [substConst, instConst,

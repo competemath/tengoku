@@ -36,7 +36,9 @@ open FirstOrder Structure BoundedFormulaω
 variable {L : Language.{0, 0}} [L.IsRelational] [Countable (Σ l, L.Relations l)]
 variable {F₁ F₂ : Set (Σ n, L.Functions n)} {R₁ R₂ : Set (Σ n, L.Relations n)}
 
-/-- **The model endpoint.**  A labelled root member yields a model of `r₁` refuting `r₂`. -/
+/-- **The model endpoint.**  A labelled root member yields a model of `r₁` refuting `r₂`.
+@isnad1 id=ex.3h7v.s7.a81c5d8940d5 from=translated src=- shape=eb27d61b vocab=75d6e552
+-/
 theorem exists_budgetedPair_model {r₁ r₂ : L[[ℕ]].Sentenceω}
     (hr₁ : (sentenceJConsts (L' := L) (J := ℕ) r₁).Finite)
     (hr₂ : (sentenceJConsts (L' := L) (J := ℕ) r₂).Finite)

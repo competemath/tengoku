@@ -42,10 +42,15 @@ def evalAtₗ (x : X) : Form1 X →ₗ[ℂ] ℂ where
   map_smul' := coeffAt_smul x
 
 omit [T2Space X] [CompactSpace X] [ConnectedSpace X] in
+/--
+@isnad1 id=eq.0h3v.s12.50bd4b6aa850 from=translated src=- shape=037d2e63 vocab=265f00ff
+-/
 @[simp] theorem evalAtₗ_apply (x : X) (η : Form1 X) : evalAtₗ x η = coeffAt x η := rfl
 
 omit [T2Space X] [CompactSpace X] [ConnectedSpace X] in
-/-- The nonvanishing locus of a form's coefficient is open. -/
+/-- The nonvanishing locus of a form's coefficient is open.
+@isnad1 id=isopen.0h2v.s6.2e811d3dfcc8 from=translated src=- shape=42cadebf vocab=33aa9f66
+-/
 theorem isOpen_coeffAt_ne_zero (η : Form1 X) : IsOpen {x : X | coeffAt x η ≠ 0} := by
   rw [isOpen_iff_mem_nhds]
   intro x₀ hx₀

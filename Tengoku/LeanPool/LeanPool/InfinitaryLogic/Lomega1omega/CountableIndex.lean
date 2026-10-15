@@ -59,11 +59,17 @@ noncomputable def ciSup {ι : Type uι} [Countable ι] (φs : ι → L.BoundedFo
 
 variable {M : Type w} [L.Structure M]
 
+/--
+@isnad1 id=iff.0h8v.s5.ff45c60f1ce7 from=translated src=- shape=39f4a379 vocab=aa13306a
+-/
 theorem realize_ciInf {ι : Type uι} [Countable ι] (φs : ι → L.BoundedFormulaω γ n)
     (v : γ → M) (xs : Fin n → M) :
     (ciInf φs).Realize v xs ↔ ∀ i, (φs i).Realize v xs :=
   BoundedFormulaInf.realize_iInfAlong
 
+/--
+@isnad1 id=iff.0h8v.s6.967a8630aa6d from=translated src=- shape=a680c59d vocab=96cc1b24
+-/
 theorem realize_ciSup {ι : Type uι} [Countable ι] (φs : ι → L.BoundedFormulaω γ n)
     (v : γ → M) (xs : Fin n → M) :
     (ciSup φs).Realize v xs ↔ ∃ i, (φs i).Realize v xs :=

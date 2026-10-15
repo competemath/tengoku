@@ -34,7 +34,9 @@ variable {K : Type*} [Field K] [Fintype K] [DecidableEq K]
 
 /-- Dividing the coefficient equation by `v₁` gives the normalized slope
 `ρ=v₂/v₁`.  No characteristic-two hypothesis is needed for this bookkeeping
-identity. -/
+identity.
+@isnad1 id=eq.1h4v.s6.7083ceac7f43 from=translated src=- shape=e1ba76a7 vocab=74d00a4d
+-/
 theorem coefficientTripleCount_eq_slopeTripleCount {k : ℕ} {v₁ v₂ : K} (hv₁ : v₁ ≠ 0) :
     coefficientTripleCount k v₁ v₂ = slopeTripleCount k (v₂ / v₁) := by
   unfold coefficientTripleCount slopeTripleCount
@@ -58,7 +60,9 @@ theorem coefficientTripleCount_eq_slopeTripleCount {k : ℕ} {v₁ v₂ : K} (hv
     rw [← hscale, h, mul_zero]
 
 omit [Fintype K] [DecidableEq K] in
-/-- Distinct nonzero coefficients give an admissible normalized slope. -/
+/-- Distinct nonzero coefficients give an admissible normalized slope.
+@isnad1 id=admissib.3h3v.s6.4fe340b36620 from=translated src=- shape=bc53cfeb vocab=ef3f10a1
+-/
 theorem coefficientSlope_admissible {v₁ v₂ : K}
     (hv₁ : v₁ ≠ 0) (hv₂ : v₂ ≠ 0) (hne : v₁ ≠ v₂) :
     AdmissibleSlope (v₂ / v₁) := by
@@ -69,7 +73,9 @@ theorem coefficientSlope_admissible {v₁ v₂ : K}
     exact hne hv₂1.symm
 
 /-- Any theorem proved uniformly for all admissible slopes immediately yields
-the original coefficient-form theorem. -/
+the original coefficient-form theorem.
+@isnad1 id=eq.4h5v.s6.4f35cf1dfd4d from=translated src=- shape=742bd29f vocab=230e6852
+-/
 theorem coefficient_form_of_slope_form {k : ℕ} {c : ℝ}
     (hslope : ∀ ρ ∈ slopes K, (slopeTripleCount k ρ : ℝ) = c)
     {v₁ v₂ : K} (hv₁ : v₁ ≠ 0) (hv₂ : v₂ ≠ 0) (hne : v₁ ≠ v₂) :
@@ -80,7 +86,9 @@ theorem coefficient_form_of_slope_form {k : ℕ} {c : ℝ}
 
 omit [Field K] [DecidableEq K] in
 /-- The real-valued main term `|K|^2/8` is the natural number `2^(2n-3)`
-when `|K| = 2^n` and `n ≥ 2`. -/
+when `|K| = 2^n` and `n ≥ 2`.
+@isnad1 id=eq.2h2v.s7.d1119bce85e7 from=translated src=- shape=c4dabe1e vocab=e4f24786
+-/
 theorem card_sq_div_eight_eq_pow {n : ℕ} (hn : 2 ≤ n)
     (hcard : Fintype.card K = 2 ^ n) :
     (Fintype.card K : ℝ) ^ 2 / 8 = ((2 ^ (2 * n - 3) : ℕ) : ℝ) := by
@@ -93,7 +101,9 @@ theorem card_sq_div_eight_eq_pow {n : ℕ} (hn : 2 ≤ n)
   norm_num
 
 /-- Natural-number version of the original coefficient statement, obtained
-from a slope theorem with the standard real main term. -/
+from a slope theorem with the standard real main term.
+@isnad1 id=eq.6h5v.s7.9db1300fa5ee from=translated src=- shape=7fe7b613 vocab=cf92e1d7
+-/
 theorem coefficient_form_nat_of_slope_form {n k : ℕ} (hn : 2 ≤ n)
     (hcard : Fintype.card K = 2 ^ n)
     (hslope : ∀ ρ ∈ slopes K,

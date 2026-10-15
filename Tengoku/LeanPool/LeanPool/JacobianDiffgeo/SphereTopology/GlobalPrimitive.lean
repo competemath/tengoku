@@ -48,7 +48,9 @@ variable {X : Type*} [TopologicalSpace X] [T2Space X] [CompactSpace X] [Connecte
 
 omit [T2Space X] [CompactSpace X] [ConnectedSpace X] in
 /-- The "monodromy engine" atom: a primitive of `η` along the identity map is a genuine
-holomorphic global primitive, and it IS `η`'s antiderivative in Forms' sense. -/
+holomorphic global primitive, and it IS `η`'s antiderivative in Forms' sense.
+@isnad1 id=ex.1h3v.s8.d0c607921d56 from=translated src=- shape=3dcb800b vocab=f115e62e
+-/
 theorem contMDiff_and_mdifferential_eq_of_isPrimitiveAlongMap_id
     {η : RS.Form1 X} {F : X → ℂ}
     (hF : RS.IsPrimitiveAlongMap (id : X → X) η F Set.univ) :
@@ -99,7 +101,9 @@ theorem contMDiff_and_mdifferential_eq_of_isPrimitiveAlongMap_id
 
 omit [T2Space X] [CompactSpace X] [ConnectedSpace X] in
 /-- Construction of the global primitive on a simply connected `X`, via `pathIntegral` from a
-fixed base point (well-defined by `pathIntegral_eq_of_simplyConnected`). -/
+fixed base point (well-defined by `pathIntegral_eq_of_simplyConnected`).
+@isnad1 id=ex.0h3v.s6.f1a355458ba8 from=translated src=- shape=09fddd73 vocab=81ac7101
+-/
 theorem exists_isPrimitiveAlongMap_id [SimplyConnectedSpace X] (x₀ : X) (η : RS.Form1 X) :
     ∃ F : X → ℂ, RS.IsPrimitiveAlongMap (id : X → X) η F Set.univ ∧ F x₀ = 0 := by
   set F : X → ℂ := fun x => RS.pathIntegral (PathConnectedSpace.somePath x₀ x) η with hF_def
@@ -172,7 +176,9 @@ theorem exists_isPrimitiveAlongMap_id [SimplyConnectedSpace X] (x₀ : X) (η : 
     ring
 
 omit [T2Space X] in
-/-- **Forster 10.5.** On a simply connected compact surface every holomorphic 1-form vanishes. -/
+/-- **Forster 10.5.** On a simply connected compact surface every holomorphic 1-form vanishes.
+@isnad1 id=eq.0h2v.s11.f86718af00a3 from=translated src=- shape=cb31ac6e vocab=dd5dbf76
+-/
 theorem form1_eq_zero_of_simplyConnectedSpace [SimplyConnectedSpace X] (η : RS.Form1 X) :
     η = 0 := by
   obtain ⟨F, hFprim, -⟩ := exists_isPrimitiveAlongMap_id (Classical.arbitrary X) η
@@ -189,7 +195,9 @@ instance [SimplyConnectedSpace X] : Subsingleton (RS.Form1 X) :=
   ⟨fun η η' => by
     rw [form1_eq_zero_of_simplyConnectedSpace η, form1_eq_zero_of_simplyConnectedSpace η']⟩
 
-/-- The step-2 headline. -/
+/-- The step-2 headline.
+@isnad1 id=eq.0h1v.s6.91190c33ee0c from=translated src=- shape=cd345e51 vocab=9cc3e14c
+-/
 theorem genus_eq_zero_of_simplyConnectedSpace [SimplyConnectedSpace X] : genus X = 0 :=
   genus_eq_zero_iff_subsingleton.mpr inferInstance
 

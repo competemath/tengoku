@@ -36,7 +36,9 @@ variable {L : Language.{u, v}} [Countable (Σ l, L.Relations l)]
 
 /-- **The analytic tree normal form** (audit v2, D3 — the stop/go gate): an analytic class
 of coded structures is the branch projection of a level-indexed cylinder tree along the
-query code. -/
+query code.
+@isnad1 id=ex.1h2v.s7.e302dc56d4a4 from=translated src=- shape=58258973 vocab=f56ac822
+-/
 theorem exists_tree_of_analyticSet {B : Set (StructureSpace L)}
     (hB : MeasureTheory.AnalyticSet B) :
     ∃ T : (n : ℕ) → Set ((Fin n → Bool) × (Fin n → ℕ)),

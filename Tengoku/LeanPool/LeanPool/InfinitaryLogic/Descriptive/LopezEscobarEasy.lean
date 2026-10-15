@@ -67,7 +67,9 @@ private theorem modelsOf_measurable_invariant (φ : L.Sentenceω) :
 /-- **López-Escobar, easy direction**: every `L_ω₁ω`-sentence defines a product-measurable,
 isomorphism-invariant class of coded countable structures. For countable relational vocabularies,
 this is a Borel class for the Polish topology. The converse is `lopez_escobar`; the two directions
-are packaged as `lopezEscobar_iff`. -/
+are packaged as `lopezEscobar_iff`.
+@isnad1 id=and.0h2v.s4.739110d773fe from=translated src=- shape=54a9daa3 vocab=e256e1f9
+-/
 theorem lopezEscobar_easy (φ : L.Sentenceω) :
     MeasurableSet (ModelsOf φ) ∧ IsomorphismInvariant (ModelsOf φ) :=
   modelsOf_measurable_invariant φ

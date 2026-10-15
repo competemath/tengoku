@@ -46,7 +46,9 @@ private theorem WOMem.union_of_mem_base {S : Set L[[ℕ]].Sentenceω} (hS : WOMe
   exact hS
 
 /-- **The generic extension step**: adding a non-base sentence to a member preserves
-membership, given the universe, finite-support, and (*) obligations. -/
+membership, given the universe, finite-support, and (*) obligations.
+@isnad1 id=womem.5h5v.s7.c14b45b14fda from=translated src=- shape=e0377aa0 vocab=637ca7f8
+-/
 theorem WOMem.extend {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S)
     {χ : L[[ℕ]].Sentenceω} (hχnb : χ ∉ baseDiagram φ lt)
     (hχU : χ ∈ GenU (φ.mapLanguage (L.lhomWithConstants ℕ))
@@ -164,7 +166,9 @@ private theorem WOMem.extend_det {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt
 
 /-! ## C0 -/
 
-/-- (C0a) No member contains `falsum`. -/
+/-- (C0a) No member contains `falsum`.
+@isnad1 id=not.1h4v.s5.25536ff7775a from=translated src=- shape=8e674c98 vocab=2ac54787
+-/
 theorem WOMem.no_falsum {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S) :
     (BoundedFormulaω.falsum : L[[ℕ]].Sentenceω) ∉ S := by
   intro hf
@@ -178,7 +182,9 @@ theorem WOMem.no_falsum {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S) :
   · exact absurd hatom (by simp [ratLtAtom, relInst])
 
 /-- (C0b) No member contains a sentence and its negation — the symmetric four-case
-base/remainder argument through the C0 helper. -/
+base/remainder argument through the C0 helper.
+@isnad1 id=not.1h5v.s6.b9905f88548e from=translated src=- shape=9db28159 vocab=cd6bb626
+-/
 theorem WOMem.no_contradiction {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S)
     (χ : L[[ℕ]].Sentenceω) : ¬(χ ∈ S ∧ χ.not ∈ S) := by
   rintro ⟨hχ, hnχ⟩
@@ -210,7 +216,9 @@ theorem WOMem.no_contradiction {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S
 
 /-! ## Deterministic connective fields -/
 
-/-- (C2) Double negation. -/
+/-- (C2) Double negation.
+@isnad1 id=womem.2h5v.s6.e29b2214b281 from=translated src=- shape=3ee4f69f vocab=8c918c07
+-/
 theorem WOMem.C2_not_not {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S)
     (ψ : L[[ℕ]].Sentenceω) (hσ : ψ.not.not ∈ S) : WOMem φ lt (S ∪ {ψ}) := by
   by_cases hb : ψ ∈ baseDiagram φ lt
@@ -225,7 +233,9 @@ theorem WOMem.C2_not_not {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S)
       have h1 := (BoundedFormulaω.realize_not ψ.not).mp hr
       rw [BoundedFormulaω.realize_not] at h1
       exact not_not.mp h1
-/-- (C1') Negated implication: both halves. -/
+/-- (C1') Negated implication: both halves.
+@isnad1 id=and.2h6v.s7.1af669ef2bfb from=translated src=- shape=67c8c46f vocab=e120d8dd
+-/
 theorem WOMem.C1_neg_imp {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S)
     (ψ₁ ψ₂ : L[[ℕ]].Sentenceω) (hσ : (ψ₁.imp ψ₂).not ∈ S) :
     WOMem φ lt (S ∪ {ψ₁}) ∧ WOMem φ lt (S ∪ {ψ₂.not}) := by
@@ -259,7 +269,9 @@ theorem WOMem.C1_neg_imp {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S)
         rw [BoundedFormulaω.realize_imp] at h1
         exact (BoundedFormulaω.realize_not ψ₂).mpr (Classical.not_imp.mp h1).2
 
-/-- (C3) Countable conjunction: every component. -/
+/-- (C3) Countable conjunction: every component.
+@isnad1 id=womem.2h6v.s6.b60d02136812 from=translated src=- shape=f5941b8e vocab=f1baefeb
+-/
 theorem WOMem.C3_iInf {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S)
     (φs : ℕ → L[[ℕ]].Sentenceω) (hσ : BoundedFormulaω.iInf φs ∈ S) (k : ℕ) :
     WOMem φ lt (S ∪ {φs k}) := by
@@ -271,7 +283,9 @@ theorem WOMem.C3_iInf {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S)
     let : L[[ℕ]].Structure M := wc inst h
     exact (BoundedFormulaω.realize_iInf φs).mp hr k
 
-/-- (C4') Negated disjunction: every negated component. -/
+/-- (C4') Negated disjunction: every negated component.
+@isnad1 id=womem.2h6v.s7.fda8fbb42e13 from=translated src=- shape=9201bbc9 vocab=8b1b0860
+-/
 theorem WOMem.C4_neg_iSup {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S)
     (φs : ℕ → L[[ℕ]].Sentenceω) (hσ : (BoundedFormulaω.iSup φs).not ∈ S) (k : ℕ) :
     WOMem φ lt (S ∪ {(φs k).not}) := by
@@ -302,7 +316,9 @@ private theorem star_all_of_unbounded {Γ : Set L[[ℕ]].Sentenceω}
   exact hst.mono hle
 
 /-- **The branching driver**: if every level admits some branch, one branch works at every
-level — the cofinal-fiber pigeonhole plus downward closure. -/
+level — the cofinal-fiber pigeonhole plus downward closure.
+@isnad1 id=ex.2h6v.s7.e70346bed9a7 from=translated src=- shape=b78ca06b vocab=d7bf83bb
+-/
 theorem WOMem.branch_choice {S : Set L[[ℕ]].Sentenceω} (_ : WOMem φ lt S)
     {ι : Type} [Countable ι] [Nonempty ι] (tgt : ι → L[[ℕ]].Sentenceω)
     (hchoice : ∀ α : Ordinal.{0}, α < (Cardinal.aleph 1).ord →
@@ -325,7 +341,9 @@ theorem WOMem.branch_choice {S : Set L[[ℕ]].Sentenceω} (_ : WOMem φ lt S)
   rw [hFeq] at hFα
   rwa [hFα] at hspec
 
-/-- (C1) Implication: one of the two branches extends. -/
+/-- (C1) Implication: one of the two branches extends.
+@isnad1 id=or.2h6v.s7.6e5fd87ed572 from=translated src=- shape=ae150cb6 vocab=e120d8dd
+-/
 theorem WOMem.C1_imp {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S)
     (ψ₁ ψ₂ : L[[ℕ]].Sentenceω) (hσ : ψ₁.imp ψ₂ ∈ S) :
     WOMem φ lt (S ∪ {ψ₁.not}) ∨ WOMem φ lt (S ∪ {ψ₂}) := by
@@ -376,7 +394,9 @@ theorem WOMem.C1_imp {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S)
     rw [sentenceJConsts_not]
     exact sentenceJConsts_imp_left ψ₁ ψ₂
 
-/-- (C4) Countable disjunction: some component extends. -/
+/-- (C4) Countable disjunction: some component extends.
+@isnad1 id=ex.2h5v.s6.55a71ab0ad41 from=translated src=- shape=dabb7441 vocab=b6549058
+-/
 theorem WOMem.C4_iSup {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S)
     (φs : ℕ → L[[ℕ]].Sentenceω) (hσ : BoundedFormulaω.iSup φs ∈ S) :
     ∃ k, WOMem φ lt (S ∪ {φs k}) := by
@@ -409,7 +429,9 @@ theorem WOMem.C4_iSup {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S)
     (Set.Finite.subset (hS.jConsts_finite_of_mem hσ) (sentenceJConsts_component_iSup φs k))
     hk⟩
 
-/-- (C3') Negated conjunction: some negated component extends. -/
+/-- (C3') Negated conjunction: some negated component extends.
+@isnad1 id=ex.2h5v.s7.e1a63edb601c from=translated src=- shape=690846a9 vocab=abc092df
+-/
 theorem WOMem.C3_neg_iInf {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S)
     (φs : ℕ → L[[ℕ]].Sentenceω) (hσ : (BoundedFormulaω.iInf φs).not ∈ S) :
     ∃ k, WOMem φ lt (S ∪ {(φs k).not}) := by
@@ -590,7 +612,9 @@ theorem WOMem.eq_refl {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S) (c : �
     have : ratConstIdx q = c := by rcases this with h | h <;> exact h
     exact absurd ⟨q, this⟩ hcr
 
-/-- **Universal instantiation** (constant-sensitive: the range split). -/
+/-- **Universal instantiation** (constant-sensitive: the range split).
+@isnad1 id=womem.2h6v.s6.70defd395340 from=translated src=- shape=a0689839 vocab=37e4f117
+-/
 theorem WOMem.all_inst {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S)
     (ψ : L[[ℕ]].BoundedFormulaω Empty 1) (hσ : ψ.all ∈ S) (c : ℕ) :
     WOMem φ lt (S ∪ {instConst c ψ}) := by
@@ -646,7 +670,9 @@ theorem WOMem.all_inst {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S)
 
 /-- **The fresh existential witness**: syntactic freshness is chosen against the finite
 remainder-and-source support; parity (oddness) separately places the constant outside the
-rational range. -/
+rational range.
+@isnad1 id=ex.2h5v.s7.649cdda409d5 from=translated src=- shape=b78bc439 vocab=811af1f1
+-/
 theorem WOMem.neg_all_witness {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S)
     (ψ : L[[ℕ]].BoundedFormulaω Empty 1) (hσ : ψ.all.not ∈ S) :
     ∃ c : ℕ, WOMem φ lt (S ∪ {(instConst c ψ).not}) := by
@@ -743,7 +769,9 @@ private theorem relInst_mem_baseDiagram_of_nonempty {l : ℕ} {R : L.Relations l
 /-- **Relation congruence** (the fifteenth field): one-coordinate replacement along a
 remainder equality.  Remainder/root sources use ordinary equality congruence in the
 approximating model; a diagram-atom source first marks both endpoints at a positive level,
-obtains the atom through the chain, and descends. -/
+obtains the atom through the chain, and descends.
+@isnad1 id=womem.3h9v.s7.03734e3a8728 from=translated src=- shape=36d76a98 vocab=8302f5e0
+-/
 theorem WOMem.rel_congr {S : Set L[[ℕ]].Sentenceω} (hS : WOMem φ lt S) (l : ℕ)
     (R : L.Relations l) (g : Fin l → ℕ) (i : Fin l) (b : ℕ)
     (hσ : relInst R g ∈ S) (heq : constEq (g i) b ∈ S) :

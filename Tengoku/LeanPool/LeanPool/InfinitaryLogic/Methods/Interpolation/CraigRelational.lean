@@ -53,7 +53,9 @@ variable {L : Language.{0, 0}}
 
 /-- **Craig interpolation for `L_ω₁ω` — countable relational core.** Over a relational language with
 countably many relation symbols, an `L_ω₁ω`-entailment `r₁ ⊨ r₂` has a base-`L` interpolant whose
-function/relation symbols lie in the intersection of the roots' occurrence sets. -/
+function/relation symbols lie in the intersection of the roots' occurrence sets.
+@isnad1 id=ex.1h3v.s7.7432466ff3e8 from=translated src=- shape=7c8ff3c8 vocab=cbccc07d
+-/
 theorem craig_interpolation_relational_countable [L.IsRelational]
     [Countable (Σ n, L.Relations n)] (r₁ r₂ : L.Sentenceω) (h : Sentenceω.Entails r₁ r₂) :
     ∃ θ : L.Sentenceω,

@@ -43,50 +43,86 @@ variable {f g h : ℂ → ℂ} {z₀ : ℂ} {k n : ℤ}
 circle-integral characterization is `RS.circleIntegral_eq_two_pi_I_mul_resAt`. -/
 noncomputable def resAt (f : ℂ → ℂ) (z₀ : ℂ) : ℂ := laurentCoeffAt f z₀ (-1)
 
+/--
+@isnad1 id=eq.1h3v.s5.04d1c292e1f0 from=translated src=- shape=cba91e06 vocab=f7ded845
+-/
 theorem resAt_congr (hfg : f =ᶠ[𝓝[≠] z₀] g) : resAt f z₀ = resAt g z₀ :=
   laurentCoeffAt_congr hfg (-1)
 
+/--
+@isnad1 id=eq.2h3v.s6.22065909f6e1 from=translated src=- shape=5e3340b7 vocab=9170bed4
+-/
 theorem resAt_fun_add (hf : MeromorphicAt f z₀) (hg : MeromorphicAt g z₀) :
     resAt (fun z => f z + g z) z₀ = resAt f z₀ + resAt g z₀ :=
   laurentCoeffAt_fun_add hf hg (-1)
 
+/--
+@isnad1 id=eq.2h3v.s6.8ca5f6940d03 from=translated src=- shape=ec16d441 vocab=9170bed4
+-/
 theorem resAt_add (hf : MeromorphicAt f z₀) (hg : MeromorphicAt g z₀) :
     resAt (f + g) z₀ = resAt f z₀ + resAt g z₀ :=
   laurentCoeffAt_add hf hg (-1)
 
+/--
+@isnad1 id=eq.0h3v.s5.83be69f80f51 from=translated src=- shape=96d2f203 vocab=fcbccfa0
+-/
 theorem resAt_const_mul (c : ℂ) : resAt (fun z => c * f z) z₀ = c * resAt f z₀ :=
   laurentCoeffAt_const_mul c (-1)
 
+/--
+@isnad1 id=eq.0h2v.s4.76bd7cfcb518 from=translated src=- shape=1b3ec09f vocab=e56c9872
+-/
 theorem resAt_neg : resAt (fun z => -f z) z₀ = -resAt f z₀ :=
   laurentCoeffAt_neg (-1)
 
+/--
+@isnad1 id=eq.2h3v.s6.83dc5476a317 from=translated src=- shape=5e3340b7 vocab=bdc37b76
+-/
 theorem resAt_sub (hf : MeromorphicAt f z₀) (hg : MeromorphicAt g z₀) :
     resAt (fun z => f z - g z) z₀ = resAt f z₀ - resAt g z₀ :=
   laurentCoeffAt_sub hf hg (-1)
 
+/--
+@isnad1 id=eq.1h4v.s6.1f5d13c07e27 from=translated src=- shape=60f0fa9b vocab=93c1a1e4
+-/
 theorem resAt_fun_sum {ι : Type*} {s : Finset ι} {F : ι → ℂ → ℂ}
     (hF : ∀ i ∈ s, MeromorphicAt (F i) z₀) :
     resAt (fun z => ∑ i ∈ s, F i z) z₀ = ∑ i ∈ s, resAt (F i) z₀ :=
   laurentCoeffAt_fun_sum hF (-1)
 
+/--
+@isnad1 id=eq.0h1v.s4.df248d550e3b from=translated src=- shape=20ee5c8f vocab=2b824e75
+-/
 theorem resAt_zero_fun : resAt (fun _ => (0 : ℂ)) z₀ = 0 :=
   laurentCoeffAt_zero_fun (-1)
 
+/--
+@isnad1 id=eq.1h2v.s5.ab2a2ed7a2de from=translated src=- shape=64e000da vocab=0780a67c
+-/
 @[simp] theorem resAt_of_analyticAt (hf : AnalyticAt ℂ f z₀) : resAt f z₀ = 0 := by
   rw [resAt, laurentCoeffAt_of_analyticAt hf]
   norm_num
 
+/--
+@isnad1 id=eq.1h2v.s6.97d91d24b73a from=translated src=- shape=547e9d9a vocab=2a62514d
+-/
 theorem resAt_of_order_nonneg (h : 0 ≤ meromorphicOrderAt f z₀) : resAt f z₀ = 0 := by
   apply laurentCoeffAt_eq_zero_of_lt_order
   calc ((-1 : ℤ) : WithTop ℤ) < ((0 : ℤ) : WithTop ℤ) := by exact_mod_cast (by omega : (-1:ℤ) < 0)
     _ ≤ meromorphicOrderAt f z₀ := by exact_mod_cast h
 
+/--
+@isnad1 id=eq.0h2v.s6.926c5148ce2c from=translated src=- shape=ba87e668 vocab=0a21a401
+-/
 @[simp] theorem resAt_zpow_monomial (m : ℤ) :
     resAt (fun z => (z - z₀) ^ m) z₀ = if m = -1 then 1 else 0 := by
   change laurentCoeffAt (fun z => (z - z₀) ^ m) z₀ (-1) = _
   rw [laurentCoeffAt_zpow_monomial]
   split_ifs <;> first | rfl | omega
 
+/--
+@isnad1 id=eq.0h1v.s4.24aefea90715 from=translated src=- shape=2de97c6c vocab=9d120afc
+-/
 @[simp] theorem resAt_sub_inv : resAt (fun z => (z - z₀)⁻¹) z₀ = 1 := by
   have hfun : (fun z => (z - z₀)⁻¹) = fun z => (z - z₀) ^ (-1 : ℤ) := by
     funext z; rw [zpow_neg_one]
@@ -95,14 +131,18 @@ theorem resAt_of_order_nonneg (h : 0 ≤ meromorphicOrderAt f z₀) : resAt f z�
 
 /-- Derivative of a monomial factor, in closed form and UNCONDITIONALLY (no nonvanishing side
 condition needed — both sides are the mathlib `deriv`/`zpow` junk values, and they agree even
-at `z = z₀`). The workhorse for `resAt_deriv`. -/
+at `z = z₀`). The workhorse for `resAt_deriv`.
+@isnad1 id=eq.0h3v.s6.a0aac739a53f from=translated src=- shape=fe9616fb vocab=3d79ec60
+-/
 theorem deriv_sub_zpow (z₀ : ℂ) (m : ℤ) (z : ℂ) :
     deriv (fun w => (w - z₀) ^ m) z = (m : ℂ) * (z - z₀) ^ (m - 1) := by
   have h1 := deriv_comp_sub_const (fun v : ℂ => v ^ m) z₀ z
   rwa [deriv_zpow] at h1
 
 /-- Residue of a derivative vanishes (Serre/Abel bookkeeping; the `k ≤ -2` engine of
-change-of-variables). -/
+change-of-variables).
+@isnad1 id=eq.1h2v.s6.a25722d3966a from=translated src=- shape=8338d548 vocab=13a62d08
+-/
 theorem MeromorphicAt.resAt_deriv (hf : MeromorphicAt f z₀) : resAt (deriv f) z₀ = 0 := by
   obtain ⟨r, hr, _, hdecomp⟩ := MeromorphicAt.exists_principalPart_add_analyticAt hf
   have hderivEq : deriv f =ᶠ[𝓝[≠] z₀] deriv (fun z => principalPartAt f z₀ z + r z) :=
@@ -145,7 +185,9 @@ theorem MeromorphicAt.resAt_deriv (hf : MeromorphicAt f z₀) : resAt (deriv f) 
   ring
 
 /-- Log-derivative residue = order (THE argument-principle atom; meromorphic-trace input).
-Junk-robust: no order hypothesis (order `⊤` gives `0 = untop₀ ⊤`). -/
+Junk-robust: no order hypothesis (order `⊤` gives `0 = untop₀ ⊤`).
+@isnad1 id=eq.1h2v.s6.f428a28a6d34 from=translated src=- shape=a757b6fd vocab=6e689433
+-/
 theorem MeromorphicAt.resAt_deriv_div (hf : MeromorphicAt f z₀) :
     resAt (fun z => deriv f z / f z) z₀ = ((meromorphicOrderAt f z₀).untop₀ : ℂ) := by
   by_cases h₂ : meromorphicOrderAt f z₀ = ⊤
@@ -197,13 +239,17 @@ theorem MeromorphicAt.resAt_deriv_div (hf : MeromorphicAt f z₀) :
     rw [hterm1, hterm2, add_zero]
 
 /-- Multiplying by `(· - z₀) ^ m` shifts the residue (special case of `laurentCoeffAt_zpow_mul`
-at `k = -1`). -/
+at `k = -1`).
+@isnad1 id=eq.1h3v.s6.624d542a6414 from=translated src=- shape=abaec929 vocab=1e083dfb
+-/
 theorem resAt_zpow_mul (hg : MeromorphicAt g z₀) (m : ℤ) :
     resAt (fun z => (z - z₀) ^ m * g z) z₀ = laurentCoeffAt g z₀ (-1 - m) :=
   laurentCoeffAt_zpow_mul hg m (-1)
 
 /-- Serre-pairing atom, tail form (Miranda VI.3 eq. shape `Σ c_n a_{−1−n}`): residue of an
-explicit Laurent tail times a meromorphic germ. -/
+explicit Laurent tail times a meromorphic germ.
+@isnad1 id=eq.1h4v.s6.922ebc8a2d7d from=translated src=- shape=68ec1379 vocab=92ec9f00
+-/
 theorem resAt_tail_mul {c : ℤ → ℂ} {s : Finset ℤ} (hg : MeromorphicAt g z₀) :
     resAt (fun z => (∑ k ∈ s, c k * (z - z₀) ^ k) * g z) z₀
       = ∑ k ∈ s, c k * laurentCoeffAt g z₀ (-1 - k) := by
@@ -217,7 +263,9 @@ theorem resAt_tail_mul {c : ℤ → ℂ} {s : Finset ℤ} (hg : MeromorphicAt g 
 
 /-- Residue of `h · (· - z₀) ^ m` for `h` analytic: computed by a single Taylor coefficient
 of `h` (both cases — `m ≤ -1` genuinely picks it out, `m ≥ 0` gives an analytic product and `0`,
-uniformly via the `if`). -/
+uniformly via the `if`).
+@isnad1 id=eq.1h3v.s7.3e1f5196320d from=translated src=- shape=4ba106e2 vocab=6f90343a
+-/
 theorem resAt_analyticAt_mul_zpow (hh : AnalyticAt ℂ h z₀) (m : ℤ) :
     resAt (fun z => h z * (z - z₀) ^ m) z₀
       = if 0 ≤ -1 - m then taylorCoeffAt h z₀ (-1 - m).toNat else 0 := by

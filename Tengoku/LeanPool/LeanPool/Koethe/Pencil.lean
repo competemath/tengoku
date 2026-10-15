@@ -41,6 +41,9 @@ namespace Pencil
 
 variable {k : Type*} [Field k] {d : ℕ}
 
+/--
+@isnad1 id=eq.2h4v.s6.bda488b8f66d from=translated src=- shape=c17b8db6 vocab=bb14faa2
+-/
 @[ext] theorem ext {P Q : Pencil k d}
     (hc : P.scalar = Q.scalar) (hl : P.linear = Q.linear) : P = Q := by
   cases P
@@ -73,8 +76,14 @@ def wordProd (P : Pencil k d) (w : List (Triple k)) :
     Matrix (Fin (d + 1)) (Fin (d + 1)) (Polynomial k) :=
   (w.map P.eval).prod
 
+/--
+@isnad1 id=eq.0h3v.s7.c0b26946a1b4 from=translated src=- shape=aed5356f vocab=9187b2ef
+-/
 @[simp] theorem wordProd_nil (P : Pencil k d) : P.wordProd [] = 1 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.921537e9fd77 from=translated src=- shape=7f9a070c vocab=5117b31e
+-/
 @[simp] theorem wordProd_append (P : Pencil k d) (u w : List (Triple k)) :
     P.wordProd (u ++ w) = P.wordProd u * P.wordProd w := by
   simp [wordProd]

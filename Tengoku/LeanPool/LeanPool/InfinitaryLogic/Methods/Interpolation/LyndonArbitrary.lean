@@ -54,7 +54,9 @@ occurrences, and whose **negative** ones lie in the intersection of the roots' n
 occurrences.
 
 The relation-polarity / logical-equality form of López–Escobar 1965, Theorem 4.1: clause (.4) in
-full, with clause (.3)'s equality-occurrence condition deliberately not claimed. -/
+full, with clause (.3)'s equality-occurrence condition deliberately not claimed.
+@isnad1 id=ex.1h3v.s7.06bd218175e6 from=translated src=- shape=59155f1b vocab=817524a2
+-/
 theorem lyndon_interpolation (r₁ r₂ : L.Sentenceω) (h : Sentenceω.Entails r₁ r₂) :
     ∃ θ : L.Sentenceω,
       θ.functionsIn ⊆ r₁.functionsIn ∩ r₂.functionsIn ∧

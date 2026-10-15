@@ -53,7 +53,9 @@ instance : PathConnectedSpace X := .of_locallyPathConnectedSpace
 
 /-- Basepoint-independence of the period subgroup: for any based loop `γ` at any point `x` (not
 just at `periodSubgroup`'s defining basepoint), `periodVector (basis X) γ` still lies in
-`periodSubgroup X`, via conjugation by a connecting path (`RS.period_conj`). -/
+`periodSubgroup X`, via conjugation by a connecting path (`RS.period_conj`).
+@isnad1 id=mem.0h3v.s7.9043943361c2 from=translated src=- shape=aba302e1 vocab=311e437f
+-/
 theorem RS.periodVector_mem_periodSubgroup {x : X} (γ : Path x x) :
     RS.periodVector (RS.basis X) γ ∈ RS.periodSubgroup X := by
   set x₀ := Classical.arbitrary X
@@ -77,7 +79,9 @@ noncomputable def ofCurve (P : X) : X → Jacobian X := fun x =>
     (fun i => RS.pathIntegral (PathConnectedSpace.somePath P x) (RS.basis X i)))
 
 /-- `ofCurve` computed along *any* path `σ : Path P x`, not just the canonical
-`PathConnectedSpace.somePath` — the any-path recipe, and the source of well-definedness. -/
+`PathConnectedSpace.somePath` — the any-path recipe, and the source of well-definedness.
+@isnad1 id=eq.0h4v.s13.52a0482ffc16 from=translated src=- shape=218ec304 vocab=01e7841a
+-/
 theorem ofCurve_eq_of_path (P x : X) (σ : Path P x) :
     ofCurve P x = ULift.up (QuotientAddGroup.mk (fun i => RS.pathIntegral σ (RS.basis X i))) := by
   change ULift.up (QuotientAddGroup.mk
@@ -100,6 +104,9 @@ theorem ofCurve_eq_of_path (P x : X) (σ : Path P x) :
   exact (RS.periodSubgroup X).topologicalClosure.neg_mem
     (AddSubgroup.le_topologicalClosure _ hmem)
 
+/--
+@isnad1 id=eq.0h2v.s8.97701529a021 from=translated src=- shape=0effa0c8 vocab=e07e4f0b
+-/
 @[simp] theorem ofCurve_self (P : X) : ofCurve P P = 0 := by
   rw [ofCurve_eq_of_path P P (Path.refl P)]
   have hzero : (fun i => RS.pathIntegral (Path.refl P) (RS.basis X i)) = (0 : Fin (genus X) → ℂ) :=
