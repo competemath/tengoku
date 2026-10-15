@@ -109,14 +109,23 @@ class Shape(unittest.TestCase):
         self.assertLess(run.index(".lake/.base-missing"), run.index("scripts/lake_cache.py diff"), "decided before the diff is taken")
 
     def test_the_nightlys_first_walk_of_a_tree_built_without_the_artifact_cache_fits_its_cap(self):
-        """The first walk caches every module's outputs: 14 min for 19,000 modules, more than 20 for 24,700. The first nightly on the delta store died on a
-        20-minute cap. Every later walk takes seconds, so the cap is generous (at least an hour) and stays inside the job's own timeout."""
+        """The first walk caches every module's outputs: 14 min for 19,000 modules, more than 20 for 24,700 (the first nightly on the delta store died on a
+        20-minute cap); every later walk takes seconds. So the cap is generous (at least an hour), and it must fit in what a build that FINISHES late leaves of
+        the job (CodeRabbit, #569): the restore and seed before the build (about 20 min), the longest completed build seen (200 min: the 2026-10-13 nightly
+        took 234 min in all, restore included), the walk, then the save and the pack (about 25 min), inside the job's own timeout, which GitHub
+        caps at 360."""
         wf = yaml.safe_load(BUILD.read_text(encoding="utf-8"))
         job = wf["jobs"]["build"]
         walk = step(job, "The tree's mappings")
         cap = int(re.search(r"timeout (\d+)m lake build Tengoku\.All -o base\.jsonl", walk["run"]).group(1))
+        before, longest_completed_build, after = 20, 200, 25
         self.assertGreaterEqual(cap, 60, "a cap under an hour fails on the first walk of a tree built before the artifact cache")
-        self.assertLess(cap, job["timeout-minutes"] - 100, "the walk must leave the build and the save room inside the job's own timeout")
+        self.assertLessEqual(job["timeout-minutes"], 360, "GitHub's maximum for a hosted runner")
+        self.assertLessEqual(
+            before + longest_completed_build + cap + after,
+            job["timeout-minutes"],
+            "a build that finishes late, then the walk and the save, must fit in the job's timeout",
+        )
 
     def test_the_nightly_publishes_its_mappings_and_opens_the_days_delta_release(self):
         b = BUILD.read_text(encoding="utf-8")

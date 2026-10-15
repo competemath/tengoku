@@ -47,7 +47,7 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 345
+    timeout-minutes: 360   # GitHub's maximum for a hosted runner
     # This job compiles the tree, so it holds no write access at all, and the compile runs without network:
     # publishing is the `publish` job's, re-dispatching the `relaunch` job's.
     permissions: { contents: read }
@@ -148,13 +148,13 @@ jobs:
       # (scripts/lake_cache.py). A walk of the finished tree, nothing compiles; sealed like the build. On a tree that was built before the artifact
       # cache was on, the first walk has to cache every module's outputs: 14 min for the sandbox's 19,000 modules, over 20 for this tree's 24,700 (the
       # first nightly on the delta store died here on a 20-minute cap, 2026-10-15). Every walk after that takes seconds (the sandbox's: 15 s), so the cap
-      # is generous: it only ever matters once.
+      # is generous: it only ever matters once. It is also what a build that finishes late has left of the job: see the pin in test_queue_deltas.py.
       - name: The tree's mappings, for the queue's deltas
         if: steps.build.outputs.complete == 'true'
         run: |
           set -o pipefail
           sudo unshare --net --pid --fork --mount-proc runuser -u "$(id -un)" -- env -i HOME="$HOME" PATH="$HOME/.elan/bin:/usr/local/bin:/usr/bin:/bin" LANG=C.UTF-8 LAKE_ARTIFACT_CACHE=true LAKE_CACHE_DIR="$PWD/.lake/cache" \
-            timeout 120m lake build Tengoku.All -o base.jsonl 2>&1 | tail -1
+            timeout 90m lake build Tengoku.All -o base.jsonl 2>&1 | tail -1
           echo "base mappings: $(wc -l < base.jsonl) lines, $(du -h base.jsonl | cut -f1)"
       - name: Save partial/complete build
         if: always()
