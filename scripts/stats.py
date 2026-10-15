@@ -19,6 +19,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 TIERS = ("trusted", "staging", "tentative")
+ATTRIBUTES_RE = re.compile(r"^\s*(?:@\[[^\]]*\]\s*)+")
 PROMOTED_RE = re.compile(rb'"promoted_at"\s*:\s*"([^"]+)"')
 
 
@@ -28,6 +29,88 @@ def count_lines(path: Path) -> int:
         for chunk in iter(lambda: f.read(1 << 20), b""):
             n += chunk.count(b"\n")
     return n
+
+
+def statement_key(record: dict) -> str | None:
+    """A record's statement without its leading attributes and with its whitespace collapsed: the identity of a theorem across
+    tiers. A bundle's manifest line and the harvester's record hold the same statement under different names (the manifest's is
+    fully qualified); a promoted record keeps its name but the trusted copy may drop an attribute."""
+    st = record.get("statement")
+    if not isinstance(st, str) or not st:
+        return None
+    return " ".join(ATTRIBUTES_RE.sub("", st).split())
+
+
+def iter_records(path: Path):
+    """The records of a JSONL file, one per newline-terminated line: the boundary count_lines uses, so that a count and a subtraction
+    from it always agree (a last line with no newline is not yet a record for either)."""
+    with path.open("rb") as f:
+        for line in f:
+            if not line.endswith(b"\n"):
+                continue
+            try:
+                r = json.loads(line)
+            except ValueError:
+                continue
+            if isinstance(r, dict):
+                yield r
+
+
+class TrustedTokens:
+    """What a library's trusted side can account for: each trusted record and each manifest line is one theorem, and it can account
+    for ONE tentative record, found by its name (a promoted record keeps it) or by its statement (a manifest line's name is fully
+    qualified, the harvester's is bare). Taking a token when it matches means a theorem repeated in a file, or the same statement in
+    two namespaces, is never removed more often than the tree actually holds it."""
+
+    def __init__(self) -> None:
+        self.by_name: dict[str, list[int]] = {}
+        self.by_key: dict[str, list[int]] = {}
+        self.used: list[bool] = []
+
+    def add(self, name: str | None, key: str | None) -> None:
+        i = len(self.used)
+        self.used.append(False)
+        if name:
+            self.by_name.setdefault(name, []).append(i)
+        if key:
+            self.by_key.setdefault(key, []).append(i)
+
+    def __len__(self) -> int:
+        return len(self.used)
+
+    def take(self, ident: str | None, index: dict[str, list[int]]) -> bool:
+        pending = index.get(ident or "")
+        while pending:
+            i = pending.pop()
+            if not self.used[i]:
+                self.used[i] = True
+                return True
+        return False
+
+    def match(self, record: dict) -> bool:
+        return self.take(record.get("name"), self.by_name) or self.take(statement_key(record), self.by_key)
+
+
+def trusted_tokens(trusted: Path, manifest: Path) -> TrustedTokens:
+    tokens = TrustedTokens()
+    if trusted.exists():
+        for r in iter_records(trusted):
+            tokens.add(r["name"] if isinstance(r.get("name"), str) else None, statement_key(r))
+    if manifest.exists():
+        for r in iter_records(manifest):
+            tokens.add(None, statement_key(r))
+    return tokens
+
+
+def count_already_trusted(tentative: Path, trusted: Path, manifest: Path) -> int:
+    """How many records of a library's tentative file are theorems the tree already holds as trusted: in its intake bundle's
+    manifest, or as a promoted record. Tentative files are append-only, so a record stays when its library arrives as a bundle
+    or when it is promoted; counting it as well counted the theorem twice (56,395 records, 2026-10-15). Each trusted record or
+    manifest line accounts for at most one tentative record (TrustedTokens)."""
+    tokens = trusted_tokens(trusted, manifest)
+    if len(tokens) == 0:
+        return 0
+    return sum(1 for r in iter_records(tentative) if tokens.match(r))
 
 
 def last_promoted(path: Path) -> str | None:
@@ -40,6 +123,19 @@ def last_promoted(path: Path) -> str | None:
                 if best is None or v > best:
                     best = v
     return best
+
+
+def subtract_already_trusted(root: Path, libraries: dict[str, dict]) -> None:
+    """A tentative record of a theorem the tree already trusts is the same theorem, not a second one: take it out of the library's
+    tentative count and say how many there were."""
+    for name, lib in libraries.items():
+        tentative = root / "data" / "tentative" / f"{name}.jsonl"
+        trusted = root / "data" / "trusted" / f"{name}.jsonl"
+        manifest = root / "data" / "intake" / name / "manifest.jsonl"
+        if lib["tentative"] and tentative.exists() and (trusted.exists() or manifest.exists()):
+            dup = count_already_trusted(tentative, trusted, manifest)
+            lib["tentative"] -= dup
+            lib["tentative_already_trusted"] = dup
 
 
 def collect(root: Path) -> dict:
@@ -60,8 +156,10 @@ def collect(root: Path) -> dict:
         n = count_lines(m)
         lib["trusted"] += n
         lib["intake"] = n
+    subtract_already_trusted(root, libraries)
     totals = {t: sum(l[t] for l in libraries.values()) for t in TIERS}
     totals["all"] = sum(totals.values())
+    totals["tentative_already_trusted"] = sum(l.get("tentative_already_trusted", 0) for l in libraries.values())
     return {"totals": totals, "libraries": libraries, "library_count": len(libraries)}
 
 
