@@ -27,9 +27,15 @@ open _root_.Function
 
 variable {α : Type*} [Zero α]
 
+/--
+@isnad1 id=eq.0h1v.s4.dd0f82b68aa3 from=translated src=- shape=c4682940 vocab=93f48021
+-/
 theorem support_id : support (id : α → α) = {0}ᶜ := by
   ext; simp
 
+/--
+@isnad1 id=eq.0h1v.s5.257db8984d3f from=translated src=- shape=99d5931f vocab=8326bbea
+-/
 theorem support_id' {α : Type*} [Zero α] : support (fun x : α ↦ x) = {0}ᶜ :=
   support_id
 

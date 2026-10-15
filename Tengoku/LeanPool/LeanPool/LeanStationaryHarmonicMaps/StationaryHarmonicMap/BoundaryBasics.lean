@@ -72,7 +72,9 @@ def weakSharpCutoffDefect {n m : ℕ}
       + 2 * rho * deriv (weakBallRadialEnergy Du a) rho
 
 /-- Vanishing of the defect is exactly the signed sharp-cutoff identity at one
-radius. -/
+radius.
+@isnad1 id=iff.0h5v.s5.2285cfd53dea from=translated src=- shape=a6c0dc98 vocab=24b25f20
+-/
 theorem weakSharpCutoffRadiusIdentityAt_iff_defect_eq_zero {n m : ℕ}
     {Du : Domain n → Gradient n m} {a : Domain n} {rho : ℝ} :
     WeakSharpCutoffRadiusIdentityAt Du a rho ↔
@@ -81,7 +83,9 @@ theorem weakSharpCutoffRadiusIdentityAt_iff_defect_eq_zero {n m : ℕ}
   constructor <;> intro h <;> linarith
 
 /-- Pointwise conversion from vanishing defect to the signed sharp-cutoff radius
-identity. -/
+identity.
+@isnad1 id=weakshar.1h5v.s5.c636ef85998c from=translated src=- shape=b88f9fea vocab=24b25f20
+-/
 theorem weakSharpCutoffRadiusIdentityAt_of_defect_eq_zero {n m : ℕ}
     {Du : Domain n → Gradient n m} {a : Domain n} {rho : ℝ}
     (h : weakSharpCutoffDefect Du a rho = 0) :
@@ -109,7 +113,9 @@ def WeakSharpCutoffDistributionIdentity {n m : ℕ}
           (∫ rho : ℝ, g rho • weakSharpCutoffDefect Du a rho) = 0
 
 /-- If the sharp-cutoff defect is locally integrable and vanishes as a
-distribution on `(0, R0)`, then the sharp-cutoff radius identity holds a.e. -/
+distribution on `(0, R0)`, then the sharp-cutoff radius identity holds a.e.
+@isnad1 id=weakshar.2h5v.s6.4f2de5a99627 from=translated src=- shape=e37d74ed vocab=c8523332
+-/
 theorem weakSharpCutoffLimitIdentity_of_distribution {n m : ℕ}
     {Du : Domain n → Gradient n m} {a : Domain n} {R0 : ℝ}
     (hdefect_loc :
@@ -131,7 +137,9 @@ theorem weakSharpCutoffLimitIdentity_of_distribution {n m : ℕ}
   exact weakSharpCutoffRadiusIdentityAt_of_defect_eq_zero hzero
 
 /-- Pointwise algebra from the signed sharp-cutoff identity to the boundary
-identity. -/
+identity.
+@isnad1 id=weakboun.1h5v.s4.aabbacc4d16d from=translated src=- shape=1381b483 vocab=fc5afeea
+-/
 theorem weakBoundaryRadiusIdentityAt_of_sharpCutoff {n m : ℕ}
     {Du : Domain n → Gradient n m} {a : Domain n} {rho : ℝ}
     (h : WeakSharpCutoffRadiusIdentityAt Du a rho) :
@@ -140,7 +148,9 @@ theorem weakBoundaryRadiusIdentityAt_of_sharpCutoff {n m : ℕ}
   linarith
 
 /-- Pointwise algebra from the boundary identity back to the signed
-sharp-cutoff form. -/
+sharp-cutoff form.
+@isnad1 id=weakshar.1h5v.s4.f21b492a760d from=translated src=- shape=1381b483 vocab=fc5afeea
+-/
 theorem weakSharpCutoffRadiusIdentityAt_of_boundary {n m : ℕ}
     {Du : Domain n → Gradient n m} {a : Domain n} {rho : ℝ}
     (h : WeakBoundaryRadiusIdentityAt Du a rho) :
@@ -149,7 +159,9 @@ theorem weakSharpCutoffRadiusIdentityAt_of_boundary {n m : ℕ}
   linarith
 
 /-- The sharp-cutoff limit form is just the boundary identity with all terms
-moved across the equality. -/
+moved across the equality.
+@isnad1 id=weakboun.1h5v.s4.0791fcddaec8 from=translated src=- shape=1381b483 vocab=9793684c
+-/
 theorem weakBoundaryIdentity_of_sharpCutoffLimit {n m : ℕ}
     {Du : Domain n → Gradient n m} {a : Domain n} {R0 : ℝ}
     (hlimit : WeakSharpCutoffLimitIdentity Du a R0) :
@@ -158,7 +170,9 @@ theorem weakBoundaryIdentity_of_sharpCutoffLimit {n m : ℕ}
   exact weakBoundaryRadiusIdentityAt_of_sharpCutoff hrho
 
 /-- Conversely, the boundary identity can be written in the signed
-sharp-cutoff-limit form used by the approximation argument. -/
+sharp-cutoff-limit form used by the approximation argument.
+@isnad1 id=weakshar.1h5v.s4.fb06960f90b5 from=translated src=- shape=1381b483 vocab=9793684c
+-/
 theorem weakSharpCutoffLimit_of_boundaryIdentity {n m : ℕ}
     {Du : Domain n → Gradient n m} {a : Domain n} {R0 : ℝ}
     (hboundary : WeakBoundaryIdentity Du a R0) :
@@ -167,7 +181,9 @@ theorem weakSharpCutoffLimit_of_boundaryIdentity {n m : ℕ}
   exact weakSharpCutoffRadiusIdentityAt_of_boundary hrho
 
 /-- Algebraic equivalence between the sharp-cutoff limit identity and the weak
-boundary identity. -/
+boundary identity.
+@isnad1 id=iff.0h5v.s4.77d3acc4a416 from=translated src=- shape=c117b721 vocab=9793684c
+-/
 theorem weakSharpCutoffLimitIdentity_iff_boundaryIdentity {n m : ℕ}
     {Du : Domain n → Gradient n m} {a : Domain n} {R0 : ℝ} :
     WeakSharpCutoffLimitIdentity Du a R0 ↔ WeakBoundaryIdentity Du a R0 :=
@@ -271,7 +287,9 @@ def ScalarCutoffsConstNearOrigin (R0 : ℝ) : Prop :=
             ∃ ε : ℝ, 0 < ε ∧ ∀ t : ℝ, |t| < ε → phi t = phi 0
 
 /-- Flatness at the origin discharges the radial vector-field `C¹` regularity
-ingredient. -/
+ingredient.
+@isnad1 id=radialve.1h2v.s3.34ed78e613a7 from=translated src=- shape=0fa2ecf3 vocab=5b19dc3f
+-/
 theorem radialVectorFieldContDiffForCutoffs_of_constNearOrigin {n : ℕ} {R0 : ℝ}
     (hflat : ScalarCutoffsConstNearOrigin R0) :
     RadialVectorFieldContDiffForCutoffs n R0 := by
@@ -282,7 +300,9 @@ theorem radialVectorFieldContDiffForCutoffs_of_constNearOrigin {n : ℕ} {R0 : �
 
 /-- Weak `W^{1,2}_{loc}` stationarity gives the scalar-cutoff radial identity
 for every cutoff in the flat-at-origin class used by the sharp-cutoff
-argument. -/
+argument.
+@isnad1 id=weakradi.5h6v.s7.c906839bfa18 from=translated src=- shape=d89f513b vocab=c38871f5
+-/
 theorem weak_radial_scalar_cutoff_identity_from_stationarity_of_W12Loc
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -307,7 +327,9 @@ theorem weak_radial_scalar_cutoff_identity_from_stationarity_of_W12Loc
 /-- Weak `W^{1,2}_{loc}` stationarity gives the scalar-cutoff radial identity
 once the radial vector fields for the scalar cutoffs are known to be `C¹`.
 This avoids the false global assumption that every scalar cutoff is flat near
-the origin. -/
+the origin.
+@isnad1 id=weakradi.5h6v.s7.c4e47ca10c7d from=translated src=- shape=fbaaf4a7 vocab=f81b1401
+-/
 theorem weak_radial_scalar_cutoff_identity_from_stationarity_of_W12Loc_vectorFieldContDiff
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -349,6 +371,9 @@ def WeakRadialCoareaIntegralFormula {n m : ℕ}
             (∫ rho in Ioo (0 : ℝ) R0,
                 weakRadialOneDimensionalRhsIntegrand Du phi rho)
 
+/--
+@isnad1 id=aestrong.1h4v.s5.4899039d9706 from=translated src=- shape=07a8b191 vocab=71b523ec
+-/
 theorem thetaFactor_indicator_aestronglyMeasurable {n : ℕ} {R0 s r : ℝ}
     (hs : 0 < s) :
     AEStronglyMeasurable
@@ -367,6 +392,9 @@ theorem thetaFactor_indicator_aestronglyMeasurable {n : ℕ} {R0 s r : ℝ}
     hcont.aestronglyMeasurable_of_subset_isCompact isCompact_Icc hmeas hsubset
   simpa [radiusIntervalMeasure, Measure.restrict_restrict measurableSet_Ioo] using htheta
 
+/--
+@isnad1 id=radiuswe.1h4v.s5.cb4655257eb1 from=translated src=- shape=de083285 vocab=90104498
+-/
 theorem radiusWeightOn_indicator_thetaFactor {n : ℕ} {R0 s r : ℝ}
     (hs : 0 < s) :
     RadiusWeightOn R0 ((Ioo s r).indicator (thetaFactor n)) := by
@@ -440,6 +468,9 @@ def WeakRadiusIntegralFormulasForWeights {n m : ℕ}
   WeakEnergyRadiusIntegralFormulaForWeights Du R0 ∧
     WeakRadialEnergyRadiusIntegralFormulaForWeights Du R0
 
+/--
+@isnad1 id=weakener.1h4v.s4.106f5f4e5fe8 from=translated src=- shape=cc25598c vocab=f185b7d6
+-/
 theorem weakEnergyRadiusIntegralFormulaForWeights_of_unrestricted {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (henergy : WeakEnergyRadiusIntegralFormula Du R0) :
@@ -447,6 +478,9 @@ theorem weakEnergyRadiusIntegralFormulaForWeights_of_unrestricted {n m : ℕ}
   intro c _hc
   exact henergy c
 
+/--
+@isnad1 id=weakradi.1h4v.s4.b7a3469330a2 from=translated src=- shape=cc25598c vocab=d0ec2bcc
+-/
 theorem weakRadialEnergyRadiusIntegralFormulaForWeights_of_unrestricted {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hradial : WeakRadialEnergyRadiusIntegralFormula Du R0) :
@@ -454,6 +488,9 @@ theorem weakRadialEnergyRadiusIntegralFormulaForWeights_of_unrestricted {n m : �
   intro c _hc
   exact hradial c
 
+/--
+@isnad1 id=weakradi.1h4v.s4.f72e990af844 from=translated src=- shape=cc25598c vocab=adc17ecb
+-/
 theorem weakRadiusIntegralFormulasForWeights_of_unrestricted {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hradius : WeakRadiusIntegralFormulas Du R0) :
@@ -464,7 +501,9 @@ theorem weakRadiusIntegralFormulasForWeights_of_unrestricted {n m : ℕ}
       (n := n) (m := m) (Du := Du) (R0 := R0) hradius.2⟩
 
 /-- The two standard radius-integration formulas imply the coarea integral
-formula for the radial stationarity coefficients. -/
+formula for the radial stationarity coefficients.
+@isnad1 id=weakradi.2h4v.s4.eb966d37ec41 from=translated src=- shape=8dce662f vocab=9787bfb1
+-/
 theorem weakRadialCoareaIntegralFormula_of_radiusIntegral {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (henergy : WeakEnergyRadiusIntegralFormula Du R0)
@@ -481,7 +520,9 @@ theorem weakRadialCoareaIntegralFormula_of_radiusIntegral {n m : ℕ}
 
 /-- The restricted radius-integration formulas are enough for the scalar-cutoff
 coarea step, because the two cutoff coefficients are measurable essentially
-bounded radius weights. -/
+bounded radius weights.
+@isnad1 id=weakradi.2h4v.s4.b665fe239afb from=translated src=- shape=8dce662f vocab=282565e3
+-/
 theorem weakRadialCoareaIntegralFormula_of_radiusIntegralForWeights {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (henergy : WeakEnergyRadiusIntegralFormulaForWeights Du R0)
@@ -501,7 +542,9 @@ theorem weakRadialCoareaIntegralFormula_of_radiusIntegralForWeights {n m : ℕ}
         (radiusWeightOn_rho_mul_deriv_of_contDiff_one
           (R0 := R0) hphi_cont)
 
-/-- Bundled radius-integration formulas imply the coarea integral formula. -/
+/-- Bundled radius-integration formulas imply the coarea integral formula.
+@isnad1 id=weakradi.1h4v.s4.3b426354819f from=translated src=- shape=cc25598c vocab=df6297dc
+-/
 theorem weakRadialCoareaIntegralFormula_of_radiusIntegralFormulas {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hradius : WeakRadiusIntegralFormulas Du R0) :
@@ -510,7 +553,9 @@ theorem weakRadialCoareaIntegralFormula_of_radiusIntegralFormulas {n m : ℕ}
     (n := n) (m := m) (Du := Du) (R0 := R0) hradius.1 hradius.2
 
 /-- Bundled restricted radius-integration formulas imply the scalar-cutoff
-coarea integral formula. -/
+coarea integral formula.
+@isnad1 id=weakradi.1h4v.s4.eea62f96576f from=translated src=- shape=cc25598c vocab=15410a96
+-/
 theorem weakRadialCoareaIntegralFormula_of_radiusIntegralFormulasForWeights
     {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
@@ -520,7 +565,9 @@ theorem weakRadialCoareaIntegralFormula_of_radiusIntegralFormulasForWeights
     (n := n) (m := m) (Du := Du) (R0 := R0) hradius.1 hradius.2
 
 /-- The scalar-cutoff radial stationarity identity plus the coarea/radius
-integral formula gives the one-dimensional radius identity. -/
+integral formula gives the one-dimensional radius identity.
+@isnad1 id=weakradi.2h4v.s4.f824a0996c11 from=translated src=- shape=8dce662f vocab=1d303e41
+-/
 theorem weakRadialOneDimensionalIdentity_of_scalar_cutoff_and_coarea {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hrad : WeakRadialScalarCutoffStationarityIdentity Du R0)
@@ -539,7 +586,9 @@ theorem weakRadialOneDimensionalIdentity_of_scalar_cutoff_and_coarea {n m : ℕ}
   rw [← hmain, hspace, hrhs]
 
 /-- Restricted radius-integration formulas plus the scalar-cutoff radial
-stationarity identity give the one-dimensional radius identity. -/
+stationarity identity give the one-dimensional radius identity.
+@isnad1 id=weakradi.3h4v.s5.d59506e2640f from=translated src=- shape=136e8059 vocab=98f5a422
+-/
 theorem weakRadialOneDimensionalIdentity_of_scalar_cutoff_and_radiusIntegralForWeights
     {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
@@ -553,7 +602,9 @@ theorem weakRadialOneDimensionalIdentity_of_scalar_cutoff_and_radiusIntegralForW
       (n := n) (m := m) (Du := Du) (R0 := R0) henergy hradial)
 
 /-- Vector-field regularity plus the coarea/radius-integral formula gives the
-combined coarea derivative formula used by the radial-to-boundary route. -/
+combined coarea derivative formula used by the radial-to-boundary route.
+@isnad1 id=weakradi.2h4v.s4.9cc4b879039b from=translated src=- shape=97607afa vocab=ed3a92af
+-/
 theorem weakRadialCoareaDerivativeFormula_of_contDiff_and_integral {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hX : RadialVectorFieldContDiffForCutoffs n R0)
@@ -571,7 +622,9 @@ def WeakRadialCoareaDerivativeStep {n m : ℕ}
     WeakRadialOneDimensionalIdentity Du R0
 
 /-- A concrete radial coarea/radius-derivative formula discharges the abstract
-coarea step. -/
+coarea step.
+@isnad1 id=weakradi.1h4v.s4.ecbc45ad7ed6 from=translated src=- shape=cc25598c vocab=cc5a0752
+-/
 theorem weakRadialCoareaDerivativeStep_of_formula {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hformula : WeakRadialCoareaDerivativeFormula Du R0) :

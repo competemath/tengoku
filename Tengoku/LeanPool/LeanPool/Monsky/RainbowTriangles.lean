@@ -61,6 +61,9 @@ def coloring : (X : ℝ²) → Color
 -- Namely, for a given color they return inequalities describing the region with this color.
 -- They will be of use in the proof of the lemma on the boundedness of the determinant.
 
+/--
+@isnad1 id=and.1h3v.s8.7e2f5338eb9f from=translated src=- shape=d26803ee vocab=07d07dcc
+-/
 lemma green_region (X : ℝ²) :
     (coloring v X = Color.Green) → v (X 0) < v (X 1) ∧ v (X 1) ≥ v (1) := by
   intro h
@@ -68,12 +71,18 @@ lemma green_region (X : ℝ²) :
   split_ifs at h with h1 h2
   simp_all
 
+/--
+@isnad1 id=and.1h3v.s8.00a83c7a109f from=translated src=- shape=4984fd43 vocab=4764e851
+-/
 lemma red_region (X : ℝ²) : (coloring v X = Color.Red) → v (X 0) < v 1 ∧ v (X 1) < v 1 := by
   intro h
   simp only [coloring, Fin.isValue, map_one, ge_iff_le] at h
   split_ifs at h with h1
   simp_all
 
+/--
+@isnad1 id=and.1h3v.s8.1a50901bc3c1 from=translated src=- shape=85ae42cb vocab=ae3bd32d
+-/
 lemma blue_region (X : ℝ²) : (coloring v X = Color.Blue) → v (X 0) ≥ v (1) ∧ v (X 0) ≥ v (X 1) := by
   intro h
   simp only [coloring, Fin.isValue, map_one, ge_iff_le] at h
@@ -110,6 +119,9 @@ def rainbowTriangle (T : Fin 3 → ℝ²) : Prop := Function.Surjective (colorin
 -- These are just bounds on valuations of terms that appear in the
 -- determinant expression that captures the area of a triangle.
 
+/--
+@isnad1 id=and.3h5v.s11.002a3ee6f8ef from=translated src=- shape=4b9cfc32 vocab=85972209
+-/
 lemma valuation_bounds
   (X Y Z : ℝ²)
   (hb : coloring v X = Color.Blue)
@@ -169,6 +181,9 @@ lemma valuation_bounds
 --   ring
 
 -- Valuation of a sum of six variables is equal to the valuation of the largest of them
+/--
+@isnad1 id=eq.5h8v.s8.2e90fa38a7ef from=translated src=- shape=f4b0022a vocab=4dd2d3bb
+-/
 lemma valuation_max
   {A a₁ a₂ a₃ a₄ a₅ : ℝ}
   (h1 : v (A) > v (a₁))
@@ -190,6 +205,9 @@ lemma valuation_max
 
 -- This is the first main lemma of Chapter 22
 
+/--
+@isnad1 id=le.3h5v.s10.1336c716101a from=translated src=- shape=3c04695b vocab=885aceea
+-/
 lemma bounded_det
   (X Y Z : ℝ²)
   (hb : coloring v X = Color.Blue)
@@ -207,9 +225,15 @@ lemma bounded_det
 
 -- We now prove that any line segment in ℝ² contains at most 2 colors.
 
+/--
+@isnad1 id=eq.0h2v.s5.57325a0b1e98 from=translated src=- shape=94bb428b vocab=b7133261
+-/
 lemma det_triv_triangle (X Y : ℝ²) : det (fun | 0 => X | 1 => X | 2 => Y) = 0 := by
   simp [det]
 
+/--
+@isnad1 id=eq.0h1v.s6.a7c51a8b1338 from=translated src=- shape=badbe138 vocab=835cab55
+-/
 lemma Lhull_equals_Thull (L : Segment) :
   closedHull L = closedHull (fun | 0 => L 0 | 1 => L 0 | 2 => L 1: Fin 3 → ℝ²) := by
   ext x
@@ -243,10 +267,16 @@ def bSign : Fin 6 → ℝ := fun
   | 0 => 1 | 1 => -1 | 2 => -1 | 3 => 1 | 4 => 1 | 5 => -1
 
 -- None of the signs in determinant is 0
+/--
+@isnad1 id=ne.0h1v.s4.665946be298e from=translated src=- shape=9a4b31c0 vocab=cc2db535
+-/
 lemma sign_non_zero : ∀ b, bSign b ≠ 0 := by
   intro b; fin_cases b <;> simp [bSign]
 
 -- Check that σ accounts for all 6 terms in the determinant
+/--
+@isnad1 id=ex.3h3v.s6.a105464b3f5f from=translated src=- shape=5b3ae70e vocab=f3a4a53c
+-/
 lemma fun_in_bijections :
     ∀ {i j k : Fin 3}, i ≠ j → i ≠ k → j ≠ k →
       ∃ b, σ b = (fun | 0 => i | 1 => j | 2 => k) := by
@@ -254,11 +284,17 @@ lemma fun_in_bijections :
 
 -- Area of the triangle may only change a sign
 -- if the vertices are supplied in a different order b
+/--
+@isnad1 id=eq.0h2v.s5.898ffaeeb3cc from=translated src=- shape=63194c32 vocab=8841738a
+-/
 lemma det_perm {T : Triangle} (b : Fin 6) :
     det T = (bSign b) * det (T ∘ (σ b)) := by
   fin_cases b <;> (simp_all [det, bSign, σ]; try ring)
 
 -- If the determinant is 0 then for any combinations of rows it's also 0
+/--
+@isnad1 id=eq.1h4v.s6.dae1d2102df4 from=translated src=- shape=73e831a8 vocab=b7133261
+-/
 lemma det_zero_perm {T : Triangle} (hT : det T = 0) :
     ∀ i j k, det (fun | 0 => T i | 1 => T j | 2 => T k) = 0 := by
   intro i j k
@@ -282,6 +318,9 @@ lemma det_zero_perm {T : Triangle} (hT : det T = 0) :
 -- lemma det_zero_12 {T : Triangle} (h12 : T 1 = T 2) :
 --     det T = 0 := by simp [det, h12]; ring
 
+/--
+@isnad1 id=eq.1h5v.s8.1b1dbcd7d82a from=translated src=- shape=83ac8a7a vocab=5991add8
+-/
 lemma linearCombinationDetMiddle {n : ℕ} {x z : ℝ²} {P : Fin n → ℝ²} {α : Fin n → ℝ}
     (hα : ∑ i, α i = 1) :
   det (fun | 0 => x | 1 => (∑ i, α i • P i) | 2 => z) =
@@ -295,6 +334,9 @@ lemma linearCombinationDetMiddle {n : ℕ} {x z : ℝ²} {P : Fin n → ℝ²} {
     simp only [bSign, σ, Fin.isValue, one_mul];
     congr; funext k; fin_cases k <;> rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.3e764ecd3c11 from=translated src=- shape=d0792407 vocab=5991add8
+-/
 lemma linearCombinationDetFirst {n : ℕ} {y z : ℝ²} {P : Fin n → ℝ²} {α : Fin n → ℝ}
     (hα : ∑ i, α i = 1) :
   det (fun | 0 => (∑ i, α i • P i) | 1 => y | 2 => z) =
@@ -308,6 +350,9 @@ lemma linearCombinationDetFirst {n : ℕ} {y z : ℝ²} {P : Fin n → ℝ²} {�
     simp only [bSign, σ, Fin.isValue, one_mul];
     congr; funext k; fin_cases k <;> rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.2cc7716f162b from=translated src=- shape=c16a5f79 vocab=5991add8
+-/
 lemma linearCombinationDetLast' {n : ℕ} {x y : ℝ²} {P : Fin n → ℝ²} {α : Fin n → ℝ}
     (hα : ∑ i, α i = 1) :
   det (fun | 0 => x | 1 => y | 2 => (∑ i, α i • P i)) =
@@ -317,6 +362,9 @@ lemma linearCombinationDetLast' {n : ℕ} {x y : ℝ²} {P : Fin n → ℝ²} {�
     add_left_inj]
   congr <;> (ext; ring)
 
+/--
+@isnad1 id=eq.4h4v.s7.53738147a446 from=translated src=- shape=44ed486c vocab=a0dc35b7
+-/
 lemma det_0_triangle_imp_triv {T : Triangle} (hT : det T = 0) :
     ∀ x y z, x ∈ closedHull T → y ∈ closedHull T → z ∈ closedHull T →
       det (fun | 0 => x | 1 => y | 2 => z) = 0 := by
@@ -338,6 +386,9 @@ lemma det_0_triangle_imp_triv {T : Triangle} (hT : det T = 0) :
   right
   exact det_zero_perm hT _ _ _
 
+/--
+@isnad1 id=ex.0h3v.s6.fe6edc67b252 from=translated src=- shape=bc0a56dd vocab=e1f9d974
+-/
 theorem no_Color_lines
   (L : Segment)
   {Γ₀ : Type}
@@ -373,24 +424,42 @@ theorem no_Color_lines
 
 -- We show next that the coloring of (0,0) is red, (0,1) is green and (1,0) is blue.
 
+/--
+@isnad1 id=eq.0h2v.s6.6dad99b4e02e from=translated src=- shape=3aba8f93 vocab=49faf167
+-/
 lemma red00 : coloring v !₂[0,0] = Color.Red := by
   simp [coloring, Fin.isValue, map_one]
 
+/--
+@isnad1 id=eq.0h2v.s6.1b059f2eeea9 from=translated src=- shape=3aba8f93 vocab=512fc4d2
+-/
 lemma green01 : coloring v !₂[0,1] = Color.Green := by
   simp [coloring, Fin.isValue, map_one, ge_iff_le]
 
+/--
+@isnad1 id=eq.0h2v.s6.5d528b3dac90 from=translated src=- shape=3aba8f93 vocab=7ff73428
+-/
 lemma blue10 : coloring v !₂[1,0] = Color.Blue := by
   simp [coloring, Fin.isValue, map_one, ge_iff_le]
 
+/--
+@isnad1 id=eq.0h2v.s6.f030a11798d5 from=translated src=- shape=3aba8f93 vocab=7ff73428
+-/
 lemma blue11 : coloring v !₂[1,1] = Color.Blue := by
   simp [coloring]
 
 --TODO: Show that the area of a Color triangle cannot be zero or 1/n for n odd (here we will
 -- need the fact that v(1/2) > 1).
 
+/--
+@isnad1 id=ex.1h4v.s5.1feaafc72907 from=translated src=- shape=8847c16b vocab=1269b265
+-/
 lemma get_color_of_rainbowTriangle (T : Fin 3 → ℝ²) (rt : rainbowTriangle v T) (c : Color) :
   ∃ i : Fin 3, coloring v (T i) = c := rt c
 
+/--
+@isnad1 id=le.1h3v.s6.ed8af05e89c0 from=translated src=- shape=0626a09c vocab=16689e59
+-/
 theorem bounded_det_coord_free (T : Triangle) (rt : rainbowTriangle v T) :
 v (det T) ≥ 1 := by
   have hr: ∃ z : Fin 3, coloring v (T z) = Color.Red := by
@@ -429,6 +498,9 @@ v (det T) ≥ 1 := by
     fin_cases b <;> simp [bSign, v.map_one]
   simp_all
 
+/--
+@isnad1 id=not.2h3v.s7.7f1b0a7124ff from=translated src=- shape=0e85c240 vocab=78f68853
+-/
 theorem no_odd_rainbowTriangle
   (T : Fin 3 → ℝ²)
   (rt : rainbowTriangle v T)

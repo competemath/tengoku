@@ -66,13 +66,18 @@ docstring written in increasing order so that no `ℕ` subtraction occurs. -/
 noncomputable def partFactor (j : ℕ) (s : ℝ) : ℝ :=
   (s + j - 1) ^ j / ((Nat.factorial j : ℝ) * ∏ i ∈ range j, (s - j + 1 + i))
 
+/--
+@isnad1 id=lt.1h2v.s6.fba2eab45ffe from=translated src=- shape=4084d3c6 vocab=45b98d65
+-/
 lemma partFactor_denom_pos {j : ℕ} {s : ℝ} (hs : (j : ℝ) ≤ s) :
     0 < ∏ i ∈ range j, (s - j + 1 + i) := by
   refine Finset.prod_pos fun i _ => ?_
   have : (0 : ℝ) ≤ (i : ℝ) := Nat.cast_nonneg i
   linarith
 
-/-- `∏_{i<n} (i+1) = n!`, over `ℝ`. -/
+/-- `∏_{i<n} (i+1) = n!`, over `ℝ`.
+@isnad1 id=eq.0h1v.s5.3a484bd652c0 from=translated src=- shape=baf562d5 vocab=090ce753
+-/
 lemma prod_range_add_one_cast (n : ℕ) : ∏ i ∈ range n, ((i : ℝ) + 1) = (Nat.factorial n : ℝ) := by
   induction n with
   | zero => simp
@@ -82,7 +87,9 @@ lemma prod_range_add_one_cast (n : ℕ) : ∏ i ∈ range n, ((i : ℝ) + 1) = (
     ring
 
 /-- The maximum, at `s = j` (`σ = j`, `c = 0`): `ρ(j,j)|_{c=0} = (2j−1)^j/(j!)²`, which is
-`diagFactor j`. -/
+`diagFactor j`.
+@isnad1 id=eq.0h1v.s6.eb8484524f38 from=translated src=- shape=712b90f9 vocab=6c3c4173
+-/
 lemma partFactor_at_diag (j : ℕ) : partFactor j (j : ℝ)
     = (2 * (j : ℝ) - 1) ^ j / ((Nat.factorial j : ℝ) * (Nat.factorial j : ℝ)) := by
   unfold partFactor
@@ -94,7 +101,9 @@ lemma partFactor_at_diag (j : ℕ) : partFactor j (j : ℝ)
   ring
 
 /-- `exp(4/3) ≤ 4.03`, the one numeric fact the induction below needs. Obtained from
-`exp x ≤ 1/(1-x)` at `x = 1/12` and `exp(4/3) = exp(1/12)^16 ≤ (12/11)^16 = 4.0237`. -/
+`exp x ≤ 1/(1-x)` at `x = 1/12` and `exp(4/3) = exp(1/12)^16 ≤ (12/11)^16 = 4.0237`.
+@isnad1 id=le.0h0v.s5.253abc9a0d00 from=translated src=- shape=2420a8f8 vocab=2bb8f94f
+-/
 lemma exp_four_thirds_le : Real.exp (4 / 3 : ℝ) ≤ 4.03 := by
   have h12 : Real.exp (1 / 12 : ℝ) ≤ 12 / 11 := by
     have h := Real.exp_bound_div_one_sub_of_interval (x := (1 / 12 : ℝ)) (by norm_num) (by norm_num)
@@ -113,6 +122,9 @@ lemma exp_four_thirds_le : Real.exp (4 / 3 : ℝ) ≤ 4.03 := by
 noncomputable def diagFactor (j : ℕ) : ℝ :=
   (2 * (j : ℝ) - 1) ^ j / ((Nat.factorial j : ℝ) * (Nat.factorial j : ℝ))
 
+/--
+@isnad1 id=lt.1h1v.s4.04db15e10ecd from=translated src=- shape=f8216502 vocab=3b2611be
+-/
 lemma diagFactor_pos {j : ℕ} (hj : 1 ≤ j) : 0 < diagFactor j := by
   have hj1 : (1 : ℝ) ≤ (j : ℝ) := by exact_mod_cast hj
   have hfac : (0 : ℝ) < (Nat.factorial j : ℝ) := by exact_mod_cast Nat.factorial_pos j
@@ -121,7 +133,9 @@ lemma diagFactor_pos {j : ℕ} (hj : 1 ≤ j) : 0 < diagFactor j := by
 
 /-- The uniform ratio bound: `f(j+1) ≤ (9/4) f(j)` for every `j ≥ 2`, where `f = diagFactor`.
 `((2j+1)/(2j−1))^j ≤ exp(2j/(2j−1)) ≤ exp(4/3) ≤ 4.03`, and `(2j+1)·4.03 ≤ (9/4)(j+1)²` for
-`j ≥ 2`. -/
+`j ≥ 2`.
+@isnad1 id=le.1h1v.s5.d88f038eec8f from=translated src=- shape=cc353356 vocab=ad3468a7
+-/
 lemma diagFactor_ratio {j : ℕ} (hj : 2 ≤ j) : diagFactor (j + 1) ≤ 9 / 4 * diagFactor j := by
   have hj2 : (2 : ℝ) ≤ (j : ℝ) := by exact_mod_cast hj
   have hpos : (0 : ℝ) < 2 * (j : ℝ) - 1 := by linarith
@@ -178,7 +192,9 @@ lemma diagFactor_ratio {j : ℕ} (hj : 2 ≤ j) : diagFactor (j + 1) ≤ 9 / 4 *
   nlinarith [mul_le_mul_of_nonneg_right hkey (le_of_lt hBF)]
 
 /-- **`(2j−1)^j/(j!)² ≤ (9/4)^{j-1}` for every `j ≥ 2`**, with equality at `j = 2`, where both
-sides are `9/4`. By induction on `j` from the uniform ratio bound `diagFactor_ratio`. -/
+sides are `9/4`. By induction on `j` from the uniform ratio bound `diagFactor_ratio`.
+@isnad1 id=le.1h1v.s6.d5417c8f2d56 from=translated src=- shape=2e71782b vocab=80cf754f
+-/
 theorem diagFactor_le (j : ℕ) (hj : 2 ≤ j) : diagFactor j ≤ (9 / 4 : ℝ) ^ (j - 1) := by
   induction j with
   | zero => omega

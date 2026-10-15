@@ -32,7 +32,9 @@ namespace DegreeDiameter
 
 /-- For every positive `k` and prime `p`, the halved flag graph over
 `ZMod p` is a finite regular graph with the order, degree, and diameter
-bounds required by the asymptotic argument. -/
+bounds required by the asymptotic argument.
+@isnad1 id=asymptot.2h2v.s4.218b140f40fa from=translated src=- shape=e0343514 vocab=d09e9e86
+-/
 theorem asymptoticHalvedWitness (k p : ℕ) (hk : 0 < k) (hp : Nat.Prime p) :
     AsymptoticHalvedWitness k p := by
   let : Fact (Nat.Prime p) := ⟨hp⟩
@@ -75,7 +77,9 @@ theorem asymptoticHalvedWitness (k p : ℕ) (hk : 0 < k) (hp : Nat.Prime p) :
 
 /-- The concrete finite-field construction implies the abstract prime-indexed
 interface used by the alternative downstream extremal-limit proof. The exact
-Proposition 3.1 theorem is exported separately. -/
+Proposition 3.1 theorem is exported separately.
+@isnad1 id=asymptot.0h0v.s0.e40b636f8391 from=translated src=- shape=45709ebd vocab=e40b636f
+-/
 theorem asymptoticHalvedWitnessHypothesis : AsymptoticHalvedWitnessHypothesis :=
   asymptoticHalvedWitness
 

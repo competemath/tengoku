@@ -29,12 +29,24 @@ deriving DecidableEq
 
 open Player
 
+/--
+@isnad1 id=iff.0h1v.s3.c96fcc18833e from=translated src=- shape=64d1a3cf vocab=79721767
+-/
 theorem Player.ne_A_iff_eq_B {p} : p ≠ A ↔ p = B := by cases p <;> simp
 
+/--
+@isnad1 id=iff.0h1v.s3.f14e62d9280f from=translated src=- shape=64d1a3cf vocab=79721767
+-/
 theorem Player.ne_B_iff_eq_A {p} : p ≠ B ↔ p = A := by cases p <;> simp
 
+/--
+@isnad1 id=iff.0h1v.s3.408296783914 from=translated src=- shape=f8683d95 vocab=79721767
+-/
 theorem Player.not_eq_iff_eq_other {p} : (¬ p = A) ↔ p = B := by cases p <;> simp
 
+/--
+@isnad1 id=iff.0h1v.s3.a478939cbaee from=translated src=- shape=f8683d95 vocab=79721767
+-/
 theorem Player.not_eq_B_iff_eq_A {p} : (¬ p = B) ↔ p = A := by cases p <;> simp
 
 theorem Player.eq_A_or_eq_B {p} : p = A ∨ p = B := by cases p <;> simp
@@ -44,23 +56,44 @@ def other : Player → Player
 | A => B
 | B => A
 
+/--
+@isnad1 id=eq.0h0v.s2.740f8ced39df from=translated src=- shape=4b736592 vocab=6884036a
+-/
 @[simp]
 theorem other_A_eq_B : other A = B := by simp [other]
 
+/--
+@isnad1 id=eq.0h0v.s2.41cbf99866c5 from=translated src=- shape=4b736592 vocab=6884036a
+-/
 @[simp]
 theorem other_B_eq_A : other B = A := by simp [other]
 
+/--
+@isnad1 id=iff.0h2v.s3.03aba2efbaba from=translated src=- shape=0aa68ff2 vocab=34f3bfef
+-/
 @[simp]
 theorem Player.not_eq_i_eq_other {p i} : (¬ p = i) ↔ p = other i := by cases p <;> cases i <;> simp
 
+/--
+@isnad1 id=iff.0h2v.s3.43ed6beb3e57 from=translated src=- shape=eb1feff0 vocab=34f3bfef
+-/
 theorem Player.not_eq_other_eq_i {p i} : (¬ p = other i) ↔ p = i := by cases p <;> cases i <;> simp
 
+/--
+@isnad1 id=not.0h1v.s3.f0d0c9b6be2f from=translated src=- shape=b963f59e vocab=34f3bfef
+-/
 @[simp]
 theorem Player.not_i_eq_other {i} : ¬ i = other i := by cases i <;> simp
 
+/--
+@isnad1 id=not.0h1v.s3.3702ca2c1ddc from=translated src=- shape=2c351717 vocab=34f3bfef
+-/
 @[simp]
 theorem Player.not_other_i_eq_i {i} : ¬ other i = i := by cases i <;> simp
 
+/--
+@isnad1 id=eq.0h1v.s3.ac2dc223b15b from=translated src=- shape=47dcad53 vocab=34f3bfef
+-/
 @[simp]
 theorem other_other {i} : other (other i) = i := by cases i <;> simp [other]
 
@@ -89,7 +122,9 @@ instance {g : Game} : WellFoundedRelation Game.Pos := g.wf
 /-- Allow notation `p.moves` for `g.moves p`. -/
 abbrev Game.Pos.moves {g : Game} : g.Pos → Finset g.Pos := Game.moves
 
-/-- If the bound bound is zero then there are no more moves. -/
+/-- If the bound bound is zero then there are no more moves.
+@isnad1 id=eq.1h2v.s4.c2d70fae9610 from=translated src=- shape=01313599 vocab=9e088dba
+-/
 lemma Game.no_moves_of_no_rel {g : Game} {p : g.Pos}
     (no_rel : ∀ q, ¬ g.wf.rel q p) : g.moves p = ∅ := by
   suffices ¬ (g.moves p).Nonempty by simp_all
@@ -110,7 +145,9 @@ def Strategy (g : Game) (i : Player) : Type :=
 noncomputable def chooseMove {g : Game} {p : g.Pos} : p.moves.Nonempty → p.moves :=
   Classical.choice ∘ Set.Nonempty.to_subtype
 
-/-- There is always some strategy. -/
+/-- There is always some strategy.
+@isnad1 id=nonempty.0h2v.s3.9bc00d431478 from=translated src=- shape=c57da3d9 vocab=af29d640
+-/
 instance Strategy.instNonempty {g i} : Nonempty (Strategy g i) := ⟨fun _ _ => chooseMove⟩
 
 /-- Winner of a game, if the given strategies are used.
@@ -141,6 +178,9 @@ def good {g : Game} (i : Player) (p : g.Pos) : Prop :=
 termination_by p
 decreasing_by all_goals apply g.move_rel _ _; assumption
 
+/--
+@isnad1 id=nonempty.2h3v.s4.26af28adb9a4 from=translated src=- shape=16793c1d vocab=247d15c9
+-/
 theorem good_is_surviving {i} {g : Game} {p : g.Pos} :
     good i p → g.turn p = i → p.moves.Nonempty := by
   intro W turn
@@ -148,6 +188,9 @@ theorem good_is_surviving {i} {g : Game} {p : g.Pos} :
   apply (Or.resolve_right · (not_and_of_not_left _ <| not_eq_other_eq_i.mpr turn)) at W
   match W with | ⟨_, ⟨q, ⟨h, _⟩⟩⟩ => exact ⟨q,h⟩
 
+/--
+@isnad1 id=or.0h2v.s4.b48bf640ba2a from=translated src=- shape=6f1d9249 vocab=af642ca0
+-/
 theorem good_or_other {g : Game} (p : g.Pos) : good (g.turn p) p ∨ good (other (g.turn p)) p := by
   apply WellFounded.induction g.wf.2 p
   intro r IH
@@ -164,6 +207,9 @@ theorem good_or_other {g : Game} (p : g.Pos) : good (g.turn p) p ∨ good (other
     specialize IH q (g.move_rel _ _ h)
     by_cases g.turn r = g.turn q <;> simp_all
 
+/--
+@isnad1 id=or.0h2v.s3.3c2f4c900735 from=translated src=- shape=8b010770 vocab=5cee64be
+-/
 theorem good_A_or_B {g : Game} (p : g.Pos) : good A p ∨ good B p := by
   have det := good_or_other p
   cases i : g.turn p <;> cases det <;> simp_all
@@ -187,6 +233,9 @@ inductive inMyCone {i} {g : Game} (sI : Strategy g i) (p : g.Pos) : g.Pos → Pr
                 → inMyCone sI p (sI q h has_moves)
 | oStep {q r} : inMyCone sI p q → g.turn q = other i → r ∈ g.moves q → inMyCone sI p r
 
+/--
+@isnad1 id=inmycone.2h6v.s5.ba92248240a5 from=translated src=- shape=9f962870 vocab=389ec76b
+-/
 theorem inMyCone_trans {g i} {p q r : g.Pos} {s : Strategy g i} :
     inMyCone s p q → inMyCone s q r → inMyCone s p r :=
   fun a b => by induction b with
@@ -194,7 +243,9 @@ theorem inMyCone_trans {g i} {p q r : g.Pos} {s : Strategy g i} :
   | myStep _ _ _ ih => exact .myStep ih ..
   | oStep a turn h ih => exact .oStep ih turn h
 
-/-- The cone of the `goodStrat` stays inside `good` positions. -/
+/-- The cone of the `goodStrat` stays inside `good` positions.
+@isnad1 id=good.2h4v.s4.718d3194d857 from=translated src=- shape=1c6cb45f vocab=37058ae0
+-/
 theorem good_cone {i} {g : Game} {p r : g.Pos} (W : good i p) (h : inMyCone (goodStrat i) p r) :
     good i r := by
   induction h with
@@ -213,6 +264,9 @@ theorem good_cone {i} {g : Game} {p r : g.Pos} (W : good i p) (h : inMyCone (goo
 
 /-! ## Zermelo's Theorem -/
 
+/--
+@isnad1 id=winning.1h4v.s5.9e6b99d2f1bc from=translated src=- shape=7c596c13 vocab=f032b753
+-/
 theorem surviving_is_winning {g i p} {sI : Strategy g i}
     (surv : ∀ q, inMyCone sI p q → g.turn q = i → q.moves.Nonempty)
     : winning sI p :=
@@ -231,12 +285,16 @@ theorem surviving_is_winning {g i p} {sI : Strategy g i}
 termination_by p
 decreasing_by all_goals apply g.move_rel; exact Subtype.mem _
 
+/--
+@isnad1 id=winning.1h3v.s4.e1627ecbac95 from=translated src=- shape=20f05e29 vocab=35afdd9a
+-/
 theorem good_strat_winning {g : Game} {i} {p : g.Pos} (W : good i p) : winning (goodStrat i) p :=
   surviving_is_winning fun _ => good_is_surviving ∘ (good_cone W)
 
 /--
 [Zermelo's Theorem](https://en.wikipedia.org/wiki/Zermelo%27s_theorem_(game_theory)):
 In every `Game` position one of the two players has a winning strategy.
+@isnad1 id=or.0h2v.s5.69981ecce4e2 from=translated src=- shape=d6cd514b vocab=0e24ece7
 -/
 theorem gamedet (g : Game) (p : g.Pos) :
     (∃ s : Strategy g A, winning s p) ∨ (∃ s : Strategy g B, winning s p) := Or.imp
@@ -246,6 +304,9 @@ theorem gamedet (g : Game) (p : g.Pos) :
 
 /-! ## Additional Helper Theorems -/
 
+/--
+@isnad1 id=nonempty.2h4v.s4.2451b1254acb from=translated src=- shape=91eb5a54 vocab=5b6ef97e
+-/
 lemma winning_has_moves {i g} {sI : Strategy g i} {p : g.Pos}
     (h : g.turn p = i) (sI_wins_p : winning sI p) :
     (g.moves p).Nonempty := by
@@ -254,6 +315,9 @@ lemma winning_has_moves {i g} {sI : Strategy g i} {p : g.Pos}
   by_contra hyp
   simp_all
 
+/--
+@isnad1 id=winning.2h4v.s5.b3f87f1687d6 from=translated src=- shape=95e4ffa6 vocab=4efba45f
+-/
 lemma winning_of_winning_move {i g} {sI : Strategy g i} {p : g.Pos}
     (h : g.turn p = i) (sI_wins_p : winning sI p) :
     winning sI (sI p h (winning_has_moves h sI_wins_p)).val := by
@@ -263,6 +327,9 @@ lemma winning_of_winning_move {i g} {sI : Strategy g i} {p : g.Pos}
   unfold winner at sI_wins_p
   simp_all
 
+/--
+@isnad1 id=refltran.1h5v.s4.38c8e9b1d5fe from=translated src=- shape=d1d03a36 vocab=0dcdea58
+-/
 lemma game_wf_rel_of_cone {i g} {p r : g.Pos} (sI : Strategy g i) (r_in : inMyCone sI p r) :
     Relation.ReflTransGen g.wf.rel r p := by
   induction r_in
@@ -276,6 +343,9 @@ lemma game_wf_rel_of_cone {i g} {p r : g.Pos} (sI : Strategy g i) (r_in : inMyCo
     apply g.move_rel
     assumption
 
+/--
+@isnad1 id=not.1h5v.s5.781fba34c69a from=translated src=- shape=47f2c8c4 vocab=dceb6626
+-/
 lemma not_in_cone_of_move {i g} {p q : g.Pos} (q_in : q ∈ g.moves p) (sI : Strategy g i) :
     ¬ @inMyCone _ g sI q p := by
   intro hyp
@@ -292,6 +362,9 @@ lemma not_in_cone_of_move {i g} {p q : g.Pos} (q_in : q ∈ g.moves p) (sI : Str
   absurd claim
   exact Std.Irrefl.irrefl p
 
+/--
+@isnad1 id=eq.1h6v.s6.32f82a1fed13 from=translated src=- shape=ee027ca9 vocab=8620ac33
+-/
 lemma same_winner_of_same_in_cone {i g} {sI : Strategy g i} {sJ sJ' : Strategy g (other i)}
     {p : g.Pos}
     (same_cone : ∀ r, inMyCone sJ p r → sJ r = sJ' r)
@@ -323,7 +396,9 @@ lemma same_winner_of_same_in_cone {i g} {sI : Strategy g i} {sJ sJ' : Strategy g
 termination_by p
 decreasing_by all_goals apply g.move_rel; exact Subtype.mem _
 
-/-- Helper for `gameP_general`. -/
+/-- Helper for `gameP_general`.
+@isnad1 id=winning.2h5v.s6.3626e239470e from=translated src=- shape=bfb5fff1 vocab=30e88565
+-/
 theorem winning_of_whatever_other_move {i g} {sI : Strategy g i}
     {p : g.Pos} (h : g.turn p = other i) (sI_wins_p : winning sI p) (m : g.moves p)
     : winning sI m.val := by
@@ -350,6 +425,9 @@ theorem winning_of_whatever_other_move {i g} {sI : Strategy g i}
     exact not_in_cone_of_move m.2 sJ
   aesop
 
+/--
+@isnad1 id=winning.2h5v.s5.d3a89fab6317 from=translated src=- shape=e66e3ef7 vocab=c4415211
+-/
 lemma winning_of_in_cone_winning {g : Game} {i : Player} {p q : g.Pos} {sI : Strategy g i}
     (in_cone : inMyCone sI p q) (h : winning sI p) : winning sI q := by
   induction in_cone

@@ -33,6 +33,9 @@ namespace GraphCoveringTheory.Kurosh
 
 open Monoid.CoprodI
 
+/--
+@isnad1 id=eq.1h7v.s7.7ed9c7de41c3 from=translated src=- shape=d3fbdf4f vocab=33d142a3
+-/
 theorem Internal.rawCostar_eq_of_data_eq {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)]
     {a b c : RawBassSerreVertex G}
@@ -184,6 +187,9 @@ noncomputable def coverCostarInv {ι : Type v}
           let y := coverEdgeSource G H (p, ce)
           exact ⟨y, ⟨(p, ce), rfl, htarget⟩⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.1493495c3288 from=translated src=- shape=70f27818 vocab=2c4b1f53
+-/
 theorem Internal.coverPrefunctor_costar_inv {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (x : CoverVertex G H) (f : Quiver.Costar (coverVertexMap G H x)) :
@@ -200,6 +206,9 @@ theorem Internal.coverPrefunctor_costar_inv {ι : Type v}
             mul_assoc, mul_inv_cancel_left, inv_mul_cancel, mul_one]
           exact Internal.rawEdgeAlign_spec G H _
 
+/--
+@isnad1 id=eq.1h8v.s8.199984584101 from=translated src=- shape=742def29 vocab=24f05d7d
+-/
 theorem Internal.coverCostar_data_eq {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (x : CoverVertex G H)
@@ -216,6 +225,9 @@ theorem Internal.coverCostar_data_eq {ι : Type v}
     (fun F : Quiver.Costar (coverVertexMap G H x) =>
       rawBassSerreEdgeDataOf G F.2) h
 
+/--
+@isnad1 id=eq.2h9v.s8.077b75045b19 from=translated src=- shape=5f8929e0 vocab=0a982717
+-/
 theorem Internal.coverEdge_eq_of_target_val_eq {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b c d : RawBassSerreOrbitVertex G H}
@@ -237,6 +249,9 @@ theorem Internal.coverEdge_eq_of_target_val_eq {ι : Type v}
   cases h
   exact heq_of_eq (Subtype.ext hv)
 
+/--
+@isnad1 id=eq.1h8v.s7.28c471e9da92 from=translated src=- shape=eade4457 vocab=f5b5d255
+-/
 theorem Internal.coverEdge_base_eq_of_map_data_eq_costar {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (x : CoverVertex G H)
@@ -284,6 +299,9 @@ theorem Internal.coverEdge_base_eq_of_map_data_eq_costar {ι : Type v}
     exact hd'.trans he'.symm
   exact Internal.coverEdge_eq_of_target_val_eq G H htarget hbase
 
+/--
+@isnad1 id=eq.3h8v.s11.39a7c3fb9b40 from=translated src=- shape=df5c211d vocab=0f9ee4ef
+-/
 theorem Internal.coverTarget_coset_eq_of_edge_eq {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {x : CoverVertex G H} {p q : CoverSource G H}
@@ -307,6 +325,9 @@ theorem Internal.coverTarget_coset_eq_of_edge_eq {ι : Type v}
       (q * (coverEdgeLetter G H e)⁻¹)⟩ at h
   exact eq_of_heq (Sigma.ext_iff.mp h).2
 
+/--
+@isnad1 id=eq.1h8v.s7.c98fef56e581 from=translated src=- shape=9558994e vocab=a0765cd0
+-/
 theorem Internal.coverEdge_pair_eq_of_map_data_eq_costar {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (x : CoverVertex G H)
@@ -401,6 +422,9 @@ theorem Internal.coverEdge_pair_eq_of_map_data_eq_costar {ι : Type v}
     exact mul_right_cancel hpeq
   exact Prod.ext hp hce
 
+/--
+@isnad1 id=eq.1h8v.s8.abef6263a09d from=translated src=- shape=46b59795 vocab=8bd4ad69
+-/
 theorem Internal.coverCostar_eq_of_pair_eq {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {x y z : CoverVertex G H}
@@ -415,6 +439,9 @@ theorem Internal.coverCostar_eq_of_pair_eq {ι : Type v}
   cases hyz
   exact heq_of_eq (Subtype.ext hp)
 
+/--
+@isnad1 id=injectiv.0h4v.s6.bd47322b8fbe from=translated src=- shape=ead0f0c7 vocab=a859baef
+-/
 theorem Internal.coverPrefunctor_costar_injective {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (x : CoverVertex G H) :
@@ -428,6 +455,9 @@ theorem Internal.coverPrefunctor_costar_injective {ι : Type v}
           apply Internal.coverEdge_pair_eq_of_map_data_eq_costar G H x d e
           exact Internal.coverCostar_data_eq G H x d e h
 
+/--
+@isnad1 id=bijectiv.0h4v.s6.e4c041810616 from=translated src=- shape=ead0f0c7 vocab=ed61a9af
+-/
 theorem Internal.coverPrefunctor_costar_bijective {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (x : CoverVertex G H) :
@@ -437,6 +467,9 @@ theorem Internal.coverPrefunctor_costar_bijective {ι : Type v}
   refine ⟨coverCostarInv G H x f, ?_⟩
   exact Internal.coverPrefunctor_costar_inv G H x f
 
+/--
+@isnad1 id=iscoveri.0h3v.s5.5ac62b8ff38d from=translated src=- shape=8f471195 vocab=54e5803c
+-/
 theorem Internal.coverPrefunctor_isCovering {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G)) :
     (coverPrefunctor G H).IsCovering := by

@@ -17,7 +17,9 @@ Here we prove the fixed-point theorem for formulas of form `□φ` and `◇φ`.
 
 namespace Lean4GlCoalgebras
 
-/-- Semantic Substitution Lemma for logics with transitive frames. -/
+/-- Semantic Substitution Lemma for logics with transitive frames.
+@isnad1 id=evaluate.1h7v.s6.6631cc0099a5 from=translated src=- shape=fe605bba vocab=dbbb4a4b
+-/
 lemma semantic_substitution_lemma {α : Type} (M : Model α) (u : α) (n : ℕ) (φ ψ χ : Formula) :
   evaluate ⟨M, u⟩ (⊡ (φ ⟷ ψ)) → evaluate ⟨M, u⟩ ((single n φ χ) ⟷ (single n ψ χ)) := by
     intro mp
@@ -57,7 +59,9 @@ lemma semantic_substitution_lemma {α : Type} (M : Model α) (u : α) (n : ℕ) 
         exact (ih w ⟨this, fun o w_o ↦ mp.2 o (M.trans u_w w_o)⟩).2 h
 
 /-- On transitive and conversely well-founded frames: if `u ⊭ □ φ` then there is `w` such that
-    `u R w` and `w ⊨ □ φ`. -/
+    `u R w` and `w ⊨ □ φ`.
+@isnad1 id=ex.1h4v.s5.95f3d7ae315d from=translated src=- shape=ad3c9f54 vocab=5285c96d
+-/
 lemma GL_eval_not_box_prop {α : Type} {M : Model α} {u : α} {φ : Formula} :
   ¬ evaluate ⟨M, u⟩ (□ φ) → ∃ w, M.R u w ∧ evaluate ⟨M, w⟩ (□ φ) ∧ ¬ evaluate ⟨M, w⟩ φ := by
   intro mp
@@ -72,7 +76,9 @@ termination_by
 decreasing_by
   simp [WellFounded.wrap, Function.swap, u_w]
 
-/-- Helper lemma for the fixed point theorem for `□φ`. -/
+/-- Helper lemma for the fixed point theorem for `□φ`.
+@isnad1 id=isvalid.0h2v.s5.d636e5a51034 from=translated src=- shape=570c6f77 vocab=f4bc358e
+-/
 lemma FPT_box_helper (φ : Formula) (n : Nat)
   : ⊨ (⊡ (at n ⟷ single n ⊤ (□ φ))) ↣ (at n ⟷ □ φ) := by
   simp only [Formula.isValid, evaluate_imp, evaluate_and]
@@ -106,7 +112,9 @@ lemma FPT_box_helper (φ : Formula) (n : Nat)
     simp only [evaluate_and, evaluate_imp, single_identity] at this
     exact w2 (this.1 (mpp w u_w))
 
-/-- Helper lemma for the fixed point theorem for `◇φ`. -/
+/-- Helper lemma for the fixed point theorem for `◇φ`.
+@isnad1 id=isvalid.0h2v.s5.3f452c5645a9 from=translated src=- shape=1c37260b vocab=fa2b46db
+-/
 lemma FPT_diamond_helper (φ : Formula) (n : Nat)
   : ⊨ (⊡ (at n ⟷ single n ⊥ (◇ φ))) ↣ (at n ⟷ ◇ φ) := by
   simp only [Formula.isValid, evaluate_imp, evaluate_and]
@@ -157,7 +165,9 @@ lemma FPT_diamond_helper (φ : Formula) (n : Nat)
     simp only [evaluate_and, evaluate_imp, single_identity] at this
     simp_all
 
-/-- Simplification lemma for the fixed point theorem. -/
+/-- Simplification lemma for the fixed point theorem.
+@isnad1 id=isvalid.0h1v.s4.66bfbf075ac5 from=translated src=- shape=95915791 vocab=dcf64378
+-/
 lemma evaluate_box_dot_iff (φ : Formula) : ⊨ ⊡ (φ ⟷ φ) := by
   simp only [Formula.isValid, evaluate_and, evaluate_imp]
   intro α M u
@@ -165,7 +175,9 @@ lemma evaluate_box_dot_iff (φ : Formula) : ⊨ ⊡ (φ ⟷ φ) := by
   simp only [evaluate_and, evaluate_imp]
   simp
 
-/-- □ φ case of the fixed point theorem. -/
+/-- □ φ case of the fixed point theorem.
+@isnad1 id=isvalid.0h2v.s5.758b297f52ac from=translated src=- shape=0a0fad00 vocab=c454f734
+-/
 theorem FPT_box (φ : Formula) (n : Nat) :
     ⊨ (single n ⊤ (□ φ)) ⟷ (single n (□ single n ⊤ φ) (□ φ)) := by
   intro α M u
@@ -190,7 +202,9 @@ theorem FPT_box (φ : Formula) (n : Nat) :
     apply evaluate_box_dot_iff)
   simp_all [single]
 
-/-- ◇ φ case of the fixed point theorem. -/
+/-- ◇ φ case of the fixed point theorem.
+@isnad1 id=isvalid.0h2v.s5.f0f96a9567ee from=translated src=- shape=0a0fad00 vocab=5ddcfa06
+-/
 theorem FPT_diamond (φ : Formula) (n : Nat) :
     ⊨ (single n ⊥ (◇ φ)) ⟷ (single n (◇ single n ⊥ φ) (◇ φ)) := by
   intro α M u
@@ -215,7 +229,9 @@ theorem FPT_diamond (φ : Formula) (n : Nat) :
     apply evaluate_box_dot_iff)
   simp_all [single]
 
-/-- Vocabulary condition for □ φ case of the fixed point theorem. -/
+/-- Vocabulary condition for □ φ case of the fixed point theorem.
+@isnad1 id=and.0h2v.s5.f1d226b86e7a from=translated src=- shape=5faf67ea vocab=24d7bf96
+-/
 lemma FPT_box_vocab (φ : Formula) (n : ℕ) :
     n ∉ Formula.vocab (single n ⊤ (□ φ)) ∧
       Formula.vocab (single n ⊤ (□ φ)) ⊆ Formula.vocab (□ φ) := by
@@ -225,7 +241,9 @@ lemma FPT_box_vocab (φ : Formula) (n : ℕ) :
     have := in_single_voc' m_in
     simp_all [Formula.vocab]
 
-/-- Vocabulary condition for ◇ φ case of the fixed point theorem. -/
+/-- Vocabulary condition for ◇ φ case of the fixed point theorem.
+@isnad1 id=and.0h2v.s5.712bb7faa895 from=translated src=- shape=5faf67ea vocab=670a1240
+-/
 lemma FPT_diamond_vocab (φ : Formula) (n : ℕ) :
     n ∉ Formula.vocab (single n ⊥ (◇ φ)) ∧
       Formula.vocab (single n ⊥ (◇ φ)) ⊆ Formula.vocab (◇ φ) := by
@@ -235,7 +253,9 @@ lemma FPT_diamond_vocab (φ : Formula) (n : ℕ) :
     have := in_single_voc' m_in
     simp_all [Formula.vocab]
 
-/-- Fixed-point theorem for formulas `□φ` and `◇φ`. -/
+/-- Fixed-point theorem for formulas `□φ` and `◇φ`.
+@isnad1 id=ex.1h2v.s5.bbbc409fbe02 from=translated src=- shape=282ba2b9 vocab=576a3924
+-/
 theorem fixed_point_theorem_modal (φ : Formula) (n : ℕ)
     (box_or_dia : φ.isBox ∨ φ.isDiamond) :
     ∃ (ψ : Formula),

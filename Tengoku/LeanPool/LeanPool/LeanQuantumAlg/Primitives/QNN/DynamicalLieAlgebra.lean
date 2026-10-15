@@ -53,14 +53,18 @@ def dynamicalLieAlgebra (gens : Set (Matrix (Fin N) (Fin N) ℂ)) :
     LieSubalgebra ℂ (Matrix (Fin N) (Fin N) ℂ) :=
   LieSubalgebra.lieSpan ℂ (Matrix (Fin N) (Fin N) ℂ) gens
 
-/-- The generators belong to their dynamical Lie algebra. -/
+/-- The generators belong to their dynamical Lie algebra.
+@isnad1 id=le.0h2v.s7.06c6c1d28ac5 from=translated src=- shape=b13d728f vocab=ec0ad267
+-/
 theorem generators_subset_dynamicalLieAlgebra
     (gens : Set (Matrix (Fin N) (Fin N) ℂ)) :
     gens ⊆ (dynamicalLieAlgebra gens : Set (Matrix (Fin N) (Fin N) ℂ)) :=
   LieSubalgebra.subset_lieSpan
 
 /-- **Universal property.** The dynamical Lie algebra is contained in a Lie
-subalgebra `K` exactly when all generators are. -/
+subalgebra `K` exactly when all generators are.
+@isnad1 id=iff.0h3v.s8.1634c74d5450 from=translated src=- shape=58984c98 vocab=ec0ad267
+-/
 theorem dynamicalLieAlgebra_le_iff (gens : Set (Matrix (Fin N) (Fin N) ℂ))
     (K : LieSubalgebra ℂ (Matrix (Fin N) (Fin N) ℂ)) :
     dynamicalLieAlgebra gens ≤ K
@@ -68,7 +72,9 @@ theorem dynamicalLieAlgebra_le_iff (gens : Set (Matrix (Fin N) (Fin N) ℂ))
   LieSubalgebra.lieSpan_le
 
 /-- **Minimality.** The dynamical Lie algebra is the smallest Lie subalgebra
-containing the generators. -/
+containing the generators.
+@isnad1 id=le.1h3v.s8.53e62cb2202a from=translated src=- shape=2f037a94 vocab=ec0ad267
+-/
 theorem dynamicalLieAlgebra_minimal (gens : Set (Matrix (Fin N) (Fin N) ℂ))
     {K : LieSubalgebra ℂ (Matrix (Fin N) (Fin N) ℂ)}
     (h : gens ⊆ (K : Set (Matrix (Fin N) (Fin N) ℂ))) :
@@ -86,7 +92,9 @@ def IsControllable (gens : Set (Matrix (Fin N) (Fin N) ℂ)) : Prop :=
   dynamicalLieAlgebra gens = ⊤
 
 /-- Controllability is equivalent to every matrix lying in the Lie closure of the
-generators. -/
+generators.
+@isnad1 id=iff.0h2v.s7.582d6da4569d from=translated src=- shape=d26a99be vocab=d7295a3d
+-/
 theorem isControllable_iff_forall_mem (gens : Set (Matrix (Fin N) (Fin N) ℂ)) :
     IsControllable gens ↔ ∀ A, A ∈ dynamicalLieAlgebra gens := by
   constructor
@@ -96,7 +104,9 @@ theorem isControllable_iff_forall_mem (gens : Set (Matrix (Fin N) (Fin N) ℂ)) 
   · intro h
     exact le_antisymm le_top fun a _ => h a
 
-/-- Enlarging the generator set preserves controllability. -/
+/-- Enlarging the generator set preserves controllability.
+@isnad1 id=iscontro.2h3v.s5.1e39bb583999 from=translated src=- shape=02eb50e3 vocab=bd1ff389
+-/
 theorem IsControllable.mono {gens gens' : Set (Matrix (Fin N) (Fin N) ℂ)}
     (hsub : gens ⊆ gens') (hc : IsControllable gens) : IsControllable gens' := by
   have hmono : dynamicalLieAlgebra gens ≤ dynamicalLieAlgebra gens' :=
@@ -109,7 +119,9 @@ theorem IsControllable.mono {gens gens' : Set (Matrix (Fin N) (Fin N) ℂ)}
 /-- **Abelian case of the Pauli-Lie-algebra classification.** If the generators
 pairwise commute, the dynamical Lie algebra is abelian: the commutator vanishes on
 all of it. This is the free/trivial end of the structural classification of
-Pauli-generated Lie algebras (Aguilar et al. 2024). -/
+Pauli-generated Lie algebras (Aguilar et al. 2024).
+@isnad1 id=eq.3h4v.s9.8092aa8944dc from=translated src=- shape=d0446d70 vocab=4402d4ca
+-/
 theorem dynamicalLieAlgebra_lie_eq_zero_of_comm
     {gens : Set (Matrix (Fin N) (Fin N) ℂ)}
     (hcomm : ∀ a ∈ gens, ∀ b ∈ gens, ⁅a, b⁆ = 0)
@@ -137,26 +149,34 @@ theorem dynamicalLieAlgebra_lie_eq_zero_of_comm
 
 namespace DynamicalLieAlgebra
 
-/-- Main theorem: the DLA is the smallest Lie subalgebra containing the generators. -/
+/-- Main theorem: the DLA is the smallest Lie subalgebra containing the generators.
+@isnad1 id=le.1h3v.s8.53e62cb2202a from=translated src=- shape=2f037a94 vocab=ec0ad267
+-/
 theorem main (gens : Set (Matrix (Fin N) (Fin N) ℂ))
     {K : LieSubalgebra ℂ (Matrix (Fin N) (Fin N) ℂ)}
     (h : gens ⊆ (K : Set (Matrix (Fin N) (Fin N) ℂ))) :
     dynamicalLieAlgebra gens ≤ K :=
   dynamicalLieAlgebra_minimal gens h
 
-/-- Public supporting theorem: generators belong to their DLA. -/
+/-- Public supporting theorem: generators belong to their DLA.
+@isnad1 id=le.0h2v.s7.06c6c1d28ac5 from=translated src=- shape=b13d728f vocab=ec0ad267
+-/
 theorem main_generators_subset (gens : Set (Matrix (Fin N) (Fin N) ℂ)) :
     gens ⊆ (dynamicalLieAlgebra gens : Set (Matrix (Fin N) (Fin N) ℂ)) :=
   generators_subset_dynamicalLieAlgebra gens
 
-/-- Public supporting theorem: the universal property of the DLA. -/
+/-- Public supporting theorem: the universal property of the DLA.
+@isnad1 id=iff.0h3v.s8.1634c74d5450 from=translated src=- shape=58984c98 vocab=ec0ad267
+-/
 theorem main_le_iff (gens : Set (Matrix (Fin N) (Fin N) ℂ))
     (K : LieSubalgebra ℂ (Matrix (Fin N) (Fin N) ℂ)) :
     dynamicalLieAlgebra gens ≤ K
       ↔ gens ⊆ (K : Set (Matrix (Fin N) (Fin N) ℂ)) :=
   dynamicalLieAlgebra_le_iff gens K
 
-/-- Public supporting theorem: commuting generators produce an abelian DLA. -/
+/-- Public supporting theorem: commuting generators produce an abelian DLA.
+@isnad1 id=eq.3h4v.s9.8092aa8944dc from=translated src=- shape=d0446d70 vocab=4402d4ca
+-/
 theorem main_abelian_of_commuting_generators
     {gens : Set (Matrix (Fin N) (Fin N) ℂ)}
     (hcomm : ∀ a ∈ gens, ∀ b ∈ gens, ⁅a, b⁆ = 0)
@@ -169,12 +189,16 @@ end DynamicalLieAlgebra
 
 namespace DLAReachability
 
-/-- Main theorem: controllability is membership of every matrix in the DLA. -/
+/-- Main theorem: controllability is membership of every matrix in the DLA.
+@isnad1 id=iff.0h2v.s7.582d6da4569d from=translated src=- shape=d26a99be vocab=d7295a3d
+-/
 theorem main (gens : Set (Matrix (Fin N) (Fin N) ℂ)) :
     IsControllable gens ↔ ∀ A, A ∈ dynamicalLieAlgebra gens :=
   isControllable_iff_forall_mem gens
 
-/-- Public supporting theorem: enlarging generators preserves controllability. -/
+/-- Public supporting theorem: enlarging generators preserves controllability.
+@isnad1 id=iscontro.2h3v.s5.1e39bb583999 from=translated src=- shape=02eb50e3 vocab=bd1ff389
+-/
 theorem main_mono {gens gens' : Set (Matrix (Fin N) (Fin N) ℂ)}
     (hsub : gens ⊆ gens') (hc : IsControllable gens) : IsControllable gens' :=
   IsControllable.mono hsub hc

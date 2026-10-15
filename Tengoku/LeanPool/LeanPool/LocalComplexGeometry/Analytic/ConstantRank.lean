@@ -29,7 +29,9 @@ noncomputable section
 
 /-- Once the first component of an analytic map is the first projection and
 the derivative has the minimal possible rank, the second component is locally
-independent of the second input variable. -/
+independent of the second input variable.
+@isnad1 id=eventual.3h4v.s9.5062a9bda849 from=translated src=- shape=0c7a4049 vocab=bf94e923
+-/
 theorem eventually_snd_eq_slice_of_rank
     {U V W : Type*}
     [NormedAddCommGroup U] [NormedSpace ℂ U] [FiniteDimensional ℂ U]
@@ -173,7 +175,9 @@ private theorem eventually_complexLinearRank_affineConjugate
 /-- **Holomorphic constant-rank theorem.**  A holomorphic map whose complex
 rank is locally constant is locally equivalent, through biholomorphic source
 and target coordinates centered at the origin, to the standard coordinate
-map of that rank. -/
+map of that rank.
+@isnad1 id=ex.4h5v.s9.08c07ae2a8c4 from=translated src=- shape=370dc2ec vocab=92ec180f
+-/
 theorem holomorphic_constant_rank
     {n m r : ℕ}
     {F : ComplexEuclidean n → ComplexEuclidean m}
@@ -387,7 +391,9 @@ theorem holomorphic_constant_rank
       productEquiv_fst_zero_eq_standardRankMap
         r n' m' eR eK eQ x
 
-/-- Audited public spelling of `holomorphic_constant_rank`. -/
+/-- Audited public spelling of `holomorphic_constant_rank`.
+@isnad1 id=ex.4h5v.s9.08c07ae2a8c4 from=translated src=- shape=370dc2ec vocab=92ec180f
+-/
 theorem holomorphic_constantRank_normalForm_core
     {n m r : ℕ}
     {F : ComplexEuclidean n → ComplexEuclidean m}
@@ -406,7 +412,9 @@ theorem holomorphic_constantRank_normalForm_core
 
 /-- A holomorphic map with locally surjective derivative has the standard
 submersion normal form.  The necessary inequality `m ≤ n` is a consequence,
-not an extra hypothesis. -/
+not an extra hypothesis.
+@isnad1 id=ex.2h4v.s10.3762ed85a8e0 from=translated src=- shape=6f56b9cc vocab=4dc1ccf3
+-/
 theorem holomorphic_submersion_normalForm
     {n m : ℕ}
     {F : ComplexEuclidean n → ComplexEuclidean m}
@@ -433,7 +441,9 @@ theorem holomorphic_submersion_normalForm
 
 /-- A holomorphic map with locally injective derivative has the standard
 immersion normal form.  The necessary inequality `n ≤ m` is a consequence,
-not an extra hypothesis. -/
+not an extra hypothesis.
+@isnad1 id=ex.2h4v.s10.1ab690fe7dc5 from=translated src=- shape=db337423 vocab=bcd56a84
+-/
 theorem holomorphic_immersion_normalForm
     {n m : ℕ}
     {F : ComplexEuclidean n → ComplexEuclidean m}

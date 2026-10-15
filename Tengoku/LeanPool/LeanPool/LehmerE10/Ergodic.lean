@@ -39,7 +39,9 @@ namespace LehmerE10
 /-- **The E₁₀ Coxeter toral automorphism is ergodic**: its characteristic polynomial has no
 cyclotomic factor, i.e. `coxeterE10` has no root-of-unity eigenvalue.  Immediate from
 `coxeter_charpoly_lehmer` (charpoly `= L`) and `no_cyclotomic_divisor` (no
-cyclotomic polynomial divides `L`). -/
+cyclotomic polynomial divides `L`).
+@isnad1 id=not.1h1v.s6.61268018918f from=translated src=- shape=046fc1b9 vocab=f1fa65a1
+-/
 theorem coxeterE10_ergodic {k : ℕ} (hk : 1 ≤ k) :
     ¬ (cyclotomic k ℤ ∣ coxeterE10.charpoly) := by
   rw [coxeter_charpoly_lehmer]

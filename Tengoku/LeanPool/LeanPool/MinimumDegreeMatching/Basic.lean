@@ -40,7 +40,9 @@ variable {V : Type*} [Fintype V]
 
 open Classical in
 /-- **Dirac-type perfect matching (even case).**  A finite simple graph on an even number of
-vertices whose minimum degree satisfies `|V| ≤ 2 · δ(G)` has a perfect matching. -/
+vertices whose minimum degree satisfies `|V| ≤ 2 · δ(G)` has a perfect matching.
+@isnad1 id=ex.2h2v.s5.3993a5f5122d from=translated src=- shape=37f2bbd7 vocab=abd1f8f2
+-/
 theorem exists_isPerfectMatching_of_minDegree (G : SimpleGraph V) [DecidableRel G.Adj]
     (heven : Even (Fintype.card V)) (hδ : Fintype.card V ≤ 2 * G.minDegree) :
     ∃ M : G.Subgraph, M.IsPerfectMatching := by
@@ -164,7 +166,9 @@ private theorem exists_near_perfect_matching (G : SimpleGraph V) [DecidableRel G
 open Classical in
 /-- **Dirac-type near-perfect matching (odd case).**  A finite simple graph on an odd number
 of vertices whose minimum degree satisfies `|V| ≤ 2 · δ(G) + 1` has a matching covering all
-but exactly one vertex: there is a vertex `w` and a matching `M` with vertex set `{w}ᶜ`. -/
+but exactly one vertex: there is a vertex `w` and a matching `M` with vertex set `{w}ᶜ`.
+@isnad1 id=ex.2h2v.s6.609e1f964ec2 from=translated src=- shape=25ff02c3 vocab=d91bbdd6
+-/
 theorem exists_isMatching_compl_singleton_of_minDegree (G : SimpleGraph V) [DecidableRel G.Adj]
     (hodd : Odd (Fintype.card V)) (hδ : Fintype.card V ≤ 2 * G.minDegree + 1) :
     ∃ (M : G.Subgraph) (w : V), M.IsMatching ∧ M.verts = {w}ᶜ := by

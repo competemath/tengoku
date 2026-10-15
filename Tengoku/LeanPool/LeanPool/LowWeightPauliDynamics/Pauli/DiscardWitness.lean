@@ -51,57 +51,85 @@ def P : PauliString 2 := ⟨![0, 0], ![1, 0], 0⟩
 /-- The weight-two partner `YX` that the first rotation creates. -/
 def Q : PauliString 2 := ⟨![1, 1], ![1, 0], 1⟩
 
-/-- Concrete regression data for `apd:eq:step_component`: `G` is Hermitian. -/
+/-- Concrete regression data for `apd:eq:step_component`: `G` is Hermitian.
+@isnad1 id=isselfad.0h0v.s3.8cf41e635fdd from=translated src=- shape=06f63001 vocab=998e9609
+-/
 theorem isSelfAdjoint_G : IsSelfAdjoint G := isSelfAdjoint_iff_phase.2 (by decide)
 
-/-- Concrete regression data for `apd:eq:step_component`: the input is Hermitian. -/
+/-- Concrete regression data for `apd:eq:step_component`: the input is Hermitian.
+@isnad1 id=isselfad.0h0v.s3.608515cb19b2 from=translated src=- shape=06f63001 vocab=fb116738
+-/
 theorem isSelfAdjoint_P : IsSelfAdjoint P := isSelfAdjoint_iff_phase.2 (by decide)
 
-/-- Concrete regression data for `apd:eq:step_component`: the new component is Hermitian. -/
+/-- Concrete regression data for `apd:eq:step_component`: the new component is Hermitian.
+@isnad1 id=isselfad.0h0v.s3.e3ad57f29738 from=translated src=- shape=06f63001 vocab=6f798992
+-/
 theorem isSelfAdjoint_Q : IsSelfAdjoint Q := isSelfAdjoint_iff_phase.2 (by decide)
 
 /-- Concrete regression data for `apd:eq:step_component`: `n = k_h = 2`, so the generator
-is not one-local. -/
+is not one-local.
+@isnad1 id=eq.0h0v.s3.0561395ca77b from=translated src=- shape=e67f34a4 vocab=9675aad9
+-/
 theorem weight_G : weight G = 2 := by decide
 
-/-- Concrete regression data for `apd:eq:step_component`: `k_o = 1 < n = 2`. -/
+/-- Concrete regression data for `apd:eq:step_component`: `k_o = 1 < n = 2`.
+@isnad1 id=eq.0h0v.s3.5cc982c76563 from=translated src=- shape=e67f34a4 vocab=ac82493e
+-/
 theorem weight_P : weight P = 1 := by decide
 
 /-- Concrete regression data for `apd:eq:step_component`: the created Pauli lies strictly
-above `w* = 1`. -/
+above `w* = 1`.
+@isnad1 id=eq.0h0v.s3.e1c13dc8ca1e from=translated src=- shape=e67f34a4 vocab=a191a212
+-/
 theorem weight_Q : weight Q = 2 := by decide
 
 /-- Concrete regression helper for `apd:eq:step_component`: the input uses the canonical
-Hermitian representative. -/
+Hermitian representative.
+@isnad1 id=eq.0h0v.s4.c518d32d4d17 from=translated src=- shape=beee3202 vocab=d67a9758
+-/
 theorem herm_P : herm (cls P) = P := by decide
 
 /-- Concrete regression helper for `apd:eq:step_component`: the created Pauli uses the canonical
-Hermitian representative. -/
+Hermitian representative.
+@isnad1 id=eq.0h0v.s4.0855d3de8659 from=translated src=- shape=beee3202 vocab=b7458fa5
+-/
 theorem herm_Q : herm (cls Q) = Q := by decide
 
 /-- Concrete regression helper for `apd:eq:step_component`: the first generator anticommutes
-with the input. -/
+with the input.
+@isnad1 id=eq.0h0v.s6.23632fd9d6ca from=translated src=- shape=97d56a1b vocab=d4aa56a2
+-/
 theorem sympForm_G_P : sympForm G P = 1 := by decide
 
 /-- Concrete regression helper for `apd:eq:step_component`: the first rotation's Hermitian
-partner is exactly `Q`. -/
+partner is exactly `Q`.
+@isnad1 id=eq.0h0v.s6.d0c4b725d5c8 from=translated src=- shape=9d973fcd vocab=24f74fa0
+-/
 theorem phaseMul_G_P : phaseMul 1 (G * P) = Q := by decide
 
-/-- Concrete regression example for `apd:eq:step_component`: the input is nonzero. -/
+/-- Concrete regression example for `apd:eq:step_component`: the input is nonzero.
+@isnad1 id=ne.0h0v.s6.72b3151b890a from=translated src=- shape=abbceaeb vocab=110a896a
+-/
 theorem input_ne_zero : toMatrix P ≠ 0 := toMatrix_ne_zero P
 
 /-- Concrete regression example for `apd:eq:step_component`: input locality is genuinely
-`k_o = 1`, not `k_o = n`. -/
+`k_o = 1`, not `k_o = n`.
+@isnad1 id=eq.1h1v.s5.e4ea966d9c78 from=translated src=- shape=0043d2e3 vocab=56216737
+-/
 theorem input_local (p : PauliIndex 2) (hp : 1 < wt p) : coeff (toMatrix P) p = 0 := by
   rw [← herm_P]
   exact coeff_toMatrix_herm_eq_zero (by simpa [weight_P] using hp)
 
 /-- Concrete regression example for `apd:eq:step_component`: no high-weight mass is present
-initially; the later discarded mass must be produced by the rotation. -/
+initially; the later discarded mass must be produced by the rotation.
+@isnad1 id=eq.0h0v.s4.04342ffcb8be from=translated src=- shape=29cbdbe1 vocab=f4aa7c0b
+-/
 theorem input_highNorm : highNorm 1 (toMatrix P) = 0 := highNorm_eq_zero 1 input_local
 
 /-- Concrete regression example for `apd:eq:step_component`: the first rotation creates
-exactly one unit-amplitude weight-two Pauli, not a merely reachable branch. -/
+exactly one unit-amplitude weight-two Pauli, not a merely reachable branch.
+@isnad1 id=eq.0h0v.s9.9a6bef6c0f98 from=translated src=- shape=e1dc3929 vocab=02444e16
+-/
 theorem first_rotation :
     rot (toMatrix G) (Real.pi / 2) * toMatrix P * rot (toMatrix G) (-(Real.pi / 2))
       = toMatrix Q := by
@@ -110,18 +138,24 @@ theorem first_rotation :
   simp
 
 /-- Concrete regression example for `apd:eq:step_component`: a genuine second rotation
-preserves the high-weight component until the step boundary. -/
+preserves the high-weight component until the step boundary.
+@isnad1 id=eq.0h1v.s9.8c35e8011d23 from=translated src=- shape=6f4b46ff vocab=af56f32f
+-/
 theorem second_rotation (θ : ℝ) :
     rot (toMatrix Q) θ * toMatrix Q * rot (toMatrix Q) (-θ) = toMatrix Q :=
   pauli_rotation_branch_commute isSelfAdjoint_Q (by decide) θ
 
 /-- Concrete regression example for `apd:eq:step_component`: the high-weight sector at the
-chosen cutoff is nonempty. -/
+chosen cutoff is nonempty.
+@isnad1 id=nonempty.0h0v.s4.6079683aba87 from=translated src=- shape=2097abf1 vocab=a94d58e8
+-/
 theorem highSet_nonempty : (highSet 2 1).Nonempty :=
   ⟨cls Q, mem_highSet.2 (by simp [weight_Q])⟩
 
 /-- Concrete regression example for `apd:eq:step_component`: the retained set is a proper
-subset of all Pauli classes, since it excludes the class of `Q`. -/
+subset of all Pauli classes, since it excludes the class of `Q`.
+@isnad1 id=ne.0h0v.s8.e94d4707771b from=translated src=- shape=2d767877 vocab=12206315
+-/
 theorem cutoff_ne_univ : (highSet 2 1)ᶜ ≠ univ := by
   intro h
   have hmem : cls Q ∈ (highSet 2 1)ᶜ := by rw [h]; exact mem_univ _
@@ -129,7 +163,9 @@ theorem cutoff_ne_univ : (highSet 2 1)ᶜ ≠ univ := by
   exact (Finset.mem_compl.1 hmem) hhigh
 
 /-- Concrete regression example for `apd:eq:step_component`: the cutoff removes the whole
-new component, by its coefficients, not by an assumed operator identity. -/
+new component, by its coefficients, not by an assumed operator identity.
+@isnad1 id=eq.0h0v.s8.05824a54f5d2 from=translated src=- shape=a5b408a9 vocab=ad8b0b0b
+-/
 theorem cutoff_Q : truncOp (highSet 2 1)ᶜ (toMatrix Q) = 0 := by
   rw [truncOp]
   refine Finset.sum_eq_zero fun p hp => ?_
@@ -141,36 +177,48 @@ theorem cutoff_Q : truncOp (highSet 2 1)ᶜ (toMatrix Q) = 0 := by
 
 /-- Concrete regression example for `apd:eq:step_component`: the discarded operator is `Q`.
 This is the subtraction defining the paper's `Õ^{(d)}_{≥w*+1}`, specialized to the evolved
-witness. -/
+witness.
+@isnad1 id=eq.0h0v.s8.857bb20e544d from=translated src=- shape=64831baf vocab=3d621834
+-/
 theorem discarded_eq_Q : toMatrix Q - truncOp (highSet 2 1)ᶜ (toMatrix Q) = toMatrix Q := by
   rw [cutoff_Q, sub_zero]
 
 /-- Concrete regression example for `apd:eq:step_component`: the discarded operator is
-provably nonzero. -/
+provably nonzero.
+@isnad1 id=ne.0h0v.s8.269a01e1f254 from=translated src=- shape=95af27f7 vocab=3d621834
+-/
 theorem discarded_ne_zero : toMatrix Q - truncOp (highSet 2 1)ᶜ (toMatrix Q) ≠ 0 := by
   rw [discarded_eq_Q]
   exact toMatrix_ne_zero Q
 
 /-- Concrete regression helper for `apd:thm:triangle`: the normalized Pauli norm of the input
-is exactly one. -/
+is exactly one.
+@isnad1 id=eq.0h0v.s4.71994b591a3a from=translated src=- shape=efa10885 vocab=f4605e8c
+-/
 theorem input_pauliNorm : pauliNorm (toMatrix P) = 1 := by
   rw [pauliNorm, ← sum_norm_coeff_sq, ← herm_P]
   simp [coeff_toMatrix_herm, apply_ite]
 
 /-- Concrete regression example for `apd:eq:step_component`: the produced Pauli has exact
-normalized norm one. -/
+normalized norm one.
+@isnad1 id=eq.0h0v.s4.19a19ee4d349 from=translated src=- shape=efa10885 vocab=b728ff23
+-/
 theorem Q_pauliNorm : pauliNorm (toMatrix Q) = 1 := by
   rw [pauliNorm, ← sum_norm_coeff_sq, ← herm_Q]
   simp [coeff_toMatrix_herm, apply_ite]
 
 /-- Concrete regression example for `apd:thm:triangle`: the discarded norm, the scalar used
-in the triangle bound's summand, is exactly one. -/
+in the triangle bound's summand, is exactly one.
+@isnad1 id=eq.0h0v.s8.defbd086c323 from=translated src=- shape=48007ff3 vocab=b0a46161
+-/
 theorem discarded_pauliNorm :
     pauliNorm (toMatrix Q - truncOp (highSet 2 1)ᶜ (toMatrix Q)) = 1 := by
   rw [discarded_eq_Q, Q_pauliNorm]
 
 /-- Concrete regression example for `apd:eq:step_component`: the high-weight scalar before
-the cutoff is also exactly one. -/
+the cutoff is also exactly one.
+@isnad1 id=eq.0h0v.s4.383d6e4af47a from=translated src=- shape=29cbdbe1 vocab=ac93e0f1
+-/
 theorem Q_highNorm : highNorm 1 (toMatrix Q) = 1 := by
   have hsq : highNorm 1 (toMatrix Q) ^ 2 = 1 := by
     rw [highNorm, norm_restr_sq, ← herm_Q]
@@ -184,7 +232,9 @@ def Gs (g : ℕ) : PauliString 2 := if g % 2 = 0 then G else Q
 /-- Both rotations use conjugation angle `π / 2`; no zero-angle padding is used. -/
 noncomputable def angles (_ : ℕ) : ℝ := Real.pi / 2
 
-/-- Concrete regression data for `apd:eq:step_component`: every generator is Hermitian. -/
+/-- Concrete regression data for `apd:eq:step_component`: every generator is Hermitian.
+@isnad1 id=isselfad.0h1v.s4.fbf33423b228 from=translated src=- shape=f5b4d083 vocab=bd886c92
+-/
 theorem generators_selfAdjoint (g : ℕ) : IsSelfAdjoint (Gs g) := by
   unfold Gs
   split
@@ -192,7 +242,9 @@ theorem generators_selfAdjoint (g : ℕ) : IsSelfAdjoint (Gs g) := by
   · exact isSelfAdjoint_Q
 
 /-- Concrete regression data for `apd:eq:step_component`: every generator has exactly
-`k_h = 2`, rather than only a degenerate upper bound. -/
+`k_h = 2`, rather than only a degenerate upper bound.
+@isnad1 id=eq.0h1v.s4.acca813b702b from=translated src=- shape=ac1a6a97 vocab=858f1700
+-/
 theorem generators_weight (g : ℕ) : weight (Gs g) = 2 := by
   unfold Gs
   split
@@ -200,52 +252,70 @@ theorem generators_weight (g : ℕ) : weight (Gs g) = 2 := by
   · exact weight_Q
 
 /-- Concrete regression example for `apd:eq:step_component`: the first rotation creates
-weight-two mass in the actual recursive, untruncated trajectory. -/
+weight-two mass in the actual recursive, untruncated trajectory.
+@isnad1 id=eq.0h0v.s5.96d3c00367ce from=translated src=- shape=62d0a64c vocab=04ee2003
+-/
 theorem traj_one : traj Gs angles (toMatrix P) 1 = toMatrix Q := by
   rw [traj_succ, traj_zero]
   simpa [Gs, angles] using first_rotation
 
 /-- Concrete regression example for `apd:eq:step_component`: the two-rotation evolution
-still contains exactly `Q` immediately before its end-of-step cutoff. -/
+still contains exactly `Q` immediately before its end-of-step cutoff.
+@isnad1 id=eq.0h0v.s5.1b64d0250b80 from=translated src=- shape=62d0a64c vocab=04ee2003
+-/
 theorem traj_two : traj Gs angles (toMatrix P) 2 = toMatrix Q := by
   rw [traj_succ, traj_one]
   simpa [Gs, angles] using second_rotation (Real.pi / 2)
 
 /-- Concrete regression example for `apd:thm:triangle`: the first rotation of the length-two
-step is not followed by a cutoff. -/
+step is not followed by a cutoff.
+@isnad1 id=eq.0h0v.s7.edb3b245efd0 from=translated src=- shape=e5d563b3 vocab=074ee371
+-/
 theorem schedule_zero : trotterSchedule (n := 2) 2 1 0 = univ := by
   simp [trotterSchedule]
 
 /-- Concrete regression example for `apd:thm:triangle`: the second rotation is followed by
-the genuine weight-one cutoff, at the end of the step. -/
+the genuine weight-one cutoff, at the end of the step.
+@isnad1 id=eq.0h0v.s8.cecb18ec827e from=translated src=- shape=52e4dd85 vocab=444be165
+-/
 theorem schedule_one : trotterSchedule (n := 2) 2 1 1 = (highSet 2 1)ᶜ := by
   simp [trotterSchedule]
 
 /-- Concrete regression example for `apd:eq:step_component`: the independent full-step
-recurrence removes the newly generated weight-two observable at the first step boundary. -/
+recurrence removes the newly generated weight-two observable at the first step boundary.
+@isnad1 id=eq.0h0v.s6.a54619bcf0b2 from=translated src=- shape=5fcdd80b vocab=5a12aaee
+-/
 theorem step_one : trotterStepTraj Gs angles 2 1 (toMatrix P) 1 = 0 := by
   rw [trotterStepTraj_succ, trotterStepTraj_zero, traj_two, cutoff_Q]
 
 /-- Concrete regression example for `apd:thm:triangle`: the rotation-indexed trajectory still
 contains `Q` inside the step, because the cutoff acts at the step boundary and not after every
-rotation. -/
+rotation.
+@isnad1 id=eq.0h0v.s5.78fe64b534e7 from=translated src=- shape=00c94ad5 vocab=b1e11e19
+-/
 theorem interior_eq_Q : trotterTraj Gs angles 2 1 (toMatrix P) 1 = toMatrix Q := by
   simpa only [Nat.zero_mul, Nat.zero_add, trotterTraj_zero, traj_one] using
     trotterTraj_within_step Gs angles 2 1 (toMatrix P) 0 1 (by norm_num)
 
 /-- Concrete regression example for `apd:thm:triangle`: the interior high-weight mass is
-exactly one. This excludes a vacuous zero-sector witness. -/
+exactly one. This excludes a vacuous zero-sector witness.
+@isnad1 id=eq.0h0v.s5.557332ed84d9 from=translated src=- shape=f1686ecf vocab=bebc306d
+-/
 theorem interior_highNorm : highNorm 1 (trotterTraj Gs angles 2 1 (toMatrix P) 1) = 1 := by
   rw [interior_eq_Q, Q_highNorm]
 
 /-- Concrete regression example for `apd:eq:step_component`: after the second rotation,
-the rotation-indexed execution agrees with the independently computed step cutoff. -/
+the rotation-indexed execution agrees with the independently computed step cutoff.
+@isnad1 id=eq.0h0v.s6.f26077376ffa from=translated src=- shape=5fcdd80b vocab=3142e7b3
+-/
 theorem boundary_eq_zero : trotterTraj Gs angles 2 1 (toMatrix P) 2 = 0 := by
   simpa only [Nat.one_mul, step_one] using
     trotterTraj_at_boundary Gs angles 2 1 (toMatrix P) 1 (by norm_num)
 
 /-- Concrete regression example for `apd:eq:step_component`: the kept high-weight mass is
-zero at the boundary, in contrast to the positive mass discarded at that same boundary. -/
+zero at the boundary, in contrast to the positive mass discarded at that same boundary.
+@isnad1 id=eq.0h0v.s5.2f77d9db8703 from=translated src=- shape=f1686ecf vocab=bebc306d
+-/
 theorem boundary_highNorm : highNorm 1 (trotterTraj Gs angles 2 1 (toMatrix P) 2) = 0 := by
   have hb := trotterTraj_at_boundary Gs angles 2 1 (toMatrix P) 1 (by norm_num)
   rw [Nat.one_mul] at hb
@@ -253,23 +323,31 @@ theorem boundary_highNorm : highNorm 1 (trotterTraj Gs angles 2 1 (toMatrix P) 2
   exact highNorm_trotterStepTraj_succ Gs angles 2 1 (toMatrix P) 0
 
 /-- Concrete regression example for `apd:eq:step_component`: the named discarded-step
-operator `X₁`, not only an independently written difference, is exactly `Q`. -/
+operator `X₁`, not only an independently written difference, is exactly `Q`.
+@isnad1 id=eq.0h0v.s5.1acf9b15eba5 from=translated src=- shape=00c94ad5 vocab=98c6497c
+-/
 theorem discardedStep_zero : discardedStep Gs angles 2 1 (toMatrix P) 0 = toMatrix Q := by
   rw [discardedStep, trotterStepTraj_zero, step_one, traj_two, sub_zero]
 
 /-- Concrete regression example for `apd:eq:step_component`: the algorithm's first discarded
-operator is provably nonzero. -/
+operator is provably nonzero.
+@isnad1 id=ne.0h0v.s6.b107af3e4cb9 from=translated src=- shape=5fcdd80b vocab=0635f36c
+-/
 theorem discardedStep_ne_zero : discardedStep Gs angles 2 1 (toMatrix P) 0 ≠ 0 := by
   rw [discardedStep_zero]
   exact toMatrix_ne_zero Q
 
 /-- Concrete regression example for `apd:thm:triangle`: the generic discarded-operator norm
-bridge computes the first error summand as exactly one. -/
+bridge computes the first error summand as exactly one.
+@isnad1 id=eq.0h0v.s5.c33f6794cec7 from=translated src=- shape=74919bc3 vocab=e3e44819
+-/
 theorem discardedStep_pauliNorm : pauliNorm (discardedStep Gs angles 2 1 (toMatrix P) 0) = 1 := by
   rw [pauliNorm_discardedStep, trotterStepTraj_zero, traj_two, Q_highNorm]
 
 /-- Concrete regression example for `apd:thm:triangle`: the first discarded norm is strictly
-positive, unlike the high-weight norm of the retained boundary state. -/
+positive, unlike the high-weight norm of the retained boundary state.
+@isnad1 id=lt.0h0v.s5.aadfd4710385 from=translated src=- shape=58e3a9f9 vocab=0542214d
+-/
 theorem discardedStep_pauliNorm_pos :
     0 < pauliNorm (discardedStep Gs angles 2 1 (toMatrix P) 0) := by
   rw [discardedStep_pauliNorm]

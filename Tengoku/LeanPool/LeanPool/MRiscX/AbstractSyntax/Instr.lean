@@ -288,6 +288,9 @@ namespace Instr
     match toString i, toString j with
     | s , s' => s == s'
 
+  /--
+  @isnad1 id=eq.0h1v.s3.b20e204f667f from=translated src=- shape=16c1196c vocab=3b5bfe8a
+  -/
   theorem refl : forall i : Instr,
     beq i i = true := by
     intros

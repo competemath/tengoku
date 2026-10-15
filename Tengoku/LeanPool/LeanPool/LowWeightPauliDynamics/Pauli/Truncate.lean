@@ -127,7 +127,9 @@ noncomputable def truncOp (S : Finset (PauliIndex n)) (O : Matrix (Bits n) (Bits
 
 /-- **`Π_S` keeps the coefficients in `S` and zeroes the rest**, as an equation between
 coefficients. The reproducing property of the Pauli family (`coeff_toMatrix_herm`) is the whole
-content. -/
+content.
+@isnad1 id=eq.0h4v.s7.715dcc8147f2 from=translated src=- shape=878b24f2 vocab=d8fcd615
+-/
 theorem coeff_truncOp (S : Finset (PauliIndex n)) (O : Matrix (Bits n) (Bits n) ℂ)
     (q : PauliIndex n) :
     coeff (truncOp S O) q = if q ∈ S then coeff O q else 0 := by
@@ -144,7 +146,9 @@ theorem coeff_truncOp (S : Finset (PauliIndex n)) (O : Matrix (Bits n) (Bits n) 
     Finset.sum_congr rfl hterm, Finset.sum_ite_eq]
 
 /-- `Π_S` on the coefficient side is `restr S`, which is the bridge to everything `Coeff.lean` and
-`Flow.lean` prove about restriction. -/
+`Flow.lean` prove about restriction.
+@isnad1 id=eq.0h3v.s4.0edf202f67db from=translated src=- shape=fc0b60ef vocab=8b992910
+-/
 theorem coeffVec_truncOp (S : Finset (PauliIndex n)) (O : Matrix (Bits n) (Bits n) ℂ) :
     coeffVec (truncOp S O) = restr S (coeffVec O) := by
   ext p
@@ -158,7 +162,9 @@ Proved from Parseval, not from a dimension count. `sum_norm_coeff_sq` says
 `∑_p ‖x_p‖² = ‖O‖_{2,normalized}²`, so an operator all of whose coefficients vanish has
 `‖·‖_{2,normalized} = 0`, hence all
 entries zero; `coeff_truncOp` says the difference `∑_p x_p P_p − O` is such an operator. No
-`InnerProductSpace` instance on `Matrix` and no `finrank` count is involved. -/
+`InnerProductSpace` instance on `Matrix` and no `finrank` count is involved.
+@isnad1 id=eq.0h2v.s6.00b6557fce3c from=translated src=- shape=92b697c8 vocab=5834d6a8
+-/
 theorem truncOp_univ (O : Matrix (Bits n) (Bits n) ℂ) : truncOp univ O = O := by
   have hsub : ∀ (A B : Matrix (Bits n) (Bits n) ℂ) (q : PauliIndex n),
       coeff (A - B) q = coeff A q - coeff B q := by
@@ -184,19 +190,25 @@ theorem truncOp_univ (O : Matrix (Bits n) (Bits n) ℂ) : truncOp univ O = O := 
 `truncOp_univ`, written without the truncation operator. The basis operators are the
 self-adjoint representatives `toMatrix (herm p)`; `Pauli/Tensor.lean` identifies them with the
 correctly phased tensor products of one-qubit Pauli matrices (`herm p` is not always the tensor
-product with coefficient `+1`; it can differ from it by a sign). -/
+product with coefficient `+1`; it can differ from it by a sign).
+@isnad1 id=eq.0h2v.s7.25befa9dfbdf from=translated src=- shape=2430e5fe vocab=0dc688a8
+-/
 theorem sum_coeff_smul_toMatrix_herm (O : Matrix (Bits n) (Bits n) ℂ) :
     ∑ p : PauliIndex n, coeff O p • toMatrix (herm p) = O := truncOp_univ O
 
 /-- **Truncation only decreases the high-weight mass**, on operators. This is
-`Flow.lean`'s `highNorm_restr_le` composed with `coeffVec_truncOp`. -/
+`Flow.lean`'s `highNorm_restr_le` composed with `coeffVec_truncOp`.
+@isnad1 id=le.0h4v.s4.dc2b44c5f037 from=translated src=- shape=226f7bff vocab=1bcc060c
+-/
 theorem highNorm_truncOp_le (w : ℕ) (S : Finset (PauliIndex n))
     (O : Matrix (Bits n) (Bits n) ℂ) : highNorm w (truncOp S O) ≤ highNorm w O := by
   rw [highNorm, highNorm, coeffVec_truncOp]
   exact highNorm_restr_le S (coeffVec O)
 
 /-- Truncation only decreases the total mass, which is what keeps the ladder's `reservoir` field
-true along a truncated trajectory. -/
+true along a truncated trajectory.
+@isnad1 id=le.0h3v.s4.70649d2e40a9 from=translated src=- shape=b79393c6 vocab=09780a2b
+-/
 theorem pauliNorm_truncOp_le (S : Finset (PauliIndex n)) (O : Matrix (Bits n) (Bits n) ℂ) :
     pauliNorm (truncOp S O) ≤ pauliNorm O := by
   rw [← norm_coeffVec, ← norm_coeffVec, coeffVec_truncOp]
@@ -204,7 +216,9 @@ theorem pauliNorm_truncOp_le (S : Finset (PauliIndex n)) (O : Matrix (Bits n) (B
 
 /-- **`Π_{≤ w}` leaves nothing above `w`.** The defining property of the algorithm's state: after
 truncating at threshold `w`, the high-weight mass is exactly zero, not merely smaller. Without
-this, `trajTrunc` would be a flow with *some* mass removed rather than the LPD one. -/
+this, `trajTrunc` would be a flow with *some* mass removed rather than the LPD one.
+@isnad1 id=eq.0h3v.s7.c6a419459b4b from=translated src=- shape=2eaf0463 vocab=8d367c81
+-/
 theorem highNorm_truncOp_compl (w : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) :
     highNorm w (truncOp (highSet n w)ᶜ O) = 0 :=
   highNorm_eq_zero w fun p hp => by
@@ -227,10 +241,16 @@ noncomputable def trajTrunc (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
   | g + 1 => truncOp (S g)
       (rot (toMatrix (Gs g)) (θ g) * trajTrunc Gs θ S O g * rot (toMatrix (Gs g)) (-(θ g)))
 
+/--
+@isnad1 id=eq.0h5v.s5.8eeede569a70 from=translated src=- shape=2271682a vocab=2e5b105e
+-/
 @[simp] lemma trajTrunc_zero (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (S : ℕ → Finset (PauliIndex n)) (O : Matrix (Bits n) (Bits n) ℂ) :
     trajTrunc Gs θ S O 0 = O := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.54c5fbe80502 from=translated src=- shape=e1595ca6 vocab=f2dea41f
+-/
 lemma trajTrunc_succ (Gs : ℕ → PauliString n) (θ : ℕ → ℝ) (S : ℕ → Finset (PauliIndex n))
     (O : Matrix (Bits n) (Bits n) ℂ) (g : ℕ) :
     trajTrunc Gs θ S O (g + 1)
@@ -240,7 +260,9 @@ lemma trajTrunc_succ (Gs : ℕ → PauliString n) (θ : ℕ → ℝ) (S : ℕ �
 
 /-- **Truncating nothing is `traj`.** The guard that `trajTrunc` generalizes `Flow.lean`'s
 trajectory rather than replacing it with an incomparable object; it is an equality of *operators*,
-which is what `truncOp_univ` buys. -/
+which is what `truncOp_univ` buys.
+@isnad1 id=eq.0h5v.s6.d6e20d4dcfc8 from=translated src=- shape=ab3afdc3 vocab=aa314aaa
+-/
 theorem trajTrunc_univ (Gs : ℕ → PauliString n) (θ : ℕ → ℝ) (O : Matrix (Bits n) (Bits n) ℂ)
     (g : ℕ) : trajTrunc Gs θ (fun _ => univ) O g = traj Gs θ O g := by
   induction g with
@@ -249,7 +271,9 @@ theorem trajTrunc_univ (Gs : ℕ → PauliString n) (θ : ℕ → ℝ) (O : Matr
 
 /-- The total mass never grows along the truncated trajectory: conjugation preserves it
 (`pauliNorm_conj`) and truncation can only shrink it. `traj` has this with equality; here only the
-inequality holds, and it is all `Ladder.reservoir` asks for. -/
+inequality holds, and it is all `Ladder.reservoir` asks for.
+@isnad1 id=le.1h6v.s5.0b80c4b633af from=translated src=- shape=d10c6398 vocab=b797733e
+-/
 theorem pauliNorm_trajTrunc_le {Gs : ℕ → PauliString n} (hG : ∀ g, IsSelfAdjoint (Gs g))
     (θ : ℕ → ℝ) (S : ℕ → Finset (PauliIndex n)) (O : Matrix (Bits n) (Bits n) ℂ) (g : ℕ) :
     pauliNorm (trajTrunc Gs θ S O g) ≤ pauliNorm O := by
@@ -263,7 +287,9 @@ theorem pauliNorm_trajTrunc_le {Gs : ℕ → PauliString n} (hG : ∀ g, IsSelfA
 /-- **The per-rotation-cut state carries no weight above `w*`.** A support fact, **not** a
 non-vacuity witness: its conclusion follows from `highNorm_truncOp_compl`.
 The algorithm's boundary-scheduled version is `highNorm_trotterStepTraj_succ` in
-`Pauli/TrotterTruncate.lean` (`apd:eq:step_component`). -/
+`Pauli/TrotterTruncate.lean` (`apd:eq:step_component`).
+@isnad1 id=eq.0h6v.s7.5d4f3136cfa1 from=translated src=- shape=19d0ee07 vocab=cdfa1bc6
+-/
 theorem highNorm_trajTrunc_succ (wstar : ℕ) (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (O : Matrix (Bits n) (Bits n) ℂ) (g : ℕ) :
     highNorm wstar (trajTrunc Gs θ (fun _ => (highSet n wstar)ᶜ) O (g + 1)) = 0 := by
@@ -281,6 +307,9 @@ noncomputable def ladderNTrunc (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
   | 0, g => pauliNorm (trajTrunc Gs θ S O g)
   | m + 1, g => highNorm (rungWeight ko kh (m + 1)) (trajTrunc Gs θ S O g)
 
+/--
+@isnad1 id=le.0h9v.s5.cf6300ab2c4f from=translated src=- shape=a33cd0b1 vocab=bfe61b9d
+-/
 lemma ladderNTrunc_nonneg (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (S : ℕ → Finset (PauliIndex n)) (O : Matrix (Bits n) (Bits n) ℂ) (ko kh m g : ℕ) :
     0 ≤ ladderNTrunc Gs θ S O ko kh m g := by
@@ -289,7 +318,9 @@ lemma ladderNTrunc_nonneg (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
   | succ m => exact highNorm_nonneg _ _
 
 /-- `init`: truncation has not happened yet at `g = 0`, so this is `ladderN_init` verbatim — a
-`k_o`-local observable carries no mass above any rung `m ≥ 1`. -/
+`k_o`-local observable carries no mass above any rung `m ≥ 1`.
+@isnad1 id=eq.2h8v.s6.491b229bdee0 from=translated src=- shape=ead78c9b vocab=d4782781
+-/
 lemma ladderNTrunc_init {Gs : ℕ → PauliString n} {θ : ℕ → ℝ} {S : ℕ → Finset (PauliIndex n)}
     {O : Matrix (Bits n) (Bits n) ℂ} {ko kh : ℕ}
     (hloc : ∀ p : PauliIndex n, ko < wt p → coeff O p = 0) (m : ℕ) (hm : 1 ≤ m) :
@@ -308,7 +339,9 @@ At the truncation rung and an actual Trotter boundary, `pauliNorm_discardedStep_
 This is `apd:thm:local_flow_k_local` along the truncated trajectory, and
 `ladderNTrunc_step` is what survives of it once the truncation throws mass away. Read the two
 apart: `ladderNTrunc m (g+1)` measures retained mass, while this measures pre-cut high mass.
-Only after identifying the retained set at a boundary is the latter the discarded-error summand. -/
+Only after identifying the retained set at a boundary is the latter the discarded-error summand.
+@isnad1 id=le.3h9v.s9.5da1e9cb22cf from=translated src=- shape=db80babe vocab=262061f5
+-/
 theorem highNorm_conj_trajTrunc_le {Gs : ℕ → PauliString n} {θ : ℕ → ℝ}
     {S : ℕ → Finset (PauliIndex n)} {O : Matrix (Bits n) (Bits n) ℂ}
     (hG : ∀ g, IsSelfAdjoint (Gs g)) (hk : ∀ g, weight (Gs g) ≤ kh) (m g : ℕ) (hm : 1 ≤ m) :
@@ -331,7 +364,9 @@ theorem highNorm_conj_trajTrunc_le {Gs : ℕ → PauliString n} {θ : ℕ → �
 
 /-- **The damped ladder step survives interleaved truncation**: the flow bound of
 `apd:thm:local_flow_k_local`, then `highNorm_truncOp_le`. No hypothesis on the retained sets `S`
-is used, and none is available to use. -/
+is used, and none is available to use.
+@isnad1 id=le.3h9v.s7.a8d197a090af from=translated src=- shape=03608ea1 vocab=2de22209
+-/
 theorem ladderNTrunc_step {Gs : ℕ → PauliString n} {θ : ℕ → ℝ}
     {S : ℕ → Finset (PauliIndex n)} {O : Matrix (Bits n) (Bits n) ℂ}
     (hG : ∀ g, IsSelfAdjoint (Gs g)) (hk : ∀ g, weight (Gs g) ≤ kh) (m g : ℕ) (hm : 1 ≤ m) :

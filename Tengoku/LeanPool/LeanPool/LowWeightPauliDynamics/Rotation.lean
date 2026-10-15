@@ -107,7 +107,9 @@ all — `rot (0 : ℂ) π = 0`. -/
 noncomputable def rot (G : A) (θ : ℝ) : A :=
   (Real.cos (θ / 2) : ℂ) • 1 + (Complex.I * Real.sin (θ / 2)) • G
 
-/-- A zero-angle rotation is the identity. -/
+/-- A zero-angle rotation is the identity.
+@isnad1 id=eq.0h2v.s5.df89e35a80ee from=translated src=- shape=e6198632 vocab=d92ad412
+-/
 @[simp]
 lemma rot_zero : rot G 0 = 1 := by
   simp [rot]
@@ -122,7 +124,9 @@ private lemma mul_I_mul_I (a b : ℂ) : Complex.I * a * (Complex.I * b) = -(a * 
 corollaries of it. (Two others unfold the definition rather than following from this one —
 `rot_mul_eq_mul_rot_neg` and `star_rot`.) This is where the double angle of
 `apd:eq:pauli_rotation_branch` comes from — via `cos_add` and `sin_add` on the half angles,
-rather than via `cos_two_mul'`. -/
+rather than via `cos_two_mul'`.
+@isnad1 id=eq.1h4v.s6.657495b0dae9 from=translated src=- shape=6304e1fe vocab=ac8460b6
+-/
 lemma rot_mul_rot (hG : G * G = 1) : rot G θ₁ * rot G θ₂ = rot G (θ₁ + θ₂) := by
   have hhalf : (θ₁ + θ₂) / 2 = θ₁ / 2 + θ₂ / 2 := by ring
   have hc : ((Real.cos ((θ₁ + θ₂) / 2) : ℝ) : ℂ)
@@ -136,27 +140,37 @@ lemma rot_mul_rot (hG : G * G = 1) : rot G θ₁ * rot G θ₂ = rot G (θ₁ + 
   simp only [rot, add_mul, mul_add, smul_mul_smul_comm, one_mul, mul_one, hG, mul_I_mul_I, hc, hs]
   module
 
-/-- `rot G (-θ)` is a right inverse. -/
+/-- `rot G (-θ)` is a right inverse.
+@isnad1 id=eq.1h3v.s6.9818cd2d30bc from=translated src=- shape=37885475 vocab=1a84d098
+-/
 lemma rot_mul_rot_neg (hG : G * G = 1) : rot G θ * rot G (-θ) = 1 := by
   rw [rot_mul_rot hG, add_neg_cancel, rot_zero]
 
-/-- `rot G (-θ)` is a left inverse. -/
+/-- `rot G (-θ)` is a left inverse.
+@isnad1 id=eq.1h3v.s6.5c5adba88a82 from=translated src=- shape=8efd93ce vocab=1a84d098
+-/
 lemma rot_neg_mul_rot (hG : G * G = 1) : rot G (-θ) * rot G θ = 1 := by
   rw [rot_mul_rot hG, neg_add_cancel, rot_zero]
 
 /-- A rotation commutes with everything its generator commutes with: `rot` is a linear
-combination of `1` and `G`. -/
+combination of `1` and `G`.
+@isnad1 id=commute.1h4v.s5.683110997a8d from=translated src=- shape=2cd8deb1 vocab=478d7b06
+-/
 lemma commute_rot (h : Commute G P) : Commute (rot G θ) P :=
   ((Commute.one_left P).smul_left _).add_left (h.smul_left _)
 
 /-- **Commuting branch** of `apd:eq:pauli_rotation_branch`: a rotation whose
-generator commutes with `P` leaves `P` alone. No weight change, no new Pauli. -/
+generator commutes with `P` leaves `P` alone. No weight change, no new Pauli.
+@isnad1 id=eq.2h4v.s6.ff8d0665e45f from=translated src=- shape=2ab36703 vocab=bb4acee7
+-/
 theorem rot_conj_of_commute (hG : G * G = 1) (h : Commute G P) :
     rot G θ * P * rot G (-θ) = P := by
   rw [(commute_rot h).eq, mul_assoc, rot_mul_rot_neg hG, mul_one]
 
 /-- Anticommutation lets `P` move across a rotation at the cost of negating the angle.
-Note this needs no hypothesis on `G * G`. -/
+Note this needs no hypothesis on `G * G`.
+@isnad1 id=eq.1h4v.s6.d17c3754665c from=translated src=- shape=beae2817 vocab=1a84d098
+-/
 lemma rot_mul_eq_mul_rot_neg (h : G * P = -(P * G)) : rot G θ * P = P * rot G (-θ) := by
   have hPG : P * G = -(G * P) := by rw [h, neg_neg]
   simp only [rot, add_mul, mul_add, smul_mul_assoc, mul_smul_comm, one_mul, mul_one,
@@ -183,7 +197,9 @@ not a rescaling of `P` — and mere distinctness does not give that: with `G = Z
 `(cos θ - I * sin θ) • P`.
 
 Both are supplied for Pauli strings by `Pauli/Matrix.lean` and `Pauli/Flow.lean`, and the second
-consequence, that the weight changes by at most `k_h - 1`, by `Pauli/Weight.lean`. -/
+consequence, that the weight changes by at most `k_h - 1`, by `Pauli/Weight.lean`.
+@isnad1 id=eq.2h4v.s7.1d5bd9770eb2 from=translated src=- shape=67a6b055 vocab=e253f07a
+-/
 theorem rot_conj_of_anticommute (hG : G * G = 1) (h : G * P = -(P * G)) :
     rot G θ * P * rot G (-θ)
       = (Real.cos θ : ℂ) • P + (Complex.I * Real.sin θ) • (G * P) := by
@@ -194,7 +210,9 @@ section Star
 
 variable [StarRing A] [StarModule ℂ A]
 
-/-- Adjoining a rotation reverses its angle, when the generator is self-adjoint. -/
+/-- Adjoining a rotation reverses its angle, when the generator is self-adjoint.
+@isnad1 id=eq.1h3v.s7.8238626707b6 from=translated src=- shape=841a8051 vocab=85667a70
+-/
 lemma star_rot (hG : star G = G) : star (rot G θ) = rot G (-θ) := by
   simp only [rot, star_add, star_smul, star_one, hG, neg_div, Real.cos_neg, Real.sin_neg,
     Complex.star_def, map_mul, Complex.conj_I, Complex.conj_ofReal]
@@ -209,7 +227,9 @@ convention is `∏ rot G_l (-dt)`, not `∏ rot G_l dt`: `rot G θ` is the `+` e
 This is unitarity only. The invariance of the Pauli 2-norm under conjugation (the `reservoir`
 field of `Lean4LPD.Ladder`, used in the base case of `apd:cor:norm_cumulation_jump`) is a
 statement about a norm this file deliberately does not carry; for Pauli rotations it is
-`pauliNorm_conj` in `Pauli/Flow.lean`. -/
+`pauliNorm_conj` in `Pauli/Flow.lean`.
+@isnad1 id=mem.2h3v.s7.e95ccf77d1ae from=translated src=- shape=bfc1f144 vocab=63c54512
+-/
 theorem rot_mem_unitary (hG₂ : G * G = 1) (hG : star G = G) : rot G θ ∈ unitary A :=
   Unitary.mem_iff.2
     ⟨by rw [star_rot hG]; exact rot_neg_mul_rot hG₂,

@@ -57,7 +57,9 @@ variable {V : Type*} [DecidableEq V]
 
 omit [DecidableEq V] in
 /-- A fixed-point-free involution all of whose orbits are edges of `G` is a perfect matching
-of `G`, in the sense of `SimpleGraph.Subgraph.IsPerfectMatching`. -/
+of `G`, in the sense of `SimpleGraph.Subgraph.IsPerfectMatching`.
+@isnad1 id=ex.2h3v.s5.44902f7e5199 from=translated src=- shape=646d9a57 vocab=73bdb19e
+-/
 theorem exists_isPerfectMatching_of_involutive {G : SimpleGraph V} {f : V → V}
     (hinv : ∀ a, f (f a) = a)
     (hadj : ∀ a, G.Adj a (f a)) : ∃ M : G.Subgraph, M.IsPerfectMatching ∧ ∀ a, M.Adj a (f a) := by
@@ -417,7 +419,9 @@ end Aux
 /-- **Spread perfect matchings for a finite edge set.**  This is the edge-set interface used by
 the simultaneous matching selection in the `r = 2` specialization of BKLO Lemma 10.7.  Under a
 Dirac condition with slack `t`, it supplies a partner involution whose weight is at most the
-average weight over the `t + 1` edge-disjoint perfect matchings available from that slack. -/
+average weight over the `t + 1` edge-disjoint perfect matchings available from that slack.
+@isnad1 id=ex.3h6v.s8.587520f5c48c from=translated src=- shape=2669fbee vocab=74d1b206
+-/
 theorem exists_spread_involution_of_edgeSet {R : Type*} [Field R] [LinearOrder R]
     [IsStrictOrderedRing R] {A : Finset (Sym2 V)} {N : Finset V} {t : ℕ}
     (hEven : Even N.card)
@@ -464,7 +468,9 @@ omit [DecidableEq V] in
 /-- **Dirac's theorem for perfect matchings.**  If `N` is a finite set of vertices of even
 cardinality such that every `v ∈ N` has at least `|N| / 2` neighbours inside `N`, then `N` carries
 a perfect matching of `G`, presented as a fixed-point-free partner involution `f` of `N` with
-`G.Adj a (f a)` for all `a ∈ N`. -/
+`G.Adj a (f a)` for all `a ∈ N`.
+@isnad1 id=ex.2h3v.s7.86fb69ca2c47 from=translated src=- shape=2c401523 vocab=854586c7
+-/
 theorem exists_involution_adj (hEven : Even N.card)
     (hdeg : ∀ v ∈ N, N.card / 2 ≤ (N.filter fun z => G.Adj v z).card) :
     ∃ f : V → V, (∀ a ∈ N, f a ∈ N) ∧ (∀ a ∈ N, f (f a) = a) ∧ (∀ a ∈ N, f a ≠ a) ∧
@@ -480,7 +486,9 @@ theorem exists_involution_adj (hEven : Even N.card)
 omit [DecidableEq V] in
 /-- **Dirac's theorem with slack.**  If every vertex of an even set `N` has at least `|N| / 2 + t`
 neighbours inside `N`, then `G` contains `t + 1` perfect matchings of `N` which are pairwise
-edge-disjoint: distinct matchings assign distinct partners to every vertex of `N`. -/
+edge-disjoint: distinct matchings assign distinct partners to every vertex of `N`.
+@isnad1 id=ex.2h4v.s8.8d4f7961f446 from=translated src=- shape=de3a5b8e vocab=ec465d67
+-/
 theorem exists_involutions_pairwise_ne (hEven : Even N.card)
     (hdeg : ∀ v ∈ N, N.card / 2 + t ≤ (N.filter fun z => G.Adj v z).card) :
     ∃ F : Fin (t + 1) → V → V, (∀ i, (∀ a ∈ N, F i a ∈ N) ∧ (∀ a ∈ N, F i (F i a) = a) ∧
@@ -501,7 +509,9 @@ matching of `N`, presented as a partner involution `f`, has weight at most a `1 
 of the total weight: `∑ y ∈ N, w y (f y) ≤ (1 / (t + 1)) * ∑ y ∈ N, ∑ z ∈ N, w y z`.
 
 The matching is obtained by averaging over the `t + 1` pairwise edge-disjoint perfect matchings
-supplied by `SimpleGraph.exists_involutions_pairwise_ne`. -/
+supplied by `SimpleGraph.exists_involutions_pairwise_ne`.
+@isnad1 id=ex.3h6v.s8.7fb2bd9c6c19 from=translated src=- shape=57df5806 vocab=4924721f
+-/
 theorem exists_spread_involution {R : Type*} [Field R] [LinearOrder R]
     [IsStrictOrderedRing R] (hEven : Even N.card)
     (hdeg : ∀ v ∈ N, N.card / 2 + t ≤ (N.filter fun z => G.Adj v z).card)
@@ -526,7 +536,9 @@ theorem exists_spread_involution {R : Type*} [Field R] [LinearOrder R]
 
 omit [DecidableEq V] in
 /-- **Dirac's theorem for perfect matchings**, for a finite graph with an even number of vertices
-and minimum degree at least half the number of vertices. -/
+and minimum degree at least half the number of vertices.
+@isnad1 id=ex.2h2v.s5.e92d37c7b5ed from=translated src=- shape=e209995f vocab=cae30aa2
+-/
 theorem exists_isPerfectMatching_of_card_le_minDegree [Fintype V]
     (hEven : Even (Fintype.card V)) (hdeg : Fintype.card V / 2 ≤ G.minDegree) :
     ∃ M : G.Subgraph, M.IsPerfectMatching := by

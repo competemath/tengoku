@@ -113,6 +113,9 @@ private lemma weighted_pairDeriv_sum_eq {N : ℕ} (W : Fin N → Fin N → ℝ)
     _ = 2 * ∑ j : Fin N, W i j * Real.sin (θ j - θ i) := by
           ring
 
+/--
+@isnad1 id=eq.1h5v.s6.9bd780fdc28b from=translated src=- shape=70970a7b vocab=fa5a17c1
+-/
 lemma weighted_gradient_identity
     (K : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ) (hW : ∀ i j, W i j = W j i)
     (θ : Fin N → ℝ) (i : Fin N) :
@@ -162,6 +165,9 @@ lemma weighted_gradient_identity
   simp [weightedKuramotoF]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s7.1724fd935a69 from=translated src=- shape=04e21b6c vocab=9c15f938
+-/
 lemma weightedKuramotoV_symm_cancel
     (K : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ) (hW : ∀ i j, W i j = W j i)
     (θ : Fin N → ℝ) :
@@ -179,6 +185,9 @@ lemma weightedKuramotoV_symm_cancel
   rw [hderiv]
   ring
 
+/--
+@isnad1 id=le.2h4v.s7.ae91f4e5dcda from=translated src=- shape=608726db vocab=f7442e53
+-/
 theorem weighted_lyapunov_descent
     (K : ℝ) (_hK : 0 < K) (N : ℕ) (W : Fin N → Fin N → ℝ) (hW : ∀ i j, W i j = W j i)
     (θ : Fin N → ℝ) :

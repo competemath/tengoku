@@ -75,7 +75,9 @@ def WeakEnergyRadiusDerivativeIntegrability {n m : ℕ}
     IntervalIntegrable (deriv (weakBallRadialEnergy Du (0 : Domain n))) volume a b)
 
 /-- Absolute continuity of the two radius functions supplies the interval
-integrability of their derivatives on all subintervals of `[0, R0]`. -/
+integrability of their derivatives on all subintervals of `[0, R0]`.
+@isnad1 id=weakener.1h4v.s4.05d4390f67fb from=translated src=- shape=cc25598c vocab=0feb0073
+-/
 theorem weakEnergyRadiusDerivativeIntegrability_of_radius_ac {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hac : WeakEnergyAbsolutelyContinuousOnRadii Du R0) :
@@ -87,7 +89,9 @@ theorem weakEnergyRadiusDerivativeIntegrability_of_radius_ac {n m : ℕ}
     exact (hac.2 ha hab hb).intervalIntegrable_deriv
 
 /-- Absolute continuity of the energy radius function gives local
-integrability of the energy itself on the open radius interval. -/
+integrability of the energy itself on the open radius interval.
+@isnad1 id=locallyi.1h4v.s6.19c6039c35c9 from=translated src=- shape=46b1e9ec vocab=a94c606e
+-/
 theorem weakBallEnergy_locallyIntegrableOn_Ioo_of_radius_ac {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hac : WeakEnergyAbsolutelyContinuousOnRadii Du R0) :
@@ -124,7 +128,9 @@ theorem weakBallEnergy_locallyIntegrableOn_Ioo_of_radius_ac {n m : ℕ}
   exact (intervalIntegrable_iff_integrableOn_Ioo_of_le hab).mp hE_intvl
 
 /-- Absolute continuity of the energy radius function gives local
-integrability of its a.e. derivative on the open radius interval. -/
+integrability of its a.e. derivative on the open radius interval.
+@isnad1 id=locallyi.1h4v.s7.aeb7a7333671 from=translated src=- shape=a6262fbf vocab=05d4362a
+-/
 theorem locallyIntegrableOn_deriv_weakBallEnergy_of_radius_ac {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hac : WeakEnergyAbsolutelyContinuousOnRadii Du R0) :
@@ -155,7 +161,9 @@ theorem locallyIntegrableOn_deriv_weakBallEnergy_of_radius_ac {n m : ℕ}
       (n := n) (m := m) (Du := Du) (R0 := R0) hac).1 ha0 hab hbR)
 
 /-- Absolute continuity of the radial-energy radius function gives local
-integrability of its a.e. derivative on the open radius interval. -/
+integrability of its a.e. derivative on the open radius interval.
+@isnad1 id=locallyi.1h4v.s7.003fb7701b53 from=translated src=- shape=a6262fbf vocab=dc28a6cc
+-/
 theorem locallyIntegrableOn_deriv_weakBallRadialEnergy_of_radius_ac {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hac : WeakEnergyAbsolutelyContinuousOnRadii Du R0) :
@@ -186,7 +194,9 @@ theorem locallyIntegrableOn_deriv_weakBallRadialEnergy_of_radius_ac {n m : ℕ}
       (n := n) (m := m) (Du := Du) (R0 := R0) hac).2 ha0 hab hbR)
 
 /-- The sharp-cutoff defect is locally integrable once the two radius energy
-functions are absolutely continuous on compact subintervals of `[0, R0]`. -/
+functions are absolutely continuous on compact subintervals of `[0, R0]`.
+@isnad1 id=locallyi.1h4v.s6.83ff269c4565 from=translated src=- shape=46b1e9ec vocab=dda54cba
+-/
 theorem weakSharpCutoffDefect_locallyIntegrableOn_of_radius_ac {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hac : WeakEnergyAbsolutelyContinuousOnRadii Du R0) :
@@ -243,7 +253,9 @@ theorem weakSharpCutoffDefect_locallyIntegrableOn_of_radius_ac {n m : ℕ}
   simpa [weakSharpCutoffDefect, E, Q, s, mul_assoc] using hmain
 
 /-- The primitive/FTC radius package contains the derivative integrability
-field, so it can be projected out when needed by lower-level constructors. -/
+field, so it can be projected out when needed by lower-level constructors.
+@isnad1 id=weakener.1h4v.s4.1c0bae01165a from=translated src=- shape=cc25598c vocab=b1b1a510
+-/
 theorem weakEnergyRadiusDerivativeIntegrability_of_radiusPrimitive {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hprim : WeakEnergyRadiusPrimitiveFormula Du R0) :
@@ -255,7 +267,9 @@ theorem weakEnergyRadiusDerivativeIntegrability_of_radiusPrimitive {n m : ℕ}
     exact (hprim.2 ha hab hb).1
 
 /-- The increment/FTC radius package contains the derivative integrability
-field, so it can be projected out when needed by lower-level constructors. -/
+field, so it can be projected out when needed by lower-level constructors.
+@isnad1 id=weakener.1h4v.s4.be5e5d356b97 from=translated src=- shape=cc25598c vocab=18adf634
+-/
 theorem weakEnergyRadiusDerivativeIntegrability_of_radiusIncrement {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hinc : WeakEnergyRadiusIncrementFormula Du R0) :
@@ -286,7 +300,9 @@ def WeakEnergyAnnulusFormula {n m : ℕ}
           weakRadialEnergyDensity Du (0 : Domain n) x)
 
 /-- The open annulus `B_b \ closedBall_a` differs from `B_b \ B_a` only by the
-inner sphere.  In positive dimension that sphere has zero Lebesgue measure. -/
+inner sphere.  In positive dimension that sphere has zero Lebesgue measure.
+@isnad1 id=eventual.0h3v.s9.09d1ce8e0203 from=translated src=- shape=f3bf9c88 vocab=c2929816
+-/
 theorem ball_diff_closedBall_ae_eq_ball_diff_ball {n : ℕ} [NeZero n]
     {a b : ℝ} :
     (Metric.ball (0 : Domain n) b \ Metric.closedBall (0 : Domain n) a)
@@ -319,7 +335,9 @@ theorem ball_diff_closedBall_ae_eq_ball_diff_ball {n : ℕ} [NeZero n]
         (Measure.addHaar_sphere (volume : Measure (Domain n)) (0 : Domain n) a))
 
 /-- Integrating a radial indicator over a containing ball realizes the energy
-increment between the two open balls. -/
+increment between the two open balls.
+@isnad1 id=eq.3h5v.s10.043ae509d1bb from=translated src=- shape=4137cee1 vocab=72f2698d
+-/
 theorem ball_annulus_indicator_integral_eq_energy_diff {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {a b R0 : ℝ}
     (hab : a ≤ b) (hb : b ≤ R0)
@@ -395,7 +413,9 @@ theorem ball_annulus_indicator_integral_eq_energy_diff {n : ℕ} [NeZero n]
         rw [setIntegral_sdiff measurableSet_ball hf (Metric.ball_subset_ball hab)]
 
 /-- The radial signed pushforward of `f dx` on the ambient ball, evaluated on
-an interval of radii, is the corresponding ball-integral increment. -/
+an interval of radii, is the corresponding ball-integral increment.
+@isnad1 id=eq.3h5v.s10.58c74cab96a3 from=translated src=- shape=d20b5030 vocab=b6216db8
+-/
 theorem radialVectorMeasure_apply_Ioo_eq_ballIntegral_sub {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {a b R0 : ℝ}
     (hab : a ≤ b) (hb : b ≤ R0)
@@ -463,7 +483,9 @@ theorem radialVectorMeasure_apply_Ioo_eq_ballIntegral_sub {n : ℕ} [NeZero n]
 
 /-- If the ball-integral radius function is absolutely continuous, then the
 radial signed pushforward of `f dx` on `(a, b)` is the integral of the a.e.
-radius derivative over `[a, b]`. -/
+radius derivative over `[a, b]`.
+@isnad1 id=eq.5h5v.s10.d5a103b6d525 from=translated src=- shape=ffc98830 vocab=fedad920
+-/
 theorem radialVectorMeasure_apply_Ioo_eq_integral_deriv_ballIntegral
     {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {a b R0 : ℝ}
@@ -499,7 +521,9 @@ theorem radialVectorMeasure_apply_Ioo_eq_integral_deriv_ballIntegral
 
 /-- The ball-integral radius derivative formula for interval-indicator
 weights.  This is the interval/simple-function core of the remaining extension
-to all bounded measurable radius weights. -/
+to all bounded measurable radius weights.
+@isnad1 id=eq.5h5v.s10.4b41af7384e4 from=translated src=- shape=f9ee92e4 vocab=44b33520
+-/
 theorem ballIntegralRadiusDerivativeFormulaForIndicator_Ioo
     {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {a b R0 : ℝ}
@@ -548,7 +572,9 @@ theorem ballIntegralRadiusDerivativeFormulaForIndicator_Ioo
       hright.symm
 
 /-- The interval-indicator radius derivative formula, with a scalar coefficient
-in front of the interval indicator. -/
+in front of the interval indicator.
+@isnad1 id=eq.5h6v.s10.8c83eb1b596d from=translated src=- shape=7ac158d9 vocab=44b33520
+-/
 theorem ballIntegralRadiusDerivativeFormulaForIndicatorConst_Ioo
     {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {a b R0 k : ℝ}

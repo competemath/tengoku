@@ -78,7 +78,9 @@ def teleKet3 (j : Fin (2 ^ 3)) : StateVector 3 :=
 
 /-- Basis-vector expansion of Alice's premeasurement state. This is the
 three-qubit equation displayed in de Wolf's teleportation example
-[dW19, qcnotes.tex:791]. -/
+[dW19, qcnotes.tex:791].
+@isnad1 id=eq.0h2v.s11.ad40dc0f2144 from=translated src=- shape=b1267108 vocab=826b6de3
+-/
 theorem teleportation_premeasurement_basis (α β : ℂ) :
     teleportBellMeasure.applyVec
         (StateVector.tensor (teleportInput α β) (bell : StateVector 2))
@@ -100,7 +102,9 @@ theorem teleportation_premeasurement_basis (α β : ℂ) :
 
 /-- Alice's measurement outcomes `00`, `01`, `10`, `11` leave Bob's qubit in
 `I`, `X`, `Z`, and `XZ` branches respectively, all with the common unnormalized
-coefficient `1/2` before conditional normalization [dW19, qcnotes.tex:791]. -/
+coefficient `1/2` before conditional normalization [dW19, qcnotes.tex:791].
+@isnad1 id=eq.0h2v.s11.96c3db40c80b from=translated src=- shape=b5338ba0 vocab=084b0b82
+-/
 theorem teleportation_premeasurement (α β : ℂ) :
     teleportBellMeasure.applyVec
         (StateVector.tensor (teleportInput α β) (bell : StateVector 2))
@@ -134,7 +138,9 @@ theorem teleportation_premeasurement (α β : ℂ) :
 
 /-- Bob's branch-local correction is exact for every measurement outcome:
 after Alice sends `ab`, Bob's `X`-then-`Z` correction recovers
-`α|0⟩ + β|1⟩` [dW19, qcnotes.tex:806]. -/
+`α|0⟩ + β|1⟩` [dW19, qcnotes.tex:806].
+@isnad1 id=eq.0h4v.s5.bf9eaa3a47fa from=translated src=- shape=6efd0d93 vocab=43de7351
+-/
 theorem teleportation_correction_correct (a b : Bool) (α β : ℂ) :
     (teleportCorrection a b).applyVec
         ((teleportBranchGate a b).applyVec (teleportInput α β))
@@ -149,7 +155,9 @@ theorem teleportation_correction_correct (a b : Bool) (α β : ℂ) :
 /-- **Quantum teleportation correctness**: Alice's CNOT/H circuit on the input
 qubit and shared Bell state yields the four explicit measurement branches, and
 for every classical outcome `ab`, Bob's correction recovers Alice's input qubit
-exactly. -/
+exactly.
+@isnad1 id=and.0h2v.s11.536be1d47da6 from=translated src=- shape=9cdaa3d3 vocab=5be06799
+-/
 theorem teleportation_correct (α β : ℂ) :
     teleportBellMeasure.applyVec
         (StateVector.tensor (teleportInput α β) (bell : StateVector 2))
@@ -197,6 +205,9 @@ def TeleportationBlockCorrect (α β : ℂ) : Prop :=
             ((teleportBranchGate a b).applyVec (teleportInput α β))
           = teleportInput α β
 
+/--
+@isnad1 id=teleport.0h2v.s2.89e5d3ce65e4 from=translated src=- shape=5bc9d9c8 vocab=d7567335
+-/
 theorem teleportation_correct_block (α β : ℂ) :
     TeleportationBlockCorrect α β :=
   teleportation_correct α β
@@ -224,6 +235,9 @@ def teleportationCommunicationProfile (n : ℕ) : CommunicationProfile where
   transmittedQubits := 0
   bellPairs := n
 
+/--
+@isnad1 id=hasexact.0h1v.s4.2eecb7eab0a0 from=translated src=- shape=b6f80e63 vocab=532bcb31
+-/
 theorem teleportationCommunicationProfile_exact (n : ℕ) :
     CommunicationProfile.HasExactCounts
       (teleportationCommunicationProfile n) (2 * n) 0 n := by
@@ -231,7 +245,9 @@ theorem teleportationCommunicationProfile_exact (n : ℕ) :
 
 /-- Componentwise `n`-copy teleportation theorem at the parallel product-state
 boundary: each block uses one Bell pair and two classical bits, and each Bob
-block recovers Alice's input qubit exactly after the branch correction. -/
+block recovers Alice's input qubit exactly after the branch correction.
+@isnad1 id=and.0h2v.s5.a8cc51def571 from=translated src=- shape=67afb45b vocab=a45b09a4
+-/
 theorem teleportation_componentwise_correct
     {n : ℕ} (input : TeleportationInput n) :
     (∀ i : Fin n, TeleportationBlockCorrect (input i).1 (input i).2) ∧
@@ -244,7 +260,9 @@ theorem teleportation_componentwise_correct
 
 /-- Global `n`-block teleportation theorem: Alice's `n` input qubits,
 represented as ordered product-state amplitude pairs, are recovered exactly by
-Bob after `n` shared Bell pairs and `2n` classical bits from Alice. -/
+Bob after `n` shared Bell pairs and `2n` classical bits from Alice.
+@isnad1 id=and.0h2v.s4.dc14e164c143 from=translated src=- shape=a49c2d1b vocab=086b2769
+-/
 theorem QuantumTeleportation.main
     {n : ℕ} (input : TeleportationInput n) :
     TeleportationGlobalCorrect input ∧

@@ -25,6 +25,9 @@ namespace ClassicalComplexWPT
 noncomputable def lastAxis (n : ℕ) : ℂ →L[ℂ] Ambient n :=
   ContinuousLinearMap.inr ℂ (Base n) ℂ
 
+/--
+@isnad1 id=eq.0h2v.s8.b0a2f44ac938 from=translated src=- shape=7bd7dc80 vocab=fef6dddf
+-/
 @[simp]
 theorem lastAxis_apply (n : ℕ) (w : ℂ) : lastAxis n w = (0, w) := rfl
 
@@ -36,7 +39,9 @@ noncomputable def lastTaylorCoefficient {n : ℕ}
     (p : FormalMultilinearSeries ℂ (Ambient n) ℂ) (k : ℕ) (z : Base n) : ℂ :=
   p.changeOrigin (z, 0) k (fun _ ↦ lastDirection n)
 
-/-- At the base origin, changing origin leaves the diagonal distinguished coefficient unchanged. -/
+/-- At the base origin, changing origin leaves the diagonal distinguished coefficient unchanged.
+@isnad1 id=eq.0h3v.s8.4ea1ca5a648e from=translated src=- shape=4be14782 vocab=d4fa57aa
+-/
 theorem lastTaylorCoefficient_zero {n k : ℕ}
     (p : FormalMultilinearSeries ℂ (Ambient n) ℂ) :
     lastTaylorCoefficient p k 0 = p k (fun _ ↦ lastDirection n) := by
@@ -60,6 +65,7 @@ theorem lastTaylorCoefficient_zero {n k : ℕ}
 /--
 The moving coefficient at the base origin is the usual factorial-normalized
 iterated derivative of the distinguished slice.
+@isnad1 id=eq.1h4v.s8.9f704fdfba11 from=translated src=- shape=4adc6d79 vocab=cbf54323
 -/
 theorem factorial_smul_lastTaylorCoefficient_zero {n k : ℕ} {f : Ambient n → ℂ}
     (p : FormalMultilinearSeries ℂ (Ambient n) ℂ)
@@ -87,7 +93,9 @@ theorem factorial_smul_lastTaylorCoefficient_zero {n k : ℕ} {f : Ambient n →
   have hfact : (k.factorial : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr k.factorial_ne_zero
   exact mul_div_cancel₀ _ hfact
 
-/-- Vanishing of a directional Taylor coefficient is equivalent to vanishing of the derivative. -/
+/-- Vanishing of a directional Taylor coefficient is equivalent to vanishing of the derivative.
+@isnad1 id=iff.1h4v.s8.5eb197cf13d6 from=translated src=- shape=3cf36bff vocab=a1026a1d
+-/
 theorem lastTaylorCoefficient_zero_iff_iteratedDeriv_zero {n k : ℕ} {f : Ambient n → ℂ}
     (p : FormalMultilinearSeries ℂ (Ambient n) ℂ)
     (hp : HasFPowerSeriesAt f p 0) :
@@ -95,7 +103,9 @@ theorem lastTaylorCoefficient_zero_iff_iteratedDeriv_zero {n k : ℕ} {f : Ambie
   rw [← factorial_smul_lastTaylorCoefficient_zero p hp]
   simp [nsmul_eq_mul, Nat.factorial_ne_zero]
 
-/-- The public exact-order condition is exactly the first-nonzero-coefficient condition. -/
+/-- The public exact-order condition is exactly the first-nonzero-coefficient condition.
+@isnad1 id=iff.1h4v.s8.4f083f5baae4 from=translated src=- shape=e519d748 vocab=d77c470d
+-/
 theorem exactOrderInLastVariable_iff_lastTaylorCoefficients {n d : ℕ} {f : Ambient n → ℂ}
     (p : FormalMultilinearSeries ℂ (Ambient n) ℂ)
     (hp : HasFPowerSeriesAt f p 0) :
@@ -114,7 +124,9 @@ theorem exactOrderInLastVariable_iff_lastTaylorCoefficients {n d : ℕ} {f : Amb
     intro hzero
     exact htop ((lastTaylorCoefficient_zero_iff_iteratedDeriv_zero p hp).mpr hzero)
 
-/-- Every moving distinguished-variable coefficient is analytic in the base variables. -/
+/-- Every moving distinguished-variable coefficient is analytic in the base variables.
+@isnad1 id=analytic.1h3v.s8.b421a4a74032 from=translated src=- shape=680e8374 vocab=12993da4
+-/
 theorem analyticAt_lastTaylorCoefficient {n k : ℕ}
     (p : FormalMultilinearSeries ℂ (Ambient n) ℂ) (hp : 0 < p.radius) :
     AnalyticAt ℂ (lastTaylorCoefficient p k) 0 := by
@@ -132,7 +144,9 @@ theorem analyticAt_lastTaylorCoefficient {n k : ℕ}
     hev.comp (f := fun z : Base n ↦ p.changeOrigin (z, 0) k) hc
 
 /-- An analytic germ admits one ambient series whose moving last-variable
-coefficients are analytic. -/
+coefficients are analytic.
+@isnad1 id=ex.1h2v.s8.c54e4318dbf5 from=translated src=- shape=d2302ed2 vocab=a9ba5363
+-/
 theorem AnalyticAt.exists_powerSeries_with_analytic_lastCoefficients
     {n : ℕ} {f : Ambient n → ℂ} (hf : AnalyticAt ℂ f 0) :
     ∃ p : FormalMultilinearSeries ℂ (Ambient n) ℂ,

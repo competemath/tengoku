@@ -32,6 +32,9 @@ theorem eq_zero {R n₁ n₂ : Type _} [Zero R] (x : Matrix n₁ n₂ R) :
     (∀ (i : n₁) (j : n₂), x i j = 0) ↔ x = 0 := by
   simp_rw [← Matrix.ext_iff, Matrix.zero_apply]
 
+/--
+@isnad1 id=eq.0h6v.s6.34beca2c570b from=translated src=- shape=0e8429fe vocab=e88c0baa
+-/
 theorem mulVec_stdBasis {R m n : Type _} [Semiring R] [Fintype n]
     (a : Matrix m n R) (i : m) (j : n) :
     (a.mulVec (Pi.basisFun R n j)) i = a i j := by
@@ -39,6 +42,9 @@ theorem mulVec_stdBasis {R m n : Type _} [Semiring R] [Fintype n]
   simp_rw [mulVec, dotProduct, Pi.basisFun_apply, Pi.single_apply,
     mul_boole, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
 
+/--
+@isnad1 id=iff.0h5v.s6.6b657404f4ad from=translated src=- shape=9af900e7 vocab=2c3ef2ce
+-/
 theorem mulVec_eq {R m n : Type _} [CommSemiring R] [Fintype n]
     (a b : Matrix m n R) :
     a = b ↔ ∀ c : n → R, a.mulVec c = b.mulVec c := by
@@ -46,7 +52,9 @@ theorem mulVec_eq {R m n : Type _} [CommSemiring R] [Fintype n]
   ext i j
   rw [← mulVec_stdBasis a i j, ← mulVec_stdBasis b i j, h _]
 
-/-- A vector is nonzero iff at least one entry is nonzero. -/
+/-- A vector is nonzero iff at least one entry is nonzero.
+@isnad1 id=iff.0h3v.s5.dc4abf94486b from=translated src=- shape=9c7c6083 vocab=7b73bf05
+-/
 theorem vec_ne_zero {R n : Type _} [Semiring R] (a : n → R) :
     (∃ i, a i ≠ 0) ↔ a ≠ 0 := by
   simp_rw [ne_eq, ← Classical.not_forall]
@@ -58,31 +66,42 @@ theorem vec_ne_zero {R n : Type _} [Semiring R] (a : n → R) :
     ext x
     simp_all
 
-/-- Two vectors are equal iff their entries are equal. -/
+/-- Two vectors are equal iff their entries are equal.
+@isnad1 id=iff.0h4v.s4.584e4da91bc0 from=translated src=- shape=037e8e46 vocab=e3b0c442
+-/
 theorem ext_vec {𝕜 n : Type _} (α β : n → 𝕜) :
     α = β ↔ ∀ i : n, α i = β i := by
   refine ⟨fun h i => by rw [h], fun h => ?_⟩
   ext i
   exact h i
 
-/-- The transpose of `vecMulVec x y` is `vecMulVec y x`. -/
+/-- The transpose of `vecMulVec x y` is `vecMulVec y x`.
+@isnad1 id=eq.0h4v.s5.2213816bb391 from=translated src=- shape=ee9fb1d7 vocab=8c7dc08f
+-/
 theorem vecMulVec_transpose {R n : Type _} [CommSemiring R] (x y : n → R) :
     (vecMulVec x y).transpose = vecMulVec y x := by
   simp_all
 
+/--
+@isnad1 id=eq.0h6v.s6.0c51eb4210d2 from=translated src=- shape=32863460 vocab=bda36261
+-/
 theorem smul_mulVec_assoc {R m n : Type _} [Semiring R] [Fintype n]
     (r : R) (x : Matrix m n R) (y : n → R) :
     (r • x) *ᵥ y = r • (x *ᵥ y) := by
   ext i
   simp [mulVec, dotProduct, Finset.mul_sum, mul_assoc]
 
-/-- The identity matrix as a sum of standard matrix units. -/
+/-- The identity matrix as a sum of standard matrix units.
+@isnad1 id=eq.0h2v.s6.9e6d827f453a from=translated src=- shape=a13699a9 vocab=0cde1446
+-/
 theorem one_eq_sum_std_matrix {n R : Type _} [CommSemiring R] [Fintype n] [DecidableEq n] :
     (1 : Matrix n n R) = ∑ r : n, Matrix.single r r (1 : R) := by
   simp_rw [← Matrix.ext_iff, Matrix.sum_apply, Matrix.one_apply, Matrix.single, ite_and,
     of_apply, Finset.sum_ite_eq', Finset.mem_univ, ite_true, forall₂_true_iff]
 
-/-- The trace of a Kronecker product is the product of traces. -/
+/-- The trace of a Kronecker product is the product of traces.
+@isnad1 id=eq.0h4v.s6.e33c8a253671 from=translated src=- shape=339add16 vocab=1096ba6a
+-/
 theorem kronecker_trace {R n : Type _} [CommSemiring R] [Fintype n]
     (A B : Matrix n n R) :
     (A ⊗ₖ B).trace = A.trace * B.trace := by
@@ -132,7 +151,9 @@ theorem _root_.LinearMap.IsSymmetric.eigenvalue_mem_spectrum {𝕜 n : Type _} [
   rw [← Module.End.hasEigenvalue_iff_mem_spectrum]
   exact hA.hasEigenvalue_eigenvalues hn i
 
-/-- Expand a square matrix indexed by a product as a sum of Kronecker products of matrix units. -/
+/-- Expand a square matrix indexed by a product as a sum of Kronecker products of matrix units.
+@isnad1 id=eq.0h4v.s8.bdde5d1f5a39 from=translated src=- shape=b5440130 vocab=349d825c
+-/
 theorem kmul_representation {R n₁ n₂ : Type _} [Fintype n₁] [Fintype n₂]
     [DecidableEq n₁] [DecidableEq n₂] [Semiring R]
     (x : Matrix (n₁ × n₂) (n₁ × n₂) R) :
@@ -144,12 +165,18 @@ theorem kmul_representation {R n₁ n₂ : Type _} [Fintype n₁] [Fintype n₂]
     smul_zero, ite_and, Finset.sum_ite_irrel, Finset.sum_const_zero, Finset.sum_ite_eq',
     Finset.mem_univ, ite_true, Prod.mk.eta, smul_eq_mul, mul_one, forall₂_true_iff]
 
+/--
+@isnad1 id=eq.0h5v.s7.37dd9f104516 from=translated src=- shape=5c2b7b3d vocab=489a6203
+-/
 theorem kronecker_conjTranspose {R m n : Type _} [CommSemiring R] [StarRing R]
     (x : Matrix n n R) (y : Matrix m m R) :
     (x ⊗ₖ y)ᴴ = xᴴ ⊗ₖ yᴴ := by
   simp_rw [← Matrix.ext_iff, conjTranspose_apply, kroneckerMap, of_apply, star_mul',
     conjTranspose_apply, forall₂_true_iff]
 
+/--
+@isnad1 id=eq.0h4v.s7.2c20c4ba13f0 from=translated src=- shape=e6012bfd vocab=141b0e77
+-/
 theorem kronecker_star {R n : Type _} [CommSemiring R] [StarRing R] (x y : Matrix n n R) :
     star (x ⊗ₖ y) = star x ⊗ₖ star y :=
   Matrix.kronecker_conjTranspose _ _
@@ -159,6 +186,9 @@ theorem _root_.Matrix.kronecker.star {R n : Type _} [CommSemiring R] [StarRing R
     star (x ⊗ₖ y) = star x ⊗ₖ star y :=
   kronecker_star x y
 
+/--
+@isnad1 id=eq.0h4v.s6.2df29fdaa89b from=translated src=- shape=2860d8c4 vocab=89e0c04f
+-/
 theorem kronecker_transpose {R n : Type _} [CommSemiring R] (x y : Matrix n n R) :
     (x ⊗ₖ y)ᵀ = xᵀ ⊗ₖ yᵀ := by
   ext i j
@@ -168,6 +198,9 @@ theorem _root_.Matrix.kronecker.transpose {R n : Type _} [CommSemiring R] (x y :
     (x ⊗ₖ y)ᵀ = xᵀ ⊗ₖ yᵀ :=
   kronecker_transpose x y
 
+/--
+@isnad1 id=eq.0h4v.s7.6d750d3b1404 from=translated src=- shape=dd74a354 vocab=59d0f880
+-/
 theorem kronecker_conj {R n : Type _} [CommSemiring R] [StarRing R] (x y : Matrix n n R) :
     (x ⊗ₖ y)ᴴᵀ = xᴴᵀ ⊗ₖ yᴴᵀ := by
   rw [Matrix.conj, Matrix.kronecker_conjTranspose, Matrix.kronecker_transpose]
@@ -182,6 +215,9 @@ end Matrix
 
 open scoped BigOperators InnerProductSpace Kronecker
 
+/--
+@isnad1 id=eq.0h4v.s8.bdde5d1f5a39 from=translated src=- shape=b5440130 vocab=349d825c
+-/
 theorem kmul_representation {R n₁ n₂ : Type _} [Fintype n₁] [Fintype n₂] [DecidableEq n₁]
     [DecidableEq n₂] [Semiring R] (x : Matrix (n₁ × n₂) (n₁ × n₂) R) :
     x =
@@ -198,30 +234,47 @@ open scoped Matrix
 
 variable {R n m : Type _} [Semiring R] [StarAddMonoid R] [DecidableEq n] [DecidableEq m]
 
+/--
+@isnad1 id=eq.0h6v.s6.f0fe4deb7898 from=translated src=- shape=e4221676 vocab=357d0034
+-/
 theorem Matrix.single_conjTranspose (i : n) (j : m) (a : R) :
     (Matrix.single i j a)ᴴ = Matrix.single j i (star a) := by
   simp_all
 
+/--
+@isnad1 id=eq.0h8v.s6.cfb8e468c3c4 from=translated src=- shape=23125482 vocab=ba20ef90
+-/
 theorem Matrix.single.star_apply (i k : n) (j l : m) (a : R) :
     star (Matrix.single i j a k l) = Matrix.single j i (star a) l k := by
   rw [← Matrix.single_conjTranspose, ← Matrix.conjTranspose_apply]
 
+/--
+@isnad1 id=eq.0h7v.s6.8b7349f2a37c from=translated src=- shape=e810cb93 vocab=b5a20354
+-/
 theorem Matrix.single.star_apply' (i : n) (j : m) (x : n × m) (a : R) :
     star (Matrix.single i j a x.fst x.snd) =
       Matrix.single j i (star a) x.snd x.fst := by
   rw [Matrix.single.star_apply]
 
-/-- The conjugate transpose of a standard matrix unit. -/
+/-- The conjugate transpose of a standard matrix unit.
+@isnad1 id=eq.0h5v.s6.c7b1a724dbef from=translated src=- shape=297e1fea vocab=c66eb193
+-/
 theorem Matrix.single.star_one {R : Type _} [Semiring R] [StarRing R] (i : n) (j : m) :
     (Matrix.single i j (1 : R))ᴴ = Matrix.single j i (1 : R) := by
   simp_all
 
 open scoped BigOperators
 
+/--
+@isnad1 id=eq.0h3v.s5.680063217afa from=translated src=- shape=e45ba1c8 vocab=05b47f07
+-/
 theorem Matrix.trace_iff {R n : Type _} [AddCommMonoid R] [Fintype n] (x : Matrix n n R) :
     x.trace = ∑ k : n, x k k :=
   rfl
 
+/--
+@isnad1 id=eq.0h13v.s7.77a402a08f83 from=translated src=- shape=6fcccbd6 vocab=b058d631
+-/
 theorem Matrix.single.hMul_apply_basis {R p q : Type _} [Semiring R] [DecidableEq p]
     [DecidableEq q] (i x : n) (j y : m) (k z : p) (l w : q) :
     Matrix.single k l (Matrix.single i j (1 : R) x y) z w =
@@ -230,6 +283,9 @@ theorem Matrix.single.hMul_apply_basis {R p q : Type _} [Semiring R] [DecidableE
     ← ite_and, and_rotate, ← @and_assoc (k = z), @and_comm _ (i = x),
     ← and_assoc, @and_assoc _ (k = z), and_comm, and_assoc]
 
+/--
+@isnad1 id=eq.0h13v.s7.4ccf975eda67 from=translated src=- shape=b7622d9c vocab=54b34886
+-/
 theorem Matrix.single.mul_apply_basis' {R p q : Type _} [Semiring R] [DecidableEq p]
     [DecidableEq q] (i x : n) (j y : m) (k z : p) (l w : q) :
     Matrix.single k l (Matrix.single i j (1 : R) x y) z w =
@@ -237,6 +293,9 @@ theorem Matrix.single.mul_apply_basis' {R p q : Type _} [Semiring R] [DecidableE
   simp_rw [Matrix.single.hMul_apply_basis, Matrix.single, ite_and, of_apply, ite_mul,
     MulZeroClass.zero_mul, one_mul]
 
+/--
+@isnad1 id=eq.0h8v.s9.2fdd3f659410 from=translated src=- shape=6398b468 vocab=ab09e795
+-/
 theorem Matrix.single.hMul_apply {R : Type _} [Fintype n] [Semiring R]
     (i j k l m p : n) :
     ∑ x : n × n, ∑ x_1 : n × n, ∑ x_2 : n, ∑ x_3 : n,
@@ -252,6 +311,9 @@ theorem Matrix.single.hMul_apply {R : Type _} [Fintype n] [Semiring R]
   simp_rw [Matrix.single.mul_apply_basis', ite_mul, one_mul, MulZeroClass.zero_mul, ← ite_and,
     and_assoc]
 
+/--
+@isnad1 id=eq.0h6v.s7.37e53edd5d95 from=translated src=- shape=7ca007e2 vocab=0bf95f9a
+-/
 theorem Matrix.single.sum_star_hMul_self [Fintype n] (i j : n) (a b : R) :
     ∑ k : n, ∑ l : n, ∑ m : n, ∑ p : n,
         Matrix.single i j a k l * star (Matrix.single i j b) m p =
@@ -260,6 +322,9 @@ theorem Matrix.single.sum_star_hMul_self [Fintype n] (i j : n) (a b : R) :
     MulZeroClass.zero_mul, mul_ite, MulZeroClass.mul_zero, ite_and, Finset.sum_ite_irrel,
     Finset.sum_const_zero, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
 
+/--
+@isnad1 id=eq.0h4v.s7.fcd1cb4c60e0 from=translated src=- shape=1ed5b7b4 vocab=b510f193
+-/
 theorem Matrix.single.sum_star_hMul_self' {R : Type _} [Fintype n] [Semiring R] [StarRing R]
     (i j : n) :
     ∑ kl : n × n, ∑ mp : n × n,
@@ -282,6 +347,9 @@ theorem Matrix.single.sum_star_hMul_self' {R : Type _} [Fintype n] [Semiring R] 
     simp [Matrix.single, Matrix.of_apply, hcond]
   · simp_all
 
+/--
+@isnad1 id=eq.0h12v.s7.1ddddfa44023 from=translated src=- shape=f0f557aa vocab=834c151f
+-/
 theorem Matrix.single.hMul_stdBasisMatrix {R p : Type _} [Semiring R] [DecidableEq p]
     [Fintype m] (i x : n) (j k : m) (l y : p) (a b : R) :
     (Matrix.single i j a * Matrix.single k l b) x y =
@@ -290,6 +358,9 @@ theorem Matrix.single.hMul_stdBasisMatrix {R p : Type _} [Semiring R] [Decidable
     MulZeroClass.zero_mul, mul_ite, MulZeroClass.mul_zero, Finset.sum_ite_irrel,
     Finset.sum_ite_eq, Finset.mem_univ, ite_true, Finset.sum_const_zero, eq_comm]
 
+/--
+@isnad1 id=eq.0h8v.s7.4813f0d44ddb from=translated src=- shape=90e57243 vocab=b848feec
+-/
 theorem Matrix.single.hMul_stdBasis_matrix' {R p : Type _} [Fintype n] [DecidableEq p]
     [Semiring R] (i : m) (j k : n) (l : p) :
     Matrix.single i j (1 : R) * Matrix.single k l (1 : R) =
@@ -300,6 +371,9 @@ theorem Matrix.single.hMul_stdBasis_matrix' {R p : Type _} [Fintype n] [Decidabl
     ite_true, Finset.sum_const_zero, smul_ite, smul_zero, smul_eq_mul, mul_one, ← ite_and,
     eq_comm, and_comm]
 
+/--
+@isnad1 id=eq.0h4v.s8.3e9d06dc2233 from=translated src=- shape=809fd233 vocab=dbdc147a
+-/
 theorem Matrix.transposeAlgEquiv_symm_op_apply {n R α : Type _} [CommSemiring R]
     [CommSemiring α] [Fintype n] [DecidableEq n] [Algebra R α] (x : Matrix n n α) :
     (Matrix.transposeAlgEquiv n R α).symm (MulOpposite.op x) = xᵀ := by
@@ -307,6 +381,9 @@ theorem Matrix.transposeAlgEquiv_symm_op_apply {n R α : Type _} [CommSemiring R
 
 open Matrix
 
+/--
+@isnad1 id=eq.0h4v.s8.4a8834609ff1 from=translated src=- shape=071c4fe8 vocab=bf3a45fc
+-/
 theorem Matrix.dotProduct_eq_trace {R n : Type _} [CommSemiring R] [StarRing R] [Fintype n]
     (x : n → R) (y : Matrix n n R) :
     star x ⬝ᵥ y.mulVec x =
@@ -319,6 +396,9 @@ theorem Matrix.dotProduct_eq_trace {R n : Type _} [CommSemiring R] [StarRing R] 
   simp_rw [Finset.mul_sum, mul_comm (x _), mul_comm _ (x _), ← mul_assoc, mul_comm]
   rw [Finset.sum_comm]
 
+/--
+@isnad1 id=iff.0h4v.s6.69ede89258e9 from=translated src=- shape=6cf0e3f3 vocab=2c97d0ed
+-/
 theorem forall_left_hMul {n R : Type _} [Fintype n] [Semiring R]
     (x y : Matrix n n R) : x = y ↔ ∀ a : Matrix n n R, a * x = a * y := by
   classical

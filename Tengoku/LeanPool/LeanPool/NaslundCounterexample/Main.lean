@@ -36,7 +36,9 @@ namespace NaslundCounterexample
 open Polynomial
 
 /-- **A square-difference-free subset of `P_{3,8}` with `810` elements**, the first lift of the
-one-element base. -/
+one-element base.
+@isnad1 id=ex.0h0v.s7.3af5b7d27979 from=translated src=- shape=3d099d90 vocab=9312beef
+-/
 theorem exists_card_810 :
     ∃ A : Finset (Polynomial (ZMod 3)),
       DegreeBelow 8 A ∧ A.card = 810 ∧ SquareDifferenceFree A := by
@@ -46,7 +48,9 @@ theorem exists_card_810 :
   · simpa using familyFromZero_card 1
 
 /-- **The conjectured bound fails at `q = 3`, `k = 2`, `n = 8`:** not every square-difference-free
-subset of `P_{3,8}` has at most `3^6 = 729` elements, since `810 > 729`. -/
+subset of `P_{3,8}` has at most `3^6 = 729` elements, since `810 > 729`.
+@isnad1 id=not.0h0v.s6.7eb42a3355f1 from=translated src=- shape=ed81f00c vocab=8f4d1ddf
+-/
 theorem conjecture_fails_at_eight :
     ¬ ∀ A : Finset (Polynomial (ZMod 3)),
       DegreeBelow 8 A → SquareDifferenceFree A → A.card ≤ 3 ^ 6 := by
@@ -57,7 +61,9 @@ theorem conjecture_fails_at_eight :
   norm_num at hle
 
 /-- **The first family.** For every `e ≥ 1`, a square-difference-free subset of `P_{3,8e}` with
-`810^e` elements. -/
+`810^e` elements.
+@isnad1 id=ex.1h1v.s7.864374c49adb from=translated src=- shape=b2d5ad0c vocab=f701f8d9
+-/
 theorem exists_card_pow (e : ℕ) (he : 1 ≤ e) :
     ∃ A : Finset (Polynomial (ZMod 3)), DegreeBelow (8 * e) A ∧ A.card = 810 ^ e ∧
         SquareDifferenceFree A :=
@@ -66,7 +72,9 @@ theorem exists_card_pow (e : ℕ) (he : 1 ≤ e) :
     familyFromZero_card e, familyFromZero_sdf e⟩
 
 /-- **The second family.** For every `e`, a square-difference-free subset of `P_{3,8e+4}` with
-`27 · 810^e` elements. -/
+`27 · 810^e` elements.
+@isnad1 id=ex.0h1v.s7.dbfb4ad801b2 from=translated src=- shape=d6e52468 vocab=f08aadf8
+-/
 theorem exists_card_twenty_seven_mul_pow (e : ℕ) :
     ∃ A : Finset (Polynomial (ZMod 3)), DegreeBelow (8 * e + 4) A ∧ A.card = 27 * 810 ^ e ∧
         SquareDifferenceFree A :=
@@ -76,7 +84,9 @@ theorem exists_card_twenty_seven_mul_pow (e : ℕ) :
 
 /-- **The conjectured bound fails for every admissible `n ≥ 8`:** for `4 ∣ n` and `n ≥ 8`, not
 every square-difference-free subset of `P_{3,n}` has at most `3^{3n/4}` elements. Such an `n` is
-`8e` or `8e + 4` with `e ≥ 1`, and the corresponding family exceeds the bound by `(10/9)^e`. -/
+`8e` or `8e + 4` with `e ≥ 1`, and the corresponding family exceeds the bound by `(10/9)^e`.
+@isnad1 id=not.2h1v.s7.9021e919d6f0 from=translated src=- shape=42d0fc78 vocab=0c18030b
+-/
 theorem conjecture_fails (n : ℕ) (h4 : 4 ∣ n) (h8 : 8 ≤ n) :
     ¬ ∀ A : Finset (Polynomial (ZMod 3)),
       DegreeBelow n A → SquareDifferenceFree A → A.card ≤ 3 ^ (3 * n / 4) := by

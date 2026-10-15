@@ -22,7 +22,9 @@ open scoped Topology
 
 namespace ClassicalComplexWPT
 
-/-- Restricting an analytic germ to the distinguished-variable axis preserves analyticity. -/
+/-- Restricting an analytic germ to the distinguished-variable axis preserves analyticity.
+@isnad1 id=analytic.1h2v.s6.c0f759ba1266 from=translated src=- shape=bab115ea vocab=adbab1e3
+-/
 theorem analyticAt_lastSlice {n : ℕ} {f : Ambient n → ℂ} (hf : AnalyticAt ℂ f 0) :
     AnalyticAt ℂ (lastSlice f) 0 := by
   change AnalyticAt ℂ (fun w : ℂ ↦ f ((0 : Base n), w)) 0
@@ -31,7 +33,9 @@ theorem analyticAt_lastSlice {n : ℕ} {f : Ambient n → ℂ} (hf : AnalyticAt 
   have hcomp := AnalyticAt.comp (g := f) (f := fun w : ℂ ↦ ((0 : Base n), w)) hf haxis
   simpa [Function.comp_def] using hcomp
 
-/-- Exact order zero is exactly nonvanishing at the origin. -/
+/-- Exact order zero is exactly nonvanishing at the origin.
+@isnad1 id=iff.0h2v.s5.c4ed3d09d856 from=translated src=- shape=912cef14 vocab=b8d114d2
+-/
 theorem exactOrderInLastVariable_zero_iff {n : ℕ} {f : Ambient n → ℂ} :
     ExactOrderInLastVariable f 0 ↔ f 0 ≠ 0 := by
   have hzero : (0 : Ambient n) = ((0 : Base n), 0) := by
@@ -49,14 +53,18 @@ theorem exactOrderInLastVariable_zero_iff {n : ℕ} {f : Ambient n → ℂ} :
       rw [← hzero]
       exact h
 
-/-- For an analytic germ, the public derivative condition agrees with Mathlib's analytic order. -/
+/-- For an analytic germ, the public derivative condition agrees with Mathlib's analytic order.
+@isnad1 id=iff.1h3v.s7.519054d37373 from=translated src=- shape=8e8f036b vocab=b579949c
+-/
 theorem exactOrderInLastVariable_iff_analyticOrderAt {n d : ℕ} {f : Ambient n → ℂ}
     (hf : AnalyticAt ℂ f 0) :
     ExactOrderInLastVariable f d ↔ analyticOrderAt (lastSlice f) 0 = d := by
   simpa [ExactOrderInLastVariable] using
     (analyticOrderAt_eq_nat_iff_iteratedDeriv_eq_zero (analyticAt_lastSlice hf) (n := d)).symm
 
-/-- The exact-order hypothesis supplies the normalized one-variable axis factorization. -/
+/-- The exact-order hypothesis supplies the normalized one-variable axis factorization.
+@isnad1 id=ex.2h3v.s7.0b7946a78a0e from=translated src=- shape=02cb1ce3 vocab=870bbc1c
+-/
 theorem exists_lastSlice_eq_pow_mul {n d : ℕ} {f : Ambient n → ℂ}
     (hf : AnalyticAt ℂ f 0) (horder : ExactOrderInLastVariable f d) :
     ∃ g : ℂ → ℂ, AnalyticAt ℂ g 0 ∧ g 0 ≠ 0 ∧

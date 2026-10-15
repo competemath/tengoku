@@ -65,7 +65,9 @@ open Finset
 
 /-- The entry series `∑_i ε_{m+i}^{(m)}` of `apd:eq:composition_majorant` converges when
 `β < 1`: by `epsJump_ratio` each term is at most `β` times the previous one, so the series is
-dominated by a geometric series. -/
+dominated by a geometric series.
+@isnad1 id=summable.5h4v.s6.e266330d2d94 from=translated src=- shape=cfb6ef46 vocab=3e40f2dc
+-/
 theorem summable_epsJump_tail {kh1 c a : ℝ} (hkh : 0 < kh1) (hc : 0 ≤ c) (ha : 0 ≤ a)
     {m : ℕ} (hm : 1 ≤ m) (hb : betaOf kh1 c a < 1) :
     Summable (fun i : ℕ => epsJump kh1 c a (m + i) m) := by
@@ -91,7 +93,9 @@ theorem summable_epsJump_tail {kh1 c a : ℝ} (hkh : 0 < kh1) (hc : 0 ≤ c) (ha
     ((summable_geometric_of_lt_one hb0 hb).mul_right _)
 
 /-- Every finite partial sum `∑_{m ≤ j < K} ε_j^{(m)}` is at most the entry factor `E_m` of
-`apd:eq:composition_majorant`, which is defined as the infinite sum. -/
+`apd:eq:composition_majorant`, which is defined as the infinite sum.
+@isnad1 id=le.5h5v.s6.8794db9d711e from=translated src=- shape=f0b5262d vocab=dd77f14b
+-/
 theorem sum_Ico_epsJump_le_entryFactor {kh1 c a : ℝ}
     (hkh : 0 < kh1) (hc : 0 ≤ c) (ha : 0 ≤ a) {m : ℕ} (hm : 1 ≤ m)
     (hb : betaOf kh1 c a < 1) (K : ℕ) :
@@ -103,14 +107,18 @@ theorem sum_Ico_epsJump_le_entryFactor {kh1 c a : ℝ}
 /-- The jump factors `ε_j^{(m)}` of `apd:rmk:multijump` are nonnegative for all indices. The
 ladder recurrence only sums over `j ≥ 1`; the case `j = 0`, where the formula gives
 `ε_0^{(m)} = 1`, is included because `MultiLadder.le_majorant` asks for nonnegativity at all
-indices. -/
+indices.
+@isnad1 id=le.3h5v.s5.e9210cf65c69 from=translated src=- shape=4746f26a vocab=2b7a88be
+-/
 theorem epsJump_nonneg_all {kh1 c a : ℝ} (hkh : 0 < kh1) (hc : 0 ≤ c) (ha : 0 ≤ a)
     (j m : ℕ) : 0 ≤ epsJump kh1 c a j m := by
   cases j with
   | zero => simp [epsJump]
   | succ j => exact epsJump_nonneg hkh hc ha _ _ (by omega)
 
-/-- The entry factors `E_m` of `apd:eq:composition_majorant` are nonnegative. -/
+/-- The entry factors `E_m` of `apd:eq:composition_majorant` are nonnegative.
+@isnad1 id=le.3h4v.s5.5ba2e94cba88 from=translated src=- shape=c5cbf2bb vocab=e9ce1b1c
+-/
 theorem entryFactor_nonneg_all {kh1 c a : ℝ} (hkh : 0 < kh1) (hc : 0 ≤ c) (ha : 0 ≤ a)
     (m : ℕ) : 0 ≤ entryFactor kh1 c a m :=
   tsum_nonneg fun i => epsJump_nonneg_all hkh hc ha (m + i) m
@@ -122,7 +130,9 @@ variable {n : ℕ}
 /-- The natural-number rung threshold `rungWeight ko kh m = k_o + (m - 1) (k_h - 1)` equals the
 real-valued rung `rungW (k_h - 1) (k_o / (k_h - 1)) m` that enters `epsJump`
 (`apd:rmk:multijump`). Under `2 ≤ k_h` and `1 ≤ m` the natural subtractions `k_h - 1` and
-`m - 1` are exact, so they agree with the real ones. -/
+`m - 1` are exact, so they agree with the real ones.
+@isnad1 id=eq.2h3v.s6.26a69efd82a5 from=translated src=- shape=87c3f857 vocab=a5a0b36d
+-/
 theorem rungWeight_cast_eq_rungW {ko kh m : ℕ} (hkh : 2 ≤ kh) (hm : 1 ≤ m) :
     (rungWeight ko kh m : ℝ) = rungW (kh - 1 : ℕ) ((ko : ℝ) / (kh - 1 : ℕ)) m := by
   have hd : ((kh - 1 : ℕ) : ℝ) ≠ 0 := by exact_mod_cast (by omega : kh - 1 ≠ 0)
@@ -131,14 +141,18 @@ theorem rungWeight_cast_eq_rungW {ko kh m : ℕ} (hkh : 2 ≤ kh) (hm : 1 ≤ m)
   ring
 
 /-- Adding `j` rung spacings `k_h - 1` to rung `m ≥ 1` gives rung `m + j`, the index that
-appears in the coefficient `ε_j^{(m)}` of `apd:rmk:multijump`. -/
+appears in the coefficient `ε_j^{(m)}` of `apd:rmk:multijump`.
+@isnad1 id=eq.1h4v.s6.d3e132ea0d15 from=translated src=- shape=55ce0d70 vocab=68c47a93
+-/
 theorem rungWeight_add_jump (ko kh m j : ℕ) (hm : 1 ≤ m) :
     rungWeight ko kh m + j * (kh - 1) = rungWeight ko kh (m + j) := by
   have h : m + j - 1 = (m - 1) + j := by omega
   simp only [rungWeight, h, Nat.add_mul, Nat.add_assoc]
 
 /-- A `j`-jump with `j < m` enters rung `m` from the positive rung `m - j`
-(`apd:rmk:multijump`). Since `j < m`, the natural subtraction `m - j` is exact. -/
+(`apd:rmk:multijump`). Since `j < m`, the natural subtraction `m - j` is exact.
+@isnad1 id=eq.1h4v.s5.6bab1230d65a from=translated src=- shape=c618f933 vocab=ead1e0f7
+-/
 theorem rungWeight_sub_jump (ko kh m j : ℕ) (hj : j < m) :
     rungWeight ko kh (m - j) + j * (kh - 1) = rungWeight ko kh m := by
   have h := rungWeight_add_jump ko kh (m - j) j (by omega)
@@ -146,7 +160,9 @@ theorem rungWeight_sub_jump (ko kh m j : ℕ) (hj : j < m) :
 
 /-- The factorial coefficient of the layer-inflow bound `norm_layerInflowMatrix_le_factorial`
 at the threshold `w_m` is exactly the jump factor `ε_j^{(m)}`
-(`apd:eq:layer_inflow`; `apd:rmk:multijump`). -/
+(`apd:eq:layer_inflow`; `apd:rmk:multijump`).
+@isnad1 id=eq.2h5v.s7.6b579587f59b from=translated src=- shape=99d88969 vocab=84f195f5
+-/
 theorem layer_factor_eq_epsJump {ko kh m : ℕ} (hkh : 2 ≤ kh) (hm : 1 ≤ m)
     (a : ℝ) (j : ℕ) :
     ((((rungWeight ko kh m + j * (kh - 1) : ℕ) : ℝ) * a) ^ j / (Nat.factorial j : ℝ)) =
@@ -164,19 +180,25 @@ noncomputable def layerTraj (Ls : ℕ → List (PauliString n × ℝ))
   | T + 1 => truncOp (S T) (layerConj (Ls T) (layerTraj Ls S O T))
 
 /-- The trajectory of `apd:rmk:multijump` starts at the input observable itself: no
-truncation is applied at time `0`. -/
+truncation is applied at time `0`.
+@isnad1 id=eq.0h4v.s5.88f62b53e460 from=translated src=- shape=50cec74d vocab=0b6ed8c9
+-/
 @[simp] theorem layerTraj_zero (Ls : ℕ → List (PauliString n × ℝ))
     (S : ℕ → Finset (PauliIndex n)) (O : Matrix (Bits n) (Bits n) ℂ) :
     layerTraj Ls S O 0 = O := rfl
 
-/-- One step of the trajectory of `apd:rmk:multijump`: evolve through a layer, then cut. -/
+/-- One step of the trajectory of `apd:rmk:multijump`: evolve through a layer, then cut.
+@isnad1 id=eq.0h5v.s6.f5495338466a from=translated src=- shape=96f61e2d vocab=e01d53b4
+-/
 theorem layerTraj_succ (Ls : ℕ → List (PauliString n × ℝ))
     (S : ℕ → Finset (PauliIndex n)) (O : Matrix (Bits n) (Bits n) ℂ) (T : ℕ) :
     layerTraj Ls S O (T + 1) = truncOp (S T) (layerConj (Ls T) (layerTraj Ls S O T)) := rfl
 
 /-- Conjugation by a whole layer of Hermitian generators preserves the Pauli norm, by the
 coefficient isometry `norm_layerAct`. This is one half of the reservoir bound in
-`apd:rmk:multijump`. -/
+`apd:rmk:multijump`.
+@isnad1 id=eq.1h3v.s5.ad03aa18d7d3 from=translated src=- shape=ddbe3e89 vocab=9f3f421a
+-/
 theorem pauliNorm_layerConj (L : List (PauliString n × ℝ))
     (hL : ∀ g ∈ L, IsSelfAdjoint g.1) (O : Matrix (Bits n) (Bits n) ℂ) :
     pauliNorm (layerConj L O) = pauliNorm O := by
@@ -184,7 +206,9 @@ theorem pauliNorm_layerConj (L : List (PauliString n × ℝ))
 
 /-- The Pauli norm along the truncated trajectory never exceeds that of the input, since layers
 preserve it and truncation cannot increase it. This is the reservoir bound of
-`apd:rmk:multijump`. -/
+`apd:rmk:multijump`.
+@isnad1 id=le.1h5v.s6.df0c22c4bc54 from=translated src=- shape=af52216a vocab=c46d5924
+-/
 theorem pauliNorm_layerTraj_le (Ls : ℕ → List (PauliString n × ℝ))
     (hL : ∀ T, ∀ g ∈ Ls T, IsSelfAdjoint g.1) (S : ℕ → Finset (PauliIndex n))
     (O : Matrix (Bits n) (Bits n) ℂ) (T : ℕ) :
@@ -205,7 +229,9 @@ noncomputable def layerN (Ls : ℕ → List (PauliString n × ℝ))
   | m + 1, T => highNorm (rungWeight ko kh (m + 1)) (layerTraj Ls S O T)
 
 /-- At every positive rung, `layerN` is the high-weight norm of the truncated trajectory
-(`apd:rmk:multijump`). -/
+(`apd:rmk:multijump`).
+@isnad1 id=eq.1h8v.s6.c3c38f833902 from=translated src=- shape=99c3473b vocab=121b8bb6
+-/
 theorem layerN_eq_highNorm (Ls : ℕ → List (PauliString n × ℝ))
     (S : ℕ → Finset (PauliIndex n)) (O : Matrix (Bits n) (Bits n) ℂ) (ko kh m T : ℕ)
     (hm : 1 ≤ m) :
@@ -214,7 +240,9 @@ theorem layerN_eq_highNorm (Ls : ℕ → List (PauliString n × ℝ))
   | zero => omega
   | succ m => rfl
 
-/-- The rung masses of the truncated trajectory are nonnegative (`apd:rmk:multijump`). -/
+/-- The rung masses of the truncated trajectory are nonnegative (`apd:rmk:multijump`).
+@isnad1 id=le.0h8v.s5.158ff8fef8fd from=translated src=- shape=b4840a9f vocab=07e51727
+-/
 theorem layerN_nonneg (Ls : ℕ → List (PauliString n × ℝ))
     (S : ℕ → Finset (PauliIndex n)) (O : Matrix (Bits n) (Bits n) ℂ) (ko kh m T : ℕ) :
     0 ≤ layerN Ls S O ko kh m T := by
@@ -223,7 +251,9 @@ theorem layerN_nonneg (Ls : ℕ → List (PauliString n × ℝ))
   | succ m => exact highNorm_nonneg _ _
 
 /-- A `k_o`-local input observable has no mass above any positive rung, since
-`k_o ≤ rungWeight ko kh m`. This is the initial condition in `apd:rmk:multijump`. -/
+`k_o ≤ rungWeight ko kh m`. This is the initial condition in `apd:rmk:multijump`.
+@isnad1 id=eq.2h7v.s6.3c020263861e from=translated src=- shape=b4f6c492 vocab=72082732
+-/
 theorem layerN_init (Ls : ℕ → List (PauliString n × ℝ))
     (S : ℕ → Finset (PauliIndex n)) {O : Matrix (Bits n) (Bits n) ℂ} {ko kh : ℕ}
     (hloc : ∀ p : PauliIndex n, ko < wt p → coeff O p = 0) (m : ℕ) (hm : 1 ≤ m) :
@@ -237,7 +267,9 @@ above rung `m` after a disjoint-support layer is at most its value before the la
 `j`-jump inflows `ε_j^{(m)}` from the positive rungs `m - j`, plus the entry factor `E_m` times
 the Pauli norm of `O`. This derives the recurrence of `apd:rmk:multijump` from
 `apd:thm:layer_inflow`: jumps with `j < m` are localized on rung `m - j`, and the finitely many
-jumps with `j ≥ m` are bounded by the full norm and then by the infinite sum `E_m`. -/
+jumps with `j ≥ m` are bounded by the full norm and then by the infinite sum `E_m`.
+@isnad1 id=le.7h7v.s8.56c81912e713 from=translated src=- shape=905c251a vocab=81d2bd12
+-/
 theorem highNorm_layerConj_le_multi (L : List (PauliString n × ℝ)) {ko kh m : ℕ}
     (hkh : 2 ≤ kh) (hL : IsLayer kh (L.map Prod.fst))
     (hherm : ∀ g ∈ L, IsSelfAdjoint g.1) {a : ℝ} (ha : 0 ≤ a)
@@ -308,7 +340,9 @@ theorem highNorm_layerConj_le_multi (L : List (PauliString n × ℝ)) {ko kh m :
 field of `MultiLadder` for `apd:rmk:multijump`, with the factorial jump factors `epsJump` and the
 infinite-sum entry factor `entryFactor`. It combines `highNorm_layerConj_le_multi` with the
 facts that truncation does not increase high-weight norms and that the Pauli norm along the
-trajectory is at most that of the input. -/
+trajectory is at most that of the input.
+@isnad1 id=le.7h9v.s8.c65a3af83618 from=translated src=- shape=70d45044 vocab=5387bb6f
+-/
 theorem layerN_step (Ls : ℕ → List (PauliString n × ℝ))
     (S : ℕ → Finset (PauliIndex n)) (O : Matrix (Bits n) (Bits n) ℂ) {ko kh : ℕ}
     (hkh : 2 ≤ kh) (hL : ∀ T, IsLayer kh ((Ls T).map Prod.fst))
@@ -364,7 +398,9 @@ noncomputable def pauliMultiLadder (Ls : ℕ → List (PauliString n × ℝ))
 /-- **The first-passage majorant for truncated Pauli layers.** The abstract bound
 `MultiLadder.le_majorant` (`apd:eq:composition_majorant`) applied to `pauliMultiLadder`: the
 mass of `layerTraj` above every rung `m ≥ 1` is at most the majorant built from `epsJump` and
-`entryFactor`. -/
+`entryFactor`.
+@isnad1 id=le.8h9v.s8.1c024a5558fa from=translated src=- shape=48fa27c0 vocab=dc23daf8
+-/
 theorem layerN_le_majorant (Ls : ℕ → List (PauliString n × ℝ))
     (S : ℕ → Finset (PauliIndex n)) (O : Matrix (Bits n) (Bits n) ℂ) {ko kh : ℕ}
     (hkh : 2 ≤ kh) (hL : ∀ T, IsLayer kh ((Ls T).map Prod.fst))

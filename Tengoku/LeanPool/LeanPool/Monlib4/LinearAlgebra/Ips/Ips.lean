@@ -28,7 +28,9 @@ variable {V 𝕜 : Type _} [RCLike 𝕜] [NormedAddCommGroup V] [InnerProductSpa
 local notation "P" => Submodule.orthogonalProjection
 
 open LinearMap in
-/-- $U$ is $T$-invariant if and only if $U^\bot$ is $T^*$ invariant -/
+/-- $U$ is $T$-invariant if and only if $U^\bot$ is $T^*$ invariant
+@isnad1 id=iff.0h4v.s11.7f46892894a2 from=translated src=- shape=a387010b vocab=a04c564a
+-/
 theorem Submodule.invariantUnder_iff_ortho_adjoint_invariant [FiniteDimensional 𝕜 V]
     (U : Submodule 𝕜 V) (T : V →ₗ[𝕜] V) :
     Submodule.InvariantUnder U T ↔ Submodule.InvariantUnder Uᗮ (adjoint T) := by
@@ -48,6 +50,9 @@ theorem Submodule.invariantUnder_iff_ortho_adjoint_invariant [FiniteDimensional 
   apply h y hy
 
 open ContinuousLinearMap in
+/--
+@isnad1 id=iff.0h4v.s11.92f447b70d4e from=translated src=- shape=9855e767 vocab=5228ada5
+-/
 theorem Submodule.invariantUnder_iff_ortho_adjoint_invariant' (U : Submodule 𝕜 V) [CompleteSpace V]
     [hU : CompleteSpace U] (T : V →L[𝕜] V) : U.InvariantUnder T ↔ Uᗮ.InvariantUnder (adjoint T) :=
   by
@@ -67,14 +72,18 @@ theorem Submodule.invariantUnder_iff_ortho_adjoint_invariant' (U : Submodule �
   apply h y hy
 
 /-- $T$ is self adjoint implies
-  $U$ is $T$-invariant if and only if $U^\bot$ is $T$-invariant -/
+  $U$ is $T$-invariant if and only if $U^\bot$ is $T$-invariant
+@isnad1 id=iff.1h4v.s8.48d7e822abfa from=translated src=- shape=e4928c13 vocab=1fab0295
+-/
 theorem IsSelfAdjoint.submodule_invariant_iff_ortho_submodule_invariant [FiniteDimensional 𝕜 V]
     (U : Submodule 𝕜 V) (T : V →ₗ[𝕜] V) (h : IsSelfAdjoint T) :
     Submodule.InvariantUnder U T ↔ Submodule.InvariantUnder Uᗮ T := by
   rw [Submodule.invariantUnder_iff_ortho_adjoint_invariant, LinearMap.isSelfAdjoint_iff'.mp h]
 
 open LinearMap in
-/-- $\textnormal{ker}(T) = \textnormal{range}(T^*)^\bot$ -/
+/-- $\textnormal{ker}(T) = \textnormal{range}(T^*)^\bot$
+@isnad1 id=eq.0h4v.s11.3dfef406ec3a from=translated src=- shape=46402d96 vocab=2c09ca88
+-/
 theorem ker_ortho_adjoint_range {W : Type _} [FiniteDimensional 𝕜 V] [NormedAddCommGroup W]
     [InnerProductSpace 𝕜 W] [FiniteDimensional 𝕜 W] (T : V →ₗ[𝕜] W) :
     ker T = (range (adjoint T))ᗮ := by
@@ -87,7 +96,9 @@ theorem ker_ortho_adjoint_range {W : Type _} [FiniteDimensional 𝕜 V] [NormedA
 
 /-- given any idempotent operator $T \in L(V)$, then `is_compl T.ker T.range`;
 in other words, there exists unique $v \in \textnormal{ker}(T)$ and
-$w \in \textnormal{range}(T)$ such that $x = v + w$ -/
+$w \in \textnormal{range}(T)$ such that $x = v + w$
+@isnad1 id=iscompl.1h4v.s7.a269c8188c11 from=translated src=- shape=3152fdcf vocab=552fb595
+-/
 theorem LinearMap.IsProj.isCompl_range_ker {V R : Type _} [Ring R] [AddCommGroup V] [Module R V]
     (U : Submodule R V) (T : V →ₗ[R] V) (h : LinearMap.IsProj U T) : IsCompl (ker T) (range T) := by
   have : IsIdempotentElem T := T.isProj_iff_isIdempotentElem.mp ⟨U, h⟩
@@ -119,7 +130,9 @@ theorem LinearMap.IsProj.isCompl_range_ker {V R : Type _} [Ring R] [AddCommGroup
     · simp_all
 
 /--
-idempotent $T$ is self-adjoint if and only if $\textnormal{ker}(T)^\bot=\textnormal{range}(T)$ -/
+idempotent $T$ is self-adjoint if and only if $\textnormal{ker}(T)^\bot=\textnormal{range}(T)$
+@isnad1 id=iff.1h2v.s8.df214416b58f from=translated src=- shape=d40fbb15 vocab=4244b8bd
+-/
 theorem LinearMap.is_idempotent_isSelfAdjoint_iff_ker_ortho_range [InnerProductSpace ℂ V]
     [FiniteDimensional ℂ V] (T : V →ₗ[ℂ] V) (h : IsIdempotentElem T) :
     IsSelfAdjoint T ↔ (ker T)ᗮ = range T := by
@@ -146,30 +159,46 @@ section IsStarNormal
 
 open LinearMap
 
-/-- linear map `is_star_normal` if and only if it commutes with its adjoint -/
+/-- linear map `is_star_normal` if and only if it commutes with its adjoint
+@isnad1 id=iff.0h3v.s11.30cead5ea574 from=translated src=- shape=6a9255b6 vocab=b9e80153
+-/
 theorem LinearMap.isStarNormal_iff_adjoint [FiniteDimensional 𝕜 V] (T : V →ₗ[𝕜] V) :
     IsStarNormal T ↔ Commute T (adjoint T) :=
 by rw [Commute.symm_iff]; exact ⟨fun hT => hT.star_comm_self, IsStarNormal.mk⟩
 
+/--
+@isnad1 id=iff.0h3v.s11.e056ba522e1c from=translated src=- shape=4d225ef0 vocab=679f7793
+-/
 theorem ContinuousLinearMap.isStarNormal_iff_adjoint [CompleteSpace V] (T : V →L[𝕜] V) :
     IsStarNormal T ↔ Commute T (adjoint T) :=
 by rw [Commute.symm_iff]; exact ⟨fun hT => hT.star_comm_self, IsStarNormal.mk⟩
 
+/--
+@isnad1 id=issymmet.0h3v.s11.89eb8a9563ff from=translated src=- shape=df85c41c vocab=e8a04158
+-/
 theorem isSymmetric_hMul_adjoint_self [FiniteDimensional 𝕜 V] (T : V →ₗ[𝕜] V) :
     IsSymmetric (T * (adjoint T)) := fun u v => by
   simp_rw [Module.End.mul_apply, ← adjoint_inner_left T, ← adjoint_inner_right T]
 
+/--
+@isnad1 id=issymmet.1h3v.s8.22d37f465b62 from=translated src=- shape=c87beba1 vocab=636c9739
+-/
 theorem IsSymmetric.neg (T : V →ₗ[𝕜] V) (hT : T.IsSymmetric) : IsSymmetric (-T) := by
   intro u v
   simp_rw [LinearMap.neg_apply, inner_neg_left, inner_neg_right, neg_inj]
   exact hT u v
 
+/--
+@isnad1 id=issymmet.2h4v.s9.b42d990a6c6b from=translated src=- shape=0f04fd65 vocab=617502cf
+-/
 theorem IsSymmetric.sub {T S : V →ₗ[𝕜] V} (hT : T.IsSymmetric) (hS : S.IsSymmetric) :
     (T - S).IsSymmetric := by
   rw [sub_eq_add_neg]
   exact IsSymmetric.add hT (IsSymmetric.neg S hS)
 
-/-- $T$ is normal if and only if $\forall v, \|T v\| = \|T^* v\|$ -/
+/-- $T$ is normal if and only if $\forall v, \|T v\| = \|T^* v\|$
+@isnad1 id=iff.0h3v.s11.5da113569f76 from=translated src=- shape=2355ff41 vocab=4e959fc3
+-/
 theorem LinearMap.IsStarNormal.norm_eq_adjoint [FiniteDimensional 𝕜 V] (T : V →ₗ[𝕜] V) :
     IsStarNormal T ↔ ∀ v : V, ‖T v‖ = ‖adjoint T v‖ := by
   rw [T.isStarNormal_iff_adjoint, Commute, SemiconjBy, ← sub_eq_zero]
@@ -182,6 +211,9 @@ theorem LinearMap.IsStarNormal.norm_eq_adjoint [FiniteDimensional 𝕜 V] (T : V
   norm_cast
   simp_rw [eq_comm]
 
+/--
+@isnad1 id=iff.0h3v.s11.94b083d1293d from=translated src=- shape=35dd7192 vocab=8f8d324b
+-/
 theorem ContinuousLinearMap.IsStarNormal.norm_eq_adjoint [CompleteSpace V] (T : V →L[𝕜] V) :
     IsStarNormal T ↔ ∀ v : V, ‖T v‖ = ‖adjoint T v‖ := by
   rw [T.isStarNormal_iff_adjoint, Commute, SemiconjBy, ← sub_eq_zero]
@@ -204,41 +236,60 @@ theorem ContinuousLinearMap.IsStarNormal.norm_eq_adjoint [CompleteSpace V] (T : 
     sq_eq_sq₀ (norm_nonneg _) (norm_nonneg _), eq_comm]
   norm_cast
 
-/-- if $T$ is normal, then $\textnormal{ker}(T) = \textnormal{ker}(T^*)$ -/
+/-- if $T$ is normal, then $\textnormal{ker}(T) = \textnormal{ker}(T^*)$
+@isnad1 id=eq.1h2v.s11.c1ce5046ec7b from=translated src=- shape=391b3363 vocab=f01f1a2c
+-/
 theorem LinearMap.IsStarNormal.ker_eq_ker_adjoint [InnerProductSpace ℂ V] [FiniteDimensional ℂ V]
     (T : V →ₗ[ℂ] V) (h : IsStarNormal T) : ker T = ker (adjoint T) := by
   ext
   rw [mem_ker, mem_ker, ← norm_eq_zero, Iff.comm, ← norm_eq_zero,
     ← (LinearMap.IsStarNormal.norm_eq_adjoint T).mp h]
 
-/-- if $T$ is normal, then $\textnormal{range}(T)=\textnormal{range}(T^*)$ -/
+/-- if $T$ is normal, then $\textnormal{range}(T)=\textnormal{range}(T^*)$
+@isnad1 id=eq.1h2v.s11.d84d3e76776c from=translated src=- shape=391b3363 vocab=7d7cf491
+-/
 theorem LinearMap.IsStarNormal.range_eq_range_adjoint [InnerProductSpace ℂ V]
     [FiniteDimensional ℂ V] (T : V →ₗ[ℂ] V) (h : IsStarNormal T) : range T = range (adjoint T) := by
   rw [← Submodule.orthogonal_orthogonal (range (adjoint T)), ← ker_ortho_adjoint_range,
     LinearMap.IsStarNormal.ker_eq_ker_adjoint T h, ker_ortho_adjoint_range, adjoint_adjoint,
     Submodule.orthogonal_orthogonal]
 
+/--
+@isnad1 id=eq.1h3v.s11.97fee85183a3 from=translated src=- shape=df0a3ccc vocab=794d3ea7
+-/
 theorem ContinuousLinearMap.IsStarNormal.ker_eq_ker_adjoint [CompleteSpace V] {T : V →L[𝕜] V}
     (h : IsStarNormal T) : T.ker = (adjoint T).ker :=
   (ContinuousLinearMap.IsStarNormal.ker_adjoint_eq_ker h).symm
 
+/--
+@isnad1 id=eq.0h4v.s11.93e84f9275da from=translated src=- shape=3fca9889 vocab=f60ebad0
+-/
 theorem ContinuousLinearMap.ker_eq_ortho_adjoint_range {W : Type _} [NormedAddCommGroup W]
     [InnerProductSpace 𝕜 W] [CompleteSpace V] [CompleteSpace W] (T : V →L[𝕜] W) :
     T.ker = (adjoint T).rangeᗮ := by
   simpa [ContinuousLinearMap.adjoint_adjoint] using
     (ContinuousLinearMap.orthogonal_range (adjoint T)).symm
 
+/--
+@isnad1 id=eq.0h4v.s11.3cbfd56e2ef8 from=translated src=- shape=62e137bb vocab=f60ebad0
+-/
 theorem ContinuousLinearMap.ker_adjoint_eq_ortho_range {W : Type _} [NormedAddCommGroup W]
     [InnerProductSpace 𝕜 W] [CompleteSpace V] [CompleteSpace W] (T : V →L[𝕜] W) :
     (adjoint T).ker = T.rangeᗮ := by
   simpa using (ContinuousLinearMap.orthogonal_range T).symm
 
+/--
+@isnad1 id=eq.0h4v.s11.b5d868d92ffa from=translated src=- shape=d412c042 vocab=dce40d9a
+-/
 theorem ContinuousLinearMap.ker_adjoint_ortho_eq_range {W : Type _} [NormedAddCommGroup W]
     [InnerProductSpace 𝕜 W] [CompleteSpace V] [CompleteSpace W] (T : V →L[𝕜] W)
     [T.range.HasOrthogonalProjection] :
     ((adjoint T).ker)ᗮ = T.range := by
   rw [ker_adjoint_eq_ortho_range, Submodule.orthogonal_orthogonal]
 
+/--
+@isnad1 id=iscompl.1h3v.s10.5f95f6b45d0d from=translated src=- shape=9c730a10 vocab=c05b5ad9
+-/
 theorem ContinuousLinearMap.IsStarNormal.isCompl_ker_range (T : V →L[𝕜] V)
   [CompleteSpace V]
   [T.range.HasOrthogonalProjection]
@@ -246,6 +297,9 @@ theorem ContinuousLinearMap.IsStarNormal.isCompl_ker_range (T : V →L[𝕜] V)
   simpa [ContinuousLinearMap.IsStarNormal.orthogonal_range h] using
     (Submodule.isCompl_orthogonal (K := T.range)).symm
 
+/--
+@isnad1 id=iff.1h2v.s9.c7eaabf72d60 from=translated src=- shape=e3895806 vocab=a6a1a859
+-/
 theorem ContinuousLinearMap.IsIdempotentElem.isSelfAdjoint_iff_ker_isOrtho_to_range
     [InnerProductSpace ℂ V] [CompleteSpace V] (T : V →L[ℂ] V) (h : IsIdempotentElem T) :
     IsSelfAdjoint T ↔ T.ker = T.rangeᗮ := by
@@ -287,6 +341,7 @@ open Module.End
 /--
 If $T$ is normal, then $\forall x \in V$,
 $x \in \textnormal{eigenspace}(T ,\mu) \iff x \in \textnormal{eigenspace}(T^* ,\bar{\mu})$.
+@isnad1 id=iff.1h4v.s11.0caae5217c2a from=translated src=- shape=6b2c7e49 vocab=ed637b09
 -/
 theorem LinearMap.IsStarNormal.eigenvec_in_eigenspace_iff_eigenvec_in_adjoint_conj_eigenspace
     [InnerProductSpace ℂ V] [FiniteDimensional ℂ V] (T : V →ₗ[ℂ] V) (h : IsStarNormal T) (μ : ℂ) :
@@ -319,12 +374,17 @@ theorem LinearMap.IsStarNormal.eigenvec_in_eigenspace_iff_eigenvec_in_adjoint_co
 
 end IsStarNormal
 
+/--
+@isnad1 id=iff.0h5v.s9.6ab384007d46 from=translated src=- shape=1b8a5710 vocab=b1110c68
+-/
 lemma ContinuousLinearMap.ker_to_linearMap_ker {W : Type _} [NormedAddCommGroup W]
     [InnerProductSpace 𝕜 W] (T : V →L[𝕜] W) :
     ∀ x, x ∈ LinearMap.ker (T : V →ₗ[𝕜] W) ↔ T x = 0 := by
   simp_all
 
-/-- $T$ is injective if and only if $T^*$ is surjective. -/
+/-- $T$ is injective if and only if $T^*$ is surjective.
+@isnad1 id=iff.0h4v.s11.88a1945ae1b1 from=translated src=- shape=71a160b7 vocab=bcde86e3
+-/
 theorem ContinuousLinearMap.adjoint_injective_iff_surjective {W : Type _} [NormedAddCommGroup W]
     [InnerProductSpace 𝕜 W] [CompleteSpace W] [CompleteSpace V] (T : V →L[𝕜] W)
     [T.range.HasOrthogonalProjection] :
@@ -334,7 +394,9 @@ theorem ContinuousLinearMap.adjoint_injective_iff_surjective {W : Type _} [Norme
   change (adjoint T).ker = ⊥ ↔ T.range = ⊤
   rw [ContinuousLinearMap.ker_adjoint_eq_ortho_range, Submodule.orthogonal_eq_bot_iff]
 
-/-- $T$ is injective if and only if $T^*$ is surjective. -/
+/-- $T$ is injective if and only if $T^*$ is surjective.
+@isnad1 id=iff.0h4v.s11.706aa3b0a2a5 from=translated src=- shape=5e6e2975 vocab=c2534429
+-/
 theorem LinearMap.injective_iff_adjoint_surjective {W : Type _} [NormedAddCommGroup W]
     [InnerProductSpace 𝕜 W] [FiniteDimensional 𝕜 W] [FiniteDimensional 𝕜 V] (T : V →ₗ[𝕜] W) :
     Function.Injective T ↔ Function.Surjective (adjoint T) := by

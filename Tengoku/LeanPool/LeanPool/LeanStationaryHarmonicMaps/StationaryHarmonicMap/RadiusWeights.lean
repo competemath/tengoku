@@ -31,17 +31,26 @@ def RadiusWeightOn (R0 : ℝ) (c : ℝ → ℝ) : Prop :=
     ∃ C : ℝ, 0 ≤ C ∧
       ∀ᵐ rho ∂radiusIntervalMeasure R0, ‖c rho‖ ≤ C
 
+/--
+@isnad1 id=aestrong.1h2v.s4.67c048912581 from=translated src=- shape=5a3bcd9c vocab=1fe918f2
+-/
 theorem RadiusWeightOn.aestronglyMeasurable {R0 : ℝ} {c : ℝ → ℝ}
     (hc : RadiusWeightOn R0 c) :
     AEStronglyMeasurable c (radiusIntervalMeasure R0) :=
   hc.1
 
+/--
+@isnad1 id=ex.1h2v.s5.9243556ecd10 from=translated src=- shape=af835703 vocab=b968dd17
+-/
 theorem RadiusWeightOn.exists_ae_bound {R0 : ℝ} {c : ℝ → ℝ}
     (hc : RadiusWeightOn R0 c) :
     ∃ C : ℝ, 0 ≤ C ∧
       ∀ᵐ rho ∂radiusIntervalMeasure R0, ‖c rho‖ ≤ C :=
   hc.2
 
+/--
+@isnad1 id=radiuswe.2h2v.s6.98b00a1eed1c from=translated src=- shape=68aef85d vocab=117fc776
+-/
 theorem radiusWeightOn_of_aestronglyMeasurable_ae_bound {R0 : ℝ} {c : ℝ → ℝ}
     (hc_meas : AEStronglyMeasurable c (radiusIntervalMeasure R0))
     (hc_bound : ∃ C : ℝ, 0 ≤ C ∧
@@ -49,6 +58,9 @@ theorem radiusWeightOn_of_aestronglyMeasurable_ae_bound {R0 : ℝ} {c : ℝ → 
     RadiusWeightOn R0 c :=
   ⟨hc_meas, hc_bound⟩
 
+/--
+@isnad1 id=radiuswe.3h3v.s6.1d0fee3a15fe from=translated src=- shape=3a69021b vocab=f9a1a517
+-/
 theorem radiusWeightOn_of_aestronglyMeasurable_bound_on_Ioo {R0 : ℝ}
     {c : ℝ → ℝ} {C : ℝ}
     (hc_meas : AEStronglyMeasurable c (radiusIntervalMeasure R0))
@@ -59,6 +71,9 @@ theorem radiusWeightOn_of_aestronglyMeasurable_bound_on_Ioo {R0 : ℝ}
   filter_upwards [ae_restrict_mem measurableSet_Ioo] with rho hrho
   exact hC rho hrho
 
+/--
+@isnad1 id=radiuswe.0h2v.s3.816c8ffcceb8 from=translated src=- shape=e85d110b vocab=3af54413
+-/
 theorem radiusWeightOn_const (R0 k : ℝ) :
     RadiusWeightOn R0 (fun _ : ℝ => k) := by
   refine ⟨aestronglyMeasurable_const, ?_⟩
@@ -66,6 +81,9 @@ theorem radiusWeightOn_const (R0 k : ℝ) :
   filter_upwards with rho
   simp
 
+/--
+@isnad1 id=radiuswe.2h3v.s4.abe40e7dc999 from=translated src=- shape=7ed13c0e vocab=55e95932
+-/
 theorem RadiusWeightOn.indicator {R0 : ℝ} {c : ℝ → ℝ} {s : Set ℝ}
     (hc : RadiusWeightOn R0 c) (hs : MeasurableSet s) :
     RadiusWeightOn R0 (s.indicator c) := by
@@ -76,6 +94,9 @@ theorem RadiusWeightOn.indicator {R0 : ℝ} {c : ℝ → ℝ} {s : Set ℝ}
   · simpa [Set.indicator_of_mem hrho] using hbound
   · simpa [Set.indicator_of_notMem hrho] using hC_nonneg
 
+/--
+@isnad1 id=radiuswe.3h4v.s6.c5dcd0415078 from=translated src=- shape=a68e50b3 vocab=aaa4fe14
+-/
 theorem radiusWeightOn_indicator_of_aestronglyMeasurable_bound_on_set
     {R0 : ℝ} {c : ℝ → ℝ} {s : Set ℝ} {C : ℝ}
     (hc_meas : AEStronglyMeasurable (s.indicator c) (radiusIntervalMeasure R0))
@@ -88,15 +109,24 @@ theorem radiusWeightOn_indicator_of_aestronglyMeasurable_bound_on_set
   · simpa [Set.indicator_of_mem hrho] using hC rho hrho
   · simpa [Set.indicator_of_notMem hrho] using hC_nonneg
 
+/--
+@isnad1 id=radiuswe.0h4v.s4.c7ae6da9b295 from=translated src=- shape=8079601b vocab=b1a9e121
+-/
 theorem radiusWeightOn_indicator_const {R0 a b k : ℝ} :
     RadiusWeightOn R0 ((Ioo a b).indicator (fun _ : ℝ => k)) := by
   simpa using
     (radiusWeightOn_const R0 k).indicator (s := Ioo a b) measurableSet_Ioo
 
+/--
+@isnad1 id=radiuswe.0h3v.s4.a10e9baa4573 from=translated src=- shape=ceab3c02 vocab=b1a9e121
+-/
 theorem radiusWeightOn_indicator_one {R0 a b : ℝ} :
     RadiusWeightOn R0 ((Ioo a b).indicator (fun _ : ℝ => (1 : ℝ))) := by
   simpa using radiusWeightOn_indicator_const (R0 := R0) (a := a) (b := b) (k := 1)
 
+/--
+@isnad1 id=radiuswe.2h3v.s5.79b7f3dfbb6e from=translated src=- shape=727549d5 vocab=0097c9f6
+-/
 theorem RadiusWeightOn.add {R0 : ℝ} {c d : ℝ → ℝ}
     (hc : RadiusWeightOn R0 c) (hd : RadiusWeightOn R0 d) :
     RadiusWeightOn R0 (fun rho : ℝ => c rho + d rho) := by
@@ -108,7 +138,9 @@ theorem RadiusWeightOn.add {R0 : ℝ} {c d : ℝ → ℝ}
   exact (norm_add_le (c rho) (d rho)).trans (add_le_add hc_bound hd_bound)
 
 /-- Finite linear combinations of interval-indicator constants are admissible
-radius weights. -/
+radius weights.
+@isnad1 id=radiuswe.0h6v.s5.7b288182d821 from=translated src=- shape=ba9982a0 vocab=f8816542
+-/
 theorem radiusWeightOn_finset_sum_indicator_const_Ioo
     {R0 : ℝ} {ι : Type*} (s : Finset ι)
     (a b k : ι → ℝ) :
@@ -163,7 +195,9 @@ def RadiusWeightFiniteIntervalStepApproxAE (R0 : ℝ) (c : ℝ → ℝ) : Prop :
             Filter.atTop (𝓝 (c rho)))
 
 /-- A pointwise finite interval-step approximation is, in particular, an
-a.e.-valid approximation with empty exceptional set. -/
+a.e.-valid approximation with empty exceptional set.
+@isnad1 id=radiuswe.1h2v.s3.c343f2e4aa9b from=translated src=- shape=d4dbbd47 vocab=0f7873c2
+-/
 theorem RadiusWeightFiniteIntervalStepApprox.toAE {R0 : ℝ} {c : ℝ → ℝ}
     (h : RadiusWeightFiniteIntervalStepApprox R0 c) :
     RadiusWeightFiniteIntervalStepApproxAE R0 c := by
@@ -173,7 +207,9 @@ theorem RadiusWeightFiniteIntervalStepApprox.toAE {R0 : ℝ} {c : ℝ → ℝ}
   exact hlim rho
 
 /-- A finite interval-step weight is realized by the constant approximation
-sequence. -/
+sequence.
+@isnad1 id=radiuswe.3h5v.s6.7ccaab11283b from=translated src=- shape=3fce5707 vocab=34ba47fc
+-/
 theorem radiusWeightFiniteIntervalStepApprox_finset_sum_indicator_const_Ioo
     {R0 : ℝ} {s : Finset ℕ} {a b k : ℕ → ℝ}
     (ha : ∀ i ∈ s, 0 ≤ a i)
@@ -206,7 +242,9 @@ theorem radiusWeightFiniteIntervalStepApprox_finset_sum_indicator_const_Ioo
     exact tendsto_const_nhds
 
 /-- Constant radius weights are approximable on `(0, R0)` by the single
-interval `(0, R0)`. -/
+interval `(0, R0)`.
+@isnad1 id=radiuswe.1h2v.s4.82c0adeb0109 from=translated src=- shape=a9cb6284 vocab=3ccb32d1
+-/
 theorem radiusWeightFiniteIntervalStepApproxAE_const {R0 r : ℝ}
     (hR0_nonneg : 0 ≤ R0) :
     RadiusWeightFiniteIntervalStepApproxAE R0 (fun _ : ℝ => r) := by
@@ -231,7 +269,9 @@ theorem radiusWeightFiniteIntervalStepApproxAE_const {R0 r : ℝ}
     simp [hrho]
 
 /-- Finite interval-step approximability is closed under addition.  The proof
-encodes the two finite index sets into the even and odd natural numbers. -/
+encodes the two finite index sets into the even and odd natural numbers.
+@isnad1 id=radiuswe.2h3v.s5.12b7471c9dc4 from=translated src=- shape=727549d5 vocab=72688dcf
+-/
 theorem RadiusWeightFiniteIntervalStepApproxAE.add {R0 : ℝ} {c d : ℝ → ℝ}
     (hc : RadiusWeightFiniteIntervalStepApproxAE R0 c)
     (hd : RadiusWeightFiniteIntervalStepApproxAE R0 d) :
@@ -363,7 +403,9 @@ theorem RadiusWeightFiniteIntervalStepApproxAE.add {R0 : ℝ} {c d : ℝ → ℝ
     exact (hC_lim.add hD_lim).congr' hev
 
 /-- Finite interval-step approximability is closed under multiplication by a
-constant. -/
+constant.
+@isnad1 id=radiuswe.1h3v.s4.23700d308ede from=translated src=- shape=5d3a9912 vocab=efa5e306
+-/
 theorem RadiusWeightFiniteIntervalStepApproxAE.const_mul {R0 r : ℝ} {c : ℝ → ℝ}
     (hc : RadiusWeightFiniteIntervalStepApproxAE R0 c) :
     RadiusWeightFiniteIntervalStepApproxAE R0 (fun rho : ℝ => r * c rho) := by
@@ -410,19 +452,26 @@ theorem RadiusWeightFiniteIntervalStepApproxAE.const_mul {R0 r : ℝ} {c : ℝ �
       Filter.Eventually.of_forall fun N => (hsum_eq N rho).symm
     exact (hbase.const_mul r).congr' hev
 
-/-- Finite interval-step approximability is closed under negation. -/
+/-- Finite interval-step approximability is closed under negation.
+@isnad1 id=radiuswe.1h2v.s4.cc47386e33d2 from=translated src=- shape=1c75aa7c vocab=347b26ef
+-/
 theorem RadiusWeightFiniteIntervalStepApproxAE.neg {R0 : ℝ} {c : ℝ → ℝ}
     (hc : RadiusWeightFiniteIntervalStepApproxAE R0 c) :
     RadiusWeightFiniteIntervalStepApproxAE R0 (fun rho : ℝ => -c rho) := by
   simpa using (hc.const_mul (r := -1))
 
-/-- Finite interval-step approximability is closed under subtraction. -/
+/-- Finite interval-step approximability is closed under subtraction.
+@isnad1 id=radiuswe.2h3v.s5.8f6b71caa51d from=translated src=- shape=727549d5 vocab=2bad0f93
+-/
 theorem RadiusWeightFiniteIntervalStepApproxAE.sub {R0 : ℝ} {c d : ℝ → ℝ}
     (hc : RadiusWeightFiniteIntervalStepApproxAE R0 c)
     (hd : RadiusWeightFiniteIntervalStepApproxAE R0 d) :
     RadiusWeightFiniteIntervalStepApproxAE R0 (fun rho : ℝ => c rho - d rho) := by
   simpa [sub_eq_add_neg] using hc.add hd.neg
 
+/--
+@isnad1 id=radiuswe.1h2v.s4.7b77005021ff from=translated src=- shape=1c75aa7c vocab=4df1aa88
+-/
 theorem RadiusWeightOn.neg {R0 : ℝ} {c : ℝ → ℝ}
     (hc : RadiusWeightOn R0 c) :
     RadiusWeightOn R0 (fun rho : ℝ => -c rho) := by
@@ -431,11 +480,17 @@ theorem RadiusWeightOn.neg {R0 : ℝ} {c : ℝ → ℝ}
   filter_upwards [hC] with rho hbound
   simpa using hbound
 
+/--
+@isnad1 id=radiuswe.2h3v.s5.41d32257a3b4 from=translated src=- shape=727549d5 vocab=3ef45def
+-/
 theorem RadiusWeightOn.sub {R0 : ℝ} {c d : ℝ → ℝ}
     (hc : RadiusWeightOn R0 c) (hd : RadiusWeightOn R0 d) :
     RadiusWeightOn R0 (fun rho : ℝ => c rho - d rho) := by
   simpa [sub_eq_add_neg] using hc.add hd.neg
 
+/--
+@isnad1 id=radiuswe.2h3v.s5.c51791d5e0ac from=translated src=- shape=727549d5 vocab=b4e89c54
+-/
 theorem RadiusWeightOn.mul {R0 : ℝ} {c d : ℝ → ℝ}
     (hc : RadiusWeightOn R0 c) (hd : RadiusWeightOn R0 d) :
     RadiusWeightOn R0 (fun rho : ℝ => c rho * d rho) := by
@@ -448,16 +503,25 @@ theorem RadiusWeightOn.mul {R0 : ℝ} {c d : ℝ → ℝ}
     ‖c rho * d rho‖ = ‖c rho‖ * ‖d rho‖ := norm_mul (c rho) (d rho)
     _ ≤ C * D := mul_le_mul hc_bound hd_bound (norm_nonneg (d rho)) hC_nonneg
 
+/--
+@isnad1 id=radiuswe.1h3v.s4.502f56a575a4 from=translated src=- shape=5d3a9912 vocab=b4e89c54
+-/
 theorem RadiusWeightOn.const_mul {R0 k : ℝ} {c : ℝ → ℝ}
     (hc : RadiusWeightOn R0 c) :
     RadiusWeightOn R0 (fun rho : ℝ => k * c rho) := by
   simpa [mul_comm] using (radiusWeightOn_const R0 k).mul hc
 
+/--
+@isnad1 id=radiuswe.1h3v.s4.fc7c92862285 from=translated src=- shape=3e3a9c92 vocab=b4e89c54
+-/
 theorem RadiusWeightOn.mul_const {R0 k : ℝ} {c : ℝ → ℝ}
     (hc : RadiusWeightOn R0 c) :
     RadiusWeightOn R0 (fun rho : ℝ => c rho * k) := by
   simpa [mul_comm] using hc.mul (radiusWeightOn_const R0 k)
 
+/--
+@isnad1 id=radiuswe.0h1v.s2.615858a216a6 from=translated src=- shape=5750fe1f vocab=3af54413
+-/
 theorem radiusWeightOn_id (R0 : ℝ) :
     RadiusWeightOn R0 (fun rho : ℝ => rho) := by
   refine ⟨continuous_id.aestronglyMeasurable, ?_⟩
@@ -468,6 +532,9 @@ theorem radiusWeightOn_id (R0 : ℝ) :
     ⟨lt_of_le_of_lt (neg_nonpos.2 (norm_nonneg R0)) hrho.1,
       lt_of_lt_of_le hrho.2 (le_abs_self R0)⟩)
 
+/--
+@isnad1 id=radiuswe.1h2v.s5.df6a5fc17cee from=translated src=- shape=16aad6ee vocab=79f3ed39
+-/
 theorem radiusWeightOn_of_contDiff_one {R0 : ℝ} {phi : ℝ → ℝ}
     (hphi : ContDiff ℝ 1 phi) :
     RadiusWeightOn R0 phi := by
@@ -481,6 +548,9 @@ theorem radiusWeightOn_of_contDiff_one {R0 : ℝ} {phi : ℝ → ℝ}
   intro rho hrho
   exact (hC rho ⟨le_of_lt hrho.1, le_of_lt hrho.2⟩).trans (le_max_left C 0)
 
+/--
+@isnad1 id=radiuswe.1h2v.s6.32f0df0705ed from=translated src=- shape=0a9a40f1 vocab=802c6e67
+-/
 theorem radiusWeightOn_deriv_of_contDiff_one {R0 : ℝ} {phi : ℝ → ℝ}
     (hphi : ContDiff ℝ 1 phi) :
     RadiusWeightOn R0 (deriv phi) := by
@@ -496,12 +566,18 @@ theorem radiusWeightOn_deriv_of_contDiff_one {R0 : ℝ} {phi : ℝ → ℝ}
   intro rho hrho
   exact (hC rho ⟨le_of_lt hrho.1, le_of_lt hrho.2⟩).trans (le_max_left C 0)
 
+/--
+@isnad1 id=radiuswe.1h2v.s6.da47c1c8d25b from=translated src=- shape=339df15a vocab=47953b60
+-/
 theorem radiusWeightOn_rho_mul_deriv_of_contDiff_one {R0 : ℝ} {phi : ℝ → ℝ}
     (hphi : ContDiff ℝ 1 phi) :
     RadiusWeightOn R0 (fun rho : ℝ => rho * deriv phi rho) := by
   exact (radiusWeightOn_id R0).mul
     (radiusWeightOn_deriv_of_contDiff_one (R0 := R0) hphi)
 
+/--
+@isnad1 id=radiuswe.1h3v.s6.2595649185f9 from=translated src=- shape=bb8ccf21 vocab=436c8937
+-/
 theorem radiusWeightOn_radialMainCoeff_of_contDiff_one {n : ℕ} {R0 : ℝ}
     {phi : ℝ → ℝ} (hphi : ContDiff ℝ 1 phi) :
     RadiusWeightOn R0

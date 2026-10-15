@@ -21,6 +21,9 @@ open scoped TensorProduct
 
 namespace Basis
 
+/--
+@isnad1 id=eq.0h11v.s9.190c0655efd4 from=translated src=- shape=a288105f vocab=c7600056
+-/
 theorem tensorProduct_repr_tmul_apply'
     {R S M N ι κ : Type*} [CommSemiring R] [Semiring S] [Algebra R S]
     [AddCommMonoid M] [Module R M] [Module S M] [IsScalarTower R S M]

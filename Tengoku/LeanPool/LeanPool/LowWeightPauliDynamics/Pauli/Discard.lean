@@ -50,13 +50,17 @@ namespace PauliString
 variable {n : ℕ}
 
 /-- Coefficients preserve operator subtraction, an algebraic helper for the discarded component
-`(1 - Π_{≤ w*}) A` in `apd:eq:step_component`. -/
+`(1 - Π_{≤ w*}) A` in `apd:eq:step_component`.
+@isnad1 id=eq.0h4v.s6.80522338debf from=translated src=- shape=cd6eca0d vocab=9fa4fb04
+-/
 theorem coeff_sub (A B : Matrix (Bits n) (Bits n) ℂ) (p : PauliIndex n) :
     coeff (A - B) p = coeff A p - coeff B p := by
   rw [coeff, coeff, coeff, Matrix.mul_sub, Matrix.trace_sub, mul_sub]
 
 /-- Coefficient vectors preserve subtraction, so the operator difference of
-`apd:eq:step_component` can be compared in coefficient space. -/
+`apd:eq:step_component` can be compared in coefficient space.
+@isnad1 id=eq.0h3v.s7.e6179da69160 from=translated src=- shape=7510c759 vocab=f709d704
+-/
 theorem coeffVec_sub (A B : Matrix (Bits n) (Bits n) ℂ) :
     coeffVec (A - B) = coeffVec A - coeffVec B := by
   ext p
@@ -65,7 +69,9 @@ theorem coeffVec_sub (A B : Matrix (Bits n) (Bits n) ℂ) :
 
 /-- Equality of every Pauli coefficient determines an operator. This is the completeness helper
 used to identify the discarded operator in `apd:eq:step_component`, rather
-than merely matching a scalar norm. -/
+than merely matching a scalar norm.
+@isnad1 id=eq.1h3v.s5.76bd1b777c67 from=translated src=- shape=647d7d63 vocab=1d096567
+-/
 theorem coeff_ext {A B : Matrix (Bits n) (Bits n) ℂ}
     (h : ∀ p : PauliIndex n, coeff A p = coeff B p) : A = B := by
   calc
@@ -76,7 +82,9 @@ theorem coeff_ext {A B : Matrix (Bits n) (Bits n) ℂ}
     _ = B := sum_coeff_smul_toMatrix_herm B
 
 /-- **The discarded operator is the complementary projection.** This generalizes the
-`1 - Π_{≤ w*}` in `apd:eq:step_component` to any retained set `S`. -/
+`1 - Π_{≤ w*}` in `apd:eq:step_component` to any retained set `S`.
+@isnad1 id=eq.0h3v.s7.36ebafc11f0d from=translated src=- shape=f08411e2 vocab=fd07ea38
+-/
 theorem sub_truncOp (S : Finset (PauliIndex n)) (O : Matrix (Bits n) (Bits n) ℂ) :
     O - truncOp S O = truncOp Sᶜ O := by
   apply coeff_ext
@@ -85,40 +93,52 @@ theorem sub_truncOp (S : Finset (PauliIndex n)) (O : Matrix (Bits n) (Bits n) �
   by_cases hp : p ∈ S <;> simp [hp, Finset.mem_compl]
 
 /-- The complementary retained set discards exactly the `S` component; at `S = highSet n w*`
-this is the operator identity in `apd:eq:step_component`. -/
+this is the operator identity in `apd:eq:step_component`.
+@isnad1 id=eq.0h3v.s7.aec509ae1aa4 from=translated src=- shape=b093a640 vocab=fd07ea38
+-/
 theorem sub_truncOp_compl (S : Finset (PauliIndex n)) (O : Matrix (Bits n) (Bits n) ℂ) :
     O - truncOp Sᶜ O = truncOp S O := by
   simpa only [compl_compl] using sub_truncOp Sᶜ O
 
 /-- The coefficient vector of the discarded operator `O - Π_S O` is the coefficient vector of
-`O` restricted to the complement `Sᶜ`; a coefficient-space form of `apd:eq:step_component`. -/
+`O` restricted to the complement `Sᶜ`; a coefficient-space form of `apd:eq:step_component`.
+@isnad1 id=eq.0h3v.s7.77e6172c9d63 from=translated src=- shape=3d162ca0 vocab=6b092bdc
+-/
 theorem coeffVec_sub_truncOp (S : Finset (PauliIndex n))
     (O : Matrix (Bits n) (Bits n) ℂ) :
     coeffVec (O - truncOp S O) = restr Sᶜ (coeffVec O) := by
   rw [sub_truncOp, coeffVec_truncOp]
 
 /-- A projected operator's Pauli norm is its restricted coefficient norm, the norm bridge used
-for the discarded component in `apd:thm:triangle`. -/
+for the discarded component in `apd:thm:triangle`.
+@isnad1 id=eq.0h3v.s6.d0eda5053e8f from=translated src=- shape=fe053817 vocab=2cb306e9
+-/
 theorem pauliNorm_truncOp (S : Finset (PauliIndex n)) (O : Matrix (Bits n) (Bits n) ℂ) :
     pauliNorm (truncOp S O) = ‖restr S (coeffVec O)‖ := by
   rw [← norm_coeffVec, coeffVec_truncOp]
 
 /-- The norm of the operator discarded by retaining `S` is the norm on `Sᶜ`. This generalizes
-the final norm identification of `apd:thm:triangle`. -/
+the final norm identification of `apd:thm:triangle`.
+@isnad1 id=eq.0h3v.s8.d3ed65bf6d49 from=translated src=- shape=5ad80af2 vocab=4965eef9
+-/
 theorem pauliNorm_sub_truncOp (S : Finset (PauliIndex n))
     (O : Matrix (Bits n) (Bits n) ℂ) :
     pauliNorm (O - truncOp S O) = ‖restr Sᶜ (coeffVec O)‖ := by
   rw [sub_truncOp, pauliNorm_truncOp]
 
 /-- The norm of the operator discarded by retaining `Sᶜ` is the norm on `S`, the general-set
-form of the final norm identification in `apd:thm:triangle`. -/
+form of the final norm identification in `apd:thm:triangle`.
+@isnad1 id=eq.0h3v.s8.103598f8b953 from=translated src=- shape=df0dddf6 vocab=4965eef9
+-/
 theorem pauliNorm_sub_truncOp_compl (S : Finset (PauliIndex n))
     (O : Matrix (Bits n) (Bits n) ℂ) :
     pauliNorm (O - truncOp Sᶜ O) = ‖restr S (coeffVec O)‖ := by
   rw [sub_truncOp_compl, pauliNorm_truncOp]
 
 /-- The high-weight projection has norm `highNorm`, identifying the high-weight operator norm
-appearing in `apd:thm:triangle`. -/
+appearing in `apd:thm:triangle`.
+@isnad1 id=eq.0h3v.s4.dfc1666da13d from=translated src=- shape=1fd3439f vocab=1b718ae9
+-/
 theorem pauliNorm_truncOp_highSet (w : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) :
     pauliNorm (truncOp (highSet n w) O) = highNorm w O := by
   rw [pauliNorm_truncOp, highNorm]
@@ -128,7 +148,9 @@ weight at most `w` discards an operator whose Pauli norm is exactly `highNorm w 
 the component `Õ^{(d)}_{≥w*+1}` of `apd:eq:step_component` with the high-weight norm
 `apd:eq:def_high_weight_norm` that the ladder bounds (the identification of the truncated mass at
 the start of the proof of `apd:thm:one_step_truncation_error`), and it holds for an arbitrary
-operator `O`. -/
+operator `O`.
+@isnad1 id=eq.0h3v.s7.d94efb4e62dd from=translated src=- shape=7366d84b vocab=e137389c
+-/
 theorem pauliNorm_sub_truncOp_highSet_compl (w : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) :
     pauliNorm (O - truncOp (highSet n w)ᶜ O) = highNorm w O := by
   rw [sub_truncOp_compl, pauliNorm_truncOp_highSet]

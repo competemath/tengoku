@@ -146,6 +146,9 @@ involution because the `X`- and `Z`-parts live in characteristic two. -/
 `±i G s` of `s = herm p`. -/
 def partner (G : PauliString n) (p : PauliIndex n) : PauliIndex n := (G.x + p.1, G.z + p.2)
 
+/--
+@isnad1 id=eq.0h3v.s5.bc321ae816f9 from=translated src=- shape=3c3ac128 vocab=dfae8db2
+-/
 @[simp] lemma cls_mul_herm (G : PauliString n) (p : PauliIndex n) :
     cls (G * herm p) = partner G p := rfl
 
@@ -153,26 +156,35 @@ def partner (G : PauliString n) (p : PauliIndex n) : PauliIndex n := (G.x + p.1,
 That it has no fixed point on the anticommuting sector is also true — a fixed point
 would make `G` a phase, which commutes with everything — but it is not proved here and not needed:
 `Finset.sum_involution` discharges a fixed point on its own, since `f p + f p = 0` forces
-`f p = 0`. -/
+`f p = 0`.
+@isnad1 id=eq.0h3v.s4.9bcad46d12fb from=translated src=- shape=c2334928 vocab=753ee5c9
+-/
 @[simp] lemma partner_partner (G : PauliString n) (p : PauliIndex n) :
     partner G (partner G p) = p := by
   have h : ∀ u v : Bits n, u + (u + v) = v := fun u v => by
     rw [← add_assoc, bits_add_self, zero_add]
   exact Prod.ext (h G.x p.1) (h G.z p.2)
 
+/--
+@isnad1 id=injectiv.0h2v.s3.c3c62e917df2 from=translated src=- shape=565785c6 vocab=4637a66b
+-/
 lemma partner_injective (G : PauliString n) : Function.Injective (partner G) := fun a b hab => by
   rw [← partner_partner G a, hab, partner_partner]
 
 /-- **The partner still anticommutes with the generator**, stated on classes: `G` has the same
 symplectic form with the partner of `p` as with `p`. This is what makes the pairing preserve the
-anticommuting sector. -/
+anticommuting sector.
+@isnad1 id=eq.0h3v.s4.c38b77e7b9ba from=translated src=- shape=3bf3102d vocab=55792471
+-/
 @[simp] lemma sympForm_herm_partner (G : PauliString n) (p : PauliIndex n) :
     sympForm G (herm (partner G p)) = sympForm G (herm p) := by
   have h : sympForm G (herm (partner G p)) = sympForm G (G * herm p) := rfl
   rw [h, sympForm_mul_self_right]
 
 /-- The partner class has the weight of the product `G · herm p`, which is what
-`Pauli/Weight.lean`'s bounds are about. -/
+`Pauli/Weight.lean`'s bounds are about.
+@isnad1 id=eq.0h3v.s5.956844684f39 from=translated src=- shape=792c2c65 vocab=5ec2a96a
+-/
 lemma wt_partner (G : PauliString n) (p : PauliIndex n) :
     wt (partner G p) = weight (G * herm p) := weight_congr rfl rfl
 
@@ -188,7 +200,9 @@ of its class: `toMatrix (i G herm p) = partnerSign G p • toMatrix (herm (partn
 noncomputable def partnerSign (G : PauliString n) (p : PauliIndex n) : ℂ :=
   iPow ((phaseMul 1 (G * herm p)).phase - (herm (partner G p)).phase)
 
-/-- The defining property of `partnerSign`. -/
+/-- The defining property of `partnerSign`.
+@isnad1 id=eq.0h3v.s7.a9a57958314c from=translated src=- shape=4fda3954 vocab=50c6e9b2
+-/
 lemma toMatrix_partner (G : PauliString n) (p : PauliIndex n) :
     toMatrix (phaseMul 1 (G * herm p))
       = partnerSign G p • toMatrix (herm (partner G p)) := by
@@ -201,7 +215,9 @@ lemma toMatrix_partner (G : PauliString n) (p : PauliIndex n) :
 
 /-- `partnerSign` is a **sign**: the two self-adjoint representatives of a class differ by `±1`
 (`phase_sub_of_isSelfAdjoint`), and `i G s` is self-adjoint when `G` and `s` are self-adjoint and
-anticommute (`isSelfAdjoint_phaseMul_one_mul`). -/
+anticommute (`isSelfAdjoint_phaseMul_one_mul`).
+@isnad1 id=or.2h3v.s6.74bce994b936 from=translated src=- shape=4fe785a5 vocab=34c27ccb
+-/
 lemma partnerSign_eq_one_or_neg_one (hG : IsSelfAdjoint G) (h : sympForm G (herm p) = 1) :
     partnerSign G p = 1 ∨ partnerSign G p = -1 := by
   have hs : IsSelfAdjoint (phaseMul 1 (G * herm p)) :=
@@ -210,21 +226,32 @@ lemma partnerSign_eq_one_or_neg_one (hG : IsSelfAdjoint G) (h : sympForm G (herm
   · exact Or.inl (by rw [partnerSign, hd, iPow_zero])
   · exact Or.inr (by rw [partnerSign, hd, iPow_two])
 
+/--
+@isnad1 id=eq.2h3v.s6.d32ad5ff8b10 from=translated src=- shape=b8eb1b94 vocab=cd52d298
+-/
 lemma partnerSign_mul_self (hG : IsSelfAdjoint G) (h : sympForm G (herm p) = 1) :
     partnerSign G p * partnerSign G p = 1 := by
   rcases partnerSign_eq_one_or_neg_one hG h with hp | hp <;> rw [hp] <;> ring
 
+/--
+@isnad1 id=eq.2h3v.s6.b4d04be24e23 from=translated src=- shape=0bb4ae21 vocab=af6ddada
+-/
 lemma norm_partnerSign (hG : IsSelfAdjoint G) (h : sympForm G (herm p) = 1) :
     ‖partnerSign G p‖ = 1 := by
   rcases partnerSign_eq_one_or_neg_one hG h with hp | hp <;> rw [hp] <;> simp
 
+/--
+@isnad1 id=eq.2h3v.s7.3cd2cc4ee1cb from=translated src=- shape=16df021e vocab=9b7466f6
+-/
 lemma conj_partnerSign (hG : IsSelfAdjoint G) (h : sympForm G (herm p) = 1) :
     (starRingEnd ℂ) (partnerSign G p) = partnerSign G p := by
   rcases partnerSign_eq_one_or_neg_one hG h with hp | hp <;> rw [hp] <;> simp
 
 /-- **The signs on a pair are opposite.** The map `s ↦ i G s` squares to `-1`, not to the
 identity: `i G (i G s) = -s`. Consequently the two entries of the planar rotation on `{s, s'}`
-carry opposite signs, which is exactly what makes it a rotation. -/
+carry opposite signs, which is exactly what makes it a rotation.
+@isnad1 id=eq.2h3v.s6.c60bb90c5b3e from=translated src=- shape=a823bf80 vocab=99e2ccce
+-/
 lemma partnerSign_partner (hG : IsSelfAdjoint G) (h : sympForm G (herm p) = 1) :
     partnerSign G (partner G p) = -partnerSign G p := by
   have hph : ∀ r : PauliIndex n, (phaseMul 1 (G * herm r)).phase
@@ -263,6 +290,9 @@ noncomputable def rotAct (G : PauliString n) (θ : ℝ) (y : EuclideanSpace ℂ 
     else (Real.cos θ : ℂ) * y.ofLp p
       - (Real.sin θ : ℂ) * (partnerSign G p * y.ofLp (partner G p))
 
+/--
+@isnad1 id=eq.0h5v.s8.197b8633ee82 from=translated src=- shape=0e018381 vocab=c33468ba
+-/
 @[simp] lemma rotAct_apply (G : PauliString n) (θ : ℝ) (y : EuclideanSpace ℂ (PauliIndex n))
     (p : PauliIndex n) :
     (rotAct G θ y).ofLp p
@@ -270,6 +300,9 @@ noncomputable def rotAct (G : PauliString n) (θ : ℝ) (y : EuclideanSpace ℂ 
         else (Real.cos θ : ℂ) * y.ofLp p
           - (Real.sin θ : ℂ) * (partnerSign G p * y.ofLp (partner G p)) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.aa5e2aaf07ad from=translated src=- shape=1e904e32 vocab=da49a40c
+-/
 lemma rotAct_add (G : PauliString n) (θ : ℝ) (y z : EuclideanSpace ℂ (PauliIndex n)) :
     rotAct G θ (y + z) = rotAct G θ y + rotAct G θ z := by
   ext q
@@ -281,7 +314,9 @@ coefficient by coefficient.
 
 Trace cyclicity moves the conjugation from `O` onto the Pauli, where
 `pauli_rotation_branch_anticommute_hermitian` (`apd:eq:pauli_rotation_branch`, in its
-Hermitian-partner form) applies at angle `-θ`. -/
+Hermitian-partner form) applies at angle `-θ`.
+@isnad1 id=eq.1h5v.s9.8380a9b24897 from=translated src=- shape=9b36862a vocab=0ad5b68c
+-/
 theorem coeff_conj (hG : IsSelfAdjoint G) (θ : ℝ) (O : Matrix (Bits n) (Bits n) ℂ)
     (p : PauliIndex n) :
     coeff (rot (toMatrix G) θ * O * rot (toMatrix G) (-θ)) p
@@ -309,7 +344,9 @@ theorem coeff_conj (hG : IsSelfAdjoint G) (θ : ℝ) (O : Matrix (Bits n) (Bits 
     push_cast
     ring
 
-/-- `coeff_conj` as a statement about the vector. -/
+/-- `coeff_conj` as a statement about the vector.
+@isnad1 id=eq.1h4v.s8.881e56f871e2 from=translated src=- shape=bc514bbe vocab=5eae8d09
+-/
 theorem coeffVec_conj (hG : IsSelfAdjoint G) (θ : ℝ) (O : Matrix (Bits n) (Bits n) ℂ) :
     coeffVec (rot (toMatrix G) θ * O * rot (toMatrix G) (-θ)) = rotAct G θ (coeffVec O) := by
   ext p
@@ -393,7 +430,9 @@ private lemma sum_anti_norm_sq (hG : IsSelfAdjoint G) (θ : ℝ)
   exact_mod_cast hcast
 
 /-- **Conjugation is orthogonal on coefficient vectors**: `rotAct G θ` preserves the `ℓ²` norm,
-for every Hermitian Pauli string `G` and every angle `θ`. -/
+for every Hermitian Pauli string `G` and every angle `θ`.
+@isnad1 id=eq.1h4v.s7.59ddce765ad6 from=translated src=- shape=348521ef vocab=a8c9d2a3
+-/
 theorem norm_rotAct (hG : IsSelfAdjoint G) (θ : ℝ) (y : EuclideanSpace ℂ (PauliIndex n)) :
     ‖rotAct G θ y‖ = ‖y‖ := by
   classical
@@ -414,7 +453,9 @@ theorem norm_rotAct (hG : IsSelfAdjoint G) (θ : ℝ) (y : EuclideanSpace ℂ (P
 
 /-- **The inflow into the high-weight region**. The only classes `A` maps
 into `R` from outside it are partners of high-weight anticommuting classes, each with entry
-`±sin(θ)`; `T` is any set of classes containing those partners. -/
+`±sin(θ)`; `T` is any set of classes containing those partners.
+@isnad1 id=le.2h6v.s8.5d83d5a1bbb5 from=translated src=- shape=b54cf04e vocab=12549fe4
+-/
 lemma norm_restr_high_rotAct_low (hG : IsSelfAdjoint G) (θ : ℝ)
     (y : EuclideanSpace ℂ (PauliIndex n)) (T : Finset (PauliIndex n))
     (hT : ∀ q : PauliIndex n, w < wt q → sympForm G (herm q) = 1 → partner G q ∈ T) :
@@ -471,7 +512,9 @@ lemma norm_restr_high_rotAct_low (hG : IsSelfAdjoint G) (θ : ℝ)
 `|sin θ|` times the `ℓ²` mass on any set `T` of classes that contains the partner of every
 anticommuting class of weight above `w`. This is the shape of `apd:thm:local_flow_k_local`; the
 choice of `T` is where the weight bound `|i G s| ≥ |s| - (k_h-1)` on the partner enters, in
-`highNorm_conj_le_highNorm`. -/
+`highNorm_conj_le_highNorm`.
+@isnad1 id=le.2h6v.s9.99c5f4923a85 from=translated src=- shape=692633a3 vocab=2e018309
+-/
 theorem highNorm_conj_le (hG : IsSelfAdjoint G) (θ : ℝ) (O : Matrix (Bits n) (Bits n) ℂ)
     (T : Finset (PauliIndex n))
     (hT : ∀ q : PauliIndex n, w < wt q → sympForm G (herm q) = 1 → partner G q ∈ T) :
@@ -495,7 +538,9 @@ theorem highNorm_conj_le (hG : IsSelfAdjoint G) (θ : ℝ) (O : Matrix (Bits n) 
 
 /-- **`apd:thm:local_flow_k_local` for one rotation**, at a pair of thresholds
 `w' + (k_h - 1) ≤ w`. Consecutive rung weights satisfy this with equality,
-`w_m - (k_h-1) = w_{m-1}` (`rungWeight_add_two`). -/
+`w_m - (k_h-1) = w_{m-1}` (`rungWeight_add_two`).
+@isnad1 id=le.3h7v.s8.f22f234f556c from=translated src=- shape=180ae106 vocab=ccf9ea2d
+-/
 theorem highNorm_conj_le_highNorm (hG : IsSelfAdjoint G) (hk : weight G ≤ kh)
     (hw : w' + (kh - 1) ≤ w) (θ : ℝ) (O : Matrix (Bits n) (Bits n) ℂ) :
     highNorm w (rot (toMatrix G) θ * O * rot (toMatrix G) (-θ))
@@ -507,7 +552,9 @@ theorem highNorm_conj_le_highNorm (hG : IsSelfAdjoint G) (hk : weight G ≤ kh)
   exact mem_highSet.2 (by omega)
 
 /-- The same bound with the total mass on the right — the form the ladder needs at rung `1`, where
-`w_0` is the reservoir rather than a weight (see `Ladder/Defs.lean`). -/
+`w_0` is the reservoir rather than a weight (see `Ladder/Defs.lean`).
+@isnad1 id=le.1h5v.s8.61f8356bc169 from=translated src=- shape=648f2163 vocab=3d953a21
+-/
 theorem highNorm_conj_le_pauliNorm (hG : IsSelfAdjoint G) (θ : ℝ)
     (O : Matrix (Bits n) (Bits n) ℂ) :
     highNorm w (rot (toMatrix G) θ * O * rot (toMatrix G) (-θ))
@@ -517,13 +564,17 @@ theorem highNorm_conj_le_pauliNorm (hG : IsSelfAdjoint G) (θ : ℝ)
 
 /-- **Unitary invariance of the Pauli 2-norm** under conjugation by one rotation, which is what
 the ladder's `reservoir` field rests on (the base case of `apd:cor:norm_cumulation_jump`). Proved
-from Parseval and orthogonality of `A`, not from a separate Hilbert–Schmidt argument. -/
+from Parseval and orthogonality of `A`, not from a separate Hilbert–Schmidt argument.
+@isnad1 id=eq.1h4v.s8.bced1072b24f from=translated src=- shape=9e770d87 vocab=d5088c64
+-/
 theorem pauliNorm_conj (hG : IsSelfAdjoint G) (θ : ℝ) (O : Matrix (Bits n) (Bits n) ℂ) :
     pauliNorm (rot (toMatrix G) θ * O * rot (toMatrix G) (-θ)) = pauliNorm O := by
   rw [← norm_coeffVec, ← norm_coeffVec, coeffVec_conj hG, norm_rotAct hG]
 
 /-- Truncation only decreases the high-weight norms: restricting a coefficient vector to any set
-of classes cannot increase its mass above any threshold. -/
+of classes cannot increase its mass above any threshold.
+@isnad1 id=le.0h4v.s7.a092ef077c45 from=translated src=- shape=c7032126 vocab=fcd530f0
+-/
 theorem highNorm_restr_le (S : Finset (PauliIndex n)) (y : EuclideanSpace ℂ (PauliIndex n)) :
     ‖restr (highSet n w) (restr S y)‖ ≤ ‖restr (highSet n w) y‖ := by
   have hsq : ‖restr (highSet n w) (restr S y)‖ ^ 2 ≤ ‖restr (highSet n w) y‖ ^ 2 := by
@@ -537,7 +588,9 @@ theorem highNorm_restr_le (S : Finset (PauliIndex n)) (y : EuclideanSpace ℂ (P
 
 /-- The rung spacing is exactly `k_h − 1`, which is what makes
 `highNorm_conj_le_highNorm`'s hypothesis an equality at consecutive rungs. Stated from rung `1`
-upwards, where `rungWeight`'s truncated subtraction is the intended value. -/
+upwards, where `rungWeight`'s truncated subtraction is the intended value.
+@isnad1 id=eq.0h3v.s5.e2765fe77ef7 from=translated src=- shape=9f1c0a8a vocab=d8ca4072
+-/
 lemma rungWeight_add_two (ko kh m : ℕ) :
     rungWeight ko kh (m + 2) = rungWeight ko kh (m + 1) + (kh - 1) := by
   have h1 : m + 2 - 1 = m + 1 := by omega
@@ -555,15 +608,23 @@ noncomputable def traj (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
   | 0 => O
   | g + 1 => rot (toMatrix (Gs g)) (θ g) * traj Gs θ O g * rot (toMatrix (Gs g)) (-(θ g))
 
+/--
+@isnad1 id=eq.0h4v.s5.ad8ce0ab9a0c from=translated src=- shape=300cf3eb vocab=ae2eab79
+-/
 @[simp] lemma traj_zero (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (O : Matrix (Bits n) (Bits n) ℂ) : traj Gs θ O 0 = O := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.c58d1cbac733 from=translated src=- shape=8a63173f vocab=d2754343
+-/
 lemma traj_succ (Gs : ℕ → PauliString n) (θ : ℕ → ℝ) (O : Matrix (Bits n) (Bits n) ℂ) (g : ℕ) :
     traj Gs θ O (g + 1)
       = rot (toMatrix (Gs g)) (θ g) * traj Gs θ O g * rot (toMatrix (Gs g)) (-(θ g)) := rfl
 
 /-- The total mass is conserved along the trajectory: `‖O^{(g)}‖_{2,normalized} =
-‖O‖_{2,normalized}` for every `g`. -/
+‖O‖_{2,normalized}` for every `g`.
+@isnad1 id=eq.1h5v.s5.9bc571a3f063 from=translated src=- shape=aa9f1552 vocab=3dc303b3
+-/
 theorem pauliNorm_traj {Gs : ℕ → PauliString n} (hG : ∀ g, IsSelfAdjoint (Gs g)) (θ : ℕ → ℝ)
     (O : Matrix (Bits n) (Bits n) ℂ) (g : ℕ) : pauliNorm (traj Gs θ O g) = pauliNorm O := by
   induction g with
@@ -577,6 +638,9 @@ noncomputable def ladderN (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
   | 0, g => pauliNorm (traj Gs θ O g)
   | m + 1, g => highNorm (rungWeight ko kh (m + 1)) (traj Gs θ O g)
 
+/--
+@isnad1 id=le.0h8v.s5.38dfdaa2ec22 from=translated src=- shape=310b31be vocab=7c3528ae
+-/
 lemma ladderN_nonneg (Gs : ℕ → PauliString n) (θ : ℕ → ℝ) (O : Matrix (Bits n) (Bits n) ℂ)
     (ko kh m g : ℕ) : 0 ≤ ladderN Gs θ O ko kh m g := by
   cases m with
@@ -584,7 +648,9 @@ lemma ladderN_nonneg (Gs : ℕ → PauliString n) (θ : ℕ → ℝ) (O : Matrix
   | succ m => exact highNorm_nonneg _ _
 
 /-- The ladder's `init`: a `k_o`-local observable carries no mass above any rung `m ≥ 1`, since
-`w_m ≥ w_1 = k_o`. -/
+`w_m ≥ w_1 = k_o`.
+@isnad1 id=eq.2h7v.s6.4af7a14ef763 from=translated src=- shape=e693d7e9 vocab=a1ec524d
+-/
 lemma ladderN_init {Gs : ℕ → PauliString n} {θ : ℕ → ℝ} {O : Matrix (Bits n) (Bits n) ℂ}
     {ko kh : ℕ} (hloc : ∀ p : PauliIndex n, ko < wt p → coeff O p = 0) (m : ℕ) (hm : 1 ≤ m) :
     ladderN Gs θ O ko kh m 0 = 0 := by
@@ -689,7 +755,9 @@ total mass; rung `0` is the reservoir, not a weight.
 
 The inequality holds for every operator `O` and every angle `θ`: no locality hypothesis on the
 observable is used, which is stronger than the paper's statement. Here `k_o` only fixes the
-rung weights. -/
+rung weights.
+@isnad1 id=le.3h7v.s8.d6fb731ca72d from=translated src=- shape=a62b9c52 vocab=6eb4f18f
+-/
 theorem local_flow_k_local {ko m : ℕ} (hG : IsSelfAdjoint G) (hk : weight G ≤ kh) (hm : 2 ≤ m)
     (θ : ℝ) (O : Matrix (Bits n) (Bits n) ℂ) :
     highNorm (rungWeight ko kh m) (rot (toMatrix G) θ * O * rot (toMatrix G) (-θ))

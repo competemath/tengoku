@@ -97,7 +97,9 @@ namespace Lean4LPD
 
 open Finset
 
-/-- Fourth roots of unity have modulus one. -/
+/-- Fourth roots of unity have modulus one.
+@isnad1 id=eq.0h1v.s4.5e68540b71a7 from=translated src=- shape=8ce4ba95 vocab=8842791f
+-/
 @[simp] lemma norm_iPow (k : ZMod 4) : ‖iPow k‖ = 1 := by
   rw [iPow, norm_pow, Complex.norm_I, one_pow]
 
@@ -115,8 +117,14 @@ variable {n : ℕ}
 /-- The class of a Pauli string. -/
 def cls (s : PauliString n) : PauliIndex n := (s.x, s.z)
 
+/--
+@isnad1 id=eq.0h2v.s4.89d608d42c9a from=translated src=- shape=71e7ec35 vocab=361bb955
+-/
 @[simp] lemma cls_fst (s : PauliString n) : (cls s).1 = s.x := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.d511f3379141 from=translated src=- shape=71e7ec35 vocab=c8486e3c
+-/
 @[simp] lemma cls_snd (s : PauliString n) : (cls s).2 = s.z := rfl
 
 /-- The **self-adjoint representative** of a class, `i^{z ⬝ᵥ x} X^x Z^z`. Defined, not
@@ -124,18 +132,31 @@ characterized: `isSelfAdjoint_iff_phase` admits two phases differing by `2`, and
 one in `{0, 1}`. See `herm_eq_or_eq_neg` for what the other choice would cost. -/
 def herm (p : PauliIndex n) : PauliString n := ⟨p.1, p.2, ((p.2 ⬝ᵥ p.1).val : ZMod 4)⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.54b35bf4df66 from=translated src=- shape=ad40a4ef vocab=b0b637e8
+-/
 @[simp] lemma herm_x (p : PauliIndex n) : (herm p).x = p.1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.46ab1f57becf from=translated src=- shape=ad40a4ef vocab=83abfc10
+-/
 @[simp] lemma herm_z (p : PauliIndex n) : (herm p).z = p.2 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.ae446088bf21 from=translated src=- shape=6ddf6d3e vocab=ef7bf66d
+-/
 @[simp] lemma cls_herm (p : PauliIndex n) : cls (herm p) = p := rfl
 
-/-- `herm p` is self-adjoint, so `toMatrix (herm p)` is a Hermitian operator. -/
+/-- `herm p` is self-adjoint, so `toMatrix (herm p)` is a Hermitian operator.
+@isnad1 id=isselfad.0h2v.s3.167003fbf9f0 from=translated src=- shape=71337308 vocab=1d5094b9
+-/
 theorem isSelfAdjoint_herm (p : PauliIndex n) : IsSelfAdjoint (herm p) :=
   isSelfAdjoint_iff_phase.2 rfl
 
 /-- Two self-adjoint Pauli strings on the same class differ by at most a sign: their phases
-differ by `0` or `2`. This is the residual freedom `isSelfAdjoint_iff_phase` leaves. -/
+differ by `0` or `2`. This is the residual freedom `isSelfAdjoint_iff_phase` leaves.
+@isnad1 id=or.4h3v.s8.9d83a1384e9c from=translated src=- shape=854594d1 vocab=6750e4bd
+-/
 theorem phase_sub_of_isSelfAdjoint {s t : PauliString n} (hs : IsSelfAdjoint s)
     (ht : IsSelfAdjoint t) (hx : s.x = t.x) (hz : s.z = t.z) :
     s.phase - t.phase = 0 ∨ s.phase - t.phase = 2 := by
@@ -147,7 +168,9 @@ theorem phase_sub_of_isSelfAdjoint {s t : PauliString n} (hs : IsSelfAdjoint s)
   revert d
   decide
 
-/-- Any self-adjoint representative of a class is `± herm`. -/
+/-- Any self-adjoint representative of a class is `± herm`.
+@isnad1 id=or.1h2v.s6.160969203b67 from=translated src=- shape=eca1f1d5 vocab=f71c8662
+-/
 theorem herm_eq_or_eq_neg {s : PauliString n} (hs : IsSelfAdjoint s) :
     s = herm (cls s) ∨ s = phaseMul 2 (herm (cls s)) := by
   rcases phase_sub_of_isSelfAdjoint hs (isSelfAdjoint_herm (cls s)) rfl rfl with h | h
@@ -158,7 +181,9 @@ theorem herm_eq_or_eq_neg {s : PauliString n} (hs : IsSelfAdjoint s) :
 
 /-! ### The weight of a class -/
 
-/-- The weight sees only the `(x, z)` data. -/
+/-- The weight sees only the `(x, z)` data.
+@isnad1 id=eq.2h3v.s5.2c9454efcfd3 from=translated src=- shape=dcc9edee vocab=a6469c5b
+-/
 lemma weight_congr {s t : PauliString n} (hx : s.x = t.x) (hz : s.z = t.z) :
     weight s = weight t := by
   have hsite : site s = site t := by funext i; rw [site, site, hx, hz]
@@ -168,6 +193,9 @@ lemma weight_congr {s t : PauliString n} (hx : s.x = t.x) (hz : s.z = t.z) :
 set. Well defined because the weight cannot see a phase. -/
 def wt (p : PauliIndex n) : ℕ := weight (herm p)
 
+/--
+@isnad1 id=eq.0h2v.s3.dfae6463d5e6 from=translated src=- shape=74148a6e vocab=a73a49bf
+-/
 @[simp] lemma wt_cls (s : PauliString n) : wt (cls s) = weight s := weight_congr rfl rfl
 
 /-! ### The coefficient vector -/
@@ -188,18 +216,29 @@ so that every Pauli string has norm one. This is the norm in which the high-weig
 `apd:eq:def_high_weight_norm` is measured. -/
 noncomputable def pauliNorm (O : Matrix (Bits n) (Bits n) ℂ) : ℝ := Real.sqrt (pauliNormSq O)
 
+/--
+@isnad1 id=le.0h2v.s4.2171d90ee1ab from=translated src=- shape=e2049420 vocab=bbab852a
+-/
 lemma pauliNormSq_nonneg (O : Matrix (Bits n) (Bits n) ℂ) : 0 ≤ pauliNormSq O := by
   refine mul_nonneg (by positivity) (Finset.sum_nonneg fun a _ => Finset.sum_nonneg fun b _ => ?_)
   positivity
 
+/--
+@isnad1 id=le.0h2v.s4.4c241b308c35 from=translated src=- shape=e2049420 vocab=353786b9
+-/
 lemma pauliNorm_nonneg (O : Matrix (Bits n) (Bits n) ℂ) : 0 ≤ pauliNorm O := Real.sqrt_nonneg _
 
+/--
+@isnad1 id=eq.0h2v.s5.07aee54347bb from=translated src=- shape=2cf426bc vocab=0001e348
+-/
 @[simp] lemma pauliNorm_sq (O : Matrix (Bits n) (Bits n) ℂ) :
     pauliNorm O ^ 2 = pauliNormSq O := Real.sq_sqrt (pauliNormSq_nonneg O)
 
 /-- `‖O‖_{2,normalized}² = 2^{-n} Tr(O† O)`: the entrywise definition `pauliNormSq` agrees with
 the trace
-form of the normalized Schatten 2-norm. -/
+form of the normalized Schatten 2-norm.
+@isnad1 id=eq.0h2v.s7.22ac62d7c7df from=translated src=- shape=0aa92f44 vocab=c55a7ef7
+-/
 theorem pauliNormSq_eq_trace (O : Matrix (Bits n) (Bits n) ℂ) :
     ((pauliNormSq O : ℝ) : ℂ) = ((2 : ℂ) ^ n)⁻¹ * (star O * O).trace := by
   have h : (star O * O).trace = ∑ a : Bits n, ∑ b : Bits n, ((‖O a b‖ : ℝ) : ℂ) ^ 2 := by
@@ -218,7 +257,9 @@ theorem pauliNormSq_eq_trace (O : Matrix (Bits n) (Bits n) ℂ) :
 
 /-- **`Tr(s O)` is a character transform of a shifted diagonal of `O`.** The matrix `toMatrix s`
 is monomial, so the double sum of the trace collapses to a single one: the `X`-part `s.x` selects
-which off-diagonal of `O` is read, and the `Z`-part `s.z` supplies the character. -/
+which off-diagonal of `O` is read, and the `Z`-part `s.z` supplies the character.
+@isnad1 id=eq.0h3v.s8.0cceaa12bf30 from=translated src=- shape=0c7c9865 vocab=d9e91069
+-/
 theorem trace_toMatrix_mul (s : PauliString n) (O : Matrix (Bits n) (Bits n) ℂ) :
     (toMatrix s * O).trace
       = iPow s.phase * ∑ b : Bits n, negOnePow (s.z ⬝ᵥ b) * O b (b + s.x) := by
@@ -297,7 +338,9 @@ private lemma sum_sq_char (x : Bits n) (O : Matrix (Bits n) (Bits n) ℂ) :
 
 Proved directly from the character sum rather than through an orthonormal basis, so it does
 **not** by itself give the expansion `O = ∑_P x_P P`; that is `sum_coeff_smul_toMatrix_herm` in
-`Pauli/Truncate.lean`. -/
+`Pauli/Truncate.lean`.
+@isnad1 id=eq.0h2v.s6.af07de30376e from=translated src=- shape=97684adf vocab=3d29c8c1
+-/
 theorem sum_norm_coeff_sq (O : Matrix (Bits n) (Bits n) ℂ) :
     ∑ p : PauliIndex n, ‖coeff O p‖ ^ 2 = pauliNormSq O := by
   have hnorm : ∀ p : PauliIndex n,
@@ -320,7 +363,9 @@ theorem sum_norm_coeff_sq (O : Matrix (Bits n) (Bits n) ℂ) :
       have h2 : ((2 : ℝ) ^ n) ≠ 0 := by positivity
       field_simp]
 
-/-- **`‖O‖_{2,normalized} = ‖x‖_{ℓ²}`**, as norms rather than squares. -/
+/-- **`‖O‖_{2,normalized} = ‖x‖_{ℓ²}`**, as norms rather than squares.
+@isnad1 id=eq.0h2v.s6.c68f5f05cccb from=translated src=- shape=9780c9e9 vocab=9b1c9b0a
+-/
 theorem pauliNorm_eq_sqrt_sum (O : Matrix (Bits n) (Bits n) ℂ) :
     pauliNorm O = Real.sqrt (∑ p : PauliIndex n, ‖coeff O p‖ ^ 2) := by
   rw [pauliNorm, sum_norm_coeff_sq]
@@ -332,7 +377,9 @@ A guard against a vacuous reading of everything above, and the cheapest conseque
 unit vector. This is what makes the locality hypothesis of `highNorm_eq_zero` (no coefficient
 above a given weight, cf. `def:support`) satisfiable by a concrete observable. -/
 
-/-- **The coefficient vector of a basis Pauli is a unit vector.** -/
+/-- **The coefficient vector of a basis Pauli is a unit vector.**
+@isnad1 id=eq.0h3v.s6.968760013393 from=translated src=- shape=5df09f9d vocab=a1c5879d
+-/
 theorem coeff_toMatrix_herm (p q : PauliIndex n) :
     coeff (toMatrix (herm q)) p = if p = q then 1 else 0 := by
   rw [coeff, ← star_toMatrix_of_isSelfAdjoint (isSelfAdjoint_herm p), trace_star_toMatrix_mul]
@@ -344,7 +391,9 @@ theorem coeff_toMatrix_herm (p q : PauliIndex n) :
     rw [hone, one_phase, iPow_zero, mul_one, inv_mul_cancel₀ h2]
   · rw [ite_eq_right fun hc => h (Prod.ext hc.1 hc.2), ite_eq_right h, mul_zero]
 
-/-- A basis Pauli is `|q|`-local: no class of larger weight carries a coefficient. -/
+/-- A basis Pauli is `|q|`-local: no class of larger weight carries a coefficient.
+@isnad1 id=eq.1h3v.s5.478a4576a923 from=translated src=- shape=bda24067 vocab=8abdb316
+-/
 theorem coeff_toMatrix_herm_eq_zero {p q : PauliIndex n} (h : wt q < wt p) :
     coeff (toMatrix (herm q)) p = 0 := by
   refine (coeff_toMatrix_herm p q).trans (ite_eq_right fun hpq => ?_)
@@ -362,12 +411,17 @@ inner product. -/
 noncomputable def coeffVec (O : Matrix (Bits n) (Bits n) ℂ) : EuclideanSpace ℂ (PauliIndex n) :=
   WithLp.toLp 2 (coeff O)
 
+/--
+@isnad1 id=eq.0h3v.s5.e0090141e0ce from=translated src=- shape=827f3aec vocab=d4744474
+-/
 @[simp] lemma coeffVec_apply (O : Matrix (Bits n) (Bits n) ℂ) (p : PauliIndex n) :
     (coeffVec O).ofLp p = coeff O p := rfl
 
 /-- **`‖O‖_{2,normalized} = ‖x‖_{ℓ²}`**, as an identity of norms: the Pauli 2-norm of the operator
 *is* the
-`ℓ²` norm of its coefficient vector. -/
+`ℓ²` norm of its coefficient vector.
+@isnad1 id=eq.0h2v.s6.9121d32e3e5c from=translated src=- shape=6411a4d5 vocab=f9358f58
+-/
 theorem norm_coeffVec (O : Matrix (Bits n) (Bits n) ℂ) : ‖coeffVec O‖ = pauliNorm O := by
   rw [EuclideanSpace.norm_eq, pauliNorm, ← sum_norm_coeff_sq]
   simp only [coeffVec_apply]
@@ -380,9 +434,15 @@ noncomputable def restr (S : Finset (PauliIndex n)) (y : EuclideanSpace ℂ (Pau
     EuclideanSpace ℂ (PauliIndex n) :=
   WithLp.toLp 2 fun p => if p ∈ S then y.ofLp p else 0
 
+/--
+@isnad1 id=eq.0h4v.s7.06c439cc39cd from=translated src=- shape=8df1c64f vocab=dbd78f6c
+-/
 @[simp] lemma restr_apply (S : Finset (PauliIndex n)) (y : EuclideanSpace ℂ (PauliIndex n))
     (p : PauliIndex n) : (restr S y).ofLp p = if p ∈ S then y.ofLp p else 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.5e86586f9e2e from=translated src=- shape=f5553a26 vocab=41387207
+-/
 lemma norm_restr_sq (S : Finset (PauliIndex n)) (y : EuclideanSpace ℂ (PauliIndex n)) :
     ‖restr S y‖ ^ 2 = ∑ p ∈ S, ‖y.ofLp p‖ ^ 2 := by
   rw [EuclideanSpace.norm_sq_eq,
@@ -391,7 +451,9 @@ lemma norm_restr_sq (S : Finset (PauliIndex n)) (y : EuclideanSpace ℂ (PauliIn
         rw [restr_apply]; split <;> simp,
     Finset.sum_ite_mem, Finset.univ_inter]
 
-/-- Dropping classes cannot increase the `ℓ²` mass. -/
+/-- Dropping classes cannot increase the `ℓ²` mass.
+@isnad1 id=le.0h3v.s7.4c95edf461ee from=translated src=- shape=9546cf93 vocab=665beab2
+-/
 lemma norm_restr_le (S : Finset (PauliIndex n)) (y : EuclideanSpace ℂ (PauliIndex n)) :
     ‖restr S y‖ ≤ ‖y‖ := by
   have h : ‖restr S y‖ ^ 2 ≤ ‖y‖ ^ 2 := by
@@ -400,11 +462,17 @@ lemma norm_restr_le (S : Finset (PauliIndex n)) (y : EuclideanSpace ℂ (PauliIn
       fun p _ _ => by positivity
   nlinarith [norm_nonneg (restr S y), norm_nonneg y]
 
+/--
+@isnad1 id=eq.0h2v.s6.dd0fe6a119b4 from=translated src=- shape=0dc2539a vocab=6e4fd129
+-/
 @[simp] lemma restr_univ (y : EuclideanSpace ℂ (PauliIndex n)) : restr univ y = y := by
   ext p
   change (if p ∈ (univ : Finset (PauliIndex n)) then y.ofLp p else 0) = y.ofLp p
   rw [ite_eq_left (Finset.mem_univ p)]
 
+/--
+@isnad1 id=eq.0h4v.s7.785384ae0e40 from=translated src=- shape=3e9ae7f5 vocab=0c101780
+-/
 lemma restr_add (S : Finset (PauliIndex n)) (y z : EuclideanSpace ℂ (PauliIndex n)) :
     restr S (y + z) = restr S y + restr S z := by
   ext p
@@ -413,7 +481,9 @@ lemma restr_add (S : Finset (PauliIndex n)) (y z : EuclideanSpace ℂ (PauliInde
   split <;> simp
 
 /-- `x = x_R + x_B`: a coefficient vector is the sum of its restrictions to a set of classes and
-to the complement. -/
+to the complement.
+@isnad1 id=eq.0h3v.s7.7047dce28bea from=translated src=- shape=43e54d4a vocab=49ebf473
+-/
 lemma restr_add_restr_compl (S : Finset (PauliIndex n)) (y : EuclideanSpace ℂ (PauliIndex n)) :
     restr S y + restr Sᶜ y = y := by
   ext p
@@ -425,6 +495,9 @@ lemma restr_add_restr_compl (S : Finset (PauliIndex n)) (y : EuclideanSpace ℂ 
 /-- The high-weight region `R = {p : |p| > w}`: the classes of weight above the threshold `w`. -/
 def highSet (n w : ℕ) : Finset (PauliIndex n) := univ.filter fun p => w < wt p
 
+/--
+@isnad1 id=iff.0h3v.s5.74c4b3efa33a from=translated src=- shape=cce6f20f vocab=66947639
+-/
 @[simp] lemma mem_highSet {n w : ℕ} {p : PauliIndex n} : p ∈ highSet n w ↔ w < wt p := by
   simp [highSet]
 
@@ -433,13 +506,18 @@ at threshold `w`: the `ℓ²` mass of the coefficients on classes of weight `> w
 noncomputable def highNorm (w : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) : ℝ :=
   ‖restr (highSet n w) (coeffVec O)‖
 
+/--
+@isnad1 id=le.0h3v.s4.8147ee13efe9 from=translated src=- shape=bb34d094 vocab=f63633ba
+-/
 lemma highNorm_nonneg (w : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) : 0 ≤ highNorm w O :=
   norm_nonneg _
 
 /-- The high-weight mass never exceeds the total mass: `‖O_{≥ w+1}‖_{2,normalized} ≤
 ‖O‖_{2,normalized}` at every
 threshold `w`. This is the inequality behind the base case of the induction in
-`apd:cor:norm_cumulation_jump`. -/
+`apd:cor:norm_cumulation_jump`.
+@isnad1 id=le.0h3v.s4.14c4bb8c65e5 from=translated src=- shape=30bd3249 vocab=0054541d
+-/
 theorem highNorm_le_pauliNorm (w : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) :
     highNorm w O ≤ pauliNorm O := by
   rw [highNorm, ← norm_coeffVec]
@@ -447,7 +525,9 @@ theorem highNorm_le_pauliNorm (w : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) :
 
 /-- A `k_o`-local observable has no mass above weight `k_o`: `init` for the ladder. Locality is
 read through the coefficient vector (cf. `def:support`): every class carrying a non-zero
-coefficient has weight at most `w`. -/
+coefficient has weight at most `w`.
+@isnad1 id=eq.1h3v.s5.fb3c01bf11c9 from=translated src=- shape=703fa699 vocab=93463629
+-/
 theorem highNorm_eq_zero (w : ℕ) {O : Matrix (Bits n) (Bits n) ℂ}
     (h : ∀ p : PauliIndex n, w < wt p → coeff O p = 0) : highNorm w O = 0 := by
   have hsq : ‖restr (highSet n w) (coeffVec O)‖ ^ 2 = 0 := by
@@ -459,7 +539,9 @@ theorem highNorm_eq_zero (w : ℕ) {O : Matrix (Bits n) (Bits n) ℂ}
 
 /-- The converse of `highNorm_eq_zero`: a single nonzero coefficient above the cut forces
 positive high-weight mass. Used wherever a witness must show the discarded sector is really
-occupied rather than merely reachable. -/
+occupied rather than merely reachable.
+@isnad1 id=lt.2h4v.s5.d5d4c66c8a0c from=translated src=- shape=c08c944e vocab=93463629
+-/
 theorem highNorm_pos_of_coeff_ne_zero {w : ℕ} {O : Matrix (Bits n) (Bits n) ℂ}
     {p : PauliIndex n} (hp : w < wt p) (h : coeff O p ≠ 0) : 0 < highNorm w O := by
   refine norm_pos_iff.mpr fun hzero => h ?_

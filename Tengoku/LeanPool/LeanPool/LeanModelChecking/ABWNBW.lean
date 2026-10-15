@@ -38,6 +38,9 @@ def ABW.toNBW {S Q} (A : ABW S Q) : NBW S := {
   F := { (_, W) | W = ∅ }
 }
 
+/--
+@isnad1 id=language.1h4v.s4.10470d006f9d from=translated src=- shape=e4ce50ec vocab=4e522f13
+-/
 theorem ABW.toNBW.lang_sub {S Q} {A : ABW S Q} {w : Nat → S} :
     (ABW.toNBW A).language w → A.language w := by
   simp only [NBW.language, NBW.run, ge_iff_le, language, forall_exists_index, and_imp]
@@ -80,6 +83,9 @@ theorem ABW.toNBW.lang_sub {S Q} {A : ABW S Q} {w : Nat → S} :
     contradiction
   · grind
 
+/--
+@isnad1 id=eq.1h4v.s6.62a51814eab9 from=translated src=- shape=1966c393 vocab=978188ab
+-/
 lemma lemma1 {α : Type} {a b c : Set α} {h : Disjoint a b} : a = (a ∪ (b ∩ c)) \ b := by
   rw [Set.union_sdiff_distrib, Disjoint.sdiff_eq_right h.symm, ← Set.sdiff_inter_right_comm]
   simp
@@ -125,8 +131,14 @@ noncomputable def ancestor {i j} (hij : i ≤ j) (v : G.level j) : G.level i :=
     ancestor (show i ≤ (j - 1) by omega)
       (G.ex_parent (j - 1) ((show (j - 1) + 1 = j by omega) ▸ v)).choose
 
+/--
+@isnad1 id=eq.0h3v.s4.c45c9f5ddaff from=translated src=- shape=9a0cdb6c vocab=ee5eaec2
+-/
 lemma ancestor_refl {i} (v : G.level i) : ancestor rfl.le v = v := by simp [ancestor]
 
+/--
+@isnad1 id=eq.1h4v.s6.b60a20018a65 from=translated src=- shape=c0d42bb9 vocab=98adbe3f
+-/
 lemma ancestor_1 {i j} (hij : i ≤ j) (v : G.level (j + 1)) :
     ancestor hij (G.ex_parent j v).choose = ancestor (show i ≤ j + 1 by omega) v := by
   rewrite (occs := .pos [2]) [ancestor.eq_def]
@@ -134,6 +146,9 @@ lemma ancestor_1 {i j} (hij : i ≤ j) (v : G.level (j + 1)) :
   · subst eq; simp
   · simp [show i ≠ j + 1 by omega]
 
+/--
+@isnad1 id=eq.2h5v.s5.fefc18585be5 from=translated src=- shape=7896fe4f vocab=8556ef2c
+-/
 lemma ancestor_trans {i j k} (hij : i ≤ j) (hjk : j ≤ k) (v : G.level k) :
     ancestor hij (ancestor hjk v) = ancestor (hij.trans hjk) v := by
   induction k
@@ -149,8 +164,14 @@ lemma ancestor_trans {i j k} (hij : i ≤ j) (hjk : j ≤ k) (v : G.level k) :
 
 end
 
+/--
+@isnad1 id=var.2h3v.s4.32d59eb37bc0 from=translated src=- shape=c170901e vocab=b95db8d3
+-/
 lemma choose_eq {α} {p : α → Prop} (P : ∃ a, p a) {a} (eq : P.choose = a) : p a :=
   eq ▸ P.choose_spec
+/--
+@isnad1 id=nonempty.0h1v.s2.34cd1f00dda6 from=translated src=- shape=76a08d12 vocab=069b7d7a
+-/
 lemma ex_path (G : LevelGraph) : Nonempty (Path G) := by
   have := G.fin
   have := G.nonempty
@@ -187,6 +208,9 @@ def helper.p {S Q} {A : ABW S Q} {w : Nat → S} {G : RunDAG A w} : Nat → (Set
         ∃ y, y ∈ W ∧ (y, i) ∈ G.V ∧ (y', i + 1) ∈ G.V ∧ ((y, i), y') ∈ G.E }
   (X', W')
 
+/--
+@isnad1 id=language.1h4v.s4.1a76dcef320a from=translated src=- shape=688a958c vocab=5c0276ce
+-/
 theorem ABW.toNBW.lang_sup {S Q} {A : ABW S Q} [Finite Q] {w : Nat → S} :
     A.language w → (ABW.toNBW A).language w := by
   simp only [language, RunDAG.accepting, ge_iff_le, forall_exists_index]
@@ -316,6 +340,9 @@ theorem ABW.toNBW.lang_sup {S Q} {A : ABW S Q} [Finite Q] {w : Nat → S} :
   rw [Set.disjoint_left] at W_not_F
   simp_all
 
+/--
+@isnad1 id=eq.0h3v.s4.c36465071d6d from=translated src=- shape=b221f8c1 vocab=5c0276ce
+-/
 theorem ABW.toNBW.lang_eq {S Q} (A : ABW S Q) [Finite Q] : A.language = (ABW.toNBW A).language := by
   funext; apply propext
   exact ⟨ABW.toNBW.lang_sup, ABW.toNBW.lang_sub⟩

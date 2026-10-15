@@ -55,7 +55,9 @@ namespace LeanPool.LeanComplexAnalysis
 
 open Complex Metric Real Set
 
-/-- Scaling a point in the closed unit ball by `r ∈ (0,1)` remains in the unit disc. -/
+/-- Scaling a point in the closed unit ball by `r ∈ (0,1)` remains in the unit disc.
+@isnad1 id=mem.2h2v.s6.15e841318239 from=translated src=- shape=2e6eeb1d vocab=0257e1e3
+-/
 lemma mem_ball_of_scaled_norm_le_one {z : ℂ} {r : ℝ} (hz : ‖z‖ ≤ 1) (hr : r ∈ Ioo 0 1) :
     r * z ∈ ball 0 1 := by
   rw [mem_ball, dist_zero_right, norm_mul, norm_real, norm_eq_abs, abs_of_pos hr.1]
@@ -63,24 +65,32 @@ lemma mem_ball_of_scaled_norm_le_one {z : ℂ} {r : ℝ} (hz : ‖z‖ ≤ 1) (h
   rw [mul_comm] at this
   exact LE.le.trans_lt this hr.2
 
-/-- `r* exp (t * I)` is in the unit disc for `r ∈ (0,1)`. -/
+/-- `r* exp (t * I)` is in the unit disc for `r ∈ (0,1)`.
+@isnad1 id=mem.1h2v.s6.b6286029109a from=translated src=- shape=f820207b vocab=70f7f94b
+-/
 lemma mem_unitDisc_of_scaled_exp_ofReal_mul_I {r : ℝ} (hr : r ∈ Ioo 0 1) (t : ℝ) :
     r * exp (t * I) ∈ ball 0 1 := by
   refine mem_ball_of_scaled_norm_le_one ?_ hr
   rw [norm_exp_ofReal_mul_I]
 
-/-- `exp (t * I)` is not equal to any `z` in the unit disc. -/
+/-- `exp (t * I)` is not equal to any `z` in the unit disc.
+@isnad1 id=ne.1h2v.s5.f1c36e592c7c from=translated src=- shape=610701cb vocab=9dedffd1
+-/
 lemma neq_in_unitDisc_of_exp_ofReal_mul_I {z : ℂ} (hz : z ∈ ball 0 1) (t : ℝ) :
     exp (t * I) - z ≠ 0 := by
   intro h
   simp [← sub_eq_zero.mp h, mem_ball, dist_zero_right, norm_exp_ofReal_mul_I] at hz
 
-/-- The conjugate of `exp (t * I)` is its inverse. -/
+/-- The conjugate of `exp (t * I)` is its inverse.
+@isnad1 id=eq.0h1v.s5.c279552e02bb from=translated src=- shape=a6500998 vocab=ff93f817
+-/
 lemma star_exp_ofReal_mul_I_eq_inv {t : ℝ} : star (exp (t * I)) = (exp (t * I))⁻¹ := by
   rw [star_def, ← exp_conj, ← exp_neg (t * I)]
   simp
 
-/-- `1 - star z * w ≠ 0`, for `z` in unit disc and `w` in closed unit disc -/
+/-- `1 - star z * w ≠ 0`, for `z` in unit disc and `w` in closed unit disc
+@isnad1 id=ne.2h2v.s6.44b09e5f3a15 from=translated src=- shape=77e836e4 vocab=5a0be0a1
+-/
 lemma one_sub_star_mul_neq_zero {z : ℂ} {w : ℂ} (hz : z ∈ ball 0 1) (hw : w ∈ closedBall 0 1) :
     1 - star z * w ≠ 0 := by
   intro h
@@ -92,7 +102,9 @@ lemma one_sub_star_mul_neq_zero {z : ℂ} {w : ℂ} (hz : z ∈ ball 0 1) (hw : 
   linarith [sub_eq_zero.mp h ▸ norm_one (α := ℂ)]
 
 /-- If f is analytic on the unit disc, then `ζ ↦ f (r * ζ)` is differentiable at `z`
-for `r` in `(0,1)` and `z` in the closed unit ball. -/
+for `r` in `(0,1)` and `z` in the closed unit ball.
+@isnad1 id=differen.3h4v.s7.991679ddea21 from=translated src=- shape=ebfb510e vocab=76a66e7d
+-/
 lemma differentiableAt_of_analyticOn_unitDisc_of_mul {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℂ E] {f : ℂ → E} {z : ℂ} {r : ℝ}
     (hf : AnalyticOn ℂ f (ball 0 1)) (hz : z ∈ closedBall 0 1) (hr : r ∈ Ioo 0 1) :
@@ -103,7 +115,9 @@ lemma differentiableAt_of_analyticOn_unitDisc_of_mul {E : Type*} [NormedAddCommG
         (differentiableAt_id.const_mul _)
 
 /-- Cauchy integral formula applied to `f` analytic on the unit disc at the point `r*z`,
-for `r` in `(0,1)` and `z` in the unit disc. -/
+for `r` in `(0,1)` and `z` in the unit disc.
+@isnad1 id=eq.3h4v.s8.9085464c0e73 from=translated src=- shape=5697d7f5 vocab=f0f806df
+-/
 lemma cauchy_circleIntegral_formula_on_scaled_unitDisc {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℂ E] [CompleteSpace E] {f : ℂ → E} {z : ℂ} {r : ℝ}
     (hf : AnalyticOn ℂ f (ball 0 1)) (hr : r ∈ Ioo 0 1) (hz : z ∈ ball 0 1) :
@@ -122,7 +136,9 @@ lemma cauchy_circleIntegral_formula_on_scaled_unitDisc {E : Type*} [NormedAddCom
     exact differentiableAt_of_analyticOn_unitDisc_of_mul hf (ball_subset_closedBall hx) hr
 
 /-- Cauchy's integral formula for analytic functions on the unit disc,
-evaluated at scaled points `r * z` with `r ∈ (0,1)`. -/
+evaluated at scaled points `r * z` with `r ∈ (0,1)`.
+@isnad1 id=eq.3h4v.s8.db299d77e51e from=translated src=- shape=b06fcd06 vocab=980a5da4
+-/
 lemma cauchy_integral_formula_on_scaled_unitDisc {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℂ E] [CompleteSpace E] {f : ℂ → E} {z : ℂ} {r : ℝ}
     (hf : AnalyticOn ℂ f (ball 0 1)) (hr : r ∈ Ioo 0 1) (hz : z ∈ ball 0 1) :
@@ -147,7 +163,9 @@ lemma cauchy_integral_formula_on_scaled_unitDisc {E : Type*} [NormedAddCommGroup
 
 /-- If `f` is analytic on the unit disc, then
 `ζ ↦ (star z / (I * (1 - star z * ζ))) • f (r * ζ)`
- is differentiable at `w` in the closed unit disc, for `r` in `(0,1)`. -/
+ is differentiable at `w` in the closed unit disc, for `r` in `(0,1)`.
+@isnad1 id=differen.4h5v.s8.9a90fee136b3 from=translated src=- shape=e53370d4 vocab=4d68abe0
+-/
 lemma diffferentiableAt_goursat_integrand_scaled_unitDisc
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] {f : ℂ → E} {z w : ℂ} {r : ℝ}
     (hf : AnalyticOn ℂ f (ball 0 1)) (hr : r ∈ Ioo 0 1)
@@ -162,7 +180,9 @@ lemma diffferentiableAt_goursat_integrand_scaled_unitDisc
   · exact differentiableAt_of_analyticOn_unitDisc_of_mul hf hw hr
 
 /-- We apply the Cauchy-Goursat theorem to the function
-`ζ ↦ (star z / (I * (1 - star z * ζ))) • (f (r * ζ)))` on the unit circle. -/
+`ζ ↦ (star z / (I * (1 - star z * ζ))) • (f (r * ζ)))` on the unit circle.
+@isnad1 id=eq.3h4v.s8.2668a1c077a3 from=translated src=- shape=3fb323ac vocab=afd44845
+-/
 lemma vanishing_goursat_circleIntegral_scaled_unitDisc
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] {f : ℂ → E} {z : ℂ} {r : ℝ}
     (hf : AnalyticOn ℂ f (ball 0 1)) (hr : r ∈ Ioo 0 1) (hz : z ∈ ball 0 1) :
@@ -174,7 +194,9 @@ lemma vanishing_goursat_circleIntegral_scaled_unitDisc
     exact fun ζ hζ => diffferentiableAt_goursat_integrand_scaled_unitDisc hf hr hz
                       (ball_subset_closedBall hζ)
 
-/-- An auxiliary identity that will be used in the integrand of the Cauchy-Goursat theorem. -/
+/-- An auxiliary identity that will be used in the integrand of the Cauchy-Goursat theorem.
+@isnad1 id=eq.0h2v.s7.a27cff020212 from=translated src=- shape=3772567d vocab=8fbc46e4
+-/
 lemma goursat_integrand_eq_aux (z : ℂ) (t : ℝ) : star z / (star (exp (t * I)) - star z) =
     I * exp (t * I) * (star z / (I * (1 - star z * exp (t * I)))) := by
   rw [star_exp_ofReal_mul_I_eq_inv, mul_comm I, mul_assoc, ← mul_div_assoc,
@@ -187,7 +209,9 @@ lemma goursat_integrand_eq_aux (z : ℂ) (t : ℝ) : star z / (star (exp (t * I)
       inv_mul_cancel₀ (Complex.exp_ne_zero (t * I)), one_mul]
 
 /-- Cauchy-Goursat theorem for the unit disc implies the integral of an analytic function
-against the conjugate Cauchy kernel vanishes. -/
+against the conjugate Cauchy kernel vanishes.
+@isnad1 id=eq.3h4v.s8.9333d232b61e from=translated src=- shape=539644ce vocab=3bbc850d
+-/
 lemma vanishing_goursat_integral_scaled_unitDisc {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℂ E] {f : ℂ → E} {z : ℂ} {r : ℝ}
     (hf : AnalyticOn ℂ f (ball 0 1)) (hr : r ∈ Ioo 0 1) (hz : z ∈ ball 0 1) :
@@ -203,7 +227,9 @@ lemma vanishing_goursat_integral_scaled_unitDisc {E : Type*} [NormedAddCommGroup
     rw [mul_comm I]
 
 /-- We put together `vanishing_goursat_integral_scaled_unitDisc` and
-`cauchy_integral_formula_on_scaled_unitDisc` -/
+`cauchy_integral_formula_on_scaled_unitDisc`
+@isnad1 id=eq.3h4v.s9.1cf559eed024 from=translated src=- shape=ee331f07 vocab=230a6ece
+-/
 lemma cauchy_goursat_integral_scaled_unitDisc {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℂ E] [CompleteSpace E] {f : ℂ → E} {z : ℂ} {r : ℝ}
     (hf : AnalyticOn ℂ f (ball 0 1)) (hr : r ∈ Ioo 0 1) (hz : z ∈ ball 0 1) :
@@ -230,7 +256,9 @@ lemma cauchy_goursat_integral_scaled_unitDisc {E : Type*} [NormedAddCommGroup E]
                 (fun t _ => mem_unitDisc_of_scaled_exp_ofReal_mul_I hr t)
 
 /-- For an analytic function `f : ℂ → E` on the unit disc, `f(r*z)` equals the integral
-of `f(r*e^{it})` against the Poisson kernel, where `r ∈ (0,1)` and `z` is in the unit disc. -/
+of `f(r*e^{it})` against the Poisson kernel, where `r ∈ (0,1)` and `z` is in the unit disc.
+@isnad1 id=eq.3h4v.s8.4a16e85c8d2e from=translated src=- shape=08526207 vocab=341efda0
+-/
 theorem poisson_formula_of_analyticOn_scaled_unitDisc {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℂ E] [CompleteSpace E] {f : ℂ → E} {z : ℂ} {r : ℝ}
     (hf : AnalyticOn ℂ f (ball 0 1))
@@ -254,7 +282,9 @@ theorem poisson_formula_of_analyticOn_scaled_unitDisc {E : Type*} [NormedAddComm
 open InnerProductSpace
 
 /-- For a harmonic function `u` on the unit disc, `u(r*z)` equals the integral
-of `u(r*e^{it})` times the Poisson kernel, where `r ∈ (0,1)` and `z` is in the unit disc. -/
+of `u(r*e^{it})` times the Poisson kernel, where `r ∈ (0,1)` and `z` is in the unit disc.
+@isnad1 id=eq.3h3v.s8.536592d5f62c from=translated src=- shape=4bdd953a vocab=b25050e6
+-/
 theorem poisson_formula_of_harmonicOn_scaled_unitDisc {u : ℂ → ℝ} {z : ℂ} {r : ℝ}
     (hu : HarmonicOnNhd u (ball 0 1))
     (hr : r ∈ Ioo 0 1) (hz : z ∈ ball 0 1) :
@@ -298,7 +328,9 @@ theorem poisson_formula_of_harmonicOn_scaled_unitDisc {u : ℂ → ℝ} {z : ℂ
 open Filter Topology
 
 /-- We bound  `t ↦ ‖k (exp (t * I)) • f (r * exp (t * I))‖`, for
-`k` continuous on the unit circle and `f` continuous on the closed unit disc. -/
+`k` continuous on the unit circle and `f` continuous on the closed unit disc.
+@isnad1 id=le.3h5v.s8.129c84ff7e28 from=translated src=- shape=0dbba069 vocab=8df24b06
+-/
 lemma bounds_of_continuousOn_unitCircle_closedUnitDisc {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℝ E] {f : ℂ → E} {k : ℂ → ℝ} {r : ℝ} {t : ℝ} (hr : r ∈ Ioo 0 1)
     (hf : ContinuousOn f (closedBall 0 1)) (hk : ContinuousOn k (sphere 0 1)) :
@@ -321,7 +353,9 @@ lemma bounds_of_continuousOn_unitCircle_closedUnitDisc {E : Type*} [NormedAddCom
 /-- For a sequence `r_n → 1` with `r_n ∈ (0,1)`, the integral of `t ↦ k(e^{it}) • f(r_n*e^{it})`
 on `[0 , 2π]` converges to the integral of `t ↦ k(e^{it}) • f(e^{it})` on `[0 , 2π]`,
 when `f` is continuous on the closed unit disc and `k` is continuous on the unit circle,
-by the Lebesgue Dominated Convergence Theorem. -/
+by the Lebesgue Dominated Convergence Theorem.
+@isnad1 id=tendsto.4h4v.s8.f151ee47e676 from=translated src=- shape=360089fb vocab=e4c5f534
+-/
 lemma tendsto_integral_prod_of_continuousOn_unitCircle_closedUnitDisc
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {f : ℂ → E} {k : ℂ → ℝ} {r : ℕ → ℝ}
@@ -353,7 +387,9 @@ lemma tendsto_integral_prod_of_continuousOn_unitCircle_closedUnitDisc
       · exact Eventually.of_forall (fun n => hrn n x)
     · rw [mem_closedBall,dist_zero_right,norm_exp_ofReal_mul_I]
 
-/-- The Poisson kernel is continuous on the unit circle. -/
+/-- The Poisson kernel is continuous on the unit circle.
+@isnad1 id=continuo.1h1v.s7.1215fdb7aa81 from=translated src=- shape=f232b7c4 vocab=a43148fd
+-/
 theorem poisson_kernel_continousOn_circle {z : ℂ} (hz : z ∈ ball 0 1) :
      ContinuousOn (fun ζ => (1 - ‖z‖ ^ 2) / ‖ζ - z‖ ^ 2) (sphere 0 1) := by
   refine continuousOn_of_forall_continuousAt ?_
@@ -363,7 +399,9 @@ theorem poisson_kernel_continousOn_circle {z : ℂ} (hz : z ∈ ball 0 1) :
   rw [sq_eq_zero_iff, norm_eq_zero, sub_eq_zero] at h
   simp_all
 
-/-- The sequence `r_n = 1 - 1 / (n + 2)` is in (0,1) and tends to `1` as `n → ∞`. -/
+/-- The sequence `r_n = 1 - 1 / (n + 2)` is in (0,1) and tends to `1` as `n → ∞`.
+@isnad1 id=other.0h0v.s6.4f3d71586809 from=translated src=- shape=c99985ce vocab=5534996b
+-/
 lemma seq_tendsto_to_oneIn_unit_interval_aux :
     let r : ℕ → ℝ := fun n => 1 - 1 / (n + 2)
     (∀ n, r n ∈ Ioo 0 1) ∧ Tendsto r atTop (𝓝 1) := by
@@ -378,7 +416,9 @@ lemma seq_tendsto_to_oneIn_unit_interval_aux :
   exact ⟨hr, hr_lim⟩
 
 /-- If r n tends to 1, then f (r n * z) tends to f z, for z in the unit disc,
-when f is continuous on the closed unit disc. -/
+when f is continuous on the closed unit disc.
+@isnad1 id=tendsto.3h4v.s7.ad556dad965c from=translated src=- shape=c4d00709 vocab=b822cbc2
+-/
 lemma tendsto_of_radius_tendsto_one_of_continuousOn_closedUnitDisc
     {E : Type*} [NormedAddCommGroup E]
     {f : ℂ → E} {z : ℂ} {r : ℕ → ℝ}
@@ -393,7 +433,9 @@ lemma tendsto_of_radius_tendsto_one_of_continuousOn_closedUnitDisc
 
 /-- **Poisson integral formula for harmonic functions on the unit disc**:
 A function `u` harmonic on the unit disc and continuous on the closed unit disc satisfies
-`u(z) = (1/2π) ∫_0^{2π} (1 - |z|²) / |e^{it} - z|² u(e^{it}) dt` for `z` in the unit disc. -/
+`u(z) = (1/2π) ∫_0^{2π} (1 - |z|²) / |e^{it} - z|² u(e^{it}) dt` for `z` in the unit disc.
+@isnad1 id=eq.3h2v.s8.d0560e6279ff from=translated src=- shape=2c095663 vocab=4f85f2d6
+-/
 theorem poisson_integral_of_harmonicOn_unitDisc_continuousOn_closedUnitDisc
     {u : ℂ → ℝ} {z : ℂ} (hu : HarmonicOnNhd u (ball 0 1)) (hc : ContinuousOn u (closedBall 0 1))
     (hz : z ∈ ball 0 1) :
@@ -414,7 +456,9 @@ theorem poisson_integral_of_harmonicOn_unitDisc_continuousOn_closedUnitDisc
 
 /-- **Poisson integral formula for analytic functions on the unit disc**:
 A function `f : ℂ → E` analytic on the unit disc and continuous on the closed unit disc satisfies
-`f(z) = (1/2π) ∫_0^{2π} (1 - |z|²) / |e^{it} - z|² f(e^{it}) dt` for `z` in the unit disc. -/
+`f(z) = (1/2π) ∫_0^{2π} (1 - |z|²) / |e^{it} - z|² f(e^{it}) dt` for `z` in the unit disc.
+@isnad1 id=eq.3h3v.s8.20b270f7281f from=translated src=- shape=d2c043f0 vocab=641b1caf
+-/
 theorem poisson_integral_of_analyticOn_unitDisc_continuousOn_closedUnitDisc
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [CompleteSpace E] {f : ℂ → E} {z : ℂ}
     (hf : AnalyticOn ℂ f (ball 0 1)) (hc : ContinuousOn f (closedBall 0 1))
@@ -432,7 +476,9 @@ theorem poisson_integral_of_analyticOn_unitDisc_continuousOn_closedUnitDisc
   rw [← tendsto_nhds_unique (hu_lim)
         (tendsto_of_radius_tendsto_one_of_continuousOn_closedUnitDisc hc hr_lim hz)]
 
-/-- The real part of the Herglotz–Riesz kernel is equal to the Poisson kernel. -/
+/-- The real part of the Herglotz–Riesz kernel is equal to the Poisson kernel.
+@isnad1 id=eq.1h2v.s6.3544a2ba13b7 from=translated src=- shape=5fbb8359 vocab=55b39b06
+-/
 theorem realPart_herglotz_kernel_eq_poisson_kernel (x w : ℂ) (hx : ‖x‖ = 1) :
     ((x + w) / (x - w)).re = (1 - ‖w‖ ^ 2) / ‖x - w‖ ^ 2 := by
   rw [div_re, normSq_eq_norm_sq (x - w)]
@@ -446,7 +492,9 @@ theorem realPart_herglotz_kernel_eq_poisson_kernel (x w : ℂ) (hx : ‖x‖ = 1
 
 /-- **Poisson integral formula for harmonic functions on the unit disc**:
 A function `u : ℂ → ℝ` harmonic on the unit disc and continuous on the closed unit disc satisfies
-`u(z) = (1/2π) ∫_0^{2π} Re((e^{it} + z) / (e^{it} - z)) * u(e^{it}) dt` for `z` in the unit disc. -/
+`u(z) = (1/2π) ∫_0^{2π} Re((e^{it} + z) / (e^{it} - z)) * u(e^{it}) dt` for `z` in the unit disc.
+@isnad1 id=eq.3h2v.s8.578d8e809ad3 from=translated src=- shape=478969e3 vocab=68681d62
+-/
 theorem poisson_integral_of_harmonicOn_unitDisc_continuousOn_closedUnitDisc_re_kernel
     {u : ℂ → ℝ} {z : ℂ} (hu : HarmonicOnNhd u (ball 0 1)) (hc : ContinuousOn u (closedBall 0 1))
     (hz : z ∈ ball 0 1) :
@@ -461,7 +509,9 @@ theorem poisson_integral_of_harmonicOn_unitDisc_continuousOn_closedUnitDisc_re_k
 
 /-- **Poisson integral formula for analytic functions on the unit disc**:
 A function `f : ℂ → E` analytic on the unit disc and continuous on the closed unit disc satisfies
-`f(z) = (1/2π) ∫_0^{2π} Re((e^{it} + z) / (e^{it} - z)) • f(e^{it}) dt` for `z` in the unit disc. -/
+`f(z) = (1/2π) ∫_0^{2π} Re((e^{it} + z) / (e^{it} - z)) • f(e^{it}) dt` for `z` in the unit disc.
+@isnad1 id=eq.3h3v.s8.848b992c2f62 from=translated src=- shape=4b4eeca3 vocab=ed5fd61c
+-/
 theorem poisson_integral_of_analyticOn_unitDisc_continuousOn_closedUnitDisc_re_kernel
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [CompleteSpace E] {f : ℂ → E} {z : ℂ}
     (hf : AnalyticOn ℂ f (ball 0 1)) (hc : ContinuousOn f (closedBall 0 1))

@@ -56,7 +56,9 @@ def superdenseDecode : Gate 2 :=
 /-- **Superdense coding** [dW19, qcnotes.tex:879]: Bob's decoding circuit
 turns the encoded Bell state into exactly the basis state `|b a⟩`, so a
 computational-basis measurement recovers both of Alice's bits with
-certainty. Protocol due to Bennett and Wiesner (1992). -/
+certainty. Protocol due to Bennett and Wiesner (1992).
+@isnad1 id=eq.0h2v.s6.6f831068ac36 from=translated src=- shape=6dddb7ad vocab=8b8a6b9d
+-/
 theorem superdense_coding (a b : Bool) :
     superdenseDecode.applyVec ((superdenseEncode a b).applyVec (bell : StateVector 2))
       = StateVector.tensor
@@ -83,6 +85,9 @@ def SuperdenseBlockCorrect (a b : Bool) : Prop :=
         ((if b then ket1 else ket0 : PureState 1) : StateVector 1)
         ((if a then ket1 else ket0 : PureState 1) : StateVector 1)
 
+/--
+@isnad1 id=superden.0h2v.s2.9cff902d7944 from=translated src=- shape=5bc9d9c8 vocab=d3763663
+-/
 theorem superdense_coding_block (a b : Bool) :
     SuperdenseBlockCorrect a b :=
   superdense_coding a b
@@ -109,6 +114,9 @@ def superdenseCommunicationProfile (n : ℕ) : CommunicationProfile where
   transmittedQubits := n
   bellPairs := n
 
+/--
+@isnad1 id=hasexact.0h1v.s3.15f9123d92c9 from=translated src=- shape=626ec344 vocab=a87da9ac
+-/
 theorem superdenseCommunicationProfile_exact (n : ℕ) :
     CommunicationProfile.HasExactCounts
       (superdenseCommunicationProfile n) 0 n n := by
@@ -116,7 +124,9 @@ theorem superdenseCommunicationProfile_exact (n : ℕ) :
 
 /-- Componentwise `n`-copy superdense-coding theorem. Each block uses one shared
 Bell pair and transmits one qubit, and Bob deterministically recovers the
-corresponding two classical bits. -/
+corresponding two classical bits.
+@isnad1 id=and.0h2v.s5.18433100d9e0 from=translated src=- shape=25f535c3 vocab=00c4f95f
+-/
 theorem superdense_coding_componentwise
     {n : ℕ} (bits : Fin n → Bool × Bool) :
     (∀ i : Fin n,
@@ -130,7 +140,9 @@ theorem superdense_coding_componentwise
 
 /-- Global `n`-block superdense-coding theorem: Alice's `2n` classical bits,
 represented as `n` bit pairs, are recovered exactly, using `n` transmitted
-qubits and `n` shared Bell pairs. -/
+qubits and `n` shared Bell pairs.
+@isnad1 id=and.0h2v.s4.5dc60d944f95 from=translated src=- shape=4e1729cf vocab=9ceb089a
+-/
 theorem SuperdenseCoding.main
     {n : ℕ} (bits : SuperdenseMessage n) :
     SuperdenseGlobalCorrect bits ∧

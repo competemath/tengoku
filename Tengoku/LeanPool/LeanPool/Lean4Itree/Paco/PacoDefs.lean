@@ -30,13 +30,22 @@ scoped notation "⊤ₚ" => top
 /-- Notation `x ⊓ₚ y` for the Paco lattice meet (to avoid clashing with core's `⊓`). -/
 scoped infixl:60 " ⊓ₚ " => min
 
+/--
+@isnad1 id=rel.0h2v.s4.993678ad932c from=translated src=- shape=ee5329bc vocab=ece5f69a
+-/
 theorem top_spec [CompleteLattice α] (x : α) : x ⊑ ⊤ₚ := le_sup _ True.intro
 
+/--
+@isnad1 id=iff.0h4v.s5.e0593b09b9df from=translated src=- shape=40326a34 vocab=5be75ebc
+-/
 theorem meet_spec [CompleteLattice α] (x y : α) : z ⊑ x ⊓ₚ y ↔ z ⊑ x ∧ z ⊑ y := by
   constructor <;> simp only [min, inf_spec]
   · exact λ h => ⟨h _ <| Or.intro_left _ rfl, h _ <| Or.intro_right _ rfl⟩
   · simp_all
 
+/--
+@isnad1 id=rel.1h4v.s5.aab552d371f3 from=translated src=- shape=5df21ef9 vocab=5be75ebc
+-/
 theorem meet_le_left' [CompleteLattice α] (x : α) : x ⊑ z → x ⊓ₚ y ⊑ z := by
   simp only [min]
   intros
@@ -44,6 +53,9 @@ theorem meet_le_left' [CompleteLattice α] (x : α) : x ⊑ z → x ⊓ₚ y ⊑
   apply sup_le
   intros; rename_i h; apply h; left; rfl
 
+/--
+@isnad1 id=rel.1h4v.s5.21a24f9929b9 from=translated src=- shape=58e8bc8b vocab=5be75ebc
+-/
 theorem meet_le_right' [CompleteLattice α] (y : α) : y ⊑ z → x ⊓ₚ y ⊑ z := by
   simp only [min]
   intros
@@ -51,14 +63,23 @@ theorem meet_le_right' [CompleteLattice α] (y : α) : y ⊑ z → x ⊓ₚ y �
   apply sup_le
   intros; rename_i h; apply h; right; rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.7c1daa63f766 from=translated src=- shape=248c1a59 vocab=d2c9a7b8
+-/
 theorem meet_top [CompleteLattice α] (x : α) : x ⊓ₚ ⊤ₚ = x :=
   rel_antisymm (meet_le_left' _ rel_refl) <| (meet_spec x ⊤ₚ).mpr ⟨rel_refl, top_spec _⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.4f859a8fbecf from=translated src=- shape=214f988b vocab=df05ba4a
+-/
 theorem meet_comm [CompleteLattice α] (x y : α) : x ⊓ₚ y = y ⊓ₚ x :=
   rel_antisymm
     ((meet_spec _ _).mpr ⟨meet_le_right' _ rel_refl, meet_le_left' _ rel_refl⟩)
     ((meet_spec _ _).mpr ⟨meet_le_right' _ rel_refl, meet_le_left' _ rel_refl⟩)
 
+/--
+@isnad1 id=eq.0h4v.s5.aed094ce9dcd from=translated src=- shape=ba6d73b5 vocab=df05ba4a
+-/
 theorem meet_assoc [CompleteLattice α] (x y z : α) : x ⊓ₚ y ⊓ₚ z = x ⊓ₚ (y ⊓ₚ z) := by
   apply rel_antisymm <;> (rw [meet_spec]; apply And.intro)
   · apply meet_le_left'; apply meet_le_left'; apply rel_refl
@@ -78,6 +99,9 @@ open Lean.Order PartialOrder CompleteLattice
 
 -- note that we don't require monotonicity for f
 -- this is the version in paco
+/--
+@isnad1 id=monotone.0h3v.s5.2fb0ce980497 from=translated src=- shape=be272567 vocab=5c883785
+-/
 theorem monotonize_mon [Lean.Order.CompleteLattice α] (f : α → α) (r : α) :
   monotone (λ x => inf (λ z => ∃ y, z = f y ∧ r ⊓ₚ x ⊑ y)) := by
   simp only [monotone]
@@ -93,6 +117,9 @@ theorem monotonize_mon [Lean.Order.CompleteLattice α] (f : α → α) (r : α) 
   · apply meet_le_left' _ rel_refl
   · apply meet_le_right' _ h
 
+/--
+@isnad1 id=monotone.1h3v.s5.c586bea5d8f7 from=translated src=- shape=275ec935 vocab=c202a545
+-/
 theorem plfp_arg_mon [Lean.Order.CompleteLattice α] {f : α → α} (hm : monotone f) (r : α) :
   monotone (λ x => f (r ⊓ₚ x)) := by
   simp only [monotone]
@@ -114,6 +141,9 @@ noncomputable def plfp [Lean.Order.CompleteLattice α] (f : α → α) {hm : mon
 noncomputable def uplfp [Lean.Order.CompleteLattice α] (f : α → α) {hm : monotone f} (r : α) :=
   r ⊓ₚ (plfp f (hm := hm) r)
 
+/--
+@isnad1 id=monotone.1h2v.s5.d2d480f2ae25 from=translated src=- shape=c78e5b5e vocab=0a9d33cb
+-/
 theorem plfp_mon [Lean.Order.CompleteLattice α] {f : α → α} (hm : monotone f) :
   monotone (plfp f (hm := hm)) := by
   simp only [monotone, plfp]
@@ -126,6 +156,9 @@ theorem plfp_mon [Lean.Order.CompleteLattice α] {f : α → α} (hm : monotone 
     apply meet_le_left'; apply rel_refl
   · apply meet_le_right'; apply rel_refl
 
+/--
+@isnad1 id=eq.1h2v.s5.2e3eaeb5180e from=translated src=- shape=956a3505 vocab=a0cfb682
+-/
 theorem plfp_init [Lean.Order.CompleteLattice α] {f : α → α} (hm : monotone f) :
   lfp_monotone f hm = plfp f (hm := hm) ⊤ₚ := by
   apply rel_antisymm <;>
@@ -133,6 +166,9 @@ theorem plfp_init [Lean.Order.CompleteLattice α] {f : α → α} (hm : monotone
   (rename_i h' _; apply rel_trans _ h'; simp only) <;>
   (rw [meet_comm, meet_top] <;> apply rel_refl)
 
+/--
+@isnad1 id=eq.1h3v.s5.c01e06d7bc9d from=translated src=- shape=8289130d vocab=afee8258
+-/
 theorem plfp_unfold [Lean.Order.CompleteLattice α] {f : α → α} (hm : monotone f) :
   plfp f (hm := hm) r = f (uplfp f (hm := hm) r) := by
   rw [plfp]
@@ -140,6 +176,9 @@ theorem plfp_unfold [Lean.Order.CompleteLattice α] {f : α → α} (hm : monoto
   rw [lfp_fix (plfp_arg_mon hm r)]
   congr
 
+/--
+@isnad1 id=rel.2h4v.s5.2b2842bd8827 from=translated src=- shape=168e4aaf vocab=652ee70f
+-/
 theorem uplfp_goal [Lean.Order.CompleteLattice α] {f : α → α} (hm : monotone f) :
   r ⊑ z ∨ plfp f (hm := hm) r ⊑ z → uplfp (hm := hm) f r ⊑ z := by
   simp only [uplfp]
@@ -147,12 +186,18 @@ theorem uplfp_goal [Lean.Order.CompleteLattice α] {f : α → α} (hm : monoton
   · apply meet_le_left'; assumption
   · apply meet_le_right'; assumption
 
+/--
+@isnad1 id=and.2h4v.s5.55020344b0d7 from=translated src=- shape=ceebe4ef vocab=652ee70f
+-/
 theorem uplfp_hyp [Lean.Order.CompleteLattice α] {f : α → α} (hm : monotone f) :
   z ⊑ uplfp (hm := hm) f r → z ⊑ r ∧ z ⊑ plfp f (hm := hm) r := by
   simp only [uplfp]
   rw [meet_spec]
   exact id
 
+/--
+@isnad1 id=eq.0h4v.s6.d9bb4d1d283b from=translated src=- shape=f7821999 vocab=323c8536
+-/
 theorem fun_sup_equiv {α : Sort u} {β : α → Sort v} [(x : α) → CompleteLattice (β x)]
   (c : ((x : α) → β x) → Prop) (x : α) :
   fun_sup c x = inf λ y => ∀ f, c f → f x ⊑ y := by
@@ -169,6 +214,9 @@ theorem fun_sup_equiv {α : Sort u} {β : α → Sort v} [(x : α) → CompleteL
     intros
     apply le_sup; rename_i f _; exists f
 
+/--
+@isnad1 id=iff.1h4v.s5.37e84b221b80 from=translated src=- shape=afdfb2ba vocab=d08cc064
+-/
 theorem plfp_acc_aux [Lean.Order.CompleteLattice α] {f : α → α} (hm : monotone f) (r x : α) :
   plfp f (hm := hm) r ⊑ x ↔ plfp f (hm := hm) (r ⊓ₚ x) ⊑ x := by
   constructor <;> (intro h; apply rel_trans _ h)
@@ -182,6 +230,9 @@ theorem plfp_acc_aux [Lean.Order.CompleteLattice α] {f : α → α} (hm : monot
       exact And.intro (meet_le_left' _ rel_refl) (meet_le_right' _ h)
     · exact meet_le_right' _ rel_refl
 
+/--
+@isnad1 id=rel.2h4v.s6.8d2999f5f3ac from=translated src=- shape=d20509db vocab=01f715f3
+-/
 theorem plfp_acc [Lean.Order.CompleteLattice α] {f : α → α} (hm : monotone f) l r
   (obg : ∀ φ, φ ⊑ r → φ ⊑ l → plfp f (hm := hm) φ ⊑ l) : plfp f (hm := hm) r ⊑ l := by
   rw [plfp_acc_aux hm]

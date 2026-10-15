@@ -43,7 +43,9 @@ structure StationarySobolevMapIn {n m : ℕ}
 /-- Constructor for the final stationary Sobolev package from the five natural
 inputs used by the monotonicity proof: local `L²` control of the map, a.e.
 measurability and local `L²` control of the weak gradient, the distributional
-weak-gradient identity, and vanishing domain first variation. -/
+weak-gradient identity, and vanishing domain first variation.
+@isnad1 id=stationa.5h5v.s6.29dcbe7850ff from=translated src=- shape=2d8e9b82 vocab=0b4aad6c
+-/
 theorem stationarySobolevMapIn_of_components {n m : ℕ}
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
     {Ω : Set (Domain n)}
@@ -57,7 +59,9 @@ theorem stationarySobolevMapIn_of_components {n m : ℕ}
     hfirstVariation⟩
 
 /-- A stationary Sobolev map is a Sobolev weak stationary map in the bridge
-interface. -/
+interface.
+@isnad1 id=sobolevw.1h5v.s5.13d44bd89e15 from=translated src=- shape=c66f79f5 vocab=2c0a6ea6
+-/
 theorem StationarySobolevMapIn.toSobolevWeakStationaryMapIn {n m : ℕ}
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
     {Ω : Set (Domain n)}
@@ -66,7 +70,9 @@ theorem StationarySobolevMapIn.toSobolevWeakStationaryMapIn {n m : ℕ}
   ⟨h.sobolev, h.firstVariation_zero.toWeakStationaryIn⟩
 
 /-- A stationary Sobolev map is a custom weak stationary map, after unpacking
-the bundled Sobolev and first-variation bridge data. -/
+the bundled Sobolev and first-variation bridge data.
+@isnad1 id=weakstat.1h5v.s5.29e789bdb22e from=translated src=- shape=c66f79f5 vocab=93a7acb3
+-/
 theorem StationarySobolevMapIn.toWeakStationaryMapIn {n m : ℕ}
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
     {Ω : Set (Domain n)}
@@ -75,7 +81,9 @@ theorem StationarySobolevMapIn.toWeakStationaryMapIn {n m : ℕ}
   h.toSobolevWeakStationaryMapIn.toWeakStationaryMapIn
 
 /-- Final paper-facing arbitrary-center Euclidean monotonicity theorem for the
-current stationary Sobolev bridge package. -/
+current stationary Sobolev bridge package.
+@isnad1 id=le.6h9v.s7.aab705613c3d from=translated src=- shape=2dbd2e80 vocab=a3e22ad3
+-/
 theorem weakTheta_le_of_stationary_sobolev_map_euclidean
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
@@ -93,7 +101,9 @@ theorem weakTheta_le_of_stationary_sobolev_map_euclidean
     hmap.toWeakStationaryMapIn hΩ_meas hclosedBall_subset hs_pos hsr hr_lt
 
 /-- Final paper-facing arbitrary-center Euclidean monotonicity formula for the
-current stationary Sobolev bridge package. -/
+current stationary Sobolev bridge package.
+@isnad1 id=eq.6h9v.s7.a57a756f3233 from=translated src=- shape=f13211e0 vocab=3de757fc
+-/
 theorem weakTheta_increment_eq_weakMonotonicityRhs_of_stationary_sobolev_map_euclidean
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
@@ -113,7 +123,9 @@ theorem weakTheta_increment_eq_weakMonotonicityRhs_of_stationary_sobolev_map_euc
 
 /-- Final componentwise entry point: the monotonicity theorem stated directly
 from the five stationary `W^{1,2}_{loc}` hypotheses, without asking callers to
-manually assemble the intermediate packages. -/
+manually assemble the intermediate packages.
+@isnad1 id=le.10h9v.s7.930b8f0b9286 from=translated src=- shape=bcf94f42 vocab=42e6ea9c
+-/
 theorem weakTheta_le_of_stationary_sobolev_map_components_euclidean
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
@@ -137,7 +149,9 @@ theorem weakTheta_le_of_stationary_sobolev_map_components_euclidean
     hΩ_meas hclosedBall_subset hs_pos hsr hr_lt
 
 /-- Final componentwise entry point for the monotonicity increment formula,
-stated directly from the five stationary `W^{1,2}_{loc}` hypotheses. -/
+stated directly from the five stationary `W^{1,2}_{loc}` hypotheses.
+@isnad1 id=eq.10h9v.s8.da917d5e58ea from=translated src=- shape=f0945b1e vocab=96ba24e6
+-/
 theorem weakTheta_increment_eq_weakMonotonicityRhs_of_stationary_sobolev_map_components_euclidean
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}

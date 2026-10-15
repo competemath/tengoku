@@ -25,6 +25,9 @@ namespace MooreBound
 open MeasureTheory Set Real
 open scoped ContDiff
 
+/--
+@isnad1 id=ex.2h4v.s7.fe31c65882d0 from=translated src=- shape=52234ab6 vocab=6923f6a8
+-/
 lemma smooth_urysohn_support_Ioo {a b c d : ℝ} (h1 : a < b) (h3 : c < d) :
     ∃ Ψ : ℝ → ℝ, (ContDiff ℝ ∞ Ψ) ∧ (HasCompactSupport Ψ) ∧
     Set.indicator (Set.Icc b c) 1 ≤ Ψ ∧ Ψ ≤ Set.indicator (Set.Ioo a d) 1 ∧
@@ -72,6 +75,9 @@ There exists a smooth (once differentiable would be enough),
   $$
 
 Same idea as Urysohn-type argument.
+-/
+/--
+@isnad1 id=ex.0h0v.s7.15d3bf139bab from=translated src=- shape=ff1d6110 vocab=c04817f5
 -/
 lemma SmoothExistence :
     ∃ (ν : ℝ → ℝ), (ContDiff ℝ ∞ ν) ∧ (∀ x, 0 ≤ ν x) ∧

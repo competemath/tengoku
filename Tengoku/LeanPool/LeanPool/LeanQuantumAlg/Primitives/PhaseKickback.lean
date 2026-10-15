@@ -51,7 +51,9 @@ variable {n : ℕ}
 
 /-- **Phase kickback**: on a `|−⟩` target the XOR oracle acts as the phase
 oracle `|x⟩ ↦ (−1)^{f(x)} |x⟩`; the sign `(−1)^{f(x)}` is written
-`if f x then -1 else 1`. -/
+`if f x then -1 else 1`.
+@isnad1 id=eq.0h3v.s8.bc8ba93d20b1 from=translated src=- shape=5f46b6da vocab=35e2a53f
+-/
 theorem PhaseKickback.main (f : Fin (2 ^ n) → Bool) (x : Fin (2 ^ n)) :
     ((Gate.xorOracle f).apply ((ket x).tensor ketMinus) : StateVector (n + 1))
       = (if f x then (-1 : ℂ) else 1)
@@ -70,7 +72,9 @@ theorem PhaseKickback.main (f : Fin (2 ^ n) → Bool) (x : Fin (2 ^ n)) :
   · by_cases hx : f x <;> by_cases h : f y <;> fin_cases b <;>
       simp [hx, h, hy, PureState.ket_apply]
 
-/-- On a `|+⟩` target the XOR oracle acts trivially, whatever `f` is. -/
+/-- On a `|+⟩` target the XOR oracle acts trivially, whatever `f` is.
+@isnad1 id=eq.0h3v.s6.243d1199c514 from=translated src=- shape=7d8bc3ea vocab=0e240eb2
+-/
 theorem xorOracle_apply_tensor_ketPlus (f : Fin (2 ^ n) → Bool)
     (x : Fin (2 ^ n)) :
     (Gate.xorOracle f).apply ((ket x).tensor ketPlus)
@@ -86,7 +90,9 @@ register holds an eigenstate `|u⟩` of `U` with eigenvalue `e^{iθ}`, the
 controlled `U` leaves the target unchanged and kicks the eigenvalue back
 onto the `|1⟩` component of the control [CEMM98, cemm6.tex:142]:
 
-`c-U ((a|0⟩ + b|1⟩) ⊗ |u⟩) = (a|0⟩ + e^{iθ} b|1⟩) ⊗ |u⟩`. -/
+`c-U ((a|0⟩ + b|1⟩) ⊗ |u⟩) = (a|0⟩ + e^{iθ} b|1⟩) ⊗ |u⟩`.
+@isnad1 id=eq.1h6v.s10.6055b76ba06d from=translated src=- shape=0bddf2e6 vocab=f5892267
+-/
 theorem GeneralizedPhaseKickback.main (U : Gate n) (u : PureState n) (θ : ℝ)
     (hu : U.applyVec (u : StateVector n) =
       Complex.exp (θ * Complex.I) • (u : StateVector n)) (a b : ℂ) :

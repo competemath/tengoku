@@ -30,6 +30,9 @@ universe u v
 
 namespace GraphCoveringTheory.Kurosh
 
+/--
+@isnad1 id=iscoveri.0h3v.s6.c5f83dc2826b from=translated src=- shape=d54ab656 vocab=59b6841b
+-/
 theorem Internal.coverSymmCovering {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G)) :
     (coverPrefunctor G H).symmetrify.IsCovering :=
@@ -57,6 +60,9 @@ noncomputable def coverStarLift {ι : Type v}
       (@Quiver.symmetrifyQuiver (CoverVertex G H) (coverQuiver G H)) u :=
   (coverStarEquiv G H u).symm ⟨v, e⟩
 
+/--
+@isnad1 id=ex.0h6v.s9.583676514b5e from=translated src=- shape=c8ff1137 vocab=6e225019
+-/
 theorem Internal.coverStarLift_map {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (u : CoverVertex G H) {v : Quiver.Symmetrify (RawBassSerreVertex G)}
@@ -73,6 +79,9 @@ theorem Internal.coverStarLift_map {ι : Type v}
   erw [Quiver.Hom.cast_eq_iff_heq]
   exact (Sigma.ext_iff.mp h).2
 
+/--
+@isnad1 id=eq.2h6v.s6.29a983736dc2 from=translated src=- shape=1b78a195 vocab=180fbdd1
+-/
 theorem Internal.hom_reverse_cast {U : Type u} [q : Quiver.{v} U]
     [Quiver.HasReverse U] {a b a' b' : U}
     (e : a ⟶ b) (ha : a = a') (hb : b = b') :
@@ -114,6 +123,9 @@ noncomputable def coverPathLiftData {ι : Type v}
       let hd := Internal.coverStarLift_map G H ih.x e'
       exact ⟨d.1, ih.path.cons d.2, hd.1⟩
 
+/--
+@isnad1 id=eq.2h8v.s6.085dbdc3a791 from=translated src=- shape=53ebf21f vocab=9009034b
+-/
 theorem Internal.path_cast_cons_mid {U : Type u} [q : Quiver.{v} U]
     {a b c b' c' : U} (p : Quiver.Path a b) (e : b ⟶ c)
     (hb : b = b') (hc : c = c') :

@@ -30,7 +30,9 @@ namespace StationaryHarmonicMap
 
 This is the equality form of the monotonicity theorem: the increment of
 `weakTheta` is the nonnegative annular radial-energy term
-`weakMonotonicityRhs`. -/
+`weakMonotonicityRhs`.
+@isnad1 id=eq.5h9v.s7.852da4b231dd from=translated src=- shape=92b3d062 vocab=1c9aead9
+-/
 theorem stationaryW12LocMonotonicityFormula_euclidean
     {n m : Nat} [NeZero n]
     {u : Domain n -> Target m} {Omega : Set (Domain n)}
@@ -52,7 +54,9 @@ theorem stationaryW12LocMonotonicityFormula_euclidean
 /-- Main witness-style public monotonicity theorem.
 
 The chosen weak gradient is part of the stationary Sobolev witness, and the
-conclusion uses that same gradient in `weakTheta`. -/
+conclusion uses that same gradient in `weakTheta`.
+@isnad1 id=le.5h9v.s7.a99bcec8076f from=translated src=- shape=81a1408a vocab=18660469
+-/
 theorem stationaryW12LocMonotonicity_euclidean
     {n m : Nat} [NeZero n]
     {u : Domain n -> Target m} {Omega : Set (Domain n)}

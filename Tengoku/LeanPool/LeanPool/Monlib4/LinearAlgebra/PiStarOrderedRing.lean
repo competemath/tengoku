@@ -19,6 +19,9 @@ public import Tengoku
 def Set.ofPi {ι : Type _} {B : ι → Type _} [DecidableEq ι] [∀ i, Zero (B i)] (s : Set (∀ i, B i)) :
     ∀ i, Set (B i) := fun i x => Pi.single i x ∈ s
 
+/--
+@isnad1 id=eq.0h4v.s6.e05063c6d022 from=translated src=- shape=109f247c vocab=06bdbe27
+-/
 theorem Set.piOfPi {ι : Type _} {B : ι → Type _} [DecidableEq ι] [∀ i, AddZeroClass (B i)]
     {s : ∀ i, Set (B i)} (h : ∀ i, s i 0) : (Set.univ.pi s).ofPi = s := by
   ext i x
@@ -46,12 +49,18 @@ def AddSubmonoid.ofPi {ι : Type _} {B : ι → Type _} [DecidableEq ι] [∀ i,
       simp only [AddSubmonoid.mem_carrier, ← Pi.single_add] at this ⊢
       exact this }
 
+/--
+@isnad1 id=eq.0h3v.s5.f18cfe7494b3 from=translated src=- shape=4efbca00 vocab=76c7ecaf
+-/
 theorem AddSubmonoid.piOfPi {ι : Type _} {B : ι → Type _} [DecidableEq ι] [∀ i, AddZeroClass (B i)]
     (h : ∀ i, AddSubmonoid (B i)) : (AddSubmonoid.pi Set.univ h).ofPi = h := by
   ext i x
   change Pi.single i x ∈ AddSubmonoid.pi Set.univ h ↔ x ∈ h i
   simp_all
 
+/--
+@isnad1 id=le.1h6v.s6.bcdd50c0a855 from=translated src=- shape=35c4c854 vocab=6b8d0cbf
+-/
 theorem Set.ofPi_mem' {ι : Type _} {B : ι → Type _} [DecidableEq ι] [∀ i, AddZeroClass (B i)]
     {s : ∀ i, Set (B i)} {S : Set (∀ i, B i)} (hs : Set.univ.pi s ⊆ S) (h : ∀ i, s i 0) (i : ι) :
     s i ⊆ S.ofPi i := by
@@ -65,6 +74,9 @@ theorem Set.ofPi_mem' {ι : Type _} {B : ι → Type _} [DecidableEq ι] [∀ i,
   · rw [Pi.single_eq_of_ne hj]
     exact h j
 
+/--
+@isnad1 id=mem.1h5v.s7.db7f75fd678a from=translated src=- shape=151f8ec7 vocab=f2f0d3a6
+-/
 theorem AddSubmonoid.mem_closure_pi {ι : Type _} {B : ι → Type _}
     [∀ i, AddZeroClass (B i)] {s : ∀ i, Set (B i)} {x : ∀ i, B i} :
     x ∈ AddSubmonoid.closure (Set.univ.pi fun i => s i) → ∀ i, x i ∈ AddSubmonoid.closure (s i) :=
@@ -81,6 +93,9 @@ theorem AddSubmonoid.mem_closure_pi {ι : Type _} {B : ι → Type _}
   rw [AddSubmonoid.mem_pi] at hx
   exact (AddSubmonoid.mem_closure.mp (hx i (Set.mem_univ i))) S hS
 
+/--
+@isnad1 id=iff.1h3v.s8.6af0ff7cfcc6 from=translated src=- shape=bd63db24 vocab=660dbd96
+-/
 theorem Pi.StarOrderedRing.nonneg_def {ι : Type _} {α : ι → Type _} [∀ i, NonUnitalSemiring (α i)]
     [∀ i, PartialOrder (α i)] [∀ i, StarRing (α i)]
     (h : ∀ (i : ι) (x : α i), 0 ≤ x ↔ ∃ y, star y * y = x) (x : ∀ i, α i) :
@@ -96,13 +111,18 @@ instance {ι : Type _} {α : ι → Type _} [∀ i, Ring (α i)]
       (Function.swap fun x x_1 ↦ x + x_1) fun x x_1 ↦ x ≤ x_1 :=
 ⟨fun x y z h j => by simp_rw [Function.swap, Pi.add_apply, add_le_add_iff_right, h j]⟩
 
+/--
+@isnad1 id=iff.1h4v.s8.4ac3ef6c451d from=translated src=- shape=2888b8bc vocab=e453e37f
+-/
 theorem Pi.StarOrderedRing.le_def {ι : Type _} {α : ι → Type _} [∀ i, Ring (α i)]
     [∀ i, PartialOrder (α i)] [∀ i, StarRing (α i)] [∀ i, StarOrderedRing (α i)]
     (h : ∀ (i : ι) (x : α i), 0 ≤ x ↔ ∃ y, star y * y = x) (x y : ∀ i, α i) :
     x ≤ y ↔ ∃ z, star z * z = y - x := by
   rwa [← sub_nonneg, ← Pi.StarOrderedRing.nonneg_def]
 
-/-- Dependent functions over star-ordered rings are star-ordered coordinatewise. -/
+/-- Dependent functions over star-ordered rings are star-ordered coordinatewise.
+@isnad1 id=starorde.1h2v.s8.2d8275d67dca from=translated src=- shape=f547e00a vocab=69ce26bf
+-/
 theorem Pi.starOrderedRing {ι : Type _} {B : ι → Type _} [∀ i, Ring (B i)] [∀ i, PartialOrder (B i)]
     [∀ i, StarRing (B i)] [∀ i, StarOrderedRing (B i)]
     (h : ∀ (i : ι) (x : B i), 0 ≤ x ↔ ∃ y, star y * y = x) :

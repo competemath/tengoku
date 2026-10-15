@@ -50,6 +50,9 @@ variable {K V : Type*} [DivisionRing K] [AddCommGroup V] [Module K V]
 instance : CoeFun (CompleteFlag K V n) (fun _ ↦ Fin (n + 1) → Submodule K V) :=
   ⟨CompleteFlag.space⟩
 
+/--
+@isnad1 id=eq.1h5v.s6.23d1c7c5312e from=translated src=- shape=8767eafc vocab=153b7290
+-/
 @[ext]
 theorem ext {F G : CompleteFlag K V n} (h : ∀ i, F i = G i) : F = G := by
   cases F with
@@ -83,6 +86,9 @@ end CompleteFlag
 def PrefixSet {n : ℕ} (σ : Equiv.Perm (Fin n)) (i : Fin (n + 1)) : Set (Fin n) :=
   σ '' {j | j.castSucc < i}
 
+/--
+@isnad1 id=eq.0h6v.s7.916c8e8b04c7 from=translated src=- shape=7b7c5551 vocab=2c7a7687
+-/
 theorem ofBasis_reindex_apply {n : ℕ} (b : Basis (Fin n) K V)
     (σ : Equiv.Perm (Fin n)) (i : Fin (n + 1)) :
     CompleteFlag.ofBasis (b.reindex σ.symm) i =
@@ -206,7 +212,9 @@ private theorem surjective_of_prefix_card {m : ℕ} (σf : Fin (m + 1) → Fin (
 
 /-- Any two complete flags lie in a common apartment: after choosing one
 ordered basis, the second flag is obtained by permuting that same basis.
-The inverse in `π.symm` compensates for Mathlib's convention for `Basis.reindex`. -/
+The inverse in `π.symm` compensates for Mathlib's convention for `Basis.reindex`.
+@isnad1 id=ex.0h5v.s7.209704e7476f from=translated src=- shape=dfab769e vocab=d15485bb
+-/
 theorem common_apartment {n : ℕ} (F F' : CompleteFlag K V n) :
     ∃ (b : Basis (Fin n) K V) (π : Equiv.Perm (Fin n)),
       F = CompleteFlag.ofBasis b ∧
@@ -398,7 +406,9 @@ theorem common_apartment {n : ℕ} (F F' : CompleteFlag K V n) :
 /-- The common-basis step in the paper, written literally as prefix spans.
 For `i : Fin (n + 1)`, `{j | j.castSucc < i}` represents the first `i`
 positions.  Thus `b` is the ordered basis `(v₁, ..., vₙ)`, while `π` gives
-the second ordering `(v_{π(1)}, ..., v_{π(n)})`. -/
+the second ordering `(v_{π(1)}, ..., v_{π(n)})`.
+@isnad1 id=ex.0h5v.s8.05267007d5d7 from=translated src=- shape=81371cec vocab=c68660d0
+-/
 theorem common_basis_orderings {n : ℕ}
     (F F' : CompleteFlag K V n) :
     ∃ (b : Basis (Fin n) K V) (π : Equiv.Perm (Fin n)),

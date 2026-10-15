@@ -33,6 +33,9 @@ namespace GraphCoveringTheory.Kurosh
 
 open Monoid.CoprodI
 
+/--
+@isnad1 id=eq.0h4v.s6.8c5736b4b162 from=translated src=- shape=e1bcf26a vocab=31c514ae
+-/
 theorem Internal.rightCosetMk_mul_out_mk {P : Type u} [Group P]
     (K : Subgroup P) (p r : P) :
     rightCosetMk K (p * Quotient.out (rightCosetMk K r)) =

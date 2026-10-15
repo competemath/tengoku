@@ -48,7 +48,9 @@ def IsPerfect (r : α → α → Prop) (f : ℕ → α) : Prop :=
 
 /-- **Perfect/bad dichotomy.** Every sequence `f : ℕ → α` has a strictly increasing reindexing
 `f ∘ e` that is either perfect or bad for `r`. Immediate from the infinite Ramsey theorem for
-pairs applied to the `2`-colouring `(m, n) ↦ ¬ r (f m) (f n)`; no order axioms are used. -/
+pairs applied to the `2`-colouring `(m, n) ↦ ¬ r (f m) (f n)`; no order axioms are used.
+@isnad1 id=ex.0h3v.s5.6439d1b7de67 from=translated src=- shape=507b5e5a vocab=6efc89a7
+-/
 theorem perfect_or_bad (r : α → α → Prop) (f : ℕ → α) :
     ∃ e : ℕ → ℕ, StrictMono e ∧ (IsPerfect r (f ∘ e) ∨ IsBad r (f ∘ e)) := by
   classical
@@ -76,7 +78,9 @@ variable {α : Type*} {r : α → α → Prop}
 /-- **Monotone subsequences from a WQO, without transitivity.** In a well-quasi-order, every
 sequence has a strictly increasing reindexing `e` along which `r (f (e m)) (f (e n))` holds for
 all `m < n`. Follows directly from the perfect/bad dichotomy: a bad subsequence would contradict
-the WQO. No typeclass assumptions on `r`. -/
+the WQO. No typeclass assumptions on `r`.
+@isnad1 id=ex.1h3v.s5.36a4c2d85b5d from=translated src=- shape=6b699bfc vocab=c8767d59
+-/
 theorem WellQuasiOrdered.exists_monotone_subseq_lt (h : WellQuasiOrdered r) (f : ℕ → α) :
     ∃ e : ℕ → ℕ, StrictMono e ∧ ∀ m n : ℕ, m < n → r (f (e m)) (f (e n)) := by
   obtain ⟨e, he, hperf | hbad⟩ := perfect_or_bad r f

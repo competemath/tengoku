@@ -156,6 +156,7 @@ notation:60 "p("k" ↦ "v"; "m")" => PMap.put k v m
 This theorem states, when a given map [t] which contains the key [k]
 with the value [v] as last entry, the function `TMap.get` returns the
 corresponding value [v].
+@isnad1 id=eq.0h5v.s5.bbff962f75cf from=translated src=- shape=3d44d8d8 vocab=7d7e07bb
 -/
 @[simp]
 theorem t_update_eq : forall (α : Type) (β : Type) [BEq α] [LawfulBEq α]
@@ -170,6 +171,7 @@ theorem t_update_eq : forall (α : Type) (β : Type) [BEq α] [LawfulBEq α]
 If a total map [t] is updated with some k ∈ α and v ∈ β (k ↦ v; t),
 and we search for some key [k'] with k ≠ k', we get the same result
 as when we would just search [t] for [k'].
+@isnad1 id=eq.1h6v.s5.2e08a7714f50 from=translated src=- shape=1e46f68e vocab=7d7e07bb
 -/
 @[simp]
 theorem t_update_neq : forall (α : Type) (β : Type) [BEq α] [LawfulBEq α]
@@ -186,6 +188,7 @@ theorem t_update_neq : forall (α : Type) (β : Type) [BEq α] [LawfulBEq α]
 This theorem states, when a given map [p] which contains the key [k]
 with the value [v] as last entry, the function `PMap.get` returns the
 corresponding value [v].
+@isnad1 id=eq.0h5v.s5.86e2d1afa4ab from=translated src=- shape=b15e7493 vocab=3c517fd7
 -/
 @[simp]
 theorem p_update_eq : forall (α : Type) (β : Type) [BEq α] [LawfulBEq α]
@@ -200,6 +203,7 @@ theorem p_update_eq : forall (α : Type) (β : Type) [BEq α] [LawfulBEq α]
 If a partial map [p] is updated with some k ∈ α and v ∈ β (k ↦ v; p),
 and we search for some key [k'] with k ≠ k', we get the same result
 as when we would just search [t] for [k'].
+@isnad1 id=eq.1h6v.s5.b9efffa74960 from=translated src=- shape=a36b1f63 vocab=49bc21f4
 -/
 @[simp]
 theorem p_update_neq : forall (α : Type) (β : Type) [BEq α] [LawfulBEq α]

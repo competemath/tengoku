@@ -56,7 +56,9 @@ def f : RuleApp → Sequent
 /-- Given a RuleApp, obtain the non-principal formulas. -/
 def fₙ : RuleApp → Sequent := fun r ↦ f r \ fₚ r
 
-/-- Relating principal formulas, non-principal formulas, and sequent. -/
+/-- Relating principal formulas, non-principal formulas, and sequent.
+@isnad1 id=eq.0h1v.s7.cc9068721ebe from=translated src=- shape=85f383a2 vocab=5d811213
+-/
 lemma fₙ_alternate (r : RuleApp) : fₙ r = match r with
   | RuleApp.top Δ _ => Δ \ {⊤}
   | RuleApp.ax Δ n _ => Δ \ {at n, na n}
@@ -64,9 +66,15 @@ lemma fₙ_alternate (r : RuleApp) : fₙ r = match r with
   | RuleApp.or Δ A B _ => Δ \ {A v B}
   | RuleApp.box Δ A _ => Δ \ {□ A} := by cases r <;> simp [fₙ, f, fₚ]
 
+/--
+@isnad1 id=le.0h1v.s3.2aa6f511b840 from=translated src=- shape=b70c6bb1 vocab=1b797899
+-/
 lemma fₚ_sub_f {r : RuleApp} : fₚ r ⊆ f r := by
   cases r <;> grind [fₚ, f]
 
+/--
+@isnad1 id=le.0h1v.s3.9bc8876a9880 from=translated src=- shape=b70c6bb1 vocab=0e9a4647
+-/
 lemma fₙ_sub_f {r : RuleApp} : fₙ r ⊆ f r := by
   cases r <;> simp_all [fₙ, f]
 
@@ -115,6 +123,9 @@ infixr:6 "⊢" => proves
 /-- Auxiliary declaration used in the GL coalgebra development. -/
 prefix:40 "⊢" => Sequent.isTrue
 
+/--
+@isnad1 id=not.0h0v.s3.1f445d50d316 from=translated src=- shape=7ba7c992 vocab=76201023
+-/
 lemma not_prove_empty : ¬ ∃ 𝕏, 𝕏 ⊢ {} := by
   by_contra con
   have ⟨𝕏, x, x_em⟩ := con
@@ -122,7 +133,9 @@ lemma not_prove_empty : ¬ ∃ 𝕏, 𝕏 ⊢ {} := by
 
 /-! # Fischer-Ladner properties of GL-proofs -/
 
-/-- Every edge is contained in FL closure. -/
+/-- Every edge is contained in FL closure.
+@isnad1 id=le.1h3v.s5.370691629170 from=translated src=- shape=ad21cbb1 vocab=f6a59ccd
+-/
 lemma edge_in_FL {𝕏 : Proof} {x y : 𝕏.X} (x_y : (edge 𝕏.α) x y) :
     f (r 𝕏.α y) ⊆ Sequent.FL (f (r 𝕏.α x)) := by
   unfold edge at x_y
@@ -167,7 +180,9 @@ lemma edge_in_FL {𝕏 : Proof} {x y : 𝕏.X} (x_y : (edge 𝕏.α) x y) :
         exact fₙ_sub_f h
     · exact ⟨□ φ, by simp [f, in_Δ], by simp [Formula.FL, Formula.FL_refl]⟩
 
-/-- Every path is contained in FL closure. -/
+/-- Every path is contained in FL closure.
+@isnad1 id=le.1h3v.s5.d11ce8da8bce from=translated src=- shape=571bb801 vocab=fe97dd5b
+-/
 lemma path_in_FL {𝕏 : Proof} {x y : 𝕏.X}
     (x_y : Relation.ReflTransGen (edge 𝕏.α) x y) :
     f (r 𝕏.α y) ⊆ Sequent.FL (f (r 𝕏.α x)) := by
@@ -199,6 +214,9 @@ def pointGeneratedProof (𝕐 : Proof) (x : 𝕐.X) : Proof where
     cases r_def : (𝕐.α y).1 <;>
       simp_all only [p, αPoint, List.pmap, List.map_pmap, List.pmap_eq_map]
 
+/--
+@isnad1 id=le.0h3v.s5.c6770ce39f8e from=translated src=- shape=97bf6610 vocab=1261dd05
+-/
 lemma node_in_pg_sequent_in_FL (𝕏 : Proof) (x : 𝕏.X) :
   ∀ y : (pointGeneratedProof 𝕏 x).X, f (r (αPoint 𝕏 x) y) ⊆ Sequent.FL (f (r 𝕏.α x)) := by
   intro y
@@ -238,7 +256,9 @@ noncomputable def filtration (𝕐 : Proof) : Proof where
 
 /-! # Finite Proof Property -/
 
-/-- Given a proof of `Δ` there exists a finite proof of `Δ`. -/
+/-- Given a proof of `Δ` there exists a finite proof of `Δ`.
+@isnad1 id=ex.1h2v.s4.370d37754925 from=translated src=- shape=d0e62794 vocab=9b35cede
+-/
 theorem finite_proof_of_proof (𝕏 : Proof) (Δ : Sequent) : (𝕏 ⊢ Δ) → ∃ 𝕐, Finite 𝕐.X ∧ (𝕐 ⊢ Δ) := by
   intro X_proves_Δ
   have ⟨x, f_Δ⟩ := X_proves_Δ
@@ -271,6 +291,9 @@ theorem finite_proof_of_proof (𝕏 : Proof) (Δ : Sequent) : (𝕏 ⊢ Δ) → 
 /-- Auxiliary declaration used in the GL coalgebra development. -/
 def nbEdge {X : Type} (α : X → T.obj X) (x y : X) := y ∈ p α x ∧ ¬ (r α x).isBox
 
+/--
+@isnad1 id=lt.1h3v.s5.869d4e3a075c from=translated src=- shape=e9e39181 vocab=7d14de9d
+-/
 lemma lt_if_not_box_edge {𝕏 : Proof} {x y : 𝕏.X} :
   (x_y : nbEdge 𝕏.α x y) → Sequent.length (f (r 𝕏.α y)) < Sequent.length (f (r 𝕏.α x)) := by
   intro ⟨x_y, not_box⟩
@@ -293,7 +316,9 @@ lemma lt_if_not_box_edge {𝕏 : Proof} {x y : 𝕏.X} :
       simp only [Sequent.length]
       exact @Finset.sum_diff_singleton_lt _ _ Δ {A, B} (A v B) _ or_in (by grind [Formula.length])
 
-/-- Every infinite path has an infinite number of nodes which are box rule applications. -/
+/-- Every infinite path has an infinite number of nodes which are box rule applications.
+@isnad1 id=ex.1h3v.s5.3ad63c45410d from=translated src=- shape=9212a051 vocab=8c2db780
+-/
 lemma inf_path_has_inf_boxes {𝕏 : Proof} (g : ℕ → 𝕏.X) (h : ∀ n, edge 𝕏.α (g n) (g (n + 1))) :
   ∀ n, ∃ m, (r 𝕏.α (g (n + m))).isBox := by
     intro n

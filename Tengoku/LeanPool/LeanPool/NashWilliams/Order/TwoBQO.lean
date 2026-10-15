@@ -76,7 +76,9 @@ def IsPerfect {α : Type*} (r : α → α → Prop) (f : PairSeq α) : Prop :=
   ∀ m n l : ℕ, ∀ (hmn : m < n) (hnl : n < l), r (f m n hmn) (f n l hnl)
 
 /-- Every pair-sequence has a restriction that is perfect or bad for `r`: colour each triple
-`h < i < j` by whether `r (f h i) (f i j)` holds and apply `infinite_ramsey_triples`. -/
+`h < i < j` by whether `r (f h i) (f i j)` holds and apply `infinite_ramsey_triples`.
+@isnad1 id=ex.0h3v.s5.76c663192740 from=translated src=- shape=6ab2ed2f vocab=6fa0cd8a
+-/
 theorem perfect_or_bad {α : Type*} (r : α → α → Prop) (f : PairSeq α) :
     ∃ (e : ℕ → ℕ) (he_mono : StrictMono e),
       IsPerfect r (restrict f e he_mono) ∨ IsBad r (restrict f e he_mono) := by
@@ -107,6 +109,9 @@ def TwoBQON {α : Type*} (r : α → α → Prop) : Prop :=
 def TwoBQO {α : Type*} (r : α → α → Prop) : Prop :=
   ∀ f : PairSeq α, ∃ m n l : ℕ, ∃ (hmn : m < n) (hnl : n < l), r (f m n hmn) (f n l hnl)
 
+/--
+@isnad1 id=iff.0h2v.s3.396f8fd575a0 from=translated src=- shape=eb3d60d9 vocab=0e7e5c16
+-/
 theorem TwoBQO.iff_noBad {α : Type*} (r : α → α → Prop) : TwoBQO r ↔ TwoBQON r := by
   simp only [TwoBQON, PairSeq.IsBad, not_exists, not_forall, not_not]
   exact Iff.symm (Eq.to_iff rfl)
@@ -116,7 +121,9 @@ theorem TwoBQO.iff_noBad {α : Type*} (r : α → α → Prop) : TwoBQO r ↔ Tw
 -/
 
 /-- **2-BQO implies WQO.** Given a sequence `g : ℕ → α`, apply 2-BQO to the pair-sequence
-`(m, n, _) ↦ g m`. A good triple `m < n < l` yields `r (g m) (g n)`. -/
+`(m, n, _) ↦ g m`. A good triple `m < n < l` yields `r (g m) (g n)`.
+@isnad1 id=wellquas.1h2v.s3.985cca60a5c0 from=translated src=- shape=6e704b37 vocab=bf85b8c9
+-/
 theorem TwoBQO.wellQuasiOrdered {α : Type*} {r : α → α → Prop} (h : TwoBQO r) :
     WellQuasiOrdered r := fun g =>
   let ⟨m, n, _, hmn, _, hrel⟩ := h fun m _ _ => g m
@@ -130,7 +137,9 @@ theorem TwoBQO.wellQuasiOrdered {α : Type*} {r : α → α → Prop} (h : TwoBQ
 finite and *same colour ⟹ `r`-related*, then `r` is 2-BQO: colour pairs by `c (f m n)`,
 Ramsey-for-pairs (`infinite_ramsey_pairs`) makes the restriction monochromatic, so any triple is
 good. In particular, if `r` is a preorder whose induced partial order on `r`-equivalence classes
-has finitely many classes, taking `c` to be the quotient map gives `TwoBQO r`. -/
+has finitely many classes, taking `c` to be the quotient map gives `TwoBQO r`.
+@isnad1 id=twobqo.0h5v.s5.11125fe83f2d from=translated src=- shape=4dc28672 vocab=e3113b14
+-/
 theorem TwoBQO.of_finite_coloring {α κ : Type*} [Finite κ] (r : α → α → Prop) (c : α → κ)
     (hc : ∀ a b, c a = c b → r a b) : TwoBQO r := by
   intro f
@@ -143,7 +152,9 @@ theorem TwoBQO.of_finite_coloring {α κ : Type*} [Finite κ] (r : α → α →
 -/
 
 /-- **Well-orders are 2-BQO.** If `f` is bad for a well-order `<`, the sequence `n ↦ f (n, n+1)`
-is strictly decreasing, contradicting well-foundedness. -/
+is strictly decreasing, contradicting well-foundedness.
+@isnad1 id=twobqo.0h1v.s5.8218d6d676da from=translated src=- shape=b3291310 vocab=ff91ce78
+-/
 theorem TwoBQO.of_wellFoundedLT {α : Type*} [LinearOrder α] [WellFoundedLT α] :
     TwoBQO (α := α) (· ≤ ·) := by
   rw [TwoBQO.iff_noBad]
@@ -154,7 +165,9 @@ theorem TwoBQO.of_wellFoundedLT {α : Type*} [LinearOrder α] [WellFoundedLT α]
     fun n => f n (n + 1) (Nat.lt_succ_self n)
   exact hn (hstrict n)
 
-/-- **Ordinals are 2-BQO** with respect to `≤`. -/
+/-- **Ordinals are 2-BQO** with respect to `≤`.
+@isnad1 id=twobqo.0h0v.s3.4bd471c32cd4 from=translated src=- shape=9944374c vocab=f2d0cef4
+-/
 theorem Ordinal.isTwoBQO : TwoBQO (α := Ordinal) (· ≤ ·) :=
   TwoBQO.of_wellFoundedLT
 
@@ -165,18 +178,25 @@ theorem Ordinal.isTwoBQO : TwoBQO (α := Ordinal) (· ≤ ·) :=
 -/
 
 /-- 2-BQO is closed under monotone preimage: if `φ : β → α` is monotone and `r` on `α` is
-2-BQO, then the pullback of `r` along `φ` is 2-BQO. -/
+2-BQO, then the pullback of `r` along `φ` is 2-BQO.
+@isnad1 id=twobqo.1h4v.s5.a9862f1b7057 from=translated src=- shape=ef954b7a vocab=bbeb188f
+-/
 theorem TwoBQO.comap {α β : Type*} {r : α → α → Prop} (h : TwoBQO r) (φ : β → α) :
     TwoBQO fun a b => r (φ a) (φ b) := by
   rw [TwoBQO.iff_noBad] at h ⊢
   intro ⟨f, hbad⟩
   exact h ⟨fun m n hmn => φ (f m n hmn), fun m n l hmn hnl hrel => hbad m n l hmn hnl hrel⟩
 
-/-- **Subtype closure.** -/
+/-- **Subtype closure.**
+@isnad1 id=twobqo.1h3v.s5.6e176d6c9dfe from=translated src=- shape=f497cb8f vocab=83a4183c
+-/
 theorem TwoBQO.subtype {α : Type*} {r : α → α → Prop} (h : TwoBQO r) (p : α → Prop) :
     TwoBQO fun a b : Subtype p => r a.val b.val :=
   h.comap Subtype.val
 
+/--
+@isnad1 id=twobqo.1h4v.s5.512829a75099 from=translated src=- shape=48e7cf05 vocab=bbeb188f
+-/
 theorem TwoBQO.mono {α : Type*} {r s : α → α → Prop} (h : TwoBQO r)
     (hincl : ∀ a b, r a b → s a b) : TwoBQO s := by
   rw [TwoBQO.iff_noBad] at h ⊢
@@ -195,7 +215,9 @@ single value `f m n` lands in has an infinite homogeneous restriction, on which 
 sub-part `{x // p x}` and `{x // q x}`, then `r` is 2-BQO on `α`.
 
 2-colour each pair `(m,n)` by whether `p (f m n)` holds; Ramsey-for-pairs gives an infinite
-restriction landing wholly in one part, where the corresponding 2-BQO supplies a good triple. -/
+restriction landing wholly in one part, where the corresponding 2-BQO supplies a good triple.
+@isnad1 id=twobqo.3h4v.s6.29609f00853d from=translated src=- shape=3c7abe85 vocab=83a4183c
+-/
 theorem TwoBQO.union {α : Type*} (r : α → α → Prop) (p q : α → Prop) (hcover : ∀ a, p a ∨ q a)
     (hp : TwoBQO (fun a b : {x : α // p x} => r a.val b.val))
     (hq : TwoBQO (fun a b : {x : α // q x} => r a.val b.val)) :
@@ -221,7 +243,9 @@ theorem TwoBQO.union {α : Type*} (r : α → α → Prop) (p q : α → Prop) (
 
 /-- **Product closure** (Dickson's lemma for 2-BQO). If `r` on `α` and `s` on `β` are 2-BQO,
 then the componentwise product `fun (a₁,b₁) (a₂,b₂) => r a₁ a₂ ∧ s b₁ b₂` on `α × β` is
-2-BQO. -/
+2-BQO.
+@isnad1 id=twobqo.2h4v.s5.f523424f506d from=translated src=- shape=c13544be vocab=862dee5b
+-/
 theorem TwoBQO.prod {α β : Type*} {r : α → α → Prop} {s : β → β → Prop} (hr : TwoBQO r)
     (hs : TwoBQO s) : TwoBQO fun x y : α × β => r x.1 y.1 ∧ s x.2 y.2 := by
   rw [TwoBQO.iff_noBad] at hr hs ⊢
@@ -239,7 +263,9 @@ theorem TwoBQO.prod {α β : Type*} {r : α → α → Prop} {s : β → β → 
   · exact hr ⟨PairSeq.restrict f₁ e₁ he₁, hbad₁⟩
 
 /-- **Iterated finite product.** For a `Fintype` index `ι`, the product `∀ i, α i` with pointwise
-quasi-order is 2-BQO when each component is. -/
+quasi-order is 2-BQO when each component is.
+@isnad1 id=twobqo.1h3v.s6.480665703e8b from=translated src=- shape=9a4d5269 vocab=f44430ff
+-/
 theorem TwoBQO.pi : ∀ (n : ℕ) (α : Fin n → Type*) (r : ∀ i : Fin n, α i → α i → Prop),
     (∀ i, TwoBQO (r i)) → TwoBQO fun f g : ∀ i, α i => ∀ i, r i (f i) (g i) := by
   intro n
@@ -260,6 +286,9 @@ theorem TwoBQO.pi : ∀ (n : ℕ) (α : Fin n → Type*) (r : ∀ i : Fin n, α 
     · intro hall; exact ⟨hall (Fin.last n), fun i => hall (Fin.castSucc i)⟩
     · intro ⟨hlast, hcast⟩ i; exact Fin.lastCases hlast hcast i
 
+/--
+@isnad1 id=twobqo.0h1v.s4.e484426bd8c2 from=translated src=- shape=f6e52a3f vocab=682cc972
+-/
 theorem TwoBQO.prodN : ∀ n : ℕ, TwoBQO fun f g : Fin n → ℕ => ∀ i, f i ≤ g i := fun n =>
   TwoBQO.pi n (fun _ => ℕ) (fun _ => (· ≤ ·)) fun _ => TwoBQO.of_wellFoundedLT
 
@@ -279,14 +308,18 @@ def TwoBQO.LexSumRelQO {ι : Type*} (r : ι → ι → Prop) (s : ι → Type*)
 
 variable {ι : Type*} (r : ι → ι → Prop) (s : ι → Type*) (t : ∀ i, s i → s i → Prop)
 
-/-- `TwoBQO.LexSumRelQO r s t` is reflexive whenever each `t i` is. -/
+/-- `TwoBQO.LexSumRelQO r s t` is reflexive whenever each `t i` is.
+@isnad1 id=lexsumre.0h6v.s5.578c509c9431 from=translated src=- shape=d6cd4d02 vocab=f6771be5
+-/
 theorem TwoBQO.LexSumRelQO.refl (ht_refl : ∀ i (x : s i), t i x x) (σ : Σ i, s i) :
     TwoBQO.LexSumRelQO r s t σ σ := by
   obtain ⟨i, x⟩ := σ
   exact Or.inr ⟨rfl, ht_refl i x⟩
 
 /-- `TwoBQO.LexSumRelQO r s t` is transitive whenever `r` is reflexive, **antisymmetric**, and
-transitive, and each `t i` is transitive. -/
+transitive, and each `t i` is transitive.
+@isnad1 id=lexsumre.3h10v.s7.7d0c49ab24b0 from=translated src=- shape=e7b4a88b vocab=f6771be5
+-/
 theorem TwoBQO.LexSumRelQO.trans (hr_refl : ∀ i, r i i)
     (hr_antisymm : ∀ i j, r i j → r j i → i = j) (hr_trans : ∀ i j k, r i j → r j k → r i k)
     (ht_trans : ∀ i (x y z : s i), t i x y → t i y z → t i x z) {σ₁ σ₂ σ₃ : Σ i, s i}
@@ -314,7 +347,9 @@ theorem TwoBQO.LexSumRelQO.trans (hr_refl : ∀ i, r i i)
 /-- **Sum theorem for 2-BQO along a quasi-order, restricted to a bad pair-sequence.** If `f` is
 bad for `LexSumRelQO r s t`, then some restriction of `f` either has a bad index projection
 (for `r`), or has a constant index `i` along which the second components form a bad
-pair-sequence for `t i`. The constructive content underlying `TwoBQO.lexSigmaQO`. -/
+pair-sequence for `t i`. The constructive content underlying `TwoBQO.lexSigmaQO`.
+@isnad1 id=ex.1h5v.s8.dcec67d31696 from=translated src=- shape=e1bbd0ed vocab=b273daba
+-/
 theorem TwoBQO.lexSigmaQO_reflect {ι : Type*} (r : ι → ι → Prop) (s : ι → Type*)
     (t : ∀ i, s i → s i → Prop) (f : PairSeq (Σ i, s i))
     (hf_bad : PairSeq.IsBad (TwoBQO.LexSumRelQO r s t) f) :
@@ -356,7 +391,9 @@ theorem TwoBQO.lexSigmaQO_reflect {ι : Type*} (r : ι → ι → Prop) (s : ι 
   · exact ⟨e, he, Or.inl hbad₁⟩
 
 /-- **Sum theorem for 2-BQO along a quasi-order.** If `r` on `ι` is 2-BQO and each `t i` on
-`s i` is 2-BQO, then `Σ i, s i` with `LexSumRelQO r s t` is 2-BQO. -/
+`s i` is 2-BQO, then `Σ i, s i` with `LexSumRelQO r s t` is 2-BQO.
+@isnad1 id=twobqo.2h4v.s5.98dcc26906c1 from=translated src=- shape=08f27da8 vocab=b4985ab0
+-/
 theorem TwoBQO.lexSigmaQO {ι : Type*} (r : ι → ι → Prop) (hr : TwoBQO r) (s : ι → Type*)
     (t : ∀ i, s i → s i → Prop) (ht : ∀ i, TwoBQO (t i)) : TwoBQO (TwoBQO.LexSumRelQO r s t) := by
   rw [TwoBQO.iff_noBad]
@@ -393,7 +430,9 @@ private theorem badSeq_dom_to_pairSeq {α : Type*} {r : α → α → Prop} (f :
   intro m n l hmn hnl
   exact hg_bad m n hmn (g n l hnl) (hg_mem n l hnl)
 
-/-- **The domination order on subsets of a 2-BQO is WQO.** -/
+/-- **The domination order on subsets of a 2-BQO is WQO.**
+@isnad1 id=wellquas.1h2v.s4.e3353c888898 from=translated src=- shape=81668525 vocab=880b5615
+-/
 theorem TwoBQO.dom_twoBQO {α : Type*} {r : α → α → Prop} (hr : TwoBQO r) :
     WellQuasiOrdered (DomOrder r) := by
   intro g
@@ -435,7 +474,9 @@ private theorem exists_strictMono_of_greedy {P : ℕ → ℕ → Prop}
 threshold `n` there is a strictly monotone reindexing `e : ℕ → ℕ` whose values all lie at or
 above `n` and which dominates `f` pointwise: `n ≤ e i` and `f i ≤ f (e i)` for every `i`. Proved
 greedily via `exists_strictMono_of_greedy`, picking at each step a later index that is both `>`
-the previous one and `≥ n`, available by regularity. -/
+the previous one and `≥ n`, available by regularity.
+@isnad1 id=ex.1h4v.s5.c657260ef56e from=translated src=- shape=72a471c0 vocab=f6de65db
+-/
 theorem Preorder.IsRegularSeq.exists_strictMono_dominating {Q : Type*} {le : Q → Q → Prop}
     {f : ℕ → Q} (hf : IsRegularSeq le f) (n : ℕ) :
     ∃ e : ℕ → ℕ, StrictMono e ∧ ∀ i, n ≤ e i ∧ le (f i) (f (e i)) := by
@@ -491,7 +532,9 @@ private theorem embed_combine {α : Type*} (r : α → α → Prop) (Fa Fb : ℕ
 components related. The domination relation on downsets, combined with regularity, produces a
 pointwise embedding of the tail `G a` into `G b`; the Higman relation on the heads produces a
 pointwise embedding of the head `w a` into `w b`; `embed_combine` splices the two into a single
-embedding of `F a` into `F b`. -/
+embedding of `F a` into `F b`.
+@isnad1 id=wellquas.1h2v.s4.fe332d91312b from=translated src=- shape=e98c9a35 vocab=495653c4
+-/
 theorem TwoBQO.embedForAll_wqo {α : Type*} {r : α → α → Prop} [IsPreorder α r] (hr : TwoBQO r) :
     WellQuasiOrdered (EmbedForAll r) := by
   intro F

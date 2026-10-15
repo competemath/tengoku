@@ -36,7 +36,9 @@ open Complex
 
 open scoped ComplexConjugate
 
-/-- $x\in M_n(\mathbb{C})$ is almost Hermitian if and only if $x \otimes_k \bar{x}$ is Hermitian -/
+/-- $x\in M_n(\mathbb{C})$ is almost Hermitian if and only if $x \otimes_k \bar{x}$ is Hermitian
+@isnad1 id=iff.0h2v.s6.fd41b35b2006 from=translated src=- shape=5ed139e1 vocab=0f3eb359
+-/
 theorem isAlmostHermitian_iff (x : Matrix n n ℂ) : x.IsAlmostHermitian ↔ (x ⊗ₖ xᴴᵀ).IsHermitian :=
   by
   constructor
@@ -114,7 +116,9 @@ theorem isAlmostHermitian_iff (x : Matrix n n ℂ) : x.IsAlmostHermitian ↔ (x 
             mul_comm _ (star _), Hα, ← Complex.star_def]
         · simp_rw [hαβ, hβ'', ← Complex.star_def]
 
-/-- 0 is almost Hermitian -/
+/-- 0 is almost Hermitian
+@isnad1 id=isalmost.0h2v.s6.d63cf7ffcca2 from=translated src=- shape=86379959 vocab=8a84220f
+-/
 theorem isAlmostHermitian_zero [Semiring 𝕜] [StarRing 𝕜] :
     (0 : Matrix n n 𝕜).IsAlmostHermitian := by
   use 0; use 0
@@ -128,7 +132,9 @@ theorem _root_.Matrix.AlmostHermitian.isStarNormal [Fintype n] [CommSemiring �
   simp_rw [Commute, SemiconjBy, star_smul, smul_mul_smul_comm, star_eq_conjTranspose,
     hN.eq, mul_comm]
 
-/-- $x$ is almost Hermitian if and only if $\beta \cdot x$ is almost Hermitian for any $\beta$ -/
+/-- $x$ is almost Hermitian if and only if $\beta \cdot x$ is almost Hermitian for any $\beta$
+@isnad1 id=iff.0h3v.s7.2aa7645e4820 from=translated src=- shape=d77d86b0 vocab=6ae0a90e
+-/
 theorem almost_hermitian_iff_smul [CommSemiring 𝕜] [StarRing 𝕜] {M : Matrix n n 𝕜} :
     M.IsAlmostHermitian ↔ ∀ β : 𝕜, (β • M).IsAlmostHermitian := by
   constructor
@@ -143,6 +149,9 @@ theorem almost_hermitian_iff_smul [CommSemiring 𝕜] [StarRing 𝕜] {M : Matri
 def IsDiagonal {R n : Type _} [Zero R] (A : Matrix n n R) : Prop :=
   ∀ i j : n, i ≠ j → A i j = 0
 
+/--
+@isnad1 id=iff.0h3v.s5.2bbe72b52646 from=translated src=- shape=42d9d4dd vocab=801c0fcd
+-/
 theorem isDiagonal_eq {R : Type _} [Zero R] [DecidableEq n] (A : Matrix n n R) :
     A.IsDiagonal ↔ diagonal A.diag = A := by
   simp_rw [← ext_iff, IsDiagonal, diagonal]

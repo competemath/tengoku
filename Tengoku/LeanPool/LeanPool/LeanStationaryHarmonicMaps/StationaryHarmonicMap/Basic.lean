@@ -29,7 +29,9 @@ namespace StationaryHarmonicMap
 /-- Applying the pushforward of the signed/vector measure `μ.withDensityᵥ f`
 to a measurable set is the same as integrating `f` over the preimage.  This is
 the basic computation behind the radial signed pushforward used in the coarea
-step. -/
+step.
+@isnad1 id=eq.3h6v.s7.ed53dfa7ab36 from=translated src=- shape=c0116c73 vocab=f1780fc3
+-/
 theorem vectorMeasure_map_withDensity_apply
     {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     {μ : Measure α} {f : α → ℝ} {φ : α → β} {s : Set β}
@@ -50,7 +52,9 @@ object that will later be supplied by a weak derivative. -/
 abbrev Gradient (n m : ℕ) := Fin n → Target m
 
 /-- The radial signed pushforward of an integrable density on a ball, evaluated
-on a measurable radius set. -/
+on a measurable radius set.
+@isnad1 id=eq.2h4v.s10.b1c21bfb1f68 from=translated src=- shape=9cad780d vocab=845feee3
+-/
 theorem radialVectorMeasure_apply
     {n : ℕ} {f : Domain n → ℝ} {R0 : ℝ} {s : Set ℝ}
     (hf : IntegrableOn f (Metric.ball (0 : Domain n) R0) volume)

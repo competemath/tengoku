@@ -73,7 +73,9 @@ def dlaDim (gens : Set (Matrix (Fin N) (Fin N) ℂ)) : ℕ :=
 /-- **Lie-algebraic barren plateau (real dimension).** Given the Ragone variance law
 `variance n = numer / dim g_n` (the numerator, requiring Haar/Weingarten averaging, is
 the assumed input), if the **real** dynamical-Lie-algebra dimension grows at least like
-`bⁿ` for some `b > 1`, then the loss has a barren plateau. -/
+`bⁿ` for some `b > 1`, then the loss has a barren plateau.
+@isnad1 id=hasbarre.4h5v.s6.be802d0906cc from=translated src=- shape=05be4bd8 vocab=f8364d29
+-/
 theorem hasBarrenPlateau_of_exp_dlaDim
     {sz : ℕ → ℕ} {gens : (n : ℕ) → Set (Matrix (Fin (sz n)) (Fin (sz n)) ℂ)}
     {variance : ℕ → ℝ} {numer : ℝ} (hnum : 0 ≤ numer)
@@ -90,7 +92,9 @@ theorem hasBarrenPlateau_of_exp_dlaDim
 
 /-- If a finite-dimensional space is the internal direct sum of subspaces `A i`, its
 dimension is the sum of theirs. (Linear-algebra core of the Lie-algebra decomposition
-`dim g = ∑ₖ dim gₖ`.) -/
+`dim g = ∑ₖ dim gₖ`.)
+@isnad1 id=eq.1h3v.s7.51fedba8ef61 from=translated src=- shape=9b951f4f vocab=43594414
+-/
 theorem finrank_eq_sum_of_isInternal {ι : Type*} [Fintype ι] [DecidableEq ι] {M : Type*}
     [AddCommGroup M] [Module ℂ M] [Module.Finite ℂ M]
     {A : ι → Submodule ℂ M} (h : DirectSum.IsInternal A) :
@@ -100,7 +104,9 @@ theorem finrank_eq_sum_of_isInternal {ι : Type*} [Fintype ι] [DecidableEq ι] 
 
 /-- **Decomposition of the dynamical Lie algebra dimension.** If the dynamical Lie
 algebra decomposes as an internal direct sum of subspaces `A k` (its irreducible /
-ideal components), then `dim g = ∑ₖ dim (A k)`. -/
+ideal components), then `dim g = ∑ₖ dim (A k)`.
+@isnad1 id=eq.1h4v.s13.50eac1a4a8f2 from=translated src=- shape=a0ea1594 vocab=6f7ff15f
+-/
 theorem dlaDim_eq_sum_of_isInternal {gens : Set (Matrix (Fin N) (Fin N) ℂ)}
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     {A : ι → Submodule ℂ (dynamicalLieAlgebra gens).toSubmodule}
@@ -111,7 +117,9 @@ theorem dlaDim_eq_sum_of_isInternal {gens : Set (Matrix (Fin N) (Fin N) ℂ)}
 /-! ### Tier 3a — worked example: full algebra `gl(2ⁿ)`, exponential ⟹ barren plateau -/
 
 /-- A generating set that spans all of `gl(N, ℂ)` generates the whole algebra: its
-dynamical Lie algebra is `⊤`. -/
+dynamical Lie algebra is `⊤`.
+@isnad1 id=eq.1h2v.s8.dc9cb34cfe1f from=translated src=- shape=29059251 vocab=4ce26a5b
+-/
 theorem dynamicalLieAlgebra_eq_top_of_span_top
     {gens : Set (Matrix (Fin N) (Fin N) ℂ)}
     (hspan : Submodule.span ℂ gens = ⊤) :
@@ -121,7 +129,9 @@ theorem dynamicalLieAlgebra_eq_top_of_span_top
   exact LieSubalgebra.submodule_span_le_lieSpan hx
 
 /-- The dynamical Lie algebra of the *full* operator set is all of `gl(N, ℂ)`, of
-dimension `N²` (maximal / fully controllable case). -/
+dimension `N²` (maximal / fully controllable case).
+@isnad1 id=eq.0h1v.s4.8866da08b8df from=translated src=- shape=40a7eea6 vocab=7649c97c
+-/
 theorem dlaDim_univ : dlaDim (Set.univ : Set (Matrix (Fin N) (Fin N) ℂ)) = N * N := by
   have htop : dynamicalLieAlgebra (Set.univ : Set (Matrix (Fin N) (Fin N) ℂ)) = ⊤ :=
     dynamicalLieAlgebra_eq_top_of_span_top (by rw [Submodule.span_univ])
@@ -130,7 +140,9 @@ theorem dlaDim_univ : dlaDim (Set.univ : Set (Matrix (Fin N) (Fin N) ℂ)) = N *
 
 /-- **Worked example (exponential ⟹ barren plateau).** A fully controllable circuit
 family on `n` qubits — whose generators span all of `gl(2ⁿ, ℂ)`, so `dim g = 4ⁿ` — has
-a barren plateau under the Ragone variance law. -/
+a barren plateau under the Ragone variance law.
+@isnad1 id=hasbarre.3h3v.s9.34d72521209a from=translated src=- shape=b1e4bf39 vocab=372a391c
+-/
 theorem barrenPlateau_of_full_dla
     {gens : (n : ℕ) → Set (Matrix (Fin (2 ^ n)) (Fin (2 ^ n)) ℂ)}
     (hfull : ∀ n, Submodule.span ℂ (gens n) = ⊤)
@@ -150,7 +162,9 @@ theorem barrenPlateau_of_full_dla
 /-! ### Tier 3b — worked example: single generator, constant ⟹ no barren plateau -/
 
 /-- A single-generator circuit has a one-dimensional dynamical Lie algebra (the
-generator commutes with itself, so the Lie closure is just its span). -/
+generator commutes with itself, so the Lie closure is just its span).
+@isnad1 id=eq.1h2v.s6.ba1eff3a754e from=translated src=- shape=cfeb0689 vocab=83d20581
+-/
 theorem dlaDim_singleton {H : Matrix (Fin N) (Fin N) ℂ} (hH : H ≠ 0) :
     dlaDim ({H} : Set (Matrix (Fin N) (Fin N) ℂ)) = 1 := by
   have hcoe : (dynamicalLieAlgebra ({H} : Set (Matrix (Fin N) (Fin N) ℂ))).toSubmodule
@@ -166,7 +180,9 @@ theorem dlaDim_singleton {H : Matrix (Fin N) (Fin N) ℂ} (hH : H ≠ 0) :
 independent, so their dynamical Lie algebra is the `n`-dimensional diagonal subalgebra:
 `dim g = n`. This is a worked example of a dynamical Lie algebra whose dimension grows
 **polynomially (linearly)** in the size parameter `n` — the trainable regime, in
-contrast to the exponential `gl(2ⁿ)` case. -/
+contrast to the exponential `gl(2ⁿ)` case.
+@isnad1 id=eq.0h1v.s5.dcfe4e2bd72d from=translated src=- shape=b1d9f491 vocab=01425f90
+-/
 theorem dlaDim_diagonalFamily (n : ℕ) :
     dlaDim (Set.range (fun i : Fin n => Matrix.diagonal (Pi.single i (1 : ℂ)))) = n := by
   set g : Fin n → Matrix (Fin n) (Fin n) ℂ := fun i => Matrix.diagonal (Pi.single i (1 : ℂ))
@@ -204,7 +220,9 @@ theorem dlaDim_diagonalFamily (n : ℕ) :
 /-- **Worked example (constant ⟹ no barren plateau).** A single-generator circuit
 family — whose dynamical Lie algebra is one-dimensional for every `n` — is *trainable*:
 under the variance law `variance = numer / dim g` with `numer > 0`, the variance is the
-positive constant `numer`, which does not vanish, so there is no barren plateau. -/
+positive constant `numer`, which does not vanish, so there is no barren plateau.
+@isnad1 id=not.3h4v.s7.c4896e366105 from=translated src=- shape=f721e556 vocab=79ea1bfd
+-/
 theorem not_barrenPlateau_of_dlaDim_const
     {sz : ℕ → ℕ} {H : (n : ℕ) → Matrix (Fin (sz n)) (Fin (sz n)) ℂ}
     (hH : ∀ n, H n ≠ 0)

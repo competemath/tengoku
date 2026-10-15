@@ -48,7 +48,9 @@ noncomputable section
 /-- An eigenstate of `U` is an eigenstate of every power `U ^ m`, with the
 eigenvalue raised to the same power. This is stated at the raw-vector layer
 because `lam • u` is not itself a `PureState` unless a unit-norm proof is
-supplied. -/
+supplied.
+@isnad1 id=eq.1h5v.s8.910ee2be8c75 from=translated src=- shape=9e795ee8 vocab=93141181
+-/
 theorem Gate.applyVec_pow_eigenstate {n : Nat} {U : Gate n} {u : PureState n}
     {lam : Complex}
     (hu : U.applyVec (u : StateVector n) = lam • (u : StateVector n)) (m : Nat) :
@@ -64,7 +66,9 @@ theorem Gate.applyVec_pow_eigenstate {n : Nat} {U : Gate n} {u : PureState n}
 /-- Per-control-qubit phase kickback for the QPE ladder. The control qubit `s`
 controls `U^{2^s}`. On `|+> ⊗ |u>` with eigenvalue `exp(2*pi*i*phi)`, the
 controlled power leaves `|u>` fixed and writes the relative phase
-`exp(2*pi*i*phi*2^s)` onto the `|1>` branch. -/
+`exp(2*pi*i*phi*2^s)` onto the `|1>` branch.
+@isnad1 id=eq.1h5v.s9.039e6cdeb77e from=translated src=- shape=2cef02e0 vocab=6ade8b5d
+-/
 theorem controlled_pow_kickback {n : Nat} (U : Gate n) (u : PureState n) (phi : Real)
     (hu : U.applyVec (u : StateVector n) =
       Complex.exp (2 * Real.pi * phi * Complex.I) • (u : StateVector n)) (s : Nat) :
@@ -118,6 +122,9 @@ def QPEControlledPowerKickbacks {n : Nat} (P : QPEEigenstateInput n) : Prop :=
               * invSqrt2) • ket1 : StateVector 1))
         (P.eigenstate : StateVector n)
 
+/--
+@isnad1 id=qpecontr.0h2v.s3.c61b56d1cdb1 from=translated src=- shape=b3b449db vocab=bd22e8ec
+-/
 theorem qpe_eigenstate_controlled_power_kickbacks {n : Nat}
     (P : QPEEigenstateInput n) :
     QPEControlledPowerKickbacks P := by
@@ -132,6 +139,9 @@ def phaseState (t : Nat) (phi : Real) : StateVector t :=
   WithLp.toLp 2 fun k : Fin (2 ^ t) =>
     invSqrtN t * Complex.exp (2 * Real.pi * phi * k.val * Complex.I)
 
+/--
+@isnad1 id=eq.0h3v.s7.eec0c44c985d from=translated src=- shape=d3eecad5 vocab=38560676
+-/
 @[simp]
 theorem phaseState_apply (t : Nat) (phi : Real) (k : Fin (2 ^ t)) :
     phaseState t phi k =
@@ -139,7 +149,9 @@ theorem phaseState_apply (t : Nat) (phi : Real) (k : Fin (2 ^ t)) :
   rfl
 
 /-- Dyadic/Fourier bridge: when the eigenphase is `j / 2^t`, the QPE phase
-superposition is exactly `QFT t |j>`. -/
+superposition is exactly `QFT t |j>`.
+@isnad1 id=eq.0h2v.s6.89b632e329ab from=translated src=- shape=3ae6985b vocab=8988a386
+-/
 theorem phaseState_eq_qftApplyKet (t : Nat) (j : Fin (2 ^ t)) :
     phaseState t ((j.val : Real) / (2 : Real) ^ t)
       = ((QFT t).apply (ket j) : StateVector t) := by
@@ -158,7 +170,9 @@ theorem phaseState_eq_qftApplyKet (t : Nat) (j : Fin (2 ^ t)) :
 /-- The inverse quantum Fourier transform, `QFT†`. -/
 def invQFT (t : Nat) : Gate t := (QFT t).conjTranspose
 
-/-- The inverse QFT undoes the QFT on a basis ket. -/
+/-- The inverse QFT undoes the QFT on a basis ket.
+@isnad1 id=eq.0h2v.s5.4919a52cc896 from=translated src=- shape=a76c5725 vocab=28b8cc90
+-/
 theorem qpe_readout (t : Nat) (j : Fin (2 ^ t)) :
     Gate.apply (invQFT t) ((QFT t).apply (ket j)) = ket j := by
   rw [invQFT, ← Gate.mul_apply]
@@ -171,7 +185,9 @@ theorem qpe_readout (t : Nat) (j : Fin (2 ^ t)) :
     rw [hM]
   rw [h, Gate.one_apply]
 
-/-- Raw-vector form of the inverse-QFT readout. -/
+/-- Raw-vector form of the inverse-QFT readout.
+@isnad1 id=eq.0h2v.s5.78acac249c35 from=translated src=- shape=69bd0590 vocab=414008da
+-/
 theorem qpe_readoutVec (t : Nat) (j : Fin (2 ^ t)) :
     (invQFT t).applyVec (((QFT t).apply (ket j)) : StateVector t)
       = (ket j : StateVector t) := by
@@ -183,7 +199,9 @@ theorem qpe_readoutVec (t : Nat) (j : Fin (2 ^ t)) :
 
 /-- Exact quantum phase estimation. If the eigenphase is the dyadic rational
 `phi = j / 2^t`, then applying inverse QFT to the QPE phase superposition returns
-the computational-basis vector `|j>` exactly. -/
+the computational-basis vector `|j>` exactly.
+@isnad1 id=eq.1h3v.s6.61ec37e9e912 from=translated src=- shape=1431c4fa vocab=04284953
+-/
 theorem QuantumPhaseEstimation.main_exact_dyadic (t : Nat) (j : Fin (2 ^ t))
     (phi : Real) (hphi : phi = (j.val : Real) / (2 : Real) ^ t) :
     (invQFT t).applyVec (phaseState t phi) = (ket j : StateVector t) := by
@@ -191,7 +209,9 @@ theorem QuantumPhaseEstimation.main_exact_dyadic (t : Nat) (j : Fin (2 ^ t))
   rw [phaseState_eq_qftApplyKet]
   exact qpe_readoutVec t j
 
-/-- The exact readout has deterministic basis outcome `j`. -/
+/-- The exact readout has deterministic basis outcome `j`.
+@isnad1 id=eq.1h3v.s6.21f811784294 from=translated src=- shape=5c918207 vocab=56ff3f40
+-/
 theorem QuantumPhaseEstimation.main_exact_probability_one (t : Nat) (j : Fin (2 ^ t))
     (phi : Real) (_hphi : phi = (j.val : Real) / (2 : Real) ^ t) :
     PureState.probOutcome (ket j : PureState t) j = 1 := by
@@ -204,12 +224,17 @@ def qpeExactResourceProfile (t : Nat) : ResourceProfile where
   elementaryGates := t ^ 2
   classicalOps := 0
 
+/--
+@isnad1 id=hasexact.0h1v.s5.95f48f26030c from=translated src=- shape=5b167fb3 vocab=41efb4b6
+-/
 theorem qpeExactResourceProfile_exact (t : Nat) :
     ResourceProfile.HasExactCounts
       (qpeExactResourceProfile t) (2 ^ t - 1) t (t ^ 2) 0 := by
   simp [ResourceProfile.HasExactCounts, qpeExactResourceProfile]
 
-/-- Exact QPE readout with the decoupled phase-register resource profile. -/
+/-- Exact QPE readout with the decoupled phase-register resource profile.
+@isnad1 id=and.1h3v.s7.4c11e5d297f0 from=translated src=- shape=762a45f2 vocab=2c73fd39
+-/
 theorem QuantumPhaseEstimation.main_exact_dyadic_with_resources (t : Nat)
     (j : Fin (2 ^ t)) (phi : Real)
     (hphi : phi = (j.val : Real) / (2 : Real) ^ t) :
@@ -221,7 +246,9 @@ theorem QuantumPhaseEstimation.main_exact_dyadic_with_resources (t : Nat)
   · exact qpeExactResourceProfile_exact t
 
 /-- Exact QPE from the source-level eigenstate/access assumptions, paired with
-the trusted controlled-power resource profile. -/
+the trusted controlled-power resource profile.
+@isnad1 id=and.1h4v.s7.77c2c038d749 from=translated src=- shape=63bdfa8d vocab=3cd242b3
+-/
 theorem QuantumPhaseEstimation.main_exact_eigenstate_readout_with_resources {n : Nat}
     (P : QPEEigenstateInput n) (t : Nat) (j : Fin (2 ^ t))
     (hphase : P.phase = (j.val : Real) / (2 : Real) ^ t) :
@@ -236,7 +263,9 @@ theorem QuantumPhaseEstimation.main_exact_eigenstate_readout_with_resources {n :
 /-- Exact QPE from the source-level eigenstate/access assumptions, phrased as
 an exact estimate theorem. In the dyadic regime the phase estimate has zero
 error, so it satisfies any nonnegative precision and failure-probability
-thresholds. -/
+thresholds.
+@isnad1 id=and.3h6v.s8.2f15b8e594a5 from=translated src=- shape=0a3fd2c7 vocab=073f0a28
+-/
 theorem QuantumPhaseEstimation.main {n : Nat}
     (P : QPEEigenstateInput n) (t : Nat) (j : Fin (2 ^ t))
     (eps eta : ℝ) (heps : 0 ≤ eps) (heta : 0 ≤ eta)

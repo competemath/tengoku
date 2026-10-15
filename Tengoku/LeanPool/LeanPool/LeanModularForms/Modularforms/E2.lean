@@ -31,14 +31,26 @@ def E₂ : ℍ → ℂ := EisensteinSeries.E2
 /-- Compatibility alias for Mathlib's `EisensteinSeries.D2`. -/
 def D₂ (γ : SL(2, ℤ)) : ℍ → ℂ := EisensteinSeries.D2 γ
 
+/--
+@isnad1 id=eq.0h2v.s8.37ab535566e8 from=translated src=- shape=bb8a48bc vocab=11a691d9
+-/
 lemma D₂_apply (γ : SL(2, ℤ)) (z : ℍ) :
     D₂ γ z = (2 * π * Complex.I * γ 1 0) / (γ 1 0 * z + γ 1 1) := by rfl
 
+/--
+@isnad1 id=eq.0h0v.s4.d0ef2ffae168 from=translated src=- shape=35dee393 vocab=ca27a0ef
+-/
 lemma D2_T : D₂ ModularGroup.T = 0 := by simpa [D₂] using (EisensteinSeries.D2_T)
 
+/--
+@isnad1 id=eq.0h1v.s5.5be45f18d0c3 from=translated src=- shape=f4829966 vocab=10c7a262
+-/
 lemma D2_S (z : ℍ) : D₂ ModularGroup.S z = 2 * (π : ℂ) * Complex.I / z :=
   EisensteinSeries.D2_S z
 
+/--
+@isnad1 id=eq.0h1v.s7.c5fa6f06f666 from=translated src=- shape=908884a8 vocab=9eb45143
+-/
 lemma G2_q_exp (z : ℍ) : G₂ z = (2 * riemannZeta 2) - 8 * π ^ 2 *
     ∑' n : ℕ+, sigma 1 n * cexp (2 * π * Complex.I * n * z) := by
   calc
@@ -53,18 +65,29 @@ lemma G2_q_exp (z : ℍ) : G₂ z = (2 * riemannZeta 2) - 8 * π ^ 2 *
           rw [← Complex.exp_nat_mul]
           ring_nf
 
+/--
+@isnad1 id=eq.0h0v.s6.68e2b6871dc7 from=translated src=- shape=656092e4 vocab=d37c571e
+-/
 lemma G2_periodic : (G₂ ∣[(2 : ℤ)] ModularGroup.T) = G₂ := by
   simpa [G₂] using (EisensteinSeries.G2_T_transform)
 
+/--
+@isnad1 id=eq.0h1v.s6.e3d9ff073130 from=translated src=- shape=ef0a7578 vocab=964e6c82
+-/
 lemma G₂_transform (γ : SL(2, ℤ)) : (G₂ ∣[(2 : ℤ)] γ) = G₂ - (D₂ γ) := by
   simpa [G₂, D₂] using (EisensteinSeries.G2_slash_action γ)
 
-/-- E₂ is 1-periodic: E₂(z + 1) = E₂(z). -/
+/-- E₂ is 1-periodic: E₂(z + 1) = E₂(z).
+@isnad1 id=eq.0h1v.s5.6ee11c207b79 from=translated src=- shape=ba65eac2 vocab=906674ed
+-/
 lemma E₂_periodic (z : ℍ) : E₂ ((1 : ℝ) +ᵥ z) = E₂ z := by
   have h := congrFun (EisensteinSeries.E2_slash_action ModularGroup.T) z
   rw [modular_slash_T_apply] at h
   simpa [E₂, EisensteinSeries.D2_T] using h
 
+/--
+@isnad1 id=eq.0h1v.s6.f57bcdb77f36 from=translated src=- shape=745bca21 vocab=2d801ce1
+-/
 lemma E₂_transform (z : ℍ) : (E₂ ∣[(2 : ℤ)] ModularGroup.S) z =
     E₂ z + 6 / (π * Complex.I * z) := by
   have h := congrFun (EisensteinSeries.E2_slash_action ModularGroup.S) z
@@ -83,12 +106,16 @@ lemma E₂_transform (z : ℍ) : (E₂ ∣[(2 : ℤ)] ModularGroup.S) z =
       ring_nf
       simp [Complex.I_sq, add_comm]
 
-/-- E₂ transforms under SL(2,ℤ) as: E₂ ∣[2] γ = E₂ - α • D₂ γ where α = 1/(2ζ(2)). -/
+/-- E₂ transforms under SL(2,ℤ) as: E₂ ∣[2] γ = E₂ - α • D₂ γ where α = 1/(2ζ(2)).
+@isnad1 id=eq.0h1v.s7.e8c11c7781b1 from=translated src=- shape=0dee3394 vocab=ababa0a7
+-/
 lemma E₂_slash_transform (γ : SL(2, ℤ)) :
     (E₂ ∣[(2 : ℤ)] γ) = E₂ - (1 / (2 * riemannZeta 2)) • D₂ γ := by
   simpa [E₂, D₂] using (EisensteinSeries.E2_slash_action γ)
 
-/-- E₂ transforms under S as: E₂(-1/z) = z² · (E₂(z) + 6/(πIz)). -/
+/-- E₂ transforms under S as: E₂(-1/z) = z² · (E₂(z) + 6/(πIz)).
+@isnad1 id=eq.0h1v.s7.34e90380038b from=translated src=- shape=bfe14996 vocab=bd0758ab
+-/
 lemma E₂_S_transform (z : ℍ) :
     E₂ (ModularGroup.S • z) = z ^ 2 * (E₂ z + 6 / (π * Complex.I * z)) := by
   have h := E₂_transform z
@@ -102,6 +129,9 @@ private lemma cexp_succ_eq_pow (z : ℍ) (n : ℕ) :
     cexp (2 * π * Complex.I * (n + 1) * z) = cexp (2 * π * Complex.I * z) ^ (n + 1) := by
   rw [← Complex.exp_nat_mul]; congr 1; push_cast; ring
 
+/--
+@isnad1 id=eq.0h1v.s8.6d79ae829a6f from=translated src=- shape=89e532c8 vocab=c14d33ec
+-/
 lemma tsum_eq_tsum_sigma (z : ℍ) : ∑' n : ℕ, (n + 1) *
     cexp (2 * π * Complex.I * (n + 1) * z) / (1 - cexp (2 * π * Complex.I * (n + 1) * z)) =
     ∑' n : ℕ, sigma 1 (n + 1) * cexp (2 * π * Complex.I * (n + 1) * z) := by
@@ -123,6 +153,9 @@ lemma tsum_eq_tsum_sigma (z : ℍ) : ∑' n : ℕ, (n + 1) *
     _ = ∑' n : ℕ, sigma 1 (n + 1) * cexp (2 * π * Complex.I * (n + 1) * z) :=
         tsum_congr fun n => by simp [g, cexp_succ_eq_pow z n, q]
 
+/--
+@isnad1 id=eq.0h1v.s7.894e5a19f905 from=translated src=- shape=656dae2e vocab=ebe3e3b7
+-/
 lemma E₂_eq (z : UpperHalfPlane) : E₂ z =
     1 - 24 * ∑' n : ℕ+, ↑n * cexp (2 * π * Complex.I * n * z) /
                         (1 - cexp (2 * π * Complex.I * n * z)) := by

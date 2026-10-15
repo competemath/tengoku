@@ -95,7 +95,9 @@ def f : RuleApp → SplitSequent
 /-- Given a RuleApp, obtain the non-principal formulas. -/
 def fₙ : RuleApp → SplitSequent := fun r ↦ f r \ fₚ r
 
-/-- Relating principal formulas, non-principal formulas, and the split sequent. -/
+/-- Relating principal formulas, non-principal formulas, and the split sequent.
+@isnad1 id=eq.0h1v.s9.0533d0881656 from=translated src=- shape=c72e8870 vocab=a19122fd
+-/
 lemma fₙ_alternate (r : RuleApp) : fₙ r = match r with
   | RuleApp.skp Δ => Δ
   | RuleApp.cutₗ Δ _ => Δ

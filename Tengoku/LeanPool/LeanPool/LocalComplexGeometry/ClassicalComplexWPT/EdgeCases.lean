@@ -22,12 +22,17 @@ open scoped Topology
 
 namespace ClassicalComplexWPT
 
+/--
+@isnad1 id=eq.0h3v.s5.ef44cad7f773 from=translated src=- shape=6bb05ba3 vocab=bcdbfb04
+-/
 @[simp]
 theorem preparedPolynomial_zero {n : ℕ} (a : Fin 0 → Base n → ℂ) (x : Ambient n) :
     preparedPolynomial 0 a x = 1 := by
   simp [preparedPolynomial]
 
-/-- Degree-zero preparation, including uniqueness of the empty coefficient family and the unit. -/
+/-- Degree-zero preparation, including uniqueness of the empty coefficient family and the unit.
+@isnad1 id=ex.2h2v.s8.169ce035da1e from=translated src=- shape=a634cd3d vocab=f0d46ff0
+-/
 theorem classicalComplexWeierstrassPreparation_zero
     {n : ℕ} {f : Ambient n → ℂ}
     (hf : AnalyticAt ℂ f 0) (horder : ExactOrderInLastVariable f 0) :
@@ -49,6 +54,7 @@ theorem classicalComplexWeierstrassPreparation_zero
 When there are no base variables, preparation is precisely the univariate
 exact-order factorization.  This proves the full public existence-and-
 uniqueness conclusion for every degree `d` when `n = 0`.
+@isnad1 id=ex.2h2v.s8.71543ae63d85 from=translated src=- shape=a41cd20e vocab=f0d46ff0
 -/
 theorem classicalComplexWeierstrassPreparation_noBase
     {d : ℕ} {f : Ambient 0 → ℂ}

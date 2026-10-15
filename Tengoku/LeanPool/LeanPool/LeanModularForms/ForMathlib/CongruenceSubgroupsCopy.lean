@@ -28,6 +28,9 @@ open scoped MatrixGroups Pointwise Real
 
 namespace CongruenceSubgroup
 
+/--
+@isnad1 id=iff.0h3v.s11.da4344f09272 from=translated src=- shape=ff28322a vocab=a5342e49
+-/
 lemma mem_conjGL' {Γ : Subgroup SL(2, ℤ)} {g : GL (Fin 2) ℝ} {x : SL(2, ℤ)} :
     x ∈ conjGL Γ g ↔ ∃ y ∈ Γ, g⁻¹ * y * g = x := by
   rw [mem_conjGL]
@@ -37,7 +40,9 @@ lemma mem_conjGL' {Γ : Subgroup SL(2, ℤ)} {g : GL (Fin 2) ℝ} {x : SL(2, ℤ
 open Subgroup in
 /-- If `Γ` has finite index in `SL(2, ℤ)`, then so does `g⁻¹ Γ g ∩ SL(2, ℤ)` for any
 `g ∈ GL(2, ℚ)`. (This generalises `Mathlib`'s `finiteIndex_conjGL`, which only covers
-`Γ = ⊤`.) -/
+`Γ = ⊤`.)
+@isnad1 id=finitein.0h2v.s9.5f18e4106ecc from=translated src=- shape=2352444a vocab=a769542f
+-/
 lemma finiteIndex_conjGL' (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (g : GL (Fin 2) ℚ) :
     (conjGL Γ (g.map <| Rat.castHom ℝ)).FiniteIndex := by
   constructor

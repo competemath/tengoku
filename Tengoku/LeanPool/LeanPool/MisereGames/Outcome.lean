@@ -85,6 +85,9 @@ instance : PartialOrder Outcome where
     all_goals cases b
     all_goals simp [LE.le, LT.lt] at *
 
+/--
+@isnad1 id=le.0h1v.s2.f1ae3af65589 from=translated src=- shape=fb20e06d vocab=7fe6d339
+-/
 @[simp]
 theorem ge_R (o : Outcome) : o ≥ Outcome.R := by
   simp only [ge_iff_le]
@@ -92,12 +95,18 @@ theorem ge_R (o : Outcome) : o ≥ Outcome.R := by
   cases o
   all_goals simp [instLE, LT.lt]
 
+/--
+@isnad1 id=iff.0h1v.s3.d0ccd0c9b49a from=translated src=- shape=828d6e43 vocab=b4d9c327
+-/
 @[simp]
 theorem le_R_iff (o : Outcome) : o ≤ Outcome.R ↔ o = .R := by
   constructor <;> intro h1
   · exact le_antisymm h1 (ge_R o)
   · rw [h1]
 
+/--
+@isnad1 id=le.0h1v.s2.e6405888e289 from=translated src=- shape=63e234e9 vocab=74243cc1
+-/
 @[simp]
 theorem L_ge (o : Outcome) : Outcome.L ≥ o := by
   simp only [ge_iff_le]
@@ -105,11 +114,17 @@ theorem L_ge (o : Outcome) : Outcome.L ≥ o := by
   cases o
   all_goals simp [instLE, LT.lt]
 
+/--
+@isnad1 id=eq.2h1v.s4.2c0fdd065087 from=translated src=- shape=015d9121 vocab=41dec231
+-/
 theorem ge_P_ge_N_eq_L {o : Outcome} (hp : o ≥ Outcome.P) (hn : o ≥ Outcome.N)
     : o = Outcome.L := by
   cases o
   all_goals simp [LE.le, LT.lt, LE.le] at *
 
+/--
+@isnad1 id=or.1h1v.s4.a196be4af892 from=translated src=- shape=958849bf vocab=1f5c04a9
+-/
 @[simp]
 theorem le_N_eq_N_or_R {o : Outcome} (hp : o ≤ Outcome.N)
     : o = Outcome.N ∨ o = Outcome.R := by
@@ -124,9 +139,15 @@ def Conjugate : Outcome → Outcome
   | .P => .P
   | .N => .N
 
+/--
+@isnad1 id=eq.0h1v.s3.ad5046a86bae from=translated src=- shape=47dcad53 vocab=746f2abc
+-/
 theorem conjugate_conjugate_eq_self {o : Outcome} : o.Conjugate.Conjugate = o := by
   cases o <;> rfl
 
+/--
+@isnad1 id=le.1h2v.s4.c39bef1fc8bc from=translated src=- shape=e25bcd97 vocab=5f522a29
+-/
 theorem outcome_ge_conjugate_le {x y : Outcome} (h1 : x ≥ y) :
     x.Conjugate ≤ y.Conjugate := by
   cases h2 : x
@@ -153,9 +174,15 @@ def ofPlayer : Player → Outcome
   | .left => Outcome.L
   | .right => Outcome.R
 
+/--
+@isnad1 id=eq.0h0v.s2.17f6448cd080 from=translated src=- shape=4b736592 vocab=a77b825a
+-/
 @[simp]
 theorem ofPlayer_left : ofPlayer .left = .L := by rfl
 
+/--
+@isnad1 id=eq.0h0v.s2.23e4b15071d5 from=translated src=- shape=4b736592 vocab=6da1f725
+-/
 @[simp]
 theorem ofPlayer_right : ofPlayer .right = .R := by rfl
 

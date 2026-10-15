@@ -56,13 +56,18 @@ def HolomorphicGerm.ofFunction {n : ℕ} (f : ComplexEuclidean n → ℂ)
     (hf : AnalyticAt ℂ f 0) : HolomorphicGerm n :=
   ⟨(f : FunctionGerm n), ⟨f, hf, rfl⟩⟩
 
+/--
+@isnad1 id=eq.1h2v.s8.9a56c3f64ef3 from=translated src=- shape=ccda694b vocab=eeab99e1
+-/
 @[simp]
 theorem HolomorphicGerm.coe_ofFunction {n : ℕ} (f : ComplexEuclidean n → ℂ)
     (hf : AnalyticAt ℂ f 0) :
     ((HolomorphicGerm.ofFunction f hf : HolomorphicGerm n) : FunctionGerm n) = f :=
   rfl
 
-/-- Every holomorphic germ has an analytic representative. -/
+/-- Every holomorphic germ has an analytic representative.
+@isnad1 id=ex.0h2v.s9.cee4d865b38f from=translated src=- shape=812352d0 vocab=586b94ba
+-/
 theorem HolomorphicGerm.exists_rep {n : ℕ} (φ : HolomorphicGerm n) :
     ∃ f : ComplexEuclidean n → ℂ,
       AnalyticAt ℂ f 0 ∧ (f : FunctionGerm n) = φ :=
@@ -77,19 +82,27 @@ def evalAtOriginHom (n : ℕ) : HolomorphicGerm n →+* ℂ :=
 abbrev evalAtOrigin {n : ℕ} (φ : HolomorphicGerm n) : ℂ :=
   evalAtOriginHom n φ
 
+/--
+@isnad1 id=eq.1h2v.s6.f07c14849100 from=translated src=- shape=00d6258f vocab=1967370b
+-/
 @[simp]
 theorem evalAtOrigin_ofFunction {n : ℕ} (f : ComplexEuclidean n → ℂ)
     (hf : AnalyticAt ℂ f 0) :
     evalAtOrigin (HolomorphicGerm.ofFunction f hf) = f 0 :=
   rfl
 
+/--
+@isnad1 id=nontrivi.0h1v.s7.eb222516aa00 from=translated src=- shape=d3abbe0a vocab=fc9a4e5a
+-/
 instance holomorphicGerm_nontrivial (n : ℕ) : Nontrivial (HolomorphicGerm n) := by
   refine ⟨⟨0, 1, ?_⟩⟩
   intro h
   exact (zero_ne_one : (0 : ℂ) ≠ 1)
     (by simpa using congrArg (evalAtOriginHom n) h)
 
-/-- A holomorphic germ is a unit exactly when its value at the origin is nonzero. -/
+/-- A holomorphic germ is a unit exactly when its value at the origin is nonzero.
+@isnad1 id=iff.0h2v.s9.bc5a6b1d336e from=translated src=- shape=b864cfa4 vocab=91f7b3a7
+-/
 theorem holomorphicGerm_isUnit_iff {n : ℕ} (φ : HolomorphicGerm n) :
     IsUnit φ ↔ evalAtOrigin φ ≠ 0 := by
   constructor
@@ -118,7 +131,9 @@ theorem holomorphicGerm_isUnit_iff {n : ℕ} (φ : HolomorphicGerm n) :
       rw [mul_comm, hmul]
     exact ⟨⟨φ, ψ, hmul, hmul'⟩, rfl⟩
 
-/-- The holomorphic germ ring is local. -/
+/-- The holomorphic germ ring is local.
+@isnad1 id=islocalr.0h1v.s9.26910ee13c35 from=translated src=- shape=d3abbe0a vocab=cef1008c
+-/
 theorem holomorphicGerm_isLocalRing (n : ℕ) : IsLocalRing (HolomorphicGerm n) := by
   apply IsLocalRing.of_isUnit_or_isUnit_one_sub_self
   intro φ
@@ -128,10 +143,15 @@ theorem holomorphicGerm_isLocalRing (n : ℕ) : IsLocalRing (HolomorphicGerm n) 
     simp [hφ]
   · exact Or.inl ((holomorphicGerm_isUnit_iff φ).2 hφ)
 
+/--
+@isnad1 id=islocalr.0h1v.s9.26910ee13c35 from=translated src=- shape=d3abbe0a vocab=cef1008c
+-/
 instance holomorphicGerm_instIsLocalRing (n : ℕ) : IsLocalRing (HolomorphicGerm n) :=
   holomorphicGerm_isLocalRing n
 
-/-- The maximal ideal consists exactly of germs vanishing at the origin. -/
+/-- The maximal ideal consists exactly of germs vanishing at the origin.
+@isnad1 id=eq.0h1v.s11.cad39cffe7f5 from=translated src=- shape=edfd1ff7 vocab=ca40f26c
+-/
 theorem holomorphicGerm_maximalIdeal (n : ℕ) :
     IsLocalRing.maximalIdeal (HolomorphicGerm n) =
       Ideal.comap (evalAtOriginHom n) ⊥ := by

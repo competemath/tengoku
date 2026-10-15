@@ -42,17 +42,25 @@ noncomputable def wgt (H : Finset (Sym2 V)) (W : Finset V) (q : ℝ) (F : Finset
   ∑ x ∈ R'.filter (fun x => y ∈ nbhdIn H x W ∧ z ∈ nbhdIn H x W),
     (2 : ℝ) ^ (usedCnt H W F x y) * (1 + q) ^ (degTo H y R)
 
+/--
+@isnad1 id=le.1h9v.s5.29339a91c598 from=translated src=- shape=9c46e1a2 vocab=f4de4dc3
+-/
 theorem wgt_nonneg {H : Finset (Sym2 V)} {W : Finset V} {q : ℝ} (hq : 0 ≤ q)
     (F : Finset (Sym2 V)) (R' R : Finset V) (y z : V) : 0 ≤ wgt H W q F R' R y z := by
   refine Finset.sum_nonneg fun x _ => ?_
   positivity
 
+/--
+@isnad1 id=le.1h6v.s5.211d83679a41 from=translated src=- shape=5c23af29 vocab=32d9c0da
+-/
 theorem pot_nonneg {H : Finset (Sym2 V)} {W : Finset V} {q : ℝ} (hq : 0 ≤ q)
     (F : Finset (Sym2 V)) (R : Finset V) : 0 ≤ pot H W q F R := by
   refine Finset.sum_nonneg fun x _ => Finset.sum_nonneg fun y _ => ?_
   positivity
 
-/-- Every single term of the potential is at most the potential. -/
+/-- Every single term of the potential is at most the potential.
+@isnad1 id=le.3h8v.s6.a18892428194 from=translated src=- shape=23021582 vocab=e90793c3
+-/
 theorem pow_usedCnt_le_pot {H : Finset (Sym2 V)} {W : Finset V} {q : ℝ} (hq : 0 ≤ q)
     {F : Finset (Sym2 V)} {R : Finset V} {x y : V} (hx : x ∈ R) (hy : y ∈ nbhdIn H x W) :
     (2 : ℝ) ^ (usedCnt H W F x y) ≤ pot H W q F R := by
@@ -71,7 +79,9 @@ theorem pow_usedCnt_le_pot {H : Finset (Sym2 V)} {W : Finset V} {q : ℝ} (hq : 
     (f := fun x' => ∑ z ∈ nbhdIn H x' W, (2 : ℝ) ^ (usedCnt H W F x' z) * (1 + q) ^ (degTo H z R))
     (fun x' _ => Finset.sum_nonneg fun z _ => by positivity) hx
 
-/-- The potential controls the used degrees: if `Φ < 2 ^ (s+1)` then no counter exceeds `s`. -/
+/-- The potential controls the used degrees: if `Φ < 2 ^ (s+1)` then no counter exceeds `s`.
+@isnad1 id=le.4h9v.s6.4a2024573fea from=translated src=- shape=20a30bc6 vocab=0ba3e588
+-/
 theorem usedCnt_le_of_pot {H : Finset (Sym2 V)} {W : Finset V} {q : ℝ} (hq : 0 ≤ q)
     {F : Finset (Sym2 V)} {R : Finset V} {s : ℕ} (hpot : pot H W q F R < 2 ^ (s + 1))
     {x y : V} (hx : x ∈ R) (hy : y ∈ nbhdIn H x W) : usedCnt H W F x y ≤ s := by
@@ -85,7 +95,9 @@ theorem usedCnt_le_of_pot {H : Finset (Sym2 V)} {W : Finset V} {q : ℝ} (hq : 0
 /-! ### The step inequality -/
 
 /-- The used degree inside `N_H(x,W)` grows by at most one, and only at vertices of the current
-neighbourhood matched into `N_H(x,W)`. -/
+neighbourhood matched into `N_H(x,W)`.
+@isnad1 id=le.2h8v.s8.21d14dbffe9b from=translated src=- shape=68d596f9 vocab=1f9e0545
+-/
 theorem usedCnt_union_le {H : Finset (Sym2 V)} {W : Finset V} (F : Finset (Sym2 V))
     {N : Finset V} {f : V → V} (hmap : ∀ a ∈ N, f a ∈ N) (hinv : ∀ a ∈ N, f (f a) = a)
     (x y : V) :
@@ -127,14 +139,18 @@ theorem usedCnt_union_le {H : Finset (Sym2 V)} {W : Finset V} (F : Finset (Sym2 
       exact hc (key e he).2
   omega
 
-/-- Deleting an apex from the index set deletes it from every neighbourhood. -/
+/-- Deleting an apex from the index set deletes it from every neighbourhood.
+@isnad1 id=eq.0h5v.s5.80ad12d07022 from=translated src=- shape=62699fd5 vocab=32b4a604
+-/
 theorem nbhdIn_erase (H : Finset (Sym2 V)) (R : Finset V) (x₀ y : V) :
     nbhdIn H y (R.erase x₀) = (nbhdIn H y R).erase x₀ := by
   ext z
   simp only [mem_nbhdIn, Finset.mem_erase]
   tauto
 
-/-- A vertex of the processed neighbourhood loses exactly one apex. -/
+/-- A vertex of the processed neighbourhood loses exactly one apex.
+@isnad1 id=eq.2h6v.s6.a25f93c2a9c1 from=translated src=- shape=f4cd530e vocab=9aa7fc95
+-/
 theorem degTo_erase_of_mem_nbhd {H : Finset (Sym2 V)} {W R : Finset V} {x₀ y : V}
     (hx₀ : x₀ ∈ R) (hy : y ∈ nbhdIn H x₀ W) :
     degTo H y R = degTo H y (R.erase x₀) + 1 := by
@@ -145,7 +161,9 @@ theorem degTo_erase_of_mem_nbhd {H : Finset (Sym2 V)} {W R : Finset V} {x₀ y :
   have : 1 ≤ (nbhdIn H y R).card := Finset.card_pos.2 ⟨x₀, hmem⟩
   omega
 
-/-- A vertex outside the processed neighbourhood loses no apex. -/
+/-- A vertex outside the processed neighbourhood loses no apex.
+@isnad1 id=eq.2h6v.s6.c92864bcf333 from=translated src=- shape=c610e76c vocab=e155fb25
+-/
 theorem degTo_erase_of_notMem_nbhd {H : Finset (Sym2 V)} {W R : Finset V} {x₀ y : V}
     (hyW : y ∈ W) (hy : y ∉ nbhdIn H x₀ W) :
     degTo H y (R.erase x₀) = degTo H y R := by
@@ -155,7 +173,9 @@ theorem degTo_erase_of_notMem_nbhd {H : Finset (Sym2 V)} {W R : Finset V} {x₀ 
   rw [degTo, degTo, nbhdIn_erase, Finset.erase_eq_of_notMem hmem]
 
 /-- The term bound at a vertex of the neighbourhood being processed: one unit of used degree may
-be created, and the factor `(1+q)` released by deleting `x₀` from the index set pays for it. -/
+be created, and the factor `(1+q)` released by deleting `x₀` from the index set pays for it.
+@isnad1 id=le.6h10v.s8.d4c5be75a21d from=translated src=- shape=9bf6771f vocab=8065315e
+-/
 theorem pot_step_mem_term {H : Finset (Sym2 V)} {W : Finset V} {q : ℝ}
     {F : Finset (Sym2 V)} {R : Finset V} {x₀ x y : V} {f : V → V} (hx₀ : x₀ ∈ R)
     (hmap : ∀ a ∈ nbhdIn H x₀ W, f a ∈ nbhdIn H x₀ W)
@@ -187,7 +207,9 @@ theorem pot_step_mem_term {H : Finset (Sym2 V)} {W : Finset V} {q : ℝ}
     have h4 := mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_right h2 hpow.le) h1q
     linarith only [h4]
 
-/-- The term bound away from the neighbourhood being processed: nothing changes there. -/
+/-- The term bound away from the neighbourhood being processed: nothing changes there.
+@isnad1 id=le.5h10v.s8.cd93e3d827e0 from=translated src=- shape=6b332184 vocab=cad1cc12
+-/
 theorem pot_step_notMem_term {H : Finset (Sym2 V)} {W : Finset V} {q : ℝ}
     {F : Finset (Sym2 V)} {R : Finset V} {x₀ x y : V} {f : V → V}
     (hmap : ∀ a ∈ nbhdIn H x₀ W, f a ∈ nbhdIn H x₀ W)
@@ -207,7 +229,9 @@ theorem pot_step_notMem_term {H : Finset (Sym2 V)} {W : Finset V} {q : ℝ}
   exact mul_le_mul_of_nonneg_right h2 hpos
 
 /-- **Fubini for the partner weight.**  The mass the sweep pays at the processed apex is exactly
-the weight of the chosen involution. -/
+the weight of the chosen involution.
+@isnad1 id=eq.0h9v.s7.ccbebec1dab6 from=translated src=- shape=98bd2dad vocab=117003b8
+-/
 theorem sum_wgt_partner_eq (H : Finset (Sym2 V)) (W : Finset V) (q : ℝ) (F : Finset (Sym2 V))
     (R' R : Finset V) (x₀ : V) (f : V → V) :
     ∑ y ∈ nbhdIn H x₀ W, wgt H W q F R' R y (f y)
@@ -230,7 +254,9 @@ theorem sum_wgt_partner_eq (H : Finset (Sym2 V)) (W : Finset V) (q : ℝ) (F : F
   by_cases h : y ∈ nbhdIn H x W <;> simp [h]
 
 /-- **The total weight**, evaluated: each remaining apex contributes its codegree with `x₀` times
-its own potential mass inside `N_H(x₀, W)`. -/
+its own potential mass inside `N_H(x₀, W)`.
+@isnad1 id=eq.0h8v.s7.255ff28dd375 from=translated src=- shape=b22af836 vocab=b1b72e1a
+-/
 theorem sum_sum_wgt_eq (H : Finset (Sym2 V)) (W : Finset V) (q : ℝ) (F : Finset (Sym2 V))
     (R' R : Finset V) (x₀ : V) :
     ∑ y ∈ nbhdIn H x₀ W, ∑ z ∈ nbhdIn H x₀ W, wgt H W q F R' R y z
@@ -275,7 +301,9 @@ theorem sum_sum_wgt_eq (H : Finset (Sym2 V)) (W : Finset V) (q : ℝ) (F : Finse
   rw [hset, ← Finset.sum_filter, Finset.mul_sum]
 
 /-- The half of the step inequality living inside the processed neighbourhood: this is where the
-spread clause and the codegree bound are consumed. -/
+spread clause and the codegree bound are consumed.
+@isnad1 id=le.6h9v.s9.668aeac2ea04 from=translated src=- shape=0e9225df vocab=747590f1
+-/
 theorem pot_step_mem_sum {β q : ℝ} (hq : 0 ≤ q) {H : Finset (Sym2 V)} {W R : Finset V}
     {x₀ : V} (hx₀ : x₀ ∈ R) {F : Finset (Sym2 V)} {f : V → V}
     (hmap : ∀ a ∈ nbhdIn H x₀ W, f a ∈ nbhdIn H x₀ W)
@@ -326,7 +354,9 @@ theorem pot_step_mem_sum {β q : ℝ} (hq : 0 ≤ q) {H : Finset (Sym2 V)} {W R 
   exact le_of_mul_le_mul_left hfin h1q
 
 /-- **The pessimistic estimator does not increase.**  Processing the apex `x₀` with a matching
-chosen by the spread clause leaves the potential no larger. -/
+chosen by the spread clause leaves the potential no larger.
+@isnad1 id=le.6h9v.s8.4f0f73df1f83 from=translated src=- shape=ad0960fd vocab=0be8d871
+-/
 theorem pot_step {β q : ℝ} (hq : 0 ≤ q) {H : Finset (Sym2 V)} {W : Finset V} {R : Finset V}
     {x₀ : V} (hx₀ : x₀ ∈ R) {F : Finset (Sym2 V)} {f : V → V}
     (hmap : ∀ a ∈ nbhdIn H x₀ W, f a ∈ nbhdIn H x₀ W)
@@ -375,7 +405,9 @@ theorem pot_step {β q : ℝ} (hq : 0 ≤ q) {H : Finset (Sym2 V)} {W : Finset V
 a perfect matching of its neighbourhood avoiding all the edges used so far, as long as the potential
 stays below `2 ^ (s₁+1)`.  The Dirac slack is split: `s₁` absorbs the already used edges, and the
 remaining `s₂` supplies the `1/(s₂+1)`-spread matching of
-`SimpleGraph.exists_spread_involution_of_edgeSet`. -/
+`SimpleGraph.exists_spread_involution_of_edgeSet`.
+@isnad1 id=ex.8h9v.s8.008040afc3c2 from=translated src=- shape=623bf1e3 vocab=e1a44da8
+-/
 theorem spread_process {H : Finset (Sym2 V)} {U W : Finset V}
     {q : ℝ} {s₁ s₂ : ℕ} (hq : 0 ≤ q) (hloop : ∀ e ∈ H, ¬ e.IsDiag) (hUW : Disjoint U W)
     (hEven : ∀ x ∈ U, Even (nbhdIn H x W).card)
@@ -478,7 +510,9 @@ theorem spread_process {H : Finset (Sym2 V)} {U W : Finset V}
         exact (hdisj x (Finset.mem_erase.2 ⟨hxx, hx⟩)).mono_right Finset.subset_union_left
 
 /-- **Edge-disjoint perfect matchings of all the apex neighbourhoods**, from the spread clause and
-a potential bound at the start of the sweep. -/
+a potential bound at the start of the sweep.
+@isnad1 id=ex.7h7v.s8.3717be64c950 from=translated src=- shape=46cf24e8 vocab=943872e8
+-/
 theorem exists_matchings_of_spread {H : Finset (Sym2 V)}
     {U W : Finset V} {q : ℝ} {s₁ s₂ : ℕ} (hq : 0 ≤ q) (hloop : ∀ e ∈ H, ¬ e.IsDiag)
     (hUW : Disjoint U W)

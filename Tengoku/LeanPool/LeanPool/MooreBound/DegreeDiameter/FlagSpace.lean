@@ -41,6 +41,9 @@ def flagDim : ℕ → ℕ
   | 0 => 1
   | k + 1 => flagDim k + 2
 
+/--
+@isnad1 id=eq.0h1v.s4.5973d215f785 from=translated src=- shape=71ad29f1 vocab=303d2645
+-/
 theorem flagDim_eq (k : ℕ) : flagDim k = 2 * k + 1 := by
   induction k with
   | zero => rfl
@@ -62,6 +65,9 @@ instance flagSpaceModule : ∀ k : ℕ, Module K (FlagSpace K k)
       letI := flagSpaceModule k
       inferInstanceAs (Module K ((Fin 2 → K) × FlagSpace K k))
 
+/--
+@isnad1 id=finitedi.0h2v.s4.7b6be991d424 from=translated src=- shape=faee584d vocab=1834f970
+-/
 noncomputable instance flagSpaceFiniteDimensional : ∀ k : ℕ,
     FiniteDimensional K (FlagSpace K k)
   | 0 => inferInstanceAs (FiniteDimensional K (Fin 1 → K))
@@ -69,6 +75,9 @@ noncomputable instance flagSpaceFiniteDimensional : ∀ k : ℕ,
       letI := flagSpaceFiniteDimensional k
       inferInstanceAs (FiniteDimensional K ((Fin 2 → K) × FlagSpace K k))
 
+/--
+@isnad1 id=eq.0h2v.s5.88df49d85fed from=translated src=- shape=0d6bbcea vocab=6ebcb002
+-/
 theorem finrank_flagSpace (k : ℕ) : finrank K (FlagSpace K k) = flagDim k := by
   induction k with
   | zero => simp [FlagSpace, flagDim]
@@ -84,12 +93,18 @@ section Cardinality
 
 variable (K : Type u)
 
+/--
+@isnad1 id=finite.0h2v.s3.d57003e344ba from=translated src=- shape=cf59a32c vocab=f0917398
+-/
 instance flagSpaceFinite [Finite K] : ∀ k : ℕ, Finite (FlagSpace K k)
   | 0 => inferInstanceAs (Finite (Fin 1 → K))
   | k + 1 =>
       letI := flagSpaceFinite k
       inferInstanceAs (Finite ((Fin 2 → K) × FlagSpace K k))
 
+/--
+@isnad1 id=eq.0h2v.s4.45d00ebc2f89 from=translated src=- shape=0b705dac vocab=cb55b648
+-/
 theorem natCard_flagSpace (k : ℕ) :
     Nat.card (FlagSpace K k) = Nat.card K ^ flagDim k := by
   induction k with

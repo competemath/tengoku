@@ -30,8 +30,14 @@ local instance realFunctionComplexCoe {E : Type*} : Coe (E → ℝ) (E → ℂ) 
 
 section lemmas
 
+/--
+@isnad1 id=eq.0h1v.s6.7f84fce15b08 from=translated src=- shape=94b8f205 vocab=21bf904a
+-/
 theorem nnnorm_eq_of_mem_circle (z : Circle) : ‖z.val‖₊ = 1 := NNReal.coe_eq_one.mp z.norm_coe
 
+/--
+@isnad1 id=eq.0h2v.s5.f627ff5e8b58 from=translated src=- shape=0ef0c345 vocab=c7657de0
+-/
 theorem nnnorm_circle_smul (z : Circle) (s : ℂ) : ‖z • s‖₊ = ‖s‖₊ := by
   first
     | (all_goals grind; done)
@@ -50,31 +56,52 @@ noncomputable def e (u : ℝ) : ℝ →ᵇ ℂ where
   map_bounded' :=
     ⟨2, fun x y => (dist_le_norm_add_norm _ _).trans (by simp only [Circle.norm_coe]; norm_num)⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.0a6b1ce0373c from=translated src=- shape=5dab5b71 vocab=ae1189f1
+-/
 @[simp] lemma e_apply (u : ℝ) (v : ℝ) : e u v = 𝐞 (-v * u) := rfl
 
+/--
+@isnad1 id=integrab.1h2v.s7.3fe49d01ee66 from=translated src=- shape=0e2e90d6 vocab=e7dc4b8d
+-/
 lemma fourierIntegral_deriv_aux2 (e : ℝ →ᵇ ℂ) {f : ℝ → ℂ} (hf : Integrable f) :
     Integrable (⇑e * f) :=
   hf.bdd_mul e.continuous.aestronglyMeasurable (ae_of_all _ e.norm_coe_le_norm)
 
+/--
+@isnad1 id=eq.0h2v.s6.a58700f78571 from=translated src=- shape=05dd30d2 vocab=d7c4ecc7
+-/
 @[simp] lemma F_neg {f : ℝ → ℂ} {u : ℝ} : 𝓕 (fun x => -f x) u = - 𝓕 f u := by
   simp [fourier_eq, integral_neg]
 
+/--
+@isnad1 id=eq.2h3v.s7.7df4670bf119 from=translated src=- shape=fe75e4ea vocab=094613bf
+-/
 @[simp] lemma F_add {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g) (x : ℝ) :
     𝓕 (fun x => f x + g x) x = 𝓕 f x + 𝓕 g x := by
   have : Continuous fun p : ℝ × ℝ ↦ ((innerₗ ℝ) p.1) p.2 := continuous_inner
   have := fourierIntegral_add continuous_fourierChar this hf hg
   exact congr_fun this x
 
+/--
+@isnad1 id=eq.2h3v.s7.b4f493763f26 from=translated src=- shape=fe75e4ea vocab=23f75e69
+-/
 @[simp] lemma F_sub {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g) (x : ℝ) :
     𝓕 (fun x => f x - g x) x = 𝓕 f x - 𝓕 g x := by
   simpa [sub_eq_add_neg, Pi.neg_def] using F_add hf hg.neg x
 
+/--
+@isnad1 id=eq.0h3v.s6.d3d6175992ca from=translated src=- shape=2f75aeda vocab=acba9ad2
+-/
 @[simp] lemma F_mul {f : ℝ → ℂ} {c : ℂ} {u : ℝ} :
     𝓕 (fun x => c * f x) u = c * 𝓕 f u := by
   exact congr_fun (VectorFourier.fourierIntegral_const_smul 𝐞 _ _ f c) u
 
 end lemmas
 
+/--
+@isnad1 id=eq.0h2v.s8.cfc2d59c85c8 from=translated src=- shape=ab29156b vocab=1b0464d8
+-/
 theorem fourierIntegral_self_add_deriv_deriv (f : W21) (u : ℝ) :
     (1 + u ^ 2) * 𝓕 (f : ℝ → ℂ) u =
       𝓕 (fun u : ℝ => (f u - (1 / (4 * π ^ 2)) * deriv^[2] f u : ℂ)) u := by
@@ -85,11 +112,16 @@ theorem fourierIntegral_self_add_deriv_deriv (f : W21) (u : ℝ) :
   simp [f.hf, l1, add_mul, Real.fourier_deriv f.hf' l5 f.hf'', Real.fourier_deriv f.hf l4 f.hf']
   field_simp [pi_ne_zero]; ring_nf; simp
 
+/--
+@isnad1 id=eq.0h0v.s6.7a1f5e3bc900 from=translated src=- shape=dcdef0ad vocab=f2ab5641
+-/
 @[simp] lemma deriv_ofReal : deriv ofReal = fun _ => 1 := by
   ext x; exact ((hasDerivAt_id x).ofReal_comp).deriv
 
 /-- If, eventually in `T`, the integrand `f T` is bounded on `uIoc lo hi` by `B T`
-and `B T * |hi - lo| → 0`, then the interval integral `∫ x in lo..hi, f T x → 0`. -/
+and `B T * |hi - lo| → 0`, then the interval integral `∫ x in lo..hi, f T x → 0`.
+@isnad1 id=tendsto.2h4v.s7.1b8a9148f9ad from=translated src=- shape=622c77f0 vocab=4fed177d
+-/
 lemma tendsto_intervalIntegral_zero_of_uniform_norm_bound
     {f : ℝ → ℝ → ℂ} {lo hi : ℝ} {B : ℝ → ℝ}
     (hB : Filter.Tendsto (fun T : ℝ => B T * |hi - lo|) Filter.atTop (nhds 0))
@@ -100,7 +132,9 @@ lemma tendsto_intervalIntegral_zero_of_uniform_norm_bound
   filter_upwards [hf] with T hT
   exact intervalIntegral.norm_integral_le_of_norm_le_const (fun x hx => hT x hx)
 
-/-- The decay `K * (log (T + 2) / (T + 2)) → 0` as `T → ∞`, for any constant `K`. -/
+/-- The decay `K * (log (T + 2) / (T + 2)) → 0` as `T → ∞`, for any constant `K`.
+@isnad1 id=tendsto.0h1v.s6.f0630c05142b from=translated src=- shape=bf26ef72 vocab=1a6a0bd8
+-/
 lemma tendsto_const_mul_log_add_two_div_add_two_atTop (K : ℝ) :
     Filter.Tendsto (fun T : ℝ => K * (Real.log (T + 2) / (T + 2)))
       Filter.atTop (nhds 0) := by
@@ -113,7 +147,9 @@ lemma tendsto_const_mul_log_add_two_div_add_two_atTop (K : ℝ) :
   simpa using hshift.const_mul K
 
 /-- Fourier-transform decay from an integrable derivative: for integrable,
-differentiable `g` with integrable derivative, `‖𝓕 g w‖ ≤ (∫ ‖deriv g x‖) / (2π·|w|)`. -/
+differentiable `g` with integrable derivative, `‖𝓕 g w‖ ≤ (∫ ‖deriv g x‖) / (2π·|w|)`.
+@isnad1 id=le.4h2v.s8.35173932ecc7 from=translated src=- shape=0d6c6020 vocab=55c6e441
+-/
 lemma norm_fourier_le_integral_deriv_div
     (g : ℝ → ℂ) (hg : Integrable g) (hdiff : Differentiable ℝ g)
     (hg' : Integrable (deriv g)) {w : ℝ} (hw : w ≠ 0) :
@@ -142,7 +178,9 @@ lemma norm_fourier_le_integral_deriv_div
   exact (le_div_iff₀ hpos).mpr (by simpa [mul_comm, mul_left_comm, mul_assoc] using hmain)
 
 /-- The oscillatory-integral form of the decay bound: for `0 < T`,
-`‖∫ g y · exp(T·i·y)‖ ≤ (∫ ‖deriv g x‖) / T`. -/
+`‖∫ g y · exp(T·i·y)‖ ≤ (∫ ‖deriv g x‖) / T`.
+@isnad1 id=le.4h2v.s8.0666ef953286 from=translated src=- shape=fd226d96 vocab=f31eaa57
+-/
 lemma norm_oscillatory_integral_le_integral_deriv_div
     (g : ℝ → ℂ) (hg : Integrable g) (hdiff : Differentiable ℝ g)
     (hg' : Integrable (deriv g)) {T : ℝ} (hT : 0 < T) :
@@ -174,7 +212,9 @@ lemma norm_oscillatory_integral_le_integral_deriv_div
   rw [hden]
 
 /-- The `|T|` variant of the oscillatory-integral decay bound: for `T ≠ 0`,
-`‖∫ g y · exp(T·i·y)‖ ≤ (∫ ‖deriv g x‖) / |T|`. -/
+`‖∫ g y · exp(T·i·y)‖ ≤ (∫ ‖deriv g x‖) / |T|`.
+@isnad1 id=le.4h2v.s8.3b91af947302 from=translated src=- shape=b077ba40 vocab=92b4bdfc
+-/
 lemma norm_oscillatory_integral_le_integral_deriv_div_abs
     (g : ℝ → ℂ) (hg : Integrable g) (hdiff : Differentiable ℝ g)
     (hg' : Integrable (deriv g)) {T : ℝ} (hT : T ≠ 0) :

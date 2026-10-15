@@ -98,43 +98,62 @@ def expectedResourceProfile (n : ℕ) : ResourceProfile where
   elementaryGates := 0
   classicalOps := n ^ 3
 
+/--
+@isnad1 id=hasexact.0h1v.s5.5ff73f338366 from=translated src=- shape=a73ce6cc vocab=4b5dd369
+-/
 theorem expectedResourceProfile_exact (n : ℕ) :
     ResourceProfile.HasExactCounts (expectedResourceProfile n) n (n ^ 2) 0 (n ^ 3) := by
   simp [ResourceProfile.HasExactCounts, expectedResourceProfile]
 
+/--
+@isnad1 id=eq.0h2v.s6.29ed6f799b2e from=translated src=- shape=38f5e75a vocab=ead5fb41
+-/
 @[simp]
 theorem dot_zero_left (x : BitVec n) : dot (0 : BitVec n) x = 0 := by
   simp [dot]
 
+/--
+@isnad1 id=eq.0h2v.s6.94d69de06145 from=translated src=- shape=60a0e6ad vocab=ead5fb41
+-/
 @[simp]
 theorem dot_zero_right (x : BitVec n) : dot x (0 : BitVec n) = 0 := by
   simp [dot]
 
-/-- The `𝔽₂` dot product is symmetric. -/
+/-- The `𝔽₂` dot product is symmetric.
+@isnad1 id=eq.0h3v.s4.7dfa565e2b69 from=translated src=- shape=7a5478ec vocab=7ded6b34
+-/
 theorem dot_comm (x y : BitVec n) : dot x y = dot y x := by
   unfold dot
   refine Finset.sum_congr rfl ?_
   intro i _
   rw [mul_comm]
 
-/-- Right additivity of the `𝔽₂` dot product. -/
+/-- Right additivity of the `𝔽₂` dot product.
+@isnad1 id=eq.0h4v.s6.f8829f359ed8 from=translated src=- shape=dbcefff3 vocab=4f3ca617
+-/
 theorem dot_add_right (x y z : BitVec n) :
     dot x (y + z) = dot x y + dot x z := by
   simp [dot, mul_add, Finset.sum_add_distrib]
 
-/-- Left additivity of the `𝔽₂` dot product. -/
+/-- Left additivity of the `𝔽₂` dot product.
+@isnad1 id=eq.0h4v.s6.63b40aa6e01e from=translated src=- shape=6a42c977 vocab=4f3ca617
+-/
 theorem dot_add_left (x y z : BitVec n) :
     dot (x + y) z = dot x z + dot y z := by
   simp [dot, add_mul, Finset.sum_add_distrib]
 
-/-- The zero vector satisfies every collected Simon equation. -/
+/-- The zero vector satisfies every collected Simon equation.
+@isnad1 id=satisfie.0h2v.s5.1bb5b7731f39 from=translated src=- shape=a2223048 vocab=41d8c169
+-/
 theorem satisfiesEquations_zero (samples : Finset (BitVec n)) :
     SatisfiesEquations samples (0 : BitVec n) := by
   intro y _
   simp [SatisfiesEquation, Orthogonal]
 
 /-- Sums of solutions to the collected equations are again solutions; the
-solution set is a linear subspace over `𝔽₂`. -/
+solution set is a linear subspace over `𝔽₂`.
+@isnad1 id=satisfie.2h4v.s6.35e1ac1d802f from=translated src=- shape=f68e69c5 vocab=d55d5b2b
+-/
 theorem satisfiesEquations_add {samples : Finset (BitVec n)} {a b : BitVec n}
     (ha : SatisfiesEquations samples a) (hb : SatisfiesEquations samples b) :
     SatisfiesEquations samples (a + b) := by
@@ -143,14 +162,18 @@ theorem satisfiesEquations_add {samples : Finset (BitVec n)} {a b : BitVec n}
   simp
 
 /-- If the equations are complete, the unknown nonzero string itself satisfies all of
-them. -/
+them.
+@isnad1 id=satisfie.1h3v.s4.9cf7e2f3fd03 from=translated src=- shape=80b0e4c9 vocab=a5ae6c84
+-/
 theorem hiddenMask_satisfiesEquations {samples : Finset (BitVec n)}
     {s : BitVec n} (hcomplete : CompleteEquations samples s) :
     SatisfiesEquations samples s := by
   exact (hcomplete s).2 (Or.inr rfl)
 
 /-- Complete Simon equations identify the unknown nonzero string among nonzero
-candidates. -/
+candidates.
+@isnad1 id=eq.2h4v.s4.b6eaae6c15eb from=translated src=- shape=7a575501 vocab=e68320a8
+-/
 theorem recover_from_complete_equations {samples : Finset (BitVec n)}
     {s t : BitVec n} (hcomplete : CompleteEquations samples s)
     (hcandidate : Candidate samples t) :
@@ -160,7 +183,9 @@ theorem recover_from_complete_equations {samples : Finset (BitVec n)}
   · exact False.elim (ht_ne_zero ht_zero)
   · exact ht_s
 
-/-- The Simon promise determines a unique nonzero mask for an oracle. -/
+/-- The Simon promise determines a unique nonzero mask for an oracle.
+@isnad1 id=eq.2h5v.s4.52c758afc264 from=translated src=- shape=548fb48a vocab=c27addea
+-/
 theorem promise_mask_unique {f : Oracle n α} {s t : BitVec n}
     (hs : Promise f s) (ht : Promise f t) :
     s = t := by
@@ -175,7 +200,9 @@ end Simon
 /-- **Simon correctness**: assume an oracle satisfies Simon's promise with
 hidden nonzero mask `s`. If the sampled `𝔽₂`-linear equations are complete
 and classical post-processing returns a nonzero candidate satisfying all of
-those equations, then that candidate is exactly the hidden nonzero mask. -/
+those equations, then that candidate is exactly the hidden nonzero mask.
+@isnad1 id=and.3h6v.s6.b8974f44d914 from=translated src=- shape=ebdeb580 vocab=a93392fd
+-/
 theorem SimonsProblem.main {n : ℕ} {α : Type u} {f : Simon.Oracle n α}
     {s t : Simon.BitVec n} {samples : Finset (Simon.BitVec n)}
     (hpromise : Simon.Promise f s)
@@ -188,7 +215,9 @@ theorem SimonsProblem.main {n : ℕ} {α : Type u} {f : Simon.Oracle n α}
 /-- Simon supporting theorem for the public statement at the current
 post-sampling boundary: complete sampled equations recover the unknown nonzero
 string, and the trusted public resource profile records the accepted expected
-costs. -/
+costs.
+@isnad1 id=and.3h6v.s6.7c929c7c0b7a from=translated src=- shape=ce242cb1 vocab=5208c0d1
+-/
 theorem SimonsProblem.main_with_resources {n : ℕ} {α : Type u}
     {f : Simon.Oracle n α} {s t : Simon.BitVec n}
     {samples : Finset (Simon.BitVec n)}

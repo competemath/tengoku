@@ -63,6 +63,9 @@ def Valid (n N : ℕ) : Prop :=
 
 /-! ### Basic identities -/
 
+/--
+@isnad1 id=eq.0h1v.s5.0e0f7970810c from=translated src=- shape=893a5eca vocab=76120d38
+-/
 lemma sum_two_pow (w : ℕ) : ∑ i ∈ range w, 2 ^ i = 2 ^ w - 1 := by
   induction w with
   | zero => rfl
@@ -72,7 +75,9 @@ lemma sum_two_pow (w : ℕ) : ∑ i ∈ range w, 2 ^ i = 2 ^ w - 1 := by
     rw [Finset.sum_range_succ, ih]
     omega
 
-/-- The paper's `Σ k_i a_i = M − Σ k_i` identity, subtraction-free. -/
+/-- The paper's `Σ k_i a_i = M − Σ k_i` identity, subtraction-free.
+@isnad1 id=eq.0h2v.s5.9c8001f28e02 from=translated src=- shape=c4d83c83 vocab=bbbe0564
+-/
 lemma sum_a_add_dsum (n : ℕ) (k : ℕ → ℕ) :
     (∑ i ∈ range n, k i * a i) + dsum n k = val n k := by
   unfold dsum val
@@ -84,7 +89,9 @@ lemma sum_a_add_dsum (n : ℕ) (k : ℕ → ℕ) :
     _ = k i * 2 ^ i := by rw [ha]
 
 /-- To refute validity it suffices to exhibit `k` with digit sum `n` and value
-`M ≠ 2^n − 1` congruent to `2^n − 1` mod `N`. -/
+`M ≠ 2^n − 1` congruent to `2^n − 1` mod `N`.
+@isnad1 id=not.4h3v.s6.e947a9b70b33 from=translated src=- shape=2870e120 vocab=d4b613e9
+-/
 lemma not_valid_of_witness {n N M : ℕ} (hn : 1 ≤ n)
     (hne : M ≠ 2 ^ n - 1) (hmod : M ≡ (2 ^ n - 1) [MOD N])
     (h : ∃ k, val n k = M ∧ dsum n k = n) : ¬ Valid n N := by
@@ -125,9 +132,15 @@ lemma not_valid_of_witness {n N M : ℕ} (hn : 1 ≤ n)
 
 /-! ### Padding and top-coin composition -/
 
+/--
+@isnad1 id=supp.2h3v.s4.de39dc43c191 from=translated src=- shape=a64ffe1e vocab=e0644805
+-/
 lemma supp_mono {e w : ℕ} (h : e ≤ w) {k : ℕ → ℕ} (hs : Supp e k) : Supp w k :=
   fun i hi => hs i (by omega)
 
+/--
+@isnad1 id=eq.2h3v.s4.305005718d62 from=translated src=- shape=63ee264f vocab=992f60d8
+-/
 lemma val_pad {e w : ℕ} (h : e ≤ w) {k : ℕ → ℕ} (hs : Supp e k) :
     val w k = val e k := by
   unfold val
@@ -137,6 +150,9 @@ lemma val_pad {e w : ℕ} (h : e ≤ w) {k : ℕ → ℕ} (hs : Supp e k) :
     exact hni (Finset.mem_range.mpr (by omega))
   rw [hs i he, zero_mul]
 
+/--
+@isnad1 id=eq.2h3v.s4.7d189dd9115a from=translated src=- shape=63ee264f vocab=803a0154
+-/
 lemma dsum_pad {e w : ℕ} (h : e ≤ w) {k : ℕ → ℕ} (hs : Supp e k) :
     dsum w k = dsum e k := by
   unfold dsum
@@ -146,7 +162,9 @@ lemma dsum_pad {e w : ℕ} (h : e ≤ w) {k : ℕ → ℕ} (hs : Supp e k) :
     exact hni (Finset.mem_range.mpr (by omega))
   exact hs i he
 
-/-- Put `c` coins on the top index `w` of a representation supported below `w`. -/
+/-- Put `c` coins on the top index `w` of a representation supported below `w`.
+@isnad1 id=and.1h3v.s7.fd77d9f83d92 from=translated src=- shape=4af8f68d vocab=a2de7360
+-/
 lemma update_top (w c : ℕ) (k : ℕ → ℕ) (hs : Supp w k) :
     Supp (w + 1) (Function.update k w c) ∧
     val (w + 1) (Function.update k w c) = val w k + c * 2 ^ w ∧
@@ -171,6 +189,9 @@ lemma update_top (w c : ℕ) (k : ℕ → ℕ) (hs : Supp w k) :
 /-- Shift a representation up one index, placing `c` at index 0. -/
 def shift (c : ℕ) (k : ℕ → ℕ) : ℕ → ℕ := fun i => if i = 0 then c else k (i - 1)
 
+/--
+@isnad1 id=supp.1h3v.s4.b753b81628a2 from=translated src=- shape=d0609b49 vocab=ee5cbb04
+-/
 lemma shift_supp {w c : ℕ} {k : ℕ → ℕ} (h : Supp w k) :
     Supp (w + 1) (shift c k) := by
   intro i hi
@@ -178,6 +199,9 @@ lemma shift_supp {w c : ℕ} {k : ℕ → ℕ} (h : Supp w k) :
   rw [ite_eq_right (by omega)]
   exact h (i - 1) (by omega)
 
+/--
+@isnad1 id=eq.0h3v.s5.eee4db0f9cb2 from=translated src=- shape=47c037da vocab=3af24057
+-/
 lemma shift_val (w c : ℕ) (k : ℕ → ℕ) :
     val (w + 1) (shift c k) = 2 * val w k + c := by
   unfold val
@@ -190,6 +214,9 @@ lemma shift_val (w c : ℕ) (k : ℕ → ℕ) :
     ring
   rw [Finset.sum_congr rfl hstep, h0, ← Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h3v.s5.f215e31d174d from=translated src=- shape=0437d5ad vocab=777d89ed
+-/
 lemma shift_dsum (w c : ℕ) (k : ℕ → ℕ) :
     dsum (w + 1) (shift c k) = dsum w k + c := by
   unfold dsum
@@ -203,7 +230,9 @@ lemma shift_dsum (w c : ℕ) (k : ℕ → ℕ) :
 
 /-! ### Explicit representations (bases of the four witness families, paper §6) -/
 
-/-- The all-ones representation of `2^w − 1`. -/
+/-- The all-ones representation of `2^w − 1`.
+@isnad1 id=ex.0h1v.s5.520a8e0223ce from=translated src=- shape=dc3e250d vocab=4e0288fb
+-/
 lemma ones_rep (w : ℕ) :
     ∃ k, Supp w k ∧ val w k = 2 ^ w - 1 ∧ dsum w k = w := by
   refine ⟨fun i => if i < w then 1 else 0, fun i hi => ite_eq_right (by omega), ?_, ?_⟩
@@ -220,7 +249,9 @@ lemma ones_rep (w : ℕ) :
           rw [ite_eq_left (Finset.mem_range.mp hi)]
       _ = w := by rw [Finset.sum_const, smul_eq_mul, mul_one, card_range]
 
-/-- All-ones minus bit `e`: represents `2^w − 1 − 2^e` with `w − 1` coins. -/
+/-- All-ones minus bit `e`: represents `2^w − 1 − 2^e` with `w − 1` coins.
+@isnad1 id=ex.1h2v.s6.20e477c78fc7 from=translated src=- shape=4df73dfc vocab=7a1c04d8
+-/
 lemma ones_erase_rep {w e : ℕ} (he : e < w) :
     ∃ k, Supp w k ∧ val w k = 2 ^ w - 1 - 2 ^ e ∧ dsum w k = w - 1 := by
   have hmem : e ∈ range w := Finset.mem_range.mpr he
@@ -259,7 +290,9 @@ lemma ones_erase_rep {w e : ℕ} (he : e < w) :
       rw [Finset.sum_const, smul_eq_mul, mul_one, card_range]
     omega
 
-/-- Any `x < 2^w` has a representation on `[0, w)` with digit sum `≤ w`. -/
+/-- Any `x < 2^w` has a representation on `[0, w)` with digit sum `≤ w`.
+@isnad1 id=ex.1h2v.s5.834e88cd4ee6 from=translated src=- shape=b5fc7a84 vocab=563bea66
+-/
 lemma exists_rep_le : ∀ w x : ℕ, x < 2 ^ w →
     ∃ k, Supp w k ∧ val w k = x ∧ dsum w k ≤ w := by
   intro w
@@ -281,7 +314,9 @@ lemma exists_rep_le : ∀ w x : ℕ, x < 2 ^ w →
       obtain ⟨us, uv, ud⟩ := update_top w 1 k hs
       exact ⟨Function.update k w 1, us, by rw [uv, hv]; omega, by rw [ud]; omega⟩
 
-/-- Sharp version (paper §6, case (i)): `x < 2^w − 1` needs at most `w − 1` coins. -/
+/-- Sharp version (paper §6, case (i)): `x < 2^w − 1` needs at most `w − 1` coins.
+@isnad1 id=ex.1h2v.s6.59153f234c26 from=translated src=- shape=d19892f5 vocab=9a651bc4
+-/
 lemma exists_rep_lt : ∀ w x : ℕ, x < 2 ^ w - 1 →
     ∃ k, Supp w k ∧ val w k = x ∧ dsum w k ≤ w - 1 := by
   intro w
@@ -317,7 +352,9 @@ lemma exists_rep_lt : ∀ w x : ℕ, x < 2 ^ w - 1 →
         exact ⟨Function.update k w 1, us, by rw [uv, hv]; omega, by rw [ud]; omega⟩
 
 /-- Complement representation (paper §6, case (iii)): if `0 ≠ s < 2^w` is not a
-power of two, then `2^w − 1 − s` needs at most `w − 2` coins. -/
+power of two, then `2^w − 1 − s` needs at most `w − 2` coins.
+@isnad1 id=ex.3h2v.s7.914192e1eaf3 from=translated src=- shape=1b3fbe78 vocab=9a651bc4
+-/
 lemma exists_rep_compl : ∀ w s : ℕ, s < 2 ^ w → s ≠ 0 → (¬ ∃ e, s = 2 ^ e) →
     ∃ k, Supp w k ∧ val w k = 2 ^ w - 1 - s ∧ dsum w k ≤ w - 2 := by
   intro w
@@ -381,7 +418,9 @@ lemma exists_rep_compl : ∀ w s : ℕ, s < 2 ^ w → s ≠ 0 → (¬ ∃ e, s =
 /-! ### Contiguity (paper Lemma 3, upward direction) -/
 
 /-- Splitting step: a representation of `M` with digit sum `s < M` yields one
-with digit sum `s + 1` (replace a coin `2^i`, `i ≥ 1`, by two `2^{i-1}`s). -/
+with digit sum `s + 1` (replace a coin `2^i`, `i ≥ 1`, by two `2^{i-1}`s).
+@isnad1 id=ex.2h3v.s6.642a406d1d8f from=translated src=- shape=7a2dc022 vocab=62f149c5
+-/
 lemma dsum_succ_of_lt {n M s : ℕ}
     (h : ∃ k, val n k = M ∧ dsum n k = s) (hlt : s < M) :
     ∃ k, val n k = M ∧ dsum n k = s + 1 := by
@@ -454,7 +493,9 @@ lemma dsum_succ_of_lt {n M s : ℕ}
     omega
 
 /-- From digit sum `≤ t` to digit sum exactly `t`, provided `t ≤ M`
-(the paper's interval `[s_min, M]` of achievable digit sums). -/
+(the paper's interval `[s_min, M]` of achievable digit sums).
+@isnad1 id=ex.2h3v.s5.831ba26a8b85 from=translated src=- shape=c7e940a5 vocab=06a3a6ef
+-/
 lemma exists_dsum_eq {n M t : ℕ}
     (h : ∃ k, val n k = M ∧ dsum n k ≤ t) (htM : t ≤ M) :
     ∃ k, val n k = M ∧ dsum n k = t := by
@@ -474,6 +515,9 @@ lemma exists_dsum_eq {n M t : ℕ}
 
 /-! ### Small arithmetic helpers -/
 
+/--
+@isnad1 id=le.1h1v.s5.359049e3a866 from=translated src=- shape=6bc132c7 vocab=35c416b2
+-/
 lemma succ_le_two_pow_pred : ∀ n, 3 ≤ n → n + 1 ≤ 2 ^ (n - 1) := by
   intro n
   induction n with
@@ -500,7 +544,9 @@ invalid for the super-increasing set.  The four witness families of the paper:
 (i) `N < 2^{n-1}` — `M = 2^n − 1 + N`; (ii) `N = 2^{n-1}` — `M = 2^{n-1} − 1`
 (a negative multiple, `V = −N`); (iii) gap `s := 2^n − N` not a power of two —
 `M = 2^n − 1 + N`; (iv) gap `s = 2^e`, `⌊log₂ n⌋ < e ≤ n−2` — `M = 2^e − 1`
-(again `V = −N`), where `2^e − 1 ≥ n` is exactly `e > ⌊log₂ n⌋`. -/
+(again `V = −N`), where `2^e − 1 ≥ n` is exactly `e > ⌊log₂ n⌋`.
+@isnad1 id=not.3h2v.s6.5aabdad3f3ae from=translated src=- shape=3e47f387 vocab=b8369e12
+-/
 theorem theoremB {n N : ℕ} (hn : 2 ≤ n) (hN2 : 2 ≤ N)
     (hNlt : N < 2 ^ n - 2 ^ Nat.log 2 n) : ¬ Valid n N := by
   set m := Nat.log 2 n with hm
@@ -607,7 +653,9 @@ def gmin : ℕ → ℕ → ℕ
   | 0, M => M
   | w + 1, M => M % 2 + gmin w (M / 2)
 
-/-- Adding `t` to the target raises the greedy digit sum by at most `t`. -/
+/-- Adding `t` to the target raises the greedy digit sum by at most `t`.
+@isnad1 id=le.0h3v.s4.14f9bb08d677 from=translated src=- shape=91e3d1e6 vocab=a7163f4f
+-/
 lemma gmin_add_le : ∀ w x t, gmin w (x + t) ≤ gmin w x + t := by
   intro w
   induction w with
@@ -621,7 +669,9 @@ lemma gmin_add_le : ∀ w x t, gmin w (x + t) ≤ gmin w x + t := by
     rw [ht']
     omega
 
-/-- Adding the top coin raises the greedy digit sum by exactly `1`. -/
+/-- Adding the top coin raises the greedy digit sum by exactly `1`.
+@isnad1 id=eq.0h2v.s5.93aaded10f4a from=translated src=- shape=7d4a232e vocab=37c4f55a
+-/
 lemma gmin_add_pow : ∀ w X, gmin w (X + 2 ^ w) = gmin w X + 1 := by
   intro w
   induction w with
@@ -635,7 +685,9 @@ lemma gmin_add_pow : ∀ w X, gmin w (X + 2 ^ w) = gmin w X + 1 := by
     rw [e1, e2, ih (X / 2)]
     omega
 
-/-- Greedy digit sum of the all-ones target: `gmin w (2^{w+1} − 1) = w + 1`. -/
+/-- Greedy digit sum of the all-ones target: `gmin w (2^{w+1} − 1) = w + 1`.
+@isnad1 id=eq.0h1v.s5.69bbdc6d413c from=translated src=- shape=8e0cb00c vocab=0ca322fd
+-/
 lemma gmin_ones : ∀ w, gmin w (2 ^ (w + 1) - 1) = w + 1 := by
   intro w
   induction w with
@@ -653,7 +705,9 @@ lemma gmin_ones : ∀ w, gmin w (2 ^ (w + 1) - 1) = w + 1 := by
 subtraction encoded as `M' + 2^t = M + 2^{w+1}`) raises the greedy digit sum
 by at least `1`.  Induction on `w`, peeling one bit: for `t ≥ 1` both sides
 keep their parity and the shifted instance is `(w−1, t−1)`; for `t = 0` the
-parity flips, and the odd-`M` branch pays two top coins via `gmin_add_pow`. -/
+parity flips, and the odd-`M` branch pays two top coins via `gmin_add_pow`.
+@isnad1 id=le.2h4v.s6.3ef71e003199 from=translated src=- shape=53b13fd1 vocab=944902d6
+-/
 lemma gmin_step : ∀ w t M M', t ≤ w → M' + 2 ^ t = M + 2 ^ (w + 1) →
     gmin w M + 1 ≤ gmin w M' := by
   intro w
@@ -694,7 +748,9 @@ lemma gmin_step : ∀ w t M M', t ≤ w → M' + 2 ^ t = M + 2 ^ (w + 1) →
 /-- **Slack bound** (paper §5): by induction on `j` from the step lemma, the
 positive-multiple target `2^{w+1} − 1 + j·N` at a power-of-two gap
 (`N + 2^t = 2^{w+1}`, `t ≤ w`) has greedy digit sum at least `w + 1 + j` —
-the paper's `s_min(M_j) ≥ n + j`, for **every** `j`. -/
+the paper's `s_min(M_j) ≥ n + j`, for **every** `j`.
+@isnad1 id=le.2h4v.s7.a93ece2a472a from=translated src=- shape=62c3e116 vocab=786dd539
+-/
 lemma slack {w t N : ℕ} (ht : t ≤ w) (hN : N + 2 ^ t = 2 ^ (w + 1)) :
     ∀ j, w + 1 + j ≤ gmin w (2 ^ (w + 1) - 1 + j * N) := by
   intro j
@@ -710,7 +766,9 @@ lemma slack {w t N : ℕ} (ht : t ≤ w) (hN : N + 2 ^ t = 2 ^ (w + 1)) :
       (2 ^ (w + 1) - 1 + (j + 1) * N) ht (by omega)
     omega
 
-/-- Peel index 0 off a value (inverse of `shift_val`). -/
+/-- Peel index 0 off a value (inverse of `shift_val`).
+@isnad1 id=eq.0h2v.s6.dc150072f73a from=translated src=- shape=ba589258 vocab=84eb2da7
+-/
 lemma unshift_val (w : ℕ) (k : ℕ → ℕ) :
     val (w + 1) k = k 0 + 2 * val w (fun i => k (i + 1)) := by
   have h := shift_val w (k 0) (fun i => k (i + 1))
@@ -725,7 +783,9 @@ lemma unshift_val (w : ℕ) (k : ℕ → ℕ) :
   rw [hk] at h
   omega
 
-/-- Peel index 0 off a digit sum (inverse of `shift_dsum`). -/
+/-- Peel index 0 off a digit sum (inverse of `shift_dsum`).
+@isnad1 id=eq.0h2v.s5.4d49d68b187c from=translated src=- shape=968025af vocab=b4ade986
+-/
 lemma unshift_dsum (w : ℕ) (k : ℕ → ℕ) :
     dsum (w + 1) k = k 0 + dsum w (fun i => k (i + 1)) := by
   have h := shift_dsum w (k 0) (fun i => k (i + 1))
@@ -740,12 +800,16 @@ lemma unshift_dsum (w : ℕ) (k : ℕ → ℕ) :
   rw [hk] at h
   omega
 
-/-- Each unit of digit sum contributes a coin worth at least `1`. -/
+/-- Each unit of digit sum contributes a coin worth at least `1`.
+@isnad1 id=le.0h2v.s3.c4352d9921fd from=translated src=- shape=c2a743b4 vocab=06a3a6ef
+-/
 lemma dsum_le_val (n : ℕ) (k : ℕ → ℕ) : dsum n k ≤ val n k :=
   Finset.sum_le_sum fun i _ =>
     Nat.le_mul_of_pos_right (k i) (pow_pos (by norm_num) i)
 
-/-- Each unit of digit sum contributes a coin worth at most `2^{n-1}`. -/
+/-- Each unit of digit sum contributes a coin worth at most `2^{n-1}`.
+@isnad1 id=le.0h2v.s5.ddd8f326ed4a from=translated src=- shape=63d83f33 vocab=07e7b0cc
+-/
 lemma val_le_dsum_mul (n : ℕ) (k : ℕ → ℕ) :
     val n k ≤ dsum n k * 2 ^ (n - 1) := by
   unfold val dsum
@@ -757,7 +821,9 @@ lemma val_le_dsum_mul (n : ℕ) (k : ℕ → ℕ) :
 /-- **Greedy minimality** (paper Lemma 3, downward half): the digit sum of any
 representation is at least the greedy digit sum of its value.  Induction on
 the width: split the bottom coin `k 0 = M % 2 + 2t`; the `2t` surplus carries
-up into the shifted representation, and `gmin_add_le` absorbs it. -/
+up into the shifted representation, and `gmin_add_le` absorbs it.
+@isnad1 id=le.0h2v.s5.f68c27000d34 from=translated src=- shape=005f5556 vocab=533266e1
+-/
 lemma gmin_le_dsum : ∀ w (k : ℕ → ℕ), gmin w (val (w + 1) k) ≤ dsum (w + 1) k := by
   intro w
   induction w with
@@ -781,7 +847,9 @@ lemma gmin_le_dsum : ∀ w (k : ℕ → ℕ), gmin w (val (w + 1) k) ≤ dsum (w
 /-- **Lemma 2** (paper §3): the all-ones vector is the *only* representation of
 `2^n − 1` with digit sum `n`.  Descent on the bottom coin: parity forces
 `k 0 = 1 + 2t`, and the greedy bound on the shifted representation forces
-`t = 0`; recurse. -/
+`t = 0`; recurse.
+@isnad1 id=eq.3h3v.s6.65282b0c314c from=translated src=- shape=71899222 vocab=7713d24e
+-/
 lemma ones_unique : ∀ n (k : ℕ → ℕ), val n k = 2 ^ n - 1 → dsum n k = n →
     ∀ i < n, k i = 1 := by
   intro n
@@ -826,7 +894,9 @@ lemma ones_unique : ∀ n (k : ℕ → ℕ), val n k = 2 ^ n - 1 → dsum n k = 
 `M < 2^n − 1` falls below the floor (`2^m ≤ n` — the only place `⌊log₂⌋`
 enters); `M = 2^n − 1` is `ones_unique`; and `M = 2^n − 1 + jN` has greedy
 digit sum at least `n + j > n` by `slack` — uniformly in `j ≥ 1` and `n ≥ 2`,
-with no range restriction and no small-`n` cases. -/
+with no range restriction and no small-`n` cases.
+@isnad1 id=valid.1h1v.s5.0f9c4aa077b0 from=translated src=- shape=a08c756d vocab=e0710e7c
+-/
 theorem theoremA {n : ℕ} (hn : 2 ≤ n) :
     Valid n (2 ^ n - 2 ^ Nat.log 2 n) := by
   have hmn : 2 ^ Nat.log 2 n ≤ n := Nat.pow_log_le_self 2 (by omega)
@@ -907,7 +977,9 @@ theorem theoremA {n : ℕ} (hn : 2 ≤ n) :
     omega
 
 /-- **Main theorem**: `Nmin(n) = 2^n − 2^⌊log₂ n⌋` — it is valid there, and
-every smaller modulus (≥ 2) is invalid.  (Modulo `theoremA`.) -/
+every smaller modulus (≥ 2) is invalid.  (Modulo `theoremA`.)
+@isnad1 id=isleast.1h1v.s6.89a3a3e4dedf from=translated src=- shape=d15605c5 vocab=36852134
+-/
 theorem nmin_eq {n : ℕ} (hn : 2 ≤ n) :
     IsLeast {N | 2 ≤ N ∧ Valid n N} (2 ^ n - 2 ^ Nat.log 2 n) := by
   have hmn : 2 ^ Nat.log 2 n ≤ n := Nat.pow_log_le_self 2 (by omega)

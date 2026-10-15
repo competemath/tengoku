@@ -28,6 +28,9 @@ variable {K L : Type*} [Field K] [LieRing L] [LieAlgebra K L]
 
 section classification_dim_1
 
+/--
+@isnad1 id=islieabe.1h2v.s6.21ba99d1afcf from=translated src=- shape=64e51613 vocab=14f36254
+-/
 theorem abelian (h : Module.finrank K L = 1) : IsLieAbelian L :=by
   simp only [IsLieAbelian]
   constructor
@@ -37,6 +40,9 @@ theorem abelian (h : Module.finrank K L = 1) : IsLieAbelian L :=by
   rw [Basis.repr_fin_one B x, Basis.repr_fin_one B y]
   simp
 
+/--
+@isnad1 id=nonempty.1h2v.s6.abe71cb0db63 from=translated src=- shape=62ee8581 vocab=a023f60d
+-/
 theorem classification (h : Module.finrank K L = 1) :
     Nonempty (L ≃ₗ⁅K⁆ K) := by
   have := abelian h

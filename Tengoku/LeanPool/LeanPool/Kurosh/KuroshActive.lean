@@ -228,6 +228,9 @@ noncomputable def activeProductToTree {ι : Type v}
     KuroshActiveProduct G H →* TreeKuroshProduct G H :=
   Monoid.CoprodI.lift (activeComponentToTree G H)
 
+/--
+@isnad1 id=eq.0h3v.s8.5fe5e4364f1f from=translated src=- shape=2a6d016a vocab=3b8bd5c4
+-/
 theorem Internal.activeProductToTree_comp_treeProductToActive {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G)) :
     (activeProductToTree G H).comp (treeProductToActive G H) =
@@ -275,6 +278,9 @@ theorem Internal.activeProductToTree_comp_treeProductToActive {ι : Type v}
       rw [Monoid.CoprodI.lift_of]
       rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.0db7c1904fa7 from=translated src=- shape=2a6d016a vocab=3b8bd5c4
+-/
 theorem Internal.treeProductToActive_comp_activeProductToTree {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G)) :
     (treeProductToActive G H).comp (activeProductToTree G H) =
@@ -330,6 +336,9 @@ noncomputable def treeProductActiveEquiv {ι : Type v}
         (Internal.treeProductToActive_comp_activeProductToTree G H)
     map_mul' := (treeProductToActive G H).map_mul }
 
+/--
+@isnad1 id=ex.0h4v.s8.a18a7933c126 from=translated src=- shape=51f701b8 vocab=8a345dd3
+-/
 theorem kurosh_active_vertex_intersection {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (j : KuroshActiveVertexIndex G H) :

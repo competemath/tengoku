@@ -27,7 +27,9 @@ namespace LeanStationaryHarmonicMaps
 namespace StationaryHarmonicMap
 
 /-- The difference of two ball integrals is controlled by the `L¹` mass of `f`
-on the radial shell between the two radii. -/
+on the radial shell between the two radii.
+@isnad1 id=le.3h5v.s10.aad0df933af0 from=translated src=- shape=b0a181b2 vocab=67509a92
+-/
 theorem dist_ballIntegral_le_radialOpenShell_integral_norm {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {r s R0 : ℝ}
     (hrR0 : r ≤ R0) (hsR0 : s ≤ R0)
@@ -104,7 +106,9 @@ theorem dist_ballIntegral_le_radialOpenShell_integral_norm {n : ℕ} [NeZero n]
       · simp [hx]
 
 /-- Set-integral form of `dist_ballIntegral_le_radialOpenShell_integral_norm`,
-with the ambient measure already restricted to the containing ball. -/
+with the ambient measure already restricted to the containing ball.
+@isnad1 id=le.3h5v.s10.6c323854762d from=translated src=- shape=6aeb92c8 vocab=b8177c75
+-/
 theorem dist_ballIntegral_le_radialOpenShell_setIntegral_norm {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {r s R0 : ℝ}
     (hrR0 : r ≤ R0) (hsR0 : s ≤ R0)
@@ -146,7 +150,9 @@ theorem dist_ballIntegral_le_radialOpenShell_setIntegral_norm {n : ℕ} [NeZero 
         rw [Measure.restrict_restrict hshell, inter_comm]
 
 /-- Finite disjoint families of radius intervals give the corresponding
-absolute-continuity sum estimate for ball integrals. -/
+absolute-continuity sum estimate for ball integrals.
+@isnad1 id=le.4h6v.s10.05fda77d77a0 from=translated src=- shape=77c11aad vocab=889d5843
+-/
 theorem sum_dist_ballIntegral_le_radialOpenShells_integral_norm {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {a b R0 : ℝ} {E : ℕ × (ℕ → ℝ × ℝ)}
     (hab : a ≤ b) (hbR0 : b ≤ R0)
@@ -205,7 +211,9 @@ theorem sum_dist_ballIntegral_le_radialOpenShells_integral_norm {n : ℕ} [NeZer
             exact hf_abs.mono_measure Measure.restrict_le_self)).symm
 
 /-- `lintegral` version of the finite shell estimate, convenient for the
-absolute-continuity filter argument. -/
+absolute-continuity filter argument.
+@isnad1 id=le.4h6v.s10.124a2ab8adb1 from=translated src=- shape=35d7707a vocab=3cace9a2
+-/
 theorem sum_dist_ballIntegral_le_radialOpenShells_lintegral_toReal {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {a b R0 : ℝ} {E : ℕ × (ℕ → ℝ × ℝ)}
     (hab : a ≤ b) (hbR0 : b ≤ R0)
@@ -234,7 +242,9 @@ theorem sum_dist_ballIntegral_le_radialOpenShells_lintegral_toReal {n : ℕ} [Ne
       (f := f) hmeas)
 
 /-- Thin radial-shell volume control implies absolute continuity of every
-`L¹` ball-integral radius function. -/
+`L¹` ball-integral radius function.
+@isnad1 id=ballinte.2h3v.s8.44a76844f15c from=translated src=- shape=b0d4e1f7 vocab=4671c5bc
+-/
 theorem ballIntegralRadiusAbsolutelyContinuous_of_radialOpenShellsVolumeTendstoZero
     {n : ℕ} [NeZero n] {f : Domain n → ℝ} {R0 : ℝ}
     (hthin : RadialOpenShellsVolumeTendstoZero n)
@@ -273,7 +283,9 @@ theorem ballIntegralRadiusAbsolutelyContinuous_of_radialOpenShellsVolumeTendstoZ
       hab hb hE hf
 
 /-- Packaged form: the thin radial-shell volume theorem supplies the reusable
-ball-integral absolute-continuity theorem. -/
+ball-integral absolute-continuity theorem.
+@isnad1 id=ballinte.1h1v.s2.a387b9108591 from=translated src=- shape=6321fd23 vocab=53e14dbc
+-/
 theorem ballIntegralRadiusACOfIntegrableOnBall_of_radialOpenShellsVolumeTendstoZero
     {n : ℕ}
     (hthin : RadialOpenShellsVolumeTendstoZero n) :
@@ -285,7 +297,9 @@ theorem ballIntegralRadiusACOfIntegrableOnBall_of_radialOpenShellsVolumeTendstoZ
 /-- A packaged radius-derivative formula, together with scalar radius absolute
 continuity, yields the unrestricted weighted radial representation by taking
 the representing density to be the derivative of the ball-integral radius
-function. -/
+function.
+@isnad1 id=ballinte.2h1v.s3.f00a89dccf58 from=translated src=- shape=cbe5c5ba vocab=05ccf19c
+-/
 theorem ballIntegralRadiusWeightedRepresentation_of_ac_derivativeFormula
     {n : ℕ}
     (hac_all : BallIntegralRadiusACOfIntegrableOnBall n)
@@ -302,7 +316,9 @@ theorem ballIntegralRadiusWeightedRepresentation_of_ac_derivativeFormula
     simpa [D] using hformula (f := f) (R0 := R0) hf c
 
 /-- Restricted-weight version of
-`ballIntegralRadiusWeightedRepresentation_of_ac_derivativeFormula`. -/
+`ballIntegralRadiusWeightedRepresentation_of_ac_derivativeFormula`.
+@isnad1 id=ballinte.2h1v.s3.167584abb26d from=translated src=- shape=cbe5c5ba vocab=68528b38
+-/
 theorem ballIntegralRadiusWeightedRepresentationForWeights_of_ac_derivativeFormulaForWeights
     {n : ℕ}
     (hac_all : BallIntegralRadiusACOfIntegrableOnBall n)
@@ -319,7 +335,9 @@ theorem ballIntegralRadiusWeightedRepresentationForWeights_of_ac_derivativeFormu
     simpa [D] using hformula (f := f) (R0 := R0) hf c hc
 
 /-- Euclidean thin-shell absolute continuity turns an unrestricted derivative
-formula into the unrestricted weighted radial representation. -/
+formula into the unrestricted weighted radial representation.
+@isnad1 id=ballinte.1h1v.s2.b76335aacd5c from=translated src=- shape=6321fd23 vocab=477849e2
+-/
 theorem ballIntegralRadiusWeightedRepresentation_of_derivativeFormula_euclidean
     {n : ℕ}
     (hformula : BallIntegralRadiusDerivativeFormula n) :
@@ -331,7 +349,9 @@ theorem ballIntegralRadiusWeightedRepresentation_of_derivativeFormula_euclidean
     hformula
 
 /-- Euclidean thin-shell absolute continuity turns a restricted derivative
-formula into the restricted weighted radial representation. -/
+formula into the restricted weighted radial representation.
+@isnad1 id=ballinte.1h1v.s2.130eb7cf4e51 from=translated src=- shape=6321fd23 vocab=d988250d
+-/
 theorem ballIntegralRadiusWeightedRepresentationForWeights_of_derivativeFormulaForWeights_euclidean
     {n : ℕ}
     (hformula : BallIntegralRadiusDerivativeFormulaForWeights n) :
@@ -343,7 +363,9 @@ theorem ballIntegralRadiusWeightedRepresentationForWeights_of_derivativeFormulaF
     hformula
 
 /-- Local `L²` radius absolute continuity supplied by the thin radial-shell
-volume estimate. -/
+volume estimate.
+@isnad1 id=weakener.4h5v.s7.abe0110a04ec from=translated src=- shape=494f1e5a vocab=8d5597e6
+-/
 theorem weakEnergyAbsolutelyContinuousOnRadii_of_locallyL2_radialShellsVolume
     {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {Ω : Set (Domain n)} {R0 : ℝ}
@@ -359,7 +381,9 @@ theorem weakEnergyAbsolutelyContinuousOnRadii_of_locallyL2_radialShellsVolume
     hDu_meas hgrad hclosedBall_subset
 
 /-- `W^{1,2}_{loc}` radius absolute continuity supplied by the thin radial-shell
-volume estimate. -/
+volume estimate.
+@isnad1 id=weakener.3h6v.s7.3956a1451e67 from=translated src=- shape=eed74296 vocab=b66331ce
+-/
 theorem weakEnergyAbsolutelyContinuousOnRadii_of_W12LocIn_radialShellsVolume
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}

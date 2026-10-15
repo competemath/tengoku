@@ -33,7 +33,9 @@ namespace LeanStationaryHarmonicMaps
 namespace StationaryHarmonicMap
 
 /-- Euclidean-target weak monotonicity in interval form for domain-variation
-stationary Sobolev maps. -/
+stationary Sobolev maps.
+@isnad1 id=le.6h8v.s8.627b8dc7640c from=translated src=- shape=57e47c39 vocab=365af606
+-/
 theorem weakTheta_le_of_W12Loc_euclidean
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -59,7 +61,9 @@ theorem weakTheta_le_of_W12Loc_euclidean
 
 /-- Auxiliary arbitrary-center Euclidean weak monotonicity in interval form for
 an already recentered weak stationary map package.  The public theorem below
-automatically builds this recentered package from `WeakStationaryMapIn u Du Ω`. -/
+automatically builds this recentered package from `WeakStationaryMapIn u Du Ω`.
+@isnad1 id=le.6h9v.s7.d39352c5a01c from=translated src=- shape=0bdc03ac vocab=7644e570
+-/
 theorem weakTheta_le_of_centered_W12Loc_euclidean
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
@@ -88,7 +92,9 @@ theorem weakTheta_le_of_centered_W12Loc_euclidean
       hs_mem hr_mem hsr
 
 /-- Auxiliary arbitrary-center Euclidean weak increment formula for an already
-recentered weak stationary map package. -/
+recentered weak stationary map package.
+@isnad1 id=eq.6h9v.s7.380d7ea3258d from=translated src=- shape=b4c36b39 vocab=8393a674
+-/
 theorem weakTheta_increment_eq_weakMonotonicityRhs_of_centered_W12Loc_euclidean
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
@@ -133,7 +139,9 @@ theorem weakTheta_increment_eq_weakMonotonicityRhs_of_centered_W12Loc_euclidean
 
 /-- Frozen public endpoint for the current custom weak interface: arbitrary-
 center Euclidean weak monotonicity in interval form, directly from the
-original-coordinate weak stationary map package. -/
+original-coordinate weak stationary map package.
+@isnad1 id=le.6h9v.s7.ef91f351e938 from=translated src=- shape=2dbd2e80 vocab=365af606
+-/
 theorem weakTheta_le_of_arbitrary_center_W12Loc_euclidean
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
@@ -154,7 +162,9 @@ theorem weakTheta_le_of_arbitrary_center_W12Loc_euclidean
 
 /-- Frozen public endpoint for the current custom weak interface: arbitrary-
 center Euclidean weak monotonicity formula in increment form, directly from the
-original-coordinate weak stationary map package. -/
+original-coordinate weak stationary map package.
+@isnad1 id=eq.6h9v.s7.d681f7084b22 from=translated src=- shape=f13211e0 vocab=09bced73
+-/
 theorem weakTheta_increment_eq_weakMonotonicityRhs_of_arbitrary_center_W12Loc_euclidean
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}

@@ -50,14 +50,18 @@ def IsRegularSeq {Q : Type*} (r : Q → Q → Prop) (f : ℕ → Q) : Prop :=
   ∀ i : ℕ, {j : ℕ | r (f i) (f j)}.Infinite
 
 /-- A regular sequence has arbitrarily large indices dominating any given index:
-for every `i` and threshold `N` there is `j ≥ N` with `f i ≤ f j`. -/
+for every `i` and threshold `N` there is `j ≥ N` with `f i ≤ f j`.
+@isnad1 id=ex.1h5v.s5.300da02bcf2d from=translated src=- shape=c422581b vocab=2834cb00
+-/
 theorem IsRegularSeq.exists_ge {Q : Type*} {r : Q → Q → Prop}
     {f : ℕ → Q} (hf : IsRegularSeq r f) (i N : ℕ) :
     ∃ j, N ≤ j ∧ r (f i) (f j) := by
   obtain ⟨j, hj_mem, hj_gt⟩ := (hf i).exists_gt N
   exact ⟨j, hj_gt.le, hj_mem⟩
 
-/-- A tail of a regular sequence is regular. -/
+/-- A tail of a regular sequence is regular.
+@isnad1 id=isregula.1h4v.s5.c543db236941 from=translated src=- shape=31c51d6f vocab=5bbdd3e1
+-/
 theorem IsRegularSeq.tail {Q : Type*} {r : Q → Q → Prop}
     {f : ℕ → Q} (hf : IsRegularSeq r f) (k : ℕ) :
     IsRegularSeq r fun i => f (i + k) := by
@@ -129,7 +133,9 @@ private theorem exists_bad_seq {Q : Type*} (r : Q → Q → Prop) (f : ℕ → Q
   omega
 
 /-- **In a WQO every sequence is eventually regular.** In fact this is an equivalent
-characterization of WQO, since any bad sequence admits no regular tail. -/
+characterization of WQO, since any bad sequence admits no regular tail.
+@isnad1 id=ex.1h3v.s5.7b1d7af4dc29 from=translated src=- shape=dbb41b9d vocab=e2446259
+-/
 theorem WellQuasiOrdered.eventuallyRegular {Q : Type*} (r : Q → Q → Prop)
     (hwqo : WellQuasiOrdered r) (f : ℕ → Q) :
     ∃ n : ℕ, IsRegularSeq r fun i => f (i + n) := by
@@ -142,7 +148,9 @@ theorem WellQuasiOrdered.eventuallyRegular {Q : Type*} (r : Q → Q → Prop)
 
 /-- In a WQO, an antitone sequence stabilizes from above: there is an index `m` from
 which the sequence becomes `r`-dominated by `a m` (so, together with antitonicity,
-`a m` is `r`-equivalent to every later term). -/
+`a m` is `r`-equivalent to every later term).
+@isnad1 id=ex.1h4v.s5.dcb156139330 from=translated src=- shape=a0e3259f vocab=1032005a
+-/
 theorem WellQuasiOrdered.exists_forall_le_of_antitone {β : Type*} {r : β → β → Prop}
     [IsPreorder β r] (hwqo : WellQuasiOrdered r) (a : ℕ → β)
     (hanti : ∀ m n : ℕ, m ≤ n → r (a n) (a m)) :
@@ -159,7 +167,9 @@ theorem WellQuasiOrdered.exists_forall_le_of_antitone {β : Type*} {r : β → �
   obtain ⟨k, l, hkl, h⟩ := hwqo fun n => a (idx n)
   exact hidx.2 k (trans_of r h (hanti _ _ (hidx.1.monotone (Nat.succ_le_of_lt hkl))))
 
-/-- `List.SublistForall₂ r` is a preorder on `List Q` whenever `r` is a preorder on `Q`. -/
+/-- `List.SublistForall₂ r` is a preorder on `List Q` whenever `r` is a preorder on `Q`.
+@isnad1 id=ispreord.0h2v.s4.d6e40591cfcc from=translated src=- shape=482735f1 vocab=c37fe22e
+-/
 instance List.SublistForall₂.instIsPreorder {Q : Type*} (r : Q → Q → Prop) [IsPreorder Q r] :
     IsPreorder (List Q) (List.SublistForall₂ r) where
   refl := (List.SublistForall₂.is_refl (Rₐ := r)).refl
@@ -168,7 +178,9 @@ instance List.SublistForall₂.instIsPreorder {Q : Type*} (r : Q → Q → Prop)
 /-- **Higman's Lemma, unrestricted.** If `r` is a WQO on `Q`, then `List.SublistForall₂ r` is a
 WQO on all of `List Q` (not just on a `PartiallyWellOrderedOn` subset). A direct restatement of
 `Set.PartiallyWellOrderedOn.partiallyWellOrderedOn_sublistForall₂` via
-`partiallyWellOrderedOn_univ_iff`. -/
+`partiallyWellOrderedOn_univ_iff`.
+@isnad1 id=wellquas.1h2v.s4.b2b297fe052c from=translated src=- shape=d4fc8890 vocab=bdb7943d
+-/
 theorem WellQuasiOrdered.sublistForall₂ {Q : Type*} {r : Q → Q → Prop} [IsPreorder Q r]
     (h : WellQuasiOrdered r) : WellQuasiOrdered (List.SublistForall₂ r) := by
   rw [← partiallyWellOrderedOn_univ_iff] at h ⊢

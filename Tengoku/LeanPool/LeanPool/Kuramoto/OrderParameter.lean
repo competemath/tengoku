@@ -23,6 +23,9 @@ open Complex Finset
 noncomputable def kuramotoR (N : ℕ) (θ : Fin N → ℝ) : ℂ :=
   (∑ k, Complex.exp (θ k * Complex.I)) / N
 
+/--
+@isnad1 id=le.1h2v.s5.4b1e9d2b82b6 from=translated src=- shape=733e2f21 vocab=786cdf8a
+-/
 theorem kuramotoR_norm_le_one (N : ℕ) (hN : 0 < N) (θ : Fin N → ℝ) :
     ‖kuramotoR N θ‖ ≤ 1 := by
   have hnorm (k : Fin N) : ‖Complex.exp (θ k * Complex.I)‖ = 1 :=

@@ -41,7 +41,9 @@ variable {ι κ : Type*} [Fintype ι] [Fintype κ]
 omit [Fintype ι] in
 /-- Weighted Cauchy–Schwarz for one row: if row `i` of `A` has absolute sum at most `R`, then
 `‖(A *ᵥ y) i‖ ^ 2 ≤ R * ∑ j, ‖A i j‖ * ‖y j‖ ^ 2`. This is the row step of the Schur test used
-in `apd:thm:layer_inflow`. Zero entries and empty sums need no separate case. -/
+in `apd:thm:layer_inflow`. Zero entries and empty sums need no separate case.
+@isnad1 id=le.1h7v.s7.e899aac9a4df from=translated src=- shape=b3ed587b vocab=9072f3a0
+-/
 theorem schur_row_sq_le (A : Matrix ι κ 𝕜) (y : κ → 𝕜) (i : ι) (R : ℝ)
     (hrow : ∑ j, ‖A i j‖ ≤ R) :
     ‖(A *ᵥ y) i‖ ^ 2 ≤ R * ∑ j, ‖A i j‖ * ‖y j‖ ^ 2 := by
@@ -60,7 +62,9 @@ theorem schur_row_sq_le (A : Matrix ι κ 𝕜) (y : κ → 𝕜) (i : ι) (R : 
 
 /-- Squared form of the finite Schur test used in `apd:thm:layer_inflow`: if every row of `A`
 has absolute sum at most `R` and every column at most `C`, then
-`∑ i, ‖(A *ᵥ y) i‖ ^ 2 ≤ R * C * ∑ j, ‖y j‖ ^ 2`. -/
+`∑ i, ‖(A *ᵥ y) i‖ ^ 2 ≤ R * C * ∑ j, ‖y j‖ ^ 2`.
+@isnad1 id=le.3h7v.s7.379eaeba9aa5 from=translated src=- shape=eb6793de vocab=9072f3a0
+-/
 theorem schur_mulVec_sq_le (A : Matrix ι κ 𝕜) (y : κ → 𝕜) {R C : ℝ}
     (hR : 0 ≤ R) (hrow : ∀ i, ∑ j, ‖A i j‖ ≤ R)
     (hcol : ∀ j, ∑ i, ‖A i j‖ ≤ C) :
@@ -84,7 +88,9 @@ theorem schur_mulVec_sq_le (A : Matrix ι κ 𝕜) (y : κ → 𝕜) {R C : ℝ}
 variable [DecidableEq κ]
 
 /-- The Schur test as a bound on the action of `clm A`, the continuous linear map of Euclidean
-spaces attached to `A` in `BlockNorm`: `‖clm A y‖ ≤ √(R * C) * ‖y‖` (`apd:thm:layer_inflow`). -/
+spaces attached to `A` in `BlockNorm`: `‖clm A y‖ ≤ √(R * C) * ‖y‖` (`apd:thm:layer_inflow`).
+@isnad1 id=le.4h7v.s10.178600ededb8 from=translated src=- shape=eb2b9891 vocab=ad67a90f
+-/
 theorem schur_clm_le (A : Matrix ι κ 𝕜) (y : EuclideanSpace 𝕜 κ) {R C : ℝ}
     (hR : 0 ≤ R) (hC : 0 ≤ C) (hrow : ∀ i, ∑ j, ‖A i j‖ ≤ R)
     (hcol : ∀ j, ∑ i, ‖A i j‖ ≤ C) :
@@ -99,7 +105,9 @@ theorem schur_clm_le (A : Matrix ι κ 𝕜) (y : EuclideanSpace 𝕜 κ) {R C :
 
 omit [DecidableEq κ] in
 /-- The same bound for `Matrix.mulVec`, without the bundled map `clm A`. The norm is the
-Euclidean norm that Pauli coefficient vectors carry (`apd:thm:layer_inflow`). -/
+Euclidean norm that Pauli coefficient vectors carry (`apd:thm:layer_inflow`).
+@isnad1 id=le.4h7v.s8.aad1b4d95dbe from=translated src=- shape=d8d7a3b2 vocab=b1585cad
+-/
 theorem schur_mulVec_le (A : Matrix ι κ 𝕜) (y : EuclideanSpace 𝕜 κ) {R C : ℝ}
     (hR : 0 ≤ R) (hC : 0 ≤ C) (hrow : ∀ i, ∑ j, ‖A i j‖ ≤ R)
     (hcol : ∀ j, ∑ i, ‖A i j‖ ≤ C) :
@@ -109,7 +117,9 @@ theorem schur_mulVec_le (A : Matrix ι κ 𝕜) (y : EuclideanSpace 𝕜 κ) {R 
 
 /-- **The finite Schur test**, in the form used by `apd:thm:layer_inflow`: row sums at most `R`
 and column sums at most `C` give `‖A‖ ≤ √(R * C)`. Here `‖A‖` is the scoped **ℓ² operator norm**
-(`Matrix.Norms.L2Operator`), not an entrywise matrix norm. -/
+(`Matrix.Norms.L2Operator`), not an entrywise matrix norm.
+@isnad1 id=le.4h6v.s7.ea5b8849184d from=translated src=- shape=73157709 vocab=5689cf99
+-/
 theorem l2_opNorm_le_schur (A : Matrix ι κ 𝕜) {R C : ℝ}
     (hR : 0 ≤ R) (hC : 0 ≤ C) (hrow : ∀ i, ∑ j, ‖A i j‖ ≤ R)
     (hcol : ∀ j, ∑ i, ‖A i j‖ ≤ C) : ‖A‖ ≤ Real.sqrt (R * C) := by
@@ -119,7 +129,9 @@ theorem l2_opNorm_le_schur (A : Matrix ι κ 𝕜) {R C : ℝ}
 
 /-- If `B` bounds every row sum and every column sum, then `‖A‖ ≤ B`: the case `R = C = B` of
 `l2_opNorm_le_schur`. This is the form `Pauli/LayerFlow` applies to the layer inflow matrices
-(`apd:thm:layer_inflow`). -/
+(`apd:thm:layer_inflow`).
+@isnad1 id=le.3h5v.s6.6b6562ba7b62 from=translated src=- shape=7d9807ee vocab=57733317
+-/
 theorem l2_opNorm_le_of_row_col_bound (A : Matrix ι κ 𝕜) {B : ℝ}
     (hB : 0 ≤ B) (hrow : ∀ i, ∑ j, ‖A i j‖ ≤ B)
     (hcol : ∀ j, ∑ i, ‖A i j‖ ≤ B) : ‖A‖ ≤ B := by

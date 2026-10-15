@@ -37,28 +37,52 @@ def phase {α : Type*} [LinearOrder α] (shifted : Bool) (xs : List α) : List �
   else
     pairPhase xs
 
+/--
+@isnad1 id=eq.0h1v.s3.eb6b173cbc4b from=translated src=- shape=9dd68f90 vocab=6c428635
+-/
 @[simp] theorem pairPhase_nil {α : Type*} [LinearOrder α] :
     pairPhase ([] : List α) = [] := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.1e05c3a266ab from=translated src=- shape=67d480a1 vocab=ebe60fda
+-/
 @[simp] theorem pairPhase_singleton {α : Type*} [LinearOrder α] (a : α) :
     pairPhase [a] = [a] := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.3e3b0bf92c99 from=translated src=- shape=712a330c vocab=7b76896c
+-/
 @[simp] theorem pairPhase_cons_cons {α : Type*} [LinearOrder α] (a b : α) (xs : List α) :
     pairPhase (a :: b :: xs) = min a b :: max a b :: pairPhase xs := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.e45cc5c4f00b from=translated src=- shape=cefdfddf vocab=39d33e98
+-/
 @[simp] theorem phase_false {α : Type*} [LinearOrder α] (xs : List α) :
     phase false xs = pairPhase xs := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.e2d5f5bc47b4 from=translated src=- shape=a7227927 vocab=4b102fce
+-/
 @[simp] theorem phase_true_nil {α : Type*} [LinearOrder α] :
     phase true ([] : List α) = [] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.7aa871d2a8fa from=translated src=- shape=80771de9 vocab=1b6d82d5
+-/
 @[simp] theorem phase_true_cons {α : Type*} [LinearOrder α] (a : α) (xs : List α) :
     phase true (a :: xs) = a :: pairPhase xs := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.2f047e168356 from=translated src=- shape=1ecb6dcd vocab=cb41807a
+-/
 @[simp] theorem length_pairPhase {α : Type*} [LinearOrder α] (xs : List α) :
     (pairPhase xs).length = xs.length := by
   induction xs using pairPhase.induct <;> simp_all [pairPhase]
 
+/--
+@isnad1 id=eq.0h3v.s4.a7d5f59e6dc3 from=translated src=- shape=63173502 vocab=ed1a6159
+-/
 @[simp] theorem length_phase {α : Type*} [LinearOrder α] (p : Bool) (xs : List α) :
     (phase p xs).length = xs.length := by
   cases p <;> cases xs <;> simp [phase]
@@ -69,23 +93,41 @@ def pref (xs : List Bool) (i : ℕ) : ℤ := ((xs.take i).count true : ℤ)
 /-- Interpret a Boolean bit as zero or one in the integers. -/
 def bitInt (b : Bool) : ℤ := if b then 1 else 0
 
+/--
+@isnad1 id=eq.0h1v.s3.a4e1b25a9dbc from=translated src=- shape=12facff3 vocab=24f18a50
+-/
 @[simp] theorem pref_nil (i : ℕ) : pref [] i = 0 := by simp [pref]
 
+/--
+@isnad1 id=eq.0h1v.s4.739209fff954 from=translated src=- shape=98672205 vocab=0279d0ce
+-/
 @[simp] theorem pref_zero (xs : List Bool) : pref xs 0 = 0 := by simp [pref]
 
+/--
+@isnad1 id=eq.0h3v.s5.a677d7b218ca from=translated src=- shape=2c9ea9f4 vocab=86f38804
+-/
 @[simp] theorem pref_cons_succ (a : Bool) (xs : List Bool) (i : ℕ) :
     pref (a :: xs) (i + 1) = bitInt a + pref xs i := by
   cases a <;> simp [pref, bitInt, add_comm]
 
+/--
+@isnad1 id=eq.0h4v.s5.049f101b1e76 from=translated src=- shape=d9c2d8e7 vocab=86f38804
+-/
 theorem pref_cons_cons_add (a b : Bool) (xs : List Bool) (i : ℕ) :
     pref (a :: b :: xs) (i + 2) = bitInt a + bitInt b + pref xs i := by
   rw [show i + 2 = (i + 1) + 1 by omega, pref_cons_succ, pref_cons_succ]
   omega
 
+/--
+@isnad1 id=eq.0h2v.s5.fd833df8fd6c from=translated src=- shape=f8f43f23 vocab=09fd4920
+-/
 theorem bitInt_min_add_max (a b : Bool) :
     bitInt (min a b) + bitInt (max a b) = bitInt a + bitInt b := by
   cases a <;> cases b <;> decide
 
+/--
+@isnad1 id=eq.0h2v.s5.e5418090fd49 from=translated src=- shape=1a134231 vocab=cb312fc0
+-/
 theorem pref_pairPhase_even (xs : List Bool) (k : ℕ) :
     pref (pairPhase xs) (2 * k) = pref xs (2 * k) := by
   induction k generalizing xs with
@@ -101,6 +143,9 @@ theorem pref_pairPhase_even (xs : List Bool) (k : ℕ) :
               rw [pairPhase_cons_cons, pref_cons_cons_add, pref_cons_cons_add,
                 bitInt_min_add_max, ih]
 
+/--
+@isnad1 id=eq.1h2v.s6.fa383aeacb9f from=translated src=- shape=45b366cc vocab=3b609f45
+-/
 theorem pref_pairPhase_odd (xs : List Bool) (k : ℕ)
     (hk : 2 * k + 1 < xs.length) :
     pref (pairPhase xs) (2 * k + 1) =
@@ -130,16 +175,25 @@ theorem pref_pairPhase_odd (xs : List Bool) (k : ℕ)
               simp only [max_def]
               split <;> split <;> omega
 
+/--
+@isnad1 id=eq.0h2v.s5.36301df226e4 from=translated src=- shape=3ade5c9a vocab=c77379f2
+-/
 theorem pref_phase_false_even (xs : List Bool) (k : ℕ) :
     pref (phase false xs) (2 * k) = pref xs (2 * k) := by
   exact pref_pairPhase_even xs k
 
+/--
+@isnad1 id=eq.1h2v.s6.e392ed825c4f from=translated src=- shape=76d53a9f vocab=0ac08b8f
+-/
 theorem pref_phase_false_odd (xs : List Bool) (k : ℕ)
     (hk : 2 * k + 1 < xs.length) :
     pref (phase false xs) (2 * k + 1) =
       max (pref xs (2 * k)) (pref xs (2 * k + 2) - 1) := by
   exact pref_pairPhase_odd xs k hk
 
+/--
+@isnad1 id=eq.0h2v.s6.adf6f67cc7da from=translated src=- shape=5de66ae9 vocab=42f03735
+-/
 theorem pref_phase_true_odd (xs : List Bool) (k : ℕ) :
     pref (phase true xs) (2 * k + 1) = pref xs (2 * k + 1) := by
   cases xs with
@@ -149,6 +203,9 @@ theorem pref_phase_true_odd (xs : List Bool) (k : ℕ) :
       rw [show 2 * k + 1 = 2 * k + 1 by rfl, pref_cons_succ, pref_cons_succ,
         pref_pairPhase_even]
 
+/--
+@isnad1 id=eq.1h2v.s7.f0abe61ed71c from=translated src=- shape=b9c5ec77 vocab=b43163c5
+-/
 theorem pref_phase_true_even (xs : List Bool) (k : ℕ)
     (hk : 2 * k + 2 < xs.length) :
     pref (phase true xs) (2 * k + 2) =
@@ -173,6 +230,9 @@ def active (q i : ℕ) : Bool := decide (i % 2 = (q + 1) % 2)
 def phaseN {α : Type*} [LinearOrder α] (q : ℕ) (xs : List α) : List α :=
   phase (decide (q % 2 = 1)) xs
 
+/--
+@isnad1 id=eq.2h3v.s6.8630edf5e4be from=translated src=- shape=5e59766d vocab=5d4652eb
+-/
 theorem pref_phaseN (q : ℕ) (xs : List Bool) (i : ℕ)
     (hi0 : 0 < i) (hin : i < xs.length) :
     pref (phaseN q xs) i =
@@ -218,6 +278,9 @@ theorem pref_phaseN (q : ℕ) (xs : List Bool) (i : ℕ)
 /-- The total number of true bits in a Boolean list. -/
 def countTrue (xs : List Bool) : ℕ := xs.count true
 
+/--
+@isnad1 id=eq.0h1v.s3.69433e215d6a from=translated src=- shape=83723a48 vocab=98444514
+-/
 @[simp] theorem countTrue_pairPhase (xs : List Bool) :
     countTrue (pairPhase xs) = countTrue xs := by
   induction xs using pairPhase.induct with
@@ -230,6 +293,9 @@ def countTrue (xs : List Bool) : ℕ := xs.count true
           | nil => rfl
           | cons b xs => exact (h a b xs rfl).elim
 
+/--
+@isnad1 id=eq.0h2v.s3.e0c86f66f5ed from=translated src=- shape=d24e0e71 vocab=17218587
+-/
 @[simp] theorem countTrue_phase (p : Bool) (xs : List Bool) :
     countTrue (phase p xs) = countTrue xs := by
   cases p with
@@ -244,6 +310,9 @@ def countTrue (xs : List Bool) : ℕ := xs.count true
           simp only [List.count_cons]
           rw [h]
 
+/--
+@isnad1 id=eq.0h2v.s3.e323cc8e8fff from=translated src=- shape=0701bb2a vocab=5cb37734
+-/
 @[simp] theorem countTrue_phaseN (q : ℕ) (xs : List Bool) :
     countTrue (phaseN q xs) = countTrue xs := by
   simp [phaseN]
@@ -253,21 +322,36 @@ def evolve {α : Type*} [LinearOrder α] (q : ℕ) (xs : List α) : ℕ → List
   | 0 => xs
   | t + 1 => phaseN (q + t) (evolve q xs t)
 
+/--
+@isnad1 id=eq.0h3v.s4.77aa84116768 from=translated src=- shape=d0c1057c vocab=8e7c9e3b
+-/
 @[simp] theorem evolve_zero {α : Type*} [LinearOrder α] (q : ℕ) (xs : List α) :
     evolve q xs 0 = xs := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.3382b06d9bbb from=translated src=- shape=6192cf7d vocab=7913fd75
+-/
 @[simp] theorem evolve_succ {α : Type*} [LinearOrder α] (q : ℕ) (xs : List α) (t : ℕ) :
     evolve q xs (t + 1) = phaseN (q + t) (evolve q xs t) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.c7abe7a0a38f from=translated src=- shape=bcfc0bf9 vocab=98bc42ae
+-/
 @[simp] theorem length_phaseN {α : Type*} [LinearOrder α] (q : ℕ) (xs : List α) :
     (phaseN q xs).length = xs.length := by simp [phaseN]
 
+/--
+@isnad1 id=eq.0h4v.s4.c2e2bba98fed from=translated src=- shape=0a8e590b vocab=9d86be8c
+-/
 @[simp] theorem length_evolve {α : Type*} [LinearOrder α] (q : ℕ) (xs : List α) (t : ℕ) :
     (evolve q xs t).length = xs.length := by
   induction t with
   | zero => rfl
   | succ t ih => simp [evolve, ih]
 
+/--
+@isnad1 id=eq.0h3v.s4.d72f66226af6 from=translated src=- shape=7c23ebe2 vocab=464200d6
+-/
 @[simp] theorem countTrue_evolve (q : ℕ) (xs : List Bool) (t : ℕ) :
     countTrue (evolve q xs t) = countTrue xs := by
   induction t with
@@ -285,19 +369,31 @@ def potential (z i : ℕ) (h : ℤ) : ℤ :=
 def Bad (z : ℕ) (xs : List Bool) (i : ℕ) (h : ℤ) : Prop :=
   1 ≤ h ∧ low z i + h ≤ pref xs i
 
+/--
+@isnad1 id=le.0h2v.s3.37e64c1ca712 from=translated src=- shape=c8f743ec vocab=d3b62fa6
+-/
 theorem pref_le_index (xs : List Bool) (i : ℕ) : pref xs i ≤ i := by
   unfold pref
   have h := List.count_le_length (a := true) (l := xs.take i)
   have ht := List.length_take_le i xs
   omega
 
+/--
+@isnad1 id=le.0h2v.s4.a44543cfdbb6 from=translated src=- shape=8410fc4d vocab=62ced51c
+-/
 theorem pref_le_total (xs : List Bool) (i : ℕ) : pref xs i ≤ countTrue xs := by
   unfold pref countTrue
   exact_mod_cast (List.take_sublist i xs).count_le true
 
+/--
+@isnad1 id=eq.0h1v.s3.254ca1232f4e from=translated src=- shape=796988c2 vocab=18ca7bc8
+-/
 theorem pref_at_length (xs : List Bool) : pref xs xs.length = countTrue xs := by
   simp [pref, countTrue]
 
+/--
+@isnad1 id=le.3h4v.s5.c00d75331de4 from=translated src=- shape=aaf64ba2 vocab=051aa5fe
+-/
 theorem pref_lower (xs : List Bool) (z r i : ℕ)
     (hlen : xs.length = r + z) (hcount : countTrue xs = r) (hi : i ≤ xs.length) :
     low z i ≤ pref xs i := by
@@ -310,11 +406,17 @@ theorem pref_lower (xs : List Bool) (z r i : ℕ)
   simp only [max_def]
   split <;> omega
 
+/--
+@isnad1 id=le.1h3v.s5.872faadb31e6 from=translated src=- shape=c4180d77 vocab=61990626
+-/
 theorem potential_upper (z i : ℕ) (h : ℤ) (hh : 1 ≤ h) :
     potential z i h ≤ (z : ℤ) - 2 := by
   unfold potential
   split <;> omega
 
+/--
+@isnad1 id=le.2h5v.s5.42248c191941 from=translated src=- shape=ae8418b1 vocab=5fe95d5d
+-/
 theorem potential_lower_of_initial_bad (xs : List Bool) (z r i : ℕ) (h : ℤ)
     (hcount : countTrue xs = r) (hb : Bad z xs i h) :
     -(r : ℤ) ≤ potential z i h := by
@@ -327,23 +429,35 @@ theorem potential_lower_of_initial_bad (xs : List Bool) (z r i : ℕ) (h : ℤ)
   simp only [max_def] at hb
   split at hb <;> split <;> omega
 
+/--
+@isnad1 id=eq.1h3v.s6.271a7f8c0279 from=translated src=- shape=af6f280a vocab=0fb74b13
+-/
 theorem potential_left (z i : ℕ) (h : ℤ) (hi : 0 < i) :
     potential z (i - 1) (h + low z i - low z (i - 1)) = potential z i h - 1 := by
   unfold potential low
   simp only [max_def]
   split <;> split <;> split <;> split <;> omega
 
+/--
+@isnad1 id=eq.0h3v.s6.9b02d91ae794 from=translated src=- shape=65ae61fa vocab=0b00f990
+-/
 theorem potential_right (z i : ℕ) (h : ℤ) :
     potential z (i + 1) (h + 1 + low z i - low z (i + 1)) = potential z i h - 1 := by
   unfold potential low
   simp only [max_def]
   split <;> split <;> split <;> split <;> omega
 
+/--
+@isnad1 id=not.0h3v.s4.344c0f8814fe from=translated src=- shape=0778d082 vocab=c80a701c
+-/
 theorem not_bad_zero (z : ℕ) (xs : List Bool) (h : ℤ) : ¬Bad z xs 0 h := by
   unfold Bad low
   simp
   omega
 
+/--
+@isnad1 id=not.2h4v.s5.0f5493afca9b from=translated src=- shape=d651b755 vocab=4c8458f5
+-/
 theorem not_bad_length (z r : ℕ) (xs : List Bool) (h : ℤ)
     (hlen : xs.length = r + z) (hcount : countTrue xs = r) :
     ¬Bad z xs xs.length h := by
@@ -354,6 +468,9 @@ theorem not_bad_length (z r : ℕ) (xs : List Bool) (h : ℤ)
   simp only [max_def] at hb
   split at hb <;> omega
 
+/--
+@isnad1 id=ex.6h6v.s7.6acf911c9779 from=translated src=- shape=480111f3 vocab=e1254eaa
+-/
 theorem bad_predecessor (z r q i : ℕ) (xs : List Bool) (h : ℤ)
     (hlen : xs.length = r + z) (hcount : countTrue xs = r)
     (hi0 : 0 < i) (hin : i < xs.length) (hact : active q i = true)
@@ -403,6 +520,9 @@ theorem bad_predecessor (z r q i : ℕ) (xs : List Bool) (h : ℤ)
       exact not_bad_zero z xs h' (heq ▸ hbad)
     exact ⟨i - 1, h', Or.inl rfl, hjpos, by omega, hbad, potential_left z i h hi0⟩
 
+/--
+@isnad1 id=eq.4h3v.s6.7eed0eed7541 from=translated src=- shape=d4c06cb6 vocab=4332509c
+-/
 theorem active_previous_neighbor (q i j : ℕ) (hq : 0 < q) (hi0 : 0 < i)
     (hi : active q i = true) (hj : j = i - 1 ∨ j = i + 1) :
     active (q - 1) j = true := by
@@ -411,6 +531,9 @@ theorem active_previous_neighbor (q i j : ℕ) (hq : 0 < q) (hi0 : 0 < i)
   rw [show q - 1 + 1 = q by omega]
   rcases hj with rfl | rfl <;> omega
 
+/--
+@isnad1 id=eq.2h2v.s5.29fc3cf6e6e9 from=translated src=- shape=68dd5c11 vocab=e32b808f
+-/
 theorem active_previous_same (q i : ℕ) (hq : 0 < q)
     (hi : active q i = false) : active (q - 1) i = true := by
   unfold active at hi ⊢
@@ -418,6 +541,9 @@ theorem active_previous_same (q i : ℕ) (hq : 0 < q)
   rw [show q - 1 + 1 = q by omega]
   omega
 
+/--
+@isnad1 id=ex.5h7v.s7.500bd779a9f0 from=translated src=- shape=298b740d vocab=be16c75a
+-/
 theorem trace_bad_active (z r q : ℕ) (xs : List Bool) (t i : ℕ) (h : ℤ)
     (hlen : xs.length = r + z) (hcount : countTrue xs = r) (ht : 0 < t)
     (hact : active (q + t - 1) i = true)
@@ -468,6 +594,9 @@ theorem trace_bad_active (z r q : ℕ) (xs : List Bool) (t i : ℕ) (h : ℤ)
         push_cast
         omega
 
+/--
+@isnad1 id=eq.3h5v.s5.c28be2fac68c from=translated src=- shape=0c4545dc vocab=a25e742c
+-/
 theorem pref_evolve_full (z r q : ℕ) (xs : List Bool)
     (hlen : xs.length = r + z) (hcount : countTrue xs = r)
     (i : ℕ) (hi : i ≤ xs.length) :
@@ -536,6 +665,9 @@ theorem pref_evolve_full (z r q : ℕ) (xs : List Bool)
 /-- The monotone Boolean threshold used in the zero-one sorting argument. -/
 def threshold {α : Type*} [LinearOrder α] (a x : α) : Bool := decide (a ≤ x)
 
+/--
+@isnad1 id=eq.0h4v.s5.ed743c864adc from=translated src=- shape=7213597b vocab=9089e789
+-/
 theorem threshold_min {α : Type*} [LinearOrder α] (a x y : α) :
     threshold a (min x y) = min (threshold a x) (threshold a y) := by
   rcases le_total x y with hxy | hyx
@@ -550,6 +682,9 @@ theorem threshold_min {α : Type*} [LinearOrder α] (a x y : α) :
       simp [threshold, hx, hy]
     · by_cases hx : a ≤ x <;> simp [threshold, hx, hy]
 
+/--
+@isnad1 id=eq.0h4v.s5.c2c71925306e from=translated src=- shape=7213597b vocab=4bf50706
+-/
 theorem threshold_max {α : Type*} [LinearOrder α] (a x y : α) :
     threshold a (max x y) = max (threshold a x) (threshold a y) := by
   rcases le_total x y with hxy | hyx
@@ -564,6 +699,9 @@ theorem threshold_max {α : Type*} [LinearOrder α] (a x y : α) :
     · have hy : ¬a ≤ y := fun hy ↦ hx (hy.trans hyx)
       simp [threshold, hx, hy]
 
+/--
+@isnad1 id=eq.0h3v.s5.3e94f1f1bb86 from=translated src=- shape=d4710eee vocab=b026b986
+-/
 theorem map_threshold_pairPhase {α : Type*} [LinearOrder α] (a : α) (xs : List α) :
     (pairPhase xs).map (threshold a) = pairPhase (xs.map (threshold a)) := by
   induction xs using pairPhase.induct with
@@ -576,6 +714,9 @@ theorem map_threshold_pairPhase {α : Type*} [LinearOrder α] (a : α) (xs : Lis
           | nil => rfl
           | cons y xs => exact (h x y xs rfl).elim
 
+/--
+@isnad1 id=eq.0h4v.s5.63d12746b3ff from=translated src=- shape=5f31a146 vocab=f3424618
+-/
 theorem map_threshold_phase {α : Type*} [LinearOrder α]
     (a : α) (p : Bool) (xs : List α) :
     (phase p xs).map (threshold a) = phase p (xs.map (threshold a)) := by
@@ -586,11 +727,17 @@ theorem map_threshold_phase {α : Type*} [LinearOrder α]
       | nil => rfl
       | cons x xs => simp [phase, map_threshold_pairPhase]
 
+/--
+@isnad1 id=eq.0h4v.s5.d2674ed0fd7a from=translated src=- shape=b2712589 vocab=ad417818
+-/
 theorem map_threshold_phaseN {α : Type*} [LinearOrder α]
     (a : α) (q : ℕ) (xs : List α) :
     (phaseN q xs).map (threshold a) = phaseN q (xs.map (threshold a)) := by
   exact map_threshold_phase a _ xs
 
+/--
+@isnad1 id=eq.0h5v.s5.dd39cd38a9dd from=translated src=- shape=4b18e49b vocab=3bf0f418
+-/
 theorem map_threshold_evolve {α : Type*} [LinearOrder α]
     (a : α) (q t : ℕ) (xs : List α) :
     (evolve q xs t).map (threshold a) = evolve q (xs.map (threshold a)) t := by
@@ -598,6 +745,9 @@ theorem map_threshold_evolve {α : Type*} [LinearOrder α]
   | zero => rfl
   | succ t ih => simp [evolve, map_threshold_phaseN, ih]
 
+/--
+@isnad1 id=eq.1h2v.s5.6e64353731dc from=translated src=- shape=8a83f05b vocab=303a8ffa
+-/
 theorem pref_succ (xs : List Bool) (i : ℕ) (hi : i < xs.length) :
     pref xs (i + 1) = pref xs i + bitInt xs[i] := by
   induction xs generalizing i with
@@ -611,6 +761,9 @@ theorem pref_succ (xs : List Bool) (i : ℕ) (hi : i < xs.length) :
           rw [show i + 1 + 1 = (i + 1) + 1 by rfl, pref_cons_succ, pref_cons_succ]
           simpa [List.getElem_cons_succ, add_assoc] using congrArg (fun z : ℤ ↦ bitInt x + z) h
 
+/--
+@isnad1 id=eq.3h5v.s6.46c11b52b94b from=translated src=- shape=6f459cd7 vocab=7dc8bc86
+-/
 theorem bool_getElem_of_pref_full (z r q : ℕ) (xs : List Bool)
     (hlen : xs.length = r + z) (hcount : countTrue xs = r)
     (i : ℕ) (hi : i < xs.length) :
@@ -639,6 +792,9 @@ theorem bool_getElem_of_pref_full (z r q : ℕ) (xs : List Bool)
       split <;> split <;> omega
     cases hval : ys[i]'hiy <;> simp_all [bitInt, ys]
 
+/--
+@isnad1 id=eq.0h3v.s4.1b50dcd3929d from=translated src=- shape=5e6bd8a6 vocab=b5a2756c
+-/
 theorem countTrue_map_threshold {α : Type*} [LinearOrder α] (a : α) (xs : List α) :
     countTrue (xs.map (threshold a)) = (xs.filter (threshold a)).length := by
   induction xs with
@@ -647,6 +803,9 @@ theorem countTrue_map_threshold {α : Type*} [LinearOrder α] (a : α) (xs : Lis
       unfold countTrue at ih ⊢
       by_cases hx : a ≤ x <;> simp [threshold, hx, ih]
 
+/--
+@isnad1 id=eq.0h2v.s4.74f6a923a2e7 from=translated src=- shape=0b2700ab vocab=c5f80da7
+-/
 theorem countTrue_map_threshold_finRange {n : ℕ} (a : Fin n) :
     countTrue ((List.finRange n).map (threshold a)) = n - a.val := by
   rw [countTrue_map_threshold]
@@ -659,6 +818,9 @@ theorem countTrue_map_threshold_finRange {n : ℕ} (a : Fin n) :
     simp [threshold]
   rw [heq, Fin.card_Ici]
 
+/--
+@isnad1 id=eq.1h3v.s5.3de48a9d3a51 from=translated src=- shape=a67c5a58 vocab=9eca4fa1
+-/
 theorem countTrue_map_threshold_of_perm_finRange {n : ℕ} (a : Fin n)
     (xs : List (Fin n)) (hp : xs.Perm (List.finRange n)) :
     countTrue (xs.map (threshold a)) = n - a.val := by
@@ -667,6 +829,9 @@ theorem countTrue_map_threshold_of_perm_finRange {n : ℕ} (a : Fin n)
   rw [← countTrue_map_threshold]
   exact countTrue_map_threshold_finRange a
 
+/--
+@isnad1 id=eq.2h5v.s6.95c1645b70a3 from=translated src=- shape=5b05faf2 vocab=f0688112
+-/
 theorem threshold_evolve_perm_finRange {n : ℕ} (xs : List (Fin n))
     (hp : xs.Perm (List.finRange n)) (q : ℕ) (a : Fin n) (i : ℕ)
     (hi : i < n) :
@@ -700,6 +865,9 @@ theorem threshold_evolve_perm_finRange {n : ℕ} (xs : List (Fin n))
     rw [← houtOpt, hmapAt, hbOpt]
   exact Option.some.inj hsome
 
+/--
+@isnad1 id=eq.1h3v.s4.81206d30bdde from=translated src=- shape=47c43ccb vocab=ae825a68
+-/
 theorem evolve_perm_finRange_eq {n : ℕ} (xs : List (Fin n))
     (hp : xs.Perm (List.finRange n)) (q : ℕ) :
     evolve q xs n = List.finRange n := by
@@ -723,6 +891,9 @@ theorem evolve_perm_finRange_eq {n : ℕ} (xs : List (Fin n))
   apply Fin.ext
   simp
 
+/--
+@isnad1 id=perm.0h4v.s5.4ac8d2bf757e from=translated src=- shape=17a108ad vocab=854d3578
+-/
 theorem pair_minmax_perm {α : Type*} [LinearOrder α] (a b : α) (xs : List α) :
     (min a b :: max a b :: xs).Perm (a :: b :: xs) := by
   by_cases h : a ≤ b
@@ -730,6 +901,9 @@ theorem pair_minmax_perm {α : Type*} [LinearOrder α] (a b : α) (xs : List α)
   · have h' : b ≤ a := le_of_not_ge h
     simpa [min_eq_right h', max_eq_left h'] using List.Perm.swap a b xs
 
+/--
+@isnad1 id=perm.0h2v.s3.8c25a4270d78 from=translated src=- shape=903e385d vocab=98ce2e57
+-/
 @[simp] theorem pairPhase_perm {α : Type*} [LinearOrder α] (xs : List α) :
     (pairPhase xs).Perm xs := by
   induction xs using pairPhase.induct with
@@ -743,6 +917,9 @@ theorem pair_minmax_perm {α : Type*} [LinearOrder α] (a b : α) (xs : List α)
           | nil => exact .refl _
           | cons b xs => exact (h a b xs rfl).elim
 
+/--
+@isnad1 id=perm.0h3v.s4.652da4e35de7 from=translated src=- shape=4268aa99 vocab=649e7a8d
+-/
 @[simp] theorem phase_perm {α : Type*} [LinearOrder α] (p : Bool) (xs : List α) :
     (phase p xs).Perm xs := by
   cases p with
@@ -752,15 +929,24 @@ theorem pair_minmax_perm {α : Type*} [LinearOrder α] (a b : α) (xs : List α)
       | nil => exact .refl _
       | cons a xs => exact (pairPhase_perm xs).cons a
 
+/--
+@isnad1 id=perm.0h3v.s4.84882707e83c from=translated src=- shape=4268aa99 vocab=bd1f0c99
+-/
 @[simp] theorem phaseN_perm {α : Type*} [LinearOrder α] (q : ℕ) (xs : List α) :
     (phaseN q xs).Perm xs := phase_perm _ xs
 
+/--
+@isnad1 id=perm.0h4v.s4.bf4243964061 from=translated src=- shape=08c406ba vocab=e4a97790
+-/
 @[simp] theorem evolve_perm {α : Type*} [LinearOrder α] (q t : ℕ) (xs : List α) :
     (evolve q xs t).Perm xs := by
   induction t with
   | zero => exact .refl _
   | succ t ih => exact (phaseN_perm _ _).trans ih
 
+/--
+@isnad1 id=perm.0h3v.s5.d018e0a7ca2e from=translated src=- shape=2817aa36 vocab=f13f21d5
+-/
 theorem take_pairPhase_even_perm {α : Type*} [LinearOrder α]
     (xs : List α) (k : ℕ) :
     ((pairPhase xs).take (2 * k)).Perm (xs.take (2 * k)) := by
@@ -779,11 +965,17 @@ theorem take_pairPhase_even_perm {α : Type*} [LinearOrder α]
               exact (((ih xs).cons (max a b)).cons (min a b)).trans
                 (pair_minmax_perm a b (xs.take (2 * k)))
 
+/--
+@isnad1 id=perm.0h3v.s5.0a2710f641b8 from=translated src=- shape=24299b39 vocab=7f60d11b
+-/
 theorem take_phase_false_even_perm {α : Type*} [LinearOrder α]
     (xs : List α) (k : ℕ) :
     ((phase false xs).take (2 * k)).Perm (xs.take (2 * k)) :=
   take_pairPhase_even_perm xs k
 
+/--
+@isnad1 id=perm.0h3v.s6.3d252f117dcf from=translated src=- shape=995ef80f vocab=cdef961f
+-/
 theorem take_phase_true_odd_perm {α : Type*} [LinearOrder α]
     (xs : List α) (k : ℕ) :
     ((phase true xs).take (2 * k + 1)).Perm (xs.take (2 * k + 1)) := by
@@ -795,6 +987,9 @@ theorem take_phase_true_odd_perm {α : Type*} [LinearOrder α]
       simp only [List.take_succ_cons]
       exact (take_pairPhase_even_perm xs k).cons a
 
+/--
+@isnad1 id=perm.1h4v.s5.530d615cf648 from=translated src=- shape=916044f7 vocab=8c045ca8
+-/
 theorem take_phaseN_perm_of_inactive {α : Type*} [LinearOrder α]
     (q : ℕ) (xs : List α) (i : ℕ) (hact : active q i = false) :
     ((phaseN q xs).take i).Perm (xs.take i) := by
@@ -827,6 +1022,9 @@ noncomputable def permOfList {n : ℕ} (l : List (Fin n))
       (hp.nodup_iff.mpr (List.nodup_finRange n))
       (fun x ↦ (hp.mem_iff).2 (List.mem_finRange x)))
 
+/--
+@isnad1 id=eq.1h3v.s6.9d353b4eea7e from=translated src=- shape=b244b870 vocab=ec7a15c4
+-/
 theorem permOfList_apply {n : ℕ} (l : List (Fin n))
     (hp : l.Perm (List.finRange n)) (i : Fin n) :
     permOfList l hp i = l[i.val]'(by
@@ -835,12 +1033,18 @@ theorem permOfList_apply {n : ℕ} (l : List (Fin n))
   simp [permOfList, List.Nodup.getEquivOfForallMemList_apply,
     List.get_eq_getElem]
 
+/--
+@isnad1 id=eq.0h2v.s5.225e32eef11e from=translated src=- shape=858f2791 vocab=4f47ea54
+-/
 theorem permOfList_map_finRange {n : ℕ} (σ : Equiv.Perm (Fin n)) :
     permOfList ((List.finRange n).map σ) σ.map_finRange_perm = σ := by
   ext i
   rw [permOfList_apply]
   simp
 
+/--
+@isnad1 id=eq.0h1v.s3.d4a0b0c1abd2 from=translated src=- shape=516f6ed4 vocab=0d673def
+-/
 theorem permOfList_finRange {n : ℕ} :
     permOfList (List.finRange n) (.refl _) = Equiv.refl _ := by
   simpa using permOfList_map_finRange (Equiv.refl (Fin n))
@@ -854,6 +1058,9 @@ def OrderingStep2 {n : ℕ} (s : Fin n)
     (σ τ : Equiv.Perm (Fin n)) : Prop :=
   ∀ i : Fin (n + 1), i.val % 2 ≠ (s.val + 1) % 2 → PrefixSet2 σ i = PrefixSet2 τ i
 
+/--
+@isnad1 id=iff.1h4v.s6.6a4f12a575dd from=translated src=- shape=60182927 vocab=fd743fc6
+-/
 theorem mem_PrefixSet2_permOfList_iff {n : ℕ} (l : List (Fin n))
     (hp : l.Perm (List.finRange n)) (i : Fin (n + 1)) (x : Fin n) :
     x ∈ PrefixSet2 (permOfList l hp) i ↔ x ∈ l.take i.val := by
@@ -876,6 +1083,9 @@ theorem mem_PrefixSet2_permOfList_iff {n : ℕ} (l : List (Fin n))
     · rw [permOfList_apply]
       exact hget
 
+/--
+@isnad1 id=iff.1h5v.s6.56fef233671d from=translated src=- shape=22872626 vocab=914f00d4
+-/
 theorem mem_PrefixSet2_trans_permOfList_iff {n : ℕ} (l : List (Fin n))
     (hp : l.Perm (List.finRange n)) (π : Equiv.Perm (Fin n))
     (i : Fin (n + 1)) (x : Fin n) :
@@ -893,6 +1103,9 @@ theorem mem_PrefixSet2_trans_permOfList_iff {n : ℕ} (l : List (Fin n))
     rw [hget]
     simp
 
+/--
+@isnad1 id=eq.3h5v.s6.ea2866aa677e from=translated src=- shape=6f659f77 vocab=32948f06
+-/
 theorem prefixSet2_trans_eq_of_take_perm {n : ℕ}
     (l m : List (Fin n))
     (hl : l.Perm (List.finRange n)) (hm : m.Perm (List.finRange n))
@@ -906,7 +1119,9 @@ theorem prefixSet2_trans_eq_of_take_perm {n : ℕ}
   exact htake.mem_iff
 
 /-- Odd--even transposition routing, in the exact combinatorial form needed
-for Lemma 2.1. -/
+for Lemma 2.1.
+@isnad1 id=ex.0h2v.s6.daa4feec4f88 from=translated src=- shape=94f91730 vocab=584d0b50
+-/
 theorem oddEvenRoute2 {n : ℕ} (π : Equiv.Perm (Fin n)) :
     ∃ route : Fin (n + 1) → Equiv.Perm (Fin n),
       route 0 = Equiv.refl _ ∧

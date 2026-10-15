@@ -56,17 +56,26 @@ def isEqualAreaCover (X : Set ℝ²) (S : Set Triangle) : Prop :=
 
 /- Some theorems involving these definitions. -/
 
+/--
+@isnad1 id=le.2h4v.s6.9e875ece1f09 from=translated src=- shape=d362e59a vocab=ce410097
+-/
 lemma isCover_sub {n : ℕ} {S : Set (Fin n → ℝ²)} {X : Set ℝ²} (hCover : isCover X S) :
     ∀ Δ ∈ S, closedHull Δ ⊆ X := by
   intro _ hΔ
   rw [hCover]
   exact Set.subset_biUnion_of_mem hΔ
 
+/--
+@isnad1 id=ex.2h4v.s7.067cd0d9389e from=translated src=- shape=4ff21c3b vocab=dd2b222b
+-/
 lemma isCover_includes {n : ℕ} {S : Set (Fin n → ℝ²)} {X : Set ℝ²} {x : ℝ²}
     (hCover : isCover X S) (hx : x ∈ X) : ∃ P ∈ S, x ∈ closedHull P := by
   rw [hCover] at hx
   simp_all only [Set.mem_iUnion, exists_prop]
 
+/--
+@isnad1 id=eq.5h5v.s7.500ee0b12994 from=translated src=- shape=13eb6385 vocab=1683fb96
+-/
 lemma isCover_open_el_imp_eq {n : ℕ} {S : Set (Fin n → ℝ²)} (hDisj : isDisjointPolygonSet S)
   {Δ₁ Δ₂ : Fin n → ℝ²} (hΔ₁ : Δ₁ ∈ S) (hΔ₂ : Δ₂ ∈ S) {x : ℝ²} (hx₁ : x ∈ openHull Δ₁)
   (hx₂ : x ∈ openHull Δ₂) : Δ₁ = Δ₂ := by
@@ -74,6 +83,9 @@ lemma isCover_open_el_imp_eq {n : ℕ} {S : Set (Fin n → ℝ²)} (hDisj : isDi
   have hx := Set.mem_inter hx₁ hx₂
   rwa [Disjoint.inter_eq (hDisj Δ₁ hΔ₁ Δ₂ hΔ₂ hΔ₁₂)] at hx
 
+/--
+@isnad1 id=ex.5h3v.s8.3bcb03ea6450 from=translated src=- shape=eb5882cd vocab=12910d6b
+-/
 lemma cover_mem_side {S : Set Triangle} {X : Set ℝ²} (hCover : isDisjointCover X S)
     (hArea : ∀ Δ ∈ S, det Δ ≠ 0) {x : ℝ²} (hx : x ∈ X) (hInt : ∀ Δ ∈ S, x ∉ (openHull Δ))
     (hv : ∀ i, ∀ Δ ∈ S, x ≠ Δ i) : ∃ Δ ∈ S, ∃ i : Fin 3, x ∈ openHull (Tside Δ i) := by
@@ -84,6 +96,9 @@ lemma cover_mem_side {S : Set Triangle} {X : Set ℝ²} (hCover : isDisjointCove
   · exact ⟨Δ,hΔ,i,hi⟩
   · exact fun i ↦ hv i Δ hΔ
 
+/--
+@isnad1 id=lt.2h3v.s6.5c7960580417 from=translated src=- shape=ab47ce4f vocab=41e11f0b
+-/
 lemma no_empty_cover {n : ℕ} {S : Finset (Fin n → ℝ²)} {X : Set ℝ²}
     (hCover : isCover X (↑S : Set (Fin n → ℝ²))) (hX : Set.Nonempty X) :
     S.card > 0 := by

@@ -66,11 +66,15 @@ variable (Q : QNNOverparametrization)
 rank has saturated its dynamical-Lie-algebra bound. -/
 def IsOverparametrized (M : ℕ) : Prop := Q.fisherRank M = Q.dlaDim
 
-/-- Capacity bound: the achievable rank never exceeds the DLA dimension. -/
+/-- Capacity bound: the achievable rank never exceeds the DLA dimension.
+@isnad1 id=le.0h2v.s3.ec6c70e302ed from=translated src=- shape=7c82f523 vocab=5f6df7d2
+-/
 theorem fisherRank_le (M : ℕ) : Q.fisherRank M ≤ Q.dlaDim := Q.rank_le_dlaDim M
 
 /-- Since the rank is always bounded by `dlaDim`, overparametrization is exactly
-saturation of that bound from below. -/
+saturation of that bound from below.
+@isnad1 id=iff.0h2v.s4.af5e238fc744 from=translated src=- shape=77928ca1 vocab=6ef9f9a3
+-/
 theorem isOverparametrized_iff (M : ℕ) :
     Q.IsOverparametrized M ↔ Q.dlaDim ≤ Q.fisherRank M := by
   unfold IsOverparametrized
@@ -80,7 +84,9 @@ theorem isOverparametrized_iff (M : ℕ) :
 
 /-- **Persistence of overparametrization.** Once overparametrized at `M`, the QNN
 stays overparametrized for any `M' ≥ M` — the trainability "phase transition" is
-monotone in the parameter count. -/
+monotone in the parameter count.
+@isnad1 id=isoverpa.2h3v.s4.65650821eefa from=translated src=- shape=a2b9c020 vocab=84b14211
+-/
 theorem isOverparametrized_stays {M M' : ℕ} (h : M ≤ M')
     (hover : Q.IsOverparametrized M) : Q.IsOverparametrized M' := by
   rw [isOverparametrized_iff] at hover ⊢

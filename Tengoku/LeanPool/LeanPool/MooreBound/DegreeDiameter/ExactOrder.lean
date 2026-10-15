@@ -82,7 +82,9 @@ noncomputable def completeFlagEquivCompatiblePartialFlagPair (k : ℕ) :
 
 /-- Exact double-counting identity before inserting the q-factorial formula:
 the number of complete flags is the number of even partial flags times the
-constant compatible-completion multiplicity. -/
+constant compatible-completion multiplicity.
+@isnad1 id=eq.0h3v.s7.dc9d5c283dc3 from=translated src=- shape=caf034ca vocab=e57fe876
+-/
 theorem natCard_completeFlag_eq_evenPartialFlag_mul_completion (k : ℕ) :
     Nat.card (CompleteFlag K V (2 * k + 1)) =
       Nat.card (EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1)) *
@@ -106,7 +108,9 @@ theorem natCard_completeFlag_eq_evenPartialFlag_mul_completion (k : ℕ) :
       simp [Nat.card_eq_fintype_card]
 
 /-- Equation (6) of the write-up in multiplication form.  This form records
-the exact double count without relying on truncated natural-number division. -/
+the exact double count without relying on truncated natural-number division.
+@isnad1 id=eq.1h3v.s7.0ece53e923d3 from=translated src=- shape=bb36da10 vocab=9ca2071e
+-/
 theorem natCard_evenPartialFlag_mul_completion_eq_qFactorial (k : ℕ)
     (hV : finrank K V = 2 * k + 1) :
     Nat.card (EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1)) *
@@ -115,7 +119,9 @@ theorem natCard_evenPartialFlag_mul_completion_eq_qFactorial (k : ℕ)
   rw [← natCard_completeFlag_eq_evenPartialFlag_mul_completion (K := K) (V := V) k]
   exact natCard_completeFlag_of_finrank hV
 
-/-- Equation (6) of the write-up in its displayed division form. -/
+/-- Equation (6) of the write-up in its displayed division form.
+@isnad1 id=eq.1h3v.s7.b94eb52fb3cc from=translated src=- shape=577756fc vocab=57caf69d
+-/
 theorem natCard_evenPartialFlag_eq_qFactorial_div (k : ℕ)
     (hV : finrank K V = 2 * k + 1) :
     Nat.card (EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1)) =
@@ -133,7 +139,9 @@ theorem natCard_evenPartialFlag_eq_qFactorial_div (k : ℕ)
       rw [hmul]
 
 /-- The same exact formula for the recursively split coordinate model used
-by the big-cell construction. -/
+by the big-cell construction.
+@isnad1 id=eq.0h2v.s6.467efe0d9bac from=translated src=- shape=681f6c9c vocab=a276242c
+-/
 theorem natCard_flagSpaceEvenPartialFlag_eq_qFactorial_div (k : ℕ) :
     Nat.card (EvenPartialFlag
       (K := K) (V := FlagSpace K k) (n := 2 * k + 1)) =

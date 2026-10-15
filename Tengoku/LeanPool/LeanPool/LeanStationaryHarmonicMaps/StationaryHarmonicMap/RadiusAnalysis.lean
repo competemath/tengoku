@@ -133,7 +133,9 @@ def BallIntegralRadiusACOfIntegrableOnBall (n : ℕ) : Prop :=
       BallIntegralRadiusAbsolutelyContinuous f R0
 
 /-- Absolute continuity of a scalar ball-integral radius function gives local
-integrability of its a.e. derivative on the open radius interval. -/
+integrability of its a.e. derivative on the open radius interval.
+@isnad1 id=locallyi.1h3v.s8.3bad09de3937 from=translated src=- shape=acd06694 vocab=e0c890aa
+-/
 theorem locallyIntegrableOn_deriv_ballIntegral_of_radius_ac {n : ℕ}
     {f : Domain n → ℝ} {R0 : ℝ}
     (hac : BallIntegralRadiusAbsolutelyContinuous f R0) :
@@ -290,7 +292,9 @@ def BallIntegralRadiusDerivativeRepresentationForWeights (n : ℕ) : Prop :=
             (∫ rho in Ioo (0 : ℝ) R0, c rho * D rho)
 
 /-- The unrestricted generic coarea formula implies the restricted-weight
-version. -/
+version.
+@isnad1 id=ballinte.1h1v.s2.2cf6889171a4 from=translated src=- shape=6321fd23 vocab=03b500f7
+-/
 theorem ballIntegralRadiusDerivativeFormulaForWeights_of_unrestricted {n : ℕ}
     (hcoarea : BallIntegralRadiusDerivativeFormula n) :
     BallIntegralRadiusDerivativeFormulaForWeights n := by
@@ -298,7 +302,9 @@ theorem ballIntegralRadiusDerivativeFormulaForWeights_of_unrestricted {n : ℕ}
   exact hcoarea (f := f) (R0 := R0) hf c
 
 /-- The unrestricted weighted representation implies its restricted-weight
-version. -/
+version.
+@isnad1 id=ballinte.1h1v.s2.bd2f4680b19b from=translated src=- shape=6321fd23 vocab=3ee2db59
+-/
 theorem ballIntegralRadiusWeightedRepresentationForWeights_of_unrestricted
     {n : ℕ}
     (hweighted : BallIntegralRadiusWeightedRepresentation n) :
@@ -308,7 +314,9 @@ theorem ballIntegralRadiusWeightedRepresentationForWeights_of_unrestricted
   exact ⟨D, hD_loc, fun c _hc => hD c⟩
 
 /-- A pure weighted radial representation plus the a.e. derivative
-identification give the combined radial-density representation. -/
+identification give the combined radial-density representation.
+@isnad1 id=ballinte.2h1v.s3.861a128a403c from=translated src=- shape=cbe5c5ba vocab=c2df9ce8
+-/
 theorem ballIntegralRadiusDerivativeRepresentation_of_weightedRepresentation
     {n : ℕ}
     (hweighted : BallIntegralRadiusWeightedRepresentation n)
@@ -321,7 +329,9 @@ theorem ballIntegralRadiusDerivativeRepresentation_of_weightedRepresentation
     hidentify (f := f) (R0 := R0) (D := D) hf hD_loc hD_weighted, hD_weighted⟩
 
 /-- Restricted weighted representation plus restricted a.e. derivative
-identification give the restricted combined representation. -/
+identification give the restricted combined representation.
+@isnad1 id=ballinte.2h1v.s3.7986c4eb0e43 from=translated src=- shape=cbe5c5ba vocab=5435615c
+-/
 theorem ballIntegralRadiusDerivativeRepresentationForWeights_of_weightedRepresentation
     {n : ℕ}
     (hweighted : BallIntegralRadiusWeightedRepresentationForWeights n)
@@ -334,7 +344,9 @@ theorem ballIntegralRadiusDerivativeRepresentationForWeights_of_weightedRepresen
     hidentify (f := f) (R0 := R0) (D := D) hf hD_loc hD_weighted, hD_weighted⟩
 
 /-- The radial-density representation immediately gives the older packaged
-coarea/radius-derivative formula. -/
+coarea/radius-derivative formula.
+@isnad1 id=ballinte.1h1v.s2.dfbf952d58e2 from=translated src=- shape=6321fd23 vocab=4c13e10b
+-/
 theorem ballIntegralRadiusDerivativeFormula_of_representation {n : ℕ}
     (hrep : BallIntegralRadiusDerivativeRepresentation n) :
     BallIntegralRadiusDerivativeFormula n := by
@@ -347,7 +359,9 @@ theorem ballIntegralRadiusDerivativeFormula_of_representation {n : ℕ}
   rw [hderiv]
 
 /-- The restricted radial-density representation gives the restricted packaged
-coarea/radius-derivative formula. -/
+coarea/radius-derivative formula.
+@isnad1 id=ballinte.1h1v.s2.c55034806106 from=translated src=- shape=6321fd23 vocab=4cc52b69
+-/
 theorem ballIntegralRadiusDerivativeFormulaForWeights_of_representation
     {n : ℕ}
     (hrep : BallIntegralRadiusDerivativeRepresentationForWeights n) :
@@ -361,7 +375,9 @@ theorem ballIntegralRadiusDerivativeFormulaForWeights_of_representation
   rw [hderiv]
 
 /-- Restricted weighted representation and restricted derivative identification
-directly give the restricted coarea/radius-derivative formula. -/
+directly give the restricted coarea/radius-derivative formula.
+@isnad1 id=ballinte.2h1v.s3.1e33a2a30f74 from=translated src=- shape=cbe5c5ba vocab=bd2f33a0
+-/
 theorem ballIntegralRadiusDerivativeFormulaForWeights_of_weightedRepresentation
     {n : ℕ}
     (hweighted : BallIntegralRadiusWeightedRepresentationForWeights n)
@@ -405,20 +421,26 @@ def RadialOpenShellsVolumeTendstoZero (n : ℕ) : Prop :=
         Filter.principal (AbsolutelyContinuousOnInterval.disjWithin a b))
       (𝓝 0)
 
-/-- A radial open shell is Borel measurable. -/
+/-- A radial open shell is Borel measurable.
+@isnad1 id=measurab.0h3v.s5.6370cd660850 from=translated src=- shape=daba51b4 vocab=00bc5c61
+-/
 theorem radialOpenShell_measurable {n : ℕ} (r s : ℝ) :
     MeasurableSet (RadialOpenShell (n := n) r s) := by
   exact (isOpen_Ioo.preimage continuous_norm).measurableSet
 
 /-- The open shell is contained in the unordered half-open interval shell used
-by the absolute-continuity filter. -/
+by the absolute-continuity filter.
+@isnad1 id=le.0h3v.s5.ba451f5b3f46 from=translated src=- shape=55f1e48a vocab=9fd9c5db
+-/
 theorem radialOpenShell_subset_uIoc {n : ℕ} (r s : ℝ) :
     RadialOpenShell (n := n) r s ⊆ {x : Domain n | ‖x‖ ∈ uIoc r s} := by
   intro x hx
   exact ⟨hx.1, hx.2.le⟩
 
 /-- A single radial shell has volume controlled by the variation of the ball
-volume radius function across its two endpoints. -/
+volume radius function across its two endpoints.
+@isnad1 id=le.0h3v.s10.5e5f1ea2612b from=translated src=- shape=d8f74ed1 vocab=728335ba
+-/
 theorem radialOpenShell_volume_le_ballVolume_dist {n : ℕ}
     (r s : ℝ) :
     volume (RadialOpenShell (n := n) r s) ≤
@@ -524,7 +546,9 @@ theorem radialOpenShell_volume_le_ballVolume_dist {n : ℕ}
             ((volume (Metric.ball (0 : Domain n) s)).toReal)) := by
       rw [hdist_eq]
 
-/-- Finite unions of radial open shells are measurable. -/
+/-- Finite unions of radial open shells are measurable.
+@isnad1 id=measurab.0h2v.s5.10a0c7397932 from=translated src=- shape=31aded07 vocab=e3d5fce1
+-/
 theorem radialOpenShells_measurable {n : ℕ} (E : ℕ × (ℕ → ℝ × ℝ)) :
     MeasurableSet (RadialOpenShells (n := n) E) := by
   classical
@@ -533,7 +557,9 @@ theorem radialOpenShells_measurable {n : ℕ} (E : ℕ × (ℕ → ℝ × ℝ)) 
     (fun i _hi => radialOpenShell_measurable (n := n) (E.2 i).1 (E.2 i).2)
 
 /-- A finite union of radial shells is controlled by the corresponding
-variation sum of the ball-volume radius function. -/
+variation sum of the ball-volume radius function.
+@isnad1 id=le.0h2v.s10.20d83f245db6 from=translated src=- shape=6ccf71f6 vocab=9be83c24
+-/
 theorem radialOpenShells_volume_le_ballVolume_variation {n : ℕ}
     (E : ℕ × (ℕ → ℝ × ℝ)) :
     volume (RadialOpenShells (n := n) E) ≤
@@ -574,7 +600,9 @@ theorem radialOpenShells_volume_le_ballVolume_variation {n : ℕ}
         positivity
 
 /-- Absolute continuity of the Euclidean ball-volume radius function implies
-the thin radial-shell volume estimate used in the weak monotonicity proof. -/
+the thin radial-shell volume estimate used in the weak monotonicity proof.
+@isnad1 id=radialop.1h1v.s2.a49251fa2569 from=translated src=- shape=6321fd23 vocab=90da3b90
+-/
 theorem radialOpenShellsVolumeTendstoZero_of_ballVolume_ac {n : ℕ}
     (hball : EuclideanBallVolumeAbsolutelyContinuous n) :
     RadialOpenShellsVolumeTendstoZero n := by
@@ -606,7 +634,9 @@ theorem radialOpenShellsVolumeTendstoZero_of_ballVolume_ac {n : ℕ}
   · intro E
     simpa [V] using radialOpenShells_volume_le_ballVolume_variation (n := n) E
 
-/-- Disjoint radius intervals give disjoint radial open shells. -/
+/-- Disjoint radius intervals give disjoint radial open shells.
+@isnad1 id=pairwise.1h4v.s7.d560aa9a789a from=translated src=- shape=4443d30c vocab=087a2be6
+-/
 theorem pairwiseDisjoint_radialOpenShell_of_disjWithin {n : ℕ}
     {a b : ℝ} {E : ℕ × (ℕ → ℝ × ℝ)}
     (hE : E ∈ AbsolutelyContinuousOnInterval.disjWithin a b) :
@@ -627,7 +657,9 @@ theorem pairwiseDisjoint_radialOpenShell_of_disjWithin {n : ℕ}
   exact (Set.disjoint_left.mp (hE.2 hi hj hij)) hri hrj
 
 /-- The thin-annulus volume estimate remains true after restricting the ambient
-measure to any fixed ball. -/
+measure to any fixed ball.
+@isnad1 id=tendsto.3h4v.s9.194a7da66cb5 from=translated src=- shape=5787d383 vocab=a7f9a709
+-/
 theorem radialOpenShells_restrictVolume_tendstoZero {n : ℕ} [NeZero n]
     {a b R0 : ℝ}
     (hthin : RadialOpenShellsVolumeTendstoZero n)
@@ -647,7 +679,9 @@ theorem radialOpenShells_restrictVolume_tendstoZero {n : ℕ} [NeZero n]
     exact Measure.restrict_le_self (RadialOpenShells (n := n) E)
 
 /-- Consequently, an `L¹` integrand has vanishing integral over such thin
-radial shell unions. -/
+radial shell unions.
+@isnad1 id=tendsto.4h5v.s9.7beb02fcbfa5 from=translated src=- shape=99995f07 vocab=73cf1ccf
+-/
 theorem radialOpenShells_lintegral_enorm_tendstoZero {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {a b R0 : ℝ}
     (hthin : RadialOpenShellsVolumeTendstoZero n)
@@ -669,7 +703,9 @@ theorem radialOpenShells_lintegral_enorm_tendstoZero {n : ℕ} [NeZero n]
 
 /-- If the two scalar densities have absolutely continuous ball-integral radius
 functions, then the weak energy and weak radial energy radius functions are
-absolutely continuous. -/
+absolutely continuous.
+@isnad1 id=weakener.2h4v.s6.446b668b7f1c from=translated src=- shape=b14a330e vocab=178b74ed
+-/
 theorem weakEnergyAbsolutelyContinuousOnRadii_of_ballIntegralRadiusAC {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (henergy_ac :
@@ -686,7 +722,9 @@ theorem weakEnergyAbsolutelyContinuousOnRadii_of_ballIntegralRadiusAC {n m : ℕ
     exact hradial_ac ha hab hb
 
 /-- Local `L²` control plus the generic `L¹` ball-integral AC theorem supplies
-absolute continuity of the weak energy and weak radial energy radius functions. -/
+absolute continuity of the weak energy and weak radial energy radius functions.
+@isnad1 id=weakener.4h5v.s7.9117a055f10a from=translated src=- shape=494f1e5a vocab=2ca247ea
+-/
 theorem weakEnergyAbsolutelyContinuousOnRadii_of_locallyL2_ballIntegralAC
     {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {Ω : Set (Domain n)} {R0 : ℝ}
@@ -720,7 +758,9 @@ theorem weakEnergyAbsolutelyContinuousOnRadii_of_locallyL2_ballIntegralAC
     (hball_ac henergy) (hball_ac hradial)
 
 /-- The `W^{1,2}_{loc}` packaged version of radius absolute continuity, using
-the generic `L¹` ball-integral AC theorem. -/
+the generic `L¹` ball-integral AC theorem.
+@isnad1 id=weakener.3h6v.s7.78d4020df85c from=translated src=- shape=eed74296 vocab=bf2c9332
+-/
 theorem weakEnergyAbsolutelyContinuousOnRadii_of_W12LocIn_ballIntegralAC
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
@@ -744,18 +784,27 @@ def WeakBallEnergyOneDimensionalCalculus {n m : ℕ}
   WeakBallEnergyIntegrationByPartsFormula Du R0 ∧
   WeakOneDimensionalIBPIntegrability Du R0
 
+/--
+@isnad1 id=weakener.1h4v.s4.1f2e46d97195 from=translated src=- shape=cc25598c vocab=9732e5e6
+-/
 theorem weakEnergyAbsolutelyContinuousOnRadii_of_oneDimensionalCalculus
     {n m : ℕ} {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hcalc : WeakBallEnergyOneDimensionalCalculus Du R0) :
     WeakEnergyAbsolutelyContinuousOnRadii Du R0 :=
   hcalc.1
 
+/--
+@isnad1 id=weakball.1h4v.s4.72882741bd21 from=translated src=- shape=cc25598c vocab=7d373e65
+-/
 theorem weakBallEnergyIntegrationByPartsFormula_of_oneDimensionalCalculus
     {n m : ℕ} {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hcalc : WeakBallEnergyOneDimensionalCalculus Du R0) :
     WeakBallEnergyIntegrationByPartsFormula Du R0 :=
   hcalc.2.1
 
+/--
+@isnad1 id=weakoned.1h4v.s4.ae229536eac7 from=translated src=- shape=cc25598c vocab=d6fd7168
+-/
 theorem weakOneDimensionalIBPIntegrability_of_oneDimensionalCalculus
     {n m : ℕ} {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hcalc : WeakBallEnergyOneDimensionalCalculus Du R0) :
@@ -763,7 +812,9 @@ theorem weakOneDimensionalIBPIntegrability_of_oneDimensionalCalculus
   hcalc.2.2
 
 /-- Trimming an integral over `(0, R0)` by the indicator of `(a, b)` gives the
-usual interval integral over `a..b`, provided `0 ≤ a ≤ b ≤ R0`. -/
+usual interval integral over `a..b`, provided `0 ≤ a ≤ b ≤ R0`.
+@isnad1 id=eq.3h4v.s6.97cdd0f6b465 from=translated src=- shape=28ecc09a vocab=71fe91a8
+-/
 theorem integral_Ioo_zero_radius_indicator_Ioo_eq_intervalIntegral
     {f : ℝ → ℝ} {a b R0 : ℝ}
     (ha : 0 ≤ a) (hab : a ≤ b) (hb : b ≤ R0) :
@@ -798,7 +849,9 @@ theorem integral_Ioo_zero_radius_indicator_Ioo_eq_intervalIntegral
         rw [integral_Ioc_eq_integral_Ioo]
 
 /-- Absolute continuity is unchanged when two functions agree on the closed
-interval where it is tested. -/
+interval where it is tested.
+@isnad1 id=absolute.2h4v.s5.c4cd1d879a7d from=translated src=- shape=55ad69c7 vocab=3734d875
+-/
 theorem absolutelyContinuousOnInterval_congr_uIcc {f g : ℝ → ℝ} {a b : ℝ}
     (hfg : EqOn f g (uIcc a b))
     (hg : AbsolutelyContinuousOnInterval g a b) :
@@ -817,7 +870,9 @@ theorem absolutelyContinuousOnInterval_congr_uIcc {f g : ℝ → ℝ} {a b : ℝ
   rw [hfg hi_mem.1, hfg hi_mem.2]
 
 /-- The Euclidean ball-volume radius function is absolutely continuous on every
-compact nonnegative radius interval. -/
+compact nonnegative radius interval.
+@isnad1 id=euclidea.0h1v.s2.2085992b9a63 from=translated src=- shape=5c11bb93 vocab=77f3f5a3
+-/
 theorem euclideanBallVolumeAbsolutelyContinuous (n : ℕ) :
     EuclideanBallVolumeAbsolutelyContinuous n := by
   intro _inst a b ha hab
@@ -855,7 +910,9 @@ theorem euclideanBallVolumeAbsolutelyContinuous (n : ℕ) :
       fun_prop
     exact hP.contDiffOn
 
-/-- The thin radial-shell volume estimate in Euclidean space. -/
+/-- The thin radial-shell volume estimate in Euclidean space.
+@isnad1 id=radialop.0h1v.s2.408f5b06f067 from=translated src=- shape=5c11bb93 vocab=6f93acde
+-/
 theorem radialOpenShellsVolumeTendstoZero_euclidean (n : ℕ) :
     RadialOpenShellsVolumeTendstoZero n :=
   radialOpenShellsVolumeTendstoZero_of_ballVolume_ac

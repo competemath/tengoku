@@ -55,6 +55,7 @@ def classSigma : Set (ℂ → ℂ) := {g | AnalyticOn ℂ g {z | 1 < ‖z‖} �
 /--
 If `f` is analytic on the unit disc, then `dslope f 0` (= `f(z)/z` for `z≠0`, `f'(z)` for `z=0`)
 is also analytic on the unit disc.
+@isnad1 id=analytic.1h1v.s6.9d74bc6a0c92 from=translated src=- shape=9461e836 vocab=5efe7377
 -/
 lemma analyticOn_dslope_of_analyticOn (f : ℂ → ℂ) :
     AnalyticOn ℂ f (ball 0 1) → AnalyticOn ℂ (dslope f 0) (ball 0 1) := by
@@ -71,6 +72,7 @@ private lemma analyticOn_deriv_ball {f : ℂ → ℂ} (hf : AnalyticOn ℂ f (ba
 /--
 For any function `f` in `classS`, the difference slope of `f` at `0` is
 non-zero everywhere on the unit disc.
+@isnad1 id=ne.2h2v.s6.69a41fdc04b4 from=translated src=- shape=5605d484 vocab=3f4f4faa
 -/
 lemma dslope_ne_zero_of_in_S (f : ℂ → ℂ) (hf : f ∈ classS) :
     ∀ z ∈ ball 0 1, dslope f 0 z ≠ 0 := by
@@ -100,6 +102,7 @@ def primitiveOnBall (f : ℂ → ℂ) (z : ℂ) : ℂ := z * ∫ t in (0 : ℝ).
 /--
 The derivative of the integral of `f(t*w)` with respect to `w` at `z` is the integral of
 `f'(t*z)*t`.
+@isnad1 id=hasderiv.2h2v.s7.8011a8f593a5 from=translated src=- shape=bfa4d180 vocab=c686227f
 -/
 lemma hasDerivAt_integral_of_analytic_mul (f : ℂ → ℂ) (hf : AnalyticOn ℂ f (ball 0 1))
     (z : ℂ) (hz : z ∈ ball 0 1) :
@@ -243,6 +246,7 @@ lemma hasDerivAt_integral_of_analytic_mul (f : ℂ → ℂ) (hf : AnalyticOn ℂ
 
 /--
 The derivative of the primitive of `f` on the unit ball at `z` is `f(z)`.
+@isnad1 id=hasderiv.2h2v.s6.60c22eb60e6f from=translated src=- shape=10afcdff vocab=bd553866
 -/
 lemma hasDerivAt_primitiveOnBall (f : ℂ → ℂ)
     (hf : AnalyticOn ℂ f (ball 0 1)) (z : ℂ) (hz : z ∈ ball 0 1) :
@@ -311,6 +315,7 @@ lemma hasDerivAt_primitiveOnBall (f : ℂ → ℂ)
 
 /--
 The primitive of an analytic function on the unit ball is analytic on the unit ball.
+@isnad1 id=analytic.1h1v.s6.93283bed9234 from=translated src=- shape=be2d853f vocab=0f60e565
 -/
 lemma analyticOn_primitiveOnBall (f : ℂ → ℂ) (hf : AnalyticOn ℂ f (ball 0 1)) :
     AnalyticOn ℂ (primitiveOnBall f) (ball 0 1) := by
@@ -322,6 +327,7 @@ lemma analyticOn_primitiveOnBall (f : ℂ → ℂ) (hf : AnalyticOn ℂ f (ball 
 /--
 If `f` is a non-vanishing analytic function on the unit ball, then there exists an analytic
 function `g` on the unit ball such that `exp(g(z)) = f(z)`.
+@isnad1 id=ex.2h1v.s7.c2643768fc37 from=translated src=- shape=d67b15d4 vocab=3a75e68d
 -/
 lemma exists_log_of_analytic_nonzero_on_ball (f : ℂ → ℂ)
     (hf_anal : AnalyticOn ℂ f (ball 0 1)) (hf_ne_zero : ∀ z ∈ ball 0 1, f z ≠ 0) :
@@ -386,6 +392,7 @@ lemma exists_log_of_analytic_nonzero_on_ball (f : ℂ → ℂ)
 /--
 For any function `f` in `classS`, there exists an analytic function `h` on the unit disc such that
 `h(z)^2 = f(z)/z` for non-zero `z`, and `h(0) = 1`.
+@isnad1 id=ex.1h1v.s7.f4818131f695 from=translated src=- shape=15abbb46 vocab=f0e9cb3b
 -/
 lemma exists_sqrt_f_div_z (f : ℂ → ℂ) (hf : f ∈ classS) :
     ∃ h : ℂ → ℂ, AnalyticOn ℂ h (ball 0 1) ∧ h 0 = 1 ∧
@@ -415,6 +422,7 @@ lemma exists_sqrt_f_div_z (f : ℂ → ℂ) (hf : f ∈ classS) :
 /--
 The class S consists of normalized analytic univalent functions on the unit disc.
 The square root transform of `f`, defined by `g(z) = sqrt(f(z^2))`, is also in S.
+@isnad1 id=ex.1h1v.s6.109df7dc3d67 from=translated src=- shape=dd7d3bac vocab=9c909b6a
 -/
 theorem square_root_transform_in_S (f : ℂ → ℂ) (hf : f ∈ classS) :
     ∃ g ∈ classS, ∀ z ∈ ball 0 1, g z ^ 2 = f (z ^ 2) := by
@@ -467,6 +475,7 @@ private lemma tendsto_f_div_z_atZero (f : ℂ → ℂ) (hf : f ∈ classS) :
 
 /--
 If `f` is in `classS`, then `1/f(z) - 1/z` extends to an analytic function on the unit disk.
+@isnad1 id=ex.1h1v.s7.dbb3a9c79385 from=translated src=- shape=be01e2d7 vocab=e4876042
 -/
 lemma inv_f_sub_inv_id_analytic (f : ℂ → ℂ) (hf : f ∈ classS) :
     ∃ h, AnalyticOn ℂ h (ball 0 1) ∧ ∀ z ∈ ball 0 1, z ≠ 0 → h z = 1 / f z - 1 / z := by
@@ -550,6 +559,7 @@ lemma inv_f_sub_inv_id_analytic (f : ℂ → ℂ) (hf : f ∈ classS) :
 
 /--
 The function `1/f(1/z)` is analytic on the exterior of the unit disk.
+@isnad1 id=analytic.1h1v.s6.bd06bf801a7b from=translated src=- shape=ec3c90d3 vocab=eec717ce
 -/
 lemma inv_f_inv_analyticOn (f : ℂ → ℂ) (hf : f ∈ classS) :
     AnalyticOn ℂ (fun z => 1 / f (1 / z)) {z | 1 < ‖z‖} := by
@@ -571,6 +581,7 @@ lemma inv_f_inv_analyticOn (f : ℂ → ℂ) (hf : f ∈ classS) :
 
 /--
 The function `1/f(1/z)` is injective on the exterior of the unit disk.
+@isnad1 id=injon.1h1v.s6.ae2f56599d51 from=translated src=- shape=9d5974e0 vocab=7d7e185b
 -/
 lemma inv_f_inv_injOn (f : ℂ → ℂ) (hf : f ∈ classS) :
     Set.InjOn (fun z => 1 / f (1 / z)) {z | 1 < ‖z‖} := by
@@ -582,6 +593,7 @@ lemma inv_f_inv_injOn (f : ℂ → ℂ) (hf : f ∈ classS) :
 
 /--
 If `f` is in `classS`, then `g(z) = 1/f(1/z)` is in `classSigma`.
+@isnad1 id=mem.1h1v.s6.24a031764cd4 from=translated src=- shape=3d96ab59 vocab=648feb88
 -/
 theorem inv_f_inv_in_Sigma (f : ℂ → ℂ) (hf : f ∈ classS) :
     (fun z => 1 / f (1 / z)) ∈ classSigma := by

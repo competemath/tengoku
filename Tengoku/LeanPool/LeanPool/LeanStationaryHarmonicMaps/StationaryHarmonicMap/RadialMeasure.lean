@@ -26,6 +26,9 @@ namespace StationaryHarmonicMap
 def radiusIntervalMeasure (R0 : ℝ) : Measure ℝ :=
   volume.restrict (Ioo (0 : ℝ) R0)
 
+/--
+@isnad1 id=sigmafin.0h1v.s2.08977f71b9d5 from=translated src=- shape=9bb0b988 vocab=4dffda3b
+-/
 instance sigmaFinite_radiusIntervalMeasure (R0 : ℝ) :
     SigmaFinite (radiusIntervalMeasure R0) := by
   dsimp [radiusIntervalMeasure]
@@ -34,7 +37,9 @@ instance sigmaFinite_radiusIntervalMeasure (R0 : ℝ) :
 /-- The pushforward of Euclidean volume by the radius map is absolutely
 continuous with respect to one-dimensional Lebesgue measure.  This is the
 measure-theoretic core supplied by `HaarToSphere`, kept separate from the later
-Sobolev/radial-density bookkeeping. -/
+Sobolev/radial-density bookkeeping.
+@isnad1 id=absolute.0h1v.s7.1bf1227062f1 from=translated src=- shape=4eb74cd4 vocab=2e0236ee
+-/
 theorem normPushforwardVolume_absolutelyContinuous (n : ℕ) [NeZero n] :
     Measure.AbsolutelyContinuous
       ((volume : Measure (Domain n)).map (fun x : Domain n => norm x))
@@ -127,7 +132,9 @@ theorem normPushforwardVolume_absolutelyContinuous (n : ℕ) [NeZero n] :
 
 /-- Radius pushforward on a fixed ball is absolutely continuous with respect to
 the restricted radius-interval measure.  The only point lost when restricting
-to `(0, R0)` is the origin, a null set in positive dimension. -/
+to `(0, R0)` is the origin, a null set in positive dimension.
+@isnad1 id=absolute.0h2v.s8.0bb4674988d4 from=translated src=- shape=81e47405 vocab=7efe76f3
+-/
 theorem radiusPushforward_absolutelyContinuous_euclidean {n : ℕ} [NeZero n]
     {R0 : ℝ} :
     Measure.AbsolutelyContinuous
@@ -170,7 +177,9 @@ theorem radiusPushforward_absolutelyContinuous_euclidean {n : ℕ} [NeZero n]
 
 /-- The radial signed pushforward of an `L¹` scalar density on a ball is
 absolutely continuous with respect to the one-dimensional radius interval
-measure. -/
+measure.
+@isnad1 id=absolute.1h3v.s9.754137d0a1dc from=translated src=- shape=cd3eddfd vocab=2c18a7e5
+-/
 theorem radialVectorMeasure_absolutelyContinuous_euclidean {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {R0 : ℝ}
     (hf : IntegrableOn f (Metric.ball (0 : Domain n) R0) volume) :
@@ -200,7 +209,9 @@ noncomputable def radialRNDensity {n : ℕ} (f : Domain n → ℝ) (R0 : ℝ) : 
     (radiusIntervalMeasure R0)
 
 /-- The radial signed pushforward is exactly the vector measure obtained by
-integrating its Radon-Nikodym density on the radius interval. -/
+integrating its Radon-Nikodym density on the radius interval.
+@isnad1 id=eq.1h3v.s9.94685cd15b14 from=translated src=- shape=0e3fec1e vocab=4582120c
+-/
 theorem radialVectorMeasure_withDensity_rnDeriv_euclidean {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {R0 : ℝ}
     (hf : IntegrableOn f (Metric.ball (0 : Domain n) R0) volume) :
@@ -214,7 +225,9 @@ theorem radialVectorMeasure_withDensity_rnDeriv_euclidean {n : ℕ} [NeZero n]
     (radialVectorMeasure_absolutelyContinuous_euclidean (n := n) (f := f) (R0 := R0) hf)
 
 /-- The radial Radon-Nikodym density represents the signed radial pushforward on
-every measurable set of radii. -/
+every measurable set of radii.
+@isnad1 id=eq.2h4v.s9.06ec32fd56bf from=translated src=- shape=3d55a498 vocab=25eae523
+-/
 theorem radialRNDensity_setIntegral_eq_radialVectorMeasure {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {R0 : ℝ} {s : Set ℝ}
     (hf : IntegrableOn f (Metric.ball (0 : Domain n) R0) volume)
@@ -246,7 +259,9 @@ theorem radialRNDensity_setIntegral_eq_radialVectorMeasure {n : ℕ} [NeZero n]
 
 /-- The radial Radon-Nikodym density represents constant multiples of
 measurable radial indicators.  This is the atomic step for passing from the
-set-level representation to finite simple radial weights. -/
+set-level representation to finite simple radial weights.
+@isnad1 id=eq.2h5v.s9.72f1f1e96230 from=translated src=- shape=ee5c50c7 vocab=f6a245c9
+-/
 theorem radialRNDensity_indicatorConst_integral_eq {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {R0 k : ℝ} {s : Set ℝ}
     (hf : IntegrableOn f (Metric.ball (0 : Domain n) R0) volume)
@@ -324,7 +339,9 @@ theorem radialRNDensity_indicatorConst_integral_eq {n : ℕ} [NeZero n]
 
 /-- The radial Radon-Nikodym density represents every finite simple radial
 weight.  This is the finite-step version of the desired weighted
-representation. -/
+representation.
+@isnad1 id=eq.1h4v.s9.ec04137b091b from=translated src=- shape=11decc0c vocab=f28e6b8a
+-/
 theorem radialRNDensity_simpleFunc_integral_eq {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {R0 : ℝ} (g : SimpleFunc ℝ ℝ)
     (hf : IntegrableOn f (Metric.ball (0 : Domain n) R0) volume) :
@@ -431,7 +448,9 @@ theorem radialRNDensity_simpleFunc_integral_eq {n : ℕ} [NeZero n]
         rw [← hg_sum rho]
 
 /-- Set-integral version of `radialRNDensity_simpleFunc_integral_eq`, with the
-radius interval written explicitly. -/
+radius interval written explicitly.
+@isnad1 id=eq.1h4v.s9.8a6247ffee77 from=translated src=- shape=82bf4b48 vocab=51f6eb63
+-/
 theorem radialRNDensity_simpleFunc_setIntegral_eq {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {R0 : ℝ} (g : SimpleFunc ℝ ℝ)
     (hf : IntegrableOn f (Metric.ball (0 : Domain n) R0) volume) :
@@ -444,7 +463,9 @@ theorem radialRNDensity_simpleFunc_setIntegral_eq {n : ℕ} [NeZero n]
       (n := n) (f := f) (R0 := R0) g hf
 
 /-- The radial Radon-Nikodym density is locally integrable on the open radius
-interval. -/
+interval.
+@isnad1 id=locallyi.0h3v.s5.b027bb04bc9e from=translated src=- shape=967f08e5 vocab=8e01296e
+-/
 theorem radialRNDensity_locallyIntegrableOn {n : ℕ} {f : Domain n → ℝ} {R0 : ℝ} :
     LocallyIntegrableOn (radialRNDensity (n := n) f R0) (Ioo (0 : ℝ) R0) volume := by
   have hD :
@@ -458,7 +479,9 @@ theorem radialRNDensity_locallyIntegrableOn {n : ℕ} {f : Domain n → ℝ} {R0
         hD).locallyIntegrableOn
 
 /-- In positive dimension, the origin is negligible even after restricting
-Lebesgue measure to a ball. -/
+Lebesgue measure to a ball.
+@isnad1 id=eventual.0h2v.s9.f0164396f759 from=translated src=- shape=b8d859c1 vocab=1555c481
+-/
 theorem ae_ne_zero_on_ball {n : ℕ} [NeZero n] {R0 : ℝ} :
     ∀ᵐ x ∂volume.restrict (Metric.ball (0 : Domain n) R0), x ≠ 0 := by
   have hae : ∀ᵐ x ∂(volume : Measure (Domain n)), x ≠ 0 := by
@@ -466,7 +489,9 @@ theorem ae_ne_zero_on_ball {n : ℕ} [NeZero n] {R0 : ℝ} :
   exact ae_mono (Measure.restrict_le_self (s := Metric.ball (0 : Domain n) R0)) hae
 
 /-- In positive dimension and positive radius, points in the ball have radius
-in `(0, R0)` almost everywhere. -/
+in `(0, R0)` almost everywhere.
+@isnad1 id=eventual.1h2v.s9.558736d64591 from=translated src=- shape=62fd9f87 vocab=4e6f752e
+-/
 theorem ae_norm_mem_Ioo_zero_radius_on_ball {n : ℕ} [NeZero n] {R0 : ℝ}
     (_hR0_pos : 0 < R0) :
     ∀ᵐ x ∂volume.restrict (Metric.ball (0 : Domain n) R0),
@@ -477,7 +502,9 @@ theorem ae_norm_mem_Ioo_zero_radius_on_ball {n : ℕ} [NeZero n] {R0 : ℝ}
   exact ⟨norm_pos_iff.2 hxne, by
     simpa [Metric.mem_ball, dist_eq_norm] using hxball⟩
 
-/-- Each fixed radius sphere has zero Lebesgue measure in positive dimension. -/
+/-- Each fixed radius sphere has zero Lebesgue measure in positive dimension.
+@isnad1 id=eq.0h2v.s8.a40347485274 from=translated src=- shape=d059e0b6 vocab=fc722749
+-/
 theorem measure_norm_eq_zero {n : ℕ} [NeZero n] {r : ℝ} :
     (volume : Measure (Domain n)) {x : Domain n | ‖x‖ = r} = 0 := by
   have hsphere : {x : Domain n | ‖x‖ = r} = Metric.sphere (0 : Domain n) r := by
@@ -486,7 +513,9 @@ theorem measure_norm_eq_zero {n : ℕ} [NeZero n] {r : ℝ} :
   rw [hsphere]
   simpa using (Measure.addHaar_sphere (volume : Measure (Domain n)) (0 : Domain n) r)
 
-/-- The preimage under the radius map of a countable set of radii is null. -/
+/-- The preimage under the radius map of a countable set of radii is null.
+@isnad1 id=eq.1h2v.s8.841a356cc30f from=translated src=- shape=aa154faf vocab=79ffcd79
+-/
 theorem measure_norm_mem_countable_zero {n : ℕ} [NeZero n] {s : Set ℝ}
     (hs : s.Countable) :
     (volume : Measure (Domain n)) {x : Domain n | ‖x‖ ∈ s} = 0 := by
@@ -496,7 +525,9 @@ theorem measure_norm_mem_countable_zero {n : ℕ} [NeZero n] {s : Set ℝ}
   change (volume : Measure (Domain n)) {x : Domain n | ‖x‖ = r} = 0
   exact measure_norm_eq_zero (n := n) (r := r)
 
-/-- The radius of a ball point avoids any countable set of radii almost everywhere. -/
+/-- The radius of a ball point avoids any countable set of radii almost everywhere.
+@isnad1 id=eventual.1h3v.s8.feceecca6112 from=translated src=- shape=b28188ec vocab=f9fc0cb2
+-/
 theorem ae_norm_not_mem_countable_on_ball {n : ℕ} [NeZero n] {R0 : ℝ}
     {s : Set ℝ} (hs : s.Countable) :
     ∀ᵐ x ∂volume.restrict (Metric.ball (0 : Domain n) R0), ‖x‖ ∉ s := by
@@ -507,14 +538,18 @@ theorem ae_norm_not_mem_countable_on_ball {n : ℕ} [NeZero n] {R0 : ℝ}
     simpa [ae_iff] using hnull
   exact ae_mono (Measure.restrict_le_self (s := Metric.ball (0 : Domain n) R0)) hae
 
-/-- The radius of a ball point avoids any finite set of radii almost everywhere. -/
+/-- The radius of a ball point avoids any finite set of radii almost everywhere.
+@isnad1 id=eventual.0h3v.s9.c6578a8212a8 from=translated src=- shape=9d6f87e4 vocab=4e814c70
+-/
 theorem ae_norm_not_mem_finset_on_ball {n : ℕ} [NeZero n] {R0 : ℝ}
     (s : Finset ℝ) :
     ∀ᵐ x ∂volume.restrict (Metric.ball (0 : Domain n) R0), ‖x‖ ∉ (s : Set ℝ) := by
   exact ae_norm_not_mem_countable_on_ball (n := n) (R0 := R0) s.countable_toSet
 
 /-- Pointwise convergence of radius weights on `(0, R0)` pulls back to a.e.
-convergence of the corresponding spatial integrands on the ball. -/
+convergence of the corresponding spatial integrands on the ball.
+@isnad1 id=eventual.2h5v.s9.f84d8327d664 from=translated src=- shape=4b497faf vocab=e3444102
+-/
 theorem tendsto_radiusWeight_mul_pullback_ae_of_tendsto_on_Ioo
     {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {R0 : ℝ} {c : ℝ → ℝ} {cSeq : ℕ → ℝ → ℝ}
@@ -528,7 +563,9 @@ theorem tendsto_radiusWeight_mul_pullback_ae_of_tendsto_on_Ioo
   exact (hlim ‖x‖ hx).mul_const (f x)
 
 /-- Pointwise convergence of radius weights on `(0, R0)` gives a.e. convergence
-after multiplying by any fixed one-dimensional factor on the radius interval. -/
+after multiplying by any fixed one-dimensional factor on the radius interval.
+@isnad1 id=eventual.1h4v.s6.622e4d6f37c0 from=translated src=- shape=00a4958d vocab=2323a8f5
+-/
 theorem tendsto_radiusWeight_mul_ae_of_tendsto_on_Ioo
     {R0 : ℝ} {c D : ℝ → ℝ} {cSeq : ℕ → ℝ → ℝ}
     (hlim : ∀ rho ∈ Ioo (0 : ℝ) R0,

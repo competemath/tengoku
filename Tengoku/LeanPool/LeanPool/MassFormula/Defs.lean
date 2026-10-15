@@ -70,7 +70,9 @@ noncomputable def q : ℕ :=
   Nat.card 𝓀[K]
 
 omit [IsUniformAddGroup K] in
-/-- The residue field is a finite *field*, so `1 < q K`. -/
+/-- The residue field is a finite *field*, so `1 < q K`.
+@isnad1 id=lt.0h1v.s5.9b471a96ac8c from=translated src=- shape=41309794 vocab=ce038362
+-/
 lemma one_lt_q : 1 < q K :=
   Finite.one_lt_card
 
@@ -112,6 +114,9 @@ def sigma (n : ℕ) : Set (IntermediateField K (SeparableClosure K)) :=
 variable {K}
 
 omit [IsUniformAddGroup K] in
+/--
+@isnad1 id=iff.0h3v.s11.660b21eae5b1 from=translated src=- shape=9d4ffc62 vocab=56b5bc11
+-/
 lemma mem_sigma {n : ℕ} {L : IntermediateField K (SeparableClosure K)} :
     L ∈ sigma K n ↔ Module.finrank K ↥L = n ∧ IsTotallyRamified L :=
   Iff.rfl

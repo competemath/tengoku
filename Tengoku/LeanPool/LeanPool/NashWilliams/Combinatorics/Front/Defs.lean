@@ -56,7 +56,9 @@ noncomputable section
 
 namespace List
 
-/-- A prefix keeps the first entry. -/
+/-- A prefix keeps the first entry.
+@isnad1 id=eq.2h3v.s4.8af0a0a2b895 from=translated src=- shape=3dc64963 vocab=568f5cf2
+-/
 theorem IsPrefix.head_eq {α : Type*} {s t : List α} (h : s <+: t) (hne : s ≠ []) :
     t.head? = s.head? := by
   obtain ⟨u, rfl⟩ := h
@@ -74,19 +76,28 @@ between a finite set and an infinite set. -/
 def IsInit (s : List ℕ) (N : ℕ → ℕ) : Prop :=
   s = (List.range s.length).map N
 
-/-- `List.range` is monotone for the prefix order. -/
+/-- `List.range` is monotone for the prefix order.
+@isnad1 id=isprefix.1h2v.s4.13328885b15a from=translated src=- shape=e25bcd97 vocab=902844cf
+-/
 theorem range_prefix_range {m n : ℕ} (h : m ≤ n) : List.range m <+: List.range n := by
   obtain ⟨k, rfl⟩ := Nat.exists_eq_add_of_le h
   rw [List.range_add]
   exact List.prefix_append _ _
 
+/--
+@isnad1 id=isinit.0h1v.s3.0a8cd301a78e from=translated src=- shape=f5e3b237 vocab=214a689d
+-/
 @[simp] theorem isInit_nil (N : ℕ → ℕ) : IsInit [] N := by simp [IsInit]
 
-/-- The length-`n` initial segment of `N` is an initial segment of `N`. -/
+/-- The length-`n` initial segment of `N` is an initial segment of `N`.
+@isnad1 id=isinit.0h2v.s3.57b5367391a9 from=translated src=- shape=66595738 vocab=713d7137
+-/
 theorem isInit_take (N : ℕ → ℕ) (n : ℕ) : IsInit ((List.range n).map N) N := by
   simp [IsInit]
 
-/-- The `i`-th entry of an initial segment of `N` is `N i`. -/
+/-- The `i`-th entry of an initial segment of `N` is `N i`.
+@isnad1 id=eq.2h3v.s5.a1b7d8df37f6 from=translated src=- shape=ee6144bc vocab=29376ee0
+-/
 theorem IsInit.getElem {s : List ℕ} {N : ℕ → ℕ} (hs : IsInit s N)
     {i : ℕ} (h : i < s.length) : s[i] = N i := by
   have hq : s[i]? = some (N i) := by
@@ -94,7 +105,9 @@ theorem IsInit.getElem {s : List ℕ} {N : ℕ → ℕ} (hs : IsInit s N)
     simp [h]
   simpa [List.getElem?_eq_getElem h] using hq
 
-/-- The first entry of a nonempty initial segment of `N` is `N 0`. -/
+/-- The first entry of a nonempty initial segment of `N` is `N 0`.
+@isnad1 id=eq.2h2v.s5.4de1372b2510 from=translated src=- shape=06600cf6 vocab=78b8eeb8
+-/
 theorem IsInit.head_eq {s : List ℕ} {N : ℕ → ℕ} (hs : IsInit s N) (hne : s ≠ []) :
     s.head? = some (N 0) := by
   have hlen : 0 < s.length := List.length_pos_iff.mpr hne
@@ -108,7 +121,9 @@ theorem IsInit.eq_of_length {s t : List ℕ} {N : ℕ → ℕ}
     (hs : IsInit s N) (ht : IsInit t N) (h : s.length = t.length) : s = t := by
   rw [hs, ht, h]
 
-/-- A prefix of an initial segment of `N` is again an initial segment of `N`. -/
+/-- A prefix of an initial segment of `N` is again an initial segment of `N`.
+@isnad1 id=isinit.2h3v.s4.afedb0286a0c from=translated src=- shape=eb476d13 vocab=ed2e93bc
+-/
 theorem IsInit.isPrefix {s t : List ℕ} {N : ℕ → ℕ} (ht : IsInit t N) (h : s <+: t) :
     IsInit s N := by
   change s = (List.range s.length).map N
@@ -117,7 +132,9 @@ theorem IsInit.isPrefix {s t : List ℕ} {N : ℕ → ℕ} (ht : IsInit t N) (h 
     _ = (List.range s.length).map N := by
         rw [← List.map_take, List.take_range, Nat.min_eq_left (by simpa using h.length_le)]
 
-/-- Two initial segments of the same sequence are prefix-comparable. -/
+/-- Two initial segments of the same sequence are prefix-comparable.
+@isnad1 id=or.2h3v.s4.62ccccf2574e from=translated src=- shape=6decc35d vocab=ed2e93bc
+-/
 theorem IsInit.prefix_or_prefix {s t : List ℕ} {N : ℕ → ℕ}
     (hs : IsInit s N) (ht : IsInit t N) : s <+: t ∨ t <+: s := by
   rcases le_total s.length t.length with h | h
@@ -154,7 +171,9 @@ def powK (M : ℕ → ℕ) (k : ℕ) : Set (List ℕ) :=
   {s | s.length = k ∧ s.Pairwise (· < ·) ∧ ∀ x ∈ s, x ∈ Set.range M}
 
 /-- The first `k` values of `M ∘ e` forms a size-`k` subset of `M`, for `e` strictly
-monotone. This is the generic member of `[M]^k` used to witness Base and Density. -/
+monotone. This is the generic member of `[M]^k` used to witness Base and Density.
+@isnad1 id=mem.2h3v.s5.33929e95aae9 from=translated src=- shape=1a5f5bd8 vocab=3fa837b3
+-/
 theorem rangeMap_mem_powK {M : ℕ → ℕ} (hM : StrictMono M) {e : ℕ → ℕ}
     (he : StrictMono e) (k : ℕ) : (List.range k).map (M ∘ e) ∈ powK M k := by
   refine ⟨by simp, ?_, ?_⟩
@@ -165,7 +184,9 @@ theorem rangeMap_mem_powK {M : ℕ → ℕ} (hM : StrictMono M) {e : ℕ → ℕ
     obtain ⟨i, _, rfl⟩ := hx
     exact ⟨e i, rfl⟩
 
-/-- **`[M]^k` the family of subsets of `M` of size `k` is a front on `M`.** -/
+/-- **`[M]^k` the family of subsets of `M` of size `k` is a front on `M`.**
+@isnad1 id=isfront.1h2v.s4.72e4474ba150 from=translated src=- shape=2d209887 vocab=30b46f85
+-/
 theorem isFront_powK {M : ℕ → ℕ} (hM : StrictMono M) (k : ℕ) : IsFront (powK M k) M where
   mono := hM
   sorted _ hs := hs.2.1
@@ -210,7 +231,9 @@ def schreier (M : ℕ → ℕ) : Set (List ℕ) :=
   {s | (∃ a, s.head? = some a ∧ s.length = a + 1) ∧
     s.Pairwise (· < ·) ∧ ∀ x ∈ s, x ∈ Set.range M}
 
-/-- **The Schreier front is a front on `M`.** -/
+/-- **The Schreier front is a front on `M`.**
+@isnad1 id=isfront.1h1v.s3.ba32b849b8df from=translated src=- shape=ae15cf6b vocab=6422abff
+-/
 theorem isFront_schreier {M : ℕ → ℕ} (hM : StrictMono M) : IsFront (schreier M) M where
   mono := hM
   sorted _ hs := hs.2.1

@@ -16,6 +16,9 @@ import Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.End
 
 @[expose] public section
 
+/--
+@isnad1 id=iff.0h4v.s8.7b28ee813b67 from=translated src=- shape=3c93dae1 vocab=ba046250
+-/
 theorem isUnit_comm (K E : Type _) [DivisionRing K] [AddCommGroup E] [Module K E]
     [FiniteDimensional K E] (x y : E →ₗ[K] E) : IsUnit (x ∘ₗ y) ↔ IsUnit (y ∘ₗ x) := by
   simp_rw [← Module.End.mul_eq_comp]
@@ -36,9 +39,15 @@ theorem isUnit_comm (K E : Type _) [DivisionRing K] [AddCommGroup E] [Module K E
   · exact Invertible.mk (y * z) hz2 hz1
   · exact Invertible.mk (x * z) hz2 hz1
 
+/--
+@isnad1 id=iff.0h2v.s5.de9b0e81081c from=translated src=- shape=b1dfd8ec vocab=5564c4b8
+-/
 theorem isUnit_neg {α : Type _} [Monoid α] [HasDistribNeg α] (x : α) : IsUnit (-x) ↔ IsUnit x := by
   simp_all
 
+/--
+@isnad1 id=eq.0h4v.s8.6903ce882a97 from=translated src=- shape=1d89c24c vocab=37a5ad11
+-/
 theorem spectrum.comm {K E : Type _} [Field K] [AddCommGroup E] [Module K E] [FiniteDimensional K E]
     (x y : E →ₗ[K] E) : spectrum K (x ∘ₗ y) = spectrum K (y ∘ₗ x) := by
   ext1 u

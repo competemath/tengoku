@@ -27,6 +27,9 @@ variable {Γ : Subgroup SL(2, ℤ)} {F : Type*} (f : F) (k : ℤ)
 
 include hF -- necessary because `k` is not inferrable from the statements
 
+/--
+@isnad1 id=eq.1h6v.s8.e63485b962d0 from=translated src=- shape=39fa5d07 vocab=77eca8e9
+-/
 theorem vAdd_width_periodic (hn : ↑Γ.width ∣ n) (τ : ℍ) :
     f ((n : ℝ) +ᵥ τ) = f τ := by
   rw [← modular_T_zpow_smul τ, SlashInvariantForm.slash_action_eqn_SL'' (k := k) f
@@ -39,6 +42,9 @@ theorem vAdd_width_periodic (hn : ↑Γ.width ∣ n) (τ : ℍ) :
       Complex.ofReal_zero, zero_mul, Int.cast_one, Complex.ofReal_one, zero_add]
   rw [hdenom]; simp
 
+/--
+@isnad1 id=eq.1h6v.s9.f4ff3158c906 from=translated src=- shape=1cecbec6 vocab=ecba7384
+-/
 theorem T_zpow_width_invariant (hn : ↑Γ.width ∣ n) (τ : ℍ) :
     f (ModularGroup.T ^ n • τ) = f τ := by
   simpa [-sl_moeb, modular_T_zpow_smul] using vAdd_width_periodic f k hn τ

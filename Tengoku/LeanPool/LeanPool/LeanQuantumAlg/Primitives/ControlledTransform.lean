@@ -75,7 +75,9 @@ variable {n : ℕ}
 
 /-! ### Single-qubit ancilla decomposition and gate scalars -/
 
-/-- A one-qubit state is its `|0⟩`/`|1⟩` coordinate combination. -/
+/-- A one-qubit state is its `|0⟩`/`|1⟩` coordinate combination.
+@isnad1 id=eq.0h1v.s10.e5f830f95a7b from=translated src=- shape=65e033eb vocab=51a39885
+-/
 theorem single_qubit_vec_decomp (ψ : StateVector 1) :
     ψ =
       (ψ 0) • (ket0 : StateVector 1) + (ψ 1) • (ket1 : StateVector 1) := by
@@ -83,6 +85,9 @@ theorem single_qubit_vec_decomp (ψ : StateVector 1) :
   fin_cases i <;>
     simp [ket0, ket1, ket_apply, PiLp.add_apply, PiLp.smul_apply, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h1v.s10.79b9b32a34d4 from=translated src=- shape=18d2ff2c vocab=23ec664f
+-/
 theorem single_qubit_decomp (ψ : PureState 1) :
     (ψ : StateVector 1) =
       (ψ 0) • (ket0 : StateVector 1) + (ψ 1) • (ket1 : StateVector 1) :=
@@ -95,6 +100,9 @@ the ancilla when the target holds an eigenstate of eigenphase `θ`. -/
 def phaseGateOp (θ : ℝ) : HilbertOperator 1 :=
   !![1, 0; 0, Complex.exp ((θ : ℝ) * Complex.I)]
 
+/--
+@isnad1 id=mem.0h1v.s9.4f9fc00d77bf from=translated src=- shape=be11cea9 vocab=b520f6c0
+-/
 theorem phaseGateOp_mem_unitaryGroup (θ : ℝ) :
     phaseGateOp θ ∈ Matrix.unitaryGroup (Fin (2 ^ 1)) ℂ := by
   rw [Matrix.mem_unitaryGroup_iff]
@@ -107,12 +115,18 @@ theorem phaseGateOp_mem_unitaryGroup (θ : ℝ) :
 def phaseGate (θ : ℝ) : Gate 1 :=
   Gate.ofUnitary (phaseGateOp θ) (phaseGateOp_mem_unitaryGroup θ)
 
+/--
+@isnad1 id=eq.0h1v.s4.dfc680d92034 from=translated src=- shape=1e020e03 vocab=72ce1418
+-/
 @[simp]
 theorem phaseGate_apply_ket0 (θ : ℝ) : (phaseGate θ).apply ket0 = ket0 := by
   ext i
   rw [ket0, Gate.apply_ket]
   fin_cases i <;> simp [phaseGate, phaseGateOp, ket_apply]
 
+/--
+@isnad1 id=eq.0h1v.s7.4a7a7a90b1dc from=translated src=- shape=f3e60f72 vocab=8f5c7ab3
+-/
 @[simp]
 theorem phaseGate_apply_ket1 (θ : ℝ) :
     (phaseGate θ).applyVec (ket1 : StateVector 1) =
@@ -123,7 +137,9 @@ theorem phaseGate_apply_ket1 (θ : ℝ) :
     simp [Gate.applyVec, HilbertOperator.applyVec, phaseGate, phaseGateOp, ket1,
       PureState.ket, PiLp.smul_apply, smul_eq_mul]
 
-/-- The controlled-phase gate on a general ancilla state. -/
+/-- The controlled-phase gate on a general ancilla state.
+@isnad1 id=eq.0h2v.s10.1f01c2e41d6b from=translated src=- shape=4d79688e vocab=87070b4f
+-/
 theorem phaseGate_applyVec (θ : ℝ) (ψ : StateVector 1) :
     (phaseGate θ).applyVec ψ
       = (ψ 0) • (ket0 : StateVector 1) +
@@ -135,6 +151,9 @@ theorem phaseGate_applyVec (θ : ℝ) (ψ : StateVector 1) :
       PureState.ket, Matrix.vecHead, Matrix.vecTail, PiLp.add_apply, PiLp.smul_apply,
       smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h2v.s10.92bbb48a63a7 from=translated src=- shape=0b57015b vocab=e1f84ac0
+-/
 theorem phaseGate_apply (θ : ℝ) (ψ : PureState 1) :
     (phaseGate θ).applyVec (ψ : StateVector 1)
       = (ψ 0) • (ket0 : StateVector 1) +
@@ -144,7 +163,9 @@ theorem phaseGate_apply (θ : ℝ) (ψ : PureState 1) :
 /-- **Controlled-phase factorization on an eigenstate.** When the target holds
 an eigenstate `U|u⟩ = e^{iθ}|u⟩`, the controlled unitary `c-U` acts on
 `|ψ⟩ ⊗ |u⟩` as the controlled-phase gate on the ancilla, leaving the
-eigenstate fixed [WZYW23, arxiv_v3.tex:641]. -/
+eigenstate fixed [WZYW23, arxiv_v3.tex:641].
+@isnad1 id=eq.1h5v.s7.d2f4befc9c31 from=translated src=- shape=921acdd1 vocab=590ecf12
+-/
 theorem controlled_apply_eigenstate_phaseVec (U : Gate n) (u : PureState n) (θ : ℝ)
     (hu : U.applyVec (u : StateVector n) =
       Complex.exp ((θ : ℝ) * Complex.I) • (u : StateVector n)) (ψ : StateVector 1) :
@@ -175,6 +196,9 @@ theorem controlled_apply_eigenstate_phaseVec (U : Gate n) (u : PureState n) (θ 
         (u : StateVector n) := by
         rw [phaseGate_applyVec]
 
+/--
+@isnad1 id=eq.1h5v.s7.9fd8efec3bbd from=translated src=- shape=e6077354 vocab=590ecf12
+-/
 theorem controlled_apply_eigenstate_phase (U : Gate n) (u : PureState n) (θ : ℝ)
     (hu : U.applyVec (u : StateVector n) =
       Complex.exp ((θ : ℝ) * Complex.I) • (u : StateVector n)) (ψ : PureState 1) :
@@ -188,7 +212,9 @@ theorem controlled_apply_eigenstate_phase (U : Gate n) (u : PureState n) (θ : �
 
 /-- `diag(1, e^{iθ}) = e^{iθ/2} · R_Z(θ)`: the controlled-phase gate is the QSP
 encoding gate `rotZStd θ = R_Z(θ)` up to the global phase `e^{iθ/2}`
-[WZYW23, arxiv_v3.tex:632]. -/
+[WZYW23, arxiv_v3.tex:632].
+@isnad1 id=eq.0h1v.s6.3d6aa7261f5a from=translated src=- shape=e4fe7a89 vocab=c2b76809
+-/
 theorem TransformationOnControlledUnitary.main_phase_gate_signal (θ : ℝ) :
     (phaseGate θ : HilbertOperator 1) =
       Complex.exp ((θ / 2 : ℝ) * Complex.I) • (rotZStd θ : HilbertOperator 1) := by
@@ -212,7 +238,9 @@ theorem TransformationOnControlledUnitary.main_phase_gate_signal (θ : ℝ) :
     ring
 
 /-- `c-U` on a general ancilla, in QSP-signal form: the QSP encoding gate
-`rotZStd θ` up to the global phase `e^{iθ/2}`. -/
+`rotZStd θ` up to the global phase `e^{iθ/2}`.
+@isnad1 id=eq.0h2v.s7.d5f225a89136 from=translated src=- shape=260856b7 vocab=9956e7b7
+-/
 theorem phaseGate_applyVec_eq_smul_rotZStd (θ : ℝ) (ψ : StateVector 1) :
     (phaseGate θ).applyVec ψ
       = Complex.exp ((θ / 2 : ℝ) * Complex.I) •
@@ -222,6 +250,9 @@ theorem phaseGate_applyVec_eq_smul_rotZStd (θ : ℝ) (ψ : StateVector 1) :
     (TransformationOnControlledUnitary.main_phase_gate_signal θ)
   simpa [Gate.applyVec, HilbertOperator.smul_applyVec] using h
 
+/--
+@isnad1 id=eq.0h2v.s7.78f6b83049a6 from=translated src=- shape=eb1debd8 vocab=6afc55e7
+-/
 theorem phaseGate_apply_eq_smul_rotZStd (θ : ℝ) (ψ : PureState 1) :
     (phaseGate θ).applyVec (ψ : StateVector 1)
       = Complex.exp ((θ / 2 : ℝ) * Complex.I) •
@@ -231,7 +262,9 @@ theorem phaseGate_apply_eq_smul_rotZStd (θ : ℝ) (ψ : PureState 1) :
 /-- **Eigenstate reduction of `c-U` to the QSP signal.** On an eigenstate
 `U|u⟩ = e^{iθ}|u⟩`, the controlled unitary acts as the QSP encoding gate at
 signal `θ`, up to the global phase `e^{iθ/2}`:
-`c-U (|ψ⟩ ⊗ |u⟩) = (e^{iθ/2} · R_Z(θ)|ψ⟩) ⊗ |u⟩` [WZYW23, arxiv_v3.tex:641]. -/
+`c-U (|ψ⟩ ⊗ |u⟩) = (e^{iθ/2} · R_Z(θ)|ψ⟩) ⊗ |u⟩` [WZYW23, arxiv_v3.tex:641].
+@isnad1 id=eq.1h5v.s8.521f0928a7c1 from=translated src=- shape=dc55d21a vocab=870dfcd9
+-/
 theorem TransformationOnControlledUnitary.main_eigenstate_reductionVec
     (U : Gate n) (u : PureState n) (θ : ℝ)
     (hu : U.applyVec (u : StateVector n) =
@@ -244,6 +277,9 @@ theorem TransformationOnControlledUnitary.main_eigenstate_reductionVec
           (u : StateVector n) := by
   rw [controlled_apply_eigenstate_phaseVec U u θ hu, phaseGate_applyVec_eq_smul_rotZStd]
 
+/--
+@isnad1 id=eq.1h5v.s8.aa44ea72c008 from=translated src=- shape=25c01db7 vocab=870dfcd9
+-/
 theorem TransformationOnControlledUnitary.main_eigenstate_reduction
     (U : Gate n) (u : PureState n) (θ : ℝ)
     (hu : U.applyVec (u : StateVector n) =
@@ -268,12 +304,18 @@ def qppYZZYZ (U : Gate n) (φ θ₀ φ₀ : ℝ) (ps : List (ℝ × ℝ)) : Gate
     (fun W p => W * (Gate.controlled U * Gate.tensor (rotY p.1 * rotZStd p.2) (1 : Gate n)))
     (Gate.tensor (rotZStd φ * (rotY θ₀ * rotZStd φ₀)) (1 : Gate n))
 
+/--
+@isnad1 id=eq.0h5v.s7.c5a3c6b171bf from=translated src=- shape=ad100ebf vocab=e294e831
+-/
 @[simp]
 theorem qppYZZYZ_nil (U : Gate n) (φ θ₀ φ₀ : ℝ) :
     qppYZZYZ U φ θ₀ φ₀ []
       = Gate.tensor (rotZStd φ * (rotY θ₀ * rotZStd φ₀)) (1 : Gate n) :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.eec48efdeffa from=translated src=- shape=44f4b604 vocab=25338ea6
+-/
 theorem qppYZZYZ_concat (U : Gate n) (φ θ₀ φ₀ : ℝ) (ps : List (ℝ × ℝ))
     (p : ℝ × ℝ) :
     qppYZZYZ U φ θ₀ φ₀ (ps ++ [p])
@@ -286,7 +328,9 @@ eigenstate `U|u⟩ = e^{iθ}|u⟩`, the QPP word acts as the single-qubit YZZYZ 
 word at the signal `θ`, tensored with the untouched eigenstate, up to the
 global phase `(e^{iθ/2})^L` (`L` = number of `c-U` calls):
 `qppYZZYZ U φ θ₀ φ₀ ps (|ψ⟩ ⊗ |u⟩)`
-`= ((e^{iθ/2})^L · qspYZZYZ φ θ₀ φ₀ ps θ |ψ⟩) ⊗ |u⟩`. -/
+`= ((e^{iθ/2})^L · qspYZZYZ φ θ₀ φ₀ ps θ |ψ⟩) ⊗ |u⟩`.
+@isnad1 id=eq.1h9v.s8.fdf8dd7e6d05 from=translated src=- shape=031d84bb vocab=82c928ac
+-/
 theorem TransformationOnControlledUnitary.main (U : Gate n) (u : PureState n) (θ : ℝ)
     (hu : U.applyVec (u : StateVector n) =
       Complex.exp ((θ : ℝ) * Complex.I) • (u : StateVector n))
@@ -317,7 +361,9 @@ theorem TransformationOnControlledUnitary.main (U : Gate n) (u : PureState n) (�
 transform admissible for single-qubit QSP (an `IsYZPair L A B`) is realized on
 the eigenphase of `U` by a QPP word with `L` controlled-unitary calls: there are
 angles `(φ, θ₀, φ₀, ps)` such that the QPP word maps `|ψ⟩ ⊗ |u⟩` to
-`((e^{iθ/2})^L · qspMatYZ L A B θ |ψ⟩) ⊗ |u⟩` for every ancilla state. -/
+`((e^{iθ/2})^L · qspMatYZ L A B θ |ψ⟩) ⊗ |u⟩` for every ancilla state.
+@isnad1 id=ex.2h7v.s8.54ab282b52eb from=translated src=- shape=a5a4e3a2 vocab=0f26f31c
+-/
 theorem TransformationOnControlledUnitary.main_realizes_target
     (U : Gate n) (u : PureState n) (θ : ℝ)
     (hu : U.applyVec (u : StateVector n) =
@@ -352,6 +398,9 @@ def qppYZZYZResourceProfile (L : ℕ) : ResourceProfile where
   elementaryGates := 2 * L + 3
   classicalOps := 0
 
+/--
+@isnad1 id=hasexact.0h1v.s5.fe2b1a3dfd6c from=translated src=- shape=5832b034 vocab=457f0c42
+-/
 theorem qppYZZYZResourceProfile_exact (L : ℕ) :
     ResourceProfile.HasExactCounts
       (qppYZZYZResourceProfile L) L 0 (2 * L + 3) 0 := by
@@ -359,7 +408,9 @@ theorem qppYZZYZResourceProfile_exact (L : ℕ) :
 
 /-- QPP realization paired with the resource profile of the YZZYZ convention
 formalized in this file. Conventions with alternating `controlled-U` and
-`controlled-U†` have a different resource profile. -/
+`controlled-U†` have a different resource profile.
+@isnad1 id=and.2h7v.s8.04ff5c97fafc from=translated src=- shape=3406a67f vocab=76855ade
+-/
 theorem qpp_realizes_target_with_resources (U : Gate n) (u : PureState n) (θ : ℝ)
     (hu : U.applyVec (u : StateVector n) =
       Complex.exp ((θ : ℝ) * Complex.I) • (u : StateVector n))
@@ -387,6 +438,9 @@ def qppAlternatingControlledResourceProfile (L : ℕ) : ResourceProfile where
   elementaryGates := 4 * L + 3
   classicalOps := 0
 
+/--
+@isnad1 id=hasexact.0h1v.s5.3bce19165e40 from=translated src=- shape=0443f167 vocab=25339513
+-/
 theorem qppAlternatingControlledResourceProfile_exact (L : ℕ) :
     ResourceProfile.HasExactCounts
       (qppAlternatingControlledResourceProfile L) (2 * L) 0 (4 * L + 3) 0 := by
@@ -395,7 +449,9 @@ theorem qppAlternatingControlledResourceProfile_exact (L : ℕ) :
 /-- QPP realization paired with the alternating controlled resource convention. The
 realization component is the current eigenstate reduction to YZZYZ QSP; the
 resource component records the source-level alternating controlled-`U` /
-controlled-`U†` convention used by the source-level resource claim. -/
+controlled-`U†` convention used by the source-level resource claim.
+@isnad1 id=and.2h7v.s8.a27f567cbd51 from=translated src=- shape=43999984 vocab=249a504c
+-/
 theorem qpp_realizes_target_with_alternating_controlled_resources
     (U : Gate n) (u : PureState n) (θ : ℝ)
     (hu : U.applyVec (u : StateVector n) =

@@ -32,17 +32,23 @@ open Polynomial
 /-- The base `B_0 = {0} ⊆ P_{3,0}`. -/
 noncomputable def base0 : Finset (ZMod 3)[X] := {0}
 
-/-- `B_0` has one element. -/
+/-- `B_0` has one element.
+@isnad1 id=eq.0h0v.s5.b1293454e447 from=translated src=- shape=7a75cbab vocab=56873eed
+-/
 theorem base0_card : base0.card = 1 := Finset.card_singleton 0
 
-/-- `B_0` lies in `P_{3,0}`. -/
+/-- `B_0` lies in `P_{3,0}`.
+@isnad1 id=allbelow.0h0v.s2.09ab9b4b0496 from=translated src=- shape=cef8a6bf vocab=877a36b8
+-/
 theorem base0_allBelow : AllBelow 0 base0 := by
   intro f hf
   rw [base0, Finset.mem_singleton] at hf
   subst hf
   exact below_zero 0
 
-/-- `B_0` is square-difference-free. -/
+/-- `B_0` is square-difference-free.
+@isnad1 id=squaredi.0h0v.s1.f10770e30263 from=translated src=- shape=49959d42 vocab=0ac09202
+-/
 theorem base0_sdf : SquareDifferenceFree base0 := by
   intro f hf g hg z hz
   rw [base0, Finset.mem_singleton] at hf hg
@@ -58,7 +64,9 @@ noncomputable def base4 : Finset (ZMod 3)[X] :=
   open scoped Classical in Finset.univ.image base4Map
 
 /-- Distinct triples give distinct elements of `B_4`: the coefficients at `T^3`, `T` and `1` read
-`a`, `b` and `c` back. -/
+`a`, `b` and `c` back.
+@isnad1 id=injectiv.0h0v.s5.2856aef581e8 from=translated src=- shape=7e5f25e3 vocab=f6dbbb5b
+-/
 theorem base4Map_injective : Function.Injective base4Map := by
   intro t t' h
   have h3 := congrArg (fun f => Polynomial.coeff f 3) h
@@ -69,13 +77,17 @@ theorem base4Map_injective : Function.Injective base4Map := by
   norm_num at h3 h1 h0
   exact Prod.ext h3 (Prod.ext h1 h0)
 
-/-- `B_4` has `27` elements. -/
+/-- `B_4` has `27` elements.
+@isnad1 id=eq.0h0v.s5.8f3167497bd3 from=translated src=- shape=7a75cbab vocab=a2a4d9c9
+-/
 theorem base4_card : base4.card = 27 := by
   classical
   rw [base4, Finset.card_image_of_injective _ base4Map_injective, Finset.card_univ]
   simp [ZMod.card]
 
-/-- `B_4` lies in `P_{3,4}`. -/
+/-- `B_4` lies in `P_{3,4}`.
+@isnad1 id=allbelow.0h0v.s2.43eaa044d561 from=translated src=- shape=cef8a6bf vocab=9d27fce8
+-/
 theorem base4_allBelow : AllBelow 4 base4 := by
   classical
   intro f hf
@@ -89,7 +101,9 @@ theorem base4_allBelow : AllBelow 4 base4 := by
 /-- **`B_4` is square-difference-free.** A difference of two of its elements has constant term `c`
 and `T^2`-coefficient `-c`; a nonzero square of degree below `4` is the square of a linear
 polynomial `v + u T`, whose constant term is `v^2` and whose `T^2`-coefficient is `u^2`; so
-`v^2 + u^2 = 0`, and in `F_3` that forces `u = v = 0`. -/
+`v^2 + u^2 = 0`, and in `F_3` that forces `u = v = 0`.
+@isnad1 id=squaredi.0h0v.s1.9b7fc383ca6d from=translated src=- shape=49959d42 vocab=ce043418
+-/
 theorem base4_sdf : SquareDifferenceFree base4 := by
   classical
   intro f hf g hg z hz

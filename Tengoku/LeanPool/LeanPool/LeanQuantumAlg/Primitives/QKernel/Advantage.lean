@@ -78,7 +78,9 @@ structure QuantumKernelAdvantage (G : Type*) [Group G] [Fintype G] [IsCyclic G] 
 
 /-- Genuine **classical accuracy ceiling**: under DLP hardness, the classical learner cannot
 beat `1/2 + ε`. The proof transports the learner to the fixed concept via `acc_shift` and
-applies the reduction, contradicting hardness. -/
+applies the reduction, contradicting hardness.
+@isnad1 id=le.0h2v.s6.a04df69070b7 from=translated src=- shape=23ace06e vocab=b17e25d8
+-/
 theorem QuantumKernelAdvantage.classical_ceiling {G : Type*} [Group G] [Fintype G] [IsCyclic G]
     (M : QuantumKernelAdvantage G) : M.classicalAcc ≤ 1 / 2 + M.ε := by
   by_contra h
@@ -87,14 +89,18 @@ theorem QuantumKernelAdvantage.classical_ceiling {G : Type*} [Group G] [Fintype 
   rw [acc_shift, ← M.classicalAcc_def]
   exact h
 
-/-- The quantum-kernel learner strictly outperforms every classical learner. -/
+/-- The quantum-kernel learner strictly outperforms every classical learner.
+@isnad1 id=lt.0h2v.s5.4b79a2ac59a4 from=translated src=- shape=e30ac6c8 vocab=30515070
+-/
 theorem QuantumKernelAdvantage.separation {G : Type*} [Group G] [Fintype G] [IsCyclic G]
     (M : QuantumKernelAdvantage G) : M.classicalAcc < M.quantumAcc :=
   lt_of_le_of_lt M.classical_ceiling (lt_of_lt_of_le M.hε_lt M.quantumFloor)
 
 /-- The conditional-separation hypotheses are jointly satisfiable (not vacuous): a concrete
 `QuantumKernelAdvantage` on the order-2 cyclic group, with an always-wrong classical predictor
-(`acc = 0`), so the reduction's premise is false and the bundle is consistent with `dlpHard`. -/
+(`acc = 0`), so the reduction's premise is false and the bundle is consistent with `dlpHard`.
+@isnad1 id=nonempty.0h0v.s6.3c78fe09d5a9 from=translated src=- shape=c79d4ee7 vocab=58553928
+-/
 theorem qka_nonempty : Nonempty (QuantumKernelAdvantage (Multiplicative (ZMod 2))) := by
   obtain ⟨g, hg⟩ := IsCyclic.exists_generator (α := Multiplicative (ZMod 2))
   refine ⟨{

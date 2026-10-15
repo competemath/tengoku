@@ -26,7 +26,9 @@ namespace ContinuousLinearMap
 namespace IsSelfAdjoint
 
 /-- Given a self-adjoint continuous linear operator $T$ on $E$, we get
-  $\langle T x, x \rangle = 0$ for any $x\in E$ if and only if $T=0$. -/
+  $\langle T x, x \rangle = 0$ for any $x\in E$ if and only if $T=0$.
+@isnad1 id=iff.1h3v.s9.7d36e0df4c52 from=translated src=- shape=73b056a2 vocab=ea05baae
+-/
 theorem inner_map_self_eq_zero [CompleteSpace E] {T : E →L[𝕜] E} (hT : IsSelfAdjoint T) :
     (∀ x, ⟪T x,x⟫ = 0) ↔ T = 0 := by
   rw [isSelfAdjoint_iff_isSymmetric] at hT
@@ -36,7 +38,9 @@ theorem inner_map_self_eq_zero [CompleteSpace E] {T : E →L[𝕜] E} (hT : IsSe
 
 open RCLike
 
-/-- The polarization identity for self-adjoint operators. -/
+/-- The polarization identity for self-adjoint operators.
+@isnad1 id=eq.1h5v.s11.8b02eca391c0 from=translated src=- shape=269d01a0 vocab=a0a31aad
+-/
 theorem inner_map_polarization [CompleteSpace E] {T : E →L[𝕜] E} (hT : IsSelfAdjoint T)
     (x y : E) :
     ⟪T x,y⟫ =

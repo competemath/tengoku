@@ -32,6 +32,9 @@ namespace DegreeDiameter
 variable {K V : Type*} [DivisionRing K] [AddCommGroup V] [Module K V]
   {n : ℕ}
 
+/--
+@isnad1 id=eq.0h4v.s8.59a3c142c867 from=translated src=- shape=b51f4f88 vocab=ebb297c5
+-/
 @[simp]
 theorem submodule_map_symm_map (e : V ≃ₗ[K] V) (S : Submodule K V) :
     (S.map e.toLinearMap).map e.symm.toLinearMap = S := by
@@ -50,10 +53,16 @@ noncomputable def map (e : V ≃ₗ[K] V) (F : CompleteFlag K V n) : CompleteFla
   space_zero := by simp [F.space_zero]
   space_last := by simp [F.space_last]
 
+/--
+@isnad1 id=eq.0h6v.s8.5aef461be502 from=translated src=- shape=ba01cdd6 vocab=be9aad9c
+-/
 @[simp]
 theorem map_apply (e : V ≃ₗ[K] V) (F : CompleteFlag K V n) (i : Fin (n + 1)) :
     F.map e i = (Submodule.orderIsoMapComap e) (F i) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.4ea5d332a1cf from=translated src=- shape=a9572530 vocab=49482a0d
+-/
 @[simp]
 theorem map_symm_map (e : V ≃ₗ[K] V) (F : CompleteFlag K V n) :
     (F.map e).map e.symm = F := by
@@ -61,12 +70,17 @@ theorem map_symm_map (e : V ≃ₗ[K] V) (F : CompleteFlag K V n) :
   intro i
   exact submodule_map_symm_map e (F i)
 
+/--
+@isnad1 id=eq.0h5v.s7.a43094e64792 from=translated src=- shape=045ac42b vocab=49482a0d
+-/
 @[simp]
 theorem map_map_symm (e : V ≃ₗ[K] V) (F : CompleteFlag K V n) :
     (F.map e.symm).map e = F := by
   simpa using map_symm_map e.symm F
 
-/-- Transporting a basis flag transports its basis. -/
+/-- Transporting a basis flag transports its basis.
+@isnad1 id=eq.0h5v.s7.afd72c906c4f from=translated src=- shape=f87c7771 vocab=b509c20f
+-/
 theorem map_ofBasis (e : V ≃ₗ[K] V) (b : Basis (Fin n) K V) :
     (CompleteFlag.ofBasis b).map e = CompleteFlag.ofBasis (b.map e) := by
   apply CompleteFlag.ext
@@ -92,11 +106,17 @@ noncomputable def map {parity : ℕ} (e : V ≃ₗ[K] V)
   · simp [flagPart, hi]
   · simp [flagPart, hi]
 
+/--
+@isnad1 id=eq.0h7v.s9.64e51361283f from=translated src=- shape=959fd920 vocab=c806f0f2
+-/
 @[simp]
 theorem map_val {parity : ℕ} (e : V ≃ₗ[K] V)
     (P : PartialFlag (K := K) (V := V) (n := n) parity) (i : Fin (n + 1)) :
     (P.map e).1 i = (Submodule.orderIsoMapComap e) (P.1 i) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.0ef06be40fb4 from=translated src=- shape=cf5ca921 vocab=46704b91
+-/
 @[simp]
 theorem map_symm_map {parity : ℕ} (e : V ≃ₗ[K] V)
     (P : PartialFlag (K := K) (V := V) (n := n) parity) :
@@ -105,6 +125,9 @@ theorem map_symm_map {parity : ℕ} (e : V ≃ₗ[K] V)
   intro i
   exact submodule_map_symm_map e (P.1 i)
 
+/--
+@isnad1 id=eq.0h6v.s7.18af77eb5477 from=translated src=- shape=ccd8b15c vocab=46704b91
+-/
 @[simp]
 theorem map_map_symm {parity : ℕ} (e : V ≃ₗ[K] V)
     (P : PartialFlag (K := K) (V := V) (n := n) parity) :
@@ -120,11 +143,17 @@ noncomputable def mapEquiv {parity : ℕ} (e : V ≃ₗ[K] V) :
   left_inv := map_symm_map e
   right_inv := map_map_symm e
 
+/--
+@isnad1 id=eq.0h6v.s7.061105305aed from=translated src=- shape=b8ee009d vocab=26cc8fa4
+-/
 @[simp]
 theorem mapEquiv_apply {parity : ℕ} (e : V ≃ₗ[K] V)
     (P : PartialFlag (K := K) (V := V) (n := n) parity) :
     mapEquiv e P = P.map e := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.3a23d020f788 from=translated src=- shape=d53d1013 vocab=a58043b4
+-/
 @[simp]
 theorem map_ofComplete {parity : ℕ} (e : V ≃ₗ[K] V)
     (F : CompleteFlag K V n) :
@@ -142,6 +171,9 @@ theorem map_ofComplete {parity : ℕ} (e : V ≃ₗ[K] V)
 
 end PartialFlag
 
+/--
+@isnad1 id=compatib.1h6v.s7.f98edb24d8f0 from=translated src=- shape=db2c14d0 vocab=c44e41b2
+-/
 theorem Compatible.map
     {P : EvenPartialFlag (K := K) (V := V) (n := n)}
     {Q : OddPartialFlag (K := K) (V := V) (n := n)}
@@ -152,6 +184,9 @@ theorem Compatible.map
   · exact (PartialFlag.map_ofComplete e F).symm.trans (congrArg (PartialFlag.map e) hEven)
   · exact (PartialFlag.map_ofComplete e F).symm.trans (congrArg (PartialFlag.map e) hOdd)
 
+/--
+@isnad1 id=iff.0h6v.s7.59ef6e34d47b from=translated src=- shape=495290ba vocab=c44e41b2
+-/
 theorem compatible_map_iff (e : V ≃ₗ[K] V)
     (P : EvenPartialFlag (K := K) (V := V) (n := n))
     (Q : OddPartialFlag (K := K) (V := V) (n := n)) :
@@ -180,12 +215,17 @@ noncomputable def halvedFlagGraphIso (e : V ≃ₗ[K] V) :
       · exact hPQ.map e
       · exact hP'Q.map e
 
+/--
+@isnad1 id=eq.0h5v.s7.e5e6b7580fa5 from=translated src=- shape=6d4efa3b vocab=2c7234c5
+-/
 @[simp]
 theorem halvedFlagGraphIso_apply (e : V ≃ₗ[K] V)
     (P : EvenPartialFlag (K := K) (V := V) (n := n)) :
     halvedFlagGraphIso e P = P.map e := rfl
 
-/-- Transitivity on even partial flags. -/
+/-- Transitivity on even partial flags.
+@isnad1 id=ex.0h5v.s7.dd845d95ba0d from=translated src=- shape=0d178ef2 vocab=979d3198
+-/
 theorem exists_halvedFlagGraphIso_map_eq
     (P P' : EvenPartialFlag (K := K) (V := V) (n := n)) :
     ∃ φ : halvedFlagGraph (K := K) (V := V) (n := n) ≃g
@@ -215,7 +255,9 @@ theorem exists_halvedFlagGraphIso_map_eq
     _ = PartialFlag.ofComplete 0 F' := congrArg (PartialFlag.ofComplete 0) hmapFlag
     _ = P' := hPF'
 
-/-- All neighbor sets have the same finite cardinality. -/
+/-- All neighbor sets have the same finite cardinality.
+@isnad1 id=eq.0h5v.s6.9b25424f8415 from=translated src=- shape=e89f4650 vocab=801c9346
+-/
 theorem halvedFlagGraph_natCard_neighborSet_eq
     (P P' : EvenPartialFlag (K := K) (V := V) (n := n)) :
     Nat.card ((halvedFlagGraph (K := K) (V := V) (n := n)).neighborSet P) =
@@ -224,7 +266,9 @@ theorem halvedFlagGraph_natCard_neighborSet_eq
   simpa [hφ] using Nat.card_congr (φ.mapNeighborSet P)
 
 /-- A common natural-number degree for all vertices, stated without making
-the particular `Fintype` structures on neighbor sets part of the theorem. -/
+the particular `Fintype` structures on neighbor sets part of the theorem.
+@isnad1 id=ex.0h3v.s6.25ced80e9ce2 from=translated src=- shape=b075f249 vocab=68faba8d
+-/
 theorem exists_halvedFlagGraph_common_degree
     [Nonempty (EvenPartialFlag (K := K) (V := V) (n := n))] :
     ∃ Δ : ℕ, ∀ P : EvenPartialFlag (K := K) (V := V) (n := n),

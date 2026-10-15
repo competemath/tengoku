@@ -39,7 +39,9 @@ def ExpConcentrated (X : ℕ → ℝ) (μ : ℝ) : Prop :=
   ∃ b : ℝ, 1 < b ∧ ∃ C : ℝ, 0 ≤ C ∧ ∀ n, |X n - μ| ≤ C / b ^ n
 
 /-- An exponentially concentrated quantity converges to its concentration value:
-the landscape becomes exponentially flat. -/
+the landscape becomes exponentially flat.
+@isnad1 id=tendsto.1h2v.s4.cee06c1dd744 from=translated src=- shape=826509bf vocab=05eeab81
+-/
 theorem ExpConcentrated.tendsto {X : ℕ → ℝ} {μ : ℝ} (h : ExpConcentrated X μ) :
     Filter.Tendsto X Filter.atTop (nhds μ) := by
   obtain ⟨b, hb, C, _, hbnd⟩ := h
@@ -59,7 +61,9 @@ exponentially concentrated to `0` (so the trainable signal vanishes with system
 size). -/
 def HasBarrenPlateau (variance : ℕ → ℝ) : Prop := ExpConcentrated variance 0
 
-/-- Under a barren plateau the variance vanishes in the large-system limit. -/
+/-- Under a barren plateau the variance vanishes in the large-system limit.
+@isnad1 id=tendsto.1h1v.s4.3cb2a34e68a5 from=translated src=- shape=d7359373 vocab=c9b5a67c
+-/
 theorem HasBarrenPlateau.variance_tendsto_zero {variance : ℕ → ℝ}
     (h : HasBarrenPlateau variance) :
     Filter.Tendsto variance Filter.atTop (nhds 0) :=
@@ -85,7 +89,9 @@ structure LieAlgebraicVariance where
   /-- Ragone et al. (2023), Eq. (10): variance `= P_g(ρ) P_g(O) / dim(g)`. -/
   variance_eq : ∀ n, variance n = numer / gdim n
 
-/-- An exponentially large dynamical Lie algebra forces a barren plateau. -/
+/-- An exponentially large dynamical Lie algebra forces a barren plateau.
+@isnad1 id=hasbarre.2h2v.s5.8c8ff185c574 from=translated src=- shape=9acfab33 vocab=5f996cd7
+-/
 theorem LieAlgebraicVariance.hasBarrenPlateau_of_exp_dim (M : LieAlgebraicVariance)
     {b : ℝ} (hb : 1 < b) (hdim : ∀ n, b ^ n ≤ M.gdim n) :
     HasBarrenPlateau M.variance := by
@@ -110,12 +116,16 @@ structure CostDependentBP where
   /-- The local cost keeps a polynomial lower bound. -/
   local_lb : ∀ n : ℕ, 0 < n → 1 / (n : ℝ) ≤ localVariance n
 
-/-- The global cost's gradient vanishes (barren plateau). -/
+/-- The global cost's gradient vanishes (barren plateau).
+@isnad1 id=tendsto.0h1v.s4.b38da8dfd813 from=translated src=- shape=f607c962 vocab=41a8b787
+-/
 theorem CostDependentBP.global_tendsto_zero (M : CostDependentBP) :
     Filter.Tendsto M.globalVariance Filter.atTop (nhds 0) :=
   M.global_bp.variance_tendsto_zero
 
-/-- The local cost's gradient variance stays strictly positive (trainable). -/
+/-- The local cost's gradient variance stays strictly positive (trainable).
+@isnad1 id=lt.1h2v.s4.a5729cc72360 from=translated src=- shape=08dd841c vocab=33db7498
+-/
 theorem CostDependentBP.local_pos (M : CostDependentBP) {n : ℕ} (hn : 0 < n) :
     0 < M.localVariance n :=
   lt_of_lt_of_le (one_div_pos.mpr (Nat.cast_pos.mpr hn)) (M.local_lb n hn)
@@ -133,7 +143,9 @@ derived from first principles with no Haar assumption — is
 built on the probabilistic engine `LeanPool.LeanQuantumAlg.ExpConcentratedProb`. -/
 def KernelConcentration (kernel : ℕ → ℝ) (κ₀ : ℝ) : Prop := ExpConcentrated kernel κ₀
 
-/-- A concentrated kernel converges to its concentration value. -/
+/-- A concentrated kernel converges to its concentration value.
+@isnad1 id=tendsto.1h2v.s4.8ec7848c275d from=translated src=- shape=826509bf vocab=6cf22dbf
+-/
 theorem KernelConcentration.tendsto {kernel : ℕ → ℝ} {κ₀ : ℝ}
     (h : KernelConcentration kernel κ₀) :
     Filter.Tendsto kernel Filter.atTop (nhds κ₀) :=
@@ -154,7 +166,9 @@ structure GeometricQMLTrainable where
   variance_lb : ∀ n : ℕ, 0 < n → 1 / (n : ℝ) ^ deg ≤ variance n
 
 /-- A geometric/equivariant model with polynomial dynamical Lie algebra has strictly
-positive (not exponentially vanishing) gradient variance: it is trainable. -/
+positive (not exponentially vanishing) gradient variance: it is trainable.
+@isnad1 id=lt.1h2v.s4.33463a273eae from=translated src=- shape=08dd841c vocab=f147390e
+-/
 theorem GeometricQMLTrainable.variance_pos (M : GeometricQMLTrainable) {n : ℕ}
     (hn : 0 < n) : 0 < M.variance n :=
   lt_of_lt_of_le (one_div_pos.mpr (pow_pos (Nat.cast_pos.mpr hn) M.deg)) (M.variance_lb n hn)

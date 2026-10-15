@@ -40,6 +40,9 @@ namespace SlashInvariantFormClass
 variable [hF : SlashInvariantFormClass F Γ k]
 include hF
 
+/--
+@isnad1 id=periodic.1h5v.s7.423db75b194c from=translated src=- shape=5293ee88 vocab=8cfd90ed
+-/
 theorem periodic_comp_ofComplex' (hΓ : Γ.width ∣ h) : Periodic (f ∘ ofComplex) h := by
   intro w
   by_cases hw : 0 < im w
@@ -68,7 +71,9 @@ include hF
 
 /-- Differentiability of `⇑f ∘ ofComplex` at a point with positive imaginary part, recovering the
 former `ModularFormClass.differentiableAt_comp_ofComplex` from the manifold-differentiability of a
-modular form. -/
+modular form.
+@isnad1 id=differen.1h5v.s8.9a139f936e4a from=translated src=- shape=a8e8bee4 vocab=8acc93f8
+-/
 theorem differentiableAt_comp_ofComplex {z : ℂ} (hz : 0 < z.im) :
     DifferentiableAt ℂ (⇑f ∘ ↑ofComplex) z :=
   UpperHalfPlane.mdifferentiableAt_iff.mp (holo f ⟨z, hz⟩)
@@ -76,6 +81,9 @@ theorem differentiableAt_comp_ofComplex {z : ℂ} (hz : 0 < z.im) :
 variable [NeZero h] (hΓ : Γ.width ∣ h)
 include hΓ
 
+/--
+@isnad1 id=differen.3h6v.s8.34b7f6d08f04 from=translated src=- shape=ba0cec5c vocab=5d88948e
+-/
 theorem differentiableAt_cuspFunction'
     (hc : IsCusp OnePoint.infty (Γ.map (Matrix.SpecialLinearGroup.mapGL ℝ)))
     (hq : ‖q‖ < 1) :
@@ -99,6 +107,9 @@ namespace UpperHalfPlane.IsZeroAtImInfty
 
 variable {f}
 
+/--
+@isnad1 id=zeroatfi.1h2v.s5.a712b55af27a from=translated src=- shape=61f89c33 vocab=9304b846
+-/
 lemma zeroAtFilter_comp_ofComplex {α : Type*} [Zero α] [TopologicalSpace α] {f : ℍ → α}
     (hf : IsZeroAtImInfty f) : ZeroAtFilter I∞ (f ∘ ofComplex) :=
   hf.comp tendsto_comap_im_ofComplex
@@ -106,7 +117,9 @@ lemma zeroAtFilter_comp_ofComplex {α : Type*} [Zero α] [TopologicalSpace α] {
 /-- A modular form which vanishes at the cusp `∞` actually must decay at least as fast as
 `Real.exp (-2 * π * τ.im / n)`, if `n` divides the cusp with.
 
-(Note that `Γ` need not be finite index here). -/
+(Note that `Γ` need not be finite index here).
+@isnad1 id=isbigo.2h5v.s8.ecc35b38cd66 from=translated src=- shape=1afe1fec vocab=7d350d4d
+-/
 theorem exp_decay_atImInfty_of_width_dvd [ModularFormClass F Γ k]
     (hf : IsZeroAtImInfty f) (hΓ : Γ.width ∣ h) :
     f =O[atImInfty] fun τ ↦ Real.exp (-2 * π * τ.im / h) := by
@@ -127,7 +140,9 @@ namespace ModularFormClass
 
 /-- Recovers the former `ModularFormClass.hasFPowerSeries_cuspFunction`: the `q`-expansion of a
 modular form is an `FPowerSeries` representing its `cuspFunction`, derived from the modular-form
-instance (analyticity at `0` plus the `q`-expansion `HasSum`). -/
+instance (analyticity at `0` plus the `q`-expansion `HasSum`).
+@isnad1 id=hasfpowe.2h5v.s7.56460d2a8c96 from=translated src=- shape=7156fb61 vocab=4ca71387
+-/
 theorem hasFPowerSeries_cuspFunction {F : Type*} [FunLike F ℍ ℂ]
     {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} {h : ℝ} (f : F) [ModularFormClass F Γ k]
     (hh : 0 < h) (hΓ : h ∈ Γ.strictPeriods) :

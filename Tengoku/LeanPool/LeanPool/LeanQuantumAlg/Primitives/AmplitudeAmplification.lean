@@ -48,6 +48,9 @@ def amplitudeAmplificationStateVec (θ : ℝ) (k : ℕ) : StateVector 1 :=
   ((Real.cos (amplitudeAmplificationAngle θ k) : ℂ) • (ket0 : StateVector 1)) +
     ((Real.sin (amplitudeAmplificationAngle θ k) : ℂ) • ket1)
 
+/--
+@isnad1 id=eq.0h2v.s7.fe8d5040f89f from=translated src=- shape=52725814 vocab=a2b794cd
+-/
 theorem norm_amplitudeAmplificationStateVec (θ : ℝ) (k : ℕ) :
     ‖amplitudeAmplificationStateVec θ k‖ = 1 := by
   rw [PureState.norm_eq_two_terms]
@@ -70,14 +73,18 @@ def amplitudeAmplificationState (θ : ℝ) (k : ℕ) : PureState 1 :=
 `2θ`. Since `rotY φ` rotates the real plane by `φ/2`, this is `rotY (4θ)`. -/
 def amplitudeAmplificationStep (θ : ℝ) : Gate 1 := rotY (4 * θ)
 
-/-- The plane rotation used by amplitude amplification is unitary. -/
+/-- The plane rotation used by amplitude amplification is unitary.
+@isnad1 id=mem.0h1v.s9.9e34fd386674 from=translated src=- shape=ec80d56a vocab=731c9878
+-/
 theorem amplitudeAmplificationStep_mem_unitaryGroup (θ : ℝ) :
     (amplitudeAmplificationStep θ : HilbertOperator 1) ∈
       Matrix.unitaryGroup (Fin (2 ^ 1)) ℂ :=
   rotY_mem_unitaryGroup _
 
 /-- One amplitude-amplification step increases the good/bad-plane angle by
-`2θ`. -/
+`2θ`.
+@isnad1 id=eq.0h2v.s5.3cae28b32aba from=translated src=- shape=102ae154 vocab=e823f4cd
+-/
 theorem amplitudeAmplificationStep_apply_state (θ : ℝ) (k : ℕ) :
     (amplitudeAmplificationStep θ).apply (amplitudeAmplificationState θ k) =
       amplitudeAmplificationState θ (k + 1) := by
@@ -112,7 +119,9 @@ theorem amplitudeAmplificationStep_apply_state (θ : ℝ) (k : ℕ) :
     ring_nf
 
 /-- Iterating the abstract amplification step gives the standard closed form
-`cos((2k+1)θ)|bad⟩ + sin((2k+1)θ)|good⟩`. -/
+`cos((2k+1)θ)|bad⟩ + sin((2k+1)θ)|good⟩`.
+@isnad1 id=eq.0h2v.s6.14901f8753a0 from=translated src=- shape=e1e52f4c vocab=ef8b4d28
+-/
 theorem amplitudeAmplificationStep_pow_apply (θ : ℝ) (k : ℕ) :
     ((amplitudeAmplificationStep θ) ^ k).apply (amplitudeAmplificationState θ 0) =
       amplitudeAmplificationState θ k := by
@@ -173,7 +182,9 @@ def toModel (M : SourceAmplitudeAmplificationModel) : AmplitudeAmplificationMode
   iterate_eq := M.iterate_eq
 
 /-- The source preparation statement is the initial good/bad-plane state used
-by the core amplitude-amplification theorem. -/
+by the core amplitude-amplification theorem.
+@isnad1 id=eq.0h1v.s4.a626bb475540 from=translated src=- shape=34fd09af vocab=d313ca7c
+-/
 theorem prepared_eq_state (M : SourceAmplitudeAmplificationModel) :
     M.preparation.apply ket0 = amplitudeAmplificationState M.theta 0 := by
   ext i
@@ -187,7 +198,9 @@ end SourceAmplitudeAmplificationModel
 
 /-- Amplitude amplification correctness in the accepted two-dimensional scope:
 if the reflection product acts as the standard good/bad-plane rotation, then `k`
-iterations produce the closed-form amplified state. -/
+iterations produce the closed-form amplified state.
+@isnad1 id=eq.0h2v.s7.81969153ab5c from=translated src=- shape=883d0aa1 vocab=954c9b68
+-/
 theorem AmplitudeAmplification.main (M : AmplitudeAmplificationModel) (k : ℕ) :
     Gate.apply ((M.startReflection * M.goodReflection) ^ k)
         (amplitudeAmplificationState M.θ 0) =
@@ -196,7 +209,9 @@ theorem AmplitudeAmplification.main (M : AmplitudeAmplificationModel) (k : ℕ) 
   exact amplitudeAmplificationStep_pow_apply M.θ k
 
 /-- The success probability of the closed-form amplitude-amplified state is the
-squared good amplitude. -/
+squared good amplitude.
+@isnad1 id=eq.0h2v.s6.15edfcd7c833 from=translated src=- shape=40b7b153 vocab=226e6857
+-/
 theorem amplitudeAmplificationState_good_probability (θ : ℝ) (k : ℕ) :
     PureState.probOutcome (amplitudeAmplificationState θ k) (1 : Fin (2 ^ 1)) =
       Real.sin (amplitudeAmplificationAngle θ k) ^ 2 := by
@@ -216,22 +231,32 @@ def timedIterate (M : AmplitudeAmplificationModel) (k : ℕ) : Timed (PureState 
     (Gate.apply ((M.startReflection * M.goodReflection) ^ k)
       (amplitudeAmplificationState M.θ 0))
 
+/--
+@isnad1 id=eq.0h2v.s7.9cdf922e9cfb from=translated src=- shape=2d4e5c36 vocab=acae8b7b
+-/
 @[simp]
 theorem timedIterate_ret (M : AmplitudeAmplificationModel) (k : ℕ) :
     (timedIterate M k).ret =
       Gate.apply ((M.startReflection * M.goodReflection) ^ k)
         (amplitudeAmplificationState M.θ 0) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.a8229116c3ca from=translated src=- shape=ed7f706e vocab=1b868469
+-/
 @[simp]
 theorem timedIterate_time (M : AmplitudeAmplificationModel) (k : ℕ) :
     (timedIterate M k).time = k := rfl
 
-/-- Amplitude-amplification correctness, phrased through the TimeM return value. -/
+/-- Amplitude-amplification correctness, phrased through the TimeM return value.
+@isnad1 id=eq.0h2v.s4.8a9fc8054d2f from=translated src=- shape=d56ce5a9 vocab=828ab4f7
+-/
 theorem timedIterate_correct (M : AmplitudeAmplificationModel) (k : ℕ) :
     (timedIterate M k).ret = amplitudeAmplificationState M.θ k := by
   exact AmplitudeAmplification.main M k
 
-/-- The good-state success probability after the timed iterate. -/
+/-- The good-state success probability after the timed iterate.
+@isnad1 id=eq.0h2v.s6.1ea5fd14210f from=translated src=- shape=a5192b92 vocab=cbe31f0a
+-/
 theorem timedIterate_success_probability
     (M : AmplitudeAmplificationModel) (k : ℕ) :
     PureState.probOutcome (timedIterate M k).ret (1 : Fin (2 ^ 1)) =

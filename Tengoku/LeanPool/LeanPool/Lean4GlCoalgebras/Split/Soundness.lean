@@ -411,7 +411,9 @@ noncomputable def chain
             | [] => False.elim (by have := 𝕏.step x_ih; simp [r_def, p_def] at this)
             | x::y::l => False.elim (by have := 𝕏.step x_ih; simp [r_def, p_def] at this)
 
-/-- The left projection of `chain` is a chain in the proof. -/
+/-- The left projection of `chain` is a chain in the proof.
+@isnad1 id=edge.2h7v.s6.038b08ae076f from=translated src=- shape=2f8d90b5 vocab=96e40c7d
+-/
 lemma chain_proof_prop
   {𝕏 : Proof}
   {x : 𝕏.X}
@@ -512,7 +514,9 @@ lemma chain_proof_prop
       · simp [edge, p_def]
       all_goals simpa [r_def, p_def] using 𝕏.step x_ih
 
-/-- The right projection of `chain` makes progress in the model on box nodes. -/
+/-- The right projection of `chain` makes progress in the model on box nodes.
+@isnad1 id=and.2h7v.s9.60733160c168 from=translated src=- shape=9e5cb2b8 vocab=18ab1154
+-/
 lemma chain_model_prop {𝕏 : Proof}
   {x : 𝕏.X}
   {Γ : SplitSequent}
@@ -573,7 +577,9 @@ lemma chain_model_prop {𝕏 : Proof}
         have step := 𝕏.step x_ih
         simp_all
 
-/-- The right projection of `chain` eventually progresses. -/
+/-- The right projection of `chain` eventually progresses.
+@isnad1 id=ex.2h7v.s7.e1e10d1b08c2 from=translated src=- shape=b4bd9ab6 vocab=8a3d0137
+-/
 lemma has_children_of_chain_model {𝕏 : Proof}
   {x : 𝕏.X}
   {Γ : SplitSequent}
@@ -628,7 +634,9 @@ noncomputable def incChainEventualIncChain {β}
       match incChainEventualIncChain Q_prop n with
         | ⟨ih, ih_prop⟩ => ⟨g (Q_prop ih_prop.choose).choose, by simp⟩
 
-/-- An eventually progressing chain has an progressing subchain. -/
+/-- An eventually progressing chain has an progressing subchain.
+@isnad1 id=var.1h4v.s6.7fe566eabf0a from=translated src=- shape=cf657f70 vocab=45f66415
+-/
 lemma inc_chain_eventual_inc_chain_prop {β}
   {Q : β → β → Prop} {g : ℕ → β}
   (Q_prop : ∀ n, ∃ m, Q (g n) (g m)) :
@@ -646,7 +654,9 @@ lemma inc_chain_eventual_inc_chain_prop {β}
     convert this
     · exact ih_prop.choose_spec
 
-/-- Soundness lemma for the GL-split proof system. -/
+/-- Soundness lemma for the GL-split proof system.
+@isnad1 id=isvalid.1h1v.s2.b0f1d593e91d from=translated src=- shape=6321fd23 vocab=0011be1a
+-/
 lemma soundness (Γ : SplitSequent) : SplitSequent.isTrue Γ → ⊨ Γ := by
   intro mp
   have ⟨𝕏, x, prop⟩ := mp

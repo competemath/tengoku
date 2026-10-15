@@ -101,13 +101,25 @@ noncomputable def iPow (k : ZMod 4) : ℂ := Complex.I ^ k.val
 /-- `(-1)^a` for an exponent in `ZMod 2`. -/
 noncomputable def negOnePow (a : ZMod 2) : ℂ := (-1 : ℂ) ^ a.val
 
+/--
+@isnad1 id=eq.0h0v.s5.7dc29d46fad2 from=translated src=- shape=012516b9 vocab=5387f48a
+-/
 @[simp] lemma iPow_zero : iPow 0 = 1 := by simp [iPow]
 
+/--
+@isnad1 id=eq.0h0v.s5.57e2d40db95a from=translated src=- shape=fdee698a vocab=64cebf19
+-/
 lemma iPow_one : iPow 1 = Complex.I := by simp [iPow, show (1 : ZMod 4).val = 1 from rfl]
 
+/--
+@isnad1 id=eq.0h0v.s5.0147a18ed66d from=translated src=- shape=f05c4898 vocab=6f022afe
+-/
 @[simp] lemma iPow_two : iPow 2 = -1 := by
   simp [iPow, show (2 : ZMod 4).val = 2 from rfl, pow_two, Complex.I_mul_I]
 
+/--
+@isnad1 id=eq.0h0v.s5.14d93b769488 from=translated src=- shape=a5e329d7 vocab=eeeb9e47
+-/
 lemma iPow_three : iPow 3 = -Complex.I := by
   have : (3 : ZMod 4).val = 3 := rfl
   rw [iPow, this, pow_succ, pow_two, Complex.I_mul_I]
@@ -117,32 +129,58 @@ private lemma I_pow_four : (Complex.I) ^ 4 = 1 := by
   rw [show (4 : ℕ) = 2 * 2 from rfl, pow_mul, Complex.I_sq]
   norm_num
 
+/--
+@isnad1 id=eq.0h2v.s6.5d6072bbced6 from=translated src=- shape=b67944bb vocab=93e59051
+-/
 lemma iPow_add (k l : ZMod 4) : iPow (k + l) = iPow k * iPow l := by
   rw [iPow, iPow, iPow, ZMod.val_add, pow_mod_of_pow_eq_one I_pow_four, pow_add]
 
+/--
+@isnad1 id=eq.0h0v.s6.c4f2ce35d330 from=translated src=- shape=012516b9 vocab=b53d4e22
+-/
 @[simp] lemma negOnePow_zero : negOnePow 0 = 1 := by simp [negOnePow]
 
+/--
+@isnad1 id=eq.0h0v.s6.b65dde33e1c2 from=translated src=- shape=f05c4898 vocab=5c6ecee6
+-/
 @[simp] lemma negOnePow_one : negOnePow 1 = -1 := by
   simp [negOnePow, show (1 : ZMod 2).val = 1 from rfl]
 
+/--
+@isnad1 id=eq.0h2v.s6.cd87ef78802d from=translated src=- shape=b67944bb vocab=f8720e5a
+-/
 lemma negOnePow_add (a b : ZMod 2) : negOnePow (a + b) = negOnePow a * negOnePow b := by
   rw [negOnePow, negOnePow, negOnePow, ZMod.val_add,
     pow_mod_of_pow_eq_one (by norm_num : (-1 : ℂ) ^ 2 = 1), pow_add]
 
-/-- The two characters agree where they must: `(-1)^a = i^{2a}`. -/
+/-- The two characters agree where they must: `(-1)^a = i^{2a}`.
+@isnad1 id=eq.0h1v.s3.a8858f6ba445 from=translated src=- shape=79c5de43 vocab=6fec1fd9
+-/
 @[simp] lemma iPow_signPhase (a : ZMod 2) : iPow (signPhase a) = negOnePow a := by
   rcases zmod_two_cases a with rfl | rfl <;> simp
 
+/--
+@isnad1 id=eq.0h1v.s4.8d04fb6414c1 from=translated src=- shape=4975ee10 vocab=f13bb4fd
+-/
 @[simp] lemma negOnePow_mul_self (a : ZMod 2) : negOnePow a * negOnePow a = 1 := by
   rw [← negOnePow_add, zmod_two_add_self, negOnePow_zero]
 
+/--
+@isnad1 id=ne.0h1v.s4.f32e323da58b from=translated src=- shape=9a4b31c0 vocab=5387f48a
+-/
 lemma iPow_ne_zero (k : ZMod 4) : iPow k ≠ 0 := by
   rcases zmod_four_cases k with rfl | rfl | rfl | rfl <;>
     simp [iPow_one, iPow_three, Complex.I_ne_zero]
 
+/--
+@isnad1 id=ne.0h1v.s4.c041e4872077 from=translated src=- shape=9a4b31c0 vocab=b53d4e22
+-/
 lemma negOnePow_ne_zero (a : ZMod 2) : negOnePow a ≠ 0 := by
   rcases zmod_two_cases a with rfl | rfl <;> simp
 
+/--
+@isnad1 id=injectiv.0h0v.s3.926cd32c16cd from=translated src=- shape=bfe16b09 vocab=84ef4255
+-/
 lemma negOnePow_injective : Function.Injective negOnePow := by
   intro a b hab
   rcases zmod_two_cases a with rfl | rfl <;> rcases zmod_two_cases b with rfl | rfl
@@ -151,11 +189,17 @@ lemma negOnePow_injective : Function.Injective negOnePow := by
   · simp only [negOnePow_zero, negOnePow_one] at hab; norm_num at hab
   · rfl
 
+/--
+@isnad1 id=iff.0h1v.s6.6df7d4e0aec8 from=translated src=- shape=bb2e466f vocab=b53d4e22
+-/
 lemma negOnePow_eq_one_iff {a : ZMod 2} : negOnePow a = 1 ↔ a = 0 := by
   constructor
   · intro h; exact negOnePow_injective (by rw [h, negOnePow_zero])
   · rintro rfl; simp
 
+/--
+@isnad1 id=iff.0h1v.s6.53af28d276d9 from=translated src=- shape=bb2e466f vocab=5387f48a
+-/
 lemma iPow_eq_one_iff {k : ZMod 4} : iPow k = 1 ↔ k = 0 := by
   constructor
   · intro h
@@ -169,15 +213,24 @@ lemma iPow_eq_one_iff {k : ZMod 4} : iPow k = 1 ↔ k = 0 := by
       exact absurd (congrArg Complex.im h) (by norm_num)
   · rintro rfl; simp
 
+/--
+@isnad1 id=injectiv.0h0v.s3.f23778773238 from=translated src=- shape=bfe16b09 vocab=adf35418
+-/
 lemma iPow_injective : Function.Injective iPow := by
   intro k l h
   have hkl : iPow (k - l) = 1 := by
     rw [sub_eq_add_neg, iPow_add, h, ← iPow_add, add_neg_cancel, iPow_zero]
   exact sub_eq_zero.1 (iPow_eq_one_iff.1 hkl)
 
+/--
+@isnad1 id=eq.0h1v.s5.a3cedf6cc44f from=translated src=- shape=d4cbb841 vocab=fb6ac8a1
+-/
 @[simp] lemma conj_negOnePow (a : ZMod 2) : starRingEnd ℂ (negOnePow a) = negOnePow a := by
   rcases zmod_two_cases a with rfl | rfl <;> simp
 
+/--
+@isnad1 id=eq.0h1v.s6.fab5f1c27c01 from=translated src=- shape=a1d4e60b vocab=74475f51
+-/
 lemma conj_iPow (k : ZMod 4) : starRingEnd ℂ (iPow k) = iPow (-k) := by
   have e1 : -(1 : ZMod 4) = 3 := by decide
   have e2 : -(2 : ZMod 4) = 2 := by decide
@@ -188,9 +241,15 @@ lemma conj_iPow (k : ZMod 4) : starRingEnd ℂ (iPow k) = iPow (-k) := by
   · rw [e2, iPow_two]; simp
   · rw [e3, iPow_three, iPow_one]; simp
 
+/--
+@isnad1 id=eq.0h1v.s5.13efd84cf071 from=translated src=- shape=40f9c612 vocab=2d0e26cc
+-/
 @[simp] lemma star_negOnePow (a : ZMod 2) : star (negOnePow a) = negOnePow a := by
   rw [Complex.star_def]; exact conj_negOnePow a
 
+/--
+@isnad1 id=eq.0h1v.s6.b5d80991ae71 from=translated src=- shape=e0aa08e8 vocab=7a341012
+-/
 lemma star_iPow (k : ZMod 4) : star (iPow k) = iPow (-k) := by
   rw [Complex.star_def]; exact conj_iPow k
 
@@ -203,7 +262,9 @@ abbrev Bits (n : ℕ) := Fin n → ZMod 2
 algebra. `Rotation.lean`'s closing `example` names the same algebra as
 `Matrix (Fin (2^n)) (Fin (2^n)) ℂ`, which is a different Lean type; the reindexing along
 `Bits n ≃ Fin (2^n)` is supplied by `PauliString.bitsEquivFin` in `Pauli/Tensor.lean`, together
-with the induced equivalence of matrix algebras `PauliString.bitsMatrixEquiv`. -/
+with the induced equivalence of matrix algebras `PauliString.bitsMatrixEquiv`.
+@isnad1 id=eq.0h1v.s5.6d2e7b04ac3f from=translated src=- shape=5b09d1d5 vocab=3ffacbb0
+-/
 lemma card_bits (n : ℕ) : Fintype.card (Bits n) = 2 ^ n := by simp
 
 private lemma bits_eq_add_comm {n : ℕ} {u v w : Bits n} : u = v + w ↔ v = u + w := by
@@ -224,22 +285,36 @@ This is a *definition*. That it deserves the name is `toMatrix_one`, `toMatrix_m
 noncomputable def toMatrix (s : PauliString n) : Matrix (Bits n) (Bits n) ℂ :=
   Matrix.of fun a b => if a = b + s.x then iPow s.phase * negOnePow (s.z ⬝ᵥ b) else 0
 
+/--
+@isnad1 id=eq.0h4v.s8.9360bf35923d from=translated src=- shape=a521e7fe vocab=0d256799
+-/
 lemma toMatrix_apply (s : PauliString n) (a b : Bits n) :
     toMatrix s a b = if a = b + s.x then iPow s.phase * negOnePow (s.z ⬝ᵥ b) else 0 := rfl
 
-/-- The one non-zero entry of each column. -/
+/-- The one non-zero entry of each column.
+@isnad1 id=eq.0h3v.s7.4c7077e238c5 from=translated src=- shape=001305bc vocab=08a9f618
+-/
 lemma toMatrix_apply_add (s : PauliString n) (b : Bits n) :
     toMatrix s (b + s.x) b = iPow s.phase * negOnePow (s.z ⬝ᵥ b) := by
   rw [toMatrix_apply, ite_eq_left rfl]
 
+/--
+@isnad1 id=eq.1h4v.s6.4ed110ab18ac from=translated src=- shape=19dd99ad vocab=180ecd70
+-/
 lemma toMatrix_apply_ne (s : PauliString n) {a b : Bits n} (h : a ≠ b + s.x) :
     toMatrix s a b = 0 := by rw [toMatrix_apply, ite_eq_right h]
 
+/--
+@isnad1 id=eq.0h1v.s6.f6386b69e971 from=translated src=- shape=2aa6dcd6 vocab=f9fbb210
+-/
 @[simp] lemma toMatrix_one : toMatrix (1 : PauliString n) = 1 := by
   ext a b
   rw [toMatrix_apply, Matrix.one_apply]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s5.84ebcd2a7c0e from=translated src=- shape=f1ec47d4 vocab=899e5286
+-/
 @[simp] lemma toMatrix_phaseMul (k : ZMod 4) (s : PauliString n) :
     toMatrix (phaseMul k s) = iPow k • toMatrix s := by
   ext a b
@@ -250,7 +325,9 @@ lemma toMatrix_apply_ne (s : PauliString n) {a b : Bits n} (h : a ≠ b + s.x) :
   · rw [ite_eq_right h, ite_eq_right h, smul_zero]
 
 /-- **The representation is multiplicative.** Exactly, with no phase ambiguity: this is what
-`phase : ZMod 4` was carried for. -/
+`phase : ZMod 4` was carried for.
+@isnad1 id=eq.0h3v.s6.e515802b59fc from=translated src=- shape=631cefe4 vocab=13ecaedf
+-/
 theorem toMatrix_mul (s t : PauliString n) :
     toMatrix s * toMatrix t = toMatrix (s * t) := by
   ext a c
@@ -270,7 +347,9 @@ theorem toMatrix_mul (s t : PauliString n) :
 
 /-- **The representation respects the adjoint.** This is the theorem that justifies calling
 `PauliString`'s `star` an adjoint at all — in `Pauli/Basic.lean` it is only *defined*, as the
-group inverse. -/
+group inverse.
+@isnad1 id=eq.0h2v.s5.1a6285299fe1 from=translated src=- shape=be29517f vocab=a806c37b
+-/
 theorem toMatrix_star (s : PauliString n) : star (toMatrix s) = toMatrix (star s) := by
   ext a b
   rw [Matrix.star_apply, toMatrix_apply, star_eq_inv, toMatrix_apply, inv_x, inv_z, inv_phase]
@@ -294,7 +373,9 @@ private lemma dotProduct_eq_zero_of_forall {u : Bits n} (h : ∀ b : Bits n, u �
 
 /-- **The representation is faithful.** Distinct Pauli strings — including strings differing only
 in their phase — are distinct operators, so nothing proved through `toMatrix` is a statement about
-a collapsed model. -/
+a collapsed model.
+@isnad1 id=injectiv.0h1v.s3.9f2521182338 from=translated src=- shape=8501b48c vocab=154e6893
+-/
 theorem toMatrix_injective : Function.Injective (toMatrix (n := n)) := by
   intro s t hst
   have key : ∀ a b : Bits n, toMatrix s a b = toMatrix t a b := fun a b => by rw [hst]
@@ -330,7 +411,9 @@ theorem toMatrix_injective : Function.Injective (toMatrix (n := n)) := by
 `Lean4LPD.rot_conj_of_commute` / `Lean4LPD.rot_conj_of_anticommute` presuppose: those two cover a
 commuting and an anticommuting generator, and over an abstract algebra nothing rules out a third
 case. For Pauli operators it shows that the two cases of `apd:eq:pauli_rotation_branch` are the
-only ones. -/
+only ones.
+@isnad1 id=or.0h3v.s7.73180eaf00b0 from=translated src=- shape=58681336 vocab=93cbcc14
+-/
 theorem toMatrix_commute_or_anticommute (s t : PauliString n) :
     Commute (toMatrix s) (toMatrix t) ∨
       toMatrix s * toMatrix t = -(toMatrix t * toMatrix s) := by
@@ -340,14 +423,18 @@ theorem toMatrix_commute_or_anticommute (s t : PauliString n) :
   · right
     rw [toMatrix_mul, toMatrix_mul, h, toMatrix_phaseMul, iPow_two, neg_smul, one_smul]
 
-/-- Commuting Pauli strings give commuting operators. -/
+/-- Commuting Pauli strings give commuting operators.
+@isnad1 id=commute.1h3v.s6.0492a2bcdc6e from=translated src=- shape=19191e21 vocab=a01c64d5
+-/
 theorem toMatrix_commute (h : sympForm s t = 0) :
     Commute (toMatrix s) (toMatrix t) := by
   rw [Commute, SemiconjBy, toMatrix_mul, toMatrix_mul,
     ((commute_iff_sympForm_eq_zero s t).2 h).eq]
 
 /-- Anticommuting Pauli strings give anticommuting operators — the hypothesis
-`Lean4LPD.rot_conj_of_anticommute` takes, spelled the way that file spells it. -/
+`Lean4LPD.rot_conj_of_anticommute` takes, spelled the way that file spells it.
+@isnad1 id=eq.1h3v.s7.8928cb18619a from=translated src=- shape=80aa1577 vocab=0a24a654
+-/
 theorem toMatrix_anticommute (h : sympForm s t = 1) :
     toMatrix s * toMatrix t = -(toMatrix t * toMatrix s) := by
   rw [toMatrix_mul, toMatrix_mul, (anticommute_iff_sympForm_eq_one s t).2 h,
@@ -356,14 +443,18 @@ theorem toMatrix_anticommute (h : sympForm s t = 1) :
 /-- The commuting branch condition is an **iff** at the level of operators, not just an
 implication: `toMatrix` is injective, so operators commuting forces the symbols to. Without this
 the `if` in `pauli_rotation_branch` would be a sufficient condition for the paper's `[G,P] = 0`
-rather than a rendering of it. -/
+rather than a rendering of it.
+@isnad1 id=iff.0h3v.s6.3cc0b10eaf40 from=translated src=- shape=998ad8e3 vocab=a01c64d5
+-/
 theorem toMatrix_commute_iff (s t : PauliString n) :
     Commute (toMatrix s) (toMatrix t) ↔ sympForm s t = 0 := by
   refine ⟨fun h => ?_, toMatrix_commute⟩
   rw [← commute_iff_sympForm_eq_zero]
   exact toMatrix_injective (by rw [← toMatrix_mul, ← toMatrix_mul]; exact h.eq)
 
-/-- The anticommuting branch condition, likewise an **iff**. -/
+/-- The anticommuting branch condition, likewise an **iff**.
+@isnad1 id=iff.0h3v.s7.2282dc58aad9 from=translated src=- shape=d84a7434 vocab=0a24a654
+-/
 theorem toMatrix_anticommute_iff (s t : PauliString n) :
     toMatrix s * toMatrix t = -(toMatrix t * toMatrix s) ↔ sympForm s t = 1 := by
   refine ⟨fun h => ?_, toMatrix_anticommute⟩
@@ -375,24 +466,32 @@ theorem toMatrix_anticommute_iff (s t : PauliString n) :
 /-! ### Discharging `Rotation.lean`'s hypotheses -/
 
 /-- A Hermitian Pauli string is a **self-adjoint operator**: discharges `star G = G` in
-`Lean4LPD.rot_mem_unitary`. -/
+`Lean4LPD.rot_mem_unitary`.
+@isnad1 id=eq.1h2v.s5.560a3adba178 from=translated src=- shape=5b4aed25 vocab=4e913388
+-/
 theorem star_toMatrix_of_isSelfAdjoint (h : IsSelfAdjoint s) :
     star (toMatrix s) = toMatrix s := by rw [toMatrix_star, h]
 
 /-- A Hermitian Pauli string is an **involution**: discharges `hG : G * G = 1`, the hypothesis the
 two branch lemmas and `rot_mem_unitary` carry (`rot_zero`, `commute_rot`,
 `rot_mul_eq_mul_rot_neg` and `star_rot` do not). Note this comes from the *same* hypothesis as
-self-adjointness — `Pauli/Basic.lean`'s `isSelfAdjoint_iff_mul_self_eq_one`. -/
+self-adjointness — `Pauli/Basic.lean`'s `isSelfAdjoint_iff_mul_self_eq_one`.
+@isnad1 id=eq.1h2v.s7.69296032cae3 from=translated src=- shape=67ea31b5 vocab=a6bf442f
+-/
 theorem toMatrix_mul_self_of_isSelfAdjoint (h : IsSelfAdjoint s) :
     toMatrix s * toMatrix s = 1 := by
   rw [toMatrix_mul, isSelfAdjoint_iff_mul_self_eq_one.1 h, toMatrix_one]
 
-/-- Every Pauli operator is invertible, with `toMatrix s⁻¹` as inverse. -/
+/-- Every Pauli operator is invertible, with `toMatrix s⁻¹` as inverse.
+@isnad1 id=eq.0h2v.s7.dad6b397093f from=translated src=- shape=f81aed84 vocab=8e2aceee
+-/
 theorem toMatrix_mul_toMatrix_inv (s : PauliString n) :
     toMatrix s * toMatrix s⁻¹ = 1 := by
   rw [toMatrix_mul, mul_inv_cancel, toMatrix_one]
 
-/-- No Pauli operator is zero: the entry at `(b + x, b)` is `i^{phase}`, a fourth root of unity. -/
+/-- No Pauli operator is zero: the entry at `(b + x, b)` is `i^{phase}`, a fourth root of unity.
+@isnad1 id=ne.0h2v.s5.8dbfc7cc799b from=translated src=- shape=d918362f vocab=fa3b45e7
+-/
 lemma toMatrix_ne_zero (s : PauliString n) : toMatrix s ≠ 0 := by
   intro h
   have := congrFun (congrFun h (0 + s.x)) 0
@@ -402,7 +501,9 @@ lemma toMatrix_ne_zero (s : PauliString n) : toMatrix s ≠ 0 := by
 /-- **Hermiticity transfers in both directions.** `toMatrix_star` alone gives only
 symbol-to-operator; faithfulness supplies the converse, so a Pauli handed over as a self-adjoint
 *operator* — which is how the generators `G_g` enter `apd:thm:local_flow_k_local` — is a
-self-adjoint Pauli string, and `isSelfAdjoint_iff_mul_self_eq_one` applies to it. -/
+self-adjoint Pauli string, and `isSelfAdjoint_iff_mul_self_eq_one` applies to it.
+@isnad1 id=iff.0h2v.s5.b9467683291d from=translated src=- shape=eeb69bc2 vocab=30e3e1e7
+-/
 theorem isSelfAdjoint_toMatrix_iff {s : PauliString n} :
     IsSelfAdjoint (toMatrix s) ↔ IsSelfAdjoint s := by
   constructor
@@ -442,7 +543,9 @@ really is the amplitude of a *new* transition rather than a rescaling of the old
 `Rotation.lean` states that the damping consequence of the branching rule needs exactly this and
 that mere distinctness is not enough, exhibiting `G = Z`, `P = E₁₀` in
 `Matrix (Fin 2) (Fin 2) ℂ` — both rotation hypotheses hold there and `G * P = -P`. That example
-is not a Pauli string, and this theorem is why no Pauli string can play its role. -/
+is not a Pauli string, and this theorem is why no Pauli string can play its role.
+@isnad1 id=ne.1h4v.s7.f105230d4b72 from=translated src=- shape=1d9ce7b6 vocab=e15ee47c
+-/
 theorem toMatrix_mul_ne_smul_aux (h : sympForm G s = 1) (c : ℂ) :
     toMatrix (G * s) ≠ c • toMatrix s := by
   intro heq
@@ -455,14 +558,18 @@ theorem toMatrix_mul_ne_smul_aux (h : sympForm G s = 1) (c : ℂ) :
   rw [sympForm_eq_zero_of_x_eq_zero_of_z_eq_zero hx hz] at h
   exact absurd h (by decide)
 
-/-- The same statement, named for what it is used for. -/
+/-- The same statement, named for what it is used for.
+@isnad1 id=ne.1h4v.s7.f105230d4b72 from=translated src=- shape=1d9ce7b6 vocab=e15ee47c
+-/
 theorem toMatrix_mul_ne_smul (h : sympForm G s = 1) (c : ℂ) :
     toMatrix (G * s) ≠ c • toMatrix s := toMatrix_mul_ne_smul_aux h c
 
 /-- **The two branch terms are linearly independent.** Non-collinearity (`toMatrix_mul_ne_smul`) is
 not by itself linear independence — it leaves open `a • A = 0` with `a ≠ 0` — and what closes the
 gap is `toMatrix_ne_zero`. This is the property `Rotation.lean` names as what the damping
-consequence of `apd:eq:pauli_rotation_branch` needs. -/
+consequence of `apd:eq:pauli_rotation_branch` needs.
+@isnad1 id=linearin.1h3v.s7.ce499f65c1bd from=translated src=- shape=d655a8b0 vocab=abb1bad4
+-/
 theorem linearIndependent_toMatrix_mul_pair (h : sympForm G s = 1) :
     LinearIndependent ℂ ![toMatrix s, toMatrix (G * s)] := by
   rw [LinearIndependent.pair_iff]

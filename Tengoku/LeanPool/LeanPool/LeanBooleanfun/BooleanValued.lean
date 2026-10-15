@@ -39,6 +39,9 @@ variable [hbv : BooleanValued f] [hbvg : BooleanValued g]
 
 lemma eq_one_or_eq_neg_one : ∀ x, f x = 1 ∨ f x = -1 := hbv.one_or_neg_one
 
+/--
+@isnad1 id=eq.0h2v.s5.b49a3fd535fa from=translated src=- shape=b883140e vocab=ca4c800e
+-/
 lemma norm_sq_eq_one : ‖f‖^2 = 1 := by
   change √(𝐄 _) ^ 2 = 1
   have : f * f = 1 := by
@@ -46,6 +49,9 @@ lemma norm_sq_eq_one : ‖f‖^2 = 1 := by
     cases hbv.one_or_neg_one x with | _ => simp [*]
   simp [this, expectation]
 
+/--
+@isnad1 id=eq.0h2v.s7.303d7494e7cd from=translated src=- shape=be78a730 vocab=70b4ddfc
+-/
 lemma fourier_eq_one : ∑ S, |𝓕 f S|^2 = 1 := by
   rw [← walsh_plancherel]; exact norm_sq_eq_one
 
@@ -55,6 +61,9 @@ lemma eq_neg_one_of_ne_one (h' : f x ≠ 1) : f x = -1 :=
 lemma eq_one_of_ne_neg_one (h' : f x ≠ -1) : f x = 1 :=
   or_iff_not_imp_right.mp (hbv.one_or_neg_one x) h'
 
+/--
+@isnad1 id=booleanv.0h2v.s5.7560302c366c from=translated src=- shape=dec2ef67 vocab=8cbc6f99
+-/
 instance neg_boolean_valued : BooleanValued (-f) where
   one_or_neg_one := by
     intro x; rw [Pi.neg_apply, neg_inj, neg_eq_iff_eq_neg, or_comm]; exact hbv.one_or_neg_one _
@@ -242,17 +251,29 @@ require `f g` be Boolean-valued, but it will only be used in this context. -/
 abbrev distance (f g : BooleanFunc n) : ℝ :=
   𝐄 (fun x ↦ oneOn (f x ≠ g x))
 
+/--
+@isnad1 id=eq.2h2v.s6.743c3ea28bb7 from=translated src=- shape=a1ae61f8 vocab=64b082bf
+-/
 lemma oneOn_eq_of_one_or_neg_one {x y : ℝ} (hx : x = 1 ∨ x = -1) (hy : y = 1 ∨ y = -1) :
     oneOn (x = y) = (1/2) * (1 + x * y) := by
   obtain ⟨hx|hx, hy|hy⟩ := And.intro hx hy <;> simp [hx, hy] <;> norm_num
 
+/--
+@isnad1 id=eq.2h2v.s6.aeb2d47248e2 from=translated src=- shape=8512af48 vocab=3b623ca2
+-/
 lemma oneOn_ne_of_one_or_neg_one {x y : ℝ} (hx : x = 1 ∨ x = -1) (hy : y = 1 ∨ y = -1) :
     oneOn (x ≠ y) = (1/2) * (1 - x * y) := by
   obtain ⟨hx|hx, hy|hy⟩ := And.intro hx hy <;> simp [hx, hy] <;> norm_num
 
+/--
+@isnad1 id=eq.0h3v.s7.ef54619290e5 from=translated src=- shape=dcfb7e19 vocab=9dafe119
+-/
 lemma distance_eq : distance f g = 𝐄 (fun x ↦ (1/2) * (1 - (f x) * (g x))) := by
   simp_rw [distance, oneOn_ne_of_one_or_neg_one (hbv.one_or_neg_one _) (hbvg.one_or_neg_one _)]
 
+/--
+@isnad1 id=eq.0h3v.s6.ae6564099c6b from=translated src=- shape=d909157d vocab=acf1b0bc
+-/
 lemma inner_eq_distance : ⟪f, g⟫ = 1 - 2 * distance f g := by
   rw [distance_eq, expectation]
   dsimp
@@ -275,6 +296,9 @@ the test accepts. -/
 abbrev acceptanceProbabilityBLR (f : BooleanFunc n) : ℝ :=
   𝐄 <| fun x ↦ 𝐄 <| fun y ↦ oneOn <| (f x) * (f y) = f (x + y)
 
+/--
+@isnad1 id=eq.0h2v.s8.6e3242754244 from=translated src=- shape=57187cb3 vocab=8573fb2b
+-/
 lemma acceptanceProbabilityBLR_eq : acceptanceProbabilityBLR f =
     (𝐄 <| fun x ↦ 𝐄 <| fun y ↦ (1/2) * (1 + (f x) * (f y) * (f (x + y)))) := by
   have hl : ∀ x y, (f x) * (f y) = 1 ∨ (f x) * (f y) = -1 := fun x y ↦ by
@@ -302,7 +326,9 @@ private lemma _aux_lemma : (𝐄 <| fun x ↦ 𝐄 <| fun y ↦ (1/2) * (1 + (f 
   rw [mul_add, inv_mul_cancel₀ (by simp)]
 
 /-- The BLR test can detect that a Boolean valued function is close to being a character.
-See [odonnell2014], Theorem 1.30. -/
+See [odonnell2014], Theorem 1.30.
+@isnad1 id=ex.1h3v.s5.12cfc5ec2893 from=translated src=- shape=35f5dafc vocab=adb22175
+-/
 theorem almost_character {ε : ℝ} (h : acceptanceProbabilityBLR f ≥ 1 - ε) :
     ∃ S, distance f (χ S) ≤ ε := by
   have hbound : 1 - ε ≤ (1/2) * (1 + ∑ S, (𝓕 f S) * (𝓕 f S)^2) := by

@@ -30,6 +30,9 @@ universe u v
 
 namespace GraphCoveringTheory.Kurosh
 
+/--
+@isnad1 id=eq.0h4v.s10.430869ee97dc from=translated src=- shape=e3992104 vocab=0cc83db2
+-/
 theorem Internal.treeKuroshRootStabilizer_subsingleton {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G)) :
     ∀ x : treeVertexStabilizer G H (rawBassSerreOrbitRoot G H), x = 1 := by
@@ -46,6 +49,9 @@ theorem Internal.treeKuroshRootStabilizer_subsingleton {ι : Type v}
     (rawBassSerreOrbitRoot G H)).1
   exact hxH
 
+/--
+@isnad1 id=eq.0h3v.s7.e6e47d93e7fe from=translated src=- shape=6a299f1a vocab=ffe16e61
+-/
 theorem Internal.treeDataGenerated_eq_top_for_kernel {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G)) :
     Internal.treeDataGenerated G H = ⊤ := by
@@ -87,6 +93,9 @@ theorem Internal.treeDataGenerated_eq_top_for_kernel {ι : Type v}
   have heq : h = a.1 := Subtype.ext hval
   exact heq ▸ a.2.2
 
+/--
+@isnad1 id=or.0h4v.s8.0d64d4485fff from=translated src=- shape=cfaeb692 vocab=1a2e7da0
+-/
 theorem Internal.treeVertexStabilizer_central_or_factor {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (a : RawBassSerreOrbitVertex G H) :

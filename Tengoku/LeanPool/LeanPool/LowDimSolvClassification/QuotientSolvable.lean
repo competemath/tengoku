@@ -17,7 +17,9 @@ namespace LieIdeal
 
 variable {R L : Type*} [CommRing R] [LieRing L] [LieAlgebra R L]
 
-/-- A reformulation of `LieIdeal.comap_incl_eq_bot` under the additional hypothesis `J ≤ I`. -/
+/-- A reformulation of `LieIdeal.comap_incl_eq_bot` under the additional hypothesis `J ≤ I`.
+@isnad1 id=iff.1h4v.s9.b322cefa8634 from=translated src=- shape=26750ef4 vocab=0ac43c2c
+-/
 theorem comap_incl_eq_bot_of_le {I J : LieIdeal R L} (h : J ≤ I) :
     comap I.incl J = ⊥ ↔ J = ⊥ := by
   rw [comap_incl_eq_bot, disjoint_iff, inf_of_le_right h]
@@ -36,9 +38,15 @@ def _root_.LieAlgebra.Quotient.mk' (I : LieIdeal R L) : L →ₗ⁅R⁆ L ⧸ I 
   map_lie' := by simp only [LieSubmodule.Quotient.mk_bracket, implies_true]
 }
 
+/--
+@isnad1 id=surjecti.0h3v.s7.76d5f554735b from=translated src=- shape=fa655038 vocab=8ec2bd0e
+-/
 theorem surjective_mk' (I : LieIdeal R L) : Function.Surjective (Quotient.mk' I)
     := Quot.mk_surjective
 
+/--
+@isnad1 id=issolvab.2h3v.s6.bf34db442ada from=translated src=- shape=00b97c42 vocab=ed8cd38e
+-/
 theorem solvable_of_ideal_and_quot_solvable {I : LieIdeal R L} (quotsol : LieAlgebra.IsSolvable
     (L ⧸ I))
      (Isol : LieAlgebra.IsSolvable I) :

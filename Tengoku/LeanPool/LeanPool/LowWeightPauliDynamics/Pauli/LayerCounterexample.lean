@@ -76,7 +76,9 @@ noncomputable def pf2Output (θ : ℝ) : Matrix (Bits 8) (Bits 8) ℂ :=
 
 /-- Every generator of the word is a Hermitian Pauli string, by `isSelfAdjoint_L₁` and
 `isSelfAdjoint_L₂`. This is the hypothesis under which `coeffVec_layerConj` turns the matrix
-conjugation into the coefficient action `layerAct`. -/
+conjugation into the coefficient action `layerAct`.
+@isnad1 id=isselfad.1h2v.s6.53a2dd785630 from=translated src=- shape=01ad3938 vocab=6b93332e
+-/
 theorem pf2Rotations_hermitian (θ : ℝ) : ∀ g ∈ pf2Rotations θ, IsSelfAdjoint g.1 := by
   intro g hg
   obtain ⟨G, hG, rfl⟩ := List.mem_map.1 hg
@@ -88,10 +90,14 @@ theorem pf2Rotations_hermitian (θ : ℝ) : ∀ g ∈ pf2Rotations θ, IsSelfAdj
   · exact isSelfAdjoint_L₁ G hG
 
 /-- The input `Z₃` is the canonical Hermitian representative `herm` of its own class, so its
-coefficient vector can be read off directly (`input_coeffVec`). -/
+coefficient vector can be read off directly (`input_coeffVec`).
+@isnad1 id=eq.0h0v.s5.372c9cd10f72 from=translated src=- shape=06e35757 vocab=5e72eb5b
+-/
 theorem herm_input : herm (cls (Z (3 : Fin 8))) = Z 3 := by decide
 
-/-- The coefficient vector of the input `Z₃` is the unit vector at its class `cls (Z 3)`. -/
+/-- The coefficient vector of the input `Z₃` is the unit vector at its class `cls (Z 3)`.
+@isnad1 id=eq.0h0v.s8.765c11e93969 from=translated src=- shape=58d3bebc vocab=bb54605f
+-/
 theorem input_coeffVec : coeffVec (toMatrix (Z (3 : Fin 8))) =
     WithLp.toLp 2 (Pi.single (cls (Z (3 : Fin 8))) (1 : ℂ)) := by
   ext p
@@ -485,7 +491,9 @@ private theorem suffixCoefficient_0_55_30 (θ : ℝ) :
 `pf2Output θ` at the weight-six class `cls P₆` equals `-4 (cos θ)^2 (sin θ)^5`, obtained by
 unfolding the coefficient recurrence `rotAct_apply` through the fourteen rotations of the literal
 second-order word. The sign refers to the canonical representative `herm (cls P₆)`; see
-`pf2_named_P6_component` for the component on `P₆` itself. -/
+`pf2_named_P6_component` for the component on `P₆` itself.
+@isnad1 id=eq.0h1v.s6.e586dd03b27d from=translated src=- shape=c94eeb73 vocab=687c9073
+-/
 theorem pf2_coeff_polynomial (θ : ℝ) :
     coeff (pf2Output θ) (cls P₆) =
       -4 * (Real.cos θ : ℂ) ^ 2 * (Real.sin θ : ℂ) ^ 5 := by
@@ -511,7 +519,9 @@ private theorem conj_append {n : ℕ} (L M : List (PauliString n × ℝ))
 /-- The computed output is the literal four-layer `L₁,L₂,L₂,L₁` second-order formula of
 `apd:eq:suzuki`: the nested conjugation of `Z₃` by the four layers, with the two adjacent `L₂`
 half-steps kept separate and the same angle in every layer, not a merged or angle-rescaled
-circuit. -/
+circuit.
+@isnad1 id=eq.0h1v.s7.46d2991f9666 from=translated src=- shape=94ecbab2 vocab=94774513
+-/
 theorem pf2Output_eq_four_layers (θ : ℝ) :
     pf2Output θ = layerConj (L₁.map fun G => (G, θ))
       (layerConj (L₂.map fun G => (G, θ))
@@ -524,7 +534,9 @@ theorem pf2Output_eq_four_layers (θ : ℝ) :
 the coefficient is nonzero at every small angle (`pf2_coeff_ne_zero`). The minus sign is that of
 the canonical representative `herm (cls P₆)`, not of the tensor product `P₆` itself
 (`herm_P6_sign`). This upgrades the reachability witness `LayerWitness.P₆_mem_reachable_unmerged`
-to an actual coefficient. -/
+to an actual coefficient.
+@isnad1 id=eq.0h1v.s6.867844326f7a from=translated src=- shape=0618c687 vocab=7e17aae6
+-/
 theorem pf2_coeff_sines (θ : ℝ) :
     coeff (pf2Output θ) (cls P₆) =
       -(Real.sin θ : ℂ) ^ 3 * (Real.sin (2 * θ) : ℂ) ^ 2 := by
@@ -535,12 +547,16 @@ theorem pf2_coeff_sines (θ : ℝ) :
 /-- The named witness `P₆` has three `Y` sites and carries the phase `3 = #{Y-sites} mod 4`,
 whereas `herm` records only the parity of the number of `Y` sites (phase `1`). The two
 representatives of the class differ by the phase `2`, that is by the factor `i^2 = -1`, which
-accounts for the sign in `pf2_coeff_sines`. -/
+accounts for the sign in `pf2_coeff_sines`.
+@isnad1 id=eq.0h0v.s6.6d0cd512ccc4 from=translated src=- shape=cdb68f8a vocab=64e5b76b
+-/
 theorem herm_P6_sign : herm (cls P₆) = phaseMul 2 P₆ := by decide
 
 /-- On the **named positive tensor `P₆`**, the amplitude is `sin³θ sin²(2θ)`.
 This is an operator-component identity, with `coeff • toMatrix (herm (cls P₆))` on the left, not
-an identification of classes up to an unspecified phase. -/
+an identification of classes up to an unspecified phase.
+@isnad1 id=eq.0h1v.s7.1078c19c6d40 from=translated src=- shape=d0f8bfa3 vocab=89d188ab
+-/
 theorem pf2_named_P6_component (θ : ℝ) :
     coeff (pf2Output θ) (cls P₆) • toMatrix (herm (cls P₆)) =
       ((Real.sin θ : ℂ) ^ 3 * (Real.sin (2 * θ) : ℂ) ^ 2) • toMatrix P₆ := by
@@ -550,14 +566,18 @@ theorem pf2_named_P6_component (θ : ℝ) :
 
 /-- The input `Z₃` satisfies the weight-one cutoff: its coefficients at all classes of weight
 greater than `1` vanish. So the step starts from an operator of weight at most `w* = 1`, as the
-truncated input in `apd:eq:step_component` does, rather than from a large initial observable. -/
+truncated input in `apd:eq:step_component` does, rather than from a large initial observable.
+@isnad1 id=eq.1h1v.s6.aeb8a1bd3643 from=translated src=- shape=0e0888bb vocab=eb9a36af
+-/
 theorem input_local : ∀ p : PauliIndex 8, 1 < wt p → coeff (toMatrix (Z 3)) p = 0 := by
   intro p hp
   rw [← herm_input]
   exact coeff_toMatrix_herm_eq_zero (by simpa only [wt_cls, weight_Z_three] using hp)
 
 /-- The coefficient is nonzero throughout `0<θ<π/2`, so the witness works at arbitrarily
-small angles, not only in a large-angle regime. -/
+small angles, not only in a large-angle regime.
+@isnad1 id=ne.2h1v.s5.7fd357f1b735 from=translated src=- shape=6615a162 vocab=a311ba7a
+-/
 theorem pf2_coeff_ne_zero {θ : ℝ} (hθ : 0 < θ) (hθπ : 2 * θ < Real.pi) :
     coeff (pf2Output θ) (cls P₆) ≠ 0 := by
   have hs : 0 < Real.sin θ := Real.sin_pos_of_pos_of_lt_pi hθ (by linarith)
@@ -576,7 +596,9 @@ noncomputable def pf2Discard (θ : ℝ) : Matrix (Bits 8) (Bits 8) ℂ :=
 /-- The weight-six coefficient is preserved in the discarded operator: `pf2Discard θ` and
 `pf2Output θ` have the same coefficient at `cls P₆`, because `wt (cls P₆) = 6 > 1` puts that
 class outside the retained set. This is the truncation step that a reachability argument alone
-does not provide. -/
+does not provide.
+@isnad1 id=eq.0h1v.s5.eb21853e9d1d from=translated src=- shape=d04ee3f7 vocab=d0e168e4
+-/
 theorem pf2Discard_coeff (θ : ℝ) :
     coeff (pf2Discard θ) (cls P₆) = coeff (pf2Output θ) (cls P₆) := by
   rw [pf2Discard, coeff_sub, coeff_truncOp,
@@ -588,7 +610,9 @@ second-order step from the weight-one input `Z₃`, a discarded operator `X₁` 
 (`apd:eq:step_component`) with a nonzero coefficient at a Pauli class of weight greater than
 `w* k_h^Γ = 1 * 2 ^ 2 = 4`; the witness is `cls P₆`, of weight `6`. The weight bound
 `w* k_h^{ΥΓ}` of `apd:thm:lightcone`, which for the `ΥΓ = 4` layers of this step equals `16`,
-is compatible with this witness. -/
+is compatible with this witness.
+@isnad1 id=ex.2h1v.s6.a6e2546a83b4 from=translated src=- shape=dbf2dcc7 vocab=c520ff90
+-/
 theorem actual_discard_exceeds_gamma_bound {θ : ℝ} (hθ : 0 < θ) (hθπ : 2 * θ < Real.pi) :
     ∃ p : PauliIndex 8, coeff (pf2Discard θ) p ≠ 0 ∧ (1 * 2 ^ 2 : ℕ) < wt p := by
   refine ⟨cls P₆, ?_, ?_⟩

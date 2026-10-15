@@ -64,17 +64,26 @@ noncomputable def toR2 (p : Coeff) : R2 :=
       ((2 * p.c + p.d : ℤ) : ℝ) * Real.sqrt 33) /
         (12 * Real.sqrt 3)]
 
+/--
+@isnad1 id=eq.0h1v.s8.4ac345acf5fe from=translated src=- shape=c59c3b82 vocab=d57624ae
+-/
 @[simp] lemma toR2_zero (p : Coeff) :
     p.toR2 0 =
       ((12 * p.a + 6 * p.b + 10 * p.c + 5 * p.d : ℤ) : ℝ) / 12 -
         (p.d : ℝ) * Real.sqrt 33 / 12 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s9.7a0293458b09 from=translated src=- shape=866fae7a vocab=5e71969e
+-/
 @[simp] lemma toR2_one (p : Coeff) :
     p.toR2 1 =
       (3 * ((6 * p.b + 5 * p.d : ℤ) : ℝ) +
         ((2 * p.c + p.d : ℤ) : ℝ) * Real.sqrt 33) /
           (12 * Real.sqrt 3) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.ce16a934121d from=translated src=- shape=99bc1b0c vocab=67ce1661
+-/
 lemma dist_sq (p q : Coeff) :
     dist p.toR2 q.toR2 ^ 2 =
       ((p.sub q).normRational : ℝ) / 6 +
@@ -98,6 +107,9 @@ lemma dist_sq (p q : Coeff) :
 def color (p : Coeff) : ZMod 2 × ZMod 2 :=
   (p.a + p.b + p.d, p.a + p.c + p.d)
 
+/--
+@isnad1 id=eq.1h2v.s7.5d659b1558b5 from=translated src=- shape=61fabdf3 vocab=49e67e55
+-/
 lemma color_sub_eq_zero_of_eq {p q : Coeff} (h : color p = color q) :
     color (p.sub q) = 0 := by
   have hfst := congrArg Prod.fst h
@@ -112,6 +124,9 @@ lemma color_sub_eq_zero_of_eq {p q : Coeff} (h : color p = color q) :
     simp only [color] at hsnd
     linear_combination hsnd
 
+/--
+@isnad1 id=iff.0h2v.s7.f4a8a5651a11 from=translated src=- shape=06af2678 vocab=49e67e55
+-/
 lemma color_sub_eq_zero_iff (p q : Coeff) :
     color (p.sub q) = 0 ↔ color p = color q := by
   constructor
@@ -127,6 +142,9 @@ lemma color_sub_eq_zero_iff (p q : Coeff) :
       linear_combination hsnd
   · exact color_sub_eq_zero_of_eq
 
+/--
+@isnad1 id=dvd.1h1v.s7.51aa51a35b6a from=translated src=- shape=1637730a vocab=9960eee5
+-/
 lemma norm_sum_dvd_eight_of_color_zero {p : Coeff} (h : color p = 0) :
     (8 : ℤ) ∣ p.normRational + p.normRadical := by
   have h₁ : (2 : ℤ) ∣ p.a + p.b + p.d := by
@@ -156,6 +174,9 @@ private lemma color_residue_table (a b c d : ZMod 4) :
           (b * c - a * d) = 0 := by
   fin_cases a <;> fin_cases b <;> fin_cases c <;> fin_cases d <;> decide
 
+/--
+@isnad1 id=iff.0h1v.s7.2310d8f68e78 from=translated src=- shape=dec03809 vocab=9960eee5
+-/
 lemma color_eq_zero_iff_norm_sum_dvd_four (p : Coeff) :
     color p = 0 ↔ (4 : ℤ) ∣ p.normRational + p.normRadical := by
   change color p = 0 ↔ ((4 : ℕ) : ℤ) ∣ p.normRational + p.normRadical
@@ -166,6 +187,9 @@ lemma color_eq_zero_iff_norm_sum_dvd_four (p : Coeff) :
       color_residue_table (p.a : ZMod 4) (p.b : ZMod 4)
         (p.c : ZMod 4) (p.d : ZMod 4)
 
+/--
+@isnad1 id=and.1h1v.s6.3d15b5b8399f from=translated src=- shape=a4aae5a4 vocab=616d0036
+-/
 lemma unit_norm_coefficients {p : Coeff}
     (h : ((p.normRational : ℝ) + (p.normRadical : ℝ) * Real.sqrt 33) / 6 = 1) :
     p.normRational = 6 ∧ p.normRadical = 0 := by
@@ -188,6 +212,9 @@ lemma unit_norm_coefficients {p : Coeff}
       nlinarith
     exact hirr.ne_rational (6 - p.normRational) p.normRadical hsqrt
 
+/--
+@isnad1 id=and.1h4v.s6.e4d40cb0d48e from=translated src=- shape=3c5cd97d vocab=1d9b96df
+-/
 lemma radical_coordinates_unique {a b c d : ℤ}
     (h : (a : ℝ) + (b : ℝ) * Real.sqrt 33 =
       (c : ℝ) + (d : ℝ) * Real.sqrt 33) :
@@ -206,7 +233,9 @@ lemma radical_coordinates_unique {a b c d : ℤ}
       linarith
     exact hirr.ne_rational (c - a) (b - d) hsqrt
 
-/-- The four integer coordinates give a faithful presentation of the Moser lattice. -/
+/-- The four integer coordinates give a faithful presentation of the Moser lattice.
+@isnad1 id=injectiv.0h0v.s2.c8043d995ff7 from=translated src=- shape=54c8eceb vocab=312eec29
+-/
 theorem toR2_injective : Function.Injective toR2 := by
   intro p q h
   have hx := congrArg (fun x : R2 => x 0) h
@@ -244,6 +273,9 @@ theorem toR2_injective : Function.Injective toR2 := by
   cases q
   simp_all
 
+/--
+@isnad1 id=and.1h2v.s6.c5b9eb4a9db5 from=translated src=- shape=c9d3ff2b vocab=616d0036
+-/
 lemma norm_coordinates_eq_of_sqNorm_eq {p q : Coeff}
     (h : ((p.normRational : ℝ) + (p.normRadical : ℝ) * Real.sqrt 33) / 6 =
       ((q.normRational : ℝ) + (q.normRadical : ℝ) * Real.sqrt 33) / 6) :
@@ -258,6 +290,9 @@ def IsGeometricColoring {κ : Type*} (f : Coeff → κ) : Prop :=
     dist p.toR2 q.toR2 = dist r.toR2 s.toR2 →
       (f p = f q ↔ f r = f s)
 
+/--
+@isnad1 id=isgeomet.0h0v.s3.0a93f8100848 from=translated src=- shape=1b6181c8 vocab=99b459a4
+-/
 theorem color_isGeometric : IsGeometricColoring color := by
   intro p q r s hdist
   have hsq : dist p.toR2 q.toR2 ^ 2 = dist r.toR2 s.toR2 ^ 2 :=
@@ -274,6 +309,9 @@ theorem color_isGeometric : IsGeometricColoring color := by
 def colorTwo (p : Coeff) : ZMod 2 × ZMod 2 :=
   (p.a + p.d, p.b + p.c + p.d)
 
+/--
+@isnad1 id=iff.0h2v.s7.85d7276e841e from=translated src=- shape=06af2678 vocab=425ec527
+-/
 lemma colorTwo_sub_eq_zero_iff (p q : Coeff) :
     colorTwo (p.sub q) = 0 ↔ colorTwo p = colorTwo q := by
   constructor
@@ -307,6 +345,9 @@ private lemma colorTwo_residue_table (a b c d : ZMod 4) :
           (b * c - a * d) = 0 := by
   fin_cases a <;> fin_cases b <;> fin_cases c <;> fin_cases d <;> decide
 
+/--
+@isnad1 id=iff.0h1v.s7.b1be6ab8d9b0 from=translated src=- shape=dec03809 vocab=cb6e8bb4
+-/
 lemma colorTwo_eq_zero_iff_norm_diff_dvd_four (p : Coeff) :
     colorTwo p = 0 ↔ (4 : ℤ) ∣ p.normRational - p.normRadical := by
   change colorTwo p = 0 ↔ ((4 : ℕ) : ℤ) ∣ p.normRational - p.normRadical
@@ -317,6 +358,9 @@ lemma colorTwo_eq_zero_iff_norm_diff_dvd_four (p : Coeff) :
       colorTwo_residue_table (p.a : ZMod 4) (p.b : ZMod 4)
         (p.c : ZMod 4) (p.d : ZMod 4)
 
+/--
+@isnad1 id=ne.1h2v.s6.068fce7c8a7d from=translated src=- shape=3f62a7db vocab=b3e02837
+-/
 lemma colorTwo_ne_of_dist_eq_one {p q : Coeff} (h : dist p.toR2 q.toR2 = 1) :
     colorTwo p ≠ colorTwo q := by
   intro heq
@@ -337,6 +381,9 @@ lemma colorTwo_ne_of_dist_eq_one {p q : Coeff} (h : dist p.toR2 q.toR2 = 1) :
   rw [hcoeff.1, hcoeff.2] at hdiv
   norm_num at hdiv
 
+/--
+@isnad1 id=isgeomet.0h0v.s3.2f29b0e7d96c from=translated src=- shape=1b6181c8 vocab=35d32e74
+-/
 theorem colorTwo_isGeometric : IsGeometricColoring colorTwo := by
   intro p q r s hdist
   have hsq : dist p.toR2 q.toR2 ^ 2 = dist r.toR2 s.toR2 ^ 2 :=
@@ -349,6 +396,9 @@ theorem colorTwo_isGeometric : IsGeometricColoring colorTwo := by
     colorTwo_eq_zero_iff_norm_diff_dvd_four,
     colorTwo_eq_zero_iff_norm_diff_dvd_four, hcoords.1, hcoords.2]
 
+/--
+@isnad1 id=ne.1h2v.s6.941684fc2a66 from=translated src=- shape=3f62a7db vocab=eb61e07d
+-/
 lemma color_ne_of_dist_eq_one {p q : Coeff} (h : dist p.toR2 q.toR2 = 1) :
     color p ≠ color q := by
   intro heq
@@ -378,6 +428,9 @@ noncomputable def coloring : unitDistanceGraph.Coloring (ZMod 2 × ZMod 2) :=
     · exact color_ne_of_dist_eq_one hpq
     · exact color_ne_of_dist_eq_one (dist_comm q.toR2 p.toR2 ▸ hqp)
 
+/--
+@isnad1 id=colorabl.0h0v.s3.f72e2a6c0ca5 from=translated src=- shape=aeae7466 vocab=a3733c3f
+-/
 theorem colorable_four : unitDistanceGraph.Colorable 4 := by
   simpa using coloring.colorable
 
@@ -397,29 +450,47 @@ def scale (n : ℤ) (p : Coeff) : Coeff :=
 /-- The zero coefficient vector. -/
 def zero : Coeff := ⟨0, 0, 0, 0⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.ba29700a68eb from=translated src=- shape=9960b201 vocab=256eb141
+-/
 lemma sub_zero (p : Coeff) : p.sub zero = p := by
   cases p
   simp [Coeff.sub, zero]
 
+/--
+@isnad1 id=eq.0h0v.s6.cf215f3f0e78 from=translated src=- shape=b0ae1d2b vocab=f716a616
+-/
 lemma toR2_zero_coeff : zero.toR2 = 0 := by
   ext i
   fin_cases i <;> simp [zero, toR2]
 
+/--
+@isnad1 id=eq.0h2v.s6.c5100b918e7c from=translated src=- shape=62ca1746 vocab=8a5e6a0d
+-/
 lemma toR2_scale (n : ℤ) (p : Coeff) :
     (scale n p).toR2 = (n : ℝ) • p.toR2 := by
   ext i
   fin_cases i <;> simp [scale, toR2] <;> ring
 
+/--
+@isnad1 id=eq.0h2v.s6.a6b96cc5a59a from=translated src=- shape=88b36870 vocab=dd327ddd
+-/
 lemma toR2_sub (p q : Coeff) :
     (p.sub q).toR2 = p.toR2 - q.toR2 := by
   ext i
   fin_cases i <;> simp [Coeff.sub, toR2] <;> ring
 
+/--
+@isnad1 id=eq.0h2v.s5.6f932324c84b from=translated src=- shape=63a325a2 vocab=1dd940b6
+-/
 lemma color_scale_three_pow (k : ℕ) (p : Coeff) :
     color (scale ((3 : ℤ) ^ k) p) = color p := by
   have hthree : (3 : ZMod 2) = 1 := by decide
   ext <;> simp [color, scale, hthree]
 
+/--
+@isnad1 id=eq.0h2v.s5.7e9699c984f2 from=translated src=- shape=63a325a2 vocab=42cc2570
+-/
 lemma colorTwo_scale_three_pow (k : ℕ) (p : Coeff) :
     colorTwo (scale ((3 : ℤ) ^ k) p) = colorTwo p := by
   have hthree : (3 : ZMod 2) = 1 := by decide

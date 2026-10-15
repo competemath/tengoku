@@ -38,7 +38,9 @@ private noncomputable instance : ContinuousSMul ℝ ℂ :=
     funext fun p => by simp [Complex.real_smul]) ▸
     (Complex.continuous_ofReal.comp continuous_fst).mul continuous_snd⟩
 
-/-- Continuity of a parametric interval integral. -/
+/-- Continuity of a parametric interval integral.
+@isnad1 id=continuo.3h4v.s7.bcf94223b879 from=translated src=- shape=c289a612 vocab=f1d014e5
+-/
 theorem intervalIntegral_continuous_on_param
     (f : ℝ → ℝ → ℂ) (a b : ℝ) (S : Set ℝ) (hab : a ≤ b)
     (hf_cont : Continuous (fun p : ℝ × ℝ => f p.1 p.2))
@@ -83,6 +85,9 @@ theorem intervalIntegral_continuous_on_param
   · exact intervalIntegrable_const
   · exact hcont_pt
 
+/--
+@isnad1 id=contdiff.1h1v.s7.e70b361edbd5 from=translated src=- shape=af48494a vocab=59ff905e
+-/
 lemma contDiff_partialDeriv_snd_of_contDiff_two
     (H : ℝ × ℝ → ℂ) (hH : ContDiff ℝ 2 H) :
     ContDiff ℝ 1 (fun p : ℝ × ℝ =>
@@ -109,6 +114,9 @@ lemma contDiff_partialDeriv_snd_of_contDiff_two
         congr 1
         exact ((hasDerivAt_const p.2 p.1).prodMk (hasDerivAt_id p.2)).deriv
 
+/--
+@isnad1 id=contdiff.1h1v.s7.e87f684b4ca6 from=translated src=- shape=4d5f9184 vocab=59ff905e
+-/
 lemma contDiff_partialDeriv_fst_of_contDiff_two
     (H : ℝ × ℝ → ℂ) (hH : ContDiff ℝ 2 H) :
     ContDiff ℝ 1 (fun p : ℝ × ℝ =>
@@ -135,7 +143,9 @@ lemma contDiff_partialDeriv_fst_of_contDiff_two
         congr 1
         exact ((hasDerivAt_id p.1).prodMk (hasDerivAt_const p.1 p.2)).deriv
 
-/-- Schwarz theorem: mixed partials of a C² function commute. -/
+/-- Schwarz theorem: mixed partials of a C² function commute.
+@isnad1 id=eq.1h3v.s8.bfec74b911b1 from=translated src=- shape=8ae33b5c vocab=d6fbbc04
+-/
 lemma schwarz_partialDeriv_comm
     (H : ℝ × ℝ → ℂ) (hH : ContDiff ℝ 2 H)
     (t s : ℝ) :
@@ -570,7 +580,9 @@ private lemma homotopy_J_deriv_continuousOn
       hH.continuous).comp h_embed).mul (h_partialT.continuous.comp h_embed)).continuousOn
   · exact (h_fH_cont.mul h_partial_deriv_cont).continuousOn
 
-/-- Derivative of the homotopy integral vanishes. -/
+/-- Derivative of the homotopy integral vanishes.
+@isnad1 id=hasderiv.8h5v.s9.6bea54be72b9 from=translated src=- shape=fde4118e vocab=8352e1d2
+-/
 theorem hasDerivAt_homotopy_integral_zero
     (f : ℂ → ℂ) (H : ℝ × ℝ → ℂ) (a b s : ℝ)
     (hab : a < b)

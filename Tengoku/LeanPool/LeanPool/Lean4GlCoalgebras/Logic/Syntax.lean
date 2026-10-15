@@ -91,6 +91,9 @@ def opUnDi (φ : Formula) : Option Formula := match φ with
   | ◇ φ => Option.some φ
   | _ => none
 
+/--
+@isnad1 id=iff.0h2v.s4.bb39ae0db5fe from=translated src=- shape=c70e0430 vocab=fe35221e
+-/
 @[simp] lemma opUnDi_eq {φ ψ : Formula} : φ.opUnDi = some ψ ↔ φ = ◇ ψ := by
   cases φ <;> simp [Formula.opUnDi]
 
@@ -103,14 +106,18 @@ def isBox : Formula → Bool
   | □ _ => true
   | _ => false
 
-/-- Negation is injective. -/
+/-- Negation is injective.
+@isnad1 id=eq.1h2v.s3.c092a5252a77 from=translated src=- shape=447dd36e vocab=78df6988
+-/
 lemma neg_eq {φ ψ : Formula} : (~φ) = (~ψ) → φ = ψ := by
   intro mpp
   cases φ <;> cases ψ <;> simp [Formula.neg] at mpp <;> try grind
   case and.and | or.or => grind [neg_eq mpp.1, neg_eq mpp.2]
   case box.box | diamond.diamond => grind [neg_eq mpp]
 
-/-- Negation is involutive. -/
+/-- Negation is involutive.
+@isnad1 id=eq.0h1v.s3.e51d59a7fb38 from=translated src=- shape=47dcad53 vocab=78df6988
+-/
 @[simp]
 lemma neg_neg_eq (φ : Formula) : (~~φ) = φ := by
   induction φ <;> simp_all [Formula.neg] <;> rfl
@@ -183,11 +190,15 @@ def FL : Formula → Sequent
 
 /-! # Lemmas about FL Closure of BML Formulas -/
 
-/-- Fischer-Ladner closure is reflexive. -/
+/-- Fischer-Ladner closure is reflexive.
+@isnad1 id=mem.0h1v.s3.8487f6ddabb1 from=translated src=- shape=003a2c60 vocab=3313ac5f
+-/
 lemma FL_refl {φ : Formula} : φ ∈ FL φ := by
   cases φ <;> simp [FL] <;> rfl
 
-/-- Fischer-Ladner closure is monotone. -/
+/-- Fischer-Ladner closure is monotone.
+@isnad1 id=le.1h2v.s4.5da8e93362bb from=translated src=- shape=4ee800ea vocab=c50bc554
+-/
 lemma FL_mon {φ ψ : Formula} (ψ_sub_φ : ψ ∈ FL φ) : FL ψ ⊆ FL φ := by
   cases φ <;>
     simp only [FL, Finset.mem_singleton, Finset.mem_union, Finset.subset_iff] at ψ_sub_φ ⊢
@@ -240,6 +251,9 @@ def D (Γ : Sequent) : Sequent := Finset.filter (
        ∪ Finset.filterMap Formula.opUnDi Γ (by
   simp_all)
 
+/--
+@isnad1 id=le.1h2v.s4.5082d7bf842a from=translated src=- shape=78622efe vocab=5337f3c6
+-/
 lemma form_in_seq_size_le {A : Formula} {Δ : Sequent} : A ∈ Δ → A.length ≤ Δ.length :=
   fun A_in ↦ Finset.sum_le_sum_of_subset_of_nonneg (Finset.singleton_subset_iff.2 A_in) (by simp)
 
@@ -249,17 +263,26 @@ def FL : Sequent → Sequent := fun Δ ↦ Finset.biUnion Δ Formula.FL
 /-! # Lemmas about FL Closure of Sequents -/
 
 /- Fischer-Ladner closure is reflexive. -/
+/--
+@isnad1 id=le.0h1v.s3.824eb86da81d from=translated src=- shape=e63234f4 vocab=2f1d723a
+-/
 lemma FL_refl {Δ : Sequent} : Δ ⊆ FL Δ := by
   intro x x_in
   exact Finset.mem_biUnion.mpr ⟨x, x_in, Formula.FL_refl⟩
 
 /- Fischer-Ladner closure is monotone. -/
+/--
+@isnad1 id=le.1h2v.s4.b85db9aef9e2 from=translated src=- shape=6bee9d27 vocab=2f1d723a
+-/
 lemma FL_mon {Δ Γ : Sequent} (Δ_sub_Γ : Δ ⊆ Γ) : FL Δ ⊆ FL Γ := by
   intro φ φ_in
   rcases Finset.mem_biUnion.mp φ_in with ⟨ψ, ψ_in_Δ, φ_sub_ψ⟩
   exact Finset.mem_biUnion.mpr ⟨ψ, Δ_sub_Γ ψ_in_Δ, φ_sub_ψ⟩
 
 /- Fischer-Ladner closure is idempotent. -/
+/--
+@isnad1 id=eq.0h1v.s3.b93274d47cec from=translated src=- shape=9bfe7af5 vocab=f6ed01fd
+-/
 lemma FL_idem {Δ : Sequent} : FL (FL Δ) = FL Δ := by
   apply Finset.Subset.antisymm
   · intro φ φ_in
@@ -318,35 +341,57 @@ def FL : SplitFormula → SplitSequent
 
 /-! # Lemmas about FL Closure of Split Formulas -/
 
+/--
+@isnad1 id=eq.0h1v.s4.23dd1b7409f8 from=translated src=- shape=2dde9a01 vocab=933c33c6
+-/
 lemma FL_SplitFormula_left_eq_FL_Formula_map (φ : Formula) :
   FL (Sum.inl φ) = φ.FL.map ⟨Sum.inl, Sum.inl_injective⟩ := by
   induction φ <;> simp_all [FL, Formula.FL, Finset.map_union]
 
+/--
+@isnad1 id=eq.0h1v.s4.4efde135f22b from=translated src=- shape=2dde9a01 vocab=9f5f9ab0
+-/
 lemma FL_SplitFormula_right_eq_FL_Formula_map (φ : Formula) :
   FL (Sum.inr φ) = φ.FL.map ⟨Sum.inr, Sum.inr_injective⟩ := by
   induction φ <;> simp_all [FL, Formula.FL, Finset.map_union]
 
+/--
+@isnad1 id=eq.1h2v.s4.ffa164446ab8 from=translated src=- shape=cddb9425 vocab=01dba0bb
+-/
 lemma in_FL_SplitFormula_left {φ : Formula} {ψ : SplitFormula}
   (ψ_sub_φ : ψ ∈ FL (Sum.inl φ)) : ψ.isLeft := by
   induction φ <;> simp_all [FL] <;> grind
 
+/--
+@isnad1 id=eq.1h2v.s4.64e7ff537a19 from=translated src=- shape=cddb9425 vocab=a51d8def
+-/
 lemma in_FL_SplitFormula_right {φ : Formula} {ψ : SplitFormula}
   (ψ_sub_φ : ψ ∈ FL (Sum.inr φ)) : ψ.isRight := by
   induction φ <;> simp_all [FL] <;> grind
 
+/--
+@isnad1 id=mem.1h2v.s5.f1a99f1a4532 from=translated src=- shape=d614f8d4 vocab=17c43cd1
+-/
 lemma in_FL_of_in_FL_SplitFormula_left {φ : Formula} {ψ : SplitFormula}
   (ψ_sub_φ : ψ ∈ FL (Sum.inl φ)) : ψ.elim id id ∈ φ.FL := by
   rcases ψ with ψ | ψ <;> induction φ <;> simp_all [FL, Formula.FL] <;> grind
 
+/--
+@isnad1 id=mem.1h2v.s5.2d26301abd92 from=translated src=- shape=d614f8d4 vocab=6948ac1c
+-/
 lemma in_FL_of_in_FL_SplitFormula_right {φ : Formula} {ψ : SplitFormula}
   (ψ_sub_φ : ψ ∈ FL (Sum.inr φ)) : ψ.elim id id ∈ φ.FL := by
   rcases ψ with ψ | ψ <;> induction φ <;> simp_all [FL, Formula.FL] <;> grind
 
-/-- Fischer-Ladner Closure is reflexive. -/
+/-- Fischer-Ladner Closure is reflexive.
+@isnad1 id=mem.0h1v.s3.b273793dfccc from=translated src=- shape=003a2c60 vocab=b02ef915
+-/
 lemma FL_refl {φ : SplitFormula} : φ ∈ FL φ := by
   rcases φ with φ | φ <;> cases φ <;> simp [FL] <;> rfl
 
-/-- Fischer-Ladner Closure is monotone. -/
+/-- Fischer-Ladner Closure is monotone.
+@isnad1 id=le.1h2v.s4.44b954495799 from=translated src=- shape=4ee800ea vocab=2d50121e
+-/
 lemma FL_mon {φ ψ : SplitFormula} (ψ_sub_φ : ψ ∈ FL φ) : FL ψ ⊆ FL φ := by
   rcases φ with φ | φ
   · rcases ψ with ψ | ψ
@@ -374,18 +419,24 @@ namespace SplitSequent
 /-- Auxiliary declaration used in the GL coalgebra development. -/
 def FL : SplitSequent → SplitSequent := fun Δ ↦ Finset.biUnion Δ SplitFormula.FL
 
-/-- Fischer-Ladner Closure is reflexive. -/
+/-- Fischer-Ladner Closure is reflexive.
+@isnad1 id=le.0h1v.s3.c3d2f9974330 from=translated src=- shape=e63234f4 vocab=72841c74
+-/
 lemma FL_refl {Δ : SplitSequent} : Δ ⊆ FL Δ := by
   intro x x_in
   exact Finset.mem_biUnion.mpr ⟨x, x_in, SplitFormula.FL_refl⟩
 
-/-- Fischer-Ladner Closure is monotone. -/
+/-- Fischer-Ladner Closure is monotone.
+@isnad1 id=le.1h2v.s4.7863da1cc904 from=translated src=- shape=6bee9d27 vocab=72841c74
+-/
 lemma FL_mon {Δ Γ : SplitSequent} (Δ_sub_Γ : Δ ⊆ Γ) : FL Δ ⊆ FL Γ := by
   intro φ φ_in
   rcases Finset.mem_biUnion.mp φ_in with ⟨ψ, ψ_in_Δ, φ_sub_ψ⟩
   exact Finset.mem_biUnion.mpr ⟨ψ, Δ_sub_Γ ψ_in_Δ, φ_sub_ψ⟩
 
-/-- Fischer-Ladner Closure is idempotent. -/
+/-- Fischer-Ladner Closure is idempotent.
+@isnad1 id=eq.0h1v.s3.2248d5c11e74 from=translated src=- shape=9bfe7af5 vocab=9db5e12b
+-/
 lemma FL_idem {Δ : SplitSequent} : FL (FL Δ) = FL Δ := by
   apply Finset.Subset.antisymm
   · intro φ φ_in
@@ -414,20 +465,32 @@ def toSequent (Δ : SplitSequent) : Sequent := Finset.image (Sum.elim id id) Δ
 /-- Length of a Split Sequent. -/
 def length (Δ : SplitSequent) : Nat := Finset.sum Δ (SplitFormula.length)
 
+/--
+@isnad1 id=iff.0h2v.s4.75525106b3c2 from=translated src=- shape=f20afb4f vocab=98509eaa
+-/
 @[simp]
 lemma opUnDi_eqₗₗ {φ ψ : Formula} :
     SplitFormula.opUnDi (Sum.inl φ) = some (Sum.inl ψ) ↔ φ = ◇ ψ := by
   cases φ <;> simp [SplitFormula.opUnDi]
 
+/--
+@isnad1 id=iff.0h2v.s4.b86460068670 from=translated src=- shape=f20afb4f vocab=7383c6b7
+-/
 @[simp]
 lemma opUnDi_eqᵣᵣ {φ ψ : Formula} :
     SplitFormula.opUnDi (Sum.inr φ) = some (Sum.inr ψ) ↔ φ = ◇ ψ := by
   cases φ <;> simp [SplitFormula.opUnDi]
 
+/--
+@isnad1 id=not.0h2v.s4.9991954ae920 from=translated src=- shape=5b1659d5 vocab=d60f3a3f
+-/
 @[simp]
 lemma opUnDi_eqₗᵣ {φ ψ : Formula} : ¬ (SplitFormula.opUnDi (Sum.inl φ) = some (Sum.inr ψ)) := by
   cases φ <;> simp [SplitFormula.opUnDi]
 
+/--
+@isnad1 id=not.0h2v.s4.390bf8948bb1 from=translated src=- shape=5b1659d5 vocab=d60f3a3f
+-/
 @[simp]
 lemma opUnDi_eqᵣₗ {φ ψ : Formula} : ¬ (SplitFormula.opUnDi (Sum.inr φ) = some (Sum.inl ψ)) := by
   cases φ <;> simp [SplitFormula.opUnDi]
@@ -465,19 +528,31 @@ def single (n : Nat) (ψ : Formula) : Formula → Formula
   | ◇ φ => ◇ (single n ψ φ)
 
 /- Single substitution preserves negation. -/
+/--
+@isnad1 id=eq.0h3v.s4.8c966846f748 from=translated src=- shape=0663e989 vocab=0075314a
+-/
 lemma single_neg (n : Nat) (φ ψ : Formula) : single n ψ (~φ) = (~ (single n ψ φ)) := by
   induction φ <;> simp [Formula.neg, single] <;> aesop
 
 /- Single substitution preserves implication. -/
+/--
+@isnad1 id=eq.0h4v.s4.44ee7e901ec6 from=translated src=- shape=1d81ad78 vocab=6eabbf1b
+-/
 lemma single_imp (n : Nat) (C D E : Formula) :
     single n C (D ↣ E) = (single n C D) ↣ (single n C E) := by
   simp [single, single_neg]
 
 /- Single substitution preserves bi-implication. -/
+/--
+@isnad1 id=eq.0h4v.s5.bf225170f27d from=translated src=- shape=6df37402 vocab=908e4607
+-/
 lemma single_iff (n : Nat) (C D E : Formula) :
     single n C (D ⟷ E) = (single n C D) ⟷ (single n C E) := by
   simp [single, single_neg]
 
+/--
+@isnad1 id=eq.0h2v.s3.f00e2d63ce83 from=translated src=- shape=a6d2da5b vocab=41af1af0
+-/
 @[simp]
 lemma single_identity (n : ℕ) (φ : Formula) : (single n (at n) φ) = φ := by
   induction φ <;> simp_all [single] <;> rfl
@@ -512,9 +587,15 @@ decreasing_by
 /-! # Properties of Vocab -/
 
 /- `p` is in the vocabulary of `φ` if and only if `p` is in the vocabulary of `~φ`. -/
+/--
+@isnad1 id=iff.0h2v.s5.08be33e775ac from=translated src=- shape=afd2b59b vocab=b92bf103
+-/
 @[simp] lemma in_neg_voc_iff {n : Nat} {φ : Formula} : n ∈ (~φ).vocab ↔ n ∈ φ.vocab := by
   induction φ <;> simp_all [Formula.vocab]
 
+/--
+@isnad1 id=not.3h4v.s6.4dfff10ab3ea from=translated src=- shape=df8f5eaa vocab=b07813e2
+-/
 lemma in_single_voc (m n : Nat) (φ ψ : Formula) :
   m ∉ φ.vocab → (m ≠ n → m ∉ ψ.vocab) → n ∉ φ.vocab → m ∉ (single n φ ψ).vocab := by
     intro mp
@@ -543,23 +624,35 @@ lemma in_single_voc (m n : Nat) (φ ψ : Formula) :
             simpa only [hk, ite_false, Formula.vocab, Finset.mem_singleton] using m_in)
     all_goals aesop
 
+/--
+@isnad1 id=eq.1h3v.s4.bd5ce57a7456 from=translated src=- shape=34b80848 vocab=b07813e2
+-/
 lemma not_in_single_voc (n : Nat) (φ ψ : Formula) :
   n ∉ φ.vocab → (single n ψ φ) = φ := by
   intro h
   induction φ <;> simp_all [single, Formula.vocab] <;> aesop
 
+/--
+@isnad1 id=not.0h2v.s4.ecea4a9d7b6f from=translated src=- shape=a37761f2 vocab=546a5f2f
+-/
 lemma not_in_single_top_voc (n : ℕ) (φ : Formula) : n ∉ (single n ⊤ φ).vocab := by
   apply in_single_voc n n ⊤ φ
   · simpa only [Formula.instTop, Formula.vocab] using Finset.notMem_empty n
   · simp_all
   · simpa only [Formula.instTop, Formula.vocab] using Finset.notMem_empty n
 
+/--
+@isnad1 id=not.0h2v.s4.5c01bab4403c from=translated src=- shape=a37761f2 vocab=bd445610
+-/
 lemma not_in_single_bot_voc (n : ℕ) (φ : Formula) : n ∉ (single n ⊥ φ).vocab := by
   apply in_single_voc n n ⊥ φ
   · simpa only [Formula.instBot, Formula.vocab] using Finset.notMem_empty n
   · simp_all
   · simpa only [Formula.instBot, Formula.vocab] using Finset.notMem_empty n
 
+/--
+@isnad1 id=or.1h4v.s6.5dc01a53e08d from=translated src=- shape=59fbf834 vocab=b07813e2
+-/
 lemma in_single_voc' {m n : ℕ} {φ ψ : Formula} :
     m ∈ (single n φ ψ).vocab →
       (m ∈ φ.vocab ∧ n ∈ ψ.vocab) ∨ (m ∈ ψ.vocab ∧ m ≠ n) := by
@@ -573,10 +666,19 @@ Ideally grind or aesop or some other tactic could sort out these simple helper l
 not figure out how.
 -/
 
+/--
+@isnad1 id=eq.1h3v.s4.e4afba6d6a00 from=translated src=- shape=49ca8561 vocab=8bf00f27
+-/
 lemma sub_add_left {n m l : Nat} : n + m = l → n = l - m := by omega
 
+/--
+@isnad1 id=lt.2h3v.s5.da2ade546cb4 from=translated src=- shape=48304a25 vocab=327f97a7
+-/
 lemma lt_and_le_imp_add_lt {a b c : ℕ} : b ≤ a → c < b → (a - b) + c < a := by omega
 
+/--
+@isnad1 id=lt.2h5v.s6.eb8139f04c8a from=translated src=- shape=c6c26711 vocab=09cc07a5
+-/
 lemma Finset.sum_diff_singleton_lt {α : Type} [DecidableEq α] {A C : Finset α} {b : α} {f : α → Nat}
   : b ∈ A → C.sum f < f b → Finset.sum ((A \ {b}) ∪ C) f < Finset.sum A f := by
   intro b_in_A C_lt_B

@@ -52,7 +52,9 @@ def weakStationarityIntegrand {n m : ℕ}
 
 /-- The stationarity integrand vanishes outside the topological support of the
 test vector field.  Outside `tsupport X`, both `X` and its derivative are
-locally zero. -/
+locally zero.
+@isnad1 id=eq.1h5v.s6.a38ef14cf6a3 from=translated src=- shape=5112c5b5 vocab=fd67ba5d
+-/
 theorem weakStationarityIntegrand_eq_zero_of_notMem_tsupport {n m : ℕ}
     (Du : Domain n → Gradient n m) {X : Domain n → Domain n} {x : Domain n}
     (hx : x ∉ tsupport X) :
@@ -72,7 +74,9 @@ def WeakStationaryIn {n m : ℕ}
           (∫ x in Ω, weakStationarityIntegrand Du X x) = 0
 
 /-- Weak stationarity localizes to smaller domains.  The only measure-theoretic
-input needed here is measurability of the larger integration domain. -/
+input needed here is measurability of the larger integration domain.
+@isnad1 id=weakstat.3h5v.s6.9e84e4ae6205 from=translated src=- shape=fae4cd61 vocab=f90edccd
+-/
 theorem weakStationaryIn_of_subset {n m : ℕ}
     {Du : Domain n → Gradient n m} {Ω Ω' : Set (Domain n)}
     (hstationary : WeakStationaryIn Du Ω)
@@ -123,7 +127,9 @@ def GradientAEStronglyMeasurableIn {n m : ℕ}
   AEStronglyMeasurable Du (volume.restrict Ω)
 
 /-- Local `L²` control of the weak gradient gives integrability of the energy on
-any compact subset of the domain. -/
+any compact subset of the domain.
+@isnad1 id=integrab.3h5v.s8.0bb77d1947f9 from=translated src=- shape=30ae5d70 vocab=69859c73
+-/
 theorem gradientLocallyL2In_integrableOn_compact {n m : ℕ}
     {Du : Domain n → Gradient n m} {Ω K : Set (Domain n)}
     (hgrad : GradientLocallyL2In Du Ω) (hK : IsCompact K) (hKΩ : K ⊆ Ω) :
@@ -131,7 +137,9 @@ theorem gradientLocallyL2In_integrableOn_compact {n m : ℕ}
   hgrad K hK hKΩ
 
 /-- Local `L²` control of the weak gradient gives integrability of the energy on
-closed balls contained in the domain. -/
+closed balls contained in the domain.
+@isnad1 id=integrab.2h6v.s8.3c47bebaa2e5 from=translated src=- shape=4022c51d vocab=f5312ce0
+-/
 theorem gradientLocallyL2In_integrableOn_closedBall {n m : ℕ}
     {Du : Domain n → Gradient n m} {Ω : Set (Domain n)} {a : Domain n} {r : ℝ}
     (hgrad : GradientLocallyL2In Du Ω)
@@ -143,7 +151,9 @@ theorem gradientLocallyL2In_integrableOn_closedBall {n m : ℕ}
     hgrad (isCompact_closedBall a r) hclosedBall_subset
 
 /-- Local `L²` control of the weak gradient gives integrability of the energy on
-open balls whose closed ball is contained in the domain. -/
+open balls whose closed ball is contained in the domain.
+@isnad1 id=integrab.2h6v.s8.ac84c6a83166 from=translated src=- shape=b67f8519 vocab=a4c97adf
+-/
 theorem gradientLocallyL2In_integrableOn_ball {n m : ℕ}
     {Du : Domain n → Gradient n m} {Ω : Set (Domain n)} {a : Domain n} {r : ℝ}
     (hgrad : GradientLocallyL2In Du Ω)
@@ -186,24 +196,36 @@ def WeakStationaryMapIn {n m : ℕ}
     (Ω : Set (Domain n)) : Prop :=
   W12LocIn u Du Ω ∧ WeakStationaryIn Du Ω
 
+/--
+@isnad1 id=maplocal.1h5v.s5.11de78e7b646 from=translated src=- shape=198a4716 vocab=7d311d4d
+-/
 theorem W12LocIn.map_locallyL2 {n m : ℕ}
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
     (h : W12LocIn u Du Ω) :
     MapLocallyL2In u Ω :=
   h.1
 
+/--
+@isnad1 id=gradient.1h5v.s5.58214a543d84 from=translated src=- shape=0375956f vocab=bc9931ea
+-/
 theorem W12LocIn.gradient_aestronglyMeasurable {n m : ℕ}
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
     (h : W12LocIn u Du Ω) :
     GradientAEStronglyMeasurableIn Du Ω :=
   h.2.1
 
+/--
+@isnad1 id=gradient.1h5v.s5.b2e7778f9835 from=translated src=- shape=0375956f vocab=a24b1214
+-/
 theorem W12LocIn.gradient_locallyL2 {n m : ℕ}
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
     (h : W12LocIn u Du Ω) :
     GradientLocallyL2In Du Ω :=
   h.2.2.1
 
+/--
+@isnad1 id=hasweakg.1h5v.s5.ebc9536fc491 from=translated src=- shape=c66f79f5 vocab=e1749df8
+-/
 theorem W12LocIn.hasWeakGradient {n m : ℕ}
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
     (h : W12LocIn u Du Ω) :
@@ -212,7 +234,9 @@ theorem W12LocIn.hasWeakGradient {n m : ℕ}
 
 /-- A measurable weak gradient gives a measurable radial derivative.  The proof
 uses only measurable algebra, since the factor `|x-a|⁻¹` is not continuous at
-`a`. -/
+`a`.
+@isnad1 id=aestrong.1h5v.s9.80529e29bc9c from=translated src=- shape=d57ebf5b vocab=5debc540
+-/
 theorem weakRadialDerivative_aestronglyMeasurable {n m : ℕ}
     {Du : Domain n → Gradient n m} {Ω : Set (Domain n)} (a : Domain n)
     (hDu : AEStronglyMeasurable Du (volume.restrict Ω)) :
@@ -235,7 +259,9 @@ theorem weakRadialDerivative_aestronglyMeasurable {n m : ℕ}
       exact hcoord.smul hDui)
   exact hscale.smul hsum
 
-/-- A measurable weak gradient gives a measurable radial-energy density. -/
+/-- A measurable weak gradient gives a measurable radial-energy density.
+@isnad1 id=aestrong.1h5v.s9.e28080c919bd from=translated src=- shape=e2d3ba44 vocab=ba521d0c
+-/
 theorem weakRadialEnergyDensity_aestronglyMeasurable {n m : ℕ}
     {Du : Domain n → Gradient n m} {Ω : Set (Domain n)} (a : Domain n)
     (hDu : AEStronglyMeasurable Du (volume.restrict Ω)) :
@@ -245,7 +271,9 @@ theorem weakRadialEnergyDensity_aestronglyMeasurable {n m : ℕ}
       (n := n) (m := m) (Du := Du) (Ω := Ω) a hDu).norm.pow 2
 
 /-- On a ball, radial-energy measurability follows from gradient measurability
-on any containing closed ball/domain. -/
+on any containing closed ball/domain.
+@isnad1 id=aestrong.2h6v.s8.63b84db8d261 from=translated src=- shape=bc3d0692 vocab=409ffbd0
+-/
 theorem weakRadialEnergyDensity_aestronglyMeasurable_on_ball_of_gradient {n m : ℕ}
     {Du : Domain n → Gradient n m} {Ω : Set (Domain n)} {a : Domain n} {r : ℝ}
     (hDu : GradientAEStronglyMeasurableIn Du Ω)
@@ -257,7 +285,9 @@ theorem weakRadialEnergyDensity_aestronglyMeasurable_on_ball_of_gradient {n m : 
     (hDu.mono_set (Subset.trans Metric.ball_subset_closedBall hclosedBall_subset))
 
 /-- Pointwise simplification of the weak stationarity integrand for the radial
-test field `X(x)=φ(|x|)x`, away from the origin. -/
+test field `X(x)=φ(|x|)x`, away from the origin.
+@isnad1 id=eq.2h5v.s8.287ca87f80b3 from=translated src=- shape=d7c9a08e vocab=0ab5a653
+-/
 theorem weakStationarityIntegrand_radialVectorField {n m : ℕ}
     (Du : Domain n → Gradient n m) {phi : ℝ → ℝ}
     (hphi : Differentiable ℝ phi) :

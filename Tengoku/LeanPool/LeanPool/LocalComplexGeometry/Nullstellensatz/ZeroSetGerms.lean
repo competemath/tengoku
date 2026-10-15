@@ -33,6 +33,9 @@ abbrev LocalSetGerm (n : ℕ) :=
 def germZeroLocus {n : ℕ} (f : HolomorphicGerm n) : LocalSetGerm n :=
   Filter.Germ.map (fun z : ℂ ↦ z = 0) (f : FunctionGerm n)
 
+/--
+@isnad1 id=eq.0h1v.s9.dbfc18166118 from=translated src=- shape=cc722af0 vocab=aecd13f8
+-/
 @[simp]
 theorem germZeroLocus_zero (n : ℕ) :
     germZeroLocus (0 : HolomorphicGerm n) = ⊤ := by
@@ -42,7 +45,9 @@ theorem germZeroLocus_zero (n : ℕ) :
   apply Filter.Germ.coe_eq.mpr
   exact Filter.Eventually.of_forall fun _ ↦ propext (by simp)
 
-/-- A common zero of `f` and `g` is a zero of their sum. -/
+/-- A common zero of `f` and `g` is a zero of their sum.
+@isnad1 id=le.0h3v.s10.c7c32aec9ca7 from=translated src=- shape=76e0a1e1 vocab=fcc7926d
+-/
 theorem germZeroLocus_inf_le_add {n : ℕ} (f g : HolomorphicGerm n) :
     germZeroLocus f ⊓ germZeroLocus g ≤ germZeroLocus (f + g) := by
   change
@@ -58,7 +63,9 @@ theorem germZeroLocus_inf_le_add {n : ℕ} (f g : HolomorphicGerm n) :
   rw [Filter.Germ.coe_le]
   exact Filter.Eventually.of_forall fun _ h ↦ by simp [h.1, h.2]
 
-/-- Every zero of `f` is a zero of a left multiple of `f`. -/
+/-- Every zero of `f` is a zero of a left multiple of `f`.
+@isnad1 id=le.0h3v.s10.a747d1bde78c from=translated src=- shape=ef48cab9 vocab=92889660
+-/
 theorem germZeroLocus_le_mul {n : ℕ} (a f : HolomorphicGerm n) :
     germZeroLocus f ≤ germZeroLocus (a * f) := by
   change
@@ -73,7 +80,9 @@ theorem germZeroLocus_le_mul {n : ℕ} (a f : HolomorphicGerm n) :
   rw [Filter.Germ.coe_le]
   exact Filter.Eventually.of_forall fun _ h ↦ by simp [h]
 
-/-- A positive power has exactly the same local zero-set germ. -/
+/-- A positive power has exactly the same local zero-set germ.
+@isnad1 id=eq.1h3v.s9.f0ac16f81d68 from=translated src=- shape=c3542865 vocab=3eefd4f1
+-/
 theorem germZeroLocus_pow {n : ℕ} (f : HolomorphicGerm n)
     {k : ℕ} (hk : 0 < k) :
     germZeroLocus (f ^ k) = germZeroLocus f := by
@@ -89,7 +98,9 @@ theorem germZeroLocus_pow {n : ℕ} (f : HolomorphicGerm n)
       (pow_eq_zero_iff hk.ne' : F x ^ k = 0 ↔ F x = 0))
 
 /-- A holomorphic germ vanishes on a full neighborhood exactly when it is the
-zero germ. -/
+zero germ.
+@isnad1 id=iff.0h2v.s9.86acaa91cf98 from=translated src=- shape=1fa5999e vocab=aecd13f8
+-/
 theorem germZeroLocus_eq_top_iff {n : ℕ} (f : HolomorphicGerm n) :
     germZeroLocus f = ⊤ ↔ f = 0 := by
   constructor
@@ -123,13 +134,18 @@ def vanishingIdeal {n : ℕ} (Z : LocalSetGerm n) : Ideal (HolomorphicGerm n) wh
     intro a f hf
     exact hf.trans (germZeroLocus_le_mul a f)
 
+/--
+@isnad1 id=iff.0h3v.s11.ebe2ac45dfc4 from=translated src=- shape=bb38e2ac vocab=576ad10c
+-/
 @[simp]
 theorem mem_vanishingIdeal {n : ℕ} {Z : LocalSetGerm n}
     {f : HolomorphicGerm n} :
     f ∈ vanishingIdeal Z ↔ Z ≤ germZeroLocus f :=
   Iff.rfl
 
-/-- The only holomorphic germ vanishing on a full neighborhood is zero. -/
+/-- The only holomorphic germ vanishing on a full neighborhood is zero.
+@isnad1 id=eq.0h1v.s11.9bf7563babc3 from=translated src=- shape=44dd6f61 vocab=076375c5
+-/
 @[simp]
 theorem vanishingIdeal_top (n : ℕ) :
     vanishingIdeal (⊤ : LocalSetGerm n) = ⊥ := by
@@ -160,7 +176,9 @@ private def localSetGermOfFunInfTopHom (n : ℕ) :
   map_top' := rfl
 
 /-- The indexed set-germ definition has the expected eventual pointwise
-meaning for a concrete representative family. -/
+meaning for a concrete representative family.
+@isnad1 id=eq.1h3v.s7.1863d450e4c8 from=translated src=- shape=ea7e8351 vocab=3f53f218
+-/
 theorem indexedCommonZeroSet_ofFunction {n s : ℕ}
     (f : Fin s → ComplexEuclidean n → ℂ)
     (hf : ∀ i, AnalyticAt ℂ (f i) 0) :
@@ -181,7 +199,9 @@ theorem indexedCommonZeroSet_ofFunction {n s : ℕ}
         simp)
 
 /-- The finite-type common zero set has its expected pointwise meaning for
-concrete analytic representatives. -/
+concrete analytic representatives.
+@isnad1 id=eq.1h3v.s7.617379a998b9 from=translated src=- shape=ba8b25fb vocab=e400d2d7
+-/
 theorem fintypeCommonZeroSet_ofFunction {n : ℕ} {ι : Type*} [Fintype ι]
     (f : ι → ComplexEuclidean n → ℂ)
     (hf : ∀ i, AnalyticAt ℂ (f i) 0) :
@@ -203,7 +223,9 @@ theorem fintypeCommonZeroSet_ofFunction {n : ℕ} {ι : Type*} [Fintype ι]
         simp)
 
 /-- Translate a finite-type representative common-zero hypothesis into the
-order relation on local set germs. -/
+order relation on local set germs.
+@isnad1 id=iff.2h4v.s8.2168b4e36ad9 from=translated src=- shape=812c3894 vocab=099c6dd3
+-/
 theorem fintypeCommonZeroSet_le_iff_eventually {n : ℕ}
     {ι : Type*} [Fintype ι]
     (f : ι → ComplexEuclidean n → ℂ)
@@ -220,7 +242,9 @@ theorem fintypeCommonZeroSet_le_iff_eventually {n : ℕ}
   exact Filter.Germ.coe_le
 
 /-- A finite set and the family indexed by its subtype define the same common
-zero-set germ. -/
+zero-set germ.
+@isnad1 id=eq.0h2v.s12.66d7ae47ef92 from=translated src=- shape=bedea57f vocab=574045a3
+-/
 theorem finiteCommonZeroSet_eq_fintypeCommonZeroSet_subtype {n : ℕ}
     (S : Finset (HolomorphicGerm n)) :
     finiteCommonZeroSet S =
@@ -237,7 +261,9 @@ theorem finiteCommonZeroSet_eq_fintypeCommonZeroSet_subtype {n : ℕ}
       (show (⟨f, hf⟩ : S) ∈ (Finset.univ : Finset S) by simp)
 
 /-- Translate the representative-level eventual common-zero hypothesis into
-the order relation on local set germs. -/
+the order relation on local set germs.
+@isnad1 id=iff.2h4v.s8.387b0e8af781 from=translated src=- shape=24f3185a vocab=72377528
+-/
 theorem indexedCommonZeroSet_le_iff_eventually {n s : ℕ}
     (f : Fin s → ComplexEuclidean n → ℂ)
     (hf : ∀ i, AnalyticAt ℂ (f i) 0)
@@ -251,12 +277,17 @@ theorem indexedCommonZeroSet_le_iff_eventually {n s : ℕ}
         ((fun x ↦ g x = 0) : LocalSetGerm n) ↔ _
   exact Filter.Germ.coe_le
 
+/--
+@isnad1 id=le.1h3v.s10.7b3b38d6fddd from=translated src=- shape=e2fc41a6 vocab=cd133b2f
+-/
 theorem finiteCommonZeroSet_le_germZeroLocus {n : ℕ}
     (S : Finset (HolomorphicGerm n)) {f : HolomorphicGerm n} (hf : f ∈ S) :
     finiteCommonZeroSet S ≤ germZeroLocus f :=
   Finset.inf_le hf
 
-/-- Every member of the ideal spanned by `S` vanishes on the common zero set of `S`. -/
+/-- Every member of the ideal spanned by `S` vanishes on the common zero set of `S`.
+@isnad1 id=le.1h3v.s12.32069d6a4751 from=translated src=- shape=7721b6f5 vocab=4d54b2f4
+-/
 theorem finiteCommonZeroSet_le_germZeroLocus_of_mem_span {n : ℕ}
     (S : Finset (HolomorphicGerm n)) {f : HolomorphicGerm n}
     (hf : f ∈ Ideal.span (S : Set (HolomorphicGerm n))) :
@@ -268,7 +299,9 @@ theorem finiteCommonZeroSet_le_germZeroLocus_of_mem_span {n : ℕ}
     exact finiteCommonZeroSet_le_germZeroLocus S hg
   exact hspan hf
 
-/-- Enlarging the generated ideal shrinks the corresponding finite zero set. -/
+/-- Enlarging the generated ideal shrinks the corresponding finite zero set.
+@isnad1 id=le.1h3v.s12.7481dbd5c544 from=translated src=- shape=1db9bd1c vocab=9b4b06ce
+-/
 theorem finiteCommonZeroSet_antitone_span {n : ℕ}
     (S T : Finset (HolomorphicGerm n))
     (h : Ideal.span (S : Set (HolomorphicGerm n)) ≤
@@ -279,7 +312,9 @@ theorem finiteCommonZeroSet_antitone_span {n : ℕ}
   apply finiteCommonZeroSet_le_germZeroLocus_of_mem_span T
   exact h (Ideal.subset_span hf)
 
-/-- The finite common zero-set germ depends only on the generated ideal. -/
+/-- The finite common zero-set germ depends only on the generated ideal.
+@isnad1 id=eq.1h3v.s11.8c4680f5eb56 from=translated src=- shape=3b837f63 vocab=e8d350fb
+-/
 theorem finiteCommonZeroSet_eq_of_span_eq {n : ℕ}
     (S T : Finset (HolomorphicGerm n))
     (h : Ideal.span (S : Set (HolomorphicGerm n)) =
@@ -294,6 +329,9 @@ def idealGeneratorFinset {n : ℕ} [IsNoetherianRing (HolomorphicGerm n)]
     (I : Ideal (HolomorphicGerm n)) : Finset (HolomorphicGerm n) :=
   Classical.choose (Ideal.fg_of_isNoetherianRing I)
 
+/--
+@isnad1 id=eq.0h2v.s11.dcce621e2617 from=translated src=- shape=6c714a91 vocab=b78b961c
+-/
 theorem span_idealGeneratorFinset {n : ℕ}
     [IsNoetherianRing (HolomorphicGerm n)]
     (I : Ideal (HolomorphicGerm n)) :
@@ -305,7 +343,9 @@ def idealZeroSetGerm {n : ℕ} [IsNoetherianRing (HolomorphicGerm n)]
     (I : Ideal (HolomorphicGerm n)) : LocalSetGerm n :=
   finiteCommonZeroSet (idealGeneratorFinset I)
 
-/-- Generator independence for the ideal zero-set germ. -/
+/-- Generator independence for the ideal zero-set germ.
+@isnad1 id=eq.1h3v.s11.3d3637a53210 from=translated src=- shape=972bb853 vocab=868ea1ee
+-/
 theorem idealZeroSetGerm_eq_of_span_eq {n : ℕ}
     [IsNoetherianRing (HolomorphicGerm n)]
     (I : Ideal (HolomorphicGerm n))
@@ -316,6 +356,9 @@ theorem idealZeroSetGerm_eq_of_span_eq {n : ℕ}
   apply finiteCommonZeroSet_eq_of_span_eq
   exact (span_idealGeneratorFinset I).trans hS.symm
 
+/--
+@isnad1 id=eq.0h1v.s11.1c77aa521c1d from=translated src=- shape=8a1ec3d0 vocab=186ce60d
+-/
 @[simp]
 theorem idealZeroSetGerm_bot {n : ℕ}
     [IsNoetherianRing (HolomorphicGerm n)] :
@@ -324,7 +367,9 @@ theorem idealZeroSetGerm_bot {n : ℕ}
     (⊥ : Ideal (HolomorphicGerm n)) ∅ (by simp)]
   simp [finiteCommonZeroSet]
 
-/-- Every member of an ideal vanishes on its local zero-set germ. -/
+/-- Every member of an ideal vanishes on its local zero-set germ.
+@isnad1 id=le.1h3v.s12.3d47823ef0e6 from=translated src=- shape=0811eb48 vocab=e07fed70
+-/
 theorem idealZeroSetGerm_le_germZeroLocus_of_mem {n : ℕ}
     [IsNoetherianRing (HolomorphicGerm n)]
     (I : Ideal (HolomorphicGerm n)) {f : HolomorphicGerm n} (hf : f ∈ I) :
@@ -334,7 +379,9 @@ theorem idealZeroSetGerm_le_germZeroLocus_of_mem {n : ℕ}
   rw [span_idealGeneratorFinset]
   exact hf
 
-/-- Inclusion of ideals reverses inclusion of their local zero-set germs. -/
+/-- Inclusion of ideals reverses inclusion of their local zero-set germs.
+@isnad1 id=le.1h3v.s12.4c4dc0b95baf from=translated src=- shape=58ada272 vocab=9365e55b
+-/
 theorem idealZeroSetGerm_antitone {n : ℕ}
     [IsNoetherianRing (HolomorphicGerm n)]
     {I J : Ideal (HolomorphicGerm n)} (hIJ : I ≤ J) :

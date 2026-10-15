@@ -55,32 +55,42 @@ noncomputable def parameters (B : Finset (ZMod 3)[X]) : Finset Parameters :=
 noncomputable def lift (m : ℕ) (B : Finset (ZMod 3)[X]) : Finset (ZMod 3)[X] :=
   open scoped Classical in (parameters B).image (liftMap m)
 
-/-- A tuple is a parameter exactly when its code word and its base element are. -/
+/-- A tuple is a parameter exactly when its code word and its base element are.
+@isnad1 id=iff.0h2v.s9.f35070b20f77 from=translated src=- shape=c139dda3 vocab=efa3b7fe
+-/
 theorem mem_params {B : Finset (ZMod 3)[X]} {p : Parameters} :
     p ∈ parameters B ↔ p.1 ∈ code ∧ p.2.2.2 ∈ B := by
   simp [parameters, Finset.mem_product]
 
-/-- There are `810 · |B|` parameter tuples: `10 · 27 · 3` choices besides the base element. -/
+/-- There are `810 · |B|` parameter tuples: `10 · 27 · 3` choices besides the base element.
+@isnad1 id=eq.0h1v.s6.7cb17b5e26e0 from=translated src=- shape=450ffc6d vocab=bba8e00a
+-/
 theorem parameters_card (B : Finset (ZMod 3)[X]) : (parameters B).card = 810 * B.card := by
   rw [parameters, Finset.card_product, Finset.card_product, Finset.card_product, code_card,
     Finset.card_univ, Finset.card_univ, Fintype.card_fun]
   simp [ZMod.card]
   ring
 
-/-- Membership in the lifted set: the elements of `L_m(B)` are the lifts of parameter tuples. -/
+/-- Membership in the lifted set: the elements of `L_m(B)` are the lifts of parameter tuples.
+@isnad1 id=iff.0h3v.s8.28fa4c30972e from=translated src=- shape=7fcfa828 vocab=c99d38ab
+-/
 theorem mem_lift {m : ℕ} {B : Finset (ZMod 3)[X]} {f : (ZMod 3)[X]} :
     f ∈ lift m B ↔ ∃ p ∈ parameters B, liftMap m p = f := by
   classical
   simp [lift, Finset.mem_image]
 
-/-- The tail has degree below `m + 2` when its base element has degree below `m`. -/
+/-- The tail has degree below `m + 2` when its base element has degree below `m`.
+@isnad1 id=below.1h2v.s7.e6d4b240068b from=translated src=- shape=2d2637c4 vocab=f6220efc
+-/
 theorem tail_below (m : ℕ) {p : Parameters} (hb : Below m p.2.2.2) : Below (m + 2) (tail m p) := by
   unfold tail
   exact ((hb.mono (by omega)).add (below_C_mul_X_pow _ m (m + 2) (by omega))).add
     (below_C_mul_X_pow _ (m + 1) (m + 2) (by omega))
 
 /-- The degree bound: a lift of a tuple whose base element has degree below `m` has degree below
-`m + 8`. -/
+`m + 8`.
+@isnad1 id=below.1h2v.s7.5b65bee8f3cc from=translated src=- shape=2d2637c4 vocab=1fabca50
+-/
 theorem liftMap_below (m : ℕ) {p : Parameters} (hb : Below m p.2.2.2) :
     Below (m + 8) (liftMap m p) := by
   have h1 : Below (m + 8) (V p.1 + P * R p.2.1) :=
@@ -90,27 +100,37 @@ theorem liftMap_below (m : ℕ) {p : Parameters} (hb : Below m p.2.2.2) :
     rwa [show m + 2 + 6 = m + 8 from by omega] at h4
   exact h1.add h3
 
-/-- The value of a lifted polynomial at `0` is the code coordinate `s_0`. -/
+/-- The value of a lifted polynomial at `0` is the code coordinate `s_0`.
+@isnad1 id=eq.0h2v.s7.43fe39a26c51 from=translated src=- shape=c0c1a778 vocab=aa3c5dee
+-/
 theorem eval_liftMap_zero (m : ℕ) (p : Parameters) : (liftMap m p).eval 0 = p.1 0 := by
   simp [liftMap, eval_P, eval_Q, eval_V_zero]
 
-/-- The value of a lifted polynomial at `1` is the code coordinate `s_1`. -/
+/-- The value of a lifted polynomial at `1` is the code coordinate `s_1`.
+@isnad1 id=eq.0h2v.s7.82542a3cfbfd from=translated src=- shape=c0c1a778 vocab=aa3c5dee
+-/
 theorem eval_liftMap_one (m : ℕ) (p : Parameters) : (liftMap m p).eval 1 = p.1 1 := by
   simp [liftMap, eval_P, eval_Q, eval_V_one]
 
-/-- The value of a lifted polynomial at `2` is the code coordinate `s_2`. -/
+/-- The value of a lifted polynomial at `2` is the code coordinate `s_2`.
+@isnad1 id=eq.0h2v.s7.93cc33381c2a from=translated src=- shape=c0c1a778 vocab=aa3c5dee
+-/
 theorem eval_liftMap_two (m : ℕ) (p : Parameters) : (liftMap m p).eval 2 = p.1 2 := by
   simp [liftMap, eval_P, eval_Q, eval_V_two]
 
 /-- The coefficient of the tail at `T^{m+1}` is the scalar `u`: the base element does not reach
-`T^{m+1}` and the term `s_∞ T^m` lies below it. -/
+`T^{m+1}` and the term `s_∞ T^m` lies below it.
+@isnad1 id=eq.1h2v.s8.122bece96f3a from=translated src=- shape=02844228 vocab=65e693d1
+-/
 theorem coeff_tail_succ (m : ℕ) {p : Parameters} (hb : Below m p.2.2.2) :
     (tail m p).coeff (m + 1) = p.2.2.1 := by
   have h : p.2.2.2.coeff (m + 1) = 0 := hb.coeff_eq_zero (by omega)
   simp [tail, h]
 
 /-- A difference `P · (R_r - R_{r'})` has degree below `6`: this is the part of a difference of
-two lifted polynomials that lies below the multiplier `Q`, and it is what forces `r = r'`. -/
+two lifted polynomials that lies below the multiplier `Q`, and it is what forces `r = r'`.
+@isnad1 id=lt.0h2v.s8.0b6a4fd6bc56 from=translated src=- shape=5ec395ec vocab=9a55be25
+-/
 theorem degree_P_mul_R_sub_lt (r r' : Fin 3 → ZMod 3) : (P * (R r - R r')).degree < 6 := by
   have h3 : Below 3 (R r - R r') :=
     (below_of_degree_le (m := 2) (degree_R_le r)).sub (below_of_degree_le (m := 2) (degree_R_le r'))
@@ -121,7 +141,9 @@ theorem degree_P_mul_R_sub_lt (r r' : Fin 3 → ZMod 3) : (P * (R r - R r')).deg
 lifted polynomial at `T^{m+6}` is the code coordinate `s_∞`: the part `V_s + P·R_r` has degree at
 most `5 < m + 6`; `Q · b` has degree below `m + 6`; `Q · s_∞ T^m` contributes `s_∞` times the
 leading coefficient of `Q`; and `Q · u T^{m+1}` would contribute `u` times the vanishing
-coefficient `[T^5] Q`. -/
+coefficient `[T^5] Q`.
+@isnad1 id=eq.1h2v.s8.8bab0ae22a49 from=translated src=- shape=6e1ac0bc vocab=edae9c52
+-/
 theorem coeff_liftMap_top (m : ℕ) {p : Parameters} (hb : Below m p.2.2.2) :
     (liftMap m p).coeff (m + 6) = p.1 3 := by
   have hlow : (V p.1 + P * R p.2.1).coeff (m + 6) = 0 :=
@@ -138,7 +160,9 @@ theorem coeff_liftMap_top (m : ℕ) {p : Parameters} (hb : Below m p.2.2.2) :
       zero_mul]
   simp only [liftMap, tail, mul_add, coeff_add, hlow, hQb, hs, hu, zero_add, add_zero]
 
-/-- Evaluations and the top coefficient recover the code word from a lifted polynomial. -/
+/-- Evaluations and the top coefficient recover the code word from a lifted polynomial.
+@isnad1 id=eq.3h3v.s9.70dae93c4bbf from=translated src=- shape=0927ff0c vocab=f4f48a6d
+-/
 theorem code_eq_of_liftMap_eq (m : ℕ) {p p' : Parameters}
     (hb : Below m p.2.2.2) (hb' : Below m p'.2.2.2) (h : liftMap m p = liftMap m p') :
     p.1 = p'.1 := by
@@ -154,7 +178,9 @@ theorem code_eq_of_liftMap_eq (m : ℕ) {p p' : Parameters}
   fin_cases i
   exacts [h0, h1, h2, h3]
 
-/-- Equal lifts with equal code words have equal low-degree vectors and equal tails. -/
+/-- Equal lifts with equal code words have equal low-degree vectors and equal tails.
+@isnad1 id=and.2h3v.s9.a0baa44d97f1 from=translated src=- shape=a009e3a9 vocab=ca190133
+-/
 theorem remainder_and_tail_eq (m : ℕ) {p p' : Parameters}
     (h : liftMap m p = liftMap m p') (hs : p.1 = p'.1) :
     p.2.1 = p'.2.1 ∧ tail m p' = tail m p := by
@@ -182,7 +208,9 @@ theorem remainder_and_tail_eq (m : ℕ) {p p' : Parameters}
 that lift to the same polynomial are equal. No division algorithm is needed: equal outputs give
 `(V_s + P·R_r) - (V_s' + P·R_r') = Q · (tail' - tail)`, whose left side has degree below `6`, so
 both sides vanish; evaluating at `0, 1, 2` identifies the code words, cancelling `P` identifies
-`r`, and comparing the coefficients at `T^m` and `T^{m+1}` identifies `u` and `b`. -/
+`r`, and comparing the coefficients at `T^m` and `T^{m+1}` identifies `u` and `b`.
+@isnad1 id=injon.1h2v.s6.32f6024d7a6f from=translated src=- shape=c73a5e6a vocab=41f1133e
+-/
 theorem liftMap_injOn (m : ℕ) (B : Finset (ZMod 3)[X]) (hB : AllBelow m B) :
     Set.InjOn (liftMap m) (parameters B) := by
   intro p hp p' hp' h
@@ -204,20 +232,26 @@ theorem liftMap_injOn (m : ℕ) (B : Finset (ZMod 3)[X]) (hB : AllBelow m B) :
   simp only [Prod.mk.injEq]
   exact ⟨hs, hr, hu, hbb⟩
 
-/-- The lift multiplies cardinality by `810`. -/
+/-- The lift multiplies cardinality by `810`.
+@isnad1 id=eq.1h2v.s7.302857613c21 from=translated src=- shape=370b1bc1 vocab=c0b9db32
+-/
 theorem lift_card (m : ℕ) (B : Finset (ZMod 3)[X]) (hB : AllBelow m B) :
     (lift m B).card = 810 * B.card := by
   classical
   rw [lift, Finset.card_image_of_injOn (liftMap_injOn m B hB), parameters_card]
 
-/-- The lift of a set of polynomials of degree below `m` has degree below `m + 8`. -/
+/-- The lift of a set of polynomials of degree below `m` has degree below `m + 8`.
+@isnad1 id=allbelow.1h2v.s5.aaa9e7ab2477 from=translated src=- shape=e6bafb38 vocab=84910c8f
+-/
 theorem lift_allBelow (m : ℕ) (B : Finset (ZMod 3)[X]) (hB : AllBelow m B) :
     AllBelow (m + 8) (lift m B) := by
   intro f hf
   obtain ⟨p, hp, rfl⟩ := mem_lift.mp hf
   exact liftMap_below m (hB _ (mem_params.mp hp).2)
 
-/-- A square difference of lifts from an even degree bound has a bounded-degree square root. -/
+/-- A square difference of lifts from an even degree bound has a bounded-degree square root.
+@isnad1 id=le.3h4v.s9.f6de0dc072b3 from=translated src=- shape=2831c353 vocab=5b729704
+-/
 theorem square_difference_root_degree (t : ℕ) {p p' : Parameters} {z : (ZMod 3)[X]}
     (hb : Below (t + t) p.2.2.2) (hb' : Below (t + t) p'.2.2.2)
     (hz : liftMap (t + t) p' - liftMap (t + t) p = z ^ 2) :
@@ -231,7 +265,9 @@ theorem square_difference_root_degree (t : ℕ) {p p' : Parameters} {z : (ZMod 3
   rw [Polynomial.natDegree_pow] at h1
   omega
 
-/-- All four code coordinates of a square difference are squares, so the code words agree. -/
+/-- All four code coordinates of a square difference are squares, so the code words agree.
+@isnad1 id=eq.5h4v.s10.0c6100b36baf from=translated src=- shape=a4559e8c vocab=e1e6a26e
+-/
 theorem code_eq_of_square_difference (t : ℕ) {p p' : Parameters} {z : (ZMod 3)[X]}
     (hp : p.1 ∈ code) (hp' : p'.1 ∈ code)
     (hb : Below (t + t) p.2.2.2) (hb' : Below (t + t) p'.2.2.2)
@@ -261,7 +297,9 @@ theorem code_eq_of_square_difference (t : ℕ) {p p' : Parameters} {z : (ZMod 3)
     rw [hw]
     exact sq_eq_zero_or_one w
 
-/-- Equal code coordinates force the square root to vanish at every element of `F_3`. -/
+/-- Equal code coordinates force the square root to vanish at every element of `F_3`.
+@isnad1 id=dvd.2h4v.s9.4485639e9a8e from=translated src=- shape=503b6a50 vocab=74568eac
+-/
 theorem P_dvd_of_square_difference (m : ℕ) {p p' : Parameters} {z : (ZMod 3)[X]}
     (hcode : p.1 = p'.1) (hz : liftMap m p' - liftMap m p = z ^ 2) : P ∣ z := by
   apply P_dvd_of_eval
@@ -275,7 +313,9 @@ theorem P_dvd_of_square_difference (m : ℕ) {p p' : Parameters} {z : (ZMod 3)[X
     have hzero : z.eval 2 ^ 2 = 0 := by simpa [eval_liftMap_two, hcode] using h.symm
     exact eq_zero_of_sq_eq_zero _ hzero
 
-/-- The low-degree part vanishes, allowing cancellation of `Q` from a square difference. -/
+/-- The low-degree part vanishes, allowing cancellation of `Q` from a square difference.
+@isnad1 id=eq.3h5v.s10.eea9e1f1ddb1 from=translated src=- shape=5109054f vocab=8fb3188d
+-/
 theorem square_eq_tail_difference (m : ℕ) {p p' : Parameters} {z w : (ZMod 3)[X]}
     (hcode : p.1 = p'.1) (hz : liftMap m p' - liftMap m p = z ^ 2) (hw : z = P * w) :
     w ^ 2 = tail m p' - tail m p := by
@@ -293,7 +333,9 @@ theorem square_eq_tail_difference (m : ℕ) {p p' : Parameters} {z w : (ZMod 3)[
   · exact absurd hQ0 Q_ne_zero
   · exact sub_eq_zero.mp ht
 
-/-- A tail difference has odd degree unless its scalar coordinates agree. -/
+/-- A tail difference has odd degree unless its scalar coordinates agree.
+@isnad1 id=eq.4h4v.s10.76c67cc3565d from=translated src=- shape=0c981abc vocab=907dc066
+-/
 theorem scalar_eq_of_square_tail (t : ℕ) {p p' : Parameters} {w : (ZMod 3)[X]}
     (hb : Below (t + t) p.2.2.2) (hb' : Below (t + t) p'.2.2.2)
     (hcode : p.1 = p'.1) (hw2 : w ^ 2 = tail (t + t) p' - tail (t + t) p) :
@@ -321,7 +363,9 @@ differ by `z^2`, then the four coordinates of `s' - s` are squares in `F_3`, hen
 so the code property gives `s = s'`; then `z` vanishes on `F_3`, so `z = P·w`, the parts below
 `Q` cancel, and `w^2 = (b' - b) + (u' - u) T^{m+1}`. A nonzero square has even natural degree,
 while `m + 1` is odd, so `u' = u`; and `w^2 = b' - b` forces `w = 0` because `B` is
-square-difference-free. -/
+square-difference-free.
+@isnad1 id=squaredi.3h2v.s5.d3b90db05f99 from=translated src=- shape=da98d569 vocab=cdc61245
+-/
 theorem lift_sdf (m : ℕ) (B : Finset (ZMod 3)[X]) (hm : Even m) (hB : AllBelow m B)
     (hS : SquareDifferenceFree B) : SquareDifferenceFree (lift m B) := by
   obtain ⟨t, rfl⟩ := hm

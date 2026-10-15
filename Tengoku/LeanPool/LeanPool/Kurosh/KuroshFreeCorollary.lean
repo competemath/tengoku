@@ -60,6 +60,9 @@ noncomputable def treeKuroshProductToFreePart {ι : Type v}
   change FreeProduct (TreeKuroshComponent G H) →* KuroshFreePart G H
   exact Monoid.CoprodI.lift (treeKuroshComponentToFreePart G H)
 
+/--
+@isnad1 id=eq.0h5v.s12.6f91816d1394 from=translated src=- shape=32950a98 vocab=89301b90
+-/
 theorem treeKuroshProductToFreePart_vertex {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (a : RawBassSerreOrbitVertex G H)
@@ -75,6 +78,9 @@ theorem treeKuroshProductToFreePart_vertex {ι : Type v}
   rw [Monoid.CoprodI.lift_of]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.ef72b5db6853 from=translated src=- shape=a65cc243 vocab=28426bfe
+-/
 @[simp] theorem treeKuroshProductToFreePart_free {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (x : KuroshFreePart G H) :
@@ -89,6 +95,9 @@ theorem treeKuroshProductToFreePart_vertex {ι : Type v}
   rw [Monoid.CoprodI.lift_of]
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s10.98b24eb0a9bb from=translated src=- shape=2b3cbccf vocab=bf0e799c
+-/
 theorem treeKuroshProductToH_factor_through_freePart {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (htriv : ∀ a : RawBassSerreOrbitVertex G H,

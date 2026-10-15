@@ -33,6 +33,9 @@ open Finset
 /-- The unit square as a four-vertex polygon. -/
 def unitSquare : Fin 4 → ℝ² := (fun | 0 => v 0 0 | 1 => v 1 0 | 2 => v 1 1 | 3 => v 0 1)
 
+/--
+@isnad1 id=eq.0h0v.s6.2a469814e6a2 from=translated src=- shape=e651b4a3 vocab=315b4607
+-/
 lemma closed_unitSquare_eq : closedHull unitSquare = {x | ∀ i, 0 ≤ x i ∧ x i ≤ 1} := by
   ext x
   constructor
@@ -52,6 +55,9 @@ lemma closed_unitSquare_eq : closedHull unitSquare = {x | ∀ i, 0 ≤ x i ∧ x
     · ext i; fin_cases i <;> (simp [Fin.sum_univ_four, unitSquare, v]; ring)
 
 -- The open unit square is more or less the same
+/--
+@isnad1 id=eq.0h0v.s6.0381888445d9 from=translated src=- shape=e651b4a3 vocab=a434b5fa
+-/
 lemma open_unitSquare_eq : openHull unitSquare = {x | ∀ i, 0 < x i ∧ x i < 1} := by
   ext x
   constructor
@@ -74,6 +80,9 @@ lemma open_unitSquare_eq : openHull unitSquare = {x | ∀ i, 0 < x i ∧ x i < 1
     · rw [Fin.sum_univ_four]; ring
     · ext i; fin_cases i <;> (simp [Fin.sum_univ_four, unitSquare, v]; ring)
 
+/--
+@isnad1 id=ex.1h1v.s7.fa59feb760a2 from=translated src=- shape=7f2220db vocab=8f83a2f8
+-/
 lemma element_in_boundary_square {x : ℝ²} (hx : x ∈ boundary unitSquare) :
     ∃ i, x i = 0 ∨ x i = 1 := by
   by_contra hc; push Not at hc
@@ -81,6 +90,9 @@ lemma element_in_boundary_square {x : ℝ²} (hx : x ∈ boundary unitSquare) :
   apply hx.2
   exact fun i ↦ ⟨lt_of_le_of_ne (hx.1 i).1 (hc i).1.symm, lt_of_le_of_ne (hx.1 i).2 (hc i).2⟩
 
+/--
+@isnad1 id=eq.0h0v.s7.2dba01737d37 from=translated src=- shape=87e7a790 vocab=b3f98c5f
+-/
 lemma boundary_unitSquare_eq :
     boundary unitSquare = { x | (∀ i, 0 ≤ x i ∧ x i ≤ 1) ∧ (∃ i, x i = 0 ∨ x i = 1)} := by
   rw [Set.ofPred_and, ←closed_unitSquare_eq]
@@ -90,6 +102,9 @@ lemma boundary_unitSquare_eq :
   rw [open_unitSquare_eq]
   exact fun hco ↦ by rcases hno <;> linarith [hco i]
 
+/--
+@isnad1 id=ex.1h1v.s7.499ee418897c from=translated src=- shape=a2396875 vocab=2af8783d
+-/
 lemma segment_in_boundary_square {x : ℝ²} (hx : x ∈ boundary unitSquare)
     : ∃ i, ∀ L, x ∈ openHull L → closedHull L ⊆ closedHull unitSquare → (segVec L) i = 0 := by
   by_contra hNonzero
@@ -124,6 +139,9 @@ lemma segment_in_boundary_square {x : ℝ²} (hx : x ∈ boundary unitSquare)
 /- A version that states that the open_unitSquare is open. -/
 --The proof below is not as difficult as it seems, but I just needed a lot of
 --explicit bounds because simp was not cooperating
+/--
+@isnad1 id=ex.1h2v.s8.e081d90e9ab9 from=translated src=- shape=da125fac vocab=b229fd92
+-/
 lemma open_unitSquare_open_dir {x : ℝ²} (y : ℝ²) (hx : x ∈ openHull unitSquare) :
     ∃ (ε : ℝ), ε > 0 ∧ ∀ (n : ℕ), x + (1 / (n : ℝ)) • (ε • y) ∈ openHull unitSquare := by
   simp_rw [open_unitSquare_eq] at *
@@ -198,6 +216,9 @@ private lemma square_side_det₂_ne {x : ℝ²} (hx : x ∈ boundary unitSquare)
   · have ⟨i, hi⟩ := segment_in_boundary_square hx
     exact ⟨i, hi _ hSide (subset_trans closed_side_sub' hΔP)⟩
 
+/--
+@isnad1 id=ex.1h1v.s8.29cca15465c1 from=translated src=- shape=158829a8 vocab=2c8edc3b
+-/
 lemma el_boundary_square_triangle_dir {x : ℝ²} (hx : x ∈ boundary unitSquare) :
     ∃ σ ∈ ({-1,1} : Finset ℝ), ∀ (Δ : Triangle), (det Δ ≠ 0) →
     (closedHull Δ ⊆ closedHull unitSquare) → (∃ i, x ∈ openHull (Tside Δ i))
@@ -250,6 +271,9 @@ lemma el_boundary_square_triangle_dir {x : ℝ²} (hx : x ∈ boundary unitSquar
       · exact square_side_det₂_ne hx hArea hΔP hSide
     · simp_all
 
+/--
+@isnad1 id=ex.1h1v.s8.f986f38f62c0 from=translated src=- shape=0915d064 vocab=dde39e5c
+-/
 lemma boundary_leave_dir {x : ℝ²} (hx : x ∈ boundary unitSquare) :
     ∃ σ ∈ ({1, -1} : Finset ℝ), ∀ ε > 0, x + (σ * ε) • (v 1 1) ∉ closedHull unitSquare := by
   by_contra h_contra
@@ -266,6 +290,9 @@ lemma boundary_leave_dir {x : ℝ²} (hx : x ∈ boundary unitSquare) :
     fin_cases i <;> (simp_all; linarith)
 
 open Classical in
+/--
+@isnad1 id=eq.5h2v.s9.7d97a8fbf153 from=translated src=- shape=86b82e90 vocab=d45ab50c
+-/
 lemma segment_triangle_pairing_int
     (S : Finset Triangle)
     (hCover : isDisjointCover (closedHull unitSquare) (S : Set Triangle))
@@ -379,6 +406,9 @@ lemma segment_triangle_pairing_int
     simp_all
 
 open Classical in
+/--
+@isnad1 id=eq.6h2v.s9.d17cdfe6a673 from=translated src=- shape=4bcbdf82 vocab=d45ab50c
+-/
 lemma segment_triangle_pairing_boundary (S : Finset Triangle)
     (hCover : isDisjointCover (closedHull unitSquare) (S : Set Triangle))
     (hArea : ∀ Δ ∈ S, det Δ ≠ 0) (L : Segment) (hL : L 0 ≠ L 1)
@@ -429,16 +459,25 @@ def squareBoundaryBig : Fin 4 → Segment := fun
 noncomputable def squareBoundaryBigSet : Finset Segment :=
    @Finset.biUnion (Fin 4) Segment _ ⊤ (fun i ↦ {squareBoundaryBig i})
 
+/--
+@isnad1 id=ex.0h2v.s5.a73280231c04 from=translated src=- shape=4ac0b3ce vocab=4ca08130
+-/
 lemma squareBoundaryBig_corners : ∀ i, ∀ j, ∃ k,
     squareBoundaryBig i j = unitSquare k :=
   fun i j ↦ ⟨i + (if j = 0 then 0 else 1), by fin_cases i <;> fin_cases j <;> rfl⟩
 
+/--
+@isnad1 id=injectiv.0h0v.s4.06ffa6cb5756 from=translated src=- shape=dd7efbe3 vocab=ecbb21d4
+-/
 lemma squareBoundaryBig_injective : squareBoundaryBig.Injective := by
   intro i j hij
   have h₀ := congrFun hij 0
   have h₁ := congrFun hij 1
   fin_cases i <;> fin_cases j <;> simp_all [squareBoundaryBig, v]
 
+/--
+@isnad1 id=ne.0h1v.s5.a107bbafdbc2 from=translated src=- shape=c1bf5dc7 vocab=b0bc100e
+-/
 lemma square_boundary_sides_nonDegen (i : Fin 4) :
     squareBoundaryBig i 0 ≠ squareBoundaryBig i 1 := by
   intro h_contra
@@ -449,14 +488,23 @@ def boundaryLine : Fin 4 → Fin 2 := fun | 0 => 0 | 1 => 1 | 2 => 0 | 3 => 1
 /-- The constant coordinate value along side `i` of the unit square. -/
 def bc : Fin 4 → ℝ := fun | 0 => 0 | 1 => 1 | 2 => 1 | 3 => 0
 
+/--
+@isnad1 id=eq.0h1v.s6.3973bbe26e02 from=translated src=- shape=ecaf1a14 vocab=84593440
+-/
 @[simp]
 lemma boundaryLine_rw {i : Fin 4}
   : boundaryLine i = (fun | 0 => 0 | 1 => 1 | 2 => 0 | 3 => 1) i := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.324d8c665424 from=translated src=- shape=d96a6ff5 vocab=3a1e705d
+-/
 @[simp]
 lemma boundary_constant_rw {i : Fin 4}
   : bc i = (fun | 0 => 0 | 1 => 1 | 2 => 1 | 3 => 0) i := rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.90f65bcbfb2c from=translated src=- shape=48bb7743 vocab=096ac2c3
+-/
 lemma squareBoundaryBig_eq (i : Fin 4) :
     closedHull (squareBoundaryBig i)
     = {x | 0 ≤ x (boundaryLine i) ∧ x (boundaryLine i) ≤ 1 ∧ x (boundaryLine i + 1) = bc i} := by
@@ -474,6 +522,9 @@ lemma squareBoundaryBig_eq (i : Fin 4) :
         all_goals simp_all [linearCombination, real_to_fin_2, reverseSegment,
           squareBoundaryBig, toSegment, v]
 
+/--
+@isnad1 id=le.0h1v.s5.2f544eb18f03 from=translated src=- shape=f8b30bbc vocab=dfb002c7
+-/
 lemma square_boundary_in_boundary (i : Fin 4) :
     closedHull (squareBoundaryBig i) ⊆ boundary unitSquare := by
   rw [squareBoundaryBig_eq, boundary_unitSquare_eq]
@@ -481,9 +532,15 @@ lemma square_boundary_in_boundary (i : Fin 4) :
     ⟨fun j ↦ by fin_cases i <;> fin_cases j <;> simp_all,
       ⟨boundaryLine i + 1, by fin_cases i <;> simp_all⟩⟩
 
+/--
+@isnad1 id=le.0h1v.s5.2f544eb18f03 from=translated src=- shape=f8b30bbc vocab=dfb002c7
+-/
 lemma square_boundary_segments_in_boundary : ∀ i : Fin 4, closedHull (squareBoundaryBig i) ⊆
     boundary unitSquare := square_boundary_in_boundary
 
+/--
+@isnad1 id=ex.1h1v.s6.6b31cff3fb20 from=translated src=- shape=f376232c vocab=4812d318
+-/
 lemma boundary_in_square_boundary {x : ℝ²} (hx : x ∈ boundary unitSquare) :
     ∃ i, x ∈ closedHull (squareBoundaryBig i) := by
   rw [boundary_unitSquare_eq] at hx
@@ -494,6 +551,9 @@ lemma boundary_in_square_boundary {x : ℝ²} (hx : x ∈ boundary unitSquare) :
   · exact ⟨0, by simp_all [squareBoundaryBig_eq]⟩
   · exact ⟨2, by simp_all [squareBoundaryBig_eq]⟩
 
+/--
+@isnad1 id=eq.0h0v.s5.20282b19592e from=translated src=- shape=855a1297 vocab=d9ac8b1a
+-/
 lemma square_boundary_is_union_sides
     : boundary unitSquare = ⋃ i, closedHull (squareBoundaryBig i) := by
   ext x
@@ -502,6 +562,9 @@ lemma square_boundary_is_union_sides
   rw [←hi] at hxS
   exact square_boundary_in_boundary _ hxS
 
+/--
+@isnad1 id=and.5h4v.s6.5c1b573219c6 from=translated src=- shape=a4b96373 vocab=caf967d0
+-/
 lemma squareBoundaryBig_inter_seg_aux₁ {a b c d : ℝ} (ha : 0 < a) (hb : 0 ≤ b) (hc : 0 < c)
     (hd : 0 ≤ d) (habcd : a * b + c * d = 0) : b = 0 ∧ d = 0 := by
   rw [add_eq_zero_iff_of_nonneg
@@ -510,12 +573,18 @@ lemma squareBoundaryBig_inter_seg_aux₁ {a b c d : ℝ} (ha : 0 < a) (hb : 0 �
     (mul_eq_zero_iff_left (ne_of_lt ha).symm).mp habcd.1,
     (mul_eq_zero_iff_left (ne_of_lt hc).symm).mp habcd.2⟩
 
+/--
+@isnad1 id=and.6h4v.s6.1dd82b5b125d from=translated src=- shape=5bcfb22a vocab=caf967d0
+-/
 lemma squareBoundaryBig_inter_seg_aux₂ {a b c d : ℝ} (hac : a + c = 1) (ha : 0 < a) (hb : b ≤ 1)
     (hc : 0 < c) (hd : d ≤ 1) (habcd : a * b + c * d = 1) : b = 1 ∧ d = 1 := by
   rw [←(sub_eq_zero), ←(sub_eq_zero (a := d)), ←neg_eq_zero, ←neg_eq_zero (a := d -1)]
   refine squareBoundaryBig_inter_seg_aux₁ (a := a) (c := c) ha ?_ hc ?_ ?_  <;>
   linarith
 
+/--
+@isnad1 id=le.3h3v.s7.94cfa0e58335 from=translated src=- shape=642c34c1 vocab=43ae0b56
+-/
 lemma squareBoundaryBig_inter_seg {S : Segment} {x : ℝ²} {i : Fin 4} (hx : x ∈ openHull S)
     (hxi : x ∈ closedHull (squareBoundaryBig i)) (hS : closedHull S ⊆ closedHull unitSquare) :
     closedHull S ⊆ closedHull (squareBoundaryBig i) := by
@@ -542,6 +611,9 @@ lemma squareBoundaryBig_inter_seg {S : Segment} {x : ℝ²} {i : Fin 4} (hx : x 
   · exact (squareBoundaryBig_inter_seg_aux₁ (hα.1 0) hS.1.1.1 (hα.1 1) hS.2.1.1 hxi.2.2).1
   · exact (squareBoundaryBig_inter_seg_aux₁ (hα.1 0) hS.1.1.1 (hα.1 1) hS.2.1.1 hxi.2.2).2
 
+/--
+@isnad1 id=and.4h4v.s7.688d7fa2982d from=translated src=- shape=aa51a2bc vocab=5b777dac
+-/
 lemma convex_faces {x y p : ℝ²} (i : Fin 4) (hpiface : p ∈ closedHull (squareBoundaryBig i))
 (hp : p ∈ openHull (toSegment x y)) (hx : x ∈ closedHull unitSquare)
 (hy : y ∈ closedHull unitSquare) :
@@ -552,6 +624,9 @@ x ∈ closedHull (squareBoundaryBig i) ∧ y ∈ closedHull (squareBoundaryBig i
   · convert h_inter (corner_in_closedHull (i := 0)) using 2; rfl
   · convert h_inter (corner_in_closedHull (i := 1)) using 2; rfl
 
+/--
+@isnad1 id=le.4h3v.s7.361a73583805 from=translated src=- shape=e7f8b054 vocab=43ae0b56
+-/
 lemma convex_faces'' {p : ℝ²} {L : Segment} (i : Fin 4)
 (hpiface : p ∈ closedHull (squareBoundaryBig i))
 (hp : p ∈ openHull L) (hx : L 0 ∈ closedHull unitSquare) (hy : L 1 ∈ closedHull unitSquare) :
@@ -559,6 +634,9 @@ closedHull L ⊆ closedHull (squareBoundaryBig i) := by
   have h := convex_faces i hpiface hp hx hy
   exact closedHull_convex (fun j ↦ by fin_cases j <;> [exact h.1; exact h.2])
 
+/--
+@isnad1 id=eq.0h1v.s7.3966666fa9df from=translated src=- shape=4720ea6e vocab=65658886
+-/
 lemma square_boundary_pairwise_inter {i : Fin 4} :
     closedHull (squareBoundaryBig (i - 1)) ∩ closedHull (squareBoundaryBig i)
       = {unitSquare i} := by
@@ -569,16 +647,25 @@ lemma square_boundary_pairwise_inter {i : Fin 4} :
     fin_cases i <;> fin_cases j <;> simp_all [unitSquare]
   · exact fun h ↦ by fin_cases i <;> simp [h, unitSquare]
 
+/--
+@isnad1 id=mem.0h1v.s5.9b89f9446308 from=translated src=- shape=2fda8cd6 vocab=120220a7
+-/
 lemma square_corner_in_boundary {i : Fin 4} :
     unitSquare i ∈ closedHull (squareBoundaryBig i):= by
   rw [←Set.singleton_subset_iff, ←square_boundary_pairwise_inter]
   exact Set.inter_subset_right
 
+/--
+@isnad1 id=mem.0h1v.s6.9153b95e2111 from=translated src=- shape=526c11b7 vocab=67223b10
+-/
 lemma square_corner_in_boundary' {i : Fin 4} :
     unitSquare i ∈ closedHull (squareBoundaryBig (i-1)):= by
   rw [←Set.singleton_subset_iff, ←square_boundary_pairwise_inter]
   exact Set.inter_subset_left
 
+/--
+@isnad1 id=eq.2h2v.s7.7cefff724c14 from=translated src=- shape=c12360a4 vocab=782d46b5
+-/
 lemma segment_through_corner {S : Segment} {i : Fin 4} (hx : unitSquare i ∈ openHull S)
     (hS : closedHull S ⊆ closedHull unitSquare) : closedHull S = {unitSquare i} := by
   rw [Set.Subset.antisymm_iff]
@@ -589,6 +676,9 @@ lemma segment_through_corner {S : Segment} {i : Fin 4} (hx : unitSquare i ∈ op
   · rw [Set.singleton_subset_iff]
     exact open_sub_closed _ hx
 
+/--
+@isnad1 id=ex.1h2v.s7.e71dd31b72f5 from=translated src=- shape=7351ca58 vocab=eaaac85c
+-/
 lemma cover_imples_corner_in_triangle
     {S : Finset Triangle}
     (hCover : isCover (closedHull unitSquare) (↑S : Set Triangle)) :
@@ -602,6 +692,9 @@ lemma cover_imples_corner_in_triangle
   have hS := segment_through_corner hOpen (fun _ y ↦ (isCover_sub hCover _ hTsub) (hCsub y))
   rw [closedHull_constant_rev hS 0, closedHull_constant_rev hS 1]
 
+/--
+@isnad1 id=le.2h2v.s7.ac808489f413 from=translated src=- shape=f08b9b2f vocab=da707048
+-/
 lemma line_in_boundary {x : ℝ²} {L : Segment} (hL : closedHull L ⊆ closedHull unitSquare)
 (hboundary : x ∈ openHull L ∩ boundary unitSquare) : closedHull L ⊆ boundary unitSquare := by
   rw [square_boundary_is_union_sides] at hboundary
@@ -609,10 +702,16 @@ lemma line_in_boundary {x : ℝ²} {L : Segment} (hL : closedHull L ⊆ closedHu
   rcases hboundary with ⟨hx, ⟨i, h1⟩⟩
   exact subset_trans (squareBoundaryBig_inter_seg hx h1 hL) (square_boundary_in_boundary i)
 
+/--
+@isnad1 id=le.2h2v.s6.5aa8ec5d9b4b from=translated src=- shape=44f12b55 vocab=41d2e332
+-/
 lemma unitSquare_is_convex {x y : ℝ²} (hx : x ∈ closedHull unitSquare) (hy : y ∈ closedHull
 unitSquare) : closedHull (toSegment x y) ⊆ closedHull unitSquare :=
   closedHull_convex (fun i ↦ by fin_cases i <;> [exact hx; exact hy])
 
+/--
+@isnad1 id=ex.1h1v.s6.ecedcf42c4df from=translated src=- shape=357fe41c vocab=dfb002c7
+-/
 lemma unitSquare_is_convex' {S : Segment} (hS : closedHull S ⊆ boundary unitSquare) :
     ∃ i : Fin 4, closedHull S ⊆ closedHull (squareBoundaryBig i) := by
   have hSi : ∀ i, S i ∈ closedHull unitSquare :=
@@ -623,12 +722,18 @@ lemma unitSquare_is_convex' {S : Segment} (hS : closedHull S ⊆ boundary unitSq
   rw[← h1] at h2
   exact ⟨ i, convex_faces'' i h2 h (hSi 0) (hSi 1)⟩
 
+/--
+@isnad1 id=ex.2h1v.s7.7334d85cb1ab from=translated src=- shape=a5d42bcd vocab=a0b51340
+-/
 lemma unitSquare_is_convex_open {S : Segment} (hS : closedHull S ⊆ boundary unitSquare)
     (hNondegen : S 0 ≠ S 1) :
     ∃ i : Fin 4, openHull S ⊆ openHull (squareBoundaryBig i) := by
   have ⟨i, hS⟩ := unitSquare_is_convex' hS
   exact ⟨i, open_segment_sub' hS hNondegen⟩
 
+/--
+@isnad1 id=ex.2h1v.s7.464acf08bba7 from=translated src=- shape=c9c55922 vocab=a0b51340
+-/
 lemma openHull_segment_in_boundary {S : Segment}
     (hS : openHull S ⊆ boundary unitSquare)
     (hcS : closedHull S ⊆ closedHull unitSquare)

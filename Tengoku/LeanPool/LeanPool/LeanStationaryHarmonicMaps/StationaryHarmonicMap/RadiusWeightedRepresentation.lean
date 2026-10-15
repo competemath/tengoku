@@ -27,7 +27,9 @@ namespace LeanStationaryHarmonicMaps
 namespace StationaryHarmonicMap
 
 /-- An a.e. identity on the radius interval pulls back through the radius map
-to an a.e. identity on the Euclidean ball. -/
+to an a.e. identity on the Euclidean ball.
+@isnad1 id=eventual.1h4v.s9.ca49dcf1ad3c from=translated src=- shape=635f872c vocab=622c5d67
+-/
 theorem ae_eq_comp_norm_on_ball_of_ae_eq_radius
     {n : ℕ} [NeZero n] {R0 : ℝ} {c d : ℝ → ℝ}
     (hcd : c =ᵐ[radiusIntervalMeasure R0] d) :
@@ -42,7 +44,9 @@ theorem ae_eq_comp_norm_on_ball_of_ae_eq_radius
   exact ae_of_ae_map continuous_norm.aemeasurable hmap
 
 /-- The radial Radon-Nikodym density represents integration against every
-a.e. measurable and a.e. bounded radius weight. -/
+a.e. measurable and a.e. bounded radius weight.
+@isnad1 id=eq.2h4v.s9.ca4a8daada09 from=translated src=- shape=978d08d8 vocab=f93eed7e
+-/
 theorem radialRNDensity_radiusWeight_integral_eq {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {R0 : ℝ} {c : ℝ → ℝ}
     (hf : IntegrableOn f (Metric.ball (0 : Domain n) R0) volume)
@@ -223,7 +227,9 @@ theorem radialRNDensity_radiusWeight_integral_eq {n : ℕ} [NeZero n]
   simpa [μ, ν, D, radiusIntervalMeasure] using hfull
 
 /-- Euclidean radial pushforward/coarea theorem for all radius weights needed
-in the weak monotonicity argument. -/
+in the weak monotonicity argument.
+@isnad1 id=ballinte.0h1v.s2.7283b3779aaa from=translated src=- shape=5c11bb93 vocab=0d59962a
+-/
 theorem ballIntegralRadiusWeightedRepresentationForWeights_euclidean (n : ℕ) :
     BallIntegralRadiusWeightedRepresentationForWeights n := by
   intro hne f R0 hf

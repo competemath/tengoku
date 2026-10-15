@@ -91,6 +91,9 @@ def coverCostarEquiv (α : Type u) (A : Type u) [MulAction (FreeGroup α) A]
     rintro ⟨_, e⟩
     rfl
 
+/--
+@isnad1 id=iscoveri.0h2v.s5.c133cd9fa0db from=translated src=- shape=484ae1df vocab=8dafdaf2
+-/
 theorem coverProjection_isCovering (α : Type u) (A : Type u)
     [MulAction (FreeGroup α) A] :
     (coverProjection α A).IsCovering := by

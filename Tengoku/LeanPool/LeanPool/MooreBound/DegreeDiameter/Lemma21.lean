@@ -41,7 +41,9 @@ def OrderingStep {n : ℕ} (s : Fin n)
     (σ τ : Equiv.Perm (Fin n)) : Prop :=
   ∀ i : Fin (n + 1), i.val % 2 ≠ (s.val + 1) % 2 → PrefixSet σ i = PrefixSet τ i
 
-/-- Odd--even transposition routing, stated independently of linear algebra. -/
+/-- Odd--even transposition routing, stated independently of linear algebra.
+@isnad1 id=ex.0h2v.s6.43c7d5f1081d from=translated src=- shape=a16b31e0 vocab=ee7006f7
+-/
 theorem oddEvenRoute {n : ℕ} (π : Equiv.Perm (Fin n)) :
     ∃ route : Fin (n + 1) → Equiv.Perm (Fin n),
       route 0 = 1 ∧
@@ -54,6 +56,9 @@ theorem oddEvenRoute {n : ℕ} (π : Equiv.Perm (Fin n)) :
   · simpa only [OrderingStep, PrefixSet, OddEvenSorting.OrderingStep2,
       OddEvenSorting.PrefixSet2] using hstep
 
+/--
+@isnad1 id=eq.1h7v.s7.3acb1e85d3b6 from=translated src=- shape=ebac304e vocab=eb68ddd1
+-/
 theorem ofBasis_reindex_eq_at_of_prefixSet_eq {n : ℕ} (b : Basis (Fin n) K V)
     {σ τ : Equiv.Perm (Fin n)} {i : Fin (n + 1)} (h : PrefixSet σ i = PrefixSet τ i) :
     CompleteFlag.ofBasis (b.reindex σ.symm) i =
@@ -68,7 +73,9 @@ def AlternatingStep {n : ℕ} (s : Fin n)
 
 /-- Exact statement of Lemma 2.1: `route 0 = F`, `route n = F'`, and
 the transition from `route s` to `route (s+1)` changes only ranks of the
-parity prescribed by the one-based step number `s+1`. -/
+parity prescribed by the one-based step number `s+1`.
+@isnad1 id=ex.0h5v.s7.850db2522920 from=translated src=- shape=9f630928 vocab=8b1d1f2d
+-/
 theorem alternating_route {n : ℕ} (F F' : CompleteFlag K V n) :
     ∃ route : Fin (n + 1) → CompleteFlag K V n,
       route 0 = F ∧

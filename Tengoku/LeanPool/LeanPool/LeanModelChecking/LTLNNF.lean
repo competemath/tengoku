@@ -49,6 +49,9 @@ def NNF.language {AP} (f : NNF AP) (w : Nat → Letter AP) : Prop :=
 
 -- Code below here mostly written by GPT-5-Codex
 
+/--
+@isnad1 id=iff.0h2v.s5.35f03af83eb2 from=translated src=- shape=c0d1576e vocab=7f9bb019
+-/
 lemma not_exists_until_iff_forall {P Q : Nat → Prop} :
     (¬ ∃ i, Q i ∧ ∀ k < i, P k) ↔ ∀ i, ¬ Q i ∨ ∃ k < i, ¬ P k := by
   classical
@@ -85,6 +88,9 @@ def toNNF {AP} (f : LTL AP) : NNF AP := toNNFCore false f
 /-- The NNF formula equivalent to the negation of the `LTL` formula `f`. -/
 def toNNFNeg {AP} (f : LTL AP) : NNF AP := toNNFCore true f
 
+/--
+@isnad1 id=and.0h2v.s5.41908778bec2 from=translated src=- shape=143bc997 vocab=cb787626
+-/
 lemma toNNFCore_sound {AP} (f : LTL AP) :
     (∀ w, LTL.language f w ↔ NNF.language (toNNF f) w) ∧
       (∀ w, ¬ LTL.language f w ↔ NNF.language (toNNFNeg f) w) := by
@@ -125,6 +131,9 @@ lemma toNNFCore_sound {AP} (f : LTL AP) :
 end LTL
 
 -- Theorem statement written by hand
+/--
+@isnad1 id=ex.0h2v.s4.1b5208705266 from=translated src=- shape=20be80df vocab=74d7f018
+-/
 theorem LTL.exists_equiv_nnf {AP} (ψ : LTL AP) :
     ∃ (nnf : NNF AP), ψ.language = nnf.language := by
   refine ⟨LTL.toNNF ψ, funext ?_⟩

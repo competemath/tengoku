@@ -27,7 +27,9 @@ structure Model (α : Type) : Type where
   trans : ∀ {a b c : α}, R a b → R b c → R a c
   con_wf : WellFounded (Function.swap R)
 
-/-- GL Models are irreflexive. -/
+/-- GL Models are irreflexive.
+@isnad1 id=irrefl.0h2v.s3.71b12842c931 from=translated src=- shape=41820d97 vocab=2e553e76
+-/
 instance instModelIsIrref {α : Type} (M : Model α) : Std.Irrefl M.R where
   irrefl := fun a con ↦ (WellFounded.irrefl M.con_wf).irrefl a con
 
@@ -43,14 +45,23 @@ def evaluate {α : Type} : Model α × α → Formula → Prop
   | (M, w), □ φ => ∀ (u : α), M.R w u → evaluate (M, u) φ
   | (M, w), ◇ φ => ∃ (u : α), M.R w u ∧ evaluate (M, u) φ
 
+/--
+@isnad1 id=iff.0h4v.s4.c11787c087ff from=translated src=- shape=2fe44265 vocab=02b1849a
+-/
 lemma evaluate_neg {α : Type} (M : Model α) (u : α) (φ : Formula) :
   ¬ evaluate (M, u) φ ↔ evaluate (M, u) (~φ) := by
   induction φ generalizing u <;> simp [Formula.neg, evaluate] <;> grind
 
+/--
+@isnad1 id=iff.0h5v.s5.c474124f213d from=translated src=- shape=478db37a vocab=b501b296
+-/
 @[simp]
 lemma evaluate_and {α : Type} (M : Model α) (u : α) (φ ψ : Formula) :
   evaluate (M, u) (φ & ψ) ↔ (evaluate (M, u) φ ∧ evaluate (M, u) ψ) := by simp
 
+/--
+@isnad1 id=iff.0h5v.s5.ed42a901402e from=translated src=- shape=1e281fcd vocab=e73f3de4
+-/
 lemma evaluate_imp {α : Type} (M : Model α) (u : α) (φ ψ : Formula) :
     evaluate (M, u) (φ ↣ ψ) ↔ (evaluate (M, u) φ → evaluate (M, u) ψ) := by
   simp [←evaluate_neg]
@@ -65,6 +76,9 @@ def evaluateSeq {α : Type} : Model α × α → Sequent → Prop :=
 def evaluateSSeq {α : Type} : Model α × α → SplitSequent → Prop :=
   fun M_u Γ ↦ ∃ φ ∈ Γ, evaluate M_u (Sum.elim id id φ)
 
+/--
+@isnad1 id=iff.0h3v.s5.b7e4ac9aa11f from=translated src=- shape=1ffd4a31 vocab=e3419e22
+-/
 @[simp]
 lemma not_evaluateSSeq {α : Type} {M_u : Model α × α} {Γ : SplitSequent} :
     ¬ evaluateSSeq M_u Γ ↔
@@ -101,7 +115,9 @@ def modelSubstitution {α} (M : Model α) (n : Nat) (φ : Formula) : Model α wh
   trans := M.trans
   con_wf := M.con_wf
 
-/-- Substitution Lemma for modal logic! -/
+/-- Substitution Lemma for modal logic!
+@isnad1 id=iff.0h6v.s5.3c6c1a82ffab from=translated src=- shape=8de58d86 vocab=e3bc0d5f
+-/
 lemma substitution_lemma {α} (M : Model α) (u : α) (n : Nat) (ψ : Formula)
   : ∀ φ, evaluate ⟨M, u⟩ (single n ψ φ) ↔ evaluate ⟨(modelSubstitution M n ψ), u⟩ φ := by
   intro φ
@@ -109,11 +125,15 @@ lemma substitution_lemma {α} (M : Model α) (u : α) (n : Nat) (ψ : Formula)
   case atom k => aesop
   case negAtom k => if eq : k = n then simp [eq, evaluate_neg] else aesop
 
-/-- Corollary of substitution lemma: If `φ` valid, then `φ[ψ/n]` is valid. -/
+/-- Corollary of substitution lemma: If `φ` valid, then `φ[ψ/n]` is valid.
+@isnad1 id=isvalid.1h3v.s3.2e6f73b57042 from=translated src=- shape=c3f6080b vocab=b1feb19c
+-/
 lemma single_preserves_validity (n : Nat) (φ ψ : Formula) : ⊨ φ → ⊨ single n ψ φ :=
   fun φ_val α M u ↦ (substitution_lemma M u n ψ φ).2 (φ_val α (modelSubstitution M n ψ) u)
 
-/-- Corollary of substitution lemma: If `φ ⟷ ψ` valid, then `φ[χ/n] ⟷ ψ[χ/n]` is valid. -/
+/-- Corollary of substitution lemma: If `φ ⟷ ψ` valid, then `φ[χ/n] ⟷ ψ[χ/n]` is valid.
+@isnad1 id=isvalid.1h4v.s5.7ac3b405778e from=translated src=- shape=d2f3c9a6 vocab=371aab68
+-/
 lemma single_preserves_sem_equiv (n : Nat) (χ φ ψ : Formula)
     (φ_equiv_ψ : ⊨ φ ⟷ ψ) : ⊨ (single n χ φ) ⟷ (single n χ ψ) := by
   convert single_preserves_validity n (φ ⟷ ψ) χ φ_equiv_ψ using 1

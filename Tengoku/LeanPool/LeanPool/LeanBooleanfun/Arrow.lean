@@ -66,13 +66,17 @@ def VoteConsistent (x y z : Votes n) : Prop :=
 
 namespace VoteConsistent
 
-/-- Commute arguments of `VoteConsistent` predicate -/
+/-- Commute arguments of `VoteConsistent` predicate
+@isnad1 id=eq.0h4v.s4.05ba471ee420 from=translated src=- shape=e4e6afe5 vocab=c9463e93
+-/
 lemma comm_right {x y z : Votes n} :
     VoteConsistent x y z = VoteConsistent x z y := by
   apply propext
   constructor <;> { intro h i; specialize h i; push Not; intro h'; rw [h'] at h; tauto }
 
-/-- Commute arguments of `VoteConsistent` predicate -/
+/-- Commute arguments of `VoteConsistent` predicate
+@isnad1 id=eq.0h4v.s4.a6c412d41af2 from=translated src=- shape=7d56fb6b vocab=c9463e93
+-/
 lemma comm_rcyc {x y z : Votes n} :
     VoteConsistent x y z = VoteConsistent y z x := by
   apply propext
@@ -92,7 +96,9 @@ def HasDictator (f : BooleanFunc n) : Prop :=
 /-- A voting rule is unanimous if it selects candidate `i` if everyone votes for `i`. -/
 def IsUnanimous (f : BooleanFunc n) : Prop := f 0 = 1 ∧ f 1 = -1
 
-/-- The (unique) voting rule for zero voters is not unanimous. -/
+/-- The (unique) voting rule for zero voters is not unanimous.
+@isnad1 id=not.1h2v.s4.f1a751cb8612 from=translated src=- shape=af30a3c3 vocab=5bb4ef2a
+-/
 lemma zero_not_unanimous (f : BooleanFunc n) (hn : n = 0) : ¬IsUnanimous f := by
   rw [IsUnanimous]
   push Not
@@ -103,7 +109,9 @@ lemma zero_not_unanimous (f : BooleanFunc n) (hn : n = 0) : ¬IsUnanimous f := b
   norm_num
 
 /-- Explicit Walsh-Fourier expansion of the not-all-equal predicate on a 3-tuple composed with a
-Boolean valued function. A crucial step in the proof of Arrow's theorem. -/
+Boolean valued function. A crucial step in the proof of Arrow's theorem.
+@isnad1 id=eq.0h5v.s7.8863cb6dbab1 from=translated src=- shape=f7aa7953 vocab=57a2c55a
+-/
 lemma oneOn_NAE3_eq {x y z : Fin n → Fin 2} :
     oneOn (NAE3 (f x) (f y) (f z)) =
       3/4 - (1/4) * (f x) * (f y) - (1/4) * (f y) * (f z) - (1/4) * (f x) * (f z) := by
@@ -133,7 +141,9 @@ lemma _triple_sum_oneOn_consistent_eq :
   norm_num
 
 omit hbv in
-/-- If a voting rule is Condorcet, then the probability of a Condorcet winner equals 1. -/
+/-- If a voting rule is Condorcet, then the probability of a Condorcet winner equals 1.
+@isnad1 id=eq.1h2v.s4.a0c8b7fe9bb4 from=translated src=- shape=8a997a78 vocab=0ef9b32f
+-/
 lemma probabilityCondorcetWinner_eq_one (hc : IsCondorcet f) :
     probabilityCondorcetWinner f = 1 := by
   have : ∀ x y z : Fin n → Fin 2, NAE3 (f x) (f y) (f z) ∧ VoteConsistent x y z ↔
@@ -221,7 +231,9 @@ lemma _eq_noise_operator : T = @noiseOperator n (-1/3) := by
   field_simp
 
 /-- The probability of having a Condorcet winner can be expressed in terms of the noise operator.
-See [odonnell2014], Theorem 2.56. -/
+See [odonnell2014], Theorem 2.56.
+@isnad1 id=eq.0h2v.s6.7e9b51874416 from=translated src=- shape=e802a768 vocab=b6d78813
+-/
 theorem probabilityCondorcetWinner_eq :
     probabilityCondorcetWinner f = 3/4 * (1 - noiseStability (-1/3) f) := by
   simp_rw [probabilityCondorcetWinner.eq_def, oneOn_NAE3_eq, sub_mul, sum_sub_distrib]
@@ -258,7 +270,9 @@ theorem probabilityCondorcetWinner_eq :
     ((3 : ℝ)/4 - 3/4 * noiseStability (-(1/3)) f) * h16n
 
 /-- Arrow's theorem as formulated in [odonnell2014], Sec. 2.5 : Every unanimous voting rule that
-always admits a Condorcet winner is a dictatorship. -/
+always admits a Condorcet winner is a dictatorship.
+@isnad1 id=hasdicta.2h2v.s4.4cf47448d5f3 from=translated src=- shape=e9455aab vocab=2ad73f3e
+-/
 theorem dictator_of_condorcet_and_unanimous (h : IsUnanimous f) :
     IsCondorcet f → HasDictator f := by
   wlog hn : 0 < n

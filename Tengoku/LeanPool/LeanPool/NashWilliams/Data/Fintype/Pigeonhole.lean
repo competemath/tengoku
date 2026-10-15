@@ -25,7 +25,9 @@ Upstream target: `Mathlib/Data/Fintype/Pigeonhole.lean`.
 @[expose] public section
 
 /-- **Infinite pigeonhole.** A sequence `f : ℕ → κ` with `κ` finite takes some value `k` on an
-infinite set of indices. -/
+infinite set of indices.
+@isnad1 id=ex.0h2v.s4.12999d03daa4 from=translated src=- shape=ac17f49b vocab=0bb2527f
+-/
 theorem exists_infinite_fiber_nat {κ : Type*} [Finite κ] (f : ℕ → κ) :
     ∃ k : κ, {n : ℕ | f n = k}.Infinite := by
   obtain ⟨k, hk⟩ := Finite.exists_infinite_fiber f

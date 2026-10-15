@@ -48,10 +48,16 @@ and `∀ x : V, 0 ≤ re ⟪x, T x⟫` -/
 def IsPositive' (T : E →ₗ[𝕜] E) : Prop :=
   T.IsSymmetric ∧ ∀ x : E, 0 ≤ ⟪x, T x⟫
 
+/--
+@isnad1 id=ispositi.0h2v.s8.09b889639549 from=translated src=- shape=aecfe2a1 vocab=735af09f
+-/
 theorem IsPositive'Zero : (0 : E →ₗ[𝕜] E).IsPositive' := by
   refine ⟨IsSymmetric.zero, fun x => ?_⟩
   simp_rw [zero_apply, inner_zero_right, le_rfl]
 
+/--
+@isnad1 id=ispositi.0h2v.s8.508d1f166a82 from=translated src=- shape=aecfe2a1 vocab=735af09f
+-/
 theorem IsPositive'One : (1 : E →ₗ[𝕜] E).IsPositive' :=
   ⟨IsSymmetric.id, fun _ => inner_self_nonneg'⟩
 
@@ -72,7 +78,9 @@ theorem _root_.LinearMap.IsPositive'.inner_nonneg_right {T : E →ₗ[𝕜] E}
   hT.2 x
 
 /-- a linear projection onto `U` along its complement `V` is positive if
-and only if `U` and `V` are pairwise orthogonal -/
+and only if `U` and `V` are pairwise orthogonal
+@isnad1 id=iff.1h4v.s9.a0e290691134 from=translated src=- shape=84491717 vocab=bedb912a
+-/
 theorem linear_proj_IsPositive'_iff {U V : Submodule 𝕜 E} (hUV : IsCompl U V) :
     (U.subtype.comp (U.projectionOnto V hUV)).IsPositive' ↔ U ⟂ V := by
   constructor
@@ -115,6 +123,9 @@ theorem _root_.ContinuousLinearMap.IsPositive.toLinearMap' [FiniteDimensional �
     ← ContinuousLinearMap.star_eq_adjoint]
   rw [h]
 
+/--
+@isnad1 id=iff.0h3v.s7.fe50387cc895 from=translated src=- shape=89b1e566 vocab=f08eb099
+-/
 lemma isPositive'_iff_isPositive
   [FiniteDimensional 𝕜 E] (T : E →ₗ[𝕜] E) :
   T.IsPositive' ↔ T.IsPositive := by
@@ -160,7 +171,9 @@ open scoped BigOperators
 /-- given a symmetric linear map with a non-negative spectrum,
 we can write `T x = ∑ i, √α i • √α i • ⟪e i, x⟫` for any `x ∈ E`,
 where `α i` are the eigenvalues of `T` and `e i` are the respective eigenvectors
-that form an eigenbasis (`isSymmetric.eigenvector_basis`) -/
+that form an eigenbasis (`isSymmetric.eigenvector_basis`)
+@isnad1 id=eq.2h4v.s10.c793221b2911 from=translated src=- shape=f4fe50f7 vocab=7d970c80
+-/
 theorem sq_mul_sq_eq_self_of_isSymmetric_and_nonneg_spectrum
     (hT : T.IsSymmetric) (hT1 : (spectrum 𝕜 T) ⊆ { x : 𝕜 | 0 ≤ x })
     (v : E) : T v = ∑ i, (√ (α hT rfl i) • √ (α hT rfl i) : 𝕜) • ⟪e hT rfl i, v⟫ • e hT rfl i := by
@@ -203,6 +216,9 @@ noncomputable def cpow [InnerProductSpace ℂ E] [FiniteDimensional ℂ E]
     simp_rw [inner_smul_right, ← smul_smul, Finset.smul_sum, RingHom.id_apply, smul_smul, ←
       mul_assoc, mul_comm]
 
+/--
+@isnad1 id=eq.1h4v.s10.131a3da9aa3d from=translated src=- shape=17fa76e0 vocab=c316e7ca
+-/
 theorem cpow_apply [InnerProductSpace ℂ E] [FiniteDimensional ℂ E]
     (T : E →ₗ[ℂ] E) (hT : T.IsPositive') (c : ℂ) (v : E) :
     T.cpow hT c v = ∑ i, (α hT.1 rfl i ^ c : ℂ) • ⟪e hT.1 rfl i, v⟫_ℂ • e hT.1 rfl i :=
@@ -482,6 +498,9 @@ end FiniteDimensional
 
 end LinearMap
 
+/--
+@isnad1 id=ispositi.0h3v.s12.c348bb9d3037 from=translated src=- shape=ad7494c9 vocab=01bd80a5
+-/
 theorem rankOne_self_isPositive {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E]
     [InnerProductSpace 𝕜 E]
     {x : E} :
@@ -492,6 +511,9 @@ theorem rankOne_self_isPositive {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGr
     RCLike.conj_mul, ← RCLike.ofReal_pow, RCLike.ofReal_re]
   exact sq_nonneg _
 
+/--
+@isnad1 id=le.2h4v.s7.7db5abc6a3ab from=translated src=- shape=05da56ea vocab=3c989c5a
+-/
 theorem LinearMap.IsPositive'.nonneg_eigenvalue {E : Type _} [NormedAddCommGroup E]
     [InnerProductSpace 𝕜 E] [FiniteDimensional 𝕜 E] {T : E →ₗ[𝕜] E} (hT : T.IsPositive') {α : ℝ}
     (hα : Module.End.HasEigenvalue T α) : 0 ≤ α := by
@@ -501,6 +523,9 @@ theorem LinearMap.IsPositive'.nonneg_eigenvalue {E : Type _} [NormedAddCommGroup
 
 open scoped BigOperators
 
+/--
+@isnad1 id=ispositi.1h4v.s7.ce0004863970 from=translated src=- shape=242a8dfc vocab=d5799bba
+-/
 theorem LinearMap.IsSymmetric.rePowIsPositive'OfIsPositive' {𝕜 E : Type _} [RCLike 𝕜]
     [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [FiniteDimensional 𝕜 E]
     {T : E →ₗ[𝕜] E} (hT : T.IsPositive') (r : ℝ) :

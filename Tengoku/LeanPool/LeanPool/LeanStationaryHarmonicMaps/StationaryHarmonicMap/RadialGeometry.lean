@@ -96,7 +96,9 @@ def radialVectorField {n : ℕ} (phi : ℝ → ℝ) (x : Domain n) : Domain n :=
   phi ‖x‖ • x
 
 /-- The differential of the Euclidean norm away from the origin:
-`d|x|(v) = <x,v>/|x|`. -/
+`d|x|(v) = <x,v>/|x|`.
+@isnad1 id=eq.1h3v.s9.35e8b14082e0 from=translated src=- shape=81146d8e vocab=b61cad00
+-/
 theorem fderiv_norm_apply {n : ℕ} {x v : Domain n} (hx : x ≠ 0) :
     fderiv ℝ (fun y : Domain n => ‖y‖) x v = inner ℝ x v / ‖x‖ := by
   have hnorm : DifferentiableAt ℝ (fun y : Domain n => ‖y‖) x := by
@@ -119,7 +121,9 @@ theorem fderiv_norm_apply {n : ℕ} {x v : Domain n} (hx : x ≠ 0) :
   rw [eq_div_iff hnorm_ne]
   simpa [mul_comm] using hmain
 
-/-- The differential of `phi |x|` away from the origin. -/
+/-- The differential of `phi |x|` away from the origin.
+@isnad1 id=eq.2h4v.s9.b121e6a48bbd from=translated src=- shape=1066bdd4 vocab=cc33c1d9
+-/
 theorem fderiv_phi_norm_apply {n : ℕ} {phi : ℝ → ℝ} {x v : Domain n}
     (hphi : DifferentiableAt ℝ phi ‖x‖) (hx : x ≠ 0) :
     fderiv ℝ (fun y : Domain n => phi ‖y‖) x v =
@@ -145,7 +149,9 @@ def RadialVectorFieldDerivativeFormula {n : ℕ} (phi : ℝ → ℝ) : Prop :=
 `∂ᵢ(φ(|x|) xⱼ) = φ(|x|) δᵢⱼ + φ'(|x|) xᵢxⱼ/|x|`.
 
 This is exactly the coordinate computation in the manuscript: differentiate the product
-`φ(r) xⱼ`, use `∂ᵢ r = xᵢ/r`, and then rewrite `δᵢⱼ` as the `j`-th component of `eᵢ`. -/
+`φ(r) xⱼ`, use `∂ᵢ r = xᵢ/r`, and then rewrite `δᵢⱼ` as the `j`-th component of `eᵢ`.
+@isnad1 id=radialve.1h2v.s5.8267c79c451f from=translated src=- shape=ed31e03b vocab=68452fd7
+-/
 theorem radialVectorFieldDerivativeFormula {n : ℕ} {phi : ℝ → ℝ}
     (hphi : Differentiable ℝ phi) :
     RadialVectorFieldDerivativeFormula (n := n) phi := by
@@ -190,7 +196,9 @@ def RadialVectorFieldDivergenceFormula {n : ℕ} (phi : ℝ → ℝ) : Prop :=
 
 /-- Proof of `div (φ(|x|)x) = n φ(|x|) + |x| φ'(|x|)`.
 
-This is obtained by taking `j = i` in `RadialVectorFieldDerivativeFormula` and summing over `i`. -/
+This is obtained by taking `j = i` in `RadialVectorFieldDerivativeFormula` and summing over `i`.
+@isnad1 id=radialve.1h2v.s5.61aeee65f85f from=translated src=- shape=ed31e03b vocab=d64d8737
+-/
 theorem radialVectorFieldDivergenceFormula {n : ℕ} {phi : ℝ → ℝ}
     (hphi : Differentiable ℝ phi) :
     RadialVectorFieldDivergenceFormula (n := n) phi := by
@@ -248,7 +256,9 @@ theorem radialVectorFieldDivergenceFormula {n : ℕ} {phi : ℝ → ℝ}
           rw [hsum_sq]
           field_simp [hnorm_ne]
 
-/-- Coordinate expansion in the standard basis of `EuclideanSpace`. -/
+/-- Coordinate expansion in the standard basis of `EuclideanSpace`.
+@isnad1 id=eq.0h2v.s7.1f34355a24dd from=translated src=- shape=f625b448 vocab=d1513bb0
+-/
 theorem euclideanSpace_sum_coordUnit {n : ℕ} (x : Domain n) :
     (∑ i : Fin n, SMul.smul (x i) (coordUnit i)) = x := by
   change (∑ i : Fin n, (x i) • (coordUnit i)) = x
@@ -256,7 +266,9 @@ theorem euclideanSpace_sum_coordUnit {n : ℕ} (x : Domain n) :
     EuclideanSpace.single] using
     (PiLp.basisFun 2 ℝ (Fin n)).sum_repr x
 
-/-- Apply the linear map `fderiv u x` to the coordinate expansion of `x`. -/
+/-- Apply the linear map `fderiv u x` to the coordinate expansion of `x`.
+@isnad1 id=eq.0h4v.s10.d9ab490f2dab from=translated src=- shape=ceae9993 vocab=cb48e68e
+-/
 theorem fderiv_apply_eq_sum_partial {n m : ℕ}
     (u : Domain n → Target m) (x : Domain n) :
     fderiv ℝ u x x =
@@ -272,7 +284,9 @@ theorem fderiv_apply_eq_sum_partial {n m : ℕ}
           intro i _
           exact (fderiv ℝ u x).map_smul (x i) (coordUnit i)
 
-/-- Real scalar factors pull out of both entries of the inner product. -/
+/-- Real scalar factors pull out of both entries of the inner product.
+@isnad1 id=eq.0h5v.s7.aad80b2fcb51 from=translated src=- shape=55d00deb vocab=caf83298
+-/
 theorem inner_smul_smul_real {m : ℕ} (a b : ℝ) (v w : Target m) :
     inner ℝ (SMul.smul a v) (SMul.smul b w) =
       a * b * inner ℝ v w := by
@@ -285,7 +299,9 @@ theorem inner_smul_smul_real {m : ℕ} (a b : ℝ) (v w : Target m) :
     _ = a * b * inner ℝ v w := by
           ring
 
-/-- The square norm of a finite real linear combination, expanded as a double sum. -/
+/-- The square norm of a finite real linear combination, expanded as a double sum.
+@isnad1 id=eq.0h4v.s8.a31952206898 from=translated src=- shape=ced05fa9 vocab=4e26d2e3
+-/
 theorem norm_sq_sum_smul {n m : ℕ}
     (a : Fin n → ℝ) (v : Fin n → Target m) :
     ‖(∑ i : Fin n, SMul.smul (a i) (v i))‖ ^ 2 =
@@ -301,7 +317,9 @@ theorem norm_sq_sum_smul {n m : ℕ}
   intro j _
   exact inner_smul_smul_real (a i) (a j) (v i) (v j)
 
-/-- Cauchy-Schwarz for a finite real linear combination of target vectors. -/
+/-- Cauchy-Schwarz for a finite real linear combination of target vectors.
+@isnad1 id=le.0h4v.s7.16abed78a82a from=translated src=- shape=43445fc8 vocab=9f70b72f
+-/
 theorem norm_sum_smul_le_sqrt_mul_sqrt {n m : ℕ}
     (a : Fin n → ℝ) (v : Fin n → Target m) :
     ‖(∑ i : Fin n, SMul.smul (a i) (v i))‖
@@ -341,7 +359,9 @@ theorem norm_sum_smul_le_sqrt_mul_sqrt {n m : ℕ}
     _ = √(∑ i : Fin n, a i ^ 2) * √(∑ i : Fin n, ‖v i‖ ^ 2) := by
           rw [habs]
 
-/-- The squared coefficients of the radial unit direction have sum at most `1`. -/
+/-- The squared coefficients of the radial unit direction have sum at most `1`.
+@isnad1 id=le.0h2v.s6.078aa06d80df from=translated src=- shape=fab733f1 vocab=63a5674f
+-/
 theorem radialCoeff_sq_sum_le_one {n : ℕ} (x : Domain n) :
     (∑ i : Fin n, (‖x‖⁻¹ * x i) ^ 2) ≤ 1 := by
   by_cases hx : x = 0
@@ -366,7 +386,9 @@ theorem radialCoeff_sq_sum_le_one {n : ℕ} (x : Domain n) :
             field_simp [hnorm_ne]
       _ ≤ 1 := le_rfl
 
-/-- The radial energy of an arbitrary gradient matrix as a double contraction. -/
+/-- The radial energy of an arbitrary gradient matrix as a double contraction.
+@isnad1 id=eq.0h4v.s8.933f457593c6 from=translated src=- shape=d6ec2aed vocab=1295cb68
+-/
 theorem gradientRadialEnergy_eq_sum {n m : ℕ}
     (A : Gradient n m) (x : Domain n) :
     gradientRadialEnergy A x =
@@ -400,7 +422,9 @@ theorem gradientRadialEnergy_eq_sum {n m : ℕ}
           rw [hS]
 
 /-- The radial part of a pointwise gradient matrix is bounded by its full
-Hilbert-Schmidt energy. -/
+Hilbert-Schmidt energy.
+@isnad1 id=le.0h4v.s4.16f79bbb5261 from=translated src=- shape=eb4eea45 vocab=b41f1eed
+-/
 theorem gradientRadialEnergy_le_gradientEnergy {n m : ℕ}
     (A : Gradient n m) (x : Domain n) :
     gradientRadialEnergy A x ≤ gradientEnergy A := by
@@ -456,7 +480,9 @@ theorem gradientRadialEnergy_le_gradientEnergy {n m : ℕ}
     _ ≤ 1 * gradientEnergy A := hmul_le
     _ = gradientEnergy A := by ring
 
-/-- The weak radial energy density is pointwise bounded by the full weak energy density. -/
+/-- The weak radial energy density is pointwise bounded by the full weak energy density.
+@isnad1 id=le.0h5v.s4.24efdd56fed5 from=translated src=- shape=f3296139 vocab=97f6aa86
+-/
 theorem weakRadialEnergyDensity_le_weakEnergyDensity {n m : ℕ}
     (Du : Domain n → Gradient n m) (a x : Domain n) :
     weakRadialEnergyDensity Du a x ≤ weakEnergyDensity Du x := by
@@ -465,7 +491,9 @@ theorem weakRadialEnergyDensity_le_weakEnergyDensity {n m : ℕ}
     gradientRadialEnergy_le_gradientEnergy (Du x) (x - a)
 
 /-- Norm form of `weakRadialEnergyDensity_le_weakEnergyDensity`, convenient for
-`Integrable.mono'`. -/
+`Integrable.mono'`.
+@isnad1 id=le.0h5v.s5.612c499187ae from=translated src=- shape=b31f0b98 vocab=edd01b53
+-/
 theorem norm_weakRadialEnergyDensity_le_weakEnergyDensity {n m : ℕ}
     (Du : Domain n → Gradient n m) (a x : Domain n) :
     ‖weakRadialEnergyDensity Du a x‖ ≤ weakEnergyDensity Du x := by
@@ -476,7 +504,9 @@ theorem norm_weakRadialEnergyDensity_le_weakEnergyDensity {n m : ℕ}
 
 /-- Pure pointwise algebraic contraction for a radial vector-field derivative,
 with an arbitrary gradient matrix `A`.  This is the version that will survive
-unchanged in the `W^{1,2}_{loc}` proof. -/
+unchanged in the `W^{1,2}_{loc}` proof.
+@isnad1 id=eq.1h5v.s9.d326d4504e61 from=translated src=- shape=5a029bcc vocab=ad9efa30
+-/
 theorem gradientRadialStressContractionFormula {n m : ℕ}
     (A : Gradient n m) (phi : ℝ → ℝ) {x : Domain n} (hx : x ≠ 0) :
     (∑ i : Fin n, ∑ j : Fin n,
@@ -546,7 +576,9 @@ theorem gradientRadialStressContractionFormula {n m : ℕ}
         + ‖x‖ * deriv phi ‖x‖ * gradientRadialEnergy A x := by
           rw [hradial_term]
 
-/-- At the origin, the radial derivative is `|x|⁻¹ ∑ᵢ xᵢ ∂ᵢu`. -/
+/-- At the origin, the radial derivative is `|x|⁻¹ ∑ᵢ xᵢ ∂ᵢu`.
+@isnad1 id=eq.0h4v.s8.1b5cbf37297c from=translated src=- shape=07085730 vocab=eff9dd31
+-/
 theorem radialDerivative_zero_eq_sum {n m : ℕ}
     (u : Domain n → Target m) (x : Domain n) :
     radialDerivative u 0 x =
@@ -560,16 +592,25 @@ theorem radialDerivative_zero_eq_sum {n m : ℕ}
         (∑ i : Fin n, SMul.smul (x i) (partialDerivative u i x)) := by
       rw [fderiv_apply_eq_sum_partial u x]
 
+/--
+@isnad1 id=eq.0h4v.s4.2fec54cffe88 from=translated src=- shape=2009e006 vocab=e15064ea
+-/
 @[simp]
 theorem gradientEnergy_smoothGradient {n m : ℕ}
     (u : Domain n → Target m) (x : Domain n) :
     gradientEnergy (smoothGradient u x) = energyDensity u x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.b17119ce768f from=translated src=- shape=ab7a578d vocab=72141ebb
+-/
 theorem gradientRadialDerivative_smoothGradient_zero {n m : ℕ}
     (u : Domain n → Target m) (x : Domain n) :
     gradientRadialDerivative (smoothGradient u x) x = radialDerivative u 0 x :=
   (radialDerivative_zero_eq_sum u x).symm
 
+/--
+@isnad1 id=eq.0h4v.s6.f33d8de51da8 from=translated src=- shape=2133e641 vocab=c52b5bc7
+-/
 @[simp]
 theorem gradientRadialEnergy_smoothGradient_zero {n m : ℕ}
     (u : Domain n → Target m) (x : Domain n) :
@@ -578,7 +619,9 @@ theorem gradientRadialEnergy_smoothGradient_zero {n m : ℕ}
   rw [gradientRadialDerivative_smoothGradient_zero]
 
 /-- The radial energy density at the origin as the double contraction
-`|x|⁻² ∑ᵢⱼ xᵢxⱼ <∂ᵢu,∂ⱼu>`. -/
+`|x|⁻² ∑ᵢⱼ xᵢxⱼ <∂ᵢu,∂ⱼu>`.
+@isnad1 id=eq.0h4v.s8.d1c482d85601 from=translated src=- shape=67e9914b vocab=8dbc3b34
+-/
 theorem radialEnergyDensity_zero_eq_sum {n m : ℕ}
     (u : Domain n → Target m) (x : Domain n) :
     radialEnergyDensity u 0 x =
@@ -634,7 +677,9 @@ def RadialStressContractionFormula {n m : ℕ}
 /-- Proof of the stress-energy contraction identity for `X(x) = φ(|x|)x`.
 
 This is the formal version of substituting
-`∂ᵢXⱼ = φ(r)δᵢⱼ + φ'(r)xᵢxⱼ/r` into the double contraction. -/
+`∂ᵢXⱼ = φ(r)δᵢⱼ + φ'(r)xᵢxⱼ/r` into the double contraction.
+@isnad1 id=radialst.1h4v.s6.9e89c4b89244 from=translated src=- shape=d20133e5 vocab=bc0c01bc
+-/
 theorem radialStressContractionFormula {n m : ℕ}
     (u : Domain n → Target m) {phi : ℝ → ℝ}
     (hphi : Differentiable ℝ phi) :
@@ -669,7 +714,9 @@ theorem radialStressContractionFormula {n m : ℕ}
           + ‖x‖ * deriv phi ‖x‖ * radialEnergyDensity u 0 x := by
             simp
 
-/-- The stress contraction formula for an arbitrary gradient field. -/
+/-- The stress contraction formula for an arbitrary gradient field.
+@isnad1 id=eq.2h5v.s8.6962d84b48e7 from=translated src=- shape=1fda7f53 vocab=7f947add
+-/
 theorem weakRadialStressContractionFormula {n m : ℕ}
     (Du : Domain n → Gradient n m) {phi : ℝ → ℝ}
     (hphi : Differentiable ℝ phi) :

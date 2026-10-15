@@ -21,6 +21,9 @@ open Set
 
 namespace LocalComplexGeometry
 
+/--
+@isnad1 id=fg.2h6v.s8.b95493067505 from=translated src=- shape=53d082f6 vocab=fd039370
+-/
 theorem Ideal.fg_of_remainder_kernel
     {R A M : Type*} [CommRing R] [CommRing A] [AddCommGroup M]
     [Algebra R A] [Module R M] [IsNoetherian R M]

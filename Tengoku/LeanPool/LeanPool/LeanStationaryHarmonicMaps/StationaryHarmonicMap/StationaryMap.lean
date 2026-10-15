@@ -60,7 +60,9 @@ def ofComponents {n m : Nat}
   stationary := hfirstVariation
 
 /-- Forget the witness package to the earlier paper-facing stationary Sobolev
-package. -/
+package.
+@isnad1 id=stationa.0h5v.s5.33d489571579 from=translated src=- shape=df69dce1 vocab=06a79ab3
+-/
 theorem toStationarySobolevMapIn {n m : Nat}
     {u : Domain n -> Target m} {Omega : Set (Domain n)}
     (h : StationaryW12LocMap u Omega) :
@@ -68,7 +70,9 @@ theorem toStationarySobolevMapIn {n m : Nat}
   ⟨h.w12.toSobolevW12LocIn, h.stationary⟩
 
 /-- Forget the witness package to the custom weak stationary map interface used
-inside the proof. -/
+inside the proof.
+@isnad1 id=weakstat.0h5v.s5.bb631783607b from=translated src=- shape=df69dce1 vocab=de09a371
+-/
 theorem toWeakStationaryMapIn {n m : Nat}
     {u : Domain n -> Target m} {Omega : Set (Domain n)}
     (h : StationaryW12LocMap u Omega) :

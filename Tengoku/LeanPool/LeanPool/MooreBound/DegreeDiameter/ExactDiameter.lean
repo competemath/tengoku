@@ -49,6 +49,9 @@ def EvenEntryCandidate {V : Type*} [AddCommGroup V] [Module K V]
     (j : ℕ) : Prop :=
   (1 ≤ j ∧ ∃ hj : j ≤ k, e ∈ P.1 (evenRank k j hj)) ∨ j = k + 1
 
+/--
+@isnad1 id=ex.0h5v.s6.08864cea3d38 from=translated src=- shape=6aa0516b vocab=9a4de0f4
+-/
 theorem exists_evenEntryCandidate {V : Type*} [AddCommGroup V] [Module K V]
     (k : ℕ) (e : V)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1)) :
@@ -63,6 +66,9 @@ noncomputable def evenEntryBlock {V : Type*} [AddCommGroup V] [Module K V]
   classical
   exact Nat.find (exists_evenEntryCandidate k e P)
 
+/--
+@isnad1 id=evenentr.0h5v.s6.4a0fbe8d35ca from=translated src=- shape=4b3a4c62 vocab=20840835
+-/
 theorem evenEntryBlock_spec {V : Type*} [AddCommGroup V] [Module K V]
     (k : ℕ) (e : V)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1)) :
@@ -71,6 +77,9 @@ theorem evenEntryBlock_spec {V : Type*} [AddCommGroup V] [Module K V]
     classical
     exact Nat.find_spec (exists_evenEntryCandidate k e P)
 
+/--
+@isnad1 id=le.0h5v.s6.62cc9427e7df from=translated src=- shape=e429002a vocab=8897c6b2
+-/
 theorem one_le_evenEntryBlock {V : Type*} [AddCommGroup V] [Module K V]
     (k : ℕ) (e : V)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1)) :
@@ -79,6 +88,9 @@ theorem one_le_evenEntryBlock {V : Type*} [AddCommGroup V] [Module K V]
   · exact h.1
   · omega
 
+/--
+@isnad1 id=le.0h5v.s6.818af33bc45e from=translated src=- shape=da2f454e vocab=8897c6b2
+-/
 theorem evenEntryBlock_le_sentinel {V : Type*} [AddCommGroup V] [Module K V]
     (k : ℕ) (e : V)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1)) :
@@ -86,6 +98,9 @@ theorem evenEntryBlock_le_sentinel {V : Type*} [AddCommGroup V] [Module K V]
   classical
   exact Nat.find_min' (exists_evenEntryCandidate k e P) (Or.inr rfl)
 
+/--
+@isnad1 id=le.3h6v.s8.3cdb27d3aab4 from=translated src=- shape=9afc5adf vocab=f89c5d00
+-/
 theorem evenEntryBlock_le_of_mem {V : Type*} [AddCommGroup V] [Module K V]
     (k : ℕ) (e : V)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1))
@@ -96,6 +111,9 @@ theorem evenEntryBlock_le_of_mem {V : Type*} [AddCommGroup V] [Module K V]
   exact Nat.find_min' (exists_evenEntryCandidate k e P)
     (Or.inl ⟨hj1, hjk, hmem⟩)
 
+/--
+@isnad1 id=mem.1h5v.s8.3b4ea109c759 from=translated src=- shape=11f7a0e1 vocab=f89c5d00
+-/
 theorem evenEntryBlock_mem {V : Type*} [AddCommGroup V] [Module K V]
     (k : ℕ) (e : V)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1))
@@ -105,6 +123,9 @@ theorem evenEntryBlock_mem {V : Type*} [AddCommGroup V] [Module K V]
   · exact h.2.choose_spec
   · omega
 
+/--
+@isnad1 id=le.3h6v.s7.f8f470593e4c from=translated src=- shape=4574749f vocab=a0fe60ae
+-/
 theorem evenEntryBlock_ofComplete_le_of_mem
     {V : Type*} [AddCommGroup V] [Module K V]
     (k : ℕ) (e : V) (F : CompleteFlag K V (2 * k + 1))
@@ -115,7 +136,9 @@ theorem evenEntryBlock_ofComplete_le_of_mem
   simpa [PartialFlag.ofComplete, flagPart, evenRank] using hmem
 
 /-- Compatibility with a common odd partial flag makes the first even entry
-block move by at most one.  This is the paper's rank-potential estimate. -/
+block move by at most one.  This is the paper's rank-potential estimate.
+@isnad1 id=le.2h7v.s7.396a6bb984d9 from=translated src=- shape=cf402629 vocab=62834744
+-/
 theorem evenEntryBlock_le_add_one_of_common_compatible
     {V : Type*} [AddCommGroup V] [Module K V]
     (k : ℕ) (e : V)
@@ -156,6 +179,9 @@ theorem evenEntryBlock_le_add_one_of_common_compatible
   · have hka : k ≤ a := by omega
     exact (evenEntryBlock_le_sentinel k e P').trans (by omega)
 
+/--
+@isnad1 id=le.1h6v.s7.64140ad59e02 from=translated src=- shape=1aff34ab vocab=4c49ada3
+-/
 theorem evenEntryBlock_adjacent
     {V : Type*} [AddCommGroup V] [Module K V]
     (k : ℕ) (e : V)
@@ -171,7 +197,9 @@ noncomputable def rankPotential {V : Type*} [AddCommGroup V] [Module K V]
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1)) : ℕ :=
   2 * (evenEntryBlock k e P - 1)
 
-/-- Adjacent vertices have paper-potential values differing by at most two. -/
+/-- Adjacent vertices have paper-potential values differing by at most two.
+@isnad1 id=le.1h6v.s7.2fe6bbf12e8b from=translated src=- shape=37557329 vocab=5d072971
+-/
 theorem rankPotential_dist_adjacent
     {V : Type*} [AddCommGroup V] [Module K V]
     (k : ℕ) (e : V)
@@ -185,7 +213,9 @@ theorem rankPotential_dist_adjacent
   simp only [rankPotential, Nat.dist]
   omega
 
-/-- Along a walk, the entry block changes by no more than its length. -/
+/-- Along a walk, the entry block changes by no more than its length.
+@isnad1 id=le.0h7v.s7.200872e52627 from=translated src=- shape=912847c5 vocab=20e5fa52
+-/
 theorem evenEntryBlock_walk_le
     {V : Type*} [AddCommGroup V] [Module K V]
     (k : ℕ) (e : V)
@@ -204,7 +234,9 @@ theorem evenEntryBlock_walk_le
           simp
           omega
 
-/-- The rank potential can increase by at most two per edge along a walk. -/
+/-- The rank potential can increase by at most two per edge along a walk.
+@isnad1 id=le.0h7v.s8.97758fb0739a from=translated src=- shape=49e2a65e vocab=0bbc035c
+-/
 theorem rankPotential_walk_le
     {V : Type*} [AddCommGroup V] [Module K V]
     (k : ℕ) (e : V)
@@ -221,6 +253,9 @@ section BasisEndpoints
 
 variable {V : Type*} [AddCommGroup V] [Module K V]
 
+/--
+@isnad1 id=eq.1h4v.s8.095058f263c1 from=translated src=- shape=422faa8c vocab=476a09c3
+-/
 theorem evenEntryBlock_standard_basis (k : ℕ) (hk : 1 ≤ k)
     (b : Basis (Fin (2 * k + 1)) K V) :
     evenEntryBlock k (b 0)
@@ -234,6 +269,9 @@ theorem evenEntryBlock_standard_basis (k : ℕ) (hk : 1 ≤ k)
   · exact one_le_evenEntryBlock k (b 0)
       (PartialFlag.ofComplete 0 (CompleteFlag.ofBasis b))
 
+/--
+@isnad1 id=eq.0h4v.s8.dde856979f90 from=translated src=- shape=d51dd036 vocab=91c518e1
+-/
 theorem evenEntryBlock_opposite_basis (k : ℕ)
     (b : Basis (Fin (2 * k + 1)) K V) :
     evenEntryBlock k (b 0)
@@ -262,12 +300,18 @@ theorem evenEntryBlock_opposite_basis (k : ℕ)
     omega
   · exact hsentinel.ge
 
+/--
+@isnad1 id=eq.1h4v.s8.5d7b81d7fd97 from=translated src=- shape=422faa8c vocab=df25b7a5
+-/
 theorem rankPotential_standard_basis (k : ℕ) (hk : 1 ≤ k)
     (b : Basis (Fin (2 * k + 1)) K V) :
     rankPotential k (b 0)
       (PartialFlag.ofComplete 0 (CompleteFlag.ofBasis b)) = 0 := by
   simp [rankPotential, evenEntryBlock_standard_basis k hk b]
 
+/--
+@isnad1 id=eq.0h4v.s8.0f79fb2dd43f from=translated src=- shape=be63bc2d vocab=573c21ce
+-/
 theorem rankPotential_opposite_basis (k : ℕ)
     (b : Basis (Fin (2 * k + 1)) K V) :
     rankPotential k (b 0)
@@ -277,7 +321,9 @@ theorem rankPotential_opposite_basis (k : ℕ)
   omega
 
 /-- Every walk from the standard flag to the opposite flag has at least `k`
-edges, exactly as in the potential argument in Proposition 3.1. -/
+edges, exactly as in the potential argument in Proposition 3.1.
+@isnad1 id=le.1h5v.s9.41767bced2b8 from=translated src=- shape=572c54df vocab=80188daf
+-/
 theorem standard_to_opposite_walk_length (k : ℕ) (hk : 1 ≤ k)
     (b : Basis (Fin (2 * k + 1)) K V)
     (p : (halvedFlagGraph (K := K) (V := V) (n := 2 * k + 1)).Walk
@@ -291,7 +337,9 @@ theorem standard_to_opposite_walk_length (k : ℕ) (hk : 1 ≤ k)
   omega
 
 /-- The reverse inequality `k ≤ ediam`, witnessed by the standard and
-opposite complete flags and proved with the paper's rank potential. -/
+opposite complete flags and proved with the paper's rank potential.
+@isnad1 id=le.1h4v.s7.a30aa6cc8599 from=translated src=- shape=cce332e7 vocab=757cc872
+-/
 theorem halvedFlagGraph_ediam_ge_ofBasis (k : ℕ) (hk : 1 ≤ k)
     (b : Basis (Fin (2 * k + 1)) K V) :
     (k : ℕ∞) ≤
@@ -317,7 +365,9 @@ theorem halvedFlagGraph_ediam_ge_ofBasis (k : ℕ) (hk : 1 ≤ k)
   exact hdist.trans SimpleGraph.edist_le_ediam
 
 /-- The exact diameter assertion `diam H_{k,q}=k` from Proposition 3.1,
-in extended-diameter form. -/
+in extended-diameter form.
+@isnad1 id=eq.1h4v.s7.f048e05bb04c from=translated src=- shape=73e57972 vocab=757cc872
+-/
 theorem halvedFlagGraph_ediam_eq_ofBasis (k : ℕ) (hk : 1 ≤ k)
     (b : Basis (Fin (2 * k + 1)) K V) :
     (halvedFlagGraph (K := K) (V := V) (n := 2 * k + 1)).ediam = (k : ℕ∞) :=
@@ -351,6 +401,9 @@ noncomputable def oppositeEvenFlag (k : ℕ) :
   PartialFlag.ofComplete 0
     (CompleteFlag.ofBasis ((coordinateBasis k).reindex Fin.revPerm))
 
+/--
+@isnad1 id=eq.1h2v.s8.5ba19d9c9f38 from=translated src=- shape=b8c2e827 vocab=448f3446
+-/
 theorem coordinate_halvedFlagGraph_ediam_eq (k : ℕ) (hk : 1 ≤ k) :
     (halvedFlagGraph (K := K) (V := CoordinateFlagSpace K k)
       (n := 2 * k + 1)).ediam = (k : ℕ∞) :=

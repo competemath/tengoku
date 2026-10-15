@@ -15,6 +15,9 @@ public import Tengoku
 
 @[expose] public section
 
+/--
+@isnad1 id=eq.0h4v.s5.5ae063a283f9 from=translated src=- shape=4b2bac00 vocab=d6f07d20
+-/
 @[simp]
 theorem star_ite {α : Type _} [InvolutiveStar α] (P : Prop) [Decidable P] (a b : α) :
     star (ite P a b) = ite P (star a) (star b) := by
@@ -26,10 +29,16 @@ theorem star_ite {α : Type _} [InvolutiveStar α] (P : Prop) [Decidable P] (a b
     · simp_rw [(Ne.ite_eq_left_iff h).mpr h', (Ne.ite_eq_left_iff this).mpr h']
     · simp_rw [(Ne.ite_eq_right_iff h).mpr h', (Ne.ite_eq_right_iff this).mpr h']
 
+/--
+@isnad1 id=eq.0h5v.s5.0fc7fd08d3c5 from=translated src=- shape=6f2decfe vocab=2504b360
+-/
 theorem coe_ite {α β : Type _} [CoeTC α β] (P : Prop) [Decidable P] (a b : α) :
     (↑(ite P a b) : β) = ite P (a : β) (b : β) :=
 by split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.5a1154bb7bd6 from=translated src=- shape=72431643 vocab=d6103326
+-/
 theorem ite_apply_lm {R A B : Type _} [Semiring R] [AddCommMonoid A] [AddCommMonoid B] [Module R A]
     [Module R B] (f g : A →ₗ[R] B) (x : A) (P : Prop) [Decidable P] :
     (if P then f else g : A →ₗ[R] B) x = if P then f x else g x := by
@@ -41,6 +50,9 @@ local notation f " ⊗ₘ " g => TensorProduct.map f g
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=eq.0h9v.s8.e56e20ccbc9a from=translated src=- shape=fd4ccc67 vocab=b2000b53
+-/
 theorem TensorProduct.ite_map {R M₁ M₂ M₃ M₄ : Type _} [CommSemiring R] [AddCommMonoid M₁]
     [AddCommMonoid M₂] [AddCommMonoid M₃] [AddCommMonoid M₄] [Module R M₁] [Module R M₂]
     [Module R M₃] [Module R M₄] (f₁ f₂ : M₁ →ₗ[R] M₂) (g : M₃ →ₗ[R] M₄) (P : Prop) [Decidable P] :

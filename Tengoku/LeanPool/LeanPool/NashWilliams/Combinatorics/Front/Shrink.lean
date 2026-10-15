@@ -50,12 +50,17 @@ all lie in `X`. Definitionally `shrink F N = shrinkOn F (Set.range N)`, so the e
 def shrinkOn (F : Set (List ℕ)) (X : Set ℕ) : Set (List ℕ) :=
   {s | s ∈ F ∧ ∀ x ∈ s, x ∈ X}
 
+/--
+@isnad1 id=eq.0h2v.s4.b4f7a7e19e34 from=translated src=- shape=48ceb41d vocab=beeeb690
+-/
 theorem shrink_eq_shrinkOn_range (F : Set (List ℕ)) (N : ℕ → ℕ) :
     shrink F N = shrinkOn F (Set.range N) := rfl
 
 /-- **The restriction of a front to an infinite subset is a front on that subset.** For a front
 `F` on `M` and the infinite subset `N = M ∘ E` (`E` strictly monotone), `shrink F N` is a front
-on `N`. -/
+on `N`.
+@isnad1 id=isfront.2h3v.s5.f6759bfe6589 from=translated src=- shape=3aca53dd vocab=c899a8f7
+-/
 theorem shrink_isFront (hF : IsFront F M) {E : ℕ → ℕ} (hE : StrictMono E) :
     IsFront (shrink F (M ∘ E)) (M ∘ E) where
   mono := hF.mono.comp hE
@@ -103,7 +108,9 @@ theorem shrink_isFront (hF : IsFront F M) {E : ℕ → ℕ} (hE : StrictMono E) 
 
 /-! ### Restriction: further lemmas -/
 
-/-- Restricting twice to nested subsets collapses to the inner restriction. -/
+/-- Restricting twice to nested subsets collapses to the inner restriction.
+@isnad1 id=eq.1h3v.s5.f1b5587bff10 from=translated src=- shape=df347a4b vocab=1c4fa958
+-/
 theorem shrink_shrink {N N' : ℕ → ℕ} (h : Set.range N' ⊆ Set.range N) :
     shrink (shrink F N) N' = shrink F N' := by
   ext s
@@ -113,7 +120,9 @@ theorem shrink_shrink {N N' : ℕ → ℕ} (h : Set.range N' ⊆ Set.range N) :
   · rintro ⟨hsF, hN'⟩; exact ⟨⟨hsF, fun x hx => h (hN' x hx)⟩, hN'⟩
 
 /-- The restriction of the uniform front `[M]^k` to an infinite subset `M ∘ e` is the uniform
-front `[M ∘ e]^k` on that subset. -/
+front `[M ∘ e]^k` on that subset.
+@isnad1 id=eq.0h3v.s5.d944eb1d55cd from=translated src=- shape=67ca862e vocab=fc5808ba
+-/
 theorem shrink_powK {e : ℕ → ℕ} (k : ℕ) :
     shrink (powK M k) (M ∘ e) = powK (M ∘ e) k := by
   ext s
@@ -125,7 +134,9 @@ theorem shrink_powK {e : ℕ → ℕ} (k : ℕ) :
     obtain ⟨i, rfl⟩ := hMe x hx
     exact ⟨e i, rfl⟩
 
-/-- The tree of a restriction is contained in the tree of the front. -/
+/-- The tree of a restriction is contained in the tree of the front.
+@isnad1 id=le.0h2v.s4.be68ef3826fe from=translated src=- shape=8a408b03 vocab=7189d147
+-/
 theorem tree_shrink_subset {N : ℕ → ℕ} : tree (shrink F N) ⊆ tree F := by
   rintro s ⟨u, hu, hpre⟩
   exact ⟨u, hu.1, hpre⟩

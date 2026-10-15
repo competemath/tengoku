@@ -25,6 +25,9 @@ breakpoint construction squares that state space to pairs of subsets.
 
 namespace LeanModelChecking
 
+/--
+@isnad1 id=foranylt.0h0v.s0.085c6f666d76 from=translated src=- shape=45709ebd vocab=085c6f66
+-/
 theorem for_any_LTL_formula_exists_an_equivalent_NBW :
     forAnyLTLFormulaExistsAnEquivalentNBWStatement := by
   unfold forAnyLTLFormulaExistsAnEquivalentNBWStatement

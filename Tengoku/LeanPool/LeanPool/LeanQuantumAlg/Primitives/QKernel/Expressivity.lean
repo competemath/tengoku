@@ -28,13 +28,18 @@ variable {r : ℕ}
 noncomputable def offDiagEmb (v : Fin r → ℂ) : Matrix (Fin 1 ⊕ Fin r) (Fin 1 ⊕ Fin r) ℂ :=
   Matrix.fromBlocks 0 (Matrix.of fun _ k => v k) (Matrix.of fun k _ => starRingEnd ℂ (v k)) 0
 
-/-- A local trace-of-block-matrix helper (`trace_fromBlocks` is not in Mathlib). -/
+/-- A local trace-of-block-matrix helper (`trace_fromBlocks` is not in Mathlib).
+@isnad1 id=eq.0h5v.s7.eabce5570a09 from=translated src=- shape=af14f8b0 vocab=8f54ae58
+-/
 theorem trace_fromBlocks' {A : Matrix (Fin 1) (Fin 1) ℂ} {B : Matrix (Fin 1) (Fin r) ℂ}
     {C : Matrix (Fin r) (Fin 1) ℂ} {D : Matrix (Fin r) (Fin r) ℂ} :
     (Matrix.fromBlocks A B C D).trace = A.trace + D.trace := by
   simp only [Matrix.trace, Matrix.diag_apply, Fintype.sum_sum_type]
   congr 1
 
+/--
+@isnad1 id=ishermit.0h2v.s5.00ef706896ae from=translated src=- shape=e366f03b vocab=74ff0278
+-/
 theorem offDiagEmb_isHermitian (v : Fin r → ℂ) : (offDiagEmb v).IsHermitian := by
   have hB : (Matrix.of fun (_ : Fin 1) (k : Fin r) => v k)ᴴ
       = (Matrix.of fun (k : Fin r) (_ : Fin 1) => starRingEnd ℂ (v k)) := by
@@ -46,13 +51,18 @@ theorem offDiagEmb_isHermitian (v : Fin r → ℂ) : (offDiagEmb v).IsHermitian 
   rw [Matrix.fromBlocks_conjTranspose, hB, hC]
   simp
 
+/--
+@isnad1 id=eq.0h2v.s5.5bb4000f4527 from=translated src=- shape=d3f80a28 vocab=1f4b2e78
+-/
 theorem offDiagEmb_trace_zero (v : Fin r → ℂ) : (offDiagEmb v).trace = 0 := by
   rw [Matrix.trace]
   apply Finset.sum_eq_zero
   rintro (i | i) _ <;> simp [offDiagEmb, Matrix.diag_apply, Matrix.fromBlocks]
 
 /-- The HS inner product of two off-diagonal embeddings: `tr(offDiagEmb v * offDiagEmb w)
-= 2·Re⟨v,w⟩` (a real number). -/
+= 2·Re⟨v,w⟩` (a real number).
+@isnad1 id=eq.0h3v.s7.8cc087e2ae89 from=translated src=- shape=d8da1d2a vocab=3917d333
+-/
 theorem trace_offDiagEmb_mul (v w : Fin r → ℂ) :
     (offDiagEmb v * offDiagEmb w).trace = 2 * (∑ k, starRingEnd ℂ (v k) * w k).re := by
   rw [offDiagEmb, offDiagEmb, Matrix.fromBlocks_multiply]
@@ -77,7 +87,9 @@ theorem trace_offDiagEmb_mul (v w : Fin r → ℂ) :
   push_cast
   ring
 
-/-- `1 + offDiagEmb v` written as a bordered block matrix. -/
+/-- `1 + offDiagEmb v` written as a bordered block matrix.
+@isnad1 id=eq.0h2v.s9.c20b3bb74fd1 from=translated src=- shape=f39f0727 vocab=def29cef
+-/
 theorem one_add_offDiagEmb_eq (v : Fin r → ℂ) :
     1 + offDiagEmb v
       = Matrix.fromBlocks 1 (Matrix.of fun _ k => v k)
@@ -90,7 +102,9 @@ theorem one_add_offDiagEmb_eq (v : Fin r → ℂ) :
 
 /-- **Validity crux:** `1 + offDiagEmb v` is positive semidefinite when `∑ ‖v k‖² ≤ 1`.
 Proved by the `fromBlocks₂₂` Schur complement, which collapses to the `1×1` matrix
-`[1 - ∑ normSq (v k)]`. -/
+`[1 - ∑ normSq (v k)]`.
+@isnad1 id=possemid.1h2v.s8.6018a71af7e3 from=translated src=- shape=87a61943 vocab=8887a088
+-/
 theorem one_add_offDiagEmb_posSemidef (v : Fin r → ℂ)
     (hv : ∑ k, Complex.normSq (v k) ≤ 1) : (1 + offDiagEmb v).PosSemidef := by
   have hBh : (Matrix.of fun (k : Fin r) (_ : Fin 1) => starRingEnd ℂ (v k))
@@ -120,14 +134,23 @@ theorem one_add_offDiagEmb_posSemidef (v : Fin r → ℂ)
 noncomputable def densityOf (v : Fin r → ℂ) : Matrix (Fin 1 ⊕ Fin r) (Fin 1 ⊕ Fin r) ℂ :=
   ((r : ℝ) + 1)⁻¹ • (1 + offDiagEmb v)
 
+/--
+@isnad1 id=possemid.1h2v.s6.a55b2edeb846 from=translated src=- shape=9fe75859 vocab=4ca6d2c6
+-/
 theorem densityOf_posSemidef (v : Fin r → ℂ) (hv : ∑ k, Complex.normSq (v k) ≤ 1) :
     (densityOf v).PosSemidef :=
   (one_add_offDiagEmb_posSemidef v hv).smul (by positivity : (0 : ℝ) ≤ ((r : ℝ) + 1)⁻¹)
 
+/--
+@isnad1 id=ishermit.1h2v.s6.a8606f3fe9a1 from=translated src=- shape=956105ac vocab=d0f18e9d
+-/
 theorem densityOf_isHermitian (v : Fin r → ℂ) (hv : ∑ k, Complex.normSq (v k) ≤ 1) :
     (densityOf v).IsHermitian :=
   (densityOf_posSemidef v hv).isHermitian
 
+/--
+@isnad1 id=eq.0h2v.s5.e8a2558f52b9 from=translated src=- shape=d3f80a28 vocab=30785de8
+-/
 theorem densityOf_trace_one (v : Fin r → ℂ) : (densityOf v).trace = 1 := by
   rw [densityOf, Matrix.trace_smul, Matrix.trace_add, Matrix.trace_one, offDiagEmb_trace_zero,
     add_zero, Fintype.card_sum, Fintype.card_fin, Fintype.card_fin, Complex.real_smul,
@@ -139,7 +162,9 @@ theorem densityOf_trace_one (v : Fin r → ℂ) : (densityOf v).trace = 1 := by
 
 /-- **EQK trace identity:** the embedding quantum kernel of two feature vectors is a positive
 affine image of `Re⟨v,w⟩` (here in the raw form `c²·(D + 2·Re⟨v,w⟩)`,
-`c = 1/D`, `D = r+1`). -/
+`c = 1/D`, `D = r+1`).
+@isnad1 id=eq.0h3v.s8.e42ebe71c6fa from=translated src=- shape=0512c1d5 vocab=7e61a128
+-/
 theorem densityOf_mul_trace (v w : Fin r → ℂ) :
     (densityOf v * densityOf w).trace
       = ((((r : ℝ) + 1)⁻¹ : ℂ)) ^ 2
@@ -160,7 +185,9 @@ theorem densityOf_mul_trace (v w : Fin r → ℂ) :
 /-- **Approximate universality (finite, positive-affine form), Gil-Fuster 2023 Thm 1.** Any
 normalized feature map `φ` is realized by a family of genuine density matrices whose embedding
 quantum kernel equals `c²·(D + 2·Re⟨φ_i,φ_j⟩)` — a positive affine image of the
-feature kernel `Re⟨φ_i,φ_j⟩` (exact for real feature maps). -/
+feature kernel `Re⟨φ_i,φ_j⟩` (exact for real feature maps).
+@isnad1 id=and.1h3v.s8.60a5d18109a1 from=translated src=- shape=44b0410b vocab=4a455ec3
+-/
 theorem eqk_realizes {ι : Type*} (φ : ι → (Fin r → ℂ))
     (hφ : ∀ i, ∑ k, Complex.normSq (φ i k) ≤ 1) :
     (∀ i, (densityOf (φ i)).IsHermitian ∧ (densityOf (φ i)).trace = 1
@@ -174,7 +201,9 @@ theorem eqk_realizes {ι : Type*} (φ : ι → (Fin r → ℂ))
     fun _ _ => densityOf_mul_trace _ _⟩
 
 /-- Non-vacuity: a concrete two-input feature map gives valid density matrices realizing a
-non-constant embedding quantum kernel. -/
+non-constant embedding quantum kernel.
+@isnad1 id=ex.0h0v.s8.8852745869e0 from=translated src=- shape=be8baf53 vocab=5886d461
+-/
 theorem eqk_nonempty :
     ∃ (r : ℕ) (φ : Fin 2 → (Fin r → ℂ)),
       (∀ i, (densityOf (φ i)).PosSemidef ∧ (densityOf (φ i)).trace = 1)

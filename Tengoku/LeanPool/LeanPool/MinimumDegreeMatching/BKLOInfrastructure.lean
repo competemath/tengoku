@@ -27,6 +27,9 @@ all unordered pairs of distinct vertices of `t`.  For a 3-set this is the triang
 def cliqueEdges (t : Finset V) : Finset (Sym2 V) :=
   (t.sym2).filter (fun e => ¬ e.IsDiag)
 
+/--
+@isnad1 id=iff.0h3v.s6.568580926abb from=translated src=- shape=f1f550f3 vocab=ec2baffb
+-/
 theorem mem_cliqueEdgesV {t : Finset V} {e : Sym2 V} :
     e ∈ cliqueEdges t ↔ (∀ x ∈ e, x ∈ t) ∧ ¬ e.IsDiag := by
   simp [cliqueEdges, Finset.mem_sym2_iff]
@@ -41,10 +44,16 @@ def nbhdIn (E : Finset (Sym2 V)) (x : V) (S : Finset V) : Finset V :=
 /-- `d_E(x, S) = |N_E(x, S)|`. -/
 def degTo (E : Finset (Sym2 V)) (x : V) (S : Finset V) : ℕ := (nbhdIn E x S).card
 
+/--
+@isnad1 id=iff.0h5v.s6.7f32d2cd0c74 from=translated src=- shape=8480af9b vocab=cda7029c
+-/
 theorem mem_nbhdIn {E : Finset (Sym2 V)} {x y : V} {S : Finset V} :
     y ∈ nbhdIn E x S ↔ y ∈ S ∧ s(x, y) ∈ E := by
   simp [nbhdIn]
 
+/--
+@isnad1 id=le.0h4v.s5.a269602ed467 from=translated src=- shape=c6568a9f vocab=859e266f
+-/
 theorem nbhdIn_subset (E : Finset (Sym2 V)) (x : V) (S : Finset V) : nbhdIn E x S ⊆ S :=
   Finset.filter_subset _ _
 
@@ -64,18 +73,30 @@ def insideParts (E : Finset (Sym2 V)) (P : Finset (Finset V)) : Finset (Sym2 V) 
 def crossParts (E : Finset (Sym2 V)) (P : Finset (Finset V)) : Finset (Sym2 V) :=
   E.filter (fun e => ¬ ∃ W ∈ P, e ∈ W.sym2)
 
+/--
+@isnad1 id=iff.0h4v.s6.2a8b40247c36 from=translated src=- shape=eee9674a vocab=7959f699
+-/
 theorem mem_edgesIn {E : Finset (Sym2 V)} {S : Finset V} {e : Sym2 V} :
     e ∈ edgesIn E S ↔ e ∈ E ∧ ∀ v ∈ e, v ∈ S := by
   simp [edgesIn, Finset.mem_sym2_iff]
 
+/--
+@isnad1 id=iff.0h4v.s6.b02209a686e5 from=translated src=- shape=f697ec32 vocab=9e789654
+-/
 theorem mem_insideParts {E : Finset (Sym2 V)} {P : Finset (Finset V)} {e : Sym2 V} :
     e ∈ insideParts E P ↔ e ∈ E ∧ ∃ W ∈ P, ∀ v ∈ e, v ∈ W := by
   simp [insideParts, Finset.mem_sym2_iff]
 
+/--
+@isnad1 id=iff.0h4v.s6.788bbac4360a from=translated src=- shape=ccab8951 vocab=a38da1e9
+-/
 theorem mem_crossParts {E : Finset (Sym2 V)} {P : Finset (Finset V)} {e : Sym2 V} :
     e ∈ crossParts E P ↔ e ∈ E ∧ ¬ ∃ W ∈ P, ∀ v ∈ e, v ∈ W := by
   simp [crossParts, Finset.mem_sym2_iff]
 
+/--
+@isnad1 id=le.0h3v.s5.af2f19ef5944 from=translated src=- shape=a828a9f3 vocab=98a3254c
+-/
 theorem edgesIn_subset (E : Finset (Sym2 V)) (S : Finset V) : edgesIn E S ⊆ E :=
   Finset.filter_subset _ _
 
@@ -97,7 +118,9 @@ structure IsMatchingAvoiding (M : Finset (Finset V)) (x : V) : Prop where
 def involutionMatching (S : Finset V) (f : V → V) : Finset (Finset V) :=
   S.image (fun a => {a, f a})
 
-/-- **A fixed-point-free involution on `S` gives a matching of `S`, avoiding any `x ∉ S`.** -/
+/-- **A fixed-point-free involution on `S` gives a matching of `S`, avoiding any `x ∉ S`.**
+@isnad1 id=ismatchi.4h4v.s6.d84da0a64d28 from=translated src=- shape=d88c384a vocab=83828d6a
+-/
 theorem isMatchingAvoiding_involutionMatching {S : Finset V} {f : V → V} {x : V}
     (hmap : ∀ a ∈ S, f a ∈ S) (hinv : ∀ a ∈ S, f (f a) = a) (hne : ∀ a ∈ S, f a ≠ a)
     (hx : x ∉ S) : IsMatchingAvoiding (involutionMatching S f) x := by
@@ -133,14 +156,18 @@ theorem isMatchingAvoiding_involutionMatching {S : Finset V} {f : V → V} {x : 
     push Not
     exact ⟨fun h => hx (h ▸ ha), fun h => hx (h ▸ hmap a ha)⟩
 
-/-- Every edge of `H` inside `S` is a clique edge of `S`, provided `H` is loopless. -/
+/-- Every edge of `H` inside `S` is a clique edge of `S`, provided `H` is loopless.
+@isnad1 id=le.1h3v.s5.9c84a02d6e2a from=translated src=- shape=a59099fd vocab=fd5dce87
+-/
 theorem edgesIn_subset_cliqueEdges_loopless {H : Finset (Sym2 V)} (hloop : ∀ e ∈ H, ¬ e.IsDiag)
     (S : Finset V) : edgesIn H S ⊆ cliqueEdges S := by
   intro e he
   rw [mem_edgesIn] at he
   exact mem_cliqueEdgesV.2 ⟨he.2, hloop e he.1⟩
 
-/-- The degree of `y ∈ S` into `S` is at most its edge degree in `H[S]`. -/
+/-- The degree of `y ∈ S` into `S` is at most its edge degree in `H[S]`.
+@isnad1 id=le.1h4v.s5.b29dfa595a81 from=translated src=- shape=3849f567 vocab=72f55ef0
+-/
 theorem degTo_le_edeg_edgesIn {H : Finset (Sym2 V)} {S : Finset V} {y : V} (hy : y ∈ S) :
     degTo H y S ≤ edeg (edgesIn H S) y := by
   classical
@@ -166,7 +193,9 @@ theorem degTo_le_edeg_edgesIn {H : Finset (Sym2 V)} {S : Finset V} {y : V} (hy :
 
 /-- On a loopless edge set supported on `N`, counting neighbours of `v` is the same as counting
 incident edges. This is the bridge from the BKLO finite-edge vocabulary to the generic spread
-matching interface. -/
+matching interface.
+@isnad1 id=eq.1h4v.s6.99884ab272b0 from=translated src=- shape=f03fcda3 vocab=103593da
+-/
 theorem card_edgeNeighbors_eq_edeg {A : Finset (Sym2 V)} {N : Finset V}
     (hAsub : A ⊆ cliqueEdges N) (v : V) :
     ((N.filter fun z => s(v, z) ∈ A).erase v).card = edeg A v := by
@@ -207,6 +236,9 @@ structure GoodMatching (H : Finset (Sym2 V)) (W : Finset V) (x : V) (M : Finset 
   covers : ∀ a ∈ nbhdIn H x W, ∃ e ∈ M, a ∈ e
   edges : ∀ e ∈ M, cliqueEdges e ⊆ edgesIn H (nbhdIn H x W)
 
+/--
+@isnad1 id=le.0h4v.s5.6d356acc8af9 from=translated src=- shape=5246fbca vocab=b25a758a
+-/
 theorem edeg_le_edeg_sdiff_add_edeg (E F : Finset (Sym2 V)) (v : V) :
     edeg E v ≤ edeg (E \ F) v + edeg F v := by
   classical
@@ -224,7 +256,9 @@ theorem edeg_le_edeg_sdiff_add_edeg (E F : Finset (Sym2 V)) (v : V) :
 /-- **The slack absorbs the used edges.**  If every vertex has degree `≥ h + d` in `E`
 (the `h + d` of Lemma 10.3(ii), `h = |N|/2`, `d` the slack) and the used set `D` has
 degree `≤ d` at `v`, then the unused part `E \ D` still has degree `≥ h` at `v` — the
-hypothesis Dirac needs. -/
+hypothesis Dirac needs.
+@isnad1 id=le.2h6v.s6.608284b5b247 from=translated src=- shape=4550d37f vocab=b25a758a
+-/
 theorem edeg_sdiff_ge_of_slack {E D : Finset (Sym2 V)} {v : V} {h d : ℕ}
     (hE : h + d ≤ edeg E v) (hD : edeg D v ≤ d) : h ≤ edeg (E \ D) v := by
   have hle := edeg_le_edeg_sdiff_add_edeg E D v
@@ -232,7 +266,9 @@ theorem edeg_sdiff_ge_of_slack {E D : Finset (Sym2 V)} {v : V} {h d : ℕ}
 
 /-! ### Matchings from involutions -/
 
-/-- The edges of the matching induced by a partner function are among the orbit edges. -/
+/-- The edges of the matching induced by a partner function are among the orbit edges.
+@isnad1 id=le.0h3v.s5.9199726e4f16 from=translated src=- shape=d6c9f207 vocab=3bdb35d4
+-/
 theorem famEdges_involutionMatching_subset (N : Finset V) (f : V → V) :
     famEdges (involutionMatching N f) ⊆ N.image (fun a => s(a, f a)) := by
   classical
@@ -258,7 +294,9 @@ theorem famEdges_involutionMatching_subset (N : Finset V) (f : V → V) :
       · exact absurd rfl hnd
 
 /-- **A partner involution gives all the data of a `GoodMatching`.**  This is the second half of
-`BKLO.exists_perfect_matching_in`, with the involution supplied from outside. -/
+`BKLO.exists_perfect_matching_in`, with the involution supplied from outside.
+@isnad1 id=and.5h5v.s8.b55c0e420637 from=translated src=- shape=53ef5ba6 vocab=500ff16e
+-/
 theorem matching_data_of_involution {N : Finset V} {x : V} (hx : x ∉ N) {A : Finset (Sym2 V)}
     {f : V → V} (hmap : ∀ a ∈ N, f a ∈ N) (hinv : ∀ a ∈ N, f (f a) = a) (hfne : ∀ a ∈ N, f a ≠ a)
     (hadj : ∀ a ∈ N, s(a, f a) ∈ A) :

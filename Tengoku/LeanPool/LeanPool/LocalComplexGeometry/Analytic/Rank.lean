@@ -28,7 +28,9 @@ def complexRank {n m : ℕ}
     (A : ComplexEuclidean n →L[ℂ] ComplexEuclidean m) : ℕ :=
   Module.finrank ℂ (LinearMap.range A.toLinearMap)
 
-/-- Complex rank is bounded by the dimension of the source. -/
+/-- Complex rank is bounded by the dimension of the source.
+@isnad1 id=le.0h3v.s6.84c3d225cc59 from=translated src=- shape=f9b5bb4c vocab=6b3f40fd
+-/
 theorem complexRank_le_source {n m : ℕ}
     (A : ComplexEuclidean n →L[ℂ] ComplexEuclidean m) :
     complexRank A ≤ n := by
@@ -36,7 +38,9 @@ theorem complexRank_le_source {n m : ℕ}
   simpa only [Module.finrank_fin_fun] using
     (LinearMap.finrank_range_le A.toLinearMap)
 
-/-- Complex rank is bounded by the dimension of the target. -/
+/-- Complex rank is bounded by the dimension of the target.
+@isnad1 id=le.0h3v.s6.7084e435e7b9 from=translated src=- shape=2e2c8ae3 vocab=6b3f40fd
+-/
 theorem complexRank_le_target {n m : ℕ}
     (A : ComplexEuclidean n →L[ℂ] ComplexEuclidean m) :
     complexRank A ≤ m := by
@@ -58,6 +62,9 @@ def standardRankMap (n m r : ℕ) :
     ComplexEuclidean n → ComplexEuclidean m :=
   standardRankContinuousLinearMap n m r
 
+/--
+@isnad1 id=eq.0h5v.s8.e75eb269c670 from=translated src=- shape=cdd8101b vocab=ea4b54bb
+-/
 @[simp]
 theorem standardRankContinuousLinearMap_apply (n m r : ℕ)
     (x : ComplexEuclidean n) (j : Fin m) :
@@ -66,6 +73,9 @@ theorem standardRankContinuousLinearMap_apply (n m r : ℕ)
   simp only [standardRankContinuousLinearMap, ContinuousLinearMap.pi_apply]
   split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.8ca38fa2681e from=translated src=- shape=e591de04 vocab=c43e4a2f
+-/
 @[simp]
 theorem standardRankMap_apply (n m r : ℕ)
     (x : ComplexEuclidean n) (j : Fin m) :
@@ -79,6 +89,9 @@ def takeFirstContinuousLinearMap {n r : ℕ} (hrn : r ≤ n) :
   ContinuousLinearMap.pi fun j ↦
     ContinuousLinearMap.proj (R := ℂ) (i := Fin.castLE hrn j)
 
+/--
+@isnad1 id=eq.1h4v.s7.248732405aa3 from=translated src=- shape=776c55a8 vocab=e271821b
+-/
 @[simp]
 theorem takeFirstContinuousLinearMap_apply {n r : ℕ} (hrn : r ≤ n)
     (x : ComplexEuclidean n) (j : Fin r) :
@@ -93,6 +106,9 @@ def includeFirstContinuousLinearMap (m r : ℕ) :
       ContinuousLinearMap.proj (R := ℂ) (i := ⟨j.1, h⟩)
     else 0
 
+/--
+@isnad1 id=eq.0h4v.s8.d463b7f6bcce from=translated src=- shape=9262feb9 vocab=398d3e74
+-/
 @[simp]
 theorem includeFirstContinuousLinearMap_apply (m r : ℕ)
     (x : ComplexEuclidean r) (j : Fin m) :
@@ -101,7 +117,9 @@ theorem includeFirstContinuousLinearMap_apply (m r : ℕ)
   simp only [includeFirstContinuousLinearMap, ContinuousLinearMap.pi_apply]
   split_ifs <;> rfl
 
-/-- Restriction to the first `r` coordinates is onto when `r ≤ n`. -/
+/-- Restriction to the first `r` coordinates is onto when `r ≤ n`.
+@isnad1 id=surjecti.1h2v.s7.7e46281cebd2 from=translated src=- shape=b0f1c421 vocab=6ff221f6
+-/
 theorem takeFirstContinuousLinearMap_surjective {n r : ℕ} (hrn : r ≤ n) :
     Function.Surjective (takeFirstContinuousLinearMap hrn) := by
   intro y
@@ -111,7 +129,9 @@ theorem takeFirstContinuousLinearMap_surjective {n r : ℕ} (hrn : r ≤ n) :
   funext j
   simp [x, takeFirstContinuousLinearMap_apply]
 
-/-- Zero-extension of the first `r` coordinates is injective when `r ≤ m`. -/
+/-- Zero-extension of the first `r` coordinates is injective when `r ≤ m`.
+@isnad1 id=injectiv.1h2v.s7.a8117380028c from=translated src=- shape=5b993faa vocab=89fd3334
+-/
 theorem includeFirstContinuousLinearMap_injective {m r : ℕ} (hrm : r ≤ m) :
     Function.Injective (includeFirstContinuousLinearMap m r) := by
   intro x y hxy
@@ -120,7 +140,9 @@ theorem includeFirstContinuousLinearMap_injective {m r : ℕ} (hrm : r ≤ m) :
   simpa using h
 
 /-- Under `r ≤ n`, the standard map factors as restriction to `ℂʳ`
-followed by zero-extension. -/
+followed by zero-extension.
+@isnad1 id=eq.1h3v.s8.2554d2bc59ff from=translated src=- shape=cc1265a5 vocab=dd55178a
+-/
 theorem standardRankContinuousLinearMap_eq_comp {n m r : ℕ} (hrn : r ≤ n) :
     standardRankContinuousLinearMap n m r =
       (includeFirstContinuousLinearMap m r).comp
@@ -135,7 +157,9 @@ theorem standardRankContinuousLinearMap_eq_comp {n m r : ℕ} (hrn : r ≤ n) :
       includeFirstContinuousLinearMap_apply, hj]
 
 /-- The standard coordinate map has complex rank `r` whenever `r` fits in
-both source and target.  This includes the zero-dimensional cases. -/
+both source and target.  This includes the zero-dimensional cases.
+@isnad1 id=eq.2h3v.s4.0a82ac2fb836 from=translated src=- shape=7f4b68ee vocab=d212232a
+-/
 theorem complexRank_standardRankContinuousLinearMap {n m r : ℕ}
     (hrn : r ≤ n) (hrm : r ≤ m) :
     complexRank (standardRankContinuousLinearMap n m r) = r := by
@@ -149,7 +173,9 @@ theorem complexRank_standardRankContinuousLinearMap {n m r : ℕ}
   exact Module.finrank_fin_fun ℂ
 
 /-- The Fréchet derivative of the standard coordinate map is the standard
-continuous linear map itself. -/
+continuous linear map itself.
+@isnad1 id=eq.0h4v.s8.f55655d471ee from=translated src=- shape=16b4dbf9 vocab=bf323b34
+-/
 @[simp]
 theorem fderiv_standardRankMap (n m r : ℕ) (x : ComplexEuclidean n) :
     fderiv ℂ (standardRankMap n m r) x =
@@ -157,7 +183,9 @@ theorem fderiv_standardRankMap (n m r : ℕ) (x : ComplexEuclidean n) :
   simpa only [standardRankMap] using
     (standardRankContinuousLinearMap n m r).fderiv
 
-/-- Pointwise formulation of the exact-rank calculation. -/
+/-- Pointwise formulation of the exact-rank calculation.
+@isnad1 id=eq.2h4v.s7.7ff44b8fd886 from=translated src=- shape=62512daa vocab=a1c76c74
+-/
 theorem complexRank_fderiv_standardRankMap {n m r : ℕ}
     (hrn : r ≤ n) (hrm : r ≤ m) (x : ComplexEuclidean n) :
     complexRank (fderiv ℂ (standardRankMap n m r) x) = r := by

@@ -58,6 +58,9 @@ noncomputable section
 variable {n : ℕ} {f g : BooleanFunc n} {x y : Fin n → Fin 2} {i : Fin n}
 variable {S S' : Finset (Fin n)}
 
+/--
+@isnad1 id=eq.0h2v.s7.7fa410b9bb13 from=translated src=- shape=4974d6d9 vocab=87d30e84
+-/
 lemma add_self_eq_zero (a : Fin n → Fin 2) : a + a = 0 := by
   funext i
   change a i + a i = (0 : Fin 2)
@@ -65,7 +68,9 @@ lemma add_self_eq_zero (a : Fin n → Fin 2) : a + a = 0 := by
   · rw [h]; rfl
   · rw [h]; rfl
 
-/-- Translation invariance -/
+/-- Translation invariance
+@isnad1 id=eq.0h3v.s7.11f98ed4149c from=translated src=- shape=5a519225 vocab=71c616ab
+-/
 lemma sum_translate (a : Fin n → Fin 2) : ∑ x, f x = ∑ x, f (x + a) := by
   apply sum_bijective (fun x ↦ x + a)
   · constructor
@@ -101,13 +106,24 @@ abbrev walshCharacter (S : Finset (Fin n)) : BooleanFunc n := fun x ↦ ∏ i �
 /-- Walsh character -/
 scoped notation "χ" => walshCharacter
 
+/--
+@isnad1 id=eq.0h3v.s5.288081ccd5e4 from=translated src=- shape=0c8c5a1d vocab=358f5e37
+-/
 lemma walsh_def : χ S x = ∏ i ∈ S, (-1) ^ (x i).val := by rfl
 
+/--
+@isnad1 id=ne.0h3v.s4.ede3ee580c54 from=translated src=- shape=df37e802 vocab=a4c2d0c6
+-/
 lemma walsh_ne_zero : χ S x ≠ 0 := by apply prod_ne_zero_iff.mpr; intro i _; simp
 
+/--
+@isnad1 id=eq.0h3v.s5.696b4e242550 from=translated src=- shape=179e3a01 vocab=9180a466
+-/
 lemma walsh_eq_neg_one_pow_sum : χ S x = (-1) ^ ∑ i ∈ S, (x i).val := prod_pow_eq_pow_sum _ _ _
 
-/-- Walsh characters are characters. -/
+/-- Walsh characters are characters.
+@isnad1 id=eq.0h4v.s6.0fa1487906fd from=translated src=- shape=ddcff6e3 vocab=264fd998
+-/
 lemma walsh_add : χ S (x + y) = (χ S x) * (χ S y) := by
   rw [← prod_mul_distrib, prod_congr (by rfl)]
   have (v : Fin 2) : v = 0 ∨ v = 1 := by omega
@@ -137,6 +153,9 @@ def fourierTransform : BooleanFunc n →ₗ[ℝ] BooleanFunc' n where
 /-- Walsh-Fourier transform on Boolean functions -/
 scoped notation "𝓕" => fourierTransform
 
+/--
+@isnad1 id=eq.0h2v.s8.173803e3dffb from=translated src=- shape=9eac9bd8 vocab=b0f1a4e0
+-/
 theorem expectation_eq_fourier : 𝐄 f = 𝓕 f ∅ := by
   unfold fourierTransform
   unfold walshCharacter
@@ -144,6 +163,9 @@ theorem expectation_eq_fourier : 𝐄 f = 𝓕 f ∅ := by
   simp only [one_div, inv_pow, LinearMap.coe_mk,
       AddHom.coe_mk, Pi.mul_apply, prod_empty, one_mul]
 
+/--
+@isnad1 id=le.0h2v.s7.d423bf6c171d from=translated src=- shape=bd92c55e vocab=ab572469
+-/
 theorem expectation_prod_self_nonneg : 0 ≤ 𝐄 (f * f) := by
   apply mul_nonneg
   · norm_num
@@ -188,6 +210,9 @@ instance (priority := 10000) instNormReal : Norm (BooleanFunc n) :=
 instance (priority := 10000) instInnerProductSpaceReal : InnerProductSpace ℝ (BooleanFunc n) :=
   InnerProductSpace.ofCore (inferInstance : PreInnerProductSpace.Core ℝ (BooleanFunc n))
 
+/--
+@isnad1 id=eq.0h2v.s6.298e26e85d4b from=translated src=- shape=e7afc22e vocab=8673c388
+-/
 @[simp]
 lemma walsh_sq_eq_one : (χ S) ^ 2 = 1 := by
   funext x
@@ -197,13 +222,21 @@ lemma walsh_sq_eq_one : (χ S) ^ 2 = 1 := by
   ring_nf
   simp
 
+/--
+@isnad1 id=eq.0h1v.s7.4fedbf757bce from=translated src=- shape=62199572 vocab=91f9d59c
+-/
 @[simp]
 lemma expectation_one : @expectation n 1 = 1 := by simp [expectation]
 
+/--
+@isnad1 id=eq.0h2v.s5.a28011e139e6 from=translated src=- shape=a4d50db4 vocab=0260315b
+-/
 lemma norm_sq_eq_inner : ‖f‖ ^ 2 = ⟪f, f⟫ := by
   rw [← RCLike.re_to_real (x := ⟪f, f⟫), ← InnerProductSpace.norm_sq_eq_re_inner]
 
-/-- Walsh characters are L² normalized. -/
+/-- Walsh characters are L² normalized.
+@isnad1 id=eq.0h2v.s4.68a14ae226f2 from=translated src=- shape=27e64279 vocab=4c8e3369
+-/
 @[simp]
 theorem walsh_norm_one (S : Finset (Fin n)) : ‖χ S‖ = 1 := by
   simp only [norm_eq_sqrt_real_inner, sqrt_eq_one]
@@ -211,9 +244,15 @@ theorem walsh_norm_one (S : Finset (Fin n)) : ‖χ S‖ = 1 := by
   rw [← pow_two, walsh_sq_eq_one]
   simp
 
+/--
+@isnad1 id=eq.0h2v.s5.5a02f627e9d5 from=translated src=- shape=141e0f2a vocab=4ce81f6c
+-/
 theorem walsh_inner_self_eq_one : ⟪χ S, χ S⟫ = 1 := by
   rw [← norm_sq_eq_inner, walsh_norm_one, one_pow]
 
+/--
+@isnad1 id=eq.0h3v.s6.284a4f91b683 from=translated src=- shape=6b8b0f19 vocab=4747fa48
+-/
 theorem walsh_mul_eq : χ S * χ S' = χ (symmDiff S S') := by
   funext x
   unfold walshCharacter
@@ -231,40 +270,58 @@ theorem walsh_mul_eq : χ S * χ S' = χ (symmDiff S S') := by
     intro _ ha _ _ _ _ h
     simp_all
 
+/--
+@isnad1 id=eq.0h3v.s7.6f167ae02a75 from=translated src=- shape=62475393 vocab=8e117c3e
+-/
 lemma inner_eq_expectation : ⟪f, g⟫ = 𝐄 (f * g) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.1851d6592b04 from=translated src=- shape=b6a21cfe vocab=59f760b9
+-/
 lemma fourier_eq_inner : 𝓕 f S = ⟪χ S, f⟫ := rfl
 
 /-- Flip the `i₀`th bit of `x`. -/
 def flipAt (i₀ : Fin n) (x : Fin n → Fin 2) : Fin n → Fin 2 :=
   fun i ↦ if i = i₀ then 1 - x i else x i
 
-/-- The `i₀`th bit of `x` is flipped. -/
+/-- The `i₀`th bit of `x` is flipped.
+@isnad1 id=eq.0h3v.s6.400d064b2638 from=translated src=- shape=4865f905 vocab=efde0bed
+-/
 @[simp]
 lemma flipAt_flipped {i₀ : Fin n} {x : Fin n → Fin 2} : flipAt i₀ x i₀ = 1 - x i₀ := by
   unfold flipAt
   split_ifs <;> tauto
 
-/-- Bits that are not the `i₀`th bits remain unchanged. -/
+/-- Bits that are not the `i₀`th bits remain unchanged.
+@isnad1 id=eq.1h4v.s5.fce9cf6d714b from=translated src=- shape=92d0a46e vocab=818850ff
+-/
 lemma flipAt_unflipped {i i₀ : Fin n} {x : Fin n → Fin 2} (h : i ≠ i₀) : flipAt i₀ x i = x i := by
   unfold flipAt
   split_ifs <;> tauto
 
-/-- Flipping a bit twice results in no change. -/
+/-- Flipping a bit twice results in no change.
+@isnad1 id=eq.0h3v.s5.f245e24e179c from=translated src=- shape=05ec034e vocab=818850ff
+-/
 @[simp]
 lemma flipAt_flipAt_eq {i₀ : Fin n} {x : Fin n → Fin 2} : flipAt i₀ (flipAt i₀ x) = x := by
   unfold flipAt
   funext i
   simp_all
 
-/-- Flipping a bit is an involution on `Fin n → Fin 2`. -/
+/-- Flipping a bit is an involution on `Fin n → Fin 2`.
+@isnad1 id=involuti.0h2v.s4.7445f6b4a9d6 from=translated src=- shape=745d7404 vocab=f277c607
+-/
 theorem flipAt_involutive {i₀ : Fin n} : Function.Involutive (flipAt i₀) := fun _ ↦ flipAt_flipAt_eq
 
-/-- Flipping a bit is a bijection on `Fin n → Fin 2`. -/
+/-- Flipping a bit is a bijection on `Fin n → Fin 2`.
+@isnad1 id=bijectiv.0h2v.s4.57dcc50d2586 from=translated src=- shape=8b14cc6e vocab=930179d6
+-/
 theorem flipAt_bijective {i₀ : Fin n} : Function.Bijective (flipAt i₀) :=
     Function.Involutive.bijective (flipAt_involutive)
 
-/-- Expectation of `χ S` is zero if `S` is nonempty -/
+/-- Expectation of `χ S` is zero if `S` is nonempty
+@isnad1 id=eq.1h2v.s7.7ce7f0769776 from=translated src=- shape=1a75175f vocab=d0ee2f36
+-/
 @[simp]
 theorem expectation_walsh_eq_zero (hS : S.Nonempty) : 𝐄 (χ S) = 0 := by
   change (1 / 2) ^ n * ∑ x, χ S x = 0
@@ -290,17 +347,26 @@ theorem expectation_walsh_eq_zero (hS : S.Nonempty) : 𝐄 (χ S) = 0 := by
   simp_rw [hneg, Finset.sum_neg_distrib] at h_sum
   linarith
 
+/--
+@isnad1 id=eq.1h3v.s5.bdee5e883596 from=translated src=- shape=fddff62a vocab=4ce81f6c
+-/
 theorem walsh_orthogonal {S S' : Finset (Fin n)} (h : S ≠ S') : ⟪χ S, χ S'⟫ = 0 := by
   change 𝐄 _ = 0
   rw [walsh_mul_eq]
   simp_all
 
+/--
+@isnad1 id=eq.0h3v.s5.a765b401e7e2 from=translated src=- shape=5e51a079 vocab=61ff59e8
+-/
 theorem walsh_inner_eq : ⟪χ S, χ S'⟫ = oneOn (S = S') := by
   unfold oneOn
   split_ifs with h
   · rw [← h]; exact walsh_inner_self_eq_one
   · exact walsh_orthogonal h
 
+/--
+@isnad1 id=orthonor.0h1v.s4.e0b72dc878bb from=translated src=- shape=0b62bb8d vocab=f9c6e803
+-/
 theorem walsh_orthonormal : Orthonormal (ι := Finset (Fin n)) ℝ χ :=
   ⟨walsh_norm_one, @walsh_orthogonal _⟩
 
@@ -314,13 +380,20 @@ abbrev walshOrthonormalBasis : OrthonormalBasis (ι := Finset (Fin n)) ℝ (Bool
     (by simp [walsh_orthonormal])
 
 /-- Walsh-Fourier expansion : Every Boolean function is equal to a linear combination of Walsh
-characters. -/
+characters.
+@isnad1 id=eq.0h2v.s8.83e35d139a70 from=translated src=- shape=f526df92 vocab=f216a0c1
+-/
 theorem walsh_fourier (f : BooleanFunc n) : f = ∑ S : Finset (Fin n), (𝓕 f S) • χ S := by
   convert (OrthonormalBasis.sum_repr' walshOrthonormalBasis f).symm <;> simp; rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.0973ddc87772 from=translated src=- shape=d27f14f7 vocab=10a92604
+-/
 lemma fourier_walsh : 𝓕 (χ S) S' = oneOn (S' = S) := walsh_inner_eq
 
-/-- Plancherel/Parseval theorem for Boolean functions. -/
+/-- Plancherel/Parseval theorem for Boolean functions.
+@isnad1 id=eq.0h3v.s8.83b46904e75b from=translated src=- shape=cb7c26dc vocab=eff7fcac
+-/
 theorem inner_eq_sum_fourier : ⟪f, g⟫ = ∑ S : Finset (Fin n), (𝓕 f S) * (𝓕 g S) := by
   conv_lhs => rw [walsh_fourier f, walsh_fourier g]
   rw [sum_inner]
@@ -329,7 +402,9 @@ theorem inner_eq_sum_fourier : ⟪f, g⟫ = ∑ S : Finset (Fin n), (𝓕 f S) *
   simp_rw [inner_smul_right, walsh_inner_eq]
   simp_all
 
-/-- Plancherel/Parseval theorem for Boolean functions. -/
+/-- Plancherel/Parseval theorem for Boolean functions.
+@isnad1 id=eq.0h2v.s8.cb8c4736908c from=translated src=- shape=785a617a vocab=c9709f26
+-/
 theorem walsh_plancherel : ‖f‖^2 = ∑ S : Finset (Fin n), |𝓕 f S|^2 := by
   simp_rw [norm_sq_eq_inner, inner_eq_sum_fourier (f := f) (g := f), sq_abs, pow_two]
 
@@ -337,12 +412,16 @@ theorem walsh_plancherel : ‖f‖^2 = ∑ S : Finset (Fin n), |𝓕 f S|^2 := b
 abbrev setAt (i₀ : Fin n) (v : Fin 2) (x : Fin n → Fin 2) : Fin n → Fin 2 :=
   fun i ↦ if i = i₀ then v else x i
 
-/-- The `i₀`th bit of `setAt i₀ v x` has value `v`. -/
+/-- The `i₀`th bit of `setAt i₀ v x` has value `v`.
+@isnad1 id=eq.0h4v.s5.9a537d0b3963 from=translated src=- shape=47b04667 vocab=478e8311
+-/
 @[simp]
 lemma setAt_it (i₀ : Fin n) (v : Fin 2) (x : Fin n → Fin 2) : setAt i₀ v x i₀ = v := by
   unfold setAt; split_ifs <;> tauto
 
-/-- Bits other than the `i₀`th bit are unaffected by `setAt`. -/
+/-- Bits other than the `i₀`th bit are unaffected by `setAt`.
+@isnad1 id=eq.1h5v.s5.aed334287878 from=translated src=- shape=27c604b5 vocab=478e8311
+-/
 lemma setAt_other (i₀ : Fin n) (v : Fin 2) (x : Fin n → Fin 2) (i : Fin n) (h : i₀ ≠ i) :
     setAt i₀ v x i = x i := by
   unfold setAt; split_ifs <;> tauto
@@ -354,6 +433,9 @@ def dderiv (i : Fin n) : BooleanFunc n →ₗ[ℝ] BooleanFunc n where
   map_add' := by intros; funext; simp only [Pi.add_apply]; ring
   map_smul' := by intros; funext; dsimp; ring
 
+/--
+@isnad1 id=eq.0h5v.s6.7c4d027973fb from=translated src=- shape=f2fa2057 vocab=112e0a5c
+-/
 lemma walsh_setAt_eq_ite {v : Fin 2} :
     χ S (setAt i v x) = ite (i ∈ S) ((-1) ^ v.val * χ (S \ {i}) x) (χ S x) := by
   unfold walshCharacter
@@ -366,6 +448,9 @@ lemma walsh_setAt_eq_ite {v : Fin 2} :
     by_contra hc
     simp_all
 
+/--
+@isnad1 id=eq.0h3v.s8.99f1a58d19b7 from=translated src=- shape=58e38a52 vocab=593049cb
+-/
 theorem dderiv_walsh (i : Fin n) (S : Finset (Fin n)) :
     dderiv i (χ S) = ite (i ∈ S) (χ (S \ {i})) 0 := by
   funext
@@ -373,6 +458,9 @@ theorem dderiv_walsh (i : Fin n) (S : Finset (Fin n)) :
   repeat rw [walsh_setAt_eq_ite]
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s9.18baf095d4ee from=translated src=- shape=7781d39b vocab=dd8bbf4e
+-/
 theorem dderiv_eq_sum_fourier (i : Fin n) (f : BooleanFunc n) :
     dderiv i f = ∑ S ∈ {S | i ∈ S}, 𝓕 f S • χ (S \ {i}) := by
   nth_rewrite 1 [walsh_fourier f]
@@ -386,10 +474,16 @@ def laplace (i : Fin n) : BooleanFunc n →ₗ[ℝ] BooleanFunc n where
   map_add' := by intros; funext; simp only [Pi.add_apply]; ring
   map_smul' := by intros; funext; dsimp; ring
 
+/--
+@isnad1 id=eq.1h4v.s5.50cca64d5fcb from=translated src=- shape=ecab6290 vocab=478e8311
+-/
 lemma setAt_eq_id {v : Fin 2} (h : x i = v) : setAt i v x = x := by
   funext j
   simp_all
 
+/--
+@isnad1 id=eq.1h4v.s5.930ba321c92a from=translated src=- shape=58abbffe vocab=4f60ef2a
+-/
 lemma setAt_eq_flipAt {v : Fin 2} (h : x i ≠ v) : setAt i v x = flipAt i x := by
   funext j
   unfold setAt flipAt
@@ -397,6 +491,9 @@ lemma setAt_eq_flipAt {v : Fin 2} (h : x i ≠ v) : setAt i v x = flipAt i x := 
   · rw [hj]; omega
   · rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.a0218888a276 from=translated src=- shape=69311038 vocab=358c5071
+-/
 lemma laplace_eq_dderiv (i : Fin n) (f : BooleanFunc n) (x : Fin n → Fin 2) :
     laplace i f x = (-1) ^ (x i).val * (dderiv i f x) := by
   change (f x - _) / 2 = (-1)^_ * ((_ - _) / 2)
@@ -408,6 +505,9 @@ lemma laplace_eq_dderiv (i : Fin n) (f : BooleanFunc n) (x : Fin n → Fin 2) :
     rw [setAt_eq_id hx1, setAt_eq_flipAt hx]
     simp [hx1]; ring
 
+/--
+@isnad1 id=eq.0h3v.s8.3cdcc09a294c from=translated src=- shape=69778177 vocab=a0ead1d3
+-/
 theorem laplace_walsh (i : Fin n) (S : Finset (Fin n)) :
     laplace i (χ S) = ite (i ∈ S) (χ S) 0 := by
   funext x
@@ -417,6 +517,9 @@ theorem laplace_walsh (i : Fin n) (S : Finset (Fin n)) :
     rw [← erase_eq, mul_prod_erase (s := S) (a := i) (f := fun i ↦ (-1 : ℝ) ^ (x i).val) h]
   · simp only [Pi.zero_apply, mul_zero]
 
+/--
+@isnad1 id=eq.0h3v.s9.5353f12bb386 from=translated src=- shape=25735114 vocab=8bfc8887
+-/
 theorem laplace_eq_sum_fourier (i : Fin n) (f : BooleanFunc n) :
     laplace i f = ∑ S ∈ {S | i ∈ S}, 𝓕 f S • χ (S) := by
   nth_rewrite 1 [walsh_fourier f]
@@ -429,6 +532,9 @@ theorem laplace_eq_sum_fourier (i : Fin n) (f : BooleanFunc n) :
 squared. -/
 abbrev influence (f : BooleanFunc n) (i : Fin n) : ℝ := 𝐄 ((laplace i f) ^ 2)
 
+/--
+@isnad1 id=eq.0h3v.s8.9430c63c48d3 from=translated src=- shape=f202f3d1 vocab=d0a6ae18
+-/
 theorem influence_eq_sum_fourier (f : BooleanFunc n) (i : Fin n) :
     influence f i = ∑ S ∈ {S | i ∈ S}, (𝓕 f S) ^ 2 := by
   unfold influence
@@ -450,6 +556,9 @@ theorem influence_eq_sum_fourier (f : BooleanFunc n) (i : Fin n) :
 /-- The total influence of a Boolean function is defined as the sum of the `i`th influences. -/
 abbrev totalInfluence (f : BooleanFunc n) : ℝ := ∑ i, influence f i
 
+/--
+@isnad1 id=eq.0h2v.s7.017ea0f34ea2 from=translated src=- shape=5513e889 vocab=1a0bbba4
+-/
 theorem totalInfluence_eq_sum_fourier (f : BooleanFunc n) :
     totalInfluence f = ∑ S, S.card * (𝓕 f S) ^ 2 := by
   unfold totalInfluence
@@ -465,18 +574,26 @@ abbrev covariance (f g : BooleanFunc n) : ℝ := 𝐄 (f * g) - 𝐄 f * 𝐄 g
 /-- Variance of a Boolean function defined via covariance -/
 abbrev variance (f : BooleanFunc n) : ℝ := covariance f f
 
+/--
+@isnad1 id=eq.0h3v.s8.cf26445795ab from=translated src=- shape=34617d60 vocab=b6b6c847
+-/
 theorem covariance_eq_sum_fourier (f g : BooleanFunc n) :
     covariance f g = ∑ S ∈ {S : Finset (Fin n) | S.Nonempty}, 𝓕 f S * 𝓕 g S := by
   unfold covariance
   rw [← inner_eq_expectation, inner_eq_sum_fourier]
   simp [Finset.nonempty_iff_ne_empty, Finset.filter_ne', expectation_eq_fourier]
 
+/--
+@isnad1 id=eq.0h2v.s7.d0bc85bd384f from=translated src=- shape=34e1dd06 vocab=539bf856
+-/
 theorem variance_eq_sum_fourier (f : BooleanFunc n) :
     variance f = ∑ S ∈ {S : Finset (Fin n) | S.Nonempty}, (𝓕 f S) ^ 2 := by
   convert covariance_eq_sum_fourier f f; exact pow_two _
 
 /-- L² Poincaré inequality : variance of a Boolean function is ≤ total Influence.
-See [odonnell2014], Sec. 2.3. -/
+See [odonnell2014], Sec. 2.3.
+@isnad1 id=le.0h2v.s3.f83ab18d8339 from=translated src=- shape=e65aa338 vocab=7358ea33
+-/
 theorem variance_le_totalInfluence (f : BooleanFunc n) : variance f ≤ totalInfluence f := by
   rw [variance_eq_sum_fourier, totalInfluence_eq_sum_fourier, sum_filter]
   gcongr with S
@@ -493,9 +610,15 @@ abbrev fourierWeight (k : ℕ) (f : BooleanFunc n) : ℝ := ∑ S ∈ {S | S.car
 coordinates -/
 abbrev fourierWeightOne (f : BooleanFunc n) : ℝ := ∑ i, |𝓕 f {i}| ^ 2
 
+/--
+@isnad1 id=eq.0h2v.s4.5b877ae18da6 from=translated src=- shape=9204115f vocab=3e2fa828
+-/
 lemma fourier_weight_one {f : BooleanFunc n} : fourierWeight 1 f = fourierWeightOne f := by
   apply sum_singletons; intro; rfl
 
+/--
+@isnad1 id=iff.0h3v.s7.643551beeae1 from=translated src=- shape=87d77d57 vocab=a18f8238
+-/
 lemma fourier_eq_zero_iff_fourier_weight_eq {k : ℕ} {f : BooleanFunc n} :
     (∀ S, S.card ≠ k → 𝓕 f S = 0) ↔ fourierWeight k f = ‖f‖ ^ 2 := by
   constructor
@@ -568,7 +691,9 @@ def multiplier (m : ℕ → ℝ) : BooleanFunc n →ₗ[ℝ] BooleanFunc n where
     simp only [map_smul, Pi.smul_apply, smul_eq_mul, Finset.sum_apply, RingHom.id_apply, mul_sum]
     congr! 1; ring
 
-/-- Walsh characters are eigenfunctions of multipliers. -/
+/-- Walsh characters are eigenfunctions of multipliers.
+@isnad1 id=eq.0h3v.s8.53efd0b71f56 from=translated src=- shape=da8771e7 vocab=86d712e5
+-/
 lemma multiplier_walsh {m : ℕ → ℝ} {S : Finset (Fin n)} :
     multiplier m (χ S) = (m S.card) • χ S := by
   unfold multiplier
@@ -582,6 +707,9 @@ abbrev noiseOperator (ρ : ℝ) : BooleanFunc n →ₗ[ℝ] BooleanFunc n := mul
 /-- Noise stability -/
 abbrev noiseStability (ρ : ℝ) (f : BooleanFunc n) := ⟪f, noiseOperator ρ f⟫
 
+/--
+@isnad1 id=eq.0h3v.s8.ce1d09dbb812 from=translated src=- shape=83c7bebd vocab=eee480b1
+-/
 lemma noise_stability_eq_sum_fourier {ρ : ℝ} :
     noiseStability ρ f = ∑ S, ρ^(S.card) * |𝓕 f S|^2 := by
   unfold noiseStability
@@ -599,7 +727,9 @@ abbrev convolution (f g : BooleanFunc n) : BooleanFunc n :=
 /-- Discrete convolution of Boolean functions -/
 infixl:67 "⋆" => convolution
 
-/-- Convolution theorem : the Walsh-Fourier transform turns convolution into pointwise product. -/
+/-- Convolution theorem : the Walsh-Fourier transform turns convolution into pointwise product.
+@isnad1 id=eq.0h3v.s9.2f92f98d4014 from=translated src=- shape=98af2a26 vocab=939c9fda
+-/
 lemma fourier_convolution : 𝓕 (f ⋆ g) = (𝓕 f) * (𝓕 g) := by
   funext S
   simp only [fourierTransform, convolution, expectation, LinearMap.coe_mk, AddHom.coe_mk,

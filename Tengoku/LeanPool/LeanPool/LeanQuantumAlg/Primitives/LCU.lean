@@ -65,7 +65,9 @@ private theorem lcuProj_sandwich (V : Gate a) (i : Fin (2 ^ a)) :
   rw [Matrix.mul_apply]
   simp_all
 
-/-- The LCU walk operator expands into a control-block sum. -/
+/-- The LCU walk operator expands into a control-block sum.
+@isnad1 id=eq.0h4v.s8.dfce0d5199f1 from=translated src=- shape=045f5833 vocab=8c1ebeaf
+-/
 theorem lcuWalk_eq_sum (V : Gate a) (U : Fin (2 ^ a) → Gate n) :
     lcuWalk V U
       = ∑ i, HilbertOperator.tensor
@@ -77,7 +79,9 @@ theorem lcuWalk_eq_sum (V : Gate a) (U : Fin (2 ^ a) → Gate n) :
   rw [HilbertOperator.tensor_mul_tensor, HilbertOperator.tensor_mul_tensor]
   simp
 
-/-- **LCU block encoding** [Lin22, hermfunc.tex:531]. -/
+/-- **LCU block encoding** [Lin22, hermfunc.tex:531].
+@isnad1 id=eq.3h7v.s10.3a20c6053f38 from=translated src=- shape=e7ee873b vocab=b625418e
+-/
 theorem LinearCombinationOfUnitaries.main (V : Gate a) (U : Fin (2 ^ a) → Gate n)
     (alpha : Fin (2 ^ a) → ℝ) (halpha : ∀ i, 0 ≤ alpha i) (hlam : 0 < lcuNorm alpha)
     (hV : ∀ i, V i 0 = ((Real.sqrt (alpha i / lcuNorm alpha) : ℝ) : ℂ))

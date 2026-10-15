@@ -64,17 +64,24 @@ def coxeterE8Mat : Matrix (Fin 8) (Fin 8) ℤ :=
       0, 0, 0, 0, 0, 1, -1,  0;
       0, 0, 1, 0, 0, 0,  0, -1]
 
+/--
+@isnad1 id=eq.0h0v.s4.60150ba05bdb from=translated src=- shape=8b913b8d vocab=84f7acf4
+-/
 theorem coxeterE8_eq : coxeterE8 = coxeterE8Mat := by decide
 
 /-- `coxeterE8 ^ 30 = 1`: the E₈ Coxeter element is torsion, of order dividing the
-Coxeter number `h = 30`.  Kernel computation, staged as `((c⁵)³)²`. -/
+Coxeter number `h = 30`.  Kernel computation, staged as `((c⁵)³)²`.
+@isnad1 id=eq.0h0v.s7.eb652ddbbda0 from=translated src=- shape=0efbdc4c vocab=2f4fdadb
+-/
 theorem coxeterE8_pow_thirty : coxeterE8 ^ 30 = 1 := by
   rw [coxeterE8_eq, show (30 : ℕ) = 5 * 3 * 2 from by norm_num, pow_mul, pow_mul]
   decide
 
 /-- **The order of the E₈ Coxeter element is exactly the Coxeter number 30**: the powers
 `30/2 = 15`, `30/3 = 10`, `30/5 = 6` are not the identity (kernel computations), so no
-proper divisor of `30` kills it. -/
+proper divisor of `30` kills it.
+@isnad1 id=eq.0h0v.s5.b21d5998c3a0 from=translated src=- shape=69ccfeda vocab=87e02ebc
+-/
 theorem orderOf_coxeterE8 : orderOf coxeterE8 = 30 := by
   refine orderOf_eq_of_pow_and_pow_div_prime (by norm_num) coxeterE8_pow_thirty ?_
   intro p hp hdvd

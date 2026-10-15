@@ -111,7 +111,9 @@ private theorem nodup_chain_core {α : Type*} {R : α → α → Prop} :
         exact ⟨l', hl'ne, hl'chain, hl'head.trans hhead, hl'last.trans hlast, hl'nodup⟩
 
 /-- From a reflexive-transitive-closure path between two DISTINCT points, extract a simple
-(duplicate-free) chain list from `s` to `t`. -/
+(duplicate-free) chain list from `s` to `t`.
+@isnad1 id=ex.2h4v.s5.449b541f2987 from=translated src=- shape=346c7136 vocab=9c62f18e
+-/
 theorem exists_nodup_chain {α : Type*} {R : α → α → Prop} {s t : α}
     (h : Relation.ReflTransGen R s t) (_hst : s ≠ t) :
     ∃ l : List α, l.IsChain R ∧ l.head? = some s ∧ l.getLast? = some t ∧ l.Nodup := by
@@ -153,14 +155,18 @@ private theorem mem_pairs_iff' (l : List N) {u v : N} :
     exact ⟨h1, by rw [List.getElem?_tail]; exact h2⟩
 
 omit [Fintype N] in
-/-- Membership in `pairs` means the two nodes are consecutive. -/
+/-- Membership in `pairs` means the two nodes are consecutive.
+@isnad1 id=iff.0h4v.s6.2ea5780bb89f from=translated src=- shape=3f6e95af vocab=838beb07
+-/
 theorem mem_pairs_iff (l : List N) {u v : N} :
     (u, v) ∈ pairs l ↔ (u, v) ∈ l.zip l.tail := by
   unfold pairs
   rw [List.mem_toFinset]
 
 omit [Fintype N] in
-/-- In a duplicate-free list, no directed edge and its reverse both occur (no 2-cycle). -/
+/-- In a duplicate-free list, no directed edge and its reverse both occur (no 2-cycle).
+@isnad1 id=not.2h4v.s6.f30c321b48f2 from=translated src=- shape=10a61e97 vocab=d3b7b382
+-/
 theorem pairs_antisymm (l : List N) (hnd : l.Nodup) {u v : N}
     (h : (u, v) ∈ pairs l) : (v, u) ∉ pairs l := by
   rw [mem_pairs_iff'] at h
@@ -179,7 +185,9 @@ theorem pairs_antisymm (l : List N) (hnd : l.Nodup) {u v : N}
   omega
 
 omit [Fintype N] in
-/-- An edge of `pairs l` relates its endpoints under any relation the list is a chain for. -/
+/-- An edge of `pairs l` relates its endpoints under any relation the list is a chain for.
+@isnad1 id=var.2h5v.s5.313368c0bc3f from=translated src=- shape=89d667b3 vocab=4a0adcbc
+-/
 theorem pairs_rel {R : N → N → Prop} (l : List N) (hc : l.IsChain R)
     {u v : N} (h : (u, v) ∈ pairs l) : R u v := by
   rw [mem_pairs_iff'] at h
@@ -339,7 +347,9 @@ private theorem pin_iff (l : List N) (hnd : l.Nodup) (u : N) :
     exact ⟨i, by omega, by rw [List.getElem?_eq_some_iff]; exact ⟨hjb, hje⟩⟩
 
 /-- Degree balance: along a duplicate-free list, every node has out-degree minus in-degree equal
-to `1` at the head, `-1` at the last element, and `0` elsewhere. -/
+to `1` at the head, `-1` at the last element, and `0` elsewhere.
+@isnad1 id=eq.1h3v.s8.5816da8a9a25 from=translated src=- shape=c8bd6331 vocab=92fc4a59
+-/
 theorem degree_balance (l : List N) (hnd : l.Nodup) (u : N) :
     (∑ v, (if (u, v) ∈ pairs l then (1 : ℝ) else 0))
       - (∑ v, if (v, u) ∈ pairs l then (1 : ℝ) else 0)
@@ -403,7 +413,9 @@ structure Cut (Net : Network N) where
 def Cut.capacity {Net : Network N} (C : Cut Net) : ℝ :=
   ∑ u ∈ C.S, ∑ v ∈ (Finset.univ \ C.S), Net.cap u v
 
-/-- The flow across a cut equals the value of the flow. -/
+/-- The flow across a cut equals the value of the flow.
+@isnad1 id=eq.0h4v.s6.56ea2513760c from=translated src=- shape=3052b085 vocab=1874a6b4
+-/
 lemma Flow.value_eq_flow_across {Net : Network N} (F : Flow Net) (C : Cut Net) :
     F.value = ∑ u ∈ C.S, ∑ v ∈ (Finset.univ \ C.S), F.f u v := by
   -- Σ_{u∈S} Σ_{v∈univ} f u v  =  value (only s contributes; internal nodes conserved, t∉S)
@@ -440,7 +452,9 @@ lemma Flow.value_eq_flow_across {Net : Network N} (F : Flow Net) (C : Cut Net) :
           + ∑ u ∈ C.S, ∑ v ∈ (Finset.univ \ C.S), F.f u v := by rw [Finset.sum_add_distrib]
     _ = ∑ u ∈ C.S, ∑ v ∈ (Finset.univ \ C.S), F.f u v := by rw [hdiag]; ring
 
-/-- **Weak duality.** Every flow value is bounded by every cut capacity. -/
+/-- **Weak duality.** Every flow value is bounded by every cut capacity.
+@isnad1 id=le.0h4v.s5.1a8fce002bff from=translated src=- shape=af11ef2b vocab=3dd8e940
+-/
 theorem value_le_capacity {Net : Network N} (F : Flow Net) (C : Cut Net) :
     F.value ≤ C.capacity := by
   rw [F.value_eq_flow_across C]
@@ -467,12 +481,17 @@ noncomputable def reachableSet {Net : Network N} (F : Flow Net) : Finset N :=
   {v | Reaches Net F v}.toFinset
 
 open scoped Classical in
+/--
+@isnad1 id=iff.0h4v.s5.6347fda2b573 from=translated src=- shape=a86b6bf8 vocab=39983f11
+-/
 @[simp] lemma mem_reachableSet {Net : Network N} (F : Flow Net) (v : N) :
     v ∈ reachableSet F ↔ Reaches Net F v := by
   unfold reachableSet; rw [Set.mem_toFinset]; rfl
 
 /-- **Saturated-cut value.** If every edge leaving `S` is saturated, then the flow
-value equals the cut capacity. No augmenting paths — pure flow/cut accounting. -/
+value equals the cut capacity. No augmenting paths — pure flow/cut accounting.
+@isnad1 id=eq.3h4v.s6.9088d6f36dc2 from=translated src=- shape=de9699a6 vocab=0d109b34
+-/
 lemma saturated_cut_value {Net : Network N} (F : Flow Net) (S : Finset N)
     (hs : Net.s ∈ S) (ht : Net.t ∉ S)
     (hsat : ∀ u ∈ S, ∀ v ∉ S, F.f u v = Net.cap u v) :
@@ -487,7 +506,9 @@ lemma saturated_cut_value {Net : Network N} (F : Flow Net) (S : Finset N)
   exact hsat u hu v hv.2
 
 /-- **The residual-reachable set saturates its outgoing edges.** If a node `u` is
-reachable and `v` is not, the edge `u → v` has no residual capacity, hence is saturated. -/
+reachable and `v` is not, the edge `u → v` has no residual capacity, hence is saturated.
+@isnad1 id=eq.2h5v.s6.e73721b07b3a from=translated src=- shape=8e3d509e vocab=c7fd0cc3
+-/
 lemma reachable_saturates {Net : Network N} (F : Flow Net)
     {u v : N} (hu : u ∈ reachableSet F) (hv : v ∉ reachableSet F) :
     F.f u v = Net.cap u v := by
@@ -509,6 +530,9 @@ def FlowSet (Net : Network N) : Set (N → N → ℝ) :=
   {g | (∀ u v, g u v = - g v u) ∧ (∀ u v, g u v ≤ Net.cap u v) ∧
        (∀ u, u ≠ Net.s → u ≠ Net.t → ∑ v, g u v = 0)}
 
+/--
+@isnad1 id=isclosed.0h2v.s5.61c871f97972 from=translated src=- shape=581d7c7a vocab=0ee7af90
+-/
 lemma flowSet_isClosed (Net : Network N) : IsClosed (FlowSet Net) := by
   unfold FlowSet
   have hskew : IsClosed {g : N → N → ℝ | ∀ u v, g u v = - g v u} := by
@@ -535,6 +559,9 @@ lemma flowSet_isClosed (Net : Network N) : IsClosed (FlowSet Net) := by
       rw [this]; exact isClosed_univ
   exact (hskew.inter (hcap.inter hcons))
 
+/--
+@isnad1 id=isbounde.0h2v.s5.aad56dd36b7c from=translated src=- shape=581d7c7a vocab=d9eba6c4
+-/
 lemma flowSet_isBounded (Net : Network N) : Bornology.IsBounded (FlowSet Net) := by
   -- every coordinate is pinned in [-cap v u, cap u v]; bound by the max capacity
   obtain ⟨M, hM⟩ := (Set.finite_range (fun p : N × N => Net.cap p.1 p.2)).bddAbove
@@ -557,7 +584,9 @@ lemma flowSet_isBounded (Net : Network N) : Bornology.IsBounded (FlowSet Net) :=
   · linarith [le_sup_left (a := M) (b := (0:ℝ))]
 
 /-- **A maximum-value flow exists.** The flow polytope is compact (closed + bounded
-in the finite-dimensional space `N → N → ℝ`) and `value` is continuous, so it is attained. -/
+in the finite-dimensional space `N → N → ℝ`) and `value` is continuous, so it is attained.
+@isnad1 id=ex.0h2v.s5.ecc783138900 from=translated src=- shape=cc2ee22d vocab=dd461419
+-/
 theorem max_flow_exists (Net : Network N) :
     ∃ F : Flow Net, ∀ F' : Flow Net, F'.value ≤ F.value := by
   have hcompact : IsCompact (FlowSet Net) :=
@@ -580,7 +609,9 @@ theorem max_flow_exists (Net : Network N) :
 /-- **Augmenting edge-set kernel.** If the sink is residual-reachable, a
 simple residual `s→t` path yields a finite set `P` of directed residual edges with a uniform slack
 `δ > 0`, no 2-cycles, and unit `s`-to-`t` degree balance (source has net out-degree `+1`, sink
-`−1`, every other node balanced). This is pure path combinatorics — no flow content. -/
+`−1`, every other node balanced). This is pure path combinatorics — no flow content.
+@isnad1 id=ex.1h3v.s8.ec198982a70c from=translated src=- shape=0fbfe2af vocab=bf07893c
+-/
 theorem augEdges_exists {Net : Network N} (F : Flow Net) (hreach : Reaches Net F Net.t) :
     ∃ (P : Finset (N × N)) (δ : ℝ), 0 < δ ∧
       (∀ p ∈ P, δ ≤ Net.cap p.1 p.2 - F.f p.1 p.2) ∧
@@ -632,7 +663,9 @@ theorem augEdges_exists {Net : Network N} (F : Flow Net) (hreach : Reaches Net F
 
 /-- **Maximality ⇒ sink unreachable.** Given the augmenting edge-set,
 the pushed flow `F' = F + δ·(P − Pᵀ)` is feasible with value `F.value + δ > F.value`,
-contradicting maximality. -/
+contradicting maximality.
+@isnad1 id=not.1h3v.s5.e8ade209e83d from=translated src=- shape=73fc125e vocab=cec938e6
+-/
 theorem t_not_reachable_of_max {Net : Network N} (F : Flow Net)
     (hmax : ∀ F' : Flow Net, F'.value ≤ F.value) :
     Net.t ∉ reachableSet F := by
@@ -688,7 +721,9 @@ theorem t_not_reachable_of_max {Net : Network N} (F : Flow Net)
 
 /-- **Max-flow / min-cut.** There is a flow and an s–t cut with equal value.
 Combined with weak duality (`value_le_capacity`), this flow is of maximum value and this cut is
-of minimum capacity. -/
+of minimum capacity.
+@isnad1 id=ex.0h2v.s5.2ea52a203382 from=translated src=- shape=693d898d vocab=0b9a2233
+-/
 theorem maxflow_eq_mincut (Net : Network N) :
     ∃ (F : Flow Net) (C : Cut Net), F.value = C.capacity := by
   obtain ⟨F, hmax⟩ := max_flow_exists Net

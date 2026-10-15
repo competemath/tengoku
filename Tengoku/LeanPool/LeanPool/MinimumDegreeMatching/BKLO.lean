@@ -30,7 +30,9 @@ namespace BKLOK2
 /-! ### A largeness threshold -/
 
 /-- For any `a > 0` and `k ≥ 1`, the exponential `exp (a (n / k - 1))` eventually dominates
-`n²`. -/
+`n²`.
+@isnad1 id=ex.2h2v.s6.5e7e4253424c from=translated src=- shape=9faecca9 vocab=420a9f77
+-/
 theorem exists_threshold_sq_le_exp {a : ℝ} (ha : 0 < a) {k : ℕ} (hk : 0 < k) :
     ∃ n₀ : ℕ, ∀ n : ℕ, n₀ ≤ n → ((n : ℝ)) ^ 2 ≤ Real.exp (a * ((n : ℝ) / (k : ℝ) - 1)) := by
   have hkR : (0 : ℝ) < k := by exact_mod_cast hk
@@ -66,7 +68,9 @@ theorem exists_threshold_sq_le_exp {a : ℝ} (ha : 0 < a) {k : ℕ} (hk : 0 < k)
 
 /-! ### Parameter bookkeeping -/
 
-/-- With `q = 2√ρ/(9k)`, the codegree hypothesis fits the spread-selection budget. -/
+/-- With `q = 2√ρ/(9k)`, the codegree hypothesis fits the spread-selection budget.
+@isnad1 id=le.9h11v.s8.6266c1e6f869 from=translated src=- shape=f651b742 vocab=ac342de1
+-/
 theorem codeg_budget_of_hyps {V : Type} [DecidableEq V] {ρ t q : ℝ} {k s₂ : ℕ}
     {H : Finset (Sym2 V)} {U W : Finset V}
     (hkR : (0 : ℝ) < k) (hqpos : 0 < q)
@@ -88,7 +92,9 @@ theorem codeg_budget_of_hyps {V : Type} [DecidableEq V] {ρ t q : ℝ} {k s₂ :
     mul_le_mul_of_nonneg_left h1.le hqpos.le
   linarith
 
-/-- The empty-state pessimistic potential is smaller than the available matching supply. -/
+/-- The empty-state pessimistic potential is smaller than the available matching supply.
+@isnad1 id=lt.11h10v.s8.809916ae10ed from=translated src=- shape=0ff283bf vocab=4bea0c2c
+-/
 theorem pot_empty_lt_of_hyps {V : Type} [DecidableEq V] {ρ t q : ℝ} {k s : ℕ}
     {H : Finset (Sym2 V)} {S U W : Finset V}
     (hkR : (0 : ℝ) < k) (hk1 : (1 : ℝ) ≤ (k : ℝ))
@@ -184,7 +190,9 @@ theorem pot_empty_lt_of_hyps {V : Type} [DecidableEq V] {ρ t q : ℝ} {k s : �
 For all sufficiently large configurations, the neighbourhood graph associated with each apex
 `x ∈ U` has a perfect matching, and all the chosen matching edge sets are pairwise disjoint.
 The four substantive assumptions are parity, a Dirac condition with quantitative slack, a pairwise
-codegree bound, and a vertex-incidence bound. -/
+codegree bound, and a vertex-incidence bound.
+@isnad1 id=ex.2h2v.s9.e65658d1f861 from=translated src=- shape=b0597c4a vocab=48cafbb5
+-/
 theorem lemma107K2_holds :
     ∀ (ρ : ℝ) (k : ℕ), 0 < ρ → 0 < k → ∃ n₀ : ℕ,
       ∀ {V : Type} [DecidableEq V] (H : Finset (Sym2 V)) (S U W : Finset V),

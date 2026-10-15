@@ -35,7 +35,9 @@ open Finset
 /-- **Hockey-stick identity**, `range` form: `∑_{l < g} C(l, m) = C(g, m+1)`.
 
 This is the identity used in `apd:cor:norm_cumulation_jump` to sum the
-damped ladder recursion over rotations. Note both sides vanish for `g = 0`. -/
+damped ladder recursion over rotations. Note both sides vanish for `g = 0`.
+@isnad1 id=eq.0h2v.s5.d7d8fb9f227e from=translated src=- shape=7a9e7a61 vocab=7a05e5cf
+-/
 theorem sum_range_choose (m : ℕ) :
     ∀ g : ℕ, ∑ l ∈ range g, l.choose m = g.choose (m + 1) := by
   intro g
@@ -45,7 +47,9 @@ theorem sum_range_choose (m : ℕ) :
     rw [Finset.sum_range_succ, ih, Nat.choose_succ_succ]
     ring
 
-/-- Real-valued restatement, which is what the cumulation bound consumes. -/
+/-- Real-valued restatement, which is what the cumulation bound consumes.
+@isnad1 id=eq.0h2v.s5.4641628a84b3 from=translated src=- shape=08e0b052 vocab=d5befdb2
+-/
 theorem sum_range_choose_real (m g : ℕ) :
     ∑ l ∈ range g, (l.choose m : ℝ) = (g.choose (m + 1) : ℝ) := by
   rw [← Nat.cast_sum, sum_range_choose]
