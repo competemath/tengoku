@@ -79,9 +79,15 @@ def doubleCarryCount (b : ℕ) (ds : List ℕ) : ℕ := doubleCarryCountAux b ds
 
 /-! ### Step facts -/
 
+/--
+@isnad1 id=le.0h3v.s4.93241e25cba8 from=translated src=- shape=87ce733d vocab=7c708356
+-/
 lemma doubleCarryStep_le_one (b carry d : ℕ) : doubleCarryStep b carry d ≤ 1 := by
   unfold doubleCarryStep; split <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s4.5aff003a11a6 from=translated src=- shape=95220625 vocab=4ab95a79
+-/
 lemma doubleDigitsAux_length (b : ℕ) :
     ∀ (ds : List ℕ) (carry : ℕ),
       (doubleDigitsAux b ds carry).length = ds.length + 1 := by
@@ -90,6 +96,9 @@ lemma doubleDigitsAux_length (b : ℕ) :
   | nil => intro carry; simp [doubleDigitsAux]
   | cons d ds ih => intro carry; simp [doubleDigitsAux, ih, Nat.add_comm]
 
+/--
+@isnad1 id=eq.3h3v.s6.18842583cfd7 from=translated src=- shape=c1b09b34 vocab=756686cc
+-/
 lemma doubleCarryStep_eq_div {b carry d : ℕ} (_hb : 2 ≤ b)
     (hcarry : carry ≤ 1) (hd : d < b) :
     doubleCarryStep b carry d = (2 * d + carry) / b := by
@@ -105,7 +114,9 @@ lemma doubleCarryStep_eq_div {b carry d : ℕ} (_hb : 2 ≤ b)
     have : (2 * d + carry) / b = 0 := Nat.div_eq_of_lt (by omega)
     omega
 
-/-- Local conservation: `outDigit + b · carryOut = 2d + carryIn`. -/
+/-- Local conservation: `outDigit + b · carryOut = 2d + carryIn`.
+@isnad1 id=eq.3h3v.s6.27d866c9c508 from=translated src=- shape=783a7501 vocab=90fddebf
+-/
 lemma doubleCarryStep_local {b carry d : ℕ} (hb : 2 ≤ b)
     (hcarry : carry ≤ 1) (hd : d < b) :
     (2 * d + carry) % b + b * doubleCarryStep b carry d = 2 * d + carry := by
@@ -114,6 +125,9 @@ lemma doubleCarryStep_local {b carry d : ℕ} (hb : 2 ≤ b)
 
 /-! ### Aux-list facts -/
 
+/--
+@isnad1 id=lt.4h4v.s5.f95e76e78744 from=translated src=- shape=97f74dda vocab=16136e04
+-/
 lemma doubleDigitsAux_lt_base {b : ℕ} (hb : 2 ≤ b) :
     ∀ {ds : List ℕ} {carry : ℕ}, carry < b → (∀ d ∈ ds, d < b) →
       ∀ x ∈ doubleDigitsAux b ds carry, x < b := by
@@ -136,7 +150,9 @@ lemma doubleDigitsAux_lt_base {b : ℕ} (hb : 2 ≤ b) :
           have := doubleCarryStep_le_one b carry d; omega
         exact ih hnext htail x hx
 
-/-- `ofDigits` of the doubled list equals `2 · ofDigits ds + carry`. -/
+/-- `ofDigits` of the doubled list equals `2 · ofDigits ds + carry`.
+@isnad1 id=eq.3h3v.s6.05d90f6424f7 from=translated src=- shape=69b35147 vocab=c67af5df
+-/
 lemma doubleDigitsAux_ofDigits {b : ℕ} (hb : 2 ≤ b) :
     ∀ {ds : List ℕ} {carry : ℕ}, carry ≤ 1 → (∀ d ∈ ds, d < b) →
       Nat.ofDigits b (doubleDigitsAux b ds carry) =
@@ -160,7 +176,9 @@ lemma doubleDigitsAux_ofDigits {b : ℕ} (hb : 2 ≤ b) :
       zify [hge]
       ring
 
-/-- Conservation with carry count: `S(2n via aux) + (b−1)·carries = 2·S(ds) + carry`. -/
+/-- Conservation with carry count: `S(2n via aux) + (b−1)·carries = 2·S(ds) + carry`.
+@isnad1 id=eq.3h3v.s6.db65514ed5a6 from=translated src=- shape=ccc2846e vocab=de347498
+-/
 lemma doubleDigitsAux_sum {b : ℕ} (hb : 2 ≤ b) :
     ∀ {ds : List ℕ} {carry : ℕ}, carry ≤ 1 → (∀ d ∈ ds, d < b) →
       (doubleDigitsAux b ds carry).sum + (b - 1) * doubleCarryCountAux b ds carry =
@@ -198,7 +216,9 @@ lemma doubleDigitsAux_sum {b : ℕ} (hb : 2 ≤ b) :
 /-! ### From the aux list to the genuine base-`b` digits of `2n` -/
 
 /-- The Kummer digit excess equals `(b−1)` times the number of doubling
-carries. (`b ≥ 2`.) -/
+carries. (`b ≥ 2`.)
+@isnad1 id=eq.1h2v.s6.a7e3980c8515 from=translated src=- shape=b40ff040 vocab=f06d130e
+-/
 theorem digitExcess_eq {b : ℕ} (hb : 2 ≤ b) (n : ℕ) :
     2 * (Nat.digits b n).sum - (Nat.digits b (2 * n)).sum =
       (b - 1) * doubleCarryCount b (Nat.digits b n) := by
@@ -232,7 +252,9 @@ theorem digitExcess_eq {b : ℕ} (hb : 2 ≤ b) (n : ℕ) :
 /-! ## The no-carry ⇔ small-digits characterisation -/
 
 /-- With carry-in `0`, the doubling carry count is `0` iff every digit is small.
-(Both directions need only `b ≥ 2`.) -/
+(Both directions need only `b ≥ 2`.)
+@isnad1 id=iff.1h2v.s5.c4c2fdc5936b from=translated src=- shape=279de807 vocab=6b5679d6
+-/
 theorem carryCount_eq_zero_iff {b : ℕ} (_hb : 2 ≤ b) (ds : List ℕ) :
     doubleCarryCountAux b ds 0 = 0 ↔ ∀ d ∈ ds, 2 * d < b := by
   induction ds with
@@ -270,7 +292,9 @@ theorem carryCount_eq_zero_iff {b : ℕ} (_hb : 2 ≤ b) (ds : List ℕ) :
 /-! ## Per-prime Kummer coprimality characterisation -/
 
 /-- For a prime `p`, `C(2n,n)` is coprime to `p` iff every base-`p` digit of
-`n` doubles without carry, i.e. `LowDoubleDigits p n`. -/
+`n` doubles without carry, i.e. `LowDoubleDigits p n`.
+@isnad1 id=iff.0h2v.s4.0c99f8855400 from=translated src=- shape=1827b237 vocab=1de5df71
+-/
 theorem coprime_centralBinom_prime_iff {p : ℕ} [hp : Fact p.Prime] (n : ℕ) :
     Nat.Coprime (Nat.centralBinom n) p ↔ LowDoubleDigits p n := by
   have hpprime : Nat.Prime p := hp.out
@@ -299,7 +323,9 @@ theorem coprime_centralBinom_prime_iff {p : ℕ} [hp : Fact p.Prime] (n : ℕ) :
 /-- **Erdős #376 Kummer bridge.** `C(2n,n)` is coprime to `105` exactly when
 all its base-3 digits are `≤ 1`, all its base-5 digits are `≤ 2`, and all its
 base-7 digits are `≤ 3`. (This is the finite digit characterisation — OEIS
-A030979 — not the open infinitude claim.) -/
+A030979 — not the open infinitude claim.)
+@isnad1 id=iff.0h1v.s5.18fe22d51a91 from=translated src=- shape=eb3125a5 vocab=55202a3e
+-/
 theorem centralBinom_coprime_105_iff (n : ℕ) :
     Nat.Coprime (Nat.centralBinom n) 105 ↔
       LowDoubleDigits 3 n ∧ LowDoubleDigits 5 n ∧ LowDoubleDigits 7 n := by

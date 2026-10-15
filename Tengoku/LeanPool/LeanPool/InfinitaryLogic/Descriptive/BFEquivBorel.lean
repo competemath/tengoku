@@ -109,7 +109,9 @@ private theorem sameAtomicType_measurableSet
           ((measurable_fst (measurableSet_relHolds q₁)).compl.inter
            (measurable_snd (measurableSet_relHolds q₂)).compl)
 
-/-- The main theorem: `BFEquivSet α n a b` is measurable for `α < ω₁`. -/
+/-- The main theorem: `BFEquivSet α n a b` is measurable for `α < ω₁`.
+@isnad1 id=measurab.1h5v.s6.2a046f28f0f1 from=translated src=- shape=e4bbd3cb vocab=567222f6
+-/
 theorem bfEquivSet_measurableSet
     [Countable (Σ l, L.Relations l)]
     (α : Ordinal.{0}) (hα : α < Ordinal.omega 1)

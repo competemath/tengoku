@@ -17,6 +17,9 @@ namespace Fin
 /-- Imported declaration from the Incompleteness formalization. -/
 @[inline] def addCast (m) : Fin n → Fin (m + n) := castLE <| Nat.le_add_left n m
 
+/--
+@isnad1 id=eq.0h3v.s4.e63885f76abf from=translated src=- shape=a57832d3 vocab=d77bc4fa
+-/
 @[simp] lemma addCast_val (i : Fin n) : (i.addCast m : ℕ) = i := rfl
 
 end Fin
@@ -25,9 +28,15 @@ namespace Matrix
 
 variable {α : Type*}
 
+/--
+@isnad1 id=eq.0h6v.s5.3235a08b2dd4 from=translated src=- shape=45f9c581 vocab=6acbcaf9
+-/
 @[simp] lemma appeendr_addCast (u : Fin m → α) (v : Fin n → α) (i : Fin m) :
     appendr u v (i.addCast n) = u i := by simp [appendr, vecAppend_eq_ite]
 
+/--
+@isnad1 id=eq.0h6v.s5.c97dcdb1fa6f from=translated src=- shape=ba8f030d vocab=384b0a1a
+-/
 @[simp] lemma appeendr_addNat (u : Fin m → α) (v : Fin n → α) (i : Fin n) :
     appendr u v (i.addNat m) = v i := by simp [appendr, vecAppend_eq_ite]
 

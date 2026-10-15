@@ -63,7 +63,9 @@ structure TailTemplateOmegaWitnessed (s₀ : LocalStage) {M : Type}
         (canonDeForm (localColim s₀) (BoundedFormulaω.iInf φs) g)
 
 /-- A canonical deForm of a colimit-family member lands in `ΓEMlocal` (its `canonDeForms`
-component). -/
+component).
+@isnad1 id=mem.1h5v.s6.ed027745ae87 from=translated src=- shape=54dd6795 vocab=1e68f673
+-/
 theorem canonDeForm_mem_ΓEMlocal {m : ℕ} {φ : (localColim s₀).BoundedFormulaω Empty m}
     (hφ : (⟨m, φ⟩ : Σ n, (localColim s₀).BoundedFormulaω Empty n) ∈ ΓlocalColim s₀)
     {p : ℕ} (g : Fin m → (localColim s₀).Term (Fin p)) :
@@ -134,7 +136,9 @@ private theorem TailTemplateOmegaWitnessed.to_localEMOmegaHomogeneous {a : ℕ �
 /-- **The packaged corollary** (the milestone): the schema-template Ω-witness property + tail
 indiscernibility deliver `OmegaCompleteForColim` for any `LocalEMContext` whose sequence is the
 schema sequence, by composing the normal-form bridge with the existing reduction theorem. This
-is exactly the hard input `tailTemplateRealizable_of_localEMContext` consumes. -/
+is exactly the hard input `tailTemplateRealizable_of_localEMContext` consumes.
+@isnad1 id=omegacom.3h5v.s5.0a4d9982fa5d from=translated src=- shape=74c6e5da vocab=d5fe330d
+-/
 theorem TailTemplateOmegaWitnessed.omegaCompleteForColim {J : Type} [LinearOrder J] {a : ℕ → M}
     (hTail : IsLomega1omegaIndiscernibleOnTail (L := localColim s₀) a (ΓEMlocal s₀))
     (h : TailTemplateOmegaWitnessed s₀ a) (ctx : LocalEMContext (localColim s₀) J (M := M))

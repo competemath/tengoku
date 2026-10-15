@@ -92,6 +92,9 @@ def graphRealizationEndpointLabel {V : Type u} [Quiver.{u} V]
       else if t = 1 then some (graphEdgeUnderlying e).right
       else none
 
+/--
+@isnad1 id=eq.1h3v.s4.49b4cc01158e from=translated src=- shape=1e1b82c0 vocab=73c8cdeb
+-/
 lemma graphRealizationGenerator_endpointLabel {V : Type u} [Quiver.{u} V]
     {x y : graphRealizationPre V}
     (h : graphRealizationGenerator x y) :
@@ -99,6 +102,9 @@ lemma graphRealizationGenerator_endpointLabel {V : Type u} [Quiver.{u} V]
   cases h <;> simp [graphRealizationEndpointLabel, graphVertexUnderlying,
     graphEdgeUnderlying]
 
+/--
+@isnad1 id=eq.1h3v.s5.aed8ddc09ffa from=translated src=- shape=4653e833 vocab=2f549b40
+-/
 lemma graphRealization_eqvGen_endpointLabel {V : Type u} [Quiver.{u} V]
     {x y : graphRealizationPre V}
     (h : Relation.EqvGen (graphRealizationGenerator (V := V)) x y) :
@@ -128,23 +134,35 @@ def graphRealizationEndpointLabelQuotient {V : Type u} [Quiver.{u} V] :
   Quotient.lift graphRealizationEndpointLabel
     (fun _ _ h => graphRealization_eqvGen_endpointLabel h)
 
+/--
+@isnad1 id=eq.0h2v.s4.db1376d491df from=translated src=- shape=7c2a7128 vocab=68dd471a
+-/
 @[simp]
 theorem graphRealizationEndpointLabelQuotient_mk {V : Type u} [Quiver.{u} V]
     (x : graphRealizationPre V) :
     graphRealizationEndpointLabelQuotient (graphRealizationQuotient x) =
       graphRealizationEndpointLabel x := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.c750429cbb5f from=translated src=- shape=8d0b357a vocab=2d5cb6e6
+-/
 @[simp]
 theorem graphRealizationEndpointLabelQuotient_vertex {V : Type u} [Quiver.{u} V]
     (v : V) :
     graphRealizationEndpointLabelQuotient (graphVertex v) = some v := by
   rfl
 
+/--
+@isnad1 id=iff.0h2v.s7.38c48d30af2f from=translated src=- shape=f01b9b9b vocab=e4190cb7
+-/
 theorem graphRealization_isOpen_iff {V : Type u} [Quiver.{u} V]
     {s : Set (graphRealization V)} :
     IsOpen s ↔ IsOpen (graphRealizationQuotient ⁻¹' s) := by
   exact isOpen_coinduced
 
+/--
+@isnad1 id=eq.1h2v.s6.91e5defacacd from=translated src=- shape=72d9c39a vocab=c89f631e
+-/
 theorem graphRealization_image_preimage_eq_of_saturated
     {V : Type u} [Quiver.{u} V] {s : Set (graphRealizationPre V)}
     (hs : ∀ {x y : graphRealizationPre V},
@@ -158,6 +176,9 @@ theorem graphRealization_image_preimage_eq_of_saturated
   · intro hx
     exact ⟨x, hx, rfl⟩
 
+/--
+@isnad1 id=isopen.2h2v.s8.67661876b513 from=translated src=- shape=b978e5b5 vocab=873667e8
+-/
 theorem graphRealization_image_isOpen_of_saturated
     {V : Type u} [Quiver.{u} V] {s : Set (graphRealizationPre V)}
     (hs : ∀ {x y : graphRealizationPre V},
@@ -178,20 +199,32 @@ def graphEdgePath {V : Type u} [Quiver.{u} V] (e : Quiver.Total V) :
       continuous_inr.comp
         (continuous_sigmaMk (i := graphDiscreteEdge e))
 
+/--
+@isnad1 id=eq.0h2v.s5.41af687a2b70 from=translated src=- shape=5a924d1a vocab=d0909c26
+-/
 @[simp]
 theorem graphRealizationQuotient_vertex {V : Type u} [Quiver.{u} V] (v : V) :
     graphRealizationQuotient (Sum.inl (graphDiscreteVertex v)) = graphVertex v := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.a54cbb3cfde4 from=translated src=- shape=19f9788d vocab=6e75178f
+-/
 @[simp]
 theorem graphEdgePath_zero {V : Type u} [Quiver.{u} V] (e : Quiver.Total V) :
     graphEdgePath e 0 = graphVertex e.left := by
   exact Quotient.sound (Relation.EqvGen.rel _ _ (graphRealizationGenerator.source e))
 
+/--
+@isnad1 id=eq.0h2v.s8.a5e9b27bedb1 from=translated src=- shape=19f9788d vocab=07da0fb1
+-/
 @[simp]
 theorem graphEdgePath_one {V : Type u} [Quiver.{u} V] (e : Quiver.Total V) :
     graphEdgePath e 1 = graphVertex e.right := by
   exact Quotient.sound (Relation.EqvGen.rel _ _ (graphRealizationGenerator.target e))
 
+/--
+@isnad1 id=ne.2h4v.s6.c31a883d20a1 from=translated src=- shape=8ef53377 vocab=817e8fee
+-/
 theorem graphRealization_edge_interior_ne_vertex {V : Type u} [Quiver.{u} V]
     (e : Quiver.Total V) {t : I} (ht0 : t ≠ 0) (ht1 : t ≠ 1) (v : V) :
     graphRealizationQuotient (Sum.inr ⟨graphDiscreteEdge e, t⟩) ≠ graphVertex v := by
@@ -200,6 +233,9 @@ theorem graphRealization_edge_interior_ne_vertex {V : Type u} [Quiver.{u} V]
   simp [graphRealizationEndpointLabelQuotient_mk,
     graphRealizationEndpointLabel, ht0, ht1] at hlabel
 
+/--
+@isnad1 id=continuo.0h2v.s8.e5a62c8091a5 from=translated src=- shape=951f4aa7 vocab=62568757
+-/
 theorem continuous_graphEdgePath {V : Type u} [Quiver.{u} V] (e : Quiver.Total V) :
     Continuous (graphEdgePath e) :=
   (graphEdgePath e).continuous
@@ -221,11 +257,17 @@ def graphEdgeRetraction (t : I) : C(I, I) where
         ⟨unitInterval.one_minus_nonneg s, unitInterval.one_minus_le_one s⟩ t.2⟩
   continuous_toFun := by fun_prop
 
+/--
+@isnad1 id=eq.0h1v.s6.efabdf5a0b46 from=translated src=- shape=868102aa vocab=903ed286
+-/
 @[simp]
 theorem graphEdgeRetraction_zero (t : I) : graphEdgeRetraction t 0 = t := by
   apply Subtype.ext
   simp [graphEdgeRetraction]
 
+/--
+@isnad1 id=eq.0h1v.s7.23dbaf7a6608 from=translated src=- shape=7863c804 vocab=903ed286
+-/
 @[simp]
 theorem graphEdgeRetraction_one (t : I) : graphEdgeRetraction t 1 = 0 := by
   apply Subtype.ext
@@ -239,6 +281,9 @@ def graphEdgePathToSource {V : Type u} [Quiver.{u} V]
   source' := by simp
   target' := by simp
 
+/--
+@isnad1 id=ex.0h2v.s7.d2843ee40797 from=translated src=- shape=026c0230 vocab=a945ec46
+-/
 theorem graphRealizationPre_join_vertex {V : Type u} [Quiver.{u} V]
     (x : graphRealizationPre V) :
     ∃ v : V, Joined (graphRealizationQuotient x) (graphVertex v) := by
@@ -276,12 +321,18 @@ def graphRealizationQuiverPath {V : Type u} [Quiver.{u} V]
   | nil => exact Path.refl _
   | cons p e ih => exact ih.trans (graphRealizationSymmetricEdgePath e)
 
+/--
+@isnad1 id=eq.0h2v.s8.0ae63f051cbe from=translated src=- shape=39643780 vocab=af2a0d38
+-/
 theorem graphRealizationQuiverPath_nil {V : Type u} [Quiver.{u} V]
     (a : V) :
     graphRealizationQuiverPath
       (Quiver.Path.nil : @Quiver.Path (Quiver.Symmetrify V)
         (Quiver.symmetrifyQuiver V) a a) = Path.refl (graphVertex a) := rfl
 
+/--
+@isnad1 id=pathconn.0h2v.s6.b73e4f455673 from=translated src=- shape=2cf0b816 vocab=5b91a2d9
+-/
 theorem graphRealization_pathConnected {V : Type u} [Quiver.{u} V]
     [WeaklyConnected V] (root : V) :
     PathConnectedSpace (graphRealization V) where
@@ -294,6 +345,9 @@ theorem graphRealization_pathConnected {V : Type u} [Quiver.{u} V]
     rcases WeaklyConnected.path a b with ⟨p⟩
     exact ⟨hxa.somePath.trans ((graphRealizationQuiverPath p).trans hyb.somePath.symm)⟩
 
+/--
+@isnad1 id=compacts.0h1v.s6.cfcbeb057600 from=translated src=- shape=46b8a2f7 vocab=fa12552e
+-/
 theorem graphRealization_compact {V : Type u} [Quiver.{u} V]
     [Finite V] [FiniteQuiver V] : CompactSpace (graphRealization V) := by
   let _ : Fintype V := Fintype.ofFinite V
@@ -319,6 +373,9 @@ def graphFreeGroupoidToTopological {V : Type u} [Quiver.{u} V] :
     Quiver.FreeGroupoid V ⥤ FundamentalGroupoid (graphRealization V) :=
   Quiver.FreeGroupoid.lift (graphRealizationQuiverMap (V := V))
 
+/--
+@isnad1 id=eq.0h1v.s8.5fd518cb1721 from=translated src=- shape=31a12d6e vocab=b7ac5915
+-/
 theorem graphFreeGroupoidToTopological_restrict {V : Type u} [Quiver.{u} V] :
     (Quiver.FreeGroupoid.of V ⋙q
       (graphFreeGroupoidToTopological (V := V)).toPrefunctor) =
@@ -337,6 +394,9 @@ def graphRealizationPreMap {V W : Type u} [Quiver.{u} V] [Quiver.{u} W]
       let e := graphEdgeUnderlying z.1
       Sum.inr ⟨graphDiscreteEdge ⟨F.obj e.left, F.obj e.right, F.map e.hom⟩, z.2⟩)
 
+/--
+@isnad1 id=graphrea.1h5v.s5.9921f754879a from=translated src=- shape=bb2177b8 vocab=937de995
+-/
 theorem graphRealizationPreMap_generator {V W : Type u} [Quiver.{u} V]
     [Quiver.{u} W] (F : V ⥤q W) {x y : graphRealizationPre V}
     (h : graphRealizationGenerator x y) :
@@ -350,6 +410,9 @@ theorem graphRealizationPreMap_generator {V W : Type u} [Quiver.{u} V]
       exact graphRealizationGenerator.target
         ⟨F.obj e.left, F.obj e.right, F.map e.hom⟩
 
+/--
+@isnad1 id=eqvgen.1h5v.s5.c0533624d58d from=translated src=- shape=c6183865 vocab=3aae1a90
+-/
 theorem graphRealizationPreMap_eqvGen {V W : Type u} [Quiver.{u} V]
     [Quiver.{u} W] (F : V ⥤q W) {x y : graphRealizationPre V}
     (h : Relation.EqvGen (graphRealizationGenerator (V := V)) x y) :
@@ -369,6 +432,9 @@ def graphRealizationMap {V W : Type u} [Quiver.{u} V] [Quiver.{u} W]
   refine Quotient.lift f (fun x y h => ?_)
   exact Quotient.sound (graphRealizationPreMap_eqvGen F h)
 
+/--
+@isnad1 id=continuo.0h3v.s7.1d9c57bc2114 from=translated src=- shape=6c65be4e vocab=5a7cd5f9
+-/
 theorem continuous_graphRealizationMap {V W : Type u} [Quiver.{u} V]
     [Quiver.{u} W] (F : V ⥤q W) :
     Continuous (graphRealizationMap F) := by
@@ -395,12 +461,18 @@ theorem continuous_graphRealizationMap {V W : Type u} [Quiver.{u} V]
   change Continuous (Quotient.lift f _)
   apply hf.quotient_lift
 
+/--
+@isnad1 id=eq.0h4v.s5.8179848ee33a from=translated src=- shape=f158fb46 vocab=441cb7ff
+-/
 @[simp]
 theorem graphRealizationMap_vertex {V W : Type u} [Quiver.{u} V]
     [Quiver.{u} W] (F : V ⥤q W) (v : V) :
     graphRealizationMap F (graphVertex v) = graphVertex (F.obj v) := by
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.240019584cc9 from=translated src=- shape=8070e03e vocab=91c585b7
+-/
 @[simp]
 theorem graphRealizationMap_edgePath {V W : Type u} [Quiver.{u} V]
     [Quiver.{u} W] (F : V ⥤q W) (e : Quiver.Total V) (t : I) :
@@ -408,6 +480,9 @@ theorem graphRealizationMap_edgePath {V W : Type u} [Quiver.{u} V]
       graphEdgePath ⟨F.obj e.left, F.obj e.right, F.map e.hom⟩ t := by
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.468ba024e339 from=translated src=- shape=625f5642 vocab=8a429fd8
+-/
 theorem graphRealizationMap_forwardPath {V W : Type u} [Quiver.{u} V]
     [Quiver.{u} W] (F : V ⥤q W) {a b : V} (e : a ⟶ b) :
     (graphRealizationMap F) ∘ (graphRealizationForwardPath e) =
@@ -441,12 +516,18 @@ noncomputable def graphTopologicalRootEquiv {V : Type u} [Quiver.{u} V]
   exact FundamentalGroup.fundamentalGroupMulEquivOfPathConnected
     (graphVertex root₁) (graphVertex root₂)
 
+/--
+@isnad1 id=eq.1h3v.s4.eaaa07882583 from=translated src=- shape=7157afe6 vocab=cfe40e2b
+-/
 theorem graphVertex_injective {V : Type u} [Quiver.{u} V]
     {v w : V} (h : graphVertex v = graphVertex w) : v = w := by
   have h' := Quotient.exact h
   exact Option.some.inj <|
     graphRealization_eqvGen_endpointLabel h'
 
+/--
+@isnad1 id=iff.0h3v.s4.ef6d63a9ab5b from=translated src=- shape=89f3a64e vocab=cfe40e2b
+-/
 theorem graphVertex_injective_iff {V : Type u} [Quiver.{u} V]
     {v w : V} : graphVertex v = graphVertex w ↔ v = w := by
   exact ⟨graphVertex_injective, congrArg graphVertex⟩

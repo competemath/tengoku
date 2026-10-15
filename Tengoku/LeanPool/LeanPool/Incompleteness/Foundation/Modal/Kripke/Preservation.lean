@@ -45,6 +45,9 @@ def ModalEquivalent {M₁ M₂ : Model} (w₁ : M₁.World) (w₂ : M₂.World) 
 /-- Imported declaration from the Incompleteness formalization. -/
 infix:50 " ↭ " => ModalEquivalent
 
+/--
+@isnad1 id=modalequ.0h6v.s4.a433a7235533 from=translated src=- shape=3c850fca vocab=765e14f1
+-/
 lemma modal_equivalent_of_bisimilar (Bi : M₁ ⇄ M₂) (bisx : Bi x₁ x₂) : x₁ ↭ x₂ := by
   intro φ;
   induction φ using Formula.rec' generalizing x₁ x₂ with
@@ -174,6 +177,9 @@ def bisimulation (f : M₁ →ₚ M₂) : M₁ ⇄ M₂ where
     subst x₂
     exact f.back rx₂y₂
 
+/--
+@isnad1 id=modalequ.0h4v.s4.407847a51d85 from=translated src=- shape=f9ccdd45 vocab=29d07ca5
+-/
 lemma modal_equivalence (f : M₁ →ₚ M₂) (w : M₁.World) : w ↭ (f w) := by
   apply modal_equivalent_of_bisimilar <| Model.PseudoEpimorphism.bisimulation f;
   rfl
@@ -183,6 +189,9 @@ end Model
 
 variable {F₁ F₂ : Kripke.Frame} {M₁ M₂ : Kripke.Model}
 
+/--
+@isnad1 id=realize.2h4v.s5.af21e4134554 from=translated src=- shape=1e54ea81 vocab=4183464b
+-/
 lemma validOnFrame_of_surjective_pseudoMorphism (f : F₁ →ₚ F₂) (f_surjective :
     Function.Surjective f) : F₁ ⊧ φ → F₂ ⊧ φ := by
   contrapose;
@@ -199,6 +208,9 @@ lemma validOnFrame_of_surjective_pseudoMorphism (f : F₁ →ₚ F₂) (f_surjec
     atomic := by aesop;
   } w₁ |>.not.mpr h;
 
+/--
+@isnad1 id=realizes.2h4v.s5.6e3e858c0de7 from=translated src=- shape=9f1ba313 vocab=9d2aa97d
+-/
 lemma theory_ValidOnFrame_of_surjective_pseudoMorphism (f : F₁ →ₚ F₂) (f_surjective :
     Function.Surjective f) : F₁ ⊧* T → F₂ ⊧* T := by
   simp only [Semantics.realizeSet_iff];
@@ -239,12 +251,21 @@ namespace PointGenerated
 
 variable {F : Kripke.Frame} {r : F.World}
 
+/--
+@isnad1 id=istrans.1h2v.s4.00cc88eafa9d from=translated src=- shape=afc716a7 vocab=7846ff3f
+-/
 lemma rel_transitive (F_trans : IsTrans F.World F.Rel) : IsTrans (F↾r).World (F↾r).Rel := by
   exact ⟨fun _ _ _ hxy hyz => F_trans.trans _ _ _ hxy hyz⟩
 
+/--
+@isnad1 id=irrefl.1h2v.s4.de41845bd8ef from=translated src=- shape=afc716a7 vocab=7562a2ea
+-/
 lemma rel_irreflexive (F_irrefl : Std.Irrefl F.Rel) : Std.Irrefl (F↾r).Rel :=
   ⟨fun x h => F_irrefl.irrefl x.1 h⟩
 
+/--
+@isnad1 id=universa.2h2v.s4.a249a69cd52f from=translated src=- shape=08548d50 vocab=e9d1cd72
+-/
 lemma rel_universal (F_refl : Std.Refl F.Rel) (F_eucl : Euclidean F.Rel) : Universal (F↾r).Rel := by
   have F_symm := symm_of_refl_eucl F_refl.refl F_eucl;
   rintro ⟨x, (rfl | hx)⟩ ⟨y, (rfl | hy)⟩;
@@ -303,6 +324,9 @@ def bisimulationOfTrans (M_trans : IsTrans M.World M.Rel) (r : M.World) : (M↾r
       right;
       exact M_trans.trans _ _ _ hx₁ Rx₂y₂;
 
+/--
+@isnad1 id=modalequ.1h2v.s6.b98407d7f274 from=translated src=- shape=716fd8c7 vocab=5a242f25
+-/
 lemma modal_equivalent_at_root (M_trans : IsTrans M.World M.Rel) (r : M.World) :
     ModalEquivalent (M₁ :=
   (M↾r).toModel) (M₂ := M) ⟨r, by simp⟩ r

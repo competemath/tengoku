@@ -22,7 +22,9 @@ universe u
 open CategoryTheory TopologicalSpace Limits Opposite TopCat
 
 /-- Zero is preserved under filtered transitions: if restricting a transition to an open
-    gives 0, then restricting any further transition also gives 0. -/
+    gives 0, then restricting any further transition also gives 0.
+@isnad1 id=eq.1h12v.s14.5a96716083c6 from=translated src=- shape=5fd1ef0b vocab=ddffc102
+-/
 lemma transition_preserves_zero
     {X : TopCat.{u}} {J' : Type u} [SmallCategory J']
     (Y' : J' ⥤ (Opens X)ᵒᵖ ⥤ AddCommGrpCat.{u})
@@ -43,7 +45,9 @@ lemma transition_preserves_zero
   simp only [ConcreteCategory.comp_apply]
   exact (congr_arg (ConcreteCategory.hom (α.app (op U))) h).trans (map_zero _)
 
-/-- Pairwise compatibility is preserved under filtered transitions. -/
+/-- Pairwise compatibility is preserved under filtered transitions.
+@isnad1 id=eq.1h12v.s15.9ba940f29a5f from=translated src=- shape=487cc411 vocab=5dfd6b45
+-/
 lemma transition_preserves_compat
     {X : TopCat.{u}} {J' : Type u} [SmallCategory J']
     (Y' : J' ⥤ (Opens X)ᵒᵖ ⥤ AddCommGrpCat.{u})
@@ -74,7 +78,9 @@ lemma transition_preserves_compat
     ConcreteCategory.hom ((Y'.obj j).map φ.op ≫ β.app (op (U ⊓ V))) _
   simp_all
 
-/-- A section of a sheaf that restricts to 0 on a finite open cover is 0. -/
+/-- A section of a sheaf that restricts to 0 on a finite open cover is 0.
+@isnad1 id=eq.4h7v.s11.9e2e960b27df from=translated src=- shape=8cfd140a vocab=97081037
+-/
 theorem sheaf_section_zero_of_zero_on_cover
     {X : TopCat.{u}} {F : (Opens X)ᵒᵖ ⥤ AddCommGrpCat.{u}} (hF : TopCat.Presheaf.IsSheaf F)
     {ι : Type u} {V : Opens X} {W : ι → Opens X} (hW : ∀ k, W k ≤ V)
@@ -87,7 +93,9 @@ theorem sheaf_section_zero_of_zero_on_cover
     obtain ⟨hkt, hxk⟩ := Opens.mem_iSup.mp hk
     exact ⟨W k, hW k, hxk, (hzero k hkt).trans (map_zero _).symm⟩
 
-/-- Merge finitely many eventually-zero restrictions into a common index. -/
+/-- Merge finitely many eventually-zero restrictions into a common index.
+@isnad1 id=ex.2h9v.s14.36c893485320 from=translated src=- shape=70111cce vocab=4f0996f8
+-/
 theorem filtered_colimit_kills_all_restrictions
     {J' : Type u} [SmallCategory J'] [IsFiltered J']
     {X : TopCat.{u}} (Y' : J' ⥤ (Opens X)ᵒᵖ ⥤ AddCommGrpCat.{u})
@@ -120,7 +128,9 @@ theorem filtered_colimit_kills_all_restrictions
         (IsFiltered.leftToMax j_cur jk₀ ≫ h_eq) (homOfLE (hW k)) b₀ (hg_cur k hk)
 
 /-- If a representative of a colimit section restricts to zero in the cocone point,
-    then after some filtered transition its restriction is already zero. -/
+    then after some filtered transition its restriction is already zero.
+@isnad1 id=ex.2h11v.s14.6fd2c4565162 from=translated src=- shape=ed3aa716 vocab=d2c0b0e7
+-/
 theorem filtered_colimit_restriction_eventually_zero_of_zero
     {X : TopCat.{u}}
     {J' : Type u} [SmallCategory J'] [IsFiltered J']
@@ -175,7 +185,9 @@ theorem filtered_colimit_restriction_eventually_zero_of_zero
 
 /-- A section of a filtered colimit that restricts to zero on a finite open cover is zero.
     Combines representative extraction, per-element eventual vanishing,
-    merging to a common index, and sheaf separation. -/
+    merging to a common index, and sheaf separation.
+@isnad1 id=eq.4h10v.s12.33a75de5d93b from=translated src=- shape=e5d88810 vocab=316c4307
+-/
 theorem colimit_section_zero_of_zero_on_cover
     {X : TopCat.{u}}
     {J' : Type u} [SmallCategory J'] [IsFiltered J']
@@ -203,7 +215,9 @@ theorem colimit_section_zero_of_zero_on_cover
   exact map_zero (ConcreteCategory.hom ((c.ι.app j₁).app (op V)))
 
 /-- A finite compatible family in a filtered colimit admits representatives at one filtered
-    stage that are pairwise compatible on the chosen finite subfamily. -/
+    stage that are pairwise compatible on the chosen finite subfamily.
+@isnad1 id=ex.1h9v.s13.1b7f132b8993 from=translated src=- shape=e4b6ef6a vocab=fb9f517f
+-/
 theorem filtered_colimit_exists_compatible_representatives
     {X : TopCat.{u}}
     {J' : Type u} [SmallCategory J'] [IsFiltered J']
@@ -296,7 +310,9 @@ theorem filtered_colimit_exists_compatible_representatives
       exact hx' k⟩
 
 /-- A compatible family on a finite subcover, represented at a single filtered index,
-    glues to a section of any cocone point with the prescribed finite restrictions. -/
+    glues to a section of any cocone point with the prescribed finite restrictions.
+@isnad1 id=ex.4h10v.s13.156ce2f22c0d from=translated src=- shape=c9e4e6ee vocab=22d91789
+-/
 theorem colimit_exists_gluing_of_compatible_finite_subcover
     {X : TopCat.{u}}
     {J' : Type u} [SmallCategory J']
@@ -349,7 +365,9 @@ theorem colimit_exists_gluing_of_compatible_finite_subcover
   simp_all
 
 /-- If a section on `iSup U` agrees with a compatible family on a finite subcover,
-    then it restricts to that family on every `U i`. -/
+    then it restricts to that family on every `U i`.
+@isnad1 id=eq.4h11v.s12.0241fc38cebf from=translated src=- shape=fdee6e28 vocab=2f0e1390
+-/
 theorem colimit_restrict_eq_of_eq_on_finite_subcover
     {X : TopCat.{u}}
     {J' : Type u} [SmallCategory J'] [IsFiltered J']
@@ -386,7 +404,9 @@ theorem colimit_restrict_eq_of_eq_on_finite_subcover
     · exact (hcompat i k).symm
 
 /-- A compatible family in a filtered colimit admits a unique gluing once the total open
-    is dominated by a finite subcover. -/
+    is dominated by a finite subcover.
+@isnad1 id=existsun.3h9v.s10.fb54a83eed19 from=translated src=- shape=e37f84d6 vocab=0594cfcb
+-/
 theorem colimit_existsUnique_gluing_of_compatible_finite_subcover
     {X : TopCat.{u}}
     {J' : Type u} [SmallCategory J'] [IsFiltered J']

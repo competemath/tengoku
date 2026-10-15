@@ -24,7 +24,9 @@ namespace Feige
 noncomputable section
 
 /-- An almost-everywhere real-valued probability bound for the fibres of a
-Markov kernel is inherited by the mixture measure. -/
+Markov kernel is inherited by the mixture measure.
+@isnad1 id=le.3h6v.s6.a127625faa87 from=translated src=- shape=a865b13a vocab=5683822d
+-/
 theorem measureReal_bind_apply_le
     {A B : Type*} [MeasurableSpace A] [MeasurableSpace B]
     (κ : Kernel A B) [IsMarkovKernel κ]

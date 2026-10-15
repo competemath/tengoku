@@ -65,7 +65,9 @@ private def woConsistencyProperty :
 
 /-- **The completion endpoint** (consumer-facing): under the well-ordered-chains hypothesis
 and the relational-core countability, a Henkin-complete set containing the base diagram
-exists.  Step 5 consumes `S` opaquely. -/
+exists.  Step 5 consumes `S` opaquely.
+@isnad1 id=ex.1h3v.s6.ac61cf48c545 from=translated src=- shape=4bb9e5fa vocab=4d0b8dd1
+-/
 theorem exists_henkinComplete_baseDiagram [Countable (Σ l, L.Relations l)]
     (h : HasWellOrderedChains φ lt) :
     ∃ S : Set L[[ℕ]].Sentenceω,

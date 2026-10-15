@@ -25,6 +25,9 @@ namespace Lemma43
 
 open TransferStein TransferTestFunctions
 
+/--
+@isnad1 id=eq.2h3v.s5.fe5d87043500 from=translated src=- shape=8da3071c vocab=61d32533
+-/
 theorem transferPsi_eq_transferPhi_add_tails
     {c d : ℝ} (hc : 0 < c) (hd : 0 < d) (z : ℝ) :
     transferPsi c z =
@@ -37,6 +40,9 @@ theorem transferPsi_eq_transferPhi_add_tails
       transferPhi_of_nonpos hd hz'.le]
     simp [uTailIntegrand, vTailIntegrand, hz, hz']
 
+/--
+@isnad1 id=eq.1h2v.s5.4c7d4e377d3a from=translated src=- shape=97b1d965 vocab=9215feeb
+-/
 theorem indicator_Ici_eq_transferPsi_sub_vTail
     {c : ℝ} (hc : 0 < c) (z : ℝ) :
     (Ici (0 : ℝ)).indicator (fun _ ↦ (1 : ℝ)) z =
@@ -48,6 +54,9 @@ theorem indicator_Ici_eq_transferPsi_sub_vTail
     simp [Set.indicator, hz, transferPsi_of_nonpos hc hz'.le,
       vTailIntegrand, hz']
 
+/--
+@isnad1 id=integrab.1h2v.s5.43397b58ee8d from=translated src=- shape=293336da vocab=05a17bcf
+-/
 lemma integrable_transferPhi
     (ν : Measure ℝ) [IsFiniteMeasure ν] {d : ℝ} (hd : 0 < d) :
     Integrable (transferPhi d) ν := by
@@ -56,6 +65,9 @@ lemma integrable_transferPhi
   filter_upwards with z
   exact norm_transferPhi_le_one hd z
 
+/--
+@isnad1 id=integrab.0h2v.s5.4e4ba07f75c5 from=translated src=- shape=57d38ec5 vocab=87230c2b
+-/
 lemma integrable_transferPsi
     (ν : Measure ℝ) [IsFiniteMeasure ν] (c : ℝ) :
     Integrable (transferPsi c) ν := by
@@ -64,7 +76,9 @@ lemma integrable_transferPsi
   filter_upwards with z
   exact norm_transferPsi_le_one c z
 
-/-- `B = A + w` for every finite law. -/
+/-- `B = A + w` for every finite law.
+@isnad1 id=eq.2h3v.s5.aa8d4656fc37 from=translated src=- shape=10a70711 vocab=f350e2d4
+-/
 theorem B_eq_A_add_w
     (ν : Measure ℝ) [IsFiniteMeasure ν]
     {c d : ℝ} (hc : 0 < c) (hd : 0 < d) :
@@ -90,7 +104,9 @@ theorem B_eq_A_add_w
           ∫ z, vTailIntegrand c z ∂ν) := by
       rw [integral_add hu hv]
 
-/-- `F = B - v` for every finite law. -/
+/-- `F = B - v` for every finite law.
+@isnad1 id=eq.1h2v.s5.e93b176f772e from=translated src=- shape=2be02e18 vocab=62f9958e
+-/
 theorem F_eq_B_sub_v
     (ν : Measure ℝ) [IsFiniteMeasure ν]
     {c : ℝ} (hc : 0 < c) :
@@ -108,7 +124,9 @@ theorem F_eq_B_sub_v
   exact indicator_Ici_eq_transferPsi_sub_vTail hc z
 
 /-- The elementary relation bundle required by `Lemma43.transfer_identity`
-is automatic for any two finite laws. -/
+is automatic for any two finite laws.
+@isnad1 id=probabil.2h4v.s5.f1d9ce0fe8d8 from=translated src=- shape=75750fc8 vocab=340f5de1
+-/
 theorem probabilityRelations
     (νP νM : Measure ℝ) [IsFiniteMeasure νP] [IsFiniteMeasure νM]
     {c d : ℝ} (hc : 0 < c) (hd : 0 < d) :

@@ -53,12 +53,17 @@ variable {h g : ℂ → ℂ} {k : ℕ}
 noncomputable def traceZkForm (h : ℂ → ℂ) (k : ℕ) (w : ℂ) : ℂ :=
   RS.MTrace.traceZk (fun v => h v * ((k : ℂ) * v ^ ((k : ℤ) - 1))⁻¹) k w
 
+/--
+@isnad1 id=eq.0h3v.s6.8fa0e22bdd38 from=translated src=- shape=c97da778 vocab=358894ad
+-/
 theorem traceZkForm_def (h : ℂ → ℂ) (k : ℕ) (w : ℂ) :
     traceZkForm h k w = RS.MTrace.traceZk (fun v => h v * ((k : ℂ) * v ^ ((k : ℤ) - 1))⁻¹) k w :=
   rfl
 
 /-- The cancellation identity (task item 2's core step), `w ≠ 0` form (see the module docstring
-for why the design's unconditional claim is false at `w = 0`). -/
+for why the design's unconditional claim is false at `w = 0`).
+@isnad1 id=eq.2h3v.s6.e1da031546e6 from=translated src=- shape=b37dc7cd vocab=d294a7b0
+-/
 theorem traceZkForm_hAdapted_eq_apply (hk : k ≠ 0) {w : ℂ} (hw : w ≠ 0) :
     traceZkForm (fun v => g v * (k : ℂ) * v ^ ((k : ℤ) - 1)) k w = RS.MTrace.traceZk g k w := by
   unfold traceZkForm
@@ -75,7 +80,9 @@ theorem traceZkForm_hAdapted_eq_apply (hk : k ≠ 0) {w : ℂ} (hw : w ≠ 0) :
   field_simp
 
 /-- Existence of meromorphy: builds ONLY on `RS.MTrace.meromorphicAt_traceZk` (P5, zero sorries)
-— NOT gated on P6. -/
+— NOT gated on P6.
+@isnad1 id=meromorp.2h2v.s5.7f44ac27f66f from=translated src=- shape=14a71d55 vocab=8a88af71
+-/
 theorem meromorphicAt_traceZkForm (hh : MeromorphicAt h 0) (hk : k ≠ 0) :
     MeromorphicAt (traceZkForm h k) 0 := by
   unfold traceZkForm
@@ -85,7 +92,9 @@ theorem meromorphicAt_traceZkForm (hh : MeromorphicAt h 0) (hk : k ≠ 0) :
   exact hh.mul ((MeromorphicAt.const (k : ℂ) 0).mul hzp).inv
 
 /-- The Laurent-coefficient formula (design §4.2, ⚠ was gated on mtrace's P6 — now UNCONDITIONAL,
-P6 having landed with zero admitted goals). -/
+P6 having landed with zero admitted goals).
+@isnad1 id=eq.2h3v.s6.9cf024f74323 from=translated src=- shape=d773197a vocab=04657912
+-/
 theorem laurentCoeffAt_traceZkForm (hh : MeromorphicAt h 0) (hk : k ≠ 0) (j : ℤ) :
     RS.laurentCoeffAt (traceZkForm h k) 0 j = RS.laurentCoeffAt h 0 ((k : ℤ) * j + ((k : ℤ) - 1)) :=
         by
@@ -105,7 +114,9 @@ theorem laurentCoeffAt_traceZkForm (hh : MeromorphicAt h 0) (hk : k ≠ 0) (j : 
 
 /-- Miranda Lemma 3.2, LOCAL case (single preimage): the residue is preserved EXACTLY (no factor
 of `k` — the Jacobian factor exactly cancels mtrace's `k`-multiplier at the residue index
-`j = -1`). -/
+`j = -1`).
+@isnad1 id=eq.2h2v.s5.763b8dd425bb from=translated src=- shape=e6f1adb0 vocab=f46cacf4
+-/
 theorem resAt_traceZkForm (hh : MeromorphicAt h 0) (hk : k ≠ 0) :
     RS.resAt (traceZkForm h k) 0 = RS.resAt h 0 := by
   have hL := laurentCoeffAt_traceZkForm hh hk (-1)

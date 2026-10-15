@@ -154,7 +154,9 @@ def NeighborhoodSystem.ofPositive {α : Type*} (mem : Set α → Prop) (master :
     rw [Set.inter_self] at hZne
     exact (pos hX hY).mpr (hZne.mono hZsub)
 
-/-- The system built by `ofPositive` is indeed positive. -/
+/-- The system built by `ofPositive` is indeed positive.
+@isnad1 id=ispositi.2h4v.s6.24ca386128d6 from=translated src=- shape=e7d90318 vocab=f15304fd
+-/
 theorem NeighborhoodSystem.ofPositive_isPositive {α : Type*} (mem : Set α → Prop)
     (master : Set α) (master_mem : mem master) (sub_master : ∀ {X : Set α}, mem X → X ⊆ master)
     (pos : ∀ ⦃X Y : Set α⦄, mem X → mem Y → (mem (X ∩ Y) ↔ (X ∩ Y).Nonempty)) :
@@ -179,12 +181,16 @@ def interUpTo (V : NeighborhoodSystem α) (X : ℕ → Set α) : ℕ → Set α
 
 /-- **Factoid 1.1a.** The intersection of the empty sequence of neighbourhoods is
 `Δ`:
-`⋂_{i < 0} Xᵢ = Δ`. -/
+`⋂_{i < 0} Xᵢ = Δ`.
+@isnad1 id=eq.0h3v.s4.c7e48b709d2f from=translated src=- shape=6a2b0050 vocab=275a56d1
+-/
 @[simp] theorem interUpTo_zero (X : ℕ → Set α) : V.interUpTo X 0 = V.master := rfl
 
 /-- **Factoid 1.1b.** The intersection of the first `n + 1` neighbourhoods peels
 off the
-last factor: `⋂_{i < n+1} Xᵢ = (⋂_{i < n} Xᵢ) ∩ Xₙ`. -/
+last factor: `⋂_{i < n+1} Xᵢ = (⋂_{i < n} Xᵢ) ∩ Xₙ`.
+@isnad1 id=eq.0h4v.s5.013948ae7b61 from=translated src=- shape=5165be78 vocab=d9f28a20
+-/
 @[simp] theorem interUpTo_succ (X : ℕ → Set α) (n : ℕ) :
     V.interUpTo X (n + 1) = V.interUpTo X n ∩ X n := rfl
 
@@ -192,7 +198,9 @@ last factor: `⋂_{i < n+1} Xᵢ = (⋂_{i < n} Xᵢ) ∩ Xₙ`. -/
 Xⱼ` for
 `j < n`. (Supporting lemma: this is what makes `⋂_{i < n} Xᵢ` a common lower bound
 of the
-sequence, the intuition behind consistency.) -/
+sequence, the intuition behind consistency.)
+@isnad1 id=le.1h5v.s5.194842a64944 from=translated src=- shape=25da062d vocab=1f2d00ef
+-/
 theorem interUpTo_subset (X : ℕ → Set α) :
     ∀ {n j : ℕ}, j < n → V.interUpTo X n ⊆ X j := by
   intro n
@@ -223,7 +231,9 @@ and the sequence is consistent, then the finite intersection `⋂_{i < n} Xᵢ` 
 again a
 neighbourhood (`∈ 𝒟`). Proved by induction on `n`; the inductive step is one
 application of
-condition (ii). -/
+condition (ii).
+@isnad1 id=mem.2h4v.s5.4a5c6dd9f7e1 from=translated src=- shape=03bde41c vocab=45a89d27
+-/
 theorem interUpTo_mem (X : ℕ → Set α) :
     ∀ {n : ℕ}, (∀ i, i < n → V.mem (X i)) → V.Consistent X n →
       V.mem (V.interUpTo X n) := by
@@ -248,7 +258,9 @@ is
 consistent in `𝒟` iff `⋂_{i < n} Xᵢ ∈ 𝒟`." (Given `Xᵢ ∈ 𝒟` for all `i < n`.)
 
 * `→` is the extension property `interUpTo_mem`;
-* `←` is immediate: the intersection is its own common lower bound. -/
+* `←` is immediate: the intersection is its own common lower bound.
+@isnad1 id=iff.1h4v.s5.df88d26e43c8 from=translated src=- shape=4d93fbcf vocab=45a89d27
+-/
 theorem consistent_iff_interUpTo_mem (X : ℕ → Set α) {n : ℕ}
     (hX : ∀ i, i < n → V.mem (X i)) :
     V.Consistent X n ↔ V.mem (V.interUpTo X n) := by
@@ -276,7 +288,9 @@ structure Element where
   up_mem : ∀ {X Y}, mem X → V.mem Y → X ⊆ Y → mem Y
 
 /-- Two elements with the same membership predicate are equal (the remaining
-fields are `Prop`s). -/
+fields are `Prop`s).
+@isnad1 id=eq.1h4v.s5.9554746f497d from=translated src=- shape=fa3dc7a6 vocab=a7d31ebc
+-/
 theorem Element.ext {x y : V.Element} (h : ∀ X, x.mem X ↔ y.mem X) : x = y := by
   rcases x with ⟨xmem, _, _, _, _⟩
   rcases y with ⟨ymem, _, _, _, _⟩
@@ -287,7 +301,9 @@ theorem Element.ext {x y : V.Element} (h : ∀ X, x.mem X ↔ y.mem X) : x = y :
 every factor
 `Xᵢ` (`i < n`) lies in the filter `x`, so does `interUpTo X n`. Used in Exercises
 1.18 and 1.21.
-Base case `x.master_mem`; inductive step one `x.inter_mem`. -/
+Base case `x.master_mem`; inductive step one `x.inter_mem`.
+@isnad1 id=mem.1h5v.s5.0bb6b2a42844 from=translated src=- shape=76094234 vocab=20dd43c8
+-/
 theorem Element.mem_interUpTo {α : Type*} {V : NeighborhoodSystem α} (x : V.Element)
     (X : ℕ → Set α) :
     ∀ {n : ℕ}, (∀ i, i < n → x.mem (X i)) → x.mem (V.interUpTo X n) := by
@@ -303,7 +319,9 @@ theorem Element.mem_interUpTo {α : Type*} {V : NeighborhoodSystem α} (x : V.El
 all factors
 are neighbourhoods). `→` is upward closure along `interUpTo X n ⊆ Xᵢ`
 (`interUpTo_subset`); `←`
-is `Element.mem_interUpTo`. -/
+is `Element.mem_interUpTo`.
+@isnad1 id=iff.1h5v.s5.d15723e4d4dd from=translated src=- shape=4ff63279 vocab=c7be2796
+-/
 theorem Element.mem_interUpTo_iff {α : Type*} {V : NeighborhoodSystem α} (x : V.Element)
     (X : ℕ → Set α) {n : ℕ} (hX : ∀ i, i < n → V.mem (X i)) :
     x.mem (V.interUpTo X n) ↔ ∀ i, i < n → x.mem (X i) := by
@@ -341,7 +359,9 @@ families are
 *equal* if and only if the sequences are *equivalent*." Given that every term of
 each sequence
 is a neighbourhood, the limit families coincide exactly when the sequences are
-equivalent. -/
+equivalent.
+@isnad1 id=iff.2h4v.s5.0937ae62da95 from=translated src=- shape=bce3fe37 vocab=5dc03d61
+-/
 theorem limitFamily_eq_iff (X Y : ℕ → Set α)
     (hX : ∀ n, V.mem (X n)) (hY : ∀ m, V.mem (Y m)) :
     V.limitFamily X = V.limitFamily Y ↔ SeqEquiv X Y := by
@@ -389,6 +409,9 @@ def principal {X : Set α} (hX : V.mem X) : V.Element where
     ⟨V.inter_mem h1.1 h2.1 hX (Set.subset_inter h1.2 h2.2), Set.subset_inter h1.2 h2.2⟩
   up_mem h hY hsub := ⟨hY, h.2.trans hsub⟩
 
+/--
+@isnad1 id=iff.1h4v.s5.aea60dd91c3c from=translated src=- shape=61c9db21 vocab=221d605d
+-/
 @[simp] theorem mem_principal {X Y : Set α} (hX : V.mem X) :
     (V.principal hX).mem Y ↔ V.mem Y ∧ X ⊆ Y := Iff.rfl
 
@@ -400,7 +423,9 @@ order on `↑`:
 
 `→` tests at `Z = X` (`X ∈ ↑X` since `X ⊆ X`), reading off `Y ⊆ X` from `X ∈ ↑Y`;
 `←` chains
-`Y ⊆ X ⊆ Z`. -/
+`Y ⊆ X ⊆ Z`.
+@isnad1 id=iff.2h4v.s5.d7b21b7b42c3 from=translated src=- shape=6b2678e5 vocab=ef26c5c6
+-/
 theorem principal_le_iff {X Y : Set α} (hX : V.mem X) (hY : V.mem Y) :
     V.principal hX ≤ V.principal hY ↔ Y ⊆ X := by
   constructor
@@ -411,7 +436,9 @@ theorem principal_le_iff {X Y : Set α} (hX : V.mem X) (hY : V.mem Y) :
 
 /-- **Factoid 1.7a (Scott 1981, PRG-19) — one-one.** The correspondence `X ↦ ↑X`
 is injective:
-`↑X = ↑Y ⟹ X = Y`. Antisymmetry applied to `principal_le_iff` in both directions. -/
+`↑X = ↑Y ⟹ X = Y`. Antisymmetry applied to `principal_le_iff` in both directions.
+@isnad1 id=eq.3h4v.s5.aae8693e3794 from=translated src=- shape=0ac70a73 vocab=e2c984c6
+-/
 theorem principal_injective {X Y : Set α} (hX : V.mem X) (hY : V.mem Y)
     (h : V.principal hX = V.principal hY) : X = Y := by
   have hYX : Y ⊆ X := (V.principal_le_iff hX hY).mp (le_of_eq h)
@@ -448,7 +475,9 @@ neighbourhood `Y` belongs to `⊥` iff `Y = Δ`.
 
 `→`: `Y ∈ ⊥ = ↑Δ` gives `Y ∈ 𝒟` and `Δ ⊆ Y`; `V.sub_master` gives the reverse `Y ⊆
 Δ`, so
-`Y = Δ` by antisymmetry. `←`: `Δ ∈ 𝒟` and `Δ ⊆ Δ`. -/
+`Y = Δ` by antisymmetry. `←`: `Δ ∈ 𝒟` and `Δ ⊆ Δ`.
+@isnad1 id=iff.0h3v.s4.107c60bffc78 from=translated src=- shape=0b02701f vocab=e940af6c
+-/
 @[simp] theorem mem_bot {Y : Set α} : V.bot.mem Y ↔ Y = V.master := by
   constructor
   · rintro ⟨hY, hΔY⟩
@@ -461,7 +490,9 @@ others, `{Δ}`,
 is called `⊥`": `⊥` is the least element of `|𝒟|`, `⊥ ⊑ x` for every `x`.
 
 Given `Y ∈ ⊥`, i.e. `Y = Δ`, membership `Δ ∈ x` is filter condition (i)
-(`x.master_mem`). -/
+(`x.master_mem`).
+@isnad1 id=le.0h3v.s4.b074c881c3a0 from=translated src=- shape=df1ad6c8 vocab=db808fe1
+-/
 theorem bot_le (x : V.Element) : V.bot ≤ x := by
   intro Y hY
   rw [mem_bot] at hY
@@ -532,16 +563,22 @@ def Isomorphic {α β : Type*} (V₀ : NeighborhoodSystem α) (V₁ : Neighborho
 
 @[inherit_doc] infix:25 " ≅ᴰ " => Isomorphic
 
-/-- `≅ᴰ` is reflexive (`OrderIso.refl`). -/
+/-- `≅ᴰ` is reflexive (`OrderIso.refl`).
+@isnad1 id=isomorph.0h2v.s3.2f5815d5f7a1 from=translated src=- shape=97c8b2d0 vocab=68d67ea3
+-/
 theorem Isomorphic.refl {α : Type*} (V : NeighborhoodSystem α) : V ≅ᴰ V :=
   ⟨OrderIso.refl _⟩
 
-/-- `≅ᴰ` is symmetric (`OrderIso.symm`). -/
+/-- `≅ᴰ` is symmetric (`OrderIso.symm`).
+@isnad1 id=isomorph.1h4v.s4.29c32e7c289f from=translated src=- shape=dfb9aafd vocab=68d67ea3
+-/
 theorem Isomorphic.symm {α β : Type*} {V₀ : NeighborhoodSystem α} {V₁ : NeighborhoodSystem β}
     (h : V₀ ≅ᴰ V₁) : V₁ ≅ᴰ V₀ :=
   h.elim fun e => ⟨e.symm⟩
 
-/-- `≅ᴰ` is transitive (`OrderIso.trans`). -/
+/-- `≅ᴰ` is transitive (`OrderIso.trans`).
+@isnad1 id=isomorph.2h6v.s5.3778a64983b9 from=translated src=- shape=848ea211 vocab=68d67ea3
+-/
 theorem Isomorphic.trans {α β γ : Type*} {V₀ : NeighborhoodSystem α} {V₁ : NeighborhoodSystem β}
     {V₂ : NeighborhoodSystem γ} (h₀ : V₀ ≅ᴰ V₁) (h₁ : V₁ ≅ᴰ V₂) : V₀ ≅ᴰ V₂ :=
   h₀.elim fun e₀ => h₁.elim fun e₁ => ⟨e₀.trans e₁⟩

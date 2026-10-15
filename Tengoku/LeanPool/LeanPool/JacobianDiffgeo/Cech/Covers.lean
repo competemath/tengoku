@@ -59,11 +59,17 @@ instance : Preorder (FinCover Ω) where
   le_trans 𝒰 𝒱 𝒲 h h' :=
     ⟨h.choose ∘ h'.choose, fun k => (h'.choose_spec k).trans (h.choose_spec _)⟩
 
+/--
+@isnad1 id=iff.0h4v.s6.46136a16df4b from=translated src=- shape=d273f931 vocab=c9f842c2
+-/
 theorem le_def {𝒰 𝒱 : FinCover Ω} : 𝒰 ≤ 𝒱 ↔ ∃ τ, IsRefIdx 𝒰 𝒱 τ := Iff.rfl
 
 /-- A chosen (classical) refinement index witnessing `𝒰 ≤ 𝒱`. -/
 noncomputable def chosenRefIdx {𝒰 𝒱 : FinCover Ω} (h : 𝒰 ≤ 𝒱) : Fin 𝒱.n → Fin 𝒰.n := h.choose
 
+/--
+@isnad1 id=isrefidx.1h4v.s5.a37710c14b7b from=translated src=- shape=faab8da4 vocab=aab73da2
+-/
 theorem chosenRefIdx_spec {𝒰 𝒱 : FinCover Ω} (h : 𝒰 ≤ 𝒱) : IsRefIdx 𝒰 𝒱 (chosenRefIdx h) :=
   h.choose_spec
 
@@ -79,9 +85,15 @@ def FinCover.meet (𝒰 𝒱 : FinCover Ω) : FinCover Ω where
     obtain ⟨j, hj⟩ := 𝒱.covers x hx
     exact ⟨finProdFinEquiv (i, j), by simp [Opens.mem_inf, hi, hj]⟩
 
+/--
+@isnad1 id=le.0h4v.s5.188515c224e0 from=translated src=- shape=0620c2b6 vocab=02430749
+-/
 theorem le_meet_left (𝒰 𝒱 : FinCover Ω) : 𝒰 ≤ 𝒰.meet 𝒱 :=
   ⟨fun p => (finProdFinEquiv.symm p).1, fun _ => inf_le_left⟩
 
+/--
+@isnad1 id=le.0h4v.s5.4860b30d462c from=translated src=- shape=00c3180f vocab=02430749
+-/
 theorem le_meet_right (𝒰 𝒱 : FinCover Ω) : 𝒱 ≤ 𝒰.meet 𝒱 :=
   ⟨fun p => (finProdFinEquiv.symm p).2, fun _ => inf_le_right⟩
 
@@ -99,7 +111,9 @@ def IsChartDisk (V : Opens X) : Prop :=
 /-- A cover all of whose members are chart disks. -/
 def FinCover.IsGood (𝒰 : FinCover Ω) : Prop := ∀ i, IsChartDisk (𝒰.U i)
 
-/-- Every neighbourhood of a point contains a chart-disk neighbourhood of it (§6.3). -/
+/-- Every neighbourhood of a point contains a chart-disk neighbourhood of it (§6.3).
+@isnad1 id=ex.1h3v.s6.2f9753af3495 from=translated src=- shape=29c80824 vocab=6be4eeef
+-/
 theorem exists_chartDisk_basis {x : X} {W : Set X} (hW : W ∈ 𝓝 x) :
     ∃ V : Opens X, IsChartDisk V ∧ x ∈ V ∧ (V : Set X) ⊆ W := by
   set e := chartAt ℂ x with he_def
@@ -132,7 +146,9 @@ theorem exists_chartDisk_basis {x : X} {W : Set X} (hW : W ∈ 𝓝 x) :
     exact interior_subset hw.2
 
 /-- Compact-closure version: the chart-disk neighbourhood can be chosen with compact closure
-inside the given neighbourhood (§6.3, needs `[T2Space X]`). -/
+inside the given neighbourhood (§6.3, needs `[T2Space X]`).
+@isnad1 id=ex.1h3v.s6.11c0f8f0a17d from=translated src=- shape=3ce56f2b vocab=f11528b5
+-/
 theorem exists_chartDisk_closure_basis [T2Space X] {x : X} {W : Set X} (hW : W ∈ 𝓝 x) :
     ∃ V : Opens X, IsChartDisk V ∧ x ∈ V ∧ closure (V : Set X) ⊆ W ∧
       IsCompact (closure (V : Set X)) := by
@@ -180,7 +196,9 @@ theorem exists_chartDisk_closure_basis [T2Space X] {x : X} {W : Set X} (hW : W �
   · change closure V0 ⊆ W
     exact hclosureV0.trans hKsubW
 
-/-- Chart-disk covers are cofinal (§6.3): every cover of `X` admits a good refinement. -/
+/-- Chart-disk covers are cofinal (§6.3): every cover of `X` admits a good refinement.
+@isnad1 id=ex.0h2v.s9.c329903085b2 from=translated src=- shape=f91bb3b6 vocab=0e53d5da
+-/
 theorem exists_good_refinement [CompactSpace X] (𝒰 : FinCover (⊤ : Opens X)) :
     ∃ 𝒱, 𝒰 ≤ 𝒱 ∧ 𝒱.IsGood := by
   choose i hi using fun x : X => 𝒰.covers x trivial
@@ -200,7 +218,9 @@ theorem exists_good_refinement [CompactSpace X] (𝒰 : FinCover (⊤ : Opens X)
   obtain ⟨y, hyt, hxy⟩ := hxmem
   exact ⟨e ⟨y, hyt⟩, by simpa using hxy⟩
 
-/-- Compact-closure good refinement (§6.3) — the nested-cover input for finiteness-and-chi. -/
+/-- Compact-closure good refinement (§6.3) — the nested-cover input for finiteness-and-chi.
+@isnad1 id=ex.0h2v.s9.ae0e940e226e from=translated src=- shape=d9119fa7 vocab=945ad5d8
+-/
 theorem exists_good_refinement_closure [CompactSpace X] [T2Space X]
     (𝒰 : FinCover (⊤ : Opens X)) :
     ∃ 𝒱 : FinCover (⊤ : Opens X), ∃ τ : Fin 𝒱.n → Fin 𝒰.n, IsRefIdx 𝒰 𝒱 τ ∧ 𝒱.IsGood ∧
@@ -233,6 +253,9 @@ def FinCover.IsAdapted (𝒰 : FinCover Ω) (S : Finset X) : Prop := ∀ p ∈ S
 def compOpens [T1Space X] (T : Finset X) : Opens X := ⟨(T : Set X)ᶜ, T.isClosed.isOpen_compl⟩
 
 omit [ChartedSpace ℂ X] in
+/--
+@isnad1 id=iff.0h3v.s5.d5a75adcc6ec from=translated src=- shape=49fa443f vocab=59c9b284
+-/
 theorem mem_compOpens [T1Space X] {T : Finset X} {x : X} :
     x ∈ compOpens T ↔ x ∉ T := by
   change x ∈ ((T : Set X)ᶜ) ↔ x ∉ T
@@ -243,7 +266,9 @@ omit [ChartedSpace ℂ X] in
 neighbourhoods `O p` of each `p ∈ S` (§6.2; pure finite-lattice bookkeeping, `[T1Space X]`).
 Deviation from the design doc: an explicit `hS : ∀ p ∈ S, p ∈ Ω` hypothesis is added — without
 it `𝒱.IsAdapted S` is unprovable for points of `S` outside `Ω` (every member of a `FinCover Ω`
-lies inside `Ω`); every use site has `Ω = ⊤`, where the hypothesis is trivial. -/
+lies inside `Ω`); every use site has `Ω = ⊤`, where the hypothesis is trivial.
+@isnad1 id=ex.2h5v.s7.f2efc3efdfed from=translated src=- shape=c1c1e99e vocab=fb4682ea
+-/
 theorem exists_adapted_refinement [T1Space X] (𝒰 : FinCover Ω) (S : Finset X)
     (hS : ∀ p ∈ S, p ∈ Ω) (O : X → Opens X) (hO : ∀ p ∈ S, p ∈ O p) :
     ∃ 𝒱, 𝒰 ≤ 𝒱 ∧ 𝒱.IsAdapted S ∧ ∀ p ∈ S, ∀ k, p ∈ 𝒱.U k → 𝒱.U k ≤ O p := by
@@ -345,7 +370,9 @@ theorem exists_adapted_refinement [T1Space X] (𝒰 : FinCover Ω) (S : Finset X
 omit [ChartedSpace ℂ X] in
 /-- If `𝒰` is adapted to `S`, distinct members meet `S` in at most disjoint points: no member
 other than the unique one containing `p` also contains it (immediate from `IsAdapted`, kept as
-a named export for the skyscraper unit). -/
+a named export for the skyscraper unit).
+@isnad1 id=not.3h7v.s6.40139d2d7ea1 from=translated src=- shape=94855b91 vocab=aac294f1
+-/
 theorem FinCover.IsAdapted.not_mem_inf {𝒰 : FinCover Ω} {S : Finset X} (h𝒰 : 𝒰.IsAdapted S) {p : X}
     (hp : p ∈ S) {i j : Fin 𝒰.n} (hij : i ≠ j) : p ∉ 𝒰.U i ⊓ 𝒰.U j := by
   rintro ⟨hi, hj⟩

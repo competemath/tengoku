@@ -73,7 +73,9 @@ def conflictCovers28 : Array ConflictCover :=
   ⟨6, 140739904313376, 34359721983, [5, 11, 12, 15, 28, 31, 47]⟩,
   ⟨6, 140739636367392, 34359721975, [5, 12, 19, 31, 47]⟩]
 
-/-- Every entry in conflict-cover group 28 passes its audit. -/
+/-- Every entry in conflict-cover group 28 passes its audit.
+@isnad1 id=eq.0h0v.s3.d9f1a80e84ba from=translated src=- shape=0547e772 vocab=6d9a5dc9
+-/
 theorem conflictCovers28_valid :
     conflictCovers28.toList.all ConflictCover.validB = true := by
   decide
@@ -140,7 +142,9 @@ def conflictCovers29 : Array ConflictCover :=
   ⟨6, 2148546560, 34359113719, [11, 12, 13, 20, 31]⟩,
   ⟨6, 140737490455592, 32212238079, [3, 5, 10, 11, 21, 47]⟩]
 
-/-- Every entry in conflict-cover group 29 passes its audit. -/
+/-- Every entry in conflict-cover group 29 passes its audit.
+@isnad1 id=eq.0h0v.s3.2ce547c4e433 from=translated src=- shape=0547e772 vocab=c8b5a85a
+-/
 theorem conflictCovers29_valid :
     conflictCovers29.toList.all ConflictCover.validB = true := by
   decide
@@ -209,7 +213,9 @@ def conflictCovers30 : Array ConflictCover :=
   ⟨7, 70643622099008, 33285919743, [6, 11, 12, 13, 38, 46]⟩,
   ⟨6, 539498528, 34359590903, [5, 11, 12, 19, 21, 29]⟩]
 
-/-- Every entry in conflict-cover group 30 passes its audit. -/
+/-- Every entry in conflict-cover group 30 passes its audit.
+@isnad1 id=eq.0h0v.s3.70705a7711ea from=translated src=- shape=0547e772 vocab=4df31d8a
+-/
 theorem conflictCovers30_valid :
     conflictCovers30.toList.all ConflictCover.validB = true := by
   decide
@@ -277,7 +283,9 @@ def conflictCovers31 : Array ConflictCover :=
   ⟨6, 806387716, 34359213951, [2, 15, 20, 28, 29]⟩,
   ⟨4, 140737488357408, 28948784627, [5, 11, 47]⟩]
 
-/-- Every entry in conflict-cover group 31 passes its audit. -/
+/-- Every entry in conflict-cover group 31 passes its audit.
+@isnad1 id=eq.0h0v.s3.ff74ac3bdcd2 from=translated src=- shape=0547e772 vocab=93babd0d
+-/
 theorem conflictCovers31_valid :
     conflictCovers31.toList.all ConflictCover.validB = true := by
   decide

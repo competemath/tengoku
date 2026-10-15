@@ -26,6 +26,9 @@ noncomputable def descendingPerm {m : ℕ} (γ : Fin m → ℝ) :
     Equiv.Perm (Fin m) :=
   Tuple.sort (fun i => -γ i)
 
+/--
+@isnad1 id=antitone.0h2v.s5.79b268805f7e from=translated src=- shape=87db8c73 vocab=aa9ff342
+-/
 theorem antitone_comp_descendingPerm {m : ℕ} (γ : Fin m → ℝ) :
     Antitone (γ ∘ descendingPerm γ) := by
   have hmono := Tuple.monotone_sort (fun i : Fin m => -γ i)
@@ -34,6 +37,9 @@ theorem antitone_comp_descendingPerm {m : ℕ} (γ : Fin m → ℝ) :
   dsimp [descendingPerm] at h ⊢
   linarith
 
+/--
+@isnad1 id=eq.0h4v.s6.94ead73dc29d from=translated src=- shape=c25ddb00 vocab=e6036868
+-/
 theorem highSetMass_comp_perm {m : ℕ}
     (p : Fin m → ℝ) (σ : Equiv.Perm (Fin m))
     (S : Finset (Fin m)) :

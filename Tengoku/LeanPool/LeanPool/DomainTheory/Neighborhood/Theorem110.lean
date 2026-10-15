@@ -56,20 +56,29 @@ neighbourhood `X`.
 dependency.) -/
 def bracket (X : Set α) : Set V.Element := {x | x.mem X}
 
+/--
+@isnad1 id=iff.0h4v.s5.53f63f601b22 from=translated src=- shape=4fc160cf vocab=26d93e52
+-/
 @[simp] theorem mem_bracket {X : Set α} {x : V.Element} : x ∈ V.bracket X ↔ x.mem X := Iff.rfl
 
 /-- **Theorem 1.10 (1).** `[Δ] = |𝒟|`: every element contains the master
-neighbourhood. -/
+neighbourhood.
+@isnad1 id=eq.0h2v.s4.7aa66a322115 from=translated src=- shape=5b34c9eb vocab=0681da96
+-/
 @[simp] theorem bracket_master : V.bracket V.master = Set.univ := by
   ext x; simp only [mem_bracket, Set.mem_univ, iff_true]; exact x.master_mem
 
-/-- **Theorem 1.10 (4).** `↑X ∈ [X]`: the principal filter of `X` contains `X`. -/
+/-- **Theorem 1.10 (4).** `↑X ∈ [X]`: the principal filter of `X` contains `X`.
+@isnad1 id=mem.1h3v.s5.2f4759a9fcbe from=translated src=- shape=16491396 vocab=fbde6eff
+-/
 theorem principal_mem_bracket {X : Set α} (hX : V.mem X) : V.principal hX ∈ V.bracket X :=
   ⟨hX, subset_rfl⟩
 
 /-- **Theorem 1.10 (3).** `[X] ∩ [Y] = [X ∩ Y]` for `X, Y ∈ 𝒟`. (`⊆` is filter
 closure under `∩`;
-`⊇` is upward closure along `X ∩ Y ⊆ X`, `X ∩ Y ⊆ Y`.) -/
+`⊇` is upward closure along `X ∩ Y ⊆ X`, `X ∩ Y ⊆ Y`.)
+@isnad1 id=eq.2h4v.s5.f1638c1ebfcb from=translated src=- shape=b8f60174 vocab=f7048272
+-/
 theorem bracket_inter {X Y : Set α} (hX : V.mem X) (hY : V.mem Y) :
     V.bracket X ∩ V.bracket Y = V.bracket (X ∩ Y) := by
   ext x
@@ -82,7 +91,9 @@ theorem bracket_inter {X Y : Set α} (hX : V.mem X) (hY : V.mem Y) :
 
 /-- **The correspondence `X ↦ [X]` is inclusion-preserving.** `[X] ⊆ [Y] ↔ X ⊆ Y`
 (for `X,Y ∈ 𝒟`).
-`→` tests at `↑X ∈ [X]`, reading `X ⊆ Y` off `↑X ∈ [Y]`; `←` is upward closure. -/
+`→` tests at `↑X ∈ [X]`, reading `X ⊆ Y` off `↑X ∈ [Y]`; `←` is upward closure.
+@isnad1 id=iff.2h4v.s5.d6c109a31df6 from=translated src=- shape=04b74b1d vocab=78e33c21
+-/
 theorem bracket_subset_iff {X Y : Set α} (hX : V.mem X) (hY : V.mem Y) :
     V.bracket X ⊆ V.bracket Y ↔ X ⊆ Y := by
   constructor
@@ -92,7 +103,9 @@ theorem bracket_subset_iff {X Y : Set α} (hX : V.mem X) (hY : V.mem Y) :
     exact x.up_mem hx hY hXY
 
 /-- **The correspondence `X ↦ [X]` is one-one.** `[X] = [Y] ⟹ X = Y` (for `X,Y ∈
-𝒟`). -/
+𝒟`).
+@isnad1 id=eq.3h4v.s5.fdc3b2678366 from=translated src=- shape=c07e56ce vocab=3bd3edf5
+-/
 theorem bracket_injective {X Y : Set α} (hX : V.mem X) (hY : V.mem Y)
     (h : V.bracket X = V.bracket Y) : X = Y :=
   Set.Subset.antisymm ((V.bracket_subset_iff hX hY).mp h.subset)
@@ -102,7 +115,9 @@ theorem bracket_injective {X Y : Set α} (hX : V.mem X) (hY : V.mem Y)
 `Z ∈ 𝒟`,
 `Z ⊆ X ∩ Y`) iff `[X] ∩ [Y] ≠ ∅`. `→` uses `↑Z` (which lies in both `[X]` and
 `[Y]`); `←` reads a
-witness off any common element. -/
+witness off any common element.
+@isnad1 id=iff.2h4v.s6.6fdbc1516126 from=translated src=- shape=874b12e5 vocab=0e6d55ec
+-/
 theorem bracket_inter_nonempty_iff {X Y : Set α} (hX : V.mem X) (hY : V.mem Y) :
     (V.bracket X ∩ V.bracket Y).Nonempty ↔ ∃ Z, V.mem Z ∧ Z ⊆ X ∩ Y := by
   constructor
@@ -133,6 +148,9 @@ def tokenSystem : NeighborhoodSystem V.Element where
     exact ⟨X ∩ Y, hXY, V.bracket_inter hX hY⟩
   sub_master := fun _ => Set.subset_univ _
 
+/--
+@isnad1 id=iff.0h3v.s5.071d5a2a754a from=translated src=- shape=7141ac9e vocab=005ed8a9
+-/
 @[simp] theorem tokenSystem_mem {S : Set V.Element} :
     V.tokenSystem.mem S ↔ ∃ X, V.mem X ∧ S = V.bracket X := Iff.rfl
 
@@ -209,7 +227,9 @@ def tokenIso : V.Element ≃o V.tokenSystem.Element where
 
 /-- **Theorem 1.10 (statement).** Any neighbourhood system is isomorphic to its
 element-token
-system: `𝒟 ≅ᴰ {[X]}`. -/
+system: `𝒟 ≅ᴰ {[X]}`.
+@isnad1 id=isomorph.0h2v.s3.3621e2b33b2e from=translated src=- shape=a6b6496a vocab=1c62aa62
+-/
 theorem isomorphic_tokenSystem : V ≅ᴰ V.tokenSystem := ⟨V.tokenIso⟩
 
 end NeighborhoodSystem

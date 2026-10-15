@@ -28,6 +28,9 @@ add_decl_doc LO.Modal.Kripke.FiniteTransitiveTree.toRootedFrame
 namespace Kripke
 namespace FiniteTransitiveTree
 
+/--
+@isnad1 id=irrefl.0h1v.s3.8cf43bb296a4 from=translated src=- shape=0fb66c48 vocab=fe2146c6
+-/
 lemma rel_irreflexive (T : FiniteTransitiveTree) :
     Std.Irrefl T.Rel :=
   ⟨irreflexive_of_assymetric <| T.rel_assymetric⟩
@@ -70,22 +73,34 @@ def _root_.LO.Modal.Kripke.Frame.TreeUnravelling (F : Frame) (r : F.World) : Kri
 namespace Frame
 namespace TreeUnravelling
 
+/--
+@isnad1 id=ne.0h3v.s6.21eed9244413 from=translated src=- shape=85050482 vocab=ac138544
+-/
 @[simp 1100]
 lemma not_nil {c : (F.TreeUnravelling r).World} : c.1 ≠ [] := by
   have := c.2.1;
   by_contra;
   simp_all;
 
+/--
+@isnad1 id=lt.1h4v.s6.1d6dc7fba654 from=translated src=- shape=bfe634df vocab=859c1a07
+-/
 lemma rel_length {x y : (F.TreeUnravelling r).World} (h : x ≺ y) : x.1.length < y.1.length := by
   obtain ⟨z, hz⟩ := h;
   rw [←hz];
   simp;
 
+/--
+@isnad1 id=irrefl.0h2v.s3.0126da7b8bf5 from=translated src=- shape=bfd9546f vocab=0b2501c4
+-/
 lemma irreflexive : Std.Irrefl (F.TreeUnravelling r).Rel := by
   constructor
   intro x
   simp [TreeUnravelling];
 
+/--
+@isnad1 id=assymetr.0h2v.s3.2dc829f47602 from=translated src=- shape=bfd9546f vocab=c8d097cd
+-/
 lemma assymetric : Assymetric (F.TreeUnravelling r).Rel := by
   rintro x y hxy;
   by_contra hyx;
@@ -138,20 +153,32 @@ abbrev _root_.LO.Modal.Kripke.Frame.TransitiveTreeUnravelling (F : Frame) (r :
 namespace Frame
 namespace TransitiveTreeUnravelling
 
+/--
+@isnad1 id=ne.0h3v.s6.92da70ddbeaa from=translated src=- shape=85050482 vocab=4526cc54
+-/
 lemma not_nil {c : (F.TransitiveTreeUnravelling r).World} : c.1 ≠ [] := by
   simp_all
 
+/--
+@isnad1 id=lt.1h4v.s6.9ec2ea700182 from=translated src=- shape=bfe634df vocab=d0d84c17
+-/
 lemma rel_length {x y : (F.TransitiveTreeUnravelling r).World} (Rxy : x ≺ y) :
     x.1.length < y.1.length := by
   induction Rxy with
   | single Rxy => exact TreeUnravelling.rel_length Rxy;
   | tail _ h ih => have := TreeUnravelling.rel_length h; omega;
 
+/--
+@isnad1 id=istrans.0h2v.s3.798e49bb1ff0 from=translated src=- shape=bfd9546f vocab=ebc337e8
+-/
 lemma rel_transitive :
     IsTrans (F.TransitiveTreeUnravelling r).World
       (F.TransitiveTreeUnravelling r).Rel :=
   TransitiveClosure.rel_transitive
 
+/--
+@isnad1 id=assymetr.0h2v.s3.168591e51616 from=translated src=- shape=bfd9546f vocab=115c949a
+-/
 lemma rel_asymmetric : Assymetric (F.TransitiveTreeUnravelling r).Rel := by
   rintro x y hxy;
   by_contra hyx;
@@ -159,6 +186,9 @@ lemma rel_asymmetric : Assymetric (F.TransitiveTreeUnravelling r).Rel := by
   replace hyx := rel_length hyx;
   omega;
 
+/--
+@isnad1 id=iff.0h4v.s7.c9a29c8efdfa from=translated src=- shape=ec38d57f vocab=d0d84c17
+-/
 lemma rel_def {x y : (F.TransitiveTreeUnravelling r).World} :
     x ≺ y ↔ (x.1.length < y.1.length ∧ x.1 <+: y.1) := by
   constructor;
@@ -202,6 +232,9 @@ lemma rel_def {x y : (F.TransitiveTreeUnravelling r).World} :
         simp_all;
       · simp_all;
 
+/--
+@isnad1 id=isrooted.0h2v.s6.1427fa9aa03c from=translated src=- shape=81d161f2 vocab=29d7db7e
+-/
 lemma rooted : (F.TransitiveTreeUnravelling r).isRooted ⟨[r], by tauto⟩ := by
   intro x ha;
   apply rel_def.mpr;
@@ -256,6 +289,9 @@ abbrev pMorphism (M : Kripke.Model) (M_trans : IsTrans M.World M.Rel) (r : M.Wor
   PseudoEpimorphism.ofAtomic (Frame.TransitiveTreeUnravelling.pMorphism M.toFrame M_trans r) <|
       by aesop;
 
+/--
+@isnad1 id=modalequ.1h2v.s6.71837a46f099 from=translated src=- shape=76cec16d vocab=48986318
+-/
 lemma modal_equivalence_at_root (M : Kripke.Model) (M_trans : IsTrans M.World M.Rel) (r : M.World)
   : ModalEquivalent (M₁ := M.TransitiveTreeUnravelling r) (M₂ := M) ⟨[r], by simp⟩ r
   :=

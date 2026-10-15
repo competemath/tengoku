@@ -556,10 +556,16 @@ def partsPoint (v : Fin 481) : PartsPoint :=
 def partsAdjacent (v w : Fin 481) : Bool :=
   ((partsPoint v).sub (partsPoint w)).IsUnit
 
+/--
+@isnad1 id=eq.1h2v.s6.cea399ec5efa from=translated src=- shape=f7c5a978 vocab=071d98db
+-/
 lemma dist_partsPoint_eq_one {v w : Fin 481} (h : partsAdjacent v w) :
     dist (partsPoint v).toR2 (partsPoint w).toR2 = 1 := by
   exact PartsPoint.dist_eq_one_of_isUnit h
 
+/--
+@isnad1 id=adj.1h2v.s4.ff6dfa61c91f from=translated src=- shape=d70d8b05 vocab=964ab1ef
+-/
 lemma unitDistanceGraph_adj_of_partsAdjacent {v w : Fin 481}
     (h : partsAdjacent v w) :
     unitDistanceGraph.Adj (partsPoint v).toR2 (partsPoint w).toR2 := by

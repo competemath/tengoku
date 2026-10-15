@@ -62,7 +62,9 @@ abbrev 𝒩 : NeighborhoodSystem (ℕ × ℕ) := iterSys N
 /-- `T.bot = Example23.botElt` (both least); bridges `zeroMap_bot` (lands in
 `T.bot`) with
 `cond_bot`
-(phrased with `Example23.botElt`). -/
+(phrased with `Example23.botElt`).
+@isnad1 id=eq.0h0v.s3.b950b6ded46c from=translated src=- shape=020eb140 vocab=80337705
+-/
 theorem T_bot_eq : (Example43.T).bot = Example23.botElt :=
   le_antisymm ((Example43.T).bot_le _) (Example23.botElt_le _)
 
@@ -83,10 +85,16 @@ coordinates. -/
 def vecElem {n : ℕ} (v : List.Vector ℕ n) : 𝒩.Element :=
   argElem (fun i => some (v.get i))
 
+/--
+@isnad1 id=eq.0h3v.s5.bcf646f3776e from=translated src=- shape=40e590b1 vocab=cbbe7e71
+-/
 @[simp] theorem component_argElem {n : ℕ} (a : Fin n → Option ℕ) (i : ℕ) :
     component (argElem a) i = if h : i < n then optElem (a ⟨i, h⟩) else N.bot := by
   rw [argElem, component_ofSeq]
 
+/--
+@isnad1 id=eq.0h3v.s5.b5df72028e9a from=translated src=- shape=5d1f4012 vocab=7536e603
+-/
 @[simp] theorem component_vecElem {n : ℕ} (v : List.Vector ℕ n) (i : ℕ) :
     component (vecElem v) i = if h : i < n then natElem (v.get ⟨i, h⟩) else N.bot := by
   rw [vecElem, component_argElem]; split <;> rfl
@@ -101,6 +109,9 @@ theorem eq_of_component_eq {z z' : 𝒩.Element}
 `argElem`). -/
 def ArgLike (z : 𝒩.Element) : Prop := ∀ j, component z j = N.bot ∨ ∃ k, component z j = natElem k
 
+/--
+@isnad1 id=arglike.0h2v.s3.be4197e84231 from=translated src=- shape=92c67965 vocab=7d91f9e6
+-/
 theorem argElem_argLike {n : ℕ} (a : Fin n → Option ℕ) : ArgLike (argElem a) := by
   intro j
   rw [component_argElem]
@@ -112,10 +123,16 @@ theorem argElem_argLike {n : ℕ} (a : Fin n → Option ℕ) : ArgLike (argElem 
 
 /-! ### Components through `push`. -/
 
+/--
+@isnad1 id=eq.0h2v.s5.da3b925533b9 from=translated src=- shape=60558997 vocab=e35b8a4c
+-/
 theorem component_push_zero (x : N.Element) (s : 𝒩.Element) :
     component ((push N).toElementMap (pair x s)) 0 = x := by
   rw [← Exercise511.head_apply, Exercise511.head_push]
 
+/--
+@isnad1 id=eq.0h3v.s6.bc9b976a2725 from=translated src=- shape=83b0f670 vocab=03a88f50
+-/
 theorem component_push_succ (x : N.Element) (s : 𝒩.Element) (j : ℕ) :
     component ((push N).toElementMap (pair x s)) (j + 1) = component s j := by
   rw [← Exercise511.component_tail, Exercise511.tail_push]
@@ -132,6 +149,9 @@ coordinates. -/
 def guard1 (j : ℕ) (φ : ApproximableMap 𝒩 N) : ApproximableMap 𝒩 N :=
   (cond N).comp (paired (zeroMap.comp (projN N j)) (paired φ φ))
 
+/--
+@isnad1 id=eq.0h3v.s6.349817844c30 from=translated src=- shape=9a052fa7 vocab=0f50f487
+-/
 theorem guard1_apply (j : ℕ) (φ : ApproximableMap 𝒩 N) (z : 𝒩.Element) :
     (guard1 j φ).toElementMap z =
       (cond N).toElementMap (pair (zeroMap.toElementMap (component z j))
@@ -139,6 +159,9 @@ theorem guard1_apply (j : ℕ) (φ : ApproximableMap 𝒩 N) (z : 𝒩.Element) 
   rw [guard1, toElementMap_comp]
   simp only [toElementMap_paired, toElementMap_comp, toElementMap_projN]
 
+/--
+@isnad1 id=eq.1h4v.s5.370f1f182a97 from=translated src=- shape=ffe411c1 vocab=ae4885f0
+-/
 theorem guard1_total (j : ℕ) (φ : ApproximableMap 𝒩 N) (z : 𝒩.Element) {k : ℕ}
     (h : component z j = natElem k) : (guard1 j φ).toElementMap z = φ.toElementMap z := by
   rw [guard1_apply, h]
@@ -146,11 +169,16 @@ theorem guard1_total (j : ℕ) (φ : ApproximableMap 𝒩 N) (z : 𝒩.Element) 
   | zero => rw [zeroMap_natElem_zero, Exercise326.cond_true]
   | succ m => rw [zeroMap_natElem_succ, Exercise326.cond_false]
 
+/--
+@isnad1 id=eq.1h3v.s5.a7a2313275bd from=translated src=- shape=736b6c33 vocab=d2af6c8e
+-/
 theorem guard1_bot (j : ℕ) (φ : ApproximableMap 𝒩 N) (z : 𝒩.Element)
     (h : component z j = N.bot) : (guard1 j φ).toElementMap z = N.bot := by
   rw [guard1_apply, h, zeroMap_bot, T_bot_eq, Exercise326.cond_bot]
 
-/-- If `φ z = ⊥` and `zⱼ` is total-or-`⊥`, the guard stays `⊥`. -/
+/-- If `φ z = ⊥` and `zⱼ` is total-or-`⊥`, the guard stays `⊥`.
+@isnad1 id=eq.2h3v.s6.aafb3761a514 from=translated src=- shape=3fef78e3 vocab=35254c78
+-/
 theorem guard1_inner_bot (j : ℕ) (φ : ApproximableMap 𝒩 N) (z : 𝒩.Element)
     (hz : component z j = N.bot ∨ ∃ k, component z j = natElem k)
     (h : φ.toElementMap z = N.bot) : (guard1 j φ).toElementMap z = N.bot := by
@@ -167,7 +195,9 @@ def strictGuardN : ℕ → ApproximableMap 𝒩 N → ApproximableMap 𝒩 N
   | n + 1, φ => guard1 n (strictGuardN n φ)
 
 /-- On arguments whose first `n` coordinates are all total, the guard is
-transparent. -/
+transparent.
+@isnad1 id=eq.1h3v.s6.df084eba4fde from=translated src=- shape=0fc3f48c vocab=658ddcc2
+-/
 theorem strictGuardN_total (n : ℕ) (φ : ApproximableMap 𝒩 N) (z : 𝒩.Element)
     (h : ∀ j, j < n → ∃ k, component z j = natElem k) :
     (strictGuardN n φ).toElementMap z = φ.toElementMap z := by
@@ -178,7 +208,9 @@ theorem strictGuardN_total (n : ℕ) (φ : ApproximableMap 𝒩 N) (z : 𝒩.Ele
     rw [strictGuardN, guard1_total m _ z hk]
     exact ih (fun j hj => h j (Nat.lt_succ_of_lt hj))
 
-/-- If some coordinate `i < n` is `⊥` (and `z` is arg-like), the guard forces `⊥`. -/
+/-- If some coordinate `i < n` is `⊥` (and `z` is arg-like), the guard forces `⊥`.
+@isnad1 id=eq.3h4v.s5.e968332b0daa from=translated src=- shape=80e4cc12 vocab=66a86acc
+-/
 theorem strictGuardN_strict (n : ℕ) (φ : ApproximableMap 𝒩 N) (z : 𝒩.Element)
     (hz : ArgLike z) {i : ℕ} (hi : i < n) (hb : component z i = N.bot) :
     (strictGuardN n φ).toElementMap z = N.bot := by
@@ -199,10 +231,15 @@ def tupleMap : (n : ℕ) → (Fin n → ApproximableMap 𝒩 N) → Approximable
   | 0, _ => constMap 𝒩 𝒩.bot
   | n + 1, gs => (push N).comp (paired (gs 0) (tupleMap n (fun i => gs i.succ)))
 
+/--
+@isnad1 id=eq.0h2v.s7.3f167ca641b3 from=translated src=- shape=2b58ab1b vocab=7ecc3da5
+-/
 theorem tupleMap_succ (n : ℕ) (gs : Fin (n + 1) → ApproximableMap 𝒩 N) :
     tupleMap (n + 1) gs = (push N).comp (paired (gs 0) (tupleMap n (fun i => gs i.succ))) := rfl
 
-/-- Coordinate `i < n` of the tuple is exactly `gᵢ`. -/
+/-- Coordinate `i < n` of the tuple is exactly `gᵢ`.
+@isnad1 id=eq.1h4v.s5.836795b56b2b from=translated src=- shape=2e78dfba vocab=19b84403
+-/
 theorem component_tupleMap : ∀ (n : ℕ) (gs : Fin n → ApproximableMap 𝒩 N) (z : 𝒩.Element)
     (i : ℕ) (hi : i < n),
     component ((tupleMap n gs).toElementMap z) i = (gs ⟨i, hi⟩).toElementMap z
@@ -228,24 +265,32 @@ structure LamDef {n : ℕ} (φ : ApproximableMap 𝒩 N) (f : List.Vector ℕ n 
   strict : ∀ (z : 𝒩.Element), ArgLike z → ∀ i, i < n → component z i = N.bot →
     φ.toElementMap z = N.bot
 
-/-- Every coordinate `j < n` of `vecElem v` is the total `v.get j`. -/
+/-- Every coordinate `j < n` of `vecElem v` is the total `v.get j`.
+@isnad1 id=eq.1h3v.s5.ce7d47f38d60 from=translated src=- shape=f520904b vocab=d85933ca
+-/
 theorem component_vecElem_lt {n : ℕ} (v : List.Vector ℕ n) {j : ℕ} (hj : j < n) :
     component (vecElem v) j = natElem (v.get ⟨j, hj⟩) := by
   rw [component_vecElem, dite_eq_left hj]
 
-/-- `vecElem v` has total coordinates throughout its arity. -/
+/-- `vecElem v` has total coordinates throughout its arity.
+@isnad1 id=ex.1h3v.s4.760f4f0e341d from=translated src=- shape=e25a53ae vocab=51e6c76b
+-/
 theorem vecElem_totals {n : ℕ} (v : List.Vector ℕ n) :
     ∀ j, j < n → ∃ k, component (vecElem v) j = natElem k :=
   fun j hj => ⟨v.get ⟨j, hj⟩, component_vecElem_lt v hj⟩
 
-/-- A coordinate that an `argElem` sets to `none` is `⊥`. -/
+/-- A coordinate that an `argElem` sets to `none` is `⊥`.
+@isnad1 id=eq.1h3v.s5.5b3b9f30c1c8 from=translated src=- shape=3b96a446 vocab=5c07a087
+-/
 theorem component_argElem_none {n : ℕ} (a : Fin n → Option ℕ) (i : Fin n) (hi : a i = none) :
     component (argElem a) (i : ℕ) = N.bot := by
   rw [component_argElem, dite_eq_left i.isLt, Fin.eta, hi]; rfl
 
 /-- **Master constructor.** Wrapping an `inner` map (correct on total arguments)
 in `strictGuardN n`
-yields a full, very strict λ-definition. The `strict` clause is then automatic. -/
+yields a full, very strict λ-definition. The `strict` clause is then automatic.
+@isnad1 id=lamdef.2h3v.s6.eb467d9ba8b7 from=translated src=- shape=7f2abb1e vocab=ede6419a
+-/
 theorem lamDef_of_inner {n : ℕ} (inner : ApproximableMap 𝒩 N) (f : List.Vector ℕ n →. ℕ)
     (hdef : ∀ (v : List.Vector ℕ n) (c : ℕ), c ∈ f v → inner.toElementMap (vecElem v) = natElem c)
     (hundef : ∀ (v : List.Vector ℕ n), ¬ (f v).Dom → inner.toElementMap (vecElem v) = N.bot) :
@@ -256,7 +301,9 @@ theorem lamDef_of_inner {n : ℕ} (inner : ApproximableMap 𝒩 N) (f : List.Vec
     rw [strictGuardN_total n inner (vecElem v) (vecElem_totals v)]; exact hundef v hv
   strict z hz i hi hb := strictGuardN_strict n inner z hz hi hb
 
-/-- The total-function specialisation of `lamDef_of_inner`. -/
+/-- The total-function specialisation of `lamDef_of_inner`.
+@isnad1 id=lamdef.1h3v.s5.88c37d581935 from=translated src=- shape=efb2c59f vocab=bc5be22e
+-/
 theorem lamDef_total {n : ℕ} (ψ : ApproximableMap 𝒩 N) (g : List.Vector ℕ n → ℕ)
     (hval : ∀ v, ψ.toElementMap (vecElem v) = natElem (g v)) :
     LamDef (strictGuardN n ψ) (g : List.Vector ℕ n →. ℕ) :=
@@ -266,12 +313,16 @@ theorem lamDef_total {n : ℕ} (ψ : ApproximableMap 𝒩 N) (g : List.Vector �
 
 /-! ### Primitive recursive base cases: `zero`, `succ`, `get`. -/
 
-/-- `zero : Vector ℕ 0 → ℕ`, the constant `0` (nullary). -/
+/-- `zero : Vector ℕ 0 → ℕ`, the constant `0` (nullary).
+@isnad1 id=lamdef.0h0v.s5.10a541ac8b52 from=translated src=- shape=c1e67856 vocab=fd9ea5f4
+-/
 theorem lamDef_zero : LamDef (strictGuardN 0 (constMap 𝒩 (natElem 0)))
     ((fun _ => 0 : List.Vector ℕ 0 → ℕ) : List.Vector ℕ 0 →. ℕ) :=
   lamDef_total (constMap 𝒩 (natElem 0)) _ (fun v => by rw [toElementMap_constMap])
 
-/-- `succ : Vector ℕ 1 → ℕ`, `v ↦ v.head + 1`. -/
+/-- `succ : Vector ℕ 1 → ℕ`, `v ↦ v.head + 1`.
+@isnad1 id=lamdef.0h0v.s5.2faad87e4976 from=translated src=- shape=75563778 vocab=f5e82db6
+-/
 theorem lamDef_succ : LamDef (strictGuardN 1 (succMap.comp (projN N 0)))
     ((fun v => Nat.succ v.head : List.Vector ℕ 1 → ℕ) : List.Vector ℕ 1 →. ℕ) :=
   lamDef_total _ _ (fun v => by
@@ -279,21 +330,27 @@ theorem lamDef_succ : LamDef (strictGuardN 1 (succMap.comp (projN N 0)))
       succMap_natElem]
     simp_all)
 
-/-- `get i : Vector ℕ n → ℕ`, the `i`-th projection. -/
+/-- `get i : Vector ℕ n → ℕ`, the `i`-th projection.
+@isnad1 id=lamdef.0h2v.s4.895e34847efd from=translated src=- shape=9af1bed9 vocab=e8d765bf
+-/
 theorem lamDef_get {n : ℕ} (i : Fin n) :
     LamDef (strictGuardN n (projN N i))
       ((fun v => v.get i : List.Vector ℕ n → ℕ) : List.Vector ℕ n →. ℕ) :=
   lamDef_total _ _ (fun v => by
     rw [toElementMap_projN, component_vecElem_lt v i.isLt, Fin.eta])
 
-/-- Transport a λ-definition along pointwise equality of the realised function. -/
+/-- Transport a λ-definition along pointwise equality of the realised function.
+@isnad1 id=lamdef.2h4v.s5.4d60bfa1a76d from=translated src=- shape=b4ce1efb vocab=3ec0c948
+-/
 theorem lamDef_congr {n : ℕ} {φ : ApproximableMap 𝒩 N} {f f' : List.Vector ℕ n →. ℕ}
     (h : ∀ v, f v = f' v) (hf : LamDef φ f) : LamDef φ f' where
   defined v c hc := hf.defined v c (by rw [h v]; exact hc)
   undef v hv := hf.undef v (by rw [h v]; exact hv)
   strict := hf.strict
 
-/-- The value a realiser takes on a total argument is total-or-`⊥` (arg-like). -/
+/-- The value a realiser takes on a total argument is total-or-`⊥` (arg-like).
+@isnad1 id=or.1h4v.s6.751980d65add from=translated src=- shape=66ef0588 vocab=90bc0dcd
+-/
 theorem realizer_value {n : ℕ} {φ : ApproximableMap 𝒩 N} {f : List.Vector ℕ n →. ℕ}
     (h : LamDef φ f) (v : List.Vector ℕ n) :
     φ.toElementMap (vecElem v) = N.bot ∨ ∃ k, φ.toElementMap (vecElem v) = natElem k := by
@@ -303,17 +360,24 @@ theorem realizer_value {n : ℕ} {φ : ApproximableMap 𝒩 N} {f : List.Vector 
 
 /-! ### Composition. -/
 
-/-- Coordinates of the bottom stack are `⊥`. -/
+/-- Coordinates of the bottom stack are `⊥`.
+@isnad1 id=eq.0h1v.s4.e01d7a81a4c2 from=translated src=- shape=b0397c1c vocab=cc4355c7
+-/
 theorem component_bot (i : ℕ) : component (𝒩.bot) i = N.bot := by
   have hbot : (𝒩.bot) = ofSeq (fun _ => N.bot) :=
     le_antisymm (𝒩.bot_le _)
       (le_of_component_le (fun i => by rw [component_ofSeq]; exact N.bot_le _))
   rw [hbot, component_ofSeq]
 
+/--
+@isnad1 id=eq.0h1v.s5.57a6e2e50d1d from=translated src=- shape=a4327790 vocab=14af1113
+-/
 theorem tupleMap_zero (gs : Fin 0 → ApproximableMap 𝒩 N) :
     tupleMap 0 gs = constMap 𝒩 𝒩.bot := rfl
 
-/-- Coordinates `≥ n` of the tuple are `⊥`. -/
+/-- Coordinates `≥ n` of the tuple are `⊥`.
+@isnad1 id=eq.1h4v.s5.072fa1b7a3fd from=translated src=- shape=ef0bc6cd vocab=1c09136f
+-/
 theorem component_tupleMap_ge : ∀ (n : ℕ) (gs : Fin n → ApproximableMap 𝒩 N) (z : 𝒩.Element)
     (i : ℕ), n ≤ i → component ((tupleMap n gs).toElementMap z) i = N.bot
   | 0, gs, z, i, _ => by rw [tupleMap_zero, toElementMap_constMap, component_bot]
@@ -323,7 +387,9 @@ theorem component_tupleMap_ge : ∀ (n : ℕ) (gs : Fin n → ApproximableMap �
       exact component_tupleMap_ge n (fun k => gs k.succ) z j (by omega)
 
 /-- The tuple of realisers, applied to a total argument, equals `vecElem w` where
-`wᵢ = gᵢ(v)`. -/
+`wᵢ = gᵢ(v)`.
+@isnad1 id=eq.2h6v.s6.9fb96a899f6d from=translated src=- shape=8ea39377 vocab=70cc139c
+-/
 theorem tupleMap_vecElem_eq {m nn : ℕ} (φg : Fin nn → ApproximableMap 𝒩 N)
     (g : Fin nn → List.Vector ℕ m →. ℕ) (hg : ∀ i, LamDef (φg i) (g i))
     (v : List.Vector ℕ m) (w : List.Vector ℕ nn) (hw : ∀ i, w.get i ∈ g i v) :
@@ -336,7 +402,9 @@ theorem tupleMap_vecElem_eq {m nn : ℕ} (φg : Fin nn → ApproximableMap 𝒩 
   · rw [component_tupleMap_ge nn φg (vecElem v) i (Nat.le_of_not_lt hi), component_vecElem,
       dite_eq_right hi]
 
-/-- The tuple of realisers, applied to a total argument, is arg-like. -/
+/-- The tuple of realisers, applied to a total argument, is arg-like.
+@isnad1 id=arglike.1h5v.s5.039586dc0211 from=translated src=- shape=52b74597 vocab=c247a59d
+-/
 theorem tupleMap_argLike {m nn : ℕ} (φg : Fin nn → ApproximableMap 𝒩 N)
     (g : Fin nn → List.Vector ℕ m →. ℕ) (hg : ∀ i, LamDef (φg i) (g i)) (v : List.Vector ℕ m) :
     ArgLike ((tupleMap nn φg).toElementMap (vecElem v)) := by
@@ -346,7 +414,9 @@ theorem tupleMap_argLike {m nn : ℕ} (φg : Fin nn → ApproximableMap 𝒩 N)
   · rw [component_tupleMap_ge nn φg (vecElem v) i (Nat.le_of_not_lt hi)]; exact Or.inl rfl
 
 /-- Membership in `mOfFn` (Part monad): a vector is produced iff each coordinate
-is a value. -/
+is a value.
+@isnad1 id=iff.0h3v.s5.bfa369744a1d from=translated src=- shape=548aa41c vocab=d5ce87f6
+-/
 theorem mem_mOfFn : ∀ {n : ℕ} (p : Fin n → Part ℕ) (w : List.Vector ℕ n),
     w ∈ List.Vector.mOfFn p ↔ ∀ i, w.get i ∈ p i
   | 0, p, w => by
@@ -384,7 +454,9 @@ theorem mem_mOfFn : ∀ {n : ℕ} (p : Fin n → Part ℕ) (w : List.Vector ℕ 
 
 /-- **Composition** (Scott's multivariate composition). If `f` and each `gᵢ` are
 λ-defined, so is
-`v ↦ (⟨g₀ v, …, g_{nn-1} v⟩) >>= f`. -/
+`v ↦ (⟨g₀ v, …, g_{nn-1} v⟩) >>= f`.
+@isnad1 id=lamdef.2h6v.s6.42da9e72ba58 from=translated src=- shape=4c4383c5 vocab=a335c60b
+-/
 theorem lamDef_comp {m nn : ℕ} (f : List.Vector ℕ nn →. ℕ) (g : Fin nn → List.Vector ℕ m →. ℕ)
     (φf : ApproximableMap 𝒩 N) (hf : LamDef φf f)
     (φg : Fin nn → ApproximableMap 𝒩 N) (hg : ∀ i, LamDef (φg i) (g i)) :
@@ -415,13 +487,17 @@ theorem lamDef_comp {m nn : ℕ} (f : List.Vector ℕ nn →. ℕ) (g : Fin nn �
       rw [component_tupleMap nn φg (vecElem v) j j.isLt, Fin.eta]
       exact (hg j).undef v hj
 
-/-- A realiser of a total function evaluates to its value. -/
+/-- A realiser of a total function evaluates to its value.
+@isnad1 id=eq.1h4v.s5.601861bf44fa from=translated src=- shape=e8ba1ac4 vocab=98e758ff
+-/
 theorem lamDef_coe_val {n : ℕ} {φ : ApproximableMap 𝒩 N} {g : List.Vector ℕ n → ℕ}
     (h : LamDef φ (g : List.Vector ℕ n →. ℕ)) (v : List.Vector ℕ n) :
     φ.toElementMap (vecElem v) = natElem (g v) :=
   h.defined v (g v) (by rw [PFun.coe_val]; exact Part.mem_some _)
 
-/-- **Composition of total functions** (the `Nat.Primrec'.comp` shape). -/
+/-- **Composition of total functions** (the `Nat.Primrec'.comp` shape).
+@isnad1 id=lamdef.2h6v.s6.086614b7c8b1 from=translated src=- shape=31bbc883 vocab=06b3225f
+-/
 theorem lamDef_primComp {m nn : ℕ} (f₀ : List.Vector ℕ nn → ℕ)
     (g₀ : Fin nn → List.Vector ℕ m → ℕ)
     (φf : ApproximableMap 𝒩 N) (hf : LamDef φf (f₀ : List.Vector ℕ nn →. ℕ))
@@ -435,6 +511,9 @@ theorem lamDef_primComp {m nn : ℕ} (f₀ : List.Vector ℕ nn → ℕ)
 
 /-! ### `vecElem` of a cons is a `push`. -/
 
+/--
+@isnad1 id=eq.0h3v.s5.c25274bf2797 from=translated src=- shape=efe87ae9 vocab=e97857a6
+-/
 theorem push_natElem_vecElem {n : ℕ} (a : ℕ) (u : List.Vector ℕ n) :
     (push N).toElementMap (pair (natElem a) (vecElem u)) = vecElem (a ::ᵥ u) := by
   apply eq_of_component_eq
@@ -479,6 +558,9 @@ def precBody : ApproximableMap (prod (funSpace 𝒩 N) 𝒩) N :=
                           ((tail N).comp (proj₁ (funSpace 𝒩 N) 𝒩))))))
                   ((tail N).comp (proj₁ (funSpace 𝒩 N) 𝒩)))))))))
 
+/--
+@isnad1 id=eq.0h4v.s8.4c4426ed12ce from=translated src=- shape=410f2c0e vocab=756d4d0b
+-/
 theorem precBody_apply (k : (funSpace 𝒩 N).Element) (z : 𝒩.Element) :
     (precBody φf φg).toElementMap (pair k z) =
       (cond N).toElementMap
@@ -503,7 +585,9 @@ def recOp : ApproximableMap (funSpace 𝒩 N) (funSpace 𝒩 N) := curry (precBo
 /-- `recMap : 𝒩 → N`, the least fixed point of `recOp` (before strictifying). -/
 def recMap : ApproximableMap 𝒩 N := toApproxMap (recOp φf φg).fixElement
 
-/-- The defining recursion equation. -/
+/-- The defining recursion equation.
+@isnad1 id=eq.0h3v.s8.18dd89354a11 from=translated src=- shape=f18ff1b8 vocab=3454a4c7
+-/
 theorem recMap_rec (z : 𝒩.Element) :
     (recMap φf φg).toElementMap z =
       (cond N).toElementMap
@@ -524,7 +608,9 @@ theorem recMap_rec (z : 𝒩.Element) :
   rw [← recOp, hfix] at hval
   rw [recMap, hval, precBody_apply]
 
-/-- **Primitive recursion computes.** `recMap(⟨d, u⟩) = (Nat.rec (f u) (g …) d)`. -/
+/-- **Primitive recursion computes.** `recMap(⟨d, u⟩) = (Nat.rec (f u) (g …) d)`.
+@isnad1 id=eq.2h7v.s7.d9277ad9e658 from=translated src=- shape=05e1ab39 vocab=caa48c7d
+-/
 theorem recMap_eval {n : ℕ} (f₀ : List.Vector ℕ n → ℕ) (g₀ : List.Vector ℕ (n + 2) → ℕ)
     (hf : LamDef φf (f₀ : List.Vector ℕ n →. ℕ)) (hg : LamDef φg (g₀ : List.Vector ℕ (n + 2) →. ℕ))
     (u : List.Vector ℕ n) (d : ℕ) :
@@ -542,7 +628,9 @@ theorem recMap_eval {n : ℕ} (f₀ : List.Vector ℕ n → ℕ) (g₀ : List.Ve
       push_natElem_vecElem, push_natElem_vecElem]
     exact lamDef_coe_val hg _
 
-/-- **Primitive recursion** (`Nat.Primrec'.prec` shape). -/
+/-- **Primitive recursion** (`Nat.Primrec'.prec` shape).
+@isnad1 id=lamdef.2h5v.s7.0769c371e267 from=translated src=- shape=0997df9e vocab=255045c5
+-/
 theorem lamDef_prec {n : ℕ} (f₀ : List.Vector ℕ n → ℕ) (g₀ : List.Vector ℕ (n + 2) → ℕ)
     (hf : LamDef φf (f₀ : List.Vector ℕ n →. ℕ))
     (hg : LamDef φg (g₀ : List.Vector ℕ (n + 2) →. ℕ)) :
@@ -563,7 +651,9 @@ end Prec
 /-! ### Closure of the primitive recursive functions. -/
 
 /-- **Every `Nat.Primrec'` function is λ-definable** by a (very strict)
-approximable map. -/
+approximable map.
+@isnad1 id=ex.1h2v.s5.88fd46d25acd from=translated src=- shape=77fd5858 vocab=d1c68e21
+-/
 theorem primrec_lamDef {n : ℕ} {f : List.Vector ℕ n → ℕ} (h : Nat.Primrec' f) :
     ∃ φ : ApproximableMap 𝒩 N, LamDef φ (f : List.Vector ℕ n →. ℕ) := by
   induction h with
@@ -611,6 +701,9 @@ def findBody : ApproximableMap (prod (funSpace 𝒩 N) 𝒩) N :=
               (paired (succMap.comp ((head N).comp (proj₁ (funSpace 𝒩 N) 𝒩)))
                 ((tail N).comp (proj₁ (funSpace 𝒩 N) 𝒩))))))))
 
+/--
+@isnad1 id=eq.0h3v.s7.b78db05ea798 from=translated src=- shape=dddc956f vocab=1a0fbd88
+-/
 theorem findBody_apply (k : (funSpace 𝒩 N).Element) (z : 𝒩.Element) :
     (findBody φf).toElementMap (pair k z) =
       (cond N).toElementMap
@@ -632,7 +725,9 @@ def findOp : ApproximableMap (funSpace 𝒩 N) (funSpace 𝒩 N) := curry (findB
 coordinate `0`). -/
 def searchMap : ApproximableMap 𝒩 N := toApproxMap (findOp φf).fixElement
 
-/-- The defining recursion equation of the search. -/
+/-- The defining recursion equation of the search.
+@isnad1 id=eq.0h2v.s7.656faf500776 from=translated src=- shape=e7cf5699 vocab=3d0d8792
+-/
 theorem searchMap_rec (z : 𝒩.Element) :
     (searchMap φf).toElementMap z =
       (cond N).toElementMap
@@ -652,13 +747,18 @@ theorem searchMap_rec (z : 𝒩.Element) :
 def findMap : ApproximableMap 𝒩 N :=
   (searchMap φf).comp ((push N).comp (paired (constMap 𝒩 (natElem 0)) (idMap 𝒩)))
 
+/--
+@isnad1 id=eq.0h3v.s5.cacedf637df7 from=translated src=- shape=2f72be42 vocab=5d6cdb2c
+-/
 theorem findMap_vecElem {n : ℕ} (v : List.Vector ℕ n) :
     (findMap φf).toElementMap (vecElem v) = (searchMap φf).toElementMap (vecElem (0 ::ᵥ v)) := by
   rw [findMap, toElementMap_comp, toElementMap_comp, toElementMap_paired, toElementMap_constMap,
     toElementMap_idMap, push_natElem_vecElem]
 
 /-- **Search step (found).** If `f(k ::ᵥ v) = 0`, the search returns the counter
-`k`. -/
+`k`.
+@isnad1 id=eq.2h5v.s6.b3c1419a31e6 from=translated src=- shape=cd26fd07 vocab=75666fb7
+-/
 theorem searchMap_step_found {n : ℕ} {f : List.Vector ℕ (n + 1) → ℕ}
     (hf : LamDef φf (f : List.Vector ℕ (n + 1) →. ℕ)) (v : List.Vector ℕ n) (k : ℕ)
     (h0 : f (k ::ᵥ v) = 0) :
@@ -668,7 +768,9 @@ theorem searchMap_step_found {n : ℕ} {f : List.Vector ℕ (n + 1) → ℕ}
     Exercise326.cond_true]
 
 /-- **Search step (continue).** If `f(k ::ᵥ v) ≠ 0`, the search advances to
-counter `k + 1`. -/
+counter `k + 1`.
+@isnad1 id=eq.2h5v.s7.625f8c955966 from=translated src=- shape=69052350 vocab=f089961b
+-/
 theorem searchMap_step_next {n : ℕ} {f : List.Vector ℕ (n + 1) → ℕ}
     (hf : LamDef φf (f : List.Vector ℕ (n + 1) →. ℕ)) (v : List.Vector ℕ n) (k : ℕ)
     (hne : f (k ::ᵥ v) ≠ 0) :
@@ -683,7 +785,9 @@ theorem searchMap_step_next {n : ℕ} {f : List.Vector ℕ (n + 1) → ℕ}
 nothing below it is,
 then
 starting from any counter `j ≤ m` the search returns `m`. (Downward induction on
-`m - j`.) -/
+`m - j`.)
+@isnad1 id=eq.4h7v.s7.b004658a335d from=translated src=- shape=23593cd6 vocab=c1c06653
+-/
 theorem searchMap_climb {n : ℕ} {f : List.Vector ℕ (n + 1) → ℕ}
     (hf : LamDef φf (f : List.Vector ℕ (n + 1) →. ℕ)) (v : List.Vector ℕ n) (m : ℕ)
     (hm0 : f (m ::ᵥ v) = 0) (hmin : ∀ i, i < m → f (i ::ᵥ v) ≠ 0) :
@@ -703,7 +807,9 @@ theorem searchMap_climb {n : ℕ} {f : List.Vector ℕ (n + 1) → ℕ}
 
 /-! #### Divergence via the directed sup of approximants. -/
 
-/-- The least map of the function space evaluates to `⊥` everywhere. -/
+/-- The least map of the function space evaluates to `⊥` everywhere.
+@isnad1 id=eq.0h1v.s5.e99a7dea41b9 from=translated src=- shape=9845bb2c vocab=ad0cafca
+-/
 theorem toApproxMap_bot (z : 𝒩.Element) :
     (toApproxMap ((funSpace 𝒩 N).bot)).toElementMap z = N.bot := by
   refine le_antisymm ?_ (N.bot_le _)
@@ -717,23 +823,32 @@ theorem toApproxMap_bot (z : 𝒩.Element) :
 def evalAt (z : 𝒩.Element) : ApproximableMap (funSpace 𝒩 N) N :=
   (evalMap 𝒩 N).comp (paired (idMap (funSpace 𝒩 N)) (constMap (funSpace 𝒩 N) z))
 
+/--
+@isnad1 id=eq.0h2v.s5.35dacab8d0ae from=translated src=- shape=18710831 vocab=74e1bf93
+-/
 theorem evalAt_apply (z : 𝒩.Element) (φ : (funSpace 𝒩 N).Element) :
     (evalAt z).toElementMap φ = (toApproxMap φ).toElementMap z := by
   rw [evalAt, toElementMap_comp, toElementMap_paired, toElementMap_idMap, toElementMap_constMap,
     evalMap_apply]
 
-/-- The `0`-th approximant `S⁰(⊥)` is the bottom map. -/
+/-- The `0`-th approximant `S⁰(⊥)` is the bottom map.
+@isnad1 id=eq.0h1v.s5.513b4bfed95d from=translated src=- shape=2b8253be vocab=9fb6f736
+-/
 theorem findOp_iterElem_zero : (findOp φf).iterElem 0 = (funSpace 𝒩 N).bot := by
   rw [iterElem_eq_iterate, Function.iterate_zero_apply]
 
-/-- Value of the `0`-th approximant: `⊥`. -/
+/-- Value of the `0`-th approximant: `⊥`.
+@isnad1 id=eq.0h2v.s5.dabd88348fa0 from=translated src=- shape=8e75db4f vocab=94d8d9a5
+-/
 theorem iterVal_zero (z : 𝒩.Element) :
     (toApproxMap ((findOp φf).iterElem 0)).toElementMap z = N.bot := by
   rw [findOp_iterElem_zero, toApproxMap_bot]
 
 /-- Recursion equation for the approximant values: `S^{m+1}(⊥)` unfolds one search
 step using
-`Sᵐ(⊥)` as the continuation. -/
+`Sᵐ(⊥)` as the continuation.
+@isnad1 id=eq.0h3v.s7.6c4380dfb397 from=translated src=- shape=5a8b771a vocab=4e25b018
+-/
 theorem iterVal_succ (m : ℕ) (z : 𝒩.Element) :
     (toApproxMap ((findOp φf).iterElem (m + 1))).toElementMap z =
       (cond N).toElementMap
@@ -752,7 +867,9 @@ theorem iterVal_succ (m : ℕ) (z : 𝒩.Element) :
 
 /-- Along a *no-zero* trace, every finite approximant returns `⊥` (induction on
 the approximant
-index, with the counter universally quantified since the search advances it). -/
+index, with the counter universally quantified since the search advances it).
+@isnad1 id=eq.2h6v.s7.9e85a79df555 from=translated src=- shape=2fea6618 vocab=e63deae0
+-/
 theorem iterVal_bot {n : ℕ} {f : List.Vector ℕ (n + 1) → ℕ}
     (hf : LamDef φf (f : List.Vector ℕ (n + 1) →. ℕ)) (v : List.Vector ℕ n)
     (hdiv : ∀ k, f (k ::ᵥ v) ≠ 0) :
@@ -776,7 +893,9 @@ is the directed union of the approximants `Sᵐ(⊥)` (Theorem 4.2(iii)); pushin
 evaluation at
 `vecElem (k ::ᵥ v)` through this sup (continuity, `toElementMap_iSupDirected`)
 reduces the claim to
-`iterVal_bot`. -/
+`iterVal_bot`.
+@isnad1 id=eq.2h5v.s6.28be46d8b32d from=translated src=- shape=fe2b2d52 vocab=e9ff18ba
+-/
 theorem searchMap_diverge {n : ℕ} {f : List.Vector ℕ (n + 1) → ℕ}
     (hf : LamDef φf (f : List.Vector ℕ (n + 1) →. ℕ)) (v : List.Vector ℕ n)
     (hdiv : ∀ k, f (k ::ᵥ v) ≠ 0) (k : ℕ) :
@@ -791,7 +910,9 @@ theorem searchMap_diverge {n : ℕ} {f : List.Vector ℕ (n + 1) → ℕ}
 /-- **Minimisation** (`Nat.Partrec'.rfind` shape). Given a (very strict) realiser
 of a total
 `f : Vector ℕ (n+1) → ℕ`, `strictGuardN n (findMap φf)` λ-defines
-`v ↦ μk. f(k ::ᵥ v) = 0`. -/
+`v ↦ μk. f(k ::ᵥ v) = 0`.
+@isnad1 id=lamdef.1h3v.s6.06df2ce9ed2a from=translated src=- shape=1cb7a213 vocab=68ae64e8
+-/
 theorem lamDef_rfind {n : ℕ} {f : List.Vector ℕ (n + 1) → ℕ}
     (hf : LamDef φf (f : List.Vector ℕ (n + 1) →. ℕ)) :
     LamDef (strictGuardN n (findMap φf))
@@ -822,7 +943,9 @@ end Rfind
 *very strict* λ-definition of `f`: it returns `f`'s value on total arguments, `⊥`
 where `f` is
 undefined, and `⊥` on any arg-like input with a `⊥` among its first `n`
-coordinates. -/
+coordinates.
+@isnad1 id=ex.1h2v.s5.d434b95ac228 from=translated src=- shape=325dbb45 vocab=29137372
+-/
 theorem partrec_lamDef {n : ℕ} {f : List.Vector ℕ n →. ℕ} (h : Nat.Partrec' f) :
     ∃ φ : ApproximableMap 𝒩 N, LamDef φ f := by
   induction h with
@@ -845,6 +968,9 @@ naturals: `τ(n̂) = m̂` when `h n = m`, `τ(n̂) = ⊥` when `h n` diverges, a
 /-- Inject `N → 𝒩` as the stack whose only nonzero coordinate is the head. -/
 def oneArg : ApproximableMap N 𝒩 := (push N).comp (paired (idMap N) (constMap N 𝒩.bot))
 
+/--
+@isnad1 id=eq.0h1v.s5.b16cb8ac1f5e from=translated src=- shape=9ea2adbb vocab=a1c8bc9a
+-/
 theorem oneArg_natElem (a : ℕ) :
     (oneArg).toElementMap (natElem a) = vecElem (a ::ᵥ (List.Vector.nil : List.Vector ℕ 0)) := by
   rw [oneArg, toElementMap_comp, toElementMap_paired, toElementMap_idMap, toElementMap_constMap]
@@ -852,6 +978,9 @@ theorem oneArg_natElem (a : ℕ) :
   exact eq_of_component_eq fun i => by
     rw [component_bot, component_vecElem, dite_eq_right (by omega)]
 
+/--
+@isnad1 id=eq.0h0v.s4.a2038d43ca53 from=translated src=- shape=e75f3282 vocab=ddb12794
+-/
 theorem oneArg_bot : (oneArg).toElementMap N.bot = 𝒩.bot := by
   rw [oneArg, toElementMap_comp, toElementMap_paired, toElementMap_idMap, toElementMap_constMap]
   apply eq_of_component_eq
@@ -864,7 +993,9 @@ theorem oneArg_bot : (oneArg).toElementMap N.bot = 𝒩.bot := by
 a unary
 `Nat.Partrec'`) is denoted by a single approximable map `τ : N → N` that is
 correct on values,
-divergent where `h` diverges, and strict. -/
+divergent where `h` diverges, and strict.
+@isnad1 id=ex.1h1v.s6.aaf5876bab0a from=translated src=- shape=2db0bfc5 vocab=f1a9ee95
+-/
 theorem partrec_one {h : ℕ →. ℕ}
     (H : Nat.Partrec' (fun v : List.Vector ℕ 1 => h v.head)) :
     ∃ τ : ApproximableMap N N,

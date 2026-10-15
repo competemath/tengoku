@@ -23,12 +23,17 @@ quadrilateral, contradicting `strict_convex_quad_not_all_acute`.
 
 namespace LeanPool.Erdos132ConvexK3
 
+/--
+@isnad1 id=eq.0h2v.s4.30ab494f4c21 from=translated src=- shape=352dfdec vocab=01494bce
+-/
 theorem dot_comm (u v : Point ℝ) : dot u v = dot v u := by
   simp [dot]
   ring
 
 /-- A failed endpoint cover gives a strict acute-angle dot product, provided
-the polygon side used by that cover is nondegenerate. -/
+the polygon side used by that cover is nondegenerate.
+@isnad1 id=lt.2h3v.s6.a08b76b5267f from=translated src=- shape=a172d4f4 vocab=61f975dd
+-/
 theorem dot_pos_of_sqDist_le
     {a b p : Point ℝ} (hap : a ≠ p)
     (hshort : sqDist p b ≤ sqDist a b) :
@@ -40,6 +45,9 @@ theorem dot_pos_of_sqDist_le
     ring
   nlinarith
 
+/--
+@isnad1 id=lt.1h2v.s5.d8e268b589dc from=translated src=- shape=4a19d779 vocab=5a686c85
+-/
 theorem dot_self_pos_of_cross_pos_left
     {u v : Point ℝ} (hcross : 0 < cross u v) : 0 < dot u u := by
   have hu : (0, 0) ≠ u := by
@@ -47,6 +55,9 @@ theorem dot_self_pos_of_cross_pos_left
     simp [cross] at hcross
   simpa [dot, sqDist, pow_two] using sqDist_pos_of_ne hu
 
+/--
+@isnad1 id=lt.1h2v.s5.29a586076cf7 from=translated src=- shape=fb5d1088 vocab=5a686c85
+-/
 theorem dot_self_pos_of_cross_pos_right
     {u v : Point ℝ} (hcross : 0 < cross u v) : 0 < dot v v := by
   have hneg : 0 < cross (-v) u := by
@@ -56,7 +67,9 @@ theorem dot_self_pos_of_cross_pos_right
 
 /-- A ray strictly between two rays in an open half-plane is their positive
 linear combination.  This determinant identity transfers an acute endpoint
-inequality to the intermediate ray. -/
+inequality to the intermediate ray.
+@isnad1 id=lt.4h3v.s6.4e40010ae3ef from=translated src=- shape=22d03030 vocab=5a686c85
+-/
 theorem dot_pos_of_cross_between_left
     {u w v : Point ℝ}
     (huw : 0 < cross u w) (hwv : 0 < cross w v) (huv : 0 < cross u v)
@@ -71,6 +84,9 @@ theorem dot_pos_of_cross_between_left
   rw [← hid] at hsum
   exact (mul_pos_iff_of_pos_left huv).mp hsum
 
+/--
+@isnad1 id=lt.4h3v.s6.9afd005ee486 from=translated src=- shape=85a40569 vocab=5a686c85
+-/
 theorem dot_pos_of_cross_between_right
     {u w v : Point ℝ}
     (huw : 0 < cross u w) (hwv : 0 < cross w v) (huv : 0 < cross u v)
@@ -87,6 +103,9 @@ theorem dot_pos_of_cross_between_right
   rw [← hid] at hsum
   exact (mul_pos_iff_of_pos_left huv).mp hsum
 
+/--
+@isnad1 id=lt.5h4v.s6.780a6abcc050 from=translated src=- shape=7153ca46 vocab=56da200b
+-/
 theorem cross_trans_of_common_half_plane
     {e u v w : Point ℝ}
     (heu : 0 < cross e u) (hev : 0 < cross e v) (hew : 0 < cross e w)
@@ -101,7 +120,9 @@ theorem cross_trans_of_common_half_plane
   exact (mul_pos_iff_of_pos_left hev).mp hsum
 
 /-- Positive consecutive turns are transitive while the whole chain stays in
-one open half-plane. -/
+one open half-plane.
+@isnad1 id=lt.5h4v.s7.885ef32b1937 from=translated src=- shape=b2c04b71 vocab=44790f37
+-/
 theorem positive_cross_chain
     (V : ℕ → Point ℝ) (N : ℕ)
     (hbase : ∀ r, 1 < r → r ≤ N → 0 < cross (V 1) (V r))
@@ -127,7 +148,9 @@ theorem positive_cross_chain
         · exact hstep k (by omega) (by omega)
 
 /-- The boundary-half-plane definition of cyclic strict convexity implies
-positive orientation for every three labels in increasing order from zero. -/
+positive orientation for every three labels in increasing order from zero.
+@isnad1 id=lt.3h4v.s6.c0134ebda6a0 from=translated src=- shape=747c079d vocab=f06643f4
+-/
 theorem cyclic_strict_convex_turn_zero_of_lt
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ}
     (hConvex : CyclicStrictConvex P) {j k : Fin n}
@@ -208,6 +231,9 @@ def cyclicRotate
     (P : Fin n → Point K) (base : Fin n) : Fin n → Point K :=
   fun i ↦ P (base + i)
 
+/--
+@isnad1 id=cyclicst.1h3v.s5.b0cc299bc05a from=translated src=- shape=db813df1 vocab=83582b88
+-/
 theorem cyclic_strict_convex_rotate
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ}
     (hConvex : CyclicStrictConvex P) (base : Fin n) :
@@ -228,7 +254,9 @@ theorem cyclic_strict_convex_rotate
     exact heq
 
 /-- Positive orientation for any three vertices described by increasing
-cyclic offsets from an arbitrary base vertex. -/
+cyclic offsets from an arbitrary base vertex.
+@isnad1 id=lt.3h5v.s6.c97bd5f268c8 from=translated src=- shape=77810ddf vocab=0f6a9be1
+-/
 theorem cyclic_strict_convex_turn_from_offsets
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ}
     (hConvex : CyclicStrictConvex P) (base : Fin n) {j k : Fin n}
@@ -238,6 +266,9 @@ theorem cyclic_strict_convex_turn_from_offsets
     (cyclic_strict_convex_rotate hConvex base) hj hjk
   simpa [cyclicRotate] using h
 
+/--
+@isnad1 id=lt.4h5v.s6.5f10c2734529 from=translated src=- shape=193ef246 vocab=1fe077f8
+-/
 theorem cyclic_strict_convex_turn_advance
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ}
     (hConvex : CyclicStrictConvex P) (base : Fin n) {j k : ℕ}
@@ -258,7 +289,9 @@ theorem cyclic_strict_convex_turn_advance
 
 /-- Positive orientation for three increasing positions in one unwrapped
 window of the cyclic order.  The last two positions may exceed `n`; their
-`Fin` representatives wrap automatically. -/
+`Fin` representatives wrap automatically.
+@isnad1 id=lt.4h6v.s6.7a0e32b46607 from=translated src=- shape=430e47cd vocab=afcd4847
+-/
 theorem cyclic_strict_convex_turn_unwrapped
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ}
     (hConvex : CyclicStrictConvex P) (base : Fin n) {a b c : ℕ}
@@ -272,12 +305,18 @@ theorem cyclic_strict_convex_turn_unwrapped
   have hacEq : a + (c - a) = c := by omega
   simpa [habEq, hacEq] using h
 
+/--
+@isnad1 id=eq.0h3v.s5.199586225865 from=translated src=- shape=82955133 vocab=0e2efaa0
+-/
 theorem cyclicAdvance_period
     {n : ℕ} [NeZero n] (i : Fin n) (k : ℕ) :
     cyclicAdvance i (k + n) = cyclicAdvance i k := by
   apply Fin.ext
   simp [cyclicAdvance, Fin.ofNat, Fin.val_add, Nat.add_mod]
 
+/--
+@isnad1 id=eq.2h3v.s5.b1ebf7c7bcf3 from=translated src=- shape=b7b274e2 vocab=a8429da4
+-/
 theorem cyclicRetreat_advance_one
     {n : ℕ} [NeZero n] (i : Fin n) {k : ℕ}
     (hk : 0 < k) (hkn : k < n) :
@@ -291,6 +330,9 @@ theorem cyclicRetreat_advance_one
   rw [← hcast]
   abel
 
+/--
+@isnad1 id=eq.2h4v.s5.61b7e07a7f26 from=translated src=- shape=f80a7e10 vocab=566b64c1
+-/
 theorem cyclicRetreat_advance
     {n : ℕ} [NeZero n] (i : Fin n) {k m : ℕ}
     (hmk : m ≤ k) (hkn : k < n) :
@@ -306,6 +348,9 @@ theorem cyclicRetreat_advance
   rw [← hcast]
   abel
 
+/--
+@isnad1 id=eq.2h3v.s5.9030b24802df from=translated src=- shape=6c4a3d27 vocab=a8429da4
+-/
 theorem cyclicRetreat_eq_advance_complement
     {n : ℕ} [NeZero n] (i : Fin n) {k : ℕ}
     (hk : 0 < k) (hkn : k < n) :
@@ -325,6 +370,9 @@ theorem cyclicRetreat_eq_advance_complement
   unfold cyclicRetreat cyclicAdvance
   rw [sub_eq_add_neg, hneg]
 
+/--
+@isnad1 id=eq.0h2v.s4.b09c8d782e18 from=translated src=- shape=cfb913df vocab=0819a7c7
+-/
 theorem cyclicAdvance_one_eq_next
     {n : ℕ} [NeZero n] (i : Fin n) : cyclicAdvance i 1 = cyclicNext i := by
   unfold cyclicAdvance cyclicNext
@@ -333,6 +381,9 @@ theorem cyclicAdvance_one_eq_next
     simp
   rw [hOne]
 
+/--
+@isnad1 id=eq.0h2v.s4.db12f1d93b92 from=translated src=- shape=37432afb vocab=b7e397c5
+-/
 theorem cyclicNext_retreat_one
     {n : ℕ} [NeZero n] (i : Fin n) : cyclicNext (cyclicRetreat i 1) = i := by
   simp only [cyclicNext, cyclicRetreat]
@@ -342,6 +393,9 @@ theorem cyclicNext_retreat_one
   rw [hOne]
   abel
 
+/--
+@isnad1 id=ne.3h4v.s5.8f95f1904612 from=translated src=- shape=5c8b6c17 vocab=898833a9
+-/
 theorem cyclicAdvance_ne_of_lt
     {n : ℕ} [NeZero n] (i : Fin n) {a b : ℕ}
     (ha : a < n) (hb : b < n) (hab : a ≠ b) :
@@ -354,6 +408,9 @@ theorem cyclicAdvance_ne_of_lt
       congrArg Fin.val hoff
   exact hab hval
 
+/--
+@isnad1 id=ne.2h3v.s5.bd1658a3a2b4 from=translated src=- shape=c69683a3 vocab=a8b853ea
+-/
 theorem cyclic_strict_convex_boundary_points_ne
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ}
     (hConvex : CyclicStrictConvex P) (hn : 3 ≤ n) (i : Fin n) :
@@ -372,6 +429,9 @@ theorem cyclic_strict_convex_boundary_points_ne
   rw [← heq] at hturn
   simp [turn] at hturn
 
+/--
+@isnad1 id=lt.3h4v.s6.a9fded3698ad from=translated src=- shape=5c34e2cf vocab=8a406d1c
+-/
 theorem majorant_left_local_acute
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {i j : Fin n}
     (hConvex : CyclicStrictConvex P) (hn : 3 ≤ n) (hMajorant : IsMajorant P i j) :
@@ -383,6 +443,9 @@ theorem majorant_left_local_acute
   apply dot_pos_of_sqDist_le hside
   exact le_of_not_gt hMajorant.1
 
+/--
+@isnad1 id=lt.3h4v.s6.b38f76e75e36 from=translated src=- shape=efdb3877 vocab=48eb5505
+-/
 theorem majorant_right_local_acute
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {i j : Fin n}
     (hConvex : CyclicStrictConvex P) (hn : 3 ≤ n) (hMajorant : IsMajorant P i j) :
@@ -393,6 +456,9 @@ theorem majorant_right_local_acute
   apply dot_pos_of_sqDist_le hside
   simpa only [sqDist_comm] using le_of_not_gt hMajorant.2
 
+/--
+@isnad1 id=le.0h6v.s5.3bf1cf97064b from=translated src=- shape=348f6467 vocab=11e8bcc6
+-/
 theorem vertexDegree_le_pred
     {n : ℕ} [_nonzero : NeZero n] (P : Fin n → Point ℝ) (d₁ d₂ d₃ : ℝ) (v : Fin n) :
     vertexDegree P d₁ d₂ d₃ v ≤ n - 1 := by
@@ -406,17 +472,26 @@ theorem vertexDegree_le_pred
       rw [Finset.card_erase_of_mem (Finset.mem_univ v), Finset.card_univ,
         Fintype.card_fin]
 
+/--
+@isnad1 id=le.1h6v.s5.108b0de1db0b from=translated src=- shape=b6255d1e vocab=c9740682
+-/
 theorem eight_le_card_of_degree_seven
     {n : ℕ} [_nonzero : NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ} {v : Fin n}
     (hdegree : 7 ≤ vertexDegree P d₁ d₂ d₃ v) : 8 ≤ n := by
   have hbound := vertexDegree_le_pred P d₁ d₂ d₃ v
   omega
 
+/--
+@isnad1 id=eq.0h2v.s4.044cccb2622f from=translated src=- shape=5b9d49c6 vocab=619cfeac
+-/
 theorem fin_ofNat_val
     {n : ℕ} [NeZero n] (k : Fin n) : Fin.ofNat n k.val = k := by
   apply Fin.ext
   simp
 
+/--
+@isnad1 id=eq.0h6v.s5.bb21fd3c2cde from=translated src=- shape=1ca10ad1 vocab=1d02ec83
+-/
 theorem ccwNeighborOffsets_card_eq_vertexDegree
     {n : ℕ} [NeZero n] (P : Fin n → Point ℝ) (d₁ d₂ d₃ : ℝ) (v : Fin n) :
     (ccwNeighborOffsets P d₁ d₂ d₃ v).card = vertexDegree P d₁ d₂ d₃ v := by
@@ -458,6 +533,9 @@ theorem ccwNeighborOffsets_card_eq_vertexDegree
     rw [hvk]
     exact ⟨hjErase.1.symm, hjData.2⟩
 
+/--
+@isnad1 id=le.2h7v.s6.abb39ed683ce from=translated src=- shape=faa5084f vocab=79854752
+-/
 theorem firstNeighborOffset_le_of_mem
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ} {v k : Fin n}
     (hnonempty : (ccwNeighborOffsets P d₁ d₂ d₃ v).Nonempty)
@@ -468,6 +546,9 @@ theorem firstNeighborOffset_le_of_mem
   rw [dite_eq_left hnonempty]
   exact Finset.min'_le _ _ hk
 
+/--
+@isnad1 id=le.2h7v.s6.ee1c2683c3e2 from=translated src=- shape=faa5084f vocab=08cf9017
+-/
 theorem firstClockwiseNeighborOffset_le_of_mem
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ} {v k : Fin n}
     (hnonempty : (cwNeighborOffsets P d₁ d₂ d₃ v).Nonempty)
@@ -478,6 +559,9 @@ theorem firstClockwiseNeighborOffset_le_of_mem
   rw [dite_eq_left hnonempty]
   exact Finset.min'_le _ _ hk
 
+/--
+@isnad1 id=lt.1h6v.s5.505ab8f51bcf from=translated src=- shape=23bd9691 vocab=9d5556c7
+-/
 theorem firstNeighborGap_pos_of_degree_pos
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ} {v : Fin n}
     (hdegree : 0 < vertexDegree P d₁ d₂ d₃ v) :
@@ -490,6 +574,9 @@ theorem firstNeighborGap_pos_of_degree_pos
   apply Fin.ext
   simpa using hval
 
+/--
+@isnad1 id=lt.1h6v.s5.d24b111def58 from=translated src=- shape=a0c94965 vocab=55c7b301
+-/
 theorem firstClockwiseNeighborOffset_pos_of_degree_pos
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ} {v : Fin n}
     (hdegree : 0 < vertexDegree P d₁ d₂ d₃ v) :
@@ -505,7 +592,9 @@ theorem firstClockwiseNeighborOffset_pos_of_degree_pos
   simpa using hval
 
 /-- With degree at least seven, the two first-neighbor gaps leave at least six
-polygon sides between their endpoints. -/
+polygon sides between their endpoints.
+@isnad1 id=le.1h6v.s6.7e57a4f73277 from=translated src=- shape=3f0d4b1e vocab=ff216212
+-/
 theorem first_neighbor_gap_cw_budget
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ} {v : Fin n}
     (hdegree : 7 ≤ vertexDegree P d₁ d₂ d₃ v) :
@@ -574,7 +663,9 @@ theorem first_neighbor_gap_cw_budget
 
 /-- Offset form of ErLV Proposition 2.6's geometric step.  If the endpoints
 of two terminal edges occur as `v < v' < s' < s` in one unwrapped cyclic
-window, the edges are avoiding, which is impossible. -/
+window, the edges are avoiding, which is impossible.
+@isnad1 id=false.7h7v.s6.e20291f812f3 from=translated src=- shape=e62d2a8d vocab=dd33176c
+-/
 theorem erlv_terminal_majorants_not_avoiding_of_offsets
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} (hConvex : CyclicStrictConvex P)
     (base : Fin n) {v vp sp s : ℕ}
@@ -716,7 +807,9 @@ theorem erlv_terminal_majorants_not_avoiding_of_offsets
 
 /-- The ErLV arc-nesting conclusion once the paper's undisplayed inner-end
 separation `v < v'` is made explicit.  All remaining order facts, including
-`u < s`, follow from maximality and the degree-seven gap budget. -/
+`u < s`, follow from maximality and the degree-seven gap budget.
+@isnad1 id=ex.4h8v.s8.a8deeb2779a2 from=translated src=- shape=7167f896 vocab=c0feb42b
+-/
 theorem erlv_majorant_arc_nesting_of_inner_separation
     {n : ℕ} [NeZero n] (P : Fin n → Point ℝ) (d₁ d₂ d₃ : ℝ)
     (hConvex : CyclicStrictConvex P)
@@ -836,7 +929,9 @@ theorem erlv_majorant_arc_nesting_of_inner_separation
 /-- The two independent `k = 3` cover budgets leave exactly three cases in
 which the inner endpoints are not strictly ordered as in ErLV Figure 4.
 This is an arithmetic partition only: it does not assert that any exceptional
-case is geometrically realizable. -/
+case is geometrically realizable.
+@isnad1 id=or.0h11v.s7.d385107a3f0d from=translated src=- shape=57f63cb7 vocab=641364e2
+-/
 theorem k3_inner_endpoint_budget_partition
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     {i j k ell : Fin n}
@@ -870,7 +965,9 @@ def ErLVInnerEndpointSeparationComplete : Prop :=
 
 /-- All of ErLV Proposition 2.6's geometry now closes the requested nesting
 headline once the source's undisplayed strict order of the inner endpoints is
-supplied. -/
+supplied.
+@isnad1 id=erlvmajo.1h0v.s1.9b90fb48b767 from=translated src=- shape=1d48f1ac vocab=6cf75b14
+-/
 theorem erlv_majorant_arc_nesting_complete_of_inner_endpoint_separation
     (hInner : ErLVInnerEndpointSeparationComplete) :
     ErLVMajorantArcNestingComplete := by
@@ -885,7 +982,9 @@ theorem erlv_majorant_arc_nesting_complete_of_inner_endpoint_separation
 /-- The exact geometric core of ErLV Proposition 2.6: two terminal edges
 cannot be avoiding.  The four `h*Cone` hypotheses spell out the cyclic ray
 order between each majorant endpoint and the adjacent boundary vertex on
-the exterior side. -/
+the exterior side.
+@isnad1 id=false.9h8v.s8.5a04e98ee90b from=translated src=- shape=687833a6 vocab=b8e22aea
+-/
 theorem erlv_terminal_majorants_not_avoiding
     {a b c d pa nb pc nd : Point ℝ}
     (hquad : StrictConvexQuad a b c d)

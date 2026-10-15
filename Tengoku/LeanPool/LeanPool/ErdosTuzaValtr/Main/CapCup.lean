@@ -24,6 +24,9 @@ namespace Config
 
 variable {α : Type _} [LinearOrder α] (C : Config α)
 
+/--
+@isnad1 id=and.1h3v.s5.7ba1dc495569 from=translated src=- shape=7e77b48c vocab=3d5dc2e5
+-/
 theorem has_cap2_cup2 {S : Finset α} (hS : 1 < S.card) : C.HasNCap 2 S ∧ C.HasNCup 2 S := by
   set l := S.sort (· ≤ ·) with eq_l
   have hl : 2 ≤ l.length := by rw [eq_l, Finset.length_sort]; exact hS
@@ -43,10 +46,16 @@ theorem has_cap2_cup2 {S : Finset α} (hS : 1 < S.card) : C.HasNCap 2 S ∧ C.Ha
   · rw [Cup.pair]; exact a_lt_b
   · rw [List.cons_in, List.cons_in]; exact ⟨a_in_S, b_in_S, List.nil_in⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.8211c77da474 from=translated src=- shape=46b10bfc vocab=04865d53
+-/
 theorem binom_eq (a b : ℕ) :
     (a + b + 2).choose (a + 1) = (a + b + 1).choose a + (a + b + 1).choose (a + 1) :=
   rfl
 
+/--
+@isnad1 id=or.1h5v.s6.70c7c3d90d33 from=translated src=- shape=87d9ef52 vocab=1ab1f078
+-/
 theorem cap_cup (a b : ℕ) (S : Finset α) (hS : Nat.choose (a + b) a < S.card) :
     C.HasNCap (a + 2) S ∨ C.HasNCup (b + 2) S := by
   classical

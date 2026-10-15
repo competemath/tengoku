@@ -113,7 +113,9 @@ private theorem realize_s_app {α : Type} (t : (MidLang L).Term α) (v : α → 
     (Term.func (Sum.inr WitnessFun.s) ![t]).realize v = sMap L M (t.realize v) :=
   realize_app1 _ t v
 
-/-- Numeral terms realize to the numeral map, under any assignment. -/
+/-- Numeral terms realize to the numeral map, under any assignment.
+@isnad1 id=eq.0h5v.s5.96bba45872cf from=translated src=- shape=6cdfe77e vocab=0a0716ef
+-/
 @[simp] theorem realize_mNum {α : Type} (v : α → M) (n : ℕ) :
     (mNum L α n).realize v = numMap L M n := by
   induction n with
@@ -125,10 +127,16 @@ private theorem realize_s_app {α : Type} (t : (MidLang L).Term α) (v : α → 
   | succ n ih =>
     exact (realize_app1 _ _ _).trans (congrArg (fun x => sMap L M x) ih)
 
+/--
+@isnad1 id=eq.0h5v.s5.4a14e3df7c59 from=translated src=- shape=30375e90 vocab=f56eb26e
+-/
 @[simp] theorem realize_mF {α : Type} (t : (MidLang L).Term α) (v : α → M) :
     (mF L t).realize v = fMap L M (t.realize v) :=
   realize_app1 _ t v
 
+/--
+@isnad1 id=eq.0h5v.s5.dddb7739b53b from=translated src=- shape=30375e90 vocab=6c954614
+-/
 @[simp] theorem realize_mG {α : Type} (t : (MidLang L).Term α) (v : α → M) :
     (mG L t).realize v = gMap L M (t.realize v) :=
   realize_app1 _ t v
@@ -166,7 +174,9 @@ section Semantics
 
 variable {M : Type} [inst : (MidLang L).Structure M]
 
-/-- Clause-1 realization: injectivity, non-successorhood of `c`, numeral surjectivity. -/
+/-- Clause-1 realization: injectivity, non-successorhood of `c`, numeral surjectivity.
+@isnad1 id=iff.0h2v.s5.533778066c6a from=translated src=- shape=f72c59e1 vocab=0b6a45c3
+-/
 theorem realize_omegaAxioms :
     Sentenceω.Realize (omegaAxioms L) M ↔
       (Function.Injective (sMap L M) ∧
@@ -210,7 +220,9 @@ theorem realize_omegaAxioms :
       simp only [realize_mNum]
       exact hi
 
-/-- **Clause 1 export**: the numeral map of a model of `omegaAxioms` is bijective. -/
+/-- **Clause 1 export**: the numeral map of a model of `omegaAxioms` is bijective.
+@isnad1 id=bijectiv.1h2v.s4.9507414aa545 from=translated src=- shape=693b496b vocab=58b40a98
+-/
 theorem numMap_bijective (h : Sentenceω.Realize (omegaAxioms L) M) :
     Function.Bijective (numMap L M) := by
   rw [realize_omegaAxioms] at h
@@ -242,6 +254,9 @@ noncomputable def bitAxiom : (MidLang L).Sentenceω :=
     ((BoundedFormulaω.equal (mF L (Term.var (Sum.inr (Fin.natAdd 0 0)))) (mNum L _ 0)) ⊔
       (BoundedFormulaω.equal (mF L (Term.var (Sum.inr (Fin.natAdd 0 0)))) (mNum L _ 1)))
 
+/--
+@isnad1 id=iff.0h2v.s5.6dbd2411fa4e from=translated src=- shape=9f679b14 vocab=5e1c7720
+-/
 theorem realize_bitAxiom {M : Type} [inst : (MidLang L).Structure M] :
     Sentenceω.Realize (bitAxiom L) M ↔
       ∀ x : M, fMap L M x = numMap L M 0 ∨ fMap L M x = numMap L M 1 := by
@@ -277,6 +292,9 @@ noncomputable def codeAxiom [Countable (Σ l, L.Relations l)] : (MidLang L).Sent
         (fun i => mNum L _ (q.2 i))).iff
       (BoundedFormulaω.equal (mF L (mNum L _ (queryEmbedding (L := L) q))) (mNum L _ 1))
 
+/--
+@isnad1 id=iff.0h2v.s8.b5cff8cba9a8 from=translated src=- shape=184eeb5b vocab=d4c3da19
+-/
 theorem realize_codeAxiom [Countable (Σ l, L.Relations l)]
     {M : Type} [inst : (MidLang L).Structure M] :
     Sentenceω.Realize (codeAxiom L) M ↔
@@ -305,6 +323,9 @@ noncomputable def defaultAxiom [Countable (Σ l, L.Relations l)] : (MidLang L).S
   BoundedFormulaω.einf fun p : {n : ℕ // n ∉ Set.range (queryEmbedding (L := L))} =>
     BoundedFormulaω.equal (mF L (mNum L _ p.1)) (mNum L _ 0)
 
+/--
+@isnad1 id=iff.0h2v.s6.2c045c09a0bf from=translated src=- shape=6156b182 vocab=851cd120
+-/
 theorem realize_defaultAxiom [Countable (Σ l, L.Relations l)]
     {M : Type} [inst : (MidLang L).Structure M] :
     Sentenceω.Realize (defaultAxiom L) M ↔
@@ -368,7 +389,9 @@ noncomputable def treeDiagram (T : (n : ℕ) → Set ((Fin n → Bool) × (Fin n
     else (treeAtom L p.1 p.2.1 p.2.2).not
 
 /-- Clause-5 realization — **an iff, not merely preservation**: the interpreted `tree n`
-holds at a numeral tuple exactly when the node is in `T n`. -/
+holds at a numeral tuple exactly when the node is in `T n`.
+@isnad1 id=iff.0h3v.s7.3ef52a5f7650 from=translated src=- shape=657f68e8 vocab=f89f381e
+-/
 theorem realize_treeDiagram {M : Type} [inst : (MidLang L).Structure M]
     (T : (n : ℕ) → Set ((Fin n → Bool) × (Fin n → ℕ))) :
     Sentenceω.Realize (treeDiagram L T) M ↔
@@ -415,6 +438,9 @@ def pathTuple (M : Type) [inst : (MidLang L).Structure M] (n : ℕ) : Fin (2 * n
     if (i : ℕ) < n then fMap L M (numMap L M (i : ℕ))
     else gMap L M (numMap L M ((i : ℕ) - n))
 
+/--
+@isnad1 id=iff.0h2v.s6.745935caef8f from=translated src=- shape=e6be2cd9 vocab=ab8a7dc4
+-/
 theorem realize_pathAxiom {M : Type} [inst : (MidLang L).Structure M] :
     Sentenceω.Realize (pathAxiom L) M ↔
       ∀ n : ℕ, @Structure.RelMap (MidLang L) M inst (2 * n) (Sum.inr (WitnessRel.tree n))
@@ -441,6 +467,9 @@ noncomputable def pulledCode (M : Type) [inst : (MidLang L).Structure M] :
     if @Structure.RelMap (MidLang L) M inst q.1.1 (Sum.inl q.1.2)
         (fun i => numMap L M (q.2 i)) then true else false
 
+/--
+@isnad1 id=iff.0h3v.s7.e5523acdb1e9 from=translated src=- shape=f98effa9 vocab=74cf7885
+-/
 theorem pulledCode_eq_true (M : Type) [inst : (MidLang L).Structure M] (q : RelQuery L) :
     pulledCode L M q = true ↔
       @Structure.RelMap (MidLang L) M inst q.1.1 (Sum.inl q.1.2)
@@ -451,7 +480,9 @@ theorem pulledCode_eq_true (M : Type) [inst : (MidLang L).Structure M] (q : RelQ
       (fun i => numMap L M (q.2 i)) <;> simp [h]
 
 /-- **The bit-sequence identification** (clauses 1, 3, 4): the `f`-bit at numeral `n` is
-`1` exactly when `queryCode` of the pulled-back base code is `true` at `n`. -/
+`1` exactly when `queryCode` of the pulled-back base code is `true` at `n`.
+@isnad1 id=iff.3h3v.s6.b75e823c13de from=translated src=- shape=52947ed2 vocab=6448e18a
+-/
 theorem fBit_eq_queryCode [Countable (Σ l, L.Relations l)]
     {M : Type} [inst : (MidLang L).Structure M]
     (homega : Sentenceω.Realize (omegaAxioms L) M)
@@ -487,7 +518,9 @@ noncomputable def functionalTheta [Countable (Σ l, L.Relations l)]
   (omegaAxioms L).and ((bitAxiom L).and ((codeAxiom L).and ((defaultAxiom L).and
     ((treeDiagram L T).and (pathAxiom L)))))
 
-/-- Realization of the bundle: all six clause-level semantics. -/
+/-- Realization of the bundle: all six clause-level semantics.
+@isnad1 id=iff.0h3v.s6.8f4995d3ae8e from=translated src=- shape=d6967dcc vocab=0b8277f0
+-/
 theorem realize_functionalTheta [Countable (Σ l, L.Relations l)]
     {M : Type} [inst : (MidLang L).Structure M]
     (T : (n : ℕ) → Set ((Fin n → Bool) × (Fin n → ℕ))) :

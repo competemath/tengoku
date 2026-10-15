@@ -30,6 +30,9 @@ noncomputable section
 def Erdos132ForFourteen (P : Configuration (Fin 14)) : Prop :=
   2 ≤ (P.lowMultiplicityDistances Finset.univ 14).card
 
+/--
+@isnad1 id=eq.0h0v.s5.03b7b8dda25c from=translated src=- shape=44101a1b vocab=c1656e65
+-/
 theorem pairs_univ_fin_fourteen_card :
     (pairs (Finset.univ : Finset (Fin 14))).card = 91 := by
   decide
@@ -49,6 +52,9 @@ structure FourteenFailureExactProfile (P : Configuration (Fin 14)) where
     (pairs (Finset.univ : Finset (Fin 14))).filter
       (fun e ↦ P.pairDistance e = rareDistance) = {rarePair}
 
+/--
+@isnad1 id=nonempty.3h1v.s4.455ba170247f from=translated src=- shape=eb1b12a0 vocab=e5b576b9
+-/
 theorem fourteen_failure_exact_profile
     (hopfPannwitz : HopfPannwitzLowMultiplicityDistance14)
     (publishedCardinality : PublishedAtMostSixDistanceCardinalityBound)
@@ -160,6 +166,9 @@ def retainedEndpoint : Fin 14 := profile.rarePair.2
 /-- The thirteen labels left after endpoint deletion. -/
 def remaining : Finset (Fin 14) := Finset.univ.erase profile.deletedVertex
 
+/--
+@isnad1 id=mem.0h2v.s6.889b91670466 from=translated src=- shape=b3f4d648 vocab=cd8eaf52
+-/
 theorem rarePair_mem : profile.rarePair ∈ pairs (Finset.univ : Finset (Fin 14)) := by
   have hmem : profile.rarePair ∈
       (pairs (Finset.univ : Finset (Fin 14))).filter
@@ -168,6 +177,9 @@ theorem rarePair_mem : profile.rarePair ∈ pairs (Finset.univ : Finset (Fin 14)
     simp
   exact (Finset.mem_filter.mp hmem).1
 
+/--
+@isnad1 id=eq.0h2v.s4.cf4809128985 from=translated src=- shape=aa30a975 vocab=4f08bc2c
+-/
 theorem rarePair_distance : P.pairDistance profile.rarePair = profile.rareDistance := by
   have hmem : profile.rarePair ∈
       (pairs (Finset.univ : Finset (Fin 14))).filter
@@ -176,15 +188,23 @@ theorem rarePair_distance : P.pairDistance profile.rarePair = profile.rareDistan
     simp
   exact (Finset.mem_filter.mp hmem).2
 
+/--
+@isnad1 id=mem.0h2v.s5.e95c28165c7b from=translated src=- shape=e7de9581 vocab=6e8bc662
+-/
 theorem retainedEndpoint_mem_remaining :
     profile.retainedEndpoint ∈ profile.remaining := by
   have hlt := (Finset.mem_filter.mp profile.rarePair_mem).2
   simp [remaining, deletedVertex, retainedEndpoint, ne_of_gt hlt]
 
+/--
+@isnad1 id=eq.0h2v.s4.d1bcf301715c from=translated src=- shape=52e1e74a vocab=4c737f3f
+-/
 theorem remaining_card : profile.remaining.card = 13 := by
   simp [remaining, deletedVertex]
 
-/-- Deleting the endpoint removes exactly the unique rare distance class. -/
+/-- Deleting the endpoint removes exactly the unique rare distance class.
+@isnad1 id=eq.0h2v.s6.1de987ce564c from=translated src=- shape=ef9c5eb5 vocab=0908e952
+-/
 theorem erase_endpoint_realizedDistances_eq_erase :
     P.realizedDistances profile.remaining =
       (P.realizedDistances Finset.univ).erase profile.rareDistance := by
@@ -241,6 +261,9 @@ theorem erase_endpoint_realizedDistances_eq_erase :
     have hremainingPos : 0 < P.distanceMultiplicity profile.remaining d := by omega
     exact (P.distanceMultiplicity_pos_iff profile.remaining d).mp hremainingPos
 
+/--
+@isnad1 id=eq.0h2v.s5.9f0e22c0ac55 from=translated src=- shape=e72b3f43 vocab=751fe937
+-/
 theorem remaining_realizedDistance_card :
     (P.realizedDistances profile.remaining).card = 6 := by
   rw [profile.erase_endpoint_realizedDistances_eq_erase,

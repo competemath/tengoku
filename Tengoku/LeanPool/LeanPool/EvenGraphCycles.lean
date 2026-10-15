@@ -83,17 +83,25 @@ def pathEdges : List V → List (Sym2 V)
 of `l`. -/
 def cycleEdges (l : List V) : List (Sym2 V) := pathEdges (l ++ l.take 1)
 
-/-- The empty walk has no edges. -/
+/-- The empty walk has no edges.
+@isnad1 id=eq.0h1v.s3.8b0fb5ab49ee from=translated src=- shape=54ac7aa7 vocab=fe864a9c
+-/
 @[simp] lemma pathEdges_nil : pathEdges ([] : List V) = [] := rfl
 
-/-- A one-vertex walk has no edges. -/
+/-- A one-vertex walk has no edges.
+@isnad1 id=eq.0h2v.s4.de87a621b17e from=translated src=- shape=413b1e15 vocab=19443128
+-/
 @[simp] lemma pathEdges_singleton (a : V) : pathEdges [a] = [] := rfl
 
-/-- The edges of the walk `a :: b :: l` are `s(a, b)` together with the edges of `b :: l`. -/
+/-- The edges of the walk `a :: b :: l` are `s(a, b)` together with the edges of `b :: l`.
+@isnad1 id=eq.0h4v.s5.dd46ca7267bc from=translated src=- shape=82379c95 vocab=9365df56
+-/
 @[simp] lemma pathEdges_cons_cons (a b : V) (l : List V) :
     pathEdges (a :: b :: l) = s(a, b) :: pathEdges (b :: l) := rfl
 
-/-- A walk on `n` vertices has `n - 1` edges. -/
+/-- A walk on `n` vertices has `n - 1` edges.
+@isnad1 id=eq.0h2v.s4.be9e3de34b62 from=translated src=- shape=8b995919 vocab=7067a88f
+-/
 lemma length_pathEdges (l : List V) : (pathEdges l).length = l.length - 1 := by
   induction l with
   | nil => simp
@@ -102,13 +110,17 @@ lemma length_pathEdges (l : List V) : (pathEdges l).length = l.length - 1 := by
     | nil => simp
     | cons b l => simp [pathEdges, ih]
 
-/-- A closed walk on `n` vertices has `n` edges. -/
+/-- A closed walk on `n` vertices has `n` edges.
+@isnad1 id=eq.0h2v.s4.5ef9126e91f2 from=translated src=- shape=7b7f08c2 vocab=781fee6d
+-/
 lemma length_cycleEdges (l : List V) : (cycleEdges l).length = l.length := by
   cases l with
   | nil => simp [cycleEdges]
   | cons a l => simp [cycleEdges, length_pathEdges]
 
-/-- Taking an initial segment of a list does not change its entries in that segment. -/
+/-- Taking an initial segment of a list does not change its entries in that segment.
+@isnad1 id=eq.1h5v.s5.9265a4078c61 from=translated src=- shape=e8e632f2 vocab=57f22c2f
+-/
 lemma getD_take (l : List V) (d : V) {k i : ℕ} (h : i < k) :
     (l.take k).getD i d = l.getD i d := by
   by_cases hi : i < l.length
@@ -116,7 +128,9 @@ lemma getD_take (l : List V) (d : V) {k i : ℕ} (h : i < k) :
       List.getElem_take]
   · rw [List.getD_eq_default _ _ (by simp; omega), List.getD_eq_default _ _ (by omega)]
 
-/-- The `i`-th edge of a walk joins its `i`-th and its `(i + 1)`-st vertex. -/
+/-- The `i`-th edge of a walk joins its `i`-th and its `(i + 1)`-st vertex.
+@isnad1 id=eq.1h5v.s6.eeecd32cbd1d from=translated src=- shape=88123026 vocab=88d29b1c
+-/
 lemma pathEdges_getD (d : Sym2 V) (e : V) :
     ∀ (l : List V) (i : ℕ), i + 1 < l.length →
       (pathEdges l).getD i d = s(l.getD i e, l.getD (i + 1) e) := by
@@ -135,7 +149,9 @@ lemma pathEdges_getD (d : Sym2 V) (e : V) :
         have := ih i hi'
         simpa [pathEdges, List.getD_cons_succ] using this
 
-/-- The `i`-th edge of a closed walk joins its `i`-th and its `(i + 1)`-st vertex, cyclically. -/
+/-- The `i`-th edge of a closed walk joins its `i`-th and its `(i + 1)`-st vertex, cyclically.
+@isnad1 id=eq.1h5v.s6.15401518e691 from=translated src=- shape=52c93c1c vocab=17468ce6
+-/
 lemma cycleEdges_getD (d : Sym2 V) (e : V) (l : List V) (i : ℕ) (hi : i < l.length) :
     (cycleEdges l).getD i d = s(l.getD i e, l.getD ((i + 1) % l.length) e) := by
   cases l with
@@ -161,7 +177,9 @@ lemma cycleEdges_getD (d : Sym2 V) (e : V) (l : List V) (i : ℕ) (hi : i < l.le
       rw [hlast, hL]
       simp [List.getD]
 
-/-- The edges of a walk are exactly the pairs of consecutive vertices. -/
+/-- The edges of a walk are exactly the pairs of consecutive vertices.
+@isnad1 id=iff.0h4v.s6.02a4425eb965 from=translated src=- shape=fe3b1dfd vocab=b4653cd2
+-/
 lemma mem_pathEdges_iff (d : V) (l : List V) (e : Sym2 V) :
     e ∈ pathEdges l ↔ ∃ i, i + 1 < l.length ∧ e = s(l.getD i d, l.getD (i + 1) d) := by
   constructor
@@ -183,7 +201,9 @@ lemma mem_pathEdges_iff (d : V) (l : List V) (e : Sym2 V) :
     rw [← h]
     exact List.getElem_mem hlen
 
-/-- The edges of a closed walk are exactly the pairs of cyclically consecutive vertices. -/
+/-- The edges of a closed walk are exactly the pairs of cyclically consecutive vertices.
+@isnad1 id=iff.0h4v.s6.dba17e94bb0f from=translated src=- shape=0646f367 vocab=319e64c8
+-/
 lemma mem_cycleEdges_iff (d : V) (l : List V) (e : Sym2 V) :
     e ∈ cycleEdges l ↔ ∃ i, i < l.length ∧ e = s(l.getD i d, l.getD ((i + 1) % l.length) d) := by
   constructor
@@ -205,7 +225,9 @@ lemma mem_cycleEdges_iff (d : V) (l : List V) (e : Sym2 V) :
     rw [← h]
     exact List.getElem_mem hlen
 
-/-- An endpoint of an edge of a closed walk is a vertex of that walk. -/
+/-- An endpoint of an edge of a closed walk is a vertex of that walk.
+@isnad1 id=mem.2h4v.s5.81c889ed4c98 from=translated src=- shape=f1d54d90 vocab=f99decbb
+-/
 lemma mem_of_mem_cycleEdges {l : List V} {e : Sym2 V} (he : e ∈ cycleEdges l) {x : V}
     (hx : x ∈ e) : x ∈ l := by
   have hne : l ≠ [] := by
@@ -225,7 +247,9 @@ lemma mem_of_mem_cycleEdges {l : List V} {e : Sym2 V} (he : e ∈ cycleEdges l) 
   · exact h1
   · exact h2
 
-/-- The edges of a cycle are pairwise distinct. -/
+/-- The edges of a cycle are pairwise distinct.
+@isnad1 id=nodup.2h2v.s4.90393bd5b41a from=translated src=- shape=40152ced vocab=c28dadac
+-/
 lemma nodup_cycleEdges {l : List V} (hnd : l.Nodup) (hlen : 3 ≤ l.length) :
     (cycleEdges l).Nodup := by
   classical
@@ -275,7 +299,9 @@ lemma nodup_cycleEdges {l : List V} (hnd : l.Nodup) (hlen : 3 ≤ l.length) :
       rw [this] at e2
       omega
 
-/-- A cycle has no loops. -/
+/-- A cycle has no loops.
+@isnad1 id=not.3h3v.s5.0f1d96884409 from=translated src=- shape=51c2b1ff vocab=a3ec3b3a
+-/
 lemma not_isDiag_of_mem_cycleEdges {l : List V} (hnd : l.Nodup) (hlen : 2 ≤ l.length)
     {e : Sym2 V} (he : e ∈ cycleEdges l) : ¬ e.IsDiag := by
   obtain ⟨d, hd⟩ : ∃ d, d ∈ l := by
@@ -305,7 +331,9 @@ variable {V : Type*} [DecidableEq V]
 The project-specific name avoids colliding with analogous definitions in other pooled projects. -/
 def cycleEdgeDegree (E : Finset (Sym2 V)) (v : V) : ℕ := (E.filter fun e ↦ v ∈ e).card
 
-/-- The raw-edge degree agrees with `SimpleGraph.degree` on a graph's edge finset. -/
+/-- The raw-edge degree agrees with `SimpleGraph.degree` on a graph's edge finset.
+@isnad1 id=eq.0h3v.s5.b3906a53f237 from=translated src=- shape=dce51188 vocab=706982d1
+-/
 lemma cycleEdgeDegree_edgeFinset {G : SimpleGraph V} [Fintype G.edgeSet]
     (v : V) [Fintype (G.neighborSet v)] :
     G.edgeFinset.cycleEdgeDegree v = G.degree v := by
@@ -314,16 +342,22 @@ lemma cycleEdgeDegree_edgeFinset {G : SimpleGraph V} [Fintype G.edgeSet]
 /-- The set of vertices incident with an edge of the finite edge set `E`. -/
 def edgeSupport (E : Finset (Sym2 V)) : Finset V := E.biUnion Sym2.toFinset
 
-/-- A vertex lies in the support of `E` if and only if it is incident with an edge of `E`. -/
+/-- A vertex lies in the support of `E` if and only if it is incident with an edge of `E`.
+@isnad1 id=iff.0h3v.s5.1deb6295c66b from=translated src=- shape=f668060b vocab=b09478f6
+-/
 lemma mem_edgeSupport {E : Finset (Sym2 V)} {v : V} : v ∈ E.edgeSupport ↔ ∃ e ∈ E, v ∈ e := by
   simp [edgeSupport]
 
-/-- Degrees are monotone in the edge set. -/
+/-- Degrees are monotone in the edge set.
+@isnad1 id=le.1h4v.s5.a8be1e20b13d from=translated src=- shape=c6d98eb0 vocab=ec1ed981
+-/
 lemma edgeDegree_mono {E F : Finset (Sym2 V)} (h : E ⊆ F) (v : V) :
     E.cycleEdgeDegree v ≤ F.cycleEdgeDegree v :=
   Finset.card_le_card (Finset.filter_subset_filter _ h)
 
-/-- Deleting a set of edges subtracts its degrees. -/
+/-- Deleting a set of edges subtracts its degrees.
+@isnad1 id=eq.1h4v.s6.098b088b18d8 from=translated src=- shape=fc044898 vocab=d8bd6132
+-/
 lemma edgeDegree_sdiff {E A : Finset (Sym2 V)} (h : A ⊆ E) (v : V) :
     (E \ A).cycleEdgeDegree v = E.cycleEdgeDegree v - A.cycleEdgeDegree v := by
   unfold cycleEdgeDegree
@@ -334,7 +368,9 @@ lemma edgeDegree_sdiff {E A : Finset (Sym2 V)} (h : A ⊆ E) (v : V) :
 
 /-! ### The degrees of a cycle -/
 
-/-- Every degree of a cycle is even (in fact `0` or `2`). -/
+/-- Every degree of a cycle is even (in fact `0` or `2`).
+@isnad1 id=even.2h3v.s5.708e4c0c33f8 from=translated src=- shape=a99cdf88 vocab=9af0e8a1
+-/
 lemma even_edgeDegree_cycleEdges {l : List V} (hnd : l.Nodup) (hlen : 3 ≤ l.length) (v : V) :
     Even ((l.cycleEdges.toFinset).cycleEdgeDegree v) := by
   classical
@@ -449,7 +485,9 @@ lemma even_edgeDegree_cycleEdges {l : List V} (hnd : l.Nodup) (hlen : 3 ≤ l.le
 /-! ### A nonempty even graph contains a cycle -/
 
 /-- **Every nonempty loopless graph with all degrees even contains a cycle.**  The cycle is found
-at the end of a path of maximal length. -/
+at the end of a path of maximal length.
+@isnad1 id=ex.3h2v.s6.93c9f3c8d20a from=translated src=- shape=d514a5cf vocab=0df81e3e
+-/
 theorem exists_cycle_of_even {E : Finset (Sym2 V)} (hne : E.Nonempty)
     (hdiag : ∀ e ∈ E, ¬ e.IsDiag) (heven : ∀ v : V, Even (E.cycleEdgeDegree v)) :
     ∃ l : List V, l.Nodup ∧ 3 ≤ l.length ∧ ∀ e ∈ l.cycleEdges, e ∈ E := by
@@ -584,7 +622,9 @@ theorem exists_cycle_of_even {E : Finset (Sym2 V)} (hne : E.Nonempty)
 /-- **Every finite loopless graph with all degrees even is the edge-disjoint union of cycles.**
 
 The cycles are given as a list `cs` of lists of pairwise distinct vertices, each of length at
-least three; their edge lists concatenate, without repetition, to the edge set `E`. -/
+least three; their edge lists concatenate, without repetition, to the edge set `E`.
+@isnad1 id=ex.2h2v.s6.753190989265 from=translated src=- shape=e717165e vocab=9d0588c0
+-/
 theorem exists_cycleDecomp {E : Finset (Sym2 V)} (hdiag : ∀ e ∈ E, ¬ e.IsDiag)
     (heven : ∀ v : V, Even (E.cycleEdgeDegree v)) :
     ∃ cs : List (List V), (∀ c ∈ cs, c.Nodup ∧ 3 ≤ c.length) ∧
@@ -635,7 +675,9 @@ theorem exists_cycleDecomp {E : Finset (Sym2 V)} (hdiag : ∀ e ∈ E, ¬ e.IsDi
 /-- **Every finite loopless graph with all degrees even decomposes into edge-disjoint cycles**,
 stated as a family of edge sets: the cycles are given as a list `Cs` of edge sets, each of them
 the edge set `l.cycleEdges` of a cycle `l` (a list of pairwise distinct vertices of length at
-least three); they are pairwise disjoint and their union is `E`. -/
+least three); they are pairwise disjoint and their union is `E`.
+@isnad1 id=ex.2h2v.s7.80020a9f0793 from=translated src=- shape=7e28186c vocab=8e4025f8
+-/
 theorem exists_cycleDecomp_finset {E : Finset (Sym2 V)} (hdiag : ∀ e ∈ E, ¬ e.IsDiag)
     (heven : ∀ v : V, Even (E.cycleEdgeDegree v)) :
     ∃ Cs : List (Finset (Sym2 V)),
@@ -664,7 +706,9 @@ theorem exists_cycleDecomp_finset {E : Finset (Sym2 V)} (hdiag : ∀ e ∈ E, ¬
 
 /-! ### Pairing up a set of even size -/
 
-/-- **Every finite set of even size carries a fixed-point-free involution.** -/
+/-- **Every finite set of even size carries a fixed-point-free involution.**
+@isnad1 id=ex.1h2v.s6.5ac7a15041ee from=translated src=- shape=f373d59d vocab=318afa96
+-/
 theorem exists_involution_of_even_card {α : Type*} {S : Finset α}
     (hev : Even S.card) : ∃ f : α → α, ∀ a ∈ S, f a ∈ S ∧ f a ≠ a ∧ f (f a) = a := by
   classical
@@ -717,7 +761,9 @@ theorem exists_involution_of_even_card {α : Type*} {S : Finset α}
 /-- **The Eulerian pairing.**  If every degree of `E` is even then the edges of `E` at every
 vertex `v` can be paired up: `pair v` is a fixed-point-free involution of the set of edges of `E`
 incident with `v`.  The pairing is defined at every vertex simultaneously, so each edge `xy` of `E`
-is paired with an edge at `x` and with an edge at `y`. -/
+is paired with an edge at `x` and with an edge at `y`.
+@isnad1 id=ex.1h2v.s7.119a256a6e84 from=translated src=- shape=60ff0687 vocab=dd959858
+-/
 theorem exists_edge_pairing_of_even {E : Finset (Sym2 V)}
     (heven : ∀ v : V, Even (E.cycleEdgeDegree v)) :
     ∃ pair : V → Sym2 V → Sym2 V, ∀ v : V, ∀ e ∈ E, v ∈ e →
@@ -739,7 +785,9 @@ namespace SimpleGraph
 
 variable {V : Type*} [DecidableEq V]
 
-/-- A finite simple graph of even degree decomposes into edge-disjoint simple cycles. -/
+/-- A finite simple graph of even degree decomposes into edge-disjoint simple cycles.
+@isnad1 id=ex.1h2v.s6.430cd6e0bafd from=translated src=- shape=3bb87155 vocab=c3dbfe04
+-/
 theorem exists_cycleDecomp_of_even_degree (G : SimpleGraph V) [Fintype G.edgeSet]
     [∀ v, Fintype (G.neighborSet v)]
     (heven : ∀ v : V, Even (G.degree v)) :
@@ -753,7 +801,9 @@ theorem exists_cycleDecomp_of_even_degree (G : SimpleGraph V) [Fintype G.edgeSet
     exact heven v
 
 omit [DecidableEq V] in
-/-- The incident edges of a finite simple graph of even degree admit Eulerian pairings. -/
+/-- The incident edges of a finite simple graph of even degree admit Eulerian pairings.
+@isnad1 id=ex.1h2v.s7.622068160997 from=translated src=- shape=3c288595 vocab=31a426a6
+-/
 theorem exists_edge_pairing_of_even_degree (G : SimpleGraph V) [Fintype G.edgeSet]
     [∀ v, Fintype (G.neighborSet v)]
     (heven : ∀ v : V, Even (G.degree v)) :

@@ -21,6 +21,9 @@ open OrderDual
 
 variable {α : Type _} [LinearOrder α] (C : Config α)
 
+/--
+@isnad1 id=hasngon.8h10v.s7.4b6a6fdf631b from=translated src=- shape=fc94621c vocab=8675d76c
+-/
 theorem Config.join_n2_n2_case_ff (S : Finset α) (n : ℕ) (a x b : α) (c1 c2 : List α)
     (lab : C.Label S) (a_in_S : a ∈ S) (x_in_S : x ∈ S) (b_in_S : b ∈ S)
     (hc1 : C.NCup (n + 2) (c1 ++ [a, x])) (c1_in_S : c1.In S) (hc2 : C.NCup (n + 2) (x::b::c2))
@@ -73,6 +76,9 @@ theorem Config.join_n2_n2_case_ff (S : Finset α) (n : ℕ) (a x b : α) (c1 c2 
       omega
     · simp_all
 
+/--
+@isnad1 id=hasngon.8h10v.s7.8db90e11943b from=translated src=- shape=b40c18bb vocab=8675d76c
+-/
 theorem Config.join_n2_n2_case_tt (S : Finset α) (n : ℕ) (a x b : α) (c1 c2 : List α)
     (lab : C.Label S) (a_in_S : a ∈ S) (x_in_S : x ∈ S) (b_in_S : b ∈ S)
     (hc1 : C.NCup (n + 2) (c1 ++ [a, x])) (c1_in_S : c1.In S) (hc2 : C.NCup (n + 2) (x::b::c2))
@@ -90,6 +96,9 @@ theorem Config.join_n2_n2_case_tt (S : Finset α) (n : ℕ) (a x b : α) (c1 c2 
   rw [Mirror.hasNGon] at Mirrored_goal
   tauto
 
+/--
+@isnad1 id=hasngon.7h7v.s6.f736342403be from=translated src=- shape=3606a5a7 vocab=7905be1f
+-/
 theorem Config.join_n2_n2 (S : Finset α) {n : ℕ} (cap4_free : ¬C.HasNCap 4 S) {c1 : List α}
     (hc1 : C.NCup (n + 2) c1) (c1_in_S : c1.In S) {c2 : List α} (hc2 : C.NCup (n + 2) c2)
     (c2_in_S : c2.In S) (x : α) (hx1 : x ∈ c1.getLast?) (hx2 : x ∈ c2.head?) :

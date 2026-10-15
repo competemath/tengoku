@@ -89,7 +89,9 @@ noncomputable def muVal (q : ℕ) (hq3 : 3 ≤ q) (n : ℕ) : ℕ :=
 /-! ## The μ-drop arithmetic core (KERNEL-CLEAN) -/
 
 /-- **μ strictly drops.**  `μ(n') < μ(n)` whenever `n'` is fully good, or its
-working index dropped, or the index held and the digit there strictly climbed. -/
+working index dropped, or the index held and the digit there strictly climbed.
+@isnad1 id=lt.3h3v.s7.aadb89df6d16 from=translated src=- shape=997074ef vocab=2c5bd2ed
+-/
 theorem muVal_lt_of {q : ℕ} (hq3 : 3 ≤ q) {n n' : ℕ} (hbad : 0 < badCountQ q n)
     (h : badCountQ q n' = 0 ∨
          ∃ hbad' : 0 < badCountQ q n',
@@ -132,7 +134,9 @@ One EGRS75 condition-(3) carry-controlled move: ADD when `T < S`, SUBTRACT when
 `S ≤ T`.  Output: still `LowDigits p`, the floor block at the working index is
 preserved-or-grown, and the lex pair `(μ, n)` strictly falls. -/
 
-/-- **THE EGRS75 SINGLE MOVE (KERNEL-CLEAN, no sorry).** -/
+/-- **THE EGRS75 SINGLE MOVE (KERNEL-CLEAN, no sorry).**
+@isnad1 id=ex.9h4v.s7.bfc3f9f18384 from=translated src=- shape=22adebb4 vocab=b7924426
+-/
 theorem egrs_move {p q : ℕ} (hp : p.Prime) (_hq : q.Prime)
     (hpo : Odd p) (hqo : Odd q) (_hpq : p ≠ q) (hq3 : 3 ≤ q) (N : ℕ)
     {n : ℕ} (hpn : LowDigits p n) (hbad : 0 < badCountQ q n)
@@ -280,7 +284,9 @@ theorem egrs_move {p q : ℕ} (hp : p.Prime) (_hq : q.Prime)
 /-- **ALIGN via the lex pair `(μ, n)` (KERNEL-CLEAN).**  Repeatedly applying the
 single move from a seed whose floor block exceeds `N` yields a number that is
 `> N`, `LowDigits p`, and `LowDigits q`.  Outer strong induction on `μ`, inner
-on `n`; the floor invariant `N < (n/q^i)·q^i` is threaded (it implies `N < n`). -/
+on `n`; the floor invariant `N < (n/q^i)·q^i` is threaded (it implies `N < n`).
+@isnad1 id=ex.5h4v.s8.8922a3cb6015 from=translated src=- shape=8fca17b0 vocab=0f6b7ad6
+-/
 theorem align_mu {p q : ℕ} (hq3 : 3 ≤ q) (N : ℕ)
     (hmove : ∀ {n : ℕ}, LowDigits p n → ∀ (hbad : 0 < badCountQ q n),
         N < n / q ^ (leastGoodAbove hq3 hbad) * q ^ (leastGoodAbove hq3 hbad) →
@@ -338,7 +344,9 @@ theorem align_mu {p q : ℕ} (hq3 : 3 ≤ q) (N : ℕ)
 
 /-! ## The seeded finish: Diophantine seed + μ-induction + single move -/
 
-/-- align ⟹ crux (KERNEL-CLEAN). -/
+/-- align ⟹ crux (KERNEL-CLEAN).
+@isnad1 id=infinite.1h2v.s5.0ae428a4004c from=translated src=- shape=b30f7ffe vocab=6b686e45
+-/
 theorem align_to_crux {p q : ℕ}
     (halign : ∀ N, ∃ n, N < n ∧ LowDigits p n ∧ LowDigits q n) :
     {n : ℕ | LowDigits p n ∧ LowDigits q n}.Infinite := by
@@ -350,7 +358,9 @@ theorem align_to_crux {p q : ℕ}
 /-- **ALIGN, fully proven (KERNEL-CLEAN, no sorry).**  For distinct odd primes
 `p q`, every `N` admits `n > N` that is `LowDigits p` and `LowDigits q`.  Seeded
 by the Diophantine window `seed_window` (EGRS condition (2)); driven by
-`align_mu` consuming the fully-proven `egrs_move`. -/
+`align_mu` consuming the fully-proven `egrs_move`.
+@isnad1 id=ex.5h3v.s5.d39a601ee0ec from=translated src=- shape=465193de vocab=b82c62e4
+-/
 theorem align_finish_mu {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
     (hpo : Odd p) (hqo : Odd q) (hpq : p ≠ q) :
     ∀ N, ∃ n, N < n ∧ LowDigits p n ∧ LowDigits q n := by
@@ -441,14 +451,18 @@ theorem align_finish_mu {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
 /-- **EGRS75 two-prime theorem — CLOSED (KERNEL-CLEAN, no sorry).**  For
 distinct odd primes `p q`, there are infinitely many `n` with `p ∤ C(2n,n)` and
 `q ∤ C(2n,n)`.  (Erdős–Graham–Ruzsa–Straus, Math. Comp. 29 (1975), Theorem 1,
-equality case — a KNOWN theorem; this is its machine-checked proof.) -/
+equality case — a KNOWN theorem; this is its machine-checked proof.)
+@isnad1 id=infinite.5h2v.s5.0a63abe51af3 from=translated src=- shape=4a0bb7a7 vocab=8b4bdf93
+-/
 theorem egrs_two_prime_mu {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
     (hpo : Odd p) (hqo : Odd q) (hpq : p ≠ q) :
     {n : ℕ | ¬ p ∣ Nat.centralBinom n ∧ ¬ q ∣ Nat.centralBinom n}.Infinite :=
   egrs_two_prime_of_crux hp hq hpo hqo
     (align_to_crux (align_finish_mu hp hq hpo hqo hpq))
 
-/-- The crux itself, closed: `A_p ∩ A_q` is infinite. -/
+/-- The crux itself, closed: `A_p ∩ A_q` is infinite.
+@isnad1 id=infinite.5h2v.s5.a22f5dbf6e07 from=translated src=- shape=df8dfaed vocab=38f88886
+-/
 theorem egrs_crux_mu {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
     (hpo : Odd p) (hqo : Odd q) (hpq : p ≠ q) :
     {n : ℕ | LowDigits p n ∧ LowDigits q n}.Infinite :=
@@ -456,7 +470,9 @@ theorem egrs_crux_mu {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
 
 /-- **The 2026-06-08 residual, discharged.**  Statement byte-identical to
 `Finish.egrs_clearing_low` (EgrsFinish_core.lean:301): from the μ-closure, a
-fully `(q,B)`-good number above any floor exists, which clears every index. -/
+fully `(q,B)`-good number above any floor exists, which clears every index.
+@isnad1 id=ex.9h4v.s6.c727147e3b6a from=translated src=- shape=724c77d1 vocab=e2231760
+-/
 theorem egrs_clearing_low_mu {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
     (hpo : Odd p) (hqo : Odd q) (hpq : p ≠ q) (N : ℕ)
     {n : ℕ} (_hpn : LowDigits p n) (_hNn : N < n) (_hbad : 0 < badCountQ q n)

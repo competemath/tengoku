@@ -43,7 +43,9 @@ def IsInjectiveSpace (D : Type v) [TopologicalSpace D] : Prop :=
   ∀ {X Y : Type u} [TopologicalSpace X] [TopologicalSpace Y] (e : X → Y),
     IsEmbedding e → ∀ f : C(X, D), ∃ g : C(Y, D), ∀ x, g (e x) = f x
 
-/-- **Scott 1972, Proposition 1.2.** The Sierpiński space is injective. -/
+/-- **Scott 1972, Proposition 1.2.** The Sierpiński space is injective.
+@isnad1 id=isinject.0h0v.s1.3f9cc6e7a774 from=translated src=- shape=b497039c vocab=b114de80
+-/
 theorem isInjectiveSpace_sierpinski : IsInjectiveSpace.{u} Prop := by
   intro X Y _ _ e he f
   have hfopen : IsOpen {x | f x} := continuous_Prop.1 f.continuous
@@ -53,10 +55,15 @@ theorem isInjectiveSpace_sierpinski : IsInjectiveSpace.{u} Prop := by
   have : (e x ∈ V) = (x ∈ {x | f x}) := by rw [← hVeq]; rfl
   simpa using this
 
+/--
+@isnad1 id=isinject.0h0v.s1.e1c0a7b78d34 from=translated src=- shape=49959d42 vocab=d411d6fc
+-/
 theorem proposition_1_2 : IsInjectiveSpace.{u} Sierpinski :=
   isInjectiveSpace_sierpinski
 
-/-- **Scott 1972, Proposition 1.3.** Products of injective spaces are injective. -/
+/-- **Scott 1972, Proposition 1.3.** Products of injective spaces are injective.
+@isnad1 id=isinject.1h2v.s5.f95fbbda483a from=translated src=- shape=277a5259 vocab=c2fe2317
+-/
 theorem IsInjectiveSpace.pi {ι : Type w} (D : ι → Type v) [∀ i, TopologicalSpace (D i)]
     (h : ∀ i, IsInjectiveSpace.{u} (D i)) : IsInjectiveSpace.{u} (∀ i, D i) := by
   intro X Y _ _ e he f
@@ -65,11 +72,16 @@ theorem IsInjectiveSpace.pi {ι : Type w} (D : ι → Type v) [∀ i, Topologica
   refine ⟨⟨fun y i => g i y, continuous_pi fun i => (g i).continuous⟩, fun x => ?_⟩
   simp_all
 
+/--
+@isnad1 id=isinject.1h2v.s5.f95fbbda483a from=translated src=- shape=277a5259 vocab=c2fe2317
+-/
 theorem proposition_1_3 {ι : Type w} (D : ι → Type v) [∀ i, TopologicalSpace (D i)]
     (h : ∀ i, IsInjectiveSpace.{u} (D i)) : IsInjectiveSpace.{u} (∀ i, D i) :=
   IsInjectiveSpace.pi D h
 
-/-- **Scott 1972, Proposition 1.4.** Retracts of injective spaces are injective. -/
+/-- **Scott 1972, Proposition 1.4.** Retracts of injective spaces are injective.
+@isnad1 id=isinject.2h4v.s6.dbe93bf118fe from=translated src=- shape=bc7ed344 vocab=24be5a52
+-/
 theorem IsInjectiveSpace.of_retract {D : Type v} {D' : Type v}
     [TopologicalSpace D] [TopologicalSpace D'] (hD : IsInjectiveSpace.{u} D)
     (s : C(D', D)) (r : C(D, D')) (hrs : ∀ d, r (s d) = d) :
@@ -79,24 +91,35 @@ theorem IsInjectiveSpace.of_retract {D : Type v} {D' : Type v}
   refine ⟨r.comp g, fun x => ?_⟩
   simp_all
 
+/--
+@isnad1 id=isinject.2h4v.s6.dbe93bf118fe from=translated src=- shape=bc7ed344 vocab=24be5a52
+-/
 theorem proposition_1_4 {D : Type v} {D' : Type v} [TopologicalSpace D] [TopologicalSpace D']
     (hD : IsInjectiveSpace.{u} D) (s : C(D', D)) (r : C(D, D')) (hrs : ∀ d, r (s d) = d) :
     IsInjectiveSpace.{u} D' :=
   IsInjectiveSpace.of_retract hD s r hrs
 
+/--
+@isnad1 id=isinject.0h1v.s3.7bbe3a1f02b3 from=translated src=- shape=b1adb586 vocab=b114de80
+-/
 theorem isInjectiveSpace_sierpinski_power (ι : Type w) :
     IsInjectiveSpace.{u} (ι → Prop) :=
   proposition_1_3 (fun (_ : ι) => Prop) (fun _ => proposition_1_2)
 
 /-- **Scott 1972, Proposition 1.5.** Every `T₀`-space embeds into a power of 𝕆,
 and that
-power is injective. -/
+power is injective.
+@isnad1 id=and.0h1v.s6.0ba3fdae4702 from=translated src=- shape=914ca175 vocab=dbc02ef4
+-/
 theorem proposition_1_5 (X : Type u) [TopologicalSpace X] [T0Space X] :
     IsInjectiveSpace.{u,u} (Opens X → Prop) ∧
       IsEmbedding (productOfMemOpens X) := by
   refine ⟨?_, productOfMemOpens_isEmbedding X⟩
   exact isInjectiveSpace_sierpinski_power (Opens X)
 
+/--
+@isnad1 id=isembedd.0h1v.s6.28016c5d7bc7 from=translated src=- shape=bc4c158a vocab=afa8eeaf
+-/
 theorem t0_isEmbedding_into_sierpinski_power (X : Type u) [TopologicalSpace X] [T0Space X] :
     IsEmbedding (productOfMemOpens X) :=
   (proposition_1_5 X).2
@@ -111,7 +134,9 @@ structure IsRetractSubspace (D' D : Type u) [TopologicalSpace D'] [TopologicalSp
   retraction_section : ∀ d, retraction (section' d) = d
 
 /-- **Scott 1972, Corollary 1.6.** Injective spaces are exactly retracts of powers
-of 𝕆. -/
+of 𝕆.
+@isnad1 id=iff.0h1v.s5.38e1f1e9e09c from=translated src=- shape=e4f060db vocab=2708036e
+-/
 theorem corollary_1_6 (D : Type u) [TopologicalSpace D] [T0Space D] :
     IsInjectiveSpace.{u,u} D ↔ ∃ (ι : Type u), Nonempty (IsRetractSubspace D (ι → Prop)) := by
   constructor
@@ -124,7 +149,9 @@ theorem corollary_1_6 (D : Type u) [TopologicalSpace D] [T0Space D] :
 
 /-- **Scott 1972, Corollary 1.7.** A space is injective iff it is a retract of
 every
-super-space of which it is a subspace. -/
+super-space of which it is a subspace.
+@isnad1 id=iff.0h1v.s6.6e792ffcf1a1 from=translated src=- shape=b6470828 vocab=4d7032e4
+-/
 theorem corollary_1_7 (D : Type u) [TopologicalSpace D] [T0Space D] :
     IsInjectiveSpace.{u,u} D ↔
       ∀ {Y : Type u} [TopologicalSpace Y] (e : D → Y), IsEmbedding e →

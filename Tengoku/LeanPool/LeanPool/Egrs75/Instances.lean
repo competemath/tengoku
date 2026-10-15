@@ -23,22 +23,30 @@ namespace Egrs75.SmokeProbe
 
 open Egrs75.MuFinish
 
-/-- Infinitely many `n` with `3 ∤ C(2n,n)` and `5 ∤ C(2n,n)`. -/
+/-- Infinitely many `n` with `3 ∤ C(2n,n)` and `5 ∤ C(2n,n)`.
+@isnad1 id=infinite.0h0v.s4.ec1e1ae59e26 from=translated src=- shape=2be2492c vocab=2d316401
+-/
 theorem egrs_3_5 : {n : ℕ | ¬ 3 ∣ Nat.centralBinom n ∧ ¬ 5 ∣ Nat.centralBinom n}.Infinite :=
   egrs_two_prime_mu (by norm_num) (by norm_num) ⟨1, rfl⟩ ⟨2, rfl⟩ (by norm_num)
 
-/-- Infinitely many `n` with `3 ∤ C(2n,n)` and `7 ∤ C(2n,n)`. -/
+/-- Infinitely many `n` with `3 ∤ C(2n,n)` and `7 ∤ C(2n,n)`.
+@isnad1 id=infinite.0h0v.s4.f7d7853bbc24 from=translated src=- shape=2be2492c vocab=2d316401
+-/
 theorem egrs_3_7 : {n : ℕ | ¬ 3 ∣ Nat.centralBinom n ∧ ¬ 7 ∣ Nat.centralBinom n}.Infinite :=
   egrs_two_prime_mu (by norm_num) (by norm_num) ⟨1, rfl⟩ ⟨3, rfl⟩ (by norm_num)
 
-/-- Infinitely many `n` with `5 ∤ C(2n,n)` and `7 ∤ C(2n,n)`. -/
+/-- Infinitely many `n` with `5 ∤ C(2n,n)` and `7 ∤ C(2n,n)`.
+@isnad1 id=infinite.0h0v.s4.63ad15727bda from=translated src=- shape=2be2492c vocab=2d316401
+-/
 theorem egrs_5_7 : {n : ℕ | ¬ 5 ∣ Nat.centralBinom n ∧ ¬ 7 ∣ Nat.centralBinom n}.Infinite :=
   egrs_two_prime_mu (by norm_num) (by norm_num) ⟨2, rfl⟩ ⟨3, rfl⟩ (by norm_num)
 
 /-- **Comparator challenge form (2026-06-12).**  Byte-identical to the statement
 in `comparator/egrs75/Challenge.lean` (the leanprover/comparator workspace shipped
 with this development): Mathlib-vocabulary only, no project definitions.  If this
-compiles clean, the comparator `Solution` bridge does too. -/
+compiles clean, the comparator `Solution` bridge does too.
+@isnad1 id=infinite.5h2v.s5.0a63abe51af3 from=translated src=- shape=4a0bb7a7 vocab=8b4bdf93
+-/
 theorem egrs_two_prime_challenge_form {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
     (hpo : Odd p) (hqo : Odd q) (hpq : p ≠ q) :
     {n : ℕ | ¬ p ∣ Nat.centralBinom n ∧ ¬ q ∣ Nat.centralBinom n}.Infinite :=

@@ -23,6 +23,9 @@ namespace Feige
 
 noncomputable section
 
+/--
+@isnad1 id=eq.0h2v.s6.07c1c3cecba1 from=translated src=- shape=3940fe97 vocab=c07f2abf
+-/
 theorem recursiveAugmentedKernel_apply_eq_conditionalProduct
     (n : ℕ) (p : Fin n → AugmentedTwoPointParams) :
     recursiveAugmentedKernel n p = augmentedConditionalProduct p := by

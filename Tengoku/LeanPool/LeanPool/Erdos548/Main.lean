@@ -43,6 +43,9 @@ open SimpleGraph
 
 namespace Erdos548
 
+/--
+@isnad1 id=eq.2h3v.s6.b13a75b5ae23 from=translated src=- shape=ad0267aa vocab=6c6dbce9
+-/
 lemma full_word_base_count {V : Type*} [Finite V] [DecidableEq V]
     (G : SimpleGraph V) (l₀ : List V) (hl : l₀.Nodup) (hall : ∀ b, b ∈ l₀) :
     fullWordCount l₀ G.Adj (fun _ _ => True) =

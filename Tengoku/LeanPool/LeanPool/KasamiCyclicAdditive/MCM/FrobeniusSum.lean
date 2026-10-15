@@ -64,13 +64,17 @@ def frobSum (k : ℕ) (s : K) : K :=
   ∑ i ∈ Finset.range k, s ^ (2 ^ i)
 
 omit [Fintype K] [DecidableEq K] [CharP K 2] in
-/-- One further term of the Frobenius sum. -/
+/-- One further term of the Frobenius sum.
+@isnad1 id=eq.0h3v.s6.d7937c992491 from=translated src=- shape=e76bbb98 vocab=e7fc5d06
+-/
 theorem frobSum_succ (k : ℕ) (s : K) :
     frobSum (k + 1) s = frobSum k s + s ^ (2 ^ k) := by
   simp [frobSum, Finset.sum_range_succ]
 
 omit [Fintype K] [DecidableEq K] in
-/-- For odd `k`, `frobSum k 1 = 1`. -/
+/-- For odd `k`, `frobSum k 1 = 1`.
+@isnad1 id=eq.1h2v.s6.f6d47a0189eb from=translated src=- shape=fbfd05e4 vocab=9ae21def
+-/
 theorem frobSum_one {k : ℕ} (hk : Odd k) : frobSum k (1 : K) = 1 := by
   simp only [frobSum, one_pow, Finset.sum_const, Finset.card_range, nsmul_eq_mul, mul_one]
   obtain ⟨m, rfl⟩ := hk
@@ -79,7 +83,9 @@ theorem frobSum_one {k : ℕ} (hk : Odd k) : frobSum k (1 : K) = 1 := by
   ring
 
 omit [Fintype K] [DecidableEq K] in
-/-- `frobSum k` satisfies the Artin--Schreier identity. -/
+/-- `frobSum k` satisfies the Artin--Schreier identity.
+@isnad1 id=eq.0h3v.s7.97ca2f54bdf2 from=translated src=- shape=a4298c63 vocab=cd70e691
+-/
 theorem frobSum_sq_add_self (k : ℕ) (s : K) :
     frobSum k s ^ 2 + frobSum k s = s ^ (2 ^ k) + s := by
   have h2 : (2 : K) = 0 := CharTwo.two_eq_zero
@@ -95,7 +101,9 @@ theorem frobSum_sq_add_self (k : ℕ) (s : K) :
     linear_combination ih + s ^ (2 ^ k) * h2
 
 omit [DecidableEq K] in
-/-- Under the odd Kasami hypotheses, `frobSum k s` is nonzero for `s ≠ 0`. -/
+/-- Under the odd Kasami hypotheses, `frobSum k s` is nonzero for `s ≠ 0`.
+@isnad1 id=ne.4h4v.s6.2442c1e93237 from=translated src=- shape=08acc41b vocab=74718d35
+-/
 theorem frobSum_ne_zero_of_odd
     {n k : ℕ} (hcard : Fintype.card K = 2 ^ n) (hk : Odd k)
     (hkn : Nat.Coprime k n) {s : K} (hs : s ≠ 0) : frobSum k s ≠ 0 := by

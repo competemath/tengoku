@@ -101,6 +101,9 @@ def PartsGadgetBlocks (path : List PartsGadgetAssignment)
 /-- The four colors, as executable data. -/
 def partsGadgetColors : List (Fin 4) := [0, 1, 2, 3]
 
+/--
+@isnad1 id=mem.0h1v.s4.4d521764d767 from=translated src=- shape=38858b8f vocab=919baac9
+-/
 lemma mem_partsGadgetColors (color : Fin 4) : color ∈ partsGadgetColors := by
   fin_cases color <;> simp [partsGadgetColors]
 
@@ -110,6 +113,9 @@ def PartsGadgetHasColorB (path : List PartsGadgetAssignment)
   path.any fun assignment =>
     assignment.vertex == vertex && assignment.color == color
 
+/--
+@isnad1 id=iff.0h3v.s4.8ba45ad02704 from=translated src=- shape=a473fe71 vocab=38086aa6
+-/
 lemma partsGadgetHasColorB_eq_true {path : List PartsGadgetAssignment}
     {vertex : Fin 73} {color : Fin 4} :
     PartsGadgetHasColorB path vertex color = true ↔
@@ -132,6 +138,9 @@ def PartsGadgetBlocksB (path : List PartsGadgetAssignment)
       PartsGadgetHasColorB path pair.1 color &&
         PartsGadgetHasColorB path pair.2 color
 
+/--
+@isnad1 id=iff.0h3v.s4.f91cd551f73a from=translated src=- shape=a473fe71 vocab=61638edf
+-/
 lemma partsGadgetBlocksB_eq_true {path : List PartsGadgetAssignment}
     {vertex : Fin 73} {color : Fin 4} :
     PartsGadgetBlocksB path vertex color = true ↔
@@ -210,6 +219,9 @@ instance instDecidableGadgetVerifies (certificate : PartsGadgetCertificate) :
   unfold PartsGadgetCertificate.Verifies
   infer_instance
 
+/--
+@isnad1 id=not.2h3v.s5.732c1d7a86fc from=translated src=- shape=bffb5b9f vocab=e8be15d2
+-/
 lemma not_partsGadgetBlocks_of_valid {coloring : Fin 73 → Fin 4}
     (hvalid : PartsGadgetValid coloring) (path : List PartsGadgetAssignment)
     (hextends : PartsGadgetExtends coloring path) (vertex : Fin 73) :
@@ -227,6 +239,9 @@ lemma not_partsGadgetBlocks_of_valid {coloring : Fin 73 → Fin 4}
     · rw [← hleftVertex, hextends left hleft, hleftColor,
         ← hrightVertex, hextends right hright, hrightColor]
 
+/--
+@isnad1 id=eq.3h3v.s5.ab771bd9669f from=translated src=- shape=3c54867c vocab=0c71afa5
+-/
 lemma partsGadgetForcedB_sound {coloring : Fin 73 → Fin 4}
     (hvalid : PartsGadgetValid coloring) {path : List PartsGadgetAssignment}
     (hextends : PartsGadgetExtends coloring path)
@@ -242,6 +257,9 @@ lemma partsGadgetForcedB_sound {coloring : Fin 73 → Fin 4}
   · exact False.elim ((not_partsGadgetBlocks_of_valid hvalid path hextends
       assignment.vertex) (partsGadgetBlocksB_eq_true.mp hblocked))
 
+/--
+@isnad1 id=partsgad.3h4v.s5.5197039274f4 from=translated src=- shape=158dd0c6 vocab=62c68481
+-/
 lemma partsGadgetRunStemB_sound {coloring : Fin 73 → Fin 4}
     (hvalid : PartsGadgetValid coloring) :
     ∀ {stem path extended}, PartsGadgetRunStemB stem path = some extended →
@@ -267,6 +285,9 @@ lemma partsGadgetRunStemB_sound {coloring : Fin 73 → Fin 4}
         · exact hextends current hin
       · contradiction
 
+/--
+@isnad1 id=false.3h5v.s5.ed5993b4ee79 from=translated src=- shape=52a6c55f vocab=2dc5cc7b
+-/
 lemma partsGadgetVerifiesNodeB_unsat
     {nodes : Array (Array PartsGadgetTreeNode)}
     {coloring : Fin 73 → Fin 4} (hvalid : PartsGadgetValid coloring) :
@@ -305,7 +326,9 @@ lemma partsGadgetVerifiesNodeB_unsat
               · rfl
               · exact hextended assignment hin
 
-/-- A verified coloring tree rules out every valid coloring extending its roots. -/
+/-- A verified coloring tree rules out every valid coloring extending its roots.
+@isnad1 id=false.3h2v.s4.a4c05d131c76 from=translated src=- shape=7734fdc3 vocab=0fabd376
+-/
 theorem PartsGadgetCertificate.not_colorable
     (certificate : PartsGadgetCertificate) (hverify : certificate.Verifies)
     {coloring : Fin 73 → Fin 4} (hvalid : PartsGadgetValid coloring)

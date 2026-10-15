@@ -15,18 +15,30 @@ public import Tengoku
 
 namespace HadwigerNelsonBounds
 
+/--
+@isnad1 id=verifies.0h0v.s1.6bcdef83891a from=translated src=- shape=49959d42 vocab=7e6d01c9
+-/
 theorem partsGadgetHardCertificate16_verifies :
     partsGadgetHardCertificate16.Verifies := by
   decide
 
+/--
+@isnad1 id=verifies.0h0v.s1.938a48a87fff from=translated src=- shape=49959d42 vocab=72db9269
+-/
 theorem partsGadgetHardCertificate17_verifies :
     partsGadgetHardCertificate17.Verifies := by
   decide
 
+/--
+@isnad1 id=verifies.0h0v.s1.e30b8852e66b from=translated src=- shape=49959d42 vocab=4ff752cc
+-/
 theorem partsGadgetHardCertificate18_verifies :
     partsGadgetHardCertificate18.Verifies := by
   decide
 
+/--
+@isnad1 id=verifies.0h0v.s1.b7fbe6090b45 from=translated src=- shape=49959d42 vocab=f3c456ed
+-/
 theorem partsGadgetHardCertificate19_verifies :
     partsGadgetHardCertificate19.Verifies := by
   decide

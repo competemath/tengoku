@@ -66,6 +66,9 @@ noncomputable def resAtX (F : X → Y) (h : X → ℂ) (x : X) : ℂ :=
     deriv (chartAt ℂ (F x) ∘ F ∘ (chartAt ℂ x).symm) z) (chartAt ℂ x x)
 
 omit [IsManifold 𝓘(ℂ) ω X] [IsManifold 𝓘(ℂ) ω Y] in
+/--
+@isnad1 id=eq.0h5v.s8.5a6df22e0633 from=translated src=- shape=5bcf8fad vocab=d53c7a14
+-/
 theorem resAtX_def (F : X → Y) (h : X → ℂ) (x : X) :
     resAtX F h x = RS.resAt (fun z => h ((chartAt ℂ x).symm z) *
       deriv (chartAt ℂ (F x) ∘ F ∘ (chartAt ℂ x).symm) z) (chartAt ℂ x x) := rfl
@@ -83,7 +86,9 @@ section Compat
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] [IsManifold 𝓘(ℂ, ℂ) ω Y] in
 /-- `ContMDiffAt` for a map `F : X → Y` gives analyticity of the chart composite in ANY pair of
 maximal-atlas charts (`e` at `x`, `e'` at `F x`). (Only the forward direction is proved/needed;
-the converse would need an extra continuity argument not required here.) -/
+the converse would need an extra continuity argument not required here.)
+@isnad1 id=analytic.5h6v.s9.1c6eb3af2c41 from=translated src=- shape=14f40fba vocab=2560a16c
+-/
 theorem analyticAt_comp_chart_pair {F : X → Y} {x : X}
     {e : OpenPartialHomeomorph X ℂ} (he : e ∈ IsManifold.maximalAtlas 𝓘(ℂ) ω X)
     (hx : x ∈ e.source) {e' : OpenPartialHomeomorph Y ℂ}
@@ -104,7 +109,9 @@ omit [IsManifold 𝓘(ℂ, ℂ) ω Y] in
 /-- Source-chart invariance of the pair-form integrand's residue: the target chart `e'` is held
 FIXED (arbitrary), only the source chart varies. The TRUE, general half of chart-invariance —
 directly analogous to `RS.ordAtX_eq_of_mem_source`, via ONE application of
-`RS.resAt_comp_mul_deriv`. -/
+`RS.resAt_comp_mul_deriv`.
+@isnad1 id=eq.8h8v.s9.d03a055b8616 from=translated src=- shape=823f2399 vocab=7fd7e5ef
+-/
 theorem resAt_pairForm_source_change {F : X → Y} {h : X → ℂ} {x : X}
     {e1 e2 : OpenPartialHomeomorph X ℂ} (he1 : e1 ∈ IsManifold.maximalAtlas 𝓘(ℂ) ω X)
     (hx1 : x ∈ e1.source) (he2 : e2 ∈ IsManifold.maximalAtlas 𝓘(ℂ) ω X) (hx2 : x ∈ e2.source)
@@ -165,7 +172,9 @@ theorem resAt_pairForm_source_change {F : X → Y} {h : X → ℂ} {x : X}
   ring
 
 /-- Source-chart invariance (task item 1): `resAtX` may be computed in ANY maximal-atlas chart
-at `x`, provided the TARGET chart is held at the preferred `chartAt ℂ (F x)`. -/
+at `x`, provided the TARGET chart is held at the preferred `chartAt ℂ (F x)`.
+@isnad1 id=eq.4h6v.s9.a89711226019 from=translated src=- shape=1878eb6e vocab=734ea4e1
+-/
 theorem resAtX_eq_of_mem_source_left {F : X → Y} {h : X → ℂ} {x : X}
     {e : OpenPartialHomeomorph X ℂ} (he : e ∈ IsManifold.maximalAtlas 𝓘(ℂ) ω X)
     (hx : x ∈ e.source) (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x) (hh : MeromorphicAtX h x) :
@@ -178,6 +187,9 @@ theorem resAtX_eq_of_mem_source_left {F : X → Y} {h : X → ℂ} {x : X}
 /-! ### Basic algebra -/
 
 omit [IsManifold 𝓘(ℂ) ω X] [IsManifold 𝓘(ℂ) ω Y] in
+/--
+@isnad1 id=eq.1h6v.s6.779f2858d0ee from=translated src=- shape=9bb7a813 vocab=001653b8
+-/
 theorem resAtX_congr {F : X → Y} {h h' : X → ℂ} {x : X} (hh : h =ᶠ[𝓝[≠] x] h') :
     resAtX F h x = resAtX F h' x := by
   rw [resAtX_def, resAtX_def]
@@ -187,6 +199,9 @@ theorem resAtX_congr {F : X → Y} {h h' : X → ℂ} {x : X} (hh : h =ᶠ[𝓝[
   simp only [Function.comp_apply] at hz
   rw [hz]
 
+/--
+@isnad1 id=eq.3h6v.s8.674df930ca2d from=translated src=- shape=a976e03f vocab=28437906
+-/
 theorem resAtX_add {F : X → Y} {h h' : X → ℂ} {x : X} (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω F x)
     (hh : MeromorphicAtX h x) (hh' : MeromorphicAtX h' x) :
     resAtX F (fun y => h y + h' y) x = resAtX F h x + resAtX F h' x := by
@@ -212,6 +227,9 @@ theorem resAtX_add {F : X → Y} {h h' : X → ℂ} {x : X} (hF : ContMDiffAt �
   rw [heq, resAt_fun_add hha hha']
 
 omit [IsManifold 𝓘(ℂ) ω X] [IsManifold 𝓘(ℂ) ω Y] in
+/--
+@isnad1 id=eq.0h6v.s6.786725ced621 from=translated src=- shape=2c410fa9 vocab=62a99a8d
+-/
 theorem resAtX_const_mul (c : ℂ) {F : X → Y} {h : X → ℂ} {x : X} :
     resAtX F (fun y => c * h y) x = c * resAtX F h x := by
   rw [resAtX_def, resAtX_def]

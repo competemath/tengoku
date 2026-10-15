@@ -51,7 +51,9 @@ namespace GranvilleMoore
 
 This is the equation of `GranvilleMoore.fermatQuotient` multiplied by `p` with `1` added to
 both sides, and it is the form in which consumers use the Fermat quotient. It is an identity
-in `ℚ`; that both sides are integers when `p ∤ x` is the separate integrality statement. -/
+in `ℚ`; that both sides are integers when `p ∤ x` is the separate integrality statement.
+@isnad1 id=eq.1h2v.s5.b5831ed7b62b from=translated src=- shape=54791dcb vocab=916a72a2
+-/
 theorem fermatUnit_eq_one_add_natCast_mul_fermatQuotient {p : ℕ} (hp : p ≠ 0) (x : ℤ) :
     (fermatUnit p x : ℚ) = 1 + (p : ℚ) * fermatQuotient p x := by
   rw [natCast_mul_fermatQuotient hp]
@@ -63,7 +65,9 @@ theorem fermatUnit_eq_one_add_natCast_mul_fermatQuotient {p : ℕ} (hp : p ≠ 0
 /-- The Frobenius exponent in subtraction-free form: `(p - 1) * e_k + 1 = p ^ k`.
 
 This is the shape in which the closed form is used as an exponent identity, see
-`GranvilleMoore.pow_pow_eq_mul_pow_frobeniusExponent`. -/
+`GranvilleMoore.pow_pow_eq_mul_pow_frobeniusExponent`.
+@isnad1 id=eq.1h2v.s6.7783819ac6e0 from=translated src=- shape=b3eb34c1 vocab=2e17e507
+-/
 theorem sub_one_mul_frobeniusExponent_add_one {p : ℕ} (hp : p ≠ 0) (k : ℕ) :
     (p - 1) * frobeniusExponent p k + 1 = p ^ k := by
   induction k with
@@ -80,7 +84,9 @@ theorem sub_one_mul_frobeniusExponent_add_one {p : ℕ} (hp : p ≠ 0) (k : ℕ)
 
 The subtraction is truncated, which is why no hypothesis on `p` is needed; for the version
 that moves the `- 1` to the other side see
-`GranvilleMoore.sub_one_mul_frobeniusExponent_add_one`. -/
+`GranvilleMoore.sub_one_mul_frobeniusExponent_add_one`.
+@isnad1 id=eq.0h2v.s5.20873e191fde from=translated src=- shape=f54c6ca1 vocab=fcdc911c
+-/
 theorem sub_one_mul_frobeniusExponent (p k : ℕ) :
     (p - 1) * frobeniusExponent p k = p ^ k - 1 := by
   rcases eq_or_ne p 0 with rfl | hp
@@ -94,7 +100,9 @@ theorem sub_one_mul_frobeniusExponent (p k : ℕ) :
 
 For `x : ℤ` the right-hand factor is `GranvilleMoore.fermatUnit p x ^ frobeniusExponent p k`;
 this is the identity that makes the Frobenius exponent the exponent of the unit `t_x`
-contributed by the `p ^ k`-th power map. -/
+contributed by the `p ^ k`-th power map.
+@isnad1 id=eq.1h4v.s6.3d5479bb9b81 from=translated src=- shape=0643274a vocab=c27736f9
+-/
 theorem pow_pow_eq_mul_pow_frobeniusExponent {M : Type*} [Monoid M] {p : ℕ} (hp : p ≠ 0)
     (x : M) (k : ℕ) :
     x ^ p ^ k = x * (x ^ (p - 1)) ^ frobeniusExponent p k := by

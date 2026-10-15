@@ -29,7 +29,9 @@ open Nat
 For any prime `p`,
 `(p - 1) * ν_p(C(2n,n)) = 2 * S_p(n) - S_p(2n)`, where `S_p`
 is the sum of base-`p` digits. This is Kummer's theorem specialized to
-`Nat.centralBinom`. -/
+`Nat.centralBinom`.
+@isnad1 id=eq.0h2v.s6.4ab49c7f083b from=translated src=- shape=8a0679cf vocab=32179416
+-/
 theorem sub_one_mul_padicValNat_centralBinom (p : ℕ) [hp : Fact p.Prime] (n : ℕ) :
     (p - 1) * padicValNat p (Nat.centralBinom n) =
       2 * (Nat.digits p n).sum - (Nat.digits p (2 * n)).sum := by
@@ -50,7 +52,9 @@ theorem sub_one_mul_padicValNat_centralBinom (p : ℕ) [hp : Fact p.Prime] (n : 
 
 If `2 * S_p(n) - S_p(2n) ≥ (p - 1) * m`, then `p^m ∣ C(2n,n)`.
 This is the reusable bridge from digit/carry certificates to
-central-binomial divisibility. -/
+central-binomial divisibility.
+@isnad1 id=dvd.1h3v.s6.f64ed215a712 from=translated src=- shape=1f7f10aa vocab=493c1da4
+-/
 theorem pow_dvd_centralBinom_of_digit_excess
     {p n m : ℕ} [hp : Fact p.Prime]
     (h : (p - 1) * m ≤
@@ -66,7 +70,9 @@ theorem pow_dvd_centralBinom_of_digit_excess
     Nat.le_of_mul_le_mul_left h hpos
   exact dvd_trans (pow_dvd_pow p hval) pow_padicValNat_dvd
 
-/-- The ternary specialization of the central-binomial digit-excess formula. -/
+/-- The ternary specialization of the central-binomial digit-excess formula.
+@isnad1 id=eq.0h1v.s6.e2b590432228 from=translated src=- shape=bd2d7182 vocab=1607e77a
+-/
 theorem two_mul_padicValNat_three_centralBinom (n : ℕ) :
     2 * padicValNat 3 (Nat.centralBinom n) =
       2 * (Nat.digits 3 n).sum - (Nat.digits 3 (2 * n)).sum := by

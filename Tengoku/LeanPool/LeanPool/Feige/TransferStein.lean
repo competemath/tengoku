@@ -35,7 +35,9 @@ noncomputable def vTailIntegrand (c z : ℝ) : ℝ :=
   if z < 0 then exp (z / c) else 0
 
 /-- The formal derivative of `φ`, multiplied by `d`, is the conditional
-`u` integrand away from the sole boundary point zero. -/
+`u` integrand away from the sole boundary point zero.
+@isnad1 id=eq.2h2v.s5.9505b3ce2ca3 from=translated src=- shape=692fd7cd vocab=6d27ee35
+-/
 theorem d_mul_transferPhiDeriv
     {d z : ℝ} (hd : 0 < d) (hz : z ≠ 0) :
     d * transferPhiDeriv d z = uTailIntegrand d z := by
@@ -46,7 +48,9 @@ theorem d_mul_transferPhiDeriv
   · rw [transferPhiDeriv, ite_eq_left hz, uTailIntegrand, ite_eq_left hz.le]
     field_simp [hd.ne']
 
-/-- The `ψ` derivative identity has no boundary discrepancy. -/
+/-- The `ψ` derivative identity has no boundary discrepancy.
+@isnad1 id=eq.1h2v.s4.0eec904c4134 from=translated src=- shape=d738bccf vocab=3753b5a6
+-/
 theorem c_mul_transferPsiDeriv
     {c z : ℝ} (hc : 0 < c) :
     c * transferPsiDeriv c z = vTailIntegrand c z := by
@@ -59,7 +63,9 @@ theorem c_mul_transferPsiDeriv
 /-- Integral bridge from the analytic `φ'` quantity to the conditional
 tail formula.  Atomlessness at zero is precisely the boundary condition
 needed to pass between `z ≥ 0` in the tail event and `z > 0` in the a.e.
-derivative. -/
+derivative.
+@isnad1 id=eq.2h2v.s6.09496b0e4797 from=translated src=- shape=b784e9ac vocab=610e2aa7
+-/
 theorem d_mul_integral_transferPhiDeriv
     (ν : Measure ℝ) {d : ℝ}
     (hd : 0 < d) (hzero : ν {0} = 0) :
@@ -74,7 +80,9 @@ theorem d_mul_integral_transferPhiDeriv
   exact d_mul_transferPhiDeriv hd hz
 
 /-- Integral bridge from the analytic `ψ'` quantity to the conditional
-left-tail formula. -/
+left-tail formula.
+@isnad1 id=eq.1h2v.s6.d7e5f1ef7764 from=translated src=- shape=8ce4ac77 vocab=0cc81de3
+-/
 theorem c_mul_integral_transferPsiDeriv
     (ν : Measure ℝ) {c : ℝ} (hc : 0 < c) :
     c * ∫ z, transferPsiDeriv c z ∂ν =
@@ -106,6 +114,7 @@ arbitrary measure `μ`.
 
 The four hypotheses are exactly those needed to distribute the outer
 Bochner integral over subtraction and addition.
+@isnad1 id=eq.7h4v.s7.e254f5494103 from=translated src=- shape=4f2a9409 vocab=6ef15a52
 -/
 theorem integral_phi_two_sided
     (μ : Measure ℝ) {d a b : ℝ}
@@ -122,7 +131,9 @@ theorem integral_phi_two_sided
   filter_upwards with y
   exact transferPhi_stein_fixed_two_sided hd ha hb
 
-/-- Product-measure/Fubini form of the averaged `φ` identity. -/
+/-- Product-measure/Fubini form of the averaged `φ` identity.
+@isnad1 id=eq.7h4v.s9.9eae2ff41503 from=translated src=- shape=e6c31d51 vocab=01db2b3a
+-/
 theorem integral_phi_two_sided_prod
     (μ : Measure ℝ) [SFinite μ] {d a b : ℝ}
     (hd : 0 < d) (ha : 0 < a) (hb : 0 < b)
@@ -195,7 +206,9 @@ noncomputable def psiDerivMinus (c b y : ℝ) : ℝ :=
     b * transferPsiDeriv c (y - b * e) * exp (-e)
 
 /-- The two-sided exponential Stein identity for `ψ`, averaged over an
-arbitrary measure `μ`. -/
+arbitrary measure `μ`.
+@isnad1 id=eq.7h4v.s7.d62cfd1abe18 from=translated src=- shape=4f2a9409 vocab=ecaaf46c
+-/
 theorem integral_psi_two_sided
     (μ : Measure ℝ) {c a b : ℝ}
     (hc : 0 < c) (ha : 0 < a) (hb : 0 < b)
@@ -211,7 +224,9 @@ theorem integral_psi_two_sided
   filter_upwards with y
   exact transferPsi_stein_fixed_two_sided hc ha hb
 
-/-- Product-measure/Fubini form of the averaged `ψ` identity. -/
+/-- Product-measure/Fubini form of the averaged `ψ` identity.
+@isnad1 id=eq.7h4v.s9.db1d774bf1dc from=translated src=- shape=e6c31d51 vocab=4310d9e5
+-/
 theorem integral_psi_two_sided_prod
     (μ : Measure ℝ) [SFinite μ] {c a b : ℝ}
     (hc : 0 < c) (ha : 0 < a) (hb : 0 < b)
@@ -301,7 +316,9 @@ noncomputable def vPlus (μ : Measure ℝ) (c a : ℝ) : ℝ :=
 noncomputable def vMinus (μ : Measure ℝ) (c b : ℝ) : ℝ :=
   (c / b) * ∫ y, psiDerivMinus c b y ∂μ
 
-/-- The lower-test Stein identity for the analytic quantities above. -/
+/-- The lower-test Stein identity for the analytic quantities above.
+@isnad1 id=eq.7h4v.s7.4ea4a1db8bb3 from=translated src=- shape=1f252dfe vocab=a64c0878
+-/
 theorem equation23_A
     (μ : Measure ℝ) {d a b : ℝ}
     (hd : 0 < d) (ha : 0 < a) (hb : 0 < b)
@@ -319,7 +336,9 @@ theorem equation23_A
   rw [← mul_assoc, hda, ← mul_assoc, hdb]
   linear_combination d * h
 
-/-- The upper-test Stein identity for the analytic quantities above. -/
+/-- The upper-test Stein identity for the analytic quantities above.
+@isnad1 id=eq.7h4v.s7.e6cea7948b8a from=translated src=- shape=1f252dfe vocab=4f326292
+-/
 theorem equation23_B
     (μ : Measure ℝ) {c a b : ℝ}
     (hc : 0 < c) (ha : 0 < a) (hb : 0 < b)

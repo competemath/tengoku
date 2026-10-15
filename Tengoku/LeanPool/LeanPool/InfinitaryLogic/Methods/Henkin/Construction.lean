@@ -62,7 +62,9 @@ consistent set, by Zorn's lemma.
 
 The chain-closure axiom of `ConsistencyProperty` ensures that the union of any
 nonempty chain of consistent sets remains consistent, providing the upper bound
-required by Zorn's lemma. -/
+required by Zorn's lemma.
+@isnad1 id=ex.1h3v.s5.b6b7fa717a37 from=translated src=- shape=5046da23 vocab=b9b47f31
+-/
 theorem ConsistencyProperty.exists_maximal (C : ConsistencyProperty L)
     (S : Set L.Sentenceω) (hS : S ∈ C.sets) :
     ∃ S', S ⊆ S' ∧ C.MaximalConsistent S' := by
@@ -76,7 +78,9 @@ theorem ConsistencyProperty.exists_maximal (C : ConsistencyProperty L)
 These properties follow from maximality: if adding a sentence preserves
 consistency, then it must already be in the maximal set. -/
 
-/-- A maximal consistent set is consistent. -/
+/-- A maximal consistent set is consistent.
+@isnad1 id=mem.1h3v.s4.cd42534f5600 from=translated src=- shape=74eca280 vocab=eb5cc486
+-/
 theorem ConsistencyProperty.MaximalConsistent.consistent
     {C : ConsistencyProperty L} {S : Set L.Sentenceω}
     (hmax : C.MaximalConsistent S) : S ∈ C.sets :=
@@ -111,7 +115,9 @@ private theorem ConsistencyProperty.MaximalConsistent.neg_imp_mem
   obtain ⟨h1, h2⟩ := C.C1_neg_imp S hmax.consistent φ ψ h
   exact ⟨hmax.mem_of_union_consistent h1, hmax.mem_of_union_consistent h2⟩
 
-/-- In a maximal consistent set, if ⋀ᵢ φᵢ ∈ S, then φₖ ∈ S for all k. -/
+/-- In a maximal consistent set, if ⋀ᵢ φᵢ ∈ S, then φₖ ∈ S for all k.
+@isnad1 id=mem.2h5v.s5.3f0158db1451 from=translated src=- shape=6046137d vocab=a5a54ba4
+-/
 theorem ConsistencyProperty.MaximalConsistent.iInf_mem
     {C : ConsistencyProperty L} {S : Set L.Sentenceω}
     (hmax : C.MaximalConsistent S)
@@ -128,7 +134,9 @@ private theorem ConsistencyProperty.MaximalConsistent.neg_iInf_mem
   obtain ⟨k, hk⟩ := C.C3_neg_iInf S hmax.consistent φs h
   exact ⟨k, hmax.mem_of_union_consistent hk⟩
 
-/-- In a maximal consistent set, if ⋁ᵢ φᵢ ∈ S, then φₖ ∈ S for some k. -/
+/-- In a maximal consistent set, if ⋁ᵢ φᵢ ∈ S, then φₖ ∈ S for some k.
+@isnad1 id=ex.2h4v.s5.71d7f748f500 from=translated src=- shape=ec162d8a vocab=ce8b13a9
+-/
 theorem ConsistencyProperty.MaximalConsistent.iSup_mem
     {C : ConsistencyProperty L} {S : Set L.Sentenceω}
     (hmax : C.MaximalConsistent S)
@@ -145,7 +153,9 @@ private theorem ConsistencyProperty.MaximalConsistent.neg_iSup_mem
     (φs k).not ∈ S :=
   hmax.mem_of_union_consistent (C.C4_neg_iSup S hmax.consistent φs h k)
 
-/-- A maximal consistent set decides every sentence: either φ ∈ S* or ¬φ ∈ S*. -/
+/-- A maximal consistent set decides every sentence: either φ ∈ S* or ¬φ ∈ S*.
+@isnad1 id=or.1h4v.s5.add8b01ef799 from=translated src=- shape=8ba20ad9 vocab=f25c6ab1
+-/
 theorem ConsistencyProperty.MaximalConsistent.decide
     {C : ConsistencyProperty L} {S : Set L.Sentenceω}
     (hmax : C.MaximalConsistent S)
@@ -168,7 +178,9 @@ private theorem ConsistencyProperty.MaximalConsistent.not_mem_iff
     · exact hneg
 
 /-- In a maximal consistent set with ConsistencyPropertyEq, universal quantification:
-    `(∀x.φ) ∈ S*` iff for all closed terms t, `φ[x/t] ∈ S*`. -/
+    `(∀x.φ) ∈ S*` iff for all closed terms t, `φ[x/t] ∈ S*`.
+@isnad1 id=mem.2h5v.s6.158ec7007797 from=translated src=- shape=2e1c4f3e vocab=ea5eb0de
+-/
 theorem ConsistencyPropertyEq.MaximalConsistent.all_mem
     {C : ConsistencyPropertyEq L} {S : Set L.Sentenceω}
     (hmax : C.toConsistencyProperty.MaximalConsistent S)
@@ -624,7 +636,9 @@ private theorem term_realize_eq_mk (t : L.Term Empty) :
     unfold termModelStructure TermModel.mk
     exact congr_fun (congr_fun (Quotient.finLiftOn_mk ts) _) _
 
-/-- Every element of the term model is the equivalence class of some term. -/
+/-- Every element of the term model is the equivalence class of some term.
+@isnad1 id=ex.1h4v.s5.4049b5eddb75 from=translated src=- shape=1d323491 vocab=e49fb28f
+-/
 theorem TermModel.exists_rep (x : TermModel C S hmax) :
     ∃ t : L.Term Empty, TermModel.mk t = x :=
   Quotient.exists_rep x
@@ -701,7 +715,9 @@ Cases:
 - (C4, C4') for `iSup`: forward uses C4 + IH; backward uses decidability + C4' + IH.
 - (C5, C6) for `equal`: uses term model quotient structure.
 - Term model structure for `rel`: uses definition of RelMap on term model.
-- (C7, C7_all) for `all`: uses openBounds roundtrip. -/
+- (C7, C7_all) for `all`: uses openBounds roundtrip.
+@isnad1 id=iff.1h4v.s5.8df8b48f7a90 from=translated src=- shape=abc528c3 vocab=9dafae37
+-/
 theorem truthLemma :
     (σ : L.Sentenceω) → (σ ∈ S ↔ Sentenceω.Realize σ (TermModel C S hmax))
   | .falsum => by

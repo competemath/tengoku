@@ -25,6 +25,9 @@ def partsColorEquiv (triple center : Fin 4) : Fin 4 ≃ Fin 4 :=
   (Equiv.swap triple 0).trans
     (Equiv.swap ((Equiv.swap triple 0) center) 3)
 
+/--
+@isnad1 id=and.1h2v.s7.57bddf92ff9b from=translated src=- shape=a4e4ba47 vocab=7b43e33c
+-/
 lemma partsColorEquiv_spec {triple center : Fin 4} (hne : triple ≠ center) :
     partsColorEquiv triple center triple = 0 ∧
       partsColorEquiv triple center center = 3 := by
@@ -43,7 +46,9 @@ noncomputable def partsTriangleC : R2 := (partsPoint 215).toR2
 noncomputable def partsTriangleCenter : R2 := (partsPoint 0).toR2
 
 /-- The full Parts certificate: its canonical sqrt-three triangle is never
-monochromatic in a proper four-coloring of the unit-distance graph. -/
+monochromatic in a proper four-coloring of the unit-distance graph.
+@isnad1 id=not.0h1v.s7.2cacded8b5f5 from=translated src=- shape=61468f3d vocab=2b4ba4f9
+-/
 theorem parts_canonical_triangle_not_monochromatic
     (planeColoring : unitDistanceGraph.Coloring (Fin 4)) :
     ¬(planeColoring partsTriangleA = planeColoring partsTriangleB ∧

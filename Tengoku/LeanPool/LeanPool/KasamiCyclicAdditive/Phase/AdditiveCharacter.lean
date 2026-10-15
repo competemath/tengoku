@@ -29,12 +29,16 @@ noncomputable def primitiveAddChar (K : Type*) [Field K] [Fintype K] : AddChar K
   AddChar.FiniteField.primitiveChar_to_Complex K
 
 omit [DecidableEq K] in
-/-- The canonical complex additive character is primitive. -/
+/-- The canonical complex additive character is primitive.
+@isnad1 id=isprimit.0h1v.s4.0f8b9d96a292 from=translated src=- shape=9b2b986f vocab=bf904b0a
+-/
 theorem primitiveAddChar_isPrimitive : (primitiveAddChar K).IsPrimitive := by
   simpa [primitiveAddChar] using AddChar.FiniteField.primitiveChar_to_Complex_isPrimitive K
 
 omit [Fintype K] [DecidableEq K] in
-/-- A primitive additive character is not the principal character. -/
+/-- A primitive additive character is not the principal character.
+@isnad1 id=ne.1h2v.s6.a91f012e7933 from=translated src=- shape=7db3545e vocab=5ebe2694
+-/
 lemma ne_one_of_isPrimitive {psi : AddChar K ℂ} (hpsi : psi.IsPrimitive) : psi ≠ 1 := by
   have h := hpsi (a := 1) one_ne_zero
   rwa [AddChar.mulShift_one] at h

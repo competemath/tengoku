@@ -37,7 +37,9 @@ def FourPointLogConcave (f : ℝ → ℝ≥0∞) : Prop :=
       f r * f q ≤ f p * f s
 
 /-- The geometric specialization of the four-point inequality used in the
-likelihood-ratio comparison. -/
+likelihood-ratio comparison.
+@isnad1 id=le.6h7v.s7.3c097e46a66c from=translated src=- shape=510c9a3c vocab=a0c761f4
+-/
 theorem four_point_exponential_shifts
     {f : ℝ → ℝ≥0∞} (hf : FourPointLogConcave f)
     {a b x y s t : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b)
@@ -58,6 +60,9 @@ theorem four_point_exponential_shifts
 noncomputable def expWeight (s : ℝ) : ℝ≥0∞ :=
   ENNReal.ofReal (exp (-s))
 
+/--
+@isnad1 id=measurab.0h0v.s2.cdc86f266d12 from=translated src=- shape=54c8eceb vocab=1f62f5f5
+-/
 theorem measurable_expWeight : Measurable expWeight := by
   unfold expWeight
   fun_prop
@@ -75,6 +80,7 @@ noncomputable def fMinus (f : ℝ → ℝ≥0∞) (b x : ℝ) : ℝ≥0∞ :=
 The proof expands both products as double nonnegative integrals and
 applies the four-point inequality pointwise.  Because all functions are
 `ℝ≥0∞`-valued, Tonelli is unconditional.
+@isnad1 id=le.5h5v.s6.125f7d605c1c from=translated src=- shape=fc763b8a vocab=e8467f1d
 -/
 theorem fPlus_mul_fMinus_mono
     {f : ℝ → ℝ≥0∞} (hfmeas : Measurable f)
@@ -111,7 +117,9 @@ theorem fPlus_mul_fMinus_mono
     _ = (f (x - a * s) * expWeight s) *
         (f (y + b * t) * expWeight t) := by ac_rfl
 
-/-- Measurability of the positive exponential convolution. -/
+/-- Measurability of the positive exponential convolution.
+@isnad1 id=measurab.1h2v.s4.bd00c1bc098d from=translated src=- shape=4535375a vocab=f88651d6
+-/
 theorem measurable_fPlus {f : ℝ → ℝ≥0∞} (hf : Measurable f) (a : ℝ) :
     Measurable (fPlus f a) := by
   unfold fPlus
@@ -119,7 +127,9 @@ theorem measurable_fPlus {f : ℝ → ℝ≥0∞} (hf : Measurable f) (a : ℝ) 
   exact (hf.comp (measurable_fst.sub (measurable_const.mul measurable_snd))).mul
     (measurable_expWeight.comp measurable_snd)
 
-/-- Measurability of the negative exponential convolution. -/
+/-- Measurability of the negative exponential convolution.
+@isnad1 id=measurab.1h2v.s4.81c24167cc03 from=translated src=- shape=4535375a vocab=0114c433
+-/
 theorem measurable_fMinus {f : ℝ → ℝ≥0∞} (hf : Measurable f) (b : ℝ) :
     Measurable (fMinus f b) := by
   unfold fMinus
@@ -136,7 +146,9 @@ noncomputable def vIntegral (g : ℝ → ℝ≥0∞) (c : ℝ) : ℝ≥0∞ :=
   ∫⁻ y in Iio 0, g y * ENNReal.ofReal (exp (y / c))
 
 /-- Integrating the likelihood-ratio comparison against the two exponential
-weights gives `u₋ v₊ ≤ u₊ v₋`. -/
+weights gives `u₋ v₊ ≤ u₊ v₋`.
+@isnad1 id=le.4h5v.s6.ea0507a81c16 from=translated src=- shape=429696b4 vocab=217e155d
+-/
 theorem uMinus_mul_vPlus_le
     {f : ℝ → ℝ≥0∞} (hfmeas : Measurable f)
     (hflc : FourPointLogConcave f)
@@ -181,7 +193,9 @@ theorem uMinus_mul_vPlus_le
 
 /-- Algebraic bridge from the cross-product comparison to monotonicity
 of `θ = u / (u + v)`.  This real-valued form is convenient after
-converting finite probability integrals from `ℝ≥0∞`. -/
+converting finite probability integrals from `ℝ≥0∞`.
+@isnad1 id=le.3h4v.s6.e2c7d9b5cd11 from=translated src=- shape=3d649366 vocab=b1824736
+-/
 theorem theta_le_theta_of_cross
     {uPlus uMinus vPlus vMinus : ℝ}
     (hwPlus : 0 < uPlus + vPlus)

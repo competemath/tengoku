@@ -69,7 +69,9 @@ private theorem locJExpand_func_inr {k : ℕ} (s : Fin k ↪o J) {α : Type} (i�
       = Term.func (Sum.inr (s i₀) : Λ[[J]].Functions 0) (fun i => locJExpand Λ J s (ts i)) :=
   rfl
 
-/-- **Round trip 1**: expanding along `S`'s own increasing enumeration recovers the term. -/
+/-- **Round trip 1**: expanding along `S`'s own increasing enumeration recovers the term.
+@isnad1 id=eq.1h4v.s6.372e9e90e6bc from=translated src=- shape=fe04e657 vocab=f84a9126
+-/
 theorem locJExpand_compress (S : Finset J) (t : Λ[[J]].Term Empty)
     (h : locJSupport Λ J t ⊆ S) :
     locJExpand Λ J (S.orderEmbOfFin rfl) (locJCompress Λ J S t h) = t := by
@@ -92,7 +94,9 @@ theorem locJExpand_compress (S : Finset J) (t : Λ[[J]].Term Empty)
       · exact c.elim
 
 /-- **Round trip 3** (the orbit-theorem workhorse): if `e` carries the embedding `s` pointwise
-to `t`, then renaming along `e` carries the `s`-expansion to the `t`-expansion. -/
+to `t`, then renaming along `e` carries the `s`-expansion to the `t`-expansion.
+@isnad1 id=eq.1h8v.s8.7fc68f3b5dc3 from=translated src=- shape=324eb12d vocab=a6d08d70
+-/
 theorem locJRename_expand (e : J ≃o J) {k : ℕ} (s t : Fin k ↪o J)
     (hst : ∀ i, e (s i) = t i) {α : Type} (u : Λ[[Fin k]].Term α) :
     locJRename Λ J e (locJExpand Λ J s u) = locJExpand Λ J t u := by
@@ -117,7 +121,9 @@ compressed skeleton `Fin k`. -/
 def LocalEMTupleCode (Λ : Language.{0, 0}) (n : ℕ) : Type :=
   Σ k : ℕ, Fin n → Λ[[Fin k]].Term Empty
 
-/-- Symbol countability passes to the constant expansion by a compressed skeleton. -/
+/-- Symbol countability passes to the constant expansion by a compressed skeleton.
+@isnad1 id=countabl.0h2v.s4.0750005eb90a from=translated src=- shape=d02ab928 vocab=a5ef5e4f
+-/
 theorem countable_sigma_functions_withFin (k : ℕ)
     [Countable (Σ l, Λ.Functions l)] : Countable (Σ l, Λ[[Fin k]].Functions l) := by
   have : ∀ l, Countable ((constantsOn (Fin k)).Functions l) := fun l =>
@@ -127,7 +133,9 @@ theorem countable_sigma_functions_withFin (k : ℕ)
   exact Countable.of_equiv _ (Equiv.sigmaSumDistrib _ _).symm
 
 /-- **Countability of the code type**: for a countable base language, there are only countably
-many tuple codes at each arity. -/
+many tuple codes at each arity.
+@isnad1 id=countabl.0h2v.s4.09dc968d00ce from=translated src=- shape=add982eb vocab=506ce30f
+-/
 theorem countable_localEMTupleCode (n : ℕ)
     [Countable (Σ l, Λ.Functions l)] : Countable (LocalEMTupleCode Λ n) := by
   have : ∀ k, Countable (Σ l, Λ[[Fin k]].Functions l) := fun k =>

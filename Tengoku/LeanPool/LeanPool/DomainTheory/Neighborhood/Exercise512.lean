@@ -79,7 +79,9 @@ def bodyMap : ApproximableMap (prod (funSpace V V) V) V :=
           (paired (proj₀ (funSpace V V) V) (f.comp (proj₁ (funSpace V V) V))))
         (proj₁ (funSpace V V) V)))
 
-/-- Value of the loop body: `M(w, x) = cond(p(x), w(f(x)), x)`. -/
+/-- Value of the loop body: `M(w, x) = cond(p(x), w(f(x)), x)`.
+@isnad1 id=eq.0h6v.s7.86fb7905d7b9 from=translated src=- shape=1a1761c7 vocab=7aaa01d4
+-/
 theorem bodyMap_apply (w : (funSpace V V).Element) (x : V.Element) :
     (bodyMap V p f).toElementMap (pair w x) =
       (cond V).toElementMap
@@ -93,7 +95,9 @@ theorem bodyMap_apply (w : (funSpace V V).Element) (x : V.Element) :
 x)`. -/
 def Wop : ApproximableMap (funSpace V V) (funSpace V V) := curry (bodyMap V p f)
 
-/-- `Wop(w)(x) = cond(p(x), w(f(x)), x)`. -/
+/-- `Wop(w)(x) = cond(p(x), w(f(x)), x)`.
+@isnad1 id=eq.0h6v.s7.cd77bdaab5c4 from=translated src=- shape=950476bb vocab=364b0d09
+-/
 theorem Wop_apply (w : (funSpace V V).Element) (x : V.Element) :
     (toApproxMap ((Wop V p f).toElementMap w)).toElementMap x =
       (cond V).toElementMap
@@ -110,7 +114,9 @@ def whileMap : ApproximableMap V V := toApproxMap (whileFix V p f)
 
 /-- **Exercise 5.12 (Scott 1981, PRG-19).** The defining recursion of the
 `while`-loop:
-`w(x) = cond(p(x), w(f(x)), x)`. -/
+`w(x) = cond(p(x), w(f(x)), x)`.
+@isnad1 id=eq.0h5v.s6.3ca61d602227 from=translated src=- shape=d83d8b91 vocab=6ed78a32
+-/
 theorem whileMap_rec (x : V.Element) :
     (whileMap V p f).toElementMap x =
       (cond V).toElementMap
@@ -122,24 +128,32 @@ theorem whileMap_rec (x : V.Element) :
   rw [hfix] at this
   exact this
 
-/-- If the test holds (`p(x) = true`), the loop runs the body: `w(x) = w(f(x))`. -/
+/-- If the test holds (`p(x) = true`), the loop runs the body: `w(x) = w(f(x))`.
+@isnad1 id=eq.1h5v.s6.87778da7fd6b from=translated src=- shape=93c32e8d vocab=8c163af0
+-/
 theorem whileMap_true {x : V.Element} (hx : p.toElementMap x = Example23.trueElt) :
     (whileMap V p f).toElementMap x = (whileMap V p f).toElementMap (f.toElementMap x) := by
   rw [whileMap_rec, hx, Exercise326.cond_true]
 
-/-- If the test fails (`p(x) = false`), the loop exits: `w(x) = x`. -/
+/-- If the test fails (`p(x) = false`), the loop exits: `w(x) = x`.
+@isnad1 id=eq.1h5v.s5.940687db6660 from=translated src=- shape=73057064 vocab=0a9c830e
+-/
 theorem whileMap_false {x : V.Element} (hx : p.toElementMap x = Example23.falseElt) :
     (whileMap V p f).toElementMap x = x := by
   rw [whileMap_rec, hx, Exercise326.cond_false]
 
-/-- If the test diverges (`p(x) = ⊥`), the loop diverges: `w(x) = ⊥`. -/
+/-- If the test diverges (`p(x) = ⊥`), the loop diverges: `w(x) = ⊥`.
+@isnad1 id=eq.1h5v.s5.980dd4e177d8 from=translated src=- shape=b661d967 vocab=bd864c0f
+-/
 theorem whileMap_bot {x : V.Element} (hx : p.toElementMap x = Example23.botElt) :
     (whileMap V p f).toElementMap x = V.bot := by
   rw [whileMap_rec, hx, Exercise326.cond_bot]
 
 /-- **Leastness.** Any `w'` satisfying the `while`-recursion `w'(x) = cond(p(x),
 w'(f(x)), x)`
-dominates the least solution `whileMap`. -/
+dominates the least solution `whileMap`.
+@isnad1 id=le.1h5v.s7.479098fbf3c5 from=translated src=- shape=12973bb5 vocab=572c9ef5
+-/
 theorem whileMap_least (w' : (funSpace V V).Element)
     (hw' : ∀ x : V.Element, (toApproxMap w').toElementMap x =
       (cond V).toElementMap

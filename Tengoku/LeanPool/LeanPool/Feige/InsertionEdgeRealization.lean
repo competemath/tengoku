@@ -30,6 +30,9 @@ namespace Feige
 
 noncomputable section
 
+/--
+@isnad1 id=eq.0h5v.s6.3ab39022d9a5 from=translated src=- shape=4c5d2273 vocab=446889ff
+-/
 theorem insertionOldK_eq_F_stateLaw {n : ℕ}
     (γ β : Fin (n + 1) → ℝ) (σ : Equiv.Perm (Fin n))
     (r : Fin (n + 1)) :

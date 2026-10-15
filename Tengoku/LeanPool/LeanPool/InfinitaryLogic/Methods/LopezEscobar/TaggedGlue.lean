@@ -84,7 +84,9 @@ private theorem gluedStructure_agree_right (Sl Sr : (graphLanguage (KLang L)).St
     · exact Iff.rfl
 
 /-- **The gluing endpoint**: two same-base projective-class witnesses glue to a single model
-of both side sentences. -/
+of both side sentences.
+@isnad1 id=ex.2h4v.s6.77a6bfe13b09 from=translated src=- shape=52993a7d vocab=ad90d586
+-/
 theorem pcMem_glue (T₀ T₁ : (n : ℕ) → Set ((Fin n → Bool) × (Fin n → ℕ)))
     (hL : @PCMem L (graphLanguage (KLang L)) baseGraphEmb (pcSentence L .left T₀) M instL)
     (hR : @PCMem L (graphLanguage (KLang L)) baseGraphEmb (pcSentence L .right T₁) M instL) :

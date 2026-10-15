@@ -78,7 +78,9 @@ private theorem dilateAbove_apply_point {a x y : K} (hx : a < x) (hy : a < y) :
   ring
 
 /-- **Every linear ordered field is highly order-transitive** — the left-to-right point-moving
-induction: translation for the first point, cut dilations for the rest. -/
+induction: translation for the first point, cut dilations for the rest.
+@isnad1 id=highlyor.0h1v.s4.d6a358fee78b from=translated src=- shape=affebb5f vocab=233c336e
+-/
 theorem HighlyOrderTransitive.of_field (K : Type*) [Field K] [LinearOrder K]
     [IsStrictOrderedRing K] : HighlyOrderTransitive K := by
   intro n

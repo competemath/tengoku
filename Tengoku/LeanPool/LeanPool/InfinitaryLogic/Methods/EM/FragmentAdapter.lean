@@ -68,7 +68,9 @@ but takes an arbitrary `[L[[J]].Structure N]` instead of requiring the
 The right-hand side realizes `φ` on the sequence `fun i => b (t i)`, where
 `b j` is the closed-term realization of the constant symbol `Sum.inr j`
 (i.e., the interpretation of the `J`-indexed constant in the given
-`L[[J]]`-structure on `N`). -/
+`L[[J]]`-structure on `N`).
+@isnad1 id=iff.0h6v.s7.39bdf8d57388 from=translated src=- shape=0c025b11 vocab=3a35ab7b
+-/
 theorem realize_templateSentence_of_structure
     {J : Type u} [LinearOrder J]
     {N : Type*} [L[[J]].Structure N]
@@ -110,7 +112,9 @@ def morleySeed (φ : L.Sentenceω) : ℕ → Σ n, L.BoundedFormulaω Empty n :=
 `Lω₁ω`-indiscernible on `Set.range (morleySeed φ)` — the arity-`0` members ignore their tuples,
 and the disequality is true on every strictly monotone pair of a pairwise-distinct sequence.
 This is why the definitive Morley–Hanf route consumes no Ramsey/Erdős–Rado extraction at all:
-`Infinite.natEmbedding` already supplies a seed-indiscernible sequence. -/
+`Infinite.natEmbedding` already supplies a seed-indiscernible sequence.
+@isnad1 id=islomega.1h4v.s5.05ad70c047e0 from=translated src=- shape=0e593376 vocab=ae0982d3
+-/
 theorem morleySeed_indiscernibleOn {M : Type*} [L.Structure M] (φ : L.Sentenceω) {a : ℕ → M}
     (ha : ∀ i j : ℕ, i ≠ j → a i ≠ a j) :
     IsLomega1omegaIndiscernibleOn (L := L) a (Set.range (morleySeed φ)) := by

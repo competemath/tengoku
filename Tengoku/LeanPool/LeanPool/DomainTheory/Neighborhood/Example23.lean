@@ -74,7 +74,9 @@ def valElt : Option Bool → T.Element
   | some true => trueElt
   | some false => falseElt
 
-/-- `⊥` approximates every element of `T` (the local `{Δ}` form, proved directly). -/
+/-- `⊥` approximates every element of `T` (the local `{Δ}` form, proved directly).
+@isnad1 id=le.0h1v.s4.d78ff66974e2 from=translated src=- shape=e724fc79 vocab=d73324bf
+-/
 theorem botElt_le (x : T.Element) : botElt ≤ x := by
   intro Z hZ
   have : Z = Example12.master := hZ
@@ -92,14 +94,25 @@ def scan : Str → Option Bool
   | true :: _ => some true
   | false :: t => (scan t).map (!·)
 
+/--
+@isnad1 id=eq.0h0v.s3.3f88becb6330 from=translated src=- shape=9b1c3ca8 vocab=3bf55249
+-/
 @[simp] theorem scan_nil : scan [] = none := rfl
+/--
+@isnad1 id=eq.0h1v.s3.ce0f71784bd1 from=translated src=- shape=38c2a66c vocab=b6297c3f
+-/
 @[simp] theorem scan_true (t : Str) : scan (true :: t) = some true := rfl
+/--
+@isnad1 id=eq.0h1v.s4.fc6c330cfeeb from=translated src=- shape=57cb26d9 vocab=67be1739
+-/
 @[simp] theorem scan_false (t : Str) : scan (false :: t) = (scan t).map (!·) := rfl
 
 /-- **Stability of the scan under extension.** Once `scan σ` has committed to a
 parity `some b`,
 every extension `σ ++ t` keeps that value. This is the engine of monotonicity for
-`parityMap`. -/
+`parityMap`.
+@isnad1 id=eq.1h3v.s5.db2aaffe7ab2 from=translated src=- shape=a4d6428d vocab=a33fa13c
+-/
 theorem scan_append {σ : Str} {b : Bool} (h : scan σ = some b) (t : Str) :
     scan (σ ++ t) = some b := by
   induction σ generalizing b with
@@ -117,7 +130,9 @@ theorem scan_append {σ : Str} {b : Bool} (h : scan σ = some b) (t : Str) :
 (weakly) more defined
 value: `valElt (scan σ) ⊑ valElt (scan σ')`. If `scan σ = none` then `valElt = ⊥ ⊑
 _`; otherwise the
-value is fixed by `scan_append`. -/
+value is fixed by `scan_append`.
+@isnad1 id=le.1h2v.s4.7e3bf44334cd from=translated src=- shape=1561896f vocab=0308aceb
+-/
 theorem valElt_scan_mono {σ σ' : Str} (h : σ <+: σ') :
     valElt (scan σ) ≤ valElt (scan σ') := by
   obtain ⟨t, rfl⟩ := h

@@ -16,7 +16,9 @@ namespace Erdos97Octagon
 open scoped InnerProductSpace
 open Module Matrix
 
-/-- Three vectors in the Euclidean plane cannot be linearly independent. -/
+/-- Three vectors in the Euclidean plane cannot be linearly independent.
+@isnad1 id=not.0h1v.s7.f42c4cb2d6cf from=translated src=- shape=bfb7b5c7 vocab=db18b93f
+-/
 lemma not_linearIndependent_three (u : Fin 3 → Plane) :
     ¬ LinearIndependent ℝ u := by
   intro h
@@ -25,7 +27,9 @@ lemma not_linearIndependent_three (u : Fin 3 → Plane) :
   rw [hfr, Fintype.card_fin] at hcard
   omega
 
-/-- The determinant of the Gram matrix of three planar vectors vanishes. -/
+/-- The determinant of the Gram matrix of three planar vectors vanishes.
+@isnad1 id=eq.0h1v.s8.c82fc4713917 from=translated src=- shape=8a5b2aa3 vocab=0f7d6266
+-/
 lemma gram_det_eq_zero (u : Fin 3 → Plane) :
     (Matrix.of fun i j => (⟪u i, u j⟫_ℝ : ℝ)).det = 0 := by
   obtain ⟨g, hg, i0, hi0⟩ :=
@@ -47,7 +51,9 @@ lemma gram_det_eq_zero (u : Fin 3 → Plane) :
     exact hi0 (by rw [h]; rfl)
   exact Matrix.exists_mulVec_eq_zero_iff.1 ⟨g, hgne, hker⟩
 
-/-- Expands a `3 × 3` Gram determinant into scalar inner products. -/
+/-- Expands a `3 × 3` Gram determinant into scalar inner products.
+@isnad1 id=eq.0h3v.s11.40a8fd9c6f7d from=translated src=- shape=80da5230 vocab=60f18910
+-/
 lemma gram3_expand (a b c : Plane) :
     (Matrix.of fun i j => (⟪(![a, b, c]) i, (![a, b, c]) j⟫_ℝ : ℝ)).det =
       ⟪a, a⟫_ℝ * ⟪b, b⟫_ℝ * ⟪c, c⟫_ℝ -

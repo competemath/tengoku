@@ -100,8 +100,14 @@ its cylinder is contained in that of `p`. -/
 def Refines (q p : (ℕ → Bool) × ℕ) : Prop :=
   p.2 ≤ q.2 ∧ cylinder q.1 q.2 ⊆ cylinder p.1 p.2
 
+/--
+@isnad1 id=refines.0h1v.s3.061504b5516d from=translated src=- shape=86488c23 vocab=44eb0962
+-/
 lemma Refines.refl (p : (ℕ → Bool) × ℕ) : Refines p p := ⟨le_rfl, subset_rfl⟩
 
+/--
+@isnad1 id=refines.2h3v.s4.af329744c35e from=translated src=- shape=d31528a7 vocab=44eb0962
+-/
 lemma Refines.trans {r q p : (ℕ → Bool) × ℕ} (h₁ : Refines r q) (h₂ : Refines q p) :
     Refines r p :=
   ⟨h₂.1.trans h₁.1, h₁.2.trans h₂.2⟩
@@ -273,7 +279,9 @@ open Set PiNat MycielskiCantor in
 /-- **Mycielski's theorem for Cantor space**: for a meager set `M` in the square of Cantor
 space, there is a continuous `ψ : (ℕ → Bool) → (ℕ → Bool)` such that `(ψ a, ψ b) ∉ M`
 whenever `a ≠ b`. (Kechris, CDST 19.1, specialized.) Injectivity of `ψ` is not asserted;
-when avoiding a reflexive relation it is automatic. -/
+when avoiding a reflexive relation it is automatic.
+@isnad1 id=ex.1h1v.s7.e3adaaf701fd from=translated src=- shape=e499fdbb vocab=b2be5a21
+-/
 theorem mycielski_cantor {M : Set ((ℕ → Bool) × (ℕ → Bool))} (hM : IsMeagre M) :
     ∃ ψ : (ℕ → Bool) → (ℕ → Bool), Continuous ψ ∧
       ∀ a b : ℕ → Bool, a ≠ b → (ψ a, ψ b) ∉ M := by

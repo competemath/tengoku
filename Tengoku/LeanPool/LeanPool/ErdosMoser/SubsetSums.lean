@@ -24,7 +24,9 @@ namespace LeanPool.ErdosMoser
 open Finset
 
 /-- Twice the sum of all subset sums is `2 ^ |B|` times the sum of the
-elements of `B`. -/
+elements of `B`.
+@isnad1 id=eq.0h2v.s6.a80050702fb3 from=translated src=- shape=41f24d25 vocab=fbbf469b
+-/
 theorem sumSubsetSums (B : Finset ℕ) (f : ℕ → ℝ) :
     2 * ∑ T ∈ B.powerset, (∑ i ∈ T, f i) =
       (2 : ℝ) ^ B.card * ∑ i ∈ B, f i := by
@@ -48,7 +50,9 @@ theorem sumSubsetSums (B : Finset ℕ) (f : ℕ → ℝ) :
     push_cast
     linarith [ih]
 
-/-- Exact second-moment identity for the subset sums of a finite set. -/
+/-- Exact second-moment identity for the subset sums of a finite set.
+@isnad1 id=eq.0h2v.s7.12c2d3341a48 from=translated src=- shape=b8cbc975 vocab=01c4d829
+-/
 theorem secondMomentSubsetSums (B : Finset ℕ) (f : ℕ → ℝ) :
     4 * ∑ S ∈ B.powerset, (∑ i ∈ S, f i) ^ 2 =
       (2 : ℝ) ^ B.card *
@@ -93,7 +97,9 @@ theorem secondMomentSubsetSums (B : Finset ℕ) (f : ℕ → ℝ) :
       rw [hFirstMoment]
     linarith [ih, hFirstMomentMul]
 
-/-- Algebraic variance identity for subset sums. -/
+/-- Algebraic variance identity for subset sums.
+@isnad1 id=eq.0h2v.s7.c3a28ba1658d from=translated src=- shape=62e3d4b6 vocab=d6f57984
+-/
 theorem varianceIdentitySubsetSums (B : Finset ℕ) (f : ℕ → ℝ) :
     4 * (∑ S ∈ B.powerset, (∑ i ∈ S, f i) ^ 2) -
         (2 : ℝ) ^ B.card * (∑ i ∈ B, f i) ^ 2 =
@@ -102,7 +108,9 @@ theorem varianceIdentitySubsetSums (B : Finset ℕ) (f : ℕ → ℝ) :
   linarith [h]
 
 /-- The image of the subset-sum map has cardinality `2 ^ A.card` when the
-subset sums of `A` are distinct. -/
+subset sums of `A` are distinct.
+@isnad1 id=eq.1h1v.s5.1f87635536d8 from=translated src=- shape=6429d800 vocab=c1e0d7a7
+-/
 lemma imageSubsetSumsCard {A : Finset ℕ} (h : HasDistinctSubsetSums A) :
     (A.powerset.image (fun S ↦ S.sum id)).card = 2 ^ A.card := by
   have hInjective :
@@ -117,7 +125,9 @@ numbers has distinct subset sums, then
 `4 ^ |A| - 1 ≤ 3 * ∑ a ∈ A, a ^ 2`.
 
 This is Theorem 2 of Richard K. Guy's 1982 account, where it is attributed to
-Leo Moser. -/
+Leo Moser.
+@isnad1 id=le.1h1v.s6.8269a872346a from=translated src=- shape=05498b1c vocab=dcd5334b
+-/
 theorem leoMoserVarianceBound {A : Finset ℕ}
     (h : HasDistinctSubsetSums A) :
     (4 : ℝ) ^ A.card - 1 ≤ 3 * ∑ a ∈ A, (a : ℝ) ^ 2 := by

@@ -74,7 +74,9 @@ noncomputable def insertionLevelScore
     upperMassForInsertion A J (r - 1) * gUpper (r - 1)
 
 /-- The pairwise and consecutive-level expansions of one inserted-chain
-expectation agree. -/
+expectation agree.
+@isnad1 id=eq.1h7v.s6.0739db05e027 from=translated src=- shape=a690de83 vocab=70f796ee
+-/
 theorem insertionPairScore_eq_levelScore
     {A B w gLower gUpper : ℕ → ℝ} {k J : ℕ} (hJk : J < k) :
     insertionPairScore A B w gLower gUpper k J =
@@ -143,7 +145,9 @@ def insertionStatisticSequence (A B : ℕ → ℝ) (J r : ℕ) : ℝ :=
 
 /-- At a lower state `Cⱼ` which is present in the rank-`J` chain, the
 adjacent-difference chain mass is exactly the corresponding lower
-contribution. -/
+contribution.
+@isnad1 id=eq.2h5v.s5.f3f30a3035d5 from=translated src=- shape=17f7158d vocab=f23e4760
+-/
 theorem chainMass_insertionStatisticSequence_lower
     {A B w : ℕ → ℝ} {J j : ℕ} (hjJ : j ≤ J)
     (hbridge : B j - A j = w j) :
@@ -158,7 +162,9 @@ theorem chainMass_insertionStatisticSequence_lower
       hEq, hjlt, hjJ]
 
 /-- At an upper state `Hⱼ`, present exactly for `J ≤ j`, the
-adjacent-difference chain mass is its upper contribution. -/
+adjacent-difference chain mass is its upper contribution.
+@isnad1 id=eq.1h4v.s5.56745e23c882 from=translated src=- shape=355fc001 vocab=9f7be659
+-/
 theorem chainMass_insertionStatisticSequence_upper
     {A B : ℕ → ℝ} {J j : ℕ} (hJj : J ≤ j) :
     chainMass (insertionStatisticSequence A B J) (j + 1) =
@@ -173,7 +179,9 @@ def insertionTransfer (A F θ : ℕ → ℝ) (p : ℝ) (j : ℕ) : ℝ :=
   insertedUpperMass A θ j - independentUpperMass F p j
 
 /-- The lower and upper mass formulas preserve the total mass of each pair
-`{Cⱼ, Hⱼ}`. -/
+`{Cⱼ, Hⱼ}`.
+@isnad1 id=eq.2h6v.s6.1b3f78be36c2 from=translated src=- shape=1b941cbd vocab=753abbf2
+-/
 theorem inserted_pair_total (j : ℕ)
     (hB : ∀ r, B r = A r + w r)
     (hF : ∀ r, F r = A r + θ r * w r) :
@@ -183,6 +191,9 @@ theorem inserted_pair_total (j : ℕ)
   rw [hB j, hB (j + 1), hF j, hF (j + 1)]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s5.72141d15fb7b from=translated src=- shape=a3daa3de vocab=69627b43
+-/
 theorem independent_pair_total (F : ℕ → ℝ) (p : ℝ) (j : ℕ) :
     independentLowerMass F p j + independentUpperMass F p j =
       F j - F (j + 1) := by
@@ -190,7 +201,9 @@ theorem independent_pair_total (F : ℕ → ℝ) (p : ℝ) (j : ℕ) :
   ring
 
 /-- Equal pair totals force the difference to be a within-pair transfer:
-the lower state loses exactly the mass gained by the upper state. -/
+the lower state loses exactly the mass gained by the upper state.
+@isnad1 id=eq.2h7v.s6.3c08f7ab845d from=translated src=- shape=ae0c46b1 vocab=aafa9059
+-/
 theorem lower_difference_eq_neg_transfer (j : ℕ)
     (hB : ∀ r, B r = A r + w r)
     (hF : ∀ r, F r = A r + θ r * w r) :
@@ -202,7 +215,9 @@ theorem lower_difference_eq_neg_transfer (j : ℕ)
   simp only [insertionTransfer] at *
   linarith
 
-/-- A nonnegative transfer improves every increasing payoff on the pair. -/
+/-- A nonnegative transfer improves every increasing payoff on the pair.
+@isnad1 id=le.4h7v.s6.f9b9a5e0d7be from=translated src=- shape=de4a0de5 vocab=a87daef5
+-/
 theorem upward_transfer_improves
     {newLower newUpper oldLower oldUpper η gLower gUpper : ℝ}
     (hlower : newLower - oldLower = -η)
@@ -222,7 +237,9 @@ theorem upward_transfer_improves
   exact mul_nonneg hη (sub_nonneg.mpr hg)
 
 /-- Summing the pairwise upward transfers proves the expectation
-comparison. -/
+comparison.
+@isnad1 id=le.4h8v.s7.6fbe9f135756 from=translated src=- shape=1bc6b565 vocab=1ae45192
+-/
 theorem sum_upward_transfers_improve
     {k : ℕ}
     {newLower newUpper oldLower oldUpper η gLower gUpper : ℕ → ℝ}
@@ -244,20 +261,26 @@ end PairMasses
 
 section Weights
 
-/-- The insertion-position weights are nonnegative when `θ` decreases. -/
+/-- The insertion-position weights are nonnegative when `θ` decreases.
+@isnad1 id=le.1h2v.s4.d5a429005e0b from=translated src=- shape=a6b81cf0 vocab=9e6d2149
+-/
 theorem insertionWeight_nonneg {θ : ℕ → ℝ} (hθ : Antitone θ) (j : ℕ) :
     0 ≤ insertionWeight θ j := by
   simpa only [insertionWeight, chainMass] using
     sub_nonneg.mpr (hθ (Nat.le_succ j))
 
-/-- The insertion-position weights telescope from `θ 0` to `θ k`. -/
+/-- The insertion-position weights telescope from `θ 0` to `θ k`.
+@isnad1 id=eq.0h2v.s5.5c4b855c47ce from=translated src=- shape=e4b76002 vocab=d26e3b06
+-/
 theorem sum_insertionWeight (θ : ℕ → ℝ) (k : ℕ) :
     (∑ j ∈ Finset.range k, insertionWeight θ j) = θ 0 - θ k := by
   change (∑ j ∈ Finset.range k, chainMass θ j) = θ 0 - θ k
   simpa using CalibratedChain.sum_chainMass_shift θ 0 k
 
 /-- Under the endpoint conditions `θ 0 = 1` and `θ k = 0`, the insertion
-weights sum to one. -/
+weights sum to one.
+@isnad1 id=eq.2h2v.s5.85107db713b1 from=translated src=- shape=829cbede vocab=ddefb632
+-/
 theorem sum_insertionWeight_eq_one {θ : ℕ → ℝ} {k : ℕ}
     (hzero : θ 0 = 1) (hend : θ k = 0) :
     (∑ j ∈ Finset.range k, insertionWeight θ j) = 1 := by
@@ -274,7 +297,9 @@ private theorem lowerMassForInsertion_split (B w : ℕ → ℝ) (J j : ℕ) :
   · by_cases hlt : j < J <;> simp [hEq, hlt]
 
 /-- Averaging the actual `Cⱼ` mass over all insertion ranks separates into
-the single bridge rank and the strictly later ranks. -/
+the single bridge rank and the strictly later ranks.
+@isnad1 id=eq.1h5v.s6.834bf77ac7d8 from=translated src=- shape=4699b03a vocab=0a6ced70
+-/
 theorem sum_lowerMassForInsertion
     {B w θ : ℕ → ℝ} {j k : ℕ} (hjk : j < k) :
     (∑ J ∈ Finset.range k,
@@ -313,7 +338,9 @@ theorem sum_lowerMassForInsertion
     _ = _ := by ring
 
 /-- Averaging the actual `Hⱼ` mass over all insertion ranks keeps exactly
-the ranks through `j`. -/
+the ranks through `j`.
+@isnad1 id=eq.1h4v.s6.9cd8a220d78d from=translated src=- shape=e5edb4bd vocab=51d613fc
+-/
 theorem sum_upperMassForInsertion
     {A θ : ℕ → ℝ} {j k : ℕ} (hjk : j < k) :
     (∑ J ∈ Finset.range k,
@@ -343,7 +370,9 @@ theorem sum_upperMassForInsertion
       rw [heq, Finset.sum_mul]
 
 /-- The total insertion weight strictly after rank `j`.  This is the
-coefficient of `Bⱼ - Bⱼ₊₁` in the averaged mass at `Cⱼ`. -/
+coefficient of `Bⱼ - Bⱼ₊₁` in the averaged mass at `Cⱼ`.
+@isnad1 id=eq.2h3v.s6.b928480a3c6f from=translated src=- shape=92aa668d vocab=55cff8e2
+-/
 theorem sum_insertionWeight_after {θ : ℕ → ℝ} {j k : ℕ}
     (hjk : j < k) (hend : θ k = 0) :
     (∑ J ∈ Finset.Ico (j + 1) k, insertionWeight θ J) = θ (j + 1) := by
@@ -354,7 +383,9 @@ theorem sum_insertionWeight_after {θ : ℕ → ℝ} {j k : ℕ}
   simpa only [insertionWeight, chainMass, hend, sub_zero] using htel
 
 /-- The total insertion weight through rank `j`.  This is the coefficient
-of `Aⱼ - Aⱼ₊₁` in the averaged mass at `Hⱼ`. -/
+of `Aⱼ - Aⱼ₊₁` in the averaged mass at `Hⱼ`.
+@isnad1 id=eq.1h2v.s6.284df5c43561 from=translated src=- shape=84b72931 vocab=5578493d
+-/
 theorem sum_insertionWeight_through {θ : ℕ → ℝ} (j : ℕ)
     (hzero : θ 0 = 1) :
     (∑ J ∈ Finset.range (j + 1), insertionWeight θ J) =
@@ -362,7 +393,9 @@ theorem sum_insertionWeight_through {θ : ℕ → ℝ} (j : ℕ)
   rw [sum_insertionWeight, hzero]
 
 /-- The averaged lower-mass formula obtained by separating the insertion
-rank `J = j` from all later ranks. -/
+rank `J = j` from all later ranks.
+@isnad1 id=eq.2h5v.s6.6506906d40a2 from=translated src=- shape=477b9574 vocab=ca66c11b
+-/
 theorem averaged_lower_mass_eq_insertedLowerMass
     {B w θ : ℕ → ℝ} {j k : ℕ} (hjk : j < k) (hend : θ k = 0) :
     (∑ J ∈ Finset.Ico (j + 1) k, insertionWeight θ J) *
@@ -373,7 +406,9 @@ theorem averaged_lower_mass_eq_insertedLowerMass
   rfl
 
 /-- The averaged upper-mass formula obtained by summing over all insertion
-ranks `J ≤ j`. -/
+ranks `J ≤ j`.
+@isnad1 id=eq.1h3v.s6.d463daa35d1d from=translated src=- shape=08b48b64 vocab=bfb9989c
+-/
 theorem averaged_upper_mass_eq_insertedUpperMass
     {A θ : ℕ → ℝ} (j : ℕ) (hzero : θ 0 = 1) :
     (∑ J ∈ Finset.range (j + 1), insertionWeight θ J) *
@@ -382,7 +417,9 @@ theorem averaged_upper_mass_eq_insertedUpperMass
   rw [sum_insertionWeight_through j hzero]
   rfl
 
-/-- The full weighted rank average gives the lower-mass formula. -/
+/-- The full weighted rank average gives the lower-mass formula.
+@isnad1 id=eq.2h5v.s6.3a2df9f58de8 from=translated src=- shape=99c5ff7f vocab=8dffd778
+-/
 theorem weighted_lowerMassForInsertion_eq
     {B w θ : ℕ → ℝ} {j k : ℕ}
     (hjk : j < k) (hend : θ k = 0) :
@@ -392,7 +429,9 @@ theorem weighted_lowerMassForInsertion_eq
   rw [sum_lowerMassForInsertion hjk,
     averaged_lower_mass_eq_insertedLowerMass hjk hend]
 
-/-- The full weighted rank average gives the upper-mass formula. -/
+/-- The full weighted rank average gives the upper-mass formula.
+@isnad1 id=eq.2h4v.s5.b80d3508337f from=translated src=- shape=f4acafb6 vocab=9d39c8de
+-/
 theorem weighted_upperMassForInsertion_eq
     {A θ : ℕ → ℝ} {j k : ℕ}
     (hjk : j < k) (hzero : θ 0 = 1) :
@@ -403,7 +442,9 @@ theorem weighted_upperMassForInsertion_eq
     averaged_upper_mass_eq_insertedUpperMass j hzero]
 
 /-- Averaging the complete pairwise scores over insertion ranks gives the
-averaged lower and upper masses. -/
+averaged lower and upper masses.
+@isnad1 id=eq.2h7v.s6.e94498709b1a from=translated src=- shape=bec737b3 vocab=f724c861
+-/
 theorem weighted_insertionPairScore_eq
     {A B w θ gLower gUpper : ℕ → ℝ} {k : ℕ}
     (hθ0 : θ 0 = 1) (hθk : θ k = 0) :
@@ -427,7 +468,9 @@ theorem weighted_insertionPairScore_eq
 
 /-- A convex average cannot exceed all of its entries.  This is the final
 finite step selecting one insertion position from the averaged chain
-comparison. -/
+comparison.
+@isnad1 id=ex.4h4v.s6.dbfdfa1e38a6 from=translated src=- shape=de3843c3 vocab=376491f5
+-/
 theorem exists_score_ge_of_le_convex_average
     {k : ℕ} (hk : 0 < k) {weight score : ℕ → ℝ} {old : ℝ}
     (hweight : ∀ j < k, 0 ≤ weight j)
@@ -455,7 +498,9 @@ end Weights
 section TransferSign
 
 /-- The local transfer identity identifies the insertion coefficient `η`;
-positivity of its four factors gives the upward transfer direction. -/
+positivity of its four factors gives the upward transfer direction.
+@isnad1 id=le.5h7v.s6.134ef71589b0 from=translated src=- shape=a7bb27a7 vocab=1b82c742
+-/
 theorem insertionTransfer_nonneg_of_identity
     {η a c d w thetaPlus thetaMinus : ℝ}
     (hid :
@@ -478,7 +523,9 @@ Once the exponential transfer identity has supplied the required factorized
 transfer on every edge, the independently revealed coordinate is dominated
 by the averaged inserted-chain law for every payoff which is increasing on
 each pair `Cⱼ ⊆ Hⱼ`.  All remaining hypotheses are the corresponding
-analytic and probabilistic identities. -/
+analytic and probabilistic identities.
+@isnad1 id=le.8h12v.s8.b566e7b207b6 from=translated src=- shape=89360ce4 vocab=7edb8a5d
+-/
 theorem localInsertion_average_pair_payoff_le
     {k : ℕ} {A B F w θ a : ℕ → ℝ} {p c d : ℝ}
     {gLower gUpper : ℕ → ℝ}
@@ -515,7 +562,9 @@ theorem localInsertion_average_pair_payoff_le
 The two equalities `hold` and `haverage` are precisely the expansions of
 the old hybrid expectation and of the convex average of inserted-chain
 expectations.  The theorem first applies the upward-transport comparison
-and then selects one insertion rank from that convex average. -/
+and then selects one insertion rank from that convex average.
+@isnad1 id=ex.13h14v.s8.e3a0c309288f from=translated src=- shape=e48d9999 vocab=bb9a7e27
+-/
 theorem exists_localInsertion_score_of_transfer
     {k : ℕ} (hk : 0 < k)
     {A B F w θ a : ℕ → ℝ} {p c d old : ℝ}
@@ -554,7 +603,9 @@ theorem exists_localInsertion_score_of_transfer
 /-- The finite chain-insertion conclusion with the inserted-chain score
 expanded canonically into its `Cⱼ/Hⱼ` pairs.  Unlike
 `exists_localInsertion_score_of_transfer`, this theorem no longer asks for
-the averaged-score identity as an external hypothesis. -/
+the averaged-score identity as an external hypothesis.
+@isnad1 id=ex.12h13v.s8.76aa47131acd from=translated src=- shape=12c15c03 vocab=35293550
+-/
 theorem exists_insertionPairScore_of_transfer
     {k : ℕ} (hk : 0 < k)
     {A B F w θ a : ℕ → ℝ} {p c d old : ℝ}

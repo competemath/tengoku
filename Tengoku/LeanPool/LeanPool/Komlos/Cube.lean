@@ -29,6 +29,9 @@ open Finset Finsupp
 /-- The `d`-dimensional product weight on the integer grid. -/
 noncomputable def cubeF (d N : ℕ) (g : Fin d → ℤ) : ℝ := ∏ k, gridF N (g k)
 
+/--
+@isnad1 id=le.1h4v.s7.aebbad08f9d7 from=translated src=- shape=93352649 vocab=ba1bb5cd
+-/
 lemma support_cubeF_sub_subset {d N : ℕ} {a : Fin d → ℤ} {K : Finset ℤ}
     (hK : ∀ k, Function.support (fun j ↦ gridF N (j - a k)) ⊆ K) :
     Function.support (fun g ↦ cubeF d N (g - a)) ⊆
@@ -38,6 +41,9 @@ lemma support_cubeF_sub_subset {d N : ℕ} {a : Fin d → ℤ} {K : Finset ℤ}
   intro k
   exact hK k (prod_ne_zero_iff.1 hg k (mem_univ k))
 
+/--
+@isnad1 id=le.1h3v.s6.2b47d87add7c from=translated src=- shape=06d0b3eb vocab=81aca641
+-/
 lemma support_cubeF_subset {d N : ℕ} {K : Finset ℤ} (hK : Function.support (gridF N) ⊆ K) :
     Function.support (cubeF d N) ⊆ (Fintype.piFinset fun _ : Fin d ↦ K : Set (Fin d → ℤ)) := by
   intro g hg
@@ -54,15 +60,23 @@ noncomputable def cubeP (d N : ℕ) : (Fin d → ℤ) →₀ ℝ :=
       intro g hg
       exact support_cubeF_subset (support_gridF_subset N) (ne_zero_pow two_ne_zero hg))
 
+/--
+@isnad1 id=eq.0h3v.s5.7589196c9d75 from=translated src=- shape=93f13d28 vocab=9ea0e0f6
+-/
 @[simp] lemma cubeP_apply (d N : ℕ) (g : Fin d → ℤ) : cubeP d N g = cubeF d N g ^ 2 :=
   Finsupp.onFinset_apply
 
-/-- The correlation of two translates of `cubeF` is the product of their coordinate correlations. -/
+/-- The correlation of two translates of `cubeF` is the product of their coordinate correlations.
+@isnad1 id=eq.0h5v.s7.8671e74de54a from=translated src=- shape=5a998d69 vocab=b364a03b
+-/
 lemma sum_cubeF_sub_mul_cubeF_sub (d N : ℕ) (K : Finset ℤ) (a b : Fin d → ℤ) :
     ∑ g ∈ Fintype.piFinset (fun _ ↦ K), cubeF d N (g - a) * cubeF d N (g - b)
       = ∏ k, ∑ j ∈ K, gridF N (j - a k) * gridF N (j - b k) := by
   simp [prod_univ_sum, cubeF, prod_mul_distrib]
 
+/--
+@isnad1 id=eq.2h4v.s7.a4db08ccf9c0 from=translated src=- shape=1e7a781d vocab=8bca0a70
+-/
 lemma sum_cubeF_sub_sq {d N : ℕ} (hN : 0 < N) (a : Fin d → ℤ) {K : Finset ℤ}
     (hK : ∀ k, Function.support (fun j ↦ gridF N (j - a k)) ⊆ K) :
     ∑ g ∈ Fintype.piFinset (fun _ ↦ K), cubeF d N (g - a) ^ 2 = 1 := by

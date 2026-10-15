@@ -46,12 +46,17 @@ private theorem typeAgree_elim0 (N : L.Substructure M) :
     TypeAgree N (Fin.elim0 : Fin 0 → M) (Fin.elim0 : Fin 0 → N) :=
   congrArg (infinitaryType (L := L) M) (funext fun i => i.elim0)
 
+/--
+@isnad1 id=iff.1h7v.s6.f945e57a0447 from=translated src=- shape=2342b94c vocab=9a0ccfb6
+-/
 theorem TypeAgree.realize_iff {N : L.Substructure M} {n : ℕ} {a : Fin n → M} {b : Fin n → N}
     (h : TypeAgree N a b) (φ : L.BoundedFormulaω Empty n) :
     φ.Realize Empty.elim a ↔ φ.Realize Empty.elim (fun i => (b i : M)) :=
   Set.ext_iff.mp h φ
 
-/-- **Forth**: every ambient element has a companion match extending the agreement. -/
+/-- **Forth**: every ambient element has a companion match extending the agreement.
+@isnad1 id=ex.3h7v.s7.cf01fbfc8e14 from=translated src=- shape=33c45efd vocab=e6ffd993
+-/
 theorem TypeAgree.forth {hsmall : Lomega1omegaSmall (L := L) M} {N : L.Substructure M}
     (hAe : AElementary (isolatorFragment hsmall) N.subtype)
     {n : ℕ} {a : Fin n → M} {b : Fin n → N} (hab : TypeAgree N a b) (a' : M) :
@@ -79,7 +84,9 @@ theorem TypeAgree.forth {hsmall : Lomega1omegaSmall (L := L) M} {N : L.Substruct
   exact ((realize_isolatingFormula_iff (hsmall (n + 1)) p _).mp (hχN.mpr hb')).symm
 
 /-- **Back**: every companion element has an ambient match — the witness is chosen directly in
-`M`; no A-elementarity is consumed. -/
+`M`; no A-elementarity is consumed.
+@isnad1 id=ex.2h7v.s7.579b6ba12c44 from=translated src=- shape=bd6d571c vocab=878b1fe1
+-/
 theorem TypeAgree.back (hsmall : Lomega1omegaSmall (L := L) M) {N : L.Substructure M}
     {n : ℕ} {a : Fin n → M} {b : Fin n → N} (hab : TypeAgree N a b) (b' : N) :
     ∃ a' : M, TypeAgree N (Fin.snoc a a') (Fin.snoc b b') := by
@@ -152,7 +159,9 @@ private theorem bfEquiv_all_of_typeAgree {N : L.Substructure M}
 /-! ## The semantic countable-companion theorem (chunk 4) -/
 
 /-- **Back-and-forth equivalence with a given companion** (identity-keeping form): any
-countable companion from chunk 2 is `BFEquiv` at every ordinal with the ambient structure. -/
+countable companion from chunk 2 is `BFEquiv` at every ordinal with the ambient structure.
+@isnad1 id=bfequiv.2h4v.s6.4a0ea592278a from=translated src=- shape=68d969ff vocab=69ed6cfe
+-/
 theorem bfEquiv_all_of_companion {hsmall : Lomega1omegaSmall (L := L) M}
     {N : L.Substructure M} (hAe : AElementary (isolatorFragment hsmall) N.subtype)
     (α : Ordinal) :

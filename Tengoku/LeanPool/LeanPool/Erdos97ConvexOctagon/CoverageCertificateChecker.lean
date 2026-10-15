@@ -325,7 +325,9 @@ def nodeWordValidB
   result.ok && result.patternOrigins.isEmpty && result.childIds.isEmpty &&
     result.hardOrigins.isEmpty
 
-/-- Every active index accepted by one compact word has its recorded outcome. -/
+/-- Every active index accepted by one compact word has its recorded outcome.
+@isnad1 id=noderowv.2h8v.s5.925306c853b1 from=translated src=- shape=94e4830d vocab=0749adbd
+-/
 theorem nodeRowValid_of_word
     (claims : BranchClaims) (identifier : Nat) (claim : NodeClaim)
     (centre : Vertex) (remaining : List Vertex) (pairState : PairState)
@@ -399,7 +401,9 @@ private theorem rejectedRowValid_of_process_ok
   · have hcursorFalse := Bool.eq_false_of_not_eq_true hcursor
     simp [processRejectedRow, hcursorFalse] at hok
 
-/-- Every rejected index accepted by one compact word has a semantic conflict. -/
+/-- Every rejected index accepted by one compact word has a semantic conflict.
+@isnad1 id=rejected.2h6v.s5.627b1dbfccf2 from=translated src=- shape=f2ea4b1b vocab=918c16d5
+-/
 theorem rejectedRowValid_of_word
     (claim : NodeClaim) (centre : Vertex) (remaining : List Vertex)
     (indices targets : List Nat) (index : Nat)
@@ -470,7 +474,9 @@ def BranchClaims.LocallyValid (claims : BranchClaims) : Prop :=
   ∀ identifier, identifier < claims.nodeCount →
     nodeLocalValidB claims identifier = true
 
-/-- Extract one local node fact from a bounded chunk audit. -/
+/-- Extract one local node fact from a bounded chunk audit.
+@isnad1 id=eq.3h4v.s5.94d452cb1324 from=translated src=- shape=9c099271 vocab=ee097cf5
+-/
 theorem nodeLocalValid_of_chunk
     {claims : BranchClaims} {start count identifier : Nat}
     (haudit : nodeClaimChunkValidB claims start count = true)

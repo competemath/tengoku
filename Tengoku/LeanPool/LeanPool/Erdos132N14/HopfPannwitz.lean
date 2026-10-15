@@ -33,6 +33,9 @@ def EdgeIncident (v : ι) (e : ι × ι) : Prop :=
 def otherEndpoint (e : ι × ι) (v : ι) : ι :=
   if e.1 = v then e.2 else e.1
 
+/--
+@isnad1 id=eq.2h4v.s5.46d7ab59adc8 from=translated src=- shape=87232bf6 vocab=7d13c594
+-/
 theorem pairWith_endpoint_other
     {S : Finset ι} {e : ι × ι} {v : ι}
     (he : e ∈ pairs S) (hv : EdgeIncident v e) :
@@ -42,6 +45,9 @@ theorem pairWith_endpoint_other
   · simp [otherEndpoint, pairWith, not_lt_of_ge hlt.le]
   · simp [otherEndpoint, pairWith, hlt, ne_of_lt hlt]
 
+/--
+@isnad1 id=mem.2h4v.s5.70622a3707c9 from=translated src=- shape=8a990207 vocab=a18dcf9f
+-/
 theorem endpoint_mem
     {S : Finset ι} {e : ι × ι} {v : ι}
     (he : e ∈ pairs S) (hv : EdgeIncident v e) :
@@ -51,6 +57,9 @@ theorem endpoint_mem
   · exact hmembers.1
   · exact hmembers.2
 
+/--
+@isnad1 id=mem.2h4v.s5.ec4ea26ad5e1 from=translated src=- shape=663dc6a6 vocab=0744f3c6
+-/
 theorem otherEndpoint_mem
     {S : Finset ι} {e : ι × ι} {v : ι}
     (he : e ∈ pairs S) (hv : EdgeIncident v e) :
@@ -63,6 +72,9 @@ theorem otherEndpoint_mem
   · rw [show otherEndpoint e e.2 = e.1 by simp [otherEndpoint, ne_of_lt hlt]]
     exact hmembers.1
 
+/--
+@isnad1 id=ne.2h4v.s5.184f160e3cd8 from=translated src=- shape=f946508d vocab=0744f3c6
+-/
 theorem otherEndpoint_ne
     {S : Finset ι} {e : ι × ι} {v : ι}
     (he : e ∈ pairs S) (hv : EdgeIncident v e) :
@@ -74,6 +86,9 @@ theorem otherEndpoint_ne
   · rw [show otherEndpoint e e.2 = e.1 by simp [otherEndpoint, ne_of_lt hlt]]
     exact ne_of_lt hlt
 
+/--
+@isnad1 id=eq.2h5v.s6.a9a601d8bbeb from=translated src=- shape=bd303800 vocab=d99fd97b
+-/
 theorem dist_endpoint_other_eq_pairDistance
     (P : Configuration ι) {S : Finset ι} {e : ι × ι} {v : ι}
     (he : e ∈ pairs S) (hv : EdgeIncident v e) :
@@ -96,7 +111,9 @@ def ClockwiseExtremeAt
     0 ≤ planeTurn (P.point v)
       (P.point (otherEndpoint e v)) (P.point (otherEndpoint f v))
 
-/-- Every maximal-distance edge is clockwise-extreme at one endpoint. -/
+/-- Every maximal-distance edge is clockwise-extreme at one endpoint.
+@isnad1 id=or.3h5v.s6.d8b82c9ad9a6 from=translated src=- shape=0a2a7a28 vocab=681508dd
+-/
 theorem diameter_edge_extreme_at_endpoint
     (P : Configuration ι) (S : Finset ι) {d : ℝ}
     (hd : 0 < d)
@@ -161,7 +178,9 @@ theorem diameter_edge_extreme_at_endpoint
   rw [P.pairDistance_pairWith] at hfreeLe
   linarith
 
-/-- A vertex cannot be clockwise-extreme for two different diameter edges. -/
+/-- A vertex cannot be clockwise-extreme for two different diameter edges.
+@isnad1 id=eq.8h7v.s7.216248dcaeaa from=translated src=- shape=91f0ffcb vocab=bd9a4fac
+-/
 theorem clockwiseExtremeAt_unique
     (P : Configuration ι) (S : Finset ι) {d : ℝ}
     (hd : 0 < d)
@@ -216,6 +235,9 @@ def diameterOwner
   classical
   exact if ClockwiseExtremeAt P (diameterEdges P S d) e e.1 then e.1 else e.2
 
+/--
+@isnad1 id=edgeinci.0h5v.s4.1b74495a9495 from=translated src=- shape=e4c532d7 vocab=3f4f4f5e
+-/
 theorem diameterOwner_incident
     (P : Configuration ι) (S : Finset ι) (d : ℝ) (e : ι × ι) :
     EdgeIncident (diameterOwner P S d e) e := by
@@ -230,6 +252,9 @@ theorem diameterOwner_incident
     rw [howner]
     exact Or.inr rfl
 
+/--
+@isnad1 id=clockwis.3h5v.s6.2c96fb4447e7 from=translated src=- shape=4bf9bc96 vocab=d797c24c
+-/
 theorem diameterOwner_extreme
     (P : Configuration ι) (S : Finset ι) {d : ℝ}
     (hd : 0 < d)
@@ -252,7 +277,9 @@ theorem diameterOwner_extreme
       rw [howner]
       exact hsecond
 
-/-- The diameter owner map is injective on maximal-distance edges. -/
+/-- The diameter owner map is injective on maximal-distance edges.
+@isnad1 id=injon.2h4v.s6.db0c0a9da1db from=translated src=- shape=f16ae69d vocab=710e5bf7
+-/
 theorem diameterOwner_injectiveOn
     (P : Configuration ι) (S : Finset ι) {d : ℝ}
     (hd : 0 < d)
@@ -268,7 +295,9 @@ theorem diameterOwner_injectiveOn
     heIncident hfIncident heExtreme hfExtreme
 
 /-- The number of pairs realizing a positive maximal distance is at most the
-number of points. -/
+number of points.
+@isnad1 id=le.2h4v.s6.6f6b3165bfd0 from=translated src=- shape=0d6e5a0c vocab=14e9859a
+-/
 theorem diameterEdges_card_le
     (P : Configuration ι) (S : Finset ι) {d : ℝ}
     (hd : 0 < d)
@@ -288,7 +317,9 @@ def HopfPannwitzLowMultiplicityDistance14 : Prop :=
       P.distanceMultiplicity Finset.univ d ≤ 14
 
 /-- The Hopf--Pannwitz low-multiplicity input used by the fourteen-point
-descent, proved by charging each diameter pair to a unique endpoint. -/
+descent, proved by charging each diameter pair to a unique endpoint.
+@isnad1 id=hopfpann.0h0v.s0.6abbe6c81c50 from=translated src=- shape=45709ebd vocab=6abbe6c8
+-/
 theorem hopfPannwitzLowMultiplicityDistance14 :
     HopfPannwitzLowMultiplicityDistance14 := by
   intro P

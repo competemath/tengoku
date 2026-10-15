@@ -33,7 +33,9 @@ open Finset
 namespace Erdos865
 
 /-- **Upper bound (Erdős 865).** Every triple-free set `A ⊆ [1,N]` satisfies
-`8 * |A| ≤ 5 * N + 53`, i.e. `|A| ≤ (5/8) N + O(1)`. -/
+`8 * |A| ≤ 5 * N + 53`, i.e. `|A| ≤ (5/8) N + O(1)`.
+@isnad1 id=le.2h2v.s6.da9f2b04f434 from=translated src=- shape=1f75fb2c vocab=61bbdf11
+-/
 theorem erdos865_upper_bound (N : ℕ) (A : Finset ℕ) (hsub : A ⊆ Finset.Icc 1 N)
     (hA : IsTripleFree A) : 8 * A.card ≤ 5 * N + 53 := by
   have hsub' : A ⊆ Finset.Icc 1 (2 * ((N + 1) / 2)) :=
@@ -42,7 +44,9 @@ theorem erdos865_upper_bound (N : ℕ) (A : Finset ℕ) (hsub : A ⊆ Finset.Icc
   omega
 
 /-- **Contains a triple (Erdős 865, Theorem 1.1 form).** Every `A ⊆ [1,N]` with
-`5 * N + 53 < 8 * |A|` (i.e. `|A| ≥ (5/8) N + O(1)`) contains a pairwise-sum triple. -/
+`5 * N + 53 < 8 * |A|` (i.e. `|A| ≥ (5/8) N + O(1)`) contains a pairwise-sum triple.
+@isnad1 id=hastripl.2h2v.s6.915cb86846c8 from=translated src=- shape=732d66ce vocab=441393fa
+-/
 theorem erdos865_contains_triple (N : ℕ) (A : Finset ℕ) (hsub : A ⊆ Finset.Icc 1 N)
     (hcard : 5 * N + 53 < 8 * A.card) : HasTriple A := by
   by_contra h
@@ -50,7 +54,9 @@ theorem erdos865_contains_triple (N : ℕ) (A : Finset ℕ) (hsub : A ⊆ Finset
   omega
 
 /-- The upper bound packaged as an existence statement: there is an absolute constant `C`
-such that every triple-free `A ⊆ [1,N]` has `8 * |A| ≤ 5 * N + C`. -/
+such that every triple-free `A ⊆ [1,N]` has `8 * |A| ≤ 5 * N + C`.
+@isnad1 id=ex.0h0v.s6.740767bffd99 from=translated src=- shape=e4336831 vocab=61bbdf11
+-/
 theorem erdos865 : ∃ C : ℕ, ∀ (N : ℕ) (A : Finset ℕ), A ⊆ Finset.Icc 1 N →
     IsTripleFree A → 8 * A.card ≤ 5 * N + C :=
   ⟨53, erdos865_upper_bound⟩

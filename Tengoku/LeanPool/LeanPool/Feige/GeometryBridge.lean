@@ -30,7 +30,9 @@ def SimplexExponentialIdentification (n : ℕ) : Prop :=
 
 /-- The `δ = 1` geometric estimate in §2.2 for `dirichletK`, reduced to
 the distributional identification and the simplex centroid-halfspace
-bound. -/
+bound.
+@isnad1 id=largesum.2h1v.s4.a6dc3f129af9 from=translated src=- shape=0402b38b vocab=ecd10663
+-/
 theorem dirichletK_largeSumBridge_of_simplex
     {n : ℕ} (hid : SimplexExponentialIdentification n)
     (hcentroid : SimplexCentroidHalfspaceProperty (ι := Fin n)) :

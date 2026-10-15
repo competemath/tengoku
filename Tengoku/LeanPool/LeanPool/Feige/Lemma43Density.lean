@@ -29,7 +29,9 @@ local instance : IsProbabilityMeasure (expMeasure 1) :=
   isProbabilityMeasure_expMeasure one_pos
 
 /-- Rate-one exponential integration in the `ENNReal` form used by the
-likelihood-ratio convolution densities. -/
+likelihood-ratio convolution densities.
+@isnad1 id=eq.1h1v.s6.6c43621a5c80 from=translated src=- shape=39156403 vocab=1d600d4d
+-/
 theorem lintegral_expMeasure_one_eq
     {g : ℝ → ENNReal} (hg : Measurable g) :
     (∫⁻ s, g s ∂expMeasure 1) =
@@ -48,7 +50,9 @@ theorem lintegral_expMeasure_one_eq
   · simp [gammaPDF, gammaPDFReal, hs, LikelihoodRatio.expWeight]
 
 /-- Nonnegative test functions under `Z₊ = Y + aE` can be integrated
-against the explicit convolution density `fPlus`. -/
+against the explicit convolution density `fPlus`.
+@isnad1 id=eq.2h3v.s6.c06f18586189 from=translated src=- shape=baffba7d vocab=6f770091
+-/
 theorem lintegral_zPlusLaw_eq_fPlus
     {f h : ℝ → ENNReal} (hf : Measurable f) (hh : Measurable h)
     (a : ℝ) :
@@ -104,7 +108,9 @@ theorem lintegral_zPlusLaw_eq_fPlus
         · rfl
         · fun_prop
 /-- The pushforward law of a positive exponential shift has density
-`LikelihoodRatio.fPlus`. -/
+`LikelihoodRatio.fPlus`.
+@isnad1 id=eq.1h2v.s5.843cb29b2740 from=translated src=- shape=71ad516e vocab=04b45819
+-/
 theorem zPlusLaw_eq_withDensity_fPlus
     {f : ℝ → ENNReal} (hf : Measurable f) (a : ℝ) :
     zPlusLaw (volume.withDensity f) a =
@@ -123,7 +129,9 @@ theorem zPlusLaw_eq_withDensity_fPlus
   by_cases hx : x ∈ B <;> simp [hx]
 
 /-- Nonnegative test functions under `Z₋ = Y - bE` can be integrated
-against the explicit convolution density `fMinus`. -/
+against the explicit convolution density `fMinus`.
+@isnad1 id=eq.2h3v.s6.d42adf858688 from=translated src=- shape=baffba7d vocab=0d5345f7
+-/
 theorem lintegral_zMinusLaw_eq_fMinus
     {f h : ℝ → ENNReal} (hf : Measurable f) (hh : Measurable h)
     (b : ℝ) :
@@ -180,7 +188,9 @@ theorem lintegral_zMinusLaw_eq_fMinus
         · fun_prop
 
 /-- The pushforward law of a negative exponential shift has density
-`LikelihoodRatio.fMinus`. -/
+`LikelihoodRatio.fMinus`.
+@isnad1 id=eq.1h2v.s5.ff03c2f351ce from=translated src=- shape=71ad516e vocab=05fb6f57
+-/
 theorem zMinusLaw_eq_withDensity_fMinus
     {f : ℝ → ENNReal} (hf : Measurable f) (b : ℝ) :
     zMinusLaw (volume.withDensity f) b =
@@ -199,7 +209,9 @@ theorem zMinusLaw_eq_withDensity_fMinus
   by_cases hx : x ∈ B <;> simp [hx]
 
 /-- For a finite measure presented by a density, the actual upper-tail
-probability used by `Lemma43` is its `uIntegral`. -/
+probability used by `Lemma43` is its `uIntegral`.
+@isnad1 id=eq.2h2v.s5.ae2f36193345 from=translated src=- shape=18f7df1f vocab=1c48c497
+-/
 theorem ofReal_u_withDensity_eq_uIntegral
     {g : ℝ → ENNReal} (hg : Measurable g)
     [IsFiniteMeasure (volume.withDensity g)]
@@ -220,7 +232,9 @@ theorem ofReal_u_withDensity_eq_uIntegral
   · simp [uTailIntegrand, hx]
   · simp [uTailIntegrand, hx]
 
-/-- The analogous density identification for the lower-tail probability. -/
+/-- The analogous density identification for the lower-tail probability.
+@isnad1 id=eq.2h2v.s5.b692ca273b9a from=translated src=- shape=18f7df1f vocab=462e6312
+-/
 theorem ofReal_v_withDensity_eq_vIntegral
     {g : ℝ → ENNReal} (hg : Measurable g)
     [IsFiniteMeasure (volume.withDensity g)]
@@ -242,7 +256,9 @@ theorem ofReal_v_withDensity_eq_vIntegral
   · simp [vTailIntegrand, hx]
 
 /-- The four density identifications required by `Lemma43` are automatic for
-the actual positive and negative exponential-shift laws of a density. -/
+the actual positive and negative exponential-shift laws of a density.
+@isnad1 id=densityi.3h5v.s6.a345c26836cd from=translated src=- shape=a0542d2c vocab=8a890dd3
+-/
 theorem densityIdentification_zPlus_zMinus
     {f : ℝ → ENNReal} (hf : Measurable f)
     [IsFiniteMeasure (volume.withDensity f)]
@@ -275,7 +291,9 @@ theorem densityIdentification_zPlus_zMinus
       (LikelihoodRatio.measurable_fMinus hf b) hc
 
 /-- Consequently, the likelihood-ratio order of the two actual shifted laws
-needs no separate density-identification hypothesis. -/
+needs no separate density-identification hypothesis.
+@isnad1 id=le.6h5v.s6.3db7a7ce02d7 from=translated src=- shape=78e10ce8 vocab=31290791
+-/
 theorem theta_order_zPlus_zMinus
     {f : ℝ → ENNReal} (hf : Measurable f)
     (hflc : LikelihoodRatio.FourPointLogConcave f)

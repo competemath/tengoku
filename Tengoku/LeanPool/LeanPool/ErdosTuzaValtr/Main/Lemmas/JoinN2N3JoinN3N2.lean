@@ -21,6 +21,9 @@ open OrderDual
 
 variable {α : Type _} [LinearOrder α] (C : Config α)
 
+/--
+@isnad1 id=ex.6h7v.s7.9aae45969ea9 from=translated src=- shape=6853eaa3 vocab=cbf17420
+-/
 theorem Config.join_n2_n2_interweaved {S : Finset α} {n : ℕ} {c1 : List α}
     (c1_cup : C.NCup (n + 2) c1) (c1_in_S : c1.In S) {c2 : List α} (c2_cup : C.NCup (n + 2) c2)
     (c2_in_S : c2.In S) (x : α) (c1_last : x ∈ c1.getLast?) (c2_head : x ∈ c2.head?) :
@@ -60,6 +63,9 @@ theorem Config.join_n2_n2_interweaved {S : Finset α} {n : ℕ} {c1 : List α}
     · exact fun w hw => c1_in_S w (List.tail_subset _ hw)
     · rw [List.cons_in]; exact ⟨r_in_S, List.nil_in⟩
 
+/--
+@isnad1 id=ex.14h10v.s7.230b1036c9dc from=translated src=- shape=6e2f0894 vocab=50219a6f
+-/
 theorem Config.join_n2_n3_join_n3_n2_main (S : Finset α) (n : ℕ) (cap4_free : ¬C.HasNCap 4 S)
     (cup_free : ¬C.HasNCup (n + 4) S) {cx : List α} (cx_cup : C.NCup (n + 2) cx) (cx_in_S : cx.In S)
     {cx1 : List α} (cx1_cup : C.NCup (n + 3) cx1) (cx1_in_S : cx1.In S) {cy1 : List α}
@@ -148,6 +154,9 @@ theorem Config.join_n2_n3_join_n3_n2_main (S : Finset α) (n : ℕ) (cap4_free :
       cx_last, cx1_head, cx1_last, by rw [List.head?_cons]; rfl⟩
     rw [List.cons_in]; exact ⟨z_in_S, List.nil_in⟩
 
+/--
+@isnad1 id=ex.4h4v.s7.15177f2c1b82 from=translated src=- shape=c3485307 vocab=d9c3d34f
+-/
 theorem Config.join_n2_n3_join_n3_n2 (S : Finset α) (n : ℕ) (cap4_free : ¬C.HasNCap 4 S)
     (cup_free : ¬C.HasNCup (n + 4) S) (hx : C.HasJoin (n + 2) (n + 3) S)
     (hy : C.HasJoin (n + 3) (n + 2) S) : ∃ p q r s, C.HasInterweavedLaced (n + 3) S p q r s := by

@@ -61,14 +61,18 @@ def neighborhoodSystem : NeighborhoodSystem Token where
     obtain ⟨z, hz⟩ := hZ
     exact ⟨z, hZsub hz⟩
 
-/-- The neighbourhoods of Example 1.5 are exactly the non-empty subsets. -/
+/-- The neighbourhoods of Example 1.5 are exactly the non-empty subsets.
+@isnad1 id=iff.0h1v.s3.456eb416168b from=translated src=- shape=bb21a20e vocab=d2abc071
+-/
 theorem mem_iff_nonempty (X : Set Token) : neighborhoodSystem.mem X ↔ X.Nonempty := Iff.rfl
 
 /-- **Factoid 1.5a (Scott 1981, PRG-19).** In Example 1.5, "sets are consistent in
 `𝒟` iff they
 have a non-empty intersection": a finite prefix `X₀, …, Xₙ₋₁` is consistent
 exactly when its
-intersection `⋂_{i<n} Xᵢ` is non-empty. -/
+intersection `⋂_{i<n} Xᵢ` is non-empty.
+@isnad1 id=iff.0h2v.s4.860c6c742324 from=translated src=- shape=165e6e4b vocab=ea97152b
+-/
 theorem consistent_iff_inter_nonempty (X : ℕ → Set Token) (n : ℕ) :
     neighborhoodSystem.Consistent X n ↔ (neighborhoodSystem.interUpTo X n).Nonempty := by
   constructor

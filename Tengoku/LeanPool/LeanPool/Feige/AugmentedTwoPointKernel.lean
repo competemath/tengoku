@@ -34,11 +34,17 @@ noncomputable def augmentedTwoPointKernel : Kernel AugmentedTwoPointParams ℝ w
     refine Measure.measurable_of_measurable_coe _ fun B hB ↦ ?_
     exact measurable_const.sumElim (twoPointKernel.measurable_coe hB)
 
+/--
+@isnad1 id=eq.0h0v.s5.450e3452e9f1 from=translated src=- shape=f96d8907 vocab=5f832681
+-/
 @[simp]
 theorem augmentedTwoPointKernel_atom :
     augmentedTwoPointKernel (Sum.inl ()) = Measure.dirac 1 :=
   by simp [augmentedTwoPointKernel]
 
+/--
+@isnad1 id=eq.0h1v.s7.5dd5381b12c0 from=translated src=- shape=0e8c7dd2 vocab=2b81c8cb
+-/
 @[simp]
 theorem augmentedTwoPointKernel_pair (p : TwoPointParams) :
     augmentedTwoPointKernel (Sum.inr p) = twoPointMeasure p.1.1 p.1.2 :=
@@ -55,7 +61,9 @@ instance : IsMarkovKernel augmentedTwoPointKernel where
         rw [augmentedTwoPointKernel_pair]
         exact twoPointMeasure_isProbability p.2.1 p.2.2.1 p.2.2.2
 
-/-- Every conditional law selected by an augmented parameter has mean one. -/
+/-- Every conditional law selected by an augmented parameter has mean one.
+@isnad1 id=eq.0h1v.s5.6c2d84ea7562 from=translated src=- shape=a5cf9408 vocab=dab8bdb4
+-/
 theorem augmentedTwoPointKernel_mean (p : AugmentedTwoPointParams) :
     (∫ x : ℝ, x ∂(augmentedTwoPointKernel p)) = 1 := by
   cases p with
@@ -67,7 +75,9 @@ theorem augmentedTwoPointKernel_mean (p : AugmentedTwoPointParams) :
       exact twoPointMeasure_mean p.2.1 p.2.2.1 p.2.2.2
 
 /-- Every conditional law is concentrated on either one point or the two
-points encoded by its latent parameter. -/
+points encoded by its latent parameter.
+@isnad1 id=eq.0h1v.s7.9afaf4c58776 from=translated src=- shape=89520d08 vocab=95277fd4
+-/
 theorem augmentedTwoPointKernel_support
     (p : AugmentedTwoPointParams) :
     augmentedTwoPointKernel p
@@ -92,6 +102,9 @@ noncomputable def augmentedLatentMeasure (μ : Measure ℝ) (M : ℝ) :
   μ {1} • Measure.dirac (Sum.inl ()) +
     (latentParamsMeasure μ M).map Sum.inr
 
+/--
+@isnad1 id=eq.0h2v.s6.aee0c061661f from=translated src=- shape=4d964127 vocab=87c10a7c
+-/
 theorem augmentedLatentMeasure_apply_atom
     (μ : Measure ℝ) (M : ℝ) :
     augmentedLatentMeasure μ M (Set.range Sum.inl) = μ {1} := by
@@ -100,7 +113,9 @@ theorem augmentedLatentMeasure_apply_atom
   simp
 
 /-- Binding the augmented latent law against its conditional kernel gives
-exactly the full one-coordinate mixture. -/
+exactly the full one-coordinate mixture.
+@isnad1 id=eq.0h2v.s5.4c157d0f71a5 from=translated src=- shape=49e12fe6 vocab=5d4572a9
+-/
 theorem augmentedTwoPointKernel_comp_latent
     (μ : Measure ℝ) (M : ℝ) :
     augmentedTwoPointKernel ∘ₘ augmentedLatentMeasure μ M =
@@ -121,7 +136,9 @@ theorem augmentedTwoPointKernel_comp_latent
     rfl
 
 /-- Under the hypotheses of the decomposition, the complete latent law is
-itself a probability measure. -/
+itself a probability measure.
+@isnad1 id=isprobab.3h1v.s6.a0ab21241210 from=translated src=- shape=d45a2c26 vocab=a189c5df
+-/
 theorem augmentedLatentMeasure_isProbability
     {μ : Measure ℝ} [IsProbabilityMeasure μ]
     (hμ : Integrable (fun x : ℝ ↦ x) μ)
@@ -147,7 +164,9 @@ theorem augmentedLatentMeasure_isProbability
   exact hfull
 
 /-- The bind/Tonelli identity for the complete one-coordinate latent
-decomposition. -/
+decomposition.
+@isnad1 id=eq.1h3v.s6.e73a25d3a370 from=translated src=- shape=ec9dcd52 vocab=bbf5ebc1
+-/
 theorem lintegral_augmentedTwoPointKernel_comp
     (μ : Measure ℝ) (M : ℝ) (f : ℝ → ENNReal)
     (hf : Measurable f) :

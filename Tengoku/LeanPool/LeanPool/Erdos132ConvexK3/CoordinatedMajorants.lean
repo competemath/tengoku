@@ -24,7 +24,9 @@ namespace LeanPool.Erdos132ConvexK3
 
 namespace K3CoverSequence
 
-/-- A two-left-move path really contains the two successive strict covers. -/
+/-- A two-left-move path really contains the two successive strict covers.
+@isnad1 id=and.1h4v.s6.9c1df464547a from=translated src=- shape=44a7f002 vocab=be402a09
+-/
 theorem left_left_of_counts
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {i j : Fin n}
     (path : K3CoverSequence P i j 2 0) :
@@ -36,7 +38,9 @@ theorem left_left_of_counts
       · cases tail with
         | left hCover' _ => exact hCover'
 
-/-- A two-right-move path really contains the two successive strict covers. -/
+/-- A two-right-move path really contains the two successive strict covers.
+@isnad1 id=and.1h4v.s6.a23491fbd2d4 from=translated src=- shape=e8ede3d2 vocab=ed0c2d15
+-/
 theorem right_right_of_counts
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {i j : Fin n}
     (path : K3CoverSequence P i j 0 2) :
@@ -51,7 +55,9 @@ theorem right_right_of_counts
 end K3CoverSequence
 
 /-- The jointly minimal pair has the same exhaustive inner-count partition
-as any pair, but now every branch refers to actual cover paths. -/
+as any pair, but now every branch refers to actual cover paths.
+@isnad1 id=or.0h10v.s8.a4a521d0a8e2 from=translated src=- shape=77244bcb vocab=316591ab
+-/
 theorem coordinated_inner_endpoint_budget_partition
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     {z x t u : Fin n}
@@ -64,7 +70,9 @@ theorem coordinated_inner_endpoint_budget_partition
 
 /-- If a jointly minimal pair is exceptional, minimality rigidifies all
 possible substitutes in its Cartesian pool.  This is the exact obstruction
-to a purely order-theoretic minimization proof. -/
+to a purely order-theoretic minimization proof.
+@isnad1 id=or.1h10v.s9.f1fd43a33a0c from=translated src=- shape=c5b906ac vocab=72ec88a4
+-/
 theorem coordinated_exceptional_count_rigidity
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     {z x t u : Fin n}
@@ -118,7 +126,9 @@ theorem coordinated_exceptional_count_rigidity
       omega
 
 /-- The selected exceptional cases contain the forced two-move paths that a
-geometric exchange proof would have to replace. -/
+geometric exchange proof would have to replace.
+@isnad1 id=or.1h10v.s8.205b6d92cf15 from=translated src=- shape=4fb69c8d vocab=13416aa1
+-/
 theorem coordinated_exceptional_forced_paths
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     {z x t u : Fin n}
@@ -169,7 +179,9 @@ theorem coordinated_exceptional_forced_paths
 /-- The three exceptional pairs have exactly the endpoint geometry hidden by
 ErLV Figure 4: the inner endpoints coincide in `(1,2)` and `(2,1)`, while
 they occur in the reverse order in `(2,2)`.  Thus terminal-majorant
-nonavoidance is automatic in these branches and supplies no nesting. -/
+nonavoidance is automatic in these branches and supplies no nesting.
+@isnad1 id=or.2h9v.s9.ac2c71394aed from=translated src=- shape=d0f31eae vocab=7fb6f194
+-/
 theorem coordinated_exceptional_inner_endpoints
     {n : ℕ} [NeZero n] (hn : 4 ≤ n)
     {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ} {z x u : Fin n}
@@ -210,7 +222,9 @@ theorem coordinated_exceptional_inner_endpoints
     · rw [h22.2]
       simpa using cyclicRetreat_advance x (k := 3) (m := 2) (by omega) h3n
 
-/-- Two successive right covers exhaust the three ranks exactly. -/
+/-- Two successive right covers exhaust the three ranks exactly.
+@isnad1 id=and.3h7v.s6.10a8714e26ec from=translated src=- shape=cf379173 vocab=5472db06
+-/
 theorem right_right_cover_rank_ladder
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -232,7 +246,9 @@ theorem right_right_cover_rank_ladder
   exact strict_three_rank_chain hClasses.1 hClasses.2.1
     hStart.2 hMid.2 hEnd.2 hGrow₁ hGrow₂
 
-/-- Two successive left covers exhaust the three ranks exactly. -/
+/-- Two successive left covers exhaust the three ranks exactly.
+@isnad1 id=and.3h7v.s6.1e65635d5726 from=translated src=- shape=1e1e2c51 vocab=862f1cb2
+-/
 theorem left_left_cover_rank_ladder
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -257,7 +273,9 @@ theorem left_left_cover_rank_ladder
 /-- The intermediate edge of a forced two-right-move chain is not a
 majorant: the second move is still a strict right cover.  Thus this edge
 cannot be the cheaper terminal substitute suggested by an informal exchange
-argument. -/
+argument.
+@isnad1 id=not.1h4v.s5.a7207bc455a9 from=translated src=- shape=fffb80b3 vocab=dda338aa
+-/
 theorem right_right_intermediate_not_majorant
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {i j : Fin n}
     (path : K3CoverSequence P i j 0 2) :
@@ -266,7 +284,9 @@ theorem right_right_intermediate_not_majorant
   exact hMajorant.2 (K3CoverSequence.right_right_of_counts path).2
 
 /-- The intermediate edge of a forced two-left-move chain is not a
-majorant: the second move is still a strict left cover. -/
+majorant: the second move is still a strict left cover.
+@isnad1 id=not.1h4v.s5.5f62a3eb61a3 from=translated src=- shape=b8400cd7 vocab=946ca01d
+-/
 theorem left_left_intermediate_not_majorant
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {i j : Fin n}
     (path : K3CoverSequence P i j 2 0) :
@@ -275,7 +295,9 @@ theorem left_left_intermediate_not_majorant
   exact hMajorant.1 (K3CoverSequence.left_left_of_counts path).2
 
 /-- Retreats by two distinct offsets below the polygon size have distinct
-endpoints. -/
+endpoints.
+@isnad1 id=ne.3h4v.s5.97c018ceac69 from=translated src=- shape=5c8b6c17 vocab=bc613d89
+-/
 theorem cyclicRetreat_ne_of_lt
     {n : ℕ} [NeZero n] (i : Fin n) {a b : ℕ}
     (ha : a < n) (hb : b < n) (hab : a ≠ b) :
@@ -291,7 +313,9 @@ theorem cyclicRetreat_ne_of_lt
 /-- A `k=3` majorant witness has at most two moves in total, so its inner
 endpoint cannot be the vertex three sides away.  Consequently the two cross
 edges forced by strict ED in case `(2,2)` are not terminal edges of either
-original cover process. -/
+original cover process.
+@isnad1 id=and.1h10v.s7.cdf06b896f95 from=translated src=- shape=cb1990c4 vocab=ce0e2360
+-/
 theorem three_side_cross_edges_outside_majorant_budget
     {n : ℕ} [NeZero n] (hn : 4 ≤ n)
     {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ} {z x u : Fin n}
@@ -321,7 +345,9 @@ is not a majorant.  In `(2,2)` both failures occur simultaneously.
 This theorem does not claim that a full minimum-degree-seven configuration
 realizing one of the cases exists.  It records exactly why the local swap
 proposed after the rigidification does not produce the cheaper pair required
-by `ErLVCoordinatedMajorantExchangeComplete`. -/
+by `ErLVCoordinatedMajorantExchangeComplete`.
+@isnad1 id=or.4h10v.s9.60b1b17d976e from=translated src=- shape=69a82e9b vocab=1e2ec5ca
+-/
 theorem coordinated_exceptional_rank_and_exchange_obstruction
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -393,7 +419,9 @@ theorem coordinated_exceptional_rank_and_exchange_obstruction
 /-- Strict ED does produce a cross top-three edge from two equal avoiding
 sides.  It does not say that this diagonal is an immediate endpoint cover,
 which is precisely why it does not by itself furnish the required exchange
-path. -/
+path.
+@isnad1 id=or.5h9v.s6.8a95718a737f from=translated src=- shape=ba87abec vocab=d5b816cc
+-/
 theorem equal_avoiding_edges_force_cross_top_three
     {n : ℕ} {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -424,7 +452,9 @@ theorem equal_avoiding_edges_force_cross_top_three
 /-- In the maximal-gap setup the two starting edges `tu` and `zx` occur as
 opposite sides of the strict convex quadrilateral `t,u,z,x`.  This is the
 exact cyclic order needed to instantiate strict ED in the rigid `(2,2)`
-branch. -/
+branch.
+@isnad1 id=strictco.3h6v.s6.88022c53ba3f from=translated src=- shape=439f8073 vocab=df624335
+-/
 theorem erlv_start_edges_strict_convex_quad
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hConvex : CyclicStrictConvex P)
@@ -503,7 +533,9 @@ theorem erlv_start_edges_strict_convex_quad
 `d₃` starting sides force one of the nonlocal cross edges `zt` or `xu` into
 the top-three graph.  These cross edges move an inner endpoint by three
 polygon sides; the theorem deliberately does not misidentify either one as
-an immediate cover in a two-move majorant path. -/
+an immediate cover in a two-move majorant path.
+@isnad1 id=or.5h7v.s8.937624fd02d7 from=translated src=- shape=10dc913a vocab=3bb54a14
+-/
 theorem coordinated_exceptional_22_forces_cross_top_three
     {n : ℕ} [NeZero n] (P : Fin n → Point ℝ) (d₁ d₂ d₃ : ℝ)
     (hConvex : CyclicStrictConvex P)
@@ -582,7 +614,9 @@ def ErLVCoordinatedMajorantExchangeComplete : Prop :=
               pair.first.rightMoves + pair.second.leftMoves
 
 /-- A proof of the missing exchange would discharge the coordinated strict
-inner order and hence the already-kernelized arc-nesting geometry. -/
+inner order and hence the already-kernelized arc-nesting geometry.
+@isnad1 id=erlvinne.1h0v.s1.0927a2a2406d from=translated src=- shape=1d48f1ac vocab=2e426421
+-/
 theorem erlv_inner_endpoint_separation_complete_of_coordinated_exchange
     (hExchange : ErLVCoordinatedMajorantExchangeComplete) :
     ErLVInnerEndpointSeparationComplete := by

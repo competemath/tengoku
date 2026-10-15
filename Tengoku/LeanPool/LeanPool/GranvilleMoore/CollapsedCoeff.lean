@@ -96,7 +96,9 @@ private theorem signedCCoeff_sum_eq_prod_rat (p j n : ℕ) :
   push_cast at h
   exact h
 
-/-- `GranvilleMoore.prod_pow_sub_pow_eq_zero` over `ℚ`. -/
+/-- `GranvilleMoore.prod_pow_sub_pow_eq_zero` over `ℚ`.
+@isnad1 id=eq.1h3v.s5.fa3cc1f3bc75 from=translated src=- shape=ae5f1753 vocab=72c54848
+-/
 theorem prod_pow_sub_pow_rat_eq_zero {p n j : ℕ} (h : n < j) :
     ∏ r ∈ range j, ((p : ℚ) ^ n - (p : ℚ) ^ r) = 0 := by
   have h' := congrArg (fun a : ℤ => (a : ℚ)) (prod_pow_sub_pow_eq_zero (p := p) h)
@@ -104,7 +106,9 @@ theorem prod_pow_sub_pow_rat_eq_zero {p n j : ℕ} (h : n < j) :
   exact h'
 
 /-- `GranvilleMoore.prod_pow_sub_pow_eq_pow_mul` over `ℚ`, with the exponent written as
-`C(j,2)`. -/
+`C(j,2)`.
+@isnad1 id=eq.1h3v.s6.b99a20f53bec from=translated src=- shape=a71203cc vocab=68db42c6
+-/
 theorem prod_pow_sub_pow_rat_eq_pow_mul {p n j : ℕ} (h : j ≤ n) :
     ∏ r ∈ range j, ((p : ℚ) ^ n - (p : ℚ) ^ r)
       = (p : ℚ) ^ j.choose 2 * ∏ r ∈ range j, ((p : ℚ) ^ (n - r) - 1) := by
@@ -120,7 +124,9 @@ theorem prod_pow_sub_pow_rat_eq_pow_mul {p n j : ℕ} (h : j ≤ n) :
 Substituting the expansion `C(e_i, m) = ∑_{n ≤ m} β_{m,n} (p^n)^i` of
 `GranvilleMoore.natCast_choose_frobeniusExponent_eq_sum` into the definition and exchanging
 the two finite sums leaves, for each `n`, the signed sum `∑_i (-1)^{j-i} c_{j,i} (p^n)^i`,
-which is `∏_{r<j}(p^n - p^r)` by `GranvilleMoore.signedCCoeff_sum_eq_prod`. -/
+which is `∏_{r<j}(p^n - p^r)` by `GranvilleMoore.signedCCoeff_sum_eq_prod`.
+@isnad1 id=eq.1h3v.s6.3b80e1ec7d01 from=translated src=- shape=8ce8ec91 vocab=f63a2945
+-/
 theorem collapsedCoeff_eq_sum {p : ℕ} (hp : 2 ≤ p) (j m : ℕ) :
     collapsedCoeff p j m
       = ∑ n ∈ range (m + 1),
@@ -144,7 +150,9 @@ theorem collapsedCoeff_eq_sum {p : ℕ} (hp : 2 ≤ p) (j m : ℕ) :
 `A_j(m) = 0` for `m < j`.
 
 Every index `n` of the closed form satisfies `n ≤ m < j`, so every product vanishes by
-`GranvilleMoore.prod_pow_sub_pow_eq_zero`. -/
+`GranvilleMoore.prod_pow_sub_pow_eq_zero`.
+@isnad1 id=eq.2h3v.s5.907dcb5bf38b from=translated src=- shape=1bf335a5 vocab=3bb11d2a
+-/
 theorem collapsedCoeff_eq_zero {p : ℕ} (hp : 2 ≤ p) {j m : ℕ} (h : m < j) :
     collapsedCoeff p j m = 0 := by
   rw [collapsedCoeff_eq_sum hp]
@@ -189,7 +197,9 @@ private theorem exists_intCast_term {p : ℕ} (hp : p ≠ 1) (j m n : ℕ) :
 
 This is the unconditional content behind the valuation inequality: it exhibits the denominator of
 `A_j(m)` explicitly as `m! (p-1)^m` and its `p`-power numerator as `p^{C(j,2)}`. In the closed form
-every term with `n < j` vanishes and every term with `n ≥ j` contributes a factor `p^{C(j,2)}`. -/
+every term with `n < j` vanishes and every term with `n ≥ j` contributes a factor `p^{C(j,2)}`.
+@isnad1 id=ex.1h3v.s6.907cc9354b9f from=translated src=- shape=c2cd2aa0 vocab=3973d245
+-/
 theorem exists_intCast_eq_factorial_mul_pow_mul_collapsedCoeff {p : ℕ} (hp : 2 ≤ p)
     (j m : ℕ) :
     ∃ a : ℤ, (m.factorial : ℚ) * ((p : ℚ) - 1) ^ m * collapsedCoeff p j m
@@ -205,7 +215,9 @@ right has nonnegative valuation and `v_p((p-1)^m) = 0`, so
 `v_p(m!) + v_p(A_j(m)) ≥ C(j,2)`.
 
 The hypothesis `A_j(m) ≠ 0` is needed because `padicValRat p 0 = 0`; a consumer that cannot
-supply it should use the algebraic form, which has no side condition. -/
+supply it should use the algebraic form, which has no side condition.
+@isnad1 id=le.2h3v.s5.376d1f52478f from=translated src=- shape=bcb96ded vocab=8d469689
+-/
 theorem le_padicValRat_collapsedCoeff {p : ℕ} (hp : p.Prime) {j m : ℕ}
     (h : collapsedCoeff p j m ≠ 0) :
     (j.choose 2 : ℤ) - padicValRat p (m.factorial : ℚ)
@@ -254,7 +266,9 @@ private theorem coeff_prod_X_sub_one_sub_C_self (p m : ℕ) :
 
 Clearing the denominators of `B_m` turns it into the monic polynomial
 `∏_{s<m} (X - 1 - s(p-1))` of degree `m` (`GranvilleMoore.C_mul_binomPoly_eq_prod`), whose
-top coefficient is `1`. -/
+top coefficient is `1`.
+@isnad1 id=eq.1h2v.s6.493cc45697d2 from=translated src=- shape=1359e3df vocab=66ae5e55
+-/
 theorem factorial_mul_pow_mul_binomPolyCoeff_self {p : ℕ} (hp : p ≠ 1) (m : ℕ) :
     (m.factorial : ℚ) * ((p : ℚ) - 1) ^ m * binomPolyCoeff p m m = 1 := by
   rw [binomPolyCoeff, ← coeff_C_mul, C_mul_binomPoly_eq_prod hp m,
@@ -275,7 +289,9 @@ private theorem prod_pow_sub_one_reflect (p j : ℕ) :
 In the closed form with `m = j` every term with `n < j` vanishes, leaving the single term
 `β_{j,j} ∏_{r<j}(p^j - p^r)`; that product factors as `p^{C(j,2)} ∏_{r<j}(p^{j-r} - 1)` by
 `GranvilleMoore.prod_pow_sub_pow_eq_pow_mul`, and re-indexing by `s = j - 1 - r` turns the
-remaining product into `∏_{s<j}(p^{s+1} - 1)`, each of whose factors is `≡ -1 (mod p)`. -/
+remaining product into `∏_{s<j}(p^{s+1} - 1)`, each of whose factors is `≡ -1 (mod p)`.
+@isnad1 id=eq.1h2v.s6.ceee416075b5 from=translated src=- shape=e7e9a346 vocab=2829f8bf
+-/
 theorem collapsedCoeff_self_eq {p : ℕ} (hp : 2 ≤ p) (j : ℕ) :
     collapsedCoeff p j j
       = binomPolyCoeff p j j * (p : ℚ) ^ j.choose 2 *
@@ -291,7 +307,9 @@ theorem collapsedCoeff_self_eq {p : ℕ} (hp : 2 ≤ p) (j : ℕ) :
 The factorisation of `GranvilleMoore.collapsedCoeff_self_eq` with `β_{j,j}` eliminated by
 `GranvilleMoore.factorial_mul_pow_mul_binomPolyCoeff_self`. Dividing by `p^{C(j,2)}` and by
 `(p-1)^j` this reads `A_j(j)/p^{C(j,2)} = (1/j!) ∏_{s<j}(p^{s+1}-1)/(p-1)^j`, which is the
-displayed formula of the paper's proof. -/
+displayed formula of the paper's proof.
+@isnad1 id=eq.1h2v.s7.54ec4de5f9bb from=translated src=- shape=aeeeb4f4 vocab=0134403a
+-/
 theorem factorial_mul_pow_mul_collapsedCoeff_self {p : ℕ} (hp : 2 ≤ p) (j : ℕ) :
     (j.factorial : ℚ) * ((p : ℚ) - 1) ^ j * collapsedCoeff p j j
       = (p : ℚ) ^ j.choose 2 * ∏ s ∈ range j, ((p : ℚ) ^ (s + 1) - 1) := by
@@ -313,7 +331,9 @@ private theorem dvd_prod_pow_sub_one_sub_pow (p j : ℕ) :
 Equivalently `j! A_j(j)/p^{C(j,2)} = 1 + p a/(p-1)^j`, and since `p ∤ p - 1` the correction
 term has positive valuation: this is the congruence `A_j(j)/p^{C(j,2)} ≡ 1/j! (mod p)`, with
 `j!` cleared instead of inverted. It comes from the division-free identity together with
-`∏_{s<j}(p^{s+1} - 1) ≡ (p-1)^j (mod p)`, both sides being `≡ (-1)^j`. -/
+`∏_{s<j}(p^{s+1} - 1) ≡ (p-1)^j (mod p)`, both sides being `≡ (-1)^j`.
+@isnad1 id=ex.1h2v.s7.6dd8e599664f from=translated src=- shape=c917e899 vocab=213c6a44
+-/
 theorem exists_int_factorial_mul_pow_mul_collapsedCoeff_self {p : ℕ} (hp : 2 ≤ p) (j : ℕ) :
     ∃ a : ℤ, (j.factorial : ℚ) * ((p : ℚ) - 1) ^ j * collapsedCoeff p j j
       = (p : ℚ) ^ j.choose 2 * (((p : ℚ) - 1) ^ j + (p : ℚ) * (a : ℚ)) := by

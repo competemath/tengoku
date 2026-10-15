@@ -29,6 +29,9 @@ def HasLaced (n : ℕ) (S : Finset α) (p q : α) : Prop :=
 
 namespace HasLaced
 
+/--
+@isnad1 id=and.1h6v.s5.60284ef6b2a2 from=translated src=- shape=be07d176 vocab=65e79a55
+-/
 theorem mem_ends {C : Config α} {n : ℕ} {S : Finset α} {p q : α} (h : C.HasLaced n S p q) :
     p ∈ S ∧ q ∈ S := by
   rcases h with ⟨-, -, -, c, -, -, -, -, ⟨-, c_in_S, -⟩, -, ⟨-, c_head, c_last, -⟩⟩

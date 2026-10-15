@@ -179,7 +179,9 @@ with arbitrarily large models has, at every infinite `κ`, a model of size exact
 only countably many complete `L_{ω₁ω}`-types. The final structure is literally the reduct of
 the countable-language small model along `uniformCollapse φ`, so satisfaction is generic
 (`realize_mapLanguage`) and smallness descends (`Lomega1omegaSmall.of_expansion`); the carrier
-and hence its cardinality are unchanged. -/
+and hence its cardinality are unchanged.
+@isnad1 id=ex.2h3v.s5.b3bc21c93ed3 from=translated src=- shape=39bd4d60 vocab=4212636e
+-/
 theorem exists_small_model_of_hasArbLargeModels {φ : L.Sentenceω}
     (hφarb : HasArbLargeModels φ) {κ : Cardinal.{0}} (hκ : Cardinal.aleph0 ≤ κ) :
     ∃ (N : Type) (_ : L.Structure N),

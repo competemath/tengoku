@@ -42,7 +42,9 @@ variable {X : Type*} [TopologicalSpace X] [T2Space X] [CompactSpace X] [Connecte
 /-- **Compat** (request filed to `jacobian-construction`'s `Periods.lean`, built here as this
 unit's own D2 since it is small and self-contained): `RS.periodSubgroup X`'s generating set is
 already closed under the loop operations, so the closure adds nothing — every element is the
-`periodVector` of a single based loop at the fixed basepoint `Classical.arbitrary X`. -/
+`periodVector` of a single based loop at the fixed basepoint `Classical.arbitrary X`.
+@isnad1 id=iff.0h2v.s8.13804dfa44a7 from=translated src=- shape=a7417686 vocab=54fce239
+-/
 theorem mem_periodSubgroup_iff_exists_loop {v : Fin (genus X) → ℂ} :
     v ∈ RS.periodSubgroup X ↔
       ∃ α : Path (Classical.arbitrary X) (Classical.arbitrary X),

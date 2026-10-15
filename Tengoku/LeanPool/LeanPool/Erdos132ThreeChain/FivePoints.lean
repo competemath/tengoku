@@ -30,7 +30,9 @@ This is the five-point Gram obstruction in its scale-free form.
 namespace Erdos132ThreeChain
 
 /-- Two points on the circle of squared radius `c` about `o`, at squared distance `c` or
-`3 * c`, subtend an inner product of `± c / 2`. -/
+`3 * c`, subtend an inner product of `± c / 2`.
+@isnad1 id=eq.3h4v.s6.ce2a3d8c1d23 from=translated src=- shape=6b714548 vocab=3eef524f
+-/
 theorem dot_sq_of_chain {O P Q : Point} {c : ℝ} (hP : sqDist P O = c) (hQ : sqDist Q O = c)
     (h : sqDist P Q = c ∨ sqDist P Q = 3 * c) : dotp O P Q ^ 2 = c ^ 2 / 4 := by
   have hd := two_mul_dotp O P Q
@@ -42,7 +44,9 @@ theorem dot_sq_of_chain {O P Q : Point} {c : ℝ} (hP : sqDist P O = c) (hQ : sq
     rw [this]; ring
 
 /-- Singularity of the three-vector Gram matrix pins the triple product of the three inner
-products. -/
+products.
+@isnad1 id=eq.6h5v.s8.f7667c64db2f from=translated src=- shape=25f3acf3 vocab=e52b30ec
+-/
 theorem dot_triple_prod {O P Q R : Point} {c : ℝ}
     (hP : sqDist P O = c) (hQ : sqDist Q O = c) (hR : sqDist R O = c)
     (hpq : dotp O P Q ^ 2 = c ^ 2 / 4) (hpr : dotp O P R ^ 2 = c ^ 2 / 4)
@@ -53,7 +57,9 @@ theorem dot_triple_prod {O P Q R : Point} {c : ℝ}
   linear_combination (1 / 2) * hg + (c / 2) * hpq + (c / 2) * hpr + (c / 2) * hqr
 
 /-- **No four points on a circle.**  Four points at squared distance `c > 0` from a common
-centre cannot have all six pairwise squared distances in `{c, 3 * c}`. -/
+centre cannot have all six pairwise squared distances in `{c, 3 * c}`.
+@isnad1 id=false.11h6v.s7.c9bac83ca71e from=translated src=- shape=168c00b4 vocab=fd2ac960
+-/
 theorem no_four_on_circle {O P Q R S : Point} {c : ℝ} (hc : 0 < c)
     (hP : sqDist P O = c) (hQ : sqDist Q O = c) (hR : sqDist R O = c) (hS : sqDist S O = c)
     (hPQ : sqDist P Q = c ∨ sqDist P Q = 3 * c)
@@ -88,7 +94,9 @@ theorem no_four_on_circle {O P Q R S : Point} {c : ℝ} (hc : 0 < c)
 /-- **The five-point obstruction.**  Five plane points whose ten squared distances are all `c`
 times a nonnegative power of three, with `c` realised by the edge `A B`, do not exist.  Since
 `IsChainValue c x` forces `c ≤ x`, the hypothesis `sqDist A B = c` says exactly that `A B` is a
-shortest edge. -/
+shortest edge.
+@isnad1 id=false.11h6v.s6.6c5645b00474 from=translated src=- shape=26408b71 vocab=7d64ce47
+-/
 theorem no_five_chain_points {A B C D E : Point} {c : ℝ} (hc : 0 < c) (hAB : sqDist A B = c)
     (hAC : IsChainValue c (sqDist A C)) (hAD : IsChainValue c (sqDist A D))
     (hAE : IsChainValue c (sqDist A E)) (hBC : IsChainValue c (sqDist B C))

@@ -22,21 +22,27 @@ It closes the three terminal-color obligations left after `TailClosure.lean`:
 
 namespace LeanPool.Erdos132ConvexK3
 
-/-- Strict order of squared Euclidean distances is strict order of distances. -/
+/-- Strict order of squared Euclidean distances is strict order of distances.
+@isnad1 id=lt.1h4v.s5.6ca53b715f2a from=translated src=- shape=8b9fd7dc vocab=02aa8c50
+-/
 theorem euclideanDist_lt_of_sqDist_lt
     {a b c d : Point ℝ} (h : sqDist a b < sqDist c d) :
     euclideanDist a b < euclideanDist c d := by
   rw [← euclideanDist_sq, ← euclideanDist_sq] at h
   exact (sq_lt_sq₀ dist_nonneg dist_nonneg).mp h
 
-/-- Weak order of squared Euclidean distances is weak order of distances. -/
+/-- Weak order of squared Euclidean distances is weak order of distances.
+@isnad1 id=le.1h4v.s5.24c352249828 from=translated src=- shape=8b9fd7dc vocab=0bec772c
+-/
 theorem euclideanDist_le_of_sqDist_le
     {a b c d : Point ℝ} (h : sqDist a b ≤ sqDist c d) :
     euclideanDist a b ≤ euclideanDist c d := by
   rw [← euclideanDist_sq, ← euclideanDist_sq] at h
   exact (sq_le_sq₀ dist_nonneg dist_nonneg).mp h
 
-/-- Strict order of Euclidean distances is strict order of their squares. -/
+/-- Strict order of Euclidean distances is strict order of their squares.
+@isnad1 id=lt.1h4v.s5.c74130a033f5 from=translated src=- shape=8c190638 vocab=02aa8c50
+-/
 theorem sqDist_lt_of_euclideanDist_lt
     {a b c d : Point ℝ} (h : euclideanDist a b < euclideanDist c d) :
     sqDist a b < sqDist c d := by
@@ -44,7 +50,9 @@ theorem sqDist_lt_of_euclideanDist_lt
   exact (sq_lt_sq₀ dist_nonneg dist_nonneg).mpr h
 
 /-- Four increasing offsets, not necessarily starting at zero, form a
-strict convex quadrilateral. -/
+strict convex quadrilateral.
+@isnad1 id=strictco.5h7v.s6.de792d4a8201 from=translated src=- shape=5a1094d6 vocab=80ae23cb
+-/
 theorem cyclic_strict_convex_quad_offsets
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ}
     (hConvex : CyclicStrictConvex P) (base : Fin n)
@@ -63,7 +71,9 @@ theorem cyclic_strict_convex_quad_offsets
   simpa only [hab', hac', had'] using h
 
 /-- Every later offset lies in the inward open half-plane of any preceding
-consecutive boundary pair. -/
+consecutive boundary pair.
+@isnad1 id=inleftop.3h5v.s6.68b06ce70dd3 from=translated src=- shape=5e4f78c6 vocab=7b5354f5
+-/
 theorem cyclic_offset_in_consecutive_left_open_half_plane
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ}
     (hConvex : CyclicStrictConvex P) (base : Fin n) {a k : ℕ}
@@ -80,7 +90,9 @@ theorem cyclic_offset_in_consecutive_left_open_half_plane
 
 /-- Equal radii from the first vertex of a strict convex quadrilateral are
 strictly ordered from its consecutive second vertex.  This is the kernel
-form of project proof-draft Lemma 3.4. -/
+form of project proof-draft Lemma 3.4.
+@isnad1 id=lt.2h4v.s5.ef73aca762a0 from=translated src=- shape=6d28d2ee vocab=f02df1b8
+-/
 theorem equal_radius_arc_strict_order
     {a b r₁ r₂ : Point ℝ}
     (hquad : StrictConvexQuad a b r₁ r₂)
@@ -94,7 +106,9 @@ theorem equal_radius_arc_strict_order
   exact sqDist_lt_of_euclideanDist_lt hdist
 
 /-- Fixed radii from two centers determine at most one cyclic offset when
-all candidate points lie in the same open half-plane. -/
+all candidate points lie in the same open half-plane.
+@isnad1 id=le.4h8v.s7.31041a4a94cd from=translated src=- shape=dd3e1572 vocab=933d2d2f
+-/
 theorem fixed_radii_offset_card_le_one
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ}
     (hInjective : Function.Injective P) (base a b : Fin n)
@@ -125,7 +139,9 @@ theorem fixed_radii_offset_card_le_one
   rw [hkCast, hellCast] at hlabel
   exact add_left_cancel hlabel
 
-/-- Two allowed fixed-radius pairs give at most two cyclic offsets. -/
+/-- Two allowed fixed-radius pairs give at most two cyclic offsets.
+@isnad1 id=le.4h10v.s7.dec4d0346ad5 from=translated src=- shape=1717438b vocab=933d2d2f
+-/
 theorem two_fixed_radius_pairs_card_le_two
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ}
     (hInjective : Function.Injective P) (base a b : Fin n)
@@ -168,7 +184,9 @@ theorem two_fixed_radius_pairs_card_le_two
     _ ≤ A.card + B.card := Finset.card_union_le _ _
     _ ≤ 2 := by omega
 
-/-- Three allowed fixed-radius pairs give at most three cyclic offsets. -/
+/-- Three allowed fixed-radius pairs give at most three cyclic offsets.
+@isnad1 id=le.4h12v.s7.6d5063d70281 from=translated src=- shape=48e25492 vocab=933d2d2f
+-/
 theorem three_fixed_radius_pairs_card_le_three
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ}
     (hInjective : Function.Injective P) (base a b : Fin n)
@@ -242,7 +260,9 @@ noncomputable def erlvZOffset
   n - (firstClockwiseNeighborOffset P d₁ d₂ d₃ S.x).val
 
 /-- The maximal-gap budget locates `u` and `z` with three spare boundary
-sides between them. -/
+sides between them.
+@isnad1 id=and.0h6v.s7.17f2ca8aafe5 from=translated src=- shape=2ff9b59a vocab=7833260e
+-/
 theorem erlv_u_z_offset_data
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (S : ErLVAtVertexUseSite P d₁ d₂ d₃) :
@@ -286,7 +306,9 @@ theorem erlv_u_z_offset_data
     hzlt, huIndex, hzIndex⟩
 
 /-- At most `4+β` neighbors of the maximal-gap vertex occur through the
-offset `u+β`, for `β≤1`. -/
+offset `u+β`, for `β≤1`.
+@isnad1 id=le.1h7v.s6.e17f4f16e79d from=translated src=- shape=0dc1204f vocab=6eec1c73
+-/
 theorem erlv_x_head_card_le
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (S : ErLVAtVertexUseSite P d₁ d₂ d₃) (β : ℕ) (hβ : β ≤ 1) :
@@ -325,7 +347,9 @@ theorem erlv_x_head_card_le
   simpa [N, m, erlvUOffset] using hbound
 
 /-- A bound on the offsets after `u+β` combines with the maximal-gap head
-count to bound the degree of `x`. -/
+count to bound the degree of `x`.
+@isnad1 id=le.2h8v.s7.49fd90b175cf from=translated src=- shape=e79a6110 vocab=ffe08365
+-/
 theorem erlv_x_degree_le_of_tail_card
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (S : ErLVAtVertexUseSite P d₁ d₂ d₃) (β tailCap : ℕ)
@@ -359,6 +383,9 @@ noncomputable def erlvPUOffset
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (S : ErLVAtVertexUseSite P d₁ d₂ d₃) : ℕ := erlvUOffset S - 1
 
+/--
+@isnad1 id=and.0h6v.s6.a8d4f9a299b1 from=translated src=- shape=5a4d9b22 vocab=81b60cc4
+-/
 theorem erlv_p_u_offset_data
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (S : ErLVAtVertexUseSite P d₁ d₂ d₃) :
@@ -375,7 +402,9 @@ theorem erlv_p_u_offset_data
   exact hOffsets.2.2.2.1
 
 /-- Splitting all `p`-neighbor offsets at `u` converts two open-arc bounds
-and the single endpoint bound into a degree bound. -/
+and the single endpoint bound into a degree bound.
+@isnad1 id=le.3h9v.s8.82573a722558 from=translated src=- shape=b5b2a260 vocab=ec36cd70
+-/
 theorem erlv_p_degree_le_of_arc_cards
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (S : ErLVAtVertexUseSite P d₁ d₂ d₃)
@@ -616,7 +645,9 @@ private theorem case12_tail_offset_geometry
         omega) k.isLt
     simpa using h
 
-/-- Section 6.1: the no-outer-move part of terminal color `(1,2)-d₁`. -/
+/-- Section 6.1: the no-outer-move part of terminal color `(1,2)-d₁`.
+@isnad1 id=false.3h6v.s8.44adb86d265c from=translated src=- shape=08da7515 vocab=67ec1c46
+-/
 theorem erlv_case12_other_d1_bzero_impossible
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (S : ErLVAtVertexUseSite P d₁ d₂ d₃) (h12 : S.Case12)
@@ -817,7 +848,9 @@ theorem erlv_case12_other_d1_bzero_impossible
       exact case12_bzero_false_of_tail_card_le_two S (by
         simpa [tail, N, uoff, x] using htailCard)
 
-/-- Section 6.2: the one-outer-move part of terminal color `(1,2)-d₁`. -/
+/-- Section 6.2: the one-outer-move part of terminal color `(1,2)-d₁`.
+@isnad1 id=false.3h6v.s8.57833cad2d71 from=translated src=- shape=08da7515 vocab=67ec1c46
+-/
 theorem erlv_case12_other_d1_bone_impossible
     {n : ℕ} [NeZero n] {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (S : ErLVAtVertexUseSite P d₁ d₂ d₃) (h12 : S.Case12)
@@ -1026,7 +1059,9 @@ theorem erlv_case12_other_d1_bone_impossible
           · have hdegree := hbounds.2 hxuD₂
             exact high_degree_le_six_false S S.x (hdegree.trans (by omega))
 
-/-- Session-9 obligation 1/8: terminal color `(1,2)-d₁`. -/
+/-- Session-9 obligation 1/8: terminal color `(1,2)-d₁`.
+@isnad1 id=erlvatve.0h0v.s0.35222a5f7cc7 from=translated src=- shape=45709ebd vocab=35222a5f
+-/
 theorem erlv_at_vertex_case12_other_d1_impossible_of_tail :
     ErLVAtVertexCase12OtherD1Impossible := by
   intro n _ P d₁ d₂ d₃ S h12 hOther
@@ -1104,7 +1139,9 @@ private theorem case21_d1_false_of_tail_card_le_one
   have hdegree := erlv_x_degree_le_of_tail_card S β 1 hβ htail
   exact high_degree_le_six_false S S.x (hdegree.trans (by omega))
 
-/-- Session-9 obligation 3/8: terminal color `(2,1)-d₁` (project proof-draft Section 7). -/
+/-- Session-9 obligation 3/8: terminal color `(2,1)-d₁` (project proof-draft Section 7).
+@isnad1 id=erlvatve.0h0v.s0.72271d7f4b83 from=translated src=- shape=45709ebd vocab=72271d7f
+-/
 theorem erlv_at_vertex_case21_other_d1_impossible_of_tail :
     ErLVAtVertexCase21OtherD1Impossible := by
   intro n _ P d₁ d₂ d₃ S h21 hOther
@@ -1771,7 +1808,9 @@ private theorem case21_d2_left_half
   rw [← hpoint] at h
   simpa using h
 
-/-- Session-9 obligation 4/8: terminal color `(2,1)-d₂` (project proof-draft Section 8). -/
+/-- Session-9 obligation 4/8: terminal color `(2,1)-d₂` (project proof-draft Section 8).
+@isnad1 id=erlvatve.0h0v.s0.d98ff528ce81 from=translated src=- shape=45709ebd vocab=d98ff528
+-/
 theorem erlv_at_vertex_case21_other_d2_impossible_of_tail :
     ErLVAtVertexCase21OtherD2Impossible := by
   intro n _ P d₁ d₂ d₃ S h21 hOther
@@ -1961,7 +2000,9 @@ theorem erlv_at_vertex_case21_other_d2_impossible_of_tail :
     · have htailCard := D.xtail_card hxuLe
       exact case12_bzero_false_of_tail_card_le_two S htailCard
     · exact case21_d2_low_pivot_impossible S D hpuLow (lt_of_not_ge hxuLe)
-/-- All eight terminal-color obligations are now kernel proofs. -/
+/-- All eight terminal-color obligations are now kernel proofs.
+@isnad1 id=erlvatve.0h0v.s0.ee236275c200 from=translated src=- shape=45709ebd vocab=ee236275
+-/
 theorem erlv_at_vertex_exceptional_branches_impossible_of_tail :
     ErLVAtVertexExceptionalBranchesImpossible :=
   erlv_at_vertex_exceptional_branches_impossible_of_remaining_three
@@ -1970,14 +2011,18 @@ theorem erlv_at_vertex_exceptional_branches_impossible_of_tail :
     erlv_at_vertex_case21_other_d2_impossible_of_tail
 
 /-- The closed eight-color gate proves the source's strict inner-endpoint
-order without the formerly postulated coordinated exchange. -/
+order without the formerly postulated coordinated exchange.
+@isnad1 id=erlvinne.0h0v.s0.5e2ed667e853 from=translated src=- shape=45709ebd vocab=5e2ed667
+-/
 theorem erlv_inner_endpoint_separation_complete_of_tail :
     ErLVInnerEndpointSeparationComplete :=
   erlv_inner_endpoint_separation_complete_of_at_vertex_closure
     erlv_at_vertex_exceptional_branches_impossible_of_tail
 
 /-- The full source-facing ErLV majorant arc-nesting proposition is now an
-unconditional kernel theorem. -/
+unconditional kernel theorem.
+@isnad1 id=erlvmajo.0h0v.s0.0083d89e65fc from=translated src=- shape=45709ebd vocab=0083d89e
+-/
 theorem erlv_majorant_arc_nesting_complete_of_tail :
     ErLVMajorantArcNestingComplete :=
   erlv_majorant_arc_nesting_complete_of_at_vertex_closure

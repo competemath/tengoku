@@ -44,7 +44,9 @@ inductive Request (U : Set L[[ℕ]].Sentenceω) where
 
 namespace Request
 
-/-- The request type is countable when `U` and the relation symbols are. -/
+/-- The request type is countable when `U` and the relation symbols are.
+@isnad1 id=countabl.0h2v.s4.fe4154aac1b1 from=translated src=- shape=26797e51 vocab=6ccc4dd3
+-/
 instance instCountable [Countable U] [Countable (Σ l, L.Relations l)] :
     Countable (Request U) := by
   have : ∀ l, Countable (L.Relations l) := countable_relations_each
@@ -478,7 +480,9 @@ private theorem henkinComplete_Sstar : HenkinComplete U (Sstar e S₀) where
 omit he in
 /-- **Fair enumeration** (the acceptance theorem): a consistent set in a `ConsistencyPropertyEqOn
 U` (over a countable `U` and countable relation symbols) extends to a Henkin-complete `S* ⊇ S₀`
-inside `U`. -/
+inside `U`.
+@isnad1 id=ex.0h4v.s6.65807f882190 from=translated src=- shape=4f1d52f1 vocab=a877ccdf
+-/
 theorem exists_henkinComplete [Countable U] [Countable (Σ l, L.Relations l)] :
     ∃ Sstar : Set L[[ℕ]].Sentenceω,
       S₀.1 ⊆ Sstar ∧ Sstar ⊆ U ∧ HenkinComplete U Sstar := by

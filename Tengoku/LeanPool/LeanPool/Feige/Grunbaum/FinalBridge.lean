@@ -17,6 +17,9 @@ open MeasureTheory Set
 
 namespace Grunbaum
 
+/--
+@isnad1 id=le.1h5v.s8.33ef8ce51f28 from=translated src=- shape=ecefefec vocab=34b2de4c
+-/
 lemma trunc_mono {d : ℕ} {C : Set (Euc d)}
     {ℓ : Euc d →L[ℝ] ℝ} {s t : ℝ} (hst : s ≤ t) :
     trunc C ℓ s ⊆ trunc C ℓ t := by
@@ -25,6 +28,9 @@ lemma trunc_mono {d : ℕ} {C : Set (Euc d)}
   change x ∈ C ∧ ℓ x ≤ t
   exact ⟨hx.1, hx.2.trans hst⟩
 
+/--
+@isnad1 id=eq.0h4v.s10.ee56ed9f3741 from=translated src=- shape=c1f39d48 vocab=0e216216
+-/
 lemma cdfRoot_pow_dimension {d : ℕ} (C : Set (Euc d))
     (ℓ : Euc d →L[ℝ] ℝ) (t : ℝ) :
     cdfRoot C ℓ t ^ (d + 1) =
@@ -36,6 +42,9 @@ lemma cdfRoot_pow_dimension {d : ℕ} (C : Set (Euc d))
       (ENNReal.rpow_inv_natCast_pow (Nat.succ_ne_zero d)
         (volume (trunc C ℓ t) / volume C))
 
+/--
+@isnad1 id=le.1h5v.s11.af5e5836b77c from=translated src=- shape=9d0bd8a4 vocab=d429bbbb
+-/
 lemma truncVolumeRatio_mono {d : ℕ}
     (C : FullDimensionalConvexBody d) (ℓ : Euc d →L[ℝ] ℝ)
     {s t : ℝ} (hst : s ≤ t) :
@@ -63,7 +72,9 @@ lemma truncVolumeRatio_mono {d : ℕ}
   exact ENNReal.toReal_mono hfinite hdiv
 
 /-- Raise a lower bound on the CDF root at the centroid and enlarge the
-centroid cut to any containing halfspace. -/
+centroid cut to any containing halfspace.
+@isnad1 id=le.2h4v.s10.320e4e034ea1 from=translated src=- shape=87e04ec3 vocab=c1b04c60
+-/
 theorem grunbaum_bound_of_cdfRoot {d : ℕ}
     (C : FullDimensionalConvexBody d)
     (ℓ : Euc d →L[ℝ] ℝ) (a : ℝ)

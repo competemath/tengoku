@@ -25,6 +25,9 @@ noncomputable def descendingChain (z : α) : ℕ → α
   | 0       => z
   | (i + 1) => @Classical.epsilon α ⟨z⟩ (fun y => y ≺ descendingChain z i ∧ ¬Acc r y)
 
+/--
+@isnad1 id=iff.0h3v.s4.fc0ef6d79582 from=translated src=- shape=08cd5b50 vocab=0d1d1ec1
+-/
 lemma not_acc_iff {x : α} : ¬Acc r x ↔ ∃ y, y ≺ x ∧ ¬Acc r y :=
   ⟨by
     intro hx
@@ -35,8 +38,14 @@ lemma not_acc_iff {x : α} : ¬Acc r x ↔ ∃ y, y ≺ x ∧ ¬Acc r y :=
     rintro ⟨y, hy, hy'⟩ hx
     exact hy' (Acc.inv hx hy)⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.e5d05bc798fd from=translated src=- shape=98054f23 vocab=ca64955d
+-/
 @[simp] lemma descending_chain_zero (z : α) : descendingChain r z 0 = z := rfl
 
+/--
+@isnad1 id=isinfini.1h3v.s4.f4cd27149483 from=translated src=- shape=52dd7537 vocab=bfc8e3b2
+-/
 lemma isInfiniteDescendingChain_of_non_acc (z : α) (hz : ¬Acc r z) :
     IsInfiniteDescendingChain r (descendingChain r z) := by
   have : ∀ i, (i ≠ 0 → descendingChain r z i ≺ descendingChain r z i.pred) ∧
@@ -57,6 +66,9 @@ section «lp_section_2»
 
 variable {α : Type*} [HeytingAlgebra α]
 
+/--
+@isnad1 id=le.0h4v.s6.c5d78eef1af8 from=translated src=- shape=1792c53d vocab=49ef2aab
+-/
 lemma himp_himp_inf_himp_inf_le (a b c : α) : (a ⇨ b ⇨ c) ⊓ (a ⇨ b) ⊓ a ≤ c := calc
   (a ⇨ b ⇨ c) ⊓ (a ⇨ b) ⊓ a = (a ⇨ b ⇨ c) ⊓ b ⊓ a := by simp only [inf_assoc, himp_inf_self]
   _                         = (a ⇨ b ⇨ c) ⊓ a ⊓ b := by simp only [inf_assoc, inf_comm a b]
@@ -67,6 +79,9 @@ lemma himp_himp_inf_himp_inf_le (a b c : α) : (a ⇨ b ⇨ c) ⊓ (a ⇨ b) ⊓
     · exact inf_le_right
   _                         ≤ c                   := by simp
 
+/--
+@isnad1 id=le.0h4v.s6.807eff0c611c from=translated src=- shape=63752a0d vocab=58f85b1e
+-/
 lemma himp_inf_himp_inf_sup_le (a b c : α) : (a ⇨ c) ⊓ (b ⇨ c) ⊓ (a ⊔ b) ≤ c := by
   have ha : a ≤ (a ⇨ c) ⊓ (b ⇨ c) ⇨ c := by
     simp only [le_himp_iff, ← inf_assoc, inf_himp]

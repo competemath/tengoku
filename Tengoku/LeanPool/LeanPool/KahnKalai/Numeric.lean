@@ -20,13 +20,22 @@ open Nat Finset
 /-- Least integer strictly larger than `0.9 ℓ`. -/
 noncomputable def kmin (ℓ : ℕ) : ℕ := ⌊((9 : ℝ) / 10) * ℓ⌋₊ + 1
 
+/--
+@isnad1 id=le.0h1v.s3.fd84ce38a279 from=translated src=- shape=8a62b088 vocab=87b285fd
+-/
 lemma kmin_pos (ℓ : ℕ) : 1 ≤ kmin ℓ := Nat.succ_le_succ (Nat.zero_le _)
 
+/--
+@isnad1 id=lt.0h1v.s5.61633af830b5 from=translated src=- shape=10556261 vocab=fb90487a
+-/
 lemma kmin_gt (ℓ : ℕ) : ((9 : ℝ) / 10) * ℓ < kmin ℓ := by
   unfold kmin
   have := Nat.lt_floor_add_one (((9 : ℝ) / 10) * (ℓ : ℝ))
   simpa [add_comm] using this
 
+/--
+@isnad1 id=le.0h1v.s5.73d781da5c97 from=translated src=- shape=d3f83790 vocab=bf77d78a
+-/
 lemma kmin_le_add_one (ℓ : ℕ) : (kmin ℓ : ℝ) ≤ ((9 : ℝ) / 10) * ℓ + 1 := by
   unfold kmin
   have hnn : 0 ≤ ((9 : ℝ) / 10) * (ℓ : ℝ) := by positivity
@@ -34,6 +43,9 @@ lemma kmin_le_add_one (ℓ : ℕ) : (kmin ℓ : ℝ) ≤ ((9 : ℝ) / 10) * ℓ 
   push_cast
   linarith
 
+/--
+@isnad1 id=le.1h1v.s4.51c728ebfcb4 from=translated src=- shape=71fa8a4a vocab=87b285fd
+-/
 lemma kmin_le (ℓ : ℕ) (hℓ : 1 ≤ ℓ) : kmin ℓ ≤ ℓ := by
   by_cases h : ℓ ≤ 9
   · interval_cases ℓ <;> unfold kmin <;> norm_num
@@ -43,6 +55,9 @@ lemma kmin_le (ℓ : ℕ) (hℓ : 1 ≤ ℓ) : kmin ℓ ≤ ℓ := by
     have : ((9 : ℝ) / 10) * ℓ + 1 ≤ ℓ := by nlinarith
     exact_mod_cast hk.trans this
 
+/--
+@isnad1 id=le.1h1v.s5.51040b2951c3 from=translated src=- shape=bbf0b58b vocab=1063e94b
+-/
 lemma eleven_mul_kmin_le (ℓ : ℕ) (hℓ : 1 ≤ ℓ) :
     11 * kmin ℓ ≤ 10 * (ℓ + 1) := by
   by_cases h : ℓ ≤ 9
@@ -55,6 +70,9 @@ lemma eleven_mul_kmin_le (ℓ : ℕ) (hℓ : 1 ≤ ℓ) :
       (mul_le_mul_of_nonneg_left hk (by norm_num)).trans h'
     exact_mod_cast this
 
+/--
+@isnad1 id=le.0h0v.s6.41605781f80f from=translated src=- shape=308ac54c vocab=57a6a273
+-/
 lemma two_rpow_one_div_ten_le :
     (2 : ℝ) ^ ((1 : ℝ) / 10) ≤ (11 : ℝ) / 10 := by
   have hpos : 0 ≤ (2 : ℝ) ^ ((1 : ℝ) / 10) := Real.rpow_nonneg (by norm_num) _
@@ -67,6 +85,9 @@ lemma two_rpow_one_div_ten_le :
     exact (le_div_iff₀ (by positivity)).mpr (by norm_num)
   exact (pow_le_pow_iff_left₀ hpos (by positivity) (by norm_num)).1 h10
 
+/--
+@isnad1 id=le.0h0v.s5.5a0562489f60 from=translated src=- shape=2dcb7350 vocab=57a6a273
+-/
 lemma fifty_pow_le_hundred_rpow :
     (50 : ℝ) ≤ (100 : ℝ) ^ ((9 : ℝ) / 10) := by
   have hpow : (50 : ℝ) ^ (10 : ℕ) ≤ (100 : ℝ) ^ (9 : ℕ) := by norm_num
@@ -84,6 +105,9 @@ lemma fifty_pow_le_hundred_rpow :
     _ ≤ ((100 : ℝ) ^ (9 : ℕ)) ^ ((1 : ℝ) / 10) := hle
     _ = (100 : ℝ) ^ ((9 : ℝ) / 10) := h100
 
+/--
+@isnad1 id=le.0h1v.s5.4ef0692477e5 from=translated src=- shape=c5929c89 vocab=a2e25baf
+-/
 lemma fifty_pow_le_hundred_kmin (ℓ : ℕ) :
     (50 : ℝ) ^ ℓ ≤ (100 : ℝ) ^ kmin ℓ := by
   have h1 : (50 : ℝ) ^ ℓ ≤ ((100 : ℝ) ^ ((9 : ℝ) / 10)) ^ ℓ :=
@@ -99,6 +123,9 @@ lemma fifty_pow_le_hundred_kmin (ℓ : ℕ) :
     _ ≤ (100 : ℝ) ^ (kmin ℓ : ℝ) := h3
     _ = (100 : ℝ) ^ kmin ℓ := h4
 
+/--
+@isnad1 id=le.1h1v.s6.264f5f82aed9 from=translated src=- shape=5c6d59ab vocab=150e4428
+-/
 lemma fortyfour_eight_le_three_fifty (ℓ : ℕ) (hℓ : 2 ≤ ℓ) :
     (44 : ℝ) * 8 ^ ℓ ≤ 3 * 50 ^ ℓ := by
   induction ℓ, hℓ using Nat.le_induction with
@@ -110,6 +137,9 @@ lemma fortyfour_eight_le_three_fifty (ℓ : ℕ) (hℓ : 2 ≤ ℓ) :
       _ ≤ 50 * (3 * 50 ^ n) := mul_le_mul h8 ih (by positivity) (by positivity)
       _ = 3 * 50 ^ (n + 1) := by ring
 
+/--
+@isnad1 id=le.1h1v.s6.40f1fe30f1e3 from=translated src=- shape=8d125658 vocab=cef4cf1d
+-/
 lemma eleven_two_pow_le_twelve_fifty (ℓ : ℕ) (hℓ : 2 ≤ ℓ) :
     (11 : ℝ) * 2 ^ (3 * ℓ + 4) ≤ 12 * 50 ^ ℓ := by
   have h := fortyfour_eight_le_three_fifty ℓ hℓ
@@ -132,11 +162,17 @@ lemma eleven_two_pow_le_twelve_fifty (ℓ : ℕ) (hℓ : 2 ≤ ℓ) :
   convert this using 1
   ring
 
+/--
+@isnad1 id=le.1h1v.s6.a0426133c742 from=translated src=- shape=e92d3a4f vocab=391b793c
+-/
 lemma eleven_two_pow_le_twelve_hundred (ℓ : ℕ) (hℓ : 2 ≤ ℓ) :
     (11 : ℝ) * 2 ^ (3 * ℓ + 4) ≤ 12 * 100 ^ kmin ℓ :=
   (eleven_two_pow_le_twelve_fifty ℓ hℓ).trans <|
     mul_le_mul_of_nonneg_left (fifty_pow_le_hundred_kmin ℓ) (by positivity)
 
+/--
+@isnad1 id=le.0h1v.s7.8693f321dba0 from=translated src=- shape=490ded88 vocab=c86a9f57
+-/
 lemma choose_geom_tail_le (ℓ : ℕ) :
     ∑ k ∈ Icc (kmin ℓ) ℓ, ((1 : ℝ) / 100) ^ k * ℓ.choose k
       ≤ ((1 : ℝ) / 100) ^ kmin ℓ * 2 ^ ℓ := by
@@ -168,6 +204,9 @@ lemma choose_geom_tail_le (ℓ : ℕ) :
       mul_le_mul_of_nonneg_left hchoose (by positivity)
     _ = ((1 : ℝ) / 100) ^ kmin ℓ * 2 ^ ℓ := by rw [hbin]
 
+/--
+@isnad1 id=le.1h1v.s7.7efff5d0e7a5 from=translated src=- shape=0dd26d03 vocab=ed1a2d50
+-/
 lemma bad_frac_le_of_two (ℓ : ℕ) (hℓ : 2 ≤ ℓ) :
     ((1 : ℝ) / 100) ^ kmin ℓ * 2 ^ ℓ * 2 ^ (ℓ + 2)
       ≤ (12 / 11) * (1 / (2 : ℝ) ^ (ℓ + 2)) := by
@@ -193,10 +232,16 @@ lemma bad_frac_le_of_two (ℓ : ℕ) (hℓ : 2 ≤ ℓ) :
   · ring
   · field_simp
 
+/--
+@isnad1 id=le.0h0v.s7.78d97a6e038b from=translated src=- shape=66832156 vocab=e624faf6
+-/
 lemma bad_frac_le_one :
     ((1 : ℝ) / 100) * 2 ^ (1 + 2) ≤ (12 / 11) * (1 / (2 : ℝ) ^ (1 + 2)) := by
   norm_num
 
+/--
+@isnad1 id=le.1h1v.s7.8d7527febc85 from=translated src=- shape=84ecd2fc vocab=3504f7e6
+-/
 lemma frac_gap (ℓ : ℕ) (hℓ : 1 ≤ ℓ) :
     (1 : ℝ) / 2 ^ (ℓ + 2) ≤ 1 / 2 ^ (kmin ℓ - 1 + 2) - 1 / 2 ^ (ℓ + 2) := by
   have hk : kmin ℓ ≤ ℓ := kmin_le ℓ hℓ
@@ -213,10 +258,16 @@ lemma frac_gap (ℓ : ℕ) (hℓ : 1 ≤ ℓ) :
     simpa [h2] using hle'
   linarith
 
+/--
+@isnad1 id=le.0h0v.s6.5d02b8c91844 from=translated src=- shape=f8201c4b vocab=d8071e98
+-/
 lemma two_div_three_add_le :
     (2 : ℝ) / 3 + 1 / 2 ^ (0 + 2) ≤ (11 : ℝ) / 12 := by
   norm_num
 
+/--
+@isnad1 id=le.2h2v.s8.1c54b587b50a from=translated src=- shape=e7ae20ca vocab=d992c23e
+-/
 lemma occupation_mul_le (ℓ : ℕ) (hℓ : 1 ≤ ℓ) {β : ℝ}
     (hβ : β ≤ (12 / 11) * (1 / (2 : ℝ) ^ (ℓ + 2))) :
     (2 / 3 + 1 / (2 : ℝ) ^ (ℓ + 2)) ≤

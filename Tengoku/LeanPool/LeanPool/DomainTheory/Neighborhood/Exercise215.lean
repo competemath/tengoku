@@ -72,9 +72,15 @@ open Domain.Neighborhood NeighborhoodSystem
 /-- Membership for `𝒪`: a neighbourhood is the master `Δ = univ` or the empty set. -/
 def memO (X : Set (Fin 1)) : Prop := X = Set.univ ∨ X = ∅
 
+/--
+@isnad1 id=ne.0h0v.s4.87d0abb620a5 from=translated src=- shape=763067a7 vocab=39b91642
+-/
 theorem univ_ne_empty : (Set.univ : Set (Fin 1)) ≠ ∅ := by
   simp_all
 
+/--
+@isnad1 id=nestedor.0h0v.s3.f134281d7664 from=translated src=- shape=06f63001 vocab=2afc00d9
+-/
 theorem nestedOrDisjoint_O : NestedOrDisjoint memO := by
   rintro X Y (rfl | rfl) (rfl | rfl)
   · exact Or.inl subset_rfl
@@ -82,19 +88,36 @@ theorem nestedOrDisjoint_O : NestedOrDisjoint memO := by
   · exact Or.inl (Set.empty_subset _)
   · exact Or.inl subset_rfl
 
+/--
+@isnad1 id=le.1h1v.s5.0e3a3fbb3b5a from=translated src=- shape=99203729 vocab=d9b0d3a7
+-/
 theorem subMaster_O : ∀ {X : Set (Fin 1)}, memO X → X ⊆ Set.univ := fun _ => Set.subset_univ _
 
 /-- **Exercise 2.15 — the one-token system `𝒪 = {Δ, ∅}`.** -/
 def O : NeighborhoodSystem (Fin 1) :=
   NeighborhoodSystem.ofNestedOrDisjoint memO Set.univ (Or.inl rfl) nestedOrDisjoint_O subMaster_O
 
+/--
+@isnad1 id=iff.0h1v.s4.6fca79778577 from=translated src=- shape=88d106c0 vocab=6f997a38
+-/
 @[simp] theorem O_mem {X : Set (Fin 1)} : O.mem X ↔ memO X := Iff.rfl
+/--
+@isnad1 id=eq.0h0v.s4.f128b0f3907f from=translated src=- shape=6eb0f8bf vocab=91a35cd3
+-/
 @[simp] theorem O_master : O.master = (Set.univ : Set (Fin 1)) := rfl
 
+/--
+@isnad1 id=mem.0h0v.s4.ed403dbe6a9e from=translated src=- shape=7a7280ce vocab=c9efb5d8
+-/
 theorem O_mem_empty : O.mem (∅ : Set (Fin 1)) := Or.inr rfl
+/--
+@isnad1 id=mem.0h0v.s3.7ad451fb40db from=translated src=- shape=d1c0f75c vocab=4148d4ca
+-/
 theorem O_mem_univ : O.mem (Set.univ : Set (Fin 1)) := Or.inl rfl
 
-/-- `𝒪` is closed under intersection (used to verify the relation of `openToMap`). -/
+/-- `𝒪` is closed under intersection (used to verify the relation of `openToMap`).
+@isnad1 id=mem.2h2v.s5.a524382a9e66 from=translated src=- shape=189bd1df vocab=5eb61d1f
+-/
 theorem O_inter_mem {Y Y' : Set (Fin 1)} (hY : O.mem Y) (hY' : O.mem Y') : O.mem (Y ∩ Y') := by
   rcases hY with rfl | rfl
   · rw [Set.univ_inter]; exact hY'
@@ -107,14 +130,18 @@ def topElt : O.Element := O.principal O_mem_empty
 /-- The bottom element `⊥ = ↑Δ = {Δ}` of `|𝒪|`. -/
 def botElt : O.Element := O.bot
 
-/-- `Y ∈ ⊥` iff `Y = Δ = univ`. -/
+/-- `Y ∈ ⊥` iff `Y = Δ = univ`.
+@isnad1 id=iff.0h1v.s5.f76585cfebf7 from=translated src=- shape=e99b579a vocab=a710bccc
+-/
 theorem mem_botElt {Y : Set (Fin 1)} : botElt.mem Y ↔ Y = (Set.univ : Set (Fin 1)) := by
   rw [botElt, O.mem_bot, O_master]
 
 /-- **The defining property of `⊤`.** An element `z` of `|𝒪|` is `⊤` iff it
 contains `∅`: `∅` is
 the sharpest neighbourhood, so `∅ ∈ z` forces `z` to be the principal filter `↑∅ =
-⊤`. -/
+⊤`.
+@isnad1 id=iff.0h1v.s5.80a714eaf7e5 from=translated src=- shape=c1a57c11 vocab=36424fce
+-/
 theorem mem_empty_iff_eq_top (z : O.Element) : z.mem ∅ ↔ z = topElt := by
   constructor
   · intro hz
@@ -122,7 +149,9 @@ theorem mem_empty_iff_eq_top (z : O.Element) : z.mem ∅ ↔ z = topElt := by
   · rintro rfl
     exact ⟨O_mem_empty, subset_rfl⟩
 
-/-- **Two elements.** Every element of `|𝒪|` is `⊥` or `⊤`. -/
+/-- **Two elements.** Every element of `|𝒪|` is `⊥` or `⊤`.
+@isnad1 id=or.0h1v.s5.1ee68f37baa6 from=translated src=- shape=98db9076 vocab=814aa9e0
+-/
 theorem element_eq_bot_or_top (z : O.Element) : z = botElt ∨ z = topElt := by
   by_cases hz : z.mem ∅
   · exact Or.inr ((mem_empty_iff_eq_top z).mp hz)
@@ -138,10 +167,14 @@ theorem element_eq_bot_or_top (z : O.Element) : z = botElt ∨ z = topElt := by
       rw [mem_botElt.mp hY, ← O_master]
       exact z.master_mem
 
-/-- `⊥ ⊑ ⊤`. -/
+/-- `⊥ ⊑ ⊤`.
+@isnad1 id=le.0h0v.s5.ba1c143c0d5f from=translated src=- shape=eca7322f vocab=89e9391f
+-/
 theorem botElt_le_topElt : botElt ≤ topElt := O.bot_le _
 
-/-- `⊥ ≠ ⊤` (so `⊥ ⊏ ⊤`). -/
+/-- `⊥ ≠ ⊤` (so `⊥ ⊏ ⊤`).
+@isnad1 id=ne.0h0v.s3.ec5ecd9d48fe from=translated src=- shape=eca7322f vocab=814aa9e0
+-/
 theorem botElt_ne_topElt : botElt ≠ topElt := by
   intro h
   have htop : topElt.mem ∅ := ⟨O_mem_empty, subset_rfl⟩
@@ -150,7 +183,9 @@ theorem botElt_ne_topElt : botElt ≠ topElt := by
 
 /-- **Extensionality for `|𝒪|`.** Two elements agreeing on membership of `∅` are
 equal (it
-distinguishes `⊥` from `⊤`). -/
+distinguishes `⊥` from `⊤`).
+@isnad1 id=eq.1h2v.s6.d4737f53c029 from=translated src=- shape=a2782d93 vocab=7da587ec
+-/
 theorem O_ext {z w : O.Element} (h : z.mem ∅ ↔ w.mem ∅) : z = w := by
   by_cases hz : z.mem ∅
   · rw [(mem_empty_iff_eq_top z).mp hz, (mem_empty_iff_eq_top w).mp (h.mp hz)]
@@ -163,7 +198,9 @@ theorem O_ext {z w : O.Element} (h : z.mem ∅ ↔ w.mem ∅) : z = w := by
 
 /-! ### The opens of `|𝒪|`. -/
 
-/-- The open point `{⊤}` is the basic open `[∅]`. -/
+/-- The open point `{⊤}` is the basic open `[∅]`.
+@isnad1 id=eq.0h0v.s5.01e185c2b116 from=translated src=- shape=881fe24d vocab=7cd2a09e
+-/
 theorem basicOpen_empty_eq_singleton_top : O.basicOpen ∅ = {topElt} := by
   ext x
   rw [mem_basicOpen, mem_empty_iff_eq_top]
@@ -171,7 +208,9 @@ theorem basicOpen_empty_eq_singleton_top : O.basicOpen ∅ = {topElt} := by
 
 /-- **The opens of `|𝒪|`.** `{⊥}` is not open: `⊥` is the generic point. (The
 basic neighbourhood of
-`⊥` is `[Δ] = |𝒪|`, which is not contained in `{⊥}` because it also contains `⊤`.) -/
+`⊥` is `[Δ] = |𝒪|`, which is not contained in `{⊥}` because it also contains `⊤`.)
+@isnad1 id=not.0h0v.s5.4d7c3429cd28 from=translated src=- shape=9722d10e vocab=0e6663dd
+-/
 theorem not_isOpen_singleton_botElt : ¬ IsOpen ({botElt} : Set O.Element) := by
   intro h
   obtain ⟨X, hX, hsub⟩ := h botElt rfl
@@ -216,7 +255,9 @@ def openToMap (U : Set V.Element) (hU : IsOpen U) : ApproximableMap V O where
 
 /-- The value of `openToMap U hU` on the finite element `↑X` contains `∅` iff `↑X
 ∈ U`; i.e.
-`(openToMap U hU)(↑X) = ⊤ ↔ ↑X ∈ U`. -/
+`(openToMap U hU)(↑X) = ⊤ ↔ ↑X ∈ U`.
+@isnad1 id=iff.2h4v.s6.85a721eb13cc from=translated src=- shape=f56e9648 vocab=f9e822af
+-/
 theorem toElementMap_openToMap_principal_mem_empty (U : Set V.Element) (hU : IsOpen U)
     {X : Set γ} (hX : V.mem X) :
     ((openToMap V U hU).toElementMap (V.principal hX)).mem ∅ ↔ V.principal hX ∈ U := by
@@ -233,7 +274,9 @@ def mapToOpen (f : ApproximableMap V O) : Set V.Element := {x | f.toElementMap x
 
 /-- `mapToOpen f` is open: it is the preimage of the open point `{⊤} = [∅]` under
 the continuous
-`x ↦ f(x)` (Exercise 2.13). -/
+`x ↦ f(x)` (Exercise 2.13).
+@isnad1 id=isopen.0h3v.s4.4da708c092ae from=translated src=- shape=4973d4bf vocab=0fcb0abf
+-/
 theorem isOpen_mapToOpen (f : ApproximableMap V O) : IsOpen (mapToOpen V f) := by
   have heq : mapToOpen V f = (fun x => f.toElementMap x) ⁻¹' O.basicOpen ∅ := by
     ext x
@@ -243,7 +286,9 @@ theorem isOpen_mapToOpen (f : ApproximableMap V O) : IsOpen (mapToOpen V f) := b
   exact (O.isOpen_basicOpen ∅).preimage f.continuous_toElementMap
 
 /-- **Exercise 2.15 — round trip (open → map → open).** `mapToOpen (openToMap U
-hU) = U`. -/
+hU) = U`.
+@isnad1 id=iff.1h4v.s5.9e9534f05652 from=translated src=- shape=87d94eeb vocab=6b9459da
+-/
 theorem mem_mapToOpen_openToMap (U : Set V.Element) (hU : IsOpen U) (x : V.Element) :
     x ∈ mapToOpen V (openToMap V U hU) ↔ x ∈ U := by
   rw [mapToOpen, Set.mem_ofPred_eq, ← mem_empty_iff_eq_top,
@@ -260,7 +305,9 @@ theorem mem_mapToOpen_openToMap (U : Set V.Element) (hU : IsOpen U) (x : V.Eleme
     exact hXU (show V.principal (x.sub hxX) ∈ V.basicOpen X from ⟨x.sub hxX, subset_rfl⟩)
 
 /-- **Exercise 2.15 — round trip (map → open → map).** `openToMap (mapToOpen f) =
-f`. -/
+f`.
+@isnad1 id=eq.0h3v.s5.df880ce94a83 from=translated src=- shape=16ec08c7 vocab=a9599c06
+-/
 theorem openToMap_mapToOpen (f : ApproximableMap V O) :
     openToMap V (mapToOpen V f) (isOpen_mapToOpen V f) = f := by
   apply ApproximableMap.eq_of_toElementMap_principal

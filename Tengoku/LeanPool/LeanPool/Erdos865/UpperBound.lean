@@ -26,6 +26,9 @@ namespace Erdos865
 Counting bound: every element of `A ⊆ [1,N]` is counted by `X`, by `Y`, is one of the
 two endpoints `h, 2h`, or lies in the tail `(2h, N]`.
 -/
+/--
+@isnad1 id=le.1h3v.s6.517777db04af from=translated src=- shape=20073bc4 vocab=7d902227
+-/
 theorem card_A_bound {A : Finset ℕ} {N : ℕ} (hsub : A ⊆ Finset.Icc 1 N) (h : ℕ) :
     A.card ≤ (Xset A h).card + (Yset A N h).card + 2 + (N - 2 * h) := by
   -- Let's show that $A$ is a subset of
@@ -55,6 +58,9 @@ theorem card_A_bound {A : Finset ℕ} {N : ℕ} (hsub : A ⊆ Finset.Icc 1 N) (h
 /-
 The open interval `(p, q)` contains no element of `A`.
 -/
+/--
+@isnad1 id=not.4h5v.s6.19c794a91947 from=translated src=- shape=7d5bcdae vocab=e271476c
+-/
 theorem gap_empty {A : Finset ℕ} {H p q : ℕ} (_hqlo : H ≤ q)
     (hqmin : ∀ a ∈ A, H ≤ a → q ≤ a) (hpmax : ∀ a ∈ A, a ≤ H → a ≤ p) :
     ∀ a ∈ A, ¬ (p < a ∧ a < q) := by
@@ -62,6 +68,9 @@ theorem gap_empty {A : Finset ℕ} {H p q : ℕ} (_hqlo : H ≤ q)
 
 /-
 Case 1 interval `I = (max(p, N-h), h)` is contained in `E \ C(B_h)` for `h = q`.
+-/
+/--
+@isnad1 id=le.3h4v.s7.865b7c256b9f from=translated src=- shape=a8a3428d vocab=5cd1b388
 -/
 theorem case1_I_sub {A : Finset ℕ} {H p q : ℕ} (_hqlo : H ≤ q)
     (hqmin : ∀ a ∈ A, H ≤ a → q ≤ a) (hpmax : ∀ a ∈ A, a ≤ H → a ≤ p) :
@@ -80,6 +89,9 @@ theorem case1_I_sub {A : Finset ℕ} {H p q : ℕ} (_hqlo : H ≤ q)
 
 /-
 **Case 1** (`s ≤ 4e`): folding around `h = q`.
+-/
+/--
+@isnad1 id=le.11h4v.s7.eb585c7d6c5d from=translated src=- shape=36aa8c34 vocab=c0052773
 -/
 theorem even_bound_case1 {H p q : ℕ} {A : Finset ℕ} (hsub : A ⊆ Finset.Icc 1 (2 * H))
     (hA : IsTripleFree A) (hq : q ∈ A) (hqlo : H ≤ q) (hqhi : q ≤ 2 * H)
@@ -100,6 +112,9 @@ theorem even_bound_case1 {H p q : ℕ} {A : Finset ℕ} (hsub : A ⊆ Finset.Icc
 In case 2 (`h = p`), the folded coordinate set avoids `[1, q-p-1]`, since for
 `1 ≤ r < q - p` the partner `p + r` lies in the empty gap `(p, q)`.
 -/
+/--
+@isnad1 id=eq.2h4v.s6.393d006b006c from=translated src=- shape=1fe37ef7 vocab=339a0a77
+-/
 theorem case2_Bset_disjoint {A : Finset ℕ} {H p q : ℕ}
     (hqmin : ∀ a ∈ A, H ≤ a → q ≤ a) (hpmax : ∀ a ∈ A, a ≤ H → a ≤ p) :
     Bset A (2 * H) p ∩ Finset.Ico 1 (q - p) = ∅ := by
@@ -109,6 +124,9 @@ theorem case2_Bset_disjoint {A : Finset ℕ} {H p q : ℕ}
 /-
 Case 2 interval `I = [1, t] \ A` (with `t = q - p - 1`) is contained in `E \ C(B_p)`,
 provided `q - p ≤ p` (so the interval sits below the pivot).
+-/
+/--
+@isnad1 id=le.3h4v.s7.f656c07d50ad from=translated src=- shape=c9ab4734 vocab=b79e15d1
 -/
 theorem case2_I_sub {A : Finset ℕ} {H p q : ℕ} (hple : q - p ≤ p)
     (hqmin : ∀ a ∈ A, H ≤ a → q ≤ a) (hpmax : ∀ a ∈ A, a ≤ H → a ≤ p) :
@@ -122,7 +140,9 @@ theorem case2_I_sub {A : Finset ℕ} {H p q : ℕ} (hple : q - p ≤ p)
     simp_all +decide [ Bset, Xset, Yset ];
     grind
 
-/-- A subset of a triple-free set is triple-free. -/
+/-- A subset of a triple-free set is triple-free.
+@isnad1 id=istriple.2h2v.s4.6fefc0d4ff61 from=translated src=- shape=49f84804 vocab=81064f3c
+-/
 theorem tripleFree_subset {A B : Finset ℕ} (hA : IsTripleFree A) (h : B ⊆ A) :
     IsTripleFree B := by
   intro ⟨a, ha, b, hb, c, hc, hab, hac, hbc, hab', hac', hbc'⟩
@@ -131,6 +151,9 @@ theorem tripleFree_subset {A B : Finset ℕ} (hA : IsTripleFree A) (h : B ⊆ A)
 /-
 **Case 2** (`s > 4e`): folding around `h = p`, using the induction hypothesis on
 `A ∩ [1, q-p-1]`.
+-/
+/--
+@isnad1 id=le.11h4v.s8.5e5b6c8c489e from=translated src=- shape=a9b419c1 vocab=a1ae4674
 -/
 theorem even_bound_case2 {H p q : ℕ} {A : Finset ℕ} (hsub : A ⊆ Finset.Icc 1 (2 * H))
     (hA : IsTripleFree A) (hqlo : H ≤ q) (hqhi : q ≤ 2 * H)
@@ -169,6 +192,9 @@ theorem even_bound_case2 {H p q : ℕ} {A : Finset ℕ} (hsub : A ⊆ Finset.Icc
 /-
 The even-`N` upper bound: every triple-free `A ⊆ [1, 2H]` has `4|A| ≤ 5H + 24`,
 i.e. `|A| ≤ 5H/4 + 6`. Proved by strong induction on `H`.
+-/
+/--
+@isnad1 id=le.2h2v.s6.5b16c4f11011 from=translated src=- shape=85f0cd00 vocab=61bbdf11
 -/
 theorem even_bound (H : ℕ) (A : Finset ℕ) (hsub : A ⊆ Finset.Icc 1 (2 * H))
     (hA : IsTripleFree A) : 4 * A.card ≤ 5 * H + 24 := by

@@ -28,7 +28,9 @@ noncomputable section
 
 /-- The complete list of signed factors on `Fin n`, embedded by
 `Fin.castSucc`, is a permutation of the enlarged factor list with the last
-coordinate erased. -/
+coordinate erased.
+@isnad1 id=perm.2h4v.s8.93c0abce6667 from=translated src=- shape=5232dba9 vocab=5754167b
+-/
 theorem stateFactorList_castSucc_perm {n : ℕ}
     (γ β : Fin (n + 1) → ℝ)
     (hγ : ∀ i, 0 < γ i) (hβ : ∀ i, 0 < β i)

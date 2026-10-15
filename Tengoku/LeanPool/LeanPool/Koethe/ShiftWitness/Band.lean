@@ -39,6 +39,9 @@ def backShift (v : ℕ → Triple k) (i : Fin 3) : End K where
   map_add' u w := by ext n; simp [mul_add]
   map_smul' c u := by ext n; simp [mul_left_comm]
 
+/--
+@isnad1 id=eq.0h6v.s8.8ae6a7e1563f from=translated src=- shape=2627a985 vocab=5a7e2725
+-/
 @[simp] theorem backShift_apply (v : ℕ → Triple k) (i : Fin 3)
     (u : Space K) (n : ℕ) :
     backShift (K := K) v i u n = algebraMap k K (v n i) * u (n + 1) := rfl
@@ -52,6 +55,9 @@ def HasBand (m : ℕ) (Q : Matrix ι ι (Polynomial (End K)))
     ((Q r c).coeff q) u n = algebraMap k K ((C n r c).coeff q) * u (n + m)
 
 omit [Fintype ι] in
+/--
+@isnad1 id=hasband.0h3v.s8.ce41b7729923 from=translated src=- shape=58afe6e5 vocab=7b5f3196
+-/
 theorem hasBand_one :
     HasBand (k := k) (K := K) (ι := ι) 0 1 (fun _ => 1) := by
   intro r c q u n
@@ -64,7 +70,9 @@ theorem hasBand_one :
 
 omit [DecidableEq ι] in
 /-- Multiplication of bands keeps the chronological order and shifts the second
-kernel by the width of the first band. -/
+kernel by the width of the first band.
+@isnad1 id=hasband.2h9v.s9.71d2cbc5d76c from=translated src=- shape=9eab7e73 vocab=ff21c18c
+-/
 theorem HasBand.mul {m l : ℕ}
     {Q T : Matrix ι ι (Polynomial (End K))}
     {C D : ℕ → Matrix ι ι (Polynomial k)}
@@ -76,6 +84,9 @@ theorem HasBand.mul {m l : ℕ}
     LinearMap.sum_apply, Finset.sum_apply, Module.End.mul_apply, hQ, hT,
     map_sum, map_mul, Finset.sum_mul, Nat.add_assoc, mul_assoc]
 
+/--
+@isnad1 id=eq.0h6v.s9.dffce1e1150f from=translated src=- shape=a90f310a vocab=8d9a0d5e
+-/
 theorem linear_combination_apply (v : ℕ → Triple k) (b : Fin 3 → k)
     (u : Space K) (n : ℕ) :
     (∑ i : Fin 3, algebraMap k (End K) (b i) * backShift v i : End K) u n =
@@ -84,7 +95,9 @@ theorem linear_combination_apply (v : ℕ → Triple k) (b : Fin 3 → k)
     Algebra.smul_def, Finset.mul_sum, mul_comm, mul_left_comm]
 
 /-- The band kernel of a lifted pencil is its scalar polynomial evaluation at
-the edge vector. -/
+the edge vector.
+@isnad1 id=hasband.0h5v.s8.2a633a33f323 from=translated src=- shape=42781315 vocab=12ba9d32
+-/
 theorem pencil_hasBand {d : ℕ} (P : Pencil k d) (v : ℕ → Triple k) :
     HasBand 1 (P.lift (backShift (K := K) v)) (fun n => P.eval (v n)) := by
   intro r c q u n
@@ -100,15 +113,23 @@ theorem pencil_hasBand {d : ℕ} (P : Pencil k d) (v : ℕ → Triple k) :
       | succ q =>
           simp [Pencil.lift, Pencil.eval, Polynomial.coeff_X_mul]
 
+/--
+@isnad1 id=eq.0h5v.s7.f37b39f1cd8a from=translated src=- shape=6a4de614 vocab=9f0c4706
+-/
 @[simp] theorem window_zero {d : ℕ} (P : Pencil k d) (v : ℕ → Triple k) (n : ℕ) :
     P.window v n 0 = 1 := by simp [Pencil.window]
 
+/--
+@isnad1 id=eq.0h6v.s8.5727eff6877e from=translated src=- shape=6de06d49 vocab=03fb83a4
+-/
 theorem window_succ {d : ℕ} (P : Pencil k d) (v : ℕ → Triple k) (n N : ℕ) :
     P.window v n (N + 1) = P.eval (v n) * P.window v (n + 1) N := by
   simp [Pencil.window, Pencil.wordProd, List.ofFn_succ, Nat.add_comm, Nat.add_left_comm]
 
 /-- All coefficients of every power have the window kernel, not just its value
-at a chosen rational function. -/
+at a chosen rational function.
+@isnad1 id=hasband.0h6v.s9.9735b14ae259 from=translated src=- shape=9ac6a0b0 vocab=554ad9c4
+-/
 theorem pencil_pow_hasBand {d : ℕ} (P : Pencil k d) (v : ℕ → Triple k) (N : ℕ) :
     HasBand N ((P.lift (backShift (K := K) v)) ^ N) (fun n => P.window v n N) := by
   induction N with
@@ -117,7 +138,9 @@ theorem pencil_pow_hasBand {d : ℕ} (P : Pencil k d) (v : ℕ → Triple k) (N 
       simpa only [pow_succ', window_succ, Nat.add_comm 1 N] using (pencil_hasBand P v).mul ih
 
 /-- Uniformly zero windows imply actual nilpotence in the polynomial matrix
-ring over the endomorphisms. -/
+ring over the endomorphisms.
+@isnad1 id=eq.1h6v.s10.6b1779c31b19 from=translated src=- shape=bae5b3d5 vocab=5c090e47
+-/
 theorem pencil_nil_of_windows {d : ℕ} (P : Pencil k d) (v : ℕ → Triple k)
     (N : ℕ) (hN : ∀ n, P.window v n N = 0) :
     (P.lift (backShift (K := K) v)) ^ N = 0 := by
@@ -125,6 +148,9 @@ theorem pencil_nil_of_windows {d : ℕ} (P : Pencil k d) (v : ℕ → Triple k)
   have h := pencil_pow_hasBand (K := K) P v N r c q u n
   simpa [hN] using h
 
+/--
+@isnad1 id=isnilpot.1h5v.s9.c4a9f5172dd9 from=translated src=- shape=dfcdd2e7 vocab=be091e0f
+-/
 theorem all_pencils_nil (v : ℕ → Triple k) (hv : UniversalMortalSequence k v) :
     ∀ (d : ℕ) (P : Pencil k d), IsNilpotent (P.lift (backShift (K := K) v)) := by
   intro d P

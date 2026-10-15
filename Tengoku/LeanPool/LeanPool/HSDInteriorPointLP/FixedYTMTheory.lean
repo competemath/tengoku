@@ -61,7 +61,9 @@ used in the proofs have the following roles.
 
 /-! ## Predictor scaled-direction algebra for the remaining v106 obligation -/
 
-/-- Step 1, vector part: the predictor complementarity equation in quotient form. -/
+/-- Step 1, vector part: the predictor complementarity equation in quotient form.
+@isnad1 id=eq.2h4v.s6.7137f8c8b229 from=translated src=- shape=7d2fb324 vocab=5b9ea626
+-/
 theorem predictor_component_quotient_sum_eq_neg_one {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hinterior : Interior w)
@@ -76,7 +78,9 @@ theorem predictor_component_quotient_sum_eq_neg_one {n : Nat}
   field_simp [hxne, hsne]
   nlinarith [hlin]
 
-/-- Step 1, scalar part: the predictor scalar complementarity equation in quotient form. -/
+/-- Step 1, scalar part: the predictor scalar complementarity equation in quotient form.
+@isnad1 id=eq.2h3v.s6.86c7967e691d from=translated src=- shape=595a3fc8 vocab=1577c24c
+-/
 theorem predictor_scalar_quotient_sum_eq_neg_one {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hinterior : Interior w)
@@ -91,7 +95,9 @@ theorem predictor_scalar_quotient_sum_eq_neg_one {n : Nat}
   field_simp [htne, hkne]
   nlinarith [hlin]
 
-/-- Step 2: skew orthogonality rewritten in quotient variables. -/
+/-- Step 2: skew orthogonality rewritten in quotient variables.
+@isnad1 id=eq.2h3v.s7.822a721e7ee3 from=translated src=- shape=c08ab80d vocab=dd5e9fa9
+-/
 theorem predictor_quotient_weighted_cross_zero {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hinterior : Interior w)
@@ -119,14 +125,18 @@ theorem predictor_quotient_weighted_cross_zero {n : Nat}
     simpa [hdot, dot] using hdir.skew.cross_zero
   simp_all
 
-/-- Step 3: the total complementarity product is `hdim n * mu w`. -/
+/-- Step 3: the total complementarity product is `hdim n * mu w`.
+@isnad1 id=eq.0h2v.s6.bd6a6df24fc0 from=translated src=- shape=b0acf21e vocab=a7c711df
+-/
 theorem complementarity_total_eq_hdim_mul_mu {n : Nat} (w : HSState n) :
     (∑ i : Fin n, w.x i * w.s i) + w.tau * w.kappa = hdim n * mu w := by
   have hdim_ne : hdim n ≠ 0 := ne_of_gt (hdim_pos n)
   unfold mu gap hdot dot
   field_simp [hdim_ne]
 
-/-- Algebraic identity from `u + v = -1`: it is used componentwise in Step 4. -/
+/-- Algebraic identity from `u + v = -1`: it is used componentwise in Step 4.
+@isnad1 id=eq.1h2v.s6.b3d6c721b3b5 from=translated src=- shape=bb32cb97 vocab=7d7e4cc9
+-/
 theorem square_sum_eq_one_sub_two_mul_of_sum_eq_neg_one
     {u v : ℝ} (h : u + v = -1) :
     u ^ 2 + v ^ 2 = 1 - 2 * (u * v) := by
@@ -135,7 +145,9 @@ theorem square_sum_eq_one_sub_two_mul_of_sum_eq_neg_one
     _ = 1 - 2 * (u * v) := by
       simp_all
 
-/-- Step 4: weighted norm identity for predictor quotient variables. -/
+/-- Step 4: weighted norm identity for predictor quotient variables.
+@isnad1 id=eq.2h3v.s7.660d35a4f659 from=translated src=- shape=1816e510 vocab=8562dc9c
+-/
 theorem predictor_weighted_relative_norm_identity {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hneigh : HSDNeighborhood ytmBetaTight w)
@@ -200,7 +212,9 @@ theorem predictor_weighted_relative_norm_identity {n : Nat}
     _ = hdim n * mu w := by
           simp_all
 
-/-- Step 5, vector part: tight-neighborhood lower bound `3μ/4 ≤ xᵢsᵢ`. -/
+/-- Step 5, vector part: tight-neighborhood lower bound `3μ/4 ≤ xᵢsᵢ`.
+@isnad1 id=le.1h3v.s6.f096d8398a48 from=translated src=- shape=3ba2ef9c vocab=ef8abb36
+-/
 theorem neighborhood_component_product_lower_tight {n : Nat}
     (w : HSState n) (hneigh : HSDNeighborhood ytmBetaTight w) (i : Fin n) :
     (3 / 4 : ℝ) * mu w ≤ w.x i * w.s i := by
@@ -210,7 +224,9 @@ theorem neighborhood_component_product_lower_tight {n : Nat}
   norm_num only [ytmBetaTight, show (1 : ℝ) - 1 / 4 = 3 / 4 by norm_num] at hlower
   exact hlower
 
-/-- Step 5, scalar part: tight-neighborhood lower bound `3μ/4 ≤ τκ`. -/
+/-- Step 5, scalar part: tight-neighborhood lower bound `3μ/4 ≤ τκ`.
+@isnad1 id=le.1h2v.s5.bd593b486238 from=translated src=- shape=70d6116d vocab=936b1727
+-/
 theorem neighborhood_scalar_product_lower_tight {n : Nat}
     (w : HSState n) (hneigh : HSDNeighborhood ytmBetaTight w) :
     (3 / 4 : ℝ) * mu w ≤ w.tau * w.kappa := by
@@ -220,7 +236,9 @@ theorem neighborhood_scalar_product_lower_tight {n : Nat}
   norm_num only [ytmBetaTight, show (1 : ℝ) - 1 / 4 = 3 / 4 by norm_num] at hlower
   exact hlower
 
-/-- Cancel the positive duality measure once for either quotient-square estimate. -/
+/-- Cancel the positive duality measure once for either quotient-square estimate.
+@isnad1 id=and.3h5v.s7.ee9f3d993c40 from=translated src=- shape=879d9d5f vocab=5c9d27ef
+-/
 theorem quotient_square_bounds_of_weighted_bound {μ z D u v : ℝ}
     (hμ : 0 < μ) (hz : (3 / 4 : ℝ) * μ ≤ z)
     (hweighted : z * (u ^ 2 + v ^ 2) ≤ D * μ) :
@@ -235,7 +253,9 @@ theorem quotient_square_bounds_of_weighted_bound {μ z D u v : ℝ}
       _ ≤ D * μ := hscaled
   constructor <;> linarith only [hcancel, sq_nonneg u, sq_nonneg v]
 
-/-- Step 6, vector part: the weighted identity gives componentwise quotient-square bounds. -/
+/-- Step 6, vector part: the weighted identity gives componentwise quotient-square bounds.
+@isnad1 id=and.2h4v.s7.5dcb7382476b from=translated src=- shape=1c4c6d2c vocab=2372a803
+-/
 theorem predictor_component_quotient_square_bounds {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hneigh : HSDNeighborhood ytmBetaTight w)
@@ -274,7 +294,9 @@ theorem predictor_component_quotient_square_bounds {n : Nat}
   exact quotient_square_bounds_of_weighted_bound hmu
     (neighborhood_component_product_lower_tight w hneigh i) hterm_le_total
 
-/-- Step 6, scalar part: quotient-square bounds for `τ` and `κ`. -/
+/-- Step 6, scalar part: quotient-square bounds for `τ` and `κ`.
+@isnad1 id=and.2h3v.s7.06c49f2b9f10 from=translated src=- shape=08f4596e vocab=9a685b3e
+-/
 theorem predictor_scalar_quotient_square_bounds {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hneigh : HSDNeighborhood ytmBetaTight w)
@@ -306,7 +328,9 @@ theorem predictor_scalar_quotient_square_bounds {n : Nat}
   exact quotient_square_bounds_of_weighted_bound hmu
     (neighborhood_scalar_product_lower_tight w hneigh) hscalar_le_total
 
-/-- A convenient stronger numerical bound for the fixed YTM constant. -/
+/-- A convenient stronger numerical bound for the fixed YTM constant.
+@isnad1 id=le.0h0v.s4.27b0b2ea15b9 from=translated src=- shape=0efb1284 vocab=22b270fd
+-/
 theorem ytmStepConstant_le_half : ytmStepConstant ≤ (1 / 2 : ℝ) := by
   unfold ytmStepConstant
   have hsqrt_ge_one : (1 : ℝ) ≤ Real.sqrt (8 : ℝ) := by
@@ -316,7 +340,9 @@ theorem ytmStepConstant_le_half : ytmStepConstant ≤ (1 / 2 : ℝ) := by
   rw [div_le_iff₀ hden_pos]
   nlinarith [hsqrt_ge_one]
 
-/-- The fixed alpha cancels the homogenized dimension after squaring. -/
+/-- The fixed alpha cancels the homogenized dimension after squaring.
+@isnad1 id=eq.0h1v.s5.8bf7e5f31e2c from=translated src=- shape=00e5856b vocab=1bd395ff
+-/
 theorem predictor_fixed_alpha_sq_mul_hdim (n : Nat) :
     (predictorFixedAlpha n) ^ 2 * hdim n = ytmStepConstant ^ 2 := by
   unfold predictorFixedAlpha
@@ -326,7 +352,9 @@ theorem predictor_fixed_alpha_sq_mul_hdim (n : Nat) :
   field_simp [hsqrt_ne]
   rw [hsqrt_sq]
 
-/-- Step 7: fixed-alpha constant evaluation used by the scaled bounds. -/
+/-- Step 7: fixed-alpha constant evaluation used by the scaled bounds.
+@isnad1 id=lt.0h1v.s6.a3e4991a2a5f from=translated src=- shape=7bbb3aa1 vocab=aa3c0a4e
+-/
 theorem predictor_fixed_alpha_sq_four_thirds_hdim_lt_one (n : Nat) :
     (predictorFixedAlpha n) ^ 2 * ((4 / 3 : ℝ) * hdim n) < 1 := by
   have hcancel := predictor_fixed_alpha_sq_mul_hdim n
@@ -342,7 +370,9 @@ theorem predictor_fixed_alpha_sq_four_thirds_hdim_lt_one (n : Nat) :
         exact mul_le_mul_of_nonneg_left hc_sq (by norm_num)
     _ < 1 := by norm_num
 
-/-- Step 8: square bound plus fixed-alpha constant bound gives an absolute bound. -/
+/-- Step 8: square bound plus fixed-alpha constant bound gives an absolute bound.
+@isnad1 id=lt.2h3v.s6.6046de29bf7e from=translated src=- shape=01845348 vocab=5306498c
+-/
 theorem abs_alpha_mul_lt_one_of_square_bound
     (α u B : ℝ) (hu : u ^ 2 ≤ B) (hαB : α ^ 2 * B < 1) :
     |α * u| < 1 := by
@@ -356,7 +386,9 @@ theorem abs_alpha_mul_lt_one_of_square_bound
 
 /-! ## Predictor center-bound estimates for Steps 9--12 -/
 
-/-- Elementary estimate `|uv| ≤ (u² + v²)/2`. -/
+/-- Elementary estimate `|uv| ≤ (u² + v²)/2`.
+@isnad1 id=le.0h2v.s6.8a9e684ad337 from=translated src=- shape=f6fda6ec vocab=ca5c4559
+-/
 theorem abs_mul_le_half_sq_add_sq (u v : ℝ) :
     |u * v| ≤ (u ^ 2 + v ^ 2) / 2 := by
   rw [abs_mul]
@@ -366,7 +398,9 @@ theorem abs_mul_le_half_sq_add_sq (u v : ℝ) :
   nlinarith [hsq, hu_sq, hv_sq]
 
 /-- Step 9, ℓ₁ version: the sum of absolute second-order predictor products is
-bounded by half of the weighted relative norm. -/
+bounded by half of the weighted relative norm.
+@isnad1 id=le.2h3v.s6.38827f084394 from=translated src=- shape=2b810e3a vocab=6ff7317a
+-/
 theorem predictor_second_order_l1_bound {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hneigh : HSDNeighborhood ytmBetaTight w)
@@ -447,7 +481,9 @@ theorem predictor_second_order_l1_bound {n : Nat}
     _ = hdim n * mu w / 2 := by
             rw [hweighted]
 
-/-- Step 9: second-order predictor products have the required square-sum bound. -/
+/-- Step 9: second-order predictor products have the required square-sum bound.
+@isnad1 id=le.2h3v.s7.3fb0924e88d8 from=translated src=- shape=af663c83 vocab=5272eb92
+-/
 theorem predictor_second_order_square_sum_bound {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hneigh : HSDNeighborhood ytmBetaTight w)
@@ -472,7 +508,9 @@ theorem predictor_second_order_square_sum_bound {n : Nat}
   exact le_trans hsquares hsq_l1
 
 /-- The old centrality residual, in the sign convention used by the predictor residual,
-is bounded by the tight neighborhood radius. -/
+is bounded by the tight neighborhood radius.
+@isnad1 id=le.1h2v.s7.a6ff19dca96f from=translated src=- shape=f77063cc vocab=fa9e30d6
+-/
 theorem predictor_old_residual_square_sum_bound {n : Nat}
     (w : HSState n) (hneigh : HSDNeighborhood ytmBetaTight w) :
     (∑ i : Fin n, (w.x i * w.s i - mu w) ^ 2) +
@@ -482,7 +520,9 @@ theorem predictor_old_residual_square_sum_bound {n : Nat}
   exact hcenter
 
 /-- Pointwise two-term square inequality used as a square-sum version of the triangle
-estimate for Step 10. -/
+estimate for Step 10.
+@isnad1 id=le.0h2v.s6.c56e1ae18a0c from=translated src=- shape=26b5f994 vocab=cef4cf1d
+-/
 theorem sq_add_le_two_sq_add_two_sq (x y : ℝ) :
     (x + y) ^ 2 ≤ 2 * x ^ 2 + 2 * y ^ 2 := by
   have hsq : 0 ≤ (x - y) ^ 2 := sq_nonneg _
@@ -490,7 +530,9 @@ theorem sq_add_le_two_sq_add_two_sq (x y : ℝ) :
 
 /-- Step 10/11: applying the two-term square estimate componentwise to the predictor
 residual split.  This is a slightly stronger bookkeeping form than introducing a
-separate Euclidean norm object. -/
+separate Euclidean norm object.
+@isnad1 id=le.0h7v.s8.18eec038f188 from=translated src=- shape=45ae6b41 vocab=7aed3e85
+-/
 theorem predictor_residual_split_square_sum_bound {n : Nat}
     (a b : ℝ) (r q : Fin n → ℝ) (ρ η : ℝ) :
     (∑ i : Fin n, (a * r i + b * q i) ^ 2) + (a * ρ + b * η) ^ 2 ≤
@@ -535,7 +577,9 @@ theorem predictor_residual_split_square_sum_bound {n : Nat}
                       rw [← Finset.mul_sum, ← Finset.mul_sum]
                       ring
 
-/-- The fixed predictor step length is at most one half. -/
+/-- The fixed predictor step length is at most one half.
+@isnad1 id=le.0h1v.s4.e6ddc14ff3c6 from=translated src=- shape=23a617a7 vocab=33751dfa
+-/
 theorem predictor_fixed_alpha_le_half (n : Nat) :
     predictorFixedAlpha n ≤ (1 / 2 : ℝ) := by
   unfold predictorFixedAlpha
@@ -565,7 +609,9 @@ structure YTMCorrectorEstimate (n : Nat) : Prop where
     HSDStepDirection w d 1 →
     CorrectorStepGuarantee ytmBetaTight w d
 
-/-- Corrector half of the YTM local neighborhood analysis. -/
+/-- Corrector half of the YTM local neighborhood analysis.
+@isnad1 id=ytmcorre.0h1v.s2.59dd58d1fa45 from=translated src=- shape=5c11bb93 vocab=468821c9
+-/
 theorem YTM_corrector_estimate_from_paper (n : Nat) :
     YTMCorrectorEstimate n := by
   refine ⟨?_⟩
@@ -580,7 +626,9 @@ theorem YTM_corrector_estimate_from_paper (n : Nat) :
       gap_preserve := hgap }
 
 /-- Local predictor estimate used in YTM Theorem 6, obtained from the fixed-parameter
-local theory. -/
+local theory.
+@isnad1 id=ex.3h3v.s5.868ef68ec866 from=translated src=- shape=ced9af1c vocab=ca92cadc
+-/
 theorem predictor_step_guarantee_fixed {n : Nat}
     (T : YTMFixedLocalTheory n)
     (w : HSState n) (d : HSDirection n)
@@ -590,7 +638,9 @@ theorem predictor_step_guarantee_fixed {n : Nat}
   T.predictor_estimate_fixed w d hneigh hdir
 
 /-- Local corrector estimate used in YTM Theorem 6, obtained from the fixed-parameter
-local theory. -/
+local theory.
+@isnad1 id=correcto.3h3v.s5.341b996a0035 from=translated src=- shape=76f07bc3 vocab=a737964f
+-/
 theorem corrector_step_guarantee_fixed {n : Nat}
     (T : YTMFixedLocalTheory n)
     (w : HSState n) (d : HSDirection n)
@@ -607,7 +657,9 @@ noncomputable def HSDNewtonDirection {m n : Nat}
     ((HLP_newton_linear_algebra_from_full_row_rank P std).direction_system_solvable
       std w hw γ)
 
-/-- The selected Newton direction satisfies the reduced HSD step-direction equations. -/
+/-- The selected Newton direction satisfies the reduced HSD step-direction equations.
+@isnad1 id=hsdstepd.2h5v.s5.8f3b6381edf8 from=translated src=- shape=2b4ceb1d vocab=cda75e14
+-/
 theorem HSDNewtonDirection_step {m n : Nat}
     (P : LPData m n) (std : LPStandardAssumptions P)
     (w : HSState n) (hw : Interior w) (γ : ℝ) :
@@ -619,7 +671,9 @@ theorem HSDNewtonDirection_step {m n : Nat}
 def ytmPredictorAlpha (n : Nat) : ℝ :=
   ytmStepConstant / Real.sqrt (hdim n)
 
-/-- Corrector local guarantee from the YTM wide-to-tight estimate. -/
+/-- Corrector local guarantee from the YTM wide-to-tight estimate.
+@isnad1 id=correcto.2h3v.s4.0fde20e8a44e from=translated src=- shape=cecc34cd vocab=eb40413e
+-/
 theorem corrector_step_guarantee_of_wide {n : Nat}
     (w : HSState n) (d : HSDirection n)
     (hneigh : HSDNeighborhood ytmBetaWide w)
@@ -631,7 +685,9 @@ theorem corrector_step_guarantee_of_wide {n : Nat}
 def ytmContraction (n : Nat) : ℝ :=
   1 - ytmStepConstant / Real.sqrt (hdim n)
 
-/-- The two-step contraction factor is nonnegative. -/
+/-- The two-step contraction factor is nonnegative.
+@isnad1 id=le.0h1v.s3.3a047fe6da0f from=translated src=- shape=b9369acb vocab=02c8439e
+-/
 theorem ytmContraction_nonneg (n : Nat) :
     0 ≤ ytmContraction n := by
   unfold ytmContraction
@@ -639,7 +695,9 @@ theorem ytmContraction_nonneg (n : Nat) :
     predictor_alpha_fixed_le_one n
   linarith
 
-/-- The two-step contraction factor is at most one. -/
+/-- The two-step contraction factor is at most one.
+@isnad1 id=le.0h1v.s3.99643f88608d from=translated src=- shape=a311c14d vocab=02c8439e
+-/
 theorem ytmContraction_le_one (n : Nat) :
     ytmContraction n ≤ 1 := by
   unfold ytmContraction
@@ -647,7 +705,9 @@ theorem ytmContraction_le_one (n : Nat) :
     le_of_lt (predictor_alpha_fixed_pos n)
   linarith
 
-/-- The two-step contraction factor is strictly less than one. -/
+/-- The two-step contraction factor is strictly less than one.
+@isnad1 id=lt.0h1v.s3.06083a35f2ea from=translated src=- shape=a311c14d vocab=4e1b4024
+-/
 theorem ytmContraction_lt_one (n : Nat) :
     ytmContraction n < 1 := by
   unfold ytmContraction
@@ -655,19 +715,25 @@ theorem ytmContraction_lt_one (n : Nat) :
     predictor_alpha_fixed_pos n
   linarith
 
-/-- Collected bounds for the two-step contraction factor. -/
+/-- Collected bounds for the two-step contraction factor.
+@isnad1 id=and.0h1v.s4.f23743ba1cbf from=translated src=- shape=d68478ae vocab=92a221de
+-/
 theorem ytmContraction_bounds (n : Nat) :
     0 ≤ ytmContraction n ∧ ytmContraction n < 1 := by
   exact ⟨ytmContraction_nonneg n, ytmContraction_lt_one n⟩
 
 /-- The contraction factor is exactly `1 - a_n`, where
-`a_n = ytmStepConstant / sqrt(hdim n)`. -/
+`a_n = ytmStepConstant / sqrt(hdim n)`.
+@isnad1 id=eq.0h1v.s5.7cb8c20c8b49 from=translated src=- shape=10f6fd55 vocab=e03eae1f
+-/
 theorem ytmContraction_eq_one_sub_alpha (n : Nat) :
     ytmContraction n = 1 - ytmStepConstant / Real.sqrt (hdim n) := by
   rfl
 
 /-- The reciprocal scale used in the logarithmic iteration bound cancels the
-YTM step coefficient. -/
+YTM step coefficient.
+@isnad1 id=eq.0h2v.s5.ef8a6590a205 from=translated src=- shape=1c0b13f3 vocab=c5f43e08
+-/
 theorem ytm_alpha_mul_log_scale (n : Nat) (u : ℝ) :
     (ytmStepConstant / Real.sqrt (hdim n)) *
         ((Real.sqrt (hdim n) / ytmStepConstant) * u) = u := by
@@ -676,7 +742,9 @@ theorem ytm_alpha_mul_log_scale (n : Nat) (u : ℝ) :
   field_simp [hc_ne, hs_ne]
 
 /-- Elementary exponential majorization used for the YTM contraction: if `a ≤ 1`,
-then `(1-a)^K ≤ exp(-aK)`. -/
+then `(1-a)^K ≤ exp(-aK)`.
+@isnad1 id=le.1h2v.s5.3624041f0f01 from=translated src=- shape=689a04f3 vocab=2b8c9761
+-/
 theorem one_sub_pow_le_exp_neg_mul_nat
     {a : ℝ} (ha_le_one : a ≤ 1) :
     ∀ K : Nat, (1 - a) ^ K ≤ Real.exp (-(a * (K : ℝ))) := by
@@ -706,7 +774,9 @@ theorem one_sub_pow_le_exp_neg_mul_nat
                 norm_num
                 ring
 
-/-- The YTM contraction power is bounded by the corresponding exponential decay. -/
+/-- The YTM contraction power is bounded by the corresponding exponential decay.
+@isnad1 id=le.0h2v.s5.123859bba3ee from=translated src=- shape=c3ee2be0 vocab=aa35059b
+-/
 theorem YTM_contraction_power_le_exp {n : Nat} (K : Nat) :
     (ytmContraction n) ^ K ≤
       Real.exp (-(ytmStepConstant / Real.sqrt (hdim n) * (K : ℝ))) := by
@@ -716,7 +786,9 @@ theorem YTM_contraction_power_le_exp {n : Nat} (K : Nat) :
     one_sub_pow_le_exp_neg_mul_nat ha_le_one K
 
 /-- If the real-valued pair count satisfies the logarithmic lower bound, then the
-exponential estimate already puts `gap0` below `ε`. -/
+exponential estimate already puts `gap0` below `ε`.
+@isnad1 id=le.3h4v.s6.58be61f5e760 from=translated src=- shape=43c50b3a vocab=5b317a22
+-/
 theorem ytm_exp_mul_gap_le_of_log_bound {n : Nat}
     (K : Nat) {gap0 ε : ℝ}
     (hgap0 : 0 < gap0) (hε_pos : 0 < ε)
@@ -770,13 +842,17 @@ def YTMGapStop {n : Nat} (ε : ℝ) (w : HSState n) : Prop :=
 def YTMMuStop {n : Nat} (ε : ℝ) (w : HSState n) : Prop :=
   mu w ≤ ε
 
-/-- Gap stopping immediately gives the formal gap-stop predicate. -/
+/-- Gap stopping immediately gives the formal gap-stop predicate.
+@isnad1 id=ytmgapst.1h3v.s4.efa5fe85bf35 from=translated src=- shape=05f9b90d vocab=15834ba4
+-/
 theorem YTMGapStop_of_gap_le {n : Nat} {w : HSState n} {ε : ℝ}
     (hgap : gap w ≤ ε) :
     YTMGapStop ε w :=
   hgap
 
-/-- Since `μ = gap / hdim`, a scaled gap bound gives the `μ ≤ ε` stopping test. -/
+/-- Since `μ = gap / hdim`, a scaled gap bound gives the `μ ≤ ε` stopping test.
+@isnad1 id=ytmmusto.1h3v.s4.10d6c81e28b6 from=translated src=- shape=fc654506 vocab=e16a9714
+-/
 theorem YTMMuStop_of_gap_le_hdim_mul {n : Nat} {w : HSState n} {ε : ℝ}
     (hgap : gap w ≤ hdim n * ε) :
     YTMMuStop ε w := by

@@ -46,7 +46,9 @@ omit [Countable (Σ l, L.Relations l)] in
 the structures are isomorphic. Unconditional (no `CountableRefinementHypothesis` needed).
 
 This decouples the isomorphism conclusion from scottRank entirely, taking
-`StabilizesCompletely` as a direct hypothesis. -/
+`StabilizesCompletely` as a direct hypothesis.
+@isnad1 id=nonempty.3h4v.s6.a892a8b7e005 from=translated src=- shape=91ae919a vocab=cd111211
+-/
 theorem stabilization_bound_iso_eq_BFEquiv
     {M N : Type w} [L.Structure M] [L.Structure N] [Countable M] [Countable N]
     {α : Ordinal.{0}} (_hα : α < Ordinal.omega 1)
@@ -87,7 +89,9 @@ private theorem bounded_scottHeight_iso_eq_BFEquiv_of
 /-! ### Unconditional Wrapper (via CRH) -/
 
 /-- When all countable models of a sentence have Scott height bounded by α (with α < ω₁),
-isomorphism between countable models is equivalent to BF-equivalence at level α. -/
+isomorphism between countable models is equivalent to BF-equivalence at level α.
+@isnad1 id=iff.4h5v.s7.3a6d429f45aa from=translated src=- shape=d9eb09c4 vocab=3bd92e0c
+-/
 theorem bounded_scottHeight_iso_eq_BFEquiv
     {φ : L.Sentenceω} {α : Ordinal.{0}} (hα : α < Ordinal.omega 1)
     (hbound : ∀ (M : Type w) [L.Structure M] [Countable M],

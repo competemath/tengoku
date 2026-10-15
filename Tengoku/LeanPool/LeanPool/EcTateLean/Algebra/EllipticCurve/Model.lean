@@ -67,6 +67,9 @@ def b5 (e : Model R) : R := e.a1 * e.a4 - 2 * e.a2 * e.a3
 /-- The `b₇` invariant of a Weierstrass model (from Connell). -/
 def b7 (e : Model R) : R := e.a1 * (e.a3 ^ 2 - 12 * e.a6) + 8 * e.a3 * e.a4
 
+/--
+@isnad1 id=eq.0h2v.s6.0dbcee95a27f from=translated src=- shape=ac6e87fa vocab=4b0fa748
+-/
 lemma b8_identity (e : Model R) : 4*e.b8 = e.b2*e.b6 - e.b4 ^ 2 := by
   simp only [b2, b4, b6, b8]
   ring
@@ -81,6 +84,9 @@ def c6 (e : Model R) : R := -e.b2 ^ 3 + 36*e.b2*e.b4 - 216*e.b6
 def discr (e : Model R) : R :=
   -e.b2 * e.b2 * e.b8 - 8 * e.b4 ^ 3 - 27 * e.b6 * e.b6 + 9 * e.b2 * e.b4 * e.b6
 
+/--
+@isnad1 id=eq.0h2v.s6.01370c1ed1db from=translated src=- shape=b8eb398c vocab=76e84451
+-/
 lemma discr_identity (e : Model R) : 1728 * e.discr = e.c4 ^ 3 - e.c6 ^ 2 := by
   simp only [c4, c6, discr, mul_sub, mul_add]
   rw [(by ring : 1728 * (-e.b2 * e.b2 * e.b8) = -432 * e.b2 * e.b2 * (4 * e.b8))]
@@ -103,10 +109,16 @@ structure urstTransform (R : Type _) [Ring R] where
 namespace urstTransform
 instance instMulURSTTransform : Mul (urstTransform R) where
   mul f g := ⟨f.u * g.u, f.r + f.u * g.r, f.s + f.u * g.s, f.t + f.u * g.t⟩
+/--
+@isnad1 id=eq.0h3v.s8.00a9833363e9 from=translated src=- shape=c5edf64b vocab=0ae6affd
+-/
 lemma mul_def (f g : urstTransform R) :
   f * g = ⟨f.u * g.u, f.r + f.u * g.r, f.s + f.u * g.s, f.t + f.u * g.t⟩ := rfl
 instance : One (urstTransform R) where
   one := ⟨1, 0, 0, 0⟩
+/--
+@isnad1 id=eq.0h1v.s6.e5783000b60a from=translated src=- shape=448fb1e2 vocab=8b0930da
+-/
 lemma one_def : (1 : urstTransform R) = ⟨1, 0, 0, 0⟩ := rfl
 
 instance : Monoid (urstTransform R) where
@@ -122,6 +134,9 @@ instance : Monoid (urstTransform R) where
     refine ⟨mul_assoc _ _ _, ?_, ?_, ?_⟩ <;> push_cast <;> ring
 instance : Inv (urstTransform R) where
   inv f := ⟨f.u⁻¹, -f.u⁻¹ * f.r, -f.u⁻¹ * f.s, -f.u⁻¹ * f.t⟩
+/--
+@isnad1 id=eq.0h2v.s8.4d6d52db25dd from=translated src=- shape=5439a30a vocab=a2ae69be
+-/
 lemma inv_def (f : urstTransform R) :
   f⁻¹ = ⟨f.u⁻¹, -f.u⁻¹ * f.r, -f.u⁻¹ * f.s, -f.u⁻¹ * f.t⟩ := rfl
 
@@ -154,37 +169,58 @@ def rstIso (r s t : R) (e : Model R) : Model R :=
   a4 := e.a4 - s*e.a3 + 2*r*e.a2 - (t+r*s)*e.a1 + 3*r*r - 2*s*t
   a6 := e.a6 + r*e.a4 + r*r*e.a2 + r*r*r - t*(e.a3 + t + r*e.a1) }
 
+/--
+@isnad1 id=eq.0h5v.s6.b435aca054a0 from=translated src=- shape=d79dc223 vocab=355f35cd
+-/
 lemma rst_b2 (r s t : R) (e : Model R) : (rstIso r s t e).b2 = e.b2 + 12*r := by
   simp [rstIso, b2]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s6.5b41c11dd6b7 from=translated src=- shape=eb342149 vocab=3ec0fc58
+-/
 lemma rst_b4 (r s t : R) (e : Model R) :
   (rstIso r s t e).b4 = e.b4 + r * (e.b2 + 6 * r) := by
   simp only [rstIso, b2, b4]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s7.e145743c56ee from=translated src=- shape=a59bd0ba vocab=5148b8e0
+-/
 lemma rst_b6 (r s t : R) (e : Model R) :
   (rstIso r s t e).b6 = e.b6 + 2*r*e.b4 + r*r*e.b2 + 4*r*r*r := by
   simp only [rstIso, b2, b4, b6]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s8.8f802dd29906 from=translated src=- shape=1951f693 vocab=7afe6e5a
+-/
 lemma rst_b8 (r s t : R) (e : Model R) :
   (rstIso r s t e).b8 = e.b8 + 3*r*e.b6 + 3*r*r*e.b4 + r*r*r*e.b2 + 3*r*r*r*r := by
   simp only [rstIso, b2, b4, b6, b8]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s4.6ba91cec6c8e from=translated src=- shape=954a5757 vocab=c88e68cb
+-/
 @[simp]
 lemma rst_c4 (r s t : R) (e : Model R) :
   (rstIso r s t e).c4 = e.c4 := by
   simp only [rstIso, b2, b4, c4]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s4.bfadc58300d4 from=translated src=- shape=954a5757 vocab=9a59d4a1
+-/
 @[simp]
 lemma rst_c6 (r s t : R) (e : Model R) :
   (rstIso r s t e).c6 = e.c6 := by
   simp only [rstIso, b2, b4, b6, c6]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s4.cdebde21ad5d from=translated src=- shape=954a5757 vocab=54daff71
+-/
 lemma rst_discr (r s t : R) (e : Model R) : (rstIso r s t e).discr = e.discr := by
   simp only [discr, rst_b2, rst_b4, rst_b6, rst_b8]
   simp only [mul_add]
@@ -200,16 +236,43 @@ variable {S : Type u} [CommRing S] (f : R →+* S)
 @[simps]
 def map : Model R → Model S := fun e => ⟨f e.a1, f e.a2, f e.a3, f e.a4, f e.a6⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.91e2e6ff544a from=translated src=- shape=67e1482b vocab=331d7b1e
+-/
 @[simp] lemma map_b2 : (map f e).b2 = f e.b2 := by simp [Model.b2, map_ofNat]
+/--
+@isnad1 id=eq.0h4v.s6.86c089119686 from=translated src=- shape=67e1482b vocab=d43c2da1
+-/
 @[simp] lemma map_b4 : (map f e).b4 = f e.b4 := by simp [Model.b4, map_ofNat]
+/--
+@isnad1 id=eq.0h4v.s6.0b8d36c9d507 from=translated src=- shape=67e1482b vocab=9030c7a8
+-/
 @[simp] lemma map_b5 : (map f e).b5 = f e.b5 := by simp [Model.b5, map_ofNat]
+/--
+@isnad1 id=eq.0h4v.s6.6406922737fc from=translated src=- shape=67e1482b vocab=4d31db67
+-/
 @[simp] lemma map_b6 : (map f e).b6 = f e.b6 := by simp [Model.b6, map_ofNat]
+/--
+@isnad1 id=eq.0h4v.s6.d5fb83818987 from=translated src=- shape=67e1482b vocab=79266e63
+-/
 @[simp] lemma map_b7 : (map f e).b7 = f e.b7 := by simp [Model.b7, map_ofNat]
+/--
+@isnad1 id=eq.0h4v.s6.2083d5f03288 from=translated src=- shape=67e1482b vocab=e7d5fab4
+-/
 @[simp] lemma map_b8 : (map f e).b8 = f e.b8 := by simp [Model.b8, map_ofNat]
 
+/--
+@isnad1 id=eq.0h4v.s6.5999e3b5e458 from=translated src=- shape=67e1482b vocab=b673274d
+-/
 @[simp] lemma map_c4 : (map f e).c4 = f e.c4 := by simp [Model.c4, map_ofNat]
+/--
+@isnad1 id=eq.0h4v.s6.6c9e2cb801e8 from=translated src=- shape=67e1482b vocab=e3739ca7
+-/
 @[simp] lemma map_c6 : (map f e).c6 = f e.c6 := by simp [Model.c6, map_ofNat]
 
+/--
+@isnad1 id=eq.0h4v.s6.f46ccdba79cf from=translated src=- shape=67e1482b vocab=1834b236
+-/
 @[simp] lemma map_discr : (map f e).discr = f e.discr := by simp [Model.discr, map_ofNat]
 
 /-- The Weierstrass polynomial of `e` evaluated at a point `P = (x, y)`, i.e.
@@ -229,14 +292,23 @@ evaluated at `P`. -/
 def dweierstrassDy (e : Model R) (P : R × R) : R :=
   2 * P.2 + e.a1 * P.1 + e.a3
 
+/--
+@isnad1 id=eq.0h5v.s7.19ea6d77ed9b from=translated src=- shape=f30d98ab vocab=af22c18f
+-/
 @[simp]
 lemma weierstrass_map (e : Model R) (P : R × R) : weierstrass (e.map f) (P.map f f) =
   f (weierstrass e P) := by simp [weierstrass]
 
+/--
+@isnad1 id=eq.0h5v.s7.642e245b3794 from=translated src=- shape=f30d98ab vocab=215e3711
+-/
 @[simp]
 lemma dweierstrassDx_map (e : Model R) (P : R × R) : dweierstrassDx (e.map f) (P.map f f) =
   f (dweierstrassDx e P) := by simp [dweierstrassDx, map_ofNat]
 
+/--
+@isnad1 id=eq.0h5v.s7.fae71e1b1978 from=translated src=- shape=f30d98ab vocab=85fa26ab
+-/
 @[simp]
 lemma dweierstrassDy_map (e : Model R) (P : R × R) : dweierstrassDy (e.map f) (P.map f f) =
   f (dweierstrassDy e P) := by simp [dweierstrassDy, map_ofNat]
@@ -245,6 +317,7 @@ lemma dweierstrassDy_map (e : Model R) (P : R × R) : dweierstrassDy (e.map f) (
 The discriminant equals (minus) the standard order-`a6` generator of the elimination ideal
 of the Weierstrass and partial-derivative polynomials. This identity (verified with
 `Singular.jl`, part of `OSCAR`) is the negative of the `a6`-resultant polynomial below.
+@isnad1 id=eq.0h2v.s11.d6f48acb7277 from=translated src=- shape=22eb3f5a vocab=e71927d2
 -/
 lemma discr_eq_neg_singular (e : Model R) : e.discr = -(
   e.a1^4*e.a2*e.a3^2 - e.a1^5*e.a3*e.a4 + e.a1^6*e.a6 + 8*e.a1^2*e.a2^2*e.a3^2 - e.a1^3*e.a3^3
@@ -256,6 +329,9 @@ lemma discr_eq_neg_singular (e : Model R) : e.discr = -(
   simp only [discr, b2, b4, b6, b8]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s13.49295299d04c from=translated src=- shape=3afd0cd4 vocab=9b9a6b66
+-/
 lemma discr_in_jacobian_ideal (e : Model R) (P : R × R) : e.discr =
   -((48*P.1*P.2*e.a2^2 +24*e.a1*e.a2*e.a6 +216*P.2*e.a6 +P.2*e.a1^6 +11*P.2*e.a1^4*e.a2
       +P.1*e.a1^4*e.a3 +38*P.1*e.a1^2*e.a2*e.a3 +8*e.a1^2*e.a2^2*e.a3
@@ -291,28 +367,43 @@ lemma discr_in_jacobian_ideal (e : Model R) (P : R × R) : e.discr =
 def varChange (r s t : R) (P' : R × R) : R × R :=
   (P'.1 + r, P'.2 + s * P'.1 + t)
 
+/--
+@isnad1 id=eq.0h8v.s6.64424e7bf0d9 from=translated src=- shape=b443f9ed vocab=1adc2001
+-/
 @[simp]
 lemma varChange_comp (r s t : R) (r' s' t' : R) (P : R × R) :
   varChange r s t (varChange r' s' t' P) = varChange (r + r') (s + s') (t + t' + s * r') P := by
   simp only [varChange, Prod.mk.injEq]
   apply And.intro <;> ring
 
+/--
+@isnad1 id=eq.0h2v.s5.1b4cc103baaf from=translated src=- shape=3a5593b2 vocab=581bfc5e
+-/
 @[simp]
 lemma varChange_zero (P : R × R) : varChange (0 : R) 0 0 P = P := by simp [varChange]
 
 -- TODO probably these proofs should be more conceptual
 
+/--
+@isnad1 id=eq.0h6v.s5.50af664a2769 from=translated src=- shape=997b310b vocab=83bbecae
+-/
 theorem weierstrass_iso_eq_varChange (e : Model R) (P : R × R) :
   weierstrass (rstIso r s t e) P = weierstrass e (varChange r s t P) := by
   simp only [weierstrass, rstIso, varChange]
   ring
 
+/--
+@isnad1 id=eq.0h6v.s6.32b1e7e7f7ed from=translated src=- shape=fe955f7d vocab=f740a54d
+-/
 theorem dweierstrassDx_iso_eq_varChange (e : Model R) (P : R × R) :
   dweierstrassDx (rstIso r s t e) P =
   dweierstrassDx e (varChange r s t P) + s * dweierstrassDy e (varChange r s t P) := by
   simp only [dweierstrassDx, dweierstrassDy, rstIso, varChange]
   ring
 
+/--
+@isnad1 id=eq.0h6v.s5.1d33fc9644fb from=translated src=- shape=997b310b vocab=02691290
+-/
 theorem dweierstrassDy_iso_eq_varChange (e : Model R) (P : R × R) :
   dweierstrassDy (rstIso r s t e) P = dweierstrassDy e (varChange r s t P) := by
   simp only [dweierstrassDy, rstIso, varChange]
@@ -323,6 +414,9 @@ theorem dweierstrassDy_iso_eq_varChange (e : Model R) (P : R × R) :
 def rstTriple (e : Model R) (rst : R × R × R) : Model R :=
   rstIso rst.fst rst.snd.fst rst.snd.snd e
 
+/--
+@isnad1 id=eq.0h5v.s5.1cb9699d6ebf from=translated src=- shape=127843f8 vocab=fcbd0c50
+-/
 lemma rstIso_to_triple (e : Model R) (r s t : R) : rstIso r s t e = rstTriple e (r, s, t) := rfl
 
 end Model
@@ -345,59 +439,107 @@ def rstIso (r s t : R) (e : ValidModel R) : ValidModel R := {
     rw [Model.rst_discr]
     exact e.discr_not_zero }
 
+/--
+@isnad1 id=eq.0h5v.s5.0ec61330d4c5 from=translated src=- shape=9f72a76d vocab=2ddc0c42
+-/
 @[simp]
 lemma rst_discr_valid (r s t : R) (e : ValidModel R) : (rstIso r s t e).discr = e.discr :=
   Model.rst_discr r s t e.toModel
 
 --more [simp] lemmas
+/--
+@isnad1 id=eq.0h4v.s5.cf891595b082 from=translated src=- shape=51c3c07e vocab=4139257e
+-/
 lemma rt_of_a1 (e : ValidModel R) (r t : R) : (rstIso r 0 t e).a1 = e.a1 :=
 by simp only [rstIso, Model.rstIso, mul_zero, add_zero]
 
+/--
+@isnad1 id=eq.0h3v.s5.8c337b671ef5 from=translated src=- shape=e702372f vocab=4fe69579
+-/
 lemma t_of_a2 (e : ValidModel R) (t : R) : (rstIso 0 0 t e).a2 = e.a2 :=
 by simp only [rstIso, Model.rstIso, zero_mul, sub_zero, mul_zero, add_zero]
 
+/--
+@isnad1 id=eq.0h3v.s6.1e6ed46a98e5 from=translated src=- shape=f1dc6d3c vocab=9b90fd80
+-/
 lemma r_of_a2 (e : ValidModel R) (r : R) : (rstIso r 0 0 e).a2 = e.a2 + 3 * r :=
 by simp only [rstIso, Model.rstIso, zero_mul, sub_zero, mul_zero, add_zero]
 
+/--
+@isnad1 id=eq.0h3v.s6.46e5ee7e83ae from=translated src=- shape=a16df32a vocab=a4b87358
+-/
 lemma t_of_a3 (e : ValidModel R) (t : R) : (rstIso 0 0 t e).a3 = e.a3 + 2 * t :=
 by simp only [rstIso, Model.rstIso, zero_mul, sub_zero, mul_zero, add_zero]
 
+/--
+@isnad1 id=eq.0h3v.s6.5d6644d28f31 from=translated src=- shape=c6bb7ed1 vocab=b36a55ea
+-/
 lemma r_of_a3 (e : ValidModel R) (r : R) : (rstIso r 0 0 e).a3 = e.a3 + r * e.a1 :=
 by simp only [rstIso, Model.rstIso, zero_mul, sub_zero, mul_zero, add_zero]
 
+/--
+@isnad1 id=eq.0h3v.s6.2035a53dc5d2 from=translated src=- shape=72bb55fd vocab=2f8ad4ca
+-/
 lemma t_of_a4 (e : ValidModel R) (t : R) : (rstIso 0 0 t e).a4 = e.a4 - t * e.a1 :=
 by simp only [rstIso, Model.rstIso, zero_mul, sub_zero, mul_zero, add_zero]
 
+/--
+@isnad1 id=eq.0h3v.s7.f1096a2b96aa from=translated src=- shape=85ccd9b0 vocab=555959d9
+-/
 lemma r_of_a4 (e : ValidModel R) (r : R) : (rstIso r 0 0 e).a4 = e.a4 + 2 * r * e.a2 + 3 * r ^ 2 :=
 by simp only [rstIso, Model.rstIso, zero_mul,
   sub_zero, mul_zero, add_zero, mul_assoc, ←pow_two r]
 
+/--
+@isnad1 id=eq.0h3v.s7.7913338bb569 from=translated src=- shape=baa52b7f vocab=3d95dd04
+-/
 lemma t_of_a6 (e : ValidModel R) (t : R) : (rstIso 0 0 t e).a6 = e.a6 - t * e.a3 - t ^ 2 :=
 by simp only [rstIso, Model.rstIso, zero_mul, mul_zero,
   add_zero, mul_add, ←pow_two t, sub_eq_add_neg, neg_add, ←add_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s7.8a73677130c1 from=translated src=- shape=60649960 vocab=108c8815
+-/
 lemma r_of_a6 (e : ValidModel R) (r : R) :
   (rstIso r 0 0 e).a6 = e.a6 + r * e.a4 + r ^ 2 * e.a2 + r ^ 3 :=
 by simp only [rstIso, Model.rstIso, zero_mul, sub_zero,
   mul_zero, add_zero, mul_assoc, pow_two r, pow_succ r]
 
+/--
+@isnad1 id=eq.0h4v.s6.406de4b54eff from=translated src=- shape=ec662a6f vocab=17a1dd92
+-/
 lemma st_of_a1 (e : ValidModel R) (s t : R) : (rstIso 0 s t e).a1 = e.a1 + 2 * s :=
 by simp only [rstIso, Model.rstIso, mul_zero]
 
+/--
+@isnad1 id=eq.0h4v.s7.594c0552afed from=translated src=- shape=1c3005f7 vocab=fd581f6c
+-/
 lemma st_of_a2 (e : ValidModel R) (s t : R) : (rstIso 0 s t e).a2 = e.a2 - s * e.a1 - s ^ 2 :=
 by simp only [rstIso, Model.rstIso, mul_zero, add_zero, mul_assoc, ←pow_two s]
 
+/--
+@isnad1 id=eq.0h4v.s6.497ffeeef5cc from=translated src=- shape=80862e54 vocab=a4b87358
+-/
 lemma st_of_a3 (e : ValidModel R) (s t : R) : (rstIso 0 s t e).a3 = e.a3 + 2 * t :=
 by simp only [rstIso, Model.rstIso, mul_zero, add_zero, mul_assoc, zero_mul]
 
+/--
+@isnad1 id=eq.0h4v.s7.5ffcb99d110b from=translated src=- shape=1e19d706 vocab=e7aea16b
+-/
 lemma st_of_a4 (e : ValidModel R) (s t : R) :
   (rstIso 0 s t e).a4 = e.a4 - s * e.a3 - t * e.a1 - 2 * s * t :=
 by simp only [rstIso, Model.rstIso, mul_zero, add_zero, mul_assoc, zero_mul]
 
+/--
+@isnad1 id=eq.0h4v.s7.49b11e7a448d from=translated src=- shape=a65eb211 vocab=3d95dd04
+-/
 lemma st_of_a6 (e : ValidModel R) (s t : R) : (rstIso 0 s t e).a6 = e.a6 - t * e.a3 - t ^ 2 :=
 by simp only [rstIso, Model.rstIso, mul_zero,
   add_zero, mul_assoc, ←pow_two t, zero_mul, mul_add, sub_sub]
 
+/--
+@isnad1 id=eq.0h4v.s5.1191cf304b81 from=translated src=- shape=fdf4e943 vocab=ff8f49f5
+-/
 lemma st_of_b8 (e : ValidModel R) (s t : R) : (rstIso 0 s t e).b8 = e.b8 := by
   simp only [rstIso, Model.rst_b8, mul_zero, add_zero, zero_mul]
 
@@ -406,6 +548,9 @@ the triple `rst = (r, s, t)` packaged as a single argument. -/
 def rstTriple (e : ValidModel R) (rst : R × R × R) : ValidModel R :=
   rstIso rst.fst rst.snd.fst rst.snd.snd e
 
+/--
+@isnad1 id=eq.0h5v.s5.296b9b400e2a from=translated src=- shape=127843f8 vocab=149a79a9
+-/
 lemma rstIso_to_triple (e : ValidModel R) (r s t : R) : rstIso r s t e = rstTriple e (r, s, t) :=
 rfl
 
@@ -420,6 +565,9 @@ polynomial and both of its partial derivatives vanish at `P`. -/
 def isSingularPoint (e : Model K) (P : K × K) : Prop :=
 weierstrass e P = 0 ∧ dweierstrassDx e P = 0 ∧ dweierstrassDy e P = 0
 
+/--
+@isnad1 id=eq.1h3v.s5.eb247d5f0010 from=translated src=- shape=6279594d vocab=3a8f4a1d
+-/
 lemma discr_eq_zero_of_singular (e : Model K) {P} (h : isSingularPoint e P) :
   e.discr = 0 := by
   rcases h with ⟨h₁, h₂, h₃⟩
@@ -428,6 +576,9 @@ lemma discr_eq_zero_of_singular (e : Model K) {P} (h : isSingularPoint e P) :
 
 variable [IsDomain K]
 
+/--
+@isnad1 id=iff.1h2v.s6.1b687ac47eee from=translated src=- shape=1dcffa69 vocab=f47bd14f
+-/
 lemma c4_zero_iff_a1_zero_of_char_two (e : Model K) (h : ringChar K = 2) :
   e.c4 = 0 ↔ e.a1 = 0 := by
   have hchar' : (ringChar K : K) = 2 := by simp [h]
@@ -437,6 +588,9 @@ lemma c4_zero_iff_a1_zero_of_char_two (e : Model K) (h : ringChar K = 2) :
     hchar'', ← pow_two]
   simp_all
 
+/--
+@isnad1 id=iff.1h2v.s6.48d27ba94430 from=translated src=- shape=1dcffa69 vocab=bb4b7a5c
+-/
 lemma c4_zero_iff_b2_zero_of_char_three (e : Model K) (h : ringChar K = 3) :
   e.c4 = 0 ↔ e.b2 = 0 := by
   have hchar' : (ringChar K : K) = 3 := by simp [h]
@@ -445,6 +599,9 @@ lemma c4_zero_iff_b2_zero_of_char_three (e : Model K) (h : ringChar K = 3) :
   simp_all
 
 -- TODO is this actually an iff
+/--
+@isnad1 id=eq.3h2v.s6.52eec09d967c from=translated src=- shape=741cbef8 vocab=68b958f8
+-/
 lemma a3_zero_of_a1_zero_of_disc_zero_of_char_two
   (e : Model K) (h : ringChar K = 2) (hdisc : e.discr = 0) (ha1 : e.a1 = 0) :
   e.a3 = 0 := by
@@ -456,6 +613,9 @@ lemma a3_zero_of_a1_zero_of_disc_zero_of_char_two
   simp_all
 
 -- TODO is this actually an iff discr
+/--
+@isnad1 id=eq.3h2v.s6.fea6ed879e20 from=translated src=- shape=741cbef8 vocab=e4ec1224
+-/
 lemma b4_zero_of_b2_zero_of_disc_zero_of_char_three
   (e : Model K) (h : ringChar K = 3) (hdisc : e.discr = 0) (hb2 : e.b2 = 0) :
   e.b4 = 0 := by
@@ -487,6 +647,9 @@ def singularPoint [PerfectRing K] (e : Model K) : K × K :=
   else
     ((18 * e.b6 - e.b2 * e.b4) / e.c4, (e.b2 * e.b5 + 3 * e.b7) / e.c4)
 
+/--
+@isnad1 id=eq.2h2v.s6.a9d992345475 from=translated src=- shape=444606fa vocab=18c215f1
+-/
 lemma ringChar_eq_of_Prime [Nat.AtLeastTwo n] (hn : @OfNat.ofNat K n _ = 0) (hnp : Nat.Prime n) :
   ringChar K = n := by
   rw [← Nat.cast_ofNat, ringChar.spec] at hn
@@ -502,6 +665,9 @@ lemma ringChar_eq_of_Prime [Nat.AtLeastTwo n] (hn : @OfNat.ofNat K n _ = 0) (hnp
 
 -- TODO maybe rewrite to take an explicit point
 
+/--
+@isnad1 id=issingul.1h2v.s5.1335bab543b1 from=translated src=- shape=ac6ba6c4 vocab=a4bb34bc
+-/
 lemma isSingularPoint_singularPoint [PerfectRing K] (e : Model K) (h : e.discr = 0) :
   isSingularPoint e (singularPoint e) := by
   rw [singularPoint]
@@ -642,6 +808,9 @@ noncomputable
 def moveSingularPointToOriginIso [PerfectRing K] (e : Model K) : Model K :=
 rstTriple e (moveSingularPointToOriginTriple e)
 
+/--
+@isnad1 id=issingul.1h5v.s6.41fc42708a3c from=translated src=- shape=56b04858 vocab=f499fd23
+-/
 lemma move_singularPoint (e : Model K) (r t : K) {P : K × K} (h : isSingularPoint e P) :
   isSingularPoint (rstIso r 0 t e) (varChange (-r) 0 (-t) P) := by
   rw [isSingularPoint, weierstrass_iso_eq_varChange,
@@ -649,6 +818,9 @@ lemma move_singularPoint (e : Model K) (r t : K) {P : K × K} (h : isSingularPoi
     dweierstrassDy_iso_eq_varChange, varChange_comp]
   simpa
 
+/--
+@isnad1 id=issingul.1h2v.s6.a6ccc8c96b91 from=translated src=- shape=6cb20d61 vocab=98fa7376
+-/
 lemma move_singularPoint_to_origin [PerfectRing K] (e : Model K) (h : e.discr = 0) :
   isSingularPoint (moveSingularPointToOriginIso e) (0, 0) := by
   rw [moveSingularPointToOriginIso, rstTriple, moveSingularPointToOriginTriple]
@@ -656,6 +828,9 @@ lemma move_singularPoint_to_origin [PerfectRing K] (e : Model K) (h : e.discr = 
     (isSingularPoint_singularPoint e h) using 2 <;> -- TODO convert does too much here
   simp [varChange]
 
+/--
+@isnad1 id=issingul.1h2v.s6.fd15a53e68a6 from=translated src=- shape=4b7a4eab vocab=f6cfb99b
+-/
 lemma move_singularPoint_to_origin' [PerfectRing K] (e : Model K) :
   (∃ P, isSingularPoint e P) →
     isSingularPoint (moveSingularPointToOriginIso e) (0, 0) := by

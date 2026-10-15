@@ -235,7 +235,9 @@ support-covered colimit-family completeness — the term-model side of the oblig
 Each Ω-clause converts pointwise through `realize_locDeForm` (with `locDeForm` *definitionally*
 the canonical deForm at the `locDeTermFin` tuple, so the homogeneity fields apply at
 `g := locDeTermFin ∘ ts`), and `realize_iSup`/`realize_iInf` split the connective on the deep
-side. After this, the remaining extraction target is `LocalEMOmegaHomogeneous` alone. -/
+side. After this, the remaining extraction target is `LocalEMOmegaHomogeneous` alone.
+@isnad1 id=omegacom.1h4v.s5.192268ca24bd from=translated src=- shape=aab6673e vocab=68b2d688
+-/
 theorem LocalEMContext.omegaCompleteForColim_of_omegaHomogeneous
     (ctx : LocalEMContext (localColim s₀) J (M := M))
     (h : LocalEMOmegaHomogeneous s₀ ctx.a) :
@@ -295,7 +297,9 @@ contains `ΓEMlocal s₀` is deForm-closed for the colimit family, via `locDeFor
 contrast to the EM stack, where `DeFormClosedForGammaStar` stays an open obligation, the local
 family was *built* with the canonical deForm closure inside. The hypothesis `hΓ` is discharged
 downstream against `exists_localEMContext` (whose context has `ctx.Γ = ΓEMlocal s₀`) — in the
-extraction layer, not here, keeping this file pure. -/
+extraction layer, not here, keeping this file pure.
+@isnad1 id=deformcl.1h4v.s5.e139940112d1 from=translated src=- shape=7792edb4 vocab=489107df
+-/
 theorem LocalEMContext.deFormClosedForColim_of_ΓEMlocal_subset
     (ctx : LocalEMContext (localColim s₀) J (M := M)) (hΓ : ΓEMlocal s₀ ⊆ ctx.Γ) :
     LocalEMContext.DeFormClosedForColim (s₀ := s₀) (J := J) ctx :=
@@ -357,7 +361,9 @@ private theorem LocalEMContext.TLReady_mapLang_of_Γlocal_succ
 /-- **Formula-level cocone coherence for the truth lemma's lift**: mapping a stage-`k` formula one
 stage up (along `LlocalHom`) and then into the colimit is the direct colimit image. The formula
 component of `toLocalColimFormula_step`, in the un-packaged form the stage-`k` lift corollary
-rewrites with. -/
+rewrites with.
+@isnad1 id=eq.0h4v.s6.753e332085af from=translated src=- shape=98f2e3d0 vocab=70641cd1
+-/
 theorem mapLanguage_LlocalInclusion_lift {k n : ℕ} (ψ : (Llocal s₀ k).BoundedFormulaω Empty n) :
     (ψ.mapLanguage (LlocalHom s₀ k)).mapLanguage (LlocalInclusion s₀ (k + 1))
       = ψ.mapLanguage (LlocalInclusion s₀ k) := by
@@ -409,7 +415,9 @@ private theorem BoundedFormulaω.mapLanguage_eq_iInf {L₁ L₂ : Language.{0, 0
 `ΓlocalColim` is the colimit image of a staged `⋁` (constructor inversion), whose components
 reach the successor family by lift + subformula closure, hence the colimit family by the cocone
 coherence. The membership plumbing that feeds the full-indiscernibility Ω-restoration at the
-colimit family. -/
+colimit family.
+@isnad1 id=mem.1h4v.s6.5de683dd278d from=translated src=- shape=ff6b0a97 vocab=5d508853
+-/
 theorem iSup_component_mem_ΓlocalColim {m : ℕ}
     {φs : ℕ → (localColim s₀).BoundedFormulaω Empty m}
     (h : (⟨m, BoundedFormulaω.iSup φs⟩ : Σ n, (localColim s₀).BoundedFormulaω Empty n)
@@ -433,7 +441,9 @@ theorem iSup_component_mem_ΓlocalColim {m : ℕ}
   rw [hcomp i]
   exact hmem2
 
-/-- Components of colimit-family conjunctions stay in the colimit family. -/
+/-- Components of colimit-family conjunctions stay in the colimit family.
+@isnad1 id=mem.1h4v.s6.04fe6a9d54e0 from=translated src=- shape=ff6b0a97 vocab=0fc930d0
+-/
 theorem iInf_component_mem_ΓlocalColim {m : ℕ}
     {φs : ℕ → (localColim s₀).BoundedFormulaω Empty m}
     (h : (⟨m, BoundedFormulaω.iInf φs⟩ : Σ n, (localColim s₀).BoundedFormulaω Empty n)
@@ -460,7 +470,9 @@ theorem iInf_component_mem_ΓlocalColim {m : ℕ}
 /-- **Stage-agnostic readiness**: every stage-`k` family member — including the raw seed stage
 `0`, where subformula closure is not available — is `TLReadyStage`-ready, by lifting one stage
 (along `LlocalHom`, via `liftGamma_mem_Γlocal_succ`) and rewriting the colimit image back down
-with the cocone coherence `mapLanguage_LlocalInclusion_lift`. -/
+with the cocone coherence `mapLanguage_LlocalInclusion_lift`.
+@isnad1 id=tlreadys.3h9v.s7.6cc8364888e9 from=translated src=- shape=227020aa vocab=0de6748d
+-/
 theorem LocalEMContext.TLReadyStage_of_Γlocal
     (ctx : LocalEMContext (localColim s₀) J (M := M)) {k : ℕ}
     (hclosed : LocalEMContext.DeFormClosedForColim (s₀ := s₀) (J := J) ctx)
@@ -505,7 +517,9 @@ form. Local analogue of `EMContext.truthLemmaStage`.
 
 The completeness input is the **restricted** `OmegaCompleteForColim`: the `iSup`/`iInf` cases
 consume it only at the colimit images of family members, whose memberships the induction
-threads (global `OmegaComplete` users go through `OmegaComplete.toOmegaCompleteOn`). -/
+threads (global `OmegaComplete` users go through `OmegaComplete.toOmegaCompleteOn`).
+@isnad1 id=iff.5h9v.s8.c8aaa11655f0 from=translated src=- shape=803907a5 vocab=e7e76be8
+-/
 theorem LocalEMContext.truthLemmaStage_of_skolemUniversal
     (hsk : LocalSkolemUniversalForColim s₀ (M := M)) :
     ∀ (ctx : LocalEMContext (localColim s₀) J (M := M)),
@@ -704,7 +718,9 @@ theorem LocalEMContext.truthLemmaStage_of_skolemUniversal
 stage-`k` family member, at any stage including the raw seed stage `0`, over any mixin-satisfying
 structure. Lifts the member one stage (along `LlocalHom`, via `liftGamma_mem_Γlocal_succ`) where
 subformula closure is available, then rewrites the colimit image back down with the cocone
-coherence `mapLanguage_LlocalInclusion_lift`. -/
+coherence `mapLanguage_LlocalInclusion_lift`.
+@isnad1 id=iff.5h9v.s7.c8e7ab0dcde3 from=translated src=- shape=be073f19 vocab=f27a19be
+-/
 theorem LocalEMContext.truthLemmaStage_of_mem_of_skolemUniversal
     (hsk : LocalSkolemUniversalForColim s₀ (M := M)) :
     ∀ (ctx : LocalEMContext (localColim s₀) J (M := M)),

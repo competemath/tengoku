@@ -41,7 +41,9 @@ def codeReduct (d : StructureSpace (graphLanguage (KLang L))) : StructureSpace L
 
 omit [Countable (Σ l, L.Relations l)] in
 /-- Compatibility with decoded structures: the reduct code's relations are the base graph
-relations of the decoded structure. -/
+relations of the decoded structure.
+@isnad1 id=iff.0h5v.s5.f659029ffbcf from=translated src=- shape=f48f02d8 vocab=f250103d
+-/
 theorem codeReduct_toStructure {d : StructureSpace (graphLanguage (KLang L))} {l : ℕ}
     (R : L.Relations l) (v : Fin l → ℕ) :
     @Structure.RelMap L ℕ (codeReduct d).toStructure l R v ↔
@@ -56,6 +58,9 @@ namespace LopezStd
 /-- Decode a `{0,1}`-valued numeral back to a bit. -/
 def decodeBit (m : ℕ) : Bool := decide (m = 1)
 
+/--
+@isnad1 id=eq.0h1v.s4.66dc9fd7f38f from=translated src=- shape=8533abcf vocab=61ae58cb
+-/
 theorem decodeBit_cond (b : Bool) : decodeBit (cond b 1 0) = b := by
   cases b <;> rfl
 
@@ -297,7 +302,9 @@ end LopezStd
 
 open LopezStd in
 /-- **Forward gate** (`subset_pcClass`): if `T` characterizes `B` by branches (Unit 0), then
-every code of `B` is the base reduct of a model of the PC sentence.  No `IsomorphismInvariant`. -/
+every code of `B` is the base reduct of a model of the PC sentence.  No `IsomorphismInvariant`.
+@isnad1 id=le.1h4v.s7.40c26c48ad8e from=translated src=- shape=14e71a44 vocab=f19288a2
+-/
 theorem subset_pcClass {B : Set (StructureSpace L)} (side : PCSide)
     (T : (n : ℕ) → Set ((Fin n → Bool) × (Fin n → ℕ)))
     (hT : ∀ c : StructureSpace L, c ∈ B ↔ ∃ g : ℕ → ℕ,

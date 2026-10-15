@@ -29,6 +29,9 @@ noncomputable section
 local instance : IsProbabilityMeasure (expMeasure 1) :=
   isProbabilityMeasure_expMeasure one_pos
 
+/--
+@isnad1 id=eq.1h1v.s5.7144be797348 from=translated src=- shape=c500f7bf vocab=3251dcfa
+-/
 lemma expMeasure_inv_eq_withDensity_rightExponentialDensity
     {a : ℝ} (ha : 0 < a) :
     expMeasure a⁻¹ =
@@ -36,7 +39,9 @@ lemma expMeasure_inv_eq_withDensity_rightExponentialDensity
   rw [rightExponentialDensity_eq_exponentialPDF ha]
   rfl
 
-/-- Scaling a rate-one exponential by `a > 0` gives the density of `aE`. -/
+/-- Scaling a rate-one exponential by `a > 0` gives the density of `aE`.
+@isnad1 id=eq.1h1v.s5.53f0caaa7616 from=translated src=- shape=f5017cb6 vocab=2491b318
+-/
 theorem map_mul_expMeasure_one
     {a : ℝ} (ha : 0 < a) :
     Measure.map (fun x : ℝ ↦ a * x) (expMeasure 1) =
@@ -68,7 +73,9 @@ theorem map_mul_expMeasure_one
   · have hx' : x < 0 := lt_of_not_ge hx
     rw [ite_eq_right hx, ite_eq_right (not_le.mpr (div_neg_of_neg_of_pos hx' ha))]
 
-/-- Reflection transports a density by precomposition with negation. -/
+/-- Reflection transports a density by precomposition with negation.
+@isnad1 id=eq.0h1v.s5.093f61c4e2ce from=translated src=- shape=fa80564b vocab=1fbd9a20
+-/
 theorem map_neg_withDensity
     (f : ℝ → ℝ≥0∞) :
     Measure.map (fun x : ℝ ↦ -x) (volume.withDensity f) =
@@ -101,7 +108,9 @@ theorem map_neg_withDensity
     _ = ∫⁻ x, h x := hneg
     _ = ∫⁻ x, s.indicator (fun y ↦ f (-y)) x := rfl
 
-/-- The reflected pushforward is the density of `-bE`. -/
+/-- The reflected pushforward is the density of `-bE`.
+@isnad1 id=eq.1h1v.s5.74551e3becb0 from=translated src=- shape=70c11eaa vocab=a64b252b
+-/
 theorem map_neg_mul_expMeasure_one
     {b : ℝ} (hb : 0 < b) :
     Measure.map (fun x : ℝ ↦ -(b * x)) (expMeasure 1) =
@@ -120,7 +129,9 @@ theorem map_neg_mul_expMeasure_one
       rfl
 
 /-- Every signed factor density is the law of its signed scale times a
-rate-one exponential. -/
+rate-one exponential.
+@isnad1 id=eq.0h1v.s6.6a8755bf3bf7 from=translated src=- shape=6358acd0 vocab=e4725bda
+-/
 theorem SignedExpFactor.map_expMeasure_one (F : SignedExpFactor) :
     Measure.map
         (fun x : ℝ ↦
@@ -144,6 +155,9 @@ def SignedExpFactor.sourceLaw (F : SignedExpFactor) : Measure ℝ :=
       | .negative => -(F.scale * x))
     (expMeasure 1)
 
+/--
+@isnad1 id=eq.0h1v.s4.dddb6cedb558 from=translated src=- shape=e23e67cb vocab=ba9f91f3
+-/
 lemma SignedExpFactor.sourceLaw_eq_withDensity
     (F : SignedExpFactor) :
     F.sourceLaw = volume.withDensity F.density :=
@@ -161,6 +175,9 @@ def finiteSignedExpSumSourceMeasure :
   | F :: Fs =>
       F.sourceLaw ∗ finiteSignedExpSumSourceMeasure Fs
 
+/--
+@isnad1 id=eq.0h1v.s3.3b5995e169bf from=translated src=- shape=2dfc41c3 vocab=011e9621
+-/
 theorem finiteSignedExpSumSourceMeasure_eq :
     ∀ Fs : List SignedExpFactor,
       finiteSignedExpSumSourceMeasure Fs =

@@ -50,7 +50,9 @@ variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [CompleteSpace
 
 /-- **Schwartz's perturbation lemma**, cospan/span form: a compact perturbation `v` of a
 surjective continuous linear map `u` between Banach spaces has finite-codimensional range —
-every `f : F` is `u e - v e` up to a finite-dimensional correction `S`, independent of `f`. -/
+every `f : F` is `u e - v e` up to a finite-dimensional correction `S`, independent of `f`.
+@isnad1 id=ex.2h4v.s9.e5554f090ab7 from=translated src=- shape=0e82152b vocab=52bd6ae6
+-/
 theorem schwartz_finite_cospan (u v : E →L[ℂ] F) (hu : Surjective u) (hv : IsCompactOperator v) :
     ∃ S : Submodule ℂ F, FiniteDimensional ℂ S ∧ ∀ f : F, ∃ e : E, f - (u e - v e) ∈ S := by
   obtain ⟨C₀, hC₀, hpre⟩ := u.exists_preimage_norm_le hu
@@ -189,7 +191,9 @@ theorem schwartz_finite_cospan (u v : E →L[ℂ] F) (hu : Surjective u) (hv : I
   exact hfin ▸ hσS
 
 /-- Consumer form: any linear target `P` that is (a) killed by `u − v` and (b) hit by all of
-`F`, is finite-dimensional — the direct Schwartz-consumer shape needed for `H1Cover`. -/
+`F`, is finite-dimensional — the direct Schwartz-consumer shape needed for `H1Cover`.
+@isnad1 id=finitedi.4h6v.s9.94c4e52de906 from=translated src=- shape=dca9f332 vocab=2075ed13
+-/
 theorem finiteDimensional_of_cospan {E F P : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     [CompleteSpace E] [NormedAddCommGroup F] [NormedSpace ℂ F] [CompleteSpace F]
     [AddCommGroup P] [Module ℂ P] (u v : E →L[ℂ] F) (hu : Function.Surjective u)
@@ -209,7 +213,9 @@ theorem finiteDimensional_of_cospan {E F P : Type*} [NormedAddCommGroup E] [Norm
 
 /-- The extension helper: a linear map with finite-dimensional kernel and finite-dimensional
 codomain has finite-dimensional domain (used by both all-`D` finiteness steps and the χ
-ledger's `finiteDimensional_linSys`). -/
+ledger's `finiteDimensional_linSys`).
+@isnad1 id=finitedi.0h3v.s7.222efa730d5b from=translated src=- shape=d2b5fcf3 vocab=88c626a4
+-/
 theorem FiniteDimensional.of_linearMap_ker_range {M N : Type*} [AddCommGroup M] [Module ℂ M]
     [AddCommGroup N] [Module ℂ N] (f : M →ₗ[ℂ] N) [FiniteDimensional ℂ (LinearMap.ker f)]
     [FiniteDimensional ℂ N] : FiniteDimensional ℂ M := by

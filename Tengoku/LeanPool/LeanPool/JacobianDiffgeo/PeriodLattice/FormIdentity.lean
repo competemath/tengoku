@@ -109,7 +109,9 @@ private theorem isClosed_genericVanishing (η : Form1 X) : IsClosed (genericVani
 
 omit [T2Space X] [CompactSpace X] in
 /-- **The identity theorem**: eventual vanishing of `η`'s coefficient in one chart forces `η = 0`
-everywhere. -/
+everywhere.
+@isnad1 id=eq.1h3v.s11.8e81025dae3c from=translated src=- shape=82d49cab vocab=50f0f95a
+-/
 theorem form1_eq_zero_of_eventually_coeffIn_zero {η : Form1 X} {x₀ : X}
     (h : ∀ᶠ z in 𝓝 ((chartAt ℂ x₀) x₀), coeffIn (chartAt ℂ x₀) η z = 0) : η = 0 := by
   have hSclopen : IsClopen (genericVanishing η) :=

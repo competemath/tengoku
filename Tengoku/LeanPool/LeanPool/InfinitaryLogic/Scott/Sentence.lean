@@ -72,7 +72,9 @@ def StabilizesCompletely (M : Type w) [L.Structure M] (α : Ordinal) : Prop :=
   ∀ n : ℕ, StabilizesForTuples (L := L) M α n
 
 omit [L.IsRelational] [Countable (Σ l, L.Relations l)] in
-/-- An isomorphism induces BF-equivalence at all ordinal levels. -/
+/-- An isomorphism induces BF-equivalence at all ordinal levels.
+@isnad1 id=bfequiv.0h7v.s6.add460bad991 from=translated src=- shape=f14523a4 vocab=c7a623d4
+-/
 theorem equiv_implies_BFEquiv {M N : Type w} [L.Structure M] [L.Structure N]
     (e : M ≃[L] N) (α : Ordinal) (n : ℕ) (a : Fin n → M) :
     BFEquiv (L := L) α n a (e ∘ a) := by
@@ -140,7 +142,9 @@ omit [L.IsRelational] [Countable (Σ l, L.Relations l)] in
 This is the key lemma that resolves the quantifier swap problem.
 
 The proof proceeds by ordinal induction on β. The key insight is that at stabilization,
-forth/back witnesses stay at level α, so we can upgrade them along with the base BFEquiv. -/
+forth/back witnesses stay at level α, so we can upgrade them along with the base BFEquiv.
+@isnad1 id=bfequiv.3h8v.s6.bf910018ca3c from=translated src=- shape=e0b4dfbe vocab=d0dabc60
+-/
 theorem BFEquiv_upgrade_at_stabilization {M N : Type w} [L.Structure M] [L.Structure N]
     [Countable N]
     {α : Ordinal} (hstab : StabilizesCompletely (L := L) M α)
@@ -184,7 +188,9 @@ succ α < ω₁, both sides are True.
 Take globalStab = sup of all change ordinals that are < ω₁ (one per triple).
 By countability of the sigma type and regularity of ω₁, globalStab < ω₁.
 At globalStab, for each triple, either the change ordinal is ≤ globalStab (both sides
-False) or > globalStab (both sides True since succ globalStab < ω₁). -/
+False) or > globalStab (both sides True since succ globalStab < ω₁).
+@isnad1 id=ex.0h2v.s6.aa6ccbbe3bad from=translated src=- shape=9deea040 vocab=25911860
+-/
 theorem exists_complete_self_stabilization (M : Type w) [L.Structure M] [Countable M] :
     ∃ α < (Ordinal.omega 1 : Ordinal.{0}), SelfStabilizesCompletely (L := L) M α := by
   -- For each triple (n, a, a'), define the "change ordinal":
@@ -425,7 +431,9 @@ private theorem BFEquiv_below_omega1_implies_potentialIso
 omit [Countable (Σ l, L.Relations l)] in
 /-- Corollary: If BFEquiv at all levels below ω₁ for empty tuples between countable structures,
 then they are isomorphic. Combines `BFEquiv_below_omega1_implies_potentialIso` with
-`PotentialIso.countable_toEquiv`. -/
+`PotentialIso.countable_toEquiv`.
+@isnad1 id=nonempty.1h3v.s6.2c590becb9cf from=translated src=- shape=b584e66f vocab=83fccc3b
+-/
 theorem BFEquiv_below_omega1_implies_iso
     {M : Type w} [L.Structure M] [Countable M]
     {N : Type w} [L.Structure N] [Countable N]
@@ -474,7 +482,9 @@ def CountableRefinementHypothesis (L : Language.{u, v})
       ∃ (N : Type w) (_ : L.Structure N) (_ : Countable N) (b : Fin n → N),
         BFEquiv (L := L) ε n a b ∧ ¬BFEquiv (L := L) (Order.succ ε) n a b}
 
-/-- Per-tuple stabilization, conditional on `CountableRefinementHypothesis`. -/
+/-- Per-tuple stabilization, conditional on `CountableRefinementHypothesis`.
+@isnad1 id=ex.1h4v.s7.c844988e3799 from=translated src=- shape=af23c3a9 vocab=37b23b9e
+-/
 theorem per_tuple_stabilization_below_omega1_of
     (hcount : CountableRefinementHypothesis.{u, v, w} L)
     {M : Type w} [L.Structure M] [Countable M]
@@ -535,7 +545,9 @@ theorem per_tuple_stabilization_below_omega1_of
         exact hmem.elim
       · exact BFEquiv.of_succ
 
-/-- Complete stabilization, conditional on `CountableRefinementHypothesis`. -/
+/-- Complete stabilization, conditional on `CountableRefinementHypothesis`.
+@isnad1 id=ex.1h2v.s6.1e1d0f881f9a from=translated src=- shape=2a718b6d vocab=cd86b5a5
+-/
 theorem exists_complete_stabilization_of
     (hcount : CountableRefinementHypothesis.{u, v, w} L)
     (M : Type w) [L.Structure M] [Countable M] :
@@ -595,7 +607,9 @@ theorem exists_complete_stabilization_of
 
 omit [Countable (Σ l, L.Relations l)] in
 /-- At a complete stabilization ordinal, BFEquiv0 implies isomorphism for countable structures.
-This is the corrected version of BFEquiv_omega_implies_equiv. -/
+This is the corrected version of BFEquiv_omega_implies_equiv.
+@isnad1 id=nonempty.2h4v.s5.c469f53308f2 from=translated src=- shape=07af2769 vocab=9a2d6108
+-/
 theorem BFEquiv_stabilization_implies_equiv {M N : Type w} [L.Structure M] [L.Structure N]
     [Countable M] [Countable N]
     {α : Ordinal} (hstab : StabilizesCompletely (L := L) M α)
@@ -640,7 +654,9 @@ Variants of the entire Scott sentence chain, conditional on
 `CountableRefinementHypothesis`. The same `scottSentence` definition is used;
 only the proof that it characterizes isomorphism is rebuilt. -/
 
-/-- Conditional variant of `exists_stabilization`. -/
+/-- Conditional variant of `exists_stabilization`.
+@isnad1 id=ex.1h2v.s6.b977d78959ac from=translated src=- shape=2a718b6d vocab=7e723ec6
+-/
 theorem exists_stabilization_of
     (hcount : CountableRefinementHypothesis.{u, v, w} L)
     (M : Type w) [L.Structure M] [Countable M] :
@@ -656,7 +672,9 @@ theorem exists_stabilization_of
     rw [← comp_fin_elim0 e]
     exact equiv_implies_BFEquiv e α 0 Fin.elim0
 
-/-- Conditional variant of `stabilizationOrdinal_lt_omega1'`. -/
+/-- Conditional variant of `stabilizationOrdinal_lt_omega1'`.
+@isnad1 id=lt.1h2v.s6.f08a4816ebd3 from=translated src=- shape=fe430e1e vocab=7db04e9a
+-/
 theorem stabilizationOrdinal_lt_omega1_of
     (hcount : CountableRefinementHypothesis.{u, v, w} L)
     (M : Type w) [L.Structure M] [Countable M] :
@@ -664,7 +682,9 @@ theorem stabilizationOrdinal_lt_omega1_of
   obtain ⟨α, hα_lt, hα_spec⟩ := exists_stabilization_of hcount M
   exact lt_of_le_of_lt (csInf_le' hα_spec) hα_lt
 
-/-- Conditional variant of `stabilizationOrdinal_stabilizes`. -/
+/-- Conditional variant of `stabilizationOrdinal_stabilizes`.
+@isnad1 id=stabiliz.1h2v.s5.1c46a0a9900f from=translated src=- shape=42b1d7c2 vocab=46062c99
+-/
 theorem stabilizationOrdinal_stabilizes_of
     (hcount : CountableRefinementHypothesis.{u, v, w} L)
     (M : Type w) [L.Structure M] [Countable M] :
@@ -679,7 +699,9 @@ theorem stabilizationOrdinal_stabilizes_of
 
 A countable structure N satisfies the Scott sentence of M iff M ≅ N.
 Uses the same `scottSentence M` definition; only the proof is rebuilt
-through the conditional pipeline. -/
+through the conditional pipeline.
+@isnad1 id=iff.1h3v.s5.b5039fe5fc63 from=translated src=- shape=5463223d vocab=845af0f6
+-/
 theorem scottSentence_characterizes_of
     (hcount : CountableRefinementHypothesis.{u, v, w} L)
     (M : Type w) [L.Structure M] [Countable M]

@@ -74,7 +74,9 @@ def funProdIso (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β)
       (prodCongrOrderIso (funSpaceEquiv V₀ V₁).symm (funSpaceEquiv V₀ V₂).symm).trans
         (prodEquiv (funSpace V₀ V₁) (funSpace V₀ V₂)).symm
 
-/-- **Exercise 3.24(i).** `(𝒟₀ → (𝒟₁ × 𝒟₂)) ≅ (𝒟₀ → 𝒟₁) × (𝒟₀ → 𝒟₂)`. -/
+/-- **Exercise 3.24(i).** `(𝒟₀ → (𝒟₁ × 𝒟₂)) ≅ (𝒟₀ → 𝒟₁) × (𝒟₀ → 𝒟₂)`.
+@isnad1 id=isomorph.0h6v.s6.3e6df533c4a8 from=translated src=- shape=7eec4e17 vocab=3b5568f9
+-/
 theorem funProd_isomorphic :
     funSpace V₀ (prod V₁ V₂) ≅ᴰ prod (funSpace V₀ V₁) (funSpace V₀ V₂) :=
   ⟨funProdIso V₀ V₁ V₂⟩

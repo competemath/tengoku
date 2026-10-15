@@ -56,7 +56,9 @@ noncomputable def shifted {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω) {n
 
 /-- The `δ = 1` reduction in §2.2: exact calibration and the deterministic
 bridge imply the sharp fixed-dimensional bound for the strict event
-`∑ Xᵢ < E(∑ Xᵢ) + 1`. -/
+`∑ Xᵢ < E(∑ Xᵢ) + 1`.
+@isnad1 id=le.7h5v.s7.f4d274bf062b from=translated src=- shape=d4c729a5 vocab=b4944a53
+-/
 theorem sharp_feige_of_calibration_and_largeSumBridge
     {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     {n : ℕ} (K : (Fin n → ℝ) → ℝ)
@@ -144,7 +146,9 @@ theorem sharp_feige_of_calibration_and_largeSumBridge
   linarith
 
 /-- The two structural inputs imply that `sharpConstant n` is a valid
-fixed-dimensional lower bound. -/
+fixed-dimensional lower bound.
+@isnad1 id=fixeddim.2h2v.s4.ab13320e90db from=translated src=- shape=bc23b6da vocab=39788454
+-/
 theorem sharpConstant_is_lowerBound_of_structural_inputs
     {n : ℕ} (K : (Fin n → ℝ) → ℝ)
     (hcal : UniversalCalibration K) (hbridge : LargeSumBridge K) :

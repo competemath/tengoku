@@ -36,12 +36,16 @@ def iterClosure (stepOne : α → Set α) (Γ₀ : Set α) : ℕ → Set α
 def setClosure (stepOne : α → Set α) (Γ₀ : Set α) : Set α :=
   ⋃ k, iterClosure stepOne Γ₀ k
 
-/-- The seed is contained in the closure (it is stage `0`). -/
+/-- The seed is contained in the closure (it is stage `0`).
+@isnad1 id=le.0h3v.s4.d9c16042bca9 from=translated src=- shape=34aafe86 vocab=35ecab12
+-/
 theorem subset_setClosure (stepOne : α → Set α) (Γ₀ : Set α) : Γ₀ ⊆ setClosure stepOne Γ₀ :=
   Set.subset_iUnion (iterClosure stepOne Γ₀) 0
 
 /-- **Closure property** (consumer-facing): the expansion of any member stays in the closure. If
-`x ∈ Γ*` then `stepOne x ⊆ Γ*`. -/
+`x ∈ Γ*` then `stepOne x ⊆ Γ*`.
+@isnad1 id=le.1h4v.s5.270b3e5e52c0 from=translated src=- shape=092101fa vocab=57eeca7e
+-/
 theorem stepOne_subset_setClosure (stepOne : α → Set α) (Γ₀ : Set α) {x : α}
     (hx : x ∈ setClosure stepOne Γ₀) : stepOne x ⊆ setClosure stepOne Γ₀ := by
   obtain ⟨k, hk⟩ := Set.mem_iUnion.mp hx
@@ -56,7 +60,9 @@ private theorem iterClosure_countable (stepOne : α → Set α) {Γ₀ : Set α}
   | zero => exact hΓ₀
   | succ k ih => exact ih.union (ih.biUnion fun x _ => hstep x)
 
-/-- The closure is countable, given a countable seed and a pointwise-countable step. -/
+/-- The closure is countable, given a countable seed and a pointwise-countable step.
+@isnad1 id=countabl.2h3v.s4.8b8408326895 from=translated src=- shape=b776a570 vocab=d1de1ae1
+-/
 theorem setClosure_countable (stepOne : α → Set α) {Γ₀ : Set α} (hΓ₀ : Γ₀.Countable)
     (hstep : ∀ x, (stepOne x).Countable) : (setClosure stepOne Γ₀).Countable :=
   Set.countable_iUnion (iterClosure_countable stepOne hΓ₀ hstep)
@@ -72,7 +78,9 @@ def bfSubformulas {Λ : Language.{0, 0}} :
   | ⟨_, .iInf φs⟩ => Set.range fun k => ⟨_, φs k⟩
   | _ => ∅
 
-/-- `bfSubformulas` is pointwise countable. -/
+/-- `bfSubformulas` is pointwise countable.
+@isnad1 id=countabl.0h2v.s4.f1ce5a813e10 from=translated src=- shape=9831cbff vocab=272f949e
+-/
 theorem bfSubformulas_countable {Λ : Language.{0, 0}} (χ : Σ n, Λ.BoundedFormulaω Empty n) :
     (bfSubformulas χ).Countable := by
   obtain ⟨n, φ⟩ := χ

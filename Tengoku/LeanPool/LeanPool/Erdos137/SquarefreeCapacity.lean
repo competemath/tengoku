@@ -95,14 +95,23 @@ def SqfreeBlockProduct (k n : ℕ) : ℕ := ∏ i ∈ SqfreeBlockIndices k n, (n
 in a length-`k` interval. -/
 def SmoothCapacity (k : ℕ) : ℕ := ∏ p ∈ Nat.primesBelow k, p ^ (k / p + 1)
 
+/--
+@isnad1 id=ne.1h2v.s4.c5af02921041 from=translated src=- shape=41cb78f6 vocab=78d2e92e
+-/
 lemma sqfreeBlockProduct_ne_zero {k n : ℕ} (hn : 1 ≤ n) : SqfreeBlockProduct k n ≠ 0 := by
   unfold SqfreeBlockProduct
   apply Finset.prod_ne_zero_iff.mpr
   intro i _; omega
 
+/--
+@isnad1 id=le.0h1v.s3.2c01e15c004a from=translated src=- shape=8a62b088 vocab=ada437dc
+-/
 lemma smoothCapacity_pos (k : ℕ) : 1 ≤ SmoothCapacity k :=
   Finset.one_le_prod fun _p hp => Nat.one_le_pow _ _ (Nat.prime_of_mem_primesBelow hp).pos
 
+/--
+@isnad1 id=ne.0h1v.s3.a34d9dcd692c from=translated src=- shape=b14ee516 vocab=ff063c95
+-/
 lemma smoothCapacity_ne_zero (k : ℕ) : SmoothCapacity k ≠ 0 :=
   Nat.one_le_iff_ne_zero.mp (smoothCapacity_pos k)
 
@@ -110,7 +119,9 @@ lemma smoothCapacity_ne_zero (k : ℕ) : SmoothCapacity k ≠ 0 :=
 
 /-- **No large prime in a squarefree term.** If `F k n` is powerful, `i < k`, `n + i` is
 squarefree, and `p ≥ k` is prime, then `p ∤ n + i`. Otherwise `veryBad_large_prime_sq` forces
-`p^2 ∣ n + i`, contradicting squarefreeness (`Squarefree.natFactorization_le_one`). -/
+`p^2 ∣ n + i`, contradicting squarefreeness (`Squarefree.natFactorization_le_one`).
+@isnad1 id=not.6h4v.s6.2f06c591e47b from=translated src=- shape=342cbed8 vocab=440cfc74
+-/
 lemma sqfree_term_no_large_prime {k n i p : ℕ} (hn : 1 ≤ n) (hPow : Powerful (F k n))
     (hi : i < k) (hsq : Squarefree (n + i)) (hp : p.Prime) (hkp : k ≤ p) : ¬ p ∣ n + i := by
   intro hpi
@@ -132,7 +143,9 @@ def BlockDvdIndices (k n p : ℕ) : Finset ℕ :=
 /-- **Per-prime capacity count.** For `p ≥ 1`, the number of squarefree-term indices `i` with
 `p ∣ n + i` is at most `⌊k/p⌋ + 1`. The squarefree-divisible index set is a subset of *all*
 indices `i < k` with `p ∣ n + i`, which biject (via `i ↦ n + i`) onto `{x ∈ (n-1, n-1+k] | p ∣ x}`,
-counted by `Ioc_dvd_le` (the same idiom as `div_le_factorization_F`). -/
+counted by `Ioc_dvd_le` (the same idiom as `div_le_factorization_F`).
+@isnad1 id=le.2h3v.s5.8f1686d1b744 from=translated src=- shape=88bacd34 vocab=5a77aa63
+-/
 lemma blockDvdIndices_card_le {k n p : ℕ} (hn : 1 ≤ n) (hp : 1 ≤ p) :
     #(BlockDvdIndices k n p) ≤ k / p + 1 := by
   -- Drop the squarefreeness condition: bound by the count of *all* divisible indices.
@@ -164,7 +177,9 @@ lemma blockDvdIndices_card_le {k n p : ℕ} (hn : 1 ≤ n) (hp : 1 ≤ p) :
 
 /-- **Valuation of the squarefree product at `p` is bounded by the count.** Each squarefree term
 contributes valuation `≤ 1` at `p` (and `0` if `p ∤ n+i`), so summing over the squarefree
-indices gives `v_p(∏) ≤ #{i : Squarefree ∧ p ∣ n+i} = #(BlockDvdIndices k n p)`. -/
+indices gives `v_p(∏) ≤ #{i : Squarefree ∧ p ∣ n+i} = #(BlockDvdIndices k n p)`.
+@isnad1 id=le.1h3v.s5.c7dc1f4770cd from=translated src=- shape=5dad0440 vocab=fec22235
+-/
 lemma sqfreeBlockProduct_factorization_le_count {k n p : ℕ} (hn : 1 ≤ n) :
     (SqfreeBlockProduct k n).factorization p ≤ #(BlockDvdIndices k n p) := by
   unfold SqfreeBlockProduct
@@ -184,7 +199,9 @@ lemma sqfreeBlockProduct_factorization_le_count {k n p : ℕ} (hn : 1 ≤ n) :
         simp_all
 
 /-- **Factorization of the capacity.** For prime `p < k`, `v_p(SmoothCapacity k) = ⌊k/p⌋ + 1`;
-for `p ∉ primesBelow k`, it is `0`. -/
+for `p ∉ primesBelow k`, it is `0`.
+@isnad1 id=eq.0h2v.s6.768c6e7fef5d from=translated src=- shape=f3e67485 vocab=fad3280f
+-/
 lemma smoothCapacity_factorization (k p : ℕ) :
     (SmoothCapacity k).factorization p
       = if p ∈ Nat.primesBelow k then k / p + 1 else 0 := by
@@ -215,7 +232,9 @@ lemma smoothCapacity_factorization (k p : ℕ) :
 a prime `p ≥ k` cannot divide any squarefree term (`sqfree_term_no_large_prime`), so its
 valuation in the product is `0 ≤` the capacity's; a prime `p < k` has valuation `≤ #(divisible
 squarefree terms) ≤ ⌊k/p⌋ + 1` (`sqfreeBlockProduct_factorization_le_count`,
-`blockDvdIndices_card_le`); a non-prime contributes `0`. -/
+`blockDvdIndices_card_le`); a non-prime contributes `0`.
+@isnad1 id=dvd.2h2v.s4.3d5178d6522c from=translated src=- shape=96d61af9 vocab=004c2d31
+-/
 theorem powerful_sqfree_product_dvd_smooth_capacity {k n : ℕ} (hn : 1 ≤ n)
     (hPow : Powerful (F k n)) : SqfreeBlockProduct k n ∣ SmoothCapacity k := by
   rw [← Nat.factorization_le_iff_dvd (sqfreeBlockProduct_ne_zero hn) (smoothCapacity_ne_zero k)]
@@ -253,7 +272,9 @@ theorem powerful_sqfree_product_dvd_smooth_capacity {k n : ℕ} (hn : 1 ≤ n)
 
 /-- **Size form.** If `F k n` is powerful, the product of the squarefree block terms is at most
 the small-prime capacity `∏_{p < k} p^{⌊k/p⌋+1}`. Immediate from the divisibility form via
-`Nat.le_of_dvd`. -/
+`Nat.le_of_dvd`.
+@isnad1 id=le.2h2v.s4.3fa26d6f6b46 from=translated src=- shape=be811ec8 vocab=bed6e489
+-/
 theorem powerful_sqfree_product_le_smooth_capacity {k n : ℕ} (hn : 1 ≤ n)
     (hPow : Powerful (F k n)) : SqfreeBlockProduct k n ≤ SmoothCapacity k :=
   Nat.le_of_dvd (smoothCapacity_pos k) (powerful_sqfree_product_dvd_smooth_capacity hn hPow)
@@ -263,7 +284,9 @@ theorem powerful_sqfree_product_le_smooth_capacity {k n : ℕ} (hn : 1 ≤ n)
 /-- Number of squarefree terms in the block. -/
 def SqfreeBlockCount (k n : ℕ) : ℕ := (SqfreeBlockIndices k n).card
 
-/-- The squarefree-capacity product is exactly `L k * P k`. -/
+/-- The squarefree-capacity product is exactly `L k * P k`.
+@isnad1 id=eq.0h1v.s4.ce8f6ad219ec from=translated src=- shape=f108d266 vocab=5fb08135
+-/
 lemma smoothCapacity_eq_L_mul_P (k : ℕ) : SmoothCapacity k = L k * P k := by
   unfold SmoothCapacity L P
   calc ∏ p ∈ Nat.primesBelow k, p ^ (k / p + 1)
@@ -272,7 +295,9 @@ lemma smoothCapacity_eq_L_mul_P (k : ℕ) : SmoothCapacity k = L k * P k := by
     _ = (∏ p ∈ Nat.primesBelow k, p ^ (k / p)) * (∏ p ∈ Nat.primesBelow k, p) := by
           rw [Finset.prod_mul_distrib]
 
-/-- `L k` divides `k!` (Legendre's first layer). -/
+/-- `L k` divides `k!` (Legendre's first layer).
+@isnad1 id=dvd.0h1v.s3.5870c136d7f1 from=translated src=- shape=0fc427d2 vocab=2d171cec
+-/
 lemma L_dvd_factorial (k : ℕ) : L k ∣ Nat.factorial k := by
   rw [← Nat.factorization_le_iff_dvd (L_ne_zero k) (Nat.factorial_ne_zero k)]
   intro p
@@ -295,24 +320,33 @@ lemma L_dvd_factorial (k : ℕ) : L k ∣ Nat.factorial k := by
       rw [Nat.Prime.factorization_pow hqprime, Finsupp.single_apply, ite_eq_right hne])]
     exact Nat.zero_le _
 
+/--
+@isnad1 id=le.0h1v.s3.642d26e4c637 from=translated src=- shape=0fc427d2 vocab=a3de224a
+-/
 lemma L_le_factorial (k : ℕ) : L k ≤ Nat.factorial k :=
   Nat.le_of_dvd (Nat.factorial_pos k) (L_dvd_factorial k)
 
-/-- Coarse explicit capacity bound: `SmoothCapacity k ≤ (4*k)^k`. -/
+/-- Coarse explicit capacity bound: `SmoothCapacity k ≤ (4*k)^k`.
+@isnad1 id=le.0h1v.s5.dd9cd6c54c74 from=translated src=- shape=501d1211 vocab=dbac8767
+-/
 theorem smoothCapacity_le_four_mul_pow (k : ℕ) : SmoothCapacity k ≤ (4 * k) ^ k := by
   calc SmoothCapacity k = L k * P k := smoothCapacity_eq_L_mul_P k
     _ ≤ Nat.factorial k * P k := Nat.mul_le_mul_right _ (L_le_factorial k)
     _ ≤ k ^ k * 4 ^ k := Nat.mul_le_mul (Nat.factorial_le_pow k) (P_le_4_pow k)
     _ = (4 * k) ^ k := by rw [← Nat.mul_pow]; ring
 
-/-- A squarefree term with a prime factor `p ≥ k` rules out powerfulness. -/
+/-- A squarefree term with a prime factor `p ≥ k` rules out powerfulness.
+@isnad1 id=not.6h4v.s6.f7933a56e646 from=translated src=- shape=9a1adc1c vocab=440cfc74
+-/
 theorem not_powerful_of_sqfree_term_large_prime {k n i p : ℕ}
     (hn : 1 ≤ n) (hi : i < k) (hsq : Squarefree (n + i))
     (hp : p.Prime) (hkp : k ≤ p) (hpdvd : p ∣ n + i) : ¬ Powerful (F k n) := by
   intro hPow
   exact sqfree_term_no_large_prime hn hPow hi hsq hp hkp hpdvd
 
-/-- Existential version. -/
+/-- Existential version.
+@isnad1 id=not.2h2v.s6.65115e784574 from=translated src=- shape=25a621b7 vocab=440cfc74
+-/
 theorem not_powerful_of_exists_sqfree_term_large_prime {k n : ℕ}
     (hn : 1 ≤ n)
     (h : ∃ i < k, Squarefree (n + i) ∧ ∃ p, p.Prime ∧ k ≤ p ∧ p ∣ n + i) :

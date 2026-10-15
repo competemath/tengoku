@@ -93,22 +93,31 @@ variable {ι : Type u} {α : ι → Type v}
 i`. -/
 def iprodNbhd (X : ∀ i, Set (α i)) : Set (Σ i, α i) := {p | p.2 ∈ X p.1}
 
+/--
+@isnad1 id=iff.0h5v.s6.90a1d669b4e5 from=translated src=- shape=4d5d3eca vocab=ed3f6511
+-/
 @[simp] theorem mem_iprodNbhd {X : ∀ i, Set (α i)} {i : ι} {a : α i} :
     (⟨i, a⟩ : Σ i, α i) ∈ iprodNbhd X ↔ a ∈ X i := Iff.rfl
 
-/-- Product neighbourhoods intersect coordinatewise (Scott's (2)). -/
+/-- Product neighbourhoods intersect coordinatewise (Scott's (2)).
+@isnad1 id=eq.0h4v.s6.1cdb86336aa6 from=translated src=- shape=68010a49 vocab=ec015ed8
+-/
 theorem iprodNbhd_inter (X X' : ∀ i, Set (α i)) :
     iprodNbhd X ∩ iprodNbhd X' = iprodNbhd (fun i => X i ∩ X' i) := by
   apply Set.ext; rintro ⟨i, a⟩; simp [iprodNbhd, Set.mem_inter_iff]
 
-/-- Inclusion of product neighbourhoods is coordinatewise (Scott's (1)). -/
+/-- Inclusion of product neighbourhoods is coordinatewise (Scott's (1)).
+@isnad1 id=iff.0h4v.s5.90349dcf88a4 from=translated src=- shape=f63fdc37 vocab=39ba01a0
+-/
 theorem iprodNbhd_subset_iff {X X' : ∀ i, Set (α i)} :
     iprodNbhd X ⊆ iprodNbhd X' ↔ ∀ i, X i ⊆ X' i := by
   constructor
   · intro h i a ha; exact h (show (⟨i, a⟩ : Σ i, α i) ∈ iprodNbhd X from ha)
   · rintro h ⟨i, a⟩ ha; exact h i ha
 
-/-- The tuple representation of a product neighbourhood is unique. -/
+/-- The tuple representation of a product neighbourhood is unique.
+@isnad1 id=eq.1h4v.s5.023f8c3dd267 from=translated src=- shape=831a1622 vocab=6c624015
+-/
 theorem iprodNbhd_injective {X X' : ∀ i, Set (α i)} (h : iprodNbhd X = iprodNbhd X') : X = X' := by
   funext i; apply Set.ext; intro a
   simpa only [mem_iprodNbhd] using Set.ext_iff.mp h ⟨i, a⟩
@@ -123,8 +132,14 @@ the construction constructive, which is exactly what is needed for the cylinder.
 def FinSupp (D : ∀ i, NeighborhoodSystem (α i)) (X : ∀ i, Set (α i)) : Prop :=
   ∃ l : List ι, ∀ i, i ∉ l → X i = (D i).master
 
+/--
+@isnad1 id=finsupp.0h3v.s4.e2678f9e6205 from=translated src=- shape=404afb8c vocab=a266257a
+-/
 theorem FinSupp.master : FinSupp D (fun i => (D i).master) := ⟨[], fun _ _ => rfl⟩
 
+/--
+@isnad1 id=finsupp.2h5v.s5.4376bd318704 from=translated src=- shape=400f5b5e vocab=9d73de79
+-/
 theorem FinSupp.inter {X X' : ∀ i, Set (α i)}
     (hX : FinSupp D X) (hX' : FinSupp D X') : FinSupp D (fun i => X i ∩ X' i) := by
   obtain ⟨l, hl⟩ := hX; obtain ⟨l', hl'⟩ := hX'
@@ -152,6 +167,9 @@ def iprod : NeighborhoodSystem (Σ i, α i) where
     have : ZZ i ⊆ X i ∩ X' i := iprodNbhd_subset_iff.mp hsub i
     exact (D i).inter_mem (hX i) (hX' i) (hZZ i) this
 
+/--
+@isnad1 id=mem.2h4v.s5.5b6b277b761c from=translated src=- shape=e062873d vocab=1d0db0f6
+-/
 theorem iprod_mem_iprodNbhd {X : ∀ i, Set (α i)} (hX : ∀ i, (D i).mem (X i))
     (hXf : FinSupp D X) : (iprod D).mem (iprodNbhd X) :=
   ⟨X, hX, hXf, rfl⟩
@@ -170,9 +188,15 @@ variable [DecidableEq ι]
 def updTuple (D : ∀ i, NeighborhoodSystem (α i)) (i : ι) (U : Set (α i)) : ∀ j, Set (α j) :=
   Function.update (fun j => (D j).master) i U
 
+/--
+@isnad1 id=eq.0h5v.s5.6b6a8cb81aa2 from=translated src=- shape=f7464b54 vocab=0b17c631
+-/
 @[simp] theorem updTuple_apply_self (i : ι) (U : Set (α i)) : updTuple D i U i = U := by
   simp [updTuple]
 
+/--
+@isnad1 id=eq.1h6v.s5.be00662c03e6 from=translated src=- shape=d79df8bd vocab=275d950d
+-/
 theorem updTuple_apply_ne {i j : ι} (U : Set (α i)) (h : j ≠ i) :
     updTuple D i U j = (D j).master := by
   simp [updTuple, Function.update_of_ne h]
@@ -181,10 +205,15 @@ theorem updTuple_apply_ne {i j : ι} (U : Set (α i)) (h : j ≠ i) :
 def slice (D : ∀ i, NeighborhoodSystem (α i)) (i : ι) (U : Set (α i)) : Set (Σ i, α i) :=
   iprodNbhd (updTuple D i U)
 
+/--
+@isnad1 id=eq.0h5v.s5.bf8bff2f9ed5 from=translated src=- shape=f39d423d vocab=cb2ed04a
+-/
 theorem slice_eq (i : ι) (U : Set (α i)) : slice D i U = iprodNbhd (updTuple D i U) := rfl
 
 /-- A slice has support `⊆ {i}`, hence is a neighbourhood of the product when `U ∈
-𝒟ᵢ`. -/
+𝒟ᵢ`.
+@isnad1 id=mem.1h5v.s5.027a8ced192f from=translated src=- shape=09b784f7 vocab=c28de9ab
+-/
 theorem iprod_mem_slice {i : ι} {U : Set (α i)} (hU : (D i).mem U) :
     (iprod D).mem (slice D i U) := by
   refine ⟨updTuple D i U, fun j => ?_, ⟨[i], fun j hj => ?_⟩, rfl⟩
@@ -193,7 +222,9 @@ theorem iprod_mem_slice {i : ι} {U : Set (α i)} (hU : (D i).mem U) :
     · rw [updTuple_apply_ne U h]; exact (D j).master_mem
   · exact updTuple_apply_ne U fun h => hj (List.mem_singleton.mpr h)
 
-/-- Recovering the coordinate from a slice neighbourhood. -/
+/-- Recovering the coordinate from a slice neighbourhood.
+@isnad1 id=mem.1h5v.s5.6a1237212753 from=translated src=- shape=ebceb382 vocab=c28de9ab
+-/
 theorem iprod_mem_slice_inv {i : ι} {U : Set (α i)} (h : (iprod D).mem (slice D i U)) :
     (D i).mem U := by
   obtain ⟨X, hX, _, heq⟩ := h
@@ -201,7 +232,9 @@ theorem iprod_mem_slice_inv {i : ι} {U : Set (α i)} (h : (iprod D).mem (slice 
   have hi := hX i
   rwa [← hXeq, updTuple_apply_self] at hi
 
-/-- Slices at the same coordinate intersect by intersecting their data. -/
+/-- Slices at the same coordinate intersect by intersecting their data.
+@isnad1 id=eq.0h6v.s6.269df6e6ffd2 from=translated src=- shape=bd7e8241 vocab=d08ee128
+-/
 theorem slice_inter (i : ι) (U U' : Set (α i)) :
     slice D i U ∩ slice D i U' = slice D i (U ∩ U') := by
   rw [slice_eq, slice_eq, slice_eq, iprodNbhd_inter]
@@ -211,7 +244,9 @@ theorem slice_inter (i : ι) (U U' : Set (α i)) :
   · rw [updTuple_apply_ne U h, updTuple_apply_ne U' h, updTuple_apply_ne (U ∩ U') h,
       Set.inter_self]
 
-/-- Slices are monotone in their data. -/
+/-- Slices are monotone in their data.
+@isnad1 id=le.1h6v.s6.e3850a596c44 from=translated src=- shape=70a31441 vocab=48f64bba
+-/
 theorem slice_subset (i : ι) {U U' : Set (α i)} (hUU' : U ⊆ U') : slice D i U ⊆ slice D i U' := by
   rw [slice_eq, slice_eq, iprodNbhd_subset_iff]
   intro j
@@ -219,7 +254,9 @@ theorem slice_subset (i : ι) {U U' : Set (α i)} (hUU' : U ⊆ U') : slice D i 
   · subst h; rw [updTuple_apply_self, updTuple_apply_self]; exact hUU'
   · rw [updTuple_apply_ne U h, updTuple_apply_ne U' h]
 
-/-- A cylinder is contained in each of its own slices. -/
+/-- A cylinder is contained in each of its own slices.
+@isnad1 id=le.1h5v.s6.084e52c5eb43 from=translated src=- shape=3e4e54ef vocab=93f7f661
+-/
 theorem iprodNbhd_subset_slice {X : ∀ i, Set (α i)} (hX : ∀ i, (D i).mem (X i)) (i : ι) :
     iprodNbhd X ⊆ slice D i (X i) := by
   rw [slice_eq, iprodNbhd_subset_iff]
@@ -264,6 +301,9 @@ def fromPi (D : ∀ i, NeighborhoodSystem (α i)) (x : ∀ i, (D i).Element) : (
     rw [iprodNbhd_subset_iff] at hsub
     exact ⟨X', fun i => (x i).up_mem (hX i) (hX'mem i) (hsub i), hX'f, rfl⟩
 
+/--
+@isnad1 id=iff.0h6v.s6.1fae61ad79fd from=translated src=- shape=1287cb19 vocab=4ba73164
+-/
 theorem fromPi_mem_slice (x : ∀ i, (D i).Element) (i : ι) (U : Set (α i)) :
     (fromPi D x).mem (slice D i U) ↔ (x i).mem U := by
   constructor
@@ -282,6 +322,9 @@ theorem fromPi_mem_slice (x : ∀ i, (D i).Element) (i : ι) (U : Set (α i)) :
 def restrictTo (D : ∀ i, NeighborhoodSystem (α i)) (l : List ι) (X : ∀ i, Set (α i)) :
     ∀ j, Set (α j) := fun j => if j ∈ l then X j else (D j).master
 
+/--
+@isnad1 id=eq.1h6v.s6.a4ead95983d3 from=translated src=- shape=f7440d99 vocab=874534cd
+-/
 theorem iprodNbhd_restrictTo_cons {X : ∀ i, Set (α i)} (hXsub : ∀ i, X i ⊆ (D i).master)
     (a : ι) (l : List ι) :
     iprodNbhd (restrictTo D (a :: l) X) = slice D a (X a) ∩ iprodNbhd (restrictTo D l X) := by
@@ -303,7 +346,9 @@ theorem iprodNbhd_restrictTo_cons {X : ∀ i, Set (α i)} (hXsub : ∀ i, X i �
         Set.inter_self]
 
 /-- An element contains the restricted cylinder once it contains each listed
-slice. -/
+slice.
+@isnad1 id=mem.2h6v.s6.a383632ceb8a from=translated src=- shape=54efda30 vocab=05d2c970
+-/
 theorem z_mem_iprodNbhd_restrictTo (z : (iprod D).Element) {X : ∀ i, Set (α i)}
     (hXsub : ∀ i, X i ⊆ (D i).master) (hslice : ∀ i, z.mem (slice D i (X i))) (l : List ι) :
     z.mem (iprodNbhd (restrictTo D l X)) := by
@@ -320,7 +365,9 @@ theorem z_mem_iprodNbhd_restrictTo (z : (iprod D).Element) {X : ∀ i, Set (α i
 contains the
 cylinder. The finite support (a *list* of coordinates) lets the only finitely many
 non-trivial slices
-be intersected inside the element — entirely choice-free. -/
+be intersected inside the element — entirely choice-free.
+@isnad1 id=mem.3h5v.s6.b9d91f96c76d from=translated src=- shape=65f74a52 vocab=5a70efdc
+-/
 theorem z_mem_of_slices (z : (iprod D).Element) {X : ∀ i, Set (α i)}
     (hXmem : ∀ i, (D i).mem (X i)) (hXf : FinSupp D X)
     (hslice : ∀ i, z.mem (slice D i (X i))) : z.mem (iprodNbhd X) := by
@@ -333,6 +380,9 @@ theorem z_mem_of_slices (z : (iprod D).Element) {X : ∀ i, Set (α i)}
     simp_all
   rwa [heq] at key
 
+/--
+@isnad1 id=eq.0h4v.s5.d052a7db29c4 from=translated src=- shape=ebdcecc3 vocab=528e0c14
+-/
 theorem fromPi_toPi (z : (iprod D).Element) : fromPi D (fun i => proj z i) = z := by
   apply Element.ext
   intro W
@@ -344,6 +394,9 @@ theorem fromPi_toPi (z : (iprod D).Element) : fromPi D (fun i => proj z i) = z :
     exact ⟨X, fun i => ⟨hXmem i, z.up_mem hW (iprod_mem_slice (hXmem i))
       (iprodNbhd_subset_slice hXmem i)⟩, hXf, rfl⟩
 
+/--
+@isnad1 id=eq.0h5v.s5.a88e0639aa93 from=translated src=- shape=0a74d10e vocab=ba789256
+-/
 theorem proj_fromPi (x : ∀ i, (D i).Element) (i : ι) : proj (fromPi D x) i = x i := by
   apply Element.ext
   intro U
@@ -390,9 +443,15 @@ disjoint. -/
 def injI (i : ι) (X : Set (α i)) : Set (Option (Σ i, α i)) :=
   (fun a => (some ⟨i, a⟩ : Option (Σ i, α i))) '' X
 
+/--
+@isnad1 id=not.0h4v.s5.560e1bcb615a from=translated src=- shape=c38370c9 vocab=c04e8dd4
+-/
 theorem none_not_mem_injI {i : ι} {X : Set (α i)} : (none : Option (Σ i, α i)) ∉ injI i X := by
   rintro ⟨a, _, heq⟩; simp at heq
 
+/--
+@isnad1 id=iff.0h5v.s6.7c6572d4b5bc from=translated src=- shape=9a1b943f vocab=c322daf2
+-/
 @[simp] theorem some_mem_injI {i : ι} {a : α i} {X : Set (α i)} :
     (some ⟨i, a⟩ : Option (Σ i, α i)) ∈ injI i X ↔ a ∈ X := by
   constructor
@@ -400,20 +459,31 @@ theorem none_not_mem_injI {i : ι} {X : Set (α i)} : (none : Option (Σ i, α i
     simp_all
   · intro ha; exact ⟨a, ha, rfl⟩
 
-/-- A tagged token determines its summand index. -/
+/-- A tagged token determines its summand index.
+@isnad1 id=eq.1h6v.s6.44c9891c37c1 from=translated src=- shape=a28cabda vocab=c322daf2
+-/
 theorem index_of_some_mem_injI {i k : ι} {a : α k} {X : Set (α i)}
     (hmem : (some ⟨k, a⟩ : Option (Σ i, α i)) ∈ injI i X) : k = i := by
   obtain ⟨b, _, heq⟩ := hmem
   simp_all
 
+/--
+@isnad1 id=nonempty.1h4v.s5.ac04cd2bd2b9 from=translated src=- shape=6aeec09b vocab=64ac7c8f
+-/
 theorem injI_nonempty {i : ι} {X : Set (α i)} (hX : X.Nonempty) : (injI i X).Nonempty := by
   obtain ⟨a, ha⟩ := hX; exact ⟨some ⟨i, a⟩, some_mem_injI.mpr ha⟩
 
+/--
+@isnad1 id=iff.0h5v.s5.f9ccac743c5a from=translated src=- shape=29b2b03e vocab=ae13a998
+-/
 theorem injI_subset_iff {i : ι} {X Y : Set (α i)} : injI i X ⊆ injI i Y ↔ X ⊆ Y := by
   constructor
   · intro h a ha; exact some_mem_injI.mp (h (some_mem_injI.mpr ha))
   · intro h; rintro w ⟨a, ha, rfl⟩; exact ⟨a, h ha, rfl⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.adfc68ebe1b6 from=translated src=- shape=79af84b3 vocab=21e088e7
+-/
 theorem injI_inter_same (i : ι) (X Y : Set (α i)) : injI i X ∩ injI i Y = injI i (X ∩ Y) := by
   apply Set.ext
   rintro (_ | ⟨k, a⟩)
@@ -428,6 +498,9 @@ theorem injI_inter_same (i : ι) (X Y : Set (α i)) : injI i X ∩ injI i Y = in
       obtain rfl := index_of_some_mem_injI h
       simp_all
 
+/--
+@isnad1 id=eq.1h6v.s6.cbe35cd40d8a from=translated src=- shape=299b70b6 vocab=9c7397b9
+-/
 theorem injI_inter_ne {i j : ι} (h : i ≠ j) (X : Set (α i)) (Y : Set (α j)) :
     injI i X ∩ injI j Y = ∅ := by
   apply Set.eq_empty_iff_forall_notMem.mpr
@@ -439,8 +512,14 @@ theorem injI_inter_ne {i j : ι} (h : i ≠ j) (X : Set (α i)) (Y : Set (α j))
 def sumMasterI (D : ∀ i, NeighborhoodSystem (α i)) : Set (Option (Σ i, α i)) :=
   insert none ((fun p => (some p : Option (Σ i, α i))) '' iprodNbhd (fun i => (D i).master))
 
+/--
+@isnad1 id=mem.0h3v.s5.2f082f378b08 from=translated src=- shape=849c1afc vocab=8e2ae1cf
+-/
 theorem none_mem_sumMasterI : (none : Option (Σ i, α i)) ∈ sumMasterI D := Set.mem_insert _ _
 
+/--
+@isnad1 id=le.1h5v.s5.ac4e3ee10ebb from=translated src=- shape=37a0fb7f vocab=8e113468
+-/
 theorem injI_subset_sumMasterI {i : ι} {X : Set (α i)} (hX : (D i).mem X) :
     injI i X ⊆ sumMasterI D := by
   rintro w ⟨a, ha, rfl⟩
@@ -482,7 +561,9 @@ def isum (D : ∀ i, NeighborhoodSystem (α i))
 into some summand
 or is the basepoint `⊥`. (Prop-level and genuinely classical: the case split is
 excluded middle on
-whether `z` reaches a summand, so this depends on `Classical.choice`.) -/
+whether `z` reaches a summand, so this depends on `Classical.choice`.)
+@isnad1 id=or.1h4v.s7.2a02b9a5cc88 from=translated src=- shape=382eedaa vocab=8db2b854
+-/
 theorem isum_trichotomy {hne : ∀ i, ∀ X : Set (α i), (D i).mem X → X.Nonempty}
     (z : (isum D hne).Element) :
     (∃ i, ∃ X : Set (α i), (D i).mem X ∧ z.mem (injI i X)) ∨
@@ -494,7 +575,9 @@ theorem isum_trichotomy {hne : ∀ i, ∀ X : Set (α i), (D i).mem X → X.None
     · rfl
     · exact absurd ⟨i, X, hX, hW⟩ h
 
-/-- **Exercise 6.29 — a sum element reaches at most one summand.** -/
+/-- **Exercise 6.29 — a sum element reaches at most one summand.**
+@isnad1 id=eq.3h8v.s6.1caa60c44317 from=translated src=- shape=80eb5d76 vocab=fce1167b
+-/
 theorem isum_summand_unique {hne : ∀ i, ∀ X : Set (α i), (D i).mem X → X.Nonempty}
     (z : (isum D hne).Element) {i j : ι} {X : Set (α i)} {Y : Set (α j)}
     (hX : z.mem (injI i X)) (hY : z.mem (injI j Y)) : i = j := by
@@ -604,7 +687,9 @@ def iotimes (D : ∀ i, NeighborhoodSystem (α i)) : NeighborhoodSystem (Σ i, �
 /-- **Exercise 6.29 — `⊗` does not generalize.** Over an infinite index, the smash
 product has only
 its basepoint: an all-coordinates-proper cylinder has support `Set.univ`, which
-cannot be finite. -/
+cannot be finite.
+@isnad1 id=eq.1h4v.s5.a1c3f773ffe3 from=translated src=- shape=d36f3d7d vocab=6f6e0ce3
+-/
 theorem iotimes_only_master [Infinite ι] (D : ∀ i, NeighborhoodSystem (α i)) :
     ∀ W, (iotimes D).mem W → W = (iotimes D).master := by
   rintro W (rfl | ⟨X, _, hXne, ⟨l, hl⟩, rfl⟩)
@@ -620,7 +705,9 @@ theorem iotimes_only_master [Infinite ι] (D : ∀ i, NeighborhoodSystem (α i))
 
 /-- **Exercise 6.29 — the infinite smash collapses to one point.** Its element
 domain is a
-singleton (`⊥` only), so `⊗` has no sensible infinitary generalization. -/
+singleton (`⊥` only), so `⊗` has no sensible infinitary generalization.
+@isnad1 id=subsingl.0h3v.s4.a62814aca463 from=translated src=- shape=3ab6b1ab vocab=2c556c50
+-/
 theorem iotimes_subsingleton [Infinite ι] (D : ∀ i, NeighborhoodSystem (α i)) :
     Subsingleton (iotimes D).Element := by
   refine ⟨fun x y => ?_⟩

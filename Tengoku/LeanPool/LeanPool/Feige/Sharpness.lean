@@ -57,6 +57,9 @@ noncomputable def extremalSum (n : ℕ) (ω : ExtremalSpace n) : ℝ :=
 def allLowEmbedding (n : ℕ) : (Fin n → Fin n) → ExtremalSpace n :=
   fun ω i ↦ (ω i).succ
 
+/--
+@isnad1 id=injectiv.0h1v.s3.af3571bd9346 from=translated src=- shape=d62ed4db vocab=1a725b8a
+-/
 theorem allLowEmbedding_injective (n : ℕ) :
     Function.Injective (allLowEmbedding n) := by
   intro ω τ h
@@ -70,6 +73,9 @@ def extremalGood (n : ℕ) : Set (ExtremalSpace n) :=
 instance (n : ℕ) : Fintype (extremalGood n) :=
   Set.fintypeRange (allLowEmbedding n)
 
+/--
+@isnad1 id=iff.0h2v.s6.c3037986a174 from=translated src=- shape=f33dd59d vocab=5fdb4fa1
+-/
 theorem mem_extremalGood_iff (n : ℕ) (ω : ExtremalSpace n) :
     ω ∈ extremalGood n ↔ ∀ i, ω i ≠ 0 := by
   constructor
@@ -80,6 +86,9 @@ theorem mem_extremalGood_iff (n : ℕ) (ω : ExtremalSpace n) :
     funext i
     exact Fin.succ_pred _ _
 
+/--
+@isnad1 id=iff.0h3v.s6.5744ccfc8af1 from=translated src=- shape=4e700c0f vocab=73ce45ef
+-/
 @[simp] theorem extremalX_eq_zero_iff (n : ℕ) (i : Fin n) (ω : ExtremalSpace n) :
     extremalX n i ω = 0 ↔ ω i ≠ 0 := by
   by_cases h : ω i = 0
@@ -89,11 +98,17 @@ theorem mem_extremalGood_iff (n : ℕ) (ω : ExtremalSpace n) :
     positivity
   · simp [extremalX, h]
 
+/--
+@isnad1 id=le.0h3v.s4.7f780b6f5172 from=translated src=- shape=d78b0cc0 vocab=29ef09ca
+-/
 theorem extremalX_nonneg (n : ℕ) (i : Fin n) (ω : ExtremalSpace n) :
     0 ≤ extremalX n i ω := by
   simp only [extremalX]
   split_ifs <;> positivity
 
+/--
+@isnad1 id=measurab.0h2v.s5.51c72848cd9d from=translated src=- shape=cc4c7d09 vocab=c25e34a4
+-/
 theorem extremalX_measurable (n : ℕ) (i : Fin n) :
     Measurable (extremalX n i) := by
   unfold extremalX
@@ -101,6 +116,9 @@ theorem extremalX_measurable (n : ℕ) (i : Fin n) :
     ((measurable_pi_apply i) (measurableSet_singleton 0))
     measurable_const measurable_const
 
+/--
+@isnad1 id=integrab.0h2v.s6.07587829f11f from=translated src=- shape=cab5b84d vocab=b96732a0
+-/
 theorem extremalX_integrable (n : ℕ) (i : Fin n) :
     Integrable (extremalX n i) (extremalMeasure n) := by
   rw [← integrableOn_univ]
@@ -114,6 +132,9 @@ theorem extremalX_integrable (n : ℕ) (i : Fin n) :
       · simp only [abs_zero]
         positivity)
 
+/--
+@isnad1 id=eq.0h1v.s7.e7fde170da0c from=translated src=- shape=1619249a vocab=622e1ba9
+-/
 theorem extremalMarginal_mean (n : ℕ) :
     (∫ x : Fin (n + 1), (if x = 0 then (n + 1 : ℝ) else 0)
         ∂(extremalMarginal n)) = 1 := by
@@ -127,6 +148,9 @@ theorem extremalMarginal_mean (n : ℕ) :
   rw [htr]
   field_simp
 
+/--
+@isnad1 id=eq.0h2v.s6.59c3f8864601 from=translated src=- shape=529a29d9 vocab=ccca8ecf
+-/
 theorem extremalX_mean (n : ℕ) (i : Fin n) :
     (∫ ω, extremalX n i ω ∂(extremalMeasure n)) = 1 := by
   let f : Fin (n + 1) → ℝ := fun x ↦ if x = 0 then n + 1 else 0
@@ -139,6 +163,9 @@ theorem extremalX_mean (n : ℕ) (i : Fin n) :
     (measurable_pi_apply i).aemeasurable hf.aestronglyMeasurable, hmap]
   exact extremalMarginal_mean n
 
+/--
+@isnad1 id=iindepfu.0h1v.s5.b156f50d4493 from=translated src=- shape=125ee8dc vocab=f8692b3a
+-/
 theorem extremalX_iIndepFun (n : ℕ) :
     ProbabilityTheory.iIndepFun (extremalX n) (extremalMeasure n) := by
   let f : Fin n → Fin (n + 1) → ℝ :=
@@ -151,7 +178,9 @@ theorem extremalX_iIndepFun (n : ℕ) :
   exact h
 
 /-- Because the threshold is strict, the good event occurs exactly when all
-coordinates vanish. -/
+coordinates vanish.
+@isnad1 id=iff.0h2v.s5.7d9551c19d86 from=translated src=- shape=8b8168db vocab=77e88949
+-/
 theorem extremalSum_lt_iff (n : ℕ) (ω : ExtremalSpace n) :
     extremalSum n ω < n + 1 ↔ ω ∈ extremalGood n := by
   rw [mem_extremalGood_iff]
@@ -171,6 +200,9 @@ theorem extremalSum_lt_iff (n : ℕ) (ω : ExtremalSpace n) :
     simp only [hz, Finset.sum_const_zero]
     positivity
 
+/--
+@isnad1 id=eq.0h1v.s4.06579a8251c8 from=translated src=- shape=1a8aaed9 vocab=c57e2781
+-/
 theorem card_extremalGood (n : ℕ) :
     Fintype.card (extremalGood n) = n ^ n := by
   calc
@@ -179,12 +211,17 @@ theorem card_extremalGood (n : ℕ) :
           exact Set.card_range_of_injective (allLowEmbedding_injective n)
     _ = n ^ n := by simp
 
+/--
+@isnad1 id=eq.0h1v.s6.6a795dce927a from=translated src=- shape=60d69d70 vocab=b9539fad
+-/
 theorem card_extremalSpace (n : ℕ) :
     Fintype.card (ExtremalSpace n) = (n + 1) ^ n := by
   simp
 
 /-- The probability of the strict good event in the extremal construction is
-exactly the fixed-dimensional constant `cₙ`. -/
+exactly the fixed-dimensional constant `cₙ`.
+@isnad1 id=eq.0h1v.s5.a76e096bf2b1 from=translated src=- shape=e48dd97e vocab=3138c3a5
+-/
 theorem extremalGood_probability (n : ℕ) :
     (extremalMeasure n).real (extremalGood n) = sharpConstant n := by
   have heq :
@@ -214,7 +251,9 @@ theorem extremalGood_probability (n : ℕ) :
   exact rfl
 
 /-- Under the uniform product model from the sharpness paragraph in §1.2,
-the strict threshold event has probability exactly `bₙ,₁`. -/
+the strict threshold event has probability exactly `bₙ,₁`.
+@isnad1 id=eq.0h1v.s6.8a26ce9caa0c from=translated src=- shape=c995c4a0 vocab=4f5e1b8a
+-/
 theorem extremal_strict_event_probability (n : ℕ) :
     (extremalMeasure n).real {ω | extremalSum n ω < n + 1} =
       sharpConstant n := by
@@ -223,7 +262,9 @@ theorem extremal_strict_event_probability (n : ℕ) :
     exact extremalSum_lt_iff n ω
   rw [heq, extremalGood_probability]
 
-/-- The threshold in the sharpness example is exactly `E Sₙ + 1 = n + 1`. -/
+/-- The threshold in the sharpness example is exactly `E Sₙ + 1 = n + 1`.
+@isnad1 id=eq.0h1v.s6.e7f924ffe597 from=translated src=- shape=babce484 vocab=39075be7
+-/
 theorem extremalSum_mean (n : ℕ) :
     (∫ ω, extremalSum n ω ∂(extremalMeasure n)) = n := by
   change (∫ ω, ∑ i, extremalX n i ω ∂(extremalMeasure n)) = n
@@ -232,7 +273,9 @@ theorem extremalSum_mean (n : ℕ) :
   · exact fun i _ ↦ extremalX_integrable n i
 
 /-- The full sharpness statement, with the threshold written in the form used
-in Feige's inequality. -/
+in Feige's inequality.
+@isnad1 id=eq.0h1v.s7.553757190726 from=translated src=- shape=9a6be8e0 vocab=5e9b79c4
+-/
 theorem extremal_mean_threshold_probability (n : ℕ) :
     (extremalMeasure n).real
         {ω | extremalSum n ω <
@@ -243,7 +286,9 @@ theorem extremal_mean_threshold_probability (n : ℕ) :
     extremal_strict_event_probability n
 
 /-- The sharpness construction in §1.2 proves that no fixed-dimensional
-unit-slack lower bound can exceed `sharpConstant n`. -/
+unit-slack lower bound can exceed `sharpConstant n`.
+@isnad1 id=le.1h2v.s3.ddfbcb69b41a from=translated src=- shape=dedfc776 vocab=5aec8c44
+-/
 theorem fixedDimensionalLowerBound_le_sharpConstant
     {n : ℕ} {c : ℝ} (h : FixedDimensionalFeigeLowerBound n c) :
     c ≤ sharpConstant n := by
@@ -266,7 +311,9 @@ def IsOptimalFixedDimensionalFeigeBound (n : ℕ) (c : ℝ) : Prop :=
 
 /-- Conditional on exact calibration and the deterministic bridge, the
 paper's unit-slack constant is not only valid but optimal; the sharpness
-construction in §1.2 supplies the reverse extremal statement. -/
+construction in §1.2 supplies the reverse extremal statement.
+@isnad1 id=isoptima.2h2v.s4.1c52c24382ba from=translated src=- shape=bc23b6da vocab=e94be004
+-/
 theorem sharpConstant_is_optimal_of_structural_inputs
     {n : ℕ} (K : (Fin n → ℝ) → ℝ)
     (hcal : UniversalCalibration K) (hbridge : LargeSumBridge K) :

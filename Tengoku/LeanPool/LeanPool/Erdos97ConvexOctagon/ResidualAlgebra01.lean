@@ -15,7 +15,9 @@ import Tengoku.LeanPool.LeanPool.Erdos97ConvexOctagon.CayleyMenger
 
 namespace Erdos97Octagon
 
-/-- Residual class 1 has no injective planar realisation. -/
+/-- Residual class 1 has no injective planar realisation.
+@isnad1 id=not.1h1v.s3.bfaa05175771 from=translated src=- shape=492d112a vocab=e2c752c9
+-/
 theorem residualRepresentative01_not_realises
     {p : Vertex → Plane} (hp : Function.Injective p) :
     ¬ Realises p residualRepresentative01 := by

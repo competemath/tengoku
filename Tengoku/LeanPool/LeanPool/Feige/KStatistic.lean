@@ -55,6 +55,9 @@ variable {ι : Type*} [Fintype ι]
 def kEvent (y : ι → ℝ) : Set (Option ι → NNReal) :=
   {e | ∑ i, (y i - 1) * (e (some i) : ℝ) ≤ (e none : ℝ)}
 
+/--
+@isnad1 id=measurab.0h2v.s4.ad930f47fa36 from=translated src=- shape=03c5547a vocab=97f53b95
+-/
 theorem measurableSet_kEvent (y : ι → ℝ) : MeasurableSet (kEvent y) := by
   unfold kEvent
   apply measurableSet_le
@@ -67,9 +70,15 @@ independent rate-one exponentials. -/
 noncomputable def dirichletK (y : ι → ℝ) : ℝ :=
   (expProductMeasure ι).real (kEvent y)
 
+/--
+@isnad1 id=le.0h2v.s4.0eee1d12ce49 from=translated src=- shape=c8b3cbfd vocab=cb7810eb
+-/
 theorem dirichletK_nonneg (y : ι → ℝ) : 0 ≤ dirichletK y :=
   measureReal_nonneg
 
+/--
+@isnad1 id=le.1h3v.s5.a09bf045d106 from=translated src=- shape=fc537f77 vocab=f93e6fe9
+-/
 theorem kEvent_antitone {y z : ι → ℝ} (hyz : y ≤ z) :
     kEvent z ⊆ kEvent y := by
   intro e he

@@ -26,7 +26,9 @@ open scoped BigOperators
 def valuesFin {α : Type*} {n : ℕ} (b : Fin n → α) : Multiset α :=
   (Finset.univ : Finset (Fin n)).val.map b
 
-/-- Every multiset can be indexed by a map `a : Fin n → α`. -/
+/-- Every multiset can be indexed by a map `a : Fin n → α`.
+@isnad1 id=ex.0h2v.s4.ea8f74ad49eb from=translated src=- shape=2d6bb428 vocab=b80cd735
+-/
 lemma exists_valuesFin_eq_multiset {α : Type*} (s : Multiset α) :
     ∃ (n : ℕ) (a : Fin n → α), s = valuesFin a := by
   refine Quotient.inductionOn s ?_
@@ -34,13 +36,17 @@ lemma exists_valuesFin_eq_multiset {α : Type*} (s : Multiset α) :
   refine ⟨l.length, l.get, ?_⟩
   simp [valuesFin, Fin.univ_val_map]
 
-/-- The roots of a polynomial can be listed as a valuesFin `a₀, …, aₙ₋₁`. -/
+/-- The roots of a polynomial can be listed as a valuesFin `a₀, …, aₙ₋₁`.
+@isnad1 id=ex.0h1v.s5.efb0ec9cdbca from=translated src=- shape=aa2db306 vocab=f7b5a5ca
+-/
 lemma exists_valuesFin_eq_aroots (P : ℚ[X]) :
     ∃ (n : ℕ) (a : Fin n → ℂ), P.aroots ℂ = valuesFin a := by
   simp [exists_valuesFin_eq_multiset]
 
 /-- For a monic polynomial with roots `b₀, …, bₙ₋₁`, its `k`-th coefficient is written
-with an elementary symmetric polynomial in the roots. -/
+with an elementary symmetric polynomial in the roots.
+@isnad1 id=eq.3h6v.s8.cf5abdb28a47 from=translated src=- shape=aae5bf22 vocab=28ccee45
+-/
 lemma coeff_eq_esymm_of_roots
     {R S : Type*} [CommRing R] [Field S] [Algebra R S] [IsAlgClosed S]
     {n : ℕ} (B : Polynomial R) (b : Fin n → S)
@@ -65,7 +71,9 @@ lemma coeff_eq_esymm_of_roots
     _ = _ := by simp [valuesFin, MvPolynomial.aeval_esymm_eq_multiset_esymm]
 
 /-- If `P` is symmetric, then `P(b₀, …, bₙ₋₁)` can be rewritten as a polynomial expression in
-the coefficients of the monic polynomial with roots `b₀, …, bₙ₋₁`. -/
+the coefficients of the monic polynomial with roots `b₀, …, bₙ₋₁`.
+@isnad1 id=ex.3h6v.s9.d241a126427e from=translated src=- shape=0357b492 vocab=e5c5614f
+-/
 lemma symmetric_poly_at_roots_eq_poly_of_esymm
     {R S : Type*} [CommRing R] [Field S] [Algebra R S] [IsAlgClosed S]
     {n : ℕ} (B : R[X]) (a : Fin n → S)
@@ -92,7 +100,9 @@ lemma symmetric_poly_at_roots_eq_poly_of_esymm
       (B := B) (b := a) hmonic hroots (k := n - (i.1 + 1)) (Nat.sub_le _ _)).symm)
 
 /-- If `P` is symmetric, then `P(b₀, …, bₙ₋₁) ∈ R` if `b₀, …, bₙ₋₁` are
-the roots of a monic polynomial over `R`. -/
+the roots of a monic polynomial over `R`.
+@isnad1 id=ex.3h6v.s8.768406a2cdc6 from=translated src=- shape=0556f971 vocab=b0f3918d
+-/
 lemma symmetric_poly_at_roots
     {R S : Type*} [CommRing R] [Field S] [Algebra R S] [IsAlgClosed S]
     {n : ℕ} (B : R[X]) (a : Fin n → S)

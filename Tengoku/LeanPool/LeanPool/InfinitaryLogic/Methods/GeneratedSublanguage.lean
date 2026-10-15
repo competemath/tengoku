@@ -36,6 +36,9 @@ def Term.functionsIn {α : Type} : L.Term α → Set (Σ n, L.Functions n)
   | .var _ => ∅
   | .func f ts => insert ⟨_, f⟩ (⋃ i, (ts i).functionsIn)
 
+/--
+@isnad1 id=countabl.0h3v.s4.5b6e8eab79d9 from=translated src=- shape=f7053bab vocab=ae61f4eb
+-/
 theorem Term.functionsIn_countable {α : Type} (t : L.Term α) : t.functionsIn.Countable := by
   induction t with
   | var x => exact Set.countable_empty
@@ -52,6 +55,9 @@ def BoundedFormulaω.functionsIn {α : Type} :
   | _, .iSup φs => ⋃ i, (φs i).functionsIn
   | _, .iInf φs => ⋃ i, (φs i).functionsIn
 
+/--
+@isnad1 id=countabl.0h4v.s4.9d625799f6b3 from=translated src=- shape=1b7c0f5b vocab=37e059dc
+-/
 theorem BoundedFormulaω.functionsIn_countable {α : Type} {n : ℕ}
     (φ : L.BoundedFormulaω α n) : φ.functionsIn.Countable := by
   induction φ with
@@ -86,6 +92,9 @@ def BoundedFormulaω.relationsIn {α : Type} :
   | _, .iSup φs => ⋃ i, (φs i).relationsIn
   | _, .iInf φs => ⋃ i, (φs i).relationsIn
 
+/--
+@isnad1 id=countabl.0h4v.s4.8e35e79e5ff8 from=translated src=- shape=1b7c0f5b vocab=c511f760
+-/
 theorem BoundedFormulaω.relationsIn_countable {α : Type} {n : ℕ}
     (φ : L.BoundedFormulaω α n) : φ.relationsIn.Countable := by
   induction φ with
@@ -110,7 +119,9 @@ def symbSublangIncl (F : Set (Σ n, L.Functions n)) (R : Set (Σ n, L.Relations 
   onFunction := fun {_} f => f.1
   onRelation := fun {_} r => r.1
 
-/-- Function-symbol countability of the two-sorted generated sublanguage. -/
+/-- Function-symbol countability of the two-sorted generated sublanguage.
+@isnad1 id=countabl.1h3v.s5.61bf9c2511b2 from=translated src=- shape=a31953df vocab=38707b11
+-/
 theorem symbSublang_fun_countable {F : Set (Σ n, L.Functions n)} (hF : F.Countable)
     (R : Set (Σ n, L.Relations n)) :
     Countable (Σ n, (symbSublang (L := L) F R).Functions n) := by
@@ -124,7 +135,9 @@ theorem symbSublang_fun_countable {F : Set (Σ n, L.Functions n)} (hF : F.Counta
   cases eq_of_heq h2
   rfl
 
-/-- Relation-symbol countability of the two-sorted generated sublanguage. -/
+/-- Relation-symbol countability of the two-sorted generated sublanguage.
+@isnad1 id=countabl.1h3v.s5.0191b820d932 from=translated src=- shape=ea31950b vocab=38707b11
+-/
 theorem symbSublang_rel_countable (F : Set (Σ n, L.Functions n))
     {R : Set (Σ n, L.Relations n)} (hR : R.Countable) :
     Countable (Σ n, (symbSublang (L := L) F R).Relations n) := by
@@ -187,7 +200,9 @@ def BoundedFormulaω.restrictSymbols {α : Type} {F : Set (Σ n, L.Functions n)}
     .iInf fun i => (φs i).restrictSymbols (fun _ hx => hF (Set.mem_iUnion.mpr ⟨i, hx⟩))
       (fun _ hx => hR (Set.mem_iUnion.mpr ⟨i, hx⟩))
 
-/-- The inclusion is a left inverse of two-sorted formula restriction. -/
+/-- The inclusion is a left inverse of two-sorted formula restriction.
+@isnad1 id=eq.2h6v.s6.462a24b8e390 from=translated src=- shape=f980a5b9 vocab=a1ecd202
+-/
 theorem BoundedFormulaω.mapLanguage_restrictSymbols {α : Type} {F : Set (Σ n, L.Functions n)}
     {R : Set (Σ n, L.Relations n)} :
     ∀ {n : ℕ} (φ : L.BoundedFormulaω α n) (hF : φ.functionsIn ⊆ F) (hR : φ.relationsIn ⊆ R),
@@ -221,7 +236,9 @@ theorem BoundedFormulaω.mapLanguage_restrictSymbols {α : Type} {F : Set (Σ n,
     exact congrArg _ (funext fun i => ih i _ _)
 
 /-- **Restriction preserves the quantifier class.**  No new induction: restriction is inverted by
-the inclusion language map, and language maps transport the signed class exactly. -/
+the inclusion language map, and language maps transport the signed class exactly.
+@isnad1 id=iff.2h7v.s6.e3d145a772ed from=translated src=- shape=48e3e7bc vocab=dcf98c28
+-/
 theorem BoundedFormulaω.universalSigned_restrictSymbols {α : Type} {F : Set (Σ n, L.Functions n)}
     {R : Set (Σ n, L.Relations n)} (s : Bool) {n : ℕ} (φ : L.BoundedFormulaω α n)
     (hF : φ.functionsIn ⊆ F) (hR : φ.relationsIn ⊆ R) :

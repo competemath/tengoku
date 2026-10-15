@@ -90,22 +90,30 @@ def appendLastOE (s : Fin (n + 1) ↪o I) (x : I) (hx : ∀ k, s k < x) :
         rw [Fin.snoc_castSucc, Fin.snoc_castSucc]
         exact s.strictMono (Fin.castSucc_lt_castSucc_iff.mp hpq))
 
-/-- The underlying function of `appendLastOE` is `Fin.snoc s x`. -/
+/-- The underlying function of `appendLastOE` is `Fin.snoc s x`.
+@isnad1 id=eq.1h4v.s8.af4b980837b0 from=translated src=- shape=95145478 vocab=b4f2eb4e
+-/
 @[simp] theorem appendLastOE_coe (s : Fin (n + 1) ↪o I) (x : I) (hx : ∀ k, s k < x) :
     ⇑(appendLastOE s x hx) = Fin.snoc (⇑s) x := rfl
 
-/-- `appendLastOE` at a prefix position gives the prefix value. -/
+/-- `appendLastOE` at a prefix position gives the prefix value.
+@isnad1 id=eq.1h5v.s8.538349b88cf8 from=translated src=- shape=3ffb888e vocab=e1953864
+-/
 theorem appendLastOE_castSucc (s : Fin (n + 1) ↪o I) (x : I) (hx : ∀ k, s k < x)
     (k : Fin (n + 1)) : appendLastOE s x hx k.castSucc = s k := by
   simp [appendLastOE_coe]
 
-/-- `appendLastOE` at the last position gives the appended point. -/
+/-- `appendLastOE` at the last position gives the appended point.
+@isnad1 id=eq.1h4v.s8.41510ed8684e from=translated src=- shape=66c5bafc vocab=b0e4a38d
+-/
 theorem appendLastOE_last (s : Fin (n + 1) ↪o I) (x : I) (hx : ∀ k, s k < x) :
     appendLastOE s x hx (Fin.last (n + 1)) = x := by
   simp [appendLastOE_coe]
 
 /-- `appendLastOE` depends only on the underlying points (in particular it is
-proof-irrelevant in the `<`-hypothesis). -/
+proof-irrelevant in the `<`-hypothesis).
+@isnad1 id=eq.4h6v.s9.493eced17bf3 from=translated src=- shape=8482faf1 vocab=b7ec4e8d
+-/
 theorem appendLastOE_congr {s s' : Fin (n + 1) ↪o I} {x x' : I}
     (hs : ∀ k, s k = s' k) (hxx : x = x')
     (hx : ∀ k, s k < x) (hx' : ∀ k, s' k < x') :
@@ -206,7 +214,9 @@ noncomputable def NodeAt.restrict {C : Type} {n : ℕ} {β : Ordinal.{0}} (h : N
 
 variable {lam : Cardinal.{0}} {C : Type} {n : ℕ}
 
-/-- Restriction is transitive (initial segments compose). -/
+/-- Restriction is transitive (initial segments compose).
+@isnad1 id=eq.2h6v.s5.3bfc1a2d7e06 from=translated src=- shape=1acca91e vocab=2daddeb7
+-/
 theorem NodeAt.restrict_trans {β : Ordinal.{0}} (h : NodeAt C n β)
     {δ ε : Ordinal.{0}} (hδ : δ ≤ β) (hε : ε ≤ δ) :
     (h.restrict hδ).restrict hε = h.restrict (hε.trans hδ) := by
@@ -220,7 +230,9 @@ theorem NodeAt.restrict_trans {β : Ordinal.{0}} (h : NodeAt C n β)
   refine congrArg h (DFunLike.ext _ _ fun k => ?_)
   exact initialSegOfLe_compose hε hδ (τ k)
 
-/-- `NodeAt.restrict` at heterogeneously-equal lengths. -/
+/-- `NodeAt.restrict` at heterogeneously-equal lengths.
+@isnad1 id=heq.3h6v.s5.4df6324cb4f2 from=translated src=- shape=ff6c9039 vocab=c62d4ec9
+-/
 theorem NodeAt.restrict_heq {β : Ordinal.{0}} (h : NodeAt C n β)
     {δ₁ δ₂ : Ordinal.{0}} (hδ : δ₁ = δ₂) (h1 : δ₁ ≤ β) (h2 : δ₂ ≤ β) :
     HEq (h.restrict h1) (h.restrict h2) := by
@@ -403,7 +415,9 @@ noncomputable def yNode (G : (Fin (n + 2) ↪o Source lam) → C) (y : Source la
   haveI : IsWellOrder β.ToType (· < ·) := isWellOrder_lt
   exact fun τ => colorAbove G y (fun k => yRep G y (Ordinal.typein (· < ·) (τ k)))
 
-/-- The defining fixpoint equation: `yRep` is the chosen min of `yNode`. -/
+/-- The defining fixpoint equation: `yRep` is the chosen min of `yNode`.
+@isnad1 id=eq.0h6v.s6.1531634ea4d7 from=translated src=- shape=bdb7d4d1 vocab=3651786d
+-/
 theorem yRep_eq (G : (Fin (n + 2) ↪o Source lam) → C) (y : Source lam)
     (γ : Ordinal.{0}) :
     yRep G y γ = nodeChosen G γ (yNode G y γ) := by
@@ -412,7 +426,9 @@ theorem yRep_eq (G : (Fin (n + 2) ↪o Source lam) → C) (y : Source lam)
   rfl
 
 /-- Restriction-coherence: every restriction of a `yNode` is again the `yNode` of that
-length (`typein` is preserved by the initial-segment embedding). -/
+length (`typein` is preserved by the initial-segment embedding).
+@isnad1 id=eq.1h7v.s7.c347dd7bbf8d from=translated src=- shape=8a2d7c19 vocab=ce03494e
+-/
 theorem yNode_restrict (G : (Fin (n + 2) ↪o Source lam) → C) (y : Source lam)
     {β δ : Ordinal.{0}} (hδ : δ ≤ β) :
     (yNode G y β).restrict hδ = yNode G y δ := by
@@ -438,7 +454,9 @@ private theorem nodeRep_yNode (G : (Fin (n + 2) ↪o Source lam) → C) (y : Sou
   rw [yRep_eq, yNode_restrict]
 
 /-- Liveness criterion: if every earlier rep stays `< y`, then `y` is a successor of
-`yNode G y β` (so the node is live and `y ∈ S`). -/
+`yNode G y β` (so the node is live and `y ∈ S`).
+@isnad1 id=mem.1h6v.s7.31c6ae82efed from=translated src=- shape=009cbb80 vocab=6ec8ca51
+-/
 theorem yNode_mem_of (G : (Fin (n + 2) ↪o Source lam) → C) (y : Source lam)
     {β : Ordinal.{0}} (hbelow : ∀ δ : Ordinal.{0}, δ < β → yRep G y δ < y) :
     y ∈ nodeS G (yNode G y β) := by
@@ -456,7 +474,9 @@ theorem yNode_mem_of (G : (Fin (n + 2) ↪o Source lam) → C) (y : Source lam)
     rw [hfun]
     rfl
 
-/-- As long as every rep below `γ₂` stays `< y`, the canonical reps strictly increase. -/
+/-- As long as every rep below `γ₂` stays `< y`, the canonical reps strictly increase.
+@isnad1 id=lt.2h7v.s7.59580c1df02d from=translated src=- shape=af9a707a vocab=e70fe90d
+-/
 theorem yRep_strictMono (G : (Fin (n + 2) ↪o Source lam) → C) (y : Source lam)
     {γ₁ γ₂ : Ordinal.{0}} (h12 : γ₁ < γ₂)
     (hlive : ∀ δ : Ordinal.{0}, δ < γ₂ → yRep G y δ < y) :
@@ -472,7 +492,9 @@ theorem yRep_strictMono (G : (Fin (n + 2) ↪o Source lam) → C) (y : Source la
 
 /-- **Stopping.** The canonical `y`-path stops: there is a *least* level `γ` where the
 chosen rep reaches `y`, with all earlier reps strictly below `y` (pure
-well-foundedness, as in `PairERGen`). -/
+well-foundedness, as in `PairERGen`).
+@isnad1 id=ex.0h5v.s7.464249ce61a4 from=translated src=- shape=61202a43 vocab=f0c46062
+-/
 theorem exists_yRep_ge (G : (Fin (n + 2) ↪o Source lam) → C) (y : Source lam) :
     ∃ γ : Ordinal.{0}, y ≤ yRep G y γ ∧ ∀ δ : Ordinal.{0}, δ < γ → yRep G y δ < y := by
   classical
@@ -500,7 +522,9 @@ theorem exists_yRep_ge (G : (Fin (n + 2) ↪o Source lam) → C) (y : Source lam
     exact not_le.mp (fun ha => Ordinal.lt_wf.not_lt_min {γ | y ≤ yRep G y γ} ha hδ)
 
 /-- **Coverage.** Every source element is the chosen representative of some node
-(`y ∈ R(h)`), at the least level where the canonical `y`-path reaches `y`. -/
+(`y ∈ R(h)`), at the least level where the canonical `y`-path reaches `y`.
+@isnad1 id=ex.0h5v.s6.b7a02aa74d10 from=translated src=- shape=29e9a1ef vocab=ae9b9eed
+-/
 theorem exists_node_choosing_source (G : (Fin (n + 2) ↪o Source lam) → C)
     (y : Source lam) :
     ∃ (β : Ordinal.{0}) (h : NodeAt C n β), y ∈ nodeR G h := by
@@ -693,7 +717,9 @@ private noncomputable def branchOfLive (G : (Fin (n + 2) ↪o Source lam) → C)
 /-- **[THE COUNTING CORE]** Some live node has length `≥ (succ lam).ord`. Otherwise the
 coverage map injects `Source lam` (size `succ (2 ^ lam)`) into the index
 `Σ b : (succ lam).ord.ToType, {live nodes of length typein b}` of size
-`≤ succ lam * 2 ^ lam = 2 ^ lam`, contradiction. -/
+`≤ succ lam * 2 ^ lam = 2 ^ lam`, contradiction.
+@isnad1 id=ex.2h4v.s7.1ba57b998754 from=translated src=- shape=82947fcc vocab=f205f613
+-/
 theorem exists_live_node_ge (hlam : Cardinal.aleph0 ≤ lam)
     (hC : Cardinal.mk C ≤ lam) (G : (Fin (n + 2) ↪o Source lam) → C) :
     ∃ (β : Ordinal.{0}) (h : NodeAt C n β),
@@ -813,7 +839,9 @@ private theorem exists_endHomogeneous (lam : Cardinal.{0}) (hlam : Cardinal.alep
 color type `C` with `#C ≤ lam`, and any well-ordered source `I` of cardinality
 `≥ succ (2 ^ lam)`: every `(n+2)`-tuple coloring admits a `(succ lam).ord`-indexed
 suborder on which the color of `s ⌢ x` is independent of the final point `x` above the
-prefix tuple `s`. -/
+prefix tuple `s`.
+@isnad1 id=ex.3h5v.s10.b8ab9b821d33 from=translated src=- shape=b214da11 vocab=6e682e32
+-/
 theorem exists_endHomogeneous_of_large
     (lam : Cardinal.{0}) (hlam : Cardinal.aleph0 ≤ lam)
     {C : Type} (hC : Cardinal.mk C ≤ lam) (n : ℕ)

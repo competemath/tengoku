@@ -105,9 +105,15 @@ def idEndofunctor (Obj : Type u) [Category Obj] : Endofunctor Obj where
   map_id _ := rfl
   map_comp _ _ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.ef0192ac6853 from=translated src=- shape=d2d8061d vocab=205667fb
+-/
 @[simp] theorem idEndofunctor_obj {Obj : Type u} [Category Obj] (X : Obj) :
     (idEndofunctor Obj).obj X = X := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.b60c7398c342 from=translated src=- shape=613c0148 vocab=ded481ba
+-/
 @[simp] theorem idEndofunctor_map {Obj : Type u} [Category Obj] {X Y : Obj}
     (f : Category.Hom X Y) : (idEndofunctor Obj).map f = f := rfl
 
@@ -130,7 +136,9 @@ def ContinuousOnMaps (T : Endofunctor DomainObj) : Prop :=
 on Scott's category
 of domains and strict maps): if `f` is strict then so is `T(f)`. This is automatic
 from the witnessing
-equation, whose left-hand side is the underlying map of a `StrictMap`. -/
+equation, whose left-hand side is the underlying map of a `StrictMap`.
+@isnad1 id=isstrict.1h4v.s6.bb3a47fa46ed from=translated src=- shape=c5737825 vocab=5bf56e3b
+-/
 theorem ContinuousOnMaps.isStrict_map {T : Endofunctor DomainObj} (h : ContinuousOnMaps T)
     {D E : DomainObj} (f : StrictMap D.sys E.sys) :
     IsStrict (T.map (X := D) (Y := E) f.1) := by
@@ -140,7 +148,9 @@ theorem ContinuousOnMaps.isStrict_map {T : Endofunctor DomainObj} (h : Continuou
 
 /-- `toStrictMap ∘ toStrictFilter = id` (the right inverse of the
 strict-function-space
-representation, Exercise 5.10). -/
+representation, Exercise 5.10).
+@isnad1 id=eq.0h5v.s5.76c26072f65a from=translated src=- shape=b40cf5f3 vocab=5e7f8444
+-/
 theorem toStrictMap_toStrictFilter {α β : Type*} {V₀ : NeighborhoodSystem α}
     {V₁ : NeighborhoodSystem β} (f : StrictMap V₀ V₁) :
     toStrictMap (toStrictFilter f) = f :=
@@ -148,7 +158,9 @@ theorem toStrictMap_toStrictFilter {α β : Type*} {V₀ : NeighborhoodSystem α
 
 /-- **The identity functor is continuous on maps** — the basic witness that
 Definition 6.8 is
-satisfiable. The representing approximable map is the identity on `(D →⊥ E)`. -/
+satisfiable. The representing approximable map is the identity on `(D →⊥ E)`.
+@isnad1 id=continuo.0h0v.s2.1fe1b92ff85b from=translated src=- shape=87ceb31f vocab=44daa1e4
+-/
 theorem continuousOnMaps_id : ContinuousOnMaps (idEndofunctor DomainObj) := by
   intro D E
   refine ⟨idMap (strictFun D.sys E.sys), fun f => ?_⟩

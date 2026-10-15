@@ -70,23 +70,34 @@ abbrev TD : NeighborhoodSystem Example12.Token := Example12.neighborhoodSystem
 
 /-! ### Token-level facts about `T`'s three neighbourhoods `{0}`, `{1}`, `Δ`. -/
 
+/--
+@isnad1 id=ne.0h0v.s2.6d20dd32820f from=translated src=- shape=836e6cbb vocab=051c3b9e
+-/
 theorem zero_ne_one : (Example12.zero : Set Example12.Token) ≠ Example12.one := by
   intro h
   have h0 := Set.ext_iff.mp h 0
   simp [Example12.zero, Example12.one] at h0
 
+/--
+@isnad1 id=ne.0h0v.s2.20ac6be07eb4 from=translated src=- shape=836e6cbb vocab=4b0a292a
+-/
 theorem zero_ne_master : (Example12.zero : Set Example12.Token) ≠ Example12.master := by
   intro h
   have h1 := Set.ext_iff.mp h 1
   simp [Example12.zero, Example12.master] at h1
 
+/--
+@isnad1 id=ne.0h0v.s2.24dd841e72cf from=translated src=- shape=836e6cbb vocab=da0bd5cb
+-/
 theorem one_ne_master : (Example12.one : Set Example12.Token) ≠ Example12.master := by
   intro h
   have h0 := Set.ext_iff.mp h 0
   simp [Example12.one, Example12.master] at h0
 
 /-- A `T`-neighbourhood contained in `{0}` is `{0}` (the other two, `Δ` and `{1}`,
-are not). -/
+are not).
+@isnad1 id=eq.2h1v.s4.2191da175bf2 from=translated src=- shape=04f45c75 vocab=172bbe02
+-/
 theorem Tmem_eq_zero {C : Set Example12.Token} (hC : Example12.mem C) (h : C ⊆ Example12.zero) :
     C = Example12.zero := by
   rcases (Example12.mem_iff C).mp hC with rfl | rfl | rfl
@@ -95,7 +106,9 @@ theorem Tmem_eq_zero {C : Set Example12.Token} (hC : Example12.mem C) (h : C ⊆
   · exact absurd (h (by simp [Example12.one] : (1 : Example12.Token) ∈ Example12.one))
       (by simp [Example12.zero])
 
-/-- A `T`-neighbourhood contained in `{1}` is `{1}`. -/
+/-- A `T`-neighbourhood contained in `{1}` is `{1}`.
+@isnad1 id=eq.2h1v.s4.65d513a6ce53 from=translated src=- shape=04f45c75 vocab=a1746582
+-/
 theorem Tmem_eq_one {C : Set Example12.Token} (hC : Example12.mem C) (h : C ⊆ Example12.one) :
     C = Example12.one := by
   rcases (Example12.mem_iff C).mp hC with rfl | rfl | rfl
@@ -120,6 +133,9 @@ def condGuard (V : NeighborhoodSystem α) (W : Set (Example12.Token ⊕ (α ⊕ 
 
 variable (V : NeighborhoodSystem α)
 
+/--
+@isnad1 id=le.2h4v.s6.dc1a21bf129c from=translated src=- shape=699eecdc vocab=22f0fb59
+-/
 theorem condGuard_zero {W : Set (Example12.Token ⊕ (α ⊕ α))} {Z : Set α} (hg : condGuard V W Z)
     (hC : Sum.inl ⁻¹' W = Example12.zero) : Sum.inl ⁻¹' (Sum.inr ⁻¹' W) ⊆ Z := by
   rcases hg with ⟨_, h⟩ | ⟨hC', _⟩ | ⟨hC', _⟩
@@ -127,6 +143,9 @@ theorem condGuard_zero {W : Set (Example12.Token ⊕ (α ⊕ α))} {Z : Set α} 
   · exact absurd (hC.symm.trans hC') zero_ne_one
   · exact absurd (hC.symm.trans hC') zero_ne_master
 
+/--
+@isnad1 id=le.2h4v.s6.baa42fb1c97f from=translated src=- shape=f6b37e5f vocab=59e7feeb
+-/
 theorem condGuard_one {W : Set (Example12.Token ⊕ (α ⊕ α))} {Z : Set α} (hg : condGuard V W Z)
     (hC : Sum.inl ⁻¹' W = Example12.one) : Sum.inr ⁻¹' (Sum.inr ⁻¹' W) ⊆ Z := by
   rcases hg with ⟨hC', _⟩ | ⟨_, h⟩ | ⟨hC', _⟩
@@ -134,6 +153,9 @@ theorem condGuard_one {W : Set (Example12.Token ⊕ (α ⊕ α))} {Z : Set α} (
   · exact h
   · exact absurd (hC.symm.trans hC') one_ne_master
 
+/--
+@isnad1 id=le.2h4v.s5.9f7f9ab949d1 from=translated src=- shape=d89b1b98 vocab=c8b9c527
+-/
 theorem condGuard_master {W : Set (Example12.Token ⊕ (α ⊕ α))} {Z : Set α} (hg : condGuard V W Z)
     (hC : Sum.inl ⁻¹' W = Example12.master) : V.master ⊆ Z := by
   rcases hg with ⟨hC', _⟩ | ⟨hC', _⟩ | ⟨_, h⟩
@@ -142,7 +164,9 @@ theorem condGuard_master {W : Set (Example12.Token ⊕ (α ⊕ α))} {Z : Set α
   · exact h
 
 /-- The three components `C, X, Y` of an input neighbourhood are themselves
-neighbourhoods. -/
+neighbourhoods.
+@isnad1 id=and.1h3v.s6.96d56cd8da08 from=translated src=- shape=626b80c9 vocab=9ba7f6e6
+-/
 theorem cond_components {W : Set (Example12.Token ⊕ (α ⊕ α))}
     (hW : (prod TD (prod V V)).mem W) :
     Example12.mem (Sum.inl ⁻¹' W) ∧
@@ -193,6 +217,9 @@ def cond (V : NeighborhoodSystem α) : ApproximableMap (prod TD (prod V V)) V wh
       · exact Or.inl ⟨hC₂z, (V.sub_master hX₂).trans hmZ₂⟩
       · exact Or.inr (Or.inl ⟨hC₂o, (V.sub_master hY₂).trans hmZ₂⟩)
 
+/--
+@isnad1 id=iff.0h4v.s6.494dbda8980d from=translated src=- shape=8e854583 vocab=e8e94ba7
+-/
 @[simp] theorem cond_rel {W : Set (Example12.Token ⊕ (α ⊕ α))} {Z : Set α} :
     (cond V).rel W Z ↔ (prod TD (prod V V)).mem W ∧ V.mem Z ∧ condGuard V W Z := Iff.rfl
 
@@ -204,7 +231,9 @@ a neighbourhood
 selects `false`
 (`{1} ∈ t`) and `Z ∈ y`, or `Z = Δ_D` (the always-present master). The three
 defining identities are
-immediate corollaries. -/
+immediate corollaries.
+@isnad1 id=iff.0h6v.s6.d681a6aab797 from=translated src=- shape=1348e675 vocab=3bff3cf2
+-/
 theorem cond_toElementMap_mem (t : TD.Element) (x y : V.Element) {Z : Set α} :
     ((cond V).toElementMap (pair t (pair x y))).mem Z ↔
       (t.mem Example12.zero ∧ x.mem Z) ∨ (t.mem Example12.one ∧ y.mem Z) ∨ Z = V.master := by
@@ -238,7 +267,9 @@ theorem cond_toElementMap_mem (t : TD.Element) (x y : V.Element) {Z : Set α} :
         V.master_mem, ?_⟩
       exact Or.inr (Or.inr ⟨inl_preimage_prodNbhd _ _, subset_rfl⟩)
 
-/-- **Exercise 3.26(i) (Scott 1981, PRG-19).** `cond(true, x, y) = x`. -/
+/-- **Exercise 3.26(i) (Scott 1981, PRG-19).** `cond(true, x, y) = x`.
+@isnad1 id=eq.0h4v.s5.f7416da1b5d1 from=translated src=- shape=f47579b7 vocab=9880568a
+-/
 theorem cond_true (x y : V.Element) :
     (cond V).toElementMap (pair Example23.trueElt (pair x y)) = x := by
   apply Element.ext
@@ -262,7 +293,9 @@ theorem cond_true (x y : V.Element) :
     refine Or.inl ⟨inl_preimage_prodNbhd _ _, ?_⟩
     rw [inr_preimage_prodNbhd, inl_preimage_prodNbhd]
 
-/-- **Exercise 3.26(ii) (Scott 1981, PRG-19).** `cond(false, x, y) = y`. -/
+/-- **Exercise 3.26(ii) (Scott 1981, PRG-19).** `cond(false, x, y) = y`.
+@isnad1 id=eq.0h4v.s5.84a1f8fe83e1 from=translated src=- shape=30be7dde vocab=cfae92d0
+-/
 theorem cond_false (x y : V.Element) :
     (cond V).toElementMap (pair Example23.falseElt (pair x y)) = y := by
   apply Element.ext
@@ -286,7 +319,9 @@ theorem cond_false (x y : V.Element) :
     refine Or.inr (Or.inl ⟨inl_preimage_prodNbhd _ _, ?_⟩)
     rw [inr_preimage_prodNbhd, inr_preimage_prodNbhd]
 
-/-- **Exercise 3.26(iii) (Scott 1981, PRG-19).** `cond(⊥, x, y) = ⊥`. -/
+/-- **Exercise 3.26(iii) (Scott 1981, PRG-19).** `cond(⊥, x, y) = ⊥`.
+@isnad1 id=eq.0h4v.s5.56c4c9fad746 from=translated src=- shape=f1fc728a vocab=fd3b7045
+-/
 theorem cond_bot (x y : V.Element) :
     (cond V).toElementMap (pair Example23.botElt (pair x y)) = V.bot := by
   apply Element.ext

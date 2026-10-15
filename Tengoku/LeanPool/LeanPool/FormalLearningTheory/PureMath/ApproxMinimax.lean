@@ -54,6 +54,9 @@ def normalizeToPMF {C : Type*} [Fintype C] [Nonempty C]
     rw [← Finset.sum_div]
     exact div_self (ne_of_gt (Finset.sum_pos (fun c _ => hw c) univ_nonempty))
 
+/--
+@isnad1 id=eq.1h3v.s6.562ac57200a7 from=translated src=- shape=7b5fedb5 vocab=d10ad45f
+-/
 lemma normalizeToPMF_prob {C : Type*} [Fintype C] [Nonempty C]
     (w : C → ℝ) (hw : ∀ c, 0 < w c) (c : C) :
     (normalizeToPMF w hw).prob c = w c / ∑ c' : C, w c' := rfl
@@ -91,12 +94,18 @@ def boolGamePayoff {R C : Type*} [Fintype R]
     (M : R → C → Bool) (p : FinitePMF R) (c : C) : ℝ :=
   ∑ r : R, p.prob r * (if M r c then (1 : ℝ) else 0)
 
+/--
+@isnad1 id=le.0h5v.s5.245b20393141 from=translated src=- shape=8fae4bd9 vocab=7cc3db36
+-/
 lemma boolGamePayoff_nonneg {R C : Type*} [Fintype R]
     (M : R → C → Bool) (p : FinitePMF R) (c : C) :
     0 ≤ boolGamePayoff M p c :=
   Finset.sum_nonneg fun r _ =>
     mul_nonneg (p.prob_nonneg r) (by split_ifs <;> norm_num)
 
+/--
+@isnad1 id=le.0h5v.s5.e65426efe1c2 from=translated src=- shape=bfc4cdd1 vocab=7cc3db36
+-/
 lemma boolGamePayoff_le_one {R C : Type*} [Fintype R]
     (M : R → C → Bool) (p : FinitePMF R) (c : C) :
     boolGamePayoff M p c ≤ 1 := by
@@ -105,7 +114,9 @@ lemma boolGamePayoff_le_one {R C : Type*} [Fintype R]
         mul_le_of_le_one_right (p.prob_nonneg r) (by split_ifs <;> norm_num)
     _ = 1 := p.prob_sum_one
 
-/-- Point mass payoff equals the game value at that row-column pair. -/
+/-- Point mass payoff equals the game value at that row-column pair.
+@isnad1 id=eq.0h5v.s5.4ecf518f5151 from=translated src=- shape=e610f94b vocab=c66632bc
+-/
 lemma boolGamePayoff_pointMass {R C : Type*} [Fintype R] [DecidableEq R]
     (M : R → C → Bool) (r₀ : R) (c : C) :
     boolGamePayoff M (pointMassPMF r₀) c = if M r₀ c then 1 else 0 := by
@@ -117,7 +128,9 @@ lemma boolGamePayoff_pointMass {R C : Type*} [Fintype R] [DecidableEq R]
         split_ifs <;> simp]
   simp
 
-/-- The minimax value of a Boolean game is at most 1. -/
+/-- The minimax value of a Boolean game is at most 1.
+@isnad1 id=le.1h4v.s6.bdd955bd5b9e from=translated src=- shape=6f59ef19 vocab=fba99958
+-/
 lemma minimax_value_le_one {R C : Type*} [Fintype C] [Nonempty C]
     (M : R → C → Bool) (v : ℝ)
     (hrow : ∀ q : FinitePMF C, ∃ r : R,
@@ -133,7 +146,9 @@ lemma minimax_value_le_one {R C : Type*} [Fintype C] [Nonempty C]
 
 /-! ## Covering Row Lemma -/
 
-/-- If minimax value > 0, every column has a row with M(r,c) = true. -/
+/-- If minimax value > 0, every column has a row with M(r,c) = true.
+@isnad1 id=ex.2h5v.s6.29b00c0610b2 from=translated src=- shape=91260995 vocab=fd8fbd6f
+-/
 lemma exists_covering_row {R C : Type*} [Fintype C]
     (M : R → C → Bool) (v : ℝ) (hv : 0 < v)
     (hrow : ∀ q : FinitePMF C, ∃ r : R,
@@ -163,7 +178,9 @@ lemma exists_covering_row {R C : Type*} [Fintype C]
     Proof: for each column c, pick a row r_c with M(r_c, c) = true
     (guaranteed by `exists_covering_row`). The empirical distribution of
     these rows gives payoff ≥ 1/|C| against every column, since each
-    column c₀ is covered by at least one row (namely r_c₀). -/
+    column c₀ is covered by at least one row (namely r_c₀).
+@isnad1 id=ex.2h4v.s7.1ef0a0675ef0 from=translated src=- shape=978798d8 vocab=42cbdcb7
+-/
 theorem covering_minimax
     {R C : Type*} [Fintype R] [Fintype C] [Nonempty C]
     (M : R → C → Bool) (v : ℝ) (hv : 0 < v)
@@ -209,7 +226,9 @@ with expected payoff ≥ v, then there exists a row mixture p such that
 every pure column gets payoff ≥ v - ε.
 
 This version uses the covering argument (payoff ≥ 1/|C| for all columns)
-combined with the feasibility condition v - ε ≤ 1/|C|. -/
+combined with the feasibility condition v - ε ≤ 1/|C|.
+@isnad1 id=ex.3h5v.s7.e77bf6068bca from=translated src=- shape=49b2df89 vocab=c2a96007
+-/
 theorem finite_approx_minimax
     {R C : Type*} [Fintype R] [Fintype C] [Nonempty C] [Nonempty R]
     (M : R → C → Bool) (v ε : ℝ) (hε : 0 < ε)
@@ -241,6 +260,9 @@ structure MWUConfig (C : Type*) [Fintype C] where
 def MWUConfig.potential {C : Type*} [Fintype C] (cfg : MWUConfig C) : ℝ :=
   ∑ c : C, cfg.weights c
 
+/--
+@isnad1 id=lt.0h2v.s4.321c59528c23 from=translated src=- shape=abec20dc vocab=988eb62d
+-/
 lemma MWUConfig.potential_pos {C : Type*} [Fintype C] [Nonempty C]
     (cfg : MWUConfig C) : 0 < cfg.potential :=
   Finset.sum_pos (fun c _ => cfg.weights_pos c) univ_nonempty
@@ -250,6 +272,9 @@ def mwuInit (C : Type*) [Fintype C] : MWUConfig C where
   weights := fun _ => 1
   weights_pos := fun _ => one_pos
 
+/--
+@isnad1 id=eq.0h1v.s4.10e92ec6a883 from=translated src=- shape=794ba50c vocab=bcd56d16
+-/
 lemma mwuInit_potential (C : Type*) [Fintype C] :
     (mwuInit C).potential = Fintype.card C := by
   simp [MWUConfig.potential, mwuInit, sum_const, nsmul_eq_mul, mul_one]
@@ -266,7 +291,9 @@ def mwuUpdateWeights {C : Type*} [Fintype C] {R : Type*}
   weights c := cfg.weights c * (if M r c then (1 - η) else 1)
   weights_pos c := mul_pos (cfg.weights_pos c) (by split_ifs <;> linarith)
 
-/-- Best response payoff ≥ v · Φ in terms of weights. -/
+/-- Best response payoff ≥ v · Φ in terms of weights.
+@isnad1 id=le.1h5v.s8.2d72c3bbb0ae from=translated src=- shape=afdb9cca vocab=440fb81a
+-/
 lemma best_response_payoff_weights {R C : Type*} [Fintype C] [Nonempty C]
     (M : R → C → Bool) (v : ℝ)
     (hrow : ∀ q : FinitePMF C, ∃ r : R,
@@ -288,7 +315,9 @@ lemma best_response_payoff_weights {R C : Type*} [Fintype C] [Nonempty C]
   rw [key] at hr
   rwa [le_div_iff₀ hΦ_pos] at hr
 
-/-- Potential bound after one step: Φ' ≤ Φ · (1 - η·v). -/
+/-- Potential bound after one step: Φ' ≤ Φ · (1 - η·v).
+@isnad1 id=le.3h6v.s7.fb6be2a62e24 from=translated src=- shape=489fb12b vocab=dd6a845c
+-/
 lemma potential_one_step_bound {R C : Type*} [Fintype C] [Nonempty C]
     (M : R → C → Bool) (η : ℝ) (hη : 0 ≤ η) (hη1 : η < 1) (v : ℝ)
     (hrow : ∀ q : FinitePMF C, ∃ r : R,
@@ -355,7 +384,9 @@ abbrev mwuRows {R C : Type*} [Fintype R] [Fintype C] [Nonempty C]
 /-- **Potential bound after T steps**: Φ_T ≤ |C| · (1 - ηv)^T.
 
 This is the core MWU guarantee. Combined with individual weight lower
-bounds (w_T(c) = (1-η)^{losses(c)}), it yields the regret bound. -/
+bounds (w_T(c) = (1-η)^{losses(c)}), it yields the regret bound.
+@isnad1 id=le.3h6v.s7.ca1d4bbd2fe4 from=translated src=- shape=aefcd9d6 vocab=5650d1f0
+-/
 theorem mwu_potential_T_bound {R C : Type*} [Fintype R] [Fintype C] [Nonempty C]
     (M : R → C → Bool) (η : ℝ) (hη : 0 ≤ η) (hη1 : η < 1) (v : ℝ)
     (hrow : ∀ q : FinitePMF C, ∃ r : R,
@@ -581,7 +612,9 @@ private lemma hitRate_from_potential
 
 /-- **Genuine approximate minimax via MWU regret extraction.**
     If every column mixture admits a pure row with expected payoff ≥ v,
-    then there is a row mixture with payoff ≥ v - ε against every column. -/
+    then there is a row mixture with payoff ≥ v - ε against every column.
+@isnad1 id=ex.2h5v.s6.eb4ff66fcb3a from=translated src=- shape=070d6463 vocab=8a6acf4c
+-/
 theorem mwu_approx_minimax
     {R C : Type*} [Fintype R] [Fintype C] [Nonempty R] [Nonempty C]
     (M : R → C → Bool) (v ε : ℝ) (hε : 0 < ε)

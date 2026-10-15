@@ -86,7 +86,9 @@ variable {α β γ : Type*}
 /-- `toApproxMap ∘ toFilter = id`: the representation of a function-space
 *element* by an
 approximable
-map is a left inverse of `toFilter` (this is `funSpaceEquiv` unfolded). -/
+map is a left inverse of `toFilter` (this is `funSpaceEquiv` unfolded).
+@isnad1 id=eq.0h5v.s5.d3442cb39ef4 from=translated src=- shape=b40cf5f3 vocab=d2413231
+-/
 theorem toApproxMap_toFilter {V₀ : NeighborhoodSystem α} {V₁ : NeighborhoodSystem β}
     (f : ApproximableMap V₀ V₁) : toApproxMap (toFilter f) = f := by
   have he := (funSpaceEquiv V₀ V₁).apply_symm_apply f
@@ -127,7 +129,9 @@ def Smap (Vx : NeighborhoodSystem αx) (Va : NeighborhoodSystem αa) (Vb : Neigh
       (funSpace (funSpace Vx Va) (funSpace Vx Vb)) :=
   curry (curry (Sbody Vx Va Vb))
 
-/-- The defining equation of `S`: `S(F)(G)(x) = F(x)(G(x))`. -/
+/-- The defining equation of `S`: `S(F)(G)(x) = F(x)(G(x))`.
+@isnad1 id=eq.0h9v.s7.0b40dbbe6ff3 from=translated src=- shape=a28fbfa8 vocab=2d9db764
+-/
 theorem Smap_apply (F : (funSpace Vx (funSpace Va Vb)).Element) (G : (funSpace Vx Va).Element)
     (x : Vx.Element) :
     (toApproxMap
@@ -173,12 +177,16 @@ def Selem (X A B : Dom) :
     ((X.arrow (A.arrow B)).arrow ((X.arrow A).arrow (X.arrow B))).sys.Element :=
   toFilter (Smap X.sys A.sys B.sys)
 
-/-- `I(x) = x`. -/
+/-- `I(x) = x`.
+@isnad1 id=eq.0h2v.s5.32fcc5216802 from=translated src=- shape=f98cbe25 vocab=157926e3
+-/
 theorem Ielem_apply (X : Dom) (x : X.sys.Element) :
     (toApproxMap (Ielem X)).toElementMap x = x := by
   rw [Ielem, toApproxMap_toFilter, toElementMap_idMap]
 
-/-- `K(c)(x) = c`. -/
+/-- `K(c)(x) = c`.
+@isnad1 id=eq.0h4v.s6.8357ff8724a4 from=translated src=- shape=0bce2507 vocab=7f76c852
+-/
 theorem Kelem_apply (A X : Dom) (c : A.sys.Element) (x : X.sys.Element) :
     (toApproxMap ((toApproxMap (Kelem A X)).toElementMap c)).toElementMap x = c := by
   rw [Kelem, toApproxMap_toFilter]
@@ -186,7 +194,9 @@ theorem Kelem_apply (A X : Dom) (c : A.sys.Element) (x : X.sys.Element) :
   rw [toElementMap_proj₀, fst_pair] at h
   exact h
 
-/-- `S(F)(G)(x) = F(x)(G(x))`. -/
+/-- `S(F)(G)(x) = F(x)(G(x))`.
+@isnad1 id=eq.0h6v.s7.316589c1eb92 from=translated src=- shape=f4df4447 vocab=14df7ebc
+-/
 theorem Selem_apply (X A B : Dom)
     (F : (X.arrow (A.arrow B)).sys.Element) (G : (X.arrow A).sys.Element) (x : X.sys.Element) :
     (toApproxMap
@@ -260,7 +270,9 @@ Thus, with `I`, `K`, `S` (and the constants of `t`) available, every
 `λ`-abstraction can be defined
 by combining combinators using application as the only mode of combination —
 Scott's "turning of the
-tables". -/
+tables".
+@isnad1 id=eq.0h4v.s5.2909ec91154b from=translated src=- shape=a306829b vocab=0c6684b4
+-/
 theorem bracket_spec {X : Dom} {A : Dom} (t : Poly X A) (x : X.sys.Element) :
     (toApproxMap (bracket t).denote).toElementMap x = t.denote x := by
   induction t with

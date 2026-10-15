@@ -110,7 +110,9 @@ the strong form of equality of sums against an arbitrary function.
 
 This is the form consumed by the MCM phase proof, and it covers the residue
 `k ≡ 3 (mod 6)`, where `9 ∣ 2^k + 1` rules out the generic Dickson permutation
-argument. -/
+argument.
+@isnad1 id=eq.3h5v.s7.c825f70a02a2 from=translated src=- shape=1e9572a5 vocab=3caa258c
+-/
 theorem sum_dickson_kasami_eq_three
     {K : Type*} [Field K] [Fintype K]
     {M : Type*} [AddCommMonoid M]

@@ -75,17 +75,25 @@ def zeroOutside : Presheaf C X where
 
 variable {U F}
 
+/--
+@isnad1 id=iszero.1h5v.s6.815cc2b64b37 from=translated src=- shape=909abffb vocab=70fdee4d
+-/
 lemma zeroOutside_isZero {W : Opens X} (h : ¬ W ≤ U) :
     IsZero ((zeroOutside U F).obj (op W)) := by
   simp [zeroOutside, h, isZero_zero C]
 
+/--
+@isnad1 id=eq.1h5v.s7.812df41c953c from=translated src=- shape=6d73196c vocab=2c7c413a
+-/
 lemma zeroOutside_le {W : Opens X} (h : W ≤ U) :
     (zeroOutside U F).obj (op W) = F.obj (op W) := by
   simp [zeroOutside, h]
 
 /-- Restriction in `zeroOutside U F` is restriction in `F`, transported along
 `zeroOutside_le`. Stated so that proofs never have to unfold `zeroOutside` under an
-`eqToHom` whose proof mentions it. -/
+`eqToHom` whose proof mentions it.
+@isnad1 id=eq.1h7v.s9.c62469cb959b from=translated src=- shape=53ce7192 vocab=1460e97e
+-/
 lemma zeroOutside_map_of_le {W Y : (Opens X)ᵒᵖ} (i : W ⟶ Y) (h : unop W ≤ U) :
     (zeroOutside U F).map i = eqToHom (zeroOutside_le h) ≫ F.map i ≫
       eqToHom (zeroOutside_le (le_trans (leOfHom i.unop) h)).symm :=
@@ -224,6 +232,9 @@ def sHom {F : Presheaf AddCommGrpCat.{u} X} (s : F.obj (op U)) :
       simp [← ConcreteCategory.comp_apply, eqToHom_trans]
     · apply (zeroOutside_isZero (F := constZ) hWU).eq_of_src
 
+/--
+@isnad1 id=eq.0h4v.s9.f730c689c489 from=translated src=- shape=f76f60eb vocab=e19db801
+-/
 theorem sHom_app_generator {F : Presheaf AddCommGrpCat.{u} X} (s : F.obj (op U)) :
     (sHom s).app (op U) (generator U) = s := by
   have hObjU : (zeroOutside U constZ).obj (op U) = AddCommGrpCat.of (ULift ℤ) := by
@@ -251,7 +262,9 @@ theorem sHom_app_generator {F : Presheaf AddCommGrpCat.{u} X} (s : F.obj (op U))
   simp_all
 
 /-- The restriction of the distinguished generator of `constZ.zeroOutside V` to a smaller open
-`W ≤ V` corresponds to `1 : ULift ℤ` under the canonical identification with `ULift ℤ`. -/
+`W ≤ V` corresponds to `1 : ULift ℤ` under the canonical identification with `ULift ℤ`.
+@isnad1 id=eq.2h3v.s11.c8d638eb85cd from=translated src=- shape=bd4db26d vocab=bb66e957
+-/
 theorem resGen_eqToHom_eq_one
     {X : TopCat.{u}} (V : Opens X) {W : Opens X} (hWV : W ≤ V)
     (hObjW : (constZ.zeroOutside V).obj (op W) = AddCommGrpCat.of (ULift ℤ)) :
@@ -271,7 +284,9 @@ theorem resGen_eqToHom_eq_one
   simp [← ConcreteCategory.comp_apply, eqToHom_trans]
 
 /-- At a point inside the support open, every stalk element of the presheaf `constZ.zeroOutside V`
-is an integer multiple of the germ of the distinguished generator over `V`. -/
+is an integer multiple of the germ of the distinguished generator over `V`.
+@isnad1 id=ex.1h4v.s9.660af57bafbd from=translated src=- shape=548537a3 vocab=0e22f197
+-/
 theorem presheaf_stalk_zeroOutside_eq_zsmul_generator
     {X : TopCat.{u}} (V : Opens X) (x : X) (hx : x ∈ V)
     (a : (TopCat.Presheaf.stalkFunctor AddCommGrpCat.{u} x).obj
@@ -345,6 +360,9 @@ def sHom {X : TopCat.{u}} {U : Opens X} {F : Sheaf AddCommGrpCat.{u} X}
     (s : F.presheaf.obj (op U)) : zeroOutsideInt U ⟶ F where
   hom := sHomVal F.property s
 
+/--
+@isnad1 id=eq.1h4v.s10.152d68b19e80 from=translated src=- shape=d827f4a0 vocab=1d7b56c3
+-/
 theorem sHomVal_app_generator {X : TopCat.{u}} {U : Opens X}
     {F : Presheaf AddCommGrpCat.{u} X} (hF : F.IsSheaf) (s : F.obj (op U)) :
     (sHomVal hF s).app (op U) (generator U) = s := by
@@ -352,11 +370,17 @@ theorem sHomVal_app_generator {X : TopCat.{u}} {U : Opens X}
   erw [← ConcreteCategory.comp_apply, ← NatTrans.comp_app, toSheafify_sheafifyLift]
   exact Presheaf.zeroOutside.sHom_app_generator s
 
+/--
+@isnad1 id=eq.0h4v.s11.805d6216b4c1 from=translated src=- shape=c052083a vocab=6dcd6ef8
+-/
 theorem sHom_app_generator {X : TopCat.{u}} {U : Opens X}
     {F : Sheaf AddCommGrpCat.{u} X} (s : F.presheaf.obj (op U)) :
     (sHom s).hom.app (op U) (generator U) = s :=
   sHomVal_app_generator F.property s
 
+/--
+@isnad1 id=eq.1h3v.s11.871c6503c146 from=translated src=- shape=e355a18b vocab=a8ae3b82
+-/
 theorem openHom_val_app_generator {X : TopCat.{u}} {V U : Opens X} (h : V ≤ U) :
     (openHom h).hom.app (op V) (generator V) =
     (zeroOutsideInt U).obj.map (homOfLE h).op (generator U) := by

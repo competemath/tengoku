@@ -190,6 +190,9 @@ def homCospanPullbackLift {W : Type v} {A B X Y : C}
   Limits.pullback.lift φ ψ comm
 
 omit HasPullbacks in
+/--
+@isnad1 id=eq.0h11v.s7.12ffa6e3c3de from=translated src=- shape=febff46d vocab=bd6dcf84
+-/
 lemma hom_cospan_pullback_lift_fst {W : Type v} {A B X Y : C}
     (l : A ⟶ B) (r : X ⟶ Y) (φ : W ⟶ (B ⟶ Y)) (ψ : W ⟶ (A ⟶ X))
     (comm : φ ≫ (homSquareRight l r) = ψ ≫ (homSquareBot l r) := by aesop_cat) :
@@ -197,6 +200,9 @@ lemma hom_cospan_pullback_lift_fst {W : Type v} {A B X Y : C}
   Limits.pullback.lift_fst φ ψ comm
 
 omit HasPullbacks in
+/--
+@isnad1 id=eq.0h11v.s7.5da7586c44ac from=translated src=- shape=a86f5f41 vocab=4c2a51f9
+-/
 lemma hom_cospan_pullback_lift_snd {W : Type v} {A B X Y : C}
     (l : A ⟶ B) (r : X ⟶ Y) (φ : W ⟶ (B ⟶ Y)) (ψ : W ⟶ (A ⟶ X))
     (comm : φ ≫ (homSquareRight l r) = ψ ≫ (homSquareBot l r) := by aesop_cat) :
@@ -205,6 +211,9 @@ lemma hom_cospan_pullback_lift_snd {W : Type v} {A B X Y : C}
 
 /- The hom pullback square is in particular commutative -/
 omit HasPullbacks in
+/--
+@isnad1 id=eq.0h7v.s7.c18ba16ed338 from=translated src=- shape=e573ea89 vocab=3952408a
+-/
 lemma hom_cospan_pullback_condition {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) :
     (homCospanPullbackFst l r) ≫ (homSquareRight l r) =
     (homCospanPullbackSnd l r) ≫ (homSquareBot l r) :=
@@ -239,6 +248,9 @@ def diagonalsHomCospanPullbackBot {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) :
   TypeCat.ofHom fun f => f ≫ r
 
 omit HasPullbacks in
+/--
+@isnad1 id=eq.0h7v.s7.66134ef34aae from=translated src=- shape=7e8f0bed vocab=3cf24a63
+-/
 lemma diagonals_hom_cospan_pullback_lift_comm {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) :
     (diagonalsHomCospanPullbackBot l r) ≫ (homSquareRight l r) =
     (diagonalsHomCospanPullbackTop l r) ≫ (homSquareBot l r) := by
@@ -255,6 +267,9 @@ def diagonalsHomCospanPullbackLift {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) :
     (diagonals_hom_cospan_pullback_lift_comm l r)
 
 omit HasPullbacks in
+/--
+@isnad1 id=eq.0h7v.s6.31a1d3093947 from=translated src=- shape=1c672170 vocab=78e79982
+-/
 lemma diagonals_hom_cospan_pullback_lift_fst {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) :
     diagonalsHomCospanPullbackLift l r ≫ homCospanPullbackFst l r =
     (diagonalsHomCospanPullbackBot l r) :=
@@ -264,6 +279,9 @@ lemma diagonals_hom_cospan_pullback_lift_fst {A B X Y : C} (l : A ⟶ B) (r : X 
     (diagonals_hom_cospan_pullback_lift_comm l r)
 
 omit HasPullbacks in
+/--
+@isnad1 id=eq.0h7v.s6.c2e8ff53384d from=translated src=- shape=1d7d9c67 vocab=ae06cba7
+-/
 lemma diagonals_hom_cospan_pullback_lift_snd {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) :
     diagonalsHomCospanPullbackLift l r ≫ homCospanPullbackSnd l r =
     (diagonalsHomCospanPullbackTop l r) :=
@@ -310,6 +328,9 @@ def homCospanPullbackToDiagonalFillerMap
   TypeCat.ofHom fun x => (homCospanPullbackToDiagonalFiller l r h x).map
 
 omit HasPullbacks in
+/--
+@isnad1 id=eq.0h9v.s8.d5b64412f766 from=translated src=- shape=2b8ca2d3 vocab=85f3cb4e
+-/
 lemma hom_cospan_pullback_to_diagonal_filler_map_comm_top
     {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) (h : orthogonal l r)
     (x : Limits.pullback (homSquareRight l r) (homSquareBot l r)) :
@@ -318,6 +339,9 @@ lemma hom_cospan_pullback_to_diagonal_filler_map_comm_top
   (homCospanPullbackToDiagonalFiller l r h x).comm_top
 
 omit HasPullbacks in
+/--
+@isnad1 id=eq.0h9v.s8.80e1709d1607 from=translated src=- shape=bb90f9eb vocab=50db3a7e
+-/
 lemma hom_cospan_pullback_to_diagonal_filler_map_comm_bot
     {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) (h : orthogonal l r)
     (x : Limits.pullback (homSquareRight l r) (homSquareBot l r)) :
@@ -329,6 +353,9 @@ omit HasPullbacks
 
 /- If morphisms l and r in C are orthogonal, then the hom square is cartesian -/
 omit HasPullbacks in
+/--
+@isnad1 id=homortho.0h8v.s5.03d5b6118f43 from=translated src=- shape=9df987eb vocab=f938f831
+-/
 lemma orthogonal_implies_hom_orthogonal :
     {A B X Y : C} → (l : A ⟶ B) → (r : X ⟶ Y) → (orthogonal l r) → (homOrthogonal l r) := by
   intro A B X Y l r ⟨d,u⟩
@@ -422,6 +449,9 @@ def homPullbackSnd
 /- We construct a cone over the same cospan with apex Hom(B,X) -/
 
 omit HasPullbacks in
+/--
+@isnad1 id=eq.0h7v.s8.dd7c67f7bfde from=translated src=- shape=6c65eec9 vocab=7770cc7c
+-/
 lemma diagonals_comm {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) :
     (homSquare l r).top ≫ (homSquare l r).right = (homSquare l r).left ≫ (homSquare l r).bot
     := by rw [(homSquare l r).comm]
@@ -458,12 +488,18 @@ def diagonalsHomCospanLift
   (homPullbackConeIsLimit l r).lift (diagonalsCone l r)
 
 omit HasPullbacks in
+/--
+@isnad1 id=eq.0h7v.s7.4efa5a42c330 from=translated src=- shape=e8100323 vocab=3087de35
+-/
 lemma diagonals_hom_cospan_lift_fst
     {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) :
     diagonalsHomCospanLift l r ≫ homPullbackFst l r = (homSquare l r).top :=
   (homPullbackConeIsLimit l r).fac (diagonalsCone l r) Limits.WalkingCospan.left
 
 omit HasPullbacks in
+/--
+@isnad1 id=eq.0h7v.s7.51701981b8f5 from=translated src=- shape=a6f92b8d vocab=aa44eef6
+-/
 lemma diagonals_hom_cospan_lift_snd
     {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) :
     diagonalsHomCospanLift l r ≫ homPullbackSnd l r = (homSquare l r).left :=
@@ -476,11 +512,17 @@ def homOrthogonalAux {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) : Prop :=
   IsIso (diagonalsHomCospanLift l r)
 
 omit HasPullbacks in
+/--
+@isnad1 id=homortho.1h7v.s5.02311f047a2f from=translated src=- shape=9df987eb vocab=d78c5fa7
+-/
 lemma hom_orthogonal_implies_hom_orthogonal_aux
     {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) (h : homOrthogonal l r) :
     homOrthogonal l r := h
 
 omit HasPullbacks in
+/--
+@isnad1 id=homortho.1h7v.s5.7b4f93c0c7bb from=translated src=- shape=9df987eb vocab=044a4f6c
+-/
 lemma hom_orthogonal_aux_implies_hom_orthogonal
     {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) (h : homOrthogonalAux l r) :
     homOrthogonal l r := h
@@ -500,12 +542,18 @@ def homOrthogonalAuxInv {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) (h : homOrthog
   (asIso (diagonalsHomCospanLift l r)).inv
 
 omit HasPullbacks in
+/--
+@isnad1 id=eq.1h7v.s7.fec6e66e9bae from=translated src=- shape=8628b0a9 vocab=4e3f7b69
+-/
 lemma hom_orthogonal_aux_hom_inv_id
     {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) (h : homOrthogonalAux l r) :
     (homOrthogonalAuxHom l r h) ≫ (homOrthogonalAuxInv l r h) = 𝟙 (B ⟶ X) :=
   (asIso (diagonalsHomCospanLift l r)).hom_inv_id
 
 omit HasPullbacks in
+/--
+@isnad1 id=eq.1h7v.s7.6b9bbe23576b from=translated src=- shape=7927dcf2 vocab=4e3f7b69
+-/
 lemma hom_orthogonal_aux_inv_hom_id
     {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) (h : homOrthogonalAux l r) :
     (homOrthogonalAuxInv l r h) ≫ (homOrthogonalAuxHom l r h) =
@@ -526,6 +574,9 @@ def homOrthogonalAuxLift
     := (Limits.pullback.isLimit (homSquare l r).right (homSquare l r).bot).lift s
   exact lift ≫ homOrthogonalAuxInv l r h
 
+/--
+@isnad1 id=eq.1h8v.s9.14194f97e82f from=translated src=- shape=5a21ba4b vocab=7e44dbd1
+-/
 lemma hom_orthogonal_aux_fac_left
     {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) (h : homOrthogonalAux l r) :
     ∀ s : Limits.PullbackCone (homSquare l r).right (homSquare l r).bot,
@@ -553,6 +604,9 @@ lemma hom_orthogonal_aux_fac_left
         _ = homCospanPullbackFst l r := by rw [hom_orthogonal_aux_inv_hom_id l r h]; simp
     _ = s.fst := (homPullbackConeIsLimit l r).fac s Limits.WalkingCospan.left
 
+/--
+@isnad1 id=eq.1h8v.s9.f6280ffcc04a from=translated src=- shape=c1939031 vocab=4cbd4b67
+-/
 lemma hom_orthogonal_aux_fac_right
     {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) (h : homOrthogonalAux l r) :
     ∀ s : Limits.PullbackCone (homSquare l r).right (homSquare l r).bot,
@@ -578,6 +632,9 @@ lemma hom_orthogonal_aux_fac_right
         _ = homCospanPullbackSnd l r := by rw [hom_orthogonal_aux_inv_hom_id l r]; simp
     _ = s.snd := (homPullbackConeIsLimit l r).fac s Limits.WalkingCospan.right
 
+/--
+@isnad1 id=eq.3h9v.s10.5b4a314127d0 from=translated src=- shape=ad0d74d7 vocab=a93101c6
+-/
 lemma hom_orthogonal_aux_uniq
     {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) (h : homOrthogonalAux l r) :
     (∀ (s : Limits.PullbackCone (homSquare l r).right (homSquare l r).bot) (m : s.pt ⟶ B ⟶ X),
@@ -649,6 +706,9 @@ def squareCompletionConeFst {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) (S : l □
   TypeCat.ofHom fun _ => S.bot
 
 omit HasPullbacks in
+/--
+@isnad1 id=eq.0h8v.s7.f96e8d2485cb from=translated src=- shape=c29c7e65 vocab=d86d9818
+-/
 lemma square_completion_cone_comm {A B X Y : C} (l : A ⟶ B) (r : X ⟶ Y) (S : l □ r) :
     squareCompletionConeFst l r S ≫ (homSquare l r).right =
     squareCompletionConeSnd l r S ≫ (homSquare l r).bot := by

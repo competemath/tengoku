@@ -25,17 +25,26 @@ noncomputable section
 
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 
+/--
+@isnad1 id=integrab.2h3v.s6.ae02a1d717bf from=translated src=- shape=313f139c vocab=abea574d
+-/
 theorem integrable_id_map
     {X : Ω → ℝ} (hXmeas : Measurable X) (hXint : Integrable X μ) :
     Integrable (fun x : ℝ ↦ x) (μ.map X) := by
   rw [integrable_map_measure (by fun_prop) hXmeas.aemeasurable]
   simpa [Function.comp_def] using hXint
 
+/--
+@isnad1 id=eq.1h3v.s6.69c987ec1538 from=translated src=- shape=b96086dd vocab=873b1923
+-/
 theorem integral_id_map
     {X : Ω → ℝ} (hXmeas : Measurable X) :
     (∫ x : ℝ, x ∂μ.map X) = ∫ ω, X ω ∂μ := by
   rw [integral_map hXmeas.aemeasurable (by fun_prop)]
 
+/--
+@isnad1 id=eq.2h3v.s6.6a4c85930cb6 from=translated src=- shape=8475988c vocab=eed6fdb6
+-/
 theorem map_apply_Iio_zero_of_nonnegative
     {X : Ω → ℝ} (hXmeas : Measurable X)
     (hXnonneg : ∀ ω, 0 ≤ X ω) :

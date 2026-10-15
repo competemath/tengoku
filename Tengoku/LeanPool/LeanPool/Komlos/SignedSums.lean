@@ -30,7 +30,9 @@ open Finsupp Finset
 universe u
 
 /-- Lemma 1.4: if `shiftDist P (6 • v i) ≤ 1 / 3` for every `i`, some colouring `ε` satisfies
-`mean P + ∑ i, ε i • v i ∈ convexHull ℝ (P.support : Set E)`. -/
+`mean P + ∑ i, ε i • v i ∈ convexHull ℝ (P.support : Set E)`.
+@isnad1 id=ex.2h4v.s8.73dfdcfd8ed9 from=translated src=- shape=cf866d43 vocab=48653b03
+-/
 theorem exists_isColouring_mean_add_sum_mem_convexHull (n : ℕ) :
     ∀ {E : Type u} [AddCommGroup E] [Module ℝ E] (P : E →₀ ℝ),
     IsDist P → ∀ v : Fin n → E, (∀ i, shiftDist P ((6 : ℝ) • v i) ≤ 3⁻¹) →

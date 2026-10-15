@@ -99,11 +99,17 @@ private theorem BoundedFormulaω.realize_congr_instances (S S' : L.Structure M)
 @[reducible] def wc (base : L.Structure M) (h : ℕ → M) : L[[ℕ]].Structure M :=
   @Language.withConstantsStructure L M base ℕ (constantsOn.structure h)
 
+/--
+@isnad1 id=eq.0h7v.s5.f9ddf3bc6b90 from=translated src=- shape=3d31e5f9 vocab=9ecb1d13
+-/
 @[simp] theorem wc_funMap_inl (base : L.Structure M) (h : ℕ → M) {l : ℕ}
     (f : L.Functions l) (x : Fin l → M) :
     @Structure.funMap L[[ℕ]] M (wc base h) l (Sum.inl f) x = @Structure.funMap L M base l f x :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.86bd0f80536f from=translated src=- shape=bc93f67a vocab=0148ad98
+-/
 @[simp] theorem wc_funMap_inr (base : L.Structure M) (h : ℕ → M) (k : ℕ) (x : Fin 0 → M) :
     @Structure.funMap L[[ℕ]] M (wc base h) 0 (Sum.inr k) x = h k :=
   rfl
@@ -113,7 +119,9 @@ def ambientConstMap (M : Type) [S : L[[ℕ]].Structure M] (k : ℕ) : M :=
   @Structure.funMap L[[ℕ]] M S 0 (Sum.inr k) Fin.elim0
 
 /-- **The ambient bridge**: any ambient `L[[ℕ]]`-structure realizes exactly as the controlled
-structure built from its base reduct and its constant interpretation. -/
+structure built from its base reduct and its constant interpretation.
+@isnad1 id=iff.0h7v.s6.f1f37632507c from=translated src=- shape=16cada25 vocab=dbb71c7b
+-/
 theorem ambient_realize_iff_wc [S : L[[ℕ]].Structure M] {n : ℕ}
     (φ : L[[ℕ]].BoundedFormulaω α n) (v : α → M) (xs : Fin n → M) :
     @BoundedFormulaω.Realize L[[ℕ]] M S α n φ v xs ↔
@@ -136,7 +144,9 @@ theorem ambient_realize_iff_wc [S : L[[ℕ]].Structure M] {n : ℕ}
 
 /-! ## Invariance outside the constant support -/
 
-/-- Two constant maps agreeing on a term's constant support give the term the same value. -/
+/-- Two constant maps agreeing on a term's constant support give the term the same value.
+@isnad1 id=eq.1h9v.s7.aeeffab12aa8 from=translated src=- shape=9e93db77 vocab=0f49ba86
+-/
 theorem Term.realize_congr_const (base : L.Structure M) {h h' : ℕ → M} {n : ℕ}
     (t : L[[ℕ]].Term (α ⊕ Fin n))
     (hagree : ∀ k, (⟨0, (Sum.inr k : L[[ℕ]].Functions 0)⟩ : Σ l, L[[ℕ]].Functions l) ∈
@@ -165,7 +175,9 @@ theorem Term.realize_congr_const (base : L.Structure M) {h h' : ℕ → M} {n : 
       | (l + 1), k => exact isEmptyElim k
 
 /-- **Invariance outside the constant support** (Claim A): altering the constant interpretation
-off a formula's constant support does not change its realization. -/
+off a formula's constant support does not change its realization.
+@isnad1 id=iff.1h10v.s6.f55b26cd7bd5 from=translated src=- shape=0e4f5b72 vocab=cc3a0a06
+-/
 theorem BoundedFormulaω.realize_congr_const (base : L.Structure M) {h h' : ℕ → M} :
     ∀ {n : ℕ} (φ : L[[ℕ]].BoundedFormulaω α n)
       (_ : ∀ k ∈ sentenceJConsts (L' := L) (J := ℕ) φ, h k = h' k)
@@ -241,7 +253,9 @@ noncomputable def BoundedFormulaω.abstractConst (j : ℕ) :
 /-! ## The reinterpretation engine (Claim B) -/
 
 /-- Term reinterpretation: the abstracted term evaluated with the free variable at `a` equals
-the original term with `c_j` reinterpreted to `a`. -/
+the original term with `c_j` reinterpreted to `a`.
+@isnad1 id=eq.0h9v.s6.232800b5abf8 from=translated src=- shape=1a383243 vocab=667092d5
+-/
 theorem Term.realize_abstractConst (base : L.Structure M) (h : ℕ → M) (j : ℕ) (a : M) {n : ℕ}
     (xs : Fin n → M) (t : L[[ℕ]].Term (Empty ⊕ Fin n)) :
     @Term.realize L[[ℕ]] M (wc base h) _ (Sum.elim (fun _ => a) xs) (t.abstractConst j)
@@ -282,7 +296,9 @@ theorem Term.realize_abstractConst (base : L.Structure M) (h : ℕ → M) (j : �
       | (l + 1), k => exact nomatch k
 
 /-- **The reinterpretation engine** (Claim B): realizing the abstracted formula at a witness `a`
-equals realizing the original with `c_j` reinterpreted to `a`. -/
+equals realizing the original with `c_j` reinterpreted to `a`.
+@isnad1 id=iff.0h9v.s6.46a6418c31c5 from=translated src=- shape=b2fdd262 vocab=9092a753
+-/
 theorem BoundedFormulaω.realize_abstractConst (base : L.Structure M) (h : ℕ → M) (j : ℕ) (a : M) :
     ∀ {n : ℕ} (φ : L[[ℕ]].BoundedFormulaω Empty n) (xs : Fin n → M),
       @BoundedFormulaω.Realize L[[ℕ]] M (wc base h) (Fin 1) n (φ.abstractConst j)
@@ -327,7 +343,9 @@ theorem BoundedFormulaω.realize_abstractConst (base : L.Structure M) (h : ℕ �
 
 /-! ## Occurrence deletion: abstraction removes `c_j` and adds no new constants -/
 
-/-- Abstraction adds no new function symbols to a term. -/
+/-- Abstraction adds no new function symbols to a term.
+@isnad1 id=le.0h4v.s5.12fa7ff4b743 from=translated src=- shape=168dcd9e vocab=a61d3b4a
+-/
 theorem Term.functionsIn_abstractConst_subset (j : ℕ) {n : ℕ} :
     ∀ (t : L[[ℕ]].Term (Empty ⊕ Fin n)),
       (t.abstractConst j).functionsIn ⊆ t.functionsIn := by
@@ -396,7 +414,9 @@ private theorem Term.notMem_functionsIn_abstractConst (j : ℕ) {n : ℕ} :
           exact hk (Sum.inr.inj (eq_of_heq (Sigma.mk.inj_iff.mp hs).2)).symm
       | (l + 1), k => exact nomatch k
 
-/-- Abstraction adds no new function symbols to a formula. -/
+/-- Abstraction adds no new function symbols to a formula.
+@isnad1 id=le.0h4v.s5.b7ea3d4a5c7f from=translated src=- shape=50ce692b vocab=618362b3
+-/
 theorem BoundedFormulaω.functionsIn_abstractConst_subset (j : ℕ) :
     ∀ {n : ℕ} (φ : L[[ℕ]].BoundedFormulaω Empty n),
       (φ.abstractConst j).functionsIn ⊆ φ.functionsIn := by
@@ -444,7 +464,9 @@ private theorem BoundedFormulaω.notMem_functionsIn_abstractConst (j : ℕ) :
     obtain ⟨_, ⟨i, rfl⟩, hmem⟩ := hs
     exact ih i hmem
 
-/-- Abstraction preserves the relation symbols exactly. -/
+/-- Abstraction preserves the relation symbols exactly.
+@isnad1 id=eq.0h4v.s5.16373fa69991 from=translated src=- shape=50ce692b vocab=462f8ab2
+-/
 theorem BoundedFormulaω.relationsIn_abstractConst (j : ℕ) :
     ∀ {n : ℕ} (φ : L[[ℕ]].BoundedFormulaω Empty n),
       (φ.abstractConst j).relationsIn = φ.relationsIn := by
@@ -463,7 +485,9 @@ theorem BoundedFormulaω.relationsIn_abstractConst (j : ℕ) :
     simp only [BoundedFormulaω.abstractConst, BoundedFormulaω.relationsIn]
     exact congrArg _ (funext ih)
 
-/-- `c_j` is not in the constant support of the abstracted formula. -/
+/-- `c_j` is not in the constant support of the abstracted formula.
+@isnad1 id=not.0h4v.s5.a9d5939ea5bd from=translated src=- shape=7490cfaf vocab=f92d1ef0
+-/
 theorem BoundedFormulaω.notMem_sentenceJConsts_abstractConst (j : ℕ) {n : ℕ}
     (φ : L[[ℕ]].BoundedFormulaω Empty n) :
     j ∉ sentenceJConsts (L' := L) (J := ℕ) (φ.abstractConst j) :=

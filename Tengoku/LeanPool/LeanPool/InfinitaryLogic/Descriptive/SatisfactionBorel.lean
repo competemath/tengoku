@@ -53,7 +53,9 @@ def ModelsOf (φ : L.Sentenceω) : Set (StructureSpace L) :=
 
 omit [Countable (Σ l, L.Relations l)] in
 /-- Satisfaction of any Lω₁ω sentence in a countable relational language
-is measurable on the structure space. -/
+is measurable on the structure space.
+@isnad1 id=measurab.0h2v.s4.c10218883679 from=translated src=- shape=500ec9ac vocab=d05bd583
+-/
 theorem modelsOf_measurableSet (φ : L.Sentenceω) :
     MeasurableSet (ModelsOf φ) := by
   change MeasurableSet (ModelsOfOn (α := ℕ) φ)

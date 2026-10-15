@@ -31,7 +31,9 @@ def MvPolynomialSumX {R : Type*} [CommSemiring R] (T : Polynomial R) (n : ℕ) :
     MvPolynomial (Fin n) R :=
   ∑ i : Fin n, Polynomial.aeval (MvPolynomial.X i) T
 
-/-- Evaluating `∑ᵢ₌₀ⁿ⁻¹ T(Xᵢ)` at `a` gives `∑ᵢ₌₀ⁿ⁻¹ T(aᵢ)`. -/
+/-- Evaluating `∑ᵢ₌₀ⁿ⁻¹ T(Xᵢ)` at `a` gives `∑ᵢ₌₀ⁿ⁻¹ T(aᵢ)`.
+@isnad1 id=eq.0h5v.s8.e90f3047a048 from=translated src=- shape=72b5f048 vocab=817f01d3
+-/
 lemma aeval_MvPolynomialSumX
     {R S : Type*} [CommSemiring R] [CommSemiring S] [Algebra R S]
     (T : Polynomial R) (n : ℕ) (a : Fin n → S) :
@@ -44,7 +46,9 @@ lemma aeval_MvPolynomialSumX
     (φ := RingHom.id R) (ψ := (MvPolynomial.aeval (σ := Fin n) (R := R) (S₁ := S) a).toRingHom)
     (h := by ext r; simp) (p := T) (a := MvPolynomial.X i))
 
-/-- The polynomial `∑ᵢ₌₀ⁿ⁻¹ T(Xᵢ)` is symmetric in the variables `X₀, …, Xₙ₋₁`. -/
+/-- The polynomial `∑ᵢ₌₀ⁿ⁻¹ T(Xᵢ)` is symmetric in the variables `X₀, …, Xₙ₋₁`.
+@isnad1 id=issymmet.0h3v.s4.f8e64e7af20a from=translated src=- shape=1823459f vocab=44a6645b
+-/
 lemma MvPolynomialSumX_isSymmetric {R : Type*} [CommSemiring R] (T : Polynomial R) (n : ℕ) :
     MvPolynomial.IsSymmetric (MvPolynomialSumX T n) := by
   intro e
@@ -58,7 +62,9 @@ def scaledMvPolynomial {R K : Type*} [CommSemiring R] [Semifield K] [Algebra R K
     ∑ k ∈ Finset.range (P.natDegree + 1),
       MvPolynomial.C ((algebraMap R K (P.coeff k)) / c ^ k) * MvPolynomial.psum (Fin n) K k
 
-/-- `∑ⱼ₌₀ⁿ⁻¹ Gₚ(aⱼ) = (1 / p!) ∑ᵢ₌ₚ^deg(Fₚ) ∑ⱼ₌₀ⁿ⁻¹ Fₚ⁽ⁱ⁾(aⱼ)`. -/
+/-- `∑ⱼ₌₀ⁿ⁻¹ Gₚ(aⱼ) = (1 / p!) ∑ᵢ₌ₚ^deg(Fₚ) ∑ⱼ₌₀ⁿ⁻¹ Fₚ⁽ⁱ⁾(aⱼ)`.
+@isnad1 id=eq.0h6v.s9.84a98c19bf57 from=translated src=- shape=5b00642a vocab=b650e58d
+-/
 lemma sum_aeval_Gp_eq_one_div_factorial_sum_iterate_derivative_Fp
     {R K : Type*} [CommSemiring R] [Field K] [CharZero K] [Algebra R K]
     (Q : R[X]) (p n : ℕ) (a : Fin n → K) :
@@ -82,7 +88,9 @@ def RpolyFp (T : ℤ[X]) (c : ℤ) (p s i n : ℕ) : MvPolynomial (Fin n) ℤ :=
   ∑ k ∈ Finset.range ((Fp T p).natDegree + 1),
     MvPolynomial.C (ScaledCoeffDerivFp T c p s i k) * MvPolynomial.psum (Fin n) ℤ k
 
-/-- `((cˢ⁻ᵏ) / p!) · (k-th coeff of Fₚ⁽ⁱ⁾) = cˢ⁻ᵏ · (i! / p!) · (k-Coeff of Sₚ)`. -/
+/-- `((cˢ⁻ᵏ) / p!) · (k-th coeff of Fₚ⁽ⁱ⁾) = cˢ⁻ᵏ · (i! / p!) · (k-Coeff of Sₚ)`.
+@isnad1 id=eq.1h7v.s8.f98de3d0ff34 from=translated src=- shape=62dbf604 vocab=169feaef
+-/
 lemma ScaledCoeffDerivFp_from_Sp
     {K : Type*} [Field K] [CharZero K] [Algebra ℤ K]
     (T : ℤ[X]) (c : ℤ) (p s i k : ℕ) (hpi : p ≤ i) :
@@ -97,7 +105,9 @@ lemma ScaledCoeffDerivFp_from_Sp
   simp [div_eq_mul_inv, mul_assoc, mul_left_comm]
 
 /-- Evaluating ``∑ₖ (cₖ / cᵏ) (x₁ᵏ + ⋯ + xₙᵏ)` at `(c a₀, …, c aₙ₋₁)` gives the scaled sum
-`(cˢ / p!) ∑ⱼ₌₀ⁿ⁻¹ Fₚ⁽ⁱ⁾(aⱼ)`. -/
+`(cˢ / p!) ∑ⱼ₌₀ⁿ⁻¹ Fₚ⁽ⁱ⁾(aⱼ)`.
+@isnad1 id=eq.3h7v.s9.3d2e043f6f52 from=translated src=- shape=75460038 vocab=02c0aab3
+-/
 lemma aeval_RpolyFp_derivative_Fp
     (T : ℤ[X]) (c : ℤ) (p s i n : ℕ) (a : Fin n → ℂ)
     (hpi : p ≤ i) (hs : ((derivative^[i]) (Fp T p)).natDegree ≤ s) (hc : c ≠ 0) :
@@ -130,7 +140,9 @@ lemma aeval_RpolyFp_derivative_Fp
     exact le_rfl
 
 /-- The polynomial `∑ₖ₌₀^deg(Fₚ) cˢ⁻ᵏ · (i! / p!) · (k-Coeff of Sₚ) · (X₀ᵏ + ⋯ + Xₙ₋₁ᵏ)`
-is symmetric. -/
+is symmetric.
+@isnad1 id=issymmet.0h6v.s4.797d8476625e from=translated src=- shape=e9887f36 vocab=643b2b32
+-/
 lemma RpolyFp_isSymmetric (T : ℤ[X]) (c : ℤ) (p s i n : ℕ) :
     MvPolynomial.IsSymmetric (RpolyFp T c p s i n) := by
   intro e
@@ -139,7 +151,9 @@ lemma RpolyFp_isSymmetric (T : ℤ[X]) (c : ℤ) (p s i n : ℕ) :
 /-- Suppose that `T = c T` with `T ∈ ℤ[X]`, `T' ∈ ℚ[X]`, and `c ∈ ℤ`. If `a₀, …, aₙ₋₁` are the
 roots of `T'` in `ℂ`, then evaluating
 `∑ₖ₌₀^deg(Fₚ) cˢ⁻ᵏ · (i! / p!) · (k-Coeff of Sₚ) · (X₀ᵏ + ⋯ + Xₙ₋₁ᵏ)`
-at `(c a₀, …, c aₙ₋₁)` gives an integer polynomial expression in the coefficients `T`. -/
+at `(c a₀, …, c aₙ₋₁)` gives an integer polynomial expression in the coefficients `T`.
+@isnad1 id=ex.5h8v.s9.f06e6864f2ec from=translated src=- shape=cec804fd vocab=d3257211
+-/
 lemma RpolyFp_at_c_mul_eq_poly_of_monicRescaleOf
     (T : ℤ[X]) (T' : ℚ[X]) (c : ℤ) (p s i d : ℕ) (a : Fin d → ℂ)
     (hc : c ≠ 0) (hmonic : T'.Monic) (hd : T'.natDegree = d)
@@ -182,7 +196,9 @@ def intSumAevalGp
 
 /-- Suppose that `T = c T` with `T ∈ ℤ[X]`, `T' ∈ ℚ[X]` monic of degree `d`, and `c ∈ ℤ`.
 If `a₀, …, aₙ₋₁` are the roots of `T'` in `ℂ`, then the sum `c^(p * d - 1) ∑_m Gₚ(a_m)`
-is an integer. -/
+is an integer.
+@isnad1 id=eq.6h6v.s8.c2b0c5daac3e from=translated src=- shape=8d340771 vocab=053afef8
+-/
 lemma SumAevalGp_as_intSumAevalGp
     (T : ℤ[X]) (T' : ℚ[X]) (c : ℤ) (p d : ℕ) (a : Fin d → ℂ)
     (hc : c ≠ 0) (hp : 0 < p) (hmonic : T'.Monic) (hd : T'.natDegree = d)

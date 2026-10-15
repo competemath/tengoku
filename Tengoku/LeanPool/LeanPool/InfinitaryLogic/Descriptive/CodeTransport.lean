@@ -35,7 +35,9 @@ noncomputable def encodeViaEquiv {M : Type*} [L.Structure M] {α : Type*}
     (e : M ≃ α) : StructureSpaceOn L α :=
   ofStructure (@Equiv.inducedStructure L M α _ e)
 
-/-- The decoded structure from `encodeViaEquiv` is the induced structure. -/
+/-- The decoded structure from `encodeViaEquiv` is the induced structure.
+@isnad1 id=eq.0h4v.s5.f6116c87eb12 from=translated src=- shape=92e296a2 vocab=59359548
+-/
 theorem toStructure_encodeViaEquiv_eq {M : Type*} [L.Structure M] {α : Type*}
     (e : M ≃ α) :
     (encodeViaEquiv e).toStructure = @Equiv.inducedStructure L M α _ e := by
@@ -52,7 +54,9 @@ theorem toStructure_encodeViaEquiv_eq {M : Type*} [L.Structure M] {α : Type*}
       rw [relMap_toStructure, encodeViaEquiv, ofStructure]
       simp [h]
 
-/-- The encoded structure via an equivalence satisfies the same sentences. -/
+/-- The encoded structure via an equivalence satisfies the same sentences.
+@isnad1 id=realize.1h5v.s5.c57a1597e25d from=translated src=- shape=4a6eaaf7 vocab=79532da5
+-/
 theorem encodeViaEquiv_models {M : Type w} [L.Structure M] {α : Type w}
     [_countableα : Countable α] {φ : L.Sentenceω} (e : M ≃ α)
     (hφ : Sentenceω.Realize φ M) :
@@ -61,7 +65,9 @@ theorem encodeViaEquiv_models {M : Type w} [L.Structure M] {α : Type w}
   let : L.Structure α := Equiv.inducedStructure e
   exact (LomegaEquiv.of_equiv (Equiv.inducedStructureEquiv e) φ).mp hφ
 
-/-- The encoded structure is `L`-isomorphic to the source via the equivalence. -/
+/-- The encoded structure is `L`-isomorphic to the source via the equivalence.
+@isnad1 id=nonempty.0h4v.s5.97e68c6ab1a7 from=translated src=- shape=5e190e39 vocab=7381f514
+-/
 theorem encodeViaEquiv_iso {M : Type*} [L.Structure M] {α : Type*} (e : M ≃ α) :
     Nonempty (@Language.Equiv L M α ‹_› (encodeViaEquiv e).toStructure) := by
   rw [toStructure_encodeViaEquiv_eq]

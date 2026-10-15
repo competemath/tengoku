@@ -85,28 +85,39 @@ that `(aσ)τ = a(στ)`; the `pos`-label at node `τ` of `aσ` is the label at 
 `στ` of `a`. -/
 def select (a : Tree n) (σ : List (Fin n)) : Tree n := fun τ => a (σ ++ τ)
 
+/--
+@isnad1 id=eq.0h4v.s5.dcbd16102433 from=translated src=- shape=33f3e769 vocab=a0b73827
+-/
 @[simp] theorem select_apply (a : Tree n) (σ τ : List (Fin n)) : select a σ τ = a (σ ++ τ) := rfl
 
 /-- The `i`-th immediate subtree `aᵢ = a i` (Scott's children of the root node). -/
 def child (a : Tree n) (i : Fin n) : Tree n := select a [i]
 
-/-- **Scott's selector recursion, base case `aΛ = a`.** -/
+/-- **Scott's selector recursion, base case `aΛ = a`.**
+@isnad1 id=eq.0h2v.s3.397b978743dc from=translated src=- shape=582cfbec vocab=2985c82b
+-/
 @[simp] theorem select_nil (a : Tree n) : select a [] = a := by
   funext τ; simp
 
 /-- **Scott's selector recursion, step `a(iσ) = (aᵢ)σ`.** Reading the digit `i`
 then `σ` is the same
-as descending to the `i`-th child `aᵢ` and reading `σ` there. -/
+as descending to the `i`-th child `aᵢ` and reading `σ` there.
+@isnad1 id=eq.0h4v.s4.67656e16fbad from=translated src=- shape=495efe02 vocab=10e23731
+-/
 theorem select_cons (a : Tree n) (i : Fin n) (σ : List (Fin n)) :
     select a (i :: σ) = select (child a i) σ := by
   funext τ; simp [child]
 
 /-- `pos(aσ) = a σ`: the root label of the subtree at `σ` is the label `a` assigns
-to node `σ`. -/
+to node `σ`.
+@isnad1 id=eq.0h3v.s4.7200ef2dcbcf from=translated src=- shape=7c093cce vocab=f6026853
+-/
 @[simp] theorem pos_select (a : Tree n) (σ : List (Fin n)) : pos (select a σ) = a σ := by
   simp [pos]
 
-/-- Composing selectors: `a(στ) = (aσ)τ`. -/
+/-- Composing selectors: `a(στ) = (aσ)τ`.
+@isnad1 id=eq.0h4v.s5.bdcc687407d5 from=translated src=- shape=dcf9d60c vocab=ed49f096
+-/
 theorem select_append (a : Tree n) (σ τ : List (Fin n)) :
     select a (σ ++ τ) = select (select a σ) τ := by
   funext ρ; simp [List.append_assoc]
@@ -118,10 +129,15 @@ selectors that land on a
 just a set of words over the alphabet, exactly Scott's "language". -/
 def treeLang (a : Tree n) : Language (Fin n) := {σ | a σ = true}
 
+/--
+@isnad1 id=iff.0h3v.s4.361e513e9610 from=translated src=- shape=b7df18e0 vocab=12b78e55
+-/
 @[simp] theorem mem_treeLang {a : Tree n} {σ : List (Fin n)} :
     σ ∈ treeLang a ↔ a σ = true := Iff.rfl
 
-/-- `L_a` is genuinely `{σ ∣ pos(aσ) = true}` as Scott writes it. -/
+/-- `L_a` is genuinely `{σ ∣ pos(aσ) = true}` as Scott writes it.
+@isnad1 id=eq.0h2v.s4.c0886cd4126f from=translated src=- shape=3ed2dfec vocab=50119df7
+-/
 theorem treeLang_eq_pos (a : Tree n) : treeLang a = {σ | pos (select a σ) = true} := by
   simp only [pos_select]; rfl
 
@@ -130,7 +146,9 @@ subtree reached by
 reading `σ` is exactly the *left quotient* of `L_a` by `σ` (the residual / "state
 after reading
 `σ`"). This is the heart of Scott's "`a` is the initial state, `aσ` the state
-after reading `σ`". -/
+after reading `σ`".
+@isnad1 id=eq.0h3v.s4.7a5462e81a0d from=translated src=- shape=7a987945 vocab=fb1148a7
+-/
 theorem treeLang_select (a : Tree n) (σ : List (Fin n)) :
     treeLang (select a σ) = (treeLang a).leftQuotient σ := by
   ext τ
@@ -140,7 +158,9 @@ theorem treeLang_select (a : Tree n) (σ : List (Fin n)) :
 **one-one**: two trees
 with the same language are the same tree (a node's `±` label is recorded by
 whether its selector is
-in the language). -/
+in the language).
+@isnad1 id=injectiv.0h1v.s3.9444b46f297a from=translated src=- shape=caf4c6fc vocab=60837402
+-/
 theorem treeLang_injective : Function.Injective (treeLang (n := n)) := by
   intro a a' h
   funext σ
@@ -163,7 +183,9 @@ Myhill–Nerode theorem
 in disguise: the subtrees `aσ` are the left quotients `σ⁻¹ L_a`
 (`treeLang_select`), so "finitely many
 subtrees" is "finitely many left quotients", which Myhill–Nerode equates with
-regularity. -/
+regularity.
+@isnad1 id=iff.0h2v.s3.cf6cb7e4d5c8 from=translated src=- shape=ecbe75fe vocab=91b8a288
+-/
 theorem eventuallyPeriodic_iff_isRegular (a : Tree n) :
     EventuallyPeriodic a ↔ (treeLang a).IsRegular := by
   have hcomp : (treeLang a).leftQuotient = treeLang ∘ select a :=
@@ -178,7 +200,9 @@ periodic tree. Concretely, take the tree whose root labels record membership in
 `L`; reading a tape
 `σ` lands on the residual language `σ⁻¹ L`, of which there are finitely many
 exactly when `L` is
-regular. -/
+regular.
+@isnad1 id=iff.0h2v.s4.6189f2c67bfa from=translated src=- shape=c6dba79b vocab=e47efd85
+-/
 theorem isRegular_iff_exists_eventuallyPeriodic (L : Language (Fin n)) :
     L.IsRegular ↔ ∃ a : Tree n, EventuallyPeriodic a ∧ treeLang a = L := by
   classical

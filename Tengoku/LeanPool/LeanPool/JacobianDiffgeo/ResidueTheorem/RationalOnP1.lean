@@ -88,7 +88,9 @@ noncomputable section
 
 namespace RS.P1
 
-/-- `chartAt`'s target is `univ` at every point of `ℙ¹` (both charts have target `univ`). -/
+/-- `chartAt`'s target is `univ` at every point of `ℙ¹` (both charts have target `univ`).
+@isnad1 id=eq.0h1v.s6.c4642ba3a868 from=translated src=- shape=92bcf616 vocab=fbd27b81
+-/
 theorem chartAt_target_eq_univ (x : OnePoint ℂ) : (chartAt ℂ x).target = Set.univ := by
   induction x using OnePoint.rec with
   | infty => rw [chartAt_infty, invChart_target]
@@ -182,7 +184,9 @@ def formOfCoeFn (R : ℂ → ℂ) (hR : MeromorphicOn R Set.univ)
 
 /-- The `coeChart` reading of an `MFormData (OnePoint ℂ)` is the same function for every finite
 basepoint (`ℙ¹`'s finite points all share the identical `coeChart`, and `compat` with the
-identity transition forces literal equality of the raw functions, not just a germ agreement). -/
+identity transition forces literal equality of the raw functions, not just a germ agreement).
+@isnad1 id=eq.0h3v.s6.ac00167117f3 from=translated src=- shape=8c5a4e9a vocab=683527d5
+-/
 theorem coeffAt_coe_eq_coeffAt_coe (θ : RS.MFormData (OnePoint ℂ)) (a b : ℂ) :
     θ.coeffAt ((a : ℂ) : OnePoint ℂ) = θ.coeffAt ((b : ℂ) : OnePoint ℂ) := by
   funext z
@@ -205,7 +209,9 @@ theorem coeffAt_coe_eq_coeffAt_coe (θ : RS.MFormData (OnePoint ℂ)) (a b : ℂ
 
 /-- Circle integral under `z ↦ z⁻¹` reindexing: reading the same integrand through the inversion
 at reciprocal radius reverses orientation (a `-1` sign), the classical "residue at infinity"
-substitution, via `circleMap_zero_inv` + a period-shift of the parametrizing integral. -/
+substitution, via `circleMap_zero_inv` + a period-shift of the parametrizing integral.
+@isnad1 id=eq.1h2v.s6.04a889fe7a87 from=translated src=- shape=64885b1a vocab=861bffd1
+-/
 theorem circleIntegral_inv_eq_neg (R_mid : ℂ → ℂ) {ρ : ℝ} (hρ : 0 < ρ) :
     (∮ w in C(0, ρ), -(w ^ 2)⁻¹ * R_mid w⁻¹) = -(∮ z in C(0, ρ⁻¹), R_mid z) := by
   have hρne : ρ ≠ 0 := hρ.ne'
@@ -239,7 +245,9 @@ theorem circleIntegral_inv_eq_neg (R_mid : ℂ → ℂ) {ρ : ℝ} (hρ : 0 < ρ
 `invChart`-transported reading `-(w²)⁻¹ R_mid w⁻¹`) of an ENTIRE `R_mid` always vanishes: Cauchy's
 theorem gives `R_mid`'s own circle integral `0` at every radius, and `circleIntegral_inv_eq_neg`
 transports this to the transported reading's circle integral at every (reciprocal) radius, hence
-its residue is `0`. No polynomial-growth/degree bookkeeping needed anywhere. -/
+its residue is `0`. No polynomial-growth/degree bookkeeping needed anywhere.
+@isnad1 id=eq.2h1v.s7.b1d03f9547a1 from=translated src=- shape=df460511 vocab=470566b8
+-/
 theorem resAt_neg_sq_inv_mul_comp_inv_eq_zero {R_mid : ℂ → ℂ} (hdiff : Differentiable ℂ R_mid)
     (hg : MeromorphicAt (fun w => -(w ^ 2)⁻¹ * R_mid w⁻¹) 0) :
     RS.resAt (fun w => -(w ^ 2)⁻¹ * R_mid w⁻¹) 0 = 0 := by
@@ -274,7 +282,9 @@ theorem resAt_neg_sq_inv_mul_comp_inv_eq_zero {R_mid : ℂ → ℂ} (hdiff : Dif
 
 /-- Each monomial `(w⁻¹ - a) ^ k` composed with the inversion, weighted by the `dz ↦ dw` factor
 `-(w²)⁻¹`, is meromorphic at `0` (the "companion pole at `∞`" bookkeeping): the closed form
-`-(1 - a w) ^ k * w ^ (-k - 2)` shows it directly, for any `a : ℂ`, `k : ℤ`. -/
+`-(1 - a w) ^ k * w ^ (-k - 2)` shows it directly, for any `a : ℂ`, `k : ℤ`.
+@isnad1 id=meromorp.0h2v.s6.a4a95e358420 from=translated src=- shape=1c65bdf7 vocab=d50e05c2
+-/
 theorem meromorphicAt_neg_sq_inv_mul_sub_inv_zpow (a : ℂ) (k : ℤ) :
     MeromorphicAt (fun w => -(w ^ 2)⁻¹ * (w⁻¹ - a) ^ k) (0:ℂ) := by
   have hrhs : MeromorphicAt (fun w : ℂ => -((1 - a * w) ^ k * w ^ (-k - 2))) (0:ℂ) := by
@@ -302,7 +312,9 @@ theorem meromorphicAt_neg_sq_inv_mul_sub_inv_zpow (a : ℂ) (k : ℤ) :
 
 /-- The residue at `0` of the transported monomial `-(w²)⁻¹ (w⁻¹ - a) ^ k`, for `k < 0` (the only
 exponents `RS.principalPartAt` ever produces): `-1` for the simple pole `k = -1` (the "companion
-at `∞`"), `0` otherwise — the elementary case split. -/
+at `∞`"), `0` otherwise — the elementary case split.
+@isnad1 id=eq.1h2v.s6.cce039db6f25 from=translated src=- shape=b99f668a vocab=fbcd58e2
+-/
 theorem resAt_neg_sq_inv_mul_sub_inv_zpow (a : ℂ) {k : ℤ} (hk : k < 0) :
     RS.resAt (fun w => -(w ^ 2)⁻¹ * (w⁻¹ - a) ^ k) 0 = if k = -1 then -1 else 0 := by
   have hcongr : (fun w : ℂ => -(w ^ 2)⁻¹ * (w⁻¹ - a) ^ k)

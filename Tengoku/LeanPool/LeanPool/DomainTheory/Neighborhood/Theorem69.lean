@@ -90,13 +90,17 @@ variable {α β γ : Type*}
 
 /-! ### General helper lemmas (strictness and monotonicity of composition). -/
 
-/-- The composite of strict maps is strict: `(a ∘ b)(⊥) = a(b(⊥)) = a(⊥) = ⊥`. -/
+/-- The composite of strict maps is strict: `(a ∘ b)(⊥) = a(b(⊥)) = a(⊥) = ⊥`.
+@isnad1 id=isstrict.2h8v.s5.ad0418a7ad32 from=translated src=- shape=ac32d790 vocab=4c5f8a7c
+-/
 theorem isStrict_comp {a : ApproximableMap V₁ V₂} {b : ApproximableMap V₀ V₁}
     (ha : IsStrict a) (hb : IsStrict b) : IsStrict (a.comp b) := by
   rw [isStrict_iff_apply_bot, toElementMap_comp, isStrict_iff_apply_bot.mp hb,
     isStrict_iff_apply_bot.mp ha]
 
-/-- If `a ∘ b = I` then `a` is strict: any (split) iso preserves `⊥`. -/
+/-- If `a ∘ b = I` then `a` is strict: any (split) iso preserves `⊥`.
+@isnad1 id=isstrict.1h6v.s5.f14ca98709f6 from=translated src=- shape=9e3c7d60 vocab=029462d3
+-/
 theorem isStrict_of_comp_eq_id {a : ApproximableMap V₁ V₀} {b : ApproximableMap V₀ V₁}
     (h : a.comp b = idMap V₀) : IsStrict a := by
   rw [isStrict_iff_apply_bot]
@@ -106,21 +110,27 @@ theorem isStrict_of_comp_eq_id {a : ApproximableMap V₁ V₀} {b : Approximable
     _ = (a.comp b).toElementMap V₀.bot := (toElementMap_comp a b V₀.bot).symm
     _ = V₀.bot := by rw [h, toElementMap_idMap]
 
-/-- Composition is monotone in both arguments (general arities). -/
+/-- Composition is monotone in both arguments (general arities).
+@isnad1 id=le.2h10v.s7.7a4ef180faba from=translated src=- shape=83800725 vocab=79f8d10b
+-/
 theorem comp_mono_gen {a a' : ApproximableMap V₁ V₂} {b b' : ApproximableMap V₀ V₁}
     (ha : a ≤ a') (hb : b ≤ b') : a.comp b ≤ a'.comp b' := by
   intro X Z h
   obtain ⟨Y, hXY, hYZ⟩ := h
   exact ⟨Y, hb _ _ hXY, ha _ _ hYZ⟩
 
-/-- `toStrictMap` is monotone. -/
+/-- `toStrictMap` is monotone.
+@isnad1 id=le.1h6v.s7.42aeae518c22 from=translated src=- shape=7087bfae vocab=df958b8e
+-/
 theorem toStrictMap_mono {φ φ' : (strictFun V₀ V₁).Element} (h : φ ≤ φ') :
     toStrictMap φ ≤ toStrictMap φ' := by
   intro X Y hrel
   rw [toStrictMap_rel] at hrel ⊢
   exact h _ hrel
 
-/-- `toStrictFilter` is monotone. -/
+/-- `toStrictFilter` is monotone.
+@isnad1 id=le.1h6v.s6.ae9f4ff898d9 from=translated src=- shape=100d4b0c vocab=f287ac94
+-/
 theorem toStrictFilter_mono {f f' : StrictMap V₀ V₁} (h : f ≤ f') :
     toStrictFilter f ≤ toStrictFilter f' := by
   intro W hW
@@ -129,7 +139,9 @@ theorem toStrictFilter_mono {f f' : StrictMap V₀ V₁} (h : f ≤ f') :
 
 /-- `toStrictFilter ∘ toStrictMap = id` (the left inverse of the
 strict-function-space
-representation; the mirror of `toStrictMap_toStrictFilter`). -/
+representation; the mirror of `toStrictMap_toStrictFilter`).
+@isnad1 id=eq.0h5v.s5.14e29af82d2f from=translated src=- shape=5247001a vocab=e4d34953
+-/
 theorem toStrictFilter_toStrictMap (φ : (strictFun V₀ V₁).Element) :
     toStrictFilter (toStrictMap φ) = φ := by
   apply Element.ext
@@ -157,6 +169,9 @@ variable (T : Endofunctor DomainObj) (D E : DomainObj)
 def homOpComp (g : StrictMap (T.obj D).sys (T.obj E).sys) : StrictMap D.sys E.sys :=
   ⟨k.comp (g.1.comp j), isStrict_comp hk (isStrict_comp g.2 hj)⟩
 
+/--
+@isnad1 id=le.3h7v.s8.e4c79f64a77f from=translated src=- shape=f0588614 vocab=1ccec6a5
+-/
 theorem homOpComp_mono {g g' : StrictMap (T.obj D).sys (T.obj E).sys} (hgg : g ≤ g') :
     homOpComp T D E j k hj hk g ≤ homOpComp T D E j k hj hk g' := by
   change k.comp (g.1.comp j) ≤ k.comp (g'.1.comp j)
@@ -177,6 +192,9 @@ def homOp : ApproximableMap (strictFun (T.obj D).sys (T.obj E).sys) (strictFun D
       apply toStrictMap_mono
       exact ((strictFun (T.obj D).sys (T.obj E).sys).principal_le_iff hN hN').mpr hN'N)
 
+/--
+@isnad1 id=iff.2h7v.s8.27dcb687cd32 from=translated src=- shape=8343980c vocab=067fcbf3
+-/
 theorem homOp_rel {N : Set (StrictMap (T.obj D).sys (T.obj E).sys)}
     {M : Set (StrictMap D.sys E.sys)} :
     (homOp T D E j k hj hk).rel N M ↔
@@ -189,7 +207,9 @@ theorem homOp_rel {N : Set (StrictMap (T.obj D).sys (T.obj E).sys)}
 strict maps:
 `homOp(ĝ) = (k ∘ g ∘ j)^`. Proved by reducing to single step neighbourhoods
 through the strict
-representation. -/
+representation.
+@isnad1 id=eq.2h6v.s7.f16beacf614f from=translated src=- shape=3d2758b1 vocab=8636101f
+-/
 theorem homOp_apply_filter (g : StrictMap (T.obj D).sys (T.obj E).sys) :
     (homOp T D E j k hj hk).toElementMap (toStrictFilter g)
       = toStrictFilter (homOpComp T D E j k hj hk g) := by
@@ -240,7 +260,9 @@ T(D)` (so `D` is a
 `T`-algebra via `i : T(D) → D`), then for any `T`-algebra `B = (E, k)` with `k`
 strict there is a
 homomorphism `D → E`. The homomorphism is the least fixed point of `λh. k ∘ T(h) ∘
-j`. -/
+j`.
+@isnad1 id=nonempty.2h4v.s7.b8a68e9c7e38 from=translated src=- shape=ad285ea3 vocab=0d0ad24f
+-/
 theorem nonempty_algHom_of_continuousOnMaps
     (T : Endofunctor DomainObj) (hT : ContinuousOnMaps T)
     {D : DomainObj} (iso : Iso (T.obj D) D)

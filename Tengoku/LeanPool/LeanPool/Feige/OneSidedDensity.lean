@@ -27,6 +27,9 @@ namespace LikelihoodRatio
 noncomputable def rightExponentialDensity (a x : ℝ) : ℝ≥0∞ :=
   if 0 ≤ x then ENNReal.ofReal (Real.exp (-x / a) / a) else 0
 
+/--
+@isnad1 id=measurab.0h1v.s3.0e360c57cc3a from=translated src=- shape=9bb0b988 vocab=8822ab2d
+-/
 theorem measurable_rightExponentialDensity (a : ℝ) :
     Measurable (rightExponentialDensity a) := by
   unfold rightExponentialDensity
@@ -34,7 +37,9 @@ theorem measurable_rightExponentialDensity (a : ℝ) :
 
 /-- A positive scaled exponential density satisfies the multiplicative
 four-point form of log-concavity, including its zero extension outside its
-half-line support. -/
+half-line support.
+@isnad1 id=fourpoin.1h1v.s4.2e3196b6000d from=translated src=- shape=c1538fc1 vocab=7a6665e8
+-/
 theorem fourPointLogConcave_rightExponentialDensity
     {a : ℝ} (ha : 0 < a) :
     FourPointLogConcave (rightExponentialDensity a) := by
@@ -60,7 +65,9 @@ theorem fourPointLogConcave_rightExponentialDensity
   · simp [rightExponentialDensity, hr]
 
 /-- Reflection of a four-point log-concave function is again four-point
-log-concave. -/
+log-concave.
+@isnad1 id=fourpoin.1h1v.s4.ece27cb0da89 from=translated src=- shape=47716e91 vocab=1977786e
+-/
 theorem FourPointLogConcave.reflect {f : ℝ → ℝ≥0∞}
     (hf : FourPointLogConcave f) :
     FourPointLogConcave (fun x ↦ f (-x)) := by
@@ -74,10 +81,16 @@ theorem FourPointLogConcave.reflect {f : ℝ → ℝ≥0∞}
 noncomputable def leftExponentialDensity (b x : ℝ) : ℝ≥0∞ :=
   rightExponentialDensity b (-x)
 
+/--
+@isnad1 id=measurab.0h1v.s3.e70c55056d26 from=translated src=- shape=9bb0b988 vocab=f49caad6
+-/
 theorem measurable_leftExponentialDensity (b : ℝ) :
     Measurable (leftExponentialDensity b) := by
   exact (measurable_rightExponentialDensity b).comp measurable_neg
 
+/--
+@isnad1 id=fourpoin.1h1v.s4.3cd42b91ecb7 from=translated src=- shape=c1538fc1 vocab=9d310f76
+-/
 theorem fourPointLogConcave_leftExponentialDensity
     {b : ℝ} (hb : 0 < b) :
     FourPointLogConcave (leftExponentialDensity b) := by

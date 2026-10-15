@@ -39,7 +39,9 @@ variable {g f : ℂ → ℂ} {z : ℂ}
 
 /-- Leibniz rule for the Wirtinger `dbar` (requested for upstreaming to
 `Jacobian/Dbar/Wirtinger.lean` — see `docs/requests/dbar-solvability.md`; proved locally here
-meanwhile, exactly as compiled in the design's spike). -/
+meanwhile, exactly as compiled in the design's spike).
+@isnad1 id=eq.2h3v.s8.d517466425f8 from=translated src=- shape=606f9082 vocab=4862960e
+-/
 theorem wirtingerDbar_mul (hg : DifferentiableAt ℝ g z) (hf : DifferentiableAt ℝ f z) :
     wirtingerDbar (fun w => g w * f w) z
       = wirtingerDbar g z * f z + g z * wirtingerDbar f z := by
@@ -48,7 +50,9 @@ theorem wirtingerDbar_mul (hg : DifferentiableAt ℝ g z) (hf : DifferentiableAt
   ring
 
 /-- The `f`-holomorphic specialization: the `dbar` of a product with a holomorphic factor sees only
-the other factor's `dbar`. -/
+the other factor's `dbar`.
+@isnad1 id=eq.2h3v.s7.d15f5ec93015 from=translated src=- shape=e0b13fbf vocab=e4e20878
+-/
 theorem wirtingerDbar_mul_of_differentiableAt (hg : DifferentiableAt ℝ g z)
     (hf : DifferentiableAt ℂ f z) :
     wirtingerDbar (fun w => g w * f w) z = wirtingerDbar g z * f z := by
@@ -56,7 +60,9 @@ theorem wirtingerDbar_mul_of_differentiableAt (hg : DifferentiableAt ℝ g z)
     wirtingerDbar_eq_zero_of_differentiableAt f z hf, mul_zero, add_zero]
 
 /-- `g` vanishes identically on a whole neighborhood of any point outside `tsupport g`, so a
-product with an arbitrary (possibly non-differentiable/junk) `f` is still `dbar`-trivial there. -/
+product with an arbitrary (possibly non-differentiable/junk) `f` is still `dbar`-trivial there.
+@isnad1 id=eq.1h3v.s5.6c40f3a1db63 from=translated src=- shape=f3d11dda vocab=c87f42ee
+-/
 theorem wirtingerDbar_mul_eq_zero_of_notMem_tsupport (hz : z ∉ tsupport g) :
     wirtingerDbar (fun w => g w * f w) z = 0 := by
   have hg0 : g =ᶠ[nhds z] (fun _ => (0 : ℂ)) := notMem_tsupport_iff_eventuallyEq.mp hz
@@ -70,7 +76,9 @@ theorem wirtingerDbar_mul_eq_zero_of_notMem_tsupport (hz : z ∉ tsupport g) :
 
 /-- Upgrade a `ContDiffOn` function with compact support strictly inside an open set to a
 globally `ContDiff` function (two-piece gluing: locally `g` on `U`, locally `0` on
-`(tsupport g)ᶜ`, these two opens cover `ℂ`). -/
+`(tsupport g)ᶜ`, these two opens cover `ℂ`).
+@isnad1 id=contdiff.4h3v.s7.d900ef192448 from=translated src=- shape=71859783 vocab=a88fbf88
+-/
 theorem ContDiffOn.contDiff_of_hasCompactSupport {U : Set ℂ} {n : ℕ∞} (hU : IsOpen U)
     (hg : ContDiffOn ℝ n g U) (_hcs : HasCompactSupport g) (hsub : tsupport g ⊆ U) :
     ContDiff ℝ n g := by
@@ -84,7 +92,9 @@ theorem ContDiffOn.contDiff_of_hasCompactSupport {U : Set ℂ} {n : ℕ∞} (hU 
 
 /-- Continuity of `wirtingerDbar g` from `ContDiff ℝ 1 g` alone (Dbar's own
 `continuous_wirtingerDbar` needs `ContDiff ℝ ∞`; this unit only ever has regularity `1` in hand,
-per D1 — R1 in the design's risk list, resolved by the same two-line argument one level down). -/
+per D1 — R1 in the design's risk list, resolved by the same two-line argument one level down).
+@isnad1 id=continuo.1h1v.s6.1a0db54509e7 from=translated src=- shape=9052cce5 vocab=415333d6
+-/
 theorem continuous_wirtingerDbar_of_contDiff_one (hg : ContDiff ℝ 1 g) :
     Continuous (wirtingerDbar g) := by
   have hfc : Continuous (fderiv ℝ g) := hg.continuous_fderiv (by norm_num)
@@ -93,7 +103,9 @@ theorem continuous_wirtingerDbar_of_contDiff_one (hg : ContDiff ℝ 1 g) :
   exact (h1.add (continuous_const.mul hI)).div_const 2
 
 /-- `tsupport (wirtingerDbar g) ⊆ tsupport g` (a sharper, closure-level companion to Dbar's own
-`hasCompactSupport_wirtingerDbar`, which only extracts compactness). -/
+`hasCompactSupport_wirtingerDbar`, which only extracts compactness).
+@isnad1 id=le.0h1v.s5.f9566bdd34b7 from=translated src=- shape=4845273c vocab=52159604
+-/
 theorem tsupport_wirtingerDbar_subset : tsupport (wirtingerDbar g) ⊆ tsupport g := by
   have hsupp : Function.support (wirtingerDbar g) ⊆ tsupport g := by
     intro x hx
@@ -108,7 +120,9 @@ theorem tsupport_wirtingerDbar_subset : tsupport (wirtingerDbar g) ⊆ tsupport 
 /-- Internal building block (no support/vanishing hypothesis): the `ℂ`-set integral over a closed
 rectangle equals the iterated real interval integral, given integrability on the rectangle and
 `z.re ≤ w.re`, `z.im ≤ w.im`. Reused both for the exported compact-support corollary below and by
-`AnnulusResidue.lean`'s Step 3. -/
+`AnnulusResidue.lean`'s Step 3.
+@isnad1 id=eq.3h3v.s7.4787acf81e81 from=translated src=- shape=9541effe vocab=e1761fb8
+-/
 theorem setIntegral_reProdIm_eq_intervalIntegral {F : ℂ → ℂ} {z w : ℂ} (hre : z.re ≤ w.re)
     (him : z.im ≤ w.im)
     (hF : IntegrableOn F (Complex.reProdIm (Set.Icc z.re w.re) (Set.Icc z.im w.im))) :
@@ -152,7 +166,9 @@ theorem setIntegral_reProdIm_eq_intervalIntegral {F : ℂ → ℂ} {z w : ℂ} (
 
 /-- The `ℂ`-rectangle ↔ iterated-real-integral bridge: a function vanishing off an open rectangle
 has the same global `ℂ`-integral as its iterated real double integral over (any closed rectangle
-containing) that open rectangle. -/
+containing) that open rectangle.
+@isnad1 id=eq.2h3v.s7.e9ddb3986ea6 from=translated src=- shape=934491e5 vocab=dba1bcda
+-/
 theorem integral_eq_intervalIntegral_of_tsupport_subset_reProdIm {F : ℂ → ℂ} {z w : ℂ}
     (hFc : Continuous F)
     (hsub : tsupport F ⊆ Complex.reProdIm (Set.Ioo z.re w.re) (Set.Ioo z.im w.im)) :

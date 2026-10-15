@@ -19,12 +19,18 @@ open Nat
 
 section Obvious
 
+/--
+@isnad1 id=le.0h2v.s4.78c0ccfccaec from=translated src=- shape=e1d90369 vocab=984870c6
+-/
 lemma div_succ_le_succ_div (m n : ℕ) : succ m / succ n ≤ succ (m / succ n) := by
   rw [Nat.succ_div]
   split
   · rw [succ_eq_add_one]
   · simp_all
 
+/--
+@isnad1 id=eq.0h1v.s5.98f73265ad93 from=translated src=- shape=2bbff847 vocab=8e86f7a1
+-/
 lemma div2_succ_succ_eq_succ_div2 (n : ℕ) : succ (succ n) / 2 = succ (n / 2) := by
   omega
 
@@ -32,8 +38,14 @@ end Obvious
 
 namespace Int
 
+/--
+@isnad1 id=lt.1h1v.s4.b6b84997cb84 from=translated src=- shape=ce9144e9 vocab=1d6c61e4
+-/
 lemma div2_lt_self {x : ℕ} (h : 0 < x) : x / 2 < x :=
   Nat.div_lt_self h (Nat.lt_succ_self 1) -- todo why nat needed
+/--
+@isnad1 id=le.0h1v.s4.731785035033 from=translated src=- shape=d81c1b8c vocab=984870c6
+-/
 lemma div2_succ_le_self (x : ℕ) : Nat.succ x / 2 ≤ x := by
   omega
 
@@ -52,6 +64,9 @@ termination_by x
 decreasing_by
   exact div2_lt_self h.left
 
+/--
+@isnad1 id=eq.1h1v.s6.5fcd6406aadb from=translated src=- shape=18691a18 vocab=08d55b39
+-/
 lemma valBinNat_even {x : ℕ} (h : 0 < x ∧ x % 2 = 0) :
     valBinNat x = ((valBinNat (x / 2)).1 + 1, (valBinNat (x / 2)).2) := by
   conv_lhs => rw [valBinNat]
@@ -63,6 +78,9 @@ def valBin (x : ℤ) : ℕ × ℤ :=
   let (v, r) := valBinNat (natAbs x);
   (v, sign x * r)
 
+/--
+@isnad1 id=le.0h1v.s3.42a140ed15e1 from=translated src=- shape=e753c962 vocab=195940bc
+-/
 lemma odd_part_le_self_nat (x : ℕ) : (valBinNat x).2 ≤ x := by
   have acc : ∀ y, y ≤ x → (valBinNat y).2 ≤ x := by
     induction x with
@@ -89,6 +107,9 @@ lemma odd_part_le_self_nat (x : ℕ) : (valBinNat x).2 ≤ x := by
       | step y_le_x => exact le_trans (ih y y_le_x) (le_succ x);
   exact acc x (le_refl x)
 
+/--
+@isnad1 id=lt.0h1v.s4.d322413611e5 from=translated src=- shape=5f9d534a vocab=c7384d53
+-/
 lemma odd_part_succ_pos (x : ℕ) : 0 < (valBinNat (Nat.succ x)).2 := by
   have acc : ∀ y, (y ≤ x → 0 < (valBinNat (Nat.succ y)).2) := by
     induction x with
@@ -115,6 +136,9 @@ lemma odd_part_succ_pos (x : ℕ) : 0 < (valBinNat (Nat.succ x)).2 := by
       | step y_le_x => exact ih y y_le_x;
   exact acc x (le_refl x)
 
+/--
+@isnad1 id=lt.1h1v.s4.cd5e12e2e14d from=translated src=- shape=bb38ba05 vocab=e8f65b9d
+-/
 lemma odd_part_nat_pos (x : ℕ) : x ≠ 0 → 0 < (valBinNat x).2 := by
   cases x with
   | zero => exact fun h => absurd rfl h

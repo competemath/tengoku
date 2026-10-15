@@ -55,7 +55,9 @@ variable {F : Set (Σ n, L.Functions n)} {R : Set (Σ n, L.Relations n)}
 /-- **Swap (dualization).** Inseparability is symmetric under `(Γ, Δ) ↦ (Δ, Γ)` with `σ ↦ σ.not`:
 a separator `σ` of `(Δ, Γ)` gives the separator `σ.not` of `(Γ, Δ)` (double negation on the `Δ`
 side). Applied to swapped arguments this is an iff; every left-coordinate closure becomes a
-right-coordinate one through it. -/
+right-coordinate one through it.
+@isnad1 id=insepat.1h6v.s5.595e2644c9dc from=translated src=- shape=c013f469 vocab=6985e408
+-/
 theorem insepAt_swap (h : InsepAt F R A Γ Δ) : InsepAt F R A Δ Γ := by
   rintro ⟨σ, hbf, hbr, hsupp, hΔσ, hΓσnot⟩
   refine h ⟨σ.not, ?_, ?_, ?_, hΓσnot, ?_⟩
@@ -70,7 +72,9 @@ theorem insepAt_swap (h : InsepAt F R A Γ Δ) : InsepAt F R A Δ Γ := by
 /-- **Gate (a): cross-coordinate contradiction gives a shared separator.** A shared sentence `φ`
 entailed by `Γ` and refuted on `Δ` (base symbols in `(F, R)`, support in `A`) is itself a separator,
 so it is incompatible with inseparability. This is the union-level `C0` for the mixed case
-`φ ∈ Γ`, `φ.not ∈ Δ`. -/
+`φ ∈ Γ`, `φ.not ∈ Δ`.
+@isnad1 id=false.6h7v.s7.aa59394cea64 from=translated src=- shape=80a8c234 vocab=d329be88
+-/
 theorem insepAt_shared_contradiction {φ : L[[ℕ]].Sentenceω}
     (hφF : φ.baseFunctionsIn ⊆ F) (hφR : φ.baseRelationsIn ⊆ R)
     (hφA : sentenceJConsts (L' := L) (J := ℕ) φ ⊆ (↑A : Set ℕ))
@@ -83,7 +87,9 @@ support in `A`) and entailed by `Δ`, and `φ` is a consequence of `Γ ∪ {σ}`
 the `Γ` coordinate without breaking inseparability. A separator `ρ` of the enlarged pair yields the
 shared separator `σ.imp ρ`. Instantiating `φ := σ` gives the plain shared-formula transfer (gate b);
 instantiating `σ := constEq (g i) b ∈ Δ`, `φ := relInst R (Function.update g i b)` (a consequence of
-`relInst R g ∈ Γ` and `σ`) gives the cross-coordinate relation congruence (gate c). -/
+`relInst R g ∈ Γ` and `σ`) gives the cross-coordinate relation congruence (gate c).
+@isnad1 id=insepat.6h8v.s7.4bd7ab65a3aa from=translated src=- shape=0152ee98 vocab=32f6a78b
+-/
 theorem insepAt_insert_of_shared_entails {σ φ : L[[ℕ]].Sentenceω}
     (hσF : σ.baseFunctionsIn ⊆ F) (hσR : σ.baseRelationsIn ⊆ R)
     (hσA : sentenceJConsts (L' := L) (J := ℕ) σ ⊆ (↑A : Set ℕ))
@@ -122,7 +128,9 @@ constant abstraction. -/
 /-- **Fresh growth.** Enlarging the allowed-support budget by a constant `c` fresh for `Δ` preserves
 inseparability: a separator using `c` abstracts to `genEx c σ`, whose support lies back in `A`. Only
 the `Δ`-side (∀-generalization) needs the freshness; the `Γ`-side is `∃`-weakening. Under the family
-invariant, `c ∉ A` already gives `c ∉ support Δ`. -/
+invariant, `c ∉ A` already gives `c ∉ support Δ`.
+@isnad1 id=insepat.2h7v.s6.6641302fdaf3 from=translated src=- shape=3ae0a3f6 vocab=1a9c0458
+-/
 theorem insepAt_grow_fresh (c : ℕ)
     (hcΔ : ∀ δ ∈ Δ, c ∉ sentenceJConsts (L' := L) (J := ℕ) δ)
     (h : InsepAt F R A Γ Δ) : InsepAt F R (insert c A) Γ Δ := by

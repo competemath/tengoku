@@ -25,7 +25,9 @@ private theorem choose_recurrence (r : ℂ) (n : ℕ) :
       Nat.cast_one] at h
   linear_combination h.symm
 
-/-- The central binomial coefficients are the coefficients of the formal exponent -1/2. -/
+/-- The central binomial coefficients are the coefficients of the formal exponent -1/2.
+@isnad1 id=eq.0h1v.s7.82b89066bb09 from=translated src=- shape=dcef0c9e vocab=c1c124d8
+-/
 theorem choose_neg_half (n : ℕ) :
     Ring.choose (-1 / 2 : ℂ) n = (-1 : ℂ)^n / 4^n * ((2*n).choose n : ℂ) := by
   induction n with
@@ -40,7 +42,9 @@ theorem choose_neg_half (n : ℕ) :
     field_simp
     linear_combination 2 * h
 
-/-- Extracting a coefficient after substitution needs only finitely many input terms. -/
+/-- Extracting a coefficient after substitution needs only finitely many input terms.
+@isnad1 id=eq.0h4v.s8.82e70ef6a666 from=translated src=- shape=9b1da20d vocab=223685c4
+-/
 theorem coeff_mul_subst_X_mul (f g h : PowerSeries ℂ) (m : ℕ) :
     PowerSeries.coeff m (g * PowerSeries.subst (PowerSeries.X * h) f) =
       ∑ k ∈ range (m + 1), PowerSeries.coeff k f *
@@ -85,7 +89,9 @@ theorem coeff_mul_subst_X_mul (f g h : PowerSeries ℂ) (m : ℕ) :
         ring
   rw [hh, PowerSeries.coeff_C_mul, PowerSeries.coeff_mul_X_pow', ite_eq_left hkm]
 
-/-- The geometric inverse series has alternating coefficients. -/
+/-- The geometric inverse series has alternating coefficients.
+@isnad1 id=eq.0h1v.s6.a67fbfeff7bd from=translated src=- shape=fea0f228 vocab=1a821feb
+-/
 theorem choose_neg_one (n : ℕ) : Ring.choose (-1 : ℂ) n = (-1 : ℂ)^n := by
   induction n with
   | zero => simp
@@ -94,7 +100,9 @@ theorem choose_neg_one (n : ℕ) : Ring.choose (-1 : ℂ) n = (-1 : ℂ)^n := by
     rw [choose_recurrence, ih, pow_succ]
     ring
 
-/-- The finite coefficient identity in the four-variable master formula. -/
+/-- The finite coefficient identity in the four-variable master formula.
+@isnad1 id=eq.1h2v.s7.a9e057096924 from=translated src=- shape=be0b153e vocab=549f4791
+-/
 theorem coefficient_identity_four (A : Polynomial ℂ) (m : ℕ) (hm : 1 ≤ m) :
     (∑ a ∈ range (m+1), (-1 : ℂ)^a * (A * (1 + Polynomial.X)^m).coeff (m-a)) =
       (A * (1 + Polynomial.X)^(m-1)).coeff m := by
@@ -126,20 +134,26 @@ theorem coefficient_identity_four (A : Polynomial ℂ) (m : ℕ) (hm : 1 ≤ m) 
     Polynomial.coe_add, Polynomial.coe_one,
     Polynomial.coe_X] using he.symm
 
-/-- The master coefficient vanishes for the constant test polynomial. -/
+/-- The master coefficient vanishes for the constant test polynomial.
+@isnad1 id=eq.1h1v.s6.09d753d36cd4 from=translated src=- shape=cb6d6343 vocab=26bf39b6
+-/
 theorem master_coefficient_one (m : ℕ) (hm : 1 ≤ m) :
     ((1 : Polynomial ℂ) * (1 + Polynomial.X)^(m-1)).coeff m = 0 := by
   rw [one_mul, Polynomial.coeff_one_add_X_pow, Nat.choose_eq_zero_of_lt (by omega)]
   simp
 
-/-- The master coefficient is one for the linear test polynomial. -/
+/-- The master coefficient is one for the linear test polynomial.
+@isnad1 id=eq.1h1v.s6.0e5a70ba7e73 from=translated src=- shape=6c811dcc vocab=26bf39b6
+-/
 theorem master_coefficient_X (m : ℕ) (hm : 1 ≤ m) :
     ((Polynomial.X : Polynomial ℂ) * (1 + Polynomial.X)^(m-1)).coeff m = 1 := by
   obtain ⟨n, rfl⟩ := Nat.exists_eq_succ_of_ne_zero (by omega : m ≠ 0)
   simp only [Nat.succ_sub_one, Polynomial.coeff_X_mul, Polynomial.coeff_one_add_X_pow,
     Nat.choose_self, Nat.cast_one]
 
-/-- Exact factorial cancellation in the three-variable Gaussian expansion. -/
+/-- Exact factorial cancellation in the three-variable Gaussian expansion.
+@isnad1 id=eq.1h2v.s7.6bdeaf1f7af7 from=translated src=- shape=20611473 vocab=4e1b7c69
+-/
 theorem three_moment_scalar (m k : ℕ) (hk : k ≤ m) :
     (m.choose k : ℂ) * ((m-k).factorial : ℂ) * (-1/2 : ℂ)^k *
         ((2*k).factorial : ℂ) / (2^k * (k.factorial : ℂ)) =

@@ -66,26 +66,40 @@ space `ℕ` or a
 singleton `{n}`. -/
 def memN (X : Set ℕ) : Prop := X = Set.univ ∨ ∃ n, X = {n}
 
+/--
+@isnad1 id=memn.0h0v.s1.52bf88092984 from=translated src=- shape=87ceb31f vocab=18959e9c
+-/
 theorem memN_univ : memN (Set.univ : Set ℕ) := Or.inl rfl
 
+/--
+@isnad1 id=memn.0h1v.s3.8d6f20d2002c from=translated src=- shape=8e36a313 vocab=47249a01
+-/
 theorem memN_singleton (n : ℕ) : memN ({n} : Set ℕ) := Or.inr ⟨n, rfl⟩
 
-/-- `ℕ` is not a singleton (a witness `n+1 ≠ n`). -/
+/-- `ℕ` is not a singleton (a witness `n+1 ≠ n`).
+@isnad1 id=ne.0h1v.s3.3fd332106aad from=translated src=- shape=6990dc4d vocab=ae424e0c
+-/
 theorem univ_ne_singleton (n : ℕ) : (Set.univ : Set ℕ) ≠ {n} := by
   intro h
   have h1 : (n + 1) ∈ ({n} : Set ℕ) := h ▸ Set.mem_univ (n + 1)
   exact Nat.succ_ne_self n h1
 
-/-- `{n} ≠ ℕ` (the symmetric form). -/
+/-- `{n} ≠ ℕ` (the symmetric form).
+@isnad1 id=ne.0h1v.s3.5892c6ca567d from=translated src=- shape=d5cc46cc vocab=ae424e0c
+-/
 theorem singleton_ne_univ (n : ℕ) : ({n} : Set ℕ) ≠ Set.univ := fun h => univ_ne_singleton n h.symm
 
-/-- Singletons of naturals are one-one as sets. -/
+/-- Singletons of naturals are one-one as sets.
+@isnad1 id=eq.1h2v.s4.2fa7d142ff20 from=translated src=- shape=acbab226 vocab=62135812
+-/
 theorem singleton_nat_inj {n m : ℕ} (h : ({n} : Set ℕ) = {m}) : n = m := by
   simp_all
 
 /-- Any two neighbourhoods of `N` are nested or disjoint: `ℕ` contains every
 singleton, and two
-distinct singletons are disjoint. -/
+distinct singletons are disjoint.
+@isnad1 id=nestedor.0h0v.s1.acc8c0ef0eb0 from=translated src=- shape=25b03439 vocab=b6a952be
+-/
 theorem nestedOrDisjoint : NestedOrDisjoint memN := by
   rintro X Y (rfl | ⟨n, rfl⟩) (rfl | ⟨m, rfl⟩)
   · exact Or.inl (Set.Subset.refl _)
@@ -101,11 +115,19 @@ def N : NeighborhoodSystem ℕ :=
   NeighborhoodSystem.ofNestedOrDisjoint memN Set.univ memN_univ nestedOrDisjoint
     (fun _ => Set.subset_univ _)
 
+/--
+@isnad1 id=iff.0h1v.s3.490eefb1133c from=translated src=- shape=d213e086 vocab=fe2648d6
+-/
 @[simp] theorem N_mem {X : Set ℕ} : N.mem X ↔ memN X := Iff.rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.7c2d3d8d1788 from=translated src=- shape=d672ce25 vocab=be9cecbb
+-/
 @[simp] theorem N_master : N.master = (Set.univ : Set ℕ) := rfl
 
-/-- `⊥ ∈ N` reads: a neighbourhood lies in `⊥` iff it is the whole space `ℕ`. -/
+/-- `⊥ ∈ N` reads: a neighbourhood lies in `⊥` iff it is the whole space `ℕ`.
+@isnad1 id=iff.0h1v.s4.fcc4b79ffb56 from=translated src=- shape=befaf4cc vocab=a1f11abc
+-/
 theorem N_bot_mem {X : Set ℕ} : N.bot.mem X ↔ X = Set.univ := NeighborhoodSystem.mem_bot N
 
 /-! ### The total elements `n̂`. -/
@@ -115,7 +137,9 @@ singleton `{n}`. -/
 def natElem (n : ℕ) : N.Element := N.principal (N_mem.mpr (memN_singleton n))
 
 /-- A neighbourhood belongs to `n̂` iff it is `ℕ` (the master) or the singleton
-`{n}`. -/
+`{n}`.
+@isnad1 id=iff.0h2v.s4.1742c4cfeb32 from=translated src=- shape=0cceacb6 vocab=2e8233e7
+-/
 theorem mem_natElem_iff {n : ℕ} {Y : Set ℕ} :
     (natElem n).mem Y ↔ Y = Set.univ ∨ Y = {n} := by
   unfold natElem
@@ -185,7 +209,9 @@ def constLiftN {β : Type*} (V : NeighborhoodSystem β) (val : ℕ → V.Element
         subst hkn
         exact Or.inr ⟨k, rfl, (val k).up_mem hY hY' hYY'⟩
 
-/-- **Computation on the total elements.** `f(n̂) = val n`. -/
+/-- **Computation on the total elements.** `f(n̂) = val n`.
+@isnad1 id=eq.0h4v.s4.347cf553ecef from=translated src=- shape=6d338cd5 vocab=577172d1
+-/
 theorem constLiftN_natElem {β : Type*} (V : NeighborhoodSystem β) (val : ℕ → V.Element) (n : ℕ) :
     (constLiftN V val).toElementMap (natElem n) = val n := by
   apply Element.ext
@@ -199,7 +225,9 @@ theorem constLiftN_natElem {β : Type*} (V : NeighborhoodSystem β) (val : ℕ �
   · intro hY
     exact ⟨{n}, mem_natElem_iff.mpr (Or.inr rfl), Or.inr ⟨n, rfl, hY⟩⟩
 
-/-- **Computation on bottom (strictness).** `f(⊥) = ⊥`. -/
+/-- **Computation on bottom (strictness).** `f(⊥) = ⊥`.
+@isnad1 id=eq.0h3v.s4.e950dd28e26b from=translated src=- shape=90cb2d97 vocab=d29b9a23
+-/
 theorem constLiftN_bot {β : Type*} (V : NeighborhoodSystem β) (val : ℕ → V.Element) :
     (constLiftN V val).toElementMap N.bot = V.bot := by
   apply Element.ext
@@ -221,11 +249,15 @@ theorem constLiftN_bot {β : Type*} (V : NeighborhoodSystem β) (val : ℕ → V
 /-- **Example 4.3 — `succ`.** `succ(n) = n + 1`, strict (`succ(⊥) = ⊥`). -/
 def succMap : ApproximableMap N N := constLiftN N (fun n => natElem (n + 1))
 
-/-- `succ(n̂) = (n+1)^`. -/
+/-- `succ(n̂) = (n+1)^`.
+@isnad1 id=eq.0h1v.s4.4c006b553a5d from=translated src=- shape=dc259ae7 vocab=f5eadf17
+-/
 theorem succMap_natElem (n : ℕ) : succMap.toElementMap (natElem n) = natElem (n + 1) :=
   constLiftN_natElem N (fun n => natElem (n + 1)) n
 
-/-- `succ(⊥) = ⊥`. -/
+/-- `succ(⊥) = ⊥`.
+@isnad1 id=eq.0h0v.s4.7764508befea from=translated src=- shape=63faaba8 vocab=2a39eff6
+-/
 theorem succMap_bot : succMap.toElementMap N.bot = N.bot :=
   constLiftN_bot N (fun n => natElem (n + 1))
 
@@ -240,15 +272,21 @@ def predVal : ℕ → N.Element
 ⊥`). -/
 def predMap : ApproximableMap N N := constLiftN N predVal
 
-/-- `pred((n+1)^) = n̂`. -/
+/-- `pred((n+1)^) = n̂`.
+@isnad1 id=eq.0h1v.s4.bbb6c5e3365f from=translated src=- shape=c4979c0a vocab=910df039
+-/
 theorem predMap_natElem_succ (k : ℕ) : predMap.toElementMap (natElem (k + 1)) = natElem k :=
   constLiftN_natElem N predVal (k + 1)
 
-/-- `pred(0̂) = ⊥`: predecessor of zero is undefined. -/
+/-- `pred(0̂) = ⊥`: predecessor of zero is undefined.
+@isnad1 id=eq.0h0v.s4.d60102d53b27 from=translated src=- shape=a8b67cfe vocab=0946b1a9
+-/
 theorem predMap_natElem_zero : predMap.toElementMap (natElem 0) = N.bot :=
   constLiftN_natElem N predVal 0
 
-/-- `pred(⊥) = ⊥`. -/
+/-- `pred(⊥) = ⊥`.
+@isnad1 id=eq.0h0v.s4.1a009c8b9051 from=translated src=- shape=63faaba8 vocab=a966fda1
+-/
 theorem predMap_bot : predMap.toElementMap N.bot = N.bot :=
   constLiftN_bot N predVal
 
@@ -266,16 +304,22 @@ def zeroVal : ℕ → T.Element
 (`zero(⊥) = ⊥`). -/
 def zeroMap : ApproximableMap N T := constLiftN T zeroVal
 
-/-- `zero(0̂) = true`. -/
+/-- `zero(0̂) = true`.
+@isnad1 id=eq.0h0v.s4.630dadab35e4 from=translated src=- shape=9243be28 vocab=df7e23bf
+-/
 theorem zeroMap_natElem_zero : zeroMap.toElementMap (natElem 0) = Example23.trueElt :=
   constLiftN_natElem T zeroVal 0
 
-/-- `zero((n+1)^) = false`. -/
+/-- `zero((n+1)^) = false`.
+@isnad1 id=eq.0h1v.s4.5f74e7ba310a from=translated src=- shape=32c04ca5 vocab=234a3edf
+-/
 theorem zeroMap_natElem_succ (n : ℕ) : zeroMap.toElementMap (natElem (n +
   1)) = Example23.falseElt :=
   constLiftN_natElem T zeroVal (n + 1)
 
-/-- `zero(⊥) = ⊥`. -/
+/-- `zero(⊥) = ⊥`.
+@isnad1 id=eq.0h0v.s4.77109a7bbac2 from=translated src=- shape=f7dca889 vocab=479585af
+-/
 theorem zeroMap_bot : zeroMap.toElementMap N.bot = T.bot :=
   constLiftN_bot T zeroVal
 
@@ -283,7 +327,9 @@ theorem zeroMap_bot : zeroMap.toElementMap N.bot = T.bot :=
 
 /-- `pred(succ(n̂)) = n̂`: the predecessor undoes the successor on total elements.
 (A sample of the
-"recursion" reasoning Scott highlights; cf. the iterated-summation example.) -/
+"recursion" reasoning Scott highlights; cf. the iterated-summation example.)
+@isnad1 id=eq.0h1v.s4.96512d329f85 from=translated src=- shape=400e6bfe vocab=e17811b1
+-/
 theorem predMap_succMap_natElem (n : ℕ) :
     predMap.toElementMap (succMap.toElementMap (natElem n)) = natElem n := by
   rw [succMap_natElem, predMap_natElem_succ]

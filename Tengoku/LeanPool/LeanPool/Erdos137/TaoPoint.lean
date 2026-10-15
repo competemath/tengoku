@@ -61,7 +61,9 @@ def VeryBad (k n : ℕ) : Prop := Powerful (F k n)
 /-- **Prime uniqueness in a block.** If a prime `p` is at least the block length `k`, it divides
 at most one of the `k` consecutive factors `n, n+1, …, n+k-1`: two distinct factors `n+i`, `n+j`
 with `i, j < k` differ by `|i-j| < k ≤ p`, so a common prime divisor would divide a nonzero
-number smaller than `p`, which is impossible. -/
+number smaller than `p`, which is impossible.
+@isnad1 id=eq.6h5v.s5.ee9ab144eb1e from=translated src=- shape=d038cd5d vocab=1db36d82
+-/
 theorem prime_dvd_two_terms_eq {p n k i j : ℕ} (_hp : p.Prime) (hk : k ≤ p)
     (hi : i < k) (hj : j < k) (hpi : p ∣ n + i) (hpj : p ∣ n + j) : i = j := by
   -- p divides the difference of the two factors, an integer of absolute value < k ≤ p.
@@ -88,7 +90,9 @@ If `F k n` is powerful, `p ≥ k` is prime, and `p ∣ n + i` for some `i < k`, 
 
 By `prime_dvd_two_terms_eq` the prime `p` divides *only* the factor `n + i` among the `k` block
 factors, so `v_p(F k n) = ∑_{j<k} v_p(n+j) = v_p(n+i)`. Powerfulness gives `p ^ 2 ∣ F k n`, hence
-`v_p(F k n) ≥ 2`, so `v_p(n+i) ≥ 2`, i.e. `p ^ 2 ∣ n + i`. -/
+`v_p(F k n) ≥ 2`, so `v_p(n+i) ≥ 2`, i.e. `p ^ 2 ∣ n + i`.
+@isnad1 id=dvd.6h4v.s6.39702cd6ea62 from=translated src=- shape=69b157b9 vocab=79b45b57
+-/
 theorem veryBad_large_prime_sq {p n k i : ℕ} (hp : p.Prime) (hk : k ≤ p) (hi : i < k)
     (hn : 1 ≤ n) (hbad : VeryBad k n) (hpi : p ∣ n + i) : p ^ 2 ∣ (n + i) := by
   have hni : n + i ≠ 0 := by omega
@@ -128,7 +132,9 @@ block `[n, n+k-1]` is not very bad: powerfulness would force `p ^ 2 ∣ n + i = 
 `veryBad_large_prime_sq`, impossible for a prime `p ≥ 2`.
 
 This is the elementary lemma that combines with a Baker–Harman–Pintz prime-in-short-interval
-input: a prime `p > k` lying inside `[n, n+k-1]` cannot occur in a very bad interval. -/
+input: a prime `p > k` lying inside `[n, n+k-1]` cannot occur in a very bad interval.
+@isnad1 id=not.5h4v.s5.f948ce38cb77 from=translated src=- shape=28ab8c0b vocab=4a545f80
+-/
 theorem prime_term_gt_length_not_powerful {p n k i : ℕ} (hp : p.Prime) (hpk : k < p)
     (hi : i < k) (hn : 1 ≤ n) (hterm : n + i = p) : ¬ VeryBad k n := by
   intro hbad
@@ -142,7 +148,9 @@ theorem prime_term_gt_length_not_powerful {p n k i : ℕ} (hp : p.Prime) (hpk : 
 
 /-- **Restatement.** If some factor of the block equals a prime `p` larger than the block
 length `k`, then `F k n` is not powerful. (Directly: `prime_term_gt_length_not_powerful`
-unfolding `VeryBad`.) -/
+unfolding `VeryBad`.)
+@isnad1 id=not.4h3v.s5.5e70dfa60020 from=translated src=- shape=916c76bc vocab=f7a75f72
+-/
 theorem prime_in_block_not_powerful {p n k : ℕ} (hp : p.Prime) (hpk : k < p) (hn : 1 ≤ n)
     (hmem : ∃ i < k, n + i = p) : ¬ Powerful (F k n) := by
   obtain ⟨i, hi, hterm⟩ := hmem

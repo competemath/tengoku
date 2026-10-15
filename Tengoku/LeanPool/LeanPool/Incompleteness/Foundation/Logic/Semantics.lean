@@ -92,18 +92,33 @@ variable [Tarski M]
 
 variable {𝓜 : M}
 
+/--
+@isnad1 id=iff.0h5v.s5.70fd9584142d from=translated src=- shape=4defff9e vocab=11c49d8b
+-/
 @[simp] lemma realize_iff {φ ψ : F} : 𝓜 ⊧ φ <=> ψ ↔ ((𝓜 ⊧ φ) ↔ (𝓜 ⊧ ψ)) := by
   simp [LogicalConnective.iff, iff_iff_implies_and_implies]
 
+/--
+@isnad1 id=iff.0h4v.s5.4e41d3c663f3 from=translated src=- shape=2cf69a0c vocab=dd82fa85
+-/
 @[simp] lemma realize_list_conj {l : List F} :
     𝓜 ⊧ l.conj ↔ ∀ φ ∈ l, 𝓜 ⊧ φ := by induction l <;> simp [*]
 
+/--
+@isnad1 id=iff.0h4v.s5.4cc512e69237 from=translated src=- shape=2cf69a0c vocab=9b9e4661
+-/
 @[simp] lemma realize_finset_conj {s : Finset F} :
     𝓜 ⊧ s.conj ↔ ∀ φ ∈ s, 𝓜 ⊧ φ := by simp [Finset.conj]
 
+/--
+@isnad1 id=iff.0h4v.s5.d49dd9827c2e from=translated src=- shape=5270e402 vocab=e64f563b
+-/
 @[simp] lemma realize_list_disj {l : List F} :
     𝓜 ⊧ l.disj ↔ ∃ φ ∈ l, 𝓜 ⊧ φ := by induction l <;> simp [*]
 
+/--
+@isnad1 id=iff.0h4v.s5.6821c1fe0ab3 from=translated src=- shape=5270e402 vocab=fb5ff68c
+-/
 @[simp] lemma realize_finset_disj {s : Finset F} :
     𝓜 ⊧ s.disj ↔ ∃ φ ∈ s, 𝓜 ⊧ φ := by simp [Finset.disj]
 
@@ -138,51 +153,99 @@ class Meaningful (𝓜 : M) : Prop where
 
 instance [LogicalConnective F] [Semantics.Bot M] (𝓜 : M) : Meaningful 𝓜 := ⟨⟨⊥, by simp⟩⟩
 
+/--
+@isnad1 id=iff.0h3v.s4.4029fd5cad68 from=translated src=- shape=171cfa52 vocab=765f826f
+-/
 lemma meaningful_iff {𝓜 : M} : Meaningful 𝓜 ↔ ∃ f, ¬𝓜 ⊧ f := ⟨by rintro ⟨h⟩; exact h, fun h ↦ ⟨h⟩⟩
 
+/--
+@isnad1 id=iff.0h3v.s4.f0412792e91f from=translated src=- shape=dedb5125 vocab=765f826f
+-/
 lemma not_meaningful_iff (𝓜 : M) : ¬Meaningful 𝓜 ↔ ∀ f, 𝓜 ⊧ f := by simp [meaningful_iff]
 
+/--
+@isnad1 id=iff.0h4v.s5.a76e51255926 from=translated src=- shape=c582e4a0 vocab=20086b01
+-/
 lemma realizeSet_iff {𝓜 : M} {T : Set F} : 𝓜 ⊧* T ↔ ∀ ⦃f⦄, f ∈ T → Realize 𝓜 f :=
   ⟨by rintro ⟨h⟩ f hf; exact h hf, by intro h; exact ⟨h⟩⟩
 
+/--
+@isnad1 id=iff.0h3v.s5.85427cf626a8 from=translated src=- shape=72cc35cd vocab=56c9cafd
+-/
 lemma not_satisfiable_finset [LogicalConnective F] [Tarski M] [DecidableEq F] (t : Finset F) :
     ¬Satisfiable M (t : Set F) ↔ Valid M (t.image (∼·)).disj := by
   simp [Satisfiable, realizeSet_iff, Valid]
 
+/--
+@isnad1 id=iff.0h3v.s4.fcbcb1663936 from=translated src=- shape=8b492d10 vocab=4b81e932
+-/
 lemma satisfiableSet_iff_models_nonempty {T : Set F} : Satisfiable M T ↔ (models M T).Nonempty :=
   ⟨by rintro ⟨𝓜, h𝓜⟩; exact ⟨𝓜, h𝓜⟩, by rintro ⟨𝓜, h𝓜⟩; exact ⟨𝓜, h𝓜⟩⟩
 
 namespace RealizeSet
 
+/--
+@isnad1 id=realize.1h5v.s5.3641d3fa45d9 from=translated src=- shape=40de4335 vocab=20086b01
+-/
 lemma realize {T : Set F} (𝓜 : M) [𝓜 ⊧* T] (hf : f ∈ T) : 𝓜 ⊧ f := all_realize hf
 
+/--
+@isnad1 id=realizes.2h5v.s5.c7e7b8ba68ba from=translated src=- shape=ce20a4d4 vocab=00ca0a22
+-/
 lemma of_subset {T U : Set F} {𝓜 : M} (h : 𝓜 ⊧* U) (ss : T ⊆ U) : 𝓜 ⊧* T :=
   ⟨fun _ hf => h.all_realize (ss hf)⟩
 
+/--
+@isnad1 id=realizes.1h5v.s5.c7e7b8ba68ba from=translated src=- shape=ce20a4d4 vocab=00ca0a22
+-/
 lemma of_subset' {T U : Set F} {𝓜 : M} [𝓜 ⊧* U] (ss : T ⊆ U) : 𝓜 ⊧* T :=
   of_subset (𝓜 := 𝓜) inferInstance ss
 
+/--
+@isnad1 id=realizes.0h3v.s4.2c04e09406b6 from=translated src=- shape=9fd8818c vocab=19c8d5fa
+-/
 @[simp] lemma empty (𝓜 : M) : 𝓜 ⊧* (∅ : Set F) := ⟨by simp⟩
 
+/--
+@isnad1 id=iff.0h4v.s4.d0eb1dbe15d2 from=translated src=- shape=5231db8d vocab=e1b687a6
+-/
 @[simp] lemma singleton_iff {f : F} {𝓜 : M} : 𝓜 ⊧* {f} ↔ 𝓜 ⊧ f := by simp [realizeSet_iff]
 
+/--
+@isnad1 id=iff.0h5v.s5.d7e182b538a4 from=translated src=- shape=9d8dcea7 vocab=9a0116ca
+-/
 @[simp] lemma insert_iff {T : Set F} {f : F} {𝓜 : M} :
     𝓜 ⊧* insert f T ↔ 𝓜 ⊧ f ∧ 𝓜 ⊧* T := by simp [realizeSet_iff]
 
+/--
+@isnad1 id=iff.0h5v.s5.f4b73e5f2fb3 from=translated src=- shape=cf7e3a20 vocab=253ddfc4
+-/
 @[simp] lemma union_iff {T U : Set F} {𝓜 : M} :
     𝓜 ⊧* T ∪ U ↔ 𝓜 ⊧* T ∧ 𝓜 ⊧* U := by simp only [realizeSet_iff, Set.mem_union, or_imp, forall_and]
 
+/--
+@isnad1 id=iff.0h6v.s5.db3024c79527 from=translated src=- shape=ee7b86a3 vocab=72ec3fce
+-/
 @[simp] lemma image_iff {ι} {f : ι → F} {A : Set ι} {𝓜 : M} :
     𝓜 ⊧* f '' A ↔ ∀ i ∈ A, 𝓜 ⊧ (f i) := by simp [realizeSet_iff]
 
+/--
+@isnad1 id=iff.0h5v.s5.cf776a99d5a3 from=translated src=- shape=349de8ff vocab=da725750
+-/
 @[simp] lemma range_iff {ι} {f : ι → F} {𝓜 : M} :
     𝓜 ⊧* Set.range f ↔ ∀ i, 𝓜 ⊧ (f i) := by simp [realizeSet_iff]
 
+/--
+@isnad1 id=iff.0h4v.s5.dbc083d49ce8 from=translated src=- shape=ddedd15f vocab=a6224927
+-/
 @[simp] lemma setOf_iff {P : F → Prop} {𝓜 : M} :
     𝓜 ⊧* Set.ofPred P ↔ ∀ f, P f → 𝓜 ⊧ f := by simp [realizeSet_iff]
 
 end RealizeSet
 
+/--
+@isnad1 id=iff.0h3v.s5.8e422dc496b7 from=translated src=- shape=dc8856d1 vocab=ef86b269
+-/
 lemma valid_neg_iff [LogicalConnective F] [Tarski M] (f : F) :
     Valid M (∼f) ↔ ¬Satisfiable M {f} := by simp [Valid, Satisfiable]
 
@@ -193,6 +256,9 @@ variable (M)
 
 instance : Semantics F (Set M) := ⟨fun s f ↦ ∀ ⦃𝓜⦄, 𝓜 ∈ s → 𝓜 ⊧ f⟩
 
+/--
+@isnad1 id=realize.0h3v.s4.10c88ab5cabe from=translated src=- shape=8a61591d vocab=36ccf6e2
+-/
 @[simp] lemma empty_models (f : F) : (∅ : Set M) ⊧ f := by rintro h; simp
 
 /-- Imported declaration from the Incompleteness formalization. -/
@@ -204,8 +270,14 @@ notation T:45 " ⊨[" M "] " φ:46 => Consequence M T φ
 
 variable {M}
 
+/--
+@isnad1 id=iff.0h4v.s5.f2032486c719 from=translated src=- shape=f52a7c47 vocab=b3da45ab
+-/
 lemma set_models_iff {s : Set M} : s ⊧ f ↔ ∀ 𝓜 ∈ s, 𝓜 ⊧ f := iff_of_eq rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.ab378856324d from=translated src=- shape=bbcc75c7 vocab=189ec933
+-/
 lemma set_meaningful_iff_nonempty [∀ 𝓜 : M, Meaningful 𝓜] {s : Set M} :
     Meaningful s ↔ s.Nonempty :=
   ⟨by rintro ⟨f, hf⟩; by_contra A; rcases Set.not_nonempty_iff_eq_empty.mp A; simp at hf,
@@ -214,15 +286,27 @@ lemma set_meaningful_iff_nonempty [∀ 𝓜 : M, Meaningful 𝓜] {s : Set M} :
       rcases hMeaningful.exists_unrealize with ⟨f, hf⟩
       exact ⟨f, fun hs => hf (set_models_iff.mp hs 𝓜 h𝓜)⟩⟩
 
+/--
+@isnad1 id=iff.0h3v.s5.9aa2ad766440 from=translated src=- shape=6288aa05 vocab=7fe282c7
+-/
 lemma meaningful_iff_satisfiableSet [∀ 𝓜 : M, Meaningful 𝓜] :
     Satisfiable M T ↔ Meaningful (models M T) := by
   simp [set_meaningful_iff_nonempty, satisfiableSet_iff_models_nonempty]
 
+/--
+@isnad1 id=iff.0h4v.s5.8cde48e08f5f from=translated src=- shape=8337e5ab vocab=6aacab52
+-/
 lemma consequence_iff {T : Set F} {f} : T ⊨[M] f ↔ ∀ {𝓜 : M}, 𝓜 ⊧* T → 𝓜 ⊧ f := iff_of_eq rfl
 
+/--
+@isnad1 id=iff.0h4v.s5.8cde48e08f5f from=translated src=- shape=8337e5ab vocab=6aacab52
+-/
 lemma consequence_iff' {T : Set F} {f : F} : T ⊨[M] f ↔ (∀ (𝓜 : M) [𝓜 ⊧* T], 𝓜 ⊧ f) :=
   ⟨fun h _ _ => consequence_iff.mp h inferInstance, fun H 𝓜 hs => @H 𝓜 hs⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.0836f94f6a50 from=translated src=- shape=cca1cadd vocab=d1153355
+-/
 lemma consequence_iff_not_satisfiable [LogicalConnective F] [Tarski M] {f : F} :
     T ⊨[M] f ↔ ¬Satisfiable M (insert (∼f) T) := by
   rw [consequence_iff]
@@ -237,9 +321,15 @@ lemma consequence_iff_not_satisfiable [LogicalConnective F] [Tarski M] {f : F} :
     by_contra hf
     exact h ⟨𝓜, by exact RealizeSet.insert_iff.mpr ⟨by simpa using hf, hT⟩⟩
 
+/--
+@isnad1 id=conseque.2h5v.s5.a09c44b2dd46 from=translated src=- shape=88ae916b vocab=4317dd1e
+-/
 lemma weakening {T U : Set F} {f} (h : T ⊨[M] f) (ss : T ⊆ U) : U ⊨[M] f :=
   consequence_iff.mpr fun hs => consequence_iff.mp h (RealizeSet.of_subset hs ss)
 
+/--
+@isnad1 id=conseque.1h4v.s4.3c74c28c01ac from=translated src=- shape=53c26e5c vocab=fb05d2fe
+-/
 lemma of_mem {T : Set F} {f} (h : f ∈ T) : T ⊨[M] f := fun _ hs => hs.all_realize h
 
 end Semantics
@@ -249,6 +339,9 @@ def Cumulative (T : ℕ → Set F) : Prop := ∀ s, T s ⊆ T (s + 1)
 
 namespace Cumulative
 
+/--
+@isnad1 id=le.2h4v.s5.9d404411c6d2 from=translated src=- shape=004eccac vocab=893c4613
+-/
 lemma subset_of_le {T : ℕ → Set F} (H : Cumulative T)
     {s₁ s₂ : ℕ} (h : s₁ ≤ s₂) : T s₁ ⊆ T s₂ := by
   suffices ∀ s d, T s ⊆ T (s + d) by simpa[Nat.add_sub_of_le h] using this s₁ (s₂ - s₁)
@@ -257,6 +350,9 @@ lemma subset_of_le {T : ℕ → Set F} (H : Cumulative T)
   | zero => simp
   | succ d ih => simpa only [Nat.add_succ, add_zero] using subset_trans ih (H (s + d))
 
+/--
+@isnad1 id=ex.2h3v.s5.b8142124c4e2 from=translated src=- shape=49eb36c0 vocab=d1ca7406
+-/
 lemma finset_mem {T : ℕ → Set F}
     (H : Cumulative T) {u : Finset F} (hu : ↑u ⊆ ⋃ s, T s) : ∃ s, ↑u ⊆ T s := by
   have := Classical.decEq
@@ -290,6 +386,9 @@ variable [Compact M]
 
 variable {𝓜 : M}
 
+/--
+@isnad1 id=iff.0h4v.s6.c37623c862c5 from=translated src=- shape=5fc4d079 vocab=7c4e409a
+-/
 lemma conseq_compact [LogicalConnective F] [Semantics.Tarski M] {f : F} :
     T ⊨[M] f ↔ ∃ u : Finset F, ↑u ⊆ T ∧ u ⊨[M] f := by
   classical
@@ -306,6 +405,9 @@ lemma conseq_compact [LogicalConnective F] [Semantics.Tarski M] {f : F} :
     exact ⟨insert (∼f) u,
       by simpa using Set.insert_subset_insert ss, by simpa using hu⟩
 
+/--
+@isnad1 id=iff.1h3v.s5.5a24137ccd37 from=translated src=- shape=62d83b5c vocab=e97d3773
+-/
 lemma compact_cumulative {T : ℕ → Set F} (hT : Cumulative T) :
     Semantics.Satisfiable M (⋃ s, T s) ↔ ∀ s, Semantics.Satisfiable M (T s) :=
   ⟨by intro H s

@@ -88,7 +88,9 @@ private lemma normalized_of_good {n k0 : ℕ} (hodd : Odd k0) (hcop : Nat.Coprim
 
 /-- For `k < n` coprime to `n`, one of `k`, `n - k` is odd, coprime to `n`, and
 avoids `k ≡ 3 (mod 6)` when `n` is even, hence supplies an `m` with
-`2 ^ k0 + 1 = 3 * m` and `gcd(m, 2 ^ n - 1) = 1`. -/
+`2 ^ k0 + 1 = 3 * m` and `gcd(m, 2 ^ n - 1) = 1`.
+@isnad1 id=ex.2h2v.s6.5f092c52c54e from=translated src=- shape=99ca7c67 vocab=9bd14b99
+-/
 theorem exists_normalized_parameter {n k : ℕ}
     (hklt : k < n) (hkn : Nat.Coprime k n) :
     ∃ k0 m : ℕ,
@@ -125,7 +127,9 @@ theorem exists_normalized_parameter {n k : ℕ}
 
 /-- Frobenius transport of the coefficient count from `k` to `n - k`.  The
 coefficients move with `Δ`, so the transported count sits at new coefficients
-`w1, w2` rather than at `v₁, v₂`. -/
+`w1, w2` rather than at `v₁, v₂`.
+@isnad1 id=ex.5h5v.s7.a279ee501d12 from=translated src=- shape=b4be993b vocab=d60a52a2
+-/
 theorem coefficientCount_transfer_complement [CharP K 2]
     {n k : ℕ} (hk : k ≤ n) (hcard : Fintype.card K = 2 ^ n)
     {v₁ v₂ : K} (hv₁ : v₁ ≠ 0) (hv₂ : v₂ ≠ 0) (hne : v₁ ≠ v₂) :
@@ -171,7 +175,9 @@ theorem coefficientCount_transfer_complement [CharP K 2]
 
 /-- The normalized parameter `k0` together with the coefficients carrying the
 count to it: `exists_normalized_parameter` chooses `k0 ∈ {k, n - k}`, and in the
-complement case `coefficientCount_transfer_complement` supplies `w1, w2`. -/
+complement case `coefficientCount_transfer_complement` supplies `w1, w2`.
+@isnad1 id=ex.8h5v.s8.eccfd5af6209 from=translated src=- shape=1f3d494f vocab=66fc3482
+-/
 theorem normalize_with_count_transport [CharP K 2]
     {n k : ℕ} (hkpos : 1 ≤ k) (hklt : k < n) (hkn : Nat.Coprime k n)
     (hcard : Fintype.card K = 2 ^ n)

@@ -107,7 +107,9 @@ inductive Graph (P : PeanoModel M) (Q : PeanoModel N) : M → N → Prop
 `Graph Q P n m`.
 (This is why the relation is one-one in *both* directions, as Scott notes: "the
 rôles of `N` and
-`M` are completely symmetric".) -/
+`M` are completely symmetric".)
+@isnad1 id=graph.1h6v.s4.60e8f2f6302a from=translated src=- shape=13f4fc67 vocab=c0e4c675
+-/
 theorem Graph.swap {P : PeanoModel M} {Q : PeanoModel N} {m : M} {n : N}
     (h : Graph P Q m n) : Graph Q P n m := by
   induction h with
@@ -117,7 +119,9 @@ theorem Graph.swap {P : PeanoModel M} {Q : PeanoModel N} {m : M} {n : N}
 /-- **Inversion at `0` (uses 4.5(i)).** Anything related to `0` on the left is `□`
 on the right:
 `0 r k ⟹ k = □`. (The other generating rule would force `0 = n⁺`, impossible by
-4.5(i).) -/
+4.5(i).)
+@isnad1 id=eq.1h5v.s4.27ee2a62424d from=translated src=- shape=c548bb8e vocab=d0799284
+-/
 theorem graph_zero_right (P : PeanoModel M) (Q : PeanoModel N) {k : N}
     (h : Graph P Q P.zero k) : k = Q.zero := by
   generalize hz : P.zero = z at h
@@ -128,7 +132,9 @@ theorem graph_zero_right (P : PeanoModel M) (Q : PeanoModel N) {k : N}
 /-- **Inversion at a successor (uses 4.5(i)/(ii)).** Anything related to `n⁺` on
 the left comes
 from a relation `n r n₀` with right value a successor: `n⁺ r k ⟹ ∃ n₀, n r n₀ ∧ k
-= n₀#`. -/
+= n₀#`.
+@isnad1 id=ex.1h6v.s5.75899fe5929e from=translated src=- shape=d723b1bf vocab=f4ceefaa
+-/
 theorem graph_succ_right (P : PeanoModel M) (Q : PeanoModel N) {m : M} {k : N}
     (h : Graph P Q (P.succ m) k) : ∃ n, Graph P Q m n ∧ k = Q.succ n := by
   generalize hz : P.succ m = z at h
@@ -146,7 +152,9 @@ model. Proved by the induction principle 4.5(iii) on the set `{m ∣ ∃! n, m r
 the base case
 is the `0`-inversion `graph_zero_right`, the step case the successor-inversion
 `graph_succ_right`
-together with 4.5(ii). -/
+together with 4.5(ii).
+@isnad1 id=existsun.0h5v.s4.6976eabcc93c from=translated src=- shape=b0f08993 vocab=bc5375ed
+-/
 theorem exists_unique_right (P : PeanoModel M) (Q : PeanoModel N) (m : M) :
     ∃! n, Graph P Q m n := by
   refine P.induction {m | ∃! n, Graph P Q m n} ?_ ?_ m
@@ -158,7 +166,9 @@ theorem exists_unique_right (P : PeanoModel M) (Q : PeanoModel N) (m : M) :
 
 /-- Dually (by `Graph.swap`), each element of the right model is related to
 exactly one element of
-the left model. -/
+the left model.
+@isnad1 id=existsun.0h5v.s4.3bea9a3923ca from=translated src=- shape=11ed5353 vocab=bc5375ed
+-/
 theorem exists_unique_left (P : PeanoModel M) (Q : PeanoModel N) (n : N) :
     ∃! m, Graph P Q m n := by
   obtain ⟨m, hm, huniq⟩ := exists_unique_right Q P n
@@ -172,7 +182,9 @@ structure: `e 0 = □` and `e (n⁺) = (e n)#`. The bijection is the least-fixed
 relation
 `Graph`, which `exists_unique_right`/`exists_unique_left` show is a one-one
 correspondence; the
-two structure equations are the constructors `Graph.base`/`Graph.step`. -/
+two structure equations are the constructors `Graph.base`/`Graph.step`.
+@isnad1 id=ex.0h4v.s6.76685dc2f6d9 from=translated src=- shape=ef759a6a vocab=18a36b70
+-/
 theorem peano_models_isomorphic (P : PeanoModel M) (Q : PeanoModel N) :
     ∃ e : M ≃ N, e P.zero = Q.zero ∧ ∀ m, e (P.succ m) = Q.succ (e m) := by
   classical

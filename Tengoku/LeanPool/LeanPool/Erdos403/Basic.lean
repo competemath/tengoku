@@ -41,7 +41,9 @@ open scoped Nat
 /-- The sum of distinct factorials indexed by `S`: `∑_{a ∈ S} a!`. -/
 def factSum (S : Finset ℕ) : ℕ := ∑ a ∈ S, a !
 
-/-- The extremal witness: `factSum {2, 3, 5} = 2! + 3! + 5! = 2 + 6 + 120 = 128 = 2⁷`. -/
+/-- The extremal witness: `factSum {2, 3, 5} = 2! + 3! + 5! = 2 + 6 + 120 = 128 = 2⁷`.
+@isnad1 id=eq.0h0v.s5.a3f3c78435ba from=translated src=- shape=1d4a738f vocab=fb2852a0
+-/
 theorem witness : factSum {2, 3, 5} = 2 ^ 7 := by
   rw [factSum, Finset.sum_insert (by decide), Finset.sum_insert (by decide),
     Finset.sum_singleton]
@@ -53,7 +55,9 @@ For nonempty `S` with top element `M = max' S`: `M! ≤ factSum S ≤ 2·M!`. Th
 factorial is one of the summands) is what the finiteness argument in `Erdos403.Sharp` uses. -/
 
 /-- The partial factorial sum is bounded by the top factorial: `∑_{a<n} a! ≤ n!`. Tight at
-`n = 0,1,2`. -/
+`n = 0,1,2`.
+@isnad1 id=le.0h1v.s4.be88cb919bbe from=translated src=- shape=d1c873df vocab=194915e2
+-/
 theorem sum_range_factorial_le (n : ℕ) : ∑ a ∈ Finset.range n, a ! ≤ n ! := by
   induction n with
   | zero => simp
@@ -66,7 +70,9 @@ theorem sum_range_factorial_le (n : ℕ) : ∑ a ∈ Finset.range n, a ! ≤ n !
         _ ≤ (k + 1) * k ! := by gcongr; omega
         _ = (k + 1)! := (Nat.factorial_succ k).symm
 
-/-- Lower bound of the sandwich: the top factorial is one of the summands. -/
+/-- Lower bound of the sandwich: the top factorial is one of the summands.
+@isnad1 id=le.1h1v.s4.926627ec805b from=translated src=- shape=96d61d8c vocab=19c4eee7
+-/
 theorem factorial_max_le_factSum {S : Finset ℕ} (h : S.Nonempty) :
     (S.max' h)! ≤ factSum S :=
   Finset.single_le_sum (f := fun a => a !) (fun _ _ => Nat.zero_le _) (S.max'_mem h)

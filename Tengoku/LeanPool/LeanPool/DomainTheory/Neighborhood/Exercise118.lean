@@ -45,7 +45,9 @@ then `X2 0, X2 1, …`. -/
 def appendSeq {α : Type*} (X1 : ℕ → Set α) (n1 : ℕ) (X2 : ℕ → Set α) : ℕ → Set α :=
   fun i => if i < n1 then X1 i else X2 (i - n1)
 
-/-- Each entry of `appendSeq X1 n1 X2` below `n1 + n2` is drawn from `C`. -/
+/-- Each entry of `appendSeq X1 n1 X2` below `n1 + n2` is drawn from `C`.
+@isnad1 id=mem.3h7v.s6.4ed93b993aca from=translated src=- shape=ca71a3eb vocab=577a7c07
+-/
 theorem appendSeq_mem {α : Type*} {C : Set (Set α)} {X1 : ℕ → Set α} {n1 : ℕ}
     {X2 : ℕ → Set α} {n2 : ℕ} (h1 : ∀ i, i < n1 → X1 i ∈ C) (h2 : ∀ i, i < n2 → X2 i ∈ C) :
     ∀ i, i < n1 + n2 → appendSeq X1 n1 X2 i ∈ C := by
@@ -60,7 +62,9 @@ namespace NeighborhoodSystem
 variable {α : Type*} (V : NeighborhoodSystem α)
 
 /-- The finite intersection is contained in the master neighbourhood (its first
-factor). -/
+factor).
+@isnad1 id=le.0h4v.s4.762899973ada from=translated src=- shape=cecc29a6 vocab=ec6f92ad
+-/
 theorem interUpTo_subset_master (X : ℕ → Set α) : ∀ n, V.interUpTo X n ⊆ V.master := by
   intro n
   induction n with
@@ -69,7 +73,9 @@ theorem interUpTo_subset_master (X : ℕ → Set α) : ∀ n, V.interUpTo X n �
 
 /-- For a prefix length `k ≤ n1`, `interUpTo` of the appended sequence agrees with
 `interUpTo`
-of the first sequence. -/
+of the first sequence.
+@isnad1 id=eq.1h6v.s5.ddf61ac1ccef from=translated src=- shape=3c8241cf vocab=02a37264
+-/
 theorem interUpTo_appendSeq_left (X1 : ℕ → Set α) (n1 : ℕ) (X2 : ℕ → Set α) :
     ∀ {k : ℕ}, k ≤ n1 → V.interUpTo (appendSeq X1 n1 X2) k = V.interUpTo X1 k := by
   intro k
@@ -82,7 +88,9 @@ theorem interUpTo_appendSeq_left (X1 : ℕ → Set α) (n1 : ℕ) (X2 : ℕ → 
       simp only [appendSeq, ite_eq_left (Nat.lt_of_succ_le hk)]
     rw [happ]
 
-/-- The key identity: `⋂_{i<n1+n2} (X1 ++ X2)ᵢ = (⋂_{i<n1} X1ᵢ) ∩ (⋂_{i<n2} X2ᵢ)`. -/
+/-- The key identity: `⋂_{i<n1+n2} (X1 ++ X2)ᵢ = (⋂_{i<n1} X1ᵢ) ∩ (⋂_{i<n2} X2ᵢ)`.
+@isnad1 id=eq.0h6v.s5.d94103346bff from=translated src=- shape=0544c095 vocab=a8ecbb0a
+-/
 theorem interUpTo_appendSeq (X1 : ℕ → Set α) (n1 : ℕ) (X2 : ℕ → Set α) :
     ∀ {j : ℕ}, V.interUpTo (appendSeq X1 n1 X2) (n1 + j)
       = V.interUpTo X1 n1 ∩ V.interUpTo X2 j := by
@@ -118,12 +126,16 @@ def sInf (F : Set V.Element) (hF : F.Nonempty) : V.Element where
   inter_mem h1 h2 := fun x hx => x.inter_mem (h1 x hx) (h2 x hx)
   up_mem h hY hXY := fun x hx => x.up_mem (h x hx) hY hXY
 
-/-- `sInf F ⊑ x` for every `x ∈ F`. -/
+/-- `sInf F ⊑ x` for every `x ∈ F`.
+@isnad1 id=le.2h4v.s5.00ba68ec77ba from=translated src=- shape=17e0641d vocab=88028d62
+-/
 theorem sInf_le (F : Set V.Element) (hF : F.Nonempty) {x : V.Element} (hx : x ∈ F) :
     V.sInf F hF ≤ x :=
   fun _ h => h x hx
 
-/-- `sInf F` is the **greatest** lower bound of `F`. -/
+/-- `sInf F` is the **greatest** lower bound of `F`.
+@isnad1 id=le.2h4v.s6.909f88d1f312 from=translated src=- shape=383dda32 vocab=88028d62
+-/
 theorem le_sInf (F : Set V.Element) (hF : F.Nonempty) (y : V.Element) (h : ∀ x ∈ F, y ≤ x) :
     y ≤ V.sInf F hF :=
   fun _ hX x hx => h x hx _ hX
@@ -157,7 +169,9 @@ def leastFilter (C : Set (Set α)) (hCsub : ∀ X ∈ C, V.mem X)
     rintro X Y ⟨_, n, Xs, hXC, hsub⟩ hY hXY
     exact ⟨hY, n, Xs, hXC, hsub.trans hXY⟩
 
-/-- `C ⊆ leastFilter C`: every member of `C` is in the least filter. -/
+/-- `C ⊆ leastFilter C`: every member of `C` is in the least filter.
+@isnad1 id=mem.3h4v.s5.6adbed9151f8 from=translated src=- shape=a5531aef vocab=8e4b1815
+-/
 theorem subset_leastFilter (C : Set (Set α)) (hCsub : ∀ X ∈ C, V.mem X)
     (hC : V.FinitelyConsistent C) {W : Set α} (hW : W ∈ C) :
     (V.leastFilter C hCsub hC).mem W := by
@@ -166,7 +180,9 @@ theorem subset_leastFilter (C : Set (Set α)) (hCsub : ∀ X ∈ C, V.mem X)
 
 /-- **Exercise 1.18 — `leastFilter` is least.** Any filter `z` with `C ⊆ z`
 contains
-`leastFilter C`. -/
+`leastFilter C`.
+@isnad1 id=le.3h4v.s6.d8ef3cc195b2 from=translated src=- shape=13e4fa8d vocab=cc044182
+-/
 theorem leastFilter_le (C : Set (Set α)) (hCsub : ∀ X ∈ C, V.mem X)
     (hC : V.FinitelyConsistent C) (z : V.Element) (hz : ∀ W ∈ C, z.mem W) :
     V.leastFilter C hCsub hC ≤ z := by
@@ -182,6 +198,9 @@ def triSys : NeighborhoodSystem (Fin 3) :=
   NeighborhoodSystem.ofPositive (fun X => X.Nonempty) Set.univ
     (⟨0, Set.mem_univ 0⟩) (fun {_} _ => Set.subset_univ _) (fun _ _ _ _ => Iff.rfl)
 
+/--
+@isnad1 id=eq.0h0v.s4.5bb35d03fdaa from=translated src=- shape=6eb0f8bf vocab=f2b06000
+-/
 theorem triSys_master : triSys.master = (Set.univ : Set (Fin 3)) := rfl
 
 namespace triSys
@@ -198,7 +217,9 @@ def family : Set (Set (Fin 3)) := {A, B, Cc}
 
 /-- Every pair of members of `family` has non-empty intersection, hence (in the
 all-non-empty
-system `triSys`) every pair is consistent. -/
+system `triSys`) every pair is consistent.
+@isnad1 id=nonempty.2h2v.s6.1736cc789127 from=translated src=- shape=fd69a325 vocab=99dffc90
+-/
 theorem family_pairwise_nonempty :
     ∀ X ∈ family, ∀ Y ∈ family, (X ∩ Y).Nonempty := by
   intro X hX Y hY
@@ -217,6 +238,9 @@ theorem family_pairwise_nonempty :
 /-- The triple `A, B, Cc` as a finite sequence. -/
 def triple : ℕ → Set (Fin 3) := fun i => if i = 0 then A else if i = 1 then B else Cc
 
+/--
+@isnad1 id=mem.1h1v.s5.619a673f2bf2 from=translated src=- shape=8075b509 vocab=efb0ccdf
+-/
 theorem triple_mem : ∀ i, i < 3 → triple i ∈ family := by
   intro i hi
   simp only [family, Set.mem_insert_iff, Set.mem_singleton_iff]
@@ -225,6 +249,9 @@ theorem triple_mem : ∀ i, i < 3 → triple i ∈ family := by
   · exact Or.inr (Or.inl rfl)
   · exact Or.inr (Or.inr rfl)
 
+/--
+@isnad1 id=eq.0h0v.s5.7e0f25512bb3 from=translated src=- shape=9668e145 vocab=4d947db5
+-/
 theorem triple_interUpTo_empty : triSys.interUpTo triple 3 = (∅ : Set (Fin 3)) := by
   simp only [NeighborhoodSystem.interUpTo_succ, NeighborhoodSystem.interUpTo_zero, triSys_master]
   ext x
@@ -232,7 +259,9 @@ theorem triple_interUpTo_empty : triSys.interUpTo triple 3 = (∅ : Set (Fin 3))
 
 /-- **Exercise 1.18 — `family` is pairwise consistent but not consistent.** Its
 full triple has
-empty intersection, so no `Z ∈ 𝒟` (i.e. no non-empty `Z`) lies below it. -/
+empty intersection, so no `Z ∈ 𝒟` (i.e. no non-empty `Z`) lies below it.
+@isnad1 id=not.0h0v.s3.38ffb3007fc3 from=translated src=- shape=431a17b9 vocab=bfdd27f6
+-/
 theorem not_finitelyConsistent : ¬ triSys.FinitelyConsistent family := by
   intro h
   obtain ⟨Z, hZmem, hZsub⟩ := h 3 triple triple_mem

@@ -67,7 +67,9 @@ variable {α β γ δ : Type*}
 /-- **Surjective pairing.** Every element `z : D₀ × D₁` is recovered from its
 projections:
 `⟨p₀(z), p₁(z)⟩ = z`. This is what makes `p₀`, `p₁`, `pair` enough to encode the
-product. -/
+product.
+@isnad1 id=eq.0h5v.s6.11162c499d5c from=translated src=- shape=f340cf31 vocab=1cf1afee
+-/
 theorem surjective_pairing (z : (prod V₀ V₁).Element) :
     pair ((proj₀ V₀ V₁).toElementMap z) ((proj₁ V₀ V₁).toElementMap z) = z := by
   rw [toElementMap_proj₀, toElementMap_proj₁, pair_fst_snd]
@@ -77,7 +79,9 @@ theorem surjective_pairing (z : (prod V₀ V₁).Element) :
 /-- **One-argument-at-a-time application.** For `h : D₀ → (D₁ → D₂)`, applying the
 uncurried map to
 a `pair` is the same as applying `h` to `x` and then to `y`:
-`(uncurry h)(⟨x, y⟩) = h(x)(y)`. -/
+`(uncurry h)(⟨x, y⟩) = h(x)(y)`.
+@isnad1 id=eq.0h9v.s6.4a5d9c645573 from=translated src=- shape=104d817e vocab=676b5679
+-/
 theorem uncurry_apply (h : ApproximableMap V₀ (funSpace V₁ V₂))
     (x : V₀.Element) (y : V₁.Element) :
     (uncurry h).toElementMap (pair x y) =
@@ -89,7 +93,9 @@ theorem uncurry_apply (h : ApproximableMap V₀ (funSpace V₁ V₂))
 expressed through the
 *one-variable* curried form: `σ(⟨x, y⟩) = (curry σ)(x)(y)`. The right-hand side
 uses only
-single-variable application. -/
+single-variable application.
+@isnad1 id=eq.0h9v.s6.14e806580f74 from=translated src=- shape=99bda234 vocab=adef677b
+-/
 theorem app_two_args (σ : ApproximableMap (prod V₀ V₁) V₂) (x : V₀.Element) (y : V₁.Element) :
     σ.toElementMap (pair x y) =
       (toApproxMap ((curry σ).toElementMap x)).toElementMap y := by
@@ -100,14 +106,18 @@ theorem app_two_args (σ : ApproximableMap (prod V₀ V₁) V₂) (x : V₀.Elem
 /-- **Two-variable abstraction.** `λx, y. τ` is `curry`, characterised by `(curry
 g)(x)(y) =
 g⟨x, y⟩`.
-It binds one variable `x` and returns the one-variable function `λy. g⟨x, y⟩`. -/
+It binds one variable `x` and returns the one-variable function `λy. g⟨x, y⟩`.
+@isnad1 id=eq.0h9v.s6.0f1bea5b2b4b from=translated src=- shape=bb6e6fa6 vocab=adef677b
+-/
 theorem lam_two_vars (g : ApproximableMap (prod V₀ V₁) V₂) (x : V₀.Element) (y : V₁.Element) :
     (toApproxMap ((curry g).toElementMap x)).toElementMap y = g.toElementMap (pair x y) :=
   toElementMap_curry_apply g x y
 
 /-- The two encodings are mutually inverse: uncurrying the two-variable
 abstraction returns the
-original two-variable function. -/
+original two-variable function.
+@isnad1 id=eq.0h7v.s5.844043c4b61b from=translated src=- shape=a43e0d99 vocab=b1f9a60e
+-/
 theorem uncurry_lam_two_vars (g : ApproximableMap (prod V₀ V₁) V₂) : uncurry (curry g) = g :=
   uncurry_curry g
 
@@ -122,7 +132,9 @@ def curry₃ (g : ApproximableMap (prod (prod V₀ V₁) V₂) V₃) :
     ApproximableMap V₀ (funSpace V₁ (funSpace V₂ V₃)) :=
   curry (curry g)
 
-/-- The defining equation of `curry₃`: `(λx, y, z. g)(x)(y)(z) = g⟨⟨x, y⟩, z⟩`. -/
+/-- The defining equation of `curry₃`: `(λx, y, z. g)(x)(y)(z) = g⟨⟨x, y⟩, z⟩`.
+@isnad1 id=eq.0h12v.s7.7ae12458673a from=translated src=- shape=993c5b47 vocab=d5978f34
+-/
 theorem curry₃_apply (g : ApproximableMap (prod (prod V₀ V₁) V₂) V₃)
     (x : V₀.Element) (y : V₁.Element) (z : V₂.Element) :
     (toApproxMap ((toApproxMap ((curry₃ g).toElementMap x)).toElementMap y)).toElementMap z =

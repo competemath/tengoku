@@ -66,24 +66,32 @@ variable [Monoid R]
 def mooreMatrix (p : ℕ) (x : Fin d → R) : Matrix (Fin d) (Fin d) R :=
   Matrix.of fun i j => x j ^ p ^ (i : ℕ)
 
-/-- The `(i, j)` entry of the Moore matrix is `x j ^ p ^ i`. -/
+/-- The `(i, j)` entry of the Moore matrix is `x j ^ p ^ i`.
+@isnad1 id=eq.0h6v.s5.09e2605e030b from=translated src=- shape=6bcff791 vocab=823b1357
+-/
 @[simp]
 theorem mooreMatrix_apply (p : ℕ) (x : Fin d → R) (i j : Fin d) :
     mooreMatrix p x i j = x j ^ p ^ (i : ℕ) :=
   rfl
 
-/-- The first row of the Moore matrix is `x` itself. -/
+/-- The first row of the Moore matrix is `x` itself.
+@isnad1 id=eq.0h5v.s6.9c7aba33d055 from=translated src=- shape=efe6a0c4 vocab=36ea812c
+-/
 theorem mooreMatrix_apply_zero (p : ℕ) (x : Fin (d + 1) → R) (j : Fin (d + 1)) :
     mooreMatrix p x 0 j = x j := by
   simp
 
-/-- Each row of the Moore matrix is the `p`-th power of the preceding one. -/
+/-- Each row of the Moore matrix is the `p`-th power of the preceding one.
+@isnad1 id=eq.0h6v.s6.43bc356a648e from=translated src=- shape=9a726b46 vocab=7460515f
+-/
 theorem mooreMatrix_succ_apply (p : ℕ) (x : Fin (d + 1) → R) (i : Fin d) (j : Fin (d + 1)) :
     mooreMatrix p x i.succ j = mooreMatrix p x i.castSucc j ^ p := by
   simp [Fin.val_succ, pow_succ, pow_mul]
 
 /-- Forming the Moore matrix commutes with applying a monoid homomorphism entrywise; this
-is the passage from the integer Moore matrix to its image over `ℚ`. -/
+is the passage from the integer Moore matrix to its image over `ℚ`.
+@isnad1 id=eq.0h6v.s7.a109070d4097 from=translated src=- shape=6f2aac40 vocab=1c426612
+-/
 theorem mooreMatrix_map [Monoid S] (p : ℕ) (x : Fin d → R) (f : R →* S) :
     (mooreMatrix p x).map f = mooreMatrix p fun j => f (x j) := by
   ext i j
@@ -102,26 +110,34 @@ with `(a, b) = (min r i, r - i)`. -/
 def ladderMatrix (p : ℕ) (x : Fin d → ℤ) (i : ℕ) : Matrix (Fin d) (Fin d) ℚ :=
   Matrix.of fun r j => iteratedFermatQuot p (min (r : ℕ) i) ((r : ℕ) - i) (x j)
 
-/-- The `(r, j)` entry of `L i` is `F⁽ᵃ⁾_b (x j)` with `(a, b) = (min r i, r - i)`. -/
+/-- The `(r, j)` entry of `L i` is `F⁽ᵃ⁾_b (x j)` with `(a, b) = (min r i, r - i)`.
+@isnad1 id=eq.0h6v.s5.e3f25d60c13f from=translated src=- shape=f57839cb vocab=13bcda03
+-/
 @[simp]
 theorem ladderMatrix_apply (p : ℕ) (x : Fin d → ℤ) (i : ℕ) (r j : Fin d) :
     ladderMatrix p x i r j = iteratedFermatQuot p (min (r : ℕ) i) ((r : ℕ) - i) (x j) :=
   rfl
 
 /-- The row at index `r` of `L i` is the vector `F⁽ᵃ⁾_b` at `x` with
-`(a, b) = (min r i, r - i)`. -/
+`(a, b) = (min r i, r - i)`.
+@isnad1 id=eq.0h5v.s5.a53930cac75d from=translated src=- shape=5089f9b0 vocab=13bcda03
+-/
 theorem ladderMatrix_row (p : ℕ) (x : Fin d → ℤ) (i : ℕ) (r : Fin d) :
     ladderMatrix p x i r = fun j => iteratedFermatQuot p (min (r : ℕ) i) ((r : ℕ) - i) (x j) :=
   rfl
 
 /-- The first `i + 1` rows of `L i` carry the growing superscript: the row at index
-`r ≤ i` is `F⁽ʳ⁾_0`. -/
+`r ≤ i` is `F⁽ʳ⁾_0`.
+@isnad1 id=eq.1h5v.s5.032fb72c8f2b from=translated src=- shape=0fa9af0b vocab=c3e0aab3
+-/
 theorem ladderMatrix_row_of_le {p : ℕ} {x : Fin d → ℤ} {i : ℕ} {r : Fin d} (h : (r : ℕ) ≤ i) :
     ladderMatrix p x i r = fun j => iteratedFermatQuot p (r : ℕ) 0 (x j) := by
   rw [ladderMatrix_row, min_eq_left h, Nat.sub_eq_zero_of_le h]
 
 /-- The last `d - 1 - i` rows of `L i` carry the growing subscript: the row at index
-`r ≥ i` is `F⁽ⁱ⁾_(r - i)`. -/
+`r ≥ i` is `F⁽ⁱ⁾_(r - i)`.
+@isnad1 id=eq.1h5v.s5.7c14cbf8280a from=translated src=- shape=31c8600d vocab=a5e1519f
+-/
 theorem ladderMatrix_row_of_ge {p : ℕ} {x : Fin d → ℤ} {i : ℕ} {r : Fin d} (h : i ≤ (r : ℕ)) :
     ladderMatrix p x i r = fun j => iteratedFermatQuot p i ((r : ℕ) - i) (x j) := by
   rw [ladderMatrix_row, min_eq_right h]

@@ -31,7 +31,9 @@ def LabelledEdge (Q : OctagonIncidence) (root a b : Vertex) : Prop :=
 
 end OctagonIncidence
 
-/-- An injective realisation admits a positive radius at every centre. -/
+/-- An injective realisation admits a positive radius at every centre.
+@isnad1 id=ex.2h2v.s6.b171bd66e344 from=translated src=- shape=b5972705 vocab=2bff4e8f
+-/
 theorem exists_positive_radii
     {p : Vertex → Plane} (hp : Function.Injective p)
     (Q : OctagonIncidence) (hR : Realises p Q) :
@@ -54,7 +56,9 @@ theorem exists_positive_radii
   have hpos : 0 < dist (p v) (p w) := dist_pos.mpr hpvw
   rwa [hradius v w hw] at hpos
 
-/-- Mutual centres have equal radii in any realisation. -/
+/-- Mutual centres have equal radii in any realisation.
+@isnad1 id=eq.2h5v.s6.b8685135c812 from=translated src=- shape=86166d92 vocab=14e74fd0
+-/
 theorem radius_eq_of_mutual
     {p : Vertex → Plane} {Q : OctagonIncidence} {radius : Vertex → ℝ}
     (hR : ∀ v w, w ∈ Q.targets v → dist (p v) (p w) = radius v)
@@ -62,7 +66,9 @@ theorem radius_eq_of_mutual
     radius a = radius b := by
   rw [← hR a b hab.1, ← hR b a hab.2, dist_comm]
 
-/-- Radii are constant along a mutual connected component. -/
+/-- Radii are constant along a mutual connected component.
+@isnad1 id=eq.2h5v.s6.db21f6ebb76d from=translated src=- shape=86166d92 vocab=8985de99
+-/
 theorem radius_eq_of_sameComponent
     {p : Vertex → Plane} {Q : OctagonIncidence} {radius : Vertex → ℝ}
     (hR : ∀ v w, w ∈ Q.targets v → dist (p v) (p w) = radius v)
@@ -73,7 +79,9 @@ theorem radius_eq_of_sameComponent
   | tail _ hedge ih =>
       exact ih.trans (radius_eq_of_mutual hR hedge)
 
-/-- A labelled edge has the radius of its mutual component. -/
+/-- A labelled edge has the radius of its mutual component.
+@isnad1 id=eq.2h6v.s7.7a9e7726845e from=translated src=- shape=644f6926 vocab=3e20f11d
+-/
 theorem dist_eq_radius_of_labelledEdge
     {p : Vertex → Plane} {Q : OctagonIncidence} {radius : Vertex → ℝ}
     (hR : ∀ v w, w ∈ Q.targets v → dist (p v) (p w) = radius v)

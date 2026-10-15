@@ -64,10 +64,15 @@ the context). -/
 /-- **Theorem 5.1, variable case (Scott 1981, PRG-19).** A free variable is
 interpreted by a
 projection of the context; the projections are approximable with `p₀⟨x,y⟩ = x`,
-`p₁⟨x,y⟩ = y`. -/
+`p₁⟨x,y⟩ = y`.
+@isnad1 id=eq.0h6v.s5.2fc40aeffaa7 from=translated src=- shape=6436f7ed vocab=ab5558b1
+-/
 theorem var_fst (x : V₀.Element) (y : V₁.Element) :
     (proj₀ V₀ V₁).toElementMap (pair x y) = x := by rw [toElementMap_proj₀, fst_pair]
 
+/--
+@isnad1 id=eq.0h6v.s5.46e1de518b32 from=translated src=- shape=773c7405 vocab=38bdaa68
+-/
 theorem var_snd (x : V₀.Element) (y : V₁.Element) :
     (proj₁ V₀ V₁).toElementMap (pair x y) = y := by rw [toElementMap_proj₁, snd_pair]
 
@@ -75,7 +80,9 @@ theorem var_snd (x : V₀.Element) (y : V₁.Element) :
 
 /-- **Theorem 5.1, constant case (Scott 1981, PRG-19).** A constant `k` is
 interpreted by the
-constant map, which is approximable with value `k`. -/
+constant map, which is approximable with value `k`.
+@isnad1 id=eq.0h6v.s5.81b5e8c6d7bb from=translated src=- shape=8ccb0f05 vocab=36730800
+-/
 theorem const_apply (k : V₁.Element) (x : V₀.Element) :
     (constMap V₀ k).toElementMap x = k := toElementMap_constMap k x
 
@@ -83,7 +90,9 @@ theorem const_apply (k : V₁.Element) (x : V₀.Element) :
 
 /-- **Theorem 5.1, tuple case (Scott 1981, PRG-19).** If `⟦σ₀⟧, ⟦σ₁⟧` are
 approximable, so is the
-tuple `⟨⟦σ₀⟧, ⟦σ₁⟧⟩ = paired`, with value `⟨σ₀(w), σ₁(w)⟩`. -/
+tuple `⟨⟦σ₀⟧, ⟦σ₁⟧⟩ = paired`, with value `⟨σ₀(w), σ₁(w)⟩`.
+@isnad1 id=eq.0h9v.s6.052afcb5e272 from=translated src=- shape=3e684099 vocab=b2bb008b
+-/
 theorem tuple_apply (f : ApproximableMap V₂ V₀) (g : ApproximableMap V₂ V₁) (w : V₂.Element) :
     (paired f g).toElementMap w = pair (f.toElementMap w) (g.toElementMap w) :=
   toElementMap_paired f g w
@@ -94,7 +103,9 @@ theorem tuple_apply (f : ApproximableMap V₂ V₀) (g : ApproximableMap V₂ V�
 𝒟₁)` and
 `⟦σ₁⟧ : Γ → 𝒟₀` are approximable, then `σ₀(σ₁)` is interpreted by `eval ∘ ⟨⟦σ₀⟧,
 ⟦σ₁⟧⟩`
-(approximable by Thm 3.11 and Thm 2.5), with value `(σ₀ w)(σ₁ w)`. -/
+(approximable by Thm 3.11 and Thm 2.5), with value `(σ₀ w)(σ₁ w)`.
+@isnad1 id=eq.0h9v.s7.9b119ac4769c from=translated src=- shape=0fd63a25 vocab=fa62e4e6
+-/
 theorem app_apply (F : ApproximableMap V₂ (funSpace V₀ V₁)) (G : ApproximableMap V₂ V₀)
     (w : V₂.Element) :
     ((evalMap V₀ V₁).comp (paired F G)).toElementMap w
@@ -107,7 +118,9 @@ theorem app_apply (F : ApproximableMap V₂ (funSpace V₀ V₁)) (G : Approxima
 is approximable,
 then `λx.σ` is interpreted by `curry ⟦σ⟧ : Γ → (𝒟ₙ → 𝒟')` (approximable by Thm
 3.12), with value
-`(λx.σ)(v)(x) = σ(v, x)`. -/
+`(λx.σ)(v)(x) = σ(v, x)`.
+@isnad1 id=eq.0h9v.s6.0f1bea5b2b4b from=translated src=- shape=bb6e6fa6 vocab=adef677b
+-/
 theorem abs_apply (g : ApproximableMap (prod V₀ V₁) V₂) (v : V₀.Element) (x : V₁.Element) :
     (toApproxMap ((curry g).toElementMap v)).toElementMap x = g.toElementMap (pair v x) :=
   toElementMap_curry_apply g v x

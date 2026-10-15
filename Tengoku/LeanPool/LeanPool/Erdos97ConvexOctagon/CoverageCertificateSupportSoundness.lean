@@ -45,7 +45,9 @@ private theorem bitSetB_eq_getLsbD (code : UInt64) (index : Fin 64) :
         decide
       simp [hone]
 
-/-- Bit testing reflects bitwise disjunction. -/
+/-- Bit testing reflects bitwise disjunction.
+@isnad1 id=eq.0h3v.s5.c23b8ea05099 from=translated src=- shape=f274e289 vocab=8ae09eca
+-/
 theorem bitSetB_or
     (left right : UInt64) (index : Fin 64) :
     bitSetB (left ||| right) index.val =
@@ -53,7 +55,9 @@ theorem bitSetB_or
   simp only [bitSetB_eq_getLsbD]
   simp
 
-/-- Bit testing reflects bitwise conjunction. -/
+/-- Bit testing reflects bitwise conjunction.
+@isnad1 id=eq.0h3v.s5.05ec1a5f195f from=translated src=- shape=f274e289 vocab=71319237
+-/
 theorem bitSetB_and
     (left right : UInt64) (index : Fin 64) :
     bitSetB (left &&& right) index.val =
@@ -108,7 +112,9 @@ private theorem rowWord_testBit
     simp [index.isLt, show index.val < 64 by omega]
   rw [hmask, Bool.and_true]
 
-/-- One compact five-bit word enumerates exactly its set row indices. -/
+/-- One compact five-bit word enumerates exactly its set row indices.
+@isnad1 id=eq.1h2v.s6.18c7027334b7 from=translated src=- shape=f088f92c vocab=7efb4bb4
+-/
 theorem rowIndexWord_eq_filter
     (rows : UInt64) (offset : Nat) (hoffset : offset + 5 ≤ 64) :
     rowIndexWord rows offset =
@@ -127,7 +133,9 @@ theorem rowIndexWord_eq_filter
   simpa only [word, boundedIndex] using
     rowWord_testBit rows offset hoffset boundedIndex
 
-/-- Every set legal-row bit occurs in its unique compact five-row word. -/
+/-- Every set legal-row bit occurs in its unique compact five-row word.
+@isnad1 id=mem.1h2v.s6.83986a754982 from=translated src=- shape=ea5af941 vocab=5416636c
+-/
 theorem rowIndex_mem_word_of_bit
     (rows : UInt64) (index : Fin 35)
     (hbit : bitSetB rows index.val = true) :
@@ -142,19 +150,25 @@ theorem rowIndex_mem_word_of_bit
   rw [List.mem_filter]
   exact ⟨List.mem_range.mpr hmod, by simpa [hdecompose] using hbit⟩
 
-/-- The compact word containing a legal-row index is one of the seven checked words. -/
+/-- The compact word containing a legal-row index is one of the seven checked words.
+@isnad1 id=mem.0h1v.s5.51c68e0c6f35 from=translated src=- shape=2434a81a vocab=9638a672
+-/
 theorem rowIndex_wordIndex_mem_range (index : Fin 35) :
     index.val / 5 ∈ List.range 7 := by
   rw [List.mem_range]
   omega
 
-/-- The low-35-bit legal-row mask contains every legal row index. -/
+/-- The low-35-bit legal-row mask contains every legal row index.
+@isnad1 id=eq.0h1v.s4.3e3b0266b0a0 from=translated src=- shape=5b2d172d vocab=179c3427
+-/
 theorem legalRows_bit (index : Fin 35) :
     bitSetB 34359738367 index.val = true := by
   fin_cases index <;> decide
 
 /-- A complete row partition puts every cover-compatible legal row in either
-the active or semantically rejected mask. -/
+the active or semantically rejected mask.
+@isnad1 id=or.2h4v.s6.c77b5aaf6a3b from=translated src=- shape=51fd73b8 vocab=239585e6
+-/
 theorem active_or_rejected_of_partition
     {active rejected incompatible : UInt64} (index : Fin 35)
     (hpartition : active ||| (rejected ||| incompatible) = 34359738367)
@@ -207,7 +221,9 @@ private theorem foldPairMasks_bit
     simp at hzero
   · exact hwitness
 
-/-- The finite cover audit implies semantic cover validity. -/
+/-- The finite cover audit implies semantic cover validity.
+@isnad1 id=valid.1h1v.s3.e6e2c05c18b6 from=translated src=- shape=6cf67292 vocab=635da20c
+-/
 theorem ConflictCover.valid_of_validB
     {cover : ConflictCover} (hvalid : cover.validB = true) :
     cover.Valid := by
@@ -246,7 +262,9 @@ theorem ConflictCover.valid_of_validB
     simp at hzero
   next => simp at hvalid
 
-/-- A table-wide audit makes every successful canonical cover lookup valid. -/
+/-- A table-wide audit makes every successful canonical cover lookup valid.
+@isnad1 id=valid.2h2v.s5.8e86d86892f1 from=translated src=- shape=5ce9f669 vocab=c9e632f1
+-/
 theorem conflictCoverLookup_valid_of_audit
     {identifier : Nat} {cover : ConflictCover}
     (haudit : ∀ group ∈ conflictCoverGroups, ∀ entry ∈ group,
@@ -265,7 +283,9 @@ theorem conflictCoverLookup_valid_of_audit
         (haudit group hgroupMember cover hcoverMember)
 
 /-- A required-pair submask is disjoint from every row accepted by the packed
-pair-state guard. -/
+pair-state guard.
+@isnad1 id=eq.2h3v.s5.4b3296ecb000 from=translated src=- shape=ac55211c vocab=a256b74b
+-/
 theorem requiredPairs_disjoint
     {state : PairState} {requiredPairs rowPairs : UInt64}
     (hrequired : requiredPairs &&& state.seenTwice = requiredPairs)
@@ -281,7 +301,9 @@ theorem requiredPairs_disjoint
     _ = 0 := by rw [hstateDisjoint]; simp
 
 /-- A submask of the repeated pairs in an exact state is disjoint from every
-semantically compatible audited row. -/
+semantically compatible audited row.
+@isnad1 id=eq.3h5v.s5.bf3fe421177d from=translated src=- shape=ce7b974f vocab=a0dd9951
+-/
 theorem requiredPairs_disjoint_of_pairState_exact
     {state : PairState} {assignments : List RowAssignment}
     (hexact : state.Exact assignments) (centre : Vertex) (rowIndex : Fin 35)
@@ -295,7 +317,9 @@ theorem requiredPairs_disjoint_of_pairState_exact
     (searchRowChoiceAt_pairMask centre rowIndex) hcompatible
 
 /-- An audited cover cannot mask a row accepted by the packed pair-state guard
-when its required pairs passed the subset gate. -/
+when its required pairs passed the subset gate.
+@isnad1 id=eq.4h4v.s6.e7f7905e2b67 from=translated src=- shape=7852f8ec vocab=c8db0155
+-/
 theorem ConflictCover.compatible_row_not_incompatible
     {cover : ConflictCover} (hvalid : cover.Valid) {state : PairState}
     (centre : Vertex) (rowIndex : Fin 35)

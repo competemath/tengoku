@@ -54,7 +54,9 @@ open Finset
 
 namespace ZMod
 
-/-- The kernel of the doubling map of `ZMod n` has at most two elements. -/
+/-- The kernel of the doubling map of `ZMod n` has at most two elements.
+@isnad1 id=le.0h1v.s7.99d36b3252e4 from=translated src=- shape=81d0bd65 vocab=9c770f69
+-/
 theorem card_filter_two_mul_eq_zero_le (n : ℕ) [NeZero n] :
     #{z : ZMod n | 2 * z = 0} ≤ 2 := by
   classical
@@ -87,7 +89,9 @@ theorem card_filter_two_mul_eq_zero_le (n : ℕ) [NeZero n] :
   refine le_trans (Finset.card_le_card hsub) ?_
   exact le_trans (Finset.card_insert_le _ _) (by simp)
 
-/-- Every fibre of the doubling map `x ↦ 2 * x` of `ZMod n` has at most two elements. -/
+/-- Every fibre of the doubling map `x ↦ 2 * x` of `ZMod n` has at most two elements.
+@isnad1 id=le.0h2v.s7.322a46937bf9 from=translated src=- shape=13ea1086 vocab=9c770f69
+-/
 theorem card_filter_two_mul_eq_le (n : ℕ) [NeZero n] (c : ZMod n) :
     #{z : ZMod n | 2 * z = c} ≤ 2 := by
   classical
@@ -113,6 +117,9 @@ unordered pairs both of whose entries belong to `s`. -/
 def innerEdges (s : Finset V) : Finset (Sym2 V) :=
   s.sym2.filter fun e => ¬ e.IsDiag
 
+/--
+@isnad1 id=iff.0h3v.s6.72081c429d03 from=translated src=- shape=f1f550f3 vocab=cfe28190
+-/
 @[simp]
 lemma mem_innerEdges {s : Finset V} {e : Sym2 V} :
     e ∈ s.innerEdges ↔ (∀ v ∈ e, v ∈ s) ∧ ¬ e.IsDiag := by
@@ -122,6 +129,9 @@ lemma mem_innerEdges {s : Finset V} {e : Sym2 V} :
 def familyEdges (P : Finset (Finset V)) : Finset (Sym2 V) :=
   P.biUnion innerEdges
 
+/--
+@isnad1 id=iff.0h3v.s6.d28ba01214d3 from=translated src=- shape=09c0216e vocab=f520c793
+-/
 lemma mem_familyEdges {P : Finset (Finset V)} {e : Sym2 V} :
     e ∈ familyEdges P ↔ ∃ t ∈ P, e ∈ t.innerEdges := by
   simp [familyEdges]
@@ -145,13 +155,17 @@ def sumZeroTriples (n : ℕ) (U : Finset V) (psi : V → ZMod n) : Finset (Finse
 variable {n : ℕ} {U : Finset V} {psi : V → ZMod n}
 
 omit [DecidableEq V] in
-/-- Membership in `sumZeroTriples`: a triple of `U` with vanishing label sum. -/
+/-- Membership in `sumZeroTriples`: a triple of `U` with vanishing label sum.
+@isnad1 id=iff.0h5v.s6.40417c5fd8bc from=translated src=- shape=604b8344 vocab=0f985f99
+-/
 lemma mem_sumZeroTriples {t : Finset V} :
     t ∈ sumZeroTriples n U psi ↔ t ⊆ U ∧ #t = 3 ∧ ∑ v ∈ t, psi v = 0 := by
   simp [sumZeroTriples, Finset.mem_powerset]
 
 /-- In a three-element set containing the distinct elements `a` and `b` there is a unique third
-element. -/
+element.
+@isnad1 id=ex.4h4v.s6.9b7526621250 from=translated src=- shape=37b68e81 vocab=8a2f3134
+-/
 lemma exists_sdiff_pair_eq_singleton {t : Finset V} (ht : #t = 3) {a b : V} (ha : a ∈ t)
     (hb : b ∈ t) (hab : a ≠ b) : ∃ c, t \ ({a, b} : Finset V) = {c} := by
   have hsub : ({a, b} : Finset V) ⊆ t := by
@@ -163,7 +177,9 @@ lemma exists_sdiff_pair_eq_singleton {t : Finset V} (ht : #t = 3) {a b : V} (ha 
     rw [Finset.card_sdiff_of_subset hsub, ht, Finset.card_pair hab]
   exact Finset.card_eq_one.1 hcard
 
-/-- The label of the third vertex of a sum-zero triple is determined by the other two. -/
+/-- The label of the third vertex of a sum-zero triple is determined by the other two.
+@isnad1 id=eq.5h8v.s7.c1b3b5b6704d from=translated src=- shape=98298f4b vocab=5426f868
+-/
 lemma third_label {t : Finset V} (ht : t ∈ sumZeroTriples n U psi) {a b c : V}
     (ha : a ∈ t) (hb : b ∈ t) (hab : a ≠ b) (hc : t \ ({a, b} : Finset V) = {c}) :
     psi c = -(psi a + psi b) := by
@@ -177,7 +193,9 @@ lemma third_label {t : Finset V} (ht : t ∈ sumZeroTriples n U psi) {a b c : V}
   rw [hc, Finset.sum_singleton, Finset.sum_pair hab, hsum] at hsplit
   linear_combination hsplit
 
-/-- The sum-zero triples of an injectively labelled vertex set are pairwise edge-disjoint. -/
+/-- The sum-zero triples of an injectively labelled vertex set are pairwise edge-disjoint.
+@isnad1 id=disjoint.4h6v.s7.ac811b3ac600 from=translated src=- shape=51e4265b vocab=af220b9e
+-/
 lemma sumZeroTriples_disjoint (hinj : ∀ x ∈ U, ∀ y ∈ U, psi x = psi y → x = y) :
     ∀ t ∈ sumZeroTriples n U psi, ∀ t' ∈ sumZeroTriples n U psi, t ≠ t' →
       Disjoint t.innerEdges t'.innerEdges := by
@@ -224,7 +242,9 @@ lemma sumZeroTriples_disjoint (hinj : ∀ x ∈ U, ∀ y ∈ U, psi x = psi y �
       _ = t' := Finset.sdiff_union_of_subset hsub'
 
 /-- The canonical sum-zero triple through an edge whose two labels are not exceptional: it is a
-genuine triple of `U` and its third vertex is distinct from the two endpoints. -/
+genuine triple of `U` and its third vertex is distinct from the two endpoints.
+@isnad1 id=and.7h7v.s8.a0235eca370a from=translated src=- shape=ba0723e0 vocab=48d4b69b
+-/
 lemma canonical_triple_mem (rho : ZMod n → V) (hrhoU : ∀ z, rho z ∈ U)
     (hrho : ∀ z, psi (rho z) = z) {a b : V} (ha : a ∈ U) (hb : b ∈ U) (hab : a ≠ b)
     (h1 : psi b ≠ -(2 * psi a)) (h2 : 2 * psi b ≠ -psi a) :
@@ -261,7 +281,9 @@ lemma canonical_triple_mem (rho : ZMod n → V) (hrhoU : ∀ z, rho z ∈ U)
   · exact hb
   · rw [Finset.mem_singleton] at hx; exact hx ▸ hcU
 
-/-- The edge `s(a, b)` belongs to the edge set of the triple `{a, b, c}`. -/
+/-- The edge `s(a, b)` belongs to the edge set of the triple `{a, b, c}`.
+@isnad1 id=mem.1h4v.s5.b87529840c05 from=translated src=- shape=5c60c53e vocab=291b57d1
+-/
 lemma mem_innerEdges_triple {a b c : V} (hab : a ≠ b) :
     s(a, b) ∈ ({a, b, c} : Finset V).innerEdges := by
   rw [Finset.mem_innerEdges]
@@ -272,7 +294,9 @@ lemma mem_innerEdges_triple {a b c : V} (hab : a ≠ b) :
   · simp
 
 /-- Every edge whose two labels are not in the exceptional relation is covered by the sum-zero
-triple system. -/
+triple system.
+@isnad1 id=mem.7h7v.s8.07c601d1680b from=translated src=- shape=bdb0ab28 vocab=98eb7a06
+-/
 lemma mem_familyEdges_sumZeroTriples (rho : ZMod n → V) (hrhoU : ∀ z, rho z ∈ U)
     (hrho : ∀ z, psi (rho z) = z) {a b : V} (ha : a ∈ U) (hb : b ∈ U) (hab : a ≠ b)
     (h1 : psi b ≠ -(2 * psi a)) (h2 : 2 * psi b ≠ -psi a) :
@@ -282,7 +306,9 @@ lemma mem_familyEdges_sumZeroTriples (rho : ZMod n → V) (hrhoU : ∀ z, rho z 
 
 omit [DecidableEq V] in
 /-- There are at most three exceptional partners of a vertex, that is, vertices `u ∈ U` whose label
-satisfies `psi u = -2 * psi v` or `2 * psi u = -psi v`. -/
+satisfies `psi u = -2 * psi v` or `2 * psi u = -psi v`.
+@isnad1 id=le.1h5v.s9.0ca3d17f59ca from=translated src=- shape=3c480684 vocab=bead1bd5
+-/
 lemma card_exceptional_le [NeZero n] (hinj : ∀ x ∈ U, ∀ y ∈ U, psi x = psi y → x = y) (v : V) :
     #{u ∈ U | psi u = -(2 * psi v) ∨ 2 * psi u = -psi v} ≤ 3 := by
   classical
@@ -311,7 +337,9 @@ lemma card_exceptional_le [NeZero n] (hinj : ∀ x ∈ U, ∀ y ∈ U, psi x = p
     _ ≤ #{u ∈ U | psi u = -(2 * psi v)} + #{u ∈ U | 2 * psi u = -psi v} := Finset.card_union_le _ _
     _ ≤ 3 := by omega
 
-/-- The uncovered degree of the sum-zero triple system is at most `3` at every vertex. -/
+/-- The uncovered degree of the sum-zero triple system is at most `3` at every vertex.
+@isnad1 id=le.3h6v.s7.938d5a84eb08 from=translated src=- shape=6da35665 vocab=0033e9f8
+-/
 lemma sumZeroTriples_edgeDegree_sdiff_le [NeZero n] (rho : ZMod n → V) (hrhoU : ∀ z, rho z ∈ U)
     (hrho : ∀ z, psi (rho z) = z) (hinj : ∀ x ∈ U, ∀ y ∈ U, psi x = psi y → x = y) (v : V) :
     edgeDegree (U.innerEdges \ familyEdges (sumZeroTriples n U psi)) v ≤ 3 := by
@@ -364,7 +392,9 @@ lemma sumZeroTriples_edgeDegree_sdiff_le [NeZero n] (rho : ZMod n → V) (hrhoU 
 For every finite set `U` of vertices there is a family of pairwise edge-disjoint triangles inside
 `U` which leaves at most three uncovered edges at every vertex.  (For `|U| ≡ 1, 3 [MOD 6]` a
 Steiner triple system leaves no uncovered edge at all; the sum-zero construction used here is
-uniform in `|U|` and gives the bound `3` in all cases.) -/
+uniform in `|U|` and gives the bound `3` in all cases.)
+@isnad1 id=ex.0h2v.s7.09ca034ba5be from=translated src=- shape=1c1206f2 vocab=88368fa1
+-/
 theorem exists_triangle_packing_clique (U : Finset V) :
     ∃ P : Finset (Finset V),
       (∀ t ∈ P, #t = 3) ∧ (∀ t ∈ P, t ⊆ U) ∧

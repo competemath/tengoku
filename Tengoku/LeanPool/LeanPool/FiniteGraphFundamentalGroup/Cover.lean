@@ -50,6 +50,9 @@ def graphCoverProjection {V : Type u} [Quiver.{u} V] (root : V) :
   obj x := x.1
   map e := e.1
 
+/--
+@isnad1 id=eq.2h7v.s11.704a00509ee0 from=translated src=- shape=48b26432 vocab=08cb7056
+-/
 lemma graphCoverStar_ext {V : Type u} [Quiver.{u} V] {root : V}
     {x z y : graphCoverVertex root} (hy : z = y)
     {f : x ⟶ z} {e : x ⟶ y} (h : HEq f.1 e.1) :
@@ -58,6 +61,9 @@ lemma graphCoverStar_ext {V : Type u} [Quiver.{u} V] {root : V}
   refine Sigma.ext rfl ?_
   exact heq_of_eq (Subtype.ext (eq_of_heq h))
 
+/--
+@isnad1 id=eq.2h7v.s11.32630fe485c1 from=translated src=- shape=5b79969c vocab=08cb7056
+-/
 lemma graphCoverCostar_ext {V : Type u} [Quiver.{u} V] {root : V}
     {x z y : graphCoverVertex root} (hy : z = y)
     {f : z ⟶ x} {e : y ⟶ x} (h : HEq f.1 e.1) :
@@ -125,7 +131,9 @@ def graphCoverCostarEquiv {V : Type u} [Quiver.{u} V] (root : V)
     rintro ⟨y, e⟩
     rfl
 
-/-- The path-lifting projection is a covering of quivers. -/
+/-- The path-lifting projection is a covering of quivers.
+@isnad1 id=iscoveri.0h2v.s4.82d5078a1a1e from=translated src=- shape=334d1372 vocab=1d7ed549
+-/
 theorem graphCoverProjection_isCovering {V : Type u} [Quiver.{u} V] (root : V) :
     (graphCoverProjection root).IsCovering := by
   refine ⟨fun x => (graphCoverStarEquiv root x).bijective,

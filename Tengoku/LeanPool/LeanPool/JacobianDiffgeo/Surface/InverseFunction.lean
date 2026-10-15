@@ -38,7 +38,9 @@ variable {Y : Type*} [TopologicalSpace Y] [ChartedSpace ℂ Y] [IsManifold 𝓘(
 
 /-- **Holomorphic inverse function theorem on surfaces.** If `f` is holomorphic at `x` with
 nonvanishing chart-derivative, there is a partial homeomorphism around `x` agreeing with `f`
-that is holomorphic with holomorphic inverse. -/
+that is holomorphic with holomorphic inverse.
+@isnad1 id=ex.2h4v.s9.9c841fd3b15f from=translated src=- shape=1cb6038b vocab=1d3f29f2
+-/
 theorem exists_openPartialHomeomorph_of_deriv_ne_zero {f : X → Y} {x : X}
     (hf : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω f x)
     (hf' : deriv (writtenInExtChartAt 𝓘(ℂ) 𝓘(ℂ) x f) (extChartAt 𝓘(ℂ) x x) ≠ 0) :
@@ -171,7 +173,9 @@ theorem exists_openPartialHomeomorph_of_deriv_ne_zero {f : X → Y} {x : X}
   exact ⟨e, hxe, heq, hmd, hsymm⟩
 
 omit [IsManifold 𝓘(ℂ) ω X] [IsManifold 𝓘(ℂ) ω Y] in
-/-- The chart-free (invariant) form of the nonvanishing-derivative hypothesis. -/
+/-- The chart-free (invariant) form of the nonvanishing-derivative hypothesis.
+@isnad1 id=iff.1h4v.s11.e4ebe39c2a58 from=translated src=- shape=37427b16 vocab=5f713ef1
+-/
 theorem mfderiv_ne_zero_iff_deriv_ne_zero {f : X → Y} {x : X}
     (hf : MDifferentiableAt 𝓘(ℂ) 𝓘(ℂ) f x) :
     mfderiv 𝓘(ℂ) 𝓘(ℂ) f x ≠ 0 ↔
@@ -187,7 +191,9 @@ theorem mfderiv_ne_zero_iff_deriv_ne_zero {f : X → Y} {x : X}
     rw [fderiv_apply_one_eq_deriv, h]
     rfl
 
-/-- IFT keyed on `mfderiv` (invariant interface for mapping-degree). -/
+/-- IFT keyed on `mfderiv` (invariant interface for mapping-degree).
+@isnad1 id=ex.2h4v.s11.5404cd600b05 from=translated src=- shape=dc76518a vocab=a58e94a0
+-/
 theorem exists_openPartialHomeomorph_of_mfderiv_ne_zero {f : X → Y} {x : X}
     (hf : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω f x) (hf' : mfderiv 𝓘(ℂ) 𝓘(ℂ) f x ≠ 0) :
     ∃ e : OpenPartialHomeomorph X Y, x ∈ e.source ∧ EqOn f e e.source ∧
@@ -195,7 +201,9 @@ theorem exists_openPartialHomeomorph_of_mfderiv_ne_zero {f : X → Y} {x : X}
   exists_openPartialHomeomorph_of_deriv_ne_zero hf
     ((mfderiv_ne_zero_iff_deriv_ne_zero (hf.mdifferentiableAt (by simp))).1 hf')
 
-/-- Local-homeomorphism consequence: `f` maps neighborhoods onto neighborhoods. -/
+/-- Local-homeomorphism consequence: `f` maps neighborhoods onto neighborhoods.
+@isnad1 id=eq.2h4v.s8.45004f4b1296 from=translated src=- shape=0822dda4 vocab=18cd7ad9
+-/
 theorem map_nhds_eq_of_deriv_ne_zero {f : X → Y} {x : X}
     (hf : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω f x)
     (hf' : deriv (writtenInExtChartAt 𝓘(ℂ) 𝓘(ℂ) x f) (extChartAt 𝓘(ℂ) x x) ≠ 0) :

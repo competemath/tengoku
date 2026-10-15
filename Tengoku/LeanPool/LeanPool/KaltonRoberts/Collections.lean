@@ -67,6 +67,9 @@ noncomputable def WeightedCollection.totalWeight (C : WeightedCollection U) : �
   ∑ j : C.J, C.weight j
 
 omit [Fintype U] in
+/--
+@isnad1 id=lt.0h2v.s4.0092ea0029fd from=translated src=- shape=38fc717e vocab=282e330c
+-/
 lemma WeightedCollection.totalWeight_pos (C : WeightedCollection U) :
     0 < C.totalWeight := C.total_pos
 
@@ -85,7 +88,9 @@ noncomputable def WeightedCollection.avgSurplus
   (∑ j : C.J, C.weight j * surplus f M (C.sets j)) / C.totalWeight
 
 omit [Fintype U] in
-/-- Item frequency is nonneg. -/
+/-- Item frequency is nonneg.
+@isnad1 id=le.0h3v.s4.971487959008 from=translated src=- shape=95d29364 vocab=b5d12e24
+-/
 lemma WeightedCollection.itemFreq_nonneg (C : WeightedCollection U) (i : U) :
     0 ≤ C.itemFreq i := by
   apply div_nonneg
@@ -93,7 +98,9 @@ lemma WeightedCollection.itemFreq_nonneg (C : WeightedCollection U) (i : U) :
   · exact le_of_lt C.total_pos
 
 omit [Fintype U] in
-/-- Item frequency is at most 1. -/
+/-- Item frequency is at most 1.
+@isnad1 id=le.0h3v.s4.886a4b777596 from=translated src=- shape=4ffa2354 vocab=b5d12e24
+-/
 lemma WeightedCollection.itemFreq_le_one (C : WeightedCollection U) (i : U) :
     C.itemFreq i ≤ 1 := by
   unfold itemFreq totalWeight
@@ -113,13 +120,17 @@ noncomputable def DualCertificate.negMass
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M) : ℝ :=
   ∑ S : Finset U, max (-cert.lam S) 0
 
-/-- Positive mass is nonneg. -/
+/-- Positive mass is nonneg.
+@isnad1 id=le.0h4v.s5.a74f43128303 from=translated src=- shape=e8dd2db6 vocab=f93704ce
+-/
 lemma DualCertificate.posMass_nonneg
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M) :
     0 ≤ cert.posMass :=
   Finset.sum_nonneg fun _ _ => le_max_right _ _
 
-/-- Negative mass is nonneg. -/
+/-- Negative mass is nonneg.
+@isnad1 id=le.0h4v.s5.c372db7149bf from=translated src=- shape=e8dd2db6 vocab=1d64a13e
+-/
 lemma DualCertificate.negMass_nonneg
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M) :
     0 ≤ cert.negMass :=
@@ -127,6 +138,9 @@ lemma DualCertificate.negMass_nonneg
 
 /-
 Positive mass plus negative mass equals 1.
+-/
+/--
+@isnad1 id=eq.0h4v.s5.acc5808cd64c from=translated src=- shape=de5cc39d vocab=8f72d401
 -/
 lemma DualCertificate.posMass_add_negMass
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M) :
@@ -137,19 +151,25 @@ lemma DualCertificate.posMass_add_negMass
   exact Finset.sum_congr rfl fun _ _ => by rw [ max_def, max_def ]; split_ifs <;> cases abs_cases (
     cert.lam _ ) <;> linarith;
 
-/-- p ≤ 1 -/
+/-- p ≤ 1
+@isnad1 id=le.0h4v.s5.61ed95a9f989 from=translated src=- shape=bdda0b71 vocab=f93704ce
+-/
 lemma DualCertificate.posMass_le_one
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M) :
     cert.posMass ≤ 1 := by
   linarith [cert.posMass_add_negMass, cert.negMass_nonneg]
 
-/-- q ≤ 1 -/
+/-- q ≤ 1
+@isnad1 id=le.0h4v.s5.2a18a28372f7 from=translated src=- shape=bdda0b71 vocab=1d64a13e
+-/
 lemma DualCertificate.negMass_le_one
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M) :
     cert.negMass ≤ 1 := by
   linarith [cert.posMass_add_negMass, cert.posMass_nonneg]
 
-/-- Positive mass is positive when there is a positively-weighted set. -/
+/-- Positive mass is positive when there is a positively-weighted set.
+@isnad1 id=lt.1h4v.s5.534162f8a5ea from=translated src=- shape=b6cdfa6a vocab=116cbced
+-/
 lemma DualCertificate.posMass_pos
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M)
     (h : ∃ S : Finset U, 0 < cert.lam S) :
@@ -158,7 +178,9 @@ lemma DualCertificate.posMass_pos
   exact lt_of_lt_of_le hS (le_trans (le_max_left _ _)
     (Finset.single_le_sum (fun T _ => le_max_right _ _) (Finset.mem_univ S)))
 
-/-- Negative mass is positive when there is a negatively-weighted set. -/
+/-- Negative mass is positive when there is a negatively-weighted set.
+@isnad1 id=lt.1h4v.s5.48fb535e49d5 from=translated src=- shape=240b208e vocab=a433ecad
+-/
 lemma DualCertificate.negMass_pos
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M)
     (h : ∃ S : Finset U, cert.lam S < 0) :
@@ -176,6 +198,9 @@ lemma DualCertificate.negMass_pos
 /-
 The zero-marginal property implies that for each item `i`,
 the positive and negative contributions from sets containing `i` are equal.
+-/
+/--
+@isnad1 id=eq.0h5v.s7.b847f73d6bdd from=translated src=- shape=7942343e vocab=6072b644
 -/
 lemma DualCertificate.marginal_pos_eq_neg
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M)
@@ -195,7 +220,9 @@ lemma DualCertificate.marginal_pos_eq_neg
   linarith
 
 /-- Item frequency bound: for each item `i`, the sum of positive weights
-over sets containing `i` is at most the negative mass `q`. -/
+over sets containing `i` is at most the negative mass `q`.
+@isnad1 id=le.0h5v.s6.f822f99f125c from=translated src=- shape=fadf195c vocab=99d4626a
+-/
 lemma DualCertificate.pos_item_sum_le_negMass
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M)
     (i : U) :
@@ -206,7 +233,9 @@ lemma DualCertificate.pos_item_sum_le_negMass
     (Finset.filter_subset _ _) (fun S _ _ => le_max_right _ _)
 
 /-- Symmetric bound: for each item `i`, the sum of negative weights
-over sets containing `i` is at most the positive mass `p`. -/
+over sets containing `i` is at most the positive mass `p`.
+@isnad1 id=le.0h5v.s6.5986fa66b92e from=translated src=- shape=6793a90a vocab=53ff7572
+-/
 lemma DualCertificate.neg_item_sum_le_posMass
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M)
     (i : U) :
@@ -240,13 +269,17 @@ noncomputable def DualCertificate.negCollection
   weight_nonneg := fun _ => le_max_right _ _
   total_pos := hq
 
-/-- The total weight of the positive collection is `p`. -/
+/-- The total weight of the positive collection is `p`.
+@isnad1 id=eq.1h4v.s5.4b746f7e5c69 from=translated src=- shape=db8bf239 vocab=92b52a80
+-/
 lemma DualCertificate.posCollection_totalWeight
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M)
     (hp : 0 < cert.posMass) :
     (cert.posCollection hp).totalWeight = cert.posMass := rfl
 
-/-- The total weight of the negative collection is `q`. -/
+/-- The total weight of the negative collection is `q`.
+@isnad1 id=eq.1h4v.s5.7ab2380fa204 from=translated src=- shape=db8bf239 vocab=73b427a5
+-/
 lemma DualCertificate.negCollection_totalWeight
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M)
     (hq : 0 < cert.negMass) :
@@ -256,6 +289,9 @@ lemma DualCertificate.negCollection_totalWeight
 
 /-
 Item frequency in the positive collection is at most `q / p`.
+-/
+/--
+@isnad1 id=le.1h5v.s6.57c0dd10e84e from=translated src=- shape=370131a5 vocab=8baf21cd
 -/
 lemma DualCertificate.posCollection_itemFreq_le
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M)
@@ -273,6 +309,9 @@ lemma DualCertificate.posCollection_itemFreq_le
 /-
 Average deficit of the positive collection is 0.
 -/
+/--
+@isnad1 id=eq.1h4v.s5.67cac8295249 from=translated src=- shape=10e07ef9 vocab=9d584f78
+-/
 lemma DualCertificate.posCollection_avgDeficit_eq_zero
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M)
     (hp : 0 < cert.posMass) :
@@ -289,6 +328,9 @@ lemma DualCertificate.posCollection_avgDeficit_eq_zero
 
 /-
 Average surplus of the negative collection is 0.
+-/
+/--
+@isnad1 id=eq.1h4v.s5.99cc340a9bac from=translated src=- shape=10e07ef9 vocab=b196b02a
 -/
 lemma DualCertificate.negCollection_avgSurplus_eq_zero
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M)
@@ -310,6 +352,9 @@ lemma DualCertificate.negCollection_avgSurplus_eq_zero
 /-
 Item frequency in the negative collection is at most `p / q`.
 -/
+/--
+@isnad1 id=le.1h5v.s6.a16c315462eb from=translated src=- shape=370131a5 vocab=8ed19942
+-/
 lemma DualCertificate.negCollection_itemFreq_le
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M)
     (hq : 0 < cert.negMass) (i : U) :
@@ -325,7 +370,9 @@ lemma DualCertificate.negCollection_itemFreq_le
 
 /-! ## Swapping lemma: ensure q ≤ 1/2 -/
 
-/-- By possibly replacing `f` by `−f`, we may arrange `q ≤ 1/2 ≤ p`. -/
+/-- By possibly replacing `f` by `−f`, we may arrange `q ≤ 1/2 ≤ p`.
+@isnad1 id=or.0h4v.s6.80150d7d650b from=translated src=- shape=e5ff8894 vocab=60c08bb9
+-/
 lemma DualCertificate.can_swap_to_small_q
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M) :
     cert.negMass ≤ 1 / 2 ∨ cert.posMass ≤ 1 / 2 := by
@@ -403,7 +450,9 @@ noncomputable def DualCertificate.augNegCollection
         cert.negMass + cert.posMass from rfl]
     rw [add_comm, cert.posMass_add_negMass]; exact one_pos
 
-/-- Total weight of the augmented positive collection is 1. -/
+/-- Total weight of the augmented positive collection is 1.
+@isnad1 id=eq.0h4v.s5.90f4e0835476 from=translated src=- shape=a7d4b54c vocab=8060aa1f
+-/
 lemma DualCertificate.augPosCollection_totalWeight
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M) :
     cert.augPosCollection.totalWeight = 1 := by
@@ -411,7 +460,9 @@ lemma DualCertificate.augPosCollection_totalWeight
   simp only [Fintype.sum_sum_type]
   exact cert.posMass_add_negMass
 
-/-- Total weight of the augmented negative collection is 1. -/
+/-- Total weight of the augmented negative collection is 1.
+@isnad1 id=eq.0h4v.s5.845e9f7e3dbd from=translated src=- shape=a7d4b54c vocab=f521cc33
+-/
 lemma DualCertificate.augNegCollection_totalWeight
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M) :
     cert.augNegCollection.totalWeight = 1 := by
@@ -423,6 +474,9 @@ lemma DualCertificate.augNegCollection_totalWeight
 /-
 Item frequency in the augmented positive collection equals q (= negMass)
 for every item. This follows from the zero-marginal property.
+-/
+/--
+@isnad1 id=eq.0h5v.s5.69bdc278744d from=translated src=- shape=c54a70f3 vocab=27b8869a
 -/
 lemma DualCertificate.augPosCollection_itemFreq
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M) (i : U) :
@@ -454,6 +508,9 @@ lemma DualCertificate.augPosCollection_itemFreq
 Item frequency in the augmented negative collection equals p (= posMass)
 for every item.
 -/
+/--
+@isnad1 id=eq.0h5v.s5.263298d1c5b7 from=translated src=- shape=c54a70f3 vocab=0808ca42
+-/
 lemma DualCertificate.augNegCollection_itemFreq
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M) (i : U) :
     cert.augNegCollection.itemFreq i = cert.posMass := by
@@ -478,6 +535,9 @@ lemma DualCertificate.augNegCollection_itemFreq
 /-
 Average deficit of the augmented positive collection is at most q(1 − u)
 where u = f(U). Uses 1-additivity of f.
+-/
+/--
+@isnad1 id=le.2h4v.s6.b050d236b970 from=translated src=- shape=a2ea0c48 vocab=6da7a6d1
 -/
 lemma DualCertificate.augPosCollection_avgDeficit_le
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M)
@@ -532,6 +592,9 @@ lemma DualCertificate.augPosCollection_avgDeficit_le
 Average surplus of the augmented negative collection is at most p(1 + u)
 where u = f(U). Uses 1-additivity of f.
 -/
+/--
+@isnad1 id=le.2h4v.s6.ce393575766f from=translated src=- shape=a2ea0c48 vocab=c3ea3bef
+-/
 lemma DualCertificate.augNegCollection_avgSurplus_le
     {f : Finset U → ℝ} {M : ℝ} (cert : DualCertificate f M)
     (hf : IsApproxAdditive f 1)
@@ -581,7 +644,9 @@ noncomputable def WeightedCollection.uniformOfFamily
     exact hJ
 
 omit [Fintype U'] in
-/-- Total weight of a uniform collection equals the cardinality. -/
+/-- Total weight of a uniform collection equals the cardinality.
+@isnad1 id=eq.1h3v.s5.8f9c19621a23 from=translated src=- shape=eebf9c9b vocab=ed343c23
+-/
 lemma WeightedCollection.uniformOfFamily_totalWeight
     {J : Type u} [Fintype J] [DecidableEq J]
     (sets : J → Finset U') (hJ : 0 < Fintype.card J) :
@@ -591,7 +656,9 @@ lemma WeightedCollection.uniformOfFamily_totalWeight
 
 omit [Fintype U'] in
 /-- Item frequency in a uniform collection equals
-`card {j | i ∈ sets j} / card J`. -/
+`card {j | i ∈ sets j} / card J`.
+@isnad1 id=eq.1h4v.s6.1748a97c4b1e from=translated src=- shape=2a4d86f6 vocab=8a60d661
+-/
 lemma WeightedCollection.uniformOfFamily_itemFreq
     {J : Type u} [Fintype J] [DecidableEq J]
     (sets : J → Finset U') (hJ : 0 < Fintype.card J) (i : U') :
@@ -602,7 +669,9 @@ lemma WeightedCollection.uniformOfFamily_itemFreq
 
 omit [Fintype U'] in
 /-- Average deficit of a uniform collection equals
-`(∑ j, deficit f M (sets j)) / card J`. -/
+`(∑ j, deficit f M (sets j)) / card J`.
+@isnad1 id=eq.1h5v.s6.3248cc4c05a6 from=translated src=- shape=cee37cac vocab=d7c7cfb3
+-/
 lemma WeightedCollection.uniformOfFamily_avgDeficit
     {J : Type u} [Fintype J] [DecidableEq J]
     (sets : J → Finset U') (hJ : 0 < Fintype.card J)
@@ -614,7 +683,9 @@ lemma WeightedCollection.uniformOfFamily_avgDeficit
 
 omit [Fintype U'] in
 /-- Average surplus of a uniform collection equals
-`(∑ j, surplus f M (sets j)) / card J`. -/
+`(∑ j, surplus f M (sets j)) / card J`.
+@isnad1 id=eq.1h5v.s6.e46daadbf68f from=translated src=- shape=cee37cac vocab=32c29645
+-/
 lemma WeightedCollection.uniformOfFamily_avgSurplus
     {J : Type u} [Fintype J] [DecidableEq J]
     (sets : J → Finset U') (hJ : 0 < Fintype.card J)

@@ -28,19 +28,25 @@ def parityWord (p : ℕ) (P : List ℕ) : List ℕ :=
   P.filterMap (fun n => if n % 2 = p then some (n / 2) else none)
 
 /-- Parity restriction respects the order of concatenated words, as used
-when the proof forms the extension `Q = P O E`. -/
+when the proof forms the extension `Q = P O E`.
+@isnad1 id=eq.0h3v.s5.8ff483c96a10 from=translated src=- shape=35a5627c vocab=d94cf1c4
+-/
 @[simp] theorem parityWord_append (p : ℕ) (P Q : List ℕ) :
     parityWord p (P ++ Q) = parityWord p P ++ parityWord p Q := by
   simp [parityWord]
 
-/-- The recursive description of the parity-restricted word in Lemma 2. -/
+/-- The recursive description of the parity-restricted word in Lemma 2.
+@isnad1 id=eq.0h3v.s6.484099b62ab2 from=translated src=- shape=f7455258 vocab=035c4bfb
+-/
 @[simp] theorem parityWord_cons (p n : ℕ) (P : List ℕ) :
     parityWord p (n :: P) =
       if n % 2 = p then n / 2 :: parityWord p P else parityWord p P := by
   by_cases h : n % 2 = p <;> simp [parityWord, h]
 
 /-- A number occurs in `Pₚ` exactly when its original, unscaled value occurs
-in `P`. This is the membership assertion implicit in the parity split. -/
+in `P`. This is the membership assertion implicit in the parity split.
+@isnad1 id=iff.1h3v.s5.7c87b72a1b4a from=translated src=- shape=3a5db95c vocab=16fea983
+-/
 theorem mem_parityWord_iff {p x : ℕ} (hp : p < 2) (P : List ℕ) :
     x ∈ parityWord p P ↔ 2 * x + p ∈ P := by
   induction P with
@@ -55,7 +61,9 @@ theorem mem_parityWord_iff {p x : ℕ} (hp : p < 2) (P : List ℕ) :
       simp [hn, ih, hne]
 
 /-- Rescaling one parity preserves distinctness; hence the parity words
-appearing in the Extension Lemma are again words without repetitions. -/
+appearing in the Extension Lemma are again words without repetitions.
+@isnad1 id=nodup.2h2v.s4.446e39b525bb from=translated src=- shape=ebf6cc26 vocab=e5512fdf
+-/
 theorem nodup_parityWord {p : ℕ} (hp : p < 2) {P : List ℕ}
     (hP : P.Nodup) : (parityWord p P).Nodup := by
   induction P with
@@ -73,7 +81,9 @@ theorem nodup_parityWord {p : ℕ} (hp : p < 2) {P : List ℕ}
     · exact ih hP
 
 /-- If both parity words have distinct entries, the original word does too.
-This is the distinctness argument for the new word `Q = P O E` in Lemma 2. -/
+This is the distinctness argument for the new word `Q = P O E` in Lemma 2.
+@isnad1 id=nodup.2h1v.s4.d294eee0c64d from=translated src=- shape=36ca97c0 vocab=cf4d0ff0
+-/
 theorem nodup_of_parityWord {Q : List ℕ}
     (h0 : (parityWord 0 Q).Nodup) (h1 : (parityWord 1 Q).Nodup) : Q.Nodup := by
   induction Q with
@@ -105,7 +115,9 @@ theorem nodup_of_parityWord {Q : List ℕ}
 
 /-- Restricting `𝒞(P)` to parity `p` and rescaling gives exactly `𝒞(Pₚ)`.
 This formalizes the self-similarity argument in the first inductive paragraph
-of the Extension Lemma. -/
+of the Extension Lemma.
+@isnad1 id=iff.1h4v.s6.bae7a9546a8c from=translated src=- shape=9334456c vocab=1e35ce16
+-/
 theorem completion_parity {p : ℕ} (hp : p < 2) (P : List ℕ) (a b : ℕ) :
     Completion bits P (2 * a + p) (2 * b + p) ↔
       Completion bits (parityWord p P) a b := by
@@ -123,7 +135,9 @@ theorem completion_parity {p : ℕ} (hp : p < 2) (P : List ℕ) (a b : ℕ) :
       simp [hn, completion_cons, ha, hb, ih]
 
 /-- The parity words of a safe word are safe (Extension Lemma, paragraph
-beginning “Both `P₀` and `P₁` are safe”). -/
+beginning “Both `P₀` and `P₁` are safe”).
+@isnad1 id=safe.2h2v.s4.0485814d5fd7 from=translated src=- shape=e0f039b7 vocab=249987d0
+-/
 theorem safe_parity {p : ℕ} (hp : p < 2) {P : List ℕ}
     (hP : Safe bits P) : Safe bits (parityWord p P) := by
   refine ⟨nodup_parityWord hp hP.1, ?_⟩
@@ -137,7 +151,9 @@ theorem safe_parity {p : ℕ} (hp : p < 2) {P : List ℕ}
   · exact (completion_parity hp P c d).mpr hcd
 
 /-- Normalizing a word already rescaled into parity `p` recovers the original
-word, as in the construction of the suffixes `E` and `O`. -/
+word, as in the construction of the suffixes `E` and `O`.
+@isnad1 id=eq.1h2v.s5.7c4afd56c9c9 from=translated src=- shape=2adbd558 vocab=72e8097f
+-/
 @[simp] theorem parityWord_map_same {p : ℕ} (hp : p < 2) (P : List ℕ) :
     parityWord p (P.map (fun x => 2 * x + p)) = P := by
   induction P with
@@ -149,7 +165,9 @@ word, as in the construction of the suffixes `E` and `O`. -/
     simp [hmod, hdiv, ih]
 
 /-- Projecting a word of the other parity yields the empty word. This
-justifies separating the new odd and even suffixes of `Q = P O E`. -/
+justifies separating the new odd and even suffixes of `Q = P O E`.
+@isnad1 id=eq.2h3v.s5.a14219a5de47 from=translated src=- shape=c4d8763a vocab=deb91c31
+-/
 @[simp] theorem parityWord_map_other {p q : ℕ} (hq : q < 2)
     (hpq : p ≠ q) (P : List ℕ) :
     parityWord p (P.map (fun x => 2 * x + q)) = [] := by
@@ -162,7 +180,9 @@ justifies separating the new odd and even suffixes of `Q = P O E`. -/
     exact ih
 
 /-- Inside a word listed in reverse `◁` order, an earlier entry is later in
-`◁`. This is the first comparison used in the two-prefix-term case of Lemma 1. -/
+`◁`. This is the first comparison used in the two-prefix-term case of Lemma 1.
+@isnad1 id=bits.3h3v.s5.261ae5dadc72 from=translated src=- shape=07b1ae38 vocab=528742e1
+-/
 theorem reverse_bits_of_completion {P : List ℕ}
     (hs : P.Pairwise (fun a b => bits b a)) {a b : ℕ}
     (hab : Completion bits P a b) (hb : b ∈ P) : bits b a := by
@@ -177,7 +197,9 @@ theorem reverse_bits_of_completion {P : List ℕ}
 
 /-- **Lemma 1 of the paper.** Every finite word of distinct integers listed in
 reverse `◁` order is safe. The proof separates the cases of at least three,
-exactly two, and at most one progression term in the finite prefix. -/
+exactly two, and at most one progression term in the finite prefix.
+@isnad1 id=safe.2h1v.s4.87586dfbcab9 from=translated src=- shape=d8eacf62 vocab=f4302fcf
+-/
 theorem safe_of_reverse_pairwise {P : List ℕ} (hn : P.Nodup)
     (hs : P.Pairwise (fun a b => bits b a)) : Safe bits P := by
   refine ⟨hn, ?_⟩
@@ -205,7 +227,9 @@ def reverseBitsLE (a b : ℕ) : Prop := a = b ∨ bits b a
 instance reverseBitsLEDecidable : DecidableRel reverseBitsLE :=
   fun _ _ => inferInstanceAs (Decidable (_ ∨ _))
 
-/-- Transitivity permits sorting in the reverse order used in Lemma 1. -/
+/-- Transitivity permits sorting in the reverse order used in Lemma 1.
+@isnad1 id=istrans.0h0v.s1.b89bcd2b5d8a from=translated src=- shape=25b03439 vocab=33b13d9c
+-/
 instance reverseBitsLETrans : IsTrans ℕ reverseBitsLE where
   trans a b c hab hbc := by
     rcases hab with rfl | hab
@@ -214,7 +238,9 @@ instance reverseBitsLETrans : IsTrans ℕ reverseBitsLE where
     · exact Or.inr hab
     · exact Or.inr (bits_trans hbc hab)
 
-/-- Antisymmetry makes the reverse listing of a finite set unique. -/
+/-- Antisymmetry makes the reverse listing of a finite set unique.
+@isnad1 id=antisymm.0h0v.s1.647686c6fdcf from=translated src=- shape=25b03439 vocab=4d998141
+-/
 instance reverseBitsLEAntisymm : Std.Antisymm reverseBitsLE where
   antisymm a b hab hba := by
     rcases hab with h | hab
@@ -223,7 +249,9 @@ instance reverseBitsLEAntisymm : Std.Antisymm reverseBitsLE where
     · exact h.symm
     · exact (bits_asymm hab hba).elim
 
-/-- Any two integers can be compared when forming the reverse listing. -/
+/-- Any two integers can be compared when forming the reverse listing.
+@isnad1 id=total.0h0v.s1.28d4d51a275b from=translated src=- shape=25b03439 vocab=967e2004
+-/
 instance reverseBitsLETotal : Std.Total reverseBitsLE where
   total a b := by
     by_cases h : a = b
@@ -236,15 +264,21 @@ instance reverseBitsLETotal : Std.Total reverseBitsLE where
 This definition is computable, using mathlib's finite-set merge sort. -/
 def reverseWord (T : Finset ℕ) : List ℕ := T.sort reverseBitsLE
 
-/-- The reverse listing contains each and only each prescribed entry. -/
+/-- The reverse listing contains each and only each prescribed entry.
+@isnad1 id=iff.0h2v.s4.9748d4467c4b from=translated src=- shape=5a1cf6b0 vocab=6cde27c5
+-/
 @[simp] theorem mem_reverseWord {T : Finset ℕ} {x : ℕ} :
     x ∈ reverseWord T ↔ x ∈ T := Finset.mem_sort reverseBitsLE
 
-/-- The reverse listing contains no repeated entry, as required of a word. -/
+/-- The reverse listing contains no repeated entry, as required of a word.
+@isnad1 id=nodup.0h1v.s2.a52e03541df9 from=translated src=- shape=0ae065e3 vocab=10838025
+-/
 theorem reverseWord_nodup (T : Finset ℕ) : (reverseWord T).Nodup :=
   Finset.sort_nodup T reverseBitsLE
 
-/-- The reverse listing has the strict reverse order required in Lemma 1. -/
+/-- The reverse listing has the strict reverse order required in Lemma 1.
+@isnad1 id=pairwise.0h1v.s3.3aed328f21ab from=translated src=- shape=887b96ed vocab=63dbc714
+-/
 theorem reverseWord_pairwise (T : Finset ℕ) :
     (reverseWord T).Pairwise (fun a b => bits b a) := by
   apply List.Pairwise.imp₂ (R := reverseBitsLE) (S := (· ≠ ·))
@@ -252,12 +286,16 @@ theorem reverseWord_pairwise (T : Finset ℕ) :
   · exact Finset.pairwise_sort T reverseBitsLE
   · exact reverseWord_nodup T
 
-/-- Lemma 1 specialized to the canonical reverse listing of a finite set. -/
+/-- Lemma 1 specialized to the canonical reverse listing of a finite set.
+@isnad1 id=safe.0h1v.s2.08b849718cf9 from=translated src=- shape=12d4eb43 vocab=a53fcf91
+-/
 theorem safe_reverseWord (T : Finset ℕ) : Safe bits (reverseWord T) :=
   safe_of_reverse_pairwise (reverseWord_nodup T) (reverseWord_pairwise T)
 
 /-- If zero belongs to a finite set, its reverse binary listing begins with
-zero. This is the sorting observation in the base case of Lemma 2. -/
+zero. This is the sorting observation in the base case of Lemma 2.
+@isnad1 id=eq.1h1v.s5.a0c3403345ec from=translated src=- shape=f18be6ec vocab=1307a5d6
+-/
 theorem reverseWord_zero_first {T : Finset ℕ} (h0 : 0 ∈ T) :
     reverseWord T = 0 :: reverseWord (T.erase 0) := by
   have hsort := Finset.sort_insert (s := T.erase 0) reverseBitsLE
@@ -267,7 +305,9 @@ theorem reverseWord_zero_first {T : Finset ℕ} (h0 : 0 ∈ T) :
 
 /-- Canonical form of the base-case extension in Lemma 2. Sorting `P ∪ T`
 in reverse binary order preserves the old prefix whenever all its entries
-are zero. This also connects the executable construction to the proof. -/
+are zero. This also connects the executable construction to the proof.
+@isnad1 id=isprefix.2h2v.s5.82c748a2c24d from=translated src=- shape=247cace1 vocab=ccd5e1ea
+-/
 theorem reverseWord_union_prefix {P : List ℕ} (hP : P.Nodup)
     (hzero : ∀ x ∈ P, x = 0) (T : Finset ℕ) :
     P.IsPrefix (reverseWord (P.toFinset ∪ T)) := by

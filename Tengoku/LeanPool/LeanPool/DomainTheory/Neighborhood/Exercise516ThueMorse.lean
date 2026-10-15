@@ -71,11 +71,19 @@ def expand : Str → Str
   | [] => []
   | b :: σ => b :: (!b) :: expand σ
 
+/--
+@isnad1 id=eq.0h0v.s2.3c5c1966c69a from=translated src=- shape=d3545b1f vocab=0b418272
+-/
 @[simp] theorem expand_nil : expand [] = [] := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.c9cbdf4a61a5 from=translated src=- shape=9f2a6311 vocab=b78e8f6a
+-/
 @[simp] theorem expand_cons (b : Bool) (σ : Str) : expand (b :: σ) = b :: (!b) :: expand σ := rfl
 
-/-- `expand` distributes over append (it is a monoid morphism `Σ* → Σ*`). -/
+/-- `expand` distributes over append (it is a monoid morphism `Σ* → Σ*`).
+@isnad1 id=eq.0h2v.s4.d31817fe70df from=translated src=- shape=a13ca989 vocab=d853a3ec
+-/
 theorem expand_append (σ τ : Str) : expand (σ ++ τ) = expand σ ++ expand τ := by
   induction σ with
   | nil => rfl
@@ -86,7 +94,9 @@ theorem expand_append (σ τ : Str) : expand (σ ++ τ) = expand σ ++ expand τ
 /-- The second (total/partial-flag) component of an interleaving with a partial
 first input is
 always
-`false`: a partial input keeps the output partial. -/
+`false`: a partial input keeps the output partial.
+@isnad1 id=eq.0h3v.s4.ac2c44ca4b0c from=translated src=- shape=eb269659 vocab=1c89d034
+-/
 theorem mergeVal_snd_false : ∀ (σ τ : Str) (b₁ : Bool), (mergeVal σ false τ b₁).2 = false
   | [], _, _ => rfl
   | _ :: _, [], _ => rfl
@@ -95,7 +105,9 @@ theorem mergeVal_snd_false : ∀ (σ τ : Str) (b₁ : Bool), (mergeVal σ false
 /-- The interleaving of `h :: flip ρ` with `ρ` (both starting after a common head
 `h`) is
 `h :: expand ρ`. This is the heart of why `Φ` *is* the Thue–Morse morphism on the
-trajectory. -/
+trajectory.
+@isnad1 id=eq.0h2v.s4.537002645fb3 from=translated src=- shape=89480e51 vocab=f373053d
+-/
 theorem weave_head : ∀ (h : Bool) (
   ρ : Str), (mergeVal (h :: flip ρ) false ρ false).1 = h :: expand ρ
   | h, [] => rfl
@@ -110,7 +122,9 @@ def tmOp : ApproximableMap C C :=
 
 /-- The value of `Φ` on a partial element `σ⊥` is `(0 · weave σ)⊥`, the leading
 `0` prepended to the
-interleaving of `(flip σ)⊥` and `(tail σ)⊥`. -/
+interleaving of `(flip σ)⊥` and `(tail σ)⊥`.
+@isnad1 id=eq.0h1v.s4.8eb6866dfb4d from=translated src=- shape=56e76a19 vocab=1e45e2f4
+-/
 theorem tmOp_strBot (σ : Str) :
     tmOp.toElementMap (strBot σ)
       = strBot (false :: (mergeVal (flip σ) false σ.tail false).1) := by
@@ -123,7 +137,9 @@ theorem tmOp_strBot (σ : Str) :
 /-- **The Thue–Morse trajectory.** On a partial element whose string starts with
 `0`, `Φ` acts
 as the
-Thue–Morse morphism `expand`. -/
+Thue–Morse morphism `expand`.
+@isnad1 id=eq.0h1v.s4.2aba9677713c from=translated src=- shape=2c30104a vocab=fe820a0c
+-/
 theorem tmOp_strBot_expand (ρ : Str) :
     tmOp.toElementMap (strBot (false :: ρ)) = strBot (expand (false :: ρ)) := by
   rw [tmOp_strBot]
@@ -133,19 +149,25 @@ theorem tmOp_strBot_expand (ρ : Str) :
 /-! ### The finite approximants of the least fixed point are the morphism
 iterates. -/
 
-/-- The base of the iterated bottom element: `f⁰(⊥) = ⊥`. -/
+/-- The base of the iterated bottom element: `f⁰(⊥) = ⊥`.
+@isnad1 id=eq.0h3v.s4.b343239158a0 from=translated src=- shape=5550e632 vocab=1ce62c39
+-/
 theorem iterElem_zero' {α : Type*} {V : NeighborhoodSystem α} (f : ApproximableMap V V) :
     f.iterElem 0 = V.bot := by
   rw [iterElem_eq_iterate, Function.iterate_zero_apply]
 
-/-- A one-step unfolding of the iterated bottom element: `fⁿ⁺¹(⊥) = f(fⁿ(⊥))`. -/
+/-- A one-step unfolding of the iterated bottom element: `fⁿ⁺¹(⊥) = f(fⁿ(⊥))`.
+@isnad1 id=eq.0h4v.s5.fd24a0b1b6be from=translated src=- shape=c413e239 vocab=94acb20f
+-/
 theorem iterElem_succ {α : Type*} {V : NeighborhoodSystem α} (f : ApproximableMap V V) (n : ℕ) :
     f.iterElem (n + 1) = f.toElementMap (f.iterElem n) := by
   rw [iterElem_eq_iterate, iterElem_eq_iterate]
   exact Function.iterate_succ_apply' f.toElementMap n V.bot
 
 /-- Every iterate of `expand` from `[0]` starts with `0` (so `Φ` keeps acting as
-`expand`). -/
+`expand`).
+@isnad1 id=ex.0h1v.s4.93cd209c836c from=translated src=- shape=bbe0a257 vocab=257873ab
+-/
 theorem iterate_expand_cons (k : ℕ) : ∃ ρ, (expand^[k] [false] : Str) = false :: ρ := by
   induction k with
   | zero => exact ⟨[], rfl⟩
@@ -153,7 +175,9 @@ theorem iterate_expand_cons (k : ℕ) : ∃ ρ, (expand^[k] [false] : Str) = fal
     obtain ⟨ρ, hρ⟩ := ih
     exact ⟨true :: expand ρ, by rw [Function.iterate_succ_apply', hρ]; rfl⟩
 
-/-- `⊥ = []⊥` in `C` (the cone of `Λ` is the master). -/
+/-- `⊥ = []⊥` in `C` (the cone of `Λ` is the master).
+@isnad1 id=eq.0h0v.s3.b42c90d46af1 from=translated src=- shape=c67ce00d vocab=4a6fe66b
+-/
 theorem strBot_nil : strBot [] = C.bot := by
   apply Element.ext
   intro Y
@@ -164,7 +188,9 @@ theorem strBot_nil : strBot [] = C.bot := by
 /-- **Exercise 5.16 (the approximants).** The `(k+1)`-st approximant of the least
 fixed point is the
 partial element of the `k`-fold Thue–Morse morphism iterate of `[0]`:
-`Φᵏ⁺¹(⊥) = (expandᵏ[0])⊥`. -/
+`Φᵏ⁺¹(⊥) = (expandᵏ[0])⊥`.
+@isnad1 id=eq.0h1v.s5.dfd338994328 from=translated src=- shape=efd6ec1d vocab=52c49e91
+-/
 theorem iterElem_succ_eq (k : ℕ) :
     tmOp.iterElem (k + 1) = strBot (expand^[k] [false]) := by
   induction k with
@@ -182,32 +208,50 @@ number of `1`s in
 the binary expansion of `n` (Lambek's description). -/
 def tm (n : ℕ) : Bool := (Nat.bits n).foldr xor false
 
+/--
+@isnad1 id=eq.0h0v.s3.c7d81dad1650 from=translated src=- shape=d3a93718 vocab=e1219a8a
+-/
 @[simp] theorem tm_zero : tm 0 = false := by simp [tm, Nat.zero_bits]
 
 /-- The even recurrence `tm (2n) = tm n` (appending a `0`-digit does not change
-the parity). -/
+the parity).
+@isnad1 id=eq.0h1v.s4.965ce37e5547 from=translated src=- shape=48d9f9ac vocab=1d8f55c9
+-/
 theorem tm_two_mul (n : ℕ) : tm (2 * n) = tm n := by
   rcases Nat.eq_zero_or_pos n with rfl | hn
   · rfl
   · simp only [tm, Nat.bit0_bits n (by omega : n ≠ 0), List.foldr_cons, Bool.false_xor]
 
 /-- The odd recurrence `tm (2n+1) = ¬ tm n` (appending a `1`-digit flips the
-parity). -/
+parity).
+@isnad1 id=eq.0h1v.s5.6286b267f237 from=translated src=- shape=f53f1fde vocab=6243a85c
+-/
 theorem tm_two_mul_add_one (n : ℕ) : tm (2 * n + 1) = !tm n := by
   simp only [tm, Nat.bit1_bits n, List.foldr_cons, Bool.true_xor]
 
 /-- The length-`n` Thue–Morse prefix `[tm 0, tm 1, …, tm (n-1)]`. -/
 def tmList (n : ℕ) : Str := (List.range n).map tm
 
+/--
+@isnad1 id=eq.0h0v.s3.40b02d116d72 from=translated src=- shape=04794901 vocab=5cfc84a8
+-/
 @[simp] theorem tmList_zero : tmList 0 = [] := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.bdd7e659dc2c from=translated src=- shape=519e44a4 vocab=da4c430e
+-/
 theorem tmList_succ (n : ℕ) : tmList (n + 1) = tmList n ++ [tm n] := by
   simp only [tmList, List.range_succ, List.map_append, List.map_cons, List.map_nil]
 
+/--
+@isnad1 id=eq.0h1v.s3.ff995b56ec44 from=translated src=- shape=c3f7ecf6 vocab=8c29476f
+-/
 theorem tmList_length (n : ℕ) : (tmList n).length = n := by
   rw [tmList, List.length_map, List.length_range]
 
-/-- Thue–Morse prefixes are nested in the prefix order. -/
+/-- Thue–Morse prefixes are nested in the prefix order.
+@isnad1 id=isprefix.1h2v.s4.55388d6581cf from=translated src=- shape=992e8d55 vocab=bff38361
+-/
 theorem tmList_prefix {n m : ℕ} (h : n ≤ m) : tmList n <+: tmList m := by
   induction m with
   | zero => rw [Nat.le_zero.mp h]
@@ -220,7 +264,9 @@ theorem tmList_prefix {n m : ℕ} (h : n ≤ m) : tmList n <+: tmList m := by
 the Thue–Morse
 morphism to a length-`m` prefix yields the length-`2m` prefix — this is exactly
 the even/odd parity
-recurrence in disguise. -/
+recurrence in disguise.
+@isnad1 id=eq.0h1v.s4.63723ae19b82 from=translated src=- shape=ec20e67d vocab=58f6e480
+-/
 theorem expand_tmList (m : ℕ) : expand (tmList m) = tmList (2 * m) := by
   induction m with
   | zero => rfl
@@ -233,7 +279,9 @@ theorem expand_tmList (m : ℕ) : expand (tmList m) = tmList (2 * m) := by
 
 /-- **The bridge.** The `k`-fold morphism iterate of `[0]` is the Thue–Morse
 parity prefix of length
-`2ᵏ`: `expandᵏ[0] = tmList (2ᵏ)`. -/
+`2ᵏ`: `expandᵏ[0] = tmList (2ᵏ)`.
+@isnad1 id=eq.0h1v.s5.27d283420d1f from=translated src=- shape=1e1e0703 vocab=e295549f
+-/
 theorem expand_iterate_eq (k : ℕ) : (expand^[k] [false] : Str) = tmList (2 ^ k) := by
   induction k with
   | zero => rfl
@@ -247,7 +295,9 @@ theorem expand_iterate_eq (k : ℕ) : (expand^[k] [false] : Str) = tmList (2 ^ k
 the least fixed point of `Φ`. -/
 def tElt : C.Element := tmOp.fixElement
 
-/-- **Exercise 5.16 — the defining unfolding.** `t = 0·merge(neg t, tail t)`. -/
+/-- **Exercise 5.16 — the defining unfolding.** `t = 0·merge(neg t, tail t)`.
+@isnad1 id=eq.0h0v.s5.600e47b1b5c6 from=translated src=- shape=49b33011 vocab=3b82ae24
+-/
 theorem tElt_unfold :
     (consMap false).toElementMap
         (mergeMap.toElementMap (pair (negMap.toElementMap tElt) (tailMap.toElementMap tElt)))
@@ -259,19 +309,25 @@ theorem tElt_unfold :
 /-! ### Property (a) — the digit characterization. -/
 
 /-- `(strBot τ)` has the cone of `σ` as a neighbourhood iff `σ` is a prefix of
-`τ`. -/
+`τ`.
+@isnad1 id=iff.0h2v.s4.78b66c05d27c from=translated src=- shape=d8dc0791 vocab=9e601845
+-/
 theorem strBot_mem_cone {σ τ : Str} : (strBot τ).mem (cone σ) ↔ σ <+: τ := by
   rw [strBot, mem_principal]
   exact ⟨fun h => cone_subset_cone.mp h.2, fun h => ⟨memC_cone σ, cone_subset_cone.mpr h⟩⟩
 
-/-- `σΣ* = Σ*` iff `σ = Λ`. -/
+/-- `σΣ* = Σ*` iff `σ = Λ`.
+@isnad1 id=iff.0h1v.s3.c123471465be from=translated src=- shape=f050a2c4 vocab=10b488b1
+-/
 theorem cone_univ_iff {σ : Str} : cone σ = Set.univ ↔ σ = [] := by
   constructor
   · intro h
     exact List.prefix_nil.mp (mem_cone.mp (h ▸ Set.mem_univ ([] : Str)))
   · rintro rfl; exact cone_nil
 
-/-- Each approximant is below the least fixed point. -/
+/-- Each approximant is below the least fixed point.
+@isnad1 id=le.0h4v.s5.0c4dcf93af72 from=translated src=- shape=0e372d7f vocab=79841113
+-/
 theorem iterElem_le_fixElement {α : Type*} {V : NeighborhoodSystem α} (f : ApproximableMap V V)
     (n : ℕ) : f.iterElem n ≤ f.fixElement := by
   rw [f.fixElement_eq_iSupDirected]
@@ -281,7 +337,9 @@ theorem iterElem_le_fixElement {α : Type*} {V : NeighborhoodSystem α} (f : App
 
 /-- **Property (a), prefix form.** Every Thue–Morse parity prefix is a prefix of
 `t`:
-`(tmList n)⊥ ⊑ t` for all `n`. -/
+`(tmList n)⊥ ⊑ t` for all `n`.
+@isnad1 id=le.0h1v.s4.2cbd60f0e296 from=translated src=- shape=833408d1 vocab=f856def6
+-/
 theorem tmList_le_tElt (n : ℕ) : strBot (tmList n) ≤ tElt := by
   have hpre : tmList n <+: expand^[n] [false] := by
     rw [expand_iterate_eq]; exact tmList_prefix (Nat.le_of_lt (Nat.lt_two_pow_self))
@@ -295,7 +353,9 @@ characterization of `t`: a
 string `σ` is a prefix of `t` **iff** it is the length-`σ.length` Thue–Morse
 parity prefix. Reading
 off position `n`, the `n`-th digit of `t` is `tm n`, the parity of the binary
-digits of `n`. -/
+digits of `n`.
+@isnad1 id=iff.0h1v.s4.a2798988dbd7 from=translated src=- shape=9ca1bb99 vocab=6a4ca4b8
+-/
 theorem tElt_mem_cone_iff (σ : Str) : tElt.mem (cone σ) ↔ σ = tmList σ.length := by
   constructor
   · intro hσ
@@ -327,7 +387,9 @@ theorem tElt_mem_cone_iff (σ : Str) : tElt.mem (cone σ) ↔ σ = tmList σ.len
 
 /-- **Property (a), digit form.** The `n`-th digit of `t` is `tm n` (the parity of
 the binary digits
-of `n`): the length-`(n+1)` prefix of `t` is `tmList n ++ [tm n]`. -/
+of `n`): the length-`(n+1)` prefix of `t` is `tmList n ++ [tm n]`.
+@isnad1 id=le.0h1v.s5.7c6f2dbdae71 from=translated src=- shape=5656550d vocab=4ff25d4e
+-/
 theorem tElt_digit (n : ℕ) : strBot (tmList n ++ [tm n]) ≤ tElt := by
   have h := tmList_le_tElt (n + 1)
   rwa [tmList_succ] at h

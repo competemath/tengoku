@@ -31,7 +31,9 @@ namespace Language
 
 open MeasureTheory
 
-/-- The set of codes where a given relation query returns `true` is measurable (generic). -/
+/-- The set of codes where a given relation query returns `true` is measurable (generic).
+@isnad1 id=measurab.0h3v.s5.ef8b12dc874c from=translated src=- shape=6b35273a vocab=16e8df7c
+-/
 theorem measurableSet_relHoldsOn {α : Type*} (q : RelQueryOn L α) :
     MeasurableSet {c : StructureSpaceOn L α | c q = true} := by
   have : {c : StructureSpaceOn L α | c q = true} = (fun c => c q) ⁻¹' {true} := by
@@ -46,7 +48,9 @@ instance : MeasurableSpace (StructureSpace L) :=
   MeasurableSpace.pi
 
 /-- The set of codes where a given relation query returns `true` is measurable.
-These are the basic cylinder sets generating the σ-algebra. -/
+These are the basic cylinder sets generating the σ-algebra.
+@isnad1 id=measurab.0h2v.s4.8c548b452c0a from=translated src=- shape=0d49fb93 vocab=450e4bfa
+-/
 theorem measurableSet_relHolds (q : RelQuery L) :
     MeasurableSet {c : StructureSpace L | c q = true} := by
   have : {c : StructureSpace L | c q = true} = (fun c => c q) ⁻¹' {true} := by

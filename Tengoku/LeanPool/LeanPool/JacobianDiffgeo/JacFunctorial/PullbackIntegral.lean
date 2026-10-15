@@ -31,7 +31,9 @@ variable {Y : Type*} [TopologicalSpace Y] [ChartedSpace ℂ Y] [IsManifold 𝓘(
 variable {α : Type*} [TopologicalSpace α]
 
 /-- A primitive of `η` along `f ∘ K` pulls back to a primitive of `Form1.pullback f hf η`
-along `K` (§4.2). -/
+along `K` (§4.2).
+@isnad1 id=isprimit.3h8v.s13.2ff2a116a77a from=translated src=- shape=92f1d0a3 vocab=bc31dd0b
+-/
 theorem IsPrimitiveAlongMap.pullback_comp {f : X → Y} (hf : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω f)
     {K : α → X} {s : Set α} (hK : ContinuousOn K s) {η : Form1 Y} {F : α → ℂ}
     (h : IsPrimitiveAlongMap (f ∘ K) η F s) :
@@ -89,6 +91,9 @@ theorem IsPrimitiveAlongMap.pullback_comp {f : X → Y} (hf : ContMDiff 𝓘(ℂ
 
 variable {x y : X}
 
+/--
+@isnad1 id=eq.1h7v.s13.689e4e9e18f8 from=translated src=- shape=5930cf46 vocab=f11b3257
+-/
 theorem pathIntegral_pullback {f : X → Y} (hf : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω f) (γ : Path x y)
     (η : Form1 Y) :
     pathIntegral γ (Form1.pullback f hf η) = pathIntegral (γ.map hf.continuous) η := by

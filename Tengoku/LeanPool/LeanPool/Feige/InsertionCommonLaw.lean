@@ -40,6 +40,9 @@ def stateSignedSum (γ β : ι → ℝ) (S : Finset ι)
     ∑ i, if i ∈ S then -(β i * (e (some i) : ℝ))
       else γ i * (e (some i) : ℝ)
 
+/--
+@isnad1 id=measurab.0h4v.s5.5fcae58c9906 from=translated src=- shape=27712ff8 vocab=0ac7d9b4
+-/
 theorem measurable_stateSignedSum (γ β : ι → ℝ) (S : Finset ι) :
     Measurable (stateSignedSum γ β S) := by
   unfold stateSignedSum
@@ -58,7 +61,9 @@ noncomputable def stateLaw (γ β : ι → ℝ) (S : Finset ι) : Measure ℝ :=
   Measure.map (stateSignedSum γ β S) (expProductMeasure ι)
 
 /-- The original event in the definition of `K` is exactly nonnegativity
-of the signed sum. -/
+of the signed sum.
+@isnad1 id=eq.0h4v.s5.5ab815b437ff from=translated src=- shape=31f24a87 vocab=808bb815
+-/
 theorem kEvent_twoPointVector_eq_stateSignedSum
     (γ β : ι → ℝ) (S : Finset ι) :
     kEvent (twoPointVector γ β (S : Set ι)) =
@@ -87,7 +92,9 @@ theorem kEvent_twoPointVector_eq_stateSignedSum
   constructor <;> intro h <;> linarith
 
 /-- `twoPointKFinset` is the nonnegative-tail probability of the actual
-signed exponential state law. -/
+signed exponential state law.
+@isnad1 id=eq.0h4v.s5.c86278137400 from=translated src=- shape=5ff9375d vocab=5b87a66a
+-/
 theorem twoPointKFinset_eq_stateLaw
     (γ β : ι → ℝ) (S : Finset ι) :
     twoPointKFinset γ β S =
@@ -106,6 +113,9 @@ def stateCommonSignedSum (γ β : ι → ℝ) (S : Finset ι) (changed : ι)
       if i ∈ S then -(β i * (e (some i) : ℝ))
       else γ i * (e (some i) : ℝ)
 
+/--
+@isnad1 id=measurab.0h5v.s5.9bccade99494 from=translated src=- shape=c707600a vocab=a961bcc8
+-/
 theorem measurable_stateCommonSignedSum
     (γ β : ι → ℝ) (S : Finset ι) (changed : ι) :
     Measurable (stateCommonSignedSum γ β S changed) := by
@@ -121,7 +131,9 @@ theorem measurable_stateCommonSignedSum
       fun_prop
 
 /-- At the low endpoint, the state sum is the common sum plus the changed
-positive exponential. -/
+positive exponential.
+@isnad1 id=eq.1h6v.s6.217295b2c739 from=translated src=- shape=8cfcd51a vocab=1d58bd99
+-/
 theorem stateSignedSum_eq_common_add
     (γ β : ι → ℝ) (S : Finset ι) (changed : ι)
     (hj : changed ∉ S) (e : Option ι → NNReal) :
@@ -134,7 +146,9 @@ theorem stateSignedSum_eq_common_add
   ring
 
 /-- At the high endpoint, the changed coordinate contributes the
-corresponding negative exponential to the same common sum. -/
+corresponding negative exponential to the same common sum.
+@isnad1 id=eq.1h6v.s6.70e71ce2433e from=translated src=- shape=029044cd vocab=33b4d429
+-/
 theorem stateSignedSum_insert_eq_common_sub
     (γ β : ι → ℝ) (S : Finset ι) (changed : ι)
     (hj : changed ∉ S) (e : Option ι → NNReal) :
@@ -167,7 +181,9 @@ noncomputable def insertionCommonLaw
     (LikelihoodRatio.commonFactors γ β hγ hβ S changed)
 
 /-- The common law has exactly the explicit finite signed-exponential
-density used by the TP2 argument. -/
+density used by the TP2 argument.
+@isnad1 id=eq.2h5v.s6.8894e9c7d669 from=translated src=- shape=efed9e55 vocab=33a1a451
+-/
 theorem insertionCommonLaw_eq_withDensity
     (γ β : ι → ℝ) (hγ : ∀ i, 0 < γ i) (hβ : ∀ i, 0 < β i)
     (S : Finset ι) (changed : ι) :
@@ -193,6 +209,9 @@ noncomputable def insertionHighEndpointLaw
   TransferStein.zMinusLaw
     (insertionCommonLaw γ β hγ hβ S changed) (β changed)
 
+/--
+@isnad1 id=eq.2h5v.s6.d0ffd54375b7 from=translated src=- shape=914c022e vocab=07ad88f2
+-/
 theorem insertionLowEndpointLaw_eq_zPlus
     (γ β : ι → ℝ) (hγ : ∀ i, 0 < γ i) (hβ : ∀ i, 0 < β i)
     (S : Finset ι) (changed : ι) :
@@ -201,6 +220,9 @@ theorem insertionLowEndpointLaw_eq_zPlus
         (insertionCommonLaw γ β hγ hβ S changed) (γ changed) :=
   rfl
 
+/--
+@isnad1 id=eq.2h5v.s6.f91f91b70f10 from=translated src=- shape=fb7d8fd6 vocab=0ead66ec
+-/
 theorem insertionHighEndpointLaw_eq_zMinus
     (γ β : ι → ℝ) (hγ : ∀ i, 0 < γ i) (hβ : ∀ i, 0 < β i)
     (S : Finset ι) (changed : ι) :
@@ -220,6 +242,9 @@ def signedCoordinate
       -((LikelihoodRatio.stateFactor γ β hγ hβ S i).scale * (x : ℝ))
 
 omit [Fintype ι] in
+/--
+@isnad1 id=measurab.2h5v.s5.11043223ab71 from=translated src=- shape=f7e9d3ef vocab=56f7b765
+-/
 theorem measurable_signedCoordinate
     (γ β : ι → ℝ) (hγ : ∀ i, 0 < γ i) (hβ : ∀ i, 0 < β i)
     (S : Finset ι) (i : ι) :
@@ -228,6 +253,9 @@ theorem measurable_signedCoordinate
   split <;> fun_prop
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.2h5v.s6.e4b39e387776 from=translated src=- shape=e5fd75ae vocab=5abc66a7
+-/
 theorem map_signedCoordinate_nnexpMeasure
     (γ β : ι → ℝ) (hγ : ∀ i, 0 < γ i) (hβ : ∀ i, 0 < β i)
     (S : Finset ι) (i : ι) :
@@ -249,6 +277,9 @@ def transformedCoordinate
   | some i => signedCoordinate γ β hγ hβ S i (e (some i))
 
 omit [Fintype ι] in
+/--
+@isnad1 id=measurab.2h5v.s6.778cc69d1dd0 from=translated src=- shape=32328326 vocab=f566e35e
+-/
 theorem measurable_transformedCoordinate
     (γ β : ι → ℝ) (hγ : ∀ i, 0 < γ i) (hβ : ∀ i, 0 < β i)
     (S : Finset ι) (o : Option ι) :
@@ -264,6 +295,9 @@ def commonIndexSet (T : Finset ι) : Finset (Option ι) :=
   insert none (T.image some)
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.2h6v.s6.015cb6d85a6a from=translated src=- shape=76662e2c vocab=5a25697f
+-/
 theorem sum_commonIndexSet
     (γ β : ι → ℝ) (hγ : ∀ i, 0 < γ i) (hβ : ∀ i, 0 < β i)
     (S T : Finset ι) (e : Option ι → NNReal) :
@@ -278,6 +312,9 @@ theorem sum_commonIndexSet
     intro i hi j hj hij
     exact Option.some.inj hij)]
 
+/--
+@isnad1 id=eq.1h2v.s4.5b8e8409a47a from=translated src=- shape=fb193f49 vocab=486046c9
+-/
 theorem finiteSignedExpSumSourceMeasure_perm
     {Fs Gs : List LikelihoodRatio.SignedExpFactor}
     (h : Fs.Perm Gs) :
@@ -316,6 +353,9 @@ theorem finiteSignedExpSumSourceMeasure_perm
               rw [Measure.conv_assoc]
   | trans h₁ h₂ ih₁ ih₂ => exact ih₁.trans ih₂
 
+/--
+@isnad1 id=eq.0h2v.s5.366545f56d27 from=translated src=- shape=f0a19522 vocab=b4eccf8c
+-/
 theorem zPlusLaw_eq_conv_map_mul
     (ν : Measure ℝ) [SFinite ν] (t : ℝ) :
     TransferStein.zPlusLaw ν t =
@@ -338,6 +378,9 @@ theorem zPlusLaw_eq_conv_map_mul
               measurable_id (by fun_prop)]
     _ = _ := by rw [Measure.map_id]
 
+/--
+@isnad1 id=eq.0h2v.s5.91f541b48ab1 from=translated src=- shape=dbb519e2 vocab=4dd0af1d
+-/
 theorem zMinusLaw_eq_conv_map_neg_mul
     (ν : Measure ℝ) [SFinite ν] (t : ℝ) :
     TransferStein.zMinusLaw ν t =

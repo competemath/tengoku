@@ -22,6 +22,9 @@ open OrderDual
 
 variable {α : Type _} [LinearOrder α] (C : Config α)
 
+/--
+@isnad1 id=ex.8h10v.s7.e3034b0fd1b8 from=translated src=- shape=06b53da1 vocab=1ef47e3d
+-/
 theorem Config.join_n2_n3_n2_ff (S : Finset α) (_cap4_free : ¬C.HasNCap 4 S) {n : ℕ} (x y : α)
     {P : List α} (hPx : C.NCup (n + 2) (P ++ [x])) (Px_in_S : (P ++ [x]).In S) {Q : List α}
     (hxQy : C.NCup (n + 3) ((x::Q) ++ [y])) (xQy_in_S : ((x::Q) ++ [y]).In S) {R : List α}
@@ -152,6 +155,9 @@ theorem Config.join_n2_n3_n2_ff (S : Finset α) (_cap4_free : ¬C.HasNCap 4 S) {
       simp_all
     exact ⟨w, x, y, z, ⟨w_lt_x, le_of_lt x_lt_y, y_lt_z⟩, wy_laced, xz_laced⟩
 
+/--
+@isnad1 id=ex.8h10v.s7.664a65dded08 from=translated src=- shape=50348883 vocab=1ef47e3d
+-/
 theorem Config.join_n2_n3_n2_tt (S : Finset α) (cap4_free : ¬C.HasNCap 4 S) {n : ℕ} (x y : α)
     {P : List α} (hPx : C.NCup (n + 2) (P ++ [x])) (Px_in_S : (P ++ [x]).In S) {Q : List α}
     (hxQy : C.NCup (n + 3) ((x::Q) ++ [y])) (xQy_in_S : ((x::Q) ++ [y]).In S) {R : List α}
@@ -175,6 +181,9 @@ theorem Config.join_n2_n3_n2_tt (S : Finset α) (cap4_free : ¬C.HasNCap 4 S) {n
   rw [Mirror.hasInterweavedLaced] at h
   use p, q, r, s
 
+/--
+@isnad1 id=ex.12h9v.s7.1eef29fc4d7c from=translated src=- shape=3349c494 vocab=50219a6f
+-/
 theorem Config.join_n2_n3_n2 (S : Finset α) {n : ℕ} (cap4_free : ¬C.HasNCap 4 S)
     (_cup_free : ¬C.HasNCup (n + 4) S) {cx : List α} (cx_ncup : C.NCup (n + 2) cx)
     (cx_in_S : cx.In S) {c : List α} (c_ncup : C.NCup (n + 3) c) (c_in_S : c.In S) {cy : List α}

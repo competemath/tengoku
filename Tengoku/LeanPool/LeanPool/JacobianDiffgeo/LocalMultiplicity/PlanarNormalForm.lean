@@ -34,7 +34,9 @@ open scoped Topology
 namespace RS
 
 /-- Packaged planar analytic IFT: analytic + `deriv ≠ 0` gives an `OpenPartialHomeomorph`
-agreeing with `f` near `z₀`, analytic with analytic inverse. -/
+agreeing with `f` near `z₀`, analytic with analytic inverse.
+@isnad1 id=ex.2h2v.s9.2130d4b6b89f from=translated src=- shape=77baf68b vocab=c3ba1bd8
+-/
 theorem AnalyticAt.exists_openPartialHomeomorph {f : ℂ → ℂ} {z₀ : ℂ}
     (hf : AnalyticAt ℂ f z₀) (hf' : deriv f z₀ ≠ 0) :
     ∃ φ : OpenPartialHomeomorph ℂ ℂ, z₀ ∈ φ.source ∧ (∀ z ∈ φ.source, φ z = f z) ∧
@@ -74,7 +76,9 @@ theorem AnalyticAt.exists_openPartialHomeomorph {f : ℂ → ℂ} {z₀ : ℂ}
       _ = φ.symm w' := h
 
 /-- Local normal form (Forster 2.1, planar half): finite recentered order `k ≥ 1` means
-`f = f z₀ + φ ^ k` with `φ` an analytic local coordinate at `z₀`. -/
+`f = f z₀ + φ ^ k` with `φ` an analytic local coordinate at `z₀`.
+@isnad1 id=ex.3h3v.s7.8a3ec16ace19 from=translated src=- shape=0a3f9134 vocab=1a196251
+-/
 theorem AnalyticAt.exists_normal_form {f : ℂ → ℂ} {z₀ : ℂ} {k : ℕ}
     (hf : AnalyticAt ℂ f z₀) (hk : analyticOrderAt (f · - f z₀) z₀ = k) (hk₀ : k ≠ 0) :
     ∃ φ : ℂ → ℂ, AnalyticAt ℂ φ z₀ ∧ φ z₀ = 0 ∧ deriv φ z₀ ≠ 0 ∧
@@ -94,7 +98,9 @@ theorem AnalyticAt.exists_normal_form {f : ℂ → ℂ} {z₀ : ℂ} {k : ℕ}
       rw [h1, mul_pow, h2, smul_eq_mul]
     linear_combination this
 
-/-- Normal form, packaged as an analytic-with-analytic-inverse partial homeomorphism. -/
+/-- Normal form, packaged as an analytic-with-analytic-inverse partial homeomorphism.
+@isnad1 id=ex.3h3v.s9.f93a9383259d from=translated src=- shape=cd8382c2 vocab=4a338bb1
+-/
 theorem AnalyticAt.exists_normal_form_openPartialHomeomorph {f : ℂ → ℂ} {z₀ : ℂ} {k : ℕ}
     (hf : AnalyticAt ℂ f z₀) (hk : analyticOrderAt (f · - f z₀) z₀ = k) (hk₀ : k ≠ 0) :
     ∃ φ : OpenPartialHomeomorph ℂ ℂ, z₀ ∈ φ.source ∧ φ z₀ = 0 ∧
@@ -113,7 +119,9 @@ theorem AnalyticAt.exists_normal_form_openPartialHomeomorph {f : ℂ → ℂ} {z
     exact hsub hz.2
 
 /-- Recentered order is invariant under postcomposition with a bi-analytic germ.
-(Left twin of mathlib's `analyticOrderAt_comp_of_deriv_ne_zero`; upstreamable.) -/
+(Left twin of mathlib's `analyticOrderAt_comp_of_deriv_ne_zero`; upstreamable.)
+@isnad1 id=eq.3h3v.s7.d33cfd4b3a29 from=translated src=- shape=9cd6183d vocab=f52feb44
+-/
 theorem analyticOrderAt_left_comp_sub {h f : ℂ → ℂ} {z₀ : ℂ}
     (hh : AnalyticAt ℂ h (f z₀)) (hh' : deriv h (f z₀) ≠ 0) (hf : AnalyticAt ℂ f z₀) :
     analyticOrderAt (fun z ↦ h (f z) - h (f z₀)) z₀ = analyticOrderAt (f · - f z₀) z₀ := by
@@ -123,7 +131,9 @@ theorem analyticOrderAt_left_comp_sub {h f : ℂ → ℂ} {z₀ : ℂ}
   rw [hh.analyticOrderAt_sub_eq_one_of_deriv_ne_zero hh', one_mul] at h1
   exact h1
 
-/-- `z ↦ z ^ k` maps balls onto balls (fibre-counting geometry for mapping-degree). -/
+/-- `z ↦ z ^ k` maps balls onto balls (fibre-counting geometry for mapping-degree).
+@isnad1 id=eq.2h2v.s6.43e81f3ae61e from=translated src=- shape=1b47685b vocab=311161bf
+-/
 theorem image_pow_ball {k : ℕ} (hk : k ≠ 0) {ρ : ℝ} (hρ : 0 ≤ ρ) :
     (· ^ k) '' Metric.ball (0 : ℂ) ρ = Metric.ball 0 (ρ ^ k) := by
   ext v

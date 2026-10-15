@@ -117,7 +117,9 @@ private theorem canonDeForms_countable {Γc : Set (Σ n, Λ.BoundedFormulaω Emp
   have : ∀ m : ℕ, Countable (Λ.Term (Fin m)) := fun _ => inferInstance
   exact hΓc.biUnion fun _ _ => Set.countable_range _
 
-/-- Membership constructor for the canonical deForm closure. -/
+/-- Membership constructor for the canonical deForm closure.
+@isnad1 id=mem.1h6v.s6.584880f328fb from=translated src=- shape=cdcc5381 vocab=20036ad5
+-/
 theorem canonDeForm_mem_canonDeForms {Γc : Set (Σ n, Λ.BoundedFormulaω Empty n)} {n : ℕ}
     {φ : Λ.BoundedFormulaω Empty n} (hφ : (⟨n, φ⟩ : Σ n, Λ.BoundedFormulaω Empty n) ∈ Γc)
     {p : ℕ} (g : Fin n → Λ.Term (Fin p)) :
@@ -144,7 +146,9 @@ def locJSupport {α : Type} : Λ[[J]].Term α → Finset J
   | .func f ts => (Finset.univ.biUnion fun i => locJSupport (ts i)) ∪ locJConstOf Λ J f
 
 /-- The de-substituted term `constantsToVars t` uses only the variables `Sum.inl j` for `j` a
-skeleton constant of `t`. -/
+skeleton constant of `t`.
+@isnad1 id=le.0h3v.s6.bdb933aa4f94 from=translated src=- shape=9aafad6e vocab=d488ee0d
+-/
 theorem locConstantsToVars_varFinset_subset (t : Λ[[J]].Term Empty) :
     t.constantsToVars.varFinset ⊆ (locJSupport Λ J t).image Sum.inl := by
   induction t with
@@ -171,7 +175,9 @@ def locDeTermPos (S : Finset J) (t : Λ[[J]].Term Empty) : Λ.Term ℕ :=
   t.constantsToVars.relabel (Sum.elim (fun j => deepRank J S j) Empty.elim)
 
 /-- The ordered-position term uses only variables `< S.card` once `S` covers the term's skeleton
-constants. -/
+constants.
+@isnad1 id=le.1h4v.s5.390c916d93f1 from=translated src=- shape=b6f46e4f vocab=6d80d5aa
+-/
 theorem locDeTermPos_varFinset_subset {S : Finset J} {t : Λ[[J]].Term Empty}
     (hsub : locJSupport Λ J t ⊆ S) :
     (locDeTermPos Λ J S t).varFinset ⊆ Finset.range S.card := by
@@ -248,26 +254,34 @@ def ΓEMlocal : Set (Σ n, (localColim s₀).BoundedFormulaω Empty n) :=
 
 /-- **The size bottleneck, resolved**: `ΓEMlocal` is countable — the family the tail extraction
 (`MorleyHanfExtractionTail`) can actually serve, in contrast to the uncountable `skolemColim`
-atom diagram. -/
+atom diagram.
+@isnad1 id=countabl.0h1v.s3.0b5a8582b9e0 from=translated src=- shape=2a8f093c vocab=686a11a0
+-/
 theorem ΓEMlocal_countable : (ΓEMlocal s₀).Countable :=
   (((ΓlocalColim_countable s₀).union
       (canonEqAtoms_countable _ (localColim_fun_countable s₀))).union
     (canonRelAtoms_countable _ (localColim_fun_countable s₀) (localColim_rel_countable s₀))).union
     (canonDeForms_countable _ (ΓlocalColim_countable s₀) (localColim_fun_countable s₀))
 
-/-- The colimit family sits inside `ΓEMlocal`. -/
+/-- The colimit family sits inside `ΓEMlocal`.
+@isnad1 id=le.0h1v.s4.0b2876cae135 from=translated src=- shape=4008c239 vocab=822016b5
+-/
 theorem ΓlocalColim_subset_ΓEMlocal : ΓlocalColim s₀ ⊆ ΓEMlocal s₀ := fun _ hx =>
   Or.inl (Or.inl (Or.inl hx))
 
 /-- **`atom_mem` discharger**: every local equality atom — over every `J`, support, and pair of
-closed terms — lies in `ΓEMlocal`. -/
+closed terms — lies in `ΓEMlocal`.
+@isnad1 id=mem.2h5v.s6.9a1d98617904 from=translated src=- shape=f97cacc8 vocab=c30671e6
+-/
 theorem locDeEqAtom_mem_ΓEMlocal (S : Finset J) (t u : (localColim s₀)[[J]].Term Empty)
     (ht : locJSupport (localColim s₀) J t ⊆ S) (hu : locJSupport (localColim s₀) J u ⊆ S) :
     (⟨S.card, locDeEqAtom (localColim s₀) J S t u ht hu⟩ :
       Σ n, (localColim s₀).BoundedFormulaω Empty n) ∈ ΓEMlocal s₀ :=
   Or.inl (Or.inl (Or.inr (locDeEqAtom_mem_canonEqAtoms _ J S t u ht hu)))
 
-/-- **`rel_mem` discharger**: every local relation atom lies in `ΓEMlocal`. -/
+/-- **`rel_mem` discharger**: every local relation atom lies in `ΓEMlocal`.
+@isnad1 id=mem.1h6v.s6.1e0ceebf7c16 from=translated src=- shape=0481d8e3 vocab=3f8e58eb
+-/
 theorem locDeRelAtom_mem_ΓEMlocal (S : Finset J) {l : ℕ} (R : (localColim s₀).Relations l)
     (ts : Fin l → (localColim s₀)[[J]].Term Empty)
     (ht : ∀ i, locJSupport (localColim s₀) J (ts i) ⊆ S) :
@@ -276,7 +290,9 @@ theorem locDeRelAtom_mem_ΓEMlocal (S : Finset J) {l : ℕ} (R : (localColim s�
   Or.inl (Or.inr (locDeRelAtom_mem_canonRelAtoms _ J S R ts ht))
 
 /-- **deForm-closure discharger**: the local deForm of every colimit-family member lies in
-`ΓEMlocal` — the content of the future local `DeFormClosedForGammaStar`. -/
+`ΓEMlocal` — the content of the future local `DeFormClosedForGammaStar`.
+@isnad1 id=mem.2h6v.s7.f6850f1dccdc from=translated src=- shape=acf7f476 vocab=38c2e4cf
+-/
 theorem locDeForm_mem_ΓEMlocal (S : Finset J) {n : ℕ}
     {φ : (localColim s₀).BoundedFormulaω Empty n}
     (hφ : (⟨n, φ⟩ : Σ n, (localColim s₀).BoundedFormulaω Empty n) ∈ ΓlocalColim s₀)
@@ -286,7 +302,9 @@ theorem locDeForm_mem_ΓEMlocal (S : Finset J) {n : ℕ}
       Σ n, (localColim s₀).BoundedFormulaω Empty n) ∈ ΓEMlocal s₀ :=
   Or.inr (locDeForm_mem_canonDeForms _ J S hφ ts hsub)
 
-/-- `ΓEMlocal` is nonempty (the arity-`1` atom `x = x` is a canonical equality atom). -/
+/-- `ΓEMlocal` is nonempty (the arity-`1` atom `x = x` is a canonical equality atom).
+@isnad1 id=nonempty.0h1v.s3.70fdeb642c0d from=translated src=- shape=2a8f093c vocab=a5c66ef7
+-/
 theorem ΓEMlocal_nonempty : (ΓEMlocal s₀).Nonempty :=
   ⟨⟨1, canonEqAtom (localColim s₀) (Term.var (0 : Fin 1)) (Term.var (0 : Fin 1))⟩,
     Or.inl (Or.inl (Or.inr ⟨⟨1, (Term.var 0, Term.var 0)⟩, rfl⟩))⟩

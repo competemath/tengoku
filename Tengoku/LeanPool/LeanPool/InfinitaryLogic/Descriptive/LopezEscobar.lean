@@ -41,7 +41,9 @@ variable {L : Language.{0, 0}} [L.IsRelational] [Countable (Σ l, L.Relations l)
 /-- **The López–Escobar theorem**: over a countable relational vocabulary, a class of coded
 countable structures is Borel and isomorphism-invariant exactly when it is the class of models
 of a single `L_ω₁ω`-sentence.  The forward direction is the hard theorem of issue #10
-(`lopez_escobar`); the reverse is `lopezEscobar_easy`. -/
+(`lopez_escobar`); the reverse is `lopezEscobar_easy`.
+@isnad1 id=iff.0h2v.s5.088b7ec4a6bc from=translated src=- shape=d333811f vocab=b216bc30
+-/
 theorem lopezEscobar_iff {B : Set (StructureSpace L)} :
     (MeasurableSet B ∧ IsomorphismInvariant B) ↔ ∃ φ : L.Sentenceω, B = ModelsOf φ := by
   constructor
@@ -52,7 +54,9 @@ theorem lopezEscobar_iff {B : Set (StructureSpace L)} :
 
 /-- **The López–Escobar theorem, action form**: invariance under the logic action of
 `S∞ = Equiv.Perm ℕ` may replace isomorphism invariance, by the orbit = isomorphism identity
-`actionInvariant_iff_isomorphismInvariant` (#27). -/
+`actionInvariant_iff_isomorphismInvariant` (#27).
+@isnad1 id=iff.0h2v.s5.2abeb951406f from=translated src=- shape=d333811f vocab=46eeb35d
+-/
 theorem lopezEscobar_action_iff {B : Set (StructureSpace L)} :
     (MeasurableSet B ∧ ActionInvariant B) ↔ ∃ φ : L.Sentenceω, B = ModelsOf φ := by
   rw [actionInvariant_iff_isomorphismInvariant, lopezEscobar_iff]

@@ -25,7 +25,9 @@ case to the independently checked normalized trees.
 
 namespace HadwigerNelsonBounds
 
-/-- Renaming colors preserves both gadget constraints. -/
+/-- Renaming colors preserves both gadget constraints.
+@isnad1 id=partsgad.1h2v.s6.fef9dfbbc60e from=translated src=- shape=ee8dc80d vocab=fec6d9e3
+-/
 lemma PartsGadgetValid.rename {coloring : Fin 73 → Fin 4}
     (hvalid : PartsGadgetValid coloring) (rename : Fin 4 ≃ Fin 4) :
     PartsGadgetValid (fun vertex => rename (coloring vertex)) := by
@@ -37,7 +39,9 @@ lemma PartsGadgetValid.rename {coloring : Fin 73 → Fin 4}
     exact hvalid.2 vertex pair hpair
       ⟨rename.injective hleft, rename.injective hright⟩
 
-/-- Pulling a coloring back through central inversion preserves validity. -/
+/-- Pulling a coloring back through central inversion preserves validity.
+@isnad1 id=partsgad.1h1v.s4.3ab39b99d59e from=translated src=- shape=38193660 vocab=cd2eb9d1
+-/
 lemma PartsGadgetValid.negation {coloring : Fin 73 → Fin 4}
     (hvalid : PartsGadgetValid coloring) :
     PartsGadgetValid (fun vertex => coloring (partsGadgetNegation vertex)) := by
@@ -56,16 +60,43 @@ def partsGadgetSwapOneTwo : Fin 4 ≃ Fin 4 := Equiv.swap 1 2
 /-- Swap the endpoint colors zero and three. -/
 def partsGadgetSwapZeroThree : Fin 4 ≃ Fin 4 := Equiv.swap 0 3
 
+/--
+@isnad1 id=eq.0h0v.s6.2cc7bc664924 from=translated src=- shape=e69df414 vocab=73ae529d
+-/
 @[simp] lemma partsGadgetSwapOneTwo_zero : partsGadgetSwapOneTwo 0 = 0 := by decide
+/--
+@isnad1 id=eq.0h0v.s6.4442cad510bc from=translated src=- shape=e69df414 vocab=73ae529d
+-/
 @[simp] lemma partsGadgetSwapOneTwo_one : partsGadgetSwapOneTwo 1 = 2 := by decide
+/--
+@isnad1 id=eq.0h0v.s6.91ae313b2da2 from=translated src=- shape=e69df414 vocab=73ae529d
+-/
 @[simp] lemma partsGadgetSwapOneTwo_two : partsGadgetSwapOneTwo 2 = 1 := by decide
+/--
+@isnad1 id=eq.0h0v.s6.b8929ca7c2ac from=translated src=- shape=e69df414 vocab=73ae529d
+-/
 @[simp] lemma partsGadgetSwapOneTwo_three : partsGadgetSwapOneTwo 3 = 3 := by decide
 
+/--
+@isnad1 id=eq.0h0v.s6.87c370cf419d from=translated src=- shape=e69df414 vocab=512b61f3
+-/
 @[simp] lemma partsGadgetSwapZeroThree_zero : partsGadgetSwapZeroThree 0 = 3 := by decide
+/--
+@isnad1 id=eq.0h0v.s6.7403f5bd23dc from=translated src=- shape=e69df414 vocab=512b61f3
+-/
 @[simp] lemma partsGadgetSwapZeroThree_one : partsGadgetSwapZeroThree 1 = 1 := by decide
+/--
+@isnad1 id=eq.0h0v.s6.fa1dd91bc875 from=translated src=- shape=e69df414 vocab=512b61f3
+-/
 @[simp] lemma partsGadgetSwapZeroThree_two : partsGadgetSwapZeroThree 2 = 2 := by decide
+/--
+@isnad1 id=eq.0h0v.s6.04581233b71e from=translated src=- shape=e69df414 vocab=512b61f3
+-/
 @[simp] lemma partsGadgetSwapZeroThree_three : partsGadgetSwapZeroThree 3 = 0 := by decide
 
+/--
+@isnad1 id=partsgad.4h1v.s7.74449f909c00 from=translated src=- shape=5da288d0 vocab=6cc65d42
+-/
 lemma partsGadgetHardRoots {coloring : Fin 73 → Fin 4}
     (ha : coloring 5 = 0) (hb : coloring 31 = 3)
     (hcenter : coloring 18 = 0) (hanchor : coloring 25 = 1) :
@@ -79,6 +110,9 @@ lemma partsGadgetHardRoots {coloring : Fin 73 → Fin 4}
   · exact hcenter
   · exact hanchor
 
+/--
+@isnad1 id=partsgad.3h1v.s7.640196804006 from=translated src=- shape=e7b0190e vocab=cf95beef
+-/
 lemma partsGadgetMiddleRoots {coloring : Fin 73 → Fin 4}
     (ha : coloring 5 = 0) (hb : coloring 31 = 3)
     (hcenter : coloring 18 = 1) :
@@ -91,6 +125,9 @@ lemma partsGadgetMiddleRoots {coloring : Fin 73 → Fin 4}
   · exact hb
   · exact hcenter
 
+/--
+@isnad1 id=false.4h1v.s7.20d746af43ef from=translated src=- shape=064189df vocab=8b48c9bc
+-/
 lemma no_partsGadget_coloring_of_hard_roots {coloring : Fin 73 → Fin 4}
     (hvalid : PartsGadgetValid coloring) (ha : coloring 5 = 0)
     (hb : coloring 31 = 3) (hcenter : coloring 18 = 0) : False := by
@@ -119,6 +156,9 @@ lemma no_partsGadget_coloring_of_hard_roots {coloring : Fin 73 → Fin 4}
       (by simp [renamed, hcenter]) (by simp [renamed, hanchor])
   · exact hnotThree hanchor
 
+/--
+@isnad1 id=false.4h1v.s7.93b9823158f9 from=translated src=- shape=064189df vocab=8b48c9bc
+-/
 lemma no_partsGadget_coloring_of_middle_roots {coloring : Fin 73 → Fin 4}
     (hvalid : PartsGadgetValid coloring) (ha : coloring 5 = 0)
     (hb : coloring 31 = 3) (hcenter : coloring 18 = 1) : False := by
@@ -126,6 +166,9 @@ lemma no_partsGadget_coloring_of_middle_roots {coloring : Fin 73 → Fin 4}
     partsGadgetMiddleCertificate_verifies hvalid
     (partsGadgetMiddleRoots ha hb hcenter)
 
+/--
+@isnad1 id=false.3h1v.s6.6c1233aacc01 from=translated src=- shape=91410d19 vocab=8b48c9bc
+-/
 lemma no_partsGadget_coloring_of_normalized_endpoints
     {coloring : Fin 73 → Fin 4} (hvalid : PartsGadgetValid coloring)
     (ha : coloring 5 = 0) (hb : coloring 31 = 3) : False := by
@@ -150,7 +193,9 @@ lemma no_partsGadget_coloring_of_normalized_endpoints
     · norm_num [reflected, partsGadgetNegation, hcenter']
 
 /-- The finite Parts gadget forces its opposite distance-four pair to be
-monochromatic under the unit-edge and non-mono-triple constraints. -/
+monochromatic under the unit-edge and non-mono-triple constraints.
+@isnad1 id=eq.1h1v.s5.df8f37615166 from=translated src=- shape=b69bce5d vocab=8b48c9bc
+-/
 theorem parts_gadget_forces_monochromatic_pair
     {coloring : Fin 73 → Fin 4} (hvalid : PartsGadgetValid coloring) :
     coloring 5 = coloring 31 := by

@@ -65,7 +65,9 @@ structure MFormData (X : Type*) [TopologicalSpace X] [ChartedSpace ℂ X]
 
 namespace MFormData
 
-/-- A meromorphic 1-form is determined by its preferred-chart coefficients on chart targets. -/
+/-- A meromorphic 1-form is determined by its preferred-chart coefficients on chart targets.
+@isnad1 id=eq.1h3v.s7.0398fac2529c from=translated src=- shape=97a03b12 vocab=290dafaf
+-/
 @[ext]
 theorem ext {θ η : MFormData X}
     (h : ∀ x, ∀ z ∈ (chartAt ℂ x).target, θ.coeffAt x z = η.coeffAt x z) : θ = η := by
@@ -114,17 +116,32 @@ instance : SMul ℂ (MFormData X) where
       exact hc.mul (θ.meromorphicOn_coeffAt x),
     fun x y z hz => by rw [θ.compat x y z hz]; ring⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.5f21435e0565 from=translated src=- shape=eaf7a5f3 vocab=f6f88322
+-/
 @[simp] theorem coeffAt_zero (x : X) (z : ℂ) : (0 : MFormData X).coeffAt x z = 0 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.b000e94a7444 from=translated src=- shape=6b6e33b6 vocab=df5c0d4c
+-/
 @[simp] theorem coeffAt_add (θ η : MFormData X) (x : X) (z : ℂ) :
     (θ + η).coeffAt x z = θ.coeffAt x z + η.coeffAt x z := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.f98aa667d05e from=translated src=- shape=aeea9a3f vocab=e2576652
+-/
 @[simp] theorem coeffAt_neg (θ : MFormData X) (x : X) (z : ℂ) :
     (-θ).coeffAt x z = -θ.coeffAt x z := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.cef9a886df0a from=translated src=- shape=6b6e33b6 vocab=71434281
+-/
 @[simp] theorem coeffAt_sub (θ η : MFormData X) (x : X) (z : ℂ) :
     (θ - η).coeffAt x z = θ.coeffAt x z - η.coeffAt x z := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.16d1130e7994 from=translated src=- shape=a5f39983 vocab=d5f2ca23
+-/
 @[simp] theorem coeffAt_smul (c : ℂ) (θ : MFormData X) (x : X) (z : ℂ) :
     (c • θ).coeffAt x z = c * θ.coeffAt x z := rfl
 
@@ -171,6 +188,9 @@ variable {ι : Type*} (D : MFormCoeffData X ι)
 /-- A chosen chart index for each point. -/
 def idx (x : X) : ι := (D.exists_mem x).choose
 
+/--
+@isnad1 id=mem.0h4v.s7.b2b986c4d5d0 from=translated src=- shape=7c6bfa7f vocab=6854443c
+-/
 theorem mem_source_idx (x : X) : x ∈ (D.chart (D.idx x)).source := (D.exists_mem x).choose_spec
 
 /-- The coefficient of the assembled family, read through an arbitrary maximal-atlas chart `e'`,
@@ -183,7 +203,9 @@ noncomputable def rawCoeffAt (e' : OpenPartialHomeomorph X ℂ) (z : ℂ) : ℂ 
 
 /-- **Master computation**: `rawCoeffAt` read through any maximal-atlas chart `e'`, at a point
 whose base point lies in the `i`-th chart, equals the `i`-th coefficient transported by the
-transition derivative — independent of the internal `idx` choice, by `compat`. -/
+transition derivative — independent of the internal `idx` choice, by `compat`.
+@isnad1 id=eq.3h6v.s9.1c0ce15ebd2b from=translated src=- shape=9e87e01e vocab=7cfd79c0
+-/
 theorem rawCoeffAt_eq {e' : OpenPartialHomeomorph X ℂ}
     (he' : e' ∈ maximalAtlas 𝓘(ℂ) ω X) (i : ι) {z : ℂ} (hz : z ∈ e'.target)
     (hp : e'.symm z ∈ (D.chart i).source) :
@@ -196,6 +218,9 @@ theorem rawCoeffAt_eq {e' : OpenPartialHomeomorph X ℂ}
   rw [hcompat, hdt]
   ring
 
+/--
+@isnad1 id=meromorp.2h5v.s8.7af51d47154e from=translated src=- shape=440ea415 vocab=589e5e1c
+-/
 theorem meromorphicAt_rawCoeffAt (e' : OpenPartialHomeomorph X ℂ)
     (he' : e' ∈ maximalAtlas 𝓘(ℂ) ω X) {z₀ : ℂ} (hz₀ : z₀ ∈ e'.target) :
     MeromorphicAt (D.rawCoeffAt e') z₀ := by

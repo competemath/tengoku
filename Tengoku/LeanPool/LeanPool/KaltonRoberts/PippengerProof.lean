@@ -33,6 +33,9 @@ open Finset BigOperators
 /-
 Base case: with no constraint, we get all permutations.
 -/
+/--
+@isnad1 id=eq.1h2v.s8.aa0495a0a510 from=translated src=- shape=86ee0f37 vocab=d531e1a2
+-/
 theorem card_perm_constrained_zero (n t : ℕ) (_ht : t ≤ n) :
     Fintype.card {σ : Equiv.Perm (Fin n) //
       ∀ (i : Fin n), i.val < 0 → (σ i).val < t} =
@@ -47,6 +50,9 @@ theorem card_perm_constrained_zero (n t : ℕ) (_ht : t ≤ n) :
 /-
 Step: adding one more constraint multiplies by (t-s)/(n-s).
 Formally: card(s+1) * (n - s) = card(s) * (t - s).
+-/
+/--
+@isnad1 id=eq.2h3v.s9.0393b03d99ad from=translated src=- shape=32df1cdd vocab=db5b1a63
 -/
 theorem card_perm_constrained_step (n s t : ℕ) (hs : s < t) (ht : t ≤ n) :
     Fintype.card {σ : Equiv.Perm (Fin n) //
@@ -172,7 +178,9 @@ theorem card_perm_constrained_step (n s t : ℕ) (hs : s < t) (ht : t ≤ n) :
   exact h_card_perm.symm
 
 /-- The number of permutations of `Fin n` that map the first `s` elements
-into `{0, …, t-1}` is `t.descFactorial s * (n - s)!`. -/
+into `{0, …, t-1}` is `t.descFactorial s * (n - s)!`.
+@isnad1 id=eq.2h3v.s8.09abcef2033b from=translated src=- shape=8209f09e vocab=528b8a01
+-/
 theorem card_perm_constrained (n s t : ℕ) (hs : s ≤ t) (ht : t ≤ n) :
     Fintype.card {σ : Equiv.Perm (Fin n) //
       ∀ (i : Fin n), i.val < s → (σ i).val < t} =
@@ -206,6 +214,9 @@ theorem card_perm_constrained (n s t : ℕ) (hs : s ≤ t) (ht : t ≤ n) :
 /-
 `C(n,k) ≤ (e*n/k)^k` for `0 < k ≤ n`.
 -/
+/--
+@isnad1 id=le.2h2v.s6.7b75b55aa3c3 from=translated src=- shape=48981cbc vocab=8f505aed
+-/
 theorem choose_le_exp_pow (n k : ℕ) (hk : 0 < k) (_hkn : k ≤ n) :
     (n.choose k : ℝ) ≤ (Real.exp 1 * ↑n / ↑k) ^ k := by
   -- We'll use the fact that $C(n,k) \leq \frac{n^k}{k!}$.
@@ -232,6 +243,9 @@ theorem choose_le_exp_pow (n k : ℕ) (hk : 0 < k) (_hkn : k ≤ n) :
 
 /-
 `n.choose k ≤ exp(hEntropy n k)` for `0 < k < n`.
+-/
+/--
+@isnad1 id=le.2h2v.s5.56fffdc861af from=translated src=- shape=b770510b vocab=b0a3e66a
 -/
 theorem choose_le_exp_h_entropy (n k : ℕ) (hk : 0 < k) (hkn : k < n) :
     (n.choose k : ℝ) ≤ Real.exp (hEntropy (↑n) (↑k)) := by
@@ -269,6 +283,9 @@ theorem choose_le_exp_h_entropy (n k : ℕ) (hk : 0 < k) (hkn : k < n) :
 
 /-
 `n.choose k ≥ exp(hEntropy n k) / (n + 1)` for `0 < k < n`.
+-/
+/--
+@isnad1 id=le.2h2v.s6.8d5a4f43fe98 from=translated src=- shape=ff567bc5 vocab=5352b01a
 -/
 theorem choose_ge_exp_h_entropy_div (n k : ℕ) (hk : 0 < k) (hkn : k < n) :
     Real.exp (hEntropy (↑n) (↑k)) / ((n : ℝ) + 1) ≤ (n.choose k : ℝ) := by
@@ -457,6 +474,9 @@ theorem choose_ge_exp_h_entropy_div (n k : ℕ) (hk : 0 < k) (hkn : k < n) :
 /-
 `descFactorial a k / descFactorial b k ≤ (a/b)^k` when `a ≤ b`, `k ≤ a`.
 -/
+/--
+@isnad1 id=le.2h3v.s6.ebc554cacf40 from=translated src=- shape=69a70506 vocab=89dc676b
+-/
 theorem desc_fact_ratio_le (a b k : ℕ) (hab : a ≤ b) (hka : k ≤ a) :
     (a.descFactorial k : ℝ) / (b.descFactorial k : ℝ) ≤ ((a : ℝ) / b) ^ k := by
   induction k with
@@ -481,6 +501,9 @@ theorem desc_fact_ratio_le (a b k : ℕ) (hab : a ≤ b) (hka : k ≤ a) :
 /-
 Geometric series: `∑_{i=0}^{d-1} q^(i+1) ≤ q/(1-q)` for `0 ≤ q < 1`.
 -/
+/--
+@isnad1 id=le.2h2v.s6.4313b1ea8dd7 from=translated src=- shape=21a23a37 vocab=9cb565f9
+-/
 theorem geom_sum_le (d : ℕ) (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q < 1) :
     ∑ i ∈ Finset.range d, q ^ (i + 1) ≤ q / (1 - q) := by
   ring_nf;
@@ -488,6 +511,9 @@ theorem geom_sum_le (d : ℕ) (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q < 1) :
     mul_le_mul_of_nonneg_left ( Summable.sum_le_tsum ( Finset.range d ) ( fun _ _ => by positivity )
       ( by exact summable_geometric_of_lt_one hq0 hq1 ) ) hq0;
 
+/--
+@isnad1 id=le.2h2v.s6.6470b2c7a148 from=translated src=- shape=a0d0689a vocab=219306b2
+-/
 theorem sum_Icc_one_pow_le_geom (D : ℕ) (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q < 1) :
     ∑ m ∈ Finset.Icc 1 D, q ^ m ≤ q / (1 - q) := by
   have hEq : (∑ m ∈ Finset.Icc 1 D, q ^ m) =
@@ -505,6 +531,9 @@ theorem sum_Icc_one_pow_le_geom (D : ℕ) (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q < 1
   rw [hEq]
   exact geom_sum_le D q hq0 hq1
 
+/--
+@isnad1 id=le.6h6v.s7.7b8a614112a2 from=translated src=- shape=7607954b vocab=96432788
+-/
 theorem bad_sum_split
     (A D N : ℕ) (T : ℕ → ℝ) (q B : ℝ)
     (hq0 : 0 ≤ q) (hq1 : q < 1) (hB0 : 0 ≤ B)
@@ -550,6 +579,9 @@ theorem bad_sum_split
 /-
 Exponential decay beats quadratic eventually.
 -/
+/--
+@isnad1 id=eventual.1h1v.s6.0767c59c6949 from=translated src=- shape=1993dfd3 vocab=d9485b13
+-/
 theorem exp_decay_beats_poly (η : ℝ) (hη : 0 < η) :
     ∀ᶠ (N : ℕ) in Filter.atTop,
       (N : ℝ) ^ 2 * Real.exp (-η * ↑N) < 1 / 2 := by
@@ -562,6 +594,9 @@ theorem exp_decay_beats_poly (η : ℝ) (hη : 0 < η) :
     norm_num [ mul_right_comm, hη.ne' ];
   exact h_lim.eventually ( gt_mem_nhds <| by norm_num )
 
+/--
+@isnad1 id=eventual.1h2v.s6.dc3305ee9758 from=translated src=- shape=bc525b6f vocab=d9485b13
+-/
 theorem exp_decay_beats_poly_const (C η : ℝ) (hη : 0 < η) :
     ∀ᶠ (N : ℕ) in Filter.atTop,
       C * (N : ℝ) ^ 2 * Real.exp (-η * ↑N) < 1 / 2 := by
@@ -584,6 +619,9 @@ theorem exp_decay_beats_poly_const (C η : ℝ) (hη : 0 < η) :
 
 /-! ## Entropy bounds for Pippenger bad events -/
 
+/--
+@isnad1 id=eq.4h3v.s6.ec84240f6f6a from=translated src=- shape=36ff31b6 vocab=43ed139d
+-/
 theorem h_entropy_scale (t a b : ℝ) (ht : t ≠ 0) (ha : a ≠ 0)
     (hb : b ≠ 0) (hab : a - b ≠ 0) :
     hEntropy (t * a) (t * b) = t * hEntropy a b := by
@@ -593,6 +631,9 @@ theorem h_entropy_scale (t a b : ℝ) (ht : t ≠ 0) (ha : a ≠ 0)
   rw [htab, Real.log_mul ht hab]
   ring
 
+/--
+@isnad1 id=eq.6h5v.s6.4115f5c192b7 from=translated src=- shape=bbf09f20 vocab=f2b23081
+-/
 theorem h_entropy_scale_nat
     (N A B : ℕ) (a b : ℝ)
     (hN : (N : ℝ) ≠ 0) (ha : a ≠ 0) (hb : b ≠ 0) (hab : a - b ≠ 0)
@@ -601,6 +642,9 @@ theorem h_entropy_scale_nat
   have h := h_entropy_scale (N : ℝ) a b hN ha hb hab
   rwa [← hA, ← hB] at h
 
+/--
+@isnad1 id=le.3h3v.s6.2bc8c550dd62 from=translated src=- shape=798776a6 vocab=a14fe7e5
+-/
 theorem choose_ratio_le_entropy_bound
     (a b k : ℕ) (hk : 0 < k) (hka : k < a) (hkb : k < b) :
     (a.choose k : ℝ) / (b.choose k : ℝ) ≤
@@ -631,6 +675,9 @@ theorem choose_ratio_le_entropy_bound
       rw [Real.exp_sub]
       field_simp [Real.exp_ne_zero]
 
+/--
+@isnad1 id=le.2h3v.s6.2a1dbe47a5b0 from=translated src=- shape=69a70506 vocab=be2653dc
+-/
 theorem choose_ratio_le_pow (a b k : ℕ) (hab : a ≤ b) (hk : k ≤ a) :
     (a.choose k : ℝ) / (b.choose k : ℝ) ≤ ((a : ℝ) / (b : ℝ)) ^ k := by
   have hdesc := desc_fact_ratio_le a b k hab hk
@@ -651,6 +698,9 @@ theorem choose_ratio_le_pow (a b k : ℕ) (hab : a ≤ b) (hk : k ≤ a) :
   field_simp [hfac_pos.ne']
   exact hdesc
 
+/--
+@isnad1 id=le.5h5v.s8.51424b01b2f0 from=translated src=- shape=fc9c36d4 vocab=8f505aed
+-/
 theorem pippenger_small_term_raw
     (N L r c m : ℕ) (hm : 0 < m) (hmN : m ≤ N) (hmL : m ≤ L)
     (hrc : r ≤ c) (hcmN : c * m ≤ r * N) :
@@ -693,6 +743,9 @@ theorem pippenger_small_term_raw
         set C := (((c * m : ℕ) : ℝ) / ((r * N : ℕ) : ℝ)) ^ r
         rw [← mul_pow, ← mul_pow]
 
+/--
+@isnad1 id=le.5h5v.s7.74fc10847778 from=translated src=- shape=48c330f4 vocab=a14fe7e5
+-/
 theorem pippenger_term_le_entropy_bound
     (N L r c m : ℕ) (hm : 0 < m) (hmN : m < N) (hmL : m < L)
     (hr : 0 < r) (hrc : r < c) :
@@ -738,6 +791,9 @@ theorem pippenger_term_le_entropy_bound
           rw [Real.exp_add, Real.exp_add]
           ring
 
+/--
+@isnad1 id=eq.9h6v.s7.930ae52bb530 from=translated src=- shape=f4307e7b vocab=7cc8913b
+-/
 theorem pippenger_entropy_exponent_eq_phi
     (N L r c m : ℕ) (θ : ℝ)
     (hN : 0 < N) (hm : 0 < m) (hmN : m < N) (hmL : m < L)
@@ -827,6 +883,9 @@ theorem pippenger_entropy_exponent_eq_phi
   unfold Phi
   ring
 
+/--
+@isnad1 id=le.11h6v.s8.5d1289566f96 from=translated src=- shape=27f76133 vocab=03267d71
+-/
 theorem pippenger_mid_term_le
     (N L r c m : ℕ) (θ : ℝ)
     (hN : 0 < N) (hm : 0 < m) (hmN : m < N) (hmL : m < L)
@@ -853,6 +912,9 @@ theorem pippenger_mid_term_le
 /-
 Extend a subset to a given cardinality.
 -/
+/--
+@isnad1 id=ex.2h3v.s5.ad6cf95d9c22 from=translated src=- shape=b438f9ee vocab=f3695ab3
+-/
 theorem exists_superset_card_eq {α : Type*} [Fintype α]
     (B : Finset α) (m : ℕ)
     (hBm : B.card ≤ m) (hmA : m ≤ Fintype.card α) :
@@ -876,6 +938,9 @@ theorem exists_superset_card_eq {α : Type*} [Fintype α]
 /-
 Multiplying by a fixed permutation on the right preserves subtype cardinality.
 -/
+/--
+@isnad1 id=eq.0h3v.s7.c135fee48130 from=translated src=- shape=7e2a5981 vocab=ff18ac73
+-/
 theorem card_subtype_perm_mul_right {n : ℕ} (π : Equiv.Perm (Fin n))
     (P : Equiv.Perm (Fin n) → Prop) [DecidablePred P] :
     Fintype.card {σ // P σ} = Fintype.card {σ // P (σ * π)} := by
@@ -887,6 +952,9 @@ theorem card_subtype_perm_mul_right {n : ℕ} (π : Equiv.Perm (Fin n))
 /-
 Multiplying by a fixed permutation on the left preserves subtype cardinality.
 -/
+/--
+@isnad1 id=eq.0h3v.s7.4baf802cc3c1 from=translated src=- shape=83534a88 vocab=ff18ac73
+-/
 theorem card_subtype_perm_mul_left {n : ℕ} (π : Equiv.Perm (Fin n))
     (P : Equiv.Perm (Fin n) → Prop) [DecidablePred P] :
     Fintype.card {σ // P σ} = Fintype.card {σ // P (π * σ)} := by
@@ -897,6 +965,9 @@ theorem card_subtype_perm_mul_left {n : ℕ} (π : Equiv.Perm (Fin n))
 
 /-
 There exists a permutation mapping a given finset to the initial segment.
+-/
+/--
+@isnad1 id=ex.0h2v.s6.69b840652886 from=translated src=- shape=f1dd1cce vocab=08805cc3
 -/
 theorem exists_perm_set_to_initial {n : ℕ} (A : Finset (Fin n)) :
     ∃ π : Equiv.Perm (Fin n), ∀ x : Fin n, x ∈ A ↔ (π x).val < A.card := by
@@ -938,6 +1009,9 @@ theorem exists_perm_set_to_initial {n : ℕ} (A : Finset (Fin n)) :
 /-
 The count of constrained permutations depends only on subset cardinalities.
 Proved via conjugation reducing to card_perm_constrained.
+-/
+/--
+@isnad1 id=eq.2h3v.s8.17530bc51a41 from=translated src=- shape=12a12ee0 vocab=c4c4f2b3
 -/
 theorem card_constrained_perm_subsets {n : ℕ}
     (A B : Finset (Fin n)) (hs : A.card ≤ B.card) (ht : B.card ≤ n) :
@@ -985,6 +1059,9 @@ theorem card_constrained_perm_subsets {n : ℕ}
 /-
 Right coverage from any equivalence between product types.
 -/
+/--
+@isnad1 id=ex.1h6v.s6.b1df11594cf0 from=translated src=- shape=a5688222 vocab=b9c3c562
+-/
 theorem right_coverage_of_equiv {N L r c : ℕ} (hc : 0 < c)
     (σ : (Fin N × Fin r) ≃ (Fin L × Fin c)) :
     ∀ w : Fin L, ∃ v : Fin N, ∃ e : Fin r, (σ ⟨v, e⟩).1 = w := by
@@ -999,6 +1076,9 @@ theorem right_coverage_of_equiv {N L r c : ℕ} (hc : 0 < c)
 /-
 First moment principle: if the weighted sum of subtype cardinalities
 is less than the total, then the complement is nonempty.
+-/
+/--
+@isnad1 id=ex.2h2v.s9.6c7d29c26e95 from=translated src=- shape=7356b7fe vocab=86599a41
 -/
 theorem first_moment_principle {n : ℕ} (hn : 0 < n.factorial)
     (weights : Finset (Finset (Fin n) × Finset (Fin n)))
@@ -1031,6 +1111,9 @@ theorem first_moment_principle {n : ℕ} (hn : 0 < n.factorial)
 If the sum of "bad fractions" over a given set of (A,B) pairs is < 1,
 then there exists a permutation not satisfying any of them.
 -/
+/--
+@isnad1 id=ex.3h2v.s8.f0d246b7dd36 from=translated src=- shape=74bcd398 vocab=f61a14af
+-/
 theorem good_perm_of_sum_lt (M : ℕ) (_hM : 0 < M)
     (pairs : Finset (Finset (Fin M) × Finset (Fin M)))
     (hsum : (∑ p ∈ pairs,
@@ -1048,6 +1131,9 @@ theorem good_perm_of_sum_lt (M : ℕ) (_hM : 0 < M)
 /-
 Indexed first moment principle.  This version deliberately keeps duplicate
 events indexed separately, which is exactly what the Pippenger overcount needs.
+-/
+/--
+@isnad1 id=ex.1h5v.s9.d69a4edb890e from=translated src=- shape=c41a6b1f vocab=01bea4fa
 -/
 theorem first_moment_principle_indexed {n : ℕ} {ι : Type*}
     (I : Finset ι) (A B : ι → Finset (Fin n))
@@ -1085,6 +1171,9 @@ theorem first_moment_principle_indexed {n : ℕ} {ι : Type*}
 /-
 Indexed version of `good_perm_of_sum_lt`.
 -/
+/--
+@isnad1 id=ex.2h5v.s7.b6b826a8aa9d from=translated src=- shape=3894c6a4 vocab=3d86435a
+-/
 theorem good_perm_indexed_of_sum_lt {ι : Type*}
     (M : ℕ) (I : Finset ι) (A B : ι → Finset (Fin M))
     (hsum : (∑ i ∈ I,
@@ -1102,6 +1191,9 @@ theorem good_perm_indexed_of_sum_lt {ι : Type*}
   · exact (hpairs i hi).1
   · exact (hpairs i hi).2
 
+/--
+@isnad1 id=eq.2h3v.s6.6c2c0a1a0bb5 from=translated src=- shape=80bb8976 vocab=0f67c162
+-/
 theorem desc_factorial_ratio_eq_choose_ratio
     (M a k : ℕ) (_hka : k ≤ a) (hkM : k ≤ M) :
     ((a.descFactorial k * (M - k).factorial : ℝ) / M.factorial) =
@@ -1125,7 +1217,9 @@ theorem desc_factorial_ratio_eq_choose_ratio
     exact_mod_cast Nat.choose_pos hkM
   field_simp [hfact_pos.ne', htail_pos.ne', hchoose_pos.ne']
 
-/-- If the expected number of bad sets is < 1, a good matching exists. -/
+/-- If the expected number of bad sets is < 1, a good matching exists.
+@isnad1 id=ex.7h5v.s8.a9eafbfd6a2e from=translated src=- shape=c06de037 vocab=a6db34f3
+-/
 theorem good_matching_exists_of_ratio_sum_lt_one
     (N L r c A : ℕ) (_hN : 0 < N) (hL : 0 < L) (hr : 0 < r) (hc : r < c)
     (hNL : r * N = c * L) (hA : A ≤ L)

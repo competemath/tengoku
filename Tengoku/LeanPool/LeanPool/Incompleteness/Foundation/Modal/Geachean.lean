@@ -32,8 +32,14 @@ namespace Geachean
 
 variable {rel : Rel α α}
 
+/--
+@isnad1 id=iff.0h2v.s5.ed7edaf5d512 from=translated src=- shape=ab0aa254 vocab=5eb31d4c
+-/
 lemma serial_def : Serial rel ↔ (Geachean ⟨0, 0, 1, 1⟩ rel) := by simp [Geachean, Serial];
 
+/--
+@isnad1 id=iff.0h2v.s5.63eeec8a2072 from=translated src=- shape=ab0aa254 vocab=f101f113
+-/
 lemma reflexive_def : Std.Refl rel ↔ (Geachean ⟨0, 0, 1, 0⟩ rel) := by
   constructor
   · intro h
@@ -46,6 +52,9 @@ lemma reflexive_def : Std.Refl rel ↔ (Geachean ⟨0, 0, 1, 0⟩ rel) := by
       exists_eq_right', and_imp, forall_apply_eq_imp_iff, forall_eq'] at h
     exact ⟨fun x => h (x := x)⟩
 
+/--
+@isnad1 id=iff.0h2v.s5.673ad8ac6a84 from=translated src=- shape=ab0aa254 vocab=3758837c
+-/
 lemma symmetric_def : IsSymmetric rel ↔ (Geachean ⟨0, 1, 0, 1⟩ rel) := by
   simp only [IsSymmetric, Geachean, Rel.iterate.iff_zero, Rel.iterate.iff_succ,
     exists_eq_right, exists_eq_left', and_imp];
@@ -53,6 +62,9 @@ lemma symmetric_def : IsSymmetric rel ↔ (Geachean ⟨0, 1, 0, 1⟩ rel) := by
   · rintro h x y z rfl Rxz; exact h Rxz;
   · intro h x y Rxy; exact h rfl Rxy;
 
+/--
+@isnad1 id=iff.0h2v.s5.64d52e3f7f1c from=translated src=- shape=ab0aa254 vocab=6bd47c33
+-/
 lemma transitive_def : IsTrans α rel ↔ (Geachean ⟨0, 2, 1, 0⟩ rel) := by
   simp only [Geachean, Rel.iterate.iff_zero, Rel.iterate.iff_succ, exists_eq_right,
     exists_eq_right', and_imp, forall_exists_index]
@@ -62,10 +74,19 @@ lemma transitive_def : IsTrans α rel ↔ (Geachean ⟨0, 2, 1, 0⟩ rel) := by
   · intro h
     exact ⟨fun x y z Rxy Ryz => h rfl y Rxy Ryz⟩
 
+/--
+@isnad1 id=iff.0h2v.s5.3e667e75b16a from=translated src=- shape=ab0aa254 vocab=61ab1c47
+-/
 lemma euclidean_def : Euclidean rel ↔ (Geachean ⟨1, 1, 0, 1⟩ rel) := by simp [Geachean, Euclidean];
 
+/--
+@isnad1 id=iff.0h2v.s5.d663c1a66e8a from=translated src=- shape=ab0aa254 vocab=5dff6de5
+-/
 lemma confluent_def : Confluent rel ↔ (Geachean ⟨1, 1, 1, 1⟩ rel) := by simp [Geachean, Confluent];
 
+/--
+@isnad1 id=iff.0h2v.s5.a61707d07d68 from=translated src=- shape=ab0aa254 vocab=2d01123e
+-/
 lemma coreflexive_def : Coreflexive rel ↔ (Geachean ⟨0, 1, 0, 0⟩ rel) := by
   simp only [Coreflexive, Geachean, Rel.iterate.iff_zero, Rel.iterate.iff_succ,
     exists_eq_right, exists_eq_left', and_imp];
@@ -73,10 +94,16 @@ lemma coreflexive_def : Coreflexive rel ↔ (Geachean ⟨0, 1, 0, 0⟩ rel) := b
   · rintro h x y z rfl Rxz; have := h Rxz; tauto;
   · intro h x y Rxy; have := h rfl Rxy; tauto;
 
+/--
+@isnad1 id=iff.0h2v.s5.90313623c644 from=translated src=- shape=ab0aa254 vocab=7308bb7a
+-/
 lemma functional_def : Functional rel ↔ (Geachean ⟨1, 1, 0, 0⟩ rel) := by
   simp [Geachean, Functional];
   constructor <;> tauto;
 
+/--
+@isnad1 id=iff.0h2v.s5.0c5d1fc873d3 from=translated src=- shape=ab0aa254 vocab=b9733da1
+-/
 lemma dense_def : RelDense rel ↔ (Geachean ⟨0, 1, 2, 0⟩ rel) := by
   simp only [RelDense, Geachean, Rel.iterate.iff_zero, Rel.iterate.iff_succ,
     exists_eq_right, exists_eq_right', and_imp];
@@ -84,6 +111,9 @@ lemma dense_def : RelDense rel ↔ (Geachean ⟨0, 1, 2, 0⟩ rel) := by
   · rintro h x y z rfl Rxz; exact h Rxz;
   · intro h x y Rxy; exact h rfl Rxy;
 
+/--
+@isnad1 id=geachean.0h2v.s3.6496af1115e1 from=translated src=- shape=dba6e170 vocab=ddfbceec
+-/
 @[simp]
 lemma satisfies_eq : Geachean (α := α) t (· = ·) := by simp [Geachean];
 

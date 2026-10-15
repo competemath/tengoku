@@ -108,7 +108,9 @@ public import Tengoku
 
 namespace Erdos97Octagon.RawIncidence.StaticDirectCoverage
 
-/-- Every local node audit passes for fixed branch (1, 4). -/
+/-- Every local node audit passes for fixed branch (1, 4).
+@isnad1 id=locallyv.0h0v.s1.8ffa330f5415 from=translated src=- shape=49959d42 vocab=b5aedd9d
+-/
 theorem coverageBranchLocallyValid_1_04 :
     branchClaims1Row4.LocallyValid := by
   intro identifier hidentifier
@@ -117,7 +119,9 @@ theorem coverageBranchLocallyValid_1_04 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_1_04_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_1_04_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (1, 5). -/
+/-- Every local node audit passes for fixed branch (1, 5).
+@isnad1 id=locallyv.0h0v.s1.23b8b4ebab6c from=translated src=- shape=49959d42 vocab=96779307
+-/
 theorem coverageBranchLocallyValid_1_05 :
     branchClaims1Row5.LocallyValid := by
   intro identifier hidentifier
@@ -126,7 +130,9 @@ theorem coverageBranchLocallyValid_1_05 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_1_05_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_1_05_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (1, 6). -/
+/-- Every local node audit passes for fixed branch (1, 6).
+@isnad1 id=locallyv.0h0v.s1.2e54bb79efcb from=translated src=- shape=49959d42 vocab=b431b6fa
+-/
 theorem coverageBranchLocallyValid_1_06 :
     branchClaims1Row6.LocallyValid := by
   intro identifier hidentifier
@@ -135,7 +141,9 @@ theorem coverageBranchLocallyValid_1_06 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_1_06_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_1_06_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (1, 7). -/
+/-- Every local node audit passes for fixed branch (1, 7).
+@isnad1 id=locallyv.0h0v.s1.6e294888e25c from=translated src=- shape=49959d42 vocab=6e717077
+-/
 theorem coverageBranchLocallyValid_1_07 :
     branchClaims1Row7.LocallyValid := by
   intro identifier hidentifier
@@ -144,7 +152,9 @@ theorem coverageBranchLocallyValid_1_07 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_1_07_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_1_07_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (1, 8). -/
+/-- Every local node audit passes for fixed branch (1, 8).
+@isnad1 id=locallyv.0h0v.s1.d54a2520e68b from=translated src=- shape=49959d42 vocab=713cfde6
+-/
 theorem coverageBranchLocallyValid_1_08 :
     branchClaims1Row8.LocallyValid := by
   intro identifier hidentifier
@@ -155,7 +165,9 @@ theorem coverageBranchLocallyValid_1_08 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_1_08_00064 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_1_08_00128 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (1, 9). -/
+/-- Every local node audit passes for fixed branch (1, 9).
+@isnad1 id=locallyv.0h0v.s1.ebca745e22d3 from=translated src=- shape=49959d42 vocab=035a36a6
+-/
 theorem coverageBranchLocallyValid_1_09 :
     branchClaims1Row9.LocallyValid := by
   intro identifier hidentifier
@@ -166,7 +178,9 @@ theorem coverageBranchLocallyValid_1_09 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_1_09_00064 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_1_09_00128 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (1, 16). -/
+/-- Every local node audit passes for fixed branch (1, 16).
+@isnad1 id=locallyv.0h0v.s1.0624f4f4b2ae from=translated src=- shape=49959d42 vocab=dbc72c15
+-/
 theorem coverageBranchLocallyValid_1_16 :
     branchClaims1Row16.LocallyValid := by
   intro identifier hidentifier
@@ -175,7 +189,9 @@ theorem coverageBranchLocallyValid_1_16 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_1_16_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_1_16_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (1, 17). -/
+/-- Every local node audit passes for fixed branch (1, 17).
+@isnad1 id=locallyv.0h0v.s1.ab95a39ceb31 from=translated src=- shape=49959d42 vocab=77bca558
+-/
 theorem coverageBranchLocallyValid_1_17 :
     branchClaims1Row17.LocallyValid := by
   intro identifier hidentifier
@@ -186,7 +202,9 @@ theorem coverageBranchLocallyValid_1_17 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_1_17_00064 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_1_17_00128 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (1, 18). -/
+/-- Every local node audit passes for fixed branch (1, 18).
+@isnad1 id=locallyv.0h0v.s1.7493e3e35da1 from=translated src=- shape=49959d42 vocab=75b4c03c
+-/
 theorem coverageBranchLocallyValid_1_18 :
     branchClaims1Row18.LocallyValid := by
   intro identifier hidentifier
@@ -195,7 +213,9 @@ theorem coverageBranchLocallyValid_1_18 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_1_18_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_1_18_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (1, 19). -/
+/-- Every local node audit passes for fixed branch (1, 19).
+@isnad1 id=locallyv.0h0v.s1.fd4616dd6eed from=translated src=- shape=49959d42 vocab=becfdbda
+-/
 theorem coverageBranchLocallyValid_1_19 :
     branchClaims1Row19.LocallyValid := by
   intro identifier hidentifier
@@ -204,7 +224,9 @@ theorem coverageBranchLocallyValid_1_19 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_1_19_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_1_19_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (1, 26). -/
+/-- Every local node audit passes for fixed branch (1, 26).
+@isnad1 id=locallyv.0h0v.s1.6ee5194e43aa from=translated src=- shape=49959d42 vocab=6dfdd7c5
+-/
 theorem coverageBranchLocallyValid_1_26 :
     branchClaims1Row26.LocallyValid := by
   intro identifier hidentifier
@@ -213,7 +235,9 @@ theorem coverageBranchLocallyValid_1_26 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_1_26_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_1_26_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (1, 27). -/
+/-- Every local node audit passes for fixed branch (1, 27).
+@isnad1 id=locallyv.0h0v.s1.052ee45bd467 from=translated src=- shape=49959d42 vocab=cfe1be02
+-/
 theorem coverageBranchLocallyValid_1_27 :
     branchClaims1Row27.LocallyValid := by
   intro identifier hidentifier
@@ -224,7 +248,9 @@ theorem coverageBranchLocallyValid_1_27 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_1_27_00064 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_1_27_00128 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (1, 28). -/
+/-- Every local node audit passes for fixed branch (1, 28).
+@isnad1 id=locallyv.0h0v.s1.ef9c817fd568 from=translated src=- shape=49959d42 vocab=37f5bc0a
+-/
 theorem coverageBranchLocallyValid_1_28 :
     branchClaims1Row28.LocallyValid := by
   intro identifier hidentifier
@@ -233,7 +259,9 @@ theorem coverageBranchLocallyValid_1_28 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_1_28_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_1_28_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (1, 29). -/
+/-- Every local node audit passes for fixed branch (1, 29).
+@isnad1 id=locallyv.0h0v.s1.1bc14681c12c from=translated src=- shape=49959d42 vocab=7ba20a76
+-/
 theorem coverageBranchLocallyValid_1_29 :
     branchClaims1Row29.LocallyValid := by
   intro identifier hidentifier
@@ -244,7 +272,9 @@ theorem coverageBranchLocallyValid_1_29 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_1_29_00032 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_1_29_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (1, 30). -/
+/-- Every local node audit passes for fixed branch (1, 30).
+@isnad1 id=locallyv.0h0v.s1.b81a396f308d from=translated src=- shape=49959d42 vocab=a9d236ab
+-/
 theorem coverageBranchLocallyValid_1_30 :
     branchClaims1Row30.LocallyValid := by
   intro identifier hidentifier
@@ -259,7 +289,9 @@ theorem coverageBranchLocallyValid_1_30 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_1_30_00192 (by omega) hchunk3
   exact nodeLocalValid_of_chunk coverageBranchNodes_1_30_00256 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (1, 31). -/
+/-- Every local node audit passes for fixed branch (1, 31).
+@isnad1 id=locallyv.0h0v.s1.188890d49c0a from=translated src=- shape=49959d42 vocab=578c6016
+-/
 theorem coverageBranchLocallyValid_1_31 :
     branchClaims1Row31.LocallyValid := by
   intro identifier hidentifier
@@ -274,7 +306,9 @@ theorem coverageBranchLocallyValid_1_31 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_1_31_00192 (by omega) hchunk3
   exact nodeLocalValid_of_chunk coverageBranchNodes_1_31_00221 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (1, 32). -/
+/-- Every local node audit passes for fixed branch (1, 32).
+@isnad1 id=locallyv.0h0v.s1.8ff2627f9ca8 from=translated src=- shape=49959d42 vocab=c0831c82
+-/
 theorem coverageBranchLocallyValid_1_32 :
     branchClaims1Row32.LocallyValid := by
   intro identifier hidentifier
@@ -287,7 +321,9 @@ theorem coverageBranchLocallyValid_1_32 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_1_32_00128 (by omega) hchunk2
   exact nodeLocalValid_of_chunk coverageBranchNodes_1_32_00192 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (1, 33). -/
+/-- Every local node audit passes for fixed branch (1, 33).
+@isnad1 id=locallyv.0h0v.s1.9ebb68cfc83c from=translated src=- shape=49959d42 vocab=5778c7e5
+-/
 theorem coverageBranchLocallyValid_1_33 :
     branchClaims1Row33.LocallyValid := by
   intro identifier hidentifier
@@ -300,7 +336,9 @@ theorem coverageBranchLocallyValid_1_33 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_1_33_00128 (by omega) hchunk2
   exact nodeLocalValid_of_chunk coverageBranchNodes_1_33_00192 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (1, 34). -/
+/-- Every local node audit passes for fixed branch (1, 34).
+@isnad1 id=locallyv.0h0v.s1.144e75185858 from=translated src=- shape=49959d42 vocab=2677471e
+-/
 theorem coverageBranchLocallyValid_1_34 :
     branchClaims1Row34.LocallyValid := by
   intro identifier hidentifier
@@ -309,7 +347,9 @@ theorem coverageBranchLocallyValid_1_34 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_1_34_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_1_34_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 1). -/
+/-- Every local node audit passes for fixed branch (2, 1).
+@isnad1 id=locallyv.0h0v.s1.54cf0e98c093 from=translated src=- shape=49959d42 vocab=712b9068
+-/
 theorem coverageBranchLocallyValid_2_01 :
     branchClaims2Row1.LocallyValid := by
   intro identifier hidentifier
@@ -318,7 +358,9 @@ theorem coverageBranchLocallyValid_2_01 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_01_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_01_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 2). -/
+/-- Every local node audit passes for fixed branch (2, 2).
+@isnad1 id=locallyv.0h0v.s1.27676c23b18a from=translated src=- shape=49959d42 vocab=31651a51
+-/
 theorem coverageBranchLocallyValid_2_02 :
     branchClaims2Row2.LocallyValid := by
   intro identifier hidentifier
@@ -327,7 +369,9 @@ theorem coverageBranchLocallyValid_2_02 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_02_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_02_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 3). -/
+/-- Every local node audit passes for fixed branch (2, 3).
+@isnad1 id=locallyv.0h0v.s1.f05c1356d732 from=translated src=- shape=49959d42 vocab=2b9c34a2
+-/
 theorem coverageBranchLocallyValid_2_03 :
     branchClaims2Row3.LocallyValid := by
   intro identifier hidentifier
@@ -336,7 +380,9 @@ theorem coverageBranchLocallyValid_2_03 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_03_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_03_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 4). -/
+/-- Every local node audit passes for fixed branch (2, 4).
+@isnad1 id=locallyv.0h0v.s1.7aaa4800a821 from=translated src=- shape=49959d42 vocab=9f852a34
+-/
 theorem coverageBranchLocallyValid_2_04 :
     branchClaims2Row4.LocallyValid := by
   intro identifier hidentifier
@@ -345,7 +391,9 @@ theorem coverageBranchLocallyValid_2_04 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_04_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_04_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 5). -/
+/-- Every local node audit passes for fixed branch (2, 5).
+@isnad1 id=locallyv.0h0v.s1.2de9d29c2a2a from=translated src=- shape=49959d42 vocab=0252cdcd
+-/
 theorem coverageBranchLocallyValid_2_05 :
     branchClaims2Row5.LocallyValid := by
   intro identifier hidentifier
@@ -354,7 +402,9 @@ theorem coverageBranchLocallyValid_2_05 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_05_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_05_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 6). -/
+/-- Every local node audit passes for fixed branch (2, 6).
+@isnad1 id=locallyv.0h0v.s1.a09938a90ef9 from=translated src=- shape=49959d42 vocab=cc25623d
+-/
 theorem coverageBranchLocallyValid_2_06 :
     branchClaims2Row6.LocallyValid := by
   intro identifier hidentifier
@@ -363,7 +413,9 @@ theorem coverageBranchLocallyValid_2_06 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_06_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_06_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 8). -/
+/-- Every local node audit passes for fixed branch (2, 8).
+@isnad1 id=locallyv.0h0v.s1.2972f9fead2c from=translated src=- shape=49959d42 vocab=ce3d2396
+-/
 theorem coverageBranchLocallyValid_2_08 :
     branchClaims2Row8.LocallyValid := by
   intro identifier hidentifier
@@ -374,7 +426,9 @@ theorem coverageBranchLocallyValid_2_08 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_08_00064 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_08_00128 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 9). -/
+/-- Every local node audit passes for fixed branch (2, 9).
+@isnad1 id=locallyv.0h0v.s1.91a55848271f from=translated src=- shape=49959d42 vocab=7bdbe011
+-/
 theorem coverageBranchLocallyValid_2_09 :
     branchClaims2Row9.LocallyValid := by
   intro identifier hidentifier
@@ -385,28 +439,36 @@ theorem coverageBranchLocallyValid_2_09 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_09_00064 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_09_00128 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 10). -/
+/-- Every local node audit passes for fixed branch (2, 10).
+@isnad1 id=locallyv.0h0v.s1.5fd5da1d5b9c from=translated src=- shape=49959d42 vocab=3e7b9392
+-/
 theorem coverageBranchLocallyValid_2_10 :
     branchClaims2Row10.LocallyValid := by
   intro identifier hidentifier
   change identifier < 15 at hidentifier
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_10_00000 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 11). -/
+/-- Every local node audit passes for fixed branch (2, 11).
+@isnad1 id=locallyv.0h0v.s1.084344a43263 from=translated src=- shape=49959d42 vocab=2eb017c4
+-/
 theorem coverageBranchLocallyValid_2_11 :
     branchClaims2Row11.LocallyValid := by
   intro identifier hidentifier
   change identifier < 15 at hidentifier
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_11_00000 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 12). -/
+/-- Every local node audit passes for fixed branch (2, 12).
+@isnad1 id=locallyv.0h0v.s1.8dde82aa5000 from=translated src=- shape=49959d42 vocab=6e966ea0
+-/
 theorem coverageBranchLocallyValid_2_12 :
     branchClaims2Row12.LocallyValid := by
   intro identifier hidentifier
   change identifier < 28 at hidentifier
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_12_00000 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 14). -/
+/-- Every local node audit passes for fixed branch (2, 14).
+@isnad1 id=locallyv.0h0v.s1.105b41f19c79 from=translated src=- shape=49959d42 vocab=ff5a7886
+-/
 theorem coverageBranchLocallyValid_2_14 :
     branchClaims2Row14.LocallyValid := by
   intro identifier hidentifier
@@ -415,7 +477,9 @@ theorem coverageBranchLocallyValid_2_14 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_14_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_14_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 15). -/
+/-- Every local node audit passes for fixed branch (2, 15).
+@isnad1 id=locallyv.0h0v.s1.493040f7b557 from=translated src=- shape=49959d42 vocab=94e2d257
+-/
 theorem coverageBranchLocallyValid_2_15 :
     branchClaims2Row15.LocallyValid := by
   intro identifier hidentifier
@@ -428,7 +492,9 @@ theorem coverageBranchLocallyValid_2_15 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_15_00064 (by omega) hchunk2
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_15_00128 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 17). -/
+/-- Every local node audit passes for fixed branch (2, 17).
+@isnad1 id=locallyv.0h0v.s1.a63ee6610b1a from=translated src=- shape=49959d42 vocab=2a8d62bf
+-/
 theorem coverageBranchLocallyValid_2_17 :
     branchClaims2Row17.LocallyValid := by
   intro identifier hidentifier
@@ -437,7 +503,9 @@ theorem coverageBranchLocallyValid_2_17 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_17_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_17_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 18). -/
+/-- Every local node audit passes for fixed branch (2, 18).
+@isnad1 id=locallyv.0h0v.s1.5f9de3a96ff7 from=translated src=- shape=49959d42 vocab=d0154b2e
+-/
 theorem coverageBranchLocallyValid_2_18 :
     branchClaims2Row18.LocallyValid := by
   intro identifier hidentifier
@@ -448,7 +516,9 @@ theorem coverageBranchLocallyValid_2_18 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_18_00064 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_18_00128 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 23). -/
+/-- Every local node audit passes for fixed branch (2, 23).
+@isnad1 id=locallyv.0h0v.s1.145e78497278 from=translated src=- shape=49959d42 vocab=4011719f
+-/
 theorem coverageBranchLocallyValid_2_23 :
     branchClaims2Row23.LocallyValid := by
   intro identifier hidentifier
@@ -457,7 +527,9 @@ theorem coverageBranchLocallyValid_2_23 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_23_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_23_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 24). -/
+/-- Every local node audit passes for fixed branch (2, 24).
+@isnad1 id=locallyv.0h0v.s1.56a3e7f91b07 from=translated src=- shape=49959d42 vocab=bd3ea5bd
+-/
 theorem coverageBranchLocallyValid_2_24 :
     branchClaims2Row24.LocallyValid := by
   intro identifier hidentifier
@@ -466,7 +538,9 @@ theorem coverageBranchLocallyValid_2_24 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_24_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_24_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 25). -/
+/-- Every local node audit passes for fixed branch (2, 25).
+@isnad1 id=locallyv.0h0v.s1.8d365dd807e4 from=translated src=- shape=49959d42 vocab=fb628d77
+-/
 theorem coverageBranchLocallyValid_2_25 :
     branchClaims2Row25.LocallyValid := by
   intro identifier hidentifier
@@ -475,7 +549,9 @@ theorem coverageBranchLocallyValid_2_25 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_25_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_25_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 26). -/
+/-- Every local node audit passes for fixed branch (2, 26).
+@isnad1 id=locallyv.0h0v.s1.333f85266d0a from=translated src=- shape=49959d42 vocab=e587d775
+-/
 theorem coverageBranchLocallyValid_2_26 :
     branchClaims2Row26.LocallyValid := by
   intro identifier hidentifier
@@ -484,7 +560,9 @@ theorem coverageBranchLocallyValid_2_26 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_26_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_26_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 27). -/
+/-- Every local node audit passes for fixed branch (2, 27).
+@isnad1 id=locallyv.0h0v.s1.6a585013c7d0 from=translated src=- shape=49959d42 vocab=4c04989c
+-/
 theorem coverageBranchLocallyValid_2_27 :
     branchClaims2Row27.LocallyValid := by
   intro identifier hidentifier
@@ -493,7 +571,9 @@ theorem coverageBranchLocallyValid_2_27 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_27_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_27_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 28). -/
+/-- Every local node audit passes for fixed branch (2, 28).
+@isnad1 id=locallyv.0h0v.s1.c1c701b3ee56 from=translated src=- shape=49959d42 vocab=414e5d24
+-/
 theorem coverageBranchLocallyValid_2_28 :
     branchClaims2Row28.LocallyValid := by
   intro identifier hidentifier
@@ -502,7 +582,9 @@ theorem coverageBranchLocallyValid_2_28 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_28_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_28_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 29). -/
+/-- Every local node audit passes for fixed branch (2, 29).
+@isnad1 id=locallyv.0h0v.s1.3afc7e79e2fa from=translated src=- shape=49959d42 vocab=e5d9ea12
+-/
 theorem coverageBranchLocallyValid_2_29 :
     branchClaims2Row29.LocallyValid := by
   intro identifier hidentifier
@@ -511,7 +593,9 @@ theorem coverageBranchLocallyValid_2_29 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_29_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_29_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 30). -/
+/-- Every local node audit passes for fixed branch (2, 30).
+@isnad1 id=locallyv.0h0v.s1.893a3a3b2789 from=translated src=- shape=49959d42 vocab=f1c15ae8
+-/
 theorem coverageBranchLocallyValid_2_30 :
     branchClaims2Row30.LocallyValid := by
   intro identifier hidentifier
@@ -524,7 +608,9 @@ theorem coverageBranchLocallyValid_2_30 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_30_00128 (by omega) hchunk2
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_30_00192 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 31). -/
+/-- Every local node audit passes for fixed branch (2, 31).
+@isnad1 id=locallyv.0h0v.s1.e862826a1eda from=translated src=- shape=49959d42 vocab=e05284ed
+-/
 theorem coverageBranchLocallyValid_2_31 :
     branchClaims2Row31.LocallyValid := by
   intro identifier hidentifier
@@ -537,7 +623,9 @@ theorem coverageBranchLocallyValid_2_31 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_31_00128 (by omega) hchunk2
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_31_00192 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 32). -/
+/-- Every local node audit passes for fixed branch (2, 32).
+@isnad1 id=locallyv.0h0v.s1.6d5e48920d7e from=translated src=- shape=49959d42 vocab=119dfef3
+-/
 theorem coverageBranchLocallyValid_2_32 :
     branchClaims2Row32.LocallyValid := by
   intro identifier hidentifier
@@ -550,7 +638,9 @@ theorem coverageBranchLocallyValid_2_32 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_32_00128 (by omega) hchunk2
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_32_00192 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 33). -/
+/-- Every local node audit passes for fixed branch (2, 33).
+@isnad1 id=locallyv.0h0v.s1.839c2d44fd99 from=translated src=- shape=49959d42 vocab=c0945fe7
+-/
 theorem coverageBranchLocallyValid_2_33 :
     branchClaims2Row33.LocallyValid := by
   intro identifier hidentifier
@@ -561,7 +651,9 @@ theorem coverageBranchLocallyValid_2_33 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_33_00064 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_33_00128 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (2, 34). -/
+/-- Every local node audit passes for fixed branch (2, 34).
+@isnad1 id=locallyv.0h0v.s1.f3437ebe41c9 from=translated src=- shape=49959d42 vocab=8babc300
+-/
 theorem coverageBranchLocallyValid_2_34 :
     branchClaims2Row34.LocallyValid := by
   intro identifier hidentifier
@@ -572,7 +664,9 @@ theorem coverageBranchLocallyValid_2_34 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_2_34_00064 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_2_34_00128 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (3, 1). -/
+/-- Every local node audit passes for fixed branch (3, 1).
+@isnad1 id=locallyv.0h0v.s1.4eea3236ed7a from=translated src=- shape=49959d42 vocab=b1f364de
+-/
 theorem coverageBranchLocallyValid_3_01 :
     branchClaims3Row1.LocallyValid := by
   intro identifier hidentifier
@@ -581,7 +675,9 @@ theorem coverageBranchLocallyValid_3_01 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_3_01_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_3_01_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (3, 2). -/
+/-- Every local node audit passes for fixed branch (3, 2).
+@isnad1 id=locallyv.0h0v.s1.b85e72347687 from=translated src=- shape=49959d42 vocab=4dacc4dc
+-/
 theorem coverageBranchLocallyValid_3_02 :
     branchClaims3Row2.LocallyValid := by
   intro identifier hidentifier
@@ -590,7 +686,9 @@ theorem coverageBranchLocallyValid_3_02 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_3_02_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_3_02_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (3, 3). -/
+/-- Every local node audit passes for fixed branch (3, 3).
+@isnad1 id=locallyv.0h0v.s1.9a32e96f780d from=translated src=- shape=49959d42 vocab=20da88dc
+-/
 theorem coverageBranchLocallyValid_3_03 :
     branchClaims3Row3.LocallyValid := by
   intro identifier hidentifier
@@ -599,7 +697,9 @@ theorem coverageBranchLocallyValid_3_03 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_3_03_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_3_03_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (3, 4). -/
+/-- Every local node audit passes for fixed branch (3, 4).
+@isnad1 id=locallyv.0h0v.s1.b1b5fda5ea41 from=translated src=- shape=49959d42 vocab=5cba03f5
+-/
 theorem coverageBranchLocallyValid_3_04 :
     branchClaims3Row4.LocallyValid := by
   intro identifier hidentifier
@@ -608,7 +708,9 @@ theorem coverageBranchLocallyValid_3_04 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_3_04_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_3_04_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (3, 5). -/
+/-- Every local node audit passes for fixed branch (3, 5).
+@isnad1 id=locallyv.0h0v.s1.0f5b8882ab59 from=translated src=- shape=49959d42 vocab=15f71075
+-/
 theorem coverageBranchLocallyValid_3_05 :
     branchClaims3Row5.LocallyValid := by
   intro identifier hidentifier
@@ -617,7 +719,9 @@ theorem coverageBranchLocallyValid_3_05 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_3_05_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_3_05_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (3, 6). -/
+/-- Every local node audit passes for fixed branch (3, 6).
+@isnad1 id=locallyv.0h0v.s1.6084c7fd048c from=translated src=- shape=49959d42 vocab=104473e1
+-/
 theorem coverageBranchLocallyValid_3_06 :
     branchClaims3Row6.LocallyValid := by
   intro identifier hidentifier
@@ -626,7 +730,9 @@ theorem coverageBranchLocallyValid_3_06 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_3_06_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_3_06_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (3, 10). -/
+/-- Every local node audit passes for fixed branch (3, 10).
+@isnad1 id=locallyv.0h0v.s1.35a1b35b1710 from=translated src=- shape=49959d42 vocab=73947b93
+-/
 theorem coverageBranchLocallyValid_3_10 :
     branchClaims3Row10.LocallyValid := by
   intro identifier hidentifier
@@ -637,7 +743,9 @@ theorem coverageBranchLocallyValid_3_10 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_3_10_00064 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_3_10_00128 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (3, 11). -/
+/-- Every local node audit passes for fixed branch (3, 11).
+@isnad1 id=locallyv.0h0v.s1.15366a22ea18 from=translated src=- shape=49959d42 vocab=ca0b76fc
+-/
 theorem coverageBranchLocallyValid_3_11 :
     branchClaims3Row11.LocallyValid := by
   intro identifier hidentifier
@@ -646,7 +754,9 @@ theorem coverageBranchLocallyValid_3_11 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_3_11_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_3_11_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (3, 12). -/
+/-- Every local node audit passes for fixed branch (3, 12).
+@isnad1 id=locallyv.0h0v.s1.1a57c9d2137c from=translated src=- shape=49959d42 vocab=834736b0
+-/
 theorem coverageBranchLocallyValid_3_12 :
     branchClaims3Row12.LocallyValid := by
   intro identifier hidentifier
@@ -655,7 +765,9 @@ theorem coverageBranchLocallyValid_3_12 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_3_12_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_3_12_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (3, 23). -/
+/-- Every local node audit passes for fixed branch (3, 23).
+@isnad1 id=locallyv.0h0v.s1.f9b236e3de5c from=translated src=- shape=49959d42 vocab=66b480ee
+-/
 theorem coverageBranchLocallyValid_3_23 :
     branchClaims3Row23.LocallyValid := by
   intro identifier hidentifier
@@ -670,7 +782,9 @@ theorem coverageBranchLocallyValid_3_23 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_3_23_00192 (by omega) hchunk3
   exact nodeLocalValid_of_chunk coverageBranchNodes_3_23_00256 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (3, 24). -/
+/-- Every local node audit passes for fixed branch (3, 24).
+@isnad1 id=locallyv.0h0v.s1.925f23f8c416 from=translated src=- shape=49959d42 vocab=a4248710
+-/
 theorem coverageBranchLocallyValid_3_24 :
     branchClaims3Row24.LocallyValid := by
   intro identifier hidentifier
@@ -687,7 +801,9 @@ theorem coverageBranchLocallyValid_3_24 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_3_24_00256 (by omega) hchunk4
   exact nodeLocalValid_of_chunk coverageBranchNodes_3_24_00320 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (3, 25). -/
+/-- Every local node audit passes for fixed branch (3, 25).
+@isnad1 id=locallyv.0h0v.s1.88af539ac752 from=translated src=- shape=49959d42 vocab=7ddb0aa7
+-/
 theorem coverageBranchLocallyValid_3_25 :
     branchClaims3Row25.LocallyValid := by
   intro identifier hidentifier
@@ -704,7 +820,9 @@ theorem coverageBranchLocallyValid_3_25 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_3_25_00256 (by omega) hchunk4
   exact nodeLocalValid_of_chunk coverageBranchNodes_3_25_00320 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (3, 26). -/
+/-- Every local node audit passes for fixed branch (3, 26).
+@isnad1 id=locallyv.0h0v.s1.a29bad76c7e2 from=translated src=- shape=49959d42 vocab=c8060784
+-/
 theorem coverageBranchLocallyValid_3_26 :
     branchClaims3Row26.LocallyValid := by
   intro identifier hidentifier
@@ -721,7 +839,9 @@ theorem coverageBranchLocallyValid_3_26 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_3_26_00224 (by omega) hchunk4
   exact nodeLocalValid_of_chunk coverageBranchNodes_3_26_00256 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (3, 27). -/
+/-- Every local node audit passes for fixed branch (3, 27).
+@isnad1 id=locallyv.0h0v.s1.cdcd71a4e5c0 from=translated src=- shape=49959d42 vocab=4d4ca023
+-/
 theorem coverageBranchLocallyValid_3_27 :
     branchClaims3Row27.LocallyValid := by
   intro identifier hidentifier
@@ -738,7 +858,9 @@ theorem coverageBranchLocallyValid_3_27 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_3_27_00256 (by omega) hchunk4
   exact nodeLocalValid_of_chunk coverageBranchNodes_3_27_00320 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (3, 28). -/
+/-- Every local node audit passes for fixed branch (3, 28).
+@isnad1 id=locallyv.0h0v.s1.7ab3593b736c from=translated src=- shape=49959d42 vocab=c00d0db6
+-/
 theorem coverageBranchLocallyValid_3_28 :
     branchClaims3Row28.LocallyValid := by
   intro identifier hidentifier
@@ -755,7 +877,9 @@ theorem coverageBranchLocallyValid_3_28 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_3_28_00256 (by omega) hchunk4
   exact nodeLocalValid_of_chunk coverageBranchNodes_3_28_00320 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (3, 30). -/
+/-- Every local node audit passes for fixed branch (3, 30).
+@isnad1 id=locallyv.0h0v.s1.ae02139897d6 from=translated src=- shape=49959d42 vocab=1ab6c80c
+-/
 theorem coverageBranchLocallyValid_3_30 :
     branchClaims3Row30.LocallyValid := by
   intro identifier hidentifier
@@ -768,7 +892,9 @@ theorem coverageBranchLocallyValid_3_30 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_3_30_00128 (by omega) hchunk2
   exact nodeLocalValid_of_chunk coverageBranchNodes_3_30_00192 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (3, 31). -/
+/-- Every local node audit passes for fixed branch (3, 31).
+@isnad1 id=locallyv.0h0v.s1.811d8490ca8e from=translated src=- shape=49959d42 vocab=dab53892
+-/
 theorem coverageBranchLocallyValid_3_31 :
     branchClaims3Row31.LocallyValid := by
   intro identifier hidentifier
@@ -783,7 +909,9 @@ theorem coverageBranchLocallyValid_3_31 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_3_31_00192 (by omega) hchunk3
   exact nodeLocalValid_of_chunk coverageBranchNodes_3_31_00218 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (3, 32). -/
+/-- Every local node audit passes for fixed branch (3, 32).
+@isnad1 id=locallyv.0h0v.s1.14a14a56943b from=translated src=- shape=49959d42 vocab=1f4e30cc
+-/
 theorem coverageBranchLocallyValid_3_32 :
     branchClaims3Row32.LocallyValid := by
   intro identifier hidentifier
@@ -798,7 +926,9 @@ theorem coverageBranchLocallyValid_3_32 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_3_32_00192 (by omega) hchunk3
   exact nodeLocalValid_of_chunk coverageBranchNodes_3_32_00256 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 4). -/
+/-- Every local node audit passes for fixed branch (5, 4).
+@isnad1 id=locallyv.0h0v.s1.66f16a3ace08 from=translated src=- shape=49959d42 vocab=d7011d28
+-/
 theorem coverageBranchLocallyValid_5_04 :
     branchClaims5Row4.LocallyValid := by
   intro identifier hidentifier
@@ -807,7 +937,9 @@ theorem coverageBranchLocallyValid_5_04 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_04_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_04_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 5). -/
+/-- Every local node audit passes for fixed branch (5, 5).
+@isnad1 id=locallyv.0h0v.s1.54d7d7cb7acf from=translated src=- shape=49959d42 vocab=fb652ed0
+-/
 theorem coverageBranchLocallyValid_5_05 :
     branchClaims5Row5.LocallyValid := by
   intro identifier hidentifier
@@ -816,7 +948,9 @@ theorem coverageBranchLocallyValid_5_05 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_05_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_05_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 6). -/
+/-- Every local node audit passes for fixed branch (5, 6).
+@isnad1 id=locallyv.0h0v.s1.d671cb2da1a1 from=translated src=- shape=49959d42 vocab=1ac070fb
+-/
 theorem coverageBranchLocallyValid_5_06 :
     branchClaims5Row6.LocallyValid := by
   intro identifier hidentifier
@@ -825,7 +959,9 @@ theorem coverageBranchLocallyValid_5_06 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_06_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_06_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 7). -/
+/-- Every local node audit passes for fixed branch (5, 7).
+@isnad1 id=locallyv.0h0v.s1.b2fb8f578703 from=translated src=- shape=49959d42 vocab=5fa5a9c7
+-/
 theorem coverageBranchLocallyValid_5_07 :
     branchClaims5Row7.LocallyValid := by
   intro identifier hidentifier
@@ -834,7 +970,9 @@ theorem coverageBranchLocallyValid_5_07 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_07_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_07_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 8). -/
+/-- Every local node audit passes for fixed branch (5, 8).
+@isnad1 id=locallyv.0h0v.s1.24e44dc816fa from=translated src=- shape=49959d42 vocab=830b4fa2
+-/
 theorem coverageBranchLocallyValid_5_08 :
     branchClaims5Row8.LocallyValid := by
   intro identifier hidentifier
@@ -843,7 +981,9 @@ theorem coverageBranchLocallyValid_5_08 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_08_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_08_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 9). -/
+/-- Every local node audit passes for fixed branch (5, 9).
+@isnad1 id=locallyv.0h0v.s1.77eb40531517 from=translated src=- shape=49959d42 vocab=0c8d6a59
+-/
 theorem coverageBranchLocallyValid_5_09 :
     branchClaims5Row9.LocallyValid := by
   intro identifier hidentifier
@@ -852,7 +992,9 @@ theorem coverageBranchLocallyValid_5_09 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_09_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_09_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 10). -/
+/-- Every local node audit passes for fixed branch (5, 10).
+@isnad1 id=locallyv.0h0v.s1.59bae0310519 from=translated src=- shape=49959d42 vocab=bcf263c2
+-/
 theorem coverageBranchLocallyValid_5_10 :
     branchClaims5Row10.LocallyValid := by
   intro identifier hidentifier
@@ -863,7 +1005,9 @@ theorem coverageBranchLocallyValid_5_10 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_10_00064 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_10_00128 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 11). -/
+/-- Every local node audit passes for fixed branch (5, 11).
+@isnad1 id=locallyv.0h0v.s1.1efda60bd36f from=translated src=- shape=49959d42 vocab=d3450214
+-/
 theorem coverageBranchLocallyValid_5_11 :
     branchClaims5Row11.LocallyValid := by
   intro identifier hidentifier
@@ -874,7 +1018,9 @@ theorem coverageBranchLocallyValid_5_11 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_11_00064 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_11_00128 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 12). -/
+/-- Every local node audit passes for fixed branch (5, 12).
+@isnad1 id=locallyv.0h0v.s1.93af8ae99345 from=translated src=- shape=49959d42 vocab=dd55acbe
+-/
 theorem coverageBranchLocallyValid_5_12 :
     branchClaims5Row12.LocallyValid := by
   intro identifier hidentifier
@@ -887,7 +1033,9 @@ theorem coverageBranchLocallyValid_5_12 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_12_00128 (by omega) hchunk2
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_12_00192 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 14). -/
+/-- Every local node audit passes for fixed branch (5, 14).
+@isnad1 id=locallyv.0h0v.s1.71ff0b20bcc1 from=translated src=- shape=49959d42 vocab=919420f9
+-/
 theorem coverageBranchLocallyValid_5_14 :
     branchClaims5Row14.LocallyValid := by
   intro identifier hidentifier
@@ -904,7 +1052,9 @@ theorem coverageBranchLocallyValid_5_14 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_14_00256 (by omega) hchunk4
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_14_00320 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 15). -/
+/-- Every local node audit passes for fixed branch (5, 15).
+@isnad1 id=locallyv.0h0v.s1.5ec2ae2e2086 from=translated src=- shape=49959d42 vocab=5a3d94d5
+-/
 theorem coverageBranchLocallyValid_5_15 :
     branchClaims5Row15.LocallyValid := by
   intro identifier hidentifier
@@ -921,7 +1071,9 @@ theorem coverageBranchLocallyValid_5_15 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_15_00256 (by omega) hchunk4
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_15_00320 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 16). -/
+/-- Every local node audit passes for fixed branch (5, 16).
+@isnad1 id=locallyv.0h0v.s1.cd33f4f5d08c from=translated src=- shape=49959d42 vocab=72e36954
+-/
 theorem coverageBranchLocallyValid_5_16 :
     branchClaims5Row16.LocallyValid := by
   intro identifier hidentifier
@@ -932,7 +1084,9 @@ theorem coverageBranchLocallyValid_5_16 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_16_00064 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_16_00128 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 17). -/
+/-- Every local node audit passes for fixed branch (5, 17).
+@isnad1 id=locallyv.0h0v.s1.32321c875110 from=translated src=- shape=49959d42 vocab=544b84f5
+-/
 theorem coverageBranchLocallyValid_5_17 :
     branchClaims5Row17.LocallyValid := by
   intro identifier hidentifier
@@ -945,7 +1099,9 @@ theorem coverageBranchLocallyValid_5_17 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_17_00128 (by omega) hchunk2
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_17_00192 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 18). -/
+/-- Every local node audit passes for fixed branch (5, 18).
+@isnad1 id=locallyv.0h0v.s1.09e363dbd6b2 from=translated src=- shape=49959d42 vocab=b954fd79
+-/
 theorem coverageBranchLocallyValid_5_18 :
     branchClaims5Row18.LocallyValid := by
   intro identifier hidentifier
@@ -958,7 +1114,9 @@ theorem coverageBranchLocallyValid_5_18 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_18_00128 (by omega) hchunk2
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_18_00192 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 19). -/
+/-- Every local node audit passes for fixed branch (5, 19).
+@isnad1 id=locallyv.0h0v.s1.1ef8c4c101f8 from=translated src=- shape=49959d42 vocab=835957a6
+-/
 theorem coverageBranchLocallyValid_5_19 :
     branchClaims5Row19.LocallyValid := by
   intro identifier hidentifier
@@ -973,7 +1131,9 @@ theorem coverageBranchLocallyValid_5_19 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_19_00192 (by omega) hchunk3
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_19_00256 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 24). -/
+/-- Every local node audit passes for fixed branch (5, 24).
+@isnad1 id=locallyv.0h0v.s1.98c97aecea0d from=translated src=- shape=49959d42 vocab=af465632
+-/
 theorem coverageBranchLocallyValid_5_24 :
     branchClaims5Row24.LocallyValid := by
   intro identifier hidentifier
@@ -988,7 +1148,9 @@ theorem coverageBranchLocallyValid_5_24 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_24_00192 (by omega) hchunk3
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_24_00217 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 25). -/
+/-- Every local node audit passes for fixed branch (5, 25).
+@isnad1 id=locallyv.0h0v.s1.8d23c2ce98e0 from=translated src=- shape=49959d42 vocab=d9af2a76
+-/
 theorem coverageBranchLocallyValid_5_25 :
     branchClaims5Row25.LocallyValid := by
   intro identifier hidentifier
@@ -1003,7 +1165,9 @@ theorem coverageBranchLocallyValid_5_25 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_25_00192 (by omega) hchunk3
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_25_00223 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 26). -/
+/-- Every local node audit passes for fixed branch (5, 26).
+@isnad1 id=locallyv.0h0v.s1.e89cd50c6155 from=translated src=- shape=49959d42 vocab=3fa8e603
+-/
 theorem coverageBranchLocallyValid_5_26 :
     branchClaims5Row26.LocallyValid := by
   intro identifier hidentifier
@@ -1018,7 +1182,9 @@ theorem coverageBranchLocallyValid_5_26 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_26_00192 (by omega) hchunk3
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_26_00256 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 27). -/
+/-- Every local node audit passes for fixed branch (5, 27).
+@isnad1 id=locallyv.0h0v.s1.8a9cf68e209d from=translated src=- shape=49959d42 vocab=de514a90
+-/
 theorem coverageBranchLocallyValid_5_27 :
     branchClaims5Row27.LocallyValid := by
   intro identifier hidentifier
@@ -1037,7 +1203,9 @@ theorem coverageBranchLocallyValid_5_27 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_27_00320 (by omega) hchunk5
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_27_00384 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 28). -/
+/-- Every local node audit passes for fixed branch (5, 28).
+@isnad1 id=locallyv.0h0v.s1.60fc791f4c03 from=translated src=- shape=49959d42 vocab=5da4ea44
+-/
 theorem coverageBranchLocallyValid_5_28 :
     branchClaims5Row28.LocallyValid := by
   intro identifier hidentifier
@@ -1058,7 +1226,9 @@ theorem coverageBranchLocallyValid_5_28 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_28_00288 (by omega) hchunk6
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_28_00320 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 29). -/
+/-- Every local node audit passes for fixed branch (5, 29).
+@isnad1 id=locallyv.0h0v.s1.583e95adf55d from=translated src=- shape=49959d42 vocab=334362a4
+-/
 theorem coverageBranchLocallyValid_5_29 :
     branchClaims5Row29.LocallyValid := by
   intro identifier hidentifier
@@ -1071,7 +1241,9 @@ theorem coverageBranchLocallyValid_5_29 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_29_00128 (by omega) hchunk2
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_29_00192 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 31). -/
+/-- Every local node audit passes for fixed branch (5, 31).
+@isnad1 id=locallyv.0h0v.s1.cc56fe98a2cf from=translated src=- shape=49959d42 vocab=e5c56a45
+-/
 theorem coverageBranchLocallyValid_5_31 :
     branchClaims5Row31.LocallyValid := by
   intro identifier hidentifier
@@ -1094,7 +1266,9 @@ theorem coverageBranchLocallyValid_5_31 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_31_00384 (by omega) hchunk7
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_31_00448 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 32). -/
+/-- Every local node audit passes for fixed branch (5, 32).
+@isnad1 id=locallyv.0h0v.s1.b93dba05d71d from=translated src=- shape=49959d42 vocab=a1ea2a43
+-/
 theorem coverageBranchLocallyValid_5_32 :
     branchClaims5Row32.LocallyValid := by
   intro identifier hidentifier
@@ -1117,7 +1291,9 @@ theorem coverageBranchLocallyValid_5_32 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_32_00384 (by omega) hchunk7
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_32_00413 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (5, 34). -/
+/-- Every local node audit passes for fixed branch (5, 34).
+@isnad1 id=locallyv.0h0v.s1.6da5f0e6d414 from=translated src=- shape=49959d42 vocab=cf2f4b61
+-/
 theorem coverageBranchLocallyValid_5_34 :
     branchClaims5Row34.LocallyValid := by
   intro identifier hidentifier
@@ -1136,7 +1312,9 @@ theorem coverageBranchLocallyValid_5_34 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_5_34_00320 (by omega) hchunk5
   exact nodeLocalValid_of_chunk coverageBranchNodes_5_34_00384 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 1). -/
+/-- Every local node audit passes for fixed branch (6, 1).
+@isnad1 id=locallyv.0h0v.s1.09ec2f72a7ab from=translated src=- shape=49959d42 vocab=a2616f60
+-/
 theorem coverageBranchLocallyValid_6_01 :
     branchClaims6Row1.LocallyValid := by
   intro identifier hidentifier
@@ -1147,42 +1325,54 @@ theorem coverageBranchLocallyValid_6_01 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_01_00032 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_01_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 2). -/
+/-- Every local node audit passes for fixed branch (6, 2).
+@isnad1 id=locallyv.0h0v.s1.36b3b0024005 from=translated src=- shape=49959d42 vocab=b6dad4f9
+-/
 theorem coverageBranchLocallyValid_6_02 :
     branchClaims6Row2.LocallyValid := by
   intro identifier hidentifier
   change identifier < 52 at hidentifier
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_02_00000 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 3). -/
+/-- Every local node audit passes for fixed branch (6, 3).
+@isnad1 id=locallyv.0h0v.s1.0d6bd8d48131 from=translated src=- shape=49959d42 vocab=fe8c017d
+-/
 theorem coverageBranchLocallyValid_6_03 :
     branchClaims6Row3.LocallyValid := by
   intro identifier hidentifier
   change identifier < 42 at hidentifier
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_03_00000 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 4). -/
+/-- Every local node audit passes for fixed branch (6, 4).
+@isnad1 id=locallyv.0h0v.s1.335def912bc2 from=translated src=- shape=49959d42 vocab=a61ccca4
+-/
 theorem coverageBranchLocallyValid_6_04 :
     branchClaims6Row4.LocallyValid := by
   intro identifier hidentifier
   change identifier < 51 at hidentifier
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_04_00000 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 5). -/
+/-- Every local node audit passes for fixed branch (6, 5).
+@isnad1 id=locallyv.0h0v.s1.78bef01fd743 from=translated src=- shape=49959d42 vocab=8a68434c
+-/
 theorem coverageBranchLocallyValid_6_05 :
     branchClaims6Row5.LocallyValid := by
   intro identifier hidentifier
   change identifier < 40 at hidentifier
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_05_00000 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 6). -/
+/-- Every local node audit passes for fixed branch (6, 6).
+@isnad1 id=locallyv.0h0v.s1.26d45acc60ef from=translated src=- shape=49959d42 vocab=c3269d96
+-/
 theorem coverageBranchLocallyValid_6_06 :
     branchClaims6Row6.LocallyValid := by
   intro identifier hidentifier
   change identifier < 35 at hidentifier
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_06_00000 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 7). -/
+/-- Every local node audit passes for fixed branch (6, 7).
+@isnad1 id=locallyv.0h0v.s1.d106593c436f from=translated src=- shape=49959d42 vocab=8d04aa7a
+-/
 theorem coverageBranchLocallyValid_6_07 :
     branchClaims6Row7.LocallyValid := by
   intro identifier hidentifier
@@ -1191,7 +1381,9 @@ theorem coverageBranchLocallyValid_6_07 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_07_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_07_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 8). -/
+/-- Every local node audit passes for fixed branch (6, 8).
+@isnad1 id=locallyv.0h0v.s1.87a691f7e884 from=translated src=- shape=49959d42 vocab=324b4bb0
+-/
 theorem coverageBranchLocallyValid_6_08 :
     branchClaims6Row8.LocallyValid := by
   intro identifier hidentifier
@@ -1202,7 +1394,9 @@ theorem coverageBranchLocallyValid_6_08 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_08_00064 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_08_00092 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 9). -/
+/-- Every local node audit passes for fixed branch (6, 9).
+@isnad1 id=locallyv.0h0v.s1.c12485e9619e from=translated src=- shape=49959d42 vocab=eed11b14
+-/
 theorem coverageBranchLocallyValid_6_09 :
     branchClaims6Row9.LocallyValid := by
   intro identifier hidentifier
@@ -1211,7 +1405,9 @@ theorem coverageBranchLocallyValid_6_09 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_09_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_09_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 10). -/
+/-- Every local node audit passes for fixed branch (6, 10).
+@isnad1 id=locallyv.0h0v.s1.e5b053758e57 from=translated src=- shape=49959d42 vocab=56be22bb
+-/
 theorem coverageBranchLocallyValid_6_10 :
     branchClaims6Row10.LocallyValid := by
   intro identifier hidentifier
@@ -1222,7 +1418,9 @@ theorem coverageBranchLocallyValid_6_10 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_10_00064 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_10_00128 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 11). -/
+/-- Every local node audit passes for fixed branch (6, 11).
+@isnad1 id=locallyv.0h0v.s1.a33e2de3df77 from=translated src=- shape=49959d42 vocab=8811aa8a
+-/
 theorem coverageBranchLocallyValid_6_11 :
     branchClaims6Row11.LocallyValid := by
   intro identifier hidentifier
@@ -1233,7 +1431,9 @@ theorem coverageBranchLocallyValid_6_11 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_11_00064 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_11_00128 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 12). -/
+/-- Every local node audit passes for fixed branch (6, 12).
+@isnad1 id=locallyv.0h0v.s1.f31070f068d3 from=translated src=- shape=49959d42 vocab=1c421fff
+-/
 theorem coverageBranchLocallyValid_6_12 :
     branchClaims6Row12.LocallyValid := by
   intro identifier hidentifier
@@ -1242,7 +1442,9 @@ theorem coverageBranchLocallyValid_6_12 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_12_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_12_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 13). -/
+/-- Every local node audit passes for fixed branch (6, 13).
+@isnad1 id=locallyv.0h0v.s1.7a342061b90f from=translated src=- shape=49959d42 vocab=ab39a2a6
+-/
 theorem coverageBranchLocallyValid_6_13 :
     branchClaims6Row13.LocallyValid := by
   intro identifier hidentifier
@@ -1253,7 +1455,9 @@ theorem coverageBranchLocallyValid_6_13 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_13_00064 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_13_00128 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 14). -/
+/-- Every local node audit passes for fixed branch (6, 14).
+@isnad1 id=locallyv.0h0v.s1.185c6e27a273 from=translated src=- shape=49959d42 vocab=bbe4f167
+-/
 theorem coverageBranchLocallyValid_6_14 :
     branchClaims6Row14.LocallyValid := by
   intro identifier hidentifier
@@ -1264,7 +1468,9 @@ theorem coverageBranchLocallyValid_6_14 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_14_00064 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_14_00128 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 15). -/
+/-- Every local node audit passes for fixed branch (6, 15).
+@isnad1 id=locallyv.0h0v.s1.83a153ca0672 from=translated src=- shape=49959d42 vocab=37ea80b8
+-/
 theorem coverageBranchLocallyValid_6_15 :
     branchClaims6Row15.LocallyValid := by
   intro identifier hidentifier
@@ -1277,7 +1483,9 @@ theorem coverageBranchLocallyValid_6_15 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_15_00128 (by omega) hchunk2
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_15_00192 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 16). -/
+/-- Every local node audit passes for fixed branch (6, 16).
+@isnad1 id=locallyv.0h0v.s1.29842fa49eb3 from=translated src=- shape=49959d42 vocab=392a8f03
+-/
 theorem coverageBranchLocallyValid_6_16 :
     branchClaims6Row16.LocallyValid := by
   intro identifier hidentifier
@@ -1286,7 +1494,9 @@ theorem coverageBranchLocallyValid_6_16 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_16_00000 (by omega) hchunk0
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_16_00064 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 17). -/
+/-- Every local node audit passes for fixed branch (6, 17).
+@isnad1 id=locallyv.0h0v.s1.d4a1b43ee646 from=translated src=- shape=49959d42 vocab=fe54cb4a
+-/
 theorem coverageBranchLocallyValid_6_17 :
     branchClaims6Row17.LocallyValid := by
   intro identifier hidentifier
@@ -1297,7 +1507,9 @@ theorem coverageBranchLocallyValid_6_17 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_17_00064 (by omega) hchunk1
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_17_00128 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 18). -/
+/-- Every local node audit passes for fixed branch (6, 18).
+@isnad1 id=locallyv.0h0v.s1.1478357222cd from=translated src=- shape=49959d42 vocab=ade0c48f
+-/
 theorem coverageBranchLocallyValid_6_18 :
     branchClaims6Row18.LocallyValid := by
   intro identifier hidentifier
@@ -1310,7 +1522,9 @@ theorem coverageBranchLocallyValid_6_18 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_18_00128 (by omega) hchunk2
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_18_00192 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 23). -/
+/-- Every local node audit passes for fixed branch (6, 23).
+@isnad1 id=locallyv.0h0v.s1.d0a9740995a4 from=translated src=- shape=49959d42 vocab=d170d7bd
+-/
 theorem coverageBranchLocallyValid_6_23 :
     branchClaims6Row23.LocallyValid := by
   intro identifier hidentifier
@@ -1323,7 +1537,9 @@ theorem coverageBranchLocallyValid_6_23 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_23_00128 (by omega) hchunk2
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_23_00192 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 24). -/
+/-- Every local node audit passes for fixed branch (6, 24).
+@isnad1 id=locallyv.0h0v.s1.51da1def3934 from=translated src=- shape=49959d42 vocab=0e285fa7
+-/
 theorem coverageBranchLocallyValid_6_24 :
     branchClaims6Row24.LocallyValid := by
   intro identifier hidentifier
@@ -1336,7 +1552,9 @@ theorem coverageBranchLocallyValid_6_24 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_24_00128 (by omega) hchunk2
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_24_00192 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 25). -/
+/-- Every local node audit passes for fixed branch (6, 25).
+@isnad1 id=locallyv.0h0v.s1.e94daa9e82c3 from=translated src=- shape=49959d42 vocab=50952f8d
+-/
 theorem coverageBranchLocallyValid_6_25 :
     branchClaims6Row25.LocallyValid := by
   intro identifier hidentifier
@@ -1349,7 +1567,9 @@ theorem coverageBranchLocallyValid_6_25 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_25_00128 (by omega) hchunk2
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_25_00192 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 26). -/
+/-- Every local node audit passes for fixed branch (6, 26).
+@isnad1 id=locallyv.0h0v.s1.b3f3553e952d from=translated src=- shape=49959d42 vocab=6d817791
+-/
 theorem coverageBranchLocallyValid_6_26 :
     branchClaims6Row26.LocallyValid := by
   intro identifier hidentifier
@@ -1362,7 +1582,9 @@ theorem coverageBranchLocallyValid_6_26 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_26_00128 (by omega) hchunk2
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_26_00192 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 27). -/
+/-- Every local node audit passes for fixed branch (6, 27).
+@isnad1 id=locallyv.0h0v.s1.06e781c7cae4 from=translated src=- shape=49959d42 vocab=b47e9cf5
+-/
 theorem coverageBranchLocallyValid_6_27 :
     branchClaims6Row27.LocallyValid := by
   intro identifier hidentifier
@@ -1375,7 +1597,9 @@ theorem coverageBranchLocallyValid_6_27 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_27_00128 (by omega) hchunk2
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_27_00192 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 28). -/
+/-- Every local node audit passes for fixed branch (6, 28).
+@isnad1 id=locallyv.0h0v.s1.c894a3a09982 from=translated src=- shape=49959d42 vocab=c7b0a0e2
+-/
 theorem coverageBranchLocallyValid_6_28 :
     branchClaims6Row28.LocallyValid := by
   intro identifier hidentifier
@@ -1388,7 +1612,9 @@ theorem coverageBranchLocallyValid_6_28 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_28_00128 (by omega) hchunk2
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_28_00192 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 30). -/
+/-- Every local node audit passes for fixed branch (6, 30).
+@isnad1 id=locallyv.0h0v.s1.d0a951cec235 from=translated src=- shape=49959d42 vocab=b5819aad
+-/
 theorem coverageBranchLocallyValid_6_30 :
     branchClaims6Row30.LocallyValid := by
   intro identifier hidentifier
@@ -1403,7 +1629,9 @@ theorem coverageBranchLocallyValid_6_30 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_30_00192 (by omega) hchunk3
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_30_00256 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 31). -/
+/-- Every local node audit passes for fixed branch (6, 31).
+@isnad1 id=locallyv.0h0v.s1.470127bf4e52 from=translated src=- shape=49959d42 vocab=35aa7c64
+-/
 theorem coverageBranchLocallyValid_6_31 :
     branchClaims6Row31.LocallyValid := by
   intro identifier hidentifier
@@ -1418,7 +1646,9 @@ theorem coverageBranchLocallyValid_6_31 :
   · exact nodeLocalValid_of_chunk coverageBranchNodes_6_31_00192 (by omega) hchunk3
   exact nodeLocalValid_of_chunk coverageBranchNodes_6_31_00221 (by omega) (by omega)
 
-/-- Every local node audit passes for fixed branch (6, 32). -/
+/-- Every local node audit passes for fixed branch (6, 32).
+@isnad1 id=locallyv.0h0v.s1.539e4356dfbf from=translated src=- shape=49959d42 vocab=d8575b96
+-/
 theorem coverageBranchLocallyValid_6_32 :
     branchClaims6Row32.LocallyValid := by
   intro identifier hidentifier
@@ -1706,7 +1936,9 @@ private theorem coverageBranchClaim_root_valid_orbit6 (rowTwo : Fin 35) :
   · exact coverageBranchRoot_6_33
   · exact coverageBranchRoot_6_34
 
-/-- Every one of the 245 fixed-branch roots passes its fail-closed audit. -/
+/-- Every one of the 245 fixed-branch roots passes its fail-closed audit.
+@isnad1 id=eq.0h2v.s4.3b5d2d1ce19c from=translated src=- shape=23cad7c4 vocab=2c664572
+-/
 theorem coverageBranchClaim_root_valid (orbit : Fin 7) (rowTwo : Fin 35) :
     branchClaimRootValidB orbit rowTwo (coverageBranchClaim orbit rowTwo) = true := by
   fin_cases orbit

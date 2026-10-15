@@ -31,7 +31,9 @@ noncomputable section
 
 /-! ### Lemma 4 -/
 
-/-- If an orbit point is real, all later orbit points are real. -/
+/-- If an orbit point is real, all later orbit points are real.
+@isnad1 id=eq.2h3v.s5.a670e36c9ef9 from=translated src=- shape=d7d61969 vocab=47c30a28
+-/
 theorem expIterate_im_eq_zero_of_le {z : ℂ} {n : ℕ} (h : (expIterate n z).im = 0) :
     ∀ m, n ≤ m → (expIterate m z).im = 0 := by
   intro m hm
@@ -43,13 +45,17 @@ theorem expIterate_im_eq_zero_of_le {z : ℂ} {n : ℕ} (h : (expIterate n z).im
       rw [hidx, expIterate_succ, Complex.exp_im, ih (by omega), Real.sin_zero, mul_zero]
 
 /-- If the imaginary part of an orbit point is an integer multiple of `π`, the next point
-is real. -/
+is real.
+@isnad1 id=eq.1h3v.s5.f6d50318dfc5 from=translated src=- shape=103f0f8b vocab=d62a8c81
+-/
 theorem expIterate_im_succ_eq_zero_of_int {z : ℂ} {n : ℕ} {k : ℤ}
     (h : (expIterate n z).im = k * Real.pi) :
     (expIterate (n + 1) z).im = 0 := by
   rw [expIterate_succ, Complex.exp_im, h, Real.sin_int_mul_pi, mul_zero]
 
-/-- Chain rule for iterates: `expIterate (a + b) = expIterate a ∘ expIterate b`. -/
+/-- Chain rule for iterates: `expIterate (a + b) = expIterate a ∘ expIterate b`.
+@isnad1 id=eq.0h3v.s7.021eba0f8230 from=translated src=- shape=3dc07a1d vocab=02b3505c
+-/
 theorem deriv_expIterate_add (a b : ℕ) (z : ℂ) :
     deriv (expIterate (a + b)) z
       = deriv (expIterate a) (expIterate b z) * deriv (expIterate b) z := by
@@ -70,7 +76,9 @@ rather than `π`, which both branches of Lemma 4 in fact supply. -/
 def EventuallyMeetsNegativeRealAxis (V : Set ℂ) : Prop :=
   ∃ n : ℕ, ∃ z ∈ V, (expIterate n z).im = 0 ∧ (expIterate n z).re < 0
 
-/-- An odd multiple of `π` in the imaginary part gives a negative real exponential. -/
+/-- An odd multiple of `π` in the imaginary part gives a negative real exponential.
+@isnad1 id=and.2h2v.s5.a646373ccd4d from=translated src=- shape=8139bf9b vocab=9ff5861c
+-/
 theorem exp_neg_real_of_odd_mul_pi {z : ℂ} {k : ℤ} (hk : Odd k)
     (h : z.im = (k : ℝ) * Real.pi) :
     (Complex.exp z).im = 0 ∧ (Complex.exp z).re < 0 := by
@@ -82,7 +90,9 @@ theorem exp_neg_real_of_odd_mul_pi {z : ℂ} {k : ℤ} (hk : Odd k)
   · rw [Complex.exp_re, h, hcast, Real.cos_int_mul_two_pi_add_pi]
     nlinarith [Real.exp_pos z.re]
 
-/-- Two distinct points with the same exponential have imaginary parts at least `2π` apart. -/
+/-- Two distinct points with the same exponential have imaginary parts at least `2π` apart.
+@isnad1 id=le.2h2v.s5.bb65987128fb from=translated src=- shape=f00ed185 vocab=3dbd36c7
+-/
 theorem two_pi_le_abs_im_sub_of_exp_eq {a b : ℂ}
     (h : Complex.exp a = Complex.exp b) (hne : a ≠ b) :
     2 * Real.pi ≤ |a.im - b.im| := by
@@ -104,7 +114,9 @@ theorem two_pi_le_abs_im_sub_of_exp_eq {a b : ℂ}
   nlinarith [Real.pi_pos]
 
 /-- Two distinct points with the same exponential have imaginary parts at least `π` apart
-(indeed `2π`). This is the non-injective branch of Harrison's argument. -/
+(indeed `2π`). This is the non-injective branch of Harrison's argument.
+@isnad1 id=le.2h2v.s5.94392eda0bac from=translated src=- shape=8a81bbd5 vocab=3f9f5e86
+-/
 theorem pi_le_abs_im_sub_of_exp_eq {a b : ℂ}
     (h : Complex.exp a = Complex.exp b) (hne : a ≠ b) :
     Real.pi ≤ |a.im - b.im| := by
@@ -114,7 +126,9 @@ theorem pi_le_abs_im_sub_of_exp_eq {a b : ℂ}
 /-- If infinitely many images miss the central strip, some image has imaginary diameter
 at least `2π`. If every iterate is injective, derivative growth and Lemma 3 produce a
 large image disk. Otherwise, the first failure of injectivity gives a pair separated
-by a nonzero period of the exponential. -/
+by a nonzero period of the exponential.
+@isnad1 id=ex.3h1v.s7.dfca8bd85764 from=translated src=- shape=4f5df4ac vocab=f7e4b944
+-/
 theorem lemma4_exists_im_far_apart_two_pi
     {V : Set ℂ} (hVopen : IsOpen V) (hVne : V.Nonempty)
     (hinf : {n : ℕ | Disjoint (expIterate n '' V) centralStrip}.Infinite) :
@@ -237,7 +251,9 @@ theorem lemma4_exists_im_far_apart_two_pi
     exact ⟨m, w, z, hw, hz, two_pi_le_abs_im_sub_of_exp_eq hexp hne'⟩
 
 /-- Some forward image of `V` contains two points whose imaginary parts differ by at least `π`,
-given that infinitely many forward images avoid the central strip. -/
+given that infinitely many forward images avoid the central strip.
+@isnad1 id=ex.3h1v.s6.51c11907893c from=translated src=- shape=2285dd53 vocab=245e02ba
+-/
 theorem lemma4_exists_im_far_apart
     {V : Set ℂ} (hVopen : IsOpen V) (hVne : V.Nonempty)
     (hinf : {n : ℕ | Disjoint (expIterate n '' V) centralStrip}.Infinite) :
@@ -248,7 +264,9 @@ theorem lemma4_exists_im_far_apart
 
 /-- With an imaginary spread of `2π`, the intermediate value theorem finds a point whose
 imaginary part is an *odd* multiple of `π`: the interval contains two consecutive multiples,
-and one of them is odd. -/
+and one of them is odd.
+@isnad1 id=ex.2h1v.s7.2f6afb332f24 from=translated src=- shape=807e7ff1 vocab=a85577dc
+-/
 theorem lemma4_exists_im_odd_mul_pi
     {V : Set ℂ} (hVconn : IsConnected V)
     (h : ∃ (n : ℕ) (w z : ℂ), w ∈ V ∧ z ∈ V ∧
@@ -296,7 +314,9 @@ theorem lemma4_exists_im_odd_mul_pi
     exact ⟨n, y, k, hy, hodd, hval⟩
 
 /-- **Negative-axis strengthening, conditional form.** If infinitely many forward images of
-`V` avoid the central strip, then some forward image meets the *negative* real axis. -/
+`V` avoid the central strip, then some forward image meets the *negative* real axis.
+@isnad1 id=eventual.4h1v.s6.023b4fd5a18b from=translated src=- shape=e7e26e68 vocab=da504e25
+-/
 theorem negativeRealAxis_of_infinite_strip_misses
     {V : Set ℂ} (hVopen : IsOpen V) (hVconn : IsConnected V) (hVne : V.Nonempty)
     (hinf : {n : ℕ | Disjoint (expIterate n '' V) centralStrip}.Infinite) :
@@ -310,7 +330,9 @@ theorem negativeRealAxis_of_infinite_strip_misses
   · rw [expIterate_succ]; exact hre
 
 /-- From two far-apart imaginary parts, the intermediate value theorem on the connected set
-`V` produces a point whose imaginary part is an exact integer multiple of `π`. -/
+`V` produces a point whose imaginary part is an exact integer multiple of `π`.
+@isnad1 id=ex.2h1v.s6.8ce27e099584 from=translated src=- shape=261269d1 vocab=ad7dac04
+-/
 theorem lemma4_exists_im_int_mul_pi
     {V : Set ℂ} (hVconn : IsConnected V)
     (h : ∃ (n : ℕ) (w z : ℂ), w ∈ V ∧ z ∈ V ∧
@@ -357,7 +379,9 @@ theorem lemma4_exists_im_int_mul_pi
     exact ⟨n, y, k, hy, hyval⟩
 
 /-- **Lemma 4.** Only finitely many forward images of a non-empty open connected set can
-be disjoint from the central strip. HOL Light: `LEMMA_4`. -/
+be disjoint from the central strip. HOL Light: `LEMMA_4`.
+@isnad1 id=ex.3h1v.s6.f3ce59cb4db0 from=translated src=- shape=406f1626 vocab=ae268ddc
+-/
 theorem lemma4_eventually_meets_centralStrip
     {V : Set ℂ} (hVopen : IsOpen V) (hVconn : IsConnected V) (hVne : V.Nonempty) :
     ∃ N : ℕ, ∀ n ≥ N, (expIterate n '' V ∩ centralStrip).Nonempty := by
@@ -386,7 +410,9 @@ theorem lemma4_eventually_meets_centralStrip
 
 /-! ### Lemma 5 -/
 
-/-- The frontier of the central strip consists of points with `|Im z| = π/3`. -/
+/-- The frontier of the central strip consists of points with `|Im z| = π/3`.
+@isnad1 id=le.0h0v.s5.032b4289f562 from=translated src=- shape=2c56bf42 vocab=f5439c55
+-/
 theorem frontier_centralStrip_subset :
     frontier centralStrip ⊆ {z : ℂ | |z.im| = Real.pi / 3} := by
   have hcont : Continuous fun z : ℂ => |z.im| :=
@@ -395,7 +421,9 @@ theorem frontier_centralStrip_subset :
 
 /-- **The geometric heart of Lemma 5.** On the frontier of the central strip, inside the
 right half-plane, the exponential throws points clear of the wide strip: `|sin| = √3/2`
-there, and `e^4 · √3/2` already exceeds `2π`. -/
+there, and `e^4 · √3/2` already exceeds `2π`.
+@isnad1 id=lt.2h1v.s6.250f20e798ec from=translated src=- shape=5b43d213 vocab=ca1de00d
+-/
 theorem abs_im_exp_gt_two_pi_of_frontier
     {z : ℂ} (hfr : |z.im| = Real.pi / 3) (hre : 4 < z.re) :
     2 * Real.pi < |(Complex.exp z).im| := by
@@ -426,7 +454,9 @@ theorem abs_im_exp_gt_two_pi_of_frontier
   nlinarith [Real.exp_pos z.re, Real.sqrt_nonneg 3]
 
 /-- A connected set disjoint from the frontier of an open set, and meeting it, lies inside it.
-This is the Lean form of HOL Light's `CONNECTED_INTER_FRONTIER`. -/
+This is the Lean form of HOL Light's `CONNECTED_INTER_FRONTIER`.
+@isnad1 id=le.4h3v.s6.279aebbf41d1 from=translated src=- shape=efb2b1fa vocab=66612797
+-/
 theorem IsPreconnected.subset_of_disjoint_frontier
     {X : Type*} [TopologicalSpace X] {u v : Set X}
     (hv : IsPreconnected v) (hu : IsOpen u)
@@ -442,7 +472,9 @@ theorem IsPreconnected.subset_of_disjoint_frontier
   exact hmem
 
 /-- A connected set meeting both `u` and its complement must meet the frontier of `u`.
-This is HOL Light's `CONNECTED_INTER_FRONTIER`. -/
+This is HOL Light's `CONNECTED_INTER_FRONTIER`.
+@isnad1 id=nonempty.3h3v.s5.ad234e017d8b from=translated src=- shape=18729b8e vocab=4f63ead3
+-/
 theorem IsPreconnected.inter_frontier_nonempty
     {X : Type*} [TopologicalSpace X] {u v : Set X}
     (hv : IsPreconnected v) (h1 : (v ∩ u).Nonempty) (h2 : (v \ u).Nonempty) :
@@ -480,19 +512,25 @@ in the wide strip. -/
 def doubleStrip : Set ℂ :=
   {z | |z.im| ≤ 2 * Real.pi ∧ |(Complex.exp z).im| ≤ 2 * Real.pi}
 
-/-- A frontier point of the wide strip satisfies `|Im z| = 2π`. -/
+/-- A frontier point of the wide strip satisfies `|Im z| = 2π`.
+@isnad1 id=le.0h0v.s5.a91f0da85915 from=translated src=- shape=aa5f57b7 vocab=2c676120
+-/
 theorem frontier_wideStrip_subset :
     frontier wideStrip ⊆ {z : ℂ | |z.im| = 2 * Real.pi} :=
   frontier_le_subset_eq (continuous_abs.comp Complex.continuous_im) continuous_const
 
-/-- On the frontier of the preimage of the wide strip, `|Im (exp z)| = 2π`. -/
+/-- On the frontier of the preimage of the wide strip, `|Im (exp z)| = 2π`.
+@isnad1 id=le.0h0v.s6.bf7ca84da065 from=translated src=- shape=3c4262cb vocab=9fea60e5
+-/
 theorem frontier_expStrip_subset :
     frontier {z : ℂ | |(Complex.exp z).im| ≤ 2 * Real.pi}
       ⊆ {z : ℂ | |(Complex.exp z).im| = 2 * Real.pi} :=
   frontier_le_subset_eq
     (continuous_abs.comp (Complex.continuous_im.comp Complex.continuous_exp)) continuous_const
 
-/-- The frontier of the central strip misses `w ∩ h`: this is where the estimate bites. -/
+/-- The frontier of the central strip misses `w ∩ h`: this is where the estimate bites.
+@isnad1 id=disjoint.0h0v.s5.1b96274c3a93 from=translated src=- shape=e4c8174d vocab=727c2801
+-/
 theorem disjoint_frontier_centralStrip :
     Disjoint (frontier centralStrip) (doubleStrip ∩ rightHalfPlane) := by
   rw [Set.disjoint_left]
@@ -500,7 +538,9 @@ theorem disjoint_frontier_centralStrip :
   have hfr : |z.im| = Real.pi / 3 := frontier_centralStrip_subset hz
   exact absurd hw.2 (not_le.mpr (abs_im_exp_gt_two_pi_of_frontier hfr hh))
 
-/-- If `|Im z| = 2π` then `exp z` is real. -/
+/-- If `|Im z| = 2π` then `exp z` is real.
+@isnad1 id=eq.1h1v.s5.b9fbfd993dba from=translated src=- shape=d2bf30b1 vocab=4592f8fd
+-/
 theorem im_exp_eq_zero_of_abs_im_eq_two_pi {z : ℂ} (h : |z.im| = 2 * Real.pi) :
     (Complex.exp z).im = 0 := by
   rw [Complex.exp_im]
@@ -510,7 +550,9 @@ theorem im_exp_eq_zero_of_abs_im_eq_two_pi {z : ℂ} (h : |z.im| = 2 * Real.pi) 
   · rw [h', show -((2 : ℝ) * Real.pi) = ((-2 : ℤ) : ℝ) * Real.pi by push_cast; ring,
       Real.sin_int_mul_pi, mul_zero]
 
-/-- Points of the central strip in the right half-plane stay in the right half-plane. -/
+/-- Points of the central strip in the right half-plane stay in the right half-plane.
+@isnad1 id=mem.2h1v.s4.9301d66d3cdd from=translated src=- shape=a03f34cf vocab=39486152
+-/
 theorem rightHalfPlane_exp_of_mem {z : ℂ}
     (hs : z ∈ centralStrip) (hh : z ∈ rightHalfPlane) :
     Complex.exp z ∈ rightHalfPlane := by
@@ -522,7 +564,9 @@ theorem rightHalfPlane_exp_of_mem {z : ℂ}
   change (4 : ℝ) < (Complex.exp z).re
   linarith
 
-/-- The derivative of an iterate never vanishes. -/
+/-- The derivative of an iterate never vanishes.
+@isnad1 id=ne.0h2v.s5.10ca9ba86c65 from=translated src=- shape=01544745 vocab=38a61de0
+-/
 theorem deriv_expIterate_ne_zero (n : ℕ) (z : ℂ) : deriv (expIterate n) z ≠ 0 := by
   induction n with
   | zero =>
@@ -533,7 +577,9 @@ theorem deriv_expIterate_ne_zero (n : ℕ) (z : ℂ) : deriv (expIterate n) z �
       rw [deriv_expIterate_succ]
       exact mul_ne_zero ih (Complex.exp_ne_zero _)
 
-/-- Every iterate is an open map, so images of open sets are open. -/
+/-- Every iterate is an open map, so images of open sets are open.
+@isnad1 id=isopen.1h2v.s5.99d0b8701247 from=translated src=- shape=7ea8c5f9 vocab=83392c39
+-/
 theorem isOpen_image_expIterate {V : Set ℂ} (hV : IsOpen V) (n : ℕ) :
     IsOpen (expIterate n '' V) := by
   rw [isOpen_iff_mem_nhds]
@@ -551,7 +597,9 @@ theorem isOpen_image_expIterate {V : Set ℂ} (hV : IsOpen V) (n : ℕ) :
 
 /-! ### The `π`-strips, for the negative-axis argument -/
 
-/-- `|Im z| = π` makes the exponential a negative real number. -/
+/-- `|Im z| = π` makes the exponential a negative real number.
+@isnad1 id=and.1h1v.s5.7530115cd0f4 from=translated src=- shape=2a620bdf vocab=1227ab50
+-/
 theorem neg_real_of_abs_im_eq_pi {z : ℂ} (h : |z.im| = Real.pi) :
     (Complex.exp z).im = 0 ∧ (Complex.exp z).re < 0 := by
   rcases abs_eq (le_of_lt Real.pi_pos) |>.mp h with h' | h'
@@ -568,19 +616,25 @@ have absolute value at most `π`. -/
 def piDoubleStrip : Set ℂ :=
   {z | |z.im| ≤ Real.pi ∧ |(Complex.exp z).im| ≤ Real.pi}
 
-/-- A frontier point of `piStrip` satisfies `|Im z| = π`. -/
+/-- A frontier point of `piStrip` satisfies `|Im z| = π`.
+@isnad1 id=le.0h0v.s5.7f7fb2059f8d from=translated src=- shape=5840206b vocab=318cec4d
+-/
 theorem frontier_piStrip_subset :
     frontier piStrip ⊆ {z : ℂ | |z.im| = Real.pi} :=
   frontier_le_subset_eq (continuous_abs.comp Complex.continuous_im) continuous_const
 
-/-- On the frontier of the preimage of `piStrip`, `|Im (exp z)| = π`. -/
+/-- On the frontier of the preimage of `piStrip`, `|Im (exp z)| = π`.
+@isnad1 id=le.0h0v.s5.7c6cdba8d01b from=translated src=- shape=2b678a62 vocab=d0dd432a
+-/
 theorem frontier_expPiStrip_subset :
     frontier {z : ℂ | |(Complex.exp z).im| ≤ Real.pi}
       ⊆ {z : ℂ | |(Complex.exp z).im| = Real.pi} :=
   frontier_le_subset_eq
     (continuous_abs.comp (Complex.continuous_im.comp Complex.continuous_exp)) continuous_const
 
-/-- The frontier estimate still bites with `π` in place of `2π`. -/
+/-- The frontier estimate still bites with `π` in place of `2π`.
+@isnad1 id=disjoint.0h0v.s5.9039e89d204f from=translated src=- shape=e4c8174d vocab=35f37355
+-/
 theorem disjoint_frontier_centralStrip_pi :
     Disjoint (frontier centralStrip) (piDoubleStrip ∩ rightHalfPlane) := by
   rw [Set.disjoint_left]
@@ -596,7 +650,9 @@ half-plane, some image meets the *negative* real axis.
 The `π`-strips replace Harrison's `2π`-strips: on their frontiers `|Im z| = π`, where the
 exponential is negative real rather than positive. The final step no longer appeals to the
 standing hypothesis at all — the image is open, hence contains a non-real point, whose orbit
-would have to stay in the central strip forever, contradicting Lemma 2b. -/
+would have to stay in the central strip forever, contradicting Lemma 2b.
+@isnad1 id=eventual.4h1v.s5.32b78e6306f8 from=translated src=- shape=d360594e vocab=34e5d752
+-/
 theorem lemma5_negative_real_axis
     {V : Set ℂ} (hVopen : IsOpen V) (hVconn : IsConnected V) (hVne : V.Nonempty)
     (hfrequent : Set.Infinite {n : ℕ | MapsTo (expIterate n) V rightHalfPlane}) :
@@ -742,7 +798,9 @@ theorem lemma5_negative_real_axis
   exact hm (hstrip m)
 
 /-- **Lemma 5.** If infinitely many images of a non-empty open connected set are contained
-in the right half-plane, then an image meets the real axis. HOL Light: `LEMMA_5`. -/
+in the right half-plane, then an image meets the real axis. HOL Light: `LEMMA_5`.
+@isnad1 id=eventual.4h1v.s5.1a7fed401f30 from=translated src=- shape=d360594e vocab=5c723231
+-/
 theorem lemma5_real_axis_of_frequently_in_rightHalfPlane
     {V : Set ℂ} (hVopen : IsOpen V) (hVconn : IsConnected V) (hVne : V.Nonempty)
     (hfrequent : Set.Infinite {n : ℕ | MapsTo (expIterate n) V rightHalfPlane}) :

@@ -175,7 +175,9 @@ instance (k) : Encodable (oRing.Func k) where
     | _, _ => none
   encodek := fun x => by rcases x <;> simp
 
-/-- Imported declaration from the Incompleteness formalization. -/
+/-- Imported declaration from the Incompleteness formalization.
+@isnad1 id=isempty.1h1v.s4.3dfc93fd6d9b from=translated src=- shape=139622a7 vocab=cd8ca47d
+-/
 theorem FuncGe3IsEmpty : ∀ k ≥ 3, IsEmpty (oRing.Func k)
   | 0       => by simp
   | 1       => by simp [show ¬3 ≤ 1 from of_decide_eq_false rfl]
@@ -401,45 +403,83 @@ def add₁ (L₁ : Language) (L₂ : Language) : L₁ →ᵥ L₁.add L₂ := �
 /-- Imported declaration from the Incompleteness formalization. -/
 def add₂ (L₁ : Language) (L₂ : Language) : L₂ →ᵥ L₁.add L₂ := ⟨Sum.inr, Sum.inr⟩
 
-/-- Imported declaration from the Incompleteness formalization. -/
+/-- Imported declaration from the Incompleteness formalization.
+@isnad1 id=eq.0h4v.s5.a039c662e53c from=translated src=- shape=78c59e3c vocab=be7fad46
+-/
 lemma func_add₁ (L₁ : Language) (L₂ : Language) (f : L₁.Func k) :
     (add₁ L₁ L₂).func f = Sum.inl f := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.1f901418a141 from=translated src=- shape=78c59e3c vocab=9de38879
+-/
 lemma rel_add₁ (L₁ : Language) (L₂ : Language) (r : L₁.Rel k) :
     (add₁ L₁ L₂).rel r = Sum.inl r := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.30eb8ea50fee from=translated src=- shape=86cbaf3a vocab=09a65ee6
+-/
 lemma func_add₂ (L₁ : Language) (L₂ : Language) (f : L₂.Func k) :
     (add₂ L₁ L₂).func f = Sum.inr f := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.1e9aae369b17 from=translated src=- shape=86cbaf3a vocab=9d1814b2
+-/
 lemma rel_add₂ (L₁ : Language) (L₂ : Language) (r : L₂.Rel k) :
     (add₂ L₁ L₂).rel r = Sum.inr r := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.1cfd07fd031d from=translated src=- shape=08239806 vocab=b6a9d748
+-/
 @[simp] lemma add₂_star (L₁ : Language) (L₂ : Language) [Star L₂] :
     (add₂ L₁ L₂).func Star.star = Star.star := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.7c7583337100 from=translated src=- shape=c8939a37 vocab=f09de016
+-/
 @[simp] lemma add₁_zero (L₁ : Language) (L₂ : Language) [L₁.Zero] :
     (add₁ L₁ L₂).func Zero.zero = Zero.zero := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.2276b73167e2 from=translated src=- shape=c8939a37 vocab=126a527a
+-/
 @[simp] lemma add₁_one (L₁ : Language) (L₂ : Language) [L₁.One] :
     (add₁ L₁ L₂).func One.one = One.one := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.ac004c4e881c from=translated src=- shape=c8939a37 vocab=7ae10091
+-/
 @[simp] lemma add₁_add (L₁ : Language) (L₂ : Language) [L₁.Add] :
     (add₁ L₁ L₂).func Add.add = Add.add := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.a2cf899c1743 from=translated src=- shape=c8939a37 vocab=5a0eb905
+-/
 @[simp] lemma add₁_mul (L₁ : Language) (L₂ : Language) [L₁.Mul] :
     (add₁ L₁ L₂).func Mul.mul = Mul.mul := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.fb7bddbe8c94 from=translated src=- shape=c8939a37 vocab=2cf8354a
+-/
 @[simp] lemma add₁_eq (L₁ : Language) (L₂ : Language) [L₁.Eq] :
     (add₁ L₁ L₂).rel Eq.eq = Eq.eq := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.9e0489258f52 from=translated src=- shape=c8939a37 vocab=7d9444c2
+-/
 @[simp] lemma add₁_lt (L₁ : Language) (L₂ : Language) [L₁.LT] :
     (add₁ L₁ L₂).rel LT.lt = LT.lt := rfl
 
 /-- Imported declaration from the Incompleteness formalization. -/
 def sigma (L : ι → Language) (i : ι) : L i →ᵥ Language.sigma L := ⟨fun f => ⟨i, f⟩, fun r => ⟨i, r⟩⟩
 
+/--
+@isnad1 id=eq.0h5v.s5.953120a8c3c9 from=translated src=- shape=1ee83c36 vocab=cd64aa18
+-/
 lemma func_sigma (L : ι → Language) (i : ι) (f : (L i).Func k) : (sigma L i).func f = ⟨i, f⟩ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.b02365f121a3 from=translated src=- shape=1ee83c36 vocab=08ad47c4
+-/
 lemma rel_sigma (L : ι → Language) (i : ι) (r : (L i).Rel k) : (sigma L i).rel r = ⟨i, r⟩ := rfl
 
 end Hom

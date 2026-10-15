@@ -54,7 +54,9 @@ variable {h₀' : ∀ X, V₀'.mem X → X.Nonempty} {h₁' : ∀ Y, V₁'.mem Y
 /-- A sum-neighbourhood contained in a *left* copy `0X` is itself a left copy
 `0X₂` (the
 basepoint and
-the right copy are excluded, using non-emptiness). -/
+the right copy are excluded, using non-emptiness).
+@isnad1 id=ex.4h6v.s6.72d29ab0efe5 from=translated src=- shape=fcefc370 vocab=b7c968d0
+-/
 theorem mem_subset_inj₀ {W : Set (Option (α ⊕ β))} {X : Set α}
     (hW : (sum V₀ V₁ h₀ h₁).mem W) (hsub : W ⊆ inj₀ X) :
     ∃ X₂, V₀.mem X₂ ∧ W = inj₀ X₂ := by
@@ -65,7 +67,9 @@ theorem mem_subset_inj₀ {W : Set (Option (α ⊕ β))} {X : Set α}
     exact absurd (hsub (ir_mem_inj₁.mpr hb)) ir_mem_inj₀
 
 /-- A sum-neighbourhood contained in a *right* copy `1Y` is itself a right copy
-`1Y₂`. -/
+`1Y₂`.
+@isnad1 id=ex.4h6v.s6.c5a8533510ca from=translated src=- shape=d4c0eaab vocab=840cd284
+-/
 theorem mem_subset_inj₁ {W : Set (Option (α ⊕ β))} {Y : Set β}
     (hW : (sum V₀ V₁ h₀ h₁).mem W) (hsub : W ⊆ inj₁ Y) :
     ∃ Y₂, V₁.mem Y₂ ∧ W = inj₁ Y₂ := by
@@ -81,13 +85,17 @@ theorem eq_sumMaster_of_subset {W : Set (Option (α ⊕ β))}
     W = sumMaster V₀ V₁ :=
   Set.Subset.antisymm ((sum V₀ V₁ h₀ h₁).sub_master hW) hsub
 
-/-- A nonempty left copy is never contained in a right copy. -/
+/-- A nonempty left copy is never contained in a right copy.
+@isnad1 id=false.2h4v.s5.e56d29049ac9 from=translated src=- shape=a63a81cb vocab=b8d8cba9
+-/
 theorem not_inj₀_subset_inj₁ {X : Set α} {Y : Set β} (hX : X.Nonempty)
     (hsub : (inj₀ X : Set (Option (α ⊕ β))) ⊆ inj₁ Y) : False := by
   obtain ⟨a, ha⟩ := hX
   exact il_mem_inj₁ (hsub (il_mem_inj₀.mpr ha))
 
-/-- A nonempty right copy is never contained in a left copy. -/
+/-- A nonempty right copy is never contained in a left copy.
+@isnad1 id=false.2h4v.s5.c67b9e826f44 from=translated src=- shape=4995774c vocab=b8d8cba9
+-/
 theorem not_inj₁_subset_inj₀ {X : Set α} {Y : Set β} (hY : Y.Nonempty)
     (hsub : (inj₁ Y : Set (Option (α ⊕ β))) ⊆ inj₀ X) : False := by
   obtain ⟨b, hb⟩ := hY
@@ -173,7 +181,9 @@ def sumMap (f : ApproximableMap V₀ V₀') (g : ApproximableMap V₁ V₁') :
 
 /-! ### The defining identities (iii) and (iv). -/
 
-/-- **Exercise 3.19(iii) (Scott 1981, PRG-19).** `out₀ ∘ (f + g) ∘ in₀ = f`. -/
+/-- **Exercise 3.19(iii) (Scott 1981, PRG-19).** `out₀ ∘ (f + g) ∘ in₀ = f`.
+@isnad1 id=eq.4h10v.s7.acbed4dd1f5c from=translated src=- shape=d4052438 vocab=54240aa3
+-/
 theorem outMap₀_comp_sumMap_comp_inMap₀ (f : ApproximableMap V₀ V₀') (g : ApproximableMap V₁ V₁') :
     (outMap₀ (h₀ := h₀') (h₁ := h₁')).comp
       ((sumMap (h₀ := h₀) (h₁ := h₁) (h₀' := h₀') (h₁' := h₁') f g).comp
@@ -203,7 +213,9 @@ theorem outMap₀_comp_sumMap_comp_inMap₀ (f : ApproximableMap V₀ V₀') (g 
     · exact Or.inr (Or.inl ⟨Z, f.rel_cod hf, rfl⟩)
     · exact (leftPart_inj₀ V₀' Z).subset
 
-/-- **Exercise 3.19(iv) (Scott 1981, PRG-19).** `out₁ ∘ (f + g) ∘ in₁ = g`. -/
+/-- **Exercise 3.19(iv) (Scott 1981, PRG-19).** `out₁ ∘ (f + g) ∘ in₁ = g`.
+@isnad1 id=eq.4h10v.s7.63b21aa31141 from=translated src=- shape=625cbbeb vocab=6b54bd2c
+-/
 theorem outMap₁_comp_sumMap_comp_inMap₁ (f : ApproximableMap V₀ V₀') (g : ApproximableMap V₁ V₁') :
     (outMap₁ (h₀ := h₀') (h₁ := h₁')).comp
       ((sumMap (h₀ := h₀) (h₁ := h₁) (h₀' := h₀') (h₁' := h₁') f g).comp

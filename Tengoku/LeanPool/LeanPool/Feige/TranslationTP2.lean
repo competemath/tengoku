@@ -52,6 +52,9 @@ def translationKernelComposition
     (f g : ℝ → ℝ≥0∞) (x y : ℝ) : ℝ≥0∞ :=
   ∫⁻ z, f (x - z) * g (z - y)
 
+/--
+@isnad1 id=measurab.2h2v.s5.28a52f215fe8 from=translated src=- shape=46a19de0 vocab=58ca6ada
+-/
 lemma measurable_translationKernelComposition
     {f g : ℝ → ℝ≥0∞} (hf : Measurable f) (hg : Measurable g) :
     Measurable fun p : ℝ × ℝ ↦
@@ -91,7 +94,9 @@ private lemma translationKernelComposition_mul
       exact h₂
 
 /-- Composition of finite-valued measurable translation-TP2 kernels is
-again TP2. -/
+again TP2.
+@isnad1 id=le.8h6v.s6.ac445df4bb80 from=translated src=- shape=814286aa vocab=0362fe7e
+-/
 theorem TranslationTP2.kernelComposition
     {f g : ℝ → ℝ≥0∞} (hf : Measurable f) (hg : Measurable g)
     (hfFinite : ∀ x, f x ≠ ∞) (hgFinite : ∀ x, g x ≠ ∞)
@@ -188,6 +193,9 @@ theorem TranslationTP2.kernelComposition
     translationKernelComposition_mul hf hg]
   exact hRL
 
+/--
+@isnad1 id=eq.0h4v.s4.10335c09bc36 from=translated src=- shape=22305493 vocab=2d561026
+-/
 lemma translationKernelComposition_eq_densityConvolution_sub
     (f g : ℝ → ℝ≥0∞) (x y : ℝ) :
     translationKernelComposition f g x y =
@@ -211,7 +219,9 @@ lemma translationKernelComposition_eq_densityConvolution_sub
       dsimp only [h]
       ac_rfl
 
-/-- The current project's density convolution preserves translation TP2. -/
+/-- The current project's density convolution preserves translation TP2.
+@isnad1 id=translat.6h2v.s5.ea6eda99bbf8 from=translated src=- shape=e1aea67d vocab=d2a590ae
+-/
 theorem TranslationTP2.convolution
     {f g : ℝ → ℝ≥0∞} (hf : Measurable f) (hg : Measurable g)
     (hfFinite : ∀ x, f x ≠ ∞) (hgFinite : ∀ x, g x ≠ ∞)
@@ -225,7 +235,9 @@ theorem TranslationTP2.convolution
   exact hgTP2.kernelComposition hg hf hgFinite hfFinite hfTP2 hx hz
 
 /-- Translation TP2 implies the existing general four-point
-log-concavity predicate. -/
+log-concavity predicate.
+@isnad1 id=fourpoin.1h1v.s3.e5ae792eb539 from=translated src=- shape=cdb3b71b vocab=14458e9b
+-/
 theorem TranslationTP2.fourPointLogConcave
     {f : ℝ → ℝ≥0∞} (hf : TranslationTP2 f) :
     FourPointLogConcave f := by
@@ -236,7 +248,9 @@ theorem TranslationTP2.fourPointLogConcave
   have hs : q - (p - r) = s := by linarith
   simpa [hs] using h
 
-/-- The existing four-point predicate is equivalent to translation TP2. -/
+/-- The existing four-point predicate is equivalent to translation TP2.
+@isnad1 id=translat.1h1v.s3.459d7f9cec5c from=translated src=- shape=cdb3b71b vocab=14458e9b
+-/
 theorem FourPointLogConcave.translationTP2
     {f : ℝ → ℝ≥0∞} (hf : FourPointLogConcave f) :
     TranslationTP2 f := by

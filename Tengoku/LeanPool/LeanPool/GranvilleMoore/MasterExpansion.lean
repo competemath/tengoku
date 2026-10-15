@@ -174,7 +174,9 @@ turn each power `x^{p^{k+i}}` in the numerator of
 `GranvilleMoore.collapsedCoeff p j m`.
 
 The sum is finite: `C(e_i, m) = 0` once `m > e_i`, and `e_i ≤ e_j` for `i ≤ j`, so
-`range (e_j + 1)` already contains every nonvanishing index. -/
+`range (e_j + 1)` already contains every nonvanishing index.
+@isnad1 id=eq.2h5v.s7.1b3258c7c8b0 from=translated src=- shape=f362a713 vocab=6f6a374c
+-/
 theorem iteratedFermatQuot_eq_mul_sum {p : ℕ} (hp : p ≠ 0) {x : ℤ} {j k : ℕ} {g : ℤ}
     (hg : unitQuot p x k = (g : ℚ)) :
     iteratedFermatQuot p j k x
@@ -337,7 +339,9 @@ The usual statement is the valuation inequality `v_p(A_j(m)) + m(k+1) - jk - C(j
 its algebraic form, in which the numerator of the term is exhibited as a multiple of the
 denominator `p^{jk + C(j+1,2)}` of `GranvilleMoore.iteratedFermatQuot_eq_sum_div`. It reduces, via
 `GranvilleMoore.exists_intCast_eq_factorial_mul_pow_mul_collapsedCoeff`, to the arithmetic
-`v_p(m!) + j(k+1) ≤ m(k+1)` of `padicValNat_factorial_add_le`. -/
+`v_p(m!) + j(k+1) ≤ m(k+1)` of `padicValNat_factorial_add_le`.
+@isnad1 id=dvd.5h5v.s7.32cf301751ee from=translated src=- shape=55ff5617 vocab=d87cb4bb
+-/
 theorem pow_dvd_collapsedCoeff_mul_pow {p : ℕ} (hp : p.Prime) (hodd : Odd p) {j m k : ℕ}
     (hj : j ≤ p - 1) (hjm : j ≤ m) {A : ℤ} (hA : collapsedCoeff p j m = (A : ℚ)) :
     (p : ℤ) ^ (j * k + Nat.choose (j + 1) 2) ∣ A * (p : ℤ) ^ (m * (k + 1)) := by
@@ -357,7 +361,9 @@ and `(m, j, k) = (p, p - 1, 0)` the divisibility of
 
 This is the second half of that lemma, and it is what makes only finitely many terms survive modulo
 `p` in `GranvilleMoore.dvd_factorial_mul_sub_mul_pow` and
-`GranvilleMoore.dvd_factorial_mul_sub_exceptional`. -/
+`GranvilleMoore.dvd_factorial_mul_sub_exceptional`.
+@isnad1 id=dvd.6h5v.s7.b51e14b3ddbe from=translated src=- shape=3d5c9ebf vocab=d39376a7
+-/
 theorem pow_succ_dvd_collapsedCoeff_mul_pow {p : ℕ} (hp : p.Prime) (hodd : Odd p) {j m k : ℕ}
     (hj : j ≤ p - 1) (hjm : j < m) (hexc : m ≠ p ∨ j ≠ p - 1 ∨ k ≠ 0) {A : ℤ}
     (hA : collapsedCoeff p j m = (A : ℚ)) :
@@ -408,7 +414,9 @@ The proof stays in `ℤ`. The explicit form
 `GranvilleMoore.iteratedFermatQuot_eq_sum_div` exhibits `F^{(j)}_k(x)` as an integer
 numerator over `p^{jk + C(j+1,2)}`, so it is enough to divide the numerator by that power of
 `p`; the master expansion rewrites the numerator as a sum of terms each of which
-`GranvilleMoore.pow_dvd_collapsedCoeff_mul_pow` shows to be divisible by it. -/
+`GranvilleMoore.pow_dvd_collapsedCoeff_mul_pow` shows to be divisible by it.
+@isnad1 id=ex.4h4v.s5.d7a52010aa83 from=translated src=- shape=1d8c724a vocab=fce2e738
+-/
 theorem exists_intCast_iteratedFermatQuot {p : ℕ} (hp : p.Prime) (hodd : Odd p) {x : ℤ}
     (hx : ¬ (p : ℤ) ∣ x) {j : ℕ} (hj : j ≤ p - 1) (k : ℕ) :
     ∃ z : ℤ, iteratedFermatQuot p j k x = (z : ℚ) := by
@@ -473,7 +481,9 @@ pattern needs `j = p - 1` and is excluded by `j ≤ p - 2`. The surviving term i
 `GranvilleMoore.exists_int_factorial_mul_pow_mul_collapsedCoeff_self` supplies
 `j! (p-1)^j A_j(j) = p^{C(j,2)} ((p-1)^j + p a)`. Reducing modulo `p` then uses
 `x^{p^k} ≡ x` (Fermat), `g_k(x) ≡ q_p(x)`
-(`GranvilleMoore.dvd_unitQuot_sub_fermatQuotient`) and finally cancels the unit `(p-1)^j`. -/
+(`GranvilleMoore.dvd_unitQuot_sub_fermatQuotient`) and finally cancels the unit `(p-1)^j`.
+@isnad1 id=dvd.6h6v.s6.17a3cde21b9e from=translated src=- shape=8b4cb52a vocab=b102555e
+-/
 theorem dvd_factorial_mul_sub_mul_pow {p : ℕ} (hp : p.Prime) (hodd : Odd p) {x : ℤ}
     (hx : ¬ (p : ℤ) ∣ x) {j : ℕ} (hj : j ≤ p - 2) (k : ℕ) {z q : ℤ}
     (hz : iteratedFermatQuot p j k x = (z : ℚ)) (hq : fermatQuotient p x = (q : ℚ)) :
@@ -706,7 +716,9 @@ master expansion survive modulo `p`: `m = p - 1`, contributing `x q_p(x)^{p-1}/(
 `GranvilleMoore.dvd_factorial_mul_sub_mul_pow`, and `m = p`, whose contribution is
 `b x g_0(x)^p` for the integer `b` with `p A_{p-1}(p) = p^{C(p-1,2)} b`. Since
 `g_0(x)^p ≡ g_0(x) ≡ q_p(x)` by Fermat and `b ≡ 1` by `dvd_sub_one_of_mul_eq`, that second
-contribution is `x q_p(x)` times a unit; Wilson's theorem fixes the signs. -/
+contribution is `x q_p(x)` times a unit; Wilson's theorem fixes the signs.
+@isnad1 id=dvd.5h4v.s7.fcc7a81c072a from=translated src=- shape=c1d9aac1 vocab=0e830a35
+-/
 theorem dvd_factorial_mul_sub_exceptional {p : ℕ} (hp : p.Prime) (hodd : Odd p) {x : ℤ}
     (hx : ¬ (p : ℤ) ∣ x) {z q : ℤ} (hz : iteratedFermatQuot p (p - 1) 0 x = (z : ℚ))
     (hq : fermatQuotient p x = (q : ℚ)) :

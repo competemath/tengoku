@@ -56,6 +56,9 @@ private theorem
       O hOo hOc Bool.false hK hKU
   exact ⟨ρ Bool.false, (ρ Bool.false).contMDiff.contDiff, hρ Bool.false, W, hWo, hKW, hWU, hρone⟩
 
+/--
+@isnad1 id=ex.0h2v.s6.2e77a9f6ef1a from=translated src=- shape=9da15c50 vocab=f59df674
+-/
 public
 theorem LineBundleTransport.exists_interval_cutoff (a b : ℝ) :
     ∃ χ : ℝ → ℝ, ContDiff ℝ ∞ χ ∧ HasCompactSupport χ ∧ Set.EqOn χ (fun _ => 1) (Set.uIcc a b) := by

@@ -83,6 +83,9 @@ instance {certificateCount : Nat} (tree : PartsGadgetCaseTree certificateCount)
   unfold PartsGadgetCaseTree.VerifiesRouting
   infer_instance
 
+/--
+@isnad1 id=false.4h7v.s5.3876c6c069ce from=translated src=- shape=3ca6992a vocab=40c58169
+-/
 lemma partsGadgetCaseVerifiesNodeB_unsat {certificateCount : Nat}
     {certificates : Fin certificateCount → PartsGadgetCertificate}
     (hcertificates : ∀ index, (certificates index).Verifies)
@@ -127,7 +130,9 @@ lemma partsGadgetCaseVerifiesNodeB_unsat {certificateCount : Nat}
               subst assignment
               rfl
 
-/-- A routed family of verified certificates rules out its normalized roots. -/
+/-- A routed family of verified certificates rules out its normalized roots.
+@isnad1 id=false.4h4v.s5.b071f711981a from=translated src=- shape=1671616e vocab=3d6f3246
+-/
 theorem PartsGadgetCaseTree.not_colorable {certificateCount : Nat}
     (tree : PartsGadgetCaseTree certificateCount)
     (certificates : Fin certificateCount → PartsGadgetCertificate)

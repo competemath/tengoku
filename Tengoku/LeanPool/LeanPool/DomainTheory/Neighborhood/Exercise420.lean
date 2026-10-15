@@ -42,7 +42,9 @@ variable {α : Type*} {V : NeighborhoodSystem α}
 namespace ApproximableMap
 
 /-- `f(fix(g ∘ f))` is a fixed point of `f ∘ g`:
-`(f ∘ g)(f(fix(g∘f))) = f((g∘f)(fix(g∘f))) = f(fix(g∘f))`. -/
+`(f ∘ g)(f(fix(g∘f))) = f((g∘f)(fix(g∘f))) = f(fix(g∘f))`.
+@isnad1 id=eq.0h4v.s6.22d6748b0416 from=translated src=- shape=9e6af7fe vocab=bcd7c56c
+-/
 theorem comp_fixElement_isFixed (f g : ApproximableMap V V) :
     (f.comp g).toElementMap (f.toElementMap (g.comp f).fixElement)
       = f.toElementMap (g.comp f).fixElement := by
@@ -53,7 +55,9 @@ theorem comp_fixElement_isFixed (f g : ApproximableMap V V) :
     exact toElementMap_fixElement (g.comp f)
   rw [h]
 
-/-- **Exercise 4.20 (Scott 1981, PRG-19).** `fix(f ∘ g) = f(fix(g ∘ f))`. -/
+/-- **Exercise 4.20 (Scott 1981, PRG-19).** `fix(f ∘ g) = f(fix(g ∘ f))`.
+@isnad1 id=eq.0h4v.s5.61b9fefe8bf3 from=translated src=- shape=2ffbbc89 vocab=bcd7c56c
+-/
 theorem fixElement_comp_comm (f g : ApproximableMap V V) :
     (f.comp g).fixElement = f.toElementMap (g.comp f).fixElement := by
   apply le_antisymm

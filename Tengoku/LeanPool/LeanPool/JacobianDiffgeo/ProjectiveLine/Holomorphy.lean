@@ -38,7 +38,9 @@ namespace RS.P1
 
 variable {Z : Type*} [TopologicalSpace Z] [ChartedSpace ℂ Z] [IsManifold 𝓘(ℂ) ω Z]
 
-/-- The coercion `ℂ → ℙ¹` is holomorphic. -/
+/-- The coercion `ℂ → ℙ¹` is holomorphic.
+@isnad1 id=contmdif.0h0v.s6.31b5ad73a295 from=translated src=- shape=307391ff vocab=2f64f99f
+-/
 theorem contMDiff_coe : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω ((↑) : ℂ → OnePoint ℂ) := by
   intro z
   rw [RS.contMDiffAt_iff_analyticAt_writtenInExtChartAt]
@@ -54,18 +56,25 @@ theorem contMDiff_coe : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω ((↑) : ℂ → OnePoi
   exact analyticAt_id
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω Z] in
-/-- Holomorphic lift of a holomorphic function (the "no poles" constructor). -/
+/-- Holomorphic lift of a holomorphic function (the "no poles" constructor).
+@isnad1 id=contmdif.1h3v.s7.b4d5bb4b2923 from=translated src=- shape=4ec76fb2 vocab=99a90758
+-/
 theorem ContMDiffAt.onePointCoe {g : Z → ℂ} {x : Z} (hg : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω g x) :
     ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω (fun z => ((g z : ℂ) : OnePoint ℂ)) x :=
   (contMDiff_coe (g x)).comp x hg
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω Z] in
+/--
+@isnad1 id=contmdif.1h2v.s7.9a51345ff419 from=translated src=- shape=2c2f6ca6 vocab=5d27feb3
+-/
 theorem ContMDiff.onePointCoe {g : Z → ℂ} (hg : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω g) :
     ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω (fun z => ((g z : ℂ) : OnePoint ℂ)) :=
   fun x => ContMDiffAt.onePointCoe (hg x)
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω Z] in
-/-- Holomorphy at a finite value, read in the `coeChart`. -/
+/-- Holomorphy at a finite value, read in the `coeChart`.
+@isnad1 id=iff.1h3v.s8.eb5acc441cc8 from=translated src=- shape=061dfd1c vocab=15453b80
+-/
 theorem contMDiffAt_iff_analyticAt_of_ne_infty {f : Z → OnePoint ℂ} {x : Z}
     (h : f x ≠ (∞ : OnePoint ℂ)) :
     ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω f x ↔ ContinuousAt f x ∧
@@ -82,7 +91,9 @@ theorem contMDiffAt_iff_analyticAt_of_ne_infty {f : Z → OnePoint ℂ} {x : Z}
   rw [hfun, hpt]
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω Z] in
-/-- Holomorphy at `∞`, read in the `invChart` ("`1/f` is analytic"). -/
+/-- Holomorphy at `∞`, read in the `invChart` ("`1/f` is analytic").
+@isnad1 id=iff.1h3v.s8.fbac9a07b243 from=translated src=- shape=061dfd1c vocab=10cdca11
+-/
 theorem contMDiffAt_iff_analyticAt_of_eq_infty {f : Z → OnePoint ℂ} {x : Z}
     (h : f x = (∞ : OnePoint ℂ)) :
     ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω f x ↔ ContinuousAt f x ∧
@@ -97,14 +108,18 @@ theorem contMDiffAt_iff_analyticAt_of_eq_infty {f : Z → OnePoint ℂ} {x : Z}
       Function.comp_id, Function.id_comp, hchart]
   rw [hfun, hpt]
 
-/-- `(↑)` sends `cobounded ℂ` to `𝓝 ∞`. -/
+/-- `(↑)` sends `cobounded ℂ` to `𝓝 ∞`.
+@isnad1 id=tendsto.0h0v.s5.48df8952d8c6 from=translated src=- shape=c122176e vocab=100d1a23
+-/
 theorem tendsto_coe_cobounded :
     Tendsto ((↑) : ℂ → OnePoint ℂ) (Bornology.cobounded ℂ) (𝓝 (∞ : OnePoint ℂ)) := by
   rw [Metric.cobounded_eq_cocompact]
   exact tendsto_coe_cocompact
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω Z] in
-/-- Converse atom: a holomorphic map to `ℙ¹` is chart-locally meromorphic (CC3's currency). -/
+/-- Converse atom: a holomorphic map to `ℙ¹` is chart-locally meromorphic (CC3's currency).
+@isnad1 id=meromorp.1h3v.s8.fc135c413681 from=translated src=- shape=f3233a4b vocab=fe983830
+-/
 theorem meromorphicAt_coeChart_comp {f : Z → OnePoint ℂ} {x : Z}
     (hf : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω f x) :
     MeromorphicAt (⇑coeChart ∘ f ∘ ⇑(chartAt ℂ x).symm) (chartAt ℂ x x) := by
@@ -124,7 +139,9 @@ theorem meromorphicAt_coeChart_comp {f : Z → OnePoint ℂ} {x : Z}
       ((contMDiffAt_iff_analyticAt_of_ne_infty hfx).1 hf).2
     exact hGan.meromorphicAt
 
-/-- The inversion is holomorphic, hence a biholomorphic involution of `ℙ¹`. -/
+/-- The inversion is holomorphic, hence a biholomorphic involution of `ℙ¹`.
+@isnad1 id=contmdif.0h0v.s6.74e1567c4e8d from=translated src=- shape=68cd23f6 vocab=198e13f1
+-/
 theorem contMDiff_inversion : ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω inversion := by
   intro p
   induction p using OnePoint.rec with
@@ -172,6 +189,9 @@ noncomputable def inversionDiffeomorph : Diffeomorph 𝓘(ℂ) 𝓘(ℂ) (OnePoi
   contMDiff_toFun := contMDiff_inversion
   contMDiff_invFun := contMDiff_inversion
 
+/--
+@isnad1 id=eq.0h0v.s8.3488a23d6c29 from=translated src=- shape=b6641a5d vocab=8d1a7cd1
+-/
 @[simp] theorem inversionDiffeomorph_apply : ⇑inversionDiffeomorph = inversion := rfl
 
 end RS.P1

@@ -30,6 +30,9 @@ namespace Label
 def IsAlphaCup (a : α) (c : List α) : Prop :=
   (c ++ [a]).In S ∧ (c ++ [a]).Pairwise (· < ·) ∧ (c ++ [a]).IsChain (l.Slopeᶜ)
 
+/--
+@isnad1 id=cup.3h5v.s6.0852d7702825 from=translated src=- shape=8dc67a11 vocab=3f0b829a
+-/
 theorem alphaCup_is_cup (c : List α) (c_in_S : c.In S) (c_sorted : c.Pairwise (· < ·))
     (c_chain : c.IsChain (l.Slopeᶜ)) : C.Cup c := by
   induction c with
@@ -62,6 +65,9 @@ def alphaCups' (a : α) : List (List α) :=
 def alphaCup' (a : α) : Option (List α) :=
   (l.alphaCups' a).argmax List.length
 
+/--
+@isnad1 id=eq.1h5v.s5.d68c67862cee from=translated src=- shape=712d314d vocab=49dcf1d5
+-/
 theorem alphaCup'_isSome {a : α} (ha : a ∈ S) : Option.isSome (l.alphaCup' a) = true := by
   rw [← Option.ne_none_iff_isSome, Config.Label.alphaCup']
   simp only [ne_eq, List.argmax_eq_none]
@@ -96,6 +102,9 @@ def alphaCup {a : α} (ha : a ∈ S) :
   simp_all
 
 -- Next, maximality of the cup with length alpha + 1
+/--
+@isnad1 id=le.4h6v.s6.bf8d5f3009fe from=translated src=- shape=124ab101 vocab=1c98ee93
+-/
 theorem cup_length_le_alpha {a : α} {c : List α} (c_in_S : c.In S) (c_sorted : c.Pairwise (· < ·))
     (c_chain : c.IsChain (l.Slopeᶜ)) (c_last : a ∈ c.getLast?) : c.length ≤ l.alpha a + 1 := by
   classical
@@ -123,6 +132,9 @@ theorem cup_length_le_alpha {a : α} {c : List α} (c_in_S : c.In S) (c_sorted :
       exact ⟨c_in_S, c_sorted, c_chain⟩
   exact List.le_of_mem_argmax c'_alpha_cup h_argmax
 
+/--
+@isnad1 id=hasncup.4h7v.s6.1918e62aee9a from=translated src=- shape=a02c52b1 vocab=f3377e1f
+-/
 theorem add_alpha {a : α} (ha : a ∈ S) {n : ℕ} {c : List α} (c_in_S : c.In S) (c_cup : C.NCup n c)
     (c_head : a ∈ c.head?) : C.HasNCup (n + l.alpha a) S := by
   rcases l.alphaCup ha with ⟨d, d_length, d_in_S, d_sorted, d_chain, d_last⟩
@@ -187,6 +199,9 @@ def betaCups' (a : α) : List (List α) :=
 def betaCup' (a : α) : Option (List α) :=
   (C.betaCups' S a).argmax List.length
 
+/--
+@isnad1 id=eq.1h4v.s5.cd0475e74464 from=translated src=- shape=bbbac897 vocab=9cb251f5
+-/
 theorem betaCup'_isSome {a : α} (ha : a ∈ S) : Option.isSome (C.betaCup' S a) := by
   rw [← Option.ne_none_iff_isSome, Config.betaCup']
   simp only [ne_eq, List.argmax_eq_none]
@@ -220,12 +235,18 @@ def betaCup {a : α} (ha : a ∈ S) :
     List.getLast?_singleton, Option.some_or, Option.mem_def]
   tauto
 
+/--
+@isnad1 id=hasncup.1h4v.s5.e7556dd4c261 from=translated src=- shape=c5f2b6ca vocab=76271e9e
+-/
 theorem has_beta_cup {a : α} (ha : a ∈ S) : C.HasNCup (C.beta S a + 1) S :=
   by
   rcases C.betaCup S ha with ⟨c, c_in, c_cup, -⟩
   use c
 
 -- Next, maximality of the cup with length alpha + 1
+/--
+@isnad1 id=le.3h5v.s5.b3564bb3f7af from=translated src=- shape=56bb737c vocab=f885fb0a
+-/
 theorem cup_length_le_beta {a : α} {c : List α} (c_in_S : c.In S) (c_cup : C.Cup c)
     (c_last : a ∈ c.getLast?) : c.length ≤ C.beta S a + 1 := by
   have ha : a ∈ S := c_in_S _ (List.mem_of_mem_getLast? c_last)
@@ -255,6 +276,9 @@ theorem cup_length_le_beta {a : α} {c : List α} (c_in_S : c.In S) (c_cup : C.C
 
 end Config
 
+/--
+@isnad1 id=le.1h5v.s5.ee9a9a46090a from=translated src=- shape=d8e6c17f vocab=9f90ccfa
+-/
 theorem Config.Label.alpha_le_beta {a : α} (ha : a ∈ S) : l.alpha a ≤ C.beta S a := by
   rcases l.alphaCup ha with ⟨c, c_length, c_in, c_sorted, c_chain, c_last⟩
   have c_cup := l.alphaCup_is_cup _ c_in c_sorted c_chain
@@ -263,6 +287,9 @@ theorem Config.Label.alpha_le_beta {a : α} (ha : a ∈ S) : l.alpha a ≤ C.bet
 
 variable {l}
 
+/--
+@isnad1 id=lt.4h6v.s6.877723a953a3 from=translated src=- shape=3198e04f vocab=1ce093b1
+-/
 theorem slope_ff_inc_alpha {a b : α} (sab : ¬l.Slope a b) (ha : a ∈ S) (hb : b ∈ S)
     (a_le_b : a < b) : l.alpha a < l.alpha b :=
   by
@@ -280,6 +307,9 @@ theorem slope_ff_inc_alpha {a b : α} (sab : ¬l.Slope a b) (ha : a ∈ S) (hb :
   · simp_all
   · rw [def_d]; simp
 
+/--
+@isnad1 id=lt.4h6v.s6.b20156f6ca3b from=translated src=- shape=62840414 vocab=42d27084
+-/
 theorem slope_tt_inc_beta {a b : α} (sab : l.Slope a b) (ha : a ∈ S) (hb : b ∈ S) (a_le_b : a < b) :
     C.beta S a < C.beta S b := by
   rcases C.betaCup S ha with ⟨c, c_in, ⟨c_cup, c_length⟩, c_last⟩
@@ -297,6 +327,9 @@ theorem slope_tt_inc_beta {a b : α} (sab : l.Slope a b) (ha : a ∈ S) (hb : b 
 
 variable (C)
 
+/--
+@isnad1 id=iff.3h6v.s6.266e68ea1a17 from=translated src=- shape=b6e01a56 vocab=cc4f4907
+-/
 theorem Config.alpha_eq_beta_inc {a b : α} (ha : a ∈ S) (hb : b ∈ S) (h : l.alpha a = l.alpha b) :
     a < b ↔ C.beta S a < C.beta S b := by
   constructor
@@ -318,6 +351,9 @@ theorem Config.alpha_eq_beta_inc {a b : α} (ha : a ∈ S) (hb : b ∈ S) (h : l
 
 variable {C} (l)
 
+/--
+@isnad1 id=iff.3h6v.s6.4199643dcb41 from=translated src=- shape=936b3f98 vocab=cc4f4907
+-/
 theorem Config.Label.beta_eq_alpha_inc {a b : α} (ha : a ∈ S) (hb : b ∈ S)
     (h : C.beta S a = C.beta S b) : a < b ↔ l.alpha a < l.alpha b := by
   constructor

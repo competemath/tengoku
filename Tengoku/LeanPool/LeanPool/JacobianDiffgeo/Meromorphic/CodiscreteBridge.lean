@@ -40,6 +40,9 @@ variable {f g : X → ℂ} {U : Set X}
 /-! ### D2: the bridge, both directions -/
 
 omit [ChartedSpace ℂ X] in
+/--
+@isnad1 id=iff.1h3v.s6.271719d6b147 from=translated src=- shape=bbc03565 vocab=7650883b
+-/
 theorem mem_codiscreteWithin_iff_of_isOpen {S : Set X} (hU : IsOpen U) :
     S ∈ codiscreteWithin U ↔ ∀ x ∈ U, S ∈ 𝓝[≠] x := by
   constructor
@@ -54,18 +57,25 @@ theorem mem_codiscreteWithin_iff_of_isOpen {S : Set X} (hU : IsOpen U) :
 
 omit [ChartedSpace ℂ X] in
 /-- D2 (both directions): for open `U`, agreement of arbitrary `f, g` codiscretely within `U`
-is exactly pointwise `𝓝[≠]`-agreement. Meromorphy-free. -/
+is exactly pointwise `𝓝[≠]`-agreement. Meromorphy-free.
+@isnad1 id=iff.1h5v.s6.98749037980f from=translated src=- shape=e123e5df vocab=8b334a75
+-/
 theorem eventuallyEq_codiscreteWithin_iff_of_isOpen {α : Type*} {f g : X → α} (hU : IsOpen U) :
     f =ᶠ[codiscreteWithin U] g ↔ ∀ x ∈ U, f =ᶠ[𝓝[≠] x] g :=
   mem_codiscreteWithin_iff_of_isOpen (S := {y | f y = g y}) hU
 
 omit [ChartedSpace ℂ X] in
-/-- Prop-valued version of the D2 bridge. -/
+/-- Prop-valued version of the D2 bridge.
+@isnad1 id=iff.1h3v.s5.b11aea2eb5bf from=translated src=- shape=1d55cded vocab=62e026e3
+-/
 theorem eventually_codiscreteWithin_iff_of_isOpen {p : X → Prop} (hU : IsOpen U) :
     (∀ᶠ x in codiscreteWithin U, p x) ↔ ∀ x ∈ U, ∀ᶠ y in 𝓝[≠] x, p y :=
   mem_codiscreteWithin_iff_of_isOpen (S := {x | p x}) hU
 
 omit [ChartedSpace ℂ X] in
+/--
+@isnad1 id=iff.0h4v.s5.ef2920861d87 from=translated src=- shape=956467db vocab=df1ceebb
+-/
 theorem eventuallyEq_codiscrete_iff {α : Type*} {f g : X → α} :
     f =ᶠ[codiscrete X] g ↔ ∀ x, f =ᶠ[𝓝[≠] x] g := by
   change f =ᶠ[codiscreteWithin univ] g ↔ _
@@ -76,12 +86,17 @@ theorem eventuallyEq_codiscrete_iff {α : Type*} {f g : X → α} :
 
 /-! ### Congruence and analyticity off a codiscrete set -/
 
+/--
+@isnad1 id=meromorp.3h4v.s5.823c36e323cf from=translated src=- shape=94ed18ea vocab=0fc13e59
+-/
 theorem MeromorphicOnX.congr_codiscreteWithin (hf : MeromorphicOnX f U) (hU : IsOpen U)
     (h : f =ᶠ[codiscreteWithin U] g) : MeromorphicOnX g U := by
   intro x hx
   exact (hf x hx).congr (((eventuallyEq_codiscreteWithin_iff_of_isOpen hU).1 h) x hx)
 
-/-- Meromorphic functions on an open set are chart-analytic off a set codiscrete in it. -/
+/-- Meromorphic functions on an open set are chart-analytic off a set codiscrete in it.
+@isnad1 id=eventual.2h3v.s7.b957ce637efe from=translated src=- shape=a9697fa0 vocab=4fac113e
+-/
 theorem MeromorphicOnX.analyticAt_codiscreteWithin [IsManifold 𝓘(ℂ) ω X]
     (hf : MeromorphicOnX f U) (hU : IsOpen U) :
     ∀ᶠ y in codiscreteWithin U, AnalyticAt ℂ (f ∘ (chartAt ℂ y).symm) (chartAt ℂ y y) := by

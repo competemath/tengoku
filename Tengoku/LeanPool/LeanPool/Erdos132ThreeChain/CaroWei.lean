@@ -32,12 +32,17 @@ variable {α : Type*}
 def degree (adj : α → α → Prop) [DecidableRel adj] (V : Finset α) (v : α) : ℕ :=
   (V.filter (adj v)).card
 
+/--
+@isnad1 id=le.1h5v.s5.3a341e625865 from=translated src=- shape=c3ed0a45 vocab=42d8a792
+-/
 theorem degree_mono {adj : α → α → Prop} [DecidableRel adj] {V W : Finset α} (h : W ⊆ V)
     (v : α) : degree adj W v ≤ degree adj V v :=
   Finset.card_le_card (Finset.filter_subset_filter _ h)
 
 /-- **Caro--Wei.**  Every finite graph has an independent set of size at least the sum over its
-vertices of the reciprocal of one more than the degree. -/
+vertices of the reciprocal of one more than the degree.
+@isnad1 id=ex.1h4v.s7.878f4cb173e8 from=translated src=- shape=6a56402f vocab=aaa9cd5b
+-/
 theorem carowei (adj : α → α → Prop) [DecidableRel adj] (hsymm : ∀ a b, adj a b → adj b a)
     (hirr : ∀ a, ¬ adj a a) (V : Finset α) :
     ∃ S ⊆ V, (∀ p ∈ S, ∀ q ∈ S, ¬ adj p q) ∧
@@ -110,7 +115,9 @@ theorem carowei (adj : α → α → Prop) [DecidableRel adj] (hsymm : ∀ a b, 
 
 /-- A graph on at least thirteen vertices whose degrees sum to at most twice the number of
 vertices has an independent set of five vertices.  The degree sum is twice the number of edges,
-so the hypothesis is the edge bound `#edges ≤ #vertices`. -/
+so the hypothesis is the edge bound `#edges ≤ #vertices`.
+@isnad1 id=ex.3h4v.s7.bc5d69efcb2e from=translated src=- shape=e6883c59 vocab=e1ddcb74
+-/
 theorem exists_independent_five (adj : α → α → Prop) [DecidableRel adj]
     (hsymm : ∀ a b, adj a b → adj b a) (hirr : ∀ a, ¬ adj a a) (V : Finset α)
     (hcard : 13 ≤ V.card) (hdeg : ∑ v ∈ V, degree adj V v ≤ 2 * V.card) :

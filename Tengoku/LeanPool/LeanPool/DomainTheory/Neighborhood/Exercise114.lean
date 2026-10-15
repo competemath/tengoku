@@ -46,16 +46,25 @@ finite and
 non-empty. -/
 def mem (X : Set ℕ) : Prop := X = Set.univ ∨ (X.Finite ∧ X.Nonempty)
 
+/--
+@isnad1 id=not.0h0v.s2.de02787dc156 from=translated src=- shape=70d57dbf vocab=3d0d6965
+-/
 theorem empty_not_mem : ¬ mem (∅ : Set ℕ) := by
   rintro (h | ⟨_, h⟩)
   · exact Set.empty_ne_univ h
   · exact Set.not_nonempty_empty h
 
+/--
+@isnad1 id=nonempty.1h1v.s3.6e7ae94a744f from=translated src=- shape=f3db9897 vocab=2eccf4f5
+-/
 theorem nonempty_of_mem {X : Set ℕ} (h : mem X) : X.Nonempty := by
   rcases h with rfl | h
   · exact Set.univ_nonempty
   · exact h.2
 
+/--
+@isnad1 id=mem.0h1v.s3.392655bdd38c from=translated src=- shape=8e36a313 vocab=c92eb63d
+-/
 theorem mem_singleton (n : ℕ) : mem {n} :=
   Or.inr ⟨Set.finite_singleton n, Set.singleton_nonempty n⟩
 
@@ -76,6 +85,9 @@ def neighborhoodSystem : NeighborhoodSystem ℕ where
       · exact Or.inr ⟨hX.1.inter_of_left Y, hne⟩
   sub_master := fun _ => Set.subset_univ _
 
+/--
+@isnad1 id=iff.0h1v.s3.c8c865d46dfb from=translated src=- shape=d213e086 vocab=f8e437c2
+-/
 @[simp] theorem ns_mem {X : Set ℕ} : neighborhoodSystem.mem X ↔ mem X := Iff.rfl
 
 /-! ### Finite elements (principals) and total elements (singletons). -/
@@ -92,7 +104,9 @@ def bot : neighborhoodSystem.Element := neighborhoodSystem.bot
 (maximal) element: any `y` it approximates approximates it back. (A `y ⊋ ↑{n}`
 would contain some
 `W ∌ n`; then `{n} ∩ W = ∅ ∈ y ⊆ 𝒟`, impossible.) These are exactly the total
-elements. -/
+elements.
+@isnad1 id=istotal.0h1v.s4.0ccbfa05dd48 from=translated src=- shape=74dd2401 vocab=3284cedb
+-/
 theorem singleton_isTotal (n : ℕ) :
     neighborhoodSystem.IsTotal (neighborhoodSystem.principal (mem_singleton n)) := by
   intro y hy W hW

@@ -95,6 +95,9 @@ def and₁' [ModusPonens 𝓢] [HasAxiomAndElim 𝓢] (d : 𝓢 ⊢ φ ⋏ ψ) :
 alias andLeft := and₁'
 
 lemma «and₁'!» [ModusPonens 𝓢] [HasAxiomAndElim 𝓢] (d : 𝓢 ⊢! (φ ⋏ ψ)) : 𝓢 ⊢! φ := ⟨and₁' d.some⟩
+/--
+@isnad1 id=provable.1h5v.s5.11171b7287d2 from=translated src=- shape=44f17c11 vocab=74a4ad20
+-/
 alias and_left! := and₁'!
 
 /-- Imported declaration from the Incompleteness formalization. -/
@@ -106,6 +109,9 @@ def and₂' [ModusPonens 𝓢] [HasAxiomAndElim 𝓢] (d : 𝓢 ⊢ φ ⋏ ψ) :
 alias andRight := and₂'
 
 lemma «and₂'!»  [ModusPonens 𝓢] [HasAxiomAndElim 𝓢] (d : 𝓢 ⊢! (φ ⋏ ψ)) : 𝓢 ⊢! ψ := ⟨and₂' d.some⟩
+/--
+@isnad1 id=provable.1h5v.s5.1388be6e1e31 from=translated src=- shape=89afbd24 vocab=74a4ad20
+-/
 alias and_right! := and₂'!
 
 /-- Imported declaration from the Incompleteness formalization. -/
@@ -124,6 +130,9 @@ alias andIntro := and₃'
 
 lemma «and₃'!»  [ModusPonens 𝓢] [HasAxiomAndInst 𝓢] (d₁ : 𝓢 ⊢! φ) (d₂ : 𝓢 ⊢! ψ) : 𝓢 ⊢! φ ⋏ ψ :=
   ⟨and₃' d₁.some d₂.some⟩
+/--
+@isnad1 id=provable.2h5v.s5.135ed4e004e9 from=translated src=- shape=30ae0618 vocab=f5d860f5
+-/
 alias and_intro! := and₃'!
 
 /-- Imported declaration from the Incompleteness formalization. -/
@@ -175,6 +184,9 @@ alias orCases := or₃'''
 lemma «or₃'''!» [HasAxiomOrElim 𝓢] [ModusPonens 𝓢] (d₁ : 𝓢 ⊢! φ ==> χ) (d₂ : 𝓢 ⊢! ψ ==> χ) (d₃ :
     𝓢 ⊢! φ ⋎ ψ) : 𝓢 ⊢! χ :=
   ⟨or₃''' d₁.some d₂.some d₃.some⟩
+/--
+@isnad1 id=provable.3h6v.s6.253ccc3d2348 from=translated src=- shape=d91043b7 vocab=137a311e
+-/
 alias or_cases! := or₃'''!
 
 /-- Imported declaration from the Incompleteness formalization. -/
@@ -296,13 +308,22 @@ def iffIntro [HasAxiomAndInst 𝓢] (b₁ : 𝓢 ⊢ φ ==> ψ) (b₂ : 𝓢 ⊢
 lemma «iff_intro!» [HasAxiomAndInst 𝓢] (h₁ : 𝓢 ⊢! φ ==> ψ) (h₂ : 𝓢 ⊢! ψ ==> φ) : 𝓢 ⊢! φ <=> ψ :=
   ⟨andIntro h₁.some h₂.some⟩
 
+/--
+@isnad1 id=iff.0h5v.s6.3e218ebb3bd4 from=translated src=- shape=b039b9f8 vocab=999a1057
+-/
 lemma and_intro_iff [HasAxiomAndInst 𝓢] [HasAxiomAndElim 𝓢] : 𝓢 ⊢! φ ⋏ ψ ↔ 𝓢 ⊢! φ ∧ 𝓢 ⊢! ψ :=
   ⟨fun h ↦ ⟨and_left! h, and_right! h⟩, fun h ↦ and_intro! h.1 h.2⟩
 
+/--
+@isnad1 id=iff.0h5v.s6.6d3288403b60 from=translated src=- shape=818a37c6 vocab=c751abe4
+-/
 lemma iff_intro_iff [HasAxiomAndInst 𝓢] [HasAxiomAndElim 𝓢] :
     𝓢 ⊢! φ <=> ψ ↔ 𝓢 ⊢! φ ==> ψ ∧ 𝓢 ⊢! ψ ==> φ :=
   ⟨fun h ↦ ⟨and_left! h, and_right! h⟩, fun h ↦ and_intro! h.1 h.2⟩
 
+/--
+@isnad1 id=iff.1h5v.s5.dec4f34c3bcd from=translated src=- shape=7df534f1 vocab=a93fb579
+-/
 lemma provable_iff_of_iff [HasAxiomAndElim 𝓢] (h : 𝓢 ⊢! φ <=> ψ) :
     𝓢 ⊢! φ ↔ 𝓢 ⊢! ψ :=
   ⟨fun hp ↦ and_left! h ⨀ hp, fun hq ↦ and_right! h ⨀ hq⟩

@@ -25,6 +25,9 @@ def isReplete (W : MorphismProperty C) : Prop :=
     (_ : i.hom ≫ l' = l ≫ j.hom) (_: W l) , W l'
 
 /- The left class of a factorization system is replete -/
+/--
+@isnad1 id=isreplet.0h4v.s4.7e49e464ed7b from=translated src=- shape=86b80f9a vocab=872cfe6d
+-/
 lemma is_replete_left_class
   (L R : MorphismProperty C) (F : FactorizationSystem L R) : isReplete L := by
   intro X Y X' Y' l l' i j c p
@@ -39,6 +42,9 @@ lemma is_replete_left_class
     · apply F.contains_isos_left_class
 
 /- The right class of a factorization system is replete -/
+/--
+@isnad1 id=isreplet.0h4v.s4.dd6678509540 from=translated src=- shape=caf5116a vocab=872cfe6d
+-/
 lemma is_replete_right_class
   (L R : MorphismProperty C) (F : FactorizationSystem L R) : isReplete R := by
   intro X Y X' Y' r r' i j c p
@@ -124,6 +130,9 @@ def FactorizationSystemDiagonal
       _ = S.bot := F.factorization S.bot}
 
 /- An auxiliary lemma for uniqueness of diagonal fillers -/
+/--
+@isnad1 id=eq.0h14v.s7.5da12cf2f87c from=translated src=- shape=193f4cbf vocab=7774ff8f
+-/
 lemma FactorizationSystem_diagonal_canonicity
   {L R : MorphismProperty C} (F : FactorizationSystem L R) {A B X Y : C} (l : A ⟶ B) (hl : L l)
   (r : X ⟶ Y) (hr : R r) (S : l □ r) (d : diagonalFiller S) :
@@ -212,6 +221,9 @@ def FactorizationSystemOrthogonal
 
 /- If (L,R) is a weak factorization system, R is replete and L⊥R,
 then R is the right orthogonal complement of L-/
+/--
+@isnad1 id=eq.1h5v.s5.d5bd99171ae9 from=translated src=- shape=9ec170a6 vocab=b97d0fc7
+-/
 lemma left_determinacy (L R : MorphismProperty C) (H₁R : isReplete R)
   (H₂ : WeakFactorizationSystem L R) (H₃ : orthogonalClass L R) :
   R = rightOrthogonalComplement L := by
@@ -247,6 +259,9 @@ lemma left_determinacy (L R : MorphismProperty C) (H₁R : isReplete R)
 
 /- If (L,R) is a weak factorization system, L is replete and L⊥R,
 then L is the right orthogonal complement of R-/
+/--
+@isnad1 id=eq.1h5v.s5.2c8bff9d167b from=translated src=- shape=64c422d0 vocab=257fc24c
+-/
 lemma right_determinacy (L R : MorphismProperty C) (H₁L : isReplete L)
   (H₂ : WeakFactorizationSystem L R) (H₃ : orthogonalClass L R) :
   L = leftOrthogonalComplement R := by

@@ -34,7 +34,9 @@ namespace RS.AbelWeak
 
 /-- **The disk log-branch lemma** (§6.1, disk case, spiked in `scratch_abelweak.lean`): a function
 `h` differentiable and non-vanishing on `ball c₀ r` has a primitive `L` of `h'/h` there with
-`Complex.exp ∘ L = h` on the ball. -/
+`Complex.exp ∘ L = h` on the ball.
+@isnad1 id=ex.3h3v.s8.c83bb8b08db8 from=translated src=- shape=ef8a588e vocab=b4d2cfa9
+-/
 theorem exists_logBranch_disk {c₀ : ℂ} {r : ℝ} (hr : 0 < r) {h : ℂ → ℂ}
     (hh : DifferentiableOn ℂ h (ball c₀ r)) (hne : ∀ z ∈ ball c₀ r, h z ≠ 0) :
     ∃ L : ℂ → ℂ, (∀ z ∈ ball c₀ r, HasDerivAt L (deriv h z / h z) z) ∧
@@ -99,7 +101,9 @@ private theorem one_sub_mul_ne_zero {a w : ℂ} {ρ : ℝ} (hρ : 0 < ρ)
 /-- **The exterior log-branch lemma** (§6.1, the engine Forster's construction actually needs): a
 log branch of `(z - b)/(z - a)` on `{ρ < ‖z‖}` for `a, b` inside `ball 0 ρ`, via the substitution
 `w = 1/z` turning the exterior region into a genuine disk `ball 0 ρ⁻¹` containing no singularity
-of the transported function `H w := (1 - b*w)/(1 - a*w)` at all. -/
+of the transported function `H w := (1 - b*w)/(1 - a*w)` at all.
+@isnad1 id=ex.3h3v.s7.327ff946d386 from=translated src=- shape=6ca38083 vocab=7a339efc
+-/
 theorem exists_exteriorLogBranch {a b : ℂ} {ρ : ℝ} (hρ : 0 < ρ)
     (ha : a ∈ ball (0 : ℂ) ρ) (hb : b ∈ ball (0 : ℂ) ρ) :
     ∃ L : ℂ → ℂ, (∀ z : ℂ, ρ < ‖z‖ → HasDerivAt L (1 / (z - b) - 1 / (z - a)) z) ∧

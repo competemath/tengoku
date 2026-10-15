@@ -67,7 +67,9 @@ private theorem sentBndPol_flip_inter {φ : L[[ℕ]].Sentenceω}
 variable {A : Finset ℕ} {Γ Δ : Set L[[ℕ]].Sentenceω}
 
 /-- **Mixed `C0`**: a sentence entailed on the left whose negation is entailed on the right *is* a
-separator in the flipped intersection class, so it cannot occur under inseparability. -/
+separator in the flipped intersection class, so it cannot occur under inseparability.
+@isnad1 id=false.6h11v.s7.f41c05a20da0 from=translated src=- shape=e2187c00 vocab=87fd7a31
+-/
 theorem lyndonInsepAt_shared_contradiction {φ : L[[ℕ]].Sentenceω}
     (hφ₁ : φ ∈ SentBndPol F₁ P₁ N₁) (hφ₂ : φ.not ∈ SentBndPol F₂ P₂ N₂)
     (hφA : sentenceJConsts (L' := L) (J := ℕ) φ ⊆ (↑A : Set ℕ))
@@ -82,7 +84,9 @@ variable {F : Set (Σ n, L.Functions n)} {P N : Set (Σ n, L.Relations n)}
 
 /-- Grow the `Δ`-coordinate by an entailed sentence — the right twin of
 `lyndonInsepAt_insert_of_entails`, obtained purely by conjugation with the class-exchanging
-swap. -/
+swap.
+@isnad1 id=lyndonin.2h8v.s6.bed927c46be5 from=translated src=- shape=15517e5f vocab=275bd250
+-/
 theorem lyndonInsepAt_insert_right_of_entails {φ : L[[ℕ]].Sentenceω}
     (hcons : Theoryω.Entails Δ φ) (h : LyndonInsepAt F P N A Γ Δ) :
     LyndonInsepAt F P N A Γ (insert φ Δ) :=
@@ -90,7 +94,9 @@ theorem lyndonInsepAt_insert_right_of_entails {φ : L[[ℕ]].Sentenceω}
 
 /-- The right twin of the equality-transfer gate: a shared constant equality entailed by `Γ`
 transfers a consequence into the `Δ` coordinate.  Again pure conjugation — the `(P, N)` exchange
-happens twice and cancels. -/
+happens twice and cancels.
+@isnad1 id=lyndonin.4h10v.s7.aafcb5688e4e from=translated src=- shape=8231299c vocab=bc506f98
+-/
 theorem lyndonInsepAt_insert_right_of_shared_constEq_entails {φ : L[[ℕ]].Sentenceω} (a b : ℕ)
     (hσA : sentenceJConsts (L' := L) (J := ℕ) (constEq (L := L) a b) ⊆ (↑A : Set ℕ))
     (hΓσ : Theoryω.Entails Γ (constEq (L := L) a b))
@@ -118,7 +124,9 @@ variable {rL rR : L[[ℕ]].Sentenceω}
 
 /-! ### The two coordinate-growth constructors -/
 
-/-- Add `φ` to the `Γ`-coordinate of a family member. -/
+/-- Add `φ` to the `Γ`-coordinate of a family member.
+@isnad1 id=lyndonpa.11h14v.s9.a63e2fe33323 from=translated src=- shape=af539f4d vocab=1eb6dc36
+-/
 theorem lyndonPaired_insert_left {S Γ Δ : Set L[[ℕ]].Sentenceω} {A : Finset ℕ}
     {φ : L[[ℕ]].Sentenceω} (hSeq : S = Γ ∪ Δ)
     (hΓfin : Γ.Finite) (hΔfin : Δ.Finite)
@@ -134,7 +142,9 @@ theorem lyndonPaired_insert_left {S Γ Δ : Set L[[ℕ]].Sentenceω} {A : Finset
     Set.insert_subset_iff.mpr ⟨hφU, hΓU⟩, hΔU,
     Set.insert_subset_iff.mpr ⟨hφS, hΓS⟩, hΔS, hsupp, rfl, hA⟩
 
-/-- Add `φ` to the `Δ`-coordinate of a family member. -/
+/-- Add `φ` to the `Δ`-coordinate of a family member.
+@isnad1 id=lyndonpa.11h14v.s9.fe904027070f from=translated src=- shape=139e80d6 vocab=1eb6dc36
+-/
 theorem lyndonPaired_insert_right {S Γ Δ : Set L[[ℕ]].Sentenceω} {A : Finset ℕ}
     {φ : L[[ℕ]].Sentenceω} (hSeq : S = Γ ∪ Δ)
     (hΓfin : Γ.Finite) (hΔfin : Δ.Finite)

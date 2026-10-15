@@ -78,7 +78,9 @@ def conflictCovers60 : Array ConflictCover :=
   ⟨5, 273171522, 34359721983, [1, 6, 10, 14, 19, 22, 28]⟩,
   ⟨6, 8916000, 16642866943, [5, 10, 11, 19, 23]⟩]
 
-/-- Every entry in conflict-cover group 60 passes its audit. -/
+/-- Every entry in conflict-cover group 60 passes its audit.
+@isnad1 id=eq.0h0v.s3.687cda153831 from=translated src=- shape=0547e772 vocab=18ff4e42
+-/
 theorem conflictCovers60_valid :
     conflictCovers60.toList.all ConflictCover.validB = true := by
   decide
@@ -148,7 +150,9 @@ def conflictCovers61 : Array ConflictCover :=
   ⟨7, 2622500, 16173104815, [2, 5, 10, 19, 21]⟩,
   ⟨6, 2624672, 16642998271, [5, 7, 10, 11, 19, 21]⟩, ⟨7, 6816768, 16172252175, [10, 19, 21, 22]⟩]
 
-/-- Every entry in conflict-cover group 61 passes its audit. -/
+/-- Every entry in conflict-cover group 61 passes its audit.
+@isnad1 id=eq.0h0v.s3.bdd04d02a3b0 from=translated src=- shape=0547e772 vocab=a8881496
+-/
 theorem conflictCovers61_valid :
     conflictCovers61.toList.all ConflictCover.validB = true := by
   decide
@@ -214,7 +218,9 @@ def conflictCovers62 : Array ConflictCover :=
   ⟨6, 2627712, 17179803647, [7, 11, 12, 19, 21]⟩,
   ⟨6, 140737490978944, 34342895485, [7, 11, 19, 21, 47]⟩]
 
-/-- Every entry in conflict-cover group 62 passes its audit. -/
+/-- Every entry in conflict-cover group 62 passes its audit.
+@isnad1 id=eq.0h0v.s3.159763454b25 from=translated src=- shape=0547e772 vocab=b37908d9
+-/
 theorem conflictCovers62_valid :
     conflictCovers62.toList.all ConflictCover.validB = true := by
   decide
@@ -283,7 +289,9 @@ def conflictCovers63 : Array ConflictCover :=
   ⟨6, 1609776, 17179869183, [4, 5, 12, 15, 19, 20]⟩,
   ⟨7, 70369818970144, 34359738103, [5, 11, 20, 30, 46]⟩]
 
-/-- Every entry in conflict-cover group 63 passes its audit. -/
+/-- Every entry in conflict-cover group 63 passes its audit.
+@isnad1 id=eq.0h0v.s3.a04135ab1b60 from=translated src=- shape=0547e772 vocab=502ab7cc
+-/
 theorem conflictCovers63_valid :
     conflictCovers63.toList.all ConflictCover.validB = true := by
   decide

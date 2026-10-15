@@ -41,7 +41,9 @@ def IsoSet (L : Language.{u, v}) [L.IsRelational] : Set (StructurePairSpace L) :
 
 /-- Isomorphism on coded structures is Borel when Scott height is bounded.
 If all countable models of φ have Scott height ≤ α < ω₁, then the set
-of isomorphic pairs within ModelsOf(φ) × ModelsOf(φ) is measurable. -/
+of isomorphic pairs within ModelsOf(φ) × ModelsOf(φ) is measurable.
+@isnad1 id=measurab.2h3v.s7.489cc596e8b4 from=translated src=- shape=3b96c238 vocab=fe512cb7
+-/
 theorem iso_borel_of_bounded_scottHeight
     [Countable (Σ l, L.Relations l)]
     {φ : L.Sentenceω} {α : Ordinal.{0}} (hα : α < Ordinal.omega 1)

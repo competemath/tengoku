@@ -35,7 +35,9 @@ noncomputable section
 
 variable {Ω : Type*} [MeasurableSpace Ω]
 
-/-- Union bound for maximum over finset: P(max_i X_i ≥ u) ≤ Σ_i P(X_i ≥ u). -/
+/-- Union bound for maximum over finset: P(max_i X_i ≥ u) ≤ Σ_i P(X_i ≥ u).
+@isnad1 id=le.1h6v.s6.27dc3e5bf123 from=translated src=- shape=32415dd9 vocab=a5a1741d
+-/
 theorem measure_finset_sup_ge_le_sum {ι : Type*} {μ : Measure Ω}
     {X : ι → Ω → ℝ} {u : ℝ} {s : Finset ι} (hs : s.Nonempty) :
     μ {ω | u ≤ s.sup' hs (fun i => X i ω)} ≤ ∑ i ∈ s, μ {ω | u ≤ X i ω} := by
@@ -62,7 +64,9 @@ theorem measure_finset_sup_ge_le_sum {ι : Type*} {μ : Measure Ω}
 ## MGF-Based Bounds for Expected Maximum
 -/
 
-/-- Scaled soft-max: `exp(t · sup' f) ≤ ∑ exp(t · fᵢ)`. -/
+/-- Scaled soft-max: `exp(t · sup' f) ≤ ∑ exp(t · fᵢ)`.
+@isnad1 id=le.1h4v.s5.e9f00382eb26 from=translated src=- shape=458e085b vocab=2dc833f9
+-/
 theorem exp_mul_sup'_le_sum {ι : Type*} {s : Finset ι} (hs : s.Nonempty)
     (f : ι → ℝ) (t : ℝ) :
     exp (t * s.sup' hs f) ≤ ∑ i ∈ s, exp (t * f i) := by
@@ -72,12 +76,16 @@ theorem exp_mul_sup'_le_sum {ι : Type*} {s : Finset ι} (hs : s.Nonempty)
   intro i _
   exact (exp_pos _).le
 
-/-- Soft-max bound: `exp(sup' f) ≤ ∑ exp(fᵢ)`. -/
+/-- Soft-max bound: `exp(sup' f) ≤ ∑ exp(fᵢ)`.
+@isnad1 id=le.1h3v.s5.2619e0477666 from=translated src=- shape=6206d5ae vocab=361a31fe
+-/
 theorem exp_sup'_le_sum {ι : Type*} {s : Finset ι} (hs : s.Nonempty) (f : ι → ℝ) :
     exp (s.sup' hs f) ≤ ∑ i ∈ s, exp (f i) := by
   simpa using exp_mul_sup'_le_sum hs f 1
 
-/-- Bound `|sup' f| ≤ ∑ |fᵢ|` for finite sets. -/
+/-- Bound `|sup' f| ≤ ∑ |fᵢ|` for finite sets.
+@isnad1 id=le.1h3v.s5.3a182cbea908 from=translated src=- shape=1576377e vocab=131fe738
+-/
 theorem abs_sup'_le_sum {ι : Type*} {s : Finset ι} (hs : s.Nonempty) (f : ι → ℝ) :
     |s.sup' hs f| ≤ ∑ i ∈ s, |f i| := by
   obtain ⟨j, hj, hmax⟩ := Finset.exists_mem_eq_sup' hs f
@@ -86,14 +94,18 @@ theorem abs_sup'_le_sum {ι : Type*} {s : Finset ι} (hs : s.Nonempty) (f : ι �
   intro i _
   exact abs_nonneg _
 
-/-- Upper bound `sup' f ≤ ∑ |fᵢ|` for finite sets. -/
+/-- Upper bound `sup' f ≤ ∑ |fᵢ|` for finite sets.
+@isnad1 id=le.1h3v.s5.b24793c80732 from=translated src=- shape=817a0a57 vocab=131fe738
+-/
 lemma sup'_le_sum_abs {ι : Type*} {s : Finset ι} (hs : s.Nonempty)
     {f : ι → ℝ} :
     s.sup' hs f ≤ ∑ i ∈ s, |f i| :=
   (le_abs_self _).trans (abs_sup'_le_sum hs f)
 
 /-- Expected maximum over finset of sub-Gaussian random variables via MGF method.
-    E[max_i X_i] ≤ σ · √(2 log n) where n = |s|. -/
+    E[max_i X_i] ≤ σ · √(2 log n) where n = |s|.
+@isnad1 id=le.5h6v.s8.7d25b4e9a664 from=translated src=- shape=ce126362 vocab=e14994c0
+-/
 theorem expected_max_subGaussian {ι : Type*}
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : ι → Ω → ℝ} {σ : ℝ} (hσ : 0 < σ)

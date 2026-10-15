@@ -19,6 +19,9 @@ phase gap lies in `(0, π)` and the coupling is positive, the gap is contracting
 
 open Real Finset
 
+/--
+@isnad1 id=eq.0h2v.s6.ff7610d90339 from=translated src=- shape=9264b630 vocab=2930cea1
+-/
 lemma kuramoto_relative_velocity
     (K : ℝ) (θ : Fin 2 → ℝ) :
     kuramotoF K 2 0 θ - kuramotoF K 2 1 θ = -K * Real.sin (θ 0 - θ 1) := by
@@ -31,6 +34,9 @@ lemma kuramoto_relative_velocity
   rw [hsin]
   ring
 
+/--
+@isnad1 id=lt.3h2v.s7.43d16f9c6bab from=translated src=- shape=29a13072 vocab=bc612f97
+-/
 theorem kuramoto_pairwise_contraction
     (K : ℝ) (hK : 0 < K) (θ : Fin 2 → ℝ)
     (hgap : 0 < θ 0 - θ 1) (hpi : θ 0 - θ 1 < Real.pi) :
@@ -48,6 +54,9 @@ theorem kuramoto_pairwise_contraction
 -- For any pair (i, j), the contribution of their direct coupling
 -- to the relative velocity (F i - F j) is strictly negative
 -- when the phase gap is in (0, π) and coupling is positive.
+/--
+@isnad1 id=lt.5h6v.s7.c34f1e809cad from=translated src=- shape=32f906a6 vocab=37361274
+-/
 theorem kuramoto_coupling_contraction
     (K : ℝ) (hK : 0 < K)
     (N : ℕ) (W : Fin N → Fin N → ℝ) (hW : ∀ i j, W i j = W j i)

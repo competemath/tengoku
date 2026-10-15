@@ -75,13 +75,17 @@ variable {α : Type*} {D E : NeighborhoodSystem α}
 namespace Subsystem.ProjectionPair
 
 /-- **`h(g(x)) = x`.** The first projection-pair law `h ∘ g = I_𝒟`, read on
-elements. -/
+elements.
+@isnad1 id=eq.0h5v.s5.2b7bb6aa6fa5 from=translated src=- shape=b897e510 vocab=cecee026
+-/
 theorem proj_inj_apply (P : ProjectionPair D E) (x : D.Element) :
     P.proj.toElementMap (P.inj.toElementMap x) = x := by
   rw [← toElementMap_comp, P.proj_comp_inj, toElementMap_idMap]
 
 /-- **`g(h(y)) ⊑ y`.** The second projection-pair law `g ∘ h ⊆ I_ℰ`, read on
-elements. -/
+elements.
+@isnad1 id=le.0h5v.s5.25d57f09c688 from=translated src=- shape=0046158f vocab=1eb0e882
+-/
 theorem inj_proj_apply_le (P : ProjectionPair D E) (y : E.Element) :
     P.inj.toElementMap (P.proj.toElementMap y) ≤ y := by
   have h := (le_iff_toElementMap_le.mp P.inj_comp_proj_le) y
@@ -92,7 +96,9 @@ theorem inj_proj_apply_le (P : ProjectionPair D E) (y : E.Element) :
 each other.
 
 `→`: apply the monotone `h` to `g(x) ⊑ y` and use `h(g(x)) = x`.
-`←`: apply the monotone `g` to `x ⊑ h(y)` and use `g(h(y)) ⊑ y`. -/
+`←`: apply the monotone `g` to `x ⊑ h(y)` and use `g(h(y)) ⊑ y`.
+@isnad1 id=iff.0h6v.s6.d9f87a4bb591 from=translated src=- shape=8a4ac37b vocab=1eb0e882
+-/
 theorem galois (P : ProjectionPair D E) (x : D.Element) (y : E.Element) :
     P.inj.toElementMap x ≤ y ↔ x ≤ P.proj.toElementMap y := by
   constructor
@@ -110,11 +116,16 @@ down-set `{x ∣ x ⊑ h(y)}` of `h(y)`. -/
 def lowerSet (P : ProjectionPair D E) (y : E.Element) : Set D.Element :=
   {x | P.inj.toElementMap x ≤ y}
 
+/--
+@isnad1 id=iff.0h6v.s6.212f0e4406f9 from=translated src=- shape=a2889175 vocab=8123f69b
+-/
 @[simp] theorem mem_lowerSet (P : ProjectionPair D E) {y : E.Element} {x : D.Element} :
     x ∈ P.lowerSet y ↔ P.inj.toElementMap x ≤ y := Iff.rfl
 
 /-- The set `{x ∣ g(x) ⊑ y}` is bounded: `h(y)` is an upper bound (it is in fact
-the top). -/
+the top).
+@isnad1 id=bounded.0h5v.s4.26cd9a6bcb1c from=translated src=- shape=8aa31085 vocab=54354252
+-/
 theorem lowerSet_bounded (P : ProjectionPair D E) (y : E.Element) :
     D.Bounded (P.lowerSet y) :=
   ⟨P.proj.toElementMap y, fun _ hx => (P.galois _ y).mp hx⟩
@@ -123,7 +134,9 @@ theorem lowerSet_bounded (P : ProjectionPair D E) (y : E.Element) :
 members of
 `{x ∣ g(x) ⊑ y}` have a common upper bound *inside the set*, namely `h(y)` itself
 (the down-set of
-`h(y)` has `h(y)` as a top, so it is trivially directed). -/
+`h(y)` has `h(y)` as a top, so it is trivially directed).
+@isnad1 id=ex.2h7v.s7.d991f7376aca from=translated src=- shape=4339709f vocab=e4324705
+-/
 theorem lowerSet_directed (P : ProjectionPair D E) (y : E.Element) :
     ∀ a ∈ P.lowerSet y, ∀ b ∈ P.lowerSet y,
       ∃ c ∈ P.lowerSet y, a ≤ c ∧ b ≤ c := by
@@ -135,7 +148,9 @@ theorem lowerSet_directed (P : ProjectionPair D E) (y : E.Element) :
 
 `h(y)` is the *greatest* member of the set (`g(h(y)) ⊑ y`, so `h(y)` is in it;
 every member is
-`⊑ h(y)` by the Galois connection), hence it is the least upper bound. -/
+`⊑ h(y)` by the Galois connection), hence it is the least upper bound.
+@isnad1 id=eq.0h5v.s5.41a1e4c71bfc from=translated src=- shape=1cec0af6 vocab=8affa281
+-/
 theorem proj_eq_sSup (P : ProjectionPair D E) (y : E.Element) :
     P.proj.toElementMap y = D.sSup (P.lowerSet y) (P.lowerSet_bounded y) := by
   apply le_antisymm
@@ -150,12 +165,17 @@ up-set `{y ∣ g(x) ⊑ y}` of `g(x)`. -/
 def upperSet (P : ProjectionPair D E) (x : D.Element) : Set E.Element :=
   {y | x ≤ P.proj.toElementMap y}
 
+/--
+@isnad1 id=iff.0h6v.s6.70fb07570f20 from=translated src=- shape=c476aa00 vocab=e5f5d9ae
+-/
 @[simp] theorem mem_upperSet (P : ProjectionPair D E) {x : D.Element} {y : E.Element} :
     y ∈ P.upperSet x ↔ x ≤ P.proj.toElementMap y := Iff.rfl
 
 /-- **Exercise 6.25 — "check that the set on the right is non-empty".** `g(x)`
 itself lies in
-`{y ∣ x ⊑ h(y)}`, since `x ⊑ h(g(x)) = x`. -/
+`{y ∣ x ⊑ h(y)}`, since `x ⊑ h(g(x)) = x`.
+@isnad1 id=nonempty.0h5v.s4.17fccd20c0c8 from=translated src=- shape=9ab17579 vocab=9180c8ea
+-/
 theorem upperSet_nonempty (P : ProjectionPair D E) (x : D.Element) :
     (P.upperSet x).Nonempty :=
   ⟨P.inj.toElementMap x, by rw [mem_upperSet, P.proj_inj_apply x]⟩
@@ -164,7 +184,9 @@ theorem upperSet_nonempty (P : ProjectionPair D E) (x : D.Element) :
 
 `g(x)` is the *least* member of the set (`x ⊑ h(g(x)) = x`, so `g(x)` is in it;
 every member is
-`⊒ g(x)` by the Galois connection), hence it is the greatest lower bound. -/
+`⊒ g(x)` by the Galois connection), hence it is the greatest lower bound.
+@isnad1 id=eq.0h5v.s5.4a424c739a9f from=translated src=- shape=3f2573e5 vocab=026d0f8c
+-/
 theorem inj_eq_sInf (P : ProjectionPair D E) (x : D.Element) :
     P.inj.toElementMap x = E.sInf (P.upperSet x) (P.upperSet_nonempty x) := by
   apply le_antisymm
@@ -178,7 +200,9 @@ theorem inj_eq_sInf (P : ProjectionPair D E) (x : D.Element) :
 for sets of
 elements is "bounded" (Exercise 1.27). If `S` is bounded by `b`, its image `{g(s)
 ∣ s ∈ S}` is
-bounded by `g(b)` (monotonicity). -/
+bounded by `g(b)` (monotonicity).
+@isnad1 id=bounded.1h5v.s5.6dafdfcbeef4 from=translated src=- shape=751d4fd0 vocab=113f641a
+-/
 theorem inj_bounded (P : ProjectionPair D E) {S : Set D.Element} (hS : D.Bounded S) :
     E.Bounded (P.inj.toElementMap '' S) := by
   obtain ⟨b, hb⟩ := hS
@@ -194,7 +218,9 @@ adjoint.
 * `⊒`: `g(⊔S)` is an upper bound of `{g(s)}` since `s ⊑ ⊔S` and `g` is monotone.
 * `⊑`: by the Galois connection it suffices that `⊔S ⊑ h(⊔{g(s)})`, i.e. that each
 `s ⊑ h(⊔{g(s)})`;
-  by the Galois connection again this is `g(s) ⊑ ⊔{g(s)}`, true by `le_sSup`. -/
+  by the Galois connection again this is `g(s) ⊑ ⊔{g(s)}`, true by `le_sSup`.
+@isnad1 id=eq.1h5v.s6.313032ff6265 from=translated src=- shape=d7c42c7c vocab=f1bf4657
+-/
 theorem inj_sSup (P : ProjectionPair D E) {S : Set D.Element} (hS : D.Bounded S) :
     P.inj.toElementMap (D.sSup S hS) =
       E.sSup (P.inj.toElementMap '' S) (P.inj_bounded hS) := by

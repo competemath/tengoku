@@ -23,32 +23,42 @@ variable {R : ℕ → ℕ → Prop} {P Q : List ℕ} {a b c : ℕ}
 
 /-- The completion of a word beginning with `t`: `t` comes first, and deleting
 it leaves the completion of the remaining word. This is bookkeeping for the
-paper's operation of putting a finite word before the binary-ordered tail. -/
+paper's operation of putting a finite word before the binary-ordered tail.
+@isnad1 id=iff.0h5v.s5.0866c4cb1a57 from=translated src=- shape=93dc9c7a vocab=94471e9a
+-/
 theorem completion_cons (R : ℕ → ℕ → Prop) (P : List ℕ) (t a b : ℕ) :
     Completion R (t :: P) a b ↔
       (a = t ∧ b ≠ t) ∨ (a ≠ t ∧ b ≠ t ∧ Completion R P a b) := by
   simp only [Completion, List.idxOf_cons, beq_iff_eq, List.mem_cons]
   by_cases ha : a = t <;> by_cases hb : b = t <;> simp_all [eq_comm]
 
-/-- In `𝒞(P)`, each entry of `P` precedes every unused integer. -/
+/-- In `𝒞(P)`, each entry of `P` precedes every unused integer.
+@isnad1 id=completi.2h4v.s5.60533ba4d952 from=translated src=- shape=56d39fc3 vocab=fe112826
+-/
 theorem completion_mem_notMem (ha : a ∈ P) (hb : b ∉ P) :
     Completion R P a b := by
   left
   rw [List.idxOf_eq_length hb]
   exact List.idxOf_lt_length_of_mem ha
 
-/-- On the unused integers, `𝒞(P)` agrees with the background order. -/
+/-- On the unused integers, `𝒞(P)` agrees with the background order.
+@isnad1 id=iff.2h4v.s5.34e559334f2c from=translated src=- shape=0246d480 vocab=fe112826
+-/
 theorem completion_of_notMem (ha : a ∉ P) (hb : b ∉ P) :
     Completion R P a b ↔ R a b := by
   simp [Completion, ha, hb]
 
-/-- No entry outside the prefix can precede an entry inside it. -/
+/-- No entry outside the prefix can precede an entry inside it.
+@isnad1 id=mem.2h4v.s5.366f1e9573df from=translated src=- shape=361da93d vocab=fe112826
+-/
 theorem completion_mem_left (h : Completion R P a b) (hb : b ∈ P) : a ∈ P := by
   rcases h with h | ⟨_, hn, _⟩
   · exact List.idxOf_lt_length_iff.mp (Nat.lt_trans h (List.idxOf_lt_length_of_mem hb))
   · exact (hn hb).elim
 
-/-- A completion is asymmetric whenever its background order is asymmetric. -/
+/-- A completion is asymmetric whenever its background order is asymmetric.
+@isnad1 id=not.2h4v.s5.b170e7e100cd from=translated src=- shape=6c5096e8 vocab=c00a3559
+-/
 theorem completion_asymm (hR : ∀ ⦃x y⦄, R x y → ¬ R y x)
     (h : Completion R P a b) : ¬ Completion R P b a := by
   rintro (h' | ⟨hb, ha, h'⟩)
@@ -63,7 +73,9 @@ theorem completion_asymm (hR : ∀ ⦃x y⦄, R x y → ¬ R y x)
 
 /-- The completed order is irreflexive whenever the background order is.
 Together with the next two lemmas, this verifies that the paper's `𝒞(P)` is
-a strict linear order rather than merely a relation. -/
+a strict linear order rather than merely a relation.
+@isnad1 id=not.1h3v.s4.71e3fcbcb6ed from=translated src=- shape=ce2d6792 vocab=c00a3559
+-/
 theorem completion_irrefl (hR : ∀ x, ¬ R x x) (a : ℕ) :
     ¬ Completion R P a a := by
   rintro (h | ⟨_, _, h⟩)
@@ -71,7 +83,9 @@ theorem completion_irrefl (hR : ∀ x, ¬ R x x) (a : ℕ) :
   · exact hR a h
 
 /-- Concatenating the finite prefix and its background-ordered complement
-preserves transitivity, as required by the paper's definition of `𝒞(P)`. -/
+preserves transitivity, as required by the paper's definition of `𝒞(P)`.
+@isnad1 id=completi.2h6v.s5.0b9c33ab7dce from=translated src=- shape=88f0a96b vocab=c00a3559
+-/
 theorem completion_trans (hR : ∀ ⦃x y z⦄, R x y → R y z → R x z)
     (hab : Completion R P a b) (hbc : Completion R P b c) :
     Completion R P a c := by
@@ -88,7 +102,9 @@ theorem completion_trans (hR : ∀ ⦃x y z⦄, R x y → R y z → R x z)
 
 /-- Every two distinct entries are comparable in `𝒞(P)` when they are
 comparable in the background order. Thus the finite-prefix construction in
-the paper indeed defines a strict linear order. -/
+the paper indeed defines a strict linear order.
+@isnad1 id=or.2h4v.s5.ec9fcd81b2a6 from=translated src=- shape=c7ab9df4 vocab=c00a3559
+-/
 theorem completion_total (hR : ∀ ⦃x y⦄, x ≠ y → R x y ∨ R y x)
     (hne : a ≠ b) : Completion R P a b ∨ Completion R P b a := by
   by_cases ha : a ∈ P
@@ -105,7 +121,9 @@ theorem completion_total (hR : ∀ ⦃x y⦄, x ≠ y → R x y ∨ R y x)
       · exact Or.inr (Or.inr ⟨hb, ha, h⟩)
 
 /-- Prefix extension preserves all comparisons whose first entry was already
-placed. This is used twice in the contradiction argument in Lemma 2. -/
+placed. This is used twice in the contradiction argument in Lemma 2.
+@isnad1 id=completi.3h5v.s5.f591b66a5701 from=translated src=- shape=a6eca62e vocab=61d59c49
+-/
 theorem completion_prefix_left (hp : P.IsPrefix Q) (ha : a ∈ P)
     (h : Completion R Q a b) : Completion R P a b := by
   obtain ⟨S, rfl⟩ := hp
@@ -116,7 +134,9 @@ theorem completion_prefix_left (hp : P.IsPrefix Q) (ha : a ∈ P)
     · exact (hn (List.mem_append_left S ha)).elim
   · exact completion_mem_notMem ha hb
 
-/-- In an extended completion, the old word is still an initial segment. -/
+/-- In an extended completion, the old word is still an initial segment.
+@isnad1 id=mem.3h5v.s5.b07f10a14773 from=translated src=- shape=845ac831 vocab=61d59c49
+-/
 theorem completion_prefix_mem_left (hp : P.IsPrefix Q) (hb : b ∈ P)
     (h : Completion R Q a b) : a ∈ P := by
   obtain ⟨S, rfl⟩ := hp

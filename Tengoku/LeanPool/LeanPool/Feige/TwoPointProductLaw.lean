@@ -27,6 +27,9 @@ def boolHighMeasure (p : ℝ) : Measure Bool :=
   ENNReal.ofReal (1 - p) • Measure.dirac false +
     ENNReal.ofReal p • Measure.dirac true
 
+/--
+@isnad1 id=isprobab.2h1v.s4.2d5fb9d27c53 from=translated src=- shape=a0756b3a vocab=cc44e94f
+-/
 theorem boolHighMeasure_isProbability {p : ℝ}
     (hp0 : 0 ≤ p) (hp1 : p ≤ 1) :
     IsProbabilityMeasure (boolHighMeasure p) := by
@@ -37,10 +40,16 @@ theorem boolHighMeasure_isProbability {p : ℝ}
 def boolHighSet {m : ℕ} (ω : Fin m → Bool) : Finset (Fin m) :=
   Finset.univ.filter fun i ↦ ω i
 
+/--
+@isnad1 id=measurab.0h1v.s4.a8cad0b004df from=translated src=- shape=19f6a8fe vocab=d2c95315
+-/
 theorem measurable_boolHighSet {m : ℕ} :
     Measurable (boolHighSet : (Fin m → Bool) → Finset (Fin m)) :=
   measurable_of_finite _
 
+/--
+@isnad1 id=injectiv.0h1v.s3.1921b2f4a495 from=translated src=- shape=19f6a8fe vocab=dab32134
+-/
 theorem boolHighSet_injective {m : ℕ} :
     Function.Injective (boolHighSet : (Fin m → Bool) → Finset (Fin m)) := by
   intro ω η h
@@ -49,6 +58,9 @@ theorem boolHighSet_injective {m : ℕ} :
     rw [h]
   simpa [boolHighSet] using hi
 
+/--
+@isnad1 id=surjecti.0h1v.s3.f196bb81996f from=translated src=- shape=19f6a8fe vocab=49a9a4b4
+-/
 theorem boolHighSet_surjective {m : ℕ} :
     Function.Surjective
       (boolHighSet : (Fin m → Bool) → Finset (Fin m)) := by
@@ -57,11 +69,17 @@ theorem boolHighSet_surjective {m : ℕ} :
   ext i
   simp [boolHighSet]
 
+/--
+@isnad1 id=eq.0h2v.s5.466cfb1d37f7 from=translated src=- shape=f80c2aff vocab=aea1a582
+-/
 theorem boolHighMeasure_singleton (p : ℝ) (b : Bool) :
     boolHighMeasure p {b} =
       ENNReal.ofReal (if b then p else 1 - p) := by
   cases b <;> simp [boolHighMeasure]
 
+/--
+@isnad1 id=eq.2h2v.s6.bac7488cb027 from=translated src=- shape=525cc1dd vocab=80c3de67
+-/
 theorem map_boolHighSet_pi_eq_highSetMeasure {m : ℕ}
     (p : Fin m → ℝ) (hp0 : ∀ i, 0 ≤ p i)
     (hp1 : ∀ i, p i ≤ 1) :
@@ -132,6 +150,9 @@ theorem map_boolHighSet_pi_eq_highSetMeasure {m : ℕ}
     · exact hp0 i
     · exact sub_nonneg.mpr (hp1 i)
 
+/--
+@isnad1 id=eq.2h2v.s5.459e34269319 from=translated src=- shape=9e95021e vocab=fdb462d9
+-/
 theorem map_boolHighMeasure_twoPoint
     {γ β : ℝ} (hγ : 0 ≤ γ) (hβ : 0 < β) :
     Measure.map
@@ -158,6 +179,9 @@ theorem map_boolHighMeasure_twoPoint
   · simp [twoPointMeasure, hlo, hhi]
   all_goals fun_prop
 
+/--
+@isnad1 id=eq.2h3v.s7.a68758aefe34 from=translated src=- shape=6d8ac40d vocab=72033f2d
+-/
 theorem map_canonicalTwoPointPiVector {m : ℕ}
     (γ β : Fin m → ℝ) (hγ : ∀ i, 0 ≤ γ i)
     (hβ : ∀ i, 0 < β i) :

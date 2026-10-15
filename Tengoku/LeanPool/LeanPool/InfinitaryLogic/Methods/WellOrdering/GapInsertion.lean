@@ -36,7 +36,9 @@ private def insertGapRank {m : ℕ} (rank : Fin m → Ordinal.{0}) (α : Ordinal
   Fin.cases α (fun k => rank k + α) s
 
 /-- **The uniform insertion engine**: given a gap witness at `β` with `α + α < β`, every slot
-admits a chain point whose insertion is a gap witness at `α`. -/
+admits a chain point whose insertion is a gap witness at `α`.
+@isnad1 id=ex.1h9v.s6.133218273d19 from=translated src=- shape=a00d462e vocab=93d740c2
+-/
 theorem GapWitness.exists_insertNth {α β : Ordinal.{0}} {m : ℕ} {b : Fin m → M}
     (W : GapWitness lt β b) (hβ : α + α < β) (s : Fin (m + 1)) :
     ∃ x : M, Nonempty (GapWitness lt α (Fin.insertNth s x b)) := by

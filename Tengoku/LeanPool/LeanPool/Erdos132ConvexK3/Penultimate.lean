@@ -22,7 +22,9 @@ explicitly in every distance-subtraction identity.
 namespace LeanPool.Erdos132ConvexK3
 
 /-- The two penultimate circle systems force `W+R=2c`, equal positive
-ordinates, and the horizontal class difference. -/
+ordinates, and the horizontal class difference.
+@isnad1 id=and.7h7v.s8.1cf7900645d3 from=translated src=- shape=1ba459f0 vocab=5233fd79
+-/
 theorem forced_penultimate_mirror
     {c A B W R K_w K_r : ℝ} (hc : 0 < c)
     (hwA : W ^ 2 + K_w ^ 2 = A)
@@ -46,7 +48,9 @@ theorem forced_penultimate_mirror
   have hK : K_w = K_r := (sq_eq_sq₀ hKw.le hKr.le).mp hsq
   exact ⟨hsum, hK, hW⟩
 
-/-- Canonical mirror-coordinate form with `d>0` when `A>B`. -/
+/-- Canonical mirror-coordinate form with `d>0` when `A>B`.
+@isnad1 id=ex.8h7v.s8.ac038933e1b9 from=translated src=- shape=f59d52c0 vocab=5233fd79
+-/
 theorem forced_penultimate_coordinates
     {c A B W R K_w K_r : ℝ} (hc : 0 < c) (hBA : B < A)
     (hwA : W ^ 2 + K_w ^ 2 = A)
@@ -69,7 +73,9 @@ theorem forced_penultimate_coordinates
   · simpa [d] using hclass
 
 /-- **P5-4, displayed.** Equality of the two diameter radii forces
-`2cd+d² = Δ(H+K)` when `Δ=H-K`. -/
+`2cd+d² = Δ(H+K)` when `Δ=H-K`.
+@isnad1 id=eq.2h5v.s7.fb5278d1acb2 from=translated src=- shape=ffa1f1e9 vocab=3f072e55
+-/
 theorem forced_penultimate_height_constraint
     {c d H K Δ : ℝ}
     (hradius : (c + d) ^ 2 + K ^ 2 = c ^ 2 + H ^ 2)
@@ -78,14 +84,18 @@ theorem forced_penultimate_height_constraint
   rw [hΔ]
   linear_combination hradius
 
-/-- The exact P5-4 constraint in the draft parameterization `K=H-Δ`. -/
+/-- The exact P5-4 constraint in the draft parameterization `K=H-Δ`.
+@isnad1 id=eq.1h4v.s7.fd7a127193d4 from=translated src=- shape=08ba21ab vocab=3f072e55
+-/
 theorem forced_penultimate_height_constraint_reparam
     {c d H Δ : ℝ}
     (hradius : (c + d) ^ 2 + (H - Δ) ^ 2 = c ^ 2 + H ^ 2) :
     2 * c * d + d ^ 2 = Δ * (H + (H - Δ)) := by
   linear_combination hradius
 
-/-- Left penultimate subtraction identity, with P5-4 explicit. -/
+/-- Left penultimate subtraction identity, with P5-4 explicit.
+@isnad1 id=eq.1h6v.s7.d43f2accd692 from=translated src=- shape=6de1153d vocab=a417e91a
+-/
 theorem left_penultimate_distance_difference
     {c d H Δ X Y : ℝ}
     (hconstraint : 2 * c * d + d ^ 2 = Δ * (H + (H - Δ))) :
@@ -94,7 +104,9 @@ theorem left_penultimate_distance_difference
   simp only [sqDist]
   linear_combination hconstraint
 
-/-- Right penultimate subtraction identity, with P5-4 explicit. -/
+/-- Right penultimate subtraction identity, with P5-4 explicit.
+@isnad1 id=eq.1h6v.s7.6fff9bbdd2e6 from=translated src=- shape=88a2c93b vocab=a417e91a
+-/
 theorem right_penultimate_distance_difference
     {c d H Δ X Y : ℝ}
     (hconstraint : 2 * c * d + d ^ 2 = Δ * (H + (H - Δ))) :
@@ -109,7 +121,9 @@ noncomputable def penultimateReflectionOrdinate (c d H Δ : ℝ) : ℝ :=
   2 * d * (H * d - c * Δ) / (d ^ 2 + Δ ^ 2)
 
 /-- The convexity sign `Hd>cΔ` puts the reflected intersection strictly
-above the lower chord. -/
+above the lower chord.
+@isnad1 id=lt.2h4v.s5.a3ef90944c68 from=translated src=- shape=ae723985 vocab=bcf23858
+-/
 theorem penultimate_reflection_ordinate_pos
     {c d H Δ : ℝ} (hd : 0 < d) (hconvex : c * Δ < H * d) :
     0 < penultimateReflectionOrdinate c d H Δ := by
@@ -118,7 +132,9 @@ theorem penultimate_reflection_ordinate_pos
   exact div_pos (mul_pos (mul_pos (by norm_num) hd) (sub_pos.mpr hconvex)) hden
 
 /-- The two circle equations have the known intersection `(2c,0)`; every
-other intersection has exactly the reflected ordinate from attempt 9. -/
+other intersection has exactly the reflected ordinate from attempt 9.
+@isnad1 id=eq.4h6v.s7.f9fd83a37d33 from=translated src=- shape=1ca70cb7 vocab=dcddf7b2
+-/
 theorem penultimate_nontrivial_intersection_ordinate
     {c d H Δ X Y : ℝ} (hd : 0 < d)
     (hcircleS :
@@ -155,7 +171,9 @@ theorem penultimate_nontrivial_intersection_ordinate
   exact (eq_div_iff hden).2 (by rwa [mul_comm])
 
 /-- With the polygon-order sign `Hd>cΔ`, the nontrivial circle intersection
-is above the lower chord; the known intersection is `(2c,0)`. -/
+is above the lower chord; the known intersection is `(2c,0)`.
+@isnad1 id=lt.5h6v.s7.c8529014e62e from=translated src=- shape=2672c003 vocab=9fd2c23e
+-/
 theorem penultimate_nontrivial_intersection_above
     {c d H Δ X Y : ℝ} (hd : 0 < d) (hconvex : c * Δ < H * d)
     (hcircleS :
@@ -169,7 +187,9 @@ theorem penultimate_nontrivial_intersection_above
   exact penultimate_reflection_ordinate_pos hd hconvex
 
 /-- A local top-three bound has exactly the shared-tip split used in the
-proof: top class `A`, second class `B`, or at most `C`. -/
+proof: top class `A`, second class `B`, or at most `C`.
+@isnad1 id=or.1h4v.s5.c362895b79a6 from=translated src=- shape=1a69fcbc vocab=f403d2bc
+-/
 theorem top_three_value_split
     {F A B C : ℝ}
     (hbound : F ≤ A ∧ (F < A → F ≤ B) ∧ (F < B → F ≤ C)) :
@@ -184,7 +204,9 @@ theorem top_three_value_split
 /-- **P5-2, existential form.** The left-adjacent lower vertex uses the
 partition `arc(P,s) + arc(s,x) + {s,x}`; its mirror uses
 `arc(Q,s) + arc(s,Q) + {s}`.  The hypotheses expose those two different
-partitions instead of quantifying one universal partition over both points. -/
+partitions instead of quantifying one universal partition over both points.
+@isnad1 id=and.6h6v.s7.f02953d3f669 from=translated src=- shape=4f86a987 vocab=086a35fc
+-/
 theorem case_three_existential_partition_bound
     {degreeP degreeQ pToS sToX qToS sToQ : ℕ}
     (hPpartition : degreeP ≤ pToS + sToX + 2)

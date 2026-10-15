@@ -22,7 +22,9 @@ binomial coefficients indexed by powers of four.
 namespace GKPCarry
 
 /-- The bounded C3 certificate implies divisibility by nine for
-`Nat.centralBinom (4 ^ m)` throughout `27 ≤ m ≤ 6560`. -/
+`Nat.centralBinom (4 ^ m)` throughout `27 ≤ m ≤ 6560`.
+@isnad1 id=dvd.2h1v.s5.82fc06499900 from=translated src=- shape=7cd5e18b vocab=05001b0f
+-/
 theorem nine_dvd_centralBinom_four_pow_in_finite_range
     {m : ℕ} (hlower : 27 ≤ m) (hupper : m ≤ 6560) :
     9 ∣ Nat.centralBinom (4 ^ m) := by
@@ -32,7 +34,9 @@ theorem nine_dvd_centralBinom_four_pow_in_finite_range
     (prefixTernaryDoubleCarryCount_le
       (6 * ternaryLength m) (4 ^ m))
 
-/-- Equivalent power-of-two form of the bounded central-binomial theorem. -/
+/-- Equivalent power-of-two form of the bounded central-binomial theorem.
+@isnad1 id=dvd.2h1v.s5.b3348c115e13 from=translated src=- shape=0ec91af6 vocab=a801f3be
+-/
 theorem nine_dvd_centralBinom_two_pow_even_in_finite_range
     {m : ℕ} (hlower : 27 ≤ m) (hupper : m ≤ 6560) :
     9 ∣ Nat.centralBinom (2 ^ (2 * m)) := by

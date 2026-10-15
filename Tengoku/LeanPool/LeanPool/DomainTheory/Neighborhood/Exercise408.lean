@@ -56,25 +56,37 @@ def supChain (s : ℕ → V.Element) (hmono : Monotone s) : V.Element :=
   NeighborhoodSystem.iSupDirected s
     (fun i j => ⟨max i j, hmono (le_max_left i j), hmono (le_max_right i j)⟩)
 
+/--
+@isnad1 id=iff.1h4v.s5.6bf4357d4adc from=translated src=- shape=1a023ef8 vocab=c04d1514
+-/
 theorem mem_supChain (s : ℕ → V.Element) (hmono : Monotone s) {Z : Set α} :
     (supChain s hmono).mem Z ↔ ∃ n, (s n).mem Z :=
   NeighborhoodSystem.mem_iSupDirected s _
 
-/-- `fⁿ⁺¹(⊥) = f(fⁿ(⊥))`. -/
+/-- `fⁿ⁺¹(⊥) = f(fⁿ(⊥))`.
+@isnad1 id=eq.0h4v.s5.fd24a0b1b6be from=translated src=- shape=c413e239 vocab=94acb20f
+-/
 theorem iterElem_succ (f : ApproximableMap V V) (n : ℕ) :
     f.iterElem (n + 1) = f.toElementMap (f.iterElem n) := by
   change (f.comp (f.iterMap n)).toElementMap V.bot
       = f.toElementMap ((f.iterMap n).toElementMap V.bot)
   rw [toElementMap_comp]
 
+/--
+@isnad1 id=eq.0h3v.s4.b343239158a0 from=translated src=- shape=5550e632 vocab=1ce62c39
+-/
 theorem iterElem_zero (f : ApproximableMap V V) : f.iterElem 0 = V.bot :=
   toElementMap_idMap V.bot
 
-/-- The approximants `fⁿ(⊥)` form a monotone chain. -/
+/-- The approximants `fⁿ(⊥)` form a monotone chain.
+@isnad1 id=monotone.0h3v.s4.dccab271299f from=translated src=- shape=0acd4a71 vocab=d83a5327
+-/
 theorem iterElem_monotone (f : ApproximableMap V V) : Monotone f.iterElem :=
   fun _ _ hab => iterElem_mono f hab
 
-/-- The approximants `fⁿ(⊥)` form a monotone chain whose sup is `fix(f)`. -/
+/-- The approximants `fⁿ(⊥)` form a monotone chain whose sup is `fix(f)`.
+@isnad1 id=eq.0h3v.s4.138d560bc94e from=translated src=- shape=4aa664d4 vocab=9881497b
+-/
 theorem fixElement_eq_supChain (f : ApproximableMap V V) :
     f.fixElement = supChain f.iterElem (iterElem_monotone f) := by
   apply Element.ext
@@ -87,7 +99,9 @@ theorem fixElement_eq_supChain (f : ApproximableMap V V) :
 /-- **Exercise 4.8 (Scott 1981, PRG-19) — fixed-point induction.** If a predicate
 `P` holds at `⊥`,
 is preserved by `f`, and is closed under sups of monotone chains, then it holds at
-`fix(f)`. -/
+`fix(f)`.
+@isnad1 id=var.0h7v.s6.ce51e2d385aa from=translated src=- shape=947d417d vocab=8f3f3daa
+-/
 theorem fix_induction (f : ApproximableMap V V) (P : V.Element → Prop)
     (hbot : P V.bot)
     (hstep : ∀ x, P x → P (f.toElementMap x))
@@ -106,7 +120,9 @@ theorem fix_induction (f : ApproximableMap V V) (P : V.Element → Prop)
 b(x)}`.** If `a(⊥) = b(⊥)`
 and `f` commutes with both `a` and `b` (`f ∘ a = a ∘ f`, `f ∘ b = b ∘ f`), then
 `a` and `b` agree at
-the least fixed point: `a(fix f) = b(fix f)`. -/
+the least fixed point: `a(fix f) = b(fix f)`.
+@isnad1 id=eq.3h5v.s6.0ef68a8d0ed6 from=translated src=- shape=6fb70d46 vocab=7d0c5ce1
+-/
 theorem fix_induction_eq (f a b : ApproximableMap V V)
     (hbot : a.toElementMap V.bot = b.toElementMap V.bot)
     (hfa : f.comp a = a.comp f) (hfb : f.comp b = b.comp f) :

@@ -39,7 +39,9 @@ variable {x y z : X}
 
 omit [IsManifold 𝓘(ℂ) ω X] in
 /-- A nonempty open subset of `X` minus a finite set is still nonempty (through a chart,
-`ℂ`-minus-countable-is-dense). -/
+`ℂ`-minus-countable-is-dense).
+@isnad1 id=nonempty.3h3v.s5.75ccf50bea89 from=translated src=- shape=df4037de vocab=a5d34334
+-/
 theorem nonempty_open_diff_finite {U : Set X} (hU : IsOpen U) (hne : U.Nonempty)
     {S : Set X} (hS : S.Finite) : (U \ S).Nonempty := by
   obtain ⟨p, hp⟩ := hne
@@ -57,7 +59,9 @@ theorem nonempty_open_diff_finite {U : Set X} (hU : IsOpen U) (hne : U.Nonempty)
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
 /-- Base case: a path lying entirely inside one chart-ball `(e, ball c r)`, with endpoints off a
-finite set `S`, is homotopic rel endpoints to a path whose range avoids `S` entirely. -/
+finite set `S`, is homotopic rel endpoints to a path whose range avoids `S` entirely.
+@isnad1 id=ex.7h8v.s8.bb5078fdc046 from=translated src=- shape=739495eb vocab=2ae60a85
+-/
 theorem exists_homotopic_avoiding_of_ball {a b : X} (γ : Path a b)
     {e : OpenPartialHomeomorph X ℂ} (_he : e ∈ maximalAtlas 𝓘(ℂ) ω X)
     {c : ℂ} {r : ℝ} (hballsub : ball c r ⊆ e.target)
@@ -373,6 +377,9 @@ private theorem exists_homotopic_avoiding_aux {a b : X} (γ : Path a b) {S : Set
     · rw [Path.trans_range]
       exact Set.disjoint_union_left.mpr ⟨hheaddisj, hτ'disj⟩
 
+/--
+@isnad1 id=ex.3h5v.s7.90cc649beb53 from=translated src=- shape=94d8e8aa vocab=51d2ee80
+-/
 theorem exists_homotopic_avoiding {a b : X} (γ : Path a b) {S : Set X} (hS : S.Finite)
     (ha : a ∉ S) (hb : b ∉ S) :
     ∃ γ' : Path a b, γ.Homotopic γ' ∧ Disjoint (Set.range ⇑γ') S := by
@@ -413,7 +420,9 @@ theorem exists_homotopic_avoiding {a b : X} (γ : Path a b) {S : Set X} (hS : S.
     rw [hre]
     exact hτdisj
 
-/-- Loop version (the blueprint's deliverable). -/
+/-- Loop version (the blueprint's deliverable).
+@isnad1 id=ex.2h4v.s7.ca401563087c from=translated src=- shape=a3b7c72a vocab=51d2ee80
+-/
 theorem Loop.exists_homotopic_avoiding {x₀ : X} (γ : Path x₀ x₀) {S : Set X} (hS : S.Finite)
     (hx₀ : x₀ ∉ S) : ∃ γ' : Path x₀ x₀, γ.Homotopic γ' ∧ Disjoint (Set.range ⇑γ') S :=
   RS.exists_homotopic_avoiding γ hS hx₀ hx₀

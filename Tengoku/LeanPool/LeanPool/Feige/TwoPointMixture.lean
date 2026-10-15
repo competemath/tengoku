@@ -31,12 +31,18 @@ def belowMoment (μ : Measure ℝ) : ℝ :=
 def aboveMoment (μ : Measure ℝ) : ℝ :=
   ∫ x, (|x - 1| + (x - 1)) / 2 ∂μ
 
+/--
+@isnad1 id=integrab.1h1v.s6.3d0dc01980f0 from=translated src=- shape=ee957761 vocab=fdbc4e06
+-/
 theorem integrable_sub_one {μ : Measure ℝ}
     [IsFiniteMeasure μ]
     (hμ : Integrable (fun x : ℝ ↦ x) μ) :
     Integrable (fun x : ℝ ↦ x - 1) μ :=
   hμ.sub (integrable_const 1)
 
+/--
+@isnad1 id=integrab.1h1v.s6.485ab3e75c23 from=translated src=- shape=1335fd92 vocab=f3bfed0b
+-/
 theorem integrable_abs_sub_one {μ : Measure ℝ}
     [IsFiniteMeasure μ]
     (hμ : Integrable (fun x : ℝ ↦ x) μ) :
@@ -44,7 +50,9 @@ theorem integrable_abs_sub_one {μ : Measure ℝ}
   (integrable_sub_one hμ).abs
 
 /-- The two expressions for `M` agree whenever the law has mean one.  No
-support assumption is needed for this algebraic identity. -/
+support assumption is needed for this algebraic identity.
+@isnad1 id=eq.2h1v.s6.33fa88ad96e0 from=translated src=- shape=5e6567d1 vocab=dda0fa5f
+-/
 theorem belowMoment_eq_aboveMoment {μ : Measure ℝ}
     [IsProbabilityMeasure μ]
     (hμ : Integrable (fun x : ℝ ↦ x) μ)
@@ -67,6 +75,9 @@ def twoPointLowerWeight (x y : ℝ) : ℝ :=
 def twoPointUpperWeight (x y : ℝ) : ℝ :=
   (1 - x) / (y - x)
 
+/--
+@isnad1 id=and.3h2v.s5.7669409a2b38 from=translated src=- shape=9c80ae54 vocab=8b02f642
+-/
 theorem twoPointWeights_nonneg {x y : ℝ} (hxy : x < y)
     (hx : x ≤ 1) (hy : 1 ≤ y) :
     0 ≤ twoPointLowerWeight x y ∧ 0 ≤ twoPointUpperWeight x y := by
@@ -76,6 +87,9 @@ theorem twoPointWeights_nonneg {x y : ℝ} (hxy : x < y)
   · unfold twoPointUpperWeight
     exact div_nonneg (sub_nonneg.2 hx) (sub_nonneg.2 hxy.le)
 
+/--
+@isnad1 id=eq.1h2v.s4.469d4ebf6fd7 from=translated src=- shape=ee9ec006 vocab=f31111a0
+-/
 theorem twoPointWeights_add {x y : ℝ} (hxy : x ≠ y) :
     twoPointLowerWeight x y + twoPointUpperWeight x y = 1 := by
   unfold twoPointLowerWeight twoPointUpperWeight
@@ -87,6 +101,9 @@ def twoPointMeasure (x y : ℝ) : Measure ℝ :=
   ENNReal.ofReal (twoPointLowerWeight x y) • Measure.dirac x +
     ENNReal.ofReal (twoPointUpperWeight x y) • Measure.dirac y
 
+/--
+@isnad1 id=isprobab.3h2v.s5.a486413bbd55 from=translated src=- shape=e4b0d722 vocab=bf9f7168
+-/
 theorem twoPointMeasure_isProbability {x y : ℝ}
     (hx : x ≤ 1) (hy : 1 ≤ y) (hxy : x < y) :
     IsProbabilityMeasure (twoPointMeasure x y) := by
@@ -98,6 +115,9 @@ theorem twoPointMeasure_isProbability {x y : ℝ}
     twoPointWeights_add hxy.ne]
   norm_num
 
+/--
+@isnad1 id=eq.3h2v.s5.7f941581635f from=translated src=- shape=24b5dc2e vocab=34032866
+-/
 theorem twoPointMeasure_mean {x y : ℝ}
     (hx : x ≤ 1) (hy : 1 ≤ y) (hxy : x < y) :
     (∫ z : ℝ, z ∂(twoPointMeasure x y)) = 1 := by
@@ -118,7 +138,9 @@ theorem twoPointMeasure_mean {x y : ℝ}
         (y - x) * (y - x)⁻¹ := by field_simp [sub_ne_zero.mpr hxy.ne']; ring
     _ = 1 := mul_inv_cancel₀ (sub_ne_zero.mpr hxy.ne')
 
-/-- Pointwise algebra behind the two-point mixture formula. -/
+/-- Pointwise algebra behind the two-point mixture formula.
+@isnad1 id=eq.3h3v.s7.902e421cafc8 from=translated src=- shape=6a293dd2 vocab=e3d03b7f
+-/
 theorem twoPointMeasure_scaled_apply {x y : ℝ}
     (hx : x ≤ 1) (hy : 1 ≤ y) (hxy : x < y)
     (B : Set ℝ) :
@@ -158,7 +180,9 @@ def expandedTwoPointMixture (μ : Measure ℝ) (M : ℝ) : Measure ℝ :=
       (ENNReal.ofReal (aboveMoment μ) • μ.restrict (Iio 1) +
         ENNReal.ofReal (belowMoment μ) • μ.restrict (Ioi 1))
 
-/-- Splitting a measure at one into its below, atom, and above pieces. -/
+/-- Splitting a measure at one into its below, atom, and above pieces.
+@isnad1 id=eq.0h1v.s7.8aca3e9b8365 from=translated src=- shape=589c3c8a vocab=5ede0f6a
+-/
 theorem restrict_below_add_atom_add_above (μ : Measure ℝ) :
     μ.restrict (Iio 1) + μ {1} • Measure.dirac 1 + μ.restrict (Ioi 1) = μ := by
   rw [← Measure.restrict_singleton]
@@ -185,7 +209,9 @@ theorem restrict_below_add_atom_add_above (μ : Measure ℝ) :
 
 /-- The two-point mixture formula after evaluating its two product integrals.
 The support assumption is not needed for this final algebraic identity; it
-is needed only to ensure that the sampled lower point is nonnegative. -/
+is needed only to ensure that the sampled lower point is nonnegative.
+@isnad1 id=eq.3h1v.s6.739721c3b367 from=translated src=- shape=d4e61119 vocab=d8b6e399
+-/
 theorem expandedTwoPointMixture_eq
     {μ : Measure ℝ} [IsProbabilityMeasure μ]
     (hμ : Integrable (fun x : ℝ ↦ x) μ)
@@ -204,7 +230,9 @@ theorem expandedTwoPointMixture_eq
         μ.restrict (Iio 1) + μ {1} • Measure.dirac 1 + μ.restrict (Ioi 1) := by abel
     _ = μ := restrict_below_add_atom_add_above μ
 
-/-- The two-point mixture formula at the canonical lower moment. -/
+/-- The two-point mixture formula at the canonical lower moment.
+@isnad1 id=eq.3h1v.s6.739721c3b367 from=translated src=- shape=d4e61119 vocab=d8b6e399
+-/
 theorem twoPointMixture_formula42
     {μ : Measure ℝ} [IsProbabilityMeasure μ]
     (hμ : Integrable (fun x : ℝ ↦ x) μ)
@@ -213,7 +241,9 @@ theorem twoPointMixture_formula42
     expandedTwoPointMixture μ (belowMoment μ) = μ :=
   expandedTwoPointMixture_eq hμ hmean hM
 
-/-- The lower moment is nonnegative. -/
+/-- The lower moment is nonnegative.
+@isnad1 id=le.0h1v.s3.43f6dd8e4605 from=translated src=- shape=b29cab32 vocab=f6ceadd1
+-/
 theorem belowMoment_nonneg {μ : Measure ℝ} :
     0 ≤ belowMoment μ := by
   unfold belowMoment
@@ -282,7 +312,9 @@ theorem eq_dirac_one_of_belowMoment_eq_zero
     simp [Measure.dirac_apply' _ hB, Set.indicator_of_notMem h1]
 
 /-- Full mixture dichotomy: either the law is the degenerate law at one, or
-its positive lower moment gives the two-point mixture formula. -/
+its positive lower moment gives the two-point mixture formula.
+@isnad1 id=or.2h1v.s6.9943be9742c8 from=translated src=- shape=43251afa vocab=4bdb22bb
+-/
 theorem twoPointMixture_dichotomy
     {μ : Measure ℝ} [IsProbabilityMeasure μ]
     (hμ : Integrable (fun x : ℝ ↦ x) μ)

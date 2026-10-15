@@ -51,7 +51,9 @@ structure Form01 (X : Type*) [TopologicalSpace X] [ChartedSpace ℂ X] [IsManifo
 
 namespace Form01
 
-/-- A `(0,1)`-form is determined by its preferred-chart coefficients on chart targets. -/
+/-- A `(0,1)`-form is determined by its preferred-chart coefficients on chart targets.
+@isnad1 id=eq.1h3v.s7.b0b28699d45a from=translated src=- shape=97a03b12 vocab=adf9acfc
+-/
 @[ext]
 theorem ext {η η' : Form01 X}
     (h : ∀ x, ∀ z ∈ (chartAt ℂ x).target, η.coeffAt x z = η'.coeffAt x z) : η = η' := by
@@ -93,17 +95,32 @@ instance : SMul ℂ (Form01 X) where
     fun x => contDiffOn_const.mul (η.contDiffOn_coeffAt x),
     fun x y z hz => by rw [η.compat x y z hz]; ring⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.12b1a38575c6 from=translated src=- shape=eaf7a5f3 vocab=505e2708
+-/
 @[simp] theorem coeffAt_zero (x : X) (z : ℂ) : (0 : Form01 X).coeffAt x z = 0 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.0ed2de3a3653 from=translated src=- shape=6b6e33b6 vocab=d9d133f5
+-/
 @[simp] theorem coeffAt_add (η η' : Form01 X) (x : X) (z : ℂ) :
     (η + η').coeffAt x z = η.coeffAt x z + η'.coeffAt x z := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.20fa73c37577 from=translated src=- shape=aeea9a3f vocab=5b63a99c
+-/
 @[simp] theorem coeffAt_neg (η : Form01 X) (x : X) (z : ℂ) :
     (-η).coeffAt x z = -η.coeffAt x z := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.fa5ad72141b7 from=translated src=- shape=6b6e33b6 vocab=f4231797
+-/
 @[simp] theorem coeffAt_sub (η η' : Form01 X) (x : X) (z : ℂ) :
     (η - η').coeffAt x z = η.coeffAt x z - η'.coeffAt x z := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.985c58daa8bd from=translated src=- shape=a5f39983 vocab=d8c3fd9c
+-/
 @[simp] theorem coeffAt_smul (c : ℂ) (η : Form01 X) (x : X) (z : ℂ) :
     (c • η).coeffAt x z = c * η.coeffAt x z := rfl
 
@@ -162,6 +179,9 @@ variable {ι : Type*} (Data : Form01CoeffData X ι)
 /-- A chosen chart index for each point. -/
 def idx (x : X) : ι := (Data.exists_mem x).choose
 
+/--
+@isnad1 id=mem.0h4v.s7.82c890cf6a9d from=translated src=- shape=7c6bfa7f vocab=9e1a3854
+-/
 theorem mem_source_idx (x : X) : x ∈ (Data.chart (Data.idx x)).source :=
   (Data.exists_mem x).choose_spec
 
@@ -176,9 +196,15 @@ noncomputable def rawCoeffAt (x : X) (z : ℂ) : ℂ :=
         (Data.chart (Data.idx ((chartAt ℂ x).symm z)) ((chartAt ℂ x).symm z))
   else 0
 
+/--
+@isnad1 id=eq.1h5v.s7.f23b1778836a from=translated src=- shape=a2ca7300 vocab=eb59fb8c
+-/
 theorem rawCoeffAt_of_not_mem {x : X} {z : ℂ} (hz : z ∉ (chartAt ℂ x).target) :
     Data.rawCoeffAt x z = 0 := dite_eq_right hz
 
+/--
+@isnad1 id=eq.1h5v.s9.e3f489fac083 from=translated src=- shape=42d22420 vocab=6206f319
+-/
 theorem rawCoeffAt_of_mem {x : X} {z : ℂ} (hz : z ∈ (chartAt ℂ x).target) :
     Data.rawCoeffAt x z =
       (starRingEnd ℂ)
@@ -189,7 +215,9 @@ theorem rawCoeffAt_of_mem {x : X} {z : ℂ} (hz : z ∈ (chartAt ℂ x).target) 
 
 /-- **Master computation**: in the preferred chart at `x`, at a target point `z` whose base point
 lies in the `i`-th data chart, the raw coefficient is the `i`-th coefficient transported by the
-conjugated transition derivative — independent of the internally chosen index. -/
+conjugated transition derivative — independent of the internally chosen index.
+@isnad1 id=eq.2h6v.s9.d6df4d5cc68b from=translated src=- shape=ecf31fa6 vocab=1e69aa60
+-/
 theorem rawCoeffAt_eq {x : X} (i : ι) {z : ℂ} (hz : z ∈ (chartAt ℂ x).target)
     (hp : (chartAt ℂ x).symm z ∈ (Data.chart i).source) :
     Data.rawCoeffAt x z =
@@ -205,7 +233,9 @@ theorem rawCoeffAt_eq {x : X} (i : ι) {z : ℂ} (hz : z ∈ (chartAt ℂ x).tar
   ring
 
 /-- The preferred-chart coefficient functions of `Data.rawCoeffAt` are real-smooth on chart
-targets. -/
+targets.
+@isnad1 id=contdiff.0h4v.s7.4df5c0d0e3dd from=translated src=- shape=4d88c0ad vocab=907d48e1
+-/
 theorem contDiffOn_rawCoeffAt (x : X) :
     ContDiffOn ℝ ∞ (Data.rawCoeffAt x) (chartAt ℂ x).target := by
   intro z₀ hz₀
@@ -250,7 +280,9 @@ theorem contDiffOn_rawCoeffAt (x : X) :
   exact (hprodReal.congr_of_eventuallyEq heq).contDiffWithinAt
 
 /-- The `conj`-transition rule for `Data.rawCoeffAt` between any two PREFERRED charts (not just
-data charts): the `compat` field of the assembled `Form01`. -/
+data charts): the `compat` field of the assembled `Form01`.
+@isnad1 id=eq.1h6v.s9.fd51c5cff6c6 from=translated src=- shape=8e5c02d7 vocab=c133df1f
+-/
 theorem rawCoeffAt_trans (x y : X) {z : ℂ}
     (hz : z ∈ ⇑(chartAt ℂ y) '' ((chartAt ℂ x).source ∩ (chartAt ℂ y).source)) :
     Data.rawCoeffAt y z =
@@ -288,12 +320,17 @@ noncomputable def Form01.ofCoeffs {ι : Type*} (Data : Form01CoeffData X ι) : F
   contDiffOn_coeffAt := Data.contDiffOn_rawCoeffAt
   compat _ _ _ hz := Data.rawCoeffAt_trans _ _ hz
 
+/--
+@isnad1 id=eq.0h5v.s6.92797f7c141f from=translated src=- shape=5c06b1d3 vocab=ef7ae470
+-/
 @[simp] theorem Form01.coeffAt_ofCoeffs_apply {ι : Type*} (Data : Form01CoeffData X ι) (x : X)
     (z : ℂ) : (Form01.ofCoeffs Data).coeffAt x z = Data.rawCoeffAt x z := rfl
 
 /-- The preferred-chart coefficient of `Form01.ofCoeffs Data` at the chart center of a point of
 the `i`-th data chart's source, via the conjugated transition derivative — the shape
-`GlueForm01.lean` consumes. -/
+`GlueForm01.lean` consumes.
+@isnad1 id=eq.1h5v.s8.28352dd67fce from=translated src=- shape=2fa1c71f vocab=31ea7ea4
+-/
 theorem Form01.coeffAt_ofCoeffs {ι : Type*} (Data : Form01CoeffData X ι) {x : X} {i : ι}
     (hx : x ∈ (Data.chart i).source) :
     (Form01.ofCoeffs Data).coeffAt x (chartAt ℂ x x) =

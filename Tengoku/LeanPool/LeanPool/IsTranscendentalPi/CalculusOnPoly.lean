@@ -33,7 +33,9 @@ def intExpNegPoly (T : ℤ[X]) (x : ℂ) : ℂ :=
 def sumDeriv {R : Type*} [Semiring R] (T : R[X]) : R[X] :=
   ∑ i ∈ Finset.range (T.natDegree + 1), derivative^[i] T
 
-/-- The `k`-th derivative of `z ↦ T(z)` is `z ↦ T⁽ᵏ⁾(z)`. -/
+/-- The `k`-th derivative of `z ↦ T(z)` is `z ↦ T⁽ᵏ⁾(z)`.
+@isnad1 id=eq.0h2v.s8.32244b959045 from=translated src=- shape=6fc56755 vocab=96ec2477
+-/
 lemma iteratedDeriv_aeval_fun (T : ℤ[X]) (k : ℕ) :
     iteratedDeriv k (fun z : ℂ => aeval z T) = fun z => aeval z (derivative^[k] T) := by
   induction k with
@@ -44,7 +46,9 @@ lemma iteratedDeriv_aeval_fun (T : ℤ[X]) (k : ℕ) :
       funext z
       simp [Function.iterate_succ_apply', Polynomial.deriv_aeval]
 
-/-- The equality `∫₀¹ x * exp(-(t x)) * T(t x) dt = ∑ᵢ₌₀ᵈ T⁽ⁱ⁾(0) - e^(-x) * ∑ᵢ₌₀ᵈ T⁽ⁱ⁾(x)`. -/
+/-- The equality `∫₀¹ x * exp(-(t x)) * T(t x) dt = ∑ᵢ₌₀ᵈ T⁽ⁱ⁾(0) - e^(-x) * ∑ᵢ₌₀ᵈ T⁽ⁱ⁾(x)`.
+@isnad1 id=eq.0h2v.s7.28d9044032ff from=translated src=- shape=3af2b988 vocab=ea27c8b4
+-/
 lemma int_exp_neg_mul_poly
   (T : ℤ[X]) (x : ℂ) :
     intExpNegPoly T x = aeval 0 (sumDeriv T) - cexp (-x) * aeval x (sumDeriv T) := by
@@ -62,7 +66,9 @@ lemma int_exp_neg_mul_poly
   simpa [iteratedDeriv_aeval_fun, hderiv_zero', sumDeriv, sub_eq_add_neg, add_comm,
     add_left_comm, add_assoc] using h
 
-/-- If the multiplicity of `a` is `≥ m`, then `∑ᵢ₌₀ᵈ T⁽ⁱ⁾(a) = ∑ᵢ₌ₘᵈ T⁽ⁱ⁾(a)`. -/
+/-- If the multiplicity of `a` is `≥ m`, then `∑ᵢ₌₀ᵈ T⁽ⁱ⁾(a) = ∑ᵢ₌ₘᵈ T⁽ⁱ⁾(a)`.
+@isnad1 id=eq.1h3v.s8.3b9641d4dc70 from=translated src=- shape=09d746c3 vocab=c0b6dd54
+-/
 lemma aeval_sumDeriv_eq_sum_Icc
     (T : ℤ[X]) (a : ℂ) (m : ℕ) (hm : m ≤ rootMultiplicity a (T.map (algebraMap ℤ ℂ))) :
     aeval a (sumDeriv T)
@@ -79,7 +85,9 @@ lemma aeval_sumDeriv_eq_sum_Icc
       isRoot_iterate_derivative_of_lt_rootMultiplicity hi_lt_root
     simpa [aeval_def, eval₂_eq_eval_map, IsRoot, iterate_derivative_map] using hroot
 
-/-- On the segment `0 < t ≤ 1`, the values `‖T(t a)‖` are bounded above by a real constant. -/
+/-- On the segment `0 < t ≤ 1`, the values `‖T(t a)‖` are bounded above by a real constant.
+@isnad1 id=ex.0h2v.s7.341a9c5e38de from=translated src=- shape=89098b8c vocab=7d6f4ad4
+-/
 lemma T_bounded
   (T : ℤ[X]) (a : ℂ) : ∃ M : ℝ, ∀ t ∈ Set.uIoc (0 : ℝ) 1, ‖aeval (t * a) T‖ ≤ M := by
   have hcont : Continuous (fun t : ℝ => aeval (t * a) T) := by

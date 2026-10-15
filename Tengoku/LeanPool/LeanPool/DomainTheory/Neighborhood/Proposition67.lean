@@ -60,7 +60,9 @@ def strHom (A : TAlgebra T) : AlgHom (tStr A) A where
 
 /-- The composite `i ∘ j` of `i` with the descent homomorphism `j : (D,i) →
 (T(D),T(i))` is the
-identity on `D`. -/
+identity on `D`.
+@isnad1 id=eq.0h4v.s6.b2cae958698a from=translated src=- shape=2ce5d150 vocab=3f606af3
+-/
 theorem str_comp_desc (A : TAlgebra T) (hA : IsInitial A) :
     A.str ⊚ (hA.desc (tStr A)).hom = Category.id A.carrier := by
   have h : (strHom A).comp (hA.desc (tStr A)) = AlgHom.id A := by

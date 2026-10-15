@@ -26,6 +26,9 @@ theorem eq_of_testBit_lt {n a b : ℕ} (ha : a < 2 ^ n) (hb : b < 2 ^ n)
       (not_lt.1 hk))), Nat.testBit_lt_two_pow (lt_of_lt_of_le hb (Nat.pow_le_pow_right
       (by norm_num) (not_lt.1 hk)))]
 
+/--
+@isnad1 id=eq.0h6v.s6.9b3e2c9a60c4 from=translated src=- shape=4b2ed0da vocab=2f306cda
+-/
 theorem testBit_foldl_or {α : Type} (f : α → ℕ) (p : α → Bool) (k : ℕ) (l : List α) (c : ℕ) :
     (l.foldl (fun c a ↦ if p a then c ||| 2 ^ f a else c) c).testBit k
       = (c.testBit k || l.any fun a ↦ p a && decide (f a = k)) := by
@@ -37,6 +40,9 @@ theorem testBit_foldl_or {α : Type} (f : α → ℕ) (p : α → Bool) (k : ℕ
       · simp [hp, Nat.testBit_or, Nat.testBit_two_pow, Bool.or_assoc]
       · simp [hp]
 
+/--
+@isnad1 id=lt.2h6v.s7.aa934d582298 from=translated src=- shape=2515e691 vocab=0a844d2e
+-/
 theorem foldl_or_lt {α : Type} (f : α → ℕ) (p : α → Bool) (m : ℕ) (l : List α)
     (hf : ∀ a ∈ l, f a < m) (c : ℕ) (hc : c < 2 ^ m) :
     l.foldl (fun c a ↦ if p a then c ||| 2 ^ f a else c) c < 2 ^ m := by
@@ -51,6 +57,9 @@ theorem foldl_or_lt {α : Type} (f : α → ℕ) (p : α → Bool) (m : ℕ) (l 
           (Nat.pow_lt_pow_right Nat.one_lt_two (hf a List.mem_cons_self))
       · simpa [hp] using hc
 
+/--
+@isnad1 id=ex.2h2v.s5.77739e603245 from=translated src=- shape=38c60cde vocab=b30a5ae7
+-/
 theorem exists_testBit {n s : ℕ} (hs : s < 2 ^ n) (h0 : s ≠ 0) :
     ∃ i : Fin n, s.testBit i.1 = true := by
   by_contra h
@@ -58,6 +67,9 @@ theorem exists_testBit {n s : ℕ} (hs : s < 2 ^ n) (h0 : s ≠ 0) :
   exact h0 (eq_of_testBit_lt hs (Nat.two_pow_pos n) fun k hk ↦ by
     rw [Nat.zero_testBit]; exact h ⟨k, hk⟩)
 
+/--
+@isnad1 id=le.1h2v.s4.3349a0e2e4e3 from=translated src=- shape=6d92ecbd vocab=795e0749
+-/
 theorem le_of_testBit_imp {a b : ℕ} (h : ∀ k, a.testBit k = true → b.testBit k = true) : a ≤ b := by
   have hab : a &&& b = a := Nat.eq_of_testBit_eq fun k ↦ by
     rw [Nat.testBit_and]
@@ -66,6 +78,9 @@ theorem le_of_testBit_imp {a b : ℕ} (h : ∀ k, a.testBit k = true → b.testB
     | true => rw [h k ha, Bool.and_self]
   exact hab ▸ Nat.and_le_right
 
+/--
+@isnad1 id=eq.0h6v.s6.6d9ade06620f from=translated src=- shape=cbbf6b34 vocab=36454638
+-/
 theorem testBit_foldl_lor {α : Type} (f : α → ℕ) (p : α → Bool) (k : ℕ) (l : List α) (c : ℕ) :
     (l.foldl (fun c a ↦ if p a then c ||| f a else c) c).testBit k
       = (c.testBit k || l.any fun a ↦ p a && (f a).testBit k) := by
@@ -77,6 +92,9 @@ theorem testBit_foldl_lor {α : Type} (f : α → ℕ) (p : α → Bool) (k : �
       · simp [hp, Nat.testBit_or, Bool.or_assoc]
       · simp [hp]
 
+/--
+@isnad1 id=eq.1h3v.s6.efeb347bb3c5 from=translated src=- shape=ed29ada1 vocab=8d554dc3
+-/
 theorem shl_bit (acc : UInt64) (c : Bool) (t : Nat) (ht : t < 64) :
     (acc <<< 1 ||| (if c then 1 else 0)).toBitVec.getLsbD t
       = if t = 0 then c else acc.toBitVec.getLsbD (t - 1) := by
@@ -86,6 +104,9 @@ theorem shl_bit (acc : UInt64) (c : Bool) (t : Nat) (ht : t < 64) :
   · cases c <;> simp
   · cases c <;> simp [ht, Nat.not_lt.2 hpos, Nat.ne_of_gt hpos]
 
+/--
+@isnad1 id=eq.1h2v.s5.d85afc234609 from=translated src=- shape=23432f0d vocab=5af57dba
+-/
 theorem shl_natshift (acc : UInt64) (m : Nat) (hm : m < 64) :
     (acc <<< UInt64.ofNat m).toBitVec = acc.toBitVec <<< m := by
   change acc.toBitVec <<< (((UInt64.ofNat m).toBitVec % 64).toNat) = acc.toBitVec <<< m

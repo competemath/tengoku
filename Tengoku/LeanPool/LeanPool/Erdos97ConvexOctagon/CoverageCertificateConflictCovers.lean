@@ -56,7 +56,9 @@ def conflictCoverGroups : Array (Array ConflictCover) :=
   conflictCovers80, conflictCovers81, conflictCovers82, conflictCovers83, conflictCovers84,
   conflictCovers85, conflictCovers86, conflictCovers87]
 
-/-- The generated table has all 88 shallow conflict-cover groups. -/
+/-- The generated table has all 88 shallow conflict-cover groups.
+@isnad1 id=eq.0h0v.s3.1d6d11212319 from=translated src=- shape=6afa1142 vocab=102c45cd
+-/
 theorem conflictCoverGroups_size : conflictCoverGroups.size = 88 := by
   rfl
 

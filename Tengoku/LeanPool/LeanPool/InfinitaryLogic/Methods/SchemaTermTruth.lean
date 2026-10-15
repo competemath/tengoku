@@ -36,7 +36,9 @@ open Cardinal
 `σ : ℕ → M` of the sequence constants, if the body `ψ` of a staged universal `∀ψ ∈ Γlocal s₀ k`
 holds at the `σ`-value of its Skolem-witness term, it holds at every `M`-element. Generalizes
 `locSkWitness_universal` from the deep tuples `locDeepInterp` to the interpretations a Marker
-certificate body supplies. -/
+certificate body supplies.
+@isnad1 id=realize.2h8v.s8.6f00d31b32db from=translated src=- shape=66d9a2c6 vocab=1c184cc3
+-/
 theorem locSkWitness_universal_constInterp_nat
     (s₀ : LocalStage) {M : Type} [s₀.Lang.Structure M] [Nonempty M]
     (σ : ℕ → M) {k n : ℕ}
@@ -89,7 +91,9 @@ variable {s₀ : LocalStage} {M : Type} [(localColim s₀).Structure M] [LinearO
 
 /-- **Sign flip on the universe.** For a universe member, the completed theory contains its
 negation iff it does not contain the sentence itself (forward: a two-element fragment of `Tσ`
-would be a consistent set containing a sentence and its negation; backward: completeness). -/
+would be a consistent set containing a sentence and its negation; backward: completeness).
+@isnad1 id=iff.2h3v.s7.347ee257e063 from=translated src=- shape=7195cc83 vocab=0a2c574e
+-/
 theorem schemaCompletionTheory_not_mem_iff
     (τ : FSentence (L'' := localColim s₀) (J := ℕ)) (hτ : τ ∈ schemaFSentenceUniverse s₀) :
     τ.1.not ∈ schemaCompletionTheory (schemaEnumeration s₀) hM ↔
@@ -598,7 +602,9 @@ term bridge and semantic sign transport; `imp` is propositional completeness; `i
 consume the canonical-deForm connective witnesses (5b-2) — the negative `iInf` direction is
 exactly what the completion repair pinned; `all` runs the Skolem-witness argument against a
 certificate body. (The heartbeat bump is for the seven-case induction as a single elaboration
-unit; no individual step is deep.) -/
+unit; no individual step is deep.)
+@isnad1 id=iff.2h6v.s8.2779cca82791 from=translated src=- shape=c6bc1c2a vocab=2027c46c
+-/
 theorem schemaTruthLemmaStage :
     letI : (localColim s₀).Structure M := localColimStructure s₀
     ∀ (hM : Cardinal.beth (Ordinal.omega 1) ≤ Cardinal.mk M)
@@ -629,7 +635,9 @@ theorem schemaTruthLemmaStage :
 /-- **Stage-agnostic lift corollary**: the staged schema truth lemma for an *original* stage-`k`
 family member, at any stage including the raw seed stage `0`. Lifts the member one stage (along
 `LlocalHom`, via `liftGamma_mem_Γlocal_succ`) where subformula closure is available, then rewrites
-the colimit image back down with the cocone coherence `mapLanguage_LlocalInclusion_lift`. -/
+the colimit image back down with the cocone coherence `mapLanguage_LlocalInclusion_lift`.
+@isnad1 id=iff.2h6v.s8.cbce4f289d8e from=translated src=- shape=4f9c89fe vocab=efb5fe11
+-/
 theorem schemaTruthLemmaStage_of_mem :
     letI : (localColim s₀).Structure M := localColimStructure s₀
     ∀ (hM : Cardinal.beth (Ordinal.omega 1) ≤ Cardinal.mk M)
@@ -882,7 +890,9 @@ reduct of the schema term model, iff its lifted template sentence at `t` is in t
 theory. Four summands: colimit members through the staged truth lemma; canonical equality and
 relation atoms through the 5a atomic API on closed instances; canonical deForms by closing the
 substituted terms along `t` and reducing to the base member. Every case ends in the matching
-sign transport. -/
+sign transport.
+@isnad1 id=iff.2h5v.s8.c20dd9e916fa from=translated src=- shape=0ea1eeda vocab=2b8e9f69
+-/
 theorem schemaSeq_realize_iff_schemaLift_mem :
     letI : (localColim s₀).Structure M := localColimStructure s₀
     ∀ (hM : Cardinal.beth (Ordinal.omega 1) ≤ Cardinal.mk M)
@@ -964,7 +974,9 @@ theorem schemaSeq_realize_iff_schemaLift_mem :
 /-- **Full indiscernibility of the schema sequence** (cutoff `0`): in the base-language reduct of
 the schema term model, `schemaSeq` is `Lω₁ω`-indiscernible on all of `ΓEMlocal` — realization at
 any two strictly monotone tuples transports through the bridge to theory membership at the two
-lifted templates, which agree by tuple uniformity. -/
+lifted templates, which agree by tuple uniformity.
+@isnad1 id=islomega.1h2v.s7.b8940244b381 from=translated src=- shape=cedff734 vocab=d2f88628
+-/
 theorem schemaSeq_indiscernibleOn :
     letI : (localColim s₀).Structure M := localColimStructure s₀
     ∀ hM : Cardinal.beth (Ordinal.omega 1) ≤ Cardinal.mk M,
@@ -1025,7 +1037,9 @@ private theorem tailTemplate_schemaSeq_truth_iff :
 discharged by the completed theory: a disjunction's template truth yields a component's (the
 positive `iSup` witness pinned by the completion), and joint component truth yields the
 conjunction's (via the negative-`iInf` witness pinned by the completion repair: were the
-conjunction negative, its fixed refuted conjunct would contradict that component's truth). -/
+conjunction negative, its fixed refuted conjunct would contradict that component's truth).
+@isnad1 id=tailtemp.1h2v.s7.3a0d81495e42 from=translated src=- shape=6196cd37 vocab=71bdb07f
+-/
 theorem schemaSeq_tailTemplateOmegaWitnessed :
     letI : (localColim s₀).Structure M := localColimStructure s₀
     ∀ hM : Cardinal.beth (Ordinal.omega 1) ≤ Cardinal.mk M,
@@ -1078,7 +1092,9 @@ variable {s₀ : LocalStage} {M : Type} [(localColim s₀).Structure M] [LinearO
 
 /-- **Validity forces the positive sign**: a universe sentence realized under EVERY body
 interpretation pair cannot be decided negatively — the body of its singleton negation would
-refute itself. -/
+refute itself.
+@isnad1 id=mem.3h5v.s7.dd3d203b38e1 from=translated src=- shape=d7273fee vocab=7b575724
+-/
 theorem schemaLift_mem_of_valid {m : ℕ}
     {ψ : (localColim s₀).BoundedFormulaω Empty m}
     (hψ : (⟨m, ψ⟩ : Σ n, (localColim s₀).BoundedFormulaω Empty n) ∈ ΓEMlocal s₀)
@@ -1101,7 +1117,9 @@ theorem schemaLift_mem_of_valid {m : ℕ}
 /-- **The schema sequence is pairwise distinct**: if two sequence classes were equal, the
 completed theory would contain their equality sentence; a certificate body for it, evaluated on a
 support enlarged to contain both indices, would equate two values of a strictly monotone skeleton
-interpretation. -/
+interpretation.
+@isnad1 id=ne.2h4v.s6.e31dda7f29ee from=translated src=- shape=ccdaceb0 vocab=682ed1c8
+-/
 theorem schemaSeq_pairwise_ne {i j : ℕ} (hij : i ≠ j) :
     schemaSeq (s₀ := s₀) (M := M) hM i ≠ schemaSeq (s₀ := s₀) (M := M) hM j := by
   intro heq

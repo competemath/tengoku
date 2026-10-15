@@ -32,7 +32,9 @@ open SimpleGraph
 
     The unit square `[0, 1]²` is covered by four Voronoi cells centered at
     `(0,0), (1,0), (0,1), (1,1)` in `(α, β)` space. In each cell, the
-    corresponding `Q` value is `≤ 1/3`. Case-split on the cell. -/
+    corresponding `Q` value is `≤ 1/3`. Case-split on the cell.
+@isnad1 id=ex.0h1v.s6.934ef6aa9424 from=translated src=- shape=e4c32928 vocab=56220bc7
+-/
 lemma exists_lattice_point_within_circumradius (p : R2) :
     ∃ (q : ℤ × ℤ), dist p (isbellLatticePoint q.1 q.2)
                     ≤ isbellLatticeStep / Real.sqrt 3 := by
@@ -144,7 +146,9 @@ noncomputable def nearestLatticeIdx (p : R2) : ℤ × ℤ :=
   (exists_lattice_point_within_circumradius p).choose
 
 /-- The defining property of `nearestLatticeIdx`: it lies within the
-    Voronoi circumradius. -/
+    Voronoi circumradius.
+@isnad1 id=le.0h1v.s6.afd9cb0f9228 from=translated src=- shape=f8f829c7 vocab=fdfbcf90
+-/
 lemma nearestLatticeIdx_spec (p : R2) :
     dist p (isbellLatticePoint (nearestLatticeIdx p).1 (nearestLatticeIdx p).2)
       ≤ isbellLatticeStep / Real.sqrt 3 :=
@@ -166,7 +170,9 @@ noncomputable def isbellColor : R2 → Fin 7 :=
     distance `a/√3` of its assigned lattice point.
 
     Immediate corollary of `exists_lattice_point_within_circumradius`:
-    by construction `nearestLatticeIdx` is *chosen* to satisfy this. -/
+    by construction `nearestLatticeIdx` is *chosen* to satisfy this.
+@isnad1 id=le.0h1v.s6.afd9cb0f9228 from=translated src=- shape=f8f829c7 vocab=fdfbcf90
+-/
 lemma dist_le_voronoi_circumradius (p : R2) :
     dist p (isbellLatticePoint (nearestLatticeIdx p).1 (nearestLatticeIdx p).2)
       ≤ isbellLatticeStep / Real.sqrt 3 :=

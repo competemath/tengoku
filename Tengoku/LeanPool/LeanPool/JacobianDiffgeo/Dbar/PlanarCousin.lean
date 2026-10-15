@@ -35,7 +35,9 @@ namespace RS
 
 variable {n : ℕ} {W : Fin n → Set ℂ} {f : Fin n → Fin n → ℂ → ℂ}
 
-/-- Smooth splitting: `H¹(finite cover of open `V`, ℰ) = 0` (Forster 12.6 planar). -/
+/-- Smooth splitting: `H¹(finite cover of open `V`, ℰ) = 0` (Forster 12.6 planar).
+@isnad1 id=ex.6h4v.s8.3db16fdec909 from=translated src=- shape=b57d0c80 vocab=d030f721
+-/
 theorem exists_smooth_splitting {V : Set ℂ} (hV : IsOpen V) (hWo : ∀ i, IsOpen (W i))
     (hWV : ∀ i, W i ⊆ V) (hcov : V ⊆ ⋃ i, W i)
     (hf : ∀ i j, ContDiffOn ℝ ∞ (f i j) (W i ∩ W j))
@@ -70,7 +72,9 @@ theorem exists_smooth_splitting {V : Set ℂ} (hV : IsOpen V) (hWo : ∀ i, IsOp
     rw [← Finset.sum_sub_distrib, Finset.sum_congr rfl hstep, ← Finset.sum_smul,
       hψ_sum z (hWV i hz.1), one_smul]
 
-/-- Holomorphic splitting on a ball (Forster 13.4, planar core; = disk Cousin I). -/
+/-- Holomorphic splitting on a ball (Forster 13.4, planar core; = disk Cousin I).
+@isnad1 id=ex.6h5v.s8.bd204b56777c from=translated src=- shape=6db5016a vocab=a32fc917
+-/
 theorem exists_holo_splitting_ball {c : ℂ} {R : ℝ} (hR : 0 < R)
     (hWo : ∀ i, IsOpen (W i)) (hWb : ∀ i, W i ⊆ Metric.ball c R)
     (hcov : Metric.ball c R ⊆ ⋃ i, W i)

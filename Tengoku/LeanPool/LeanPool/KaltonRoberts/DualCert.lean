@@ -44,7 +44,9 @@ omit [Fintype U] in
 lemma _root_.Finset.indicator'_apply (S : Finset U) (i : U) :
     S.indicator' i = if i ∈ S then (1 : ℝ) else 0 := rfl
 
-/-- A continuous linear map on `U → ℝ` decomposes via basis vectors. -/
+/-- A continuous linear map on `U → ℝ` decomposes via basis vectors.
+@isnad1 id=eq.0h3v.s8.eeffc7887a23 from=translated src=- shape=44970c75 vocab=93723c96
+-/
 lemma clm_decompose (Λ : (U → ℝ) →L[ℝ] ℝ) (h : U → ℝ) :
     Λ h = ∑ i : U, h i * Λ (Function.update (0 : U → ℝ) i 1) := by
   have key : ∀ i : U, Λ (Function.update (0 : U → ℝ) i (h i)) =
@@ -62,7 +64,9 @@ lemma clm_decompose (Λ : (U → ℝ) →L[ℝ] ℝ) (h : U → ℝ) :
   ext j; simp [Finset.sum_apply, Function.update]
 
 omit [Fintype U] in
-/-- Applying a CLinearMap to an indicator equals `additiveFunction`. -/
+/-- Applying a CLinearMap to an indicator equals `additiveFunction`.
+@isnad1 id=eq.0h3v.s8.5184451856da from=translated src=- shape=4531c776 vocab=b84f8013
+-/
 lemma clm_indicator'_eq_additiveFunction (Λ : (U → ℝ) →L[ℝ] ℝ) (S : Finset U) :
     Λ S.indicator' = additiveFunction (fun i => Λ (Function.update 0 i 1)) S := by
   have : S.indicator' = ∑ i ∈ S, Function.update (0 : U → ℝ) i 1 := by
@@ -73,6 +77,9 @@ lemma clm_indicator'_eq_additiveFunction (Λ : (U → ℝ) →L[ℝ] ℝ) (S : F
 
 /-
 When `M = 0`, every `f(S) = 0`, so `λ(∅) = 1` gives a valid certificate.
+-/
+/--
+@isnad1 id=nonempty.3h2v.s5.b4f19f907746 from=translated src=- shape=c1715934 vocab=7ed5c921
 -/
 lemma dual_cert_zero_case
     (f : Finset U → ℝ) (_hf : IsApproxAdditive f 1)
@@ -95,6 +102,9 @@ noncomputable def activeGenerators (f : Finset U → ℝ) (M : ℝ) : Set (U →
   (fun S => -S.indicator') '' {S : Finset U | f S = -M}
 
 omit [Fintype U] in
+/--
+@isnad1 id=finite.0h3v.s4.2f37a625f4ca from=translated src=- shape=caad12d0 vocab=dc9f0fe6
+-/
 lemma activeGenerators_finite [Finite U] (f : Finset U → ℝ) (M : ℝ) :
     (activeGenerators f M).Finite := by
   let := Fintype.ofFinite U
@@ -115,6 +125,9 @@ additiveFunction a S > 0, and for negative active S, additiveFunction a S < 0.
 A small ε-perturbation gives ∀ S, |f(S) - εa(S)| < M, contradicting `hbest`.
 -/
 omit [Fintype U] in
+/--
+@isnad1 id=mem.3h3v.s7.a5d24a0c9a25 from=translated src=- shape=7e9d530e vocab=07850f35
+-/
 lemma zero_mem_convexHull_of_best_approx [Finite U]
     (f : Finset U → ℝ) (M : ℝ) (hM_pos : 0 < M)
     (hMbound : ∀ S : Finset U, |f S| ≤ M)
@@ -258,7 +271,9 @@ lemma zero_mem_convexHull_of_best_approx [Finite U]
   exact absurd ( hbest ( fun i => ε * a i ) ) ( by push Not; exact hε )
 
 omit [Fintype U] in
-/-- `indicator'` is injective: different finsets give different indicator functions. -/
+/-- `indicator'` is injective: different finsets give different indicator functions.
+@isnad1 id=injectiv.0h1v.s3.78c1409355a4 from=translated src=- shape=bb0179dc vocab=d7c73c66
+-/
 lemma indicator'_injective : Function.Injective (Finset.indicator' : Finset U → (U → ℝ)) := by
   intro S T hST
   ext i
@@ -268,6 +283,9 @@ lemma indicator'_injective : Function.Injective (Finset.indicator' : Finset U �
 
 /-
 Extract a `DualCertificate` from 0 ∈ convexHull of active generators.
+-/
+/--
+@isnad1 id=nonempty.3h3v.s7.02f3ad345651 from=translated src=- shape=86cd12f3 vocab=ea134d9f
 -/
 lemma dual_cert_from_convexHull
     (f : Finset U → ℝ) (M : ℝ) (hM_pos : 0 < M)
@@ -469,7 +487,9 @@ lemma dual_cert_from_convexHull
   · grind +revert;
   · grind +qlia
 
-/-- When `M > 0`, construct the dual certificate via Hahn–Banach. -/
+/-- When `M > 0`, construct the dual certificate via Hahn–Banach.
+@isnad1 id=nonempty.4h2v.s6.3f8a222f2ee9 from=translated src=- shape=3d6c3087 vocab=7672eca1
+-/
 lemma dual_cert_pos_case
     (f : Finset U → ℝ) (_hf : IsApproxAdditive f 1)
     (hMbound : ∀ S : Finset U, |f S| ≤ distToAdditive f)
@@ -481,14 +501,18 @@ lemma dual_cert_pos_case
     (zero_mem_convexHull_of_best_approx f _ hM_pos hMbound hbest)
 
 omit [Fintype U] in
-/-- `distToAdditive f ≥ 0` for any function `f`. -/
+/-- `distToAdditive f ≥ 0` for any function `f`.
+@isnad1 id=le.2h2v.s5.70734824c6be from=translated src=- shape=b74b306b vocab=e93748d4
+-/
 lemma distToAdditive_nonneg (f : Finset U → ℝ) (hf : IsApproxAdditive f 1)
     (hM : ∀ S : Finset U, |f S| ≤ distToAdditive f) :
     0 ≤ distToAdditive f := by
   simpa only [hf.1, abs_zero] using hM ∅
 
 /-- **Lemma 2.1** (Dual certificate existence).
-Combines the M = 0 and M > 0 cases. -/
+Combines the M = 0 and M > 0 cases.
+@isnad1 id=nonempty.3h2v.s6.c98f8386d775 from=translated src=- shape=ec60a0f6 vocab=cefaac1e
+-/
 theorem dual_certificate_exists_proof
     (f : Finset U → ℝ)
     (hf : IsApproxAdditive f 1)

@@ -49,6 +49,9 @@ def attachLeaves {V : Type*} (S : SimpleGraph V) (r : V) (s : ℕ) :
   symm := by constructor; rintro (a | a) (b | b) h <;> first | exact h.symm | exact h
   loopless := by constructor; rintro (a | a) <;> simp
 
+/--
+@isnad1 id=ex.2h7v.s8.de72589aeb39 from=translated src=- shape=0fc2f086 vocab=caacbefe
+-/
 lemma attach_single_leaf_copy {U V : Type*} (S : SimpleGraph U) (G : SimpleGraph V)
     (r : U) (f : S.Copy G) (w : V) (hw : G.Adj (f r) w) (hfree : w ∉ Set.range f) :
     ∃ F : (attachLeaves S r 1).Copy G,
@@ -86,6 +89,9 @@ noncomputable def rootedWordCount {U V : Type*} [DecidableEq V]
     (S : SimpleGraph U) (r : U) (G : SimpleGraph V) (l₀ : List V) : ℕ :=
   fullWordCount l₀ G.Adj (RootedWordFamily S r G)
 
+/--
+@isnad1 id=fullword.5h8v.s7.49238560b642 from=translated src=- shape=6f84bf3d vocab=2a702ffb
+-/
 lemma rooted_word_leaf_move_step {U V : Type*} [DecidableEq V]
     (S : SimpleGraph U) (r : U) (G : SimpleGraph V) (l : List V) (hl : l.Nodup)
     (k : ℕ) (hk : k < l.length)
@@ -159,6 +165,9 @@ lemma rooted_word_leaf_move_step {U V : Type*} [DecidableEq V]
       rw [hFw]
       exact Finset.mem_insert_self _ _
 
+/--
+@isnad1 id=le.1h6v.s6.490ca7e3dfdb from=translated src=- shape=830a6620 vocab=c8704f22
+-/
 lemma rooted_word_leaf_move_count {U V : Type*} [DecidableEq V]
     (S : SimpleGraph U) (r : U) (G : SimpleGraph V) (l₀ : List V) (hl : l₀.Nodup) :
     rootedWordCount S r G l₀ ≤
@@ -168,6 +177,9 @@ lemma rooted_word_leaf_move_count {U V : Type*} [DecidableEq V]
   exact rooted_word_leaf_move_step S r G l (hlp.nodup_iff.mpr hl) k
     (by rwa [hlp.length_eq]) hs j hjk hj
 
+/--
+@isnad1 id=iff.0h10v.s6.e8a5c587afa1 from=translated src=- shape=339c41d2 vocab=13f9c81d
+-/
 lemma rootedWordFamily_iso_iff {U W V : Type*} [DecidableEq V]
     {S : SimpleGraph U} {T : SimpleGraph W} (e : S ≃g T) (r : U)
     (G : SimpleGraph V) (b : V) (X : Finset V) :
@@ -179,6 +191,9 @@ lemma rootedWordFamily_iso_iff {U W V : Type*} [DecidableEq V]
     refine ⟨f.comp e.symm.toCopy, ?_, fun x => hspan (e.symm x)⟩
     simpa using hfr
 
+/--
+@isnad1 id=eq.0h9v.s6.c1fcb2b39821 from=translated src=- shape=5b423435 vocab=2e5c0722
+-/
 lemma rootedWordCount_iso {U W V : Type*} [DecidableEq V]
     {S : SimpleGraph U} {T : SimpleGraph W} (e : S ≃g T) (r : U)
     (G : SimpleGraph V) (l₀ : List V) :
@@ -189,6 +204,9 @@ lemma rootedWordCount_iso {U W V : Type*} [DecidableEq V]
   unfold rootedWordCount
   rw [he]
 
+/--
+@isnad1 id=rootedwo.2h8v.s6.cbddbcafd61d from=translated src=- shape=76673ce9 vocab=b4d4e19f
+-/
 lemma rootedWordFamily_restrict {U V : Type*} [DecidableEq V]
     (T : SimpleGraph U) (G : SimpleGraph V) (A : Set U) (r : U) (hr : r ∈ A)
     (b : V) (X : Finset V) : RootedWordFamily T r G b X →
@@ -197,7 +215,9 @@ lemma rootedWordFamily_restrict {U V : Type*} [DecidableEq V]
   exact ⟨f.comp (Copy.induce T A), hfr, fun x => hspan x.val⟩
 
 /-- Two copies agree at the root. Disjoint outer supporting sets ensure that
-no other images collide. -/
+no other images collide.
+@isnad1 id=rootedwo.5h9v.s7.f08a682d1025 from=translated src=- shape=3a18fc83 vocab=06fd9964
+-/
 lemma rootedWordFamily_glue {U V : Type*} [DecidableEq V]
     (T : SimpleGraph U) (G : SimpleGraph V) (A : Set U) (r : U) (hr : r ∈ A)
     (hsep : ∀ x ∈ A, ∀ y ∉ A, T.Adj x y → x = r)
@@ -263,6 +283,9 @@ lemma rootedWordFamily_glue {U V : Type*} [DecidableEq V]
       rw [show F x = g ⟨x, Or.inl hx⟩ by simp only [F, dite_eq_right hx]]
       exact Finset.insert_subset_insert b Finset.subset_union_right (hgspan ⟨x, Or.inl hx⟩)
 
+/--
+@isnad1 id=le.4h7v.s8.26d8b7d1da38 from=translated src=- shape=37b8a9ac vocab=b4552eb8
+-/
 lemma rooted_word_branch_gluing_count {U V : Type*} [DecidableEq V]
     (T : SimpleGraph U) (G : SimpleGraph V) (A : Set U) (r : U) (hr : r ∈ A)
     (hsep : ∀ x ∈ A, ∀ y ∉ A, T.Adj x y → x = r)
@@ -277,6 +300,9 @@ lemma rooted_word_branch_gluing_count {U V : Type*} [DecidableEq V]
 
 /-! Splitting finite trees at an edge or at a root. -/
 
+/--
+@isnad1 id=ex.2h4v.s6.d63f58563a73 from=translated src=- shape=68430992 vocab=54957a5d
+-/
 lemma tree_edge_partition {U : Type} (T : SimpleGraph U) (hT : T.IsTree)
     (r s : U) (hrs : T.Adj r s) :
     ∃ A : Set U, r ∈ A ∧ s ∉ A ∧ (T.induce A).IsTree ∧ (T.induce Aᶜ).IsTree ∧
@@ -343,6 +369,9 @@ lemma tree_edge_partition {U : Type} (T : SimpleGraph U) (hT : T.IsTree)
   · exact h
   · exact (hsA hx).elim
 
+/--
+@isnad1 id=ex.4h5v.s8.1a95aaaae391 from=translated src=- shape=b253c468 vocab=ebffcbfe
+-/
 lemma tree_root_partition {U : Type} [Finite U] (T : SimpleGraph U) (hT : T.IsTree)
     (r s z : U) (hrs : T.Adj r s) (hrz : T.Adj r z) (hsz : s ≠ z) :
     ∃ A : Set U, ∃ _hr : r ∈ A,
@@ -418,16 +447,25 @@ noncomputable def leafRestoreIso {U : Type} (T : SimpleGraph U) (l p : U)
   · change T.Adj l l ↔ False
     simp
 
+/--
+@isnad1 id=eq.2h5v.s8.65a6d90fffd6 from=translated src=- shape=8f3b21a2 vocab=94da5ad8
+-/
 @[simp] lemma leafRestoreIso_inl {U : Type} (T : SimpleGraph U) (l p : U)
     (hlp : T.Adj l p) (honly : ∀ x, T.Adj l x → x = p) (x : ({l}ᶜ : Set U)) :
     leafRestoreIso T l p hlp honly (Sum.inl x) = x.val := rfl
 
+/--
+@isnad1 id=eq.2h4v.s8.7b65c9bcf92d from=translated src=- shape=0f440a55 vocab=aa625592
+-/
 @[simp] lemma leafRestoreIso_inr {U : Type} (T : SimpleGraph U) (l p : U)
     (hlp : T.Adj l p) (honly : ∀ x, T.Adj l x → x = p) :
     leafRestoreIso T l p hlp honly (Sum.inr 0) = l := rfl
 
 /-! The rooted word-count bound for every finite tree. -/
 
+/--
+@isnad1 id=rootedwo.3h8v.s6.49384d31fe06 from=translated src=- shape=4ac34053 vocab=e2404ea7
+-/
 lemma rootedWordFamily_of_card_two {U V : Type*} [Fintype U] [DecidableEq V]
     (T : SimpleGraph U) (r : U) (ht : Fintype.card U = 2)
     (G : SimpleGraph V) (b w : V) (hbw : G.Adj b w) (X : Finset V) (hw : w ∈ X) :
@@ -464,6 +502,9 @@ lemma rootedWordFamily_of_card_two {U V : Type*} [Fintype U] [DecidableEq V]
     · simp only [F, ite_eq_left hx, Finset.mem_insert_self]
     · simpa only [F, ite_eq_right hx] using Finset.mem_insert_of_mem hw
 
+/--
+@isnad1 id=le.1h6v.s5.b1c1f0b3a1b3 from=translated src=- shape=f2e365dc vocab=ae0eb658
+-/
 lemma rooted_word_count_base {U V : Type*} [Fintype U] [DecidableEq V]
     (T : SimpleGraph U) (r : U) (ht : Fintype.card U = 2)
     (G : SimpleGraph V) (l₀ : List V) :
@@ -478,6 +519,9 @@ lemma rooted_word_count_base {U V : Type*} [Fintype U] [DecidableEq V]
   exact List.mem_toFinset.mpr
     (List.mem_of_mem_getLast? (by simpa only [hw] using (show w ∈ some w from rfl)))
 
+/--
+@isnad1 id=le.5h7v.s6.8f53f486b6db from=translated src=- shape=e0def569 vocab=e54dc97a
+-/
 lemma rooted_word_tree_bound_aux (t : ℕ) :
     ∀ (U V : Type) [Fintype U] [DecidableEq V]
       (T : SimpleGraph U) (r : U) (_hT : T.IsTree) (_ht : Fintype.card U = t) (_ht2 : 2 ≤ t)
@@ -532,6 +576,9 @@ lemma rooted_word_tree_bound_aux (t : ℕ) :
       simp only [Nat.add_mul, Nat.one_mul] at hcost
       omega
 
+/--
+@isnad1 id=le.4h6v.s6.37b936098aca from=translated src=- shape=65e9266f vocab=e54dc97a
+-/
 lemma rooted_word_tree_bound {U V : Type} [Fintype U] [DecidableEq V]
     (T : SimpleGraph U) (r : U) (hT : T.IsTree) (ht2 : 2 ≤ Fintype.card U)
     (G : SimpleGraph V) (l₀ : List V) (hl : l₀.Nodup) (hne : l₀ ≠ []) :

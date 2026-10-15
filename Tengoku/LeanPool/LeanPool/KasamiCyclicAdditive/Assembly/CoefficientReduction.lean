@@ -29,13 +29,17 @@ namespace KasamiCyclicAdditive
 variable {K : Type*} [Field K] [Fintype K] [DecidableEq K]
 
 /-- In a finite field of cardinality `2^n`, the unit group has cardinality
-`2^n-1`. -/
+`2^n-1`.
+@isnad1 id=eq.1h2v.s6.a178e2b0533d from=translated src=- shape=0c3ed810 vocab=fcd9e19a
+-/
 theorem card_units_eq_two_pow_sub_one {n : ℕ}
     (hcard : Fintype.card K = 2 ^ n) :
     Fintype.card Kˣ = 2 ^ n - 1 := by
   rw [Fintype.card_units, hcard]
 
-/-- Inverse exponent `D` with `m * D ≡ 1` modulo the exact order `|Kˣ|`. -/
+/-- Inverse exponent `D` with `m * D ≡ 1` modulo the exact order `|Kˣ|`.
+@isnad1 id=ex.3h3v.s7.2dd8a59e7f1a from=translated src=- shape=a43d232f vocab=bb53fcea
+-/
 theorem exists_inverse_exponent_units {n m : ℕ} (hn : 2 ≤ n)
     (hcard : Fintype.card K = 2 ^ n)
     (hcop : Nat.Coprime m (2 ^ n - 1)) :
@@ -49,7 +53,9 @@ theorem exists_inverse_exponent_units {n m : ℕ} (hn : 2 ≤ n)
   exact hmod
 
 /-- Coefficient form at `(k, v₁, v₂)` from the normalized slope formula at
-`k0`, given a witness identifying the two triple counts. -/
+`k0`, given a witness identifying the two triple counts.
+@isnad1 id=eq.7h8v.s7.89601be80f9e from=translated src=- shape=a2d8556e vocab=cf92e1d7
+-/
 theorem coefficient_form_of_normalized_witness {n k k0 : ℕ}
     (hn : 2 ≤ n) (hcard : Fintype.card K = 2 ^ n)
     (hslope : ∀ ρ ∈ slopes K,

@@ -34,13 +34,17 @@ def parityTarget (p : ℕ) (T : Finset ℕ) : Finset ℕ :=
   (T.filter (fun t => t % 2 = p)).image (fun t => t / 2)
 
 /-- Every target of the selected parity contributes its normalized value,
-as required by the recursive calls in Lemma 2. -/
+as required by the recursive calls in Lemma 2.
+@isnad1 id=mem.2h3v.s5.97a9c55de299 from=translated src=- shape=368c7273 vocab=fac87435
+-/
 theorem div_mem_parityTarget {p t : ℕ} {T : Finset ℕ}
     (ht : t ∈ T) (hp : t % 2 = p) : t / 2 ∈ parityTarget p T :=
   Finset.mem_image.mpr ⟨t, Finset.mem_filter.mpr ⟨ht, hp⟩, rfl⟩
 
 /-- The induction measure in Lemma 2 decreases after either parity
-projection, provided the old word has a positive largest entry. -/
+projection, provided the old word has a positive largest entry.
+@isnad1 id=lt.2h2v.s6.c9a432af2fa6 from=translated src=- shape=f54bdb37 vocab=c58b444d
+-/
 theorem parityWord_max_lt {P : List ℕ} {p : ℕ} (hp : p < 2)
     (hm : 0 < P.toFinset.sup id) :
     (parityWord p P).toFinset.sup id < P.toFinset.sup id := by
@@ -64,7 +68,9 @@ def reverseWordExecutable (T : Finset ℕ) : List ℕ :=
         (List.pairwise_insertionSort reverseBitsLE l₂)
 
 /-- The executable reverse listing is the same canonical word as in Lemma 1;
-the choice of sorting algorithm does not change the paper's construction. -/
+the choice of sorting algorithm does not change the paper's construction.
+@isnad1 id=eq.0h1v.s3.e8a76a19e971 from=translated src=- shape=1cbf026d vocab=eda1d9c7
+-/
 @[simp] theorem reverseWordExecutable_eq (T : Finset ℕ) :
     reverseWordExecutable T = reverseWord T := by
   rcases T with ⟨s, hs⟩
@@ -98,7 +104,9 @@ def ExtensionResult (P : List ℕ) (T : Finset ℕ) (Q : List ℕ) : Prop :=
   Safe bits Q ∧ P.IsPrefix Q ∧ ∀ t ∈ T, t ∈ Q
 
 /-- Splitting off the newly appended suffix recovers the entire extension.
-This is the list identity used when the paper introduces `E` and `O`. -/
+This is the list identity used when the paper introduces `E` and `O`.
+@isnad1 id=eq.1h2v.s5.4cd0d2a2f8b1 from=translated src=- shape=7f133e7c vocab=7e92a78e
+-/
 theorem prefix_append_drop {P Q : List ℕ} (h : P.IsPrefix Q) :
     P ++ Q.drop P.length = Q := by
   rw [List.prefix_iff_eq_take.mp h]
@@ -106,7 +114,9 @@ theorem prefix_append_drop {P Q : List ℕ} (h : P.IsPrefix Q) :
     List.take_append_drop P.length Q
 
 /-- Correctness of the executable Extension Lemma. This follows the paper's
-induction literally; `safe_splice` contains its odd-before-even argument. -/
+induction literally; `safe_splice` contains its odd-before-even argument.
+@isnad1 id=extensio.1h2v.s4.0986b6ed61a1 from=translated src=- shape=9560e56e vocab=5939c83f
+-/
 theorem extendAlgorithm_spec (P : List ℕ) (T : Finset ℕ) (hP : Safe bits P) :
     ExtensionResult P T (extendAlgorithm P T) := by
   rw [extendAlgorithm]
@@ -179,7 +189,9 @@ decreasing_by
 
 /-- **Lemma 2 (Extension) of the paper.** Every safe finite word is an initial
 segment of a safe finite word containing any prescribed finite target set.
-The witness is the executable word constructed and verified above. -/
+The witness is the executable word constructed and verified above.
+@isnad1 id=ex.1h2v.s5.26ba48f6b80a from=translated src=- shape=15c245ed vocab=67b9e91c
+-/
 theorem safe_extend (P : List ℕ) (hP : Safe bits P) (T : Finset ℕ) :
     ∃ Q, Safe bits Q ∧ P.IsPrefix Q ∧ ∀ t ∈ T, t ∈ Q :=
   ⟨extendAlgorithm P T, extendAlgorithm_spec P T hP⟩

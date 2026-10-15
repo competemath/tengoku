@@ -25,6 +25,9 @@ def twoUnit (level : ℕ) : (ZMod (3 ^ (level + 1)))ˣ :=
   ZMod.unitOfCoprime 2
     ((by decide : Nat.Coprime 2 3).pow_right (level + 1))
 
+/--
+@isnad1 id=eq.0h1v.s10.c4863f9444a3 from=translated src=- shape=89dbcda1 vocab=61b4a52d
+-/
 lemma orderOf_twoUnit_sq (level : ℕ) :
     orderOf ((twoUnit level) ^ 2) = 3 ^ level := by
   rw [← orderOf_injective (Units.coeHom _) Units.val_injective]
@@ -32,6 +35,9 @@ lemma orderOf_twoUnit_sq (level : ℕ) :
   convert ZMod.orderOf_one_add_prime Nat.prime_three (by decide) level using 1
   all_goals norm_num
 
+/--
+@isnad1 id=dvd.0h1v.s8.c265de45e238 from=translated src=- shape=0b421623 vocab=30880ef8
+-/
 lemma two_dvd_orderOf_twoUnit (level : ℕ) :
     2 ∣ orderOf (twoUnit level) := by
   have hdiv : 3 ∣ 3 ^ (level + 1) := dvd_pow_self 3 (by omega)
@@ -51,7 +57,9 @@ lemma two_dvd_orderOf_twoUnit (level : ℕ) :
   exact orderOf_map_dvd reduction (twoUnit level)
 
 /-- The multiplicative order of `2` modulo `3 ^ (level + 1)` is the full
-Euler period `2 * 3 ^ level`. -/
+Euler period `2 * 3 ^ level`.
+@isnad1 id=eq.0h1v.s8.af448ad6d4ce from=translated src=- shape=a0b27530 vocab=bcc69856
+-/
 theorem orderOf_twoUnit (level : ℕ) :
     orderOf (twoUnit level) = 2 * 3 ^ level := by
   have hsquare := orderOf_twoUnit_sq level
@@ -62,7 +70,9 @@ theorem orderOf_twoUnit (level : ℕ) :
       (Nat.div_mul_cancel (two_dvd_orderOf_twoUnit level)).symm
     _ = 2 * 3 ^ level := by rw [hsquare]; ring
 
-/-- The unit group modulo `3 ^ (level + 1)` has `2 * 3 ^ level` elements. -/
+/-- The unit group modulo `3 ^ (level + 1)` has `2 * 3 ^ level` elements.
+@isnad1 id=eq.0h1v.s8.31bb41fcfcf5 from=translated src=- shape=9701d7cb vocab=6d684a28
+-/
 theorem card_units_three_pow_succ (level : ℕ) :
     Fintype.card (ZMod (3 ^ (level + 1)))ˣ = 2 * 3 ^ level := by
   rw [ZMod.card_units_eq_totient,
@@ -75,6 +85,9 @@ def twoPowerUnitMap (level : ℕ) :
     Fin (2 * 3 ^ level) → (ZMod (3 ^ (level + 1)))ˣ :=
   fun exponent => twoUnit level ^ exponent.val
 
+/--
+@isnad1 id=injectiv.0h1v.s7.b2af06a7159a from=translated src=- shape=00a2e281 vocab=564904d7
+-/
 lemma twoPowerUnitMap_injective (level : ℕ) :
     Function.Injective (twoPowerUnitMap level) := by
   intro exponent₁ exponent₂ hequal
@@ -93,6 +106,9 @@ noncomputable def twoPowerUnitEquiv (level : ℕ) :
       ⟨twoPowerUnitMap_injective level, by
         rw [Fintype.card_fin, card_units_three_pow_succ]⟩
 
+/--
+@isnad1 id=eq.0h2v.s11.c912ac61bf17 from=translated src=- shape=6ab2d8b6 vocab=092e9393
+-/
 @[simp]
 theorem twoPowerUnitEquiv_apply (level : ℕ)
     (exponent : Fin (2 * 3 ^ level)) :
@@ -100,7 +116,9 @@ theorem twoPowerUnitEquiv_apply (level : ℕ)
   rfl
 
 /-- The natural representative of the unit associated to an exponent is the
-ordinary modular power. -/
+ordinary modular power.
+@isnad1 id=eq.0h2v.s10.089e284b1637 from=translated src=- shape=78dd2e14 vocab=7a0c2204
+-/
 theorem val_twoPowerUnitEquiv_apply (level : ℕ)
     (exponent : Fin (2 * 3 ^ level)) :
     ((twoPowerUnitEquiv level exponent :
@@ -114,7 +132,9 @@ theorem val_twoPowerUnitEquiv_apply (level : ℕ)
   rw [hcast, ZMod.val_natCast]
 
 /-- Reduction of an arbitrary exponent to the exact period does not change
-the residue modulo `3 ^ (level + 1)`. -/
+the residue modulo `3 ^ (level + 1)`.
+@isnad1 id=eq.0h2v.s7.285e61c5cafe from=translated src=- shape=3552407c vocab=84e92033
+-/
 theorem two_pow_mod_three_pow_succ_eq_reduced_exponent
     (level exponent : ℕ) :
     2 ^ exponent % 3 ^ (level + 1) =

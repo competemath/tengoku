@@ -55,12 +55,18 @@ def IsPrimitiveAlongMap (K : α → X) (η : Form1 X) (F : α → ℂ) (s : Set 
 
 variable {K : α → X} {η : Form1 X} {F F₁ F₂ : α → ℂ} {s t : Set α} {a : α}
 
+/--
+@isnad1 id=isprimit.2h7v.s6.5fd583488b86 from=translated src=- shape=6ad6004f vocab=182bcba7
+-/
 theorem IsPrimitiveAlongMap.mono (h : IsPrimitiveAlongMap K η F s) (hts : t ⊆ s) :
     IsPrimitiveAlongMap K η F t := by
   intro a ha
   obtain ⟨e, he, hKa, g, hg, hF⟩ := h a (hts ha)
   exact ⟨e, he, hKa, g, hg, hF.filter_mono (nhdsWithin_mono a hts)⟩
 
+/--
+@isnad1 id=isprimit.1h7v.s7.400811544dac from=translated src=- shape=80e9d5f2 vocab=e7a6ae31
+-/
 theorem IsPrimitiveAlongMap.add_const (h : IsPrimitiveAlongMap K η F s) (c : ℂ) :
     IsPrimitiveAlongMap K η (fun a => F a + c) s := by
   intro a ha
@@ -69,6 +75,9 @@ theorem IsPrimitiveAlongMap.add_const (h : IsPrimitiveAlongMap K η F s) (c : �
   · filter_upwards [hg] with z hz using hz.add_const c
   · filter_upwards [hF] with b hb using ⟨hb.1, by rw [hb.2]⟩
 
+/--
+@isnad1 id=isprimit.2h7v.s6.ecd2f4745072 from=translated src=- shape=2745a003 vocab=20d8d926
+-/
 theorem IsPrimitiveAlongMap.congr (h : IsPrimitiveAlongMap K η F s)
     (hFF' : Set.EqOn F F₁ s) : IsPrimitiveAlongMap K η F₁ s := by
   intro a ha
@@ -76,6 +85,9 @@ theorem IsPrimitiveAlongMap.congr (h : IsPrimitiveAlongMap K η F s)
   refine ⟨e, he, hKa, g, hg, ?_⟩
   filter_upwards [hF, self_mem_nhdsWithin] with b hb hbs using ⟨hb.1, (hFF' hbs).symm.trans hb.2⟩
 
+/--
+@isnad1 id=isprimit.2h7v.s6.b12c3b35eea8 from=translated src=- shape=d84706bf vocab=20d8d926
+-/
 theorem IsPrimitiveAlongMap.congr_map {K' : α → X} (h : IsPrimitiveAlongMap K η F s)
     (hKK' : Set.EqOn K K' s) : IsPrimitiveAlongMap K' η F s := by
   intro a ha
@@ -86,6 +98,9 @@ theorem IsPrimitiveAlongMap.congr_map {K' : α → X} (h : IsPrimitiveAlongMap K
   rw [← hKK' hbs]
   exact hb
 
+/--
+@isnad1 id=continuo.2h6v.s7.7291109f8088 from=translated src=- shape=4422800c vocab=e4ce797d
+-/
 theorem IsPrimitiveAlongMap.continuousOn (h : IsPrimitiveAlongMap K η F s)
     (hK : ContinuousOn K s) : ContinuousOn F s := by
   intro a ha
@@ -101,7 +116,9 @@ theorem IsPrimitiveAlongMap.continuousOn (h : IsPrimitiveAlongMap K η F s)
   rw [hFa]
   exact Tendsto.congr' heq.symm hcomp
 
-/-- Composition / restriction along a continuous map of parameter spaces. -/
+/-- Composition / restriction along a continuous map of parameter spaces.
+@isnad1 id=isprimit.3h9v.s7.4385864e51a8 from=translated src=- shape=96e9a5f3 vocab=9f1c0f07
+-/
 theorem IsPrimitiveAlongMap.comp {β : Type*} [TopologicalSpace β]
     (h : IsPrimitiveAlongMap K η F s) {φ : β → α} {t : Set β}
     (hφ : ContinuousOn φ t) (hm : MapsTo φ t s) :
@@ -112,7 +129,9 @@ theorem IsPrimitiveAlongMap.comp {β : Type*} [TopologicalSpace β]
   exact ((hφ b hb).tendsto_nhdsWithin hm).eventually hF
 
 /-- The chart in the local-primitive data can be re-chosen to be any maximal-atlas chart
-containing the image point. -/
+containing the image point.
+@isnad1 id=ex.5h8v.s8.12b67f059c74 from=translated src=- shape=ad2d59a7 vocab=a2e7f674
+-/
 theorem IsPrimitiveAlongMap.rechart (h : IsPrimitiveAlongMap K η F s) (ha : a ∈ s)
     (hK : ContinuousWithinAt K s a)
     {e' : OpenPartialHomeomorph X ℂ} (he' : e' ∈ maximalAtlas 𝓘(ℂ) ω X)
@@ -159,7 +178,9 @@ theorem IsPrimitiveAlongMap.rechart (h : IsPrimitiveAlongMap K η F s) (ha : a �
     rw [e'.left_inv hbmem.2]
 
 /-- **Uniqueness up to a constant.** Chart overlaps need not be connected; primitives are only
-ever compared *along the parameter space* (never across an overlap directly). -/
+ever compared *along the parameter space* (never across an overlap directly).
+@isnad1 id=eq.6h9v.s7.badae0b657a5 from=translated src=- shape=a607b725 vocab=55cdf4c9
+-/
 theorem IsPrimitiveAlongMap.sub_eq_sub (hs : IsPreconnected s) (hK : ContinuousOn K s)
     (h₁ : IsPrimitiveAlongMap K η F₁ s) (h₂ : IsPrimitiveAlongMap K η F₂ s)
     {a b : α} (ha : a ∈ s) (hb : b ∈ s) : F₁ b - F₂ b = F₁ a - F₂ a := by
@@ -193,7 +214,9 @@ theorem IsPrimitiveAlongMap.sub_eq_sub (hs : IsPreconnected s) (hK : ContinuousO
   exact (hlc.apply_eq_of_preconnectedSpace (⟨a, ha⟩ : s) (⟨b, hb⟩ : s)).symm
 
 /-- The junction argument: primitives on `s₁`, `s₂` agreeing at a point of the (preconnected)
-overlap glue to a primitive on `s₁ ∪ s₂`. -/
+overlap glue to a primitive on `s₁ ∪ s₂`.
+@isnad1 id=isprimit.7h9v.s8.f384de57feb0 from=translated src=- shape=f6023f88 vocab=d0abc31d
+-/
 theorem IsPrimitiveAlongMap.glue [∀ a, Decidable (a ∈ s)]
     (hK : ContinuousOn K (s ∪ t))
     (h₁ : IsPrimitiveAlongMap K η F₁ s) (h₂ : IsPrimitiveAlongMap K η F₂ t)
@@ -249,7 +272,9 @@ theorem IsPrimitiveAlongMap.glue [∀ a, Decidable (a ∈ s)]
 /-- Constant-chart primitive: if `K` maps all of `s` into a single chart `e`, with image inside
 a ball `ball c r ⊆ e.target` on which `g` is a planar primitive of `coeffIn e η`, then
 `g ∘ e ∘ K` is a primitive of `η` along `K` on `s`. Used by the 1D chain-continuation induction
-and the 2D grid (cell primitives). -/
+and the 2D grid (cell primitives).
+@isnad1 id=isprimit.3h9v.s8.1dd10987a20f from=translated src=- shape=5efc8a5f vocab=23eb917d
+-/
 theorem isPrimitiveAlongMap_of_ball {e : OpenPartialHomeomorph X ℂ}
     (he : e ∈ maximalAtlas 𝓘(ℂ) ω X) {c : ℂ} {r : ℝ} {g : ℂ → ℂ}
     (hg : ∀ z ∈ ball c r, HasDerivAt g (coeffIn e η z) z)

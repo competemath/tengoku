@@ -129,7 +129,9 @@ F^{(j)}_k(x) = (1 / p^{jk + C(j+1,2)}) * ∑_{i=0}^{j} (-1)^{j-i} c_{j,i}(p) x^{
 Induction on `j`, uniformly in `k`. The base case is the empty product `c_{0,0}(p) = 1` over
 the empty denominator; the step puts the two halves of the divided difference over the
 common denominator `p^{(j+1)(k+1) + C(j+1,2)} = p^{(j+1)k + C(j+2,2)}` and appeals to
-`numerator_recursion`. -/
+`numerator_recursion`.
+@isnad1 id=eq.1h4v.s7.114f9585a8dc from=translated src=- shape=b3183ac7 vocab=b51cec10
+-/
 theorem iteratedFermatQuot_eq_sum_div {p : ℕ} (hp : p ≠ 0) (j k : ℕ) (x : ℤ) :
     iteratedFermatQuot p j k x
       = (∑ i ∈ range (j + 1), (-1 : ℚ) ^ (j - i) * (cCoeff p j i : ℚ) * (x : ℚ) ^ p ^ (k + i))

@@ -35,7 +35,9 @@ variable {L : Language.{0, 0}}
 /-- **The signed root gate**: an empty-support `L[[ℕ]]`-separator of the `mapLanguage`-images of
 `(Γ₀, Δ₀)` strips to a genuine base-language interpolant whose function symbols, **positive**
 relation occurrences, and **negative** relation occurrences are each bounded by the separator's
-corresponding base sets. -/
+corresponding base sets.
+@isnad1 id=ex.3h4v.s7.03acbbb19178 from=translated src=- shape=6bce4b42 vocab=57a8a31d
+-/
 theorem base_lyndon_interpolant_of_empty_support_separator {Γ₀ Δ₀ : Set L.Sentenceω}
     (σ : L[[ℕ]].Sentenceω)
     (hsupp : sentenceJConsts (L' := L) (J := ℕ) σ ⊆ ∅)

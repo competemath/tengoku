@@ -77,7 +77,9 @@ namespace Subsystem
 
 /-- The subsystem relation is **reflexive**: `D ◁ D`. (The `inter_closed` clause
 is trivial — the
-hypothesis is already the conclusion.) -/
+hypothesis is already the conclusion.)
+@isnad1 id=subsyste.0h2v.s3.4c9779324b81 from=translated src=- shape=4c89f7f3 vocab=4558f547
+-/
 theorem refl (D : NeighborhoodSystem α) : D ◁ D where
   master_eq := rfl
   sub h := h
@@ -87,7 +89,9 @@ theorem refl (D : NeighborhoodSystem α) : D ◁ D where
 
 The `inter_closed` clause threads through `E`: from `X, Y ∈ D ⊆ E` and `X ∩ Y ∈
 F`, the relation
-`E ◁ F` puts `X ∩ Y ∈ E`, and then `D ◁ E` puts `X ∩ Y ∈ D`. -/
+`E ◁ F` puts `X ∩ Y ∈ E`, and then `D ◁ E` puts `X ∩ Y ∈ D`.
+@isnad1 id=subsyste.2h4v.s4.6379d08146fc from=translated src=- shape=e12f42e9 vocab=4558f547
+-/
 theorem trans {D E F : NeighborhoodSystem α} (h₁ : D ◁ E) (h₂ : E ◁ F) : D ◁ F where
   master_eq := h₁.master_eq.trans h₂.master_eq
   sub h := h₂.sub (h₁.sub h)
@@ -106,7 +110,9 @@ theorem _root_.Domain.Neighborhood.NeighborhoodSystem.ext {D E : NeighborhoodSys
 
 /-- The subsystem relation is **antisymmetric**: `D ◁ E` and `E ◁ D` force `D =
 E`. (Mutual `sub`
-gives equal `mem`, and `master_eq` gives equal masters.) -/
+gives equal `mem`, and `master_eq` gives equal masters.)
+@isnad1 id=eq.2h3v.s4.23d756d500cd from=translated src=- shape=4c894502 vocab=4558f547
+-/
 theorem antisymm {D E : NeighborhoodSystem α} (h₁ : D ◁ E) (h₂ : E ◁ D) : D = E :=
   NeighborhoodSystem.ext (fun _ => ⟨fun h => h₁.sub h, fun h => h₂.sub h⟩) h₁.master_eq
 
@@ -122,7 +128,9 @@ master, and
   the `inter_closed` clause routes through `E` — an intersection `X ∩ Y` of
   `D₀`-neighbourhoods
   lying in `D₁` lies in `E` (since `D₁ ⊆ E`), and `D₀ ◁ E` then returns it to
-  `D₀`. -/
+  `D₀`.
+@isnad1 id=iff.2h4v.s5.76af3288d428 from=translated src=- shape=1e778ed6 vocab=c67f73ed
+-/
 theorem subsystem_iff_subset_of_common {D₀ D₁ E : NeighborhoodSystem α}
     (h₀ : D₀ ◁ E) (h₁ : D₁ ◁ E) :
     D₀ ◁ D₁ ↔ ∀ {X : Set α}, D₀.mem X → D₁.mem X := by

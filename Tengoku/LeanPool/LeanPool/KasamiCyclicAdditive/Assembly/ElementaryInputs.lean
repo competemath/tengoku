@@ -29,7 +29,9 @@ namespace KasamiCyclicAdditive
 variable {K : Type*} [Field K] [Fintype K] [DecidableEq K]
 
 /-- Coprimality yields a nonzero inverse exponent `D` with `m * D ≡ 1 [MOD N]`.
-The modulus is abstract; the application takes `N = |Kˣ|`. -/
+The modulus is abstract; the application takes `N = |Kˣ|`.
+@isnad1 id=ex.2h2v.s5.53ef4ea6bd3d from=translated src=- shape=fe2d9101 vocab=355452f3
+-/
 theorem exists_inverse_exponent {m N : ℕ} (hcop : Nat.Coprime m N) (hN : 1 < N) :
     ∃ D : ℕ, D ≠ 0 ∧ m * D ≡ 1 [MOD N] := by
   obtain ⟨D, _hDlt, hDmod⟩ := Nat.exists_mul_mod_eq_one_of_coprime hcop hN
@@ -41,7 +43,9 @@ theorem exists_inverse_exponent {m N : ℕ} (hcop : Nat.Coprime m N) (hN : 1 < N
   rw [Nat.ModEq]
   simpa [Nat.mod_eq_of_lt hN] using hDmod
 
-/-- A finite field with more than two elements has an admissible slope. -/
+/-- A finite field with more than two elements has an admissible slope.
+@isnad1 id=nonempty.1h1v.s4.7179619132ea from=translated src=- shape=4c030023 vocab=9b12cbc2
+-/
 theorem slopes_nonempty_of_two_lt_card (hcard : 2 < Fintype.card K) :
     (slopes K).Nonempty := by
   have hex : ∃ r : K, r ≠ 0 ∧ r ≠ 1 := by
@@ -62,7 +66,9 @@ theorem slopes_nonempty_of_two_lt_card (hcard : 2 < Fintype.card K) :
   simp [slopes, hr0, hr1]
 
 /-- The field-cardinality hypothesis occurring in the Kasami statement implies
-nonempty slopes as soon as `2 ≤ n`. -/
+nonempty slopes as soon as `2 ≤ n`.
+@isnad1 id=nonempty.2h2v.s5.0745717d13ab from=translated src=- shape=c9cb1cba vocab=fee4810c
+-/
 theorem slopes_nonempty_of_card_two_pow {n : ℕ}
     (hn : 2 ≤ n) (hcard : Fintype.card K = 2 ^ n) :
     (slopes K).Nonempty := by

@@ -67,7 +67,9 @@ def mapOfSeq (g : ℕ → ApproximableMap V₀ V₁) : ApproximableMap V₀ (ite
 
 /-- The `∃/∀`-swap behind `mapOfSeq`: a single input neighbourhood `X ∈ x` works
 for all coordinates
-iff each coordinate has its own (intersect the finitely many non-trivial ones). -/
+iff each coordinate has its own (intersect the finitely many non-trivial ones).
+@isnad1 id=iff.1h7v.s6.5624e3d333da from=translated src=- shape=fe69d498 vocab=ac5fe2f8
+-/
 theorem exists_forall_swap {x : V₀.Element} {W : Set (ℕ × β)}
     {g : ℕ → ApproximableMap V₀ V₁} (hW : (iterSys V₁).mem W) :
     (∃ X, x.mem X ∧ ∀ i, (g i).rel X (fiber W i)) ↔
@@ -84,7 +86,9 @@ theorem exists_forall_swap {x : V₀.Element} {W : Set (ℕ × β)}
         ((g i).rel_cod (hXrel i))
     · rw [hN i (not_lt.mp h)]; exact (g i).rel_master (x.sub hbase)
 
-/-- The value of `mapOfSeq g` is the sequence of values `⟨gᵢ(x)⟩`. -/
+/-- The value of `mapOfSeq g` is the sequence of values `⟨gᵢ(x)⟩`.
+@isnad1 id=eq.0h6v.s5.46bf847dab32 from=translated src=- shape=bfaf18ea vocab=bf654811
+-/
 theorem toElementMap_mapOfSeq (g : ℕ → ApproximableMap V₀ V₁) (x : V₀.Element) :
     (mapOfSeq g).toElementMap x = ofSeq (fun i => (g i).toElementMap x) := by
   apply Element.ext
@@ -96,7 +100,9 @@ theorem toElementMap_mapOfSeq (g : ℕ → ApproximableMap V₀ V₁) (x : V₀.
     obtain ⟨X, hXx, hrel⟩ := (exists_forall_swap hW).mpr (fun i => hfib i)
     exact ⟨X, hXx, x.sub hXx, hW, hrel⟩
 
-/-- `projₙ ∘ f` is monotone in `f`. -/
+/-- `projₙ ∘ f` is monotone in `f`.
+@isnad1 id=le.1h7v.s7.8949389207d2 from=translated src=- shape=932e0e09 vocab=e947dcd3
+-/
 theorem projComp_mono {f f' : ApproximableMap V₀ (iterSys V₁)} (h : f ≤ f') (n : ℕ) :
     (projN V₁ n).comp f ≤ (projN V₁ n).comp f' := by
   rintro X Y ⟨W, hfXW, hWY⟩
@@ -104,7 +110,9 @@ theorem projComp_mono {f f' : ApproximableMap V₀ (iterSys V₁)} (h : f ≤ f'
 
 /-- A map `𝒟₀ → 𝒟₁^∞` is detected coordinate-wise: `f ⊑ f'` iff `projₙ ∘ f ⊑ projₙ
 ∘ f'` for all
-`n`. -/
+`n`.
+@isnad1 id=le.1h6v.s7.5f2263cfd457 from=translated src=- shape=5b3c00c5 vocab=e947dcd3
+-/
 theorem le_of_projComp_le {f f' : ApproximableMap V₀ (iterSys V₁)}
     (h : ∀ n, (projN V₁ n).comp f ≤ (projN V₁ n).comp f') : f ≤ f' := by
   rw [le_iff_toElementMap_le]
@@ -160,7 +168,9 @@ def funIterIso (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) :
       (piCongrOrderIso (fun _ : ℕ => (funSpaceEquiv V₀ V₁).symm)).trans
         (iterSeqEquiv (funSpace V₀ V₁)).symm
 
-/-- **Exercise 3.24(ii).** `(𝒟₀ → 𝒟₁^∞) ≅ (𝒟₀ → 𝒟₁)^∞`. -/
+/-- **Exercise 3.24(ii).** `(𝒟₀ → 𝒟₁^∞) ≅ (𝒟₀ → 𝒟₁)^∞`.
+@isnad1 id=isomorph.0h4v.s5.b1c6cb4dfd2a from=translated src=- shape=b69ed0be vocab=b20306a7
+-/
 theorem funIter_isomorphic : funSpace V₀ (iterSys V₁) ≅ᴰ iterSys (funSpace V₀ V₁) :=
   ⟨funIterIso V₀ V₁⟩
 

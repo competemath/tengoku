@@ -46,6 +46,9 @@ def PartsAssignmentInPathB (path : List PartsAssignment)
 def PartsRootsInPathB (path roots : List PartsAssignment) : Bool :=
   roots.all (PartsAssignmentInPathB path)
 
+/--
+@isnad1 id=partsext.2h3v.s5.5055ba129c2f from=translated src=- shape=8b192236 vocab=a2a73ec0
+-/
 lemma partsRootsInPathB_sound {coloring : Fin 481 → Fin 4} {path roots}
     (hcheck : PartsRootsInPathB path roots = true)
     (hextends : PartsExtends coloring path) : PartsExtends coloring roots := by
@@ -77,6 +80,9 @@ def PartsRootVerifiesNodeB (nodes : Array (Array PartsRootNode)) :
                   PartsRootVerifiesNodeB nodes fuel
                     (⟨vertex, color⟩ :: path) child
 
+/--
+@isnad1 id=false.3h5v.s5.8ad8eb086db0 from=translated src=- shape=52a6c55f vocab=4371b440
+-/
 lemma partsRootVerifiesNodeB_unsat {nodes : Array (Array PartsRootNode)}
     {coloring : Fin 481 → Fin 4} (hproper : PartsProper coloring) :
     ∀ {fuel path index}, PartsRootVerifiesNodeB nodes fuel path index = true →
@@ -118,7 +124,9 @@ lemma partsRootVerifiesNodeB_unsat {nodes : Array (Array PartsRootNode)}
 def partsNormalizedRootPath : List PartsAssignment :=
   [⟨0, 3⟩, ⟨195, 0⟩, ⟨205, 0⟩, ⟨215, 0⟩]
 
-/-- A checked root trie eliminates every proper coloring extending the fixed root. -/
+/-- A checked root trie eliminates every proper coloring extending the fixed root.
+@isnad1 id=false.3h3v.s5.d1f1aa5b4aae from=translated src=- shape=3ff30767 vocab=3449ddac
+-/
 theorem partsRootDecision_not_colorable (nodes : Array (Array PartsRootNode))
     (nodeCount : Nat)
     (hverify : PartsRootVerifiesNodeB nodes (nodeCount + 1)

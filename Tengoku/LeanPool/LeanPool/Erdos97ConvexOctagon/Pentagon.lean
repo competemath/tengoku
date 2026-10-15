@@ -16,7 +16,9 @@ namespace Erdos97Octagon
 
 open scoped InnerProductSpace
 
-/-- Five equal chords cannot form an odd cycle on a circle with the same radius. -/
+/-- Five equal chords cannot form an odd cycle on a circle with the same radius.
+@isnad1 id=false.11h7v.s9.5fc27fb0c223 from=translated src=- shape=5b8d786b vocab=ebfd62cd
+-/
 theorem no_unit_pentagon_centre
     {o a b c d e : Plane} {R : ℝ} (hR : 0 < R)
     (oa : dist o a = R) (ob : dist o b = R) (oc : dist o c = R)

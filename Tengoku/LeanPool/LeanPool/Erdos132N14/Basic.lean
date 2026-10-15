@@ -44,6 +44,9 @@ def pairWith (v w : ι) : ι × ι :=
 def insertionPairs (v : ι) (S : Finset ι) : Finset (ι × ι) :=
   S.image (pairWith v)
 
+/--
+@isnad1 id=injectiv.0h2v.s4.9b3cb45ce546 from=translated src=- shape=9ef72dcc vocab=5cdcfc67
+-/
 theorem pairWith_injective (v : ι) : Function.Injective (pairWith v) := by
   intro a b hab
   by_cases ha : a < v <;> by_cases hb : b < v
@@ -56,6 +59,9 @@ theorem pairWith_injective (v : ι) : Function.Injective (pairWith v) := by
     exact (ne_of_gt hb hvb).elim
   · simpa [pairWith, ha, hb] using congrArg Prod.snd hab
 
+/--
+@isnad1 id=eq.1h3v.s6.bb8dbe00921d from=translated src=- shape=3bd2d2b9 vocab=35f73d0e
+-/
 theorem pairs_insert {v : ι} {S : Finset ι} (hv : v ∉ S) :
     pairs (insert v S) = pairs S ∪ insertionPairs v S := by
   ext e
@@ -100,6 +106,9 @@ theorem pairs_insert {v : ι} {S : Finset ι} (hv : v ∉ S) :
       · have hgt : v < w := lt_of_le_of_ne (le_of_not_gt hlt) hwv.symm
         simp [pairs, pairWith, hlt, hw, hgt]
 
+/--
+@isnad1 id=disjoint.1h3v.s5.531240dabcab from=translated src=- shape=6c2a7a4f vocab=c9e2574b
+-/
 theorem pairs_disjoint_insertionPairs {v : ι} {S : Finset ι} (hv : v ∉ S) :
     Disjoint (pairs S) (insertionPairs v S) := by
   refine Finset.disjoint_left.mpr ?_
@@ -111,6 +120,9 @@ theorem pairs_disjoint_insertionPairs {v : ι} {S : Finset ι} (hv : v ∉ S) :
   · exact hv (by simpa [pairWith, hlt] using hmembers.2)
   · exact hv (by simpa [pairWith, hlt] using hmembers.1)
 
+/--
+@isnad1 id=mem.3h4v.s6.fea9ffe1b9f8 from=translated src=- shape=6944a062 vocab=1b3c2ac6
+-/
 theorem pairWith_mem_pairs
     {S : Finset ι} {a b : ι} (ha : a ∈ S) (hb : b ∈ S) (hab : a ≠ b) :
     pairWith a b ∈ pairs S := by
@@ -119,6 +131,9 @@ theorem pairWith_mem_pairs
   · have hgt : a < b := lt_of_le_of_ne (le_of_not_gt hlt) hab
     simp [pairs, pairWith, hlt, ha, hb, hgt]
 
+/--
+@isnad1 id=injon.1h3v.s6.ce92ab3bc008 from=translated src=- shape=c357568b vocab=217568d6
+-/
 theorem pairWith_map_injectiveOn_orderedPairs
     [LinearOrder κ] (f : κ → ι) (hf : Function.Injective f) :
     Set.InjOn (fun e : κ × κ ↦ pairWith (f e.1) (f e.2)) {e | e.1 < e.2} := by
@@ -160,11 +175,17 @@ def lowMultiplicityDistances
     (P : Configuration ι) (S : Finset ι) (threshold : ℕ) : Finset ℝ :=
   (P.realizedDistances S).filter fun d ↦ P.distanceMultiplicity S d ≤ threshold
 
+/--
+@isnad1 id=iff.0h4v.s6.10afc5c7c4e9 from=translated src=- shape=f7b1e10c vocab=4f36efeb
+-/
 theorem mem_realizedDistances_iff (P : Configuration ι) (S : Finset ι) (d : ℝ) :
     d ∈ P.realizedDistances S ↔
       ∃ e ∈ pairs S, P.pairDistance e = d := by
   simp [realizedDistances]
 
+/--
+@isnad1 id=iff.0h4v.s5.d28934f60078 from=translated src=- shape=bf401d8c vocab=5f735bca
+-/
 theorem distanceMultiplicity_pos_iff (P : Configuration ι) (S : Finset ι) (d : ℝ) :
     0 < P.distanceMultiplicity S d ↔ d ∈ P.realizedDistances S := by
   constructor
@@ -176,12 +197,18 @@ theorem distanceMultiplicity_pos_iff (P : Configuration ι) (S : Finset ι) (d :
     obtain ⟨e, he, hed⟩ := (P.mem_realizedDistances_iff S d).mp h
     exact Finset.card_pos.mpr ⟨e, Finset.mem_filter.mpr ⟨he, hed⟩⟩
 
+/--
+@isnad1 id=lt.1h4v.s5.9757f3882b75 from=translated src=- shape=bd19a007 vocab=a18d77e8
+-/
 theorem pairDistance_pos
     (P : Configuration ι) {S : Finset ι} {e : ι × ι} (he : e ∈ pairs S) :
     0 < P.pairDistance e := by
   have hlt : e.1 < e.2 := (Finset.mem_filter.mp he).2
   exact dist_pos.mpr (P.injective.ne (ne_of_lt hlt))
 
+/--
+@isnad1 id=lt.1h4v.s5.dace0893390e from=translated src=- shape=c123d781 vocab=a3e95f02
+-/
 theorem realizedDistance_pos
     (P : Configuration ι) {S : Finset ι} {d : ℝ}
     (hd : d ∈ P.realizedDistances S) :
@@ -189,11 +216,17 @@ theorem realizedDistance_pos
   obtain ⟨e, he, rfl⟩ := (P.mem_realizedDistances_iff S d).mp hd
   exact P.pairDistance_pos he
 
+/--
+@isnad1 id=le.1h3v.s5.61e322180f46 from=translated src=- shape=8ff07364 vocab=52845a62
+-/
 theorem pairs_mono {S T : Finset ι} (hST : S ⊆ T) : pairs S ⊆ pairs T := by
   intro e he
   simp only [pairs, Finset.mem_filter, Finset.mem_product] at he ⊢
   exact ⟨⟨hST he.1.1, hST he.1.2⟩, he.2⟩
 
+/--
+@isnad1 id=le.1h4v.s5.eddaca9618e2 from=translated src=- shape=ce9fc576 vocab=43c047ca
+-/
 theorem realizedDistances_mono
     (P : Configuration ι) {S T : Finset ι} (hST : S ⊆ T) :
     P.realizedDistances S ⊆ P.realizedDistances T := by
@@ -201,6 +234,9 @@ theorem realizedDistances_mono
   obtain ⟨e, he, rfl⟩ := (P.mem_realizedDistances_iff S d).mp hd
   exact (P.mem_realizedDistances_iff T _).mpr ⟨e, pairs_mono hST he, rfl⟩
 
+/--
+@isnad1 id=le.1h5v.s5.8c07318f15da from=translated src=- shape=372ad57c vocab=b9f61ed1
+-/
 theorem distanceMultiplicity_mono
     (P : Configuration ι) {S T : Finset ι} (hST : S ⊆ T) (d : ℝ) :
     P.distanceMultiplicity S d ≤ P.distanceMultiplicity T d := by
@@ -209,7 +245,9 @@ theorem distanceMultiplicity_mono
   simp only [Finset.mem_filter] at he ⊢
   exact ⟨pairs_mono hST he.1, he.2⟩
 
-/-- Multiplicities partition the unordered pairs. -/
+/-- Multiplicities partition the unordered pairs.
+@isnad1 id=eq.0h3v.s5.0093afdd6ede from=translated src=- shape=95c26bba vocab=720d9359
+-/
 theorem sum_distanceMultiplicity (P : Configuration ι) (S : Finset ι) :
     ∑ d ∈ P.realizedDistances S, P.distanceMultiplicity S d = (pairs S).card := by
   classical
@@ -251,12 +289,18 @@ def insertionMultiplicity
     (P : Configuration ι) (v : ι) (S : Finset ι) (d : ℝ) : ℕ :=
   (S.filter fun w ↦ dist (P.point v) (P.point w) = d).card
 
+/--
+@isnad1 id=eq.0h4v.s5.94cfbe9fbb49 from=translated src=- shape=08f26710 vocab=15311891
+-/
 theorem pairDistance_pairWith (P : Configuration ι) (v w : ι) :
     P.pairDistance (pairWith v w) = dist (P.point v) (P.point w) := by
   by_cases h : w < v
   · simp [pairDistance, pairWith, h, dist_comm]
   · simp [pairDistance, pairWith, h]
 
+/--
+@isnad1 id=eq.0h5v.s7.b59a6c9cd97d from=translated src=- shape=be93ecb4 vocab=280c6a07
+-/
 theorem filter_insertionPairs
     (P : Configuration ι) (v : ι) (S : Finset ι) (d : ℝ) :
     (insertionPairs v S).filter (fun e ↦ P.pairDistance e = d) =
@@ -277,7 +321,9 @@ theorem filter_insertionPairs
     rw [← hwe, P.pairDistance_pairWith]
     exact (Finset.mem_filter.mp hw).2
 
-/-- Exact insertion formula for distance multiplicity. -/
+/-- Exact insertion formula for distance multiplicity.
+@isnad1 id=eq.1h5v.s6.73680b0ff428 from=translated src=- shape=0fa8733c vocab=a13cfe05
+-/
 theorem distanceMultiplicity_insert
     (P : Configuration ι) {v : ι} {S : Finset ι} (hv : v ∉ S) (d : ℝ) :
     P.distanceMultiplicity (insert v S) d =
@@ -315,10 +361,16 @@ structure SimilarTo
   similarity : PlaneSimilarity
   point_eq : ∀ i, P.point (reindex i) = similarity (template i)
 
+/--
+@isnad1 id=injectiv.0h1v.s4.5a08b156e2e5 from=translated src=- shape=0657c12c vocab=f841328c
+-/
 theorem PlaneSimilarity.injective (f : PlaneSimilarity) : Function.Injective f := by
   exact f.toEquiv.injective
 
 omit [LinearOrder ι] in
+/--
+@isnad1 id=eq.0h8v.s8.41c7a0100381 from=translated src=- shape=38c8c597 vocab=9864ce20
+-/
 theorem SimilarTo.distance_eq
     {S : Finset ι} {template : κ → ℂ}
     (h : SimilarTo P S template) (i j : κ) :
@@ -327,7 +379,9 @@ theorem SimilarTo.distance_eq
   rw [h.point_eq, h.point_eq, h.similarity.map_dist]
 
 /-- A Euclidean similarity injects every template distance class into the
-corresponding scaled class of the selected configuration. -/
+corresponding scaled class of the selected configuration.
+@isnad1 id=le.0h7v.s6.17c69f50bbb6 from=translated src=- shape=2faf48d0 vocab=90572756
+-/
 theorem SimilarTo.distanceMultiplicity_le
     [Fintype κ] [LinearOrder κ]
     {S : Finset ι} (Q : Configuration κ) (h : SimilarTo P S Q.point) (d : ℝ) :
@@ -355,7 +409,9 @@ theorem SimilarTo.distanceMultiplicity_le
     · exact (Finset.mem_filter.mp (Finset.mem_filter.mp hg).1).2
     · exact heq
 
-/-- Euclidean similarities preserve every distance multiplicity exactly. -/
+/-- Euclidean similarities preserve every distance multiplicity exactly.
+@isnad1 id=eq.0h7v.s6.f6bd4e2c5d7f from=translated src=- shape=3e66e2f8 vocab=a6a70bec
+-/
 theorem SimilarTo.distanceMultiplicity_eq
     [Fintype κ] [LinearOrder κ]
     {S : Finset ι} (Q : Configuration κ) (h : SimilarTo P S Q.point) (d : ℝ) :

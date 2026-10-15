@@ -93,7 +93,9 @@ private def gkpFailureBlockEmbedding (depth bound : ℕ) :
         rw [hremainder, hquotient]
       _ = exponent₂.val.val := Nat.mod_add_div _ _
 
-/-- Quantitative sieve bound in every initial interval. -/
+/-- Quantitative sieve bound in every initial interval.
+@isnad1 id=le.0h2v.s7.7d51dd9a9a2a from=translated src=- shape=2f75a81f vocab=909a2ba2
+-/
 theorem card_gkpFailureExponentsBelow_le (depth bound : ℕ) :
     Fintype.card (GKPFailureExponentsBelow bound) ≤
       (bound / (2 * 3 ^ (depth + 2)) + 1) *
@@ -116,7 +118,9 @@ noncomputable def gkpFailureProportion (bound : ℕ) : ℝ :=
   Fintype.card (GKPFailureExponentsBelow bound) / bound
 
 /-- At any fixed sieve depth, the failure proportion is bounded by the
-residual periodic proportion plus one incomplete block. -/
+residual periodic proportion plus one incomplete block.
+@isnad1 id=le.1h2v.s6.7e2a606e94cd from=translated src=- shape=02971a80 vocab=09cbc7e9
+-/
 theorem gkpFailureProportion_le (depth bound : ℕ) (hbound : 0 < bound) :
     gkpFailureProportion bound ≤
       uncertifiedClassProportion depth +
@@ -158,7 +162,9 @@ theorem gkpFailureProportion_le (depth bound : ℕ) (hbound : 0 < bound) :
       rw [hratio]
 
 /-- **Density-zero failure theorem.** The proportion of exponents below
-`bound` that fail the GKP divisibility condition tends to zero. -/
+`bound` that fail the GKP divisibility condition tends to zero.
+@isnad1 id=tendsto.0h0v.s4.5935ce3a369f from=translated src=- shape=8e2810f0 vocab=25a43d2d
+-/
 theorem tendsto_gkpFailureProportion_zero :
     Filter.Tendsto gkpFailureProportion Filter.atTop (nhds 0) := by
   refine Metric.tendsto_atTop.mpr fun ε hε => ?_
@@ -211,6 +217,9 @@ condition. -/
 noncomputable def gkpSuccessProportion (bound : ℕ) : ℝ :=
   Fintype.card (GKPSuccessExponentsBelow bound) / bound
 
+/--
+@isnad1 id=eq.1h1v.s4.7bc2a515dd93 from=translated src=- shape=72d133b6 vocab=0e358b4c
+-/
 theorem gkpSuccessProportion_eq_one_sub_failure
     (bound : ℕ) (hbound : 0 < bound) :
     gkpSuccessProportion bound = 1 - gkpFailureProportion bound := by
@@ -243,7 +252,9 @@ theorem gkpSuccessProportion_eq_one_sub_failure
   linarith
 
 /-- **Density-one GKP theorem.** Powers of two satisfy the divisibility branch
-of the GKP conjecture for a set of exponents of natural density one. -/
+of the GKP conjecture for a set of exponents of natural density one.
+@isnad1 id=tendsto.0h0v.s4.05c7988f8284 from=translated src=- shape=8e2810f0 vocab=629c8953
+-/
 theorem tendsto_gkpSuccessProportion_one :
     Filter.Tendsto gkpSuccessProportion Filter.atTop (nhds 1) := by
   have hone :

@@ -65,16 +65,23 @@ abbrev Str := List Bool
 initial segment). -/
 def cone (σ : Str) : Set Str := {w | σ <+: w}
 
+/--
+@isnad1 id=iff.0h2v.s4.fdb710039b64 from=translated src=- shape=542ed584 vocab=1c50368c
+-/
 @[simp] theorem mem_cone {σ w : Str} : w ∈ cone σ ↔ σ <+: w := Iff.rfl
 
-/-- `ΛΣ* = Σ*`: the cone of the empty string is everything (Scott's `Δ`). -/
+/-- `ΛΣ* = Σ*`: the cone of the empty string is everything (Scott's `Δ`).
+@isnad1 id=eq.0h0v.s3.f8d0071ecb2e from=translated src=- shape=f18a2434 vocab=10b488b1
+-/
 theorem cone_nil : cone [] = Set.univ := by
   ext w; simp [cone]
 
 /-- **Cones reverse the prefix order.** `σΣ* ⊆ τΣ*` iff `τ` is an initial segment
 of `σ`: a longer
 prefix carves out a *smaller* cone. (`→` tests at `σ ∈ σΣ*`; `←` is transitivity
-of `<+:`.) -/
+of `<+:`.)
+@isnad1 id=iff.0h2v.s4.36035de3a0fc from=translated src=- shape=19c51dc9 vocab=96580b8f
+-/
 theorem cone_subset_cone {σ τ : Str} : cone σ ⊆ cone τ ↔ τ <+: σ := by
   constructor
   · intro h
@@ -87,7 +94,9 @@ inclusions we get
 `τ <+: σ` and `σ <+: τ`, and a prefix-antisymmetry (equal lengths) finishes. Used
 by the approximable
 maps `B → T` / `B → B` (Examples 2.3, 2.4) to read off the unique generating
-prefix of a cone. -/
+prefix of a cone.
+@isnad1 id=eq.1h2v.s4.d81c6d1acb1d from=translated src=- shape=8d95209b vocab=55da7df5
+-/
 theorem cone_injective {σ τ : Str} (h : cone σ = cone τ) : σ = τ := by
   have h1 : τ <+: σ := cone_subset_cone.mp (le_of_eq h)
   have h2 : σ <+: τ := cone_subset_cone.mp (le_of_eq h.symm)
@@ -97,7 +106,9 @@ theorem cone_injective {σ τ : Str} (h : cone σ = cone τ) : σ = τ := by
 one contains the
 other, or they are disjoint (incomparable prefixes have no common extension).
 Choice-free: the
-prefix relation on `List Bool` is decidable. -/
+prefix relation on `List Bool` is decidable.
+@isnad1 id=or.0h2v.s5.1702c5bd9607 from=translated src=- shape=615a3bce vocab=11761244
+-/
 theorem cone_trichotomy (σ τ : Str) :
     cone σ ⊆ cone τ ∨ cone τ ⊆ cone σ ∨ cone σ ∩ cone τ = ∅ :=
   if hστ : σ <+: τ then Or.inr (Or.inl (cone_subset_cone.mpr hστ))
@@ -116,7 +127,9 @@ def memB (X : Set Str) : Prop := ∃ σ, X = cone σ
 
 /-- **Exercise ("`B` is a neighbourhood system").** The family `B = {σΣ* ∣ σ ∈
 Σ*}` is pairwise
-nested-or-disjoint, by `cone_trichotomy`. -/
+nested-or-disjoint, by `cone_trichotomy`.
+@isnad1 id=nestedor.0h0v.s1.a389fedc83ee from=translated src=- shape=25b03439 vocab=b44ac6c5
+-/
 theorem nestedOrDisjoint : NestedOrDisjoint memB := by
   rintro X Y ⟨σ, rfl⟩ ⟨τ, rfl⟩
   exact cone_trichotomy σ τ
@@ -127,11 +140,19 @@ def B : NeighborhoodSystem Str :=
   NeighborhoodSystem.ofNestedOrDisjoint memB Set.univ ⟨[], cone_nil.symm⟩ nestedOrDisjoint
     (fun _ => Set.subset_univ _)
 
+/--
+@isnad1 id=iff.0h1v.s3.794cfedaff49 from=translated src=- shape=d213e086 vocab=6221367a
+-/
 @[simp] theorem B_mem {X : Set Str} : B.mem X ↔ memB X := Iff.rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.747c6c18685c from=translated src=- shape=d672ce25 vocab=1a9a50e2
+-/
 @[simp] theorem B_master : B.master = Set.univ := rfl
 
-/-- Every cone is a neighbourhood of `B`. -/
+/-- Every cone is a neighbourhood of `B`.
+@isnad1 id=mem.0h1v.s2.67e2ef8266ca from=translated src=- shape=9bb0b988 vocab=0ea5085f
+-/
 theorem memB_cone (σ : Str) : B.mem (cone σ) := ⟨σ, rfl⟩
 
 /-! ### Prepending a prefix: `σX = {στ ∣ τ ∈ X}`. -/
@@ -139,12 +160,17 @@ theorem memB_cone (σ : Str) : B.mem (cone σ) := ⟨σ, rfl⟩
 /-- Scott's `σX = {στ ∣ τ ∈ X}` (prepend the prefix `σ` to every member of `X`). -/
 def prepend (σ : Str) (X : Set Str) : Set Str := {w | ∃ τ, τ ∈ X ∧ w = σ ++ τ}
 
+/--
+@isnad1 id=iff.0h3v.s5.868eddec1e19 from=translated src=- shape=f97296ed vocab=9e498b1d
+-/
 @[simp] theorem mem_prepend {σ : Str} {X : Set Str} {w : Str} :
     w ∈ prepend σ X ↔ ∃ τ, τ ∈ X ∧ w = σ ++ τ := Iff.rfl
 
 /-- **`σ(τΣ*) = (στ)Σ*`.** Prepending `σ` to a cone yields the cone of the
 concatenation — this is
-why `σx` lands back in `B` and why `σ⊥` is again a finite element. -/
+why `σx` lands back in `B` and why `σ⊥` is again a finite element.
+@isnad1 id=eq.0h2v.s4.d322a22e4cb8 from=translated src=- shape=0067d683 vocab=9ab1a8c3
+-/
 theorem prepend_cone (σ ρ : Str) : prepend σ (cone ρ) = cone (σ ++ ρ) := by
   ext w
   simp only [mem_prepend, mem_cone]
@@ -153,7 +179,9 @@ theorem prepend_cone (σ ρ : Str) : prepend σ (cone ρ) = cone (σ ++ ρ) := b
   · rintro ⟨t, ht⟩
     exact ⟨ρ ++ t, List.prefix_append ρ t, by rw [← ht, List.append_assoc]⟩
 
-/-- `σΣ* = σ·Σ*`: prepending `σ` to the whole space recovers the cone of `σ`. -/
+/-- `σΣ* = σ·Σ*`: prepending `σ` to the whole space recovers the cone of `σ`.
+@isnad1 id=eq.0h1v.s3.1b3573d9e395 from=translated src=- shape=bb0e013e vocab=1c4fe956
+-/
 theorem prepend_univ (σ : Str) : prepend σ Set.univ = cone σ := by
   ext w
   simp only [mem_prepend, Set.mem_univ, true_and, mem_cone]
@@ -162,7 +190,9 @@ theorem prepend_univ (σ : Str) : prepend σ Set.univ = cone σ := by
   · rintro ⟨t, ht⟩
     exact ⟨t, ht.symm⟩
 
-/-- Prepending preserves membership in `B` (`σ` applied to a cone is a cone). -/
+/-- Prepending preserves membership in `B` (`σ` applied to a cone is a cone).
+@isnad1 id=mem.1h2v.s4.a7cceef0d2d0 from=translated src=- shape=32106f09 vocab=3977499e
+-/
 theorem memB_prepend (σ : Str) {X : Set Str} (hX : B.mem X) : B.mem (prepend σ X) := by
   obtain ⟨ρ, rfl⟩ := hX
   exact ⟨σ ++ ρ, prepend_cone σ ρ⟩
@@ -181,7 +211,9 @@ the sequence `σ₁`." The approximation order on finite elements is exactly the
 prefix order:
 `σ₀⊥ ⊑ σ₁⊥ ↔ σ₀ <+: σ₁`. (Via `principal_le_iff` — reversal — composed with
 `cone_subset_cone` —
-reversal again — which cancel to give the prefix order directly.) -/
+reversal again — which cancel to give the prefix order directly.)
+@isnad1 id=iff.0h2v.s4.546a2339515c from=translated src=- shape=a8e24674 vocab=cb58ad01
+-/
 theorem sigmaBot_le_iff (σ₀ σ₁ : Str) :
     sigmaBot σ₀ ≤ sigmaBot σ₁ ↔ σ₀ <+: σ₁ := by
   rw [sigmaBot, sigmaBot, B.principal_le_iff, cone_subset_cone]
@@ -217,7 +249,9 @@ def sigmaElt (σ : Str) (x : B.Element) : B.Element where
 
 /-- **`σ⊥` really is `σ` applied to `⊥`.** `sigmaElt σ ⊥ = sigmaBot σ`, justifying
 the `σ⊥`
-notation: applying `σ` to the least element produces the finite element `↑(σΣ*)`. -/
+notation: applying `σ` to the least element produces the finite element `↑(σΣ*)`.
+@isnad1 id=eq.0h1v.s3.6dad139f5a60 from=translated src=- shape=88fa8707 vocab=738034db
+-/
 theorem sigmaElt_bot (σ : Str) : sigmaElt σ B.bot = sigmaBot σ := by
   apply Element.ext
   intro Y
@@ -246,7 +280,9 @@ approximations" in `|B|`
 cone). The further
 arrangement of the `σ` into a single increasing chain `σ₀ prefix σ₁ prefix …` requires
 choice/enumeration and
-is left to Scott's prose. -/
+is left to Scott's prose.
+@isnad1 id=iff.0h2v.s4.c0f3112c67f3 from=translated src=- shape=2f1f9fb4 vocab=f40134e0
+-/
 theorem mem_iff_exists_sigmaBot (x : B.Element) {Z : Set Str} :
     x.mem Z ↔ ∃ σ, x.mem (cone σ) ∧ (sigmaBot σ).mem Z := by
   constructor

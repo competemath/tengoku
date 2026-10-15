@@ -33,7 +33,9 @@ open Real Finset
 /-! ## Convexity bridge -/
 
 /-- If `f` is convex on `[a, b]` and negative at both endpoints,
-then `f` is negative on the entire interval. -/
+then `f` is negative on the entire interval.
+@isnad1 id=lt.6h4v.s6.5e1a8c6daca4 from=translated src=- shape=539ae21d vocab=e0fca9e7
+-/
 theorem convexOn_Icc_neg_of_endpoints {a b : ℝ} {f : ℝ → ℝ}
     (hab : a ≤ b)
     (hconv : ConvexOn ℝ (Set.Icc a b) f)
@@ -45,6 +47,9 @@ theorem convexOn_Icc_neg_of_endpoints {a b : ℝ} {f : ℝ → ℝ}
 
 /-! ## Real Phi'' lower bounds -/
 
+/--
+@isnad1 id=lt.2h1v.s7.923631013bb4 from=translated src=- shape=6722572a vocab=232d59b6
+-/
 theorem Phi''_lower_real_E₁ :
     ∀ x : ℝ, 1/100 ≤ x → x ≤ 1003/10000 →
       3 < (4 - 2) / x + (4 - 1) / (1 - x) - 1 / (1/3 - x) := by
@@ -52,6 +57,9 @@ theorem Phi''_lower_real_E₁ :
   rw [div_add_div, div_sub_div, lt_div_iff₀] <;>
   nlinarith [sq_nonneg (x - 1003 / 10000)]
 
+/--
+@isnad1 id=lt.2h1v.s7.4367d9e9ea60 from=translated src=- shape=6722572a vocab=232d59b6
+-/
 theorem Phi''_lower_real_E₂ :
     ∀ x : ℝ, 1/100 ≤ x → x ≤ 3009/10000 →
       3 < (4 - 2) / x + (4 - 1) / (1 - x) - 1 / (4/7 - x) := by
@@ -59,6 +67,9 @@ theorem Phi''_lower_real_E₂ :
   rw [div_add_div, div_sub_div, lt_div_iff₀] <;>
   nlinarith [mul_self_nonneg (x - 1 / 100), mul_self_nonneg (x - 3009 / 10000)]
 
+/--
+@isnad1 id=lt.2h1v.s7.a67da791e19a from=translated src=- shape=6722572a vocab=232d59b6
+-/
 theorem Phi''_lower_real_E₃ :
     ∀ x : ℝ, 1/100 ≤ x → x ≤ 47/625 →
       3 < (4 - 2) / x + (4 - 1) / (1 - x) - 1 / (2/7 - x) := by
@@ -66,6 +77,9 @@ theorem Phi''_lower_real_E₃ :
   rw [div_add_div, div_sub_div, lt_div_iff₀] <;>
   nlinarith [sq_nonneg (x - 1 / 100)]
 
+/--
+@isnad1 id=lt.2h1v.s7.e64b4c1d3721 from=translated src=- shape=6722572a vocab=232d59b6
+-/
 theorem Phi''_lower_real_E₄ :
     ∀ x : ℝ, 1/100 ≤ x → x ≤ 329/1250 →
       3 < (5 - 2) / x + (5 - 1) / (1 - x) - 1 / (5/11 - x) := by
@@ -85,6 +99,9 @@ These require atanh-based log certificates from `Real.sum_range_sub_log_div_le`.
 Each endpoint bound is a finite computation involving ~8 log evaluations.
 -/
 
+/--
+@isnad1 id=lt.0h0v.s6.ff3f8edc3bdb from=translated src=- shape=32e4f3ea vocab=0c31da9f
+-/
 theorem Phi_E₁_at_delta : Phi 4 (1/3) (1/100 : ℝ) < -(1 : ℝ)/1000 := by
   norm_num [ Phi, hEntropy ] at *;
   norm_num [ Real.log_div ];
@@ -132,6 +149,9 @@ theorem Phi_E₁_at_delta : Phi 4 (1/3) (1/100 : ℝ) < -(1 : ℝ)/1000 := by
    norm_num at *);
   linarith
 
+/--
+@isnad1 id=lt.0h0v.s6.e1da21a10268 from=translated src=- shape=32e4f3ea vocab=0c31da9f
+-/
 theorem Phi_E₁_at_alpha : Phi 4 (1/3) (1003/10000 : ℝ) < -(1 : ℝ)/1000 := by
   unfold Phi hEntropy;
   have := Real.sum_range_le_log_div
@@ -164,6 +184,9 @@ theorem Phi_E₁_at_alpha : Phi 4 (1/3) (1003/10000 : ℝ) < -(1 : ℝ)/1000 := 
   rw [ show ( 4 : ℝ ) = 2 ^ 2 by norm_num, Real.log_pow ] at *; norm_num at *;
   linarith [ Real.log_two_gt_d9 ]
 
+/--
+@isnad1 id=lt.0h0v.s6.878210ec6415 from=translated src=- shape=32e4f3ea vocab=0c31da9f
+-/
 theorem Phi_E₂_at_delta : Phi 4 (4/7) (1/100 : ℝ) < -(1 : ℝ)/1000 := by
   unfold Phi hEntropy; norm_num [ Real.log_div ];
   rw [show (100 : ℝ) = 2 ^ 2 * 5 ^ 2 by norm_num,
@@ -224,6 +247,9 @@ theorem Phi_E₂_at_delta : Phi 4 (4/7) (1/100 : ℝ) < -(1 : ℝ)/1000 := by
     exact lt_of_le_of_lt (pow_le_pow_left₀ (by positivity) this _) (by norm_num);
   have := Real.log_two_gt_d9; norm_num at *; linarith
 
+/--
+@isnad1 id=lt.0h0v.s6.65527c591fd5 from=translated src=- shape=32e4f3ea vocab=0c31da9f
+-/
 theorem Phi_E₂_at_alpha : Phi 4 (4/7) (3009/10000 : ℝ) < -(1 : ℝ)/1000 := by
   have h_expr : Phi 4 (4/7) (3009/10000) =
     (-18937/70000) * Real.log (18937/70000)
@@ -240,6 +266,9 @@ theorem Phi_E₂_at_alpha : Phi 4 (4/7) (3009/10000 : ℝ) < -(1 : ℝ)/1000 := 
     log_lower_6991_10000, log_lower_9027_10000, log_upper_21063_10000,
     log_upper_6991_2500, log_lower_4]
 
+/--
+@isnad1 id=lt.0h0v.s6.42ee9b173c61 from=translated src=- shape=32e4f3ea vocab=0c31da9f
+-/
 theorem Phi_E₃_at_delta : Phi 4 (2/7) (1/100 : ℝ) < -(1 : ℝ)/1000 := by
   unfold Phi hEntropy;
   norm_num [ Real.log_div ]; ring_nf; norm_num;
@@ -290,6 +319,9 @@ theorem Phi_E₃_at_delta : Phi 4 (2/7) (1/100 : ℝ) < -(1 : ℝ)/1000 := by
     Real.log_pos (show 1 < 5 / 4 by norm_num),
     Real.log_pos (show 1 < 7 / 4 by norm_num)]
 
+/--
+@isnad1 id=lt.0h0v.s6.6613b1328dd7 from=translated src=- shape=32e4f3ea vocab=0c31da9f
+-/
 theorem Phi_E₃_at_alpha : Phi 4 (2/7) (47/625 : ℝ) < -(1 : ℝ)/1000 := by
   have h_expr : Phi 4 (2/7) (47/625) =
     (-94/625) * Real.log (47/625)
@@ -306,6 +338,9 @@ theorem Phi_E₃_at_alpha : Phi 4 (2/7) (47/625 : ℝ) < -(1 : ℝ)/1000 := by
     log_lower_94_125, log_lower_578_625, log_upper_658_625,
     log_upper_2312_625, log_lower_4]
 
+/--
+@isnad1 id=lt.0h0v.s6.7f10a64d55fc from=translated src=- shape=32e4f3ea vocab=0c31da9f
+-/
 theorem Phi_E₄_at_delta : Phi 5 (5/11) (1/100 : ℝ) < -(1 : ℝ)/1000 := by
   unfold Phi hEntropy;
   norm_num [ Real.log_div ];
@@ -369,6 +404,9 @@ theorem Phi_E₄_at_delta : Phi 5 (5/11) (1/100 : ℝ) < -(1 : ℝ)/1000 := by
       exact lt_of_le_of_lt (pow_le_pow_left₀ (by positivity) this _) (by norm_num);
   have := Real.log_two_gt_d9; norm_num at *; linarith
 
+/--
+@isnad1 id=lt.0h0v.s6.04c90f7217ca from=translated src=- shape=32e4f3ea vocab=0c31da9f
+-/
 theorem Phi_E₄_at_alpha : Phi 5 (5/11) (329/1250 : ℝ) < -(1 : ℝ)/1000 := by
   have h_expr : Phi 5 (5/11) (329/1250) =
     (-2631/13750) * Real.log (2631/13750)

@@ -35,7 +35,9 @@ noncomputable def twoPowerTernaryUnitWordEquiv (length : ℕ) :
   (twoPowerUnitEquiv length).trans (ternaryUnitWordEquiv length).symm
 
 /-- The word corresponding to an exponent is the fixed-length ternary
-expansion of its power-of-two residue. -/
+expansion of its power-of-two residue.
+@isnad1 id=eq.0h2v.s8.1397828bc2cc from=translated src=- shape=18f6e70b vocab=c32a2143
+-/
 theorem ternaryWordValue_twoPowerTernaryUnitWordEquiv_apply
     (length : ℕ) (exponent : Fin (2 * 3 ^ length)) :
     ternaryWordValue (twoPowerTernaryUnitWordEquiv length exponent).val =
@@ -94,7 +96,9 @@ noncomputable def uncertifiedExponentClassesEquivUnitBadCarryWords (n : ℕ) :
     exact (unitWord_bad_iff_carryCount_lt_two word).symm)
 
 /-- Exact residual count: after `n + 3` digits, precisely
-`(n + 9) * 2 ^ n` exponent classes remain uncertified. -/
+`(n + 9) * 2 ^ n` exponent classes remain uncertified.
+@isnad1 id=eq.0h1v.s8.eae781233aeb from=translated src=- shape=904125e8 vocab=49f39845
+-/
 theorem card_uncertifiedExponentClasses (n : ℕ) :
     Fintype.card (UncertifiedExponentClasses n) =
       (n + 9) * 2 ^ n := by
@@ -102,7 +106,9 @@ theorem card_uncertifiedExponentClasses (n : ℕ) :
     (uncertifiedExponentClassesEquivUnitBadCarryWords n),
     card_unitBadCarryWords]
 
-/-- The complementary certified set has the corresponding exact size. -/
+/-- The complementary certified set has the corresponding exact size.
+@isnad1 id=eq.0h1v.s8.f0cb8aab1ae5 from=translated src=- shape=e0c331bb vocab=e5b2539f
+-/
 theorem card_certifiedExponentClasses (n : ℕ) :
     Fintype.card (CertifiedExponentClasses n) =
       2 * 3 ^ (n + 2) - (n + 9) * 2 ^ n := by
@@ -136,7 +142,9 @@ noncomputable def uncertifiedClassProportion (n : ℕ) : ℝ :=
   ((n : ℝ) + 9) / 18 * ((2 : ℝ) / 3) ^ n
 
 /-- The analytic proportion is exactly the ratio of the residual class count
-to the full exponent period. -/
+to the full exponent period.
+@isnad1 id=eq.0h1v.s8.a76c36f89711 from=translated src=- shape=524fed87 vocab=26cabdb2
+-/
 theorem uncertifiedClassProportion_eq_card_ratio (n : ℕ) :
     uncertifiedClassProportion n =
       Fintype.card (UncertifiedExponentClasses n) /
@@ -149,7 +157,9 @@ theorem uncertifiedClassProportion_eq_card_ratio (n : ℕ) :
   ring_nf
 
 /-- The proportion of exponent classes left unresolved by the finite-prefix
-sieve tends to zero as the prefix depth increases. -/
+sieve tends to zero as the prefix depth increases.
+@isnad1 id=tendsto.0h0v.s4.2140c32624d9 from=translated src=- shape=8e2810f0 vocab=b62e3572
+-/
 theorem tendsto_uncertifiedClassProportion :
     Filter.Tendsto uncertifiedClassProportion Filter.atTop (nhds 0) := by
   have hlinear := tendsto_self_mul_const_pow_of_lt_one
@@ -170,6 +180,9 @@ tends to one. -/
 noncomputable def certifiedClassProportion (n : ℕ) : ℝ :=
   1 - uncertifiedClassProportion n
 
+/--
+@isnad1 id=tendsto.0h0v.s4.2408afbaa75b from=translated src=- shape=8e2810f0 vocab=a5aa6cef
+-/
 theorem tendsto_certifiedClassProportion :
     Filter.Tendsto certifiedClassProportion Filter.atTop (nhds 1) := by
   have hone :
@@ -180,7 +193,9 @@ theorem tendsto_certifiedClassProportion :
   norm_num
 
 /-- A certificate for the reduced exponent class propagates to every exponent
-in that congruence class and proves divisibility by nine. -/
+in that congruence class and proves divisibility by nine.
+@isnad1 id=dvd.1h2v.s7.4626a860dd75 from=translated src=- shape=e6c143c8 vocab=7fac3d93
+-/
 theorem nine_dvd_centralBinom_two_pow_of_reduced_carry_certificate
     (n k : ℕ)
     (hcarry :
@@ -193,7 +208,9 @@ theorem nine_dvd_centralBinom_two_pow_of_reduced_carry_certificate
   exact hcarry
 
 /-- Every certified class denotes an infinite congruence class of GKP inputs
-whose central binomial coefficients are divisible by nine. -/
+whose central binomial coefficients are divisible by nine.
+@isnad1 id=dvd.1h3v.s8.e46c0932ed46 from=translated src=- shape=41d7b346 vocab=a8c10780
+-/
 theorem nine_dvd_centralBinom_two_pow_of_certified_class
     (n k : ℕ) (exponentClass : CertifiedExponentClasses n)
     (hk : k % (2 * 3 ^ (n + 2)) = exponentClass.val.val) :
@@ -202,7 +219,9 @@ theorem nine_dvd_centralBinom_two_pow_of_certified_class
   simpa [hk] using exponentClass.property
 
 /-- The same certified classes avoid the deficient-carry language appearing
-in the exact GKP characterization. -/
+in the exact GKP characterization.
+@isnad1 id=eq.1h3v.s8.dbb36f934b4e from=translated src=- shape=6eb885d5 vocab=48bc7fea
+-/
 theorem badCarryLanguage_two_pow_eq_false_of_certified_class
     (n k : ℕ) (exponentClass : CertifiedExponentClasses n)
     (hk : k % (2 * 3 ^ (n + 2)) = exponentClass.val.val) :
@@ -217,7 +236,9 @@ theorem badCarryLanguage_two_pow_eq_false_of_certified_class
 
 /-- **Exact all-depth modular GKP sieve.** At every depth, the theorem gives
 the exact number of certified exponent classes and proves the GKP divisibility
-conclusion on every exponent in each such class. -/
+conclusion on every exponent in each such class.
+@isnad1 id=and.0h1v.s9.e5bfc4212ecd from=translated src=- shape=e988eedc vocab=cdfe5de2
+-/
 theorem gkp_exact_modular_sieve (n : ℕ) :
     Fintype.card (CertifiedExponentClasses n) =
         2 * 3 ^ (n + 2) - (n + 9) * 2 ^ n ∧

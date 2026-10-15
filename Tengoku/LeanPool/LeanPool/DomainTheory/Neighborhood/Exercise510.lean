@@ -90,7 +90,9 @@ variable {V₀ : NeighborhoodSystem α} {V₁ : NeighborhoodSystem β}
 
 /-- A neighbourhood that is `⊆ Δ₀` and equals `Δ₀` exactly when it contains `Δ₀`.
 A proper factor
-`X ≠ Δ₀` stays proper after intersecting with anything: `X ∩ X' ≠ Δ₀`. -/
+`X ≠ Δ₀` stays proper after intersecting with anything: `X ∩ X' ≠ Δ₀`.
+@isnad1 id=ne.2h4v.s5.2da1bed6c24e from=translated src=- shape=afbca2d7 vocab=73256486
+-/
 theorem inter_ne_master_left {X X' : Set α} (hX : V₀.mem X) (hXne : X ≠ V₀.master) :
     X ∩ X' ≠ V₀.master := by
   intro h
@@ -98,6 +100,9 @@ theorem inter_ne_master_left {X X' : Set α} (hX : V₀.mem X) (hXne : X ≠ V�
   refine Set.Subset.antisymm (V₀.sub_master hX) ?_
   rw [← h]; exact Set.inter_subset_left
 
+/--
+@isnad1 id=ne.2h4v.s5.2da1bed6c24e from=translated src=- shape=afbca2d7 vocab=73256486
+-/
 theorem inter_ne_master_right {Y Y' : Set β} (hY : V₁.mem Y) (hYne : Y ≠ V₁.master) :
     Y ∩ Y' ≠ V₁.master :=
   inter_ne_master_left (V₀ := V₁) hY hYne
@@ -157,19 +162,29 @@ def smash (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) : Neighb
     · exact subset_rfl
     · exact prodNbhd_subset_iff.mpr ⟨V₀.sub_master hX, V₁.sub_master hY⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.ec36360dd4c2 from=translated src=- shape=343ad82e vocab=7b73494b
+-/
 @[simp] theorem smash_master :
     (smash V₀ V₁).master = prodNbhd V₀.master V₁.master := rfl
 
+/--
+@isnad1 id=iff.0h5v.s5.c6f938d6c38b from=translated src=- shape=34c4915a vocab=8a723e19
+-/
 theorem smash_mem_iff {W : Set (α ⊕ β)} :
     (smash V₀ V₁).mem W ↔
       W = prodNbhd V₀.master V₁.master ∨ SmashProper V₀ V₁ W := Iff.rfl
 
-/-- A proper product neighbourhood is a neighbourhood of the smash. -/
+/-- A proper product neighbourhood is a neighbourhood of the smash.
+@isnad1 id=mem.4h6v.s5.8c9557b4c030 from=translated src=- shape=b6b23874 vocab=b89f7eaa
+-/
 theorem smash_mem_proper {X : Set α} {Y : Set β} (hX : V₀.mem X) (hXne : X ≠ V₀.master)
     (hY : V₁.mem Y) (hYne : Y ≠ V₁.master) : (smash V₀ V₁).mem (prodNbhd X Y) :=
   Or.inr ⟨X, Y, hX, hXne, hY, hYne, rfl⟩
 
-/-- `⊥` of the smash is exactly `{Δ₀ ∪ Δ₁}`. -/
+/-- `⊥` of the smash is exactly `{Δ₀ ∪ Δ₁}`.
+@isnad1 id=iff.0h5v.s5.4d91f181824f from=translated src=- shape=046b31e2 vocab=1cca83c7
+-/
 theorem smash_mem_bot {W : Set (α ⊕ β)} :
     (smash V₀ V₁).bot.mem W ↔ W = prodNbhd V₀.master V₁.master := by
   rw [NeighborhoodSystem.mem_bot, smash_master]
@@ -223,13 +238,18 @@ def smashPair (x : V₀.Element) (y : V₁.Element) : (smash V₀ V₁).Element 
         right
         exact ⟨X', Y', x.up_mem hX hX' hXX', hX'ne, y.up_mem hY hY' hYY', hY'ne, rfl⟩
 
+/--
+@isnad1 id=iff.0h7v.s6.3191435f082b from=translated src=- shape=be5b66dd vocab=aa44d791
+-/
 @[simp] theorem mem_smashPair {x : V₀.Element} {y : V₁.Element} {W : Set (α ⊕ β)} :
     (smashPair x y).mem W ↔ W = prodNbhd V₀.master V₁.master ∨
       ∃ X Y, x.mem X ∧ X ≠ V₀.master ∧ y.mem Y ∧ Y ≠ V₁.master ∧ W = prodNbhd X Y := Iff.rfl
 
 /-- An element is `⊥` iff every neighbourhood it contains is the master: `x ≠ ⊥`
 exactly when `x`
-contains a *proper* neighbourhood. -/
+contains a *proper* neighbourhood.
+@isnad1 id=ex.1h3v.s5.2ced6d3f92a9 from=translated src=- shape=115bfc9b vocab=9633023b
+-/
 theorem exists_proper_of_ne_bot {x : V₀.Element} (hx : x ≠ V₀.bot) :
     ∃ X, x.mem X ∧ X ≠ V₀.master := by
   by_contra hc
@@ -246,7 +266,9 @@ theorem eq_bot_of_no_proper {x : V₀.Element} (hx : ∀ X, x.mem X → X = V₀
 /-- The strict pairing is `⊥` iff one of the components is `⊥`: the smash glues
 `(⊥, y)` and
 `(x, ⊥)`
-to a single bottom. -/
+to a single bottom.
+@isnad1 id=iff.0h6v.s5.8ca4d91675cf from=translated src=- shape=5df71435 vocab=81e057dd
+-/
 theorem smashPair_eq_bot_iff {x : V₀.Element} {y : V₁.Element} :
     smashPair x y = (smash V₀ V₁).bot ↔ x = V₀.bot ∨ y = V₁.bot := by
   constructor
@@ -271,24 +293,32 @@ theorem smashPair_eq_bot_iff {x : V₀.Element} {y : V₁.Element} :
       · rw [hx, NeighborhoodSystem.mem_bot] at hxX; exact hXne hxX
       · rw [hy, NeighborhoodSystem.mem_bot] at hyY; exact hYne hyY
 
-/-- The strict pairing is monotone in both arguments. -/
+/-- The strict pairing is monotone in both arguments.
+@isnad1 id=le.2h8v.s6.a0f906234f55 from=translated src=- shape=49f81f87 vocab=e1eb757b
+-/
 theorem smashPair_mono {x x' : V₀.Element} {y y' : V₁.Element} (hx : x ≤ x') (hy : y ≤ y') :
     smashPair x y ≤ smashPair x' y' := by
   rintro W (rfl | ⟨X, Y, hxX, hXne, hyY, hYne, rfl⟩)
   · exact Or.inl rfl
   · exact Or.inr ⟨X, Y, hx X hxX, hXne, hy Y hyY, hYne, rfl⟩
 
-/-- The principal filter of the master is `⊥`. -/
+/-- The principal filter of the master is `⊥`.
+@isnad1 id=eq.2h3v.s5.cd6f5c8a95da from=translated src=- shape=428c60c4 vocab=d8b74d3f
+-/
 theorem principal_master_eq_bot {X : Set α} (hX : V₀.mem X) (hXm : X = V₀.master) :
     V₀.principal hX = V₀.bot := by
   subst hXm; rfl
 
-/-- A `⊥` left factor collapses the strict pairing to `⊥` (choice-free). -/
+/-- A `⊥` left factor collapses the strict pairing to `⊥` (choice-free).
+@isnad1 id=eq.0h5v.s5.e7a56a40651a from=translated src=- shape=8c8d6e7d vocab=81e057dd
+-/
 theorem smashPair_bot_left (y : V₁.Element) : smashPair V₀.bot y = (smash V₀ V₁).bot := by
   apply eq_bot_of_no_proper
   simp_all
 
-/-- A `⊥` right factor collapses the strict pairing to `⊥` (choice-free). -/
+/-- A `⊥` right factor collapses the strict pairing to `⊥` (choice-free).
+@isnad1 id=eq.0h5v.s5.8b7ef5901d65 from=translated src=- shape=235a634b vocab=81e057dd
+-/
 theorem smashPair_bot_right (x : V₀.Element) : smashPair x V₁.bot = (smash V₀ V₁).bot := by
   apply eq_bot_of_no_proper
   simp_all
@@ -320,7 +350,9 @@ output. -/
 def IsStrict (f : ApproximableMap V₀ V₁) : Prop :=
   ∀ ⦃Y⦄, f.rel V₀.master Y → Y = V₁.master
 
-/-- Strictness is exactly `f(⊥) = ⊥`. -/
+/-- Strictness is exactly `f(⊥) = ⊥`.
+@isnad1 id=iff.0h5v.s5.33bddc25e112 from=translated src=- shape=1867c6af vocab=f21da8fe
+-/
 theorem isStrict_iff_apply_bot {f : ApproximableMap V₀ V₁} :
     IsStrict f ↔ f.toElementMap V₀.bot = V₁.bot := by
   constructor
@@ -338,16 +370,22 @@ theorem isStrict_iff_apply_bot {f : ApproximableMap V₀ V₁} :
     have : (f.toElementMap V₀.bot).mem Y := ⟨V₀.master, V₀.bot.master_mem, hrel⟩
     simp_all
 
-/-- Strictness is downward closed: a map below a strict map is strict. -/
+/-- Strictness is downward closed: a map below a strict map is strict.
+@isnad1 id=isstrict.2h6v.s5.16e356c8c73e from=translated src=- shape=10bdf27f vocab=90c42d91
+-/
 theorem IsStrict.mono {f g : ApproximableMap V₀ V₁} (hf : IsStrict f) (hgf : g ≤ f) : IsStrict g :=
   fun _ hrel => hf (hgf _ _ hrel)
 
-/-- The constant map at `⊥` is strict. -/
+/-- The constant map at `⊥` is strict.
+@isnad1 id=isstrict.0h4v.s4.d1234171506a from=translated src=- shape=275ac7bd vocab=10416df2
+-/
 theorem isStrict_constBot : IsStrict (constMap V₀ (V₁.bot)) := by
   rintro Y ⟨_, hY⟩
   rwa [NeighborhoodSystem.mem_bot] at hY
 
-/-- The identity is strict. -/
+/-- The identity is strict.
+@isnad1 id=isstrict.0h2v.s3.3c314956d4fc from=translated src=- shape=9f9bd735 vocab=d404e091
+-/
 theorem isStrict_idMap : IsStrict (idMap V₀) := by
   rintro Y ⟨_, hY, hsub⟩
   exact Set.Subset.antisymm (V₀.sub_master hY) hsub
@@ -360,6 +398,9 @@ abbrev StrictMap (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) :
 /-- A step set among strict maps: `[X, Y] = {f strict ∣ X f Y}`. -/
 def sstep (X : Set α) (Y : Set β) : Set (StrictMap V₀ V₁) := {f | f.1.rel X Y}
 
+/--
+@isnad1 id=iff.0h7v.s6.4113b70b8ac1 from=translated src=- shape=0c5656ec vocab=c714b0c2
+-/
 @[simp] theorem mem_sstep {X : Set α} {Y : Set β} {f : StrictMap V₀ V₁} :
     f ∈ sstep X Y ↔ f.1.rel X Y := Iff.rfl
 
@@ -367,17 +408,29 @@ def sstep (X : Set α) (Y : Set β) : Set (StrictMap V₀ V₁) := {f | f.1.rel 
 def sstepFun (L : List (Set α × Set β)) : Set (StrictMap V₀ V₁) :=
   {f | ∀ p ∈ L, f.1.rel p.1 p.2}
 
+/--
+@isnad1 id=iff.0h6v.s6.6fc1cbdf6200 from=translated src=- shape=29f8ff16 vocab=f383ab06
+-/
 @[simp] theorem mem_sstepFun {L : List (Set α × Set β)} {f : StrictMap V₀ V₁} :
     f ∈ sstepFun L ↔ ∀ p ∈ L, f.1.rel p.1 p.2 := Iff.rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.4c9dee6ac27f from=translated src=- shape=d67a19cc vocab=2b0eb3c4
+-/
 @[simp] theorem sstepFun_nil : (sstepFun [] : Set (StrictMap V₀ V₁)) = Set.univ := by
   ext f; simp
 
+/--
+@isnad1 id=eq.0h6v.s6.ccdb20dc8381 from=translated src=- shape=a3f20d66 vocab=840b4e51
+-/
 theorem sstepFun_cons (p : Set α × Set β) (L : List (Set α × Set β)) :
     (sstepFun (p :: L) : Set (StrictMap V₀ V₁)) = sstep p.1 p.2 ∩ sstepFun L := by
   ext f
   simp_all
 
+/--
+@isnad1 id=eq.0h6v.s6.16284559bfd9 from=translated src=- shape=16ec009c vocab=826680e6
+-/
 theorem sstepFun_append (L L' : List (Set α × Set β)) :
     (sstepFun (L ++ L') : Set (StrictMap V₀ V₁)) = sstepFun L ∩ sstepFun L' := by
   ext f
@@ -388,15 +441,23 @@ theorem sstepFun_append (L L' : List (Set α × Set β)) :
     · exact hL p hp
     · exact hL' p hp
 
+/--
+@isnad1 id=eq.0h6v.s5.255608bbe16e from=translated src=- shape=41c80bd2 vocab=6baadacf
+-/
 theorem sstepFun_singleton (X : Set α) (Y : Set β) :
     (sstepFun [(X, Y)] : Set (StrictMap V₀ V₁)) = sstep X Y := by
   rw [sstepFun_cons, sstepFun_nil, Set.inter_univ]
 
-/-- `[Δ₀, Δ₁] = |𝒟₀ →⊥ 𝒟₁|`: every (strict) map relates the masters. -/
+/-- `[Δ₀, Δ₁] = |𝒟₀ →⊥ 𝒟₁|`: every (strict) map relates the masters.
+@isnad1 id=eq.0h4v.s5.5e016285a1c6 from=translated src=- shape=38afa84e vocab=5a542747
+-/
 @[simp] theorem sstep_master_eq :
     (sstep V₀.master V₁.master : Set (StrictMap V₀ V₁)) = Set.univ := by
   ext f; simpa using f.1.master_rel
 
+/--
+@isnad1 id=eq.2h7v.s6.321186f94c26 from=translated src=- shape=5c8cf0d5 vocab=4ca45edf
+-/
 theorem sstep_inter_right {X : Set α} {Y Y' : Set β} (hY : V₁.mem Y) (hY' : V₁.mem Y') :
     (sstep X Y ∩ sstep X Y' : Set (StrictMap V₀ V₁)) = sstep X (Y ∩ Y') := by
   ext f
@@ -407,6 +468,9 @@ theorem sstep_inter_right {X : Set α} {Y Y' : Set β} (hY : V₁.mem Y) (hY' : 
     exact ⟨f.1.mono h subset_rfl Set.inter_subset_left (f.1.rel_dom h) hY,
            f.1.mono h subset_rfl Set.inter_subset_right (f.1.rel_dom h) hY'⟩
 
+/--
+@isnad1 id=le.4h8v.s6.7937387266d3 from=translated src=- shape=055ef9bd vocab=6651a518
+-/
 theorem sstep_subset {X X' : Set α} {Y Y' : Set β} (hX' : V₀.mem X') (hY' : V₁.mem Y')
     (hX'X : X' ⊆ X) (hYY' : Y ⊆ Y') : (sstep X Y : Set (StrictMap V₀ V₁)) ⊆ sstep X' Y' := by
   intro f hf
@@ -431,21 +495,31 @@ def strictFun (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β) :
     · exact hL' p h
   sub_master := fun _ => Set.subset_univ _
 
+/--
+@isnad1 id=eq.0h4v.s5.c237f91b43d3 from=translated src=- shape=65a35390 vocab=778c84b7
+-/
 @[simp] theorem strictFun_master : (strictFun V₀ V₁).master = Set.univ := rfl
 
+/--
+@isnad1 id=iff.0h5v.s6.c90218aaa25b from=translated src=- shape=2d0771a5 vocab=dfe6c861
+-/
 theorem strictFun_mem_iff {W : Set (StrictMap V₀ V₁)} :
     (strictFun V₀ V₁).mem W ↔
       (∃ L : List (Set α × Set β), (∀ p ∈ L, V₀.mem p.1 ∧ V₁.mem p.2) ∧ W = sstepFun L)
         ∧ W.Nonempty := Iff.rfl
 
-/-- A step set is a neighbourhood as soon as it has a (strict) witness. -/
+/-- A step set is a neighbourhood as soon as it has a (strict) witness.
+@isnad1 id=mem.1h7v.s6.26db313cf6b9 from=translated src=- shape=51181688 vocab=e30e7e56
+-/
 theorem sstep_mem_of_mem {g : StrictMap V₀ V₁} {X : Set α} {Y : Set β} (h : g.1.rel X Y) :
     (strictFun V₀ V₁).mem (sstep X Y) := by
   refine ⟨⟨[(X, Y)], ?_, (sstepFun_singleton X Y).symm⟩, ⟨g, h⟩⟩
   intro p hp; rw [List.mem_singleton] at hp; subst hp
   exact ⟨g.1.rel_dom h, g.1.rel_cod h⟩
 
-/-- Intersection of two neighbourhoods, when non-empty, is again one. -/
+/-- Intersection of two neighbourhoods, when non-empty, is again one.
+@isnad1 id=mem.3h6v.s6.c6118cc5c90a from=translated src=- shape=fbf78461 vocab=12ca99d6
+-/
 theorem strictFun_mem_inter {W W' : Set (StrictMap V₀ V₁)}
     (hW : (strictFun V₀ V₁).mem W) (hW' : (strictFun V₀ V₁).mem W') (hne : (W ∩ W').Nonempty) :
     (strictFun V₀ V₁).mem (W ∩ W') := by
@@ -457,18 +531,26 @@ theorem strictFun_mem_inter {W W' : Set (StrictMap V₀ V₁)}
   · exact hL p h
   · exact hL' p h
 
+/--
+@isnad1 id=mem.2h7v.s6.54caefed4263 from=translated src=- shape=6156f77d vocab=563f5f66
+-/
 theorem sstepFun_up_closed {L : List (Set α × Set β)} {f f' : StrictMap V₀ V₁}
     (hf : f ∈ sstepFun L) (hff' : f ≤ f') : f' ∈ sstepFun L := by
   intro p hp
   exact hff' p.1 p.2 (hf p hp)
 
+/--
+@isnad1 id=mem.3h7v.s6.a98c1a6b3bc9 from=translated src=- shape=8675e7d1 vocab=e3835d05
+-/
 theorem strictFun_mem_up_closed {W : Set (StrictMap V₀ V₁)} (hW : (strictFun V₀ V₁).mem W)
     {f f' : StrictMap V₀ V₁} (hf : f ∈ W) (hff' : f ≤ f') : f' ∈ W := by
   obtain ⟨⟨L, _, rfl⟩, _⟩ := hW
   exact sstepFun_up_closed hf hff'
 
 /-- The generation lemma: a filter contains `sstepFun L` iff it contains each step
-`[Xᵢ, Yᵢ]`. -/
+`[Xᵢ, Yᵢ]`.
+@isnad1 id=iff.1h6v.s7.eac01e4c131d from=translated src=- shape=2a924ccf vocab=16939bbc
+-/
 theorem mem_sstepFun_iff (φ : (strictFun V₀ V₁).Element) {L : List (Set α × Set β)}
     (hL : ∀ p ∈ L, V₀.mem p.1 ∧ V₁.mem p.2) :
     φ.mem (sstepFun L) ↔ ∀ p ∈ L, φ.mem (sstep p.1 p.2) := by
@@ -525,6 +607,9 @@ def toStrictMap (φ : (strictFun V₀ V₁).Element) : StrictMap V₀ V₁ :=
      obtain ⟨g, hg⟩ := (φ.sub h).2
      exact g.2 hg⟩
 
+/--
+@isnad1 id=iff.0h7v.s6.bc975d6b00f2 from=translated src=- shape=09d454d3 vocab=56570ecf
+-/
 @[simp] theorem toStrictMap_rel {φ : (strictFun V₀ V₁).Element} {X : Set α} {Y : Set β} :
     (toStrictMap φ).1.rel X Y ↔ φ.mem (sstep X Y) := Iff.rfl
 
@@ -538,6 +623,9 @@ def toStrictFilter (f : StrictMap V₀ V₁) : (strictFun V₀ V₁).Element whe
     exact ⟨strictFun_mem_inter hW hW' ⟨f, Set.mem_inter hfW hfW'⟩, Set.mem_inter hfW hfW'⟩
   up_mem := by rintro W W' ⟨hW, hfW⟩ hW' hWW'; exact ⟨hW', hWW' hfW⟩
 
+/--
+@isnad1 id=iff.0h6v.s6.b0da972a7b95 from=translated src=- shape=fa4eb02e vocab=89cabe83
+-/
 @[simp] theorem mem_toStrictFilter {f : StrictMap V₀ V₁} {W : Set (StrictMap V₀ V₁)} :
     (toStrictFilter f).mem W ↔ (strictFun V₀ V₁).mem W ∧ f ∈ W := Iff.rfl
 
@@ -598,7 +686,9 @@ the master output — exactly the gluing the smash performs. -/
 variable {V₂ : NeighborhoodSystem γ}
 
 /-- Every smash neighbourhood is a product neighbourhood `A ∪ B` (the master is
-`Δ₀ ∪ Δ₁`). -/
+`Δ₀ ∪ Δ₁`).
+@isnad1 id=ex.1h5v.s5.8e984ec1038f from=translated src=- shape=9c0fdaaf vocab=9c97f544
+-/
 theorem smash_mem_prodNbhd_form {W : Set (α ⊕ β)} (hW : (smash V₀ V₁).mem W) :
     ∃ A B, V₀.mem A ∧ V₁.mem B ∧ W = prodNbhd A B := by
   rcases hW with rfl | ⟨X, Y, hX, _, hY, _, rfl⟩
@@ -609,7 +699,9 @@ theorem smash_mem_prodNbhd_form {W : Set (α ⊕ β)} (hW : (smash V₀ V₁).me
 `g` relates the
 proper neighbourhood `X ∪ Y` to `Z`. (Coarser members of the strict pairing are
 absorbed by
-monotonicity; the master member needs only that `X ∪ Y ⊆ Δ₀ ∪ Δ₁`.) -/
+monotonicity; the master member needs only that `X ∪ Y ⊆ Δ₀ ∪ Δ₁`.)
+@isnad1 id=iff.4h10v.s6.4c71967cf927 from=translated src=- shape=65e56ada vocab=62fb6eb1
+-/
 theorem smashPair_principal_apply (g : ApproximableMap (smash V₀ V₁) V₂)
     {X : Set α} {Y : Set β} (hX : V₀.mem X) (hXne : X ≠ V₀.master)
     (hY : V₁.mem Y) (hYne : Y ≠ V₁.master) {Z : Set γ} :
@@ -635,6 +727,9 @@ def smashSection (g : ApproximableMap (smash V₀ V₁) V₂) {X : Set α} (hX :
       intro Y Y' hY hY' hY'Y
       exact toElementMap_mono g (smashPair_mono le_rfl ((V₁.principal_le_iff hY hY').mpr hY'Y)))
 
+/--
+@isnad1 id=iff.1h10v.s6.e43ec7ad4b4d from=translated src=- shape=9da782ce vocab=867efaaa
+-/
 theorem smashSection_rel {g : ApproximableMap (smash V₀ V₁) V₂} {X : Set α} (hX : V₀.mem X)
     {Y : Set β} {Z : Set γ} :
     (smashSection g hX).rel Y Z ↔
@@ -642,7 +737,9 @@ theorem smashSection_rel {g : ApproximableMap (smash V₀ V₁) V₂} {X : Set �
   Iff.rfl
 
 /-- The section is monotone in the neighbourhood `X` (a smaller input gives a
-larger section). -/
+larger section).
+@isnad1 id=le.3h9v.s6.6a3babc40eb6 from=translated src=- shape=1c0bd53b vocab=312d62b4
+-/
 theorem smashSection_mono {g : ApproximableMap (smash V₀ V₁) V₂} {X X' : Set α}
     (hX : V₀.mem X) (hX' : V₀.mem X') (hX'X : X' ⊆ X) :
     smashSection g hX ≤ smashSection g hX' := by
@@ -651,7 +748,9 @@ theorem smashSection_mono {g : ApproximableMap (smash V₀ V₁) V₂} {X X' : S
   exact ⟨hY, toElementMap_mono g
     (smashPair_mono ((V₀.principal_le_iff hX hX').mpr hX'X) le_rfl) Z hmem⟩
 
-/-- The section of a *strict* `g` is itself strict: `g(⟨↑X, ⊥⟩⊗) = g(⊥) = ⊥`. -/
+/-- The section of a *strict* `g` is itself strict: `g(⟨↑X, ⊥⟩⊗) = g(⊥) = ⊥`.
+@isnad1 id=isstrict.2h8v.s5.870fb3190106 from=translated src=- shape=dadcc975 vocab=c16efcbf
+-/
 theorem isStrict_smashSection {g : ApproximableMap (smash V₀ V₁) V₂} (hg : IsStrict g)
     {X : Set α} (hX : V₀.mem X) : IsStrict (smashSection g hX) := by
   rw [isStrict_iff_apply_bot, smashSection,
@@ -662,7 +761,9 @@ theorem isStrict_smashSection {g : ApproximableMap (smash V₀ V₁) V₂} (hg :
 
 /-- The generation lemma for maps into the strict function space: `X h
 (⋂ᵢ[Yᵢ,Zᵢ])` iff
-`X h [Yᵢ,Zᵢ]` for all `i`. -/
+`X h [Yᵢ,Zᵢ]` for all `i`.
+@isnad1 id=iff.2h9v.s7.669fe52c03ae from=translated src=- shape=7b2ff1dd vocab=d212ff24
+-/
 theorem rel_sstepFun_iff (h : ApproximableMap V₀ (strictFun V₁ V₂)) {X : Set α} (hX : V₀.mem X)
     {L : List (Set β × Set γ)} (hL : ∀ p ∈ L, V₁.mem p.1 ∧ V₂.mem p.2) :
     h.rel X (sstepFun L) ↔ ∀ p ∈ L, h.rel X (sstep p.1 p.2) := by
@@ -774,7 +875,9 @@ def smashUncurryMap (h : StrictMap V₀ (strictFun V₁ V₂)) : StrictMap (smas
 /-! ### The roundtrip identities and the adjunction isomorphism. -/
 
 /-- A step with master codomain is everything: every strict map relates `Y` to
-`Δ₁`. -/
+`Δ₁`.
+@isnad1 id=eq.1h5v.s5.9728085e2055 from=translated src=- shape=af104470 vocab=dc187043
+-/
 theorem sstep_cod_master {Y : Set α} (hY : V₀.mem Y) :
     (sstep Y V₁.master : Set (StrictMap V₀ V₁)) = Set.univ := by
   ext f
@@ -786,7 +889,9 @@ h` evaluated on a
 neighbourhood `Y` is exactly the strict-function value `X h [Y, Z]`. At the
 boundary (a master
 factor) both sides collapse via strictness; off the boundary it is
-`smashPair_principal_apply`. -/
+`smashPair_principal_apply`.
+@isnad1 id=iff.2h10v.s7.6eb1870846b7 from=translated src=- shape=f72fc049 vocab=3dd0a2c3
+-/
 theorem section_uncurry_rel (h : StrictMap V₀ (strictFun V₁ V₂))
     {X : Set α} (hX : V₀.mem X) {Y : Set β} (hY : V₁.mem Y) {Z : Set γ} :
     (smashSection (smashUncurryMap h).1 hX).rel Y Z ↔ h.1.rel X (sstep Y Z) := by
@@ -837,7 +942,9 @@ theorem section_uncurry_rel (h : StrictMap V₀ (strictFun V₁ V₂))
         refine ⟨smash_mem_proper hX hXm hY hYm, ?_⟩
         simpa only [inl_preimage_prodNbhd, inr_preimage_prodNbhd] using hrel
 
-/-- **Roundtrip (i): `uncurry⊥ ∘ curry⊥ = id`.** -/
+/-- **Roundtrip (i): `uncurry⊥ ∘ curry⊥ = id`.**
+@isnad1 id=eq.0h7v.s5.35dfcd9bfca1 from=translated src=- shape=a43e0d99 vocab=142c578b
+-/
 theorem smashUncurry_curry (g : StrictMap (smash V₀ V₁) V₂) :
     smashUncurryMap (smashCurryMap g) = g := by
   apply Subtype.ext
@@ -868,7 +975,9 @@ theorem smashUncurry_curry (g : StrictMap (smash V₀ V₁) V₂) :
       exact ⟨hXp, sstep_mem_of_mem
         (g := ⟨smashSection g.1 hXp, isStrict_smashSection g.2 hXp⟩) hsec, hsec⟩
 
-/-- **Roundtrip (ii): `curry⊥ ∘ uncurry⊥ = id`.** -/
+/-- **Roundtrip (ii): `curry⊥ ∘ uncurry⊥ = id`.**
+@isnad1 id=eq.0h7v.s5.ded04bc8eee0 from=translated src=- shape=d63ba47b vocab=a03d606c
+-/
 theorem smashCurry_uncurry (h : StrictMap V₀ (strictFun V₁ V₂)) :
     smashCurryMap (smashUncurryMap h) = h := by
   apply Subtype.ext

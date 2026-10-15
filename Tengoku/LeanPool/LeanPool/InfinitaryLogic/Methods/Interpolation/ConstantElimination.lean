@@ -38,7 +38,9 @@ noncomputable def genEx (j : ℕ) (ρ : L[[ℕ]].Sentenceω) : L[[ℕ]].Sentence
   ((ρ.abstractConst j).relabel (Sum.inr : Fin 1 → Empty ⊕ Fin 1)).ex
 
 /-- Realizing the generalization is existentially witnessing the original with `c_j`
-reinterpreted to the witness. -/
+reinterpreted to the witness.
+@isnad1 id=iff.0h6v.s6.75cb040ac7fa from=translated src=- shape=2ab8c16e vocab=1c5dc5a0
+-/
 theorem realize_genEx (base : L.Structure M) (h : ℕ → M) (j : ℕ) (ρ : L[[ℕ]].Sentenceω) :
     @BoundedFormulaω.Realize L[[ℕ]] M (wc base h) Empty 0 (genEx j ρ) Empty.elim Fin.elim0
       ↔ ∃ x, @BoundedFormulaω.Realize L[[ℕ]] M (wc base (Function.update h j x)) Empty 0 ρ
@@ -52,7 +54,9 @@ theorem realize_genEx (base : L.Structure M) (h : ℕ → M) (j : ℕ) (ρ : L[[
     hval x]
   exact BoundedFormulaω.realize_abstractConst base h j x ρ Fin.elim0
 
-/-- `c_j` is not in the constant support of its own generalization. -/
+/-- `c_j` is not in the constant support of its own generalization.
+@isnad1 id=not.0h3v.s4.a3c64206e3b9 from=translated src=- shape=7e5fc536 vocab=18b8de59
+-/
 theorem notMem_sentenceJConsts_genEx (j : ℕ) (ρ : L[[ℕ]].Sentenceω) :
     j ∉ sentenceJConsts (L' := L) (J := ℕ) (genEx j ρ) := by
   rw [genEx]
@@ -80,18 +84,24 @@ private theorem functionsIn_genEx_subset (j : ℕ) (ρ : L[[ℕ]].Sentenceω) :
   rw [genEx, BoundedFormulaω.functionsIn_ex, BoundedFormulaω.functionsIn_relabel]
   exact BoundedFormulaω.functionsIn_abstractConst_subset j ρ
 
-/-- `genEx` adds no base function symbols. -/
+/-- `genEx` adds no base function symbols.
+@isnad1 id=le.0h3v.s5.98eb33b8b6e5 from=translated src=- shape=5545e67e vocab=350407c5
+-/
 theorem baseFunctionsIn_genEx_subset (j : ℕ) (ρ : L[[ℕ]].Sentenceω) :
     (genEx j ρ).baseFunctionsIn ⊆ ρ.baseFunctionsIn :=
   fun _ hs => functionsIn_genEx_subset j ρ hs
 
-/-- `genEx` preserves the base relation symbols. -/
+/-- `genEx` preserves the base relation symbols.
+@isnad1 id=eq.0h3v.s5.164994a7b262 from=translated src=- shape=5545e67e vocab=ae1246d5
+-/
 theorem baseRelationsIn_genEx (j : ℕ) (ρ : L[[ℕ]].Sentenceω) :
     (genEx j ρ).baseRelationsIn = ρ.baseRelationsIn := by
   unfold BoundedFormulaω.baseRelationsIn
   rw [relationsIn_genEx]
 
-/-- `genEx` adds no constants. -/
+/-- `genEx` adds no constants.
+@isnad1 id=le.0h3v.s5.3d440c54119e from=translated src=- shape=ca23caa7 vocab=0d5efbca
+-/
 theorem sentenceJConsts_genEx_subset (j : ℕ) (ρ : L[[ℕ]].Sentenceω) :
     sentenceJConsts (L' := L) (J := ℕ) (genEx j ρ) ⊆ sentenceJConsts (L' := L) (J := ℕ) ρ :=
   fun _ hs => functionsIn_genEx_subset j ρ hs
@@ -101,7 +111,9 @@ theorem sentenceJConsts_genEx_subset (j : ℕ) (ρ : L[[ℕ]].Sentenceω) :
 variable {j : ℕ} {φc σc : L[[ℕ]].Sentenceω} {Γ Δ : Set L[[ℕ]].Sentenceω}
 
 /-- Plain `Γ`-side abstraction (**freshness-free**: `∃`-introduction is weakening). `Γ ⊨ σ`
-upgrades to `Γ ⊨ ∃x σ(x)`; the witness is the constant's own interpretation. -/
+upgrades to `Γ ⊨ ∃x σ(x)`; the witness is the constant's own interpretation.
+@isnad1 id=entails.1h4v.s4.4650d35e09bc from=translated src=- shape=b94e597d vocab=9f0b226e
+-/
 theorem entails_genEx_of_entails_plain (j : ℕ) (σc : L[[ℕ]].Sentenceω)
     (hyp : Theoryω.Entails Γ σc) : Theoryω.Entails Γ (genEx j σc) := by
   intro M instM _ hmodel
@@ -117,7 +129,9 @@ theorem entails_genEx_of_entails_plain (j : ℕ) (σc : L[[ℕ]].Sentenceω)
   rw [Function.update_eq_self]; exact hσ
 
 /-- **Acceptance, side 1**: `Γ, φ(c) ⊨ σ(c)` upgrades to `Γ, ∃x φ(x) ⊨ ∃x σ(x)` when `c_j` is
-fresh for `Γ`. -/
+fresh for `Γ`.
+@isnad1 id=entails.2h5v.s6.bd39d9d3ddec from=translated src=- shape=97f8f68b vocab=3fed2273
+-/
 theorem entails_genEx_of_entails
     (hfresh : ∀ γ ∈ Γ, j ∉ sentenceJConsts (L' := L) (J := ℕ) γ)
     (hyp : Theoryω.Entails (insert φc Γ) σc) :
@@ -159,7 +173,9 @@ theorem entails_genEx_of_entails
   exact (bridge _).mpr ((realize_genEx base h j σc).mpr ⟨x, hσ⟩)
 
 /-- **Acceptance, side 2**: `Δ ⊨ ¬σ(c)` upgrades to `Δ ⊨ ¬∃x σ(x)` when `c_j` is fresh for
-`Δ`. -/
+`Δ`.
+@isnad1 id=entails.2h4v.s6.017d36ab494d from=translated src=- shape=ba480e7d vocab=5f131d01
+-/
 theorem entails_not_genEx_of_entails_not
     (hfresh : ∀ δ ∈ Δ, j ∉ sentenceJConsts (L' := L) (J := ℕ) δ)
     (hyp : Theoryω.Entails Δ σc.not) :

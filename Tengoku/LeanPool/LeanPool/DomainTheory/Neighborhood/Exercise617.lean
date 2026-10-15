@@ -111,9 +111,15 @@ instance : Category StrictDomainObj where
   comp_id f := Subtype.ext (ApproximableMap.comp_idMap f.1)
   assoc h g f := Subtype.ext (ApproximableMap.comp_assoc h.1 g.1 f.1)
 
+/--
+@isnad1 id=eq.0h1v.s5.abbe6758b79b from=translated src=- shape=a962811f vocab=fb8c52ca
+-/
 @[simp] theorem StrictDomainObj.id_val (D : StrictDomainObj) :
     (Category.id D : StrictMap D.sys D.sys).1 = ApproximableMap.idMap D.sys := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.1415453936c9 from=translated src=- shape=e148cace vocab=a84cf41c
+-/
 @[simp] theorem StrictDomainObj.comp_val {D E F : StrictDomainObj}
     (g : Category.Hom E F) (f : Category.Hom D E) :
     ((g ⊚ f : StrictMap D.sys F.sys)).1 = g.1.comp f.1 := rfl
@@ -123,7 +129,9 @@ instance : Category StrictDomainObj where
 open Example62C in
 /-- Every neighbourhood of the three-way separated sum `sum3` is non-empty (so
 `sum3` is again an
-object of the `∅`-free category). -/
+object of the `∅`-free category).
+@isnad1 id=nonempty.4h7v.s6.8e561a3e7066 from=translated src=- shape=3f249ac9 vocab=0583e0d4
+-/
 theorem sum3_nonempty {α β γ : Type*} {V₀ : NeighborhoodSystem α} {V₁ : NeighborhoodSystem β}
     {V₂ : NeighborhoodSystem γ} {h₀ : ∀ X, V₀.mem X → X.Nonempty}
     {h₁ : ∀ Y, V₁.mem Y → Y.Nonempty} {h₂ : ∀ Z, V₂.mem Z → Z.Nonempty} :
@@ -145,6 +153,9 @@ def tcObj (D : StrictDomainObj.{w}) : StrictDomainObj.{w} where
   nonempty := sum3_nonempty
 attribute [local implicit_reducible] tcObj
 
+/--
+@isnad1 id=eq.0h1v.s4.1172b272f664 from=translated src=- shape=b24588a2 vocab=4917461d
+-/
 @[simp] theorem tcObj_sys (D : StrictDomainObj.{w}) :
     (tcObj D).sys =
       sum3 unitSys D.sys D.sys Example62C.unitSys_nonempty D.nonempty D.nonempty := rfl
@@ -159,7 +170,9 @@ variable {α β γ : Type*} {V₀ : NeighborhoodSystem α} {V₁ : NeighborhoodS
   {V₂ : NeighborhoodSystem γ} {h₀ : ∀ X, V₀.mem X → X.Nonempty}
   {h₁ : ∀ Y, V₁.mem Y → Y.Nonempty} {h₂ : ∀ Z, V₂.mem Z → Z.Nonempty}
 
-/-- A `sum3`-neighbourhood contained in a `0`-copy `0X` is itself a `0`-copy. -/
+/-- A `sum3`-neighbourhood contained in a `0`-copy `0X` is itself a `0`-copy.
+@isnad1 id=ex.5h8v.s7.b3a0cd0e9c5c from=translated src=- shape=d79c1250 vocab=aca7b943
+-/
 theorem mem_subset_j0_inv {W : Set (Option (α ⊕ β ⊕ γ))} {X : Set α}
     (hW : (sum3 V₀ V₁ V₂ h₀ h₁ h₂).mem W) (hsub : W ⊆ j0 X) :
     ∃ X₂, V₀.mem X₂ ∧ W = j0 X₂ := by
@@ -169,7 +182,9 @@ theorem mem_subset_j0_inv {W : Set (Option (α ⊕ β ⊕ γ))} {X : Set α}
   · obtain ⟨b, hb⟩ := h₁ Y₂ hY₂; exact absurd (hsub (t1_mem_j1.mpr hb)) t1_not_mem_j0
   · obtain ⟨c, hc⟩ := h₂ Z₂ hZ₂; exact absurd (hsub (t2_mem_j2.mpr hc)) t2_not_mem_j0
 
-/-- A `sum3`-neighbourhood contained in a `1`-copy `1Y` is itself a `1`-copy. -/
+/-- A `sum3`-neighbourhood contained in a `1`-copy `1Y` is itself a `1`-copy.
+@isnad1 id=ex.5h8v.s7.2d15b043cc40 from=translated src=- shape=17cc681f vocab=d5f091d5
+-/
 theorem mem_subset_j1_inv {W : Set (Option (α ⊕ β ⊕ γ))} {Y : Set β}
     (hW : (sum3 V₀ V₁ V₂ h₀ h₁ h₂).mem W) (hsub : W ⊆ j1 Y) :
     ∃ Y₂, V₁.mem Y₂ ∧ W = j1 Y₂ := by
@@ -179,7 +194,9 @@ theorem mem_subset_j1_inv {W : Set (Option (α ⊕ β ⊕ γ))} {Y : Set β}
   · exact ⟨Y₂, hY₂, rfl⟩
   · obtain ⟨c, hc⟩ := h₂ Z₂ hZ₂; exact absurd (hsub (t2_mem_j2.mpr hc)) t2_not_mem_j1
 
-/-- A `sum3`-neighbourhood contained in a `2`-copy `2Z` is itself a `2`-copy. -/
+/-- A `sum3`-neighbourhood contained in a `2`-copy `2Z` is itself a `2`-copy.
+@isnad1 id=ex.5h8v.s7.162aa0af227c from=translated src=- shape=b7cbf2ef vocab=ccd55a33
+-/
 theorem mem_subset_j2_inv {W : Set (Option (α ⊕ β ⊕ γ))} {Z : Set γ}
     (hW : (sum3 V₀ V₁ V₂ h₀ h₁ h₂).mem W) (hsub : W ⊆ j2 Z) :
     ∃ Z₂, V₂.mem Z₂ ∧ W = j2 Z₂ := by
@@ -315,7 +332,9 @@ def sumMap3 (f₀ : ApproximableMap V₀ V₀') (f₁ : ApproximableMap V₁ V�
 
 /-- The three-way sum map is always strict: `(f₀+f₁+f₂)(⊥) = ⊥`. (The master only
 relates to the
-master, since `master3` is not any tagged copy.) -/
+master, since `master3` is not any tagged copy.)
+@isnad1 id=isstrict.6h15v.s7.ca76a5b7ae64 from=translated src=- shape=b05918f5 vocab=f49e483d
+-/
 theorem isStrict_sumMap3 (f₀ : ApproximableMap V₀ V₀') (f₁ : ApproximableMap V₁ V₁')
     (f₂ : ApproximableMap V₂ V₂') :
     IsStrict (sumMap3 (h₀ := h₀) (h₁ := h₁) (h₂ := h₂) (h₀' := h₀') (h₁' := h₁') (h₂' := h₂')
@@ -328,7 +347,9 @@ theorem isStrict_sumMap3 (f₀ : ApproximableMap V₀ V₀') (f₁ : Approximabl
   · exact absurd (hWX ▸ h0) none_not_mem_j1
   · exact absurd (hWX ▸ h0) none_not_mem_j2
 
-/-- **Functoriality (identities): `I + I + I = I`.** -/
+/-- **Functoriality (identities): `I + I + I = I`.**
+@isnad1 id=eq.3h6v.s7.aa0035384a77 from=translated src=- shape=d7f86361 vocab=4ab65316
+-/
 theorem sumMap3_id :
     sumMap3 (h₀ := h₀) (h₁ := h₁) (h₂ := h₂) (h₀' := h₀) (h₁' := h₁) (h₂' := h₂)
       (idMap V₀) (idMap V₁) (idMap V₂) = idMap (sum3 V₀ V₁ V₂ h₀ h₁ h₂) := by
@@ -364,7 +385,9 @@ theorem sumMap3_id :
       · exact Or.inr (Or.inr (Or.inr ⟨Z, Z', rfl, rfl, hZ, hZ', j2_subset_j2.mp hsub⟩))
 
 /-- **Functoriality (composition): `(g₀∘f₀) + (g₁∘f₁) + (g₂∘f₂) = (g₀+g₁+g₂) ∘
-(f₀+f₁+f₂)`.** -/
+(f₀+f₁+f₂)`.**
+@isnad1 id=eq.9h24v.s8.6af6e5b24256 from=translated src=- shape=8e62e605 vocab=5005e691
+-/
 theorem sumMap3_comp {α'' β'' γ'' : Type*} {V₀'' : NeighborhoodSystem α''}
     {V₁'' : NeighborhoodSystem β''} {V₂'' : NeighborhoodSystem γ''}
     {h₀'' : ∀ X, V₀''.mem X → X.Nonempty} {h₁'' : ∀ Y, V₁''.mem Y → Y.Nonempty}
@@ -513,6 +536,9 @@ def sinj2 (x₂ : V₂.Element) : (sum3 V₀ V₁ V₂ h₀ h₁ h₂).Element w
       · obtain ⟨c, hc⟩ := h₂ Z (x₂.sub hx); exact absurd (hsub (t2_mem_j2.mpr hc)) t2_not_mem_j1
       · exact Or.inr ⟨Z', hZ', rfl, x₂.up_mem hx hZ' (j2_subset_j2.mp hsub)⟩
 
+/--
+@isnad1 id=iff.4h8v.s6.15242e620c39 from=translated src=- shape=979d472a vocab=3a60c40f
+-/
 @[simp] theorem sinj0_mem_j0 {x₀ : V₀.Element} {X : Set α} (hX : V₀.mem X) :
     (sinj0 (V₁ := V₁) (V₂ := V₂) (h₀ := h₀) (h₁ := h₁) (h₂ := h₂) x₀).mem (j0 X) ↔ x₀.mem X := by
   constructor
@@ -521,6 +547,9 @@ def sinj2 (x₂ : V₂.Element) : (sum3 V₀ V₁ V₂ h₀ h₁ h₂).Element w
     · rw [j0_injective heq]; exact hx
   · intro hx; exact Or.inr ⟨X, hX, rfl, hx⟩
 
+/--
+@isnad1 id=iff.4h8v.s6.ab642449f32a from=translated src=- shape=41d3a194 vocab=bad53374
+-/
 @[simp] theorem sinj1_mem_j1 {x₁ : V₁.Element} {Y : Set β} (hY : V₁.mem Y) :
     (sinj1 (V₀ := V₀) (V₂ := V₂) (h₀ := h₀) (h₁ := h₁) (h₂ := h₂) x₁).mem (j1 Y) ↔ x₁.mem Y := by
   constructor
@@ -529,6 +558,9 @@ def sinj2 (x₂ : V₂.Element) : (sum3 V₀ V₁ V₂ h₀ h₁ h₂).Element w
     · rw [j1_injective heq]; exact hx
   · intro hx; exact Or.inr ⟨Y, hY, rfl, hx⟩
 
+/--
+@isnad1 id=iff.4h8v.s6.b4049c8ecf72 from=translated src=- shape=bcf5a2f2 vocab=473e1b65
+-/
 @[simp] theorem sinj2_mem_j2 {x₂ : V₂.Element} {Z : Set γ} (hZ : V₂.mem Z) :
     (sinj2 (V₀ := V₀) (V₁ := V₁) (h₀ := h₀) (h₁ := h₁) (h₂ := h₂) x₂).mem (j2 Z) ↔ x₂.mem Z := by
   constructor
@@ -553,19 +585,27 @@ variable {α β γ α' β' γ' : Type*}
   {h₀' : ∀ X, V₀'.mem X → X.Nonempty} {h₁' : ∀ Y, V₁'.mem Y → Y.Nonempty}
   {h₂' : ∀ Z, V₂'.mem Z → Z.Nonempty}
 
+/--
+@isnad1 id=le.4h8v.s7.bfd004f306f7 from=translated src=- shape=774937d7 vocab=d3de43cf
+-/
 theorem sinj1_mono {x x' : V₁.Element} (hx : x ≤ x') :
     sinj1 (V₀ := V₀) (V₂ := V₂) (h₀ := h₀) (h₁ := h₁) (h₂ := h₂) x ≤ sinj1 x' := by
   rintro W (rfl | ⟨Y, hY, rfl, hm⟩)
   · exact Or.inl rfl
   · exact Or.inr ⟨Y, hY, rfl, hx Y hm⟩
 
+/--
+@isnad1 id=le.4h8v.s7.aeb3b3f9a7e2 from=translated src=- shape=eb2ba8f7 vocab=d8e81780
+-/
 theorem sinj2_mono {x x' : V₂.Element} (hx : x ≤ x') :
     sinj2 (V₀ := V₀) (V₁ := V₁) (h₀ := h₀) (h₁ := h₁) (h₂ := h₂) x ≤ sinj2 x' := by
   rintro W (rfl | ⟨Z, hZ, rfl, hm⟩)
   · exact Or.inl rfl
   · exact Or.inr ⟨Z, hZ, rfl, hx Z hm⟩
 
-/-- `(f₀+f₁+f₂)(inj₀ x) = inj₀(f₀ x)`. -/
+/-- `(f₀+f₁+f₂)(inj₀ x) = inj₀(f₀ x)`.
+@isnad1 id=eq.6h16v.s7.c3743ae65a37 from=translated src=- shape=26441477 vocab=ce02f5a4
+-/
 theorem sumMap3_sinj0 (f₀ : ApproximableMap V₀ V₀') (f₁ : ApproximableMap V₁ V₁')
     (f₂ : ApproximableMap V₂ V₂') (x₀ : V₀.Element) :
     (sumMap3 (h₀ := h₀) (h₁ := h₁) (h₂ := h₂) (h₀' := h₀') (h₁' := h₁') (
@@ -597,7 +637,9 @@ theorem sumMap3_sinj0 (f₀ : ApproximableMap V₀ V₀') (f₁ : ApproximableMa
       exact ⟨j0 X, Or.inr ⟨X, x₀.sub hx, rfl, hx⟩, Or.inr (Or.inl ⟨X, x₀.sub hx, rfl⟩),
         Or.inr (Or.inl ⟨Y', f₀.rel_cod hf, rfl⟩), Or.inr (Or.inl ⟨X, Y', rfl, rfl, hf⟩)⟩
 
-/-- `(f₀+f₁+f₂)(inj₁ x) = inj₁(f₁ x)`. -/
+/-- `(f₀+f₁+f₂)(inj₁ x) = inj₁(f₁ x)`.
+@isnad1 id=eq.6h16v.s7.f61caec1f002 from=translated src=- shape=da7b65f5 vocab=4fb71ce6
+-/
 theorem sumMap3_sinj1 (f₀ : ApproximableMap V₀ V₀') (f₁ : ApproximableMap V₁ V₁')
     (f₂ : ApproximableMap V₂ V₂') (x₁ : V₁.Element) :
     (sumMap3 (h₀ := h₀) (h₁ := h₁) (h₂ := h₂) (h₀' := h₀') (h₁' := h₁') (
@@ -630,7 +672,9 @@ theorem sumMap3_sinj1 (f₀ : ApproximableMap V₀ V₀') (f₁ : ApproximableMa
         Or.inr (Or.inr (Or.inl ⟨Y', f₁.rel_cod hf, rfl⟩)), Or.inr (Or.inr (Or.inl ⟨X, Y',
           rfl, rfl, hf⟩))⟩
 
-/-- `(f₀+f₁+f₂)(inj₂ x) = inj₂(f₂ x)`. -/
+/-- `(f₀+f₁+f₂)(inj₂ x) = inj₂(f₂ x)`.
+@isnad1 id=eq.6h16v.s7.2343dbc90c4f from=translated src=- shape=71a5dc45 vocab=50d79e00
+-/
 theorem sumMap3_sinj2 (f₀ : ApproximableMap V₀ V₀') (f₁ : ApproximableMap V₁ V₁')
     (f₂ : ApproximableMap V₂ V₂') (x₂ : V₂.Element) :
     (sumMap3 (h₀ := h₀) (h₁ := h₁) (h₂ := h₂) (h₀' := h₀') (h₁' := h₁') (
@@ -700,8 +744,14 @@ def Tc : Endofunctor StrictDomainObj.{w} where
     exact h)
 attribute [local implicit_reducible] Tc
 
+/--
+@isnad1 id=eq.0h1v.s3.2ccd74b21ca8 from=translated src=- shape=14658ce8 vocab=5343ccc2
+-/
 @[simp] theorem Tc_obj (D : StrictDomainObj.{w}) : Tc.obj D = tcObj D := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.4c2db8a61b44 from=translated src=- shape=1581b976 vocab=70b90153
+-/
 @[simp] theorem Tc_map_val {D E : StrictDomainObj.{w}} (f : Category.Hom D E) :
     (Tc.map f).1 = sumMap3 (h₀ := Example62C.unitSys_nonempty) (h₁ := D.nonempty) (h₂ := D.nonempty)
       (h₀' := Example62C.unitSys_nonempty) (h₁' := E.nonempty) (h₂' := E.nonempty)
@@ -709,7 +759,9 @@ attribute [local implicit_reducible] Tc
 
 /-! ## `C` as a `T`-algebra -/
 
-/-- The map of an order-isomorphism is strict (an iso of domains preserves `⊥`). -/
+/-- The map of an order-isomorphism is strict (an iso of domains preserves `⊥`).
+@isnad1 id=isstrict.0h5v.s5.de02081197c6 from=translated src=- shape=b4013d91 vocab=419e762b
+-/
 theorem isStrict_ofIso {α β : Type*} {V₀ : NeighborhoodSystem α} {V₁ : NeighborhoodSystem β}
     (e : V₀.Element ≃o V₁.Element) : IsStrict (ofIso e) := by
   rw [isStrict_iff_apply_bot, toElementMap_ofIso]
@@ -748,10 +800,15 @@ namespace Example62C
 
 open Example44 ExampleB Example62
 
+/--
+@isnad1 id=eq.0h1v.s7.384a1498f508 from=translated src=- shape=211517de vocab=17b28e20
+-/
 @[simp] theorem ccEquiv_apply (x : C.Element) : ccEquiv x = toCC x := rfl
 
 /-- `(b·z).mem (bX) ↔ z.mem X`: the `b`-successor's filter restricted to the
-`b`-copy is `z`. -/
+`b`-copy is `z`.
+@isnad1 id=iff.1h3v.s5.f6fdf8fe288e from=translated src=- shape=f59a14ae vocab=0affe9a2
+-/
 theorem consMap_mem_embBit {b : Bool} {z : C.Element} {X : Set Str} (hX : C.mem X) :
     ((consMap b).toElementMap z).mem (embBit b X) ↔ z.mem X := by
   constructor
@@ -765,7 +822,9 @@ theorem consMap_mem_embBit {b : Bool} {z : C.Element} {X : Set Str} (hX : C.mem 
 /-- `(b·z)` never meets the `(¬b)`-copy: `0z` avoids the `1`-copies and vice versa
 (used to
 discharge
-the cross-tag cases in `toCC_consMap`). -/
+the cross-tag cases in `toCC_consMap`).
+@isnad1 id=not.1h4v.s4.011000eba528 from=translated src=- shape=2afa5957 vocab=a8e813d0
+-/
 theorem consMap_not_mem_embBit_ne {b c : Bool} (hbc : b ≠ c) {z : C.Element} {X : Set Str} :
     ¬ ((consMap b).toElementMap z).mem (embBit c X) := by
   rintro ⟨X', hzX', hX'mem, _, hsub⟩
@@ -774,7 +833,9 @@ theorem consMap_not_mem_embBit_ne {b c : Bool} (hbc : b ≠ c) {z : C.Element} {
   obtain ⟨w, hw, heq⟩ := hsub ⟨a, rfl, ha⟩
   rw [List.cons.injEq] at hw; exact hbc hw.1
 
-/-- `(b·z)` avoids the terminator `{Λ}` (since `bσ ≠ Λ`). -/
+/-- `(b·z)` avoids the terminator `{Λ}` (since `bσ ≠ Λ`).
+@isnad1 id=not.0h2v.s4.b632cb027035 from=translated src=- shape=202453de vocab=da383e39
+-/
 theorem consMap_not_mem_nil {b : Bool} {z : C.Element} :
     ¬ ((consMap b).toElementMap z).mem ({[]} : Set Str) := by
   rintro ⟨X', hzX', hX'mem, _, hsub⟩
@@ -784,7 +845,9 @@ theorem consMap_not_mem_nil {b : Bool} {z : C.Element} :
 
 /-- **`toCC ∘ (0·) = inj₁` and `toCC ∘ (1·) = inj₂`.** Prepending the bit `b` to
 `z` is, across the
-isomorphism `C ≅ 𝟙+C+C`, the injection of `z` into the `b`-th `C`-summand. -/
+isomorphism `C ≅ 𝟙+C+C`, the injection of `z` into the `b`-th `C`-summand.
+@isnad1 id=eq.0h2v.s6.fc3a787cb527 from=translated src=- shape=fac17142 vocab=0856b053
+-/
 theorem toCC_consMap (b : Bool) (z : C.Element) :
     toCC ((consMap b).toElementMap z)
       = cond b
@@ -817,7 +880,9 @@ theorem toCC_consMap (b : Bool) (z : C.Element) :
       · exact Or.inr (Or.inr (Or.inr ⟨Y, hY, rfl, (consMap_mem_embBit hY).mpr hz⟩))
 
 /-- **`toCC Λ̂ = inj₀`.** The finished empty sequence is the terminator (the
-`𝟙`-summand). -/
+`𝟙`-summand).
+@isnad1 id=eq.0h0v.s4.605eb1b77bae from=translated src=- shape=26e8c305 vocab=4226b529
+-/
 theorem toCC_strElem_nil :
     toCC (strElem []) = sinj0 (V₁ := C) (V₂ := C) (h₀ := unitSys_nonempty) (h₁ := C_nonempty)
       (h₂ := C_nonempty) unitSys.bot := by
@@ -866,29 +931,44 @@ def descVal (z : B.carrier.sys.Element) : Str → B.carrier.sys.Element
   | [] => z
   | b :: σ => descF B b (descVal z σ)
 
+/--
+@isnad1 id=le.1h4v.s7.94891d541bc0 from=translated src=- shape=874fac93 vocab=5de9083c
+-/
 theorem descF_mono (b : Bool) {y y' : B.carrier.sys.Element} (h : y ≤ y') :
     descF B b y ≤ descF B b y' := by
   cases b
   · exact B.str.1.toElementMap_mono (sinj1_mono h)
   · exact B.str.1.toElementMap_mono (sinj2_mono h)
 
+/--
+@isnad1 id=le.1h4v.s7.d4a13f9ca51c from=translated src=- shape=8569b74a vocab=03f57c42
+-/
 theorem descVal_mono_z {z z' : B.carrier.sys.Element} (h : z ≤ z') :
     ∀ σ, descVal B z σ ≤ descVal B z' σ
   | [] => h
   | _ :: σ => descF_mono B _ (descVal_mono_z h σ)
 
+/--
+@isnad1 id=eq.0h4v.s5.0de1792de42b from=translated src=- shape=cbb7fdd7 vocab=4401274b
+-/
 theorem descVal_append (z : B.carrier.sys.Element) (σ ρ : Str) :
     descVal B z (σ ++ ρ) = descVal B (descVal B z ρ) σ := by
   induction σ with
   | nil => rfl
   | cons b σ ih => exact congrArg (descF B b) ih
 
+/--
+@isnad1 id=le.1h3v.s6.55d688cbdaac from=translated src=- shape=03c2fdd5 vocab=4e5a4d3b
+-/
 theorem descMap_hcone {σ τ : Str} (h : σ <+: τ) :
     descVal B B.carrier.sys.bot σ ≤ descVal B B.carrier.sys.bot τ := by
   obtain ⟨ρ, rfl⟩ := h
   rw [descVal_append]
   exact descVal_mono_z B (B.carrier.sys.bot_le _) σ
 
+/--
+@isnad1 id=le.1h3v.s6.2c458124eebc from=translated src=- shape=ecd6eecd vocab=6f168668
+-/
 theorem descMap_hsing {σ τ : Str} (h : σ <+: τ) :
     descVal B B.carrier.sys.bot σ ≤ descVal B (descE B) τ := by
   obtain ⟨ρ, rfl⟩ := h
@@ -902,20 +982,32 @@ def descMap : ApproximableMap C B.carrier.sys :=
   liftC B.carrier.sys (descVal B B.carrier.sys.bot) (descVal B (descE B))
     (fun {_ _} => descMap_hcone B) (fun {_ _} => descMap_hsing B)
 
+/--
+@isnad1 id=eq.0h2v.s5.2a102f7d9b36 from=translated src=- shape=16dbe3cd vocab=61efb7a2
+-/
 @[simp] theorem descMap_strBot (σ : Str) :
     (descMap B).toElementMap (strBot σ) = descVal B B.carrier.sys.bot σ :=
   liftC_strBot _ _ _ _ _ σ
 
+/--
+@isnad1 id=eq.0h2v.s5.639c460ff812 from=translated src=- shape=ec798ebd vocab=a20dd9ee
+-/
 @[simp] theorem descMap_strElem (σ : Str) :
     (descMap B).toElementMap (strElem σ) = descVal B (descE B) σ :=
   liftC_strElem _ _ _ _ _ σ
 
+/--
+@isnad1 id=eq.0h0v.s3.155c1b99b566 from=translated src=- shape=39ae8f64 vocab=4a6fe66b
+-/
 theorem C_bot_eq_strBot_nil : C.bot = strBot [] := by
   apply NeighborhoodSystem.Element.ext
   intro Y
   change (C.mem Y ∧ C.master ⊆ Y) ↔ (C.mem Y ∧ cone [] ⊆ Y)
   rw [C_master, cone_nil]
 
+/--
+@isnad1 id=isstrict.0h1v.s4.5c82338f2457 from=translated src=- shape=8d8f6101 vocab=3101bc69
+-/
 theorem descMap_strict : IsStrict (descMap B) := by
   rw [isStrict_iff_apply_bot, C_bot_eq_strBot_nil, descMap_strBot]
   rfl
@@ -928,7 +1020,9 @@ def descStrict : Category.Hom Cobj B.carrier := ⟨descMap B, descMap_strict B�
 /-- The composite `inj₀∘(...)` of `T(g)` applied to a successor reduces to the
 operation `f_b`. The
 single computational step behind both existence and uniqueness, for an *arbitrary*
-`g`. -/
+`g`.
+@isnad1 id=eq.0h4v.s8.db7e78260d59 from=translated src=- shape=dc42b872 vocab=a0f8c057
+-/
 theorem genKey (g : ApproximableMap C B.carrier.sys) (b : Bool) (w : C.Element) :
     B.str.1.toElementMap ((sumMap3 (h₀ := Example62C.unitSys_nonempty) (h₁ := Example62C.C_nonempty)
         (h₂ := Example62C.C_nonempty) (h₀' := Example62C.unitSys_nonempty) (
@@ -941,7 +1035,9 @@ theorem genKey (g : ApproximableMap C B.carrier.sys) (b : Bool) (w : C.Element) 
   · simp only [Bool.cond_false]; rw [sumMap3_sinj1]; rfl
   · simp only [Bool.cond_true]; rw [sumMap3_sinj2]; rfl
 
-/-- `T(g)` on the terminator is the terminator; precomposed with `k` it is `e`. -/
+/-- `T(g)` on the terminator is the terminator; precomposed with `k` it is `e`.
+@isnad1 id=eq.0h2v.s8.124bb99e28b4 from=translated src=- shape=2da7f0d8 vocab=10bd37bb
+-/
 theorem genKey0 (g : ApproximableMap C B.carrier.sys) :
     B.str.1.toElementMap ((sumMap3 (h₀ := Example62C.unitSys_nonempty) (h₁ := Example62C.C_nonempty)
         (h₂ := Example62C.C_nonempty) (h₀' := Example62C.unitSys_nonempty) (
@@ -951,7 +1047,9 @@ theorem genKey0 (g : ApproximableMap C B.carrier.sys) :
   rw [toCC_strElem_nil, sumMap3_sinj0, toElementMap_idMap]
   rfl
 
-/-- `T(g)` on `⊥` is `⊥`; precomposed with `k` it is `⊥` (both maps are strict). -/
+/-- `T(g)` on `⊥` is `⊥`; precomposed with `k` it is `⊥` (both maps are strict).
+@isnad1 id=eq.0h2v.s8.7477b1edbeba from=translated src=- shape=7fb3ce41 vocab=12b6d367
+-/
 theorem genKeyBot (g : ApproximableMap C B.carrier.sys) :
     B.str.1.toElementMap ((sumMap3 (h₀ := Example62C.unitSys_nonempty) (h₁ := Example62C.C_nonempty)
         (h₂ := Example62C.C_nonempty) (h₀' := Example62C.unitSys_nonempty) (
@@ -965,12 +1063,18 @@ theorem genKeyBot (g : ApproximableMap C B.carrier.sys) :
     (h₁ := Example62C.C_nonempty) (h₂ := Example62C.C_nonempty) (idMap unitSys) g g)]
   exact isStrict_iff_apply_bot.mp B.str.2
 
+/--
+@isnad1 id=eq.0h0v.s6.02dae0404a27 from=translated src=- shape=8e3ad9af vocab=183f1647
+-/
 theorem ccEquiv_symm_comp : (ofIso ccEquiv.symm).comp (ofIso ccEquiv) = idMap C := by
   apply ext_of_toElementMap
   intro x
   rw [toElementMap_comp, toElementMap_ofIso, toElementMap_ofIso, toElementMap_idMap]
   exact ccEquiv.symm_apply_apply x
 
+/--
+@isnad1 id=eq.0h0v.s6.f0f46effe282 from=translated src=- shape=eec7b174 vocab=4ef7bebe
+-/
 theorem ccEquiv_comp_symm :
     (ofIso ccEquiv).comp (ofIso ccEquiv.symm) = idMap (sum3 unitSys C C Example62C.unitSys_nonempty
       Example62C.C_nonempty Example62C.C_nonempty) := by
@@ -981,7 +1085,9 @@ theorem ccEquiv_comp_symm :
 
 /-- **Any map satisfying the homomorphism recursion equals `descMap`.** This is
 *both* the existence
-witness (`descMap` satisfies it) and the uniqueness driver. -/
+witness (`descMap` satisfies it) and the uniqueness driver.
+@isnad1 id=eq.1h2v.s8.e75242905088 from=translated src=- shape=13a76b7f vocab=73b1ac1b
+-/
 theorem rec_determines (g : ApproximableMap C B.carrier.sys)
     (hg : g = (B.str.1.comp
       (sumMap3 (h₀ := Example62C.unitSys_nonempty) (h₁ := Example62C.C_nonempty)
@@ -1021,7 +1127,9 @@ theorem rec_determines (g : ApproximableMap C B.carrier.sys)
   · intro σ; rw [hbot, descMap_strBot]
   · intro σ; rw [helem, descMap_strElem]
 
-/-- `C`'s algebra map satisfies the recursion. -/
+/-- `C`'s algebra map satisfies the recursion.
+@isnad1 id=eq.0h1v.s8.feece7bd52b6 from=translated src=- shape=7e58b1a1 vocab=73b1ac1b
+-/
 theorem descMap_satisfiesRec :
     descMap B = (B.str.1.comp (sumMap3 (h₀ := Example62C.unitSys_nonempty)
         (h₁ := Example62C.C_nonempty) (h₂ := Example62C.C_nonempty) (
@@ -1050,7 +1158,9 @@ theorem descMap_satisfiesRec :
 
 /-- **The homomorphism square**, read off at the level of underlying approximable
 maps:
-`desc ∘ i = k ∘ T(desc)`. -/
+`desc ∘ i = k ∘ T(desc)`.
+@isnad1 id=eq.0h1v.s8.0cfcb6899291 from=translated src=- shape=7079f856 vocab=71f1edaa
+-/
 theorem descComm : (descMap B).comp (ofIso ccEquiv.symm)
     = B.str.1.comp (sumMap3 (h₀ := Example62C.unitSys_nonempty) (h₁ := Example62C.C_nonempty)
         (h₂ := Example62C.C_nonempty) (h₀' := Example62C.unitSys_nonempty) (
@@ -1068,7 +1178,9 @@ def descAlgHom : AlgHom Calg B where
     exact descComm B
 
 /-- **Uniqueness.** Any `T`-algebra homomorphism out of `(C, i)` equals
-`descAlgHom`. -/
+`descAlgHom`.
+@isnad1 id=eq.0h2v.s4.64414cd4a16b from=translated src=- shape=f8a7f704 vocab=e663173c
+-/
 theorem descAlgHom_uniq (h' : AlgHom Calg B) : h' = descAlgHom B := by
   obtain ⟨hom, comm⟩ := h'
   have hg : hom.1 = descMap B := by

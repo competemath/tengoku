@@ -41,7 +41,9 @@ variable {κ ι : Type*} {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- A **simplicial cone** — the nonnegative combinations of a linearly independent finite
 family — is closed: it is the image of the closed nonnegative orthant under an injective
-(hence closed-embedding) linear map from a finite-dimensional space. -/
+(hence closed-embedding) linear map from a finite-dimensional space.
+@isnad1 id=isclosed.1h4v.s7.125e32f8955b from=translated src=- shape=67c9b6b2 vocab=470b6998
+-/
 lemma simplicial_cone_isClosed
     (v : κ → E) (s : Finset κ) (hli : LinearIndepOn ℝ v s) :
     IsClosed {y : E |
@@ -85,7 +87,9 @@ lemma simplicial_cone_isClosed
 
 /-- **Conic Carathéodory.** Over any linearly ordered field, a nonnegative combination of a
 finite family equals a nonnegative combination over a linearly independent subfamily with the
-same value. This algebraic reduction requires no topology on the ambient module. -/
+same value. This algebraic reduction requires no topology on the ambient module.
+@isnad1 id=ex.1h5v.s8.bf18abafe562 from=translated src=- shape=465c6813 vocab=ce377c30
+-/
 lemma conic_caratheodory {R M : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     [AddCommGroup M] [Module R M] [Fintype κ]
     (v : κ → M) (c : κ → R) (hc : ∀ k, 0 ≤ c k) :
@@ -182,7 +186,9 @@ lemma conic_caratheodory {R M : Type*} [Field R] [LinearOrder R] [IsStrictOrdere
   · exact ⟨hs.1.choose, s, hs.1.choose_spec.1, hs.1.choose_spec.2.1,
       Classical.not_not.mp h_lin_dep, hs.1.choose_spec.2.2⟩
 
-/-- **Weyl.** The finitely generated cone `{∑ k, c k • v k : c ≥ 0}` is closed. -/
+/-- **Weyl.** The finitely generated cone `{∑ k, c k • v k : c ≥ 0}` is closed.
+@isnad1 id=isclosed.0h3v.s7.1a8949e6925d from=translated src=- shape=b6e95e46 vocab=388ab1ac
+-/
 lemma fg_cone_isClosed [Fintype κ] (v : κ → E) :
     IsClosed {y : E | ∃ c : κ → ℝ, (∀ k, 0 ≤ c k) ∧ ∑ k, c k • v k = y} := by
   classical

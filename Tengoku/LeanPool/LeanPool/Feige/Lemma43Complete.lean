@@ -30,6 +30,9 @@ open TransferStein TransferTestFunctions ProbabilityTheory
 local instance : IsProbabilityMeasure (expMeasure 1) :=
   isProbabilityMeasure_expMeasure one_pos
 
+/--
+@isnad1 id=integrab.2h4v.s6.49c629f66ca3 from=translated src=- shape=6ca3e28b vocab=2a548a6d
+-/
 theorem integrable_affine_prod_of_bound
     (μ : Measure ℝ) [IsFiniteMeasure μ]
     {g : ℝ → ℝ} (hg : Measurable g) (C : ℝ)
@@ -42,6 +45,9 @@ theorem integrable_affine_prod_of_bound
   filter_upwards with p
   exact hC _
 
+/--
+@isnad1 id=integrab.1h3v.s5.0940e0490472 from=translated src=- shape=fd0104cd vocab=f13e9ef0
+-/
 theorem integrable_phiPlus
     (μ : Measure ℝ) [IsFiniteMeasure μ]
     {d : ℝ} (hd : 0 < d) (a : ℝ) :
@@ -55,6 +61,9 @@ theorem integrable_phiPlus
   rw [integral_expMeasure_one]
   rfl
 
+/--
+@isnad1 id=integrab.1h3v.s5.c21197dcb2c3 from=translated src=- shape=fd0104cd vocab=3116e7d2
+-/
 theorem integrable_phiMinus
     (μ : Measure ℝ) [IsFiniteMeasure μ]
     {d : ℝ} (hd : 0 < d) (b : ℝ) :
@@ -68,6 +77,9 @@ theorem integrable_phiMinus
   rw [integral_expMeasure_one]
   simp only [phiMinus, neg_mul, sub_eq_add_neg]
 
+/--
+@isnad1 id=integrab.0h3v.s5.9d5d0362ff6d from=translated src=- shape=27f3c516 vocab=eb866256
+-/
 theorem integrable_psiPlus
     (μ : Measure ℝ) [IsFiniteMeasure μ]
     (c a : ℝ) :
@@ -81,6 +93,9 @@ theorem integrable_psiPlus
   rw [integral_expMeasure_one]
   rfl
 
+/--
+@isnad1 id=integrab.0h3v.s5.79edac6d26d2 from=translated src=- shape=27f3c516 vocab=d7ba7c27
+-/
 theorem integrable_psiMinus
     (μ : Measure ℝ) [IsFiniteMeasure μ]
     (c b : ℝ) :
@@ -94,6 +109,9 @@ theorem integrable_psiMinus
   rw [integral_expMeasure_one]
   simp only [psiMinus, neg_mul, sub_eq_add_neg]
 
+/--
+@isnad1 id=integrab.1h3v.s5.ed8799a2f765 from=translated src=- shape=fd0104cd vocab=45943176
+-/
 theorem integrable_phiDerivPlus
     (μ : Measure ℝ) [IsFiniteMeasure μ]
     {d : ℝ} (hd : 0 < d) (a : ℝ) :
@@ -112,6 +130,9 @@ theorem integrable_phiDerivPlus
   rw [integral_expMeasure_one]
   rfl
 
+/--
+@isnad1 id=integrab.1h3v.s5.c3b296ddb030 from=translated src=- shape=fd0104cd vocab=411f38bc
+-/
 theorem integrable_phiDerivMinus
     (μ : Measure ℝ) [IsFiniteMeasure μ]
     {d : ℝ} (hd : 0 < d) (b : ℝ) :
@@ -130,6 +151,9 @@ theorem integrable_phiDerivMinus
   rw [integral_expMeasure_one]
   simp only [phiDerivMinus, neg_mul, sub_eq_add_neg, Pi.mul_apply]
 
+/--
+@isnad1 id=integrab.1h3v.s5.44e8ca6a8a5b from=translated src=- shape=fd0104cd vocab=85e08b4d
+-/
 theorem integrable_psiDerivPlus
     (μ : Measure ℝ) [IsFiniteMeasure μ]
     {c : ℝ} (hc : 0 < c) (a : ℝ) :
@@ -148,6 +172,9 @@ theorem integrable_psiDerivPlus
   rw [integral_expMeasure_one]
   rfl
 
+/--
+@isnad1 id=integrab.1h3v.s5.74168dbfe666 from=translated src=- shape=fd0104cd vocab=2b62379f
+-/
 theorem integrable_psiDerivMinus
     (μ : Measure ℝ) [IsFiniteMeasure μ]
     {c : ℝ} (hc : 0 < c) (b : ℝ) :
@@ -167,7 +194,9 @@ theorem integrable_psiDerivMinus
   simp only [psiDerivMinus, neg_mul, sub_eq_add_neg, Pi.mul_apply]
 
 /-- The lower-test transfer identity, with all bounded-integrability
-hypotheses discharged. -/
+hypotheses discharged.
+@isnad1 id=eq.3h4v.s7.63e8b2d8d046 from=translated src=- shape=33725b37 vocab=7ff63bb2
+-/
 theorem equation23_A_probability_auto
     (μ : Measure ℝ) [IsFiniteMeasure μ]
     {a b d : ℝ} (ha : 0 < a) (hb : 0 < b) (hd : 0 < d) :
@@ -188,7 +217,9 @@ theorem equation23_A_probability_auto
         (measurable_transferPhiDeriv d) (1 / d)
         (norm_transferPhiDeriv_le hd) (-b)
 
-/-- The upper-test transfer identity, again with no integrability inputs. -/
+/-- The upper-test transfer identity, again with no integrability inputs.
+@isnad1 id=eq.3h4v.s7.cd93ca2521c7 from=translated src=- shape=33725b37 vocab=e6315c45
+-/
 theorem equation23_B_probability_auto
     (μ : Measure ℝ) [IsFiniteMeasure μ]
     {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) :
@@ -212,7 +243,9 @@ theorem equation23_B_probability_auto
 /-- The local transfer result for the actual positive and negative
 exponential shifts of an arbitrary probability density.  Probability
 relations, Stein integrability, density identification, denominator
-positivity, and the likelihood-ratio order are all discharged internally. -/
+positivity, and the likelihood-ratio order are all discharged internally.
+@isnad1 id=other.6h5v.s8.a02cc44cc89e from=translated src=- shape=4e9e7707 vocab=d988e9c7
+-/
 theorem complete_for_density
     {f : ℝ → ENNReal} (hf : Measurable f)
     (hflc : LikelihoodRatio.FourPointLogConcave f)

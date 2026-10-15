@@ -58,7 +58,9 @@ end IrreducibleCloseds
 end TopologicalSpace
 
 /-- On an irreducible space of dimension ≤ 0, the only opens are ⊥ and ⊤.
-    Every point is dense, so any nonempty open contains every point. -/
+    Every point is dense, so any nonempty open contains every point.
+@isnad1 id=or.1h2v.s7.ab4b488dc559 from=translated src=- shape=c8f45478 vocab=a6b0d600
+-/
 theorem opens_eq_bot_or_top_of_irreducibleSpace_dim_zero
     {X : Type u} [TopologicalSpace X] [IrreducibleSpace X]
     (hdim : topologicalKrullDim X ≤ 0) (U : Opens X) :
@@ -75,7 +77,9 @@ theorem opens_eq_bot_or_top_of_irreducibleSpace_dim_zero
 
 /-! ## Dimension helpers -/
 
-/-- On a non-empty topological space, the topological Krull dimension is ≥ 0. -/
+/-- On a non-empty topological space, the topological Krull dimension is ≥ 0.
+@isnad1 id=le.0h1v.s4.19dafead06f6 from=translated src=- shape=8c6e13cb vocab=123b46a9
+-/
 theorem topologicalKrullDim_nonneg {X : Type u} [TopologicalSpace X]
     [Nonempty X] : topologicalKrullDim X ≥ 0 := by
   rw [topologicalKrullDim, ge_iff_le, Order.krullDim_nonneg_iff]
@@ -83,21 +87,27 @@ theorem topologicalKrullDim_nonneg {X : Type u} [TopologicalSpace X]
   exact ⟨⟨closure {x}, isIrreducible_singleton.closure, isClosed_closure⟩⟩
 
 /-- Any strict upper bound on the topological Krull dimension of a space also bounds the
-dimension of each subspace. -/
+dimension of each subspace.
+@isnad1 id=lt.1h3v.s5.e1237621c007 from=translated src=- shape=5aa15d96 vocab=e2065a06
+-/
 theorem topologicalKrullDim_subspace_lt_of_lt {X : Type u} [TopologicalSpace X]
     (Y : Set X) {a : WithBot ℕ∞} (ha : topologicalKrullDim X < a) :
     topologicalKrullDim Y < a :=
   lt_of_le_of_lt (topologicalKrullDim_subspace_le X Y) ha
 
 /-- A natural-number upper bound on the topological Krull dimension implies that the
-dimension is finite. -/
+dimension is finite.
+@isnad1 id=lt.1h2v.s5.6532755b309f from=translated src=- shape=0a7f82e8 vocab=14c6e255
+-/
 theorem topologicalKrullDim_lt_top_of_lt_nat {X : Type u} [TopologicalSpace X] {m : ℕ}
     (hm : topologicalKrullDim X < ↑↑(m : ℕ)) :
     topologicalKrullDim X < ⊤ :=
   lt_of_lt_of_le hm le_top
 
 /-- If `Y` has strictly smaller topological Krull dimension than `X`, then any natural-number
-upper bound `dim X < n + 1` descends to the predecessor bound `dim Y < n`. -/
+upper bound `dim X < n + 1` descends to the predecessor bound `dim Y < n`.
+@isnad1 id=lt.2h3v.s6.c4dac84e5788 from=translated src=- shape=b27026a1 vocab=97153de8
+-/
 theorem topologicalKrullDim_lt_nat_of_lt_of_lt_nat_succ {X Y : Type u}
     [TopologicalSpace X] [TopologicalSpace Y] {n : ℕ}
     (hYX : topologicalKrullDim Y < topologicalKrullDim X)
@@ -114,14 +124,23 @@ variable {X : Type u} [TopologicalSpace X]
 noncomputable def height (S : IrreducibleCloseds X) : ℕ∞ :=
   Order.height S
 
+/--
+@isnad1 id=le.1h3v.s5.917967b33469 from=translated src=- shape=6ec17f90 vocab=8fc9b5df
+-/
 theorem height_add_one_le {S T : IrreducibleCloseds X} (hST : S < T) :
     S.height + 1 ≤ T.height := by
   simpa [height] using (Order.height_add_one_le hST)
 
+/--
+@isnad1 id=le.0h2v.s4.d7df4602451c from=translated src=- shape=392e20af vocab=dce3a74d
+-/
 theorem height_le_topologicalKrullDim (S : IrreducibleCloseds X) :
     S.height ≤ topologicalKrullDim X := by
   simpa [height, topologicalKrullDim] using (Order.height_le_krullDim S)
 
+/--
+@isnad1 id=le.1h4v.s5.c59ea14c2124 from=translated src=- shape=258d8871 vocab=66e11ac0
+-/
 theorem height_le_height_map_of_isInducing {Y : Type*} [TopologicalSpace Y] {f : Y → X}
     (hf : Topology.IsInducing f) (S : IrreducibleCloseds Y) :
     S.height ≤ (IrreducibleCloseds.map f hf.continuous S).height := by
@@ -131,7 +150,9 @@ theorem height_le_height_map_of_isInducing {Y : Type*} [TopologicalSpace Y] {f :
     S
 
 /-- An irreducible closed subset of a proper closed subspace of an irreducible space has height
-at most one less than the ambient topological Krull dimension. -/
+at most one less than the ambient topological Krull dimension.
+@isnad1 id=le.2h3v.s6.68649e6b9b10 from=translated src=- shape=89a05b46 vocab=ad06e367
+-/
 theorem height_add_one_le_topologicalKrullDim_of_isClosed_of_ne_univ
     [IrreducibleSpace X] {Y : Set X} (hY : IsClosed Y) (hne : Y ≠ Set.univ)
     (S : IrreducibleCloseds Y) :
@@ -158,14 +179,18 @@ theorem height_add_one_le_topologicalKrullDim_of_isClosed_of_ne_univ
 
 end IrreducibleCloseds
 
-/-- The topological Krull dimension is the supremum of the heights of irreducible closed sets. -/
+/-- The topological Krull dimension is the supremum of the heights of irreducible closed sets.
+@isnad1 id=eq.0h1v.s5.cb9c558c4edd from=translated src=- shape=8344b486 vocab=fc1c6ef4
+-/
 theorem topologicalKrullDim_eq_iSup_height (X : Type u) [TopologicalSpace X] :
     topologicalKrullDim X = ⨆ S : IrreducibleCloseds X, ↑S.height := by
   simpa [IrreducibleCloseds.height, topologicalKrullDim] using
     (Order.krullDim_eq_iSup_height (α := IrreducibleCloseds X))
 
 /-- The topological Krull dimension plus one is the supremum of the heights of irreducible
-closed sets, each shifted by one. -/
+closed sets, each shifted by one.
+@isnad1 id=eq.0h1v.s6.39b725d0bed3 from=translated src=- shape=546c99b1 vocab=e444a5c9
+-/
 theorem topologicalKrullDim_add_one_eq_iSup_height_add_one (X : Type u) [TopologicalSpace X] :
     topologicalKrullDim X + 1 =
       ⨆ S : IrreducibleCloseds X, ((S.height : WithBot ℕ∞) + 1) := by
@@ -200,7 +225,9 @@ theorem topologicalKrullDim_add_one_eq_iSup_height_add_one (X : Type u) [Topolog
 end TopologicalSpace
 
 /-- Unconditional: topologicalKrullDim Y + 1 ≤ topologicalKrullDim X for
-    Y ⊊ X closed in irreducible X. -/
+    Y ⊊ X closed in irreducible X.
+@isnad1 id=le.2h2v.s6.3af146147feb from=translated src=- shape=2f678b43 vocab=343e22e3
+-/
 theorem topologicalKrullDim_add_one_le_of_isIrreducible_of_isClosed {X : Type u}
     [TopologicalSpace X] [IrreducibleSpace X] {Y : Set X} (hY : IsClosed Y)
     (hne : Y ≠ Set.univ) :
@@ -238,7 +265,9 @@ private theorem topologicalKrullDim_lt_of_add_one_le_of_lt_top {X Y : Type u}
 
 /-- On an irreducible space, a proper closed subset with finite Krull dimension has
 strictly smaller Krull dimension. The finiteness hypothesis excludes the case where both
-`Y` and `X` have infinite dimension. -/
+`Y` and `X` have infinite dimension.
+@isnad1 id=lt.3h2v.s6.1294fddcfb8d from=translated src=- shape=27c4e8fd vocab=c316a870
+-/
 theorem topologicalKrullDim_lt_of_isIrreducible_of_isClosed {X : Type u} [TopologicalSpace X]
     [IrreducibleSpace X] {Y : Set X} (hY : IsClosed Y) (hne : Y ≠ Set.univ)
     (hfin : topologicalKrullDim Y < ⊤) :
@@ -247,7 +276,9 @@ theorem topologicalKrullDim_lt_of_isIrreducible_of_isClosed {X : Type u} [Topolo
     (topologicalKrullDim_add_one_le_of_isIrreducible_of_isClosed hY hne) hfin
 
 /-- On an irreducible space, positive topological Krull dimension is equivalent to the
-existence of a proper irreducible closed subset. -/
+existence of a proper irreducible closed subset.
+@isnad1 id=iff.0h1v.s5.c2a40fcf24c5 from=translated src=- shape=c9ca2bef vocab=7a475ddd
+-/
 theorem topologicalKrullDim_pos_iff_exists_irreducibleCloseds_ne_univ {X : Type u}
     [TopologicalSpace X] [IrreducibleSpace X] :
     topologicalKrullDim X > 0 ↔ ∃ Z : IrreducibleCloseds X, (Z : Set X) ≠ Set.univ := by
@@ -269,7 +300,9 @@ theorem topologicalKrullDim_pos_iff_exists_irreducibleCloseds_ne_univ {X : Type 
 
 /-- On an irreducible space of positive finite Krull dimension, one can choose a proper
 closed subset `Z ⊊ X` of strictly smaller Krull dimension. This isolates the structural
-closed-subset choice from the separate task of passing numerical bounds to `Z`. -/
+closed-subset choice from the separate task of passing numerical bounds to `Z`.
+@isnad1 id=ex.2h1v.s6.e9465971fded from=translated src=- shape=0c77bc1d vocab=7055aa80
+-/
 theorem exists_closed_subset_lt_topologicalKrullDim_of_irreducible_pos
     {X : Type u} [TopologicalSpace X] [IrreducibleSpace X]
     (hpos : topologicalKrullDim X > 0) (hX_lt_top : topologicalKrullDim X < ⊤) :

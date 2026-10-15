@@ -42,6 +42,9 @@ def turn {K : Type*} [Ring K] (a b c : Point K) : K :=
 def sqDist {K : Type*} [Ring K] (a b : Point K) : K :=
   (b.1 - a.1) ^ 2 + (b.2 - a.2) ^ 2
 
+/--
+@isnad1 id=eq.0h3v.s4.3cded68601cb from=translated src=- shape=eb130ee2 vocab=97f839e2
+-/
 theorem sqDist_comm {K : Type*} [CommRing K] (a b : Point K) :
     sqDist a b = sqDist b a := by
   simp [sqDist]
@@ -102,16 +105,23 @@ def HasTopThreeDistanceClasses
       d ≤ d₁ ∧ (d < d₁ → d ≤ d₂) ∧ (d < d₂ → d ≤ d₃)
 
 /-- The executable unordered-pair list contains exactly the increasing
-representatives. -/
+representatives.
+@isnad1 id=iff.0h3v.s5.1e49bdb07676 from=translated src=- shape=c9d09284 vocab=9c1ede19
+-/
 theorem mem_unorderedPairList_iff
     {n : ℕ} {i j : Fin n} : (i, j) ∈ unorderedPairList n ↔ i < j := by
   simp [unorderedPairList]
 
+/--
+@isnad1 id=le.0h2v.s4.561b4f863e3f from=translated src=- shape=ec494a46 vocab=3de7b76a
+-/
 theorem sqDist_nonneg (a b : Point ℝ) : 0 ≤ sqDist a b := by
   simp only [sqDist]
   exact add_nonneg (sq_nonneg _) (sq_nonneg _)
 
-/-- Distinct real points have positive squared distance. -/
+/-- Distinct real points have positive squared distance.
+@isnad1 id=lt.1h2v.s4.34035c75ead5 from=translated src=- shape=5e1a9249 vocab=1311c73c
+-/
 theorem sqDist_pos_of_ne {a b : Point ℝ} (h : a ≠ b) : 0 < sqDist a b := by
   by_contra hn
   have hz : sqDist a b = 0 := le_antisymm (le_of_not_gt hn) (sqDist_nonneg a b)
@@ -122,7 +132,9 @@ theorem sqDist_pos_of_ne {a b : Point ℝ} (h : a ≠ b) : 0 < sqDist a b := by
 
 /-- The top-three predicate supplies its global distance bound for every
 ordered pair of distinct labels, not only for the increasing representative
-stored in `unorderedPairList`. -/
+stored in `unorderedPairList`.
+@isnad1 id=other.2h7v.s6.0cdd088bacb5 from=translated src=- shape=024703b7 vocab=9bb9b9a2
+-/
 theorem top_three_class_bounds_of_ne
     {n : ℕ} {P : Fin n → Point ℝ} {d₁ d₂ d₃ : ℝ}
     (hClasses : HasTopThreeDistanceClasses P d₁ d₂ d₃)
@@ -143,6 +155,9 @@ def cyclicStrictConvexCheck
     (List.finRange n).all fun j ↦
       decide (j = i ∨ j = cyclicNext i ∨ 0 < turn (P i) (P (cyclicNext i)) (P j))
 
+/--
+@isnad1 id=cyclicst.1h3v.s5.77f61b74c586 from=translated src=- shape=f1678101 vocab=ab9d1925
+-/
 theorem cyclicStrictConvex_of_check
     {K : Type*} [Ring K] [LinearOrder K]
     {n : ℕ} [NeZero n] {P : Fin n → Point K}
@@ -169,6 +184,9 @@ def hasTopThreeDistanceClassesCheck
       let d := sqDist (P e.1) (P e.2)
       decide (d ≤ d₁ ∧ (d < d₁ → d ≤ d₂) ∧ (d < d₂ → d ≤ d₃)))
 
+/--
+@isnad1 id=hastopth.1h6v.s5.61aeb8d91b44 from=translated src=- shape=3afabf19 vocab=e0df7077
+-/
 theorem hasTopThreeDistanceClasses_of_check
     {K : Type*} [Ring K] [LinearOrder K]
     {n : ℕ} {P : Fin n → Point K} {d₁ d₂ d₃ : K}
@@ -215,6 +233,9 @@ def vertexDegree
     sqDist (P i) (P j) = d₁ ∨ sqDist (P i) (P j) = d₂ ∨
       sqDist (P i) (P j) = d₃).card
 
+/--
+@isnad1 id=eq.1h8v.s6.196471d5cf8b from=translated src=- shape=4883a4fc vocab=37c871ed
+-/
 theorem vertexDegree_eq_of_neighbors
     {K : Type*} [CommRing K] [DecidableEq K] {n : ℕ}
     (P : Fin n → Point K) (d₁ d₂ d₃ : K) (i : Fin n) (N : Finset (Fin n))

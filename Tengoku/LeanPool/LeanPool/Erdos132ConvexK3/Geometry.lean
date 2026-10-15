@@ -28,7 +28,9 @@ noncomputable def euclideanDist (a b : Point ℝ) : ℝ :=
   dist (toComplex a) (toComplex b)
 
 /-- The ordinary distance squares to the polynomial Cartesian squared
-distance used by the top-three graph. -/
+distance used by the top-three graph.
+@isnad1 id=eq.0h2v.s5.8c03a5577760 from=translated src=- shape=09598a25 vocab=9168b29c
+-/
 theorem euclideanDist_sq (a b : Point ℝ) :
     euclideanDist a b ^ 2 = sqDist a b := by
   simp [euclideanDist, Complex.dist_eq, Complex.sq_norm,
@@ -199,7 +201,9 @@ private theorem complex_edge_diagonal_inequality
     _ = dist a c + dist b d := by rw [hac, hbd]
 
 /-- **Edge--diagonal inequality.** Opposite side sums in a strictly convex
-cyclic quadrilateral are strictly smaller than the diagonal sum. -/
+cyclic quadrilateral are strictly smaller than the diagonal sum.
+@isnad1 id=lt.1h4v.s5.0fcb3bc8259e from=translated src=- shape=f6e71d5d vocab=1085c0c2
+-/
 theorem edge_diagonal_inequality
     {a b c d : Point ℝ} (h : StrictConvexQuad a b c d) :
     euclideanDist a b + euclideanDist c d <
@@ -210,7 +214,9 @@ theorem edge_diagonal_inequality
 
 /-- Four strictly acute interior angles are impossible in a strict convex
 quadrilateral.  This is the algebraic form of the final sentence in ErLV's
-majorant argument. -/
+majorant argument.
+@isnad1 id=false.5h4v.s7.59a0562a0067 from=translated src=- shape=5a6f53a2 vocab=5a41be06
+-/
 theorem strict_convex_quad_not_all_acute
     {a b c d : Point ℝ} (hquad : StrictConvexQuad a b c d)
     (ha : 0 < dot (b - a) (d - a))
@@ -359,7 +365,9 @@ theorem strict_convex_quad_not_all_acute
   linarith
 
 /-- **Avoiding-diameter impossibility.** Two opposite sides of a strictly
-convex cyclic quadrilateral cannot both realize its diameter. -/
+convex cyclic quadrilateral cannot both realize its diameter.
+@isnad1 id=false.5h5v.s5.31f9c2b32c78 from=translated src=- shape=97bc13fe vocab=49d2025e
+-/
 theorem avoiding_diameters_impossible
     {a b c d : Point ℝ} {diameter : ℝ}
     (hquad : StrictConvexQuad a b c d)
@@ -371,7 +379,9 @@ theorem avoiding_diameters_impossible
   linarith
 
 /-- **Red--blue forcing.** Avoiding sides in the largest and second-largest
-classes force both diagonals into the largest class. -/
+classes force both diagonals into the largest class.
+@isnad1 id=and.6h6v.s6.dc8e996664e7 from=translated src=- shape=0617574b vocab=a6d70cec
+-/
 theorem red_blue_forcing
     {a b c d : Point ℝ} {d₁ d₂ : ℝ}
     (hquad : StrictConvexQuad a b c d)
@@ -388,11 +398,17 @@ theorem red_blue_forcing
   · linarith
   · exact ⟨hac, hbd⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.82626d0afa3c from=translated src=- shape=90dd1962 vocab=401795e4
+-/
 theorem turn_cyclic
     {K : Type*} [CommRing K] (a b c : Point K) : turn a b c = turn b c a := by
   simp [turn]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s5.7b0fb586d9e7 from=translated src=- shape=097e4441 vocab=ac01ff73
+-/
 theorem turn_swap
     {K : Type*} [CommRing K] (a b c : Point K) : turn a c b = -turn a b c := by
   simp [turn]
@@ -400,7 +416,9 @@ theorem turn_swap
 
 /-- **Chord half-plane separation.** In cyclic order `a,b,c,d`, the two
 boundary arcs represented by `b` and `d` lie in opposite open half-planes
-of chord `ac`. -/
+of chord `ac`.
+@isnad1 id=and.1h5v.s5.7ece76903f0a from=translated src=- shape=5d979a2d vocab=521a781b
+-/
 theorem chord_half_plane_separation
     {K : Type*} [CommRing K] [LinearOrder K]
     {a b c d : Point K}
@@ -415,7 +433,9 @@ theorem chord_half_plane_separation
 
 /-- **Same-half-plane two-circle uniqueness.** Two points with the same
 distances to distinct centers coincide if both are in the same open
-half-plane bounded by the line of centers. -/
+half-plane bounded by the line of centers.
+@isnad1 id=eq.5h4v.s6.13685ca35747 from=translated src=- shape=c25cf55f vocab=461b1b47
+-/
 theorem same_half_plane_two_circle_unique
     {a b p q : Point ℝ} (hab : a ≠ b)
     (hap : sqDist a p = sqDist a q)
@@ -495,7 +515,9 @@ theorem same_half_plane_two_circle_unique
 /-- A point distinct from both endpoints and contained in both closed disks
 whose common diameter is the endpoint segment has abscissa strictly between
 the endpoint abscissae.  The disk bounds are the explicit diameter property
-needed for the strict box `0 < X < 2c`. -/
+needed for the strict box `0 < X < 2c`.
+@isnad1 id=and.5h3v.s7.6819e61bf07c from=translated src=- shape=95df7476 vocab=1bc11cb7
+-/
 theorem diameter_lens_abscissa
     {c X Y : ℝ} (hc : 0 < c)
     (hleft : sqDist (0, 0) (X, Y) ≤ (2 * c) ^ 2)
@@ -528,7 +550,9 @@ theorem diameter_lens_abscissa
   exact ⟨lt_of_le_of_ne hxNonneg hxNe.symm, lt_of_le_of_ne hxUpper hxUpperNe⟩
 
 /-- The exact algebra behind draft equation (5.5).  The displayed constraint
-`2cd + d² = Δ(H + (H - Δ))` is essential; without it the identity is false. -/
+`2cd + d² = Δ(H + (H - Δ))` is essential; without it the identity is false.
+@isnad1 id=eq.1h6v.s7.2e2db065c7f2 from=translated src=- shape=b0847843 vocab=a417e91a
+-/
 theorem two_rung_sum_identity
     {c d H Δ X Y : ℝ}
     (hconstraint : 2 * c * d + d ^ 2 = Δ * (H + (H - Δ))) :
@@ -537,7 +561,9 @@ theorem two_rung_sum_identity
   simp only [sqDist]
   nlinarith [hconstraint]
 
-/-- Draft equation (5.5), with `B - A = -4cd` made explicit. -/
+/-- Draft equation (5.5), with `B - A = -4cd` made explicit.
+@isnad1 id=eq.2h8v.s8.cea6482928e7 from=translated src=- shape=70837d66 vocab=a417e91a
+-/
 theorem two_rung_sum_identity_with_classes
     {c d H Δ X Y A B : ℝ}
     (hconstraint : 2 * c * d + d ^ 2 = Δ * (H + (H - Δ)))

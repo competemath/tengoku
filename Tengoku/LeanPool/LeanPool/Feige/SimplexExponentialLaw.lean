@@ -27,6 +27,9 @@ namespace Feige
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=eq.0h1v.s4.b8c736cfee8f from=translated src=- shape=6dea8734 vocab=c0ad6f20
+-/
 theorem normalizedExponentialSimplexMeasure_eq_uniform :
     normalizedExponentialSimplexMeasure (n := n) =
       simplexUniformMeasure (Fin n) := by
@@ -47,6 +50,9 @@ noncomputable def realExponentialProductMeasure :
   (volume.restrict (positiveExponentialOrthant (n := n))).withDensity
     (fun e ↦ ENNReal.ofReal (Real.exp (-exponentialTotal e)))
 
+/--
+@isnad1 id=eq.1h2v.s6.86167f48ea9b from=translated src=- shape=b0eb4ced vocab=ff4d7232
+-/
 theorem realExponentialProductMeasure_lintegral
     (h : (Fin n → ℝ) → ℝ≥0∞) (hh : Measurable h) :
     ∫⁻ e, h (normalizedExponentialCoordinates e)
@@ -63,11 +69,16 @@ theorem realExponentialProductMeasure_lintegral
   · exact continuous_exponentialTotal.measurable.neg.exp.ennreal_ofReal
   · exact hh.comp measurable_exponentialSimplexInverse.snd
 
+/--
+@isnad1 id=measurab.0h1v.s5.20f3b48dff65 from=translated src=- shape=b23881e2 vocab=adc89d96
+-/
 theorem measurable_normalizedExponentialCoordinates :
     Measurable (normalizedExponentialCoordinates (n := n)) :=
   measurable_exponentialSimplexInverse.snd
 
-/-- Measure-level pushforward form of the normalized exponential law. -/
+/-- Measure-level pushforward form of the normalized exponential law.
+@isnad1 id=eq.0h1v.s6.31d5cce85af1 from=translated src=- shape=032692b4 vocab=2d939682
+-/
 theorem map_realExponentialProductMeasure_normalizedCoordinates :
     Measure.map (normalizedExponentialCoordinates (n := n))
         (realExponentialProductMeasure (n := n)) =

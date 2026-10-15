@@ -77,22 +77,45 @@ def memSet : Set (Set Token) := {master, left, right, leaf00, leaf01, leaf10, le
 /-- Membership in the neighbourhood system `𝒟` of Example 1.4. -/
 def mem (X : Set Token) : Prop := X ∈ memSet
 
+/--
+@isnad1 id=mem.0h0v.s1.582375c7ffdc from=translated src=- shape=49959d42 vocab=addaf139
+-/
 theorem mem_master : mem master := by
   simp [mem, memSet, master, left, right, leaf00, leaf01, leaf10, leaf11]
+/--
+@isnad1 id=mem.0h0v.s1.653b8274dca4 from=translated src=- shape=49959d42 vocab=12867e85
+-/
 theorem mem_left : mem left := by
   simp [mem, memSet, master, left, right, leaf00, leaf01, leaf10, leaf11]
+/--
+@isnad1 id=mem.0h0v.s1.5f145a79d72c from=translated src=- shape=49959d42 vocab=fe1185a3
+-/
 theorem mem_right : mem right := by
   simp [mem, memSet, master, left, right, leaf00, leaf01, leaf10, leaf11]
+/--
+@isnad1 id=mem.0h0v.s1.f565530e01c0 from=translated src=- shape=49959d42 vocab=c26640b9
+-/
 theorem mem_leaf00 : mem leaf00 := by
   simp [mem, memSet, master, left, right, leaf00, leaf01, leaf10, leaf11]
+/--
+@isnad1 id=mem.0h0v.s1.d423be370d0f from=translated src=- shape=49959d42 vocab=ac21b1f0
+-/
 theorem mem_leaf01 : mem leaf01 := by
   simp [mem, memSet, master, left, right, leaf00, leaf01, leaf10, leaf11]
+/--
+@isnad1 id=mem.0h0v.s1.fdee095fb1e6 from=translated src=- shape=49959d42 vocab=4c145b47
+-/
 theorem mem_leaf10 : mem leaf10 := by
   simp [mem, memSet, master, left, right, leaf00, leaf01, leaf10, leaf11]
+/--
+@isnad1 id=mem.0h0v.s1.1f37f0aea759 from=translated src=- shape=49959d42 vocab=fc54d9b2
+-/
 theorem mem_leaf11 : mem leaf11 := by
   simp [mem, memSet, master, left, right, leaf00, leaf01, leaf10, leaf11]
 
-/-- A neighbourhood of Example 1.4 is exactly one of the seven. -/
+/-- A neighbourhood of Example 1.4 is exactly one of the seven.
+@isnad1 id=iff.0h1v.s5.02863d9bb7ca from=translated src=- shape=cbb2b3be vocab=a1e174d6
+-/
 theorem mem_iff (X : Set Token) :
     mem X ↔ X = master ∨ X = left ∨ X = right ∨ X = leaf00 ∨ X = leaf01 ∨ X = leaf10 ∨ X =
       leaf11 := by
@@ -109,6 +132,9 @@ theorem mem_iff (X : Set Token) :
     · exact mem_leaf10
     · exact mem_leaf11
 
+/--
+@isnad1 id=not.0h0v.s2.6df69bc490df from=translated src=- shape=70d57dbf vocab=345f6b69
+-/
 theorem not_mem_empty : ¬mem (∅ : Set Token) := by
   intro h
   rcases (mem_iff (∅ : Set Token)).mp h with h | h | h | h | h | h | h
@@ -474,6 +500,9 @@ def elem00 : neighborhoodSystem.Element where
       · exact Or.inr (Or.inl h)
       · exact Or.inr (Or.inr h)
 
+/--
+@isnad1 id=mem.0h0v.s2.ee6760e6fa83 from=translated src=- shape=93eefbde vocab=265e751f
+-/
 @[simp] theorem elem00_mem_leaf00 : elem00.mem leaf00 := Or.inr (Or.inr rfl)
 
 /-- The total element `{Δ, left, leaf01}` (leaf `01`). -/
@@ -789,7 +818,9 @@ private theorem mem_right_imp (x : neighborhoodSystem.Element) (hr : x.mem right
 
 /-- **Example 1.4 classification.** Every filter is one of the seven: the bottom
 `⊥`, the two
-branch partials `elemZero`/`elemOne`, or one of the four total leaf elements. -/
+branch partials `elemZero`/`elemOne`, or one of the four total leaf elements.
+@isnad1 id=or.0h1v.s5.4f5d1945efa0 from=translated src=- shape=ef04986c vocab=474fc580
+-/
 theorem element_classification (x : neighborhoodSystem.Element) :
     x = bot ∨ x = elemZero ∨ x = elemOne ∨ x = elem00 ∨ x = elem01 ∨ x = elem10 ∨ x = elem11 := by
   by_cases h00 : x.mem leaf00
@@ -823,18 +854,27 @@ theorem element_classification (x : neighborhoodSystem.Element) :
 
 /-! ### The approximation order (Definition 1.8): a branching tree. -/
 
+/--
+@isnad1 id=lt.0h0v.s4.c6aa93041f86 from=translated src=- shape=9094f7d5 vocab=b591cdb4
+-/
 theorem bot_lt_elemZero : bot < elemZero := by
   constructor
   · intro X hx; rw [hx]; exact Or.inl rfl
   · intro h
     exact left_ne_master (h left (Or.inr rfl))
 
+/--
+@isnad1 id=lt.0h0v.s4.f597375468cd from=translated src=- shape=9094f7d5 vocab=b65988ff
+-/
 theorem bot_lt_elemOne : bot < elemOne := by
   constructor
   · intro X hx; rw [hx]; exact Or.inl rfl
   · intro h
     exact right_ne_master (h right (Or.inr rfl))
 
+/--
+@isnad1 id=lt.0h0v.s4.7179b14e53ac from=translated src=- shape=9094f7d5 vocab=64b99d0a
+-/
 theorem elemZero_lt_elem00 : elemZero < elem00 := by
   constructor
   · intro X hx
@@ -846,6 +886,9 @@ theorem elemZero_lt_elem00 : elemZero < elem00 := by
     · exact leaf00_ne_master h1
     · exact leaf00_ne_left h1
 
+/--
+@isnad1 id=lt.0h0v.s4.452819b54327 from=translated src=- shape=9094f7d5 vocab=019a0dde
+-/
 theorem elemZero_lt_elem01 : elemZero < elem01 := by
   constructor
   · intro X hx
@@ -857,6 +900,9 @@ theorem elemZero_lt_elem01 : elemZero < elem01 := by
     · exact leaf01_ne_master h1
     · exact leaf01_ne_left h1
 
+/--
+@isnad1 id=lt.0h0v.s4.63330a927264 from=translated src=- shape=9094f7d5 vocab=735832d2
+-/
 theorem elemOne_lt_elem10 : elemOne < elem10 := by
   constructor
   · intro X hx
@@ -868,6 +914,9 @@ theorem elemOne_lt_elem10 : elemOne < elem10 := by
     · exact leaf10_ne_master h1
     · exact leaf10_ne_right h1
 
+/--
+@isnad1 id=lt.0h0v.s4.2464043ce709 from=translated src=- shape=9094f7d5 vocab=393d1c08
+-/
 theorem elemOne_lt_elem11 : elemOne < elem11 := by
   constructor
   · intro X hx
@@ -879,15 +928,27 @@ theorem elemOne_lt_elem11 : elemOne < elem11 := by
     · exact leaf11_ne_master h1
     · exact leaf11_ne_right h1
 
+/--
+@isnad1 id=eq.1h1v.s4.b066ae2a409d from=translated src=- shape=35d47406 vocab=5dfd34c9
+-/
 theorem elem00_maximal (x : neighborhoodSystem.Element) (h : elem00 ≤ x) : x = elem00 :=
   mem_leaf00_imp x (h leaf00 (Or.inr (Or.inr rfl)))
 
+/--
+@isnad1 id=eq.1h1v.s4.8bb70f35c9b3 from=translated src=- shape=35d47406 vocab=5db1745a
+-/
 theorem elem01_maximal (x : neighborhoodSystem.Element) (h : elem01 ≤ x) : x = elem01 :=
   mem_leaf01_imp x (h leaf01 (Or.inr (Or.inr rfl)))
 
+/--
+@isnad1 id=eq.1h1v.s4.862b2e77ed50 from=translated src=- shape=35d47406 vocab=f1c4755f
+-/
 theorem elem10_maximal (x : neighborhoodSystem.Element) (h : elem10 ≤ x) : x = elem10 :=
   mem_leaf10_imp x (h leaf10 (Or.inr (Or.inr rfl)))
 
+/--
+@isnad1 id=eq.1h1v.s4.ef8752c614a7 from=translated src=- shape=35d47406 vocab=e3dc70cb
+-/
 theorem elem11_maximal (x : neighborhoodSystem.Element) (h : elem11 ≤ x) : x = elem11 :=
   mem_leaf11_imp x (h leaf11 (Or.inr (Or.inr rfl)))
 

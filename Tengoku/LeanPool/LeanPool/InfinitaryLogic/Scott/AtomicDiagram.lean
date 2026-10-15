@@ -142,7 +142,9 @@ def SameAtomicType {N : Type w'} [L.Structure N] (a : Fin n → M) (b : Fin n �
   ∀ idx : L.AtomicIdx n, idx.holds a ↔ idx.holds b
 
 omit [L.IsRelational] in
-/-- The correspondence between atomic diagrams and same atomic type. -/
+/-- The correspondence between atomic diagrams and same atomic type.
+@isnad1 id=iff.0h6v.s5.9224e540fc17 from=translated src=- shape=5f71e8cb vocab=79699593
+-/
 theorem sameAtomicType_iff_realize_atomicDiagram [Countable (Σ l, L.Relations l)]
     {N : Type w'} [L.Structure N] (a : Fin n → M) (b : Fin n → N) :
     SameAtomicType (L := L) (M := M) (N := N) a b ↔
@@ -171,13 +173,17 @@ theorem sameAtomicType_iff_realize_atomicDiagram [Countable (Σ l, L.Relations l
       exact hidx ((realize_atomicFormulaω (M := N) idx b).mpr hb)
 
 omit [L.IsRelational] in
-/-- Same atomic type is reflexive. -/
+/-- Same atomic type is reflexive.
+@isnad1 id=sameatom.0h4v.s4.f2e1bec2e188 from=translated src=- shape=4e72bef9 vocab=1701c665
+-/
 @[refl]
 theorem SameAtomicType.refl (a : Fin n → M) : SameAtomicType (L := L) (M := M) (N := M) a a :=
   fun _ => Iff.rfl
 
 omit [L.IsRelational] in
-/-- Same atomic type is symmetric. -/
+/-- Same atomic type is symmetric.
+@isnad1 id=sameatom.1h6v.s5.d680096ebbd3 from=translated src=- shape=e4a99789 vocab=1701c665
+-/
 @[symm]
 theorem SameAtomicType.symm {N : Type w'} [L.Structure N]
     {a : Fin n → M} {b : Fin n → N} (h : SameAtomicType (L := L) (M := M) (N := N) a b) :
@@ -185,7 +191,9 @@ theorem SameAtomicType.symm {N : Type w'} [L.Structure N]
   fun idx => (h idx).symm
 
 omit [L.IsRelational] in
-/-- Same atomic type is transitive. -/
+/-- Same atomic type is transitive.
+@isnad1 id=sameatom.2h8v.s6.af6bc5472b7a from=translated src=- shape=898b22b7 vocab=1701c665
+-/
 @[trans]
 theorem SameAtomicType.trans {N P : Type*} [L.Structure N] [L.Structure P]
     {a : Fin n → M} {b : Fin n → N} {c : Fin n → P}
@@ -196,7 +204,9 @@ theorem SameAtomicType.trans {N P : Type*} [L.Structure N] [L.Structure P]
 
 omit [L.IsRelational] in
 /-- Same atomic type is preserved under relabeling.
-If `SameAtomicType a b` and `σ : Fin m → Fin n`, then `SameAtomicType (a ∘ σ) (b ∘ σ)`. -/
+If `SameAtomicType a b` and `σ : Fin m → Fin n`, then `SameAtomicType (a ∘ σ) (b ∘ σ)`.
+@isnad1 id=sameatom.1h8v.s6.b1ed8fcfb5ec from=translated src=- shape=dcf06ee0 vocab=11343955
+-/
 theorem SameAtomicType.relabel {N : Type w'} [L.Structure N] {n m : ℕ}
     {a : Fin n → M} {b : Fin n → N} (h : SameAtomicType (L := L) a b) (σ : Fin m → Fin n) :
     SameAtomicType (L := L) (a ∘ σ) (b ∘ σ) := by

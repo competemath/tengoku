@@ -31,18 +31,27 @@ def Config.Mirror : Config (OrderDual α) :=
 
 variable {C}
 
+/--
+@isnad1 id=iff.0h3v.s4.10222ab07fcf from=translated src=- shape=1fc5b723 vocab=bfa79c2b
+-/
 @[simp]
 theorem Mirror.cap {l : List α} : C.Mirror.Cap l.Mirror ↔ C.Cap l := by
   constructor
   · exact fun h => ⟨List.chain'_mirror.mp h.left, List.chain3'_mirror.mp h.right⟩
   · exact fun h => ⟨List.chain'_mirror.mpr h.left, List.chain3'_mirror.mpr h.right⟩
 
+/--
+@isnad1 id=iff.0h3v.s4.24c6e109111c from=translated src=- shape=1fc5b723 vocab=11c6f6bd
+-/
 @[simp]
 theorem Mirror.cup {l : List α} : C.Mirror.Cup l.Mirror ↔ C.Cup l := by
   constructor
   · exact fun h => ⟨List.chain'_mirror.mp h.left, List.chain3'_mirror.mp h.right⟩
   · exact fun h => ⟨List.chain'_mirror.mpr h.left, List.chain3'_mirror.mpr h.right⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.f08ec119ab10 from=translated src=- shape=cc4aa43c vocab=cb3797e2
+-/
 theorem Mirror.gon {l1 l2 : List α} : C.Mirror.Gon l1.Mirror l2.Mirror ↔ C.Gon l1 l2 := by
   rw [Config.Gon]; rw [Config.Gon]
   simp only [List.Mirror_length, cap, cup, and_congr_right_iff]
@@ -52,19 +61,31 @@ theorem Mirror.gon {l1 l2 : List α} : C.Mirror.Gon l1.Mirror l2.Mirror ↔ C.Go
   have ot_inj := Option.map_injective t_inj
   rw [ot_inj.eq_iff, ot_inj.eq_iff]; tauto
 
+/--
+@isnad1 id=iff.0h4v.s5.4eba882c0957 from=translated src=- shape=2e094f16 vocab=0a10b0bc
+-/
 @[simp]
 theorem Mirror.ncap {n : ℕ} {l : List α} : C.Mirror.NCap n l.Mirror ↔ C.NCap n l := by
   rw [Config.NCap]; rw [Config.NCap]; simp
 
+/--
+@isnad1 id=iff.0h4v.s5.79651751bb41 from=translated src=- shape=2e094f16 vocab=b0eea3ec
+-/
 @[simp]
 theorem Mirror.ncup {n : ℕ} {l : List α} : C.Mirror.NCup n l.Mirror ↔ C.NCup n l := by
   rw [Config.NCup]; rw [Config.NCup]; simp
 
+/--
+@isnad1 id=iff.0h5v.s5.6066fef35b3b from=translated src=- shape=2c5c0c10 vocab=52264641
+-/
 theorem Mirror.ngon {n : ℕ} {l1 l2 : List α} :
     C.NGon n l1 l2 ↔ C.Mirror.NGon n l1.Mirror l2.Mirror := by
   rw [Config.NGon]; rw [Config.NGon]
   rw [Mirror.gon]; simp
 
+/--
+@isnad1 id=iff.0h4v.s5.9b26338e1e9a from=translated src=- shape=2e094f16 vocab=36fd644f
+-/
 @[simp]
 theorem Mirror.hasNCap {n : ℕ} {S : Finset α} : C.Mirror.HasNCap n S.Mirror ↔ C.HasNCap n S :=
   by
@@ -80,6 +101,9 @@ theorem Mirror.hasNCap {n : ℕ} {S : Finset α} : C.Mirror.HasNCap n S.Mirror �
     use c.Mirror
     simp_all
 
+/--
+@isnad1 id=iff.0h4v.s5.058f9074ca01 from=translated src=- shape=2e094f16 vocab=6338e779
+-/
 @[simp]
 theorem Mirror.hasNCup {n : ℕ} {S : Finset α} : C.Mirror.HasNCup n S.Mirror ↔ C.HasNCup n S :=
   by
@@ -93,6 +117,9 @@ theorem Mirror.hasNCup {n : ℕ} {S : Finset α} : C.Mirror.HasNCup n S.Mirror �
     use c.Mirror
     simp_all
 
+/--
+@isnad1 id=iff.0h4v.s5.5b6bb453ad1f from=translated src=- shape=2e094f16 vocab=965d7584
+-/
 theorem Mirror.hasNGon {n : ℕ} {S : Finset α} : C.Mirror.HasNGon n S.Mirror ↔ C.HasNGon n S :=
   by
   constructor

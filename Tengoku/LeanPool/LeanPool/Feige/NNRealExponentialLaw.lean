@@ -22,6 +22,9 @@ open Set MeasureTheory ProbabilityTheory
 
 namespace Feige
 
+/--
+@isnad1 id=eq.0h0v.s4.5bd2aade0ba7 from=translated src=- shape=4c8df2ec vocab=8783ef65
+-/
 theorem map_nnexpMeasure_coe :
     Measure.map (fun x : NNReal ↦ (x : ℝ)) nnexpMeasure =
       expMeasure 1 := by

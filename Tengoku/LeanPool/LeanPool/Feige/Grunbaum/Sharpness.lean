@@ -34,6 +34,9 @@ abbrev SimplexE (n : ℕ) := EuclideanSpace ℝ (Fin n)
 def coordinateSum (n : ℕ) : SimplexE n →L[ℝ] ℝ :=
   ∑ i : Fin n, (EuclideanSpace.proj i : SimplexE n →L[ℝ] ℝ)
 
+/--
+@isnad1 id=eq.0h2v.s8.ef47bcb56176 from=translated src=- shape=1f474824 vocab=6ca1e9ce
+-/
 @[simp]
 theorem coordinateSum_apply (n : ℕ) (x : SimplexE n) :
     coordinateSum n x = ∑ i, x i := by
@@ -43,11 +46,17 @@ theorem coordinateSum_apply (n : ℕ) (x : SimplexE n) :
 def simplexSet (n : ℕ) : Set (SimplexE n) :=
   {x | (∀ i, 0 ≤ x i) ∧ coordinateSum n x ≤ 1}
 
+/--
+@isnad1 id=iff.0h2v.s8.0153bd7fdd54 from=translated src=- shape=b935d5a2 vocab=526d0f86
+-/
 @[simp]
 theorem mem_simplexSet {n : ℕ} {x : SimplexE n} :
     x ∈ simplexSet n ↔ (∀ i, 0 ≤ x i) ∧ coordinateSum n x ≤ 1 :=
   Iff.rfl
 
+/--
+@isnad1 id=convex.0h1v.s6.20a91417d1e0 from=translated src=- shape=b70c6bb1 vocab=4a29e575
+-/
 theorem convex_simplexSet (n : ℕ) : Convex ℝ (simplexSet n) := by
   intro x hx y hy a b ha hb hab
   refine ⟨fun i ↦ ?_, ?_⟩
@@ -62,6 +71,9 @@ theorem convex_simplexSet (n : ℕ) : Convex ℝ (simplexSet n) := by
           (mul_le_mul_of_nonneg_left hy.2 hb)
       _ = 1 := by linarith
 
+/--
+@isnad1 id=isclosed.0h1v.s5.e1b03ac40969 from=translated src=- shape=fc2c1e2b vocab=e47a36fe
+-/
 theorem isClosed_simplexSet (n : ℕ) : IsClosed (simplexSet n) := by
   have hcoord : IsClosed {x : SimplexE n | ∀ i, 0 ≤ x i} := by
     rw [show {x : SimplexE n | ∀ i, 0 ≤ x i} =
@@ -72,6 +84,9 @@ theorem isClosed_simplexSet (n : ℕ) : IsClosed (simplexSet n) := by
     isClosed_le (coordinateSum n).continuous continuous_const
   exact hcoord.inter hsum
 
+/--
+@isnad1 id=iscompac.0h1v.s5.d662266899a1 from=translated src=- shape=fc2c1e2b vocab=65065781
+-/
 theorem isCompact_simplexSet (n : ℕ) : IsCompact (simplexSet n) := by
   let e : SimplexE n ≃L[ℝ] (Fin n → ℝ) := EuclideanSpace.equiv (Fin n) ℝ
   have hcube : IsCompact (e.symm '' Icc (0 : Fin n → ℝ) 1) :=
@@ -88,10 +103,16 @@ theorem isCompact_simplexSet (n : ℕ) : IsCompact (simplexSet n) := by
     exact (Finset.single_le_sum (fun j _ ↦ hx.1 j) (Finset.mem_univ i)).trans
       (by simpa using hx.2)
 
+/--
+@isnad1 id=nonempty.0h1v.s2.84b349142bef from=translated src=- shape=fc2c1e2b vocab=64ed96b6
+-/
 theorem nonempty_simplexSet (n : ℕ) : (simplexSet n).Nonempty := by
   refine ⟨0, ?_⟩
   simp
 
+/--
+@isnad1 id=nonempty.0h1v.s5.c9186888aafa from=translated src=- shape=1bc48d19 vocab=e695ddd4
+-/
 theorem interior_simplexSet_nonempty (n : ℕ) :
     (interior (simplexSet n)).Nonempty := by
   rw [(convex_simplexSet n).interior_nonempty_iff_affineSpan_eq_top]
@@ -116,10 +137,16 @@ theorem interior_simplexSet_nonempty (n : ℕ) :
     simp
   exact top_unique (htop ▸ affineSpan_mono ℝ hsub)
 
+/--
+@isnad1 id=lt.0h1v.s8.34e3d9be32f6 from=translated src=- shape=6844b64b vocab=f8c4fa06
+-/
 theorem volume_simplexSet_pos (n : ℕ) :
     0 < volume (simplexSet n) :=
   measure_pos_of_nonempty_interior volume (interior_simplexSet_nonempty n)
 
+/--
+@isnad1 id=lt.0h1v.s7.d1edf5f35e54 from=translated src=- shape=8c96c685 vocab=be1ed5df
+-/
 theorem volumeReal_simplexSet_pos (n : ℕ) :
     0 < volume.real (simplexSet n) := by
   rw [measureReal_def]
@@ -130,6 +157,9 @@ theorem volumeReal_simplexSet_pos (n : ℕ) :
 def simplexCap (n : ℕ) (t : ℝ) : Set (SimplexE n) :=
   simplexSet n ∩ {x | coordinateSum n x ≤ t}
 
+/--
+@isnad1 id=eq.2h2v.s6.45c4f6477c74 from=translated src=- shape=2b37c7f4 vocab=623b6d97
+-/
 theorem simplexCap_eq_smul {n : ℕ} {t : ℝ} (ht0 : 0 < t) (ht1 : t ≤ 1) :
     simplexCap n t = t • simplexSet n := by
   ext x
@@ -165,6 +195,9 @@ theorem simplexCap_eq_smul {n : ℕ} {t : ℝ} (ht0 : 0 < t) (ht1 : t ≤ 1) :
       simp only [smul_eq_mul]
       simpa using mul_le_mul_of_nonneg_left hy.2 ht0.le
 
+/--
+@isnad1 id=eq.2h2v.s8.d51c1ea08dfe from=translated src=- shape=a06ca9a2 vocab=2f416747
+-/
 theorem volumeReal_simplexCap {n : ℕ} {t : ℝ} (ht0 : 0 < t) (ht1 : t ≤ 1) :
     volume.real (simplexCap n t) = t ^ n * volume.real (simplexSet n) := by
   rw [simplexCap_eq_smul ht0 ht1, measureReal_def,
@@ -173,7 +206,9 @@ theorem volumeReal_simplexCap {n : ℕ} {t : ℝ} (ht0 : 0 < t) (ht1 : t ≤ 1) 
   rw [ENNReal.toReal_mul, ENNReal.toReal_ofReal (pow_nonneg ht0.le n)]
   rw [measureReal_def]
 
-/-- The exact strict-tail measure of the coordinate sum on the simplex. -/
+/-- The exact strict-tail measure of the coordinate sum on the simplex.
+@isnad1 id=eq.2h2v.s9.f021289c25f2 from=translated src=- shape=ff9517b2 vocab=a0dbc81b
+-/
 theorem restrictSimplex_tail {n : ℕ} {t : ℝ} (ht0 : 0 < t) (ht1 : t ≤ 1) :
     (volume.restrict (simplexSet n)).real {x | t < coordinateSum n x} =
       (1 - t ^ n) * volume.real (simplexSet n) := by
@@ -197,7 +232,9 @@ theorem restrictSimplex_tail {n : ℕ} {t : ℝ} (ht0 : 0 < t) (ht1 : t ≤ 1) :
     volumeReal_simplexCap ht0 ht1]
   ring
 
-/-- The first moment of the coordinate sum over the standard simplex. -/
+/-- The first moment of the coordinate sum over the standard simplex.
+@isnad1 id=eq.0h1v.s9.ce9f05f732f9 from=translated src=- shape=2a519fff vocab=cecd071b
+-/
 theorem integral_coordinateSum (n : ℕ) :
     (∫ x in simplexSet n, coordinateSum n x ∂volume) =
       (n : ℝ) / ((n : ℝ) + 1) * volume.real (simplexSet n) := by
@@ -251,7 +288,9 @@ theorem integral_coordinateSum (n : ℕ) :
 def simplexCentroid (n : ℕ) : SimplexE n :=
   ⨍ x in simplexSet n, x ∂volume
 
-/-- The scalar coordinate needed to locate the sharp supporting hyperplane. -/
+/-- The scalar coordinate needed to locate the sharp supporting hyperplane.
+@isnad1 id=eq.0h1v.s8.5ad655b78ad6 from=translated src=- shape=c0ee7f82 vocab=33843c40
+-/
 theorem coordinateSum_simplexCentroid (n : ℕ) :
     coordinateSum n (simplexCentroid n) = (n : ℝ) / ((n : ℝ) + 1) := by
   have h_id : Integrable (fun x : SimplexE n ↦ x)
@@ -274,18 +313,30 @@ def sharpLevel (n : ℕ) : ℝ :=
 def sharpHalfspaceSet (n : ℕ) : Set (SimplexE n) :=
   {x | coordinateSum n x ≤ sharpLevel n}
 
+/--
+@isnad1 id=lt.1h1v.s4.4762962d19ae from=translated src=- shape=7f2e781e vocab=41445eb0
+-/
 theorem sharpLevel_pos {n : ℕ} (hn : 0 < n) : 0 < sharpLevel n := by
   have hn' : (0 : ℝ) < n := Nat.cast_pos.mpr hn
   exact div_pos hn' (by positivity)
 
+/--
+@isnad1 id=le.0h1v.s3.1442cec250e5 from=translated src=- shape=a311c14d vocab=6f289cbc
+-/
 theorem sharpLevel_le_one (n : ℕ) : sharpLevel n ≤ 1 := by
   apply (div_le_one (by positivity : (0 : ℝ) < (n : ℝ) + 1)).2
   norm_num
 
+/--
+@isnad1 id=mem.0h1v.s3.ce9f9d39a1ba from=translated src=- shape=58e3eb1f vocab=c115d0d7
+-/
 theorem simplexCentroid_mem_sharpHalfspaceSet (n : ℕ) :
     simplexCentroid n ∈ sharpHalfspaceSet n := by
   exact (coordinateSum_simplexCentroid n).le
 
+/--
+@isnad1 id=eq.1h1v.s8.9bb2d5683b53 from=translated src=- shape=3a7b5d05 vocab=d500faf7
+-/
 theorem sharpHalfspaceSet_volume_ratio {n : ℕ} (hn : 0 < n) :
     volume.real (simplexSet n ∩ sharpHalfspaceSet n) /
         volume.real (simplexSet n) =
@@ -302,6 +353,9 @@ def simplexFullBody (d : ℕ) : FullDimensionalConvexBody d where
   isCompact' := isCompact_simplexSet (d + 1)
   interior_nonempty' := interior_simplexSet_nonempty (d + 1)
 
+/--
+@isnad1 id=eq.0h1v.s4.3647f7b51133 from=translated src=- shape=04784e3b vocab=90a5b080
+-/
 theorem simplexFullBody_centroid (d : ℕ) :
     (simplexFullBody d).centroid = simplexCentroid (d + 1) :=
   rfl
@@ -318,12 +372,18 @@ def sharpClosedHalfspace (d : ℕ) : ClosedHalfspace d where
         L (EuclideanSpace.single i 1)) h
     simp [coordinateSum_apply, PiLp.single_apply] at h'
 
+/--
+@isnad1 id=mem.0h1v.s3.22306ac94390 from=translated src=- shape=3803fbca vocab=6d1ba1a4
+-/
 theorem simplexFullBody_centroid_mem_sharpClosedHalfspace (d : ℕ) :
     (simplexFullBody d).centroid ∈ sharpClosedHalfspace d := by
   change coordinateSum (d + 1) (simplexCentroid (d + 1)) ≤
     sharpLevel (d + 1)
   exact (coordinateSum_simplexCentroid (d + 1)).le
 
+/--
+@isnad1 id=eq.0h1v.s4.112fcc4cbeea from=translated src=- shape=8abb8f81 vocab=42128285
+-/
 theorem sharpClosedHalfspace_ratio (d : ℕ) :
     halfspaceVolumeRatio (simplexFullBody d)
         (sharpClosedHalfspace d).normal
@@ -348,7 +408,9 @@ def IsUniversalCentroidHalfspaceLowerBound (d : ℕ) (c : ℝ) : Prop :=
       c ≤ halfspaceVolumeRatio C H.normal H.threshold
 
 /-- The simplex equality case shows that no universal centroid-halfspace
-lower bound can exceed `grunbaumConstant d`. -/
+lower bound can exceed `grunbaumConstant d`.
+@isnad1 id=le.1h2v.s3.20911db7d42f from=translated src=- shape=dedfc776 vocab=0bc49b22
+-/
 theorem universalCentroidHalfspaceLowerBound_le_grunbaumConstant
     {d : ℕ} {c : ℝ}
     (hc : IsUniversalCentroidHalfspaceLowerBound d c) :

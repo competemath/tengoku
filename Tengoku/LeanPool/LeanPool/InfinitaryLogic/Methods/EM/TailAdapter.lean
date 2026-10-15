@@ -62,14 +62,18 @@ section TailTemplate
 
 variable {M : Type*} [L.Structure M]
 
-/-- Full restricted indiscernibility gives tail indiscernibility (cutoff `0`). -/
+/-- Full restricted indiscernibility gives tail indiscernibility (cutoff `0`).
+@isnad1 id=islomega.1h4v.s5.d07f90af8a2c from=translated src=- shape=f36407c0 vocab=705a24cd
+-/
 theorem IsLomega1omegaIndiscernibleOn.isLomega1omegaIndiscernibleOnTail {a : ℕ → M}
     {Γ : Set (Σ n, L.BoundedFormulaω Empty n)}
     (h : IsLomega1omegaIndiscernibleOn (L := L) a Γ) :
     IsLomega1omegaIndiscernibleOnTail (L := L) a Γ :=
   fun hφ => ⟨0, fun s t hs ht _ _ => h hφ s t hs ht⟩
 
-/-- Strictly monotone tuples exist above any cutoff. -/
+/-- Strictly monotone tuples exist above any cutoff.
+@isnad1 id=ex.0h2v.s5.c656aaa941c2 from=translated src=- shape=e7f55136 vocab=8a0403bd
+-/
 theorem exists_strictMono_of_le (n N : ℕ) :
     ∃ s : Fin n → ℕ, StrictMono s ∧ ∀ k, N ≤ s k := by
   refine ⟨fun k => N + k, fun p q hpq => ?_, fun k => Nat.le_add_right _ _⟩
@@ -87,7 +91,9 @@ def tailTemplateOfSeq (a : ℕ → M) : Lomega1omegaTemplate L where
       φ.Realize (Empty.elim : Empty → M) (a ∘ s)
 
 /-- **Truth collapse for the tail template**: beyond a suitable cutoff, the template's value
-at a formula of the family equals the truth value at any strictly monotone tuple. -/
+at a formula of the family equals the truth value at any strictly monotone tuple.
+@isnad1 id=ex.2h6v.s7.388c458499e3 from=translated src=- shape=b8b2afbf vocab=0b315880
+-/
 theorem IsLomega1omegaIndiscernibleOnTail.tailTemplateOfSeq_truth_iff {a : ℕ → M}
     {Γ : Set (Σ n, L.BoundedFormulaω Empty n)}
     (h : IsLomega1omegaIndiscernibleOnTail (L := L) a Γ)
@@ -142,7 +148,9 @@ private theorem IsLomega1omegaIndiscernibleOnTail.stretch_restricted_of_model
     exact absurd hreal
       (hModel _ ⟨(s i).1, (s i).2, t, hmem, Or.inr ⟨htruth, rfl⟩⟩)
 
-/-- **EM stretching (sequence form) from a model of the tail-template theory.** -/
+/-- **EM stretching (sequence form) from a model of the tail-template theory.**
+@isnad1 id=ex.1h5v.s8.46fe8d34d1b8 from=translated src=- shape=e0f02f96 vocab=5925fc8a
+-/
 theorem IsLomega1omegaIndiscernibleOnTail.stretch_restricted_sequence_of_model
     {M : Type} [L.Structure M] {a : ℕ → M}
     (s : ℕ → Σ n, L.BoundedFormulaω Empty n)

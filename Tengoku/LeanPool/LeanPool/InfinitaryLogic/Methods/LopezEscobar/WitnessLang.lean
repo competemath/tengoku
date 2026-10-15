@@ -117,11 +117,15 @@ private theorem range_tag_disjoint {γ δ₁ δ₂ : ℕ → Type}
   rw [heq_eq_eq] at h2
   exact hne _ _ _ h2
 
-/-- **Left/right witness function symbols are disjoint.** -/
+/-- **Left/right witness function symbols are disjoint.**
+@isnad1 id=eq.0h1v.s5.fd4ef1a10c05 from=translated src=- shape=d5792140 vocab=114e8a33
+-/
 theorem leftFuns_inter_rightFuns : leftFuns L ∩ rightFuns L = ∅ :=
   range_tag_disjoint fun _ _ _ h => Sum.inl_ne_inr (Sum.inr_injective h)
 
-/-- **Left/right witness relation symbols are disjoint.** -/
+/-- **Left/right witness relation symbols are disjoint.**
+@isnad1 id=eq.0h1v.s5.8b3b04206126 from=translated src=- shape=d5792140 vocab=9eec8b42
+-/
 theorem leftRels_inter_rightRels : leftRels L ∩ rightRels L = ∅ :=
   range_tag_disjoint fun _ _ _ h => Sum.inl_ne_inr (Sum.inr_injective h)
 

@@ -92,7 +92,9 @@ structure CodedFamily {L : Language.{u, v}}
 variable {L : Language.{u, v}} {P : FamilyPresentation.{u, v, uCode, uIndex} L} {n : ℕ}
 
 /-- The infinitary certificate, recovered from the code's subdomain membership.  Kept as a named
-accessor because "HF has no coded families" is proved by contradicting exactly this. -/
+accessor because "HF has no coded families" is proved by contradicting exactly this.
+@isnad1 id=isfamily.0h4v.s5.8aa5d642e5d9 from=translated src=- shape=511f5246 vocab=4e931857
+-/
 theorem CodedFamily.infinitary (F : CodedFamily P n) : P.IsFamilyCode F.code.1 := F.code.2
 
 /-- The conjunction a coded family names.  The encoding is the **presentation's**, installed
@@ -112,7 +114,9 @@ Functionality (`decodes_unique`) is what makes a coded family *determined by its
 below is a consequence. -/
 
 /-- **Extensionality**: a coded family is its code.  The decoding law is a `Prop`, and the decoding
-is determined by the code, so nothing else can differ. -/
+is determined by the code, so nothing else can differ.
+@isnad1 id=eq.1h5v.s5.03b13b06d217 from=translated src=- shape=eb561fe8 vocab=e4a76208
+-/
 @[ext] theorem CodedFamily.ext {F G : CodedFamily P n} (h : F.code = G.code) : F = G := by
   cases F with | mk c f hf =>
   cases G with | mk c' g hg =>

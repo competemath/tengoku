@@ -20,7 +20,9 @@ zero weight regularisation they coincide, and the Hebbian penalty is convex in e
 open Real Finset
 
 /-- With zero weight regularisation, the Hebbian Lyapunov function is exactly the weighted
-Kuramoto potential under the full double-sum convention used here. -/
+Kuramoto potential under the full double-sum convention used here.
+@isnad1 id=eq.1h4v.s5.2f0c63a40bd9 from=translated src=- shape=49e78498 vocab=d2125e91
+-/
 lemma hebbianL_zero_lam_eq_weighted
     (K : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ) (_hW : ∀ i j, W i j = W j i)
     (θ : Fin N → ℝ) :
@@ -65,6 +67,9 @@ private lemma hebbianL_weight_entry_deriv
   rw [← hgrad]
   simp [hebbianWeightF, hebbianUpdateWeight_self]
 
+/--
+@isnad1 id=lt.1h7v.s6.0c737a33cfb9 from=translated src=- shape=50a2f087 vocab=bc318345
+-/
 lemma hebbianL_convex_weight_entry
     (K lam : ℝ) (hlam : 0 < lam) (N : ℕ) (W : Fin N → Fin N → ℝ)
     (θ : Fin N → ℝ) (i j : Fin N) :

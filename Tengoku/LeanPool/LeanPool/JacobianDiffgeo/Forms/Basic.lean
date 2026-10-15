@@ -43,11 +43,15 @@ variable {X}
 
 -- Sanity checks (spike-verified): the algebraic instances are found by TC inference.
 
-/-- Extensionality for holomorphic 1-forms from pointwise (covector-level) agreement. -/
+/-- Extensionality for holomorphic 1-forms from pointwise (covector-level) agreement.
+@isnad1 id=eq.1h3v.s11.b34769bd7c95 from=translated src=- shape=f4b46a72 vocab=d6edc396
+-/
 theorem Form1.ext' {η η' : Form1 X} (h : ∀ x, η x = η' x) : η = η' :=
   ContMDiffSection.ext h
 
-/-- Extensionality for holomorphic 1-forms from pointwise agreement on tangent vectors. -/
+/-- Extensionality for holomorphic 1-forms from pointwise agreement on tangent vectors.
+@isnad1 id=eq.1h3v.s12.d24b0a875229 from=translated src=- shape=35ba3879 vocab=d6edc396
+-/
 theorem Form1.ext_apply {η η' : Form1 X} (h : ∀ x, ∀ v : TangentSpace 𝓘(ℂ) x, η x v = η' x v) :
     η = η' :=
   Form1.ext' fun x => ContinuousLinearMap.ext fun v => h x v

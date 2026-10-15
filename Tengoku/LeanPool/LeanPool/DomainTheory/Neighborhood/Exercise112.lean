@@ -49,9 +49,14 @@ open Domain.Neighborhood NeighborhoodSystem
 integers `≥ n`". -/
 def tail (n : ℕ) : Set ℕ := {m | n ≤ m}
 
+/--
+@isnad1 id=iff.0h2v.s4.b7687ef71abd from=translated src=- shape=27d62ace vocab=f9a3cdf8
+-/
 @[simp] theorem mem_tail {n m : ℕ} : m ∈ tail n ↔ n ≤ m := Iff.rfl
 
-/-- A longer tail is a *smaller* set: `tail n ⊆ tail m ↔ m ≤ n`. -/
+/-- A longer tail is a *smaller* set: `tail n ⊆ tail m ↔ m ≤ n`.
+@isnad1 id=iff.0h2v.s4.1a3df3f9b671 from=translated src=- shape=020421fc vocab=eea5626e
+-/
 theorem tail_subset_iff {n m : ℕ} : tail n ⊆ tail m ↔ m ≤ n := by
   constructor
   · intro h
@@ -60,7 +65,9 @@ theorem tail_subset_iff {n m : ℕ} : tail n ⊆ tail m ↔ m ≤ n := by
     exact le_trans hmn hk
 
 /-- `tail n ∩ tail m = tail (max n m)` (the intersection of two tails is the
-shorter one). -/
+shorter one).
+@isnad1 id=eq.0h2v.s4.1cf05adbd960 from=translated src=- shape=82141211 vocab=4e538357
+-/
 theorem tail_inter (n m : ℕ) : tail n ∩ tail m = tail (max n m) := by
   ext k
   simp_all
@@ -69,6 +76,9 @@ theorem tail_inter (n m : ℕ) : tail n ∩ tail m = tail (max n m) := by
 n` for some `n`. -/
 def mem (X : Set ℕ) : Prop := ∃ n, X = tail n
 
+/--
+@isnad1 id=nestedor.0h0v.s1.ad6077204078 from=translated src=- shape=25b03439 vocab=93c2bf39
+-/
 theorem nestedOrDisjoint : NestedOrDisjoint mem := by
   rintro X Y ⟨n, rfl⟩ ⟨m, rfl⟩
   rcases le_total n m with h | h
@@ -81,8 +91,14 @@ def neighborhoodSystem : NeighborhoodSystem ℕ :=
   ofNestedOrDisjoint mem (tail 0) ⟨0, rfl⟩ nestedOrDisjoint
     (fun {X} hX => by obtain ⟨n, rfl⟩ := hX; exact tail_subset_iff.mpr (Nat.zero_le n))
 
+/--
+@isnad1 id=iff.0h1v.s4.b17a3c66c9bb from=translated src=- shape=0b4dbce5 vocab=5ac700de
+-/
 @[simp] theorem ns_mem {X : Set ℕ} : neighborhoodSystem.mem X ↔ ∃ n, X = tail n := Iff.rfl
 
+/--
+@isnad1 id=mem.0h1v.s2.5b96bfcab940 from=translated src=- shape=9bb0b988 vocab=d78b600d
+-/
 theorem mem_tail_nbhd (n : ℕ) : neighborhoodSystem.mem (tail n) := ⟨n, rfl⟩
 
 /-! ### Finite elements: the principal filters `fin n = ↑(tail n)`. -/
@@ -90,11 +106,15 @@ theorem mem_tail_nbhd (n : ℕ) : neighborhoodSystem.mem (tail n) := ⟨n, rfl�
 /-- The finite element `fin n = ↑(tail n)` (principal filter of the tail). -/
 def fin (n : ℕ) : neighborhoodSystem.Element := neighborhoodSystem.principal (mem_tail_nbhd n)
 
-/-- The finite elements form an ascending chain: `fin n ⊑ fin m ↔ n ≤ m`. -/
+/-- The finite elements form an ascending chain: `fin n ⊑ fin m ↔ n ≤ m`.
+@isnad1 id=iff.0h2v.s4.8dd1297987d3 from=translated src=- shape=9a35d825 vocab=a8ce6c5f
+-/
 theorem fin_le_iff (n m : ℕ) : fin n ≤ fin m ↔ n ≤ m := by
   rw [fin, fin, neighborhoodSystem.principal_le_iff, tail_subset_iff]
 
-/-- The chain `fin 0 ⊏ fin 1 ⊏ ⋯` is strictly increasing. -/
+/-- The chain `fin 0 ⊏ fin 1 ⊏ ⋯` is strictly increasing.
+@isnad1 id=strictmo.0h0v.s3.b35920813a6d from=translated src=- shape=28fc0566 vocab=f58bd897
+-/
 theorem fin_strictMono : StrictMono fin := by
   intro n m hnm
   refine lt_of_le_of_ne ((fin_le_iff n m).mpr hnm.le) ?_
@@ -116,18 +136,27 @@ def top : neighborhoodSystem.Element where
     exact ⟨max n m, tail_inter n m⟩
   up_mem _ hY _ := hY
 
+/--
+@isnad1 id=iff.0h1v.s3.812530681809 from=translated src=- shape=466d895d vocab=5ab009ab
+-/
 @[simp] theorem mem_top {X : Set ℕ} : top.mem X ↔ neighborhoodSystem.mem X := Iff.rfl
 
-/-- `top` is the greatest element of `|𝒟|`: every element approximates it. -/
+/-- `top` is the greatest element of `|𝒟|`: every element approximates it.
+@isnad1 id=le.0h1v.s4.70aaa778aa94 from=translated src=- shape=7656ba26 vocab=13d94e6f
+-/
 theorem le_top (x : neighborhoodSystem.Element) : x ≤ top :=
   fun _ hX => x.sub hX
 
-/-- `top` is a total (maximal) element. -/
+/-- `top` is a total (maximal) element.
+@isnad1 id=istotal.0h0v.s2.456c5af0453b from=translated src=- shape=54c8eceb vocab=dde5a5a4
+-/
 theorem top_isTotal : neighborhoodSystem.IsTotal top :=
   fun y _ => le_top y
 
 /-- `top` is the **unique** total element: an element is total iff it equals
-`top`. -/
+`top`.
+@isnad1 id=iff.0h1v.s3.3ebf1843b23f from=translated src=- shape=7cf5c502 vocab=d86af970
+-/
 theorem isTotal_iff_top (x : neighborhoodSystem.Element) :
     neighborhoodSystem.IsTotal x ↔ x = top := by
   constructor
@@ -141,7 +170,9 @@ theorem isTotal_iff_top (x : neighborhoodSystem.Element) :
 `fin n` or the
 single limit element `top`. *Classical*: it decides whether the indices present in
 `x` are bounded.
-(Hint realized: "there is only one limit element.") -/
+(Hint realized: "there is only one limit element.")
+@isnad1 id=or.0h1v.s4.79a2786c754a from=translated src=- shape=1c0cc578 vocab=f97d9a73
+-/
 theorem element_eq (x : neighborhoodSystem.Element) :
     (∃ n, x = fin n) ∨ x = top := by
   classical

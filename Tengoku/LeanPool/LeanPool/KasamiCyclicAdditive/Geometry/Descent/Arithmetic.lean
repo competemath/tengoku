@@ -38,7 +38,9 @@ def nn : ℤ := cN n - 1
 
 variable {n}
 
-/-- `c_n^2 = Q = 2^n` for even `n`. -/
+/-- `c_n^2 = Q = 2^n` for even `n`.
+@isnad1 id=eq.1h1v.s5.45b919bf54a5 from=translated src=- shape=db7604eb vocab=ac9f59e9
+-/
 theorem cN_sq (hn : Even n) : (cN n) ^ 2 = 2 ^ n := by
   obtain ⟨j, rfl⟩ := hn
   have hj : (j + j) / 2 = j := by omega
@@ -47,14 +49,18 @@ theorem cN_sq (hn : Even n) : (cN n) ^ 2 = 2 ^ n := by
     show j + j = 2 * j by ring, pow_mul]
   norm_num
 
-/-- `N ∣ Q - 1`, since `Q - 1 = (c_n-1)(c_n+1)`. -/
+/-- `N ∣ Q - 1`, since `Q - 1 = (c_n-1)(c_n+1)`.
+@isnad1 id=dvd.1h1v.s5.1bc19ae909c2 from=translated src=- shape=9598382b vocab=ccef34e5
+-/
 theorem nn_dvd (hn : Even n) : nn n ∣ (2 ^ n - 1 : ℤ) := by
   refine ⟨cN n + 1, ?_⟩
   have h := cN_sq hn
   unfold nn
   nlinarith [h]
 
-/-- `gcd(N,m) = 1` follows from `gcd(m,Q-1)=1` and `N ∣ Q-1`. -/
+/-- `gcd(N,m) = 1` follows from `gcd(m,Q-1)=1` and `N ∣ Q-1`.
+@isnad1 id=iscoprim.2h2v.s5.51cd23c8a4f9 from=translated src=- shape=439a45ae vocab=18df9ccf
+-/
 theorem isCoprime_nn {m : ℕ} (hn : Even n) (hm : Nat.Coprime m (2 ^ n - 1)) :
     IsCoprime (nn n) (m : ℤ) := by
   have hle : (1 : ℕ) ≤ 2 ^ n := Nat.one_le_two_pow

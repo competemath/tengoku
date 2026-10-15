@@ -51,6 +51,9 @@ noncomputable def highSetMeasure {m : ℕ} (p : Fin m → ℝ)
     Measure (Finset (Fin m)) :=
   (highSetPMF p hp0 hp1).toMeasure
 
+/--
+@isnad1 id=eq.2h3v.s6.3768c7b38072 from=translated src=- shape=123f9bd1 vocab=3143c983
+-/
 @[simp]
 theorem highSetPMF_apply {m : ℕ} (p : Fin m → ℝ)
     (hp0 : ∀ i, 0 ≤ p i) (hp1 : ∀ i, p i ≤ 1)
@@ -58,7 +61,9 @@ theorem highSetPMF_apply {m : ℕ} (p : Fin m → ℝ)
     highSetPMF p hp0 hp1 S = ENNReal.ofReal (highSetMass p S) :=
   rfl
 
-/-- Probability of a finite collection of high sets. -/
+/-- Probability of a finite collection of high sets.
+@isnad1 id=eq.2h3v.s6.296361c4ad7a from=translated src=- shape=8b0b3f94 vocab=eac40470
+-/
 theorem highSetMeasure_apply_finset {m : ℕ} (p : Fin m → ℝ)
     (hp0 : ∀ i, 0 ≤ p i) (hp1 : ∀ i, p i ≤ 1)
     (A : Finset (Finset (Fin m))) :
@@ -68,7 +73,9 @@ theorem highSetMeasure_apply_finset {m : ℕ} (p : Fin m → ℝ)
   rw [PMF.toMeasure_apply_finset]
   simp
 
-/-- Real-valued probability of a finite collection of high sets. -/
+/-- Real-valued probability of a finite collection of high sets.
+@isnad1 id=eq.2h3v.s6.6273f159b2be from=translated src=- shape=30c4c22a vocab=62ad299d
+-/
 theorem highSetMeasure_real_apply_finset {m : ℕ} (p : Fin m → ℝ)
     (hp0 : ∀ i, 0 ≤ p i) (hp1 : ∀ i, p i ≤ 1)
     (A : Finset (Finset (Fin m))) :
@@ -85,7 +92,9 @@ noncomputable def twoPointRejectionEvent {m : ℕ} (γ β : Fin m → ℝ) (α :
     Finset (Finset (Fin m)) :=
   Finset.univ.filter fun S ↦ twoPointKFinset γ β S ≤ α
 
-/-- Its actual probability is the finite two-point rejection mass. -/
+/-- Its actual probability is the finite two-point rejection mass.
+@isnad1 id=eq.2h4v.s6.9001d10530e6 from=translated src=- shape=2a90c01b vocab=f324a829
+-/
 theorem highSetMeasure_rejectionEvent {m : ℕ}
     (γ β : Fin m → ℝ) (hγ : ∀ i, 0 ≤ γ i) (hβ : ∀ i, 0 < β i)
     (α : ℝ) :
@@ -103,7 +112,9 @@ noncomputable def canonicalTwoPointVector {m : ℕ}
   if i ∈ S then highValue (β i) else lowValue (γ i)
 
 /-- Each coordinate of the canonical two-point vector has mean one.  This is
-the scalar identity underlying the product construction. -/
+the scalar identity underlying the product construction.
+@isnad1 id=eq.1h4v.s6.b7b471e7b5f4 from=translated src=- shape=c76f052b vocab=0976f69c
+-/
 theorem canonicalTwoPoint_coordinate_mean_one {m : ℕ}
     (γ β : Fin m → ℝ) (i : Fin m) (h : γ i + β i ≠ 0) :
     highProbability (γ i) (β i) * canonicalTwoPointVector γ β {i} i +
@@ -121,7 +132,9 @@ def canonicalTwoPointPiVector {m : ℕ}
   if ω i then highValue (β i) else lowValue (γ i)
 
 /-- The coordinates of the canonical two-point vector are independent under
-any product law on the underlying Boolean coordinates. -/
+any product law on the underlying Boolean coordinates.
+@isnad1 id=iindepfu.0h4v.s6.6269c610550e from=translated src=- shape=5ec01f71 vocab=589034dd
+-/
 theorem iIndepFun_canonicalTwoPointPiVector {m : ℕ}
     (γ β : Fin m → ℝ) (μ : Fin m → Measure Bool)
     [∀ i, IsProbabilityMeasure (μ i)] :

@@ -45,7 +45,9 @@ private lemma sum_prod_eq_pow {J : Type*} [Fintype J]
 /-! ## Two-set deficit intersection inequality -/
 
 omit [Fintype U] in
-/-- Deficit of an intersection is at most the sum of deficits plus 2. -/
+/-- Deficit of an intersection is at most the sum of deficits plus 2.
+@isnad1 id=le.2h5v.s6.ba955d8ffe5b from=translated src=- shape=84454bdd vocab=e26db52d
+-/
 theorem deficit_inter_le (f : Finset U → ℝ) (hf : IsApproxAdditive f 1)
     (M : ℝ) (hM : ∀ S : Finset U, |f S| ≤ M)
     (A B : Finset U) :
@@ -61,7 +63,9 @@ theorem deficit_inter_le (f : Finset U → ℝ) (hf : IsApproxAdditive f 1)
 noncomputable def finsetInter (A : Fin ℓ → Finset U) : Finset U :=
   Finset.univ.inf A
 
-/-- Deficit of ℓ-fold intersection is at most sum of deficits + 2*(ℓ-1). -/
+/-- Deficit of ℓ-fold intersection is at most sum of deficits + 2*(ℓ-1).
+@isnad1 id=le.3h5v.s7.28b31ed171a6 from=translated src=- shape=db9a9e0d vocab=620517ef
+-/
 theorem deficit_finsetInter_le (f : Finset U → ℝ) (hf : IsApproxAdditive f 1)
     (M : ℝ) (hM : ∀ S : Finset U, |f S| ≤ M)
     (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (A : Fin ℓ → Finset U) :
@@ -110,13 +114,17 @@ noncomputable def WeightedCollection.productInter
     rw [sum_prod_eq_pow]
     exact pow_pos C.totalWeight_pos ℓ
 
-/-- Total weight of the product collection equals C.totalWeight^ℓ. -/
+/-- Total weight of the product collection equals C.totalWeight^ℓ.
+@isnad1 id=eq.0h3v.s5.9e68485553a6 from=translated src=- shape=904b32ca vocab=0cd019e2
+-/
 lemma WeightedCollection.productInter_totalWeight
     (C : WeightedCollection U) (ℓ : ℕ) :
     (C.productInter ℓ).totalWeight = C.totalWeight ^ ℓ := by
   exact sum_prod_eq_pow C.weight ℓ
 
-/-- Item frequency of the product collection is at most (itemFreq C i)^ℓ. -/
+/-- Item frequency of the product collection is at most (itemFreq C i)^ℓ.
+@isnad1 id=le.0h4v.s5.485434080c94 from=translated src=- shape=dd41eb7a vocab=f70c2b7a
+-/
 lemma WeightedCollection.productInter_itemFreq
     (C : WeightedCollection U) (ℓ : ℕ) (i : U) :
     (C.productInter ℓ).itemFreq i ≤ (C.itemFreq i) ^ ℓ := by
@@ -137,7 +145,9 @@ lemma WeightedCollection.productInter_itemFreq
       exact Finset.prod_nonneg fun k _ => by
         by_cases hk : i ∈ C.sets (x k) <;> simp [hk, C.weight_nonneg]
 
-/-- Average deficit of the product collection. -/
+/-- Average deficit of the product collection.
+@isnad1 id=le.5h6v.s7.cdfad4b1636d from=translated src=- shape=9d393e42 vocab=8c687e2b
+-/
 lemma WeightedCollection.productInter_avgDeficit
     (C : WeightedCollection U) (ℓ : ℕ) (hℓ : 1 ≤ ℓ)
     (f : Finset U → ℝ) (hf : IsApproxAdditive f 1)
@@ -298,7 +308,9 @@ noncomputable def WeightedCollection.mixedInter
       mul_nonneg (sub_nonneg.mpr hτ1) (mul_nonneg h2.le h1.le),
       mul_nonneg hτ (mul_nonneg h1.le h2.le)]
 
-/-- Total weight of the mixed collection. -/
+/-- Total weight of the mixed collection.
+@isnad1 id=eq.2h4v.s6.280d0a7867d9 from=translated src=- shape=9ac4f1b4 vocab=5e028ab3
+-/
 lemma WeightedCollection.mixedInter_totalWeight
     (C : WeightedCollection U) (ℓ : ℕ) (τ : ℝ)
     (hτ : 0 ≤ τ) (hτ1 : τ ≤ 1) :
@@ -324,6 +336,9 @@ lemma WeightedCollection.mixedInter_totalWeight
 
 /-
 Item frequency of the mixed collection.
+-/
+/--
+@isnad1 id=le.6h6v.s7.c707c4ee8626 from=translated src=- shape=bd77dade vocab=327c0b8f
 -/
 lemma WeightedCollection.mixedInter_itemFreq_le
     (C : WeightedCollection U) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (τ : ℝ)
@@ -404,6 +419,9 @@ lemma WeightedCollection.mixedInter_itemFreq_le
 
 /-
 Average deficit of the mixed collection.
+-/
+/--
+@isnad1 id=le.7h7v.s7.6a361d87dcad from=translated src=- shape=91b97e6f vocab=99d9aed3
 -/
 lemma WeightedCollection.mixedInter_avgDeficit_le
     (C : WeightedCollection U) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (τ : ℝ)

@@ -52,7 +52,9 @@ private def relIsoOfEquiv (lt : L.Relations 2) {c d : StructureSpace L}
     have h := @Language.Equiv.map_rel L ℕ ℕ c.toStructure d.toStructure f 2 lt ![a, b]
     rwa [show (⇑f ∘ ![a, b]) = ![f a, f b] from funext fun i => by fin_cases i <;> rfl] at h
 
-/-- **The class is isomorphism-invariant** — the hypothesis López–Escobar consumes. -/
+/-- **The class is isomorphism-invariant** — the hypothesis López–Escobar consumes.
+@isnad1 id=isomorph.0h2v.s4.4f3aa838117f from=translated src=- shape=24aecc9b vocab=e0228fb3
+-/
 theorem wellOrderClass_isomorphismInvariant (lt : L.Relations 2) :
     IsomorphismInvariant (wellOrderClass lt) := by
   rintro c d ⟨f⟩
@@ -83,7 +85,9 @@ private theorem infinite_toType_of_omega0_le {β : Ordinal.{0}} (hβ : Ordinal.o
 
 /-- **The order-type supply**: every countably infinite ordinal is the order type of some code
 in the well-order class.  The witness is the arbitrary-language comparison structure on `β`,
-transported to the carrier `ℕ`. -/
+transported to the carrier `ℕ`.
+@isnad1 id=ex.2h3v.s7.1303a8afa62a from=translated src=- shape=3a4384d0 vocab=039f7245
+-/
 theorem exists_code_type_eq (lt : L.Relations 2) {β : Ordinal.{0}}
     (hinf : Ordinal.omega0 ≤ β) (hcnt : β < (Cardinal.aleph 1).ord) :
     ∃ c : StructureSpace L, ∃ h : IsWellOrder ℕ

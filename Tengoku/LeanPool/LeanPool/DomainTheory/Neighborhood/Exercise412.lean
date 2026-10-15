@@ -60,14 +60,18 @@ private theorem zero_ne_master : (Example12.zero) ≠ Example12.master := by
   rw [Example12.zero, Example12.master, Set.ext_iff] at h
   simp_all
 
-/-- The two total elements are incomparable: `elemOne ⋢ elemZero`. -/
+/-- The two total elements are incomparable: `elemOne ⋢ elemZero`.
+@isnad1 id=not.0h0v.s4.a5503a4d928d from=translated src=- shape=52eb29f4 vocab=ee5c45b7
+-/
 theorem elemOne_not_le_elemZero : ¬ elemOne ≤ elemZero := by
   intro h
   rcases h Example12.one (Or.inr rfl) with hm | hz
   · exact one_ne_master hm
   · exact one_ne_zero hz
 
-/-- The two total elements are incomparable: `elemZero ⋢ elemOne`. -/
+/-- The two total elements are incomparable: `elemZero ⋢ elemOne`.
+@isnad1 id=not.0h0v.s4.60a43d0ab72c from=translated src=- shape=52eb29f4 vocab=ee5c45b7
+-/
 theorem elemZero_not_le_elemOne : ¬ elemZero ≤ elemOne := by
   intro h
   rcases h Example12.zero (Or.inr rfl) with hm | ho
@@ -76,14 +80,18 @@ theorem elemZero_not_le_elemOne : ¬ elemZero ≤ elemOne := by
 
 /-- **Exercise 4.12 (Scott 1981, PRG-19).** Every element is a fixed point of the
 identity map
-(so `I_T` has *many* fixed points: `⊥`, `elemZero`, `elemOne`). -/
+(so `I_T` has *many* fixed points: `⊥`, `elemZero`, `elemOne`).
+@isnad1 id=eq.0h1v.s4.cb019a03f378 from=translated src=- shape=ff5830f3 vocab=0f71c4b9
+-/
 theorem idMap_fixed (x : T.Element) : (idMap T).toElementMap x = x := toElementMap_idMap x
 
 /-- **Exercise 4.12 (Scott 1981, PRG-19).** `I_T` has no *greatest* (hence no
 maximum) fixed point:
 the two total elements `elemZero`, `elemOne` are both fixed points, are
 incomparable, and no element
-dominates both. -/
+dominates both.
+@isnad1 id=not.0h0v.s5.163a34a76678 from=translated src=- shape=38ef8644 vocab=0024abc8
+-/
 theorem no_greatest_fixedPoint :
     ¬ ∃ z : T.Element, (idMap T).toElementMap z = z ∧
       ∀ x, (idMap T).toElementMap x = x → x ≤ z := by

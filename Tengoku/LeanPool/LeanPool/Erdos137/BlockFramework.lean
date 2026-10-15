@@ -122,7 +122,9 @@ def Wg (g k n : ℕ) : ℕ :=
 /-- The product over the `⌊k/g⌋` blocks, `∏_{j<⌊k/g⌋} F g (n + g·j)`, equals `F (g · ⌊k/g⌋) n`.
 Generic form of `triples_prod_eq`/`blocks5_prod_eq`. The `(hg : 1 ≤ g)` guard makes the stride
 positive in the telescoping; it is not actually needed here (the induction is on `k / g`), but is
-recorded to match the parametric setting. -/
+recorded to match the parametric setting.
+@isnad1 id=eq.1h3v.s6.23c882b608a2 from=translated src=- shape=3b94c0da vocab=d75cbd3f
+-/
 lemma blocksg_prod_eq (_hg : 1 ≤ g) (k n : ℕ) :
     (∏ j ∈ Finset.range (k / g), F g (n + g * j)) = F (g * (k / g)) n := by
   induction (k / g) with
@@ -132,10 +134,14 @@ lemma blocksg_prod_eq (_hg : 1 ≤ g) (k n : ℕ) :
     have hg' : g * (t + 1) = g * t + g := by ring
     rw [hg', F_add]
 
-/-- `Bg g k n = F (g * (k/g)) n`. -/
+/-- `Bg g k n = F (g * (k/g)) n`.
+@isnad1 id=eq.1h3v.s5.387dc45a540c from=translated src=- shape=8272760b vocab=612fa5e3
+-/
 lemma Bg_eq (hg : 1 ≤ g) (k n : ℕ) : Bg g k n = F (g * (k / g)) n := blocksg_prod_eq hg k n
 
-/-- The product of the `g`-blocks divides `F k n`. Generic form of `triples_prod_dvd`. -/
+/-- The product of the `g`-blocks divides `F k n`. Generic form of `triples_prod_dvd`.
+@isnad1 id=dvd.1h3v.s5.dff9ea3ce6a0 from=translated src=- shape=85216017 vocab=72a11f3b
+-/
 lemma blocksg_prod_dvd (hg : 1 ≤ g) (k n : ℕ) :
     (∏ j ∈ Finset.range (k / g), F g (n + g * j)) ∣ F k n := by
   rw [blocksg_prod_eq hg]
@@ -143,18 +149,26 @@ lemma blocksg_prod_dvd (hg : 1 ≤ g) (k n : ℕ) :
   conv_rhs => rw [hk]
   exact F_dvd_F_add _ _ _
 
-/-- **`Bg g k n` divides `F k n`** (generic form of `B_dvd_F`/`B5_dvd_F`). -/
+/-- **`Bg g k n` divides `F k n`** (generic form of `B_dvd_F`/`B5_dvd_F`).
+@isnad1 id=dvd.1h3v.s4.b0478a499cbd from=translated src=- shape=c3b87c81 vocab=ca10c04c
+-/
 lemma Bg_dvd_F (hg : 1 ≤ g) (k n : ℕ) : Bg g k n ∣ F k n := blocksg_prod_dvd hg k n
 
-/-- `Bg g k n ≠ 0` for `n ≥ 1`. -/
+/-- `Bg g k n ≠ 0` for `n ≥ 1`.
+@isnad1 id=ne.2h3v.s5.d5f8d554cbfc from=translated src=- shape=3a9a71a9 vocab=1421f4d6
+-/
 lemma Bg_ne_zero (hg : 1 ≤ g) {n : ℕ} (hn : 1 ≤ n) (k : ℕ) : Bg g k n ≠ 0 := by
   rw [Bg_eq hg]; exact F_ne_zero hn
 
-/-- For `n ≥ 1` each block `F g (n + g·j)` is nonzero. -/
+/-- For `n ≥ 1` each block `F g (n + g·j)` is nonzero.
+@isnad1 id=ne.1h3v.s5.71adf7574e4b from=translated src=- shape=ca6845c0 vocab=d01f733b
+-/
 lemma block_ne_zero {n : ℕ} (hn : 1 ≤ n) (g j : ℕ) : F g (n + g * j) ≠ 0 :=
   F_ne_zero (by omega)
 
-/-- The `p`-adic valuation of the product of the block radicals equals `overlapg g k n p`. -/
+/-- The `p`-adic valuation of the product of the block radicals equals `overlapg g k n p`.
+@isnad1 id=eq.1h4v.s6.2f888843e84e from=translated src=- shape=38cf6c01 vocab=fd779160
+-/
 lemma factorization_blocksg_rad (g k n p : ℕ) (hn : 1 ≤ n) :
     (∏ j ∈ Finset.range (k / g), rad (F g (n + g * j))).factorization p = overlapg g k n p := by
   have hrad_ne : ∀ j ∈ Finset.range (k / g), rad (F g (n + g * j)) ≠ 0 := by
@@ -165,12 +179,16 @@ lemma factorization_blocksg_rad (g k n p : ℕ) (hn : 1 ≤ n) :
   intro j _
   rw [factorization_rad (block_ne_zero hn g j)]
 
-/-- The `p`-valuation of `rad (Bg g k n)` is `1` if `p ∈ (Bg g k n).primeFactors`, else `0`. -/
+/-- The `p`-valuation of `rad (Bg g k n)` is `1` if `p ∈ (Bg g k n).primeFactors`, else `0`.
+@isnad1 id=eq.2h4v.s6.a6d94d65045f from=translated src=- shape=61a28420 vocab=eaeed8b3
+-/
 lemma factorization_rad_Bg (hg : 1 ≤ g) {k n : ℕ} (hn : 1 ≤ n) (p : ℕ) :
     (rad (Bg g k n)).factorization p = if p ∈ (Bg g k n).primeFactors then 1 else 0 :=
   factorization_rad (Bg_ne_zero hg hn k) p
 
-/-- A prime in the support of `Bg g k n` divides some block, hence `overlapg ≥ 1`. -/
+/-- A prime in the support of `Bg g k n` divides some block, hence `overlapg ≥ 1`.
+@isnad1 id=le.2h4v.s5.fe4da0300d0f from=translated src=- shape=d893e20a vocab=5c470875
+-/
 lemma overlapg_pos_of_mem_primeFactors {g k n p : ℕ} (hn : 1 ≤ n)
     (hp : p ∈ (Bg g k n).primeFactors) : 1 ≤ overlapg g k n p := by
   have hpprime : p.Prime := (Nat.mem_primeFactors.mp hp).1
@@ -187,7 +205,9 @@ lemma overlapg_pos_of_mem_primeFactors {g k n p : ℕ} (hn : 1 ≤ n)
     (by intro i _; positivity) hj
   simpa [hmem] using hle
 
-/-- If `overlapg g k n p ≥ 1` then `p ∈ (Bg g k n).primeFactors`. -/
+/-- If `overlapg g k n p ≥ 1` then `p ∈ (Bg g k n).primeFactors`.
+@isnad1 id=mem.2h4v.s5.0b7be4c1fb05 from=translated src=- shape=db36cad8 vocab=5c470875
+-/
 lemma mem_primeFactors_of_overlapg_pos {g k n p : ℕ} (hn : 1 ≤ n) (h : 1 ≤ overlapg g k n p) :
     p ∈ (Bg g k n).primeFactors := by
   unfold overlapg at h
@@ -218,7 +238,9 @@ private lemma factorization_prime_pow_applyg {q : ℕ} (hq : q.Prime) (e p : ℕ
   rw [Nat.Prime.factorization_pow hq]
   rw [Finsupp.single_apply]
 
-/-- The `p`-valuation of the over-count `Wg g k n`. -/
+/-- The `p`-valuation of the over-count `Wg g k n`.
+@isnad1 id=eq.1h4v.s6.683eecb9db62 from=translated src=- shape=8b0f0d98 vocab=599b2968
+-/
 lemma factorization_Wg {g k n : ℕ} (_hn : 1 ≤ n) (p : ℕ) :
     (Wg g k n).factorization p =
       if p ∈ (Bg g k n).primeFactors then overlapg g k n p - 1 else 0 := by
@@ -242,7 +264,9 @@ lemma factorization_Wg {g k n : ℕ} (_hn : 1 ≤ n) (p : ℕ) :
 
 /-- **Radical-of-product decomposition (generic `g`), exact form.**
 `∏_j rad (F g (n+g·j)) = rad (Bg g k n) * Wg g k n`. Generic form of
-`rad_triples_decomp`/`rad_blocks5_decomp`. -/
+`rad_triples_decomp`/`rad_blocks5_decomp`.
+@isnad1 id=eq.2h3v.s6.88597f566a44 from=translated src=- shape=cf3bdc3a vocab=1569a35d
+-/
 theorem rad_blocksg_decomp (hg : 1 ≤ g) {k n : ℕ} (hn : 1 ≤ n) :
     (∏ j ∈ Finset.range (k / g), rad (F g (n + g * j))) = rad (Bg g k n) * Wg g k n := by
   have hR_ne : (∏ j ∈ Finset.range (k / g), rad (F g (n + g * j))) ≠ 0 :=
@@ -266,13 +290,17 @@ theorem rad_blocksg_decomp (hg : 1 ≤ g) {k n : ℕ} (hn : 1 ≤ n) :
     have : 1 ≤ overlapg g k n p := by omega
     exact hp (mem_primeFactors_of_overlapg_pos hn this)
 
-/-- `rad (Bg g k n) ∣ rad (F k n)`. -/
+/-- `rad (Bg g k n) ∣ rad (F k n)`.
+@isnad1 id=dvd.2h3v.s5.07d5099bbc16 from=translated src=- shape=96244b57 vocab=9ebf698e
+-/
 lemma rad_Bg_dvd_rad_F (hg : 1 ≤ g) {k n : ℕ} (hn : 1 ≤ n) : rad (Bg g k n) ∣ rad (F k n) :=
   rad_dvd_rad_of_dvd (F_ne_zero hn) (Bg_dvd_F hg k n)
 
 /-- **Decomposition inequality (the usable form, generic `g`):**
 `∏_j rad (F g (n+g·j)) ≤ rad (F k n) * Wg g k n`
-(generic form of `rad_triples_le`/`rad_5blocks_le`). -/
+(generic form of `rad_triples_le`/`rad_5blocks_le`).
+@isnad1 id=le.2h3v.s6.5737bc10356a from=translated src=- shape=3709bc13 vocab=04914a4b
+-/
 theorem rad_blocksg_le (hg : 1 ≤ g) {k n : ℕ} (hn : 1 ≤ n) :
     (∏ j ∈ Finset.range (k / g), rad (F g (n + g * j))) ≤ rad (F k n) * Wg g k n := by
   rw [rad_blocksg_decomp hg hn]
@@ -289,7 +317,9 @@ uniform construction that works for any block length `g`. -/
 def firstHit (g n p j : ℕ) : ℕ :=
   n + g * j + (((Finset.range g).filter (fun r => p ∣ (n + g * j + r))).min.getD (g - 1))
 
-/-- `firstHit g n p j` lies in the block `[n + g·j, n + g·j + (g-1)]`. -/
+/-- `firstHit g n p j` lies in the block `[n + g·j, n + g·j + (g-1)]`.
+@isnad1 id=mem.0h4v.s6.317ff55f2a6b from=translated src=- shape=202bd92d vocab=db9fcc48
+-/
 lemma firstHit_mem_Icc (g n p j : ℕ) :
     firstHit g n p j ∈ Finset.Icc (n + g * j) (n + g * j + (g - 1)) := by
   simp only [firstHit, Finset.mem_Icc]
@@ -304,7 +334,9 @@ lemma firstHit_mem_Icc (g n p j : ℕ) :
 
 /-- **Overlap bound (combinatorial core, generic `g`).** `overlapg g k n p ≤ ⌊k/p⌋ + 1` for
 `n ≥ 1`. The `⌊k/g⌋` blocks span `≤ k` consecutive integers, and a prime `p` divides at most
-`⌊k/p⌋ + 1` of any `≤ k` consecutive integers. Generic form of `overlap_le`/`overlap5_le`. -/
+`⌊k/p⌋ + 1` of any `≤ k` consecutive integers. Generic form of `overlap_le`/`overlap5_le`.
+@isnad1 id=le.2h4v.s5.aabfdc89d7cd from=translated src=- shape=eaa6631f vocab=12b7b719
+-/
 lemma overlapg_le (hg : 1 ≤ g) {k n p : ℕ} (hn : 1 ≤ n) : overlapg g k n p ≤ k / p + 1 := by
   rcases Nat.eq_zero_or_pos p with hp0 | hp
   · subst hp0; unfold overlapg
@@ -379,7 +411,9 @@ lemma overlapg_le (hg : 1 ≤ g) {k n p : ℕ} (hn : 1 ≤ n) : overlapg g k n p
     omega
 
 /-- **Overlap product divides `k!` (generic `g`).** `Wg g k n ∣ k!`. Generic form of
-`W_dvd_factorial`/`W5_dvd_factorial`. -/
+`W_dvd_factorial`/`W5_dvd_factorial`.
+@isnad1 id=dvd.2h3v.s5.61f7ff099f1b from=translated src=- shape=9111c12a vocab=b0b6d147
+-/
 theorem Wg_dvd_factorial (hg : 1 ≤ g) {k n : ℕ} (hn : 1 ≤ n) : Wg g k n ∣ Nat.factorial k := by
   have hWne : Wg g k n ≠ 0 := by
     unfold Wg; exact Finset.prod_ne_zero_iff.mpr fun p hp =>
@@ -396,7 +430,9 @@ theorem Wg_dvd_factorial (hg : 1 ≤ g) {k n : ℕ} (hn : 1 ≤ n) : Wg g k n �
   · simp only [hp, ite_false]; exact Nat.zero_le _
 
 /-- **Overlap bound (generic `g`): `Wg g k n ≤ k^k`.** Since `Wg ∣ k!` (Legendre) and `k! ≤ k^k`.
-Generic form of `W_le_pow`/`W5_le_pow`. -/
+Generic form of `W_le_pow`/`W5_le_pow`.
+@isnad1 id=le.2h3v.s5.78627d23187f from=translated src=- shape=6051a37b vocab=ddff7364
+-/
 theorem Wg_le_pow (hg : 1 ≤ g) {k n : ℕ} (hn : 1 ≤ n) : Wg g k n ≤ k ^ k := by
   calc Wg g k n ≤ Nat.factorial k := Nat.le_of_dvd (Nat.factorial_pos k) (Wg_dvd_factorial hg hn)
     _ ≤ k ^ k := Nat.factorial_le_pow k

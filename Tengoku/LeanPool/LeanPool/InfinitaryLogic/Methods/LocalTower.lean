@@ -272,15 +272,21 @@ def Γlocal (s₀ : LocalStage) (k : ℕ) : Set (Σ n, (Llocal s₀ k).BoundedFo
 The later colimit's cocone is assembled from these. -/
 def LlocalHom (s₀ : LocalStage) (k : ℕ) : Llocal s₀ k →ᴸ Llocal s₀ (k + 1) := LHom.sumInl
 
-/-- Each stage-`k` family is countable. -/
+/-- Each stage-`k` family is countable.
+@isnad1 id=countabl.0h2v.s4.4c6a81bbbf1e from=translated src=- shape=7784ddd6 vocab=4664c8d5
+-/
 theorem Γlocal_countable (s₀ : LocalStage) (k : ℕ) : (Γlocal s₀ k).Countable :=
   (localStage s₀ k).gamma_countable
 
-/-- Each stage-`k` language has countably many function symbols. -/
+/-- Each stage-`k` language has countably many function symbols.
+@isnad1 id=countabl.0h2v.s3.687167bf3234 from=translated src=- shape=54811648 vocab=e2a07fa6
+-/
 theorem Llocal_fun_countable (s₀ : LocalStage) (k : ℕ) :
     Countable (Σ n, (Llocal s₀ k).Functions n) := (localStage s₀ k).fun_countable
 
-/-- Each stage-`k` language has countably many relation symbols. -/
+/-- Each stage-`k` language has countably many relation symbols.
+@isnad1 id=countabl.0h2v.s3.46389fe81a68 from=translated src=- shape=54811648 vocab=15fac540
+-/
 theorem Llocal_rel_countable (s₀ : LocalStage) (k : ℕ) :
     Countable (Σ n, (Llocal s₀ k).Relations n) := (localStage s₀ k).rel_countable
 
@@ -288,7 +294,9 @@ theorem Llocal_rel_countable (s₀ : LocalStage) (k : ℕ) :
 
 /-- **Lift stability**: a stage-`k` family member, lifted along the stage inclusion `LlocalHom`,
 lies in the successor family (via `subset_skolemNeed`, the `liftGamma` part of the seed, and
-`localSeed_subset_localGammaNext`). -/
+`localSeed_subset_localGammaNext`).
+@isnad1 id=mem.1h3v.s7.5277fdf87821 from=translated src=- shape=29b1d3f8 vocab=70639a3d
+-/
 theorem liftGamma_mem_Γlocal_succ (s₀ : LocalStage) {k : ℕ}
     {p : Σ n, (Llocal s₀ k).BoundedFormulaω Empty n} (hp : p ∈ Γlocal s₀ k) :
     (⟨p.1, p.2.mapLanguage (LlocalHom s₀ k)⟩ :
@@ -297,14 +305,18 @@ theorem liftGamma_mem_Γlocal_succ (s₀ : LocalStage) {k : ℕ}
     (Or.inl (Or.inl (Set.mem_image_of_mem _ (subset_skolemNeed _ hp))))
 
 /-- **Successor-stage closure**: every successor family is closed under immediate
-subformulas/components (it is a `setClosure bfSubformulas`). -/
+subformulas/components (it is a `setClosure bfSubformulas`).
+@isnad1 id=le.1h3v.s7.e6e85b760080 from=translated src=- shape=ffe89e3c vocab=f4d793bd
+-/
 theorem bfSubformulas_subset_Γlocal_succ (s₀ : LocalStage) {k : ℕ}
     {p : Σ n, (Llocal s₀ (k + 1)).BoundedFormulaω Empty n} (hp : p ∈ Γlocal s₀ (k + 1)) :
     bfSubformulas p ⊆ Γlocal s₀ (k + 1) :=
   stepOne_subset_setClosure _ _ hp
 /-- The lift of the **negated body** of a universal family member is in the successor family (the
 seed lifts the whole `skolemNeed` enlargement, not just `Γ_k`). Feeds the local truth lemma's
-`all` case, whose Skolemized body `¬ψ` lives one stage up. -/
+`all` case, whose Skolemized body `¬ψ` lives one stage up.
+@isnad1 id=mem.1h4v.s7.55668ac9637d from=translated src=- shape=0f02dfd0 vocab=c9247100
+-/
 theorem liftNegBody_mem_Γlocal_succ (s₀ : LocalStage) {k n : ℕ}
     {ψ : (Llocal s₀ k).BoundedFormulaω Empty (n + 1)}
     (h : (⟨n, .all ψ⟩ : Σ n, (Llocal s₀ k).BoundedFormulaω Empty n) ∈ Γlocal s₀ k) :

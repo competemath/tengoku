@@ -311,7 +311,9 @@ the number of isomorphism classes of countable models of an Lω₁ω sentence
 is either ≤ ℵ₁ or exactly 2^ℵ₀.
 
 Combines the ℕ-tier (via Scott-height stratification + BFEquiv Borelness)
-with finite-carrier tiers (via permutation orbits). -/
+with finite-carrier tiers (via permutation orbits).
+@isnad1 id=or.1h2v.s6.9229b8cda391 from=translated src=- shape=62171d7b vocab=535d41a0
+-/
 theorem morley_counting (silver : SilverBurgessDichotomy.{v}) (φ : L.Sentenceω) :
     (#(AllCodedIsoClasses φ) ≤ Cardinal.aleph 1) ∨
     (#(AllCodedIsoClasses φ) = Cardinal.continuum) := by

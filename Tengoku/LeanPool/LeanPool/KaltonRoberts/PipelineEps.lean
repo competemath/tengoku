@@ -39,7 +39,9 @@ variable {U : Type*} [DecidableEq U] [Fintype U]
 
 /-- Case 1 spine with epsilon recombination.
 Same as `spine_case1` but with epsilon one-sided recombination.
-Proves `M ≤ C₂ + 2 * ε`. -/
+Proves `M ≤ C₂ + 2 * ε`.
+@isnad1 id=le.10h5v.s9.002435bab617 from=translated src=- shape=b73bc73c vocab=da7d171e
+-/
 lemma spine_case1_eps
     (g : Finset U → ℝ) (hg : IsApproxAdditive g 1) (M : ℝ) (hM_pos : 0 < M)
     (hM_bound : ∀ S : Finset U, |g S| ≤ M)
@@ -150,7 +152,9 @@ lemma spine_case1_eps
 
 /-- Case 2 spine with epsilon recombination.
 Same as `spine_case2` but with epsilon two-sided recombination.
-Proves `M ≤ C₂ + 2 * ε`. -/
+Proves `M ≤ C₂ + 2 * ε`.
+@isnad1 id=le.11h5v.s10.0d381700286e from=translated src=- shape=a30e5b30 vocab=e270d2d6
+-/
 lemma spine_case2_eps
     (g : Finset U → ℝ) (hg : IsApproxAdditive g 1) (M : ℝ) (hM_pos : 0 < M)
     (hM_bound : ∀ S : Finset U, |g S| ≤ M)
@@ -307,7 +311,9 @@ assuming all pipeline components with epsilon recombination.
 
 Uses the real-analysis principle: if ∀ ε > 0, x ≤ y + ε, then x ≤ y.
 
-**Reference**: Section 5 of the companion paper. -/
+**Reference**: Section 5 of the companion paper.
+@isnad1 id=le.10h2v.s10.d2237ff884d5 from=translated src=- shape=a92576be vocab=cdadc329
+-/
 theorem distToAdditive_le_C₂_from_pipeline
     [Finite U]
     -- The target function

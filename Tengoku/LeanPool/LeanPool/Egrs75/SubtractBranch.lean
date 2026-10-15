@@ -86,14 +86,18 @@ open Egrs75.RepairPaperfaithful
 i.e. the `p`-adic valuation: `p^m ∣ n` but `p^(m+1) ∤ n`.  For `n = 0` it is junk `0`. -/
 noncomputable def lowPDigitIndex (p n : ℕ) : ℕ := (n.factorization p)
 
-/-- For `1 < p` and `n ≠ 0`, `p ^ (lowPDigitIndex p n) ∣ n`. -/
+/-- For `1 < p` and `n ≠ 0`, `p ^ (lowPDigitIndex p n) ∣ n`.
+@isnad1 id=dvd.2h2v.s5.6bf70d6663d5 from=translated src=- shape=456e539d vocab=7518a04f
+-/
 theorem pow_lowPDigitIndex_dvd {p n : ℕ} (_hp : 1 < p) (_hn : n ≠ 0) :
     p ^ (lowPDigitIndex p n) ∣ n := by
   unfold lowPDigitIndex
   exact Nat.ordProj_dvd n p
 
 /-- For a prime `p` and `n ≠ 0`, `p ^ (lowPDigitIndex p n + 1) ∤ n` (the digit at
-`m = lowPDigitIndex` is nonzero). -/
+`m = lowPDigitIndex` is nonzero).
+@isnad1 id=not.2h2v.s5.362fd97f2854 from=translated src=- shape=2af546ba vocab=46bc2f56
+-/
 theorem not_pow_succ_lowPDigitIndex_dvd {p n : ℕ} (hp : p.Prime) (hn : n ≠ 0) :
     ¬ p ^ (lowPDigitIndex p n + 1) ∣ n := by
   unfold lowPDigitIndex
@@ -101,7 +105,9 @@ theorem not_pow_succ_lowPDigitIndex_dvd {p n : ℕ} (hp : p.Prime) (hn : n ≠ 0
   exact Nat.pow_succ_factorization_not_dvd hn hp
 
 /-- The base-`p` digit of `n` at the lowest-nonzero index `m` is nonzero:
-`0 < n / p^m % p`.  (From `p^m ∣ n` and `p^(m+1) ∤ n`.) -/
+`0 < n / p^m % p`.  (From `p^m ∣ n` and `p^(m+1) ∤ n`.)
+@isnad1 id=lt.2h2v.s5.3a5eb34a9b44 from=translated src=- shape=76174c1f vocab=cfe32054
+-/
 theorem digit_at_lowPDigitIndex_pos {p n : ℕ} (hp : p.Prime) (hn : n ≠ 0) :
     0 < n / p ^ (lowPDigitIndex p n) % p := by
   set m := lowPDigitIndex p n with hm
@@ -124,19 +130,25 @@ theorem digit_at_lowPDigitIndex_pos {p n : ℕ} (hp : p.Prime) (hn : n ≠ 0) :
   exact ⟨d, by ring⟩
 
 /-- Below the lowest-nonzero index `m`, the base-`p` low block vanishes:
-`n % p^m = 0`. -/
+`n % p^m = 0`.
+@isnad1 id=eq.2h2v.s5.49c0e5ba4e49 from=translated src=- shape=4556cb74 vocab=f6dde878
+-/
 theorem mod_pow_lowPDigitIndex {p n : ℕ} (hp : 1 < p) (hn : n ≠ 0) :
     n % p ^ (lowPDigitIndex p n) = 0 :=
   Nat.mod_eq_zero_of_dvd (pow_lowPDigitIndex_dvd hp hn)
 
 /-! ## The "repunit times `(p-1)/2`" block `(p^m - 1)/2` is `LowDigits p` -/
 
-/-- `2 * ((p - 1) / 2) = p - 1` for odd `p`. -/
+/-- `2 * ((p - 1) / 2) = p - 1` for odd `p`.
+@isnad1 id=eq.1h1v.s5.1a13adceae7c from=translated src=- shape=6792ea6a vocab=f187131b
+-/
 theorem two_mul_half_pred {p : ℕ} (hodd : Odd p) : 2 * ((p - 1) / 2) = p - 1 := by
   obtain ⟨k, hk⟩ := hodd
   simp_all
 
-/-- `2 * ((p^m - 1)/2) = p^m - 1` (odd base ⟹ `p^m` odd ⟹ `p^m - 1` even). -/
+/-- `2 * ((p^m - 1)/2) = p^m - 1` (odd base ⟹ `p^m` odd ⟹ `p^m - 1` even).
+@isnad1 id=eq.1h2v.s6.e6b30260a055 from=translated src=- shape=370c6cb9 vocab=20a8a5d1
+-/
 theorem two_mul_half_pred_pow {p : ℕ} (hodd : Odd p) (m : ℕ) :
     2 * ((p ^ m - 1) / 2) = p ^ m - 1 := by
   have hoddpow : Odd (p ^ m) := hodd.pow
@@ -144,6 +156,7 @@ theorem two_mul_half_pred_pow {p : ℕ} (hodd : Odd p) (m : ℕ) :
   simp_all
 
 /-- The recursion for the half-repunit: `(p^(m+1) - 1)/2 = p · ((p^m - 1)/2) + (p-1)/2`.
+@isnad1 id=eq.2h2v.s7.6c83477be7a5 from=translated src=- shape=cffff91d vocab=d207e67c
 -/
 theorem half_pred_pow_succ {p : ℕ} (hp : 2 ≤ p) (hodd : Odd p) (m : ℕ) :
     (p ^ (m + 1) - 1) / 2 = p * ((p ^ m - 1) / 2) + (p - 1) / 2 := by
@@ -171,7 +184,9 @@ theorem half_pred_pow_succ {p : ℕ} (hp : 2 ≤ p) (hodd : Odd p) (m : ℕ) :
 
 /-- **`LowDigits p ((p^m - 1)/2)`** — the half-repunit has every base-`p` digit equal to
 `(p-1)/2`, hence all `≤ (p-1)/2`.  By induction on `m` via the recursion
-`(p^(m+1)-1)/2 = p·((p^m-1)/2) + (p-1)/2` (a `lowDigits_cons`). KERNEL-CLEAN. -/
+`(p^(m+1)-1)/2 = p·((p^m-1)/2) + (p-1)/2` (a `lowDigits_cons`). KERNEL-CLEAN.
+@isnad1 id=lowdigit.2h2v.s5.4a5a7af382ad from=translated src=- shape=3da11883 vocab=a7ed1b12
+-/
 theorem lowDigits_half_pred_pow {p : ℕ} (hp : 3 ≤ p) (hodd : Odd p) (m : ℕ) :
     LowDigits p ((p ^ m - 1) / 2) := by
   induction m with
@@ -180,7 +195,9 @@ theorem lowDigits_half_pred_pow {p : ℕ} (hp : 3 ≤ p) (hodd : Odd p) (m : ℕ
     rw [half_pred_pow_succ (by omega) hodd k]
     exact RoundUp.lowDigits_cons (by omega) (le_refl _) ih
 
-/-- `(p^m - 1)/2 < p^m` (strict, since `(p^m - 1)/2 ≤ p^m - 1 < p^m`). -/
+/-- `(p^m - 1)/2 < p^m` (strict, since `(p^m - 1)/2 ≤ p^m - 1 < p^m`).
+@isnad1 id=lt.1h2v.s6.4c2ec0152403 from=translated src=- shape=f36e446e vocab=02795a72
+-/
 theorem half_pred_pow_lt {p : ℕ} (hp : 2 ≤ p) (m : ℕ) : (p ^ m - 1) / 2 < p ^ m := by
   have h1 : 1 ≤ p ^ m := Nat.one_le_pow _ _ (by omega)
   have : (p ^ m - 1) / 2 ≤ p ^ m - 1 := Nat.div_le_self _ _
@@ -188,7 +205,9 @@ theorem half_pred_pow_lt {p : ℕ} (hp : 2 ≤ p) (m : ℕ) : (p ^ m - 1) / 2 < 
 
 /-! ## The borrow block `a·p^m - (p^m+1)/2 = (a-1)·p^m + (p^m-1)/2` -/
 
-/-- The borrow identity: for `1 ≤ a`, `a·p^m - (p^m+1)/2 = (a-1)·p^m + (p^m-1)/2`. -/
+/-- The borrow identity: for `1 ≤ a`, `a·p^m - (p^m+1)/2 = (a-1)·p^m + (p^m-1)/2`.
+@isnad1 id=eq.2h3v.s7.ba3c3d6eca36 from=translated src=- shape=c077520e vocab=d207e67c
+-/
 theorem sub_block_eq {p : ℕ} (hodd : Odd p) {a m : ℕ} (ha : 1 ≤ a) :
     a * p ^ m - (p ^ m + 1) / 2 = (a - 1) * p ^ m + (p ^ m - 1) / 2 := by
   have hpm : 1 ≤ p ^ m := Nat.one_le_pow _ _ (by
@@ -210,7 +229,9 @@ theorem sub_block_eq {p : ℕ} (hodd : Odd p) {a m : ℕ} (ha : 1 ≤ a) :
 
 /-- **The borrow block is `LowDigits p`.**  For `1 ≤ a ≤ (p-1)/2`, the block
 `a·p^m - (p^m+1)/2` is `LowDigits p`: it equals `(a-1)·p^m + (p^m-1)/2`, whose digit at
-`m` is `a-1 ≤ (p-1)/2` and whose digits below `m` are all `(p-1)/2`. KERNEL-CLEAN. -/
+`m` is `a-1 ≤ (p-1)/2` and whose digits below `m` are all `(p-1)/2`. KERNEL-CLEAN.
+@isnad1 id=lowdigit.4h3v.s7.99d14ce6d4e9 from=translated src=- shape=9cec518b vocab=734272b6
+-/
 theorem sub_block_lowDigits {p : ℕ} (hp : 3 ≤ p) (hodd : Odd p) {a m : ℕ}
     (ha1 : 1 ≤ a) (haA : a ≤ (p - 1) / 2) :
     LowDigits p (a * p ^ m - (p ^ m + 1) / 2) := by
@@ -232,7 +253,9 @@ theorem sub_block_lowDigits {p : ℕ} (hp : 3 ≤ p) (hodd : Odd p) {a m : ℕ}
     exact RoundUp.lowDigits_cons (by omega) (by omega) (RoundUp.lowDigits_zero p)
 
 /-- The borrow block stays below `p^(m+1)`: `a·p^m - (p^m+1)/2 < p^(m+1)`
-(for `1 ≤ a ≤ (p-1)/2`). -/
+(for `1 ≤ a ≤ (p-1)/2`).
+@isnad1 id=lt.4h3v.s7.189a75ed09bd from=translated src=- shape=10c76e65 vocab=1d5e3ad5
+-/
 theorem sub_block_lt {p : ℕ} (hp : 3 ≤ p) (hodd : Odd p) {a m : ℕ}
     (ha1 : 1 ≤ a) (haA : a ≤ (p - 1) / 2) :
     a * p ^ m - (p ^ m + 1) / 2 < p ^ (m + 1) := by
@@ -257,7 +280,9 @@ theorem sub_block_lt {p : ℕ} (hp : 3 ≤ p) (hodd : Odd p) {a m : ℕ}
 /-! ## The low `(m+1)`-block of `n` equals `a_m·p^m` -/
 
 /-- For `n ≠ 0`, the low `(m+1)`-block of `n` (where `m = lowPDigitIndex p n`) is exactly
-`a_m·p^m`, with `a_m = n/p^m % p` the lowest nonzero digit (digits below `m` are zero). -/
+`a_m·p^m`, with `a_m = n/p^m % p` the lowest nonzero digit (digits below `m` are zero).
+@isnad1 id=eq.2h2v.s6.f90d5d8166d3 from=translated src=- shape=be9252f2 vocab=f3518a97
+-/
 theorem mod_pow_succ_lowPDigitIndex {p n : ℕ} (hp : 1 < p) (hn : n ≠ 0) :
     n % p ^ (lowPDigitIndex p n + 1)
       = (n / p ^ (lowPDigitIndex p n) % p) * p ^ (lowPDigitIndex p n) := by
@@ -278,7 +303,9 @@ The borrow is confined to the low `(m+1)`-block: `n = a_m·p^m + p^(m+1)·Hi` wi
 the subtraction touches.  Since `(p^m+1)/2 ≤ a_m·p^m` (as `a_m ≥ 1`), the result is
 `(a_m·p^m - (p^m+1)/2) + p^(m+1)·Hi`, and the low block is `LowDigits p` and `< p^(m+1)`
 by `sub_block_lowDigits` / `sub_block_lt`; the disjoint sum is `LowDigits p` by the
-proven adder `RepairDV.lowDigits_disjoint_add`.  KERNEL-CLEAN. -/
+proven adder `RepairDV.lowDigits_disjoint_add`.  KERNEL-CLEAN.
+@isnad1 id=lowdigit.4h2v.s6.34e204378e15 from=translated src=- shape=7b35bd93 vocab=8bb44ac0
+-/
 theorem sub_preserves_lowDigits {p : ℕ} (hp : p.Prime) (hodd : Odd p) {n : ℕ}
     (hpn : LowDigits p n) (hn : n ≠ 0) :
     LowDigits p (n - (p ^ (lowPDigitIndex p n) + 1) / 2) := by
@@ -342,7 +369,9 @@ high quotient `n / q^j`.  Hence every base-`q` digit at index `≥ j` is identic
 `n - S` and in `n`. -/
 
 /-- The subtract keeps the same high base-`q` quotient: `(n - S) / q^j = n / q^j`, for
-`S ≤ n % q^j`. -/
+`S ≤ n % q^j`.
+@isnad1 id=eq.2h4v.s6.133eb0263743 from=translated src=- shape=666d878c vocab=a4fb67bc
+-/
 theorem sub_div_pow_eq {q n S k : ℕ} (hq : 0 < q) (hS : S ≤ n % q ^ k) :
     (n - S) / q ^ k = n / q ^ k := by
   -- n = n % q^k + q^k * (n/q^k); n - S = (n%q^k - S) + q^k*(n/q^k), with n%q^k - S < q^k.
@@ -357,6 +386,7 @@ theorem sub_div_pow_eq {q n S k : ℕ} (hq : 0 < q) (hS : S ≤ n % q ^ k) :
 
 /-- **Base-`q` digits at index `≥ j` are frozen.**  For `S ≤ n % q^j`, every base-`q`
 digit of `n - S` at index `idx ≥ j` equals the corresponding digit of `n`. KERNEL-CLEAN.
+@isnad1 id=eq.3h5v.s6.4c9b0e1a0995 from=translated src=- shape=7e752ca8 vocab=a4fb67bc
 -/
 theorem sub_high_digits_frozen {q n S j idx : ℕ} (hq : 0 < q) (hS : S ≤ n % q ^ j)
     (hidx : j ≤ idx) :
@@ -368,7 +398,9 @@ theorem sub_high_digits_frozen {q n S j idx : ℕ} (hq : 0 < q) (hS : S ≤ n % 
   rw [hkey]
 
 /-- Above the top bad index (`idx > j`), the frozen digit of `n - S` is GOOD (it equals
-the good digit of `n` there).  KERNEL-CLEAN. -/
+the good digit of `n` there).  KERNEL-CLEAN.
+@isnad1 id=not.4h4v.s6.7308ed50cef9 from=translated src=- shape=d888f098 vocab=5e234ab7
+-/
 theorem sub_not_badAt_above_top {q : ℕ} (hq : q.Prime) {n S : ℕ}
     (hbad : 0 < badCountQ q n) (hS : S ≤ n % q ^ (topBadIndex q n)) {idx : ℕ}
     (hidx : topBadIndex q n < idx) :
@@ -426,7 +458,9 @@ top bad index (`S ≤ n % q^j`, `j = topBadIndex q n`), the result `n' = n - S` 
 
 These two are the complete TRUE content of the subtract branch and are proved with NO
 `sorry`.  (NOTE the strict `j < idx`: digit `j` is FROZEN — equal to `n`'s bad digit — so
-the subtract branch does NOT clear it; that is the ADD branch's job.) -/
+the subtract branch does NOT clear it; that is the ADD branch's job.)
+@isnad1 id=and.7h4v.s7.9cf4bd6b7922 from=translated src=- shape=eb7fdf54 vocab=bb6dd816
+-/
 theorem sub_clears_true {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpo : Odd p)
     {N n : ℕ} (hpn : LowDigits p n) (hNn : N < n) (hbad : 0 < badCountQ q n)
     (hST : (p ^ (lowPDigitIndex p n) + 1) / 2 ≤ n % q ^ (topBadIndex q n)) :

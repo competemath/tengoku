@@ -315,7 +315,9 @@ private theorem exists_aElementary_substructure (A : Fragment L) (X : Set M) :
   ⟨lsHull A X, subset_lsHull A X, aElementary_lsHull A X, mk_lsHull_le A X⟩
 
 /-- **The countable corollary** (Marker, Theorem 1.22 second half — what #17 consumes):
-countable data yields a countable A-elementary substructure. -/
+countable data yields a countable A-elementary substructure.
+@isnad1 id=ex.2h4v.s7.ec6d57524591 from=translated src=- shape=0aec007a vocab=a8dc914b
+-/
 theorem exists_countable_aElementary_substructure (A : Fragment L) {X : Set M}
     (hX : X.Countable) (hA : A.toSet.Countable)
     [hF : Countable (Σ n, L.Functions n)] :

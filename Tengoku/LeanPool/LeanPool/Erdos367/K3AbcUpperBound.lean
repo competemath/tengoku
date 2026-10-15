@@ -39,21 +39,39 @@ def Nat.powerfulPart (n : ℕ) : ℕ :=
 
 /-! ## Basic properties of rad -/
 
+/--
+@isnad1 id=eq.0h0v.s3.91d84cbdff1d from=translated src=- shape=3c26ae4f vocab=436b47f7
+-/
 @[simp] theorem Nat.rad_zero : Nat.rad 0 = 1 := by simp [Nat.rad]
 
+/--
+@isnad1 id=eq.0h0v.s3.9a46b5343ca4 from=translated src=- shape=3c26ae4f vocab=436b47f7
+-/
 @[simp] theorem Nat.rad_one : Nat.rad 1 = 1 := by simp [Nat.rad]
 
+/--
+@isnad1 id=lt.1h1v.s4.7c77bd92d2c4 from=translated src=- shape=35bd48ee vocab=a18ee4c5
+-/
 theorem Nat.rad_pos (n : ℕ) (_hn : 0 < n) : 0 < Nat.rad n := by
   exact Finset.prod_pos fun p hp => Nat.pos_of_mem_primeFactors hp
 
 /-! ## Basic properties of powerfulPart -/
 
+/--
+@isnad1 id=eq.0h0v.s3.3ecda6826f40 from=translated src=- shape=3c26ae4f vocab=3532805e
+-/
 @[simp] theorem Nat.powerfulPart_zero : Nat.powerfulPart 0 = 1 := by
   simp [Nat.powerfulPart]
 
+/--
+@isnad1 id=eq.0h0v.s3.bc3b058a22aa from=translated src=- shape=3c26ae4f vocab=3532805e
+-/
 @[simp] theorem Nat.powerfulPart_one : Nat.powerfulPart 1 = 1 := by
   simp [Nat.powerfulPart]
 
+/--
+@isnad1 id=lt.1h1v.s4.fd5d21a7270a from=translated src=- shape=35bd48ee vocab=03f2da4d
+-/
 theorem Nat.powerfulPart_pos (n : ℕ) (_hn : 0 < n) : 0 < Nat.powerfulPart n := by
   exact Finset.prod_pos fun p hp =>
     pow_pos (Nat.pos_of_mem_primeFactors (Finset.mem_filter.mp hp |>.1)) _
@@ -76,6 +94,9 @@ This follows because primeFactors(ab) = primeFactors(a) ∪ primeFactors(b),
 and the product over a union is ≤ the product of products (intersection terms ≥ 1).
 -/
 
+/--
+@isnad1 id=le.2h2v.s5.4ea30728ae0f from=translated src=- shape=eff8b0f5 vocab=a0086695
+-/
 theorem Nat.rad_mul_le (a b : ℕ) (ha : a ≠ 0) (hb : b ≠ 0) :
     Nat.rad (a * b) ≤ Nat.rad a * Nat.rad b := by
   unfold Nat.rad
@@ -97,11 +118,16 @@ def ABCConjecture : Prop :=
 
 /-! ## Key identity and the abc application step -/
 
-/-- (n+1)² = n(n+2) + 1, the "squaring trick" identity. -/
+/-- (n+1)² = n(n+2) + 1, the "squaring trick" identity.
+@isnad1 id=eq.0h1v.s6.712e7ec2ea24 from=translated src=- shape=21632dad vocab=30ba1354
+-/
 theorem squaring_trick (n : ℕ) : (n + 1) ^ 2 = n * (n + 2) + 1 := by ring
 
 /-
 rad(n(n+1)²(n+2)) = rad(n(n+1)(n+2)) since rad ignores exponents.
+-/
+/--
+@isnad1 id=eq.1h1v.s6.e8de4b18fe1e from=translated src=- shape=dd719fed vocab=40608211
 -/
 theorem rad_ignore_sq (n : ℕ) (hn : 0 < n) :
     Nat.rad (n * (n + 1) ^ 2 * (n + 2)) = Nat.rad (n * (n + 1) * (n + 2)) := by
@@ -127,6 +153,9 @@ The integer core: from abc, we get
   (n+1)² ≤ C_ε · [n(n+1)(n+2) / (B₂(n)B₂(n+1)B₂(n+2))^{1/2}]^{1+ε}.
   Stated as: (n+1)^2 * P^{(1+ε)/2} ≤ C_ε * (n(n+1)(n+2))^{1+ε},
   where P = B₂(n)·B₂(n+1)·B₂(n+2).
+-/
+/--
+@isnad1 id=ex.2h1v.s7.5bde74f72b7f from=translated src=- shape=adf19270 vocab=5e5c2df0
 -/
 theorem integer_core_ineq (habc : ABCConjecture) (ε : ℝ) (hε : 0 < ε) :
     ∃ C : ℝ, 0 < C ∧ ∀ n : ℕ, 0 < n →

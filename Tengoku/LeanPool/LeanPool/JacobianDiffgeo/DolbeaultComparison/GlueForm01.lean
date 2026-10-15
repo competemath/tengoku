@@ -85,18 +85,29 @@ variable (d : DbarGlueData X)
 /-- The data chart at member `i`: the preferred chart at the center, restricted to the member. -/
 def chart (i : Fin d.n) : OpenPartialHomeomorph X ℂ := (chartAt ℂ (d.center i)).restr (d.V i)
 
+/--
+@isnad1 id=mem.0h3v.s7.0a9f6e6db936 from=translated src=- shape=e27591f5 vocab=5e3ca971
+-/
 theorem chart_mem_maximalAtlas (i : Fin d.n) :
     d.chart i ∈ IsManifold.maximalAtlas 𝓘(ℂ) ω X :=
   restr_mem_maximalAtlas _ (IsManifold.chart_mem_maximalAtlas (d.center i)) (d.V i).isOpen
 
+/--
+@isnad1 id=eq.0h3v.s7.04a13372bcdd from=translated src=- shape=adc39d3e vocab=4bfa2a10
+-/
 theorem chart_source (i : Fin d.n) : (d.chart i).source = (d.V i : Set X) := by
   rw [chart, (chartAt ℂ (d.center i)).restr_source' (d.V i : Set X) (d.V i).isOpen,
     Set.inter_eq_right.2 (d.subChart i)]
 
+/--
+@isnad1 id=mem.1h4v.s7.8b10453cfafa from=translated src=- shape=ff685dce vocab=5c443733
+-/
 theorem mem_chart_source_of_mem_V {i : Fin d.n} {x : X} (hx : x ∈ d.V i) :
     x ∈ (d.chart i).source := by rw [chart_source]; exact hx
 
-/-- Real-smoothness of the chart representative of `u i`, at the data chart's own point. -/
+/-- Real-smoothness of the chart representative of `u i`, at the data chart's own point.
+@isnad1 id=contdiff.1h4v.s7.0572b4587602 from=translated src=- shape=9804af41 vocab=b91d8bbb
+-/
 theorem contDiffAt_u_comp_chart_symm (i : Fin d.n) {x : X} (hx : x ∈ d.V i) :
     ContDiffAt ℝ ∞ (d.u i ∘ ⇑(d.chart i).symm) (d.chart i x) := by
   have h := contDiffOn_comp_chart_symm_of_contMDiffOn (d.smoothOn i) (d.center i)
@@ -106,7 +117,9 @@ theorem contDiffAt_u_comp_chart_symm (i : Fin d.n) {x : X} (hx : x ∈ d.V i) :
       (Set.mem_image_of_mem _ hx))
 
 /-- Real-differentiability of `u i`'s chart-`i` representative, transported through the
-transition to ANY other maximal-atlas chart `e` whose source contains the point. -/
+transition to ANY other maximal-atlas chart `e` whose source contains the point.
+@isnad1 id=differen.3h5v.s8.4938afa1bff4 from=translated src=- shape=a042737f vocab=b330d2be
+-/
 theorem differentiableAt_u_comp_chart_symm_transition (i : Fin d.n) {x : X} (hx : x ∈ d.V i)
     (e : OpenPartialHomeomorph X ℂ) (he : e ∈ IsManifold.maximalAtlas 𝓘(ℂ) ω X)
     (hex : x ∈ e.source) : DifferentiableAt ℝ (d.u i ∘ ⇑e.symm) (e x) := by
@@ -136,7 +149,9 @@ theorem differentiableAt_u_comp_chart_symm_transition (i : Fin d.n) {x : X} (hx 
 /-- The `(0,1)`-transport identity: `wirtingerDbar` of `u i`'s representative in ANY maximal-atlas
 chart `e` (whose source contains the point) is the `conj`-transition of its value in the data
 chart `i`. Used both for `Form01CoeffData.compat` (`e := chart j`) and `isDbarOn_form`
-(`e := chartAt x`). -/
+(`e := chartAt x`).
+@isnad1 id=eq.3h5v.s9.a793b18c078c from=translated src=- shape=3106ea5c vocab=d71fc3a6
+-/
 theorem wirtingerDbar_u_transport (i : Fin d.n) {x : X} (hx : x ∈ d.V i)
     (e : OpenPartialHomeomorph X ℂ) (he : e ∈ IsManifold.maximalAtlas 𝓘(ℂ) ω X)
     (hex : x ∈ e.source) :
@@ -222,6 +237,9 @@ noncomputable def coeffData : Form01CoeffData X (Fin d.n) where
 /-- The glued global `(0,1)`-form: `ω|V i = dbar(u i)` (design §6.1). -/
 noncomputable def form : Form01 X := Form01.ofCoeffs d.coeffData
 
+/--
+@isnad1 id=isdbaron.0h3v.s6.4cdc0df5269a from=translated src=- shape=6ca191b2 vocab=c7749767
+-/
 theorem isDbarOn_form (i : Fin d.n) : IsDbarOn (d.u i) d.form (d.V i) := by
   intro x hx
   have hxi_src : x ∈ (d.chart i).source := d.mem_chart_source_of_mem_V hx

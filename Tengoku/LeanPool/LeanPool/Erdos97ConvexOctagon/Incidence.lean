@@ -27,6 +27,9 @@ structure OctagonIncidence where
   /-- A centre is not one of its own positive-radius witnesses. -/
   centre_not_mem : ∀ v, v ∉ targets v
 
+/--
+@isnad1 id=eq.1h2v.s4.4294352ed569 from=translated src=- shape=ff06b0e2 vocab=d6537ee6
+-/
 @[ext]
 theorem OctagonIncidence.ext {Q R : OctagonIncidence} (h : Q.targets = R.targets) : Q = R := by
   cases Q
@@ -69,7 +72,9 @@ private lemma row_pair_sum (Q : OctagonIncidence) (a v : Vertex) :
     norm_num
   · simp [ha]
 
-/-- Double-count pairs in the witness rows containing a fixed vertex. -/
+/-- Double-count pairs in the witness rows containing a fixed vertex.
+@isnad1 id=eq.0h2v.s5.833ade98cdb9 from=translated src=- shape=1d49babf vocab=c2471438
+-/
 theorem sum_pairMultiplicity (Q : OctagonIncidence) (a : Vertex) :
     (∑ b ∈ Finset.univ.erase a, Q.pairMultiplicity a b) =
       3 * Q.indegree a := by
@@ -82,7 +87,9 @@ theorem sum_pairMultiplicity (Q : OctagonIncidence) (a : Vertex) :
   intro v _
   by_cases ha : a ∈ Q.targets v <;> simp [ha]
 
-/-- Every vertex has indegree at most four when pair multiplicities are at most two. -/
+/-- Every vertex has indegree at most four when pair multiplicities are at most two.
+@isnad1 id=le.1h2v.s4.79c3a27d71d4 from=translated src=- shape=8fc677f7 vocab=e8edbe3b
+-/
 theorem indegree_le_four (Q : OctagonIncidence) (hQ : Q.PairSparse) (a : Vertex) :
     Q.indegree a ≤ 4 := by
   have hsum :
@@ -93,7 +100,9 @@ theorem indegree_le_four (Q : OctagonIncidence) (hQ : Q.PairSparse) (a : Vertex)
   norm_num at hsum
   omega
 
-/-- There are exactly 32 selected incidences in an octagon witness system. -/
+/-- There are exactly 32 selected incidences in an octagon witness system.
+@isnad1 id=eq.0h1v.s4.8541477e3b39 from=translated src=- shape=5666163e vocab=31526928
+-/
 theorem sum_indegree (Q : OctagonIncidence) :
     ∑ a, Q.indegree a = 32 := by
   classical
@@ -140,7 +149,9 @@ private lemma eq_of_bounded_sum
   rw [hmul] at htotal_le
   exact Nat.le_antisymm (hle a) (Nat.le_of_add_le_add_left htotal_le)
 
-/-- Pair sparsity forces the four-in/four-out balanced incidence condition. -/
+/-- Pair sparsity forces the four-in/four-out balanced incidence condition.
+@isnad1 id=balanced.1h1v.s2.bddc2438df81 from=translated src=- shape=6321fd23 vocab=78f1ae11
+-/
 theorem balanced_of_pairSparse (Q : OctagonIncidence) (hQ : Q.PairSparse) :
     Q.Balanced := by
   intro a

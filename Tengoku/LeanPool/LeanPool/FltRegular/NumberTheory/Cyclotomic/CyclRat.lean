@@ -36,12 +36,18 @@ def fltIdeals (x y : ℤ) (η : R) : Ideal R :=
 
 variable {p}
 
+/--
+@isnad1 id=mem.0h4v.s9.fb9c0748b4b7 from=translated src=- shape=1264e796 vocab=0fa41a31
+-/
 theorem mem_fltIdeals (x y : ℤ) (η : R) :
     ↑x + η * ↑y ∈ fltIdeals p x y η :=
   mem_span_singleton.mpr dvd_rfl
 
 open IsPrimitiveRoot
 
+/--
+@isnad1 id=not.2h4v.s6.c19b7332fe1d from=translated src=- shape=c335a648 vocab=4862ee05
+-/
 theorem aux_lem_flt [Fact p.Prime] {x y z : ℤ} (H : x ^ p + y ^ p = z ^ p)
     (caseI : ¬↑p ∣ x * y * z) : ¬(p : ℤ) ∣ (x + y : ℤ) := by
   intro habs
@@ -52,6 +58,9 @@ theorem aux_lem_flt [Fact p.Prime] {x y z : ℤ} (H : x ^ p + y ^ p = z ^ p)
     ZMod.intCast_zmod_eq_zero_iff_dvd] at H
   exact caseI (Dvd.dvd.mul_left H _)
 
+/--
+@isnad1 id=ex.5h3v.s9.54358b06c208 from=translated src=- shape=b064a09e vocab=3ae669e9
+-/
 theorem diff_of_roots [hp : Fact p.Prime] (ph : 5 ≤ p) {η₁ η₂ : R}
     (hη₁ : η₁ ∈ nthRootsFinset p 1) (hη₂ : η₂ ∈ nthRootsFinset p 1)
     (hdiff : η₁ ≠ η₂) (hwlog : η₁ ≠ 1) :
@@ -62,6 +71,9 @@ theorem diff_of_roots [hp : Fact p.Prime] (ph : 5 ≤ p) {η₁ η₂ : R}
     ⟨u, hu⟩
   refine ⟨-u, by grind [Units.val_neg]⟩
 
+/--
+@isnad1 id=eq.7h5v.s9.4db5aff4a0e7 from=translated src=- shape=1c47829e vocab=317d9acd
+-/
 lemma fltIdeals_coprime2_lemma [Fact p.Prime] (ph : 5 ≤ p) {x y : ℤ} {η₁ η₂ : R}
     (hη₁ : η₁ ∈ nthRootsFinset p 1)
     (hη₂ : η₂ ∈ nthRootsFinset p 1) (hdiff : η₁ ≠ η₂) (hp : IsCoprime x y)
@@ -114,6 +126,9 @@ lemma fltIdeals_coprime2_lemma [Fact p.Prime] (ph : 5 ≤ p) {x y : ℤ} {η₁ 
   rw [eq_top_iff_one, ← hab]
   exact I.add_mem (I.mul_mem_left a hone) (I.mul_mem_left b hxy)
 
+/--
+@isnad1 id=iscoprim.7h5v.s9.9aaf60e97763 from=translated src=- shape=364d29eb vocab=61b2f9a6
+-/
 theorem fltIdeals_coprime2 [Fact p.Prime] (ph : 5 ≤ p) {x y : ℤ} {η₁ η₂ : R}
     (hη₁ : η₁ ∈ nthRootsFinset p 1) (hη₂ : η₂ ∈ nthRootsFinset p 1)
     (hdiff : η₁ ≠ η₂) (hp : IsCoprime x y)
@@ -122,6 +137,9 @@ theorem fltIdeals_coprime2 [Fact p.Prime] (ph : 5 ≤ p) {x y : ℤ} {η₁ η�
   simpa [Ideal.isCoprime_iff_add] using
     fltIdeals_coprime2_lemma ph hη₁ hη₂ hdiff hp hp2 hwlog
 
+/--
+@isnad1 id=other.8h6v.s9.9ee0cf9bd8a5 from=translated src=- shape=6b6ad6e4 vocab=13bb862f
+-/
 theorem fltIdeals_coprime (hpri : p.Prime) (p5 : 5 ≤ p) {x y z : ℤ}
     (H : x ^ p + y ^ p = z ^ p) {η₁ η₂ : R} (hxy : IsCoprime x y)
     (hη₁ : η₁ ∈ nthRootsFinset p 1) (hη₂ : η₂ ∈ nthRootsFinset p 1)
@@ -140,6 +158,9 @@ theorem fltIdeals_coprime (hpri : p.Prime) (p5 : 5 ≤ p) {x y z : ℤ}
 
 variable {L}
 
+/--
+@isnad1 id=dvd.4h6v.s8.968fe7932e26 from=translated src=- shape=1fd9b094 vocab=4639ad0b
+-/
 theorem dvd_coeff_cycl_integer (hp : p.Prime) {ζ : 𝓞 L} (hζ : IsPrimitiveRoot ζ p)
     {f : Fin p → ℤ} (hf : ∃ i, f i = 0) {m : ℤ}
     (hdiv : ↑m ∣ ∑ j, f j • ζ ^ (j : ℕ)) : ∀ j, m ∣ f j := by

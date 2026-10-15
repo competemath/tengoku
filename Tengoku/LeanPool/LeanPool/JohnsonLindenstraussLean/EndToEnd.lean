@@ -41,7 +41,9 @@ namespace JL
 
 /-- **Dimension bound discharges the counting condition.** If
 `4·log(2 m²) < (ε²−ε³)·k`, then the union-bound condition `m²·C < 1` holds for the JL
-failure probability `C = 2·exp(-(ε²−ε³)k/4)`. -/
+failure probability `C = 2·exp(-(ε²−ε³)k/4)`.
+@isnad1 id=lt.1h3v.s7.fcee62c441af from=translated src=- shape=3bb99c85 vocab=6b6091c0
+-/
 theorem card_condition {m k : ℕ} {ε : ℝ}
     (hdim : 4 * Real.log (2 * (m : ℝ) ^ 2) < (ε ^ 2 - ε ^ 3) * (k : ℝ)) :
     (m : ℝ) ^ 2 * (2 * rexp (-(ε ^ 2 - ε ^ 3) * (k : ℝ) / 4)) < 1 := by
@@ -61,7 +63,9 @@ theorem card_condition {m k : ℕ} {ε : ℝ}
 distinct points in `EuclideanSpace ℝ (Fin d)`, any `0 < ε < 1`, and any target dimension
 `k` with `4·log(2 m²) < (ε²−ε³)·k`, there exists a Gaussian projection matrix
 `A : Fin k → Fin d → ℝ` whose induced map `jlMap k d A` preserves all pairwise squared
-distances to within a factor `1 ± ε`. -/
+distances to within a factor `1 ± ε`.
+@isnad1 id=ex.5h5v.s9.6d7f45c79acc from=translated src=- shape=976ba579 vocab=12303537
+-/
 theorem johnson_lindenstrauss_pointset {m d k : ℕ} (hk : 0 < k)
     (p : Fin m → EuclideanSpace ℝ (Fin d)) {ε : ℝ} (h0 : 0 < ε) (h1 : ε < 1)
     (hp : ∀ a b, a ≠ b → p a ≠ p b)

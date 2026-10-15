@@ -49,7 +49,9 @@ namespace RS
 /-! ### A generic dense-agreement extension helper -/
 
 /-- Two functions continuous on `t` that agree on a subset `s` with `t ⊆ closure s` agree
-on `t`. -/
+on `t`.
+@isnad1 id=eqon.5h6v.s6.dd3d90dbe50d from=translated src=- shape=80c5136b vocab=135ce0fa
+-/
 theorem eqOn_of_eqOn_of_subset_closure {α β : Type*} [TopologicalSpace α] [TopologicalSpace β]
     [T2Space β] {f g : α → β} {s t : Set α} (hst : s ⊆ t) (hts : t ⊆ closure s)
     (hf : ContinuousOn f t) (hg : ContinuousOn g t) (h : Set.EqOn f g s) : Set.EqOn f g t := by
@@ -85,7 +87,9 @@ structure GoodCover (X : Type*) [TopologicalSpace X] [ChartedSpace ℂ X] where
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
 /-- Good covers exist on compact T2 surfaces (double shrinking by local compactness +
-finite subcover). -/
+finite subcover).
+@isnad1 id=nonempty.0h1v.s5.fe232d926b48 from=translated src=- shape=0de4e877 vocab=49551596
+-/
 theorem GoodCover.nonempty [T2Space X] [CompactSpace X] : Nonempty (GoodCover X) := by
   have h : ∀ x : X, ∃ V : Set X, ∃ W : Set X, IsOpen V ∧ IsOpen W ∧ x ∈ V ∧
       closure V ⊆ W ∧ closure W ⊆ (chartAt ℂ x).source := by
@@ -116,18 +120,30 @@ variable (G : GoodCover X)
 def e (i : Fin G.n) : OpenPartialHomeomorph X ℂ := chartAt ℂ (G.c i)
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=le.0h3v.s6.6ccfbb6f9a44 from=translated src=- shape=5e0409d3 vocab=0d723e44
+-/
 theorem W_subset_source (i : Fin G.n) : G.W i ⊆ (G.e i).source :=
   subset_closure.trans (G.closure_W_subset i)
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=le.0h3v.s6.672385ced11a from=translated src=- shape=e6c6dadd vocab=dc432c00
+-/
 theorem closureV_subset_source (i : Fin G.n) : closure (G.V i) ⊆ (G.e i).source :=
   (G.closure_V_subset i).trans (G.W_subset_source i)
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=le.0h3v.s6.2b41c4b92cec from=translated src=- shape=5e0409d3 vocab=4639d804
+-/
 theorem V_subset_source (i : Fin G.n) : G.V i ⊆ (G.e i).source :=
   subset_closure.trans (G.closureV_subset_source i)
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=ex.0h3v.s5.f3c7a67f496e from=translated src=- shape=97998fb1 vocab=55463d82
+-/
 theorem exists_mem_V (x : X) : ∃ i, x ∈ G.V i :=
   Set.mem_iUnion.mp (G.iUnion_V ▸ Set.mem_univ x)
 
@@ -141,53 +157,89 @@ def K (i : Fin G.n) : Set ℂ := G.e i '' closure (G.V i)
 def U (i : Fin G.n) : Set ℂ := G.e i '' G.W i
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=isopen.0h3v.s5.d895de083007 from=translated src=- shape=38bafdbb vocab=7c17d5fa
+-/
 theorem isOpen_O (i : Fin G.n) : IsOpen (G.O i) :=
   (G.e i).isOpen_image_of_subset_source (G.isOpen_V i) (G.V_subset_source i)
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=isopen.0h3v.s5.72dec907ebae from=translated src=- shape=38bafdbb vocab=ae85c2ed
+-/
 theorem isOpen_U (i : Fin G.n) : IsOpen (G.U i) :=
   (G.e i).isOpen_image_of_subset_source (G.isOpen_W i) (G.W_subset_source i)
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=iscompac.0h3v.s5.c69b34f76722 from=translated src=- shape=dfb8dae3 vocab=c241b7ba
+-/
 theorem isCompact_K [CompactSpace X] (i : Fin G.n) : IsCompact (G.K i) :=
   isClosed_closure.isCompact.image_of_continuousOn
     ((G.e i).continuousOn.mono (G.closureV_subset_source i))
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=le.0h3v.s5.2e128861cb4c from=translated src=- shape=75103f07 vocab=29ff103c
+-/
 theorem O_subset_K (i : Fin G.n) : G.O i ⊆ G.K i := Set.image_mono subset_closure
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=le.0h3v.s5.be52e6c49f65 from=translated src=- shape=75103f07 vocab=1f914e51
+-/
 theorem K_subset_U (i : Fin G.n) : G.K i ⊆ G.U i := Set.image_mono (G.closure_V_subset i)
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=le.0h3v.s6.72af0b7cebfe from=translated src=- shape=e8d54f9f vocab=b9a0b7e1
+-/
 theorem O_subset_target (i : Fin G.n) : G.O i ⊆ (G.e i).target := by
   rintro _ ⟨p, hp, rfl⟩
   exact (G.e i).map_source (G.V_subset_source i hp)
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=le.0h3v.s6.42160ab3ce68 from=translated src=- shape=e8d54f9f vocab=f89902f5
+-/
 theorem K_subset_target (i : Fin G.n) : G.K i ⊆ (G.e i).target := by
   rintro _ ⟨p, hp, rfl⟩
   exact (G.e i).map_source (G.closureV_subset_source i hp)
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=le.0h3v.s6.e3f9e654ec7f from=translated src=- shape=e8d54f9f vocab=8a24247a
+-/
 theorem U_subset_target (i : Fin G.n) : G.U i ⊆ (G.e i).target := by
   rintro _ ⟨p, hp, rfl⟩
   exact (G.e i).map_source (G.W_subset_source i hp)
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=le.0h3v.s6.a90228ac6dc3 from=translated src=- shape=af4ff639 vocab=8f722dca
+-/
 theorem K_subset_closure_O (i : Fin G.n) : G.K i ⊆ closure (G.O i) :=
   ((G.e i).continuousOn.mono (G.closureV_subset_source i)).image_closure
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=mem.1h4v.s6.6c17b37abff4 from=translated src=- shape=97ce368e vocab=4bda3762
+-/
 theorem symm_mem_W {i : Fin G.n} {z : ℂ} (hz : z ∈ G.U i) : (G.e i).symm z ∈ G.W i := by
   obtain ⟨p, hp, rfl⟩ := hz
   rwa [(G.e i).left_inv (G.W_subset_source i hp)]
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=mem.1h4v.s6.201d8dddd6ae from=translated src=- shape=810261ca vocab=b9a01a5f
+-/
 theorem mem_K_of_mem_V {i : Fin G.n} {x : X} (hx : x ∈ G.V i) : G.e i x ∈ G.K i :=
   Set.mem_image_of_mem _ (subset_closure hx)
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=mem.0h3v.s7.8fb37359449c from=translated src=- shape=65674c67 vocab=e25baa84
+-/
 theorem e_mem_maximalAtlas [IsManifold 𝓘(ℂ) ω X] (i : Fin G.n) :
     G.e i ∈ maximalAtlas 𝓘(ℂ) ω X :=
   chart_mem_maximalAtlas (G.c i)
@@ -195,17 +247,26 @@ theorem e_mem_maximalAtlas [IsManifold 𝓘(ℂ) ω X] (i : Fin G.n) :
 /-! #### Restricted charts -/
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=eq.0h3v.s7.9bf16c23c14f from=translated src=- shape=d9243da1 vocab=e03c1995
+-/
 theorem restr_source_eq (i : Fin G.n) :
     ((G.e i).restr (G.V i)).source = (G.e i).source ∩ G.V i := by
   rw [OpenPartialHomeomorph.restr_source, (G.isOpen_V i).interior_eq]
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=mem.1h4v.s6.a98b02a74ae8 from=translated src=- shape=825f0242 vocab=b4d1cad3
+-/
 theorem mem_restr_source {i : Fin G.n} {x : X} (hx : x ∈ G.V i) :
     x ∈ ((G.e i).restr (G.V i)).source := by
   rw [G.restr_source_eq i]
   exact ⟨G.V_subset_source i hx, hx⟩
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=eq.0h3v.s6.08abdf7c2f9e from=translated src=- shape=41a33005 vocab=78914601
+-/
 theorem restr_target_eq (i : Fin G.n) : ((G.e i).restr (G.V i)).target = G.O i := by
   rw [OpenPartialHomeomorph.restr_target, (G.isOpen_V i).interior_eq]
   ext z
@@ -219,6 +280,9 @@ theorem restr_target_eq (i : Fin G.n) : ((G.e i).restr (G.V i)).target = G.O i :
 
 /-! ### The coefficient embedding `J` -/
 
+/--
+@isnad1 id=compacts.0h3v.s6.723910289906 from=translated src=- shape=55bd6176 vocab=cfa98439
+-/
 instance instCompactSpaceK [CompactSpace X] (i : Fin G.n) : CompactSpace (G.K i) :=
   isCompact_iff_compactSpace.mp (G.isCompact_K i)
 
@@ -243,16 +307,25 @@ def J : Form1 X →ₗ[ℂ] G.P where
     ext z
     exact coeffIn_smul (G.e i) a η z
 
+/--
+@isnad1 id=eq.0h5v.s13.3a365a8a006f from=translated src=- shape=40f82617 vocab=9c6b8cc9
+-/
 @[simp]
 theorem J_apply (η : Form1 X) (i : Fin G.n) (z : G.K i) :
     G.J η i z = coeffIn (G.e i) η z := rfl
 
+/--
+@isnad1 id=le.1h5v.s13.87618d2ed6df from=translated src=- shape=bd633032 vocab=0214d0fd
+-/
 theorem norm_coeffIn_le_of_mem_K [CompactSpace X] (η : Form1 X) {i : Fin G.n} {z : ℂ}
     (hz : z ∈ G.K i) : ‖coeffIn (G.e i) η z‖ ≤ ‖G.J η‖ :=
   calc ‖coeffIn (G.e i) η z‖ = ‖G.J η i ⟨z, hz⟩‖ := rfl
     _ ≤ ‖G.J η i‖ := ContinuousMap.norm_coe_le_norm _ _
     _ ≤ ‖G.J η‖ := norm_le_pi_norm _ i
 
+/--
+@isnad1 id=injectiv.0h2v.s13.b57871338353 from=translated src=- shape=8042f593 vocab=73869f69
+-/
 theorem J_injective : Function.Injective G.J := by
   rw [injective_iff_map_eq_zero]
   intro η hη
@@ -274,7 +347,9 @@ theorem J_injective : Function.Injective G.J := by
 
 /-- Uniform bound (design §2.6 step 4): coefficients of unit-ball forms are uniformly bounded on
 the Montel domains `U i` — the transition-derivative suprema over the compact overlap pieces
-transfer the `K j`-bounds outward. -/
+transfer the `K j`-bounds outward.
+@isnad1 id=ex.0h2v.s13.d1f4ece0ac19 from=translated src=- shape=51d62cc9 vocab=270622a6
+-/
 theorem exists_montel_bound [CompactSpace X] :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ η : Form1 X, ‖G.J η‖ ≤ 1 →
       ∀ i, ∀ z ∈ G.U i, ‖coeffIn (G.e i) η z‖ ≤ C := by
@@ -327,7 +402,9 @@ theorem exists_montel_bound [CompactSpace X] :
       ≤ M * 1 := mul_le_mul h1 h2 (norm_nonneg _) hM0
     _ = M := mul_one M
 
-/-- Unit-ball coefficient tuples lie in the Montel families. -/
+/-- Unit-ball coefficient tuples lie in the Montel families.
+@isnad1 id=mem.2h5v.s14.8c4be017e482 from=translated src=- shape=47a9afe5 vocab=6b665180
+-/
 theorem J_mem_montelFamily [CompactSpace X] {C : ℝ}
     (hC : ∀ η : Form1 X, ‖G.J η‖ ≤ 1 → ∀ i, ∀ z ∈ G.U i, ‖coeffIn (G.e i) η z‖ ≤ C)
     {η : Form1 X} (hη : ‖G.J η‖ ≤ 1) (i : Fin G.n) :
@@ -345,10 +422,16 @@ def gext (f : G.P) (i : Fin G.n) : ℂ → ℂ :=
   fun z => if h : z ∈ G.K i then f i ⟨z, h⟩ else 0
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=eq.1h5v.s7.261685cee5d6 from=translated src=- shape=66eff2fc vocab=fdca0931
+-/
 theorem gext_apply (f : G.P) {i : Fin G.n} {z : ℂ} (hz : z ∈ G.K i) :
     G.gext f i z = f i ⟨z, hz⟩ := dite_eq_left hz
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω X] in
+/--
+@isnad1 id=continuo.0h4v.s6.85b8d2f68b35 from=translated src=- shape=cf136f30 vocab=710b42e4
+-/
 theorem continuousOn_gext (f : G.P) (i : Fin G.n) :
     ContinuousOn (G.gext f i) (G.K i) := by
   rw [continuousOn_iff_continuous_domRestrict]
@@ -356,7 +439,9 @@ theorem continuousOn_gext (f : G.P) (i : Fin G.n) :
   rw [this]
   exact (f i).continuous
 
-/-- Convergence in `P` gives uniform convergence of the coefficient functions on each `K i`. -/
+/-- Convergence in `P` gives uniform convergence of the coefficient functions on each `K i`.
+@isnad1 id=tendstou.1h5v.s13.b59dd7e3a89a from=translated src=- shape=6e2cb63f vocab=ed3e71cf
+-/
 theorem tendstoUniformlyOn_coeffIn [CompactSpace X] {η : ℕ → Form1 X} {f : G.P}
     (hlim : Tendsto (fun m => G.J (η m)) atTop (𝓝 f)) (i : Fin G.n) :
     TendstoUniformlyOn (fun m z => coeffIn (G.e i) (η m) z) (G.gext f i) atTop (G.K i) := by
@@ -369,7 +454,9 @@ theorem tendstoUniformlyOn_coeffIn [CompactSpace X] {η : ℕ → Form1 X} {f : 
     _ ≤ dist (f i) (G.J (η m) i) := ContinuousMap.dist_apply_le_dist _
     _ < ε := by rwa [dist_comm] at hm
 
-/-- Weierstrass: the limit coefficient functions are analytic on the open sets `O i`. -/
+/-- Weierstrass: the limit coefficient functions are analytic on the open sets `O i`.
+@isnad1 id=analytic.1h5v.s13.c37876749118 from=translated src=- shape=9cf19f3a vocab=956b6f02
+-/
 theorem analyticOnNhd_gext [CompactSpace X] {η : ℕ → Form1 X} {f : G.P}
     (hlim : Tendsto (fun m => G.J (η m)) atTop (𝓝 f)) (i : Fin G.n) :
     AnalyticOnNhd ℂ (G.gext f i) (G.O i) := by
@@ -385,7 +472,9 @@ theorem analyticOnNhd_gext [CompactSpace X] {η : ℕ → Form1 X} {f : G.P}
   exact hdiff.analyticOnNhd (G.isOpen_O i)
 
 /-- The limit coefficient functions satisfy the transition compatibility (pointwise limits of
-the stagewise `coeffIn_trans` identities). -/
+the stagewise `coeffIn_trans` identities).
+@isnad1 id=eq.3h7v.s13.b60f9719d6a6 from=translated src=- shape=1bc70e77 vocab=a9dbd786
+-/
 theorem gext_compat [CompactSpace X] {η : ℕ → Form1 X} {f : G.P}
     (hlim : Tendsto (fun m => G.J (η m)) atTop (𝓝 f)) (i j : Fin G.n) {x : X}
     (hxi : x ∈ G.V i) (hxj : x ∈ G.V j) :
@@ -412,7 +501,9 @@ theorem gext_compat [CompactSpace X] {η : ℕ → Form1 X} {f : G.P}
 
 /-- **Closedness** (design §2.6 step 5): the unit ball of the range of `J` is closed in `P` —
 uniform limits of coefficient tuples are reassembled into a holomorphic 1-form via
-`Form1.ofCoeffs` over the restricted charts. -/
+`Form1.ofCoeffs` over the restricted charts.
+@isnad1 id=isclosed.0h2v.s13.fe6957cf7fa8 from=translated src=- shape=0b5344f0 vocab=05e220f6
+-/
 theorem isClosed_ball_inter_range [CompactSpace X] :
     IsClosed (Metric.closedBall (0 : G.P) 1 ∩ Set.range G.J) := by
   rw [← isSeqClosed_iff_isClosed]
@@ -457,7 +548,9 @@ theorem isClosed_ball_inter_range [CompactSpace X] :
   rw [heqK z.2]
   exact G.gext_apply f z.2
 
-/-- **Compactness** (Montel + closedness): the unit ball of the range of `J` is compact. -/
+/-- **Compactness** (Montel + closedness): the unit ball of the range of `J` is compact.
+@isnad1 id=iscompac.0h2v.s13.8dc0fce765fd from=translated src=- shape=0b5344f0 vocab=00e5ef3b
+-/
 theorem isCompact_ball_inter_range [CompactSpace X] :
     IsCompact (Metric.closedBall (0 : G.P) 1 ∩ Set.range G.J) := by
   obtain ⟨C, -, hC⟩ := G.exists_montel_bound

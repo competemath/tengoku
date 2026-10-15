@@ -165,7 +165,9 @@ private theorem canonicalScottSentenceω_entails {φ : L.Sentenceω}
 
 /-- **The unconditional complete-subclass intermediate** (issue #17 chunk 5 endpoint): every
 small model of `φ` satisfies a complete sentence entailing `φ` — its own countable companion's
-canonical Scott sentence. -/
+canonical Scott sentence.
+@isnad1 id=ex.2h3v.s6.de8979011e27 from=translated src=- shape=b53d9bac vocab=54ebf82f
+-/
 theorem exists_complete_sentence_of_lomega1omegaSmall {M : Type} [L.Structure M]
     (hsmall : Lomega1omegaSmall (L := L) M) {φ : L.Sentenceω}
     (hφ : Sentenceω.Realize φ M) :
@@ -197,7 +199,9 @@ def KCategorical (φ : L.Sentenceω) (κ : Cardinal.{0}) : Prop :=
 
 /-- **The categoricity payoff** (issue #17 chunk 6): a `κ`-categorical sentence with
 arbitrarily large models admits a COMPLETE sentence entailing it, with a model of size exactly
-`κ` — and the complete sentence is itself `κ`-categorical. -/
+`κ` — and the complete sentence is itself `κ`-categorical.
+@isnad1 id=ex.3h3v.s6.0c06d34e5d3c from=translated src=- shape=c3b3e3c9 vocab=7ac5eecb
+-/
 theorem exists_complete_kCategorical_of_hasArbLargeModels {φ : L.Sentenceω}
     (hφarb : HasArbLargeModels φ) {κ : Cardinal.{0}} (hκ : Cardinal.aleph0 ≤ κ)
     (hcat : KCategorical φ κ) :

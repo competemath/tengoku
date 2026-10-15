@@ -29,7 +29,9 @@ def pairCompatibleB
         decide (pairCount assignments a b < 2)
     | _ => false
 
-/-- The processed-row count of a pair is bounded by its full incidence multiplicity. -/
+/-- The processed-row count of a pair is bounded by its full incidence multiplicity.
+@isnad1 id=le.2h4v.s6.6aea2dac4563 from=translated src=- shape=3224b150 vocab=210c2080
+-/
 theorem pairCount_le_pairMultiplicity
     (Q : OctagonIncidence) (assignments : List (Vertex × UInt64))
     (a b : Vertex)
@@ -71,7 +73,9 @@ private theorem vertexPairs_shape {pair : List Vertex}
   revert pair
   decide
 
-/-- Pair sparsity makes the direct-search pair guard accept the actual next row. -/
+/-- Pair sparsity makes the direct-search pair guard accept the actual next row.
+@isnad1 id=eq.4h4v.s6.95f24485f80e from=translated src=- shape=270c8c43 vocab=62ba1b49
+-/
 theorem pairCompatibleB_of_pairSparse
     (Q : OctagonIncidence) (hSparse : Q.PairSparse)
     (assignments : List (Vertex × UInt64))
@@ -115,7 +119,9 @@ theorem pairCompatibleB_of_pairSparse
       Bool.eq_false_of_not_eq_true hselected
     simp [hfalse]
 
-/-- The pair guard accepts the next row of a prefix partitioning all eight centres. -/
+/-- The pair guard accepts the next row of a prefix partitioning all eight centres.
+@isnad1 id=eq.4h5v.s6.ea6f4c3bbf44 from=translated src=- shape=b4205a9b vocab=e83e501f
+-/
 theorem pairCompatibleB_of_pairSparse_prefix
     (Q : OctagonIncidence) (hSparse : Q.PairSparse)
     (assignments : List (Vertex × UInt64))
