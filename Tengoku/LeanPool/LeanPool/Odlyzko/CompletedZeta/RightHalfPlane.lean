@@ -29,12 +29,18 @@ namespace NumberField.Odlyzko
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=le.0h1v.s5.81fd359aa92f from=translated src=- shape=d46df1ac vocab=61b0b8a5
+-/
 theorem abscissaOfAbsConv_idealNormCount_le_one :
     LSeries.abscissaOfAbsConv (fun n ↦ (idealNormCount K n : ℂ)) ≤ 1 := by
   apply LSeries.abscissaOfAbsConv_le_of_forall_lt_LSeriesSummable
   intro y hy
   exact lSeriesSummable_idealNormCount K (by simpa using hy)
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.6622b9b1cec1 from=translated src=- shape=4d790c7d vocab=f4705013
+-/
 theorem hasDerivAt_dedekindZeta {s : ℂ} (hs : 1 < s.re) :
     HasDerivAt (NumberField.dedekindZeta K)
       (-LSeries (LSeries.logMul fun n ↦ (idealNormCount K n : ℂ)) s) s := by
@@ -42,6 +48,9 @@ theorem hasDerivAt_dedekindZeta {s : ℂ} (hs : 1 < s.re) :
   exact LSeries_hasDerivAt ((abscissaOfAbsConv_idealNormCount_le_one K).trans_lt <| by
     exact_mod_cast hs)
 
+/--
+@isnad1 id=differen.1h2v.s6.54585d51a6a6 from=translated src=- shape=8c0a9f90 vocab=0b706eeb
+-/
 theorem differentiableAt_dedekindZeta {s : ℂ} (hs : 1 < s.re) :
     DifferentiableAt ℂ (NumberField.dedekindZeta K) s :=
   (hasDerivAt_dedekindZeta K hs).differentiableAt
@@ -58,6 +67,9 @@ namespace NumberField.Odlyzko
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=eq.0h2v.s5.1f260dc2e999 from=translated src=- shape=51397951 vocab=d4a7fd79
+-/
 theorem logDeriv_dedekindDiscriminantFactor (s : ℂ) :
     logDeriv (CompletedZeta.discriminantFactor K) s =
       Complex.log ((|(discr K : ℝ)| : ℝ) : ℂ) / 2 := by
@@ -89,6 +101,9 @@ namespace NumberField.Odlyzko
 
 variable (K : Type*) [Field K] [NumberField K] [IsTotallyComplex K]
 
+/--
+@isnad1 id=differen.1h2v.s6.45b230557658 from=translated src=- shape=4f77603a vocab=30294007
+-/
 theorem differentiableAt_dedekindArchimedeanFactor_of_isTotallyComplex {s : ℂ}
     (hs : 0 < s.re) :
     DifferentiableAt ℂ (CompletedZeta.archimedeanFactor K) s := by
@@ -98,6 +113,9 @@ theorem differentiableAt_dedekindArchimedeanFactor_of_isTotallyComplex {s : ℂ}
     simp [dedekindArchimedeanFactor_of_isTotallyComplex, CompletedZeta.complexPlaceGammaFactor]]
   exact (differentiableAt_complexPlaceGammaFactor_of_re_pos hs).pow _
 
+/--
+@isnad1 id=eq.3h2v.s7.d0c9a365007a from=translated src=- shape=ede8e8cc vocab=b5be7260
+-/
 theorem logDeriv_completedDedekindZeta_of_isTotallyComplex {s : ℂ} (hs : 0 < s.re)
     (hζne : dedekindZeta K s ≠ 0) (hζdiff : DifferentiableAt ℂ (dedekindZeta K) s) :
     logDeriv (CompletedZeta.completed K) s =
@@ -140,11 +158,17 @@ namespace NumberField.Odlyzko
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=ne.1h2v.s5.762bb036f4d6 from=translated src=- shape=36f92116 vocab=78649956
+-/
 theorem dedekindZeta_ne_zero_of_one_lt_re {s : ℂ} (hs : 1 < s.re) :
     dedekindZeta K s ≠ 0 := by
   rw [← dedekindZeta_primeIdeal_eulerProduct_tprod K hs]
   exact tprod_primeIdealFactor_ne_zero K hs
 
+/--
+@isnad1 id=ne.1h2v.s5.1888183708cc from=translated src=- shape=36f92116 vocab=db4c21b7
+-/
 theorem completedDedekindZeta_ne_zero_of_one_lt_re {s : ℂ} (hs : 1 < s.re) :
     CompletedZeta.completed K s ≠ 0 := by
   rw [CompletedZeta.completed]
@@ -161,6 +185,9 @@ theorem completedDedekindZeta_ne_zero_of_one_lt_re {s : ℂ} (hs : 1 < s.re) :
 
 variable [IsTotallyComplex K]
 
+/--
+@isnad1 id=eq.1h2v.s7.06595291a7b9 from=translated src=- shape=56e50a88 vocab=74ee88d7
+-/
 theorem logDeriv_completedDedekindZeta_rightHalfPlane {s : ℂ}
     (hs : 1 < s.re) :
     logDeriv (CompletedZeta.completed K) s =
@@ -173,6 +200,9 @@ theorem logDeriv_completedDedekindZeta_rightHalfPlane {s : ℂ}
     (dedekindZeta_ne_zero_of_one_lt_re K hs)
     (differentiableAt_dedekindZeta K hs)
 
+/--
+@isnad1 id=eq.1h2v.s7.d8b72f0db010 from=translated src=- shape=7112cabf vocab=813ea66a
+-/
 theorem logDeriv_completedDedekindZeta_rightHalfPlane_eq_primePower
     {s : ℂ} (hs : 1 < s.re) :
     logDeriv (CompletedZeta.completed K) s =

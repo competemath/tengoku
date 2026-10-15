@@ -39,7 +39,9 @@ private theorem nesterovStep_x (f : E d → ℝ) (η ρ : ℝ) (s : NesterovStat
     (nesterovStep f η ρ s).x = s.lookahead η - η • gradient f (s.lookahead η) := by
   simp [nesterovStep]
 
-/-- Step displacement formula: h = ρ·√η·v - (1+ρ)·η·g -/
+/-- Step displacement formula: h = ρ·√η·v - (1+ρ)·η·g
+@isnad1 id=eq.1h5v.s8.ec204db872c4 from=translated src=- shape=f059db0a vocab=a672ef16
+-/
 theorem stepDispOfState_eq (f : E d → ℝ) (η ρ : ℝ) (s : NesterovState d)
     (hη_pos : 0 < η) :
     stepDispOfState f η ρ s =
@@ -52,7 +54,9 @@ theorem stepDispOfState_eq (f : E d → ℝ) (η ρ : ℝ) (s : NesterovState d)
   simp only [NesterovState.lookahead] at this ⊢
   rw [this]; module
 
-/-- One-step auxVar recursion for arbitrary states. -/
+/-- One-step auxVar recursion for arbitrary states.
+@isnad1 id=other.4h8v.s11.dc2e0071b057 from=translated src=- shape=073c4828 vocab=b738f5df
+-/
 theorem auxVarOfState_step (P : E d →L[ℝ] E d) (μ' η ρ : ℝ) (π : E d → E d)
     (f : E d → ℝ) (s : NesterovState d)
     (hρ : ρ = (1 - Real.sqrt (μ' * η)) / (1 + Real.sqrt (μ' * η)))

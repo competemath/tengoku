@@ -35,20 +35,26 @@ namespace QSeries
 
 variable {R : Type*}
 
-/-- $(0;q)_n = 1$ for all $n$. -/
+/-- $(0;q)_n = 1$ for all $n$.
+@isnad1 id=eq.0h3v.s5.6e6ecb80d7df from=translated src=- shape=fe8bbf38 vocab=f547880d
+-/
 @[simp]
 theorem qPochhammer_zero_left [CommRing R] (q : R) (n : ℕ) :
     qPochhammer 0 q n = 1 := by
   simp [qPochhammer]
 
-/-- $(0;q)_\infty = 1$. -/
+/-- $(0;q)_\infty = 1$.
+@isnad1 id=eq.0h1v.s4.3c7548a0bf73 from=translated src=- shape=fe2c2146 vocab=da6c5a89
+-/
 @[simp]
 theorem qPochhammerInf_zero_left (q : ℂ) : qPochhammerInf 0 q = 1 := by
   simp [qPochhammerInf]
 
 /-- **First Euler identity.**
 $$\sum_{n=0}^{\infty} \frac{z^n}{(q;q)_n} = \frac{1}{(z;q)_\infty}$$
-for $\|q\| < 1$ and $\|z\| < 1$. -/
+for $\|q\| < 1$ and $\|z\| < 1$.
+@isnad1 id=hassum.2h2v.s6.bfa94ab1959c from=translated src=- shape=95095971 vocab=55a52fc4
+-/
 theorem euler_first_identity {q z : ℂ} (hq : ‖q‖ < 1) (hz : ‖z‖ < 1) :
     HasSum (fun n : ℕ => z ^ n / qPochhammer q q n)
       (1 / qPochhammerInf z q) := by
@@ -61,14 +67,18 @@ theorem euler_first_identity {q z : ℂ} (hq : ‖q‖ < 1) (hz : ‖z‖ < 1) :
 section SecondEuler
 
 /-- The finite q-binomial theorem specialised to $z = -1$ gives a vanishing alternating sum
-for every positive $n$. -/
+for every positive $n$.
+@isnad1 id=eq.1h3v.s7.23ab2d74a2eb from=translated src=- shape=77c91eb0 vocab=4edd3df9
+-/
 theorem sum_pow_choose_two_mul_qBinom_mul_neg_one_pow [CommRing R] (q : R) (n : ℕ) (hn : 0 < n) :
     ∑ k ∈ Finset.range (n + 1), q ^ k.choose 2 * qBinom n k q * (-1) ^ k = 0 := by
   rw [← prod_one_add_mul_pow_eq_sum_qBinom]
   exact Finset.prod_eq_zero (Finset.mem_range.mpr hn) (by ring)
 
 /-- The series $\sum_{n \geq 0} q^{\binom{n}{2}} z^n / (q;q)_n$ is summable for $\|q\| < 1$
-and $\|z\| < 1$. -/
+and $\|z\| < 1$.
+@isnad1 id=summable.2h2v.s6.e4beae75d87c from=translated src=- shape=258a04ca vocab=5bcb71fc
+-/
 theorem summable_euler_second {q z : ℂ} (hq : ‖q‖ < 1) (hz : ‖z‖ < 1) :
     Summable (fun n : ℕ => q ^ n.choose 2 * z ^ n / qPochhammer q q n) := by
   have h_const_mul : Summable fun n : ℕ => z ^ n / qPochhammer q q n :=
@@ -101,7 +111,9 @@ private theorem exists_norm_qPochhammer_self_div_le {q : ℂ} (hq : ‖q‖ < 1)
     ((norm_nonneg _).trans (hA ⟨0, rfl⟩))
 
 /-- **Second Euler identity**: for $\|q\|, \|z\| < 1$, the infinite product $(-z;q)_\infty$
-equals the series $\sum_{n \geq 0} q^{\binom{n}{2}} z^n / (q;q)_n$. -/
+equals the series $\sum_{n \geq 0} q^{\binom{n}{2}} z^n / (q;q)_n$.
+@isnad1 id=hassum.2h2v.s6.1715ebbd2081 from=translated src=- shape=5d1677bb vocab=704933db
+-/
 theorem euler_second_identity {q z : ℂ} (hq : ‖q‖ < 1) (hz : ‖z‖ < 1) :
     HasSum (fun n : ℕ => q ^ n.choose 2 * z ^ n / qPochhammer q q n)
       (qPochhammerInf (-z) q) := by

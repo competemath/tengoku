@@ -268,6 +268,9 @@ For `ℓ ≥ 1`, `j ≥ 0`, and `a : Fin D → ℂ` defining `U_ℓ`:
 3. Theorem 5.6: locate `r_n` in `(ℓ, ℓ+1)`, bound distance.
 4. Sum over `n ∈ I_ℓ`.
 -/
+/--
+@isnad1 id=le.1h4v.s8.643b4fa5a35c from=translated src=- shape=f68e33e8 vocab=9c9c45e3
+-/
 theorem block_annulus_leakage {D : ℕ} (a : Fin D → ℂ) {ℓ : ℕ} (hℓ : 1 ≤ ℓ) (j : ℕ) :
     2 * ∫ r in (j : ℝ)..(j + 1 : ℝ), r * Real.exp (-r ^ 2) *
       (∫ t : AddCircle T, ‖blockPoly a ℓ (↑r * (fourier 1 t : ℂ))‖ ^ 2
@@ -820,6 +823,9 @@ private lemma fockNormSqBlock_nonneg {D : ℕ} (a : Fin D → ℂ) (ℓ : ℕ) :
 
 /-! ### Main theorem -/
 
+/--
+@isnad1 id=ex.2h4v.s8.ffea29fc3b83 from=translated src=- shape=771dd66b vocab=020fb02b
+-/
 theorem total_leakage_bound {D : ℕ} (a : Fin D → ℂ) {M : ℕ} (hM : 2 ≤ M) :
     ∀ ε > 0, ∃ bound, ∀ J ≥ bound,
     (∑ j ∈ Finset.range J,
@@ -980,6 +986,9 @@ private lemma exp_neg_36_lt : Real.exp (-36 : ℝ) < 1 / 10 ^ 14 := by
     _ < 1 / 10 ^ 14 := by norm_num
 
 -- Numerical bound: etaCoeff uses exp which needs rational approximation
+/--
+@isnad1 id=lt.0h0v.s5.f6d16a166662 from=translated src=- shape=1d9f8c5d vocab=4c8cfc48
+-/
 theorem eta_5_bound : etaCoeff 5 100 < 4 / (10 : ℝ) ^ 11 := by
   unfold etaCoeff
   -- Split sum: Σ_{m=5}^{100} exp(-m²) = exp(-25) + Σ_{m=6}^{100} exp(-m²)

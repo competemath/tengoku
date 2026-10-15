@@ -40,7 +40,9 @@ def schwartzFourier (f : 𝓢(V, E)) : 𝓢(V, E) where
     rw [SchwartzMap.fourier_coe] at h
     exact h
 
-/-- The bundled Schwartz transform has exactly the ordinary Fourier integral as its values. -/
+/-- The bundled Schwartz transform has exactly the ordinary Fourier integral as its values.
+@isnad1 id=eq.0h4v.s7.37a07584bc5e from=translated src=- shape=ac0d7582 vocab=feb50e0d
+-/
 theorem schwartzFourier_apply (f : 𝓢(V, E)) (x : V) :
     schwartzFourier f x = 𝓕 (f : V → E) x := rfl
 

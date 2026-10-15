@@ -40,34 +40,61 @@ its accumulation points below the ordinal. -/
 def IsClosedBelowPt (S : Set Ordinal) (o : Ordinal) : Prop :=
   IsClosed (Iio o ↓∩ S)
 
+/--
+@isnad1 id=iff.0h2v.s5.888ae1d4780f from=translated src=- shape=be4c09c2 vocab=27c89ea4
+-/
 theorem isAccPt_iff (o : Ordinal) (S : Set Ordinal) : o.IsAccPt S ↔
     o ≠ 0 ∧ ∀ p < o, (S ∩ Ioo p o).Nonempty := by
   refine SuccOrder.accPt_principal.trans ?_
   simp [isMin_iff_eq_bot]
 
+/--
+@isnad1 id=nonempty.2h3v.s5.4625d2702787 from=translated src=- shape=3610f30c vocab=27c89ea4
+-/
 theorem IsAccPt.forall_lt {o : Ordinal} {S : Set Ordinal} (h : o.IsAccPt S) :
     ∀ p < o, (S ∩ Ioo p o).Nonempty := ((isAccPt_iff _ _).mp h).2
 
+/--
+@isnad1 id=lt.1h2v.s4.cf7f66d630c3 from=translated src=- shape=ee60105e vocab=6ea44973
+-/
 theorem IsAccPt.pos {o : Ordinal} {S : Set Ordinal} (h : o.IsAccPt S) :
     0 < o := pos_iff_ne_zero.mpr ((isAccPt_iff _ _).mp h).1
 
+/--
+@isnad1 id=issuccli.1h2v.s3.a07772e6292b from=translated src=- shape=1fd1dd97 vocab=2db5c1b2
+-/
 theorem IsAccPt.isSuccLimit {o : Ordinal} {S : Set Ordinal} (h : o.IsAccPt S) :
     IsSuccLimit o := AccPt.isSuccLimit h
 
+/--
+@isnad1 id=isaccpt.2h3v.s4.697041e18716 from=translated src=- shape=1c9c3d37 vocab=1bf950d0
+-/
 theorem IsAccPt.mono {o : Ordinal} {S T : Set Ordinal} (h : S ⊆ T) (ho : o.IsAccPt S) :
     o.IsAccPt T := AccPt.mono ho (monotone_principal h)
 
+/--
+@isnad1 id=nonempty.2h3v.s5.4625d2702787 from=translated src=- shape=3610f30c vocab=27c89ea4
+-/
 theorem IsAccPt.inter_Ioo_nonempty {o : Ordinal} {S : Set Ordinal} (hS : o.IsAccPt S)
     {p : Ordinal} (hp : p < o) : (S ∩ Ioo p o).Nonempty := hS.forall_lt p hp
 
+/--
+@isnad1 id=iff.0h2v.s5.22c997cf7ef6 from=translated src=- shape=61d9ed36 vocab=1c4f4a8c
+-/
 theorem isClosedBelowPt_iff {S : Set Ordinal} {o : Ordinal} : IsClosedBelowPt S o ↔
     ∀ p < o, IsAccPt p S → p ∈ S := by
   simp [IsClosedBelowPt, IsAccPt, isClosed_iff_accPt, ← comap_principal,
     isOpen_Iio.isOpenEmbedding_subtypeVal.accPt_comap_iff]
 
+/--
+@isnad1 id=mem.3h3v.s5.70b05e5fe7f5 from=translated src=- shape=f048f4c2 vocab=1c4f4a8c
+-/
 theorem IsClosedBelowPt.forall_lt {S : Set Ordinal} {o : Ordinal} (h : IsClosedBelowPt S o) :
     ∀ p < o, IsAccPt p S → p ∈ S := isClosedBelowPt_iff.mp h
 
+/--
+@isnad1 id=isclosed.1h2v.s4.9a022cc60fce from=translated src=- shape=ce7449a4 vocab=15a0b93a
+-/
 theorem IsClosedBelowPt.sInter {o : Ordinal} {S : Set (Set Ordinal)}
     (h : ∀ C ∈ S, IsClosedBelowPt C o) : IsClosedBelowPt (⋂₀ S) o := by
   rw [isClosedBelowPt_iff]
@@ -77,7 +104,9 @@ theorem IsClosedBelowPt.sInter {o : Ordinal} {S : Set (Set Ordinal)}
 -- Small.{u} → Small.{max u v} isn't properly synthed, so this instance is required.
 instance {o : Ordinal.{u}} : Small.{max u v} (Iio o) := small_lift (Iio o)
 
-/-- If `o` is a successor limit, `Iio o` has no maximal element. -/
+/-- If `o` is a successor limit, `Iio o` has no maximal element.
+@isnad1 id=nomaxord.1h1v.s5.97abc14936c8 from=translated src=- shape=91b5915d vocab=f3a4a85f
+-/
 theorem instNoMaxOrderIio {o : Ordinal} (h : IsSuccLimit o) : NoMaxOrder (Iio o) := by
   constructor
   rintro ⟨a, ha⟩
@@ -85,6 +114,9 @@ theorem instNoMaxOrderIio {o : Ordinal} (h : IsSuccLimit o) : NoMaxOrder (Iio o)
 
 namespace IsAccPt
 
+/--
+@isnad1 id=isaccpt.2h3v.s5.ef438173baf4 from=translated src=- shape=08223689 vocab=29b295e2
+-/
 theorem inter_Ioi {o p : Ordinal} {S : Set Ordinal} (h : o.IsAccPt S) (hp : p < o) :
     o.IsAccPt (S ∩ Ioi p) := by
   rw [isAccPt_iff]
@@ -95,6 +127,9 @@ theorem inter_Ioi {o p : Ordinal} {S : Set Ordinal} (h : o.IsAccPt S) (hp : p < 
 
 end IsAccPt
 
+/--
+@isnad1 id=isaccpt.3h4v.s7.75593feb74a9 from=translated src=- shape=14e684ed vocab=f1199ce2
+-/
 theorem isAccPt_iSup {o : Ordinal.{u}} {α : Iio o} (ho : IsSuccLimit o) (f : Iio o → Ordinal.{v})
     [Small.{v} (Iio o)] (hf : ∀ α β, α < β → f α < f β) {S : Set Ordinal}
     (hp : ∀ β, α < β → f β ∈ S) :
@@ -116,6 +151,9 @@ theorem isAccPt_iSup {o : Ordinal.{u}} {α : Iio o} (ho : IsSuccLimit o) (f : Ii
       (lt_ciSup_iff bddAbove_of_small).mpr ⟨succ (succ (max α γ)), hf _ _ (lt_succ _)⟩⟩
 
 open Classical in
+/--
+@isnad1 id=le.0h1v.s4.a4167ccdfb02 from=translated src=- shape=10074d2e vocab=b93edd26
+-/
 theorem mk_derivedSet_le (S : Set Ordinal) : #(derivedSet S) ≤ #S := by
   by_cases hS : S.Finite
   · exact mk_le_mk_of_subset <| (isClosed_iff_derivedSet_subset _).mp hS.isClosed
@@ -156,6 +194,9 @@ theorem mk_derivedSet_le (S : Set Ordinal) : #(derivedSet S) ≤ #S := by
   · obtain ⟨x, hx⟩ := IsAccPt.forall_lt b.2 a.1 altb
     exact ha ⟨x, ⟨hx.1, hx.2.1⟩⟩
 
+/--
+@isnad1 id=isclosed.0h2v.s4.836fed395ec2 from=translated src=- shape=0a029b47 vocab=a25c0a43
+-/
 theorem isClosedBelowPt_derivedSet {S : Set Ordinal} :
     ∀ o, IsClosedBelowPt (S ∪ (derivedSet S)) o := fun o ↦ by
   rw [isClosedBelowPt_iff]

@@ -89,7 +89,9 @@ private noncomputable def horizontalAnnihilator (d : Configuration ℚ) : Ideal 
     rw [map_mul, act_mul, hp, act_config_zero]
 
 /-- Auxiliary to Theorem 4.1 (`thm:exact-ideal`): normalize the generator of a nonzero horizontal
-annihilator ideal to obtain a monic polynomial with exact one-variable divisibility. -/
+annihilator ideal to obtain a monic polynomial with exact one-variable divisibility.
+@isnad1 id=ex.1h1v.s7.169da3b70146 from=translated src=- shape=72090c18 vocab=31d7dc4d
+-/
 theorem exists_monic_horizontal_generator {d : Configuration ℚ}
     (hex : ∃ p : Polynomial ℚ, p ≠ 0 ∧ act (lineEval horizontal p) d = 0) :
     ∃ φ : Polynomial ℚ, φ.Monic ∧
@@ -110,7 +112,9 @@ theorem exists_monic_horizontal_generator {d : Configuration ℚ}
   exact hgexact p
 
 /-- Auxiliary to Theorem 4.1 (`thm:exact-ideal`): a positive horizontal period gives a monic,
-nonconstant exact horizontal generator dividing the period polynomial. -/
+nonconstant exact horizontal generator dividing the period polynomial.
+@isnad1 id=ex.3h2v.s8.08809bbb6508 from=translated src=- shape=b06e23b9 vocab=b35ce316
+-/
 theorem exists_horizontal_period_generator {d : Configuration ℚ} (hd : d ≠ 0)
     {q : ℕ} (hq : 0 < q) (hperiod : IsPeriod d ((q : ℤ), 0)) :
     ∃ φ : Polynomial ℚ, φ.Monic ∧ 0 < φ.natDegree ∧
@@ -131,14 +135,18 @@ theorem exists_horizontal_period_generator {d : Configuration ℚ} (hd : d ≠ 0
   exact hd hz
 
 /-- Auxiliary to Theorem 4.1 (`thm:exact-ideal`): evaluation of a polynomial monomial gives its
-coefficient at the scaled lattice exponent. -/
+coefficient at the scaled lattice exponent.
+@isnad1 id=eq.0h3v.s7.c879dacbf76d from=translated src=- shape=effe231e vocab=4f39a9c1
+-/
 theorem lineEval_monomial (v : Lattice) (n : ℕ) (a : ℚ) :
     lineEval v (Polynomial.monomial n a) = AddMonoidAlgebra.single (n • v) a := by
   rw [← Polynomial.C_mul_X_pow_eq_monomial, map_mul, lineEval_C, lineEval_X_pow]
   simp [monomial]
 
 /-- Auxiliary to Theorem 4.1 (`thm:exact-ideal`): a horizontal polynomial preserves a zero row
-because its shifts stay on that row. -/
+because its shifts stay on that row.
+@isnad1 id=rowzero.1h3v.s6.40725eee09f0 from=translated src=- shape=bef41be8 vocab=19fa44be
+-/
 theorem rowZero_horizontal_act (p : Polynomial ℚ) {d : Configuration ℚ} {b : ℤ}
     (hd : RowZero d b) : RowZero (act (lineEval horizontal p) d) b := by
   induction p using Polynomial.induction_on' with
@@ -212,13 +220,17 @@ private theorem act_lineEval_eq_zero_of_dvd {π p : Polynomial ℚ} (hdiv : π �
   rw [mul_comm π r, map_mul, act_mul, hker, act_config_zero]
 
 /-- Auxiliary to Theorem 4.1 (`thm:exact-ideal`): two Laurent operators commute because
-multiplication in the Laurent ring is commutative. -/
+multiplication in the Laurent ring is commutative.
+@isnad1 id=eq.0h3v.s4.f0ccbcad59e4 from=translated src=- shape=fac6f1ea vocab=a5f51ba9
+-/
 theorem act_comm (f g : Laurent) (d : Configuration ℚ) :
     act f (act g d) = act g (act f d) := by
   rw [← act_mul, mul_comm, act_mul]
 
 /-- Auxiliary to Theorem 4.1 (`thm:exact-ideal`): a Laurent operator distributes over a finite sum
-of configurations. -/
+of configurations.
+@isnad1 id=eq.0h4v.s5.2dd62581d8cb from=translated src=- shape=baa13b85 vocab=f2f6850b
+-/
 theorem act_config_finset_sum {ι : Type*} (f : Laurent) (S : Finset ι)
     (d : ι → Configuration ℚ) : act f (∑ j ∈ S, d j) = ∑ j ∈ S, act f (d j) :=
   map_sum (actionHom f) d S
@@ -237,7 +249,9 @@ private theorem act_transverse_sum (a : Laurent) (S : Finset ℤ) (p : ℤ → P
 /-- Auxiliary to Theorem 4.1 (`thm:exact-ideal`): on the kernel of an irreducible horizontal
 polynomial, every coefficient of a vanishing transverse relation is divisible by that
 polynomial. The greatest nondivisible coefficient is isolated at the first nonzero row,
-contradicting Bézout. -/
+contradicting Bézout.
+@isnad1 id=dvd.6h5v.s8.5da97ad404c4 from=translated src=- shape=8570d35f vocab=1c7dc76b
+-/
 theorem irreducible_dvd_coefficients_of_sum_eq_zero
     {π : Polynomial ℚ} (hπ : Irreducible π)
     {d : Configuration ℚ} (hd : d ≠ 0)
@@ -280,7 +294,9 @@ theorem irreducible_dvd_coefficients_of_sum_eq_zero
 
 /-- Auxiliary to Theorem 4.1 (`thm:exact-ideal`): every coefficient of a vanishing transverse
 relation is divisible by the exact horizontal generator. Degree induction removes an irreducible
-factor from both the generator and the coefficients, including its full multiplicity. -/
+factor from both the generator and the coefficients, including its full multiplicity.
+@isnad1 id=dvd.5h5v.s8.e8d76db4e3fc from=translated src=- shape=f7798b7c vocab=3ffea392
+-/
 theorem horizontal_generator_dvd_coefficients
     (φ : Polynomial ℚ) (hφ : φ ≠ 0) (d : Configuration ℚ)
     (hexact : ∀ p : Polynomial ℚ, act (lineEval horizontal p) d = 0 ↔ φ ∣ p)
@@ -363,7 +379,9 @@ private noncomputable def transverseEval : TransversePolynomial →+* Laurent :=
     (fun _ _ => Commute.all _ _)
 
 /-- Auxiliary to Theorem 4.1 (`thm:exact-ideal`): the action distributes over a finite sum of
-Laurent filters. -/
+Laurent filters.
+@isnad1 id=eq.0h4v.s5.aecaf36c810a from=translated src=- shape=0f196b14 vocab=f2f6850b
+-/
 theorem act_filter_finset_sum {ι : Type*} (S : Finset ι) (f : ι → Laurent)
     (d : Configuration ℚ) : act (∑ j ∈ S, f j) d = ∑ j ∈ S, act (f j) d := by
   change actionHom (∑ j ∈ S, f j) d = _
@@ -376,7 +394,9 @@ noncomputable def laurentReindex (e : Lattice ≃+ Lattice) : Laurent ≃ₐ[ℚ
   AddMonoidAlgebra.domCongr ℚ ℚ e
 
 /-- Auxiliary to Theorem 4.1 (`thm:exact-ideal`): exponent reindexing and configuration
-precomposition give the same operator value at corresponding sites. -/
+precomposition give the same operator value at corresponding sites.
+@isnad1 id=eq.0h4v.s7.cadae75e4146 from=translated src=- shape=12c1341a vocab=5a21cd86
+-/
 theorem act_reindex_apply (e : Lattice ≃+ Lattice) (f : Laurent)
     (d : Configuration ℚ) (z : Lattice) :
     act (laurentReindex e f) d (e z) = act f (d ∘ e) z := by
@@ -388,7 +408,9 @@ theorem act_reindex_apply (e : Lattice ≃+ Lattice) (f : Laurent)
       shift, Function.comp_apply, map_add]
 
 /-- Auxiliary to Theorem 4.1 (`thm:exact-ideal`): annihilator equations are preserved in both
-directions by a lattice basis change. -/
+directions by a lattice basis change.
+@isnad1 id=iff.0h3v.s7.3c4055296bce from=translated src=- shape=b08fa601 vocab=5a21cd86
+-/
 theorem act_reindex_eq_zero_iff (e : Lattice ≃+ Lattice) (f : Laurent)
     (d : Configuration ℚ) :
     act (laurentReindex e f) d = 0 ↔ act f (d ∘ e) = 0 := by
@@ -404,7 +426,9 @@ theorem act_reindex_eq_zero_iff (e : Lattice ≃+ Lattice) (f : Laurent)
     rfl
 
 /-- Auxiliary to Theorem 4.1 (`thm:exact-ideal`): a basis change takes evaluation along a vector to
-evaluation along its image. -/
+evaluation along its image.
+@isnad1 id=eq.0h3v.s8.9dfd8ea99e45 from=translated src=- shape=9f79b25d vocab=114c3d74
+-/
 theorem laurentReindex_lineEval (e : Lattice ≃+ Lattice) (v : Lattice)
     (p : Polynomial ℚ) :
     laurentReindex e (lineEval v p) = lineEval (e v) p := by

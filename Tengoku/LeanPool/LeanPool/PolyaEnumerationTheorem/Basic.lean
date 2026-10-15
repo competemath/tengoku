@@ -132,7 +132,9 @@ under the action of `g`, i.e., those satisfying `g • f = f`.
 
 /-- For any `g : G` we have: a coloring `f` is in fixed points of `g` if and only if `f` maps
     all elements in the same cycle of `g` to the same color. Only left to right implication of
-    this lemma is used in the proof of *Pólya's enumeration theorem*. -/
+    this lemma is used in the proof of *Pólya's enumeration theorem*.
+@isnad1 id=iff.0h5v.s6.a4dd74a65f1b from=translated src=- shape=02d09450 vocab=56aa8cde
+-/
 lemma f_mem_fixedBy_iff_forall_eq_to_eq (g : G) (f : X → Y) :
     f ∈ (MulAction.fixedBy (X → Y) g) ↔ ∀ a b,
       (⟦a⟧ : Quotient (Equiv.Perm.SameCycle.setoid (MulAction.toPerm g))) = ⟦b⟧ → f a = f b := by
@@ -212,7 +214,9 @@ def equivOfFixedByColoringOfCycleColoring (g : G) :
     rfl⟩
 
 /-- For any `g : G` we have: the number of colors raised to the power of the number of cycles of
-    `g` is equal to the number of colorings that are fixed by `g`. -/
+    `g` is equal to the number of colorings that are fixed by `g`.
+@isnad1 id=eq.0h4v.s6.0125b065baac from=translated src=- shape=879650ce vocab=e8775a25
+-/
 lemma forall_card_pow_numCyclesOfGroup_eq_card_fixedBy [Fintype Y]
     [∀ g : G, Fintype (MulAction.fixedBy (X → Y) g)]
     [∀ g : G, Fintype (CyclesOfGroup X g)] :
@@ -230,7 +234,9 @@ variable (X : Type u) (Y : Type v) (G : Type w) [Group G] [MulAction G X] [Finty
 
 /-- A version of *Pólya's enumeration theorem* where the number of distinct colorings of `X`
     with colors in `Y`, under the group action of `G` on `X`, is multiplied by the cardinality of
-    the group `G`. -/
+    the group `G`.
+@isnad1 id=eq.0h3v.s6.a9e883be5628 from=translated src=- shape=7cd2fdec vocab=ac1dcd98
+-/
 theorem numDistinctColorings_mul_card_group_eq_sum_card_pow_numCyclesOfGroup
     [Finite (X → Y)]
     [∀ g : G, Fintype (CyclesOfGroup X g)] :
@@ -243,7 +249,9 @@ theorem numDistinctColorings_mul_card_group_eq_sum_card_pow_numCyclesOfGroup
   exact MulAction.sum_card_fixedBy_eq_card_orbits_mul_card_group G (X → Y)
 
 /-- *Pólya's enumeration theorem*: Provides a formula for the number of distinct colorings of `X`
-    with colors in `Y`, under the group action of `G` on `X`. -/
+    with colors in `Y`, under the group action of `G` on `X`.
+@isnad1 id=eq.0h3v.s6.bb8e23530892 from=translated src=- shape=e3420e14 vocab=78b2c35c
+-/
 theorem numDistinctColorings_eq_sum_card_pow_numCyclesOfGroup_div_card_group
     [Finite (X → Y)]
     [∀ g : G, Fintype (CyclesOfGroup X g)] :
@@ -255,7 +263,9 @@ theorem numDistinctColorings_eq_sum_card_pow_numCyclesOfGroup_div_card_group
 
 /-- A version of *Pólya's enumeration theorem* where the sum ranges over the possible numbers of
     cycles, and the number of distinct colorings of `X` with colors in `Y`, under the group action
-    of `G` on `X`, is multiplied by the cardinality of the group `G`. -/
+    of `G` on `X`, is multiplied by the cardinality of the group `G`.
+@isnad1 id=eq.0h3v.s7.e955ad43ddd0 from=translated src=- shape=4dcf49b2 vocab=3813a18f
+-/
 theorem numDistinctColorings_mul_card_group_eq_sum_numGroupOfNumCycles_mul_card_pow [Fintype X]
     [Finite (X → Y)]
     [∀ g : G, DecidableRel (@HasEquiv.Equiv X
@@ -284,7 +294,9 @@ theorem numDistinctColorings_mul_card_group_eq_sum_numGroupOfNumCycles_mul_card_
 
 end Theorem
 
-/-- Short alias for *Pólya's enumeration theorem*. -/
+/-- Short alias for *Pólya's enumeration theorem*.
+@isnad1 id=eq.0h3v.s6.bb8e23530892 from=translated src=- shape=e3420e14 vocab=78b2c35c
+-/
 theorem polya_theorem (X : Type u) (Y : Type v) (G : Type w) [Group G] [MulAction G X]
     [Fintype Y] [Fintype G] [Fintype (Quotient (MulAction.orbitRel G (X → Y)))]
     [Finite (X → Y)]

@@ -168,7 +168,9 @@ private lemma cauchy_schwarz_interval {a b : ℝ} (hab : a ≤ b) {g : ℝ → �
 
 /-- Weak Poincaré inequality on `[0, h]`: for an absolutely continuous function `f`,
   `∫_0^h ‖f(x) − f_bar‖² dx ≤ h² ∫_0^h ‖f'(x)‖² dx`
-where `f_bar = (1/h) ∫_0^h f(x) dx`. -/
+where `f_bar = (1/h) ∫_0^h f(x) dx`.
+@isnad1 id=other.4h3v.s8.6ded48d4a272 from=translated src=- shape=0451da1d vocab=fe45df29
+-/
 theorem poincare_interval {h : ℝ} (hh : 0 < h) {f f' : ℝ → ℂ}
     (hf : ∀ x ∈ Icc 0 h, HasDerivAt f (f' x) x)
     (hf_cont : ContinuousOn f (Icc 0 h))

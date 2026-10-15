@@ -30,6 +30,9 @@ variable (K : Type*) [Field K] [NumberField K] [IsTotallyComplex K]
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s7.0bac74b1995b from=translated src=- shape=0a3f2d64 vocab=1b2a90d8
+-/
 theorem logarithmicMellinWeight_covolumeCenter
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (s : ℂ) :
     logarithmicMellinWeight K s
@@ -45,6 +48,9 @@ theorem logarithmicMellinWeight_covolumeCenter
   simp_all
 
 open Classical in
+/--
+@isnad1 id=eq.1h2v.s5.d92e3905cf9f from=translated src=- shape=b4eaa25e vocab=11d4a305
+-/
 theorem ofReal_sqrt_cpow {x : ℝ} (hx : 0 < x) (s : ℂ) :
     (Real.sqrt x : ℂ) ^ s = (x : ℂ) ^ (s / 2) := by
   rw [Complex.cpow_def_of_ne_zero
@@ -57,6 +63,9 @@ theorem ofReal_sqrt_cpow {x : ℝ} (hx : 0 < x) (s : ℂ) :
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.0h4v.s7.9eb6abf562b5 from=translated src=- shape=33802681 vocab=629da54b
+-/
 theorem centeredNonzeroFractionalShapeThetaMellinKernel_eq_covolume_mul
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (s : ℂ)
     (y : mixedEmbedding.realSpace K) :
@@ -87,6 +96,9 @@ theorem centeredNonzeroFractionalShapeThetaMellinKernel_eq_covolume_mul
   grind
 
 open Classical in
+/--
+@isnad1 id=eq.0h5v.s8.52acbed34c63 from=translated src=- shape=8469626e vocab=8c57cd39
+-/
 theorem nonzeroFractionalShapeThetaMellinKernel_vadd_unitCoordinateLattice
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (s : ℂ)
     (g : unitCoordinateLattice (K := K))
@@ -105,6 +117,9 @@ theorem nonzeroFractionalShapeThetaMellinKernel_vadd_unitCoordinateLattice
       (fractionalShapeIdealTheta_add_unitCoordinateShift K I y z)
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s8.a1c07b8c1915 from=translated src=- shape=4376e7cb vocab=530a5f0e
+-/
 theorem setIntegral_centeredNonzeroFractionalShapeThetaMellinKernel
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (s : ℂ) :
     (∫ y in unitFundamentalParamSet K,
@@ -191,6 +206,9 @@ noncomputable def centeredRadiallyContinuedClassThetaIntegral
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.1h2v.s7.6d3c8698e94b from=translated src=- shape=a437bede vocab=f0ad4ed0
+-/
 theorem setIntegral_centeredClassThetaPoissonCorrection_eq_poleTerm
     {s : ℂ} (hs : 1 < s.re) :
     (∫ y in positiveUnitFundamentalParamSet (K := K),

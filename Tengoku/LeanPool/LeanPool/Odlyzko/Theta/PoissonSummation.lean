@@ -21,6 +21,9 @@ variable {ι : Type*}
 def torusQuotientMap (x : ι → ℝ) : UnitAddTorus ι :=
   fun i ↦ (x i : UnitAddCircle)
 
+/--
+@isnad1 id=isopenqu.0h1v.s5.e5b5ca92d680 from=translated src=- shape=4673de4c vocab=7f5e287e
+-/
 theorem isOpenQuotientMap_torusQuotientMap :
     IsOpenQuotientMap (torusQuotientMap : (ι → ℝ) → UnitAddTorus ι) := by
   change IsOpenQuotientMap
@@ -28,11 +31,17 @@ theorem isOpenQuotientMap_torusQuotientMap :
   exact IsOpenQuotientMap.piMap fun _ ↦
     QuotientAddGroup.isOpenQuotientMap_mk
 
+/--
+@isnad1 id=surjecti.0h1v.s3.3c72f0e00023 from=translated src=- shape=4673de4c vocab=b722a497
+-/
 theorem surjective_torusQuotientMap :
     Function.Surjective
       (torusQuotientMap : (ι → ℝ) → UnitAddTorus ι) :=
   isOpenQuotientMap_torusQuotientMap.surjective
 
+/--
+@isnad1 id=ex.1h3v.s6.c9491a39f294 from=translated src=- shape=331fba07 vocab=2204c116
+-/
 theorem exists_intPi_add_of_torusQuotientMap_eq
     {x y : ι → ℝ} (h : torusQuotientMap x = torusQuotientMap y) :
     ∃ n : ι → ℤ, y = x + fun i ↦ (n i : ℝ) := by
@@ -49,6 +58,9 @@ theorem exists_intPi_add_of_torusQuotientMap_eq
   choose n hn using hi
   exact ⟨n, funext hn⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.f10969961ad0 from=translated src=- shape=dcf18d98 vocab=2204c116
+-/
 theorem torusQuotientMap_add_intPi
     (x : ι → ℝ) (n : ι → ℤ) :
     torusQuotientMap (x + fun i ↦ (n i : ℝ)) =
@@ -60,6 +72,9 @@ theorem torusQuotientMap_add_intPi
 noncomputable def intPeriodization (f : (ι → ℝ) → ℂ) (x : ι → ℝ) : ℂ :=
   ∑' n : ι → ℤ, f (x + fun i ↦ (n i : ℝ))
 
+/--
+@isnad1 id=eq.0h4v.s5.222ca6abd998 from=translated src=- shape=2d95fc6c vocab=ec6a9885
+-/
 theorem intPeriodization_add_intPi
     (f : (ι → ℝ) → ℂ) (x : ι → ℝ) (k : ι → ℤ) :
     intPeriodization f (x + fun i ↦ (k i : ℝ)) =
@@ -79,6 +94,9 @@ theorem intPeriodization_add_intPi
       Equiv.tsum_eq (Equiv.addLeft k)
         (fun n : ι → ℤ ↦ f (x + fun i ↦ (n i : ℝ)))
 
+/--
+@isnad1 id=eq.1h4v.s5.64eadf14b182 from=translated src=- shape=cd058cb8 vocab=b70ead04
+-/
 theorem intPeriodization_eq_of_torusQuotientMap_eq
     (f : (ι → ℝ) → ℂ) {x y : ι → ℝ}
     (h : torusQuotientMap x = torusQuotientMap y) :
@@ -91,6 +109,9 @@ noncomputable def torusLift {A : Type*} (f : (ι → ℝ) → A) :
     UnitAddTorus ι → A :=
   fun x ↦ f (Function.surjInv surjective_torusQuotientMap x)
 
+/--
+@isnad1 id=eq.1h3v.s5.d4720d47d848 from=translated src=- shape=43f3cd1b vocab=4ed130c7
+-/
 theorem torusLift_comp_torusQuotientMap {A : Type*}
     (f : (ι → ℝ) → A)
     (hf : ∀ x y, torusQuotientMap x = torusQuotientMap y → f x = f y) :
@@ -100,6 +121,9 @@ theorem torusLift_comp_torusQuotientMap {A : Type*}
   exact Function.rightInverse_surjInv
     surjective_torusQuotientMap (torusQuotientMap x)
 
+/--
+@isnad1 id=continuo.2h3v.s6.0aa130958805 from=translated src=- shape=6b19d7ab vocab=1c41fb08
+-/
 theorem continuous_torusLift {A : Type*} [TopologicalSpace A]
     (f : (ι → ℝ) → A) (hfc : Continuous f)
     (hf : ∀ x y, torusQuotientMap x = torusQuotientMap y → f x = f y) :
@@ -114,6 +138,9 @@ noncomputable def torusContinuousMap {A : Type*} [TopologicalSpace A]
     C(UnitAddTorus ι, A) :=
   ⟨torusLift f, continuous_torusLift f hfc hf⟩
 
+/--
+@isnad1 id=eq.2h4v.s7.75777b0ddca4 from=translated src=- shape=23dc2ae4 vocab=aac9b079
+-/
 @[simp]
 theorem torusContinuousMap_comp_torusQuotientMap
     {A : Type*} [TopologicalSpace A]
@@ -130,6 +157,9 @@ noncomputable def torusPeriodization
   torusContinuousMap (intPeriodization f) hf
     (fun _x _y h ↦ intPeriodization_eq_of_torusQuotientMap_eq f h)
 
+/--
+@isnad1 id=eq.1h3v.s7.1b32095cf8c0 from=translated src=- shape=f29bb48d vocab=9c8a653e
+-/
 @[simp]
 theorem torusPeriodization_apply_quotient
     (f : (ι → ℝ) → ℂ) (hf : Continuous (intPeriodization f))
@@ -144,6 +174,9 @@ namespace NumberField.Odlyzko
 
 variable {ι : Type*} [Fintype ι]
 
+/--
+@isnad1 id=eq.0h3v.s7.87d41124cb32 from=translated src=- shape=58331b5c vocab=11bd99a9
+-/
 theorem mFourier_torusQuotientMap
     (n : ι → ℤ) (x : ι → ℝ) :
     UnitAddTorus.mFourier n (torusQuotientMap x) =
@@ -156,6 +189,9 @@ theorem mFourier_torusQuotientMap
   rw [Finset.mul_sum]
   ring_nf
 
+/--
+@isnad1 id=eq.0h3v.s7.5dd120d613a7 from=translated src=- shape=ff92735f vocab=d1aa42f5
+-/
 theorem mFourier_neg_torusQuotientMap
     (n : ι → ℤ) (x : ι → ℝ) :
     UnitAddTorus.mFourier (-n) (torusQuotientMap x) =
@@ -164,6 +200,9 @@ theorem mFourier_neg_torusQuotientMap
   rw [mFourier_torusQuotientMap]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s7.df3120d84640 from=translated src=- shape=0b031649 vocab=15266547
+-/
 @[simp]
 theorem norm_mFourier_torusQuotientMap
     (n : ι → ℤ) (x : ι → ℝ) :
@@ -186,6 +225,9 @@ namespace NumberField.Odlyzko
 
 variable {E : Type*} [NormedAddCommGroup E]
 
+/--
+@isnad1 id=nondegen.0h1v.s6.9fa073a66cb5 from=translated src=- shape=d09d5c69 vocab=639384ea
+-/
 theorem innerBilin_nondegenerate [InnerProductSpace ℝ E] :
     (innerₗ E).Nondegenerate := by
   constructor
@@ -202,6 +244,9 @@ noncomputable def dualRealBasis [InnerProductSpace ℝ E] [FiniteDimensional ℝ
   LinearMap.BilinForm.dualBasis (innerₗ E) innerBilin_nondegenerate
     (b.ofZLatticeBasis ℝ L)
 
+/--
+@isnad1 id=eq.0h6v.s9.33f14357b835 from=translated src=- shape=19b31bba vocab=30f7590a
+-/
 theorem inner_dualRealBasis_apply [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     (L : Submodule ℤ E) [DiscreteTopology L] [IsZLattice ℝ L]
     {ι : Type*} [Finite ι] [DecidableEq ι] (b : Basis ι ℤ L)
@@ -217,6 +262,9 @@ noncomputable def dualLattice [InnerProductSpace ℝ E]
     (L : Submodule ℤ E) : Submodule ℤ E :=
   LinearMap.BilinForm.dualSubmodule (innerₗ E) L
 
+/--
+@isnad1 id=iff.0h3v.s7.6172694e40d5 from=translated src=- shape=e97589f9 vocab=a7061c14
+-/
 theorem mem_dualLattice_iff [InnerProductSpace ℝ E]
     (L : Submodule ℤ E) (y : E) :
     y ∈ dualLattice L ↔ ∀ x : L, ∃ n : ℤ, inner ℝ y (x : E) = n := by
@@ -228,6 +276,9 @@ theorem mem_dualLattice_iff [InnerProductSpace ℝ E]
     obtain ⟨n, hn⟩ := hy ⟨x, hx⟩
     simp_all
 
+/--
+@isnad1 id=eq.0h4v.s8.5bc2b002682f from=translated src=- shape=0a22821d vocab=bc9f0059
+-/
 theorem span_range_dualRealBasis [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     (L : Submodule ℤ E) [DiscreteTopology L] [IsZLattice ℝ L]
     {ι : Type*} [Finite ι] [DecidableEq ι] (b : Basis ι ℤ L) :
@@ -251,6 +302,9 @@ noncomputable def dualLatticeBasis [InnerProductSpace ℝ E] [FiniteDimensional 
   ((dualRealBasis L b).restrictScalars ℤ).map
     (LinearEquiv.ofEq _ _ (span_range_dualRealBasis L b))
 
+/--
+@isnad1 id=eq.0h5v.s9.5e54fefe1b71 from=translated src=- shape=2c87e21d vocab=a8f1b7db
+-/
 @[simp]
 theorem dualLatticeBasis_apply_coe [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     (L : Submodule ℤ E) [DiscreteTopology L] [IsZLattice ℝ L]
@@ -278,6 +332,9 @@ variable {E : Type*} [NormedAddCommGroup E]
 noncomputable def latticeGaussian (a : ℝ) (x : E) : ℂ :=
   Complex.exp (-(a : ℂ) * (‖x‖ : ℂ) ^ 2)
 
+/--
+@isnad1 id=eq.0h3v.s5.0fabced29ee9 from=translated src=- shape=b40864a2 vocab=d5f4402b
+-/
 theorem norm_latticeGaussian (a : ℝ) (x : E) :
     ‖latticeGaussian a x‖ = Real.exp (-a * ‖x‖ ^ 2) := by
   have hvalue :
@@ -288,6 +345,9 @@ theorem norm_latticeGaussian (a : ℝ) (x : E) :
   rw [hvalue, Complex.norm_real,
     Real.norm_of_nonneg (Real.exp_pos _).le]
 
+/--
+@isnad1 id=le.1h4v.s6.77ad536a37ae from=translated src=- shape=fbab9b56 vocab=fc9eb213
+-/
 theorem norm_latticeGaussian_add_le
     {a : ℝ} (ha : 0 ≤ a) (y z : E) :
     ‖latticeGaussian a (y + z)‖ ≤
@@ -321,6 +381,9 @@ noncomputable def latticeTheta
     (L : Submodule ℤ E) (a : ℝ) : ℂ :=
   ∑' x : L, latticeGaussian a (x : E)
 
+/--
+@isnad1 id=eq.0h4v.s7.9b07f32f2cb8 from=translated src=- shape=cd272197 vocab=3da993a9
+-/
 theorem latticeTheta_map_linearIsometryEquiv [NormedSpace ℝ E]
     (L : Submodule ℤ E) (e : E ≃ₗᵢ[ℝ] E) (a : ℝ) :
     latticeTheta
@@ -365,6 +428,9 @@ noncomputable def dualLatticePoint [InnerProductSpace ℝ E] [FiniteDimensional 
     (b : Basis ι ℤ L) (n : ι → ℤ) : E :=
   ((dualLatticeBasis L b).equivFun.symm n : dualLattice L)
 
+/--
+@isnad1 id=eq.0h6v.s9.9b5a055e6dee from=translated src=- shape=9cbbd48f vocab=130bc558
+-/
 theorem inner_dualLatticePoint_ofZLatticeBasis_equivFun_symm
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     (L : Submodule ℤ E) [DiscreteTopology L] [IsZLattice ℝ L] [DecidableEq ι]
@@ -400,6 +466,9 @@ theorem inner_dualLatticePoint_ofZLatticeBasis_equivFun_symm
   simp_rw [real_inner_smul_left,
     inner_dualRealBasis_apply, hrepr]
 
+/--
+@isnad1 id=eq.0h5v.s7.d6c3d535cfd1 from=translated src=- shape=4d13fcb9 vocab=8345ceda
+-/
 theorem latticeTheta_eq_tsum_coordinates
     (L : Submodule ℤ E) (b : Basis ι ℤ L) (a : ℝ) :
     latticeTheta L a =
@@ -409,6 +478,9 @@ theorem latticeTheta_eq_tsum_coordinates
     (Equiv.tsum_eq b.equivFun.toEquiv.symm
       (fun x : L ↦ latticeGaussian a (x : E)))
 
+/--
+@isnad1 id=eq.0h5v.s8.e16c5a45f260 from=translated src=- shape=a814971a vocab=a20f8031
+-/
 theorem dualLatticeTheta_eq_tsum_coordinates
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     (L : Submodule ℤ E) [DiscreteTopology L] [IsZLattice ℝ L] [DecidableEq ι]
@@ -447,6 +519,9 @@ noncomputable def coordinateBasisMap [InnerProductSpace ℝ E] [FiniteDimensiona
     (b.ofZLatticeBasis ℝ L).equivFun.symm
   ⟨e, e.continuous⟩
 
+/--
+@isnad1 id=continuo.0h5v.s8.b1d07ef18230 from=translated src=- shape=1957f118 vocab=ff319983
+-/
 theorem continuous_coordinateGaussian [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     (L : Submodule ℤ E) [DiscreteTopology L] [IsZLattice ℝ L]
     (b : Basis ι ℤ L) (a : ℝ) :
@@ -459,6 +534,9 @@ theorem continuous_coordinateGaussian [InnerProductSpace ℝ E] [FiniteDimension
       (b.ofZLatticeBasis ℝ L).equivFun.symm).continuous
   fun_prop
 
+/--
+@isnad1 id=eq.0h5v.s9.2f4de5733357 from=translated src=- shape=187d2c2e vocab=ac22b6d9
+-/
 theorem ofZLatticeBasis_equivFun_symm_intCast
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     (L : Submodule ℤ E) [DiscreteTopology L] [IsZLattice ℝ L]
@@ -487,6 +565,9 @@ noncomputable def coordinateGaussianTranslate
     (continuous_coordinateGaussian L b a).comp
       (continuous_id.add (continuous_pi fun _ ↦ continuous_const))⟩
 
+/--
+@isnad1 id=le.1h7v.s9.a45f5e92fffa from=translated src=- shape=fa76260c vocab=5ca93c62
+-/
 theorem norm_coordinateGaussianTranslate_apply_le
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     (L : Submodule ℤ E) [DiscreteTopology L] [IsZLattice ℝ L]
@@ -507,6 +588,9 @@ theorem norm_coordinateGaussianTranslate_apply_le
   rw [coordinateGaussian, hsplit]
   exact norm_latticeGaussian_add_le ha.le _ _
 
+/--
+@isnad1 id=le.1h7v.s10.601b001a6d28 from=translated src=- shape=67f144be vocab=46dfec55
+-/
 theorem norm_restrict_coordinateGaussianTranslate_le
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     (L : Submodule ℤ E) [DiscreteTopology L] [IsZLattice ℝ L]
@@ -558,6 +642,9 @@ noncomputable def coordinateIntPoint (n : ι → ℤ) :
   (coordinateIntBasis (ι := ι)).equivFun.symm n
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h3v.s6.0e40e90ad76f from=translated src=- shape=b9657c5a vocab=41234b4b
+-/
 @[simp]
 theorem coordinateIntPoint_apply (n : ι → ℤ) (i : ι) :
     (coordinateIntPoint n : ι → ℝ) i = n i := by
@@ -581,6 +668,9 @@ theorem coordinateIntPoint_apply (n : ι → ℤ) (i : ι) :
   · simp
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eventual.0h1v.s7.2f27f417faf7 from=translated src=- shape=04090e5d vocab=a590e2be
+-/
 theorem pi_Ioc_ae_eq_pi_Ico :
     ({x : ι → ℝ | ∀ i, x i ∈ Ioc (0 : ℝ) 1} : Set (ι → ℝ)) =ᵐ[volume]
       {x : ι → ℝ | ∀ i, x i ∈ Ico (0 : ℝ) 1} := by
@@ -597,6 +687,9 @@ theorem pi_Ioc_ae_eq_pi_Ico :
     Measure.pi_Ico_ae_eq_pi_Icc.symm)
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.1h3v.s8.899e03f3161c from=translated src=- shape=19b4b66b vocab=cf986843
+-/
 theorem integral_eq_tsum_integral_pi_Ico
     {A : Type*} [NormedAddCommGroup A] [NormedSpace ℝ A]
     (f : (ι → ℝ) → A) (hf : Integrable f) :
@@ -642,6 +735,9 @@ theorem integral_eq_tsum_integral_pi_Ico
       simp
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.1h3v.s8.e2ccabd34357 from=translated src=- shape=19b4b66b vocab=bd0a47b9
+-/
 theorem integral_eq_tsum_integral_pi_Ioc
     {A : Type*} [NormedAddCommGroup A] [NormedSpace ℝ A]
     (f : (ι → ℝ) → A) (hf : Integrable f) :
@@ -679,6 +775,9 @@ private theorem continuous_coordinateFourierCharacter (n : ι → ℤ) :
     (continuous_pi fun i ↦
       continuous_quotient_mk'.comp (continuous_apply i))
 
+/--
+@isnad1 id=measurab.0h1v.s5.3372b8bf7f0c from=translated src=- shape=e8a6d897 vocab=1d40553b
+-/
 theorem measurableSet_pi_Ioc {κ : Type*} [Finite κ] :
     MeasurableSet {x : κ → ℝ | ∀ i, x i ∈ Ioc 0 1} := by
   let := Fintype.ofFinite κ
@@ -688,6 +787,9 @@ theorem measurableSet_pi_Ioc {κ : Type*} [Finite κ] :
   have hi : Measurable (fun x : κ → ℝ ↦ x i) := measurable_pi_apply i
   exact measurableSet_Ioc.preimage hi
 
+/--
+@isnad1 id=eq.0h3v.s4.9c9b592f37e5 from=translated src=- shape=0bf20fa7 vocab=17a2af09
+-/
 @[simp]
 theorem norm_coordinateFourierCharacter
     (n : ι → ℤ) (x : ι → ℝ) :
@@ -709,6 +811,9 @@ noncomputable def coordinateFourierGaussianTranslate
     (x : ι → ℝ) : ℂ :=
   coordinateFourierCharacter n x * coordinateGaussianTranslate L b a k x
 
+/--
+@isnad1 id=continuo.0h7v.s8.cb979d993058 from=translated src=- shape=728299c6 vocab=254d04bb
+-/
 theorem continuous_coordinateFourierGaussianTranslate
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     (L : Submodule ℤ E) [DiscreteTopology L] [IsZLattice ℝ L]
@@ -727,6 +832,9 @@ private theorem coordinateFourierCharacter_add_intPi
   rw [add_comm]
   exact torusQuotientMap_add_intPi x k
 
+/--
+@isnad1 id=eq.0h8v.s8.c6167ba29bf7 from=translated src=- shape=d0dd6774 vocab=3a049c5f
+-/
 theorem coordinateFourierGaussian_add_intPi
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     (L : Submodule ℤ E) [DiscreteTopology L] [IsZLattice ℝ L]
@@ -757,6 +865,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h4v.s9.faadb7ef1e8a from=translated src=- shape=4309aff0 vocab=f94ffbd0
+-/
 theorem map_ofZLatticeBasis_equivFun_symm_volume
     (b : Basis ι ℤ L) :
     Measure.map (b.ofZLatticeBasis ℝ L).equivFun.symm volume =
@@ -778,6 +889,9 @@ theorem map_ofZLatticeBasis_equivFun_symm_volume
   simp [e]
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h4v.s8.7d158f3a63dd from=translated src=- shape=27e20d0f vocab=fcc68a5c
+-/
 theorem covolume_eq_volumeReal_parallelepiped
     (b : Basis ι ℤ L) :
     ZLattice.covolume L =
@@ -797,6 +911,9 @@ theorem covolume_eq_volumeReal_parallelepiped
       (b.ofZLatticeBasis ℝ L) volume)
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h4v.s8.fe4feac9e38e from=translated src=- shape=f26d6a51 vocab=1e2ac6a4
+-/
 theorem volume_parallelepiped_ofZLatticeBasis
     (b : Basis ι ℤ L) :
     volume ((b.ofZLatticeBasis ℝ L).parallelepiped : Set E) =
@@ -809,6 +926,9 @@ theorem volume_parallelepiped_ofZLatticeBasis
   exact (ENNReal.ofReal_toReal hfinite.ne).symm
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h4v.s8.d2240d164c55 from=translated src=- shape=3747991c vocab=1de4bfc6
+-/
 theorem addHaar_ofZLatticeBasis_eq_inv_covolume_smul_volume
     (b : Basis ι ℤ L) :
     (b.ofZLatticeBasis ℝ L).addHaar =
@@ -829,6 +949,9 @@ theorem addHaar_ofZLatticeBasis_eq_inv_covolume_smul_volume
     ENNReal.ofReal_ne_top
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h5v.s10.9eebc9c1ef7f from=translated src=- shape=b9c4f3b0 vocab=6b340307
+-/
 theorem integral_comp_ofZLatticeBasis_equivFun_symm
     (b : Basis ι ℤ L) (f : E → ℂ) :
     (∫ x : ι → ℝ,
@@ -848,6 +971,9 @@ theorem integral_comp_ofZLatticeBasis_equivFun_symm
     integral_smul_nnreal_measure]
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=integrab.1h5v.s10.9ca5fa9e33e2 from=translated src=- shape=6498b60e vocab=e4278a5a
+-/
 theorem integrable_comp_ofZLatticeBasis_equivFun_symm
     (b : Basis ι ℤ L) {f : E → ℂ} (hf : Integrable f) :
     Integrable
@@ -886,6 +1012,9 @@ noncomputable def ambientFourierGaussian [InnerProductSpace ℝ E]
     (-(a : ℂ) * (‖y‖ : ℂ) ^ 2 +
       (-2 * (Real.pi : ℂ) * Complex.I) * (inner ℝ w y : ℂ))
 
+/--
+@isnad1 id=integrab.1h3v.s6.4ed2e20b2410 from=translated src=- shape=5bf7c0c8 vocab=1767e351
+-/
 theorem integrable_ambientFourierGaussian
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     [MeasurableSpace E] [BorelSpace E]
@@ -898,6 +1027,9 @@ theorem integrable_ambientFourierGaussian
   unfold ambientFourierGaussian
   simp
 
+/--
+@isnad1 id=eq.0h7v.s9.aebae7d88ce2 from=translated src=- shape=ceb29fea vocab=317b4272
+-/
 theorem coordinateFourierGaussian_eq_ambient
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     (L : Submodule ℤ E) [DiscreteTopology L] [IsZLattice ℝ L] [DecidableEq ι]
@@ -913,6 +1045,9 @@ theorem coordinateFourierGaussian_eq_ambient
   push_cast
   ring_nf
 
+/--
+@isnad1 id=integrab.1h6v.s8.4c1e4e014fa9 from=translated src=- shape=ff5b2d38 vocab=1b972ca0
+-/
 theorem integrable_coordinateFourierGaussian
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     [MeasurableSpace E] [BorelSpace E]
@@ -927,6 +1062,9 @@ theorem integrable_coordinateFourierGaussian
   filter_upwards with x
   exact (coordinateFourierGaussian_eq_ambient L b a n x).symm
 
+/--
+@isnad1 id=eq.1h3v.s7.e9f03162d0e2 from=translated src=- shape=e659fbbb vocab=a80b5aee
+-/
 theorem integral_ambientFourierGaussian
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     [MeasurableSpace E] [BorelSpace E]
@@ -959,6 +1097,9 @@ namespace NumberField.Odlyzko
 
 variable {E : Type*} [NormedAddCommGroup E] {ι : Type*}
 
+/--
+@isnad1 id=eq.1h3v.s6.fd67ba506800 from=translated src=- shape=86b348cf vocab=5ef024b4
+-/
 theorem exp_fourierGaussian_eq_latticeGaussian
     {a : ℝ} (_ha : 0 < a) (w : E) :
     Complex.exp

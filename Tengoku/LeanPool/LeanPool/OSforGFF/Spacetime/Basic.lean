@@ -102,15 +102,24 @@ abbrev FieldConfiguration := WeakDual ℝ (SchwartzMap SpaceTime ℝ)
 -/
 def distributionPairing (ω : FieldConfiguration) (f : OSforGFF.TestFunction) : ℝ := ω f
 
+/--
+@isnad1 id=eq.0h3v.s9.02b87781c4c2 from=translated src=- shape=897af36f vocab=92406ffc
+-/
 @[simp] lemma distributionPairing_add (ω₁ ω₂ : FieldConfiguration) (a : OSforGFF.TestFunction) :
     distributionPairing (ω₁ + ω₂) a = distributionPairing ω₁ a + distributionPairing ω₂ a := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.31084d03782a from=translated src=- shape=34fd784b vocab=e14c230d
+-/
 @[simp] lemma distributionPairing_smul (s : ℝ) (ω : FieldConfiguration)
     (a : OSforGFF.TestFunction) :
     distributionPairing (s • ω) a = s * distributionPairing ω a :=
   -- This follows from the definition of scalar multiplication in WeakDual
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.1384da770097 from=translated src=- shape=d2411dc6 vocab=75e30ae3
+-/
 lemma pairing_smul_real (ω : FieldConfiguration) (s : ℝ) (a : OSforGFF.TestFunction) :
   ω (s • a) = s * (ω a) :=
   -- This follows from the linearity of the dual pairing
@@ -129,6 +138,9 @@ lemma pairing_smul_real (ω : FieldConfiguration) (s : ℝ) (a : OSforGFF.TestFu
     -- The evaluation map is continuous by definition of WeakDual topology
     exact WeakDual.eval_continuous a
 
+/--
+@isnad1 id=eq.0h2v.s11.7fae86da8fdb from=translated src=- shape=66288e40 vocab=66d4291c
+-/
 lemma distributionPairingCLM_apply (a : OSforGFF.TestFunction) (ω : FieldConfiguration) :
     distributionPairingCLM a ω = distributionPairing ω a := rfl
 
@@ -180,7 +192,9 @@ def schwartzCompCLM (f : TestFunctionℂ) (L : ℂ →L[ℝ] ℝ) : OSforGFF.Tes
 
 omit [SigmaFinite μ]
 
-/-- Evaluate `schwartzCompCLM` pointwise. -/
+/-- Evaluate `schwartzCompCLM` pointwise.
+@isnad1 id=eq.0h3v.s8.9c15a8a30059 from=translated src=- shape=6d3f928e vocab=3d1e8e36
+-/
 @[simp] lemma schwartz_comp_clm_apply (f : TestFunctionℂ) (L : ℂ →L[ℝ] ℝ) (x : SpaceTime) :
   (schwartzCompCLM f L) x = L (f x) := rfl
 
@@ -191,31 +205,41 @@ def complexTestFunctionDecompose (f : TestFunctionℂ) :
     OSforGFF.TestFunction × OSforGFF.TestFunction :=
   (schwartzCompCLM f Complex.reCLM, schwartzCompCLM f Complex.imCLM)
 
-/-- First component of the decomposition evaluates to the real part pointwise. -/
+/-- First component of the decomposition evaluates to the real part pointwise.
+@isnad1 id=eq.0h2v.s7.d99682bc6291 from=translated src=- shape=c944137c vocab=b377b9c7
+-/
 @[simp] lemma complex_testfunction_decompose_fst_apply
   (f : TestFunctionℂ) (x : SpaceTime) :
   (complexTestFunctionDecompose f).1 x = (f x).re := by
   simp [complexTestFunctionDecompose]
 
-/-- Second component of the decomposition evaluates to the imaginary part pointwise. -/
+/-- Second component of the decomposition evaluates to the imaginary part pointwise.
+@isnad1 id=eq.0h2v.s7.6972270e8fac from=translated src=- shape=c944137c vocab=5dd6d5ea
+-/
 @[simp] lemma complex_testfunction_decompose_snd_apply
   (f : TestFunctionℂ) (x : SpaceTime) :
   (complexTestFunctionDecompose f).2 x = (f x).im := by
   simp [complexTestFunctionDecompose]
 
-/-- Coerced-to-ℂ version (useful for complex-side algebra). -/
+/-- Coerced-to-ℂ version (useful for complex-side algebra).
+@isnad1 id=eq.0h2v.s7.9b9f015f8961 from=translated src=- shape=008a5389 vocab=a51cd546
+-/
 lemma complex_testfunction_decompose_fst_apply_coe
   (f : TestFunctionℂ) (x : SpaceTime) :
   ((complexTestFunctionDecompose f).1 x : ℂ) = ((f x).re : ℂ) := by
   simp [complexTestFunctionDecompose]
 
-/-- Coerced-to-ℂ version (useful for complex-side algebra). -/
+/-- Coerced-to-ℂ version (useful for complex-side algebra).
+@isnad1 id=eq.0h2v.s7.85581bcae630 from=translated src=- shape=008a5389 vocab=c29b13c3
+-/
 lemma complex_testfunction_decompose_snd_apply_coe
   (f : TestFunctionℂ) (x : SpaceTime) :
   ((complexTestFunctionDecompose f).2 x : ℂ) = ((f x).im : ℂ) := by
   simp [complexTestFunctionDecompose]
 
-/-- Recomposition at a point via the decomposition. -/
+/-- Recomposition at a point via the decomposition.
+@isnad1 id=eq.0h2v.s8.760cd9dc0235 from=translated src=- shape=e34d7dab vocab=ac40a900
+-/
 lemma complex_testfunction_decompose_recompose
   (f : TestFunctionℂ) (x : SpaceTime) :
   f x = ((complexTestFunctionDecompose f).1 x : ℂ)

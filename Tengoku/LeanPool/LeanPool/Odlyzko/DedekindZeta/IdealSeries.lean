@@ -30,6 +30,9 @@ variable (K : Type*) [Field K] [NumberField K]
 noncomputable def dedekindZetaSummand (s : ℂ) (n : ℕ) : ℂ :=
   LSeries.term (fun m ↦ (idealNormCount K m : ℂ)) s n
 
+/--
+@isnad1 id=eq.0h2v.s4.9da6a81b5207 from=translated src=- shape=f382555d vocab=82e35fd1
+-/
 @[simp] lemma dedekindZetaSummand_zero (s : ℂ) :
     dedekindZetaSummand K s 0 = 0 := by
   simp [dedekindZetaSummand]
@@ -50,16 +53,25 @@ variable (K : Type*) [Field K] [NumberField K]
 noncomputable def idealInverseNormPower (s : ℂ) (I : Ideal (𝓞 K)) : ℂ :=
   if I = 0 then 0 else ((absNorm I : ℂ) ^ (-s))
 
+/--
+@isnad1 id=eq.0h2v.s6.aa6ab13c0422 from=translated src=- shape=776fca03 vocab=09e4b466
+-/
 lemma idealInverseNormPower_zero (s : ℂ) :
     idealInverseNormPower K s 0 = 0 := by
   simp [idealInverseNormPower]
 
+/--
+@isnad1 id=eq.1h3v.s8.9a4d6a1cbe8e from=translated src=- shape=d0bc2e85 vocab=c776676a
+-/
 lemma idealInverseNormPower_of_ne_zero (s : ℂ) {I : Ideal (𝓞 K)}
     (hI : I ≠ 0) :
     idealInverseNormPower K s I = ((absNorm I : ℂ) ^ (-s)) := by
   unfold idealInverseNormPower
   simp_all
 
+/--
+@isnad1 id=summable.1h2v.s6.16093210bf8f from=translated src=- shape=25b3ceeb vocab=fff5c212
+-/
 theorem summable_norm_idealInverseNormPower {s : ℂ} (hs : 1 < s.re) :
     Summable (fun I : Ideal (𝓞 K) ↦ ‖idealInverseNormPower K s I‖) := by
   apply (summable_ideal_absNorm_rpow K hs).congr
@@ -74,10 +86,16 @@ theorem summable_norm_idealInverseNormPower {s : ℂ} (hs : 1 < s.re) :
     exact Nat.pos_of_ne_zero (by
       simpa [Ideal.absNorm_eq_zero_iff] using hI)
 
+/--
+@isnad1 id=summable.1h2v.s6.7ae08e28af77 from=translated src=- shape=bca4ef19 vocab=5415e5c3
+-/
 theorem summable_idealInverseNormPower {s : ℂ} (hs : 1 < s.re) :
     Summable (idealInverseNormPower K s) :=
   (summable_norm_idealInverseNormPower K hs).of_norm
 
+/--
+@isnad1 id=hassum.0h3v.s10.bd3ce394059c from=translated src=- shape=c563d04d vocab=8588a2ff
+-/
 lemma hasSum_idealInverseNormPower_fiber (s : ℂ) (n : ℕ) :
     HasSum
       (fun I : {I : Ideal (𝓞 K) // absNorm I = n} ↦
@@ -121,6 +139,9 @@ private lemma summable_idealInverseNormPower_fiber (s : ℂ) (n : ℕ) :
     (Ideal.finite_setOfPred_absNorm_eq n).fintype
   exact Summable.of_finite
 
+/--
+@isnad1 id=hassum.1h2v.s6.2efe937023c8 from=translated src=- shape=255ab81e vocab=91efd9f0
+-/
 theorem hasSum_idealInverseNormPower {s : ℂ} (hs : 1 < s.re) :
     HasSum (idealInverseNormPower K s) (NumberField.dedekindZeta K s) := by
   let e := Equiv.sigmaFiberEquiv (absNorm : Ideal (𝓞 K) → ℕ)
@@ -149,6 +170,9 @@ theorem hasSum_idealInverseNormPower {s : ℂ} (hs : 1 < s.re) :
         (hasSum_dedekindZeta K hs).tsum_eq
   exact heq ▸ hsum.hasSum
 
+/--
+@isnad1 id=hassum.1h2v.s8.d97839a16974 from=translated src=- shape=5fe8ea35 vocab=5f3e5064
+-/
 theorem hasSum_nonzeroIdeal_inverseNormPower {s : ℂ} (hs : 1 < s.re) :
     HasSum
       (fun I : NonzeroIdeal K ↦

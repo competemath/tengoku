@@ -24,6 +24,9 @@ open scoped Interval
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=eq.6h8v.s8.76959a598991 from=translated src=- shape=fc375a98 vocab=6875edcb
+-/
 theorem rectangleIntegral_fill_weightedLogDerivFiniteRemainder_eq_zero
     {f h : ℂ → ℂ} {S : Finset ℂ} {order : ℂ → ℤ}
     {a b u v : ℝ}
@@ -62,6 +65,9 @@ theorem rectangleIntegral_fill_weightedLogDerivFiniteRemainder_eq_zero
           ⟨hz.1.2.1.le, hz.1.2.2.le⟩⟩)
   simpa [rectangleIntegral, horizontalIntegral, verticalSegmentIntegral] using hcg
 
+/--
+@isnad1 id=eq.7h8v.s8.4d845deaa43b from=translated src=- shape=80789eb6 vocab=3acdeacd
+-/
 theorem rectangleIntegral_weightedLogDerivFiniteRemainder_eq_zero
     {f h : ℂ → ℂ} {S : Finset ℂ} {order : ℂ → ℤ}
     {a b u v : ℝ}
@@ -131,6 +137,9 @@ theorem rectangleIntegral_weightedLogDerivFiniteRemainder_eq_zero
     simpa using hy.1.ne'
   simp_all
 
+/--
+@isnad1 id=eq.7h8v.s8.2d488b0b6a99 from=translated src=- shape=ccf9d2d0 vocab=5cc14cdb
+-/
 theorem rectangleIntegral_mul_logDeriv_eq_two_pi_I_mul_sum
     {f h : ℂ → ℂ} {S : Finset ℂ} {order : ℂ → ℤ}
     {a b u v : ℝ}

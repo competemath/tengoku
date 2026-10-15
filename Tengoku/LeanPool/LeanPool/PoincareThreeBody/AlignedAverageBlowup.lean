@@ -21,6 +21,9 @@ namespace LeanPool.PoincareThreeBody
 
 open MeasureTheory
 
+/--
+@isnad1 id=eq.5h4v.s7.cf0d1240ce25 from=translated src=- shape=5e078339 vocab=b7f9442d
+-/
 theorem resonantDisturbingAverage_eq_regular_sub_primary
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity orientation : ℝ}
@@ -52,7 +55,9 @@ theorem resonantDisturbingAverage_eq_regular_sub_primary
     _ = _ := intervalIntegral.integral_sub hregular hprimary
 
 /-- Explicit upper bound which tends to negative infinity as the eccentricity approaches the
-collision value from below. -/
+collision value from below.
+@isnad1 id=le.11h6v.s9.d7d8831cb658 from=translated src=- shape=18d87f17 vocab=9a94cb6d
+-/
 theorem resonantDisturbingAverage_collisionAligned_le
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     (haxisHalf : 1 / 2 < resonantSemimajorAxis p q)
@@ -107,7 +112,9 @@ theorem resonantDisturbingAverage_collisionAligned_le
   exact sub_le_sub hregular hprimary
 
 /-- Collision alignment makes the resonant disturbing average arbitrarily negative, at an
-eccentricity arbitrarily close to the collision boundary. -/
+eccentricity arbitrarily close to the collision boundary.
+@isnad1 id=ex.5h4v.s7.5cbce5aae002 from=translated src=- shape=74cf9ea4 vocab=18f1bd21
+-/
 theorem exists_collisionAligned_resonantDisturbingAverage_between
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     (haxisHalf : 1 / 2 < resonantSemimajorAxis p q)
@@ -218,7 +225,9 @@ theorem exists_collisionAligned_resonantDisturbingAverage_between
   linarith
 
 /-- In particular, a positive admissible collision-aligned eccentricity realizes every negative
-target. -/
+target.
+@isnad1 id=ex.4h3v.s6.275915c027a6 from=translated src=- shape=6c61cd7a vocab=8577de82
+-/
 theorem exists_collisionAligned_resonantDisturbingAverage_lt
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     (haxisHalf : 1 / 2 < resonantSemimajorAxis p q)

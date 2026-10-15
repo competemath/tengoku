@@ -69,18 +69,26 @@ def getTime (u : SpaceTime) : ℝ := u timeIndex
 def timeShift (s : ℝ) (u : SpaceTime) : SpaceTime :=
   WithLp.toLp 2 (fun i => if i.val = 0 then u.ofLp i + s else u.ofLp i)
 
+/--
+@isnad1 id=eq.0h2v.s4.4337e1c6fe5e from=translated src=- shape=d77f06e2 vocab=cc9098c8
+-/
 @[simp]
 lemma timeShift_time (s : ℝ) (u : SpaceTime) :
     getTime (timeShift s u) = getTime u + s := by
   simp [getTime, timeIndex, timeShift]
 
+/--
+@isnad1 id=eq.1h3v.s6.40359a928139 from=translated src=- shape=bb5a8a79 vocab=0a71fc9b
+-/
 @[simp]
 lemma timeShift_spatial (s : ℝ) (u : SpaceTime) (i : Fin STDimension) (hi : i.val ≠ 0) :
     (timeShift s u) i = u i := by
   simp only [timeShift]
   exact ite_eq_right hi
 
-/-- Time shift is a group action: T_{s+t} = T_s ∘ T_t -/
+/-- Time shift is a group action: T_{s+t} = T_s ∘ T_t
+@isnad1 id=eq.0h3v.s4.e76e34e921ac from=translated src=- shape=7177eae1 vocab=3b873f2c
+-/
 lemma timeShift_add (s t : ℝ) (u : SpaceTime) :
     timeShift (s + t) u = timeShift s (timeShift t u) := by
   simp only [timeShift]
@@ -90,7 +98,9 @@ lemma timeShift_add (s t : ℝ) (u : SpaceTime) :
   · ring
   · rfl
 
-/-- Time shift by zero is identity -/
+/-- Time shift by zero is identity
+@isnad1 id=eq.0h1v.s3.f2eaff809bd6 from=translated src=- shape=5b483ac0 vocab=6343867d
+-/
 @[simp]
 lemma timeShift_zero (u : SpaceTime) : timeShift 0 u = u := by
   simp only [timeShift]
@@ -98,13 +108,16 @@ lemma timeShift_zero (u : SpaceTime) : timeShift 0 u = u := by
   funext i
   split_ifs <;> ring
 
-/-- Time shifts commute: T_s ∘ T_t = T_t ∘ T_s -/
+/-- Time shifts commute: T_s ∘ T_t = T_t ∘ T_s
+@isnad1 id=eq.0h3v.s4.1ac788c5978e from=translated src=- shape=9a3e96fd vocab=6343867d
+-/
 lemma timeShift_comm (s t : ℝ) (u : SpaceTime) :
     timeShift s (timeShift t u) = timeShift t (timeShift s u) := by
   rw [← timeShift_add, ← timeShift_add, add_comm]
 
 /-- Time shift is smooth as a map SpaceTime → SpaceTime.
     This is because it's an affine map (linear + constant).
+@isnad1 id=contdiff.0h1v.s7.e153d6b5eebd from=translated src=- shape=4d6e96c8 vocab=fa289086
 -/
 lemma timeShift_contDiff (s : ℝ) : ContDiff ℝ (⊤ : ℕ∞) (timeShift s) := by
   unfold timeShift
@@ -117,7 +130,9 @@ lemma timeShift_contDiff (s : ℝ) : ContDiff ℝ (⊤ : ℕ∞) (timeShift s) :
   · exact hcoord.add contDiff_const
   · exact hcoord
 
-/-- Time shift preserves the Euclidean distance (it's an isometry) -/
+/-- Time shift preserves the Euclidean distance (it's an isometry)
+@isnad1 id=eq.0h3v.s6.f291ed983bb1 from=translated src=- shape=ebf8e733 vocab=99d447bb
+-/
 lemma timeShift_dist (s : ℝ) (u v : SpaceTime) :
     dist (timeShift s u) (timeShift s v) = dist u v := by
   simp only [EuclideanSpace.dist_eq, timeShift]
@@ -128,12 +143,16 @@ lemma timeShift_dist (s : ℝ) (u v : SpaceTime) :
   · congr 1; simp only [Real.dist_eq, add_sub_add_right_eq_sub]
   · rfl
 
-/-- Time shift is an isometry -/
+/-- Time shift is an isometry
+@isnad1 id=isometry.0h1v.s6.50e7f7ff49da from=translated src=- shape=8735051e vocab=064bb108
+-/
 lemma timeShift_isometry (s : ℝ) : Isometry (timeShift s) := by
   rw [isometry_iff_dist_eq]
   exact fun u v => timeShift_dist s u v
 
-/-- Time shift is antilipschitz (follows from being an isometry). -/
+/-- Time shift is antilipschitz (follows from being an isometry).
+@isnad1 id=antilips.0h1v.s6.becd361a504c from=translated src=- shape=9786d69b vocab=e7a36100
+-/
 lemma timeShift_antilipschitz (s : ℝ) : AntilipschitzWith 1 (timeShift s) :=
   (timeShift_isometry s).antilipschitzWith
 
@@ -141,7 +160,9 @@ lemma timeShift_antilipschitz (s : ℝ) : AntilipschitzWith 1 (timeShift s) :=
 def timeShiftConst (s : ℝ) : SpaceTime :=
   WithLp.toLp 2 (fun i => if i.val = 0 then s else 0)
 
-/-- timeShift s equals addition of a constant. -/
+/-- timeShift s equals addition of a constant.
+@isnad1 id=eq.0h2v.s5.3d4ccd92b5c5 from=translated src=- shape=08a7827d vocab=0e390d70
+-/
 lemma timeShift_eq_add_const (s : ℝ) (u : SpaceTime) :
     timeShift s u = u + timeShiftConst s := by
   simp only [timeShift, timeShiftConst]
@@ -151,6 +172,7 @@ lemma timeShift_eq_add_const (s : ℝ) (u : SpaceTime) :
 
 /-- Time shift has temperate growth (key for Schwartz composition).
     This follows because timeShift is an affine map (id + constant).
+@isnad1 id=hastempe.0h1v.s7.342c1d5fe5ac from=translated src=- shape=8735051e vocab=cc3eaef8
 -/
 lemma timeShift_hasTemperateGrowth (s : ℝ) : Function.HasTemperateGrowth (timeShift s) := by
   -- The derivative is constant (= id), so has temperate growth
@@ -219,56 +241,72 @@ def timeTranslationSchwartzℂCLM (s : ℝ) : TestFunctionℂ →L[ℂ] TestFunc
 def timeTranslationSchwartzℂ (s : ℝ) (f : TestFunctionℂ) : TestFunctionℂ :=
   timeTranslationSchwartzℂCLM s f
 
-/-- Time translation evaluated at a point. -/
+/-- Time translation evaluated at a point.
+@isnad1 id=eq.0h3v.s7.912e798067c0 from=translated src=- shape=c498c717 vocab=2c328fe9
+-/
 @[simp]
 lemma timeTranslationSchwartz_apply (s : ℝ) (f : OSforGFF.TestFunction) (u : SpaceTime) :
     (timeTranslationSchwartz s f) u = f (timeShift s u) := by
   simp only [timeTranslationSchwartz, timeTranslationSchwartzCLM,
     SchwartzMap.compCLMOfAntilipschitz_apply, Function.comp_apply]
 
-/-- Time translation on complex functions evaluated at a point. -/
+/-- Time translation on complex functions evaluated at a point.
+@isnad1 id=eq.0h3v.s8.082667a17fe5 from=translated src=- shape=908b2f0b vocab=728e828b
+-/
 @[simp]
 lemma timeTranslationSchwartzℂ_apply (s : ℝ) (f : TestFunctionℂ) (u : SpaceTime) :
     (timeTranslationSchwartzℂ s f) u = f (timeShift s u) := by
   simp only [timeTranslationSchwartzℂ, timeTranslationSchwartzℂCLM,
     SchwartzMap.compCLMOfAntilipschitz_apply, Function.comp_apply]
 
-/-- Time translation is a group homomorphism: T_{s+t} = T_s ∘ T_t -/
+/-- Time translation is a group homomorphism: T_{s+t} = T_s ∘ T_t
+@isnad1 id=eq.0h3v.s4.ac91d79b14f7 from=translated src=- shape=7177eae1 vocab=02700f98
+-/
 lemma timeTranslationSchwartz_add (s t : ℝ) (f : OSforGFF.TestFunction) :
     timeTranslationSchwartz (s + t) f =
       timeTranslationSchwartz s (timeTranslationSchwartz t f) := by
   ext u
   simp only [timeTranslationSchwartz_apply, timeShift_add, timeShift_comm]
 
-/-- Time translation on complex functions: T_{s+t} = T_s ∘ T_t -/
+/-- Time translation on complex functions: T_{s+t} = T_s ∘ T_t
+@isnad1 id=eq.0h3v.s4.ab1e8c707290 from=translated src=- shape=7177eae1 vocab=fb56d6b7
+-/
 lemma timeTranslationSchwartzℂ_add (s t : ℝ) (f : TestFunctionℂ) :
     timeTranslationSchwartzℂ (s + t) f =
       timeTranslationSchwartzℂ s (timeTranslationSchwartzℂ t f) := by
   ext u
   simp only [timeTranslationSchwartzℂ_apply, timeShift_add, timeShift_comm]
 
-/-- Time translation by zero is identity -/
+/-- Time translation by zero is identity
+@isnad1 id=eq.0h1v.s3.11a4dea012f4 from=translated src=- shape=5b483ac0 vocab=7318e327
+-/
 @[simp]
 lemma timeTranslationSchwartz_zero (f : OSforGFF.TestFunction) :
     timeTranslationSchwartz 0 f = f := by
   ext u
   simp only [timeTranslationSchwartz_apply, timeShift_zero]
 
-/-- Time translation by zero is identity (complex) -/
+/-- Time translation by zero is identity (complex)
+@isnad1 id=eq.0h1v.s3.fa615b230810 from=translated src=- shape=5b483ac0 vocab=fe4e45c3
+-/
 @[simp]
 lemma timeTranslationSchwartzℂ_zero (f : TestFunctionℂ) :
     timeTranslationSchwartzℂ 0 f = f := by
   ext u
   simp only [timeTranslationSchwartzℂ_apply, timeShift_zero]
 
-/-- Time translation preserves addition of Schwartz functions -/
+/-- Time translation preserves addition of Schwartz functions
+@isnad1 id=eq.0h3v.s7.b8582df63d5e from=translated src=- shape=c66a92ec vocab=5eb7c39e
+-/
 lemma timeTranslationSchwartz_add_fun (s : ℝ) (f g : OSforGFF.TestFunction) :
     timeTranslationSchwartz s (f + g) =
       timeTranslationSchwartz s f + timeTranslationSchwartz s g := by
   ext u
   simp only [timeTranslationSchwartz_apply, add_apply]
 
-/-- Time translation preserves scalar multiplication of Schwartz functions -/
+/-- Time translation preserves scalar multiplication of Schwartz functions
+@isnad1 id=eq.0h3v.s7.3312eff43966 from=translated src=- shape=a0db2776 vocab=84a3d7d8
+-/
 lemma timeTranslationSchwartz_smul (s : ℝ) (c : ℝ) (f : OSforGFF.TestFunction) :
     timeTranslationSchwartz s (c • f) = c • timeTranslationSchwartz s f := by
   ext u
@@ -285,7 +323,9 @@ This provides the mathematical foundation for the Lipschitz bound theorem below.
 /-- The unit time direction vector in SpaceTime. -/
 def unitTimeDir : SpaceTime := EuclideanSpace.single timeIndex (1 : ℝ)
 
-/-- timeShift is continuous in the time parameter s -/
+/-- timeShift is continuous in the time parameter s
+@isnad1 id=continuo.0h1v.s5.9a4499f440f8 from=translated src=- shape=837319fa vocab=8c06d755
+-/
 lemma continuous_timeShift_param (x : SpaceTime) : Continuous (fun s : ℝ => timeShift s x) := by
   have h_shift : (fun s : ℝ => timeShift s x) = (fun s => x + s • unitTimeDir) := by
     funext s; simp only [timeShift, unitTimeDir, EuclideanSpace.single]
@@ -299,6 +339,7 @@ lemma continuous_timeShift_param (x : SpaceTime) : Continuous (fun s : ℝ => ti
     (1 + ‖x‖)^k ≤ (1 + ‖x + y‖)^k * (1 + ‖y‖)^k
 
     This handles weight shifting when translating between seminorms at different points.
+@isnad1 id=le.0h3v.s7.e808ebd6624b from=translated src=- shape=3a39cffb vocab=b91ce75b
 -/
 lemma peetre_weight_bound (x y : SpaceTime) (k : ℕ) :
     (1 + ‖x‖) ^ k ≤ (1 + ‖x + y‖) ^ k * (1 + ‖y‖) ^ k := by
@@ -316,6 +357,7 @@ lemma peetre_weight_bound (x y : SpaceTime) (k : ℕ) :
 
 /-- The iterated derivative commutes with time translation.
     D^n(T_h f)(x) = D^n f(x + h·e₀)
+@isnad1 id=eq.0h4v.s9.d0c60787a37c from=translated src=- shape=9e5e8642 vocab=18177a89
 -/
 lemma iteratedFDeriv_timeTranslationSchwartz (n : ℕ) (h : ℝ)
     (f : OSforGFF.TestFunction) (x : SpaceTime) :
@@ -444,6 +486,7 @@ private lemma schwartz_timeTranslation_mvt_bound
     3. Apply MVT: ‖D^n f(x+h·e₀) - D^n f(x)‖ ≤ |h| · sup ‖D^{n+1} f(path)‖
     4. Apply Peetre: ‖x‖^k ≤ (1+|h|)^k · (1+‖w‖)^k for path points w
     5. Bound (1+‖w‖)^k ≤ 2^k · max(1, ‖w‖^k) and use seminorms
+@isnad1 id=le.0h4v.s11.f05e5e774b24 from=translated src=- shape=2ce045c2 vocab=cdc97bd3
 -/
 theorem schwartz_timeTranslation_lipschitz_seminorm
     (k n : ℕ) (f : OSforGFF.TestFunction) (h : ℝ) :
@@ -707,6 +750,7 @@ theorem schwartz_timeTranslation_lipschitz_seminorm
 
     ## References
     Reed-Simon V.3 (Schwartz distributions), Hörmander Ch. 7 (test functions)
+@isnad1 id=continuo.0h1v.s6.8e5179451469 from=translated src=- shape=837319fa vocab=c2e82cc1
 -/
 lemma continuous_timeTranslationSchwartz (f : OSforGFF.TestFunction) :
     Continuous (fun s => timeTranslationSchwartz s f) := by
@@ -808,13 +852,17 @@ for all f ∈ S(ℝ × ℝ³).
 def timeTranslationDistribution (s : ℝ) (ω : FieldConfiguration) : FieldConfiguration :=
   ω.comp (timeTranslationSchwartzCLM (-s))
 
-/-- The defining property of time translation on distributions. -/
+/-- The defining property of time translation on distributions.
+@isnad1 id=eq.0h3v.s10.6e8a2ab79cbf from=translated src=- shape=a75a3426 vocab=67332dbb
+-/
 @[simp]
 lemma timeTranslationDistribution_apply (s : ℝ) (ω : FieldConfiguration)
     (f : OSforGFF.TestFunction) :
     (timeTranslationDistribution s ω) f = ω (timeTranslationSchwartz (-s) f) := rfl
 
-/-- Time translation on distributions is a group homomorphism: T_{s+t} = T_s ∘ T_t -/
+/-- Time translation on distributions is a group homomorphism: T_{s+t} = T_s ∘ T_t
+@isnad1 id=eq.0h3v.s4.55d0f441d519 from=translated src=- shape=7177eae1 vocab=fb453f70
+-/
 lemma timeTranslationDistribution_add (s t : ℝ) (ω : FieldConfiguration) :
     timeTranslationDistribution (s + t) ω =
     timeTranslationDistribution s (timeTranslationDistribution t ω) := by
@@ -831,7 +879,9 @@ lemma timeTranslationDistribution_add (s t : ℝ) (ω : FieldConfiguration) :
     ring_nf
   rw [h]
 
-/-- Time translation by zero is identity on distributions -/
+/-- Time translation by zero is identity on distributions
+@isnad1 id=eq.0h1v.s3.977d4106a2e9 from=translated src=- shape=5b483ac0 vocab=c7d2f1ca
+-/
 @[simp]
 lemma timeTranslationDistribution_zero (ω : FieldConfiguration) :
     timeTranslationDistribution 0 ω = ω := by

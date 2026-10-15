@@ -35,7 +35,9 @@ variable {E : Type*}
 omit [FiniteDimensional ℝ E] in
 /-- Taylor expansion of a C² function along a ray from a local minimum:
     f(x₀ + t•v) - f(x₀) = (t²/2) · H(v,v) + o(t²)  as t → 0⁺.
-    (Copy of `taylor_ray_isLittleO` from HessianCoercive.lean.) -/
+    (Copy of `taylor_ray_isLittleO` from HessianCoercive.lean.)
+@isnad1 id=islittle.2h4v.s9.078a1d40cfe6 from=translated src=- shape=11091cb5 vocab=0b60bf0d
+-/
 lemma taylor_ray_isLittleO_pl (f : E → ℝ) (x₀ v : E)
     (hf : ContDiffAt ℝ 2 f x₀) (hmin : IsLocalMin f x₀) :
     (fun t : ℝ => f (x₀ + t • v) - f x₀ - t ^ 2 / 2 * hessian f x₀ v v) =o[𝓝[>] (0 : ℝ)]
@@ -112,7 +114,9 @@ lemma taylor_ray_isLittleO_pl (f : E → ℝ) (x₀ v : E)
 -- ════════════════════════════════════════════════════════════════════════════
 
 omit [FiniteDimensional ℝ E] in
-/-- The Hessian of a C² function is symmetric: H(v,w) = H(w,v). -/
+/-- The Hessian of a C² function is symmetric: H(v,w) = H(w,v).
+@isnad1 id=eq.1h5v.s10.65c07d35fc22 from=translated src=- shape=f3a49b8b vocab=15f0d747
+-/
 lemma hessian_symmetric (f : E → ℝ) (x₀ : E) (hf : ContDiffAt ℝ 2 f x₀) (v w : E) :
     hessian f x₀ v w = hessian f x₀ w v := by
   -- Extract neighborhood where f is differentiable
@@ -133,7 +137,9 @@ lemma hessian_symmetric (f : E → ℝ) (x₀ : E) (hf : ContDiffAt ℝ 2 f x₀
 -- ════════════════════════════════════════════════════════════════════════════
 
 omit [FiniteDimensional ℝ E] in
-/-- At a local minimum, the Hessian is positive semi-definite: H(v,v) ≥ 0. -/
+/-- At a local minimum, the Hessian is positive semi-definite: H(v,v) ≥ 0.
+@isnad1 id=le.2h4v.s9.f26cd95b004e from=translated src=- shape=be01d451 vocab=af2f447f
+-/
 lemma hessian_nonneg (f : E → ℝ) (x₀ v : E)
     (hf : ContDiffAt ℝ 2 f x₀) (hmin : IsLocalMin f x₀) :
     0 ≤ hessian f x₀ v v := by
@@ -167,7 +173,9 @@ lemma hessian_nonneg (f : E → ℝ) (x₀ v : E)
 -- ════════════════════════════════════════════════════════════════════════════
 
 omit [FiniteDimensional ℝ E] in
-/-- For a PSD symmetric Hessian, if H(v,v) = 0 then v ∈ ker(H). -/
+/-- For a PSD symmetric Hessian, if H(v,v) = 0 then v ∈ ker(H).
+@isnad1 id=mem.3h4v.s9.6fd10e6781e1 from=translated src=- shape=e255b4ce vocab=91d0b885
+-/
 lemma mem_hessianKer_of_zero_quad (f : E → ℝ) (x₀ v : E)
     (hf : ContDiffAt ℝ 2 f x₀) (hmin : IsLocalMin f x₀)
     (hzero : hessian f x₀ v v = 0) :

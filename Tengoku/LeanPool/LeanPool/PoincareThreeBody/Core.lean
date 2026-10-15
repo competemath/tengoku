@@ -76,55 +76,91 @@ noncomputable def IsIndependentSomewhere (δ : ℝ) (F : ℝ → PhaseSpace → 
     LinearIndependent ℝ
       ![fderiv ℝ (hamiltonian z.1) z.2, fderiv ℝ (F z.1) z.2]
 
+/--
+@isnad1 id=le.0h2v.s4.ae9a456c5bcd from=translated src=- shape=25b8bdde vocab=a05fa614
+-/
 lemma firstPrimaryDistanceSq_nonneg (μ : ℝ) (s : PhaseSpace) :
     0 ≤ firstPrimaryDistanceSq μ s := by
   simp only [firstPrimaryDistanceSq]
   positivity
 
+/--
+@isnad1 id=le.0h2v.s4.8b152f79fd51 from=translated src=- shape=25b8bdde vocab=017152cb
+-/
 lemma secondPrimaryDistanceSq_nonneg (μ : ℝ) (s : PhaseSpace) :
     0 ≤ secondPrimaryDistanceSq μ s := by
   simp only [secondPrimaryDistanceSq]
   positivity
 
+/--
+@isnad1 id=lt.1h2v.s4.e84be090e07c from=translated src=- shape=a2ca859b vocab=f5a7d3f3
+-/
 lemma firstPrimaryDistanceSq_pos {μ : ℝ} {s : PhaseSpace}
     (h : firstPrimaryDistanceSq μ s ≠ 0) : 0 < firstPrimaryDistanceSq μ s :=
   lt_of_le_of_ne (firstPrimaryDistanceSq_nonneg μ s) (Ne.symm h)
 
+/--
+@isnad1 id=lt.1h2v.s4.ce291f069837 from=translated src=- shape=a2ca859b vocab=8040b2b2
+-/
 lemma secondPrimaryDistanceSq_pos {μ : ℝ} {s : PhaseSpace}
     (h : secondPrimaryDistanceSq μ s ≠ 0) : 0 < secondPrimaryDistanceSq μ s :=
   lt_of_le_of_ne (secondPrimaryDistanceSq_nonneg μ s) (Ne.symm h)
 
+/--
+@isnad1 id=iff.0h2v.s5.b6bcfb6ad53a from=translated src=- shape=87865d7c vocab=cde884c6
+-/
 lemma mem_collisionFree_iff {μ : ℝ} {s : PhaseSpace} :
     (μ, s) ∈ collisionFree ↔
       firstPrimaryDistanceSq μ s ≠ 0 ∧ secondPrimaryDistanceSq μ s ≠ 0 :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.3040d111dfd6 from=translated src=- shape=d80521ab vocab=1f05be0b
+-/
 lemma mem_parameterDomain_iff {δ μ : ℝ} {s : PhaseSpace} :
     (μ, s) ∈ parameterDomain δ ↔ |μ| < δ ∧ (μ, s) ∈ collisionFree :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.e101e3bd3a61 from=translated src=- shape=6e4c2516 vocab=333140e3
+-/
 @[simp] lemma coordinateVector_same (i : Fin 4) : coordinateVector i i = 1 := by
   simp [coordinateVector]
 
+/--
+@isnad1 id=eq.1h2v.s5.5540e51bdd34 from=translated src=- shape=68592342 vocab=333140e3
+-/
 @[simp] lemma coordinateVector_apply {i j : Fin 4} (h : j ≠ i) : coordinateVector i j = 0 := by
   simp [coordinateVector, h]
 
+/--
+@isnad1 id=eq.0h2v.s4.221b2439e73b from=translated src=- shape=dbd4350f vocab=bce1ac6d
+-/
 lemma poissonBracket_self (F : PhaseSpace → ℝ) (s : PhaseSpace) :
     poissonBracket F F s = 0 := by
   simp only [poissonBracket]
   ring
 
+/--
+@isnad1 id=isfirsti.0h1v.s2.cd6f250520dc from=translated src=- shape=2d69f17f vocab=1201fbca
+-/
 lemma hamiltonian_isFirstIntegralFamily (δ : ℝ) :
     IsFirstIntegralFamily δ hamiltonian := by
   intro z hz
   exact poissonBracket_self (hamiltonian z.1) z.2
 
+/--
+@isnad1 id=eq.0h1v.s8.a6097b4af7ec from=translated src=- shape=57df12bb vocab=3128c90d
+-/
 lemma hamiltonian_zero (s : PhaseSpace) :
     hamiltonian 0 s =
       ((s 2) ^ 2 + (s 3) ^ 2) / 2 + s 2 * s 1 - s 3 * s 0 -
         1 / Real.sqrt ((s 0) ^ 2 + (s 1) ^ 2) := by
   simp [hamiltonian, potential, firstPrimaryDistanceSq, secondPrimaryDistanceSq]
 
+/--
+@isnad1 id=eq.3h3v.s6.43875c20d557 from=translated src=- shape=3ef046bd vocab=309beb49
+-/
 lemma IsFirstIntegralFamily.poissonBracket_zero_at_mass_zero {δ : ℝ}
     {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ) (hF : IsFirstIntegralFamily δ F)
     {s : PhaseSpace} (hs : (0, s) ∈ collisionFree) :
@@ -132,6 +168,9 @@ lemma IsFirstIntegralFamily.poissonBracket_zero_at_mass_zero {δ : ℝ}
   apply hF (0, s)
   exact ⟨by simpa using hδ, hs⟩
 
+/--
+@isnad1 id=not.0h1v.s2.4c6be754a087 from=translated src=- shape=69c56833 vocab=a403e87a
+-/
 lemma hamiltonian_not_independent (δ : ℝ) : ¬IsIndependentSomewhere δ hamiltonian := by
   rintro ⟨z, hz, hlinear⟩
   have hindex : (0 : Fin 2) = 1 := hlinear.injective (by simp)

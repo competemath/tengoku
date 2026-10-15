@@ -57,17 +57,23 @@ def rowPrefix (k : ℕ) : Finset Lattice :=
   (Finset.range k).image (fun i : ℕ => ((i : ℤ), (0 : ℤ)))
 
 /-- Membership in the horizontal boundary prefix means being its `r`th site for some natural
-index `r < k`. Lemma 5.5 (`lem:boundary-window`). -/
+index `r < k`. Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=iff.0h2v.s5.df3c37fa208b from=translated src=- shape=3cd11fce vocab=db18a25b
+-/
 @[simp] theorem mem_rowPrefix (z : Lattice) (k : ℕ) :
     z ∈ rowPrefix k ↔ ∃ i < k, z = ((i : ℤ), 0) := by
   simp [rowPrefix, eq_comm]
 
 /-- A boundary prefix of length zero is empty, so a zero-memory rule uses only the interior.
-Lemma 5.5 (`lem:boundary-window`). -/
+Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=eq.0h0v.s3.a2f357afbde8 from=translated src=- shape=54ac7564 vocab=656285d2
+-/
 @[simp] theorem rowPrefix_zero : rowPrefix 0 = ∅ := by simp [rowPrefix]
 
 /-- Increasing the prefix length retains all previously adjoined boundary sites. Lemma 5.5
-(`lem:boundary-window`). -/
+(`lem:boundary-window`).
+@isnad1 id=monotone.0h0v.s3.2ef5f5d032d0 from=translated src=- shape=4b736592 vocab=4f74372c
+-/
 theorem rowPrefix_mono : Monotone rowPrefix := by
   intro i j hij
   exact Finset.image_subset_image (Finset.range_mono hij)
@@ -77,18 +83,24 @@ the paper. Lemma 5.5 (`lem:boundary-window`), equation `eq:boundary-rule-domain`
 def prefixWindow (C : Finset Lattice) (k : ℕ) : Finset Lattice := C ∪ rowPrefix k
 
 /-- Before any boundary sites are adjoined, the prefix window is exactly the interior. Lemma 5.5
-(`lem:boundary-window`). -/
+(`lem:boundary-window`).
+@isnad1 id=eq.0h1v.s3.92c01ffe9c51 from=translated src=- shape=1ff64462 vocab=be2346bb
+-/
 @[simp] theorem prefixWindow_zero (C : Finset Lattice) : prefixWindow C 0 = C := by
   simp [prefixWindow]
 
 /-- The successive interior-plus-prefix windows are nested, hence their pattern complexities are
-nondecreasing. Lemma 5.5 (`lem:boundary-window`). -/
+nondecreasing. Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=monotone.0h1v.s3.0db6f75695dc from=translated src=- shape=134d4dcd vocab=526d19e1
+-/
 theorem prefixWindow_mono (C : Finset Lattice) : Monotone (prefixWindow C) := by
   intro i j hij
   exact Finset.union_subset_union (by rfl) (rowPrefix_mono hij)
 
 /-- A nondecreasing integer sequence whose total increase over `e` steps is less than `e` has an
-adjacent equality. Lemma 5.5 (`lem:boundary-window`). -/
+adjacent equality. Lemma 5.5 (`lem:boundary-window`).
+@isnad1 id=ex.2h2v.s6.180e157d999f from=translated src=- shape=42c91f26 vocab=6cf9e7b5
+-/
 theorem exists_plateau_of_small_increase (p : ℕ → ℕ) (hp : Monotone p)
     (e : ℕ) (hcost : p e < p 0 + e) : ∃ k < e, p (k + 1) = p k := by
   by_contra! hnone
@@ -107,7 +119,9 @@ theorem exists_plateau_of_small_increase (p : ℕ → ℕ) (hp : Monotone p)
 
 /-- A boundary cost smaller than its length yields an index `k < e` where the next site is
 uniquely determined by the occurring interior and prefix pattern. Lemma 5.5
-(`lem:boundary-window`), equation `eq:boundary-rule`. -/
+(`lem:boundary-window`), equation `eq:boundary-rule`.
+@isnad1 id=ex.2h4v.s5.720e75a8485d from=translated src=- shape=9423abf0 vocab=3225c72d
+-/
 theorem boundaryRule_of_small_cost {A : Type*} (c : Configuration A)
     (hc : FiniteRange c) (C : Finset Lattice) (e : ℕ)
     (hcost : complexity c (prefixWindow C e) < complexity c C + e) :
@@ -133,7 +147,9 @@ theorem boundaryRule_of_small_cost {A : Type*} (c : Configuration A)
 
 /-- Outputs with at least two distinct preimages are bounded in number by input cardinality
 minus output cardinality. The additive statement counts only finite occurring fibers. Lemma
-5.7 (`lem:periodic-interior`). -/
+5.7 (`lem:periodic-interior`).
+@isnad1 id=le.2h5v.s6.229727049e3d from=translated src=- shape=6a6b3a90 vocab=06221ce8
+-/
 theorem ambiguous_output_budget {A B : Type*} (f : A → B) {P : Set A}
     (hP : P.Finite) {Q : Set B}
     (hQ : ∀ b ∈ Q, ∃ x ∈ P, ∃ y ∈ P, x ≠ y ∧ f x = b ∧ f y = b) :

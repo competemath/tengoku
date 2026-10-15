@@ -28,6 +28,9 @@ variable (K : Type*) [Field K] [NumberField K]
 noncomputable def completedDedekindXi (s : ℂ) : ℂ :=
   s * (s - 1) * CompletedZeta.completed K s
 
+/--
+@isnad1 id=ne.1h2v.s5.bcde79c24207 from=translated src=- shape=36f92116 vocab=b1045054
+-/
 lemma completedDedekindXi_ne_zero_of_one_lt_re {s : ℂ}
     (hs : 1 < s.re) :
     completedDedekindXi K s ≠ 0 := by
@@ -46,6 +49,9 @@ lemma completedDedekindXi_ne_zero_of_one_lt_re {s : ℂ}
 
 variable [IsTotallyComplex K]
 
+/--
+@isnad1 id=eq.1h2v.s8.1869db7d20c0 from=translated src=- shape=55d96e68 vocab=08ae991c
+-/
 theorem logDeriv_completedDedekindXi_rightHalfPlane {s : ℂ}
     (hs : 1 < s.re) :
     logDeriv (completedDedekindXi K) s =

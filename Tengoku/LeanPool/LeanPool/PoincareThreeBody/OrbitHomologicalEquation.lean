@@ -41,7 +41,9 @@ noncomputable def resonantCandidateForcing
     (orientedResonantKeplerPhasePoint p q eccentricity orientation time)
 
 /-- A Poisson bracket of two `C¹` observables varies continuously along a continuous phase-space
-curve. -/
+curve.
+@isnad1 id=continuo.3h4v.s8.a1226f05213b from=translated src=- shape=79cba6c4 vocab=4bd8bbeb
+-/
 theorem continuousAt_poissonBracket_comp
     {f g : PhaseSpace → ℝ} {orbit : ℝ → PhaseSpace} {time : ℝ}
     (hf : ContDiffAt ℝ 1 f (orbit time)) (hg : ContDiffAt ℝ 1 g (orbit time))
@@ -64,7 +66,9 @@ theorem continuousAt_poissonBracket_comp
     ((hdf1.mul hdg3).sub (hdf3.mul hdg1))
 
 /-- The exact challenge hypotheses imply the explicit first homological equation at every point
-of an interior resonant Kepler ellipse. -/
+of an interior resonant Kepler ellipse.
+@isnad1 id=eq.8h7v.s8.04eff9613944 from=translated src=- shape=27017660 vocab=ae64d65b
+-/
 theorem IsFirstIntegralFamily.firstHomologicalEquation_on_resonantKeplerOrbit
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F) (hfirstIntegral : IsFirstIntegralFamily δ F)
@@ -80,7 +84,9 @@ theorem IsFirstIntegralFamily.firstHomologicalEquation_on_resonantKeplerOrbit
       heccentricityOne hapoapsis)
 
 /-- The correction term in the resonant homological equation has the expected Poisson bracket as
-its time derivative. -/
+its time derivative.
+@isnad1 id=hasderiv.7h7v.s8.256092afd5b5 from=translated src=- shape=fcf1dc7a vocab=82a003c1
+-/
 theorem IsJointlyAnalytic.hasDerivAt_resonantCandidateCorrection
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F)
@@ -104,7 +110,9 @@ theorem IsJointlyAnalytic.hasDerivAt_resonantCandidateCorrection
     heccentricity heccentricityOne hcoefficient
 
 /-- The correction is periodic because it is a scalar observable evaluated on the periodic
-Kepler phase trajectory. -/
+Kepler phase trajectory.
+@isnad1 id=eq.3h5v.s6.3cc0023497d3 from=translated src=- shape=b6864faa vocab=e94a2026
+-/
 lemma resonantCandidateCorrection_periodic
     (F : ℝ → PhaseSpace → ℝ) {p q : ℕ} (hp : 0 < p)
     {eccentricity orientation : ℝ} (heccentricity : 0 ≤ eccentricity)
@@ -115,7 +123,9 @@ lemma resonantCandidateCorrection_periodic
   rw [show resonantOrbitPeriod p = 0 + resonantOrbitPeriod p by ring,
     orientedResonantKeplerPhasePoint_add_period hp heccentricity heccentricityOne]
 
-/-- The derivative term in the restricted homological equation is continuous in time. -/
+/-- The derivative term in the restricted homological equation is continuous in time.
+@isnad1 id=continuo.7h6v.s7.f5948de8ea62 from=translated src=- shape=5d438450 vocab=3ca41d5a
+-/
 theorem continuous_resonantCandidateCorrectionDerivative
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F)
@@ -146,7 +156,9 @@ theorem continuous_resonantCandidateCorrectionDerivative
       heccentricityOne).continuousAt
   exact continuousAt_poissonBracket_comp hcoefficient hhamiltonian horbit
 
-/-- The forcing term in the restricted homological equation is continuous in time. -/
+/-- The forcing term in the restricted homological equation is continuous in time.
+@isnad1 id=continuo.7h6v.s7.77cfba5c284c from=translated src=- shape=fbec64a0 vocab=0317dcf8
+-/
 theorem continuous_resonantCandidateForcing
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F)
@@ -181,7 +193,9 @@ theorem continuous_resonantCandidateForcing
 
 /-- Averaging the exact first homological equation along a resonant Kepler orbit forces the
 candidate's perturbative forcing to have zero period integral.  The two interval-integrability
-hypotheses are isolated here so that later analytic estimates can discharge them independently. -/
+hypotheses are isolated here so that later analytic estimates can discharge them independently.
+@isnad1 id=eq.10h6v.s8.8bd1bf43dbbd from=translated src=- shape=8f2c977b vocab=68d927e5
+-/
 theorem IsFirstIntegralFamily.integral_resonantCandidateForcing_eq_zero_of_intervalIntegrable
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F) (hfirstIntegral : IsFirstIntegralFamily δ F)
@@ -216,7 +230,9 @@ theorem IsFirstIntegralFamily.integral_resonantCandidateForcing_eq_zero_of_inter
       hfirstIntegral hp hq heccentricity heccentricityOne hapoapsis
 
 /-- Every candidate satisfying the exact analytic first-integral hypotheses has zero averaged
-first-order forcing on every interior resonant Kepler ellipse. -/
+first-order forcing on every interior resonant Kepler ellipse.
+@isnad1 id=eq.8h6v.s7.02074b3be057 from=translated src=- shape=dbefa798 vocab=8288414a
+-/
 theorem IsFirstIntegralFamily.integral_resonantCandidateForcing_eq_zero
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F) (hfirstIntegral : IsFirstIntegralFamily δ F)

@@ -21,6 +21,9 @@ open Complex MeasureTheory Set
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=eq.1h4v.s6.427c4e279e38 from=translated src=- shape=65f342fa vocab=b247a43a
+-/
 theorem cpow_prod_of_nonneg {ι : Type*} (t : Finset ι) (a : ι → ℝ)
     (ha : ∀ i ∈ t, 0 ≤ a i) (s : ℂ) :
     (((∏ i ∈ t, a i : ℝ) : ℂ) ^ s) =
@@ -35,6 +38,9 @@ theorem cpow_prod_of_nonneg {ι : Type*} (t : Finset ι) (a : ι → ℝ)
         Finset.prod_insert hi]
       simp_all
 
+/--
+@isnad1 id=integrab.2h2v.s7.d0793383398b from=translated src=- shape=798074b7 vocab=9ed9112e
+-/
 theorem integrableOn_cpow_mul_cexp_neg_mul_sq_Ioi
     {s : ℂ} (hs : 0 < s.re) {r : ℝ} (hr : 0 < r) :
     IntegrableOn
@@ -64,6 +70,9 @@ theorem integrableOn_cpow_mul_cexp_neg_mul_sq_Ioi
   rw [MellinConvergent] at hsquare
   simp_all
 
+/--
+@isnad1 id=eq.2h2v.s7.ecb9be85cd68 from=translated src=- shape=89db882b vocab=33321578
+-/
 theorem integral_cpow_mul_cexp_neg_mul_sq_Ioi
     {s : ℂ} (hs : 0 < s.re) {r : ℝ} (hr : 0 < r) :
     (∫ x : ℝ in Ioi 0,
@@ -81,6 +90,9 @@ theorem integral_cpow_mul_cexp_neg_mul_sq_Ioi
   simpa only [htwo, Complex.ofReal_inv, Complex.ofReal_ofNat,
     Complex.ofReal_pow, one_div, Real.rpow_two, mul_assoc] using hsq
 
+/--
+@isnad1 id=eq.2h2v.s7.5dc1c848c6ba from=translated src=- shape=f461e1e3 vocab=11ab8cbd
+-/
 theorem integral_complexPlaceGaussian
     {s : ℂ} (hs : 0 < s.re) {a : ℝ} (ha : 0 < a) :
     (∫ x : ℝ in Ioi 0,
@@ -107,6 +119,9 @@ theorem integral_complexPlaceGaussian
     2 * (Real.pi : ℂ) by simp]
   ring
 
+/--
+@isnad1 id=eq.2h3v.s8.9147358318f3 from=translated src=- shape=485231d6 vocab=940eae53
+-/
 theorem integral_pi_complexPlaceGaussian_eq_prod
     {ι : Type*} [Fintype ι] (a : ι → ℝ) (ha : ∀ i, 0 < a i)
     {s : ℂ} (hs : 0 < s.re) :
@@ -142,6 +157,9 @@ namespace NumberField.Odlyzko
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=eq.2h3v.s8.13aaf14ba321 from=translated src=- shape=dd42a4b6 vocab=e2fa4eaf
+-/
 theorem integral_totallyComplexGaussian_eq_prod
     {x : K} (hx : x ≠ 0) {s : ℂ} (hs : 0 < s.re) :
     (∫ q : InfinitePlace K → ℝ,
@@ -161,6 +179,9 @@ theorem integral_totallyComplexGaussian_eq_prod
 
 variable [IsTotallyComplex K]
 
+/--
+@isnad1 id=eq.0h3v.s7.d4c7caee00a3 from=translated src=- shape=bc113def vocab=4bcf48a6
+-/
 theorem prod_infinitePlace_sq_cpow_eq_absNorm_cpow
     (x : K) (s : ℂ) :
     (∏ w : InfinitePlace K, (((w x) ^ 2 : ℝ) : ℂ) ^ s) =
@@ -171,6 +192,9 @@ theorem prod_infinitePlace_sq_cpow_eq_absNorm_cpow
   congr 2
   simpa only [IsTotallyComplex.mult_eq] using InfinitePlace.prod_eq_abs_norm x
 
+/--
+@isnad1 id=eq.0h3v.s7.df319c37ab7e from=translated src=- shape=b506179a vocab=44c8f514
+-/
 theorem prod_complexPlaceGaussian_eq_absNorm
     (x : K) (s : ℂ) :
     (∏ w : InfinitePlace K,
@@ -191,6 +215,9 @@ theorem prod_complexPlaceGaussian_eq_absNorm
       rw [Finset.prod_mul_distrib]
     _ = _ := by simp
 
+/--
+@isnad1 id=eq.2h3v.s8.7448eb0bd169 from=translated src=- shape=78212b9c vocab=27b7fbc1
+-/
 theorem integral_totallyComplexGaussian_eq_absNorm
     {x : K} (hx : x ≠ 0) {s : ℂ} (hs : 0 < s.re) :
     (∫ q : InfinitePlace K → ℝ,
@@ -227,6 +254,9 @@ noncomputable def complexPlaceMellinGaussian
       Complex.exp (-(((2 * Real.pi * (w x) ^ 2 : ℝ) : ℂ) *
         (q w : ℂ) ^ 2))
 
+/--
+@isnad1 id=integrab.2h3v.s7.ad3166d3b003 from=translated src=- shape=16915d7f vocab=adc35b97
+-/
 theorem integrable_complexPlaceMellinGaussian
     {x : K} (hx : x ≠ 0) {s : ℂ} (hs : 0 < s.re) :
     Integrable (complexPlaceMellinGaussian K x s)
@@ -253,6 +283,9 @@ theorem integrable_complexPlaceMellinGaussian
 
 variable [IsTotallyComplex K]
 
+/--
+@isnad1 id=eq.0h2v.s6.91bc5cbda0a3 from=translated src=- shape=534d4bbd vocab=f00f428a
+-/
 theorem prod_infinitePlace_apply_unit_eq_one (u : (𝓞 K)ˣ) :
     ∏ w : InfinitePlace K, w (((u : 𝓞 K) : K)) = 1 := by
   classical
@@ -266,6 +299,9 @@ theorem prod_infinitePlace_apply_unit_eq_one (u : (𝓞 K)ˣ) :
       InfinitePlace.prod_eq_abs_norm (((u : 𝓞 K) : K))
   nlinarith
 
+/--
+@isnad1 id=eq.0h3v.s6.a0e4832aafe8 from=translated src=- shape=0f08c672 vocab=981c57c8
+-/
 theorem prod_infinitePlace_apply_unit_cpow_eq_one
     (u : (𝓞 K)ˣ) (s : ℂ) :
     ∏ w : InfinitePlace K,
@@ -277,6 +313,9 @@ theorem prod_infinitePlace_apply_unit_cpow_eq_one
   rw [prod_infinitePlace_apply_unit_eq_one K u]
   simp
 
+/--
+@isnad1 id=eq.1h5v.s7.a95fdf2d36c5 from=translated src=- shape=a9378e9b vocab=317ab823
+-/
 theorem complexPlaceMellinGaussian_unit_mul
     (u : (𝓞 K)ˣ) (x : K) (s : ℂ) (q : InfinitePlace K → ℝ)
     (hq : ∀ w, 0 ≤ q w) :
@@ -313,6 +352,9 @@ theorem complexPlaceMellinGaussian_unit_mul
       rw [prod_infinitePlace_apply_unit_cpow_eq_one K u (2 * s - 1),
         one_mul]
 
+/--
+@isnad1 id=eq.2h3v.s8.5b8c6ced06e0 from=translated src=- shape=48f169df vocab=0c870fd9
+-/
 theorem integral_complexPlaceMellinGaussian
     {x : K} (hx : x ≠ 0) {s : ℂ} (hs : 0 < s.re) :
     (∫ q : InfinitePlace K → ℝ,
@@ -322,6 +364,9 @@ theorem integral_complexPlaceMellinGaussian
         ((((|Algebra.norm ℚ x| : ℚ) : ℝ)) : ℂ) ^ (-s) := by
   exact integral_totallyComplexGaussian_eq_absNorm K hx hs
 
+/--
+@isnad1 id=eq.0h5v.s8.56b586f03bf9 from=translated src=- shape=4ed2130e vocab=424b30b4
+-/
 theorem complexPlaceMellinGaussian_fundamentalUnitForShift
     (z : {w : InfinitePlace K //
       w ≠ NumberField.Units.dirichletUnitTheorem.w₀} → ℤ)

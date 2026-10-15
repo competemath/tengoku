@@ -55,17 +55,23 @@ variable {R : Type*} [CommRing R]
 def qPochhammer (a : R⟦X⟧) (n : ℕ) : R⟦X⟧ :=
   ∏ k ∈ range n, (1 - a * X ^ k)
 
-/-- The empty finite q-Pochhammer product `(a; X)_0 = 1`. -/
+/-- The empty finite q-Pochhammer product `(a; X)_0 = 1`.
+@isnad1 id=eq.0h2v.s5.2f185c8877ff from=translated src=- shape=cee84e30 vocab=52eaaade
+-/
 @[simp]
 theorem qPochhammer_zero (a : R⟦X⟧) : qPochhammer a 0 = 1 := by
   simp [qPochhammer]
 
-/-- The recurrence `(a; X)_{n+1} = (a; X)_n * (1 - a X^n)`. -/
+/-- The recurrence `(a; X)_{n+1} = (a; X)_n * (1 - a X^n)`.
+@isnad1 id=eq.0h3v.s7.3089c3eb34c7 from=translated src=- shape=a2febd0b vocab=26c97ed6
+-/
 theorem qPochhammer_succ (a : R⟦X⟧) (n : ℕ) :
     qPochhammer a (n + 1) = qPochhammer a n * (1 - a * X ^ n) := by
   simp [qPochhammer, prod_range_succ]
 
-/-- The shift identity `(a; X)_{n+1} = (1 - a) * (aX; X)_n`. -/
+/-- The shift identity `(a; X)_{n+1} = (1 - a) * (aX; X)_n`.
+@isnad1 id=eq.0h3v.s6.c2651b6be8f2 from=translated src=- shape=d6f73708 vocab=df67ff2f
+-/
 theorem qPochhammer_succ_eq_one_sub_mul (a : R⟦X⟧) (n : ℕ) :
     qPochhammer a (n + 1) = (1 - a) * qPochhammer (a * X) n := by
   induction n with
@@ -78,13 +84,17 @@ section Stabilisation
 
 variable {R : Type*} [CommRing R]
 
-/-- For `d < n`, the `d`-th coefficient of `(a; X)_{n+1}` equals that of `(a; X)_n`. -/
+/-- For `d < n`, the `d`-th coefficient of `(a; X)_{n+1}` equals that of `(a; X)_n`.
+@isnad1 id=eq.1h4v.s8.ce1272c2fd9d from=translated src=- shape=ea73bae9 vocab=55eeee45
+-/
 theorem coeff_qPochhammer_succ (a : R⟦X⟧) {d n : ℕ} (hdn : d < n) :
     coeff d (qPochhammer a (n + 1)) = coeff d (qPochhammer a n) := by
   rw [qPochhammer_succ, mul_sub, mul_one, map_sub, ← mul_assoc,
     PowerSeries.coeff_mul_X_pow', ite_eq_right hdn.not_ge, sub_zero]
 
-/-- For `N ≥ M > d`, the `d`-th coefficient of `(a; X)_N` equals that of `(a; X)_M`. -/
+/-- For `N ≥ M > d`, the `d`-th coefficient of `(a; X)_N` equals that of `(a; X)_M`.
+@isnad1 id=eq.2h5v.s8.2ecd08ede89b from=translated src=- shape=c04869cb vocab=71a4f3f9
+-/
 theorem coeff_qPochhammer_eq_of_le (a : R⟦X⟧) {d M N : ℕ}
     (hM : d < M) (hN : M ≤ N) :
     coeff d (qPochhammer a N) = coeff d (qPochhammer a M) := by
@@ -101,7 +111,9 @@ section Infinite
 variable {R : Type*} [CommRing R] [TopologicalSpace R] [DiscreteTopology R]
 
 omit [DiscreteTopology R] in
-/-- The infinite product `∏_{k ≥ 0} (1 - a X^k)` is multipliable in `R⟦X⟧`. -/
+/-- The infinite product `∏_{k ≥ 0} (1 - a X^k)` is multipliable in `R⟦X⟧`.
+@isnad1 id=multipli.0h2v.s6.17ac7f2909b8 from=translated src=- shape=89a241c2 vocab=d5f9a264
+-/
 theorem multipliable_one_sub_mul_pow (a : R⟦X⟧) :
     Multipliable (fun k : ℕ => 1 - a * X ^ k) := by
   have hord : ∀ k : ℕ, (k : ℕ∞) ≤ (-(a * X ^ k) : R⟦X⟧).order := fun k =>
@@ -118,7 +130,9 @@ Well-defined in `R⟦X⟧` with the pi topology. -/
 def qPochhammerInf (a : R⟦X⟧) : R⟦X⟧ :=
   ∏' k : ℕ, (1 - a * X ^ k)
 
-/-- The `d`-th coefficient of `(a; X)_∞` equals the `d`-th coefficient of `(a; X)_{d+1}`. -/
+/-- The `d`-th coefficient of `(a; X)_∞` equals the `d`-th coefficient of `(a; X)_{d+1}`.
+@isnad1 id=eq.0h3v.s8.d6f4f78e6023 from=translated src=- shape=d8aed24e vocab=d87bf313
+-/
 theorem coeff_qPochhammerInf (a : R⟦X⟧) (d : ℕ) :
     coeff d (qPochhammerInf a) = coeff d (qPochhammer a (d + 1)) := by
   have h_limit : Filter.Tendsto (fun n => coeff d (qPochhammer a n)) Filter.atTop
@@ -129,18 +143,24 @@ theorem coeff_qPochhammerInf (a : R⟦X⟧) (d : ℕ) :
   filter_upwards [Filter.eventually_ge_atTop (d + 1)] with n hn
   exact (coeff_qPochhammer_eq_of_le a (Nat.lt_succ_self _) hn).symm
 
-/-- **Coefficient-wise definition.** -/
+/-- **Coefficient-wise definition.**
+@isnad1 id=eq.0h2v.s7.0f60bb31d5f9 from=translated src=- shape=ac0f6570 vocab=0f97c000
+-/
 theorem qPochhammerInf_eq_mk (a : R⟦X⟧) :
     qPochhammerInf a = mk fun d => coeff d (qPochhammer a (d + 1)) := by
   ext d; rw [coeff_mk, coeff_qPochhammerInf]
 
-/-- If the constant coefficient of `a` is zero, then that of `(a; X)_∞` is `1`. -/
+/-- If the constant coefficient of `a` is zero, then that of `(a; X)_∞` is `1`.
+@isnad1 id=eq.1h2v.s8.758858b9086c from=translated src=- shape=a076b76d vocab=7d29f136
+-/
 theorem coeff_zero_qPochhammerInf (a : R⟦X⟧) (ha : coeff 0 a = 0) :
     coeff 0 (qPochhammerInf a) = 1 := by
   rw [coeff_qPochhammerInf, qPochhammer_succ, qPochhammer_zero]
   simp [-coeff_zero_eq_constantCoeff, ha]
 
-/-- The recursion `(a; X)_∞ = (1 - a) * (aX; X)_∞`. -/
+/-- The recursion `(a; X)_∞ = (1 - a) * (aX; X)_∞`.
+@isnad1 id=eq.0h2v.s6.25d80be46cec from=translated src=- shape=db83ab4a vocab=079d326f
+-/
 theorem qPochhammerInf_eq_one_sub_mul (a : R⟦X⟧) :
     qPochhammerInf a = (1 - a) * qPochhammerInf (a * X) := by
   -- The shifted partial products converge to `(aX; X)_∞`.
@@ -159,7 +179,9 @@ theorem qPochhammerInf_eq_one_sub_mul (a : R⟦X⟧) :
   simp_rw [hsplit]
   exact tendsto_const_nhds.mul h_shift
 
-/-- `(a; X)_∞` is a unit in `R⟦X⟧` whenever `1 - coeff 0 a` is a unit in `R`. -/
+/-- `(a; X)_∞` is a unit in `R⟦X⟧` whenever `1 - coeff 0 a` is a unit in `R`.
+@isnad1 id=isunit.1h2v.s7.9c5bcd484548 from=translated src=- shape=8ff061e5 vocab=79f152c0
+-/
 theorem isUnit_qPochhammerInf (a : R⟦X⟧) (ha : IsUnit (1 - coeff 0 a : R)) :
     IsUnit (qPochhammerInf a) := by
   rw [PowerSeries.isUnit_iff_constantCoeff, ← coeff_zero_eq_constantCoeff_apply,
@@ -180,7 +202,9 @@ This is `scoped` deliberately: a *global* instance would silently equip Mathlib'
 library's decision to make. Consumers opt in with `open scoped QSeries.FormalPowerSeries`. -/
 scoped instance instTopologicalSpaceLaurentPolyComplex : TopologicalSpace A := ⊥
 
-/-- The topology on `LaurentPolynomial ℂ` from the scoped instance above is discrete. -/
+/-- The topology on `LaurentPolynomial ℂ` from the scoped instance above is discrete.
+@isnad1 id=discrete.0h0v.s2.696ac57f0075 from=translated src=- shape=87ceb31f vocab=7ea6be41
+-/
 scoped instance instDiscreteTopologyLaurentPolyComplex : DiscreteTopology A := ⟨rfl⟩
 
 local notation "PS" => (PowerSeries.C : A →+* A⟦X⟧)

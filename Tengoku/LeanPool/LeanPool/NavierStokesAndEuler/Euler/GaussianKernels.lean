@@ -35,6 +35,9 @@ instance (μ : ℝ) (v : ℝ≥0) : IsProbabilityMeasure (gaussianMeasure μ v) 
   rw [gaussianMeasure_eq]
   infer_instance
 
+/--
+@isnad1 id=eq.0h1v.s4.9e4a2b517f67 from=translated src=- shape=4ea98ba5 vocab=30bee120
+-/
 @[simp] theorem gaussianMeasure_zero_var (μ : ℝ) : gaussianMeasure μ 0 = Measure.dirac μ :=
   ite_eq_left rfl
 

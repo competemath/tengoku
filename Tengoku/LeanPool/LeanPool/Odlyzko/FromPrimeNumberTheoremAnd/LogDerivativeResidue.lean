@@ -20,6 +20,9 @@ open Complex Filter Topology Set Asymptotics
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=ex.2h3v.s7.175cbcd18d07 from=translated src=- shape=2217d5b5 vocab=61d4b49c
+-/
 theorem exists_analytic_logDeriv_remainder_of_meromorphicOrderAt
     {f : ℂ → ℂ} {p : ℂ} {n : ℤ}
     (hf : MeromorphicAt f p)

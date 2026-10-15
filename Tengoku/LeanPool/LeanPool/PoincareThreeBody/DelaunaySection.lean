@@ -32,22 +32,37 @@ noncomputable def eccentricityFromActions (action : ActionSpace) : ℝ :=
 def ProgradeEllipticActions : Set ActionSpace :=
   {action | 0 < action 1 ∧ action 1 < action 0}
 
+/--
+@isnad1 id=isopen.0h0v.s4.79d02562d406 from=translated src=- shape=25b03439 vocab=6e24905d
+-/
 lemma isOpen_progradeEllipticActions : IsOpen ProgradeEllipticActions := by
   exact (isOpen_lt continuous_const (continuous_apply 1)).inter
     (isOpen_lt (continuous_apply 1) (continuous_apply 0))
 
+/--
+@isnad1 id=le.0h1v.s3.aecf9189a246 from=translated src=- shape=b9369acb vocab=307402a0
+-/
 lemma eccentricityFromActions_nonneg (action : ActionSpace) :
     0 ≤ eccentricityFromActions action :=
   Real.sqrt_nonneg _
 
+/--
+@isnad1 id=lt.1h1v.s6.4be4934c1a81 from=translated src=- shape=161f542d vocab=11c05bce
+-/
 lemma ratio_actions_pos {action : ActionSpace} (haction : action ∈ ProgradeEllipticActions) :
     0 < action 1 / action 0 := by
   exact div_pos haction.1 (haction.1.trans haction.2)
 
+/--
+@isnad1 id=lt.1h1v.s6.b6fb670cabd0 from=translated src=- shape=ad1df185 vocab=11c05bce
+-/
 lemma ratio_actions_lt_one {action : ActionSpace} (haction : action ∈ ProgradeEllipticActions) :
     action 1 / action 0 < 1 := by
   exact (div_lt_one (haction.1.trans haction.2)).2 haction.2
 
+/--
+@isnad1 id=lt.1h1v.s4.d29e510ca46b from=translated src=- shape=00219549 vocab=3b920bd6
+-/
 lemma eccentricityFromActions_pos {action : ActionSpace}
     (haction : action ∈ ProgradeEllipticActions) :
     0 < eccentricityFromActions action := by
@@ -56,6 +71,9 @@ lemma eccentricityFromActions_pos {action : ActionSpace}
   have hratioOne := ratio_actions_lt_one haction
   exact Real.sqrt_pos.2 (by nlinarith)
 
+/--
+@isnad1 id=lt.1h1v.s4.c9cd38b2c53b from=translated src=- shape=3bba8081 vocab=3b920bd6
+-/
 lemma eccentricityFromActions_lt_one {action : ActionSpace}
     (haction : action ∈ ProgradeEllipticActions) :
     eccentricityFromActions action < 1 := by
@@ -63,6 +81,9 @@ lemma eccentricityFromActions_lt_one {action : ActionSpace}
   rw [Real.sqrt_lt' (by norm_num : (0 : ℝ) < 1)]
   nlinarith [sq_pos_of_pos (ratio_actions_pos haction)]
 
+/--
+@isnad1 id=eq.1h1v.s6.1147f5353a9a from=translated src=- shape=cb3b1e1b vocab=7da890af
+-/
 lemma eccentricityFromActions_sq {action : ActionSpace}
     (haction : action ∈ ProgradeEllipticActions) :
     eccentricityFromActions action ^ 2 = 1 - (action 1 / action 0) ^ 2 := by
@@ -73,7 +94,9 @@ lemma eccentricityFromActions_sq {action : ActionSpace}
   nlinarith
 
 /-- Reconstructed eccentricity varies analytically throughout the prograde elliptic action
-region. -/
+region.
+@isnad1 id=analytic.1h1v.s6.6eda85f97224 from=translated src=- shape=955414a7 vocab=624f1f63
+-/
 theorem analyticAt_eccentricityFromActions
     {action : ActionSpace} (haction : action ∈ ProgradeEllipticActions) :
     AnalyticAt ℝ eccentricityFromActions action := by
@@ -97,7 +120,9 @@ theorem analyticAt_eccentricityFromActions
     (f := fun candidate : ActionSpace ↦ 1 - (candidate 1 / candidate 0) ^ 2)
     hargument
 
-/-- Recovering eccentricity from the actions of an ellipse returns its original eccentricity. -/
+/-- Recovering eccentricity from the actions of an ellipse returns its original eccentricity.
+@isnad1 id=eq.3h2v.s5.c719207479bb from=translated src=- shape=d6b961e9 vocab=a8e6c194
+-/
 theorem eccentricityFromActions_angularActionFromEccentricity
     {firstAction eccentricity : ℝ} (hfirstAction : 0 < firstAction)
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
@@ -119,7 +144,9 @@ theorem eccentricityFromActions_angularActionFromEccentricity
     Real.sqrt_sq_eq_abs, abs_of_nonneg heccentricity]
 
 /-- Reconstructing eccentricity from a prograde action pair and then rebuilding the angular
-action returns the original pair. -/
+action returns the original pair.
+@isnad1 id=eq.1h1v.s6.febae885cee7 from=translated src=- shape=5f2cf7cd vocab=e4df233f
+-/
 theorem actions_from_eccentricityFromActions
     {action : ActionSpace} (haction : action ∈ ProgradeEllipticActions) :
     ![action 0,
@@ -138,7 +165,9 @@ theorem actions_from_eccentricityFromActions
     rw [hsqrt]
     field_simp [(haction.1.trans haction.2).ne']
 
-/-- Zero mean anomaly has zero eccentric anomaly throughout the elliptic range. -/
+/-- Zero mean anomaly has zero eccentric anomaly throughout the elliptic range.
+@isnad1 id=eq.2h1v.s5.72513c07564a from=translated src=- shape=517c8325 vocab=b0502f22
+-/
 lemma eccentricAnomaly_zero {eccentricity : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
     eccentricAnomaly eccentricity 0 = 0 := by
@@ -154,7 +183,9 @@ noncomputable def delaunayActionSection (action : ActionSpace) : PhaseSpace :=
     (inertialEllipseVelocity (action 0) eccentricity (1 / action 0 ^ 3) 0)
 
 /-- On the prograde elliptic region, the explicit section is the lifted Delaunay point with both
-angles zero. -/
+angles zero.
+@isnad1 id=eq.1h1v.s5.2e66b5c831b4 from=translated src=- shape=f7d7ae20 vocab=ffdd6a47
+-/
 theorem delaunayActionSection_eq_liftedDelaunayPhasePoint
     {action : ActionSpace} (haction : action ∈ ProgradeEllipticActions) :
     delaunayActionSection action =
@@ -168,7 +199,9 @@ theorem delaunayActionSection_eq_liftedDelaunayPhasePoint
   rw [hanomaly]
   simp [positionInRotatingFrame, positionMomentumPhasePoint]
 
-/-- The periapsis section realizes the prescribed action pair. -/
+/-- The periapsis section realizes the prescribed action pair.
+@isnad1 id=eq.1h1v.s4.d5d0e0ec6bd8 from=translated src=- shape=079d6835 vocab=c61bc4a0
+-/
 theorem cartesianDelaunayActions_delaunayActionSection
     {action : ActionSpace} (haction : action ∈ ProgradeEllipticActions) :
     cartesianDelaunayActions (delaunayActionSection action) = action := by
@@ -195,7 +228,9 @@ theorem cartesianDelaunayActions_delaunayActionSection
     rw [hsqrt]
     field_simp
 
-/-- The explicit periapsis section is analytic on the prograde elliptic action region. -/
+/-- The explicit periapsis section is analytic on the prograde elliptic action region.
+@isnad1 id=analytic.1h1v.s7.e35ec3d8bc00 from=translated src=- shape=3f7cbfc9 vocab=2f6feebf
+-/
 theorem analyticAt_delaunayActionSection
     {action : ActionSpace} (haction : action ∈ ProgradeEllipticActions) :
     AnalyticAt ℝ delaunayActionSection action := by
@@ -271,7 +306,9 @@ noncomputable def delaunayActionSectionAtAnomaly
         (1 / action 0 ^ 3) anomaly))
 
 /-- The fixed-eccentric-anomaly section is a lifted Delaunay point whose mean anomaly is obtained
-from Kepler's equation. -/
+from Kepler's equation.
+@isnad1 id=eq.1h3v.s5.25bbc5a54027 from=translated src=- shape=8f5fad6c vocab=d886c44a
+-/
 theorem delaunayActionSectionAtAnomaly_eq_liftedDelaunayPhasePoint
     {action : ActionSpace} (haction : action ∈ ProgradeEllipticActions)
     (anomaly periapsisAngle : ℝ) :
@@ -287,7 +324,9 @@ theorem delaunayActionSectionAtAnomaly_eq_liftedDelaunayPhasePoint
     liftedDelaunayPosition liftedDelaunayMomentum liftedDelaunayEccentricAnomaly
   rw [hinverse]
 
-/-- Every fixed-eccentric-anomaly section is a right inverse of the Cartesian action map. -/
+/-- Every fixed-eccentric-anomaly section is a right inverse of the Cartesian action map.
+@isnad1 id=eq.1h3v.s4.b2a2a880602c from=translated src=- shape=a4600e94 vocab=183394ac
+-/
 theorem cartesianDelaunayActions_delaunayActionSectionAtAnomaly
     {action : ActionSpace} (haction : action ∈ ProgradeEllipticActions)
     (anomaly periapsisAngle : ℝ) :
@@ -316,7 +355,9 @@ theorem cartesianDelaunayActions_delaunayActionSectionAtAnomaly
     field_simp
 
 /-- With anomaly and periapsis held fixed, the moving action section is analytic throughout the
-prograde elliptic action region. -/
+prograde elliptic action region.
+@isnad1 id=analytic.1h3v.s7.157cedb9595b from=translated src=- shape=e42ae849 vocab=cc68959f
+-/
 theorem analyticAt_delaunayActionSectionAtAnomaly
     {action : ActionSpace} (haction : action ∈ ProgradeEllipticActions)
     (anomaly periapsisAngle : ℝ) :
@@ -404,7 +445,9 @@ theorem analyticAt_delaunayActionSectionAtAnomaly
     exact (analyticAt_const.mul hmomentumX).add (analyticAt_const.mul hmomentumY)
 
 /-- Choosing the anomaly of a lifted point makes the moving action section pass through that
-point. -/
+point.
+@isnad1 id=eq.3h4v.s6.d1d344b03ac4 from=translated src=- shape=d6e85db1 vocab=39c7733f
+-/
 theorem delaunayActionSectionAtAnomaly_liftedDelaunayActions
     {firstAction eccentricity meanAnomaly periapsisAngle : ℝ}
     (hfirstAction : 0 < firstAction)
@@ -428,7 +471,9 @@ theorem delaunayActionSectionAtAnomaly_liftedDelaunayActions
   rw [heRecover, eccentricMeanAnomaly_eccentricAnomaly heccentricity.le]
 
 /-- The derivative of every moving action section is a linear right inverse of the derivative of
-the physical action map. -/
+the physical action map.
+@isnad1 id=eq.1h3v.s10.b7590043c259 from=translated src=- shape=e4e926b7 vocab=2a2f62ac
+-/
 theorem fderiv_cartesianDelaunayActions_comp_sectionAtAnomaly
     {action : ActionSpace} (haction : action ∈ ProgradeEllipticActions)
     (anomaly periapsisAngle : ℝ) :
@@ -470,7 +515,9 @@ noncomputable def leadingActionCoefficient
     (F : ℝ → PhaseSpace → ℝ) (action : ActionSpace) : ℝ :=
   F 0 (delaunayActionSection action)
 
-/-- On an interior prograde elliptic action, the leading action coefficient is analytic. -/
+/-- On an interior prograde elliptic action, the leading action coefficient is analytic.
+@isnad1 id=analytic.4h3v.s7.feb0846f4976 from=translated src=- shape=857a33e0 vocab=a3913779
+-/
 theorem IsJointlyAnalytic.analyticAt_leadingActionCoefficient
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F)
@@ -501,7 +548,9 @@ theorem IsJointlyAnalytic.analyticAt_leadingActionCoefficient
   exact hcandidate.comp (analyticAt_delaunayActionSection haction)
 
 /-- The action-section representative equals the leading candidate on every lifted point with the
-same prograde elliptic actions. -/
+same prograde elliptic actions.
+@isnad1 id=eq.7h5v.s7.5a13086a4234 from=translated src=- shape=8a59629f vocab=be1b6fe9
+-/
 theorem IsFirstIntegralFamily.leadingActionCoefficient_eq_liftedDelaunayPhasePoint
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F) (hfirstIntegral : IsFirstIntegralFamily δ F)
@@ -540,7 +589,9 @@ noncomputable def leadingActionDifferential
     fderiv ℝ (leadingActionCoefficient F) action (actionCoordinateVector 1)]
 
 /-- The Fréchet differential of the leading action coefficient is its represented Euclidean
-action covector. -/
+action covector.
+@isnad1 id=eq.0h2v.s8.dcc4e30cb6e3 from=translated src=- shape=4461e124 vocab=f5e0129b
+-/
 theorem fderiv_leadingActionCoefficient_eq_actionCovector
     (F : ℝ → PhaseSpace → ℝ) (action : ActionSpace) :
     fderiv ℝ (leadingActionCoefficient F) action =
@@ -558,7 +609,9 @@ theorem fderiv_leadingActionCoefficient_eq_actionCovector
   simp [actionCoordinateVector]
   ring
 
-/-- The represented leading differential varies continuously at every interior prograde action. -/
+/-- The represented leading differential varies continuously at every interior prograde action.
+@isnad1 id=continuo.4h3v.s7.280b6072a1b4 from=translated src=- shape=8295e801 vocab=aaec5c15
+-/
 theorem IsJointlyAnalytic.continuousAt_leadingActionDifferential
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F)
@@ -577,7 +630,9 @@ theorem IsJointlyAnalytic.continuousAt_leadingActionDifferential
   · exact continuousAt_clm_apply.mp hderivative (actionCoordinateVector 0)
   · exact continuousAt_clm_apply.mp hderivative (actionCoordinateVector 1)
 
-/-- The represented leading differential is itself analytic on the interior action region. -/
+/-- The represented leading differential is itself analytic on the interior action region.
+@isnad1 id=analytic.4h3v.s8.e0d641b11fbe from=translated src=- shape=ac1a0eb7 vocab=9a754b2b
+-/
 theorem IsJointlyAnalytic.analyticAt_leadingActionDifferential
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F)
@@ -607,7 +662,9 @@ noncomputable def leadingActionDifferentialAtEccentricity
     (fixedEccentricityAction eccentricity firstAction.1.1)
 
 /-- Along every fixed noncircular eccentricity family inside the unit primary orbit, the leading
-action differential is continuous in `L`. -/
+action differential is continuous in `L`.
+@isnad1 id=continuo.4h3v.s7.2a4a72f4a42a from=translated src=- shape=f45bb831 vocab=45052d96
+-/
 theorem IsJointlyAnalytic.continuous_leadingActionDifferentialAtEccentricity
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ} (hδ : 0 < δ)
     (hanalytic : IsJointlyAnalytic δ F)

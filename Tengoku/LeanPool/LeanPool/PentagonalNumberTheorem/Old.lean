@@ -31,7 +31,9 @@ open scoped PowerSeries.WithPiTopology
 /-- Pentagonal numbers, including negative inputs -/
 def pentagonal'' (k : ℤ) := k * (3 * k - 1) / 2
 
-/-- Because integer division is hard to work with, we often multiply it by two -/
+/-- Because integer division is hard to work with, we often multiply it by two
+@isnad1 id=eq.0h1v.s5.d4f40c5ce56d from=translated src=- shape=1d2b7e3a vocab=cad374a0
+-/
 theorem two_pentagonal'' (k : ℤ) : 2 * pentagonal'' k = k * (3 * k - 1) := by
   unfold pentagonal''
   refine Int.two_mul_ediv_two_of_even ?_
@@ -43,7 +45,9 @@ theorem two_pentagonal'' (k : ℤ) : 2 * pentagonal'' k = k * (3 * k - 1) := by
     refine Odd.mul ?_ h
     decide
 
-/-- Nonnegativity -/
+/-- Nonnegativity
+@isnad1 id=le.0h1v.s3.944085744963 from=translated src=- shape=8a62b088 vocab=0a3c2b20
+-/
 theorem pentagonal_nonneg'' (k : ℤ) : 0 ≤ pentagonal'' k := by
   suffices 0 ≤ 2 * pentagonal'' k by simpa
   rw [two_pentagonal'']
@@ -51,6 +55,9 @@ theorem pentagonal_nonneg'' (k : ℤ) : 0 ≤ pentagonal'' k := by
   · exact mul_nonneg h.le (by linarith)
   · exact mul_nonneg_of_nonpos_of_nonpos h (by linarith)
 
+/--
+@isnad1 id=eq.1h2v.s6.cc0731430ae4 from=translated src=- shape=55b184f6 vocab=0e4a4b68
+-/
 theorem two_pentagonal_inj'' {x y : ℤ} (h : x * (3 * x - 1) = y * (3 * y - 1)) : x = y := by
   simp_rw [mul_sub_one] at h
   rw [sub_eq_sub_iff_sub_eq_sub, mul_left_comm x, mul_left_comm y, ← mul_sub,
@@ -60,7 +67,9 @@ theorem two_pentagonal_inj'' {x y : ℤ} (h : x * (3 * x - 1) = y * (3 * y - 1))
     simp [← h'] at h
   · exact eq_of_sub_eq_zero h
 
-/-- There are no repeated pentagonal number -/
+/-- There are no repeated pentagonal number
+@isnad1 id=injectiv.0h0v.s2.b696e80a3192 from=translated src=- shape=e3d48bcb vocab=e94030ad
+-/
 theorem pentagonal_injective'' : Function.Injective pentagonal'' := by
   intro a b h
   have : a * (3 * a - 1) = b * (3 * b - 1) := by
@@ -73,6 +82,9 @@ We can use $1 + 24n$ to determine whether such inverse exists.
 -/
 def pentagonalDelta (n : ℤ) := 1 + 24 * n
 
+/--
+@isnad1 id=eq.0h1v.s5.81a05c8e265d from=translated src=- shape=2cf31057 vocab=18298167
+-/
 theorem pentagonalDelta_pentagonal (k : ℤ) :
     pentagonalDelta (pentagonal'' k) = (6 * k - 1) ^ 2 := by
   unfold pentagonalDelta
@@ -92,7 +104,9 @@ def phiCoeff (n : ℤ) : ℤ :=
   else
     0
 
-/-- The coefficients are exactly $(-1)^k$ at pentagonal numbers. -/
+/-- The coefficients are exactly $(-1)^k$ at pentagonal numbers.
+@isnad1 id=eq.0h1v.s3.761494ead135 from=translated src=- shape=176da496 vocab=ba29482e
+-/
 theorem phiCoeff_pentagonal (k : ℤ) : phiCoeff (pentagonal'' k) = k.negOnePow := by
   rw [phiCoeff, pentagonalDelta_pentagonal]
   have hsquare : IsSquare ((6 * k - 1) ^ 2) := IsSquare.sq _
@@ -106,7 +120,9 @@ theorem phiCoeff_pentagonal (k : ℤ) : phiCoeff (pentagonal'' k) = k.negOnePow 
     rw [show 1 + (1 - 6 * k) = 2 + 6 * (-k) by ring]
     simp [-mul_neg]
 
-/-- A coefficient is zero iff and only if it is not a pentagonal number. -/
+/-- A coefficient is zero iff and only if it is not a pentagonal number.
+@isnad1 id=iff.0h1v.s4.27440181e4f6 from=translated src=- shape=307c98ab vocab=201deb1b
+-/
 theorem phiCoeff_eq_zero_iff (n : ℤ) : phiCoeff n = 0 ↔ n ∉ Set.range pentagonal'' := by
   rw [phiCoeff]
   constructor
@@ -158,7 +174,9 @@ theorem phiCoeff_eq_zero_iff (n : ℤ) : phiCoeff n = 0 ↔ n ∉ Set.range pent
 /-- $\phi(x)$ is constructed using the coefficients defined above. -/
 def phi : PowerSeries ℤ := PowerSeries.mk (phiCoeff ·)
 
-/-- The second definition of $\phi(x)$, summing over terms with pentagonal exponents directly. -/
+/-- The second definition of $\phi(x)$, summing over terms with pentagonal exponents directly.
+@isnad1 id=hassum.0h0v.s6.adeb8199f42e from=translated src=- shape=0d1995d0 vocab=3ecb53ee
+-/
 theorem hasSum_phi :
     HasSum (fun k ↦ PowerSeries.monomial (pentagonal'' k).toNat (k.negOnePow : ℤ)) phi := by
   obtain h := PowerSeries.hasSum_of_monomials_self phi
@@ -193,6 +211,9 @@ theorem hasSum_phi :
 namespace List
 variable {α : Type*}
 
+/--
+@isnad1 id=eq.0h5v.s5.a54e80de871d from=translated src=- shape=65dc7d87 vocab=c13339f0
+-/
 theorem zipIdx_set {l : List α} {n k : Nat} {a : α} :
     zipIdx (l.set n a) k = (zipIdx l k).set n (a, n + k) := match l with
   | [] => by simp
@@ -203,6 +224,9 @@ theorem zipIdx_set {l : List α} {n k : Nat} {a : α} :
       have h : n + (k + 1) = n + 1 + k := by grind
       simp [zipIdx_set, h]
 
+/--
+@isnad1 id=eq.0h4v.s4.f89427e86846 from=translated src=- shape=099b1d9a vocab=915ebb95
+-/
 theorem zipIdx_take {l : List α} {n k : Nat} :
     zipIdx (l.take n) k = (zipIdx l k).take n := match l with
   | [] => by simp
@@ -211,6 +235,9 @@ theorem zipIdx_take {l : List α} {n k : Nat} :
     | 0 => by simp
     | n + 1 => by simp [zipIdx_take]
 
+/--
+@isnad1 id=eq.0h4v.s5.b3ee340ac169 from=translated src=- shape=e3176afb vocab=13e90452
+-/
 theorem zipIdx_drop {l : List α} {n k : Nat} :
     zipIdx (l.drop n) (k + n) = (zipIdx l k).drop n := match l with
   | [] => by simp
@@ -226,10 +253,16 @@ def lengthWhile (p : α → Prop) [DecidablePred p] : List α → ℕ
 | [] => 0
 | x :: xs => if p x then xs.lengthWhile p + 1 else 0
 
+/--
+@isnad1 id=eq.0h2v.s4.b7fef890b67d from=translated src=- shape=8fa3d1e1 vocab=27bc16ca
+-/
 @[simp]
 theorem lengthWhile_nil (p : α → Prop) [DecidablePred p] :
     [].lengthWhile p = 0 := rfl
 
+/--
+@isnad1 id=le.0h3v.s4.3b6276bdb174 from=translated src=- shape=43d66177 vocab=bc0ac9aa
+-/
 theorem lengthWhile_le_length (p : α → Prop) [DecidablePred p] (l : List α) :
     l.lengthWhile p ≤ l.length := match l with
   | [] => by simp
@@ -239,6 +272,9 @@ theorem lengthWhile_le_length (p : α → Prop) [DecidablePred p] (l : List α) 
     · simpa [h] using lengthWhile_le_length p xs
     · simp [h]
 
+/--
+@isnad1 id=iff.0h3v.s4.6779b6f33ecd from=translated src=- shape=487926ba vocab=064faba8
+-/
 theorem lengthWhile_eq_length_iff {p : α → Prop} [DecidablePred p] {l : List α} :
     l.lengthWhile p = l.length ↔ l.Forall p := match l with
 | [] => by simp
@@ -248,6 +284,9 @@ theorem lengthWhile_eq_length_iff {p : α → Prop} [DecidablePred p] {l : List 
   · simpa [h] using lengthWhile_eq_length_iff
   · simp [h]
 
+/--
+@isnad1 id=var.1h4v.s5.502eebd52c75 from=translated src=- shape=4d416de7 vocab=7ac4a9ff
+-/
 theorem pred_of_lt_lengthWhile (p : α → Prop) [DecidablePred p] {l : List α}
     {i : ℕ} (h : i < l.lengthWhile p) : p (l[i]'(h.trans_le (l.lengthWhile_le_length p))) :=
   match l with
@@ -267,6 +306,9 @@ theorem pred_of_lt_lengthWhile (p : α → Prop) [DecidablePred p] {l : List α}
       simp only [getElem_cons_succ]
       apply pred_of_lt_lengthWhile p h
 
+/--
+@isnad1 id=iff.1h4v.s6.d3ba57d5c4b8 from=translated src=- shape=91af3c9b vocab=18cdea57
+-/
 theorem lengthWhile_eq_iff_of_lt_length
     {p : α → Prop} [DecidablePred p] {l : List α} {a : ℕ} (ha : a < l.length) :
     l.lengthWhile p = a ↔ (∀ i, (h : i < a) → p (l[i])) ∧ (¬ p l[a]) := match l with
@@ -296,6 +338,9 @@ theorem lengthWhile_eq_iff_of_lt_length
       specialize hi 0 (by grind)
       simp [h] at hi
 
+/--
+@isnad1 id=le.0h4v.s5.598ea77cc25e from=translated src=- shape=ca6d2f0a vocab=8d785442
+-/
 theorem lengthWhile_mono
     (p : α → Prop) [DecidablePred p] (l r : List α) :
     l.lengthWhile p ≤ (l ++ r).lengthWhile p := match l with
@@ -304,6 +349,9 @@ theorem lengthWhile_mono
     rw [cons_append, lengthWhile, lengthWhile]
     split <;> simp [lengthWhile_mono]
 
+/--
+@isnad1 id=le.2h5v.s6.7cd52dd72fad from=translated src=- shape=3d03b206 vocab=51b39a28
+-/
 theorem lengthWhile_set
     (p : α → Prop) [DecidablePred p] (l : List α) {i : ℕ} (hi : i < l.length)
     (hp : ¬ p l[i]) (x : α) :
@@ -325,6 +373,9 @@ def updateLast (l : List α) (f : α → α) : List α :=
   | [] => []
   | x :: xs => (x :: xs).set ((x :: xs).length - 1) (f ((x :: xs).getLast (by simp)))
 
+/--
+@isnad1 id=eq.0h2v.s3.fda693bb8bbc from=translated src=- shape=33ad6b96 vocab=7d47de57
+-/
 @[simp]
 theorem updateLast_id (l : List α) : l.updateLast id = l :=
   match l with
@@ -332,6 +383,9 @@ theorem updateLast_id (l : List α) : l.updateLast id = l :=
   | x :: xs => by
     simp [updateLast, List.getLast_eq_getElem]
 
+/--
+@isnad1 id=eq.2h3v.s5.b03be5e39110 from=translated src=- shape=2d8638b4 vocab=ab9f2b25
+-/
 theorem updateLast_eq_self (l : List α) (f : α → α)
     (hl : l ≠ []) (h : f (l.getLast hl) = l.getLast hl) :
     l.updateLast f = l :=
@@ -343,9 +397,15 @@ theorem updateLast_eq_self (l : List α) (f : α → α)
     rw [getLast_eq_getElem]
     simp
 
+/--
+@isnad1 id=eq.0h2v.s4.a8211b413822 from=translated src=- shape=636ad43f vocab=34a8674d
+-/
 @[simp]
 theorem updateLast_nil (f : α → α) : [].updateLast f = [] := rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.9f9f664e9ea1 from=translated src=- shape=6e3a0306 vocab=6eadf939
+-/
 @[simp]
 theorem updateLast_eq (l : List α) (f : α → α) (h : l ≠ []) :
     l.updateLast f = l.set (l.length - 1) (f (l.getLast h)) :=
@@ -353,6 +413,9 @@ theorem updateLast_eq (l : List α) (f : α → α) (h : l ≠ []) :
   | [] => by simp [updateLast]
   | x :: xs => by simp [updateLast]
 
+/--
+@isnad1 id=iff.0h3v.s4.068beb3277cf from=translated src=- shape=84692495 vocab=34a8674d
+-/
 @[simp]
 theorem updateLast_eq_nil_iff (l : List α) (f : α → α) :
     l.updateLast f = [] ↔ l = [] := by
@@ -362,11 +425,17 @@ theorem updateLast_eq_nil_iff (l : List α) (f : α → α) :
     simp [h]
   · simp_all
 
+/--
+@isnad1 id=eq.1h3v.s4.8e67c1d62f34 from=translated src=- shape=452ac369 vocab=2010802e
+-/
 theorem getLast_updateLast (l : List α) (f : α → α) (h : l ≠ []) :
     (l.updateLast f).getLast ((List.updateLast_eq_nil_iff _ _).ne.mpr h) = f (l.getLast h) := by
   rw [List.getLast_eq_getElem]
   simp [h]
 
+/--
+@isnad1 id=eq.0h3v.s4.7c25436c522c from=translated src=- shape=d4fcbcfe vocab=5596ab65
+-/
 @[simp]
 theorem length_updateLast (l : List α) (f : α → α) :
     (l.updateLast f).length = l.length :=
@@ -374,6 +443,9 @@ theorem length_updateLast (l : List α) (f : α → α) :
   | [] => by simp
   | x :: xs => by simp
 
+/--
+@isnad1 id=eq.0h4v.s5.d7dc05feea1b from=translated src=- shape=593f0f00 vocab=056e5d08
+-/
 @[simp]
 theorem updateLast_updateLast (l : List α) (f g : α → α) :
     (l.updateLast f).updateLast g = l.updateLast (g ∘ f) :=
@@ -391,6 +463,9 @@ theorem updateLast_updateLast (l : List α) (f g : α → α) :
       simp_rw [List.getLast_eq_getElem]
       simp
 
+/--
+@isnad1 id=eq.1h4v.s6.8049024aba2c from=translated src=- shape=c25a34ba vocab=fc7079ad
+-/
 theorem getElem_updateLast (l : List α) (f : α → α)
     {i : ℕ} (h : i + 1 < l.length) :
     (l.updateLast f)[i]'(by simp; grind) = l[i] :=
@@ -429,7 +504,9 @@ structure FerrersDiagram (n : ℕ) where
 namespace FerrersDiagram
 variable {n : ℕ}
 
-/-- There can't be more parts than `n` -/
+/-- There can't be more parts than `n`
+@isnad1 id=le.0h2v.s3.87ae55c80fb4 from=translated src=- shape=a3cbe176 vocab=12e9dbdb
+-/
 theorem length_delta_le_n (x : FerrersDiagram n) : x.delta.length ≤ n := by
   conv =>
     right
@@ -444,13 +521,17 @@ theorem length_delta_le_n (x : FerrersDiagram n) : x.delta.length ≤ n := by
   simp [ha1]
 
 /-- The parts are not empty for non-zero `n`. We will discuss mostly with this condition,
-leaving the `n = 0` case a special one for later. -/
+leaving the `n = 0` case a special one for later.
+@isnad1 id=ne.1h2v.s4.e371231bbf00 from=translated src=- shape=c049899f vocab=c2a2e393
+-/
 theorem delta_ne_nil (hn : 0 < n) (x : FerrersDiagram n) : x.delta ≠ [] := by
   contrapose! hn
   simp [← x.delta_sum, hn]
 
 /-- All parts are not greater than `n`. Since the last element of `delta` equals to the
-smallest part, it is not greater either. -/
+smallest part, it is not greater either.
+@isnad1 id=le.1h2v.s4.20d22bb14ee1 from=translated src=- shape=c159f554 vocab=c91235c3
+-/
 theorem getLast_delta_le_n (hn : 0 < n) (x : FerrersDiagram n) :
     x.delta.getLast (x.delta_ne_nil hn) ≤ n := by
   conv => right; rw [← x.delta_sum]
@@ -555,12 +636,17 @@ def takeDiag (x : FerrersDiagram n) (i : ℕ) (hi : i < x.delta.length)
       rw [← x.delta_sum]
     simp
 
+/--
+@isnad1 id=ne.2h3v.s6.c296134850a7 from=translated src=- shape=10d46f17 vocab=d2d46a49
+-/
 theorem takeDiag_ne_nil (x : FerrersDiagram n) (i : ℕ) (hi : i < x.delta.length)
     (h : 1 < x.delta[i]) : (x.takeDiag i hi h).delta ≠ [] := by
   unfold takeDiag
   simpa using List.length_pos_iff.mp (Nat.zero_lt_of_lt hi)
 
-/-- `takeDiag` preserves the last part as long as we didn't touch it. -/
+/-- `takeDiag` preserves the last part as long as we didn't touch it.
+@isnad1 id=eq.2h3v.s6.9bbdc860670c from=translated src=- shape=3b713ed8 vocab=d9aee73e
+-/
 theorem getLast_takeDiag (x : FerrersDiagram n) (i : ℕ) (hi : i < x.delta.length - 1)
     (h : 1 < x.delta[i]) :
     (x.takeDiag i (Nat.lt_of_lt_of_le hi (by simp)) h).delta.getLast
@@ -575,7 +661,9 @@ theorem getLast_takeDiag (x : FerrersDiagram n) (i : ℕ) (hi : i < x.delta.leng
     (by simpa using Nat.zero_lt_of_lt (Nat.lt_of_lt_of_le hi (by simp))), List.getElem_set]
   simp [hi.ne]
 
-/-- `takeDiag` make the last part smaller by one if we took one from every part -/
+/-- `takeDiag` make the last part smaller by one if we took one from every part
+@isnad1 id=eq.3h3v.s6.310fe735986a from=translated src=- shape=deb7393f vocab=eaaeba1a
+-/
 theorem getLast_takeDiag' (hn : 0 < n) (x : FerrersDiagram n) (i : ℕ) (hi : i = x.delta.length - 1)
     (h : 1 < x.delta[i]'(by simpa [hi] using List.length_pos_iff.mpr (x.delta_ne_nil hn))) :
     (x.takeDiag i (by simpa [hi] using List.length_pos_iff.mpr (x.delta_ne_nil hn)) h).delta.getLast
@@ -627,13 +715,17 @@ def putLast (hn : 0 < n) (x : FerrersDiagram n) (i : ℕ)
       simp
     · ring
 
-/-- `putLast` updates the last part. -/
+/-- `putLast` updates the last part.
+@isnad1 id=eq.2h3v.s6.fcf04bdda000 from=translated src=- shape=9f3da41a vocab=4fb450f2
+-/
 theorem getLast_putLast (hn : 0 < n) (x : FerrersDiagram n) (i : ℕ)
     (hi : (i + 1) < x.delta.getLast (x.delta_ne_nil hn)) :
     (x.putLast hn i hi).delta.getLast (delta_ne_nil (by simp) _) = i + 1 := by
   simp [putLast]
 
-/-- `putLast` increases or preserves `diagSize`. -/
+/-- `putLast` increases or preserves `diagSize`.
+@isnad1 id=le.3h3v.s6.aab6c3f061cc from=translated src=- shape=63f8e58b vocab=409e151f
+-/
 theorem diagSize_putLast (hn : 0 < n) (x : FerrersDiagram n) (i : ℕ)
     (hi : (i + 1) < x.delta.getLast (x.delta_ne_nil hn))
     (hlast : 1 < x.delta.getLast (x.delta_ne_nil hn)) :
@@ -654,16 +746,25 @@ instance (hn : 0 < n) (x : FerrersDiagram n) : Decidable (x.IsToDown hn) := by
   unfold IsToDown
   infer_instance
 
+/--
+@isnad1 id=lt.2h2v.s5.b63e87c3d2de from=translated src=- shape=9f3d5f93 vocab=8584e5a8
+-/
 theorem diagSize_of_isToDown (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : x.IsToDown hn) : x.diagSize + 1 < n := by
   apply lt_of_lt_of_le hdown
   apply x.getLast_delta_le_n hn
 
+/--
+@isnad1 id=eq.2h2v.s6.5c11a9ba337f from=translated src=- shape=bea501b2 vocab=a5382535
+-/
 theorem diagSize_of_isToDown' (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : x.IsToDown hn) :
     n = n - (x.diagSize + 1) + (x.diagSize + 1) :=
   (Nat.sub_add_cancel (x.diagSize_of_isToDown hn hdown).le).symm
 
+/--
+@isnad1 id=lt.2h2v.s4.894f0620e7f3 from=translated src=- shape=d5d85db9 vocab=112b17c1
+-/
 theorem diagSize_lt_length (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : x.IsToDown hn) : x.diagSize < x.delta.length := by
   unfold IsToDown at hdown
@@ -677,6 +778,9 @@ theorem diagSize_lt_length (hn : 0 < n) (x : FerrersDiagram n)
     apply List.getLast_mem
   simp [hxlast] at hdown
 
+/--
+@isnad1 id=lt.2h2v.s5.9b3bd542609f from=translated src=- shape=1a5859ea vocab=76e798f7
+-/
 theorem delta_diagSize (hn : 0 < n) (x : FerrersDiagram n) (hdown : x.IsToDown hn) :
     1 < x.delta[x.diagSize]'(x.diagSize_lt_length hn hdown) := by
   by_contra!
@@ -692,6 +796,9 @@ def takeDiag' (hn : 0 < n) (x : FerrersDiagram n) (hdown : x.IsToDown hn) :
     FerrersDiagram (n - (x.diagSize + 1)) :=
   x.takeDiag x.diagSize (x.diagSize_lt_length hn hdown) (x.delta_diagSize hn hdown)
 
+/--
+@isnad1 id=lt.3h2v.s6.2af41f627fa7 from=translated src=- shape=4afbc529 vocab=c0e39cde
+-/
 theorem diagSize_add_one_lt (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : x.IsToDown hn)
     (hnegpen : ¬ x.IsNegPentagonal hn) :
@@ -729,6 +836,9 @@ def down (hn : 0 < n) (x : FerrersDiagram n)
   rw [x.diagSize_of_isToDown' hn hdown]
   exact lastPut
 
+/--
+@isnad1 id=eq.3h2v.s5.3842e0c6017c from=translated src=- shape=4fc8693b vocab=db82f39a
+-/
 theorem delta_down (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : x.IsToDown hn)
     (hnegpen : ¬ x.IsNegPentagonal hn) :
@@ -744,12 +854,18 @@ theorem delta_down (hn : 0 < n) (x : FerrersDiagram n)
     · simp
   simp [putLast, takeDiag', takeDiag]
 
+/--
+@isnad1 id=eq.3h2v.s5.ccb3b2789591 from=translated src=- shape=a37f5f1b vocab=a5644d20
+-/
 theorem getLast_down (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : x.IsToDown hn)
     (hnegpen : ¬ x.IsNegPentagonal hn) :
     (x.down hn hdown hnegpen).delta.getLast (delta_ne_nil hn _) = x.diagSize + 1 := by
   simp [x.delta_down hn hdown hnegpen]
 
+/--
+@isnad1 id=eq.3h2v.s5.0c91b7256012 from=translated src=- shape=36b6d9f6 vocab=31ea853f
+-/
 theorem length_down (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : x.IsToDown hn)
     (hnegpen : ¬ x.IsNegPentagonal hn) :
@@ -762,7 +878,9 @@ private theorem pred_cast (p : (n : ℕ) → (0 < n) → (FerrersDiagram n) → 
     p n hn (cast (congrArg _ h) x) ↔ p m (h ▸ hn) x := by
   grind
 
-/-- Barring pentagonal configuration, doing `down` will make it illegal to `down`. -/
+/-- Barring pentagonal configuration, doing `down` will make it illegal to `down`.
+@isnad1 id=not.3h2v.s5.2fbe017834c9 from=translated src=- shape=382307c0 vocab=1467884e
+-/
 theorem down_notToDown (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : x.IsToDown hn)
     (hnegpen : ¬ x.IsNegPentagonal hn) :
@@ -780,7 +898,9 @@ theorem down_notToDown (hn : 0 < n) (x : FerrersDiagram n)
   · exact x.diagSize_add_one_lt hn hdown hnegpen
   · exact lt_of_le_of_lt (by simp) (x.diagSize_add_one_lt hn hdown hnegpen)
 
-/-- Non-pentagonal configuration will not be positive-pentagonal after `down`. -/
+/-- Non-pentagonal configuration will not be positive-pentagonal after `down`.
+@isnad1 id=not.3h2v.s5.68b1aac404b8 from=translated src=- shape=afa42785 vocab=903846f3
+-/
 theorem down_notPosPentagonal (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : x.IsToDown hn)
     (hnegpen : ¬ x.IsNegPentagonal hn) :
@@ -793,7 +913,9 @@ theorem down_notPosPentagonal (hn : 0 < n) (x : FerrersDiagram n)
   obtain hlt := x.diagSize_lt_length hn hdown
   simp_all
 
-/-- Non-pentagonal configuration will not be negative-pentagonal after `down`. -/
+/-- Non-pentagonal configuration will not be negative-pentagonal after `down`.
+@isnad1 id=not.3h2v.s5.4bcf79ac4f40 from=translated src=- shape=5754dc72 vocab=1467884e
+-/
 theorem down_notNegPentagonal (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : x.IsToDown hn)
     (hnegpen : ¬ x.IsNegPentagonal hn) :
@@ -871,6 +993,9 @@ def takeLast (hn : 0 < n) (x : FerrersDiagram n) :
       simp
     simp_all
 
+/--
+@isnad1 id=eq.1h2v.s5.ecf5f2736b0a from=translated src=- shape=326ba4c6 vocab=f6503fe1
+-/
 theorem length_takeLast (hn : 0 < n) (x : FerrersDiagram n) :
     (x.takeLast hn).delta.length = x.delta.length - 1 := by
   simp [takeLast]
@@ -902,6 +1027,9 @@ def putDiag (x : FerrersDiagram n) (i : ℕ) (hi : i < x.delta.length)
       rw [← x.delta_sum]
     simp
 
+/--
+@isnad1 id=eq.1h2v.s6.387e9e700e6f from=translated src=- shape=e1d75a35 vocab=b605a3b9
+-/
 theorem aux_up_size (hn : 0 < n) (x : FerrersDiagram n) :
     n - x.delta.getLast (x.delta_ne_nil hn) + (x.delta.getLast (x.delta_ne_nil hn) - 1 + 1) =
     n := by
@@ -911,6 +1039,9 @@ theorem aux_up_size (hn : 0 < n) (x : FerrersDiagram n) :
     simp
   ), Nat.sub_add_cancel (getLast_delta_le_n hn x)]
 
+/--
+@isnad1 id=lt.3h2v.s5.906e9600e74b from=translated src=- shape=48eec347 vocab=7b1ee792
+-/
 theorem getLast_lt_of_notToDown (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : ¬ x.IsToDown hn) (hpospen : ¬ x.IsPosPentagonal hn) :
     x.delta.getLast (x.delta_ne_nil hn) < x.delta.length := by
@@ -942,6 +1073,9 @@ theorem getLast_lt_of_notToDown (hn : 0 < n) (x : FerrersDiagram n)
   obtain hwhat := h.trans_lt hlt
   simp at hwhat
 
+/--
+@isnad1 id=lt.3h2v.s5.217dee5e5baa from=translated src=- shape=734221e6 vocab=bb320596
+-/
 theorem getLast_lt_of_notToDown' (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : ¬ x.IsToDown hn) (hpospen : ¬ x.IsPosPentagonal hn) :
     x.delta.getLast (x.delta_ne_nil hn) - 1 <
@@ -961,6 +1095,9 @@ def up (hn : 0 < n) (x : FerrersDiagram n)
   rw [x.aux_up_size hn] at diagPut
   exact diagPut
 
+/--
+@isnad1 id=eq.3h2v.s5.195ab9eb2305 from=translated src=- shape=ee20fadd vocab=d077fd1d
+-/
 theorem delta_up (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : ¬ x.IsToDown hn)
     (hpospen : ¬ x.IsPosPentagonal hn) :
@@ -978,6 +1115,9 @@ theorem delta_up (hn : 0 < n) (x : FerrersDiagram n)
   change putDiagFun (takeLastFun x.delta (x.delta_ne_nil hn)) _ _ = _
   rfl
 
+/--
+@isnad1 id=lt.3h2v.s5.f6edcf38cc4f from=translated src=- shape=bc86bccb vocab=205ee82c
+-/
 theorem one_lt_length (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : ¬ x.IsToDown hn)
     (hpospen : ¬ x.IsPosPentagonal hn) : 1 < x.delta.length := by
@@ -998,6 +1138,9 @@ theorem one_lt_length (hn : 0 < n) (x : FerrersDiagram n)
   have hdiag2 : 2 ≤ x.diagSize + 1 := ha2.trans hdiag
   simp [diagSize, ha, List.lengthWhile, ha1] at hdiag2
 
+/--
+@isnad1 id=eq.3h2v.s5.f453f91f55ac from=translated src=- shape=f81ab5c1 vocab=4e5615d9
+-/
 theorem diagSize_up (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : ¬ x.IsToDown hn)
     (hpospen : ¬ x.IsPosPentagonal hn) :
@@ -1077,6 +1220,9 @@ theorem diagSize_up (hn : 0 < n) (x : FerrersDiagram n)
     apply List.forall_iff_forall_mem.mp (x.takeLast hn).delta_pos
     exact List.getElem_mem ..
 
+/--
+@isnad1 id=lt.3h2v.s5.eb98d766e519 from=translated src=- shape=02449f86 vocab=e509b250
+-/
 theorem getLast_up (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : ¬ x.IsToDown hn)
     (hpospen : ¬ x.IsPosPentagonal hn) :
@@ -1108,7 +1254,9 @@ theorem getLast_up (hn : 0 < n) (x : FerrersDiagram n)
   · simp_all
   · simpa using hh
 
-/-- Barring pentagonal configuration, doing `up` will make it legal to do `down`. -/
+/-- Barring pentagonal configuration, doing `up` will make it legal to do `down`.
+@isnad1 id=istodown.3h2v.s5.9c75c21ca661 from=translated src=- shape=6f705e0e vocab=455758d5
+-/
 theorem up_isToDown (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : ¬ x.IsToDown hn)
     (hpospen : ¬ x.IsPosPentagonal hn) :
@@ -1121,6 +1269,9 @@ theorem up_isToDown (hn : 0 < n) (x : FerrersDiagram n)
   )]
   apply getLast_up
 
+/--
+@isnad1 id=eq.3h2v.s5.1f3de101116e from=translated src=- shape=42208da5 vocab=36ab74d7
+-/
 theorem length_up (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : ¬ x.IsToDown hn)
     (hpospen : ¬ x.IsPosPentagonal hn) :
@@ -1129,7 +1280,9 @@ theorem length_up (hn : 0 < n) (x : FerrersDiagram n)
 
 /-- Non-pentagonal configuration will not be pentagonal after doing `up`.
 
-Here we disprove the common condition of both pos- and neg- pentagonal. -/
+Here we disprove the common condition of both pos- and neg- pentagonal.
+@isnad1 id=lt.4h2v.s7.23a467cd18d9 from=translated src=- shape=44a1dc7b vocab=ab8bfefe
+-/
 theorem up_notPentagonal (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : ¬ x.IsToDown hn)
     (hpospen : ¬ x.IsPosPentagonal hn)
@@ -1200,6 +1353,9 @@ theorem up_notPentagonal (hn : 0 < n) (x : FerrersDiagram n)
     simp
   simp [hwhat'] at hwhat''
 
+/--
+@isnad1 id=not.3h2v.s5.3d507628532e from=translated src=- shape=a6a66ce6 vocab=455758d5
+-/
 theorem up_notPosPentagonal (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : ¬ x.IsToDown hn)
     (hpospen : ¬ x.IsPosPentagonal hn) :
@@ -1210,6 +1366,9 @@ theorem up_notPosPentagonal (hn : 0 < n) (x : FerrersDiagram n)
   contrapose! hnot
   simp [hnot]
 
+/--
+@isnad1 id=not.3h2v.s5.d642a44b7d37 from=translated src=- shape=33edc8d0 vocab=0604ce0f
+-/
 theorem up_notNegPentagonal (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : ¬ x.IsToDown hn)
     (hpospen : ¬ x.IsPosPentagonal hn) :
@@ -1218,6 +1377,9 @@ theorem up_notNegPentagonal (hn : 0 < n) (x : FerrersDiagram n)
   intro h
   exact (x.up_notPentagonal hn hdown hpospen h).ne.symm
 
+/--
+@isnad1 id=eq.2h2v.s5.d7f052fdd30a from=translated src=- shape=b046ac23 vocab=e7363975
+-/
 theorem takeLastFun_putLastFun (delta : List ℕ) (i : ℕ) (hdelta : delta ≠ [])
     (h : i + 1 ≤ delta.getLast hdelta) :
     takeLastFun (putLastFun delta i) (by simp [putLastFun]) = delta := by
@@ -1226,6 +1388,9 @@ theorem takeLastFun_putLastFun (delta : List ℕ) (i : ℕ) (hdelta : delta ≠ 
   apply List.updateLast_eq_self _ _ hdelta
   simp [h]
 
+/--
+@isnad1 id=eq.2h1v.s5.2fa1555b3061 from=translated src=- shape=e943b960 vocab=4ae11bd5
+-/
 theorem putLastFun_takeLastFun (delta : List ℕ)
     (hdelta : delta ≠ []) (hpos : delta.Forall (0 < ·)) :
     putLastFun (takeLastFun delta (hdelta)) (delta.getLast hdelta - 1) = delta := by
@@ -1240,11 +1405,16 @@ theorem putLastFun_takeLastFun (delta : List ℕ)
     simp
   simp [hf]
 
+/--
+@isnad1 id=eq.1h2v.s4.47b80da56669 from=translated src=- shape=29fa31e0 vocab=b2fc3384
+-/
 theorem takeDiagFun_putDiagFun (delta : List ℕ) (i : ℕ) (hi : i < delta.length) :
     takeDiagFun (putDiagFun delta i hi) i (by simpa using hi) = delta := by
   simp [takeDiagFun, putDiagFun]
 
-/-- `up` is the left inverse of `down`. -/
+/-- `up` is the left inverse of `down`.
+@isnad1 id=eq.3h2v.s5.53a6f0b8c7bf from=translated src=- shape=ae6d8cba vocab=2bcc56c8
+-/
 theorem up_down (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : x.IsToDown hn)
     (hnegpen : ¬ x.IsNegPentagonal hn) :
@@ -1268,7 +1438,9 @@ theorem up_down (hn : 0 < n) (x : FerrersDiagram n)
     simp
   simp [h3]
 
-/-- `up` is the right inverse of `down`. -/
+/-- `up` is the right inverse of `down`.
+@isnad1 id=eq.3h2v.s5.f3a896b6ec65 from=translated src=- shape=5d4dce53 vocab=0d235ccc
+-/
 theorem down_up (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : ¬ x.IsToDown hn)
     (hpospen : ¬ x.IsPosPentagonal hn) :
@@ -1286,6 +1458,9 @@ so this provides a bijection between even and odd non-pentagonal configurations.
 
 -/
 
+/--
+@isnad1 id=iff.3h2v.s5.6d6fea12ed75 from=translated src=- shape=a7ac4ba8 vocab=9e358898
+-/
 theorem parity_up (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : ¬ x.IsToDown hn)
     (hpospen : ¬ x.IsPosPentagonal hn) :
@@ -1293,6 +1468,9 @@ theorem parity_up (hn : 0 < n) (x : FerrersDiagram n)
   rw [length_up, Nat.even_sub' (Nat.one_le_of_lt (List.length_pos_iff.mpr (x.delta_ne_nil hn)))]
   simp
 
+/--
+@isnad1 id=iff.3h2v.s5.2171d48cbf16 from=translated src=- shape=7a09307a vocab=401fc0f0
+-/
 theorem parity_down (hn : 0 < n) (x : FerrersDiagram n)
     (hdown : x.IsToDown hn)
     (hnegpen : ¬ x.IsNegPentagonal hn) :
@@ -1309,6 +1487,9 @@ def bij (hn : 0 < n) (x : FerrersDiagram n)
   else
     x.up hn hdown hpospen
 
+/--
+@isnad1 id=not.3h2v.s5.ea095c668ae0 from=translated src=- shape=c312b1f9 vocab=6a67d0c6
+-/
 theorem bij_notPosPentagonal (hn : 0 < n) (x : FerrersDiagram n)
     (hpospen : ¬ x.IsPosPentagonal hn) (hnegpen : ¬ x.IsNegPentagonal hn) :
     ¬ (x.bij hn hpospen hnegpen).IsPosPentagonal hn := by
@@ -1317,6 +1498,9 @@ theorem bij_notPosPentagonal (hn : 0 < n) (x : FerrersDiagram n)
   · apply down_notPosPentagonal
   · apply up_notPosPentagonal
 
+/--
+@isnad1 id=not.3h2v.s5.790f5d40e000 from=translated src=- shape=a6a66ce6 vocab=6a67d0c6
+-/
 theorem bij_notNegPentagonal (hn : 0 < n) (x : FerrersDiagram n)
     (hpospen : ¬ x.IsPosPentagonal hn) (hnegpen : ¬ x.IsNegPentagonal hn) :
     ¬ (x.bij hn hpospen hnegpen).IsNegPentagonal hn := by
@@ -1333,6 +1517,9 @@ abbrev NpFerrers (hn : 0 < n) :=
 abbrev bijNp {hn : 0 < n} (x : NpFerrers hn) : NpFerrers hn :=
   ⟨x.val.bij hn x.prop.1 x.prop.2, by apply bij_notPosPentagonal, by apply bij_notNegPentagonal⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.58eff5e8062e from=translated src=- shape=72306fed vocab=07ac350a
+-/
 @[simp]
 theorem bijNp_bijNp {hn : 0 < n} (x : NpFerrers hn) : bijNp (bijNp x) = x := by
   apply Subtype.ext
@@ -1343,6 +1530,9 @@ theorem bijNp_bijNp {hn : 0 < n} (x : NpFerrers hn) : bijNp (bijNp x) = x := by
   · apply down_up
   · exact False.elim <| hdown2 (x.val.up_isToDown hn hdown _)
 
+/--
+@isnad1 id=iff.1h2v.s6.730b6192550e from=translated src=- shape=bc33ba18 vocab=eb599fd4
+-/
 theorem parity_bijNp {hn : 0 < n} (x : NpFerrers hn) :
     Even (bijNp x).val.delta.length ↔ ¬ Even x.val.delta.length := by
   simp only [bij]
@@ -1355,14 +1545,23 @@ abbrev NpEven (hn : 0 < n) := {x : NpFerrers hn | Even x.val.delta.length}
 /-- Odd non-pentagonal configurations. -/
 abbrev NpOdd (hn : 0 < n) := {x : NpFerrers hn | ¬ Even x.val.delta.length}
 
+/--
+@isnad1 id=eq.1h1v.s6.15046994225d from=translated src=- shape=a81779cb vocab=48b72516
+-/
 theorem NpEven_eq (hn : 0 < n) : NpEven hn =
   {x : Subtype (fun x ↦ ¬ x.IsPosPentagonal hn ∧ ¬ x.IsNegPentagonal hn) |
     x.val ∈ {x : FerrersDiagram n | Even x.delta.length}} := rfl
 
+/--
+@isnad1 id=eq.1h1v.s6.b013151611f6 from=translated src=- shape=1b73fb7e vocab=210342ef
+-/
 theorem NpOdd_eq (hn : 0 < n) : NpOdd hn =
   {x : Subtype (fun x ↦ ¬ x.IsPosPentagonal hn ∧ ¬ x.IsNegPentagonal hn) |
     x.val ∈ {x : FerrersDiagram n | ¬ Even x.delta.length}} := rfl
 
+/--
+@isnad1 id=eq.1h1v.s4.841d10429c15 from=translated src=- shape=23cd165b vocab=49c18d20
+-/
 theorem NpFerrers_card_eq (hn : 0 < n) : (NpEven hn).ncard = (NpOdd hn).ncard := by
   apply Set.ncard_congr (fun x _ ↦ bijNp x)
   · intro x h
@@ -1376,7 +1575,9 @@ theorem NpFerrers_card_eq (hn : 0 < n) : (NpEven hn).ncard = (NpOdd hn).ncard :=
     · simp
     · exact (parity_bijNp x).mpr h
 
-/-- The numer of even and odd configurations, barring pentagonal ones, are equal. -/
+/-- The numer of even and odd configurations, barring pentagonal ones, are equal.
+@isnad1 id=eq.1h1v.s6.8f4ff68c8729 from=translated src=- shape=0a628f05 vocab=6f494178
+-/
 theorem card_eq (hn : 0 < n) :
     {x : FerrersDiagram n |
       (¬ x.IsPosPentagonal hn ∧ ¬ x.IsNegPentagonal hn) ∧ Even x.delta.length}.ncard =
@@ -1395,6 +1596,9 @@ def foldDelta : List ℕ → List ℕ
   | [] => [x]
   | x' :: xs' => (x' + x) :: x' :: xs'
 
+/--
+@isnad1 id=iff.0h1v.s4.487a561623e2 from=translated src=- shape=a8d31916 vocab=90157612
+-/
 @[simp]
 theorem foldDelta_eq_nil {l : List ℕ} : foldDelta l = [] ↔ l = [] :=
 match l with
@@ -1403,6 +1607,9 @@ match l with
   simp only [foldDelta, reduceCtorEq, iff_false]
   split <;> simp
 
+/--
+@isnad1 id=eq.0h1v.s3.fa0ed4e9b434 from=translated src=- shape=744721d0 vocab=2971f88e
+-/
 @[simp]
 theorem length_foldDelta (l : List ℕ) : (foldDelta l).length = l.length :=
 match l with
@@ -1416,6 +1623,9 @@ match l with
     rw [← h]
     simpa using length_foldDelta xs
 
+/--
+@isnad1 id=lt.2h2v.s5.94a04436f2f3 from=translated src=- shape=1aa06e9e vocab=c21c3ed9
+-/
 theorem foldDelta_pos_of_pos {l : List ℕ} (hpos : ∀ a ∈ l, 0 < a) :
     ∀ a ∈ foldDelta l, 0 < a :=
 match l with
@@ -1434,6 +1644,9 @@ match l with
     · simp_all
     · apply foldDelta_pos_of_pos (fun a ha ↦ hpos a (Or.inr ha)) _ h
 
+/--
+@isnad1 id=eq.0h1v.s4.1601ec9fa25c from=translated src=- shape=5f3eadf9 vocab=ac4ec407
+-/
 theorem head_foldDelta (l : List ℕ) :
     (foldDelta l).headI = l.sum :=
 match l with
@@ -1448,6 +1661,9 @@ match l with
     simp
     ring
 
+/--
+@isnad1 id=eq.0h1v.s5.59cb5b894d06 from=translated src=- shape=27f9532b vocab=fd953df4
+-/
 theorem sum_foldDelta (l : List ℕ) :
     (foldDelta l).sum = ((l.zipIdx 1).map fun p ↦ p.1 * p.2).sum :=
 match l with
@@ -1472,6 +1688,9 @@ match l with
     rw [← head_foldDelta]
     simp [h]
 
+/--
+@isnad1 id=pairwise.0h1v.s4.c21975da4be4 from=translated src=- shape=d88ff1e3 vocab=6f85f41a
+-/
 theorem foldDelta_sorted (l : List ℕ) : (foldDelta l).Pairwise (· ≥ ·) :=
 match l with
 | [] => by simp [foldDelta]
@@ -1485,6 +1704,9 @@ match l with
     rw [← h]
     apply foldDelta_sorted
 
+/--
+@isnad1 id=pairwise.1h1v.s4.a96cdffbb490 from=translated src=- shape=47cea01f vocab=2d914871
+-/
 theorem foldDelta_sorted_of_pos {l : List ℕ} (hpos : l.Forall (0 < ·)) :
     (foldDelta l).Pairwise (· > ·) :=
 match l with
@@ -1500,6 +1722,9 @@ match l with
     rw [← h]
     apply foldDelta_sorted_of_pos hpos.2
 
+/--
+@isnad1 id=eq.0h1v.s4.3b78910c5d11 from=translated src=- shape=1fbfa0c6 vocab=030bd54b
+-/
 @[simp]
 theorem mergeSort_foldDelta (l : List ℕ) :
     (foldDelta l).mergeSort (· ≥ ·) = foldDelta l := by
@@ -1512,6 +1737,9 @@ def unfoldDelta : List ℕ → List ℕ
 | [x] => [x]
 | x :: y :: xs => (x - y) :: unfoldDelta (y :: xs)
 
+/--
+@isnad1 id=eq.0h1v.s3.16ded6446f3c from=translated src=- shape=744721d0 vocab=73a0ec2d
+-/
 @[simp]
 theorem length_unfoldDelta (l : List ℕ) : (unfoldDelta l).length = l.length :=
 match l with
@@ -1521,6 +1749,9 @@ match l with
   rw [unfoldDelta, List.length_cons, length_unfoldDelta]
   simp
 
+/--
+@isnad1 id=forall.2h1v.s5.24ce5ab14887 from=translated src=- shape=19cf7963 vocab=cc9a11c7
+-/
 theorem unfoldDelta_pos_of_sorted {l : List ℕ} (hsort : l.Pairwise (· > ·))
     (hpos : l.Forall (0 < ·)) :
     (unfoldDelta l).Forall (0 < ·) :=
@@ -1535,6 +1766,9 @@ match l with
   · exact Nat.sub_pos_of_lt hsort.1
   · exact unfoldDelta_pos_of_sorted hsort.2 hpos.2
 
+/--
+@isnad1 id=eq.1h1v.s4.cde17491b069 from=translated src=- shape=e39a31c8 vocab=5ec8ae39
+-/
 theorem sum_unfoldDelta' {l : List ℕ} (hsort : l.Pairwise (· ≥ ·)) :
     (unfoldDelta l).sum = l.headI :=
 match l with
@@ -1544,6 +1778,9 @@ match l with
   rw [unfoldDelta, List.sum_cons, sum_unfoldDelta' hsort.2]
   simp_all
 
+/--
+@isnad1 id=eq.1h1v.s6.cc5a619bc491 from=translated src=- shape=14b92ab3 vocab=f3446f88
+-/
 theorem sum_unfoldDelta {l : List ℕ} (hsort : l.Pairwise (· ≥ ·)) :
     (((unfoldDelta l).zipIdx 1).map fun p ↦ p.1 * p.2).sum = l.sum :=
 match l with
@@ -1565,6 +1802,9 @@ match l with
   rw [Nat.add_left_cancel_iff, sum_unfoldDelta' hsort.2]
   simp
 
+/--
+@isnad1 id=eq.0h1v.s3.a22b1dae843f from=translated src=- shape=e9e6e124 vocab=8236b4c5
+-/
 @[simp]
 theorem unfoldDelta_foldDelta (l : List ℕ) : unfoldDelta (foldDelta l) = l :=
 match l with
@@ -1577,6 +1817,9 @@ match l with
   | cons x' xs' =>
     simp [unfoldDelta, ← h, unfoldDelta_foldDelta]
 
+/--
+@isnad1 id=eq.1h1v.s4.21d73cdba8d9 from=translated src=- shape=1de0afb3 vocab=d3b38d1c
+-/
 @[simp]
 theorem foldDelta_unfoldDelta {l : List ℕ} (h : l.Pairwise (· ≥ ·)) :
     foldDelta (unfoldDelta l) = l :=
@@ -1593,6 +1836,9 @@ end FerrersDiagram
 
 namespace Multiset
 
+/--
+@isnad1 id=var.0h4v.s4.50d30e4fdebc from=translated src=- shape=64962af8 vocab=b4e43d3a
+-/
 theorem qind {α : Type*} {motive : Multiset α → Prop}
     (mk : ∀ (a : List α), motive a) : ∀ a, motive a :=
   Quotient.ind mk
@@ -1650,17 +1896,25 @@ def equivPartitionDistincts : FerrersDiagram n ≃ Nat.Partition.distincts n whe
 
 instance : Fintype (FerrersDiagram n) := Fintype.ofEquiv _ (equivPartitionDistincts n).symm
 
+/--
+@isnad1 id=iff.0h2v.s7.b12e96cfe429 from=translated src=- shape=075e9844 vocab=b38398cb
+-/
 @[simp]
 theorem equivPartitionDistincts_even (x : FerrersDiagram n) :
     Even (equivPartitionDistincts n x).val.parts.card ↔ Even x.delta.length := by
   simp [equivPartitionDistincts]
 
+/--
+@isnad1 id=iff.0h2v.s8.63c64d7659d3 from=translated src=- shape=7e683b65 vocab=e18c6fbf
+-/
 @[simp]
 theorem equivPartitionDistincts_symm_even (x : Nat.Partition.distincts n) :
     Even ((equivPartitionDistincts n).symm x).delta.length ↔ Even x.val.parts.card := by
   simp [equivPartitionDistincts]
 
-/-- The difference between even and odd partitions is reduced to pentagonal cases. -/
+/-- The difference between even and odd partitions is reduced to pentagonal cases.
+@isnad1 id=eq.1h1v.s7.d6b0862a61b4 from=translated src=- shape=d0d991d8 vocab=11613d29
+-/
 theorem card_sub (hn : 0 < n) :
     ({x : FerrersDiagram n | Even x.delta.length}.ncard -
     {x : FerrersDiagram n | ¬ Even x.delta.length}.ncard : ℤ) =
@@ -1701,6 +1955,9 @@ end FerrersDiagram
 
 namespace Finset
 
+/--
+@isnad1 id=eq.0h1v.s5.b66539cb2900 from=translated src=- shape=6c91cefc vocab=6cf68c8a
+-/
 theorem sum_range_id_mul_two' (n : ℕ) :
     2 * (∑ i ∈ Finset.range n, (i : ℤ)) = n * (n - 1) := by
   rw [mul_comm 2]
@@ -1716,7 +1973,9 @@ end Finset
 namespace FerrersDiagram
 variable {n : ℕ}
 
-/-- Calculation of `n` for negative pentagonal case. -/
+/-- Calculation of `n` for negative pentagonal case.
+@isnad1 id=eq.1h1v.s7.8f8cf0352358 from=translated src=- shape=23fe216a vocab=d2815a44
+-/
 theorem negpenSum {k : ℕ} (hk : 0 < k) :
     2 * ((List.map (fun p ↦ p.1 * p.2) ((List.replicate (k - 1) 1 ++ [k + 1]).zipIdx 1)).sum : ℕ) =
     ((-k) * (3 * (-k) - 1) : ℤ) := by
@@ -1744,7 +2003,9 @@ theorem negpenSum {k : ℕ} (hk : 0 < k) :
   push_cast [hk]
   ring
 
-/-- Calculation of `n` for positive pentagonal case. -/
+/-- Calculation of `n` for positive pentagonal case.
+@isnad1 id=eq.1h1v.s7.e4d5b4555ef4 from=translated src=- shape=cda7f254 vocab=6b184183
+-/
 theorem pospenSum {k : ℕ} (hk : 0 < k) :
     2 * ((List.map (fun p ↦ p.1 * p.2) ((List.replicate (k - 1) 1 ++ [k]).zipIdx 1)).sum : ℕ) =
     (k * (3 * k - 1) : ℤ) := by
@@ -1781,7 +2042,9 @@ private theorem take_eq_replicate (x : FerrersDiagram n)
 
 namespace IsPosPentagonal
 
-/-- For positive pentagonal case, `delta.length = k`. -/
+/-- For positive pentagonal case, `delta.length = k`.
+@isnad1 id=eq.2h2v.s6.f8285f66c06a from=translated src=- shape=481b4c3e vocab=0fb0844b
+-/
 theorem two_n_eq (hn : 0 < n) (x : FerrersDiagram n)
     (hpospen : x.IsPosPentagonal hn) :
     (2 * n : ℤ) = x.delta.length * (3 * x.delta.length - 1) := by
@@ -1796,7 +2059,9 @@ end IsPosPentagonal
 
 namespace IsNegPentagonal
 
-/-- For negative pentagonal case, `delta.length = -k`. -/
+/-- For negative pentagonal case, `delta.length = -k`.
+@isnad1 id=eq.2h2v.s6.10449a722427 from=translated src=- shape=e0edc6ca vocab=b7f90a58
+-/
 theorem two_n_eq (hn : 0 < n) (x : FerrersDiagram n)
     (hpospen : x.IsNegPentagonal hn) :
     (2 * n : ℤ) = (-x.delta.length) * (3 * (-x.delta.length) - 1) := by
@@ -1809,7 +2074,9 @@ theorem two_n_eq (hn : 0 < n) (x : FerrersDiagram n)
 
 end IsNegPentagonal
 
-/-- In summary, pentagonal case always gives a pentagonal number `n`. -/
+/-- In summary, pentagonal case always gives a pentagonal number `n`.
+@isnad1 id=ex.2h2v.s6.23da3710e987 from=translated src=- shape=e1bc4087 vocab=a7322b6d
+-/
 theorem pentagonal_exists_k (hn : 0 < n) (x : FerrersDiagram n)
     (hpen : x.IsPosPentagonal hn ∨ x.IsNegPentagonal hn) :
     ∃ k : ℤ, 2 * n = k * (3 * k - 1) ∧ (Even x.delta.length ↔ Even k) := by
@@ -1823,7 +2090,9 @@ theorem pentagonal_exists_k (hn : 0 < n) (x : FerrersDiagram n)
     · apply IsNegPentagonal.two_n_eq hn x h
     · simp
 
-/-- The converse: pentagonal number `n` gives a pentagonal case. -/
+/-- The converse: pentagonal number `n` gives a pentagonal case.
+@isnad1 id=ex.2h2v.s6.16a83ce491c5 from=translated src=- shape=ccc022e0 vocab=9c339a4e
+-/
 theorem pentagonal_of_exists_k (hn : 0 < n) {k : ℤ} (h : 2 * n = k * (3 * k - 1)) :
     ∃ x : FerrersDiagram n, x.IsPosPentagonal hn ∨ x.IsNegPentagonal hn := by
   obtain hneg | rfl | hpos := lt_trichotomy k 0
@@ -1868,7 +2137,9 @@ theorem pentagonal_of_exists_k (hn : 0 < n) {k : ℤ} (h : 2 * n = k * (3 * k - 
         grind
       · simp_all
 
-/-- There is at most one pentagonal case for a given `n`. -/
+/-- There is at most one pentagonal case for a given `n`.
+@isnad1 id=subsingl.1h1v.s4.02bd03af8bde from=translated src=- shape=54ebdee0 vocab=0919a206
+-/
 theorem pentagonal_subsingleton (hn : 0 < n) :
     {x : FerrersDiagram n | (x.IsPosPentagonal hn ∨ x.IsNegPentagonal hn)}.Subsingleton := by
   intro a ha b hb
@@ -1922,7 +2193,9 @@ theorem pentagonal_subsingleton (hn : 0 < n) :
       simpa using h
 
 /-- Third definition of $\phi$: coefficients represents the existence of even and odd
-pentagonal partition. -/
+pentagonal partition.
+@isnad1 id=eq.1h1v.s6.7b153ae41897 from=translated src=- shape=9b5d9d51 vocab=56d7a49f
+-/
 theorem phiCoeff_eq_card_sub (hn : 0 < n) :
     phiCoeff n =
     {x : FerrersDiagram n |
@@ -1994,6 +2267,9 @@ end FerrersDiagram
 even and odd partitions. -/
 def phiCoeff' (n : ℕ) := ∑ s ∈ Nat.Partition.distincts n, (-1) ^ s.parts.card
 
+/--
+@isnad1 id=eq.0h1v.s3.affb8b3cd70c from=translated src=- shape=327d930b vocab=c9f8cfe7
+-/
 theorem phiCoeff_eq (n : ℕ) : phiCoeff n = phiCoeff' n := by
   obtain rfl | hn := Nat.eq_zero_or_pos n
   · decide
@@ -2029,7 +2305,9 @@ theorem phiCoeff_eq (n : ℕ) : phiCoeff n = phiCoeff' n := by
     · simp
     · simp
 
-/-- The multiplication formula of $\phi(x)$ expands precisely to the partition formula. -/
+/-- The multiplication formula of $\phi(x)$ expands precisely to the partition formula.
+@isnad1 id=hasprod.0h0v.s7.0386dc456a5c from=translated src=- shape=77c5da59 vocab=3de7d0ce
+-/
 theorem eularPhi : HasProd (fun (n : ℕ+) ↦ (1 - PowerSeries.monomial n (1 : ℤ)))
     (PowerSeries.mk (phiCoeff' ·)) := by
   unfold HasProd
@@ -2099,6 +2377,7 @@ open PowerSeries in
 /-- Pentagonal number theorem
 
 $$\prod_{n=1}^{\infty} (1 - x^n) = \sum_{k=-\infty}^{\infty} (-1)^k x^{k(3k-1)/2}$$
+@isnad1 id=eq.0h0v.s8.1c161c86c81d from=translated src=- shape=87640cd8 vocab=33e4128e
 -/
 theorem pentagonalNumberTheorem :
     ∏' (n : ℕ+), (1 - monomial n (1 : ℤ)) =

@@ -47,7 +47,9 @@ def length {graph : Graph V E} {x y : V} : EdgePath graph x y → Nat
 
 end EdgePath
 
-/-- proves that bar is an involution -/
+/-- proves that bar is an involution
+@isnad1 id=eq.0h4v.s4.b95ee5cab6ac from=translated src=- shape=d04d4b26 vocab=ed57cb92
+-/
 theorem bar_involution {G : Graph V E} : (ex : E) → G.bar (G.bar ex) = ex := by
   intro ex
   apply congr G.barInv (Eq.refl ex)
@@ -62,18 +64,24 @@ def multiply {G : Graph V E} {x y z : V} :
   | single x => exact q
   | cons ex h1 h2 exy => exact (cons ex h1 h2 (multiply exy q))
 
-/-- proves that the endpoint of the reverse of an edge is the start point of the edge -/
+/-- proves that the endpoint of the reverse of an edge is the start point of the edge
+@isnad1 id=eq.1h5v.s5.1da171ee755b from=translated src=- shape=8a5b00e4 vocab=f977c574
+-/
 theorem term_bar_equals_init {G : Graph V E} {x : V} {e : E} :
     G.init e = x → (term G (G.bar e) = x) := by
   intro h
   have h₂ : G.init (G.bar (G.bar e)) = G.init e := congrArg G.init (bar_involution e)
   apply Eq.trans h₂ h
 
-/-- proves that initial vertex of reversed edge is the terminal vertex of the original edge -/
+/-- proves that initial vertex of reversed edge is the terminal vertex of the original edge
+@isnad1 id=eq.1h5v.s5.fb7314fd42e1 from=translated src=- shape=8a5b00e4 vocab=f977c574
+-/
 theorem init_bar_equals_term {G : Graph V E} {x : V} {e : E} :
     (term G e = x) → G.init (G.bar e) = x := id
 
-/-- proves associativity of path multiplication -/
+/-- proves associativity of path multiplication
+@isnad1 id=eq.0h10v.s6.41be4f19488f from=translated src=- shape=861da99a vocab=a6b760da
+-/
 theorem mult_assoc {G : Graph V E}
     (p : EdgePath G w x) (q : EdgePath G x y) (r : EdgePath G y z) :
       (multiply (multiply p q) r) = (multiply p (multiply q r)) := by
@@ -81,7 +89,9 @@ theorem mult_assoc {G : Graph V E}
   | single w => simp[multiply]
   | cons ex h1 h2 exy ih => simp[multiply, ih]
 
-/-- proves that "single x" is an identity element for multiplication -/
+/-- proves that "single x" is an identity element for multiplication
+@isnad1 id=eq.0h6v.s5.9d898d8b9d9c from=translated src=- shape=ecc27c9b vocab=72710305
+-/
 theorem mult_const {G : Graph V E} (p : EdgePath G x y) :
       (multiply p (single y)) = p := by
       induction p with
@@ -99,20 +109,26 @@ def basicpath {G : Graph V E} (x : V) (ex : E)
     (h₁ : G.init ex = x) (h₂ : term G ex = y) : EdgePath G x y :=
   cons ex h₁ h₂ (single y)
 
-/-- proves that multiplication with a basicpath gives inductive definition of edgepath -/
+/-- proves that multiplication with a basicpath gives inductive definition of edgepath
+@isnad1 id=eq.2h8v.s6.126e163fab6f from=translated src=- shape=df59d785 vocab=a42812cb
+-/
 theorem basicpath_mult {G : Graph V E} {x y z : V} (ex : E)
     (h₁ : G.init ex = x) (h₂ : term G ex = y) (exy : EdgePath G y z) :
     multiply (basicpath x ex h₁ h₂) exy = cons ex h₁ h₂ exy := by
   simp[basicpath, multiply]
 
-/-- defines inverse in terms of basicpath -/
+/-- defines inverse in terms of basicpath
+@isnad1 id=eq.2h8v.s6.8cfeefcad584 from=translated src=- shape=709348be vocab=f5049912
+-/
 theorem inverse_lemma {G : Graph V E} {x y z : V} (ex : E)
     (h₁ : G.init ex = x) (h₂ : term G ex = y) (exy : EdgePath G y z) :
     inverse (cons ex h₁ h₂ exy) =
       multiply (inverse exy) (basicpath y (G.bar ex) h₂ (term_bar_equals_init h₁)) := by
   rfl
 
-/-- proves the basic relation between inverse and multiply -/
+/-- proves the basic relation between inverse and multiply
+@isnad1 id=eq.0h8v.s6.0ebf6fc2a12f from=translated src=- shape=a782e63f vocab=c21160ba
+-/
 theorem inverse_mult {G : Graph V E} (x y z : V) (p : EdgePath G x y) (q : EdgePath G y z) :
       inverse (multiply p q) = multiply (inverse q) (inverse p) := by
       induction p with
@@ -139,7 +155,9 @@ theorem inverse_mult {G : Graph V E} (x y z : V) (p : EdgePath G x y) (q : EdgeP
           rw[p₆]
           simp[Eq.symm (p₅), mult_assoc]
 
-/-- proves that inverse is an involution on paths -/
+/-- proves that inverse is an involution on paths
+@isnad1 id=eq.0h6v.s5.2ab8434dff4a from=translated src=- shape=7c1c14fb vocab=3bac5ffb
+-/
 theorem inverse_involution {G : Graph V E} {x y : V} (p : EdgePath G x y) :
     inverse (inverse p) = p := by
   induction p with
@@ -218,11 +236,15 @@ def htclass {G : Graph V E} {x y : V} (p : EdgePath G x y) : ht G x y :=
 def homotopy {G : Graph V E} {x y : V} (p' q' : EdgePath G x y) : Prop :=
   htclass p' = htclass q'
 
-/-- proves that homotopy is a transitive relation -/
+/-- proves that homotopy is a transitive relation
+@isnad1 id=homotopy.2h8v.s5.7178917a2382 from=translated src=- shape=a67884f6 vocab=84599ffd
+-/
 theorem homotopy_trans {G : Graph V E} {x y : V} (p q r : EdgePath G x y) :
     homotopy p q → homotopy q r → homotopy p r := Eq.trans
 
-/-- proves that homotopy is preserved by multiplying an edge to the left -/
+/-- proves that homotopy is preserved by multiplying an edge to the left
+@isnad1 id=homotopy.3h9v.s6.72619dd5349e from=translated src=- shape=4330b218 vocab=34ceb6a9
+-/
 theorem homotopy_left_mult_edge {G : Graph V E} {x y z : V} :
     (p q : EdgePath G y z) → homotopy p q → (ex : E) → (h1 : G.init ex = x) →
     (h : term G ex = y) → homotopy (cons ex h1 h p) (cons ex h1 h q) := by
@@ -235,7 +257,9 @@ theorem homotopy_left_mult_edge {G : Graph V E} {x y z : V} :
   let k := Quot.lift func g
   apply congrArg k h
 
-/-- proves that homotopy is left multiplicative -/
+/-- proves that homotopy is left multiplicative
+@isnad1 id=homotopy.1h9v.s6.b62adf104824 from=translated src=- shape=efd6b758 vocab=e20fba87
+-/
 theorem homotopy_left_mult {G : Graph V E} {x y z : V}
     (p1 p2 : EdgePath G y z) (q : EdgePath G x y) (h : homotopy p1 p2) :
          (homotopy (multiply q p1) (multiply q p2)) := by
@@ -253,10 +277,14 @@ theorem homotopy_left_mult {G : Graph V E} {x y z : V}
           rw[t₁, t₂]
           simp[homotopy_left_mult_edge, c]
 
-/-- proves that homotopy is reflexive -/
+/-- proves that homotopy is reflexive
+@isnad1 id=homotopy.0h6v.s4.90023a9232c2 from=translated src=- shape=a2578f17 vocab=84599ffd
+-/
 theorem homotopy_rfl {G : Graph V E} {x y : V} (p : EdgePath G x y) : homotopy p p := by rfl
 
-/-- proves that path is homotopic to itself after appending cancelling pair of edges at its end -/
+/-- proves that path is homotopic to itself after appending cancelling pair of edges at its end
+@isnad1 id=homotopy.5h9v.s6.02000b5bc26d from=translated src=- shape=3d047575 vocab=959ac892
+-/
 theorem induct_homotopy_inverse_cancel {G : Graph V E} (ey ey' : E) {x w y : V}
     (p : EdgePath G x y) (h₁ : G.init ey = y) (h₂ : term G ey = w)
     (t : G.bar ey = ey') (h₃ : G.init ey' = w) (h₄ : term G ey' = y) :
@@ -279,7 +307,9 @@ theorem induct_homotopy_inverse_cancel {G : Graph V E} (ey ey' : E) {x w y : V}
               simp[multiply]
             exact this ▸ p₁
 
-/-- proves that a pair of paths remains homotopic after appending a single edge at their ends -/
+/-- proves that a pair of paths remains homotopic after appending a single edge at their ends
+@isnad1 id=homotopy.3h9v.s6.d28f7525a553 from=translated src=- shape=f47fea13 vocab=17118468
+-/
 theorem induct_homotopy_inverse_mult {G : Graph V E} {x y z : V}
     (p q : EdgePath G x y) (ey : E) (h₁ : G.init ey = y) (h₂ : term G ey = z) :
     homotopy p q →
@@ -303,7 +333,9 @@ theorem induct_homotopy_inverse_mult {G : Graph V E} {x y z : V}
     let k := Quot.lift func g
     apply congrArg k h
 
-/-- proves that homotopy of paths implies homotopy of their inverses -/
+/-- proves that homotopy of paths implies homotopy of their inverses
+@isnad1 id=homotopy.3h9v.s6.d5b505375b42 from=translated src=- shape=1b7cb053 vocab=59d2df28
+-/
 theorem homotopy_inverse {G : Graph V E} {x y : V}
     (p₁ p₂ : EdgePath G x y) (q₁ q₂ : EdgePath G y x)
     (h₁ : q₁ = inverse p₁) (h₂ : q₂ = inverse p₂) :
@@ -334,12 +366,16 @@ theorem homotopy_inverse {G : Graph V E} {x y : V}
   rw [h₁, h₂]
   exact congrArg k₂ h₀
 
-/-- homotopy_inverse with lesser arguments -/
+/-- homotopy_inverse with lesser arguments
+@isnad1 id=homotopy.1h7v.s5.ad6dd4561a3b from=translated src=- shape=330442b8 vocab=59d2df28
+-/
 theorem homotopy_inverse_quick {G : Graph V E} {x y : V} {p₁ p₂ : EdgePath G x y} :
     homotopy p₁ p₂ → homotopy (inverse p₁) (inverse p₂) := by
   apply homotopy_inverse p₁ p₂ (inverse p₁) (inverse p₂) rfl rfl
 
-/-- proves that homotopy is right multiplicative -/
+/-- proves that homotopy is right multiplicative
+@isnad1 id=homotopy.1h9v.s6.24e799edb243 from=translated src=- shape=4ba09262 vocab=e20fba87
+-/
 theorem homotopy_right_mult {G : Graph V E} {x y z : V}
     (p₁ p₂ : EdgePath G x y) (q : EdgePath G y z) (h : homotopy p₁ p₂) :
          (homotopy (multiply p₁ q) (multiply p₂ q)) := by
@@ -373,7 +409,9 @@ def homotopyLeftMultiplication {G : Graph V E} {x y z : V}
           apply homotopy_left_mult q₁ q₂ p₁ h'
   apply Quot.lift func g
 
-/-- proves that the multiplication defined above equals homotopy class of multiplied paths -/
+/-- proves that the multiplication defined above equals homotopy class of multiplied paths
+@isnad1 id=eq.0h8v.s6.ac856300b3e2 from=translated src=- shape=4807289a vocab=d69d4e9d
+-/
 theorem homotopy_left_multiplication_class {G : Graph V E} {x y z : V}
     (p₁ : EdgePath G x y) (p₂ : EdgePath G y z) :
     homotopyLeftMultiplication p₁ (htclass p₂) = htclass (multiply p₁ p₂) := by
@@ -404,7 +442,9 @@ def homotopyMultiplication : ht G x y → ht G y z → ht G x z := by
 /-- Multiplication of homotopy classes of composable edge paths. -/
 infixl: 65 " # " => homotopyMultiplication
 
-/-- proves that # is associative up to multiplication by a pair of paths and one homotopy class -/
+/-- proves that # is associative up to multiplication by a pair of paths and one homotopy class
+@isnad1 id=eq.0h10v.s6.47edd31ded9d from=translated src=- shape=81eaa6d4 vocab=da0c85a4
+-/
 theorem homotopy_mult_path_path_assoc {G : Graph V E} {w x y z : V}
     (p : EdgePath G w x) (q : EdgePath G x y) :
     (r : ht G y z) → (htclass (multiply p q)) # r = (htclass p) # ((htclass q) # r) := by
@@ -428,7 +468,9 @@ theorem homotopy_mult_path_path_assoc {G : Graph V E} {w x y z : V}
   rw[p₁,p₃]
   simp[mult_assoc]
 
-/-- proves that # is associative up to multiplication by one path and a pair of homotopy classes -/
+/-- proves that # is associative up to multiplication by one path and a pair of homotopy classes
+@isnad1 id=eq.0h10v.s6.aadf454e1843 from=translated src=- shape=73be30dc vocab=0e17452b
+-/
 theorem homotopy_mult_path_assoc {G : Graph V E} {w x y z : V}
     (p : EdgePath G w x) (r : ht G y z) :
     (q : ht G x y) → (htclass p # q) # r = (htclass p) # (q # r) := by
@@ -439,7 +481,9 @@ theorem homotopy_mult_path_assoc {G : Graph V E} {w x y z : V}
   rw[p₁]
   apply homotopy_mult_path_path_assoc p a r
 
-/-- proves that # is associative on homotopy classes -/
+/-- proves that # is associative on homotopy classes
+@isnad1 id=eq.0h10v.s6.b618d7f1d2f6 from=translated src=- shape=cf7d7044 vocab=ef366316
+-/
 theorem homotopy_mult_assoc {G : Graph V E} {w x y z : V}
     (b : ht G x y) (c : ht G y z) :
     (a : ht G w x) → ((a # b) # c) = (a # (b # c)) := by
@@ -447,7 +491,9 @@ theorem homotopy_mult_assoc {G : Graph V E} {w x y z : V}
   intro a
   apply homotopy_mult_path_assoc a c b
 
-/-- proves that reducePathAux preserves the homotopy class -/
+/-- proves that reducePathAux preserves the homotopy class
+@isnad1 id=homotopy.2h8v.s6.944cbaac2651 from=translated src=- shape=4aa6b730 vocab=8cd2956a
+-/
 theorem homotopy_reducePathAux [DecidableEq V] [DecidableEq E] {G : Graph V E}
     {x y z : V} (ex : E) (h₁ : G.init ex = x) (h₂ : term G ex = y)
     (exy : EdgePath G y z) : homotopy (cons ex h₁ h₂ exy) (reducePathAux ex h₁ h₂ exy) := by
@@ -476,7 +522,9 @@ theorem homotopy_reducePathAux [DecidableEq V] [DecidableEq E] {G : Graph V E}
         simp[reducePathAux, c]
       simp [this]
 
-/-- proves that reducePath preserves the homotopy class -/
+/-- proves that reducePath preserves the homotopy class
+@isnad1 id=homotopy.0h6v.s6.2657d0831edd from=translated src=- shape=f5a531a5 vocab=54176dd6
+-/
 theorem homotopy_reducePath [DecidableEq V] [DecidableEq E] {G : Graph V E} {x y : V}
     (p₁ : EdgePath G x y) : homotopy p₁ (reducePath p₁) := by
         induction p₁ with
@@ -503,13 +551,17 @@ instance htMul {G : Graph V E} {x : V} : Mul (ht G x x) where
 instance htOne {G : Graph V E} {x : V} : One (ht G x x) where
   one : ht G x x := htclass (single x)
 
-/-- proves that multiplication of homotopy classes is associative -/
+/-- proves that multiplication of homotopy classes is associative
+@isnad1 id=eq.0h7v.s6.45e67ce84912 from=translated src=- shape=c2baeea6 vocab=ef366316
+-/
 theorem ht_mult_assoc {G : Graph V E} {x : V} (a b c : ht G x x) :
     ((a # b) # c) = (a # (b # c)) := by
   let k := @homotopy_mult_assoc V E G x x x x
   simp_all
 
-/-- proves that the identity homotopy class is the right multiplicative identity -/
+/-- proves that the identity homotopy class is the right multiplicative identity
+@isnad1 id=eq.0h5v.s5.d65987482d4e from=translated src=- shape=db65e064 vocab=b0827a92
+-/
 theorem ht_right_identity {G : Graph V E} {x : V} :
     (a₀ : ht G x x) → htMul.mul a₀ (@htOne V E G x).one = a₀ := by
   have k (b : EdgePath G x x) :
@@ -526,7 +578,9 @@ theorem ht_right_identity {G : Graph V E} {x : V} :
   apply Quot.ind
   apply k₂
 
-/-- proves that the identity homotopy class is the left multiplicative identity -/
+/-- proves that the identity homotopy class is the left multiplicative identity
+@isnad1 id=eq.0h5v.s5.53e2ab1885bc from=translated src=- shape=d21ee45f vocab=b0827a92
+-/
 theorem ht_left_identity {G : Graph V E} {x : V} :
     (a₀ : ht G x x) → htMul.mul (@htOne V E G x).one a₀ = a₀ := by
   have k (b : EdgePath G x x) :

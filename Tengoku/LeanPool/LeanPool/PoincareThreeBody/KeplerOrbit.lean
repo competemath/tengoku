@@ -48,6 +48,9 @@ noncomputable def eccentricPolarState
     eccentricRadialMomentum firstAction eccentricity anomaly,
     angularActionFromEccentricity firstAction eccentricity]
 
+/--
+@isnad1 id=lt.2h2v.s5.40598dc144ed from=translated src=- shape=a7391bbf vocab=301c76d8
+-/
 lemma one_sub_eccentricity_mul_cos_pos {eccentricity anomaly : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
     0 < 1 - eccentricity * Real.cos anomaly := by
@@ -55,6 +58,9 @@ lemma one_sub_eccentricity_mul_cos_pos {eccentricity anomaly : ℝ}
     mul_le_of_le_one_right heccentricity (Real.cos_le_one anomaly)
   linarith
 
+/--
+@isnad1 id=lt.3h3v.s5.98cc14e6ea66 from=translated src=- shape=6f6e6f91 vocab=7d1d740d
+-/
 lemma eccentricRadius_pos {firstAction eccentricity anomaly : ℝ}
     (hfirstAction : firstAction ≠ 0) (heccentricity : 0 ≤ eccentricity)
     (heccentricityOne : eccentricity < 1) :
@@ -63,6 +69,9 @@ lemma eccentricRadius_pos {firstAction eccentricity anomaly : ℝ}
   exact mul_pos (sq_pos_of_ne_zero hfirstAction)
     (one_sub_eccentricity_mul_cos_pos heccentricity heccentricityOne)
 
+/--
+@isnad1 id=le.1h3v.s5.6d4ad093e157 from=translated src=- shape=ccb66ca2 vocab=e8fa6e89
+-/
 lemma eccentricRadius_le_apoapsis_bound {firstAction eccentricity anomaly : ℝ}
     (heccentricity : 0 ≤ eccentricity) :
     eccentricRadius firstAction eccentricity anomaly ≤
@@ -72,6 +81,9 @@ lemma eccentricRadius_le_apoapsis_bound {firstAction eccentricity anomaly : ℝ}
   apply mul_le_mul_of_nonneg_left _ (sq_nonneg firstAction)
   linarith
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.6f16dda2d4c7 from=translated src=- shape=c2650eb6 vocab=3c635f06
+-/
 theorem hasDerivAt_eccentricMeanAnomaly (eccentricity anomaly : ℝ) :
     HasDerivAt (eccentricMeanAnomaly eccentricity)
       (1 - eccentricity * Real.cos anomaly) anomaly := by
@@ -81,6 +93,9 @@ theorem hasDerivAt_eccentricMeanAnomaly (eccentricity anomaly : ℝ) :
   filter_upwards [] with argument
   simp [eccentricMeanAnomaly]
 
+/--
+@isnad1 id=hasderiv.0h3v.s6.f2d9c605f2da from=translated src=- shape=80bd04b5 vocab=a93afd4a
+-/
 theorem hasDerivAt_eccentricRadius (firstAction eccentricity anomaly : ℝ) :
     HasDerivAt (eccentricRadius firstAction eccentricity)
       (firstAction ^ 2 * eccentricity * Real.sin anomaly) anomaly := by
@@ -91,6 +106,9 @@ theorem hasDerivAt_eccentricRadius (firstAction eccentricity anomaly : ℝ) :
   simp only [eccentricRadius]
   ring
 
+/--
+@isnad1 id=hasderiv.0h3v.s6.6a904905a5dd from=translated src=- shape=e004944c vocab=e94b73d0
+-/
 theorem hasDerivAt_eccentricKeplerTime (firstAction eccentricity anomaly : ℝ) :
     HasDerivAt (eccentricKeplerTime firstAction eccentricity)
       (firstAction ^ 3 * (1 - eccentricity * Real.cos anomaly)) anomaly := by
@@ -100,7 +118,9 @@ theorem hasDerivAt_eccentricKeplerTime (firstAction eccentricity anomaly : ℝ) 
   filter_upwards [] with argument
   rfl
 
-/-- The radial momentum is `dr/dt` along the eccentric-anomaly parameterization. -/
+/-- The radial momentum is `dr/dt` along the eccentric-anomaly parameterization.
+@isnad1 id=eq.2h3v.s7.6ca2e527947f from=translated src=- shape=e8c218b9 vocab=cb5d04b1
+-/
 theorem eccentricRadialMomentum_eq_radiusDeriv_div_timeDeriv
     {firstAction eccentricity anomaly : ℝ} (hfirstAction : firstAction ≠ 0)
     (hdenominator : 1 - eccentricity * Real.cos anomaly ≠ 0) :
@@ -110,6 +130,9 @@ theorem eccentricRadialMomentum_eq_radiusDeriv_div_timeDeriv
   unfold eccentricRadialMomentum
   field_simp [hfirstAction, hdenominator]
 
+/--
+@isnad1 id=strictmo.2h1v.s4.46b2e3e255f0 from=translated src=- shape=4d7535bd vocab=9567a20f
+-/
 theorem strictMono_eccentricMeanAnomaly {eccentricity : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
     StrictMono (eccentricMeanAnomaly eccentricity) := by
@@ -117,12 +140,18 @@ theorem strictMono_eccentricMeanAnomaly {eccentricity : ℝ}
   intro anomaly
   exact one_sub_eccentricity_mul_cos_pos heccentricity heccentricityOne
 
+/--
+@isnad1 id=eq.0h2v.s5.0f4a8f12e4c4 from=translated src=- shape=bdf657be vocab=c6bb4bcb
+-/
 lemma eccentricMeanAnomaly_add_two_pi (eccentricity anomaly : ℝ) :
     eccentricMeanAnomaly eccentricity (anomaly + 2 * Real.pi) =
       eccentricMeanAnomaly eccentricity anomaly + 2 * Real.pi := by
   simp [eccentricMeanAnomaly]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s6.4821f256f31d from=translated src=- shape=8f542877 vocab=10725dce
+-/
 lemma eccentricMeanAnomaly_add_nat_mul_two_pi
     (eccentricity anomaly : ℝ) (turns : ℕ) :
     eccentricMeanAnomaly eccentricity (anomaly + turns * (2 * Real.pi)) =
@@ -130,6 +159,9 @@ lemma eccentricMeanAnomaly_add_nat_mul_two_pi
   simp [eccentricMeanAnomaly]
   ring
 
+/--
+@isnad1 id=le.1h2v.s4.9fb888c7d618 from=translated src=- shape=b617897a vocab=28283ff4
+-/
 lemma eccentricMeanAnomaly_lower_bound {eccentricity anomaly : ℝ}
     (heccentricity : 0 ≤ eccentricity) :
     anomaly - eccentricity ≤ eccentricMeanAnomaly eccentricity anomaly := by
@@ -137,6 +169,9 @@ lemma eccentricMeanAnomaly_lower_bound {eccentricity anomaly : ℝ}
   unfold eccentricMeanAnomaly
   linarith
 
+/--
+@isnad1 id=le.1h2v.s4.f8e86ab99b76 from=translated src=- shape=1c843627 vocab=d3090cba
+-/
 lemma eccentricMeanAnomaly_upper_bound {eccentricity anomaly : ℝ}
     (heccentricity : 0 ≤ eccentricity) :
     eccentricMeanAnomaly eccentricity anomaly ≤ anomaly + eccentricity := by
@@ -144,12 +179,18 @@ lemma eccentricMeanAnomaly_upper_bound {eccentricity anomaly : ℝ}
   unfold eccentricMeanAnomaly
   linarith
 
+/--
+@isnad1 id=continuo.0h1v.s4.1d38f760562c from=translated src=- shape=f736e2c1 vocab=d9cc861d
+-/
 theorem continuous_eccentricMeanAnomaly (eccentricity : ℝ) :
     Continuous (eccentricMeanAnomaly eccentricity) := by
   rw [continuous_iff_continuousAt]
   intro anomaly
   exact (hasDerivAt_eccentricMeanAnomaly eccentricity anomaly).continuousAt
 
+/--
+@isnad1 id=analytic.0h2v.s5.8b4f65e54888 from=translated src=- shape=fc53336a vocab=a4238bdf
+-/
 theorem analyticAt_eccentricMeanAnomaly (eccentricity anomaly : ℝ) :
     AnalyticAt ℝ (eccentricMeanAnomaly eccentricity) anomaly := by
   have hscaled := (Real.analyticAt_sin (x := anomaly)).const_smul (c := eccentricity)
@@ -158,6 +199,9 @@ theorem analyticAt_eccentricMeanAnomaly (eccentricity anomaly : ℝ) :
   filter_upwards [] with argument
   simp [eccentricMeanAnomaly, smul_eq_mul]
 
+/--
+@isnad1 id=surjecti.1h1v.s4.61252e82ff5b from=translated src=- shape=e217721d vocab=52c452bd
+-/
 theorem surjective_eccentricMeanAnomaly {eccentricity : ℝ}
     (heccentricity : 0 ≤ eccentricity) :
     Function.Surjective (eccentricMeanAnomaly eccentricity) := by
@@ -182,6 +226,9 @@ theorem surjective_eccentricMeanAnomaly {eccentricity : ℝ}
       (continuous_eccentricMeanAnomaly eccentricity).continuousOn ⟨hlower, hupper⟩)
   exact ⟨anomaly, hanomaly⟩
 
+/--
+@isnad1 id=bijectiv.2h1v.s4.be7be0131e63 from=translated src=- shape=4d7535bd vocab=b588410b
+-/
 theorem bijective_eccentricMeanAnomaly {eccentricity : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
     Function.Bijective (eccentricMeanAnomaly eccentricity) :=
@@ -192,12 +239,18 @@ theorem bijective_eccentricMeanAnomaly {eccentricity : ℝ}
 noncomputable def eccentricAnomaly (eccentricity meanAnomaly : ℝ) : ℝ :=
   Function.invFun (eccentricMeanAnomaly eccentricity) meanAnomaly
 
+/--
+@isnad1 id=eq.1h2v.s4.af980b0fb8f2 from=translated src=- shape=eb0f5b30 vocab=a4fe880b
+-/
 theorem eccentricMeanAnomaly_eccentricAnomaly {eccentricity : ℝ}
     (heccentricity : 0 ≤ eccentricity) (meanAnomaly : ℝ) :
     eccentricMeanAnomaly eccentricity (eccentricAnomaly eccentricity meanAnomaly) =
       meanAnomaly := by
   exact Function.rightInverse_invFun (surjective_eccentricMeanAnomaly heccentricity) meanAnomaly
 
+/--
+@isnad1 id=eq.2h2v.s5.a0b3f0515480 from=translated src=- shape=ba50025f vocab=6e948693
+-/
 theorem eccentricAnomaly_eccentricMeanAnomaly {eccentricity : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
     (anomaly : ℝ) :
@@ -205,6 +258,9 @@ theorem eccentricAnomaly_eccentricMeanAnomaly {eccentricity : ℝ}
   exact Function.leftInverse_invFun
     (strictMono_eccentricMeanAnomaly heccentricity heccentricityOne).injective anomaly
 
+/--
+@isnad1 id=eq.2h2v.s6.f81f46421a7d from=translated src=- shape=60522084 vocab=04ee5e76
+-/
 theorem eccentricAnomaly_add_two_pi {eccentricity meanAnomaly : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
     eccentricAnomaly eccentricity (meanAnomaly + 2 * Real.pi) =
@@ -214,6 +270,9 @@ theorem eccentricAnomaly_add_two_pi {eccentricity meanAnomaly : ℝ}
     eccentricMeanAnomaly_add_two_pi,
     eccentricMeanAnomaly_eccentricAnomaly heccentricity]
 
+/--
+@isnad1 id=eq.2h3v.s6.5c874d02f19a from=translated src=- shape=a3ca37b3 vocab=7945bab9
+-/
 theorem eccentricAnomaly_add_nat_mul_two_pi
     {eccentricity meanAnomaly : ℝ} (turns : ℕ)
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
@@ -224,6 +283,9 @@ theorem eccentricAnomaly_add_nat_mul_two_pi
     eccentricMeanAnomaly_add_nat_mul_two_pi,
     eccentricMeanAnomaly_eccentricAnomaly heccentricity]
 
+/--
+@isnad1 id=continuo.2h1v.s5.005dd7e020d6 from=translated src=- shape=4d7535bd vocab=c4a0ceac
+-/
 theorem continuous_eccentricAnomaly {eccentricity : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
     Continuous (eccentricAnomaly eccentricity) := by
@@ -238,6 +300,9 @@ theorem continuous_eccentricAnomaly {eccentricity : ℝ}
   rw [hinverse]
   exact anomalyIso.symm.continuous
 
+/--
+@isnad1 id=hasderiv.2h2v.s6.f6d74f4e3143 from=translated src=- shape=07c8e250 vocab=40290bc2
+-/
 theorem hasDerivAt_eccentricAnomaly {eccentricity meanAnomaly : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
     HasDerivAt (eccentricAnomaly eccentricity)
@@ -253,6 +318,9 @@ theorem hasDerivAt_eccentricAnomaly {eccentricity meanAnomaly : ℝ}
       (eccentricMeanAnomaly_eccentricAnomaly heccentricity))
   exact hraw.congr_deriv (by simp [one_div])
 
+/--
+@isnad1 id=analytic.2h2v.s5.2f7dd6228589 from=translated src=- shape=89c6f794 vocab=b95445bc
+-/
 theorem analyticAt_eccentricAnomaly {eccentricity meanAnomaly : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
     AnalyticAt ℝ (eccentricAnomaly eccentricity) meanAnomaly := by
@@ -274,12 +342,18 @@ noncomputable def delaunayRadius
     (firstAction eccentricity meanAnomaly : ℝ) : ℝ :=
   eccentricRadius firstAction eccentricity (eccentricAnomaly eccentricity meanAnomaly)
 
+/--
+@isnad1 id=lt.3h3v.s5.b280bd4918b0 from=translated src=- shape=6f6e6f91 vocab=ce123bfc
+-/
 lemma delaunayRadius_pos {firstAction eccentricity meanAnomaly : ℝ}
     (hfirstAction : firstAction ≠ 0) (heccentricity : 0 ≤ eccentricity)
     (heccentricityOne : eccentricity < 1) :
     0 < delaunayRadius firstAction eccentricity meanAnomaly := by
   exact eccentricRadius_pos hfirstAction heccentricity heccentricityOne
 
+/--
+@isnad1 id=eq.2h3v.s5.c7b5c37ff6cf from=translated src=- shape=99cb45d0 vocab=7233332c
+-/
 lemma delaunayRadius_add_two_pi {firstAction eccentricity meanAnomaly : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
     delaunayRadius firstAction eccentricity (meanAnomaly + 2 * Real.pi) =
@@ -288,6 +362,9 @@ lemma delaunayRadius_add_two_pi {firstAction eccentricity meanAnomaly : ℝ}
   rw [eccentricAnomaly_add_two_pi heccentricity heccentricityOne]
   simp
 
+/--
+@isnad1 id=eq.2h4v.s6.b6fb19997abe from=translated src=- shape=a9ac4145 vocab=8b129324
+-/
 lemma delaunayRadius_add_nat_mul_two_pi
     {firstAction eccentricity meanAnomaly : ℝ} (turns : ℕ)
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
@@ -297,6 +374,9 @@ lemma delaunayRadius_add_nat_mul_two_pi
   rw [eccentricAnomaly_add_nat_mul_two_pi turns heccentricity heccentricityOne]
   simp
 
+/--
+@isnad1 id=analytic.2h3v.s5.15546d525ad9 from=translated src=- shape=1edb741c vocab=74f536ce
+-/
 theorem analyticAt_delaunayRadius {firstAction eccentricity meanAnomaly : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1) :
     AnalyticAt ℝ (delaunayRadius firstAction eccentricity) meanAnomaly := by
@@ -312,7 +392,9 @@ theorem analyticAt_delaunayRadius {firstAction eccentricity meanAnomaly : ℝ}
   simp [delaunayRadius, eccentricRadius, smul_eq_mul]
 
 /-- The eccentric-anomaly formulas lie on the inertial Kepler energy shell
-`-1 / (2 * I₁²)`. -/
+`-1 / (2 * I₁²)`.
+@isnad1 id=eq.3h4v.s6.cdbf88d065c9 from=translated src=- shape=8113ecf3 vocab=923017d2
+-/
 theorem polarKeplerEnergy_eccentricPolarState {firstAction eccentricity anomaly polarAngle : ℝ}
     (hfirstAction : firstAction ≠ 0) (heccentricity : 0 ≤ eccentricity)
     (heccentricityOne : eccentricity < 1) :

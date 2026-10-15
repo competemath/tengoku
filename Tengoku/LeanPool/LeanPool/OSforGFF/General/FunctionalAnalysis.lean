@@ -90,6 +90,9 @@ variable {𝕜 : Type} [RCLike 𝕜]
 variable {E : Type} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
 -- General version that works for any normed space over ℝ
+/--
+@isnad1 id=hastempe.0h3v.s5.8d304160df39 from=translated src=- shape=a0f27d97 vocab=83139df9
+-/
 lemma SchwartzMap.hasTemperateGrowth_general
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
@@ -104,16 +107,27 @@ variable {α : Type*} [MeasurableSpace α] {μ : Measure α}
 -- Add measurable space instances for Lp spaces
 instance instMeasurableSpaceLpRealTwoLeanPool (μ : Measure α) : MeasurableSpace (Lp ℝ 2 μ) :=
   borel _
+/--
+@isnad1 id=borelspa.0h2v.s9.65cad7f8c171 from=translated src=- shape=15dadbc1 vocab=6aa6b41d
+-/
 instance instBorelSpaceLpRealTwoLeanPool (μ : Measure α) : BorelSpace (Lp ℝ 2 μ) := ⟨rfl⟩
 instance instMeasurableSpaceLpComplexTwoLeanPool (μ : Measure α) : MeasurableSpace (Lp ℂ 2 μ) :=
   borel _
+/--
+@isnad1 id=borelspa.0h2v.s9.3f628e6ba6a7 from=translated src=- shape=15dadbc1 vocab=670e1d30
+-/
 instance instBorelSpaceLpComplexTwoLeanPool (μ : Measure α) : BorelSpace (Lp ℂ 2 μ) := ⟨rfl⟩
 
 -- Check if Complex.ofRealCLM is an isometry
+/--
+@isnad1 id=isometry.0h0v.s7.8589eb9387d5 from=translated src=- shape=dbf28247 vocab=78e5abcd
+-/
 lemma Complex.ofRealCLM_isometry : Isometry (Complex.ofRealCLM : ℝ →L[ℝ] ℂ) :=
   Complex.ofRealLI.isometry
 
-/-- The lift `φ ↦ ofRealCLM.compLp φ` to `Lp` is continuous. -/
+/-- The lift `φ ↦ ofRealCLM.compLp φ` to `Lp` is continuous.
+@isnad1 id=continuo.0h2v.s11.65fcf0daf873 from=translated src=- shape=f7d19975 vocab=2934c51c
+-/
 lemma Complex.ofRealCLM_continuous_compLp {α : Type*} [MeasurableSpace α] {μ : Measure α} :
   Continuous (fun φ : Lp ℝ 2 μ => Complex.ofRealCLM.compLp φ : Lp ℝ 2 μ → Lp ℂ 2 μ) :=
   (ContinuousLinearMap.compLpL 2 μ Complex.ofRealCLM).continuous
@@ -226,7 +240,9 @@ noncomputable def linftyMulL2CLM {μ : Measure α}
   have hg_mem : MemLp g ∞ μ := memLp_top_of_bound hg_meas.aestronglyMeasurable C hg_bound
   (ContinuousLinearMap.mul _ _).holderL μ ∞ 2 2 hg_mem.toLp
 
-/-- The multiplication operator acts pointwise almost everywhere on `L²`. -/
+/-- The multiplication operator acts pointwise almost everywhere on `L²`.
+@isnad1 id=eventual.2h5v.s12.381829b6bfc9 from=translated src=- shape=fd97fd69 vocab=58b42b22
+-/
 lemma linfty_mul_L2_CLM_spec {μ : Measure α}
     (g : α → ℂ) (hg_meas : Measurable g) (C : ℝ)
     (hg_bound : ∀ᵐ x ∂μ, ‖g x‖ ≤ C)
@@ -251,6 +267,7 @@ open Set Metric in
     - Define g := indicator (Iio r) f, so g(y) = f(y) for y < r, else 0
     - Then indicator (ball 0 r) (f ∘ ‖·‖) = g ∘ ‖·‖
     - Apply global lemma to g
+@isnad1 id=integrab.2h5v.s8.e948faaac9c3 from=translated src=- shape=8be74d94 vocab=31ae0a45
 -/
 lemma integrableOn_ball_of_radial {E F : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [Nontrivial E]
@@ -285,6 +302,7 @@ lemma integrableOn_ball_of_radial {E F : Type*}
 open Set Metric in
 /-- Integrability on balls for power-law decay functions.
     If |f(x)| ≤ C‖x‖^{-α} with α < d, then f is integrable on any ball centered at 0.
+@isnad1 id=integrab.6h5v.s9.ded2a9d4f1c7 from=translated src=- shape=740139d3 vocab=10bbf5a3
 -/
 lemma integrableOn_ball_of_rpow_decay {d : ℕ} (hd : d ≥ 1)
     {f : EuclideanSpace ℝ (Fin d) → ℝ} {C α r : ℝ}
@@ -329,7 +347,9 @@ lemma integrableOn_ball_of_rpow_decay {d : ℕ} (hd : d ≥ 1)
   apply Integrable.mono' h_bound h_meas.restrict
   simp_all
 
-/-- Integrability away from the origin for bounded functions on compact sets. -/
+/-- Integrability away from the origin for bounded functions on compact sets.
+@isnad1 id=integrab.5h6v.s9.6b9f6265a534 from=translated src=- shape=12d86752 vocab=a9e6e3e7
+-/
 lemma integrableOn_compact_diff_ball {d : ℕ}
     {f : EuclideanSpace ℝ (Fin d) → ℝ} {C α δ : ℝ} {K : Set (EuclideanSpace ℝ (Fin d))}
     (hK : IsCompact K) (hC : 0 < C) (hδ : 0 < δ)
@@ -386,6 +406,7 @@ lemma integrableOn_compact_diff_ball {d : ℕ}
 
 /-- Functions with polynomial decay are locally integrable.
     For d-dimensional space, if α < d and |f(x)| ≤ C‖x‖^{-α}, then f is locally integrable.
+@isnad1 id=locallyi.5h4v.s9.c0ce829424f0 from=translated src=- shape=b2d16f62 vocab=3a1da909
 -/
 theorem locallyIntegrable_of_rpow_decay_real {d : ℕ} (hd : d ≥ 3)
     {f : EuclideanSpace ℝ (Fin d) → ℝ} {C : ℝ} {α : ℝ}
@@ -427,6 +448,7 @@ theorem locallyIntegrable_of_rpow_decay_real {d : ℕ} (hd : d ≥ 3)
     **Used by**: `spatialNormIntegral_linear_bound` and `F_norm_bound_via_linear_vanishing`
     to show that spatial integrals of Schwartz functions with linear time vanishing
     are bounded by C·t.
+@isnad1 id=integrab.0h0v.s8.1e663aaac5ba from=translated src=- shape=8d94804c vocab=1158d1d6
 -/
 lemma polynomial_decay_integrable_3d :
     Integrable (fun x : EuclideanSpace ℝ (Fin 3) => 1 / (1 + ‖x‖)^4) volume := by
@@ -460,6 +482,7 @@ This applies to exponentially decaying kernels like the massive free covariance.
     - Schwartz functions are integrable: ‖g‖_{L¹} < ∞
     - K₀ is integrable: ‖K₀‖_{L¹} < ∞
     - Then: ∫∫ |f(x) K₀(x-y) g(y)| dx dy ≤ ‖f‖_∞ · ‖K₀‖_{L¹} · ‖g‖_{L¹} < ∞
+@isnad1 id=integrab.1h4v.s10.88f81c01f4bc from=translated src=- shape=1ec3870b vocab=74b0bfd5
 -/
 theorem schwartz_bilinear_integrable_of_translationInvariant_L1
     {d : ℕ}
@@ -572,6 +595,7 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [MeasurableSpace
 
 /-- A Schwartz function times a bounded measurable function is integrable.
     This is the key technical lemma for Fourier-type integrals.
+@isnad1 id=integrab.2h4v.s7.77eaa6fbea31 from=translated src=- shape=d19c8446 vocab=168bbf92
 -/
 lemma SchwartzMap.integrable_mul_bounded (f : SchwartzMap E ℂ) (g : E → ℂ)
     (hg_meas : Measurable g) (hg_bdd : ∀ x, ‖g x‖ ≤ 1) :
@@ -583,7 +607,9 @@ lemma SchwartzMap.integrable_mul_bounded (f : SchwartzMap E ℂ) (g : E → ℂ)
   have hg_ae_bdd : ∀ᵐ x ∂μ, ‖g x‖ ≤ 1 := Filter.Eventually.of_forall hg_bdd
   exact Integrable.mul_bdd hf_int hg_ae hg_ae_bdd
 
-/-- The conjugate of a Schwartz function is integrable. -/
+/-- The conjugate of a Schwartz function is integrable.
+@isnad1 id=integrab.0h3v.s7.05b30df87777 from=translated src=- shape=378f3389 vocab=2aae3c96
+-/
 lemma SchwartzMap.integrable_conj (f : SchwartzMap E ℂ) :
     Integrable (fun y => starRingEnd ℂ (f y)) μ := by
   have hf_int : Integrable f μ := f.integrable
@@ -600,11 +626,15 @@ end SchwartzBounded
 Lemmas about complex exponentials of pure imaginary arguments, used in Fourier analysis.
 -/
 
-/-- Complex exponential of pure imaginary argument has norm 1. -/
+/-- Complex exponential of pure imaginary argument has norm 1.
+@isnad1 id=eq.0h1v.s4.fe1892df74e9 from=translated src=- shape=51fb65c3 vocab=d6b61dc0
+-/
 lemma norm_exp_I_mul_real (r : ℝ) : ‖Complex.exp (Complex.I * r)‖ = 1 :=
   norm_exp_I_mul_ofReal r
 
-/-- Complex exponential of negative pure imaginary argument has norm 1. -/
+/-- Complex exponential of negative pure imaginary argument has norm 1.
+@isnad1 id=eq.0h1v.s4.ee896101372d from=translated src=- shape=cec77c31 vocab=ef02fdd8
+-/
 lemma norm_exp_neg_I_mul_real (r : ℝ) : ‖Complex.exp (-Complex.I * r)‖ = 1 := by
   rw [Complex.norm_exp]
   simp_all
@@ -624,6 +654,7 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
     This follows from the Mean Value Theorem: f(t,x) - f(0,x) = ∫₀ᵗ ∂ₜf dt,
     and since ∂ₜf is bounded (Schwartz), we get |f(t,x)| ≤ C·t.
+@isnad1 id=ex.1h2v.s8.2a6b58da4156 from=translated src=- shape=f16bfd62 vocab=5d02b017
 -/
 theorem schwartz_vanishing_linear_bound_general
     (f : SchwartzMap (ℝ × E) ℂ)
@@ -688,11 +719,15 @@ fact in harmonic analysis: if f ∈ 𝒮(ℝⁿ), then f(· - a) ∈ 𝒮(ℝⁿ
 **Reference:** Stein-Weiss, "Fourier Analysis", Chapter 1; any Schwartz space text
 -/
 
-/-- Translation `x ↦ x - a` has temperate growth. -/
+/-- Translation `x ↦ x - a` has temperate growth.
+@isnad1 id=hastempe.0h2v.s5.530c0957090c from=translated src=- shape=e1d34e69 vocab=a0e62e41
+-/
 lemma sub_const_hasTemperateGrowth {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] (a : E) :
     Function.HasTemperateGrowth (fun x : E => x - a) := by fun_prop
 
-/-- Translation `x ↦ x - a` is antilipschitz (actually an isometry). -/
+/-- Translation `x ↦ x - a` is antilipschitz (actually an isometry).
+@isnad1 id=antilips.0h2v.s5.829176770674 from=translated src=- shape=91270251 vocab=6c01fc56
+-/
 lemma sub_const_antilipschitz {E : Type*} [NormedAddCommGroup E] (a : E) :
     AntilipschitzWith 1 (fun x : E => x - a) := by
   intro x y
@@ -711,6 +746,9 @@ noncomputable def SchwartzMap.translate {E F : Type*}
   SchwartzMap.compCLMOfAntilipschitz ℝ (sub_const_hasTemperateGrowth a) (sub_const_antilipschitz a)
     f
 
+/--
+@isnad1 id=eq.0h5v.s6.357073af8c07 from=translated src=- shape=76959151 vocab=9b56f3b0
+-/
 @[simp]
 theorem SchwartzMap.translate_apply {E F : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -734,6 +772,7 @@ open Real
     |f(x)| ≤ C / (1 + |x|)^N. If N > dim(V), this implies integrability.
 
     **Reference**: Stein-Weiss, Chapter 1, Proposition 1.1
+@isnad1 id=ex.1h3v.s7.9d4591e13bba from=translated src=- shape=ad944fd5 vocab=dd471168
 -/
 theorem schwartz_integrable_decay {V : Type*} [NormedAddCommGroup V]
     [NormedSpace ℝ V]
@@ -805,7 +844,9 @@ variable {E}
 noncomputable def bumpSelfConv (φ : ContDiffBump (0 : E)) : E → ℝ :=
   (φ.normed volume) ⋆[ContinuousLinearMap.lsmul ℝ ℝ, volume] (φ.normed volume)
 
-/-- Self-convolution is nonnegative. -/
+/-- Self-convolution is nonnegative.
+@isnad1 id=le.0h3v.s6.156e976454ff from=translated src=- shape=20837d6b vocab=e1c08964
+-/
 lemma bumpSelfConv_nonneg (φ : ContDiffBump (0 : E)) (x : E) : 0 ≤ bumpSelfConv φ x := by
   unfold bumpSelfConv convolution
   apply integral_nonneg
@@ -813,7 +854,9 @@ lemma bumpSelfConv_nonneg (φ : ContDiffBump (0 : E)) (x : E) : 0 ≤ bumpSelfCo
   simp only [ContinuousLinearMap.lsmul_apply, smul_eq_mul]
   exact mul_nonneg (φ.nonneg_normed _) (φ.nonneg_normed _)
 
-/-- Self-convolution has mass 1: ∫(φ ⋆ φ) = (∫φ)(∫φ) = 1·1 = 1. -/
+/-- Self-convolution has mass 1: ∫(φ ⋆ φ) = (∫φ)(∫φ) = 1·1 = 1.
+@isnad1 id=eq.0h2v.s6.94dbb6db12dd from=translated src=- shape=a5ba2056 vocab=9d8f58dc
+-/
 lemma bumpSelfConv_integral (φ : ContDiffBump (0 : E)) :
     ∫ x, bumpSelfConv φ x = 1 := by
   unfold bumpSelfConv
@@ -824,7 +867,9 @@ lemma bumpSelfConv_integral (φ : ContDiffBump (0 : E)) :
   · exact φ.integrable_normed
   · exact φ.integrable_normed
 
-/-- Support of self-convolution is contained in ball of radius 2*rOut. -/
+/-- Support of self-convolution is contained in ball of radius 2*rOut.
+@isnad1 id=le.0h2v.s7.06235cef0627 from=translated src=- shape=2d1489a5 vocab=d73fa2b2
+-/
 lemma bumpSelfConv_support_subset (φ : ContDiffBump (0 : E)) :
     support (bumpSelfConv φ) ⊆ Metric.ball 0 (2 * φ.rOut) := by
   unfold bumpSelfConv
@@ -848,7 +893,9 @@ lemma bumpSelfConv_support_subset (φ : ContDiffBump (0 : E)) :
     _ < φ.rOut + φ.rOut := add_lt_add hy_ball hz_ball
     _ = 2 * φ.rOut := by ring
 
-/-- Self-convolution support shrinks to {0} as rOut → 0. -/
+/-- Self-convolution support shrinks to {0} as rOut → 0.
+@isnad1 id=tendsto.1h4v.s7.b8507b0d2f61 from=translated src=- shape=5f250272 vocab=09b9aac3
+-/
 lemma bumpSelfConv_support_tendsto {ι : Type*} {l : Filter ι}
     (φ : ι → ContDiffBump (0 : E)) (hφ : Tendsto (fun i => (φ i).rOut) l (nhds 0)) :
     Tendsto (fun i => support (bumpSelfConv (φ i))) l (𝓝 (0 : E)).smallSets := by
@@ -880,6 +927,7 @@ lemma bumpSelfConv_support_tendsto {ι : Type*} {l : Filter ι}
        - Shrinking support: supp(ψ) ⊆ B(0, 2·rOut)
     2. By associativity: ∫∫ φ(x-a) C(x-y) φ(y) dx dy = (ψ ⋆ C)(a)
     3. Apply single-convolution theorem: (ψ ⋆ C)(a) → C(a)
+@isnad1 id=tendsto.3h6v.s8.e996c9fbdee0 from=translated src=- shape=4e0d7a2f vocab=64b6249c
 -/
 theorem double_mollifier_convergence
     [NullSingletonClass (volume : Measure E)]

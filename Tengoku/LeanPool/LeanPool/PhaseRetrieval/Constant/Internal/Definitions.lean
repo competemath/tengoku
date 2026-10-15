@@ -43,6 +43,9 @@ We adopt Mathlib's conventions throughout:
 /-- The two-pi period, as a convenient abbreviation. -/
 def T : ℝ := 2 * Real.pi
 
+/--
+@isnad1 id=lt.0h0v.s3.68aa65b0e862 from=translated src=- shape=ff3a10fc vocab=7dc129db
+-/
 lemma T_pos : 0 < T := mul_pos two_pos Real.pi_pos
 
 instance : Fact (0 < T) := ⟨T_pos⟩
@@ -461,6 +464,9 @@ private lemma integrableOn_polar_rho {D : ℕ} (a : Fin D → ℂ) :
 
 /-! ## Lemma 1.7: Polar-coordinate decomposition of the Fock norm -/
 
+/--
+@isnad1 id=eq.0h2v.s7.a07ab03c858d from=translated src=- shape=e3e80a34 vocab=17897fd9
+-/
 theorem polar_coord_fock {D : ℕ} (a : Fin D → ℂ) :
     rhoFockNormSq a = 2 * ∫ r in Set.Ioi (0 : ℝ), r * Real.exp (-r ^ 2) *
       (∫ t : AddCircle T, (rho (polyEvalCircle a r t)) ^ 2 ∂AddCircle.haarAddCircle) := by
@@ -743,6 +749,9 @@ private lemma fockNorm_polar {D : ℕ} (a : Fin D → ℂ) :
   have hT_eq : (1 / Real.pi) * T = 2 := by simp only [T]; field_simp
   rw [← mul_assoc, hT_eq]
 
+/--
+@isnad1 id=eq.0h2v.s6.1f793afffa68 from=translated src=- shape=a59a3002 vocab=87615a1e
+-/
 theorem fockNorm_eq_gaussian_integral {D : ℕ} (a : Fin D → ℂ) :
     (1 / Real.pi) * ∫ z : ℂ,
       ‖polyEval a z‖ ^ 2 * Real.exp (-‖z‖ ^ 2) =

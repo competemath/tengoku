@@ -54,10 +54,16 @@ def etaOfPhase (L : ℝ) : ℝ := 1 / L
 
 /-! ## Basic arithmetic properties -/
 
+/--
+@isnad1 id=lt.0h1v.s3.40abc12269ac from=translated src=- shape=b9369acb vocab=c393d701
+-/
 theorem thetaOfPhase_pos (k : ℕ) : 0 < thetaOfPhase k := by
   simp only [thetaOfPhase]
   positivity
 
+/--
+@isnad1 id=lt.1h1v.s4.afda6441a804 from=translated src=- shape=aa240375 vocab=ba116b85
+-/
 theorem thetaOfPhase_lt_one {k : ℕ} (hk : 1 ≤ k) : thetaOfPhase k < 1 := by
   simp only [thetaOfPhase]
   have h4 : (0 : ℝ) < 4⁻¹ := by positivity
@@ -67,6 +73,9 @@ theorem thetaOfPhase_lt_one {k : ℕ} (hk : 1 ≤ k) : thetaOfPhase k < 1 := by
     _ = (4 : ℝ)⁻¹ := pow_one _
     _ < 1 := h4_lt1
 
+/--
+@isnad1 id=lt.2h2v.s5.5f3ac01fdba8 from=translated src=- shape=8687cd21 vocab=27616260
+-/
 theorem muOfPhase_pos {μ : ℝ} (hμ : 0 < μ) {k : ℕ} (hk : 1 ≤ k) :
     0 < muOfPhase μ k := by
   simp only [muOfPhase]
@@ -77,23 +86,33 @@ theorem muOfPhase_pos {μ : ℝ} (hμ : 0 < μ) {k : ℕ} (hk : 1 ≤ k) :
       _ < 1 := by norm_num
   linarith
 
-/-- Positivity of the retuned parameter μθ. -/
+/-- Positivity of the retuned parameter μθ.
+@isnad1 id=lt.2h2v.s5.1c273a7a80e8 from=translated src=- shape=40d929c6 vocab=9ce62637
+-/
 theorem muOfTheta_pos {μ θ : ℝ} (hμ : 0 < μ) (hθ_lt1 : θ < 1) :
     0 < muOfTheta μ θ := by
   simp only [muOfTheta]
   exact mul_pos hμ (sub_pos.mpr hθ_lt1)
 
-/-- The retuned parameter is strictly below μ when θ > 0. -/
+/-- The retuned parameter is strictly below μ when θ > 0.
+@isnad1 id=lt.2h2v.s5.2641bd5c216f from=translated src=- shape=d4bdd684 vocab=9ce62637
+-/
 theorem muOfTheta_lt_mu {μ θ : ℝ} (hμ : 0 < μ) (hθ_pos : 0 < θ) :
     muOfTheta μ θ < μ := by
   simp only [muOfTheta]
   nlinarith
 
+/--
+@isnad1 id=lt.1h2v.s4.3f61ebc0d8f2 from=translated src=- shape=4d1758ce vocab=f35724d4
+-/
 theorem muOfPhase_lt_mu {μ : ℝ} (hμ : 0 < μ) (k : ℕ) :
     muOfPhase μ k < μ := by
   simp only [muOfPhase]
   simp_all
 
+/--
+@isnad1 id=le.1h2v.s5.06ed3321bd0f from=translated src=- shape=70ebe8e3 vocab=5b5d6ef8
+-/
 theorem muOfPhase_increasing {μ : ℝ} (hμ : 0 < μ) (k : ℕ) :
     muOfPhase μ k ≤ muOfPhase μ (k + 1) := by
   simp only [muOfPhase]
@@ -102,25 +121,33 @@ theorem muOfPhase_increasing {μ : ℝ} (hμ : 0 < μ) (k : ℕ) :
     omega
   nlinarith
 
-/-- muOfPhase k = μ · (1 - θₖ) -/
+/-- muOfPhase k = μ · (1 - θₖ)
+@isnad1 id=eq.0h2v.s5.f30e0cf45532 from=translated src=- shape=fa229f0f vocab=ce2a3e3f
+-/
 theorem muOfPhase_eq (μ : ℝ) (k : ℕ) :
     muOfPhase μ k = μ * (1 - thetaOfPhase k) := by
   simp [muOfPhase, thetaOfPhase]
 
-/-- 1 - muOfPhase k / μ = θₖ -/
+/-- 1 - muOfPhase k / μ = θₖ
+@isnad1 id=eq.1h2v.s5.dd6cba2e03c6 from=translated src=- shape=d44f675a vocab=4f9331ca
+-/
 theorem one_sub_muOfPhase_div {μ : ℝ} (hμ : 0 < μ) (k : ℕ) :
     1 - muOfPhase μ k / μ = thetaOfPhase k := by
   simp only [muOfPhase, thetaOfPhase]
   field_simp
   ring
 
-/-- a_k = √(μ_k·η) ≤ √(μ·η) for all k. -/
+/-- a_k = √(μ_k·η) ≤ √(μ·η) for all k.
+@isnad1 id=le.2h3v.s5.4f3ac6336b0c from=translated src=- shape=5c0ea779 vocab=7aaf51c0
+-/
 theorem sqrt_muOfPhase_eta_le {μ η : ℝ} (hμ : 0 < μ) (hη : 0 < η) (k : ℕ) :
     Real.sqrt (muOfPhase μ k * η) ≤ Real.sqrt (μ * η) :=
   Real.sqrt_le_sqrt (mul_le_mul_of_nonneg_right
     (le_of_lt (muOfPhase_lt_mu hμ k)) (le_of_lt hη))
 
-/-- 1/(1-a_k) ≤ 1/(1-√(μη)) for all k (uniform bound on jump constants). -/
+/-- 1/(1-a_k) ≤ 1/(1-√(μη)) for all k (uniform bound on jump constants).
+@isnad1 id=le.3h3v.s7.8bbe166166a5 from=translated src=- shape=2099f408 vocab=4ee507c2
+-/
 theorem one_div_one_sub_sqrt_le {μ η : ℝ} (hμ : 0 < μ) (hη : 0 < η)
     (hμη : μ * η < 1) (k : ℕ) :
     1 / (1 - Real.sqrt (muOfPhase μ k * η)) ≤
@@ -135,7 +162,9 @@ theorem one_div_one_sub_sqrt_le {μ η : ℝ} (hμ : 0 < μ) (hη : 0 < η)
 
 /-! ## Geometric series bounds -/
 
-/-- Partial sums of r^(k+1) for 0 ≤ r < 1 are bounded by r/(1-r). -/
+/-- Partial sums of r^(k+1) for 0 ≤ r < 1 are bounded by r/(1-r).
+@isnad1 id=le.2h2v.s6.51bea04e82c5 from=translated src=- shape=e11a98ea vocab=9cb565f9
+-/
 theorem partial_geometric_sum_le {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) (K : ℕ) :
     ∑ k ∈ Finset.range K, r ^ (k + 1) ≤ r / (1 - r) := by
   have h1mr : 0 < 1 - r := by linarith
@@ -158,7 +187,9 @@ theorem partial_geometric_sum_le {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) (K : �
   have : 0 ≤ r ^ K := pow_nonneg hr0 K
   nlinarith
 
-/-- Partial sums of (1/2)^(k+1) are bounded by 1. -/
+/-- Partial sums of (1/2)^(k+1) are bounded by 1.
+@isnad1 id=le.0h1v.s6.ee1c48601c2f from=translated src=- shape=513c0a7b vocab=53354fcd
+-/
 theorem partial_geometric_half_le (K : ℕ) :
     ∑ k ∈ Finset.range K, ((1 : ℝ) / 2) ^ (k + 1) ≤ 1 := by
   calc ∑ k ∈ Finset.range K, ((1 : ℝ) / 2) ^ (k + 1)
@@ -166,7 +197,9 @@ theorem partial_geometric_half_le (K : ℕ) :
         partial_geometric_sum_le (by norm_num) (by norm_num) K
     _ = 1 := by norm_num
 
-/-- Partial sums of (1/4)^k for k ≥ 1 are bounded by 1/3. -/
+/-- Partial sums of (1/4)^k for k ≥ 1 are bounded by 1/3.
+@isnad1 id=le.0h1v.s6.3c65f0abac66 from=translated src=- shape=b193f0b2 vocab=53354fcd
+-/
 theorem partial_geometric_quarter_le (K : ℕ) :
     ∑ k ∈ Finset.range K, ((1 : ℝ) / 4) ^ (k + 1) ≤ 1 / 3 := by
   calc ∑ k ∈ Finset.range K, ((1 : ℝ) / 4) ^ (k + 1)

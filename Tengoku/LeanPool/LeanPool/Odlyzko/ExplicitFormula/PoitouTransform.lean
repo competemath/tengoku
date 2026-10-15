@@ -35,6 +35,9 @@ noncomputable def poitouTransformIntegrand
 noncomputable def poitouTransform (f : ℝ → ℝ) (s : ℂ) : ℂ :=
   ∫ x : ℝ, poitouTransformIntegrand f s x
 
+/--
+@isnad1 id=eq.1h2v.s4.afd861a03cbb from=translated src=- shape=85175e94 vocab=56d8d45b
+-/
 theorem poitouKernel_neg {f : ℝ → ℝ}
     (hf : ∀ x, f (-x) = f x) (x : ℝ) :
     poitouKernel f (-x) = poitouKernel f x := by
@@ -50,6 +53,9 @@ private theorem poitouTransformIntegrand_one_sub {f : ℝ → ℝ}
   push_cast
   ring_nf
 
+/--
+@isnad1 id=eq.1h2v.s5.89b1a622f0be from=translated src=- shape=be1e7e57 vocab=70aa20b1
+-/
 theorem poitouTransform_one_sub {f : ℝ → ℝ}
     (hf : ∀ x, f (-x) = f x) (s : ℂ) :
     poitouTransform f (1 - s) = poitouTransform f s := by
@@ -57,11 +63,17 @@ theorem poitouTransform_one_sub {f : ℝ → ℝ}
   simp_rw [poitouTransformIntegrand_one_sub hf]
   exact integral_neg_eq_self (poitouTransformIntegrand f s) volume
 
+/--
+@isnad1 id=eq.1h2v.s5.403053f04149 from=translated src=- shape=a3ed0e2d vocab=70aa20b1
+-/
 theorem poitouTransform_reflection {f : ℝ → ℝ}
     (hf : ∀ x, f (-x) = f x) (s : ℂ) :
     poitouTransform f s = poitouTransform f (1 - s) :=
   (poitouTransform_one_sub hf s).symm
 
+/--
+@isnad1 id=eq.2h2v.s6.9b1d0564f9e6 from=translated src=- shape=2f3ef393 vocab=f445a565
+-/
 theorem re_poitouTransform_mul_I_eq_cosineTransform
     {f : ℝ → ℝ} (hf : ∀ x, f (-x) = f x) (t : ℝ)
     (hint : Integrable (poitouTransformIntegrand f (t * I))) :
@@ -94,6 +106,9 @@ theorem re_poitouTransform_mul_I_eq_cosineTransform
   unfold Poitou.cosineTransform
   linarith
 
+/--
+@isnad1 id=le.2h2v.s6.04712f599ce7 from=translated src=- shape=9d0328ed vocab=7a0186d3
+-/
 theorem re_poitouTransform_mul_I_nonneg
     {f : ℝ → ℝ} (hf : Poitou.Admissible f) (t : ℝ)
     (hint : Integrable (poitouTransformIntegrand f (t * I))) :
@@ -106,6 +121,9 @@ private theorem cosineTransform_neg {f : ℝ → ℝ} (t : ℝ) :
   unfold Poitou.cosineTransform
   simp
 
+/--
+@isnad1 id=le.2h2v.s6.bf7393dd2ad2 from=translated src=- shape=8e0b3c3a vocab=d7863f3d
+-/
 theorem re_poitouTransform_one_add_mul_I_nonneg
     {f : ℝ → ℝ} (hf : Poitou.Admissible f) (t : ℝ)
     (hint : Integrable
@@ -117,6 +135,9 @@ theorem re_poitouTransform_one_add_mul_I_nonneg
     cosineTransform_neg]
   exact hf.cosineTransform_nonnegative t
 
+/--
+@isnad1 id=eq.2h1v.s6.e642d6a2eca1 from=translated src=- shape=c37ad24f vocab=7096394a
+-/
 theorem poitouTransform_one_eq_integral
     {f : ℝ → ℝ} (hf : ∀ x, f (-x) = f x)
     (hint : Integrable (poitouTransformIntegrand f 0)) :

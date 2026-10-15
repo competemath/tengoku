@@ -57,6 +57,9 @@ noncomputable def resonantDisturbingOrientationDerivative
     position 1 /
       (Real.sqrt ((position 0 - 1) ^ 2 + (position 1) ^ 2)) ^ 3
 
+/--
+@isnad1 id=eq.0h4v.s4.610a41c26971 from=translated src=- shape=9695f169 vocab=3f31e4f2
+-/
 lemma orientedResonantEllipsePosition_zero_orientation
     (p q : ℕ) (eccentricity time : ℝ) :
     orientedResonantEllipsePosition p q eccentricity 0 time =
@@ -64,6 +67,9 @@ lemma orientedResonantEllipsePosition_zero_orientation
   simp [orientedResonantEllipsePosition, resonantRotatingEllipsePosition,
     rotatingEllipsePosition]
 
+/--
+@isnad1 id=eq.0h5v.s4.95f0010fe770 from=translated src=- shape=400747dd vocab=fa35b745
+-/
 lemma orientedResonantEllipsePosition_eq_fixedRotation
     (p q : ℕ) (eccentricity orientation time : ℝ) :
     orientedResonantEllipsePosition p q eccentricity orientation time =
@@ -75,6 +81,9 @@ lemma orientedResonantEllipsePosition_eq_fixedRotation
   congr 1
   ring
 
+/--
+@isnad1 id=analytic.2h6v.s6.7e8a7c4608dd from=translated src=- shape=ac901201 vocab=2edddc3f
+-/
 theorem analyticAt_orientedResonantEllipsePosition_coordinate
     (p q : ℕ) {eccentricity orientation time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -113,6 +122,9 @@ theorem analyticAt_orientedResonantEllipsePosition_coordinate
         filter_upwards [] with argument
         simp [smul_eq_mul])
 
+/--
+@isnad1 id=continuo.2h4v.s6.8addc94fd247 from=translated src=- shape=27bdc102 vocab=58ecb0a6
+-/
 theorem continuous_orientedResonantEllipsePosition_coordinate
     (p q : ℕ) {eccentricity : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -136,6 +148,9 @@ theorem continuous_orientedResonantEllipsePosition_coordinate
       Matrix.cons_val_fin_one, neg_mul, Fin.mk_one]
     fun_prop
 
+/--
+@isnad1 id=eq.2h5v.s7.6a71fccfc71b from=translated src=- shape=08dbff48 vocab=5dac3b7c
+-/
 lemma orientedResonantEllipsePosition_sq {p q : ℕ} {eccentricity orientation time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity ≤ 1) :
     (orientedResonantEllipsePosition p q eccentricity orientation time 0) ^ 2 +
@@ -145,6 +160,9 @@ lemma orientedResonantEllipsePosition_sq {p q : ℕ} {eccentricity orientation t
   rw [orientedResonantEllipsePosition, positionInRotatingFrame_sq,
     inertialEllipsePosition_sq heccentricity heccentricityOne]
 
+/--
+@isnad1 id=continuo.5h3v.s7.0ae4fa19f045 from=translated src=- shape=8886e06a vocab=61d94138
+-/
 theorem continuous_resonantDisturbingOrientationDerivative
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) {eccentricity : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -206,6 +224,9 @@ theorem continuous_resonantDisturbingOrientationDerivative
   intro parameters
   simp [resonantDisturbingOrientationDerivative, x, y, div_eq_mul_inv]
 
+/--
+@isnad1 id=hasderiv.0h5v.s6.ae9c22c7fe20 from=translated src=- shape=2406a0f2 vocab=74aef3c8
+-/
 theorem hasDerivAt_orientedResonantEllipsePosition_zero_orientation
     (p q : ℕ) (eccentricity orientation time : ℝ) :
     HasDerivAt
@@ -226,6 +247,9 @@ theorem hasDerivAt_orientedResonantEllipsePosition_zero_orientation
     dsimp [position]
     ring
 
+/--
+@isnad1 id=hasderiv.0h5v.s6.d39921b7d8ed from=translated src=- shape=66650394 vocab=b7212cb9
+-/
 theorem hasDerivAt_orientedResonantEllipsePosition_one_orientation
     (p q : ℕ) (eccentricity orientation time : ℝ) :
     HasDerivAt
@@ -247,7 +271,9 @@ theorem hasDerivAt_orientedResonantEllipsePosition_one_orientation
     ring
 
 /-- Differentiating the disturbing function with respect to the ellipse orientation gives the
-explicit rotational derivative. -/
+explicit rotational derivative.
+@isnad1 id=hasderiv.5h5v.s7.1ee0a24adc00 from=translated src=- shape=7af5df55 vocab=dd90592b
+-/
 theorem hasDerivAt_resonantDisturbingFunction_orientation
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) {eccentricity orientation time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -325,6 +351,9 @@ theorem hasDerivAt_resonantDisturbingFunction_orientation
   · simp [resonantDisturbingOrientationDerivative, x, y]
     ring
 
+/--
+@isnad1 id=analytic.5h5v.s7.e914c7d2dcd3 from=translated src=- shape=816a98cd vocab=e39c0a89
+-/
 theorem analyticAt_resonantDisturbingOrientationDerivative
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) {eccentricity orientation time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -383,6 +412,9 @@ theorem analyticAt_resonantDisturbingOrientationDerivative
   filter_upwards [] with argument
   simp [resonantDisturbingOrientationDerivative, x, y, div_eq_mul_inv]
 
+/--
+@isnad1 id=interval.5h6v.s6.10584c247565 from=translated src=- shape=248e5f64 vocab=a1ba85b0
+-/
 theorem intervalIntegrable_resonantDisturbingOrientationDerivative
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity orientation start finish : ℝ}
@@ -397,6 +429,9 @@ theorem intervalIntegrable_resonantDisturbingOrientationDerivative
   exact (analyticAt_resonantDisturbingOrientationDerivative hp hq heccentricity
     heccentricityOne hapoapsis).continuousAt
 
+/--
+@isnad1 id=analytic.5h5v.s7.34e24886e486 from=translated src=- shape=816a98cd vocab=3f6b1633
+-/
 theorem analyticAt_resonantDisturbingFunction_time
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) {eccentricity orientation time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -454,6 +489,9 @@ theorem analyticAt_resonantDisturbingFunction_time
   simp [resonantDisturbingFunction, orientedResonantEllipsePhasePoint,
     positionPhasePoint, firstMassPerturbation, x, y, div_eq_mul_inv]
 
+/--
+@isnad1 id=interval.5h6v.s6.61dab7a4d2c5 from=translated src=- shape=248e5f64 vocab=8498aedd
+-/
 theorem intervalIntegrable_resonantDisturbingFunction
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity orientation start finish : ℝ}
@@ -467,6 +505,9 @@ theorem intervalIntegrable_resonantDisturbingFunction
   exact (analyticAt_resonantDisturbingFunction_time hp hq heccentricity
     heccentricityOne hapoapsis).continuousAt
 
+/--
+@isnad1 id=ne.3h5v.s7.f02c09a6a8d2 from=translated src=- shape=43123abf vocab=4806e5ff
+-/
 lemma orientedResonantEllipse_primaryDistance_ne_zero_of_apoapsis_lt_one
     {p q : ℕ} {eccentricity orientation time : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -476,6 +517,9 @@ lemma orientedResonantEllipse_primaryDistance_ne_zero_of_apoapsis_lt_one
   exact rotatingEllipse_primaryDistance_ne_zero_of_apoapsis_lt_one heccentricity
     heccentricityOne hapoapsis
 
+/--
+@isnad1 id=eq.0h5v.s5.17c9bd66d8f1 from=translated src=- shape=0de765bb vocab=45c4845c
+-/
 lemma orientedResonantEllipsePosition_add_orientation_two_pi
     (p q : ℕ) (eccentricity orientation time : ℝ) :
     orientedResonantEllipsePosition p q eccentricity (orientation + 2 * Real.pi) time =
@@ -487,6 +531,9 @@ lemma orientedResonantEllipsePosition_add_orientation_two_pi
   funext coordinate
   fin_cases coordinate <;> simp
 
+/--
+@isnad1 id=eq.3h5v.s6.a5bdd7d8eedd from=translated src=- shape=a5ad4bde vocab=9cf9dc38
+-/
 lemma orientedResonantEllipsePosition_add_period {p q : ℕ} (hp : 0 < p)
     {eccentricity orientation : ℝ} (heccentricity : 0 ≤ eccentricity)
     (heccentricityOne : eccentricity < 1) (time : ℝ) :
@@ -502,6 +549,9 @@ lemma orientedResonantEllipsePosition_add_period {p q : ℕ} (hp : 0 < p)
   funext coordinate
   fin_cases coordinate <;> simp [inertialEllipsePosition]
 
+/--
+@isnad1 id=eq.0h5v.s5.125602fd4949 from=translated src=- shape=9ba3ceac vocab=8480888c
+-/
 lemma resonantDisturbingFunction_add_orientation_two_pi
     (p q : ℕ) (eccentricity orientation time : ℝ) :
     resonantDisturbingFunction p q eccentricity (orientation + 2 * Real.pi) time =
@@ -509,6 +559,9 @@ lemma resonantDisturbingFunction_add_orientation_two_pi
   unfold resonantDisturbingFunction orientedResonantEllipsePhasePoint
   rw [orientedResonantEllipsePosition_add_orientation_two_pi]
 
+/--
+@isnad1 id=eq.3h5v.s6.e09c18f4cf86 from=translated src=- shape=9581a8d2 vocab=12c61946
+-/
 lemma resonantDisturbingFunction_add_period {p q : ℕ} (hp : 0 < p)
     {eccentricity orientation : ℝ} (heccentricity : 0 ≤ eccentricity)
     (heccentricityOne : eccentricity < 1) (time : ℝ) :
@@ -518,6 +571,9 @@ lemma resonantDisturbingFunction_add_period {p q : ℕ} (hp : 0 < p)
   unfold resonantDisturbingFunction orientedResonantEllipsePhasePoint
   rw [orientedResonantEllipsePosition_add_period hp heccentricity heccentricityOne]
 
+/--
+@isnad1 id=eq.0h4v.s5.518bc32684a4 from=translated src=- shape=c050df56 vocab=e15c3aaf
+-/
 lemma resonantDisturbingAverage_add_orientation_two_pi
     (p q : ℕ) (eccentricity orientation : ℝ) :
     resonantDisturbingAverage p q eccentricity (orientation + 2 * Real.pi) =
@@ -527,7 +583,9 @@ lemma resonantDisturbingAverage_add_orientation_two_pi
   exact resonantDisturbingFunction_add_orientation_two_pi p q eccentricity orientation time
 
 /-- Differentiation under the period integral identifies the derivative of the Poincaré
-disturbing average with the integral of the explicit orientation forcing. -/
+disturbing average with the integral of the explicit orientation forcing.
+@isnad1 id=hasderiv.5h4v.s7.dca31d644bb5 from=translated src=- shape=adca7aaf vocab=3282a017
+-/
 theorem hasDerivAt_resonantDisturbingAverage
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) {eccentricity orientation : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -602,6 +660,9 @@ theorem hasDerivAt_resonantDisturbingAverage
     (bound := fun _ ↦ bound) hphaseNhd hfunctionMeasurable hfunctionIntegrable
       hderivativeMeasurable hboundAE hboundIntegrable hderivative).2
 
+/--
+@isnad1 id=eq.5h4v.s7.ab4ac42dc9ac from=translated src=- shape=5745d5a5 vocab=f67349d9
+-/
 theorem deriv_resonantDisturbingAverage
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) {eccentricity orientation : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -611,6 +672,9 @@ theorem deriv_resonantDisturbingAverage
         resonantDisturbingOrientationDerivative p q eccentricity orientation time :=
   (hasDerivAt_resonantDisturbingAverage hp hq heccentricity heccentricityOne hapoapsis).deriv
 
+/--
+@isnad1 id=differen.5h3v.s7.829f5e1acfa1 from=translated src=- shape=ac3fbae0 vocab=e010805b
+-/
 theorem differentiable_resonantDisturbingAverage
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) {eccentricity : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -622,7 +686,9 @@ theorem differentiable_resonantDisturbingAverage
 
 /-- Distinct certified values of the Poincaré average imply a nonzero resonant forcing integral at
 some orientation. This is the interface intended for exact analytic estimates or validated finite
-computation. -/
+computation.
+@isnad1 id=ex.6h5v.s7.01869ff7cbfa from=translated src=- shape=b6393c3d vocab=0ad2794e
+-/
 theorem exists_deriv_resonantDisturbingAverage_ne_zero_of_values_ne
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) {eccentricity phaseA phaseB : ℝ}
     (heccentricity : 0 ≤ eccentricity) (heccentricityOne : eccentricity < 1)
@@ -639,7 +705,9 @@ theorem exists_deriv_resonantDisturbingAverage_ne_zero_of_values_ne
     hderivative phaseA phaseB
 
 /-- The averaged homological obstruction specialized to the explicit resonant disturbing
-function. The remaining concrete input is nonvanishing of its orientation derivative integral. -/
+function. The remaining concrete input is nonvanishing of its orientation derivative integral.
+@isnad1 id=not.8h7v.s8.e792ad3cc039 from=translated src=- shape=f34fe308 vocab=6181f849
+-/
 theorem resonantDisturbingAverage_obstruction
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) {differential : ActionSpace}
     {eccentricity orientation : ℝ} {correction correctionDerivative : ℝ → ℝ}
@@ -663,7 +731,9 @@ theorem resonantDisturbingAverage_obstruction
       hforcingIntegrable hperiodic hforcing hequation
 
 /-- Collision-free interior ellipses automatically satisfy the integrability hypothesis in the
-concrete averaged obstruction. -/
+concrete averaged obstruction.
+@isnad1 id=not.10h7v.s8.768e66e9df32 from=translated src=- shape=dfe5c4e9 vocab=a44be7f5
+-/
 theorem resonantDisturbingAverage_obstruction_of_apoapsis_lt_one
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) {differential : ActionSpace}
     {eccentricity orientation : ℝ} {correction correctionDerivative : ℝ → ℝ}
@@ -687,7 +757,9 @@ theorem resonantDisturbingAverage_obstruction_of_apoapsis_lt_one
     hperiodic hforcing hequation
 
 /-- Equivalent concrete obstruction using nonvanishing of the derivative of the Poincaré
-disturbing average. -/
+disturbing average.
+@isnad1 id=not.10h7v.s8.7a22d577f0a6 from=translated src=- shape=80d77d05 vocab=c1311f0f
+-/
 theorem resonantDisturbingAverage_deriv_obstruction
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) {differential : ActionSpace}
     {eccentricity orientation : ℝ} {correction correctionDerivative : ℝ → ℝ}

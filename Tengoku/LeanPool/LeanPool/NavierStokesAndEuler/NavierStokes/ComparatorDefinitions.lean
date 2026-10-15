@@ -66,31 +66,41 @@ def divergence (v : ℝ^n → ℝ^n) (x : ℝ^n) : ℝ := (fderiv ℝ v x).trace
 @[inherit_doc]
 local notation "∇⬝" => divergence
 
-/-- The divergence of a vector field is $0$ at points where `fderiv` has its junk value. -/
+/-- The divergence of a vector field is $0$ at points where `fderiv` has its junk value.
+@isnad1 id=eq.1h3v.s8.2be92f3739a4 from=translated src=- shape=31cd5f97 vocab=11bf959d
+-/
 @[simp]
 theorem divergence_of_not_differentiableAt {v : ℝ^n → ℝ^n} {x : ℝ^n}
     (hv : ¬ DifferentiableAt ℝ v x) : ∇⬝ v x = 0 := by
   simp [divergence, fderiv_zero_of_not_differentiableAt hv]
 
-/-- The divergence of the zero vector field is zero. -/
+/-- The divergence of the zero vector field is zero.
+@isnad1 id=eq.0h2v.s6.5a48ee638fe4 from=translated src=- shape=6e843f15 vocab=d629a03c
+-/
 @[simp]
 theorem divergence_zero (x : ℝ^n) : ∇⬝ (0 : ℝ^n → ℝ^n) x = 0 := by
   simp [divergence]
 
-/-- The divergence of a constant vector field is zero. -/
+/-- The divergence of a constant vector field is zero.
+@isnad1 id=eq.0h3v.s4.11ba339273f6 from=translated src=- shape=add0d817 vocab=dcd7b9cc
+-/
 @[simp]
 theorem divergence_const (c : ℝ^n) (x : ℝ^n) :
     ∇⬝ (fun _ : ℝ^n => c) x = 0 := by
   simp [divergence]
 
-/-- Divergence is additive at points where both vector fields are differentiable. -/
+/-- Divergence is additive at points where both vector fields are differentiable.
+@isnad1 id=eq.2h4v.s9.7eb0a0a63695 from=translated src=- shape=4315eace vocab=88f539f0
+-/
 theorem divergence_add {v w : ℝ^n → ℝ^n} {x : ℝ^n}
     (hv : DifferentiableAt ℝ v x) (hw : DifferentiableAt ℝ w x) :
     ∇⬝ (fun y => v y + w y) x = ∇⬝ v x + ∇⬝ w x := by
   rw [divergence, fderiv_fun_add hv hw]
   exact map_add _ _ _
 
-/-- Divergence commutes with scalar multiplication at differentiability points. -/
+/-- Divergence commutes with scalar multiplication at differentiability points.
+@isnad1 id=eq.1h4v.s8.829a12d4ddd0 from=translated src=- shape=f3c8357f vocab=5979593e
+-/
 theorem divergence_smul (c : ℝ) {v : ℝ^n → ℝ^n} {x : ℝ^n}
     (hv : DifferentiableAt ℝ v x) : ∇⬝ (fun y => c • v y) x = c * ∇⬝ v x := by
   rw [divergence, fderiv_fun_const_smul hv c]

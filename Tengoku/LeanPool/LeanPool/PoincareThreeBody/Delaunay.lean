@@ -36,6 +36,9 @@ noncomputable def resonantFirstAction (p q : ℕ) : ℝ :=
 def resonanceVector (p q : ℕ) : ActionSpace :=
   ![(p : ℝ), (q : ℝ)]
 
+/--
+@isnad1 id=hasderiv.1h2v.s7.c46659394c2f from=translated src=- shape=085a3292 vocab=9895cf3c
+-/
 theorem hasDerivAt_delaunayHamiltonian_firstAction {firstAction : ℝ}
     (hfirstAction : firstAction ≠ 0) (secondAction : ℝ) :
     HasDerivAt (fun action ↦ -1 / (2 * action ^ 2) - secondAction)
@@ -51,6 +54,9 @@ theorem hasDerivAt_delaunayHamiltonian_firstAction {firstAction : ℝ}
   · field_simp [hfirstAction]
     ring
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.881d1356aec0 from=translated src=- shape=3a6e9c7b vocab=9895cf3c
+-/
 theorem hasDerivAt_delaunayHamiltonian_secondAction (firstAction secondAction : ℝ) :
     HasDerivAt (fun action ↦ -1 / (2 * firstAction ^ 2) - action) (-1) secondAction := by
   have hraw := (hasDerivAt_const secondAction (-1 / (2 * firstAction ^ 2))).sub
@@ -59,17 +65,25 @@ theorem hasDerivAt_delaunayHamiltonian_secondAction (firstAction secondAction : 
   filter_upwards [] with action
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s7.1daad8807685 from=translated src=- shape=f751d683 vocab=f75f9491
+-/
 theorem deriv_delaunayHamiltonian_firstAction {firstAction : ℝ}
     (hfirstAction : firstAction ≠ 0) (secondAction : ℝ) :
     deriv (fun action ↦ -1 / (2 * action ^ 2) - secondAction) firstAction =
       1 / firstAction ^ 3 :=
   (hasDerivAt_delaunayHamiltonian_firstAction hfirstAction secondAction).deriv
 
+/--
+@isnad1 id=eq.0h2v.s6.9d91453233a3 from=translated src=- shape=d2d9fe27 vocab=f75f9491
+-/
 theorem deriv_delaunayHamiltonian_secondAction (firstAction secondAction : ℝ) :
     deriv (fun action ↦ -1 / (2 * firstAction ^ 2) - action) secondAction = -1 :=
   (hasDerivAt_delaunayHamiltonian_secondAction firstAction secondAction).deriv
 
-/-- The displayed Kepler frequency is the coordinate gradient of the Delaunay Hamiltonian. -/
+/-- The displayed Kepler frequency is the coordinate gradient of the Delaunay Hamiltonian.
+@isnad1 id=eq.1h2v.s7.54e165f89875 from=translated src=- shape=faaf7ed5 vocab=3672dbd4
+-/
 theorem delaunayFrequency_eq_coordinateDerivatives {firstAction : ℝ}
     (hfirstAction : firstAction ≠ 0) (secondAction : ℝ) :
     delaunayFrequency firstAction =
@@ -84,23 +98,34 @@ theorem delaunayFrequency_eq_coordinateDerivatives {firstAction : ℝ}
       deriv (fun action ↦ -1 / (2 * firstAction ^ 2) - action) secondAction
     exact (deriv_delaunayHamiltonian_secondAction firstAction secondAction).symm
 
+/--
+@isnad1 id=lt.2h2v.s5.dac4eb829611 from=translated src=- shape=e8b7e832 vocab=14beccc6
+-/
 lemma resonantFirstAction_pos {p q : ℕ} (hp : 0 < p) (hq : 0 < q) :
     0 < resonantFirstAction p q := by
   exact Real.rpow_pos_of_pos (div_pos (by positivity) (by positivity)) _
 
+/--
+@isnad1 id=eq.2h2v.s5.f88f3797a5d9 from=translated src=- shape=d8375aa5 vocab=ee646126
+-/
 lemma resonantFirstAction_cube {p q : ℕ} (hp : 0 < p) (hq : 0 < q) :
     resonantFirstAction p q ^ 3 = (p : ℝ) / (q : ℝ) := by
   apply Real.rpow_inv_natCast_pow
   · exact (div_pos (by positivity) (by positivity)).le
   · norm_num
 
+/--
+@isnad1 id=ne.1h2v.s5.b3909197aa78 from=translated src=- shape=8106d9e7 vocab=99d24e1f
+-/
 lemma resonanceVector_ne_zero {p q : ℕ} (hp : 0 < p) : resonanceVector p q ≠ 0 := by
   intro hzero
   have hcoordinate : (p : ℝ) = 0 := by
     simpa only [resonanceVector, Matrix.cons_val_zero, Pi.zero_apply] using congrFun hzero 0
   exact (Nat.cast_ne_zero.mpr hp.ne') hcoordinate
 
-/-- Every pair of positive natural numbers determines an exact Kepler resonance. -/
+/-- Every pair of positive natural numbers determines an exact Kepler resonance.
+@isnad1 id=eq.2h2v.s5.768849b25214 from=translated src=- shape=70d13e69 vocab=4157cf9e
+-/
 theorem resonantFirstAction_is_resonant {p q : ℕ} (hp : 0 < p) (hq : 0 < q) :
     dot (resonanceVector p q) (delaunayFrequency (resonantFirstAction p q)) = 0 := by
   have hpReal : (p : ℝ) ≠ 0 := by positivity
@@ -112,7 +137,9 @@ theorem resonantFirstAction_is_resonant {p q : ℕ} (hp : 0 < p) (hq : 0 < q) :
   field_simp
   ring
 
-/-- Positive rational Kepler resonances occur in every positive open interval. -/
+/-- Positive rational Kepler resonances occur in every positive open interval.
+@isnad1 id=ex.2h2v.s6.fb1039419899 from=translated src=- shape=5f266964 vocab=14beccc6
+-/
 theorem exists_resonantFirstAction_between {a b : ℝ} (ha : 0 < a) (hab : a < b) :
     ∃ p q : ℕ, 0 < p ∧ 0 < q ∧
       a < resonantFirstAction p q ∧ resonantFirstAction p q < b := by
@@ -145,7 +172,9 @@ abbrev PositiveAction := Set.Ioi (0 : ℝ)
 def irrationalFrequencyPositiveActions : Set PositiveAction :=
   {action | Irrational (1 / action.1 ^ 3)}
 
-/-- Actions with irrational Kepler frequency occur in every positive open interval. -/
+/-- Actions with irrational Kepler frequency occur in every positive open interval.
+@isnad1 id=ex.2h2v.s6.bf06ca2da25e from=translated src=- shape=9de5d363 vocab=d9992d9b
+-/
 theorem exists_irrationalFrequencyAction_between {a b : ℝ}
     (ha : 0 < a) (hab : a < b) :
     ∃ action : ℝ, a < action ∧ action < b ∧
@@ -182,7 +211,9 @@ theorem exists_irrationalFrequencyAction_between {a b : ℝ}
     field_simp
   rwa [hfrequencyIdentity]
 
-/-- Positive actions with irrational Kepler frequency form a dense set. -/
+/-- Positive actions with irrational Kepler frequency form a dense set.
+@isnad1 id=dense.0h0v.s4.a5bab8d04458 from=translated src=- shape=a05c23ef vocab=f80bf86a
+-/
 theorem irrationalFrequencyPositiveActions_dense :
     Dense irrationalFrequencyPositiveActions := by
   apply dense_of_exists_between
@@ -196,6 +227,9 @@ theorem irrationalFrequencyPositiveActions_dense :
 def resonantPositiveActions : Set PositiveAction :=
   {x | ∃ p q : ℕ, 0 < p ∧ 0 < q ∧ x.1 = resonantFirstAction p q}
 
+/--
+@isnad1 id=dense.0h0v.s4.24b2c813de81 from=translated src=- shape=a05c23ef vocab=84d786ea
+-/
 theorem resonantPositiveActions_dense : Dense resonantPositiveActions := by
   apply dense_of_exists_between
   intro a b hab
@@ -205,6 +239,9 @@ theorem resonantPositiveActions_dense : Dense resonantPositiveActions := by
   refine ⟨c, ?_, ha, hb⟩
   exact ⟨p, q, hp, hq, rfl⟩
 
+/--
+@isnad1 id=continuo.0h0v.s6.dc57a88425f6 from=translated src=- shape=18cf3eb5 vocab=5d526e2a
+-/
 theorem continuous_delaunayFrequencyOnPositive :
     Continuous (fun action : PositiveAction ↦ delaunayFrequency action.1) := by
   apply continuous_pi
@@ -218,7 +255,9 @@ theorem continuous_delaunayFrequencyOnPositive :
   · change Continuous (fun _ : PositiveAction ↦ (-1 : ℝ))
     exact continuous_const
 
-/-- Orthogonality at every rational Kepler resonance forces dependence at every positive action. -/
+/-- Orthogonality at every rational Kepler resonance forces dependence at every positive action.
+@isnad1 id=not.2h2v.s7.4e586ee8e863 from=translated src=- shape=0342e020 vocab=c675e899
+-/
 theorem delaunayDenseResonance_obstruction {differential : PositiveAction → ActionSpace}
     (hdifferential : Continuous differential)
     (hresonant : ∀ {p q : ℕ} (hp : 0 < p) (hq : 0 < q),
@@ -237,7 +276,9 @@ theorem delaunayDenseResonance_obstruction {differential : PositiveAction → Ac
     (resonantFirstAction_is_resonant hp hq) (hresonant hp hq)
 
 /-- The first homological equation and nonvanishing perturbing modes at all rational resonances
-exclude an independent leading integral throughout the positive Delaunay action axis. -/
+exclude an independent leading integral throughout the positive Delaunay action axis.
+@isnad1 id=not.3h4v.s8.d23eb72be230 from=translated src=- shape=ac7e7d2b vocab=4d3a9c3c
+-/
 theorem delaunayHomological_obstruction {differential : PositiveAction → ActionSpace}
     (hdifferential : Continuous differential) (correction perturbation : ℕ → ℕ → ℝ)
     (hperturbation : ∀ p q, 0 < p → 0 < q → perturbation p q ≠ 0)
@@ -256,7 +297,9 @@ theorem delaunayHomological_obstruction {differential : PositiveAction → Actio
   rw [resonantFirstAction_is_resonant hp hq, zero_mul, zero_add] at h
   exact (mul_eq_zero.mp h).resolve_right (hperturbation p q hp hq)
 
-/-- The abstract linear-algebra obstruction at every positive rational Kepler resonance. -/
+/-- The abstract linear-algebra obstruction at every positive rational Kepler resonance.
+@isnad1 id=not.3h3v.s6.7934b9e6b898 from=translated src=- shape=7174f4fe vocab=f0bdf40b
+-/
 theorem rationalKeplerResonance_obstruction {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {differential : ActionSpace} (hdifferential :
       dot (resonanceVector p q) differential = 0) :

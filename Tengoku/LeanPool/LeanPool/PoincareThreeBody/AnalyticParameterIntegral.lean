@@ -30,7 +30,9 @@ noncomputable def integralFormalMultilinearSeries
   fun degree ↦ ∫ parameter, series parameter degree ∂μ
 
 /-- A parameter integral has the coefficientwise-integrated power series whenever all fibers
-share a positive radius and the integrated coefficient norms are summable at that radius. -/
+share a positive radius and the integrated coefficient norms are summable at that radius.
+@isnad1 id=hasfpowe.4h6v.s9.c7498cbb0600 from=translated src=- shape=4e8dfb61 vocab=9cb0df5d
+-/
 theorem hasFPowerSeriesOnBall_integral_of_uniform
     (μ : Measure α) {integrand : ℝ → α → ℝ} {center : ℝ} {radius : NNReal}
     {series : α → FormalMultilinearSeries ℝ ℝ ℝ}

@@ -108,6 +108,9 @@ private lemma tubularProj_eq_choose {S U : Set E}
   simp only [tubularProj, and_imp, dite_eq_left hx]
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=and.3h4v.s6.b16483e8de0c from=translated src=- shape=5b147f53 vocab=6c84262d
+-/
 lemma tubularProj_mem {S U : Set E}
     (hTN : IsTubularNeighborhoodOfSubmanifold S U) (hne : S.Nonempty)
     (x : E) (hx : x ∈ U) :
@@ -116,6 +119,9 @@ lemma tubularProj_mem {S U : Set E}
   exact (hTN.uniqueProj x hx).choose_spec.1
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.4h5v.s6.80644a458f11 from=translated src=- shape=a46ae868 vocab=6c84262d
+-/
 lemma tubularProj_unique {S U : Set E}
     (hTN : IsTubularNeighborhoodOfSubmanifold S U) (hne : S.Nonempty)
     (x : E) (hx : x ∈ U) (y : E) (hy : y ∈ S ∧ dist x y = Metric.infDist x S) :
@@ -124,6 +130,9 @@ lemma tubularProj_unique {S U : Set E}
   exact (hTN.uniqueProj x hx).choose_spec.2 y hy
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.3h4v.s5.965b74ff3107 from=translated src=- shape=2a3872b8 vocab=6b6eacec
+-/
 lemma tubularProj_fixes_S {S U : Set E}
     (hTN : IsTubularNeighborhoodOfSubmanifold S U) (hne : S.Nonempty)
     (x : E) (hx : x ∈ S) :
@@ -139,7 +148,9 @@ omit [FiniteDimensional ℝ E] in
     From `HasFDerivAt`: `‖f(x+h) - x - L(h)‖ ≤ (ε/‖v‖)·‖h‖` for `‖h‖ < δ`.
     Setting `h = tv` with fiber constancy `f(x+tv) = x`:
     `t·‖L(v)‖ ≤ (ε/‖v‖)·t·‖v‖ = t·ε`, so `‖L(v)‖ ≤ ε`.
-    Since `ε > 0` is arbitrary, `L(v) = 0`. -/
+    Since `ε > 0` is arbitrary, `L(v) = 0`.
+@isnad1 id=eq.3h4v.s9.c576f57dfe5a from=translated src=- shape=10156972 vocab=7549fa4c
+-/
 lemma fderiv_eq_zero_of_const_on_ray {f : E → E} {x v : E}
     (hf : DifferentiableAt ℝ f x)
     (hfx : f x = x)
@@ -169,7 +180,9 @@ lemma fderiv_eq_zero_of_const_on_ray {f : E → E} {x v : E}
   simp_all
 
 omit [FiniteDimensional ℝ E] in
-/-- Local version: constancy on a short initial segment `(0, t₀]` suffices. -/
+/-- Local version: constancy on a short initial segment `(0, t₀]` suffices.
+@isnad1 id=eq.4h5v.s9.4740dd39977a from=translated src=- shape=770fd175 vocab=7549fa4c
+-/
 lemma fderiv_eq_zero_of_const_on_ray_local {f : E → E} {x v : E}
     (hf : DifferentiableAt ℝ f x)
     (hfx : f x = x)
@@ -202,7 +215,9 @@ lemma fderiv_eq_zero_of_const_on_ray_local {f : E → E} {x v : E}
 omit [FiniteDimensional ℝ E] in
 /-- π is constant along the fiber segment `[(1-t)·πx + t·x]` for `t ∈ [0,1]`.
     Combines star-shapedness (Prop 5), distance realization (Prop 6), and
-    uniqueness of nearest point. -/
+    uniqueness of nearest point.
+@isnad1 id=eq.6h5v.s9.9b7a7a0e784e from=translated src=- shape=45093bbe vocab=a74320c0
+-/
 lemma tubularProj_const_on_fiber {S U : Set E}
     (hTN : IsTubularNeighborhoodOfSubmanifold S U) (hne : S.Nonempty)
     (x : E) (hx : x ∈ U) (t : ℝ) (_ht : t ∈ Set.Icc (0 : ℝ) 1)
@@ -219,7 +234,9 @@ lemma tubularProj_const_on_fiber {S U : Set E}
 
 omit [FiniteDimensional ℝ E] in
 /-- The fiber segment from πx to x realizes the infDist at every point.
-    Extracted from the Property 6 proof for reuse in Property 7. -/
+    Extracted from the Property 6 proof for reuse in Property 7.
+@isnad1 id=eq.4h5v.s8.687368b49004 from=translated src=- shape=f89770eb vocab=a74320c0
+-/
 lemma tubularProj_fiber_realizes_infDist {S U : Set E}
     (hTN : IsTubularNeighborhoodOfSubmanifold S U) (hne : S.Nonempty)
     (x : E) (hx : x ∈ U) (t : ℝ) (ht : t ∈ Set.Icc (0 : ℝ) 1) :
@@ -253,7 +270,9 @@ lemma tubularProj_fiber_realizes_infDist {S U : Set E}
       _ = ‖(1 - t) • πx + t • x - πx‖ := dist_eq_norm _ _
 
 omit [FiniteDimensional ℝ E] in
-/-- U is open. -/
+/-- U is open.
+@isnad1 id=isopen.1h3v.s5.f1de291839dd from=translated src=- shape=4355b465 vocab=55824d6f
+-/
 lemma U_isOpen {S U : Set E}
     (hTN : IsTubularNeighborhoodOfSubmanifold S U) : IsOpen U :=
   hTN.isOpen
@@ -262,7 +281,9 @@ namespace IsTubularNeighborhoodOfSubmanifold
 
 omit [FiniteDimensional ℝ E] in
 /-- `S` is closed relative to `U`: any limit point of `S` that lies in `U` belongs to `S`.
-    Proof: `infDist(x, S) = 0` and `uniqueProj` gives a point of `S` at distance 0. -/
+    Proof: `infDist(x, S) = 0` and `uniqueProj` gives a point of `S` at distance 0.
+@isnad1 id=mem.3h4v.s6.75e8aa331451 from=translated src=- shape=3d818f50 vocab=071a99e3
+-/
 lemma mem_of_mem_closure_in_U {S U : Set E}
     (hTN : IsTubularNeighborhoodOfSubmanifold S U)
     {x : E} (hxU : x ∈ U) (hx_cl : x ∈ closure S) : x ∈ S := by
@@ -277,7 +298,9 @@ lemma mem_of_mem_closure_in_U {S U : Set E}
 
 omit [FiniteDimensional ℝ E] in
 /-- `S ∩ C` is closed whenever `C` is closed and `C ⊆ U`.
-    Follows from `S` being closed relative to `U`. -/
+    Follows from `S` being closed relative to `U`.
+@isnad1 id=isclosed.3h4v.s6.f935540fb6d7 from=translated src=- shape=75abe9f9 vocab=ada34efb
+-/
 lemma isClosed_inter_closed {S U : Set E}
     (hTN : IsTubularNeighborhoodOfSubmanifold S U)
     {C : Set E} (hC_closed : IsClosed C) (hC_sub : C ⊆ U) :
@@ -292,7 +315,9 @@ lemma isClosed_inter_closed {S U : Set E}
 
 omit [FiniteDimensional ℝ E] in
 /-- `S ∩ closedBall(m, r)` is compact when `closedBall(m, r) ⊆ U`
-    (in a proper metric space). -/
+    (in a proper metric space).
+@isnad1 id=iscompac.2h5v.s6.a1520704ddb8 from=translated src=- shape=b2973bd8 vocab=ce5b43a6
+-/
 lemma isCompact_inter_closedBall {S U : Set E}
     (hTN : IsTubularNeighborhoodOfSubmanifold S U) [ProperSpace E]
     {m : E} {r : ℝ} (hr : Metric.closedBall m r ⊆ U) :
@@ -306,7 +331,9 @@ end IsTubularNeighborhoodOfSubmanifold
 omit [FiniteDimensional ℝ E] in
 /-- The projection is continuous at every point of `S`.
     Since `U` is open, for `m ∈ S ⊆ U`, nearby points are in `U` and
-    `dist(π(x), m) ≤ 2·dist(x, m)`. -/
+    `dist(π(x), m) ≤ 2·dist(x, m)`.
+@isnad1 id=continuo.3h4v.s6.e9efbfb1cc4e from=translated src=- shape=c48425a4 vocab=55c12c9e
+-/
 lemma tubularProj_continuousAt_of_mem {S U : Set E}
     (hTN : IsTubularNeighborhoodOfSubmanifold S U) (hne : S.Nonempty)
     {m : E} (hm : m ∈ S) :

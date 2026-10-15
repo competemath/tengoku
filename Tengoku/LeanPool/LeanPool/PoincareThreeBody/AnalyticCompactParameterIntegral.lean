@@ -24,7 +24,9 @@ open Filter MeasureTheory Set Topology
 
 /-- A jointly analytic scalar function remains analytic in its first variable after integration
 of the second variable over a compact set.  The eventual integrability assumption is exactly what
-is needed to identify the inclusion-exclusion sum near the center parameter. -/
+is needed to identify the inclusion-exclusion sum near the center parameter.
+@isnad1 id=analytic.3h3v.s7.755a58c6ba62 from=translated src=- shape=8477effb vocab=46b29126
+-/
 theorem analyticAt_setIntegral_of_joint_analytic
     {function : ℝ × ℝ → ℝ} {centerParameter : ℝ} {timeSet : Set ℝ}
     (hcompact : IsCompact timeSet)

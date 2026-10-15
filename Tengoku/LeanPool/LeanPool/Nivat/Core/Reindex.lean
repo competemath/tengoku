@@ -50,7 +50,9 @@ acts on sites, while its additive part `t` acts on translation and period vector
 
 namespace Nivat
 
-/-- Reindexing lattice sites preserves finite range (Section 1.1). -/
+/-- Reindexing lattice sites preserves finite range (Section 1.1).
+@isnad1 id=finitera.1h3v.s4.df9d693a824b from=translated src=- shape=68280205 vocab=e60b9754
+-/
 theorem FiniteRange.precomp {A : Type*} {c : Configuration A} (hc : FiniteRange c)
     (f : Lattice → Lattice) : FiniteRange (c ∘ f) := by
   apply hc.subset
@@ -59,7 +61,9 @@ theorem FiniteRange.precomp {A : Type*} {c : Configuration A} (hc : FiniteRange 
 
 /-- Transport both a configuration and its window along affine lattice coordinates.
 This is the basis-and-origin change in Lemma 5.5 (`lem:boundary-window`);
-`s` is the affine bijection and `t` its linear part. -/
+`s` is the affine bijection and `t` its linear part.
+@isnad1 id=eq.1h5v.s7.5b98da8571a8 from=translated src=- shape=d955ca73 vocab=88753866
+-/
 theorem complexity_affine_reindex {A : Type*} (c : Configuration A)
     (s : Lattice ≃ Lattice) (t : Lattice ≃+ Lattice)
     (hst : ∀ z u : Lattice, s (z + u) = s z + t u) (D : Finset Lattice) :
@@ -82,7 +86,9 @@ theorem complexity_affine_reindex {A : Type*} (c : Configuration A)
     simp [patternAt, hst]
 
 /-- A period in affine coordinates transports through the linear part.
-This is the return to the original lattice in Theorem 5.1 (`thm:twofactor`). -/
+This is the return to the original lattice in Theorem 5.1 (`thm:twofactor`).
+@isnad1 id=iff.1h5v.s7.c85d2e7df1bd from=translated src=- shape=80eaafab vocab=4e845ada
+-/
 theorem isPeriod_affine_reindex_iff {A : Type*} (c : Configuration A)
     (s : Lattice ≃ Lattice) (t : Lattice ≃+ Lattice)
     (hst : ∀ z u : Lattice, s (z + u) = s z + t u) (h : Lattice) :
@@ -95,7 +101,9 @@ theorem isPeriod_affine_reindex_iff {A : Type*} (c : Configuration A)
     simpa only [Function.comp_apply, hst] using hp (s z)
 
 /-- Difference operators transport with their lattice direction.
-This is the mixed-difference coordinate change in Theorem 5.1 (`thm:twofactor`). -/
+This is the mixed-difference coordinate change in Theorem 5.1 (`thm:twofactor`).
+@isnad1 id=eq.1h5v.s7.9b9af1f0d605 from=translated src=- shape=401df90f vocab=ac972d7a
+-/
 theorem difference_affine_reindex {A : Type*} [AddCommGroup A] (c : Configuration A)
     (s : Lattice ≃ Lattice) (t : Lattice ≃+ Lattice)
     (hst : ∀ z u : Lattice, s (z + u) = s z + t u) (h : Lattice) :

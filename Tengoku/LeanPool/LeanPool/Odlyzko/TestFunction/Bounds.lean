@@ -20,6 +20,9 @@ Supporting definitions and lemmas for the Odlyzko-bound formalization.
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=le.1h1v.s5.25a8fe1e224d from=translated src=- shape=548b76c9 vocab=5abc1028
+-/
 theorem abs_tartarAmplitude_le_six {x : ℝ} (hx : 1 ≤ |x|) :
     |Tartar.amplitude x| ≤ 6 := by
   have hx0 : x ≠ 0 := by grind
@@ -42,6 +45,9 @@ theorem abs_tartarAmplitude_le_six {x : ℝ} (hx : 1 ≤ |x|) :
         nlinarith [mul_nonneg ha (sub_nonneg.mpr hx)]
       nlinarith
 
+/--
+@isnad1 id=le.1h1v.s4.f13def961c48 from=translated src=- shape=66a571b8 vocab=f5b6da81
+-/
 theorem tartarTestFunction_le_thirty_six {x : ℝ} (hx : 1 ≤ |x|) :
     Tartar.testFunction x ≤ 36 := by
   rw [Tartar.testFunction]
@@ -50,6 +56,9 @@ theorem tartarTestFunction_le_thirty_six {x : ℝ} (hx : 1 ≤ |x|) :
   rw [← sq_abs]
   nlinarith
 
+/--
+@isnad1 id=le.1h1v.s6.fd759d3ce0bf from=translated src=- shape=1cef8ad6 vocab=fbbd865a
+-/
 theorem abs_tartarAmplitude_le_six_div_sq {x : ℝ} (hx : 1 ≤ |x|) :
     |Tartar.amplitude x| ≤ 6 / |x| ^ 2 := by
   have hx0 : x ≠ 0 := by grind
@@ -71,6 +80,9 @@ theorem abs_tartarAmplitude_le_six_div_sq {x : ℝ} (hx : 1 ≤ |x|) :
           grind
     _ = 6 / |x| ^ 2 := by grind
 
+/--
+@isnad1 id=le.1h1v.s5.0eb44c3ab3ba from=translated src=- shape=da13a202 vocab=924ff870
+-/
 theorem tartarTestFunction_le_thirty_six_div_fourth {x : ℝ} (hx : 1 ≤ |x|) :
     Tartar.testFunction x ≤ 36 / |x| ^ 4 := by
   rw [Tartar.testFunction, ← sq_abs]
@@ -80,6 +92,9 @@ theorem tartarTestFunction_le_thirty_six_div_fourth {x : ℝ} (hx : 1 ≤ |x|) :
     |Tartar.amplitude x| ^ 2 ≤ (6 / |x| ^ 2) ^ 2 := by nlinarith
     _ = 36 / |x| ^ 4 := by grind
 
+/--
+@isnad1 id=integrab.0h0v.s6.653625ff7515 from=translated src=- shape=7718d5c6 vocab=95cf9ad4
+-/
 theorem integrableOn_thirty_six_div_abs_fourth_Ioi :
     MeasureTheory.IntegrableOn (fun x : ℝ ↦ 36 / |x| ^ 4) (Set.Ioi 1) := by
   have h := (integrableOn_Ioi_rpow_of_lt (a := (-4 : ℝ)) (by norm_num)
@@ -92,6 +107,9 @@ theorem integrableOn_thirty_six_div_abs_fourth_Ioi :
   rw [div_eq_mul_inv]
   simp
 
+/--
+@isnad1 id=integrab.0h0v.s6.0b89171dc402 from=translated src=- shape=d7d24c80 vocab=d5ee4154
+-/
 theorem integrableOn_thirty_six_div_abs_fourth_tails :
     MeasureTheory.IntegrableOn (fun x : ℝ ↦ 36 / |x| ^ 4)
       (Set.Iio (-1) ∪ Set.Ioi 1) := by
@@ -107,6 +125,9 @@ theorem integrableOn_thirty_six_div_abs_fourth_tails :
     · simp
   exact hn.union integrableOn_thirty_six_div_abs_fourth_Ioi
 
+/--
+@isnad1 id=integrab.0h0v.s4.9a405dbdef7e from=translated src=- shape=e14394ff vocab=57632739
+-/
 theorem tartarTestFunction_integrable :
     MeasureTheory.Integrable Tartar.testFunction := by
   have hmajor : MeasureTheory.Integrable

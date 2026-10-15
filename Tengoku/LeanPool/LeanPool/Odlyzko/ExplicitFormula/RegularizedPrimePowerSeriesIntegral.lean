@@ -27,6 +27,9 @@ open scoped FourierTransform RealInnerProductSpace
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=le.1h4v.s6.f9b5caabd3b5 from=translated src=- shape=07a53558 vocab=cdda9d3e
+-/
 theorem norm_fourier_regularizedPoitouVerticalProfile_le_integral
     {δ : ℝ} (_hδ : 0 < δ) (y σ w : ℝ) :
     ‖𝓕 (regularizedPoitouVerticalProfile y δ σ) w‖ ≤
@@ -40,6 +43,9 @@ theorem norm_fourier_regularizedPoitouVerticalProfile_le_integral
       norm_integral_le_integral_norm _
     _ = _ := by simp
 
+/--
+@isnad1 id=le.1h4v.s6.c8065ff7724e from=translated src=- shape=c9e84f49 vocab=ad50d3d0
+-/
 theorem sq_mul_norm_fourier_regularizedPoitouVerticalProfile_le_integral
     {δ : ℝ} (hδ : 0 < δ) (y σ w : ℝ) :
     w ^ 2 * ‖𝓕 (regularizedPoitouVerticalProfile y δ σ) w‖ ≤
@@ -91,6 +97,9 @@ theorem sq_mul_norm_fourier_regularizedPoitouVerticalProfile_le_integral
             norm_integral_le_integral_norm _
         _ = _ := by simp
 
+/--
+@isnad1 id=integrab.1h3v.s6.b4160b0f4aea from=translated src=- shape=2dbceda0 vocab=f81fc04c
+-/
 theorem fourier_regularizedPoitouVerticalProfile_integrable
     {δ : ℝ} (hδ : 0 < δ) (y σ : ℝ) :
     Integrable (𝓕 (regularizedPoitouVerticalProfile y δ σ)) := by
@@ -124,6 +133,9 @@ theorem fourier_regularizedPoitouVerticalProfile_integrable
       le_div_iff₀ (by positivity : 0 < 1 + w ^ 2)]
     nlinarith
 
+/--
+@isnad1 id=integrab.1h3v.s6.14f1ebf2e262 from=translated src=- shape=b40fd536 vocab=3a88ee09
+-/
 theorem poitouTransform_regularizedScaledTartar_vertical_integrable
     {δ : ℝ} (hδ : 0 < δ) (y σ : ℝ) :
     Integrable (fun t : ℝ ↦
@@ -151,6 +163,9 @@ open scoped FourierTransform RealInnerProductSpace
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=eq.1h3v.s6.20d0c28aa966 from=translated src=- shape=ba1c5f1a vocab=4fa0d72f
+-/
 theorem integral_fourier_regularizedPoitouVerticalProfile
     {δ : ℝ} (hδ : 0 < δ) (y σ : ℝ) :
     (∫ w : ℝ, 𝓕 (regularizedPoitouVerticalProfile y δ σ) w) =
@@ -162,6 +177,9 @@ theorem integral_fourier_regularizedPoitouVerticalProfile
         |>.continuousAt)
   simpa [Real.fourierInv_eq] using hinv
 
+/--
+@isnad1 id=eq.1h3v.s6.c26604a5825a from=translated src=- shape=8abc27aa vocab=508abe32
+-/
 theorem integral_poitouTransform_regularized_vertical
     {δ : ℝ} (hδ : 0 < δ) (y σ : ℝ) :
     (∫ t : ℝ,
@@ -198,6 +216,9 @@ open scoped FourierTransform RealInnerProductSpace
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=eq.1h4v.s6.88bc93e54b29 from=translated src=- shape=603a528b vocab=bb328cb3
+-/
 theorem integral_fourier_mul_cexp_regularizedPoitouVerticalProfile
     {δ : ℝ} (hδ : 0 < δ) (y σ a : ℝ) :
     (∫ w : ℝ,
@@ -218,6 +239,9 @@ theorem integral_fourier_mul_cexp_regularizedPoitouVerticalProfile
   norm_num
   ring
 
+/--
+@isnad1 id=eq.1h4v.s7.a12ec6110d2f from=translated src=- shape=6772f261 vocab=97c11c28
+-/
 theorem integral_poitouTransform_regularized_mul_exp_neg
     {δ : ℝ} (hδ : 0 < δ) (y σ a : ℝ) :
     (∫ t : ℝ,
@@ -311,6 +335,9 @@ noncomputable def regularizedPrimePowerPoitouWeight
       (primePowerLocation K P e) *
     Real.exp (-(primePowerLocation K P e) / 2)
 
+/--
+@isnad1 id=le.0h5v.s5.d527710f5f09 from=translated src=- shape=9a3f6bff vocab=8294a867
+-/
 theorem regularizedPrimePowerPoitouWeight_nonneg
     (y δ : ℝ)
     (P : HeightOneSpectrum (𝓞 K)) (e : ℕ) :
@@ -326,6 +353,9 @@ theorem regularizedPrimePowerPoitouWeight_nonneg
         (Real.cosh_pos _).le
   · exact (Real.exp_pos _).le
 
+/--
+@isnad1 id=eq.1h6v.s7.1c809f38d437 from=translated src=- shape=e2dd8f1d vocab=2c2b3b4f
+-/
 theorem integral_poitouTransform_regularized_mul_primePowerLogTerm
     {δ : ℝ} (hδ : 0 < δ) (y σ : ℝ)
     (P : HeightOneSpectrum (𝓞 K)) (e : ℕ) :
@@ -383,6 +413,9 @@ namespace NumberField.Odlyzko
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=hassum.2h4v.s8.dab8f96ffa2c from=translated src=- shape=ea484985 vocab=215b2f18
+-/
 theorem hasSum_integral_poitouTransform_regularized_mul_primePowerLogTerm
     {δ : ℝ} (hδ : 0 < δ) (y : ℝ) {σ : ℝ} (hσ : 1 < σ) :
     HasSum
@@ -437,6 +470,9 @@ theorem hasSum_integral_poitouTransform_regularized_mul_primePowerLogTerm
     exact
       (((summable_norm_primePowerLogTerm K hst).of_norm.mul_left (Φ t)).hasSum)
 
+/--
+@isnad1 id=eq.2h4v.s7.e37e36fcd1a6 from=translated src=- shape=145ce605 vocab=ee049247
+-/
 theorem integral_poitouTransform_regularized_mul_neg_logDeriv_dedekindZeta_eq_tsum
     {δ : ℝ} (hδ : 0 < δ) (y : ℝ) {σ : ℝ} (hσ : 1 < σ) :
     (∫ t : ℝ,
@@ -467,6 +503,9 @@ theorem integral_poitouTransform_regularized_mul_neg_logDeriv_dedekindZeta_eq_ts
       exact integral_poitouTransform_regularized_mul_primePowerLogTerm
         K hδ y σ pe.1 pe.2
 
+/--
+@isnad1 id=summable.2h4v.s6.dca6105993bb from=translated src=- shape=d24780f2 vocab=908ef407
+-/
 theorem summable_regularizedPrimePowerPoitouWeight
     {δ : ℝ} (hδ : 0 < δ) (y : ℝ) {σ : ℝ} (hσ : 1 < σ) :
     Summable (fun pe : HeightOneSpectrum (𝓞 K) × ℕ ↦
@@ -488,6 +527,9 @@ theorem summable_regularizedPrimePowerPoitouWeight
     Complex.summable_ofReal.mp hs
   exact (summable_mul_left_iff (mul_ne_zero (by norm_num) Real.pi_ne_zero)).mp hsReal
 
+/--
+@isnad1 id=le.0h3v.s6.8c45ce0f8eef from=translated src=- shape=0a0675bd vocab=eea6c0d3
+-/
 theorem tsum_regularizedPrimePowerPoitouWeight_nonneg
     (y δ : ℝ) :
     0 ≤ ∑' pe : HeightOneSpectrum (𝓞 K) × ℕ,

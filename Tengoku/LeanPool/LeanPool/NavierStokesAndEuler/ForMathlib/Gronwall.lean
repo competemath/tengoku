@@ -28,7 +28,9 @@ open Set
 namespace Gronwall
 
 /-- The integrating factor turns `f' ≤ K * f` into a nonincreasing function.
-There is no sign restriction on `K` or `f`. -/
+There is no sign restriction on `K` or `f`.
+@isnad1 id=antitone.3h5v.s7.05ef15ab4b9a from=translated src=- shape=9bcb4ddf vocab=af5cb00a
+-/
 theorem antitoneOn_exp_neg_mul_of_deriv_le {a b K : ℝ} {f f' : ℝ → ℝ}
     (hcont : ContinuousOn f (Icc a b))
     (hderiv : ∀ t ∈ Ioo a b, HasDerivAt f (f' t) t)
@@ -48,7 +50,9 @@ theorem antitoneOn_exp_neg_mul_of_deriv_le {a b K : ℝ} {f f' : ℝ → ℝ}
       (sub_nonpos.mpr (hbound t (by simpa only [interior_Icc] using ht)))
 
 /-- A scalar differential inequality with only interior derivatives gives the usual
-exponential bound from the initial value, even when `K` or `f a` is negative. -/
+exponential bound from the initial value, even when `K` or `f a` is negative.
+@isnad1 id=le.5h6v.s7.6ce0e95714a8 from=translated src=- shape=4f2162e4 vocab=7a039f6c
+-/
 theorem le_exp_mul_of_deriv_le {a b K : ℝ} {f f' : ℝ → ℝ}
     (hab : a ≤ b) (hcont : ContinuousOn f (Icc a b))
     (hderiv : ∀ t ∈ Ioo a b, HasDerivAt f (f' t) t)
@@ -82,7 +86,9 @@ theorem eq_zero_of_deriv_le {a b K : ℝ} {f f' : ℝ → ℝ}
   simpa only [hinitial, zero_mul] using le_exp_mul_of_deriv_le hab hcont hderiv hbound t ht
 
 /-- With nonnegative growth and forcing bounds, the weighted value increases by at most
-`ε * (t - a)`. The initial value and the function may have either sign. -/
+`ε * (t - a)`. The initial value and the function may have either sign.
+@isnad1 id=le.7h7v.s7.e67947703170 from=translated src=- shape=16dedc58 vocab=b711227e
+-/
 theorem exp_neg_mul_le_add_of_deriv_le_add {a b K ε : ℝ} {f f' : ℝ → ℝ}
     (hab : a ≤ b) (hK : 0 ≤ K) (hε : 0 ≤ ε) (hcont : ContinuousOn f (Icc a b))
     (hderiv : ∀ t ∈ Ioo a b, HasDerivAt f (f' t) t)
@@ -119,7 +125,9 @@ theorem exp_neg_mul_le_add_of_deriv_le_add {a b K ε : ℝ} {f f' : ℝ → ℝ}
     sub_le_iff_le_add] using hle
 
 /-- An interior differential inequality `f' ≤ K * f + ε` yields an exponential
-bound with arbitrary initial time and initial value. -/
+bound with arbitrary initial time and initial value.
+@isnad1 id=le.7h7v.s7.41d72d89c29c from=translated src=- shape=aa023527 vocab=a091d9cb
+-/
 theorem le_exp_mul_add_of_deriv_le_add {a b K ε : ℝ} {f f' : ℝ → ℝ}
     (hab : a ≤ b) (hK : 0 ≤ K) (hε : 0 ≤ ε) (hcont : ContinuousOn f (Icc a b))
     (hderiv : ∀ t ∈ Ioo a b, HasDerivAt f (f' t) t)
@@ -134,7 +142,9 @@ theorem le_exp_mul_add_of_deriv_le_add {a b K ε : ℝ} {f f' : ℝ → ℝ}
   simpa only [mul_right_comm _ (f t), hcancel, one_mul] using hmul
 
 /-- A nonpositive initial value gives a bound valid uniformly on the closed interval.
-Only `K` and `ε` must be nonnegative; the function need not be. -/
+Only `K` and `ε` must be nonnegative; the function need not be.
+@isnad1 id=le.8h7v.s7.4898eec4aa4f from=translated src=- shape=8fc4eaa2 vocab=a091d9cb
+-/
 theorem le_uniform_exp_mul_of_deriv_le_add {a b K ε : ℝ} {f f' : ℝ → ℝ}
     (hab : a ≤ b) (hK : 0 ≤ K) (hε : 0 ≤ ε) (hcont : ContinuousOn f (Icc a b))
     (hinitial : f a ≤ 0) (hderiv : ∀ t ∈ Ioo a b, HasDerivAt f (f' t) t)

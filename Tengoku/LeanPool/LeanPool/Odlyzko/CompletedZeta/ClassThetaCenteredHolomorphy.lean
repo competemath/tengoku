@@ -27,6 +27,9 @@ variable (K : Type*) [Field K] [NumberField K] [IsTotallyComplex K]
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s6.97ace96a2d75 from=translated src=- shape=27557187 vocab=3615e8a0
+-/
 theorem norm_logarithmicMellinWeight
     (s : ℂ) (y : mixedEmbedding.realSpace K) :
     ‖logarithmicMellinWeight K s y‖ =
@@ -36,6 +39,9 @@ theorem norm_logarithmicMellinWeight
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=le.2h4v.s5.e659d29ce0fd from=translated src=- shape=df131f7e vocab=20d3361c
+-/
 theorem norm_logarithmicMellinWeight_mono
     {s : ℂ} {b : ℝ} {y : mixedEmbedding.realSpace K}
     (hy : 0 ≤ y w₀) (hsb : s.re ≤ b) :
@@ -50,6 +56,9 @@ theorem norm_logarithmicMellinWeight_mono
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=le.2h5v.s7.2fda54f7e95e from=translated src=- shape=f2698a68 vocab=200826b2
+-/
 theorem norm_centeredNonzeroFractionalShapeThetaMellinKernel_mono
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     {s : ℂ} {b : ℝ} {y : mixedEmbedding.realSpace K}
@@ -70,6 +79,9 @@ noncomputable def centeredMellinRadialCoefficient
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=hasderiv.0h4v.s7.b34fe8be5a91 from=translated src=- shape=f64bacea vocab=81f54406
+-/
 theorem hasDerivAt_centeredNonzeroFractionalShapeThetaMellinKernel
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (s : ℂ)
     (y : mixedEmbedding.realSpace K) :
@@ -91,6 +103,9 @@ theorem hasDerivAt_centeredNonzeroFractionalShapeThetaMellinKernel
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=le.2h5v.s7.b796cc923e54 from=translated src=- shape=ed961508 vocab=1e016e41
+-/
 theorem norm_centeredMellinRadialCoefficient_mul_kernel_le
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     {s : ℂ} {b : ℝ} {y : mixedEmbedding.realSpace K}
@@ -147,6 +162,9 @@ noncomputable def poleClearedCenteredClassThetaIntegral
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.2h3v.s8.9054a5e82cbd from=translated src=- shape=0e2df022 vocab=e5def15c
+-/
 theorem poleClearedCenteredClassThetaIntegral_eq_mul_continued
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) {s : ℂ}
     (hs0 : s ≠ 0) (hs1 : s ≠ 1) :

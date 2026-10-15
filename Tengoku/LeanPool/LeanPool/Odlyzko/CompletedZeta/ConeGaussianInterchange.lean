@@ -31,6 +31,9 @@ private theorem eventually_forall_pos_complexPlace :
   exact Filter.eventually_pi fun _ ↦
     ae_restrict_mem measurableSet_Ioi
 
+/--
+@isnad1 id=eq.1h4v.s5.e21addefb2df from=translated src=- shape=29da406f vocab=d081154c
+-/
 theorem norm_complexPlaceMellinGaussian
     (x : K) (s : ℂ) (q : InfinitePlace K → ℝ) (hq : ∀ w, 0 < q w) :
     (‖complexPlaceMellinGaussian K x s q‖ : ℂ) =
@@ -51,6 +54,9 @@ theorem norm_complexPlaceMellinGaussian
   simp only [Complex.ofReal_re]
   simp
 
+/--
+@isnad1 id=injectiv.0h2v.s9.3ad9a22db93a from=translated src=- shape=f8b8dbe4 vocab=bb1b15b0
+-/
 theorem idealSetElement_injective (J : (Ideal (𝓞 K))⁰) :
     Function.Injective (idealSetElement K J) := by
   intro a b hab
@@ -67,6 +73,9 @@ theorem idealSetElement_injective (J : (Ideal (𝓞 K))⁰) :
 
 variable [IsTotallyComplex K]
 
+/--
+@isnad1 id=eq.2h3v.s8.824cd650fa56 from=translated src=- shape=5fb40954 vocab=335452ef
+-/
 theorem integral_norm_complexPlaceMellinGaussian
     {x : K} (hx : x ≠ 0) {s : ℂ} (hs : 0 < s.re) :
     (∫ q : InfinitePlace K → ℝ,
@@ -93,6 +102,9 @@ theorem integral_norm_complexPlaceMellinGaussian
       exact integral_nonneg fun _ ↦ norm_nonneg _
     _ = _ := congrArg norm heq
 
+/--
+@isnad1 id=summable.1h3v.s9.11d98c455b3d from=translated src=- shape=79e8bf9e vocab=4753cdfc
+-/
 theorem summable_integral_norm_idealSet_complexPlaceMellinGaussian
     (J : (Ideal (𝓞 K))⁰) {s : ℂ} (hs : 1 < s.re) :
     Summable

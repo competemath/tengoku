@@ -25,16 +25,25 @@ variable {α β E : Type*}
 noncomputable def extendByZero [AddCommMonoid E] (e : α → β) (f : α → E) (b : β) : E :=
   Function.extend e f 0 b
 
+/--
+@isnad1 id=eq.1h6v.s5.fd0f5f641ce0 from=translated src=- shape=b34701e9 vocab=12bd98bc
+-/
 lemma extendByZero_apply [AddCommMonoid E] (e : α → β) (he : Function.Injective e)
     (f : α → E) (a : α) :
     extendByZero e f (e a) = f a := by
   exact he.extend_apply f 0 a
 
+/--
+@isnad1 id=eq.1h6v.s5.122e76ede6b9 from=translated src=- shape=b07d817b vocab=f5a6808f
+-/
 lemma extendByZero_eq_zero_of_not_mem_range [AddCommMonoid E] (e : α → β) (f : α → E)
     {b : β} (hb : b ∉ Set.range e) :
     extendByZero e f b = 0 := by
   exact Function.extend_apply' (f := e) f 0 b hb
 
+/--
+@isnad1 id=hassum.2h6v.s5.1392aa889d42 from=translated src=- shape=dcf0b8b4 vocab=18cc814d
+-/
 theorem hasSum_extendByZero [AddCommMonoid E] [TopologicalSpace E]
     (e : α → β) (he : Function.Injective e)
     {f : α → E} {a : E} (hf : HasSum f a) :
@@ -42,6 +51,9 @@ theorem hasSum_extendByZero [AddCommMonoid E] [TopologicalSpace E]
   unfold extendByZero
   simp_all
 
+/--
+@isnad1 id=summable.2h5v.s5.8a6175c3e0a3 from=translated src=- shape=6d297a1a vocab=1b33d231
+-/
 theorem summable_extendByZero [AddCommMonoid E] [TopologicalSpace E]
     (e : α → β) (he : Function.Injective e)
     {f : α → E} (hf : Summable f) :
@@ -59,6 +71,9 @@ namespace NumberField.Odlyzko
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=eq.0h2v.s8.c74fed51bd3b from=translated src=- shape=4853f439 vocab=d0c769ae
+-/
 theorem absNorm_idealOfPrimeFactors
     (m : Multiset (HeightOneSpectrum (𝓞 K))) :
     absNorm (idealOfPrimeFactors K m : Ideal (𝓞 K)) =
@@ -67,6 +82,9 @@ theorem absNorm_idealOfPrimeFactors
   rw [Multiset.map_map]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.00bfb350a666 from=translated src=- shape=df331b3c vocab=329973a6
+-/
 theorem inverseNormPower_idealOfPrimeFactors
     (m : Multiset (HeightOneSpectrum (𝓞 K))) (s : ℂ) :
     ((absNorm (idealOfPrimeFactors K m : Ideal (𝓞 K)) : ℂ) ^ (-s)) =
@@ -88,6 +106,9 @@ theorem inverseNormPower_idealOfPrimeFactors
       rw [ih]
       rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.a65b36f25142 from=translated src=- shape=49101ea7 vocab=a91989cd
+-/
 theorem inverseNormPower_nonzeroIdealEquivPrimeFactors
     (I : NonzeroIdeal K) (s : ℂ) :
     ((absNorm (I : Ideal (𝓞 K)) : ℂ) ^ (-s)) =
@@ -127,21 +148,33 @@ noncomputable def primeValueHom (a : ℕ → M) : ℕ →*₀ M where
       (fun p ↦ pow_zero (a p))
       (fun p e₁ e₂ ↦ pow_add (a p) e₁ e₂)
 
+/--
+@isnad1 id=eq.0h2v.s5.2c32fde3725c from=translated src=- shape=2de90db9 vocab=04c6cf9f
+-/
 @[simp] theorem primeValueHom_one (a : ℕ → M) :
     primeValueHom a 1 = 1 :=
   map_one _
 
+/--
+@isnad1 id=eq.1h3v.s5.271b8519173c from=translated src=- shape=367eaa1d vocab=35c0e7ec
+-/
 @[simp] theorem primeValueHom_apply_of_prime (a : ℕ → M) {p : ℕ}
     (hp : p.Prime) :
     primeValueHom a p = a p := by
   rw [primeValueHom]
   simp [hp.ne_zero, hp.factorization]
 
+/--
+@isnad1 id=eq.0h3v.s5.0ce290294e73 from=translated src=- shape=f91adb78 vocab=97c70aa0
+-/
 @[simp] theorem primeValueHom_apply_prime_subtype (a : ℕ → M)
     (p : Nat.Primes) :
     primeValueHom a p = a p :=
   primeValueHom_apply_of_prime a p.prop
 
+/--
+@isnad1 id=eq.1h3v.s6.46554b7d4958 from=translated src=- shape=d562794c vocab=b21478fc
+-/
 theorem primeValueHom_multiset_prod_of_prime (a : ℕ → M)
     {m : Multiset ℕ} (hm : ∀ p ∈ m, p.Prime) :
     primeValueHom a m.prod = (m.map a).prod := by
@@ -160,6 +193,9 @@ namespace NumberField.Odlyzko
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=countabl.0h1v.s4.af35fdf00e5e from=translated src=- shape=763df72c vocab=a65b2dfc
+-/
 noncomputable instance countableIdealRingOfIntegers :
     Countable (Ideal (𝓞 K)) := by
   let (n : ℕ) : Fintype {I : Ideal (𝓞 K) // absNorm I = n} :=
@@ -168,6 +204,9 @@ noncomputable instance countableIdealRingOfIntegers :
     ((n : ℕ) × {I : Ideal (𝓞 K) // absNorm I = n})
     (Equiv.sigmaFiberEquiv (absNorm : Ideal (𝓞 K) → ℕ))
 
+/--
+@isnad1 id=countabl.0h1v.s4.af4f9902405c from=translated src=- shape=763df72c vocab=7692a8de
+-/
 noncomputable instance countableHeightOneSpectrum :
     Countable (HeightOneSpectrum (𝓞 K)) :=
   HeightOneSpectrum.asIdeal_injective.countable
@@ -180,10 +219,16 @@ noncomputable instance encodableHeightOneSpectrum :
 noncomputable def primeIdealCode (P : HeightOneSpectrum (𝓞 K)) : ℕ :=
   Nat.nth Nat.Prime (Encodable.encode P)
 
+/--
+@isnad1 id=prime.0h2v.s4.617fa8226ad1 from=translated src=- shape=5266c53d vocab=9c300169
+-/
 lemma prime_primeIdealCode (P : HeightOneSpectrum (𝓞 K)) :
     Nat.Prime (primeIdealCode K P) :=
   Nat.nth_mem_of_infinite Nat.infinite_setOfPred_prime _
 
+/--
+@isnad1 id=injectiv.0h1v.s4.74beef3fa4da from=translated src=- shape=244679b9 vocab=3fac4ff2
+-/
 lemma primeIdealCode_injective :
     Function.Injective (primeIdealCode K) :=
   (Nat.nth_strictMono Nat.infinite_setOfPred_prime).injective.comp
@@ -211,12 +256,18 @@ variable (K : Type*) [Field K] [NumberField K]
 noncomputable def idealPrimeCode (I : NonzeroIdeal K) : ℕ :=
   ((idealPrimeFactors K I).map (primeIdealCode K)).prod
 
+/--
+@isnad1 id=prime.1h3v.s5.3f7bc20defa1 from=translated src=- shape=b90d8b3b vocab=ed1ce9fb
+-/
 lemma prime_mem_idealPrimeCode_factors (I : NonzeroIdeal K) :
     ∀ p ∈ (idealPrimeFactors K I).map (primeIdealCode K), p.Prime := by
   intro p hp
   obtain ⟨P, -, rfl⟩ := Multiset.mem_map.mp hp
   exact prime_primeIdealCode K P
 
+/--
+@isnad1 id=eq.0h2v.s5.7527735b27f6 from=translated src=- shape=7d68f4ba vocab=0e26ff81
+-/
 lemma normalizedFactors_idealPrimeCode (I : NonzeroIdeal K) :
     normalizedFactors (idealPrimeCode K I) =
       (idealPrimeFactors K I).map (primeIdealCode K) := by
@@ -224,6 +275,9 @@ lemma normalizedFactors_idealPrimeCode (I : NonzeroIdeal K) :
   intro p hp
   exact Nat.prime_iff.mp (prime_mem_idealPrimeCode_factors K I p hp)
 
+/--
+@isnad1 id=injectiv.0h1v.s4.30b38cddf7a5 from=translated src=- shape=11100875 vocab=53e74ff6
+-/
 lemma idealPrimeCode_injective :
     Function.Injective (idealPrimeCode K) := by
   intro I J h
@@ -251,6 +305,9 @@ noncomputable def primeIdealAtCode (p : ℕ) :
   classical
   exact if h : ∃ P, primeIdealCode K P = p then some (Classical.choose h) else none
 
+/--
+@isnad1 id=iff.0h3v.s5.7468fa848f9a from=translated src=- shape=8dc54f4f vocab=beac5ade
+-/
 lemma primeIdealAtCode_eq_some_iff {p : ℕ} {P : HeightOneSpectrum (𝓞 K)} :
     primeIdealAtCode K p = some P ↔ primeIdealCode K P = p := by
   classical
@@ -267,6 +324,9 @@ lemma primeIdealAtCode_eq_some_iff {p : ℕ} {P : HeightOneSpectrum (𝓞 K)} :
     exact primeIdealCode_injective K
       ((Classical.choose_spec (show ∃ Q, primeIdealCode K Q = p from ⟨P, h⟩)).trans h.symm)
 
+/--
+@isnad1 id=eq.0h2v.s5.49899d5f082d from=translated src=- shape=bc539b04 vocab=008447d5
+-/
 @[simp] lemma primeIdealAtCode_primeIdealCode
     (P : HeightOneSpectrum (𝓞 K)) :
     primeIdealAtCode K (primeIdealCode K P) = some P :=
@@ -277,6 +337,9 @@ noncomputable def encodedPrimeIdealWeight (s : ℂ) (p : ℕ) : ℂ :=
   (primeIdealAtCode K p).elim 0 fun P ↦
     inverseNormPower (primeIdealNorm K P) s
 
+/--
+@isnad1 id=eq.0h3v.s5.2f8634762cca from=translated src=- shape=8e609677 vocab=9efe6825
+-/
 @[simp] lemma encodedPrimeIdealWeight_primeIdealCode
     (s : ℂ) (P : HeightOneSpectrum (𝓞 K)) :
     encodedPrimeIdealWeight K s (primeIdealCode K P) =
@@ -290,6 +353,9 @@ private lemma inverseNormPower_primeIdeal_ne_zero
   left
   exact_mod_cast (Nat.zero_lt_of_lt (one_lt_primeIdealNorm K P)).ne'
 
+/--
+@isnad1 id=iff.0h3v.s5.6f5adda49e9e from=translated src=- shape=842d3b8b vocab=efddf672
+-/
 lemma encodedPrimeIdealWeight_ne_zero_iff (s : ℂ) (p : ℕ) :
     encodedPrimeIdealWeight K s p ≠ 0 ↔
       ∃ P, primeIdealCode K P = p := by
@@ -307,6 +373,9 @@ lemma encodedPrimeIdealWeight_ne_zero_iff (s : ℂ) (p : ℕ) :
 noncomputable def encodedIdealSummand (s : ℂ) : ℕ →*₀ ℂ :=
   primeValueHom (encodedPrimeIdealWeight K s)
 
+/--
+@isnad1 id=eq.0h3v.s8.409b1e8e94e0 from=translated src=- shape=62ea9471 vocab=07d17b74
+-/
 lemma encodedIdealSummand_idealPrimeCode
     (s : ℂ) (I : NonzeroIdeal K) :
     encodedIdealSummand K s (idealPrimeCode K I) =
@@ -323,6 +392,9 @@ lemma encodedIdealSummand_idealPrimeCode
         (fun P ↦ inverseNormPower (primeIdealNorm K P) s)).prod
   simp
 
+/--
+@isnad1 id=ex.2h2v.s6.e8667e103d4d from=translated src=- shape=35609ca8 vocab=5c6a9e88
+-/
 lemma exists_idealPrimeCode_eq_of_primeFactors {n : ℕ} (hn : n ≠ 0)
     (hcodes : ∀ p ∈ (n.primeFactorsList : Multiset ℕ),
       ∃ P, primeIdealCode K P = p) :
@@ -355,6 +427,9 @@ lemma exists_idealPrimeCode_eq_of_primeFactors {n : ℕ} (hn : n ≠ 0)
   rw [idealPrimeCode, idealPrimeFactors_idealOfPrimeFactors, hmap,
     Multiset.prod_coe, Nat.prod_primeFactorsList hn]
 
+/--
+@isnad1 id=ex.1h3v.s5.2feb7e2cd794 from=translated src=- shape=e8a5b3a9 vocab=418057c8
+-/
 lemma exists_idealPrimeCode_eq_of_encodedIdealSummand_ne_zero
     (s : ℂ) {n : ℕ} (hn : encodedIdealSummand K s n ≠ 0) :
     ∃ I : NonzeroIdeal K, idealPrimeCode K I = n := by
@@ -369,6 +444,9 @@ lemma exists_idealPrimeCode_eq_of_encodedIdealSummand_ne_zero
   have := (Finsupp.prod_ne_zero_iff.mp hprod p hpsupp)
   exact (pow_ne_zero_iff (Finsupp.mem_support_iff.mp hpsupp)).mp this
 
+/--
+@isnad1 id=iff.0h3v.s5.93975b59b5ee from=translated src=- shape=58387510 vocab=418057c8
+-/
 theorem encodedIdealSummand_ne_zero_iff (s : ℂ) (n : ℕ) :
     encodedIdealSummand K s n ≠ 0 ↔
       ∃ I : NonzeroIdeal K, idealPrimeCode K I = n := by
@@ -393,6 +471,9 @@ namespace NumberField.Odlyzko
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=summable.1h2v.s8.7177ec4fb7be from=translated src=- shape=3b1814b7 vocab=b69527d1
+-/
 theorem summable_nonzeroIdeal_norm_inverseNormPower {s : ℂ} (hs : 1 < s.re) :
     Summable (fun I : NonzeroIdeal K ↦
       ‖((absNorm (I : Ideal (𝓞 K)) : ℂ) ^ (-s))‖) := by
@@ -412,6 +493,9 @@ theorem summable_nonzeroIdeal_norm_inverseNormPower {s : ℂ} (hs : 1 < s.re) :
   exact Nat.pos_of_ne_zero (by
     simpa [Ideal.absNorm_eq_zero_iff] using I.2)
 
+/--
+@isnad1 id=eq.0h2v.s8.c47acbf5389f from=translated src=- shape=dbb9025f vocab=a31cfb30
+-/
 lemma norm_encodedIdealSummand_eq_extendByZero (s : ℂ) :
     (fun n ↦ ‖encodedIdealSummand K s n‖) =
       extendByZero (idealPrimeCode K)
@@ -434,6 +518,9 @@ lemma norm_encodedIdealSummand_eq_extendByZero (s : ℂ) :
       (idealPrimeCode_injective K),
       encodedIdealSummand_idealPrimeCode]
 
+/--
+@isnad1 id=summable.1h2v.s6.2d6952b28ef1 from=translated src=- shape=f512cfa1 vocab=dc393c16
+-/
 theorem summable_norm_encodedIdealSummand {s : ℂ} (hs : 1 < s.re) :
     Summable (fun n ↦ ‖encodedIdealSummand K s n‖) := by
   rw [norm_encodedIdealSummand_eq_extendByZero]
@@ -453,6 +540,9 @@ namespace NumberField.Odlyzko
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=eq.0h2v.s8.81246ccdad2b from=translated src=- shape=773071dd vocab=1c7cb831
+-/
 lemma encodedIdealSummand_eq_extendByZero (s : ℂ) :
     (encodedIdealSummand K s : ℕ → ℂ) =
       extendByZero (idealPrimeCode K)
@@ -474,6 +564,9 @@ lemma encodedIdealSummand_eq_extendByZero (s : ℂ) :
       (idealPrimeCode_injective K),
       encodedIdealSummand_idealPrimeCode]
 
+/--
+@isnad1 id=hassum.1h2v.s6.188ba25ff853 from=translated src=- shape=72a2bbdf vocab=af67e058
+-/
 theorem hasSum_encodedIdealSummand {s : ℂ} (hs : 1 < s.re) :
     HasSum (encodedIdealSummand K s) (NumberField.dedekindZeta K s) := by
   rw [encodedIdealSummand_eq_extendByZero]
@@ -485,6 +578,9 @@ theorem hasSum_encodedIdealSummand {s : ℂ} (hs : 1 < s.re) :
 noncomputable def encodedIdealFactor (s : ℂ) (p : Nat.Primes) : ℂ :=
   (1 - encodedIdealSummand K s p)⁻¹
 
+/--
+@isnad1 id=eq.0h3v.s6.9ab0c5dca6f3 from=translated src=- shape=d63a529f vocab=6f1f993d
+-/
 lemma encodedIdealFactor_primeIdealCode (s : ℂ)
     (P : HeightOneSpectrum (𝓞 K)) :
     encodedIdealFactor K s (primeIdealCodeEmbedding K P) =
@@ -497,6 +593,9 @@ lemma encodedIdealFactor_primeIdealCode (s : ℂ)
     encodedPrimeIdealWeight_primeIdealCode]
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.98072958dbbe from=translated src=- shape=dec9b7cf vocab=5ef8bb9c
+-/
 lemma encodedIdealFactor_eq_one_of_not_mem_range (s : ℂ)
     (p : Nat.Primes)
     (hp : p ∉ Set.range (primeIdealCodeEmbedding K)) :
@@ -513,6 +612,9 @@ lemma encodedIdealFactor_eq_one_of_not_mem_range (s : ℂ)
     primeValueHom_apply_prime_subtype, encodedPrimeIdealWeight, hnone]
   simp
 
+/--
+@isnad1 id=hasprod.1h2v.s6.8bfcdc87057e from=translated src=- shape=e189e891 vocab=4765a274
+-/
 theorem dedekindZeta_primeIdeal_eulerProduct_hasProd {s : ℂ} (hs : 1 < s.re) :
     HasProd
       (fun P : HeightOneSpectrum (𝓞 K) ↦ primeIdealFactor K P s)
@@ -532,6 +634,9 @@ theorem dedekindZeta_primeIdeal_eulerProduct_hasProd {s : ℂ} (hs : 1 < s.re) :
   exact hcodes.congr_fun fun P ↦
     (encodedIdealFactor_primeIdealCode K s P).symm
 
+/--
+@isnad1 id=eq.1h2v.s6.174aaadc9069 from=translated src=- shape=208a98f3 vocab=8530d2be
+-/
 theorem dedekindZeta_primeIdeal_eulerProduct_tprod {s : ℂ} (hs : 1 < s.re) :
     ∏' P : HeightOneSpectrum (𝓞 K), primeIdealFactor K P s =
       NumberField.dedekindZeta K s :=

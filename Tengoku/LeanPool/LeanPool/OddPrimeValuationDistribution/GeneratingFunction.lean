@@ -29,7 +29,9 @@ noncomputable def oddPrimeValuationGeneratingSeries (half : ℕ) :
 
 /-- Headline rational generating-function identity for every odd prime.  The
 outer `PowerSeries.X` records block length and the inner `Polynomial.X`
-records exact valuation. -/
+records exact valuation.
+@isnad1 id=eq.1h1v.s9.db7f3bb2660c from=translated src=- shape=dea98d5e vocab=001024b5
+-/
 theorem oddPrimeValuationGeneratingSeries_identity
     (half : ℕ) (hhalf : 0 < half) [Fact (oddBase half).Prime] :
     oddPrimeValuationGeneratingSeries half +

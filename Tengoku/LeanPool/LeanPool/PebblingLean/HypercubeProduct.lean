@@ -46,18 +46,26 @@ def splitVertexEquiv (a m : ℕ) :
     intro p
     ext i <;> simp [splitVertex, appendVertex]
 
+/--
+@isnad1 id=eq.0h3v.s6.2dab0e5ffdb1 from=translated src=- shape=00aeb842 vocab=501b9349
+-/
 @[simp]
 theorem splitVertexEquiv_apply (a m : ℕ) (v : HypercubeVertex (a + m)) :
     splitVertexEquiv a m v = splitVertex a m v :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.c44b8b4c3080 from=translated src=- shape=fd7177b0 vocab=09fee133
+-/
 @[simp]
 theorem splitVertexEquiv_symm_apply {a m : ℕ}
     (p : HypercubeVertex a × HypercubeVertex m) :
     (splitVertexEquiv a m).symm p = appendVertex p :=
   rfl
 
-/-- Hamming distance splits over appended coordinates. -/
+/-- Hamming distance splits over appended coordinates.
+@isnad1 id=eq.0h6v.s5.4649f736002a from=translated src=- shape=0e767ff4 vocab=78055d82
+-/
 theorem dist_appendVertex {a m : ℕ}
     (x x' : HypercubeVertex a) (z z' : HypercubeVertex m) :
     dist (appendVertex (x, z)) (appendVertex (x', z')) =
@@ -119,7 +127,9 @@ theorem dist_appendVertex {a m : ℕ}
   simp [leftDiff, rightDiff]
 
 /-- Appended vertices are adjacent exactly when one factor is adjacent and the
-other factor is unchanged. -/
+other factor is unchanged.
+@isnad1 id=iff.0h4v.s5.b166933ce47b from=translated src=- shape=1da7062b vocab=8cfab7b7
+-/
 theorem appendVertex_adj_iff {a m : ℕ}
     (p q : HypercubeVertex a × HypercubeVertex m) :
     (graph (a + m)).Adj (appendVertex p) (appendVertex q) ↔
@@ -138,7 +148,9 @@ theorem appendVertex_adj_iff {a m : ℕ}
     · rw [hleft.1, hleft.2, dist_self, Nat.add_zero]
     · rw [hright.1, dist_self, hright.2, Nat.zero_add]
 
-/-- The coordinate split preserves adjacency. -/
+/-- The coordinate split preserves adjacency.
+@isnad1 id=iff.0h4v.s6.77efa5e8edbf from=translated src=- shape=4b32a9b9 vocab=142a7cb9
+-/
 theorem splitVertex_adj_iff {a m : ℕ} {v w : HypercubeVertex (a + m)} :
     (graph (a + m)).Adj v w ↔
       (Graph.cartesianProduct (graph a) (graph m)).Adj
@@ -161,7 +173,9 @@ def splitGraphIso (a m : ℕ) :
 /-- Hypercube-specific deterministic product step.  A solvable distribution
 `E` on `Q_m` specifies how many pebbles must be prepared in each `Q_a` fiber;
 if those fiber demands can be met within the given costs, then `Q_(a+m)` has a
-solvable distribution with the summed cost. -/
+solvable distribution with the summed cost.
+@isnad1 id=hassolva.2h4v.s8.066c5c5f354c from=translated src=- shape=1a35d984 vocab=0766a1fa
+-/
 theorem hasSolvableAtMostSize_split_product_of_fiber_demands
     {a m : ℕ} {E : Pebbling (HypercubeVertex m)}
     {cost : HypercubeVertex m → ℕ}
@@ -181,7 +195,9 @@ theorem hasSolvableAtMostSize_split_product_of_fiber_demands
   exact (splitGraphIso a m).symm.map_hasSolvableAtMostSize hprod
 
 /-- Product step where the first-factor cost depends only on the demand value
-`E z`, not on the fiber location `z`. -/
+`E z`, not on the fiber location `z`.
+@isnad1 id=hassolva.2h4v.s8.fdf3c6284de5 from=translated src=- shape=52419021 vocab=0766a1fa
+-/
 theorem hasSolvableAtMostSize_split_product_of_demand_cost
     {a m : ℕ} {E : Pebbling (HypercubeVertex m)} {demandCost : ℕ → ℕ}
     (hE : Pebbling.Solvable (graph m) E)
@@ -198,7 +214,9 @@ theorem hasSolvableAtMostSize_split_product_of_demand_cost
 
 /-- Linear fiber-demand recurrence: if every demand `T` in `Q_a` can be solved
 with at most `K*T` pebbles, then using a solvable distribution `E` on `Q_m` as
-the second-factor demand pattern costs at most `K * |E|`. -/
+the second-factor demand pattern costs at most `K * |E|`.
+@isnad1 id=hassolva.2h4v.s8.346092aa33d4 from=translated src=- shape=d684caf9 vocab=22960242
+-/
 theorem hasSolvableAtMostSize_split_product_of_linear_demand_cost
     {a m K : ℕ} {E : Pebbling (HypercubeVertex m)}
     (hE : Pebbling.Solvable (graph m) E)
@@ -222,7 +240,9 @@ theorem hasSolvableAtMostSize_split_product_of_linear_demand_cost
   simpa [hsum] using hprod
 
 /-- If the second factor is `T`-solvable with `T ≥ 1`, it may be used as the
-solvable demand pattern in the product step. -/
+solvable demand pattern in the product step.
+@isnad1 id=hassolva.3h5v.s8.8004d55f37c3 from=translated src=- shape=661f4a8c vocab=4960561e
+-/
 theorem hasSolvableAtMostSize_split_product_of_highDemand_demand_cost
     {a m T : ℕ} {E : Pebbling (HypercubeVertex m)} {demandCost : ℕ → ℕ}
     (hT : 1 ≤ T)
@@ -239,7 +259,9 @@ theorem hasSolvableAtMostSize_split_product_of_highDemand_demand_cost
 /-- Uniform high-demand fiber recurrence.  If `E` is a `T`-solvable
 second-factor distribution and every occupied pile of `E` has size at most
 `Tfiber`, then one `Tfiber`-solvable construction in `Q_a` can be reused for
-every occupied fiber. -/
+every occupied fiber.
+@isnad1 id=hassolva.4h6v.s8.e8c089e93552 from=translated src=- shape=6e1ca02b vocab=aa4cc6bf
+-/
 theorem hasSolvableAtMostSize_split_product_of_uniform_fiber_bound
     {a m Tbase Tfiber K : ℕ} {E : Pebbling (HypercubeVertex m)}
     (hTbase : 1 ≤ Tbase)
@@ -260,7 +282,9 @@ theorem hasSolvableAtMostSize_split_product_of_uniform_fiber_bound
 
 /-- Uniform fiber recurrence with occupied-pile compression.  If each occupied
 pile of `E` has at least `S` pebbles, and a `Tfiber`-solvable construction in
-`Q_a` costs at most `S*K`, then the product cost is bounded by `|E|*K`. -/
+`Q_a` costs at most `S*K`, then the product cost is bounded by `|E|*K`.
+@isnad1 id=hassolva.5h7v.s8.2bec869e4815 from=translated src=- shape=ef083bc9 vocab=b30f684a
+-/
 theorem hasSolvableAtMostSize_split_product_of_uniform_fiber_bound_minPile
     {a m Tbase Tfiber S K : ℕ} {E : Pebbling (HypercubeVertex m)}
     (hTbase : 1 ≤ Tbase)
@@ -281,7 +305,9 @@ theorem hasSolvableAtMostSize_split_product_of_uniform_fiber_bound_minPile
 /-- Recurrence step from a high-demand distribution.  If `Q_m` has a
 `Tbase`-solvable distribution of size at most `costBound` whose occupied piles
 have size at least `S`, and `Q_a` can solve demand `costBound` with cost
-`S*K`, then `Q_(a+m)` has a solvable distribution with cost `costBound*K`. -/
+`S*K`, then `Q_(a+m)` has a solvable distribution with cost `costBound*K`.
+@isnad1 id=hassolva.3h6v.s7.6db916bb536d from=translated src=- shape=8cf8c620 vocab=6d8fd0dc
+-/
 theorem hasSolvableAtMostSize_split_product_of_highDemand
     {a m Tbase costBound S K : ℕ}
     (hTbase : 1 ≤ Tbase)
@@ -303,7 +329,9 @@ theorem hasSolvableAtMostSize_split_product_of_highDemand
 /-- High-demand product recurrence preserving the next pile-size invariant.
 The same high-demand fiber construction in `Q_a` is reused for every occupied
 fiber over `Q_m`; occupied-pile compression in the `Q_m` distribution pays for
-this reuse. -/
+this reuse.
+@isnad1 id=hashighd.3h7v.s6.24763f248f18 from=translated src=- shape=e2cd7c9a vocab=5e7b45f6
+-/
 theorem hasHighDemandDistribution_split_product_of_highDemand
     {a m Tbase costBound S K Snew : ℕ}
     (hTbase : 1 ≤ Tbase)
@@ -380,7 +408,9 @@ theorem hasHighDemandDistribution_split_product_of_highDemand
 This is the paper-facing product step.  If an occupied second-factor pile has
 size `s_z`, we use a first-factor construction for demand `s_z` and cost
 `s_z*K`.  Summing over occupied fibers gives total cost `|E|*K`, and the
-high-demand bound on `E` then gives `costBound*K`. -/
+high-demand bound on `E` then gives `costBound*K`.
+@isnad1 id=hashighd.3h7v.s6.64d33120fdfa from=translated src=- shape=bdd8e840 vocab=5e7b45f6
+-/
 theorem hasHighDemandDistribution_split_product_of_highDemand_variable
     {a m Tbase costBound S K Snew : ℕ}
     (hTbase : 1 ≤ Tbase)

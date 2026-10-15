@@ -187,7 +187,9 @@ private lemma besselK1_integrand_tail_integral_le (z : ℝ) (hz : 0 < z) :
   exact setIntegral_mono_on hf_int_Ioi hg_int measurableSet_Ioi
     (fun t ht => h_bound' t ht.le)
 
-/-- K₁(z) is positive for z > 0. -/
+/-- K₁(z) is positive for z > 0.
+@isnad1 id=lt.1h1v.s4.5fbc0b9828a3 from=translated src=- shape=35bd48ee vocab=aaae4e02
+-/
 lemma besselK1_pos (z : ℝ) (hz : 0 < z) : 0 < besselK1 z := by
   unfold besselK1
   -- The integrand f(t) = exp(-z cosh(t)) * cosh(t) is strictly positive for all t
@@ -218,6 +220,7 @@ lemma besselK1_pos (z : ℝ) (hz : 0 < z) : 0 < besselK1 z := by
 
     The formal proof uses MeasureTheory.continuousOn_of_dominated_of_compact:
     for z in compact K ⊆ (0, ∞), bound by exp(-min(K) * cosh(t)) * cosh(t).
+@isnad1 id=continuo.0h0v.s4.5a65e2698487 from=translated src=- shape=f2a09be3 vocab=dcc92df6
 -/
 lemma besselK1_continuousOn : ContinuousOn besselK1 (Ioi 0) := by
   -- Show ContinuousAt at each z₀ > 0 using dominated convergence
@@ -259,6 +262,7 @@ lemma besselK1_continuousOn : ContinuousOn besselK1 (Ioi 0) := by
 /-- K₁ has exponential decay: K₁(z) ≤ (sinh(1) + 2) · exp(-z) for z ≥ 1.
     This bound is sufficient for proving integrability of the free covariance kernel.
     The proof uses the same technique as besselK1_mul_self_le but for z ≥ 1.
+@isnad1 id=le.1h1v.s5.c540f0491626 from=translated src=- shape=4b78ba05 vocab=05b081ca
 -/
 lemma besselK1_asymptotic (z : ℝ) (hz : 1 ≤ z) :
     besselK1 z ≤ (sinh 1 + 2) * exp (-z) := by
@@ -328,6 +332,7 @@ lemma besselK1_asymptotic (z : ℝ) (hz : 1 ≤ z) :
     This follows from splitting the integral at t = 1:
     - On [0,1]: z · ∫₀¹ exp(-z cosh t) cosh t dt ≤ z · cosh(1) ≤ cosh(1)
     - On [1,∞): z · ∫₁^∞ exp(-z cosh t) cosh t dt ≤ 2 (via exponential bound)
+@isnad1 id=le.2h1v.s5.e1d2e550cbad from=translated src=- shape=01646ba4 vocab=6ffb6b86
 -/
 lemma besselK1_mul_self_le (z : ℝ) (hz : 0 < z) (hz_le : z ≤ 1) :
     z * besselK1 z ≤ cosh 1 + 2 := by
@@ -403,6 +408,7 @@ lemma besselK1_mul_self_le (z : ℝ) (hz : 0 < z) (hz_le : z ≤ 1) :
 
 /-- Near-origin bound for K₁: K₁(z) ≤ (cosh(1) + 2)/z for z ∈ (0, 1].
     This follows from z · K₁(z) ≤ cosh(1) + 2 (proved in besselK1_mul_self_le).
+@isnad1 id=le.2h1v.s5.4147ec07059d from=translated src=- shape=8d24ba99 vocab=a5762994
 -/
 lemma besselK1_near_origin_bound (z : ℝ) (hz : 0 < z) (hz_small : z ≤ 1) :
     besselK1 z ≤ (cosh 1 + 2) / z := by
@@ -417,6 +423,7 @@ lemma besselK1_near_origin_bound (z : ℝ) (hz : 0 < z) (hz_small : z ≤ 1) :
     - At ∞: K₁(mr) ~ e^{-mr}/√(mr), so r² K₁(mr) decays exponentially
 
     This is a key ingredient for showing the free covariance kernel is L¹ in 4D.
+@isnad1 id=integrab.1h1v.s6.9d83829deb06 from=translated src=- shape=8eda6e24 vocab=264882f7
 -/
 lemma radial_besselK1_integrable (m : ℝ) (hm : 0 < m) :
     IntegrableOn (fun r => r ^ 2 * besselK1 (m * r)) (Set.Ioi 0) volume := by
@@ -581,6 +588,7 @@ lemma radial_besselK1_integrable (m : ℝ) (hm : 0 < m) :
     ∫_{-∞}^∞ exp(-u) * exp(-z cosh u) du = 2 ∫_0^∞ cosh(u) * exp(-z cosh u) du
 
     This follows from splitting at 0 and using cosh(-u) = cosh(u).
+@isnad1 id=eq.1h1v.s6.304bd195cdda from=translated src=- shape=a65ea8bd vocab=8b207cbb
 -/
 lemma bessel_symmetry_integral (z : ℝ) (hz : 0 < z) :
     ∫ u : ℝ, exp (-u) * exp (-z * cosh u) = 2 * besselK1 z := by
@@ -744,6 +752,7 @@ lemma bessel_symmetry_integral (z : ℝ) (hz : 0 < z) :
 
     This is proven directly via the substitution t = (r/(2m)) exp(u),
     which transforms the integral to the cosh representation of K₁.
+@isnad1 id=eq.2h2v.s7.e5bc821bb6af from=translated src=- shape=a716b7a6 vocab=6a22c2d6
 -/
 lemma schwingerIntegral_eq_besselK1 (m r : ℝ) (hm : 0 < m) (hr : 0 < r) :
     ∫ t in Ioi 0, (1 / t^2) * exp (-m^2 * t - r^2 / (4 * t)) =

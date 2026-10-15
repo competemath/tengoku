@@ -40,7 +40,9 @@ def HasPositiveTime (x : SpaceTime) : Prop := getTimeComponent x > 0
 /-- The set of all spacetime points with positive time -/
 def positiveTimeSet : Set SpaceTime := {x | HasPositiveTime x}
 
-/-- The positive time set is open -/
+/-- The positive time set is open
+@isnad1 id=isopen.0h0v.s4.3824df0e401d from=translated src=- shape=25b03439 vocab=1c07c18f
+-/
 lemma is_open_positiveTimeSet : IsOpen positiveTimeSet :=
   isOpen_lt continuous_const (PiLp.continuous_apply 2 (fun _ => ℝ) (0 : Fin STDimension))
 
@@ -60,7 +62,9 @@ abbrev PositiveTimeTestFunction : Type := PositiveTimeTestFunctions.submodule
 instance : AddCommMonoid PositiveTimeTestFunction := by infer_instance
 instance : AddCommGroup PositiveTimeTestFunction := by infer_instance
 
-/-- Linear combinations of positive-time test functions are positive-time test functions. -/
+/-- Linear combinations of positive-time test functions are positive-time test functions.
+@isnad1 id=ex.0h3v.s10.08bfb8817317 from=translated src=- shape=9708183b vocab=b4ed718f
+-/
 lemma PositiveTimeTestFunction.sum_smul_mem
     {n : ℕ} (f : Fin n → PositiveTimeTestFunction) (c : Fin n → ℝ) :
     ∃ g : PositiveTimeTestFunction, g.val = ∑ i, c i • (f i).val := by
@@ -88,6 +92,9 @@ abbrev PositiveTimeTestFunctionℂ : Type := PositiveTimeTestFunctionsℂ.submod
 instance : AddCommMonoid PositiveTimeTestFunctionℂ := by infer_instance
 instance : AddCommGroup PositiveTimeTestFunctionℂ := by infer_instance
 
+/--
+@isnad1 id=eq.1h2v.s9.e9890cae6db0 from=translated src=- shape=9a585643 vocab=df1e7d3f
+-/
 lemma PositiveTimeTestFunctionℂ.zero_on_nonpositive
     (f : PositiveTimeTestFunctionℂ) {x : SpaceTime}
     (hx : getTimeComponent x ≤ 0) : f.val x = 0 := by
@@ -96,7 +103,9 @@ lemma PositiveTimeTestFunctionℂ.zero_on_nonpositive
     simpa [positiveTimeSet, HasPositiveTime] using f.property hx_mem
   linarith
 
-/-- Helper lemma: starRingEnd ℂ commutes through derivatives and preserves norms -/
+/-- Helper lemma: starRingEnd ℂ commutes through derivatives and preserves norms
+@isnad1 id=eq.0h3v.s10.bc0f0e842f7f from=translated src=- shape=0c974c02 vocab=4f60e0f9
+-/
 lemma starRingEnd_iteratedFDeriv_norm_eq (g : TestFunctionℂ) (n : ℕ) (x : SpaceTime) :
   ‖iteratedFDeriv ℝ n (fun x => starRingEnd ℂ (g x)) x‖ = ‖iteratedFDeriv ℝ n g x‖ := by
   -- Use the fact that starRingEnd ℂ = Complex.conjLIE (as functions)
@@ -133,6 +142,9 @@ noncomputable def starTestFunction (f : TestFunctionℂ) : TestFunctionℂ :=
 noncomputable instance : Star TestFunctionℂ where
   star f := starTestFunction f
 
+/--
+@isnad1 id=eq.1h2v.s9.a4fdb249d53d from=translated src=- shape=31cb6298 vocab=8f30037d
+-/
 lemma PositiveTimeTestFunction.zero_on_nonpositive
     (f : PositiveTimeTestFunction) {x : SpaceTime}
     (hx : getTimeComponent x ≤ 0) : f.val x = 0 := by

@@ -60,6 +60,9 @@ def normalizedHamming {Y : Type*} [Fintype Y] [DecidableEq Y]
     (p q : Equiv.Perm Y) : ℝ :=
   (hammingDist (fun y => p y) (fun y => q y) : ℝ) / Fintype.card Y
 
+/--
+@isnad1 id=eq.0h2v.s4.b302a8cd2c04 from=translated src=- shape=1408b639 vocab=ca009896
+-/
 @[simp]
 public
 theorem normalizedHamming_self {Y : Type*} [Fintype Y] [DecidableEq Y]
@@ -436,6 +439,9 @@ def matchedWordPreimageBad {V : Type*} [DecidableEq V]
     (D : Finset V → Finset V) (w : Equiv.Perm V) : Finset V :=
   U.filter (fun x => w x ∈ U \ matchedCore R D)
 
+/--
+@isnad1 id=ex.0h3v.s8.cd2b95bd7553 from=translated src=- shape=751381fa vocab=36e843f2
+-/
 public
 theorem exists_completion_of_internal_permutation {V : Type*}
     [Finite V]
@@ -593,6 +599,9 @@ private def leavittRepresentation :
   simp only [leavittRepresentation, leavittFreeRepresentation, leavittT, leavittQuotient,
     RingQuot.liftAlgHom_mkAlgHom_apply, FreeAlgebra.lift_ι_apply, leavittGeneratorAction]
 
+/--
+@isnad1 id=nontrivi.0h0v.s1.01fbcc017afe from=translated src=- shape=49959d42 vocab=07f3cd02
+-/
 public
 instance binaryLeavittNontrivial : Nontrivial BinaryLeavitt :=
   leavittRepresentation.toRingHom.domain_nontrivial
@@ -609,6 +618,9 @@ def leavittWordT : List (Fin 2) → BinaryLeavitt
   | [] => 1
   | i :: a => leavittWordT a * leavittT i
 
+/--
+@isnad1 id=eq.0h1v.s6.c24069b6b453 from=translated src=- shape=8eee3abf vocab=cdbbb3ed
+-/
 public
 theorem leavittWordT_mul_wordS_self (a : List (Fin 2)) :
     leavittWordT a * leavittWordS a = 1 := by
@@ -622,6 +634,9 @@ theorem leavittWordT_mul_wordS_self (a : List (Fin 2)) :
                 simp only [leavittWordT, leavittWordS, mul_assoc]
         _ = 1 := by simp only [leavittT_mul_S, ↓reduceIte, one_mul, ih]
 
+/--
+@isnad1 id=eq.2h2v.s6.7366a267bd03 from=translated src=- shape=c5e80172 vocab=6bfc52f1
+-/
 public
 theorem leavittWordT_mul_wordS_of_incomparable
     (a b : List (Fin 2)) (hab : ¬a <+: b) (hba : ¬b <+: a) :
@@ -657,6 +672,9 @@ theorem leavittWordT_mul_wordS_of_incomparable
                       simp only [leavittWordT, leavittWordS, mul_assoc]
               _ = 0 := by simp only [leavittT_mul_S, hij, ↓reduceIte, zero_mul, mul_zero]
 
+/--
+@isnad1 id=eq.0h2v.s6.3b9970178ffe from=translated src=- shape=155616fe vocab=6e803ab9
+-/
 public
 theorem leavittWordS_append (a b : List (Fin 2)) :
     leavittWordS (a ++ b) = leavittWordS a * leavittWordS b := by
@@ -664,6 +682,9 @@ theorem leavittWordS_append (a b : List (Fin 2)) :
   | nil => simp only [List.nil_append, leavittWordS, one_mul]
   | cons i a ih => simp only [List.cons_append, leavittWordS, ih, mul_assoc]
 
+/--
+@isnad1 id=eq.0h2v.s6.ab75b9c287bb from=translated src=- shape=951ed5c6 vocab=c1774486
+-/
 public
 theorem leavittWordT_append (a b : List (Fin 2)) :
     leavittWordT (a ++ b) = leavittWordT b * leavittWordT a := by
@@ -1389,6 +1410,9 @@ private theorem prefixElementaryGroup_map_conj
     exact ⟨prefixElementaryUnit E i j hij a,
       ⟨i, j, hij, a, rfl⟩, hconj i j hij a⟩
 
+/--
+@isnad1 id=eq.0h0v.s12.1bec81f92f89 from=translated src=- shape=611609cb vocab=f5e106ed
+-/
 public
 theorem compressionU_map_alphaPrefixElementaryGroup :
     (prefixElementaryGroup alphaPrefixCode).map
@@ -1397,6 +1421,9 @@ theorem compressionU_map_alphaPrefixElementaryGroup :
   prefixElementaryGroup_map_conj alphaPrefixCode alphaZeroPrefixCode
     compressionU compressionU_conjugate_alpha_elementaryUnit
 
+/--
+@isnad1 id=eq.0h0v.s12.9f41ead829b5 from=translated src=- shape=611609cb vocab=5cffcd0c
+-/
 public
 theorem compressionV_map_alphaPrefixElementaryGroup :
     (prefixElementaryGroup alphaPrefixCode).map
@@ -1420,6 +1447,9 @@ private theorem alphaZero_prefixElementaryUnit_eq
     leavittWordT_append,
     leavittWordT, one_mul]
 
+/--
+@isnad1 id=le.0h0v.s8.f9d4e9a10671 from=translated src=- shape=4f666fac vocab=9630ada2
+-/
 public
 theorem alphaZero_prefixElementaryGroup_le :
     prefixElementaryGroup alphaZeroPrefixCode ≤
@@ -1474,6 +1504,9 @@ def elementaryGroup (ι R : Type*) [Fintype ι] [DecidableEq ι] [Ring R] :
   Subgroup.closure
     {z | ∃ (i j : ι) (h : i ≠ j) (a : R), elementaryUnit i j h a = z}
 
+/--
+@isnad1 id=mem.1h5v.s7.fb4c62ddf1b7 from=translated src=- shape=cca4ac10 vocab=496f5854
+-/
 public
 theorem elementaryUnit_mem (i j : ι) (h : i ≠ j) (a : R) :
     elementaryUnit i j h a ∈ elementaryGroup ι R :=
@@ -1502,6 +1535,9 @@ private theorem cylinder_transposition_factorization [CharP R 2] (P Q : R)
   noncomm_ring [hPP, hPQP]
   simp only [hthree]
 
+/--
+@isnad1 id=eq.3h7v.s7.9eeae952d7ea from=translated src=- shape=dad00005 vocab=d4847454
+-/
 public
 theorem elementaryUnit_commutator (i j k : ι)
     (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ k) (a b : R) :
@@ -1526,6 +1562,9 @@ theorem elementaryUnit_commutator (i j k : ι)
   have hzz := single_mul_self_eq_zero i k hik (a * b)
   noncomm_ring [hxx, hyy, hyx, hxy, hzx, hzy, hzz]
 
+/--
+@isnad1 id=mem.5h7v.s9.5857063ad173 from=translated src=- shape=c7a613b5 vocab=029e1b11
+-/
 public
 theorem elementaryUnit_mem_of_two_step
     (H : Subgroup (Matrix ι ι R)ˣ) (i j k : ι)
@@ -1914,6 +1953,9 @@ private theorem alphaPrefixElementaryUnit_eq_nine
         leavittWordT (nineWord (alphaNineIndex j))
   rw [nineWord_alphaNineIndex, nineWord_alphaNineIndex]
 
+/--
+@isnad1 id=le.0h0v.s8.7ab8a64a36e2 from=translated src=- shape=4f666fac vocab=8b8a10ca
+-/
 public
 theorem alphaPrefixElementaryGroup_le_nine :
     prefixElementaryGroup alphaPrefixCode ≤
@@ -2509,6 +2551,9 @@ private theorem compressionU_mem_ninePrefixElementaryGroup :
 
 end PrefixCompressionU
 
+/--
+@isnad1 id=mem.0h0v.s8.771d10bd702c from=translated src=- shape=23618ddf vocab=b647167f
+-/
 public
 theorem compressionU_mem_ninePrefixElementaryGroup :
     compressionU ∈ prefixElementaryGroup ninePrefixCode :=
@@ -2943,6 +2988,9 @@ private theorem compressionV_mem_of_compressionU
 
 end PrefixCompression
 
+/--
+@isnad1 id=mem.0h0v.s8.bdab46ba0a4a from=translated src=- shape=23618ddf vocab=932ab95e
+-/
 public
 theorem compressionV_mem_ninePrefixElementaryGroup :
     compressionV ∈ prefixElementaryGroup ninePrefixCode :=
@@ -2967,6 +3015,9 @@ noncomputable def positiveSupport {V : Type*} [Fintype V]
   classical
   exact Finset.univ.filter fun x => 0 < f x
 
+/--
+@isnad1 id=iff.0h3v.s5.7d1bb798545a from=translated src=- shape=7c85c81e vocab=9884792a
+-/
 @[simp] public theorem mem_positiveSupport {V : Type*} [Fintype V]
     (f : V → ℝ) (x : V) :
     x ∈ positiveSupport f ↔ 0 < f x := by
@@ -2992,12 +3043,18 @@ noncomputable def upperLevel {V : Type*} [Fintype V]
   classical
   exact Finset.univ.filter fun x => a < f x
 
+/--
+@isnad1 id=iff.0h4v.s5.d15bbd912ace from=translated src=- shape=9fb06bf4 vocab=7c4a2e51
+-/
 @[simp] public theorem mem_lowerLevel {V : Type*} [Fintype V]
     (f : V → ℝ) (a : ℝ) (x : V) :
     x ∈ lowerLevel f a ↔ f x < a := by
   classical
   simp only [lowerLevel, Finset.mem_filter, Finset.mem_univ, true_and]
 
+/--
+@isnad1 id=iff.0h4v.s5.7bfa599ba2ad from=translated src=- shape=080f380c vocab=77023930
+-/
 @[simp] public theorem mem_upperLevel {V : Type*} [Fintype V]
     (f : V → ℝ) (a : ℝ) (x : V) :
     x ∈ upperLevel f a ↔ a < f x := by
@@ -3301,6 +3358,9 @@ private theorem prefixInsertionHom_mem_cylinderCorner
         (A := BinaryLeavitt)).symm.toMulEquiv) u), ?_⟩
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.22b7de94739c from=translated src=- shape=b6f7cb45 vocab=ceb07432
+-/
 public
 theorem prefixInsertionHom_val (a : List (Fin 2)) (u : BinaryLeavittˣ) :
     (↑(prefixInsertionHom a u) : BinaryLeavitt) =
@@ -3676,6 +3736,9 @@ private theorem sourceLocalPrefixTranspositionGroup_le_alpha :
   rintro _ ⟨a, b, hab, hba, rfl⟩
   exact sourceLocal_cylinderSwap_mem_alpha a b hab hba
 
+/--
+@isnad1 id=le.0h0v.s8.410d0e232348 from=translated src=- shape=aace0c27 vocab=066d3a10
+-/
 public
 theorem sourceLocalPrefixTranspositionGroup_le_alpha_sourceWord :
     localPrefixTranspositionGroup [0, 0, 0, 1] ≤
@@ -3809,6 +3872,9 @@ def permutationDistance {V : Type*} [Fintype V] [DecidableEq V]
     (p q : Equiv.Perm V) : ℕ :=
   hammingDist (fun x => p x) (fun x => q x)
 
+/--
+@isnad1 id=eq.0h2v.s4.6e1f0e78497f from=translated src=- shape=1408b639 vocab=36c21e7b
+-/
 @[simp]
 public
 theorem permutationDistance_self {V : Type*} [Fintype V] [DecidableEq V]
@@ -3874,6 +3940,9 @@ private theorem permutationDistance_inv {V : Type*}
     _ = permutationDistance q p := by simp only [inv_mul_cancel_right, one_mul]
     _ = permutationDistance p q := permutationDistance_comm q p
 
+/--
+@isnad1 id=eq.0h3v.s5.92f7f1b6ee0c from=translated src=- shape=42a2c657 vocab=14e8c868
+-/
 @[simp]
 public
 theorem permutationCommutationDefect_one {V ι : Type*}

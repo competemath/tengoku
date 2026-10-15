@@ -29,6 +29,9 @@ open Complex
 namespace NumberField.Odlyzko
 
 open Classical in
+/--
+@isnad1 id=le.4h3v.s7.90b7cda1e081 from=translated src=- shape=c8167a4a vocab=11751660
+-/
 theorem norm_finsum_div_sub_le_finsum_div
     {D : ℂ → ℤ} (hfin : D.support.Finite)
     (hD : ∀ u, 0 ≤ D u) {z : ℂ} {δ : ℝ} (hδ : 0 < δ)
@@ -80,18 +83,27 @@ namespace NumberField.Odlyzko
 noncomputable def canonicalZeroFactor (R : ℝ) (u : ℂ) : ℂ → ℂ :=
   fun z ↦ (canonicalFactor R u z)⁻¹
 
+/--
+@isnad1 id=eq.2h3v.s6.8e60d09ac7cb from=translated src=- shape=1327bf94 vocab=18e09911
+-/
 theorem norm_canonicalZeroFactor_eq_one
     {R : ℝ} {u z : ℂ} (hu : u ∈ ball 0 R) (hz : z ∈ sphere 0 R) :
     ‖canonicalZeroFactor R u z‖ = 1 := by
   rw [canonicalZeroFactor, norm_inv,
     norm_canonicalFactor_eval_circle_eq_one hu hz, inv_one]
 
+/--
+@isnad1 id=iff.2h3v.s6.3c74623ff33a from=translated src=- shape=689d5c1f vocab=e2df66fd
+-/
 theorem canonicalZeroFactor_eq_zero_iff
     {R : ℝ} {u z : ℂ} (hu : u ∈ ball 0 R) (hz : z ∈ ball 0 R) :
     canonicalZeroFactor R u z = 0 ↔ z = u := by
   rw [canonicalZeroFactor, inv_eq_zero,
     canonicalFactor_eq_zero_iff hu hz]
 
+/--
+@isnad1 id=eq.0h3v.s6.fecb365876eb from=translated src=- shape=a83d90ef vocab=8d3b22c7
+-/
 theorem canonicalZeroFactor_apply
     (R : ℝ) (u z : ℂ) :
     canonicalZeroFactor R u z =
@@ -99,6 +111,9 @@ theorem canonicalZeroFactor_apply
   rw [canonicalZeroFactor, canonicalFactor_apply, inv_div]
   ring
 
+/--
+@isnad1 id=eq.3h3v.s8.70c1ea9e88ee from=translated src=- shape=91495854 vocab=60c29d30
+-/
 theorem logDeriv_canonicalZeroFactor
     {R : ℝ} {u z : ℂ} (hR : R ≠ 0) (hzu : z ≠ u)
     (hreflect : (R : ℂ) ^ 2 - conj u * z ≠ 0) :
@@ -148,6 +163,9 @@ noncomputable def centeredCanonicalZeroFactor
     (c : ℂ) (R : ℝ) (u : ℂ) : ℂ → ℂ :=
   fun z ↦ canonicalZeroFactor R (u - c) (z - c)
 
+/--
+@isnad1 id=eq.2h4v.s6.48a8ca5fef0c from=translated src=- shape=eada8cc1 vocab=51509745
+-/
 theorem norm_centeredCanonicalZeroFactor_eq_one
     {c u z : ℂ} {R : ℝ} (hu : u ∈ ball c R) (hz : z ∈ sphere c R) :
     ‖centeredCanonicalZeroFactor c R u z‖ = 1 := by
@@ -155,6 +173,9 @@ theorem norm_centeredCanonicalZeroFactor_eq_one
   · simpa [Metric.mem_ball, dist_eq] using hu
   · simp_all
 
+/--
+@isnad1 id=iff.2h4v.s6.5f64ea5a5196 from=translated src=- shape=73b33395 vocab=b8749015
+-/
 theorem centeredCanonicalZeroFactor_eq_zero_iff
     {c u z : ℂ} {R : ℝ} (hu : u ∈ ball c R) (hz : z ∈ ball c R) :
     centeredCanonicalZeroFactor c R u z = 0 ↔ z = u := by
@@ -164,6 +185,9 @@ theorem centeredCanonicalZeroFactor_eq_zero_iff
       (by simpa [Metric.mem_ball, dist_eq] using hz)]
   simp
 
+/--
+@isnad1 id=ne.2h4v.s7.3d030bded098 from=translated src=- shape=aa0afc46 vocab=dc89369d
+-/
 theorem canonicalReflectedDenominator_ne_zero_on_closedBall
     {c u z : ℂ} {R : ℝ} (hu : u ∈ ball c R)
     (hz : z ∈ closedBall c R) :
@@ -184,6 +208,9 @@ theorem canonicalReflectedDenominator_ne_zero_on_closedBall
       _ = R ^ 2 := by ring
   grind
 
+/--
+@isnad1 id=analytic.1h3v.s6.4959add95db0 from=translated src=- shape=855dd911 vocab=1792edc5
+-/
 theorem analyticOnNhd_centeredCanonicalZeroFactor
     {c u : ℂ} {R : ℝ} (hu : u ∈ ball c R) :
     AnalyticOnNhd ℂ (centeredCanonicalZeroFactor c R u)
@@ -202,6 +229,9 @@ theorem analyticOnNhd_centeredCanonicalZeroFactor
       simp]
   fun_prop
 
+/--
+@isnad1 id=differen.3h4v.s6.083feeb74e96 from=translated src=- shape=123271f8 vocab=45f2762d
+-/
 theorem differentiableAt_centeredCanonicalZeroFactor
     {c u z : ℂ} {R : ℝ} (hu : u ∈ ball c R) (hz : z ∈ ball c R)
     (hzu : z ≠ u) :
@@ -228,6 +258,9 @@ theorem differentiableAt_centeredCanonicalZeroFactor
       (f := fun w : ℂ ↦ w - c) (x := z) houter hshift
   simpa [Function.comp_def] using hcomp.differentiableAt
 
+/--
+@isnad1 id=ne.3h4v.s7.a495ce285c1d from=translated src=- shape=bdc86e84 vocab=2de9296c
+-/
 theorem canonicalReflectedDenominator_ne_zero
     {c u z : ℂ} {R : ℝ} (hu : u ∈ ball c R) (hz : z ∈ ball c R)
     (hzu : z ≠ u) :
@@ -243,6 +276,9 @@ theorem canonicalReflectedDenominator_ne_zero
   apply hfactor
   rw [canonicalFactor_apply, h, zero_div]
 
+/--
+@isnad1 id=eq.5h4v.s8.933af5c733dd from=translated src=- shape=6c50fbf5 vocab=5f62c1b6
+-/
 theorem logDeriv_centeredCanonicalZeroFactor
     {c u z : ℂ} {R : ℝ} (hR : R ≠ 0)
     (hu : u ∈ ball c R) (hz : z ∈ ball c R) (hzu : z ≠ u)
@@ -275,6 +311,9 @@ theorem logDeriv_centeredCanonicalZeroFactor
     logDeriv_canonicalZeroFactor hR hzu' hreflect]
   simp
 
+/--
+@isnad1 id=le.5h5v.s7.8909e69f5548 from=translated src=- shape=1b34ec10 vocab=be2076df
+-/
 theorem norm_conj_div_reflected_centered_le
     {c u z : ℂ} {r R : ℝ} (hR : 0 < R) (_hr : 0 ≤ r) (hrR : r < R)
     (hu : u ∈ ball c R) (hz : z ∈ closedBall c r) :
@@ -308,6 +347,9 @@ theorem norm_conj_div_reflected_centered_le
       div_le_div₀ hR.le huNorm hgap hden
     _ = 1 / (R - r) := by grind
 
+/--
+@isnad1 id=eq.3h4v.s7.0df1cf705233 from=translated src=- shape=be98fb1d vocab=e765418f
+-/
 theorem norm_finprod_centeredCanonicalZeroFactor_zpow_eq_one
     {c : ℂ} {R : ℝ} (D : ℂ → ℤ) (hfin : D.support.Finite)
     (hinside : ∀ u ∈ D.support, u ∈ ball c R)
@@ -340,6 +382,9 @@ open Complex ComplexConjugate Metric Set
 namespace NumberField.Odlyzko
 
 open Classical in
+/--
+@isnad1 id=le.7h5v.s8.370acef5a52f from=translated src=- shape=7bb56dc3 vocab=7babda12
+-/
 theorem norm_finsum_reflected_centered_le
     {D : ℂ → ℤ} (hfin : D.support.Finite) (hD : ∀ u, 0 ≤ D u)
     {c z : ℂ} {r R : ℝ} (hR : 0 < R) (hr : 0 ≤ r) (hrR : r < R)
@@ -397,6 +442,9 @@ theorem norm_finsum_reflected_centered_le
       simp only [one_mul]
 
 open Classical in
+/--
+@isnad1 id=le.9h6v.s8.08a25d61a17e from=translated src=- shape=4a444650 vocab=00a62a48
+-/
 theorem norm_finsum_canonicalLogDeriv_le
     {D : ℂ → ℤ} (hfin : D.support.Finite) (hD : ∀ u, 0 ≤ D u)
     {c z : ℂ} {δ r R : ℝ} (hδ : 0 < δ)
@@ -436,6 +484,9 @@ theorem norm_finsum_canonicalLogDeriv_le
       hfin hD hR hr hrR hinside hz
 
 open Classical in
+/--
+@isnad1 id=le.10h7v.s8.fc25c024328c from=translated src=- shape=c51e5a6f vocab=00a62a48
+-/
 theorem norm_finsum_canonicalLogDeriv_le_of_finsum_le
     {D : ℂ → ℤ} (hfin : D.support.Finite) (hD : ∀ u, 0 ≤ D u)
     {c z : ℂ} {δ r R B : ℝ} (hδ : 0 < δ)
@@ -473,6 +524,9 @@ noncomputable def centeredCanonicalZeroProduct
   ∏ᶠ u, (centeredCanonicalZeroFactor c R u) ^ D u
 
 open Classical in
+/--
+@isnad1 id=analytic.2h3v.s6.16875bfed6f2 from=translated src=- shape=7894be37 vocab=ac2b9466
+-/
 theorem analyticOnNhd_centeredCanonicalZeroProduct
     {D : ℂ → ℤ} (hD : ∀ u, 0 ≤ D u)
     {c : ℂ} {R : ℝ}
@@ -492,6 +546,9 @@ theorem analyticOnNhd_centeredCanonicalZeroProduct
     exact analyticAt_const
 
 open Classical in
+/--
+@isnad1 id=eq.3h4v.s6.c181df8faf29 from=translated src=- shape=38f38d82 vocab=01e1e45c
+-/
 theorem norm_centeredCanonicalZeroProduct_eq_one
     {D : ℂ → ℤ} (hfin : D.support.Finite)
     {c z : ℂ} {R : ℝ}
@@ -502,6 +559,9 @@ theorem norm_centeredCanonicalZeroProduct_eq_one
     D hfin hinside hz
 
 open Classical in
+/--
+@isnad1 id=le.5h4v.s6.f4a5ed67921d from=translated src=- shape=37eab628 vocab=7e781f7b
+-/
 theorem norm_centeredCanonicalZeroProduct_le_one
     {D : ℂ → ℤ} (hfin : D.support.Finite) (hD : ∀ u, 0 ≤ D u)
     {c z : ℂ} {R : ℝ} (hR : 0 < R)
@@ -519,6 +579,9 @@ theorem norm_centeredCanonicalZeroProduct_le_one
   · rwa [closure_ball c hR.ne']
 
 open Classical in
+/--
+@isnad1 id=eq.5h4v.s8.2e82c971b7ef from=translated src=- shape=73768049 vocab=f63d5292
+-/
 theorem logDeriv_centeredCanonicalZeroProduct
     {D : ℂ → ℤ} (hfin : D.support.Finite)
     {c z : ℂ} {R : ℝ} (hR : 0 < R)
@@ -595,6 +658,9 @@ open scoped Topology
 namespace NumberField.Odlyzko
 
 open Classical in
+/--
+@isnad1 id=eq.2h2v.s7.6c0d7c67a13d from=translated src=- shape=96afb745 vocab=4c488e99
+-/
 theorem divisor_eq_zero_of_analyticOnNhd_of_ne_zero
     {f : ℂ → ℂ} {U : Set ℂ}
     (hf : AnalyticOnNhd ℂ f U) (hne : ∀ z ∈ U, f z ≠ 0) :
@@ -608,6 +674,9 @@ theorem divisor_eq_zero_of_analyticOnNhd_of_ne_zero
   · simp [hz]
 
 open Classical in
+/--
+@isnad1 id=le.0h3v.s6.c6ea56502a50 from=translated src=- shape=e43df39e vocab=f3e8fcca
+-/
 theorem divisor_ball_support_subset
     {f : ℂ → ℂ} {c : ℂ} {R : ℝ} :
     (MeromorphicOn.divisor f (ball c R)).support ⊆ ball c R := by
@@ -616,6 +685,9 @@ theorem divisor_ball_support_subset
   simp_all
 
 open Classical in
+/--
+@isnad1 id=eq.2h4v.s8.bcc5cc2fd8b2 from=translated src=- shape=11143f04 vocab=48a3681d
+-/
 theorem divisor_ball_eq_divisor_closedBall_of_boundary_ne
     {f : ℂ → ℂ} {c : ℂ} {R : ℝ}
     (hf : AnalyticOnNhd ℂ f (closedBall c R))
@@ -645,6 +717,9 @@ theorem divisor_ball_eq_divisor_closedBall_of_boundary_ne
     · simp [MeromorphicOn.divisor, hzball, hzclosed]
 
 open Classical in
+/--
+@isnad1 id=ex.4h2v.s8.77efe18a404e from=translated src=- shape=e4fca8c6 vocab=c85cbc97
+-/
 theorem AnalyticOnNhd.exists_canonicalZeroFactor_on_ball_zero
     {f : ℂ → ℂ} {R : ℝ} (hR : 0 < R)
     (hf : AnalyticOnNhd ℂ f (closedBall 0 R))
@@ -742,6 +817,9 @@ open scoped Topology
 namespace NumberField.Odlyzko
 
 open Classical in
+/--
+@isnad1 id=ex.4h4v.s7.99c92ecb6f7d from=translated src=- shape=1b533851 vocab=cca79e82
+-/
 theorem AnalyticOnNhd.exists_zeroFree_sphere
     {f : ℂ → ℂ} {c : ℂ} {a b : ℝ}
     (ha : 0 ≤ a) (hab : a < b)
@@ -804,6 +882,9 @@ open Complex
 namespace NumberField.Odlyzko
 
 open Classical in
+/--
+@isnad1 id=le.3h3v.s6.ab126bf95134 from=translated src=- shape=e77db45f vocab=c33013ff
+-/
 theorem card_le_finsum_of_subset_support_of_nonneg
     {α : Type*} (D : α → ℤ)
     (hfin : Function.support D |>.Finite)
@@ -831,6 +912,9 @@ theorem card_le_finsum_of_subset_support_of_nonneg
       norm_cast
 
 open Classical in
+/--
+@isnad1 id=le.7h6v.s8.36fd098f67b6 from=translated src=- shape=de550462 vocab=7f2ffa0f
+-/
 theorem AnalyticOnNhd.card_zeros_le
     {c : ℂ} {r R M : ℝ} {f : ℂ → ℂ} (hr : 0 < |r|)
     (hrR : |r| < |R|) (hM : 1 ≤ M)
@@ -888,6 +972,9 @@ noncomputable def completedZetaMovingCircleBound (R t : ℝ) : ℝ :=
       (1 + |t| + |R|) ^ 2
 
 omit [IsTotallyComplex K] in
+/--
+@isnad1 id=le.0h3v.s4.1e1e89ef75bb from=translated src=- shape=f49be25b vocab=1a824613
+-/
 theorem one_le_completedZetaMovingCircleBound (R t : ℝ) :
     1 ≤ completedZetaMovingCircleBound K R t :=
   le_max_left _ _
@@ -902,6 +989,9 @@ open Complex Metric Set
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=le.4h5v.s6.d8c830eb6533 from=translated src=- shape=bd4f2c02 vocab=4a0460f2
+-/
 theorem norm_le_on_closedBall_of_norm_le_on_sphere
     {f : ℂ → ℂ} {c : ℂ} {R M : ℝ} (hR : 0 < R)
     (hf : AnalyticOnNhd ℂ f (closedBall c R))
@@ -927,6 +1017,9 @@ open Complex Set
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=le.8h5v.s8.33702d328df7 from=translated src=- shape=77095a65 vocab=00707d97
+-/
 theorem norm_deriv_le_of_re_le_on_ball
     {F : ℂ → ℂ} {R r A : ℝ}
     (hR : 0 < R) (_hr : 0 ≤ r) (hrR : r < R) (hA : 0 < A)
@@ -1003,6 +1096,9 @@ open Complex Set
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=ex.3h3v.s7.f7afc5428450 from=translated src=- shape=213258e4 vocab=f3a78fd9
+-/
 theorem AnalyticOnNhd.exists_analyticLog_on_ball
     {g : ℂ → ℂ} {c : ℂ} {R : ℝ} (hR : 0 < R)
     (hg : AnalyticOnNhd ℂ g (Metric.ball c R))
@@ -1064,6 +1160,9 @@ open Complex Set
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=le.10h7v.s8.17f038211970 from=translated src=- shape=c13a27ba vocab=f7432fad
+-/
 theorem norm_logDeriv_le_of_zeroFree_on_ball
     {g : ℂ → ℂ} {c z : ℂ} {R r M A : ℝ}
     (hR : 0 < R) (hr : 0 ≤ r) (hrR : r < R)
@@ -1129,6 +1228,9 @@ open Complex Metric Set
 namespace NumberField.Odlyzko
 
 open Classical in
+/--
+@isnad1 id=le.15h8v.s9.9f8e05f0f294 from=translated src=- shape=7e42ac2f vocab=f3c4f78b
+-/
 theorem norm_logDeriv_le_of_canonical_factorization
     {f : ℂ → ℂ} {z : ℂ} {r R δ M A B : ℝ}
     (hR : 0 < R) (hr : 0 ≤ r) (hrR : r < R)
@@ -1217,6 +1319,9 @@ theorem norm_logDeriv_le_of_canonical_factorization
   exact (norm_add_le _ _).trans (add_le_add hPbound hgLog)
 
 open Classical in
+/--
+@isnad1 id=le.15h9v.s9.6b775fb0eda5 from=translated src=- shape=ec48ac97 vocab=f3c4f78b
+-/
 theorem norm_logDeriv_le_of_canonical_factorization_centered
     {f : ℂ → ℂ} {c z : ℂ} {r R δ M A B : ℝ}
     (hR : 0 < R) (hr : 0 ≤ r) (hrR : r < R)
@@ -1308,6 +1413,9 @@ theorem AnalyticOnNhd.eq_zero_of_mem_divisor_support
   simp
 
 open Classical in
+/--
+@isnad1 id=le.7h5v.s8.302272b8145c from=translated src=- shape=2c2c730f vocab=de8ac95d
+-/
 theorem AnalyticOnNhd.sum_divisor_ball_le
     {f : ℂ → ℂ} {c : ℂ} {r R M : ℝ}
     (hr : 0 < r) (hrR : r < R) (hM : 1 ≤ M)
@@ -1352,6 +1460,9 @@ noncomputable def completedZetaCanonicalJensenCoefficient : ℝ :=
   1 / Real.log (6 / 5)
 
 open Classical in
+/--
+@isnad1 id=lt.0h0v.s3.7b6d6b8b7c6c from=translated src=- shape=ff3a10fc vocab=cd6b43da
+-/
 theorem completedZetaCanonicalJensenCoefficient_pos :
     0 < completedZetaCanonicalJensenCoefficient := by
   unfold completedZetaCanonicalJensenCoefficient
@@ -1386,11 +1497,17 @@ noncomputable def completedZetaCenterLogLinearBound (t : ℝ) : ℝ :=
   max 1 (completedZetaCenterLogLinearExpression K t)
 
 omit [IsTotallyComplex K] in
+/--
+@isnad1 id=le.0h2v.s4.d311757192ef from=translated src=- shape=664eb244 vocab=9766b117
+-/
 theorem one_le_completedZetaCenterLogLinearBound (t : ℝ) :
     1 ≤ completedZetaCenterLogLinearBound K t :=
   le_max_left _ _
 
 omit [IsTotallyComplex K] in
+/--
+@isnad1 id=le.0h2v.s6.2b548c539717 from=translated src=- shape=3cefcf18 vocab=d2b800e1
+-/
 theorem log_completedZetaMovingCircleBound_six_le (t : ℝ) :
     Real.log (completedZetaMovingCircleBound K 6 t) ≤
       completedZetaRadiusSixVerticalCoefficient K + 2 * (7 + |t|) := by

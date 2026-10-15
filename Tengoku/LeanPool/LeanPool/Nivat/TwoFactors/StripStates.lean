@@ -62,7 +62,9 @@ def stripState {A : Type*} (c : Configuration A) (W : ℕ) (t : Lattice) (n : �
     Strip W → A := fun z => shift (n • t) c z
 
 /-- A mixed-difference identity makes the difference of any two integer transverse translates
-periodic in the first direction. Lemma 5.6 (`lem:strip-states`). -/
+periodic in the first direction. Lemma 5.6 (`lem:strip-states`).
+@isnad1 id=isperiod.1h6v.s7.9f2d71184067 from=translated src=- shape=2f1e57a2 vocab=6656a39c
+-/
 theorem translate_difference_periodic {A : Type*} [AddCommGroup A]
     (c : Configuration A) (h t : Lattice)
     (hmix : difference h (difference t c) = 0) (m n : ℤ) :
@@ -86,7 +88,9 @@ theorem translate_difference_periodic {A : Type*} [AddCommGroup A]
     _ = _ := by rw [hm', hn', sub_self, zero_add]
 
 /-- When a strip difference has horizontal period `q`, equality on `q` consecutive sites of
-every row implies equality on the entire strip. Lemma 5.6 (`lem:strip-states`). -/
+every row implies equality on the entire strip. Lemma 5.6 (`lem:strip-states`).
+@isnad1 id=eq.5h6v.s7.f501e2d46533 from=translated src=- shape=411d80c8 vocab=beaecb49
+-/
 theorem strip_eq_of_finite_test {A : Type*} [AddCommGroup A]
     (x y : Configuration A) (q W : ℕ) (hq : 0 < q)
     (hdiff : IsPeriod (x - y) ((q : ℤ), 0))
@@ -107,7 +111,9 @@ theorem strip_eq_of_finite_test {A : Type*} [AddCommGroup A]
 
 /-- Only finitely many whole-strip states occur: restriction to `q * W` sites is injective on
 them because their pairwise differences have horizontal period `q`. Lemma 5.6
-(`lem:strip-states`). -/
+(`lem:strip-states`).
+@isnad1 id=finite.3h5v.s6.d2b29d89351e from=translated src=- shape=8eff9f0d vocab=bee426c2
+-/
 theorem finite_stripState_range {A : Type*} [AddCommGroup A]
     (c : Configuration A) (hc : FiniteRange c) (q W : ℕ) (hq : 0 < q) (t : Lattice)
     (hmix : difference ((q : ℤ), 0) (difference t c) = 0) :
@@ -134,7 +140,9 @@ theorem finite_stripState_range {A : Type*} [AddCommGroup A]
   simpa only [hir, hjr, sub_add_cancel] using h
 
 /-- Every lattice site can be moved by an integer multiple of `(a,M)` into rows `1` through `M`;
-arbitrary horizontal shear is allowed. Lemma 5.6 (`lem:strip-states`). -/
+arbitrary horizontal shear is allowed. Lemma 5.6 (`lem:strip-states`).
+@isnad1 id=ex.1h3v.s6.9261555de03f from=translated src=- shape=da71ba18 vocab=0cec78dd
+-/
 theorem exists_transverse_strip_representative (a M : ℤ) (hM : 0 < M) (z : Lattice) :
     ∃ n : ℤ, ∃ w : Lattice, 1 ≤ w.2 ∧ w.2 ≤ M ∧ z = w + n • (a, M) := by
   let n : ℤ := (z.2 - 1) / M
@@ -153,7 +161,9 @@ theorem exists_transverse_strip_representative (a M : ℤ) (hM : 0 < M) (z : Lat
 
 /-- A period of the bilateral strip-state sequence gives a global multiple of the transverse
 direction, since a strip at least `M` rows wide meets every transverse orbit. Lemma 5.6
-(`lem:strip-states`). -/
+(`lem:strip-states`).
+@isnad1 id=isperiod.3h6v.s6.7d3c83e7389d from=translated src=- shape=6f498ba3 vocab=c904a982
+-/
 theorem global_period_of_stripState_period {A : Type*} (c : Configuration A)
     (W : ℕ) (a M : ℤ) (hM : 0 < M) (hMW : M ≤ W) (p : ℕ)
     (hper : Function.Periodic (stripState c W (a, M)) (p : ℤ)) :
@@ -164,7 +174,9 @@ theorem global_period_of_stripState_period {A : Type*} (c : Configuration A)
   simpa only [stripState, shift_apply, add_zsmul, natCast_zsmul, add_assoc] using h
 
 /-- Translating the greatest nonpositive disagreement row to row zero places a full agreeing
-strip directly above a disagreement. Lemma 5.6 (`lem:strip-states`). -/
+strip directly above a disagreement. Lemma 5.6 (`lem:strip-states`).
+@isnad1 id=ex.2h5v.s7.60819fa6d4e0 from=translated src=- shape=ce779069 vocab=2b71c48b
+-/
 theorem shift_at_greatest_disagreement {A : Type*} (x y : Configuration A)
     (W : ℕ) (b : ℤ)
     (hagree : ∀ z : Lattice, 1 ≤ z.2 → z.2 ≤ W → x z = y z)
@@ -196,7 +208,9 @@ theorem shift_at_greatest_disagreement {A : Type*} (x y : Configuration A)
 /-- Either a positive integer multiple of the transverse step is a global period, or two
 translates agree on the whole strip, disagree on its lower boundary, and have a horizontally
 periodic difference. Their relative translation remains an integer multiple of the
-transverse step. Lemma 5.6 (`lem:strip-states`). -/
+transverse step. Lemma 5.6 (`lem:strip-states`).
+@isnad1 id=or.5h6v.s8.156522829a1d from=translated src=- shape=10e29deb vocab=d449a2ff
+-/
 theorem finite_strip_dichotomy {A : Type*} [AddCommGroup A]
     (c : Configuration A) (hc : FiniteRange c) (q W : ℕ) (hq : 0 < q)
     (a M : ℤ) (hM : 0 < M) (hMW : M ≤ W)

@@ -35,6 +35,9 @@ noncomputable def dedekindZetaInverseVerticalMajorant : ℝ :=
   Real.exp <| ∑' P : HeightOneSpectrum (𝓞 K),
     (primeIdealNorm K P : ℝ) ^ (-(2 : ℝ))
 
+/--
+@isnad1 id=le.0h1v.s4.f1b0a17010f2 from=translated src=- shape=31b077a1 vocab=d73a1f3c
+-/
 lemma one_le_dedekindZetaInverseVerticalMajorant :
     1 ≤ dedekindZetaInverseVerticalMajorant K := by
   rw [dedekindZetaInverseVerticalMajorant]
@@ -51,6 +54,9 @@ open Complex
 
 namespace NumberField.Odlyzko
 
+/--
+@isnad1 id=eq.1h1v.s6.2e14bad910dc from=translated src=- shape=432d3440 vocab=410e24a4
+-/
 theorem Gamma_one_add_mul_I_mul_Gamma_one_sub_mul_I
     {t : ℝ} (ht : t ≠ 0) :
     Complex.Gamma (1 + t * I) * Complex.Gamma (1 - t * I) =
@@ -73,6 +79,9 @@ theorem Gamma_one_add_mul_I_mul_Gamma_one_sub_mul_I
   push_cast
   grind
 
+/--
+@isnad1 id=eq.1h1v.s6.106b923b8bd6 from=translated src=- shape=b7f4152b vocab=fa8cdeb2
+-/
 theorem sq_norm_Gamma_one_add_mul_I
     {t : ℝ} (ht : t ≠ 0) :
     ‖Complex.Gamma (1 + t * I)‖ ^ 2 =
@@ -98,6 +107,9 @@ theorem sq_norm_Gamma_one_add_mul_I
   · have htneg : t < 0 := lt_of_le_of_ne (le_of_not_gt htpos) ht
     rw [abs_of_neg htneg, mul_neg, Real.sinh_neg, neg_div_neg_eq]
 
+/--
+@isnad1 id=eq.1h1v.s7.b9d9a2b2cd76 from=translated src=- shape=6cd02bfd vocab=fa8cdeb2
+-/
 theorem sq_norm_Gamma_two_add_mul_I
     {t : ℝ} (ht : t ≠ 0) :
     ‖Complex.Gamma (2 + t * I)‖ ^ 2 =
@@ -118,6 +130,9 @@ theorem sq_norm_Gamma_two_add_mul_I
     zero_mul, mul_one, sub_zero, add_im, one_im, zero_add]
   ring
 
+/--
+@isnad1 id=le.1h1v.s6.164ce815b045 from=translated src=- shape=a7e84a81 vocab=12ead5ca
+-/
 theorem two_mul_pi_mul_abs_mul_exp_neg_le_sq_norm_Gamma_one_add_mul_I
     {t : ℝ} (ht : t ≠ 0) :
     2 * Real.pi * |t| * Real.exp (-(Real.pi * |t|)) ≤
@@ -143,6 +158,9 @@ theorem two_mul_pi_mul_abs_mul_exp_neg_le_sq_norm_Gamma_one_add_mul_I
       _ = x := by grind
   grind
 
+/--
+@isnad1 id=eq.1h1v.s7.a36dcd85a342 from=translated src=- shape=774b4b4f vocab=fe55797c
+-/
 theorem sq_norm_complexPlaceGammaFactor_two_add_mul_I
     {t : ℝ} (ht : t ≠ 0) :
     ‖CompletedZeta.complexPlaceGammaFactor (2 + t * I)‖ ^ 2 =
@@ -161,6 +179,9 @@ theorem sq_norm_complexPlaceGammaFactor_two_add_mul_I
   rw [← Real.rpow_mul hbase.le]
   grind
 
+/--
+@isnad1 id=le.1h1v.s7.88ccb2083ba4 from=translated src=- shape=c36f4b93 vocab=b02a99c2
+-/
 theorem complexPlaceGammaFactor_two_vertical_sq_lowerBound
     {t : ℝ} (ht : t ≠ 0) :
     (2 * Real.pi) ^ (-4 : ℝ) * (1 + t ^ 2) *
@@ -177,10 +198,16 @@ theorem complexPlaceGammaFactor_two_vertical_sq_lowerBound
 noncomputable def complexPlaceGammaVerticalLowerConstant : ℝ :=
   (2 * Real.pi) ^ (-3 : ℝ)
 
+/--
+@isnad1 id=lt.0h0v.s3.c8b8e92457ce from=translated src=- shape=ff3a10fc vocab=c362fc60
+-/
 theorem complexPlaceGammaVerticalLowerConstant_pos :
     0 < complexPlaceGammaVerticalLowerConstant := by
   exact Real.rpow_pos_of_pos (mul_pos (by norm_num) Real.pi_pos) _
 
+/--
+@isnad1 id=le.1h1v.s6.ecdecd238bcf from=translated src=- shape=4f2bc8ce vocab=bbac69ef
+-/
 theorem complexPlaceGammaVerticalLowerConstant_mul_exp_le_sq_norm
     {t : ℝ} (ht : 1 ≤ |t|) :
     complexPlaceGammaVerticalLowerConstant *

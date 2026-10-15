@@ -21,6 +21,9 @@ noncomputable section
 
 namespace PLAcceleratedNesterovLean
 
+/--
+@isnad1 id=le.20h11v.s9.0c76ec04eab8 from=translated src=- shape=c0ad5fe2 vocab=d8e6b3e9
+-/
 theorem coercivity_core_bound
     (T A U E D V s r a μ' Ln : ℝ)
     (ha_nn : 0 ≤ a) (ha_lt1 : a < 1) (_hμ' : 0 < μ')

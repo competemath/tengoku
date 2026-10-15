@@ -77,12 +77,21 @@ abbrev _root_.Finset.pdlFvoc (L : Finset Formula) := Vocab.fromFinset (L.image F
 @[simp]
 abbrev _root_.Finset.pdlPvoc (L : Finset Program) := Vocab.fromFinset (L.image Program.voc)
 
+/--
+@isnad1 id=iff.0h2v.s5.c5db903946f8 from=translated src=- shape=78a435f0 vocab=0d057c05
+-/
 lemma Finset.mem_fvoc {X : Finset Formula} {x} : x ∈ X.pdlFvoc ↔ ∃ φ ∈ X, x ∈ φ.voc := by
   simp [Finset.pdlFvoc, Vocab.fromFinset, Finset.mem_sup]
 
+/--
+@isnad1 id=eq.0h2v.s5.7655274294db from=translated src=- shape=717849b0 vocab=bd914a67
+-/
 lemma Finset.fvoc_union {X Y : Finset Formula} : (X ∪ Y).pdlFvoc = X.pdlFvoc ∪ Y.pdlFvoc := by
   simp [Finset.pdlFvoc, Vocab.fromFinset, Finset.image_union, Finset.sup_union]
 
+/--
+@isnad1 id=le.1h2v.s5.ab1eac72487a from=translated src=- shape=58e38313 vocab=26e455a8
+-/
 lemma Finset.fvoc_mono {X Y : Finset Formula} (h : X ⊆ Y) : X.pdlFvoc ⊆ Y.pdlFvoc := by
   intro x x_in
   rw [Finset.mem_fvoc] at *
@@ -90,7 +99,9 @@ lemma Finset.fvoc_mono {X Y : Finset Formula} (h : X ⊆ Y) : X.pdlFvoc ⊆ Y.pd
   exact ⟨φ, h φ_in, x_in⟩
 
 /-- The vocabulary of a finset of formulas only grows when we add formulas with larger
-vocabularies. -/
+vocabularies.
+@isnad1 id=le.1h2v.s6.4d7b4a4785ea from=translated src=- shape=2e5e3452 vocab=d98de8b8
+-/
 lemma fvoc_subset_of_mem_voc {L L' : Finset Formula}
     (h : ∀ f ∈ L, ∃ g ∈ L', f.voc ⊆ g.voc) : L.pdlFvoc ⊆ L'.pdlFvoc := by
   intro x hx
@@ -99,11 +110,17 @@ lemma fvoc_subset_of_mem_voc {L L' : Finset Formula}
   obtain ⟨g, hg, hsub⟩ := h f hf
   exact ⟨g, hg, hsub hxf⟩
 
+/--
+@isnad1 id=iff.0h3v.s6.52693168d06b from=translated src=- shape=82e997d4 vocab=b1b65321
+-/
 theorem Vocab.fromListProgram_map_iff {vocabOfProgram} n (L : List Program) :
     n ∈ Vocab.fromList (L.map vocabOfProgram)
     ↔ ∃ α ∈ L, n ∈ vocabOfProgram α := by
   simp
 
+/--
+@isnad1 id=eq.0h2v.s5.dbb9c9f47ff9 from=translated src=- shape=1dfd5643 vocab=3ebb7c8d
+-/
 theorem Formula.voc_boxes : (⌈⌈δ⌉⌉φ).voc = δ.pdlPvoc ∪ φ.voc := by
   induction δ <;> simp_all
 
@@ -126,6 +143,9 @@ def testsOfProgram : Program → List Formula
 | α ⋓ β => testsOfProgram α ++ testsOfProgram β
 | ∗α => testsOfProgram α
 
+/--
+@isnad1 id=le.1h2v.s4.7cdbe125b105 from=translated src=- shape=979da82d vocab=929909ab
+-/
 theorem testsOfProgram.voc α {τ} (τ_in : τ ∈ testsOfProgram α) : τ.voc ⊆ α.voc := by
   cases α <;> simp_all only [testsOfProgram, List.not_mem_nil, List.mem_append, Program.voc,
     List.mem_cons, or_false, Std.le_refl]
@@ -160,6 +180,9 @@ def subprograms : Program → List Program
 | α ⋓ β => [α ⋓ β] ++ subprograms α ++ subprograms β
 | ∗α => [∗α] ++ subprograms α
 
+/--
+@isnad1 id=le.1h2v.s4.eda056a1e041 from=translated src=- shape=2ce6c408 vocab=a144284a
+-/
 lemma subprograms_length {α β : Program} :
     β ∈ subprograms α → lengthOfProgram β ≤ lengthOfProgram α := by
   intro β_in
@@ -189,6 +212,9 @@ lemma subprograms_length {α β : Program} :
     · have IH1 := subprograms_length h
       omega
 
+/--
+@isnad1 id=lt.1h2v.s4.4e9d69aa0059 from=translated src=- shape=6b9809c6 vocab=5af6f5f3
+-/
 lemma length_lt_of_mem_subprograms_erase {α β : Program} :
     β ∈ (subprograms α).erase α → lengthOfProgram β < lengthOfProgram α := by
   cases α <;> simp only [subprograms, List.erase_cons_head, List.not_mem_nil, lengthOfProgram,
@@ -202,10 +228,16 @@ lemma length_lt_of_mem_subprograms_erase {α β : Program} :
     have IH := @length_lt_of_mem_subprograms_erase α2
     by_cases β = α1 <;> by_cases β = α2 <;> grind
 
+/--
+@isnad1 id=mem.0h1v.s3.cf3a4fc03cf8 from=translated src=- shape=24504379 vocab=94266cb5
+-/
 @[simp]
 theorem subprograms.refl : α ∈ subprograms α := by
   cases α <;> simp [subprograms]
 
+/--
+@isnad1 id=le.1h2v.s4.24b731cd6571 from=translated src=- shape=2ce6c408 vocab=aa7c0101
+-/
 lemma subprograms_voc {α β} : β ∈ subprograms α → β.voc ⊆ α.voc := by
   cases α <;> simp only [subprograms, List.mem_cons, List.not_mem_nil, or_false, Program.voc,
     Finset.subset_singleton_iff, List.cons_append, List.nil_append, List.mem_append]
@@ -250,6 +282,9 @@ end PDL
 namespace PDL
 
 mutual
+/--
+@isnad1 id=lt.1h2v.s4.f5123d2c9bca from=translated src=- shape=ce72ca5e vocab=b3306e23
+-/
 theorem freshVarForm_is_larger (φ) : ∀ n ∈ φ.voc.atomProps, n < freshVarForm φ := by
   cases φ
   all_goals simp only [Vocab.atomProps, Formula.voc, Finset.biUnion_empty, Finset.notMem_empty,
@@ -272,6 +307,9 @@ theorem freshVarForm_is_larger (φ) : ∀ n ∈ φ.voc.atomProps, n < freshVarFo
     simp [Vocab.atomProps] at *
     aesop
 
+/--
+@isnad1 id=lt.1h2v.s4.1944101469c6 from=translated src=- shape=ce72ca5e vocab=dacf607e
+-/
 theorem freshVarProg_is_larger (α) : ∀ n ∈ α.voc.atomProps, n < freshVarProg α := by
   cases α
   all_goals simp only [Vocab.atomProps, Program.voc, Finset.singleton_biUnion,
@@ -302,6 +340,9 @@ end PDL
 
 namespace PDL
 
+/--
+@isnad1 id=not.0h1v.s4.c151bdc6b11f from=translated src=- shape=5645bf6d vocab=df6fb1ed
+-/
 theorem freshVarProg_is_fresh (α) : Sum.inl (freshVarProg α) ∉ α.voc := by
   have := freshVarProg_is_larger α
   simp only [Vocab.atomProps, Finset.mem_biUnion, Sum.exists, Finset.mem_singleton,

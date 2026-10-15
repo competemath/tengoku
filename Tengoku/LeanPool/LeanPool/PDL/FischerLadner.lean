@@ -67,10 +67,16 @@ def isNeg : Formula → Prop
 | ~_ => True
 | _ => False
 
+/--
+@isnad1 id=mem.1h1v.s4.52fa03c88a88 from=translated src=- shape=a9b44a76 vocab=3e8f90e8
+-/
 lemma FL_single_neg_closed {φ} :
     ¬ isNeg φ → ~φ ∈ FL φ := by
   cases φ <;> simp [FL, isNeg, Bot.bot]
 
+/--
+@isnad1 id=mem.0h1v.s3.4acd2820b8e3 from=translated src=- shape=24504379 vocab=3628a717
+-/
 @[simp]
 lemma FL_refl {φ} :
     φ ∈ FL φ := by
@@ -80,16 +86,24 @@ lemma FL_refl {φ} :
   all_goals
     simp [FL, Bot.bot]
 
+/--
+@isnad1 id=mem.0h2v.s4.a3d6371579e9 from=translated src=- shape=cdb76dc7 vocab=f6e35479
+-/
 @[simp]
 lemma FLb_refl {α φ} :
     (⌈α⌉φ) ∈ FLb α φ := by
   cases α <;> simp [FLb]
 
+/--
+@isnad1 id=mem.0h2v.s4.221973662a07 from=translated src=- shape=c4c3268d vocab=9103f58a
+-/
 @[simp]
 lemma neg_mem_FLb : (~⌈α⌉ψ) ∈ FLb α ψ := by cases α <;> simp [FLb]
 
 mutual
-/-- Lemma 6.1(i) from [HKT2000] -/
+/-- Lemma 6.1(i) from [HKT2000]
+@isnad1 id=subset.1h2v.s4.f000be5d6e24 from=translated src=- shape=25aa6d0a vocab=e4ce404a
+-/
 lemma FL_trans {φ ψ} :
     ψ ∈ FL φ → FL ψ ⊆ FL φ := by
   intro ψ_in
@@ -123,7 +137,9 @@ lemma FL_trans {φ ψ} :
     · have IH := @FL_trans φ ψ
       grind
 
-/-- Lemma 6.1(ii) from [HKT2000] -/
+/-- Lemma 6.1(ii) from [HKT2000]
+@isnad1 id=subset.1h3v.s5.74d7f2204f8c from=translated src=- shape=4e1856be vocab=a0fe5990
+-/
 lemma FLb_trans {α φ ψ} :
     ψ ∈ FLb α φ → FL ψ ⊆ FLb α φ ++ FL (~φ) := by
   intro ψ_in
@@ -198,15 +214,27 @@ namespace PDL
 /-- Concatenate the Fischer-Ladner closures of every formula in a list. -/
 def FLL (L : List Formula) : List Formula := L.flatMap FL
 
+/--
+@isnad1 id=subset.0h1v.s3.7fa6fdeb2029 from=translated src=- shape=b357b47d vocab=4d348a4b
+-/
 @[simp]
 lemma FLL_refl_sub {L} : L ⊆ FLL L := by induction L <;> simp_all [FLL]
 
+/--
+@isnad1 id=eq.0h0v.s3.b3b65952f95f from=translated src=- shape=9b1c3ca8 vocab=2e9dd0d8
+-/
 @[simp]
 lemma FLL_nil : FLL [] = [] := List.flatMap_nil
 
+/--
+@isnad1 id=eq.0h1v.s3.1007ce0385dd from=translated src=- shape=b68af7a8 vocab=4f8f1226
+-/
 @[simp]
 lemma FLL_singelton : FLL [φ] = FL φ := by simp [FLL]
 
+/--
+@isnad1 id=iff.0h2v.s4.7aeb188c1166 from=translated src=- shape=2fa07988 vocab=fd4ea109
+-/
 @[simp]
 lemma FLL_idem_ext {L φ} : φ ∈ FLL (FLL L) ↔ φ ∈ FLL L := by
   constructor
@@ -229,6 +257,9 @@ open PDL
 def FL (X : Finset Formula) : Finset Formula :=
   X.sup (fun φ => (_root_.PDL.FL φ).toFinset)
 
+/--
+@isnad1 id=le.0h1v.s4.5f01df0fd512 from=translated src=- shape=b357b47d vocab=68574fef
+-/
 @[simp]
 lemma FL_refl_sub {X : Finset Formula} : X ⊆ X.FL := by
   intro φ φ_in
@@ -237,17 +268,29 @@ lemma FL_refl_sub {X : Finset Formula} : X ⊆ X.FL := by
   have := @FL_refl φ
   use φ
 
+/--
+@isnad1 id=le.1h2v.s5.f8d7a9000911 from=translated src=- shape=4ad33e2d vocab=68574fef
+-/
 lemma FL_sub {X Y : Finset Formula} : X ⊆ Y → FL X ⊆ FL Y := by
   unfold FL
   intro h x x_in
   aesop
 
+/--
+@isnad1 id=eq.0h0v.s3.e38e450d715e from=translated src=- shape=f2c814de vocab=7bf07867
+-/
 @[simp]
 lemma FL_nil : Finset.FL {} = {} := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.073a17fcb4a9 from=translated src=- shape=fb1fba54 vocab=03519d81
+-/
 @[simp]
 lemma FL_singelton {φ} : Finset.FL {φ} = (_root_.PDL.FL φ).toFinset := by simp [FL]
 
+/--
+@isnad1 id=iff.0h2v.s5.f1a5115f6403 from=translated src=- shape=2fa07988 vocab=378866fd
+-/
 @[simp]
 lemma FL_idem_ext {X : Finset Formula} {φ} : φ ∈ FL (FL X) ↔ φ ∈ FL X := by
   constructor
@@ -266,6 +309,9 @@ lemma FL_idem_ext {X : Finset Formula} {φ} : φ ∈ FL (FL X) ↔ φ ∈ FL X :
     have := @FL_refl φ2
     use φ2
 
+/--
+@isnad1 id=iff.0h2v.s5.7dbcfb7cced7 from=translated src=- shape=971f5d8a vocab=68574fef
+-/
 lemma FL_sub_FL_iff_sub_FL {X Y : Finset Formula} : X ⊆ FL Y ↔ FL X ⊆ FL Y := by
   constructor
   · unfold FL
@@ -282,6 +328,9 @@ lemma FL_sub_FL_iff_sub_FL {X Y : Finset Formula} : X ⊆ FL Y ↔ FL X ⊆ FL Y
     have := @FL_refl_sub
     grind
 
+/--
+@isnad1 id=eq.0h2v.s4.3b013c3072fc from=translated src=- shape=5f152bb3 vocab=b1230d14
+-/
 lemma FL_union_eq {X Y : Finset Formula} :
   FL (X ∪ Y) = FL X ∪ FL Y := by simp [FL]; grind
 

@@ -68,21 +68,33 @@ private lemma star_real (a : ℝ) : (starRingEnd ℝ) a = a := rfl
 
 omit [CompleteSpace H]
 
+/--
+@isnad1 id=le.1h3v.s6.e2af56481a67 from=translated src=- shape=35fe941c vocab=2c614f78
+-/
 lemma quadForm_nonneg (hS : S.IsPositive) (x : H) : 0 ≤ quadForm S x := by
   have := hS.re_inner_nonneg_left x
   simp only [RCLike.re_to_real] at this
   rw [quadForm, real_inner_comm]
   exact this
 
+/--
+@isnad1 id=eq.0h5v.s8.06d7a4123306 from=translated src=- shape=b84752b5 vocab=afd37c7d
+-/
 lemma inner_S_smul_right (t : ℝ) (x y : H) :
     @inner ℝ H _ x (S (t • y)) = t * @inner ℝ H _ x (S y) := by
   rw [ContinuousLinearMap.map_smul, inner_smul_right]
 
+/--
+@isnad1 id=eq.0h4v.s7.3d8aa6a4961d from=translated src=- shape=71add819 vocab=2f602257
+-/
 lemma quadForm_smul (t : ℝ) (x : H) :
     quadForm S (t • x) = t ^ 2 * quadForm S x := by
   simp only [quadForm, ContinuousLinearMap.map_smul, inner_smul_left, inner_smul_right, star_real]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s8.4d2f324dee49 from=translated src=- shape=160f73bf vocab=69f36589
+-/
 lemma quadForm_add (hS : S.IsPositive) (x y : H) :
     quadForm S (x + y) = quadForm S x + 2 * @inner ℝ H _ x (S y) + quadForm S y := by
   simp only [quadForm, map_add, inner_add_left, inner_add_right]
@@ -95,6 +107,7 @@ lemma quadForm_add (hS : S.IsPositive) (x y : H) :
 
     Proof: the quadratic t ↦ ⟪x + ty, S(x + ty)⟫ is nonneg for all t,
     so its discriminant is nonpositive.
+@isnad1 id=le.1h4v.s8.6338eb8ecdaf from=translated src=- shape=541e00a6 vocab=4c438146
 -/
 lemma inner_sq_le_quadForm_mul (hS : S.IsPositive) (x y : H) :
     (@inner ℝ H _ x (S y)) ^ 2 ≤ quadForm S x * quadForm S y := by
@@ -138,6 +151,7 @@ lemma inner_sq_le_quadForm_mul (hS : S.IsPositive) (x y : H) :
 
 /-- Triangle inequality for the Sazonov seminorm:
     √⟪x+y, S(x+y)⟫ ≤ √⟪x, Sx⟫ + √⟪y, Sy⟫.
+@isnad1 id=le.1h4v.s7.78808845795e from=translated src=- shape=ef5471e3 vocab=e8ff6be4
 -/
 lemma sqrt_quadForm_add_le (hS : S.IsPositive) (x y : H) :
     Real.sqrt (quadForm S (x + y)) ≤

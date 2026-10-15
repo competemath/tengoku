@@ -19,6 +19,9 @@ namespace NumberField.Odlyzko
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=tendsto.0h1v.s6.4a346682405b from=translated src=- shape=00a326a3 vocab=67442f2f
+-/
 theorem tendsto_sum_idealNormCount_div :
     Tendsto
       (fun n : ℕ ↦ (∑ k ∈ Finset.Icc 1 n, (idealNormCount K k : ℝ)) / n)
@@ -39,6 +42,9 @@ theorem tendsto_sum_idealNormCount_div :
       (fun k _ ↦ Ideal.finite_setOfPred_absNorm_eq k)]
   simp [Set.coe_eq_subtype]
 
+/--
+@isnad1 id=lseriess.1h2v.s5.533161c572be from=translated src=- shape=02f0f604 vocab=21be5de3
+-/
 theorem lSeriesSummable_idealNormCount {s : ℂ} (hs : 1 < s.re) :
     LSeriesSummable (fun n ↦ (idealNormCount K n : ℂ)) s := by
   refine LSeriesSummable_of_sum_norm_bigO_and_nonneg ?_
@@ -46,6 +52,9 @@ theorem lSeriesSummable_idealNormCount {s : ℂ} (hs : 1 < s.re) :
   exact Asymptotics.isBigO_atTop_natCast_rpow_of_tendsto_div_rpow
     (by simpa using tendsto_sum_idealNormCount_div K)
 
+/--
+@isnad1 id=hassum.1h2v.s5.69928bc7ebca from=translated src=- shape=3c9f4cd6 vocab=d17679b8
+-/
 theorem hasSum_dedekindZeta {s : ℂ} (hs : 1 < s.re) :
     HasSum (LSeries.term (fun n ↦ (idealNormCount K n : ℂ)) s)
       (NumberField.dedekindZeta K s) := by

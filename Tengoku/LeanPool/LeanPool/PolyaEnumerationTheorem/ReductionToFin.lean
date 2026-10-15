@@ -111,7 +111,9 @@ instance instFintypeQuotientForallFinCardOrbitRelOfForallLeanPool
 
 /-- The number of distinct colorings of `X` with colors in `Y` under the group action of `G` on
     `X` is equal to the number of distinct colorings of `Fin enum.card` with colors in `Y` under
-    the induced group action of `G` on `Fin enum.card`. -/
+    the induced group action of `G` on `Fin enum.card`.
+@isnad1 id=eq.0h3v.s6.eaad9f18ff2e from=translated src=- shape=75fe282b vocab=631a8f0d
+-/
 lemma numDistinctColorings_eq_numDistinctColorings_of_Fin
     [Fintype (Quotient (MulAction.orbitRel G (X → Y)))] :
     numDistinctColorings X Y G = numDistinctColorings (Fin (enum.card)) Y G :=

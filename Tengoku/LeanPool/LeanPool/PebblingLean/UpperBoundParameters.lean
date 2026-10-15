@@ -95,44 +95,67 @@ noncomputable def rIn (A K : ℝ) (n : ℕ) : ℕ :=
 noncomputable def rOut (A K : ℝ) (n : ℕ) : ℕ :=
   splitA K n / 3 + annulusWidth A K n
 
+/--
+@isnad1 id=le.0h3v.s4.bcf63b37db11 from=translated src=- shape=f563864f vocab=c1fc4436
+-/
 theorem rIn_le_rOut {A K : ℝ} {n : ℕ} :
     rIn A K n ≤ rOut A K n := by
   unfold rIn rOut
   omega
 
+/--
+@isnad1 id=le.0h3v.s4.4efb549e7694 from=translated src=- shape=e80a0557 vocab=2f3f58b3
+-/
 theorem splitA_div_three_le_rOut {A K : ℝ} {n : ℕ} :
     splitA K n / 3 ≤ rOut A K n := by
   unfold rOut
   omega
 
+/--
+@isnad1 id=le.1h3v.s4.5be4c35765f7 from=translated src=- shape=20343442 vocab=9a551517
+-/
 theorem annulusWidthCore_nonneg_of_A_nonneg {A K : ℝ} {n : ℕ}
     (hA : 0 ≤ A) :
     0 ≤ annulusWidthCore A K n := by
   unfold annulusWidthCore
   positivity
 
+/--
+@isnad1 id=lt.1h3v.s5.ad9f5cdd867b from=translated src=- shape=10e6f4aa vocab=7e1ea917
+-/
 theorem annulusWidth_real_lt_core_add_one {A K : ℝ} {n : ℕ}
     (hcore : 0 ≤ annulusWidthCore A K n) :
     (annulusWidth A K n : ℝ) < annulusWidthCore A K n + 1 := by
   simpa [annulusWidth, annulusWidthCore] using Nat.ceil_lt_add_one hcore
 
+/--
+@isnad1 id=le.1h3v.s5.5ca83234ac01 from=translated src=- shape=9fa014ef vocab=711dedfc
+-/
 theorem annulusWidth_real_le_core_add_one {A K : ℝ} {n : ℕ}
     (hcore : 0 ≤ annulusWidthCore A K n) :
     (annulusWidth A K n : ℝ) ≤ annulusWidthCore A K n + 1 :=
   le_of_lt (annulusWidth_real_lt_core_add_one hcore)
 
-/-- The integer annulus width dominates its real core because it is a ceiling. -/
+/-- The integer annulus width dominates its real core because it is a ceiling.
+@isnad1 id=le.0h3v.s4.77db882bc157 from=translated src=- shape=d43dc272 vocab=ddb2522d
+-/
 theorem annulusWidthCore_le_width_real {A K : ℝ} {n : ℕ} :
     annulusWidthCore A K n ≤ (annulusWidth A K n : ℝ) := by
   unfold annulusWidth annulusWidthCore
   exact Nat.le_ceil
     (A * Real.sqrt ((splitA K n : ℝ) * Real.log (2 * (n : ℝ) ^ 2)))
 
+/--
+@isnad1 id=le.1h3v.s5.b29d6b539817 from=translated src=- shape=743cd524 vocab=ddb2522d
+-/
 theorem annulusWidth_real_ge_of_core_ge {A K : ℝ} {n : ℕ}
     (hcore : 9 ≤ annulusWidthCore A K n) :
     9 ≤ (annulusWidth A K n : ℝ) :=
   hcore.trans annulusWidthCore_le_width_real
 
+/--
+@isnad1 id=le.1h3v.s6.e1d40b3f4833 from=translated src=- shape=fd70080a vocab=57de7586
+-/
 theorem annulusWidthCore_sq_le_width_sq_of_A_nonneg {A K : ℝ} {n : ℕ}
     (hA : 0 ≤ A) :
     (annulusWidthCore A K n) ^ 2 ≤
@@ -143,6 +166,9 @@ theorem annulusWidthCore_sq_le_width_sq_of_A_nonneg {A K : ℝ} {n : ℕ}
   exact (sq_le_sq₀ hcore_nonneg hwidth_nonneg).mpr
     (annulusWidthCore_le_width_real (A := A) (K := K) (n := n))
 
+/--
+@isnad1 id=le.2h3v.s7.ff7928f855bc from=translated src=- shape=30a53e8f vocab=f528c9d9
+-/
 theorem chernoff_width_sq_of_core_sq {A K : ℝ} {n : ℕ}
     (hA : 0 ≤ A)
     (hcoreSq :
@@ -153,6 +179,9 @@ theorem chernoff_width_sq_of_core_sq {A K : ℝ} {n : ℕ}
   hcoreSq.trans (annulusWidthCore_sq_le_width_sq_of_A_nonneg
     (A := A) (K := K) (n := n) hA)
 
+/--
+@isnad1 id=le.2h3v.s6.ad9f8e6687dd from=translated src=- shape=7e3173db vocab=84612605
+-/
 theorem three_width_le_splitA_of_core_bound {A K : ℝ} {n : ℕ}
     (hA : 0 ≤ A)
     (hcore :
@@ -172,12 +201,18 @@ theorem three_width_le_splitA_of_core_bound {A K : ℝ} {n : ℕ}
     exact hmul.trans hcore
   exact_mod_cast hreal
 
+/--
+@isnad1 id=le.1h3v.s5.8cedb607d9f3 from=translated src=- shape=c7707829 vocab=711dedfc
+-/
 theorem annulusWidth_real_le_core_add_one_of_A_nonneg {A K : ℝ} {n : ℕ}
     (hA : 0 ≤ A) :
     (annulusWidth A K n : ℝ) ≤ annulusWidthCore A K n + 1 :=
   annulusWidth_real_le_core_add_one
     (annulusWidthCore_nonneg_of_A_nonneg hA)
 
+/--
+@isnad1 id=le.1h3v.s6.4b80b664585a from=translated src=- shape=1110a8e5 vocab=acf35c88
+-/
 theorem rOut_real_le_div_three_add_widthCore_add_one_of_A_nonneg
     {A K : ℝ} {n : ℕ} (hA : 0 ≤ A) :
     (rOut A K n : ℝ) ≤
@@ -190,13 +225,18 @@ theorem rOut_real_le_div_three_add_widthCore_add_one_of_A_nonneg
   linarith
 
 /-- The coarse split condition `4m≤n` already makes the center radius
-large enough for the recursive pile invariant `2^(n/5)`. -/
+large enough for the recursive pile invariant `2^(n/5)`.
+@isnad1 id=le.1h2v.s5.1dc56e67a85f from=translated src=- shape=604a729a vocab=fde2d30f
+-/
 theorem n_div_five_le_splitA_div_three_of_four_mul_le {K : ℝ} {n : ℕ}
     (hquarter : 4 * splitM K n ≤ n) :
     n / 5 ≤ splitA K n / 3 := by
   unfold splitA
   omega
 
+/--
+@isnad1 id=le.1h3v.s5.c87309b4e659 from=translated src=- shape=afc1f09a vocab=1a4505e1
+-/
 theorem n_div_five_le_rOut_of_four_mul_le {A K : ℝ} {n : ℕ}
     (hquarter : 4 * splitM K n ≤ n) :
     n / 5 ≤ rOut A K n := by
@@ -205,7 +245,9 @@ theorem n_div_five_le_rOut_of_four_mul_le {A K : ℝ} {n : ℕ}
       n_div_five_le_splitA_div_three_of_four_mul_le hquarter
     _ ≤ rOut A K n := splitA_div_three_le_rOut
 
-/-- The annulus diameter is at most twice the half-width parameter. -/
+/-- The annulus diameter is at most twice the half-width parameter.
+@isnad1 id=le.0h3v.s5.884b7d0325a8 from=translated src=- shape=8dbe3100 vocab=721104e6
+-/
 theorem rOut_sub_rIn_le_two_width {A K : ℝ} {n : ℕ} :
     rOut A K n - rIn A K n ≤ 2 * annulusWidth A K n := by
   unfold rOut rIn
@@ -229,11 +271,17 @@ for demand `t`, the high-demand construction aims for a surplus
 noncomputable def demandGapForDemand (n t : ℕ) : ℝ :=
   loss n * (t : ℝ) / 4
 
+/--
+@isnad1 id=eq.1h3v.s5.eacd235be444 from=translated src=- shape=c8b00ca3 vocab=1f260c20
+-/
 theorem recursiveCostBound_base {K : ℝ} {n0 n : ℕ} (hn : n < n0) :
     recursiveCostBound K n0 n = 2 ^ n * minPile n := by
   rw [recursiveCostBound.eq_1]
   simp [hn]
 
+/--
+@isnad1 id=eq.2h3v.s5.e151ef87dd57 from=translated src=- shape=c71a3a6d vocab=755a2b33
+-/
 theorem recursiveCostBound_step {K : ℝ} {n0 n : ℕ}
     (hn : n0 ≤ n) (hsmall : splitM K n < n) :
     recursiveCostBound K n0 n =
@@ -241,22 +289,37 @@ theorem recursiveCostBound_step {K : ℝ} {n0 n : ℕ}
   rw [recursiveCostBound.eq_1]
   simp_all
 
+/--
+@isnad1 id=le.1h3v.s5.1b5eaac8a25e from=translated src=- shape=3f6a9a1f vocab=4b2cdd2e
+-/
 theorem recursiveCostBound_base_cost {K : ℝ} {n0 : ℕ} :
     ∀ n : ℕ, n < n0 → 2 ^ n * minPile n ≤ recursiveCostBound K n0 n := by
   intro n hn
   rw [recursiveCostBound_base hn]
 
+/--
+@isnad1 id=le.0h1v.s3.4d64078923a6 from=translated src=- shape=8a62b088 vocab=f0612974
+-/
 theorem one_le_minPile (n : ℕ) : 1 ≤ minPile n := by
   exact Nat.one_le_pow _ _ (by decide : 0 < 2)
 
+/--
+@isnad1 id=le.0h1v.s3.62ee9e131a85 from=translated src=- shape=b9369acb vocab=c24ffc23
+-/
 theorem loss_nonneg (n : ℕ) : 0 ≤ loss n := by
   unfold loss
   positivity
 
+/--
+@isnad1 id=lt.1h1v.s4.750a32279c9b from=translated src=- shape=7f2e781e vocab=76bece60
+-/
 theorem loss_pos {n : ℕ} (hn : 0 < n) : 0 < loss n := by
   unfold loss
   positivity
 
+/--
+@isnad1 id=le.1h1v.s4.9bbf06c3a5e3 from=translated src=- shape=aa240375 vocab=05c001c9
+-/
 theorem loss_le_two_of_pos {n : ℕ} (hn : 0 < n) : loss n ≤ 2 := by
   unfold loss
   have hn1 : (1 : ℝ) ≤ n := by exact_mod_cast hn
@@ -266,6 +329,9 @@ theorem loss_le_two_of_pos {n : ℕ} (hn : 0 < n) : loss n ≤ 2 := by
     inv_le_one_of_one_le₀ hsq
   nlinarith
 
+/--
+@isnad1 id=le.1h1v.s4.62ec3d505085 from=translated src=- shape=aa240375 vocab=05c001c9
+-/
 theorem loss_le_one_of_pos {n : ℕ} (hn : 0 < n) : loss n ≤ 1 := by
   unfold loss
   have hn1 : (1 : ℝ) ≤ n := by exact_mod_cast hn
@@ -273,12 +339,18 @@ theorem loss_le_one_of_pos {n : ℕ} (hn : 0 < n) : loss n ≤ 1 := by
     nlinarith [sq_nonneg ((n : ℝ) - 1)]
   exact inv_le_one_of_one_le₀ hsq
 
+/--
+@isnad1 id=lt.2h2v.s5.9ea7c1618aa6 from=translated src=- shape=e8b7e832 vocab=92591603
+-/
 theorem demandGapForDemand_pos {n t : ℕ} (hn : 0 < n) (ht : 0 < t) :
     0 < demandGapForDemand n t := by
   unfold demandGapForDemand
   have hloss : 0 < loss n := loss_pos hn
   simp_all
 
+/--
+@isnad1 id=le.2h2v.s4.b1aef0e42457 from=translated src=- shape=6198e6b6 vocab=05c001c9
+-/
 theorem loss_le_of_le {m n : ℕ} (hm : 0 < m) (hmn : m ≤ n) :
     loss n ≤ loss m := by
   unfold loss
@@ -292,7 +364,9 @@ theorem loss_le_of_le {m n : ℕ} (hm : 0 < m) (hmn : m ≤ n) :
 
 /-- If the next recursive dimension is at most one quarter of the current
 dimension, then the loss drops geometrically.  We use the relaxed ratio `1/2`;
-the proof gives much more. -/
+the proof gives much more.
+@isnad1 id=le.2h2v.s6.98d5b7e98ace from=translated src=- shape=44a9f900 vocab=14bfcb83
+-/
 theorem loss_decay_of_four_mul_le {m n : ℕ}
     (hm : 0 < m) (hmn : 4 * m ≤ n) :
     loss n ≤ ((1 : ℝ) / 2) * loss m := by
@@ -310,6 +384,9 @@ theorem loss_decay_of_four_mul_le {m n : ℕ}
       field_simp [hm_pos.ne']
       nlinarith [sq_pos_of_pos hm_pos]
 
+/--
+@isnad1 id=eq.1h2v.s5.44a10d6d68e8 from=translated src=- shape=933f97d8 vocab=b9b217f8
+-/
 theorem splitA_add_splitM_of_four_mul_le {K : ℝ} {n : ℕ}
     (hquarter : 4 * splitM K n ≤ n) :
     splitA K n + splitM K n = n := by
@@ -317,7 +394,9 @@ theorem splitA_add_splitM_of_four_mul_le {K : ℝ} {n : ℕ}
   have hmle : splitM K n ≤ n := by omega
   exact Nat.sub_add_cancel hmle
 
-/-- Real form of the identity `a = n-m` under the split condition. -/
+/-- Real form of the identity `a = n-m` under the split condition.
+@isnad1 id=eq.1h2v.s5.3db69115487d from=translated src=- shape=56889dc5 vocab=4cafb731
+-/
 theorem splitA_real_eq_sub_of_four_mul_le {K : ℝ} {n : ℕ}
     (hquarter : 4 * splitM K n ≤ n) :
     (splitA K n : ℝ) = (n : ℝ) - (splitM K n : ℝ) := by
@@ -326,7 +405,9 @@ theorem splitA_real_eq_sub_of_four_mul_le {K : ℝ} {n : ℕ}
   exact Nat.cast_sub hmle
 
 /-- The split condition forces the large factor to contain at least
-three quarters of the coordinates, as a real inequality. -/
+three quarters of the coordinates, as a real inequality.
+@isnad1 id=le.1h2v.s6.3d70b2b8b1bf from=translated src=- shape=1ce64919 vocab=d7a0aba8
+-/
 theorem three_quarters_le_splitA_of_four_mul_le {K : ℝ} {n : ℕ}
     (hquarter : 4 * splitM K n ≤ n) :
     (3 : ℝ) * (n : ℝ) / 4 ≤ (splitA K n : ℝ) := by
@@ -340,13 +421,18 @@ theorem three_quarters_le_splitA_of_four_mul_le {K : ℝ} {n : ℕ}
   linarith
 
 /-- A weaker but integer-valued form useful for monotonicity of natural powers:
-under `4m≤n`, the large factor has dimension at least `n/2`. -/
+under `4m≤n`, the large factor has dimension at least `n/2`.
+@isnad1 id=le.1h2v.s5.33594ae53b10 from=translated src=- shape=f03e445d vocab=fde2d30f
+-/
 theorem n_div_two_le_splitA_of_four_mul_le {K : ℝ} {n : ℕ}
     (hquarter : 4 * splitM K n ≤ n) :
     n / 2 ≤ splitA K n := by
   unfold splitA
   omega
 
+/--
+@isnad1 id=lt.3h3v.s5.ca6f449769c4 from=translated src=- shape=f0945bd7 vocab=561a0c4a
+-/
 theorem splitM_lt_of_four_mul_le {K : ℝ} {n0 n : ℕ}
     (hn0_pos : 0 < n0) (hn : n0 ≤ n)
     (hquarter : 4 * splitM K n ≤ n) :
@@ -355,7 +441,9 @@ theorem splitM_lt_of_four_mul_le {K : ℝ} {n0 n : ℕ}
   omega
 
 /-- Real-valued sufficient condition for the split estimate.  This is the
-form produced by asymptotic bounds for `ceil(K sqrt(n log n))`. -/
+form produced by asymptotic bounds for `ceil(K sqrt(n log n))`.
+@isnad1 id=le.1h2v.s5.7291e2265a58 from=translated src=- shape=ce62be31 vocab=a7e42202
+-/
 theorem four_mul_splitM_le_of_real_le_quarter {K : ℝ} {n : ℕ}
     (hreal : (splitM K n : ℝ) ≤ (n : ℝ) / 4) :
     4 * splitM K n ≤ n := by
@@ -365,7 +453,9 @@ theorem four_mul_splitM_le_of_real_le_quarter {K : ℝ} {n : ℕ}
   exact_mod_cast hreal'
 
 /-- To prove the real split estimate, it is enough to bound the expression
-inside the ceiling with one unit of ceiling overhead. -/
+inside the ceiling with one unit of ceiling overhead.
+@isnad1 id=le.2h2v.s7.69d18236ffa6 from=translated src=- shape=d242fec4 vocab=a0601cdd
+-/
 theorem splitM_real_le_quarter_of_ceiling_bound {K : ℝ} {n : ℕ}
     (hnonneg : 0 ≤ K * Real.sqrt ((n : ℝ) * Real.log (n : ℝ)))
     (hbound :
@@ -377,6 +467,9 @@ theorem splitM_real_le_quarter_of_ceiling_bound {K : ℝ} {n : ℕ}
     simpa [splitM] using Nat.ceil_lt_add_one hnonneg
   exact le_trans (le_of_lt hceil_lt) hbound
 
+/--
+@isnad1 id=le.1h2v.s5.e9ba70873cb1 from=translated src=- shape=987cdf55 vocab=b143daf1
+-/
 theorem splitM_core_nonneg_of_K_nonneg {K : ℝ} {n : ℕ}
     (hK : 0 ≤ K) :
     0 ≤ K * Real.sqrt ((n : ℝ) * Real.log (n : ℝ)) :=
@@ -384,7 +477,9 @@ theorem splitM_core_nonneg_of_K_nonneg {K : ℝ} {n : ℕ}
 
 /-- A simpler sufficient condition for the ceiling-core split estimate.
 For large `n`, proving `K^2 log n ≤ n/64` is enough to force
-`K sqrt(n log n)+1 ≤ n/4`. -/
+`K sqrt(n log n)+1 ≤ n/4`.
+@isnad1 id=le.3h2v.s7.d979e2f2ff4e from=translated src=- shape=cd36603a vocab=8f3090fa
+-/
 theorem split_core_bound_of_log_le_linear {K : ℝ} {n : ℕ}
     (hK : 0 ≤ K)
     (hn8 : 8 ≤ n)
@@ -424,13 +519,18 @@ theorem split_core_bound_of_log_le_linear {K : ℝ} {n : ℕ}
     linarith
   linarith
 
+/--
+@isnad1 id=le.0h2v.s5.074e46b38990 from=translated src=- shape=94051a75 vocab=47f3436c
+-/
 theorem splitM_core_le_real {K : ℝ} {n : ℕ} :
     K * Real.sqrt ((n : ℝ) * Real.log (n : ℝ)) ≤ (splitM K n : ℝ) := by
   simpa [splitM] using
     Nat.le_ceil (K * Real.sqrt ((n : ℝ) * Real.log (n : ℝ)))
 
 /-- A floor-division lower bound for the recursive small dimension.  The
-`-1` absorbs the integer division by five. -/
+`-1` absorbs the integer division by five.
+@isnad1 id=le.0h2v.s6.cc7a6c66f7e1 from=translated src=- shape=59fec108 vocab=ba68d979
+-/
 theorem splitM_div_five_real_lower_bound {K : ℝ} {n : ℕ} :
     K * Real.sqrt ((n : ℝ) * Real.log (n : ℝ)) / 5 - 1 ≤
       ((splitM K n / 5 : ℕ) : ℝ) := by
@@ -449,6 +549,9 @@ theorem splitM_div_five_real_lower_bound {K : ℝ} {n : ℕ} :
     div_le_div_of_nonneg_right hcore (by norm_num : (0 : ℝ) ≤ 5)
   linarith
 
+/--
+@isnad1 id=le.0h2v.s4.f99c32197564 from=translated src=- shape=5e469537 vocab=1088fcad
+-/
 theorem splitA_real_le_n {K : ℝ} {n : ℕ} :
     (splitA K n : ℝ) ≤ (n : ℝ) := by
   have hnat : splitA K n ≤ n := by
@@ -456,6 +559,9 @@ theorem splitA_real_le_n {K : ℝ} {n : ℕ} :
     exact Nat.sub_le n (splitM K n)
   exact_mod_cast hnat
 
+/--
+@isnad1 id=le.1h2v.s5.0043de3b93c1 from=translated src=- shape=47e53395 vocab=ade5146a
+-/
 theorem nat_div_real_le_div (a d : ℕ) (hd : 0 < d) :
     ((a / d : ℕ) : ℝ) ≤ (a : ℝ) / d := by
   have hnat : a / d * d ≤ a := Nat.div_mul_le_self a d
@@ -466,7 +572,9 @@ theorem nat_div_real_le_div (a d : ℕ) (hd : 0 < d) :
   rw [le_div_iff₀ hdreal]
   simpa [mul_comm] using hreal
 
-/-- Lower companion to `nat_div_real_le_div`, with one unit of floor slack. -/
+/-- Lower companion to `nat_div_real_le_div`, with one unit of floor slack.
+@isnad1 id=le.1h2v.s5.f23f4206d322 from=translated src=- shape=d4d04bf9 vocab=b4a47039
+-/
 theorem div_sub_one_le_nat_div_real (a d : ℕ) (hd : 0 < d) :
     (a : ℝ) / d - 1 ≤ ((a / d : ℕ) : ℝ) := by
   have hnat : a < d * (a / d + 1) := Nat.lt_mul_div_succ a hd
@@ -480,7 +588,9 @@ theorem div_sub_one_le_nat_div_real (a d : ℕ) (hd : 0 < d) :
   linarith
 
 /-- If the annulus half-width fits inside the center radius, then the inner
-radius is at most `a/3-w` in real notation. -/
+radius is at most `a/3-w` in real notation.
+@isnad1 id=le.1h3v.s6.e69decec75e8 from=translated src=- shape=21a487fa vocab=32be615f
+-/
 theorem rIn_real_le_third_sub_width {A K : ℝ} {n : ℕ}
     (hcenter : annulusWidth A K n ≤ splitA K n / 3) :
     (rIn A K n : ℝ) ≤
@@ -492,7 +602,9 @@ theorem rIn_real_le_third_sub_width {A K : ℝ} {n : ℕ}
   linarith
 
 /-- The outer radius is at least `a/3+w-1`; the `1` is the floor slack from
-integer division by `3`. -/
+integer division by `3`.
+@isnad1 id=le.0h3v.s6.260c0de306cf from=translated src=- shape=f3806114 vocab=7c83c726
+-/
 theorem third_add_width_sub_one_le_rOut_real {A K : ℝ} {n : ℕ} :
     (splitA K n : ℝ) / 3 + (annulusWidth A K n : ℝ) - 1 ≤
       (rOut A K n : ℝ) := by
@@ -502,6 +614,9 @@ theorem third_add_width_sub_one_le_rOut_real {A K : ℝ} {n : ℕ} :
     div_sub_one_le_nat_div_real (splitA K n) 3 (by decide : 0 < 3)
   linarith
 
+/--
+@isnad1 id=le.0h2v.s5.626a3301f0bc from=translated src=- shape=6af2d3e2 vocab=7dd19b42
+-/
 theorem splitA_div_three_real_le_n_div_three {K : ℝ} {n : ℕ} :
     ((splitA K n / 3 : ℕ) : ℝ) ≤ (n : ℝ) / 3 := by
   have hdiv_le :
@@ -510,7 +625,9 @@ theorem splitA_div_three_real_le_n_div_three {K : ℝ} {n : ℕ} :
   have hsplitA_le_n := splitA_real_le_n (K := K) (n := n)
   linarith
 
-/-- For `n≥2`, `log(2n^2)` is bounded by `3 log n`. -/
+/-- For `n≥2`, `log(2n^2)` is bounded by `3 log n`.
+@isnad1 id=le.1h1v.s6.9793dac18a0f from=translated src=- shape=ccddade7 vocab=b83cb17c
+-/
 theorem log_two_mul_sq_le_three_log {n : ℕ} (hn : 2 ≤ n) :
     Real.log (2 * (n : ℝ) ^ 2) ≤ 3 * Real.log (n : ℝ) := by
   have h2_le_n : (2 : ℝ) ≤ n := by exact_mod_cast hn
@@ -525,7 +642,9 @@ theorem log_two_mul_sq_le_three_log {n : ℕ} (hn : 2 ≤ n) :
       simp_all
     _ ≤ 3 * Real.log (n : ℝ) := by linarith
 
-/-- Coarse real upper bound for the annulus-width core. -/
+/-- Coarse real upper bound for the annulus-width core.
+@isnad1 id=le.2h3v.s6.e31f7b89fcd5 from=translated src=- shape=e1f1e3f1 vocab=a413c770
+-/
 theorem annulusWidthCore_le_sqrt_three_n_log {A K : ℝ} {n : ℕ}
     (hA : 0 ≤ A) (hn : 2 ≤ n) :
     annulusWidthCore A K n ≤
@@ -552,7 +671,9 @@ theorem annulusWidthCore_le_sqrt_three_n_log {A K : ℝ} {n : ℕ}
   unfold annulusWidthCore
   exact mul_le_mul_of_nonneg_left (Real.sqrt_le_sqrt harg) hA
 
-/-- For `n≥1`, the logarithm used in the annulus width dominates `log n`. -/
+/-- For `n≥1`, the logarithm used in the annulus width dominates `log n`.
+@isnad1 id=le.1h1v.s5.99eb682472db from=translated src=- shape=d1a6901e vocab=b83cb17c
+-/
 theorem log_le_log_two_mul_sq {n : ℕ} (hn : 1 ≤ n) :
     Real.log (n : ℝ) ≤ Real.log (2 * (n : ℝ) ^ 2) := by
   have hn_pos_nat : 0 < n := by omega
@@ -562,6 +683,9 @@ theorem log_le_log_two_mul_sq {n : ℕ} (hn : 1 ≤ n) :
     nlinarith [sq_nonneg ((n : ℝ) - 1)]
   exact Real.log_le_log hn_pos hle
 
+/--
+@isnad1 id=eq.1h3v.s6.180038b8c595 from=translated src=- shape=7984012c vocab=dc27683f
+-/
 theorem annulusWidthCore_sq_eq {A K : ℝ} {n : ℕ} (hn : 1 ≤ n) :
     (annulusWidthCore A K n) ^ 2 =
       A ^ 2 * ((splitA K n : ℝ) * Real.log (2 * (n : ℝ) ^ 2)) := by
@@ -578,7 +702,9 @@ theorem annulusWidthCore_sq_eq {A K : ℝ} {n : ℕ} (hn : 1 ≤ n) :
   rw [mul_pow, Real.sq_sqrt harg_nonneg]
 
 /-- The real annulus-width core has square at least
-`A^2 a log n`, where `a=splitA K n`. -/
+`A^2 a log n`, where `a=splitA K n`.
+@isnad1 id=le.1h3v.s6.53a58188c38e from=translated src=- shape=2870901b vocab=dc27683f
+-/
 theorem annulusWidthCore_sq_ge_splitA_log {A K : ℝ} {n : ℕ}
     (hn : 1 ≤ n) :
     A ^ 2 * ((splitA K n : ℝ) * Real.log (n : ℝ)) ≤
@@ -594,7 +720,9 @@ theorem annulusWidthCore_sq_ge_splitA_log {A K : ℝ} {n : ℕ}
   exact hmul
 
 /-- A coarse upper estimate sufficient for the center-width condition
-`3(core+1)≤a`. -/
+`3(core+1)≤a`.
+@isnad1 id=le.4h3v.s7.3ebd4949409e from=translated src=- shape=cd640082 vocab=f6cfc6b8
+-/
 theorem three_annulusWidthCore_add_one_le_splitA_of_coarse
     {A K : ℝ} {n : ℕ}
     (hA : 0 ≤ A) (hn : 2 ≤ n)
@@ -613,7 +741,9 @@ theorem three_annulusWidthCore_add_one_le_splitA_of_coarse
   exact hleft.trans (hcoarse.trans ha_lower)
 
 /-- The coarse square budget for `core≥9` propagates from a lower bound on
-`a` and `log(2n^2)≥log n`. -/
+`a` and `log(2n^2)≥log n`.
+@isnad1 id=le.4h3v.s7.59e9e25e28ff from=translated src=- shape=bc9e4764 vocab=ad1cec1f
+-/
 theorem annulusWidthCore_ge_nine_of_coarse_sq
     {A K : ℝ} {n : ℕ}
     (hA : 0 ≤ A) (hn : 1 ≤ n)
@@ -643,7 +773,9 @@ theorem annulusWidthCore_ge_nine_of_coarse_sq
       (A := A) (K := K) (n := n) hA)).mp hsq
 
 /-- If `A^2≥16` and the large factor has dimension at least three, then the
-core square gives the Chernoff six-log exponent condition. -/
+core square gives the Chernoff six-log exponent condition.
+@isnad1 id=le.3h3v.s7.32a181f7026a from=translated src=- shape=790c8a0e vocab=2a48f599
+-/
 theorem chernoff_core_sq_of_A_sq_ge
     {A K : ℝ} {n : ℕ}
     (hn : 1 ≤ n)
@@ -682,6 +814,9 @@ theorem chernoff_core_sq_of_A_sq_ge
     _ = A ^ 2 * ((splitA K n : ℝ) * Real.log (n : ℝ)) := by rfl
     _ ≤ (annulusWidthCore A K n) ^ 2 := hcore
 
+/--
+@isnad1 id=le.3h3v.s6.02e6d24f8839 from=translated src=- shape=89766c43 vocab=755a2b33
+-/
 theorem recursiveCostBound_step_cost {K : ℝ} {n0 : ℕ}
     (hn0_pos : 0 < n0)
     (hquarter : ∀ n : ℕ, n0 ≤ n → 4 * splitM K n ≤ n) :
@@ -692,11 +827,17 @@ theorem recursiveCostBound_step_cost {K : ℝ} {n0 : ℕ}
   have hsmall := splitM_lt_of_four_mul_le hn0_pos hn (hquarter n hn)
   rw [recursiveCostBound_step hn hsmall]
 
+/--
+@isnad1 id=le.1h3v.s5.7994cb0ffd32 from=translated src=- shape=8c4eb51a vocab=c6a9b370
+-/
 theorem minPile_le_stackSize_of_exponent_le {A K : ℝ} {n : ℕ}
     (h : n / 5 ≤ rOut A K n) :
     minPile n ≤ 2 ^ rOut A K n := by
   exact Nat.pow_le_pow_right (by decide : 0 < 2) h
 
+/--
+@isnad1 id=lt.1h2v.s7.5f55ed5b217d from=translated src=- shape=16c91689 vocab=f6027f75
+-/
 theorem costMultiplier_lt_add_one {K : ℝ} {n : ℕ}
     (hnonneg : 0 ≤ (1 + loss n) * (((4 : ℝ) / 3) ^ splitA K n)) :
     (costMultiplier K n : ℝ) <
@@ -704,7 +845,9 @@ theorem costMultiplier_lt_add_one {K : ℝ} {n : ℕ}
   simpa [costMultiplier] using Nat.ceil_lt_add_one hnonneg
 
 /-- The sample-count ceiling still fits inside the integer fiber multiplier
-once the annulus stack size is at most the reserved half-loss budget. -/
+once the annulus stack size is at most the reserved half-loss budget.
+@isnad1 id=le.1h4v.s7.fa75072dc860 from=translated src=- shape=6eca8854 vocab=43facb14
+-/
 theorem sampleCountForDemand_fiberCost {A K : ℝ} {n t : ℕ}
     (hstack :
       (2 ^ rOut A K n : ℝ) ≤
@@ -759,7 +902,9 @@ theorem sampleCountForDemand_fiberCost {A K : ℝ} {n t : ℕ}
 
 /-- The concrete sample count gives the required mean surplus once the annulus
 mean captures at least a `(1-delta/8)` fraction of the ideal weighted mean.
-Here `delta = loss n = n^{-2}`. -/
+Here `delta = loss n = n^{-2}`.
+@isnad1 id=le.2h4v.s7.d32c50a1282c from=translated src=- shape=172429b8 vocab=f0a83aca
+-/
 theorem sampleCountForDemand_mean_of_annulusMean_lower {A K : ℝ} {n t : ℕ}
     (hloss : loss n ≤ 2)
     (hannulus :
@@ -833,7 +978,9 @@ theorem sampleCountForDemand_mean_of_annulusMean_lower {A K : ℝ} {n t : ℕ}
       mul_le_mul_of_nonneg_right hx_le_N hmu_nonneg
 
 /-- To verify the stack-size threshold for all allowed demands, it is enough
-to verify it at the smallest allowed demand `minPile(splitM n)`. -/
+to verify it at the smallest allowed demand `minPile(splitM n)`.
+@isnad1 id=le.2h4v.s7.41e9b755c400 from=translated src=- shape=5afa4da0 vocab=85e46c3d
+-/
 theorem stack_threshold_for_all_demands_of_minPile {A K : ℝ} {n : ℕ}
     (hmin :
       (2 ^ rOut A K n : ℝ) ≤
@@ -868,7 +1015,9 @@ theorem stack_threshold_for_all_demands_of_minPile {A K : ℝ} {n : ℕ}
 
 /-- Multiplication-form sufficient condition for the stack-size threshold.
 Since `loss n = n^{-2}`, this says the product
-`minPile(m)(4/3)^a` has room for `2 n^2` copies of the annulus stack size. -/
+`minPile(m)(4/3)^a` has room for `2 n^2` copies of the annulus stack size.
+@isnad1 id=le.2h3v.s7.dfd805268ae6 from=translated src=- shape=8662062b vocab=fea3a4db
+-/
 theorem stack_threshold_minPile_of_mul_le {A K : ℝ} {n : ℕ}
     (hn : 0 < n)
     (hmul :
@@ -895,7 +1044,9 @@ theorem stack_threshold_minPile_of_mul_le {A K : ℝ} {n : ℕ}
 
 /-- Logarithmic sufficient condition for the multiplication-form stack
 threshold.  This rewrites
-`2 n^2 2^rOut ≤ 2^(m/5) (4/3)^a` as a comparison of logarithms. -/
+`2 n^2 2^rOut ≤ 2^(m/5) (4/3)^a` as a comparison of logarithms.
+@isnad1 id=le.2h3v.s8.3ccdf17dd7d3 from=translated src=- shape=ee3732b5 vocab=d9cfd3b6
+-/
 theorem stack_mul_le_of_log_budget {A K : ℝ} {n : ℕ}
     (hn : 0 < n)
     (hlog :
@@ -943,7 +1094,9 @@ theorem stack_mul_le_of_log_budget {A K : ℝ} {n : ℕ}
 
 /-- Logarithmic sufficient condition for the multiplication-form Bernstein
 width threshold.  This is the log form of
-`128 * 2^(2w) * ((a+1)log 2) ≤ loss(n)^2 * 2^(m/5)`. -/
+`128 * 2^(2w) * ((a+1)log 2) ≤ loss(n)^2 * 2^(m/5)`.
+@isnad1 id=le.2h3v.s8.4a1aa202712c from=translated src=- shape=0132eae6 vocab=bf6a761e
+-/
 theorem bernstein_width_mul_le_of_log_budget {A K : ℝ} {n : ℕ}
     (hn : 0 < n)
     (hlog :
@@ -1002,7 +1155,9 @@ theorem bernstein_width_mul_le_of_log_budget {A K : ℝ} {n : ℕ}
   exact (Real.log_le_log_iff hL_pos hR_pos).mp hlogLR
 
 /-- The Bernstein-width log budget can be proved using the real width core
-with one unit of ceiling overhead. -/
+with one unit of ceiling overhead.
+@isnad1 id=le.2h3v.s8.e16b0af434de from=translated src=- shape=029d8dec vocab=e9cb1948
+-/
 theorem bernstein_width_log_budget_of_core_budget {A K : ℝ} {n : ℕ}
     (hA : 0 ≤ A)
     (hcoreBudget :
@@ -1030,7 +1185,9 @@ theorem bernstein_width_log_budget_of_core_budget {A K : ℝ} {n : ℕ}
   linarith
 
 /-- The stack log budget can be proved using the real width core with one unit
-of ceiling overhead in the outer radius. -/
+of ceiling overhead in the outer radius.
+@isnad1 id=le.2h3v.s8.ae2ba84801b5 from=translated src=- shape=6e59a25f vocab=28d2eb1d
+-/
 theorem stack_log_budget_of_core_budget {A K : ℝ} {n : ℕ}
     (hA : 0 ≤ A)
     (hcoreBudget :
@@ -1055,6 +1212,9 @@ theorem stack_log_budget_of_core_budget {A K : ℝ} {n : ℕ}
     mul_le_mul_of_nonneg_right hrOut hlog2_nonneg
   linarith
 
+/--
+@isnad1 id=le.0h2v.s6.c1ff2b16054c from=translated src=- shape=19a0fa96 vocab=90c6bc53
+-/
 theorem log_splitA_succ_mul_log_two_le_log_n_succ_mul_log_two {K : ℝ} {n : ℕ} :
     Real.log ((((splitA K n + 1 : ℕ) : ℝ) * Real.log 2)) ≤
       Real.log ((((n + 1 : ℕ) : ℝ) * Real.log 2)) := by
@@ -1071,7 +1231,9 @@ theorem log_splitA_succ_mul_log_two_le_log_n_succ_mul_log_two {K : ℝ} {n : ℕ
 
 /-- Coarse sufficient condition for the Bernstein-width core log budget.  This
 is the form where every remaining term is expressed using only `n`, `K`, and
-`A`, up to the standard `sqrt(3n log n)` envelope. -/
+`A`, up to the standard `sqrt(3n log n)` envelope.
+@isnad1 id=le.3h3v.s8.2e955653982d from=translated src=- shape=f7d07ec2 vocab=3a5d46e9
+-/
 theorem width_core_log_budget_of_coarse {A K : ℝ} {n : ℕ}
     (hA : 0 ≤ A) (hn : 2 ≤ n)
     (hcoarse :
@@ -1114,7 +1276,9 @@ theorem width_core_log_budget_of_coarse {A K : ℝ} {n : ℕ}
     linarith
   linarith
 
-/-- Coarse sufficient condition for the stack core log budget. -/
+/-- Coarse sufficient condition for the stack core log budget.
+@isnad1 id=le.4h3v.s9.93abbdaab1c3 from=translated src=- shape=6ba1ba60 vocab=0e695c05
+-/
 theorem stack_core_log_budget_of_coarse {A K : ℝ} {n : ℕ}
     (hA : 0 ≤ A) (hn : 2 ≤ n)
     (ha_lower : (3 : ℝ) * (n : ℝ) / 4 ≤ (splitA K n : ℝ))
@@ -1164,7 +1328,9 @@ theorem stack_core_log_budget_of_coarse {A K : ℝ} {n : ℕ}
   linarith
 
 /-- The positive linear margin available in the stack estimate:
-`log(4/3) - (log 2)/3 = (1/3)log(32/27) > 0`. -/
+`log(4/3) - (log 2)/3 = (1/3)log(32/27) > 0`.
+@isnad1 id=le.0h0v.s6.ae6e9d60ce57 from=translated src=- shape=f9c76c2f vocab=9d687c90
+-/
 theorem stack_linear_margin_nonneg :
     0 ≤ Real.log ((4 : ℝ) / 3) - Real.log 2 / 3 := by
   have hlogpos : 0 < Real.log ((32 : ℝ) / 27) :=
@@ -1185,7 +1351,9 @@ noncomputable def stackMargin : ℝ :=
   Real.log ((4 : ℝ) / 3) - Real.log 2 / 3
 
 /-- Strict positivity of the stack margin:
-`log(4/3)-log(2)/3 = (1/3)log(32/27)`. -/
+`log(4/3)-log(2)/3 = (1/3)log(32/27)`.
+@isnad1 id=lt.0h0v.s3.835ad250cf6e from=translated src=- shape=ff3a10fc vocab=84d273b2
+-/
 theorem stackMargin_pos : 0 < stackMargin := by
   have hlogpos : 0 < Real.log ((32 : ℝ) / 27) :=
     Real.log_pos (by norm_num : (1 : ℝ) < (32 : ℝ) / 27)
@@ -1199,7 +1367,9 @@ theorem stackMargin_pos : 0 < stackMargin := by
     ring_nf
   nlinarith
 
-/-- A convenient certified lower bound for the stack margin. -/
+/-- A convenient certified lower bound for the stack margin.
+@isnad1 id=le.0h0v.s4.069acbc4f0f9 from=translated src=- shape=5ccaf027 vocab=907f2534
+-/
 theorem one_twentieth_le_stackMargin : (1 : ℝ) / 20 ≤ stackMargin := by
   have hlogLower : (5 : ℝ) / 32 ≤ Real.log ((32 : ℝ) / 27) := by
     have h :=
@@ -1219,7 +1389,9 @@ theorem one_twentieth_le_stackMargin : (1 : ℝ) / 20 ≤ stackMargin := by
 
 /-- Corrected coarse sufficient condition for the stack core log budget.  It
 keeps the paired linear margin
-`a*(log(4/3)-log 2/3)` before using `a≥3n/4`. -/
+`a*(log(4/3)-log 2/3)` before using `a≥3n/4`.
+@isnad1 id=le.4h3v.s9.20014c09eabe from=translated src=- shape=cc67aa96 vocab=0e695c05
+-/
 theorem stack_core_log_budget_of_linear_margin {A K : ℝ} {n : ℕ}
     (hA : 0 ≤ A) (hn : 2 ≤ n)
     (ha_lower : (3 : ℝ) * (n : ℝ) / 4 ≤ (splitA K n : ℝ))
@@ -1247,6 +1419,9 @@ theorem stack_core_log_budget_of_linear_margin {A K : ℝ} {n : ℕ}
   have hmargin := mul_le_mul_of_nonneg_right ha_lower stack_linear_margin_nonneg
   linarith only [hlhs, hcore, hmargin, hcoarse]
 
+/--
+@isnad1 id=eq.0h1v.s6.e75b34ebe26d from=translated src=- shape=be8b8d86 vocab=05beb9cd
+-/
 theorem sqrt_three_n_log_eq (n : ℕ) :
     Real.sqrt (3 * (n : ℝ) * Real.log (n : ℝ)) =
       Real.sqrt 3 * Real.sqrt ((n : ℝ) * Real.log (n : ℝ)) := by
@@ -1256,7 +1431,9 @@ theorem sqrt_three_n_log_eq (n : ℕ) :
 
 /-- Coefficient form of the width coarse estimate.  The only growing term on
 the right is now `sqrt(n log n)` with coefficient
-`(K/5-2A sqrt 3) log 2`. -/
+`(K/5-2A sqrt 3) log 2`.
+@isnad1 id=le.1h3v.s8.346e512ce585 from=translated src=- shape=a03289e0 vocab=3d0dae8c
+-/
 theorem width_coarse_of_sqrt_margin {A K : ℝ} {n : ℕ}
     (hmargin :
       Real.log 128 + 3 * Real.log 2 +
@@ -1275,7 +1452,9 @@ theorem width_coarse_of_sqrt_margin {A K : ℝ} {n : ℕ}
   ring_nf at hmargin ⊢
   linarith
 
-/-- Coefficient form of the corrected stack-margin estimate. -/
+/-- Coefficient form of the corrected stack-margin estimate.
+@isnad1 id=le.1h3v.s9.303a7e6ab510 from=translated src=- shape=758e0d36 vocab=8e4ff2c1
+-/
 theorem stack_margin_of_sqrt_margin {A K : ℝ} {n : ℕ}
     (hmargin :
       2 * Real.log (n : ℝ) + 3 * Real.log 2 ≤
@@ -1296,7 +1475,9 @@ theorem stack_margin_of_sqrt_margin {A K : ℝ} {n : ℕ}
 
 /-- A simple constant-domination sufficient condition for the width sqrt
 margin.  The stronger but convenient assumption `15A√3≤K` leaves a positive
-coefficient `K/15` for the residual logarithmic terms. -/
+coefficient `K/15` for the residual logarithmic terms.
+@isnad1 id=le.2h3v.s8.95813df83609 from=translated src=- shape=a4ca2036 vocab=8e4ff2c1
+-/
 theorem width_sqrt_margin_of_K_ge {A K : ℝ} {n : ℕ}
     (hKdom : 15 * A * Real.sqrt 3 ≤ K)
     (hbudget :
@@ -1322,7 +1503,9 @@ theorem width_sqrt_margin_of_K_ge {A K : ℝ} {n : ℕ}
   exact hbudget.trans hmul2
 
 /-- Once `K≥5A√3`, the stack sqrt coefficient is nonnegative, so the linear
-margin alone can pay for the remaining logarithmic terms. -/
+margin alone can pay for the remaining logarithmic terms.
+@isnad1 id=le.2h3v.s8.9225c07db6d1 from=translated src=- shape=07ae6d15 vocab=8e4ff2c1
+-/
 theorem stack_sqrt_margin_of_linear_budget {A K : ℝ} {n : ℕ}
     (hKdom : 5 * A * Real.sqrt 3 ≤ K)
     (hbudget :
@@ -1346,14 +1529,18 @@ theorem stack_sqrt_margin_of_linear_budget {A K : ℝ} {n : ℕ}
     positivity
   linarith
 
-/-- A small numerical bound used to simplify logarithmic width budgets. -/
+/-- A small numerical bound used to simplify logarithmic width budgets.
+@isnad1 id=le.0h0v.s4.ac90dfe8523a from=translated src=- shape=3c26ae4f vocab=766ac740
+-/
 theorem log_two_le_one : Real.log 2 ≤ 1 := by
   have h := Real.log_le_sub_one_of_pos (by norm_num : (0 : ℝ) < 2)
   norm_num at h
   exact h
 
 /-- Since `log 2≤1`, the factor `log 2` inside
-`log((n+1)log 2)` can be discarded. -/
+`log((n+1)log 2)` can be discarded.
+@isnad1 id=le.0h1v.s5.f72d094073ca from=translated src=- shape=a81407d0 vocab=45c294fc
+-/
 theorem log_succ_mul_log_two_le_log_succ {n : ℕ} :
     Real.log ((((n + 1 : ℕ) : ℝ) * Real.log 2)) ≤
       Real.log (((n + 1 : ℕ) : ℝ)) := by
@@ -1371,7 +1558,9 @@ theorem log_succ_mul_log_two_le_log_succ {n : ℕ} :
       _ = ((n + 1 : ℕ) : ℝ) := by ring
   exact Real.log_le_log harg_pos hle
 
-/-- For `n≥1`, `n+1≤2n`, hence `log(n+1)≤log 2+log n`. -/
+/-- For `n≥1`, `n+1≤2n`, hence `log(n+1)≤log 2+log n`.
+@isnad1 id=le.1h1v.s5.f53f62977541 from=translated src=- shape=0cf70e03 vocab=1574cdf7
+-/
 theorem log_succ_le_log_two_add_log {n : ℕ} (hn : 1 ≤ n) :
     Real.log (((n + 1 : ℕ) : ℝ)) ≤
       Real.log 2 + Real.log (n : ℝ) := by
@@ -1387,7 +1576,9 @@ theorem log_succ_le_log_two_add_log {n : ℕ} (hn : 1 ≤ n) :
     _ = Real.log 2 + Real.log (n : ℝ) := by
           rw [Real.log_mul (by norm_num : (2 : ℝ) ≠ 0) hn_pos.ne']
 
-/-- A cleaner sufficient form of the residual width budget. -/
+/-- A cleaner sufficient form of the residual width budget.
+@isnad1 id=le.2h2v.s8.59ec8d34c052 from=translated src=- shape=ffedaa37 vocab=2f32745e
+-/
 theorem width_log_budget_of_simplified_log_budget {K : ℝ} {n : ℕ}
     (hn : 1 ≤ n)
     (hbudget :
@@ -1413,7 +1604,9 @@ theorem width_log_budget_of_simplified_log_budget {K : ℝ} {n : ℕ}
   exact hcoarse.trans hbudget
 
 /-- Split form of the residual stack budget: one inequality pays for
-`2 log n`, and the other pays for the constant `3 log 2`. -/
+`2 log n`, and the other pays for the constant `3 log 2`.
+@isnad1 id=le.2h1v.s8.542bf3ae1071 from=translated src=- shape=96b356db vocab=2a91c7a8
+-/
 theorem stack_linear_budget_of_split_bounds {n : ℕ}
     (hlog :
       2 * Real.log (n : ℝ) ≤
@@ -1428,7 +1621,9 @@ theorem stack_linear_budget_of_split_bounds {n : ℕ}
         (Real.log ((4 : ℝ) / 3) - Real.log 2 / 3) := by
   nlinarith
 
-/-- The elementary comparison `log n≤sqrt(n log n)` for `n≥1`. -/
+/-- The elementary comparison `log n≤sqrt(n log n)` for `n≥1`.
+@isnad1 id=le.1h1v.s5.12f6a6c8ba7a from=translated src=- shape=aba978f1 vocab=b143daf1
+-/
 theorem log_le_sqrt_n_log {n : ℕ} (hn : 1 ≤ n) :
     Real.log (n : ℝ) ≤
       Real.sqrt ((n : ℝ) * Real.log (n : ℝ)) := by
@@ -1450,7 +1645,9 @@ theorem log_le_sqrt_n_log {n : ℕ} (hn : 1 ≤ n) :
 
 /-- Explicit large-`n` sufficient condition for the split estimate
 `K^2 log n≤n/64`.  It is intentionally coarse, but isolates this residual
-analytic input behind a single quadratic threshold. -/
+analytic input behind a single quadratic threshold.
+@isnad1 id=le.1h2v.s6.fcfc8a993305 from=translated src=- shape=3a2e9b0f vocab=3f4f6c65
+-/
 theorem split_log_budget_of_quadratic_threshold {K : ℝ} {n : ℕ}
     (hthreshold : (128 * K ^ 2) ^ 2 ≤ (n : ℝ)) :
     K ^ 2 * Real.log (n : ℝ) ≤ (n : ℝ) / 64 := by
@@ -1481,7 +1678,9 @@ theorem split_log_budget_of_quadratic_threshold {K : ℝ} {n : ℕ}
     nlinarith
   exact hlog_mul.trans hmain
 
-/-- Explicit threshold for the stack log-linear budget. -/
+/-- Explicit threshold for the stack log-linear budget.
+@isnad1 id=le.1h1v.s7.4b34ab9803f1 from=translated src=- shape=137f81e3 vocab=f9fdc572
+-/
 theorem stack_log_linear_budget_of_quadratic_threshold {n : ℕ}
     (hthreshold : (32 / stackMargin ^ 2) ^ 2 ≤ (n : ℝ)) :
     16 * Real.log (n : ℝ) ≤
@@ -1524,7 +1723,9 @@ theorem stack_log_linear_budget_of_quadratic_threshold {n : ℕ}
   exact hlog_part.trans (by simpa [stackMargin] using hmain)
 
 /-- A convenient way to pay the simplified width budget: use half of the
-available `sqrt(n log n)` term for the constant and half for `5 log n`. -/
+available `sqrt(n log n)` term for the constant and half for `5 log n`.
+@isnad1 id=le.3h2v.s8.0cdb10e88eeb from=translated src=- shape=a13f231d vocab=2f32745e
+-/
 theorem width_simple_budget_of_const_budget {K : ℝ} {n : ℕ}
     (hn : 1 ≤ n)
     (hKlarge : 150 ≤ K * Real.log 2)
@@ -1558,7 +1759,9 @@ theorem width_simple_budget_of_const_budget {K : ℝ} {n : ℕ}
   nlinarith
 
 /-- Monotonicity of the integer sequence `n log n` for `n≥1`, in the only
-form needed for cutoff propagation. -/
+form needed for cutoff propagation.
+@isnad1 id=le.2h2v.s5.f2340b6aca1b from=translated src=- shape=c362b8cc vocab=8e7b393f
+-/
 theorem nat_mul_log_mono_from_one {n0 n : ℕ}
     (hn0_pos : 1 ≤ n0)
     (hn : n0 ≤ n) :
@@ -1575,7 +1778,9 @@ theorem nat_mul_log_mono_from_one {n0 n : ℕ}
   exact mul_le_mul hnreal hlog_le hlog0_nonneg hn_nonneg
 
 /-- The coarse `core≥9` square budget propagates from the cutoff because
-`n log n` is monotone for `n≥1`. -/
+`n log n` is monotone for `n≥1`.
+@isnad1 id=le.3h3v.s7.83775773804c from=translated src=- shape=35f76a68 vocab=3f4f6c65
+-/
 theorem annulus_core_nine_budget_of_cutoff {A : ℝ} {n0 n : ℕ}
     (hn0_pos : 1 ≤ n0) (hn : n0 ≤ n)
     (hcutoff :
@@ -1593,7 +1798,9 @@ theorem annulus_core_nine_budget_of_cutoff {A : ℝ} {n0 n : ℕ}
   exact hcutoff.trans hscaled
 
 /-- A width constant budget checked at the cutoff propagates to all larger
-dimensions. -/
+dimensions.
+@isnad1 id=le.4h3v.s7.96986c368d05 from=translated src=- shape=af0a0990 vocab=2f32745e
+-/
 theorem width_const_budget_of_cutoff {K : ℝ} {n0 n : ℕ}
     (hK : 0 ≤ K)
     (hn0_pos : 1 ≤ n0)
@@ -1619,7 +1826,9 @@ theorem width_const_budget_of_cutoff {K : ℝ} {n0 n : ℕ}
   exact hcutoff.trans hmono
 
 /-- Large-`n` sufficient conditions for the residual stack budget.  The first
-condition pays for `2 log n`; the second pays for `3 log 2`. -/
+condition pays for `2 log n`; the second pays for `3 log 2`.
+@isnad1 id=le.3h1v.s8.b2dcf75d21a1 from=translated src=- shape=a08ef271 vocab=8e4ff2c1
+-/
 theorem stack_linear_budget_of_sqrt_and_const_bounds {n : ℕ}
     (hn : 1 ≤ n)
     (hsqrt :
@@ -1656,7 +1865,9 @@ theorem stack_linear_budget_of_sqrt_and_const_bounds {n : ℕ}
   exact stack_linear_budget_of_split_bounds hlog_part hconst_part
 
 /-- If the stack constant budget holds at the cutoff, then it holds for every
-larger dimension because the linear margin is nonnegative. -/
+larger dimension because the linear margin is nonnegative.
+@isnad1 id=le.2h2v.s7.b2d5ccbbf01e from=translated src=- shape=15a1954e vocab=3f515e05
+-/
 theorem stack_const_budget_of_cutoff {n0 n : ℕ}
     (hn : n0 ≤ n)
     (hcutoff :
@@ -1678,7 +1889,9 @@ theorem stack_const_budget_of_cutoff {n0 n : ℕ}
 
 /-- Squared sufficient condition for the stack square-root budget.  With
 `c = log(4/3)-log(2)/3`, the condition `16 log n≤n c^2` implies
-`4 sqrt(n log n)≤n c`. -/
+`4 sqrt(n log n)≤n c`.
+@isnad1 id=le.1h1v.s7.d47f99794c4f from=translated src=- shape=d4d8f9e8 vocab=b0784f9e
+-/
 theorem stack_sqrt_budget_of_log_linear_margin_sq {n : ℕ}
     (hlog :
       16 * Real.log (n : ℝ) ≤
@@ -1722,7 +1935,9 @@ theorem stack_sqrt_budget_of_log_linear_margin_sq {n : ℕ}
 /-- Simplified Bernstein/union-bound logarithmic condition.  If the sampled
 mean is at most `2t`, then the more legible lower bound
 `delta^2 t/(128 B_0)` implies the logarithmic condition used by the
-probabilistic-method finish. -/
+probabilistic-method finish.
+@isnad1 id=le.4h4v.s8.fc839ca766c5 from=translated src=- shape=bc80e464 vocab=d5b9f2bd
+-/
 theorem log_condition_of_mean_upper {A K : ℝ} {n t : ℕ}
     (ht : 0 < t)
     (hmu_pos :
@@ -1782,7 +1997,9 @@ theorem log_condition_of_mean_upper {A K : ℝ} {n t : ℕ}
 
 /-- The sampled annulus mean is at most `2t` once the annulus mean is bounded
 by the full weighted mean and the sample-count ceiling is paid for by the
-stack-size threshold. -/
+stack-size threshold.
+@isnad1 id=le.3h4v.s8.b68aa14d57e0 from=translated src=- shape=c64d6212 vocab=48e3cab1
+-/
 theorem sampleCountForDemand_mean_upper_of_annulusMean_upper
     {A K : ℝ} {n t : ℕ}
     (hloss : loss n ≤ 1)
@@ -1866,7 +2083,9 @@ theorem sampleCountForDemand_mean_upper_of_annulusMean_upper
       nlinarith
 
 /-- Since the simplified Bernstein exponent is linear in the demand `t`, it
-is enough to check it at the smallest allowed demand. -/
+is enough to check it at the smallest allowed demand.
+@isnad1 id=le.2h4v.s8.f05d0cf7e8e0 from=translated src=- shape=20c38f4e vocab=1990953d
+-/
 theorem logSimple_for_all_demands_of_minPile {A K : ℝ} {n : ℕ}
     (hmin :
       ((splitA K n + 1 : ℕ) : ℝ) * Real.log 2 ≤
@@ -1905,7 +2124,9 @@ theorem logSimple_for_all_demands_of_minPile {A K : ℝ} {n : ℕ}
 
 /-- It is enough to prove the minimum-demand Bernstein threshold with
 `2^(2w)`, where `w` is the annulus half-width, since
-`rOut-rIn ≤ 2w`. -/
+`rOut-rIn ≤ 2w`.
+@isnad1 id=le.1h3v.s8.77f52c446913 from=translated src=- shape=902a8361 vocab=2fadecdc
+-/
 theorem logMin_of_widthBound {A K : ℝ} {n : ℕ}
     (hwidthLog :
       ((splitA K n + 1 : ℕ) : ℝ) * Real.log 2 ≤
@@ -1936,7 +2157,9 @@ theorem logMin_of_widthBound {A K : ℝ} {n : ℕ}
 
 /-- Multiplication-form sufficient condition for the Bernstein width
 threshold.  This avoids carrying a division in the remaining asymptotic
-estimate. -/
+estimate.
+@isnad1 id=le.1h3v.s8.58df1bf55732 from=translated src=- shape=6346fbba vocab=3f70738b
+-/
 theorem logWidth_of_mul_le {A K : ℝ} {n : ℕ}
     (hmul :
       128 * (2 ^ (2 * annulusWidth A K n) : ℝ) *
@@ -1953,7 +2176,9 @@ theorem logWidth_of_mul_le {A K : ℝ} {n : ℕ}
   simpa [denom, mul_assoc, mul_comm, mul_left_comm] using hmul
 
 /-- A lower bound for the `Binomial(n,1/3)` mass of the annulus window is
-exactly the annulus-mean lower bound used by the upper-bound recurrence. -/
+exactly the annulus-mean lower bound used by the upper-bound recurrence.
+@isnad1 id=le.1h4v.s6.430190b51125 from=translated src=- shape=b81437a3 vocab=aa412a51
+-/
 theorem annulusMean_lower_of_binomialWindowProbThird
     {n rIn rOut : ℕ} {alpha : ℝ}
     (hprob : alpha ≤ binomialWindowProbThird n rIn rOut) :
@@ -1973,7 +2198,9 @@ theorem annulusMean_lower_of_binomialWindowProbThird
       rw [annulusMean_eq_fullWeightedMean_mul_binomialWindowProbThird]
 
 /-- The integer fiber multiplier is bounded by a `1+2 n^{-2}` real multiplier
-once the additive ceiling error is absorbed by the extra `n^{-2}` slack. -/
+once the additive ceiling error is absorbed by the extra `n^{-2}` slack.
+@isnad1 id=le.1h2v.s7.b4df1589103d from=translated src=- shape=5fbe8876 vocab=afb774fc
+-/
 theorem costMultiplier_le_one_add_two_loss {K : ℝ} {n : ℕ}
     (hslack : 1 ≤ loss n * (((4 : ℝ) / 3) ^ splitA K n)) :
     (costMultiplier K n : ℝ) ≤
@@ -1994,7 +2221,9 @@ theorem costMultiplier_le_one_add_two_loss {K : ℝ} {n : ℕ}
   exact le_of_lt (lt_of_lt_of_le hceil_lt hmid)
 
 /-- Transparent sufficient condition for the ceiling slack: since
-`loss n = n^{-2}`, it is enough that `(4/3)^a` dominate `n^2`. -/
+`loss n = n^{-2}`, it is enough that `(4/3)^a` dominate `n^2`.
+@isnad1 id=le.2h2v.s7.9d9676ac2736 from=translated src=- shape=d0c81043 vocab=e9e4c1e5
+-/
 theorem ceilingSlack_of_sq_le_pow {K : ℝ} {n : ℕ}
     (hn : 0 < n)
     (hpow : (n : ℝ) ^ 2 ≤ (((4 : ℝ) / 3) ^ splitA K n)) :
@@ -2008,7 +2237,9 @@ theorem ceilingSlack_of_sq_le_pow {K : ℝ} {n : ℕ}
       mul_le_mul_of_nonneg_left hpow (by positivity)
 
 /-- It is enough for ceiling slack to prove the still coarser growth estimate
-`n^2 ≤ (4/3)^(n/2)`, because the split condition gives `n/2 ≤ a`. -/
+`n^2 ≤ (4/3)^(n/2)`, because the split condition gives `n/2 ≤ a`.
+@isnad1 id=le.2h2v.s7.865f9f841467 from=translated src=- shape=bdf8cb40 vocab=90623975
+-/
 theorem ceilingSq_of_pow_half {K : ℝ} {n : ℕ}
     (hhalf : n / 2 ≤ splitA K n)
     (hpow : (n : ℝ) ^ 2 ≤ (((4 : ℝ) / 3) ^ (n / 2))) :
@@ -2017,7 +2248,9 @@ theorem ceilingSq_of_pow_half {K : ℝ} {n : ℕ}
   exact hpow.trans (pow_le_pow_right₀ hbase hhalf)
 
 /-- Two-step growth estimate used to prove that `(4/3)^(n/2)` eventually
-dominates `n^2`. -/
+dominates `n^2`.
+@isnad1 id=le.1h1v.s6.42125de8581e from=translated src=- shape=18893235 vocab=ad3e4bb6
+-/
 theorem sq_growth_step_for_four_thirds_half (n : ℕ) (hn : 14 ≤ n) :
     ((n + 2 : ℕ) : ℝ) ^ 2 ≤ ((4 : ℝ) / 3) * (n : ℝ) ^ 2 := by
   have hn_real : (14 : ℝ) ≤ n := by exact_mod_cast hn
@@ -2025,7 +2258,9 @@ theorem sq_growth_step_for_four_thirds_half (n : ℕ) (hn : 14 ≤ n) :
   nlinarith [sq_nonneg ((n : ℝ) - 6)]
 
 /-- Explicit elementary growth threshold:
-for `n≥58`, `(4/3)^(⌊n/2⌋)` dominates `n^2`. -/
+for `n≥58`, `(4/3)^(⌊n/2⌋)` dominates `n^2`.
+@isnad1 id=le.1h1v.s6.c54f3c10f062 from=translated src=- shape=08d1b410 vocab=d8db5576
+-/
 theorem sq_le_four_thirds_pow_half_of_ge (n : ℕ) (hn : 58 ≤ n) :
     (n : ℝ) ^ 2 ≤ (((4 : ℝ) / 3) ^ (n / 2)) := by
   induction n using Nat.twoStepInduction with
@@ -2047,7 +2282,9 @@ theorem sq_le_four_thirds_pow_half_of_ge (n : ℕ) (hn : 58 ≤ n) :
         rcases hcases with rfl | rfl <;> norm_num
 
 /-- Log-scale sufficient condition for a Chernoff tail budget.  If
-`E ≥ log 16 + 2 log n`, then `16 exp(-E) ≤ n^{-2}`. -/
+`E ≥ log 16 + 2 log n`, then `16 exp(-E) ≤ n^{-2}`.
+@isnad1 id=le.2h2v.s6.dc0e86220174 from=translated src=- shape=94f2c10d vocab=7afd9cb4
+-/
 theorem sixteen_exp_neg_le_loss_of_log_budget {n : ℕ} {E : ℝ}
     (hn : 0 < n)
     (hlog : Real.log 16 + 2 * Real.log (n : ℝ) ≤ E) :
@@ -2078,7 +2315,9 @@ theorem sixteen_exp_neg_le_loss_of_log_budget {n : ℕ} {E : ℝ}
     _ = (((n : ℝ) ^ 2)⁻¹) := by ring
 
 /-- A convenient way to discharge the tail budget: for `n≥2`,
-`log 16 + 2 log n ≤ 6 log n`. -/
+`log 16 + 2 log n ≤ 6 log n`.
+@isnad1 id=le.2h2v.s6.3e80f4702039 from=translated src=- shape=776dc083 vocab=45c294fc
+-/
 theorem tail_budget_of_six_log {n : ℕ} {E : ℝ}
     (hn : 2 ≤ n)
     (hE : 6 * Real.log (n : ℝ) ≤ E) :
@@ -2096,7 +2335,9 @@ theorem tail_budget_of_six_log {n : ℕ} {E : ℝ}
     _ ≤ E := hE
 
 /-- Normalized recurrence for the recursively defined integer cost bound after
-absorbing the multiplier ceiling into a doubled loss term. -/
+absorbing the multiplier ceiling into a doubled loss term.
+@isnad1 id=le.3h3v.s7.3d9e809ca458 from=translated src=- shape=a5478692 vocab=074f2131
+-/
 theorem normalizedCost_recursiveCostBound_step_of_ceiling
     {K : ℝ} {n0 n : ℕ}
     (hn : n0 ≤ n) (hsmall : splitM K n < n)
@@ -2138,7 +2379,9 @@ theorem normalizedCost_recursiveCostBound_step_of_ceiling
 
 /-- Raw-cost form of the normalized recurrence step.  This is the algebraic
 translation of
-`|D_n| ≤ (1+n^{-2}) |D_m| (4/3)^a`. -/
+`|D_n| ≤ (1+n^{-2}) |D_m| (4/3)^a`.
+@isnad1 id=le.2h3v.s7.ba4f1fdd1196 from=translated src=- shape=e343c95a vocab=32d0c229
+-/
 theorem normalizedCost_step_of_cost_le {K : ℝ} {costBound : ℕ → ℕ} {n : ℕ}
     (hsplit : splitA K n + splitM K n = n)
     (hcostReal :
@@ -2166,7 +2409,9 @@ theorem normalizedCost_step_of_cost_le {K : ℝ} {costBound : ℕ → ℕ} {n : 
 /-- The concrete parameter theorem.  The hypotheses are the remaining
 numerical estimates for the paper's chosen schedule.  Everything after those
 estimates is now formal: the high-demand construction, product recursion, base
-cases, normalized loss control, and final real `C(4/3)^n` upper bound. -/
+cases, normalized loss control, and final real `C(4/3)^n` upper bound.
+@isnad1 id=hasrealh.12h6v.s9.8dc458315d6a from=translated src=- shape=2f6bc0ab vocab=628d3733
+-/
 theorem hasRealUpperBound_of_parameter_conditions
     {K A : ℝ} {n0 : ℕ} {costBound sampleCount : ℕ → ℕ} {B : ℝ}
     (hn0_pos : 0 < n0)
@@ -2242,7 +2487,9 @@ factor solves demand `t` with cost `t * costMultiplier n`.
 
 This is the recurrence matching the proof in the paper.  The remaining
 hypotheses are the concrete annulus mean, Bernstein/union-bound, fiber-cost,
-integer cost, and normalized-cost estimates. -/
+integer cost, and normalized-cost estimates.
+@isnad1 id=hasrealh.11h6v.s9.fed9712a9429 from=translated src=- shape=d6e159ce vocab=90554c6d
+-/
 theorem hasRealUpperBound_of_variable_parameter_conditions
     {K A : ℝ} {n0 : ℕ} {costBound : ℕ → ℕ}
     {sampleCount : ℕ → ℕ → ℕ} {B : ℝ}
@@ -2319,7 +2566,9 @@ theorem hasRealUpperBound_of_variable_parameter_conditions
 
 /-- Same as `hasRealUpperBound_of_parameter_conditions`, but with the
 normalized recurrence supplied in the raw multiplicative form used in the
-paper. -/
+paper.
+@isnad1 id=hasrealh.12h6v.s9.589208ee1bfd from=translated src=- shape=0bb167e6 vocab=628d3733
+-/
 theorem hasRealUpperBound_of_raw_cost_parameter_conditions
     {K A : ℝ} {n0 : ℕ} {costBound sampleCount : ℕ → ℕ} {B : ℝ}
     (hn0_pos : 0 < n0)
@@ -2374,7 +2623,9 @@ defined integer cost bound.  The finite base cost and the integer product
 recurrence are discharged by `recursiveCostBound_base_cost` and
 `recursiveCostBound_step_cost`; the remaining hypotheses are the genuine
 analytic estimates for the chosen annulus, sample count, and ceiling overhead
-in the real normalized recurrence. -/
+in the real normalized recurrence.
+@isnad1 id=hasrealh.10h5v.s9.1dec5f2f45b9 from=translated src=- shape=be23edad vocab=26409389
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_conditions
     {K A : ℝ} {n0 : ℕ} {sampleCount : ℕ → ℕ} {B : ℝ}
     (hn0_pos : 0 < n0)
@@ -2428,7 +2679,9 @@ theorem hasRealUpperBound_of_recursiveCostBound_conditions
     hcostReal
 
 /-- Variable-demand version of
-`hasRealUpperBound_of_raw_cost_parameter_conditions`. -/
+`hasRealUpperBound_of_raw_cost_parameter_conditions`.
+@isnad1 id=hasrealh.11h6v.s9.99c2f2832234 from=translated src=- shape=d9c5dfdc vocab=90554c6d
+-/
 theorem hasRealUpperBound_of_variable_raw_cost_parameter_conditions
     {K A : ℝ} {n0 : ℕ} {costBound : ℕ → ℕ}
     {sampleCount : ℕ → ℕ → ℕ} {B : ℝ}
@@ -2481,7 +2734,9 @@ theorem hasRealUpperBound_of_variable_raw_cost_parameter_conditions
 
 /-- Variable-demand specialization to the recursively defined integer cost
 bound.  This is the closest formal wrapper to the paper's recursive
-construction currently in the project. -/
+construction currently in the project.
+@isnad1 id=hasrealh.9h5v.s9.9feedc2a8a79 from=translated src=- shape=6af2e289 vocab=c4c5bbbc
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_variable_conditions
     {K A : ℝ} {n0 : ℕ} {sampleCount : ℕ → ℕ → ℕ} {B : ℝ}
     (hn0_pos : 0 < n0)
@@ -2534,7 +2789,9 @@ theorem hasRealUpperBound_of_recursiveCostBound_variable_conditions
 /-- Recursive-cost variable-demand theorem with the concrete sample count
 `sampleCountForDemand`.  The fiber-cost arithmetic is reduced to the threshold
 inequality saying the annulus stack size fits inside the reserved half-loss
-budget. -/
+budget.
+@isnad1 id=hasrealh.9h4v.s9.5698eedaebe6 from=translated src=- shape=210e0ca3 vocab=24ef7729
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_concreteSample_conditions
     {K A : ℝ} {n0 : ℕ} {B : ℝ}
     (hn0_pos : 0 < n0)
@@ -2582,7 +2839,9 @@ absorbed into the loss bookkeeping.  Compared with
 `hasRealUpperBound_of_recursiveCostBound_concreteSample_conditions`, this
 replaces the exact real recurrence hypothesis by the concrete threshold
 `1 ≤ n^{-2}(4/3)^a`, and consequently uses the harmless doubled loss
-`1+2n^{-2}` in the final recurrence. -/
+`1+2n^{-2}` in the final recurrence.
+@isnad1 id=hasrealh.9h4v.s9.cb049e839f91 from=translated src=- shape=1bbf0db1 vocab=24ef7729
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_concreteSample_ceiling_conditions
     {K A : ℝ} {n0 : ℕ} {B : ℝ}
     (hn0_pos : 0 < n0)
@@ -2668,7 +2927,9 @@ theorem hasRealUpperBound_of_recursiveCostBound_concreteSample_ceiling_condition
 /-- Same as
 `hasRealUpperBound_of_recursiveCostBound_concreteSample_ceiling_conditions`,
 with the finite base constant chosen automatically as the sum of normalized
-costs below the cutoff. -/
+costs below the cutoff.
+@isnad1 id=hasrealh.7h3v.s9.69d2f6827181 from=translated src=- shape=8f064f96 vocab=f753b294
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_concreteSample_ceiling_finiteBase
     {K A : ℝ} {n0 : ℕ}
     (hn0_pos : 0 < n0)
@@ -2715,7 +2976,9 @@ theorem hasRealUpperBound_of_recursiveCostBound_concreteSample_ceiling_finiteBas
 reduced to their natural paper forms.  The annulus mean hypothesis says the
 chosen annulus captures a `(1-delta/8)` fraction of the ideal weighted mean,
 and the stack-size threshold only has to be checked for the smallest recursive
-pile size. -/
+pile size.
+@isnad1 id=hasrealh.7h3v.s9.7b4d3b65af3b from=translated src=- shape=94a3a416 vocab=f753b294
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_annulusMeanLower_finiteBase
     {K A : ℝ} {n0 : ℕ}
     (hn0_pos : 0 < n0)
@@ -2762,7 +3025,9 @@ theorem hasRealUpperBound_of_recursiveCostBound_annulusMeanLower_finiteBase
 
 /-- Further reduced wrapper: the Bernstein/union-bound logarithmic hypothesis
 is replaced by the paper-style pair of estimates `E X_t ≤ 2t` and
-`(a+1)log 2 ≤ delta^2 t/(128 B_0)`. -/
+`(a+1)log 2 ≤ delta^2 t/(128 B_0)`.
+@isnad1 id=hasrealh.8h3v.s9.cff1463ce7c9 from=translated src=- shape=b3df7106 vocab=8ea9d692
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_simplifiedBernstein_finiteBase
     {K A : ℝ} {n0 : ℕ}
     (hn0_pos : 0 < n0)
@@ -2833,7 +3098,9 @@ theorem hasRealUpperBound_of_recursiveCostBound_simplifiedBernstein_finiteBase
 /-- Wrapper with both annulus mean estimates exposed directly: a lower bound
 capturing most of the ideal weighted mean, and the trivial upper bound by the
 full weighted mean.  The only remaining probabilistic exponent input is the
-simple Bernstein/union-bound threshold. -/
+simple Bernstein/union-bound threshold.
+@isnad1 id=hasrealh.8h3v.s9.ccdf8206df71 from=translated src=- shape=f1657359 vocab=d49d14da
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_annulusBounds_finiteBase
     {K A : ℝ} {n0 : ℕ}
     (hn0_pos : 0 < n0)
@@ -2885,7 +3152,9 @@ theorem hasRealUpperBound_of_recursiveCostBound_annulusBounds_finiteBase
 /-- Current most reduced concrete upper-bound wrapper.  For the chosen paper
 parameters it remains to prove, for all sufficiently large `n`, the concrete
 dimension split, annulus lower/upper estimates, the minimum-demand Bernstein
-threshold, stack-size threshold, pile-radius threshold, and ceiling slack. -/
+threshold, stack-size threshold, pile-radius threshold, and ceiling slack.
+@isnad1 id=hasrealh.8h3v.s9.9e9f1811a0c1 from=translated src=- shape=9dadf4e3 vocab=d49d14da
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_annulusBounds_minDemand_finiteBase
     {K A : ℝ} {n0 : ℕ}
     (hn0_pos : 0 < n0)
@@ -2932,7 +3201,9 @@ theorem hasRealUpperBound_of_recursiveCostBound_annulusBounds_minDemand_finiteBa
 /-- Current most reduced concrete upper-bound wrapper with the annulus upper
 estimate proved internally.  The remaining annulus input is only the lower-tail
 capture estimate saying the chosen annulus keeps a `(1-delta/8)` fraction of
-the full weighted mean. -/
+the full weighted mean.
+@isnad1 id=hasrealh.7h3v.s9.ce7bf9c7def0 from=translated src=- shape=2c972361 vocab=d49d14da
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_annulusLower_minDemand_finiteBase
     {K A : ℝ} {n0 : ℕ}
     (hn0_pos : 0 < n0)
@@ -2974,7 +3245,9 @@ theorem hasRealUpperBound_of_recursiveCostBound_annulusLower_minDemand_finiteBas
     hceilSlack
 
 /-- Version of the reduced wrapper using the coarser but simpler Bernstein
-denominator `2^(2w)`, where `w = annulusWidth A K n`. -/
+denominator `2^(2w)`, where `w = annulusWidth A K n`.
+@isnad1 id=hasrealh.7h3v.s9.8a4e9e2e8d47 from=translated src=- shape=3c0152d0 vocab=8180bb36
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_annulusLower_widthBound_finiteBase
     {K A : ℝ} {n0 : ℕ}
     (hn0_pos : 0 < n0)
@@ -3016,7 +3289,9 @@ theorem hasRealUpperBound_of_recursiveCostBound_annulusLower_widthBound_finiteBa
 /-- Reduced wrapper with the annulus lower estimate stated as the concrete
 binomial-window probability estimate for a `Binomial(splitA n, 1/3)` random
 variable.  This isolates the remaining Chernoff-style estimate needed for the
-annulus capture step. -/
+annulus capture step.
+@isnad1 id=hasrealh.6h3v.s8.19b2d71e0e34 from=translated src=- shape=c991e038 vocab=aede40ac
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_binomialWindow_widthBound_finiteBase
     {K A : ℝ} {n0 : ℕ}
     (hn0_pos : 0 < n0)
@@ -3057,7 +3332,9 @@ theorem hasRealUpperBound_of_recursiveCostBound_binomialWindow_widthBound_finite
 
 /-- Tail-probability form of the reduced upper-bound wrapper.  The annulus
 capture estimate is reduced to proving that the two `Binomial(a,1/3)` tails
-outside `[rIn,rOut]` have total mass at most `delta/8`. -/
+outside `[rIn,rOut]` have total mass at most `delta/8`.
+@isnad1 id=hasrealh.6h3v.s8.828d005bd817 from=translated src=- shape=19870b47 vocab=f8e0f9fc
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_binomialTails_widthBound_finiteBase
     {K A : ℝ} {n0 : ℕ}
     (hn0_pos : 0 < n0)
@@ -3098,7 +3375,9 @@ theorem hasRealUpperBound_of_recursiveCostBound_binomialTails_widthBound_finiteB
 
 /-- Chernoff-parameter form of the reduced upper-bound wrapper.  It remains
 to choose nonnegative parameters for the two binomial tails and verify the
-displayed explicit exponential bound. -/
+displayed explicit exponential bound.
+@isnad1 id=hasrealh.8h5v.s9.05302c1916c3 from=translated src=- shape=60f21396 vocab=457cf07b
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_chernoffTails_widthBound_finiteBase
     {K A : ℝ} {n0 : ℕ} {lamLeft lamRight : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -3151,7 +3430,9 @@ theorem hasRealUpperBound_of_recursiveCostBound_chernoffTails_widthBound_finiteB
 
 /-- Same Chernoff-parameter wrapper, but with separate budgets for the left
 and right tails.  This is the form one usually proves: each tail is at most
-`delta/16`, so their sum is at most `delta/8`. -/
+`delta/16`, so their sum is at most `delta/8`.
+@isnad1 id=hasrealh.9h5v.s9.399f2362f1bd from=translated src=- shape=11f293ff vocab=457cf07b
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_chernoffTailBudgets_widthBound_finiteBase
     {K A : ℝ} {n0 : ℕ} {lamLeft lamRight : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -3201,7 +3482,9 @@ theorem hasRealUpperBound_of_recursiveCostBound_chernoffTailBudgets_widthBound_f
     hceilSlack
 
 /-- Same reduced wrapper with the ceiling slack replaced by the growth
-condition `(4/3)^a ≥ n^2`. -/
+condition `(4/3)^a ≥ n^2`.
+@isnad1 id=hasrealh.9h5v.s9.53460ffcfcb1 from=translated src=- shape=be505d89 vocab=457cf07b
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_tailBudgets_widthBound_sqSlack_finiteBase
     {K A : ℝ} {n0 : ℕ} {lamLeft lamRight : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -3248,7 +3531,9 @@ theorem hasRealUpperBound_of_recursiveCostBound_tailBudgets_widthBound_sqSlack_f
         (hceilSq n hn))
 
 /-- Same reduced wrapper with the Bernstein width threshold stated in the
-multiplication form better suited for large-`n` estimates. -/
+multiplication form better suited for large-`n` estimates.
+@isnad1 id=hasrealh.9h5v.s9.3b011c1c4bac from=translated src=- shape=a299dd98 vocab=457cf07b
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_tailBudgets_mulWidth_sqSlack_finiteBase
     {K A : ℝ} {n0 : ℕ} {lamLeft lamRight : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -3300,6 +3585,7 @@ in multiplication/growth form:
 * the Bernstein width threshold has no division;
 * the stack threshold is `2 n^2 2^rOut ≤ minPile(m)(4/3)^a`;
 * ceiling slack is `(4/3)^a ≥ n^2`.
+@isnad1 id=hasrealh.9h5v.s9.ec9703f953bf from=translated src=- shape=b1b2f87a vocab=457cf07b
 -/
 theorem hasRealUpperBound_of_recursiveCostBound_tailBudgets_mulThresholds_finiteBase
     {K A : ℝ} {n0 : ℕ} {lamLeft lamRight : ℕ → ℝ}
@@ -3359,7 +3645,9 @@ noncomputable def rightChernoffTerm (A K : ℝ) (lamRight : ℕ → ℝ) (n : �
     (((1 : ℝ) / 3) * Real.exp (lamRight n) + ((2 : ℝ) / 3)) ^
       splitA K n
 
-/-- Logarithmic form of the left Chernoff term. -/
+/-- Logarithmic form of the left Chernoff term.
+@isnad1 id=le.1h5v.s7.87f696d2fd62 from=translated src=- shape=b8009776 vocab=e55db598
+-/
 theorem leftChernoffTerm_le_exp_of_log_le {A K : ℝ} {lam : ℕ → ℝ}
     {n : ℕ} {E : ℝ}
     (hlog :
@@ -3388,7 +3676,9 @@ theorem leftChernoffTerm_le_exp_of_log_le {A K : ℝ} {lam : ℕ → ℝ}
       rw [hpow, ← Real.exp_add]
     _ ≤ Real.exp (-E) := Real.exp_le_exp.mpr hlog
 
-/-- Logarithmic form of the right Chernoff term. -/
+/-- Logarithmic form of the right Chernoff term.
+@isnad1 id=le.1h5v.s7.bd4084a5903b from=translated src=- shape=730f1d32 vocab=c2e3d093
+-/
 theorem rightChernoffTerm_le_exp_of_log_le {A K : ℝ} {lam : ℕ → ℝ}
     {n : ℕ} {E : ℝ}
     (hlog :
@@ -3419,7 +3709,9 @@ theorem rightChernoffTerm_le_exp_of_log_le {A K : ℝ} {lam : ℕ → ℝ}
 
 /-- A coarse second-order exponential upper bound on `[0,1]`.  The constant
 `13/18` comes from the third-order Taylor bound in mathlib and is deliberately
-not optimized. -/
+not optimized.
+@isnad1 id=le.2h1v.s6.b3e7d7f5130c from=translated src=- shape=e20baa7c vocab=19c893c6
+-/
 theorem exp_le_one_add_self_add_quadratic_of_le_one {x : ℝ}
     (hx0 : 0 ≤ x) (hx1 : x ≤ 1) :
     Real.exp x ≤ 1 + x + (13 / 18) * x ^ 2 := by
@@ -3446,7 +3738,9 @@ theorem exp_le_one_add_self_add_quadratic_of_le_one {x : ℝ}
           linarith
     _ = 1 + x + (13 / 18) * x ^ 2 := by ring
 
-/-- The matching bound for `exp(-x)` on `[0,1]`. -/
+/-- The matching bound for `exp(-x)` on `[0,1]`.
+@isnad1 id=le.2h1v.s6.d5402b1e943f from=translated src=- shape=ff1e2152 vocab=bc18032a
+-/
 theorem exp_neg_le_one_sub_self_add_quadratic_of_le_one {x : ℝ}
     (hx0 : 0 ≤ x) (hx1 : x ≤ 1) :
     Real.exp (-x) ≤ 1 - x + (13 / 18) * x ^ 2 := by
@@ -3481,7 +3775,9 @@ theorem exp_neg_le_one_sub_self_add_quadratic_of_le_one {x : ℝ}
           linarith
     _ = 1 - x + (13 / 18) * x ^ 2 := by ring
 
-/-- Left Bernoulli log-moment bound used by the annulus Chernoff estimate. -/
+/-- Left Bernoulli log-moment bound used by the annulus Chernoff estimate.
+@isnad1 id=le.2h1v.s7.8659694b8864 from=translated src=- shape=96cb16ef vocab=e745b323
+-/
 theorem bernoulli_third_left_log_le_quadratic {lam : ℝ}
     (hlam0 : 0 ≤ lam) (hlam1 : lam ≤ 1) :
     Real.log (((1 : ℝ) / 3) * Real.exp (-lam) + ((2 : ℝ) / 3)) ≤
@@ -3504,7 +3800,9 @@ theorem bernoulli_third_left_log_le_quadratic {lam : ℝ}
     linarith
   exact hlog.trans hb
 
-/-- Right Bernoulli log-moment bound used by the annulus Chernoff estimate. -/
+/-- Right Bernoulli log-moment bound used by the annulus Chernoff estimate.
+@isnad1 id=le.2h1v.s7.ce1351b7c864 from=translated src=- shape=fa4e7b9c vocab=c4611023
+-/
 theorem bernoulli_third_right_log_le_quadratic {lam : ℝ}
     (hlam0 : 0 ≤ lam) (hlam1 : lam ≤ 1) :
     Real.log (((1 : ℝ) / 3) * Real.exp lam + ((2 : ℝ) / 3)) ≤
@@ -3533,13 +3831,18 @@ may replace this wrapper if a sharper constant is more convenient. -/
 noncomputable def annulusChernoffLambda (A K : ℝ) (n : ℕ) : ℝ :=
   3 * (annulusWidth A K n : ℝ) / ((splitA K n : ℝ) + 1)
 
+/--
+@isnad1 id=le.0h3v.s4.3fed7f148421 from=translated src=- shape=bad53a6c vocab=83838f25
+-/
 theorem annulusChernoffLambda_nonneg (A K : ℝ) (n : ℕ) :
     0 ≤ annulusChernoffLambda A K n := by
   unfold annulusChernoffLambda
   positivity
 
 /-- If `3w≤a`, then the standard Chernoff parameter
-`λ=3w/(a+1)` is at most one. -/
+`λ=3w/(a+1)` is at most one.
+@isnad1 id=le.1h3v.s5.24af18fad176 from=translated src=- shape=d95981ca vocab=46b8307f
+-/
 theorem annulusChernoffLambda_le_one_of_three_width_le_splitA
     {A K : ℝ} {n : ℕ}
     (hwidth : 3 * annulusWidth A K n ≤ splitA K n) :
@@ -3574,7 +3877,9 @@ private theorem chernoff_right_quadratic_le {a w : ℝ} (ha : 0 ≤ a) (hw : 9 �
   ring_nf
   nlinarith only [hproduct]
 
-/-- Left-tail standard-lambda log estimate for the annulus window. -/
+/-- Left-tail standard-lambda log estimate for the annulus window.
+@isnad1 id=le.3h4v.s7.8620a1432e5f from=translated src=- shape=f06f2390 vocab=329baa15
+-/
 theorem left_standard_chernoff_log_le_of_width_exponent
     {A K : ℝ} {n : ℕ} {E : ℝ}
     (hcenter : annulusWidth A K n ≤ splitA K n / 3)
@@ -3603,7 +3908,9 @@ theorem left_standard_chernoff_log_le_of_width_exponent
     _ ≤ -E := neg_le_neg hE
 
 /-- Right-tail standard-lambda log estimate for the annulus window.  The
-assumption `9≤w` absorbs the one-unit floor slack in `rOut`. -/
+assumption `9≤w` absorbs the one-unit floor slack in `rOut`.
+@isnad1 id=le.3h4v.s7.5f004d7c2712 from=translated src=- shape=5dfab4bf vocab=d8d1d1cc
+-/
 theorem right_standard_chernoff_log_le_of_width_exponent
     {A K : ℝ} {n : ℕ} {E : ℝ}
     (hwidth : 9 ≤ (annulusWidth A K n : ℝ))
@@ -3631,7 +3938,9 @@ theorem right_standard_chernoff_log_le_of_width_exponent
     _ ≤ -((1 / 2) * (w ^ 2 / (a + 1))) := chernoff_right_quadratic_le ha hwidth
     _ ≤ -E := neg_le_neg hE
 
-/-- Algebraic form of the Chernoff exponent target with `E_n=6 log n`. -/
+/-- Algebraic form of the Chernoff exponent target with `E_n=6 log n`.
+@isnad1 id=le.1h3v.s7.461486cd2c5e from=translated src=- shape=593ab376 vocab=f582f7f8
+-/
 theorem chernoff_six_log_of_width_sq {A K : ℝ} {n : ℕ}
     (hwidthSq :
       12 * ((splitA K n : ℝ) + 1) * Real.log (n : ℝ) ≤
@@ -3657,6 +3966,7 @@ real estimates are now stated without division:
 * the multiplication-form Bernstein width threshold;
 * the multiplication-form stack threshold;
 * `(4/3)^a ≥ n^2` for ceiling slack.
+@isnad1 id=hasrealh.9h5v.s9.9fcab63e016b from=translated src=- shape=0c54a771 vocab=54972b7f
 -/
 theorem hasRealUpperBound_of_recursiveCostBound_allMulThresholds_finiteBase
     {K A : ℝ} {n0 : ℕ} {lamLeft lamRight : ℕ → ℝ}
@@ -3714,7 +4024,9 @@ theorem hasRealUpperBound_of_recursiveCostBound_allMulThresholds_finiteBase
 
 /-- Same strongest wrapper, but with the split estimate supplied in real form
 `splitM n ≤ n/4` and the ceiling slack supplied in the coarser form
-`n^2 ≤ (4/3)^(n/2)`. -/
+`n^2 ≤ (4/3)^(n/2)`.
+@isnad1 id=hasrealh.9h5v.s9.320cd9caa413 from=translated src=- shape=e88e4d61 vocab=54972b7f
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_realSplit_allMulThresholds_finiteBase
     {K A : ℝ} {n0 : ℕ} {lamLeft lamRight : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -3764,7 +4076,9 @@ theorem hasRealUpperBound_of_recursiveCostBound_realSplit_allMulThresholds_finit
 
 /-- Canonical-lambda version of the reduced wrapper.  This fixes both
 Chernoff parameters to `3w/(a+1)`, leaving only the resulting two explicit
-tail estimates and the deterministic growth thresholds. -/
+tail estimates and the deterministic growth thresholds.
+@isnad1 id=hasrealh.7h3v.s8.7883ad385d13 from=translated src=- shape=8d9ab59f vocab=b3c236ae
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_standardLambda_allMulThresholds_finiteBase
     {K A : ℝ} {n0 : ℕ}
     (hn0_pos : 0 < n0)
@@ -3807,7 +4121,9 @@ theorem hasRealUpperBound_of_recursiveCostBound_standardLambda_allMulThresholds_
     hceilHalf
 
 /-- Standard-lambda wrapper with the ceiling slack fully discharged by the
-explicit elementary threshold `n0≥58`. -/
+explicit elementary threshold `n0≥58`.
+@isnad1 id=hasrealh.7h3v.s8.ae57fed73e38 from=translated src=- shape=3dccb188 vocab=b3c236ae
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_standardLambda_noCeilSlack_finiteBase
     {K A : ℝ} {n0 : ℕ}
     (hn0_pos : 0 < n0)
@@ -3845,7 +4161,9 @@ theorem hasRealUpperBound_of_recursiveCostBound_standardLambda_noCeilSlack_finit
       sq_le_four_thirds_pow_half_of_ge n (hn0_growth.trans hn))
 
 /-- Same standard-lambda wrapper, with the split estimate reduced to the
-ceiling-core inequality `K sqrt(n log n)+1 ≤ n/4`. -/
+ceiling-core inequality `K sqrt(n log n)+1 ≤ n/4`.
+@isnad1 id=hasrealh.8h3v.s9.4ae825b81f85 from=translated src=- shape=e6b1b8b9 vocab=c54bbad8
+-/
 theorem hasRealUpperBound_of_recursiveCostBound_coreSplit_standardLambda_noCeilSlack_finiteBase
     {K A : ℝ} {n0 : ℕ}
     (hn0_pos : 0 < n0)
@@ -3891,7 +4209,9 @@ theorem hasRealUpperBound_of_recursiveCostBound_coreSplit_standardLambda_noCeilS
 
 /-- Same as
 `hasRealUpperBound_of_recursiveCostBound_coreSplit_standardLambda_noCeilSlack_finiteBase`,
-but discharging split-core nonnegativity from `K≥0`. -/
+but discharging split-core nonnegativity from `K≥0`.
+@isnad1 id=hasrealh.8h3v.s8.35365b9b78d5 from=translated src=- shape=8d56ab95 vocab=c54bbad8
+-/
 theorem hasRealUpperBound_of_coreSplit_Knonneg_standardLambda_finiteBase
     {K A : ℝ} {n0 : ℕ}
     (hn0_pos : 0 < n0)
@@ -3936,6 +4256,7 @@ tail estimates are now split into:
 
 * a bound of each named Chernoff term by `exp(-E_n)`;
 * the log budget `log 16 + 2 log n ≤ E_n`.
+@isnad1 id=hasrealh.9h4v.s9.1cb06e4473b0 from=translated src=- shape=22d22a21 vocab=5c2d09fc
 -/
 theorem hasRealUpperBound_of_coreSplit_Knonneg_standardLambda_tailExponent_finiteBase
     {K A : ℝ} {n0 : ℕ} {tailExponent : ℕ → ℝ}
@@ -3992,7 +4313,9 @@ theorem hasRealUpperBound_of_coreSplit_Knonneg_standardLambda_tailExponent_finit
     hstackMul
 
 /-- Same tail-exponent wrapper, but with the dimension split reduced to the
-clean log-linear estimate `K^2 log n ≤ n/64`. -/
+clean log-linear estimate `K^2 log n ≤ n/64`.
+@isnad1 id=hasrealh.9h4v.s8.47ec55499b29 from=translated src=- shape=01930e8e vocab=fb98a6cf
+-/
 theorem hasRealUpperBound_of_logLinearSplit_Knonneg_standardLambda_tailExponent_finiteBase
     {K A : ℝ} {n0 : ℕ} {tailExponent : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -4042,7 +4365,9 @@ theorem hasRealUpperBound_of_logLinearSplit_Knonneg_standardLambda_tailExponent_
     hstackMul
 
 /-- Version with both the split and stack-size thresholds stated in logarithmic
-form.  The remaining multiplicative threshold is the Bernstein width estimate. -/
+form.  The remaining multiplicative threshold is the Bernstein width estimate.
+@isnad1 id=hasrealh.9h4v.s9.a535a0a3f4d4 from=translated src=- shape=02d69895 vocab=fb98a6cf
+-/
 theorem hasRealUpperBound_of_logLinearSplit_Knonneg_standardLambda_tailExponent_stackLog_finiteBase
     {K A : ℝ} {n0 : ℕ} {tailExponent : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -4093,7 +4418,9 @@ theorem hasRealUpperBound_of_logLinearSplit_Knonneg_standardLambda_tailExponent_
 
 /-- Current most log-reduced wrapper.  The split, Bernstein-width threshold,
 and stack-size threshold are all stated as logarithmic estimates; the Chernoff
-terms are stated through an explicit tail exponent. -/
+terms are stated through an explicit tail exponent.
+@isnad1 id=hasrealh.9h4v.s9.acf6368ecece from=translated src=- shape=707c75fc vocab=77776fb0
+-/
 theorem hasRealUpperBound_of_logThresholds_Knonneg_standardLambda_tailExponent_finiteBase
     {K A : ℝ} {n0 : ℕ} {tailExponent : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -4146,7 +4473,9 @@ theorem hasRealUpperBound_of_logThresholds_Knonneg_standardLambda_tailExponent_f
 /-- Same log-threshold wrapper with the annulus-width ceiling isolated.  The
 width and stack hypotheses use the real core
 `A sqrt(a log(2n^2)) + 1`, which is the form expected for the remaining
-large-`n` analytic estimates. -/
+large-`n` analytic estimates.
+@isnad1 id=hasrealh.10h4v.s9.97a931d41358 from=translated src=- shape=0708b6e1 vocab=c0e4984e
+-/
 theorem hasRealUpperBound_of_coreLogThresholds_Knonneg_standardLambda_tailExponent_finiteBase
     {K A : ℝ} {n0 : ℕ} {tailExponent : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -4207,7 +4536,9 @@ theorem hasRealUpperBound_of_coreLogThresholds_Knonneg_standardLambda_tailExpone
 /-- Coarsest current large-`n` wrapper.  The width and stack side conditions
 now use only the envelope `sqrt(3n log n)` and the lower estimate
 `splitM/5 ≥ K sqrt(n log n)/5 - 1`; the exact integer floors and ceilings are
-handled internally. -/
+handled internally.
+@isnad1 id=hasrealh.10h4v.s9.17ec4bb573a7 from=translated src=- shape=cfd7b048 vocab=be1229e0
+-/
 theorem hasRealUpperBound_of_coarseLogThresholds_Knonneg_standardLambda_tailExponent_finiteBase
     {K A : ℝ} {n0 : ℕ} {tailExponent : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -4286,7 +4617,9 @@ theorem hasRealUpperBound_of_coarseLogThresholds_Knonneg_standardLambda_tailExpo
 
 /-- Same coarse wrapper, with the Chernoff hypotheses stated directly as
 logarithmic exponent estimates for the standard parameter
-`annulusChernoffLambda`. -/
+`annulusChernoffLambda`.
+@isnad1 id=hasrealh.10h4v.s9.aaaf84e4e9f6 from=translated src=- shape=b5a4e9c7 vocab=a1906a15
+-/
 theorem hasRealUpperBound_of_coarseLogThresholds_Knonneg_standardLambda_logChernoff_finiteBase
     {K A : ℝ} {n0 : ℕ} {tailExponent : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -4356,7 +4689,9 @@ theorem hasRealUpperBound_of_coarseLogThresholds_Knonneg_standardLambda_logChern
     hstackCoarse
 
 /-- Variant of the coarse logarithmic wrapper where the tail budget is supplied
-as the simpler estimate `6 log n ≤ E_n`. -/
+as the simpler estimate `6 log n ≤ E_n`.
+@isnad1 id=hasrealh.10h4v.s9.a25583af6321 from=translated src=- shape=450c4876 vocab=a1906a15
+-/
 theorem hasRealUpperBound_of_coarseLogThresholds_logChernoff_sixLog_finiteBase
     {K A : ℝ} {n0 : ℕ} {tailExponent : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -4422,7 +4757,9 @@ theorem hasRealUpperBound_of_coarseLogThresholds_logChernoff_sixLog_finiteBase
 
 /-- Current strongest wrapper.  This uses the corrected stack margin
 `log(4/3)-log(2)/3`, rather than the overly coarse replacement of `a/3` by
-`n/3`. -/
+`n/3`.
+@isnad1 id=hasrealh.10h4v.s9.b34e8bae0332 from=translated src=- shape=4f44ed9b vocab=a1906a15
+-/
 theorem hasRealUpperBound_of_widthCoarse_stackMargin_logChernoff_sixLog_finiteBase
     {K A : ℝ} {n0 : ℕ} {tailExponent : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -4518,7 +4855,9 @@ theorem hasRealUpperBound_of_widthCoarse_stackMargin_logChernoff_sixLog_finiteBa
 
 /-- Sqrt-coefficient version of the current strongest wrapper.  The remaining
 width and stack estimates are now stated with explicit coefficients multiplying
-`sqrt(n log n)`. -/
+`sqrt(n log n)`.
+@isnad1 id=hasrealh.10h4v.s9.20867de12865 from=translated src=- shape=3c8f1c7b vocab=a1906a15
+-/
 theorem hasRealUpperBound_of_sqrtMargins_logChernoff_sixLog_finiteBase
     {K A : ℝ} {n0 : ℕ} {tailExponent : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -4578,7 +4917,9 @@ theorem hasRealUpperBound_of_sqrtMargins_logChernoff_sixLog_finiteBase
 /-- Constant-domination version of the sqrt-margin wrapper.  It uses
 `15A√3≤K` to reduce the width estimate to a residual
 `(K/15)log(2)sqrt(n log n)` budget, and reduces the stack estimate to the
-linear margin budget. -/
+linear margin budget.
+@isnad1 id=hasrealh.11h4v.s9.c2cc47b6b2bf from=translated src=- shape=807adf08 vocab=a1906a15
+-/
 theorem hasRealUpperBound_of_Kdom_logBudgets_logChernoff_sixLog_finiteBase
     {K A : ℝ} {n0 : ℕ} {tailExponent : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -4641,7 +4982,9 @@ theorem hasRealUpperBound_of_Kdom_logBudgets_logChernoff_sixLog_finiteBase
 `hasRealUpperBound_of_Kdom_logBudgets_logChernoff_sixLog_finiteBase`, this
 replaces the raw width logarithm by the cleaner bound
 `log 128+4log 2+5log n`, and splits the stack logarithmic budget into its
-growing and constant pieces. -/
+growing and constant pieces.
+@isnad1 id=hasrealh.12h4v.s9.9220a9002df4 from=translated src=- shape=24a42bc2 vocab=a1906a15
+-/
 theorem hasRealUpperBound_of_Kdom_simpleLogBudgets_logChernoff_sixLog_finiteBase
     {K A : ℝ} {n0 : ℕ} {tailExponent : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -4713,7 +5056,9 @@ analysis in the form intended for the final threshold check:
 * `K log 2≥150` lets `sqrt(n log n)` pay for the `5 log n` part of the
   simplified width budget;
 * one width condition pays for the remaining constant;
-* the stack margin is split into `sqrt(n log n)` and constant lower bounds. -/
+* the stack margin is split into `sqrt(n log n)` and constant lower bounds.
+@isnad1 id=hasrealh.13h4v.s9.8213531a1d10 from=translated src=- shape=24cab97a vocab=a1906a15
+-/
 theorem hasRealUpperBound_of_Kdom_largeNLogBudgets_logChernoff_sixLog_finiteBase
     {K A : ℝ} {n0 : ℕ} {tailExponent : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -4786,7 +5131,9 @@ theorem hasRealUpperBound_of_Kdom_largeNLogBudgets_logChernoff_sixLog_finiteBase
 
 /-- Same large-`n` wrapper, but the split budget is discharged by the explicit
 quadratic cutoff `(128K^2)^2≤n0`, and the stack constant budget is discharged
-by checking it once at `n0`. -/
+by checking it once at `n0`.
+@isnad1 id=hasrealh.13h4v.s9.51adb7e6a31e from=translated src=- shape=ec55a260 vocab=a1906a15
+-/
 theorem hasRealUpperBound_of_Kdom_thresholdBudgets_logChernoff_sixLog_finiteBase
     {K A : ℝ} {n0 : ℕ} {tailExponent : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -4852,7 +5199,9 @@ theorem hasRealUpperBound_of_Kdom_thresholdBudgets_logChernoff_sixLog_finiteBase
 
 /-- Log-linear stack-budget wrapper.  The stack square-root side condition is
 replaced by `16 log n≤n c^2`, where
-`c=log(4/3)-log(2)/3`. -/
+`c=log(4/3)-log(2)/3`.
+@isnad1 id=hasrealh.13h4v.s9.753962e9bc08 from=translated src=- shape=fc19b77e vocab=a1906a15
+-/
 theorem hasRealUpperBound_of_Kdom_logLinearBudgets_logChernoff_sixLog_finiteBase
     {K A : ℝ} {n0 : ℕ} {tailExponent : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -4914,7 +5263,9 @@ theorem hasRealUpperBound_of_Kdom_logLinearBudgets_logChernoff_sixLog_finiteBase
 
 /-- Cutoff-budget wrapper.  The split, width constant, and stack constant
 deterministic side conditions are all checked at the cutoff.  The only
-remaining quantified deterministic budget is the log-linear stack estimate. -/
+remaining quantified deterministic budget is the log-linear stack estimate.
+@isnad1 id=hasrealh.13h4v.s9.2b95f52ba38a from=translated src=- shape=a745a9f8 vocab=a1906a15
+-/
 theorem hasRealUpperBound_of_Kdom_cutoffBudgets_logChernoff_sixLog_finiteBase
     {K A : ℝ} {n0 : ℕ} {tailExponent : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -4980,7 +5331,9 @@ theorem hasRealUpperBound_of_Kdom_cutoffBudgets_logChernoff_sixLog_finiteBase
 
 /-- Deterministic-cutoff version of the current upper-bound wrapper.  At this
 level the non-Chernoff side conditions are all finite cutoff inequalities:
-split, width constant, stack log-linear, and stack constant. -/
+split, width constant, stack log-linear, and stack constant.
+@isnad1 id=hasrealh.13h4v.s9.55fce5f80bb7 from=translated src=- shape=97358ffc vocab=889db12c
+-/
 theorem hasRealUpperBound_of_Kdom_deterministicCutoffs_logChernoff_sixLog_finiteBase
     {K A : ℝ} {n0 : ℕ} {tailExponent : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -5042,7 +5395,9 @@ theorem hasRealUpperBound_of_Kdom_deterministicCutoffs_logChernoff_sixLog_finite
 
 /-- Chernoff-reduced version of the deterministic-cutoff wrapper.  The raw
 left/right logarithmic Chernoff hypotheses are replaced by the standard
-annulus-width exponent condition for `λ=3w/(a+1)`. -/
+annulus-width exponent condition for `λ=3w/(a+1)`.
+@isnad1 id=hasrealh.15h4v.s9.8438473ddb25 from=translated src=- shape=88df3e11 vocab=d3a4f13d
+-/
 theorem hasRealUpperBound_of_Kdom_deterministicCutoffs_chernoffWidthExponent_finiteBase
     {K A : ℝ} {n0 : ℕ} {tailExponent : ℕ → ℝ}
     (hn0_pos : 0 < n0)
@@ -5116,7 +5471,9 @@ theorem hasRealUpperBound_of_Kdom_deterministicCutoffs_chernoffWidthExponent_fin
 
 /-- Chernoff wrapper with the natural choice `E_n = 6 log n`.  The two
 structural Chernoff side conditions `rIn≤a/3-w` and `λ≤1` are both discharged
-from the single annulus condition `3w≤a`. -/
+from the single annulus condition `3w≤a`.
+@isnad1 id=hasrealh.13h3v.s9.cfe6d450c48a from=translated src=- shape=b74ddf5c vocab=cfdffc7a
+-/
 theorem hasRealUpperBound_of_Kdom_deterministicCutoffs_chernoffSixLog_finiteBase
     {K A : ℝ} {n0 : ℕ}
     (hn0_pos : 0 < n0)
@@ -5176,7 +5533,9 @@ theorem hasRealUpperBound_of_Kdom_deterministicCutoffs_chernoffSixLog_finiteBase
     hstackConstCutoff
 
 /-- Same Chernoff-six-log wrapper, with the exponent condition stated as the
-squared-width lower bound `12(a+1)log n≤w^2`. -/
+squared-width lower bound `12(a+1)log n≤w^2`.
+@isnad1 id=hasrealh.13h3v.s9.da5b25ebeb18 from=translated src=- shape=bbf2e4a7 vocab=cfdffc7a
+-/
 theorem hasRealUpperBound_of_Kdom_deterministicCutoffs_chernoffWidthSq_finiteBase
     {K A : ℝ} {n0 : ℕ}
     (hn0_pos : 0 < n0)
@@ -5232,6 +5591,7 @@ side conditions are now stated using the real expression
 * `3(core+1)≤a` makes the actual integer width satisfy `3w≤a`;
 * `core≥9` gives the right-tail floor-slack condition;
 * `12(a+1)log n≤core^2` gives the six-log Chernoff exponent.
+@isnad1 id=hasrealh.13h3v.s9.d1d4a06d5a2a from=translated src=- shape=efafdc7f vocab=a1fc8733
 -/
 theorem hasRealUpperBound_of_Kdom_deterministicCutoffs_chernoffCoreWidth_finiteBase
     {K A : ℝ} {n0 : ℕ}
@@ -5292,7 +5652,9 @@ theorem hasRealUpperBound_of_Kdom_deterministicCutoffs_chernoffCoreWidth_finiteB
     hstackLogThreshold
     hstackConstCutoff
 
-/-- The split estimate derived from the explicit quadratic cutoff. -/
+/-- The split estimate derived from the explicit quadratic cutoff.
+@isnad1 id=le.4h3v.s6.910252c0c216 from=translated src=- shape=39908d66 vocab=376f5a47
+-/
 theorem four_mul_splitM_le_of_Knonneg_splitThreshold
     {K : ℝ} {n0 n : ℕ}
     (hK : 0 ≤ K)
@@ -5326,6 +5688,7 @@ checks, while the annulus Chernoff hypotheses are reduced to:
 * a coarse upper bound making the annulus width fit inside `a/3`;
 * one cutoff check implying `core≥9` thereafter;
 * the constant inequality `A^2≥16`, which gives the six-log Chernoff exponent.
+@isnad1 id=hasrealh.13h3v.s9.83de5d28e7c7 from=translated src=- shape=94b97bd9 vocab=62dba007
 -/
 theorem hasRealUpperBound_of_Kdom_finalAnalyticBudgets_finiteBase
     {K A : ℝ} {n0 : ℕ}
@@ -5415,7 +5778,9 @@ theorem hasRealUpperBound_of_Kdom_finalAnalyticBudgets_finiteBase
 
 /-- A quadratic cutoff sufficient for the coarse annulus-width fit
 `3(A sqrt(3n log n)+1)≤3n/4`.  This is the same split estimate with
-the coefficient `A sqrt 3`. -/
+the coefficient `A sqrt 3`.
+@isnad1 id=le.4h3v.s7.2bc658079102 from=translated src=- shape=72ba94ef vocab=8f3090fa
+-/
 theorem three_core_coarse_of_width_threshold
     {A : ℝ} {n0 n : ℕ}
     (hA : 0 ≤ A)
@@ -5450,7 +5815,9 @@ theorem three_core_coarse_of_width_threshold
 /-- Cutoff-only annulus analytic wrapper.  Compared with
 `hasRealUpperBound_of_Kdom_finalAnalyticBudgets_finiteBase`, the remaining
 coarse width-fit hypothesis has also been collapsed to one quadratic cutoff
-condition at `n0`. -/
+condition at `n0`.
+@isnad1 id=hasrealh.13h3v.s9.87409298068e from=translated src=- shape=f63c0836 vocab=62dba007
+-/
 theorem hasRealUpperBound_of_Kdom_cutoffAnalyticBudgets_finiteBase
     {K A : ℝ} {n0 : ℕ}
     (hn0_pos : 0 < n0)
@@ -5503,7 +5870,9 @@ theorem hasRealUpperBound_of_Kdom_cutoffAnalyticBudgets_finiteBase
 
 /-- Explicit-constant version with `A=4` and `K=217`.  All structural
 constant inequalities are discharged; what remains is a finite list of cutoff
-checks at `n0`. -/
+checks at `n0`.
+@isnad1 id=hasrealh.8h1v.s9.b8465f670219 from=translated src=- shape=632f26a8 vocab=62dba007
+-/
 theorem hasRealUpperBound_of_explicitConstants_cutoff_finiteBase
     {n0 : ℕ}
     (hn0_pos : 0 < n0)
@@ -5555,7 +5924,9 @@ theorem hasRealUpperBound_of_explicitConstants_cutoff_finiteBase
     hstackConstCutoff
 
 /-- For the explicit constants `A=4`, `K=217`, the split cutoff is stronger
-than the width-fit cutoff. -/
+than the width-fit cutoff.
+@isnad1 id=le.1h1v.s7.22ef4d1b833b from=translated src=- shape=9b5c0292 vocab=42aab4bf
+-/
 theorem explicit_widthFitThreshold_of_splitThreshold {n0 : ℕ}
     (hsplitThreshold : (128 * (217 : ℝ) ^ 2) ^ 2 ≤ (n0 : ℝ)) :
     (128 * ((4 : ℝ) * Real.sqrt 3) ^ 2) ^ 2 ≤ (n0 : ℝ) := by
@@ -5582,7 +5953,9 @@ theorem explicit_widthFitThreshold_of_splitThreshold {n0 : ℕ}
   exact hsq.trans hsplitThreshold
 
 /-- Explicit-constant version with the width-fit cutoff discharged from the
-split cutoff. -/
+split cutoff.
+@isnad1 id=hasrealh.7h1v.s8.027ee43d56b2 from=translated src=- shape=73cd46da vocab=62dba007
+-/
 theorem hasRealUpperBound_of_explicitConstants_mainCutoffs_finiteBase
     {n0 : ℕ}
     (hn0_pos : 0 < n0)
@@ -5616,7 +5989,9 @@ theorem hasRealUpperBound_of_explicitConstants_mainCutoffs_finiteBase
     hstackLogThreshold
     hstackConstCutoff
 
-/-- For `A=4`, the `core≥9` cutoff follows from the split cutoff. -/
+/-- For `A=4`, the `core≥9` cutoff follows from the split cutoff.
+@isnad1 id=le.1h1v.s7.cb395fb73257 from=translated src=- shape=2ed81475 vocab=3f4f6c65
+-/
 theorem explicit_coreNineCutoff_of_splitThreshold {n0 : ℕ}
     (hsplitThreshold : (128 * (217 : ℝ) ^ 2) ^ 2 ≤ (n0 : ℝ)) :
     81 ≤ (4 : ℝ) ^ 2 * (((3 : ℝ) * (n0 : ℝ) / 4) *
@@ -5635,7 +6010,9 @@ theorem explicit_coreNineCutoff_of_splitThreshold {n0 : ℕ}
     hlog2Lower.trans hlog2le
   nlinarith
 
-/-- For `K=217`, the width constant cutoff follows from the split cutoff. -/
+/-- For `K=217`, the width constant cutoff follows from the split cutoff.
+@isnad1 id=le.1h1v.s7.d5f63c4924b2 from=translated src=- shape=cb67df18 vocab=8f3090fa
+-/
 theorem explicit_widthConstCutoff_of_splitThreshold {n0 : ℕ}
     (hsplitThreshold : (128 * (217 : ℝ) ^ 2) ^ 2 ≤ (n0 : ℝ)) :
     Real.log 128 + 4 * Real.log 2 ≤
@@ -5664,7 +6041,9 @@ theorem explicit_widthConstCutoff_of_splitThreshold {n0 : ℕ}
         Real.sqrt ((n0 : ℝ) * Real.log (n0 : ℝ)) :=
       mul_le_mul hcoeffLower hsqrtLower (by norm_num) (by linarith only [hcoeffLower])
 
-/-- The stack logarithmic cutoff follows from the explicit split cutoff. -/
+/-- The stack logarithmic cutoff follows from the explicit split cutoff.
+@isnad1 id=le.1h1v.s6.95cb0152bac0 from=translated src=- shape=af6b5902 vocab=431797dd
+-/
 theorem explicit_stackLogThreshold_of_splitThreshold {n0 : ℕ}
     (hsplitThreshold : (128 * (217 : ℝ) ^ 2) ^ 2 ≤ (n0 : ℝ)) :
     (32 / stackMargin ^ 2) ^ 2 ≤ (n0 : ℝ) := by
@@ -5685,7 +6064,9 @@ theorem explicit_stackLogThreshold_of_splitThreshold {n0 : ℕ}
     norm_num
   exact hsqLe.trans (hbig.trans hsplitThreshold)
 
-/-- The stack constant cutoff follows from the explicit split cutoff. -/
+/-- The stack constant cutoff follows from the explicit split cutoff.
+@isnad1 id=le.1h1v.s7.1471c83541b0 from=translated src=- shape=c5aebd03 vocab=400015d6
+-/
 theorem explicit_stackConstCutoff_of_splitThreshold {n0 : ℕ}
     (hsplitThreshold : (128 * (217 : ℝ) ^ 2) ^ 2 ≤ (n0 : ℝ)) :
     12 * Real.log 2 ≤
@@ -5706,7 +6087,9 @@ theorem explicit_stackConstCutoff_of_splitThreshold {n0 : ℕ}
   simpa [stackMargin] using hmain
 
 /-- Fully explicit upper-bound theorem with `A=4`, `K=217`, conditional only
-on the split cutoff. -/
+on the split cutoff.
+@isnad1 id=hasrealh.3h1v.s6.89f674035fd9 from=translated src=- shape=cbdc1b56 vocab=a1633070
+-/
 theorem hasRealUpperBound_of_explicitConstants_splitCutoff_finiteBase
     {n0 : ℕ}
     (hn0_pos : 0 < n0)
@@ -5734,19 +6117,30 @@ theorem hasRealUpperBound_of_explicitConstants_splitCutoff_finiteBase
 def explicitCutoff : ℕ :=
   36329454321664
 
+/--
+@isnad1 id=lt.0h0v.s3.412dcbb092ae from=translated src=- shape=ff3a10fc vocab=9125187f
+-/
 theorem explicitCutoff_pos : 0 < explicitCutoff := by
   norm_num [explicitCutoff]
 
+/--
+@isnad1 id=le.0h0v.s3.4e68a8c0dd8e from=translated src=- shape=ff3a10fc vocab=2bdfe177
+-/
 theorem explicitCutoff_growth : 58 ≤ explicitCutoff := by
   norm_num [explicitCutoff]
 
+/--
+@isnad1 id=le.0h0v.s6.8519a81abd36 from=translated src=- shape=1ea6ff8a vocab=8616edef
+-/
 theorem explicitCutoff_splitThreshold :
     (128 * (217 : ℝ) ^ 2) ^ 2 ≤ (explicitCutoff : ℝ) := by
   norm_num [explicitCutoff]
 
 /-- Fully explicit paper-parameter upper bound.  The constant is not optimized;
 it is the finite-base normalized constant generated by the recursive schedule
-with `A=4`, `K=217`, and `n0 = 36,329,454,321,664`. -/
+with `A=4`, `K=217`, and `n0 = 36,329,454,321,664`.
+@isnad1 id=hasrealh.0h0v.s5.a7c6921bdcad from=translated src=- shape=b3be7732 vocab=06db515e
+-/
 theorem hasRealUpperBound_explicitConstants :
     HasRealHypercubePebblingUpperBound
       (Real.exp (4 * loss explicitCutoff) *
@@ -5759,7 +6153,9 @@ theorem hasRealUpperBound_explicitConstants :
     explicitCutoff_splitThreshold
 
 /-- Any relationally optimal pebbling number is bounded above by the explicit
-constant generated by the formal upper-bound construction. -/
+constant generated by the formal upper-bound construction.
+@isnad1 id=le.1h2v.s7.1587d0b2691c from=translated src=- shape=1f1c7f54 vocab=7dfd6983
+-/
 theorem explicit_upper_bound_of_isOptimalNumber {n k : ℕ}
     (hopt : Pebbling.IsOptimalNumber (graph n) k) :
     (k : ℝ) ≤
@@ -5781,7 +6177,9 @@ theorem explicit_upper_bound_of_isOptimalNumber {n k : ℕ}
 
 /-- Final packaged asymptotic bounds for any `k` certified as the optimal
 pebbling number of `Q_n`: the formal lower bound and the explicit real upper
-bound. -/
+bound.
+@isnad1 id=and.1h2v.s7.2a41b2c295d0 from=translated src=- shape=776c3f32 vocab=f641e919
+-/
 theorem explicit_bounds_of_isOptimalNumber {n k : ℕ}
     (hopt : Pebbling.IsOptimalNumber (graph n) k) :
     ((4 : ℚ) / 3) ^ n ≤ (k : ℚ) ∧

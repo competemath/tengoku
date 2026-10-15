@@ -76,6 +76,7 @@ class NuclearSpace (E : Type*) [AddCommGroup E] [Module ℝ E]
 
 For a continuous seminorm `q` and any vector `f`, there exists a continuous
 linear functional `φ` attaining `q` at `f` and bounded by `q` everywhere.
+@isnad1 id=ex.1h3v.s9.67a659afaa05 from=translated src=- shape=a7265267 vocab=f7ea1940
 -/
 lemma exists_CLF_le_seminorm
     {E : Type*} [AddCommGroup E] [Module ℝ E]
@@ -130,6 +131,7 @@ growth in each seminorm has a uniform polynomial bound.
 Given `p' : ι → Seminorm ℝ E` and a finite set `s`, if each `p' i` for `i ∈ s`
 satisfies `p' i (x m) ≤ Cᵢ · (1+m)^{tᵢ}`, then `(s.sup p') (x m) ≤ D · (1+m)^S`
 where `S = max tᵢ` and `D = ∑ Cᵢ`.
+@isnad1 id=ex.1h5v.s9.7a69893436d5 from=translated src=- shape=aa7a387f vocab=3e1016f5
 -/
 lemma finset_sup_poly_bound {E : Type*} [AddCommGroup E] [Module ℝ E]
     {ι : Type*}
@@ -174,6 +176,7 @@ For a continuous seminorm `q` and a Schauder basis with expansion
 
 The proof uses Hahn-Banach to find a CLF `φ` with `φ(f) = q(f)` and `|φ| ≤ q`,
 then applies the Schauder expansion to `φ` and bounds the resulting tsum.
+@isnad1 id=le.1h3v.s9.b47e080dbdbc from=translated src=- shape=9a8b2a41 vocab=a1152120
 -/
 lemma seminorm_le_nuclear_expansion
     {E : Type*} [AddCommGroup E] [Module ℝ E]

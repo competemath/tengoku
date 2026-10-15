@@ -41,14 +41,18 @@ by `multipliable_one_sub_mul_pow`. -/
 noncomputable def qPochhammerInf (a q : ℂ) : ℂ := ∏' k : ℕ, (1 - a * q ^ k)
 
 /-- For $\|q\| < 1$ the sequence $n \mapsto \|{-}(a q^n)\|$ is summable: it is the
-geometric series $\|a\| \cdot \|q\|^n$. -/
+geometric series $\|a\| \cdot \|q\|^n$.
+@isnad1 id=summable.1h2v.s5.754f020c52d1 from=translated src=- shape=1a664a80 vocab=e45b45c7
+-/
 theorem summable_norm_neg_mul_pow {a q : ℂ} (hq : ‖q‖ < 1) :
     Summable fun n : ℕ => ‖-(a * q ^ n)‖ := by
   simpa [norm_neg, norm_mul, norm_pow] using
     (summable_geometric_of_lt_one (norm_nonneg q) hq).mul_left ‖a‖
 
 /-- If $\|z\| < 1$ and $\|q\| \le 1$ then $z q^k \ne 1$, so the q-Pochhammer factors
-$1 - z q^k$ are all nonzero. -/
+$1 - z q^k$ are all nonzero.
+@isnad1 id=ne.2h3v.s6.133bd706c0b5 from=translated src=- shape=2186a43f vocab=b0fbcc0a
+-/
 theorem one_sub_mul_pow_ne_zero {z q : ℂ} (hz : ‖z‖ < 1) (hq : ‖q‖ ≤ 1) (k : ℕ) :
     (1 : ℂ) - z * q ^ k ≠ 0 := by
   intro h
@@ -57,23 +61,31 @@ theorem one_sub_mul_pow_ne_zero {z q : ℂ} (hz : ‖z‖ < 1) (hq : ‖q‖ ≤
   nlinarith [norm_nonneg z, pow_le_one₀ (norm_nonneg q) hq (n := k),
     pow_nonneg (norm_nonneg q) k]
 
-/-- For $\|q\| < 1$, the product $\prod_{k \geq 0}(1 - aq^k)$ is multipliable. -/
+/-- For $\|q\| < 1$, the product $\prod_{k \geq 0}(1 - aq^k)$ is multipliable.
+@isnad1 id=multipli.1h2v.s6.c9814ba40fb1 from=translated src=- shape=e7e9ebda vocab=78c5637f
+-/
 theorem multipliable_one_sub_mul_pow {a q : ℂ} (hq : ‖q‖ < 1) :
     Multipliable (fun k : ℕ => 1 - a * q ^ k) := by
   simpa [sub_eq_add_neg] using
     multipliable_one_add_of_summable (summable_norm_neg_mul_pow (a := a) hq)
 
-/-- **Non-vanishing of $(q;q)_n$ for $\|q\| < 1$.** -/
+/-- **Non-vanishing of $(q;q)_n$ for $\|q\| < 1$.**
+@isnad1 id=ne.1h2v.s5.84c8dcf02893 from=translated src=- shape=2e792c48 vocab=1b781f9f
+-/
 theorem qPochhammer_self_ne_zero {q : ℂ} (hq : ‖q‖ < 1) (n : ℕ) :
     qPochhammer q q n ≠ 0 :=
   Finset.prod_ne_zero_iff.mpr fun k _ => one_sub_mul_pow_ne_zero hq hq.le k
 
-/-- **Non-vanishing of $(z;q)_n$ when $\|z\| < 1$ and $\|q\| \le 1$.** -/
+/-- **Non-vanishing of $(z;q)_n$ when $\|z\| < 1$ and $\|q\| \le 1$.**
+@isnad1 id=ne.2h3v.s5.ba44a9d86a75 from=translated src=- shape=285b3739 vocab=3d240f21
+-/
 theorem qPochhammer_ne_zero {z q : ℂ} (hz : ‖z‖ < 1) (hq : ‖q‖ ≤ 1)
     (n : ℕ) : qPochhammer z q n ≠ 0 :=
   Finset.prod_ne_zero_iff.mpr fun k _ => one_sub_mul_pow_ne_zero hz hq k
 
-/-- Helper: $(a;q)_\infty \neq 0$ when every factor is nonzero. -/
+/-- Helper: $(a;q)_\infty \neq 0$ when every factor is nonzero.
+@isnad1 id=ne.2h2v.s6.46cc5cddb0eb from=translated src=- shape=f9db85fb vocab=d8501a82
+-/
 theorem qPochhammerInf_ne_zero_of_forall_ne_zero {a q : ℂ} (hq : ‖q‖ < 1)
     (hfac : ∀ k : ℕ, (1 : ℂ) - a * q ^ k ≠ 0) :
     qPochhammerInf a q ≠ 0 := by
@@ -82,12 +94,16 @@ theorem qPochhammerInf_ne_zero_of_forall_ne_zero {a q : ℂ} (hq : ‖q‖ < 1)
     (fun i => by rw [← sub_eq_add_neg]; exact hfac i) (summable_norm_neg_mul_pow hq)
   simpa [qPochhammerInf, sub_eq_add_neg] using h_main
 
-/-- **Non-vanishing of $(z;q)_\infty$ for $\|z\| < 1, \|q\| < 1$.** -/
+/-- **Non-vanishing of $(z;q)_\infty$ for $\|z\| < 1, \|q\| < 1$.**
+@isnad1 id=ne.2h2v.s5.dac825acb418 from=translated src=- shape=b7ef397d vocab=dcf5736c
+-/
 theorem qPochhammerInf_ne_zero {z q : ℂ} (hz : ‖z‖ < 1) (hq : ‖q‖ < 1) :
     qPochhammerInf z q ≠ 0 :=
   qPochhammerInf_ne_zero_of_forall_ne_zero hq fun k => one_sub_mul_pow_ne_zero hz hq.le k
 
-/-- **Partial products converge to $(a;q)_\infty$.** -/
+/-- **Partial products converge to $(a;q)_\infty$.**
+@isnad1 id=tendsto.1h2v.s5.148e7870f2ef from=translated src=- shape=297bd5e8 vocab=2578fccc
+-/
 theorem tendsto_qPochhammer {a q : ℂ} (hq : ‖q‖ < 1) :
     Tendsto (fun n => qPochhammer a q n) atTop (𝓝 (qPochhammerInf a q)) := by
   have hmul : Multipliable (fun k : ℕ => 1 - a * q ^ k) :=
@@ -95,7 +111,9 @@ theorem tendsto_qPochhammer {a q : ℂ} (hq : ‖q‖ < 1) :
   simpa [qPochhammer, qPochhammerInf] using hmul.hasProd.tendsto_prod_nat
 
 /-- **Telescoping recursion for $(z;q)_\infty$.**
-$(z;q)_\infty = (1 - z) \cdot (zq;q)_\infty$. -/
+$(z;q)_\infty = (1 - z) \cdot (zq;q)_\infty$.
+@isnad1 id=eq.1h2v.s5.a2206dd555e6 from=translated src=- shape=1948f94a vocab=f79765ce
+-/
 theorem qPochhammerInf_eq_one_sub_mul {z q : ℂ} (hq : ‖q‖ < 1) :
     qPochhammerInf z q = (1 - z) * qPochhammerInf (z * q) q := by
   have h_fin : ∀ n : ℕ,

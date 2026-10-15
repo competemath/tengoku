@@ -26,6 +26,9 @@ variable (K : Type*) [Field K] [NumberField K] [IsTotallyComplex K]
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=integrab.1h2v.s6.dbc0fa06863d from=translated src=- shape=196e2edb vocab=7042a69d
+-/
 theorem integrableOn_positive_logarithmicMellinWeight
     {s : ℂ} (hs : s.re < 0) :
     IntegrableOn (logarithmicMellinWeight K s)
@@ -46,6 +49,9 @@ theorem integrableOn_positive_logarithmicMellinWeight
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.1h2v.s7.d767f69d8b92 from=translated src=- shape=ec876945 vocab=74232da1
+-/
 theorem setIntegral_positive_logarithmicMellinWeight
     {s : ℂ} (hs : s.re < 0) :
     (∫ y in positiveUnitFundamentalParamSet (K := K),
@@ -76,6 +82,9 @@ theorem setIntegral_positive_logarithmicMellinWeight
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=eq.1h2v.s7.bcec399341ae from=translated src=- shape=cffacae9 vocab=74232da1
+-/
 theorem setIntegral_positive_logarithmicMellinWeight_neg
     {s : ℂ} (hs : 0 < s.re) :
     (∫ y in positiveUnitFundamentalParamSet (K := K),
@@ -93,6 +102,9 @@ theorem setIntegral_positive_logarithmicMellinWeight_neg
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=integrab.1h2v.s7.8049a3dae622 from=translated src=- shape=90b11a82 vocab=29f52105
+-/
 theorem integrableOn_positive_logarithmicMellinWeight_neg
     {s : ℂ} (hs : 0 < s.re) :
     IntegrableOn (fun y ↦ logarithmicMellinWeight K s (-y))

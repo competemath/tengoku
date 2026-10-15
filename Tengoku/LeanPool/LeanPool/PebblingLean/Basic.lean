@@ -35,6 +35,9 @@ namespace Graph
 
 variable {V : Type u} (G : Graph V)
 
+/--
+@isnad1 id=iff.0h4v.s4.8a7518e02866 from=translated src=- shape=1e8eca35 vocab=0c92fa15
+-/
 theorem adj_comm {u v : V} : G.Adj u v ↔ G.Adj v u :=
   ⟨G.symm, G.symm⟩
 
@@ -56,12 +59,17 @@ def size [Fintype V] (D : Pebbling V) : ℕ :=
 def Dominates (D E : Pebbling V) : Prop :=
   ∀ v : V, E v ≤ D v
 
+/--
+@isnad1 id=eq.0h1v.s4.c3dd66495af7 from=translated src=- shape=42d754b8 vocab=c53acb09
+-/
 @[simp]
 theorem size_zero [Fintype V] : size (fun _ : V => 0) = 0 := by
   simp [size]
 
 /-- A single vertex count is bounded by the total size of a finite
-distribution. -/
+distribution.
+@isnad1 id=le.0h3v.s4.d904f410718e from=translated src=- shape=4c0f78f5 vocab=d5610eed
+-/
 theorem le_size [Fintype V] (D : Pebbling V) (v : V) :
     D v ≤ size D := by
   classical
@@ -76,23 +84,34 @@ def moveDistribution [DecidableEq V] (D : Pebbling V) (u v : V) : Pebbling V :=
     else if x = v then D x + 1
     else D x
 
+/--
+@isnad1 id=eq.0h4v.s5.a5d7e82d75d0 from=translated src=- shape=f51ee61d vocab=b0444759
+-/
 @[simp]
 theorem moveDistribution_apply_from [DecidableEq V] (D : Pebbling V) {u v : V} :
     moveDistribution D u v u = D u - 2 := by
   simp [moveDistribution]
 
+/--
+@isnad1 id=eq.1h4v.s5.e464d1e51406 from=translated src=- shape=f0a534f9 vocab=50fb7c12
+-/
 @[simp]
 theorem moveDistribution_apply_to [DecidableEq V] (D : Pebbling V) {u v : V} (h : v ≠ u) :
     moveDistribution D u v v = D v + 1 := by
   simp [moveDistribution, h]
 
+/--
+@isnad1 id=eq.2h5v.s5.a4a257884f58 from=translated src=- shape=9b1c85c6 vocab=a740cb03
+-/
 @[simp]
 theorem moveDistribution_apply_of_ne [DecidableEq V] (D : Pebbling V) {u v x : V}
     (hxu : x ≠ u) (hxv : x ≠ v) :
     moveDistribution D u v x = D x := by
   simp [moveDistribution, hxu, hxv]
 
-/-- Performing the same move from a larger distribution gives a larger result. -/
+/-- Performing the same move from a larger distribution gives a larger result.
+@isnad1 id=dominate.2h5v.s5.67f32fd0b1ef from=translated src=- shape=b338e890 vocab=09402300
+-/
 theorem moveDistribution_mono [DecidableEq V] {D D' : Pebbling V} {u v : V}
     (huv : u ≠ v) (hdom : Dominates D' D) :
     Dominates (moveDistribution D' u v) (moveDistribution D u v) := by
@@ -137,12 +156,16 @@ def SolvableAtLeast [DecidableEq V] (G : Graph V) (D : Pebbling V) (T : ℕ) : P
 def Solvable [DecidableEq V] (G : Graph V) (D : Pebbling V) : Prop :=
   SolvableAtLeast G D 1
 
-/-- Reaching demand zero is automatic. -/
+/-- Reaching demand zero is automatic.
+@isnad1 id=canreach.0h4v.s4.7d0b341f40da from=translated src=- shape=b76d6925 vocab=105824ce
+-/
 theorem canReachAtLeast_zero [DecidableEq V] (G : Graph V) (D : Pebbling V) (target : V) :
     CanReachAtLeast G D target 0 :=
   ⟨D, Relation.ReflTransGen.refl, Nat.zero_le _⟩
 
-/-- Every distribution is zero-demand solvable. -/
+/-- Every distribution is zero-demand solvable.
+@isnad1 id=solvable.0h3v.s4.be7184696d4e from=translated src=- shape=01df49e4 vocab=bd16a09a
+-/
 theorem solvableAtLeast_zero [DecidableEq V] (G : Graph V) (D : Pebbling V) :
     SolvableAtLeast G D 0 := by
   intro target
@@ -180,7 +203,9 @@ def IsOptimalNumber [Fintype V] [DecidableEq V] (G : Graph V) (k : ℕ) : Prop :
 def IsOptimalDemandNumber [Fintype V] [DecidableEq V] (G : Graph V) (T k : ℕ) : Prop :=
   HasSolvableAtLeastSize G T k ∧ ∀ l : ℕ, l < k → ¬ HasSolvableAtLeastSize G T l
 
-/-- A single move can be replayed from a dominating distribution. -/
+/-- A single move can be replayed from a dominating distribution.
+@isnad1 id=ex.2h5v.s5.e0fd237655d0 from=translated src=- shape=303bb0cc vocab=26a2e0e9
+-/
 theorem move_of_dominates [DecidableEq V] {G : Graph V} {D E D' : Pebbling V}
     (hmove : Move G D E) (hdom : Dominates D' D) :
     ∃ E' : Pebbling V, Move G D' E' ∧ Dominates E' E := by
@@ -192,7 +217,9 @@ theorem move_of_dominates [DecidableEq V] {G : Graph V} {D E D' : Pebbling V}
   refine ⟨moveDistribution D' u v, ?_, moveDistribution_mono huv hdom⟩
   exact ⟨u, v, huv_adj, (hD.trans (hdom u)), rfl⟩
 
-/-- Any sequence of moves can be replayed from a dominating distribution. -/
+/-- Any sequence of moves can be replayed from a dominating distribution.
+@isnad1 id=ex.2h5v.s5.624a569f4312 from=translated src=- shape=303bb0cc vocab=bfa83e8a
+-/
 theorem reaches_of_dominates [DecidableEq V] {G : Graph V} {D E D' : Pebbling V}
     (hreach : Reaches G D E) (hdom : Dominates D' D) :
     ∃ E' : Pebbling V, Reaches G D' E' ∧ Dominates E' E := by
@@ -207,7 +234,9 @@ theorem reaches_of_dominates [DecidableEq V] {G : Graph V} {D E D' : Pebbling V}
     rcases _ih B' hdom_B with ⟨E', hreach', hdom_E⟩
     exact ⟨E', Relation.ReflTransGen.head hmove' hreach', hdom_E⟩
 
-/-- Extra pebbles cannot hurt target reachability. -/
+/-- Extra pebbles cannot hurt target reachability.
+@isnad1 id=canreach.2h6v.s5.c2b7f4731806 from=translated src=- shape=e79332bc vocab=748488d0
+-/
 theorem canReachAtLeast_of_dominates [DecidableEq V] {G : Graph V} {D D' : Pebbling V}
     {target : V} {T : ℕ} (hcan : CanReachAtLeast G D target T) (hdom : Dominates D' D) :
     CanReachAtLeast G D' target T := by
@@ -216,7 +245,9 @@ theorem canReachAtLeast_of_dominates [DecidableEq V] {G : Graph V} {D D' : Pebbl
   exact ⟨E', hreach', htarget.trans (hdom_E target)⟩
 
 /-- If a distribution can reach a larger demand, it can reach any smaller
-demand. -/
+demand.
+@isnad1 id=canreach.2h6v.s5.ddc72af48f4a from=translated src=- shape=f354ceec vocab=07496dd2
+-/
 theorem canReachAtLeast_mono [DecidableEq V] {G : Graph V} {D : Pebbling V}
     {target : V} {T T' : ℕ} (hTT' : T' ≤ T)
     (hcan : CanReachAtLeast G D target T) :
@@ -224,14 +255,18 @@ theorem canReachAtLeast_mono [DecidableEq V] {G : Graph V} {D : Pebbling V}
   rcases hcan with ⟨E, hreach, htarget⟩
   exact ⟨E, hreach, hTT'.trans htarget⟩
 
-/-- Extra pebbles cannot hurt `T`-solvability. -/
+/-- Extra pebbles cannot hurt `T`-solvability.
+@isnad1 id=solvable.2h5v.s5.cce8c8795a0a from=translated src=- shape=c8ca0de3 vocab=64ccbd50
+-/
 theorem solvableAtLeast_of_dominates [DecidableEq V] {G : Graph V} {D D' : Pebbling V}
     {T : ℕ} (hsolv : SolvableAtLeast G D T) (hdom : Dominates D' D) :
     SolvableAtLeast G D' T := by
   intro target
   exact canReachAtLeast_of_dominates (hsolv target) hdom
 
-/-- `T`-solvability implies any smaller demand. -/
+/-- `T`-solvability implies any smaller demand.
+@isnad1 id=solvable.2h5v.s5.a98dd8bdf08e from=translated src=- shape=e9e90750 vocab=96646364
+-/
 theorem solvableAtLeast_mono [DecidableEq V] {G : Graph V} {D : Pebbling V}
     {T T' : ℕ} (hTT' : T' ≤ T) (hsolv : SolvableAtLeast G D T) :
     SolvableAtLeast G D T' := by
@@ -239,14 +274,18 @@ theorem solvableAtLeast_mono [DecidableEq V] {G : Graph V} {D : Pebbling V}
   exact canReachAtLeast_mono hTT' (hsolv target)
 
 /-- A distribution that is `T`-solvable for `T ≥ 1` is solvable in the usual
-one-pebble sense. -/
+one-pebble sense.
+@isnad1 id=solvable.2h4v.s5.8373ccc960f0 from=translated src=- shape=2ec4e1cf vocab=08f9125a
+-/
 theorem solvable_of_solvableAtLeast [DecidableEq V] {G : Graph V} {D : Pebbling V}
     {T : ℕ} (hT : 1 ≤ T) (hsolv : SolvableAtLeast G D T) :
     Solvable G D :=
   solvableAtLeast_mono hT hsolv
 
 /-- A bounded-size construction for a larger demand also works for any smaller
-demand. -/
+demand.
+@isnad1 id=hassolva.2h5v.s5.13a09e94031e from=translated src=- shape=3409ee40 vocab=c32f60a3
+-/
 theorem hasSolvableAtMostSize_mono_demand [Fintype V] [DecidableEq V]
     {G : Graph V} {T T' k : ℕ} (hTT' : T' ≤ T)
     (h : HasSolvableAtMostSize G T k) :
@@ -255,7 +294,9 @@ theorem hasSolvableAtMostSize_mono_demand [Fintype V] [DecidableEq V]
   exact ⟨D, hsize, solvableAtLeast_mono hTT' hsolv⟩
 
 /-- A construction with size at most `k` is also a construction with any larger
-size bound. -/
+size bound.
+@isnad1 id=hassolva.2h5v.s5.5116ffbccdc0 from=translated src=- shape=499d8bde vocab=c32f60a3
+-/
 theorem hasSolvableAtMostSize_mono_size [Fintype V] [DecidableEq V]
     {G : Graph V} {T k k' : ℕ} (hkk' : k ≤ k')
     (h : HasSolvableAtMostSize G T k) :
@@ -263,12 +304,17 @@ theorem hasSolvableAtMostSize_mono_size [Fintype V] [DecidableEq V]
   rcases h with ⟨D, hsize, hsolv⟩
   exact ⟨D, hsize.trans hkk', hsolv⟩
 
-/-- The size of a sum of two finite distributions is the sum of their sizes. -/
+/-- The size of a sum of two finite distributions is the sum of their sizes.
+@isnad1 id=eq.0h3v.s5.d8f20ded8ba5 from=translated src=- shape=2947689f vocab=d900d789
+-/
 theorem size_add [Fintype V] (D E : Pebbling V) :
     size (D + E) = size D + size E := by
   classical
   simp [size, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h3v.s5.e4cdc9541afb from=translated src=- shape=2c9f55bb vocab=8dbc9407
+-/
 theorem sum_ite_nonzero_const [Fintype V] (D : Pebbling V) (K : ℕ) :
     (∑ v : V, if D v = 0 then 0 else K) = supportSize D * K := by
   classical
@@ -282,7 +328,9 @@ theorem sum_ite_nonzero_const [Fintype V] (D : Pebbling V) (K : ℕ) :
           simp [supportSize, Finset.sum_const]
 
 /-- If each occupied pile has at least `S` pebbles, then the number of occupied
-vertices times `S` is at most the total size. -/
+vertices times `S` is at most the total size.
+@isnad1 id=le.1h3v.s5.af6fde177f79 from=translated src=- shape=a0f5b800 vocab=36afde1a
+-/
 theorem supportSize_mul_le_size_of_minOccupiedPileSize [Fintype V]
     {D : Pebbling V} {S : ℕ} (hmin : MinOccupiedPileSize D S) :
     supportSize D * S ≤ size D := by
@@ -297,7 +345,9 @@ theorem supportSize_mul_le_size_of_minOccupiedPileSize [Fintype V]
   simpa [sum_ite_nonzero_const, size] using hsum
 
 /-- Multiplicative form of the occupied-pile count bound, used in product
-recurrences. -/
+recurrences.
+@isnad1 id=le.1h4v.s5.9e8ecbc0504f from=translated src=- shape=dcb27131 vocab=36afde1a
+-/
 theorem supportSize_mul_minPileCost_le_size_mul [Fintype V]
     {D : Pebbling V} {S K : ℕ} (hmin : MinOccupiedPileSize D S) :
     supportSize D * (S * K) ≤ size D * K := by

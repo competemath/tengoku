@@ -39,6 +39,9 @@ noncomputable def rectangleIntegral {E : Type*} [NormedAddCommGroup E] [NormedSp
     verticalSegmentIntegral f w.re z.im w.im -
     verticalSegmentIntegral f z.re z.im w.im
 
+/--
+@isnad1 id=eq.4h5v.s8.acedd150bc40 from=translated src=- shape=d6affd42 vocab=f3a4a055
+-/
 theorem rectangleIntegral_congr {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     {f g : ℂ → E} {z w : ℂ}
     (hbottom : ∀ x ∈ uIcc z.re w.re,
@@ -69,6 +72,9 @@ def RectangleBorderIntegrable {E : Type*} [NormedAddCommGroup E]
   IntervalIntegrable (fun y ↦ f (w.re + y * I)) volume z.im w.im ∧
   IntervalIntegrable (fun y ↦ f (z.re + y * I)) volume z.im w.im
 
+/--
+@isnad1 id=rectangl.2h5v.s5.ddfae9451e94 from=translated src=- shape=65047f1c vocab=45e05fb3
+-/
 theorem RectangleBorderIntegrable.add_integrable {E : Type*} [NormedAddCommGroup E]
     {f g : ℂ → E} {z w : ℂ}
     (hf : RectangleBorderIntegrable f z w)
@@ -77,6 +83,9 @@ theorem RectangleBorderIntegrable.add_integrable {E : Type*} [NormedAddCommGroup
   ⟨hf.1.add hg.1, hf.2.1.add hg.2.1,
     hf.2.2.1.add hg.2.2.1, hf.2.2.2.add hg.2.2.2⟩
 
+/--
+@isnad1 id=rectangl.1h6v.s6.b12436a21604 from=translated src=- shape=879352b3 vocab=8f9cb3ba
+-/
 theorem rectangleBorderIntegrable_fun_sum {E : Type*} [NormedAddCommGroup E]
     {ι : Type*} {T : Finset ι} {f : ι → ℂ → E} {z w : ℂ}
     (hf : ∀ i ∈ T, RectangleBorderIntegrable (f i) z w) :
@@ -90,6 +99,9 @@ theorem rectangleBorderIntegrable_fun_sum {E : Type*} [NormedAddCommGroup E]
       exact (hf i (Finset.mem_insert_self i T)).add_integrable
         (ih fun j hj ↦ hf j (Finset.mem_insert_of_mem hj))
 
+/--
+@isnad1 id=eq.2h5v.s6.d8d34a3d014c from=translated src=- shape=04d5ec88 vocab=dffb37a3
+-/
 theorem RectangleBorderIntegrable.add {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     {f g : ℂ → E} {z w : ℂ}
     (hf : RectangleBorderIntegrable f z w)
@@ -104,6 +116,9 @@ theorem RectangleBorderIntegrable.add {E : Type*} [NormedAddCommGroup E] [Normed
   simp only [smul_add]
   grind
 
+/--
+@isnad1 id=eq.2h5v.s6.94eac74dfd9d from=translated src=- shape=04d5ec88 vocab=b1ecaedc
+-/
 theorem RectangleBorderIntegrable.sub {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     {f g : ℂ → E} {z w : ℂ}
     (hf : RectangleBorderIntegrable f z w)
@@ -118,6 +133,9 @@ theorem RectangleBorderIntegrable.sub {E : Type*} [NormedAddCommGroup E] [Normed
   simp only [smul_sub]
   grind
 
+/--
+@isnad1 id=eq.1h6v.s6.92210ccc87c4 from=translated src=- shape=11b18a7f vocab=a5b4587a
+-/
 theorem rectangleIntegral_fun_sum {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     {ι : Type*} {T : Finset ι} {f : ι → ℂ → E} {z w : ℂ}
     (hf : ∀ i ∈ T, RectangleBorderIntegrable (f i) z w) :
@@ -138,6 +156,9 @@ theorem rectangleIntegral_fun_sum {E : Type*} [NormedAddCommGroup E] [NormedSpac
       · exact rectangleBorderIntegrable_fun_sum fun j hj ↦
           hf j (Finset.mem_insert_of_mem hj)
 
+/--
+@isnad1 id=eq.0h5v.s6.a05f372a627b from=translated src=- shape=2a171d2e vocab=59e45b6f
+-/
 theorem rectangleIntegral_translate {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     (f : ℂ → E) (z w p : ℂ) :
     rectangleIntegral (fun s ↦ f (s - p)) z w =
@@ -146,6 +167,9 @@ theorem rectangleIntegral_translate {E : Type*} [NormedAddCommGroup E] [NormedSp
     sub_re, sub_im, ← intervalIntegral.integral_comp_sub_right]
   congr <;> ext <;> congr 1 <;> simp [Complex.ext_iff]
 
+/--
+@isnad1 id=eq.0h5v.s6.a592f662ba93 from=translated src=- shape=2a171d2e vocab=6834979e
+-/
 theorem normalizedRectangleIntegral_translate {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     (f : ℂ → E) (z w p : ℂ) :
     normalizedRectangleIntegral (fun s ↦ f (s - p)) z w =
@@ -265,6 +289,9 @@ private lemma integral_const_div_re_add_self
     (integral_const_div_re_add_im
       (x₁ := y₁) (x₂ := y₂) (A := A / I) hneg)
 
+/--
+@isnad1 id=eq.4h3v.s6.ecdb3fc8e984 from=translated src=- shape=363b5f82 vocab=e63b04b0
+-/
 theorem rectangleIntegral_const_div_id
     {z w c : ℂ}
     (hzre : z.re < 0) (hzim : z.im < 0)
@@ -298,6 +325,9 @@ theorem rectangleIntegral_const_div_id
     ofReal_neg, ofReal_one]
   grind
 
+/--
+@isnad1 id=eq.4h4v.s6.cc52e70a2ccc from=translated src=- shape=d77af959 vocab=e3687061
+-/
 theorem normalizedRectangleIntegral_principal
     {z w p c : ℂ}
     (hzpre : z.re < p.re) (hprew : p.re < w.re)
@@ -310,6 +340,9 @@ theorem normalizedRectangleIntegral_principal
     field_simp
   all_goals simp [*]
 
+/--
+@isnad1 id=eq.4h4v.s6.9efb834df664 from=translated src=- shape=299a311c vocab=0f40500f
+-/
 theorem rectangleIntegral_principal
     {z w p c : ℂ}
     (hzpre : z.re < p.re) (hprew : p.re < w.re)

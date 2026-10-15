@@ -27,10 +27,16 @@ real energy. -/
 noncomputable def globalEnergyRadius (energy : ℝ) : ℝ :=
   1 / (energy ^ 2 + 2)
 
+/--
+@isnad1 id=lt.0h1v.s3.9eb5dcc84aba from=translated src=- shape=8a62b088 vocab=ed6b4f6f
+-/
 theorem globalEnergyRadius_pos (energy : ℝ) : 0 < globalEnergyRadius energy := by
   unfold globalEnergyRadius
   positivity
 
+/--
+@isnad1 id=eq.0h1v.s5.411a545193e3 from=translated src=- shape=cd6ec0a4 vocab=17b405e8
+-/
 theorem one_div_globalEnergyRadius (energy : ℝ) :
     1 / globalEnergyRadius energy = energy ^ 2 + 2 := by
   unfold globalEnergyRadius
@@ -41,6 +47,9 @@ noncomputable def globalEnergyRadicand (energy : ℝ) : ℝ :=
   2 * (energy + globalEnergyRadius energy ^ 2 / 2 +
     1 / globalEnergyRadius energy)
 
+/--
+@isnad1 id=lt.0h1v.s3.8ea93f5895b7 from=translated src=- shape=8a62b088 vocab=c299a4f5
+-/
 theorem globalEnergyRadicand_pos (energy : ℝ) :
     0 < globalEnergyRadicand energy := by
   rw [globalEnergyRadicand, one_div_globalEnergyRadius]
@@ -52,6 +61,9 @@ theorem globalEnergyRadicand_pos (energy : ℝ) :
 noncomputable def globalEnergySpeed (energy : ℝ) : ℝ :=
   Real.sqrt (globalEnergyRadicand energy)
 
+/--
+@isnad1 id=eq.0h1v.s4.2d2f55249bfe from=translated src=- shape=43966446 vocab=79fe6b65
+-/
 theorem globalEnergySpeed_sq (energy : ℝ) :
     globalEnergySpeed energy ^ 2 = globalEnergyRadicand energy := by
   exact Real.sq_sqrt (globalEnergyRadicand_pos energy).le
@@ -61,6 +73,9 @@ noncomputable def globalEnergySection (energy : ℝ) : PhaseSpace :=
   ![0, globalEnergyRadius energy,
     -globalEnergySpeed energy - globalEnergyRadius energy, 0]
 
+/--
+@isnad1 id=mem.0h1v.s4.baf9e23e558d from=translated src=- shape=a3eb77dd vocab=61e4c3c6
+-/
 theorem globalEnergySection_collisionFree (energy : ℝ) :
     (0, globalEnergySection energy) ∈ collisionFree := by
   constructor
@@ -73,7 +88,9 @@ theorem globalEnergySection_collisionFree (energy : ℝ) :
     norm_num at hzero
     exact (globalEnergyRadius_pos energy).ne' hzero
 
-/-- The explicit section is a right inverse of the mass-zero Hamiltonian. -/
+/-- The explicit section is a right inverse of the mass-zero Hamiltonian.
+@isnad1 id=eq.0h1v.s3.bc05a88d8c79 from=translated src=- shape=608b0a34 vocab=38e91f2e
+-/
 theorem hamiltonian_zero_globalEnergySection (energy : ℝ) :
     hamiltonian 0 (globalEnergySection energy) = energy := by
   let radius := globalEnergyRadius energy
@@ -96,14 +113,23 @@ theorem hamiltonian_zero_globalEnergySection (energy : ℝ) :
   rw [hinverse] at hspeed ⊢
   nlinarith
 
+/--
+@isnad1 id=eq.0h0v.s5.c70f4d2b56f0 from=translated src=- shape=a644ce02 vocab=a3dc4913
+-/
 @[simp] theorem globalEnergyRadius_neg_two :
     globalEnergyRadius (-2) = (1 / 6 : ℝ) := by
   norm_num [globalEnergyRadius]
 
+/--
+@isnad1 id=eq.0h0v.s5.3f77a36d638a from=translated src=- shape=a644ce02 vocab=da7c7fc9
+-/
 @[simp] theorem globalEnergyRadicand_neg_two :
     globalEnergyRadicand (-2) = (289 / 36 : ℝ) := by
   norm_num [globalEnergyRadicand, globalEnergyRadius]
 
+/--
+@isnad1 id=eq.0h0v.s5.6c14b257c9c5 from=translated src=- shape=a644ce02 vocab=f92931e4
+-/
 @[simp] theorem globalEnergySpeed_neg_two :
     globalEnergySpeed (-2) = (17 / 6 : ℝ) := by
   rw [globalEnergySpeed, globalEnergyRadicand_neg_two]
@@ -111,13 +137,18 @@ theorem hamiltonian_zero_globalEnergySection (energy : ℝ) :
   rw [show (289 / 36 : ℝ) = (17 / 6) ^ 2 by norm_num,
     Real.sqrt_sq hnonneg]
 
-/-- A rational phase-space anchor for the global section. -/
+/-- A rational phase-space anchor for the global section.
+@isnad1 id=eq.0h0v.s6.5cb94784a500 from=translated src=- shape=4e581feb vocab=3979a700
+-/
 theorem globalEnergySection_neg_two :
     globalEnergySection (-2) = ![(0 : ℝ), 1 / 6, -3, 0] := by
   funext coordinate
   fin_cases coordinate <;>
     norm_num [globalEnergySection]
 
+/--
+@isnad1 id=eq.0h0v.s5.99c67687423e from=translated src=- shape=1aa535ae vocab=7ce08325
+-/
 theorem cartesianAngularAction_globalEnergySection_neg_two :
     cartesianAngularAction (globalEnergySection (-2)) = (1 / 2 : ℝ) := by
   rw [globalEnergySection_neg_two]
@@ -125,12 +156,18 @@ theorem cartesianAngularAction_globalEnergySection_neg_two :
     Matrix.cons_val_two, Matrix.cons_val_three]
   norm_num
 
+/--
+@isnad1 id=analytic.0h1v.s5.21c361533cc5 from=translated src=- shape=1111aaa7 vocab=687b5be9
+-/
 theorem analyticAt_globalEnergyRadius (energy : ℝ) :
     AnalyticAt ℝ globalEnergyRadius energy := by
   unfold globalEnergyRadius
   exact analyticAt_const.div ((analyticAt_id.pow 2).add analyticAt_const)
     (by positivity)
 
+/--
+@isnad1 id=analytic.0h1v.s5.eef1adda0f23 from=translated src=- shape=1111aaa7 vocab=f7bed4bf
+-/
 theorem analyticAt_globalEnergyRadicand (energy : ℝ) :
     AnalyticAt ℝ globalEnergyRadicand energy := by
   unfold globalEnergyRadicand
@@ -144,12 +181,18 @@ theorem analyticAt_globalEnergyRadicand (energy : ℝ) :
   simp only [Pi.mul_apply, Pi.add_apply, Pi.pow_apply, Pi.div_apply, id_eq]
   ring
 
+/--
+@isnad1 id=analytic.0h1v.s5.c5d08dceed81 from=translated src=- shape=1111aaa7 vocab=e4866ae3
+-/
 theorem analyticAt_globalEnergySpeed (energy : ℝ) :
     AnalyticAt ℝ globalEnergySpeed energy := by
   unfold globalEnergySpeed
   exact (analyticAt_sqrt_of_pos (globalEnergyRadicand_pos energy)).comp
     (analyticAt_globalEnergyRadicand energy)
 
+/--
+@isnad1 id=analytic.0h1v.s6.5fa44822ae06 from=translated src=- shape=33904196 vocab=9c425d9b
+-/
 theorem analyticAt_globalEnergySection (energy : ℝ) :
     AnalyticAt ℝ globalEnergySection energy := by
   apply AnalyticAt.pi
@@ -166,7 +209,9 @@ noncomputable def globalEnergyCoefficient
     (F : ℝ → PhaseSpace → ℝ) (energy : ℝ) : ℝ :=
   F 0 (globalEnergySection energy)
 
-/-- Joint analyticity makes the global energy representative analytic at every real energy. -/
+/-- Joint analyticity makes the global energy representative analytic at every real energy.
+@isnad1 id=analytic.2h3v.s5.230df86ec4a5 from=translated src=- shape=e3525b5d vocab=363aa291
+-/
 theorem IsJointlyAnalytic.analyticAt_globalEnergyCoefficient
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F) (energy : ℝ) :
@@ -193,7 +238,9 @@ noncomputable def globalEnergyDefect
     (F : ℝ → PhaseSpace → ℝ) (state : PhaseSpace) : ℝ :=
   F 0 state - globalEnergyCoefficient F (hamiltonian 0 state)
 
-/-- The global energy defect is analytic throughout the mass-zero collision-free phase domain. -/
+/-- The global energy defect is analytic throughout the mass-zero collision-free phase domain.
+@isnad1 id=analytic.2h2v.s7.2110a879ef03 from=translated src=- shape=fd9ce210 vocab=73df839b
+-/
 theorem IsJointlyAnalytic.analyticOnNhd_globalEnergyDefect
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F) :
@@ -223,7 +270,9 @@ def LocalZerothCoefficientFactorizationAtAnchor : Prop :=
         F 0 state = globalEnergyCoefficient F (hamiltonian 0 state)
 
 /-- Analytic continuation turns factorization on the anchor patch into factorization on the full
-connected mass-zero collision-free phase domain. -/
+connected mass-zero collision-free phase domain.
+@isnad1 id=iff.0h0v.s1.3ea28e513236 from=translated src=- shape=25b03439 vocab=a82328f2
+-/
 theorem localZerothCoefficientFactorizationAtAnchor_iff_global :
     LocalZerothCoefficientFactorizationAtAnchor ↔
       GlobalZerothCoefficientFactorization := by
@@ -261,7 +310,9 @@ theorem localZerothCoefficientFactorizationAtAnchor_iff_global :
       ⟨hstateFirst, hstateSecond⟩
 
 /-- The canonical-section formulation is exactly equivalent to the energy-function formulation
-used by the normalization induction. -/
+used by the normalization induction.
+@isnad1 id=iff.0h0v.s1.1cbbb157da22 from=translated src=- shape=25b03439 vocab=57c7be07
+-/
 theorem globalZerothCoefficientFactorization_iff_classicalPrinciple :
     GlobalZerothCoefficientFactorization ↔ ClassicalZerothCoefficientPrinciple := by
   constructor
@@ -281,7 +332,9 @@ theorem globalZerothCoefficientFactorization_iff_classicalPrinciple :
     rw [hcancel state hcollision, hsection]
 
 /-- With analytic mass division now proved, the exact challenge is reduced to the intrinsic
-classical factorization statement alone. -/
+classical factorization statement alone.
+@isnad1 id=not.1h0v.s5.f66deecf8951 from=translated src=- shape=bdf693e7 vocab=25b3a5b7
+-/
 theorem nonintegrability_of_globalZerothCoefficientFactorization
     (hfactor : GlobalZerothCoefficientFactorization) :
     ¬∃ δ : ℝ, 0 < δ ∧ ∃ F : ℝ → PhaseSpace → ℝ,

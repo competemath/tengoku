@@ -27,20 +27,32 @@ namespace NumberField.Odlyzko
 noncomputable def scaledTartarTestFunction (y : ℝ) (x : ℝ) : ℝ :=
   Tartar.testFunction (y * x)
 
+/--
+@isnad1 id=le.0h2v.s4.cb55c507276d from=translated src=- shape=a120b2a8 vocab=095b2e60
+-/
 theorem scaledTartarTestFunction_nonneg (y x : ℝ) :
     0 ≤ scaledTartarTestFunction y x :=
   tartarTestFunction_nonneg _
 
+/--
+@isnad1 id=eq.0h2v.s3.6a94bdc47cab from=translated src=- shape=6be742d9 vocab=d7f5f7fc
+-/
 theorem scaledTartarTestFunction_even (y x : ℝ) :
     scaledTartarTestFunction y (-x) = scaledTartarTestFunction y x := by
   rw [scaledTartarTestFunction, scaledTartarTestFunction,
     mul_neg, tartarTestFunction_neg]
 
+/--
+@isnad1 id=integrab.1h1v.s5.600ce5f8fa04 from=translated src=- shape=b5911f14 vocab=1ef76125
+-/
 theorem scaledTartarTestFunction_integrable {y : ℝ} (hy : y ≠ 0) :
     Integrable (scaledTartarTestFunction y) := by
   change Integrable (fun x : ℝ ↦ Tartar.testFunction (y * x))
   exact tartarTestFunction_integrable.comp_mul_left' hy
 
+/--
+@isnad1 id=le.1h2v.s6.4c9d8cb2d368 from=translated src=- shape=d22c5507 vocab=f612cdab
+-/
 theorem exp_sub_half_mul_div_cosh_le_two
     {σ x : ℝ} (hσ : σ ∈ Icc 0 1) :
     Real.exp ((σ - 1 / 2) * x) / Real.cosh (x / 2) ≤ 2 := by
@@ -64,6 +76,9 @@ theorem exp_sub_half_mul_div_cosh_le_two
       linarith
     nlinarith [Real.exp_pos (x / 2)]
 
+/--
+@isnad1 id=le.1h3v.s5.f3bfb5cd5ab3 from=translated src=- shape=18e96dd3 vocab=af19db90
+-/
 theorem norm_poitouTransformIntegrand_scaledTartar_le
     {y : ℝ} {s : ℂ} (hs : s.re ∈ Icc 0 1) (x : ℝ) :
     ‖poitouTransformIntegrand (scaledTartarTestFunction y) s x‖ ≤
@@ -86,6 +101,9 @@ theorem norm_poitouTransformIntegrand_scaledTartar_le
         (scaledTartarTestFunction_nonneg y x)
     _ = _ := by ring
 
+/--
+@isnad1 id=continuo.0h2v.s4.d2b327dc17bb from=translated src=- shape=5a27bd1d vocab=7bb10bfa
+-/
 theorem continuous_poitouTransformIntegrand_scaledTartar
     (y : ℝ) (s : ℂ) :
     Continuous (poitouTransformIntegrand (scaledTartarTestFunction y) s) := by
@@ -99,6 +117,9 @@ theorem continuous_poitouTransformIntegrand_scaledTartar
     exact (Real.cosh_pos _).ne'
   exact (Complex.continuous_ofReal.comp hquot).mul (by fun_prop)
 
+/--
+@isnad1 id=integrab.2h2v.s6.a3bced225be4 from=translated src=- shape=ed9325b9 vocab=a51885e0
+-/
 theorem poitouTransformIntegrand_scaledTartar_integrable
     {y : ℝ} (hy : y ≠ 0) {s : ℂ} (hs : s.re ∈ Icc 0 1) :
     Integrable (poitouTransformIntegrand (scaledTartarTestFunction y) s) := by
@@ -116,6 +137,9 @@ noncomputable def poitouTransformDerivativeIntegrand
     (f : ℝ → ℝ) (s : ℂ) (x : ℝ) : ℂ :=
   x * poitouTransformIntegrand f s x
 
+/--
+@isnad1 id=hasderiv.0h3v.s5.819ed90775e5 from=translated src=- shape=989a6884 vocab=5e4e1940
+-/
 theorem hasDerivAt_poitouTransformIntegrand
     (f : ℝ → ℝ) (s : ℂ) (x : ℝ) :
     HasDerivAt (fun z ↦ poitouTransformIntegrand f z x)

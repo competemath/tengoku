@@ -324,7 +324,9 @@ private lemma integral_norm_pow_exp_gaussian (a : ℕ) :
     show 2 * π / 2 = π from by ring,
     Real.Gamma_nat_eq_factorial]
 
-/-- Gaussian monomial moments in the weighted plane. -/
+/-- Gaussian monomial moments in the weighted plane.
+@isnad1 id=eq.0h2v.s7.e15aa6533e0f from=translated src=- shape=11d4e5a2 vocab=f74d86fd
+-/
 theorem gaussian_monomial_moments :
     ∀ (a b : ℕ),
       (1 / Real.pi) *
@@ -343,7 +345,9 @@ theorem gaussian_monomial_moments :
   · -- Off-diagonal case: a ≠ b
     rw [ite_eq_right hab, gaussian_monomial_moments_off_diag hab, mul_zero]
 
-/-- Explicit finite expansion for the true Hermite basis vector `Phi k n`. -/
+/-- Explicit finite expansion for the true Hermite basis vector `Phi k n`.
+@isnad1 id=eq.0h3v.s7.2c625342c993 from=translated src=- shape=c699efd8 vocab=9c993199
+-/
 theorem phi_explicit :
     ∀ {k n : ℕ} {z : ℂ},
       Phi k n z =
@@ -387,7 +391,9 @@ private lemma star_circlePoint_pow (r : ℝ) (t : Circle) (m : ℕ) :
   | succ m ih => rw [pow_succ, ih, ← fourier_add]; congr 1; push_cast; ring_nf
 
 -- The proof expands the polar normalization in the `Phi` polar formula.
-/-- Polar formula for `Phi k n`. -/
+/-- Polar formula for `Phi k n`.
+@isnad1 id=eq.1h4v.s7.7b966061525e from=translated src=- shape=326bd7f6 vocab=e6a2f357
+-/
 theorem phi_polar :
     ∀ {k n : ℕ} {r : ℝ},
       0 < r →
@@ -440,7 +446,9 @@ theorem phi_polar :
   simp_rw [← Complex.ofReal_sum S]
   push_cast; ring
 
-/-- Explicit finite Laurent expansion for the radial coefficient `qkn`. -/
+/-- Explicit finite Laurent expansion for the radial coefficient `qkn`.
+@isnad1 id=eq.1h3v.s7.867446fe4044 from=translated src=- shape=48bd3f0a vocab=dfb85124
+-/
 theorem qkn_explicit :
     ∀ {k n : ℕ} {r : ℝ},
       0 < r →
@@ -453,7 +461,9 @@ theorem qkn_explicit :
   intro k n r hr
   rfl
 
-/-- Backward-compatible alias for the explicit Laurent expansion of `qkn`. -/
+/-- Backward-compatible alias for the explicit Laurent expansion of `qkn`.
+@isnad1 id=eq.1h3v.s7.867446fe4044 from=translated src=- shape=48bd3f0a vocab=dfb85124
+-/
 theorem qkn_structure :
     ∀ {k n : ℕ} {r : ℝ},
       0 < r →
@@ -466,7 +476,9 @@ theorem qkn_structure :
   intro k n r hr
   exact qkn_explicit (k := k) (n := n) (r := r) hr
 
-/-- The circle coefficients `qkn` remain fixed by complex conjugation. -/
+/-- The circle coefficients `qkn` remain fixed by complex conjugation.
+@isnad1 id=eq.0h3v.s5.c4fde99f7b2c from=translated src=- shape=e4e0c35d vocab=0aee106e
+-/
 @[simp] theorem qkn_real :
     ∀ {k n : ℕ} {r : ℝ}, star (qkn k n r : ℂ) = (qkn k n r : ℂ) := by
   simp_all
@@ -606,6 +618,9 @@ private lemma qkn_div_rn_bound (k n : ℕ) :
           rw [mul_div_cancel₀ M (ne_of_gt hε)] at this
           linarith
 
+/--
+@isnad1 id=ex.0h2v.s6.03cdbbc70c3a from=translated src=- shape=3f744d91 vocab=312e4d02
+-/
 theorem qkn_top_term_asymptotic :
     ∀ k n : ℕ,
       ∃ c : ℝ,
@@ -621,7 +636,9 @@ theorem qkn_top_term_asymptotic :
   obtain ⟨R₀, _, hR₀⟩ := hbound ε hε
   exact ⟨R₀, fun r hr => hR₀ r hr⟩
 
-/-- After dividing by `r^n`, `qkn k n r` converges to its explicit top term. -/
+/-- After dividing by `r^n`, `qkn k n r` converges to its explicit top term.
+@isnad1 id=ex.1h3v.s6.09f1306e8b8e from=translated src=- shape=5c83bdb9 vocab=0880a1d5
+-/
 theorem qkn_top_term_limit :
     ∀ k n : ℕ,
       ∀ ε : ℝ,
@@ -636,7 +653,9 @@ theorem qkn_top_term_limit :
   obtain ⟨_, _, hbound⟩ := qkn_div_rn_bound k n
   exact hbound ε hε
 
-/-- Each `qkn k n` eventually dominates a positive multiple of `r^n`. -/
+/-- Each `qkn k n` eventually dominates a positive multiple of `r^n`.
+@isnad1 id=ex.0h2v.s6.cbe8d2698943 from=translated src=- shape=970406ee vocab=74f1c15a
+-/
 theorem qkn_eventual_lower_bound :
     ∀ k n : ℕ,
       ∃ R c : ℝ,
@@ -673,7 +692,9 @@ theorem qkn_eventual_lower_bound :
   rw [le_div_iff₀ hrn_pos] at h_tri
   linarith [Complex.norm_real (qkn k n r)]
 
-/-- The radial coefficient `qkn k n` is eventually nonvanishing on large radii. -/
+/-- The radial coefficient `qkn k n` is eventually nonvanishing on large radii.
+@isnad1 id=ex.0h2v.s5.f6979c4ddaf3 from=translated src=- shape=f6a04e76 vocab=66f492d4
+-/
 theorem qkn_eventually_nonzero :
     ∀ k n : ℕ,
       ∃ R0 : ℝ,
@@ -687,7 +708,9 @@ theorem qkn_eventually_nonzero :
   have h2 : 0 < r := lt_of_lt_of_le (lt_of_lt_of_le zero_lt_one hR) hr
   linarith [mul_pos hc (pow_pos h2 n)]
 
-/-- Lower modes are eventually suppressed by at least one power of `r`. -/
+/-- Lower modes are eventually suppressed by at least one power of `r`.
+@isnad1 id=ex.1h3v.s6.dd970bd27f61 from=translated src=- shape=23024fc5 vocab=c5b1123d
+-/
 theorem qkn_ratio_control :
     ∀ {k n d : ℕ},
       n < d →
@@ -1222,7 +1245,9 @@ private theorem norm_sq_phi_integral (k m : ℕ) :
   have hpos : (0 : ℝ) < (Nat.factorial k : ℝ) * (Nat.factorial m : ℝ) := by positivity
   field_simp
 
-/-- The level-`k` basis is orthonormal for the weighted inner product. -/
+/-- The level-`k` basis is orthonormal for the weighted inner product.
+@isnad1 id=eq.0h3v.s5.de6c48ca4f0b from=translated src=- shape=75ac74f3 vocab=624d1502
+-/
 theorem phi_orthonormal :
     ∀ {k m n : ℕ},
       weightedInner (Phi k m) (Phi k n) = if m = n then 1 else 0 := by
@@ -1305,6 +1330,9 @@ theorem phi_orthonormal :
 
 -- Phi_mem_Hk is proved below, after finiteHermiteSum_normSq
 
+/--
+@isnad1 id=continuo.0h2v.s5.983210554adb from=translated src=- shape=ae2d93f3 vocab=dd95cc0d
+-/
 theorem continuous_Phi (k n : ℕ) : Continuous (Phi k n) := by
   unfold Phi
   refine continuous_const.mul ?_
@@ -1324,6 +1352,9 @@ private theorem continuous_finiteHermiteSum (k : ℕ) {D : ℕ} (a : Fin D → �
   unfold finiteHermiteSum
   exact continuous_finsetSum _ (fun m _ => continuous_const.mul (continuous_Phi k m.1))
 
+/--
+@isnad1 id=integrab.0h2v.s6.97630b8b5ead from=translated src=- shape=aeaaeb29 vocab=86bf22a9
+-/
 theorem integrable_weightedDiag (k n : ℕ) :
     Integrable (fun z : ℂ => ‖Phi k n z‖ ^ 2 * Real.exp (-‖z‖ ^ 2)) := by
   let f : ℂ → ℝ := fun z => ‖Phi k n z‖ ^ 2 * Real.exp (-‖z‖ ^ 2)
@@ -1359,6 +1390,9 @@ theorem integrable_weightedDiag (k n : ℕ) :
     simpa using (phi_orthonormal (k := k) (m := n) (n := n))
   simp_all
 
+/--
+@isnad1 id=integrab.0h3v.s7.e79ea6e60539 from=translated src=- shape=b9470e6a vocab=494663ff
+-/
 theorem integrable_weightedCross (k m n : ℕ) :
     Integrable (fun z : ℂ =>
       Phi k m z * (starRingEnd ℂ) (Phi k n z) * (Real.exp (-‖z‖ ^ 2) : ℂ)) := by
@@ -1703,7 +1737,9 @@ private lemma weightedInner_finiteHermiteSum
       (integrable_finiteHermiteSum_weightedCross (k := k) (a := a) (n := m.1)).const_mul
         ((starRingEnd ℂ) (b m))
 
-/-- Inner products of finite Hermite sums are finite coefficient inner products. -/
+/-- Inner products of finite Hermite sums are finite coefficient inner products.
+@isnad1 id=eq.0h4v.s6.f625bec00897 from=translated src=- shape=b99121ea vocab=df319ef7
+-/
 theorem finiteHermiteSum_inner :
     ∀ {k D : ℕ} (a b : Fin D → ℂ),
       weightedInner (finiteHermiteSum k a) (finiteHermiteSum k b) =
@@ -1734,7 +1770,9 @@ theorem finiteHermiteSum_inner :
             _ = a m * star (b m) := by ring
     _ = ∑ n : Fin D, a n * star (b n) := by rfl
 
-/-- The weighted norm square of a finite Hermite sum is the coefficient `ℓ²` norm square. -/
+/-- The weighted norm square of a finite Hermite sum is the coefficient `ℓ²` norm square.
+@isnad1 id=eq.0h3v.s5.f475f3c1e4d5 from=translated src=- shape=da2637ce vocab=96e8aaa4
+-/
 theorem finiteHermiteSum_normSq :
     ∀ {k D : ℕ} (a : Fin D → ℂ),
       weightedNormSq (finiteHermiteSum k a) = ∑ n : Fin D, ‖a n‖ ^ 2 := by
@@ -1742,7 +1780,9 @@ theorem finiteHermiteSum_normSq :
   rw [weightedNormSq_eq_re_weightedInner, finiteHermiteSum_inner]
   simp [Complex.normSq, Complex.sq_norm]
 
-/-- Every basis vector belongs to the true level space. -/
+/-- Every basis vector belongs to the true level space.
+@isnad1 id=mem.0h2v.s4.eea4aa869cce from=translated src=- shape=b8210e48 vocab=e5a18fbd
+-/
 theorem Phi_mem_Hk (k n : ℕ) : Phi k n ∈ Hk k := by
   refine ⟨integrable_weightedDiag k n, ?_⟩
   intro z
@@ -1756,7 +1796,9 @@ theorem Phi_mem_Hk (k n : ℕ) : Phi k n ∈ Hk k := by
   rw [hterm]
   exact hasSum_ite_eq n (Phi k n z)
 
-/-- Weighted norms are homogeneous under scalar multiplication. -/
+/-- Weighted norms are homogeneous under scalar multiplication.
+@isnad1 id=eq.0h2v.s5.45b73b279928 from=translated src=- shape=f0921e1b vocab=ed63fc11
+-/
 theorem weightedNorm_smul (c : ℂ) (G : ℂ → ℂ) :
     weightedNorm (c • G) = ‖c‖ * weightedNorm G := by
   have hInt :
@@ -1773,7 +1815,9 @@ theorem weightedNorm_smul (c : ℂ) (G : ℂ → ℂ) :
   change √(weightedNormSq (c • G)) = ‖c‖ * √(weightedNormSq G)
   rw [hsq, Real.sqrt_mul (by positivity), hcsq]
 
-/-- Weighted defect norms are homogeneous under scalar multiplication. -/
+/-- Weighted defect norms are homogeneous under scalar multiplication.
+@isnad1 id=eq.0h3v.s6.a17bae29561e from=translated src=- shape=cc0213d6 vocab=ec762049
+-/
 theorem weightedDefectNorm_smul (c : ℂ) (F0 G : ℂ → ℂ) :
     weightedDefectNorm (c • F0) (c • G) = ‖c‖ * weightedDefectNorm F0 G := by
   have hInt :
@@ -1823,7 +1867,9 @@ private lemma weightedInner_finiteHermiteSum_coeff (k : ℕ) {D : ℕ} (a : Fin 
       simp [show x.1 ≠ n from fun hEq => h (hEq ▸ x.isLt)]
     simp [this, h]
 
-/-- Every finite Hermite sum belongs to the true level space. -/
+/-- Every finite Hermite sum belongs to the true level space.
+@isnad1 id=mem.0h3v.s4.72c1081db192 from=translated src=- shape=3f657d01 vocab=8289fdb0
+-/
 theorem finiteHermiteSum_mem_Hk :
     ∀ (k : ℕ) {D : ℕ} (a : Fin D → ℂ), finiteHermiteSum k a ∈ Hk k := by
   intro k D a
@@ -1864,7 +1910,9 @@ theorem finiteHermiteSum_mem_Hk :
     rw [hval]
     exact hasSum_sum_of_ne_finset_zero hfin
 
-/-- The canonical coefficient extractor recovers the coefficients of a finite Hermite sum. -/
+/-- The canonical coefficient extractor recovers the coefficients of a finite Hermite sum.
+@isnad1 id=eq.0h4v.s5.c8fbd36fd292 from=translated src=- shape=26f5c83f vocab=91d6ac49
+-/
 theorem hermiteCoeff_finiteHermiteSum :
     ∀ {k D : ℕ} (a : Fin D → ℂ) (n : ℕ),
       hermiteCoeff k (finiteHermiteSum k a) n = if h : n < D then a ⟨n, h⟩ else 0 := by
@@ -1899,18 +1947,24 @@ theorem hermiteCoeff_finiteHermiteSum :
       simp [hxne]
     simp_all
 
-/-- The zeroth coefficient is the inner product against the lowest basis vector. -/
+/-- The zeroth coefficient is the inner product against the lowest basis vector.
+@isnad1 id=eq.0h2v.s4.c892a15e3531 from=translated src=- shape=660639f8 vocab=76ff26c4
+-/
 @[simp] theorem hermiteCoeff_phi0 :
     ∀ {k : ℕ} {G : ℂ → ℂ}, hermiteCoeff k G 0 = weightedInner G (phi0 k) := by
   intro k G
   rfl
 
-/-- Orthogonality to `Phi k 0` is equivalent to vanishing zeroth Hermite coefficient. -/
+/-- Orthogonality to `Phi k 0` is equivalent to vanishing zeroth Hermite coefficient.
+@isnad1 id=iff.0h2v.s5.bdba921150e6 from=translated src=- shape=7eb15e99 vocab=76ff26c4
+-/
 theorem orthogonal_phi0_iff_hermiteCoeff_zero :
     ∀ {k : ℕ} {G : ℂ → ℂ},
       weightedInner G (phi0 k) = 0 ↔ hermiteCoeff k G 0 = 0 := by simp [hermiteCoeff_phi0]
 
-/-- The truncation operator is the explicit finite Hermite sum of the first coefficients. -/
+/-- The truncation operator is the explicit finite Hermite sum of the first coefficients.
+@isnad1 id=eq.0h3v.s6.3e4316b836a8 from=translated src=- shape=f32d33a6 vocab=4cefa3bc
+-/
 theorem truncate_eq_finiteHermiteSum :
     ∀ {k J : ℕ} {G : ℂ → ℂ},
       truncate k J G =
@@ -1918,7 +1972,9 @@ theorem truncate_eq_finiteHermiteSum :
   intro k J G
   rfl
 
-/-- The truncated circle polynomial is the finite circle polynomial of the truncated vector. -/
+/-- The truncated circle polynomial is the finite circle polynomial of the truncated vector.
+@isnad1 id=eq.0h4v.s6.6086803dcbff from=translated src=- shape=ddbbcc47 vocab=237b52b0
+-/
 theorem truncCirclePoly_eq_finiteCirclePoly :
     ∀ {k J : ℕ} {G : ℂ → ℂ} {r : ℝ},
       truncCirclePoly k r J G =
@@ -1926,7 +1982,9 @@ theorem truncCirclePoly_eq_finiteCirclePoly :
   intro k J G r
   rfl
 
-/-- The truncation keeps exactly the first `J + 1` Hermite coefficients. -/
+/-- The truncation keeps exactly the first `J + 1` Hermite coefficients.
+@isnad1 id=eq.0h4v.s6.b3f496c557f6 from=translated src=- shape=64cea55d vocab=6e2ea0a1
+-/
 theorem hermiteCoeff_truncate :
     ∀ {k J : ℕ} {G : ℂ → ℂ} (n : ℕ),
       hermiteCoeff k (truncate k J G) n =
@@ -1997,14 +2055,18 @@ private lemma hermiteCoeff_sub_truncate
       ring
     simp_all
 
-/-- Every truncation lies in the true level space. -/
+/-- Every truncation lies in the true level space.
+@isnad1 id=mem.0h3v.s4.07376d222c47 from=translated src=- shape=265f5e6f vocab=0afb1f83
+-/
 theorem truncate_mem_Hk :
     ∀ (k J : ℕ) (G : ℂ → ℂ), truncate k J G ∈ Hk k := by
   intro k J G
   simpa [truncate] using
     (finiteHermiteSum_mem_Hk k (a := fun n : Fin (J + 1) => hermiteCoeff k G n.1))
 
-/-- Exact finite Parseval identity for Hermite truncations. -/
+/-- Exact finite Parseval identity for Hermite truncations.
+@isnad1 id=eq.0h3v.s6.149a22639c98 from=translated src=- shape=8db554a9 vocab=931813d2
+-/
 theorem truncate_normSq :
     ∀ (k J : ℕ) (G : ℂ → ℂ),
       weightedNormSq (truncate k J G) =
@@ -2013,7 +2075,9 @@ theorem truncate_normSq :
   simpa [truncate_eq_finiteHermiteSum] using
     (finiteHermiteSum_normSq (k := k) (a := fun n : Fin (J + 1) => hermiteCoeff k G n.1))
 
-/-- Finite Hermite sums admit a finite circle representation. -/
+/-- Finite Hermite sums admit a finite circle representation.
+@isnad1 id=eq.1h5v.s7.befb81eb19d6 from=translated src=- shape=7eafd746 vocab=cbd8b67b
+-/
 theorem finiteHermiteSum_circle :
     ∀ {k D : ℕ} (a : Fin D → ℂ) {r : ℝ},
       0 < r →
@@ -2060,7 +2124,9 @@ theorem finiteHermiteSum_circle :
     _ = circleLeadingFactor k r * (fourier (-(k : ℤ)) t : ℂ) * finiteCirclePoly k r a t := by
         rw [hpoly]
 
-/-- The finite circle coefficient map vanishes outside the finite frequency range. -/
+/-- The finite circle coefficient map vanishes outside the finite frequency range.
+@isnad1 id=eq.1h5v.s5.d8796978322e from=translated src=- shape=73c8dda0 vocab=ec788eb5
+-/
 theorem finiteCircleCoeff_eq_zero_outside :
     ∀ {k D : ℕ} (r : ℝ) (a : Fin D → ℂ) {n : ℕ},
       D ≤ n →
@@ -2068,7 +2134,9 @@ theorem finiteCircleCoeff_eq_zero_outside :
   intro k D r a n hn
   simp [finiteCircleCoeff, Nat.not_lt.mpr hn]
 
-/-- The finite circle polynomial is supported in frequencies `{0, ..., D - 1}`. -/
+/-- The finite circle polynomial is supported in frequencies `{0, ..., D - 1}`.
+@isnad1 id=eq.0h4v.s5.86f3bda850ac from=translated src=- shape=f6623b63 vocab=38a075b5
+-/
 theorem finiteCirclePoly_support :
     ∀ {k D : ℕ} (r : ℝ) (a : Fin D → ℂ),
       finiteCirclePoly k r a =
@@ -2077,7 +2145,9 @@ theorem finiteCirclePoly_support :
   rfl
 
 /-- If the zeroth coefficient vanishes, the finite circle polynomial has
-positive-frequency support. -/
+positive-frequency support.
+@isnad1 id=eq.1h4v.s6.15f23a15d95a from=translated src=- shape=33659a9c vocab=15e4a860
+-/
 theorem finiteCirclePoly_support_pos :
     ∀ {k D : ℕ} (r : ℝ) (a : Fin (D + 1) → ℂ),
       a 0 = 0 →
@@ -2095,7 +2165,9 @@ theorem finiteCirclePoly_support_pos :
   · simp [finiteCircleCoeff, h0]
   · simp [HermiteLEAN.frequencyBand]
 
-/-- Circle Parseval identity for finite Hermite sums. -/
+/-- Circle Parseval identity for finite Hermite sums.
+@isnad1 id=eq.0h4v.s6.06fcc08b6008 from=translated src=- shape=4677a75a vocab=6ee2d70a
+-/
 theorem finiteCirclePoly_l2_identity :
     ∀ {k D : ℕ} (r : ℝ) (a : Fin D → ℂ),
       circleL2Sq (finiteCirclePoly k r a) =
@@ -2122,7 +2194,9 @@ theorem finiteCirclePoly_l2_identity :
     rw [norm_mul, Complex.norm_real, Real.norm_eq_abs]
     ring
 
-/-- Truncations admit the corresponding finite circle representation. -/
+/-- Truncations admit the corresponding finite circle representation.
+@isnad1 id=eq.1h5v.s7.fc7d1169e7ec from=translated src=- shape=6508188b vocab=039bdcb9
+-/
 theorem truncate_circle :
     ∀ (k J : ℕ) (G : ℂ → ℂ) {r : ℝ},
       0 < r →
@@ -2136,7 +2210,9 @@ theorem truncate_circle :
     (finiteHermiteSum_circle (k := k) (D := J + 1)
       (a := fun n : Fin (J + 1) => hermiteCoeff k G n.1) (r := r) hr t)
 
-/-- The truncation circle polynomial is supported in `{0, ..., J}`. -/
+/-- The truncation circle polynomial is supported in `{0, ..., J}`.
+@isnad1 id=eq.0h4v.s6.434694ff15b0 from=translated src=- shape=76c00f16 vocab=db673562
+-/
 theorem truncCirclePoly_support :
     ∀ {k J : ℕ} (r : ℝ) (G : ℂ → ℂ),
       truncCirclePoly k r J G =
@@ -2147,7 +2223,9 @@ theorem truncCirclePoly_support :
   rfl
 
 /-- Orthogonality to `Phi k 0` removes the zero frequency from every
-truncation circle polynomial. -/
+truncation circle polynomial.
+@isnad1 id=eq.1h4v.s6.5426fc0b5b0d from=translated src=- shape=83debd0d vocab=57949c78
+-/
 theorem truncCirclePoly_support_pos :
     ∀ {k J : ℕ} (r : ℝ) (G : ℂ → ℂ),
       weightedInner G (phi0 k) = 0 →
@@ -2161,7 +2239,9 @@ theorem truncCirclePoly_support_pos :
     (finiteCirclePoly_support_pos (k := k) (D := J) (r := r)
       (a := fun n : Fin (J + 1) => hermiteCoeff k G n.1) h0)
 
-/-- Circle Parseval identity for truncated Hermite sums. -/
+/-- Circle Parseval identity for truncated Hermite sums.
+@isnad1 id=eq.0h4v.s7.d5fe18f52ba0 from=translated src=- shape=81f8cc30 vocab=c4e5deb2
+-/
 theorem truncCirclePoly_l2_identity :
     ∀ (k J : ℕ) (r : ℝ) (G : ℂ → ℂ),
       circleL2Sq (truncCirclePoly k r J G) =
@@ -2348,14 +2428,18 @@ def hermiteSeries (k : ℕ) (g : ℕ → ℂ) : ℂ → ℂ :=
 def circleSeries (k : ℕ) (g : ℕ → ℂ) (r : ℝ) : Circle → ℂ :=
   fun t => ∑' n : ℕ, g n * (qkn k n r : ℂ) * fourier (n : ℤ) t
 
-/-- The canonical coefficient extractor recovers the Hermite expansion of any `G ∈ H_k`. -/
+/-- The canonical coefficient extractor recovers the Hermite expansion of any `G ∈ H_k`.
+@isnad1 id=eq.1h2v.s5.4508ef4242e8 from=translated src=- shape=151436e1 vocab=c31d5ac1
+-/
 theorem hermiteCoeff_expansion :
     ∀ {k : ℕ} {G : ℂ → ℂ}, G ∈ Hk k → G = hermiteSeries k (hermiteCoeff k G) := by
   intro k G hG
   ext z
   exact ((hG.2 z).tsum_eq).symm
 
-/-- The truncation is the unique degree-`≤ J` element with the prescribed first coefficients. -/
+/-- The truncation is the unique degree-`≤ J` element with the prescribed first coefficients.
+@isnad1 id=eq.2h4v.s6.02f956d0e65c from=translated src=- shape=30b14dcb vocab=057abb54
+-/
 theorem truncate_unique :
     ∀ {k J : ℕ} {G H : ℂ → ℂ},
       H ∈ Hk k →
@@ -2407,7 +2491,9 @@ private theorem aestronglyMeasurable_of_mem_Hk {k : ℕ} {G : ℂ → ℂ} (hG :
   · exact fun J => (continuous_finiteHermiteSum k _).aestronglyMeasurable
   · exact Filter.Eventually.of_forall (fun z => truncate_tendsto_pointwise hG z)
 
-/-- Integrability of truncation norm squared with Gaussian weight. -/
+/-- Integrability of truncation norm squared with Gaussian weight.
+@isnad1 id=integrab.0h3v.s6.cf4c1e340adc from=translated src=- shape=60b76c10 vocab=7b1421c0
+-/
 theorem integrable_truncate_normSq_exp (k J : ℕ) (G : ℂ → ℂ) :
     Integrable (fun z : ℂ => ‖truncate k J G z‖ ^ 2 * rexp (-‖z‖ ^ 2)) := by
   simpa using (truncate_mem_Hk k J G).1
@@ -2767,7 +2853,9 @@ private lemma hermiteCoeff_parseval_le {k : ℕ} {G : ℂ → ℂ} (hG : G ∈ H
   have hfinal : weightedNormSq G ≤ ∑' n : ℕ, t n := by nlinarith [Real.pi_pos, hpi_mul_le]
   simpa [t] using hfinal
 
-/-- Parseval identity for the canonical Hermite coefficients. -/
+/-- Parseval identity for the canonical Hermite coefficients.
+@isnad1 id=eq.1h2v.s5.d57ed4a7803f from=translated src=- shape=be6d8424 vocab=3b6bcb33
+-/
 theorem hermiteCoeff_parseval :
     ∀ {k : ℕ} {G : ℂ → ℂ},
       G ∈ Hk k →
@@ -2792,7 +2880,9 @@ theorem hermiteCoeff_parseval :
         exact bessel_truncate_le hG hInt J'
   · exact hermiteCoeff_parseval_not_integrable hG hInt
 
-/-- Every `G ∈ H_k` admits a Hermite expansion with Parseval. -/
+/-- Every `G ∈ H_k` admits a Hermite expansion with Parseval.
+@isnad1 id=ex.1h2v.s6.0e973e65defa from=translated src=- shape=bc54aae5 vocab=60b163f1
+-/
 theorem h_k_expansion :
     ∀ {k : ℕ} {G : ℂ → ℂ},
       G ∈ Hk k →
@@ -2802,7 +2892,9 @@ theorem h_k_expansion :
   intro k G hG
   exact ⟨hermiteCoeff k G, hermiteCoeff_expansion hG, hermiteCoeff_parseval hG⟩
 
-/-- Compatibility statement: polar/circle representation of an element of `H_k`. -/
+/-- Compatibility statement: polar/circle representation of an element of `H_k`.
+@isnad1 id=ex.1h2v.s7.43d946c2fb9d from=translated src=- shape=78b8166e vocab=8d7673cf
+-/
 theorem circle_representation :
     ∀ {k : ℕ} {G : ℂ → ℂ},
       G ∈ Hk k →
@@ -2839,7 +2931,9 @@ theorem circle_representation :
   intro n
   ring
 
-/-- Canonical circle representation in terms of `hermiteCoeff`. -/
+/-- Canonical circle representation in terms of `hermiteCoeff`.
+@isnad1 id=eq.2h4v.s7.52ca8eceb4db from=translated src=- shape=579fcfbb vocab=5dc6eed8
+-/
 theorem circle_representation_hermiteCoeff :
     ∀ {k : ℕ} {G : ℂ → ℂ},
       G ∈ Hk k →
@@ -2959,7 +3053,9 @@ private lemma summable_sq_hermiteCoeff {k : ℕ} {G : ℂ → ℂ} (hG : G ∈ H
     Summable (fun n => ‖hermiteCoeff k G n‖ ^ 2) :=
   summable_of_sum_range_le (fun _ => sq_nonneg _) (sum_range_sq_hermiteCoeff_le hG)
 
-/-- Point evaluations are bounded on `H_k`. -/
+/-- Point evaluations are bounded on `H_k`.
+@isnad1 id=ex.0h2v.s5.2c810b9936ff from=translated src=- shape=5586f332 vocab=1d3a6dd9
+-/
 theorem point_eval_bounded :
     ∀ {k : ℕ} (z : ℂ),
       ∃ C : ℝ,
@@ -3230,7 +3326,9 @@ private theorem circleSeries_l2_identity_canonical :
     simpa [mul_comm, mul_left_comm, mul_assoc] using hsum_tendsto'
   exact hlimit_eq
 
-/-- Compatibility statement: circle Parseval identity for an `H_k` expansion. -/
+/-- Compatibility statement: circle Parseval identity for an `H_k` expansion.
+@isnad1 id=eq.4h4v.s7.7aaef0166f7a from=translated src=- shape=6906931b vocab=8335d46f
+-/
 theorem circleSeries_l2_identity :
     ∀ {k : ℕ} {G : ℂ → ℂ} {g : ℕ → ℂ},
       G ∈ Hk k →
@@ -3410,7 +3508,9 @@ theorem circleSeries_l2_identity :
   rw [hEqSeq]
   simpa [mul_comm, mul_left_comm, mul_assoc] using hsum_tendsto'
 
-/-- Circle Parseval identity for the canonical coefficient sequence. -/
+/-- Circle Parseval identity for the canonical coefficient sequence.
+@isnad1 id=eq.2h3v.s6.248e74695a9a from=translated src=- shape=3af04326 vocab=99e01dec
+-/
 theorem circleSeries_l2_identity_hermiteCoeff :
     ∀ {k : ℕ} {G : ℂ → ℂ},
       G ∈ Hk k →
@@ -3421,7 +3521,9 @@ theorem circleSeries_l2_identity_hermiteCoeff :
   intro k G hG r hr
   exact circleSeries_l2_identity_canonical (k := k) (G := G) hG r hr
 
-/-- The canonical circle series has the expected Fourier coefficients. -/
+/-- The canonical circle series has the expected Fourier coefficients.
+@isnad1 id=eq.2h4v.s6.eddfaa034342 from=translated src=- shape=930fc3c1 vocab=895ecb4f
+-/
 theorem circleSeries_fourierCoeff_hermiteCoeff :
     ∀ {k : ℕ} {G : ℂ → ℂ},
       G ∈ Hk k →
@@ -3497,7 +3599,9 @@ theorem circleSeries_fourierCoeff_hermiteCoeff :
     _ = c n := by simp
     _ = hermiteCoeff k G n * (qkn k n r : ℂ) := by simp [c]
 
-/-- Orthogonality to `Phi k 0` yields an expansion with vanishing zero mode. -/
+/-- Orthogonality to `Phi k 0` yields an expansion with vanishing zero mode.
+@isnad1 id=ex.2h2v.s6.3c9561a8eb30 from=translated src=- shape=4205bfcf vocab=8d9f2beb
+-/
 theorem h_k_expansion_perp_phi0 :
     ∀ {k : ℕ} {G : ℂ → ℂ},
       G ∈ Hk k →
@@ -3577,7 +3681,9 @@ private lemma sub_truncate_mem_Hk {k : ℕ} {G : ℂ → ℂ} (hG : G ∈ Hk k) 
     simp_rw [hterm]
     exact hGz.sub hTzH
 
-/-- Truncations converge to `G` in the weighted norm. -/
+/-- Truncations converge to `G` in the weighted norm.
+@isnad1 id=ex.2h3v.s6.7512d5df1948 from=translated src=- shape=a71546d2 vocab=d202ff04
+-/
 theorem truncate_tendsto :
     ∀ {k : ℕ} {G : ℂ → ℂ},
       G ∈ Hk k →
@@ -3666,7 +3772,9 @@ theorem truncate_tendsto :
   linarith [abs_nonneg (∑' n, ‖hermiteCoeff k G (n + (J + 1))‖ ^ 2),
     (abs_lt.mp hJN).2]
 
-/-- Truncations converge locally uniformly on bounded sets. -/
+/-- Truncations converge locally uniformly on bounded sets.
+@isnad1 id=ex.3h4v.s6.3014c9155b94 from=translated src=- shape=3691d893 vocab=bd46c716
+-/
 theorem truncate_locally_uniform :
     ∀ {k : ℕ} {G : ℂ → ℂ},
       G ∈ Hk k →
@@ -3810,7 +3918,9 @@ theorem truncate_locally_uniform :
     _ ≤ ∑' n : ℕ, ‖hermiteCoeff k G (n + (J + 1))‖ * B (n + (J + 1)) := htsum_le
     _ ≤ ε := le_of_lt htail_small
 
-/-- The finite circle polynomials of `G` converge in circle `L²` to the Hermite circle series. -/
+/-- The finite circle polynomials of `G` converge in circle `L²` to the Hermite circle series.
+@isnad1 id=ex.3h4v.s6.00a55ba4a254 from=translated src=- shape=b5f8b95d vocab=c4778093
+-/
 theorem truncCirclePoly_tendsto_circleSeries :
     ∀ {k : ℕ} {G : ℂ → ℂ},
       G ∈ Hk k →
@@ -3936,7 +4046,9 @@ theorem truncCirclePoly_tendsto_circleSeries :
     _ = ∑' n : ℕ, d (n + (J + 1)) := hshift
     _ ≤ ε := le_of_lt htail_small
 
-/-- Hermite expansions converge locally uniformly, hence are continuous. -/
+/-- Hermite expansions converge locally uniformly, hence are continuous.
+@isnad1 id=ex.1h2v.s6.a6a9e858670f from=translated src=- shape=44d6d15a vocab=ee955c42
+-/
 theorem hermite_series_locally_uniform :
     ∀ {k : ℕ} {G : ℂ → ℂ},
       G ∈ Hk k →
@@ -3990,7 +4102,9 @@ theorem hermite_series_locally_uniform :
         linarith
     _ = ε := by ring
 
-/-- Every element of `H_k` is continuous. -/
+/-- Every element of `H_k` is continuous.
+@isnad1 id=continuo.1h2v.s5.cc5dac86db00 from=translated src=- shape=cd577b6d vocab=8a449957
+-/
 theorem continuous_of_mem_Hk :
     ∀ {k : ℕ} {G : ℂ → ℂ},
       G ∈ Hk k → Continuous G := by
@@ -4168,7 +4282,9 @@ private theorem hermiteSeries_unique_of_summable :
   simp_all
 
 /-- Fourier inversion: the canonical coefficients of a Hermite series recover
-    the original coefficient sequence. -/
+    the original coefficient sequence.
+@isnad1 id=eq.3h4v.s6.07c8d195470c from=translated src=- shape=dd9f6acf vocab=84572cd5
+-/
 theorem hermiteCoeff_hermiteSeries :
     ∀ {k : ℕ} {G : ℂ → ℂ} (h : ℕ → ℂ),
       G ∈ Hk k →
@@ -4193,7 +4309,9 @@ private def gaussianWeight (z : ℂ) : ℝ :=
 private def gaussianScale (F : ℂ → ℂ) : ℂ → ℂ :=
   fun z => ((gaussianWeight z : ℝ) : ℂ) * F z
 
-/-- The modulus defect is bounded by the perturbation norm. -/
+/-- The modulus defect is bounded by the perturbation norm.
+@isnad1 id=le.0h3v.s4.1f2c31fab0c2 from=translated src=- shape=59d2738c vocab=43a81f37
+-/
 theorem modulusDefect_le_norm (F0 G : ℂ → ℂ) (z : ℂ) :
     modulusDefect F0 G z ≤ ‖G z‖ := by
   have h := abs_norm_sub_norm_le (F0 z + G z) (F0 z)

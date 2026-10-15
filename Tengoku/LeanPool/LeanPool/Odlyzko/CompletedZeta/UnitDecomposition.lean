@@ -34,6 +34,9 @@ def unitExponentReindex :
   right_inv z := by
     simp
 
+/--
+@isnad1 id=eq.0h2v.s8.33c0e9f8628c from=translated src=- shape=865d9d94 vocab=37f0d11b
+-/
 theorem fundamentalUnitForShift_unitExponentReindex
     (f : Fin (rank K) → ℤ) :
     fundamentalUnitForShift (unitExponentReindex K f) =
@@ -52,6 +55,9 @@ noncomputable def unitDecompositionMap :
       (𝓞 K)ˣ :=
   fun p ↦ p.1 * fundamentalUnitForShift p.2
 
+/--
+@isnad1 id=bijectiv.0h1v.s7.3411c7191759 from=translated src=- shape=e62e939a vocab=dbb19784
+-/
 theorem bijective_unitDecompositionMap :
     Function.Bijective (unitDecompositionMap K) := by
   classical
@@ -98,6 +104,9 @@ def unitDecompositionEquiv :
   Equiv.ofBijective (unitDecompositionMap K)
     (bijective_unitDecompositionMap K)
 
+/--
+@isnad1 id=eq.0h2v.s11.bd9b1ce4e54a from=translated src=- shape=db343f34 vocab=4391817d
+-/
 @[simp]
 theorem unitDecompositionEquiv_apply
     (p : torsion K × ({w : InfinitePlace K // w ≠ w₀} → ℤ)) :

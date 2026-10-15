@@ -24,7 +24,9 @@ iteration of Poincaré's subtract-and-divide argument.
 namespace LeanPool.PoincareThreeBody
 
 /-- On a connected local Kepler energy leaf, the mass-zero candidate is the analytic energy
-function constructed from any reference first action on that leaf. -/
+function constructed from any reference first action on that leaf.
+@isnad1 id=other.10h7v.s8.fa88277f9c04 from=translated src=- shape=58bcd9ec vocab=a18496da
+-/
 theorem IsFirstIntegralFamily.mass_zero_eq_leadingEnergyCoefficient_hamiltonian
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)
@@ -89,7 +91,9 @@ theorem IsFirstIntegralFamily.mass_zero_eq_leadingEnergyCoefficient_hamiltonian
       rw [hhamiltonian]
 
 /-- The local energy function used to cancel the zeroth coefficient is analytic at the physical
-Kepler energy of the lifted ellipse. -/
+Kepler energy of the lifted ellipse.
+@isnad1 id=other.7h7v.s7.c1d1a368938a from=translated src=- shape=b11e478f vocab=a38dd3b2
+-/
 theorem IsJointlyAnalytic.analyticAt_localLeadingEnergyCoefficient
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)
@@ -126,7 +130,9 @@ theorem IsJointlyAnalytic.analyticAt_localLeadingEnergyCoefficient
     hδ hanalytic hactionReference hapoapsisReference
 
 /-- After cancelling the zeroth coefficient by the local analytic energy function, the
-mass-normalized candidate is analytic in mass at zero on the selected physical phase slice. -/
+mass-normalized candidate is analytic in mass at zero on the selected physical phase slice.
+@isnad1 id=other.10h7v.s8.0c005ca4ac83 from=translated src=- shape=ddeb30cf vocab=31c8be2c
+-/
 theorem IsFirstIntegralFamily.analyticAt_massNormalizedCandidate_localEnergy_massSlice
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)
@@ -174,7 +180,9 @@ theorem IsFirstIntegralFamily.analyticAt_massNormalizedCandidate_localEnergy_mas
     hanalytic hdomain henergyAnalytic
 
 /-- The same local normalization satisfies the exact subtract-and-divide identity at every mass
-on the chosen phase slice. -/
+on the chosen phase slice.
+@isnad1 id=other.10h8v.s8.07334d71fb2b from=translated src=- shape=44461f48 vocab=da268b4d
+-/
 theorem IsFirstIntegralFamily.mass_mul_massNormalizedCandidate_localEnergy
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)

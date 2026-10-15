@@ -34,6 +34,7 @@ open MeasureTheory MeasureSpace FiniteDimensional Real
 
 /-- Norm bound: ‖spacetimeDecomp.symm (t, v)‖ ≥ ‖v‖.
     This follows from: ‖x‖² = t² + ‖v‖² ≥ ‖v‖².
+@isnad1 id=le.0h2v.s9.c3c658ea3b68 from=translated src=- shape=e80f9c32 vocab=11fb79b0
 -/
 lemma spacetimeDecomp_symm_norm_ge (t : ℝ) (v : SpatialCoords) :
     ‖spacetimeDecomp.symm (t, v)‖ ≥ ‖v‖ := by
@@ -48,7 +49,9 @@ lemma spacetimeDecomp_symm_norm_ge (t : ℝ) (v : SpatialCoords) :
   have h_norm_nonneg : 0 ≤ ‖spacetimeDecomp.symm (t, v)‖ := norm_nonneg _
   exact le_of_sq_le_sq h_sq_ge h_norm_nonneg
 
-/-- Slice integrability: for fixed t, the slice is integrable over SpatialCoords. -/
+/-- Slice integrability: for fixed t, the slice is integrable over SpatialCoords.
+@isnad1 id=integrab.0h2v.s10.06e6052bdb78 from=translated src=- shape=f4662da9 vocab=cdbbf344
+-/
 lemma schwartz_slice_integrable (f : SchwartzMap SpaceTime ℂ) (t : ℝ) :
     Integrable (fun v : SpatialCoords => ‖f (spacetimeDecomp.symm (t, v))‖) volume := by
   have hST_dim : Module.finrank ℝ SpaceTime < 5 := by
@@ -86,7 +89,9 @@ lemma schwartz_slice_integrable (f : SchwartzMap SpaceTime ℂ) (t : ℝ) :
     rw [Real.norm_of_nonneg (by positivity : 0 ≤ C / (1 + ‖v‖)^5)]
     exact h_bound v
 
-/-- Schwartz composed with spacetimeDecomp.symm is integrable on the product. -/
+/-- Schwartz composed with spacetimeDecomp.symm is integrable on the product.
+@isnad1 id=integrab.0h1v.s10.532e3ec6084b from=translated src=- shape=53fa73de vocab=02955e81
+-/
 lemma schwartz_integrable_on_prod' (f : SchwartzMap SpaceTime ℂ) :
     Integrable (fun p : ℝ × SpatialCoords => ‖f (spacetimeDecomp.symm p)‖) := by
   have h_mp : MeasurePreserving spacetimeDecomp (volume : Measure SpaceTime) volume :=
@@ -109,6 +114,7 @@ depending only on time coordinates, the double integral factors:
 where G_f(t) = ∫ ‖f(t, v)‖ dv is the spatial integral at time t.
 
 This is a key tool for establishing reflection positivity (OS3) bounds.
+@isnad1 id=other.3h3v.s11.429bf0589752 from=translated src=- shape=cdb1ab66 vocab=89549ff0
 -/
 theorem schwartz_tonelli_spacetime
     (f g : SchwartzMap SpaceTime ℂ)

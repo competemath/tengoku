@@ -53,7 +53,9 @@ namespace Nivat.TwoFactors
 
 /-- Theorem 5.1 (`thm:twofactor`), after the window of Lemma 5.5 has been
 normalized: a nonzero integer multiple of one of the two directions is a
-period. Lemmas 5.6–5.8 preserve which direction supplies the period. -/
+period. Lemmas 5.6–5.8 preserve which direction supplies the period.
+@isnad1 id=ex.8h7v.s8.1b538099d682 from=translated src=- shape=c7e0cbca vocab=ac84d96e
+-/
 theorem directional_period_of_short_window (c : Configuration ℚ) (hc : FiniteRange c)
     (C : Finset Lattice) (e H : ℕ) (hH : 0 < H)
     (hC : ∀ z ∈ C, 1 ≤ z.2 ∧ z.2 ≤ H)

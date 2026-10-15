@@ -23,7 +23,9 @@ nonconstant at every rational resonance under consideration.
 namespace LeanPool.PoincareThreeBody
 
 /-- Pulling two dependent Euclidean action covectors back along any linear map cannot make them
-linearly independent. -/
+linearly independent.
+@isnad1 id=not.1h3v.s10.f48714a58289 from=translated src=- shape=90a988ed vocab=0ff46872
+-/
 theorem not_linearIndependent_actionCovector_comp_of_wedge_eq_zero
     {u v : ActionSpace} (actionDerivative : PhaseSpace →L[ℝ] ActionSpace)
     (hwedge : wedge u v = 0) :
@@ -56,7 +58,9 @@ theorem not_linearIndependent_actionCovector_comp_of_wedge_eq_zero
   exact not_linearIndependent_of_wedge_eq_zero hwedge horiginal
 
 /-- Poincaré's dense resonant set forces the leading candidate differential to be dependent on
-the Kepler frequency throughout the full interior prograde elliptic action region. -/
+the Kepler frequency throughout the full interior prograde elliptic action region.
+@isnad1 id=eq.6h3v.s7.bfbf2c6140ee from=translated src=- shape=76b9bfbe vocab=fd22459b
+-/
 theorem IsFirstIntegralFamily.wedge_leadingActionDifferential_eq_zero
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)
@@ -85,7 +89,9 @@ theorem IsFirstIntegralFamily.wedge_leadingActionDifferential_eq_zero
   rwa [hrecover] at hfixed
 
 /-- Natural classical form of the full action obstruction, assuming only density of the
-Poincaré set rather than nonvanishing at every rational resonance. -/
+Poincaré set rather than nonvanishing at every rational resonance.
+@isnad1 id=eq.6h3v.s7.1ea35c85e79c from=translated src=- shape=76b9bfbe vocab=a018567a
+-/
 theorem IsFirstIntegralFamily.wedge_leadingActionDifferential_eq_zero_of_poincareSet
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)
@@ -99,7 +105,9 @@ theorem IsFirstIntegralFamily.wedge_leadingActionDifferential_eq_zero_of_poincar
     hδ hanalytic hfirstIntegral hdense ⟨action, haction, hapoapsis⟩
 
 /-- Physical form of the leading-coefficient obstruction on every noncircular lifted ellipse:
-the phase differentials of the zero-mass Hamiltonian and leading candidate are dependent. -/
+the phase differentials of the zero-mass Hamiltonian and leading candidate are dependent.
+@isnad1 id=other.8h6v.s10.72a1943768a2 from=translated src=- shape=53a4b2a4 vocab=016f4c54
+-/
 theorem IsFirstIntegralFamily.mass_zero_differentials_dependent_on_liftedEllipse
     {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hanalytic : IsJointlyAnalytic δ F)

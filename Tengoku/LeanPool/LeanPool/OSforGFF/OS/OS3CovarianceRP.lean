@@ -74,6 +74,9 @@ open scoped ComplexConjugate
 noncomputable def timeReflection (x : SpaceTime) : SpaceTime :=
   (WithLp.equiv 2 _).symm (Function.update x.ofLp 0 (-x.ofLp 0))
 
+/--
+@isnad1 id=involuti.0h0v.s1.16e292e1c53c from=translated src=- shape=25b03439 vocab=7d6dfd2b
+-/
 lemma timeReflection_involutive : Function.Involutive timeReflection :=
   _root_.timeReflection_involutive
 
@@ -99,10 +102,16 @@ noncomputable def rpInnerProduct (m : ℝ) (f : TestFunctionℂ) : ℂ :=
 
 variable (m : ℝ) [Fact (0 < m)]
 
+/--
+@isnad1 id=eq.0h2v.s8.2ecd40e46798 from=translated src=- shape=e5c9f399 vocab=82199dbb
+-/
 lemma star_apply (f : TestFunctionℂ) (x : SpaceTime) :
     (star f) x = starRingEnd ℂ (f (timeReflection x)) := rfl
 
 omit [Fact (0 < m)] in
+/--
+@isnad1 id=eq.0h2v.s9.f3ec25d515e7 from=translated src=- shape=dbf9d1c7 vocab=a427e6d7
+-/
 theorem rpInnerProduct_eq_bessel_reflected (f : TestFunctionℂ) :
     rpInnerProduct m f =
       ∫ x : SpaceTime, ∫ y : SpaceTime,
@@ -125,6 +134,7 @@ theorem rpInnerProduct_eq_bessel_reflected (f : TestFunctionℂ) :
 /-- The mixed representation from the Schwinger pathway.
     This is more direct than the k₀-inside form for proving reflection positivity,
     because `(1/ω) exp(-ω|t|)` already factorizes for positive-time test functions.
+@isnad1 id=eq.1h2v.s10.b2b069f2fd9f from=translated src=- shape=3e3b88e0 vocab=d5775b2c
 -/
 theorem mixed_representation (f : TestFunctionℂ)
     (hf_supp : ∀ x, x 0 ≤ 0 → f x = 0) :
@@ -141,6 +151,9 @@ theorem mixed_representation (f : TestFunctionℂ)
 
 /-! ## Part 4: Key Lemmas -/
 
+/--
+@isnad1 id=lt.0h2v.s7.94bff9f4d0b6 from=translated src=- shape=dee7e81c vocab=7ba6b1cb
+-/
 lemma energy_pos (k_sp : SpatialCoords) : 0 < Real.sqrt (‖k_sp‖^2 + m^2) := by
   apply Real.sqrt_pos_of_pos
   have hm : 0 < m := Fact.out
@@ -149,11 +162,17 @@ lemma energy_pos (k_sp : SpatialCoords) : 0 < Real.sqrt (‖k_sp‖^2 + m^2) := 
 /-! ## Part 5: Factorization Helpers -/
 
 omit [Fact (0 < m)] in
+/--
+@isnad1 id=eq.2h2v.s5.fddba41b738f from=translated src=- shape=2d06ff86 vocab=f22b2013
+-/
 lemma abs_neg_sum_nonneg (x0 y0 : ℝ) (hx : 0 ≤ x0) (hy : 0 ≤ y0) :
     |-x0 - y0| = x0 + y0 := by
   rw [abs_of_nonpos (by linarith : -x0 - y0 ≤ 0)]; ring
 
 omit [Fact (0 < m)] in
+/--
+@isnad1 id=eq.0h3v.s7.179cf28f59ca from=translated src=- shape=50a03441 vocab=08ee473e
+-/
 lemma spatialDot_sub (k_sp x_sp y_sp : SpatialCoords) :
     spatialDot k_sp (x_sp - y_sp) = spatialDot k_sp x_sp - spatialDot k_sp y_sp := by
   simp only [spatialDot]
@@ -162,6 +181,9 @@ lemma spatialDot_sub (k_sp x_sp y_sp : SpatialCoords) :
   simp_rw [h, Finset.sum_sub_distrib]
 
 omit [Fact (0 < m)] in
+/--
+@isnad1 id=eq.0h3v.s7.4bc4a0da1eba from=translated src=- shape=49ebf87e vocab=aad09108
+-/
 lemma exp_spatial_phase_factor (k_sp : SpatialCoords) (x_sp y_sp : SpatialCoords) :
     Complex.exp (-Complex.I * spatialDot k_sp (x_sp - y_sp)) =
     Complex.exp (-Complex.I * spatialDot k_sp x_sp) *
@@ -179,15 +201,24 @@ noncomputable def yIntegralFactor (f : TestFunctionℂ) (ω : ℝ) (k_sp : Spati
     Complex.exp (-(ω * y 0)) * Complex.exp (Complex.I * spatialDot k_sp (spatialPart y))
 
 omit [Fact (0 < m)] in
+/--
+@isnad1 id=eq.0h1v.s8.fe48b5b50654 from=translated src=- shape=38638938 vocab=f2b07ff3
+-/
 lemma norm_neg_eq (k_sp : SpatialCoords) : ‖-k_sp‖ = ‖k_sp‖ := norm_neg k_sp
 
 omit [Fact (0 < m)] in
+/--
+@isnad1 id=eq.0h2v.s6.2046e6514ffe from=translated src=- shape=5f28e2da vocab=bec3a8b5
+-/
 lemma spatialDot_neg_left (k_sp x_sp : SpatialCoords) :
     spatialDot (-k_sp) x_sp = -spatialDot k_sp x_sp := by
   simp only [spatialDot]
   simp_all
 
 omit [Fact (0 < m)] in
+/--
+@isnad1 id=eq.1h3v.s8.6cdca4300272 from=translated src=- shape=3926db2b vocab=5ab65bf5
+-/
 lemma xIntegralFactor_eq_conj_neg (f : TestFunctionℂ) (k_sp : SpatialCoords)
     (_hf_support : ∀ x : SpaceTime, x 0 < 0 → f x = 0) :
     xIntegralFactor f (Real.sqrt (‖k_sp‖^2 + m^2)) k_sp =
@@ -214,6 +245,9 @@ lemma xIntegralFactor_eq_conj_neg (f : TestFunctionℂ) (k_sp : SpatialCoords)
   simp_all
 
 omit [Fact (0 < m)] in
+/--
+@isnad1 id=eq.0h3v.s7.116a0349aa68 from=translated src=- shape=d188a5b8 vocab=19dabacf
+-/
 lemma yIntegralFactor_eq_neg (f : TestFunctionℂ) (k_sp : SpatialCoords) :
     yIntegralFactor f (Real.sqrt (‖k_sp‖^2 + m^2)) k_sp =
     weightedLaplaceFourier m f (-k_sp) := by
@@ -233,6 +267,7 @@ lemma yIntegralFactor_eq_neg (f : TestFunctionℂ) (k_sp : SpatialCoords) :
     - `exp(-ik_sp·r) = exp(-ik_sp·x_sp) · exp(+ik_sp·y_sp)`
 
     This avoids the round-trip through k₀ space that the old proof used.
+@isnad1 id=other.1h3v.s10.f68b907f017f from=translated src=- shape=7b33ce03 vocab=d611f9c6
 -/
 theorem factorization_to_squared_norm_direct (f : TestFunctionℂ) (k_sp : SpatialCoords)
     (hf_support : ∀ x : SpaceTime, x 0 < 0 → f x = 0) :
@@ -328,6 +363,7 @@ theorem factorization_to_squared_norm_direct (f : TestFunctionℂ) (k_sp : Spati
 
     This follows directly from the mixed representation + factorization,
     without going through the k₀-inside form.
+@isnad1 id=eq.1h2v.s10.8a32858fc2cb from=translated src=- shape=3946da23 vocab=6db4a641
 -/
 theorem rp_equals_squared_norm_integral (f : TestFunctionℂ)
     (hf_supp : ∀ x : SpaceTime, x 0 ≤ 0 → f x = 0) :
@@ -354,6 +390,7 @@ theorem rp_equals_squared_norm_integral (f : TestFunctionℂ)
     Proof: By `rp_equals_squared_norm_integral`,
       ⟨Θf, f⟩_C = (1/(2(2π)^{d-1})) * ∫_{k_sp} (1/ω) |F_ω(-k_sp)|² dk_sp
     Both the prefactor and integrand are non-negative.
+@isnad1 id=le.1h2v.s7.fb989c33c4c7 from=translated src=- shape=f286f92b vocab=e6a3c80f
 -/
 theorem freeCovariance_reflection_positive_direct (f : TestFunctionℂ)
     (hf_supp : ∀ x : SpaceTime, x 0 ≤ 0 → f x = 0) :
@@ -386,6 +423,7 @@ end RPProof
 
     Both are defined using the same Bessel kernel C(x,y) = (m/(4π²r)) K₁(mr),
     so this equality holds by definition (rfl).
+@isnad1 id=eq.0h2v.s3.3298f3157d65 from=translated src=- shape=fee7f684 vocab=9be2785a
 -/
 lemma rpInnerProduct_eq_rpProof (m : ℝ) (f : TestFunctionℂ) :
     rpInnerProduct m f = RPProof.rpInnerProduct m f := by
@@ -405,6 +443,7 @@ lemma rpInnerProduct_eq_rpProof (m : ℝ) (f : TestFunctionℂ) :
 
     **Proof:** Bridge to RPProof, then apply the direct proof
     via momentum representation and non-negativity of the integrand.
+@isnad1 id=le.1h2v.s7.1e67e7ca836c from=translated src=- shape=f286f92b vocab=5fc99604
 -/
 theorem freeCovariance_reflection_positive_bilinear (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ)
     (hf_supp : ∀ x : SpaceTime, x 0 ≤ 0 → f x = 0) :
@@ -419,6 +458,7 @@ The result extends to real test functions via embedding.
 
 /-- For real test functions, `star (toComplex f) = compTimeReflection (toComplex f)`.
     This is because conjugation is identity for real-valued functions.
+@isnad1 id=eq.0h1v.s10.52f987c382aa from=translated src=- shape=ea3d3baf vocab=c9d3a93b
 -/
 lemma star_toComplex_eq_compTimeReflection (f : OSforGFF.TestFunction) :
     star (toComplex f) = compTimeReflection (toComplex f) := by
@@ -432,6 +472,7 @@ lemma star_toComplex_eq_compTimeReflection (f : OSforGFF.TestFunction) :
 
 /-- The rpInnerProduct of a real test function equals the complex bilinear form
     with compTimeReflection.
+@isnad1 id=eq.0h2v.s10.ed9c55997c3e from=translated src=- shape=c296a1a4 vocab=e50e11cf
 -/
 lemma rpInnerProduct_toComplex_eq (m : ℝ) (f : OSforGFF.TestFunction) :
     rpInnerProduct m (toComplex f) =
@@ -439,7 +480,9 @@ lemma rpInnerProduct_toComplex_eq (m : ℝ) (f : OSforGFF.TestFunction) :
   unfold rpInnerProduct
   rw [star_toComplex_eq_compTimeReflection]
 
-/-- For real test functions, the reflection positivity inner product is non-negative. -/
+/-- For real test functions, the reflection positivity inner product is non-negative.
+@isnad1 id=le.1h2v.s10.baab1a8233cb from=translated src=- shape=4eae3a54 vocab=03194b0c
+-/
 theorem freeCovariance_reflection_positive_bilinear_real (m : ℝ) [Fact (0 < m)]
     (f : OSforGFF.TestFunction)
     (hf_supp : ∀ x : SpaceTime, x 0 ≤ 0 → f x = 0) :
@@ -457,7 +500,9 @@ theorem freeCovariance_reflection_positive_bilinear_real (m : ℝ) [Fact (0 < m)
     rfl
   simp_all
 
-/-- Alias for `freeCovariance_reflection_positive_bilinear_real` to match expected name. -/
+/-- Alias for `freeCovariance_reflection_positive_bilinear_real` to match expected name.
+@isnad1 id=le.1h2v.s10.baab1a8233cb from=translated src=- shape=4eae3a54 vocab=03194b0c
+-/
 theorem freeCovariance_reflection_positive_real (m : ℝ) [Fact (0 < m)] (f : OSforGFF.TestFunction)
     (hf_supp : ∀ x : SpaceTime, x 0 ≤ 0 → f x = 0) :
   0 ≤ ∫ x, ∫ y, (QFT.compTimeReflectionReal f) x * freeCovariance m x y * f y :=

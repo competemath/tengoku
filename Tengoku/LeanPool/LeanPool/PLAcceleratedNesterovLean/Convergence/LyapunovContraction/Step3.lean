@@ -57,7 +57,9 @@ namespace PLAcceleratedNesterovLean
     This creates an (a/2)·L_n slack for perturbation absorption.
 
     Concretely: (1-a)·F + ((1-a)/2)·U + ((1-a)/2)·V ≤ (1-a/2)·(F + U/2 + λ·V)
-    when λ = (1+a)²/(2(1-a)) and 0 < a < 1. -/
+    when λ = (1+a)²/(2(1-a)) and 0 < a < 1.
+@isnad1 id=le.6h5v.s8.88db121f7007 from=translated src=- shape=ece3ac1f vocab=762a6581
+-/
 theorem leading_coeff_slack (a F U V : ℝ)
     (ha : 0 < a) (ha1 : a < 1)
     (hF : 0 ≤ F) (hU : 0 ≤ U) (hV : 0 ≤ V)
@@ -92,7 +94,9 @@ theorem leading_coeff_slack (a F U V : ℝ)
     nlinarith [sq_nonneg a]
   nlinarith [mul_pos ha h1a]
 
-/-- Variant: the slack is at least (a/2)·F + (a/4)·U (used for absorption budget). -/
+/-- Variant: the slack is at least (a/2)·F + (a/4)·U (used for absorption budget).
+@isnad1 id=le.5h4v.s8.8e887c98f62a from=translated src=- shape=45d9d7d2 vocab=a75ad1a1
+-/
 theorem leading_coeff_slack_lower (a F U V : ℝ)
     (_ha : 0 < a) (_ha1 : a < 1)
     (_hF : 0 ≤ F) (_hU : 0 ≤ U) (hV : 0 ≤ V) :
@@ -105,7 +109,9 @@ theorem leading_coeff_slack_lower (a F U V : ℝ)
 -- § 2. Lambda-rho identity and tangential coefficient
 -- ════════════════════════════════════════════════════════════════════════════
 
-/-- λρ² = (1-a)/2. Already in Step1; re-exported for convenience. -/
+/-- λρ² = (1-a)/2. Already in Step1; re-exported for convenience.
+@isnad1 id=eq.4h3v.s7.616797bc6ac0 from=translated src=- shape=46878b8b vocab=4d09f77c
+-/
 theorem lambda_rho_sq' (a ρ lam : ℝ) (ha_ne : 1 + a ≠ 0) (ha_pos : 1 - a ≠ 0)
     (hρ : ρ = (1 - a) / (1 + a))
     (hlam : lam = (1 + a) ^ 2 / (2 * (1 - a))) :
@@ -125,7 +131,9 @@ theorem lambda_rho_sq' (a ρ lam : ℝ) (ha_ne : 1 + a ≠ 0) (ha_pos : 1 - a �
     F' = f(x'_n) - f*, F1 = f(x_{n+1}) - f*.
 
     Then: F1 ≤ A - (μ'/2)·E² - (η/2)·G².
-    The aiming inequality provides a tighter bound on A than Cauchy-Schwarz. -/
+    The aiming inequality provides a tighter bound on A than Cauchy-Schwarz.
+@isnad1 id=le.2h7v.s7.07c97242d257 from=translated src=- shape=732cc549 vocab=c3738a58
+-/
 theorem function_descent_with_aiming
     (F1 F' A : ℝ) (G_sq E_sq η μ' : ℝ)
     (h_desc : F1 ≤ F' - η / 2 * G_sq)
@@ -139,7 +147,9 @@ theorem function_descent_with_aiming
 
 /-- Gradient inner product splits: ⟨g, e⟩ = ⟨P⊥g, e⟩ + ⟨Pg, e⟩.
     In the flat case, ⟨Pg, e⟩ = 0 (tangent vs normal).
-    The Hessian bound controls ⟨Pg, e⟩ in the curved case. -/
+    The Hessian bound controls ⟨Pg, e⟩ in the curved case.
+@isnad1 id=eq.1h3v.s4.908b4db31968 from=translated src=- shape=a5f6876e vocab=277965e0
+-/
 theorem gradient_inner_split (ge perpge tange : ℝ)
     (h_split : ge = perpge + tange) :
     ge = perpge + tange := h_split
@@ -158,7 +168,9 @@ theorem gradient_inner_split (ge perpge tange : ℝ)
 -- Combined with the strong aiming and descent terms, the cross terms
 -- and squared terms recombine to give ≤ (1-a)·‖u_n‖²/2.
 
-/-- Arithmetic core: (1-a)² ≤ (1-a) for 0 ≤ a ≤ 1. -/
+/-- Arithmetic core: (1-a)² ≤ (1-a) for 0 ≤ a ≤ 1.
+@isnad1 id=le.2h1v.s6.7a160dc23c95 from=translated src=- shape=9134b529 vocab=66814e92
+-/
 theorem sq_contraction_le (a : ℝ) (ha : 0 ≤ a) (ha1 : a ≤ 1) :
     (1 - a) ^ 2 ≤ 1 - a := by
   nlinarith [sq_nonneg a]
@@ -178,7 +190,9 @@ theorem sq_contraction_le (a : ℝ) (ha : 0 ≤ a) (ha1 : a ≤ 1) :
     component of L_n, then L_{n+1} ≤ (1-a/2) L_n.
 
     This is the core of the contraction: the gap between (1-a) and (1-a/2)
-    provides room for perturbation absorption. -/
+    provides room for perturbation absorption.
+@isnad1 id=le.13h9v.s8.9f83abd7dd27 from=translated src=- shape=03c3bf91 vocab=8b7124b8
+-/
 theorem flat_contraction_assembly (a : ℝ)
     (ha : 0 < a) (_ha1 : a < 1)
     -- Components of L_n (all nonneg)
@@ -208,7 +222,9 @@ theorem flat_contraction_assembly (a : ℝ)
 
     If each component of L_{n+1} is bounded by (1-a) times the corresponding
     component of L_n, PLUS a perturbation δ, then L_{n+1} ≤ (1-a/2) L_n
-    provided δ ≤ (a/2) L_n. -/
+    provided δ ≤ (a/2) L_n.
+@isnad1 id=le.5h4v.s7.9236f97f1039 from=translated src=- shape=e0c9b7f4 vocab=8b7124b8
+-/
 theorem contraction_with_perturbation (a : ℝ)
     (_ha : 0 < a) (_ha1 : a < 1)
     (Ln Ln1 δ : ℝ)
@@ -221,7 +237,9 @@ theorem contraction_with_perturbation (a : ℝ)
   linarith
 
 /-- Variant: if we can bound the perturbation by C·ε·η·L_n and ε·η ≤ a and C ≤ 1/2,
-    then δ ≤ (a/2)·L_n. -/
+    then δ ≤ (a/2)·L_n.
+@isnad1 id=le.5h4v.s6.484b56477d55 from=translated src=- shape=e9946f39 vocab=5e76c854
+-/
 theorem perturbation_bound (a εη C Ln : ℝ)
     (hεη : 0 ≤ εη) (hLn : 0 ≤ Ln)
     (_hC : 0 ≤ C) (hC_half : C ≤ 1 / 2)
@@ -243,7 +261,9 @@ theorem perturbation_bound (a εη C Ln : ℝ)
     So: λ‖Pv_{n+1}‖² = λρ²(‖Pv_n‖² - 2√η⟨Pv_n, Pg_n⟩ + η‖Pg_n‖²)
                        = ((1-a)/2)(‖Pv_n‖² - 2√η⟨Pv_n, Pg_n⟩ + η‖Pg_n‖²)
 
-    The (1-a)/2 ≤ (1-a)λ ensures this is ≤ (1-a)·Tn + cross terms. -/
+    The (1-a)/2 ≤ (1-a)λ ensures this is ≤ (1-a)·Tn + cross terms.
+@isnad1 id=eq.1h6v.s7.80298934620b from=translated src=- shape=d997a489 vocab=4d09f77c
+-/
 theorem tangential_energy_expansion (a η : ℝ)
     (PVsq PGsq PVG : ℝ) -- ‖Pv_n‖², ‖Pg_n‖², ⟨Pv_n, Pg_n⟩
     (sqrtη : ℝ) (_hsqrtη : sqrtη ^ 2 = η) :
@@ -254,7 +274,9 @@ theorem tangential_energy_expansion (a η : ℝ)
 /-- Tangential cross-term absorption: the -(1-a)√η⟨Pv,Pg⟩ term satisfies
     |-(1-a)√η⟨Pv,Pg⟩| ≤ (1-a)/2 · (α‖Pv‖² + η/α ‖Pg‖²)
     for any α > 0 (Young's inequality). With α = 1 this gives:
-    |term| ≤ (1-a)/2 · (‖Pv‖² + η‖Pg‖²). -/
+    |term| ≤ (1-a)/2 · (‖Pv‖² + η‖Pg‖²).
+@isnad1 id=le.6h5v.s7.a475a03681bf from=translated src=- shape=7db57296 vocab=da18e913
+-/
 theorem tangential_cross_absorption (a sqrtη PVsq PGsq PVG : ℝ)
     (_ha : 0 ≤ a) (ha1 : a ≤ 1)
     (hPVsq : 0 ≤ PVsq) (hPGsq : 0 ≤ PGsq)
@@ -295,7 +317,9 @@ theorem tangential_cross_absorption (a sqrtη PVsq PGsq PVG : ℝ)
     = -η/2(‖Pg‖² + ‖P⊥g‖²) + (1-a)/2 · η · ‖Pg‖²
     = -ηa/2 · ‖Pg‖² - η/2 · ‖P⊥g‖²
 
-    Both terms are ≤ 0, giving descent in BOTH tangential and normal gradient. -/
+    Both terms are ≤ 0, giving descent in BOTH tangential and normal gradient.
+@isnad1 id=eq.6h5v.s7.83db8ce83440 from=translated src=- shape=df842ab1 vocab=54041492
+-/
 theorem gradient_sq_net (a η PGsq PperpGsq Gsq : ℝ)
     (_ha : 0 ≤ a) (_ha1 : a ≤ 1) (_hη : 0 ≤ η)
     (_hPGsq : 0 ≤ PGsq) (_hPperpGsq : 0 ≤ PperpGsq)
@@ -321,6 +345,7 @@ theorem gradient_sq_net (a η PGsq PperpGsq Gsq : ℝ)
     - F', U', T' = components of L_{n+1}
     - G = ‖gradient‖², E = ‖normal displacement‖²
     - a = √(μ'η), the contraction rate parameter
+@isnad1 id=le.13h10v.s8.9330ecdc9bca from=translated src=- shape=f036af48 vocab=8b7124b8
 -/
 theorem lyapunov_contraction_arithmetic
     (a : ℝ) (_ha : 0 < a) (_ha1 : a < 1)
@@ -355,7 +380,9 @@ theorem lyapunov_contraction_arithmetic
                    = a(2 C_w C_ξ + a C_ξ²) L_n
 
     For the absorption δ ≤ (a/2)L_n, we need 2 C_w C_ξ + a C_ξ² ≤ 1/2.
-    This holds when C_w, C_ξ are small (guaranteed by shrinking the neighborhood). -/
+    This holds when C_w, C_ξ are small (guaranteed by shrinking the neighborhood).
+@isnad1 id=le.6h4v.s7.89eba25752f3 from=translated src=- shape=b0a7ac37 vocab=5c9d27ef
+-/
 theorem curvature_perturbation_absorption
     (a C_w C_ξ Ln : ℝ)
     (ha : 0 < a) (ha1 : a < 1)
@@ -373,7 +400,9 @@ theorem curvature_perturbation_absorption
 -- ════════════════════════════════════════════════════════════════════════════
 
 /-- For an orthogonal projector P: ‖v‖² = ‖Pv‖² + ‖P⊥v‖².
-    This is the Pythagorean theorem. Stated for real numbers. -/
+    This is the Pythagorean theorem. Stated for real numbers.
+@isnad1 id=eq.3h3v.s5.ea97c35e6f7b from=translated src=- shape=edf2d4df vocab=06893b8a
+-/
 theorem norm_sq_decomp (total tang perp : ℝ)
     (h : total = tang + perp) (_ht : 0 ≤ tang) (_hp : 0 ≤ perp) :
     total = tang + perp := h
@@ -399,7 +428,9 @@ theorem norm_sq_decomp (total tang perp : ℝ)
     2. δ ≤ (a/2) · L_n                 (perturbation absorption)
 
     This is the entry point for the `contraction` case in LyapunovContraction.lean.
-    The proof simply adds the two inequalities. -/
+    The proof simply adds the two inequalities.
+@isnad1 id=le.5h4v.s7.224d2d81e4b9 from=translated src=- shape=9cb0ac0c vocab=8b7124b8
+-/
 theorem two_step_contraction (a Ln Ln1 δ : ℝ)
     (_ha : 0 < a) (_ha1 : a < 1)
     (_hLn : 0 ≤ Ln)
@@ -416,7 +447,9 @@ theorem two_step_contraction (a Ln Ln1 δ : ℝ)
     Conclusion: L_{n+1} ≤ (1-(1-θ)·a) · L_n.
 
     When θ = 1/2, this recovers `two_step_contraction`. Choosing θ → 0 gives a
-    contraction rate (1-a) approaching the ideal (perturbation-free) rate. -/
+    contraction rate (1-a) approaching the ideal (perturbation-free) rate.
+@isnad1 id=le.7h5v.s7.efaffc74db34 from=translated src=- shape=c84e01dc vocab=189731e2
+-/
 theorem two_step_contraction_general (a θ Ln Ln1 δ : ℝ)
     (_ha : 0 < a) (_ha1 : a < 1)
     (_hθ : 0 < θ) (_hθ1 : θ < 1)

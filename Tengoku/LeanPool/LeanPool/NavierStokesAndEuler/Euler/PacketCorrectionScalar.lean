@@ -28,16 +28,27 @@ def residual (k X : ℝ) : ℝ := 2*Real.exp (-(7/10)*X*Real.log k)
 /-- Initial radius, given by `1/(1+8*R+4*M*Rc+Rc)`. -/
 def initialRadius (R M Rc : ℝ) : ℝ := 1/(1+8*R+4*M*Rc+Rc)
 
+/--
+@isnad1 id=lt.0h1v.s3.d89ea4d5146c from=translated src=- shape=8a62b088 vocab=484bb138
+-/
 theorem delta_pos (X : ℝ) : 0 < delta X := Real.exp_pos _
 
+/--
+@isnad1 id=le.0h1v.s3.51ee57dd57fd from=translated src=- shape=b14ee516 vocab=b56ec067
+-/
 theorem delta_le_one (X : ℝ) : delta X ≤ 1 :=
   Real.exp_le_one_iff.mpr (neg_nonpos.mpr (Real.sqrt_nonneg X))
 
+/--
+@isnad1 id=lt.0h2v.s4.fefb942b72c5 from=translated src=- shape=a120b2a8 vocab=32808c05
+-/
 theorem residual_pos (k X : ℝ) : 0 < residual k X :=
   mul_pos (by norm_num) (Real.exp_pos _)
 
 /-- One polynomial inverse radius meets both packet-series and pressure -
-inverse absorption requirements. -/
+inverse absorption requirements.
+@isnad1 id=and.3h3v.s7.70bd33456e11 from=translated src=- shape=5457c060 vocab=f7d5f3a3
+-/
 theorem initialRadius_bounds (R M Rc : ℝ) (hR : 0 ≤ R) (hM : 0 ≤ M) (hRc : 0 ≤ Rc) :
     0 < initialRadius R M Rc ∧ initialRadius R M Rc*(4*R) ≤ 1/2 ∧
       4*M*(initialRadius R M Rc*Rc) ≤ 1 ∧ initialRadius R M Rc*Rc ≤ 1 := by
@@ -54,7 +65,9 @@ theorem initialRadius_bounds (R M Rc : ℝ) (hR : 0 ≤ R) (hM : 0 ≤ M) (hRc :
     nlinarith
 
 /-- The actual residual envelope wins over the Gronwall factor with an
-explicit linear bound on the source growth cost. -/
+explicit linear bound on the source growth cost.
+@isnad1 id=le.3h4v.s7.697e4459dd33 from=translated src=- shape=61e527cb vocab=25b4be7d
+-/
 theorem residual_small (C T k X : ℝ) (hX : 64 ≤ X) (hk : 1 ≤ Real.log k)
     (hgrowth : 3 * C * T ≤ X / 4) :
     2*residual k X*Real.exp (3*C*T) ≤ delta X/2 := by
@@ -72,7 +85,9 @@ theorem residual_small (C T k X : ℝ) (hX : 64 ≤ X) (hk : 1 ≤ Real.log k)
   nlinarith only [hh]
 
 /-- The two elementary frequency guards control the radius loss caused
-by the actual O(1/k) drift and the chosen error target. -/
+by the actual O(1/k) drift and the chosen error target.
+@isnad1 id=le.3h6v.s7.c5ad329815e0 from=translated src=- shape=fcd43cf7 vocab=2bc674da
+-/
 theorem radius_decay (C T D ρ0 k X : ℝ) (hk : 0 < k)
     (hfrequency : 8 * C * T * D ≤ ρ0 * k)
     (herror : 8 * C * T ≤ ρ0 * Real.exp (Real.sqrt X)) :
@@ -92,6 +107,9 @@ def radius (T C D ρ0 k X : ℝ) : C(Icc (0 : ℝ) T,ℝ) :=
   ⟨fun t => ρ0-2*C*(D/k+delta X)*t.val,
     continuous_const.sub (continuous_const.mul continuous_subtype_val)⟩
 
+/--
+@isnad1 id=and.4h7v.s8.65ddeaddd6cf from=translated src=- shape=77d9fc14 vocab=b7e5b9ac
+-/
 theorem radius_bounds (T C D ρ0 k X : ℝ) (hC : 0 ≤ C) (hD : 0 ≤ D) (hk : 0 < k)
     (hdecay : 2 * C * (D / k + delta X) * T ≤ ρ0 / 2) (t : Icc (0 : ℝ) T) :
     ρ0/2 ≤ radius T C D ρ0 k X t ∧ radius T C D ρ0 k X t ≤ ρ0 := by

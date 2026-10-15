@@ -39,6 +39,9 @@ argument: only the diagonal entries are nonzero and equal to `x`.
   classical
   exact fun p => if p.2 = p.1 then x p.1 else 0
 
+/--
+@isnad1 id=ne.1h2v.s6.ddbbce3f060a from=translated src=- shape=8bb7f5fc vocab=1a18f2ef
+-/
 lemma diagEmbed_ne_zero_of_ne_zero {x : ι → ℝ} (hx : x ≠ 0) : diagEmbed (ι:=ι) x ≠ 0 := by
   classical
   -- If diagEmbed x = 0 then all diagonal entries vanish, hence x = 0, contradiction.
@@ -48,7 +51,9 @@ lemma diagEmbed_ne_zero_of_ne_zero {x : ι → ℝ} (hx : x ≠ 0) : diagEmbed (
   have := congrArg (fun f => f (i, i)) h
   simpa [diagEmbed] using this
 
-/-- Finite sum over pairs equals iterated double sum over coordinates (binderless sums). -/
+/-- Finite sum over pairs equals iterated double sum over coordinates (binderless sums).
+@isnad1 id=eq.0h2v.s5.c72abc8daeda from=translated src=- shape=4762bcd3 vocab=85b536f4
+-/
 lemma sum_pairs_eq_double [Fintype ι] (g : ι × ι → ℝ) :
   (∑ p, g p) = ∑ i, ∑ j, g (i, j) := Fintype.sum_prod_type g
 
@@ -63,6 +68,7 @@ private lemma isHermitian_hadamard_real {A B : Matrix ι ι ℝ}
 
 /-- Schur product theorem (real case, finite index):
 If A B are positive definite matrices over ℝ, then the Hadamard product is positive definite.
+@isnad1 id=posdef.2h3v.s5.4772eb428700 from=translated src=- shape=722f89e8 vocab=d3524068
 -/
 @[simp] theorem schur_product_posDef
   [Finite ι] (A B : Matrix ι ι ℝ)

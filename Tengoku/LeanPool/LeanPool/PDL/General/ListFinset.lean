@@ -25,13 +25,18 @@ namespace PDL
 def _root_.List.pdlToFinFin [DecidableEq α] : List (List α) → Finset (Finset α )
   | LS => (LS.map (fun L => L.toFinset)).toFinset
 
-/-- Turning a mapped list into a `Finset` is the image of the `Finset`. -/
+/-- Turning a mapped list into a `Finset` is the image of the `Finset`.
+@isnad1 id=eq.0h4v.s5.de231d38027a from=translated src=- shape=a3ff65a3 vocab=fbfd4fa2
+-/
 lemma List.toFinset_map_eq_image {α β} [DecidableEq α] [DecidableEq β] (l : List α) (f : α → β) :
     (l.map f).toFinset = l.toFinset.image f := by
   ext x; simp
 
 /-! ## Helpers about `List.Vector` -/
 
+/--
+@isnad1 id=eq.0h3v.s5.2dbab0a50d94 from=translated src=- shape=afd50c0c vocab=4947814b
+-/
 lemma List.Vector.tail_last_eq_last {k : Nat} (l : List.Vector α k.succ.succ) :
     l.tail.last = l.last := by
   rcases l with ⟨l, h_l⟩

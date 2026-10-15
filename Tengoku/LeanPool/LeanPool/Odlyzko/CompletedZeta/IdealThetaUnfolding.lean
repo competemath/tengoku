@@ -25,6 +25,9 @@ open mixedEmbedding mixedEmbedding.fundamentalCone
 variable (K : Type*) [Field K] [NumberField K] [IsTotallyComplex K]
 
 open Classical in
+/--
+@isnad1 id=hassum.1h4v.s9.88d636fe2978 from=translated src=- shape=08841306 vocab=206c5414
+-/
 theorem hasSum_integral_norm_radialMellinGaussian_unitSlab
     (J : (Ideal (𝓞 K))⁰) (a : idealSet K J)
     {s : ℂ} (hs : 0 < s.re) :
@@ -71,6 +74,9 @@ theorem hasSum_integral_norm_radialMellinGaussian_unitSlab
   rw [radialMellinGaussian_add_unitCoordinateShift]
 
 open Classical in
+/--
+@isnad1 id=summable.1h3v.s9.57a7103b29c8 from=translated src=- shape=8b8b41f5 vocab=fbc87121
+-/
 theorem summable_prod_integral_norm_radialMellinGaussian_unitSlab
     (J : (Ideal (𝓞 K))⁰) {s : ℂ} (hs : 1 < s.re) :
     Summable
@@ -93,6 +99,9 @@ theorem summable_prod_integral_norm_radialMellinGaussian_unitSlab
       integral_norm_radialMellinGaussian]
 
 open Classical in
+/--
+@isnad1 id=summable.1h3v.s9.9712d46557bd from=translated src=- shape=03881466 vocab=925de302
+-/
 theorem summable_prod_integral_radialMellinGaussian_unitSlab
     (J : (Ideal (𝓞 K))⁰) {s : ℂ} (hs : 1 < s.re) :
     Summable
@@ -108,6 +117,9 @@ theorem summable_prod_integral_radialMellinGaussian_unitSlab
   exact norm_integral_le_integral_norm _
 
 open Classical in
+/--
+@isnad1 id=eq.1h3v.s10.808cefe0cc69 from=translated src=- shape=a1ba41cb vocab=8bc4a423
+-/
 theorem fundamentalConeZeta_eq_tsum_nonzeroIdealElement_radialIntegral
     (J : (Ideal (𝓞 K))⁰) {s : ℂ} (hs : 1 < s.re) :
     ((2 : ℂ)⁻¹ * CompletedZeta.complexPlaceGammaFactor s) ^ nrComplexPlaces K *

@@ -26,7 +26,9 @@ universe u
 
 variable {ι : Type u}
 
-/-- Helper: Frobenius inner product equals `trace (Gᵀ * B)` (real case). -/
+/-- Helper: Frobenius inner product equals `trace (Gᵀ * B)` (real case).
+@isnad1 id=eq.0h3v.s6.4aa7f6d0bb7f from=translated src=- shape=e73908ec vocab=334059be
+-/
 lemma frobenius_eq_trace_transpose_mul
   [Fintype ι] (G B : Matrix ι ι ℝ) :
   (∑ j, ∑ l, G j l * B j l) = Matrix.trace (G.transpose * B) := by
@@ -44,6 +46,7 @@ lemma frobenius_eq_trace_transpose_mul
 
 /-- Congruence by an orthogonal/invertible matrix preserves nonzeroness (real case).
 If `U * Uᵀ = 1`, then `Uᵀ G U ≠ 0` whenever `G ≠ 0`.
+@isnad1 id=ne.2h3v.s7.025a104e38f7 from=translated src=- shape=d0883eab vocab=9e0825da
 -/
 lemma congr_transpose_mul_mul_ne_zero
   [Fintype ι] [DecidableEq ι]
@@ -59,6 +62,7 @@ lemma congr_transpose_mul_mul_ne_zero
 
 /-- Cauchy–Schwarz for the semi-inner product induced by a PSD real matrix.
 For all vectors x,y: (xᵀ H y)^2 ≤ (xᵀ H x) (yᵀ H y).
+@isnad1 id=le.1h4v.s6.9fd68fd2d54a from=translated src=- shape=7f1efb0c vocab=4bb21b9a
 -/
 lemma psd_cauchy_schwarz
   [Fintype ι] (H : Matrix ι ι ℝ) (hH_psd : H.PosSemidef) (x y : ι → ℝ) :
@@ -96,7 +100,9 @@ lemma psd_cauchy_schwarz
         (f := fun i => u i) (g := fun i => v i))
   simpa [hxy, hxx, hyy] using hCS
 
-/-- If H is PSD over ℝ and H ii = H jj = 0 then H ij = 0. -/
+/-- If H is PSD over ℝ and H ii = H jj = 0 then H ij = 0.
+@isnad1 id=eq.3h4v.s5.692e1daa67d6 from=translated src=- shape=5fe3c773 vocab=8275bf92
+-/
 lemma psd_offdiag_zero_of_diag_zero
   [Finite ι]
   (H : Matrix ι ι ℝ) (hH_psd : H.PosSemidef) {i j : ι}
@@ -108,7 +114,9 @@ lemma psd_offdiag_zero_of_diag_zero
   -- Rewrite each quadratic form
   simp_all
 
-/-- For a real PSD matrix, if it is nonzero then some diagonal entry is strictly positive. -/
+/-- For a real PSD matrix, if it is nonzero then some diagonal entry is strictly positive.
+@isnad1 id=ex.2h2v.s5.2fa4f140e31d from=translated src=- shape=7ba4945f vocab=59c367fb
+-/
 lemma posSemidef_diag_pos_exists_of_ne_zero
   [Finite ι]
   (H : Matrix ι ι ℝ) (hH_psd : H.PosSemidef) (hH_ne_zero : H ≠ 0) :
@@ -142,6 +150,7 @@ High-level proof sketch (to be formalized):
 - For PSD H, diagonal entries are ≥ 0, and H ≠ 0 ⇒ ∃ i, H i i > 0.
 - Since all λ i > 0, the sum is strictly positive.
 - This avoids Cholesky and uses spectral decomposition/unitary congruence invariance.
+@isnad1 id=lt.3h3v.s6.f765aa183e18 from=translated src=- shape=03907c09 vocab=32695b90
 -/
 lemma frobenius_pos_of_psd_posdef
   [Fintype ι]

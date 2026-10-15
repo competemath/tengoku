@@ -82,14 +82,18 @@ def ExternalThm3.hessianQuadForm (f : E → ℝ) (x ξ : E) : ℝ :=
 -- ════════════════════════════════════════════════════════════════════════════
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
-/-- Global minimizers are local minimizers. -/
+/-- Global minimizers are local minimizers.
+@isnad1 id=islocalm.1h3v.s5.5642fb0046ad from=translated src=- shape=1fa54763 vocab=6d8aa5ee
+-/
 lemma ExternalThm3.argminSet_isLocalMin (f : E → ℝ) (m : E)
     (hm : m ∈ ExternalThm3.argminSet f) :
     IsLocalMin f m :=
   Filter.Eventually.of_forall hm
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
-/-- At a global minimizer, `f(m) = f⋆`. -/
+/-- At a global minimizer, `f(m) = f⋆`.
+@isnad1 id=eq.1h3v.s4.c2371df90be0 from=translated src=- shape=4ff287ca vocab=a56905ad
+-/
 lemma ExternalThm3.fStar_eq_of_argmin (f : E → ℝ) (m : E)
     (hm : m ∈ ExternalThm3.argminSet f) :
     ExternalThm3.fStar f = f m := by
@@ -99,7 +103,9 @@ lemma ExternalThm3.fStar_eq_of_argmin (f : E → ℝ) (m : E)
 
 omit [FiniteDimensional ℝ E] in
 /-- PLAcceleratedNesterovLean PL → our MuPL at global minimizers.
-    Converts `‖Df(x)‖² ≥ 2μ(f(x) - f⋆)` to `f(x) - f(m) ≤ (2μ)⁻¹‖Df(x)‖²`. -/
+    Converts `‖Df(x)‖² ≥ 2μ(f(x) - f⋆)` to `f(x) - f(m) ≤ (2μ)⁻¹‖Df(x)‖²`.
+@isnad1 id=mupl.3h5v.s6.37bc5977b40c from=translated src=- shape=e6ef7a4e vocab=20c48324
+-/
 lemma ExternalThm3.pl_to_muPL (f : E → ℝ) (μ : ℝ) (U : Set E) (m : E)
     (hm : m ∈ ExternalThm3.argminSet f)
     (hU : U ∈ 𝓝 m)
@@ -128,7 +134,9 @@ lemma ExternalThm3.pl_to_muPL (f : E → ℝ) (μ : ℝ) (U : Set E) (m : E)
     in direction ξ gives LHS = RHS. The chain rule steps use:
     - `innerSL ℝ ξ : E →L[ℝ] ℝ` (genuine CLM, no star) composed with `gradient f`
     - Evaluation at ξ composed with `fderiv ℝ f`
-    Both are standard CLM chain rules. -/
+    Both are standard CLM chain rules.
+@isnad1 id=eq.1h4v.s9.c4934b55d2a9 from=translated src=- shape=47ddf02b vocab=4fda988d
+-/
 lemma ExternalThm3.hessianQuadForm_eq_hessian (f : E → ℝ) (x ξ : E)
     (hf : ContDiffAt ℝ 2 f x) :
     ExternalThm3.hessianQuadForm f x ξ = hessian f x ξ ξ := by
@@ -208,7 +216,9 @@ lemma ExternalThm3.hessianQuadForm_eq_hessian (f : E → ℝ) (x ξ : E)
 -- ════════════════════════════════════════════════════════════════════════════
 
 /-- **Core theorem**: At a global minimizer under PL, the Hessian is μ-coercive
-    on ker(Hess)⊥. Uses `hessian f m ξ ξ` (second Fréchet derivative). -/
+    on ker(Hess)⊥. Uses `hessian f m ξ ξ` (second Fréchet derivative).
+@isnad1 id=le.5h6v.s9.f94720b9e86b from=translated src=- shape=355e29bd vocab=d2ddbda1
+-/
 theorem ExternalThm3.hessian_coercive_globalMin_PL
     (f : E → ℝ) (μ : ℝ) (U : Set E) (m ξ : E)
     (hf : ContDiffAt ℝ 2 f m)
@@ -241,7 +251,9 @@ theorem ExternalThm3.hessian_coercive_globalMin_PL
     minimizer set) to characterize normal vectors.
     Under the Morse-Bott property (proved in Theorem.lean), the minimizer set is a C¹
     submanifold with tangent space T = ker(Hess f(m)), and the normal space T⊥ equals
-    ker(fderiv ℝ π m). So `fderiv ℝ π m ξ = 0 → ξ ∈ (hessianKer f m).orthogonal`. -/
+    ker(fderiv ℝ π m). So `fderiv ℝ π m ξ = 0 → ξ ∈ (hessianKer f m).orthogonal`.
+@isnad1 id=le.5h6v.s8.74bf99eee741 from=translated src=- shape=0c9b40f6 vocab=6719ad35
+-/
 theorem ExternalThm3.hessianQuadForm_bound
     (f : E → ℝ) (μ : ℝ) (U : Set E) (m ξ : E)
     (hf : ContDiffAt ℝ 2 f m)
@@ -257,7 +269,9 @@ theorem ExternalThm3.hessianQuadForm_bound
 -- § 6. Convenience corollary: quantified version
 -- ════════════════════════════════════════════════════════════════════════════
 
-/-- Quantified version: ∀ m ∈ argminSet f, ∀ ξ ∈ ker(Hess)⊥, bound holds. -/
+/-- Quantified version: ∀ m ∈ argminSet f, ∀ ξ ∈ ker(Hess)⊥, bound holds.
+@isnad1 id=le.6h6v.s8.871e229f87fa from=translated src=- shape=48002e42 vocab=b83b6084
+-/
 theorem ExternalThm3.hessianQuadForm_bound_forall
     (f : E → ℝ) (μ : ℝ) (U : Set E)
     (hf : ContDiff ℝ 2 f)

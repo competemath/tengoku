@@ -32,6 +32,9 @@ noncomputable def safePrimaryDistanceSq
     orientedResonantEllipsePosition p q parameters.1
       (resonantSafeOrientation p q) parameters.2 1 ^ 2
 
+/--
+@isnad1 id=analytic.2h4v.s6.c10775f8f9f1 from=translated src=- shape=29acafe4 vocab=b53955b5
+-/
 theorem analyticAt_safePrimaryDistanceSq
     (p q : ℕ) {eccentricity time : ℝ}
     (heccentricity : 0 < eccentricity) (heccentricityOne : eccentricity < 1) :
@@ -46,6 +49,9 @@ theorem analyticAt_safePrimaryDistanceSq
     filter_upwards [] with parameters
     rfl)
 
+/--
+@isnad1 id=isopen.0h2v.s6.b6af8c051c15 from=translated src=- shape=dff065e8 vocab=4a126a5d
+-/
 theorem isOpen_safeCollisionFreeParameters (p q : ℕ) :
     IsOpen {parameters : ℝ × ℝ |
       0 < parameters.1 ∧ parameters.1 < 1 ∧ safePrimaryDistanceSq p q parameters ≠ 0} := by
@@ -60,7 +66,9 @@ theorem isOpen_safeCollisionFreeParameters (p q : ℕ) :
     hdistance] with candidate hpositive hone hne
   exact ⟨hpositive, hone, hne⟩
 
-/-- The safe disturbing average extends analytically through the aligned collision boundary. -/
+/-- The safe disturbing average extends analytically through the aligned collision boundary.
+@isnad1 id=analytic.4h2v.s6.19573af708dc from=translated src=- shape=00aa976a vocab=06a1428d
+-/
 theorem analyticAt_resonantDisturbingAverage_safe_collisionBoundary
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     (haxisHalf : 1 / 2 < resonantSemimajorAxis p q)

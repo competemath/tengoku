@@ -22,7 +22,9 @@ namespace OddPrimeValuationDistribution
 
 open Polynomial
 
-/-- The zero-carry coefficient in odd base `2 * half + 1`. -/
+/-- The zero-carry coefficient in odd base `2 * half + 1`.
+@isnad1 id=eq.0h2v.s5.b751cbdc6ae5 from=translated src=- shape=5d0449ea vocab=ba00638a
+-/
 theorem coeff_zero_oddCarryPolynomial (half length : ℕ) :
     (oddCarryPolynomial half length).coeff 0 = (half + 1) ^ length := by
   induction length with
@@ -46,7 +48,9 @@ theorem coeff_zero_oddCarryPolynomial (half length : ℕ) :
       ring
 
 /-- Zero additional carries from incoming carry one, for positive word
-length. -/
+length.
+@isnad1 id=eq.0h2v.s6.1bbb301bd530 from=translated src=- shape=1bc5544d vocab=c27dcb09
+-/
 lemma coeff_zero_oddCarryPolynomialFrom_one_succ (half length : ℕ) :
     (oddCarryPolynomialFrom half 1 (length + 1)).coeff 0 =
       half * (half + 1) ^ length := by
@@ -65,7 +69,9 @@ lemma coeff_zero_oddCarryPolynomialFrom_one_succ (half length : ℕ) :
   norm_num
 
 /-- Exact one-carry coefficient for every odd base, parameterized by block
-length `length + 2`. -/
+length `length + 2`.
+@isnad1 id=eq.0h2v.s7.0ed7234b4d6b from=translated src=- shape=7a7790fb vocab=0fe3cf03
+-/
 theorem coeff_one_oddCarryPolynomial_add_two (half length : ℕ) :
     (oddCarryPolynomial half (length + 2)).coeff 1 =
       half * (half + 1) ^ (length + 1) +
@@ -116,7 +122,9 @@ theorem coeff_one_oddCarryPolynomial_add_two (half length : ℕ) :
       simp only [pow_succ]
       ring
 
-/-- Exact count of valuation-zero integers in a complete odd-prime block. -/
+/-- Exact count of valuation-zero integers in a complete odd-prime block.
+@isnad1 id=eq.1h2v.s7.dc8d212b643b from=translated src=- shape=8d2c5352 vocab=3f32b680
+-/
 theorem card_oddPrimeBlock_valuation_zero
     (half : ℕ) (hhalf : 0 < half) [Fact (oddBase half).Prime]
     (length : ℕ) :
@@ -127,7 +135,9 @@ theorem card_oddPrimeBlock_valuation_zero
   exact coeff_zero_oddCarryPolynomial half length
 
 /-- Exact count of valuation-one integers in every complete odd-prime block
-of length at least two. -/
+of length at least two.
+@isnad1 id=eq.1h2v.s8.4d8367a9ebf0 from=translated src=- shape=83275307 vocab=8d000284
+-/
 theorem card_oddPrimeBlock_valuation_one
     (half : ℕ) (hhalf : 0 < half) [Fact (oddBase half).Prime]
     (length : ℕ) :
@@ -141,7 +151,9 @@ theorem card_oddPrimeBlock_valuation_one
 
 /-- Ternary specialization: among the integers below `3 ^ (length + 2)`, the
 number whose central binomial coefficient has `3`-adic valuation zero or one
-is exactly `(length + 7) * 2 ^ length`. -/
+is exactly `(length + 7) * 2 ^ length`.
+@isnad1 id=eq.0h1v.s9.ddae8ca7ff0f from=translated src=- shape=b3321497 vocab=a3166694
+-/
 theorem card_ternaryBlock_valuation_lt_two (length : ℕ) :
     Fintype.card (OddPrimeBlockWithValuation 1 (length + 2) 0) +
         Fintype.card (OddPrimeBlockWithValuation 1 (length + 2) 1) =

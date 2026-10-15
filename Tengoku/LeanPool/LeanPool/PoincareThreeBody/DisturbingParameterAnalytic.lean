@@ -22,6 +22,9 @@ parameter-integral argument.
 
 namespace LeanPool.PoincareThreeBody
 
+/--
+@isnad1 id=analytic.2h4v.s6.2a12eb5afe20 from=translated src=- shape=21f2fcb3 vocab=45674f67
+-/
 theorem analyticAt_resonantEccentricAnomaly_eccentricity
     (p q : ℕ) {eccentricity time : ℝ}
     (heccentricity : 0 < eccentricity) (heccentricityOne : eccentricity < 1) :
@@ -35,7 +38,9 @@ theorem analyticAt_resonantEccentricAnomaly_eccentricity
     (f := fun candidate : ℝ ↦ (candidate, resonantMeanAnomaly p q time)) hparameters
 
 /-- Each rotating Cartesian coordinate of the oriented resonant ellipse is analytic in
-eccentricity. -/
+eccentricity.
+@isnad1 id=analytic.2h6v.s6.711547f234cf from=translated src=- shape=9319fc83 vocab=dc47d13a
+-/
 theorem analyticAt_orientedResonantEllipsePosition_eccentricity_coordinate
     (p q : ℕ) {eccentricity orientation time : ℝ}
     (heccentricity : 0 < eccentricity) (heccentricityOne : eccentricity < 1)
@@ -76,7 +81,9 @@ theorem analyticAt_orientedResonantEllipsePosition_eccentricity_coordinate
     exact (analyticAt_const.mul hx).add (analyticAt_const.mul hy)
 
 /-- At every fixed orientation and time, the resonant disturbing function is analytic in
-eccentricity throughout the collision-free interior range. -/
+eccentricity throughout the collision-free interior range.
+@isnad1 id=analytic.5h5v.s7.5b1fcc569370 from=translated src=- shape=8f0053f9 vocab=7424802c
+-/
 theorem analyticAt_resonantDisturbingFunction_eccentricity
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity orientation time : ℝ}
@@ -132,7 +139,9 @@ theorem analyticAt_resonantDisturbingFunction_eccentricity
   simp [x, y, resonantDisturbingFunction, orientedResonantEllipsePhasePoint,
     positionPhasePoint, firstMassPerturbation, div_eq_mul_inv]
 
-/-- Pointwise analyticity assembled over the whole collision-free eccentricity interval. -/
+/-- Pointwise analyticity assembled over the whole collision-free eccentricity interval.
+@isnad1 id=analytic.2h4v.s7.93e36c8fb737 from=translated src=- shape=7e1bb608 vocab=cb2d59ef
+-/
 theorem analyticOnNhd_resonantDisturbingFunction_eccentricity
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) (orientation time : ℝ) :
     AnalyticOnNhd ℝ
@@ -144,7 +153,9 @@ theorem analyticOnNhd_resonantDisturbingFunction_eccentricity
   exact analyticAt_resonantDisturbingFunction_eccentricity hp hq
     heccentricity.1 heccentricity.2.1 heccentricity.2.2
 
-/-- The resonant eccentric anomaly is jointly analytic in eccentricity and physical time. -/
+/-- The resonant eccentric anomaly is jointly analytic in eccentricity and physical time.
+@isnad1 id=analytic.2h4v.s6.a7e8c2ad1935 from=translated src=- shape=279f8ae2 vocab=3bc4133d
+-/
 theorem analyticAt_resonantEccentricAnomaly_eccentricity_time
     (p q : ℕ) {eccentricity time : ℝ}
     (heccentricity : 0 < eccentricity) (heccentricityOne : eccentricity < 1) :
@@ -164,7 +175,9 @@ theorem analyticAt_resonantEccentricAnomaly_eccentricity_time
       (parameters.1, resonantMeanAnomaly p q parameters.2)) hparameters
 
 /-- Each Cartesian coordinate of the oriented resonant ellipse is jointly analytic in
-eccentricity and time. -/
+eccentricity and time.
+@isnad1 id=analytic.2h6v.s6.ce6381531df6 from=translated src=- shape=156f9c2c vocab=9ed484e9
+-/
 theorem analyticAt_orientedResonantEllipsePosition_eccentricity_time_coordinate
     (p q : ℕ) {eccentricity orientation time : ℝ}
     (heccentricity : 0 < eccentricity) (heccentricityOne : eccentricity < 1)
@@ -212,7 +225,9 @@ theorem analyticAt_orientedResonantEllipsePosition_eccentricity_time_coordinate
     exact ((Real.analyticAt_sin.comp htime).neg.mul hx).add
       ((Real.analyticAt_cos.comp htime).mul hy)
 
-/-- The disturbing function is jointly analytic at every point away from the unit primary. -/
+/-- The disturbing function is jointly analytic at every point away from the unit primary.
+@isnad1 id=analytic.5h5v.s7.8e15446e4927 from=translated src=- shape=78df3c44 vocab=045ebabf
+-/
 theorem analyticAt_resonantDisturbingFunction_eccentricity_time_of_primaryDistance_ne_zero
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity orientation time : ℝ}
@@ -269,7 +284,9 @@ theorem analyticAt_resonantDisturbingFunction_eccentricity_time_of_primaryDistan
   simp [x, y, resonantDisturbingFunction, orientedResonantEllipsePhasePoint,
     positionPhasePoint, firstMassPerturbation, div_eq_mul_inv]
 
-/-- The collision-free disturbing function is jointly analytic in eccentricity and time. -/
+/-- The collision-free disturbing function is jointly analytic in eccentricity and time.
+@isnad1 id=analytic.5h5v.s7.5e533a2cb2c4 from=translated src=- shape=1a02324a vocab=dc765619
+-/
 theorem analyticAt_resonantDisturbingFunction_eccentricity_time
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity orientation time : ℝ}
@@ -283,7 +300,9 @@ theorem analyticAt_resonantDisturbingFunction_eccentricity_time
   exact orientedResonantEllipse_primaryDistance_ne_zero_of_apoapsis_lt_one
     heccentricity.le heccentricityOne hapoapsis
 
-/-- Joint analyticity assembled over the full admissible eccentricity/time cylinder. -/
+/-- Joint analyticity assembled over the full admissible eccentricity/time cylinder.
+@isnad1 id=analytic.2h3v.s7.17a748043f0e from=translated src=- shape=0a2f18a8 vocab=4423e6d4
+-/
 theorem analyticOnNhd_resonantDisturbingFunction_eccentricity_time
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) (orientation : ℝ) :
     AnalyticOnNhd ℝ

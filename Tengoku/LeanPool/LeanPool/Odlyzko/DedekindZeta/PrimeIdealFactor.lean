@@ -22,6 +22,9 @@ variable (K : Type*) [Field K] [NumberField K]
 noncomputable def primeIdealNorm (P : HeightOneSpectrum (𝓞 K)) : ℕ :=
   absNorm P.asIdeal
 
+/--
+@isnad1 id=lt.0h2v.s4.dddc5fef1724 from=translated src=- shape=a6d7fd62 vocab=3021c0e8
+-/
 lemma one_lt_primeIdealNorm (P : HeightOneSpectrum (𝓞 K)) :
     1 < primeIdealNorm K P := by
   apply Nat.one_lt_iff_ne_zero_and_ne_one.mpr
@@ -33,6 +36,9 @@ lemma one_lt_primeIdealNorm (P : HeightOneSpectrum (𝓞 K)) :
 noncomputable def primeIdealFactor (P : HeightOneSpectrum (𝓞 K)) (s : ℂ) : ℂ :=
   localFactor (primeIdealNorm K P) s
 
+/--
+@isnad1 id=ne.1h3v.s5.0ef09cb99ea3 from=translated src=- shape=eaa9d12d vocab=51c0a77e
+-/
 lemma primeIdealFactor_ne_zero (P : HeightOneSpectrum (𝓞 K)) {s : ℂ} (hs : 0 < s.re) :
     primeIdealFactor K P s ≠ 0 :=
   localFactor_ne_zero (one_lt_primeIdealNorm K P) hs

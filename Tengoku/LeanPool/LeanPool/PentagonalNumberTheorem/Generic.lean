@@ -24,6 +24,9 @@ https://math.stackexchange.com/questions/55738/how-to-prove-eulers-pentagonal-th
 
 open Filter
 
+/--
+@isnad1 id=eq.2h3v.s8.50696c672b6c from=translated src=- shape=32b55848 vocab=cbb614e4
+-/
 theorem tprod_one_sub_ordererd {ι α : Type*} [CommRing α] [TopologicalSpace α] [T2Space α]
     [LinearOrder ι] [LocallyFiniteOrderBot ι] [IsTopologicalAddGroup α]
     {f : ι → α} (hsum : Summable fun i ↦ f i * ∏ j ∈ Finset.Iio i, (1 - f j))
@@ -74,7 +77,9 @@ def psi (k n : ℕ) (x : R) : R :=
 
 /-- $gamma$ and $psi$ have relation
 
-$$ gamma_{k,n} + x^{3N + 5}gamma_{k + 1, n} = psi_{k, n+1} - psi_{k, n} $$ -/
+$$ gamma_{k,n} + x^{3N + 5}gamma_{k + 1, n} = psi_{k, n+1} - psi_{k, n} $$
+@isnad1 id=eq.0h4v.s7.d5bdfd73acab from=translated src=- shape=4ef81e32 vocab=8bc7a125
+-/
 theorem psi_sub_psi (k n : ℕ) (x : R) :
     gamma k n x + x ^ (3 * k + 5) * gamma (k + 1) n x = psi k (n + 1) x - psi k n x := by
   unfold psi
@@ -86,6 +91,7 @@ theorem psi_sub_psi (k n : ℕ) (x : R) :
 /-- By summing with telescoping, we get a recurrence formlua for $Γ$
 
 $$ Γ_{k} = 1 - x^{2N + 3} - x^{3N + 5}Γ_{k + 1} $$
+@isnad1 id=eq.3h3v.s8.f5ad590217ee from=translated src=- shape=aca76adf vocab=ccf23307
 -/
 theorem gamma_rec [TopologicalSpace R] [IsTopologicalRing R] [T2Space R]
     (k : ℕ) {x : R} (hx : IsTopologicallyNilpotent x) (hgamma : ∀ k, Summable (gamma k · x))
@@ -109,7 +115,9 @@ theorem gamma_rec [TopologicalSpace R] [IsTopologicalRing R] [T2Space R]
 
 /-- The Euler function is related to $Γ$ by
 
-$$ \prod_{n = 0}^{\infty} 1 - x^{n + 1} = 1 - x - x^2 Γ_0 $$ -/
+$$ \prod_{n = 0}^{\infty} 1 - x^{n + 1} = 1 - x - x^2 Γ_0 $$
+@isnad1 id=eq.2h2v.s8.cf4881f72b7c from=translated src=- shape=ba6169f0 vocab=d24c1c84
+-/
 theorem pentagonalLhs_gamma0 [TopologicalSpace R] [IsTopologicalRing R] [T2Space R] {x : R}
     (hgamma : ∀ k, Summable (gamma k · x)) (h : ∀ k, Multipliable fun n ↦ 1 - x ^ (n + k + 1)) :
     ∏' n, (1 - x ^ (n + 1)) = 1 - x - x ^ 2 * ∑' n, gamma 0 n x := by
@@ -135,7 +143,9 @@ theorem pentagonalLhs_gamma0 [TopologicalSpace R] [IsTopologicalRing R] [T2Space
 
 $$ \prod_{n = 0}^{\infty} 1 - x^{n + 1} =
 \left(\sum_{k=0}^{k} (-1)^k \left(x^{k(3k+1)/2} + x^{(k+1)(3k+2)/2}\right) \right) +
-(-1)^{k+1}x^{(k+1)(3N + 4)/2}Γ_N $$ -/
+(-1)^{k+1}x^{(k+1)(3N + 4)/2}Γ_N $$
+@isnad1 id=eq.3h3v.s9.97ac5dd9b57b from=translated src=- shape=e71fde48 vocab=33c0fc04
+-/
 theorem pentagonalLhs_gamma [TopologicalSpace R] [IsTopologicalRing R] [T2Space R] (k : ℕ) {x : R}
     (hx : IsTopologicallyNilpotent x)
     (hgamma : ∀ k, Summable (gamma k · x)) (h : ∀ k, Multipliable (fun n ↦ 1 - x ^ (n + k + 1)))
@@ -164,7 +174,9 @@ end Pentagonal
 /-- Taking $k \to \infty$, we get the pentagonal number theorem in the generic form
 
 $$ \prod_{n = 0}^{\infty} 1 - x^{n + 1} =
-\sum_{k=0}^{\infty} (-1)^k \left(x^{k(3k+1)/2} + x^{(k+1)(3k+2)/2}\right) $$ -/
+\sum_{k=0}^{\infty} (-1)^k \left(x^{k(3k+1)/2} + x^{(k+1)(3k+2)/2}\right) $$
+@isnad1 id=eq.5h2v.s9.ac3ddba84b02 from=translated src=- shape=f19b1f19 vocab=3ccc651a
+-/
 theorem pentagonalNumberTheorem_generic [TopologicalSpace R] [IsTopologicalRing R] [T2Space R]
     {x : R} (hx : IsTopologicallyNilpotent x)
     (hgamma : ∀ k, Summable (Pentagonal.gamma k · x))

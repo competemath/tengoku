@@ -29,12 +29,18 @@ noncomputable def idealSetElement
     (J : (Ideal (𝓞 K))⁰) (a : idealSet K J) : K :=
   (preimageOfMemIntegerSet (idealSetEquiv K J a).val : 𝓞 K)
 
+/--
+@isnad1 id=ne.0h3v.s9.59b0effedc91 from=translated src=- shape=f428aec0 vocab=4d8776d4
+-/
 theorem idealSetElement_ne_zero
     (J : (Ideal (𝓞 K))⁰) (a : idealSet K J) :
     idealSetElement K J a ≠ 0 := by
   rw [idealSetElement]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s9.4c8f9171aa96 from=translated src=- shape=3e740084 vocab=b53fc0a7
+-/
 theorem absNorm_idealSetElement
     (J : (Ideal (𝓞 K))⁰) (a : idealSet K J) :
     (((|Algebra.norm ℚ (idealSetElement K J a)| : ℚ) : ℝ)) =
@@ -50,6 +56,9 @@ theorem absNorm_idealSetElement
 
 variable [IsTotallyComplex K]
 
+/--
+@isnad1 id=eq.1h4v.s9.f1a0a71b32cc from=translated src=- shape=46800fb7 vocab=bd6382f7
+-/
 theorem integral_idealSet_complexPlaceMellinGaussian
     (J : (Ideal (𝓞 K))⁰) (a : idealSet K J)
     {s : ℂ} (hs : 0 < s.re) :
@@ -64,6 +73,9 @@ theorem integral_idealSet_complexPlaceMellinGaussian
   congr 1
   exact_mod_cast absNorm_idealSetElement K J a
 
+/--
+@isnad1 id=hassum.1h3v.s9.16eb6510582f from=translated src=- shape=d69fb36e vocab=fe9fddd7
+-/
 theorem hasSum_integral_idealSet_complexPlaceMellinGaussian
     (J : (Ideal (𝓞 K))⁰) {s : ℂ} (hs : 1 < s.re) :
     HasSum

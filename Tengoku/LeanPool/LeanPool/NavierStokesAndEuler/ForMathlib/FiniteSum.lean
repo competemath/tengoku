@@ -20,6 +20,9 @@ namespace NavierStokesAndEuler
 
 open Finset
 
+/--
+@isnad1 id=le.4h8v.s7.ee904b3f59ce from=translated src=- shape=7bf7e426 vocab=1f4299ad
+-/
 theorem sum_le_sum_of_injOn {ι κ A : Type*} [DecidableEq κ]
     [AddCommMonoid A] [Preorder A] [AddLeftMono A]
     {s : Finset ι} {t : Finset κ} {f : ι → A} {g : κ → A}

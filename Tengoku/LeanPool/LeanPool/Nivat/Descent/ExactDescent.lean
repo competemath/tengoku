@@ -76,7 +76,9 @@ private theorem dotProduct_patternAt (R : Finset Lattice) (b : R → ℚ)
   simp only [add_comm u]
 
 /-- A coefficient vector annihilates `V_R(d)` exactly when its polynomial annihilates `d`.
-This is the perpendicular-space identification in Theorem 2.2 (`thm:descent`). -/
+This is the perpendicular-space identification in Theorem 2.2 (`thm:descent`).
+@isnad1 id=iff.0h3v.s11.d49453c0ee1c from=translated src=- shape=a0334416 vocab=15169c87
+-/
 theorem dotProduct_mem_dualAnnihilator_iff (d : Configuration ℚ) (R : Finset Lattice)
     (b : R → ℚ) :
     dotProductEquiv ℚ R b ∈ (translatedSpan d R).dualAnnihilator ↔
@@ -116,7 +118,9 @@ noncomputable def multiplierMap (Φ : Laurent) (R S : Finset Lattice) :
     (S → ℚ) →ₗ[ℚ] (R → ℚ) :=
   (coefficientRestriction R).comp ((LinearMap.mulLeft ℚ Φ).comp (windowPolynomialLinear S))
 
-/-- The coefficient formula for multiplication in Lemma 2.1 (`lem:supported`). -/
+/-- The coefficient formula for multiplication in Lemma 2.1 (`lem:supported`).
+@isnad1 id=eq.0h5v.s9.14f2e658ce4b from=translated src=- shape=e67edcda vocab=0c70fbd3
+-/
 theorem multiplierMap_apply (Φ : Laurent) (R S : Finset Lattice) (b : S → ℚ) (z : R) :
     multiplierMap Φ R S b z = (Φ * windowPolynomial S b).coeff z.1 := rfl
 
@@ -128,7 +132,9 @@ private theorem multiplierMap_reconstruct (Φ : Laurent) (R S : Finset Lattice)
   windowPolynomial_reconstruct R _ ((hfit _).mpr (windowPolynomial_support S b))
 
 /-- Multiplication by a nonzero Laurent polynomial is injective.
-This gives the dimension `|S|` in Lemma 2.1 (`lem:supported`). -/
+This gives the dimension `|S|` in Lemma 2.1 (`lem:supported`).
+@isnad1 id=injectiv.2h3v.s9.3ea206923811 from=translated src=- shape=e21badb0 vocab=71039da2
+-/
 theorem multiplierMap_injective (Φ : Laurent) (hΦ : Φ ≠ 0) (R S : Finset Lattice)
     (hfit : ∀ g : Laurent, (Φ * g).coeff.support ⊆ R ↔ g.coeff.support ⊆ S) :
     Function.Injective (multiplierMap Φ R S) := by
@@ -139,7 +145,9 @@ theorem multiplierMap_injective (Φ : Laurent) (hΦ : Φ ≠ 0) (R S : Finset La
     congrArg (windowPolynomial R) hab
 
 /-- The perpendicular space of `V_R(d)` is the image of multiplication by `Φ`.
-This is the chain of equalities preceding `eq:full-kernel` in Theorem 2.2. -/
+This is the chain of equalities preceding `eq:full-kernel` in Theorem 2.2.
+@isnad1 id=eq.2h4v.s11.8d86dd74db1b from=translated src=- shape=c2ba9f23 vocab=245d4fcd
+-/
 theorem dualAnnihilator_eq_multiplier_range (d : Configuration ℚ) (Φ : Laurent)
     (R S : Finset Lattice)
     (hexact : ∀ f : Laurent, act f d = 0 ↔ Φ ∣ f)
@@ -171,7 +179,9 @@ theorem dualAnnihilator_eq_multiplier_range (d : Configuration ℚ) (Φ : Lauren
 
 /-- The dimension identity `dim V_R(d) + |S| = |R|` in Theorem 2.2 (`thm:descent`).
 Together with `translatedSpan_eq_ker`, this is equation `eq:filter-dimension`.
-The additive form also covers an empty eroded window. -/
+The additive form also covers an empty eroded window.
+@isnad1 id=eq.3h4v.s9.d92bf8ed27d0 from=translated src=- shape=24c8bad0 vocab=bb93966d
+-/
 theorem translatedSpan_finrank_add (d : Configuration ℚ) (Φ : Laurent) (hΦ : Φ ≠ 0)
     (R S : Finset Lattice)
     (hexact : ∀ f : Laurent, act f d = 0 ↔ Φ ∣ f)
@@ -205,7 +215,9 @@ noncomputable def localFilter (Φ : Laurent) (R S : Finset Lattice)
     simp [Finset.mul_sum, mul_assoc, mul_comm]
 
 /-- Filtering an occurring input pattern gives the corresponding output pattern.
-This is shift commutation in the proof of Theorem 2.2 (`thm:descent`). -/
+This is shift commutation in the proof of Theorem 2.2 (`thm:descent`).
+@isnad1 id=eq.1h5v.s9.2beac4b4314a from=translated src=- shape=90327750 vocab=3fc507e9
+-/
 theorem localFilter_patternAt (Φ : Laurent) (R S : Finset Lattice)
     (hS : ∀ z ∈ S, ∀ a ∈ Φ.coeff.support, z + a ∈ R)
     (c : Configuration ℚ) (u : Lattice) :
@@ -219,7 +231,9 @@ theorem localFilter_patternAt (Φ : Laurent) (R S : Finset Lattice)
   rw [show z.1 + a.1 + u = z.1 + u + a.1 by abel]
 
 /-- The image of all occurring input patterns is exactly the output pattern set.
-This is `F(Pat_c(R)) = Pat_{Φ(T)c}(S)` in Theorem 2.2 (`thm:descent`). -/
+This is `F(Pat_c(R)) = Pat_{Φ(T)c}(S)` in Theorem 2.2 (`thm:descent`).
+@isnad1 id=eq.1h4v.s9.e9845f5f86ac from=translated src=- shape=f4717a1a vocab=a22372d9
+-/
 theorem localFilter_patterns_image (Φ : Laurent) (R S : Finset Lattice)
     (hS : ∀ z ∈ S, ∀ a ∈ Φ.coeff.support, z + a ∈ R) (c : Configuration ℚ) :
     localFilter Φ R S hS '' patterns c R = patterns (act Φ c) S := by
@@ -232,7 +246,9 @@ theorem localFilter_patterns_image (Φ : Laurent) (R S : Finset Lattice)
 
 /-- The transpose of the local filter is multiplication by `Φ`, after identifying
 coefficient vectors with their dot-product functionals. This is the transpose
-identity in the proof of Theorem 2.2 (`thm:descent`). -/
+identity in the proof of Theorem 2.2 (`thm:descent`).
+@isnad1 id=eq.2h3v.s11.10463fae50fc from=translated src=- shape=8daf41e0 vocab=1c4e05fc
+-/
 theorem localFilter_transpose (Φ : Laurent) (R S : Finset Lattice)
     (hfit : ∀ g : Laurent, (Φ * g).coeff.support ⊆ R ↔ g.coeff.support ⊆ S)
     (hS : ∀ z ∈ S, ∀ a ∈ Φ.coeff.support, z + a ∈ R) :
@@ -253,7 +269,9 @@ theorem localFilter_transpose (Φ : Laurent) (R S : Finset Lattice)
     multiplierMap_reconstruct Φ R S hfit, mul_comm Φ, act_mul]
 
 /-- The translated restrictions of `d` span the full kernel of the local filter.
-This is equation `eq:full-kernel` in Theorem 2.2 (`thm:descent`). -/
+This is equation `eq:full-kernel` in Theorem 2.2 (`thm:descent`).
+@isnad1 id=eq.3h4v.s8.5e8a94a44461 from=translated src=- shape=55d6e977 vocab=f7d9bce9
+-/
 theorem translatedSpan_eq_ker (d : Configuration ℚ) (Φ : Laurent)
     (R S : Finset Lattice)
     (hexact : ∀ f : Laurent, act f d = 0 ↔ Φ ∣ f)

@@ -75,6 +75,7 @@ For f : ℝ → ℂ with ‖f‖² integrable on [a,b]:
   ‖∫_[a,b] f(x) dx‖² ≤ (b-a) · ∫_[a,b] ‖f(x)‖² dx
 
 This is |⟨1, f⟩|² ≤ ‖1‖² · ‖f‖² in L².
+@isnad1 id=le.2h3v.s7.2b1a7d1d3358 from=translated src=- shape=5b8f2825 vocab=892e1c92
 -/
 theorem sq_setIntegral_le_measure_mul_setIntegral_sq_proved
     {f : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
@@ -114,7 +115,9 @@ theorem sq_setIntegral_le_measure_mul_setIntegral_sq_proved
     exact mul_nonneg (sub_nonneg.mpr hab) (integral_nonneg (fun x => by positivity))
 
 omit [MeasurableSpace Ω] in
-/-- Cauchy-Schwarz for the time integral, pointwise in ω. -/
+/-- Cauchy-Schwarz for the time integral, pointwise in ω.
+@isnad1 id=le.2h4v.s7.0186079cefba from=translated src=- shape=ffcf10dd vocab=022eaee4
+-/
 lemma cauchy_schwarz_time_integral_pointwise (A : ℝ → Ω → ℂ) (T : ℝ) (hT : T > 0) (ω : Ω)
     (hf_sq : IntegrableOn (fun s => ‖A s ω‖ ^ 2) (Icc 0 T) volume) :
     ‖∫ s in Icc 0 T, A s ω‖ ^ 2 ≤ T * ∫ s in Icc 0 T, ‖A s ω‖ ^ 2 := by
@@ -123,7 +126,9 @@ lemma cauchy_schwarz_time_integral_pointwise (A : ℝ → Ω → ℂ) (T : ℝ) 
   simpa only [sub_zero] using h
 
 omit [MeasurableSpace Ω] in
-/-- The scaled time average satisfies a pointwise L² bound. -/
+/-- The scaled time average satisfies a pointwise L² bound.
+@isnad1 id=le.2h4v.s8.a43dc49c5cbe from=translated src=- shape=719d2b21 vocab=5dc9995a
+-/
 lemma scaled_time_average_pointwise_bound (A : ℝ → Ω → ℂ) (T : ℝ) (hT : T > 0) (ω : Ω)
     (hf_sq : IntegrableOn (fun s => ‖A s ω‖ ^ 2) (Icc 0 T) volume) :
     ‖(1/T : ℂ) * ∫ s in Icc 0 T, A s ω‖ ^ 2 ≤
@@ -153,7 +158,9 @@ We now prove the main theorem by integrating the pointwise bound over Ω
 and swapping the order of integration via Fubini.
 -/
 
-/-- Helper: Fubini swap for ℝ × Ω with restricted measure. -/
+/-- Helper: Fubini swap for ℝ × Ω with restricted measure.
+@isnad1 id=eq.1h4v.s7.9a7c3cd0c943 from=translated src=- shape=c53abf77 vocab=13a041cc
+-/
 lemma integral_swap_Icc (μ : Measure Ω) [SFinite μ]
     (f : ℝ × Ω → ℝ) (T : ℝ)
     (hf : Integrable f ((volume.restrict (Icc 0 T)).prod μ)) :
@@ -165,7 +172,9 @@ lemma integral_swap_Icc (μ : Measure Ω) [SFinite μ]
       ∫ (ω : Ω), (∫ (s : ℝ) in Icc 0 T, f (s, ω)) ∂μ := integral_prod_symm f hf
   rw [← h1, h2]
 
-/-- Helper: setIntegral bound using uniform L² bound. -/
+/-- Helper: setIntegral bound using uniform L² bound.
+@isnad1 id=le.3h5v.s8.ea836a11a0d6 from=translated src=- shape=5e136e50 vocab=afd95a73
+-/
 lemma setIntegral_L2_bound (μ : Measure Ω) (M_sq T : ℝ) (hT : T > 0)
     (A : ℝ → Ω → ℂ)
     (h_L2_bound : ∀ s, s ∈ Icc 0 T → ∫ ω, ‖A s ω‖ ^ 2 ∂μ ≤ M_sq)
@@ -192,6 +201,7 @@ $$\int_\Omega \left\|\frac{1}{T}\int_0^T A_s(\omega)\,ds\right\|^2 d\mu(\omega) 
 2. Integrate over Ω: ∫_Ω LHS dμ ≤ (1/T) ∫_Ω ∫_[0,T] ‖A_s‖² ds dμ
 3. Fubini: = (1/T) ∫_[0,T] (∫_Ω ‖A_s‖² dμ) ds
 4. Uniform bound: ≤ (1/T) ∫_[0,T] M_sq ds = (1/T) · T · M_sq = M_sq
+@isnad1 id=le.6h5v.s9.a9a6f54f0e85 from=translated src=- shape=af9b8f49 vocab=d7829a35
 -/
 theorem L2_time_average_bound (μ : Measure Ω) [SFinite μ]
     (A : ℝ → Ω → ℂ) (M_sq : ℝ) (T : ℝ) (hT : T > 0)
@@ -283,6 +293,7 @@ Key insight: Use `integrable_prod_iff` (Tonelli) to split product integrability 
 /-- **L² on product from uniform slicewise bounds.**
 
 By Tonelli: ∫∫ |A|² = ∫₀ᵀ (∫_Ω |A_s|² dμ) ds = ∫₀ᵀ C ds = TC
+@isnad1 id=memlp.3h4v.s8.508cf682e1a7 from=translated src=- shape=1ce4d56e vocab=2414c20a
 -/
 theorem memLp_prod_of_uniform_slicewise_bound (μ : Measure Ω) [SFinite μ]
     (A : ℝ → Ω → ℂ) (T : ℝ)
@@ -327,6 +338,7 @@ This is a corollary using Theorem 3 + Integrable.mono.
 /-- **Time average is in L²** (Corollary of memLp_prod)
 
 This follows from product integrability + Integrable.mono with the pointwise bound.
+@isnad1 id=memlp.5h4v.s8.9ec0773bcd6d from=translated src=- shape=19ce0147 vocab=ad41fd7d
 -/
 theorem time_average_memLp_two (μ : Measure Ω) [SFinite μ]
     (A : ℝ → Ω → ℂ) (T : ℝ) (hT : T > 0)
@@ -393,6 +405,7 @@ the time integral ω ↦ (1/T) * ∫ₛ (A s ω - EA) ds is AEStronglyMeasurable
 
 Proof: continuous-in-s + measurable-in-ω → jointly StronglyMeasurable (Mathlib),
 then swap product measure and integrate out s via `integral_prod_right'`.
+@isnad1 id=aestrong.2h5v.s7.7c4fc7fbd4cd from=translated src=- shape=e1e4803c vocab=1e7c47cc
 -/
 theorem gff_time_integral_aestronglyMeasurable_proved
     (μ : Measure Ω) [IsProbabilityMeasure μ]
@@ -433,6 +446,7 @@ is integrable. This is immediate from continuity on compact sets.
 If the covariance (s,u) ↦ ∫ A_s · conj(A_u) - EA·conj(EA) is continuous,
 then u ↦ ‖Cov(s,u)‖ is integrable on [0,T] since continuous functions on
 compact sets are integrable.
+@isnad1 id=integrab.1h6v.s8.24b2d418d3b1 from=translated src=- shape=d7f960ae vocab=8d3314e3
 -/
 theorem gff_covariance_norm_integrableOn_slice_proved
     (μ : Measure Ω)
@@ -469,6 +483,7 @@ where C = ∫_ℝ (1+|t|)^{-α} dt is the integral of the kernel over all of ℝ
 **Key tools:** `integrableOn_add_rpow_Ioi_of_lt` (decay integral), `integral_sub_left_eq_self`
 (translation invariance), `setIntegral_le_integral` (set ≤ full for nonneg integrable functions),
 `MeasurePreserving.integrableOn_comp_preimage` (negation symmetry for even functions).
+@isnad1 id=ex.1h1v.s7.9e79126f9c74 from=translated src=- shape=015473c8 vocab=4b449efe
 -/
 theorem double_integral_polynomial_decay_bound_proved (α : ℝ) (hα : α > 1) :
     ∃ C : ℝ, C > 0 ∧ ∀ T : ℝ, T > 0 →
@@ -655,6 +670,7 @@ private lemma integrable_sq_of_memLp_two {f : α → ℝ} (hf : MemLp f 2 μ) :
     √(∫ (∑ⱼ wⱼfⱼ)² dμ) ≤ ∑ⱼ wⱼ √(∫ fⱼ² dμ)
 
     Proof by induction on n, using Cauchy-Schwarz for integrals at each step.
+@isnad1 id=le.4h5v.s7.44c3a1694529 from=translated src=- shape=067464b6 vocab=4bc06baa
 -/
 theorem minkowski_weighted_L2_sum_proved {n : ℕ} {w : Fin n → ℝ} {f : Fin n → α → ℝ}
     (hw : ∀ j, 0 ≤ w j) (hf : ∀ j ω, 0 ≤ f j ω)

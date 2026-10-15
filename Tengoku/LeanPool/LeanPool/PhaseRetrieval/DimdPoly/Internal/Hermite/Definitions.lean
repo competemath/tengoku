@@ -33,6 +33,9 @@ namespace HermiteLEAN
 /-- The circle period used throughout the Hermite development. -/
 def T : ℝ := 2 * Real.pi
 
+/--
+@isnad1 id=lt.0h0v.s3.fc92b47ccb8a from=translated src=- shape=ff3a10fc vocab=f784e806
+-/
 lemma T_pos : 0 < T := by
   dsimp [T]
   positivity

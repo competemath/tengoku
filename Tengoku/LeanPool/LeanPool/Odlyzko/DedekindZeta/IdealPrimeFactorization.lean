@@ -41,12 +41,18 @@ noncomputable def idealOfPrimeFactors
       P.ne_bot (heq ▸ rfl)⟩
 
 omit [NumberField K] in
+/--
+@isnad1 id=eq.0h2v.s7.7e729242c34a from=translated src=- shape=9b70cb13 vocab=e8b4d7d0
+-/
 @[simp] theorem idealOfPrimeFactors_coe
     (m : Multiset (HeightOneSpectrum (𝓞 K))) :
     (idealOfPrimeFactors K m : Ideal (𝓞 K)) =
       (m.map HeightOneSpectrum.asIdeal).prod :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.9e38b90d1113 from=translated src=- shape=e17ccb0b vocab=1328b2ec
+-/
 theorem idealOfPrimeFactors_idealPrimeFactors (I : NonzeroIdeal K) :
     idealOfPrimeFactors K (idealPrimeFactors K I) = I := by
   apply Subtype.ext
@@ -64,6 +70,9 @@ theorem idealOfPrimeFactors_idealPrimeFactors (I : NonzeroIdeal K) :
           _ = normalizedFactors (I : Ideal (𝓞 K)) := Multiset.map_id _]
   simpa only [normalize_eq] using prod_normalizedFactors_eq I.2
 
+/--
+@isnad1 id=eq.0h2v.s5.3674920bb02b from=translated src=- shape=4cde8d51 vocab=d43d129e
+-/
 theorem idealPrimeFactors_idealOfPrimeFactors
     (m : Multiset (HeightOneSpectrum (𝓞 K))) :
     idealPrimeFactors K (idealOfPrimeFactors K m) = m := by

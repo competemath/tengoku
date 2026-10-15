@@ -70,26 +70,34 @@ def latticeReal (z : Lattice) : RealPlane := !₂[(z.1 : ℝ), (z.2 : ℝ)]
 def latticeSqNorm (z : Lattice) : ℕ := (z.1 ^ 2 + z.2 ^ 2).toNat
 
 /-- The lattice embedding preserves addition, as used when translating agreement balls in Lemma
-3.1 (`lem:halfplane-pair`). -/
+3.1 (`lem:halfplane-pair`).
+@isnad1 id=eq.0h2v.s6.abc5856f2aa4 from=translated src=- shape=0438c7a3 vocab=2aa88116
+-/
 @[simp] theorem latticeReal_add (z w : Lattice) :
     latticeReal (z + w) = latticeReal z + latticeReal w := by
   ext i
   fin_cases i <;> simp [latticeReal]
 
 /-- The lattice origin embeds as the real origin in the geometry of Lemma 3.1
-(`lem:halfplane-pair`). -/
+(`lem:halfplane-pair`).
+@isnad1 id=eq.0h0v.s6.fc1cb6e222e1 from=translated src=- shape=1ac31801 vocab=98f57b4e
+-/
 @[simp] theorem latticeReal_zero : latticeReal 0 = 0 := by
   ext i
   fin_cases i <;> simp [latticeReal]
 
 /-- The squared Euclidean norm is the sum of the two squared coordinates, as in the
-nearest-disagreement argument of Lemma 3.1 (`lem:halfplane-pair`). -/
+nearest-disagreement argument of Lemma 3.1 (`lem:halfplane-pair`).
+@isnad1 id=eq.0h1v.s6.284de803ea1e from=translated src=- shape=59413ed1 vocab=1ecab28d
+-/
 @[simp] theorem latticeReal_norm_sq (z : Lattice) :
     ‖latticeReal z‖ ^ 2 = (z.1 : ℝ) ^ 2 + (z.2 : ℝ) ^ 2 := by
   simp [EuclideanSpace.real_norm_sq_eq, latticeReal, Fin.sum_univ_two]
 
 /-- The integer measure of a disagreement equals its squared Euclidean distance. This connects
-well-ordering to the geometry in Lemma 3.1 (`lem:halfplane-pair`). -/
+well-ordering to the geometry in Lemma 3.1 (`lem:halfplane-pair`).
+@isnad1 id=eq.0h1v.s6.267418539538 from=translated src=- shape=7145a5f8 vocab=b830c9ca
+-/
 @[simp] theorem latticeSqNorm_cast (z : Lattice) :
     (latticeSqNorm z : ℝ) = ‖latticeReal z‖ ^ 2 := by
   rw [latticeReal_norm_sq]
@@ -97,7 +105,9 @@ well-ordering to the geometry in Lemma 3.1 (`lem:halfplane-pair`). -/
   exact_mod_cast (Int.toNat_of_nonneg (add_nonneg (sq_nonneg z.1) (sq_nonneg z.2)))
 
 /-- An infinite family over a finite alphabet contains distinct configurations agreeing on any
-finite window. This is the initial pigeonhole step of Lemma 3.1 (`lem:halfplane-pair`). -/
+finite window. This is the initial pigeonhole step of Lemma 3.1 (`lem:halfplane-pair`).
+@isnad1 id=ex.1h3v.s6.d9db01c9bbf1 from=translated src=- shape=818390e7 vocab=52c78825
+-/
 theorem exists_ne_agree_on_finite {A : Type*} [Finite A]
     (X : Set (Configuration A)) (hX : X.Infinite) (D : Finset Lattice) :
     ∃ x ∈ X, ∃ y ∈ X, x ≠ y ∧ ∀ z ∈ D, x z = y z := by
@@ -112,7 +122,9 @@ theorem exists_ne_agree_on_finite {A : Type*} [Finite A]
 
 /-- Distinct configurations have a disagreement of least Euclidean distance from the origin, by
 minimizing a natural-number squared norm. This is the nearest-disagreement step of Lemma 3.1
-(`lem:halfplane-pair`). -/
+(`lem:halfplane-pair`).
+@isnad1 id=ex.1h3v.s7.80197ddfe51b from=translated src=- shape=42e185ca vocab=03e70ea3
+-/
 theorem exists_nearest_disagreement {A : Type*} (x y : Configuration A) (hxy : x ≠ y) :
     ∃ p : Lattice, x p ≠ y p ∧
       ∀ z : Lattice, ‖latticeReal z‖ < ‖latticeReal p‖ → x z = y z := by
@@ -135,7 +147,9 @@ theorem exists_nearest_disagreement {A : Type*} (x y : Configuration A) (hxy : x
 
 /-- A finite alphabet and infinitely many configurations give nearest disagreements arbitrarily
 far from the origin. This implements the escaping agreement balls in Lemma 3.1
-(`lem:halfplane-pair`). -/
+(`lem:halfplane-pair`).
+@isnad1 id=ex.1h3v.s7.c63d49ff868e from=translated src=- shape=9295fe1e vocab=6a3b1e2f
+-/
 theorem exists_far_nearest_disagreement {A : Type*} [Finite A]
     (X : Set (Configuration A)) (hX : X.Infinite) (n : ℕ) :
     ∃ x ∈ X, ∃ y ∈ X, ∃ p : Lattice,
@@ -164,7 +178,9 @@ theorem exists_far_nearest_disagreement {A : Type*} [Finite A]
 
 /-- A displacement strictly inside the limiting negative half-plane eventually shortens an
 escaping radius. This is the displayed squared-distance estimate in the proof of Lemma 3.1
-(`lem:halfplane-pair`). -/
+(`lem:halfplane-pair`).
+@isnad1 id=eventual.4h3v.s9.662616f017bd from=translated src=- shape=ab06d0c9 vocab=bbd7ca1c
+-/
 theorem eventually_norm_add_lt_of_normal_tendsto (p : ℕ → RealPlane) (ν z : RealPlane)
     (hp : ∀ n, p n ≠ 0) (hr : Tendsto (fun n => ‖p n‖) atTop atTop)
     (hν : Tendsto (fun n => ‖p n‖⁻¹ • p n) atTop (𝓝 ν))
@@ -189,7 +205,9 @@ theorem eventually_norm_add_lt_of_normal_tendsto (p : ℕ → RealPlane) (ν z :
 
 /-- Convergence in a product of discrete alphabets implies eventual equality at each fixed
 coordinate. Lemma 3.1 (`lem:halfplane-pair`) uses this to preserve disagreement at the origin
-and agreement inside the half-plane. -/
+and agreement inside the half-plane.
+@isnad1 id=eventual.1h4v.s5.7773db10a122 from=translated src=- shape=f3631635 vocab=e68bd3ba
+-/
 theorem eventually_eq_at_of_tendsto {A : Type*} [TopologicalSpace A] [DiscreteTopology A]
     {x : ℕ → Configuration A} {c : Configuration A}
     (h : Tendsto x atTop (𝓝 c)) (z : Lattice) : ∀ᶠ n in atTop, x n z = c z := by
@@ -198,7 +216,9 @@ theorem eventually_eq_at_of_tendsto {A : Type*} [TopologicalSpace A] [DiscreteTo
 
 /-- An infinite closed shift-invariant space over a finite discrete alphabet contains two
 configurations disagreeing at the origin and agreeing on an open half-plane with a unit
-normal. This is the compact-space form of Lemma 3.1 (`lem:halfplane-pair`). -/
+normal. This is the compact-space form of Lemma 3.1 (`lem:halfplane-pair`).
+@isnad1 id=ex.3h2v.s8.4ae6da99f400 from=translated src=- shape=d22ade4a vocab=676d5721
+-/
 theorem exists_halfPlane_pair {A : Type*} [TopologicalSpace A] [DiscreteTopology A]
     [Finite A] (X : Set (Configuration A)) (hX : X.Infinite) (hclosed : IsClosed X)
     (hshift : ∀ h : Lattice, ∀ c ∈ X, shift h c ∈ X) :
@@ -255,13 +275,17 @@ theorem exists_halfPlane_pair {A : Type*} [TopologicalSpace A] [DiscreteTopology
     exact hxn.symm.trans (heq.trans hyn)
 
 /-- The Euclidean inner product gives the coordinate formula for the normal functional in Lemma
-3.1 (`lem:halfplane-pair`). -/
+3.1 (`lem:halfplane-pair`).
+@isnad1 id=eq.0h2v.s8.a0a3e9a80e1c from=translated src=- shape=df1a8efb vocab=c0203385
+-/
 @[simp] theorem inner_latticeReal (ν : RealPlane) (z : Lattice) :
     ⟪ν, latticeReal z⟫_ℝ = ν 0 * (z.1 : ℝ) + ν 1 * (z.2 : ℝ) := by
   simp [PiLp.inner_apply, latticeReal, Fin.sum_univ_two, mul_comm]
 
 /-- Coordinate form of Lemma 3.1 (`lem:halfplane-pair`), with the unit-normal equation and strict
-half-plane inequality written explicitly. -/
+half-plane inequality written explicitly.
+@isnad1 id=ex.3h2v.s8.17fa940f6a52 from=translated src=- shape=73a04740 vocab=c6bb567d
+-/
 theorem exists_halfPlane_pair_coordinates {A : Type*} [TopologicalSpace A]
     [DiscreteTopology A] [Finite A] (X : Set (Configuration A)) (hX : X.Infinite)
     (hclosed : IsClosed X) (hshift : ∀ h : Lattice, ∀ c ∈ X, shift h c ∈ X) :

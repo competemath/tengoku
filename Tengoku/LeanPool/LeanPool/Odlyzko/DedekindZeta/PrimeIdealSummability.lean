@@ -21,6 +21,9 @@ namespace NumberField.Odlyzko
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=summable.1h2v.s8.93e4a27e44ba from=translated src=- shape=30ab156a vocab=865971a7
+-/
 theorem summable_ideal_absNorm_rpow {σ : ℝ} (hσ : 1 < σ) :
     Summable (fun I : Ideal (𝓞 K) ↦ (absNorm I : ℝ) ^ (-σ)) := by
   let e := Equiv.sigmaFiberEquiv (absNorm : Ideal (𝓞 K) → ℕ)
@@ -57,6 +60,9 @@ theorem summable_ideal_absNorm_rpow {σ : ℝ} (hσ : 1 < σ) :
       rw [Real.rpow_neg (Nat.cast_nonneg n)]
       simp [div_eq_mul_inv]
 
+/--
+@isnad1 id=summable.1h2v.s6.6f67ce252aef from=translated src=- shape=764f6d4a vocab=861d4e07
+-/
 theorem summable_primeIdealNorm_rpow {σ : ℝ} (hσ : 1 < σ) :
     Summable
       (fun P : HeightOneSpectrum (𝓞 K) ↦ (primeIdealNorm K P : ℝ) ^ (-σ)) := by
@@ -66,6 +72,9 @@ theorem summable_primeIdealNorm_rpow {σ : ℝ} (hσ : 1 < σ) :
   exact (summable_ideal_absNorm_rpow K hσ).comp_injective
     HeightOneSpectrum.asIdeal_injective
 
+/--
+@isnad1 id=summable.1h2v.s6.92bb32e19a22 from=translated src=- shape=5e7b0967 vocab=4fa9e008
+-/
 theorem summable_primeIdeal_log_mul_rpow {σ : ℝ} (hσ : 1 < σ) :
     Summable (fun P : HeightOneSpectrum (𝓞 K) ↦
       Real.log (primeIdealNorm K P) *
@@ -93,6 +102,9 @@ theorem summable_primeIdeal_log_mul_rpow {σ : ℝ} (hσ : 1 < σ) :
       rw [div_mul_eq_mul_div, ← Real.rpow_add hq, hexp]
       ring
 
+/--
+@isnad1 id=lt.1h3v.s6.1b870e26570b from=translated src=- shape=afafcc99 vocab=a99b8261
+-/
 lemma norm_inverseNormPower_primeIdeal_lt_half
     (P : HeightOneSpectrum (𝓞 K)) {s : ℂ} (hs : 1 < s.re) :
     ‖inverseNormPower (primeIdealNorm K P) s‖ < 1 / 2 := by
@@ -109,6 +121,9 @@ lemma norm_inverseNormPower_primeIdeal_lt_half
       grind
   · simp
 
+/--
+@isnad1 id=summable.1h2v.s6.2851af929d5b from=translated src=- shape=f6e5ef66 vocab=c78c0b51
+-/
 theorem summable_norm_primeIdealFactor_sub_one {s : ℂ} (hs : 1 < s.re) :
     Summable
       (fun P : HeightOneSpectrum (𝓞 K) ↦ ‖primeIdealFactor K P s - 1‖) := by
@@ -137,6 +152,9 @@ theorem summable_norm_primeIdealFactor_sub_one {s : ℂ} (hs : 1 < s.re) :
         exact norm_inverseNormPower _ (Nat.zero_lt_of_lt <| one_lt_primeIdealNorm K P) s]
       ring
 
+/--
+@isnad1 id=le.2h4v.s6.febb4215fbdf from=translated src=- shape=151ce11e vocab=9570f61b
+-/
 theorem norm_primeIdealFactor_sub_one_le
     (P : HeightOneSpectrum (𝓞 K)) {σ : ℝ} {s : ℂ}
     (hσ : 1 < σ) (hs : σ ≤ s.re) :
@@ -171,11 +189,17 @@ theorem norm_primeIdealFactor_sub_one_le
       exact mul_le_mul_of_nonneg_left
         (Real.rpow_le_rpow_of_exponent_le hq (by linarith)) (by norm_num)
 
+/--
+@isnad1 id=multipli.1h2v.s6.2b76f487e861 from=translated src=- shape=16bab6f3 vocab=436435d6
+-/
 theorem multipliable_primeIdealFactor {s : ℂ} (hs : 1 < s.re) :
     Multipliable (fun P : HeightOneSpectrum (𝓞 K) ↦ primeIdealFactor K P s) := by
   simpa only [add_sub_cancel] using
     multipliable_one_add_of_summable (summable_norm_primeIdealFactor_sub_one K hs)
 
+/--
+@isnad1 id=ne.1h2v.s6.842afa3128d1 from=translated src=- shape=5fba732c vocab=49162128
+-/
 theorem tprod_primeIdealFactor_ne_zero {s : ℂ} (hs : 1 < s.re) :
     ∏' P : HeightOneSpectrum (𝓞 K), primeIdealFactor K P s ≠ 0 := by
   let f := fun P : HeightOneSpectrum (𝓞 K) ↦ primeIdealFactor K P s - 1

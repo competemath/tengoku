@@ -28,6 +28,9 @@ abbrev unitFundamentalParamSet (K : Type*) [Field K] [NumberField K] :
     Set (realSpace K) :=
   Set.univ.pi fun w ↦ if w = w₀ then Set.univ else Set.Ico 0 1
 
+/--
+@isnad1 id=measurab.0h1v.s4.2c1789233e61 from=translated src=- shape=da9a72aa vocab=9594ffed
+-/
 theorem measurableSet_unitFundamentalParamSet :
     MeasurableSet (unitFundamentalParamSet K) := by
   classical
@@ -36,6 +39,9 @@ theorem measurableSet_unitFundamentalParamSet :
   · simp
   · simp
 
+/--
+@isnad1 id=iff.0h2v.s6.3f2592ab617f from=translated src=- shape=c80eede0 vocab=c08fd137
+-/
 theorem mem_unitFundamentalParamSet_iff
     (x : realSpace K) :
     x ∈ unitFundamentalParamSet K ↔
@@ -60,6 +66,9 @@ def fundamentalUnitForShift
     (z : {w : InfinitePlace K // w ≠ w₀} → ℤ) : (𝓞 K)ˣ :=
   ∏ i, fundSystem K (equivFinRank.symm i) ^ z i
 
+/--
+@isnad1 id=eq.0h3v.s8.4eae5f9b56b6 from=translated src=- shape=17256536 vocab=06de12a9
+-/
 theorem expMapBasis_add_unitCoordinateShift
     (x : realSpace K) (z : {w : InfinitePlace K // w ≠ w₀} → ℤ) :
     expMapBasis (x + unitCoordinateShift z) =
@@ -100,12 +109,18 @@ def unitFundamentalTranslate
     (z : {w : InfinitePlace K // w ≠ w₀} → ℤ) : Set (realSpace K) :=
   (fun x ↦ x - unitCoordinateShift z) ⁻¹' unitFundamentalParamSet K
 
+/--
+@isnad1 id=measurab.0h2v.s5.aa4be792dc2d from=translated src=- shape=290f9a61 vocab=d4750b88
+-/
 theorem measurableSet_unitFundamentalTranslate
     (z : {w : InfinitePlace K // w ≠ w₀} → ℤ) :
     MeasurableSet (unitFundamentalTranslate z) :=
   (measurable_id.sub_const _)
     measurableSet_unitFundamentalParamSet
 
+/--
+@isnad1 id=iff.0h3v.s6.7aafa74cb116 from=translated src=- shape=b7334324 vocab=41fbcd85
+-/
 theorem mem_unitFundamentalTranslate_iff
     (x : realSpace K) (z : {w : InfinitePlace K // w ≠ w₀} → ℤ) :
     x ∈ unitFundamentalTranslate z ↔
@@ -136,6 +151,9 @@ theorem mem_unitFundamentalTranslate_iff
       (show Int.fract (x w) ∈ Set.Ico (0 : ℝ) 1 from
         ⟨Int.fract_nonneg _, Int.fract_lt_one _⟩)
 
+/--
+@isnad1 id=pairwise.0h1v.s7.8dee3c8e966b from=translated src=- shape=6c224e21 vocab=e6a4f205
+-/
 theorem pairwise_disjoint_unitFundamentalTranslate :
     Pairwise fun (z z' : {w : InfinitePlace K // w ≠ w₀} → ℤ) ↦
       Disjoint (unitFundamentalTranslate z) (unitFundamentalTranslate z') := by
@@ -146,6 +164,9 @@ theorem pairwise_disjoint_unitFundamentalTranslate :
   have hz' := (mem_unitFundamentalTranslate_iff x z').mp hx'
   simp_all
 
+/--
+@isnad1 id=eq.0h1v.s6.563f4090d4e1 from=translated src=- shape=a93651c5 vocab=31de7115
+-/
 theorem iUnion_unitFundamentalTranslate :
     ⋃ z : {w : InfinitePlace K // w ≠ w₀} → ℤ,
       unitFundamentalTranslate z = Set.univ := by
@@ -154,6 +175,9 @@ theorem iUnion_unitFundamentalTranslate :
   exact ⟨fun i ↦ unitFloor x i,
     (mem_unitFundamentalTranslate_iff _ _).mpr rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.89516784288d from=translated src=- shape=0ff931cf vocab=30e405e2
+-/
 theorem unitFundamentalTranslate_eq_image
     (z : {w : InfinitePlace K // w ≠ w₀} → ℤ) :
     unitFundamentalTranslate z =
@@ -166,6 +190,9 @@ theorem unitFundamentalTranslate_eq_image
   · rintro ⟨y, hy, rfl⟩
     simpa [unitFundamentalTranslate] using hy
 
+/--
+@isnad1 id=eq.0h4v.s8.3e13a9feae19 from=translated src=- shape=b62053e7 vocab=c888594e
+-/
 theorem setIntegral_unitFundamentalTranslate
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (f : realSpace K → E)
@@ -183,6 +210,9 @@ theorem setIntegral_unitFundamentalTranslate
   exact he.setIntegral_image_emb e.measurableEmbedding f
     (unitFundamentalParamSet K)
 
+/--
+@isnad1 id=eq.1h3v.s8.8846c790b435 from=translated src=- shape=b6c36c44 vocab=990cb301
+-/
 theorem integral_eq_tsum_setIntegral_unitFundamentalTranslate
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (f : realSpace K → E) (hf : Integrable f) :
@@ -199,6 +229,9 @@ theorem integral_eq_tsum_setIntegral_unitFundamentalTranslate
         rw [iUnion_unitFundamentalTranslate]
         simp_all)
 
+/--
+@isnad1 id=eq.1h3v.s8.c4ef3ec1f17a from=translated src=- shape=4afd52ef vocab=aea55197
+-/
 theorem integral_eq_tsum_setIntegral_add_unitCoordinateShift
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (f : realSpace K → E) (hf : Integrable f) :
@@ -211,6 +244,9 @@ theorem integral_eq_tsum_setIntegral_add_unitCoordinateShift
   funext z
   exact setIntegral_unitFundamentalTranslate f z
 
+/--
+@isnad1 id=eq.1h3v.s9.7ddff63710ec from=translated src=- shape=a03ce337 vocab=8e20b43b
+-/
 theorem integral_comp_expMapBasis_eq_tsum_unitSlab
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (g : realSpace K → E) (hg : Integrable (fun x ↦ g (expMapBasis x))) :
@@ -229,6 +265,9 @@ theorem integral_comp_expMapBasis_eq_tsum_unitSlab
   rw [expMapBasis_add_unitCoordinateShift]
 
 open scoped Classical in
+/--
+@isnad1 id=eq.1h4v.s9.894cebbb54f2 from=translated src=- shape=d221bb99 vocab=601751b1
+-/
 theorem setIntegral_expMapBasis_image
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {s : Set (realSpace K)} (hs : MeasurableSet s)
@@ -249,6 +288,9 @@ theorem setIntegral_expMapBasis_image
   rw [abs_det_fderiv_expMapBasis]
 
 open scoped Classical in
+/--
+@isnad1 id=iff.1h4v.s9.826edd55c6f3 from=translated src=- shape=f650b853 vocab=4d07d471
+-/
 theorem integrableOn_expMapBasis_image_iff
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {s : Set (realSpace K)} (hs : MeasurableSet s)

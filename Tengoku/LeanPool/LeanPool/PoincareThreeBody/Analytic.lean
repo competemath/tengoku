@@ -20,7 +20,9 @@ it to the inverse square roots in the restricted three-body potential.
 
 namespace LeanPool.PoincareThreeBody
 
-/-- A real power is analytic at every positive base. -/
+/-- A real power is analytic at every positive base.
+@isnad1 id=analytic.1h2v.s5.1f51e4e7304e from=translated src=- shape=bd6d3df7 vocab=3351b056
+-/
 theorem analyticAt_rpow_of_pos (a : ℝ) {x₀ : ℝ} (hx₀ : 0 < x₀) :
     AnalyticAt ℝ (fun x : ℝ ↦ x ^ a) x₀ := by
   let normalize : ℝ → ℝ := fun x ↦ (x - x₀) / x₀
@@ -44,7 +46,9 @@ theorem analyticAt_rpow_of_pos (a : ℝ) {x₀ : ℝ} (hx₀ : 0 < x₀) :
   congr 1
   field_simp
 
-/-- The inverse square-root function is analytic at every positive real number. -/
+/-- The inverse square-root function is analytic at every positive real number.
+@isnad1 id=analytic.1h1v.s5.3b0af0d367c0 from=translated src=- shape=780dfe3a vocab=f3d773f0
+-/
 theorem analyticAt_inv_sqrt {x₀ : ℝ} (hx₀ : 0 < x₀) :
     AnalyticAt ℝ (fun x : ℝ ↦ 1 / Real.sqrt x) x₀ := by
   apply (analyticAt_rpow_of_pos (-(1 / 2 : ℝ)) hx₀).congr
@@ -52,34 +56,51 @@ theorem analyticAt_inv_sqrt {x₀ : ℝ} (hx₀ : 0 < x₀) :
   rw [Real.sqrt_eq_rpow, Real.rpow_neg hx.le]
   simp
 
-/-- The square-root function is analytic at every positive real number. -/
+/-- The square-root function is analytic at every positive real number.
+@isnad1 id=analytic.1h1v.s5.c463c19e1e42 from=translated src=- shape=a5280215 vocab=16fae1b7
+-/
 theorem analyticAt_sqrt_of_pos {x₀ : ℝ} (hx₀ : 0 < x₀) :
     AnalyticAt ℝ Real.sqrt x₀ := by
   apply (analyticAt_rpow_of_pos (1 / 2 : ℝ) hx₀).congr
   filter_upwards [lt_mem_nhds hx₀] with x hx
   exact (Real.sqrt_eq_rpow x).symm
 
+/--
+@isnad1 id=analytic.0h1v.s7.c54e41fe4f06 from=translated src=- shape=7ff37f5c vocab=3bf9fd39
+-/
 lemma mass_analyticAt (z : ℝ × PhaseSpace) : AnalyticAt ℝ (fun w : ℝ × PhaseSpace ↦ w.1) z :=
   analyticAt_fst
 
+/--
+@isnad1 id=analytic.0h2v.s7.9c439c31e6e8 from=translated src=- shape=e071c23d vocab=f008f8ec
+-/
 lemma phaseCoordinate_analyticAt (z : ℝ × PhaseSpace) (i : Fin 4) :
     AnalyticAt ℝ (fun w : ℝ × PhaseSpace ↦ w.2 i) z := by
   have heval : AnalyticAt ℝ (fun s : PhaseSpace ↦ s i) z.2 :=
     (ContinuousLinearMap.proj i : PhaseSpace →L[ℝ] ℝ).analyticAt z.2
   simpa [Function.comp_def] using heval.comp (analyticAt_snd (𝕜 := ℝ))
 
+/--
+@isnad1 id=analytic.0h1v.s7.52874d098610 from=translated src=- shape=8511e32d vocab=1ff75d5b
+-/
 theorem firstPrimaryDistanceSq_analyticAt (z : ℝ × PhaseSpace) :
     AnalyticAt ℝ (Function.uncurry firstPrimaryDistanceSq) z := by
   change AnalyticAt ℝ (fun w ↦ (w.2 0 - 1 + w.1) ^ 2 + (w.2 1) ^ 2) z
   exact ((((phaseCoordinate_analyticAt z 0).sub analyticAt_const).add
     (mass_analyticAt z)).pow 2).add ((phaseCoordinate_analyticAt z 1).pow 2)
 
+/--
+@isnad1 id=analytic.0h1v.s7.787a0fe72ed8 from=translated src=- shape=8511e32d vocab=bd7670da
+-/
 theorem secondPrimaryDistanceSq_analyticAt (z : ℝ × PhaseSpace) :
     AnalyticAt ℝ (Function.uncurry secondPrimaryDistanceSq) z := by
   change AnalyticAt ℝ (fun w ↦ (w.2 0 + w.1) ^ 2 + (w.2 1) ^ 2) z
   exact (((phaseCoordinate_analyticAt z 0).add (mass_analyticAt z)).pow 2).add
     ((phaseCoordinate_analyticAt z 1).pow 2)
 
+/--
+@isnad1 id=analytic.1h1v.s7.cb4b97803de0 from=translated src=- shape=3e0af520 vocab=448c5ce7
+-/
 theorem inverseFirstDistance_analyticAt {z : ℝ × PhaseSpace}
     (hz : firstPrimaryDistanceSq z.1 z.2 ≠ 0) :
     AnalyticAt ℝ
@@ -90,6 +111,9 @@ theorem inverseFirstDistance_analyticAt {z : ℝ × PhaseSpace}
   exact (analyticAt_inv_sqrt hpositive).comp
     (f := Function.uncurry firstPrimaryDistanceSq) (firstPrimaryDistanceSq_analyticAt z)
 
+/--
+@isnad1 id=analytic.1h1v.s7.e70580c77831 from=translated src=- shape=3e0af520 vocab=b224dbcb
+-/
 theorem inverseSecondDistance_analyticAt {z : ℝ × PhaseSpace}
     (hz : secondPrimaryDistanceSq z.1 z.2 ≠ 0) :
     AnalyticAt ℝ
@@ -100,7 +124,9 @@ theorem inverseSecondDistance_analyticAt {z : ℝ × PhaseSpace}
   exact (analyticAt_inv_sqrt hpositive).comp
     (f := Function.uncurry secondPrimaryDistanceSq) (secondPrimaryDistanceSq_analyticAt z)
 
-/-- The Newtonian potential is jointly analytic in mass and phase away from both collisions. -/
+/-- The Newtonian potential is jointly analytic in mass and phase away from both collisions.
+@isnad1 id=analytic.1h1v.s7.6e743fa6c177 from=translated src=- shape=492192f7 vocab=34e1c3c6
+-/
 theorem potential_analyticAt {z : ℝ × PhaseSpace} (hz : z ∈ collisionFree) :
     AnalyticAt ℝ (Function.uncurry potential) z := by
   rcases hz with ⟨hfirst, hsecond⟩
@@ -116,7 +142,9 @@ theorem potential_analyticAt {z : ℝ × PhaseSpace} (hz : z ∈ collisionFree) 
   filter_upwards [] with w
   simp [smul_eq_mul, div_eq_mul_inv]
 
-/-- The rotating-frame Hamiltonian is jointly analytic away from collision. -/
+/-- The rotating-frame Hamiltonian is jointly analytic away from collision.
+@isnad1 id=analytic.1h1v.s7.9470b416be80 from=translated src=- shape=492192f7 vocab=88e502cd
+-/
 theorem hamiltonian_analyticAt {z : ℝ × PhaseSpace} (hz : z ∈ collisionFree) :
     AnalyticAt ℝ (Function.uncurry hamiltonian) z := by
   have hp₀ := phaseCoordinate_analyticAt z 0
@@ -138,16 +166,24 @@ theorem hamiltonian_analyticAt {z : ℝ × PhaseSpace} (hz : z ∈ collisionFree
       potential w.1 w.2) z
   exact hkinetic.sub (potential_analyticAt hz)
 
+/--
+@isnad1 id=analytic.0h0v.s7.0e588a4f44a4 from=translated src=- shape=fb509dfb vocab=0ee39c18
+-/
 theorem potential_analyticOn_collisionFree :
     AnalyticOnNhd ℝ (Function.uncurry potential) collisionFree :=
   fun _ hz ↦ potential_analyticAt hz
 
+/--
+@isnad1 id=analytic.0h0v.s7.b49cb7568395 from=translated src=- shape=fb509dfb vocab=44b2cac1
+-/
 theorem hamiltonian_analyticOn_collisionFree :
     AnalyticOnNhd ℝ (Function.uncurry hamiltonian) collisionFree :=
   fun _ hz ↦ hamiltonian_analyticAt hz
 
 /-- Joint analyticity supplies an ordinary analytic mass-parameter germ at every collision-free
-phase point over `μ = 0`. -/
+phase point over `μ = 0`.
+@isnad1 id=analytic.3h3v.s6.94ab7a271784 from=translated src=- shape=3d409bbf vocab=77a52f28
+-/
 theorem analyticAt_mass_zero_of_jointlyAnalytic {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hF : IsJointlyAnalytic δ F) {s : PhaseSpace}
     (hs : (0, s) ∈ collisionFree) : AnalyticAt ℝ (fun μ ↦ F μ s) 0 := by
@@ -159,7 +195,9 @@ theorem analyticAt_mass_zero_of_jointlyAnalytic {δ : ℝ} {F : ℝ → PhaseSpa
   simpa [Function.comp_def] using hjoint.comp (f := fun μ : ℝ ↦ (μ, s)) hembedding
 
 /-- A jointly analytic candidate integral has a convergent mass-parameter power series at every
-collision-free phase point over the Kepler limit. -/
+collision-free phase point over the Kepler limit.
+@isnad1 id=ex.3h3v.s7.8ae3e63f9f58 from=translated src=- shape=d2b5bfdd vocab=b5c093cb
+-/
 theorem exists_massPowerSeries_of_jointlyAnalytic {δ : ℝ} {F : ℝ → PhaseSpace → ℝ}
     (hδ : 0 < δ) (hF : IsJointlyAnalytic δ F) {s : PhaseSpace}
     (hs : (0, s) ∈ collisionFree) :
@@ -167,6 +205,9 @@ theorem exists_massPowerSeries_of_jointlyAnalytic {δ : ℝ} {F : ℝ → PhaseS
       HasFPowerSeriesAt (fun μ ↦ F μ s) series 0 :=
   analyticAt_mass_zero_of_jointlyAnalytic hδ hF hs
 
+/--
+@isnad1 id=analytic.1h1v.s6.fa38d0286aa9 from=translated src=- shape=18c93b64 vocab=25ac74aa
+-/
 theorem hamiltonian_analyticAt_mass_zero {s : PhaseSpace} (hs : (0, s) ∈ collisionFree) :
     AnalyticAt ℝ (fun μ ↦ hamiltonian μ s) 0 := by
   have hjoint := hamiltonian_analyticAt hs

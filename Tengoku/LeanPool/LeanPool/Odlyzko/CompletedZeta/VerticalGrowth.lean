@@ -30,6 +30,9 @@ open mixedEmbedding
 
 variable (K : Type*) [Field K] [NumberField K] [IsTotallyComplex K]
 
+/--
+@isnad1 id=le.1h3v.s5.ad1676b53e6c from=translated src=- shape=9417b5e1 vocab=bca8a421
+-/
 theorem abs_le_max_abs_endpoints {a b σ : ℝ} (hσ : σ ∈ Set.Icc a b) :
     |σ| ≤ max |a| |b| := by grind
 
@@ -37,11 +40,17 @@ theorem abs_le_max_abs_endpoints {a b σ : ℝ} (hσ : σ ∈ Set.Icc a b) :
 noncomputable def centeredClassThetaVerticalRadius (a b : ℝ) : ℝ :=
   max (max |a| |b|) (max |1 - b| |1 - a|) + 1
 
+/--
+@isnad1 id=le.0h2v.s4.65709c032567 from=translated src=- shape=a120b2a8 vocab=84788092
+-/
 theorem one_le_centeredClassThetaVerticalRadius (a b : ℝ) :
     1 ≤ centeredClassThetaVerticalRadius a b := by
   unfold centeredClassThetaVerticalRadius
   simp
 
+/--
+@isnad1 id=and.1h4v.s7.09d53ab69d11 from=translated src=- shape=d8e7ca07 vocab=a47e1538
+-/
 theorem norm_vertical_pole_factors_le
     {a b σ t : ℝ} (hσ : σ ∈ Set.Icc a b) :
     ‖(σ : ℂ) + t * I‖ ≤
@@ -90,6 +99,9 @@ noncomputable def centeredPositiveClassThetaNormBound
       (FractionalIdeal.mk0 K (fractionalIdealNumerator K I)) (b : ℂ) y‖
 
 omit [IsTotallyComplex K] in
+/--
+@isnad1 id=le.0h3v.s7.cc5ca509f686 from=translated src=- shape=970663fe vocab=8985d18c
+-/
 theorem centeredPositiveClassThetaNormBound_nonneg
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (b : ℝ) :
     0 ≤ centeredPositiveClassThetaNormBound K I b :=
@@ -104,6 +116,9 @@ noncomputable def poleClearedCenteredClassThetaVerticalBound
       centeredClassThetaVerticalRadius a b ^ 2 + 1
 
 omit [IsTotallyComplex K] in
+/--
+@isnad1 id=le.0h4v.s7.def889a8b628 from=translated src=- shape=1cd39c32 vocab=6b715673
+-/
 theorem poleClearedCenteredClassThetaVerticalBound_nonneg
     (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (a b : ℝ) :
     0 ≤ poleClearedCenteredClassThetaVerticalBound K I a b := by
@@ -144,6 +159,9 @@ noncomputable def poleClearedCompletedDedekindZetaVerticalBound
 
 omit [IsTotallyComplex K] in
 open Classical in
+/--
+@isnad1 id=le.0h3v.s4.cc22f3f12b09 from=translated src=- shape=f49be25b vocab=e3628901
+-/
 theorem poleClearedCompletedDedekindZetaVerticalBound_nonneg (a b : ℝ) :
     0 ≤ poleClearedCompletedDedekindZetaVerticalBound K a b := by
   unfold poleClearedCompletedDedekindZetaVerticalBound

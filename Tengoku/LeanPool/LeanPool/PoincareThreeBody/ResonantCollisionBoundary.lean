@@ -39,11 +39,17 @@ noncomputable def resonantApoapsisTime (p q : ℕ) : ℝ :=
 noncomputable def resonantCollisionOrientation (p q : ℕ) : ℝ :=
   resonantApoapsisTime p q - Real.pi
 
+/--
+@isnad1 id=lt.2h2v.s5.16ab2e9db248 from=translated src=- shape=e8b7e832 vocab=bfbff3f4
+-/
 theorem resonantSemimajorAxis_pos {p q : ℕ} (hp : 0 < p) (hq : 0 < q) :
     0 < resonantSemimajorAxis p q := by
   unfold resonantSemimajorAxis
   exact sq_pos_of_pos (resonantFirstAction_pos hp hq)
 
+/--
+@isnad1 id=lt.3h2v.s5.55fffdb353c1 from=translated src=- shape=f03ae1a5 vocab=8275441c
+-/
 theorem resonantCollisionEccentricity_pos {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     (haxisOne : resonantSemimajorAxis p q < 1) :
     0 < resonantCollisionEccentricity p q := by
@@ -52,6 +58,9 @@ theorem resonantCollisionEccentricity_pos {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
   rw [sub_pos, one_lt_div haxisPositive]
   exact haxisOne
 
+/--
+@isnad1 id=lt.3h2v.s6.1287075e1f89 from=translated src=- shape=70334b23 vocab=01ec7bd2
+-/
 theorem resonantCollisionEccentricity_lt_one {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     (haxisHalf : 1 / 2 < resonantSemimajorAxis p q) :
     resonantCollisionEccentricity p q < 1 := by
@@ -60,6 +69,9 @@ theorem resonantCollisionEccentricity_lt_one {p q : ℕ} (hp : 0 < p) (hq : 0 < 
   rw [sub_lt_iff_lt_add, div_lt_iff₀ haxisPositive]
   nlinarith
 
+/--
+@isnad1 id=eq.2h2v.s5.1404c6268a20 from=translated src=- shape=26c67188 vocab=55e2d240
+-/
 theorem resonantMeanAnomaly_apoapsisTime {p q : ℕ} (hp : 0 < p) (hq : 0 < q) :
     resonantMeanAnomaly p q (resonantApoapsisTime p q) = Real.pi := by
   have hpReal : (p : ℝ) ≠ 0 := by positivity
@@ -67,6 +79,9 @@ theorem resonantMeanAnomaly_apoapsisTime {p q : ℕ} (hp : 0 < p) (hq : 0 < q) :
   unfold resonantMeanAnomaly resonantMeanMotion resonantApoapsisTime
   field_simp
 
+/--
+@isnad1 id=eq.4h3v.s5.129113bbc588 from=translated src=- shape=26811d71 vocab=0f6d2486
+-/
 theorem resonantEccentricAnomaly_apoapsisTime
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity : ℝ} (heccentricity : 0 ≤ eccentricity)
@@ -79,6 +94,9 @@ theorem resonantEccentricAnomaly_apoapsisTime
     (eccentricAnomaly_eccentricMeanAnomaly
       heccentricity heccentricityOne Real.pi)
 
+/--
+@isnad1 id=lt.2h2v.s5.8ded351c2eb1 from=translated src=- shape=237c524f vocab=4ae2ed5e
+-/
 theorem resonantApoapsisTime_lt_orbitPeriod
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q) :
     resonantApoapsisTime p q < resonantOrbitPeriod p := by
@@ -91,7 +109,9 @@ theorem resonantApoapsisTime_lt_orbitPeriod
   nlinarith [mul_le_mul_of_nonneg_left hqOne hpiP.le]
 
 /-- At the collision-aligned orientation, every admissible ellipse places its apoapsis on the
-positive rotating x-axis. -/
+positive rotating x-axis.
+@isnad1 id=eq.4h3v.s6.748ce7bf49e6 from=translated src=- shape=309d5169 vocab=65548bb9
+-/
 theorem orientedResonantEllipsePosition_alignedApoapsis
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity : ℝ} (heccentricity : 0 ≤ eccentricity)
@@ -110,7 +130,9 @@ theorem orientedResonantEllipsePosition_alignedApoapsis
     ring
   · simp [positionInRotatingFrame, inertialEllipsePosition]
 
-/-- The distance from aligned apoapsis to the unit primary is the remaining apoapsis gap. -/
+/-- The distance from aligned apoapsis to the unit primary is the remaining apoapsis gap.
+@isnad1 id=eq.5h3v.s7.1c2bccf605cd from=translated src=- shape=1e4ec32d vocab=fbe41bd5
+-/
 theorem alignedApoapsis_primaryDistance
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity : ℝ} (heccentricity : 0 ≤ eccentricity)
@@ -130,7 +152,9 @@ theorem alignedApoapsis_primaryDistance
   · linarith
 
 /-- At aligned apoapsis the singular part of the disturbing function is exactly the reciprocal
-of the remaining gap to collision. -/
+of the remaining gap to collision.
+@isnad1 id=eq.5h3v.s7.43fc703b4f09 from=translated src=- shape=7e244f57 vocab=ba81e622
+-/
 theorem resonantDisturbingFunction_alignedApoapsis
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     {eccentricity : ℝ} (heccentricity : 0 ≤ eccentricity)
@@ -163,7 +187,9 @@ theorem resonantDisturbingFunction_alignedApoapsis
   have hgap : 1 - radius ≠ 0 := (sub_pos.mpr hapoapsis).ne'
   field_simp [hradiusPositive.ne', hgap]
 
-/-- At the boundary eccentricity and aligned orientation, apoapsis is exactly the unit primary. -/
+/-- At the boundary eccentricity and aligned orientation, apoapsis is exactly the unit primary.
+@isnad1 id=eq.4h2v.s6.3f1cd07a5b0b from=translated src=- shape=50e67f05 vocab=5402e1ac
+-/
 theorem orientedResonantEllipsePosition_collisionBoundary
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     (haxisHalf : 1 / 2 < resonantSemimajorAxis p q)
@@ -184,7 +210,9 @@ theorem orientedResonantEllipsePosition_collisionBoundary
 
 /-- The collision-aligned position approaches the unit primary at most linearly in the joint
 eccentricity/time displacement.  This is the local estimate behind the logarithmic blowup of the
-averaged Newtonian singularity. -/
+averaged Newtonian singularity.
+@isnad1 id=isbigo.4h2v.s8.113802847f91 from=translated src=- shape=94bb165f vocab=06cb9ff3
+-/
 theorem collisionAlignedPosition_isBigO
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     (haxisHalf : 1 / 2 < resonantSemimajorAxis p q)
@@ -211,7 +239,9 @@ theorem collisionAlignedPosition_isBigO
   rw [orientedResonantEllipsePosition_collisionBoundary hp hq haxisHalf haxisOne] at hbound
   exact hbound
 
-/-- Quantitative neighborhood form of `collisionAlignedPosition_isBigO`. -/
+/-- Quantitative neighborhood form of `collisionAlignedPosition_isBigO`.
+@isnad1 id=ex.4h2v.s8.ddfea0a0fa57 from=translated src=- shape=fc238c05 vocab=7e3e57ed
+-/
 theorem exists_collisionAlignedPosition_local_bound
     {p q : ℕ} (hp : 0 < p) (hq : 0 < q)
     (haxisHalf : 1 / 2 < resonantSemimajorAxis p q)
@@ -234,7 +264,9 @@ theorem exists_collisionAlignedPosition_local_bound
     hlocal hparameters⟩
 
 /-- The Euclidean distance used by the Newtonian potential is controlled by twice the ambient
-sup norm on the concrete two-dimensional action space. -/
+sup norm on the concrete two-dimensional action space.
+@isnad1 id=le.0h1v.s7.7707729c31d0 from=translated src=- shape=e8ffe4df vocab=6faba451
+-/
 theorem sqrt_sq_add_sq_le_two_norm (vector : ActionSpace) :
     Real.sqrt (vector 0 ^ 2 + vector 1 ^ 2) ≤ 2 * ‖vector‖ := by
   have hsqrt : Real.sqrt (vector 0 ^ 2 + vector 1 ^ 2) ≤

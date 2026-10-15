@@ -22,7 +22,9 @@ namespace LeanPool.PoincareThreeBody
 open Filter Set Topology
 
 /-- The nonzero locus of a nontrivial real-analytic function is dense in any connected open
-domain.  The set is regarded as a subset of the domain subtype. -/
+domain.  The set is regarded as a subset of the domain subtype.
+@isnad1 id=dense.5h3v.s7.839bb876fe30 from=translated src=- shape=5e28d981 vocab=706aecba
+-/
 theorem dense_nonzero_of_analyticOnNhd
     {f : ℝ → ℝ} {U : Set ℝ}
     (hUopen : IsOpen U) (hUconnected : IsConnected U)
