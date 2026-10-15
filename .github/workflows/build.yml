@@ -145,13 +145,16 @@ jobs:
           fi
 
       # The tree's input-to-output mappings (Lake's artifact cache, `lake build -o`): the queue's deltas are diffed against them
-      # (scripts/lake_cache.py). A walk of the finished tree, nothing compiles; sealed like the build.
+      # (scripts/lake_cache.py). A walk of the finished tree, nothing compiles; sealed like the build. On a tree that was built before the artifact
+      # cache was on, the first walk has to cache every module's outputs: 14 min for the sandbox's 19,000 modules, over 20 for this tree's 24,700 (the
+      # first nightly on the delta store died here on a 20-minute cap, 2026-10-15). Every walk after that takes seconds (the sandbox's: 15 s), so the cap
+      # is generous: it only ever matters once.
       - name: The tree's mappings, for the queue's deltas
         if: steps.build.outputs.complete == 'true'
         run: |
           set -o pipefail
           sudo unshare --net --pid --fork --mount-proc runuser -u "$(id -un)" -- env -i HOME="$HOME" PATH="$HOME/.elan/bin:/usr/local/bin:/usr/bin:/bin" LANG=C.UTF-8 LAKE_ARTIFACT_CACHE=true LAKE_CACHE_DIR="$PWD/.lake/cache" \
-            timeout 20m lake build Tengoku.All -o base.jsonl 2>&1 | tail -1
+            timeout 120m lake build Tengoku.All -o base.jsonl 2>&1 | tail -1
           echo "base mappings: $(wc -l < base.jsonl) lines, $(du -h base.jsonl | cut -f1)"
       - name: Save partial/complete build
         if: always()

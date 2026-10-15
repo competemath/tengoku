@@ -108,6 +108,16 @@ class Shape(unittest.TestCase):
         self.assertIn('echo "state=needs-nightly" >> "$GITHUB_OUTPUT"; exit 0', missing.split("fi\n")[0])
         self.assertLess(run.index(".lake/.base-missing"), run.index("scripts/lake_cache.py diff"), "decided before the diff is taken")
 
+    def test_the_nightlys_first_walk_of_a_tree_built_without_the_artifact_cache_fits_its_cap(self):
+        """The first walk caches every module's outputs: 14 min for 19,000 modules, more than 20 for 24,700. The first nightly on the delta store died on a
+        20-minute cap. Every later walk takes seconds, so the cap is generous (at least an hour) and stays inside the job's own timeout."""
+        wf = yaml.safe_load(BUILD.read_text(encoding="utf-8"))
+        job = wf["jobs"]["build"]
+        walk = step(job, "The tree's mappings")
+        cap = int(re.search(r"timeout (\d+)m lake build Tengoku\.All -o base\.jsonl", walk["run"]).group(1))
+        self.assertGreaterEqual(cap, 60, "a cap under an hour fails on the first walk of a tree built before the artifact cache")
+        self.assertLess(cap, job["timeout-minutes"] - 100, "the walk must leave the build and the save room inside the job's own timeout")
+
     def test_the_nightly_publishes_its_mappings_and_opens_the_days_delta_release(self):
         b = BUILD.read_text(encoding="utf-8")
         self.assertIn("lake build Tengoku.All -o base.jsonl", b)
