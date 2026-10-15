@@ -20,7 +20,9 @@ polynomials*, Arch. Math. 59 (1992), 239-244; upstreaming candidates for Mathlib
 @[expose] public section
 
 /-- For a finite commutative group `H` of exponent `2`, `#H = #(H →* C₂)` where
-`C₂ = Multiplicative (ZMod 2)`. -/
+`C₂ = Multiplicative (ZMod 2)`.
+@isnad1 id=eq.2h1v.s7.4cd5def1df29 from=translated src=- shape=72f4e2c9 vocab=f2d74bca
+-/
 theorem elem_ab_card_hom (H : Type*) [Group H] [Finite H]
     (hcomm : ∀ a b : H, a * b = b * a) (hexp : ∀ h : H, h ^ 2 = 1) :
     Nat.card H = Nat.card (H →* Multiplicative (ZMod 2)) := by
@@ -155,7 +157,9 @@ private def homEquivProd {D Q A : Type} [Group D] [Group Q] [CommGroup A] [Finty
         RegularWreathProduct.right_inl]
       simp [Fintype.prod_eq_single (1 : Q)]
 
-/-- `#((D ≀ᵣ Q) →* A) = #(D →* A) · #(Q →* A)` for finite groups `D`, `Q` and finite abelian `A`. -/
+/-- `#((D ≀ᵣ Q) →* A) = #(D →* A) · #(Q →* A)` for finite groups `D`, `Q` and finite abelian `A`.
+@isnad1 id=eq.0h3v.s6.ae5604c17fab from=translated src=- shape=8c3ef75a vocab=fbdf4802
+-/
 theorem RegularWreathProduct.card_hom (D Q A : Type) [Group D] [Group Q] [CommGroup A]
     [Finite Q] :
     Nat.card ((D ≀ᵣ Q) →* A) = Nat.card (D →* A) * Nat.card (Q →* A) := by
@@ -179,7 +183,9 @@ private theorem card_hom_c2 :
   · right; apply MonoidHom.ext; intro x; rcases hcases x with hx | hx <;> simp [hx, hg]
 
 /-- `#([C_2]^n →* C_2) = 2^n`: the maximal elementary-abelian 2-quotient of `WreathPower n` has
-`𝔽₂`-dimension `n`. -/
+`𝔽₂`-dimension `n`.
+@isnad1 id=eq.0h1v.s7.bc724be95c36 from=translated src=- shape=6d8189e6 vocab=48dd652d
+-/
 theorem wreath_max_elem_ab (n : ℕ) :
     Nat.card (IteratedWreathProduct (Multiplicative (ZMod 2)) n →* Multiplicative (ZMod 2))
       = 2 ^ n := by

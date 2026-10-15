@@ -47,7 +47,9 @@ In the paper: ((x+(1-w)²x)((y+(1+w)z)²+y²))/2 -/
 noncomputable def hPosParam : RatPoly 4 :=
   C (1 / 2 : ℚ) * cPosParam * (aPosParam ^ 2 + bPosParam ^ 2)
 
-/-- The first coordinate polynomial in the positive parametrization is integer-valued. -/
+/-- The first coordinate polynomial in the positive parametrization is integer-valued.
+@isnad1 id=isintval.0h0v.s2.959a17d5b886 from=translated src=- shape=cef8a6bf vocab=f1bd1d6f
+-/
 theorem f_pos_param_intValued : IsIntValued fPosParam := by
   intro v
   let x : ℤ := v (0 : Fin 4)
@@ -80,7 +82,9 @@ theorem f_pos_param_intValued : IsIntValued fPosParam := by
     A, B, Cc]
   ring
 
-/-- The second coordinate polynomial in the positive parametrization is integer-valued. -/
+/-- The second coordinate polynomial in the positive parametrization is integer-valued.
+@isnad1 id=isintval.0h0v.s2.fadbd9f6f1ab from=translated src=- shape=cef8a6bf vocab=d0dc23b9
+-/
 theorem g_pos_param_intValued : IsIntValued gPosParam := by
   intro v
   let x : ℤ := v (0 : Fin 4)
@@ -95,7 +99,9 @@ theorem g_pos_param_intValued : IsIntValued gPosParam := by
     A, B, Cc]
   ring
 
-/-- The third coordinate polynomial in the positive parametrization is integer-valued. -/
+/-- The third coordinate polynomial in the positive parametrization is integer-valued.
+@isnad1 id=isintval.0h0v.s2.3e2e171f291d from=translated src=- shape=cef8a6bf vocab=de697412
+-/
 theorem h_pos_param_intValued : IsIntValued hPosParam := by
   intro v
   let x : ℤ := v (0 : Fin 4)
@@ -133,7 +139,9 @@ def mkRatPolyInput4 (x' y' z' w' : ℤ) : Fin 4 → ℤ := fun i =>
   if i = 0 then x' else if i = 1 then y' else if i = 2 then z' else w'
 
 /-- Frisch--Vaserstein's positive Pythagorean-triple parametrization, with positive
-parameters `x`, `y`, `z` and nonnegative parameter `w`. -/
+parameters `x`, `y`, `z` and nonnegative parameter `w`.
+@isnad1 id=and.0h0v.s7.03a3792732f4 from=translated src=- shape=d961b0c3 vocab=fac10e8b
+-/
 theorem positive_triples_parametrization :
     IsIntValued fPosParam ∧ IsIntValued gPosParam ∧ IsIntValued hPosParam ∧
     positivePythagoreanTriples =
@@ -338,7 +346,9 @@ noncomputable def h16Param : RatPoly 16 :=
 
 /-- The positive-triple parametrization with unrestricted integer parameters, obtained
 from the four-variable positive parametrization by replacing the positive/nonnegative
-parameters with four-square expressions. -/
+parameters with four-square expressions.
+@isnad1 id=and.0h0v.s6.14219e5d1a10 from=translated src=- shape=0b304822 vocab=ae13b995
+-/
 theorem exists_16_param_parametrization :
     IsIntValued f16Param ∧ IsIntValued g16Param ∧ IsIntValued h16Param ∧
     positivePythagoreanTriples =

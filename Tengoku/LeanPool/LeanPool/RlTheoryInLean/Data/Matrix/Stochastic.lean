@@ -32,6 +32,9 @@ class StochasticVec (x : S → ℝ) where
   nonneg : ∀ s, 0 ≤ x s
   rowsum : ∑ s, x s = 1
 
+/--
+@isnad1 id=le.0h3v.s4.4e3cc82c1310 from=translated src=- shape=9c0ab710 vocab=7f1ff3eb
+-/
 lemma StochasticVec.le_one (x : S → ℝ) [StochasticVec x] (s : S) :
   x s ≤ 1 := by
   have hx : StochasticVec x := inferInstance
@@ -48,9 +51,15 @@ abbrev Simplex (S : Type u) [Fintype S] := {x : l1Space S | StochasticVec x.ofLp
 
 instance (x : ↑(Simplex S)) : @StochasticVec S _ x.val.ofLp := x.property
 
+/--
+@isnad1 id=eq.0h2v.s5.fa4639c20460 from=translated src=- shape=db0b63fd vocab=c4df484a
+-/
 lemma l1_norm_eq_sum (f : l1Space S) : ‖f‖ = ∑ s, |f.ofLp s| := by
   simpa using (PiLp.norm_eq_sum (f := f))
 
+/--
+@isnad1 id=eq.0h2v.s6.393cab03f400 from=translated src=- shape=61f46e48 vocab=4b99c506
+-/
 lemma l1_norm_eq_one (x : l1Space S) [StochasticVec x.ofLp]
   : ‖x‖₊ = 1 := by
   apply NNReal.eq
@@ -78,6 +87,9 @@ end simplex
 class RowStochastic (P : Matrix S S ℝ) where
   stochastic : ∀ s, StochasticVec (P s)
 
+/--
+@isnad1 id=eq.0h3v.s6.bc230b28a933 from=translated src=- shape=b41ad55b vocab=a9fef173
+-/
 lemma sum_svec_mul_smat_eq_one
   (μ : S → ℝ) [StochasticVec μ] (P : Matrix S S ℝ) [RowStochastic P]
   : ∑ i, ∑ j, μ i * P i j = 1 := by
@@ -87,6 +99,9 @@ lemma sum_svec_mul_smat_eq_one
     rw [← mul_sum, (hP i).rowsum, mul_one]
   rw [sum_congr rfl (fun i _ => hrow i), StochasticVec.rowsum]
 
+/--
+@isnad1 id=stochast.0h3v.s5.1f1e3f353beb from=translated src=- shape=11ced3b5 vocab=364e81d6
+-/
 instance svec_mul_smat_is_svec
   (μ : S → ℝ) [StochasticVec μ] (P : Matrix S S ℝ) [RowStochastic P] :
   StochasticVec (μ ᵥ* P) := by
@@ -103,6 +118,9 @@ instance svec_mul_smat_is_svec
     rw [sum_comm]
     apply sum_svec_mul_smat_eq_one
 
+/--
+@isnad1 id=rowstoch.0h3v.s5.025c3a20c51a from=translated src=- shape=b4ce0365 vocab=8b436a79
+-/
 instance smat_mul_smat_is_smat
   (P Q : Matrix S S ℝ) [RowStochastic P] [RowStochastic Q] :
   RowStochastic (P * Q) := by
@@ -126,6 +144,9 @@ instance smat_mul_smat_is_smat
         intro j _; simp [(hQ j).rowsum]
     _ = 1 := (hP i).rowsum
 
+/--
+@isnad1 id=rowstoch.0h3v.s5.898d6f3bafe1 from=translated src=- shape=4c543d5b vocab=e598334e
+-/
 instance smat_pow_is_smat [DecidableEq S]
   (P : Matrix S S ℝ) [RowStochastic P] (n : ℕ) :
   RowStochastic (P ^ n) := by
@@ -143,6 +164,9 @@ instance smat_pow_is_smat [DecidableEq S]
     simp_rw [pow_add, pow_one]
     exact smat_mul_smat_is_smat (P ^ n) P
 
+/--
+@isnad1 id=le.0h7v.s7.78ce395c725f from=translated src=- shape=c0be9189 vocab=26c157f7
+-/
 lemma chapman_kolmogorov_eq_ge [DecidableEq S]
   (P : Matrix S S ℝ) [RowStochastic P] (m n : ℕ) (i j : S) :
   ∀ k, (P ^ (m + n)) i j ≥ (P ^ m) i k * (P ^ n) k j := by
@@ -169,7 +193,9 @@ class Irreducible (P : Matrix S S ℝ) [RowStochastic P] where
 noncomputable def returnTimes (P : Matrix S S ℝ) (i : S)
   : Set ℕ := {n : ℕ | 1 ≤ n ∧ 0 < (P ^ n) i i}
 
-/-- Return times are closed under addition (used via AddSubmonoid.closure) -/
+/-- Return times are closed under addition (used via AddSubmonoid.closure)
+@isnad1 id=mem.2h5v.s6.d9b931962781 from=translated src=- shape=339a1941 vocab=4d3ca85a
+-/
 lemma return_times_add_mem (P : Matrix S S ℝ) [RowStochastic P] (i : S)
     {a b : ℕ} (ha : a ∈ returnTimes P i) (hb : b ∈ returnTimes P i) :
     a + b ∈ returnTimes P i := by
@@ -186,6 +212,9 @@ lemma return_times_add_mem (P : Matrix S S ℝ) [RowStochastic P] (i : S)
 class Aperiodic (P : Matrix S S ℝ) [RowStochastic P] where
   aperiodic : ∀ i, Nat.setGcd (returnTimes P i) = 1
 
+/--
+@isnad1 id=ex.0h2v.s6.3f16a3836f15 from=translated src=- shape=434e8422 vocab=c29f56cf
+-/
 theorem eventually_positive [Nonempty S] (P : Matrix S S ℝ) [RowStochastic P]
   [Irreducible P] [Aperiodic P] :
   ∃ N, ∀ n i j, N ≤ n → 0 < (P ^ n) i j := by
@@ -227,6 +256,9 @@ class DoeblinMinorization (P : Matrix S S ℝ) [RowStochastic P] where
   minorize : ∃ (ε : ℝ) (ν : S → ℝ),
     0 < ε ∧ ε < 1 ∧ StochasticVec ν ∧ ∀ i j, P i j ≥ ε * ν j
 
+/--
+@isnad1 id=ex.0h2v.s6.8b0b05ae9a6a from=translated src=- shape=036176fd vocab=e1b6976b
+-/
 theorem smat_minorizable_with_large_pow
   [Nonempty S] (P : Matrix S S ℝ)
   [RowStochastic P] [Irreducible P] [Aperiodic P] :
@@ -294,6 +326,9 @@ private lemma vecMul_broadcast (v : S → ℝ) (ν : S → ℝ) :
   funext j
   simp [broadcast, Matrix.vecMul, Finset.sum_mul, dotProduct]
 
+/--
+@isnad1 id=le.0h4v.s7.a0b3d4680668 from=translated src=- shape=51a74c0c vocab=211e8646
+-/
 theorem smat_nonexpansive_in_l1 (Q : Matrix S S ℝ) [RowStochastic Q] :
     ∀ (x y : S → ℝ),
       ‖WithLp.toLp 1 (x ᵥ* Q - y ᵥ* Q)‖₊ ≤ ‖WithLp.toLp 1 (x - y)‖₊ := by
@@ -337,6 +372,9 @@ theorem smat_nonexpansive_in_l1 (Q : Matrix S S ℝ) [RowStochastic Q] :
   rw [hnorm, hnorm2]
   linarith
 
+/--
+@isnad1 id=le.0h5v.s8.1a8215a3d519 from=translated src=- shape=83c4e30f vocab=a3ef1a8c
+-/
 theorem smat_pow_nonexpansive_in_l1 [DecidableEq S] (Q : Matrix S S ℝ) [RowStochastic Q] :
     ∀ n (x y : S → ℝ),
       ‖WithLp.toLp 1 (x ᵥ* Q ^ n - y ᵥ* Q ^ n)‖₊ ≤ ‖WithLp.toLp 1 (x - y)‖₊ := by
@@ -355,6 +393,9 @@ def smatAsOperator (P : Matrix S S ℝ) [RowStochastic P] :
     exact svec_mul_smat_is_svec μ.val.ofLp P
   ⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.4e4d00be5c02 from=translated src=- shape=09fc551d vocab=e7a3f132
+-/
 lemma smat_as_operator_iter [DecidableEq S]
   (P : Matrix S S ℝ) [RowStochastic P] (n : ℕ)
   : (smatAsOperator P)^[n] = fun μ => ⟨WithLp.toLp 1 (μ.val.ofLp ᵥ* (P ^ n)), by
@@ -369,6 +410,9 @@ lemma smat_as_operator_iter [DecidableEq S]
     simp only [Matrix.vecMul_vecMul]
     rw [(pow_succ' P n).symm]
 
+/--
+@isnad1 id=ex.0h2v.s6.8e68a31fb561 from=translated src=- shape=a2ade80e vocab=b889cc21
+-/
 theorem smat_contraction_in_simplex
   (P : Matrix S S ℝ) [RowStochastic P] [DoeblinMinorization P] :
     ∃ K, 0 < K ∧ ContractingWith K (smatAsOperator P)
@@ -476,6 +520,9 @@ class Stationary (μ : S → ℝ) (P : Matrix S S ℝ) : Prop where
 
 variable [DecidableEq S]
 
+/--
+@isnad1 id=stationa.0h4v.s6.8ae6f13f2443 from=translated src=- shape=e86a40ef vocab=3f8a9867
+-/
 lemma multi_step_stationary
   (μ : S → ℝ)
   (P : Matrix S S ℝ)
@@ -487,6 +534,9 @@ lemma multi_step_stationary
   | succ n ih =>
     rw [pow_succ, ←vecMul_vecMul, ih, (inferInstance : Stationary μ P).stationary]
 
+/--
+@isnad1 id=lt.0h4v.s5.7133118e30de from=translated src=- shape=f9505f73 vocab=b25d757d
+-/
 theorem pos_of_stationary
   (μ : S → ℝ) [StochasticVec μ]
   (P : Matrix S S ℝ) [RowStochastic P] [Irreducible P]
@@ -523,6 +573,9 @@ noncomputable def cesaroAverage
   : S → ℝ :=
   (n + 1 : ℝ)⁻¹ • ∑ k ∈ Finset.range (n + 1), x₀ ᵥ* (P ^ k)
 
+/--
+@isnad1 id=stochast.0h4v.s5.a4ba12f53f49 from=translated src=- shape=f661fa8c vocab=a4b22133
+-/
 lemma cesaro_average_is_svec
   (x₀ : S → ℝ) [StochasticVec x₀]
   (P : Matrix S S ℝ) [RowStochastic P] (n : ℕ)
@@ -552,6 +605,9 @@ lemma cesaro_average_is_svec
     apply mul_inv_cancel₀
     linarith
 
+/--
+@isnad1 id=le.0h4v.s7.15ec680b1fae from=translated src=- shape=829ac674 vocab=aa70ecff
+-/
 lemma cesaro_average_almost_invariant
   (x₀ : S → ℝ) [StochasticVec x₀] (P : Matrix S S ℝ) [RowStochastic P]
   : ∀ n, ‖WithLp.toLp 1 ((cesaroAverage x₀ P n) ᵥ* P - cesaroAverage x₀ P n)‖ ≤ 2 / (n + 1)  := by

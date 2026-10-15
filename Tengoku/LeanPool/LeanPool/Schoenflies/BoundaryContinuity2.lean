@@ -99,7 +99,9 @@ namespace Graph
 `Graph.IsStageOn.exists_crosscut` extracts from a stage drawn in the closed Jordan domain is a
 `Schoenflies.IsCrosscut` of `C`, which is the configuration every consumer downstream takes.
 
-This is only a repackaging; all the work is in `Schoenflies/BoundaryContinuity.lean`. -/
+This is only a repackaging; all the work is in `Schoenflies/BoundaryContinuity.lean`.
+@isnad1 id=ex.7h6v.s6.bf4a03767cf3 from=translated src=- shape=f5a4360d vocab=4a08f791
+-/
 theorem IsStageOn.exists_isCrosscut {β : Type*} {G : Graph Plane β} {drawing : β → ℝ → Plane}
     {C : Set Plane} [G.Finite] (h : IsStageOn G drawing C (Schoenflies.inside C))
     (hC : Schoenflies.IsJordanCurve C) {a b : Plane} (hab : a ≠ b) (haC : a ∈ C) (hbC : b ∈ C)
@@ -121,12 +123,16 @@ variable {C 𝒜 A₁ A₂ B₁ B₂ P P' : Set Plane} {u v F F' : Plane → Pla
 between the shape `prop:interior-homeomorphism` is stated in (a homeomorphism onto
 `Plane.openSquare 0 1`) and the shape `thm:general-crosscut` speaks in (`inside modelCurve`). -/
 
-/-- The Jordan domain of the model curve is the open square. -/
+/-- The Jordan domain of the model curve is the open square.
+@isnad1 id=eq.0h0v.s6.f904c8642a6e from=translated src=- shape=d5a1c63d vocab=fbe5ea15
+-/
 theorem inside_modelCurve : inside modelCurve = Plane.openSquare 0 1 := by
   rw [modelCurve_eq_frontier]
   exact inside_frontier_closedSquare 0 1
 
-/-- The closed square is compact. -/
+/-- The closed square is compact.
+@isnad1 id=iscompac.0h2v.s5.8597c900ae03 from=translated src=- shape=1ed02776 vocab=f449c7ff
+-/
 theorem isCompact_closedSquare (c : Plane) (r : ℝ) : IsCompact (Plane.closedSquare c r) :=
   Metric.isCompact_of_isClosed_isBounded (Plane.isClosed_closedSquare c r)
     (Plane.isBounded_closedSquare c r)
@@ -136,7 +142,9 @@ theorem isCompact_closedSquare (c : Plane) (r : ℝ) : IsCompact (Plane.closedSq
 `lem:crosscut-side-correspondence` labels the target sides by `u(A₁)` and `u(A₂)`, so the two
 target arcs have to be produced as images. Nothing here is specific to the square. -/
 
-/-- The image of an arc under a map continuous and injective on a set containing it. -/
+/-- The image of an arc under a map continuous and injective on a set containing it.
+@isnad1 id=isarcbet.4h5v.s7.a67da9d99b4d from=translated src=- shape=ade97695 vocab=4f67fb43
+-/
 theorem IsArcBetween.image_of_injOn {A S : Set Plane} {p q : Plane} {f : Plane → Plane}
     (h : IsArcBetween A p q) (hAS : A ⊆ S) (hcont : ContinuousOn f S) (hinj : InjOn f S) :
     IsArcBetween (f '' A) (f p) (f q) := by
@@ -149,7 +157,9 @@ theorem IsArcBetween.image_of_injOn {A S : Set Plane} {p q : Plane} {f : Plane �
     exact hgi hs ht (hinj (hmem s hs) (hmem t ht) hst)
   · rw [← hgim, image_comp]
 
-/-- The image of a cut pair. -/
+/-- The image of a cut pair.
+@isnad1 id=iscutpai.3h6v.s7.9deba93fdafb from=translated src=- shape=369b4568 vocab=6e5eff1e
+-/
 theorem IsCutPair.image {f : Plane → Plane} (h : IsCutPair C a b A₁ A₂)
     (hcont : ContinuousOn f C) (hinj : InjOn f C) :
     IsCutPair (f '' C) (f a) (f b) (f '' A₁) (f '' A₂) where
@@ -160,7 +170,9 @@ theorem IsCutPair.image {f : Plane → Plane} (h : IsCutPair C a b A₁ A₂)
     rw [← hinj.image_inter h.fst_subset h.snd_subset, h.inter_eq, image_pair]
 
 /-- The image of a cut pair under a restricted homeomorphism, in the form the target side of
-`lem:crosscut-side-correspondence` needs it. -/
+`lem:crosscut-side-correspondence` needs it.
+@isnad1 id=iscutpai.2h8v.s5.c80f609a33c1 from=translated src=- shape=7aad2842 vocab=3f1c12d1
+-/
 theorem IsCutPair.image_of_isHomeoOn {T : Set Plane} (h : IsCutPair C a b A₁ A₂)
     (hu : IsHomeoOn u v C T) : IsCutPair T (u a) (u b) (u '' A₁) (u '' A₂) := by
   have h' := h.image hu.continuousOn hu.injOn
@@ -175,7 +187,9 @@ from `a` to `b`. Density produces one anchor on each of the two open arcs of `C`
 would be a connected subset of `C ∖ {p, r}` meeting both of its two (relatively open) halves. -/
 
 /-- **A dense set meets the relative interior of either arc of a cut pair.** The one use
-`lem:anchor-density` is put to. -/
+`lem:anchor-density` is put to.
+@isnad1 id=ex.3h6v.s6.6cf65800d4be from=translated src=- shape=b8076ca7 vocab=036a8db0
+-/
 theorem exists_anchor_mem_arc (hsub : 𝒜 ⊆ C) (hdense : C ⊆ closure 𝒜)
     (hcut : IsCutPair C a b A₁ A₂) : ∃ c ∈ 𝒜, c ∈ A₁ ∧ c ∉ A₂ := by
   -- an arc is more than its two endpoints, and the two endpoints are all that `A₂` shares
@@ -194,7 +208,9 @@ on different arcs.
 The proof is the one separation argument of the section: an arc from `a` to `b` missing both
 `p` and `r` is a connected subset of `C ∖ {p, r} = (C ∖ B₂) ∪ (C ∖ B₁)`, a union of two
 relatively open pieces, and it meets both — because `a` is in the first and `b` in the
-second. -/
+second.
+@isnad1 id=or.4h9v.s6.aaf74d06b973 from=translated src=- shape=653335cf vocab=e86c9e90
+-/
 theorem IsCutPair.separates (hB : IsCutPair C p r B₁ B₂) (hA : IsCutPair C a b A₁ A₂)
     (ha' : a ∉ B₂) (hb' : b ∉ B₁) :
     (p ∈ A₁ ∧ r ∈ A₂) ∨ (p ∈ A₂ ∧ r ∈ A₁) := by
@@ -245,7 +261,9 @@ theorem IsCutPair.separates (hB : IsCutPair C p r B₁ B₂) (hA : IsCutPair C a
   · exact absurd (key A₁ hA.fst hA.fst_subset hp1 hr1) not_false
 
 /-- **The selection step of `prop:boundary-continuity`.** Two distinct points of the curve are
-separated by two anchors of any dense set of anchors. -/
+separated by two anchors of any dense set of anchors.
+@isnad1 id=ex.6h4v.s7.93d5f9f529e5 from=translated src=- shape=9b5ae596 vocab=3fdc3b76
+-/
 theorem exists_separating_anchors (hC : IsJordanCurve C) (hsub : 𝒜 ⊆ C) (hdense : C ⊆ closure 𝒜)
     (hp : p ∈ C) (hr : r ∈ C) (hpr : p ≠ r) :
     ∃ a ∈ 𝒜, ∃ b ∈ 𝒜, ∃ A₁ A₂ : Set Plane, a ≠ b ∧ IsCutPair C a b A₁ A₂ ∧
@@ -310,7 +328,9 @@ side of any of the stages. -/
 /-- **The image of a crosscut is a crosscut.** All that is asked of the map is continuity and
 injectivity on a set containing the crosscut, plus the two clauses that are genuinely about the
 target configuration: the image is polygonal, and everything but its two endpoints lies in the
-target Jordan domain. -/
+target Jordan domain.
+@isnad1 id=iscrossc.9h7v.s7.6aca17984454 from=translated src=- shape=446e7461 vocab=d76a400e
+-/
 theorem IsCrosscut.image_of_injOn {C' Sk : Set Plane} {g : Plane → Plane}
     (hP : IsCrosscut C P a b) (hPSk : P ⊆ Sk) (hcont : ContinuousOn g Sk) (hinj : InjOn g Sk)
     (hC' : IsJordanCurve C') (hpoly : IsPolygonal (g '' P)) (ha : g a ∈ C') (hb : g b ∈ C')
@@ -323,7 +343,9 @@ theorem IsCrosscut.image_of_injOn {C' Sk : Set Plane} {g : Plane → Plane}
   · exact hz (Or.inr rfl)
 
 /-- **The agreement clause of `Schoenflies.HasAnchorCrosscuts`**, from agreement of the limit
-map with the skeleton homeomorphism on the part of the crosscut that lies in the domain. -/
+map with the skeleton homeomorphism on the part of the crosscut that lies in the domain.
+@isnad1 id=eq.5h6v.s7.16a1f8405eb3 from=translated src=- shape=1babb971 vocab=9d72c796
+-/
 theorem image_sdiff_eq_of_eqOn {Sk : Set Plane} {g : Plane → Plane} (hPSk : P ⊆ Sk)
     (hinj : InjOn g Sk) (ha : a ∈ P) (hb : b ∈ P) (hFg : EqOn F g (P \ {a, b})) :
     F '' (P \ {a, b}) = g '' P \ {g a, g b} := by
@@ -332,7 +354,9 @@ theorem image_sdiff_eq_of_eqOn {Sk : Set Plane} {g : Plane → Plane} (hPSk : P 
 /-! ### `lem:crosscut-side-correspondence` -/
 
 /-- Removing a crosscut from the Jordan domain is the same as removing its interior: the two
-endpoints are on the curve and so are not in the domain to begin with. -/
+endpoints are on the curve and so are not in the domain to begin with.
+@isnad1 id=eq.1h4v.s5.23e78a448489 from=translated src=- shape=2a03cd3b vocab=611b89c2
+-/
 theorem inside_sdiff_crosscut (h : IsCrosscut C P a b) :
     inside C \ P = inside C \ (P \ {a, b}) := by
   refine Set.ext fun z => ⟨fun hz => ⟨hz.1, fun h' => hz.2 h'.1⟩, fun hz => ⟨hz.1, fun h' => ?_⟩⟩
@@ -345,7 +369,9 @@ theorem inside_sdiff_crosscut (h : IsCrosscut C P a b) :
 
 /-- **The limit map carries `Int(C) ∖ P` onto `Q° ∖ P'`.** This is the whole use made of
 `prop:skeleton-agreement`: it turns a homeomorphism of the interiors into a homeomorphism of
-the cut interiors. -/
+the cut interiors.
+@isnad1 id=eq.4h8v.s7.162d19aa20d6 from=translated src=- shape=c9ba0be7 vocab=35edba5b
+-/
 theorem image_inside_sdiff (hF : IsHomeoOn F F' (inside C) (Plane.openSquare 0 1))
     (hP : IsCrosscut C P a b) (hP' : IsCrosscut modelCurve P' (u a) (u b))
     (hagree : F '' (P \ {a, b}) = P' \ {u a, u b}) :
@@ -358,7 +384,9 @@ theorem image_inside_sdiff (hF : IsHomeoOn F F' (inside C) (Plane.openSquare 0 1
 closure meets `C` in `A₁` is carried into the side of the target crosscut whose closure meets
 `S` in `u(A₁)`.
 
-This is where the spokes are used, and the only place. -/
+This is where the spokes are used, and the only place.
+@isnad1 id=le.9h12v.s8.013793f5c821 from=translated src=- shape=a2d7a54b vocab=fe307c1a
+-/
 theorem image_crosscut_side_subset (hu : IsHomeoOn u v C modelCurve)
     (hF : IsHomeoOn F F' (inside C) (Plane.openSquare 0 1))
     (hsub : 𝒜 ⊆ C) (hdense : C ⊆ closure 𝒜) (hspoke : HasSpokes C 𝒜 u F)
@@ -436,7 +464,9 @@ theorem image_crosscut_side_subset (hu : IsHomeoOn u v C modelCurve)
 the side of the target crosscut carrying the corresponding boundary arc.
 
 The sides are named the way `Schoenflies.crosscut_theorem` names them: `inside (Aᵢ ∪ P)` is the
-component of `Int(C) ∖ P` whose closure meets `C` exactly in `Aᵢ`. -/
+component of `Int(C) ∖ P` whose closure meets `C` exactly in `Aᵢ`.
+@isnad1 id=and.9h12v.s8.e9a9a89f698e from=translated src=- shape=dad0b251 vocab=fe307c1a
+-/
 theorem crosscut_side_correspondence (hu : IsHomeoOn u v C modelCurve)
     (hF : IsHomeoOn F F' (inside C) (Plane.openSquare 0 1))
     (hsub : 𝒜 ⊆ C) (hdense : C ⊆ closure 𝒜) (hspoke : HasSpokes C 𝒜 u F)
@@ -472,9 +502,15 @@ the curve. It is `Schoenflies.paste`, which comes with its two evaluation lemmas
 noncomputable def extendByBoundary (C : Set Plane) (u F : Plane → Plane) : Plane → Plane :=
   paste C u F
 
+/--
+@isnad1 id=eq.1h4v.s5.ceea5caf330c from=translated src=- shape=565f0fee vocab=d5381a73
+-/
 theorem extendByBoundary_of_mem {z : Plane} (hz : z ∈ C) : extendByBoundary C u F z = u z :=
   paste_of_mem hz
 
+/--
+@isnad1 id=eq.1h4v.s5.c36febee13e0 from=translated src=- shape=358a0cf2 vocab=d5381a73
+-/
 theorem extendByBoundary_of_notMem {z : Plane} (hz : z ∉ C) : extendByBoundary C u F z = F z :=
   paste_of_notMem hz
 
@@ -482,7 +518,9 @@ theorem extendByBoundary_of_notMem {z : Plane} (hz : z ∉ C) : extendByBoundary
 inside, the limit map tends to `u p`.
 
 The blueprint extracts a subsequence; the same argument runs on the filter
-`l' = 𝓝[Int C] p ⊓ 𝓟 (F⁻¹ Wᶜ)` without extracting one. -/
+`l' = 𝓝[Int C] p ⊓ 𝓟 (F⁻¹ Wᶜ)` without extracting one.
+@isnad1 id=tendsto.8h7v.s8.8f06036819bb from=translated src=- shape=47551dd6 vocab=04f37395
+-/
 theorem tendsto_nhdsWithin_inside (hC : IsJordanCurve C) (hu : IsHomeoOn u v C modelCurve)
     (hF : IsHomeoOn F F' (inside C) (Plane.openSquare 0 1))
     (hsub : 𝒜 ⊆ C) (hdense : C ⊆ closure 𝒜)
@@ -580,7 +618,9 @@ theorem tendsto_nhdsWithin_inside (hC : IsJordanCurve C) (hu : IsHomeoOn u v C m
     rw [← hw, hu.invOn.1 (hcut.fst_subset hwA1)]
   exact hrA1 (this ▸ hwA1)
 
-/-- **`prop:boundary-continuity`.** The glued map is continuous on the closed Jordan domain. -/
+/-- **`prop:boundary-continuity`.** The glued map is continuous on the closed Jordan domain.
+@isnad1 id=continuo.7h6v.s8.a0edf55afff1 from=translated src=- shape=7979f70e vocab=0ec5c236
+-/
 theorem boundary_continuity (hC : IsJordanCurve C) (hu : IsHomeoOn u v C modelCurve)
     (hF : IsHomeoOn F F' (inside C) (Plane.openSquare 0 1))
     (hsub : 𝒜 ⊆ C) (hdense : C ⊆ closure 𝒜)
@@ -611,7 +651,9 @@ closed Jordan domain onto the closed square, and extends `u`.
 
 Continuity of the inverse is not proved directly: the domain is compact and the square is
 Hausdorff, so the continuous bijection `Fbar` is a closed map, which is exactly what
-`continuousOn_iff_isClosed` asks of the inverse. -/
+`continuousOn_iff_isClosed` asks of the inverse.
+@isnad1 id=ishomeoo.7h6v.s8.1269a243543a from=translated src=- shape=fe930a0f vocab=4cf78181
+-/
 theorem isHomeoOn_extendByBoundary (hC : IsJordanCurve C) (hu : IsHomeoOn u v C modelCurve)
     (hF : IsHomeoOn F F' (inside C) (Plane.openSquare 0 1))
     (hsub : 𝒜 ⊆ C) (hdense : C ⊆ closure 𝒜)
@@ -697,7 +739,9 @@ def HasLimitHomeomorphism : Prop :=
       HasAnchorCrosscuts C 𝒜 u F ∧ HasSpokes C 𝒜 u F
 
 /-- **`thm:square-extension`.** Every homeomorphism of a Jordan curve onto the model square
-boundary extends to a homeomorphism of the closed Jordan domain onto the closed square. -/
+boundary extends to a homeomorphism of the closed Jordan domain onto the closed square.
+@isnad1 id=squareex.1h0v.s1.138e82c43452 from=translated src=- shape=1d48f1ac vocab=fcfb654d
+-/
 theorem squareExtension_of_hasLimitHomeomorphism (h : HasLimitHomeomorphism) :
     SquareExtension := by
   intro C u v hC hu

@@ -248,7 +248,9 @@ private lemma Am_subset :
     linarith
 
 /-- The standard punctured configuration: a large ball minus two small closed
-disks is path-connected. -/
+disks is path-connected.
+@isnad1 id=ispathco.0h0v.s6.90abe30b0614 from=translated src=- shape=47e921ff vocab=00e2d891
+-/
 theorem isPathConnected_ball_diff_two_disks :
     IsPathConnected
       (ball (0 : ℂ) 8 \ (closedBall (-4 : ℂ) 1 ∪ closedBall (4 : ℂ) 1)) := by
@@ -379,13 +381,17 @@ theorem isPathConnected_ball_diff_two_disks :
     · exact P4_subset
     · exact P3_subset
 
-/-- Non-crossing: the two closed configuration disks are disjoint. -/
+/-- Non-crossing: the two closed configuration disks are disjoint.
+@isnad1 id=disjoint.0h0v.s6.a47ccd63d4be from=translated src=- shape=dc2b2e19 vocab=6988bb0c
+-/
 theorem config_disks_disjoint :
     Disjoint (closedBall (-4 : ℂ) 1) (closedBall (4 : ℂ) 1) :=
   closedBall_disjoint_closedBall (by rw [dist_neg_four_four]; norm_num)
 
 /-- The closed annuli of outer radius 2 around `±4` lie in `B(0, 8)` and stay
-disjoint from each other. -/
+disjoint from each other.
+@isnad1 id=le.0h0v.s6.832f9d6e4f9c from=translated src=- shape=f329eb9c vocab=7d78d987
+-/
 theorem config_annuli_subset :
     closedBall (-4 : ℂ) 2 ∪ closedBall (4 : ℂ) 2 ⊆ ball (0 : ℂ) 8 := by
   have h4 : dist (4 : ℂ) 0 = 4 := by
@@ -404,6 +410,9 @@ theorem config_annuli_subset :
     have ht := dist_triangle z (4 : ℂ) 0
     linarith
 
+/--
+@isnad1 id=disjoint.0h0v.s6.c119b6ce2f08 from=translated src=- shape=dc2b2e19 vocab=6988bb0c
+-/
 theorem config_annuli_disjoint :
     Disjoint (closedBall (-4 : ℂ) 2) (closedBall (4 : ℂ) 2) :=
   closedBall_disjoint_closedBall (by rw [dist_neg_four_four]; norm_num)

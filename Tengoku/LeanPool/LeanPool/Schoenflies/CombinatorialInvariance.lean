@@ -94,14 +94,23 @@ namespace Graph
 
 variable {α α' β : Type*} {G : Graph α β} {f : α → α'} {u v x : α} {W : List β}
 
+/--
+@isnad1 id=iswalk.1h8v.s5.7edc3caa8126 from=translated src=- shape=a27b1758 vocab=2c4e0fc5
+-/
 theorem IsWalk.map (f : α → α') (h : G.IsWalk u W v) : (G.map f).IsWalk (f u) W (f v) := by
   induction h with
   | nil hx => exact .nil (by simpa using Set.mem_image_of_mem f hx)
   | cons hl _ ih => exact .cons (hl.map f) ih
 
+/--
+@isnad1 id=reaches.1h7v.s5.5bb94ca5dce2 from=translated src=- shape=efa74c2f vocab=2f0bbb59
+-/
 theorem Reaches.map (f : α → α') (h : G.Reaches u v) : (G.map f).Reaches (f u) (f v) :=
   ⟨h.choose, h.choose_spec.map f⟩
 
+/--
+@isnad1 id=connecte.1h5v.s4.0cd665c7a5d8 from=translated src=- shape=7adf46e3 vocab=8f48bae7
+-/
 theorem Connected.map (f : α → α') (h : G.Connected) : (G.map f).Connected := by
   obtain ⟨⟨u, hu⟩, hreach⟩ := h
   refine ⟨⟨f u, by simpa using Set.mem_image_of_mem f hu⟩, ?_⟩
@@ -111,6 +120,9 @@ theorem Connected.map (f : α → α') (h : G.Connected) : (G.map f).Connected :
   obtain ⟨b', hb', rfl⟩ := hb
   exact (hreach ha' hb').map f
 
+/--
+@isnad1 id=hasthree.2h5v.s5.7a42f894c690 from=translated src=- shape=2ddeb67a vocab=6f0142ca
+-/
 theorem HasThreeVertices.map (hf : InjOn f V(G)) (h : G.HasThreeVertices) :
     (G.map f).HasThreeVertices := by
   obtain ⟨p, hp, q, hq, r, hr, hpq, hpr, hqr⟩ := h
@@ -119,7 +131,9 @@ theorem HasThreeVertices.map (hf : InjOn f V(G)) (h : G.HasThreeVertices) :
   exact ⟨f p, hmem hp, f q, hmem hq, f r, hmem hr, fun hcon => hpq (hf hp hq hcon),
     fun hcon => hpr (hf hp hr hcon), fun hcon => hqr (hf hq hr hcon)⟩
 
-/-- Deleting a vertex commutes with an injective relabelling of the vertices. -/
+/-- Deleting a vertex commutes with an injective relabelling of the vertices.
+@isnad1 id=eq.2h6v.s6.f78fde11444c from=translated src=- shape=25d2ffb7 vocab=5e4393d8
+-/
 theorem map_deleteVerts_singleton (hf : InjOn f V(G)) (hx : x ∈ V(G)) :
     (G.map f).deleteVerts {f x} = (G.deleteVerts {x}).map f := by
   refine Graph.ext ?_ ?_
@@ -135,6 +149,9 @@ theorem map_deleteVerts_singleton (hf : InjOn f V(G)) (hx : x ∈ V(G)) :
       exact ⟨⟨p, q, hpq, rfl, rfl⟩, fun h => hp (hf hpq.left_mem hx h),
         fun h => hq (hf hpq.right_mem hx h)⟩
 
+/--
+@isnad1 id=istwocon.2h5v.s5.73010cd5965f from=translated src=- shape=2ddeb67a vocab=8d5f4f6c
+-/
 theorem IsTwoConnected.map (hf : InjOn f V(G)) (h : G.IsTwoConnected) :
     (G.map f).IsTwoConnected where
   hasThreeVertices := h.hasThreeVertices.map hf
@@ -146,13 +163,18 @@ theorem IsTwoConnected.map (hf : InjOn f V(G)) (h : G.IsTwoConnected) :
     rw [map_deleteVerts_singleton hf hx]
     exact (h.deleteVerts_connected hx).map f
 
-/-- An injective relabelling can be undone: `Function.invFunOn` inverts it on the vertex set. -/
+/-- An injective relabelling can be undone: `Function.invFunOn` inverts it on the vertex set.
+@isnad1 id=eq.1h5v.s5.7e7800a385b3 from=translated src=- shape=2a04596d vocab=13514b2a
+-/
 theorem map_map_invFunOn [Nonempty α] (hf : InjOn f V(G)) :
     (G.map f).map (Function.invFunOn f V(G)) = G := by
   have key : G.map (Function.invFunOn f V(G) ∘ f) = G.map id :=
     map_eq_of_eqOn fun z hz => hf.leftInvOn_invFunOn hz
   rw [map_map, key, map_id]
 
+/--
+@isnad1 id=iff.1h5v.s5.8bb47bda15df from=translated src=- shape=b059c3a9 vocab=a477f6c7
+-/
 theorem connected_map_iff (hf : InjOn f V(G)) : (G.map f).Connected ↔ G.Connected := by
   refine ⟨fun h => ?_, fun h => h.map f⟩
   obtain ⟨a, ha⟩ := h.nonempty
@@ -164,6 +186,9 @@ theorem connected_map_iff (hf : InjOn f V(G)) : (G.map f).Connected ↔ G.Connec
   have := h.map (Function.invFunOn f V(G))
   rwa [map_map_invFunOn hf] at this
 
+/--
+@isnad1 id=iff.1h5v.s5.e030d8c1d371 from=translated src=- shape=b059c3a9 vocab=8d5f4f6c
+-/
 theorem isTwoConnected_map_iff (hf : InjOn f V(G)) :
     (G.map f).IsTwoConnected ↔ G.IsTwoConnected := by
   refine ⟨fun h => ?_, fun h => h.map hf⟩
@@ -180,6 +205,9 @@ theorem isTwoConnected_map_iff (hf : InjOn f V(G)) :
 
 variable {δ : Type*} {H K : Graph Plane δ} {drawing : δ → ℝ → Plane}
 
+/--
+@isnad1 id=le.1h4v.s5.9e0cb2f6bc00 from=translated src=- shape=03861632 vocab=bcb3bc70
+-/
 theorem pointSet_mono (h : H ≤ K) : pointSet H drawing ⊆ pointSet K drawing :=
   Set.union_subset_union h.vertexSet_mono
     (Set.biUnion_subset_biUnion_left h.edgeSet_mono)
@@ -250,8 +278,14 @@ def supercells (σ : γ) : Set γ := {τ | S.sub σ τ}
 the middle, purely combinatorial condition of lem:outer-incidence. -/
 def MeetsOuter (τ : γ) : Prop := ∃ κ ∈ S.outerCells, S.sub κ τ
 
+/--
+@isnad1 id=iff.0h4v.s4.ba4458eca6ba from=translated src=- shape=86464f5d vocab=72927d8c
+-/
 theorem mem_supercells {σ τ : γ} : τ ∈ S.supercells σ ↔ S.sub σ τ := Iff.rfl
 
+/--
+@isnad1 id=le.2h4v.s5.f47f8dbc2dfe from=translated src=- shape=7969f7f9 vocab=c8ba9261
+-/
 theorem supercells_subset_of_sub (htrans : ∀ ⦃a b c⦄, S.sub a b → S.sub b c → S.sub a c)
     {σ τ : γ} (h : S.sub σ τ) :
     S.supercells τ ⊆ S.supercells σ := fun _ hρ => htrans h hρ
@@ -293,10 +327,19 @@ variable (R : S.Realization)
 /-- The drawn skeleton: the pushforward of the abstract skeleton along the positions. -/
 def graph : Graph Plane γ := S.skel.map R.pos
 
+/--
+@isnad1 id=eq.0h3v.s5.37772ea32b76 from=translated src=- shape=e01cee19 vocab=6665af97
+-/
 @[simp] theorem vertexSet_graph : V(R.graph) = R.pos '' V(S.skel) := vertexSet_map _ _
 
+/--
+@isnad1 id=eq.0h3v.s4.dc5695ac23c5 from=translated src=- shape=ef7c3d43 vocab=ec2be561
+-/
 @[simp] theorem edgeSet_graph : E(R.graph) = E(S.skel) := edgeSet_map _ _
 
+/--
+@isnad1 id=finite.0h3v.s4.e0c47aa1586b from=translated src=- shape=61d6b3ec vocab=f576321a
+-/
 instance finite_graph : (R.graph).Finite where
   finite_vertexSet := by rw [vertexSet_graph]; exact S.finite_vertexSet.image _
   finite_edgeSet := by rw [edgeSet_graph]; exact S.finite_edgeSet
@@ -314,9 +357,15 @@ def nonboundary : Set Plane := R.skeletonSet \ R.outerSet
 abstract; only the summands are geometric. -/
 def star (σ : γ) : Set Plane := ⋃ τ ∈ S.supercells σ, closure (R.cell τ)
 
+/--
+@isnad1 id=le.0h3v.s4.39c647a1e188 from=translated src=- shape=851a1e0d vocab=4a8d0701
+-/
 theorem outerSet_subset_skeletonSet : R.outerSet ⊆ R.skeletonSet :=
   pointSet_mono (S.outerGraph_le.map R.pos)
 
+/--
+@isnad1 id=iscompac.0h3v.s5.44ea1a79c555 from=translated src=- shape=d0668016 vocab=46429f00
+-/
 theorem isCompact_skeletonSet : IsCompact R.skeletonSet :=
   @IsDrawing.isCompact_pointSet _ _ _ R.finite_graph R.isDrawing
 
@@ -325,7 +374,9 @@ vertex, a 1-cell by part of a drawn edge.
 
 Hoisted here because `Schoenflies/LimitMap.lean` and `Schoenflies/FiniteTransfer.lean` each
 proved it independently and the duplicate gate caught the collision — two alpha-equivalent
-`Prop`s pass Lean's import checker under proof irrelevance, so a clean build would not have. -/
+`Prop`s pass Lean's import checker under proof irrelevance, so a clean build would not have.
+@isnad1 id=le.1h4v.s5.30ba2d8de11e from=translated src=- shape=07ff9e8b vocab=ca3a7696
+-/
 theorem cell_subset_skeletonSet {R : S.Realization} {κ : γ}
     (hκ : κ ∈ V(S.skel) ∪ E(S.skel)) : R.cell κ ⊆ R.skeletonSet := by
   rcases hκ with hv | he
@@ -378,7 +429,9 @@ namespace SkeletonHomeo
 variable {S} {R₁ R₂ : S.Realization} (g : SkeletonHomeo R₁ R₂)
 
 /-- `g` carries the realization of any subcomplex of the skeleton onto the realization of the
-same subcomplex on the other side. Used for the whole skeleton and for the outer cycle. -/
+same subcomplex on the other side. Used for the whole skeleton and for the outer cycle.
+@isnad1 id=eq.1h6v.s6.61c0a70b1920 from=translated src=- shape=1ef00324 vocab=810ed674
+-/
 theorem image_pointSet_map {H : Graph γ γ} (hH : H ≤ S.skel) :
     g.toFun '' pointSet (H.map R₁.pos) R₁.drawing = pointSet (H.map R₂.pos) R₂.drawing := by
   rw [pointSet, pointSet, Set.image_union, Set.image_iUnion₂]
@@ -388,14 +441,22 @@ theorem image_pointSet_map {H : Graph γ γ} (hH : H ≤ S.skel) :
   · rw [edgeSet_map]
     exact Set.iUnion₂_congr fun e he => g.edgeArc_image (hH.edgeSet_mono he)
 
+/--
+@isnad1 id=eq.0h5v.s5.34f126d623c6 from=translated src=- shape=8871b1b5 vocab=46b191a4
+-/
 theorem image_skeletonSet : g.toFun '' R₁.skeletonSet = R₂.skeletonSet :=
   g.image_pointSet_map le_rfl
 
 /-- **The outer cycle corresponds** — part (a) of lem:combinatorial-invariance, at the level of
-the two realizations. -/
+the two realizations.
+@isnad1 id=eq.0h5v.s5.3d18d7ed483e from=translated src=- shape=8871b1b5 vocab=94943214
+-/
 theorem image_outerSet : g.toFun '' R₁.outerSet = R₂.outerSet :=
   g.image_pointSet_map S.outerGraph_le
 
+/--
+@isnad1 id=injon.0h5v.s5.bd84f726593a from=translated src=- shape=570cf55b vocab=e6ee9d6f
+-/
 theorem injOn : InjOn g.toFun R₁.skeletonSet := g.leftInvOn.injOn
 
 /-- The homeomorphism run backwards. -/
@@ -418,11 +479,16 @@ def symm : SkeletonHomeo R₂ R₁ where
     rw [← g.edgeArc_image he]
     exact g.leftInvOn.image_image' hsub
 
+/--
+@isnad1 id=eq.0h5v.s5.191f61995d8d from=translated src=- shape=b8e41430 vocab=20642537
+-/
 @[simp] theorem symm_toFun : g.symm.toFun = g.invFun := rfl
 
 /-- **The open nonboundary part corresponds** — the geometric half of part (b) of
 lem:combinatorial-invariance. The skeleton homeomorphism carries the outer cycle onto the
-outer cycle, hence restricts to a bijection of the two open nonboundary parts. -/
+outer cycle, hence restricts to a bijection of the two open nonboundary parts.
+@isnad1 id=eq.0h5v.s5.4e0dd30cf07f from=translated src=- shape=8871b1b5 vocab=1b743a0a
+-/
 theorem image_nonboundary : g.toFun '' R₁.nonboundary = R₂.nonboundary := by
   have : g.toFun '' (R₁.skeletonSet \ R₁.outerSet) = R₂.skeletonSet \ R₂.outerSet := by
     rw [g.injOn.image_sdiff_subset R₁.outerSet_subset_skeletonSet, g.image_skeletonSet,
@@ -431,7 +497,9 @@ theorem image_nonboundary : g.toFun '' R₁.nonboundary = R₂.nonboundary := by
 
 /-- **Connectedness of the open nonboundary part is invariant** — part (b) of
 lem:combinatorial-invariance. This is the one clause with genuine topological content: it is
-what makes admissibility (def:admissible-graph) transfer between the two realizations. -/
+what makes admissibility (def:admissible-graph) transfer between the two realizations.
+@isnad1 id=iff.0h5v.s6.2abad6890b8d from=translated src=- shape=7f3de883 vocab=9d4f9a31
+-/
 theorem isConnected_nonboundary_iff (g : SkeletonHomeo R₁ R₂) :
     IsConnected R₁.nonboundary ↔ IsConnected R₂.nonboundary := by
   constructor
@@ -442,6 +510,9 @@ theorem isConnected_nonboundary_iff (g : SkeletonHomeo R₁ R₂) :
     rw [← g.symm.image_nonboundary]
     exact h.image _ (g.symm.continuousOn_toFun.mono Set.sdiff_subset)
 
+/--
+@isnad1 id=iff.0h5v.s6.8a0382c96767 from=translated src=- shape=7f3de883 vocab=b96321ab
+-/
 theorem isPreconnected_nonboundary_iff (g : SkeletonHomeo R₁ R₂) :
     IsPreconnected R₁.nonboundary ↔ IsPreconnected R₂.nonboundary := by
   constructor
@@ -459,20 +530,29 @@ end SkeletonHomeo
 variable {S}
 
 /-- **The abstract skeleton is one graph** — part (a) of lem:combinatorial-invariance. Both
-drawn skeleta are pushforwards of `S.skel`, so in particular they carry the same edge names. -/
+drawn skeleta are pushforwards of `S.skel`, so in particular they carry the same edge names.
+@isnad1 id=eq.0h3v.s4.8a52205a4d36 from=translated src=- shape=5822993e vocab=8ae05d57
+-/
 theorem Realization.graph_eq_map (R : S.Realization) : R.graph = S.skel.map R.pos := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.25352651b5d4 from=translated src=- shape=54b91b20 vocab=bd9af8c0
+-/
 theorem Realization.edgeSet_graph_congr (R₁ R₂ : S.Realization) : E(R₁.graph) = E(R₂.graph) := by
   rw [Realization.edgeSet_graph, Realization.edgeSet_graph]
 
-/-- **Connectedness of the skeleton is invariant** — part (a). -/
+/-- **Connectedness of the skeleton is invariant** — part (a).
+@isnad1 id=iff.0h4v.s4.b2be2241d371 from=translated src=- shape=5382e564 vocab=73d76021
+-/
 theorem Realization.connected_congr (R₁ R₂ : S.Realization) :
     R₁.graph.Connected ↔ R₂.graph.Connected :=
   (connected_map_iff R₁.injOn_pos).trans (connected_map_iff R₂.injOn_pos).symm
 
 /-- **2-connectivity of the skeleton is invariant** — part (a) of
 lem:combinatorial-invariance, and the clause the finite-transfer theorem cites when it
-concludes that a reproduced realization "has the same 2-connectivity" as the given one. -/
+concludes that a reproduced realization "has the same 2-connectivity" as the given one.
+@isnad1 id=iff.0h4v.s4.f8b839a7f60a from=translated src=- shape=5382e564 vocab=740bc9c8
+-/
 theorem Realization.isTwoConnected_congr (R₁ R₂ : S.Realization) :
     R₁.graph.IsTwoConnected ↔ R₂.graph.IsTwoConnected :=
   (isTwoConnected_map_iff R₁.injOn_pos).trans (isTwoConnected_map_iff R₂.injOn_pos).symm
@@ -480,18 +560,24 @@ theorem Realization.isTwoConnected_congr (R₁ R₂ : S.Realization) :
 /-- The closed star is a union over an index set that belongs to the abstract structure, so an
 inclusion of index sets gives an inclusion of stars in *every* realization. This is what part
 (c) of lem:combinatorial-invariance means by "all star-containment statements induced by
-refinement". -/
+refinement".
+@isnad1 id=le.1h5v.s5.081933975d4f from=translated src=- shape=0f630e8a vocab=b98d4227
+-/
 theorem Realization.star_mono (R : S.Realization) {σ τ : γ}
     (h : S.supercells σ ⊆ S.supercells τ) : R.star σ ⊆ R.star τ :=
   Set.biUnion_subset_biUnion_left h
 
-/-- The same combinatorial hypothesis yields the geometric containment on both sides. -/
+/-- The same combinatorial hypothesis yields the geometric containment on both sides.
+@isnad1 id=and.1h6v.s5.ed2807882688 from=translated src=- shape=81b63dd5 vocab=b98d4227
+-/
 theorem Realization.star_transfer (R₁ R₂ : S.Realization) {σ τ : γ}
     (h : S.supercells σ ⊆ S.supercells τ) :
     R₁.star σ ⊆ R₁.star τ ∧ R₂.star σ ⊆ R₂.star τ :=
   ⟨R₁.star_mono h, R₂.star_mono h⟩
 
-/-- A subcell has the larger star, once the abstract relation is known to be transitive. -/
+/-- A subcell has the larger star, once the abstract relation is known to be transitive.
+@isnad1 id=le.2h5v.s5.5a66a583f388 from=translated src=- shape=6f6e81f2 vocab=ba016a93
+-/
 theorem Realization.star_subset_of_sub (R : S.Realization)
     (htrans : ∀ ⦃a b c⦄, S.sub a b → S.sub b c → S.sub a c) {σ τ : γ} (h : S.sub σ τ) :
     R.star τ ⊆ R.star σ :=
@@ -504,7 +590,9 @@ def OuterEdgeUniqueFace (S : CellStructure γ) : Prop :=
 
 /-- **The 2-cell incident with an outer edge is combinatorial** — part (c) of
 lem:combinatorial-invariance. There is nothing to transport: the witness is a single abstract
-cell `F`, and the two realizations realize that one cell as `R₁.cell F` and `R₂.cell F`. -/
+cell `F`, and the two realizations realize that one cell as `R₁.cell F` and `R₂.cell F`.
+@isnad1 id=ex.2h3v.s6.90e9f40ae03d from=translated src=- shape=324027d3 vocab=10684f19
+-/
 theorem outerEdge_face_corresponds (h : OuterEdgeUniqueFace S) {e : γ}
     (he : e ∈ E(S.outerGraph)) :
     ∃ F, F ∈ S.faces ∧ S.sub e F ∧ ∀ T, T ∈ S.faces → S.sub e T → T = F := by
@@ -526,7 +614,9 @@ homeomorphism between them:
 
 The subcell relation, the parent maps and the collection of supercells of a cell do not
 appear in the conclusion because under this representation they are not two objects to be
-compared: they are fields of the single `S` that both realizations are realizations *of*. -/
+compared: they are fields of the single `S` that both realizations are realizations *of*.
+@isnad1 id=and.0h5v.s7.1371986c9945 from=translated src=- shape=edc292bc vocab=8ac88615
+-/
 theorem combinatorial_invariance {R₁ R₂ : S.Realization} (g : SkeletonHomeo R₁ R₂) :
     (E(R₁.graph) = E(R₂.graph) ∧
       (R₁.graph.IsTwoConnected ↔ R₂.graph.IsTwoConnected) ∧

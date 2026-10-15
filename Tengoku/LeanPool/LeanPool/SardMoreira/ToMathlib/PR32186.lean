@@ -20,6 +20,9 @@ open Filter Set MeasureTheory Measure
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
+/--
+@isnad1 id=le.5h5v.s7.c1d5bf960cd3 from=translated src=- shape=bb5432eb vocab=4bdc71cd
+-/
 lemma dist_le_integral_of_norm_deriv_le_of_le {f : ℝ → E} {B : ℝ → ℝ} {a b : ℝ} (hab : a ≤ b)
     (hfc : ContinuousOn f (Icc a b)) (hfd : DifferentiableOn ℝ f (Ioo a b))
     (hfB : ∀ᵐ t, t ∈ Ioo a b → ‖deriv f t‖ ≤ B t)
@@ -54,6 +57,9 @@ lemma dist_le_integral_of_norm_deriv_le_of_le {f : ℝ → E} {B : ℝ → ℝ} 
   · apply hBi.mono_fun (aestronglyMeasurable_deriv _ _)
     exact hfB'.trans <| .of_forall fun _ ↦ le_abs_self _
 
+/--
+@isnad1 id=le.4h5v.s8.65aaf5f0a1e3 from=translated src=- shape=fe69652b vocab=46339740
+-/
 lemma dist_le_mul_volume_of_norm_deriv_le_of_le {f : ℝ → E} {a b C : ℝ} (hab : a ≤ b)
     (hfc : ContinuousOn f (Icc a b)) (hfd : DifferentiableOn ℝ f (Ioo a b))
     (hnorm : ∀ᵐ t, t ∈ Ioo a b → ‖deriv f t‖ ≤ C) :

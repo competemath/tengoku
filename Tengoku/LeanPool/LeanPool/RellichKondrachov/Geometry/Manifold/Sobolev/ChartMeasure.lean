@@ -36,14 +36,25 @@ variable {I : ModelWithCorners ℝ E H} [IsManifold I (⊤ : WithTop ℕ∞) M]
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceChartMeasure : MeasurableSpace M := borel M
+/--
+@isnad1 id=borelspa.0h1v.s3.460708b22f47 from=translated src=- shape=c6850a32 vocab=723886c8
+-/
 local instance instBorelSpaceChartMeasure : BorelSpace M := ⟨rfl⟩
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceChartMeasure1 : MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.e7f0015bcad1 from=translated src=- shape=c6850a32 vocab=97166edf
+-/
 local instance instBorelSpaceChartMeasure1 : BorelSpace E := ⟨rfl⟩
+/--
+@isnad1 id=opensmea.0h1v.s4.671960873e7a from=translated src=- shape=c6850a32 vocab=1f1877c2
+-/
 local instance instOpensMeasurableSpaceChartMeasure : OpensMeasurableSpace E := by infer_instance
 
-/-- Any finite measure is finite on compact sets. -/
+/-- Any finite measure is finite on compact sets.
+@isnad1 id=isfinite.0h2v.s4.caae59592b9e from=translated src=- shape=f15eaebe vocab=83ad7d79
+-/
 lemma isFiniteMeasureOnCompacts_of_isFiniteMeasure {α : Type*} [TopologicalSpace α]
     [MeasurableSpace α] {μ : Measure α} [IsFiniteMeasure μ] :
     IsFiniteMeasureOnCompacts μ :=
@@ -73,7 +84,9 @@ section
 
 omit [FiniteDimensional ℝ E]
 
-/-- The extended chart is a.e.-measurable with respect to the restricted measure on its source. -/
+/-- The extended chart is a.e.-measurable with respect to the restricted measure on its source.
+@isnad1 id=aemeasur.0h7v.s7.0ed6f8a30ddd from=translated src=- shape=3c689b19 vocab=c5a0a95a
+-/
 lemma aemeasurable_extChartAt (μ : Measure M) (i : d.ι) :
     AEMeasurable (extChartAt I (d.center i))
       (μ.restrict (extChartAt I (d.center i)).source) := by
@@ -88,12 +101,18 @@ lemma aemeasurable_extChartAt (μ : Measure M) (i : d.ι) :
 
 end
 
+/--
+@isnad1 id=isfinite.0h7v.s6.7bf78e33430f from=translated src=- shape=1b52d252 vocab=1dd508fa
+-/
 instance instIsFiniteMeasurechartMeasure (μ : Measure M) (i : d.ι) [IsFiniteMeasure μ] :
     IsFiniteMeasure (chartMeasure (d := d) (I := I) μ i) := by
   classical
   delta chartMeasure
   infer_instance
 
+/--
+@isnad1 id=isfinite.0h7v.s6.ba9052cfd5cf from=translated src=- shape=139c31e5 vocab=e6201c4e
+-/
 instance instIsFiniteMeasureOnCompactschartMeasure (μ : Measure M) (i : d.ι) [IsFiniteMeasure μ] :
     IsFiniteMeasureOnCompacts (chartMeasure (d := d) (I := I) μ i) := by
   classical

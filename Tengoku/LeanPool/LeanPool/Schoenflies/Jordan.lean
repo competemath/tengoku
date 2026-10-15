@@ -108,7 +108,9 @@ misses `S` the segment itself is swallowed by the component and the recursion mo
 
 /-- **The first meeting on a single segment.** The parameter interval of the hits is closed and
 bounded below, so it has a least element; before it the segment stays in `U`, hence in the
-component of `U` carrying the near endpoint. -/
+component of `U` carrying the near endpoint.
+@isnad1 id=ex.5h4v.s9.00af5dfd35f3 from=translated src=- shape=84955f51 vocab=07267785
+-/
 theorem exists_first_meeting_segment (hS : IsClosed S) (hUS : Disjoint U S) (hu : u ∈ U)
     (hsub : segment ℝ u v ⊆ U ∪ S) (hmeet : (segment ℝ u v ∩ S).Nonempty) :
     ∃ p ∈ segment ℝ u v ∩ S, segment ℝ u p ⊆ segment ℝ u v ∧
@@ -176,7 +178,9 @@ same start — that reaches `S` exactly at its far end and otherwise stays insid
 of `U` carrying the start.
 
 The chain is returned as `u :: ws`, so that "same start" is definitional and no
-`List.head` obligation is ever produced. -/
+`List.head` obligation is ever produced.
+@isnad1 id=ex.5h4v.s7.3f9a7ee9490e from=translated src=- shape=f539449c vocab=a76d50e9
+-/
 theorem exists_first_meeting (hS : IsClosed S) (hUS : Disjoint U S) :
     ∀ (u : Plane) (vs : List Plane), u ∈ U → poly (u :: vs) ⊆ U ∪ S →
       (poly (u :: vs) ∩ S).Nonempty →
@@ -231,7 +235,9 @@ theorem exists_first_meeting (hS : IsClosed S) (hUS : Disjoint U S) :
 that point, and everything else on it stays in the component of `U` carrying the start.
 
 This is the form both consumers want: `lem:accessible-dense` reads off the accessibility of `p`,
-and the tripod construction of `thm:jordan` needs the arc itself. -/
+and the tripod construction of `thm:jordan` needs the arc itself.
+@isnad1 id=ex.5h4v.s7.16bee49f64a5 from=translated src=- shape=ce3069de vocab=f17c0ad4
+-/
 theorem exists_arc_to_first_meeting (hS : IsClosed S) (hUS : Disjoint U S) {u : Plane}
     {vs : List Plane} (hu : u ∈ U) (hsub : poly (u :: vs) ⊆ U ∪ S)
     (hmeet : (poly (u :: vs) ∩ S).Nonempty) :
@@ -248,7 +254,9 @@ theorem exists_arc_to_first_meeting (hS : IsClosed S) (hUS : Disjoint U S) {u : 
   exact ⟨p, hp, poly qs, ⟨qs, rfl⟩, hqarc, hqsub.trans hwsub, hqcomp⟩
 
 /-- The accessibility statement `lem:accessible-dense` produces: the first meeting point is
-polygonally accessible from the component of `U` the chain started in. -/
+polygonally accessible from the component of `U` the chain started in.
+@isnad1 id=ex.5h4v.s7.43b53608698f from=translated src=- shape=cab782e1 vocab=f6761958
+-/
 theorem polyAccessible_first_meeting (hS : IsClosed S) (hUS : Disjoint U S) {u : Plane}
     {vs : List Plane} (hu : u ∈ U) (hsub : poly (u :: vs) ⊆ U ∪ S)
     (hmeet : (poly (u :: vs) ∩ S).Nonempty) :
@@ -264,7 +272,9 @@ The half of `thm:jordan`'s boundary clause that `lem:accessible-dense` supplies:
 point of the curve is in the closure of the region it is accessible from. The access chain is
 connected and carries a point of the region, so the accessible point is not isolated on it. -/
 
-/-- **An accessible point off the region lies in its closure.** -/
+/-- **An accessible point off the region lies in its closure.**
+@isnad1 id=mem.2h2v.s6.d370526e59a2 from=translated src=- shape=b9452215 vocab=2e4a76c0
+-/
 theorem PolyAccessible.mem_closure {a : Plane} (h : PolyAccessible Ω a) (ha : a ∉ Ω) :
     a ∈ closure Ω := by
   obtain ⟨vs, hvs, hhead, hlast, hint⟩ := h
@@ -296,7 +306,9 @@ theorem PolyAccessible.mem_closure {a : Plane} (h : PolyAccessible Ω a) (ha : a
 is one closed arc. The proof is the parameter bookkeeping of `Schoenflies/TwoArcs.lean` — no
 new topology. -/
 
-/-- **The curve minus an open subarc is the complementary closed arc.** -/
+/-- **The curve minus an open subarc is the complementary closed arc.**
+@isnad1 id=eq.4h3v.s6.4127be4605ea from=translated src=- shape=41c01fb7 vocab=f7b2c28e
+-/
 theorem IsLoop.compl_openArc {f : ℝ → Plane} (hf : IsLoop f) {a b : ℝ}
     (ha : a ∈ I) (hb : b ∈ I) (hab : a < b) :
     f '' I \ f '' Ioo a b = f '' Icc 0 a ∪ f '' Icc b 1 := by
@@ -347,7 +359,9 @@ and that is all the blueprint's `J₀` is for. -/
 /-- **`lem:accessible-dense`, in the parameter form the proof produces.** Every open subarc
 strictly inside the parameter interval carries a point accessible from the component of `x`.
 
-`harc` is `thm:arc-complement`: the complement of a simple arc is connected. -/
+`harc` is `thm:arc-complement`: the complement of a simple arc is connected.
+@isnad1 id=ex.6h4v.s7.1a68eda1e2be from=translated src=- shape=bed02635 vocab=4d259651
+-/
 theorem exists_polyAccessible_openArc (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ)
     {f : ℝ → Plane} (hf : IsLoop f) {x : Plane} (hx : x ∉ f '' I)
     {a b : ℝ} (ha : 0 < a) (hab : a < b) (hb : b < 1) :
@@ -397,7 +411,9 @@ theorem exists_polyAccessible_openArc (harc : ∀ A : Set Plane, IsArc A → IsC
   exact absurd (hDeq ▸ (⟨hp.2, hcon⟩ : p ∈ f '' I \ f '' Ioo a b)) (hvsub hp.1)
 
 /-- **`lem:accessible-dense` (density of accessible points).** The points of `C` reachable from
-`x` by a polygonal arc meeting `C` only at its endpoint are dense in `C`. -/
+`x` by a polygonal arc meeting `C` only at its endpoint are dense in `C`.
+@isnad1 id=le.3h2v.s7.5b6f39498083 from=translated src=- shape=effc6115 vocab=4e9ab557
+-/
 theorem accessible_dense (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ)
     (hC : IsJordanCurve C) {x : Plane} (hx : x ∉ C) :
     C ⊆ closure {p | p ∈ C ∧ PolyAccessible (connectedComponentIn Cᶜ x) p} := by
@@ -452,7 +468,9 @@ branch vertex. -/
 
 /-- **Three internally disjoint arcs from one point of a region to three accessible points of
 its complementary set.** The blueprint's `T_i` with its three branches, for `Ω` the `i`-th
-component and the three points the terminals `p_{ij}`. -/
+component and the three points the terminals `p_{ij}`.
+@isnad1 id=ex.12h5v.s8.de7ddd12b6cc from=translated src=- shape=67bff41e vocab=91a8c6d0
+-/
 theorem exists_tripod (hΩopen : IsOpen Ω) (hΩconn : IsPreconnected Ω)
     (hdisj : Disjoint Ω C) {a b c : Plane} (haC : a ∈ C) (hbC : b ∈ C) (hcC : c ∈ C)
     (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c)
@@ -570,7 +588,9 @@ The windows are `((6j + 2i + 2)/24, (6j + 2i + 3)/24)`, which for `i, j < 3` are
 intervals inside `(0, 1)`, ordered lexicographically by `(j, i)`. -/
 
 /-- Nine parameter windows strictly inside `(0, 1)`, in blocks of three: increasing the row
-index `i` within a block, or the block index `j`, moves past the end of the current window. -/
+index `i` within a block, or the block index `j`, moves past the end of the current window.
+@isnad1 id=ex.0h0v.s7.a8fccc120628 from=translated src=- shape=af7511c7 vocab=73285931
+-/
 theorem exists_windows : ∃ w : Fin 3 → Fin 3 → ℝ,
     (∀ i j, 0 < w i j) ∧ (∀ i j, w i j + 1 / 24 < 1) ∧
       (∀ i j k l : Fin 3, (j = l ∧ i.val < k.val) ∨ j.val < l.val →
@@ -592,7 +612,9 @@ theorem exists_windows : ∃ w : Fin 3 → Fin 3 → ℝ,
       have h2 : (0 : ℝ) ≤ (k.val : ℝ) := Nat.cast_nonneg _
       linarith
 
-/-- Two closed intervals sharing the endpoint `m`, one on each side of it, meet only there. -/
+/-- Two closed intervals sharing the endpoint `m`, one on each side of it, meet only there.
+@isnad1 id=le.2h3v.s5.aabd7221a620 from=translated src=- shape=0d9bacfc vocab=20190385
+-/
 theorem uIcc_inter_uIcc_mid {r s m : ℝ} (hr : r ≤ m) (hs : m ≤ s) :
     uIcc r m ∩ uIcc s m ⊆ {m} := by
   rw [uIcc_of_le hr, uIcc_of_ge hs]
@@ -606,7 +628,9 @@ extended along the curve to the three middle terminals, are a plane `K(3,3)` sub
 excluded by `cor:k33-subdivision` (`Graph.IsArcK33.elim`). -/
 
 /-- **Three points of the complement of a Jordan curve cannot lie in three distinct
-components.** -/
+components.**
+@isnad1 id=false.4h2v.s7.f135fa7ab72f from=translated src=- shape=719955f3 vocab=9b10c228
+-/
 theorem not_three_components (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ)
     (hC : IsJordanCurve C) {q : Fin 3 → Plane} (hqC : ∀ i, q i ∉ C)
     (hqne : ∀ i k, i ≠ k → connectedComponentIn Cᶜ (q i) ≠ connectedComponentIn Cᶜ (q k)) :
@@ -825,7 +849,9 @@ one bounded and one unbounded (`IsSeparating.isBounded_inside`,
 against the polygonal case therefore applies verbatim. -/
 
 /-- A point of the curve is in the closure of any region it is accessible from — the reverse
-inclusion of the boundary clause, packaged for both regions at once. -/
+inclusion of the boundary clause, packaged for both regions at once.
+@isnad1 id=le.3h2v.s7.fdd18e415d65 from=translated src=- shape=0c2490ec vocab=23dcfab6
+-/
 theorem subset_closure_of_accessible_dense
     (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ) (hC : IsJordanCurve C) {x : Plane}
     (hx : x ∉ C) : C ⊆ closure (connectedComponentIn Cᶜ x) := by
@@ -836,7 +862,9 @@ theorem subset_closure_of_accessible_dense
 /-- **`thm:jordan` (the Jordan curve theorem).** The complement of a Jordan curve has exactly
 two regions, one bounded and one unbounded, and both have the curve as their boundary.
 
-`harc` is `thm:arc-complement`. -/
+`harc` is `thm:arc-complement`.
+@isnad1 id=issepara.2h1v.s5.0cb72d79ecd7 from=translated src=- shape=fffd4b05 vocab=cf13fd6d
+-/
 theorem IsJordanCurve.isSeparating (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ)
     (hC : IsJordanCurve C) : IsSeparating C := by
   have hCclosed : IsClosed C := hC.isClosed

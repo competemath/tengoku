@@ -26,6 +26,9 @@ variable {α : Type*} [Fintype α] (A : Matrix α α ℝ)
 class PosDefAsymm : Prop where
   pd : ∀ x, x ≠ 0 → 0 < x ⬝ᵥ (A *ᵥ x)
 
+/--
+@isnad1 id=iff.0h2v.s5.d1e76bbe0c43 from=translated src=- shape=766a4cb4 vocab=c4704de9
+-/
 lemma posDefAsymm_iff : PosDefAsymm A ↔ Matrix.PosDef (A + Aᵀ) := by
   constructor
   · intro h
@@ -42,6 +45,9 @@ lemma posDefAsymm_iff : PosDefAsymm A ↔ Matrix.PosDef (A + Aᵀ) := by
       rw [add_mulVec, dotProduct_add, dotProduct_transpose_mulVec] at this
       linarith⟩
 
+/--
+@isnad1 id=iff.0h2v.s6.8a124e3575d6 from=translated src=- shape=81562ed9 vocab=abc66f26
+-/
 theorem posDefAsymm_iff'
   {α : Type*} [Fintype α] (A : Matrix α α ℝ) :
   PosDefAsymm A ↔ ∃ η, 0 < η ∧ ∀ x, η * (x ⬝ᵥ x) ≤ x ⬝ᵥ (A *ᵥ x) := by

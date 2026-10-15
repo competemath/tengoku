@@ -40,6 +40,9 @@ def dSVDensityRationalPhysicalProjector
   (dSVDensityRationalLeftProjectiveThresholdPOVM
     w N k ξ).effect true
 
+/--
+@isnad1 id=possemid.0h5v.s4.b0ef11567809 from=translated src=- shape=31b82251 vocab=8460c764
+-/
 theorem dSVDensityRationalPhysicalProjector_pos
     {d N : ℕ} (w : ℝ)
     (ξ : BipartiteUnitVector d) (k : Fin N) :
@@ -57,6 +60,9 @@ private theorem dSVDensityRationalPhysicalProjector_projective
     w N k (dSVSoftBobLeftReducedDensity ξ)
     (dSVSoftBobLeftReducedDensity_posSemidef ξ) true
 
+/--
+@isnad1 id=possemid.0h5v.s6.e47f23e09202 from=translated src=- shape=2ddc7ef6 vocab=38c5c72f
+-/
 theorem dSVDensityRationalPhysicalProjector_complement_pos
     {d N : ℕ} (w : ℝ)
     (ξ : BipartiteUnitVector d) (k : Fin N) :
@@ -119,6 +125,9 @@ def dSVDensityRationalCompleteProjectiveThresholdProjector
   (dSVDensityRationalLeftProjectiveThresholdPOVM
     w N k ξ).effect true
 
+/--
+@isnad1 id=possemid.0h5v.s4.3ca35a439622 from=translated src=- shape=79925a59 vocab=d5b417e3
+-/
 theorem dSVDensityRationalCompleteProjectiveThresholdProjector_pos
     {d : ℕ} (w : ℝ) (N : ℕ)
     (ξ : BipartiteUnitVector d) (k : Fin N) :
@@ -140,6 +149,9 @@ private theorem dSVDensityRationalCompleteProjectiveThresholdEffect_false
   rw [Fintype.sum_bool, add_comm] at complete
   exact eq_sub_of_add_eq complete
 
+/--
+@isnad1 id=possemid.0h5v.s6.75352b8ed098 from=translated src=- shape=1eeddc3a vocab=8261c1ba
+-/
 theorem
     dSVDensityRationalCompleteProjectiveThresholdProjector_complement_pos
     {d : ℕ} (w : ℝ) (N : ℕ)
@@ -187,6 +199,9 @@ section
 
 open scoped BigOperators ComplexOrder MatrixOrder
 
+/--
+@isnad1 id=le.0h2v.s4.4c66681d9852 from=translated src=- shape=787c1379 vocab=c45cf30c
+-/
 theorem dSVDensityRationalGridPrefix_nonneg
     (N : ℕ) (a : ℝ) :
     0 ≤ dSVUniformDensityGridPrefix N a := by
@@ -208,6 +223,9 @@ def dSVDensityRationalCanonicalAcceptedCoefficient
     (dSVRationalSoftPass w
       ((dSVSoftBobLeftReducedDensity_posSemidef ξ).isHermitian.eigenvalues i)))
 
+/--
+@isnad1 id=eq.1h5v.s6.e5c91ac9bd22 from=translated src=- shape=b5c44d2b vocab=b69d74eb
+-/
 theorem dSVDensityRationalCanonicalAcceptedCoefficient_sq
     {d : ℕ} {w : ℝ} (width : 0 < w) (N : ℕ)
     (ξ : BipartiteUnitVector d) (i : Fin d) :
@@ -241,6 +259,9 @@ def dSVDensityRationalCanonicalAcceptedTarget
     (dSVDensityRationalCanonicalAliceBasis ξ)
     (dSVUniformDensityThresholdLeftBobBasis ξ)
 
+/--
+@isnad1 id=eq.1h4v.s6.1e4c8829415e from=translated src=- shape=eced8cdf vocab=d0d69e39
+-/
 theorem dSVDensityRationalCanonicalAcceptedTarget_norm_sq
     {d : ℕ} {w : ℝ} (width : 0 < w) (N : ℕ)
     (ξ : BipartiteUnitVector d) :
@@ -252,6 +273,9 @@ theorem dSVDensityRationalCanonicalAcceptedTarget_norm_sq
   unfold dSVDensityRationalLeftProjectiveDiagonalMass
   rw [Finset.mul_sum]
 
+/--
+@isnad1 id=ne.3h4v.s7.4ecafa5b2e1c from=translated src=- shape=e389e402 vocab=91aa28a2
+-/
 theorem dSVDensityRationalCanonicalAcceptedTarget_ne_zero
     {d N : ℕ} {w : ℝ} (width : 0 < w) (grid : 0 < N)
     (fine : (d : ℝ) / (N : ℝ) < 1 / (w + 1))
@@ -275,6 +299,9 @@ def dSVDensityRationalCanonicalNormalizedTarget
   NormedSpace.normalize
     (dSVDensityRationalCanonicalAcceptedTarget w N ξ)
 
+/--
+@isnad1 id=eq.3h4v.s7.b78c10968c07 from=translated src=- shape=cd58606e vocab=cf7afbaf
+-/
 theorem dSVDensityRationalCanonicalNormalizedTarget_norm
     {d N : ℕ} {w : ℝ} (width : 0 < w) (grid : 0 < N)
     (fine : (d : ℝ) / (N : ℝ) < 1 / (w + 1))
@@ -1301,15 +1328,24 @@ def reverseMarkedPartitionWeight (s : Finset α) (i : α) : ℝ :=
   if i ∈ s then reversePartitionWeight s / (s.card : ℝ) else 0
 
 omit [DecidableEq α] in
+/--
+@isnad1 id=lt.0h1v.s4.3b8c4a30387e from=translated src=- shape=533eefa4 vocab=d869f42c
+-/
 theorem fairPartitionWeight_pos : 0 < fairPartitionWeight α := by
   unfold fairPartitionWeight
   positivity
 
 omit [DecidableEq α] in
+/--
+@isnad1 id=le.0h1v.s4.2517bc79efb6 from=translated src=- shape=533eefa4 vocab=381201d5
+-/
 theorem fairPartitionWeight_nonneg : 0 ≤ fairPartitionWeight α :=
   fairPartitionWeight_pos.le
 
 omit [DecidableEq α] in
+/--
+@isnad1 id=le.0h2v.s4.b66c769dda12 from=translated src=- shape=38fc717e vocab=b2e2b386
+-/
 theorem reversePartitionWeight_nonneg (s : Finset α) :
     0 ≤ reversePartitionWeight s := by
   unfold reversePartitionWeight
@@ -1319,11 +1355,17 @@ theorem reversePartitionWeight_nonneg (s : Finset α) :
       (by exact_mod_cast Nat.zero_le (Fintype.card α)))
 
 omit [DecidableEq α] in
+/--
+@isnad1 id=eq.0h1v.s4.09046cbf5f20 from=translated src=- shape=bba61b78 vocab=e237a5d3
+-/
 @[simp] theorem reversePartitionWeight_empty :
     reversePartitionWeight (α := α) ∅ = 0 := by
   simp only [reversePartitionWeight, card_empty, CharP.cast_eq_zero, mul_zero, zero_div]
 
 omit [DecidableEq α] in
+/--
+@isnad1 id=iff.1h2v.s5.66d9f455c4b0 from=translated src=- shape=2ce58609 vocab=c0486a2a
+-/
 theorem reversePartitionWeight_pos_iff
     (hα : 0 < Fintype.card α) (s : Finset α) :
     0 < reversePartitionWeight s ↔ s.Nonempty := by
@@ -1450,6 +1492,9 @@ open scoped BigOperators
     {j : Fin n // j ∈ fullHistoryRemaining n D (insert i L)} → Y
   deriving Fintype
 
+/--
+@isnad1 id=le.0h4v.s5.eed65b1413cc from=translated src=- shape=5af8a8b1 vocab=bca49609
+-/
 theorem fullHistoryRemaining_insert_subset
     {n : ℕ} (D L : Finset (Fin n)) (i : Fin n) :
     fullHistoryRemaining n D (insert i L) ⊆

@@ -81,6 +81,9 @@ def toFinsupp (c : Fin (k + 1) → ℕ) : (Fin (k + 1)) →₀ ℕ :=
 -/
 noncomputable section AristotleLemmas
 
+/--
+@isnad1 id=eq.0h2v.s6.66e17027bf45 from=translated src=- shape=6040750a vocab=e3984b84
+-/
 lemma det_fallingFactorial_eq_det_vandermonde (c : Fin (k + 1) → ℕ) :
   (fallingFactorialMatrix c).det = (vandermondeMatrix c).det := by
     -- By definition of $V$, we can write $F$ as $V * M$ where $M$ is an upper triangular matrix
@@ -183,6 +186,9 @@ lemma det_fallingFactorial_eq_det_vandermonde (c : Fin (k + 1) → ℕ) :
         exact right
     simp_all only [gt_iff_lt, det_mul, mul_one]
 
+/--
+@isnad1 id=eq.0h2v.s5.237752dd102f from=translated src=- shape=f6331ba5 vocab=15525733
+-/
 lemma fallingFactorial_eq_factorial_div (n k : ℕ) :
   fallingFactorial n k = if k ≤ n then n.factorial / (n - k).factorial else 0 := by
     unfold fallingFactorial
@@ -224,6 +230,9 @@ def symmetricSumFixed (c : Fin (k + 1) → ℕ) (m : ℕ) : ℚ :=
       ((m.factorial : ℚ) / ∏ i : Fin (k + 1), ((c i - (σ i : ℕ)).factorial : ℚ))
     else 0
 
+/--
+@isnad1 id=eq.0h3v.s4.ea68c75a0976 from=translated src=- shape=930423c8 vocab=2c568bcc
+-/
 lemma symmetricSumFixed_eq_expectedValue (c : Fin (k + 1) → ℕ) (m : ℕ) :
   symmetricSumFixed c m = expectedValue c m := by
     -- By definition of $expected\_value$, we know that

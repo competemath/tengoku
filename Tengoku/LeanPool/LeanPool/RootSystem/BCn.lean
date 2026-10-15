@@ -44,26 +44,41 @@ noncomputable def dotProduct (n : ℕ) : Space n →ₗ[ℤ] Space n →ₗ[ℤ]
     ext y
     simp [Finset.mul_sum, mul_comm, mul_left_comm]
 
+/--
+@isnad1 id=eq.0h3v.s9.d703d11c4650 from=translated src=- shape=df78a44f vocab=9ef9d8fa
+-/
 theorem dotProduct_apply (n : ℕ) (x y : Space n) :
     dotProduct n x y = ∑ i, x i * y i :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.beccab51ac22 from=translated src=- shape=4ee8a3e4 vocab=522c78d0
+-/
 @[simp]
 theorem dotProduct_single_right {n : ℕ} (x : Space n) (i : Fin n) :
     dotProduct n x (Pi.single i 1) = x i := by
   rw [dotProduct_apply]
   simp [Pi.single_apply]
 
+/--
+@isnad1 id=eq.0h3v.s9.3488b7613b4b from=translated src=- shape=b9d0bcd1 vocab=522c78d0
+-/
 @[simp]
 theorem dotProduct_single_left {n : ℕ} (x : Space n) (i : Fin n) :
     dotProduct n (Pi.single i 1) x = x i := by
   rw [dotProduct_apply]
   simp [Pi.single_apply]
 
+/--
+@isnad1 id=issymm.0h1v.s5.0615bcd8e9c9 from=translated src=- shape=167d57d0 vocab=406026ac
+-/
 theorem dotProduct_isSymm (n : ℕ) : LinearMap.IsSymm (dotProduct n) where
   eq x y := by
     simp [dotProduct_apply, mul_comm]
 
+/--
+@isnad1 id=nondegen.0h1v.s6.4e1f06eeade6 from=translated src=- shape=2cc74a8b vocab=bbb1d915
+-/
 theorem dotProduct_nondegenerate (n : ℕ) : LinearMap.Nondegenerate (dotProduct n) := by
   constructor
   · intro x hx
@@ -90,6 +105,9 @@ The reflective vectors of the standard dot product on `ℤⁿ` are exactly the c
 type-`BCₙ` roots `±eᵢ`, `±2eᵢ`, and `±eᵢ ± eⱼ` for `i ≠ j`.
 -/
 
+/--
+@isnad1 id=eq.0h4v.s9.b092f77204ef from=translated src=- shape=e1e2fe6b vocab=0c075ea7
+-/
 theorem dotProduct_single_left_eq {n : ℕ} (i : Fin n) (a : ℤ) (y : Space n) :
     dotProduct n (Pi.single i a) y = a * y i := by
   rw [dotProduct_apply]
@@ -120,6 +138,9 @@ theorem eq_single_add_single_of_eq_zero {n : ℕ} {x : Space n} {i j : Fin n} (h
     · rw [Pi.add_apply, Pi.single_eq_same, Pi.single_eq_of_ne hki, zero_add]
     · rw [Pi.add_apply, Pi.single_eq_of_ne hki, Pi.single_eq_of_ne hkj, add_zero, h k hki hkj]
 
+/--
+@isnad1 id=isclassi.1h2v.s5.55ed9a5495ab from=translated src=- shape=673edbf7 vocab=a40af02e
+-/
 theorem isClassicalRoot_of_isReflective {n : ℕ} {x : Space n}
     (hx : LinearMap.IsReflective (dotProduct n) x) : IsClassicalRoot x := by
   obtain ⟨hreg, hdvd⟩ := hx
@@ -222,6 +243,9 @@ theorem isClassicalRoot_of_isReflective {n : ℕ} {x : Space n}
             (Finset.mem_erase.mpr ⟨hkj, Finset.mem_erase.mpr ⟨hki, Finset.mem_univ k⟩⟩)
       exact Or.inr ⟨x i, x j, i, j, hij, hsmall i hi, hsmall j hj, hxeq⟩
 
+/--
+@isnad1 id=isreflec.1h2v.s5.aa085244be78 from=translated src=- shape=4a1ca38a vocab=a40af02e
+-/
 theorem isReflective_of_isClassicalRoot {n : ℕ} {x : Space n} (hx : IsClassicalRoot x) :
     LinearMap.IsReflective (dotProduct n) x := by
   rcases hx with ⟨c, i, hc, rfl⟩ | ⟨a, b, i, j, hij, ha, hb, rfl⟩
@@ -255,13 +279,17 @@ theorem isReflective_of_isClassicalRoot {n : ℕ} {x : Space n} (hx : IsClassica
       · exact ⟨-(y i + y j), by ring⟩
 
 /-- A vector of `ℤⁿ` is reflective for the standard dot product precisely when it is one
-of the classical type-`BCₙ` roots `±eᵢ`, `±2eᵢ`, or `±eᵢ ± eⱼ` with `i ≠ j`. -/
+of the classical type-`BCₙ` roots `±eᵢ`, `±2eᵢ`, or `±eᵢ ± eⱼ` with `i ≠ j`.
+@isnad1 id=iff.0h2v.s5.5476d144b1bf from=translated src=- shape=abd64e2a vocab=a40af02e
+-/
 theorem isReflective_iff_isClassicalRoot {n : ℕ} (x : Space n) :
     LinearMap.IsReflective (dotProduct n) x ↔ IsClassicalRoot x :=
   ⟨isClassicalRoot_of_isReflective, isReflective_of_isClassicalRoot⟩
 
 /-- The roots of the type-`BCₙ` root pairing are exactly the classical type-`BCₙ` roots
-`±eᵢ`, `±2eᵢ`, and `±eᵢ ± eⱼ` for `i ≠ j`. -/
+`±eᵢ`, `±2eᵢ`, and `±eᵢ ± eⱼ` for `i ≠ j`.
+@isnad1 id=eq.0h1v.s7.5b17fa025a9e from=translated src=- shape=0406cfd2 vocab=33c4f268
+-/
 theorem range_rootPairing_root (n : ℕ) :
     Set.range (rootPairing n).root = {x : Space n | IsClassicalRoot x} := by
   ext y

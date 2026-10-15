@@ -38,20 +38,32 @@ def vertexAt (i : T.Pos) : V := G.endAt (T.edge i) (T.depart i)
 def arrivalAt (i : T.Pos) : V := G.endAt (T.edge i) (Fin.rev (T.depart i))
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h5v.s5.af418a43bc58 from=translated src=- shape=d0962a91 vocab=a8db3122
+-/
 @[simp]
 theorem next_prev (i : T.Pos) : T.next (T.prev i) = i := by
   simp [next, prev]
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h5v.s5.a2c01e980bef from=translated src=- shape=d0962a91 vocab=a8db3122
+-/
 @[simp]
 theorem prev_next (i : T.Pos) : T.prev (T.next i) = i := by
   simp [next, prev]
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h5v.s5.5bed6812f868 from=translated src=- shape=92988ae7 vocab=9c8f0381
+-/
 theorem arrival_eq_vertexAt_next (i : T.Pos) : T.arrivalAt i = T.vertexAt (T.next i) := by
   exact T.continuous i
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h5v.s5.1d9222080e37 from=translated src=- shape=dd88c3ba vocab=630a785b
+-/
 theorem arrival_prev_eq_vertexAt (i : T.Pos) : T.arrivalAt (T.prev i) = T.vertexAt i := by
   simpa [arrivalAt, vertexAt, next, prev] using T.continuous (T.prev i)
 
@@ -71,6 +83,9 @@ def transitionHalfEdge {v : V} (o : T.Occurrence v) : Fin 2 → HalfEdge E
   | 1 => (T.edge (T.prev o.1), Fin.rev (T.depart (T.prev o.1)))
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h7v.s5.3fc3582d4df0 from=translated src=- shape=997844f1 vocab=b3578ab2
+-/
 @[simp]
 theorem vertex_transitionHalfEdge {v : V} (o : T.Occurrence v) (s : Fin 2) :
     G.vertex (T.transitionHalfEdge o s) = v := by
@@ -101,6 +116,9 @@ private theorem eq_rev_of_ne_fin_two {i j : Fin 2} (h : i ≠ j) : i = Fin.rev j
   fin_cases i <;> fin_cases j <;> simp_all [Fin.rev]
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h5v.s6.ce35e68671ce from=translated src=- shape=fbb5766e vocab=7c7b0d6e
+-/
 theorem halfEdgeToPositionSide_positionSideToHalfEdge (p : T.Pos × Fin 2) :
     T.halfEdgeToPositionSide (T.positionSideToHalfEdge p) = p := by
   rcases p with ⟨i, s⟩
@@ -110,6 +128,9 @@ theorem halfEdgeToPositionSide_positionSideToHalfEdge (p : T.Pos × Fin 2) :
       T.next_prev]
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h5v.s5.808984e73e2d from=translated src=- shape=cf34a978 vocab=3afe316b
+-/
 theorem positionSideToHalfEdge_halfEdgeToPositionSide (h : HalfEdge E) :
     T.positionSideToHalfEdge (T.halfEdgeToPositionSide h) = h := by
   rcases h with ⟨e, j⟩
@@ -131,6 +152,9 @@ def positionSideEquivHalfEdge : T.Pos × Fin 2 ≃ HalfEdge E where
   right_inv := T.positionSideToHalfEdge_halfEdgeToPositionSide
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h5v.s6.aa52b002dacd from=translated src=- shape=d9b8816b vocab=dcadc2d0
+-/
 theorem vertex_positionSideToHalfEdge (p : T.Pos × Fin 2) :
     G.vertex (T.positionSideToHalfEdge p) = T.vertexAt p.1 := by
   rcases p with ⟨i, s⟩
@@ -146,7 +170,9 @@ def occurrenceSideEquivHalfEdgesAt (v : V) : T.Occurrence v × Fin 2 ≃ G.halfE
       change T.vertexAt p.1 = v ↔ G.vertex (T.positionSideToHalfEdge p) = v
       rw [T.vertex_positionSideToHalfEdge p])
 
-/-- The degree at `v` is twice its number of occurrences in the transition word. -/
+/-- The degree at `v` is twice its number of occurrences in the transition word.
+@isnad1 id=eq.0h5v.s6.7e0ac2db29ca from=translated src=- shape=3420c1fc vocab=1efb7154
+-/
 theorem degree_eq_two_mul_card_occurrence (v : V) :
     G.degree v = 2 * Fintype.card (T.Occurrence v) := by
   rw [degree, ← Fintype.card_congr (T.occurrenceSideEquivHalfEdgesAt v), Fintype.card_prod]
@@ -180,7 +206,9 @@ structure Cycle where
   minimal : ∀ D : Finset E, D.Nonempty → D ⊆ edges → G.IsEvenEdgeSet D → D = edges
 
 omit [DecidableEq E] in
-/-- Both incidences of a loop cancel in characteristic two. -/
+/-- Both incidences of a loop cancel in characteristic two.
+@isnad1 id=isevened.1h4v.s6.197d228f1beb from=translated src=- shape=9f5e6e68 vocab=dcf32578
+-/
 theorem singleton_loop_even (e : E) (hloop : G.endAt e 0 = G.endAt e 1) :
     G.IsEvenEdgeSet {e} := by
   intro v
@@ -208,7 +236,9 @@ private theorem even_sdiff {F D : Finset E} (hDF : D ⊆ F)
   simpa using hsplit
 
 /-- Every finite even edge set is an edge-disjoint union of multigraph cycles.  The displayed
-equation records edge multiplicities and is stronger than mere equality of unions. -/
+equation records edge multiplicities and is stronger than mere equality of unions.
+@isnad1 id=ex.1h4v.s7.327d03e9e38f from=translated src=- shape=2665e01e vocab=dbdbfe5d
+-/
 theorem decompose_even_edge_set (F : Finset E) (hF : G.IsEvenEdgeSet F) :
     ∃ L : List G.Cycle,
       ∀ e : E, (L.filter fun C ↦ e ∈ C.edges).length = if e ∈ F then 1 else 0 := by
@@ -289,7 +319,9 @@ private theorem filter_flatMap_length {A B : Type*} (p : B → Bool)
   | nil => simp
   | cons x xs ih => simp [ih]
 
-/-- Every compatible four-colouring yields a compatible circuit decomposition. -/
+/-- Every compatible four-colouring yields a compatible circuit decomposition.
+@isnad1 id=ex.0h5v.s6.fef24a193471 from=translated src=- shape=7af4405c vocab=69fd3a79
+-/
 theorem exists_compatible_circuit_decomposition
     {T : G.EulerTour} (K : G.CompatibleFourColoring T) :
     ∃ S : G.CircuitDecomposition, S.Compatible T := by

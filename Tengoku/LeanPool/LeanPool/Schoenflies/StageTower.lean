@@ -77,17 +77,23 @@ variable {γ : Type*} [Nonempty γ] {S₀ : CellStructure γ} {C : Set Plane}
 facts it asks about them, collected so that `limitTower` below reads as a repackaging. -/
 
 /-- The closed Jordan domain is bounded. `IsSeparating` does not say so directly — it says the
-*inside* is bounded — but `C` is the frontier of the inside, hence inside its closure. -/
+*inside* is bounded — but `C` is the frontier of the inside, hence inside its closure.
+@isnad1 id=isbounde.1h1v.s5.cc9bc870cfff from=translated src=- shape=f8777f39 vocab=e1df2e74
+-/
 theorem isBounded_union_inside (hC : IsSeparating C) : IsBounded (C ∪ inside C) := by
   rw [Set.union_comm, ← (IsRegionOf.inside C).closure_eq hC]
   exact hC.isBounded_inside.closure
 
 /-- The interior of the closed Jordan domain is open — after the rewriting `LimitTower` needs,
-which asks for `IsOpen (dom \ bdry)` rather than `IsOpen (inside C)`. -/
+which asks for `IsOpen (dom \ bdry)` rather than `IsOpen (inside C)`.
+@isnad1 id=isopen.1h1v.s5.cd8a9981a78b from=translated src=- shape=014482d4 vocab=0789dbef
+-/
 theorem isOpen_union_inside_sdiff (hC : IsSeparating C) : IsOpen ((C ∪ inside C) \ C) := by
   rw [union_inside_sdiff]; exact hC.isOpen_inside
 
-/-- The interior of the closed square is open, in the same shape. -/
+/-- The interior of the closed square is open, in the same shape.
+@isnad1 id=isopen.0h0v.s6.c4c806ef09e3 from=translated src=- shape=19e9f306 vocab=b3469ead
+-/
 theorem isOpen_closedSquare_sdiff_modelCurve :
     IsOpen (Plane.closedSquare 0 1 \ modelCurve) := by
   rw [closedSquare_sdiff_modelCurve]; exact Plane.isOpen_openSquare 0 1
@@ -129,22 +135,30 @@ namespace StageSequence
 
 variable (T : StageSequence γ S₀ C)
 
-/-- Consecutive source realizations refine along the recorded parent map. -/
+/-- Consecutive source realizations refine along the recorded parent map.
+@isnad1 id=refines.0h5v.s8.1be7f090b171 from=translated src=- shape=cfff1ad2 vocab=44265c0a
+-/
 theorem refines_src (n : ℕ) :
     (T.stage (n + 1)).src.Refines (T.stage n).src (T.par n) :=
   (T.transition n).refines_src
 
-/-- The target realizations refine along the same parent map. -/
+/-- The target realizations refine along the same parent map.
+@isnad1 id=refines.0h5v.s8.83a917f70106 from=translated src=- shape=cfff1ad2 vocab=43f182ad
+-/
 theorem refines_tgt (n : ℕ) :
     (T.stage (n + 1)).tgt.Refines (T.stage n).tgt (T.par n) :=
   (T.transition n).refines_tgt
 
-/-- The realized source skeletons grow from one stage to the next. -/
+/-- The realized source skeletons grow from one stage to the next.
+@isnad1 id=le.0h5v.s8.b6b0acf99495 from=translated src=- shape=9682be0f vocab=2e0e8149
+-/
 theorem skeletonSet_mono (n : ℕ) :
     (T.stage n).src.skeletonSet ⊆ (T.stage (n + 1)).src.skeletonSet :=
   (T.transition n).sourceSkeletonSet_subset
 
-/-- Consecutive skeleton homeomorphisms agree on the preceding source skeleton. -/
+/-- Consecutive skeleton homeomorphisms agree on the preceding source skeleton.
+@isnad1 id=eqon.0h5v.s10.a45b55469ca0 from=translated src=- shape=3986de8b vocab=242f81de
+-/
 theorem skelHomeo_succ (n : ℕ) :
     Set.EqOn (T.stage (n + 1)).homeo.toFun (T.stage n).homeo.toFun
       (T.stage n).src.skeletonSet :=
@@ -185,14 +199,22 @@ def limitTower : CellStructure.LimitTower γ where
     intro x hx
     exact T.tendsto_diam_srcStar (by rwa [union_inside_sdiff] at hx)
 
+/--
+@isnad1 id=eq.0h4v.s4.6982822f7e97 from=translated src=- shape=03e375e3 vocab=35379f60
+-/
 @[simp] theorem limitTower_region : T.limitTower.region = inside C := union_inside_sdiff C
 
+/--
+@isnad1 id=eq.0h4v.s6.37da0fd1a56a from=translated src=- shape=0d0b22fe vocab=ce7a6817
+-/
 @[simp] theorem limitTower_region' : T.limitTower.region' = Plane.openSquare 0 1 :=
   closedSquare_sdiff_modelCurve
 
 /-- **`prop:interior-homeomorphism` for a stage sequence**, in the `Schoenflies.IsHomeoOn` shape
 `Schoenflies.HasLimitHomeomorphism` asks for: the limit map is a homeomorphism of the open
-Jordan domain onto the open square. -/
+Jordan domain onto the open square.
+@isnad1 id=ishomeoo.0h4v.s6.053f8f781cf5 from=translated src=- shape=d2b7cea0 vocab=4b93a403
+-/
 theorem isHomeoOn_F :
     IsHomeoOn T.limitTower.F T.limitTower.inv (inside C) (Plane.openSquare 0 1) := by
   have h := T.limitTower.isHomeoOn_F
@@ -203,7 +225,9 @@ with every stage's skeleton homeomorphism wherever that stage's skeleton reaches
 
 This is the bridge that will discharge `Schoenflies.HasAnchorCrosscuts`: the crosscut a stage
 produces between two anchors lies in that stage's skeleton, so `F` carries it to the target
-crosscut by the *finite* map, and `Schoenflies.image_sdiff_eq_of_eqOn` finishes. -/
+crosscut by the *finite* map, and `Schoenflies.image_sdiff_eq_of_eqOn` finishes.
+@isnad1 id=eq.2h6v.s9.a1bc93e4c836 from=translated src=- shape=78050de5 vocab=bafa1ddd
+-/
 theorem F_eq_skelHomeo {n : ℕ} {x : Plane} (hx : x ∈ (T.stage n).src.skeletonSet)
     (hxD : x ∈ C ∪ inside C) : T.limitTower.F x = (T.stage n).homeo.toFun x :=
   CellStructure.LimitTower.F_eq_skelHomeo hx hxD

@@ -26,6 +26,9 @@ namespace List.Encoding
 
 open MeasureTheory
 
+/--
+@isnad1 id=measurab.1h4v.s6.4f4a846c2b3a from=translated src=- shape=68b0a32b vocab=512b6ae8
+-/
 @[fun_prop]
 lemma measurable_fold
       {cons : A → B → B} (hcons : Measurable fun (x, y) ↦ cons x y) (nil : B)
@@ -61,10 +64,16 @@ namespace MeasureTheory.List
 instance instMeasurableSpaceListLeanPool : MeasurableSpace (List A) :=
   MeasurableSpace.comap List.Encoding.encode inferInstance
 
+/--
+@isnad1 id=measurab.0h1v.s5.8bf4db9d0fc0 from=translated src=- shape=e716c754 vocab=615e79e6
+-/
 @[fun_prop]
 lemma measurable_encode : Measurable (List.Encoding.encode (A := A)) := by
   apply comap_measurable
 
+/--
+@isnad1 id=iff.0h3v.s5.55b5daebe7fe from=translated src=- shape=8efedd9c vocab=615e79e6
+-/
 @[local simp]
 lemma measurable_to_encode
     (f : A → List B)
@@ -79,6 +88,9 @@ lemma measurable_to_encode
     rw [← hX]
     apply h hY
 
+/--
+@isnad1 id=measurab.1h4v.s6.3d3c3ed917d3 from=translated src=- shape=68b0a32b vocab=6720ad09
+-/
 @[fun_prop]
 lemma measurable_foldr
     {cons : A → B → B} (hcons : Measurable fun (x, xs) ↦ cons x xs) (nil : B)

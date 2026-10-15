@@ -120,7 +120,9 @@ walk into a path, which `Graph.IsIncWalk.isPath` does. -/
 
 /-- **The subdivision of a source segment is a path of the overlay.** This is
 `Schoenflies.SubdividesToPath`, the hypothesis `Schoenflies/SquareMeshFixed.lean` carries
-through all of its results, proved from `Schoenflies.exists_incWalk_insideEdges`. -/
+through all of its results, proved from `Schoenflies.exists_incWalk_insideEdges`.
+@isnad1 id=subdivid.3h2v.s4.a55d2c7be8fb from=translated src=- shape=fc7e99c3 vocab=0db0a77b
+-/
 theorem subdividesToPath_of_overlay {pieces : List Piece} {points : List Plane}
     (hnd : ∀ P ∈ pieces, P.Nondeg) (hEnds : EndsAreCut pieces points)
     (hMeets : MeetsAreCut pieces points) : SubdividesToPath pieces points := by
@@ -128,7 +130,9 @@ theorem subdividesToPath_of_overlay {pieces : List Piece} {points : List Plane}
   obtain ⟨W, hW, hinc⟩ := exists_incWalk_insideEdges hnd hEnds hMeets hP hPnd
   exact ⟨W, hinc.isPath, hW⟩
 
-/-- The mesh's own instance of `Schoenflies.SubdividesToPath`. -/
+/-- The mesh's own instance of `Schoenflies.SubdividesToPath`.
+@isnad1 id=subdivid.2h3v.s5.40280580b71c from=translated src=- shape=d155471a vocab=c2aa0c8a
+-/
 theorem meshSubdividesToPath {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ z ∈ fresh, z ∈ modelCurve) (anchors : List Plane) :
     SubdividesToPath (meshSegments N fresh) (meshPoints N fresh anchors) :=
@@ -137,7 +141,9 @@ theorem meshSubdividesToPath {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
 
 /-! ### The outer cycle, with no hypothesis -/
 
-/-- **Clause 3 as a cycle**, for `meshGraph`. -/
+/-- **Clause 3 as a cycle**, for `meshGraph`.
+@isnad1 id=ex.2h3v.s6.282b483334f2 from=translated src=- shape=44252d2c vocab=cbeae804
+-/
 theorem meshGraph_outer_cycle_of_mem_modelCurve {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ z ∈ fresh, z ∈ modelCurve) (anchors : List Plane) :
     ∃ (e : Piece) (u v x : Plane) (D : List Piece),
@@ -146,7 +152,9 @@ theorem meshGraph_outer_cycle_of_mem_modelCurve {N : ℕ} (hN : 2 ≤ N) {fresh 
         Graph.edgesCover segmentDrawing (e :: D) = modelCurve :=
   meshGraph_outer_cycle hN hfresh anchors (meshSubdividesToPath hN hfresh anchors)
 
-/-- **Clause 3 as a cycle**, for `squareMesh`. -/
+/-- **Clause 3 as a cycle**, for `squareMesh`.
+@isnad1 id=ex.1h3v.s6.4f73d5ab4a6a from=translated src=- shape=d2d4b575 vocab=0c4a1fce
+-/
 theorem squareMesh_outer_cycle {fresh : List Plane}
     (hfresh : ∀ z ∈ fresh, z ∈ modelCurve) (δ : ℝ) (anchors : List Plane) :
     ∃ (e : Piece) (u v x : Plane) (D : List Piece),
@@ -156,7 +164,9 @@ theorem squareMesh_outer_cycle {fresh : List Plane}
   squareMesh_outer_cycle_of_subdividesToPath hfresh δ anchors
     (meshSubdividesToPath (two_le_meshCount δ) hfresh anchors)
 
-/-- The mesh has a 2-connected outer-cycle subgraph. -/
+/-- The mesh has a 2-connected outer-cycle subgraph.
+@isnad1 id=ex.1h3v.s6.3448d7b6b83a from=translated src=- shape=25f18949 vocab=0365e1e9
+-/
 theorem exists_squareMesh_outerCycleGraph_isTwoConnected {fresh : List Plane}
     (hfresh : ∀ z ∈ fresh, z ∈ modelCurve) (δ : ℝ) (anchors : List Plane) :
     ∃ (e : Piece) (u : Plane) (D : List Piece),
@@ -204,6 +214,9 @@ noncomputable def outerCycleThird (δ : ℝ) (fresh anchors : List Plane) : Plan
 noncomputable def outerCycleDetour (δ : ℝ) (fresh anchors : List Plane) : List Piece :=
   (outerCycleData δ fresh anchors).2.2.2.2
 
+/--
+@isnad1 id=and.1h3v.s6.5877fb39871e from=translated src=- shape=9bff14a4 vocab=18cd1b6d
+-/
 theorem outerCycleData_spec {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     (δ : ℝ) (anchors : List Plane) :
     (squareMesh δ fresh anchors).IsLongCycle (outerCycleEdge δ fresh anchors)
@@ -225,7 +238,9 @@ theorem outerCycleData_spec {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z �
     using h.choose_spec
 
 /-- **Clause 3, as data.** The edge, the two ends, the third vertex and the detour form a long
-cycle of the mesh. -/
+cycle of the mesh.
+@isnad1 id=islongcy.1h3v.s5.5c68af21d630 from=translated src=- shape=f66b5466 vocab=61fecce4
+-/
 theorem squareMesh_isLongCycle_outerCycle {fresh : List Plane}
     (hfresh : ∀ z ∈ fresh, z ∈ modelCurve) (δ : ℝ) (anchors : List Plane) :
     (squareMesh δ fresh anchors).IsLongCycle (outerCycleEdge δ fresh anchors)
@@ -233,21 +248,27 @@ theorem squareMesh_isLongCycle_outerCycle {fresh : List Plane}
       (outerCycleDetour δ fresh anchors) (outerCycleThird δ fresh anchors) :=
   (outerCycleData_spec hfresh δ anchors).1
 
-/-- Every edge of the outer cycle lies on `S`. -/
+/-- Every edge of the outer cycle lies on `S`.
+@isnad1 id=le.2h4v.s5.4f5059854e39 from=translated src=- shape=90f8e78d vocab=2d40e966
+-/
 theorem squareMesh_outerCycle_subset_modelCurve {fresh : List Plane}
     (hfresh : ∀ z ∈ fresh, z ∈ modelCurve) (δ : ℝ) (anchors : List Plane) :
     ∀ Q ∈ outerCycleEdge δ fresh anchors :: outerCycleDetour δ fresh anchors,
       Q.seg ⊆ modelCurve :=
   (outerCycleData_spec hfresh δ anchors).2.1
 
-/-- The outer cycle occupies exactly `S`. -/
+/-- The outer cycle occupies exactly `S`.
+@isnad1 id=eq.1h3v.s5.91e3dc1f9c8d from=translated src=- shape=111bb717 vocab=fe2c282c
+-/
 theorem squareMesh_outerCycle_edgesCover {fresh : List Plane}
     (hfresh : ∀ z ∈ fresh, z ∈ modelCurve) (δ : ℝ) (anchors : List Plane) :
     Graph.edgesCover segmentDrawing
       (outerCycleEdge δ fresh anchors :: outerCycleDetour δ fresh anchors) = modelCurve :=
   (outerCycleData_spec hfresh δ anchors).2.2
 
-/-- The outer cycle, as a subgraph, is 2-connected. -/
+/-- The outer cycle, as a subgraph, is 2-connected.
+@isnad1 id=istwocon.1h3v.s5.94e5741ef615 from=translated src=- shape=54cc066d vocab=6c575eeb
+-/
 theorem squareMesh_outerCycleGraph_isTwoConnected {fresh : List Plane}
     (hfresh : ∀ z ∈ fresh, z ∈ modelCurve) (δ : ℝ) (anchors : List Plane) :
     ((squareMesh δ fresh anchors).cycleGraph (outerCycleStart δ fresh anchors)
@@ -273,60 +294,116 @@ def rsideB (r : ℝ) : Piece := (Plane.mk (-r) (-r), Plane.mk r (-r))
 /-- The right side of the ring of radius `r`, from south-east back to north-east. -/
 def rsideR (r : ℝ) : Piece := (Plane.mk r (-r), Plane.mk r r)
 
+/--
+@isnad1 id=eq.0h0v.s3.69842fc3d696 from=translated src=- shape=d3a93718 vocab=89316333
+-/
 theorem rsideT_one : rsideT 1 = sideT := rfl
+/--
+@isnad1 id=eq.0h0v.s3.7c4286dd24b3 from=translated src=- shape=d3a93718 vocab=64560cfa
+-/
 theorem rsideL_one : rsideL 1 = sideL := rfl
+/--
+@isnad1 id=eq.0h0v.s3.561e19721c33 from=translated src=- shape=d3a93718 vocab=71d81a17
+-/
 theorem rsideB_one : rsideB 1 = sideB := rfl
+/--
+@isnad1 id=eq.0h0v.s3.e5d7d0c89b77 from=translated src=- shape=d3a93718 vocab=256a3f97
+-/
 theorem rsideR_one : rsideR 1 = sideR := rfl
 
+/--
+@isnad1 id=mem.0h1v.s3.34f73b0060df from=translated src=- shape=b5ca9b95 vocab=5bab31e4
+-/
 theorem rsideT_mem_ringPieces (r : ℝ) : rsideT r ∈ ringPieces r := by
   simp [ringPieces, rsideT]
 
+/--
+@isnad1 id=mem.0h1v.s3.cf4dd447e412 from=translated src=- shape=b5ca9b95 vocab=e8e84d1f
+-/
 theorem rsideL_mem_ringPieces (r : ℝ) : rsideL r ∈ ringPieces r := by
   simp [ringPieces, rsideL]
 
+/--
+@isnad1 id=mem.0h1v.s3.06a181c34b13 from=translated src=- shape=b5ca9b95 vocab=be5c0fab
+-/
 theorem rsideB_mem_ringPieces (r : ℝ) : rsideB r ∈ ringPieces r := by
   simp [ringPieces, rsideB]
 
+/--
+@isnad1 id=mem.0h1v.s3.d8573b89101c from=translated src=- shape=b5ca9b95 vocab=f54146ca
+-/
 theorem rsideR_mem_ringPieces (r : ℝ) : rsideR r ∈ ringPieces r := by
   simp [ringPieces, rsideR]
 
+/--
+@isnad1 id=eq.1h2v.s6.e570f78e14c1 from=translated src=- shape=6aef90ab vocab=e0ceb2c2
+-/
 theorem mem_rsideT {r : ℝ} {x : Plane} (h : x ∈ (rsideT r).seg) : x 1 = r :=
   (mem_segment_horiz.1 h).1
 
+/--
+@isnad1 id=eq.1h2v.s6.20e2664211b5 from=translated src=- shape=e1b519ed vocab=4ed7ec5f
+-/
 theorem mem_rsideB {r : ℝ} {x : Plane} (h : x ∈ (rsideB r).seg) : x 1 = -r :=
   (mem_segment_horiz.1 h).1
 
+/--
+@isnad1 id=eq.1h2v.s6.6592f7b15473 from=translated src=- shape=e1b519ed vocab=daf81d98
+-/
 theorem mem_rsideL {r : ℝ} {x : Plane} (h : x ∈ (rsideL r).seg) : x 0 = -r :=
   (mem_segment_vert.1 h).1
 
+/--
+@isnad1 id=eq.1h2v.s6.690053ccb480 from=translated src=- shape=6aef90ab vocab=cd199545
+-/
 theorem mem_rsideR {r : ℝ} {x : Plane} (h : x ∈ (rsideR r).seg) : x 0 = r :=
   (mem_segment_vert.1 h).1
 
+/--
+@isnad1 id=eq.2h2v.s5.e28f448d2634 from=translated src=- shape=6b6feef4 vocab=881104b9
+-/
 theorem rsideT_inter_rsideL {r : ℝ} {x : Plane} (h : x ∈ (rsideT r).seg)
     (h' : x ∈ (rsideL r).seg) : x = Plane.mk (-r) r :=
   plane_eq_of_coords (by rw [mem_rsideL h', Plane.mk_zero]) (by rw [mem_rsideT h, Plane.mk_one])
 
+/--
+@isnad1 id=eq.2h2v.s5.398bddf31e30 from=translated src=- shape=3c5a65ac vocab=94e9f908
+-/
 theorem rsideL_inter_rsideB {r : ℝ} {x : Plane} (h : x ∈ (rsideL r).seg)
     (h' : x ∈ (rsideB r).seg) : x = Plane.mk (-r) (-r) :=
   plane_eq_of_coords (by rw [mem_rsideL h, Plane.mk_zero]) (by rw [mem_rsideB h', Plane.mk_one])
 
+/--
+@isnad1 id=eq.2h2v.s5.a7fd58e2ae38 from=translated src=- shape=3784359c vocab=731f0a6a
+-/
 theorem rsideB_inter_rsideR {r : ℝ} {x : Plane} (h : x ∈ (rsideB r).seg)
     (h' : x ∈ (rsideR r).seg) : x = Plane.mk r (-r) :=
   plane_eq_of_coords (by rw [mem_rsideR h', Plane.mk_zero]) (by rw [mem_rsideB h, Plane.mk_one])
 
+/--
+@isnad1 id=eq.2h2v.s5.87523ab29ea2 from=translated src=- shape=0ebe42c2 vocab=6f5f289e
+-/
 theorem rsideT_inter_rsideR {r : ℝ} {x : Plane} (h : x ∈ (rsideT r).seg)
     (h' : x ∈ (rsideR r).seg) : x = Plane.mk r r :=
   plane_eq_of_coords (by rw [mem_rsideR h', Plane.mk_zero]) (by rw [mem_rsideT h, Plane.mk_one])
 
+/--
+@isnad1 id=false.3h2v.s5.7d60b1681dcc from=translated src=- shape=585f50da vocab=dd34471e
+-/
 theorem rsideT_disjoint_rsideB {r : ℝ} (hr : 0 < r) {x : Plane} (h : x ∈ (rsideT r).seg)
     (h' : x ∈ (rsideB r).seg) : False := by
   have := (mem_rsideT h).symm.trans (mem_rsideB h'); linarith
 
+/--
+@isnad1 id=false.3h2v.s5.a9f99a597bd8 from=translated src=- shape=585f50da vocab=7e7ef53d
+-/
 theorem rsideL_disjoint_rsideR {r : ℝ} (hr : 0 < r) {x : Plane} (h : x ∈ (rsideL r).seg)
     (h' : x ∈ (rsideR r).seg) : False := by
   have := (mem_rsideL h).symm.trans (mem_rsideR h'); linarith
 
-/-- The four sides of the ring of radius `r` occupy that ring. -/
+/-- The four sides of the ring of radius `r` occupy that ring.
+@isnad1 id=eq.1h1v.s5.bc6d43acce02 from=translated src=- shape=d2e61482 vocab=6de3466a
+-/
 theorem rsides_cover {r : ℝ} (hr : 0 ≤ r) :
     (rsideT r).seg ∪ (rsideL r).seg ∪ (rsideB r).seg ∪ (rsideR r).seg = ringSet r := by
   rw [← cover_ringPieces hr]
@@ -335,6 +412,9 @@ theorem rsides_cover {r : ℝ} (hr : 0 ≤ r) :
   simp only [Set.mem_union]
   tauto
 
+/--
+@isnad1 id=le.2h2v.s5.af7a6865673d from=translated src=- shape=1c5abc02 vocab=16547165
+-/
 theorem rside_seg_subset_ringSet {r : ℝ} (hr : 0 ≤ r) {P : Piece}
     (h : P = rsideT r ∨ P = rsideL r ∨ P = rsideB r ∨ P = rsideR r) : P.seg ⊆ ringSet r := by
   rw [← rsides_cover hr]
@@ -342,7 +422,9 @@ theorem rside_seg_subset_ringSet {r : ℝ} (hr : 0 ≤ r) {P : Piece}
   exacts [fun x hx => Or.inl (Or.inl (Or.inl hx)), fun x hx => Or.inl (Or.inl (Or.inr hx)),
     fun x hx => Or.inl (Or.inr hx), fun x hx => Or.inr hx]
 
-/-- Every side of every ring of the mesh is a mesh segment. -/
+/-- Every side of every ring of the mesh is a mesh segment.
+@isnad1 id=mem.2h4v.s5.0d0efd04792b from=translated src=- shape=c963b156 vocab=dbbb6647
+-/
 theorem ring_ringPieces_mem {N : ℕ} {fresh : List Plane} {r : ℝ} (hr : r ∈ meshRadii N)
     {R : Piece} (hR : R ∈ ringPieces r) : R ∈ meshSegments N fresh :=
   mem_meshSegments.2 (Or.inl ⟨r, hr, hR⟩)
@@ -363,7 +445,9 @@ that ring.
 
 For `r = 1` this is `Schoenflies.meshGraph_outer_cycle`; the content added here is that the
 statement holds at every radius of `Schoenflies.meshRadii`, which is what the assembly of
-clause 5 of `prop:anchored-square-mesh` consumes. -/
+clause 5 of `prop:anchored-square-mesh` consumes.
+@isnad1 id=ex.3h4v.s6.7c82b16efbaa from=translated src=- shape=9f6b592c vocab=e94c6fe3
+-/
 theorem meshGraph_ring_cycle {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ z ∈ fresh, z ∈ modelCurve) (anchors : List Plane) {r : ℝ}
     (hr : r ∈ meshRadii N) :
@@ -568,12 +652,16 @@ with a name, `ringGraph`, a 2-connectivity proof, and the two membership lemmas 
 clause 5 needs, at no cost. -/
 
 /-- The four sides of the square of radius `r` about the origin are the four sides of the ring
-of radius `r`: the two lists are equal, entry for entry. -/
+of radius `r`: the two lists are equal, entry for entry.
+@isnad1 id=eq.0h1v.s6.21d254af0692 from=translated src=- shape=54941306 vocab=0d9a6a74
+-/
 theorem squarePieces_zero (r : ℝ) : squarePieces 0 r = ringPieces r := by
   simp [squarePieces, ringPieces, Plane.sqNE, Plane.sqNW, Plane.sqSW, Plane.sqSE]
 
 /-- The frontier of the closed square of radius `r` about the origin is the ring of radius
-`r`. -/
+`r`.
+@isnad1 id=eq.1h1v.s7.b5139d4058b9 from=translated src=- shape=3a5af797 vocab=39933849
+-/
 theorem frontier_closedSquare_zero {r : ℝ} (hr : 0 ≤ r) :
     frontier (Plane.closedSquare 0 r) = ringSet r := by
   rw [← cover_squarePieces 0 hr, squarePieces_zero, cover_ringPieces hr]
@@ -582,17 +670,24 @@ theorem frontier_closedSquare_zero {r : ℝ} (hr : 0 ≤ r) :
 noncomputable def ringGraph (N : ℕ) (fresh anchors : List Plane) (r : ℝ) : Graph Plane Piece :=
   squareGraph (meshSegments N fresh) (meshPoints N fresh anchors) 0 r
 
+/--
+@isnad1 id=le.0h4v.s5.223043eafd28 from=translated src=- shape=e61ab9b2 vocab=963c0879
+-/
 theorem ringGraph_le (N : ℕ) (fresh anchors : List Plane) (r : ℝ) :
     ringGraph N fresh anchors r ≤ meshGraph N fresh anchors :=
   squareGraph_le
 
-/-- The sides of the ring of radius `r` are mesh segments, for every radius the mesh uses. -/
+/-- The sides of the ring of radius `r` are mesh segments, for every radius the mesh uses.
+@isnad1 id=mem.2h4v.s6.f898ca1a9db6 from=translated src=- shape=b5283205 vocab=a593c1c4
+-/
 theorem squarePieces_zero_subset_meshSegments {N : ℕ} {fresh : List Plane} {r : ℝ}
     (hr : r ∈ meshRadii N) : ∀ P ∈ squarePieces 0 r, P ∈ meshSegments N fresh := by
   rw [squarePieces_zero]
   exact fun P hP => ring_ringPieces_mem hr hP
 
-/-- **Every ring of the mesh is a 2-connected subgraph.** -/
+/-- **Every ring of the mesh is a 2-connected subgraph.**
+@isnad1 id=istwocon.3h4v.s5.8ace0efb22b8 from=translated src=- shape=1b0bf139 vocab=93727ee6
+-/
 theorem ringGraph_isTwoConnected {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ z ∈ fresh, z ∈ modelCurve) (anchors : List Plane) {r : ℝ}
     (hr : r ∈ meshRadii N) : (ringGraph N fresh anchors r).IsTwoConnected :=
@@ -602,7 +697,9 @@ theorem ringGraph_isTwoConnected {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
 
 /-- **A cut point of the mesh lying on a ring is a vertex of that ring.** This is what makes the
 crossing points of the spokes with the rings usable as the shared vertices of
-`lem:union-two-connected`. -/
+`lem:union-two-connected`.
+@isnad1 id=mem.5h5v.s6.dfd2006ec0ef from=translated src=- shape=767691e8 vocab=c88fdf82
+-/
 theorem mem_vertexSet_ringGraph {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ z ∈ fresh, z ∈ modelCurve) {anchors : List Plane} {r : ℝ}
     (hr : r ∈ meshRadii N) {y : Plane} (hy : y ∈ meshPoints N fresh anchors)
@@ -621,6 +718,9 @@ meets the ring of radius `r` in the single point `r • z`; a singleton meet for
 the `MeetsAreCut` segment to be that point; and `mem_vertexSet_ringGraph` then makes it a
 vertex of the ring. -/
 
+/--
+@isnad1 id=le.2h2v.s5.1f7382097dcf from=translated src=- shape=f81d6e2f vocab=298c53aa
+-/
 theorem inv_le_of_mem_meshRadii {N : ℕ} (hN : 2 ≤ N) {r : ℝ} (hr : r ∈ meshRadii N) :
     ((N : ℝ)⁻¹) ≤ r := by
   obtain ⟨j, -, rfl⟩ := mem_meshRadii.1 hr
@@ -629,7 +729,9 @@ theorem inv_le_of_mem_meshRadii {N : ℕ} (hN : 2 ≤ N) {r : ℝ} (hr : r ∈ m
   have : (0 : ℝ) ≤ j := Nat.cast_nonneg j
   linarith
 
-/-- **A spoke meets a ring in exactly one point.** -/
+/-- **A spoke meets a ring in exactly one point.**
+@isnad1 id=eq.3h3v.s6.f8e3dcae5663 from=translated src=- shape=6369ff05 vocab=d68aef08
+-/
 theorem spokePiece_inter_ringSet {N : ℕ} (hN : 2 ≤ N) {z : Plane} (hz : z ∈ modelCurve)
     {r : ℝ} (hr : r ∈ meshRadii N) : (spokePiece N z).seg ∩ ringSet r = {r • z} := by
   have hrpos : 0 < r := meshRadii_pos hN hr
@@ -645,13 +747,18 @@ theorem spokePiece_inter_ringSet {N : ℕ} (hN : 2 ≤ N) {z : Plane} (hz : z �
     exact ⟨⟨r, ⟨inv_le_of_mem_meshRadii hN hr, meshRadii_le_one hN hr⟩, rfl⟩,
       supNorm_smul_of_mem_modelCurve hrpos.le hz⟩
 
+/--
+@isnad1 id=mem.2h2v.s6.e55ccaa0de8d from=translated src=- shape=11dd85c9 vocab=e6e485f1
+-/
 theorem smul_mem_ringSet {r : ℝ} (hr : 0 ≤ r) {z : Plane} (hz : z ∈ modelCurve) :
     r • z ∈ ringSet r := supNorm_smul_of_mem_modelCurve hr hz
 
 /-- **Every crossing point of a spoke with a ring is a cut point of the mesh.** The meet of the
 spoke with the side of the ring through the crossing point is the single point `r • z`, and
 `MeetsAreCut` returns a segment with both ends among the cut points; a segment equal to a
-singleton has both ends there. -/
+singleton has both ends there.
+@isnad1 id=mem.4h5v.s6.4fbbf7efaff6 from=translated src=- shape=4e9464bb vocab=72c9dd70
+-/
 theorem smul_mem_meshPoints {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ u ∈ fresh, u ∈ modelCurve) (anchors : List Plane) {z : Plane} (hz : z ∈ fresh)
     {r : ℝ} (hr : r ∈ meshRadii N) : r • z ∈ meshPoints N fresh anchors := by
@@ -685,14 +792,18 @@ theorem smul_mem_meshPoints {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
   have : u = r • z := hmeetsub (huv ▸ left_mem_segment ℝ u v)
   exact this ▸ hu
 
-/-- **The crossing point is a vertex of the ring it lies on.** -/
+/-- **The crossing point is a vertex of the ring it lies on.**
+@isnad1 id=mem.4h5v.s6.248c61d41b26 from=translated src=- shape=eca41fbe vocab=8a10e6b8
+-/
 theorem smul_mem_vertexSet_ringGraph {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ u ∈ fresh, u ∈ modelCurve) (anchors : List Plane) {z : Plane} (hz : z ∈ fresh)
     {r : ℝ} (hr : r ∈ meshRadii N) : r • z ∈ V(ringGraph N fresh anchors r) :=
   mem_vertexSet_ringGraph hN hfresh hr (smul_mem_meshPoints hN hfresh anchors hz hr)
     (smul_mem_ringSet (meshRadii_pos hN hr).le (hfresh z hz))
 
-/-- Two distinct fresh points have distinct crossing points on every ring. -/
+/-- Two distinct fresh points have distinct crossing points on every ring.
+@isnad1 id=ne.2h3v.s6.8532b41be9f1 from=translated src=- shape=359b5e28 vocab=54089815
+-/
 theorem smul_ne_smul {r : ℝ} (hr : r ≠ 0) {z w : Plane} (hzw : z ≠ w) : r • z ≠ r • w := by
   intro h
   exact hzw (smul_right_injective Plane hr h)
@@ -706,7 +817,9 @@ visits, which is what makes each ring attachable at two of them. -/
 
 /-- **A cut point lying on a source segment is a vertex of the path that subdivides it.** The
 edges of the path cover the segment, and a cut point is interior to no edge of an overlay, so
-it is an *end* of one of them. -/
+it is an *end* of one of them.
+@isnad1 id=mem.5h5v.s6.2405968f4c13 from=translated src=- shape=c77d3a67 vocab=20db9076
+-/
 theorem mem_walkVertices_of_mem_points {pieces : List Piece} {points : List Plane}
     (hnd : ∀ P ∈ pieces, P.Nondeg) {P : Piece} (hP : P ∈ pieces) {W : List Piece}
     (hW : ∀ Q, Q ∈ W ↔ (Q ∈ E(overlayGraph pieces points) ∧ Q.seg ⊆ P.seg))
@@ -735,6 +848,9 @@ noncomputable def spokeWalk (N : ℕ) (fresh anchors : List Plane) (z : Plane) :
         ∀ Q, Q ∈ W ↔ (Q ∈ E(meshGraph N fresh anchors) ∧ Q.seg ⊆ (spokePiece N z).seg)
     then h.choose else []
 
+/--
+@isnad1 id=and.3h4v.s7.78d7563f75bc from=translated src=- shape=6e617b1b vocab=a22f6d27
+-/
 theorem spokeWalk_spec {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ u ∈ fresh, u ∈ modelCurve) (anchors : List Plane) {z : Plane} (hz : z ∈ fresh) :
     (meshGraph N fresh anchors).IsPath z (spokeWalk N fresh anchors z) (((N : ℝ)⁻¹) • z) ∧
@@ -749,17 +865,25 @@ theorem spokeWalk_spec {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
   rw [spokeWalk, dite_eq_left h]
   exact h.choose_spec
 
+/--
+@isnad1 id=ispath.3h4v.s6.a28d22361cbc from=translated src=- shape=5d47dc76 vocab=239f4e37
+-/
 theorem spokeWalk_isPath {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ u ∈ fresh, u ∈ modelCurve) (anchors : List Plane) {z : Plane} (hz : z ∈ fresh) :
     (meshGraph N fresh anchors).IsPath z (spokeWalk N fresh anchors z) (((N : ℝ)⁻¹) • z) :=
   (spokeWalk_spec hN hfresh anchors hz).1
 
+/--
+@isnad1 id=le.4h5v.s6.e525b7eff450 from=translated src=- shape=6a1526c6 vocab=6e2715d7
+-/
 theorem spokeWalk_seg_subset {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ u ∈ fresh, u ∈ modelCurve) (anchors : List Plane) {z : Plane} (hz : z ∈ fresh)
     {Q : Piece} (hQ : Q ∈ spokeWalk N fresh anchors z) : Q.seg ⊆ (spokePiece N z).seg :=
   (((spokeWalk_spec hN hfresh anchors hz).2 Q).1 hQ).2
 
-/-- **Every crossing point on a spoke is a vertex the spoke's path visits.** -/
+/-- **Every crossing point on a spoke is a vertex the spoke's path visits.**
+@isnad1 id=mem.4h5v.s7.ac734b9cde1a from=translated src=- shape=c278d449 vocab=fcb47eef
+-/
 theorem smul_mem_walkVertices_spokeWalk {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ u ∈ fresh, u ∈ modelCurve) (anchors : List Plane) {z : Plane} (hz : z ∈ fresh)
     {r : ℝ} (hr : r ∈ meshRadii N) :
@@ -770,7 +894,9 @@ theorem smul_mem_walkVertices_spokeWalk {N : ℕ} (hN : 2 ≤ N) {fresh : List P
     (spokePiece_mem_meshSegments hz) (spokeWalk_spec hN hfresh anchors hz).2
     (smul_mem_meshPoints hN hfresh anchors hz hr) hmem
 
-/-- Every vertex the spoke's path visits lies on the spoke. -/
+/-- Every vertex the spoke's path visits lies on the spoke.
+@isnad1 id=mem.4h5v.s6.0d1d58b309c0 from=translated src=- shape=a405e926 vocab=bd9280d1
+-/
 theorem walkVertices_spokeWalk_subset {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ u ∈ fresh, u ∈ modelCurve) (anchors : List Plane) {z : Plane} (hz : z ∈ fresh)
     {x : Plane}
@@ -795,7 +921,9 @@ shares `r • z` and `r • w`, and every further spoke is an ear between the ou
 rings. -/
 
 /-- **Distinct spokes are disjoint** — the blueprint's *"two radial segments in the annulus can
-meet only if they lie on the same ray, and then their endpoints on `S` are equal"*. -/
+meet only if they lie on the same ray, and then their endpoints on `S` are equal"*.
+@isnad1 id=false.6h4v.s6.b9f91dbed60f from=translated src=- shape=15a0e8d2 vocab=64668274
+-/
 theorem spokePiece_disjoint {N : ℕ} (hN : 2 ≤ N) {z w : Plane} (hz : z ∈ modelCurve)
     (hw : w ∈ modelCurve) (hzw : z ≠ w) {x : Plane} (hxz : x ∈ (spokePiece N z).seg)
     (hxw : x ∈ (spokePiece N w).seg) : False := by
@@ -813,6 +941,9 @@ theorem spokePiece_disjoint {N : ℕ} (hN : 2 ≤ N) {z w : Plane} (hz : z ∈ m
   rw [show s = t from by rw [← h2, h1]] at hxs'
   exact hzw (smul_right_injective Plane (ne_of_gt htpos) (hxt'.trans hxs'.symm))
 
+/--
+@isnad1 id=le.2h5v.s5.fb74671ad86c from=translated src=- shape=32034e31 vocab=126fbf8d
+-/
 theorem ringGraph_edge_seg_subset {N : ℕ} {fresh anchors : List Plane} {r : ℝ} (hr : 0 ≤ r)
     {Q : Piece} (hQ : Q ∈ E(ringGraph N fresh anchors r)) : Q.seg ⊆ ringSet r := by
   rw [← frontier_closedSquare_zero hr]
@@ -826,6 +957,9 @@ noncomputable def ringArc (N : ℕ) (fresh anchors : List Plane) (r : ℝ) (a b 
     List Piece :=
   if h : ∃ P : List Piece, (ringGraph N fresh anchors r).IsPath a P b then h.choose else []
 
+/--
+@isnad1 id=ispath.5h6v.s6.4c1fb7ec3279 from=translated src=- shape=7456fdec vocab=3a03199e
+-/
 theorem ringArc_isPath {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ u ∈ fresh, u ∈ modelCurve) (anchors : List Plane) {r : ℝ}
     (hr : r ∈ meshRadii N) {a b : Plane} (ha : a ∈ V(ringGraph N fresh anchors r))
@@ -843,6 +977,9 @@ noncomputable def meshEar (N : ℕ) (fresh anchors : List Plane) (z w : Plane) :
     ringArc N fresh anchors ((N : ℝ)⁻¹) (((N : ℝ)⁻¹) • z) (((N : ℝ)⁻¹) • w) ++
     (spokeWalk N fresh anchors w).reverse
 
+/--
+@isnad1 id=ispath.5h5v.s6.4541ef5726b3 from=translated src=- shape=2a2cc756 vocab=e41b30a9
+-/
 theorem meshEar_isPath {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ u ∈ fresh, u ∈ modelCurve) (anchors : List Plane) {z w : Plane}
     (hz : z ∈ fresh) (hw : w ∈ fresh) (hzw : z ≠ w) :
@@ -911,12 +1048,17 @@ noncomputable def spokeGraph (N : ℕ) (fresh anchors : List Plane) (u : Plane) 
     Graph Plane Piece :=
   (meshGraph N fresh anchors).pathGraphOf u (spokeWalk N fresh anchors u)
 
+/--
+@isnad1 id=le.3h4v.s6.3db39a1f6490 from=translated src=- shape=4e1dbd96 vocab=8f1e3cb4
+-/
 theorem spokeGraph_le {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ u ∈ fresh, u ∈ modelCurve) (anchors : List Plane) {u : Plane} (hu : u ∈ fresh) :
     spokeGraph N fresh anchors u ≤ meshGraph N fresh anchors :=
   Graph.pathGraphOf_le (spokeWalk_isPath hN hfresh anchors hu).isWalk
 
-/-- A crossing point on a ring other than the outer one is not the fresh point itself. -/
+/-- A crossing point on a ring other than the outer one is not the fresh point itself.
+@isnad1 id=ne.4h3v.s6.b42620c2be96 from=translated src=- shape=4e89af5d vocab=83766fff
+-/
 theorem smul_ne_self {N : ℕ} (hN : 2 ≤ N) {u : Plane} (hu : u ∈ modelCurve) {r : ℝ}
     (hr : r ∈ meshRadii N) (hr1 : r ≠ 1) : r • u ≠ u := by
   intro h
@@ -926,7 +1068,9 @@ theorem smul_ne_self {N : ℕ} (hN : 2 ≤ N) {u : Plane} (hu : u ∈ modelCurve
   exact hr1 h1.symm
 
 /-- An inner crossing point is *covered* by the spoke's path — it is an end of one of its
-edges, not merely its source. -/
+edges, not merely its source.
+@isnad1 id=mem.5h5v.s7.7199c87fbf52 from=translated src=- shape=a4097339 vocab=763cfd85
+-/
 theorem smul_mem_coveredVertices_spokeWalk {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ x ∈ fresh, x ∈ modelCurve) (anchors : List Plane) {u : Plane} (hu : u ∈ fresh)
     {r : ℝ} (hr : r ∈ meshRadii N) (hr1 : r ≠ 1) :
@@ -943,6 +1087,9 @@ noncomputable def meshCore (N : ℕ) (fresh anchors : List Plane) (z w : Plane) 
       ((meshGraph N fresh anchors).pathGraphOf z (meshEar N fresh anchors z w))).union
     (ringGraph N fresh anchors ((N : ℝ)⁻¹))
 
+/--
+@isnad1 id=le.5h5v.s6.73c9357383c5 from=translated src=- shape=1b46fd91 vocab=cf5f2176
+-/
 theorem meshCore_le {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ u ∈ fresh, u ∈ modelCurve) (anchors : List Plane) {z w : Plane}
     (hz : z ∈ fresh) (hw : w ∈ fresh) (hzw : z ≠ w) :
@@ -952,14 +1099,18 @@ theorem meshCore_le {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
       (Graph.pathGraphOf_le (meshEar_isPath hN hfresh anchors hz hw hzw).isWalk))
     (ringGraph_le N fresh anchors _)
 
-/-- A fresh point is a vertex of the outer ring. -/
+/-- A fresh point is a vertex of the outer ring.
+@isnad1 id=mem.3h4v.s6.670d727d970f from=translated src=- shape=9a4e7213 vocab=661f2c7e
+-/
 theorem mem_vertexSet_ringGraph_one {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ u ∈ fresh, u ∈ modelCurve) (anchors : List Plane) {u : Plane} (hu : u ∈ fresh) :
     u ∈ V(ringGraph N fresh anchors 1) := by
   have := smul_mem_vertexSet_ringGraph hN hfresh anchors hu (one_mem_meshRadii hN)
   rwa [one_smul] at this
 
-/-- **The core is 2-connected.** -/
+/-- **The core is 2-connected.**
+@isnad1 id=istwocon.5h5v.s6.4472e3f917ce from=translated src=- shape=81533ee1 vocab=aeb4ef23
+-/
 theorem meshCore_isTwoConnected {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ u ∈ fresh, u ∈ modelCurve) (anchors : List Plane) {z w : Plane}
     (hz : z ∈ fresh) (hw : w ∈ fresh) (hzw : z ≠ w) :
@@ -997,7 +1148,9 @@ theorem meshCore_isTwoConnected {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
 
 /-! ### Adding every ring and every spoke -/
 
-/-- Both crossing points of a spoke lie on the ear, whichever ring they belong to. -/
+/-- Both crossing points of a spoke lie on the ear, whichever ring they belong to.
+@isnad1 id=and.6h6v.s7.5282886f3ac8 from=translated src=- shape=e80b5b1e vocab=399c4a03
+-/
 theorem smul_mem_walkVertices_meshEar {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ x ∈ fresh, x ∈ modelCurve) (anchors : List Plane) {z w : Plane}
     (hz : z ∈ fresh) (hw : w ∈ fresh) (hzw : z ≠ w) {r : ℝ} (hr : r ∈ meshRadii N) :
@@ -1027,18 +1180,27 @@ noncomputable def attachSpokes (N : ℕ) (fresh anchors : List Plane) (K : Graph
   | [] => K
   | u :: us => (attachSpokes N fresh anchors K us).union (spokeGraph N fresh anchors u)
 
+/--
+@isnad1 id=le.0h5v.s5.1d5952d227f8 from=translated src=- shape=92648ee7 vocab=361cd3d8
+-/
 theorem le_attachRings (N : ℕ) (fresh anchors : List Plane) (K : Graph Plane Piece)
     (l : List ℝ) : K ≤ attachRings N fresh anchors K l := by
   induction l with
   | nil => exact le_refl K
   | cons r rs ih => exact ih.trans (Graph.left_le_union _ _)
 
+/--
+@isnad1 id=le.0h5v.s5.853af338b11c from=translated src=- shape=0cd7743b vocab=ac7f8795
+-/
 theorem le_attachSpokes (N : ℕ) (fresh anchors : List Plane) (K : Graph Plane Piece)
     (l : List Plane) : K ≤ attachSpokes N fresh anchors K l := by
   induction l with
   | nil => exact le_refl K
   | cons u us ih => exact ih.trans (Graph.left_le_union _ _)
 
+/--
+@isnad1 id=le.1h5v.s5.8736fd38faad from=translated src=- shape=26be16a6 vocab=7ed586be
+-/
 theorem attachRings_le {N : ℕ} {fresh anchors : List Plane} {K : Graph Plane Piece}
     (hK : K ≤ meshGraph N fresh anchors) (l : List ℝ) :
     attachRings N fresh anchors K l ≤ meshGraph N fresh anchors := by
@@ -1046,6 +1208,9 @@ theorem attachRings_le {N : ℕ} {fresh anchors : List Plane} {K : Graph Plane P
   | nil => exact hK
   | cons r rs ih => exact Graph.union_le ih (ringGraph_le _ _ _ _)
 
+/--
+@isnad1 id=le.4h5v.s6.ced81d29cfd5 from=translated src=- shape=53034dca vocab=71f7742d
+-/
 theorem attachSpokes_le {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ x ∈ fresh, x ∈ modelCurve) {anchors : List Plane} {K : Graph Plane Piece}
     (hK : K ≤ meshGraph N fresh anchors) {l : List Plane} (hl : ∀ u ∈ l, u ∈ fresh) :
@@ -1056,6 +1221,9 @@ theorem attachSpokes_le {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     exact Graph.union_le (ih fun x hx => hl x (List.mem_cons_of_mem _ hx))
       (spokeGraph_le hN hfresh anchors (hl u List.mem_cons_self))
 
+/--
+@isnad1 id=le.2h6v.s6.957cae9db1f0 from=translated src=- shape=8264565d vocab=9e78967f
+-/
 theorem ringGraph_le_attachRings {N : ℕ} {fresh anchors : List Plane} {K : Graph Plane Piece}
     (hK : K ≤ meshGraph N fresh anchors) {l : List ℝ} {r : ℝ} (hr : r ∈ l) :
     ringGraph N fresh anchors r ≤ attachRings N fresh anchors K l := by
@@ -1067,6 +1235,9 @@ theorem ringGraph_le_attachRings {N : ℕ} {fresh anchors : List Plane} {K : Gra
         (ringGraph_le N fresh anchors r)).right_le_union
     · exact (ih h).trans (Graph.left_le_union _ _)
 
+/--
+@isnad1 id=le.5h6v.s6.37f560a5a7be from=translated src=- shape=b91e54b0 vocab=3c49ba48
+-/
 theorem spokeGraph_le_attachSpokes {N : ℕ} {fresh anchors : List Plane}
     {K : Graph Plane Piece} (hK : K ≤ meshGraph N fresh anchors) {l : List Plane} {u : Plane}
     (hN : 2 ≤ N) (hfresh : ∀ x ∈ fresh, x ∈ modelCurve) (hl : ∀ x ∈ l, x ∈ fresh)
@@ -1080,6 +1251,9 @@ theorem spokeGraph_le_attachSpokes {N : ℕ} {fresh anchors : List Plane}
         (spokeGraph_le hN hfresh anchors (hl u List.mem_cons_self))).right_le_union
     · exact (ih (fun x hx => hl x (List.mem_cons_of_mem _ hx)) h).trans (Graph.left_le_union _ _)
 
+/--
+@isnad1 id=istwocon.10h7v.s8.3ec83225e193 from=translated src=- shape=becb131c vocab=846a46f3
+-/
 theorem attachRings_isTwoConnected {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ x ∈ fresh, x ∈ modelCurve) {anchors : List Plane} {z w : Plane}
     (hz : z ∈ fresh) (hw : w ∈ fresh) (hzw : z ≠ w) {K : Graph Plane Piece}
@@ -1100,6 +1274,9 @@ theorem attachRings_isTwoConnected {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
       (hmono (hzK r hrm)) (smul_mem_vertexSet_ringGraph hN hfresh anchors hz hrm)
       (hmono (hwK r hrm)) (smul_mem_vertexSet_ringGraph hN hfresh anchors hw hrm)
 
+/--
+@isnad1 id=istwocon.7h5v.s7.069909d74b3f from=translated src=- shape=c2ba79dc vocab=da0902a6
+-/
 theorem attachSpokes_isTwoConnected {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ x ∈ fresh, x ∈ modelCurve) {anchors : List Plane} {K : Graph Plane Piece}
     (hK : K.IsTwoConnected) (hKle : K ≤ meshGraph N fresh anchors)
@@ -1128,6 +1305,9 @@ noncomputable def meshAssembly (N : ℕ) (fresh anchors : List Plane) (z w : Pla
   attachSpokes N fresh anchors
     (attachRings N fresh anchors (meshCore N fresh anchors z w) (meshRadii N)) fresh
 
+/--
+@isnad1 id=le.5h5v.s6.26ec099611d3 from=translated src=- shape=1b46fd91 vocab=f291d38a
+-/
 theorem meshAssembly_le {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ x ∈ fresh, x ∈ modelCurve) (anchors : List Plane) {z w : Plane}
     (hz : z ∈ fresh) (hw : w ∈ fresh) (hzw : z ≠ w) :
@@ -1135,6 +1315,9 @@ theorem meshAssembly_le {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
   attachSpokes_le hN hfresh
     (attachRings_le (meshCore_le hN hfresh anchors hz hw hzw) (meshRadii N)) fun _ hx => hx
 
+/--
+@isnad1 id=istwocon.5h5v.s6.ec12dfa2faf4 from=translated src=- shape=81533ee1 vocab=0e244a0d
+-/
 theorem meshAssembly_isTwoConnected {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ x ∈ fresh, x ∈ modelCurve) (anchors : List Plane) {z w : Plane}
     (hz : z ∈ fresh) (hw : w ∈ fresh) (hzw : z ≠ w) :
@@ -1157,7 +1340,9 @@ theorem meshAssembly_isTwoConnected {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane
 
 /-- **The assembly spans the mesh.** Every vertex of the mesh is an end of an edge, every edge
 lies inside a mesh segment, and a mesh segment is either a ring side — putting the vertex on
-that ring — or a spoke, putting it on that spoke's path. -/
+that ring — or a spoke, putting it on that spoke's path.
+@isnad1 id=le.5h5v.s6.159496025311 from=translated src=- shape=99b724a6 vocab=3ed43f8e
+-/
 theorem vertexSet_meshGraph_subset_meshAssembly {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ x ∈ fresh, x ∈ modelCurve) (anchors : List Plane) {z w : Plane}
     (hz : z ∈ fresh) (hw : w ∈ fresh) (hzw : z ≠ w) :
@@ -1190,7 +1375,9 @@ theorem vertexSet_meshGraph_subset_meshAssembly {N : ℕ} (hN : 2 ≤ N) {fresh 
 
 The hypothesis is *two distinct fresh points*, and it is exactly right:
 `Schoenflies.not_isTwoConnected_meshGraph_of_fresh_subsingleton` shows the conclusion is
-**false** with fewer. -/
+**false** with fewer.
+@isnad1 id=istwocon.5h5v.s6.1d64296ec51a from=translated src=- shape=d1e914b4 vocab=12cc689c
+-/
 theorem meshGraph_isTwoConnected {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ x ∈ fresh, x ∈ modelCurve) (anchors : List Plane) {z w : Plane}
     (hz : z ∈ fresh) (hw : w ∈ fresh) (hzw : z ≠ w) :
@@ -1204,7 +1391,9 @@ theorem meshGraph_isTwoConnected {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
 `Schoenflies.FreshDense fresh δ` alone does **not** suffice — `freshDense_not_isTwoConnected`
 is the counterexample — but `FreshDense` together with `δ < 4` does, because it forces two
 distinct fresh points (`Schoenflies.exists_two_distinct_fresh_of_freshDense`). The blueprint's
-caller uses `δ = ε_n = 2⁻ⁿ`, far below `4`. -/
+caller uses `δ = ε_n = 2⁻ⁿ`, far below `4`.
+@isnad1 id=istwocon.3h3v.s5.f4e35d592744 from=translated src=- shape=78626151 vocab=8a87fad3
+-/
 theorem squareMesh_isTwoConnected {fresh : List Plane} (hfresh : ∀ x ∈ fresh, x ∈ modelCurve)
     {δ : ℝ} (hdense : FreshDense fresh δ) (hδ : δ < 4) (anchors : List Plane) :
     (squareMesh δ fresh anchors).IsTwoConnected := by

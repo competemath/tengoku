@@ -51,7 +51,9 @@ Deleting a vertex `c`: every surviving vertex reaches an end of its own path
 (`Graph.IsPathGraph.reaches_an_end`).  If `c` is neither end, then `c` misses one of the two
 paths — they share only `u` and `v` — and that whole path still joins `u` to `v`, so `u` is a
 hub.  If `c` is an end, the branch reaching it is impossible (a deleted vertex is reached by
-nothing) and the other end is the hub. -/
+nothing) and the other end is the hub.
+@isnad1 id=istwocon.8h9v.s7.47d283ff9647 from=translated src=- shape=3844c463 vocab=1d579286
+-/
 theorem isTwoConnected_of_two_paths (hPK : P ≤ K) (hQK : Q ≤ K) (hV : V(K) ⊆ V(P) ∪ V(Q))
     (hP : P.IsPathGraph u W₁ v) (hQ : Q.IsPathGraph u W₂ v) (huv : u ≠ v)
     (hmeet : ∀ x ∈ V(P), x ∈ V(Q) → x = u ∨ x = v) (h3 : K.HasThreeVertices) :

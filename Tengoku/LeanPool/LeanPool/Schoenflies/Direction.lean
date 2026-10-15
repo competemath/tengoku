@@ -80,40 +80,62 @@ variable {u w d d₁ d₂ r₁ r₂ v : Plane} {r t s : ℝ}
 normalising to unit length gives a canonical representative of that ray. -/
 def IsDirection (u : Plane) : Prop := ‖u‖ = 1
 
+/--
+@isnad1 id=ne.1h1v.s6.1981e3a3bfed from=translated src=- shape=4f29f389 vocab=b55eb963
+-/
 theorem IsDirection.ne_zero (hu : IsDirection u) : u ≠ 0 := by
   intro h
   rw [IsDirection, h, norm_zero] at hu
   exact zero_ne_one hu
 
+/--
+@isnad1 id=eq.1h1v.s5.657f8053b64c from=translated src=- shape=f93b5971 vocab=f5f84f84
+-/
 theorem IsDirection.norm (hu : IsDirection u) : ‖u‖ = 1 := hu
 
 /-- The unit vector along a nonzero vector. -/
 noncomputable def dir (u : Plane) : Plane := ‖u‖⁻¹ • u
 
+/--
+@isnad1 id=isdirect.1h1v.s6.60d788998cd6 from=translated src=- shape=01e184dd vocab=45cc6dfe
+-/
 theorem isDirection_dir (hu : u ≠ 0) : IsDirection (dir u) := by
   have hpos : 0 < ‖u‖ := norm_pos_iff.2 hu
   rw [IsDirection, dir, norm_smul, Real.norm_eq_abs, abs_inv, abs_of_pos hpos,
     inv_mul_cancel₀ hpos.ne']
 
+/--
+@isnad1 id=ne.1h1v.s7.37de38dbb730 from=translated src=- shape=5aedd577 vocab=fea11d18
+-/
 theorem dir_ne_zero (hu : u ≠ 0) : dir u ≠ 0 := (isDirection_dir hu).ne_zero
 
 /-- `dir u` is a positive multiple of `u`, which is why every sign-of-`det` predicate is blind
-to the difference. -/
+to the difference.
+@isnad1 id=ex.1h1v.s7.a3322fc155f9 from=translated src=- shape=285da019 vocab=cdb9ab02
+-/
 theorem dir_eq_smul (hu : u ≠ 0) : ∃ c : ℝ, 0 < c ∧ dir u = c • u :=
   ⟨‖u‖⁻¹, inv_pos.2 (norm_pos_iff.2 hu), rfl⟩
 
 /-! ### Nonvanishing of `det` -/
 
+/--
+@isnad1 id=ne.1h2v.s6.69f0352b5135 from=translated src=- shape=fc9153e2 vocab=c4d9cafc
+-/
 theorem ne_zero_left_of_det_ne_zero (h : det u w ≠ 0) : u ≠ 0 := by
   rintro rfl
   exact h (by simp [det])
 
+/--
+@isnad1 id=ne.1h2v.s6.24539f4d05de from=translated src=- shape=a92e0da6 vocab=c4d9cafc
+-/
 theorem ne_zero_right_of_det_ne_zero (h : det u w ≠ 0) : w ≠ 0 := by
   rintro rfl
   exact h (by simp [det])
 
 /-- Two directions are neither equal nor opposite exactly when the orientation form does not
-kill them. This is the angle-free reading of "two distinct, non-opposite unit vectors". -/
+kill them. This is the angle-free reading of "two distinct, non-opposite unit vectors".
+@isnad1 id=iff.2h2v.s6.1b508bd95ab7 from=translated src=- shape=67ddf5fa vocab=5b9bfdcc
+-/
 theorem det_ne_zero_iff (hu : IsDirection u) (hw : IsDirection w) :
     det u w ≠ 0 ↔ w ≠ u ∧ w ≠ -u := by
   constructor
@@ -142,7 +164,9 @@ def arcCCW (u w : Plane) : Set Plane :=
 
 /-- Fix the orientation by `0 < det u w`, so that `w` is counterclockwise of `u` by less than a
 half turn. Then the arc counterclockwise from `u` to `w` is the *short* one, and membership is
-the conjunction of two sign conditions. -/
+the conjunction of two sign conditions.
+@isnad1 id=iff.1h3v.s5.988ce029bd58 from=translated src=- shape=37d1c98c vocab=61180e55
+-/
 theorem mem_arcCCW_iff (h : 0 < det u w) : d ∈ arcCCW u w ↔ 0 < det u d ∧ 0 < det d w := by
   have hwu : det w u < 0 := by rw [det_comm w u]; linarith
   refine ⟨?_, Or.inl⟩
@@ -153,7 +177,9 @@ theorem mem_arcCCW_iff (h : 0 < det u w) : d ∈ arcCCW u w ↔ 0 < det u d ∧ 
 
 /-- With the same orientation `0 < det u w`, the arc counterclockwise from `w` back to `u` is the
 *long* one — more than a half turn — and membership is a **disjunction**. This asymmetry is the
-whole content of the transfer fact: one sign suffices here, two are needed on the short arc. -/
+whole content of the transfer fact: one sign suffices here, two are needed on the short arc.
+@isnad1 id=iff.1h3v.s5.b0497f2e7d86 from=translated src=- shape=894305b2 vocab=61180e55
+-/
 theorem mem_arcCCW_rev_iff (h : 0 < det u w) :
     d ∈ arcCCW w u ↔ det u d < 0 ∨ det d w < 0 := by
   have e1 : det w d = -det d w := det_comm w d
@@ -167,7 +193,9 @@ theorem mem_arcCCW_rev_iff (h : 0 < det u w) :
     · exact Or.inr (Or.inl ⟨by rw [e2]; linarith, h⟩)
     · exact Or.inr (Or.inr ⟨h, by rw [e1]; linarith⟩)
 
-/-- The two arcs are disjoint. -/
+/-- The two arcs are disjoint.
+@isnad1 id=disjoint.1h2v.s5.6abca28fb469 from=translated src=- shape=4e4d9189 vocab=994c3a58
+-/
 theorem arcCCW_disjoint (h : 0 < det u w) : Disjoint (arcCCW u w) (arcCCW w u) := by
   rw [Set.disjoint_left]
   intro d hd hd'
@@ -176,20 +204,27 @@ theorem arcCCW_disjoint (h : 0 < det u w) : Disjoint (arcCCW u w) (arcCCW w u) :
   rcases hd' with h' | h' <;> linarith [hd.1, hd.2]
 
 /-- Every sign-of-`det` condition is blind to positive rescaling, so the arcs really are sets of
-*rays*, not of vectors. -/
+*rays*, not of vectors.
+@isnad1 id=iff.1h4v.s6.6898ff392fe0 from=translated src=- shape=159f636c vocab=785ef91a
+-/
 theorem smul_mem_arcCCW (hr : 0 < r) : r • d ∈ arcCCW u w ↔ d ∈ arcCCW u w := by
   have key : ∀ x : ℝ, 0 < r * x ↔ 0 < x := by
     intro x
     constructor <;> intro hx <;> nlinarith
   simp only [arcCCW, Set.mem_ofPred_eq, det_smul_left, det_smul_right, key]
 
+/--
+@isnad1 id=iff.1h3v.s6.343225b079ac from=translated src=- shape=29d30116 vocab=39ddd389
+-/
 theorem dir_mem_arcCCW_iff (hd : d ≠ 0) : dir d ∈ arcCCW u w ↔ d ∈ arcCCW u w := by
   obtain ⟨c, hc, hcd⟩ := dir_eq_smul hd
   rw [hcd, smul_mem_arcCCW hc]
 
 /-- The two rays and the two arcs exhaust the nonzero vectors. Together with
 `Plane.arcCCW_disjoint` this is the statement that two distinct, non-opposite directions bound
-two arcs. -/
+two arcs.
+@isnad1 id=or.2h3v.s7.20f012325edc from=translated src=- shape=5a1a610e vocab=396bb9d9
+-/
 theorem mem_ray_or_mem_arcCCW (h : 0 < det u w) (hd : d ≠ 0) :
     (∃ c : ℝ, 0 < c ∧ d = c • u) ∨ (∃ c : ℝ, 0 < c ∧ d = c • w) ∨
       d ∈ arcCCW u w ∨ d ∈ arcCCW w u := by
@@ -223,25 +258,33 @@ theorem mem_ray_or_mem_arcCCW (h : 0 < det u w) (hd : d ≠ 0) :
 /-! ### The transfer fact -/
 
 /-- A direction with **negative** `det` against `u` lies on the arc counterclockwise from `w`
-to `u`. No nearness hypothesis is needed. -/
+to `u`. No nearness hypothesis is needed.
+@isnad1 id=mem.2h3v.s5.56927af47aed from=translated src=- shape=0f15c51d vocab=61180e55
+-/
 theorem mem_arcCCW_rev_of_det_neg (h : 0 < det u w) (hd : det u d < 0) : d ∈ arcCCW w u :=
   (mem_arcCCW_rev_iff h).2 (Or.inl hd)
 
 /-- A direction with **positive** `det` against `w` lies on the arc counterclockwise from `w`
-to `u`. No nearness hypothesis is needed. -/
+to `u`. No nearness hypothesis is needed.
+@isnad1 id=mem.2h3v.s5.fe163802cc9d from=translated src=- shape=32f2ef3c vocab=61180e55
+-/
 theorem mem_arcCCW_rev_of_det_pos (h : 0 < det u w) (hd : 0 < det w d) : d ∈ arcCCW w u :=
   (mem_arcCCW_rev_iff h).2 (Or.inr (by rw [det_comm d w]; linarith))
 
 /-- **Appendix C, transfer.** A direction with negative `det` against the first ray lies on the
 same arc as a direction with positive `det` against the second: both lie on the arc traversed
-counterclockwise from the second ray to the first. -/
+counterclockwise from the second ray to the first.
+@isnad1 id=and.3h4v.s6.4ab2c8d34041 from=translated src=- shape=c7ef47af vocab=61180e55
+-/
 theorem same_arc_of_det_neg_of_det_pos (h : 0 < det u w) (h₁ : det u d₁ < 0) (h₂ : 0 < det w d₂) :
     d₁ ∈ arcCCW w u ∧ d₂ ∈ arcCCW w u :=
   ⟨mem_arcCCW_rev_of_det_neg h h₁, mem_arcCCW_rev_of_det_pos h h₂⟩
 
 /-- The mirror form, for the other pair of germs: a direction with positive `det` against `u`
 **and** negative `det` against `w` lies on the arc counterclockwise from `u` to `w`. Here both
-signs are genuinely needed; see the module note. -/
+signs are genuinely needed; see the module note.
+@isnad1 id=mem.3h3v.s5.aa097f8c721b from=translated src=- shape=369c1f73 vocab=61180e55
+-/
 theorem mem_arcCCW_of_det_pos_of_det_neg (h : 0 < det u w) (h₁ : 0 < det u d) (h₂ : det w d < 0) :
     d ∈ arcCCW u w :=
   (mem_arcCCW_iff h).2 ⟨h₁, by rw [det_comm d w]; linarith⟩
@@ -260,24 +303,33 @@ Then the four half-strip germs of Lemma 1.8 are, in the blueprint's own notation
 each with `t, s > 0`. The four computations below place them on the two arcs. -/
 
 /-- The orientation form of a germ against its own tangent sees only the transverse
-coefficient: this is the blueprint's `det(r₁, d) = -s` and `det(r₂, d) = s`. -/
+coefficient: this is the blueprint's `det(r₁, d) = -s` and `det(r₂, d) = s`.
+@isnad1 id=eq.0h3v.s7.6a24d8913b21 from=translated src=- shape=93fc4150 vocab=25f56888
+-/
 theorem det_germ_self (r : Plane) (t s : ℝ) :
     det r (t • r + s • perp r) = s * ‖r‖ ^ 2 := by
   rw [det_add_right, det_smul_right, det_smul_right, det_self, det_perp_self]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.cfe1e6c5076e from=translated src=- shape=47f8f6cb vocab=e6ced8b5
+-/
 theorem det_germ_self' (r : Plane) (t s : ℝ) :
     det (t • r + s • perp r) r = -(s * ‖r‖ ^ 2) := by
   rw [det_comm, det_germ_self]
 
 /-- The orientation form of a germ at `r₁` against the *other* ray. The inner-product term is
-what makes the transverse coefficient have to be small relative to the longitudinal one. -/
+what makes the transverse coefficient have to be small relative to the longitudinal one.
+@isnad1 id=eq.0h4v.s8.6e9606bae710 from=translated src=- shape=68699075 vocab=725b7b85
+-/
 theorem det_germ (r₁ r₂ : Plane) (t s : ℝ) :
     det (t • r₁ + s • perp r₁) r₂ = t * det r₁ r₂ - s * inner ℝ r₁ r₂ := by
   rw [det_add_left, det_smul_left, det_smul_left, det_perp_left]
   ring
 
-/-- The orientation form of a germ at `r₂` against the other ray. -/
+/-- The orientation form of a germ at `r₂` against the other ray.
+@isnad1 id=eq.0h4v.s8.c3df81106171 from=translated src=- shape=9a45be35 vocab=f94ee8f7
+-/
 theorem det_germ' (r₁ r₂ : Plane) (t s : ℝ) :
     det r₁ (t • r₂ + s • perp r₂) = t * det r₁ r₂ + s * inner ℝ r₁ r₂ := by
   rw [det_add_right, det_smul_right, det_smul_right, det_perp_right]
@@ -290,7 +342,9 @@ private theorem sq_norm_pos_right (h : 0 < det r₁ r₂) : 0 < ‖r₂‖ ^ 2 :
 
 /-- The **incoming left** germ lands on the arc counterclockwise from `r₂` to `r₁`, for *every*
 longitudinal coefficient `t`: this is the half of the vertex matching that costs nothing,
-because that arc is cut out by a disjunction. -/
+because that arc is cut out by a disjunction.
+@isnad1 id=mem.2h4v.s7.0ae98458f87f from=translated src=- shape=12f24e9d vocab=60568203
+-/
 theorem germ_mem_arcCCW_rev_of_left (h : 0 < det r₁ r₂) (hs : 0 < s) (t : ℝ) :
     t • r₁ - s • perp r₁ ∈ arcCCW r₂ r₁ := by
   refine mem_arcCCW_rev_of_det_neg h ?_
@@ -298,7 +352,9 @@ theorem germ_mem_arcCCW_rev_of_left (h : 0 < det r₁ r₂) (hs : 0 < s) (t : �
   rw [e, det_germ_self]
   nlinarith [sq_norm_pos_left h]
 
-/-- The **outgoing left** germ lands on the same arc, again for every `t`. -/
+/-- The **outgoing left** germ lands on the same arc, again for every `t`.
+@isnad1 id=mem.2h4v.s7.1fdc458dc974 from=translated src=- shape=1c503414 vocab=9be65ace
+-/
 theorem germ_mem_arcCCW_rev_of_right (h : 0 < det r₁ r₂) (hs : 0 < s) (t : ℝ) :
     t • r₂ + s • perp r₂ ∈ arcCCW r₂ r₁ := by
   refine mem_arcCCW_rev_of_det_pos h ?_
@@ -307,7 +363,9 @@ theorem germ_mem_arcCCW_rev_of_right (h : 0 < det r₁ r₂) (hs : 0 < s) (t : �
 
 /-- The **incoming right** germ lands on the arc counterclockwise from `r₁` to `r₂` provided the
 transverse coefficient is small enough against the longitudinal one. The inequality
-`s ⟪r₁, r₂⟫ < t det(r₁, r₂)` is exactly "`s/t` small", written without a division. -/
+`s ⟪r₁, r₂⟫ < t det(r₁, r₂)` is exactly "`s/t` small", written without a division.
+@isnad1 id=mem.3h4v.s8.26593b942970 from=translated src=- shape=141141ec vocab=e10fbc5c
+-/
 theorem germ_mem_arcCCW_of_left (h : 0 < det r₁ r₂) (hs : 0 < s)
     (hsmall : s * inner ℝ r₁ r₂ < t * det r₁ r₂) :
     t • r₁ + s • perp r₁ ∈ arcCCW r₁ r₂ := by
@@ -317,7 +375,9 @@ theorem germ_mem_arcCCW_of_left (h : 0 < det r₁ r₂) (hs : 0 < s)
   · rw [det_germ]
     linarith
 
-/-- The **outgoing right** germ lands on the same arc, under the same smallness condition. -/
+/-- The **outgoing right** germ lands on the same arc, under the same smallness condition.
+@isnad1 id=mem.3h4v.s8.da394358f31b from=translated src=- shape=3fee14b4 vocab=d227b9d5
+-/
 theorem germ_mem_arcCCW_of_right (h : 0 < det r₁ r₂) (hs : 0 < s)
     (hsmall : s * inner ℝ r₁ r₂ < t * det r₁ r₂) :
     t • r₂ - s • perp r₂ ∈ arcCCW r₁ r₂ := by
@@ -332,7 +392,9 @@ theorem germ_mem_arcCCW_of_right (h : 0 < det r₁ r₂) (hs : 0 < s)
 `t det(r₁, r₂)` — the two left germs lie on one arc and the two right germs on the other. No
 angle is named and no case distinction on the sense of the turn arises: the two cases of the
 turn are the two orders in which `r₁` and `r₂` may be presented, and `det_comm` exchanges
-them. -/
+them.
+@isnad1 id=and.3h4v.s9.bf5ba6bb0c1a from=translated src=- shape=1b6f768b vocab=dc0bfe1d
+-/
 theorem germs_split (h : 0 < det r₁ r₂) (hs : 0 < s)
     (hsmall : s * inner ℝ r₁ r₂ < t * det r₁ r₂) :
     (t • r₁ - s • perp r₁ ∈ arcCCW r₂ r₁ ∧ t • r₂ + s • perp r₂ ∈ arcCCW r₂ r₁) ∧
@@ -343,7 +405,9 @@ theorem germs_split (h : 0 < det r₁ r₂) (hs : 0 < s)
 /-- The quantitative form: there is a slope threshold below which the vertex matching holds.
 This is what "make the strips narrow enough that this side matching holds in every vertex disk"
 means in Lemma 1.8, and it is the one place where a size condition, rather than a bare sign of
-`det`, is unavoidable. -/
+`det`, is unavoidable.
+@isnad1 id=ex.1h2v.s9.92df3be064b9 from=translated src=- shape=67d3bc5e vocab=49aef6e1
+-/
 theorem exists_germ_threshold (h : 0 < det r₁ r₂) :
     ∃ ε > 0, ∀ t s : ℝ, 0 < t → 0 < s → s < ε * t →
       (t • r₁ - s • perp r₁ ∈ arcCCW r₂ r₁ ∧ t • r₂ + s • perp r₂ ∈ arcCCW r₂ r₁) ∧
@@ -376,7 +440,9 @@ private theorem det_mk_one (a : ℝ) (v : Plane) : det (mk 1 a) v = v 1 - a * v 
 
 /-- **Appendix C.** There is a unit vector not parallel to any of a prescribed finite set of
 nonzero vectors. This is what lets one rotate coordinates so that no edge of a finite polygonal
-figure is horizontal. -/
+figure is horizontal.
+@isnad1 id=ex.1h1v.s6.ee402a2f933f from=translated src=- shape=10c1bcfd vocab=2d88a379
+-/
 theorem exists_isDirection_det_ne_zero {S : Set Plane} (hS : S.Finite) :
     ∃ u : Plane, IsDirection u ∧ ∀ v ∈ S, v ≠ 0 → det u v ≠ 0 := by
   -- The parameters ruled out by `S` are the slopes of its members, hence at most as many as `S`.
@@ -403,7 +469,9 @@ theorem exists_isDirection_det_ne_zero {S : Set Plane} (hS : S.Finite) :
 
 /-- The same, dodging the perpendicular directions too: a unit vector `u` for which no member of
 a prescribed finite set of nonzero vectors is either parallel or perpendicular to `u`. In the
-rotated coordinates this says that no edge is horizontal and none is vertical. -/
+rotated coordinates this says that no edge is horizontal and none is vertical.
+@isnad1 id=ex.1h1v.s7.be7e86e46c6a from=translated src=- shape=2566709d vocab=ce53a2f6
+-/
 theorem exists_isDirection_det_and_inner_ne_zero {S : Set Plane} (hS : S.Finite) :
     ∃ u : Plane, IsDirection u ∧ ∀ v ∈ S, v ≠ 0 → det u v ≠ 0 ∧ inner ℝ u v ≠ 0 := by
   obtain ⟨u, hu, hdet⟩ := exists_isDirection_det_ne_zero (hS.union (hS.image perp))
@@ -420,16 +488,25 @@ theorem exists_isDirection_det_and_inner_ne_zero {S : Set Plane} (hS : S.Finite)
 Not needed by Lemma 1.8, which uses only the partition, but it justifies the word "open" in
 "two open arcs of directions". -/
 
+/--
+@isnad1 id=continuo.0h1v.s5.5ed43d666ff3 from=translated src=- shape=4827ab61 vocab=cd48db30
+-/
 theorem continuous_det_right (u : Plane) : Continuous fun d : Plane => det u d := by
   refine Continuous.sub (Continuous.mul continuous_const ?_) (Continuous.mul continuous_const ?_)
   · exact PiLp.continuous_apply _ _ 1
   · exact PiLp.continuous_apply _ _ 0
 
+/--
+@isnad1 id=continuo.0h1v.s5.4cebf165b20f from=translated src=- shape=a4c439d3 vocab=cd48db30
+-/
 theorem continuous_det_left (w : Plane) : Continuous fun d : Plane => det d w := by
   refine Continuous.sub (Continuous.mul ?_ continuous_const) (Continuous.mul ?_ continuous_const)
   · exact PiLp.continuous_apply _ _ 0
   · exact PiLp.continuous_apply _ _ 1
 
+/--
+@isnad1 id=isopen.0h2v.s5.0cb00084c5be from=translated src=- shape=80310a19 vocab=c7ffd392
+-/
 theorem isOpen_arcCCW (u w : Plane) : IsOpen (arcCCW u w) := by
   have h1 : IsOpen {d : Plane | 0 < det u d} := isOpen_lt continuous_const (continuous_det_right u)
   have h2 : IsOpen {d : Plane | 0 < det d w} := isOpen_lt continuous_const (continuous_det_left w)

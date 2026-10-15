@@ -86,7 +86,9 @@ variable {pieces : List Piece} {points : List Plane} {Ω : Set Plane} {a b x y :
 peels one off a list known only to be nonempty, so it needs the head as a term rather than as
 a pattern. -/
 
-/-- Prepending a vertex to a nonempty list adds the segment to its head. -/
+/-- Prepending a vertex to a nonempty list adds the segment to its head.
+@isnad1 id=eq.1h2v.s7.53db840475f8 from=translated src=- shape=298d8a4c vocab=0cae2dea
+-/
 theorem poly_cons_of_ne_nil {vs : List Plane} (h : vs ≠ []) (u : Plane) :
     poly (u :: vs) = segment ℝ u (vs.head h) ∪ poly vs := by
   match vs, h with
@@ -108,16 +110,27 @@ noncomputable def segsOf : List Plane → List Piece
   | [_] => []
   | u :: v :: rest => if u = v then segsOf (v :: rest) else (u, v) :: segsOf (v :: rest)
 
+/--
+@isnad1 id=eq.0h0v.s3.8799500b6cc0 from=translated src=- shape=1d803c6d vocab=10b63e59
+-/
 @[simp] theorem segsOf_nil : segsOf [] = [] := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.89432a3d54df from=translated src=- shape=54690142 vocab=ee69ab3c
+-/
 @[simp] theorem segsOf_singleton (v : Plane) : segsOf [v] = [] := rfl
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h3v.s7.1ff6c9ef4d94 from=translated src=- shape=a4e39fa9 vocab=1f8a298d
+-/
 theorem segsOf_cons_cons (u v : Plane) (rest : List Plane) :
     segsOf (u :: v :: rest) =
       if u = v then segsOf (v :: rest) else (u, v) :: segsOf (v :: rest) := rfl
 
-/-- Every segment produced is nondegenerate — which is the whole point of the definition. -/
+/-- Every segment produced is nondegenerate — which is the whole point of the definition.
+@isnad1 id=nondeg.1h2v.s4.645bf0dd5ede from=translated src=- shape=82f42dcb vocab=9176f287
+-/
 theorem segsOf_nondeg (vs : List Plane) : ∀ P ∈ segsOf vs, P.Nondeg := by
   classical
   induction vs with
@@ -135,7 +148,9 @@ theorem segsOf_nondeg (vs : List Plane) : ∀ P ∈ segsOf vs, P.Nondeg := by
         · exact ih P hP
 
 /-- The segments of a chain occupy the chain — unless the chain has collapsed to a point (or
-to nothing), in which case there are no segments at all. -/
+to nothing), in which case there are no segments at all.
+@isnad1 id=or.0h1v.s4.7d5c59dc84a7 from=translated src=- shape=58f13cf9 vocab=4e040372
+-/
 theorem cover_segsOf (vs : List Plane) :
     cover (segsOf vs) = poly vs ∨ (segsOf vs = [] ∧ (poly vs).Subsingleton) := by
   classical
@@ -168,7 +183,9 @@ theorem cover_segsOf (vs : List Plane) :
           rfl
 
 /-- When a chain carries two distinct points it has not collapsed, so its segments occupy
-exactly it. -/
+exactly it.
+@isnad1 id=eq.3h3v.s5.32de66916db8 from=translated src=- shape=89f7e1e3 vocab=481c2dc0
+-/
 theorem cover_segsOf_eq {vs : List Plane} (ha : a ∈ poly vs) (hb : b ∈ poly vs)
     (hab : a ≠ b) : cover (segsOf vs) = poly vs := by
   rcases cover_segsOf vs with h | ⟨-, h⟩
@@ -184,7 +201,9 @@ induction reads the vertex list off it. -/
 list**, running from the walk's source to its target.
 
 The list is returned rather than an unnamed polygonal set: the consumers of Lemma 1.1 that
-overlay the arc with something else need its vertices. -/
+overlay the arc with something else need its vertices.
+@isnad1 id=ex.2h5v.s6.d387cf58fc3f from=translated src=- shape=b6d4d2ba vocab=c77dace3
+-/
 theorem exists_poly_eq_edgesCover {u v : Plane} {W : List Piece}
     (hW : (overlayGraph pieces points).IsWalk u W v) (hne : W ≠ []) :
     ∃ vs : List Plane, ∃ h : vs ≠ [], vs.head h = u ∧ vs.getLast h = v ∧
@@ -214,7 +233,9 @@ theorem exists_poly_eq_edgesCover {u v : Plane} {W : List Piece}
 Nothing built so far relates the plane topology of the union to the walk relation of the
 graph. This is where they meet. -/
 
-/-- Both ends of an edge reach the same vertices. -/
+/-- Both ends of an edge reach the same vertices.
+@isnad1 id=iff.2h5v.s5.6bbc62443cca from=translated src=- shape=3fb057cb vocab=1b6883a5
+-/
 theorem overlayGraph_reaches_end {P : Piece} (hP : P ∈ overlayPieces pieces points)
     (hz : x = P.1 ∨ x = P.2) :
     (overlayGraph pieces points).Reaches a P.1 ↔ (overlayGraph pieces points).Reaches a x := by
@@ -226,7 +247,9 @@ theorem overlayGraph_reaches_end {P : Piece} (hP : P ∈ overlayPieces pieces po
       fun h => h.trans (Graph.Reaches.of_isLink hlink).symm⟩
 
 /-- A cut point on the union is a vertex: it lies on some edge, and a cut point is interior to
-no edge, so it is one of that edge's two ends. -/
+no edge, so it is one of that edge's two ends.
+@isnad1 id=mem.3h3v.s5.b94ae6335e90 from=translated src=- shape=d8ab657a vocab=c7329824
+-/
 theorem overlayGraph_mem_vertexSet_of_mem_cover (hnd : ∀ P ∈ pieces, P.Nondeg)
     (hxp : x ∈ points) (hx : x ∈ cover pieces) : x ∈ V(overlayGraph pieces points) := by
   rw [← overlayPieces_cover pieces points] at hx
@@ -245,7 +268,9 @@ The proof is a clopen argument in the plane. Split the edges into those whose en
 relation reaches from `a` and those it does not; each class carries a compact set, the two
 carried sets cover the union, and they are disjoint — a common point would, by the drawing
 condition, be a vertex incident with an edge of each class, and incidence is reachability.
-Preconnectedness then leaves the second class carrying nothing. -/
+Preconnectedness then leaves the second class carrying nothing.
+@isnad1 id=reaches.8h4v.s6.88f9d83f49e0 from=translated src=- shape=63173b84 vocab=9bddcb76
+-/
 theorem overlayGraph_reaches (hnd : ∀ P ∈ pieces, P.Nondeg)
     (hconn : IsPreconnected (cover pieces))
     (hEnds : EndsAreCut pieces points) (hMeets : MeetsAreCut pieces points)
@@ -332,7 +357,9 @@ connected, any two distinct points of it are joined inside it by a *simple* poly
 
 The arc is returned as a vertex list, not merely as a set: the consumers that overlay it with
 another polygonal object need its vertices, and an existential over sets would not give them
-back. -/
+back.
+@isnad1 id=ex.5h3v.s7.2fbbab0d4db3 from=translated src=- shape=8b903f60 vocab=a37daac2
+-/
 theorem exists_simple_poly_of_cover (hnd : ∀ P ∈ pieces, P.Nondeg)
     (hconn : IsPreconnected (cover pieces)) (hab : a ≠ b)
     (ha : a ∈ cover pieces) (hb : b ∈ cover pieces) :
@@ -367,7 +394,9 @@ theorem exists_simple_poly_of_cover (hnd : ∀ P ∈ pieces, P.Nondeg)
     exact Graph.edgesCover_subset_pointSet fun e he => hpath.edge_mem he
   · rw [hpoly]; exact harc
 
-/-- **Lemma 1.2**, for a set presented as a polygonal chain. -/
+/-- **Lemma 1.2**, for a set presented as a polygonal chain.
+@isnad1 id=ex.4h3v.s6.fe7f572126a8 from=translated src=- shape=7ce4ada5 vocab=cafe90ef
+-/
 theorem exists_simple_poly_of_poly {vs : List Plane} (hconn : IsPreconnected (poly vs))
     (hab : a ≠ b) (ha : a ∈ poly vs) (hb : b ∈ poly vs) :
     ∃ ws : List Plane, ∃ h : ws ≠ [], ws.head h = a ∧ ws.getLast h = b ∧
@@ -377,7 +406,9 @@ theorem exists_simple_poly_of_poly {vs : List Plane} (hconn : IsPreconnected (po
     (hcov ▸ ha) (hcov ▸ hb)
   rwa [hcov] at this
 
-/-- **Lemma 1.2**, for a set given only as polygonal. -/
+/-- **Lemma 1.2**, for a set given only as polygonal.
+@isnad1 id=ex.5h3v.s6.96c2e4bfc29a from=translated src=- shape=c1fec152 vocab=24d77d48
+-/
 theorem exists_simple_poly_of_isPolygonal {A : Set Plane} (hA : IsPolygonal A)
     (hconn : IsPreconnected A) (hab : a ≠ b) (ha : a ∈ A) (hb : b ∈ A) :
     ∃ ws : List Plane, ∃ h : ws ≠ [], ws.head h = a ∧ ws.getLast h = b ∧
@@ -393,7 +424,9 @@ to a single point, contributing no segment at all. A collapsed member is harmles
 point missing from the segments, it would be clopen in the union, which a connected set with
 more than one point does not tolerate. -/
 
-/-- Peeling the head off a union indexed by a list. -/
+/-- Peeling the head off a union indexed by a list.
+@isnad1 id=eq.0h4v.s6.39e4a9a1acfa from=translated src=- shape=b2999c9c vocab=0075e244
+-/
 theorem biUnion_list_cons {α : Type*} (f : α → Set Plane) (x : α) (l : List α) :
     (⋃ y ∈ x :: l, f y) = f x ∪ ⋃ y ∈ l, f y := by
   ext z
@@ -408,7 +441,9 @@ theorem biUnion_list_cons {α : Type*} (f : α → Set Plane) (x : α) (l : List
 
 /-- `Schoenflies.cover_flatMap`, over an arbitrary index list rather than a list of pieces.
 Belongs beside it in `Schoenflies/Subdivide.lean`; it is here because that module is on
-`main`. -/
+`main`.
+@isnad1 id=eq.0h3v.s5.bb65548bd071 from=translated src=- shape=5c66b48e vocab=dfcaf07f
+-/
 theorem cover_flatMap_list {α : Type*} (f : α → List Piece) (l : List α) :
     cover (l.flatMap f) = ⋃ x ∈ l, cover (f x) := by
   induction l with
@@ -417,7 +452,9 @@ theorem cover_flatMap_list {α : Type*} (f : α → List Piece) (l : List α) :
 
 /-- A preconnected set with two distinct points absorbs finitely many stray points: it cannot
 be a closed set together with finitely many extra points, since each extra point would be
-clopen in it. -/
+clopen in it.
+@isnad1 id=le.6h4v.s7.59e64903a899 from=translated src=- shape=32350089 vocab=3c33af52
+-/
 theorem subset_of_finite_diff {U C : Set Plane} (hU : IsPreconnected U) (hC : IsClosed C)
     (hfin : (U \ C).Finite) (ha : a ∈ U) (hb : b ∈ U) (hab : a ≠ b) : U ⊆ C := by
   intro z hz
@@ -438,7 +475,9 @@ theorem subset_of_finite_diff {U C : Set Plane} (hU : IsPreconnected U) (hC : Is
   exact hwD (hmemD w hwU hwz)
 
 /-- **Lemma 1.2 (finite polygonal unions).** A connected finite union of polygonal chains joins
-any two of its distinct points by a simple polygonal arc inside it. -/
+any two of its distinct points by a simple polygonal arc inside it.
+@isnad1 id=ex.4h3v.s8.de9f6ac0f6d7 from=translated src=- shape=d88f373c vocab=9b92d725
+-/
 theorem exists_simple_poly_of_biUnion {L : List (List Plane)}
     (hconn : IsPreconnected (⋃ vs ∈ L, poly vs)) (hab : a ≠ b)
     (ha : a ∈ ⋃ vs ∈ L, poly vs) (hb : b ∈ ⋃ vs ∈ L, poly vs) :
@@ -482,7 +521,9 @@ theorem exists_simple_poly_of_biUnion {L : List (List Plane)}
   have := exists_simple_poly_of_cover hnd (heq ▸ hconn) hab (heq ▸ ha) (heq ▸ hb)
   rwa [heq] at this
 
-/-- A list of polygonal sets is a list of polygonal chains. -/
+/-- A list of polygonal sets is a list of polygonal chains.
+@isnad1 id=ex.1h1v.s6.618a18ab52ed from=translated src=- shape=9ac508dd vocab=c77f92d6
+-/
 theorem exists_lists_of_isPolygonal : ∀ {L : List (Set Plane)}, (∀ A ∈ L, IsPolygonal A) →
     ∃ M : List (List Plane), (⋃ vs ∈ M, poly vs) = ⋃ A ∈ L, A
   | [], _ => ⟨[], by simp⟩
@@ -495,7 +536,9 @@ theorem exists_lists_of_isPolygonal : ∀ {L : List (Set Plane)}, (∀ A ∈ L, 
 
 /-- **Lemma 1.2 (finite polygonal unions)**, at the level of sets: if a connected set is the
 union of finitely many polygonal sets, any two of its distinct points are joined in it by a
-simple polygonal arc. -/
+simple polygonal arc.
+@isnad1 id=ex.5h3v.s8.d39a8984bf83 from=translated src=- shape=bcebff12 vocab=54aed896
+-/
 theorem exists_simple_poly_of_union {L : List (Set Plane)} (hL : ∀ A ∈ L, IsPolygonal A)
     (hconn : IsPreconnected (⋃ A ∈ L, A)) (hab : a ≠ b)
     (ha : a ∈ ⋃ A ∈ L, A) (hb : b ∈ ⋃ A ∈ L, A) :
@@ -509,7 +552,9 @@ theorem exists_simple_poly_of_union {L : List (Set Plane)} (hL : ∀ A ∈ L, Is
 joined in it by a *simple* polygonal arc.
 
 `Schoenflies.exists_poly_of_isPreconnected` supplies a polygonal path; Lemma 1.2 extracts a
-simple arc from its carrier. -/
+simple arc from its carrier.
+@isnad1 id=ex.5h3v.s7.6031aa389cd2 from=translated src=- shape=f7b13ded vocab=a2dbb65f
+-/
 theorem exists_simple_poly_of_isPreconnected (hΩ : IsOpen Ω) (hconn : IsPreconnected Ω)
     (hx : x ∈ Ω) (hy : y ∈ Ω) (hxy : x ≠ y) :
     ∃ vs : List Plane, ∃ h : vs ≠ [], vs.head h = x ∧ vs.getLast h = y ∧
@@ -522,7 +567,9 @@ theorem exists_simple_poly_of_isPreconnected (hΩ : IsOpen Ω) (hconn : IsPrecon
   exact ⟨vs, hvs, h1, h2, h3.trans hsub, h4⟩
 
 /-- **Lemma 1.1**, in set form: a simple polygonal arc inside the region between any two of
-its points. -/
+its points.
+@isnad1 id=ex.5h3v.s7.42b0eea1189b from=translated src=- shape=27195f43 vocab=02cd7b1f
+-/
 theorem exists_simple_arc_of_isPreconnected (hΩ : IsOpen Ω) (hconn : IsPreconnected Ω)
     (hx : x ∈ Ω) (hy : y ∈ Ω) (hxy : x ≠ y) :
     ∃ A ⊆ Ω, IsPolygonal A ∧ IsArcBetween A x y := by

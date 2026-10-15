@@ -85,7 +85,9 @@ two arcs meet only at `p` and `q`. It is a general fact about arcs and belongs i
 `Schoenflies/Curve.lean`; it is here because nothing on `main` states it. -/
 
 /-- An arc between two points is not just those two points: the midpoint parameter carries a
-third point of it, because the parametrisation is injective. -/
+third point of it, because the parametrisation is injective.
+@isnad1 id=not.1h3v.s5.6ebd22d7cac3 from=translated src=- shape=3dbdda7a vocab=48cd2b50
+-/
 theorem IsArcBetween.not_subset_pair (h : IsArcBetween A p q) : ¬ A ⊆ ({p, q} : Set Plane) := by
   obtain ⟨f, -, hi, rfl, rfl, rfl⟩ := h
   intro hsub
@@ -136,23 +138,35 @@ structure IsCutPair (C : Set Plane) (p q : Plane) (A₁ A₂ : Set Plane) : Prop
 namespace IsCutPair
 
 /-- Swapping the two arcs. Every conclusion of this module is proved for `A₁` and obtained for
-`A₂` by composing with this. -/
+`A₂` by composing with this.
+@isnad1 id=iscutpai.1h5v.s4.5fec56e748c2 from=translated src=- shape=98788042 vocab=8868fd70
+-/
 theorem symm (h : IsCutPair C p q A₁ A₂) : IsCutPair C p q A₂ A₁ :=
   ⟨h.snd, h.fst, by rw [union_comm]; exact h.union_eq, by rw [inter_comm]; exact h.inter_eq⟩
 
+/--
+@isnad1 id=le.1h5v.s4.9de6510d9f0d from=translated src=- shape=ab8be54c vocab=20065791
+-/
 theorem fst_subset (h : IsCutPair C p q A₁ A₂) : A₁ ⊆ C := by
   rw [← h.union_eq]; exact subset_union_left
 
+/--
+@isnad1 id=le.1h5v.s4.82ff4340541f from=translated src=- shape=f6dff847 vocab=20065791
+-/
 theorem snd_subset (h : IsCutPair C p q A₁ A₂) : A₂ ⊆ C := h.symm.fst_subset
 
-/-- The two arcs are distinct: they meet only at `p` and `q`, and neither is just `{p, q}`. -/
+/-- The two arcs are distinct: they meet only at `p` and `q`, and neither is just `{p, q}`.
+@isnad1 id=ne.1h5v.s4.4cfb1c6d93c4 from=translated src=- shape=3a7c2035 vocab=8868fd70
+-/
 theorem ne (h : IsCutPair C p q A₁ A₂) : A₁ ≠ A₂ :=
   arcs_ne h.inter_eq.subset h.fst.not_subset_pair
 
 end IsCutPair
 
 /-- Two distinct points of a Jordan curve cut it into a pair of arcs. This is
-`IsJordanCurve.two_arcs`, repackaged. -/
+`IsJordanCurve.two_arcs`, repackaged.
+@isnad1 id=ex.4h3v.s5.d2d1ea49db1b from=translated src=- shape=8b6d610e vocab=02a69eb3
+-/
 theorem exists_isCutPair (hC : IsJordanCurve C) (hp : p ∈ C) (hq : q ∈ C) (hpq : p ≠ q) :
     ∃ A₁ A₂, IsCutPair C p q A₁ A₂ := by
   obtain ⟨A, B, hA, hB, hcov, hmeet⟩ := hC.two_arcs hp hq hpq
@@ -165,14 +179,22 @@ inside the curve" into the hypotheses `Schoenflies.crosscut_cells` takes. -/
 
 namespace IsCrosscut
 
+/--
+@isnad1 id=not.1h4v.s4.37f64ae085fb from=translated src=- shape=e98e020d vocab=8194ebde
+-/
 theorem left_notMem_inside (h : IsCrosscut C P p q) : p ∉ inside C := fun hp =>
   inside_subset_compl hp h.left_mem
 
+/--
+@isnad1 id=not.1h4v.s4.8df28ebdaa20 from=translated src=- shape=0e74ac26 vocab=8194ebde
+-/
 theorem right_notMem_inside (h : IsCrosscut C P p q) : q ∉ inside C := fun hq =>
   inside_subset_compl hq h.right_mem
 
 /-- **The crosscut meets the curve exactly at its two endpoints.** Everything else on the
-crosscut is inside the curve, hence off it. -/
+crosscut is inside the curve, hence off it.
+@isnad1 id=eq.1h4v.s5.e937883310ea from=translated src=- shape=8d4b5be1 vocab=dd4e8028
+-/
 theorem inter_eq (h : IsCrosscut C P p q) : P ∩ C = {p, q} := by
   refine Subset.antisymm (fun z hz => ?_) (pair_subset ⟨h.arc.left_mem, h.left_mem⟩
     ⟨h.arc.right_mem, h.right_mem⟩)
@@ -180,7 +202,9 @@ theorem inter_eq (h : IsCrosscut C P p q) : P ∩ C = {p, q} := by
   exact inside_subset_compl (h.sdiff_subset ⟨hz.1, hzpq⟩) hz.2
 
 /-- **The crosscut misses the outside of the curve entirely**: its endpoints are on the curve
-and everything else is inside. This is the sentence the three-region half opens with. -/
+and everything else is inside. This is the sentence the three-region half opens with.
+@isnad1 id=disjoint.1h4v.s5.466f270ad4ce from=translated src=- shape=31dc5f1d vocab=921f4126
+-/
 theorem disjoint_outside (h : IsCrosscut C P p q) : Disjoint P (outside C) := by
   rw [disjoint_left]
   intro z hzP hzO
@@ -190,7 +214,9 @@ theorem disjoint_outside (h : IsCrosscut C P p q) : Disjoint P (outside C) := by
   · exact disjoint_left.1 disjoint_inside_outside (h.sdiff_subset ⟨hzP, hz⟩) hzO
 
 /-- `P ∩ C ⊆ A₁`: the crosscut meets the curve only in the two points that lie on *both* arcs.
-This is the hypothesis `hP₁` of `Schoenflies.crosscut_cells`. -/
+This is the hypothesis `hP₁` of `Schoenflies.crosscut_cells`.
+@isnad1 id=le.2h6v.s5.0191cebb2659 from=translated src=- shape=5c5ad126 vocab=e89bf6b5
+-/
 theorem inter_subset_arc (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) :
     P ∩ C ⊆ A₁ := by
   rw [h.inter_eq]
@@ -198,7 +224,9 @@ theorem inter_subset_arc (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A
 
 /-- `(A₁ ∪ P) ∩ C = A₁`: the curve `J₁` of the blueprint meets `C` exactly in the arc it was
 built from. This is what turns clause (c) of `Schoenflies.crosscut_cells` into the labelling
-lemma. -/
+lemma.
+@isnad1 id=eq.2h6v.s5.437d1b233048 from=translated src=- shape=974e18b8 vocab=85e40c21
+-/
 theorem arc_union_inter (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) :
     (A₁ ∪ P) ∩ C = A₁ := by
   refine Subset.antisymm ?_ fun z hz => ⟨Or.inl hz, hcut.fst_subset hz⟩
@@ -207,7 +235,9 @@ theorem arc_union_inter (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A�
   · exact h.inter_subset_arc hcut ⟨hz, hzC⟩
 
 /-- **`J₁ = A₁ ∪ P` is a Jordan curve.** The arc and the crosscut are two arcs from `p` to `q`
-meeting only at those two points. -/
+meeting only at those two points.
+@isnad1 id=isjordan.2h6v.s5.d3a3f83a8806 from=translated src=- shape=4406fbaf vocab=027b9e30
+-/
 theorem isJordanCurve_union (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) :
     IsJordanCurve (A₁ ∪ P) := by
   refine _root_.Schoenflies.isJordanCurve_union hcut.fst h.arc fun z hzA hzP => ?_
@@ -219,10 +249,16 @@ theorem isJordanCurve_union (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A�
 This is the paragraph of the blueprint proof that pins the roles of `Wᵢ` and `Vᵢ`:
 `Ω† = Ext(C)` is connected, unbounded and disjoint from `Jᵢ`, hence lies in `Ext(Jᵢ)`. -/
 
+/--
+@isnad1 id=issepara.2h4v.s4.f8fed3c444ec from=translated src=- shape=935fec72 vocab=33a62757
+-/
 theorem isSeparating_curve (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) : IsSeparating C :=
   hjordan C h.curve
 
+/--
+@isnad1 id=issepara.3h6v.s5.7898ef1890df from=translated src=- shape=792522ae vocab=e5afec52
+-/
 theorem isSeparating_union (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) : IsSeparating (A₁ ∪ P) :=
   hjordan _ (h.isJordanCurve_union hcut)
@@ -231,7 +267,9 @@ theorem isSeparating_union (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsS
 one component of the complement of `A ∪ P`; being unbounded, that component is unbounded, which
 is what `Schoenflies.outside` records.
 
-Stated for an arbitrary `A ⊆ C`, since that is all the argument uses. -/
+Stated for an arbitrary `A ⊆ C`, since that is all the argument uses.
+@isnad1 id=le.3h5v.s5.361a9da4c6fe from=translated src=- shape=5cdcaa14 vocab=b74a3317
+-/
 theorem outside_subset_outside_union
     (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hA : A ⊆ C) : outside C ⊆ outside (A ∪ P) := by
@@ -245,11 +283,15 @@ theorem outside_subset_outside_union
   exact hsep.isConnected_outside.isPreconnected.subset_connectedComponentIn hz hsub
 
 /-- The pair `(Ext(C), Int(C))` in the shape `Schoenflies.crosscut_cells` takes for `(Ω, Ω')`,
-with `Ω = Int(C)` the region the crosscut runs in. -/
+with `Ω = Int(C)` the region the crosscut runs in.
+@isnad1 id=isregion.0h1v.s3.14d1f7b4aa27 from=translated src=- shape=a5cce612 vocab=e2ddeff9
+-/
 theorem isRegionPair_curve (C : Set Plane) : IsRegionPair C (inside C) (outside C) :=
   Or.inl ⟨rfl, rfl⟩
 
-/-- The pair `(Wᵢ, Vᵢ) = (Ext(Jᵢ), Int(Jᵢ))`. -/
+/-- The pair `(Wᵢ, Vᵢ) = (Ext(Jᵢ), Int(Jᵢ))`.
+@isnad1 id=isregion.0h1v.s3.0a67cf24a3bd from=translated src=- shape=a5cce612 vocab=e2ddeff9
+-/
 theorem isRegionPair_union (J : Set Plane) : IsRegionPair J (outside J) (inside J) :=
   Or.inr ⟨rfl, rfl⟩
 
@@ -259,7 +301,9 @@ in `A₁`
 Three applications of `Schoenflies.crosscut_cells`, one clause each. Everything is stated for the
 arc `A₁`; `IsCutPair.symm` supplies the `A₂` instance. -/
 
-/-- **`Int(A₁ ∪ P) ⊆ Int(C) ∖ P`.** Clause (a) of `lem:crosscut-cells`, first half. -/
+/-- **`Int(A₁ ∪ P) ⊆ Int(C) ∖ P`.** Clause (a) of `lem:crosscut-cells`, first half.
+@isnad1 id=le.3h6v.s5.4adf4fba6939 from=translated src=- shape=6ed7e549 vocab=68b06304
+-/
 theorem side_subset (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) :
     inside (A₁ ∪ P) ⊆ inside C \ P :=
@@ -268,7 +312,9 @@ theorem side_subset (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparati
     (h.outside_subset_outside_union hjordan hcut.fst_subset) subset_union_right
 
 /-- **`Int(A₁ ∪ P)` is a connected component of `Int(C) ∖ P`.** Clause (a) of
-`lem:crosscut-cells`. -/
+`lem:crosscut-cells`.
+@isnad1 id=eq.4h7v.s6.8352008107dd from=translated src=- shape=8f03a2fa vocab=5a78f852
+-/
 theorem side_isComponent (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) :
     ∀ z ∈ inside (A₁ ∪ P), connectedComponentIn (inside C \ P) z = inside (A₁ ∪ P) :=
@@ -279,7 +325,9 @@ theorem side_isComponent (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSep
 
 /-- **The labelling lemma: the closure of the side meets `C` exactly in its own arc.** Clause
 (c) of `lem:crosscut-cells`. This is what makes `A ↦ inside (A ∪ P)` the correspondence
-`lem:crosscut-side-correspondence` asks for, and it is what distinguishes the two sides. -/
+`lem:crosscut-side-correspondence` asks for, and it is what distinguishes the two sides.
+@isnad1 id=eq.3h6v.s6.c28d9ba84da6 from=translated src=- shape=c4444dbd vocab=d9ba6436
+-/
 theorem closure_side_inter (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) :
     closure (inside (A₁ ∪ P)) ∩ C = A₁ := by
@@ -288,7 +336,9 @@ theorem closure_side_inter (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsS
     (h.outside_subset_outside_union hjordan hcut.fst_subset)]
   exact h.arc_union_inter hcut
 
-/-- **The two sides are distinct.** Equal sides would have equal closures, hence equal arcs. -/
+/-- **The two sides are distinct.** Equal sides would have equal closures, hence equal arcs.
+@isnad1 id=ne.3h6v.s5.ed30df8db647 from=translated src=- shape=7a98442e vocab=421af972
+-/
 theorem side_ne (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) :
     inside (A₁ ∪ P) ≠ inside (A₂ ∪ P) := by
@@ -298,37 +348,55 @@ theorem side_ne (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S
   rw [heq] at h₁
   exact hcut.ne (h₁.symm.trans h₂)
 
+/--
+@isnad1 id=nonempty.3h6v.s5.a5cdf6d1884d from=translated src=- shape=734eb5a7 vocab=0b1f1575
+-/
 theorem side_nonempty (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) : (inside (A₁ ∪ P)).Nonempty :=
   (h.isSeparating_union hjordan hcut).isConnected_inside.nonempty
 
+/--
+@isnad1 id=isopen.3h6v.s6.420069421d99 from=translated src=- shape=734eb5a7 vocab=2da77040
+-/
 theorem isOpen_side (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) : IsOpen (inside (A₁ ∪ P)) :=
   (h.isSeparating_union hjordan hcut).isOpen_inside
 
+/--
+@isnad1 id=isconnec.3h6v.s6.290a9424f590 from=translated src=- shape=734eb5a7 vocab=69bef5bd
+-/
 theorem isConnected_side (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) : IsConnected (inside (A₁ ∪ P)) :=
   (h.isSeparating_union hjordan hcut).isConnected_inside
 
+/--
+@isnad1 id=isbounde.3h6v.s6.e504ead805be from=translated src=- shape=734eb5a7 vocab=92cf0b22
+-/
 theorem isBounded_side (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) :
     IsBounded (inside (A₁ ∪ P)) :=
   (h.isSeparating_union hjordan hcut).isBounded_inside
 
-/-- **The boundary of the side is its own Jordan curve `A₁ ∪ P`.** -/
+/-- **The boundary of the side is its own Jordan curve `A₁ ∪ P`.**
+@isnad1 id=eq.3h6v.s6.969459ddef92 from=translated src=- shape=ee277be0 vocab=bd5ce123
+-/
 theorem frontier_side (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) :
     frontier (inside (A₁ ∪ P)) = A₁ ∪ P :=
   (h.isSeparating_union hjordan hcut).frontier_inside
 
 /-- The closure of the side is the side together with its boundary curve. Paired with
-`closure_side_inter` this is the form `lem:crosscut-side-correspondence` reads the closure in. -/
+`closure_side_inter` this is the form `lem:crosscut-side-correspondence` reads the closure in.
+@isnad1 id=eq.3h6v.s6.1912961bc3e0 from=translated src=- shape=40dcebab vocab=dd3ef6dc
+-/
 theorem closure_side (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) :
     closure (inside (A₁ ∪ P)) = inside (A₁ ∪ P) ∪ (A₁ ∪ P) :=
   (IsRegionOf.inside (A₁ ∪ P)).closure_eq (h.isSeparating_union hjordan hcut)
 
-/-- The two sides are disjoint: they are distinct components of the same set. -/
+/-- The two sides are disjoint: they are distinct components of the same set.
+@isnad1 id=disjoint.3h6v.s6.4823ec8f15ce from=translated src=- shape=7a98442e vocab=07276414
+-/
 theorem disjoint_sides (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) :
     Disjoint (inside (A₁ ∪ P)) (inside (A₂ ∪ P)) := by
@@ -344,7 +412,9 @@ theorem disjoint_sides (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSepar
 has just shown to be distinct components. -/
 
 /-- **Every component of `Int(C) ∖ P` is one of the two sides.** This is the "at most two"
-half, `lem:crosscut-at-most-two`, applied to the two components `lem:crosscut-cells` produced. -/
+half, `lem:crosscut-at-most-two`, applied to the two components `lem:crosscut-cells` produced.
+@isnad1 id=or.5h7v.s7.21e60ce2ca8a from=translated src=- shape=3b675f90 vocab=dd3f460d
+-/
 theorem components_eq (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂)
     (hcollars : HasArcCollars (inside C) P) :
@@ -367,7 +437,9 @@ theorem components_eq (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSepara
   · rw [hc₂] at hzz
     exact Or.inr (h.side_isComponent hjordan hcut.symm z hzz)
 
-/-- **`Int(C) ∖ P` is the disjoint union of the two sides.** -/
+/-- **`Int(C) ∖ P` is the disjoint union of the two sides.**
+@isnad1 id=eq.4h6v.s6.9bb5b89e1b98 from=translated src=- shape=3e0f9a48 vocab=92d91f29
+-/
 theorem inside_diff_eq (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂)
     (hcollars : HasArcCollars (inside C) P) :
@@ -387,7 +459,9 @@ exactly two components, namely `Int(A₁ ∪ P)` and `Int(A₂ ∪ P)`.
 cover, they are distinct, and every component is one of them. The last two clauses are the
 labelling `closure (inside (Aᵢ ∪ P)) ∩ C = Aᵢ`, which is what tells the two apart. Each clause
 is separately available as a lemma in the `Schoenflies.IsCrosscut` namespace; this bundle exists
-only so that the blueprint statement appears once, in one place. -/
+only so that the blueprint statement appears once, in one place.
+@isnad1 id=and.4h6v.s9.2a421e8acc20 from=translated src=- shape=039903b9 vocab=a93531a5
+-/
 theorem general_crosscut (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂)
     (hcollars : HasArcCollars (inside C) P) :
@@ -416,7 +490,9 @@ the three pieces is a component of the whole because its boundary misses it
 namespace IsCrosscut
 
 /-- `ℝ² ∖ (C ∪ P) = Ext(C) ⊔ (Int(C) ∖ P)`. The crosscut lies wholly in `C ∪ Int(C)`, so
-removing it from the complement of `C` costs the outside nothing. -/
+removing it from the complement of `C` costs the outside nothing.
+@isnad1 id=eq.1h4v.s5.678611f217aa from=translated src=- shape=d04f36d0 vocab=1ea3b4ca
+-/
 theorem compl_eq (h : IsCrosscut C P p q) : (C ∪ P)ᶜ = outside C ∪ (inside C \ P) := by
   refine Subset.antisymm (fun z hz => ?_) ?_
   · have hzC : z ∉ C := fun hzc => hz (Or.inl hzc)
@@ -431,16 +507,24 @@ theorem compl_eq (h : IsCrosscut C P p q) : (C ∪ P)ᶜ = outside C ∪ (inside
     · exact hzi.1 hzc
     · exact hzP hzp
 
-/-- `ℝ² ∖ (C ∪ P) = Ext(C) ⊔ Int(A₁ ∪ P) ⊔ Int(A₂ ∪ P)`: the three regions, as sets. -/
+/-- `ℝ² ∖ (C ∪ P) = Ext(C) ⊔ Int(A₁ ∪ P) ⊔ Int(A₂ ∪ P)`: the three regions, as sets.
+@isnad1 id=eq.4h6v.s6.365f8c4cc2ff from=translated src=- shape=b6772e0b vocab=af852fd5
+-/
 theorem compl_eq_three (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂)
     (hcollars : HasArcCollars (inside C) P) :
     (C ∪ P)ᶜ = outside C ∪ inside (A₁ ∪ P) ∪ inside (A₂ ∪ P) := by
   rw [h.compl_eq, h.inside_diff_eq hjordan hcut hcollars, union_assoc]
 
+/--
+@isnad1 id=le.1h4v.s5.5aac24b4e4ec from=translated src=- shape=ff4b130a vocab=7d794f4a
+-/
 theorem outside_subset_compl (h : IsCrosscut C P p q) : outside C ⊆ (C ∪ P)ᶜ := by
   rw [h.compl_eq]; exact subset_union_left
 
+/--
+@isnad1 id=le.3h6v.s5.fe2bef1948a4 from=translated src=- shape=42be2a96 vocab=1d70970a
+-/
 theorem side_subset_compl (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) :
     inside (A₁ ∪ P) ⊆ (C ∪ P)ᶜ := by
@@ -451,7 +535,9 @@ theorem side_subset_compl (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSe
   · exact hwP hwP'
 
 /-- **`Ext(C)` is a region of `ℝ² ∖ (C ∪ P)`.** Its boundary is `C`, which misses that open
-set; `lem:clopen-component` does the rest. -/
+set; `lem:clopen-component` does the rest.
+@isnad1 id=eq.3h5v.s6.a9d991d3d965 from=translated src=- shape=4da344df vocab=af4394cf
+-/
 theorem outside_isComponent (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) :
     ∀ z ∈ outside C, connectedComponentIn (C ∪ P)ᶜ z = outside C := by
@@ -463,7 +549,9 @@ theorem outside_isComponent (hjordan : ∀ S : Set Plane, IsJordanCurve S → Is
   exact eq_empty_iff_forall_notMem.2 fun w hw => hw.2 (Or.inl hw.1)
 
 /-- **`Int(A₁ ∪ P)` is a region of `ℝ² ∖ (C ∪ P)`.** Its boundary is `A₁ ∪ P ⊆ C ∪ P`, which
-misses that open set. -/
+misses that open set.
+@isnad1 id=eq.4h7v.s6.9d6b05dd9003 from=translated src=- shape=40c710a7 vocab=ded96065
+-/
 theorem side_isComponent_compl (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) :
     ∀ z ∈ inside (A₁ ∪ P), connectedComponentIn (C ∪ P)ᶜ z = inside (A₁ ∪ P) := by
@@ -477,7 +565,9 @@ theorem side_isComponent_compl (hjordan : ∀ S : Set Plane, IsJordanCurve S →
   · exact hw (Or.inl (hcut.fst_subset hwA))
   · exact hw (Or.inr hwP)
 
-/-- **Every region of `ℝ² ∖ (C ∪ P)` is one of the three.** -/
+/-- **Every region of `ℝ² ∖ (C ∪ P)` is one of the three.**
+@isnad1 id=or.5h7v.s8.596a0029335f from=translated src=- shape=f21666a9 vocab=ee9988c9
+-/
 theorem three_regions (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂)
     (hcollars : HasArcCollars (inside C) P) :
@@ -491,7 +581,9 @@ theorem three_regions (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSepara
   · exact Or.inr (Or.inl (h.side_isComponent_compl hjordan hcut z hz))
   · exact Or.inr (Or.inr (h.side_isComponent_compl hjordan hcut.symm z hz))
 
-/-- The outside of `C` is disjoint from either side, since the sides lie inside `C`. -/
+/-- The outside of `C` is disjoint from either side, since the sides lie inside `C`.
+@isnad1 id=disjoint.3h6v.s6.2f9a2b9f150a from=translated src=- shape=987f5c88 vocab=a4db750a
+-/
 theorem disjoint_outside_side (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) :
     Disjoint (outside C) (inside (A₁ ∪ P)) := by
@@ -499,7 +591,9 @@ theorem disjoint_outside_side (hjordan : ∀ S : Set Plane, IsJordanCurve S → 
   intro w hw hw'
   exact disjoint_left.1 disjoint_inside_outside (h.side_subset hjordan hcut hw').1 hw
 
-/-- The outside of `C` is not a side: it is unbounded and every side is bounded. -/
+/-- The outside of `C` is not a side: it is unbounded and every side is bounded.
+@isnad1 id=ne.3h6v.s5.fe411371d47d from=translated src=- shape=987f5c88 vocab=a073b971
+-/
 theorem outside_ne_side (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) :
     outside C ≠ inside (A₁ ∪ P) := by
@@ -515,7 +609,9 @@ precisely three regions, whose boundaries are `C`, `A₁ ∪ P` and `A₂ ∪ P`
 The three are named: `Ext(C)`, `Int(A₁ ∪ P)`, `Int(A₂ ∪ P)`. They cover, they are pairwise
 disjoint and pairwise distinct, each is a component, every component is one of them, and the
 three boundaries are as stated. "Pairwise distinct" is what makes this *three* regions and not
-fewer; it is not a consequence of the covering, so it is a clause here. -/
+fewer; it is not a consequence of the covering, so it is a clause here.
+@isnad1 id=and.4h6v.s9.1e07110721a0 from=translated src=- shape=828b55fd vocab=0fab2ad3
+-/
 theorem general_crosscut_three_regions
     (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂)

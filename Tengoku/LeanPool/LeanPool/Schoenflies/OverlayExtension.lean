@@ -36,7 +36,9 @@ variable {β δ κ : Type*}
   {K : Graph Plane κ} {Kdraw : κ → ℝ → Plane}
 
 /-- Plane subdivision extensions compose.  At a point of an old edge away from final vertices,
-the intermediate carrier supplies an intermediate edge; both absorption clauses then apply. -/
+the intermediate carrier supplies an intermediate edge; both absorption clauses then apply.
+@isnad1 id=isplanes.2h9v.s5.a6d19aac6ded from=translated src=- shape=e25cd0cf vocab=f8618a9d
+-/
 theorem trans (hGH : IsPlaneSubdivisionExtension G Gdraw H Hdraw)
     (hHK : IsPlaneSubdivisionExtension H Hdraw K Kdraw) :
     IsPlaneSubdivisionExtension G Gdraw K Kdraw where
@@ -63,6 +65,9 @@ end IsPlaneSubdivisionExtension
 noncomputable def currentOverlayPieces (pieces : List Piece) (extra : List Plane) : List Piece :=
   (attachGraph pieces extra).edgeFinset.toList
 
+/--
+@isnad1 id=iff.0h3v.s5.d7fa1bbb77f3 from=translated src=- shape=95d018a9 vocab=e86c6d48
+-/
 @[simp] theorem mem_currentOverlayPieces {pieces : List Piece} {extra : List Plane} {R : Piece} :
     R ∈ currentOverlayPieces pieces extra ↔ R ∈ E(attachGraph pieces extra) := by
   rw [currentOverlayPieces, Finset.mem_toList, Graph.mem_edgeFinset]
@@ -79,10 +84,15 @@ noncomputable def extendOverlay
   attachGraph (extendedOverlayPieces pieces extra joins)
     (attachGraph pieces extra).vertexFinset.toList
 
+/--
+@isnad1 id=finite.0h3v.s4.6a527c1cc08d from=translated src=- shape=308a4fcd vocab=30dca16c
+-/
 instance extendOverlay_finite (pieces : List Piece) (extra : List Plane) (joins : List Piece) :
     (extendOverlay pieces extra joins).Finite := attachGraph_finite _ _
 
-/-- Every current overlay edge is nondegenerate. -/
+/-- Every current overlay edge is nondegenerate.
+@isnad1 id=nondeg.2h3v.s5.80c920d6e08e from=translated src=- shape=05cba940 vocab=9be3c94f
+-/
 theorem currentOverlayPieces_nondeg {pieces : List Piece} {extra : List Plane}
     (hpieces : ∀ R ∈ pieces, R.Nondeg) :
     ∀ R ∈ currentOverlayPieces pieces extra, R.Nondeg := by
@@ -91,7 +101,9 @@ theorem currentOverlayPieces_nondeg {pieces : List Piece} {extra : List Plane}
   change R ∈ overlayPieces pieces (attachPoints pieces extra) at hRedge
   exact overlayPieces_nondeg _ hpieces R hRedge
 
-/-- The edge list of the current overlay has exactly the current overlay's carrier. -/
+/-- The edge list of the current overlay has exactly the current overlay's carrier.
+@isnad1 id=eq.0h2v.s4.d1c9c70fbc4a from=translated src=- shape=39117f16 vocab=3a9a5c41
+-/
 theorem cover_currentOverlayPieces (pieces : List Piece) (extra : List Plane) :
     cover (currentOverlayPieces pieces extra) =
       Graph.pointSet (attachGraph pieces extra) segmentDrawing := by
@@ -114,7 +126,9 @@ theorem cover_currentOverlayPieces (pieces : List Piece) (extra : List Plane) :
       exact mem_cover_iff.2 ⟨R, mem_currentOverlayPieces.2 hR, by
         rwa [edgeArc_segmentDrawing] at hxR⟩
 
-/-- The extended overlay occupies exactly the old carrier together with the joining carrier. -/
+/-- The extended overlay occupies exactly the old carrier together with the joining carrier.
+@isnad1 id=eq.0h3v.s5.4cd784373c0f from=translated src=- shape=d4c878f9 vocab=7e99422c
+-/
 theorem extendOverlay_pointSet
     (pieces : List Piece) (extra : List Plane) (joins : List Piece) :
     Graph.pointSet (extendOverlay pieces extra joins) segmentDrawing =
@@ -122,7 +136,9 @@ theorem extendOverlay_pointSet
   rw [extendOverlay, attachGraph_pointSet, extendedOverlayPieces, cover_append,
     cover_currentOverlayPieces]
 
-/-- The extended overlay is a finite straight-line plane graph. -/
+/-- The extended overlay is a finite straight-line plane graph.
+@isnad1 id=isdrawin.2h3v.s5.58f2046b930a from=translated src=- shape=cf9c0d08 vocab=8ff58241
+-/
 theorem extendOverlay_isDrawing
     {pieces : List Piece} {extra : List Plane} {joins : List Piece}
     (hpieces : ∀ R ∈ pieces, R.Nondeg) (hjoins : ∀ R ∈ joins, R.Nondeg) :
@@ -133,7 +149,9 @@ theorem extendOverlay_isDrawing
   · exact currentOverlayPieces_nondeg hpieces R hR
   · exact hjoins R hR
 
-/-- Every old overlay vertex is retained by the extended overlay. -/
+/-- Every old overlay vertex is retained by the extended overlay.
+@isnad1 id=le.2h3v.s5.971171ae9fbe from=translated src=- shape=9160aec8 vocab=8477d666
+-/
 theorem attachGraphVertices_subset_extendOverlay
     {pieces : List Piece} {extra : List Plane} {joins : List Piece}
     (hpieces : ∀ R ∈ pieces, R.Nondeg) (hjoins : ∀ R ∈ joins, R.Nondeg) :
@@ -154,7 +172,9 @@ theorem attachGraphVertices_subset_extendOverlay
     exact Or.inl (Graph.vertexSet_subset_pointSet hx)
 
 /-- A new overlay edge meeting an old straight edge away from new vertices is one of its
-subdivision pieces. -/
+subdivision pieces.
+@isnad1 id=le.5h5v.s6.2c3fb7e29560 from=translated src=- shape=5f4b44af vocab=f827723c
+-/
 theorem extendOverlay_edge_subset
     {pieces : List Piece} {extra : List Plane} {joins : List Piece}
     (hpieces : ∀ R ∈ pieces, R.Nondeg) (hjoins : ∀ R ∈ joins, R.Nondeg) :
@@ -181,7 +201,9 @@ theorem extendOverlay_edge_subset
   exact hR'A
 
 /-- Every edge of the extended overlay is cut either from a current overlay edge or from one
-of the newly appended pieces. -/
+of the newly appended pieces.
+@isnad1 id=or.1h4v.s6.8fa3869e772f from=translated src=- shape=261c3eaa vocab=29b37399
+-/
 theorem extendOverlay_edge_source
     {pieces : List Piece} {extra : List Plane} {joins : List Piece}
     {R : Piece} (hR : R ∈ E(extendOverlay pieces extra joins)) :
@@ -198,7 +220,9 @@ theorem extendOverlay_edge_source
   · exact Or.inr ⟨A, hA, hsub⟩
 
 /-- Re-overlaying after adjoining joining pieces is a plane subdivision extension of the
-current straight overlay. -/
+current straight overlay.
+@isnad1 id=isplanes.2h3v.s5.194558d65a7b from=translated src=- shape=43876da1 vocab=f85b1635
+-/
 theorem attachGraph_isPlaneSubdivisionExtension_extendOverlay
     {pieces : List Piece} {extra : List Plane} {joins : List Piece}
     (hpieces : ∀ R ∈ pieces, R.Nondeg) (hjoins : ∀ R ∈ joins, R.Nondeg) :
@@ -216,7 +240,9 @@ theorem attachGraph_isPlaneSubdivisionExtension_extendOverlay
     exact extendOverlay_edge_subset hpieces hjoins hA hR hmeet
 
 /-- In particular, a 2-connected current overlay remains 2-connected on its exact traced
-carrier after adjoining and subdividing the joining pieces. -/
+carrier after adjoining and subdividing the joining pieces.
+@isnad1 id=istwocon.3h3v.s5.452e4ee2be94 from=translated src=- shape=79a94616 vocab=d297987a
+-/
 theorem attachGraphTrace_isTwoConnected_extendOverlay
     {pieces : List Piece} {extra : List Plane} {joins : List Piece}
     (hpieces : ∀ R ∈ pieces, R.Nondeg) (hjoins : ∀ R ∈ joins, R.Nondeg)

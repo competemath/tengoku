@@ -42,7 +42,9 @@ private theorem gcd_seq_add_mul {a : ℕ → R} (hdvd : ∀ m j, a m ∣ a (m + 
     rw [← gcd_seq_add_mul hdvd m n k, add_mul, ← add_assoc, one_mul, gcd_seq_add hdvd]
 
 /-- If `a 0 = 0` and `a m ∣ a (m + j) - a j` for all `m, j` (the *translation congruence*), then
-`a` is a strong divisibility sequence: `gcd (a m) (a n) = normalize (a (gcd m n))`. -/
+`a` is a strong divisibility sequence: `gcd (a m) (a n) = normalize (a (gcd m n))`.
+@isnad1 id=eq.2h4v.s7.ecf6ca90a756 from=translated src=- shape=95e8855d vocab=2f9ef5d0
+-/
 theorem gcd_eq_normalize_of_dvd_sub {a : ℕ → R} (h0 : a 0 = 0)
     (hdvd : ∀ m j, a m ∣ a (m + j) - a j) (m n : ℕ) :
     gcd (a m) (a n) = normalize (a (m.gcd n)) := by
@@ -53,14 +55,18 @@ theorem gcd_eq_normalize_of_dvd_sub {a : ℕ → R} (h0 : a 0 = 0)
     conv_lhs => rw [← Nat.mod_add_div' n m]
     rw [gcd_seq_add_mul hdvd m (n % m) (n / m), gcd_comm]
 
-/-- The `Associated` form of `gcd_eq_normalize_of_dvd_sub`. -/
+/-- The `Associated` form of `gcd_eq_normalize_of_dvd_sub`.
+@isnad1 id=associat.2h4v.s7.36e8cdbc9abb from=translated src=- shape=28a084ea vocab=8e8a2d3e
+-/
 theorem associated_gcd_of_dvd_sub {a : ℕ → R} (h0 : a 0 = 0)
     (hdvd : ∀ m j, a m ∣ a (m + j) - a j) (m n : ℕ) :
     Associated (gcd (a m) (a n)) (a (m.gcd n)) :=
   gcd_eq_normalize_of_dvd_sub h0 hdvd m n ▸ normalize_associated _
 
 /-- If `a 0 = 0` and `a m ∣ a (m + j) - a j` for all `m, j` (the *translation congruence*), then
-`a` is a strong divisibility sequence: `Int.gcd (a m) (a n) = |a (gcd m n)|`. -/
+`a` is a strong divisibility sequence: `Int.gcd (a m) (a n) = |a (gcd m n)|`.
+@isnad1 id=eq.2h3v.s6.1bea3359a6aa from=translated src=- shape=99547ac9 vocab=96220d02
+-/
 theorem Int.gcd_eq_natAbs_of_dvd_sub {a : ℕ → ℤ} (h0 : a 0 = 0)
     (hdvd : ∀ m j, a m ∣ a (m + j) - a j) (m n : ℕ) :
     Int.gcd (a m) (a n) = (a (m.gcd n)).natAbs := by

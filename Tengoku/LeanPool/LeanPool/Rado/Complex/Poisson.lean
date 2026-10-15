@@ -63,7 +63,9 @@ private theorem sub_sub_ne_zero (hw : w ∈ ball c R) (hz : z ∈ sphere c R) :
   rw [h] at hz'
   exact hw'.ne hz'
 
-/-- Positivity of the Poisson kernel for interior `w`, boundary `z`. -/
+/-- Positivity of the Poisson kernel for interior `w`, boundary `z`.
+@isnad1 id=lt.2h4v.s5.7af0450ac1aa from=translated src=- shape=91d31955 vocab=1092284f
+-/
 theorem poissonKernel_pos (hw : w ∈ ball c R) (hz : z ∈ sphere c R) :
     0 < poissonKernel c w z := by
   have hz' : ‖z - c‖ = R := mem_sphere_iff_norm.1 hz
@@ -76,7 +78,9 @@ theorem poissonKernel_pos (hw : w ∈ ball c R) (hz : z ∈ sphere c R) :
   · exact pow_pos (norm_pos_iff.mpr (sub_sub_ne_zero hw hz)) 2
 
 /-- The Poisson kernel is continuous on the circle, for a fixed interior
-point. -/
+point.
+@isnad1 id=continuo.1h3v.s6.31863b458089 from=translated src=- shape=902670dc vocab=3bce7daf
+-/
 theorem poissonKernel_continuousOn_sphere (hw : w ∈ ball c R) :
     ContinuousOn (poissonKernel c w) (sphere c R) := by
   intro z hz
@@ -90,7 +94,9 @@ theorem poissonKernel_continuousOn_sphere (hw : w ∈ ball c R) :
       funext (poissonKernel_def c w)]
   exact h.continuousWithinAt
 
-/-- Unit mass of the Poisson kernel. -/
+/-- Unit mass of the Poisson kernel.
+@isnad1 id=eq.1h3v.s5.3a39de6a41fe from=translated src=- shape=600d05e0 vocab=ad901aff
+-/
 theorem circleAverage_poissonKernel (hw : w ∈ ball c R) :
     Real.circleAverage (poissonKernel c w) c R = 1 := by
   have hR : 0 < R := pos_of_mem_ball hw
@@ -112,7 +118,9 @@ theorem circleAverage_poissonKernel (hw : w ∈ ball c R) :
 
 /-- Uniform smallness of the Poisson kernel away from the boundary singularity:
 for `z` at distance `≥ δ` from `ζ₀ ∈ sphere c R`, the kernel at `z` becomes
-uniformly `≤ ε` as the interior point `w` approaches `ζ₀`. -/
+uniformly `≤ ε` as the interior point `w` approaches `ζ₀`.
+@isnad1 id=eventual.4h5v.s7.f84f90308914 from=translated src=- shape=85584a82 vocab=fed10595
+-/
 theorem eventually_poissonKernel_le_of_dist {ζ₀ : ℂ} (hζ₀ : ζ₀ ∈ sphere c R) (hR : 0 < R)
     {δ ε : ℝ} (hδ : 0 < δ) (hε : 0 < ε) :
     ∀ᶠ w in 𝓝[ball c R] ζ₀, ∀ z ∈ sphere c R, δ ≤ dist z ζ₀ → poissonKernel c w z ≤ ε := by
@@ -191,7 +199,9 @@ private theorem continuousOn_kernel_mul {w : ℂ} (hw : w ∈ ball c R)
   exact h.continuousWithinAt
 
 /-- The Schwarz integral is holomorphic in the interior variable
-(differentiation under the integral). -/
+(differentiation under the integral).
+@isnad1 id=differen.2h3v.s7.da8af0c8bcad from=translated src=- shape=67e9af47 vocab=f1de0caf
+-/
 theorem schwarzIntegral_differentiableOn (hR : 0 < R) (hf : ContinuousOn f (sphere c R)) :
     DifferentiableOn ℂ (schwarzIntegral f c R) (ball c R) := by
   have hg : ContinuousOn (fun z ↦ ((f z : ℝ) : ℂ)) (sphere c R) :=
@@ -259,7 +269,9 @@ theorem schwarzIntegral_differentiableOn (hR : 0 < R) (hf : ContinuousOn f (sphe
         simp only [smul_eq_mul]
         field_simp
 
-/-- The real part of the Schwarz integral is the Poisson integral. -/
+/-- The real part of the Schwarz integral is the Poisson integral.
+@isnad1 id=eq.3h4v.s6.6d1ac250686f from=translated src=- shape=4355f61b vocab=9dfcd18a
+-/
 theorem re_schwarzIntegral {w : ℂ} (hR : 0 < R) (hf : ContinuousOn f (sphere c R))
     (hw : w ∈ ball c R) :
     (schwarzIntegral f c R w).re
@@ -280,7 +292,9 @@ theorem re_schwarzIntegral {w : ℂ} (hR : 0 < R) (hf : ContinuousOn f (sphere c
 
 /-- Boundary attainment: the Poisson integral of continuous boundary data tends
 to the data at each boundary point (approximate-identity argument, using
-positivity, unit mass and off-singularity smallness of the kernel). -/
+positivity, unit mass and off-singularity smallness of the kernel).
+@isnad1 id=tendsto.3h4v.s7.e4bb6a52932e from=translated src=- shape=23e6972e vocab=a828f316
+-/
 theorem tendsto_re_schwarzIntegral (hR : 0 < R) (hf : ContinuousOn f (sphere c R))
     {ζ₀ : ℂ} (hζ₀ : ζ₀ ∈ sphere c R) :
     Filter.Tendsto (fun w ↦ (schwarzIntegral f c R w).re) (𝓝[ball c R] ζ₀) (𝓝 (f ζ₀)) := by
@@ -385,7 +399,9 @@ end Schwarz
 
 /-- **Solution of the Dirichlet problem on a disk.** Every continuous function
 on a circle extends to a function continuous on the closed disk and harmonic
-inside. -/
+inside.
+@isnad1 id=ex.2h3v.s7.441b25b1afb5 from=translated src=- shape=916f87c9 vocab=73d8a94a
+-/
 theorem exists_harmonic_extension {c : ℂ} {R : ℝ} (hR : 0 < R) {f : ℂ → ℝ}
     (hf : ContinuousOn f (sphere c R)) :
     ∃ u : ℂ → ℝ, ContinuousOn u (closedBall c R) ∧

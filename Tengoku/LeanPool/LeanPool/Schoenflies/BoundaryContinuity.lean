@@ -106,14 +106,22 @@ structure IsStageOn (G : Graph Plane β) (drawing : β → ℝ → Plane) (C D :
 
 namespace IsStageOn
 
+/--
+@isnad1 id=not.2h6v.s5.3210309d5e53 from=translated src=- shape=9743c702 vocab=8a0fd72c
+-/
 theorem notMem_of_mem_curve (h : IsStageOn G drawing C D) {z : Plane} (hz : z ∈ C) : z ∉ D :=
   fun hD => (h.disjoint.ne_of_mem hz hD) rfl
 
+/--
+@isnad1 id=not.2h6v.s5.863c3e0f698d from=translated src=- shape=0b4a0fe2 vocab=8a0fd72c
+-/
 theorem notMem_curve (h : IsStageOn G drawing C D) {z : Plane} (hz : z ∈ D) : z ∉ C :=
   fun hzC => h.notMem_of_mem_curve hzC hz
 
 /-- Off the outer boundary, the point set of the stage lies in the region. This is the reading
-of `edge_split` and `vertex_mem` the crosscut extraction needs. -/
+of `edge_split` and `vertex_mem` the crosscut extraction needs.
+@isnad1 id=le.1h5v.s5.ba4aa070a043 from=translated src=- shape=29ee9c4c vocab=c9823c66
+-/
 theorem pointSet_diff_subset (h : IsStageOn G drawing C D) :
     pointSet G drawing \ C ⊆ D := by
   rintro p ⟨hp, hpC⟩
@@ -130,7 +138,9 @@ theorem pointSet_diff_subset (h : IsStageOn G drawing C D) :
         · exact h.vertex_mem hl.right_mem hpC
       · exact hsub ⟨hpe, hpxy⟩
 
-/-- On a nonboundary edge the outer boundary is met only at the two ends. -/
+/-- On a nonboundary edge the outer boundary is met only at the two ends.
+@isnad1 id=le.3h8v.s6.876897465a7d from=translated src=- shape=c906f50f vocab=f40afb39
+-/
 theorem edgeArc_inter_curve (h : IsStageOn G drawing C D) {e : β} {x y : Plane}
     (hl : G.IsLink e x y) (hnb : Nonboundary drawing C e) :
     edgeArc drawing e ∩ C ⊆ {x, y} := by
@@ -140,16 +150,23 @@ theorem edgeArc_inter_curve (h : IsStageOn G drawing C D) {e : β} {x y : Plane}
     by_contra hp
     exact h.notMem_of_mem_curve hpC (hsub ⟨hpe, hp⟩)
 
-/-- The two ends of an edge lie on its arc. -/
+/-- The two ends of an edge lie on its arc.
+@isnad1 id=mem.2h8v.s5.163d27e2bd31 from=translated src=- shape=e563ffe2 vocab=134a15a1
+-/
 theorem left_mem_edgeArc (h : IsStageOn G drawing C D) {e : β} {x y : Plane}
     (hl : G.IsLink e x y) : x ∈ edgeArc drawing e :=
   (h.isDrawing.edge_isArcBetween hl).left_mem
 
+/--
+@isnad1 id=mem.2h8v.s5.2acc925d107b from=translated src=- shape=5481e0ed vocab=134a15a1
+-/
 theorem right_mem_edgeArc (h : IsStageOn G drawing C D) {e : β} {x y : Plane}
     (hl : G.IsLink e x y) : y ∈ edgeArc drawing e :=
   (h.isDrawing.edge_isArcBetween hl).right_mem
 
-/-- A nonboundary edge whose two ends lie in the region runs entirely inside it. -/
+/-- A nonboundary edge whose two ends lie in the region runs entirely inside it.
+@isnad1 id=le.5h8v.s6.73f3500fad21 from=translated src=- shape=c7b34fe9 vocab=2ea5f630
+-/
 theorem edgeArc_subset_of_ends (h : IsStageOn G drawing C D) {e : β} {x y : Plane}
     (hl : G.IsLink e x y) (hnb : Nonboundary drawing C e) (hx : x ∈ D) (hy : y ∈ D) :
     edgeArc drawing e ⊆ D := by
@@ -173,7 +190,9 @@ meets the rest of the graph only at its endpoints, and those endpoints have been
 nonboundary part lies on `e`.
 
 The proof is `lem:clopen-component` in the closed-set form: `edgeArc e` and the rest of the
-drawing are two closed sets covering the point set whose common part misses `X`. -/
+drawing are two closed sets covering the point set whose common part misses `X`.
+@isnad1 id=le.5h8v.s6.c15158c3046d from=translated src=- shape=e686797d vocab=6475a256
+-/
 theorem diff_subset_edgeArc [G.Finite] (h : IsStageOn G drawing C D)
     {e : β} {x y : Plane} (hl : G.IsLink e x y) (hnb : Nonboundary drawing C e)
     (hx : x ∈ C) (hy : y ∈ C) : pointSet G drawing \ C ⊆ edgeArc drawing e := by
@@ -218,7 +237,9 @@ theorem diff_subset_edgeArc [G.Finite] (h : IsStageOn G drawing C D)
   exact hcon.ne_empty rfl
 
 /-- **Case 1, second half.** With `X` reduced to one edge interior there is only one nonboundary
-edge, so the two prescribed boundary points are exactly the ends of `e`. -/
+edge, so the two prescribed boundary points are exactly the ends of `e`.
+@isnad1 id=islink.8h10v.s6.4c42613b7dad from=translated src=- shape=72a57df3 vocab=bd74fe8f
+-/
 theorem isLink_of_ends_mem [G.Finite] (h : IsStageOn G drawing C D)
     {e : β} {x y : Plane} (hl : G.IsLink e x y) (hnb : Nonboundary drawing C e)
     (hx : x ∈ C) (hy : y ∈ C) {a b : Plane} (hab : a ≠ b)
@@ -263,18 +284,27 @@ together with the edges that run entirely inside it. -/
 def interiorPart (G : Graph Plane β) (drawing : β → ℝ → Plane) (D : Set Plane) : Set Plane :=
   (V(G) ∩ D) ∪ ⋃ e ∈ {e | e ∈ E(G) ∧ edgeArc drawing e ⊆ D}, edgeArc drawing e
 
+/--
+@isnad1 id=le.0h4v.s4.1b415cfd80a0 from=translated src=- shape=677f8945 vocab=aa71ae9d
+-/
 theorem interiorPart_subset : interiorPart G drawing D ⊆ D := by
   rintro p (⟨-, hp⟩ | hp)
   · exact hp
   · obtain ⟨e, ⟨-, hsub⟩, hpe⟩ := mem_iUnion₂.1 hp
     exact hsub hpe
 
+/--
+@isnad1 id=le.0h4v.s4.588ac362f9ff from=translated src=- shape=31d1179c vocab=5dbd4b7b
+-/
 theorem interiorPart_subset_pointSet : interiorPart G drawing D ⊆ pointSet G drawing := by
   rintro p (⟨hp, -⟩ | hp)
   · exact Or.inl hp
   · obtain ⟨e, ⟨heE, -⟩, hpe⟩ := mem_iUnion₂.1 hp
     exact edgeArc_subset_pointSet heE hpe
 
+/--
+@isnad1 id=isclosed.1h4v.s6.86c6f59970bd from=translated src=- shape=5dc057c5 vocab=121f6fdc
+-/
 theorem isClosed_interiorPart [G.Finite] (h : IsDrawing G drawing) :
     IsClosed (interiorPart G drawing D) := by
   refine ((Graph.finite_vertexSet (G := G)).inter_of_left D).isCompact.isClosed.union ?_
@@ -288,8 +318,14 @@ removed ends are exactly the points of those edges lying on `C`. -/
 def attachEdges (G : Graph Plane β) (drawing : β → ℝ → Plane) (S : Set Plane) : Set Plane :=
   S ∪ ⋃ e ∈ {e | e ∈ E(G) ∧ (edgeArc drawing e ∩ S).Nonempty}, edgeArc drawing e
 
+/--
+@isnad1 id=le.0h4v.s4.ff450b7f1847 from=translated src=- shape=5c8c4e73 vocab=843c6ea4
+-/
 theorem subset_attachEdges {S : Set Plane} : S ⊆ attachEdges G drawing S := subset_union_left
 
+/--
+@isnad1 id=isclosed.2h4v.s6.601b17b05705 from=translated src=- shape=e7788c27 vocab=f615a76b
+-/
 theorem isClosed_attachEdges [G.Finite] (h : IsDrawing G drawing) {S : Set Plane}
     (hS : IsClosed S) : IsClosed (attachEdges G drawing S) := by
   refine hS.union ?_
@@ -302,7 +338,9 @@ variable (hcase : ∀ ⦃e : β⦄ ⦃x y : Plane⦄, G.IsLink e x y → Nonboun
   x ∈ C → y ∉ C)
 
 /-- A **half edge** — a nonboundary edge with exactly one end on `C` — meets `Λ` only in its
-other end. This is what makes the attached pieces of `X` half-open. -/
+other end. This is what makes the attached pieces of `X` half-open.
+@isnad1 id=le.3h8v.s6.37429656fae3 from=translated src=- shape=5f8f6ae3 vocab=540b8b8d
+-/
 theorem edgeArc_inter_interiorPart (h : IsStageOn G drawing C D) {e : β} {x y : Plane}
     (hl : G.IsLink e x y) (hx : x ∈ C) :
     edgeArc drawing e ∩ interiorPart G drawing D ⊆ {y} := by
@@ -324,7 +362,9 @@ theorem edgeArc_inter_interiorPart (h : IsStageOn G drawing C D) {e : β} {x y :
 edge meets `S`, then everything that edge shares with `Λ` lies in `S`.
 
 An edge running inside `D` is connected and contained in `S ∪ S'`, so it lies in one piece; a
-half edge meets `Λ` in a single point. -/
+half edge meets `Λ` in a single point.
+@isnad1 id=le.7h8v.s7.e56643168dcc from=translated src=- shape=32c7ffdd vocab=17de20df
+-/
 theorem edgeArc_inter_interiorPart_subset (h : IsStageOn G drawing C D)
     {S S' : Set Plane} (hSc : IsClosed S) (hS'c : IsClosed S')
     (hunion : S ∪ S' = interiorPart G drawing D) (hinter : S ∩ S' = ∅)
@@ -372,7 +412,9 @@ theorem edgeArc_inter_interiorPart_subset (h : IsStageOn G drawing C D)
 include hcase in
 /-- **Case 2, the connectedness of `Λ`.** *For each component `L` of `|Λ|`, the union of `L`
 with all half-open edges attached to vertices of `L` is both open and closed in `X`; these sets
-partition `X`. Connectedness of `X` therefore implies that `|Λ|` is connected.* -/
+partition `X`. Connectedness of `X` therefore implies that `|Λ|` is connected.*
+@isnad1 id=isprecon.2h5v.s6.89da80cfdbdb from=translated src=- shape=211c2465 vocab=cb08d747
+-/
 theorem isPreconnected_interiorPart [G.Finite] (h : IsStageOn G drawing C D) :
     IsPreconnected (interiorPart G drawing D) := by
   classical
@@ -488,7 +530,9 @@ skeleton: a simple polygonal arc between them meeting `C` only at its two ends.
 
 In case 1 the crosscut is a single edge; in case 2 it is extracted from
 `Y = e_a ∪ |Λ| ∪ e_b` by `lem:finite-polygonal-union`
-(`Schoenflies.exists_crosscut_arc_of_biUnion_finite`). -/
+(`Schoenflies.exists_crosscut_arc_of_biUnion_finite`).
+@isnad1 id=ex.6h7v.s7.4f7c03e036d2 from=translated src=- shape=64493a0c vocab=935b7113
+-/
 theorem exists_crosscut [G.Finite] (h : IsStageOn G drawing C D) {a b : Plane}
     (hab : a ≠ b) (haC : a ∈ C) (hbC : b ∈ C)
     (ha : ∃ e, G.Inc e a ∧ Nonboundary drawing C e)

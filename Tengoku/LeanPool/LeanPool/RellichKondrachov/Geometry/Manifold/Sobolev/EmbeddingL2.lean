@@ -55,11 +55,20 @@ variable [T2Space M] [CompactSpace M]
 
 /-- Borel σ-algebra on the manifold `M`. -/
 local instance instMeasurableSpaceMEmbeddingL2 : MeasurableSpace M := borel M
+/--
+@isnad1 id=borelspa.0h1v.s3.2ad290a3f364 from=translated src=- shape=c6850a32 vocab=06b96064
+-/
 local instance instBorelSpaceMEmbeddingL2 : BorelSpace M := ⟨rfl⟩
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceEEmbeddingL2 : MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.c2a24654b1e9 from=translated src=- shape=c6850a32 vocab=177d7954
+-/
 local instance instBorelSpaceEEmbeddingL2 : BorelSpace E := ⟨rfl⟩
+/--
+@isnad1 id=opensmea.0h1v.s4.83e8a724c390 from=translated src=- shape=c6850a32 vocab=d19337e7
+-/
 local instance instOpensMeasurableSpaceEEmbeddingL2 : OpensMeasurableSpace E := by
   infer_instance
 
@@ -120,6 +129,9 @@ noncomputable def c1ToL2 (μ : Measure M) [IsFiniteMeasure μ] :
       ((LinearMap.fst ℝ _ _).comp (h1GraphChart (d := d) (I := I) (μ := μ) i))
 
 omit [T2Space M] in
+/--
+@isnad1 id=eq.0h7v.s17.d0e801aa94ca from=translated src=- shape=97b07e5b vocab=2d732a1a
+-/
 lemma h1ToL2_c1ToH1 (μ : Measure M) [IsFiniteMeasure μ]
     (f : ↥(C1 (E := E) (H := H) (M := M) (I := I))) :
     h1ToL2 (d := d) (I := I) (μ := μ) (c1ToH1 (d := d) (I := I) (μ := μ) f) =

@@ -51,6 +51,9 @@ namespace VWPair
 variable {v w u m p : ℕ}
 
 variable (v w p) in
+/--
+@isnad1 id=nonempty.1h3v.s7.22d95e57eee3 from=translated src=- shape=9e559ebd vocab=1f71454a
+-/
 lemma nonempty_double_not_dvd (hp : 3 ≤ p) :
     Finset.Nonempty {i : Fin p | ¬p ∣ v + i ∧ ¬p ∣ w + i} := by
   let nzp : NeZero p := ⟨by lia⟩
@@ -66,7 +69,9 @@ lemma nonempty_double_not_dvd (hp : 3 ≤ p) :
   grind
 
 variable (v w) in
-/-- Note the divisor of 2 and not 4 for `w`. -/
+/-- Note the divisor of 2 and not 4 for `w`.
+@isnad1 id=nonempty.0h2v.s7.b67eb7a150b0 from=translated src=- shape=cc5a72a5 vocab=4a9cdd9e
+-/
 lemma nonempty_double_not_dvd_four : Finset.Nonempty {i : Fin 4 | ¬4 ∣ v + i ∧ ¬2 ∣ w + i} := by
   by_cases hw : 2 ∣ w
   · by_cases hv : v % 4 = 3
@@ -80,8 +85,14 @@ lemma nonempty_double_not_dvd_four : Finset.Nonempty {i : Fin 4 | ¬4 ∣ v + i 
 def fourAndOddPrimes (m : ℕ) : Finset ℕ :=
   insert 4 {p ∈ Icc 3 m | p.Prime}
 
+/--
+@isnad1 id=not.0h1v.s4.a472c6bea466 from=translated src=- shape=460a8ad7 vocab=bb6916a8
+-/
 lemma zero_notMem_fourAndOddPrimes : 0 ∉ fourAndOddPrimes m := by simp [fourAndOddPrimes]
 
+/--
+@isnad1 id=pairwise.0h1v.s3.fc2ee9beba28 from=translated src=- shape=481b3a01 vocab=a7b8bf0f
+-/
 lemma fourAndOddPrimes_pairwise_coprime : Set.Pairwise (fourAndOddPrimes m) Coprime := by
   rw [fourAndOddPrimes, coe_insert, coe_filter, Set.pairwise_insert_of_symm]
   refine ⟨fun p mp q mq hn ↦ (coprime_primes mp.2 mq.2).mpr hn, fun p ⟨bp, pp⟩ _ ↦ ?_⟩
@@ -96,6 +107,9 @@ def nonDividingShift (v w p : ℕ) : ℕ :=
   if p = 4 then (min' _ (nonempty_double_not_dvd_four v w)).1 else
   if hp : 3 ≤ p then (min' _ (nonempty_double_not_dvd v w p hp)).1 else 0
 
+/--
+@isnad1 id=and.1h3v.s5.987318627065 from=translated src=- shape=85799562 vocab=8be43f37
+-/
 lemma not_dvd_nonDividingShift_of_three_le (hp : 3 ≤ p) :
     ¬p ∣ v + nonDividingShift v w p ∧ ¬p ∣ w + nonDividingShift v w p := by
   unfold nonDividingShift
@@ -116,9 +130,15 @@ def crtShift (v w m : ℕ) : ℕ :=
   chineseRemainderOfFinset (nonDividingShift v w) id (fourAndOddPrimes m)
     (by simp [zero_notMem_fourAndOddPrimes]) fourAndOddPrimes_pairwise_coprime
 
+/--
+@isnad1 id=modeq.1h4v.s5.14737b66d6a4 from=translated src=- shape=8993633c vocab=e8aa3f5a
+-/
 lemma crtShift_modEq (mi : p ∈ fourAndOddPrimes m) :
     crtShift v w m ≡ nonDividingShift v w p [MOD p] := (chineseRemainderOfFinset ..).2 _ mi
 
+/--
+@isnad1 id=and.1h4v.s6.37b5ea8424b2 from=translated src=- shape=6b27c0a6 vocab=dbcddfc0
+-/
 lemma crtShift_not_dvd {k : ℕ} (hk : k ∈ Icc 3 m) :
     ¬k ∣ v + crtShift v w m ∧ ¬k ∣ w + crtShift v w m := by
   obtain ⟨i, rfl⟩ | ⟨p, pp, dp, op⟩ := eq_two_pow_or_exists_odd_prime_and_dvd k
@@ -152,6 +172,9 @@ lemma crtShift_not_dvd {k : ℕ} (hk : k ∈ Icc 3 m) :
       ← add_mod, ← dvd_iff_mod_eq_zero, ← dvd_iff_mod_eq_zero]
     exact not_dvd_nonDividingShift_of_three_le op
 
+/--
+@isnad1 id=odd.0h3v.s4.ee64b81d3917 from=translated src=- shape=426a2489 vocab=4728d796
+-/
 lemma odd_add_crtShift : Odd (w + crtShift v w m) := by
   rw [← not_even_iff_odd, even_iff_two_dvd]
   have meq : crtShift v w m ≡ nonDividingShift v w 4 [MOD 2] := by
@@ -173,7 +196,9 @@ def of (u m : ℕ) : VWPair u m where
   w_odd := odd_add_crtShift
   not_dvd _ := crtShift_not_dvd
 
-/-- When `0 < u ≤ m`, `v` and `w` are coprime. -/
+/-- When `0 < u ≤ m`, `v` and `w` are coprime.
+@isnad1 id=coprime.2h2v.s5.aa80ebe92ee7 from=translated src=- shape=d3fb9b68 vocab=374dfd3c
+-/
 lemma of_coprime (hu : 0 < u) (hm : u ≤ m) : (of u m).v.Coprime (of u m).w := by
   by_contra h
   rw [Prime.not_coprime_iff_dvd] at h
@@ -200,11 +225,17 @@ def vwTup (i : Fin (n + 3)) : ℤ :=
     | 1 => -vw.w
     | 2 => m
 
+/--
+@isnad1 id=eq.0h1v.s8.fb2ff0bb88c8 from=translated src=- shape=6c726960 vocab=32b47433
+-/
 lemma vwTup_compl : {natAdd n 0, natAdd n 1}ᶜ = insert (natAdd n 2) (univ.map (castAddEmb 3)) := by
   ext i
   simp_rw [mem_compl, mem_insert, mem_singleton, mem_map, mem_univ, true_and, coe_castAddEmb]
   cases i using addCases <;> grind
 
+/--
+@isnad1 id=eq.1h5v.s8.35d3af2c67d4 from=translated src=- shape=a27f3e8b vocab=ca38149c
+-/
 lemma tupReduce_vwTup {c₂ : n + 1 = n + 3 - #{natAdd n 0, natAdd n 1}} :
     tupReduce (vwTup vw) {natAdd n 0, natAdd n 1} c₂ = chainTup n m s := by
   ext i

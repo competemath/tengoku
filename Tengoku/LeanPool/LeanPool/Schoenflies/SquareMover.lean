@@ -66,28 +66,49 @@ noncomputable def tent (r p u : ℝ) : ℝ := min ((u + r) / (p + r)) ((r - u) /
 
 variable {r p q u : ℝ}
 
+/--
+@isnad1 id=continuo.0h2v.s4.f2beb4a152b3 from=translated src=- shape=443e0365 vocab=7ec05718
+-/
 theorem continuous_tent (r p : ℝ) : Continuous (tent r p) := by
   unfold tent; fun_prop
 
+/--
+@isnad1 id=lt.2h2v.s4.a8be27cde1b9 from=translated src=- shape=d1994085 vocab=82c2c69d
+-/
 theorem pos_of_lt_lt (h₁ : -r < p) (h₂ : p < r) : 0 < r := by linarith
 
+/--
+@isnad1 id=le.2h3v.s5.143bad794504 from=translated src=- shape=6fec74c9 vocab=79046b64
+-/
 theorem tent_le_one (h₁ : -r < p) (h₂ : p < r) (u : ℝ) : tent r p u ≤ 1 := by
   rcases le_total u p with h | h
   · exact le_trans (min_le_left _ _) (by rw [div_le_one (by linarith)]; linarith)
   · exact le_trans (min_le_right _ _) (by rw [div_le_one (by linarith)]; linarith)
 
+/--
+@isnad1 id=le.4h3v.s5.4724a4b6b7ea from=translated src=- shape=7bda3b59 vocab=79046b64
+-/
 theorem tent_nonneg (h₁ : -r < p) (h₂ : p < r) (hu : -r ≤ u) (hu' : u ≤ r) :
     0 ≤ tent r p u :=
   le_min (div_nonneg (by linarith) (by linarith)) (div_nonneg (by linarith) (by linarith))
 
+/--
+@isnad1 id=eq.2h2v.s4.d9fe072e409c from=translated src=- shape=017ccf9a vocab=41127297
+-/
 @[simp] theorem tent_self (h₁ : -r < p) (h₂ : p < r) : tent r p p = 1 := by
   rw [tent, div_self (by linarith), div_self (by linarith), min_self]
 
+/--
+@isnad1 id=eq.2h2v.s5.70f084038e33 from=translated src=- shape=b5587d42 vocab=41127297
+-/
 theorem tent_left (h₁ : -r < p) (h₂ : p < r) : tent r p (-r) = 0 := by
   have hr : 0 < r := pos_of_lt_lt h₁ h₂
   rw [tent, show -r + r = 0 by ring, zero_div]
   exact min_eq_left (div_nonneg (by linarith) (by linarith))
 
+/--
+@isnad1 id=eq.2h2v.s4.d4948c6b2b12 from=translated src=- shape=56d3b17a vocab=41127297
+-/
 theorem tent_right (h₁ : -r < p) (h₂ : p < r) : tent r p r = 0 := by
   have hr : 0 < r := pos_of_lt_lt h₁ h₂
   rw [tent, show r - r = 0 by ring, zero_div]
@@ -100,27 +121,47 @@ theorem tent_right (h₁ : -r < p) (h₂ : p < r) : tent r p r = 0 := by
 noncomputable def bend (r p q u : ℝ) : ℝ :=
   if u ≤ p then -r + (u + r) * (q + r) / (p + r) else r - (r - u) * (r - q) / (r - p)
 
+/--
+@isnad1 id=eq.1h4v.s6.a74a7998f66b from=translated src=- shape=d087ea32 vocab=37349670
+-/
 theorem bend_of_le (h : u ≤ p) : bend r p q u = -r + (u + r) * (q + r) / (p + r) := ite_eq_left h
 
+/--
+@isnad1 id=eq.1h4v.s6.01ed33d73170 from=translated src=- shape=955a819c vocab=d2200242
+-/
 theorem bend_of_gt (h : p < u) : bend r p q u = r - (r - u) * (r - q) / (r - p) :=
   ite_eq_right (not_le.2 h)
 
+/--
+@isnad1 id=eq.1h3v.s4.22036637e95f from=translated src=- shape=2ae9e514 vocab=749f8994
+-/
 theorem bend_left (h : -r ≤ p) : bend r p q (-r) = -r := by
   rw [bend_of_le h]; simp
 
+/--
+@isnad1 id=eq.1h3v.s4.5de4339ced10 from=translated src=- shape=506eec12 vocab=f9e531ef
+-/
 theorem bend_right (h : p < r) : bend r p q r = r := by
   rw [bend_of_gt h]; simp
 
+/--
+@isnad1 id=eq.1h3v.s4.975217c2b14a from=translated src=- shape=e4a35394 vocab=9375a1c6
+-/
 theorem bend_self (h : -r < p) : bend r p q p = q := by
   have hp : p + r ≠ 0 := by linarith
   rw [bend_of_le le_rfl, mul_comm, mul_div_assoc, div_self hp, mul_one]; ring
 
+/--
+@isnad1 id=eq.2h3v.s4.981d27eaf101 from=translated src=- shape=3a5f1b24 vocab=9375a1c6
+-/
 theorem bend_refl (h₁ : -r < p) (h₂ : p < r) (u : ℝ) : bend r p p u = u := by
   rcases le_or_gt u p with h | h
   · rw [bend_of_le h, mul_div_assoc, div_self (by linarith : p + r ≠ 0), mul_one]; ring
   · rw [bend_of_gt h, mul_div_assoc, div_self (by linarith : r - p ≠ 0), mul_one]; ring
 
-/-- On the left half, the bend does not go past the image `q` of the peak. -/
+/-- On the left half, the bend does not go past the image `q` of the peak.
+@isnad1 id=le.3h4v.s5.f7594768d576 from=translated src=- shape=88e3cc15 vocab=44e2ee2e
+-/
 theorem bend_le_of_le (h₁ : -r < p) (h₂ : -r < q) (h : u ≤ p) : bend r p q u ≤ q := by
   rw [bend_of_le h]
   have : (u + r) * (q + r) / (p + r) ≤ q + r := by
@@ -128,7 +169,9 @@ theorem bend_le_of_le (h₁ : -r < p) (h₂ : -r < q) (h : u ≤ p) : bend r p q
     nlinarith
   linarith
 
-/-- On the right half, the bend stays past the image `q` of the peak. -/
+/-- On the right half, the bend stays past the image `q` of the peak.
+@isnad1 id=lt.3h4v.s5.8bba765a7df8 from=translated src=- shape=e9bd651f vocab=f9e531ef
+-/
 theorem lt_bend_of_lt (h₁ : p < r) (h₂ : q < r) (h : p < u) : q < bend r p q u := by
   rw [bend_of_gt h]
   have : (r - u) * (r - q) / (r - p) < r - q := by
@@ -136,7 +179,9 @@ theorem lt_bend_of_lt (h₁ : p < r) (h₂ : q < r) (h : p < u) : q < bend r p q
     nlinarith
   linarith
 
-/-- The bend maps `[-r, r]` into itself. -/
+/-- The bend maps `[-r, r]` into itself.
+@isnad1 id=and.6h4v.s6.45dff34272e3 from=translated src=- shape=54b30150 vocab=44e2ee2e
+-/
 theorem bend_mem (h₁ : -r < p) (h₂ : p < r) (h₃ : -r < q) (h₄ : q < r) (hu : -r ≤ u)
     (hu' : u ≤ r) : -r ≤ bend r p q u ∧ bend r p q u ≤ r := by
   rcases le_or_gt u p with h | h
@@ -149,7 +194,9 @@ theorem bend_mem (h₁ : -r < p) (h₂ : p < r) (h₃ : -r < q) (h₄ : q < r) (
     have : 0 ≤ (r - u) * (r - q) / (r - p) := div_nonneg (by nlinarith) (by linarith)
     linarith
 
-/-- Bending from `p` to `q` and back from `q` to `p` is the identity. -/
+/-- Bending from `p` to `q` and back from `q` to `p` is the identity.
+@isnad1 id=eq.4h4v.s5.0ca0cdeda41d from=translated src=- shape=627d0854 vocab=9375a1c6
+-/
 theorem bend_bend (h₁ : -r < p) (h₂ : p < r) (h₃ : -r < q) (h₄ : q < r) (u : ℝ) :
     bend r q p (bend r p q u) = u := by
   rcases le_or_gt u p with h | h
@@ -165,7 +212,9 @@ theorem bend_bend (h₁ : -r < p) (h₂ : p < r) (h₃ : -r < q) (h₄ : q < r) 
     ring
 
 /-- Past the peak the right-hand branch of the bend is valid, including at the peak itself,
-where the two branches agree. -/
+where the two branches agree.
+@isnad1 id=eq.3h4v.s6.0a5543393b72 from=translated src=- shape=69602dce vocab=a95c7654
+-/
 theorem bend_eq_right (h₁ : p + r ≠ 0) (h₂ : r - p ≠ 0) (h : p ≤ u) :
     bend r p q u = r - (r - u) * (r - q) / (r - p) := by
   rcases eq_or_lt_of_le h with rfl | h'
@@ -176,7 +225,9 @@ theorem bend_eq_right (h₁ : p + r ≠ 0) (h₂ : r - p ≠ 0) (h : p ≤ u) :
 
 /-- Continuity of a bend whose three arguments vary continuously, on a closed set where the
 peak stays away from the two endpoints. The two branches are pasted along the closed sets
-where the argument is on one or the other side of the peak. -/
+where the argument is on one or the other side of the peak.
+@isnad1 id=continuo.6h5v.s8.26c531418f9d from=translated src=- shape=bc16223e vocab=7e540e3e
+-/
 theorem continuousOn_bend (r : ℝ) {s : Set Plane} {P Q U : Plane → ℝ} (hs : IsClosed s)
     (hP : Continuous P) (hQ : Continuous Q) (hU : Continuous U)
     (h1 : ∀ z ∈ s, P z + r ≠ 0) (h2 : ∀ z ∈ s, r - P z ≠ 0) :
@@ -207,36 +258,49 @@ theorem continuousOn_bend (r : ℝ) {s : Set Plane} {P Q U : Plane → ℝ} (hs 
 
 /-! ### Coordinates of the square -/
 
-/-- Each coordinate difference is bounded by the sup distance. -/
+/-- Each coordinate difference is bounded by the sup distance.
+@isnad1 id=le.0h3v.s7.c1a3a7183571 from=translated src=- shape=4ec278e8 vocab=cf5c5e5c
+-/
 theorem abs_sub_le_supDist (z c : Plane) (l : Fin 2) : |z l - c l| ≤ supDist z c := by
   fin_cases l
   · exact abs_sub_zero_le_supDist z c
   · exact abs_sub_one_le_supDist z c
 
-/-- Conversely, a bound on both coordinate differences bounds the sup distance. -/
+/-- Conversely, a bound on both coordinate differences bounds the sup distance.
+@isnad1 id=le.1h3v.s7.a480a3c83f13 from=translated src=- shape=03c58231 vocab=cf5c5e5c
+-/
 theorem supDist_le_of_forall {z c : Plane} {r : ℝ} (h : ∀ l : Fin 2, |z l - c l| ≤ r) :
     supDist z c ≤ r :=
   max_le (h 0) (h 1)
 
-/-- The sup distance is attained at one of the two coordinates. -/
+/-- The sup distance is attained at one of the two coordinates.
+@isnad1 id=ex.1h3v.s7.85b1c51504d3 from=translated src=- shape=7a82f631 vocab=de7508c0
+-/
 theorem exists_abs_sub_eq_of_supDist_eq {z c : Plane} {r : ℝ} (h : supDist z c = r) :
     ∃ l : Fin 2, |z l - c l| = r := by
   rcases max_choice |z 0 - c 0| |z 1 - c 1| with hm | hm
   · exact ⟨0, by rw [← h]; exact hm.symm⟩
   · exact ⟨1, by rw [← h]; exact hm.symm⟩
 
+/--
+@isnad1 id=lt.1h4v.s7.ef1bb13ac26d from=translated src=- shape=756c3c88 vocab=643c3de9
+-/
 theorem abs_sub_lt_of_mem_openSquare {z c : Plane} {r : ℝ} (hz : z ∈ openSquare c r)
     (l : Fin 2) : |z l - c l| < r :=
   lt_of_le_of_lt (abs_sub_le_supDist z c l) hz
 
-/-- The coordinate of a point of the open square, as a member of the open interval. -/
+/-- The coordinate of a point of the open square, as a member of the open interval.
+@isnad1 id=mem.1h4v.s7.ca005e132743 from=translated src=- shape=411fe901 vocab=b28d4bef
+-/
 theorem mem_Ioo_of_mem_openSquare {z c : Plane} {r : ℝ} (hz : z ∈ openSquare c r) (l : Fin 2) :
     z l - c l ∈ Ioo (-r) r := by
   have := abs_sub_lt_of_mem_openSquare hz l
   rw [abs_lt] at this
   exact ⟨this.1, this.2⟩
 
-/-- In `Fin 2`, two indices distinct from a third are equal. -/
+/-- In `Fin 2`, two indices distinct from a third are equal.
+@isnad1 id=eq.2h3v.s5.75194e236419 from=translated src=- shape=e0ffa842 vocab=00dd0f92
+-/
 theorem fin2_eq_of_ne_of_ne {i j l : Fin 2} (h₁ : j ≠ i) (h₂ : l ≠ i) : l = j := by
   fin_cases i <;> fin_cases j <;> fin_cases l <;> simp_all
 
@@ -271,13 +335,18 @@ structure IsShear (r a b k k' : ℝ) : Prop where
 
 variable {c : Plane} {a b k k' : ℝ} {i j l : Fin 2} {z : Plane}
 
-/-- The inverse shear has admissible parameters as well. -/
+/-- The inverse shear has admissible parameters as well.
+@isnad1 id=isshear.1h5v.s5.5ab25988bd19 from=translated src=- shape=a997675a vocab=365d3048
+-/
 theorem IsShear.inv (h : IsShear r a b k k') : IsShear r a b (k + k') (-k') where
   peak := h.peak
   base := h.base
   mid := h.top
   top := by rw [show k + k' + -k' = k by ring]; exact h.mid
 
+/--
+@isnad1 id=eq.0h9v.s8.a4ed4da42fcd from=translated src=- shape=2a3706ed vocab=aa62cdc8
+-/
 theorem shear_apply_same :
     shear c r a b k k' i j z i =
       c i + bend r (a + k * shearWeight c r b j z) (a + (k + k') * shearWeight c r b j z)
@@ -286,10 +355,15 @@ theorem shear_apply_same :
     ite_true, mul_one]
   ring
 
+/--
+@isnad1 id=eq.1h10v.s7.70bb1d09f8eb from=translated src=- shape=1722c1d3 vocab=51f14eb0
+-/
 theorem shear_apply_ne (h : l ≠ i) : shear c r a b k k' i j z l = z l := by
   simp [shear, h]
 
-/-- A convex combination of two interior points of `(-r, r)` is interior. -/
+/-- A convex combination of two interior points of `(-r, r)` is interior.
+@isnad1 id=mem.3h4v.s6.1999c47db812 from=translated src=- shape=e0c851a0 vocab=1befbf1c
+-/
 theorem mem_Ioo_of_weight {w : ℝ} (ha : a ∈ Ioo (-r) r) (hak : a + k ∈ Ioo (-r) r)
     (hw : w ∈ Icc (0 : ℝ) 1) : a + k * w ∈ Ioo (-r) r := by
   obtain ⟨h1, h2⟩ := ha
@@ -303,7 +377,9 @@ theorem mem_Ioo_of_weight {w : ℝ} (ha : a ∈ Ioo (-r) r) (hak : a + k ∈ Ioo
     · nlinarith [mul_pos hw0 (show (0:ℝ) < r - a - k by linarith),
         mul_nonneg (show (0:ℝ) ≤ 1 - w by linarith) (show (0:ℝ) ≤ r - a by linarith)]
 
-/-- On the square, the level weight is a weight. -/
+/-- On the square, the level weight is a weight.
+@isnad1 id=mem.2h8v.s6.5a81a55014a0 from=translated src=- shape=5d13c29b vocab=e9d7eb60
+-/
 theorem shearWeight_mem (h : IsShear r a b k k') (hz : z ∈ closedSquare c r) :
     shearWeight c r b j z ∈ Icc (0 : ℝ) 1 := by
   have hb := abs_sub_le_supDist z c j
@@ -311,17 +387,23 @@ theorem shearWeight_mem (h : IsShear r a b k k') (hz : z ∈ closedSquare c r) :
   rw [abs_le] at this
   exact ⟨tent_nonneg h.peak.1 h.peak.2 this.1 this.2, tent_le_one h.peak.1 h.peak.2 _⟩
 
-/-- On the square, the breakpoint of the bend performed by the shear is interior. -/
+/-- On the square, the breakpoint of the bend performed by the shear is interior.
+@isnad1 id=mem.2h8v.s6.c0f9e1046cbb from=translated src=- shape=d18045df vocab=0c760e16
+-/
 theorem shear_mid_mem (h : IsShear r a b k k') (hz : z ∈ closedSquare c r) :
     a + k * shearWeight c r b j z ∈ Ioo (-r) r :=
   mem_Ioo_of_weight h.base h.mid (shearWeight_mem h hz)
 
-/-- On the square, the image of the breakpoint is interior. -/
+/-- On the square, the image of the breakpoint is interior.
+@isnad1 id=mem.2h8v.s6.5a5e75079839 from=translated src=- shape=3b2ae666 vocab=0c760e16
+-/
 theorem shear_top_mem (h : IsShear r a b k k') (hz : z ∈ closedSquare c r) :
     a + (k + k') * shearWeight c r b j z ∈ Ioo (-r) r :=
   mem_Ioo_of_weight h.base h.top (shearWeight_mem h hz)
 
-/-- The shear maps the closed square to itself. -/
+/-- The shear maps the closed square to itself.
+@isnad1 id=mapsto.1h8v.s5.61501771f90d from=translated src=- shape=dcd98c0a vocab=865d5b19
+-/
 theorem shear_mapsTo (h : IsShear r a b k k') (i j : Fin 2) :
     MapsTo (shear c r a b k k' i j) (closedSquare c r) (closedSquare c r) := by
   intro z hz
@@ -341,7 +423,9 @@ theorem shear_mapsTo (h : IsShear r a b k k') (i j : Fin 2) :
   · rw [shear_apply_ne hl]
     exact le_trans (abs_sub_le_supDist z c l) hz
 
-/-- The shear with parameters `k + k', -k'` undoes the shear with parameters `k, k'`. -/
+/-- The shear with parameters `k + k', -k'` undoes the shear with parameters `k, k'`.
+@isnad1 id=eq.3h9v.s6.19ed3533333f from=translated src=- shape=10feb2c6 vocab=b21c297e
+-/
 theorem shear_shear (h : IsShear r a b k k') (hij : j ≠ i) (hz : z ∈ closedSquare c r) :
     shear c r a b (k + k') (-k') i j (shear c r a b k k' i j z) = z := by
   have hweight : shearWeight c r b j (shear c r a b k k' i j z) = shearWeight c r b j z := by
@@ -359,7 +443,9 @@ theorem shear_shear (h : IsShear r a b k k') (hij : j ≠ i) (hz : z ∈ closedS
     ring
   · rw [shear_apply_ne hl, shear_apply_ne hl]
 
-/-- The shear fixes the boundary of the square pointwise. -/
+/-- The shear fixes the boundary of the square pointwise.
+@isnad1 id=eq.4h9v.s6.d1b854f8a94d from=translated src=- shape=d1e8fe45 vocab=75eed644
+-/
 theorem shear_eq_self_of_boundary (h : IsShear r a b k k') (hij : j ≠ i)
     (hz : z ∈ closedSquare c r) (hbd : supDist z c = r) : shear c r a b k k' i j z = z := by
   have hr : 0 < r := pos_of_lt_lt h.peak.1 h.peak.2
@@ -390,7 +476,9 @@ theorem shear_eq_self_of_boundary (h : IsShear r a b k k') (hij : j ≠ i)
       ring
   · rw [shear_apply_ne hl]
 
-/-- The shear is continuous on the square. -/
+/-- The shear is continuous on the square.
+@isnad1 id=continuo.1h8v.s6.8f9963672d22 from=translated src=- shape=de8e3849 vocab=7bee6f61
+-/
 theorem shear_continuousOn (h : IsShear r a b k k') (i j : Fin 2) :
     ContinuousOn (shear c r a b k k' i j) (closedSquare c r) := by
   have hW : Continuous fun z : Plane => shearWeight c r b j z :=
@@ -431,6 +519,9 @@ namespace IsSquareMover
 
 variable {M N M' N' : Plane → Plane}
 
+/--
+@isnad1 id=issquare.1h4v.s4.79470df65f1a from=translated src=- shape=cc43a43c vocab=04074cc1
+-/
 theorem symm (h : IsSquareMover c r M N) : IsSquareMover c r N M where
   mapsTo := h.mapsTo_inv
   mapsTo_inv := h.mapsTo
@@ -440,14 +531,22 @@ theorem symm (h : IsSquareMover c r M N) : IsSquareMover c r N M where
   fixes := h.fixes_inv
   fixes_inv := h.fixes
 
+/--
+@isnad1 id=bijon.1h4v.s4.bfac27dc8171 from=translated src=- shape=fda0973f vocab=1e932539
+-/
 theorem bijOn (h : IsSquareMover c r M N) :
     BijOn M (closedSquare c r) (closedSquare c r) :=
   h.invOn.bijOn h.mapsTo h.mapsTo_inv
 
+/--
+@isnad1 id=eq.1h4v.s4.1476a85b5c8c from=translated src=- shape=de5ee539 vocab=d7a935e3
+-/
 theorem image_eq (h : IsSquareMover c r M N) :
     M '' closedSquare c r = closedSquare c r := h.bijOn.image_eq
 
-/-- Movers compose: `M'` after `M`, undone by `N` after `N'`. -/
+/-- Movers compose: `M'` after `M`, undone by `N` after `N'`.
+@isnad1 id=issquare.2h6v.s5.600c98abcea1 from=translated src=- shape=d1129eb6 vocab=88f09048
+-/
 theorem comp (h : IsSquareMover c r M N) (h' : IsSquareMover c r M' N') :
     IsSquareMover c r (M' ∘ M) (N ∘ N') where
   mapsTo := h'.mapsTo.comp h.mapsTo
@@ -469,7 +568,9 @@ theorem comp (h : IsSquareMover c r M N) (h' : IsSquareMover c r M' N') :
 
 end IsSquareMover
 
-/-- A shear, together with the shear that undoes it, is a mover of the square. -/
+/-- A shear, together with the shear that undoes it, is a mover of the square.
+@isnad1 id=issquare.2h8v.s6.1ae0c6fb2a6b from=translated src=- shape=2b25f4a9 vocab=3de82285
+-/
 theorem isSquareMover_shear (h : IsShear r a b k k') (hij : j ≠ i) :
     IsSquareMover c r (shear c r a b k k' i j) (shear c r a b (k + k') (-k') i j) where
   mapsTo := shear_mapsTo h i j
@@ -493,7 +594,9 @@ The map is built as two shears: the first moves the first coordinate of `x` to t
 along the level line of `x`, the second moves the second coordinate along the level line of
 the result. Each shear bends one coordinate by a piecewise-linear map whose displacement dies
 away to zero at the two transverse sides, which is exactly the piecewise-affine cone
-construction of the blueprint, written in coordinates. -/
+construction of the blueprint, written in coordinates.
+@isnad1 id=ex.2h4v.s6.ff03fd779980 from=translated src=- shape=b5105ba5 vocab=75297621
+-/
 theorem exists_squareMover {c x y : Plane} {r : ℝ} (hx : x ∈ openSquare c r)
     (hy : y ∈ openSquare c r) :
     ∃ M N : Plane → Plane, IsSquareMover c r M N ∧ M x = y ∧ N y = x := by
@@ -545,17 +648,25 @@ theorem exists_squareMover {c x y : Plane} {r : ℝ} (hx : x ∈ openSquare c r)
 
 /-! ### The boundary of the square -/
 
+/--
+@isnad1 id=eq.0h3v.s8.2b9076c43161 from=translated src=- shape=39faef24 vocab=097caa0a
+-/
 theorem add_smul_single_apply (z : Plane) (t : ℝ) (l : Fin 2) :
     (z + t • EuclideanSpace.single l (1 : ℝ)) l = z l + t := by
   simp [PiLp.add_apply, PiLp.smul_apply]
 
+/--
+@isnad1 id=eq.0h3v.s7.bb2ce07eb39b from=translated src=- shape=7dd0b639 vocab=a0974111
+-/
 theorem dist_add_smul_single (z : Plane) (t : ℝ) (l : Fin 2) :
     dist (z + t • EuclideanSpace.single l (1 : ℝ)) z = |t| := by
   rw [dist_eq_norm, add_sub_cancel_left, norm_smul, PiLp.norm_single]
   simp
 
 /-- The interior of the closed square is the open square: a point with a coordinate at
-distance exactly `r` from the centre can be pushed further out along that coordinate. -/
+distance exactly `r` from the centre can be pushed further out along that coordinate.
+@isnad1 id=eq.0h2v.s5.a8b289ecfde4 from=translated src=- shape=47926acc vocab=5bc021d6
+-/
 theorem interior_closedSquare (c : Plane) (r : ℝ) :
     interior (closedSquare c r) = openSquare c r := by
   have hsub : openSquare c r ⊆ closedSquare c r := fun z hz => show supDist z c ≤ r from hz.le
@@ -580,7 +691,9 @@ theorem interior_closedSquare (c : Plane) (r : ℝ) :
     rw [he] at this
     linarith
 
-/-- The boundary of the closed square is the sup-distance sphere: the blueprint's `S`. -/
+/-- The boundary of the closed square is the sup-distance sphere: the blueprint's `S`.
+@isnad1 id=eq.0h2v.s5.c550cfc4cec2 from=translated src=- shape=f386618d vocab=9be69fde
+-/
 theorem frontier_closedSquare (c : Plane) (r : ℝ) :
     frontier (closedSquare c r) = {z | supDist z c = r} := by
   rw [(isClosed_closedSquare c r).frontier_eq, interior_closedSquare]
@@ -591,7 +704,9 @@ theorem frontier_closedSquare (c : Plane) (r : ℝ) :
   · intro h
     exact ⟨le_of_eq h, by rw [openSquare, Set.mem_ofPred_eq, h]; exact lt_irrefl r⟩
 
-/-- A mover is the identity on the boundary square `S`. -/
+/-- A mover is the identity on the boundary square `S`.
+@isnad1 id=eqon.1h4v.s6.f15f3edce9f0 from=translated src=- shape=0dec514c vocab=c7ff4834
+-/
 theorem IsSquareMover.eqOn_frontier {M N : Plane → Plane} (h : IsSquareMover c r M N) :
     EqOn M id (frontier (closedSquare c r)) := by
   intro z hz
@@ -610,10 +725,16 @@ noncomputable def IsSquareMover.homeomorph {M N : Plane → Plane} (h : IsSquare
   continuous_toFun := h.continuousOn.domRestrict.subtype_mk _
   continuous_invFun := h.continuousOn_inv.domRestrict.subtype_mk _
 
+/--
+@isnad1 id=eq.1h5v.s8.f723fec6a07e from=translated src=- shape=03ea3881 vocab=b0afec05
+-/
 @[simp] theorem IsSquareMover.homeomorph_apply {M N : Plane → Plane}
     (h : IsSquareMover c r M N) (z : closedSquare c r) :
     (h.homeomorph z : Plane) = M z := rfl
 
+/--
+@isnad1 id=eq.1h5v.s9.f8c0afb78715 from=translated src=- shape=2e618038 vocab=51600c1f
+-/
 @[simp] theorem IsSquareMover.homeomorph_symm_apply {M N : Plane → Plane}
     (h : IsSquareMover c r M N) (z : closedSquare c r) :
     (h.homeomorph.symm z : Plane) = N z := rfl
@@ -635,7 +756,9 @@ abstract point of all late terms. -/
 /-- If the terms of an antitone sequence of nonempty compacta have diameters tending to zero,
 and a point lies in every term from some index on, then that point is the unique point of the
 intersection. Blueprint Proposition (Skeleton agreement), stripped of the cell apparatus:
-read `K n` as the closed target star `T n x` and `v` as the skeleton value `g_N x`. -/
+read `K n` as the closed target star `T n x` and `v` as the skeleton value `g_N x`.
+@isnad1 id=eq.5h3v.s7.19fda35f103a from=translated src=- shape=09133ffc vocab=fccdc01e
+-/
 theorem iInter_eq_singleton_of_mem_tail {K : ℕ → Set Plane} {v : Plane} {N : ℕ}
     (hne : ∀ n, (K n).Nonempty) (hK : ∀ n, IsCompact (K n)) (hmono : Antitone K)
     (hdiam : Filter.Tendsto (fun n => diam (K n)) Filter.atTop (nhds 0))

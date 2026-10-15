@@ -83,15 +83,30 @@ is known to be separating. -/
 def outside (C : Set Plane) : Set Plane :=
   {x | x ∉ C ∧ ¬ IsBounded (connectedComponentIn Cᶜ x)}
 
+/--
+@isnad1 id=iff.0h2v.s6.68c3393cae6b from=translated src=- shape=69bbd1b6 vocab=d52adc92
+-/
 theorem mem_inside_iff : x ∈ inside C ↔ x ∉ C ∧ IsBounded (connectedComponentIn Cᶜ x) := Iff.rfl
 
+/--
+@isnad1 id=iff.0h2v.s6.fb9d0f774bad from=translated src=- shape=4b73cc7a vocab=d4076474
+-/
 theorem mem_outside_iff : x ∈ outside C ↔ x ∉ C ∧ ¬ IsBounded (connectedComponentIn Cᶜ x) :=
   Iff.rfl
 
+/--
+@isnad1 id=le.0h1v.s4.d1192cdaaecc from=translated src=- shape=90c803c0 vocab=17cd338a
+-/
 theorem inside_subset_compl : inside C ⊆ Cᶜ := fun _ hx => hx.1
 
+/--
+@isnad1 id=le.0h1v.s4.8fff90baa4d2 from=translated src=- shape=90c803c0 vocab=67e208b1
+-/
 theorem outside_subset_compl : outside C ⊆ Cᶜ := fun _ hx => hx.1
 
+/--
+@isnad1 id=eq.0h1v.s4.dd0ae6458a75 from=translated src=- shape=f3ab5751 vocab=a36dc13b
+-/
 theorem inside_union_outside (C : Set Plane) : inside C ∪ outside C = Cᶜ := by
   ext z
   constructor
@@ -101,13 +116,18 @@ theorem inside_union_outside (C : Set Plane) : inside C ∪ outside C = Cᶜ := 
     · exact Or.inl ⟨hz, hb⟩
     · exact Or.inr ⟨hz, hb⟩
 
+/--
+@isnad1 id=disjoint.0h1v.s5.49ab02734ac7 from=translated src=- shape=90cedf2a vocab=3a0ad5e8
+-/
 theorem disjoint_inside_outside : Disjoint (inside C) (outside C) := by
   rw [Set.disjoint_left]
   rintro z ⟨-, hb⟩ ⟨-, hb'⟩
   exact hb' hb
 
 /-- Boundedness of the component is constant along a component, so the inside is a union of
-whole components. -/
+whole components.
+@isnad1 id=le.1h2v.s6.e06ccbefad8c from=translated src=- shape=bd20f0d1 vocab=5d8d84ea
+-/
 theorem connectedComponentIn_subset_inside (hx : x ∈ inside C) :
     connectedComponentIn Cᶜ x ⊆ inside C := by
   intro z hz
@@ -115,6 +135,9 @@ theorem connectedComponentIn_subset_inside (hx : x ∈ inside C) :
   rw [← connectedComponentIn_eq hz]
   exact hx.2
 
+/--
+@isnad1 id=le.1h2v.s6.e5d707d060fc from=translated src=- shape=bd20f0d1 vocab=2f1dab13
+-/
 theorem connectedComponentIn_subset_outside (hx : x ∈ outside C) :
     connectedComponentIn Cᶜ x ⊆ outside C := by
   intro z hz
@@ -122,12 +145,17 @@ theorem connectedComponentIn_subset_outside (hx : x ∈ outside C) :
   rw [← connectedComponentIn_eq hz]
   exact hx.2
 
-/-- A union of components of an open set is open. -/
+/-- A union of components of an open set is open.
+@isnad1 id=isopen.1h1v.s6.3b24d5865f74 from=translated src=- shape=73379b06 vocab=cffa462d
+-/
 theorem isOpen_inside (hC : IsClosed C) : IsOpen (inside C) := by
   rw [isOpen_iff_forall_mem_open]
   exact fun z hz => ⟨connectedComponentIn Cᶜ z, connectedComponentIn_subset_inside hz,
     Plane.isOpen_connectedComponentIn hC.isOpen_compl, mem_connectedComponentIn hz.1⟩
 
+/--
+@isnad1 id=isopen.1h1v.s6.7c17ba8c6005 from=translated src=- shape=73379b06 vocab=fe0b1a77
+-/
 theorem isOpen_outside (hC : IsClosed C) : IsOpen (outside C) := by
   rw [isOpen_iff_forall_mem_open]
   exact fun z hz => ⟨connectedComponentIn Cᶜ z, connectedComponentIn_subset_outside hz,
@@ -157,35 +185,52 @@ structure IsSeparating (C : Set Plane) : Prop where
 
 namespace IsSeparating
 
+/--
+@isnad1 id=isclosed.1h1v.s5.cd7489fa801f from=translated src=- shape=f3db9897 vocab=994fbb3b
+-/
 theorem isClosed (h : IsSeparating C) : IsClosed C := h.isJordanCurve.isClosed
 
+/--
+@isnad1 id=isopen.1h1v.s5.e660eb4f5c00 from=translated src=- shape=314ae98c vocab=715404ac
+-/
 theorem isOpen_inside (h : IsSeparating C) : IsOpen (Schoenflies.inside C) :=
   Schoenflies.isOpen_inside h.isClosed
 
+/--
+@isnad1 id=isopen.1h1v.s5.3a63002bc164 from=translated src=- shape=314ae98c vocab=93668101
+-/
 theorem isOpen_outside (h : IsSeparating C) : IsOpen (Schoenflies.outside C) :=
   Schoenflies.isOpen_outside h.isClosed
 
 /-- The inside is bounded: it is connected and lies inside the complement, hence inside the
-component of any of its points, which is bounded by definition of `inside`. -/
+component of any of its points, which is bounded by definition of `inside`.
+@isnad1 id=isbounde.1h1v.s5.12a0ad66a649 from=translated src=- shape=314ae98c vocab=0a701576
+-/
 theorem isBounded_inside (h : IsSeparating C) : IsBounded (Schoenflies.inside C) := by
   obtain ⟨z, hz⟩ := h.isConnected_inside.nonempty
   exact hz.2.subset
     (h.isConnected_inside.isPreconnected.subset_connectedComponentIn hz inside_subset_compl)
 
-/-- The outside is unbounded: it contains an unbounded component. -/
+/-- The outside is unbounded: it contains an unbounded component.
+@isnad1 id=not.1h1v.s5.04175a9032f8 from=translated src=- shape=0fc8dc4c vocab=09298985
+-/
 theorem not_isBounded_outside (h : IsSeparating C) : ¬ IsBounded (Schoenflies.outside C) := by
   obtain ⟨z, hz⟩ := h.isConnected_outside.nonempty
   exact fun hb => hz.2 (hb.subset (connectedComponentIn_subset_outside hz))
 
 /-- The inside really is one *region* of the complement, that is, a connected component of it:
 it is a union of components which is itself connected. Together with its twin below this is
-the "exactly two regions" clause of Definition 2.4. -/
+the "exactly two regions" clause of Definition 2.4.
+@isnad1 id=eq.2h2v.s6.e90caf9025d0 from=translated src=- shape=f179dc08 vocab=8461eb02
+-/
 theorem connectedComponentIn_eq_inside (h : IsSeparating C) (hx : x ∈ Schoenflies.inside C) :
     connectedComponentIn Cᶜ x = Schoenflies.inside C :=
   Set.Subset.antisymm (connectedComponentIn_subset_inside hx)
     (h.isConnected_inside.isPreconnected.subset_connectedComponentIn hx inside_subset_compl)
 
-/-- The outside is a connected component of the complement. -/
+/-- The outside is a connected component of the complement.
+@isnad1 id=eq.2h2v.s6.9878416df175 from=translated src=- shape=f179dc08 vocab=36cddc0f
+-/
 theorem connectedComponentIn_eq_outside (h : IsSeparating C) (hx : x ∈ Schoenflies.outside C) :
     connectedComponentIn Cᶜ x = Schoenflies.outside C :=
   Set.Subset.antisymm (connectedComponentIn_subset_outside hx)
@@ -207,7 +252,9 @@ def IsRegionPair (C Ω Ω' : Set Plane) : Prop :=
   (Ω = inside C ∧ Ω' = outside C) ∨ (Ω = outside C ∧ Ω' = inside C)
 
 /-- Every component of the complement is one of the two regions: there are no others. This is
-the last clause of "exactly two regions". -/
+the last clause of "exactly two regions".
+@isnad1 id=isregion.2h2v.s6.87a0590b4d02 from=translated src=- shape=01855be3 vocab=230d91ca
+-/
 theorem IsSeparating.isRegionOf_connectedComponentIn (h : IsSeparating C) (hx : x ∉ C) :
     IsRegionOf C (connectedComponentIn Cᶜ x) := by
   have hx' : x ∈ inside C ∪ outside C := by rw [inside_union_outside]; exact hx
@@ -217,44 +264,68 @@ theorem IsSeparating.isRegionOf_connectedComponentIn (h : IsSeparating C) (hx : 
 
 namespace IsRegionOf
 
+/--
+@isnad1 id=isregion.0h1v.s2.227b49155bb7 from=translated src=- shape=802d6110 vocab=9ffa444f
+-/
 theorem inside (C : Set Plane) : IsRegionOf C (Schoenflies.inside C) := Or.inl rfl
 
+/--
+@isnad1 id=isregion.0h1v.s2.f20a45e75dd1 from=translated src=- shape=802d6110 vocab=76c0a00f
+-/
 theorem outside (C : Set Plane) : IsRegionOf C (Schoenflies.outside C) := Or.inr rfl
 
+/--
+@isnad1 id=le.1h2v.s4.22803ddf58e1 from=translated src=- shape=6c25268a vocab=8fff8af7
+-/
 theorem subset_compl (h : IsRegionOf C Ω) : Ω ⊆ Cᶜ := by
   rcases h with rfl | rfl
   · exact inside_subset_compl
   · exact outside_subset_compl
 
+/--
+@isnad1 id=isopen.2h2v.s5.398801665ecd from=translated src=- shape=476406cc vocab=641fb010
+-/
 theorem isOpen (h : IsRegionOf C Ω) (hC : IsSeparating C) : IsOpen Ω := by
   rcases h with rfl | rfl
   · exact hC.isOpen_inside
   · exact hC.isOpen_outside
 
+/--
+@isnad1 id=isconnec.2h2v.s5.d3f440275039 from=translated src=- shape=476406cc vocab=2548026e
+-/
 theorem isConnected (h : IsRegionOf C Ω) (hC : IsSeparating C) : IsConnected Ω := by
   rcases h with rfl | rfl
   · exact hC.isConnected_inside
   · exact hC.isConnected_outside
 
-/-- A region is a connected component of the complement. -/
+/-- A region is a connected component of the complement.
+@isnad1 id=eq.3h3v.s6.56e00f861aa3 from=translated src=- shape=fdd11a26 vocab=230d91ca
+-/
 theorem connectedComponentIn_eq (h : IsRegionOf C Ω) (hC : IsSeparating C) (hx : x ∈ Ω) :
     connectedComponentIn Cᶜ x = Ω := by
   rcases h with rfl | rfl
   · exact hC.connectedComponentIn_eq_inside hx
   · exact hC.connectedComponentIn_eq_outside hx
 
+/--
+@isnad1 id=eq.2h2v.s5.54f8bda3d046 from=translated src=- shape=2b527e6f vocab=f67ff14c
+-/
 theorem frontier_eq (h : IsRegionOf C Ω) (hC : IsSeparating C) : frontier Ω = C := by
   rcases h with rfl | rfl
   · exact hC.frontier_inside
   · exact hC.frontier_outside
 
 /-- Every point of the curve is a limit of points of the region: this is the half of
-`frontier Ω = C` that absorption uses. -/
+`frontier Ω = C` that absorption uses.
+@isnad1 id=le.2h2v.s5.052dc9084018 from=translated src=- shape=b7c96f67 vocab=b86ce2b8
+-/
 theorem subset_closure (h : IsRegionOf C Ω) (hC : IsSeparating C) : C ⊆ closure Ω := by
   rw [← h.frontier_eq hC]
   exact frontier_subset_closure
 
-/-- The closure of a region is the region together with the curve. -/
+/-- The closure of a region is the region together with the curve.
+@isnad1 id=eq.2h2v.s6.453dab85c82d from=translated src=- shape=b3cc0cc5 vocab=87d84702
+-/
 theorem closure_eq (h : IsRegionOf C Ω) (hC : IsSeparating C) : closure Ω = Ω ∪ C := by
   have hfr := h.frontier_eq hC
   rw [(h.isOpen hC).frontier_eq] at hfr
@@ -264,34 +335,51 @@ end IsRegionOf
 
 namespace IsRegionPair
 
+/--
+@isnad1 id=isregion.1h3v.s4.75ab80b5a34b from=translated src=- shape=3c3f6799 vocab=e086b2b1
+-/
 theorem left (h : IsRegionPair C Ω Ω') : IsRegionOf C Ω := by
   rcases h with ⟨rfl, -⟩ | ⟨rfl, -⟩
   · exact Or.inl rfl
   · exact Or.inr rfl
 
+/--
+@isnad1 id=isregion.1h3v.s4.f2e765ec724e from=translated src=- shape=b4562e4e vocab=e086b2b1
+-/
 theorem right (h : IsRegionPair C Ω Ω') : IsRegionOf C Ω' := by
   rcases h with ⟨-, rfl⟩ | ⟨-, rfl⟩
   · exact Or.inr rfl
   · exact Or.inl rfl
 
+/--
+@isnad1 id=isregion.1h3v.s4.38ac78157cdd from=translated src=- shape=d00cff6e vocab=62c83480
+-/
 theorem symm (h : IsRegionPair C Ω Ω') : IsRegionPair C Ω' Ω := by
   rcases h with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
   · exact Or.inr ⟨rfl, rfl⟩
   · exact Or.inl ⟨rfl, rfl⟩
 
+/--
+@isnad1 id=eq.1h3v.s4.376eb2734a54 from=translated src=- shape=f9714d0f vocab=b1561fa3
+-/
 theorem union_eq (h : IsRegionPair C Ω Ω') : Ω ∪ Ω' = Cᶜ := by
   rcases h with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
   · exact inside_union_outside C
   · rw [Set.union_comm]
     exact inside_union_outside C
 
+/--
+@isnad1 id=disjoint.1h3v.s5.d590a7305ce3 from=translated src=- shape=38d94b79 vocab=938c7d51
+-/
 theorem disjoint (h : IsRegionPair C Ω Ω') : Disjoint Ω Ω' := by
   rcases h with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
   · exact disjoint_inside_outside
   · exact disjoint_inside_outside.symm
 
 /-- A connected set off the curve and off one region lies in the other. This is the only place
-where "exactly two regions" is used, and it is used in exactly that form. -/
+where "exactly two regions" is used, and it is used in exactly that form.
+@isnad1 id=le.6h4v.s6.3ff0a999621f from=translated src=- shape=0e9d7303 vocab=2a7fd639
+-/
 theorem subset_left_of_isPreconnected (h : IsRegionPair C Ω Ω') (hC : IsSeparating C)
     {S : Set Plane} (hS : IsPreconnected S) (hne : S.Nonempty) (hSC : S ⊆ Cᶜ)
     (hSΩ' : Disjoint S Ω') : S ⊆ Ω := by
@@ -305,7 +393,9 @@ end IsRegionPair
 
 /-- A nonempty connected set disjoint from the curve lies in one of the two regions. This is
 the well-definedness clause of Lemma 2.6: "being connected it lies in one region of
-`ℝ² ∖ Jᵢ`, so `Wᵢ` and `Vᵢ` are well defined". -/
+`ℝ² ∖ Jᵢ`, so `Wᵢ` and `Vᵢ` are well defined".
+@isnad1 id=ex.4h2v.s6.d9895ef42376 from=translated src=- shape=e6e10cb9 vocab=4e8b9931
+-/
 theorem IsSeparating.exists_isRegionPair_subset (hC : IsSeparating C) {S : Set Plane}
     (hS : IsPreconnected S) (hne : S.Nonempty) (hSC : Disjoint S C) :
     ∃ W V, IsRegionPair C W V ∧ S ⊆ W := by
@@ -326,7 +416,9 @@ theorem IsSeparating.exists_isRegionPair_subset (hC : IsSeparating C) {S : Set P
 
 /-- Lemma 2.5 (absorption), set-theoretic core. If every point of `C` is a limit of points of
 `Ω`, and `Ω` sits inside an open `V` whose frontier lies in `J`, then `C` misses `V` only where
-`J` does. -/
+`J` does.
+@isnad1 id=le.4h4v.s7.011ba3aa9003 from=translated src=- shape=c9bfe9f6 vocab=b6d6a81f
+-/
 theorem absorption_of_subset_closure (hCΩ : C ⊆ closure Ω) (hV : IsOpen V)
     (hfr : frontier V ⊆ J) (hsub : Ω ⊆ V) : C \ J ⊆ V := by
   rintro z ⟨hzC, hzJ⟩
@@ -336,7 +428,9 @@ theorem absorption_of_subset_closure (hCΩ : C ⊆ closure Ω) (hV : IsOpen V)
 
 /-- Lemma 2.5 (absorption). If a region `Ω` of the complement of a separating curve `C` is
 contained in a region `V` of the complement of a separating curve `J`, then all of `C` off `J`
-lies in `V`. -/
+lies in `V`.
+@isnad1 id=le.5h4v.s5.479f54647a79 from=translated src=- shape=d35d6ad6 vocab=7dc2f0e8
+-/
 theorem IsSeparating.absorption (hC : IsSeparating C) (hJ : IsSeparating J)
     (hΩ : IsRegionOf C Ω) (hV : IsRegionOf J V) (hsub : Ω ⊆ V) : C \ J ⊆ V :=
   absorption_of_subset_closure (hΩ.subset_closure hC) (hV.isOpen hJ)
@@ -349,7 +443,9 @@ with `P ⊆ J ⊆ C ∪ P`, and `W, V` the two regions of `ℝ² ∖ J`, with `�
 `J` is `Aᵢ ∪ P` for one of the two arcs `Aᵢ`; the proof only needs the two inclusions. -/
 
 /-- The far region `Ω'` absorbs all of `C` off `J`, so the near cell `V` misses `C` entirely:
-the part of `C` off `J` is in `W`, and the part on `J` is off `V` because `V` misses `J`. -/
+the part of `C` off `J` is in `W`, and the part on `J` is off `V` because `V` misses `J`.
+@isnad1 id=disjoint.5h5v.s6.f2f2d819d684 from=translated src=- shape=d6bd3b24 vocab=39f0b0f0
+-/
 theorem disjoint_cell_curve (hC : IsSeparating C) (hJ : IsSeparating J)
     (hΩ' : IsRegionOf C Ω') (hWV : IsRegionPair J W V)
     (hΩW : Ω' ⊆ W) : Disjoint V C := by
@@ -362,7 +458,9 @@ theorem disjoint_cell_curve (hC : IsSeparating C) (hJ : IsSeparating J)
 
 /-- Lemma 2.6, first half of (a): the cell `V` is contained in `Ω ∖ P`. It misses `C`, it is
 connected, and it misses `Ω'` because `Ω' ⊆ W`; so it lies in `Ω`. It misses `P` because it
-misses `J ⊇ P`. -/
+misses `J ⊇ P`.
+@isnad1 id=le.6h7v.s6.6363d042b30c from=translated src=- shape=cc7171b0 vocab=2b211b18
+-/
 theorem cell_subset_region_diff (hC : IsSeparating C) (hJ : IsSeparating J)
     (hΩ : IsRegionPair C Ω Ω') (hWV : IsRegionPair J W V)
     (hΩW : Ω' ⊆ W) (hPJ : P ⊆ J) : V ⊆ Ω \ P := by
@@ -376,7 +474,9 @@ theorem cell_subset_region_diff (hC : IsSeparating C) (hJ : IsSeparating J)
   exact fun z hz => ⟨hVΩ hz, fun hzP => hVJ hz (hPJ hzP)⟩
 
 /-- Lemma 2.6 (a): the cell `V` is a connected component of `Ω ∖ P`. Its frontier is `J`, which
-lies in `C ∪ P` and so misses the open set `Ω ∖ P`; Lemma 1.7 does the rest. -/
+lies in `C ∪ P` and so misses the open set `Ω ∖ P`; Lemma 1.7 does the rest.
+@isnad1 id=eq.8h8v.s7.d0010f81bd2e from=translated src=- shape=0328c835 vocab=d2413ab2
+-/
 theorem cell_isComponent (hC : IsSeparating C) (hJ : IsSeparating J)
     (hΩ : IsRegionPair C Ω Ω') (hWV : IsRegionPair J W V)
     (hΩW : Ω' ⊆ W) (hPJ : P ⊆ J) (hJCP : J ⊆ C ∪ P) :
@@ -393,7 +493,9 @@ theorem cell_isComponent (hC : IsSeparating C) (hJ : IsSeparating J)
   · exact hwP hwP'
 
 /-- Lemma 2.6 (c): the closure of the cell meets `C` exactly in `J ∩ C`. The closure is
-`V ∪ J`, and `V` misses `C`. -/
+`V ∪ J`, and `V` misses `C`.
+@isnad1 id=eq.5h5v.s6.f5e7b2d976e2 from=translated src=- shape=6a5937e3 vocab=ed33fc1a
+-/
 theorem closure_cell_inter_curve (hC : IsSeparating C) (hJ : IsSeparating J)
     (hΩ' : IsRegionOf C Ω') (hWV : IsRegionPair J W V)
     (hΩW : Ω' ⊆ W) : closure V ∩ C = J ∩ C := by
@@ -405,13 +507,17 @@ theorem closure_cell_inter_curve (hC : IsSeparating C) (hJ : IsSeparating J)
 Two small facts turn the blueprint's arc picture into the hypotheses the lemmas above take. -/
 
 /-- The two curves of Lemma 2.6 are Jordan curves: an arc from `p` to `q` and a second arc from
-`p` to `q` meeting it only at those two points glue to a Jordan curve. -/
+`p` to `q` meeting it only at those two points glue to a Jordan curve.
+@isnad1 id=isjordan.3h4v.s5.9a2acc59e6e4 from=translated src=- shape=fd7d17c6 vocab=f8068257
+-/
 theorem isJordanCurve_union (hA : IsArcBetween A p q) (hP : IsArcBetween P p q)
     (hmeet : ∀ z ∈ A, z ∈ P → z = p ∨ z = q) : IsJordanCurve (A ∪ P) :=
   IsJordanCurve.of_two_arcs hA hP.reverse hmeet
 
 /-- Lemma 2.6 (b), arc side: the two arcs of `C` from `p` to `q` are distinct, because they
-meet only at `p` and `q` while neither is just `{p, q}`. -/
+meet only at `p` and `q` while neither is just `{p, q}`.
+@isnad1 id=ne.2h4v.s6.42b6a79c8269 from=translated src=- shape=28e1daaf vocab=18f2e8cf
+-/
 theorem arcs_ne (hmeet : A₁ ∩ A₂ ⊆ {p, q}) (hA : ¬ A₁ ⊆ {p, q}) : A₁ ≠ A₂ := by
   rintro rfl
   exact hA fun z hz => hmeet ⟨hz, hz⟩
@@ -428,7 +534,9 @@ both arcs, and suppose the two curves `Jᵢ = Aᵢ ∪ P` are separating. Let `W
 * (c) `closure Vᵢ ∩ C = Aᵢ`.
 
 The blueprint proves (b) from the boundaries; here it falls straight out of (c), since
-`V₁ = V₂` would make `A₁ = A₂`. -/
+`V₁ = V₂` would make `A₁ = A₂`.
+@isnad1 id=and.13h10v.s8.aa4e0671e100 from=translated src=- shape=00b93dad vocab=57981218
+-/
 theorem crosscut_cells (hC : IsSeparating C)
     (hJ₁ : IsSeparating (A₁ ∪ P)) (hJ₂ : IsSeparating (A₂ ∪ P))
     (hA₁ : A₁ ⊆ C) (hA₂ : A₂ ⊆ C) (hP₁ : P ∩ C ⊆ A₁) (hP₂ : P ∩ C ⊆ A₂) (hne : A₁ ≠ A₂)

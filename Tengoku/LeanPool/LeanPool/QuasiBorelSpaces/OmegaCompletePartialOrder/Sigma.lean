@@ -37,6 +37,9 @@ instance instSigmaLeanPool : OmegaCompletePartialOrder ((i : I) × P i) where
     simp only [Sigma.map_mk, id_eq, Sigma.mk_le_mk_iff]
     simp_all
 
+/--
+@isnad1 id=eq.0h4v.s6.1db3002e727a from=translated src=- shape=8bbc1b0f vocab=11f4e77d
+-/
 @[simp]
 lemma ωSup_inj {i} (c : Chain (P i)) : ωSup (Chain.Sigma.inj c) = ⟨i, ωSup c⟩ := rfl
 

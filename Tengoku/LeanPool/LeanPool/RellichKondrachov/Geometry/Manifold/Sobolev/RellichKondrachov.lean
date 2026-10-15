@@ -53,11 +53,20 @@ variable [T2Space M] [CompactSpace M]
 
 /-- Borel σ-algebra on the manifold `M`. -/
 local instance instMeasurableSpaceMRellichKondrachov : MeasurableSpace M := borel M
+/--
+@isnad1 id=borelspa.0h1v.s3.0beeeceb9b1c from=translated src=- shape=c6850a32 vocab=51ecfa54
+-/
 local instance instBorelSpaceMRellichKondrachov : BorelSpace M := ⟨rfl⟩
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceERellichKondrachov : MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.077a20b5012d from=translated src=- shape=c6850a32 vocab=ffe88ddb
+-/
 local instance instBorelSpaceERellichKondrachov : BorelSpace E := ⟨rfl⟩
+/--
+@isnad1 id=opensmea.0h1v.s4.fb7184b007ba from=translated src=- shape=c6850a32 vocab=feb70572
+-/
 local instance instOpensMeasurableSpaceERellichKondrachov : OpensMeasurableSpace E := by
   infer_instance
 
@@ -82,7 +91,9 @@ private lemma isCompactOperator_fintype_sum {X Y : Type*} [TopologicalSpace X] [
 
 omit [T2Space M] in
 /-- If each chart contribution in the definition of `h1ToL2` is a compact operator, then the
-manifold inclusion `H¹ → L²` is a compact operator. -/
+manifold inclusion `H¹ → L²` is a compact operator.
+@isnad1 id=iscompac.1h6v.s18.b8f6caf6ecb4 from=translated src=- shape=723f2004 vocab=485f37be
+-/
 theorem isCompactOperator_h1ToL2_of_summands (μ : Measure M) [IsFiniteMeasure μ]
     (h :
       ∀ i : d.ι,

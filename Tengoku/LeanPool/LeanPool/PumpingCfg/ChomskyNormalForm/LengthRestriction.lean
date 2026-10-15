@@ -48,6 +48,9 @@ inductive Wellformed : (ContextFreeRule T N) → Prop where
       (hu : ∀ s ∈ u, match s with | Symbol.nonterminal _ => True | _ => False) :
       Wellformed ⟨n, u⟩
 
+/--
+@isnad1 id=ex.0h4v.s6.a7fbfb248c8e from=translated src=- shape=9a0506e9 vocab=1b14f672
+-/
 lemma only_nonterminals {u : List (Symbol T N)}
     (hu : ∀ s ∈ u, match s with | Symbol.nonterminal _ => True | _ => False) :
     ∃ v : List N, v.map Symbol.nonterminal = u := by
@@ -62,6 +65,9 @@ lemma only_nonterminals {u : List (Symbol T N)}
       use n :: u'
       simpa only [List.map_cons, List.cons.injEq, true_and] using hu'
 
+/--
+@isnad1 id=ex.2h4v.s7.18da7b171808 from=translated src=- shape=aa621262 vocab=5b5d4e89
+-/
 lemma Wellformed.mem_nonterminal {r : ContextFreeRule T N} (hr : r.Wellformed)
     (i : Fin r.output.length) (h2 : 2 ≤ r.output.length) :
     ∃ n, r.output[i] = Symbol.nonterminal n := by
@@ -72,6 +78,9 @@ lemma Wellformed.mem_nonterminal {r : ContextFreeRule T N} (hr : r.Wellformed)
     specialize hu (u[i]'i.2) (u.get_mem i)
     aesop
 
+/--
+@isnad1 id=or.1h3v.s6.152c767427d2 from=translated src=- shape=f0ae8717 vocab=1e588f0d
+-/
 lemma Wellformed.cases {r : ContextFreeRule T N} (hr : r.Wellformed) :
     (∃ t : T, r.output = [Symbol.terminal t]) ∨
     (∃ (n₁ n₂ : N) (u : List N),
@@ -162,18 +171,30 @@ def embedSymbol (s : Symbol T g.NT) : Symbol T g.NT' :=
   | Symbol.terminal t => Symbol.terminal t
   | Symbol.nonterminal n => Symbol.nonterminal (Sum.inl n)
 
+/--
+@isnad1 id=eq.0h3v.s6.a74ef64bbc9f from=translated src=- shape=9b5bb8c7 vocab=b9471116
+-/
 lemma embedSymbol_nonterminal {n : g.NT} :
     embedSymbol (Symbol.nonterminal n) = Symbol.nonterminal (Sum.inl n) := by rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.4d3eb194effc from=translated src=- shape=d42075e8 vocab=2676b4b7
+-/
 lemma embedSymbol_terminal {t : T} :
     embedSymbol (Symbol.terminal t) = (@Symbol.terminal T g.NT') t := by rfl
 
 /-- Intuitive embedding of strings of the original grammar into strings of the new grammar's type -/
 abbrev embedString (u : List (Symbol T g.NT)) : List (Symbol T g.NT') := u.map embedSymbol
 
+/--
+@isnad1 id=eq.0h3v.s7.4a166528f5a6 from=translated src=- shape=52e555ac vocab=b4a21f67
+-/
 lemma embedString_nonterminal {n : g.NT} :
     embedString [Symbol.nonterminal n] = [Symbol.nonterminal (Sum.inl n)] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.66395884aa90 from=translated src=- shape=b3c7342e vocab=29913aa9
+-/
 lemma embedString_terminals {u : List T} :
     embedString (u.map Symbol.terminal) = u.map (@Symbol.terminal T g.NT') := by
   induction u with
@@ -183,6 +204,9 @@ lemma embedString_terminals {u : List T} :
       at ih ⊢
     exact ⟨rfl, ih⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.25712132666d from=translated src=- shape=7a4358b3 vocab=b0c281fe
+-/
 lemma embedString_append {u v : List (Symbol T g.NT)} :
   embedString (u ++ v) = embedString u ++ embedString v := List.map_append
 
@@ -197,11 +221,17 @@ def projectSymbol (s : Symbol T g.NT') : List (Symbol T g.NT) :=
 abbrev projectString (u : List (Symbol T g.NT')) : List (Symbol T g.NT) :=
   (u.map projectSymbol).flatten
 
+/--
+@isnad1 id=eq.0h4v.s6.aeba1bcc91de from=translated src=- shape=7a4358b3 vocab=6329218c
+-/
 lemma projectString_append {u v : List (Symbol T g.NT')} :
     projectString (u ++ v) = projectString u ++ projectString v := by
   unfold projectString
   rw [List.map_append, List.flatten_append]
 
+/--
+@isnad1 id=eq.0h3v.s4.f5a03ecd9010 from=translated src=- shape=19c1bdeb vocab=a908344a
+-/
 lemma projectString_embedString_id {u : List (Symbol T g.NT)} :
     projectString (embedString u) = u := by
   unfold projectString embedString
@@ -213,15 +243,24 @@ lemma projectString_embedString_id {u : List (Symbol T g.NT)} :
     congr
     cases d <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.7a38744bbe3f from=translated src=- shape=8499be80 vocab=9ef6e09f
+-/
 lemma projectString_nonterminal {n : g.NT} :
     projectString [Symbol.nonterminal (Sum.inl n)] = [Symbol.nonterminal n] := by
   simp [projectString, projectSymbol]
 
+/--
+@isnad1 id=eq.0h3v.s5.7da759d6a6bf from=translated src=- shape=884fb3a5 vocab=c6e03475
+-/
 @[simp]
 lemma projectSymbol_terminal {t : T} :
     projectSymbol (@Symbol.terminal T g.NT' t) = [Symbol.terminal t] := by
   simp [projectSymbol]
 
+/--
+@isnad1 id=eq.0h3v.s5.b389a0f18611 from=translated src=- shape=b3c7342e vocab=3538adb3
+-/
 lemma projectString_terminals {u : List T} :
     projectString (u.map (@Symbol.terminal T g.NT')) = u.map Symbol.terminal := by
   induction u with
@@ -234,6 +273,9 @@ end EmbedProject
 
 variable {g : ContextFreeGrammar T}
 
+/--
+@isnad1 id=eq.1h5v.s6.fc715ebd1006 from=translated src=- shape=8a72242a vocab=a912ddd5
+-/
 lemma mem_computeRulesRec_projectString_input_eq_output {r : ContextFreeRule T g.NT}
     {i : Fin (r.output.length - 2)} {r' : ChomskyNormalFormRule T g.NT'}
     (hrri : r' ∈ computeRulesRec r i) :
@@ -272,6 +314,9 @@ lemma mem_computeRulesRec_projectString_input_eq_output {r : ContextFreeRule T g
         · omega
     · exact ih _ hrri
 
+/--
+@isnad1 id=not.1h6v.s6.2f876233ff50 from=translated src=- shape=ac4c2f5a vocab=ee4cfe70
+-/
 lemma left_not_mem_computeRulesRec {n : g.NT} {r : ContextFreeRule T g.NT}
     {r' : ChomskyNormalFormRule T g.NT'} {i : Fin (r.output.length - 2)}
     (hrn : r'.input = Sum.inl n) :
@@ -295,6 +340,9 @@ lemma left_not_mem_computeRulesRec {n : g.NT} {r : ContextFreeRule T g.NT}
       · apply ih
     · exact List.not_mem_nil
 
+/--
+@isnad1 id=le.2h5v.s7.d1231a710291 from=translated src=- shape=f04fc7d1 vocab=f117be4b
+-/
 lemma mem_computRules_right_length {n : Σ r : ContextFreeRule T g.NT, Fin (r.output.length - 2)}
     {r : ContextFreeRule T g.NT} {r' : ChomskyNormalFormRule T g.NT'} (hrr : r' ∈ computeRules r)
     (hrn : r'.input = Sum.inr n) :
@@ -306,6 +354,9 @@ lemma mem_computRules_right_length {n : Σ r : ContextFreeRule T g.NT, Fin (r.ou
   · rename_i heq; simp [heq]
   · contradiction
 
+/--
+@isnad1 id=mem.3h5v.s8.d8fef070d62e from=translated src=- shape=d8f7e6f9 vocab=00db930d
+-/
 lemma mem_computeRules_right_mem_computeRulesRec
     {n : Σ r : ContextFreeRule T g.NT, Fin (r.output.length - 2)} {r : ContextFreeRule T g.NT}
     {r' : ChomskyNormalFormRule T g.NT'} (hrₒ : r.output.length - 3 < r.output.length - 2)
@@ -319,6 +370,9 @@ lemma mem_computeRules_right_mem_computeRulesRec
     · rw [hrr] at hrn; simp at hrn
     · exact hrr
 
+/--
+@isnad1 id=and.2h5v.s7.f7af53b5baf0 from=translated src=- shape=3c31780a vocab=51e3d210
+-/
 lemma mem_computeRules_left {n : g.NT} {r : ContextFreeRule T g.NT}
     {r' : ChomskyNormalFormRule T g.NT'}
     (hrr : r' ∈ computeRules r) (hrn : r'.input = Sum.inl n) :
@@ -355,6 +409,9 @@ lemma mem_computeRules_left {n : g.NT} {r : ContextFreeRule T g.NT}
       exact left_not_mem_computeRulesRec hrn hrr
   · contradiction
 
+/--
+@isnad1 id=derives.1h4v.s5.9d5997893097 from=translated src=- shape=e68068c7 vocab=7b373604
+-/
 lemma restrictLength_produces_derives_projectString {u v : List (Symbol T g.NT')} [DecidableEq T]
     [DecidableEq g.NT] (huv : g.restrictLength.Produces u v) :
     g.Derives (projectString u) (projectString v) := by
@@ -378,6 +435,9 @@ lemma restrictLength_produces_derives_projectString {u v : List (Symbol T g.NT')
     exact mem_computeRules_right_mem_computeRulesRec
       (Nat.sub_lt_sub_left (mem_computRules_right_length hrr hr) (Nat.lt_add_one 2)) hrr hr
 
+/--
+@isnad1 id=derives.1h4v.s5.2a25f97c196e from=translated src=- shape=e68068c7 vocab=dd501cdc
+-/
 lemma restrictLength_derives_derives_projectString {u v : List (Symbol T g.NT')} [DecidableEq T]
     [DecidableEq g.NT] (huv : g.restrictLength.Derives u v) :
     g.Derives (projectString u) (projectString v) := by
@@ -385,6 +445,9 @@ lemma restrictLength_derives_derives_projectString {u v : List (Symbol T g.NT')}
   | refl => rfl
   | head hp _ ih => exact Derives.trans (restrictLength_produces_derives_projectString hp) ih
 
+/--
+@isnad1 id=derives.2h6v.s10.39b193697497 from=translated src=- shape=2d0fa88b vocab=272bece7
+-/
 lemma computeRulesRec_derives [DecidableEq T] [DecidableEq g.NT] {r : ContextFreeRule T g.NT}
     {i : Fin (r.output.length - 2)} {n : g.NT'} {x : List (ChomskyNormalFormRule T g.NT')}
     (hrix : computeRulesRec r i ⊆ x) (hr : r.Wellformed) :
@@ -449,6 +512,9 @@ lemma computeRulesRec_derives [DecidableEq T] [DecidableEq g.NT] {r : ContextFre
       obtain ⟨n₁, hn₁⟩ := hr.mem_nonterminal ⟨r.output.length - 2 - (n + 1), by omega⟩ (by omega)
       simp_all
 
+/--
+@isnad1 id=derives.2h5v.s10.bd5ebeb0bd06 from=translated src=- shape=c8d6ad2c vocab=22fae9d1
+-/
 lemma computeRules_derives_embedString [DecidableEq T] [DecidableEq g.NT]
     {r : ContextFreeRule T g.NT} {n : g.NT'} {x : List (ChomskyNormalFormRule T g.NT')}
     (hrx : computeRules r ⊆ x) (hr : r.Wellformed) :
@@ -501,6 +567,9 @@ lemma computeRules_derives_embedString [DecidableEq T] [DecidableEq g.NT]
       · exact hrn' n₁ n₂ hru
       · exact hrn _ _ _ _ hru
 
+/--
+@isnad1 id=derives.2h4v.s5.0a091b1bb665 from=translated src=- shape=d49c7665 vocab=f3f26641
+-/
 lemma produces_restrictLength_derives_embedString [DecidableEq T] [DecidableEq g.NT]
     {u v : List (Symbol T g.NT)} (huv : g.Produces u v) (hg : g.Wellformed) :
     g.restrictLength.Derives (embedString u) (embedString v) := by
@@ -516,6 +585,9 @@ lemma produces_restrictLength_derives_embedString [DecidableEq T] [DecidableEq g
   simp only [List.mem_flatten, List.mem_map, Finset.mem_toList, exists_exists_and_eq_and]
   use r
 
+/--
+@isnad1 id=derives.2h4v.s5.56430596b4e2 from=translated src=- shape=d49c7665 vocab=9b73ad80
+-/
 lemma derives_restrictLength_derives_embedString [DecidableEq T] [DecidableEq g.NT]
     {u v : List (Symbol T g.NT)} (huv : g.Derives u v) (hg : g.Wellformed) :
     g.restrictLength.Derives (embedString u) (embedString v) := by
@@ -523,6 +595,9 @@ lemma derives_restrictLength_derives_embedString [DecidableEq T] [DecidableEq g.
   | refl => rfl
   | head hp _ ih => exact (produces_restrictLength_derives_embedString hp hg).trans ih
 
+/--
+@isnad1 id=eq.1h2v.s4.919fc30eb4dd from=translated src=- shape=76b967f0 vocab=66c0d807
+-/
 theorem restrictLength_correct [DecidableEq T] [e : DecidableEq g.NT] (hg : g.Wellformed) :
     g.language = g.restrictLength.language := by
   apply Set.eq_of_subset_of_subset <;> intro w hw

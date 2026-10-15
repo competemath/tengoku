@@ -27,7 +27,9 @@ not obvious (they sit between `GroupTheory.PGroup`, `RepresentationTheory`, and 
 @[expose] public section
 
 /-- A `2`-group acting `ZMod 2`-linearly on a nontrivial finite `𝔽₂`-module fixes some nonzero
-vector. -/
+vector.
+@isnad1 id=ex.1h2v.s7.96b65ebed408 from=translated src=- shape=c732210f vocab=19638159
+-/
 theorem fixed_points_nontrivial {G : Type*} [Group G] (hG : IsPGroup 2 G)
     {M : Type*} [AddCommGroup M] [Module (ZMod 2) M] [Finite M] [Nontrivial M]
     [DistribMulAction G M] :
@@ -96,7 +98,9 @@ private theorem exists_ne_zero_orbit_const_mem {G : Type*} [Group G] [Finite G] 
     fun g i ↦ congrFun (congrArg (fun x : ↥V ↦ (x : ι → ZMod 2)) (hwfix (DomMulAct.mk g))) i⟩
 
 /-- A nonzero `G`-invariant `𝔽₂`-subspace of `ι → 𝔽₂`, where the finite `2`-group `G` acts
-pretransitively on `ι`, contains the all-ones vector. -/
+pretransitively on `ι`, contains the all-ones vector.
+@isnad1 id=mem.3h3v.s11.fec032f8dc5d from=translated src=- shape=f4f48c6e vocab=767e0d6f
+-/
 theorem invariant_submodule_all_ones {G : Type*} [Group G] [Finite G] (hG : IsPGroup 2 G)
     {ι : Type*} [Finite ι] [Nonempty ι] [MulAction G ι] [MulAction.IsPretransitive G ι]
     (V : Submodule (ZMod 2) (ι → ZMod 2))

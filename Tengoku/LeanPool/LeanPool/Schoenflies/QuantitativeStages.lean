@@ -50,7 +50,9 @@ namespace TargetFaceMesh
 variable {T : GeneratedPair S₀ C (C ∪ inside C) modelCurve (Plane.closedSquare 0 1)}
   {par : γ → γ} {bound : ℝ}
 
-/-- A target face-mesh bound survives any compatible refinement. -/
+/-- A target face-mesh bound survives any compatible refinement.
+@isnad1 id=targetfa.2h7v.s9.26f4151be9a9 from=translated src=- shape=0342a403 vocab=a64c8070
+-/
 theorem refine (hmesh : TargetFaceMesh P bound) (href : T.tgt.Refines P.tgt par) :
     TargetFaceMesh T bound := by
   intro F hF
@@ -59,13 +61,17 @@ theorem refine (hmesh : TargetFaceMesh P bound) (href : T.tgt.Refines P.tgt par)
       (Plane.isBounded_closedSquare 0 1) (T.str.mem_cells_of_mem_faces hF))
     (hmesh (href.parent_mem_faces hF))
 
-/-- In particular, direction (a) of finite transfer preserves the target mesh bound. -/
+/-- In particular, direction (a) of finite transfer preserves the target mesh bound.
+@isnad1 id=targetfa.2h9v.s8.0e2fc1666d9e from=translated src=- shape=f900012c vocab=2bb60816
+-/
 theorem forwardTransfer (hmesh : TargetFaceMesh P bound)
     {H : Graph Plane γ} {Hdraw : γ → ℝ → Plane}
     (h : IsTransferOf T P H Hdraw par) : TargetFaceMesh T bound :=
   hmesh.refine h.refines_tgt
 
-/-- A target face-mesh estimate gives the corresponding factor-two bound on every star. -/
+/-- A target face-mesh estimate gives the corresponding factor-two bound on every star.
+@isnad1 id=lt.2h6v.s8.626af906587f from=translated src=- shape=c6092324 vocab=6efb5320
+-/
 theorem diam_star_lt (hmesh : TargetFaceMesh P bound)
     {σ : γ} (hσ : σ ∈ P.str.cells) :
     Metric.diam (P.tgt.star σ) < 2 * bound :=
@@ -98,17 +104,23 @@ abbrev pair : GeneratedPair S₀ C (C ∪ inside C) modelCurve (Plane.closedSqua
 /-- The common abstract parent map from the successor to the old stage. -/
 abbrev parent : γ → γ := w.overlay.parent
 
-/-- Reverse finite transfer supplies exactly the common transition interface used by the tower. -/
+/-- Reverse finite transfer supplies exactly the common transition interface used by the tower.
+@isnad1 id=stagetra.0h7v.s7.5527999fc462 from=translated src=- shape=5c9cd168 vocab=fdb0b4d8
+-/
 theorem transition : StageTransition w.pair P w.parent :=
   w.overlay.transfer.stageTransition
 
-/-- Every target star at the successor has diameter below the prescribed bound. -/
+/-- Every target star at the successor has diameter below the prescribed bound.
+@isnad1 id=lt.1h8v.s8.eb9a249d75c5 from=translated src=- shape=9cbefbf8 vocab=254c7023
+-/
 theorem diam_targetStar_lt_bound {σ : γ} (hσ : σ ∈ w.pair.str.cells) :
     Metric.diam (w.pair.tgt.star σ) < bound := by
   have hstar := w.overlay.diam_targetStar_lt hσ
   linarith [w.delta_lt_half_bound]
 
-/-- The stronger face-level estimate retained by later forward refinements. -/
+/-- The stronger face-level estimate retained by later forward refinements.
+@isnad1 id=targetfa.0h7v.s7.0feccde35b70 from=translated src=- shape=4d8a7b18 vocab=5faddfbe
+-/
 theorem targetFaceMesh : TargetFaceMesh w.pair w.overlay.delta := by
   intro F hF
   exact w.overlay.diam_closure_targetFace_lt hF
@@ -117,7 +129,9 @@ end QuantitativeReverseStage
 
 /-- **Quantitative reverse successor.** Every generated stage over the closed
 Jordan domain admits a reverse transferred refinement whose target stars are smaller than any
-specified positive bound. -/
+specified positive bound.
+@isnad1 id=nonempty.3h6v.s7.dfd297eed97a from=translated src=- shape=5f3776cc vocab=71832075
+-/
 theorem exists_quantitativeReverseStage [Infinite γ]
     (P : GeneratedPair S₀ C (C ∪ inside C) modelCurve (Plane.closedSquare 0 1))
     (hsep : IsSeparating C) (hcycle : S₀.OuterEdgesFormCycle)

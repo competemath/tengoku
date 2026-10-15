@@ -547,6 +547,9 @@ attribute [local instance] Classical.propDecidable
     Equiv.symm_mk, Equiv.coe_fn_mk, submatrix_apply, Sum.elim_inr,
     blockDiagonal'_apply, ↓reduceDIte, cast_eq]
 
+/--
+@isnad1 id=eq.0h8v.s7.ae1cd7a012bf from=translated src=- shape=72ff4f16 vocab=5abcf8e9
+-/
 @[simp] theorem dependentBlockPOVM_effect_same
     {R C : Type*} [Fintype R] [DecidableEq R] [Fintype C]
     {ι : R → Type*}
@@ -641,6 +644,9 @@ attribute [local instance] Classical.propDecidable
 variable {X Y A B : Type}
 variable [Fintype X] [Fintype Y] [Fintype A] [Fintype B]
 
+/--
+@isnad1 id=eq.0h9v.s9.b1953c98e55e from=translated src=- shape=2246f75e vocab=b84c565b
+-/
 @[simp] theorem reindexedCatalystPOVM_effect
     {C d : Type*} [Fintype C] [Fintype d] [DecidableEq d]
     (P : POVM C d) (e : ℕ) (c : C)
@@ -667,6 +673,9 @@ attribute [local instance] Classical.propDecidable
 variable {X Y A B : Type}
 variable [Fintype X] [Fintype Y] [Fintype A] [Fintype B]
 
+/--
+@isnad1 id=eq.0h16v.s20.58ee9c3f809c from=translated src=- shape=e92e0a44 vocab=c4506291
+-/
 @[simp] theorem exactSourceGlobalCatalystBobPOVM_effect
     [DecidableEq B]
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))

@@ -100,7 +100,9 @@ sign-free form simply imposes it on both, with absolute values. -/
 the ray out along the outgoing edge, the two *left* half-strip germs lie on `arcCCW r₂ r₁` and
 the two *right* ones on `arcCCW r₁ r₂`, whichever way the polygon turns. The hypothesis
 `s * |⟪r₁, r₂⟫| < t * |det r₁ r₂|` is the blueprint's "`s/t` small", written without a division
-and without a sign. -/
+and without a sign.
+@isnad1 id=and.3h4v.s9.7c044edcd1e8 from=translated src=- shape=74366811 vocab=4d85a6df
+-/
 theorem germs_split' (h : det r₁ r₂ ≠ 0) (hs : 0 < s)
     (hsmall : s * |inner ℝ r₁ r₂| < t * |det r₁ r₂|) :
     (t • r₁ - s • perp r₁ ∈ arcCCW r₂ r₁ ∧ t • r₂ + s • perp r₂ ∈ arcCCW r₂ r₁) ∧
@@ -125,7 +127,9 @@ theorem germs_split' (h : det r₁ r₂ ≠ 0) (hs : 0 < s)
 
 /-! ### The two arcs, without a sign hypothesis -/
 
-/-- The two arcs bounded by a pair of rays are disjoint, whichever the sign of `det r₁ r₂`. -/
+/-- The two arcs bounded by a pair of rays are disjoint, whichever the sign of `det r₁ r₂`.
+@isnad1 id=disjoint.1h2v.s5.8f6d90653990 from=translated src=- shape=f81ffd67 vocab=3badc3fa
+-/
 theorem arcCCW_disjoint' (h : det r₁ r₂ ≠ 0) : Disjoint (arcCCW r₁ r₂) (arcCCW r₂ r₁) := by
   rcases lt_or_gt_of_ne h with hneg | hpos
   · have h' : 0 < det r₂ r₁ := by rw [det_comm r₂ r₁]; linarith
@@ -133,7 +137,9 @@ theorem arcCCW_disjoint' (h : det r₁ r₂ ≠ 0) : Disjoint (arcCCW r₁ r₂)
   · exact arcCCW_disjoint hpos
 
 /-- The two rays and the two arcs exhaust the nonzero vectors, whichever the sign of
-`det r₁ r₂`. -/
+`det r₁ r₂`.
+@isnad1 id=or.2h3v.s7.93d1d1ca7f8b from=translated src=- shape=f9f45190 vocab=396bb9d9
+-/
 theorem mem_ray_or_mem_arcCCW' (h : det r₁ r₂ ≠ 0) (hd : d ≠ 0) :
     (∃ c : ℝ, 0 < c ∧ d = c • r₁) ∨ (∃ c : ℝ, 0 < c ∧ d = c • r₂) ∨
       d ∈ arcCCW r₁ r₂ ∨ d ∈ arcCCW r₂ r₁ := by
@@ -147,7 +153,9 @@ theorem mem_ray_or_mem_arcCCW' (h : det r₁ r₂ ≠ 0) (hd : d ≠ 0) :
   · exact mem_ray_or_mem_arcCCW hpos hd
 
 /-- A nonnegative multiple of a bounding ray lies on neither arc: the arcs are *open*, and `0`
-is on neither. This is what keeps the two incident edges out of the vertex sectors. -/
+is on neither. This is what keeps the two incident edges out of the vertex sectors.
+@isnad1 id=and.1h3v.s7.5bca2b8e3d3f from=translated src=- shape=c0dfe178 vocab=dd5766ab
+-/
 theorem notMem_arcCCW_smul (u w : Plane) (hc : 0 ≤ c) :
     c • u ∉ arcCCW u w ∧ c • u ∉ arcCCW w u := by
   have e1 : det u (c • u) = 0 := by rw [det_smul_right, det_self, mul_zero]
@@ -165,28 +173,47 @@ theorem notMem_arcCCW_smul (u w : Plane) (hc : 0 ≤ c) :
     · rw [e2] at h2; exact lt_irrefl 0 h2
     · rw [e4, e5] at h2; nlinarith
 
-/-- Half-spaces through the origin are convex; `det u ·` is linear. -/
+/-- Half-spaces through the origin are convex; `det u ·` is linear.
+@isnad1 id=islinear.0h1v.s7.a4a41a1a2287 from=translated src=- shape=f9ed147a vocab=1b1a4301
+-/
 theorem isLinearMap_det_right (u : Plane) : IsLinearMap ℝ fun d : Plane => det u d :=
   ⟨fun x y => det_add_right u x y, fun c x => by rw [det_smul_right, smul_eq_mul]⟩
 
+/--
+@isnad1 id=islinear.0h1v.s7.424a3f4d84c8 from=translated src=- shape=4ce2a39f vocab=1b1a4301
+-/
 theorem isLinearMap_det_left (w : Plane) : IsLinearMap ℝ fun d : Plane => det d w :=
   ⟨fun x y => det_add_left x y w, fun c x => by rw [det_smul_left, smul_eq_mul]⟩
 
+/--
+@isnad1 id=convex.0h1v.s6.e1ef445a4afa from=translated src=- shape=781e8d37 vocab=52e9d938
+-/
 theorem convex_det_right_pos (u : Plane) : Convex ℝ {d : Plane | 0 < det u d} :=
   convex_halfSpace_gt (isLinearMap_det_right u) 0
 
+/--
+@isnad1 id=convex.0h1v.s6.bc982076877d from=translated src=- shape=010ba650 vocab=52e9d938
+-/
 theorem convex_det_right_neg (u : Plane) : Convex ℝ {d : Plane | det u d < 0} :=
   convex_halfSpace_lt (isLinearMap_det_right u) 0
 
+/--
+@isnad1 id=convex.0h1v.s6.d342c39c1f51 from=translated src=- shape=0598a5cf vocab=52e9d938
+-/
 theorem convex_det_left_pos (w : Plane) : Convex ℝ {d : Plane | 0 < det d w} :=
   convex_halfSpace_gt (isLinearMap_det_left w) 0
 
+/--
+@isnad1 id=convex.0h1v.s6.e396c8a6a344 from=translated src=- shape=247c21cd vocab=52e9d938
+-/
 theorem convex_det_left_neg (w : Plane) : Convex ℝ {d : Plane | det d w < 0} :=
   convex_halfSpace_lt (isLinearMap_det_left w) 0
 
 /-- An arc met with a ball about the origin is connected. When the arc is the short one it is an
 intersection of two half-planes, hence convex; when it is the long one it is a *union* of two
-half-planes, and `-(u + w)` lies in both. -/
+half-planes, and `-(u + w)` lies in both.
+@isnad1 id=isconnec.2h3v.s7.a16060dd27c5 from=translated src=- shape=675d93d6 vocab=9b9f4193
+-/
 theorem isConnected_arcCCW_ball (h : det u w ≠ 0) (hρ : 0 < ρ) :
     IsConnected (arcCCW u w ∩ ball (0 : Plane) ρ) := by
   -- A scaling factor small enough to put the witness inside the ball.
@@ -257,16 +284,27 @@ segments, which is what makes the labelling at a vertex well defined. -/
 /-- The open sector of radius `ρ` about `v` spanned by the set `A` of directions. -/
 def cone (v : Plane) (A : Set Plane) (ρ : ℝ) : Set Plane := {x | x - v ∈ A} ∩ ball v ρ
 
+/--
+@isnad1 id=iff.0h4v.s7.fdb88c67c747 from=translated src=- shape=b9310a9f vocab=0b6098ff
+-/
 theorem mem_cone_iff {v : Plane} {A : Set Plane} :
     x ∈ cone v A ρ ↔ x - v ∈ A ∧ dist x v < ρ := Iff.rfl
 
+/--
+@isnad1 id=le.0h3v.s5.bb894b45a187 from=translated src=- shape=81b29032 vocab=d05c48cd
+-/
 theorem cone_subset_ball {v : Plane} {A : Set Plane} : cone v A ρ ⊆ ball v ρ := inter_subset_right
 
+/--
+@isnad1 id=isopen.1h3v.s6.4a61720ae40a from=translated src=- shape=007f354e vocab=6430b66c
+-/
 theorem isOpen_cone {v : Plane} {A : Set Plane} (hA : IsOpen A) : IsOpen (cone v A ρ) :=
   (hA.preimage (continuous_id.sub continuous_const)).inter isOpen_ball
 
 /-- A sector is the translate of an arc met with a ball at the origin, so it inherits its
-connectedness from `Plane.isConnected_arcCCW_ball`. -/
+connectedness from `Plane.isConnected_arcCCW_ball`.
+@isnad1 id=eq.0h3v.s7.8bfba8dc0b0f from=translated src=- shape=d9de06c8 vocab=8abbdb9c
+-/
 theorem cone_eq_image (v : Plane) (A : Set Plane) (ρ : ℝ) :
     cone v A ρ = (fun d => v + d) '' (A ∩ ball (0 : Plane) ρ) := by
   ext y
@@ -284,6 +322,9 @@ theorem cone_eq_image (v : Plane) (A : Set Plane) (ρ : ℝ) :
     rw [mem_ball, dist_zero_right] at hb
     exact hb
 
+/--
+@isnad1 id=isconnec.2h4v.s6.cc29bcb91389 from=translated src=- shape=fd2cc85d vocab=c6bf0ca3
+-/
 theorem isConnected_cone_arcCCW (v : Plane) (h : det u w ≠ 0) (hρ : 0 < ρ) :
     IsConnected (cone v (arcCCW u w) ρ) := by
   rw [cone_eq_image]
@@ -303,17 +344,25 @@ noncomputable def coordAlong (a u x : Plane) : ℝ := inner ℝ u (x - a)
 tangent `u`; positive on the left. -/
 def coordAcross (a u x : Plane) : ℝ := det u (x - a)
 
-/-- The orientation form is the inner product against the turned vector. -/
+/-- The orientation form is the inner product against the turned vector.
+@isnad1 id=eq.0h2v.s6.5ee8ccff2343 from=translated src=- shape=3e71554c vocab=4c9e3dfa
+-/
 theorem det_eq_inner_perp (u v : Plane) : det u v = inner ℝ (perp u) v := by
   rw [inner_eq, det]
   simp [perp]
   ring
 
+/--
+@isnad1 id=le.0h2v.s6.146e0f21f4c4 from=translated src=- shape=c656a311 vocab=0be4961e
+-/
 theorem abs_det_le (u v : Plane) : |det u v| ≤ ‖u‖ * ‖v‖ := by
   rw [det_eq_inner_perp]
   calc |inner ℝ (perp u) v| ≤ ‖perp u‖ * ‖v‖ := abs_real_inner_le_norm _ _
     _ = ‖u‖ * ‖v‖ := by rw [norm_perp]
 
+/--
+@isnad1 id=eq.1h4v.s8.01d8ebce0e87 from=translated src=- shape=d8295ff6 vocab=48a767bc
+-/
 @[simp] theorem coordAlong_param (hu : IsDirection u) (a : Plane) (t s : ℝ) :
     coordAlong a u (a + t • u + s • perp u) = t := by
   have h : a + t • u + s • perp u - a = t • u + s • perp u := by module
@@ -321,13 +370,18 @@ theorem abs_det_le (u v : Plane) : |det u v| ≤ ‖u‖ * ‖v‖ := by
     real_inner_self_eq_norm_sq, inner_perp_self, hu.norm]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s8.611f6c49f34b from=translated src=- shape=c28ec469 vocab=b5deab87
+-/
 @[simp] theorem coordAcross_param (hu : IsDirection u) (a : Plane) (t s : ℝ) :
     coordAcross a u (a + t • u + s • perp u) = s := by
   have h : a + t • u + s • perp u - a = t • u + s • perp u := by module
   rw [coordAcross, h, det_germ_self, hu.norm]
   ring
 
-/-- The frame is complete: every point is recovered from its two coordinates. -/
+/-- The frame is complete: every point is recovered from its two coordinates.
+@isnad1 id=eq.1h3v.s8.39f79c319990 from=translated src=- shape=e78c05f8 vocab=c3550e7c
+-/
 theorem frame_decomp (hu : IsDirection u) (a x : Plane) :
     x = a + (coordAlong a u x) • u + (coordAcross a u x) • perp u := by
   have hnorm : u 0 ^ 2 + u 1 ^ 2 = 1 := by
@@ -350,7 +404,9 @@ theorem frame_decomp (hu : IsDirection u) (a x : Plane) :
     linear_combination (a 1 - x 1) * hnorm
 
 /-- Both coordinates are `1`-Lipschitz, which is how a small ball about a point of the edge
-stays inside the block. -/
+stays inside the block.
+@isnad1 id=le.1h4v.s6.3b25b36ffebf from=translated src=- shape=92bfdec4 vocab=5377beff
+-/
 theorem abs_coordAlong_sub_le (hu : IsDirection u) (a x y : Plane) :
     |coordAlong a u x - coordAlong a u y| ≤ dist x y := by
   have h : coordAlong a u x - coordAlong a u y = inner ℝ u (x - y) := by
@@ -361,6 +417,9 @@ theorem abs_coordAlong_sub_le (hu : IsDirection u) (a x y : Plane) :
   calc |inner ℝ u (x - y)| ≤ ‖u‖ * ‖x - y‖ := abs_real_inner_le_norm _ _
     _ = ‖x - y‖ := by rw [hu.norm, one_mul]
 
+/--
+@isnad1 id=le.1h4v.s6.6b67e7f04922 from=translated src=- shape=92bfdec4 vocab=cba9465c
+-/
 theorem abs_coordAcross_sub_le (hu : IsDirection u) (a x y : Plane) :
     |coordAcross a u x - coordAcross a u y| ≤ dist x y := by
   have h : coordAcross a u x - coordAcross a u y = det u (x - y) := by
@@ -377,16 +436,28 @@ def strip (a u : Plane) (t₁ t₂ s₁ s₂ : ℝ) : Set Plane :=
   {x | t₁ < coordAlong a u x ∧ coordAlong a u x < t₂ ∧
     s₁ < coordAcross a u x ∧ coordAcross a u x < s₂}
 
+/--
+@isnad1 id=iff.0h7v.s6.d67b7b15101c from=translated src=- shape=26fa8fcf vocab=9550cc9e
+-/
 theorem mem_strip_iff {t₁ t₂ s₁ s₂ : ℝ} :
     x ∈ strip a u t₁ t₂ s₁ s₂ ↔ t₁ < coordAlong a u x ∧ coordAlong a u x < t₂ ∧
       s₁ < coordAcross a u x ∧ coordAcross a u x < s₂ := Iff.rfl
 
+/--
+@isnad1 id=continuo.0h2v.s5.42614ae56563 from=translated src=- shape=30e1f344 vocab=2e22dc80
+-/
 theorem continuous_coordAlong (a u : Plane) : Continuous (coordAlong a u) :=
   (continuous_const.inner (continuous_id.sub continuous_const))
 
+/--
+@isnad1 id=continuo.0h2v.s5.a41fc91fded4 from=translated src=- shape=30e1f344 vocab=419a7668
+-/
 theorem continuous_coordAcross (a u : Plane) : Continuous (coordAcross a u) :=
   (continuous_det_right u).comp (continuous_id.sub continuous_const)
 
+/--
+@isnad1 id=isopen.0h6v.s5.1b7a0caf8eab from=translated src=- shape=d7af4b87 vocab=e2f99966
+-/
 theorem isOpen_strip (a u : Plane) (t₁ t₂ s₁ s₂ : ℝ) : IsOpen (strip a u t₁ t₂ s₁ s₂) := by
   have key : strip a u t₁ t₂ s₁ s₂ =
       ({x : Plane | t₁ < coordAlong a u x} ∩ {x : Plane | coordAlong a u x < t₂}) ∩
@@ -400,6 +471,9 @@ theorem isOpen_strip (a u : Plane) (t₁ t₂ s₁ s₂ : ℝ) : IsOpen (strip a
     ((isOpen_lt continuous_const (continuous_coordAcross a u)).inter
       (isOpen_lt (continuous_coordAcross a u) continuous_const))
 
+/--
+@isnad1 id=convex.0h6v.s6.6065f3260180 from=translated src=- shape=e8ec6526 vocab=424b2344
+-/
 theorem convex_strip (a u : Plane) (t₁ t₂ s₁ s₂ : ℝ) : Convex ℝ (strip a u t₁ t₂ s₁ s₂) := by
   have key : strip a u t₁ t₂ s₁ s₂ =
       ({x : Plane | t₁ + inner ℝ u a < inner ℝ u x} ∩ {x : Plane | inner ℝ u x < t₂ + inner ℝ u a})
@@ -422,12 +496,17 @@ theorem convex_strip (a u : Plane) (t₁ t₂ s₁ s₂ : ℝ) : Convex ℝ (str
     ((convex_halfSpace_gt (isLinearMap_det_right u) _).inter
       (convex_halfSpace_lt (isLinearMap_det_right u) _))
 
+/--
+@isnad1 id=iff.1h8v.s8.a6c9dd9293a8 from=translated src=- shape=cf674ee3 vocab=6bd9d154
+-/
 theorem mem_strip_param (hu : IsDirection u) (a : Plane) {t s t₁ t₂ s₁ s₂ : ℝ} :
     a + t • u + s • perp u ∈ strip a u t₁ t₂ s₁ s₂ ↔ t₁ < t ∧ t < t₂ ∧ s₁ < s ∧ s < s₂ := by
   rw [mem_strip_iff, coordAlong_param hu, coordAcross_param hu]
 
 /-- A point of a block is at distance `|coordAcross|` from the foot of its perpendicular on the
-edge line, which is the point of the edge with the same progress. -/
+edge line, which is the point of the edge with the same progress.
+@isnad1 id=eq.1h3v.s7.a3332b0b4a83 from=translated src=- shape=ac32b63a vocab=e99a1635
+-/
 theorem dist_foot (hu : IsDirection u) (a x : Plane) :
     dist x (a + (coordAlong a u x) • u) = |coordAcross a u x| := by
   have h := frame_decomp hu a x
@@ -467,6 +546,9 @@ namespace ClosedPolygon
 
 variable (P : ClosedPolygon m) (i j : ZMod (m + 3)) (c t s : ℝ)
 
+/--
+@isnad1 id=ne.0h1v.s7.b83c60927244 from=translated src=- shape=2a6a86db vocab=014cf724
+-/
 theorem one_ne_zero' : (1 : ZMod (m + 3)) ≠ 0 := by
   intro h
   rw [show (1 : ZMod (m + 3)) = ((1 : ℕ) : ZMod (m + 3)) by norm_num,
@@ -474,8 +556,14 @@ theorem one_ne_zero' : (1 : ZMod (m + 3)) ≠ 0 := by
   have := Nat.le_of_dvd one_pos h
   omega
 
+/--
+@isnad1 id=ne.0h2v.s8.486e76e58da7 from=translated src=- shape=fbe5ccad vocab=014cf724
+-/
 theorem succ_ne_self : i + 1 ≠ i := fun h => one_ne_zero' (m := m) (by linear_combination h)
 
+/--
+@isnad1 id=ne.0h3v.s8.a1120bae2b71 from=translated src=- shape=58f38dbf vocab=74825dd4
+-/
 theorem vertex_ne : P.vertex i ≠ P.vertex (i + 1) := fun h =>
   succ_ne_self i (P.vertex_inj h).symm
 
@@ -504,34 +592,67 @@ def carrier : Set Plane := ⋃ i, P.edge i
 
 variable {P i j c t s}
 
+/--
+@isnad1 id=ne.0h3v.s8.e777a6d23df6 from=translated src=- shape=0b17a78a vocab=9f0a21ff
+-/
 theorem sub_ne_zero_of_edge : P.vertex (i + 1) - P.vertex i ≠ 0 :=
   sub_ne_zero.2 (P.vertex_ne i).symm
 
+/--
+@isnad1 id=lt.0h3v.s5.916f657d4360 from=translated src=- shape=d29793a2 vocab=69f6713a
+-/
 theorem len_pos : 0 < P.len i := norm_pos_iff.2 sub_ne_zero_of_edge
 
+/--
+@isnad1 id=isdirect.0h3v.s4.60076c748ef5 from=translated src=- shape=2d42acdc vocab=a23aa706
+-/
 theorem isDirection_tang : IsDirection (P.tang i) := isDirection_dir sub_ne_zero_of_edge
 
+/--
+@isnad1 id=eq.0h3v.s8.f281ef5a7163 from=translated src=- shape=a79545da vocab=55b26842
+-/
 theorem len_smul_tang : (P.len i) • P.tang i = P.vertex (i + 1) - P.vertex i := by
   rw [tang, dir, smul_smul, len, mul_inv_cancel₀ (norm_ne_zero_iff.2 sub_ne_zero_of_edge),
     one_smul]
 
+/--
+@isnad1 id=eq.0h3v.s5.cff04c350560 from=translated src=- shape=c4cb7d53 vocab=0559e042
+-/
 theorem off_zero_zero : P.off i 0 0 = P.vertex i := by rw [off]; module
 
+/--
+@isnad1 id=eq.0h3v.s5.70439ba41e22 from=translated src=- shape=41e73021 vocab=d02340bf
+-/
 theorem pt_zero : P.pt i 0 = P.vertex i := off_zero_zero
 
+/--
+@isnad1 id=eq.0h3v.s8.544d188312c2 from=translated src=- shape=56ceefc1 vocab=ba2e0220
+-/
 theorem pt_len : P.pt i (P.len i) = P.vertex (i + 1) := by
   rw [pt, off, zero_smul, add_zero, len_smul_tang]
   module
 
+/--
+@isnad1 id=eq.0h5v.s8.f3fd46cc0b51 from=translated src=- shape=1dedccdb vocab=aea889e0
+-/
 theorem off_sub_vertex : P.off i t s - P.vertex i = t • P.tang i + s • perp (P.tang i) := by
   rw [off]; module
 
+/--
+@isnad1 id=eq.0h4v.s7.6b7d98badbbb from=translated src=- shape=a6872257 vocab=198ccfe3
+-/
 theorem pt_sub_vertex : P.pt i c - P.vertex i = c • P.tang i := by
   rw [pt, off_sub_vertex, zero_smul, add_zero]
 
+/--
+@isnad1 id=eq.0h4v.s6.814cb1cc2270 from=translated src=- shape=1bf09f7a vocab=6f480f17
+-/
 theorem dist_pt_vertex : dist (P.pt i c) (P.vertex i) = |c| := by
   rw [dist_eq_norm, pt_sub_vertex, norm_smul, Real.norm_eq_abs, isDirection_tang.norm, mul_one]
 
+/--
+@isnad1 id=le.0h5v.s6.f417e45db6ba from=translated src=- shape=022e77e4 vocab=aa7070de
+-/
 theorem dist_off_vertex_le : dist (P.off i t s) (P.vertex i) ≤ |t| + |s| := by
   rw [dist_eq_norm, off_sub_vertex]
   calc ‖t • P.tang i + s • perp (P.tang i)‖ ≤ ‖t • P.tang i‖ + ‖s • perp (P.tang i)‖ :=
@@ -540,17 +661,28 @@ theorem dist_off_vertex_le : dist (P.off i t s) (P.vertex i) ≤ |t| + |s| := by
         rw [norm_smul, norm_smul, Real.norm_eq_abs, Real.norm_eq_abs, norm_perp,
           isDirection_tang.norm, mul_one, mul_one]
 
+/--
+@isnad1 id=eq.0h5v.s5.2073885c33b9 from=translated src=- shape=f2923329 vocab=b525ca75
+-/
 @[simp] theorem coordAlong_off : coordAlong (P.vertex i) (P.tang i) (P.off i t s) = t :=
   coordAlong_param isDirection_tang _ _ _
 
+/--
+@isnad1 id=eq.0h5v.s5.08203d1a7f65 from=translated src=- shape=41056cf8 vocab=2bdd0954
+-/
 @[simp] theorem coordAcross_off : coordAcross (P.vertex i) (P.tang i) (P.off i t s) = s :=
   coordAcross_param isDirection_tang _ _ _
 
-/-- Every point is the point of some frame position, so the two coordinates identify it. -/
+/-- Every point is the point of some frame position, so the two coordinates identify it.
+@isnad1 id=eq.0h4v.s5.ab818d4eda55 from=translated src=- shape=4eeedf39 vocab=89b01894
+-/
 theorem off_coord (P : ClosedPolygon m) (i : ZMod (m + 3)) (x : Plane) :
     x = P.off i (coordAlong (P.vertex i) (P.tang i) x) (coordAcross (P.vertex i) (P.tang i) x) :=
   frame_decomp isDirection_tang _ _
 
+/--
+@isnad1 id=and.1h7v.s5.e92da62f47ee from=translated src=- shape=7b40429a vocab=e30e3009
+-/
 theorem off_injective (h : P.off i t s = P.off i t' s') : t = t' ∧ s = s' := by
   constructor
   · have := congrArg (coordAlong (P.vertex i) (P.tang i)) h
@@ -558,6 +690,9 @@ theorem off_injective (h : P.off i t s = P.off i t' s') : t = t' ∧ s = s' := b
   · have := congrArg (coordAcross (P.vertex i) (P.tang i)) h
     simpa using this
 
+/--
+@isnad1 id=iff.0h4v.s6.f6ea9b79733b from=translated src=- shape=06d39e9c vocab=4466510c
+-/
 theorem mem_edge_iff {x : Plane} :
     x ∈ P.edge i ↔ ∃ c ∈ Set.Icc (0 : ℝ) (P.len i), x = P.pt i c := by
   rw [edge, segment_eq_image' ℝ]
@@ -573,27 +708,47 @@ theorem mem_edge_iff {x : Plane} :
     · rw [pt, off, zero_smul, add_zero, ← len_smul_tang]
       simp [smul_smul, div_mul_cancel₀ _ (len_pos (P := P) (i := i)).ne']
 
+/--
+@isnad1 id=mem.1h4v.s5.d72dfa48e9ea from=translated src=- shape=4f24a523 vocab=4466510c
+-/
 theorem pt_mem_edge (hc : c ∈ Set.Icc (0 : ℝ) (P.len i)) : P.pt i c ∈ P.edge i :=
   mem_edge_iff.2 ⟨c, hc, rfl⟩
 
+/--
+@isnad1 id=mem.0h3v.s5.27dc4f17c0b2 from=translated src=- shape=859991a2 vocab=55fa1653
+-/
 theorem vertex_mem_edge : P.vertex i ∈ P.edge i := by
   rw [← pt_zero]; exact pt_mem_edge ⟨le_refl _, len_pos.le⟩
 
+/--
+@isnad1 id=mem.0h3v.s5.1306b78ccd38 from=translated src=- shape=f1fd3975 vocab=a465a2c1
+-/
 theorem vertex_mem_carrier : P.vertex i ∈ P.carrier := Set.mem_iUnion.2 ⟨i, vertex_mem_edge⟩
 
+/--
+@isnad1 id=le.0h3v.s5.bf1c20d9827e from=translated src=- shape=60eb6330 vocab=fd7e613f
+-/
 theorem edge_subset_carrier : P.edge i ⊆ P.carrier := Set.subset_iUnion _ i
 
 /-- The incoming ray at `i + 1` is the reverse of the tangent of edge `i`. This is the identity
-that lets the two germs at a shared vertex be compared. -/
+that lets the two germs at a shared vertex be compared.
+@isnad1 id=eq.0h3v.s8.364938b42d84 from=translated src=- shape=24d58319 vocab=2ca5e926
+-/
 theorem rayIn_succ : P.rayIn (i + 1) = -P.tang i := by
   rw [rayIn, tang, add_sub_cancel_right, dir, dir, norm_sub_rev]
   module
 
+/--
+@isnad1 id=ne.0h3v.s8.e2a9316732f8 from=translated src=- shape=bb9f781b vocab=9f0a21ff
+-/
 theorem vertex_pred_ne : P.vertex (i - 1) - P.vertex i ≠ 0 := by
   have h := P.vertex_ne (i - 1)
   rw [sub_add_cancel] at h
   exact sub_ne_zero.2 h
 
+/--
+@isnad1 id=ne.0h3v.s5.a542b94d2527 from=translated src=- shape=b5f07086 vocab=a2513e00
+-/
 theorem det_rays_ne_zero : det (P.rayIn i) (P.tang i) ≠ 0 := by
   obtain ⟨c₁, hc₁, h₁⟩ := dir_eq_smul (vertex_pred_ne (P := P) (i := i))
   obtain ⟨c₂, hc₂, h₂⟩ := dir_eq_smul (sub_ne_zero_of_edge (P := P) (i := i))
@@ -602,7 +757,9 @@ theorem det_rays_ne_zero : det (P.rayIn i) (P.tang i) ≠ 0 := by
 
 /-- A point of the edge arriving at `i` is a nonnegative multiple of the incoming ray away from
 the vertex; a point of the edge leaving `i` is a nonnegative multiple of the outgoing one. This
-is what keeps the two incident edges out of both sectors at `i`. -/
+is what keeps the two incident edges out of both sectors at `i`.
+@isnad1 id=ex.1h4v.s8.a7acde5577b0 from=translated src=- shape=8a24fdc7 vocab=af47769b
+-/
 theorem mem_edge_pred_sub {x : Plane} (hx : x ∈ P.edge (i - 1)) :
     ∃ c : ℝ, 0 ≤ c ∧ x - P.vertex i = c • P.rayIn i := by
   rw [mem_edge_iff] at hx
@@ -618,12 +775,18 @@ theorem mem_edge_pred_sub {x : Plane} (hx : x ∈ P.edge (i - 1)) :
   rw [pt, off, zero_smul, add_zero, hr, hv, hlen]
   module
 
+/--
+@isnad1 id=ex.1h4v.s7.f4c2b0578066 from=translated src=- shape=8377bff4 vocab=dce79cf0
+-/
 theorem mem_edge_sub {x : Plane} (hx : x ∈ P.edge i) :
     ∃ c : ℝ, 0 ≤ c ∧ x - P.vertex i = c • P.tang i := by
   rw [mem_edge_iff] at hx
   obtain ⟨c, ⟨hc0, _⟩, rfl⟩ := hx
   exact ⟨c, hc0, pt_sub_vertex⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.b437796be29f from=translated src=- shape=c07c74b2 vocab=0687a72d
+-/
 theorem pt_eq : P.pt i c = P.vertex i + c • P.tang i := by rw [pt, off, zero_smul, add_zero]
 
 end ClosedPolygon
@@ -669,10 +832,19 @@ namespace StripData
 
 variable {P : ClosedPolygon m} (D : StripData P) {i j : ZMod (m + 3)} {x : Plane}
 
+/--
+@isnad1 id=lt.0h3v.s4.38c1c3219270 from=translated src=- shape=660b1aa6 vocab=5c254ce0
+-/
 theorem lam_pos : 0 < D.lam := lt_trans D.rho_pos D.rho_lt_lam
 
+/--
+@isnad1 id=lt.0h3v.s4.9a924f836ba5 from=translated src=- shape=660b1aa6 vocab=25731139
+-/
 theorem R_pos : 0 < D.R := by have := D.lam_pos; linarith [D.two_lam_lt_R]
 
+/--
+@isnad1 id=lt.0h3v.s4.3593e59285c4 from=translated src=- shape=7f2f2f74 vocab=be5e318f
+-/
 theorem rho_lt_R : D.rho < D.R := by
   have := D.lam_pos; have := D.rho_lt_lam; linarith [D.two_lam_lt_R]
 
@@ -704,38 +876,74 @@ def sideR : Set Plane := ⋃ i, (D.sectorR i ∪ D.blockR i)
 /-- The collar itself. -/
 def nbhd : Set Plane := D.sideL ∪ D.sideR ∪ P.carrier
 
+/--
+@isnad1 id=iff.0h5v.s6.496f2c39a223 from=translated src=- shape=995dad83 vocab=ec054e20
+-/
 theorem mem_blockL_iff : x ∈ D.blockL i ↔
     D.lam < coordAlong (P.vertex i) (P.tang i) x ∧
       coordAlong (P.vertex i) (P.tang i) x < P.len i - D.lam ∧
       0 < coordAcross (P.vertex i) (P.tang i) x ∧
       coordAcross (P.vertex i) (P.tang i) x < D.rho := Iff.rfl
 
+/--
+@isnad1 id=iff.0h5v.s6.df304884e589 from=translated src=- shape=454c3776 vocab=1bcdcdf8
+-/
 theorem mem_blockR_iff : x ∈ D.blockR i ↔
     D.lam < coordAlong (P.vertex i) (P.tang i) x ∧
       coordAlong (P.vertex i) (P.tang i) x < P.len i - D.lam ∧
       -D.rho < coordAcross (P.vertex i) (P.tang i) x ∧
       coordAcross (P.vertex i) (P.tang i) x < 0 := Iff.rfl
 
+/--
+@isnad1 id=iff.0h6v.s6.e1d4f65269b4 from=translated src=- shape=3054754b vocab=43f0d5d8
+-/
 theorem mem_blockL_off {t s : ℝ} : P.off i t s ∈ D.blockL i ↔
     D.lam < t ∧ t < P.len i - D.lam ∧ 0 < s ∧ s < D.rho := by
   rw [mem_blockL_iff, ClosedPolygon.coordAlong_off, ClosedPolygon.coordAcross_off]
 
+/--
+@isnad1 id=iff.0h6v.s6.3085890b2de9 from=translated src=- shape=46923698 vocab=ee1649f8
+-/
 theorem mem_blockR_off {t s : ℝ} : P.off i t s ∈ D.blockR i ↔
     D.lam < t ∧ t < P.len i - D.lam ∧ -D.rho < s ∧ s < 0 := by
   rw [mem_blockR_iff, ClosedPolygon.coordAlong_off, ClosedPolygon.coordAcross_off]
 
+/--
+@isnad1 id=isopen.0h4v.s6.220a9bfb1646 from=translated src=- shape=f5905169 vocab=00461b0d
+-/
 theorem isOpen_blockL : IsOpen (D.blockL i) := isOpen_strip _ _ _ _ _ _
+/--
+@isnad1 id=isopen.0h4v.s6.04c50efb2fdc from=translated src=- shape=f5905169 vocab=ab714b1f
+-/
 theorem isOpen_blockR : IsOpen (D.blockR i) := isOpen_strip _ _ _ _ _ _
+/--
+@isnad1 id=isopen.0h4v.s6.f29595229a86 from=translated src=- shape=f5905169 vocab=7696b708
+-/
 theorem isOpen_sectorL : IsOpen (D.sectorL i) := isOpen_cone (isOpen_arcCCW _ _)
+/--
+@isnad1 id=isopen.0h4v.s6.edbc06d58311 from=translated src=- shape=f5905169 vocab=2b68da63
+-/
 theorem isOpen_sectorR : IsOpen (D.sectorR i) := isOpen_cone (isOpen_arcCCW _ _)
 
+/--
+@isnad1 id=convex.0h4v.s7.557117dc2c45 from=translated src=- shape=4dd10163 vocab=4d4c6427
+-/
 theorem convex_blockL : Convex ℝ (D.blockL i) := convex_strip _ _ _ _ _ _
+/--
+@isnad1 id=convex.0h4v.s7.007f1b214994 from=translated src=- shape=4dd10163 vocab=7fe30ea8
+-/
 theorem convex_blockR : Convex ℝ (D.blockR i) := convex_strip _ _ _ _ _ _
 
+/--
+@isnad1 id=isconnec.0h4v.s6.cc48628eed68 from=translated src=- shape=f5905169 vocab=872ad22a
+-/
 theorem isConnected_sectorL : IsConnected (D.sectorL i) :=
   isConnected_cone_arcCCW _ (by rw [det_comm]; exact neg_ne_zero.2 ClosedPolygon.det_rays_ne_zero)
     D.R_pos
 
+/--
+@isnad1 id=isconnec.0h4v.s6.8334b1c9b5f3 from=translated src=- shape=f5905169 vocab=71bdc0c8
+-/
 theorem isConnected_sectorR : IsConnected (D.sectorR i) :=
   isConnected_cone_arcCCW _ ClosedPolygon.det_rays_ne_zero D.R_pos
 
@@ -746,7 +954,9 @@ radius `R` about its vertex. Every "nonadjacent blocks are disjoint" step below 
 two containments against one of the separation hypotheses. -/
 
 /-- The foot of the perpendicular from a point of a block lies on the trimmed edge, within `rho`
-of the point. -/
+of the point.
+@isnad1 id=ex.1h5v.s7.78b0d8e0436a from=translated src=- shape=e05aabbb vocab=20eeb3fd
+-/
 theorem exists_foot (h : x ∈ D.blockL i ∪ D.blockR i) :
     ∃ c ∈ Set.Icc D.lam (P.len i - D.lam), dist x (P.pt i c) < D.rho := by
   refine ⟨coordAlong (P.vertex i) (P.tang i) x, ?_, ?_⟩
@@ -760,7 +970,13 @@ theorem exists_foot (h : x ∈ D.blockL i ∪ D.blockR i) :
     · obtain ⟨_, _, h1, h2⟩ := D.mem_blockR_iff.1 h
       rw [abs_of_neg h2]; linarith
 
+/--
+@isnad1 id=le.0h4v.s6.2a14e9db6eef from=translated src=- shape=a919d826 vocab=da42a3f7
+-/
 theorem sector_subset_ball : D.sectorL i ⊆ ball (P.vertex i) D.R := cone_subset_ball
+/--
+@isnad1 id=le.0h4v.s6.11a4bbf3be24 from=translated src=- shape=a919d826 vocab=d292cbff
+-/
 theorem sectorR_subset_ball : D.sectorR i ⊆ ball (P.vertex i) D.R := cone_subset_ball
 
 /-! ### The germ argument at a vertex
@@ -770,7 +986,9 @@ outgoing strips enter the same component of the vertex disk minus the two incide
 is one projection of `Plane.germs_split'`, applied to the frame decomposition of a point of a
 block. -/
 
-/-- The threshold hypothesis, specialised to a point of a block. -/
+/-- The threshold hypothesis, specialised to a point of a block.
+@isnad1 id=lt.3h6v.s7.b0179b94b7e6 from=translated src=- shape=d67d04b6 vocab=692fe03c
+-/
 theorem germ_ineq {t s : ℝ} (ht : D.lam < t) (hs0 : 0 < s) (hs : s < D.rho) :
     s * |inner ℝ (P.rayIn i) (P.tang i)| < t * |det (P.rayIn i) (P.tang i)| := by
   have hd : 0 < |det (P.rayIn i) (P.tang i)| := abs_pos.2 ClosedPolygon.det_rays_ne_zero
@@ -783,7 +1001,9 @@ theorem germ_ineq {t s : ℝ} (ht : D.lam < t) (hs0 : 0 < s) (hs : s < D.rho) :
   nlinarith
 
 /-- A point of the left block of edge `i`, seen from the vertex it leaves, is the outgoing left
-germ, hence in the left arc there. -/
+germ, hence in the left arc there.
+@isnad1 id=mem.1h5v.s6.d7c4a6b3df78 from=translated src=- shape=5bbe42be vocab=b93822c8
+-/
 theorem blockL_sub_mem_arcL_start (h : x ∈ D.blockL i) :
     x - P.vertex i ∈ arcCCW (P.tang i) (P.rayIn i) := by
   obtain ⟨h1, h2, h3, h4⟩ := D.mem_blockL_iff.1 h
@@ -791,7 +1011,9 @@ theorem blockL_sub_mem_arcL_start (h : x ∈ D.blockL i) :
   rw [hx, ClosedPolygon.off_sub_vertex]
   exact (germs_split' ClosedPolygon.det_rays_ne_zero h3 (D.germ_ineq h1 h3 h4)).1.2
 
-/-- The same point, seen from the vertex it arrives at, is the incoming left germ. -/
+/-- The same point, seen from the vertex it arrives at, is the incoming left germ.
+@isnad1 id=mem.1h5v.s9.cbe3066b778d from=translated src=- shape=707e544a vocab=b93822c8
+-/
 theorem blockL_sub_mem_arcL_finish (h : x ∈ D.blockL i) :
     x - P.vertex (i + 1) ∈ arcCCW (P.tang (i + 1)) (P.rayIn (i + 1)) := by
   obtain ⟨h1, h2, h3, h4⟩ := D.mem_blockL_iff.1 h
@@ -813,7 +1035,9 @@ theorem blockL_sub_mem_arcL_finish (h : x ∈ D.blockL i) :
     (D.germ_ineq (i := i + 1) (by linarith) h3 h4)).1.1
 
 /-- A point of the right block of edge `i`, seen from the vertex it leaves, is the outgoing right
-germ, hence in the right arc there. -/
+germ, hence in the right arc there.
+@isnad1 id=mem.1h5v.s6.7b78b227174f from=translated src=- shape=5bbe42be vocab=14bb244b
+-/
 theorem blockR_sub_mem_arcR_start (h : x ∈ D.blockR i) :
     x - P.vertex i ∈ arcCCW (P.rayIn i) (P.tang i) := by
   obtain ⟨h1, h2, h3, h4⟩ := D.mem_blockR_iff.1 h
@@ -826,7 +1050,9 @@ theorem blockR_sub_mem_arcR_start (h : x ∈ D.blockR i) :
   exact (germs_split' ClosedPolygon.det_rays_ne_zero (by linarith)
     (D.germ_ineq h1 (by linarith) (by linarith))).2.2
 
-/-- The same point, seen from the vertex it arrives at, is the incoming right germ. -/
+/-- The same point, seen from the vertex it arrives at, is the incoming right germ.
+@isnad1 id=mem.1h5v.s9.c4e5b90a6320 from=translated src=- shape=707e544a vocab=14bb244b
+-/
 theorem blockR_sub_mem_arcR_finish (h : x ∈ D.blockR i) :
     x - P.vertex (i + 1) ∈ arcCCW (P.rayIn (i + 1)) (P.tang (i + 1)) := by
   obtain ⟨h1, h2, h3, h4⟩ := D.mem_blockR_iff.1 h
@@ -852,11 +1078,16 @@ theorem blockR_sub_mem_arcR_finish (h : x ∈ D.blockR i) :
 Everything here is one of the separation hypotheses of `StripData` against one of the two
 containments `exists_foot` and `sector_subset_ball`. -/
 
+/--
+@isnad1 id=mem.1h5v.s6.68659ba71be4 from=translated src=- shape=5c32d4a9 vocab=4c1e93cf
+-/
 theorem pt_mem_edge_of_trim {c : ℝ} (hc : c ∈ Set.Icc D.lam (P.len i - D.lam)) :
     P.pt i c ∈ P.edge i :=
   ClosedPolygon.pt_mem_edge ⟨le_trans D.lam_pos.le hc.1, le_trans hc.2 (by linarith [D.lam_pos])⟩
 
-/-- A block misses every edge but its own. -/
+/-- A block misses every edge but its own.
+@isnad1 id=not.2h6v.s6.14d081494d0c from=translated src=- shape=cef07f8a vocab=b4556cf3
+-/
 theorem block_notMem_edge (h : x ∈ D.blockL i ∪ D.blockR i) (hj : j ≠ i) : x ∉ P.edge j := by
   intro hx
   obtain ⟨c, hc, hd⟩ := D.exists_foot h
@@ -864,7 +1095,9 @@ theorem block_notMem_edge (h : x ∈ D.blockL i ∪ D.blockR i) (hj : j ≠ i) :
   rw [dist_comm] at hd
   linarith [D.rho_pos]
 
-/-- A block misses its own edge, because its points have nonzero offset. -/
+/-- A block misses its own edge, because its points have nonzero offset.
+@isnad1 id=not.1h5v.s5.e0f03c9ff38a from=translated src=- shape=4b9d87a6 vocab=b4556cf3
+-/
 theorem block_notMem_own_edge (h : x ∈ D.blockL i ∪ D.blockR i) : x ∉ P.edge i := by
   intro hx
   rw [ClosedPolygon.mem_edge_iff] at hx
@@ -879,6 +1112,9 @@ theorem block_notMem_own_edge (h : x ∈ D.blockL i ∪ D.blockR i) : x ∉ P.ed
     rw [hzero] at hneg
     exact lt_irrefl 0 hneg
 
+/--
+@isnad1 id=not.1h5v.s5.cea7654fd1e4 from=translated src=- shape=92f67d3b vocab=7416d248
+-/
 theorem block_notMem_carrier (h : x ∈ D.blockL i ∪ D.blockR i) : x ∉ P.carrier := by
   rintro hx
   obtain ⟨j, hj⟩ := Set.mem_iUnion.1 hx
@@ -886,7 +1122,9 @@ theorem block_notMem_carrier (h : x ∈ D.blockL i ∪ D.blockR i) : x ∉ P.car
   · exact D.block_notMem_own_edge h (hij ▸ hj)
   · exact D.block_notMem_edge h hij hj
 
-/-- A block stays out of the sectors at every vertex other than its own two. -/
+/-- A block stays out of the sectors at every vertex other than its own two.
+@isnad1 id=not.3h6v.s8.97425e215446 from=translated src=- shape=c431ecd6 vocab=483adf9e
+-/
 theorem block_notMem_ball_vertex (h : x ∈ D.blockL i ∪ D.blockR i) (hj1 : j ≠ i)
     (hj2 : j ≠ i + 1) : x ∉ ball (P.vertex j) D.R := by
   intro hx
@@ -899,7 +1137,9 @@ theorem block_notMem_ball_vertex (h : x ∈ D.blockL i ∪ D.blockR i) (hj1 : j 
   rw [dist_comm] at hx
   linarith [D.rho_lt_R]
 
-/-- A sector misses every edge that is not incident to its vertex. -/
+/-- A sector misses every edge that is not incident to its vertex.
+@isnad1 id=not.3h6v.s8.fe239a89e803 from=translated src=- shape=d641f5d3 vocab=718989ef
+-/
 theorem sector_notMem_far_edge (h : x ∈ ball (P.vertex i) D.R) (hj1 : j ≠ i - 1) (hj2 : j ≠ i) :
     x ∉ P.edge j := by
   intro hx
@@ -908,7 +1148,9 @@ theorem sector_notMem_far_edge (h : x ∈ ball (P.vertex i) D.R) (hj1 : j ≠ i 
   linarith [D.R_pos]
 
 /-- A sector misses the two edges incident to its vertex: their points lie on the two bounding
-rays, and the arcs are open. -/
+rays, and the arcs are open.
+@isnad1 id=not.1h5v.s5.4b0e99bea2eb from=translated src=- shape=18a03d70 vocab=8195a93b
+-/
 theorem sectorL_notMem_carrier (h : x ∈ D.sectorL i) : x ∉ P.carrier := by
   rintro hx
   obtain ⟨j, hj⟩ := Set.mem_iUnion.1 hx
@@ -922,6 +1164,9 @@ theorem sectorL_notMem_carrier (h : x ∈ D.sectorL i) : x ∉ P.carrier := by
     exact ((notMem_arcCCW_smul (P.rayIn i) (P.tang i) hc).2) (he ▸ h.1)
   · exact D.sector_notMem_far_edge (i := i) h.2 hjp hji hj
 
+/--
+@isnad1 id=not.1h5v.s5.24f486283eaf from=translated src=- shape=18a03d70 vocab=22c33408
+-/
 theorem sectorR_notMem_carrier (h : x ∈ D.sectorR i) : x ∉ P.carrier := by
   rintro hx
   obtain ⟨j, hj⟩ := Set.mem_iUnion.1 hx
@@ -935,6 +1180,9 @@ theorem sectorR_notMem_carrier (h : x ∈ D.sectorR i) : x ∉ P.carrier := by
     exact ((notMem_arcCCW_smul (P.rayIn i) (P.tang i) hc).1) (he ▸ h.1)
   · exact D.sector_notMem_far_edge (i := i) h.2 hjp hji hj
 
+/--
+@isnad1 id=disjoint.0h3v.s5.0963ee98075c from=translated src=- shape=44fc5b37 vocab=e58c370a
+-/
 theorem sideL_disjoint_carrier : Disjoint D.sideL P.carrier := by
   rw [Set.disjoint_left]
   rintro y hy hc
@@ -943,6 +1191,9 @@ theorem sideL_disjoint_carrier : Disjoint D.sideL P.carrier := by
   · exact D.sectorL_notMem_carrier hi hc
   · exact D.block_notMem_carrier (Or.inl hi) hc
 
+/--
+@isnad1 id=disjoint.0h3v.s5.5f1e35ee71f3 from=translated src=- shape=44fc5b37 vocab=7c7f42d8
+-/
 theorem sideR_disjoint_carrier : Disjoint D.sideR P.carrier := by
   rw [Set.disjoint_left]
   rintro y hy hc
@@ -956,6 +1207,9 @@ theorem sideR_disjoint_carrier : Disjoint D.sideR P.carrier := by
 Four families times four families. The pairs with distinct indices are settled by distance; the
 pairs at a shared index are settled by `Plane.arcCCW_disjoint'` through the germ lemmas. -/
 
+/--
+@isnad1 id=false.2h6v.s6.bc9175efc7d0 from=translated src=- shape=7b5a8805 vocab=ce454cd7
+-/
 theorem blockL_disjoint_blockR (hL : x ∈ D.blockL i) (hR : x ∈ D.blockR j) : False := by
   by_cases hij : j = i
   · rw [hij] at hR
@@ -968,6 +1222,9 @@ theorem blockL_disjoint_blockR (hL : x ∈ D.blockL i) (hR : x ∈ D.blockR j) :
     rw [dist_comm] at hd
     linarith
 
+/--
+@isnad1 id=false.2h6v.s6.53bb5322917e from=translated src=- shape=7b5a8805 vocab=e3d14141
+-/
 theorem blockL_disjoint_sectorR (hL : x ∈ D.blockL i) (hR : x ∈ D.sectorR j) : False := by
   by_cases hij : j = i
   · subst hij
@@ -979,6 +1236,9 @@ theorem blockL_disjoint_sectorR (hL : x ∈ D.blockL i) (hR : x ∈ D.sectorR j)
       hR.1 (D.blockL_sub_mem_arcL_finish hL) rfl
   · exact D.block_notMem_ball_vertex (Or.inl hL) hij hij2 hR.2
 
+/--
+@isnad1 id=false.2h6v.s6.ccdbc34ade55 from=translated src=- shape=7b5a8805 vocab=4702c325
+-/
 theorem sectorL_disjoint_blockR (hL : x ∈ D.sectorL i) (hR : x ∈ D.blockR j) : False := by
   by_cases hij : i = j
   · subst hij
@@ -990,6 +1250,9 @@ theorem sectorL_disjoint_blockR (hL : x ∈ D.sectorL i) (hR : x ∈ D.blockR j)
       (D.blockR_sub_mem_arcR_finish hR) hL.1 rfl
   · exact D.block_notMem_ball_vertex (Or.inr hR) hij hij2 hL.2
 
+/--
+@isnad1 id=false.2h6v.s6.7c1ad046d40f from=translated src=- shape=7b5a8805 vocab=da9817e0
+-/
 theorem sectorL_disjoint_sectorR (hL : x ∈ D.sectorL i) (hR : x ∈ D.sectorR j) : False := by
   by_cases hij : i = j
   · subst hij
@@ -1003,6 +1266,9 @@ theorem sectorL_disjoint_sectorR (hL : x ∈ D.sectorL i) (hR : x ∈ D.sectorR 
     rw [dist_comm (P.vertex i) x] at h1
     linarith
 
+/--
+@isnad1 id=disjoint.0h3v.s5.c5088d674948 from=translated src=- shape=99460e72 vocab=4b075c7c
+-/
 theorem sideL_disjoint_sideR : Disjoint D.sideL D.sideR := by
   rw [Set.disjoint_left]
   rintro y hy hz

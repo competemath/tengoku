@@ -26,33 +26,63 @@ open Fin Filter IsCoprime
 
 variable {n : ℕ} {F : Finset ℕ}
 
+/--
+@isnad1 id=even.0h1v.s3.ba8850552f66 from=translated src=- shape=0ae065e3 vocab=b442209f
+-/
 lemma even_Y : Even (Y F) := even_iff_two_dvd.mpr (dvd_mul_of_dvd_left (by decide) _)
+/--
+@isnad1 id=dvd.0h1v.s3.8b45fc675c9d from=translated src=- shape=b29cab32 vocab=f62bb8df
+-/
 lemma three_dvd_Y : 3 ∣ Y F := dvd_mul_of_dvd_left (by decide) _
+/--
+@isnad1 id=dvd.0h1v.s3.ee81217bd69c from=translated src=- shape=b29cab32 vocab=f62bb8df
+-/
 lemma ten_dvd_Y : 10 ∣ Y F := dvd_mul_of_dvd_left (by decide) _
+/--
+@isnad1 id=dvd.0h1v.s3.34394fbca519 from=translated src=- shape=b29cab32 vocab=f62bb8df
+-/
 lemma eleven_dvd_Y : 11 ∣ Y F := dvd_mul_of_dvd_left (by decide) _
+/--
+@isnad1 id=dvd.0h1v.s3.7b151d675d26 from=translated src=- shape=b29cab32 vocab=f62bb8df
+-/
 lemma hundredone_dvd_Y : 101 ∣ Y F := dvd_mul_of_dvd_left (by decide) _
+/--
+@isnad1 id=odd.0h2v.s3.87f4ba54e586 from=translated src=- shape=c64140a1 vocab=025bfa5c
+-/
 lemma odd_X {h : ℕ} : Odd (X F h) := even_Y.add_one.pow
 
 section Helpers
 
 open Nat
 
+/--
+@isnad1 id=coprime.0h2v.s3.7956abb82292 from=translated src=- shape=621ae34d vocab=39dd60a8
+-/
 lemma X_coprime_Y {h : ℕ} : (X F h).Coprime (Y F) := by
   apply Coprime.pow_left
   simp
 
+/--
+@isnad1 id=coprime.0h1v.s5.ee6d5a952325 from=translated src=- shape=b84b336d vocab=b664edb7
+-/
 lemma Yp1_coprime_10Yp1 : (Y F + 1).Coprime (10 * Y F + 1) := by
   rw [show 10 * Y F + 1 = Y F + 1 + 3 ^ 2 * Y F by lia, coprime_self_add_right]
   refine (Coprime.pow_right _ ?_).mul_right (by simp)
   rw [coprime_comm, prime_three.coprime_iff_not_dvd]
   grind [three_dvd_Y]
 
+/--
+@isnad1 id=coprime.0h1v.s5.eee90dda79a4 from=translated src=- shape=d99950ea vocab=a4e6781f
+-/
 lemma Yp1_coprime_10Ym1 : (Y F + 1).Coprime (10 * Y F - 1) := by
   rw [← coprime_self_add_right, show Y F + 1 + (10 * Y F - 1) = 11 * Y F by grind [Y_pos]]
   refine Coprime.mul_right ?_ (by simp)
   rw [coprime_comm, prime_eleven.coprime_iff_not_dvd]
   grind [eleven_dvd_Y]
 
+/--
+@isnad1 id=coprime.0h1v.s5.5d11450b3977 from=translated src=- shape=d99950ea vocab=a4e6781f
+-/
 lemma Ym1_coprime_10Yp1 : (Y F - 1).Coprime (10 * Y F + 1) := by
   rw [← coprime_self_add_right, show Y F - 1 + (10 * Y F + 1) = 11 * Y F by grind [Y_pos]]
   refine Coprime.mul_right ?_ ?_
@@ -61,6 +91,9 @@ lemma Ym1_coprime_10Yp1 : (Y F - 1).Coprime (10 * Y F + 1) := by
   · rw [← sub_one_add_one Y_pos.ne']
     simp
 
+/--
+@isnad1 id=coprime.0h1v.s5.0d00c21819a2 from=translated src=- shape=b84b336d vocab=f258154f
+-/
 lemma Ym1_coprime_10Ym1 : (Y F - 1).Coprime (10 * Y F - 1) := by
   rw [show 10 * Y F - 1 = Y F - 1 + 3 ^ 2 * Y F by lia, coprime_self_add_right]
   refine (Coprime.pow_right _ ?_).mul_right ?_
@@ -70,7 +103,9 @@ lemma Ym1_coprime_10Ym1 : (Y F - 1).Coprime (10 * Y F - 1) := by
     simp
 
 /-- Given `Q` independent of `h` with `Y F + 1` coprime to `Q F`,
-`X F h ≡ 1` mod `Q F` for sufficiently large `h`. -/
+`X F h ≡ 1` mod `Q F` for sufficiently large `h`.
+@isnad1 id=eventual.1h2v.s5.e74bd3eced56 from=translated src=- shape=01817e11 vocab=99ca774e
+-/
 lemma eventually_X_modEq_one_of_coprime (Q : Finset ℕ → ℕ) (hQ : (Y F + 1).Coprime (Q F)) :
     ∀ᶠ h in atTop, X F h ≡ 1 [MOD Q F] := by
   refine eventually_atTop.mpr ⟨φ (Q F), fun k hk ↦ ?_⟩
@@ -85,15 +120,23 @@ lemma eventually_X_modEq_one_of_coprime (Q : Finset ℕ → ℕ) (hQ : (Y F + 1)
   replace meq := meq.pow d
   rwa [← pow_mul, ← hd, one_pow] at meq
 
+/--
+@isnad1 id=eventual.0h1v.s5.a4b0abab4384 from=translated src=- shape=4db6e629 vocab=d3bce409
+-/
 lemma eventually_X_modEq_10Yp1 : ∀ᶠ h in atTop, X F h ≡ 1 [MOD 10 * Y F + 1] :=
   eventually_X_modEq_one_of_coprime (10 * Y · + 1) Yp1_coprime_10Yp1
 
+/--
+@isnad1 id=eventual.0h1v.s5.12dad47b4466 from=translated src=- shape=4db6e629 vocab=e290f056
+-/
 lemma eventually_X_modEq_10Ym1 : ∀ᶠ h in atTop, X F h ≡ 1 [MOD 10 * Y F - 1] :=
   eventually_X_modEq_one_of_coprime (10 * Y · - 1) Yp1_coprime_10Ym1
 
 /-- In this file's context "rough" means "having only large ODD prime factors".
 All elements of `tup n F h` are odd by construction, except `natAdd n 0` when `n` is odd,
-so the factor 2 is not an obstacle to pairwise coprimality. -/
+so the factor 2 is not an obstacle to pairwise coprimality.
+@isnad1 id=coprime.3h4v.s6.7eb74ad2bc64 from=translated src=- shape=5a4603f0 vocab=3cb5c334
+-/
 lemma coprime_of_rough (Q K L : Finset ℕ → ℕ) (hQ : ∀ {d}, 3 ≤ d → d ∣ Q F → L F < d)
     (hK : Odd (K F)) (hL : K F ≤ L F) : (K F).Coprime (Q F) := by
   by_contra h
@@ -110,6 +153,9 @@ lemma coprime_of_rough (Q K L : Finset ℕ → ℕ) (hQ : ∀ {d}, 3 ≤ d → d
 
 end Helpers
 
+/--
+@isnad1 id=iscoprim.0h3v.s6.f3cca71f176f from=translated src=- shape=627f9f32 vocab=4d3db462
+-/
 lemma isCoprime_natAdd_four_five {h : ℕ} :
     IsCoprime (tup n F h (natAdd n 4)) (tup n F h (natAdd n 5)) := by
   rw [tup_natAdd_four, tup_natAdd_five]
@@ -123,6 +169,9 @@ lemma isCoprime_natAdd_four_five {h : ℕ} :
   · rw [← Nat.cast_add, ← Nat.cast_two, Nat.isCoprime_iff_coprime, Nat.coprime_two_left]
     exact odd_X.add_even even_Y
 
+/--
+@isnad1 id=eventual.0h2v.s6.672ed00813d7 from=translated src=- shape=65fecdc2 vocab=bca18455
+-/
 lemma isCoprime_natAdd_three_four :
     ∀ᶠ h in atTop, IsCoprime (tup n F h (natAdd n 3)) (tup n F h (natAdd n 4)) := by
   filter_upwards [eventually_X_modEq_10Ym1 (F := F)] with h hx
@@ -139,6 +188,9 @@ lemma isCoprime_natAdd_three_four :
       neg_right_iff, Nat.isCoprime_iff_coprime]
     exact X_coprime_Y
 
+/--
+@isnad1 id=eventual.0h2v.s6.4ce2ad531e04 from=translated src=- shape=65fecdc2 vocab=bca18455
+-/
 lemma isCoprime_natAdd_three_five :
     ∀ᶠ h in atTop, IsCoprime (tup n F h (natAdd n 3)) (tup n F h (natAdd n 5)) := by
   filter_upwards [eventually_X_modEq_10Ym1 (F := F)] with h hx
@@ -154,6 +206,9 @@ lemma isCoprime_natAdd_three_five :
       Nat.isCoprime_iff_coprime]
     exact X_coprime_Y
 
+/--
+@isnad1 id=eventual.0h2v.s6.ebfe1b03d6fc from=translated src=- shape=65fecdc2 vocab=bca18455
+-/
 lemma isCoprime_natAdd_two_three :
     ∀ᶠ h in atTop, IsCoprime (tup n F h (natAdd n 2)) (tup n F h (natAdd n 3)) := by
   filter_upwards [eventually_X_modEq_10Ym1 (F := F)] with h hx
@@ -181,6 +236,9 @@ lemma isCoprime_natAdd_two_three :
     · rw [Nat.isCoprime_iff_coprime]
       simp
 
+/--
+@isnad1 id=eventual.0h2v.s6.23833d09c28e from=translated src=- shape=ac75b41f vocab=5ae95dc3
+-/
 lemma isCoprime_natAdd_two_sq_sub_sq :
     ∀ᶠ h in atTop, IsCoprime (tup n F h (natAdd n 2)) (X F h ^ 2 - Y F ^ 2) := by
   filter_upwards [eventually_X_modEq_10Yp1 (F := F)] with h hx
@@ -207,6 +265,9 @@ lemma isCoprime_natAdd_two_sq_sub_sq :
   · rw [← add_mul_left_right_iff (z := 1), mul_one, sub_add_cancel, Nat.isCoprime_iff_coprime]
     exact X_coprime_Y.symm
 
+/--
+@isnad1 id=eventual.0h2v.s6.f7638b19f7b0 from=translated src=- shape=65fecdc2 vocab=bca18455
+-/
 lemma isCoprime_natAdd_two_four :
     ∀ᶠ h in atTop, IsCoprime (tup n F h (natAdd n 2)) (tup n F h (natAdd n 4)) := by
   filter_upwards [isCoprime_natAdd_two_sq_sub_sq (n := n) (F := F)] with h hx
@@ -214,6 +275,9 @@ lemma isCoprime_natAdd_two_four :
   rw [tup_natAdd_four]
   exact hx.2.pow_right
 
+/--
+@isnad1 id=eventual.0h2v.s6.45f814826942 from=translated src=- shape=65fecdc2 vocab=bca18455
+-/
 lemma isCoprime_natAdd_two_five :
     ∀ᶠ h in atTop, IsCoprime (tup n F h (natAdd n 2)) (tup n F h (natAdd n 5)) := by
   filter_upwards [isCoprime_natAdd_two_sq_sub_sq (n := n) (F := F)] with h hx
@@ -221,6 +285,9 @@ lemma isCoprime_natAdd_two_five :
   rw [tup_natAdd_five]
   exact hx.1.pow_right.neg_right
 
+/--
+@isnad1 id=eventual.1h3v.s6.456d29d11475 from=translated src=- shape=c1815c9b vocab=6015ef41
+-/
 lemma isCoprime_natAdd_five_of_rough
     {Q : Finset ℕ → ℕ} (hQ : ∀ {d}, 3 ≤ d → d ∣ Q F → Y F + 1 < d) :
     ∀ᶠ h in atTop, IsCoprime (Q F : ℤ) (tup n F h (natAdd n 5)) := by
@@ -235,6 +302,9 @@ lemma isCoprime_natAdd_five_of_rough
     Nat.isCoprime_iff_coprime]
   exact hQ.symm
 
+/--
+@isnad1 id=eventual.1h3v.s6.690538633136 from=translated src=- shape=c1815c9b vocab=6015ef41
+-/
 lemma isCoprime_natAdd_four_of_rough
     {Q : Finset ℕ → ℕ} (hQ : ∀ {d}, 3 ≤ d → d ∣ Q F → Y F + 1 < d) :
     ∀ᶠ h in atTop, IsCoprime (Q F : ℤ) (tup n F h (natAdd n 4)) := by
@@ -249,6 +319,9 @@ lemma isCoprime_natAdd_four_of_rough
     Nat.isCoprime_iff_coprime]
   exact (coprime_of_rough Q (Y · - 1) (Y · + 1) hQ (by grind [Y_pos, even_Y]) (by lia)).symm
 
+/--
+@isnad1 id=eventual.1h3v.s6.d735dc0cb6ae from=translated src=- shape=47a15622 vocab=9402255c
+-/
 lemma isCoprime_natAdd_three_of_rough
     {Q : Finset ℕ → ℕ} (hQ : ∀ {d}, 3 ≤ d → d ∣ Q F → 10 * Y F - 1 < d) :
     ∀ᶠ h in atTop, IsCoprime (Q F : ℤ) (tup n F h (natAdd n 3)) := by
@@ -262,6 +335,9 @@ lemma isCoprime_natAdd_three_of_rough
     replace hx := (Nat.coprime_of_mul_modEq_one _ hx).symm
     rwa [Nat.isCoprime_iff_coprime]
 
+/--
+@isnad1 id=eventual.1h3v.s6.58ba4bb51db9 from=translated src=- shape=35ca54a5 vocab=220567fa
+-/
 lemma isCoprime_natAdd_two_of_rough
     {Q : Finset ℕ → ℕ} (hQ : ∀ {d}, 3 ≤ d → d ∣ Q F → 10 * Y F ^ 3 + 1 < d) :
     ∀ᶠ h in atTop, IsCoprime (Q F : ℤ) (tup n F h (natAdd n 2)) := by
@@ -281,6 +357,9 @@ lemma isCoprime_natAdd_two_of_rough
   norm_cast
   exact (coprime_of_rough Q (10 * Y · ^ 3 + 1) (10 * Y · ^ 3 + 1) hQ (by grind) le_rfl).symm
 
+/--
+@isnad1 id=le.0h2v.s5.139e94605234 from=translated src=- shape=92124b7c vocab=fd24146d
+-/
 lemma tenY3p1_le_U : 10 * Y F ^ 3 + 1 ≤ U n F :=
   calc
     _ ≤ 11 * Y F ^ 3 := by
@@ -289,12 +368,18 @@ lemma tenY3p1_le_U : 10 * Y F ^ 3 + 1 ≤ U n F :=
     _ ≤ (100 * Y F - 2) * Y F ^ 5 := by gcongr <;> grind [Y_pos]
     _ ≤ _ := by simp [U]
 
+/--
+@isnad1 id=le.0h2v.s5.29c3f1de3c16 from=translated src=- shape=963fe2a9 vocab=63922f6c
+-/
 lemma tenYm1_le_U : 10 * Y F - 1 ≤ U n F :=
   calc
     _ ≤ 10 * Y F + 1 := by lia
     _ ≤ 10 * Y F ^ 3 + 1 := by gcongr; exact Nat.le_pow zero_lt_three
     _ ≤ _ := tenY3p1_le_U
 
+/--
+@isnad1 id=le.0h2v.s4.193c449b1e62 from=translated src=- shape=029fe119 vocab=2f2aba12
+-/
 lemma Yp1_le_U : Y F + 1 ≤ U n F :=
   calc
     _ ≤ 10 * Y F + 1 := by lia
@@ -313,6 +398,9 @@ private lemma rough_VW_w {B : ℕ} (hB : B ≤ U n F) :
   contrapose! df
   exact (this _ (Finset.mem_Icc.mpr ⟨lf, df.trans hB⟩)).2
 
+/--
+@isnad1 id=eventual.1h4v.s6.b15e754cfa6e from=translated src=- shape=f02f380e vocab=29575696
+-/
 lemma isCoprime_natAdd_natAdd {i j : Fin 6} (hij : i < j) :
     ∀ᶠ h in atTop, IsCoprime (tup n F h (natAdd n i)) (tup n F h (natAdd n j)) := by
   fin_cases i <;> simp only [reduceFinMk] at *
@@ -338,6 +426,9 @@ lemma isCoprime_natAdd_natAdd {i j : Fin 6} (hij : i < j) :
     exact .of_forall fun _ ↦ isCoprime_natAdd_four_five
   · lia
 
+/--
+@isnad1 id=mem.0h3v.s6.5239b7a6dc83 from=translated src=- shape=bd0a1457 vocab=f5565338
+-/
 lemma primeChain_mem_Icc {i : Fin n} : primeChain (100 * Y F ^ 6) i.1 ∈ Finset.Icc 3 (U n F) := by
   refine Finset.mem_Icc.mpr ⟨primeChain_gt.le.trans' ?_, le_add_self.trans' ?_⟩
   · calc
@@ -351,6 +442,9 @@ private lemma rough_primeChain {B k : ℕ} (hB : B ≤ 100 * Y F ^ 6) :
   subst df
   exact primeChain_gt.trans_le' hB
 
+/--
+@isnad1 id=eventual.0h4v.s5.73f751551e8b from=translated src=- shape=0aa62d01 vocab=c467a1d5
+-/
 lemma isCoprime_castAdd_natAdd {i : Fin n} {j : Fin 6} :
     ∀ᶠ h in atTop, IsCoprime (tup n F h (castAdd 6 i)) (tup n F h (natAdd n j)) := by
   simp_rw [tup_castAdd]
@@ -385,6 +479,9 @@ lemma isCoprime_castAdd_natAdd {i : Fin n} {j : Fin 6} :
           _ ≤ 2 * Y F ^ 1 := by grind [Y_pos]
           _ ≤ _ := by gcongr <;> grind [Y_pos]))
 
+/--
+@isnad1 id=eventual.0h2v.s4.25674e068468 from=translated src=- shape=998e13f2 vocab=a4c50bfe
+-/
 theorem pairwiseCoprime_tup : ∀ᶠ h in atTop, PairwiseCoprime (tup n F h) := by
   have cp₂' := @isCoprime_castAdd_natAdd n F
   have cp₃' (i j) (hij : i < j) := @isCoprime_natAdd_natAdd n F _ _ hij

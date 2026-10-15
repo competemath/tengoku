@@ -26,6 +26,9 @@ abbrev 𝓒 (U : Set ℂ) := ℂ →ᵤ[compacts U] ℂ
 /-- The complex derivative as a self-map on `𝓒 U`. -/
 noncomputable def uderiv (f : 𝓒 U) : 𝓒 U := deriv f
 
+/--
+@isnad1 id=iff.1h5v.s6.1c8875ce0fe6 from=translated src=- shape=094c0b25 vocab=dae5adc0
+-/
 lemma tendsto_𝓒_iff (hU : IsOpen U) {F : ι → 𝓒 U} {f : 𝓒 U} :
     Tendsto F l (𝓝 f) ↔ TendstoLocallyUniformlyOn F f l U := by
   simp only [UniformOnFun.tendsto_iff_tendstoUniformlyOn, compacts, mem_ofPred_eq, and_imp]
@@ -35,6 +38,9 @@ lemma tendsto_𝓒_iff (hU : IsOpen U) {F : ι → 𝓒 U} {f : 𝓒 U} :
 (complex-differentiable) functions on `U`. -/
 def 𝓗 (U : Set ℂ) := {f : 𝓒 U | DifferentiableOn ℂ f U}
 
+/--
+@isnad1 id=isclosed.1h1v.s5.77414edc5be0 from=translated src=- shape=5e516f48 vocab=fe8157a1
+-/
 lemma isClosed_𝓗 (hU : IsOpen U) : IsClosed (𝓗 U) := by
   refine isClosed_iff_clusterPt.2 (fun f hf => ?_)
   have : (𝓝 f ⊓ 𝓟 (𝓗 U)).NeBot := hf
@@ -45,6 +51,9 @@ lemma isClosed_𝓗 (hU : IsOpen U) : IsClosed (𝓗 U) := by
     exact Eventually.of_forall fun g hg => hg
   exact hconv.differentiableOn hF hU
 
+/--
+@isnad1 id=continuo.1h1v.s5.e9c26acd7870 from=translated src=- shape=845736ed vocab=1aed165d
+-/
 lemma ContinuousOn_uderiv (hU : IsOpen U) : ContinuousOn uderiv (𝓗 U) := by
   rintro f -
   refine (tendsto_𝓒_iff hU).2 (TendstoLocallyUniformlyOn.deriv ?_ eventually_mem_nhdsWithin hU)
@@ -56,6 +65,9 @@ boundedness conditions for normal-family arguments. -/
 def 𝓑 (U : Set ℂ) (Q : Set ℂ → Set ℂ) : Set (𝓒 U) :=
     {f ∈ 𝓗 U | ∀ K ∈ compacts U, MapsTo f K (Q K)}
 
+/--
+@isnad1 id=eq.0h2v.s5.0e7d764b37d7 from=translated src=- shape=e753b9e0 vocab=6f398e6b
+-/
 lemma 𝓑_const {Q : Set ℂ} : 𝓑 U (fun _ => Q) = {f ∈ 𝓗 U | MapsTo f U Q} := by
   rw [𝓑]
   ext f
@@ -65,6 +77,9 @@ lemma 𝓑_const {Q : Set ℂ} : 𝓑 U (fun _ => Q) = {f ∈ 𝓗 U | MapsTo f 
       (@mapsTo_sUnion ℂ ℂ (compacts U) Q f)
   exact and_congr Iff.rfl hmaps.symm
 
+/--
+@isnad1 id=isclosed.2h2v.s6.76ec7988d82f from=translated src=- shape=32299fc0 vocab=f42f1fc0
+-/
 theorem isClosed_𝓑 (hU : IsOpen U) (hQ : ∀ K ∈ compacts U, IsCompact (Q K)) :
     IsClosed (𝓑 U Q) := by
   rw [𝓑, ofPred_and]; apply (isClosed_𝓗 hU).inter
@@ -79,8 +94,14 @@ theorem isClosed_𝓑 (hU : IsOpen U) (hQ : ∀ K ∈ compacts U, IsCompact (Q K
 unit disk `closedBall 0 1 ⊆ ℂ`. -/
 def 𝓜 (U : Set ℂ) := {f ∈ 𝓗 U | MapsTo f U (closedBall (0 : ℂ) 1)}
 
+/--
+@isnad1 id=eq.0h1v.s5.8cb478d839a1 from=translated src=- shape=18bd0d72 vocab=0230aa3f
+-/
 lemma 𝓜_eq_𝓑 : 𝓜 U = 𝓑 U (fun _ => closedBall 0 1) := 𝓑_const.symm
 
+/--
+@isnad1 id=isclosed.1h1v.s5.3e03f82b322d from=translated src=- shape=5e516f48 vocab=c54bb1b7
+-/
 lemma IsClosed_𝓜 (hU : IsOpen U) : IsClosed (𝓜 U) := by
   suffices h : IsClosed {f : 𝓒 U | MapsTo f U (closedBall 0 1)} from (isClosed_𝓗 hU).inter h
   simp_rw [MapsTo, ofPred_forall]
@@ -91,6 +112,9 @@ lemma IsClosed_𝓜 (hU : IsOpen U) : IsClosed (𝓜 U) := by
 /-- `𝓘 U` : holomorphic injections from `U` into the closed unit disk. -/
 def 𝓘 (U : Set ℂ) := {f ∈ 𝓜 U | InjOn f U}
 
+/--
+@isnad1 id=nonempty.0h1v.s3.9d5641f4d5a7 from=translated src=- shape=dc5f02b5 vocab=e109c2ee
+-/
 lemma 𝓘_nonempty [good_domain U] : (𝓘 U).Nonempty := by
   obtain ⟨u, hu⟩ := nonempty_compl.mpr (good_domain.ne_univ : U ≠ univ)
   let f : ℂ → ℂ := fun z => z - u
@@ -134,4 +158,7 @@ Hurwitz's theorem says these are the only locally uniform limits of
 elements of `𝓘 U`. -/
 def 𝓙 (U : Set ℂ) := {f ∈ 𝓜 U | InjOn f U ∨ ∃ w : ℂ, EqOn f (fun _ => w) U}
 
+/--
+@isnad1 id=le.0h1v.s3.736606759c70 from=translated src=- shape=46d75873 vocab=bf185e2e
+-/
 lemma 𝓘_subset_𝓙 : 𝓘 U ⊆ 𝓙 U := fun _ hf => ⟨hf.1, Or.inl hf.2⟩

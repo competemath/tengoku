@@ -66,10 +66,16 @@ def projectSymbol (s : Symbol T (N ⊕ T)) : Symbol T N :=
 /-- Projection from strings of the new grammars type into strings of the original grammar -/
 def projectString (u : List (Symbol T (N ⊕ T))) : List (Symbol T N) := u.map projectSymbol
 
+/--
+@isnad1 id=eq.0h3v.s4.9bedb6ee2796 from=translated src=- shape=1dc5bd7f vocab=c40709a6
+-/
 lemma embedSymbol_nonterminal_eq {nt : N} :
     embedSymbol (Symbol.nonterminal nt) = (@Symbol.nonterminal T (N ⊕ T)) (Sum.inl nt) := by
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.d15eea532bf0 from=translated src=- shape=dd7916ec vocab=adc2279f
+-/
 lemma projectString_rightEmbedString_id {u : List (Symbol T N)} :
     projectString (rightEmbedString u) = u := by
   induction u with
@@ -80,6 +86,9 @@ lemma projectString_rightEmbedString_id {u : List (Symbol T N)} :
     · cases a <;> rfl
     · rwa [← List.map_map]
 
+/--
+@isnad1 id=eq.0h3v.s5.7576fe4f9993 from=translated src=- shape=634b2382 vocab=7363a77b
+-/
 lemma projectString_terminals {u : List T} :
     projectString (u.map (@Symbol.terminal T (N ⊕ T))) = u.map Symbol.terminal := by
   induction u with
@@ -89,22 +98,37 @@ lemma projectString_terminals {u : List T} :
       List.cons.injEq] at ih ⊢
     exact ⟨rfl, ih⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.90d29a651eab from=translated src=- shape=dd78090c vocab=27b75e8f
+-/
 lemma projectSymbol_nonterminal {n : N} :
     projectSymbol (@Symbol.nonterminal T (N ⊕ T) (Sum.inl n)) = Symbol.nonterminal n := rfl
 
+/--
+@isnad1 id=ne.1h3v.s5.60d8e411f370 from=translated src=- shape=d151af06 vocab=ca90d8f2
+-/
 lemma embedString_preserves_nonempty {u : List (Symbol T N)} (hu : u ≠ []) :
     embedString u ≠ [] := by
   aesop
 
+/--
+@isnad1 id=eq.0h3v.s5.666be138707f from=translated src=- shape=8f7af713 vocab=9fbfb665
+-/
 lemma embedString_terminals {u : List T} :
     embedString (u.map (@Symbol.terminal T N)) = u.map Symbol.terminal := by
   cases u with
   | nil => rfl
   | cons => simp [embedString, embedSymbol]
 
+/--
+@isnad1 id=eq.0h4v.s6.48369bc68669 from=translated src=- shape=79c0328f vocab=77cf6463
+-/
 lemma embedString_append {u v : List (Symbol T N)} :
     embedString (u ++ v) = embedString u ++ embedString v := List.map_append
 
+/--
+@isnad1 id=nonunit.2h3v.s5.ebbf69184e6e from=translated src=- shape=3672d814 vocab=38bb3575
+-/
 lemma rightEmbed_string_nonUnit {u : List (Symbol T N)} (hu : ContextFreeGrammar.NonUnit u)
     (hut : ∀ t, u ≠ [Symbol.terminal t]) :
     ContextFreeGrammar.NonUnit (rightEmbedString u) := match u with
@@ -153,6 +177,9 @@ end RestrictTerminals
 
 variable {g : ContextFreeGrammar T}
 
+/--
+@isnad1 id=eq.2h5v.s6.08c8014c01bb from=translated src=- shape=b5ba7f4f vocab=77fdea4d
+-/
 lemma restrictTerminalRule_right_terminal_output {t : T} {r : ContextFreeRule T g.NT}
     {r' : ContextFreeRule T (g.NT ⊕ T)} (hrr : r' ∈ restrictTerminalRule r)
     (hrt : r'.input = Sum.inr t) :
@@ -166,6 +193,9 @@ lemma restrictTerminalRule_right_terminal_output {t : T} {r : ContextFreeRule T 
     rw [← hsr] at hrt ⊢
     simp_all
 
+/--
+@isnad1 id=eq.2h4v.s7.0a63dde74c67 from=translated src=- shape=3f0972d0 vocab=f481014a
+-/
 lemma restrictTerminalRules_right_terminal_output [DecidableEq T] [DecidableEq g.NT] {t : T}
     {r : ContextFreeRule T (g.NT ⊕ T)} (hrg : r ∈ restrictTerminalRules g.rules.toList)
     (hrt : r.input = Sum.inr t) :
@@ -175,6 +205,9 @@ lemma restrictTerminalRules_right_terminal_output [DecidableEq T] [DecidableEq g
   obtain ⟨_, _, hr⟩ := hrg
   exact restrictTerminalRule_right_terminal_output hr hrt
 
+/--
+@isnad1 id=and.2h5v.s6.7a2ba0d2c514 from=translated src=- shape=9e779cd7 vocab=8335e41a
+-/
 lemma restrictTerminalRule_left {n : g.NT} {r : ContextFreeRule T g.NT}
     {r' : ContextFreeRule T (g.NT ⊕ T)} (hrr : r' ∈ restrictTerminalRule r)
     (hrn : r'.input = Sum.inl n) :
@@ -193,6 +226,9 @@ lemma restrictTerminalRule_left {n : g.NT} {r : ContextFreeRule T g.NT}
     rw [← hrr] at hrn
     tauto
 
+/--
+@isnad1 id=mem.1h4v.s6.f4b220e678a6 from=translated src=- shape=d5602642 vocab=c18d52d3
+-/
 lemma terminal_mem_newTerminalRules {t : T} {r : ContextFreeRule T g.NT}
     (htr : Symbol.terminal t ∈ r.output) :
     ⟨Sum.inr t, [Symbol.terminal t]⟩ ∈ newTerminalRules r := by
@@ -201,6 +237,9 @@ lemma terminal_mem_newTerminalRules {t : T} {r : ContextFreeRule T g.NT}
 
 variable [DecidableEq T] [DecidableEq g.NT]
 
+/--
+@isnad1 id=ex.2h4v.s7.e7e50dad022f from=translated src=- shape=c8dae4aa vocab=b7ea3c20
+-/
 lemma restrictTerminalsRules_left {n : g.NT} {r' : ContextFreeRule T (g.NT ⊕ T)}
     (hrg : r' ∈ restrictTerminalRules g.rules.toList) (hrn : r'.input = Sum.inl n) :
     ∃ r ∈ g.rules, r.input = n ∧ r.output = projectString r'.output := by
@@ -210,6 +249,9 @@ lemma restrictTerminalsRules_left {n : g.NT} {r' : ContextFreeRule T (g.NT ⊕ T
   obtain ⟨r, hrg, hrr⟩ := hrg
   exact ⟨r, hrg, restrictTerminalRule_left hrr hrn⟩
 
+/--
+@isnad1 id=derives.1h4v.s5.779874a5ee34 from=translated src=- shape=ba4b37d9 vocab=22b8b9f4
+-/
 lemma restrictTerminals_produces_derives_projectString {u v : List (Symbol T (g.NT ⊕ T))}
     (huv : (restrictTerminals g).Produces u v) :
     g.Derives (projectString u) (projectString v) := by
@@ -231,6 +273,9 @@ lemma restrictTerminals_produces_derives_projectString {u v : List (Symbol T (g.
     simp only [projectString, List.map_append]
     rfl
 
+/--
+@isnad1 id=derives.1h4v.s5.c40cfd80e873 from=translated src=- shape=451c0199 vocab=a5d48e3d
+-/
 lemma restrictTerminals_derives_derives_projectString {u v : List (Symbol T (g.NT ⊕ T))}
     (huv : (restrictTerminals g).Derives u v) :
     g.Derives (projectString u) (projectString v) := by
@@ -238,6 +283,9 @@ lemma restrictTerminals_derives_derives_projectString {u v : List (Symbol T (g.N
   | refl => rfl
   | head hp _ ih => exact Derives.trans (restrictTerminals_produces_derives_projectString hp) ih
 
+/--
+@isnad1 id=derives.1h3v.s7.07b7b3ba87f7 from=translated src=- shape=77fd6aea vocab=0f68d611
+-/
 lemma restrictTerminals_derives_rightEmbedString_embedString {u : List (Symbol T g.NT)}
     (hu : ∀ t, (Symbol.terminal t) ∈ u → ∃ r ∈ g.rules, (Symbol.terminal t) ∈ r.output) :
     (restrictTerminals g).Derives (rightEmbedString u) (embedString u) := by
@@ -265,6 +313,9 @@ lemma restrictTerminals_derives_rightEmbedString_embedString {u : List (Symbol T
         · unfold rightEmbedSymbol embedSymbol
           exact ContextFreeRule.Rewrites.input_output
 
+/--
+@isnad1 id=derives.1h4v.s5.ea02f4c9c919 from=translated src=- shape=069bd16d vocab=39780239
+-/
 lemma derives_restrictTerminals_derives_embedString {u v : List (Symbol T g.NT)}
     (huv : g.Derives u v) :
     (restrictTerminals g).Derives (embedString u) (embedString v) := by
@@ -310,6 +361,9 @@ lemma derives_restrictTerminals_derives_embedString {u v : List (Symbol T g.NT)}
         intros
         use r
 
+/--
+@isnad1 id=eq.0h2v.s4.ce1f6515cb8b from=translated src=- shape=583aed8c vocab=e9745c9e
+-/
 theorem restrictTerminals_correct : g.language = g.restrictTerminals.language := by
   apply Set.eq_of_subset_of_subset <;> intro w hw
   · replace hw : w ∈ g.language := hw

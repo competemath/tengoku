@@ -51,20 +51,41 @@ variable {n F} {x : ℤ}
 -- Not `@[simp]`: with `Fin.castAdd_to_castSucc` from another pool project in the global
 -- simp set, the left-hand side `i.castAdd 5` is rewritten to a `Fin.castSucc` chain, so this
 -- lemma's left-hand side is no longer in simp normal form. All call sites invoke it explicitly.
+/--
+@isnad1 id=eq.0h4v.s5.79769834ebb9 from=translated src=- shape=f7facd6f vocab=36fbdfe5
+-/
 lemma tup_castAdd {i : Fin n} :
     tup n F x (i.castAdd 5) = primeChain (max 8 (F.sup id)) i.1 := by
   simp [tup]
 
+/--
+@isnad1 id=eq.0h3v.s5.113f0f9c8d9d from=translated src=- shape=efb47a3c vocab=c3ad4e29
+-/
 @[simp] lemma tup_natAdd_zero : tup n F x (natAdd n 0) = (VW n F).v := by simp [tup]
 
+/--
+@isnad1 id=eq.0h3v.s6.8cffe4b43cec from=translated src=- shape=7adde2fe vocab=c7d7d39a
+-/
 @[simp] lemma tup_natAdd_one : tup n F x (natAdd n 1) = -(VW n F).w := by simp [tup]
 
+/--
+@isnad1 id=eq.0h3v.s6.03513c0bec44 from=translated src=- shape=b0afcf65 vocab=42c2f3f7
+-/
 @[simp] lemma tup_natAdd_two : tup n F x (natAdd n 2) = (x - 1) ^ 5 := by simp [tup]
 
+/--
+@isnad1 id=eq.0h3v.s6.f7fe7691366d from=translated src=- shape=af33e0eb vocab=69de2b31
+-/
 @[simp] lemma tup_natAdd_three : tup n F x (natAdd n 3) = 10 * (x ^ 2 + 1) ^ 2 := by simp [tup]
 
+/--
+@isnad1 id=eq.0h3v.s6.4edcd51631f4 from=translated src=- shape=b9c7f77b vocab=54cd4013
+-/
 @[simp] lemma tup_natAdd_four : tup n F x (natAdd n 4) = -(x + 1) ^ 5 := by simp [tup]
 
+/--
+@isnad1 id=eq.0h3v.s6.146f9127a250 from=translated src=- shape=f8803b88 vocab=c8a379d1
+-/
 lemma sum_tup : ∑ i, tup n F x i = 0 := by
   simp only [tup, sum_univ_add, addCases_left, addCases_right, sum_univ_five,
     add_assoc, show (x - 1) ^ 5 + (10 * (x ^ 2 + 1) ^ 2 + -(x + 1) ^ 5) = 8 by ring]
@@ -76,29 +97,53 @@ variable {i : Fin n}
 
 section Bounds
 
+/--
+@isnad1 id=lt.0h3v.s5.c8c950bdce24 from=translated src=- shape=b640da36 vocab=64d99402
+-/
 lemma primeChain_lt_U : primeChain (max 8 (F.sup id)) i.1 < U n F :=
   (single_le_sum_of_canonicallyOrdered (by simp_all)).trans_lt (lt_add_of_pos_left _ (by decide))
 
+/--
+@isnad1 id=lt.0h2v.s5.b9826d4c936c from=translated src=- shape=fd88d611 vocab=73e6664f
+-/
 lemma ten_lt_primeChain : 10 < primeChain (max 8 (F.sup id)) n := by
   grind [primeChain_gt, prime_primeChain, show ¬Nat.Prime 9 ∧ ¬Nat.Prime 10 by decide]
 
+/--
+@isnad1 id=mem.0h3v.s6.474ee74afa4e from=translated src=- shape=cd184732 vocab=312c42f9
+-/
 lemma primeChain_mem_Icc : primeChain (max 8 (F.sup id)) i.1 ∈ Icc 3 (max (U n F) (F.sup id)) :=
   mem_Icc.mpr ⟨ten_lt_primeChain.trans' (by decide), le_max_iff.mpr (.inl primeChain_lt_U.le)⟩
 
+/--
+@isnad1 id=lt.0h2v.s5.49dc59dd0b32 from=translated src=- shape=a2e8936a vocab=cd3e1816
+-/
 lemma U_lt_V : U n F < (VW n F).v :=
   calc
     _ ≤ max (U n F) (F.sup id) := le_max_left ..
     _ < _ := (VW n F).m_lt_v
 
+/--
+@isnad1 id=lt.0h2v.s5.c841bc8a1fc4 from=translated src=- shape=a2e8936a vocab=a9e8cab4
+-/
 lemma U_lt_W : U n F < (VW n F).w := by grind [U_lt_V, (VW n F).eq_add]
 
+/--
+@isnad1 id=le.0h2v.s5.07b3d1bf81fa from=translated src=- shape=01efd551 vocab=37ca04b7
+-/
 lemma V_lower_bound : 9 ≤ (VW n F).v :=
   calc
     _ ≤ max (U n F) (F.sup id) := by grind [U]
     _ < _ := (VW n F).m_lt_v
 
+/--
+@isnad1 id=le.0h2v.s5.7e9243bcf5f6 from=translated src=- shape=01efd551 vocab=c7dd2dd0
+-/
 lemma W_lower_bound : 17 ≤ (VW n F).w := by grind [U, (VW n F).eq_add, V_lower_bound]
 
+/--
+@isnad1 id=le.0h2v.s4.89eacdbc0ac1 from=translated src=- shape=f8de4f81 vocab=5aa41376
+-/
 lemma Y_lower_bound : 1530 ≤ Y n F := by
   rw [show 1530 = 10 * 1 * 1 * 9 * 17 by rfl, Y]
   gcongr
@@ -107,12 +152,18 @@ lemma Y_lower_bound : 1530 ≤ Y n F := by
   · exact V_lower_bound
   · exact W_lower_bound
 
+/--
+@isnad1 id=lt.0h2v.s4.e04f6be805c0 from=translated src=- shape=f8de4f81 vocab=1885a6a6
+-/
 lemma Y_pos : 0 < Y n F := by grind [Y_lower_bound]
 
 end Bounds
 
 section Coprime
 
+/--
+@isnad1 id=and.1h3v.s7.2f1fc385d1b7 from=translated src=- shape=c465ec3a vocab=6dd73650
+-/
 lemma dvd_of_Y_dvd (dx : ↑(Y n F) ∣ x) :
     10 ∣ x ∧ (∀ f ∈ F.erase 0, ↑f ∣ x) ∧ (∀ i : Fin n, ↑(primeChain (max 8 (F.sup id)) i.1) ∣ x) ∧
     ↑(VW n F).v ∣ x ∧ ↑(VW n F).w ∣ x := by
@@ -129,6 +180,9 @@ lemma dvd_of_Y_dvd (dx : ↑(Y n F) ∣ x) :
     rw [← Fin.prod_univ_eq_prod_range]
     exact dvd_prod_of_mem _ (mem_univ _)
 
+/--
+@isnad1 id=iscoprim.1h5v.s5.9eebdcf96d1e from=translated src=- shape=434808e2 vocab=8083700f
+-/
 lemma isCoprime_tup_castAdd_natAdd {j : Fin 5} (dx : ↑(Y n F) ∣ x) :
     IsCoprime (tup n F x (castAdd 5 i)) (tup n F x (natAdd n j)) := by
   rw [tup_castAdd]
@@ -149,7 +203,9 @@ lemma isCoprime_tup_castAdd_natAdd {j : Fin 5} (dx : ↑(Y n F) ∣ x) :
   · rw [tup_natAdd_four, IsCoprime.neg_right_iff, IsCoprime.pow_right_iff (by decide)]
     exact IsCoprime.add_one_right_of_dvd (dx _)
 
-/-- This lemma is where we need evenness of `n`, i.e. oddness of the whole tuple's length. -/
+/-- This lemma is where we need evenness of `n`, i.e. oddness of the whole tuple's length.
+@isnad1 id=coprime.1h2v.s5.693225660140 from=translated src=- shape=59ace710 vocab=ef18001c
+-/
 lemma V_coprime_ten (hn : Even n) : (VW n F).v.Coprime 10 := by
   rw [show 10 = 2 * 5 by rfl]
   apply Coprime.mul_right
@@ -164,6 +220,9 @@ lemma V_coprime_ten (hn : Even n) : (VW n F).v.Coprime 10 := by
   · rw [coprime_comm, prime_five.coprime_iff_not_dvd]
     exact ((VW n F).not_dvd 5 (mem_Icc.mpr ⟨by decide, by grind [U]⟩)).1
 
+/--
+@isnad1 id=coprime.0h2v.s5.a052699ab774 from=translated src=- shape=6e586dd4 vocab=00060133
+-/
 lemma W_coprime_ten : (VW n F).w.Coprime 10 := by
   rw [show 10 = 2 * 5 by rfl]
   apply Coprime.mul_right
@@ -172,6 +231,9 @@ lemma W_coprime_ten : (VW n F).w.Coprime 10 := by
   · rw [coprime_comm, prime_five.coprime_iff_not_dvd]
     exact ((VW n F).not_dvd 5 (mem_Icc.mpr ⟨by decide, by grind [U]⟩)).2
 
+/--
+@isnad1 id=pairwise.2h3v.s5.cb90f3641da0 from=translated src=- shape=c00047ed vocab=9c93756d
+-/
 lemma pairwiseCoprime_tup (hn : Even n) (dx : ↑(Y n F) ∣ x) : PairwiseCoprime (tup n F x) := by
   have : Std.Symm (fun i j ↦ IsCoprime (tup n F x i) (tup n F x j)) :=
     ⟨fun {a b} (h : IsCoprime (tup n F x a) (tup n F x b)) ↦ h.symm⟩
@@ -221,11 +283,17 @@ lemma pairwiseCoprime_tup (hn : Even n) (dx : ↑(Y n F) ∣ x) : PairwiseCoprim
         IsCoprime.pow_right_iff (by decide), IsCoprime.mul_left_iff]
       exact ⟨IsCoprime.add_one_right_of_dvd d10, cp2.1.pow_left⟩
 
+/--
+@isnad1 id=lt.1h3v.s5.0b52ba803c28 from=translated src=- shape=0656c490 vocab=ef5c2c62
+-/
 lemma lt_primeChain_of_mem_F {f : ℕ} (hf : f ∈ F) : f < primeChain (max 8 (F.sup id)) n :=
   calc
     _ ≤ F.sup id := le_sup hf
     _ < _ := by grind [primeChain_gt]
 
+/--
+@isnad1 id=not.3h5v.s7.ac13cf66bd9b from=translated src=- shape=805d14c1 vocab=f72abbb1
+-/
 lemma not_dvd_tup (dx : ↑(Y n F) ∣ x) (dF : Disjoint {0, 1, 2, 5, 10} F) :
     ∀ f ∈ F, ∀ i, ¬↑f ∣ tup n F x i := fun f hf i ↦ by
   simp_rw [disjoint_insert_left, disjoint_singleton_left] at dF

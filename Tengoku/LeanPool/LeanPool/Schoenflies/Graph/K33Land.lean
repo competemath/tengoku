@@ -117,7 +117,9 @@ the same pair of ends, meeting only there, laid end to end. -/
 
 /-- **Two arcs with common ends splice into a closed polygon whose edge list is their
 concatenation.** `P.arcPieces a k` runs from `p` to `q` and `P'.arcPieces b l` runs from `q` back
-to `p`; the two meet only at `p` and `q`. -/
+to `p`; the two meet only at `p` and `q`.
+@isnad1 id=ex.7h8v.s9.9025fbd8a649 from=translated src=- shape=2452e4aa vocab=c5278b95
+-/
 theorem exists_splice {m m' : ℕ} (P : PrePolygon m) (P' : PrePolygon m')
     {a : ZMod (m + 3)} {k : ℕ} {b : ZMod (m' + 3)} {l : ℕ}
     (hk1 : 1 ≤ k) (hk2 : k ≤ m + 2) (hl1 : 1 ≤ l) (hl2 : l ≤ m' + 2)
@@ -322,9 +324,15 @@ def reverse {m : ℕ} (P : PrePolygon m) : PrePolygon m where
       segment_symm ℝ (P.vertex (-j)) (P.vertex (-j - 1)), Set.pair_comm]
     exact h
 
+/--
+@isnad1 id=eq.0h3v.s7.adce1536dc36 from=translated src=- shape=c357af48 vocab=102d5484
+-/
 @[simp] theorem reverse_vertex {m : ℕ} (P : PrePolygon m) (j : ZMod (m + 3)) :
     P.reverse.vertex j = P.vertex (-j) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.166ce659dddc from=translated src=- shape=7a10b970 vocab=8573f0cb
+-/
 theorem reverse_edge {m : ℕ} (P : PrePolygon m) (j : ZMod (m + 3)) :
     P.reverse.edge j = P.edge (-j - 1) := by
   rw [edge, edge, reverse_vertex, reverse_vertex,
@@ -332,6 +340,9 @@ theorem reverse_edge {m : ℕ} (P : PrePolygon m) (j : ZMod (m + 3)) :
     show (-j - 1 : ZMod (m + 3)) + 1 = -j by ring]
   exact segment_symm ℝ _ _
 
+/--
+@isnad1 id=eq.0h2v.s4.ec89f2e5e5dc from=translated src=- shape=678e0950 vocab=da8c13ed
+-/
 @[simp] theorem reverse_carrier {m : ℕ} (P : PrePolygon m) : P.reverse.carrier = P.carrier := by
   ext z
   constructor
@@ -345,7 +356,9 @@ theorem reverse_edge {m : ℕ} (P : PrePolygon m) (j : ZMod (m + 3)) :
     rw [reverse_edge, show (-(-i - 1) - 1 : ZMod (m + 3)) = i by ring]
     exact hi
 
-/-- **Reversing does not move an arc**, it only starts it at the other end. -/
+/-- **Reversing does not move an arc**, it only starts it at the other end.
+@isnad1 id=eq.0h4v.s8.2c029d702b1d from=translated src=- shape=5027764c vocab=d2629a56
+-/
 theorem reverse_arc {m : ℕ} (P : PrePolygon m) (a : ZMod (m + 3)) (k : ℕ) :
     P.reverse.arc (-a - (k : ZMod (m + 3))) k = P.arc a k := by
   ext z
@@ -366,7 +379,9 @@ theorem reverse_arc {m : ℕ} (P : PrePolygon m) (a : ZMod (m + 3)) (k : ℕ) :
     exact hz
 
 /-- **Reversing does not change the edge list either**, up to the order and the naming of each
-edge's two ends — which is exactly what `Schoenflies.SameEdges` forgives. -/
+edge's two ends — which is exactly what `Schoenflies.SameEdges` forgives.
+@isnad1 id=sameedge.0h4v.s8.97a38e9fe724 from=translated src=- shape=7ec32725 vocab=714bb834
+-/
 theorem sameEdges_reverse_arcPieces {m : ℕ} (P : PrePolygon m) (a : ZMod (m + 3)) (k : ℕ) :
     SameEdges (P.reverse.arcPieces (-a - (k : ZMod (m + 3))) k) (P.arcPieces a k) := by
   have key : (P.reverse.arcPieces (-a - (k : ZMod (m + 3))) k).map orientPiece
@@ -396,7 +411,9 @@ the two cut points among its vertices, with no corner condition on them. What re
 *which* arc of that presentation is which of two prescribed arcs, and in which direction the
 first is traversed. -/
 
-/-- **The realization theorem, tracking a splitting into two named arcs.** -/
+/-- **The realization theorem, tracking a splitting into two named arcs.**
+@isnad1 id=ex.9h5v.s9.d12d2a2bdef4 from=translated src=- shape=fa0c2bc6 vocab=a3e66b54
+-/
 theorem exists_prePolygon_arcs {C A₁ A₂ : Set Plane} (hJ : IsJordanCurve C) (hP : IsPolygonal C)
     {p q : Plane} (hp : p ∈ C) (hq : q ∈ C) (hpq : p ≠ q)
     (hA1 : IsArcBetween A₁ p q) (hA2 : IsArcBetween A₂ p q) (hunion : A₁ ∪ A₂ = C)
@@ -428,7 +445,9 @@ polygon backwards when it is not is what pins the direction.
 
 This is the shape the crosscut wiring consumes, and — unlike
 `Schoenflies.exists_closedPolygon_arcs_oriented` — it asks nothing of `p` and `q` beyond lying on
-the curve. -/
+the curve.
+@isnad1 id=ex.9h5v.s9.8a073485acc2 from=translated src=- shape=44688b80 vocab=a3e66b54
+-/
 theorem exists_prePolygon_arcs_oriented {C A₁ A₂ : Set Plane} (hJ : IsJordanCurve C)
     (hP : IsPolygonal C) {p q : Plane} (hp : p ∈ C) (hq : q ∈ C) (hpq : p ≠ q)
     (hA1 : IsArcBetween A₁ p q) (hA2 : IsArcBetween A₂ p q) (hunion : A₁ ∪ A₂ = C)
@@ -489,7 +508,9 @@ structure IsPrePolygonalCrosscut (C : PrePolygon m) (J₁ : PrePolygon m₁) (J�
   avoids : Disjoint (cover K) (connectedComponentIn C.carrierᶜ y)
 
 /-- **The front door.** A crosscut is normally presented by saying that it meets `C` exactly in
-its two endpoints, and that those endpoints are the two cut vertices. -/
+its two endpoints, and that those endpoints are the two cut vertices.
+@isnad1 id=isprepol.7h10v.s9.5669a5ef7a70 from=translated src=- shape=a81597cd vocab=cf4fe0dd
+-/
 theorem IsPrePolygonalCrosscut.of_endpoints (hk1 : 1 ≤ k) (hk2 : k ≤ m + 2)
     (edges₁ : SameEdges J₁.pieces (C.arcPieces a k ++ K))
     (edges₂ : SameEdges J₂.pieces (C.arcPieces (a + k) (m + 3 - k) ++ K))
@@ -505,7 +526,9 @@ namespace IsPrePolygonalCrosscut
 variable (h : IsPrePolygonalCrosscut C J₁ J₂ K a k y)
 include h
 
-/-- **The two arcs may be swapped.** -/
+/-- **The two arcs may be swapped.**
+@isnad1 id=isprepol.1h10v.s8.e8d6bacab369 from=translated src=- shape=a3e92833 vocab=31c3e364
+-/
 theorem symm : IsPrePolygonalCrosscut C J₂ J₁ K (a + k) (m + 3 - k) y := by
   have hk : k ≤ m + 3 := h.le
   have hnat : m + 3 - (m + 3 - k) = k := by omega
@@ -516,23 +539,40 @@ theorem symm : IsPrePolygonalCrosscut C J₂ J₁ K (a + k) (m + 3 - k) y := by
 
 /-! ### The elementary consequences -/
 
+/--
+@isnad1 id=not.1h10v.s5.25c5198ba1dc from=translated src=- shape=5b4edec4 vocab=9f5fc505
+-/
 theorem notMem_cover : y ∉ cover K :=
   fun hy => Set.disjoint_left.1 h.avoids hy (mem_connectedComponentIn h.notMem)
 
+/--
+@isnad1 id=eq.1h10v.s6.6b8ab72c326a from=translated src=- shape=72aee180 vocab=f7fc5518
+-/
 theorem carrier₁ : J₁.carrier = C.arc a k ∪ cover K :=
   PrePolygon.carrier_eq_of_sameEdges h.edges₁
 
+/--
+@isnad1 id=not.1h10v.s5.107bf4f4d475 from=translated src=- shape=1650823f vocab=b3ddb3b8
+-/
 theorem notMem_carrier₁ : y ∉ J₁.carrier :=
   PrePolygon.notMem_carrier_of_sameEdges h.edges₁ h.notMem h.notMem_cover
 
+/--
+@isnad1 id=le.1h10v.s5.80716522bd48 from=translated src=- shape=6c7f70fc vocab=90467425
+-/
 theorem cover_subset_carrier₁ : cover K ⊆ J₁.carrier := by
   rw [h.carrier₁]; exact Set.subset_union_right
 
+/--
+@isnad1 id=le.1h10v.s6.1682d6c4cbe5 from=translated src=- shape=c9322084 vocab=9f222ff8
+-/
 theorem carrier₁_subset : J₁.carrier ⊆ C.carrier ∪ cover K := by
   rw [h.carrier₁]
   exact Set.union_subset_union_left _ (C.arc_subset_carrier a k)
 
-/-- The edges of the crosscut are nondegenerate, because they are edges of `J₁`. -/
+/-- The edges of the crosscut are nondegenerate, because they are edges of `J₁`.
+@isnad1 id=nondeg.2h11v.s5.6a21b8576185 from=translated src=- shape=225bfa5a vocab=a50b048b
+-/
 theorem nondeg : ∀ Q ∈ K, Q.Nondeg := by
   intro Q hQ
   obtain ⟨R, hR, hRQ⟩ := h.edges₁.symm.exists_mem (List.mem_append_right _ hQ)
@@ -542,7 +582,9 @@ theorem nondeg : ∀ Q ∈ K, Q.Nondeg := by
   · rw [e] at hRn; exact hRn
   · rw [e] at hRn; exact fun hh => hRn hh.symm
 
-/-- A ray direction transverse to every edge of `C` and of the crosscut at once. -/
+/-- A ray direction transverse to every edge of `C` and of the crosscut at once.
+@isnad1 id=ex.1h10v.s6.b13511d52858 from=translated src=- shape=700a10de vocab=e1bccffe
+-/
 theorem exists_direction : ∃ u : Plane, Plane.IsDirection u ∧
     (∀ Q ∈ C.pieces, hgt u Q.1 ≠ hgt u Q.2) ∧ (∀ Q ∈ K, hgt u Q.1 ≠ hgt u Q.2) := by
   obtain ⟨u, hu, hlev⟩ := exists_direction_hgt_ne (C.pieces ++ K) (by
@@ -555,15 +597,23 @@ theorem exists_direction : ∃ u : Plane, Plane.IsDirection u ∧
 
 /-! ### The two cells -/
 
+/--
+@isnad1 id=isregion.1h10v.s6.d75bf6a4ca1c from=translated src=- shape=1d183d01 vocab=a4b64423
+-/
 theorem regionPairC :
     IsRegionPair C.carrier (farRegion C.carrier y) (connectedComponentIn C.carrierᶜ y) :=
   (C.isSeparating_carrier.isRegionPair_farRegion h.notMem).symm
 
+/--
+@isnad1 id=isregion.1h10v.s6.58e37333dfa1 from=translated src=- shape=675dc908 vocab=a4b64423
+-/
 theorem regionPair₁ :
     IsRegionPair J₁.carrier (connectedComponentIn J₁.carrierᶜ y) (farRegion J₁.carrier y) :=
   J₁.isSeparating_carrier.isRegionPair_farRegion h.notMem_carrier₁
 
-/-- The untouched region of `ℝ² ∖ C` lies in one region of `ℝ² ∖ J₁`, namely the one of `y`. -/
+/-- The untouched region of `ℝ² ∖ C` lies in one region of `ℝ² ∖ J₁`, namely the one of `y`.
+@isnad1 id=le.1h10v.s7.e42429d051d3 from=translated src=- shape=211d2416 vocab=d6a5307d
+-/
 theorem near_subset₁ :
     connectedComponentIn C.carrierᶜ y ⊆ connectedComponentIn J₁.carrierᶜ y := by
   refine IsPreconnected.subset_connectedComponentIn isPreconnected_connectedComponentIn
@@ -572,25 +622,37 @@ theorem near_subset₁ :
   have hwK : w ∉ cover K := fun hK => Set.disjoint_left.1 h.avoids hK hw
   exact PrePolygon.notMem_carrier_of_sameEdges h.edges₁ hwC hwK
 
-/-- **Lemma 2.6(a), first half**: the cell lies in `Ω ∖ P`. -/
+/-- **Lemma 2.6(a), first half**: the cell lies in `Ω ∖ P`.
+@isnad1 id=le.1h10v.s6.d64aa0677318 from=translated src=- shape=af2a1e7c vocab=8f630f3b
+-/
 theorem cell_subset₁ : farRegion J₁.carrier y ⊆ farRegion C.carrier y \ cover K :=
   cell_subset_region_diff (P := cover K) C.isSeparating_carrier J₁.isSeparating_carrier
     h.regionPairC h.regionPair₁ h.near_subset₁ h.cover_subset_carrier₁
 
+/--
+@isnad1 id=le.1h10v.s6.ec74a8b580f3 from=translated src=- shape=20ccc8b9 vocab=8f630f3b
+-/
 theorem cell_subset₂ : farRegion J₂.carrier y ⊆ farRegion C.carrier y \ cover K :=
   h.symm.cell_subset₁
 
-/-- **Lemma 2.6(a)**: the cell is a connected component of `Ω ∖ P`. -/
+/-- **Lemma 2.6(a)**: the cell is a connected component of `Ω ∖ P`.
+@isnad1 id=eq.2h11v.s6.fdf5d2be5c37 from=translated src=- shape=931fa217 vocab=652d5a1e
+-/
 theorem cell_isComponent₁ : ∀ z ∈ farRegion J₁.carrier y,
     connectedComponentIn (farRegion C.carrier y \ cover K) z = farRegion J₁.carrier y :=
   cell_isComponent (P := cover K) C.isSeparating_carrier J₁.isSeparating_carrier
     h.regionPairC h.regionPair₁ h.near_subset₁ h.cover_subset_carrier₁ h.carrier₁_subset
 
+/--
+@isnad1 id=eq.2h11v.s6.e12e6b4a16a9 from=translated src=- shape=0ec751a8 vocab=652d5a1e
+-/
 theorem cell_isComponent₂ : ∀ z ∈ farRegion J₂.carrier y,
     connectedComponentIn (farRegion C.carrier y \ cover K) z = farRegion J₂.carrier y :=
   h.symm.cell_isComponent₁
 
-/-- **Lemma 2.6(c)**: the closure of the cell meets the polygon exactly in its arc. -/
+/-- **Lemma 2.6(c)**: the closure of the cell meets the polygon exactly in its arc.
+@isnad1 id=eq.1h10v.s6.c74857f117d4 from=translated src=- shape=fb45688d vocab=325036a4
+-/
 theorem closure_cell_inter₁ : closure (farRegion J₁.carrier y) ∩ C.carrier = C.arc a k := by
   rw [closure_cell_inter_curve C.isSeparating_carrier J₁.isSeparating_carrier
     h.regionPairC.right h.regionPair₁ h.near_subset₁, h.carrier₁]
@@ -599,6 +661,9 @@ theorem closure_cell_inter₁ : closure (farRegion J₁.carrier y) ∩ C.carrier
   · exact hw
   · exact h.meets₁ ⟨hw, hwC⟩
 
+/--
+@isnad1 id=eq.1h10v.s8.48bc5ca77889 from=translated src=- shape=99c3dd4f vocab=5e6181f9
+-/
 theorem closure_cell_inter₂ :
     closure (farRegion J₂.carrier y) ∩ C.carrier = C.arc (a + k) (m + 3 - k) :=
   h.symm.closure_cell_inter₁
@@ -606,7 +671,9 @@ theorem closure_cell_inter₂ :
 /-! ### Exhaustion: the crossing counts add up -/
 
 /-- **A point off `C ∪ P` is separated from `y` by `C` exactly when it is separated from `y` by
-exactly one of `J₁, J₂`.** -/
+exactly one of `J₁, J₂`.**
+@isnad1 id=iff.3h11v.s6.73f3bb5c15a5 from=translated src=- shape=d92fc67c vocab=64888f9d
+-/
 theorem separates_xor {x : Plane} (hxC : x ∉ C.carrier) (hxK : x ∉ cover K) :
     x ∈ farRegion C.carrier y ↔
       (x ∈ farRegion J₁.carrier y ↔ ¬ x ∈ farRegion J₂.carrier y) := by
@@ -624,7 +691,9 @@ theorem separates_xor {x : Plane} (hxC : x ∉ C.carrier) (hxK : x ∉ cover K) 
       (s ≠ t ↔ ((s₁ ≠ t₁) ↔ ¬ (s₂ ≠ t₂))) := by decide
   exact key _ _ _ _ _ _ hsx hsy
 
-/-- **Theorem 2.8, the two cells.** -/
+/-- **Theorem 2.8, the two cells.**
+@isnad1 id=eq.1h10v.s6.b0f18d17bf4e from=translated src=- shape=1fd6404e vocab=9c7867aa
+-/
 theorem region_eq :
     farRegion C.carrier y \ cover K = farRegion J₁.carrier y ∪ farRegion J₂.carrier y := by
   refine Set.Subset.antisymm ?_ (Set.union_subset h.cell_subset₁ h.cell_subset₂)
@@ -637,13 +706,17 @@ theorem region_eq :
 
 /-! ### Corollary 2.9 -/
 
-/-- **The region the crosscut enters is the component of any of its points off `C`.** -/
+/-- **The region the crosscut enters is the component of any of its points off `C`.**
+@isnad1 id=eq.3h11v.s7.014149b18b6b from=translated src=- shape=5320cea6 vocab=e48cabc9
+-/
 theorem connectedComponentIn_cover_eq {z : Plane} (hz : z ∈ cover K) (hzC : z ∉ C.carrier) :
     connectedComponentIn C.carrierᶜ z = farRegion C.carrier y :=
   h.regionPairC.left.connectedComponentIn_eq C.isSeparating_carrier
     (diff_subset_farRegion h.avoids ⟨hz, hzC⟩)
 
-/-- **Corollary 2.9, core form.** -/
+/-- **Corollary 2.9, core form.**
+@isnad1 id=nonempty.9h13v.s9.5b193fb52ec4 from=translated src=- shape=ec06b7be vocab=7bd193b3
+-/
 theorem inter_cover_nonempty {Q : Set Plane} {w₁ w₂ : Plane}
     (hconn : IsPreconnected Q) (hside : Q ⊆ farRegion C.carrier y)
     (hw₁ : w₁ ∈ closure Q) (hw₂ : w₂ ∈ closure Q)
@@ -677,7 +750,9 @@ theorem inter_cover_nonempty {Q : Set Plane} {w₁ w₂ : Plane}
     rw [h.closure_cell_inter₂] at hmem
     exact hw₁B hmem
 
-/-- **Corollary 2.9 for a second crosscut presented as a simple arc.** -/
+/-- **Corollary 2.9 for a second crosscut presented as a simple arc.**
+@isnad1 id=nonempty.7h13v.s9.e487d93b8fe1 from=translated src=- shape=342094f0 vocab=2adbbd58
+-/
 theorem arc_inter_cover_nonempty {Q : Set Plane} {w₁ w₂ : Plane}
     (hQ : IsArcBetween Q w₁ w₂) (hside : Q \ {w₁, w₂} ⊆ farRegion C.carrier y)
     (hw₁A : w₁ ∈ C.arc a k) (hw₁B : w₁ ∉ C.arc (a + k) (m + 3 - k))
@@ -687,7 +762,9 @@ theorem arc_inter_cover_nonempty {Q : Set Plane} {w₁ w₂ : Plane}
     hQ.left_mem_closure_diff hQ.right_mem_closure_diff hw₁A hw₁B hw₂B hw₂A
   exact ⟨z, hzQ.1, hzK⟩
 
-/-- **Corollary 2.9 in the shape a plane-graph argument produces it.** -/
+/-- **Corollary 2.9 in the shape a plane-graph argument produces it.**
+@isnad1 id=nonempty.8h17v.s8.18d8c8c5b1bd from=translated src=- shape=4c54dc6b vocab=2adbbd58
+-/
 theorem alternating_inter_nonempty {A B Q : Set Plane} {p q w₁ w₂ : Plane}
     (hA : C.arc a k = A) (hB : C.arc (a + k) (m + 3 - k) = B)
     (hAB : A ∩ B = ({p, q} : Set Plane))
@@ -698,7 +775,9 @@ theorem alternating_inter_nonempty {A B Q : Set Plane} {p q w₁ w₂ : Plane}
   · rw [hB]; exact fun hmem => hw₁.2 (hAB ▸ Set.mem_inter hw₁.1 hmem)
   · rw [hA]; exact fun hmem => hw₂.2 (hAB ▸ Set.mem_inter hmem hw₂.1)
 
-/-- **Corollary 2.9 with "the same side" read as "the same connected component".** -/
+/-- **Corollary 2.9 with "the same side" read as "the same connected component".**
+@isnad1 id=nonempty.10h18v.s9.e1c41aab0736 from=translated src=- shape=fa1391f7 vocab=1ece176b
+-/
 theorem alternating_inter_nonempty_of_same_side {A B Q : Set Plane} {p q w₁ w₂ z : Plane}
     (hz : z ∈ cover K) (hzC : z ∉ C.carrier)
     (hA : C.arc a k = A) (hB : C.arc (a + k) (m + 3 - k) = B)
@@ -745,7 +824,9 @@ realized as a `Schoenflies.PrePolygon` cut at the two ends of the remaining edge
 because a `PrePolygon` may have a vertex wherever one likes — and the two closed curves the
 remaining edge forms with the two halves are then *built* from that realization and from one
 presentation of the remaining edge, rather than found independently. That is what makes the three
-edge lists agree, and it is why no matching lemma, and hence no general position, is needed. -/
+edge lists agree, and it is why no matching lemma, and hence no general position, is needed.
+@isnad1 id=isprehex.3h7v.s6.e54d72bf4adc from=translated src=- shape=409d2ade vocab=6e104b21
+-/
 theorem isPreHexCrosscut (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
     (hpoly : ∀ f ∈ E(G), IsPolygonal (edgeArc drawing f)) (s : Fin 3) :
     IsPreHexCrosscut drawing e s := by
@@ -823,7 +904,9 @@ theorem isPreHexCrosscut (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
 
 /-- **The two remaining edges indexed by `s` and `s + 1` cannot lie in one region.** Their four
 ends alternate around the six-cycle, so `cor:alternating-crosscuts` makes them meet; but distinct
-edges of a plane graph meet only at shared vertices, and these two share none. -/
+edges of a plane graph meet only at shared vertices, and these two share none.
+@isnad1 id=false.7h8v.s8.26c0e385f091 from=translated src=- shape=bb10fc5c vocab=87231709
+-/
 theorem false_of_isPreHexCrosscut (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
     (hcross : IsPreHexCrosscut drawing e s) (hsep : IsSeparating (hexSet drawing e))
     (hR : IsRegionOf (hexSet drawing e) R)
@@ -846,7 +929,9 @@ theorem false_of_isPreHexCrosscut (h : IsK33Config G x y e) (hd : IsDrawing G dr
   rw [Set.eq_empty_iff_forall_notMem] at hdis
   exact hdis w ⟨hw₁, by rwa [hK] at hw₂⟩
 
-/-- **`lem:k33` for a drawing that is already polygonal, with nothing assumed.** -/
+/-- **`lem:k33` for a drawing that is already polygonal, with nothing assumed.**
+@isnad1 id=false.3h6v.s6.8b7ca821578d from=translated src=- shape=f8a77d27 vocab=bf7cbfea
+-/
 theorem false_of_polygonal (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
     (hpoly : ∀ f ∈ E(G), IsPolygonal (edgeArc drawing f)) : False := by
   have hsep : IsSeparating (hexSet drawing e) := by
@@ -866,7 +951,9 @@ the same vertices; the contradiction is then `false_of_polygonal`. This is
 `Graph.IsK33Config.not_isDrawing` of `Schoenflies/Graph/K33Planar.lean` with its realization
 hypothesis discharged, and `Graph.IsK33Config.not_isDrawing_of_bendable` of
 `Schoenflies/Graph/K33Closed.lean` with `Graph.Bendable` discharged: no drawing has to be bent,
-because the crosscut no longer needs the six vertices to be corners. -/
+because the crosscut no longer needs the six vertices to be corners.
+@isnad1 id=not.1h5v.s6.63c4eb847474 from=translated src=- shape=8042dbe8 vocab=5385fc2f
+-/
 theorem not_exists_isDrawing [G.Finite] (h : IsK33Config G x y e) :
     ¬ ∃ dr : β → ℝ → Plane, IsDrawing G dr := by
   rintro ⟨dr, hdr⟩
@@ -876,19 +963,25 @@ theorem not_exists_isDrawing [G.Finite] (h : IsK33Config G x y e) :
 end IsK33Config
 
 /-- **`lem:k33` for nine arcs**: no nine arcs in the plane meet only where a
-`K(3,3)` forces them to. -/
+`K(3,3)` forces them to.
+@isnad1 id=false.1h3v.s5.63ca61ce2ae8 from=translated src=- shape=865234cd vocab=a5c83915
+-/
 theorem IsArcK33.elim {P : Fin 3 → Fin 3 → Set Plane} (h : IsArcK33 x y P) : False :=
   h.isK33Config.not_exists_isDrawing ⟨h.arcDrawing, h.isDrawing⟩
 
 /-- **Corollary 3.11 (subdivisions of `K(3,3)`).** No subdivision of `K(3,3)`
-has a plane drawing. -/
+has a plane drawing.
+@isnad1 id=false.2h6v.s5.aa057b6c3d3d from=translated src=- shape=db9f3169 vocab=1e7ba517
+-/
 theorem IsK33Subdivision.elim {H : Graph Plane β} {W : Fin 3 → Fin 3 → List β}
     (hd : IsDrawing H drawing) (h : IsK33Subdivision H x y W) : False :=
   (h.isArcK33 hd).elim
 
 /-- **The headline: `K(3,3)` has no plane drawing.** Stated for the concrete graph
 `Graph.k33Graph x y`, whose nine edges are the index pairs, with nothing assumed beyond the six
-points being six distinct points of the plane. -/
+points being six distinct points of the plane.
+@isnad1 id=not.3h2v.s6.080dfe6d7c83 from=translated src=- shape=7a8e8ce0 vocab=4013b868
+-/
 theorem k33Graph_not_exists_isDrawing (x y : Fin 3 → Plane) (hx : Function.Injective x)
     (hy : Function.Injective y) (hxy : ∀ i j, x i ≠ y j) :
     ¬ ∃ dr : Fin 3 × Fin 3 → ℝ → Plane, IsDrawing (k33Graph x y) dr :=

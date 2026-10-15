@@ -84,13 +84,18 @@ variable {γ : Type*} {S : CellStructure γ} {R₁ R₂ : S.Realization}
 
 /-! ### The drawn subdivided edge, on both sides -/
 
+/--
+@isnad1 id=le.0h4v.s5.0d06b2b102fb from=translated src=- shape=7feb9321 vocab=9580fce1
+-/
 theorem edgeArc_subset_skeletonSet (R : S.Realization) :
     R.drawing d.edge '' I ⊆ R.skeletonSet :=
   edgeArc_subset_pointSet (d.edge_mem_edgeSet_graph R)
 
 /-- **The subdivided edge is drawn on both sides, and `g` carries one drawing onto the other.**
 Everything the arc-monotonicity machinery needs, assembled from fields of `R₁`, `R₂` and `g`;
-no new hypothesis. -/
+no new hypothesis.
+@isnad1 id=arcmatch.0h6v.s5.2dd0bde18aee from=translated src=- shape=9d2920c0 vocab=937675e2
+-/
 theorem arcMatch_edge : ArcMatch (R₁.drawing d.edge) (R₂.drawing d.edge) g.toFun where
   continuousOn_src := d.continuousOn_drawing_edge R₁
   injOn_src := d.injOn_drawing_edge R₁
@@ -109,22 +114,31 @@ t) _`, and every lemma below refers to it by name. -/
 noncomputable def targetParam (d : S.SubdivData) (g : SkeletonHomeo R₁ R₂) (t : ℝ) : ℝ :=
   transferParam (R₁.drawing d.edge) (R₂.drawing d.edge) g.toFun t
 
+/--
+@isnad1 id=mem.1h7v.s5.3934a832638a from=translated src=- shape=0595362e vocab=0138b6eb
+-/
 theorem targetParam_mem_I (ht : t ∈ I) : d.targetParam g t ∈ I :=
   (d.arcMatch_edge g).param_mem_I ht
 
-/-- **The defining property of the target parameter.** -/
+/-- **The defining property of the target parameter.**
+@isnad1 id=eq.1h7v.s6.2ac1374a3ebd from=translated src=- shape=fab2e788 vocab=6514363e
+-/
 theorem drawing_targetParam (ht : t ∈ I) :
     R₂.drawing d.edge (d.targetParam g t) = g.toFun (R₁.drawing d.edge t) :=
   (d.arcMatch_edge g).apply_param ht
 
 /-- The endpoint of the subdivided edge at `d.left` corresponds to the endpoint at `d.left`,
-whichever way round either realization happens to draw the edge. -/
+whichever way round either realization happens to draw the edge.
+@isnad1 id=eq.0h6v.s5.65c65419f7ac from=translated src=- shape=e2e2b81e vocab=474784e2
+-/
 theorem targetParam_leftParam : d.targetParam g (d.leftParam R₁) = d.leftParam R₂ := by
   refine (d.arcMatch_edge g).param_eq (d.leftParam_mem_I R₂) ?_
   rw [d.drawing_leftParam R₂, d.drawing_leftParam R₁]
   exact (g.pos_apply d.isLink.left_mem).symm
 
-/-- …and likewise at `d.right`. -/
+/-- …and likewise at `d.right`.
+@isnad1 id=eq.0h6v.s5.50a85b4c17c4 from=translated src=- shape=e2e2b81e vocab=b503c4a2
+-/
 theorem targetParam_rightParam : d.targetParam g (d.rightParam R₁) = d.rightParam R₂ := by
   refine (d.arcMatch_edge g).param_eq (d.rightParam_mem_I R₂) ?_
   rw [d.drawing_rightParam R₂, d.drawing_rightParam R₁]
@@ -132,7 +146,9 @@ theorem targetParam_rightParam : d.targetParam g (d.rightParam R₁) = d.rightPa
 
 /-- **The two endpoint parameters go to the two endpoint parameters**, in one order or the
 other. This is the only statement in the file that mentions the orientations at all, and it is
-here only because interiority of the new target parameter needs it. -/
+here only because interiority of the new target parameter needs it.
+@isnad1 id=or.0h6v.s6.51f2a0402c85 from=translated src=- shape=f28960ef vocab=6055531a
+-/
 theorem targetParam_ends :
     (d.targetParam g 0 = 0 ∧ d.targetParam g 1 = 1) ∨
       (d.targetParam g 0 = 1 ∧ d.targetParam g 1 = 0) := by
@@ -148,12 +164,16 @@ theorem targetParam_ends :
   · exact Or.inl ⟨hR, hL⟩
 
 /-- **An interior source parameter has an interior target parameter** — so the target
-realization can be subdivided at it. -/
+realization can be subdivided at it.
+@isnad1 id=mem.1h7v.s6.cc50341f369a from=translated src=- shape=76f01069 vocab=d9d5bcba
+-/
 theorem targetParam_mem_Ioo (ht : t ∈ Ioo (0 : ℝ) 1) : d.targetParam g t ∈ Ioo (0 : ℝ) 1 :=
   (d.arcMatch_edge g).param_mem_Ioo_of_ends (d.targetParam_ends g) ht
 
 /-- **`g` carries a piece of the drawn edge onto the corresponding piece.** The whole content of
-`Schoenflies/ArcMonotone.lean`, specialized to the subdivided edge. -/
+`Schoenflies/ArcMonotone.lean`, specialized to the subdivided edge.
+@isnad1 id=eq.2h8v.s6.efc77923b2b5 from=translated src=- shape=5a0a3c77 vocab=feeae382
+-/
 theorem image_edge_uIcc {s u : ℝ} (hs : s ∈ I) (hu : u ∈ I) :
     g.toFun '' (R₁.drawing d.edge '' uIcc s u) =
       R₂.drawing d.edge '' uIcc (d.targetParam g s) (d.targetParam g u) :=
@@ -210,14 +230,22 @@ noncomputable def realizeHomeo (d : S.SubdivData) (g : SkeletonHomeo R₁ R₂) 
         edgeArc_of_ne (d.ne_newEdge₁_of_mem_cells hc) (d.ne_newEdge₂_of_mem_cells hc)]
       exact g.edgeArc_image heS
 
+/--
+@isnad1 id=eq.1h7v.s6.47eac7c1b53b from=translated src=- shape=d7f838e9 vocab=692ccc82
+-/
 @[simp] theorem realizeHomeo_toFun (ht : t ∈ Ioo (0 : ℝ) 1) :
     (d.realizeHomeo g ht).toFun = g.toFun := rfl
 
+/--
+@isnad1 id=eq.1h7v.s6.dcc4f2a70bcc from=translated src=- shape=d7f838e9 vocab=44670492
+-/
 @[simp] theorem realizeHomeo_invFun (ht : t ∈ Ioo (0 : ℝ) 1) :
     (d.realizeHomeo g ht).invFun = g.invFun := rfl
 
 /-- **The transported map is the old one as a point map** — the form
-`CellStructure.LimitTower.skelHomeo_succ` consumes. -/
+`CellStructure.LimitTower.skelHomeo_succ` consumes.
+@isnad1 id=eqon.1h8v.s6.7405696f679d from=translated src=- shape=18bd697e vocab=3b4ff405
+-/
 theorem realizeHomeo_eqOn (ht : t ∈ Ioo (0 : ℝ) 1) {A : Set Plane} :
     EqOn (d.realizeHomeo g ht).toFun g.toFun A := fun _ _ => rfl
 

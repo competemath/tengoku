@@ -35,7 +35,9 @@ namespace Schoenflies
 
 variable {a b p : Plane}
 
-/-- Cutting a segment at one of its points loses nothing: the two halves cover it. -/
+/-- Cutting a segment at one of its points loses nothing: the two halves cover it.
+@isnad1 id=eq.1h3v.s8.ddca5223a49c from=translated src=- shape=a87b48c2 vocab=ad0ce7cd
+-/
 theorem segment_split (hp : p ∈ segment ℝ a b) :
     segment ℝ a b = segment ℝ a p ∪ segment ℝ p b := by
   refine subset_antisymm ?_ (union_subset
@@ -84,7 +86,9 @@ theorem segment_split (hp : p ∈ segment ℝ a b) :
     rw [smul_add, smul_smul, smul_smul, add_assoc, ← add_smul, hcoef, huα']
 
 /-- Cutting is permanent, near half: the interior of the near piece stays inside the
-interior of the whole. -/
+interior of the whole.
+@isnad1 id=le.1h3v.s8.fd691732d610 from=translated src=- shape=94af69f0 vocab=24f0e62a
+-/
 theorem openSegment_left_subset (hp : p ∈ openSegment ℝ a b) :
     openSegment ℝ a p ⊆ openSegment ℝ a b := by
   obtain ⟨α, β, hα, hβ, hαβ, rfl⟩ := hp
@@ -92,7 +96,9 @@ theorem openSegment_left_subset (hp : p ∈ openSegment ℝ a b) :
   refine ⟨s + t * α, t * β, by positivity, by positivity, by nlinarith, ?_⟩
   rw [smul_add, smul_smul, smul_smul, ← add_assoc, ← add_smul]
 
-/-- Cutting is permanent, far half. -/
+/-- Cutting is permanent, far half.
+@isnad1 id=le.1h3v.s8.cae6c25112a9 from=translated src=- shape=6b6ab4fe vocab=24f0e62a
+-/
 theorem openSegment_right_subset (hp : p ∈ openSegment ℝ a b) :
     openSegment ℝ p b ⊆ openSegment ℝ a b := by
   obtain ⟨α, β, hα, hβ, hαβ, rfl⟩ := hp

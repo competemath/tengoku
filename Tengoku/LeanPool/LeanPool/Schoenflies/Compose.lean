@@ -43,7 +43,9 @@ namespace Schoenflies
 
 /-- The overlay of finitely many nondegenerate segments is a plane graph to which the
 outer-face theorem applies. Uses `polygonal_overlay`, `Graph.Finite`, `IsDrawing`, `face` and
-`exists_unbounded_face` together. -/
+`exists_unbounded_face` together.
+@isnad1 id=ex.1h1v.s6.169c8b39c793 from=translated src=- shape=08f72790 vocab=f9cb2822
+-/
 theorem overlay_has_outer_face (pieces : List Piece) (hnd : ∀ P ∈ pieces, P.Nondeg) :
     ∃ G : Graph Plane Piece, Graph.pointSet G segmentDrawing = cover pieces ∧
       ∃ base ∈ Graph.exterior G segmentDrawing,
@@ -54,7 +56,9 @@ theorem overlay_has_outer_face (pieces : List Piece) (hnd : ∀ P ∈ pieces, P.
 
 /-- Cutting a Jordan curve at two points and gluing the pieces back returns a Jordan curve —
 `IsJordanCurve.two_arcs` composed with `IsJordanCurve.of_two_arcs`. The two are converse, and
-this is what says so. -/
+this is what says so.
+@isnad1 id=ex.4h3v.s6.10282963e29d from=translated src=- shape=91d1ca37 vocab=ca3d51f3
+-/
 theorem two_arcs_roundtrip {C : Set Plane} (hC : IsJordanCurve C) {p q : Plane}
     (hp : p ∈ C) (hq : q ∈ C) (hpq : p ≠ q) :
     ∃ A B, A ∪ B = C ∧ IsJordanCurve (A ∪ B) := by
@@ -76,7 +80,9 @@ it has to land the final portion of a segment `[x, a)` inside `N`. An earlier ve
 statement omitted both and was correspondingly useless to its consumer.
 
 `ClosedPolygon.exists_two_sided_collar` strengthens this further with the local clauses: every
-point of the curve lies in the closure of *both* sides. -/
+point of the curve lies in the closure of *both* sides.
+@isnad1 id=ex.2h3v.s8.4d684b784efb from=translated src=- shape=fdf64282 vocab=b3aa91bb
+-/
 theorem polygonal_collar {m : ℕ} (P : ClosedPolygon m) {U : Set Plane} (hU : IsOpen U)
     (hPU : P.carrier ⊆ U) :
     ∃ N L R : Set Plane, IsOpen N ∧ P.carrier ⊆ N ∧ N ⊆ U ∧ IsOpen L ∧ IsOpen R ∧

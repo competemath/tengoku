@@ -55,7 +55,13 @@ variable
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceH1 : MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.f5f95658d921 from=translated src=- shape=c6850a32 vocab=54bda8d9
+-/
 local instance instBorelSpaceH1 : BorelSpace E := ⟨rfl⟩
+/--
+@isnad1 id=opensmea.0h1v.s4.fef634448204 from=translated src=- shape=c6850a32 vocab=70ecbd76
+-/
 local instance instOpensMeasurableSpaceH1 : OpensMeasurableSpace E := by infer_instance
 
 variable (μ : Measure E) [IsFiniteMeasureOnCompacts μ]
@@ -86,12 +92,18 @@ def C1c : Submodule ℝ (E → ℝ) where
 noncomputable def grad (f : E → ℝ) : E → E :=
   fun x => (InnerProductSpace.toDual ℝ E).symm (fderiv ℝ f x)
 
+/--
+@isnad1 id=continuo.1h2v.s6.93ed0dfd0e4b from=translated src=- shape=2941d6f2 vocab=26adaccc
+-/
 lemma continuous_grad {f : E → ℝ} (hf : ContDiff ℝ 1 f) : Continuous (grad (E := E) f) := by
   have hcont : Continuous (fderiv ℝ f) := hf.continuous_fderiv one_ne_zero
   have : Continuous fun x => (InnerProductSpace.toDual ℝ E).symm (fderiv ℝ f x) :=
     (InnerProductSpace.toDual ℝ E).symm.continuous.comp hcont
   exact this
 
+/--
+@isnad1 id=hascompa.1h2v.s6.39eebceff93a from=translated src=- shape=b990a9f1 vocab=1cc1266d
+-/
 lemma hasCompactSupport_grad {f : E → ℝ} (hf : HasCompactSupport f) :
     HasCompactSupport (grad (E := E) f) := by
   -- Outside the support of `f`, `fderiv` is identically `0`, hence so is `grad`.
@@ -101,6 +113,9 @@ lemma hasCompactSupport_grad {f : E → ℝ} (hf : HasCompactSupport f) :
     (HasCompactSupport.comp_left (f := fderiv ℝ f) (g := (InnerProductSpace.toDual ℝ E).symm)
       hf' (by simp))
 
+/--
+@isnad1 id=le.0h2v.s6.fc782057a2a5 from=translated src=- shape=d60219e5 vocab=a60e1869
+-/
 lemma tsupport_grad_subset (f : E → ℝ) : tsupport (grad (E := E) f) ⊆ tsupport f := by
   have hcomp :
       tsupport (grad (E := E) f) ⊆ tsupport (fderiv ℝ f) := by
@@ -111,9 +126,15 @@ lemma tsupport_grad_subset (f : E → ℝ) : tsupport (grad (E := E) f) ⊆ tsup
   exact hcomp.trans (tsupport_fderiv_subset (𝕜 := ℝ) (f := f))
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=memlp.1h3v.s7.f7c04507db90 from=translated src=- shape=42e2584f vocab=53975da0
+-/
 lemma memLp_of_mem_C1c {f : E → ℝ} (hf : f ∈ C1c (E := E)) : MemLp f 2 μ := by
   exact (hf.1.continuous.memLp_of_hasCompactSupport (μ := μ) (p := (2 : ℝ≥0∞)) hf.2)
 
+/--
+@isnad1 id=memlp.1h3v.s7.53c0a8f4b05e from=translated src=- shape=6cfb3f3e vocab=7609b6f7
+-/
 lemma memLp_grad_of_mem_C1c {f : E → ℝ} (hf : f ∈ C1c (E := E)) :
     MemLp (grad (E := E) f) 2 μ := by
   have hcont : Continuous (grad (E := E) f) := continuous_grad (E := E) (f := f) hf.1
@@ -239,7 +260,9 @@ noncomputable def graph : ↥(C1c (E := E)) →ₗ[ℝ] H1Target (μ := μ) :=
 noncomputable def h1 : Submodule ℝ (H1Target (μ := μ)) :=
   (LinearMap.range (graph (μ := μ) (E := E))).topologicalClosure
 
-/-- The Euclidean `H¹` submodule is closed by construction. -/
+/-- The Euclidean `H¹` submodule is closed by construction.
+@isnad1 id=isclosed.0h2v.s9.f161b05dec5d from=translated src=- shape=202bdfb6 vocab=d146b2ce
+-/
 theorem isClosed_h1 : IsClosed (h1 (μ := μ) (E := E) : Set (H1Target (μ := μ))) := by
   delta h1
   exact Submodule.isClosed_topologicalClosure (LinearMap.range (graph (μ := μ) (E := E)))

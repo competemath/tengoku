@@ -63,6 +63,9 @@ def implicitToOpenPartialHomeomorphOfComplementedKerRange (f : E → F) (f' : E 
   have := hrange.isClosed.completeSpace_coe
   (hf.implicitFunctionDataOfComplementedKerRange f f' hker hrange).toOpenPartialHomeomorph
 
+/--
+@isnad1 id=mem.3h6v.s12.d84405f9c7ce from=translated src=- shape=08bf3466 vocab=9d67929e
+-/
 @[simp]
 theorem mem_implicitToOpenPartialHomeomorphOfComplementedKerRange_source
     {f : E → F} {f' : E →L[𝕜] F} {a : E}
@@ -75,6 +78,9 @@ theorem mem_implicitToOpenPartialHomeomorphOfComplementedKerRange_source
   simpa [implicitToOpenPartialHomeomorphOfComplementedKerRange,
     implicitFunctionDataOfComplementedKerRange_pt] using h
 
+/--
+@isnad1 id=eq.3h7v.s14.f32185691d7e from=translated src=- shape=0a930717 vocab=7230a207
+-/
 theorem implicitToOpenPartialHomeomorphOfComplementedKerRange_apply {f : E → F} {f' : E →L[𝕜] F}
     {a : E} (hf : HasStrictFDerivAt f f' a) (hker : f'.ker.ClosedComplemented)
     (hrange : f'.range.ClosedComplemented) (x : E) :
@@ -86,6 +92,9 @@ theorem implicitToOpenPartialHomeomorphOfComplementedKerRange_apply {f : E → F
     implicitFunctionDataOfComplementedKerRange,
     Function.comp_apply, ImplicitFunctionData.toOpenPartialHomeomorph_apply]
 
+/--
+@isnad1 id=eq.3h6v.s14.085fb6cb8f75 from=translated src=- shape=90bdf9f1 vocab=7230a207
+-/
 theorem coe_implicitToOpenPartialHomeomorphOfComplementedKerRange {f : E → F} {f' : E →L[𝕜] F}
     {a : E} (hf : HasStrictFDerivAt f f' a) (hker : f'.ker.ClosedComplemented)
     (hrange : f'.range.ClosedComplemented) :
@@ -93,6 +102,9 @@ theorem coe_implicitToOpenPartialHomeomorphOfComplementedKerRange {f : E → F} 
       fun x ↦ (hrange.choose (f x), hker.choose x) :=
   funext <| implicitToOpenPartialHomeomorphOfComplementedKerRange_apply hf hker hrange
 
+/--
+@isnad1 id=eq.3h7v.s13.3d8909788eb0 from=translated src=- shape=12d7e67e vocab=f5e6d76a
+-/
 @[simp]
 theorem implicitToOpenPartialHomeomorphOfComplementedKerRange_apply_fst {f : E → F} {f' : E →L[𝕜] F}
     {a : E} (hf : HasStrictFDerivAt f f' a) (hker : f'.ker.ClosedComplemented)

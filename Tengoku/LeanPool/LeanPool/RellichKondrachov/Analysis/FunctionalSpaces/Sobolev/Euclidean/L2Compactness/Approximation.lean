@@ -41,11 +41,23 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDim
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceApproximation : MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.011ebcfb3d22 from=translated src=- shape=c6850a32 vocab=226325c6
+-/
 local instance instBorelSpaceApproximation : BorelSpace E := ⟨rfl⟩
+/--
+@isnad1 id=opensmea.0h1v.s4.6125a4fc39a8 from=translated src=- shape=c6850a32 vocab=c674d107
+-/
 local instance instOpensMeasurableSpaceApproximation : OpensMeasurableSpace E := by
   infer_instance
+/--
+@isnad1 id=measurab.0h1v.s4.0b78849aca73 from=translated src=- shape=c6850a32 vocab=b4eb9775
+-/
 local instance instMeasurableAddApproximation : MeasurableAdd E := by
   infer_instance
+/--
+@isnad1 id=measurab.0h1v.s4.44d489828f0b from=translated src=- shape=c6850a32 vocab=a2f49321
+-/
 local instance instMeasurableNegApproximation : MeasurableNeg E := by
   infer_instance
 
@@ -57,6 +69,9 @@ measure once `ψ ≥ 0` and `∫ ψ = 1`. -/
 noncomputable def kernelMeasure : Measure E :=
   (volume : Measure E).withDensity fun x => ENNReal.ofReal (ψ x)
 
+/--
+@isnad1 id=eq.4h2v.s7.9cd5830c58d6 from=translated src=- shape=53240e2b vocab=74078301
+-/
 lemma kernelMeasure_univ (hψc : Continuous ψ) (hψcs : HasCompactSupport ψ) (hψ0 : ∀ x, 0 ≤ ψ x)
     (hψint : ∫ x, ψ x ∂(volume : Measure E) = 1) :
     kernelMeasure (E := E) ψ Set.univ = 1 := by
@@ -78,7 +93,9 @@ lemma kernelMeasure_univ (hψc : Continuous ψ) (hψcs : HasCompactSupport ψ) (
   simpa [hψint] using (hwd.trans hlin)
 
 /-- The kernel measure `kernelMeasure ψ` is a probability measure when `ψ` is a continuous,
-compactly supported, nonnegative density integrating to `1`. -/
+compactly supported, nonnegative density integrating to `1`.
+@isnad1 id=isprobab.4h2v.s7.092affc57a00 from=translated src=- shape=2d6db3f8 vocab=edd798d8
+-/
 lemma isProbabilityMeasure_kernelMeasure
     (hψc : Continuous ψ) (hψcs : HasCompactSupport ψ)
     (hψ0 : ∀ x, 0 ≤ ψ x)
@@ -86,6 +103,9 @@ lemma isProbabilityMeasure_kernelMeasure
     MeasureTheory.IsProbabilityMeasure (kernelMeasure (E := E) ψ) :=
   ⟨kernelMeasure_univ (E := E) (ψ := ψ) hψc hψcs hψ0 hψint⟩
 
+/--
+@isnad1 id=eq.2h3v.s7.c7046156a494 from=translated src=- shape=1508dbaa vocab=2d100907
+-/
 lemma integral_kernelMeasure_eq_integral_smul (hψc : Continuous ψ) (hψ0 : ∀ x, 0 ≤ ψ x)
     (g : E → ℝ) :
     (∫ x, g x ∂kernelMeasure (E := E) ψ) =
@@ -112,12 +132,18 @@ lemma integral_kernelMeasure_eq_integral_smul (hψc : Continuous ψ) (hψ0 : ∀
   -- After rewriting `toReal (ofReal _)`, both sides are definitional.
   simp [hx]
 
+/--
+@isnad1 id=eq.2h3v.s7.64c6cf35dad1 from=translated src=- shape=1508dbaa vocab=b63ad489
+-/
 lemma integral_kernelMeasure_eq_integral_mul (hψc : Continuous ψ) (hψ0 : ∀ x, 0 ≤ ψ x)
     (g : E → ℝ) :
     (∫ x, g x ∂kernelMeasure (E := E) ψ) =
       ∫ x, (ψ x) * (g x) ∂(volume : Measure E) := by
   simpa [smul_eq_mul] using integral_kernelMeasure_eq_integral_smul (E := E) (ψ := ψ) hψc hψ0 g
 
+/--
+@isnad1 id=eq.2h5v.s9.1b67b3b8aaf4 from=translated src=- shape=06ca83ec vocab=0cc83c3e
+-/
 lemma smoothFun_eq_integral_kernelMeasure (hψc : Continuous ψ) (hψ0 : ∀ x, 0 ≤ ψ x)
     (u : MeasureTheory.Lp ℝ (2 : ℝ≥0∞) (volume.restrict K)) (x : E) :
     smoothFun (E := E) (K := K) ψ u x =
@@ -146,6 +172,9 @@ lemma smoothFun_eq_integral_kernelMeasure (hψc : Continuous ψ) (hψ0 : ∀ x, 
       (g := fun t => extendByZeroFun (E := E) (K := K) u (x - t))
   exact hconv'.trans hwd.symm
 
+/--
+@isnad1 id=le.1h3v.s7.e1d1bb72dbdf from=translated src=- shape=05e55109 vocab=a15f50b7
+-/
 lemma sq_integral_le_integral_sq_of_isProbabilityMeasure {α : Type*} [MeasurableSpace α]
     (μ : Measure α) [MeasureTheory.IsProbabilityMeasure μ] (f : α → ℝ)
     (hf : MeasureTheory.MemLp f 2 μ) :
@@ -167,6 +196,9 @@ private lemma norm_sq_eq_integral_sq (v : (E →₂[(volume : Measure E)] ℝ)) 
   -- For `ℝ`, `RCLike.re` is the identity and `inner` simplifies to a square.
   simp [pow_two]
 
+/--
+@isnad1 id=eq.1h4v.s12.9fbd992ebf7b from=translated src=- shape=3ca19112 vocab=e38c99cf
+-/
 lemma norm_sq_translateL2_sub_extendByZeroL2_eq_integral_sq (t : E)
     (u : MeasureTheory.Lp ℝ (2 : ℝ≥0∞) (volume.restrict K)) :
     ‖(translateL2 (μ := (volume : Measure E)) (-t))
@@ -250,6 +282,9 @@ private lemma kernelMeasure_le_smul_volume (hψc : Continuous ψ) (hψcs : HasCo
   refine hle.trans ?_
   simp
 
+/--
+@isnad1 id=le.5h5v.s9.754706f8f42a from=translated src=- shape=e014c899 vocab=56562c1f
+-/
 lemma smoothFun_sub_extendByZeroFun_sq_le_integral_sq
     (hψc : Continuous ψ) (hψcs : HasCompactSupport ψ)
     (hψ0 : ∀ x, 0 ≤ ψ x) (hψint : ∫ x, ψ x ∂(volume : Measure E) = 1) (hKm : MeasurableSet K)
@@ -325,6 +360,9 @@ lemma smoothFun_sub_extendByZeroFun_sq_le_integral_sq
       (μ := μ) (f := fun t : E => f (x - t) - f x) hg
   simpa [hdiff, μ, f] using hJ
 
+/--
+@isnad1 id=le.6h4v.s13.fd970711709b from=translated src=- shape=d58d3de0 vocab=3092c0ae
+-/
 lemma norm_sq_smoothL2_sub_extendByZeroL2_le_integral_norm_sq_translateL2_sub_extendByZeroL2
     (hψc : Continuous ψ) (hψcs : HasCompactSupport ψ) (hψ0 : ∀ x, 0 ≤ ψ x)
     (hψint : ∫ x, ψ x ∂(volume : Measure E) = 1)

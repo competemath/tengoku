@@ -88,12 +88,16 @@ variable {m : ℕ} {P : PrePolygon m} {a : ZMod (m + 3)} {k : ℕ} {u : Plane}
 Verbatim the `Schoenflies.ClosedPolygon` facts of `Schoenflies/PolygonBridge.lean` whose proofs
 use only `vertex_inj` and `edges_meet`. -/
 
-/-- Distinct indices below the modulus name distinct vertices. -/
+/-- Distinct indices below the modulus name distinct vertices.
+@isnad1 id=ne.3h4v.s7.4cc097ad9d94 from=translated src=- shape=a1830660 vocab=93bc84fa
+-/
 theorem vertex_natCast_ne {j l : ℕ} (hj : j < m + 3) (hl : l < m + 3) (hjl : j ≠ l) :
     P.vertex (j : ZMod (m + 3)) ≠ P.vertex (l : ZMod (m + 3)) :=
   fun heq => hjl (ClosedPolygon.natCast_inj hj hl (P.vertex_inj heq))
 
-/-- **An edge meets an earlier edge only at its own initial vertex.** -/
+/-- **An edge meets an earlier edge only at its own initial vertex.**
+@isnad1 id=eq.4h5v.s8.6a1ba73c6b57 from=translated src=- shape=d5de6ba1 vocab=d5448218
+-/
 theorem edge_meet_earlier {j l : ℕ} (hjl : j < l) (hl : l + 1 < m + 3) {z : Plane}
     (hzj : z ∈ P.edge (j : ZMod (m + 3))) (hzl : z ∈ P.edge (l : ZMod (m + 3))) :
     z = P.vertex (l : ZMod (m + 3)) := by
@@ -124,6 +128,9 @@ def chain (P : PrePolygon m) : ℕ → Set Plane
   | 0 => P.edge 0
   | k + 1 => chain P k ∪ P.edge ((k + 1 : ℕ) : ZMod (m + 3))
 
+/--
+@isnad1 id=iff.0h4v.s7.d04e41912384 from=translated src=- shape=a529f589 vocab=8709cf7f
+-/
 theorem mem_chain_iff {z : Plane} : z ∈ P.chain k ↔ ∃ j ≤ k, z ∈ P.edge (j : ZMod (m + 3)) := by
   induction k with
   | zero =>
@@ -146,7 +153,9 @@ theorem mem_chain_iff {z : Plane} : z ∈ P.chain k ↔ ∃ j ≤ k, z ∈ P.edg
       · obtain rfl : j = k + 1 := le_antisymm hj hge
         exact Or.inr hzj
 
-/-- **The partial chains are arcs.** One edge at a time, glued at the vertex they share. -/
+/-- **The partial chains are arcs.** One edge at a time, glued at the vertex they share.
+@isnad1 id=isarcbet.1h3v.s7.01202f4f5c5b from=translated src=- shape=ac321ca1 vocab=fb5476de
+-/
 theorem isArcBetween_chain (P : PrePolygon m) :
     ∀ k : ℕ, k + 1 < m + 3 →
       IsArcBetween (P.chain k) (P.vertex 0) (P.vertex ((k + 1 : ℕ) : ZMod (m + 3))) := by
@@ -180,13 +189,20 @@ theorem isArcBetween_chain (P : PrePolygon m) :
 def arcPieces (P : PrePolygon m) (a : ZMod (m + 3)) (k : ℕ) : List Piece :=
   (List.range k).map fun t : ℕ => (P.vertex (a + t), P.vertex (a + t + 1))
 
-/-- Forgetting the `corner` field does not change the edge list of an arc. -/
+/-- Forgetting the `corner` field does not change the edge list of an arc.
+@isnad1 id=eq.0h4v.s5.078edede718e from=translated src=- shape=92ee6fd7 vocab=d2a3dc46
+-/
 @[simp] theorem arcPieces_toPre (C : ClosedPolygon m) (a : ZMod (m + 3)) (k : ℕ) :
     C.toPre.arcPieces a k = C.arcPieces a k := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.a87d2881f2fc from=translated src=- shape=70346f86 vocab=35d453d9
+-/
 @[simp] theorem arcPieces_zero (P : PrePolygon m) (a : ZMod (m + 3)) : P.arcPieces a 0 = [] := rfl
 
-/-- Running through `k + l` edges is running through `k` and then through `l`. -/
+/-- Running through `k + l` edges is running through `k` and then through `l`.
+@isnad1 id=eq.0h5v.s8.50d3222ec3f1 from=translated src=- shape=3fe6dbe5 vocab=e42c3289
+-/
 theorem arcPieces_add (P : PrePolygon m) (a : ZMod (m + 3)) (k l : ℕ) :
     P.arcPieces a (k + l) = P.arcPieces a k ++ P.arcPieces (a + k) l := by
   rw [arcPieces, arcPieces, arcPieces, List.range_add, List.map_append, List.map_map]
@@ -194,25 +210,37 @@ theorem arcPieces_add (P : PrePolygon m) (a : ZMod (m + 3)) (k l : ℕ) :
   refine List.map_congr_left fun t _ => ?_
   simp only [Function.comp_apply, Nat.cast_add, ← add_assoc]
 
-/-- Running through all `m + 3` edges from vertex `0` is the whole edge list. -/
+/-- Running through all `m + 3` edges from vertex `0` is the whole edge list.
+@isnad1 id=eq.0h2v.s7.f537e67b3d6b from=translated src=- shape=fea9ec01 vocab=f4b6037a
+-/
 theorem arcPieces_full (P : PrePolygon m) : P.arcPieces 0 (m + 3) = P.pieces := by
   rw [arcPieces, pieces]
   exact List.map_congr_left fun t _ => by rw [zero_add]
 
-/-- Every edge of an arc is an edge of the polygon. -/
+/-- Every edge of an arc is an edge of the polygon.
+@isnad1 id=mem.1h5v.s5.523fe23d0fd4 from=translated src=- shape=73f15037 vocab=b9b181ba
+-/
 theorem mem_pieces_of_mem_arcPieces {Q : Piece} (hQ : Q ∈ P.arcPieces a k) : Q ∈ P.pieces := by
   obtain ⟨t, -, rfl⟩ := List.mem_map.1 hQ
   exact P.mem_pieces _
 
+/--
+@isnad1 id=nondeg.1h5v.s5.0d304bddd8b2 from=translated src=- shape=526bd8cf vocab=515ca6a7
+-/
 theorem arcPieces_nondeg (P : PrePolygon m) (a : ZMod (m + 3)) (k : ℕ) :
     ∀ Q ∈ P.arcPieces a k, Q.Nondeg :=
   fun _ hQ => P.pieces_nondeg _ (mem_pieces_of_mem_arcPieces hQ)
 
+/--
+@isnad1 id=ne.2h6v.s6.e2a8dee9fa31 from=translated src=- shape=3c0ea010 vocab=50ea6699
+-/
 theorem arcPieces_hgt_ne (hL : ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2) :
     ∀ Q ∈ P.arcPieces a k, hgt u Q.1 ≠ hgt u Q.2 :=
   fun _ hQ => hL _ (mem_pieces_of_mem_arcPieces hQ)
 
-/-- **An arc is a chain from its first vertex to its last.** -/
+/-- **An arc is a chain from its first vertex to its last.**
+@isnad1 id=ischainf.0h4v.s8.8f3a6f717d92 from=translated src=- shape=3ca35c6e vocab=a394e011
+-/
 theorem isChainFrom_arcPieces (P : PrePolygon m) (a : ZMod (m + 3)) (k : ℕ) :
     IsChainFrom (P.arcPieces a k) (P.vertex a) (P.vertex (a + k)) := by
   intro f
@@ -227,7 +255,9 @@ theorem isChainFrom_arcPieces (P : PrePolygon m) (a : ZMod (m + 3)) (k : ℕ) :
   rw [hmap, key]
   simp
 
-/-- **The two arcs from a vertex use every edge exactly once.** -/
+/-- **The two arcs from a vertex use every edge exactly once.**
+@isnad1 id=perm.0h3v.s5.b8ce57655967 from=translated src=- shape=f59c1f65 vocab=4002d161
+-/
 theorem arcPieces_full_perm (P : PrePolygon m) (a : ZMod (m + 3)) :
     (P.arcPieces a (m + 3)).Perm P.pieces := by
   have hlt : a.val < m + 3 := ZMod.val_lt a
@@ -249,21 +279,31 @@ theorem arcPieces_full_perm (P : PrePolygon m) (a : ZMod (m + 3)) :
   exact List.perm_append_comm
 
 /-- **The split.** For `k ≤ m + 3` the two arcs at `a` and `a + k` between them use every edge
-of `P` exactly once. -/
+of `P` exactly once.
+@isnad1 id=perm.1h4v.s8.3f9ae45fd4fe from=translated src=- shape=91e399b4 vocab=471881fc
+-/
 theorem arcPieces_split_perm (P : PrePolygon m) (a : ZMod (m + 3)) (hk : k ≤ m + 3) :
     (P.arcPieces a k ++ P.arcPieces (a + k) (m + 3 - k)).Perm P.pieces := by
   rw [← arcPieces_add, Nat.add_sub_cancel' hk]
   exact arcPieces_full_perm P a
 
+/--
+@isnad1 id=sameedge.1h4v.s8.897617c237c6 from=translated src=- shape=ddbc1f62 vocab=4c9bccdc
+-/
 theorem sameEdges_arcPieces_split (P : PrePolygon m) (a : ZMod (m + 3)) (hk : k ≤ m + 3) :
     SameEdges P.pieces (P.arcPieces a k ++ P.arcPieces (a + k) (m + 3 - k)) :=
   SameEdges.of_perm (arcPieces_split_perm P a hk).symm
 
-/-- The two arcs between them carry the polygon. -/
+/-- The two arcs between them carry the polygon.
+@isnad1 id=eq.1h4v.s8.e9d72485c867 from=translated src=- shape=ba10137a vocab=7901d48b
+-/
 theorem cover_arcPieces_union (P : PrePolygon m) (a : ZMod (m + 3)) (hk : k ≤ m + 3) :
     cover (P.arcPieces a k) ∪ cover (P.arcPieces (a + k) (m + 3 - k)) = P.carrier := by
   rw [← cover_append, cover_perm (arcPieces_split_perm P a hk), cover_pieces]
 
+/--
+@isnad1 id=le.0h4v.s5.f3e3ed65d559 from=translated src=- shape=b295532d vocab=27feb279
+-/
 theorem cover_arcPieces_subset (P : PrePolygon m) (a : ZMod (m + 3)) (k : ℕ) :
     cover (P.arcPieces a k) ⊆ P.carrier := by
   intro z hz
@@ -271,18 +311,25 @@ theorem cover_arcPieces_subset (P : PrePolygon m) (a : ZMod (m + 3)) (k : ℕ) :
   rw [← cover_pieces]
   exact mem_cover (mem_pieces_of_mem_arcPieces hR) hzR
 
+/--
+@isnad1 id=ne.3h7v.s6.366273b61758 from=translated src=- shape=540fe4c1 vocab=380934f0
+-/
 theorem arcPieces_append_hgt_ne {K : List Piece}
     (hC : ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2) (hK : ∀ Q ∈ K, hgt u Q.1 ≠ hgt u Q.2) :
     ∀ Q ∈ P.arcPieces a k ++ K, hgt u Q.1 ≠ hgt u Q.2 :=
   hgt_ne_append (arcPieces_hgt_ne hC) hK
 
-/-- **A curve of the split occupies its arc together with the crosscut.** -/
+/-- **A curve of the split occupies its arc together with the crosscut.**
+@isnad1 id=eq.1h7v.s6.df5d70b8f9f0 from=translated src=- shape=734b4ca5 vocab=7967e93f
+-/
 theorem carrier_eq_of_sameEdges {m' : ℕ} {J : PrePolygon m'} {K : List Piece}
     (h : SameEdges J.pieces (P.arcPieces a k ++ K)) :
     J.carrier = cover (P.arcPieces a k) ∪ cover K := by
   rw [← cover_pieces, h.cover_eq, cover_append]
 
-/-- A point off `P` and off the crosscut is off `J`. -/
+/-- A point off `P` and off the crosscut is off `J`.
+@isnad1 id=not.3h8v.s6.244daf32d11e from=translated src=- shape=caf5dc9a vocab=3cfe7000
+-/
 theorem notMem_carrier_of_sameEdges {m' : ℕ} {J : PrePolygon m'} {K : List Piece}
     (h : SameEdges J.pieces (P.arcPieces a k ++ K)) {x : Plane} (hxC : x ∉ P.carrier)
     (hxK : x ∉ cover K) : x ∉ J.carrier := by
@@ -291,7 +338,9 @@ theorem notMem_carrier_of_sameEdges {m' : ℕ} {J : PrePolygon m'} {K : List Pie
   · exact hxC (cover_arcPieces_subset P a k hx)
   · exact hxK hx
 
-/-- **Parity splitting** (Lemma 2.7) for a polygon presented with redundant vertices. -/
+/-- **Parity splitting** (Lemma 2.7) for a polygon presented with redundant vertices.
+@isnad1 id=eq.3h9v.s8.99b67aba9937 from=translated src=- shape=d63ae204 vocab=8162d848
+-/
 theorem parity_splitting (P : PrePolygon m) (u : Plane) (a : ZMod (m + 3)) (hk : k ≤ m + 3)
     {L₁ L₂ K : List Piece} (h₁ : SameEdges L₁ (P.arcPieces a k ++ K))
     (h₂ : SameEdges L₂ (P.arcPieces (a + k) (m + 3 - k) ++ K)) (q : Plane) :
@@ -303,19 +352,33 @@ theorem parity_splitting (P : PrePolygon m) (u : Plane) (a : ZMod (m + 3)) (hk :
 /-- The arc of `P` that leaves vertex `a` and runs forward through `k` edges, as a set. -/
 def arc (P : PrePolygon m) (a : ZMod (m + 3)) (k : ℕ) : Set Plane := cover (P.arcPieces a k)
 
+/--
+@isnad1 id=eq.0h4v.s5.be47c1e7ced8 from=translated src=- shape=92ee6fd7 vocab=cdd503c6
+-/
 @[simp] theorem arc_toPre (C : ClosedPolygon m) (a : ZMod (m + 3)) (k : ℕ) :
     C.toPre.arc a k = C.arc a k := rfl
 
+/--
+@isnad1 id=le.0h4v.s5.a18bf9482981 from=translated src=- shape=48ae1a01 vocab=a31a5f9a
+-/
 theorem arc_subset_carrier (P : PrePolygon m) (a : ZMod (m + 3)) (k : ℕ) :
     P.arc a k ⊆ P.carrier := cover_arcPieces_subset P a k
 
+/--
+@isnad1 id=eq.1h4v.s8.2b110673f77e from=translated src=- shape=a5dc207f vocab=ea9a8f5a
+-/
 theorem arc_union (P : PrePolygon m) (a : ZMod (m + 3)) (hk : k ≤ m + 3) :
     P.arc a k ∪ P.arc (a + k) (m + 3 - k) = P.carrier := cover_arcPieces_union P a hk
 
-/-- An arc is compact: it is a finite union of segments. -/
+/-- An arc is compact: it is a finite union of segments.
+@isnad1 id=iscompac.0h4v.s6.43902b1564e6 from=translated src=- shape=33f54fdf vocab=4cbf4c36
+-/
 theorem isCompact_arc (P : PrePolygon m) (a : ZMod (m + 3)) (k : ℕ) : IsCompact (P.arc a k) :=
   isCompact_cover _
 
+/--
+@isnad1 id=iff.0h5v.s8.de407486fb59 from=translated src=- shape=a1117f5a vocab=a7da571f
+-/
 theorem mem_arc_iff {z : Plane} :
     z ∈ P.arc a k ↔ ∃ t < k, z ∈ P.edge (a + (t : ZMod (m + 3))) := by
   constructor
@@ -326,14 +389,18 @@ theorem mem_arc_iff {z : Plane} :
   · rintro ⟨t, ht, hz⟩
     exact mem_cover (List.mem_map.2 ⟨t, List.mem_range.2 ht, rfl⟩) hz
 
-/-- The first vertex of a nonempty arc lies on it. -/
+/-- The first vertex of a nonempty arc lies on it.
+@isnad1 id=mem.1h4v.s5.521333431042 from=translated src=- shape=229e9496 vocab=28dfd114
+-/
 theorem vertex_mem_arc (P : PrePolygon m) (a : ZMod (m + 3)) (hk : 1 ≤ k) :
     P.vertex a ∈ P.arc a k := by
   refine mem_arc_iff.2 ⟨0, hk, ?_⟩
   rw [Nat.cast_zero, add_zero, edge]
   exact left_mem_segment ℝ _ _
 
-/-- The last vertex of a nonempty arc lies on it. -/
+/-- The last vertex of a nonempty arc lies on it.
+@isnad1 id=mem.1h4v.s8.db9593211234 from=translated src=- shape=2bcf3361 vocab=48689208
+-/
 theorem vertex_add_mem_arc (P : PrePolygon m) (a : ZMod (m + 3)) (hk : 1 ≤ k) :
     P.vertex (a + k) ∈ P.arc a k := by
   have hlast : a + ((k - 1 : ℕ) : ZMod (m + 3)) + 1 = a + (k : ZMod (m + 3)) := by
@@ -345,13 +412,18 @@ theorem vertex_add_mem_arc (P : PrePolygon m) (a : ZMod (m + 3)) (hk : 1 ≤ k) 
   rw [edge, hlast]
   exact right_mem_segment ℝ _ _
 
-/-- **The two cut vertices lie on both arcs.** -/
+/-- **The two cut vertices lie on both arcs.**
+@isnad1 id=le.1h4v.s8.9686d4a16c29 from=translated src=- shape=d04b9f92 vocab=e00d543c
+-/
 theorem endpoints_subset_arc (P : PrePolygon m) (a : ZMod (m + 3)) (hk : 1 ≤ k) :
     ({P.vertex a, P.vertex (a + k)} : Set Plane) ⊆ P.arc a k := by
   rintro w (rfl | rfl)
   · exact P.vertex_mem_arc a hk
   · exact P.vertex_add_mem_arc a hk
 
+/--
+@isnad1 id=le.1h4v.s9.6a63c96258aa from=translated src=- shape=8288095f vocab=00fee8d1
+-/
 theorem endpoints_subset_arc' (P : PrePolygon m) (a : ZMod (m + 3)) (hk2 : k ≤ m + 2) :
     ({P.vertex a, P.vertex (a + k)} : Set Plane) ⊆ P.arc (a + k) (m + 3 - k) := by
   have hpos : 1 ≤ m + 3 - k := by omega
@@ -361,13 +433,17 @@ theorem endpoints_subset_arc' (P : PrePolygon m) (a : ZMod (m + 3)) (hk2 : k ≤
     rwa [hwrap] at hm
   · exact P.vertex_mem_arc (a + k) hpos
 
-/-- Distinct index numerals below the modulus name distinct vertices, after any shift. -/
+/-- Distinct index numerals below the modulus name distinct vertices, after any shift.
+@isnad1 id=eq.3h5v.s9.b9f5b3dfe151 from=translated src=- shape=3c9a2fdc vocab=93bc84fa
+-/
 theorem natCast_shift_inj (P : PrePolygon m) (a : ZMod (m + 3)) {x z : ℕ} (hx : x < m + 3)
     (hz : z < m + 3) (he : P.vertex (a + (x : ZMod (m + 3))) = P.vertex (a + (z : ZMod (m + 3)))) :
     x = z :=
   ClosedPolygon.natCast_inj hx hz (add_left_cancel (P.vertex_inj he))
 
-/-- An arc of `P` is a chain of the polygon read from its first vertex. -/
+/-- An arc of `P` is a chain of the polygon read from its first vertex.
+@isnad1 id=eq.1h4v.s5.75b245aef5c7 from=translated src=- shape=4e0e4b34 vocab=6450ae0c
+-/
 theorem arc_eq_chain (P : PrePolygon m) (a : ZMod (m + 3)) (hk : 1 ≤ k) :
     P.arc a k = (P.rotate a).chain (k - 1) := by
   have hedge : ∀ j : ZMod (m + 3), (P.rotate a).edge j = P.edge (a + j) := by
@@ -382,7 +458,9 @@ theorem arc_eq_chain (P : PrePolygon m) (a : ZMod (m + 3)) (hk : 1 ≤ k) :
     rw [hedge] at hz
     exact ⟨j, by omega, hz⟩
 
-/-- **An arc of a splitting is an arc between the two cut vertices.** -/
+/-- **An arc of a splitting is an arc between the two cut vertices.**
+@isnad1 id=isarcbet.2h4v.s8.4d469fd40e4c from=translated src=- shape=7d19ffbf vocab=0e6480db
+-/
 theorem isArcBetween_arc (P : PrePolygon m) (a : ZMod (m + 3)) (hk1 : 1 ≤ k)
     (hk2 : k ≤ m + 2) : IsArcBetween (P.arc a k) (P.vertex a) (P.vertex (a + k)) := by
   have h := (P.rotate a).isArcBetween_chain (k - 1) (by omega)
@@ -390,7 +468,9 @@ theorem isArcBetween_arc (P : PrePolygon m) (a : ZMod (m + 3)) (hk1 : 1 ≤ k)
     congr 1; omega] at h
   simpa using h
 
-/-- **The two arcs of a splitting meet exactly at the two cut vertices.** -/
+/-- **The two arcs of a splitting meet exactly at the two cut vertices.**
+@isnad1 id=eq.2h4v.s9.4db72aafba8f from=translated src=- shape=e5c56b56 vocab=4c70fe4b
+-/
 theorem arc_inter (P : PrePolygon m) (a : ZMod (m + 3)) (hk1 : 1 ≤ k) (hk2 : k ≤ m + 2) :
     P.arc a k ∩ P.arc (a + k) (m + 3 - k) = {P.vertex a, P.vertex (a + k)} := by
   refine Set.Subset.antisymm ?_ (Set.subset_inter (P.endpoints_subset_arc a hk1)
@@ -435,7 +515,9 @@ theorem arc_inter (P : PrePolygon m) (a : ZMod (m + 3)) (hk1 : 1 ≤ k) (hk2 : k
       omega
 
 /-- An interior point of the first edge of an arc: a point of the arc that is neither cut
-vertex, which is what says the arc is more than its two ends. -/
+vertex, which is what says the arc is more than its two ends.
+@isnad1 id=not.2h4v.s8.f6c3c9c829a3 from=translated src=- shape=b6c70f42 vocab=e00d543c
+-/
 theorem arc_not_subset_endpoints (P : PrePolygon m) (a : ZMod (m + 3)) (hk1 : 1 ≤ k)
     (hk2 : k ≤ m + 2) : ¬ P.arc a k ⊆ ({P.vertex a, P.vertex (a + k)} : Set Plane) := by
   intro hsub
@@ -459,7 +541,9 @@ theorem arc_not_subset_endpoints (P : PrePolygon m) (a : ZMod (m + 3)) (hk1 : 1 
     exact left_mem_segment ℝ _ _
 
 /-- **The crossing count separates points exactly as the polygon does** (Theorem 2.3, read as a
-criterion), for a polygon presented with redundant vertices. -/
+criterion), for a polygon presented with redundant vertices.
+@isnad1 id=iff.4h5v.s6.4c23d5c34e07 from=translated src=- shape=01a6a1b4 vocab=c8b9ebec
+-/
 theorem parity_ne_iff_mem_farRegion (P : PrePolygon m) {u : Plane} (hu : Plane.IsDirection u)
     (hL : ∀ Q ∈ P.pieces, hgt u Q.1 ≠ hgt u Q.2) {x y : Plane}
     (hx : x ∉ P.carrier) (hy : y ∉ P.carrier) :
@@ -491,13 +575,22 @@ def arcList (P : PrePolygon m) (a : ZMod (m + 3)) : ℕ → List Plane
   | 0 => [P.vertex a]
   | k + 1 => P.vertex a :: arcList P (a + 1) k
 
+/--
+@isnad1 id=ne.0h4v.s5.3adb7e2f6e07 from=translated src=- shape=0e723fbe vocab=3d1d23af
+-/
 theorem arcList_ne_nil (P : PrePolygon m) (a : ZMod (m + 3)) (k : ℕ) : P.arcList a k ≠ [] := by
   cases k <;> simp [arcList]
 
+/--
+@isnad1 id=eq.0h4v.s5.620381aa3764 from=translated src=- shape=f63bf761 vocab=e690a92e
+-/
 theorem head_arcList (P : PrePolygon m) (a : ZMod (m + 3)) (k : ℕ) :
     (P.arcList a k).head (P.arcList_ne_nil a k) = P.vertex a := by
   cases k <;> rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.36992e81af0b from=translated src=- shape=dfaf89d2 vocab=01bf6c27
+-/
 theorem getLast_arcList : ∀ (k : ℕ) (P : PrePolygon m) (a : ZMod (m + 3)),
     (P.arcList a k).getLast (P.arcList_ne_nil a k) = P.vertex (a + k)
   | 0, P, a => by simp [arcList]
@@ -509,6 +602,9 @@ theorem getLast_arcList : ∀ (k : ℕ) (P : PrePolygon m) (a : ZMod (m + 3)),
     push_cast
     ring
 
+/--
+@isnad1 id=eq.0h4v.s9.74285fb750f2 from=translated src=- shape=a445df0f vocab=f0b833e0
+-/
 theorem arcPieces_succ (P : PrePolygon m) (a : ZMod (m + 3)) (k : ℕ) :
     P.arcPieces a (k + 1) = (P.vertex a, P.vertex (a + 1)) :: P.arcPieces (a + 1) k := by
   rw [arcPieces, arcPieces, List.range_succ_eq_map, List.map_cons, List.map_map]
@@ -518,6 +614,9 @@ theorem arcPieces_succ (P : PrePolygon m) (a : ZMod (m + 3)) (k : ℕ) :
     simp only [Function.comp_apply]
     congr 2 <;> · push_cast; ring
 
+/--
+@isnad1 id=eq.0h4v.s5.2c8b081edf0d from=translated src=- shape=6d72dbeb vocab=0e5458c4
+-/
 theorem poly_arcList : ∀ (k : ℕ) (P : PrePolygon m) (a : ZMod (m + 3)),
     poly (P.arcList a (k + 1)) = P.arc a (k + 1)
   | 0, P, a => by
@@ -534,11 +633,17 @@ theorem poly_arcList : ∀ (k : ℕ) (P : PrePolygon m) (a : ZMod (m + 3)),
     rw [arcPieces_succ P a (k + 1), cover_cons]
     rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.da708c3f59a4 from=translated src=- shape=41c45365 vocab=bcb7e557
+-/
 theorem poly_arcList_of_pos (P : PrePolygon m) (a : ZMod (m + 3)) (hk : 1 ≤ k) :
     poly (P.arcList a k) = P.arc a k := by
   obtain ⟨k', rfl⟩ : ∃ k', k = k' + 1 := ⟨k - 1, by omega⟩
   exact poly_arcList k' P a
 
+/--
+@isnad1 id=ispolygo.1h4v.s5.c5c72438289d from=translated src=- shape=a6d2401f vocab=4c17bc8a
+-/
 theorem isPolygonal_arc (P : PrePolygon m) (a : ZMod (m + 3)) (hk : 1 ≤ k) :
     IsPolygonal (P.arc a k) := ⟨P.arcList a k, (poly_arcList_of_pos P a hk).symm⟩
 
@@ -550,7 +655,9 @@ The two halves of a cut segment meet only at the cut, and neither reaches the fa
 other. Both are read off `Schoenflies/SegmentOrder.lean`: along a nondegenerate segment the
 distance from one end is a coordinate. -/
 
-/-- **The two halves of a cut segment meet only at the cut point.** -/
+/-- **The two halves of a cut segment meet only at the cut point.**
+@isnad1 id=le.2h3v.s8.bdc4d40833f7 from=translated src=- shape=f8119181 vocab=1985864f
+-/
 theorem segment_halves_inter {u v w : Plane} (huv : u ≠ v) (hw : w ∈ openSegment ℝ u v) :
     segment ℝ u w ∩ segment ℝ w v ⊆ {w} := by
   rintro x ⟨hx1, hx2⟩
@@ -563,7 +670,9 @@ theorem segment_halves_inter {u v w : Plane} (huv : u ≠ v) (hw : w ∈ openSeg
     (convex_segment u v).segment_subset (left_mem_segment ℝ u v) hws hx1
   exact eq_of_dist_left_eq huv hxs hws (le_antisymm h1.2 h2.1)
 
-/-- The far end of a cut segment is not on the near half. -/
+/-- The far end of a cut segment is not on the near half.
+@isnad1 id=not.2h3v.s7.28ae126bff62 from=translated src=- shape=eaf00899 vocab=c3fd922f
+-/
 theorem right_notMem_left_half {u v w : Plane} (huv : u ≠ v) (hw : w ∈ openSegment ℝ u v) :
     v ∉ segment ℝ u w := by
   intro hv
@@ -571,7 +680,9 @@ theorem right_notMem_left_half {u v w : Plane} (huv : u ≠ v) (hw : w ∈ openS
   rw [← hvw] at hw
   exact huv (right_mem_openSegment_iff.1 hw)
 
-/-- The near end of a cut segment is not on the far half. -/
+/-- The near end of a cut segment is not on the far half.
+@isnad1 id=not.2h3v.s7.f697db32463b from=translated src=- shape=dc25a14a vocab=c3fd922f
+-/
 theorem left_notMem_right_half {u v w : Plane} (huv : u ≠ v) (hw : w ∈ openSegment ℝ u v) :
     u ∉ segment ℝ w v := by
   intro hu
@@ -592,7 +703,9 @@ section Insert
 
 variable {m : ℕ} {P : PrePolygon m} {z : Plane}
 
-/-- The index `-1` of a cyclic list of length `m + 3`, as a numeral. -/
+/-- The index `-1` of a cyclic list of length `m + 3`, as a numeral.
+@isnad1 id=eq.0h1v.s8.09b391ff9b63 from=translated src=- shape=54cd5a67 vocab=64a14160
+-/
 theorem val_neg_one : (-1 : ZMod (m + 3)).val = m + 2 := by
   have h : (-1 : ZMod (m + 3)) = ((m + 2 : ℕ) : ZMod (m + 3)) := by
     have h0 : ((m + 3 : ℕ) : ZMod (m + 3)) = 0 := ZMod.natCast_self _
@@ -600,12 +713,16 @@ theorem val_neg_one : (-1 : ZMod (m + 3)).val = m + 2 := by
     linear_combination -h0
   rw [h, ZMod.val_cast_of_lt (by omega)]
 
-/-- The last edge, with its second endpoint written as vertex `0`. -/
+/-- The last edge, with its second endpoint written as vertex `0`.
+@isnad1 id=eq.0h2v.s9.218a0b482d60 from=translated src=- shape=5fee17bb vocab=e528178a
+-/
 theorem edge_neg_one (P : PrePolygon m) :
     P.edge (-1) = segment ℝ (P.vertex (-1)) (P.vertex 0) := by
   rw [edge, show (-1 : ZMod (m + 3)) + 1 = 0 by ring]
 
-/-- **A point interior to an edge is a vertex of no index.** -/
+/-- **A point interior to an edge is a vertex of no index.**
+@isnad1 id=ne.1h5v.s8.87297ded1f2c from=translated src=- shape=858bd435 vocab=19f4ab62
+-/
 theorem vertex_ne_of_mem_openSegment {i : ZMod (m + 3)} {w : Plane}
     (hw : w ∈ openSegment ℝ (P.vertex i) (P.vertex (i + 1))) (j : ZMod (m + 3)) :
     P.vertex j ≠ w := by
@@ -622,6 +739,9 @@ the one new index names `z`. -/
 def insVertex (P : PrePolygon m) (z : Plane) (j : ZMod (m + 1 + 3)) : Plane :=
   if j.val < m + 3 then P.vertex ((j.val : ℕ) : ZMod (m + 3)) else z
 
+/--
+@isnad1 id=eq.0h4v.s5.93137e1c2c37 from=translated src=- shape=6de80a4d vocab=e27e2b2a
+-/
 theorem insVertex_emb (P : PrePolygon m) (z : Plane) (j : ZMod (m + 3)) :
     insVertex P z (emb j) = P.vertex j := by
   have hlt : j.val < m + 3 := ZMod.val_lt j
@@ -629,18 +749,28 @@ theorem insVertex_emb (P : PrePolygon m) (z : Plane) (j : ZMod (m + 3)) :
     rw [emb, ZMod.val_cast_of_lt (by omega)]
   rw [insVertex, ite_eq_left (by rw [hval]; exact hlt), hval, ZMod.natCast_rightInverse j]
 
+/--
+@isnad1 id=eq.0h1v.s8.bf3e5db9501d from=translated src=- shape=156fd160 vocab=64a14160
+-/
 theorem val_neg_one' : (-1 : ZMod (m + 1 + 3)).val = m + 3 := by
   rw [neg_one_eq_cast, ZMod.val_cast_of_lt (by omega)]
 
+/--
+@isnad1 id=eq.0h3v.s8.1f3cc7292fc1 from=translated src=- shape=f3666ff3 vocab=ae550d6e
+-/
 theorem insVertex_neg_one (P : PrePolygon m) (z : Plane) : insVertex P z (-1) = z := by
   rw [insVertex, ite_eq_right (by rw [val_neg_one' (m := m)]; omega)]
 
-/-- Away from the inserted vertex the edges are unchanged. -/
+/-- Away from the inserted vertex the edges are unchanged.
+@isnad1 id=eq.1h4v.s9.66d958a50f80 from=translated src=- shape=10548bb7 vocab=8a3fb7ca
+-/
 theorem insEdge_of_lt {j : ZMod (m + 3)} (h : j.val + 1 < m + 3) :
     segment ℝ (insVertex P z (emb j)) (insVertex P z (emb j + 1)) = P.edge j := by
   rw [← emb_succ_of_lt h, insVertex_emb, insVertex_emb, edge]
 
-/-- The penultimate edge of the lengthened list: the near half of the cut edge. -/
+/-- The penultimate edge of the lengthened list: the near half of the cut edge.
+@isnad1 id=eq.0h3v.s11.0677bc2c91fd from=translated src=- shape=26db545e vocab=6c916596
+-/
 theorem insEdge_pen (P : PrePolygon m) (z : Plane) :
     segment ℝ (insVertex P z (-1 - 1)) (insVertex P z (-1 - 1 + 1))
       = segment ℝ (P.vertex (-1)) z := by
@@ -650,7 +780,9 @@ theorem insEdge_pen (P : PrePolygon m) (z : Plane) :
     rw [show (-1 - 1 : ZMod (m + 1 + 3)) + 1 = -1 by ring, insVertex_neg_one]
   rw [h1, h2]
 
-/-- The last edge of the lengthened list: the far half of the cut edge. -/
+/-- The last edge of the lengthened list: the far half of the cut edge.
+@isnad1 id=eq.0h3v.s10.dc0135fe45cb from=translated src=- shape=0d6d0d8a vocab=42a98b18
+-/
 theorem insEdge_last (P : PrePolygon m) (z : Plane) :
     segment ℝ (insVertex P z (-1)) (insVertex P z (-1 + 1)) = segment ℝ z (P.vertex 0) := by
   have hemb0 : emb (0 : ZMod (m + 3)) = 0 := by rw [emb, ZMod.val_zero, Nat.cast_zero]
@@ -659,6 +791,9 @@ theorem insEdge_last (P : PrePolygon m) (z : Plane) :
     rw [show (-1 : ZMod (m + 1 + 3)) + 1 = 0 by ring, ← hemb0, insVertex_emb]
   rw [h1, h2]
 
+/--
+@isnad1 id=ne.0h2v.s8.290616e657fd from=translated src=- shape=94d64650 vocab=1cfded67
+-/
 theorem vertex_neg_one_ne_zero (P : PrePolygon m) : P.vertex (-1) ≠ P.vertex 0 := by
   have h := vertex_ne_succ (P := P) (-1)
   rwa [show (-1 : ZMod (m + 3)) + 1 = 0 by ring] at h
@@ -666,14 +801,22 @@ theorem vertex_neg_one_ne_zero (P : PrePolygon m) : P.vertex (-1) ≠ P.vertex 0
 variable (hz : z ∈ openSegment ℝ (P.vertex (-1)) (P.vertex 0))
 include hz
 
-/-- The two new edges cover the edge they replace. -/
+/-- The two new edges cover the edge they replace.
+@isnad1 id=eq.1h3v.s10.2b3afe04c4a0 from=translated src=- shape=a27cb728 vocab=87698ce5
+-/
 theorem insEdge_union : segment ℝ (P.vertex (-1)) z ∪ segment ℝ z (P.vertex 0) = P.edge (-1) := by
   rw [edge_neg_one]
   exact (segment_split (openSegment_subset_segment ℝ _ _ hz)).symm
 
+/--
+@isnad1 id=le.1h3v.s10.f4400920c722 from=translated src=- shape=a40bf683 vocab=26a50f1b
+-/
 theorem insEdge_pen_subset : segment ℝ (P.vertex (-1)) z ⊆ P.edge (-1) := by
   rw [← insEdge_union hz]; exact Set.subset_union_left
 
+/--
+@isnad1 id=le.1h3v.s9.2ef65c82bede from=translated src=- shape=d257c87f vocab=26a50f1b
+-/
 theorem insEdge_last_subset : segment ℝ z (P.vertex 0) ⊆ P.edge (-1) := by
   rw [← insEdge_union hz]; exact Set.subset_union_right
 
@@ -793,9 +936,14 @@ def insertLast (P : PrePolygon m) (hz : z ∈ openSegment ℝ (P.vertex (-1)) (P
         exact fun x hx => Or.inl (hhalf ⟨hx.2, hx.1⟩)
       · exact absurd rfl hij
 
+/--
+@isnad1 id=eq.1h3v.s9.341b12a8ead7 from=translated src=- shape=c4886a59 vocab=9f86e796
+-/
 @[simp] theorem insertLast_vertex : (insertLast P hz).vertex = insVertex P z := rfl
 
-/-- **Inserting a vertex does not move the curve.** -/
+/-- **Inserting a vertex does not move the curve.**
+@isnad1 id=eq.1h3v.s8.5fced99c3bd8 from=translated src=- shape=83076a67 vocab=d8b48d16
+-/
 theorem carrier_insertLast : (insertLast P hz).carrier = P.carrier := by
   have hpen := insEdge_pen P z
   have hlast := insEdge_last P z
@@ -825,11 +973,15 @@ theorem carrier_insertLast : (insertLast P hz).carrier = P.carrier := by
       · refine le_trans (le_of_eq hlast.symm)
           (edge_subset_carrier (P := insertLast P hz) (-1))
 
-/-- The inserted vertex is a vertex. -/
+/-- The inserted vertex is a vertex.
+@isnad1 id=ex.1h3v.s9.c408a02b6d3d from=translated src=- shape=be1fd135 vocab=b196a121
+-/
 theorem insertLast_mem_vertex : ∃ j, (insertLast P hz).vertex j = z :=
   ⟨-1, insVertex_neg_one P z⟩
 
-/-- The old vertices are still vertices. -/
+/-- The old vertices are still vertices.
+@isnad1 id=ex.1h4v.s9.3a0bf9bdf5a8 from=translated src=- shape=f4abbbf7 vocab=b196a121
+-/
 theorem insertLast_old_vertex (i : ZMod (m + 3)) : ∃ j, (insertLast P hz).vertex j = P.vertex i :=
   ⟨emb i, insVertex_emb P z i⟩
 
@@ -838,7 +990,9 @@ end Insert
 /-- **A named point of the curve becomes a vertex**, and the old vertices stay vertices. Either
 the point already is a vertex, or it is interior to exactly one edge, and then that edge is
 brought to the end of the list by `Schoenflies.PrePolygon.rotate` and cut by
-`Schoenflies.PrePolygon.insertLast`. -/
+`Schoenflies.PrePolygon.insertLast`.
+@isnad1 id=ex.1h3v.s7.f2cda96d0695 from=translated src=- shape=3aae147e vocab=e5c7bc7c
+-/
 theorem exists_prePolygon_insert {m : ℕ} (P : PrePolygon m) {z : Plane} (hz : z ∈ P.carrier) :
     ∃ (m' : ℕ) (P' : PrePolygon m'), P'.carrier = P.carrier ∧ (∃ j, P'.vertex j = z) ∧
       ∀ i, ∃ j, P'.vertex j = P.vertex i := by
@@ -861,7 +1015,9 @@ theorem exists_prePolygon_insert {m : ℕ} (P : PrePolygon m) {z : Plane} (hz : 
     · obtain ⟨j, hj⟩ := insertLast_old_vertex hopen' (l - (i + 1))
       exact ⟨j, by rw [hj, hQ, rotate_vertex, add_sub_cancel]⟩
 
-/-- **Every point of a finite list on the curve can be made a vertex at once.** -/
+/-- **Every point of a finite list on the curve can be made a vertex at once.**
+@isnad1 id=ex.1h3v.s7.bc1d259f8d7d from=translated src=- shape=ccb92353 vocab=a2b72346
+-/
 theorem exists_prePolygon_vertices : ∀ (S : List Plane) {m : ℕ} (P : PrePolygon m),
     (∀ z ∈ S, z ∈ P.carrier) →
       ∃ (m' : ℕ) (P' : PrePolygon m'), P'.carrier = P.carrier ∧
@@ -881,7 +1037,9 @@ theorem exists_prePolygon_vertices : ∀ (S : List Plane) {m : ℕ} (P : PrePoly
       obtain ⟨j, hj⟩ := hold₂ j₁
       exact ⟨j, by rw [hj, hj₁]⟩
 
-/-- A one-edge arc is that edge. -/
+/-- A one-edge arc is that edge.
+@isnad1 id=eq.0h3v.s5.392bf73403f3 from=translated src=- shape=3dc9eacc vocab=536f05f6
+-/
 theorem arc_one {m : ℕ} (P : PrePolygon m) (a : ZMod (m + 3)) : P.arc a 1 = P.edge a := by
   ext z
   rw [mem_arc_iff]
@@ -892,7 +1050,9 @@ theorem arc_one {m : ℕ} (P : PrePolygon m) (a : ZMod (m + 3)) : P.arc a 1 = P.
   · intro hz
     exact ⟨0, by omega, by rwa [Nat.cast_zero, add_zero]⟩
 
-/-- **A vertex on an edge is one of that edge's own two ends.** -/
+/-- **A vertex on an edge is one of that edge's own two ends.**
+@isnad1 id=mem.1h4v.s8.48de7d57b2e7 from=translated src=- shape=0ab7d1d0 vocab=a7bd48ff
+-/
 theorem vertex_mem_edge_elim {m : ℕ} {P : PrePolygon m} {c i : ZMod (m + 3)}
     (hc : P.vertex c ∈ P.edge i) :
     P.vertex c ∈ ({P.vertex i, P.vertex (i + 1)} : Set Plane) := by
@@ -910,7 +1070,9 @@ realization is a `ClosedPolygon`. For a `PrePolygon` there is no such obstructio
 curve is either already a vertex or interior to an edge, and an edge may be cut. -/
 
 /-- **The realization theorem for `PrePolygon`, with named points.** Any finite list of points of
-the curve — corners or not — can be required to be among the vertices. -/
+the curve — corners or not — can be required to be among the vertices.
+@isnad1 id=ex.3h2v.s6.0f9d01110ded from=translated src=- shape=f86148c1 vocab=596482bc
+-/
 theorem exists_prePolygon_points {C : Set Plane} (hJ : IsJordanCurve C) (hP : IsPolygonal C)
     (S : List Plane) (hS : ∀ p ∈ S, p ∈ C) :
     ∃ (m : ℕ) (P : PrePolygon m), P.carrier = C ∧ ∀ p ∈ S, ∃ i : ZMod (m + 3), P.vertex i = p := by
@@ -922,7 +1084,9 @@ theorem exists_prePolygon_points {C : Set Plane} (hJ : IsJordanCurve C) (hP : Is
 /-- **The realization theorem tracking two named points**, for a presentation that may carry
 redundant vertices. Unlike `Schoenflies.exists_closedPolygon_split` this asks nothing of the two
 points but that they lie on the curve: a `PrePolygon` has no `corner` field to obstruct a vertex
-where the curve runs straight. -/
+where the curve runs straight.
+@isnad1 id=ex.5h3v.s8.ef314246deeb from=translated src=- shape=5e4f31d9 vocab=a8dc7279
+-/
 theorem exists_prePolygon_split {C : Set Plane} (hJ : IsJordanCurve C) (hP : IsPolygonal C)
     {p q : Plane} (hp : p ∈ C) (hq : q ∈ C) (hpq : p ≠ q) :
     ∃ (m : ℕ) (P : PrePolygon m) (a : ZMod (m + 3)) (k : ℕ), P.carrier = C ∧

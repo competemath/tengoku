@@ -28,7 +28,9 @@ namespace Schoenflies
 variable {γ : Type*} [Nonempty γ] {S₀ : CellStructure γ} {C : Set Plane}
   {P : GeneratedPair S₀ C (C ∪ inside C) modelCurve (Plane.closedSquare 0 1)}
 
-/-- The frame of a positive local-grid square is contained in its raw grid carrier. -/
+/-- The frame of a positive local-grid square is contained in its raw grid carrier.
+@isnad1 id=le.2h3v.s5.702622946eae from=translated src=- shape=0ef0dbff vocab=37a312f3
+-/
 theorem localGrid_frame_subset {p : Plane} {s : ℝ} {k : ℕ}
     (hs : 0 < s) (hk : 1 ≤ k) :
     Plane.closedSquare p s \ Plane.openSquare p s ⊆
@@ -63,7 +65,9 @@ variable {p : Plane} {s epsilon : ℝ}
 
 /-- Every new source face incident with a point in the open grid window stays inside that
 window.  Its connected open cell cannot cross the grid's outer frame, which is now part of the
-source skeleton. -/
+source skeleton.
+@isnad1 id=le.5h10v.s10.8c42fcfd4393 from=translated src=- shape=245fe97d vocab=98fc6dc4
+-/
 theorem face_subset_openSquare (hs : 0 < s)
     (hwindow : Plane.closedSquare p s ⊆ (C ∪ inside C) \ C)
     {x : Plane} (hx : x ∈ Plane.openSquare p s)
@@ -99,7 +103,9 @@ theorem face_subset_openSquare (hs : 0 < s)
     ⟨y, hyFace, hyOpen⟩
 
 /-- Every source face incident with a point in the open window has closed diameter at most the
-chosen local-grid mesh bound. -/
+chosen local-grid mesh bound.
+@isnad1 id=le.6h10v.s10.a586a1f14b13 from=translated src=- shape=31fb8bcb vocab=c1670920
+-/
 theorem diam_closure_face_le (hs : 0 < s) (hepsilon : 0 < epsilon)
     (hwindow : Plane.closedSquare p s ⊆ (C ∪ inside C) \ C)
     {x : Plane} (hx : x ∈ Plane.openSquare p s)
@@ -128,7 +134,9 @@ theorem diam_closure_face_le (hs : 0 < s) (hepsilon : 0 < epsilon)
   · exact hz
 
 /-- **`lem:grid-star-estimate`.** At a point in the open grid window, the new source star has
-diameter at most twice the selected mesh bound. -/
+diameter at most twice the selected mesh bound.
+@isnad1 id=le.5h9v.s9.89e09cfccdbf from=translated src=- shape=5fdda521 vocab=d831d203
+-/
 theorem diam_sourceStar_le (hC : IsSeparating C)
     (hs : 0 < s) (hepsilon : 0 < epsilon)
     (hwindow : Plane.closedSquare p s ⊆ (C ∪ inside C) \ C)
@@ -144,7 +152,9 @@ theorem diam_sourceStar_le (hC : IsSeparating C)
     (fun F hF hsub => w.diam_closure_face_le hs hepsilon hwindow hx hF hsub)
 
 omit [Nonempty γ] in
-/-- A target face-mesh estimate survives the forward local-grid stage. -/
+/-- A target face-mesh estimate survives the forward local-grid stage.
+@isnad1 id=targetfa.1h9v.s8.e140e2b70074 from=translated src=- shape=f3eb7e26 vocab=17363f99
+-/
 theorem targetFaceMesh {bound : ℝ} (hmesh : TargetFaceMesh P bound) :
     TargetFaceMesh w.pair bound :=
   hmesh.refine w.transition.refines_tgt
@@ -153,7 +163,9 @@ end LocalGridForwardStageData
 
 omit [Nonempty γ] in
 /-- The window used by quantitative refinement automatically satisfies every geometric
-hypothesis of the local-grid forward constructor. -/
+hypothesis of the local-grid forward constructor.
+@isnad1 id=nonempty.5h7v.s8.0bc6600e70db from=translated src=- shape=1f8daba8 vocab=cb15fc41
+-/
 theorem GeneratedPair.exists_localGridForwardStageData_window [Infinite γ]
     (P : GeneratedPair S₀ C (C ∪ inside C) modelCurve (Plane.closedSquare 0 1))
     (hC : IsSeparating C) {p : Plane} (hp : p ∈ inside C)
@@ -196,10 +208,14 @@ abbrev pair : GeneratedPair S₀ C (C ∪ inside C) modelCurve (Plane.closedSqua
 abbrev parent : γ → γ := w.forward.parent
 
 omit [Nonempty γ] in
-/-- The forward successor exposes the common transition interface. -/
+/-- The forward successor exposes the common transition interface.
+@isnad1 id=stagetra.0h9v.s7.da85d39883a9 from=translated src=- shape=7996e190 vocab=0227dfcc
+-/
 theorem transition : StageTransition w.pair P w.parent := w.forward.transition
 
-/-- The local-grid estimate in the window form used by `prop:shrinking-stars`. -/
+/-- The local-grid estimate in the window form used by `prop:shrinking-stars`.
+@isnad1 id=le.5h10v.s9.674af58b7e97 from=translated src=- shape=deb5e4f8 vocab=d64cb391
+-/
 theorem diam_sourceStar_le (hC : IsSeparating C)
     (hp : p ∈ inside C)
     (hwindowEpsilon : 0 < windowEpsilon) (hmeshEpsilon : 0 < meshEpsilon)
@@ -219,7 +235,9 @@ end QuantitativeForwardStage
 
 omit [Nonempty γ] in
 /-- Construct a quantitative forward successor from any target face-mesh estimate on the
-preceding stage. -/
+preceding stage.
+@isnad1 id=nonempty.6h8v.s8.abcd165f2126 from=translated src=- shape=c3b884ac vocab=ebd00fc2
+-/
 theorem GeneratedPair.exists_quantitativeForwardStage [Infinite γ]
     (P : GeneratedPair S₀ C (C ∪ inside C) modelCurve (Plane.closedSquare 0 1))
     (hC : IsSeparating C) {p : Plane} (hp : p ∈ inside C)
@@ -258,18 +276,24 @@ abbrev pair : GeneratedPair S₀ C (C ∪ inside C) modelCurve (Plane.closedSqua
 abbrev parent : γ → γ := w.reverse.parent ∘ w.forward.parent
 
 omit [Nonempty γ] in
-/-- The reverse and forward transitions compose to one full-stage transition. -/
+/-- The reverse and forward transitions compose to one full-stage transition.
+@isnad1 id=stagetra.0h10v.s7.67bc7acb73bc from=translated src=- shape=32c793c1 vocab=8ee528fd
+-/
 theorem transition : StageTransition w.pair P w.parent :=
   w.forward.transition.trans w.reverse.transition
 
 omit [Nonempty γ] in
-/-- The uniform target-star estimate survives the following forward refinement. -/
+/-- The uniform target-star estimate survives the following forward refinement.
+@isnad1 id=lt.1h11v.s8.5f0889247564 from=translated src=- shape=ed0740f9 vocab=fd3c99f8
+-/
 theorem diam_targetStar_lt {σ : γ} (hσ : σ ∈ w.pair.str.cells) :
     diam (w.pair.tgt.star σ) < targetBound := by
   have hstar := TargetFaceMesh.diam_star_lt w.forward.targetFaceMesh hσ
   linarith [w.reverse.delta_lt_half_bound]
 
-/-- The pointwise source-star estimate at every point caught by this stage's window. -/
+/-- The pointwise source-star estimate at every point caught by this stage's window.
+@isnad1 id=le.5h11v.s9.61c2f377fae3 from=translated src=- shape=1a725793 vocab=26b0fee4
+-/
 theorem diam_sourceStar_le (hC : IsSeparating C) (hp : p ∈ inside C)
     (hwindowEpsilon : 0 < windowEpsilon) (hsourceBound : 0 < sourceBound)
     {x : Plane} (hx : x ∈ openWindow C windowEpsilon p) :
@@ -281,7 +305,9 @@ end QuantitativeSuccessor
 omit [Nonempty γ] in
 /-- **Quantitative successor.** Starting from any generated stage, construct a
 refinement with the requested target-star bound and a source-star bound throughout the selected
-window. -/
+window.
+@isnad1 id=nonempty.6h9v.s7.8950b17cc614 from=translated src=- shape=53f3c937 vocab=41c6afc1
+-/
 theorem GeneratedPair.exists_quantitativeSuccessor [Infinite γ]
     (P : GeneratedPair S₀ C (C ∪ inside C) modelCurve (Plane.closedSquare 0 1))
     (hC : IsSeparating C) (hcycle : S₀.OuterEdgesFormCycle)

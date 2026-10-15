@@ -93,12 +93,16 @@ namespace Schoenflies
 most `2` and hence at Euclidean distance at most `2√2`. That single bound is what makes
 `FreshDense fresh δ` vacuous once `δ ≥ 4√2`. -/
 
-/-- The sup distance is at most the Euclidean distance. -/
+/-- The sup distance is at most the Euclidean distance.
+@isnad1 id=le.0h2v.s5.6ae6add60a52 from=translated src=- shape=64084b94 vocab=e1d090a0
+-/
 theorem supDist_le_dist (x y : Plane) : Plane.supDist x y ≤ dist x y := by
   rw [dist_eq_norm]
   exact Plane.supNorm_le_norm _
 
-/-- **Any two points of `S` are within `2√2`.** -/
+/-- **Any two points of `S` are within `2√2`.**
+@isnad1 id=le.2h2v.s6.f80d9072bd0e from=translated src=- shape=5b73d582 vocab=ae091058
+-/
 theorem dist_le_of_mem_modelCurve {x y : Plane} (hx : x ∈ modelCurve) (hy : y ∈ modelCurve) :
     dist x y ≤ 2 * Real.sqrt 2 := by
   have hsq : (0 : ℝ) < Real.sqrt 2 := Real.sqrt_pos.2 two_pos
@@ -112,7 +116,9 @@ theorem dist_le_of_mem_modelCurve {x y : Plane} (hx : x ∈ modelCurve) (hy : y 
 `δ`-dense, the empty one included: the whole of `S` has diameter `2√2 ≤ δ/2`.
 
 This is the first half of the finding: `FreshDense` alone cannot be the missing hypothesis of
-`prop:anchored-square-mesh` clause 5, because it does not exclude `fresh = []`. -/
+`prop:anchored-square-mesh` clause 5, because it does not exclude `fresh = []`.
+@isnad1 id=freshden.1h2v.s5.1b6346b80080 from=translated src=- shape=42220964 vocab=1a847bbf
+-/
 theorem freshDense_of_four_sqrt_two_le {fresh : List Plane} {δ : ℝ}
     (hδ : 4 * Real.sqrt 2 ≤ δ) : FreshDense fresh δ := by
   intro A hA _ x hx y hy
@@ -121,7 +127,9 @@ theorem freshDense_of_four_sqrt_two_le {fresh : List Plane} {δ : ℝ}
 
 /-- **The counterexample, formally.** There is a positive `δ` for which `FreshDense [] δ`
 holds and the mesh is still not 2-connected. So clause 5 is not repaired by adding
-`FreshDense` alone. -/
+`FreshDense` alone.
+@isnad1 id=ex.0h1v.s5.ce87653b109b from=translated src=- shape=8ecaf3f5 vocab=443c5015
+-/
 theorem freshDense_not_isTwoConnected (anchors : List Plane) :
     ∃ δ : ℝ, 0 < δ ∧ FreshDense [] δ ∧ ¬ (squareMesh δ [] anchors).IsTwoConnected := by
   have hsq : (0 : ℝ) < Real.sqrt 2 := Real.sqrt_pos.2 two_pos
@@ -134,7 +142,9 @@ A side of `S` is a connected subset of `S` whose two ends are `2` apart. If no t
 are distinct then some side avoids all of them — a single point cannot lie on both the top and
 the bottom side — and `FreshDense fresh δ` applied to that side forces `4 ≤ δ`. -/
 
-/-- The two ends of the top or the bottom side of `S` are at distance at least `2`. -/
+/-- The two ends of the top or the bottom side of `S` are at distance at least `2`.
+@isnad1 id=le.1h1v.s6.504e7e8ed2f5 from=translated src=- shape=e0a05de8 vocab=e31e84af
+-/
 theorem two_le_dist_side {P : Piece} (h : P = sideT ∨ P = sideB) : (2 : ℝ) ≤ dist P.1 P.2 := by
   refine le_trans (le_of_eq ?_) (supDist_le_dist P.1 P.2)
   rcases h with rfl | rfl <;>
@@ -142,7 +152,9 @@ theorem two_le_dist_side {P : Piece} (h : P = sideT ∨ P = sideB) : (2 : ℝ) �
       norm_num
 
 /-- A single point cannot lie on both horizontal sides of `S`, so one of them avoids a
-one-point set. -/
+one-point set.
+@isnad1 id=ex.1h1v.s6.182e90eb4702 from=translated src=- shape=83f34fc7 vocab=f6214435
+-/
 theorem exists_side_avoiding (fresh : List Plane) (hsub : ∀ z ∈ fresh, ∀ w ∈ fresh, z = w) :
     ∃ P : Piece, (P = sideT ∨ P = sideB) ∧ ∀ z ∈ fresh, z ∉ P.seg := by
   by_cases hex : ∃ z, z ∈ fresh
@@ -158,7 +170,9 @@ theorem exists_side_avoiding (fresh : List Plane) (hsub : ∀ z ∈ fresh, ∀ w
 
 /-- **`FreshDense` with a small `δ` gives two distinct fresh points.** This is the hypothesis
 `prop:anchored-square-mesh` clause 5 actually needs, and the blueprint supplies it: its
-`δ = ε_n = 2^{-n}` is well below `4`. -/
+`δ = ε_n = 2^{-n}` is well below `4`.
+@isnad1 id=ex.2h2v.s5.62a0c641c2ff from=translated src=- shape=1b978510 vocab=2ccd7a07
+-/
 theorem exists_two_distinct_fresh_of_freshDense {fresh : List Plane} {δ : ℝ}
     (hdense : FreshDense fresh δ) (hδ : δ < 4) : ∃ z ∈ fresh, ∃ w ∈ fresh, z ≠ w := by
   by_contra hcon
@@ -186,7 +200,9 @@ which the only point of sup norm `1` is `z` itself. So once `z` is deleted, **no
 mesh joins a vertex of sup norm `1` to a vertex of smaller sup norm: `z` is a cut vertex. -/
 
 /-- Along an edge of the mesh whose ends are both different from the one fresh point `z`, the
-predicate "sup norm is `1`" is constant. -/
+predicate "sup norm is `1`" is constant.
+@isnad1 id=iff.7h7v.s6.30f93f24e06e from=translated src=- shape=a5b883f3 vocab=b27127c8
+-/
 theorem supNorm_eq_one_iff_of_isLink {N : ℕ} (hN : 2 ≤ N) {fresh : List Plane}
     (hfresh : ∀ u ∈ fresh, u ∈ modelCurve) (hsub : ∀ u ∈ fresh, ∀ w ∈ fresh, u = w)
     {anchors : List Plane} {z : Plane} (hz : z ∈ fresh) {P : Piece} {x y : Plane}
@@ -219,19 +235,29 @@ theorem supNorm_eq_one_iff_of_isLink {N : ℕ} (hN : 2 ≤ N) {fresh : List Plan
     · exact ⟨fun hc => absurd hc (hne _ (Or.inr rfl) hx),
         fun hc => absurd hc (hne _ (Or.inl rfl) hy)⟩
 
-/-- An end of a side of the outer ring is a vertex of the mesh. -/
+/-- An end of a side of the outer ring is a vertex of the mesh.
+@isnad1 id=mem.2h4v.s5.c78cff520965 from=translated src=- shape=080ca0d6 vocab=8288e665
+-/
 theorem corner_mem_vertexSet_meshGraph {N : ℕ} (hN : 2 ≤ N) {fresh anchors : List Plane}
     {R : Piece} (hR : R ∈ ringPieces 1) : R.1 ∈ V(meshGraph N fresh anchors) :=
   end_mem_vertexSet_meshGraph (outer_ringPieces_mem hN hR) (Or.inl rfl)
 
+/--
+@isnad1 id=eq.0h0v.s4.740a9e61a8ab from=translated src=- shape=1e643368 vocab=e823f046
+-/
 theorem supNorm_corner_pp : Plane.supNorm (Plane.mk (1 : ℝ) (1 : ℝ)) = 1 := by
   simp [Plane.supNorm]
 
+/--
+@isnad1 id=eq.0h0v.s4.a008403ae818 from=translated src=- shape=c49b235c vocab=f67c90dc
+-/
 theorem supNorm_corner_mm : Plane.supNorm (Plane.mk (-1 : ℝ) (-1 : ℝ)) = 1 := by
   simp [Plane.supNorm]
 
 /-- Whichever point `z` is, one of the two corners `(1,1)`, `(-1,-1)` differs from it and is a
-vertex of the mesh of sup norm `1`. -/
+vertex of the mesh of sup norm `1`.
+@isnad1 id=ex.1h4v.s5.ca8390811788 from=translated src=- shape=bb66080d vocab=d077085b
+-/
 theorem exists_outer_vertex_ne {N : ℕ} (hN : 2 ≤ N) {fresh anchors : List Plane} (z : Plane) :
     ∃ c : Plane, c ∈ V(meshGraph N fresh anchors) ∧ Plane.supNorm c = 1 ∧ c ≠ z := by
   by_cases h : (Plane.mk (1 : ℝ) (1 : ℝ)) = z
@@ -244,7 +270,9 @@ theorem exists_outer_vertex_ne {N : ℕ} (hN : 2 ≤ N) {fresh anchors : List Pl
       (anchors := anchors) hN (R := (Plane.mk 1 1, Plane.mk (-1) 1)) (by simp [ringPieces]),
       supNorm_corner_pp, h⟩
 
-/-- The corner of the innermost ring is a vertex of the mesh, and its sup norm is not `1`. -/
+/-- The corner of the innermost ring is a vertex of the mesh, and its sup norm is not `1`.
+@isnad1 id=ex.1h3v.s5.fc17779cb33a from=translated src=- shape=d43a413a vocab=d077085b
+-/
 theorem exists_inner_vertex {N : ℕ} (hN : 2 ≤ N) {fresh anchors : List Plane} :
     ∃ c : Plane, c ∈ V(meshGraph N fresh anchors) ∧ Plane.supNorm c ≠ 1 := by
   refine ⟨Plane.mk ((N : ℝ)⁻¹) ((N : ℝ)⁻¹),
@@ -260,7 +288,9 @@ the mesh is disconnected (`not_connected_meshGraph_of_fresh_nil`); with one, `z`
 is a cut vertex.
 
 This is the second half of the finding: two distinct fresh points is not merely a convenient
-hypothesis for clause 5, it is a *necessary* one. -/
+hypothesis for clause 5, it is a *necessary* one.
+@isnad1 id=not.3h3v.s6.80104f9a8cd6 from=translated src=- shape=28820d6f vocab=12cc689c
+-/
 theorem not_isTwoConnected_meshGraph_of_fresh_subsingleton {N : ℕ} (hN : 2 ≤ N)
     {fresh : List Plane} (hfresh : ∀ u ∈ fresh, u ∈ modelCurve)
     (hsub : ∀ u ∈ fresh, ∀ w ∈ fresh, u = w) (anchors : List Plane) :
@@ -293,7 +323,9 @@ theorem not_isTwoConnected_meshGraph_of_fresh_subsingleton {N : ℕ} (hN : 2 ≤
   exact hd1 (this.1 hc1)
 
 /-- **`prop:anchored-square-mesh` clause 5 needs two distinct fresh points**, for
-`Schoenflies.squareMesh` itself. -/
+`Schoenflies.squareMesh` itself.
+@isnad1 id=not.2h3v.s5.1a5c83164c2b from=translated src=- shape=2b65a641 vocab=7b5f8e0d
+-/
 theorem not_isTwoConnected_squareMesh_of_fresh_subsingleton {fresh : List Plane}
     (hfresh : ∀ u ∈ fresh, u ∈ modelCurve) (hsub : ∀ u ∈ fresh, ∀ w ∈ fresh, u = w)
     (δ : ℝ) (anchors : List Plane) : ¬ (squareMesh δ fresh anchors).IsTwoConnected :=
@@ -312,13 +344,17 @@ namespace Graph
 
 variable {α β : Type*} {H K : Graph α β}
 
-/-- Connectedness passes up to a graph with the same vertices. -/
+/-- Connectedness passes up to a graph with the same vertices.
+@isnad1 id=connecte.3h4v.s5.bce11366197a from=translated src=- shape=d9932655 vocab=a26f1a00
+-/
 theorem Connected.of_spanning_le (hH : H.Connected) (hHK : H ≤ K) (hV : V(K) ⊆ V(H)) :
     K.Connected := by
   obtain ⟨u, hu⟩ := hH.nonempty
   exact Connected.of_hub (hHK.vertexSet_mono hu) fun x hx => (hH.reaches hu (hV hx)).mono hHK
 
-/-- **2-connectivity passes up to a graph with the same vertices.** -/
+/-- **2-connectivity passes up to a graph with the same vertices.**
+@isnad1 id=istwocon.3h4v.s5.416e5ddcbc62 from=translated src=- shape=d9932655 vocab=f4ef15a7
+-/
 theorem IsTwoConnected.of_le_of_vertexSet_subset (hH : H.IsTwoConnected) (hHK : H ≤ K)
     (hV : V(K) ⊆ V(H)) : K.IsTwoConnected where
   hasThreeVertices := hH.hasThreeVertices.mono hHK.vertexSet_mono
@@ -341,9 +377,15 @@ serve, and they make the fineness a single division. -/
 /-- The `i`-th of the equally spaced coordinates starting at `a` with step `h`. -/
 noncomputable def uniformCoord (a h : ℝ) (i : ℕ) : ℝ := a + i * h
 
+/--
+@isnad1 id=eq.0h2v.s3.b6d557cd40b3 from=translated src=- shape=f56bb0f5 vocab=f95d48d1
+-/
 @[simp] theorem uniformCoord_zero (a h : ℝ) : uniformCoord a h 0 = a := by
   simp [uniformCoord]
 
+/--
+@isnad1 id=strictmo.1h2v.s4.b20c3c874c0b from=translated src=- shape=e7f580e2 vocab=fa006ca9
+-/
 theorem uniformCoord_strictMono {h : ℝ} (hh : 0 < h) (a : ℝ) :
     StrictMono (uniformCoord a h) := by
   intro i j hij
@@ -352,13 +394,18 @@ theorem uniformCoord_strictMono {h : ℝ} (hh : 0 < h) (a : ℝ) :
   simp only [uniformCoord]
   linarith
 
+/--
+@isnad1 id=le.2h4v.s5.f48194e5c2d7 from=translated src=- shape=c8007fd3 vocab=392eeb82
+-/
 theorem uniformCoord_le {h : ℝ} (hh : 0 < h) (a : ℝ) {i j : ℕ} (hij : i ≤ j) :
     uniformCoord a h i ≤ uniformCoord a h j := (uniformCoord_strictMono hh a).monotone hij
 
 /-- **A preconnected set of reals inside `[a, a + k·h]` that avoids every coordinate
 `a + i·h` has diameter less than `h`.** Two of its points more than `h` apart would straddle
 one of the coordinates, and a preconnected subset of `ℝ` contains the interval between any two
-of its points. -/
+of its points.
+@isnad1 id=lt.6h6v.s6.cd255ac23727 from=translated src=- shape=7df4f38d vocab=ab28a066
+-/
 theorem abs_sub_lt_of_avoiding {a h : ℝ} (hh : 0 < h) {k : ℕ} {I : Set ℝ}
     (hI : IsPreconnected I) (hIsub : I ⊆ Set.Icc a (a + k * h))
     (havoid : ∀ i ≤ k, uniformCoord a h i ∉ I) {x y : ℝ} (hx : x ∈ I) (hy : y ∈ I) :
@@ -423,25 +470,46 @@ the closed square `W` of centre `p` and radius `s`. -/
 noncomputable def localGrid (p : Plane) (s : ℝ) (k : ℕ) : Graph Plane Piece :=
   gridGraph (localGridX p s k) (localGridY p s k) k k
 
+/--
+@isnad1 id=eq.0h3v.s4.a544d81a2ead from=translated src=- shape=84424b8f vocab=2f6d9533
+-/
 theorem localGrid_eq (p : Plane) (s : ℝ) (k : ℕ) :
     localGrid p s k = pieceListGraph (localGridEdges p s k) := rfl
 
+/--
+@isnad1 id=lt.2h2v.s5.5da5dd1495b6 from=translated src=- shape=fe75f320 vocab=f29e504a
+-/
 theorem localGrid_step_pos (hs : 0 < s) (hk : 1 ≤ k) : 0 < 2 * s / (k : ℝ) := by
   have : (0 : ℝ) < k := by exact_mod_cast hk
   positivity
 
+/--
+@isnad1 id=strictmo.2h3v.s5.8eecf451335f from=translated src=- shape=23896b02 vocab=4acd1f69
+-/
 theorem localGridX_strictMono (hs : 0 < s) (hk : 1 ≤ k) :
     StrictMono (localGridX p s k) := uniformCoord_strictMono (localGrid_step_pos hs hk) _
 
+/--
+@isnad1 id=strictmo.2h3v.s5.7a4c04dfcdad from=translated src=- shape=23896b02 vocab=01e322a0
+-/
 theorem localGridY_strictMono (hs : 0 < s) (hk : 1 ≤ k) :
     StrictMono (localGridY p s k) := uniformCoord_strictMono (localGrid_step_pos hs hk) _
 
+/--
+@isnad1 id=eq.0h3v.s7.c5e6ff680328 from=translated src=- shape=1b4cfb92 vocab=c552cb37
+-/
 @[simp] theorem localGridX_zero (p : Plane) (s : ℝ) (k : ℕ) :
     localGridX p s k 0 = p 0 - s := uniformCoord_zero _ _
 
+/--
+@isnad1 id=eq.0h3v.s7.bcac72cd88b8 from=translated src=- shape=1b4cfb92 vocab=1ebb4b1f
+-/
 @[simp] theorem localGridY_zero (p : Plane) (s : ℝ) (k : ℕ) :
     localGridY p s k 0 = p 1 - s := uniformCoord_zero _ _
 
+/--
+@isnad1 id=eq.1h3v.s7.f8f4930d16ce from=translated src=- shape=088269a5 vocab=0a8b64c2
+-/
 theorem localGridX_last (hk : 1 ≤ k) : localGridX p s k k = p 0 + s := by
   have hkR : (k : ℝ) ≠ 0 := by
     have : (0 : ℝ) < k := by exact_mod_cast hk
@@ -450,6 +518,9 @@ theorem localGridX_last (hk : 1 ≤ k) : localGridX p s k k = p 0 + s := by
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h3v.s7.6fccff3d3f2e from=translated src=- shape=088269a5 vocab=18f5b98c
+-/
 theorem localGridY_last (hk : 1 ≤ k) : localGridY p s k k = p 1 + s := by
   have hkR : (k : ℝ) ≠ 0 := by
     have : (0 : ℝ) < k := by exact_mod_cast hk
@@ -458,7 +529,9 @@ theorem localGridY_last (hk : 1 ≤ k) : localGridY p s k k = p 1 + s := by
   field_simp
   ring
 
-/-- **`prop:local-grid-attachment`: the grid `K` is 2-connected.** -/
+/-- **`prop:local-grid-attachment`: the grid `K` is 2-connected.**
+@isnad1 id=istwocon.2h3v.s5.e078f6bad507 from=translated src=- shape=034f5d72 vocab=b0c2b643
+-/
 theorem localGrid_isTwoConnected (hs : 0 < s) (hk : 1 ≤ k) :
     (localGrid p s k).IsTwoConnected :=
   gridGraph_isTwoConnected hk hk
@@ -467,19 +540,25 @@ theorem localGrid_isTwoConnected (hs : 0 < s) (hk : 1 ≤ k) :
 
 /-- **The grid stays 2-connected after subdivision** — the `lem:subdivision-ear-preserve` half
 of the blueprint's argument, at these coordinates. The overlay of `K` with the skeleton of `Γ`
-subdivides `K` at the crossing points, and no hypothesis on those points is needed. -/
+subdivides `K` at the crossing points, and no hypothesis on those points is needed.
+@isnad1 id=istwocon.2h4v.s5.3d88e35a210f from=translated src=- shape=d745907a vocab=95f8b3a2
+-/
 theorem localGrid_subdivide_isTwoConnected (hs : 0 < s) (hk : 1 ≤ k) (points : List Plane) :
     (pieceListGraph (subdivide (localGridEdges p s k) points)).IsTwoConnected :=
   gridGraph_subdivide_isTwoConnected ((localGridX_strictMono hs hk).strictMonoOn _)
     ((localGridY_strictMono hs hk).strictMonoOn _) hk hk points
 
-/-- **The grid is a plane graph**, drawn with straight edges. -/
+/-- **The grid is a plane graph**, drawn with straight edges.
+@isnad1 id=isdrawin.2h3v.s5.d25a0f154885 from=translated src=- shape=882fc623 vocab=71e0dce3
+-/
 theorem localGrid_isDrawing (hs : 0 < s) (hk : 1 ≤ k) :
     Graph.IsDrawing (localGrid p s k) segmentDrawing :=
   gridGraph_isDrawing ((localGridX_strictMono hs hk).strictMonoOn _)
     ((localGridY_strictMono hs hk).strictMonoOn _) hk hk
 
-/-- **The outer boundary of the local grid is a cycle**, and it occupies the frame of `W`. -/
+/-- **The outer boundary of the local grid is a cycle**, and it occupies the frame of `W`.
+@isnad1 id=and.2h3v.s11.57430c9d089e from=translated src=- shape=ff87a6a2 vocab=8f44f419
+-/
 theorem localGrid_outer_cycle (hs : 0 < s) (hk : 1 ≤ k) :
     (localGrid p s k).IsCycleThrough
         (gridBoundaryLast (localGridX p s k) (localGridY p s k) k k)
@@ -514,6 +593,9 @@ def localGridCell (p : Plane) (s : ℝ) (k i j : ℕ) : Set Plane :=
   {z | z 0 ∈ Set.Icc (localGridX p s k i) (localGridX p s k (i + 1)) ∧
     z 1 ∈ Set.Icc (localGridY p s k j) (localGridY p s k (j + 1))}
 
+/--
+@isnad1 id=le.2h3v.s9.a98b5cbf32e7 from=translated src=- shape=c351e30e vocab=d5de4917
+-/
 theorem dist_le_of_supNorm_bounds {x y : Plane} {c : ℝ} (h0 : |x 0 - y 0| ≤ c)
     (h1 : |x 1 - y 1| ≤ c) : dist x y ≤ Real.sqrt 2 * c := by
   have hsq : (0 : ℝ) < Real.sqrt 2 := Real.sqrt_pos.2 two_pos
@@ -521,6 +603,9 @@ theorem dist_le_of_supNorm_bounds {x y : Plane} {c : ℝ} (h0 : |x 0 - y 0| ≤ 
   simp only [Plane.supNorm, Plane.sub_apply]
   exact max_le h0 h1
 
+/--
+@isnad1 id=lt.2h3v.s9.344a94f8a3cf from=translated src=- shape=c351e30e vocab=d26207c4
+-/
 theorem dist_lt_of_supNorm_bounds {x y : Plane} {c : ℝ} (h0 : |x 0 - y 0| < c)
     (h1 : |x 1 - y 1| < c) : dist x y < Real.sqrt 2 * c := by
   have hsq : (0 : ℝ) < Real.sqrt 2 := Real.sqrt_pos.2 two_pos
@@ -529,7 +614,9 @@ theorem dist_lt_of_supNorm_bounds {x y : Plane} {c : ℝ} (h0 : |x 0 - y 0| < c)
   exact max_lt h0 h1
 
 /-- **`prop:local-grid-attachment` clause 3.** Every closed grid rectangle has diameter at most
-`√2 · (2s/k)`. -/
+`√2 · (2s/k)`.
+@isnad1 id=le.2h7v.s7.74735d700d3f from=translated src=- shape=0c13b6dd vocab=feee2352
+-/
 theorem dist_le_of_mem_localGridCell {i j : ℕ} {x y : Plane}
     (hx : x ∈ localGridCell p s k i j) (hy : y ∈ localGridCell p s k i j) :
     dist x y ≤ Real.sqrt 2 * (2 * s / k) := by
@@ -544,7 +631,9 @@ theorem dist_le_of_mem_localGridCell {i j : ℕ} {x y : Plane}
     constructor <;> [linarith [hx.2.1, hy.2.2]; linarith [hx.2.2, hy.2.1]]
 
 /-- The grid line at index `i` is part of the grid: a point of `W` whose first coordinate is a
-grid coordinate lies on the grid. -/
+grid coordinate lies on the grid.
+@isnad1 id=mem.5h5v.s7.d858c79928d7 from=translated src=- shape=5d5ddfbe vocab=5e96b3a5
+-/
 theorem mem_cover_of_coord_eq (hs : 0 < s) (hk : 1 ≤ k) {z : Plane} {i : ℕ} (hi : i ≤ k)
     (hz : z ∈ Plane.closedSquare p s) (hz0 : z 0 = localGridX p s k i) :
     z ∈ cover (localGridEdges p s k) := by
@@ -563,7 +652,9 @@ theorem mem_cover_of_coord_eq (hs : 0 < s) (hk : 1 ≤ k) {z : Plane} {i : ℕ} 
   obtain ⟨j, hj, hzj⟩ := hmem
   exact mem_cover_iff.2 ⟨_, gridVEdge_mem_gridEdges hi hj hk, hzj⟩
 
-/-- The same for the second coordinate. -/
+/-- The same for the second coordinate.
+@isnad1 id=mem.5h5v.s7.3eecee7819df from=translated src=- shape=5d5ddfbe vocab=83bff1ab
+-/
 theorem mem_cover_of_coord_eq' (hs : 0 < s) (hk : 1 ≤ k) {z : Plane} {j : ℕ} (hj : j ≤ k)
     (hz : z ∈ Plane.closedSquare p s) (hz1 : z 1 = localGridY p s k j) :
     z ∈ cover (localGridEdges p s k) := by
@@ -584,7 +675,9 @@ theorem mem_cover_of_coord_eq' (hs : 0 < s) (hk : 1 ≤ k) {z : Plane} {j : ℕ}
 
 /-- **`prop:local-grid-attachment` clause 3, in the form the overlay consumes.** A connected
 subset of the window `W` that avoids the grid has diameter less than `√2 · (2s/k)`: it is
-trapped inside one open grid rectangle, coordinate by coordinate. -/
+trapped inside one open grid rectangle, coordinate by coordinate.
+@isnad1 id=lt.7h6v.s7.178434202b19 from=translated src=- shape=41f606d4 vocab=de655161
+-/
 theorem dist_lt_of_avoiding_localGrid (hs : 0 < s) (hk : 1 ≤ k) {F : Set Plane}
     (hF : IsPreconnected F) (hFW : F ⊆ Plane.closedSquare p s)
     (havoid : ∀ z ∈ F, z ∉ cover (localGridEdges p s k)) {x y : Plane}
@@ -631,8 +724,14 @@ theorem dist_lt_of_avoiding_localGrid (hs : 0 < s) (hk : 1 ≤ k) {F : Set Plane
 `ε`. -/
 noncomputable def localGridCount (s ε : ℝ) : ℕ := max 1 (⌈2 * Real.sqrt 2 * s / ε⌉₊ + 1)
 
+/--
+@isnad1 id=le.0h2v.s3.b9303cba825b from=translated src=- shape=5ffe46ab vocab=62a265c3
+-/
 theorem one_le_localGridCount (s ε : ℝ) : 1 ≤ localGridCount s ε := le_max_left _ _
 
+/--
+@isnad1 id=lt.1h2v.s6.baacb39d5aca from=translated src=- shape=71f02a78 vocab=9dae89b2
+-/
 theorem localGridCount_spec (hε : 0 < ε) :
     Real.sqrt 2 * (2 * s / (localGridCount s ε : ℕ)) < ε := by
   have hN : (1 : ℝ) ≤ (localGridCount s ε : ℕ) := by
@@ -649,7 +748,9 @@ theorem localGridCount_spec (hε : 0 < ε) :
 
 /-- **`prop:local-grid-attachment` clauses 2 and 3, packaged.** On the window `W` of centre `p`
 and radius `s` there is a rectangular grid — 2-connected, still 2-connected after any
-subdivision, a plane graph — every closed rectangle of which has diameter `< ε`. -/
+subdivision, a plane graph — every closed rectangle of which has diameter `< ε`.
+@isnad1 id=and.2h3v.s7.9a0e03429aa2 from=translated src=- shape=aa8049c8 vocab=859c84d0
+-/
 theorem localGrid_fine (hs : 0 < s) (hε : 0 < ε) :
     (localGrid p s (localGridCount s ε)).IsTwoConnected ∧
       Graph.IsDrawing (localGrid p s (localGridCount s ε)) segmentDrawing ∧

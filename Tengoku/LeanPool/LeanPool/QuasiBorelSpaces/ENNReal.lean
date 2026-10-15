@@ -22,6 +22,9 @@ variable
   {A : Type*} {_ : QuasiBorelSpace A}
   {B : Type*} [Countable B]
 
+/--
+@isnad1 id=ishom.2h4v.s5.c35adc8651e9 from=translated src=- shape=11826004 vocab=9c7c8588
+-/
 @[fun_prop]
 lemma isHom_add
     {f : A → ENNReal} (hf : IsHom f)
@@ -34,6 +37,9 @@ lemma isHom_add
   simp only [isHom_ofMeasurableSpace] at ⊢ hg hf
   exact Measurable.add hf hg
 
+/--
+@isnad1 id=ishom.2h4v.s5.cf447c1b40fb from=translated src=- shape=11826004 vocab=2c5f25aa
+-/
 @[fun_prop]
 lemma isHom_mul
     {f : A → ENNReal} (hf : IsHom f)
@@ -46,6 +52,9 @@ lemma isHom_mul
   simp only [isHom_ofMeasurableSpace] at ⊢ hg hf
   exact Measurable.mul hf hg
 
+/--
+@isnad1 id=ishom.1h4v.s5.98e8d652cc5e from=translated src=- shape=fc8654cd vocab=23f485a1
+-/
 @[fun_prop]
 lemma isHom_iSup {f : A → B → ENNReal} (hf : ∀ b, IsHom (f · b)) : IsHom fun x ↦ ⨆i, f x i := by
   rw [isHom_def]

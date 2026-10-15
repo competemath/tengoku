@@ -26,6 +26,9 @@ def inj {i} (c : Chain (P i)) : Chain ((i : I) × P i) where
     simp only [Sigma.mk_le_mk_iff]
     apply c.monotone' hn
 
+/--
+@isnad1 id=eq.0h5v.s6.419471015db7 from=translated src=- shape=5673b307 vocab=706e6b7f
+-/
 @[simp]
 lemma inj_coe {i} (c : Chain (P i)) (n : ℕ) : inj c n = ⟨i, c n⟩ := rfl
 
@@ -48,9 +51,15 @@ def distrib (c : Chain ((i : I) × P i)) : (i : I) × Chain (P i) where
     subst h₂
     exact h₁
 
+/--
+@isnad1 id=eq.0h4v.s5.07ca2fb5dbae from=translated src=- shape=62a1e449 vocab=a4ae287d
+-/
 @[simp]
 lemma distrib_inj {i} (c : Chain (P i)) : distrib (inj c) = ⟨i, c⟩ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.5ecca3a21c2e from=translated src=- shape=7b0c9837 vocab=a55582f2
+-/
 @[simp]
 lemma inj_distrib (c : Chain (Sigma P)) : inj (distrib c).snd = c := by
   apply Chain.ext
@@ -63,6 +72,9 @@ lemma inj_distrib (c : Chain (Sigma P)) : inj (distrib c).snd = c := by
   refine Sigma.ext hfst ?_
   exact eqRec_heq _ _
 
+/--
+@isnad1 id=var.0h5v.s5.0c336891fc52 from=translated src=- shape=eaae9d8e vocab=d4b2b9e8
+-/
 @[elab_as_elim]
 lemma distrib_cases
     {p : Chain ((i : I) × P i) → Prop}

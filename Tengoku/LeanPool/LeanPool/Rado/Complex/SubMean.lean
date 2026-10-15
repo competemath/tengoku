@@ -45,17 +45,29 @@ private lemma circleAverage_neg (f : ℂ → ℝ) (c : ℂ) (R : ℝ) :
     circleAverage (-f) c R = -circleAverage f c R := by
   simp only [Real.circleAverage_def, Pi.neg_apply, intervalIntegral.integral_neg, smul_neg]
 
+/--
+@isnad1 id=submeano.1h2v.s3.61ac92f247db from=translated src=- shape=b662ce60 vocab=d0068a75
+-/
 theorem MeanEqOn.subMeanOn {h : ℂ → ℝ} {s : Set ℂ} (hh : MeanEqOn h s) : SubMeanOn h s :=
   ⟨hh.continuousOn, fun c r hr hsub ↦ (hh.mean_eq c r hr hsub).ge⟩
 
+/--
+@isnad1 id=meaneqon.1h2v.s4.613d45bc73bd from=translated src=- shape=a78dcff9 vocab=cbc69365
+-/
 theorem MeanEqOn.neg {h : ℂ → ℝ} {s : Set ℂ} (hh : MeanEqOn h s) : MeanEqOn (-h) s := by
   refine ⟨hh.continuousOn.neg, fun c r hr hsub ↦ ?_⟩
   rw [circleAverage_neg, hh.mean_eq c r hr hsub, Pi.neg_apply]
 
+/--
+@isnad1 id=submeano.2h3v.s4.8efb029003ef from=translated src=- shape=593a6719 vocab=006ea309
+-/
 theorem SubMeanOn.mono {g : ℂ → ℝ} {s t : Set ℂ} (hg : SubMeanOn g s) (hts : t ⊆ s) :
     SubMeanOn g t :=
   ⟨hg.continuousOn.mono hts, fun c r hr hsub ↦ hg.submean c r hr (hsub.trans hts)⟩
 
+/--
+@isnad1 id=submeano.2h3v.s5.720d2514558f from=translated src=- shape=79e235bf vocab=b5da4f6d
+-/
 theorem SubMeanOn.max {g₁ g₂ : ℂ → ℝ} {s : Set ℂ} (h₁ : SubMeanOn g₁ s) (h₂ : SubMeanOn g₂ s) :
     SubMeanOn (fun z ↦ Max.max (g₁ z) (g₂ z)) s := by
   have hcmax : ContinuousOn (fun z ↦ Max.max (g₁ z) (g₂ z)) s := fun x hx ↦
@@ -72,6 +84,9 @@ theorem SubMeanOn.max {g₁ g₂ : ℂ → ℝ} {s : Set ℂ} (h₁ : SubMeanOn 
     circleAverage_mono hi₂ him fun x _ ↦ le_max_right _ _
   exact max_le ((h₁.submean c r hr hsub).trans le₁) ((h₂.submean c r hr hsub).trans le₂)
 
+/--
+@isnad1 id=submeano.2h3v.s5.0513e2417d6e from=translated src=- shape=383d228e vocab=13d5d505
+-/
 theorem SubMeanOn.add_meanEq {g h : ℂ → ℝ} {s : Set ℂ} (hg : SubMeanOn g s)
     (hh : MeanEqOn h s) : SubMeanOn (g + h) s := by
   refine ⟨hg.continuousOn.add hh.continuousOn, fun c r hr hsub ↦ ?_⟩
@@ -81,6 +96,9 @@ theorem SubMeanOn.add_meanEq {g h : ℂ → ℝ} {s : Set ℂ} (hg : SubMeanOn g
   rw [circleAverage_add hig hih, hh.mean_eq c r hr hsub, Pi.add_apply]
   exact add_le_add (hg.submean c r hr hsub) le_rfl
 
+/--
+@isnad1 id=submeano.0h2v.s3.2eabfad5a303 from=translated src=- shape=7f360d30 vocab=9fc8737e
+-/
 theorem SubMeanOn.const {a : ℝ} {s : Set ℂ} : SubMeanOn (fun _ ↦ a) s :=
   ⟨continuousOn_const, fun c r _ _ ↦ (circleAverage_const a c r).ge⟩
 
@@ -90,6 +108,9 @@ structure SubMeanLocalOn (g : ℂ → ℝ) (s : Set ℂ) : Prop where
   continuousOn : ContinuousOn g s
   submean_small : ∀ z ∈ s, ∀ᶠ r in 𝓝[>] (0 : ℝ), g z ≤ circleAverage g z r
 
+/--
+@isnad1 id=submeanl.2h3v.s4.00846da424e0 from=translated src=- shape=593a6719 vocab=da62d852
+-/
 theorem SubMeanLocalOn.mono {g : ℂ → ℝ} {s t : Set ℂ} (hg : SubMeanLocalOn g s)
     (hts : t ⊆ s) : SubMeanLocalOn g t :=
   ⟨hg.continuousOn.mono hts, fun z hz ↦ hg.submean_small z (hts hz)⟩
@@ -129,7 +150,9 @@ private lemma eqOn_sphere_of_le_of_circleAverage_ge {g : ℂ → ℝ} {a : ℂ} 
             inv_mul_cancel₀ two_pi_pos.ne', one_mul]
   exact absurd havg (not_le.mpr hlt)
 
-/-- Small circles suffice for the strong maximum principle. -/
+/-- Small circles suffice for the strong maximum principle.
+@isnad1 id=eqon.5h3v.s6.802bb885b2db from=translated src=- shape=354959ab vocab=c27c9726
+-/
 theorem SubMeanLocalOn.eqOn_const_of_isMaxOn {g : ℂ → ℝ} {s : Set ℂ} (hs : IsOpen s)
     (hsc : IsPreconnected s) (hg : SubMeanLocalOn g s) {x₀ : ℂ} (hx₀ : x₀ ∈ s)
     (hmax : IsMaxOn g s x₀) : EqOn g (fun _ ↦ g x₀) s := by
@@ -181,7 +204,9 @@ theorem SubMeanLocalOn.eqOn_const_of_isMaxOn {g : ℂ → ℝ} {s : Set ℂ} (hs
     exact (hsA hx).2
   · exact absurd hM.symm (hsB hx₀).2
 
-/-- Small circles suffice for the boundary comparison principle. -/
+/-- Small circles suffice for the boundary comparison principle.
+@isnad1 id=le.6h4v.s7.a4d32aabe46c from=translated src=- shape=1c087882 vocab=bec8aee9
+-/
 theorem SubMeanLocalOn.le_of_frontier_le {g : ℂ → ℝ} {U : Set ℂ} (hU : IsOpen U)
     (hUb : Bornology.IsBounded U) (hg : SubMeanLocalOn g U)
     (hgc : ContinuousOn g (closure U)) {M : ℝ} (hbd : ∀ x ∈ frontier U, g x ≤ M) :
@@ -238,7 +263,9 @@ theorem SubMeanLocalOn.le_of_frontier_le {g : ℂ → ℝ} {U : Set ℂ} (hU : I
       _ ≤ M := hbd b hbfr
   · exact hbd z (by rw [hU.frontier_eq]; exact ⟨hzK, hzU⟩)
 
-/-- On an open set, the global sub-mean property supplies its local variant. -/
+/-- On an open set, the global sub-mean property supplies its local variant.
+@isnad1 id=submeanl.2h2v.s4.3243159030a3 from=translated src=- shape=b5c28b52 vocab=dfb7961c
+-/
 theorem SubMeanOn.localOn {g : ℂ → ℝ} {s : Set ℂ} (hg : SubMeanOn g s)
     (hs : IsOpen s) : SubMeanLocalOn g s := by
   refine ⟨hg.continuousOn, fun z hz ↦ ?_⟩
@@ -247,7 +274,9 @@ theorem SubMeanOn.localOn {g : ℂ → ℝ} {s : Set ℂ} (hg : SubMeanOn g s)
   exact hg.submean z r hr.1 ((closedBall_subset_ball hr.2).trans hball)
 
 /-- **Strong maximum principle.** A sub-mean-value function on a connected open
-set that attains its supremum is constant. -/
+set that attains its supremum is constant.
+@isnad1 id=eqon.5h3v.s6.9973b53103f9 from=translated src=- shape=354959ab vocab=26c053f5
+-/
 theorem SubMeanOn.eqOn_const_of_isMaxOn {g : ℂ → ℝ} {s : Set ℂ} (hs : IsOpen s)
     (hsc : IsPreconnected s) (hg : SubMeanOn g s) {x₀ : ℂ} (hx₀ : x₀ ∈ s)
     (hmax : IsMaxOn g s x₀) : EqOn g (fun _ ↦ g x₀) s :=
@@ -255,7 +284,9 @@ theorem SubMeanOn.eqOn_const_of_isMaxOn {g : ℂ → ℝ} {s : Set ℂ} (hs : Is
 
 /-- **Boundary comparison principle.** A sub-mean-value function on a bounded
 open set, continuous up to the closure and `≤ M` on the frontier, is `≤ M`
-everywhere on the closure. -/
+everywhere on the closure.
+@isnad1 id=le.6h4v.s7.d364ca1ee7e5 from=translated src=- shape=1c087882 vocab=254e9a3a
+-/
 theorem SubMeanOn.le_of_frontier_le {g : ℂ → ℝ} {U : Set ℂ} (hU : IsOpen U)
     (hUb : Bornology.IsBounded U) (hg : SubMeanOn g U) (hgc : ContinuousOn g (closure U))
     {M : ℝ} (hbd : ∀ x ∈ frontier U, g x ≤ M) : ∀ x ∈ closure U, g x ≤ M :=
@@ -263,7 +294,9 @@ theorem SubMeanOn.le_of_frontier_le {g : ℂ → ℝ} {U : Set ℂ} (hU : IsOpen
 
 /-- Uniqueness from boundary values: two mean-value functions on a bounded open
 set, continuous up to the closure and equal on the frontier, agree on the
-closure. -/
+closure.
+@isnad1 id=eqon.7h3v.s7.88a313b8acdd from=translated src=- shape=e29c42c4 vocab=800ef93e
+-/
 theorem MeanEqOn.eqOn_closure_of_frontier {u v : ℂ → ℝ} {U : Set ℂ} (hU : IsOpen U)
     (hUb : Bornology.IsBounded U) (hu : MeanEqOn u U) (hv : MeanEqOn v U)
     (huc : ContinuousOn u (closure U)) (hvc : ContinuousOn v (closure U))

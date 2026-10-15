@@ -23,6 +23,9 @@ variable {E F G H : Type*}
 
 namespace LinearMap
 
+/--
+@isnad1 id=eq.0h4v.s8.7e5454410ec1 from=translated src=- shape=6b0f48ac vocab=8382fb34
+-/
 theorem rank_prod_fst (f : E × F →ₗ[ℝ] G) :
     rank (prod (fst ℝ E F) f) = (Module.rank ℝ E).lift + (f ∘ₗ inr ℝ E F).rank.lift := by
   -- The range of the product map is isomorphic
@@ -43,12 +46,18 @@ theorem rank_prod_fst (f : E × F →ₗ[ℝ] G) :
 
 variable [FiniteDimensional ℝ E] [FiniteDimensional ℝ F]
 
+/--
+@isnad1 id=eq.0h4v.s9.6a4324a1ffe5 from=translated src=- shape=6b7131d5 vocab=d46fa838
+-/
 theorem finrank_range_prod_fst (f : E × F →ₗ[ℝ] G) :
     finrank ℝ (range <| prod (fst ℝ E F) f) =
       Module.finrank ℝ E + finrank ℝ (range <| f ∘ₗ inr ℝ E F) := by
   rw [Module.finrank, ← LinearMap.rank, rank_prod_fst, Cardinal.toNat_add] <;>
     simp [finrank, Module.rank_lt_aleph0]
 
+/--
+@isnad1 id=iff.0h4v.s9.53445c5576fa from=translated src=- shape=66e2f0df vocab=39d0f2ed
+-/
 theorem finrank_range_prod_fst_iff_comp_inr_eq_zero (f : E × F →ₗ[ℝ] G) :
     finrank ℝ (range (prod (fst ℝ E F) f)) = finrank ℝ E ↔ f ∘ₗ inr ℝ E F = 0 := by
   simp [finrank_range_prod_fst, range_eq_bot]

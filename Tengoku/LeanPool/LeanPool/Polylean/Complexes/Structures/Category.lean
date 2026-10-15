@@ -76,10 +76,14 @@ def comp {C D E : Sort _} {𝓒 : Category C} {𝓓 : Category D} {𝓔 : Catego
 /-- Functor composition notation. -/
 infix:80 " ⋙ " => comp
 
-/-- The object map of a composed functor is the composite object map. -/
+/-- The object map of a composed functor is the composite object map.
+@isnad1 id=eq.0h8v.s6.141cb7086721 from=translated src=- shape=6d77d312 vocab=e1c94be2
+-/
 @[simp] theorem comp_obj : (Φ.obj ∘ Ψ.obj) = (Ψ ⋙ Φ).obj := rfl
 
-/-- Pointwise form of `Category.Functor.comp_obj`. -/
+/-- Pointwise form of `Category.Functor.comp_obj`.
+@isnad1 id=eq.0h9v.s6.73d66040a649 from=translated src=- shape=07759857 vocab=ef3e3b71
+-/
 @[simp] theorem comp_obj' : ∀ x, (Φ.obj (Ψ.obj x)) = (Ψ ⋙ Φ).obj x := λ _ => rfl
 
 end Functor
@@ -95,9 +99,14 @@ def compose {X Y : C} : @Path C 𝓒.toQuiver X Y → (X ⟶ Y)
   | .nil => 𝟙 _
   | .cons e p => e ≫ p.compose
 
+/--
+@isnad1 id=eq.0h2v.s5.35dae8febfea from=translated src=- shape=b2122be4 vocab=e2f59beb
+-/
 @[simp] theorem compose_nil {X : C} : (Path.nil' X).compose = 𝟙 X := rfl
 
-/-- Composing an appended path equals composing the two pieces. -/
+/-- Composing an appended path equals composing the two pieces.
+@isnad1 id=eq.0h6v.s6.e0d7aea3cc47 from=translated src=- shape=cecfe981 vocab=631c7fee
+-/
 theorem compose_append {X Y Z : C} : {p : Path X Y} → {q : Path Y Z} → (append p q).compose = p.compose ≫ q.compose
   | .nil, _ => by simp
   | .cons _ _, _ => by

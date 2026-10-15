@@ -39,6 +39,9 @@ def initVec (M : HomMarkovChainSpec S)
   : S → ℝ :=
   fun s => (M.init {s}).toReal
 
+/--
+@isnad1 id=eq.0h2v.s5.6f645811c597 from=translated src=- shape=55665c66 vocab=dc2ae24f
+-/
 lemma prob_sum_to_one
   (μ : Measure S) [IsProbabilityMeasure μ] :
   ∑ s, (μ {s}).toReal = 1 := by
@@ -48,11 +51,17 @@ lemma prob_sum_to_one
   exact this
 
 omit [Fintype S] [MeasurableSingletonClass S] in
+/--
+@isnad1 id=eq.0h4v.s6.26172678daab from=translated src=- shape=aa2b08ef vocab=a59a5d4f
+-/
 lemma kernel_apply_eq_mat_apply
   (M : HomMarkovChainSpec S) (s s' : S) :
   (M.kernel s {s'}).toReal = kernelMat M s s' := by
   simp [kernelMat]
 
+/--
+@isnad1 id=eq.0h6v.s7.52334c8a5c3c from=translated src=- shape=16757e05 vocab=4a353fd7
+-/
 lemma integral_fintype_kernel_iter
   {α : Type*} [NormedAddCommGroup α] [NormedSpace ℝ α] [CompleteSpace α] [DecidableEq S]
   (M : HomMarkovChainSpec S) (n : ℕ) (f : S → α) (s : S) :

@@ -70,7 +70,9 @@ namespace Plane
 
 variable {u w : Plane}
 
-/-- The origin is on no arc: the arcs are open arcs of *directions*. -/
+/-- The origin is on no arc: the arcs are open arcs of *directions*.
+@isnad1 id=not.0h2v.s6.4ab874c9fe61 from=translated src=- shape=22bbce1b vocab=87ba6dc4
+-/
 theorem zero_notMem_arcCCW (u w : Plane) : (0 : Plane) ∉ arcCCW u w := by
   have h := (notMem_arcCCW_smul u w (le_refl (0 : ℝ))).1
   rwa [zero_smul] at h
@@ -87,7 +89,9 @@ variable {P : ClosedPolygon m} {i : ZMod (m + 3)} {t s : ℝ}
 
 /-- Seen from the vertex it arrives at, a frame position of edge `i` is a germ at the incoming
 ray there. This is the companion of `ClosedPolygon.off_sub_vertex`, which does the same at the
-vertex the edge leaves. -/
+vertex the edge leaves.
+@isnad1 id=eq.0h5v.s9.f3fb25ce95d8 from=translated src=- shape=36296ff2 vocab=72acba94
+-/
 theorem off_sub_vertex_succ_ray : P.off i t s - P.vertex (i + 1) =
     (P.len i - t) • P.rayIn (i + 1) - s • perp (P.rayIn (i + 1)) := by
   have hr : P.rayIn (i + 1) = -P.tang i := rayIn_succ
@@ -103,12 +107,18 @@ point of a *block*, where the smallness of the offset comes from the `germ` fiel
 hypothesis, which is what an approach to a point of the curve needs: there the progress `t` is
 fixed by the point being approached and only the offset shrinks. -/
 
+/--
+@isnad1 id=mem.2h5v.s8.2ca96ea67b4a from=translated src=- shape=0b91e0de vocab=a2e7c3f2
+-/
 theorem off_sub_mem_arcL_start (hs : 0 < s)
     (hsm : s * |inner ℝ (P.rayIn i) (P.tang i)| < t * |det (P.rayIn i) (P.tang i)|) :
     P.off i t s - P.vertex i ∈ arcCCW (P.tang i) (P.rayIn i) := by
   rw [off_sub_vertex]
   exact (germs_split' det_rays_ne_zero hs hsm).1.2
 
+/--
+@isnad1 id=mem.2h5v.s8.1bde141edf58 from=translated src=- shape=761ef117 vocab=b6384413
+-/
 theorem off_sub_mem_arcR_start (hs : s < 0)
     (hsm : (-s) * |inner ℝ (P.rayIn i) (P.tang i)| < t * |det (P.rayIn i) (P.tang i)|) :
     P.off i t s - P.vertex i ∈ arcCCW (P.rayIn i) (P.tang i) := by
@@ -117,6 +127,9 @@ theorem off_sub_mem_arcR_start (hs : s < 0)
   rw [h]
   exact (germs_split' det_rays_ne_zero (by linarith) hsm).2.2
 
+/--
+@isnad1 id=mem.2h5v.s10.c65a4c3c3515 from=translated src=- shape=01cb794e vocab=99e497af
+-/
 theorem off_sub_mem_arcL_finish (hs : 0 < s)
     (hsm : s * |inner ℝ (P.rayIn (i + 1)) (P.tang (i + 1))| <
       (P.len i - t) * |det (P.rayIn (i + 1)) (P.tang (i + 1))|) :
@@ -124,6 +137,9 @@ theorem off_sub_mem_arcL_finish (hs : 0 < s)
   rw [off_sub_vertex_succ_ray]
   exact (germs_split' det_rays_ne_zero hs hsm).1.1
 
+/--
+@isnad1 id=mem.2h5v.s10.a8fa51838995 from=translated src=- shape=97c425d3 vocab=190df3a3
+-/
 theorem off_sub_mem_arcR_finish (hs : s < 0)
     (hsm : (-s) * |inner ℝ (P.rayIn (i + 1)) (P.tang (i + 1))| <
       (P.len i - t) * |det (P.rayIn (i + 1)) (P.tang (i + 1))|) :
@@ -134,7 +150,9 @@ theorem off_sub_mem_arcR_finish (hs : s < 0)
   rw [h]
   exact (germs_split' det_rays_ne_zero (by linarith) hsm).2.1
 
-/-- Offsetting a point of an edge moves it exactly the offset. -/
+/-- Offsetting a point of an edge moves it exactly the offset.
+@isnad1 id=eq.0h5v.s6.7ac23b141727 from=translated src=- shape=4cf53645 vocab=f990319e
+-/
 theorem dist_off_pt : dist (P.off i t s) (P.pt i t) = |s| := by
   rw [ClosedPolygon.pt, dist_eq_norm, show P.off i t s - P.off i t 0 = s • perp (P.tang i) by
     rw [off, off]; module, norm_smul, Real.norm_eq_abs, norm_perp, isDirection_tang.norm,
@@ -173,7 +191,9 @@ variable {P : ClosedPolygon m} (D : StripData P) {i : ZMod (m + 3)}
 /-- **The local picture along an edge.** A ball of radius at most `min lam rho` about a point of
 the middle stretch of an edge is split by the sign of the transverse coordinate: positive is the
 left block, negative the right block, zero the edge itself. Both coordinates are `1`-Lipschitz,
-which is the whole proof. -/
+which is the whole proof.
+@isnad1 id=and.4h7v.s8.d376cf99c590 from=translated src=- shape=b3260b8d vocab=a2f3081f
+-/
 theorem core_ball_trichotomy {c η : ℝ} (h1 : 2 * D.lam ≤ c) (h2 : c ≤ P.len i - 2 * D.lam)
     (hη : η ≤ min D.lam D.rho) {y : Plane} (hy0 : y ∈ ball (P.pt i c) η) :
     (0 < coordAcross (P.vertex i) (P.tang i) y → y ∈ D.blockL i) ∧
@@ -215,7 +235,9 @@ theorem core_ball_trichotomy {c η : ℝ} (h1 : 2 * D.lam ≤ c) (h2 : c ≤ P.l
 /-- **Local two-sidedness at an interior point of an edge.** A small enough disk about a point in
 the middle stretch of an edge meets the polygon exactly in that edge; off the edge the disk lies
 in the two blocks, one on each side; and both sides are met, at the two points obtained by
-offsetting the centre. -/
+offsetting the centre.
+@isnad1 id=and.4h6v.s8.afc8dd831ff1 from=translated src=- shape=0778942f vocab=86b57aef
+-/
 theorem local_two_sided {c η : ℝ} (h1 : 2 * D.lam ≤ c) (h2 : c ≤ P.len i - 2 * D.lam)
     (hηpos : 0 < η) (hη : η ≤ min D.lam D.rho) :
     ball (P.pt i c) η ∩ P.carrier ⊆ P.edge i ∧
@@ -259,7 +281,9 @@ theorem local_two_sided {c η : ℝ} (h1 : 2 * D.lam ≤ c) (h2 : c ≤ P.len i 
 /-- **The two reference points of the parity argument.** On every edge there is a disk that meets
 the polygon only in that edge and contains a point of each side, on the two sides of the edge's
 line. A horizontal segment joining the two crosses the polygon exactly once, which is what makes
-the two reference points have opposite parity. -/
+the two reference points have opposite parity.
+@isnad1 id=ex.0h4v.s8.38fe94c0de68 from=translated src=- shape=52ea50c1 vocab=1075ee0c
+-/
 theorem exists_reference_points (i : ZMod (m + 3)) :
     ∃ (p : Plane) (η : ℝ), 0 < η ∧ p ∈ P.edge i ∧ ball p η ∩ P.carrier ⊆ P.edge i ∧
       (∃ zL ∈ ball p η, zL ∈ D.sideL ∧ 0 < coordAcross (P.vertex i) (P.tang i) zL) ∧
@@ -280,7 +304,9 @@ theorem exists_reference_points (i : ZMod (m + 3)) :
 /-! ### Every point of the polygon is on the boundary of both sides -/
 
 /-- A sector comes arbitrarily close to its vertex: shrink a point of it towards the vertex, which
-stays in the arc because an arc of directions is a cone. -/
+stays in the arc because an arc of directions is a cone.
+@isnad1 id=ex.1h5v.s6.8b4c3104a5b6 from=translated src=- shape=c18d24c8 vocab=9e94d209
+-/
 theorem exists_near_sectorL {ε : ℝ} (hε : 0 < ε) (i : ZMod (m + 3)) :
     ∃ y ∈ D.sectorL i, dist y (P.vertex i) < ε := by
   obtain ⟨z, hz⟩ := (D.isConnected_sectorL (i := i)).nonempty
@@ -302,6 +328,9 @@ theorem exists_near_sectorL {ε : ℝ} (hε : 0 < ε) (i : ZMod (m + 3)) :
     have hkey : ε / (2 * ‖z - P.vertex i‖) * ‖z - P.vertex i‖ = ε / 2 := by field_simp
     nlinarith [mul_le_mul_of_nonneg_right h2 hwpos.le]
 
+/--
+@isnad1 id=ex.1h5v.s6.6e7816e9c0b1 from=translated src=- shape=c18d24c8 vocab=3550fca8
+-/
 theorem exists_near_sectorR {ε : ℝ} (hε : 0 < ε) (i : ZMod (m + 3)) :
     ∃ y ∈ D.sectorR i, dist y (P.vertex i) < ε := by
   obtain ⟨z, hz⟩ := (D.isConnected_sectorR (i := i)).nonempty
@@ -325,7 +354,9 @@ theorem exists_near_sectorR {ε : ℝ} (hε : 0 < ε) (i : ZMod (m + 3)) :
 
 /-- **Both sides come arbitrarily close to every point of the polygon.** Away from the vertices
 this is the block; at a vertex it is `exists_near_sectorL`; in between it is the germ with the
-progress held fixed and the offset shrunk below the corner's threshold. -/
+progress held fixed and the offset shrunk below the corner's threshold.
+@isnad1 id=and.2h5v.s7.4566a6abec37 from=translated src=- shape=1b995ba7 vocab=a3807329
+-/
 theorem exists_near_sides {x : Plane} (hx : x ∈ P.carrier) {ε : ℝ} (hε : 0 < ε) :
     (∃ y ∈ D.sideL, dist x y < ε) ∧ (∃ y ∈ D.sideR, dist x y < ε) := by
   obtain ⟨i, hi⟩ := Set.mem_iUnion.1 hx
@@ -399,7 +430,9 @@ theorem exists_near_sides {x : Plane} (hx : x ∈ P.carrier) {ε : ℝ} (hε : 0
 
 /-- Every point of the polygon is in the closure of the left side. With
 `StripData.sideL_disjoint_carrier` this says the polygon is contained in the boundary of the left
-side. -/
+side.
+@isnad1 id=le.0h3v.s5.936c0faeeb29 from=translated src=- shape=8799faea vocab=7aa3aeab
+-/
 theorem carrier_subset_closure_sideL : P.carrier ⊆ closure D.sideL := by
   intro x hx
   rw [Metric.mem_closure_iff]
@@ -407,6 +440,9 @@ theorem carrier_subset_closure_sideL : P.carrier ⊆ closure D.sideL := by
   obtain ⟨⟨y, hy, hd⟩, -⟩ := D.exists_near_sides hx hε
   exact ⟨y, hy, hd⟩
 
+/--
+@isnad1 id=le.0h3v.s5.38d4d988dbbb from=translated src=- shape=8799faea vocab=86642a3a
+-/
 theorem carrier_subset_closure_sideR : P.carrier ⊆ closure D.sideR := by
   intro x hx
   rw [Metric.mem_closure_iff]
@@ -418,7 +454,9 @@ end StripData
 
 /-- **Lemma 1.8 (a), with the boundary clause.** A simple closed polygon has an open neighbourhood
 `N`, inside any prescribed open set containing it, whose complement in `N` is the disjoint union
-of two connected open sets, each of which has the polygon in its closure. -/
+of two connected open sets, each of which has the polygon in its closure.
+@isnad1 id=ex.2h3v.s8.c864018aba84 from=translated src=- shape=290430b7 vocab=e9519787
+-/
 theorem ClosedPolygon.exists_two_sided_collar (P : ClosedPolygon m) {U : Set Plane}
     (hU : IsOpen U) (hPU : P.carrier ⊆ U) :
     ∃ N NL NR : Set Plane, IsOpen N ∧ P.carrier ⊆ N ∧ N ⊆ U ∧ IsOpen NL ∧ IsOpen NR ∧

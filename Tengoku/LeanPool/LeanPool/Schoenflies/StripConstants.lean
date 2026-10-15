@@ -77,11 +77,20 @@ variable {P : ClosedPolygon m} {i j : ZMod (m + 3)} {c lam : ℝ}
 
 /-! ### Compactness of the pieces -/
 
+/--
+@isnad1 id=iscompac.0h3v.s6.3df98fb0e2ca from=translated src=- shape=0d15d7bd vocab=c025d3e3
+-/
 theorem isCompact_edge : IsCompact (P.edge i) := isCompact_segment _ _
 
+/--
+@isnad1 id=iscompac.0h2v.s5.0b2f33b2c4ab from=translated src=- shape=595ce0b1 vocab=8578d178
+-/
 theorem isCompact_carrier (P : ClosedPolygon m) : IsCompact P.carrier :=
   isCompact_iUnion fun _ => isCompact_edge
 
+/--
+@isnad1 id=continuo.0h3v.s6.fd68c22ff909 from=translated src=- shape=d20d5eb3 vocab=d4396055
+-/
 theorem continuous_pt (P : ClosedPolygon m) (i : ZMod (m + 3)) : Continuous (P.pt i) := by
   have h : P.pt i = fun c : ℝ => P.vertex i + c • P.tang i := funext fun _ => pt_eq
   rw [h]
@@ -94,7 +103,9 @@ choice of constants, and neither is true without it. -/
 
 /-- **Simplicity, first form.** A vertex lies on no edge but the two edges incident to it.
 Without this the "a vertex is `2R` away from every nonincident edge" hypothesis of `StripData`
-would be unsatisfiable, since the vertex would sit *on* one of those edges. -/
+would be unsatisfiable, since the vertex would sit *on* one of those edges.
+@isnad1 id=not.2h4v.s8.14043172179b from=translated src=- shape=18c53dd0 vocab=10ee29c1
+-/
 theorem vertex_notMem_edge (hj1 : j ≠ i - 1) (hj2 : j ≠ i) : P.vertex i ∉ P.edge j := by
   intro hx
   -- Use `edges_meet` in the order that puts the *other* edge's endpoints on the right.
@@ -110,16 +121,24 @@ of its endpoints. An edge block of `StripData` hugs this core. -/
 def trimmed (P : ClosedPolygon m) (i : ZMod (m + 3)) (lam : ℝ) : Set Plane :=
   P.pt i '' Set.Icc lam (P.len i - lam)
 
+/--
+@isnad1 id=mem.1h5v.s6.aab2965ee928 from=translated src=- shape=fe6da5bc vocab=be91f2ca
+-/
 theorem pt_mem_trimmed (hc : c ∈ Set.Icc lam (P.len i - lam)) : P.pt i c ∈ P.trimmed i lam :=
   ⟨c, hc, rfl⟩
 
+/--
+@isnad1 id=iscompac.0h4v.s6.f74f477fe5bc from=translated src=- shape=48d10154 vocab=1f2b5624
+-/
 theorem isCompact_trimmed : IsCompact (P.trimmed i lam) :=
   isCompact_Icc.image (P.continuous_pt i)
 
 /-- **Simplicity, second form.** The trimmed core of an edge misses every other edge. The two
 common points `edges_meet` allows are the endpoints of the edge, and the trim removes them: a
 core point is at distance at least `lam` from either endpoint. No lower bound on the edge
-length is needed: if the trim eats the whole edge the core is empty. -/
+length is needed: if the trim eats the whole edge the core is empty.
+@isnad1 id=disjoint.2h5v.s6.cd802d826398 from=translated src=- shape=67c94325 vocab=8127213c
+-/
 theorem trimmed_disjoint_edge (hlam : 0 < lam) (hij : j ≠ i) :
     Disjoint (P.trimmed i lam) (P.edge j) := by
   rw [Set.disjoint_left]
@@ -153,7 +172,9 @@ namespace StripData
 
 variable {P : ClosedPolygon m} (D : StripData P)
 
-/-- The collar of `Strip.lean` lies in the `R`-neighbourhood of the polygon. -/
+/-- The collar of `Strip.lean` lies in the `R`-neighbourhood of the polygon.
+@isnad1 id=le.0h3v.s6.2f643b49c091 from=translated src=- shape=00e2be20 vocab=2e1c0930
+-/
 theorem nbhd_subset_thickening : D.nbhd ⊆ thickening D.R P.carrier := by
   intro x hx
   have hx' : x ∈ D.sideL ∪ D.sideR ∪ P.carrier := hx
@@ -181,7 +202,9 @@ namespace ClosedPolygon
 /-- **Step 1: the cone radius.** One positive `R` that is below every edge length, that
 separates the vertices pairwise with a factor `2` to spare, that keeps every vertex `2R` away
 from every nonincident edge, and whose neighbourhood of the curve stays inside the prescribed
-open set. -/
+open set.
+@isnad1 id=ex.2h3v.s9.6b7a0bd5394a from=translated src=- shape=959dbe08 vocab=d18797e5
+-/
 theorem exists_cone_radius (P : ClosedPolygon m) {U : Set Plane} (hU : IsOpen U)
     (hPU : P.carrier ⊆ U) :
     ∃ R > 0, (∀ i, R ≤ P.len i) ∧
@@ -238,7 +261,9 @@ theorem exists_cone_radius (P : ClosedPolygon m) {U : Set Plane} (hU : IsOpen U)
       (thickening_mono (le_trans (min_le_right _ _) (min_le_right _ _)) _) hthick
 
 /-- The germ threshold at a single vertex. The corner condition makes `det ≠ 0`, so the right
-side is positive and the inequality is a genuine upper bound on the half-width. -/
+side is positive and the inequality is a genuine upper bound on the half-width.
+@isnad1 id=ex.1h4v.s7.d60b8d700324 from=translated src=- shape=47512b72 vocab=d7eee4d9
+-/
 theorem exists_germ_bound (P : ClosedPolygon m) (i : ZMod (m + 3)) {lam : ℝ} (hlam : 0 < lam) :
     ∃ ε > 0, ε * (1 + |inner ℝ (P.rayIn i) (P.tang i)|) ≤
       lam * |det (P.rayIn i) (P.tang i)| := by
@@ -252,7 +277,9 @@ theorem exists_germ_bound (P : ClosedPolygon m) (i : ZMod (m + 3)) {lam : ℝ} (
 /-- **Step 3: the half-width.** One positive `rho` below `lam`, separating each trimmed edge
 from every other edge with a factor `2` to spare, and meeting the germ threshold at every
 vertex. Only `0 < lam` is needed: if `lam` were so large that a trimmed edge came out empty,
-its separation clause would be vacuous. -/
+its separation clause would be vacuous.
+@isnad1 id=ex.1h3v.s8.fc8ea32e4bd3 from=translated src=- shape=8db84775 vocab=0aff9025
+-/
 theorem exists_half_width (P : ClosedPolygon m) {lam : ℝ} (hlam : 0 < lam) :
     ∃ rho > 0, rho < lam ∧
       (∀ i j, j ≠ i → ∀ c ∈ Set.Icc lam (P.len i - lam), ∀ y ∈ P.edge j,
@@ -305,7 +332,9 @@ open ClosedPolygon
 
 /-- **Lemma 1.8, the constants.** Every simple closed polygon carries a `StripData`, and its
 collar can be put inside any prescribed open set containing the curve. This is what makes
-`Schoenflies/Strip.lean` with the required constants supplied. -/
+`Schoenflies/Strip.lean` with the required constants supplied.
+@isnad1 id=ex.2h3v.s6.13a224512986 from=translated src=- shape=f806900f vocab=d4880acf
+-/
 theorem exists_stripData_subset (P : ClosedPolygon m) {U : Set Plane} (hU : IsOpen U)
     (hPU : P.carrier ⊆ U) : ∃ D : StripData P, D.nbhd ⊆ U := by
   obtain ⟨R, hR, hRlen, hRvv, hRve, hRU⟩ := P.exists_cone_radius hU hPU
@@ -315,7 +344,9 @@ theorem exists_stripData_subset (P : ClosedPolygon m) {U : Set Plane} (hU : IsOp
   refine ⟨⟨R, R / 5, rho, hrho, hrl, by linarith, hlen4, hRlen, hRvv, hRve, htrim, hgerm⟩, ?_⟩
   exact subset_trans (StripData.nbhd_subset_thickening _) hRU
 
-/-- Every simple closed polygon carries a `StripData`. -/
+/-- Every simple closed polygon carries a `StripData`.
+@isnad1 id=nonempty.0h2v.s3.025929de3d9c from=translated src=- shape=1f8e965c vocab=a138561a
+-/
 theorem exists_stripData (P : ClosedPolygon m) : Nonempty (StripData P) :=
   ⟨(exists_stripData_subset P isOpen_univ (subset_univ _)).choose⟩
 

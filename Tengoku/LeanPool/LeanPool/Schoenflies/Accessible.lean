@@ -53,12 +53,17 @@ boundary circle. -/
 def StronglyAccessible (D : Set Plane) (p : Plane) : Prop :=
   ∃ (q : Plane) (r : ℝ), 0 < r ∧ dist q p = r ∧ ball q r ⊆ D
 
+/--
+@isnad1 id=strongly.2h3v.s4.9ab99c106890 from=translated src=- shape=a521bc0f vocab=0032d820
+-/
 theorem StronglyAccessible.mono (h : StronglyAccessible D p) (hDE : D ⊆ E) :
     StronglyAccessible E p := by
   obtain ⟨q, r, hr, hd, hball⟩ := h
   exact ⟨q, r, hr, hd, hball.trans hDE⟩
 
-/-- The centre of a tangent disk is not the point of tangency. -/
+/-- The centre of a tangent disk is not the point of tangency.
+@isnad1 id=ex.1h2v.s4.25e95f06f618 from=translated src=- shape=374b14bd vocab=93da3f24
+-/
 theorem StronglyAccessible.exists_ne (h : StronglyAccessible D p) :
     ∃ q ∈ D, p ≠ q := by
   obtain ⟨q, r, hr, hd, hball⟩ := h
@@ -73,7 +78,9 @@ component contains a disk tangent to `C` at `a`.
 
 The hypothesis is phrased as `connectedComponentIn Cᶜ q ⊆ D` rather than as `D` being that
 component, so that it can be discharged by an inclusion when `D` is known only up to
-containment. No closedness of `C` is needed. -/
+containment. No closedness of `C` is needed.
+@isnad1 id=strongly.4h4v.s7.22488a1c48ff from=translated src=- shape=eb705774 vocab=15d5890c
+-/
 theorem stronglyAccessible_of_isMinOn {a : Plane} (hq : q ∉ C) (ha : a ∈ C)
     (hmin : ∀ b ∈ C, dist q a ≤ dist q b) (hD : connectedComponentIn Cᶜ q ⊆ D) :
     StronglyAccessible D a := by
@@ -97,22 +104,35 @@ and makes the openness of the cone immediate. -/
 def accessCone (p v : Plane) (s : ℝ) : Set Plane :=
   {x | ‖x - p‖ < s ∧ ‖x - p‖ / 2 < inner ℝ v (x - p)}
 
+/--
+@isnad1 id=iff.0h4v.s8.f06effe49c09 from=translated src=- shape=4dd28b56 vocab=423bab65
+-/
 theorem mem_accessCone_iff {x : Plane} :
     x ∈ accessCone p v s ↔ ‖x - p‖ < s ∧ ‖x - p‖ / 2 < inner ℝ v (x - p) := Iff.rfl
 
+/--
+@isnad1 id=le.0h3v.s5.ddde0085f466 from=translated src=- shape=d719fb36 vocab=b1cc2ffc
+-/
 theorem accessCone_subset_ball_self : accessCone p v s ⊆ ball p s := fun x hx => by
   rw [mem_ball, dist_eq_norm]; exact hx.1
 
-/-- The apex is not in the cone: the cone is a set of *access* points, all distinct from `p`. -/
+/-- The apex is not in the cone: the cone is a set of *access* points, all distinct from `p`.
+@isnad1 id=not.0h3v.s4.ec2c317844d5 from=translated src=- shape=7ce4c8f2 vocab=dca50eab
+-/
 theorem notMem_accessCone : p ∉ accessCone p v s := by
   intro h
   have := h.2
   simp at this
 
+/--
+@isnad1 id=le.1h4v.s4.3ecd1b0ad049 from=translated src=- shape=c2687bb6 vocab=45a6bcd7
+-/
 theorem accessCone_mono (hs : s ≤ s') : accessCone p v s ⊆ accessCone p v s' :=
   fun _ hx => ⟨hx.1.trans_le hs, hx.2⟩
 
-/-- The cone is open. -/
+/-- The cone is open.
+@isnad1 id=isopen.0h3v.s5.f9849b8745e5 from=translated src=- shape=75efdbb8 vocab=4ca572c6
+-/
 theorem isOpen_accessCone : IsOpen (accessCone p v s) := by
   have h1 : Continuous fun x : Plane => ‖x - p‖ := (continuous_id.sub continuous_const).norm
   have h2 : Continuous fun x : Plane => inner ℝ v (x - p) :=
@@ -121,7 +141,9 @@ theorem isOpen_accessCone : IsOpen (accessCone p v s) := by
   exact (isOpen_lt h1 continuous_const).inter (isOpen_lt (h1.div_const 2) h2)
 
 /-- Membership in the cone in the form used by the blueprint: a unit direction `w` making an
-angle of less than 60 degrees with `v`, and a distance `t` below the truncation radius. -/
+angle of less than 60 degrees with `v`, and a distance `t` below the truncation radius.
+@isnad1 id=mem.4h5v.s8.c23194529bc7 from=translated src=- shape=05254384 vocab=921464d5
+-/
 theorem mem_accessCone (hw : ‖w‖ = 1) (hcone : 1 / 2 < inner ℝ v w) (ht : 0 < t) (hts : t < s) :
     p + t • w ∈ accessCone p v s := by
   have hsub : p + t • w - p = t • w := by module
@@ -132,13 +154,17 @@ theorem mem_accessCone (hw : ‖w‖ = 1) (hcone : 1 / 2 < inner ℝ v w) (ht : 
   nlinarith
 
 /-- The cone at `p` around the direction `v` is nonempty for every positive truncation radius:
-the direction `v` itself is admissible. -/
+the direction `v` itself is admissible.
+@isnad1 id=nonempty.2h3v.s6.ef840131707e from=translated src=- shape=897d66a2 vocab=473d2467
+-/
 theorem accessCone_nonempty (hv : ‖v‖ = 1) (hs : 0 < s) : (accessCone p v s).Nonempty := by
   refine ⟨p + (s / 2) • v, mem_accessCone hv ?_ (by linarith) (by linarith)⟩
   rw [real_inner_self_eq_norm_sq, hv]
   norm_num
 
-/-- An open segment leaving `p` in an admissible direction lies in the cone. -/
+/-- An open segment leaving `p` in an admissible direction lies in the cone.
+@isnad1 id=le.3h4v.s8.cd0b7a0b42ae from=translated src=- shape=20eb0161 vocab=60959eda
+-/
 theorem openSegment_subset_accessCone (hw : ‖w‖ = 1) (hcone : 1 / 2 < inner ℝ v w) (hs : 0 < s) :
     openSegment ℝ p (p + s • w) ⊆ accessCone p v s := by
   rintro x ⟨α, β, hα, hβ, hαβ, rfl⟩
@@ -155,7 +181,9 @@ tangent at `p`, then the whole truncated cone around `v = (q - p)/r` of any radi
 inside that disk.
 
 The estimate behind it is the blueprint's: for `x` in the cone, with `d = ‖x - p‖`,
-`‖x - q‖² = d² - 2⟪x - p, q - p⟫ + r² < d² - rd + r² = r² + d(d - r) < r²`. -/
+`‖x - q‖² = d² - 2⟪x - p, q - p⟫ + r² < d² - rd + r² = r² + d(d - r) < r²`.
+@isnad1 id=le.3h4v.s8.4e0277a3eba6 from=translated src=- shape=e835fc4d vocab=222a2a16
+-/
 theorem accessCone_subset_ball (hr : 0 < r) (hpq : ‖q - p‖ = r) (hs : s ≤ r) :
     accessCone p (r⁻¹ • (q - p)) s ⊆ ball q r := by
   rintro x ⟨hlt, hcone⟩
@@ -184,7 +212,9 @@ theorem accessCone_subset_ball (hr : 0 < r) (hpq : ‖q - p‖ = r) (hs : s ≤ 
 
 /-- Lemma 8.4 (tangent-disk cone), in the literal form of the blueprint: if `B(q, r)` is
 tangent at `p`, `v = (q - p)/r`, and `w` is a unit vector with `⟪v, w⟫ > 1/2`, then the
-straight ray from `p` in the direction `w` stays in the disk up to distance `r`. -/
+straight ray from `p` in the direction `w` stays in the disk up to distance `r`.
+@isnad1 id=mem.6h5v.s9.e34eb3f835e3 from=translated src=- shape=4d0a9368 vocab=7a2aadce
+-/
 theorem tangent_cone (hr : 0 < r) (hpq : ‖q - p‖ = r) (hw : ‖w‖ = 1)
     (hcone : 1 / 2 < inner ℝ (r⁻¹ • (q - p)) w) (ht : 0 < t) (htr : t < r) :
     p + t • w ∈ ball q r :=
@@ -192,7 +222,9 @@ theorem tangent_cone (hr : 0 < r) (hpq : ‖q - p‖ = r) (hw : ‖w‖ = 1)
 
 /-- A strongly accessible point has a nonempty open cone of straight access segments into `D`,
 and the cone may be truncated at any radius below the radius of the tangent disk — which is how
-the construction makes it avoid a compact set already built. -/
+the construction makes it avoid a compact set already built.
+@isnad1 id=ex.1h2v.s6.6a07d0d9c425 from=translated src=- shape=cfe97079 vocab=6a5399b5
+-/
 theorem StronglyAccessible.exists_cone (h : StronglyAccessible D p) :
     ∃ v : Plane, ‖v‖ = 1 ∧ ∃ r > 0, ∀ s ≤ r, accessCone p v s ⊆ D := by
   obtain ⟨q, r, hr, hd, hball⟩ := h
@@ -201,7 +233,9 @@ theorem StronglyAccessible.exists_cone (h : StronglyAccessible D p) :
   rw [norm_smul, hpq, Real.norm_eq_abs, abs_of_pos (inv_pos.2 hr), inv_mul_cancel₀ hr.ne']
 
 /-- A strongly accessible point is the endpoint of a straight access segment: the open segment
-from `p` to the centre of the tangent disk lies in `D`. -/
+from `p` to the centre of the tangent disk lies in `D`.
+@isnad1 id=ex.1h2v.s7.18db1d447f53 from=translated src=- shape=97adeb69 vocab=ba5a379f
+-/
 theorem StronglyAccessible.openSegment_subset (h : StronglyAccessible D p) :
     ∃ z ∈ D, p ≠ z ∧ openSegment ℝ p z ⊆ D := by
   obtain ⟨q, r, hr, hd, hball⟩ := h
@@ -227,7 +261,9 @@ such a `q` is at most `dist q p` from `q`, hence at most `2 * dist q p` from `p`
 
 The hypothesis `C ⊆ closure D` replaces the blueprint's appeal to `C = ∂D` (Theorem 6.1);
 `hDmax` says `D` swallows the connected component in `Cᶜ` of each of its points, which holds
-when `D` is such a component. -/
+when `D` is such a component.
+@isnad1 id=ex.6h2v.s8.6ccbbbeffe68 from=translated src=- shape=afcd5459 vocab=713765d9
+-/
 theorem exists_countable_dense_stronglyAccessible (hC : IsCompact C) (hCne : C.Nonempty)
     (hDopen : IsOpen D) (hDC : D ⊆ Cᶜ) (hDmax : ∀ q ∈ D, connectedComponentIn Cᶜ q ⊆ D)
     (hCD : C ⊆ closure D) :

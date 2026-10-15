@@ -41,7 +41,9 @@ variable [T2Space X] [ConnectedSpace X]
 omit [T2Space X] [ConnectedSpace X] in
 /-- Some maximal-atlas chart has target containing the standard configuration
 ball (affine renormalization of any chart,
-`Rado.affine_trans_mem_riemannAtlas`). -/
+`Rado.affine_trans_mem_riemannAtlas`).
+@isnad1 id=ex.0h1v.s7.235d0b63ba5e from=translated src=- shape=861541d2 vocab=cc995a3b
+-/
 theorem exists_config_chart [Nonempty X] :
     ∃ e ∈ riemannAtlas X, ball (0 : ℂ) 8 ⊆ e.target := by
   obtain ⟨x₀⟩ := ‹Nonempty X›
@@ -79,7 +81,9 @@ theorem exists_config_chart [Nonempty X] :
   rw [← hwz]
   exact e'.map_source hmem
 
-/-- Transfer of local second countability to an open subspace. -/
+/-- Transfer of local second countability to an open subspace.
+@isnad1 id=ex.1h3v.s7.e5b56ddf8856 from=translated src=- shape=0384e795 vocab=d50f65c8
+-/
 theorem locally_secondCountable_subtype {Z : Type*} [TopologicalSpace Z] {C : Set Z}
     (h : ∀ z ∈ C, ∃ U : Set Z, z ∈ U ∧ IsOpen U ∧ SecondCountableTopology U)
     (q : C) : ∃ W : Set C, q ∈ W ∧ IsOpen W ∧ SecondCountableTopology W := by

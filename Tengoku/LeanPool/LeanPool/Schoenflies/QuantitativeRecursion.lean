@@ -38,6 +38,9 @@ variable (q : QuantitativeSchedule C)
 /-- The recurrent centre used at stage `n`. -/
 def centre (n : ℕ) : Plane := recur q.centreBase n
 
+/--
+@isnad1 id=mem.0h3v.s4.1b018296e06c from=translated src=- shape=82f8b0e0 vocab=ab55e5ee
+-/
 theorem centre_mem (n : ℕ) : q.centre n ∈ inside C := q.centreBase_mem _
 
 end QuantitativeSchedule
@@ -45,10 +48,16 @@ end QuantitativeSchedule
 /-- The dyadic window and source-mesh scale at successor `n`. -/
 noncomputable def dyadicScale (n : ℕ) : ℝ := ((2 : ℝ) ^ n)⁻¹ / 2
 
+/--
+@isnad1 id=lt.0h1v.s3.05baabc78ae2 from=translated src=- shape=b9369acb vocab=45c03bae
+-/
 theorem dyadicScale_pos (n : ℕ) : 0 < dyadicScale n := by
   rw [dyadicScale]
   positivity
 
+/--
+@isnad1 id=tendsto.0h0v.s4.536d21a3b9d9 from=translated src=- shape=8e2810f0 vocab=063f7eea
+-/
 theorem tendsto_dyadicScale : Tendsto dyadicScale atTop (nhds 0) := by
   change Tendsto (fun n : ℕ => ((2 : ℝ) ^ n)⁻¹ / 2) atTop (nhds 0)
   simpa only [zero_div] using tendsto_two_pow_neg.div_const (2 : ℝ)
@@ -56,9 +65,15 @@ theorem tendsto_dyadicScale : Tendsto dyadicScale atTop (nhds 0) := by
 /-- The target bound leaves an inessential factor four for the initial-stage estimate. -/
 noncomputable def dyadicTargetBound (n : ℕ) : ℝ := 4 * dyadicScale n
 
+/--
+@isnad1 id=lt.0h1v.s3.8c77bdff3f3a from=translated src=- shape=b9369acb vocab=7a9f5278
+-/
 theorem dyadicTargetBound_pos (n : ℕ) : 0 < dyadicTargetBound n :=
   mul_pos (by norm_num) (dyadicScale_pos n)
 
+/--
+@isnad1 id=tendsto.0h0v.s4.11e9a5594578 from=translated src=- shape=8e2810f0 vocab=29f21156
+-/
 theorem tendsto_dyadicTargetBound :
     Tendsto dyadicTargetBound atTop (nhds 0) := by
   change Tendsto (fun n => 4 * dyadicScale n) atTop (nhds 0)
@@ -70,6 +85,9 @@ noncomputable def quantitativeTargetEps : ℕ → ℝ
   | 0 => 4
   | n + 1 => dyadicTargetBound n
 
+/--
+@isnad1 id=tendsto.0h0v.s4.c696c4c6ce3c from=translated src=- shape=8e2810f0 vocab=a015b558
+-/
 theorem tendsto_quantitativeTargetEps :
     Tendsto quantitativeTargetEps atTop (nhds 0) := by
   apply (tendsto_add_atTop_iff_nat (f := quantitativeTargetEps) 1).mp
@@ -96,9 +114,15 @@ noncomputable def quantitativeStage : ℕ →
   fun n => Nat.rec P₀
     (fun k P => (scheduledQuantitativeSuccessor hC hcycle q k P).pair) n
 
+/--
+@isnad1 id=eq.2h5v.s7.4cb2ef52fc57 from=translated src=- shape=9728b31e vocab=97408093
+-/
 @[simp] theorem quantitativeStage_zero :
     quantitativeStage P₀ hC hcycle q 0 = P₀ := rfl
 
+/--
+@isnad1 id=eq.2h6v.s8.f439d4abe268 from=translated src=- shape=cf7ef93e vocab=db537e25
+-/
 @[simp] theorem quantitativeStage_succ (n : ℕ) :
     quantitativeStage P₀ hC hcycle q (n + 1) =
       (scheduledQuantitativeSuccessor hC hcycle q n
@@ -110,7 +134,9 @@ noncomputable def quantitativeParent (n : ℕ) : γ → γ :=
   (scheduledQuantitativeSuccessor hC hcycle q n
     (quantitativeStage P₀ hC hcycle q n)).parent
 
-/-- Consecutive recursively chosen stages satisfy the common transition interface. -/
+/-- Consecutive recursively chosen stages satisfy the common transition interface.
+@isnad1 id=stagetra.2h6v.s7.74352fe5ceee from=translated src=- shape=0784d87d vocab=1e9ecc56
+-/
 theorem quantitativeTransition (n : ℕ) :
     StageTransition
       (quantitativeStage P₀ hC hcycle q (n + 1))
@@ -120,7 +146,9 @@ theorem quantitativeTransition (n : ℕ) :
   exact (scheduledQuantitativeSuccessor hC hcycle q n
     (quantitativeStage P₀ hC hcycle q n)).transition
 
-/-- Every noninitial target star satisfies the scheduled dyadic bound. -/
+/-- Every noninitial target star satisfies the scheduled dyadic bound.
+@isnad1 id=lt.3h7v.s8.78518847cc37 from=translated src=- shape=6def3b9a vocab=d7861249
+-/
 theorem quantitativeStage_diam_targetStar_lt (n : ℕ) {σ : γ}
     (hσ : σ ∈ (quantitativeStage P₀ hC hcycle q (n + 1)).str.cells) :
     diam ((quantitativeStage P₀ hC hcycle q (n + 1)).tgt.star σ) <
@@ -129,7 +157,9 @@ theorem quantitativeStage_diam_targetStar_lt (n : ℕ) {σ : γ}
   exact (scheduledQuantitativeSuccessor hC hcycle q n
     (quantitativeStage P₀ hC hcycle q n)).diam_targetStar_lt hσ
 
-/-- Every target star satisfies the stage-indexed uniform bound, including stage zero. -/
+/-- Every target star satisfies the stage-indexed uniform bound, including stage zero.
+@isnad1 id=le.3h7v.s8.78fb96ebfc90 from=translated src=- shape=b1248119 vocab=38b6e224
+-/
 theorem quantitativeStage_diam_targetStar_le (n : ℕ) {σ : γ}
     (hσ : σ ∈ (quantitativeStage P₀ hC hcycle q n).str.cells) :
     diam ((quantitativeStage P₀ hC hcycle q n).tgt.star σ) ≤
@@ -153,7 +183,9 @@ theorem quantitativeStage_diam_targetStar_le (n : ℕ) {σ : γ}
       exact (quantitativeStage_diam_targetStar_lt P₀ hC hcycle q n hσ).le
 
 /-- At every point caught by the stage-`n` window, the successor source star satisfies the
-scheduled dyadic bound. -/
+scheduled dyadic bound.
+@isnad1 id=le.3h7v.s9.6fa999ae077e from=translated src=- shape=5344ddcf vocab=4f2f8322
+-/
 theorem quantitativeStage_diam_sourceStar_le (n : ℕ) {x : Plane}
     (hx : x ∈ openWindow C (dyadicScale n) (q.centre n)) :
     diam ((quantitativeStage P₀ hC hcycle q (n + 1)).src.star
@@ -164,7 +196,9 @@ theorem quantitativeStage_diam_sourceStar_le (n : ℕ) {x : Plane}
     (quantitativeStage P₀ hC hcycle q n)).diam_sourceStar_le
       hC (q.centre_mem n) (dyadicScale_pos n) (dyadicScale_pos n) hx
 
-/-- Source stars at a fixed point shrink monotonically through all later recursive stages. -/
+/-- Source stars at a fixed point shrink monotonically through all later recursive stages.
+@isnad1 id=le.4h8v.s9.da6e4c6d33b3 from=translated src=- shape=d0968058 vocab=ddec9f56
+-/
 theorem quantitativeStage_sourceStar_subset_of_le {n m : ℕ} (hnm : n ≤ m)
     {x : Plane} (hx : x ∈ C ∪ inside C) :
     (quantitativeStage P₀ hC hcycle q m).src.star
@@ -195,6 +229,9 @@ noncomputable def denseQuantitativeSchedule (hC : IsSeparating C) :
       centreBase_mem := fun n => (TopologicalSpace.denseSeq (inside C) n).property
       anchors := fun _ => [] }
 
+/--
+@isnad1 id=centresd.1h1v.s3.3316cda95ff6 from=translated src=- shape=33d83af6 vocab=9889732a
+-/
 theorem denseQuantitativeSchedule_centresDense (hC : IsSeparating C) :
     (denseQuantitativeSchedule hC).CentresDense := by
   let _ : Nonempty (inside C) := hC.isConnected_inside.nonempty.to_subtype
@@ -207,7 +244,9 @@ theorem denseQuantitativeSchedule_centresDense (hC : IsSeparating C) :
   simpa only [denseQuantitativeSchedule, Subtype.dist_eq] using hk
 
 /-- The recurrent dense windows and dyadic mesh bounds force pointwise convergence of the
-source-star diameters. -/
+source-star diameters.
+@isnad1 id=tendsto.4h6v.s9.01137765d207 from=translated src=- shape=f2bc8696 vocab=2c5baac0
+-/
 theorem tendsto_quantitativeStage_diam_sourceStar
     (hdense : q.CentresDense) {x : Plane} (hx : x ∈ inside C) :
     Tendsto (fun n => diam ((quantitativeStage P₀ hC hcycle q n).src.star

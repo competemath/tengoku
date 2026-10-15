@@ -50,7 +50,9 @@ private theorem orderedPairBracket_inner_last {n : ℕ} (f : Fin (n + 1) → Col
       intro j _
       exact bracket_comm _ _
 
-/-- Adding the last position adds precisely its brackets with all earlier positions. -/
+/-- Adding the last position adds precisely its brackets with all earlier positions.
+@isnad1 id=eq.0h2v.s6.1c8c6bf5c048 from=translated src=- shape=615f6d9a vocab=b854edea
+-/
 theorem orderedPairBracket_succ {n : ℕ} (f : Fin (n + 1) → Color) :
     orderedPairBracket f =
       orderedPairBracket (fun i : Fin n ↦ f i.castSucc) +
@@ -69,7 +71,9 @@ theorem orderedPairBracket_succ {n : ℕ} (f : Fin (n + 1) → Color) :
     change (∑ i : Fin n, g (f i.castSucc)) = g (∑ i : Fin n, f i.castSucc)
     exact (map_sum g (fun i : Fin n ↦ f i.castSucc) Finset.univ).symm
 
-/-- Polarization of `quadratic` along a finite linearly ordered word. -/
+/-- Polarization of `quadratic` along a finite linearly ordered word.
+@isnad1 id=eq.0h2v.s6.22f603a4a60a from=translated src=- shape=f69e6249 vocab=6b3a0b69
+-/
 theorem quadratic_sum_fin : ∀ {n : ℕ} (f : Fin n → Color),
     quadratic (∑ i, f i) = (∑ i, quadratic (f i)) + orderedPairBracket f
   | 0, f => by simp [orderedPairBracket, quadratic]
@@ -84,6 +88,9 @@ def colorFiber {I : Type*} [Fintype I] (f : I → Color) (c : Color) :
     Finset I :=
   Finset.univ.filter fun i ↦ f i = c
 
+/--
+@isnad1 id=eq.0h3v.s7.5a06d2e115b8 from=translated src=- shape=df5f4e18 vocab=10ca854c
+-/
 theorem cast_colorFiber_card {I : Type*} [Fintype I]
     (f : I → Color) (c : Color) :
     ((colorFiber f c).card : F₂) = ∑ i, if f i = c then 1 else 0 := by
@@ -117,7 +124,9 @@ private def colorSndHom : Color →+ F₂ where
 
 /-- In an even finite family of four colours, vanishing of the two linear moments and of the
 quadratic moment is equivalent to every colour occurring evenly.  This is the forward direction
-needed in the Sabidussi argument. -/
+needed in the Sabidussi argument.
+@isnad1 id=even.3h3v.s7.7cd38fc3b5d4 from=translated src=- shape=d31ea92d vocab=4fa7c733
+-/
 theorem colorFiber_card_even_of_moments {I : Type*} [Fintype I]
     (f : I → Color) (hcard : Even (Fintype.card I))
     (hsum : ∑ i, f i = 0) (hquadratic : ∑ i, quadratic (f i) = 0) (c : Color) :

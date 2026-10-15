@@ -48,6 +48,9 @@ namespace Functor
 attribute [reducible, instance] Functor.quasiBorelSpace
 attribute [simp] Functor.map_id Functor.map_comp
 
+/--
+@isnad1 id=eq.0h7v.s7.7ff776c0fac7 from=translated src=- shape=5d44bfb0 vocab=911cb119
+-/
 @[simp]
 lemma map_comp_coe
     {F} [Functor F]
@@ -80,6 +83,9 @@ namespace Comp
 
 variable {F} [Functor F] {S} [Sequence S] {n}
 
+/--
+@isnad1 id=eq.1h5v.s6.5888523833e7 from=translated src=- shape=49d8950b vocab=fe39972b
+-/
 @[ext]
 lemma ext {x y : Comp F S n} (h : x.get = y.get) : x = y := by
   cases x; cases y; simpa only [mk.injEq]
@@ -87,10 +93,16 @@ lemma ext {x y : Comp F S n} (h : x.get = y.get) : x = y := by
 instance : QuasiBorelSpace (Comp F S n) :=
   lift get
 
+/--
+@isnad1 id=ishom.0h3v.s5.2f87dad85aee from=translated src=- shape=fd151328 vocab=e6b678a1
+-/
 @[fun_prop]
 lemma isHom_mk : IsHom (mk (F := F) (S := S) (n := n)) := by
   simp only [isHom_to_lift, isHom_id']
 
+/--
+@isnad1 id=ishom.0h3v.s5.ff63b4cc03e0 from=translated src=- shape=ea9e9814 vocab=d96185cc
+-/
 @[fun_prop]
 lemma isHom_get : IsHom (get (F := F) (S := S) (n := n)) := by
   apply isHom_of_lift _
@@ -127,6 +139,9 @@ end Simps
 
 initialize_simps_projections Limit (toFun → coe)
 
+/--
+@isnad1 id=eq.1h3v.s5.939b9c269731 from=translated src=- shape=63708e38 vocab=e7cc2a7d
+-/
 @[ext]
 lemma ext {f g : Limit S} (h : ∀ x, f x = g x) : f = g := DFunLike.ext f g h
 
@@ -138,15 +153,27 @@ protected def copy (f : Limit S) (f' : ∀ n, S n) (h : f' = ⇑f) : Limit S whe
   toFun := f'
   property := h.symm ▸ f.property
 
+/--
+@isnad1 id=eq.1h2v.s7.def9bc7f35ae from=translated src=- shape=c5a2dfb5 vocab=86945367
+-/
 @[simp]
 lemma coe_mk {f : ∀ n, S n} (hf : ∀ n, Sequence.project n (f (n + 1)) = f n) : ⇑(mk f hf) = f := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.4c41548addf4 from=translated src=- shape=81fae2a0 vocab=13695de2
+-/
 @[simp]
 lemma eta (f : Limit S) : mk f f.property = f := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.1bf2587d5a0e from=translated src=- shape=efd49dad vocab=9c8ade74
+-/
 @[simp]
 lemma toFun_eq_coe (f : Limit S) : toFun f = ⇑f := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.8d1968776266 from=translated src=- shape=32546154 vocab=c66487cf
+-/
 @[simp]
 lemma project_coe (n) (f : Limit S) : Sequence.project n (f (n + 1)) = f n := f.property n
 
@@ -158,6 +185,9 @@ def toSubtype {S} [Sequence S] (x : Limit S)
 instance {S} [Sequence S] : QuasiBorelSpace (Limit S) :=
   lift toSubtype
 
+/--
+@isnad1 id=ishom.2h3v.s7.5f04a9696c01 from=translated src=- shape=e5bcd964 vocab=4a5787ed
+-/
 @[fun_prop]
 lemma isHom_mk {S} [Sequence S]
     {f : A → ∀ n, S n} (hf₁ : IsHom f) (hf₂ : ∀ x n, Sequence.project n (f x (n + 1)) = f x n)
@@ -165,6 +195,9 @@ lemma isHom_mk {S} [Sequence S]
   simp only [isHom_to_lift, toSubtype, Pi.isHom_iff]
   fun_prop
 
+/--
+@isnad1 id=ishom.1h4v.s5.7c321b1b28f9 from=translated src=- shape=b5a67da0 vocab=0f4990e2
+-/
 @[fun_prop]
 lemma isHom_coe
     {S} [Sequence S] {f : A → Limit S} (hf : IsHom f) {n}
@@ -205,10 +238,16 @@ namespace Iter
 instance {n} : QuasiBorelSpace (Iter F n) :=
   lift get
 
+/--
+@isnad1 id=ishom.0h2v.s5.adc8c9c85be9 from=translated src=- shape=8042b72e vocab=c0f5d4fd
+-/
 @[local fun_prop, simp]
 lemma isHom_get {n} : IsHom (get (F := F) (n := n)) :=
   isHom_of_lift get
 
+/--
+@isnad1 id=ishom.0h2v.s5.bc20afe5f737 from=translated src=- shape=9bfd4054 vocab=473ebfbd
+-/
 @[local fun_prop, simp]
 lemma isHom_mk {n} : IsHom (mk (F := F) (n := n)) := by
   simp only [isHom_to_lift, isHom_id']
@@ -248,6 +287,9 @@ def succ {n} : F (Iter F n) →𝒒 Iter F (n + 1) where
 def unsucc {n} : Iter F (n + 1) →𝒒 F (Iter F n) where
   toFun x := Functor.map mkHom x.get
 
+/--
+@isnad1 id=eq.0h3v.s8.6522569b4cf6 from=translated src=- shape=4a363158 vocab=1bc09d03
+-/
 @[simp]
 lemma succ_unsucc {n} (x : Iter F (n + 1)) : succ (unsucc x) = x := by
   rcases x with ⟨x⟩
@@ -256,12 +298,18 @@ lemma succ_unsucc {n} (x : Iter F (n + 1)) : succ (unsucc x) = x := by
   rw [Functor.map_comp_coe, getHom_comp_mkHom, Functor.map_id]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.4746d322a9ee from=translated src=- shape=1cb0660c vocab=1bc09d03
+-/
 @[simp]
 lemma unsucc_succ {n} (x : F (Iter F n)) : unsucc (succ x) = x := by
   change Functor.map mkHom (Functor.map getHom x) = x
   rw [Functor.map_comp_coe, mkHom_comp_getHom, Functor.map_id]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s8.64410be50b18 from=translated src=- shape=936f8230 vocab=8bd4a779
+-/
 lemma succ_injective {n} {x y : F (Iter F n)} (h : succ x = succ y) : x = y := by
   rw [← unsucc_succ x, ← unsucc_succ y, h]
 
@@ -273,12 +321,18 @@ def project : ∀ n, Iter F (n + 1) →𝒒 Iter F n
 instance : Sequence (Iter F) where
   project {n} := project n
 
+/--
+@isnad1 id=eq.0h1v.s7.1506e608d2d6 from=translated src=- shape=b9c1a953 vocab=48a8d3d1
+-/
 @[simp]
 lemma project_zero
     : Sequence.project (S := Iter F) (n := 0)
     = .mk fun _ ↦ zero := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.577e0dc23330 from=translated src=- shape=a45ed4da vocab=edf1fd96
+-/
 @[simp]
 lemma project_succ {n}
     : Sequence.project (S := Iter F) (n := n + 1)
@@ -310,11 +364,17 @@ attribute [simp] seq_unseq unseq_seq
 
 variable [Continuous F] {S} [Sequence S]
 
+/--
+@isnad1 id=eq.0h3v.s8.0c5c45c04a80 from=translated src=- shape=f9c6f31d vocab=6c320d11
+-/
 @[simp]
 lemma seq_unseq_coe (x : Limit (Comp F S)) : seq (unseq x) = x := by
   have := congr_arg (DFunLike.coe · x) seq_unseq
   simpa only [QuasiBorelHom.comp_coe, QuasiBorelHom.id_coe] using this
 
+/--
+@isnad1 id=eq.0h3v.s8.cf101088e8c5 from=translated src=- shape=96c1c990 vocab=6c320d11
+-/
 @[simp]
 lemma unseq_seq_coe (x : F (Limit S)) : unseq (seq x) = x := by
   have := congr_arg (DFunLike.coe · x) unseq_seq
@@ -333,10 +393,16 @@ namespace Nu
 instance {F} [Functor F] : QuasiBorelSpace (Nu F) :=
   lift get
 
+/--
+@isnad1 id=ishom.0h1v.s5.ce0d75d6f5ca from=translated src=- shape=c5319f67 vocab=0d09ee13
+-/
 @[local fun_prop, simp]
 lemma isHom_get : IsHom (get (F := F)) :=
   isHom_of_lift get
 
+/--
+@isnad1 id=ishom.0h1v.s5.84aa287bc60f from=translated src=- shape=85fd71cd vocab=54158423
+-/
 @[local fun_prop, simp]
 lemma isHom_mk : IsHom (mk (F := F)) := by
   simp only [isHom_to_lift (A := Nu F), isHom_id']
@@ -396,12 +462,18 @@ def roll [Continuous F] : F (Nu F) →𝒒 Nu F where
 def unroll [Continuous F] : Nu F →𝒒 F (Nu F) where
   toFun x := Functor.map (.mk mk) (Continuous.unseq (shift x.get))
 
+/--
+@isnad1 id=eq.0h2v.s7.bff15fef3f4a from=translated src=- shape=037d9217 vocab=82091da3
+-/
 @[simp]
 lemma roll_unroll [Continuous F] (x : Nu F) : roll (unroll x) = x := by
   rcases x with ⟨x⟩
   simp only [roll, unroll, QuasiBorelHom.coe_mk, Functor.map_comp_coe, mk.injEq]
   simp_all
 
+/--
+@isnad1 id=eq.0h2v.s7.8c3ea9789b7d from=translated src=- shape=78b0ce82 vocab=82091da3
+-/
 @[simp]
 lemma unroll_roll [Continuous F] (x : F (Nu F)) : unroll (roll x) = x := by
   simp only [

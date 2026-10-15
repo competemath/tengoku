@@ -121,7 +121,9 @@ include h
 
 /-- **The region the crosscut enters is the component of any of its points off `C`.** This is
 what lets "both crosscuts lie on the same side" be supplied as a statement about one connected
-component, which is the form a plane-graph argument has it in. -/
+component, which is the form a plane-graph argument has it in.
+@isnad1 id=eq.3h11v.s7.9b70fcd867b3 from=translated src=- shape=5320cea6 vocab=4256ce04
+-/
 theorem connectedComponentIn_cover_eq {z : Plane} (hz : z ∈ cover K) (hzC : z ∉ C.carrier) :
     connectedComponentIn C.carrierᶜ z = farRegion C.carrier y :=
   h.regionPairC.left.connectedComponentIn_eq C.isSeparating_carrier
@@ -136,7 +138,9 @@ alternate — then `Q` meets `K`.
 The proof is the blueprint's. By Theorem 2.8 the region minus the first crosscut is the union of
 the two cells; `Q`, being connected and (for contradiction) missing the first crosscut, lies in
 one of them; and the closure of that cell meets `C` in one arc only
-(`IsPolygonalCrosscut.closure_cell_inter₁`), so one of the two named points cannot be there. -/
+(`IsPolygonalCrosscut.closure_cell_inter₁`), so one of the two named points cannot be there.
+@isnad1 id=nonempty.9h13v.s9.b3a461fb4590 from=translated src=- shape=ec06b7be vocab=bdffcccb
+-/
 theorem inter_cover_nonempty {Q : Set Plane} {w₁ w₂ : Plane}
     (hconn : IsPreconnected Q) (hside : Q ⊆ farRegion C.carrier y)
     (hw₁ : w₁ ∈ closure Q) (hw₂ : w₂ ∈ closure Q)
@@ -177,7 +181,9 @@ theorem inter_cover_nonempty {Q : Set Plane} {w₁ w₂ : Plane}
 `w₂` whose interior `P ∖ {w₁, w₂}` lies in the same region of `ℝ² ∖ C` as the first crosscut, and
 whose endpoints alternate with the first crosscut's around `C`. Then `P` meets the first
 crosscut — and in fact it does so in the *interior* of `P`, which is what the conclusion of
-`inter_cover_nonempty` says. -/
+`inter_cover_nonempty` says.
+@isnad1 id=nonempty.7h13v.s9.d2e20f91ce5b from=translated src=- shape=342094f0 vocab=a9c8953e
+-/
 theorem arc_inter_cover_nonempty {P : Set Plane} {w₁ w₂ : Plane}
     (hP : IsArcBetween P w₁ w₂) (hside : P \ {w₁, w₂} ⊆ farRegion C.carrier y)
     (hw₁A : w₁ ∈ C.arc a k) (hw₁B : w₁ ∉ C.arc (a + k) (m + 3 - k))
@@ -190,7 +196,9 @@ theorem arc_inter_cover_nonempty {P : Set Plane} {w₁ w₂ : Plane}
 /-- **Corollary 2.9 in the shape a plane-graph argument produces it.** The two arcs of `C` cut off
 by the first crosscut are handed over as sets `A, B` meeting exactly in the two cut points
 `{p, q}`; the second crosscut is an arc from `w₁` to `w₂` with `w₁` interior to `A` and `w₂`
-interior to `B`. This is verbatim the data `Graph.IsK33Config.chords_alternate` returns. -/
+interior to `B`. This is verbatim the data `Graph.IsK33Config.chords_alternate` returns.
+@isnad1 id=nonempty.8h17v.s8.d4322cada5b9 from=translated src=- shape=4c54dc6b vocab=a9c8953e
+-/
 theorem alternating_inter_nonempty {A B P : Set Plane} {p q w₁ w₂ : Plane}
     (hA : C.arc a k = A) (hB : C.arc (a + k) (m + 3 - k) = B)
     (hAB : A ∩ B = ({p, q} : Set Plane))
@@ -204,7 +212,9 @@ theorem alternating_inter_nonempty {A B P : Set Plane} {p q w₁ w₂ : Plane}
 
 /-- **Corollary 2.9 with "the same side" read as "the same connected component".** The point `z`
 is any point of the first crosscut off `C`; the hypothesis is that the interior of the second
-crosscut lies in the component of `ℝ² ∖ C` containing `z`. -/
+crosscut lies in the component of `ℝ² ∖ C` containing `z`.
+@isnad1 id=nonempty.10h18v.s9.14aa78f62571 from=translated src=- shape=fa1391f7 vocab=f2db1a06
+-/
 theorem alternating_inter_nonempty_of_same_side {A B P : Set Plane} {p q w₁ w₂ z : Plane}
     (hz : z ∈ cover K) (hzC : z ∉ C.carrier)
     (hA : C.arc a k = A) (hB : C.arc (a + k) (m + 3 - k) = B)
@@ -217,7 +227,9 @@ theorem alternating_inter_nonempty_of_same_side {A B P : Set Plane} {p q w₁ w�
     (hside.trans (h.connectedComponentIn_cover_eq hz hzC).subset) hw₁ hw₂
 
 /-- **Corollary 2.9, case (a):** both crosscuts run inside `C`. The reference point of the first
-crosscut lying in `Ext(C)` is exactly the statement that the first crosscut runs inside. -/
+crosscut lying in `Ext(C)` is exactly the statement that the first crosscut runs inside.
+@isnad1 id=nonempty.9h17v.s8.ab6323404b64 from=translated src=- shape=623cf27b vocab=8eaaab54
+-/
 theorem alternating_inter_nonempty_inside {A B P : Set Plane} {p q w₁ w₂ : Plane}
     (hy : y ∈ outside C.carrier)
     (hA : C.arc a k = A) (hB : C.arc (a + k) (m + 3 - k) = B)
@@ -228,7 +240,9 @@ theorem alternating_inter_nonempty_inside {A B P : Set Plane} {p q w₁ w₂ : P
   h.alternating_inter_nonempty hA hB hAB hP
     (hside.trans (C.isSeparating_carrier.farRegion_eq_inside hy).symm.subset) hw₁ hw₂
 
-/-- **Corollary 2.9, case (b):** both crosscuts run outside `C`. -/
+/-- **Corollary 2.9, case (b):** both crosscuts run outside `C`.
+@isnad1 id=nonempty.9h17v.s8.aa97df637aa7 from=translated src=- shape=623cf27b vocab=8eaaab54
+-/
 theorem alternating_inter_nonempty_outside {A B P : Set Plane} {p q w₁ w₂ : Plane}
     (hy : y ∈ inside C.carrier)
     (hA : C.arc a k = A) (hB : C.arc (a + k) (m + 3 - k) = B)
@@ -251,7 +265,9 @@ meet.
 
 The blueprint also assumes `P` polygonal and its four endpoints distinct. Neither is used: the
 distinctness of the endpoints is subsumed by `w₁` and `w₂` being interior to different arcs, and
-polygonality of `P` plays no part in the argument at all. -/
+polygonality of `P` plays no part in the argument at all.
+@isnad1 id=nonempty.8h17v.s8.5bef6fcb10dd from=translated src=- shape=91890797 vocab=a9c8953e
+-/
 theorem alternating_crosscuts {A B P : Set Plane} {p q w₁ w₂ : Plane}
     (h : IsPolygonalCrosscut C J₁ J₂ K a k y)
     (hA : C.arc a k = A) (hB : C.arc (a + k) (m + 3 - k) = B)

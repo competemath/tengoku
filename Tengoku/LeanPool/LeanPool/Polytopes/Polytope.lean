@@ -26,18 +26,30 @@ def Vpolytope {S : Set E} (hS : S.Finite) : Set E :=
   (fun _ : S.Finite => convexHull ℝ S) hS
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=eq.1h2v.s6.5e735a9e5b1e from=translated src=- shape=b1e0a98f vocab=0155f5d7
+-/
 @[simp]
 lemma Vpolytope_def {S : Set E} (hS : S.Finite) : Vpolytope hS = convexHull ℝ S := rfl
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=convex.1h2v.s6.502ebc028992 from=translated src=- shape=5a8cb947 vocab=1bf445d6
+-/
 lemma Convex_Vpolytope {S : Set E} (hS : S.Finite) :
   Convex ℝ (Vpolytope hS) := convex_convexHull ℝ S
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=isclosed.1h2v.s5.3103b74414bb from=translated src=- shape=47941343 vocab=c72dbe6a
+-/
 lemma Closed_Vpolytope {S : Set E} (hS : S.Finite) :
   IsClosed (Vpolytope hS) := hS.isClosed_convexHull ℝ
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=iscompac.1h2v.s5.68eb58055c1b from=translated src=- shape=47941343 vocab=f17fed6d
+-/
 lemma Compact_Vpolytope {S : Set E} (hS : S.Finite) :
   IsCompact (Vpolytope hS) := hS.isCompact_convexHull ℝ
 
@@ -48,25 +60,40 @@ surrounding API, even though the intersection itself does not depend on it. -/
 def Hpolytope {H_ : Set (Halfspace E)} (hH_ : H_.Finite) : Set E :=
   (fun _ : H_.Finite => ⋂₀ (SetLike.coe '' H_)) hH_
 
+/--
+@isnad1 id=eq.1h2v.s6.3335aaf977dc from=translated src=- shape=0d9452c5 vocab=3a60a9da
+-/
 @[simp]
 lemma Hpolytope_def {H_ : Set (Halfspace E)} (hH_ : H_.Finite) :
     Hpolytope hH_ = ⋂₀ (SetLike.coe '' H_) := rfl
 
+/--
+@isnad1 id=convex.1h2v.s6.05531c7cdaa3 from=translated src=- shape=8f9abfa2 vocab=ec5aa6b4
+-/
 lemma Convex_Hpolytope {H_ : Set (Halfspace E)} (hH_ : H_.Finite) :
   Convex ℝ (Hpolytope hH_) := by
   apply convex_sInter
   rintro _ ⟨ Hi_, _, rfl ⟩
   exact Halfspace_convex Hi_
 
+/--
+@isnad1 id=isclosed.1h2v.s5.52493af5f8ed from=translated src=- shape=61014dff vocab=df4071bc
+-/
 lemma Closed_Hpolytope {H : Set (Halfspace E)} (hH_ : H.Finite) :
   IsClosed (Hpolytope hH_) := by
   apply isClosed_sInter
   rintro _ ⟨ Hi_, _, rfl ⟩
   exact Halfspace_closed Hi_
 
+/--
+@isnad1 id=eq.2h2v.s5.2c32711d2e19 from=translated src=- shape=31ded221 vocab=72944fa4
+-/
 lemma Hpolytope_same {H_ : Set (Halfspace E)} (hH_1 hH_2 : H_.Finite) :
   Hpolytope hH_1 = Hpolytope hH_2 := rfl
 
+/--
+@isnad1 id=iff.1h3v.s8.13df8c2084d9 from=translated src=- shape=e863a742 vocab=d8fe751f
+-/
 lemma mem_Hpolytope {H_ : Set (Halfspace E)} (hH_ : H_.Finite) (x : E) :
   x ∈ Hpolytope hH_ ↔ ∀ Hi, Hi ∈ H_ → Hi.f.1 x ≤ Hi.α := by
   constructor <;> intro h
@@ -83,6 +110,9 @@ lemma mem_Hpolytope {H_ : Set (Halfspace E)} (hH_ : H_.Finite) (x : E) :
     specialize h Hi_ hHi_
     rwa [Halfspace_mem]
 
+/--
+@isnad1 id=ex.0h1v.s6.7c8abba74b1a from=translated src=- shape=f574e948 vocab=3ad28af1
+-/
 lemma empty_Hpolytope [Nontrivial E] :
   ∃ (H_ : Set (Halfspace E)) (hH_ : H_.Finite), Hpolytope hH_ = ∅ := by
   have h := exists_ne (0:E)
@@ -106,6 +136,9 @@ lemma empty_Hpolytope [Nontrivial E] :
   change f.1 x ≤ -1 at h1
   linarith
 
+/--
+@isnad1 id=ex.0h1v.s6.79ff33b6973c from=translated src=- shape=223b938e vocab=b4ce9595
+-/
 lemma origin_Hpolytope [FiniteDimensional ℝ E] :
     ∃ (H_ : Set (Halfspace E)) (hH_ : H_.Finite), Hpolytope hH_ = ({0} : Set E) := by
   refine ⟨ ⋃₀ (orthoHyperplane '' (Subtype.val ⁻¹' Set.range (Module.finBasis ℝ E))), ?_, ?_ ⟩
@@ -133,6 +166,9 @@ lemma origin_Hpolytope [FiniteDimensional ℝ E] :
     · -- 2.
       simp_all
 
+/--
+@isnad1 id=ex.0h3v.s9.7e99af947882 from=translated src=- shape=524dd1fa vocab=2b697d4b
+-/
 lemma hyperplane_Hpolytope : ∀ (f : {f : (StrongDual ℝ E) // norm f = 1}) (c : ℝ),
   ∃ (H_ : Set (Halfspace E)) (hH_ : H_.Finite), Hpolytope hH_ = {x | f.1 x = c} := by
   intro f c
@@ -156,6 +192,9 @@ lemma hyperplane_Hpolytope : ∀ (f : {f : (StrongDual ℝ E) // norm f = 1}) (c
     · rw [unitSphereDual_neg, neg_apply, neg_le, neg_neg]
       exact le_of_eq h.symm
 
+/--
+@isnad1 id=eq.2h3v.s6.3d629148cec0 from=translated src=- shape=c11edd01 vocab=c05117e3
+-/
 lemma inter_Hpolytope (H_1 H_2 : Set (Halfspace E)) (hH_1 : H_1.Finite) (hH_2 : H_2.Finite) :
   Hpolytope (Set.Finite.union hH_1 hH_2) = Hpolytope hH_1 ∩ Hpolytope hH_2 := by
   ext x
@@ -173,11 +212,17 @@ lemma inter_Hpolytope (H_1 H_2 : Set (Halfspace E)) (hH_1 : H_1.Finite) (hH_2 : 
       exact h.2 Hi hHi
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=eq.1h3v.s6.d850368bc2a5 from=translated src=- shape=8091be8f vocab=ea86e23d
+-/
 lemma Vpolytope_translation {S : Set E} (hS : S.Finite) (x : E) :
   Vpolytope (hS.translation x) = (Vpolytope hS) + {x} := by
   rw [Vpolytope, convexHull_add, convexHull_singleton]
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.43baf3cb04a2 from=translated src=- shape=627811fd vocab=eb90e7f1
+-/
 lemma Hpolytope_translation {H_ : Set (Halfspace E)} (hH_ : H_.Finite) (x : E) :
   Hpolytope (Set.Finite.image (halfspaceTranslation x) hH_) = (Hpolytope hH_) + {x}:= by
   rw [Hpolytope, Hpolytope, Set.sInter_image, Set.sInter_image]

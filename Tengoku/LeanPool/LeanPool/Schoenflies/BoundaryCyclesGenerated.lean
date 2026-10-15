@@ -38,7 +38,9 @@ namespace SplitData
 
 variable (d : S.SplitData)
 
-/-- An old walk visits the same vertices when read in the enlarged skeleton. -/
+/-- An old walk visits the same vertices when read in the enlarged skeleton.
+@isnad1 id=eq.1h6v.s5.1169d3cdff9c from=translated src=- shape=b2349d8b vocab=229a2102
+-/
 theorem walkVertices_oldWalk {u v : γ} {W : List γ} (h : S.skel.IsWalk u W v) :
     d.skeleton.walkVertices u W = S.skel.walkVertices u W := by
   apply Set.Subset.antisymm
@@ -53,7 +55,9 @@ theorem walkVertices_oldWalk {u v : γ} {W : List γ} (h : S.skel.IsWalk u W v) 
   · exact Graph.walkVertices_mono_of_le d.le_skeleton
 
 /-- The ear walk visits exactly the vertices of the abstract ear graph, even when read in the
-enlarged skeleton. -/
+enlarged skeleton.
+@isnad1 id=eq.0h3v.s5.8f0cf89c07d9 from=translated src=- shape=36a1bd4c vocab=834c56f7
+-/
 theorem walkVertices_earWalk :
     d.skeleton.walkVertices d.source d.earWalk = V(d.ear) := by
   apply Set.Subset.antisymm
@@ -68,33 +72,43 @@ theorem walkVertices_earWalk :
   · rw [d.isPathGraph.vertexSet_eq]
     exact Graph.walkVertices_mono_of_le d.ear_le_skeleton
 
-/-- The reverse ear walk has the same vertex carrier. -/
+/-- The reverse ear walk has the same vertex carrier.
+@isnad1 id=eq.0h3v.s5.3dd3c3be58d6 from=translated src=- shape=726e3616 vocab=8f2f4c64
+-/
 theorem walkVertices_reverse_earWalk :
     d.skeleton.walkVertices d.target d.earWalk.reverse = V(d.ear) := by
   rw [(d.isPathGraph.isWalk.mono d.ear_le_skeleton).reverse_walkVertices]
   exact d.walkVertices_earWalk
 
-/-- The cells of an old walk are unchanged in the enlarged skeleton. -/
+/-- The cells of an old walk are unchanged in the enlarged skeleton.
+@isnad1 id=eq.1h6v.s5.2945a0037b56 from=translated src=- shape=33c7c84a vocab=d7f89158
+-/
 theorem pathCells_oldWalk {u v : γ} {W : List γ} (h : S.skel.IsWalk u W v) :
     (S.splitFace d).pathCells u W = S.pathCells u W := by
   rw [CellStructure.pathCells, CellStructure.pathCells, splitFace_skel,
     d.walkVertices_oldWalk h]
 
 /-- The cells of the ear walk, read in the enlarged skeleton, are exactly the cells of the
-abstract ear graph. -/
+abstract ear graph.
+@isnad1 id=eq.0h3v.s4.f174a172593b from=translated src=- shape=c6f3f8c1 vocab=00c0d216
+-/
 theorem pathCells_earWalk :
     (S.splitFace d).pathCells d.source d.earWalk = d.earCells := by
   rw [CellStructure.pathCells, splitFace_skel, d.walkVertices_earWalk, SplitData.earCells,
     d.isPathGraph.edgeSet_eq]
   exact Set.union_comm _ _
 
-/-- Reversing the ear walk does not change its cell carrier. -/
+/-- Reversing the ear walk does not change its cell carrier.
+@isnad1 id=eq.0h3v.s5.6fd8d7fe9e2f from=translated src=- shape=ad37d103 vocab=532352c8
+-/
 theorem pathCells_reverse_earWalk :
     (S.splitFace d).pathCells d.target d.earWalk.reverse = d.earCells := by
   rw [FaceCycle.pathCells_reverse (d.isPathGraph.isPath.mono d.ear_le_skeleton).isWalk]
   exact d.pathCells_earWalk
 
-/-- One old boundary path closed by the reverse ear is a boundary cycle of a new face. -/
+/-- One old boundary path closed by the reverse ear is a boundary cycle of a new face.
+@isnad1 id=nonempty.4h5v.s6.a51df6269a70 from=translated src=- shape=1fdba9c0 vocab=5cce590b
+-/
 theorem faceCycle_of_boundaryPath {newFace : γ} {P : List γ}
     (hface : newFace ∈ (S.splitFace d).faces)
     (hboundary : (S.splitFace d).boundary newFace = P ++ d.earWalk.reverse)
@@ -162,7 +176,9 @@ theorem faceCycle_of_boundaryPath {newFace : γ} {P : List γ}
     simp only [Set.mem_union]
     tauto
 
-/-- Face splitting preserves cyclic boundaries. -/
+/-- Face splitting preserves cyclic boundaries.
+@isnad1 id=boundary.2h3v.s4.e18ce7205b76 from=translated src=- shape=12967c98 vocab=f90c9569
+-/
 theorem boundaryCycles (hcycles : S.BoundaryCycles) (hS : S.CombInvariants) :
     (S.splitFace d).BoundaryCycles where
   cycle F hF := by
@@ -222,7 +238,9 @@ variable (d : S.SubdivData)
 
 /-- A list which is a path in one orientation is a path in every orientation in which the
 same ordered edge list is a walk.  The only alternative first orientation can occur for a
-single-edge path. -/
+single-edge path.
+@isnad1 id=ispath.2h7v.s5.7ac4614e493e from=translated src=- shape=6e4dad75 vocab=6a3cabfc
+-/
 theorem isPath_of_isWalk_of_isPath {G : Graph γ γ} {a b x y : γ} {W : List γ}
     (hP : G.IsPath a W b) (hW : G.IsWalk x W y) : G.IsPath x W y := by
   induction hP generalizing x y with
@@ -243,7 +261,9 @@ theorem isPath_of_isWalk_of_isPath {G : Graph γ γ} {a b x y : γ} {W : List γ
           | nil hu => exact Graph.IsPath.single hl.symm (Graph.IsPath.cons_ne hP hfresh).symm
 
 /-- A walk avoiding the subdivided edge visits exactly the same vertices in the subdivided
-skeleton. -/
+skeleton.
+@isnad1 id=eq.2h6v.s5.a9b99949870f from=translated src=- shape=b5d2b83a vocab=67f40dd0
+-/
 theorem walkVertices_eq_of_notMem {u v : γ} {W : List γ} (h : S.skel.IsWalk u W v)
     (he : d.edge ∉ W) : d.skeleton.walkVertices u W = S.skel.walkVertices u W := by
   apply Set.Subset.antisymm
@@ -268,7 +288,9 @@ namespace SubstWalk
 
 variable {d : S.SubdivData} {u v : γ} {W W' : List γ}
 
-/-- Every old visited vertex is still visited after subdivision. -/
+/-- Every old visited vertex is still visited after subdivision.
+@isnad1 id=le.1h6v.s5.519fdae23f9e from=translated src=- shape=13fd240b vocab=54fef865
+-/
 theorem old_walkVertices_subset (hsub : d.SubstWalk u W W') :
     S.skel.walkVertices u W ⊆ d.skeleton.walkVertices u W' := by
   induction hsub with
@@ -302,7 +324,9 @@ theorem old_walkVertices_subset (hsub : d.SubstWalk u W W') :
             fun h => d.newEdge₂_notMem_edgeSet (h ▸ hl.edge_mem)⟩)
         exact Graph.mem_walkVertices_cons_of_mem hlink (ih hz)
 
-/-- A subdivision introduces no visited vertex except the named subdivision vertex. -/
+/-- A subdivision introduces no visited vertex except the named subdivision vertex.
+@isnad1 id=or.2h7v.s6.726324430713 from=translated src=- shape=8c68f17e vocab=ba31b020
+-/
 theorem new_walkVertices_subset (hsub : d.SubstWalk u W W') {z : γ}
     (hz : z ∈ d.skeleton.walkVertices u W') :
     z = d.newVertex ∨ z ∈ S.skel.walkVertices u W := by
@@ -342,7 +366,9 @@ theorem new_walkVertices_subset (hsub : d.SubstWalk u W W') {z : γ}
         · exact Or.inl rfl
         · exact Or.inr (Graph.mem_walkVertices_cons_of_mem hl hz)
 
-/-- Replacing one edge of a simple path by its two subdivision edges preserves simplicity. -/
+/-- Replacing one edge of a simple path by its two subdivision edges preserves simplicity.
+@isnad1 id=ispath.2h7v.s5.2a64150f1b7e from=translated src=- shape=eba68696 vocab=d334e8b5
+-/
 theorem isPath (hsub : d.SubstWalk u W W') (hP : S.skel.IsPath u W v) :
     d.skeleton.IsPath u W' v := by
   induction hsub generalizing v with
@@ -418,7 +444,9 @@ theorem isPath (hsub : d.SubstWalk u W W') (hP : S.skel.IsPath u W v) :
             (hEq ▸ S.mem_cells_of_mem_vertexSet hl.left_mem)
         · exact hfresh hz
 
-/-- Every output edge is either one of the two replacement edges or an old input edge. -/
+/-- Every output edge is either one of the two replacement edges or an old input edge.
+@isnad1 id=or.2h7v.s5.5f86a1758c75 from=translated src=- shape=405f0a1f vocab=c8eb7338
+-/
 theorem mem_input_of_mem_output (hsub : d.SubstWalk u W W') {x : γ} (hx : x ∈ W') :
     x = d.newEdge₁ ∨ x = d.newEdge₂ ∨ x ∈ W := by
   induction hsub with
@@ -444,7 +472,9 @@ theorem mem_input_of_mem_output (hsub : d.SubstWalk u W W') {x : γ} (hx : x ∈
       · rcases ih hx with h | h | h
         exacts [Or.inl h, Or.inr (Or.inl h), Or.inr (Or.inr (List.mem_cons_of_mem _ h))]
 
-/-- Every surviving old input edge occurs in the output. -/
+/-- Every surviving old input edge occurs in the output.
+@isnad1 id=mem.3h7v.s5.2b0c655e7ed0 from=translated src=- shape=604db594 vocab=96464b75
+-/
 theorem mem_output_of_mem_input_of_ne (hsub : d.SubstWalk u W W') {x : γ}
     (hx : x ∈ W) (hne : x ≠ d.edge) : x ∈ W' := by
   induction hsub with
@@ -465,7 +495,9 @@ theorem mem_output_of_mem_input_of_ne (hsub : d.SubstWalk u W W') {x : γ}
       · exact List.mem_cons_self
       · exact List.mem_cons_of_mem _ (ih hx)
 
-/-- The removed edge name never occurs in the replacement list. -/
+/-- The removed edge name never occurs in the replacement list.
+@isnad1 id=not.1h6v.s5.8804214e40a8 from=translated src=- shape=c9b2ec81 vocab=96464b75
+-/
 theorem edge_notMem_output (hsub : d.SubstWalk u W W') : d.edge ∉ W' := by
   intro he
   induction hsub with
@@ -489,7 +521,9 @@ theorem edge_notMem_output (hsub : d.SubstWalk u W W') : d.edge ∉ W' := by
       · exact ih he
 
 /-- If the old walk crosses the subdivided edge, all three replacement cells occur in the
-new path carrier. -/
+new path carrier.
+@isnad1 id=le.2h6v.s5.8761badbc39b from=translated src=- shape=017deea2 vocab=08809b3d
+-/
 theorem newCells_subset_pathCells (hsub : d.SubstWalk u W W') (he : d.edge ∈ W) :
     d.newCells ⊆ (S.subdivideEdge d).pathCells u W' := by
   induction hsub with
@@ -521,7 +555,9 @@ theorem newCells_subset_pathCells (hsub : d.SubstWalk u W W') (he : d.edge ∈ W
               fun h => d.newEdge₂_notMem_edgeSet (h ▸ hl.edge_mem)⟩)
           exact Or.inr (Graph.mem_walkVertices_cons_of_mem hlink hz)
 
-/-- The exact cell-carrier update performed by an orientation-aware subdivision. -/
+/-- The exact cell-carrier update performed by an orientation-aware subdivision.
+@isnad1 id=eq.2h7v.s6.406e8630d62d from=translated src=- shape=1c8020b0 vocab=aa41df0e
+-/
 theorem pathCells_eq (hsub : d.SubstWalk u W W') (hW : S.skel.IsWalk u W v) :
     (S.subdivideEdge d).pathCells u W' =
       {z | (z ∈ S.pathCells u W ∧ z ≠ d.edge) ∨
@@ -569,7 +605,9 @@ theorem pathCells_eq (hsub : d.SubstWalk u W W') (hW : S.skel.IsWalk u W v) :
       · exact absurd h he
 
 /-- Substituting an edge in a cyclic boundary list produces another presentation of a simple
-cycle, regardless of which admissible start vertex the boundary data selected. -/
+cycle, regardless of which admissible start vertex the boundary data selected.
+@isnad1 id=ex.3h9v.s6.428df9f3ca74 from=translated src=- shape=8550745d vocab=19074e56
+-/
 theorem exists_isCycleThrough {e a b : γ} {D : List γ}
     (hsub : d.SubstWalk u (e :: D) W') (hW : S.skel.IsWalk u (e :: D) u)
     (hc : S.skel.IsCycleThrough e a b D) :
@@ -651,7 +689,9 @@ theorem exists_isCycleThrough {e a b : γ} {D : List γ}
 
 end SubstWalk
 
-/-- Edge subdivision preserves cyclic boundaries. -/
+/-- Edge subdivision preserves cyclic boundaries.
+@isnad1 id=boundary.2h3v.s4.ed7e381f661d from=translated src=- shape=12967c98 vocab=d7114f05
+-/
 theorem boundaryCycles (d : S.SubdivData) (hcycles : S.BoundaryCycles)
     (hS : S.CombInvariants) : (S.subdivideEdge d).BoundaryCycles where
   cycle F hF := by

@@ -92,7 +92,9 @@ namespace CellStructure
 
 variable {γ : Type*} {S : CellStructure γ}
 
-/-- A cell structure has finitely many cells. -/
+/-- A cell structure has finitely many cells.
+@isnad1 id=finite.0h2v.s3.0e11cd1b30f9 from=translated src=- shape=16be0546 vocab=0afe0bfc
+-/
 theorem finite_cells (S : CellStructure γ) : S.cells.Finite :=
   (S.finite_vertexSet.union S.finite_edgeSet).union S.finite_faces
 
@@ -105,18 +107,27 @@ variable {R : S.Realization} {D : Set Plane} {σ τ ρ : γ} {x y z : Plane}
 `Realization.star` is the `St` of the blueprint and is defined in `CombinatorialInvariance.lean`;
 these are the membership and containment lemmas its consumers need. -/
 
+/--
+@isnad1 id=iff.0h5v.s6.d582d40ebbc5 from=translated src=- shape=a9f37e10 vocab=4d60c24b
+-/
 theorem mem_star_iff : y ∈ R.star σ ↔ ∃ τ, S.sub σ τ ∧ y ∈ closure (R.cell τ) := by
   simp only [star, Set.mem_iUnion, mem_supercells, exists_prop]
 
-/-- A closed supercell sits inside the star. -/
+/-- A closed supercell sits inside the star.
+@isnad1 id=le.1h5v.s6.46abc184186e from=translated src=- shape=396c89a2 vocab=a7b659fa
+-/
 theorem closure_cell_subset_star (h : S.sub σ τ) : closure (R.cell τ) ⊆ R.star σ := fun _ hz =>
   mem_star_iff.2 ⟨τ, h, hz⟩
 
-/-- The index set of a star is finite: it consists of cells. -/
+/-- The index set of a star is finite: it consists of cells.
+@isnad1 id=finite.1h3v.s4.e94f1155b403 from=translated src=- shape=b0ce2f50 vocab=53d99f3d
+-/
 theorem finite_supercells (hS : S.CombInvariants) (σ : γ) : (S.supercells σ).Finite :=
   S.finite_cells.subset fun _ hτ => hS.sub_mem_right hτ
 
-/-- A star is a finite union of closed sets, hence closed. -/
+/-- A star is a finite union of closed sets, hence closed.
+@isnad1 id=isclosed.1h4v.s5.86f30321d886 from=translated src=- shape=e9dca82d vocab=f410f6b2
+-/
 theorem isClosed_star (hS : S.CombInvariants) : IsClosed (R.star σ) :=
   (finite_supercells hS σ).isClosed_biUnion fun _ _ => isClosed_closure
 
@@ -133,6 +144,9 @@ of `lem:cellulation-invariants` — see `IsCellDecomposition.carrier_eq` and
 noncomputable def carrier [Nonempty γ] (R : S.Realization) (x : Plane) : γ :=
   if h : ∃ σ, σ ∈ S.cells ∧ x ∈ R.cell σ then h.choose else Classical.arbitrary γ
 
+/--
+@isnad1 id=and.1h4v.s6.b0d5dbe7f59c from=translated src=- shape=b349df75 vocab=e8e8338f
+-/
 theorem carrier_spec [Nonempty γ] (R : S.Realization) (x : Plane)
     (h : ∃ σ, σ ∈ S.cells ∧ x ∈ R.cell σ) :
     R.carrier x ∈ S.cells ∧ x ∈ R.cell (R.carrier x) := by
@@ -143,27 +157,39 @@ namespace IsCellDecomposition
 
 variable {R : S.Realization} {D : Set Plane} {σ τ ρ : γ} {x y z : Plane}
 
-/-- Every open cell lies in the closed domain. -/
+/-- Every open cell lies in the closed domain.
+@isnad1 id=le.2h5v.s5.6d3a9671deb5 from=translated src=- shape=e80b5d22 vocab=db391f48
+-/
 theorem cell_subset_domain (h : R.IsCellDecomposition D) (hσ : σ ∈ S.cells) : R.cell σ ⊆ D := by
   rw [← h.iUnion_eq]
   exact Set.subset_biUnion_of_mem hσ
 
-/-- A point of the closed domain lies in some open cell — the covering half of assertion (i). -/
+/-- A point of the closed domain lies in some open cell — the covering half of assertion (i).
+@isnad1 id=ex.2h5v.s5.5d9e66fdb6b1 from=translated src=- shape=044d0699 vocab=347a6d52
+-/
 theorem exists_cell (h : R.IsCellDecomposition D) (hx : x ∈ D) :
     ∃ σ, σ ∈ S.cells ∧ x ∈ R.cell σ := by
   rw [← h.iUnion_eq] at hx
   obtain ⟨σ, hσ, hxσ⟩ := Set.mem_iUnion₂.1 hx
   exact ⟨σ, hσ, hxσ⟩
 
+/--
+@isnad1 id=mem.2h5v.s5.4aa37af3ec90 from=translated src=- shape=32b9cdcc vocab=90094fb6
+-/
 theorem mem_cells_carrier [Nonempty γ] (h : R.IsCellDecomposition D) (hx : x ∈ D) :
     R.carrier x ∈ S.cells := (R.carrier_spec x (h.exists_cell hx)).1
 
+/--
+@isnad1 id=mem.2h5v.s5.5461a5d46fc7 from=translated src=- shape=702ee712 vocab=1ea9b38e
+-/
 theorem mem_cell_carrier [Nonempty γ] (h : R.IsCellDecomposition D) (hx : x ∈ D) :
     x ∈ R.cell (R.carrier x) := (R.carrier_spec x (h.exists_cell hx)).2
 
 /-- **The characterising property of the carrier**: any cell whose open part contains `x` *is*
 the carrier of `x`. This is the uniqueness half of assertion (i), and it is the lemma every
-computation of a carrier goes through. -/
+computation of a carrier goes through.
+@isnad1 id=eq.3h6v.s5.64e24986f249 from=translated src=- shape=9caae63c vocab=14d04826
+-/
 theorem carrier_eq [Nonempty γ] (h : R.IsCellDecomposition D) (hσ : σ ∈ S.cells)
     (hx : x ∈ R.cell σ) : R.carrier x = σ := by
   have hxD : x ∈ D := h.cell_subset_domain hσ hx
@@ -171,35 +197,49 @@ theorem carrier_eq [Nonempty γ] (h : R.IsCellDecomposition D) (hσ : σ ∈ S.c
   exact Set.disjoint_left.1 (h.disjoint (h.mem_cells_carrier hxD) hσ hne)
     (h.mem_cell_carrier hxD) hx
 
-/-- A point lies in the star of its own carrier. -/
+/-- A point lies in the star of its own carrier.
+@isnad1 id=mem.2h5v.s5.7e8cb8bb2879 from=translated src=- shape=702ee712 vocab=68e6d514
+-/
 theorem mem_star_carrier [Nonempty γ] (h : R.IsCellDecomposition D) (hx : x ∈ D) :
     x ∈ R.star (R.carrier x) :=
   closure_cell_subset_star (h.sub_refl (h.mem_cells_carrier hx))
     (_root_.subset_closure (h.mem_cell_carrier hx))
 
+/--
+@isnad1 id=nonempty.2h5v.s5.5f6c6d7b2c15 from=translated src=- shape=a6b8ddad vocab=e23b0110
+-/
 theorem star_nonempty (h : R.IsCellDecomposition D) (hσ : σ ∈ S.cells) : (R.star σ).Nonempty := by
   obtain ⟨z, hz⟩ := h.nonempty hσ
   exact ⟨z, closure_cell_subset_star (h.sub_refl hσ) (_root_.subset_closure hz)⟩
 
-/-- A star lies in the closure of the domain, so a bounded domain bounds every star. -/
+/-- A star lies in the closure of the domain, so a bounded domain bounds every star.
+@isnad1 id=le.2h5v.s6.78361bb3df9c from=translated src=- shape=c7763948 vocab=71993de4
+-/
 theorem star_subset_closure_domain (h : R.IsCellDecomposition D) (hS : S.CombInvariants) :
     R.star σ ⊆ closure D := by
   intro y hy
   obtain ⟨τ, hτ, hyτ⟩ := mem_star_iff.1 hy
   exact closure_mono (h.cell_subset_domain (hS.sub_mem_right hτ)) hyτ
 
+/--
+@isnad1 id=isbounde.3h5v.s6.12a16e626e9d from=translated src=- shape=f3ecc36c vocab=e32a7018
+-/
 theorem isBounded_star (h : R.IsCellDecomposition D) (hS : S.CombInvariants)
     (hD : IsBounded D) : IsBounded (R.star σ) :=
   hD.closure.subset (h.star_subset_closure_domain hS)
 
 /-- A star is compact: it is closed, and bounded once the domain is. The limit argument needs
-this to intersect a nested sequence of stars. -/
+this to intersect a nested sequence of stars.
+@isnad1 id=iscompac.3h5v.s6.4cba1c1a8865 from=translated src=- shape=cc0cb69f vocab=4da7b82f
+-/
 theorem isCompact_star (h : R.IsCellDecomposition D) (hS : S.CombInvariants)
     (hD : IsBounded D) : IsCompact (R.star σ) :=
   Metric.isCompact_of_isClosed_isBounded (isClosed_star hS) (h.isBounded_star hS hD)
 
 /-- Stars are antitone in the subcell relation. The transitivity this needs is not assumed of a
-`CellStructure`; it is read off assertion (i) by `IsCellDecomposition.sub_trans`. -/
+`CellStructure`; it is read off assertion (i) by `IsCellDecomposition.sub_trans`.
+@isnad1 id=le.5h6v.s6.3a1efc94d085 from=translated src=- shape=87072c01 vocab=7eddd3ca
+-/
 theorem star_anti_of_sub (h : R.IsCellDecomposition D) (hS : S.CombInvariants)
     (hσ : σ ∈ S.cells) (hρ : ρ ∈ S.cells) (hsub : S.sub σ ρ) : R.star ρ ⊆ R.star σ := by
   intro y hy
@@ -237,7 +277,9 @@ variable {S' S'' : CellStructure γ} {R : S.Realization} {R' : S'.Realization}
   {R'' : S''.Realization} {par par' : γ → γ}
 
 /-- Every realization refines itself along the identity: the empty sequence of elementary
-refinements. -/
+refinements.
+@isnad1 id=refines.0h3v.s4.d308bc049ea8 from=translated src=- shape=81d6239d vocab=da6f3a83
+-/
 theorem refl (R : S.Realization) : R.Refines R id where
   parent_mem_cells := fun _ hσ => hσ
   parent_mem_faces := fun _ hF => hF
@@ -246,20 +288,26 @@ theorem refl (R : S.Realization) : R.Refines R id where
 
 /-- **Refinements compose.** This is what turns `lem:refinement-compatibility` from a statement
 about one elementary refinement into a statement about "a finite sequence of elementary
-refinements": a consumer that builds its stages one operation at a time iterates this. -/
+refinements": a consumer that builds its stages one operation at a time iterates this.
+@isnad1 id=refines.2h9v.s5.0f407c8fe7ad from=translated src=- shape=37c04bf9 vocab=3f59c5e0
+-/
 theorem trans (h' : R''.Refines R' par') (h : R'.Refines R par) : R''.Refines R (par ∘ par') where
   parent_mem_cells := fun _ hσ => h.parent_mem_cells (h'.parent_mem_cells hσ)
   parent_mem_faces := fun _ hF => h.parent_mem_faces (h'.parent_mem_faces hF)
   sub_parent := fun _ _ hst => h.sub_parent (h'.sub_parent hst)
   cell_subset := fun _ hσ => (h'.cell_subset hσ).trans (h.cell_subset (h'.parent_mem_cells hσ))
 
-/-- The closed cells refine along with the open ones. -/
+/-- The closed cells refine along with the open ones.
+@isnad1 id=le.2h7v.s7.1fd65479acd5 from=translated src=- shape=04a0a9b7 vocab=14712403
+-/
 theorem closure_cell_subset (h : R'.Refines R par) {σ : γ} (hσ : σ ∈ S'.cells) :
     closure (R'.cell σ) ⊆ closure (R.cell (par σ)) :=
   closure_mono (h.cell_subset hσ)
 
 /-- **`lem:refinement-compatibility`(a)**: the parent of the carrier of `x` at the finer stage is
-its carrier at the coarser stage. -/
+its carrier at the coarser stage.
+@isnad1 id=eq.4h9v.s6.f7008da00d2d from=translated src=- shape=13763cad vocab=e6439e51
+-/
 theorem parent_carrier [Nonempty γ] (href : R'.Refines R par) (h : R.IsCellDecomposition D)
     (h' : R'.IsCellDecomposition D') {x : Plane} (hx : x ∈ D') :
     par (R'.carrier x) = R.carrier x :=
@@ -267,7 +315,9 @@ theorem parent_carrier [Nonempty γ] (href : R'.Refines R par) (h : R.IsCellDeco
     (href.cell_subset (h'.mem_cells_carrier hx) (h'.mem_cell_carrier hx))).symm
 
 /-- **`lem:refinement-compatibility`(b)**, the cell-star inclusion: once a star is small it stays
-small. -/
+small.
+@isnad1 id=le.2h7v.s5.5a81ece9a875 from=translated src=- shape=c170b572 vocab=f7ef7888
+-/
 theorem star_subset (href : R'.Refines R par) (hS' : S'.CombInvariants) {σ : γ} :
     R'.star σ ⊆ R.star (par σ) := by
   intro y hy
@@ -276,7 +326,9 @@ theorem star_subset (href : R'.Refines R par) (hS' : S'.CombInvariants) {σ : γ
     (href.closure_cell_subset (hS'.sub_mem_right hτ) hyτ)
 
 /-- **`lem:refinement-compatibility`(b)**, pointwise: closed stars of a fixed point are monotone
-under refinement. -/
+under refinement.
+@isnad1 id=le.5h9v.s6.72f2659c19fb from=translated src=- shape=e8861b7f vocab=667b3abd
+-/
 theorem star_carrier_subset [Nonempty γ] (href : R'.Refines R par) (hS' : S'.CombInvariants)
     (h : R.IsCellDecomposition D) (h' : R'.IsCellDecomposition D') {x : Plane} (hx : x ∈ D') :
     R'.star (R'.carrier x) ⊆ R.star (R.carrier x) := by
@@ -299,7 +351,9 @@ variable {S' : CellStructure γ} {R₁ R₂ : S.Realization} {R₁' R₂' : S'.R
 
 /-- **`lem:refinement-compatibility`(c)**: if `x` and `y` have corresponding carriers at the
 finer stage — corresponding means *equal as abstract cells* — then they have corresponding
-carriers at the coarser stage, and hence at every earlier stage by iteration. -/
+carriers at the coarser stage, and hence at every earlier stage by iteration.
+@isnad1 id=eq.9h14v.s7.37a6d7a2206c from=translated src=- shape=799c26dc vocab=e6439e51
+-/
 theorem carrier_congr [Nonempty γ] (h₁ : R₁'.Refines R₁ par) (h₂ : R₂'.Refines R₂ par)
     (hd₁ : R₁.IsCellDecomposition D₁) (hd₁' : R₁'.IsCellDecomposition D₁')
     (hd₂ : R₂.IsCellDecomposition D₂) (hd₂' : R₂'.IsCellDecomposition D₂')
@@ -312,7 +366,9 @@ one, `T_n(x) = R₂.star (R₁.carrier x)` is the closed target star of the cell
 `σ_n(x)`, and this says `T_{n+1}(x) ⊆ T_n(x)`.
 
 Only the *source* decompositions are needed: the parent map is abstract, so the target stage
-inherits the inclusion from the source carrier. -/
+inherits the inclusion from the source carrier.
+@isnad1 id=le.6h11v.s6.0f12a5b243b1 from=translated src=- shape=016eb5d6 vocab=667b3abd
+-/
 theorem target_star_subset [Nonempty γ] (h₁ : R₁'.Refines R₁ par) (h₂ : R₂'.Refines R₂ par)
     (hS' : S'.CombInvariants) (hd₁ : R₁.IsCellDecomposition D₁)
     (hd₁' : R₁'.IsCellDecomposition D₁') {x : Plane} (hx : x ∈ D₁') :
@@ -325,7 +381,9 @@ end Refines
 /-! ### Intersection of corresponding stars -/
 
 /-- One direction of `lem:star-intersection`. The two realizations are realizations of the *same*
-abstract structure, so "the corresponding cells" are literally `σ` and `τ` again. -/
+abstract structure, so "the corresponding cells" are literally `σ` and `τ` again.
+@isnad1 id=nonempty.4h8v.s6.d992ec22a752 from=translated src=- shape=14e2be35 vocab=d8b85bc0
+-/
 theorem star_inter_nonempty_of_star_inter_nonempty {R₁ R₂ : S.Realization} {D₁ D₂ : Set Plane}
     (h₁ : R₁.IsCellDecomposition D₁) (h₂ : R₂.IsCellDecomposition D₂) (hS : S.CombInvariants)
     {σ τ : γ} (hne : (R₁.star σ ∩ R₁.star τ).Nonempty) : (R₂.star σ ∩ R₂.star τ).Nonempty := by
@@ -344,7 +402,9 @@ theorem star_inter_nonempty_of_star_inter_nonempty {R₁ R₂ : S.Realization} {
     closure_cell_subset_star hτβ (h₂.subset_closure hρ hβ hρβ hw)⟩
 
 /-- **`lem:star-intersection`**: corresponding stars meet on one side exactly when they meet on
-the other. This is what makes the limit map injective. -/
+the other. This is what makes the limit map injective.
+@isnad1 id=iff.3h8v.s6.b8fb4ab5713e from=translated src=- shape=23d1e023 vocab=d8b85bc0
+-/
 theorem star_inter_nonempty_congr {R₁ R₂ : S.Realization} {D₁ D₂ : Set Plane}
     (h₁ : R₁.IsCellDecomposition D₁) (h₂ : R₂.IsCellDecomposition D₂) (hS : S.CombInvariants)
     {σ τ : γ} : (R₁.star σ ∩ R₁.star τ).Nonempty ↔ (R₂.star σ ∩ R₂.star τ).Nonempty :=
@@ -359,7 +419,9 @@ variable {R : S.Realization} {D : Set Plane} {σ : γ} {x y : Plane} {η : ℝ}
 
 /-- **`lem:star-face-mesh`**, the displayed equality: a closed star is the union of the closed
 2-cells incident with the cell. Every supercell is a subcell of some 2-cell by assertion (v), and
-its closure is then inside that closed 2-cell. -/
+its closure is then inside that closed 2-cell.
+@isnad1 id=eq.3h5v.s7.9637ff239812 from=translated src=- shape=f80d073c vocab=e807884a
+-/
 theorem star_eq_faces (h : R.IsCellDecomposition D) (hS : S.CombInvariants) (hσ : σ ∈ S.cells) :
     R.star σ = ⋃ F ∈ {F | F ∈ S.faces ∧ S.sub σ F}, closure (R.cell F) := by
   refine Set.Subset.antisymm (fun y hy => ?_) ?_
@@ -371,13 +433,17 @@ theorem star_eq_faces (h : R.IsCellDecomposition D) (hS : S.CombInvariants) (hσ
     exact closure_minimal (h.subset_closure hτc hFc hτF) isClosed_closure hyτ
   · exact Set.iUnion₂_subset fun _ hF => closure_cell_subset_star hF.2
 
-/-- Every closed 2-cell incident with `σ` contains every point of the open cell `σ`. -/
+/-- Every closed 2-cell incident with `σ` contains every point of the open cell `σ`.
+@isnad1 id=mem.5h7v.s6.0f83ec8d000a from=translated src=- shape=99487674 vocab=700d3b2e
+-/
 theorem mem_closure_face (h : R.IsCellDecomposition D) {F : γ} (hσ : σ ∈ S.cells)
     (hF : F ∈ S.faces) (hsub : S.sub σ F) (hx : x ∈ R.cell σ) : x ∈ closure (R.cell F) :=
   h.subset_closure hσ (S.mem_cells_of_mem_faces hF) hsub hx
 
 /-- Every point of the star of `σ` is within `η` of every point of the open cell `σ`, when the
-closed 2-cells incident with `σ` all have diameter at most `η`. -/
+closed 2-cells incident with `σ` all have diameter at most `η`.
+@isnad1 id=le.7h8v.s8.188d9be82f3f from=translated src=- shape=49fb6fa1 vocab=ad7f6cbb
+-/
 theorem dist_le_of_mem_star (h : R.IsCellDecomposition D) (hS : S.CombInvariants)
     (hD : IsBounded D) (hσ : σ ∈ S.cells)
     (hdiam : ∀ ⦃F⦄, F ∈ S.faces → S.sub σ F → diam (closure (R.cell F)) ≤ η)
@@ -389,7 +455,9 @@ theorem dist_le_of_mem_star (h : R.IsCellDecomposition D) (hS : S.CombInvariants
   exact le_trans (dist_le_diam_of_mem hbdd (h.mem_closure_face hσ hF hsub hx) hyF) (hdiam hF hsub)
 
 /-- **`lem:star-face-mesh`(a)**, in its non-strict form: a mesh bound on the closed 2-cells
-incident with a cell doubles to a bound on the diameter of its star. -/
+incident with a cell doubles to a bound on the diameter of its star.
+@isnad1 id=le.5h6v.s8.9384efe64d27 from=translated src=- shape=d96b3b27 vocab=e7c67eb7
+-/
 theorem diam_star_le (h : R.IsCellDecomposition D) (hS : S.CombInvariants) (hD : IsBounded D)
     (hσ : σ ∈ S.cells)
     (hdiam : ∀ ⦃F⦄, F ∈ S.faces → S.sub σ F → diam (closure (R.cell F)) ≤ η) :
@@ -408,7 +476,9 @@ theorem diam_star_le (h : R.IsCellDecomposition D) (hS : S.CombInvariants) (hD :
 less than `η`, the star has diameter strictly less than `2η`.
 
 Strictness costs the finiteness of the set of incident 2-cells: the bound is realised at the
-largest of them, and there are finitely many. -/
+largest of them, and there are finitely many.
+@isnad1 id=lt.5h6v.s8.098286188aa3 from=translated src=- shape=d96b3b27 vocab=d9635e0e
+-/
 theorem diam_star_lt (h : R.IsCellDecomposition D) (hS : S.CombInvariants) (hD : IsBounded D)
     (hσ : σ ∈ S.cells)
     (hdiam : ∀ ⦃F⦄, F ∈ S.faces → S.sub σ F → diam (closure (R.cell F)) < η) :
@@ -426,7 +496,9 @@ theorem diam_star_lt (h : R.IsCellDecomposition D) (hS : S.CombInvariants) (hD :
       hmax F (Set.Finite.mem_toFinset hfin |>.2 ⟨hF, hsub⟩)
   exact lt_of_le_of_lt hle (by have := hdiam hF₀.1 hF₀.2; linarith)
 
-/-- **`lem:star-face-mesh`(a)** at a point: the form the shrinking-stars proposition consumes. -/
+/-- **`lem:star-face-mesh`(a)** at a point: the form the shrinking-stars proposition consumes.
+@isnad1 id=lt.5h6v.s8.0f5cfe2eda63 from=translated src=- shape=f1b9d1f1 vocab=f8326c1c
+-/
 theorem diam_star_carrier_lt [Nonempty γ] (h : R.IsCellDecomposition D) (hS : S.CombInvariants)
     (hD : IsBounded D) (hx : x ∈ D)
     (hdiam : ∀ ⦃F⦄, F ∈ S.faces → S.sub (R.carrier x) F → diam (closure (R.cell F)) < η) :
@@ -441,7 +513,9 @@ variable {S' : CellStructure γ} {R : S.Realization} {R' : S'.Realization} {par 
   {D : Set Plane} {η : ℝ}
 
 /-- **`lem:star-face-mesh`(b)**: a new 2-cell is contained in its parent 2-cell, so refinement
-cannot increase the diameter of a 2-cell. -/
+cannot increase the diameter of a 2-cell.
+@isnad1 id=le.4h8v.s8.5c26fed00d7f from=translated src=- shape=ec48c3f9 vocab=d2e76950
+-/
 theorem diam_cell_le (href : R'.Refines R par) (h : R.IsCellDecomposition D) (hD : IsBounded D)
     {F : γ} (hF : F ∈ S'.cells) :
     diam (closure (R'.cell F)) ≤ diam (closure (R.cell (par F))) :=
@@ -449,7 +523,9 @@ theorem diam_cell_le (href : R'.Refines R par) (h : R.IsCellDecomposition D) (hD
     ((hD.subset (h.cell_subset_domain (href.parent_mem_cells hF))).closure)
 
 /-- **`lem:star-face-mesh`(b)**: refinement cannot increase the maximum diameter of the
-2-cells. -/
+2-cells.
+@isnad1 id=le.5h9v.s8.058749550576 from=translated src=- shape=9ab02e49 vocab=4d9458f1
+-/
 theorem diam_cell_le_of_forall (href : R'.Refines R par) (h : R.IsCellDecomposition D)
     (hD : IsBounded D) (hdiam : ∀ ⦃F⦄, F ∈ S.faces → diam (closure (R.cell F)) ≤ η)
     {F : γ} (hF : F ∈ S'.faces) : diam (closure (R'.cell F)) ≤ η :=
@@ -466,19 +542,30 @@ above the carrier of `x`. -/
 def cellNbhd (R : S.Realization) (x : Plane) : Set Plane :=
   (⋃ τ ∈ {τ | τ ∈ S.cells ∧ x ∉ closure (R.cell τ)}, closure (R.cell τ))ᶜ
 
+/--
+@isnad1 id=isopen.0h4v.s5.fbecaf83a3eb from=translated src=- shape=7cd4e813 vocab=6f4a3970
+-/
 theorem isOpen_cellNbhd (R : S.Realization) (x : Plane) : IsOpen (R.cellNbhd x) :=
   ((S.finite_cells.subset fun _ hτ => hτ.1).isClosed_biUnion
     fun _ _ => isClosed_closure).isOpen_compl
 
+/--
+@isnad1 id=mem.0h4v.s4.ae97e030841b from=translated src=- shape=d22533f2 vocab=511043a9
+-/
 theorem mem_cellNbhd_self (R : S.Realization) (x : Plane) : x ∈ R.cellNbhd x := by
   intro hx
   obtain ⟨τ, hτ, hxτ⟩ := Set.mem_iUnion₂.1 hx
   exact hτ.2 hxτ
 
+/--
+@isnad1 id=mem.0h4v.s6.d37d7011ad04 from=translated src=- shape=b71836a0 vocab=2dca1844
+-/
 theorem cellNbhd_mem_nhds (R : S.Realization) (x : Plane) : R.cellNbhd x ∈ nhds x :=
   (isOpen_cellNbhd R x).mem_nhds (mem_cellNbhd_self R x)
 
-/-- Every closed cell that meets the neighbourhood contains `x`. -/
+/-- Every closed cell that meets the neighbourhood contains `x`.
+@isnad1 id=mem.3h6v.s7.f6c87e317f79 from=translated src=- shape=b0c72103 vocab=2eaae723
+-/
 theorem mem_closure_of_mem_cellNbhd {R : S.Realization} {x z : Plane} {τ : γ} (hτ : τ ∈ S.cells)
     (hz : z ∈ R.cellNbhd x) (hzτ : z ∈ closure (R.cell τ)) : x ∈ closure (R.cell τ) := by
   by_contra hx
@@ -489,7 +576,9 @@ namespace IsCellDecomposition
 variable {R : S.Realization} {D : Set Plane} {x z : Plane}
 
 /-- **`lem:cell-neighborhood`**, the carrier half: for `z` in the neighbourhood, the carrier of
-`x` is a subcell of the carrier of `z`. -/
+`x` is a subcell of the carrier of `z`.
+@isnad1 id=sub.4h6v.s6.b86dc5aa6984 from=translated src=- shape=9ead8da6 vocab=b007077d
+-/
 theorem sub_carrier_of_mem_cellNbhd [Nonempty γ] (h : R.IsCellDecomposition D) (hx : x ∈ D)
     (hz : z ∈ R.cellNbhd x) (hzD : z ∈ D) : S.sub (R.carrier x) (R.carrier z) := by
   have hxclos : x ∈ closure (R.cell (R.carrier z)) :=
@@ -505,7 +594,9 @@ are all contained in the star of `x`.
 For the *cross-realization* form the limit map needs — `T_n(z) ⊆ T_n(x)`, the target star of the
 source carrier — combine `sub_carrier_of_mem_cellNbhd` in the source realization with
 `star_anti_of_sub` in the target one: the subcell relation is a relation of the common abstract
-structure, so it moves between realizations without transport. -/
+structure, so it moves between realizations without transport.
+@isnad1 id=and.5h6v.s6.70ae0a5aea78 from=translated src=- shape=ce232762 vocab=f5ff6c70
+-/
 theorem cell_neighborhood [Nonempty γ] (h : R.IsCellDecomposition D) (hS : S.CombInvariants)
     (hx : x ∈ D) (hz : z ∈ R.cellNbhd x) (hzD : z ∈ D) :
     S.sub (R.carrier x) (R.carrier z) ∧ R.star (R.carrier z) ⊆ R.star (R.carrier x) := by
@@ -522,7 +613,9 @@ the open cell of the *same abstract name*; so corresponding skeleton points have
 correspond, with nothing to transport. -/
 
 /-- The two ends of a drawn edge lie on its arc. Needed to cut the two endpoints out of the arc
-on both sides of the skeleton homeomorphism at once. -/
+on both sides of the skeleton homeomorphism at once.
+@isnad1 id=le.1h6v.s5.e6257babd14d from=translated src=- shape=570de0b3 vocab=c1764024
+-/
 theorem pos_pair_subset_edgeArc (R : S.Realization) {e a b : γ} (hl : S.skel.IsLink e a b) :
     ({R.pos a, R.pos b} : Set Plane) ⊆ Graph.edgeArc R.drawing e := by
   obtain ⟨-, -, hlink⟩ := R.isDrawing.edge_param (by rw [Graph.edgeSet_map]; exact hl.edge_mem)
@@ -545,7 +638,9 @@ variable {R₁ R₂ : S.Realization} {D₁ D₂ : Set Plane} {σ : γ} {x : Plan
 /-- **The skeleton homeomorphism carries open skeleton cells onto open skeleton cells** of the
 same abstract name. For a 0-cell this is `pos_apply`; for a 1-cell it is `edgeArc_image` with the
 two endpoints removed from both sides, which is legitimate because `g` is injective on the
-skeleton. -/
+skeleton.
+@isnad1 id=eq.1h6v.s6.69d58634e0b5 from=translated src=- shape=14f2dd28 vocab=7b421805
+-/
 theorem image_cell (g : SkeletonHomeo R₁ R₂) (hσ : σ ∈ V(S.skel) ∪ E(S.skel)) :
     g.toFun '' R₁.cell σ = R₂.cell σ := by
   rcases hσ with hv | he
@@ -558,7 +653,9 @@ theorem image_cell (g : SkeletonHomeo R₁ R₂) (hσ : σ ∈ V(S.skel) ∪ E(S
       g.edgeArc_image he, Set.image_pair, g.pos_apply hl.left_mem, g.pos_apply hl.right_mem]
 
 /-- **`lem:refinement-compatibility`(c)**, the skeleton clause: corresponding skeleton points
-have corresponding carriers — the same abstract cell on both sides. -/
+have corresponding carriers — the same abstract cell on both sides.
+@isnad1 id=eq.4h9v.s6.30e2545676a2 from=translated src=- shape=b5d3f485 vocab=de04af11
+-/
 theorem carrier_congr [Nonempty γ] (g : SkeletonHomeo R₁ R₂) (h₁ : R₁.IsCellDecomposition D₁)
     (h₂ : R₂.IsCellDecomposition D₂) (hσ : σ ∈ V(S.skel) ∪ E(S.skel)) (hx : x ∈ R₁.cell σ) :
     R₂.carrier (g.toFun x) = R₁.carrier x := by
@@ -585,7 +682,9 @@ variable {S' : CellStructure γ} {R : S.Realization} {R' : S'.Realization} {par 
 /-- **The shape shared by the two elementary operations.** Given that the refined cells are the
 old ones minus `c` together with the fresh set `N`, that `par` collapses `N` to `c` and fixes old
 cells, and that both stages decompose the *same* closed domain with the surviving cells unmoved,
-the refined realization refines the old one. -/
+the refined realization refines the old one.
+@isnad1 id=refines.10h9v.s7.e785b6a8733e from=translated src=- shape=40b1c4e6 vocab=8e675f67
+-/
 theorem refines_of_elementary (hc : c ∈ S.cells) (hcells : S'.cells = (S.cells \ {c}) ∪ N)
     (hfresh : ∀ ⦃σ⦄, σ ∈ N → σ ∉ S.cells) (hpar_new : ∀ ⦃σ⦄, σ ∈ N → par σ = c)
     (hpar_old : ∀ ⦃σ⦄, σ ∈ S.cells → par σ = σ)
@@ -624,7 +723,9 @@ namespace SubdivData
 variable {d : S.SubdivData}
 
 /-- **An edge subdivision is a refinement.** `SubdivData.IsRefinement` already carries everything
-the geometric clause needs, so no cell decomposition is required here. -/
+the geometric clause needs, so no cell decomposition is required here.
+@isnad1 id=refines.2h5v.s5.2b9240c3de6b from=translated src=- shape=6ffa34c3 vocab=c9dd06e0
+-/
 theorem IsRefinement.refines (hS : S.CombInvariants) {R : S.Realization}
     {R' : (S.subdivideEdge d).Realization} (href : d.IsRefinement R R') :
     R'.Refines R d.parent where
@@ -655,7 +756,9 @@ variable {d : S.SplitData}
 
 /-- **A 2-cell split is a refinement.** The geometric input is assertion (i) at the refined stage
 together with "the split leaves the other cells where they were"; both are supplied by the
-consumer, since the split analogue of `SubdivData.IsRefinement` is not yet on `main`. -/
+consumer, since the split analogue of `SubdivData.IsRefinement` is not yet on `main`.
+@isnad1 id=refines.4h6v.s6.8b16d268c1ac from=translated src=- shape=42d07351 vocab=644df0f4
+-/
 theorem refines (hS : S.CombInvariants) {R : S.Realization}
     {R' : (S.splitFace d).Realization} {D : Set Plane} (h : R.IsCellDecomposition D)
     (h' : R'.IsCellDecomposition D)

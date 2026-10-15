@@ -57,6 +57,7 @@ attribute [simp, local fun_prop] isHom_ωSup
 /--
 Pointwise supremum of a chain of QBS morphisms is a QBS morphism
 (also known as the "Compatibility Axiom" for the exponential to be an ωQBS)
+@isnad1 id=ishom.1h5v.s6.aa9b73962e89 from=translated src=- shape=99977438 vocab=4602eae6
 -/
 @[fun_prop]
 lemma isHom_ωSup'

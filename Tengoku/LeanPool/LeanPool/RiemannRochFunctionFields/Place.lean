@@ -44,7 +44,9 @@ variable {k : Type*} [Field k]
 
 /-- A rational function regular at infinity has a unique constant residue: after subtracting
 the ratio of the leading coefficients of its numerator and denominator, its degree at infinity
-is strictly negative (unless the difference is zero). -/
+is strictly negative (unless the difference is zero).
+@isnad1 id=ex.1h2v.s8.95d08032328f from=translated src=- shape=d922b921 vocab=b53ff6e8
+-/
 theorem exists_sub_C_intDegree_neg (z : k⟮X⟯) (hzdeg : z.intDegree ≤ 0) :
     ∃ c : k, z - C c = 0 ∨ (z - C c).intDegree < 0 := by
   by_cases hz : z = 0
@@ -128,7 +130,9 @@ private noncomputable def withZeroMulIntLogAddEquiv
     · simp
     · simp
 
-/-- A normalized discrete rank-one value group has a unique order-preserving normalization. -/
+/-- A normalized discrete rank-one value group has a unique order-preserving normalization.
+@isnad1 id=eq.0h1v.s7.df63587ff776 from=translated src=- shape=2ac95a98 vocab=55d53488
+-/
 theorem orderMonoidIso_withZeroMulInt_eq_refl (e : ℤᵐ⁰ ≃*o ℤᵐ⁰) :
     e = OrderMonoidIso.refl ℤᵐ⁰ := by
   have hmono : Monotone (withZeroMulIntLogAddEquiv e) := by
@@ -156,7 +160,9 @@ theorem orderMonoidIso_withZeroMulInt_eq_refl (e : ℤᵐ⁰ ≃*o ℤᵐ⁰) :
     rw [h] at hle
     norm_num at hle
 
-/-- Any two order-preserving normalizations of the same value group are equal. -/
+/-- Any two order-preserving normalizations of the same value group are equal.
+@isnad1 id=eq.0h3v.s7.55042b3c455b from=translated src=- shape=adf96f91 vocab=7cd95204
+-/
 theorem orderMonoidIso_withZeroMulInt_unique {G : Type*}
     [LinearOrderedCommGroupWithZero G] (e f : G ≃*o ℤᵐ⁰) : e = f := by
   have h := orderMonoidIso_withZeroMulInt_eq_refl (e.symm.trans f)
@@ -183,7 +189,9 @@ namespace Place
 
 variable {k K : Type*} [Field k] [Field K] [Algebra k K]
 
-/-- Two places are equal when their valuation subrings are equal. -/
+/-- Two places are equal when their valuation subrings are equal.
+@isnad1 id=eq.1h4v.s6.5423c0f787b0 from=translated src=- shape=9973d0b2 vocab=61f84d78
+-/
 @[ext]
 theorem ext {v w : Place k K}
     (h : v.toValuationSubring = w.toValuationSubring) : v = w := by
@@ -199,6 +207,9 @@ instance : SetLike (Place k K) K where
     intro v w h
     exact ext (SetLike.coe_injective h)
 
+/--
+@isnad1 id=iff.0h4v.s6.a6a19610d0d4 from=translated src=- shape=cf1a50c7 vocab=50582c59
+-/
 @[simp]
 theorem mem_toValuationSubring (v : Place k K) (x : K) :
     x ∈ v.toValuationSubring ↔ x ∈ v := Iff.rfl
@@ -214,14 +225,18 @@ noncomputable def valuation (v : Place k K) : Valuation K ℤᵐ⁰ :=
     v.normalization.toMonoidWithZeroHom v.normalization.toOrderIso.monotone
 
 /-- The normalized valuation is equivalent to the canonical valuation of the valuation
-subring. -/
+subring.
+@isnad1 id=isequiv.0h3v.s6.dcbbd8a7c969 from=translated src=- shape=9442edee vocab=819bac80
+-/
 theorem valuation_isEquiv_canonical (v : Place k K) :
     v.valuation.IsEquiv v.toValuationSubring.valuation := by
   exact (Valuation.isEquiv_map_self_of_strictMono
     v.normalization.toMonoidWithZeroHom v.normalization.strictMono).trans
       v.toValuationSubring.valuation.isEquiv_restrict.symm
 
-/-- Recovering the valuation subring from the normalized valuation gives the original place. -/
+/-- Recovering the valuation subring from the normalized valuation gives the original place.
+@isnad1 id=eq.0h3v.s5.e4331fe8de13 from=translated src=- shape=8d600efa vocab=b2e968dd
+-/
 @[simp]
 theorem valuationSubring_valuation (v : Place k K) :
     v.valuation.valuationSubring = v.toValuationSubring := by
@@ -229,7 +244,9 @@ theorem valuationSubring_valuation (v : Place k K) :
     v.valuation_isEquiv_canonical |>.trans
       v.toValuationSubring.valuationSubring_valuation
 
-/-- The normalized valuation of a place is trivial on the constant field. -/
+/-- The normalized valuation of a place is trivial on the constant field.
+@isnad1 id=istrivia.0h3v.s6.d16c4dcfc888 from=translated src=- shape=d532bde5 vocab=67306991
+-/
 instance valuation_isTrivialOn (v : Place k K) : v.valuation.IsTrivialOn k where
   eq_one c hc := by
     let w := v.toValuationSubring.valuation
@@ -247,7 +264,9 @@ instance valuation_isTrivialOn (v : Place k K) : v.valuation.IsTrivialOn k where
       le_antisymm hc_le ((inv_le_one₀ hmap_pos).1 hinv_le)
     exact v.valuation_isEquiv_canonical.eq_one_iff_eq_one.mpr hw
 
-/-- The normalized valuation of a place is nontrivial. -/
+/-- The normalized valuation of a place is nontrivial.
+@isnad1 id=isnontri.0h3v.s5.280636ded67f from=translated src=- shape=515e4c33 vocab=c8623ed5
+-/
 instance valuation_isNontrivial (v : Place k K) : v.valuation.IsNontrivial := by
   have hcanonical : v.toValuationSubring.valuation.IsNontrivial := by
     by_contra h
@@ -294,7 +313,9 @@ local notation "ᵐ∞" => IsLocalRing.maximalIdeal (inftyValuationSubring k)
 /-- The residue field at infinity. -/
 local instance : Field (inftyValuationSubring k ⧸ ᵐ∞) := Ideal.Quotient.field ᵐ∞
 
-/-- The residue map at infinity is onto the constant field. -/
+/-- The residue map at infinity is onto the constant field.
+@isnad1 id=surjecti.0h1v.s11.6a410f7d2c14 from=translated src=- shape=c8641449 vocab=fbdc7784
+-/
 theorem residue_algebraMap_surjective :
     Function.Surjective (algebraMap k (inftyValuationSubring k ⧸ ᵐ∞)) := by
   intro q
@@ -342,10 +363,16 @@ noncomputable def residueAlgEquiv :
     ⟨(Algebra.ofId k (inftyValuationSubring k ⧸ ᵐ∞)).injective,
       residue_algebraMap_surjective k⟩
 
+/--
+@isnad1 id=finitedi.0h1v.s11.d1f4ba8c7348 from=translated src=- shape=0aaf1f7a vocab=f7729ede
+-/
 instance finiteDimensionalResidueField :
     FiniteDimensional k (inftyValuationSubring k ⧸ ᵐ∞) :=
   (residueAlgEquiv k).toLinearEquiv.finiteDimensional
 
+/--
+@isnad1 id=eq.0h1v.s11.d2077137190c from=translated src=- shape=ea96f58c vocab=9808fdac
+-/
 @[simp]
 theorem finrank_residueField :
     Module.finrank k (inftyValuationSubring k ⧸ ᵐ∞) = 1 := by
@@ -363,6 +390,9 @@ abbrev infiniteIntegers := integralClosure (inftyValuationSubring k) K
 
 namespace infiniteIntegers
 
+/--
+@isnad1 id=istorsio.0h2v.s10.14984a571ccf from=translated src=- shape=6d5917bd vocab=2e1b0f4b
+-/
 instance isTorsionFreeOverInfinityRing :
     Module.IsTorsionFree (inftyValuationSubring k) (infiniteIntegers k K) :=
   IsIntegralClosure.isTorsionFree (inftyValuationSubring k) K
@@ -385,6 +415,9 @@ end infiniteIntegers
 
 namespace ringOfIntegers
 
+/--
+@isnad1 id=istorsio.0h2v.s9.87112a1a275f from=translated src=- shape=3f7e5f0b vocab=d718535c
+-/
 instance isTorsionFreeOverPolynomial :
     Module.IsTorsionFree k[X] (ringOfIntegers k K) := by
   let : FaithfulSMul k[X] K :=
@@ -395,12 +428,21 @@ instance isTorsionFreeOverPolynomial :
 instance algebraOverConstants : Algebra k (ringOfIntegers k K) :=
   ((algebraMap k[X] (ringOfIntegers k K)).comp (algebraMap k k[X])).toAlgebra
 
+/--
+@isnad1 id=isscalar.0h2v.s9.fa2cee2ed220 from=translated src=- shape=4ab0829f vocab=7da87de8
+-/
 instance isScalarTowerConstants : IsScalarTower k k[X] (ringOfIntegers k K) :=
   IsScalarTower.of_algebraMap_eq fun _ => rfl
 
+/--
+@isnad1 id=finitety.0h2v.s9.9ab4114acebe from=translated src=- shape=de990283 vocab=9e313afc
+-/
 instance finiteTypeOverConstants : Algebra.FiniteType k (ringOfIntegers k K) :=
   Algebra.FiniteType.trans (S := k[X]) inferInstance inferInstance
 
+/--
+@isnad1 id=finite.0h2v.s9.e9b2003ff6e3 from=translated src=- shape=934ff141 vocab=2ea2581e
+-/
 instance moduleFiniteOverPolynomial : Module.Finite k[X] (ringOfIntegers k K) :=
   IsIntegralClosure.finite k[X] k⟮X⟯ K (ringOfIntegers k K)
 
@@ -422,7 +464,9 @@ abbrev DivisorA := PlaceA k K →₀ ℤ
 namespace PlaceA
 
 /-- The residue field at a finite coordinate place is finite-dimensional over the constant
-field. -/
+field.
+@isnad1 id=finitedi.0h3v.s11.363291906f82 from=translated src=- shape=5a72c5cc vocab=82a18f59
+-/
 instance finiteDimensionalResidueFieldFinite
     (v : IsDedekindDomain.HeightOneSpectrum (ringOfIntegers k K)) :
     FiniteDimensional k (ringOfIntegers k K ⧸ v.asIdeal) := by
@@ -430,7 +474,9 @@ instance finiteDimensionalResidueFieldFinite
   exact finite_of_finite_type_of_isJacobsonRing k _
 
 /-- The residue field at an infinite coordinate place is finite-dimensional over the constant
-field. -/
+field.
+@isnad1 id=finitedi.0h3v.s13.123ce2b5abc0 from=translated src=- shape=8e89672b vocab=5265fb3a
+-/
 instance finiteDimensionalResidueFieldInfinite
     (v : IsDedekindDomain.HeightOneSpectrum (infiniteIntegers k K)) :
     FiniteDimensional k (infiniteIntegers k K ⧸ v.asIdeal) := by
@@ -474,6 +520,9 @@ section ConstantField
 
 variable [Algebra k K] [IsScalarTower k k[X] K]
 
+/--
+@isnad1 id=isscalar.0h2v.s9.3f5d93fd8728 from=translated src=- shape=b15c77c5 vocab=7da87de8
+-/
 instance ringOfIntegers.isScalarTowerConstantsFractions :
     IsScalarTower k (ringOfIntegers k K) K :=
   IsScalarTower.of_algebraMap_eq fun c => by
@@ -481,6 +530,9 @@ instance ringOfIntegers.isScalarTowerConstantsFractions :
       IsScalarTower.algebraMap_apply k[X] (ringOfIntegers k K) K,
       ← IsScalarTower.algebraMap_apply k k[X] (ringOfIntegers k K)]
 
+/--
+@isnad1 id=isscalar.0h2v.s10.26df6624eb52 from=translated src=- shape=30f0d57c vocab=885aa7f7
+-/
 instance infiniteIntegers.isScalarTowerConstantsFractions :
     IsScalarTower k (infiniteIntegers k K) K :=
   IsScalarTower.of_algebraMap_eq fun c => by
@@ -495,7 +547,9 @@ instance infiniteIntegers.isScalarTowerConstantsFractions :
       IsScalarTower.algebraMap_apply k[X] k⟮X⟯ K, Polynomial.algebraMap_eq,
       RatFunc.algebraMap_C]
 
-/-- Constants have valuation at most one at every coordinate place. -/
+/-- Constants have valuation at most one at every coordinate place.
+@isnad1 id=le.0h4v.s9.96546b478c55 from=translated src=- shape=4bd51796 vocab=79def98c
+-/
 theorem placeValuation_algebraMap_le_one (v : PlaceA k K) (c : k) :
     placeValuation k K v (algebraMap k K c) ≤ 1 := by
   obtain w | w := v

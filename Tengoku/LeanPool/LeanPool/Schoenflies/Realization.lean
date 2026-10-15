@@ -119,11 +119,20 @@ def carrier : Set Plane := ⋃ i, P.edge i
 
 variable {P}
 
+/--
+@isnad1 id=le.0h3v.s5.4ace6d7a5f7e from=translated src=- shape=60eb6330 vocab=ea7d84df
+-/
 theorem edge_subset_carrier (i : ZMod (m + 3)) : P.edge i ⊆ P.carrier := Set.subset_iUnion _ i
 
+/--
+@isnad1 id=mem.0h3v.s5.59b18a2da98f from=translated src=- shape=f1fd3975 vocab=e5c7bc7c
+-/
 theorem vertex_mem_carrier (i : ZMod (m + 3)) : P.vertex i ∈ P.carrier :=
   edge_subset_carrier i (left_mem_segment ℝ _ _)
 
+/--
+@isnad1 id=ne.0h3v.s8.94b3868a339e from=translated src=- shape=58f38dbf vocab=9b69b766
+-/
 theorem vertex_ne_succ (i : ZMod (m + 3)) : P.vertex i ≠ P.vertex (i + 1) := fun h =>
   ClosedPolygon.succ_ne_self i (P.vertex_inj h).symm
 
@@ -133,6 +142,9 @@ end PrePolygon
 def ClosedPolygon.toPre {m : ℕ} (P : ClosedPolygon m) : PrePolygon m :=
   ⟨P.vertex, P.vertex_inj, P.edges_meet⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.cf6842a478ec from=translated src=- shape=986c8aca vocab=2e1acb4a
+-/
 @[simp] theorem ClosedPolygon.carrier_toPre {m : ℕ} (P : ClosedPolygon m) :
     P.toPre.carrier = P.carrier := rfl
 
@@ -145,6 +157,9 @@ namespace PrePolygon
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=ne.0h1v.s7.ec824d3eb629 from=translated src=- shape=2a6a86db vocab=014cf724
+-/
 theorem two_ne_zero' : (2 : ZMod (m + 3)) ≠ 0 := by
   intro h
   rw [show (2 : ZMod (m + 3)) = ((2 : ℕ) : ZMod (m + 3)) by norm_num,
@@ -152,18 +167,28 @@ theorem two_ne_zero' : (2 : ZMod (m + 3)) ≠ 0 := by
   have := Nat.le_of_dvd (by norm_num) h
   omega
 
+/--
+@isnad1 id=ne.0h2v.s9.854a3b6e2d40 from=translated src=- shape=b1738e3a vocab=b0fffc35
+-/
 theorem pred_ne_succ (i : ZMod (m + 3)) : i - 1 ≠ i + 1 := fun h =>
   two_ne_zero' (m := m) (by linear_combination -h)
 
+/--
+@isnad1 id=eq.0h1v.s7.a89ddf058468 from=translated src=- shape=123f1234 vocab=25b1f5b4
+-/
 theorem val_one_eq : (1 : ZMod (m + 3)).val = 1 := by
   rw [show (1 : ZMod (m + 3)) = ((1 : ℕ) : ZMod (m + 3)) by norm_num]
   exact ZMod.val_cast_of_lt (by omega)
 
-/-- The successor of a non-final index is the next one. -/
+/-- The successor of a non-final index is the next one.
+@isnad1 id=eq.1h2v.s8.f4d9a716b748 from=translated src=- shape=12993fcf vocab=f6762fa5
+-/
 theorem val_succ_of_lt {j : ZMod (m + 3)} (h : j.val + 1 < m + 3) : (j + 1).val = j.val + 1 := by
   rw [ZMod.val_add, val_one_eq, Nat.mod_eq_of_lt h]
 
-/-- The successor of the final index wraps to `0`. -/
+/-- The successor of the final index wraps to `0`.
+@isnad1 id=eq.1h2v.s8.256b263647d2 from=translated src=- shape=c3b2c9d5 vocab=25b1f5b4
+-/
 theorem val_succ_last {j : ZMod (m + 3)} (h : j.val + 1 = m + 3) : (j + 1).val = 0 := by
   rw [ZMod.val_add, val_one_eq, h, Nat.mod_self]
 
@@ -182,10 +207,15 @@ def rotate (P : PrePolygon m) (a : ZMod (m + 3)) : PrePolygon m where
     simp only [hi, hj]
     exact P.edges_meet _ _ fun h => hij (add_left_cancel h)
 
+/--
+@isnad1 id=eq.0h4v.s7.ae8831ed8b26 from=translated src=- shape=e2388522 vocab=775cff2f
+-/
 @[simp] theorem rotate_vertex (P : PrePolygon m) (a j : ZMod (m + 3)) :
     (P.rotate a).vertex j = P.vertex (a + j) := rfl
 
-/-- Rotating does not move the curve: the edges are the same, listed from elsewhere. -/
+/-- Rotating does not move the curve: the edges are the same, listed from elsewhere.
+@isnad1 id=eq.0h3v.s5.b1b8b7e415e9 from=translated src=- shape=fd4fe076 vocab=0d918937
+-/
 theorem carrier_rotate (P : PrePolygon m) (a : ZMod (m + 3)) :
     (P.rotate a).carrier = P.carrier := by
   have hedge : ∀ j : ZMod (m + 3), (P.rotate a).edge j = P.edge (a + j) := by
@@ -209,30 +239,50 @@ variable {m : ℕ}
 /-- An index of the shortened list, read in the original one: the same numeral. -/
 def emb (j : ZMod (m + 3)) : ZMod (m + 1 + 3) := ((j.val : ℕ) : ZMod (m + 1 + 3))
 
+/--
+@isnad1 id=eq.0h1v.s9.e58c8b4dc950 from=translated src=- shape=ab33d70a vocab=efc3d68f
+-/
 theorem neg_one_eq_cast : (-1 : ZMod (m + 1 + 3)) = ((m + 3 : ℕ) : ZMod (m + 1 + 3)) := by
   have h0 : ((m + 1 + 3 : ℕ) : ZMod (m + 1 + 3)) = 0 := ZMod.natCast_self _
   push_cast at h0 ⊢
   linear_combination -h0
 
+/--
+@isnad1 id=eq.0h1v.s10.5bef0a5a123d from=translated src=- shape=09c5681c vocab=4d575b92
+-/
 theorem neg_two_eq_cast : (-1 - 1 : ZMod (m + 1 + 3)) = ((m + 2 : ℕ) : ZMod (m + 1 + 3)) := by
   have h0 : ((m + 1 + 3 : ℕ) : ZMod (m + 1 + 3)) = 0 := ZMod.natCast_self _
   push_cast at h0 ⊢
   linear_combination -h0
 
+/--
+@isnad1 id=injectiv.0h1v.s5.28abec757782 from=translated src=- shape=3a18da55 vocab=3dd97ee2
+-/
 theorem emb_injective : Function.Injective (emb (m := m)) := fun i j h =>
   ZMod.val_injective _ (ClosedPolygon.natCast_inj (m := m + 1)
     (by have := ZMod.val_lt i; omega) (by have := ZMod.val_lt j; omega) h)
 
+/--
+@isnad1 id=eq.1h2v.s9.d516af522874 from=translated src=- shape=c33b3482 vocab=44524c12
+-/
 theorem emb_succ_of_lt {j : ZMod (m + 3)} (h : j.val + 1 < m + 3) : emb (j + 1) = emb j + 1 := by
   rw [emb, emb, val_succ_of_lt h, Nat.cast_add, Nat.cast_one]
 
+/--
+@isnad1 id=eq.1h2v.s9.f9e3bb2c4dc1 from=translated src=- shape=f9f09765 vocab=1b02adf7
+-/
 theorem emb_succ_last {j : ZMod (m + 3)} (h : j.val + 1 = m + 3) : emb (j + 1) = 0 := by
   rw [emb, val_succ_last h, Nat.cast_zero]
 
+/--
+@isnad1 id=eq.1h2v.s9.034abcf34a72 from=translated src=- shape=51038776 vocab=6ab87220
+-/
 theorem emb_eq_last {j : ZMod (m + 3)} (h : j.val + 1 = m + 3) : emb j = -1 - 1 := by
   rw [emb, neg_two_eq_cast, show j.val = m + 2 by omega]
 
-/-- Below the last index, `emb` misses both the deleted vertex and its predecessor. -/
+/-- Below the last index, `emb` misses both the deleted vertex and its predecessor.
+@isnad1 id=and.1h2v.s10.67e2e41b64eb from=translated src=- shape=caf1e097 vocab=92fae89d
+-/
 theorem emb_ne_of_lt {j : ZMod (m + 3)} (h : j.val + 1 < m + 3) :
     emb j ≠ -1 ∧ emb j ≠ -1 - 1 := by
   have hj := ZMod.val_lt j
@@ -244,7 +294,9 @@ theorem emb_ne_of_lt {j : ZMod (m + 3)} (h : j.val + 1 < m + 3) :
     exact fun he => (by omega : j.val ≠ m + 2)
       (ClosedPolygon.natCast_inj (m := m + 1) (by omega) (by omega) he)
 
-/-- Every index other than the deleted vertex and its predecessor is hit by `emb`. -/
+/-- Every index other than the deleted vertex and its predecessor is hit by `emb`.
+@isnad1 id=ex.2h2v.s10.e49cabe4b992 from=translated src=- shape=b44f0091 vocab=92fae89d
+-/
 theorem exists_emb_eq {i : ZMod (m + 1 + 3)} (h1 : i ≠ -1) (h2 : i ≠ -1 - 1) :
     ∃ j : ZMod (m + 3), j.val + 1 < m + 3 ∧ emb j = i := by
   have hi := ZMod.val_lt i
@@ -265,16 +317,23 @@ def dropVertex (j : ZMod (m + 3)) : Plane := P.vertex (emb j)
 
 variable {P}
 
+/--
+@isnad1 id=injectiv.0h2v.s5.b55b15e17a76 from=translated src=- shape=f64e0b41 vocab=bfe8d48e
+-/
 theorem dropVertex_injective : Function.Injective P.dropVertex :=
   fun _ _ h => emb_injective (P.vertex_inj h)
 
-/-- Away from the deleted vertex the edges are unchanged. -/
+/-- Away from the deleted vertex the edges are unchanged.
+@isnad1 id=eq.1h3v.s8.7e8f023c358d from=translated src=- shape=0210a521 vocab=976f04fd
+-/
 theorem dropVertex_edge_of_lt {j : ZMod (m + 3)} (h : j.val + 1 < m + 3) :
     segment ℝ (P.dropVertex j) (P.dropVertex (j + 1)) = P.edge (emb j) := by
   rw [dropVertex, dropVertex, emb_succ_of_lt h, edge]
 
 /-- The final edge of the shortened list is the union of the two edges at the deleted vertex —
-which is a segment precisely because the deleted vertex is interior to it. -/
+which is a segment precisely because the deleted vertex is interior to it.
+@isnad1 id=eq.2h3v.s11.6ce1afbf7f0e from=translated src=- shape=5dcbf170 vocab=b27d71a0
+-/
 theorem dropVertex_edge_last
     (hcol : P.vertex (-1) ∈ openSegment ℝ (P.vertex (-1 - 1)) (P.vertex 0))
     {j : ZMod (m + 3)} (h : j.val + 1 = m + 3) :
@@ -285,7 +344,9 @@ theorem dropVertex_edge_last
   exact segment_split (openSegment_subset_segment ℝ _ _ hcol)
 
 /-- The deleted vertex lies on no edge but its own two: `edges_meet` puts a meeting point at an
-end of the other edge, and the deleted vertex is an end only of the two edges at it. -/
+end of the other edge, and the deleted vertex is an end only of the two edges at it.
+@isnad1 id=not.2h3v.s10.2f1517201cdb from=translated src=- shape=24502e74 vocab=0af19daf
+-/
 theorem vertex_last_notMem_edge {i : ZMod (m + 1 + 3)} (h1 : i ≠ -1) (h2 : i ≠ -1 - 1) :
     P.vertex (-1) ∉ P.edge i := by
   intro hmem
@@ -297,7 +358,9 @@ theorem vertex_last_notMem_edge {i : ZMod (m + 1 + 3)} (h1 : i ≠ -1) (h2 : i �
   · exact h2 (by linear_combination -P.vertex_inj he)
 
 /-- **Simplicity survives the deletion.** The only new edge is the merged one, and the point
-that has to be kept out of it — the deleted vertex — lies on no other edge at all. -/
+that has to be kept out of it — the deleted vertex — lies on no other edge at all.
+@isnad1 id=le.2h4v.s11.54125b501d0d from=translated src=- shape=855a3fbe vocab=d22e8dfd
+-/
 theorem dropVertex_edges_meet
     (hcol : P.vertex (-1) ∈ openSegment ℝ (P.vertex (-1 - 1)) (P.vertex 0))
     (j k : ZMod (m + 3)) (hjk : j ≠ k) :
@@ -347,7 +410,9 @@ def deleteLast (P : PrePolygon (m + 1))
   vertex_inj := dropVertex_injective
   edges_meet := dropVertex_edges_meet hcol
 
-/-- **Deleting a redundant vertex does not move the curve.** -/
+/-- **Deleting a redundant vertex does not move the curve.**
+@isnad1 id=eq.1h2v.s10.dee6dcc44fb5 from=translated src=- shape=0d22cabb vocab=83878935
+-/
 theorem carrier_deleteLast
     (hcol : P.vertex (-1) ∈ openSegment ℝ (P.vertex (-1 - 1)) (P.vertex 0)) :
     (deleteLast P hcol).carrier = P.carrier := by
@@ -384,7 +449,9 @@ segment joining its two neighbours, never an endpoint of it. That is the geometr
 nondegenerate segment, and `edges_meet` would then put a whole segment inside a two-point
 set. -/
 
-/-- A nondegenerate segment is not contained in the pair of its own endpoints. -/
+/-- A nondegenerate segment is not contained in the pair of its own endpoints.
+@isnad1 id=ex.1h2v.s7.21ebc8339320 from=translated src=- shape=5e526396 vocab=67061eb2
+-/
 theorem exists_mem_segment_ne {a b : Plane} (hab : a ≠ b) :
     ∃ p ∈ segment ℝ a b, p ≠ a ∧ p ≠ b := by
   have hmem : (1 / 2 : ℝ) • a + (1 / 2 : ℝ) • b ∈ openSegment ℝ a b :=
@@ -399,7 +466,9 @@ theorem exists_mem_segment_ne {a b : Plane} (hab : a ≠ b) :
 
 /-- **Three collinear points meeting only at the shared one are in the order that makes the
 middle one interior.** The alternative — the two segments running the same way out of `b` —
-makes them overlap in a nondegenerate segment, which the meeting hypothesis forbids. -/
+makes them overlap in a nondegenerate segment, which the meeting hypothesis forbids.
+@isnad1 id=mem.4h3v.s8.22bc040faefd from=translated src=- shape=81ed6818 vocab=b1047048
+-/
 theorem mem_openSegment_of_det_eq_zero' {a b c : Plane} (hab : a ≠ b) (hcb : c ≠ b)
     (hmeet : segment ℝ a b ∩ segment ℝ b c ⊆ {a, b})
     (h : det (a - b) (c - b) = 0) : b ∈ openSegment ℝ a c := by
@@ -455,7 +524,9 @@ theorem mem_openSegment_of_det_eq_zero' {a b c : Plane} (hab : a ≠ b) (hcb : c
 
 variable {m : ℕ} {P : PrePolygon m}
 
-/-- **A redundant vertex is interior to the segment joining its neighbours.** -/
+/-- **A redundant vertex is interior to the segment joining its neighbours.**
+@isnad1 id=mem.1h3v.s10.b498dee49ded from=translated src=- shape=892d2157 vocab=7aa7f95d
+-/
 theorem mem_openSegment_of_det_eq_zero (i : ZMod (m + 3))
     (h : det (P.vertex (i - 1) - P.vertex i) (P.vertex (i + 1) - P.vertex i) = 0) :
     P.vertex i ∈ openSegment ℝ (P.vertex (i - 1)) (P.vertex (i + 1)) := by
@@ -474,7 +545,9 @@ list can never shrink below three vertices: a triangle with a redundant vertex w
 edge inside another, which `edges_meet` forbids. -/
 
 /-- A three-vertex polygon has no redundant vertex: were the last one interior to the segment
-joining the other two, the edge before it would lie inside the edge opposite it. -/
+joining the other two, the edge before it would lie inside the edge opposite it.
+@isnad1 id=not.0h1v.s10.b3477cf1bbce from=translated src=- shape=9e93d095 vocab=79e0018e
+-/
 theorem not_collinear_triangle (P : PrePolygon 0) :
     P.vertex (-1) ∉ openSegment ℝ (P.vertex (-1 - 1)) (P.vertex 0) := by
   intro hcol
@@ -495,7 +568,9 @@ theorem not_collinear_triangle (P : PrePolygon 0) :
 
 /-- **Every `PrePolygon` normalizes to a `ClosedPolygon` with the same carrier.** This is the
 blueprint's "delete redundant vertices at which two consecutive edges are collinear", run to
-completion; the induction is on the number of vertices, which each deletion lowers by one. -/
+completion; the induction is on the number of vertices, which each deletion lowers by one.
+@isnad1 id=ex.0h2v.s4.d44c623e2ba1 from=translated src=- shape=bb7e92fc vocab=d8deb663
+-/
 theorem exists_closedPolygon_of_prePolygon :
     ∀ (m : ℕ) (P : PrePolygon m), ∃ (m' : ℕ) (P' : ClosedPolygon m'), P'.carrier = P.carrier := by
   intro m
@@ -532,7 +607,9 @@ theorem exists_closedPolygon_of_prePolygon :
 
 /-- Assembling a cyclic vertex family into a `PrePolygon`. The index type is `ZMod n` for an
 `n` known only to be at least three, which is what `PrePolygon` asks for after `n` is written
-`m + 3`. -/
+`m + 3`.
+@isnad1 id=ex.3h2v.s9.9b715b36b4e2 from=translated src=- shape=2639224f vocab=8c8939ec
+-/
 theorem exists_prePolygon {n : ℕ} (hn : 3 ≤ n) (w : ZMod n → Plane) (hinj : Function.Injective w)
     (hmeet : ∀ i j : ZMod n, i ≠ j →
       segment ℝ (w i) (w (i + 1)) ∩ segment ℝ (w j) (w (j + 1)) ⊆ {w i, w (i + 1)}) :
@@ -563,7 +640,9 @@ structure IsClean (Q : List Piece) (C : Set Plane) : Prop where
 
 /-- **Every polygonal set with two points in it has a clean presentation**, and any finite list
 of points of it may be required to be among the ends. Lengthening the cut list is free: both
-`EndsAreCut` and `MeetsAreCut` only ask that certain points *occur* in it. -/
+`EndsAreCut` and `MeetsAreCut` only ask that certain points *occur* in it.
+@isnad1 id=ex.4h4v.s6.3037c558f753 from=translated src=- shape=53504cb1 vocab=6206aa0e
+-/
 theorem exists_isClean {C : Set Plane} (hC : IsPolygonal C) {a b : Plane} (ha : a ∈ C)
     (hb : b ∈ C) (hab : a ≠ b) (extra : List Plane) :
     ∃ Q : List Piece, IsClean Q C ∧ ∀ p ∈ extra, p ∈ C → ∃ R ∈ Q, p = R.1 ∨ p = R.2 := by
@@ -596,7 +675,9 @@ theorem exists_isClean {C : Set Plane} (hC : IsPolygonal C) {a b : Plane} (ha : 
     exact overlayPieces_avoids hnd p hpts R hR
       (mem_openSegment_of_ne_left_right (Ne.symm hcon.1) (Ne.symm hcon.2) hpR)
 
-/-- A point of a piece is interior to it or one of its ends. -/
+/-- A point of a piece is interior to it or one of its ends.
+@isnad1 id=or.1h2v.s5.f4d1620051a1 from=translated src=- shape=8bcf089f vocab=2d541e86
+-/
 theorem mem_interior_or_end {R : Piece} {x : Plane} (hx : x ∈ R.seg) :
     x ∈ R.interior ∨ x = R.1 ∨ x = R.2 := by
   by_cases hcon : x = R.1 ∨ x = R.2
@@ -609,6 +690,9 @@ curve is that piece alone. -/
 def nearPiece (C : Set Plane) (R : Piece) : Set Plane :=
   {y | ∃ x ∈ R.interior, ∃ r > 0, y ∈ ball x r ∧ ball x r ∩ C ⊆ R.seg}
 
+/--
+@isnad1 id=isopen.0h2v.s5.b52854cbb422 from=translated src=- shape=7783367e vocab=c6c07768
+-/
 theorem isOpen_nearPiece {C : Set Plane} {R : Piece} : IsOpen (nearPiece C R) := by
   rw [isOpen_iff_forall_mem_open]
   rintro y ⟨x, hx, r, hr, hyb, hsub⟩
@@ -620,7 +704,9 @@ variable {Q : List Piece} {C : Set Plane} {R S : Piece} {x : Plane} (h : IsClean
 include h
 
 /-- **Two distinct clean pieces meet only at ends of the first.** This is `edges_meet`, before
-the pieces have been put in cyclic order. -/
+the pieces have been put in cyclic order.
+@isnad1 id=le.4h4v.s6.58d7177f7770 from=translated src=- shape=8a3654e0 vocab=4a77eb36
+-/
 theorem seg_inter_subset (hR : R ∈ Q) (hS : S ∈ Q) (hRS : R ≠ S) :
     R.seg ∩ S.seg ⊆ {R.1, R.2} := by
   rintro z ⟨hzR, hzS⟩
@@ -631,18 +717,29 @@ theorem seg_inter_subset (hR : R ∈ Q) (hS : S ∈ Q) (hRS : R ≠ S) :
     · exact h.ends S hS R hR z hz' hz
   · exact hz
 
+/--
+@isnad1 id=le.2h3v.s4.47cfd873ef7f from=translated src=- shape=d5708903 vocab=bb977f99
+-/
 theorem seg_subset (hR : R ∈ Q) : R.seg ⊆ C := by
   rw [← h.cover_eq]
   exact fun z hz => mem_cover hR hz
 
+/--
+@isnad1 id=le.1h2v.s4.cba7f7f01fbb from=translated src=- shape=2b1aa5e0 vocab=74b37759
+-/
 theorem endSet_subset : endSet Q ⊆ C := by
   rintro z ⟨R, hR, hz⟩
   rcases hz with rfl | rfl
   exacts [h.seg_subset hR (left_mem_segment ℝ _ _), h.seg_subset hR (right_mem_segment ℝ _ _)]
 
+/--
+@isnad1 id=mem.2h3v.s4.f1df38b30ce6 from=translated src=- shape=428fbd7d vocab=2d535fce
+-/
 theorem mem_cover_of_mem (hz : x ∈ C) : x ∈ cover Q := by rw [h.cover_eq]; exact hz
 
-/-- **The curve minus the ends is the disjoint union of the piece interiors.** -/
+/-- **The curve minus the ends is the disjoint union of the piece interiors.**
+@isnad1 id=eq.1h2v.s5.ad69bf22d3e3 from=translated src=- shape=114e7e0e vocab=b3666f0a
+-/
 theorem diff_endSet_eq : C \ endSet Q = ⋃ R ∈ Q, R.interior := by
   refine Set.Subset.antisymm (fun z hz => ?_) (fun z hz => ?_)
   · obtain ⟨R, hR, hzR⟩ := ClosedPolygon.exists_of_mem_cover (h.mem_cover_of_mem hz.1)
@@ -656,7 +753,9 @@ theorem diff_endSet_eq : C \ endSet Q = ⋃ R ∈ Q, R.interior := by
 
 /-- **Near an interior point the curve is that piece alone.** The other pieces are finitely many
 closed sets missing the point: interior points are not shared, and an end of another piece
-cannot be interior to this one. -/
+cannot be interior to this one.
+@isnad1 id=ex.3h4v.s6.a687b4a5c800 from=translated src=- shape=084786c3 vocab=c80bb6a6
+-/
 theorem exists_ball_subset_seg (hR : R ∈ Q) (hx : x ∈ R.interior) :
     ∃ r > 0, ball x r ∩ C ⊆ R.seg := by
   have hmiss : ∀ S ∈ Q, S ≠ R → x ∉ S.seg := by
@@ -679,12 +778,18 @@ theorem exists_ball_subset_seg (hR : R ∈ Q) (hx : x ∈ R.interior) :
   · exact hSR ▸ hzS
   · exact absurd hzS (hball S ⟨hS, hSR⟩ z hzb)
 
+/--
+@isnad1 id=le.2h3v.s4.e171582515da from=translated src=- shape=a6adb912 vocab=17e303d0
+-/
 theorem interior_subset_nearPiece (hR : R ∈ Q) : R.interior ⊆ nearPiece C R := by
   intro y hy
   obtain ⟨r, hr, hsub⟩ := h.exists_ball_subset_seg hR hy
   exact ⟨y, hy, r, hr, mem_ball_self hr, hsub⟩
 
 omit h in
+/--
+@isnad1 id=le.1h3v.s5.174f986c24d3 from=translated src=- shape=df36c06a vocab=813f29a9
+-/
 theorem nearPiece_inter_diff (hR : R ∈ Q) : nearPiece C R ∩ (C \ endSet Q) ⊆ R.interior := by
   rintro z ⟨⟨y, hy, r, hr, hzb, hsub⟩, hzC, hzV⟩
   rcases mem_interior_or_end (hsub ⟨hzb, hzC⟩) with hz | hz
@@ -693,7 +798,9 @@ theorem nearPiece_inter_diff (hR : R ∈ Q) : nearPiece C R ∩ (C \ endSet Q) �
 
 /-- **A connected piece of the curve away from the ends lies inside a single piece.** The
 `nearPiece` sets are honest open sets of the plane that trace out the pieces on the curve, so
-`IsPreconnected` can be applied to them directly. -/
+`IsPreconnected` can be applied to them directly.
+@isnad1 id=ex.4h3v.s6.5186eb7fc505 from=translated src=- shape=fdb3ef10 vocab=54f6b78f
+-/
 theorem preconnected_subset_interior {A : Set Plane} (hA : IsPreconnected A) (hA0 : A.Nonempty)
     (hAsub : A ⊆ C \ endSet Q) : ∃ R ∈ Q, A ⊆ R.interior := by
   obtain ⟨x₀, hx₀⟩ := hA0
@@ -739,17 +846,32 @@ noncomputable def par (T : Finset ℝ) (hcard : T.card = n) (i : Fin n) : ℝ :=
 noncomputable def parNext (T : Finset ℝ) (hcard : T.card = n) (i : Fin n) : ℝ :=
   if h : (i : ℕ) + 1 < n then T.orderEmbOfFin hcard ⟨(i : ℕ) + 1, h⟩ else 1
 
+/--
+@isnad1 id=mem.1h3v.s4.776d9681d0e5 from=translated src=- shape=b2fe428f vocab=6abdfe0a
+-/
 theorem par_mem (i : Fin n) : par T hcard i ∈ T := T.orderEmbOfFin_mem hcard i
 
+/--
+@isnad1 id=lt.2h4v.s5.96d759ed08ee from=translated src=- shape=be18e5b6 vocab=df34677d
+-/
 theorem par_lt_par {i j : Fin n} (h : i < j) : par T hcard i < par T hcard j :=
   (T.orderEmbOfFin hcard).strictMono h
 
+/--
+@isnad1 id=iff.1h4v.s5.7886aa7aaee8 from=translated src=- shape=b7a95f68 vocab=df34677d
+-/
 theorem par_lt_iff {i j : Fin n} : par T hcard i < par T hcard j ↔ i < j :=
   (T.orderEmbOfFin hcard).lt_iff_lt
 
+/--
+@isnad1 id=le.2h4v.s5.e9e34ac4611c from=translated src=- shape=be18e5b6 vocab=24da530c
+-/
 theorem par_le_par {i j : Fin n} (h : i ≤ j) : par T hcard i ≤ par T hcard j :=
   (T.orderEmbOfFin hcard).monotone h
 
+/--
+@isnad1 id=ex.2h3v.s5.aa466c347883 from=translated src=- shape=b9e8333d vocab=6abdfe0a
+-/
 theorem exists_par_eq {s : ℝ} (hs : s ∈ T) : ∃ i : Fin n, par T hcard i = s := by
   have := T.range_orderEmbOfFin hcard
   rw [Set.ext_iff] at this
@@ -759,17 +881,25 @@ variable (hT : ∀ s ∈ T, s ∈ Ico (0 : ℝ) 1) (h0 : (0 : ℝ) ∈ T)
 include hcard hT h0
 
 omit hT in
+/--
+@isnad1 id=lt.2h2v.s5.83dc6a14c980 from=translated src=- shape=cd5df625 vocab=6a2c3b7b
+-/
 theorem par_card_pos : 0 < n := by
   rw [← hcard]
   exact Finset.card_pos.2 ⟨0, h0⟩
 
-/-- The first parameter is `0`: the loop is at a vertex when it starts. -/
+/-- The first parameter is `0`: the loop is at a vertex when it starts.
+@isnad1 id=eq.3h2v.s6.89679de9e649 from=translated src=- shape=760fbfd2 vocab=b556e248
+-/
 theorem par_zero : par T hcard ⟨0, par_card_pos hcard h0⟩ = 0 := by
   rw [par, Finset.orderEmbOfFin_zero hcard (par_card_pos hcard h0)]
   exact le_antisymm (Finset.min'_le _ _ h0)
     (Finset.le_min' _ _ _ fun s hs => (hT s hs).1)
 
 omit h0 in
+/--
+@isnad1 id=le.2h3v.s6.35d6eefb5a72 from=translated src=- shape=b8ab77d9 vocab=7c4a046c
+-/
 theorem parNext_le_one (i : Fin n) : parNext T hcard i ≤ 1 := by
   rw [parNext]
   split_ifs with hi
@@ -777,6 +907,9 @@ theorem parNext_le_one (i : Fin n) : parNext T hcard i ≤ 1 := by
   · exact le_refl 1
 
 omit h0 in
+/--
+@isnad1 id=lt.2h3v.s6.108190a926d7 from=translated src=- shape=6aab7d24 vocab=a9a8f880
+-/
 theorem par_lt_parNext (i : Fin n) : par T hcard i < parNext T hcard i := by
   rw [parNext]
   split_ifs with hi
@@ -784,7 +917,9 @@ theorem par_lt_parNext (i : Fin n) : par T hcard i < parNext T hcard i := by
   · exact (hT _ (par_mem hcard i)).2
 
 omit hT h0 in
-/-- No parameter lies strictly inside a gap. -/
+/-- No parameter lies strictly inside a gap.
+@isnad1 id=not.2h4v.s5.aadfcdf6c31a from=translated src=- shape=f3424ae5 vocab=2976dcfd
+-/
 theorem notMem_of_mem_gap {i : Fin n} {s : ℝ} (hs : s ∈ Ioo (par T hcard i) (parNext T hcard i)) :
     s ∉ T := by
   intro hsT
@@ -796,7 +931,9 @@ theorem notMem_of_mem_gap {i : Fin n} {s : ℝ} (hs : s ∈ Ioo (par T hcard i) 
   · exact absurd j.isLt (by omega)
 
 omit hT h0 in
-/-- Distinct gaps are disjoint. -/
+/-- Distinct gaps are disjoint.
+@isnad1 id=disjoint.2h4v.s6.6008059f6c20 from=translated src=- shape=5fafe49d vocab=8323fe91
+-/
 theorem gap_disjoint {i j : Fin n} (hij : i ≠ j) :
     Disjoint (Ioo (par T hcard i) (parNext T hcard i))
       (Ioo (par T hcard j) (parNext T hcard j)) := by
@@ -813,19 +950,27 @@ theorem gap_disjoint {i j : Fin n} (hij : i ≠ j) :
   · exact fun x hx hx' => absurd (lt_of_lt_of_le hx'.2 (key j i hlt)) (not_lt.2 hx.1.le)
 
 omit h0 in
+/--
+@isnad1 id=le.2h3v.s6.faac98b16aee from=translated src=- shape=ccc7f657 vocab=6f0d86ca
+-/
 theorem gap_subset_Ico (i : Fin n) :
     Ioo (par T hcard i) (parNext T hcard i) ⊆ Ico (0 : ℝ) 1 := fun _ hs =>
   ⟨le_of_lt (lt_of_le_of_lt (hT _ (par_mem hcard i)).1 hs.1),
     lt_of_lt_of_le hs.2 (parNext_le_one hcard hT i)⟩
 
 omit h0 in
+/--
+@isnad1 id=le.2h3v.s6.8389acaf89be from=translated src=- shape=6c8e28cf vocab=afc14ddd
+-/
 theorem gapClosure_subset_I (i : Fin n) :
     Icc (par T hcard i) (parNext T hcard i) ⊆ I := by
   intro s hs
   exact ⟨le_trans (hT _ (par_mem hcard i)).1 hs.1, le_trans hs.2 (parNext_le_one hcard hT i)⟩
 
 /-- **The gaps cover `[0, 1)` minus the parameters.** The gap containing `s` starts at the
-largest parameter below `s`. -/
+largest parameter below `s`.
+@isnad1 id=ex.5h3v.s7.e7838c2c49ee from=translated src=- shape=776c97bd vocab=cf48570b
+-/
 theorem exists_mem_gap {s : ℝ} (hs : s ∈ Ico (0 : ℝ) 1) (hsT : s ∉ T) :
     ∃ i : Fin n, s ∈ Ioo (par T hcard i) (parNext T hcard i) := by
   classical
@@ -849,7 +994,9 @@ theorem exists_mem_gap {s : ℝ} (hs : s ∈ Ico (0 : ℝ) 1) (hsT : s ∉ T) :
 
 end Gaps
 
-/-- A closed interval is its interior together with its two ends. -/
+/-- A closed interval is its interior together with its two ends.
+@isnad1 id=eq.1h2v.s5.71468c6ccef0 from=translated src=- shape=be672111 vocab=8684c2f9
+-/
 theorem Icc_eq_Ioo_union_ends {a b : ℝ} (hab : a ≤ b) : Icc a b = Ioo a b ∪ {a, b} := by
   ext x
   simp only [mem_Icc, mem_union, mem_Ioo, mem_insert_iff, mem_singleton_iff]
@@ -866,7 +1013,9 @@ theorem Icc_eq_Ioo_union_ends {a b : ℝ} (hab : a ≤ b) : Icc a b = Ioo a b �
     · exact ⟨hab, le_refl _⟩
 
 /-- Two points of a nondegenerate pair, each known to be one of two given points, exhaust
-them. -/
+them.
+@isnad1 id=or.3h4v.s5.3399a4d681b4 from=translated src=- shape=abdf42e9 vocab=5ef0fc1a
+-/
 theorem pair_eq_of_mem_pair {a b p q : Plane} (hab : a ≠ b) (ha : a = p ∨ a = q)
     (hb : b = p ∨ b = q) : (a = p ∧ b = q) ∨ (a = q ∧ b = p) := by
   rcases ha with rfl | rfl
@@ -877,7 +1026,9 @@ theorem pair_eq_of_mem_pair {a b p q : Plane} (hab : a ≠ b) (ha : a = p ∨ a 
     · exact Or.inr ⟨rfl, rfl⟩
     · exact absurd rfl hab
 
-/-- The successor in `ZMod n`, read as a numeral below `n`. -/
+/-- The successor in `ZMod n`, read as a numeral below `n`.
+@isnad1 id=eq.1h2v.s6.d0261125ec67 from=translated src=- shape=25dadc84 vocab=63a5a8c2
+-/
 theorem zmod_val_succ {n : ℕ} (hn : 1 < n) (j : ZMod n) :
     (j + 1).val = if j.val + 1 < n then j.val + 1 else 0 := by
   let _ : NeZero n := ⟨by omega⟩
@@ -941,7 +1092,9 @@ theorem eq_of_preconnected_finite_partition {ι X : Type*} [Finite ι] [Topologi
     exact hnotv ⟨z, hz, hzZ⟩
   exact (hZdiff i) ▸ ⟨hzZ, hAD hz⟩
 
-/-- The endpoints of a nondegenerate piece are the two boundary points of a closed gap. -/
+/-- The endpoints of a nondegenerate piece are the two boundary points of a closed gap.
+@isnad1 id=or.4h5v.s7.a703b2b2af2a from=translated src=- shape=977593c4 vocab=b42ae9b7
+-/
 theorem Piece.ends_of_closed_gap {R : Piece} {Z G : Set Plane} {a b : Plane}
     (hnd : R.1 ≠ R.2) (hclosed : IsClosed Z) (hinterior : R.interior = G)
     (hZ : Z = G ∪ {a, b}) :
@@ -964,7 +1117,9 @@ theorem Piece.ends_of_closed_gap {R : Piece} {Z G : Set Plane} {a b : Plane}
     · simpa only [Set.mem_insert_iff, Set.mem_singleton_iff] using hzE
   exact pair_eq_of_mem_pair hnd (hmem _ (Or.inl rfl)) (hmem _ (Or.inr rfl))
 
-/-- A family whose interiors cover a clean presentation contains every piece. -/
+/-- A family whose interiors cover a clean presentation contains every piece.
+@isnad1 id=ex.4h5v.s6.b69ecafa9c22 from=translated src=- shape=8b99d379 vocab=b3666f0a
+-/
 theorem IsClean.exists_piece_index {Q : List Piece} {C : Set Plane} (hQ : IsClean Q C)
     {ι : Type*} {pc : ι → Piece} (hpcQ : ∀ i, pc i ∈ Q)
     (hcover : (⋃ i, (pc i).interior) = C \ endSet Q) :
@@ -980,7 +1135,9 @@ theorem IsClean.exists_piece_index {Q : List Piece} {C : Set Plane} (hQ : IsClea
   by_contra hne
   exact hQ.interiors (pc i) (hpcQ i) R hR hne _ hi hx
 
-/-- **A polygonal Jordan curve is the carrier of a cyclic vertex list.** -/
+/-- **A polygonal Jordan curve is the carrier of a cyclic vertex list.**
+@isnad1 id=ex.2h1v.s4.cb72fdd117c4 from=translated src=- shape=71f5ecc3 vocab=5128eb29
+-/
 theorem exists_prePolygon_of_isJordanCurve {C : Set Plane} (hJ : IsJordanCurve C)
     (hP : IsPolygonal C) : ∃ (m : ℕ) (P : PrePolygon m), P.carrier = C := by
   classical
@@ -1197,7 +1354,9 @@ theorem exists_prePolygon_of_isJordanCurve {C : Set Plane} (hJ : IsJordanCurve C
 
 /-- **Every simple closed polygonal curve is the carrier of a `ClosedPolygon`.** This is the
 blueprint's set-level notion — `IsJordanCurve` together with `IsPolygonal`, no condition on
-vertices — matched with the presentation the development works with. -/
+vertices — matched with the presentation the development works with.
+@isnad1 id=ex.2h1v.s4.ea3e9882d9c2 from=translated src=- shape=71f5ecc3 vocab=c3847885
+-/
 theorem exists_closedPolygon {C : Set Plane} (hJ : IsJordanCurve C) (hP : IsPolygonal C) :
     ∃ (m : ℕ) (P : ClosedPolygon m), P.carrier = C := by
   obtain ⟨m, P, hcar⟩ := exists_prePolygon_of_isJordanCurve hJ hP
@@ -1219,7 +1378,9 @@ def IsStraightAt (C : Set Plane) (p : Plane) : Prop :=
 def IsCornerAt (C : Set Plane) (p : Plane) : Prop := p ∈ C ∧ ¬ IsStraightAt C p
 
 /-- **Every corner is a vertex.** A point interior to an edge lies on no other edge, so a small
-ball meets the curve only in that edge — and then the curve runs straight through it. -/
+ball meets the curve only in that edge — and then the curve runs straight through it.
+@isnad1 id=ex.1h3v.s5.e1e605629b6b from=translated src=- shape=5209fec9 vocab=2fbc2d90
+-/
 theorem ClosedPolygon.exists_vertex_eq_of_isCornerAt {m : ℕ} (P : ClosedPolygon m) {p : Plane}
     (hp : IsCornerAt P.carrier p) : ∃ i : ZMod (m + 3), P.vertex i = p := by
   obtain ⟨i, hpi⟩ := Set.mem_iUnion.1 hp.1
@@ -1247,7 +1408,9 @@ theorem ClosedPolygon.exists_vertex_eq_of_isCornerAt {m : ℕ} (P : ClosedPolygo
     · exact hji ▸ hzj
     · exact absurd hzj (hball j hji z hzb)
 
-/-- Two points of a segment differ by a multiple of its direction. -/
+/-- Two points of a segment differ by a multiple of its direction.
+@isnad1 id=ex.2h4v.s8.2e31969863c5 from=translated src=- shape=4201455a vocab=35a1e298
+-/
 theorem sub_eq_smul_of_mem_segment {a b x y : Plane} (hx : x ∈ segment ℝ a b)
     (hy : y ∈ segment ℝ a b) : ∃ c : ℝ, x - y = c • (a - b) := by
   obtain ⟨α, β, -, -, hαβ, rfl⟩ := hx
@@ -1257,7 +1420,9 @@ theorem sub_eq_smul_of_mem_segment {a b x y : Plane} (hx : x ∈ segment ℝ a b
   subst hb; subst hd
   exact ⟨α - γ, by module⟩
 
-/-- Three points of one segment are collinear. -/
+/-- Three points of one segment are collinear.
+@isnad1 id=eq.3h5v.s8.48383ef61fcd from=translated src=- shape=465d3f79 vocab=137379fa
+-/
 theorem det_eq_zero_of_mem_segment {a b x y z : Plane} (hx : x ∈ segment ℝ a b)
     (hy : y ∈ segment ℝ a b) (hz : z ∈ segment ℝ a b) : det (x - z) (y - z) = 0 := by
   obtain ⟨c, hc⟩ := sub_eq_smul_of_mem_segment hx hz
@@ -1267,7 +1432,9 @@ theorem det_eq_zero_of_mem_segment {a b x y z : Plane} (hx : x ∈ segment ℝ a
 /-- **Every vertex is a corner.** With `ClosedPolygon.exists_vertex_eq_of_isCornerAt` this says
 that the vertex set of a realization is *exactly* the corner set of the curve — so any two
 realizations of one curve have the same vertices, and a point can be required to be a vertex
-precisely when it is a corner. -/
+precisely when it is a corner.
+@isnad1 id=iscorner.0h3v.s4.ed8851b2c3b5 from=translated src=- shape=8ed8863d vocab=f6c88127
+-/
 theorem ClosedPolygon.isCornerAt_vertex {m : ℕ} (P : ClosedPolygon m) (i : ZMod (m + 3)) :
     IsCornerAt P.carrier (P.vertex i) := by
   refine ⟨P.vertex_mem_carrier, ?_⟩
@@ -1315,7 +1482,9 @@ theorem ClosedPolygon.isCornerAt_vertex {m : ℕ} (P : ClosedPolygon m) (i : ZMo
 
 /-- **The realization theorem, with named corners.** Any finite list of corners of the curve can
 be required to be among the vertices — and by `ClosedPolygon.exists_vertex_eq_of_isCornerAt`,
-being a corner is exactly what a point must be for that to be possible. -/
+being a corner is exactly what a point must be for that to be possible.
+@isnad1 id=ex.3h2v.s6.3b14309eaf6b from=translated src=- shape=fa6b59d0 vocab=92914b92
+-/
 theorem exists_closedPolygon_corners {C : Set Plane} (hJ : IsJordanCurve C) (hP : IsPolygonal C)
     (S : List Plane) (hS : ∀ p ∈ S, IsCornerAt C p) :
     ∃ (m : ℕ) (P : ClosedPolygon m), P.carrier = C ∧
@@ -1329,7 +1498,9 @@ two vertices `a` and `a + k` of the realization, which is what names the two arc
 
 The corner hypothesis is not an artefact: `ClosedPolygon.corner` forbids a vertex where the
 curve runs straight through, so a splitting point that is *not* a corner cannot be a vertex of
-any realization. -/
+any realization.
+@isnad1 id=ex.5h3v.s8.707a412038d4 from=translated src=- shape=8ad7def0 vocab=97eba142
+-/
 theorem exists_closedPolygon_split {C : Set Plane} (hJ : IsJordanCurve C) (hP : IsPolygonal C)
     {p q : Plane} (hp : IsCornerAt C p) (hq : IsCornerAt C q) (hpq : p ≠ q) :
     ∃ (m : ℕ) (P : ClosedPolygon m) (a : ZMod (m + 3)) (k : ℕ), P.carrier = C ∧
@@ -1376,16 +1547,24 @@ def rotate (P : ClosedPolygon m) (a : ZMod (m + 3)) : ClosedPolygon m where
     simp only [h1, h2]
     exact P.corner (a + i)
 
+/--
+@isnad1 id=eq.0h4v.s7.59921c86ecba from=translated src=- shape=e2388522 vocab=08080f2a
+-/
 @[simp] theorem rotate_vertex (P : ClosedPolygon m) (a j : ZMod (m + 3)) :
     (P.rotate a).vertex j = P.vertex (a + j) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.50663d290150 from=translated src=- shape=a3991637 vocab=d1138dcd
+-/
 theorem rotate_edge (P : ClosedPolygon m) (a j : ZMod (m + 3)) :
     (P.rotate a).edge j = P.edge (a + j) := by
   rw [edge, edge, rotate_vertex, rotate_vertex, show a + (j + 1) = a + j + 1 by ring]
 
 variable {P : ClosedPolygon m} {a : ZMod (m + 3)} {k : ℕ} {z : Plane}
 
-/-- An arc is the union of the `k` edges leaving vertices `a, a + 1, …`. -/
+/-- An arc is the union of the `k` edges leaving vertices `a, a + 1, …`.
+@isnad1 id=iff.0h5v.s8.400d19cebdb3 from=translated src=- shape=a1117f5a vocab=cddc401b
+-/
 theorem mem_arc_iff : z ∈ P.arc a k ↔ ∃ t < k, z ∈ P.edge (a + (t : ZMod (m + 3))) := by
   constructor
   · intro hz
@@ -1395,7 +1574,9 @@ theorem mem_arc_iff : z ∈ P.arc a k ↔ ∃ t < k, z ∈ P.edge (a + (t : ZMod
   · rintro ⟨t, ht, hz⟩
     exact mem_cover (List.mem_map.2 ⟨t, List.mem_range.2 ht, rfl⟩) hz
 
-/-- An arc of `P` is a chain of the polygon read from its first vertex. -/
+/-- An arc of `P` is a chain of the polygon read from its first vertex.
+@isnad1 id=eq.1h4v.s5.fcfbb61e0c42 from=translated src=- shape=4e0e4b34 vocab=fb24271c
+-/
 theorem arc_eq_chain (P : ClosedPolygon m) (a : ZMod (m + 3)) (hk : 1 ≤ k) :
     P.arc a k = (P.rotate a).chain (k - 1) := by
   ext z
@@ -1407,7 +1588,9 @@ theorem arc_eq_chain (P : ClosedPolygon m) (a : ZMod (m + 3)) (hk : 1 ≤ k) :
     rw [rotate_edge] at hz
     exact ⟨j, by omega, hz⟩
 
-/-- **An arc of a splitting is an arc between the two cut vertices.** -/
+/-- **An arc of a splitting is an arc between the two cut vertices.**
+@isnad1 id=isarcbet.2h4v.s8.a793a3b4ba04 from=translated src=- shape=7d19ffbf vocab=59ec3633
+-/
 theorem isArcBetween_arc (P : ClosedPolygon m) (a : ZMod (m + 3)) (hk1 : 1 ≤ k)
     (hk2 : k ≤ m + 2) : IsArcBetween (P.arc a k) (P.vertex a) (P.vertex (a + k)) := by
   have h := (P.rotate a).isArcBetween_chain (k - 1) (by omega)
@@ -1415,7 +1598,9 @@ theorem isArcBetween_arc (P : ClosedPolygon m) (a : ZMod (m + 3)) (hk1 : 1 ≤ k
     congr 1; omega] at h
   simpa using h
 
-/-- Distinct index numerals below the modulus name distinct vertices, after any shift. -/
+/-- Distinct index numerals below the modulus name distinct vertices, after any shift.
+@isnad1 id=eq.3h5v.s9.277cc4477589 from=translated src=- shape=3c9a2fdc vocab=a80427c6
+-/
 theorem natCast_shift_inj (P : ClosedPolygon m) (a : ZMod (m + 3)) {x y : ℕ} (hx : x < m + 3)
     (hy : y < m + 3) (he : P.vertex (a + (x : ZMod (m + 3))) = P.vertex (a + (y : ZMod (m + 3)))) :
     x = y :=
@@ -1423,7 +1608,9 @@ theorem natCast_shift_inj (P : ClosedPolygon m) (a : ZMod (m + 3)) {x y : ℕ} (
 
 /-- **The two arcs of a splitting meet exactly at the two cut vertices.** A point on both lies
 on an edge of each; `edges_meet`, read in both directions, puts it at a vertex shared by the two
-edges, and the only shared vertices are the two ends of the split. -/
+edges, and the only shared vertices are the two ends of the split.
+@isnad1 id=eq.2h4v.s9.92ed4343f66c from=translated src=- shape=e5c56b56 vocab=05490012
+-/
 theorem arc_inter (P : ClosedPolygon m) (a : ZMod (m + 3)) (hk1 : 1 ≤ k) (hk2 : k ≤ m + 2) :
     P.arc a k ∩ P.arc (a + k) (m + 3 - k) = {P.vertex a, P.vertex (a + k)} := by
   refine Set.Subset.antisymm ?_ (Set.subset_inter (P.endpoints_subset_arc a hk1)
@@ -1482,12 +1669,16 @@ arcs a consumer started from. -/
 /-- The interior of an arc — the arc less its two endpoints — is connected and nonempty. The
 paired form the uniqueness argument below destructures; both halves are in
 `Schoenflies/Subarc.lean`, which is where the shared set identity `A ∖ {p, q} = f '' Ioo 0 1`
-lives. -/
+lives.
+@isnad1 id=and.1h3v.s6.fd8717cec6df from=translated src=- shape=96f77fc9 vocab=949caab1
+-/
 theorem IsArcBetween.preconnected_diff {A : Set Plane} {p q : Plane} (h : IsArcBetween A p q) :
     IsPreconnected (A \ {p, q}) ∧ (A \ {p, q}).Nonempty :=
   ⟨h.isPreconnected_diff, h.nonempty_diff⟩
 
-/-- **The two arcs a pair of points cuts a curve into are determined.** -/
+/-- **The two arcs a pair of points cuts a curve into are determined.**
+@isnad1 id=or.8h7v.s7.80c9cb00ffee from=translated src=- shape=cf659960 vocab=4e0ca012
+-/
 theorem two_arcs_unique {C A₁ A₂ D₁ D₂ : Set Plane} {p q : Plane}
     (hA : A₁ ∪ A₂ = C) (hAi : A₁ ∩ A₂ = {p, q})
     (hD : D₁ ∪ D₂ = C) (hDi : D₁ ∩ D₂ = {p, q})
@@ -1575,7 +1766,9 @@ corresponding vertices are those two arcs.
 This is the form the plane-graph layer wants — compare `Graph.IsHexRealization`. The corner
 hypothesis on the two cut points is not an artefact of the proof:
 `ClosedPolygon.isCornerAt_vertex` says every vertex of a realization is a corner, so a cut point
-that is *not* one cannot be a vertex of any realization at all. -/
+that is *not* one cannot be a vertex of any realization at all.
+@isnad1 id=ex.9h5v.s9.c853e6a72035 from=translated src=- shape=20924365 vocab=8874e513
+-/
 theorem exists_closedPolygon_arcs {C A₁ A₂ : Set Plane} (hJ : IsJordanCurve C)
     (hP : IsPolygonal C) {p q : Plane} (hp : IsCornerAt C p) (hq : IsCornerAt C q) (hpq : p ≠ q)
     (hA1 : IsArcBetween A₁ p q) (hA2 : IsArcBetween A₂ p q) (hunion : A₁ ∪ A₂ = C)
@@ -1605,7 +1798,9 @@ theorem exists_closedPolygon_arcs {C A₁ A₂ : Set Plane} (hJ : IsJordanCurve 
 `Schoenflies.exists_closedPolygon_arcs` with the disjunction moved off the arcs and onto the two
 cut vertices: reading the polygon from the other cut point exchanges the two arcs, so exactly
 one of the two starting vertices makes `P.arc a k` the *first* arc. This is the shape
-`Graph.IsHexRealization` asks for. -/
+`Graph.IsHexRealization` asks for.
+@isnad1 id=ex.9h5v.s9.bd764be13045 from=translated src=- shape=81be1d5a vocab=8874e513
+-/
 theorem exists_closedPolygon_arcs_ordered {C A₁ A₂ : Set Plane} (hJ : IsJordanCurve C)
     (hP : IsPolygonal C) {p q : Plane} (hp : IsCornerAt C p) (hq : IsCornerAt C q) (hpq : p ≠ q)
     (hA1 : IsArcBetween A₁ p q) (hA2 : IsArcBetween A₂ p q) (hunion : A₁ ∪ A₂ = C)

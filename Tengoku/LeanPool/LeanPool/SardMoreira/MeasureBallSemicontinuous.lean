@@ -16,6 +16,9 @@ public import Tengoku
 open MeasureTheory Topology Filter Set Metric
 open scoped NNReal
 
+/--
+@isnad1 id=tendsto.1h6v.s7.b357ab2c668c from=translated src=- shape=82aa8ad9 vocab=f8c3fc2e
+-/
 theorem MeasureTheory.tendsto_measure_biUnion_lt {α : Type*} {m : MeasurableSpace α}
     {μ : Measure α} {ι : Type*} [LinearOrder ι] [TopologicalSpace ι] [OrderTopology ι]
     [DenselyOrdered ι] [FirstCountableTopology ι] {s : ι → Set α} {a : ι}
@@ -28,17 +31,26 @@ theorem MeasureTheory.tendsto_measure_biUnion_lt {α : Type*} {m : MeasurableSpa
   simp_rw [← map_coe_Iio_atTop a hdense, tendsto_map'_iff, ← mem_Iio, biUnion_eq_iUnion]
   exact tendsto_measure_iUnion_atTop fun i j hle ↦ hm i j hle j.2
 
+/--
+@isnad1 id=continuo.0h5v.s5.8bf9ca6afdb5 from=translated src=- shape=52264927 vocab=0b0ece65
+-/
 theorem continuousWithinAt_Iio_measure_ball {X : Type*} [PseudoMetricSpace X]
     {_ : MeasurableSpace X} {μ : Measure X} {x : X} {r : ℝ} :
     ContinuousWithinAt (μ <| ball x ·) (Iio r) r := by
   rw [ContinuousWithinAt, ← biUnion_lt_ball]
   exact tendsto_measure_biUnion_lt fun i j hle _ ↦ by gcongr
 
+/--
+@isnad1 id=continuo.0h5v.s5.9f5990226d1d from=translated src=- shape=52264927 vocab=1765e711
+-/
 theorem continuousWithinAt_Iic_measure_ball {X : Type*} [PseudoMetricSpace X]
     {_ : MeasurableSpace X} {μ : Measure X} {x : X} {r : ℝ} :
     ContinuousWithinAt (μ <| ball x ·) (Iic r) r :=
   continuousWithinAt_Iio_iff_Iic.mp continuousWithinAt_Iio_measure_ball
 
+/--
+@isnad1 id=lowersem.0h3v.s6.90d0d3711714 from=translated src=- shape=10f6aa09 vocab=cfeb37c4
+-/
 theorem lowerSemicontinuous_measure_ball_toUpper_symm {X : Type*} [PseudoMetricSpace X]
     {_ : MeasurableSpace X} {μ : Measure X} :
     LowerSemicontinuous fun xr : X × WithUpper ℝ ↦ μ (ball xr.1 (WithUpper.toUpper.symm xr.2)) := by
@@ -59,12 +71,18 @@ theorem lowerSemicontinuous_measure_ball_toUpper_symm {X : Type*} [PseudoMetricS
   rw [dist_comm]
   linarith
 
+/--
+@isnad1 id=lowersem.0h3v.s5.6be8e5fe1537 from=translated src=- shape=5f9c35a7 vocab=9cabc084
+-/
 theorem lowerSemicontinuous_measure_ball {X : Type*} [PseudoMetricSpace X]
     {_ : MeasurableSpace X} {μ : Measure X} :
     LowerSemicontinuous fun xr : X × ℝ ↦ μ (ball xr.1 xr.2) :=
   lowerSemicontinuous_measure_ball_toUpper_symm.comp <|
     continuous_id.prodMap WithUpper.continuous_toUpper
 
+/--
+@isnad1 id=measurab.2h6v.s6.e755ed6f6cdf from=translated src=- shape=69322896 vocab=ac2692b1
+-/
 @[fun_prop]
 theorem Measurable.measure_ball {α X : Type*} {_ : MeasurableSpace α}
     [PseudoMetricSpace X] [MeasurableSpace X] [OpensMeasurableSpace X] {μ : Measure X}
@@ -72,12 +90,18 @@ theorem Measurable.measure_ball {α X : Type*} {_ : MeasurableSpace α}
     Measurable (fun a ↦ μ (ball (f a) (g a))) :=
   lowerSemicontinuous_measure_ball.measurable.comp (hf.prodMk hg)
 
+/--
+@isnad1 id=ex.2h4v.s6.8ded5738f967 from=translated src=- shape=794758b4 vocab=7b12c6cb
+-/
 theorem IsCompact.exists_isMinOn_measure_ball {X : Type*} [PseudoMetricSpace X]
     [MeasurableSpace X] (μ : Measure X) {s : Set X}
     (hs : IsCompact s) (hne : s.Nonempty) (r : ℝ) : ∃ x ∈ s, IsMinOn (μ <| ball · r) s x :=
   ((lowerSemicontinuous_measure_ball.comp
     (continuous_id.prodMk continuous_const)).lowerSemicontinuousOn _).exists_isMinOn hne hs
 
+/--
+@isnad1 id=ex.2h4v.s6.9cc46081115d from=translated src=- shape=31976dcd vocab=e8986c8c
+-/
 theorem IsCompact.exists_pos_forall_lt_measure_ball {X : Type*} [PseudoMetricSpace X]
     [MeasurableSpace X] (μ : Measure X) [μ.IsOpenPosMeasure] {s : Set X}
     (hs : IsCompact s) {r : ℝ} (hr : 0 < r) : ∃ m > (0 : ℝ≥0), ∀ x ∈ s, m < μ (ball x r) := by
@@ -88,6 +112,9 @@ theorem IsCompact.exists_pos_forall_lt_measure_ball {X : Type*} [PseudoMetricSpa
     rcases ENNReal.lt_iff_exists_nnreal_btwn.mp (Metric.measure_ball_pos μ x hr) with ⟨m, hm₀, hmx⟩
     exact ⟨m, mod_cast hm₀, fun y hy ↦ hmx.trans_le <| hx hy⟩
 
+/--
+@isnad1 id=ex.1h3v.s6.ecc426031bc0 from=translated src=- shape=40b45cc3 vocab=6fe1e124
+-/
 theorem exists_pos_forall_lt_measure_ball {X : Type*} [PseudoMetricSpace X] [CompactSpace X]
     [MeasurableSpace X] (μ : Measure X) [μ.IsOpenPosMeasure]
     {r : ℝ} (hr : 0 < r) : ∃ m > (0 : ℝ≥0), ∀ x, m < μ (ball x r) := by

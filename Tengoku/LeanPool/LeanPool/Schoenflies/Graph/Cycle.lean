@@ -95,30 +95,49 @@ path speaks about the subgraph's visited set, and that is the smaller one. -/
 `Graph.deleteEdges` is Mathlib's. These are the four transfer lemmas every deletion argument
 below reduces to. -/
 
-/-- Deleting edges never removes a vertex, so a walk in the deletion is a walk. -/
+/-- Deleting edges never removes a vertex, so a walk in the deletion is a walk.
+@isnad1 id=iswalk.1h7v.s5.10d1fb7b45fe from=translated src=- shape=3df2fbbd vocab=170361a7
+-/
 theorem IsWalk.of_deleteEdges (h : (G.deleteEdges F).IsWalk u W v) : G.IsWalk u W v :=
   h.mono deleteEdges_le
 
-/-- Conversely, a walk in the deletion could not have used a deleted name. -/
+/-- Conversely, a walk in the deletion could not have used a deleted name.
+@isnad1 id=not.2h8v.s5.898f8c3c0d90 from=translated src=- shape=eb87ec43 vocab=07c56eb2
+-/
 theorem IsWalk.notMem_of_deleteEdges (h : (G.deleteEdges F).IsWalk u W v) (hf : f ∈ W) :
     f ∉ F :=
   (mem_edgeSet_deleteEdges_iff.1 (h.edge_mem hf)).2
 
+/--
+@isnad1 id=ispath.1h7v.s5.60976a24a1b1 from=translated src=- shape=3df2fbbd vocab=1d966666
+-/
 theorem IsPath.of_deleteEdges (h : (G.deleteEdges F).IsPath u W v) : G.IsPath u W v :=
   h.mono deleteEdges_le
 
+/--
+@isnad1 id=ispath.2h7v.s5.9b7ab09309d7 from=translated src=- shape=e89140c2 vocab=cfc1b1fa
+-/
 theorem IsPath.deleteEdges (h : G.IsPath u W v) (hW : ∀ f ∈ W, f ∉ F) :
     (G.deleteEdges F).IsPath u W v :=
   h.anti deleteEdges_le (by simpa using h.left_mem)
     fun f hf ↦ mem_edgeSet_deleteEdges_iff.2 ⟨h.edge_mem hf, hW f hf⟩
 
+/--
+@isnad1 id=not.2h8v.s5.79fc6ca14774 from=translated src=- shape=eb87ec43 vocab=cfc1b1fa
+-/
 theorem IsPath.notMem_of_deleteEdges (h : (G.deleteEdges F).IsPath u W v) (hf : f ∈ W) :
     f ∉ F :=
   h.isWalk.notMem_of_deleteEdges hf
 
+/--
+@isnad1 id=reaches.1h6v.s5.e634fb9e9bdd from=translated src=- shape=69f91f9b vocab=8333fdfe
+-/
 theorem Reaches.of_deleteEdges (h : (G.deleteEdges F).Reaches u v) : G.Reaches u v :=
   h.mono deleteEdges_le
 
+/--
+@isnad1 id=reaches.2h7v.s5.2f5c19cbf220 from=translated src=- shape=31cefb61 vocab=acdfa173
+-/
 theorem IsWalk.reaches_deleteEdges (h : G.IsWalk u W v) (hW : ∀ f ∈ W, f ∉ F) :
     (G.deleteEdges F).Reaches u v :=
   ⟨W, h.deleteEdges hW⟩
@@ -134,29 +153,50 @@ def IsCycleThrough (G : Graph α β) (e : β) (u v : α) (D : List β) : Prop :=
 /-- `G.LiesOnCycle e` : the edge `e` lies on a cycle of `G`. -/
 def LiesOnCycle (G : Graph α β) (e : β) : Prop := ∃ u v D, G.IsCycleThrough e u v D
 
+/--
+@isnad1 id=islink.1h7v.s5.0a532d5c4b18 from=translated src=- shape=e80c1d97 vocab=7aad3369
+-/
 theorem IsCycleThrough.isLink (h : G.IsCycleThrough e u v D) : G.IsLink e u v := h.1
 
+/--
+@isnad1 id=ispath.1h7v.s5.896db93b71be from=translated src=- shape=d700949b vocab=2e880f3f
+-/
 theorem IsCycleThrough.isPath (h : G.IsCycleThrough e u v D) : G.IsPath u D v := h.2.1
 
+/--
+@isnad1 id=not.1h7v.s5.53a3d2d48acb from=translated src=- shape=38b8ea94 vocab=e775d704
+-/
 theorem IsCycleThrough.notMem (h : G.IsCycleThrough e u v D) : e ∉ D := h.2.2
 
+/--
+@isnad1 id=liesoncy.1h7v.s4.593954a63a70 from=translated src=- shape=b064c04d vocab=a4b8c5e5
+-/
 theorem IsCycleThrough.liesOnCycle (h : G.IsCycleThrough e u v D) : G.LiesOnCycle e :=
   ⟨u, v, D, h⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.7a304bacc44f from=translated src=- shape=69711e39 vocab=a4b8c5e5
+-/
 theorem liesOnCycle_iff : G.LiesOnCycle e ↔ ∃ u v D, G.IsCycleThrough e u v D := Iff.rfl
 
 /-- An edge on a cycle is an edge of the graph. There is no converse hypothesis to carry
-around: `Graph.IsLink` already forces it. -/
+around: `Graph.IsLink` already forces it.
+@isnad1 id=mem.1h4v.s4.e46bc5768743 from=translated src=- shape=b2af7eb4 vocab=fcb99b7b
+-/
 theorem LiesOnCycle.edge_mem (h : G.LiesOnCycle e) : e ∈ E(G) :=
   let ⟨_, _, _, hc⟩ := h; hc.isLink.edge_mem
 
 /-- **A loop is a cycle of length one.** The path back is the empty one, which trivially
-avoids the loop. -/
+avoids the loop.
+@isnad1 id=liesoncy.1h5v.s4.836a97c8305a from=translated src=- shape=bbb1659f vocab=965d3351
+-/
 theorem liesOnCycle_of_isLoopAt (h : G.IsLoopAt e x) : G.LiesOnCycle e :=
   ⟨x, x, [], h, .nil h.left_mem, List.not_mem_nil⟩
 
 /-- **Two parallel edges are a cycle**, on both of them. This is the length-two case, and the
-reason a walk names its edges. -/
+reason a walk names its edges.
+@isnad1 id=liesoncy.3h7v.s5.8012039a92b0 from=translated src=- shape=6d634695 vocab=d03d4329
+-/
 theorem liesOnCycle_of_parallel (h : G.IsLink e u v) (h' : G.IsLink f u v) (hef : e ≠ f) :
     G.LiesOnCycle e := by
   by_cases huv : u = v
@@ -164,7 +204,9 @@ theorem liesOnCycle_of_parallel (h : G.IsLink e u v) (h' : G.IsLink f u v) (hef 
     exact liesOnCycle_of_isLoopAt h
   exact ⟨u, v, [f], h, .single h' huv, by simpa using hef⟩
 
-/-- A cycle of a subgraph is a cycle of the graph. -/
+/-- A cycle of a subgraph is a cycle of the graph.
+@isnad1 id=liesoncy.2h5v.s5.189178420ae7 from=translated src=- shape=ff436108 vocab=3f9515b1
+-/
 theorem LiesOnCycle.mono (hHG : H ≤ G) (h : H.LiesOnCycle e) : G.LiesOnCycle e :=
   let ⟨u, v, D, hl, hP, hD⟩ := h
   ⟨u, v, D, hl.mono hHG, hP.mono hHG, hD⟩
@@ -179,7 +221,9 @@ backwards, a path in the deletion cannot have used `e` because `e` is not there.
 
 The ends are given as an arbitrary pair `u, v` that `e` links, not as the pair the cycle was
 presented with — an edge has only two ends, so the two presentations agree up to a swap, and
-reachability is symmetric. -/
+reachability is symmetric.
+@isnad1 id=reaches.2h6v.s5.6ee99b70abb6 from=translated src=- shape=d2dc7b03 vocab=51d06462
+-/
 theorem LiesOnCycle.deleteEdges_reaches (hl : G.IsLink e u v) (h : G.LiesOnCycle e) :
     (G.deleteEdges {e}).Reaches u v := by
   obtain ⟨u', v', D, hl', hP, hD⟩ := h
@@ -191,14 +235,18 @@ theorem LiesOnCycle.deleteEdges_reaches (hl : G.IsLink e u v) (h : G.LiesOnCycle
 
 /-- **An edge whose deletion leaves its ends joined lies on a cycle.** The route that
 survives is a walk of the deletion, hence contains a path of the deletion, and a path of the
-deletion cannot have used the name that was deleted. -/
+deletion cannot have used the name that was deleted.
+@isnad1 id=liesoncy.2h6v.s5.09f7ab2e836a from=translated src=- shape=878a76e8 vocab=51d06462
+-/
 theorem LiesOnCycle.of_deleteEdges_reaches (hl : G.IsLink e u v)
     (h : (G.deleteEdges {e}).Reaches u v) : G.LiesOnCycle e := by
   obtain ⟨D, hD⟩ := h.exists_isPath
   exact ⟨u, v, D, hl, hD.of_deleteEdges, fun hmem ↦ hD.notMem_of_deleteEdges hmem rfl⟩
 
 /-- **The cycle criterion**: an edge lies on a cycle if and only if deleting it does not
-disconnect its endpoints. -/
+disconnect its endpoints.
+@isnad1 id=iff.1h6v.s5.760e0387eb6a from=translated src=- shape=2763e4fb vocab=51d06462
+-/
 theorem liesOnCycle_iff_deleteEdges_reaches (hl : G.IsLink e u v) :
     G.LiesOnCycle e ↔ (G.deleteEdges {e}).Reaches u v :=
   ⟨LiesOnCycle.deleteEdges_reaches hl, LiesOnCycle.of_deleteEdges_reaches hl⟩
@@ -206,7 +254,9 @@ theorem liesOnCycle_iff_deleteEdges_reaches (hl : G.IsLink e u v) :
 /-- **A walk reroutes around an edge that lies on a cycle**: wherever it took `e`, it can go
 the long way round instead. Proved by induction along the walk rather than by splicing the
 detour into the edge list, so nothing has to be said about what the spliced list looks
-like. -/
+like.
+@isnad1 id=reaches.2h7v.s5.30f229a98a74 from=translated src=- shape=77502248 vocab=53ab8aaa
+-/
 theorem IsWalk.reaches_deleteEdges_of_liesOnCycle (h : G.LiesOnCycle e) (hW : G.IsWalk u W v) :
     (G.deleteEdges {e}).Reaches u v := by
   induction hW with
@@ -222,7 +272,9 @@ theorem IsWalk.reaches_deleteEdges_of_liesOnCycle (h : G.LiesOnCycle e) (hW : G.
 
 /-- **Deleting an edge that lies on a cycle keeps the graph connected** — the blueprint's "it
 is a tree: an edge of a cycle could be deleted", which is what makes a minimal connected
-spanning subgraph acyclic. -/
+spanning subgraph acyclic.
+@isnad1 id=connecte.2h4v.s5.8163a55d6981 from=translated src=- shape=e5c1c33c vocab=f9679933
+-/
 theorem Connected.deleteEdges_singleton (hG : G.Connected) (h : G.LiesOnCycle e) :
     (G.deleteEdges {e}).Connected := by
   refine ⟨by simpa using hG.nonempty, fun u hu v hv ↦ ?_⟩
@@ -236,7 +288,9 @@ is the shape in which acyclicity is used: it says a path cannot be extended back
 itself. -/
 
 /-- A chord of a path lies on a cycle: the piece of the path from its source to the far end
-of the chord is a path avoiding the chord, so the chord closes it. -/
+of the chord is a path avoiding the chord, so the chord closes it.
+@isnad1 id=liesoncy.4h8v.s6.00413adaebe9 from=translated src=- shape=a366dd56 vocab=e9f4838b
+-/
 theorem IsPath.chord_liesOnCycle (hP : G.IsPath u P v) (hl : G.IsLink e u x) (hoff : e ∉ P)
     (hx : x ∈ G.walkVertices u P) : G.LiesOnCycle e := by
   obtain ⟨P₁, P₂, rfl, h₁, -, -⟩ := hP.split hx
@@ -249,15 +303,22 @@ is how a tree consumes it — every edge is a bridge — while `Graph.IsAcyclic.
 drops the membership hypothesis for the uses that do not have it to hand. -/
 def IsAcyclic (G : Graph α β) : Prop := ∀ ⦃e⦄, e ∈ E(G) → ¬ G.LiesOnCycle e
 
-/-- Acyclicity with no membership hypothesis: an edge on a cycle would be an edge. -/
+/-- Acyclicity with no membership hypothesis: an edge on a cycle would be an edge.
+@isnad1 id=not.1h4v.s4.4f75e157a439 from=translated src=- shape=6d925de9 vocab=e89c8868
+-/
 theorem IsAcyclic.not_liesOnCycle (h : G.IsAcyclic) (e : β) : ¬ G.LiesOnCycle e :=
   fun hc ↦ h hc.edge_mem hc
 
+/--
+@isnad1 id=iff.0h3v.s4.414fb34388d5 from=translated src=- shape=2ad81100 vocab=e89c8868
+-/
 theorem isAcyclic_iff : G.IsAcyclic ↔ ∀ e, ¬ G.LiesOnCycle e :=
   ⟨fun h e ↦ h.not_liesOnCycle e, fun h _ _ ↦ h _⟩
 
 /-- **An acyclic graph has no loop.** No hypothesis is needed anywhere else in this layer
-because of this: looplessness is a consequence of acyclicity, not a side condition on it. -/
+because of this: looplessness is a consequence of acyclicity, not a side condition on it.
+@isnad1 id=not.1h5v.s4.8d3bef908c8c from=translated src=- shape=54577b55 vocab=a3b02746
+-/
 theorem IsAcyclic.not_isLoopAt (h : G.IsAcyclic) (e : β) (x : α) : ¬ G.IsLoopAt e x :=
   fun hloop ↦ h.not_liesOnCycle e (liesOnCycle_of_isLoopAt hloop)
 
@@ -267,17 +328,24 @@ theorem IsAcyclic.eq_of_isLink (h : G.IsAcyclic) (hl : G.IsLink e u v) (hl' : G.
   by_contra hef
   exact h.not_liesOnCycle e (liesOnCycle_of_parallel hl hl' hef)
 
-/-- A subgraph of an acyclic graph is acyclic. -/
+/-- A subgraph of an acyclic graph is acyclic.
+@isnad1 id=isacycli.2h4v.s5.bf94b1a81e3e from=translated src=- shape=68fef46e vocab=618a66f3
+-/
 theorem IsAcyclic.anti (hHG : H ≤ G) (h : G.IsAcyclic) : H.IsAcyclic :=
   fun _ _ hc ↦ h.not_liesOnCycle _ (hc.mono hHG)
 
+/--
+@isnad1 id=isacycli.1h4v.s4.799895f6fd41 from=translated src=- shape=7e3d9c9b vocab=6d232347
+-/
 theorem IsAcyclic.deleteEdges (h : G.IsAcyclic) (F : Set β) : (G.deleteEdges F).IsAcyclic :=
   h.anti deleteEdges_le
 
 /-- **In an acyclic graph, an edge at the source of a path whose far end the path visits is
 one of the path's own edges.** This is the blueprint's "a second neighbor on the path would
 close a cycle" — the step that makes the end of a longest path a leaf, which is what the tree
-module runs on. -/
+module runs on.
+@isnad1 id=mem.4h8v.s5.33bfca86d603 from=translated src=- shape=8d3b33f6 vocab=9bee363e
+-/
 theorem IsAcyclic.mem_of_isLink_of_mem_walkVertices (hac : G.IsAcyclic) (hP : G.IsPath u P v)
     (hl : G.IsLink e u x) (hx : x ∈ G.walkVertices u P) : e ∈ P := by
   by_contra hoff
@@ -290,36 +358,55 @@ form every use wants — an edge whose deletion separates its two ends
 (`Graph.isBridge_iff_not_reaches`). -/
 def IsBridge (G : Graph α β) (e : β) : Prop := e ∈ E(G) ∧ ¬ G.LiesOnCycle e
 
+/--
+@isnad1 id=mem.1h4v.s4.e3b9049922b7 from=translated src=- shape=b2af7eb4 vocab=d0be862a
+-/
 theorem IsBridge.edge_mem (h : G.IsBridge e) : e ∈ E(G) := h.1
 
+/--
+@isnad1 id=not.1h4v.s4.6158c1bc7adf from=translated src=- shape=a51348c6 vocab=f1f80d8c
+-/
 theorem IsBridge.not_liesOnCycle (h : G.IsBridge e) : ¬ G.LiesOnCycle e := h.2
 
-/-- **Deleting a bridge separates its ends.** -/
+/-- **Deleting a bridge separates its ends.**
+@isnad1 id=not.2h6v.s5.be83db1183a3 from=translated src=- shape=15576a54 vocab=71789de4
+-/
 theorem IsBridge.not_reaches (h : G.IsBridge e) (hl : G.IsLink e u v) :
     ¬ (G.deleteEdges {e}).Reaches u v :=
   fun hR ↦ h.not_liesOnCycle (LiesOnCycle.of_deleteEdges_reaches hl hR)
 
-/-- **An edge whose deletion separates its ends is a bridge.** -/
+/-- **An edge whose deletion separates its ends is a bridge.**
+@isnad1 id=isbridge.2h6v.s5.1c59e6f65b2e from=translated src=- shape=24065aaa vocab=71789de4
+-/
 theorem isBridge_of_not_reaches (hl : G.IsLink e u v)
     (h : ¬ (G.deleteEdges {e}).Reaches u v) : G.IsBridge e :=
   ⟨hl.edge_mem, fun hc ↦ h (hc.deleteEdges_reaches hl)⟩
 
 /-- **A bridge is exactly an edge whose deletion separates its ends** — the cycle criterion,
-negated. -/
+negated.
+@isnad1 id=iff.1h6v.s5.7337e56b7705 from=translated src=- shape=a2e48e59 vocab=71789de4
+-/
 theorem isBridge_iff_not_reaches (hl : G.IsLink e u v) :
     G.IsBridge e ↔ ¬ (G.deleteEdges {e}).Reaches u v :=
   ⟨fun h ↦ h.not_reaches hl, isBridge_of_not_reaches hl⟩
 
-/-- A bridge is never a loop: a loop is a cycle. -/
+/-- A bridge is never a loop: a loop is a cycle.
+@isnad1 id=not.1h5v.s4.5957041f283c from=translated src=- shape=2575d23c vocab=321c792f
+-/
 theorem IsBridge.not_isLoopAt (h : G.IsBridge e) (x : α) : ¬ G.IsLoopAt e x :=
   fun hloop ↦ h.not_liesOnCycle (liesOnCycle_of_isLoopAt hloop)
 
 /-- **A graph is acyclic exactly when every one of its edges is a bridge.** This is the form
 the tree module wants acyclicity in: "it is a tree — an edge of a cycle could be deleted"
-reads backwards as "no edge can be deleted without separating its ends". -/
+reads backwards as "no edge can be deleted without separating its ends".
+@isnad1 id=iff.0h3v.s5.b681309f5986 from=translated src=- shape=00fdbbcb vocab=a480141f
+-/
 theorem isAcyclic_iff_forall_isBridge : G.IsAcyclic ↔ ∀ e ∈ E(G), G.IsBridge e :=
   ⟨fun h _ he ↦ ⟨he, h he⟩, fun h _ he ↦ (h _ he).not_liesOnCycle⟩
 
+/--
+@isnad1 id=isbridge.2h4v.s5.4447609ee873 from=translated src=- shape=f6d278b3 vocab=a480141f
+-/
 theorem IsAcyclic.isBridge (h : G.IsAcyclic) (he : e ∈ E(G)) : G.IsBridge e := ⟨he, h he⟩
 
 end Graph

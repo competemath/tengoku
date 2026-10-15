@@ -491,7 +491,9 @@ def exactSourcePermutationMatched
       exactSourceBobPermutationHistory
         D denominator numerator nonempty ω.1 ω.2.2)
 
-/-- The Boolean shared-permutation test reflects equality of the two decoded histories. -/
+/-- The Boolean shared-permutation test reflects equality of the two decoded histories.
+@isnad1 id=iff.1h9v.s7.43732ba8a283 from=translated src=- shape=73c6a69b vocab=f4448303
+-/
 theorem exactSourcePermutationMatched_eq_true_iff
     (D : Finset (Fin n)) (denominator : ℕ)
     (numerator : ExactLocalSamplerIndex X Y D →

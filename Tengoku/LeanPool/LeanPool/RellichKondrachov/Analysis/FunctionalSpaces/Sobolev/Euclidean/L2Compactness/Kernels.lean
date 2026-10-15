@@ -44,12 +44,20 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDim
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceEL2CompactnessKernels : MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.73b0913a81ad from=translated src=- shape=c6850a32 vocab=20ee3e35
+-/
 local instance instBorelSpaceEL2CompactnessKernels : BorelSpace E := ⟨rfl⟩
+/--
+@isnad1 id=opensmea.0h1v.s4.d1c4b1300f74 from=translated src=- shape=c6850a32 vocab=250fd70a
+-/
 local instance instOpensMeasurableSpaceEL2CompactnessKernels : OpensMeasurableSpace E := by
   infer_instance
 
 /-- For any `δ > 0`, there exists a continuous compactly supported kernel `ψ` supported in
-`Metric.ball 0 δ`, with `ψ ≥ 0` and `∫ ψ = 1` (w.r.t. Lebesgue measure). -/
+`Metric.ball 0 δ`, with `ψ ≥ 0` and `∫ ψ = 1` (w.r.t. Lebesgue measure).
+@isnad1 id=ex.1h2v.s7.826228138bee from=translated src=- shape=a9074180 vocab=d6c78e1f
+-/
 theorem exists_kernel_tsupport_subset_ball_integral_eq_one {δ : ℝ} (hδ : 0 < δ) :
     ∃ ψ : E → ℝ, Continuous ψ ∧ HasCompactSupport ψ ∧ (∀ x, 0 ≤ ψ x) ∧
       (∫ x, ψ x ∂(volume : Measure E) = 1) ∧ tsupport ψ ⊆ Metric.ball (0 : E) δ := by

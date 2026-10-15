@@ -84,7 +84,9 @@ structure TargetSegmentCover
 
 namespace GeneratedPair
 
-/-- Every generated pair has a finite segment presentation of its polygonal target skeleton. -/
+/-- Every generated pair has a finite segment presentation of its polygonal target skeleton.
+@isnad1 id=nonempty.0h7v.s5.8be10d1822c7 from=translated src=- shape=cbdbec54 vocab=bd3d5b68
+-/
 theorem exists_targetSegmentCover
     (P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom) :
     Nonempty (TargetSegmentCover P) := by
@@ -120,12 +122,17 @@ variable {P : GeneratedPair S₀ srcOuter srcDom modelCurve (Plane.closedSquare 
 noncomputable def squareMeshPieces (delta : ℝ) (fresh anchors : List Plane) : List Piece :=
   (squareMesh delta fresh anchors).edgeFinset.toList
 
+/--
+@isnad1 id=iff.0h4v.s5.18356c1746b2 from=translated src=- shape=4b0fa316 vocab=22805f4d
+-/
 @[simp] theorem mem_squareMeshPieces {delta : ℝ} {fresh anchors : List Plane} {R : Piece} :
     R ∈ squareMeshPieces delta fresh anchors ↔ R ∈ E(squareMesh delta fresh anchors) := by
   simp [squareMeshPieces, Graph.mem_edgeFinset]
 
 /-- Listing the edges loses no carrier: every square-mesh vertex is an end of one of its
-edges. -/
+edges.
+@isnad1 id=eq.0h3v.s4.2c1742dd3067 from=translated src=- shape=378fcbfc vocab=c2dfb83d
+-/
 theorem cover_squareMeshPieces (delta : ℝ) (fresh anchors : List Plane) :
     cover (squareMeshPieces delta fresh anchors) =
       Graph.pointSet (squareMesh delta fresh anchors) segmentDrawing := by
@@ -158,11 +165,16 @@ noncomputable def meshOverlay (Q : TargetSegmentCover P) (delta : ℝ)
   attachGraph (Q.meshPieces delta fresh anchors)
     (anchors ++ P.tgt.graph.vertexFinset.toList)
 
+/--
+@isnad1 id=finite.0h9v.s7.ab2510df2ae9 from=translated src=- shape=f0559e76 vocab=4c32cf78
+-/
 instance meshOverlay_finite (Q : TargetSegmentCover P) (delta : ℝ)
     (fresh anchors : List Plane) : (Q.meshOverlay delta fresh anchors).Finite :=
   attachGraph_finite _ _
 
-/-- Every source segment of the combined overlay is nondegenerate. -/
+/-- Every source segment of the combined overlay is nondegenerate.
+@isnad1 id=nondeg.2h10v.s7.be0cb98889fa from=translated src=- shape=fcdedbf2 vocab=e7ba2775
+-/
 theorem meshPieces_nondeg (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve) (delta : ℝ)
     (anchors : List Plane) :
@@ -173,7 +185,9 @@ theorem meshPieces_nondeg (Q : TargetSegmentCover P)
   · exact meshGraph_edge_nondeg (two_le_meshCount delta) hfresh
       (mem_squareMeshPieces.1 hR)
 
-/-- The combined overlay is a finite straight-line plane graph. -/
+/-- The combined overlay is a finite straight-line plane graph.
+@isnad1 id=isdrawin.1h9v.s7.3d84d60e4ce5 from=translated src=- shape=63df5502 vocab=30a6e5cf
+-/
 theorem meshOverlay_isDrawing (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     (delta : ℝ) (anchors : List Plane) :
@@ -181,7 +195,9 @@ theorem meshOverlay_isDrawing (Q : TargetSegmentCover P)
   attachGraph_isDrawing (Q.meshPieces_nondeg hfresh delta anchors) _
 
 /-- The combined overlay occupies exactly the current target skeleton together with the square
-mesh. -/
+mesh.
+@isnad1 id=eq.0h9v.s8.b1c145815cc0 from=translated src=- shape=4a07be43 vocab=d9aa25ca
+-/
 theorem meshOverlay_pointSet (Q : TargetSegmentCover P)
     (delta : ℝ) (fresh anchors : List Plane) :
     Graph.pointSet (Q.meshOverlay delta fresh anchors) segmentDrawing =
@@ -190,7 +206,9 @@ theorem meshOverlay_pointSet (Q : TargetSegmentCover P)
   rw [meshOverlay, attachGraph_pointSet, meshPieces, cover_append, Q.cover_eq,
     cover_squareMeshPieces]
 
-/-- The current target skeleton is contained in the combined overlay. -/
+/-- The current target skeleton is contained in the combined overlay.
+@isnad1 id=le.0h9v.s8.1aa8d37a6d0a from=translated src=- shape=92a23813 vocab=1fe877c7
+-/
 theorem targetSkeleton_subset_meshOverlay (Q : TargetSegmentCover P)
     (delta : ℝ) (fresh anchors : List Plane) :
     P.tgt.skeletonSet ⊆
@@ -198,7 +216,9 @@ theorem targetSkeleton_subset_meshOverlay (Q : TargetSegmentCover P)
   rw [Q.meshOverlay_pointSet]
   exact subset_union_left
 
-/-- The whole anchored square mesh is contained in the combined overlay. -/
+/-- The whole anchored square mesh is contained in the combined overlay.
+@isnad1 id=le.0h9v.s7.32f5b5f72e06 from=translated src=- shape=3845c39a vocab=57cbda55
+-/
 theorem squareMesh_subset_meshOverlay (Q : TargetSegmentCover P)
     (delta : ℝ) (fresh anchors : List Plane) :
     Graph.pointSet (squareMesh delta fresh anchors) segmentDrawing ⊆
@@ -206,7 +226,9 @@ theorem squareMesh_subset_meshOverlay (Q : TargetSegmentCover P)
   rw [Q.meshOverlay_pointSet]
   exact subset_union_right
 
-/-- Every old target vertex is explicitly retained as a vertex of the combined overlay. -/
+/-- Every old target vertex is explicitly retained as a vertex of the combined overlay.
+@isnad1 id=le.1h9v.s8.0f60a759fc70 from=translated src=- shape=b82b929a vocab=6d8d6c98
+-/
 theorem targetVertices_subset_meshOverlay (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     (delta : ℝ) (anchors : List Plane) :
@@ -223,7 +245,9 @@ theorem targetVertices_subset_meshOverlay (Q : TargetSegmentCover P)
   · rw [meshPieces, cover_append, Q.cover_eq]
     exact Or.inl (Graph.vertexSet_subset_pointSet hx)
 
-/-- Every square-mesh vertex is an endpoint of a source piece for the combined overlay. -/
+/-- Every square-mesh vertex is an endpoint of a source piece for the combined overlay.
+@isnad1 id=le.1h9v.s7.7cdc210fa1c9 from=translated src=- shape=4b39b264 vocab=f7f6ae54
+-/
 theorem squareMeshVertices_subset_meshOverlay (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     (delta : ℝ) (anchors : List Plane) :
@@ -243,7 +267,9 @@ theorem squareMeshVertices_subset_meshOverlay (Q : TargetSegmentCover P)
         · exact right_mem_segment ℝ _ _⟩
 
 /-- Every edge of the combined overlay is a subsegment either of an old target segment or of a
-square-mesh source segment. -/
+square-mesh source segment.
+@isnad1 id=or.1h10v.s8.c929955994d0 from=translated src=- shape=60c9d98f vocab=601a25d8
+-/
 theorem meshOverlay_edge_source (Q : TargetSegmentCover P)
     {delta : ℝ} {fresh anchors : List Plane} {R : Piece}
     (hR : R ∈ E(Q.meshOverlay delta fresh anchors)) :
@@ -261,7 +287,9 @@ theorem meshOverlay_edge_source (Q : TargetSegmentCover P)
     exact Or.inr ⟨B, hB, hsub.trans hAB⟩
 
 /-- The sharper edge-source dichotomy used at the boundary: a mesh-sourced overlay edge lies
-inside one actual edge of the already-subdivided square mesh. -/
+inside one actual edge of the already-subdivided square mesh.
+@isnad1 id=or.1h10v.s8.3cc3de8c3600 from=translated src=- shape=99dc4879 vocab=9702de3b
+-/
 theorem meshOverlay_edge_source_squareMesh (Q : TargetSegmentCover P)
     {delta : ℝ} {fresh anchors : List Plane} {R : Piece}
     (hR : R ∈ E(Q.meshOverlay delta fresh anchors)) :
@@ -278,7 +306,9 @@ theorem meshOverlay_edge_source_squareMesh (Q : TargetSegmentCover P)
   · exact Or.inr ⟨A, mem_squareMeshPieces.1 hA, hsub⟩
 
 /-- Two subsegments of one nondegenerate segment that start at the same end are comparable by
-inclusion. -/
+inclusion.
+@isnad1 id=or.3h4v.s9.882ee8e3aac2 from=translated src=- shape=49604779 vocab=d92aa7e3
+-/
 theorem segments_from_common_end_comparable {z a r s : Plane} (hza : z ≠ a)
     (hr : r ∈ segment ℝ z a) (hs : s ∈ segment ℝ z a) :
     segment ℝ z r ⊆ segment ℝ z s ∨ segment ℝ z s ⊆ segment ℝ z r := by
@@ -294,7 +324,9 @@ theorem segments_from_common_end_comparable {z a r s : Plane} (hza : z ≠ a)
 
 /-- Two pieces contained in the same nondegenerate source piece and sharing one of its ends
 are comparable.  This is the piece-level form needed to identify two overlay fragments cut
-from the unique square-mesh spoke at a fresh boundary point. -/
+from the unique square-mesh spoke at a fresh boundary point.
+@isnad1 id=or.6h4v.s6.a5168d0b62ad from=translated src=- shape=a5b206ad vocab=1c498e60
+-/
 theorem piece_segments_comparable_of_common_source_end
     {A R S : Piece} {z : Plane} (hA : A.Nondeg)
     (hzA : z = A.1 ∨ z = A.2) (hRA : R.seg ⊆ A.seg) (hSA : S.seg ⊆ A.seg)
@@ -327,7 +359,9 @@ theorem piece_segments_comparable_of_common_source_end
 
 /-- Away from the vertices created by the overlay, an overlay edge meeting an old open target
 edge is one of its subdivision pieces.  At a transverse crossing the common point is an overlay
-vertex, so the hypothesis is intentionally false there. -/
+vertex, so the hypothesis is intentionally false there.
+@isnad1 id=le.4h11v.s9.84b485849015 from=translated src=- shape=daf0efda vocab=0ac84ce1
+-/
 theorem meshOverlay_edge_subset (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     (delta : ℝ) (anchors : List Plane) :
@@ -376,7 +410,9 @@ theorem meshOverlay_edge_subset (Q : TargetSegmentCover P)
   rw [hRR', edgeArc_segmentDrawing]
   exact hR'A.trans hAold
 
-/-- The combined overlay locally contains an edge subdivision of the old target drawing. -/
+/-- The combined overlay locally contains an edge subdivision of the old target drawing.
+@isnad1 id=isplanes.1h9v.s9.afe4115bc2e6 from=translated src=- shape=0e8cdb91 vocab=39719704
+-/
 theorem target_isPlaneSubdivisionExtension (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     (delta : ℝ) (anchors : List Plane) :
@@ -413,7 +449,9 @@ theorem target_isPlaneSubdivisionExtension (Q : TargetSegmentCover P)
         exact ⟨b, hab.right_mem, rfl⟩)
 
 /-- The combined overlay also locally contains an edge subdivision of the anchored square
-mesh.  Using the mesh's already-subdivided edges as source pieces makes the proof immediate. -/
+mesh.  Using the mesh's already-subdivided edges as source pieces makes the proof immediate.
+@isnad1 id=isplanes.1h9v.s7.de45be853acf from=translated src=- shape=136fd093 vocab=c88e088a
+-/
 theorem squareMesh_isPlaneSubdivisionExtension (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     (delta : ℝ) (anchors : List Plane) :
@@ -441,7 +479,9 @@ theorem squareMesh_isPlaneSubdivisionExtension (Q : TargetSegmentCover P)
     rw [hRR', edgeArc_segmentDrawing, edgeArc_segmentDrawing]
     exact hR'e
 
-/-- The old-target trace inside the combined overlay remains 2-connected. -/
+/-- The old-target trace inside the combined overlay remains 2-connected.
+@isnad1 id=istwocon.1h9v.s8.000dbb00e694 from=translated src=- shape=6b1544e1 vocab=a5101e14
+-/
 theorem targetTrace_isTwoConnected (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     (delta : ℝ) (anchors : List Plane) :
@@ -451,7 +491,9 @@ theorem targetTrace_isTwoConnected (Q : TargetSegmentCover P)
     P.tgt_isWeaklyAdmissible.isTwoConnected
 
 /-- Under the usual density hypotheses, the square-mesh trace inside the combined overlay
-remains 2-connected. -/
+remains 2-connected.
+@isnad1 id=istwocon.3h9v.s7.27c7adb341ce from=translated src=- shape=2e6d80e7 vocab=5ac2ade1
+-/
 theorem squareMeshTrace_isTwoConnected (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     {delta : ℝ} (hdense : FreshDense fresh delta) (hdelta : delta < 4)
@@ -462,7 +504,9 @@ theorem squareMeshTrace_isTwoConnected (Q : TargetSegmentCover P)
     (squareMesh_isTwoConnected hfresh hdense hdelta anchors)
 
 /-- The combined target/mesh overlay is 2-connected.  The two subdivision traces are glued at
-two distinct fresh boundary vertices, and together they contain every overlay vertex. -/
+two distinct fresh boundary vertices, and together they contain every overlay vertex.
+@isnad1 id=istwocon.3h9v.s7.e304fedcf65d from=translated src=- shape=08c4b0b7 vocab=74adefd8
+-/
 theorem meshOverlay_isTwoConnected (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     {delta : ℝ} (hdense : FreshDense fresh delta) (hdelta : delta < 4)
@@ -525,7 +569,9 @@ theorem meshOverlay_isTwoConnected (Q : TargetSegmentCover P)
   · exact Or.inl (by rw [Graph.traceGraph_vertexSet]; exact ⟨hx, hxTarget⟩)
   · exact Or.inr (by rw [Graph.traceGraph_vertexSet]; exact ⟨hx, hxMesh⟩)
 
-/-- The combined overlay stays in the closed target square. -/
+/-- The combined overlay stays in the closed target square.
+@isnad1 id=le.1h9v.s8.12967daf00e0 from=translated src=- shape=a6e85479 vocab=2b163a95
+-/
 theorem meshOverlay_pointSet_subset (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     (delta : ℝ) (anchors : List Plane) :
@@ -538,7 +584,9 @@ theorem meshOverlay_pointSet_subset (Q : TargetSegmentCover P)
 /-- Every combined-overlay edge either lies on the model curve or is a polygonal edge whose
 nonvertex points lie in the open target square.  A nonouter edge cannot meet the model curve
 away from overlay vertices: the outer-ring segment through such a point would give a second
-edge of the plane drawing there. -/
+edge of the plane drawing there.
+@isnad1 id=or.2h10v.s8.d8a6ddb3a3db from=translated src=- shape=9f3f0c21 vocab=40c509cd
+-/
 theorem meshOverlay_edge_dichotomy (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     (delta : ℝ) (anchors : List Plane) :
@@ -579,7 +627,9 @@ theorem meshOverlay_edge_dichotomy (Q : TargetSegmentCover P)
 
 /-- New nonouter boundary edges of the combined overlay come from the square mesh and hence
 end at prescribed fresh points.  Old-target-sourced overlay edges are already covered by every
-trace containing the original target skeleton, so they cannot be new. -/
+trace containing the original target skeleton, so they cannot be new.
+@isnad1 id=newtarge.2h9v.s9.db0e8ad7e937 from=translated src=- shape=9e967e4e vocab=56fdedb8
+-/
 theorem newTargetBoundaryAnchored_meshOverlay (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     (hstrong : ∀ z ∈ fresh,
@@ -626,7 +676,9 @@ def FreshAvoidsTargetNonouterEdges
     z ∉ edgeArc P.tgt.drawing e
 
 /-- A nonouter target edge can meet the distinguished boundary only at an old target vertex.
-This turns the cleanliness requirement into avoidance of one finite vertex set. -/
+This turns the cleanliness requirement into avoidance of one finite vertex set.
+@isnad1 id=mem.4h7v.s9.b44eb0f595a1 from=translated src=- shape=33a898c0 vocab=8f32560d
+-/
 theorem mem_targetVertex_of_mem_nonouter_edgeArc_modelCurve
     {e : γ} (he : e ∈ E(P.str.skel)) (heNotOuter : e ∉ E(P.str.outerGraph))
     {z : Plane} (hze : z ∈ edgeArc P.tgt.drawing e) (hz : z ∈ modelCurve) :
@@ -646,7 +698,9 @@ theorem mem_targetVertex_of_mem_nonouter_edgeArc_modelCurve
     exact (P.tgt.isDrawing.edge_inter heTgt hfTgt
       (fun hef => heNotOuter (hef ▸ hf)) hze hzf).1
 
-/-- Avoiding the finite old target vertex set is sufficient for clean fresh anchors. -/
+/-- Avoiding the finite old target vertex set is sufficient for clean fresh anchors.
+@isnad1 id=freshavo.2h6v.s8.981087cf0a2b from=translated src=- shape=c72aa8d3 vocab=f42e70ac
+-/
 theorem freshAvoidsTargetNonouterEdges_of_avoids_targetVertices
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     (havoid : ∀ z ∈ fresh, z ∉ V(P.tgt.graph)) :
@@ -657,7 +711,9 @@ theorem freshAvoidsTargetNonouterEdges_of_avoids_targetVertices
       (hfresh z hzFresh))
 
 /-- Incidence with an edge of the target/mesh overlay means being one of the two endpoints of
-that piece. -/
+that piece.
+@isnad1 id=or.1h11v.s7.5f07749726c1 from=translated src=- shape=a3bfda66 vocab=67a91fd7
+-/
 theorem meshOverlay_inc_endpoint (Q : TargetSegmentCover P)
     {delta : ℝ} {fresh anchors : List Plane} {R : Piece} {z : Plane}
     (hinc : (Q.meshOverlay delta fresh anchors).Inc R z) :
@@ -672,7 +728,9 @@ theorem meshOverlay_inc_endpoint (Q : TargetSegmentCover P)
 
 /-- Two mesh-sourced, nonouter overlay edges incident at the same boundary point coincide.
 The square mesh has one spoke there; both overlay pieces start at the boundary end of that
-spoke, so their segment carriers are nested, and planarity identifies their edge names. -/
+spoke, so their segment carriers are nested, and planarity identifies their edge names.
+@isnad1 id=eq.12h14v.s8.ac87ac5e3f9c from=translated src=- shape=ae4f50a0 vocab=16704f30
+-/
 theorem meshOverlay_mesh_edges_eq_at_boundary (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     (delta : ℝ) (anchors : List Plane) {z : Plane} (hz : z ∈ modelCurve)
@@ -732,7 +790,9 @@ theorem meshOverlay_mesh_edges_eq_at_boundary (Q : TargetSegmentCover P)
       simpa only [edgeArc_segmentDrawing] using hsub)).symm
 
 /-- Under the finite cleanliness condition, no new nonouter overlay edge can meet a nonouter
-edge of a trace already covering the old target skeleton at the distinguished boundary. -/
+edge of a trace already covering the old target skeleton at the distinguished boundary.
+@isnad1 id=nonewnon.2h9v.s8.0edbd33347f8 from=translated src=- shape=ce3c9900 vocab=8d157c5d
+-/
 theorem noNewNonouterIncidenceAtBoundary_meshOverlay (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     (havoid : FreshAvoidsTargetNonouterEdges P fresh)
@@ -793,7 +853,9 @@ theorem noNewNonouterIncidenceAtBoundary_meshOverlay (Q : TargetSegmentCover P)
         hz hR hS hRinc hSinc hRnot hSnot hA hC hRA hSC
       exact hRnew (hRS ▸ hSB)
 
-/-- The relative boundary anchoring of the overlay survives its injective edge renaming. -/
+/-- The relative boundary anchoring of the overlay survives its injective edge renaming.
+@isnad1 id=newtarge.3h10v.s9.c6785512b90c from=translated src=- shape=f39a1f6c vocab=ae7e83f0
+-/
 theorem newTargetBoundaryAnchored_relabelledMeshOverlay (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     (hstrong : ∀ z ∈ fresh,
@@ -846,7 +908,9 @@ theorem newTargetBoundaryAnchored_relabelledMeshOverlay (Q : TargetSegmentCover 
     exact hstrong w hwFresh
 
 /-- The relative no-new-incidence property of a clean overlay survives its injective edge
-renaming. -/
+renaming.
+@isnad1 id=nonewnon.3h10v.s8.87224fcacf52 from=translated src=- shape=15c4409f vocab=ac456d55
+-/
 theorem noNewNonouterIncidenceAtBoundary_relabelledMeshOverlay
     (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
@@ -960,7 +1024,9 @@ structure FiniteOpenTargetCover
   /-- No listed piece is a singleton. -/
   nontrivial : ∀ A ∈ pieces, ∃ x ∈ A, ∃ y ∈ A, x ≠ y
 
-/-- The interior of a nondegenerate arc contains two distinct points. -/
+/-- The interior of a nondegenerate arc contains two distinct points.
+@isnad1 id=ex.1h3v.s6.934694d7c89d from=translated src=- shape=5b78bc58 vocab=7b327c78
+-/
 theorem IsArcBetween.exists_two_mem_diff {A : Set Plane} {p q : Plane}
     (h : IsArcBetween A p q) :
     ∃ x ∈ A \ {p, q}, ∃ y ∈ A \ {p, q}, x ≠ y := by
@@ -1022,6 +1088,9 @@ noncomputable def openTargetEdgePieces
   exact (P.str.skel.edgeFinset.filter fun e => e ∉ E(P.str.outerGraph)).toList.map
     fun e => edgeArc P.tgt.drawing e \ modelCurve
 
+/--
+@isnad1 id=iff.0h6v.s8.f2a8eb047360 from=translated src=- shape=ae6e9679 vocab=bb6da3f0
+-/
 @[simp] theorem mem_openTargetEdgePieces
     {P : GeneratedPair S₀ srcOuter srcDom modelCurve (Plane.closedSquare 0 1)}
     {A : Set Plane} :
@@ -1133,7 +1202,9 @@ noncomputable def finiteOpenTargetCover
     exact ⟨x, hsub hx, y, hsub hy, hxy⟩
 
 /-- A finite list of nontrivial sets has a uniform positive lower bound on one pairwise
-distance chosen from each set. -/
+distance chosen from each set.
+@isnad1 id=ex.1h1v.s7.cee8ade6cc1a from=translated src=- shape=2995d8b7 vocab=3d030dda
+-/
 theorem exists_uniform_piece_width (pieces : List (Set Plane))
     (hnontrivial : ∀ A ∈ pieces, ∃ x ∈ A, ∃ y ∈ A, x ≠ y) :
     ∃ delta : ℝ, 0 < delta ∧
@@ -1162,7 +1233,9 @@ theorem exists_uniform_piece_width (pieces : List (Set Plane))
         linarith [min_le_left (delta / 2) (dist x y / 2)]
 
 /-- A finite open-target cover supplies a positive scale at which every open-skeleton point
-has a connected neighborhood wider than the mesh. -/
+has a connected neighborhood wider than the mesh.
+@isnad1 id=ex.0h6v.s6.580f05272f5b from=translated src=- shape=e5abebcc vocab=9566f8f6
+-/
 theorem FiniteOpenTargetCover.exists_locallyWiderThan
     (C : FiniteOpenTargetCover P) :
     ∃ delta : ℝ, 0 < delta ∧ OpenTargetLocallyWiderThan P delta := by
@@ -1174,7 +1247,9 @@ theorem FiniteOpenTargetCover.exists_locallyWiderThan
   obtain ⟨x, hx, y, hy, hxy⟩ := hwide A hA
   exact ⟨A, C.subset_open A hA, C.preconnected A hA, hzA, x, hx, y, hy, hxy⟩
 
-/-- The local-width condition is preserved when the proposed mesh scale is decreased. -/
+/-- The local-width condition is preserved when the proposed mesh scale is decreased.
+@isnad1 id=opentarg.2h7v.s6.1acb828aeb86 from=translated src=- shape=d14df3b6 vocab=1b38a639
+-/
 theorem OpenTargetLocallyWiderThan.mono
     {delta epsilon : ℝ} (h : OpenTargetLocallyWiderThan P delta)
     (hle : epsilon ≤ delta) : OpenTargetLocallyWiderThan P epsilon := by
@@ -1183,7 +1258,9 @@ theorem OpenTargetLocallyWiderThan.mono
   exact ⟨A, hA, hconn, hzA, x, hx, y, hy, lt_of_le_of_lt hle hxy⟩
 
 /-- Every generated target has a positive mesh scale below `4` at which all of its open edge
-pieces are wider than the mesh. -/
+pieces are wider than the mesh.
+@isnad1 id=ex.0h5v.s7.c74af06fbbf2 from=translated src=- shape=11e3373b vocab=a50a1571
+-/
 theorem exists_fine_openTarget_scale
     (P : GeneratedPair S₀ srcOuter srcDom modelCurve (Plane.closedSquare 0 1)) :
     ∃ delta : ℝ, 0 < delta ∧ delta < 4 ∧ OpenTargetLocallyWiderThan P delta := by
@@ -1196,7 +1273,9 @@ theorem exists_fine_openTarget_scale
   exact ⟨epsilon, hepsilon, lt_of_le_of_lt (min_le_right delta 1) (by norm_num),
     hwide.mono (min_le_left delta 1)⟩
 
-/-- The locally-wide scale may be chosen below any prescribed positive bound. -/
+/-- The locally-wide scale may be chosen below any prescribed positive bound.
+@isnad1 id=ex.1h6v.s7.27d6c2db5f5c from=translated src=- shape=9adc06f8 vocab=a50a1571
+-/
 theorem exists_fine_openTarget_scale_lt
     (P : GeneratedPair S₀ srcOuter srcDom modelCurve (Plane.closedSquare 0 1))
     {bound : ℝ} (hbound : 0 < bound) :
@@ -1216,7 +1295,9 @@ theorem exists_fine_openTarget_scale_lt
   linarith
 
 /-- A connected old-skeleton piece wider than the mesh scale must meet the mesh.  Otherwise the
-radial mesh estimate bounds all of its pairwise distances by a number strictly below `delta`. -/
+radial mesh estimate bounds all of its pairwise distances by a number strictly below `delta`.
+@isnad1 id=ex.4h9v.s9.dc93e6868658 from=translated src=- shape=540d4e55 vocab=f4f86bb2
+-/
 theorem mesh_hits_openTarget_of_locallyWider
     (P : GeneratedPair S₀ srcOuter srcDom modelCurve (Plane.closedSquare 0 1))
     {fresh : List Plane}
@@ -1259,7 +1340,9 @@ theorem mesh_hits_openTarget_of_locallyWider
 
 /-- If every connected piece of the old open skeleton meets the connected open part of the
 mesh, their union is connected.  This is the set-theoretic core of the quantitative
-mesh-hitting argument. -/
+mesh-hitting argument.
+@isnad1 id=isconnec.3h10v.s9.b421e4751f5c from=translated src=- shape=64d5a309 vocab=d35dfe96
+-/
 theorem meshOverlay_isConnected_diff_of_hits (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
     {z₀ : Plane} (hz₀ : z₀ ∈ fresh) (delta : ℝ) (anchors : List Plane)
@@ -1300,7 +1383,9 @@ theorem meshOverlay_isConnected_diff_of_hits (Q : TargetSegmentCover P)
 
 /-- After injective edge relabelling, the combined overlay is a target extension as soon as its
 two genuinely global assembly properties—2-connectivity and connectedness off the boundary—are
-available.  Every local subdivision and geometric field is discharged above. -/
+available.  Every local subdivision and geometric field is discharged above.
+@isnad1 id=issource.4h10v.s9.67e261d963d2 from=translated src=- shape=ec5fe832 vocab=d4cad144
+-/
 theorem isSourceExtension_relabelledMeshOverlay
     (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
@@ -1343,7 +1428,9 @@ theorem isSourceExtension_relabelledMeshOverlay
 
 /-- The mesh-hitting condition is enough to discharge the connectedness field of the target
 extension.  Thus only 2-connectivity and the quantitative fact that the mesh meets every
-connected piece of the old open skeleton remain. -/
+connected piece of the old open skeleton remain.
+@isnad1 id=issource.5h11v.s9.142cdd786584 from=translated src=- shape=06fdaac4 vocab=82ec0bfa
+-/
 theorem isSourceExtension_relabelledMeshOverlay_of_hits
     (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
@@ -1363,7 +1450,9 @@ theorem isSourceExtension_relabelledMeshOverlay_of_hits
     (Q.meshOverlay_isConnected_diff_of_hits hfresh hz₀ delta anchors hhit)
 
 /-- With a dense fresh boundary list, 2-connectivity and the nonempty-fresh requirement are
-automatic.  The mesh-hitting condition is then the only remaining assembly hypothesis. -/
+automatic.  The mesh-hitting condition is then the only remaining assembly hypothesis.
+@isnad1 id=issource.5h10v.s9.9e8ca93f4c31 from=translated src=- shape=b5db2161 vocab=d89be774
+-/
 theorem isSourceExtension_relabelledMeshOverlay_of_dense_hits
     (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
@@ -1383,7 +1472,9 @@ theorem isSourceExtension_relabelledMeshOverlay_of_dense_hits
     (Q.meshOverlay_isTwoConnected hfresh hdense hdelta anchors) hhit
 
 /-- A sufficiently fine mesh gives the target extension from the local-width condition alone:
-the radial diameter estimate supplies the mesh hits, while density supplies 2-connectivity. -/
+the radial diameter estimate supplies the mesh hits, while density supplies 2-connectivity.
+@isnad1 id=issource.6h10v.s9.d50890bb3cde from=translated src=- shape=eace7138 vocab=4ee61707
+-/
 theorem isSourceExtension_relabelledMeshOverlay_of_locallyWider
     (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
@@ -1398,7 +1489,9 @@ theorem isSourceExtension_relabelledMeshOverlay_of_locallyWider
     name hname (mesh_hits_openTarget_of_locallyWider P hdelta hdense hwide anchors)
 
 /-- There is a positive scale below `4` such that every dense anchored mesh at that scale,
-after fresh injective edge relabelling, is a complete target source extension. -/
+after fresh injective edge relabelling, is a complete target source extension.
+@isnad1 id=ex.0h6v.s9.6e5415352e92 from=translated src=- shape=8c85c8c7 vocab=ed7d3a73
+-/
 theorem exists_scale_isSourceExtension_relabelledMeshOverlay
     (Q : TargetSegmentCover P) :
     ∃ delta : ℝ, 0 < delta ∧ delta < 4 ∧
@@ -1415,7 +1508,9 @@ theorem exists_scale_isSourceExtension_relabelledMeshOverlay
     hfresh hdelta hdense hdelta4 hwide anchors name hname
 
 /-- Fresh cell names for every edge of the combined target overlay, avoiding all names already
-used by the current generated structure. -/
+used by the current generated structure.
+@isnad1 id=ex.0h9v.s8.48dc7a3950d2 from=translated src=- shape=6d52d55b vocab=d3b2a7d6
+-/
 theorem exists_meshOverlay_edgeRelabeling
     [Infinite γ] (Q : TargetSegmentCover P) (delta : ℝ)
     (fresh anchors : List Plane) :
@@ -1426,7 +1521,9 @@ theorem exists_meshOverlay_edgeRelabeling
 
 /-- **Reverse finite transfer through the combined target/mesh overlay.**  Once the overlay is
 a source extension, strong accessibility of its fresh anchors and avoidance of the finitely
-many old nonouter target edges discharge all remaining reverse-ear hypotheses. -/
+many old nonouter target edges discharge all remaining reverse-ear hypotheses.
+@isnad1 id=ex.6h10v.s10.038a3c0b486a from=translated src=- shape=2229f3bc vocab=c3e2657e
+-/
 theorem finite_transfer_toward_source_relabelledMeshOverlay_of_outerCycle
     [Infinite γ] (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
@@ -1452,7 +1549,9 @@ theorem finite_transfer_toward_source_relabelledMeshOverlay_of_outerCycle
     hcycle
 
 /-- At a locally wide scale, the dense clean overlay automatically supplies both the source
-extension and its reverse finite transfer; fresh abstract edge names are chosen internally. -/
+extension and its reverse finite transfer; fresh abstract edge names are chosen internally.
+@isnad1 id=ex.8h9v.s9.d28445fabc28 from=translated src=- shape=41fd610b vocab=585a61f7
+-/
 theorem exists_finite_transfer_toward_source_meshOverlay_of_locallyWider
     [Infinite γ] (Q : TargetSegmentCover P)
     {fresh : List Plane} (hfresh : ∀ z ∈ fresh, z ∈ modelCurve)
@@ -1477,7 +1576,9 @@ theorem exists_finite_transfer_toward_source_meshOverlay_of_locallyWider
   exact ⟨name, hname, T, par, hT⟩
 
 /-- Every generated target has one positive scale below `4` at which any dense, accessible,
-clean fresh list produces the complete reverse finite transfer through the combined overlay. -/
+clean fresh list produces the complete reverse finite transfer through the combined overlay.
+@isnad1 id=ex.1h6v.s9.35559ada6c2d from=translated src=- shape=e9a3af36 vocab=a6bc3282
+-/
 theorem exists_scale_finite_transfer_toward_source_meshOverlay
     [Infinite γ] (Q : TargetSegmentCover P) (hcycle : S₀.OuterEdgesFormCycle) :
     ∃ delta : ℝ, 0 < delta ∧ delta < 4 ∧
@@ -1499,7 +1600,9 @@ theorem exists_scale_finite_transfer_toward_source_meshOverlay
   exact Q.exists_finite_transfer_toward_source_meshOverlay_of_locallyWider
     hfresh hstrong havoid hdelta hdense hdelta4 hwide anchors hcycle
 
-/-- The complete reverse-transfer scale may be forced below any prescribed positive bound. -/
+/-- The complete reverse-transfer scale may be forced below any prescribed positive bound.
+@isnad1 id=ex.2h7v.s9.5a5aac913beb from=translated src=- shape=ffc73e95 vocab=a6bc3282
+-/
 theorem exists_scale_finite_transfer_toward_source_meshOverlay_lt
     [Infinite γ] (Q : TargetSegmentCover P) (hcycle : S₀.OuterEdgesFormCycle)
     {bound : ℝ} (hbound : 0 < bound) :

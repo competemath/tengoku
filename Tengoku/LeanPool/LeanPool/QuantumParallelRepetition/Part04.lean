@@ -161,6 +161,9 @@ def exactRight
     (coordinate : M) (partition : M → Bool) : Finset M :=
   Finset.univ.filter fun j => j ≠ coordinate ∧ partition j = true
 
+/--
+@isnad1 id=not.0h3v.s5.5cde3f68a08c from=translated src=- shape=7fbd8864 vocab=7887a7c7
+-/
 theorem exactLeft_coordinate_not_mem
     {M : Type*} [Fintype M] [DecidableEq M]
     (coordinate : M) (partition : M → Bool) :
@@ -168,6 +171,9 @@ theorem exactLeft_coordinate_not_mem
   simp only [exactLeft, ne_eq, mem_filter, mem_univ, not_true_eq_false, false_and, and_false,
     not_false_eq_true]
 
+/--
+@isnad1 id=not.0h3v.s5.21160c6f304f from=translated src=- shape=7fbd8864 vocab=35204227
+-/
 theorem exactRight_coordinate_not_mem
     {M : Type*} [Fintype M] [DecidableEq M]
     (coordinate : M) (partition : M → Bool) :
@@ -256,6 +262,9 @@ def exactSeedWeight
     (1 / ((exactRight
       seed.coordinate seed.partition).card + 1 : ℝ))
 
+/--
+@isnad1 id=le.0h2v.s4.be466fafb768 from=translated src=- shape=abec20dc vocab=65a0584a
+-/
 theorem exactSeedWeight_nonneg
     {M : Type*} [Fintype M] [DecidableEq M]
     (seed : ExactForwardSeed M) :
@@ -295,6 +304,9 @@ private def exactSeedEquiv
         t.2.2.2.2.1, t.2.2.2.2.2⟩ := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.caf498f9fa0e from=translated src=- shape=0e97b6bd vocab=fe9cfc6a
+-/
 theorem exactForwardSeed_sum
     {M : Type*} [Fintype M] [DecidableEq M]
     (f : ExactForwardSeed M → ℝ) :
@@ -317,6 +329,9 @@ theorem exactForwardSeed_sum
     _ = _ := by
       simp only [exactSeedEquiv_symm_apply, Fintype.sum_sigma, Fintype.sum_prod_type]
 
+/--
+@isnad1 id=eq.1h1v.s5.9b0bd8adf3b7 from=translated src=- shape=3d809ce6 vocab=d7609d09
+-/
 theorem exactUniform_sum
     {T : Type*} [Fintype T]
     (positive : 0 < Fintype.card T) :
@@ -326,6 +341,9 @@ theorem exactUniform_sum
   simp only [Finset.sum_const, Finset.card_univ, nsmul_eq_mul]
   field_simp [hcard]
 
+/--
+@isnad1 id=eq.1h2v.s5.4a790ae05c55 from=translated src=- shape=8cf55550 vocab=75dbce51
+-/
 theorem exactUniform_sum_mul
     {T : Type*} [Fintype T]
     (positive : 0 < Fintype.card T) (value : ℝ) :
@@ -334,6 +352,9 @@ theorem exactUniform_sum_mul
   rw [← Finset.mul_sum, exactUniform_sum positive]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s6.d6c40462fd94 from=translated src=- shape=51ad221b vocab=430b9f8c
+-/
 theorem exactPrefixUniform_sum_mul
     (m : ℕ) (value : ℝ) :
     (∑ _k : Fin (m + 1),
@@ -343,6 +364,9 @@ theorem exactPrefixUniform_sum_mul
       (T := Fin (m + 1)) (by simp only [Fintype.card_fin, lt_add_iff_pos_left,
                                Order.lt_add_one_iff, zero_le]) value)
 
+/--
+@isnad1 id=eq.0h2v.s6.a48392d56707 from=translated src=- shape=b130868c vocab=f54d5b49
+-/
 theorem exactPermutationUniform_sum_mul
     {T : Type*} [Fintype T] (value : ℝ) :
     (∑ _π : Equiv.Perm T,
@@ -405,6 +429,9 @@ def conditionedBobCoordinateEffect
     then (S.bobMeasurement ys).effect answers
     else 0
 
+/--
+@isnad1 id=possemid.0h12v.s8.536b8201f292 from=translated src=- shape=863b4185 vocab=7c8ac64c
+-/
 theorem conditionedAliceCoordinateEffect_posSemidef
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -419,6 +446,9 @@ theorem conditionedAliceCoordinateEffect_posSemidef
   · exact (S.aliceMeasurement xs).positive answers
   · exact Matrix.PosSemidef.zero
 
+/--
+@isnad1 id=possemid.0h12v.s8.0f4588c5e966 from=translated src=- shape=68a24475 vocab=5f95bd74
+-/
 theorem conditionedBobCoordinateEffect_posSemidef
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -433,6 +463,9 @@ theorem conditionedBobCoordinateEffect_posSemidef
   · exact (S.bobMeasurement ys).positive answers
   · exact Matrix.PosSemidef.zero
 
+/--
+@isnad1 id=eq.0h11v.s9.6045c789a662 from=translated src=- shape=a2cbb5ea vocab=ee3c8e2c
+-/
 theorem conditionedAliceCoordinateEffect_sum
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -460,6 +493,9 @@ theorem conditionedAliceCoordinateEffect_sum
         simp only [ha.symm, and_false, ↓reduceIte]
     _ = _ := by simp only [and_true]
 
+/--
+@isnad1 id=eq.0h11v.s9.aaa0cd620cdb from=translated src=- shape=2141061f vocab=43508cce
+-/
 theorem conditionedBobCoordinateEffect_sum
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -636,6 +672,9 @@ def exactPriorQuestionWeight
     (q : ExactFullQuestion X Y n) : ℝ :=
   (G.repeat n).questionWeight q.1 q.2
 
+/--
+@isnad1 id=le.0h7v.s5.4a34e2a019bf from=translated src=- shape=7518765b vocab=14771889
+-/
 theorem exactPriorQuestionWeight_nonneg
     (G : Game X Y A B) (n : ℕ)
     (q : ExactFullQuestion X Y n) :
@@ -693,6 +732,9 @@ def exactJointQuestionMass
     then exactPriorQuestionWeight G n q
     else 0
 
+/--
+@isnad1 id=le.0h10v.s6.e5635c2d1191 from=translated src=- shape=b4e67307 vocab=dc1cf13b
+-/
 theorem exactAliceQuestionMass_nonneg
     (G : Game X Y A B) (n : ℕ)
     (D : Finset (Fin n))
@@ -707,6 +749,9 @@ theorem exactAliceQuestionMass_nonneg
   · exact exactPriorQuestionWeight_nonneg G n q
   · exact le_rfl
 
+/--
+@isnad1 id=le.0h10v.s6.f6701d9ad0a7 from=translated src=- shape=52bf1fde vocab=5f7ef980
+-/
 theorem exactBobQuestionMass_nonneg
     (G : Game X Y A B) (n : ℕ)
     (D : Finset (Fin n))
@@ -755,6 +800,9 @@ def exactBobQuestionFilter
         conditionedBobEffect G n S D answer q.2
     else 0
 
+/--
+@isnad1 id=possemid.0h12v.s8.8a3b170f5a8a from=translated src=- shape=5fe9d83f vocab=aac1e012
+-/
 theorem exactAliceQuestionFilter_posSemidef
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -775,6 +823,9 @@ theorem exactAliceQuestionFilter_posSemidef
           G n D seed history x))
   · exact Matrix.PosSemidef.zero
 
+/--
+@isnad1 id=possemid.0h12v.s8.8c5072c85a0d from=translated src=- shape=59a8e3e9 vocab=bf88dc80
+-/
 theorem exactBobQuestionFilter_posSemidef
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -817,6 +868,9 @@ def exactBobMeanFilter
   ∑ y : Y, G.conditionalYGivenX x y •
     exactBobQuestionFilter G n S D seed history answer y
 
+/--
+@isnad1 id=possemid.0h12v.s8.79a7f3018bcd from=translated src=- shape=5bb585e2 vocab=87077dcb
+-/
 theorem exactAliceMeanFilter_posSemidef
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -833,6 +887,9 @@ theorem exactAliceMeanFilter_posSemidef
     G n S D seed history answer x).smul
     (G.conditionalXGivenY_nonneg y x)
 
+/--
+@isnad1 id=possemid.0h12v.s8.4ed9b66b9947 from=translated src=- shape=578801f0 vocab=882665db
+-/
 theorem exactBobMeanFilter_posSemidef
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -885,6 +942,9 @@ def exactBobCoordinateFilter
           seed.coordinate.val b
     else 0
 
+/--
+@isnad1 id=possemid.0h13v.s8.e2d080474995 from=translated src=- shape=cd843239 vocab=e6a79798
+-/
 theorem exactAliceCoordinateFilter_posSemidef
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -906,6 +966,9 @@ theorem exactAliceCoordinateFilter_posSemidef
           G n D seed history x))
   · exact Matrix.PosSemidef.zero
 
+/--
+@isnad1 id=possemid.0h13v.s8.0c2a1dbdd53f from=translated src=- shape=c15d6b5e vocab=b440cf2c
+-/
 theorem exactBobCoordinateFilter_posSemidef
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -927,6 +990,9 @@ theorem exactBobCoordinateFilter_posSemidef
           G n D seed history y))
   · exact Matrix.PosSemidef.zero
 
+/--
+@isnad1 id=eq.0h12v.s9.04db1495b9ac from=translated src=- shape=f7fe95d5 vocab=05745a90
+-/
 theorem exactAliceCoordinateFilter_sum
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -950,6 +1016,9 @@ theorem exactAliceCoordinateFilter_sum
   · simp only [hq, and_self, ↓reduceIte, ← smul_sum, conditionedAliceCoordinateEffect_sum]
   · simp only [hq, ↓reduceIte, sum_const_zero]
 
+/--
+@isnad1 id=eq.0h12v.s9.3243d4015a0f from=translated src=- shape=c9a3c252 vocab=72c5e9cd
+-/
 theorem exactBobCoordinateFilter_sum
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -1002,6 +1071,9 @@ def exactBobPurificationFamily
     (exactBobQuestionFilter G n S D seed history answer)
     (exactBobMeanFilter G n S D seed history answer)
 
+/--
+@isnad1 id=possemid.0h12v.s8.2fae97656926 from=translated src=- shape=ff5fa001 vocab=83b626d3
+-/
 theorem exactAlicePurificationFamily_posSemidef
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -1019,6 +1091,9 @@ theorem exactAlicePurificationFamily_posSemidef
       exact exactAliceMeanFilter_posSemidef
         G n S D seed history answer y
 
+/--
+@isnad1 id=possemid.0h12v.s8.df8a561865d3 from=translated src=- shape=6f0c2640 vocab=07cc27a6
+-/
 theorem exactBobPurificationFamily_posSemidef
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -1104,6 +1179,9 @@ def exactBobPurificationMatrix
       G n S D seed history answer)
     Matrix.PosSemidef.zero q
 
+/--
+@isnad1 id=eq.0h12v.s14.d7c2ba9427da from=translated src=- shape=407e499c vocab=f257945e
+-/
 theorem exactAlicePurificationMatrix_gram
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -1125,6 +1203,9 @@ theorem exactAlicePurificationMatrix_gram
       G n S D seed history answer)
     Matrix.PosSemidef.zero q
 
+/--
+@isnad1 id=eq.0h12v.s14.85428105ef1a from=translated src=- shape=bd0cae5e vocab=45b5b78f
+-/
 theorem exactBobPurificationMatrix_gram
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -1251,6 +1332,9 @@ def exactUnnormalizedGamma
     (exactBobPurificationMatrix
       G n S D r.seed r.history r.bobAnswer (.inr x))
 
+/--
+@isnad1 id=eq.0h10v.s14.628ea762707d from=translated src=- shape=0e10368d vocab=5e0227cd
+-/
 theorem exactAliceQuestionPurificationMatrix_gram
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -1265,6 +1349,9 @@ theorem exactAliceQuestionPurificationMatrix_gram
   exactAlicePurificationMatrix_gram
     G n S D r.seed r.history r.aliceAnswer (.inl x)
 
+/--
+@isnad1 id=eq.0h10v.s14.f03be92d5dcf from=translated src=- shape=5b138cc1 vocab=3f6e0604
+-/
 theorem exactBobQuestionPurificationMatrix_gram
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -1365,6 +1452,9 @@ def exactPaddedDefault
   classical
   exact PiLp.single 2 (.inl PUnit.unit, .inl PUnit.unit) (1 : ℂ)
 
+/--
+@isnad1 id=eq.0h9v.s16.82b2d4fd9bb7 from=translated src=- shape=11ce7f33 vocab=5f2f9c39
+-/
 theorem exactPaddedDefault_norm
     (G : Game X Y A B) (n : ℕ) (S : Strategy (G.repeat n))
     (D : Finset (Fin n))
@@ -1513,11 +1603,17 @@ open scoped BigOperators
 
 attribute [local instance] Classical.propDecidable
 
+/--
+@isnad1 id=eq.0h3v.s4.18e345864b79 from=translated src=- shape=3e810e78 vocab=5790e008
+-/
 theorem exactFintypeCard_eq
     {T : Type*} (first second : Fintype T) :
     @Fintype.card T first = @Fintype.card T second :=
   @Fintype.card_congr T T first second (Equiv.refl T)
 
+/--
+@isnad1 id=eq.1h1v.s5.7f3f96d40c6b from=translated src=- shape=d9c45cdd vocab=abafccc4
+-/
 theorem exactSeedWeight_sum
     {M : Type*} [Fintype M] [DecidableEq M]
     (nonempty : 0 < Fintype.card M) :
@@ -1701,6 +1797,9 @@ section
 open Matrix
 open scoped BigOperators Kronecker ComplexOrder MatrixOrder
 
+/--
+@isnad1 id=eq.0h4v.s5.176d543b817d from=translated src=- shape=73148b7e vocab=6aa65041
+-/
 theorem fullHistoryRemaining_insert_conditioned
     {n : ℕ} (D L : Finset (Fin n)) (i : Fin n) :
     fullHistoryRemaining n (insert i D) L =
@@ -2195,6 +2294,9 @@ def taggedTensorVector
         else 0
     | _, _ => 0
 
+/--
+@isnad1 id=eq.0h4v.s7.11b751c020fd from=translated src=- shape=ed7788b0 vocab=c6dad396
+-/
 theorem taggedTensorVector_norm
     (r : R) (z : EuclideanSpace ℂ (ι r × ι r)) :
     ‖taggedTensorVector r z‖ = ‖z‖ := by
@@ -2249,6 +2351,9 @@ attribute [local instance] Classical.propDecidable
 variable {X Y A B : Type*}
 variable [Fintype X] [Fintype Y] [Fintype A] [Fintype B]
 
+/--
+@isnad1 id=lt.1h2v.s5.3d3295b9d8ea from=translated src=- shape=1d955806 vocab=b469cfe1
+-/
 theorem remainingCoordinate_card_pos
     {n : ℕ} (D : Finset (Fin n))
     (hm : 0 < (Finset.univ \ D).card) :

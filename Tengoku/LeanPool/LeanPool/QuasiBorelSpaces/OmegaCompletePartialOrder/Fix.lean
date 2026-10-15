@@ -19,6 +19,9 @@ namespace OmegaCompletePartialOrder
 
 variable {α : Type*} [OmegaCompletePartialOrder α]
 
+/--
+@isnad1 id=le.1h4v.s6.437b3888764f from=translated src=- shape=8c3cf0ff vocab=30d358db
+-/
 lemma iterate_le_succ (f : α →𝒄 α) (x : α) (hx : x ≤ f x) (n : ℕ) :
     Nat.iterate f n x ≤ Nat.iterate f (n + 1) x := by
   induction n with
@@ -41,6 +44,9 @@ def iterate (f : α →𝒄 α) (x : α) (hx : x ≤ f x) : Chain α where
       apply le_trans ih
       apply iterate_le_succ f x hx
 
+/--
+@isnad1 id=eq.1h4v.s6.5353913d8138 from=translated src=- shape=9f0800db vocab=c07a1f3b
+-/
 @[simp]
 lemma iterate_apply (f : α →𝒄 α) (x : α) (hx : x ≤ f x) (n : ℕ) :
     iterate f x hx n = Nat.iterate f n x := by
@@ -52,6 +58,9 @@ end Chain
 def fix [OrderBot α] (f : α →𝒄 α) : α :=
   ωSup (Chain.iterate f ⊥ bot_le)
 
+/--
+@isnad1 id=eq.0h2v.s5.bda6199e77dd from=translated src=- shape=419f900d vocab=eec30e99
+-/
 lemma fix_eq [OrderBot α] (f : α →𝒄 α) : fix f = f (fix f) := by
   rw [fix]
   conv_rhs =>

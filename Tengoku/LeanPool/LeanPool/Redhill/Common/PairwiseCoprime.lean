@@ -18,6 +18,9 @@ abbrev PairwiseCoprime {n : ℕ} (a : Fin n → ℤ) : Prop :=
   Pairwise fun i j ↦ IsCoprime (a i) (a j)
 
 open Finset in
+/--
+@isnad1 id=eq.2h2v.s5.2fbed0dad80a from=translated src=- shape=d8b0d36b vocab=8402567d
+-/
 lemma gcd_one_of_pairwiseCoprime {n : ℕ} (hn : 2 ≤ n) {a : Fin n → ℤ} (ha : PairwiseCoprime a) :
     univ.gcd a = 1 := by
   obtain ⟨k, rfl⟩ : ∃ k, n = k + 2 := ⟨_, (Nat.sub_add_cancel hn).symm⟩

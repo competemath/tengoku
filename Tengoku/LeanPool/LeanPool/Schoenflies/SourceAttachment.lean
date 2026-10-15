@@ -39,7 +39,9 @@ variable {γ : Type*} {S₀ : CellStructure γ}
   {srcOuter srcDom tgtOuter tgtDom : Set Plane}
   {P : GeneratedPair S₀ srcOuter srcDom tgtOuter tgtDom}
 
-/-- Every source face of a generated pair lies in the prescribed open source domain. -/
+/-- Every source face of a generated pair lies in the prescribed open source domain.
+@isnad1 id=le.1h8v.s6.10f26066cc65 from=translated src=- shape=fbee5b8c vocab=a11205e3
+-/
 theorem GeneratedPair.src_face_subset_interior {F : γ} (hF : F ∈ P.str.faces) :
     P.src.cell F ⊆ srcDom \ srcOuter := by
   intro x hx
@@ -73,7 +75,9 @@ namespace SourceFaceCrosscutData
 variable {F : γ} {A : Piece}
 
 /-- If the selected face has no wild-boundary points on its frontier, the entire closed
-crosscut lies in the open source domain. -/
+crosscut lies in the open source domain.
+@isnad1 id=le.1h10v.s7.5a2972dc4ff5 from=translated src=- shape=6dd3eeaf vocab=096993f4
+-/
 theorem seg_subset_interior (d : SourceFaceCrosscutData P F A)
     (hfrontier : frontier (P.src.cell F) ⊆ srcDom \ srcOuter) :
     d.crosscut.seg ⊆ srcDom \ srcOuter := by
@@ -88,7 +92,9 @@ theorem seg_subset_interior (d : SourceFaceCrosscutData P F A)
 end SourceFaceCrosscutData
 
 /-- A line through the relative interior of a selected grid edge in a bounded source face
-produces the exact auxiliary-crosscut data used by the mixed source overlay. -/
+produces the exact auxiliary-crosscut data used by the mixed source overlay.
+@isnad1 id=nonempty.5h12v.s7.ad3106d7ba03 from=translated src=- shape=12928b34 vocab=452f7d0a
+-/
 theorem GeneratedPair.exists_sourceFaceCrosscutData {F : γ} {A : Piece}
     (hF : F ∈ P.str.faces) (hFbdd : Bornology.IsBounded (P.src.cell F))
     {a b y : Plane} (hab : a ≠ b)
@@ -124,7 +130,9 @@ structure SourceCrosscutGeometry
 namespace SourceCrosscutGeometry
 
 /-- A crosscut whose complete closed segment lies in the open domain automatically satisfies
-the boundary-endpoint condition. -/
+the boundary-endpoint condition.
+@isnad1 id=sourcecr.1h8v.s5.e0a1aaef93f2 from=translated src=- shape=b37bacf3 vocab=deb2102c
+-/
 theorem of_seg_subset_interior {J : Piece} (hJopen : J.seg ⊆ srcDom \ srcOuter) :
     SourceCrosscutGeometry P J where
   seg_subset_domain := hJopen.trans sdiff_subset
@@ -137,7 +145,9 @@ theorem of_seg_subset_interior {J : Piece} (hJopen : J.seg ⊆ srcDom \ srcOuter
 end SourceCrosscutGeometry
 
 /-- A source vertex lying on the realized outer set is already a vertex of the mapped outer
-graph. -/
+graph.
+@isnad1 id=mem.2h8v.s6.49c876fea646 from=translated src=- shape=709b859e vocab=8f3e723c
+-/
 theorem GeneratedPair.sourceVertex_mem_outerGraph {x : Plane}
     (hxV : x ∈ V(P.src.graph)) (hxOuter : x ∈ srcOuter) :
     x ∈ V(P.str.outerGraph.map P.src.pos) := by
@@ -166,7 +176,9 @@ structure RefinedSourceFaceCrosscutData
 
 /-- Every source-face crosscut admits a matched preliminary subdivision at its two endpoints.
 The construction is harmless when an endpoint was already a vertex and essential when it lies
-inside a wild outer edge. -/
+inside a wild outer edge.
+@isnad1 id=nonempty.0h10v.s5.6f2e2f954d87 from=translated src=- shape=852a545f vocab=0bdaacc9
+-/
 theorem SourceFaceCrosscutData.exists_refinement [Infinite γ]
     {F : γ} {A : Piece} (d : SourceFaceCrosscutData P F A) :
     Nonempty (RefinedSourceFaceCrosscutData P F A) := by
@@ -220,11 +232,16 @@ noncomputable def crosscutOverlay (J : Piece) (p : Plane) (s epsilon : ℝ)
   attachGraph (Q.crosscutPieces J p s epsilon)
     (extra ++ P.sourceNonboundaryGraph.vertexFinset.toList)
 
+/--
+@isnad1 id=finite.0h13v.s5.f42d76411008 from=translated src=- shape=a9bfce6e vocab=778c6aa8
+-/
 instance crosscutOverlay_finite (J : Piece) (p : Plane) (s epsilon : ℝ)
     (extra : List Plane) : (Q.crosscutOverlay J p s epsilon extra).Finite :=
   attachGraph_finite _ _
 
-/-- Every source piece in the crosscut overlay is nondegenerate. -/
+/-- Every source piece in the crosscut overlay is nondegenerate.
+@isnad1 id=nondeg.3h13v.s6.35591990e639 from=translated src=- shape=fa3e3eab vocab=675ce631
+-/
 theorem crosscutPieces_nondeg {J : Piece} {p : Plane} {s epsilon : ℝ}
     (hs : 0 < s) (hJ : J.Nondeg) :
     ∀ R ∈ Q.crosscutPieces J p s epsilon, R.Nondeg := by
@@ -237,14 +254,18 @@ theorem crosscutPieces_nondeg {J : Piece} {p : Plane} {s epsilon : ℝ}
       exact hJ
   · exact localGridEdges_nondeg hs (one_le_localGridCount s epsilon) R hR
 
-/-- The auxiliary-crosscut overlay is a finite straight-line plane graph. -/
+/-- The auxiliary-crosscut overlay is a finite straight-line plane graph.
+@isnad1 id=isdrawin.2h13v.s6.21dd14294261 from=translated src=- shape=992bf333 vocab=011c832e
+-/
 theorem crosscutOverlay_isDrawing {J : Piece} {p : Plane} {s epsilon : ℝ}
     (hs : 0 < s) (hJ : J.Nondeg) (extra : List Plane) :
     Graph.IsDrawing (Q.crosscutOverlay J p s epsilon extra) segmentDrawing :=
   attachGraph_isDrawing (Q.crosscutPieces_nondeg hs hJ) _
 
 /-- The crosscut overlay occupies exactly the old compact source carrier, the auxiliary
-segment, and the local grid. -/
+segment, and the local grid.
+@isnad1 id=eq.0h13v.s6.0917cd8f6e0c from=translated src=- shape=e8b8cb65 vocab=6fd619f3
+-/
 theorem crosscutOverlay_pointSet (J : Piece) (p : Plane) (s epsilon : ℝ)
     (extra : List Plane) :
     Graph.pointSet (Q.crosscutOverlay J p s epsilon extra) segmentDrawing =
@@ -254,7 +275,9 @@ theorem crosscutOverlay_pointSet (J : Piece) (p : Plane) (s epsilon : ℝ)
     cover_append, Q.cover_eq]
   simp only [cover_cons, cover_nil, Set.union_empty]
 
-/-- The old compact source core survives in the auxiliary-crosscut overlay. -/
+/-- The old compact source core survives in the auxiliary-crosscut overlay.
+@isnad1 id=le.0h13v.s6.3620f9ef9139 from=translated src=- shape=fc3d8793 vocab=b2cc5a81
+-/
 theorem sourceCore_subset_crosscutOverlay (J : Piece) (p : Plane) (s epsilon : ℝ)
     (extra : List Plane) :
     Graph.pointSet P.sourceNonboundaryGraph P.src.drawing ⊆
@@ -262,14 +285,18 @@ theorem sourceCore_subset_crosscutOverlay (J : Piece) (p : Plane) (s epsilon : �
   rw [Q.crosscutOverlay_pointSet]
   exact subset_union_left.trans subset_union_left
 
-/-- The entire auxiliary segment survives in the overlay. -/
+/-- The entire auxiliary segment survives in the overlay.
+@isnad1 id=le.0h13v.s6.32aa835ee446 from=translated src=- shape=32b7fa25 vocab=397255e6
+-/
 theorem crosscut_subset_crosscutOverlay (J : Piece) (p : Plane) (s epsilon : ℝ)
     (extra : List Plane) :
     J.seg ⊆ Graph.pointSet (Q.crosscutOverlay J p s epsilon extra) segmentDrawing := by
   rw [Q.crosscutOverlay_pointSet]
   exact subset_union_right.trans subset_union_left
 
-/-- The entire local grid survives in the auxiliary-crosscut overlay. -/
+/-- The entire local grid survives in the auxiliary-crosscut overlay.
+@isnad1 id=le.0h13v.s6.1727f0021705 from=translated src=- shape=e6745a96 vocab=f455fe59
+-/
 theorem localGrid_subset_crosscutOverlay (J : Piece) (p : Plane) (s epsilon : ℝ)
     (extra : List Plane) :
     cover (localGridEdges p s (localGridCount s epsilon)) ⊆
@@ -277,7 +304,9 @@ theorem localGrid_subset_crosscutOverlay (J : Piece) (p : Plane) (s epsilon : �
   rw [Q.crosscutOverlay_pointSet]
   exact subset_union_right
 
-/-- Every old compact-core vertex is retained by the auxiliary-crosscut overlay. -/
+/-- Every old compact-core vertex is retained by the auxiliary-crosscut overlay.
+@isnad1 id=le.2h13v.s6.5c944ced982e from=translated src=- shape=d3d5b00b vocab=f9aada27
+-/
 theorem sourceCoreVertices_subset_crosscutOverlay {J : Piece} {p : Plane}
     {s epsilon : ℝ} (hs : 0 < s) (hJ : J.Nondeg) (extra : List Plane) :
     V(P.sourceNonboundaryGraph) ⊆ V(Q.crosscutOverlay J p s epsilon extra) := by
@@ -293,7 +322,9 @@ theorem sourceCoreVertices_subset_crosscutOverlay {J : Piece} {p : Plane}
   · rw [crosscutPieces, cover_append, cover_append, Q.cover_eq]
     exact Or.inl (Or.inl (Graph.vertexSet_subset_pointSet hx))
 
-/-- Both endpoints of the auxiliary crosscut are overlay vertices. -/
+/-- Both endpoints of the auxiliary crosscut are overlay vertices.
+@isnad1 id=le.2h13v.s6.621739399fbc from=translated src=- shape=e802d424 vocab=0b27f333
+-/
 theorem crosscutEnds_subset_crosscutOverlay {J : Piece} {p : Plane}
     {s epsilon : ℝ} (hs : 0 < s) (hJ : J.Nondeg) (extra : List Plane) :
     ({J.1, J.2} : Set Plane) ⊆ V(Q.crosscutOverlay J p s epsilon extra) := by
@@ -312,7 +343,9 @@ theorem crosscutEnds_subset_crosscutOverlay {J : Piece} {p : Plane}
         · exact left_mem_segment ℝ _ _
         · exact right_mem_segment ℝ _ _⟩
 
-/-- Every raw local-grid vertex is retained by the auxiliary-crosscut overlay. -/
+/-- Every raw local-grid vertex is retained by the auxiliary-crosscut overlay.
+@isnad1 id=le.2h13v.s6.009287d122e9 from=translated src=- shape=1bf9f979 vocab=b5dda059
+-/
 theorem localGridVertices_subset_crosscutOverlay {J : Piece} {p : Plane}
     {s epsilon : ℝ} (hs : 0 < s) (hJ : J.Nondeg) (extra : List Plane) :
     V(localGrid p s (localGridCount s epsilon)) ⊆
@@ -333,7 +366,9 @@ theorem localGridVertices_subset_crosscutOverlay {J : Piece} {p : Plane}
       · exact right_mem_segment ℝ _ _⟩
 
 /-- Every overlay edge is cut from the old compact cover, the auxiliary crosscut, or the local
-grid. -/
+grid.
+@isnad1 id=or.1h14v.s7.ab85699ee8be from=translated src=- shape=efd873e8 vocab=02c9d993
+-/
 theorem crosscutOverlay_edge_source {J : Piece} {p : Plane} {s epsilon : ℝ}
     {extra : List Plane} {R : Piece} (hR : R ∈ E(Q.crosscutOverlay J p s epsilon extra)) :
     (∃ A ∈ Q.pieces, R.seg ⊆ A.seg) ∨
@@ -353,7 +388,9 @@ theorem crosscutOverlay_edge_source {J : Piece} {p : Plane} {s epsilon : ℝ}
   · exact Or.inr (Or.inr ⟨A, hGrid, hsub⟩)
 
 /-- If both the crosscut and the window lie in the open source domain, the entire auxiliary
-overlay lies in the closed source domain. -/
+overlay lies in the closed source domain.
+@isnad1 id=le.3h13v.s6.4f9e09a620a7 from=translated src=- shape=647e4433 vocab=99d2918a
+-/
 theorem crosscutOverlay_pointSet_subset {J : Piece} {p : Plane} {s epsilon : ℝ}
     (hs : 0 < s) (hJdom : J.seg ⊆ srcDom)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) (extra : List Plane) :
@@ -368,7 +405,9 @@ theorem crosscutOverlay_pointSet_subset {J : Piece} {p : Plane} {s epsilon : ℝ
       (one_le_localGridCount s epsilon)).trans (hwindow.trans sdiff_subset)
 
 /-- Every auxiliary-overlay edge is polygonal and has all nonvertex points in the open source
-domain. -/
+domain.
+@isnad1 id=and.5h14v.s7.3588d8e52d6c from=translated src=- shape=e761fcc2 vocab=98eec56e
+-/
 theorem crosscutOverlay_edge_dichotomy {J : Piece} {p : Plane} {s epsilon : ℝ}
     (hs : 0 < s) (hJ : J.Nondeg) (hJgeom : SourceCrosscutGeometry P J)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) (extra : List Plane) :
@@ -423,7 +462,9 @@ theorem crosscutOverlay_edge_dichotomy {J : Piece} {p : Plane} {s epsilon : ℝ}
       (mem_cover_iff.2 ⟨A, hA, hRA hxSeg⟩))
 
 /-- Away from overlay vertices, an auxiliary-overlay edge meeting an old open nonboundary edge
-is one of that edge's subdivision pieces. -/
+is one of that edge's subdivision pieces.
+@isnad1 id=le.6h15v.s7.34de193f7ed3 from=translated src=- shape=c918c651 vocab=a6d2f765
+-/
 theorem crosscutOverlay_edge_subset {J : Piece} {p : Plane} {s epsilon : ℝ}
     (hs : 0 < s) (hJ : J.Nondeg) (extra : List Plane) :
     ∀ {e : γ}, e ∈ E(P.str.skel) → e ∉ E(P.str.outerGraph) → ∀ {R : Piece},
@@ -473,7 +514,9 @@ theorem crosscutOverlay_edge_subset {J : Piece} {p : Plane} {s epsilon : ℝ}
   exact hR'A.trans hAold
 
 /-- Away from overlay vertices, an auxiliary-overlay edge meeting a raw local-grid edge is one
-of that edge's subdivision pieces. -/
+of that edge's subdivision pieces.
+@isnad1 id=le.5h15v.s7.49b53d23db4c from=translated src=- shape=fc55e858 vocab=cad6582e
+-/
 theorem crosscutOverlay_grid_edge_subset {J : Piece} {p : Plane} {s epsilon : ℝ}
     (hs : 0 < s) (hJ : J.Nondeg) (extra : List Plane) :
     ∀ {A : Piece}, A ∈ E(localGrid p s (localGridCount s epsilon)) → ∀ {R : Piece},
@@ -502,7 +545,9 @@ theorem crosscutOverlay_grid_edge_subset {J : Piece} {p : Plane} {s epsilon : �
   exact hR'A
 
 /-- Away from overlay vertices, an edge meeting the auxiliary crosscut is one of the
-crosscut's subdivision pieces. -/
+crosscut's subdivision pieces.
+@isnad1 id=le.4h14v.s7.f3d488166313 from=translated src=- shape=25238a73 vocab=83161ff4
+-/
 theorem crosscutOverlay_crosscut_edge_subset {J : Piece} {p : Plane} {s epsilon : ℝ}
     (hs : 0 < s) (hJ : J.Nondeg) (extra : List Plane) :
     ∀ {R : Piece}, R ∈ E(Q.crosscutOverlay J p s epsilon extra) →
@@ -529,7 +574,9 @@ theorem crosscutOverlay_crosscut_edge_subset {J : Piece} {p : Plane} {s epsilon 
   rw [hRR', edgeArc_segmentDrawing, edgeArc_segmentDrawing]
   exact hR'J
 
-/-- The auxiliary straight-line overlay contains a plane subdivision of the raw local grid. -/
+/-- The auxiliary straight-line overlay contains a plane subdivision of the raw local grid.
+@isnad1 id=isplanes.2h13v.s6.4b7878660f5b from=translated src=- shape=553ae1a4 vocab=eb083d4a
+-/
 theorem crosscutOverlay_localGrid_isPlaneSubdivisionExtension
     {J : Piece} {p : Plane} {s epsilon : ℝ} (hs : 0 < s) (hJ : J.Nondeg)
     (extra : List Plane) :
@@ -548,7 +595,9 @@ theorem crosscutOverlay_localGrid_isPlaneSubdivisionExtension
     exact Q.crosscutOverlay_grid_edge_subset hs hJ extra hA hR hmeet
 
 /-- A single nondegenerate straight segment, with its two ends as vertices, is a plane
-drawing. -/
+drawing.
+@isnad1 id=isdrawin.1h1v.s3.4542e2438b78 from=translated src=- shape=04776580 vocab=428f531a
+-/
 theorem pieceListGraph_single_isDrawing {J : Piece} (hJ : J.Nondeg) :
     _root_.Graph.IsDrawing (pieceListGraph [J]) segmentDrawing where
   edge_param := by
@@ -585,7 +634,9 @@ structure CrosscutOverlayRelabeling (J : Piece) (p : Plane) (s epsilon : ℝ)
   name_inj : InjOn name E(Q.crosscutOverlay J p s epsilon extra)
   name_fresh : ∀ R ∈ E(Q.crosscutOverlay J p s epsilon extra), name R ∉ P.str.cells
 
-/-- An infinite cell-name type supplies fresh names for the auxiliary-crosscut overlay. -/
+/-- An infinite cell-name type supplies fresh names for the auxiliary-crosscut overlay.
+@isnad1 id=nonempty.0h13v.s5.63a51f254410 from=translated src=- shape=87d080cc vocab=310e5b03
+-/
 theorem exists_crosscutOverlayRelabeling [Infinite γ]
     (J : Piece) (p : Plane) (s epsilon : ℝ) (extra : List Plane) :
     Nonempty (Q.CrosscutOverlayRelabeling J p s epsilon extra) := by
@@ -619,7 +670,9 @@ noncomputable def drawing : γ → ℝ → Plane := by
     else (Q.crosscutOverlay J p s epsilon extra).relabelDrawing
       w.name segmentDrawing e
 
-/-- Old outer names and freshly allocated inner names are disjoint. -/
+/-- Old outer names and freshly allocated inner names are disjoint.
+@isnad1 id=compatib.0h14v.s6.8bf30a2b96c9 from=translated src=- shape=aa9c0987 vocab=d221f79f
+-/
 theorem compatible : w.outerGraph.Compatible w.innerGraph := by
   apply _root_.Graph.Compatible.of_disjoint_edgeSet
   rw [Set.disjoint_left, _root_.Graph.edgeSet_map, _root_.Graph.edgeSet_relabelEdges]
@@ -629,11 +682,15 @@ theorem compatible : w.outerGraph.Compatible w.innerGraph := by
   exact w.name_fresh R hR
     (P.str.mem_cells_of_mem_edgeSet (P.str.outerGraph_le.edgeSet_mono heOuter))
 
-/-- On an old outer edge the mixed drawing is the old source drawing. -/
+/-- On an old outer edge the mixed drawing is the old source drawing.
+@isnad1 id=eq.1h15v.s6.e271bf650743 from=translated src=- shape=b454ba6a vocab=14ade805
+-/
 theorem drawing_of_outer {e : γ} (he : e ∈ E(P.str.outerGraph)) :
     w.drawing e = P.src.drawing e := by simp [drawing, he]
 
-/-- On a fresh inner edge the mixed drawing is its relabelled segment drawing. -/
+/-- On a fresh inner edge the mixed drawing is its relabelled segment drawing.
+@isnad1 id=eq.1h15v.s7.a3c1b9c393cd from=translated src=- shape=48ba0a34 vocab=b2e9f3d8
+-/
 theorem drawing_of_inner {e : γ} (he : e ∈ E(w.innerGraph)) :
     w.drawing e =
       (Q.crosscutOverlay J p s epsilon extra).relabelDrawing
@@ -643,7 +700,9 @@ theorem drawing_of_inner {e : γ} (he : e ∈ E(w.innerGraph)) :
   exact fun heOuter => w.name_fresh R hR
     (P.str.mem_cells_of_mem_edgeSet (P.str.outerGraph_le.edgeSet_mono heOuter))
 
-/-- The mixed drawing restricts to a drawing of the old wild outer graph. -/
+/-- The mixed drawing restricts to a drawing of the old wild outer graph.
+@isnad1 id=isdrawin.0h14v.s6.d9cfdfa96c87 from=translated src=- shape=cb3a955a vocab=02354a0c
+-/
 theorem outer_isDrawing : w.outerGraph.IsDrawing w.drawing := by
   apply Schoenflies.Graph.isDrawing_congr_of_eqOn
     (P.src.isDrawing.mono (P.str.outerGraph_le.map P.src.pos))
@@ -651,7 +710,9 @@ theorem outer_isDrawing : w.outerGraph.IsDrawing w.drawing := by
   apply w.drawing_of_outer
   rwa [_root_.Graph.edgeSet_map] at he
 
-/-- The mixed drawing restricts to the relabelled auxiliary-crosscut inner overlay. -/
+/-- The mixed drawing restricts to the relabelled auxiliary-crosscut inner overlay.
+@isnad1 id=isdrawin.2h14v.s6.1251d3e1678f from=translated src=- shape=2bd372f3 vocab=47b3898e
+-/
 theorem inner_isDrawing (hs : 0 < s) (hJ : J.Nondeg) :
     w.innerGraph.IsDrawing w.drawing := by
   apply Schoenflies.Graph.isDrawing_congr_of_eqOn
@@ -659,7 +720,9 @@ theorem inner_isDrawing (hs : 0 < s) (hJ : J.Nondeg) :
   intro e he
   exact w.drawing_of_inner he
 
-/-- The outer part occupies exactly the wild source curve. -/
+/-- The outer part occupies exactly the wild source curve.
+@isnad1 id=eq.0h14v.s6.42474961438e from=translated src=- shape=636c45af vocab=74b5df73
+-/
 theorem outer_pointSet :
     _root_.Graph.pointSet w.outerGraph w.drawing = srcOuter := by
   calc
@@ -673,7 +736,9 @@ theorem outer_pointSet :
     _ = P.src.outerSet := rfl
     _ = srcOuter := P.src_isWeaklyAdmissible.outerSet_eq
 
-/-- The inner part occupies exactly the straight-line auxiliary-crosscut overlay. -/
+/-- The inner part occupies exactly the straight-line auxiliary-crosscut overlay.
+@isnad1 id=eq.0h14v.s6.cc7043f17c1b from=translated src=- shape=5a88540a vocab=6ca3d408
+-/
 theorem inner_pointSet :
     _root_.Graph.pointSet w.innerGraph w.drawing =
       _root_.Graph.pointSet (Q.crosscutOverlay J p s epsilon extra)
@@ -691,7 +756,9 @@ theorem inner_pointSet :
         segmentDrawing :=
       _root_.Graph.pointSet_relabelEdges w.name_inj
 
-/-- The wild outer graph and the auxiliary-crosscut inner overlay form a plane drawing. -/
+/-- The wild outer graph and the auxiliary-crosscut inner overlay form a plane drawing.
+@isnad1 id=isdrawin.4h14v.s7.06f28193d2e5 from=translated src=- shape=0a48feab vocab=5b2026a7
+-/
 theorem graph_isDrawing (hs : 0 < s) (hJ : J.Nondeg)
     (hJgeom : SourceCrosscutGeometry P J)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) :
@@ -728,7 +795,9 @@ theorem graph_isDrawing (hs : 0 < s) (hJ : J.Nondeg)
       (one_le_localGridCount s epsilon) hxGrid
     exact ((hwindow hxWindow).2 hxOuter).elim
 
-/-- The mixed crosscut source graph is finite. -/
+/-- The mixed crosscut source graph is finite.
+@isnad1 id=finite.0h14v.s6.fc6c3c641ed7 from=translated src=- shape=a8b05bc1 vocab=595a7e24
+-/
 theorem graph_finite : w.graph.Finite where
   finite_vertexSet := by
     rw [graph, _root_.Graph.vertexSet_union, outerGraph, _root_.Graph.vertexSet_map,
@@ -744,7 +813,9 @@ theorem graph_finite : w.graph.Finite where
         (Q.crosscutOverlay J p s epsilon extra)).image w.name)
 
 /-- The mixed graph occupies the wild outer curve, old compact core, auxiliary crosscut, and
-local grid. -/
+local grid.
+@isnad1 id=eq.0h14v.s7.15a3476a3609 from=translated src=- shape=da36f0c0 vocab=b423b4b0
+-/
 theorem graph_pointSet :
     _root_.Graph.pointSet w.graph w.drawing =
       srcOuter ∪ ((
@@ -753,7 +824,9 @@ theorem graph_pointSet :
   rw [graph, _root_.Graph.pointSet_union, w.outer_pointSet, w.inner_pointSet,
     Q.crosscutOverlay_pointSet]
 
-/-- The complete old source skeleton is retained by the mixed crosscut graph. -/
+/-- The complete old source skeleton is retained by the mixed crosscut graph.
+@isnad1 id=le.0h14v.s6.6dbce12ea7e1 from=translated src=- shape=db20be5c vocab=fadfb1a1
+-/
 theorem sourceSkeleton_subset_graph :
     P.src.skeletonSet ⊆ _root_.Graph.pointSet w.graph w.drawing := by
   rw [P.skeletonSet_eq_sourceNonboundaryGraph_union, w.graph_pointSet]
@@ -762,7 +835,9 @@ theorem sourceSkeleton_subset_graph :
   · exact Or.inr (Or.inl (Or.inl hxCore))
   · exact Or.inl hxOuter
 
-/-- Every old source vertex is retained by the mixed crosscut graph. -/
+/-- Every old source vertex is retained by the mixed crosscut graph.
+@isnad1 id=le.2h14v.s6.9f0cf90f7347 from=translated src=- shape=9ffb97c7 vocab=c8110eb4
+-/
 theorem sourceVertices_subset_graph (hs : 0 < s) (hJ : J.Nondeg) :
     V(P.src.graph) ⊆ V(w.graph) := by
   intro x hx
@@ -786,7 +861,9 @@ theorem sourceVertices_subset_graph (hs : 0 < s) (hJ : J.Nondeg) :
       rw [_root_.Graph.vertexSet_relabelEdges]
       exact Q.sourceCoreVertices_subset_crosscutOverlay hs hJ extra hxCore)
 
-/-- Both ends of the auxiliary crosscut are vertices of the mixed graph. -/
+/-- Both ends of the auxiliary crosscut are vertices of the mixed graph.
+@isnad1 id=le.2h14v.s6.ed339729449b from=translated src=- shape=f37d6329 vocab=a911c913
+-/
 theorem crosscutEnds_subset_graph (hs : 0 < s) (hJ : J.Nondeg) :
     ({J.1, J.2} : Set Plane) ⊆ V(w.graph) := by
   intro x hx
@@ -795,7 +872,9 @@ theorem crosscutEnds_subset_graph (hs : 0 < s) (hJ : J.Nondeg) :
     rw [_root_.Graph.vertexSet_relabelEdges]
     exact Q.crosscutEnds_subset_crosscutOverlay hs hJ extra hx)
 
-/-- The mixed crosscut graph stays in the closed source domain. -/
+/-- The mixed crosscut graph stays in the closed source domain.
+@isnad1 id=le.3h14v.s7.2dc9903a377a from=translated src=- shape=baaa391b vocab=37c5de55
+-/
 theorem graph_pointSet_subset (hs : 0 < s)
     (hJgeom : SourceCrosscutGeometry P J)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) :
@@ -809,7 +888,9 @@ theorem graph_pointSet_subset (hs : 0 < s)
     exact Q.crosscutOverlay_pointSet_subset hs hJgeom.seg_subset_domain hwindow extra
 
 /-- Every mixed edge is either on the wild outer curve or is a polygonal inner edge whose
-nonvertex points lie in the open source domain. -/
+nonvertex points lie in the open source domain.
+@isnad1 id=or.5h15v.s7.b3ce986d12d7 from=translated src=- shape=dac88c5c vocab=26915272
+-/
 theorem graph_edge_dichotomy (hs : 0 < s) (hJ : J.Nondeg)
     (hJgeom : SourceCrosscutGeometry P J)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) :
@@ -849,7 +930,9 @@ theorem graph_edge_dichotomy (hs : 0 < s) (hJ : J.Nondeg)
     exact Or.inr (by rwa [_root_.Graph.vertexSet_relabelEdges])
 
 /-- An edge of the mixed crosscut graph meeting an old open source edge away from mixed
-vertices is one of that edge's subdivision pieces. -/
+vertices is one of that edge's subdivision pieces.
+@isnad1 id=le.7h16v.s8.17a594172e62 from=translated src=- shape=59b42aaf vocab=e4482d94
+-/
 theorem graph_edge_subset (hs : 0 < s) (hJ : J.Nondeg)
     (hJgeom : SourceCrosscutGeometry P J)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) :
@@ -919,7 +1002,9 @@ theorem graph_edge_subset (hs : 0 < s) (hJ : J.Nondeg)
       rw [graph, _root_.Graph.vertexSet_union]
       exact Or.inr (by rwa [_root_.Graph.vertexSet_relabelEdges])
 
-/-- The mixed crosscut graph contains a plane subdivision of the complete old source drawing. -/
+/-- The mixed crosscut graph contains a plane subdivision of the complete old source drawing.
+@isnad1 id=isplanes.4h14v.s7.c2bd23a25f79 from=translated src=- shape=ed946ab0 vocab=78f0ebfd
+-/
 theorem source_isPlaneSubdivisionExtension (hs : 0 < s) (hJ : J.Nondeg)
     (hJgeom : SourceCrosscutGeometry P J)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) :
@@ -943,7 +1028,9 @@ theorem source_isPlaneSubdivisionExtension (hs : 0 < s) (hJ : J.Nondeg)
     · exact hznot (w.sourceVertices_subset_graph hs hJ (hab.map P.src.pos).left_mem)
     · exact hznot (w.sourceVertices_subset_graph hs hJ (hab.map P.src.pos).right_mem)
 
-/-- The old-source trace inside the mixed crosscut graph remains 2-connected. -/
+/-- The old-source trace inside the mixed crosscut graph remains 2-connected.
+@isnad1 id=istwocon.4h14v.s7.0d6e1eee101f from=translated src=- shape=d35559ea vocab=6b09ac33
+-/
 theorem sourceTrace_isTwoConnected (hs : 0 < s) (hJ : J.Nondeg)
     (hJgeom : SourceCrosscutGeometry P J)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) :
@@ -951,7 +1038,9 @@ theorem sourceTrace_isTwoConnected (hs : 0 < s) (hJ : J.Nondeg)
   (w.source_isPlaneSubdivisionExtension hs hJ hJgeom hwindow).trace_isTwoConnected
     P.src_isWeaklyAdmissible.isTwoConnected
 
-/-- Every raw local-grid vertex is retained by the mixed crosscut graph. -/
+/-- Every raw local-grid vertex is retained by the mixed crosscut graph.
+@isnad1 id=le.2h14v.s6.a79d3c4e858d from=translated src=- shape=123f098e vocab=27233921
+-/
 theorem localGridVertices_subset_graph (hs : 0 < s) (hJ : J.Nondeg) :
     V(localGrid p s (localGridCount s epsilon)) ⊆ V(w.graph) := by
   intro x hx
@@ -960,7 +1049,9 @@ theorem localGridVertices_subset_graph (hs : 0 < s) (hJ : J.Nondeg) :
     rw [_root_.Graph.vertexSet_relabelEdges]
     exact Q.localGridVertices_subset_crosscutOverlay hs hJ extra hx)
 
-/-- The complete raw local-grid carrier is retained by the mixed crosscut graph. -/
+/-- The complete raw local-grid carrier is retained by the mixed crosscut graph.
+@isnad1 id=le.0h14v.s6.2539a25ec416 from=translated src=- shape=91bbed4a vocab=9b1e4030
+-/
 theorem localGrid_subset_graph :
     _root_.Graph.pointSet (localGrid p s (localGridCount s epsilon)) segmentDrawing ⊆
       _root_.Graph.pointSet w.graph w.drawing := by
@@ -969,7 +1060,9 @@ theorem localGrid_subset_graph :
   exact Or.inr (Or.inr hx)
 
 /-- A mixed edge meeting a raw grid edge away from mixed vertices is a subdivision piece of
-that grid edge. -/
+that grid edge.
+@isnad1 id=le.6h16v.s7.55bf573ea4e5 from=translated src=- shape=779541b8 vocab=21ecaf9d
+-/
 theorem graph_grid_edge_subset (hs : 0 < s) (hJ : J.Nondeg)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) :
     ∀ {A : Piece}, A ∈ E(localGrid p s (localGridCount s epsilon)) → ∀ {f : γ},
@@ -1015,7 +1108,9 @@ theorem graph_grid_edge_subset (hs : 0 < s) (hJ : J.Nondeg)
     exact Or.inr (by rwa [_root_.Graph.vertexSet_relabelEdges])
 
 /-- A mixed edge meeting the auxiliary crosscut away from mixed vertices is one of the
-crosscut's subdivision pieces. -/
+crosscut's subdivision pieces.
+@isnad1 id=le.5h15v.s7.c88dc7c2aa52 from=translated src=- shape=d1cb18b8 vocab=212cfe5c
+-/
 theorem graph_crosscut_edge_subset (hs : 0 < s) (hJ : J.Nondeg)
     (hJgeom : SourceCrosscutGeometry P J) :
     ∀ {f : γ}, f ∈ E(w.graph) →
@@ -1067,7 +1162,9 @@ theorem graph_crosscut_edge_subset (hs : 0 < s) (hJ : J.Nondeg)
     rw [graph, _root_.Graph.vertexSet_union]
     exact Or.inr (by rwa [_root_.Graph.vertexSet_relabelEdges])
 
-/-- The mixed graph contains a plane subdivision of the one-edge auxiliary crosscut. -/
+/-- The mixed graph contains a plane subdivision of the one-edge auxiliary crosscut.
+@isnad1 id=isplanes.4h14v.s7.3fa03bfdebf2 from=translated src=- shape=5b41878d vocab=63bcd7df
+-/
 theorem crosscut_isPlaneSubdivisionExtension (hs : 0 < s) (hJ : J.Nondeg)
     (hJgeom : SourceCrosscutGeometry P J)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) :
@@ -1095,7 +1192,9 @@ theorem crosscut_isPlaneSubdivisionExtension (hs : 0 < s) (hJ : J.Nondeg)
     subst R
     exact w.graph_crosscut_edge_subset hs hJ hJgeom hf hmeet
 
-/-- The mixed crosscut graph contains a plane subdivision of the raw local grid. -/
+/-- The mixed crosscut graph contains a plane subdivision of the raw local grid.
+@isnad1 id=isplanes.4h14v.s7.4f7004ca016d from=translated src=- shape=64588796 vocab=1c69867e
+-/
 theorem localGrid_isPlaneSubdivisionExtension (hs : 0 < s) (hJ : J.Nondeg)
     (hJgeom : SourceCrosscutGeometry P J)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) :
@@ -1111,7 +1210,9 @@ theorem localGrid_isPlaneSubdivisionExtension (hs : 0 < s) (hJ : J.Nondeg)
     intro A hA f hf hmeet
     exact w.graph_grid_edge_subset hs hJ hwindow hA hf hmeet
 
-/-- The local-grid trace inside the mixed crosscut graph remains 2-connected. -/
+/-- The local-grid trace inside the mixed crosscut graph remains 2-connected.
+@isnad1 id=istwocon.4h14v.s7.bf5273a3e352 from=translated src=- shape=303095b3 vocab=9eed5172
+-/
 theorem localGridTrace_isTwoConnected (hs : 0 < s) (hJ : J.Nondeg)
     (hJgeom : SourceCrosscutGeometry P J)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) :
@@ -1121,7 +1222,9 @@ theorem localGridTrace_isTwoConnected (hs : 0 < s) (hJ : J.Nondeg)
   (w.localGrid_isPlaneSubdivisionExtension hs hJ hJgeom hwindow).trace_isTwoConnected
     (localGrid_isTwoConnected hs (one_le_localGridCount s epsilon))
 
-/-- The subdivided auxiliary segment is the exact carrier of a path in the mixed graph. -/
+/-- The subdivided auxiliary segment is the exact carrier of a path in the mixed graph.
+@isnad1 id=ex.4h14v.s7.727ce75d6bf3 from=translated src=- shape=0b6f61ee vocab=835b94ce
+-/
 theorem exists_crosscut_trace (hs : 0 < s) (hJ : J.Nondeg)
     (hJgeom : SourceCrosscutGeometry P J)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter) :
@@ -1134,7 +1237,9 @@ theorem exists_crosscut_trace (hs : 0 < s) (hJ : J.Nondeg)
 
 /-- If a nondegenerate raw grid edge lies on the auxiliary segment and both crosscut ends lie
 on the old source skeleton, the old trace, crosscut ear, and grid trace span a 2-connected
-subgraph.  Consequently the complete mixed graph is 2-connected. -/
+subgraph.  Consequently the complete mixed graph is 2-connected.
+@isnad1 id=istwocon.7h15v.s7.99610fc34aa5 from=translated src=- shape=28154ad7 vocab=b07efa1e
+-/
 theorem graph_isTwoConnected_of_crosscut_grid_edge (hs : 0 < s) (hJ : J.Nondeg)
     (hJgeom : SourceCrosscutGeometry P J)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter)
@@ -1253,7 +1358,9 @@ theorem graph_isTwoConnected_of_crosscut_grid_edge (hs : 0 < s) (hJ : J.Nondeg)
 
 /-- If the old nonouter source carrier is connected, adjoining a crosscut whose first endpoint
 lies on it and a grid edge carried by that crosscut preserves connectedness after removing the
-wild outer curve. -/
+wild outer curve.
+@isnad1 id=isconnec.7h15v.s8.89ac381f73ea from=translated src=- shape=fe4b7cd6 vocab=53fca252
+-/
 theorem graph_isConnected_diff_of_crosscut_grid_edge (hs : 0 < s)
     (hJopen : J.seg ⊆ srcDom \ srcOuter)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter)
@@ -1325,7 +1432,9 @@ theorem graph_isConnected_diff_of_crosscut_grid_edge (hs : 0 < s)
 /-- The boundary-tolerant connectedness argument.  The crosscut with its wild-boundary
 endpoints removed is still connected because it lies between its connected open segment and
 that segment's closure.  Hence one surviving source endpoint joins it to the old nonboundary
-carrier, while the swallowed grid edge joins it to the grid. -/
+carrier, while the swallowed grid edge joins it to the grid.
+@isnad1 id=isconnec.8h15v.s8.d3bad941d737 from=translated src=- shape=f5f79a2e vocab=f6d87b5f
+-/
 theorem graph_isConnected_diff_of_crosscut_grid_edge_of_end_not_outer (hs : 0 < s)
     (hJgeom : SourceCrosscutGeometry P J)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter)
@@ -1407,7 +1516,9 @@ theorem graph_isConnected_diff_of_crosscut_grid_edge_of_end_not_outer (hs : 0 < 
     ⟨A.1, Or.inr ⟨hA1J, hA1NotOuter⟩, hA1K⟩ hsourceJconn hKconn
 
 /-- Once its two global attachment properties are known, the mixed crosscut graph is a complete
-source extension. -/
+source extension.
+@isnad1 id=issource.6h14v.s7.0afc68cb6b55 from=translated src=- shape=05e738f2 vocab=f065981f
+-/
 theorem isSourceExtension (hs : 0 < s) (hJ : J.Nondeg)
     (hJgeom : SourceCrosscutGeometry P J)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter)
@@ -1431,7 +1542,9 @@ theorem isSourceExtension (hs : 0 < s) (hJ : J.Nondeg)
 
 /-- The crosscut construction is a source extension once its concrete geometric attachment
 data are supplied; no separate graph-theoretic 2-connectivity or carrier-connectedness
-hypotheses remain. -/
+hypotheses remain.
+@isnad1 id=issource.8h15v.s8.9da2259c8746 from=translated src=- shape=7cd89927 vocab=1cc29938
+-/
 theorem isSourceExtension_of_crosscut_grid_edge (hs : 0 < s) (hJ : J.Nondeg)
     (hJopen : J.seg ⊆ srcDom \ srcOuter)
     (hwindow : Plane.closedSquare p s ⊆ srcDom \ srcOuter)
@@ -1449,7 +1562,9 @@ theorem isSourceExtension_of_crosscut_grid_edge (hs : 0 < s) (hJ : J.Nondeg)
       hsource hJsource.1 hA hAJ)
 
 /-- Boundary-tolerant packaging: once one crosscut endpoint survives deletion of the wild outer
-curve, the generalized crosscut geometry gives the complete source extension. -/
+curve, the generalized crosscut geometry gives the complete source extension.
+@isnad1 id=issource.9h15v.s8.dd9e46693f84 from=translated src=- shape=b8629387 vocab=d0410548
+-/
 theorem isSourceExtension_of_crosscut_grid_edge_of_end_not_outer
     (hs : 0 < s) (hJ : J.Nondeg)
     (hJgeom : SourceCrosscutGeometry P J)
@@ -1541,7 +1656,9 @@ end RefinedCrosscutOverlayData
 
 /-- The boundary-touching branch now constructs a plane, 2-connected, domain-contained mixed
 overlay after a matched subdivision at the two crosscut endpoints.  The construction also
-retains the entire refined source skeleton and the raw local grid. -/
+retains the entire refined source skeleton and the raw local grid.
+@isnad1 id=nonempty.8h15v.s7.b8295035f161 from=translated src=- shape=f887b085 vocab=62a10165
+-/
 theorem GeneratedPair.exists_refinedCrosscutOverlayData
     [Infinite γ] {F : γ} {A : Piece} {p : Plane} {s epsilon : ℝ}
     (hF : F ∈ P.str.faces) (hFbdd : Bornology.IsBounded (P.src.cell F))
@@ -1576,7 +1693,9 @@ theorem GeneratedPair.exists_refinedCrosscutOverlayData
 /-- Complete local-grid source attachment for the crosscut case in which the selected source
 face has no wild-boundary points on its frontier.  The face crosscut swallows the chosen raw
 grid edge, its traced subdivision is attached as an ear, and the grid trace is then glued along
-the two distinct ends of that edge. -/
+the two distinct ends of that edge.
+@isnad1 id=nonempty.10h15v.s8.e82aa6cce42c from=translated src=- shape=325635e4 vocab=33bdbc69
+-/
 theorem GeneratedPair.exists_localGridSourceExtension_of_face_frontier
     [Infinite γ] {F : γ} {A : Piece} {p : Plane} {s epsilon : ℝ}
     (hF : F ∈ P.str.faces) (hFbdd : Bornology.IsBounded (P.src.cell F))

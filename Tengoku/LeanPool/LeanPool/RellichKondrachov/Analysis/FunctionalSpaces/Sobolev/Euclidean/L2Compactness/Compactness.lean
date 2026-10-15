@@ -45,11 +45,23 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDim
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceEL2CompactnessCompactness : MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.65a017b8c0b8 from=translated src=- shape=c6850a32 vocab=a09dda75
+-/
 local instance instBorelSpaceEL2CompactnessCompactness : BorelSpace E := ⟨rfl⟩
+/--
+@isnad1 id=opensmea.0h1v.s4.90392754cfe9 from=translated src=- shape=c6850a32 vocab=ed48479f
+-/
 local instance instOpensMeasurableSpaceEL2CompactnessCompactness : OpensMeasurableSpace E := by
   infer_instance
+/--
+@isnad1 id=measurab.0h1v.s4.01a6cf9c09d4 from=translated src=- shape=c6850a32 vocab=e78f54db
+-/
 local instance instMeasurableAddEL2CompactnessCompactness : MeasurableAdd E := by
   infer_instance
+/--
+@isnad1 id=measurab.0h1v.s4.75aa0d34e078 from=translated src=- shape=c6850a32 vocab=c5e7e7ba
+-/
 local instance instMeasurableNegEL2CompactnessCompactness : MeasurableNeg E := by
   infer_instance
 
@@ -61,6 +73,9 @@ def Kψ : Set E :=
   K + tsupport ψ
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=iscompac.2h3v.s5.c4751d15ab06 from=translated src=- shape=7dccd7be vocab=0f46d0e2
+-/
 lemma isCompact_Kψ (hK : IsCompact K) (hψcs : HasCompactSupport ψ) :
     IsCompact (Kψ (K := K) (ψ := ψ)) :=
   IsCompact.add hK hψcs.isCompact
@@ -84,6 +99,9 @@ def smoothBCF (hK : IsCompact K) (hKm : MeasurableSet K) (hψc : Continuous ψ)
     isCompact_iff_compactSpace.1 (isCompact_Kψ (K := K) (ψ := ψ) hK hψcs)
   BoundedContinuousFunction.mkOfCompact (smoothOn (E := E) (K := K) (ψ := ψ) hKm hψc hψcs u)
 
+/--
+@isnad1 id=eq.4h5v.s9.3194fe00cc76 from=translated src=- shape=ba220b99 vocab=3da5ef80
+-/
 @[simp] lemma smoothBCF_apply (hK : IsCompact K) (hKm : MeasurableSet K) (hψc : Continuous ψ)
     (hψcs : HasCompactSupport ψ)
     (u : MeasureTheory.Lp ℝ (2 : ℝ≥0∞) (volume.restrict K))
@@ -93,6 +111,9 @@ def smoothBCF (hK : IsCompact K) (hKm : MeasurableSet K) (hψc : Continuous ψ)
   rfl
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=uniformc.2h2v.s5.1116e4ff85e9 from=translated src=- shape=50892d40 vocab=9761b6d9
+-/
 lemma uniformContinuous_ψ (hψc : Continuous ψ) (hψcs : HasCompactSupport ψ) :
     UniformContinuous ψ := by
   classical

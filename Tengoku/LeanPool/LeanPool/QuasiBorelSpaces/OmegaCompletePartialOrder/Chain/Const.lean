@@ -23,6 +23,9 @@ variable {A : Type*} [Preorder A]
 def const (x : A) : Chain A where
   toOrderHom := OrderHom.const ℕ x
 
+/--
+@isnad1 id=eq.0h3v.s4.15053f625e67 from=translated src=- shape=c3fcef69 vocab=039c48b6
+-/
 @[simp]
 lemma const_apply (x : A) (n : ℕ) : const x n = x := by
   rfl

@@ -25,6 +25,9 @@ open Pointwise
 
 -- As a ball around x is convex, it must contain a segment with x in its interior
 omit [CompleteSpace E] in
+/--
+@isnad1 id=ex.2h5v.s8.ce21b68d3183 from=translated src=- shape=9e137a9c vocab=95cf9879
+-/
 lemma hxSegBallInterSeg : ∀ (x1 x2 : E) (ε : ℝ),
   x ∈ openSegment ℝ x1 x2 ∧ ¬ (x1 = x ∧ x2 = x) → 0 < ε →
   ∃ x1' x2', x ∈ openSegment ℝ x1' x2' ∧
@@ -117,17 +120,26 @@ lemma hxSegBallInterSeg : ∀ (x1 x2 : E) (ε : ℝ),
 def Hpolytope.I (H_ : Set (Halfspace E)) (x : E) : Set (Halfspace E) :=
   { Hi_ ∈ H_ | x ∈ (frontier <| SetLike.coe Hi_) }
 
+/--
+@isnad1 id=iff.0h4v.s6.ecbc52494695 from=translated src=- shape=c1a48834 vocab=9ba1b823
+-/
 lemma Hpolytope.I_mem {H_ : Set (Halfspace E)} (x : E) :
   ∀ Hi_, Hi_ ∈ Hpolytope.I H_ x ↔ Hi_ ∈ H_ ∧ x ∈ (frontier <| SetLike.coe Hi_) := by
   rintro Hi_
   unfold I
   rw [Set.mem_ofPred]
 
+/--
+@isnad1 id=le.0h3v.s5.439ece980cb9 from=translated src=- shape=d31639dc vocab=75b951cf
+-/
 lemma Hpolytope.I_sub {H_ : Set (Halfspace E)} (x : E) :
   Hpolytope.I H_ x ⊆ H_ := by
   unfold Hpolytope.I
   simp only [Set.sep_subset]
 
+/--
+@isnad1 id=iff.2h3v.s7.03a2fc13fb04 from=translated src=- shape=99d079cd vocab=d00a80cf
+-/
 lemma ExtremePointsofHpolytope {H_ : Set (Halfspace E)} (hH_ : H_.Finite) :
   ∀ x ∈ Hpolytope hH_, x ∈ Set.extremePoints ℝ (Hpolytope hH_) ↔
   ⋂₀ ((frontier <| SetLike.coe ·) '' Hpolytope.I H_ x) = {x} := by
@@ -284,6 +296,9 @@ lemma ExtremePointsofHpolytope {H_ : Set (Halfspace E)} (hH_ : H_.Finite) :
         ← Hi_.f.1.map_add, add_comm, sub_add_cancel] at this
       linarith
 
+/--
+@isnad1 id=ex.2h2v.s7.27a23f59890c from=translated src=- shape=72ffbe54 vocab=92cbf084
+-/
 lemma DualOfVpolytope_compactHpolytope [FiniteDimensional ℝ E] {S : Set E} (hS : S.Finite)
   (hS0 : 0 ∈ interior (Vpolytope hS))
   : ∃ (H_ : Set (Halfspace E)) (hH_ : H_.Finite),
@@ -340,6 +355,9 @@ lemma DualOfVpolytope_compactHpolytope [FiniteDimensional ℝ E] {S : Set E} (hS
       intro x hx
       simp_all
 
+/--
+@isnad1 id=ex.2h2v.s6.9b0d8dfa1a67 from=translated src=- shape=16d8619e vocab=ed0abefb
+-/
 lemma Vpolytope_of_Hpolytope : ∀ {H_ : Set (Halfspace E)} (hH_ : H_.Finite),
   IsCompact (Hpolytope hH_) →
   ∃ (S : Set E) (hS : S.Finite), Hpolytope hH_ = Vpolytope hS := by
@@ -381,6 +399,9 @@ lemma Vpolytope_of_Hpolytope : ∀ {H_ : Set (Halfspace E)} (hH_ : H_.Finite),
   refine ⟨ (Hpolytope hH_).extremePoints ℝ, hExHFinite, ?_ ⟩
   exact (((Closed_Vpolytope hExHFinite).closure_eq).symm.trans hcl).symm
 
+/--
+@isnad1 id=ex.2h2v.s6.7bcf15871cc8 from=translated src=- shape=a274d471 vocab=c8b541ef
+-/
 theorem Hpolytope_of_Vpolytope_subsingleton [FiniteDimensional ℝ E] [Nontrivial E] {S : Set E}
   (hS : S.Finite) (hStrivial : Set.Subsingleton S) :
     ∃ (H_ : Set (Halfspace E)) (hH_ : H_.Finite), Hpolytope hH_ = Vpolytope hS := by
@@ -393,6 +414,9 @@ theorem Hpolytope_of_Vpolytope_subsingleton [FiniteDimensional ℝ E] [Nontrivia
     rw [Vpolytope_def, hx, convexHull_singleton, Hpolytope_translation hH_Fin, hH_,
       Set.singleton_add_singleton, zero_add]
 
+/--
+@isnad1 id=ex.2h2v.s7.3d97b4ff9db6 from=translated src=- shape=dbd0cd69 vocab=fa575ab1
+-/
 lemma Hpolytope_of_Vpolytope_0interior [FiniteDimensional ℝ E] {S : Set E} (hS : S.Finite)
   (hV0 : 0 ∈ interior (Vpolytope hS)) :
   ∃ (H_ : Set (Halfspace E)) (hH_ : H_.Finite), Hpolytope hH_ = Vpolytope hS := by
@@ -416,9 +440,15 @@ def translationHomeo (x : E) : E ≃ₜ E where
   continuous_invFun := by continuity
 
 omit [InnerProductSpace ℝ E] [CompleteSpace E] in
+/--
+@isnad1 id=eq.0h2v.s6.cbbb71cf52a6 from=translated src=- shape=5b9966d0 vocab=69dee3a6
+-/
 lemma translationHomeo.toFun.def (x : E) :
   ↑(translationHomeo x) = (· + x) := rfl
 
+/--
+@isnad1 id=ex.2h2v.s6.d634ade0717a from=translated src=- shape=e0f28d9b vocab=1f48a6f7
+-/
 lemma Hpolytope_of_Vpolytope_interior [FiniteDimensional ℝ E] {S : Set E} (hS : S.Finite)
   (hVinteriorNonempty : (interior (Vpolytope hS)).Nonempty) :
   ∃ (H_ : Set (Halfspace E)) (hH_ : H_.Finite), Hpolytope hH_ = Vpolytope hS := by
@@ -444,6 +474,9 @@ lemma Hpolytope_of_Vpolytope_interior [FiniteDimensional ℝ E] {S : Set E} (hS 
 variable {E P : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
   [PseudoMetricSpace P] [NormedAddTorsor E P] [FiniteDimensional ℝ E]
 
+/--
+@isnad1 id=ex.3h3v.s6.3a1e4fe45bb7 from=translated src=- shape=3819889e vocab=8e712d89
+-/
 lemma Vpolytope_of_Vpolytope_inter_cutSpace_fin {S : Set E} (hS : S.Finite)
   (hVinterior : Set.Nonempty (interior (Vpolytope hS)))
   {H_ : Set (Halfspace E)} (hH_ : H_.Finite) :
@@ -457,6 +490,9 @@ lemma Vpolytope_of_Vpolytope_inter_cutSpace_fin {S : Set E} (hS : S.Finite)
   exact ⟨ S', hS', by rw [← hSV, ← hHV, ← hH_inter] ⟩
 
 omit [CompleteSpace E] [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.0h5v.s12.c4a6cf99664e from=translated src=- shape=3c396e18 vocab=9befec1a
+-/
 lemma InDown_eq_DownIn {p : AffineSubspace ℝ P} [Nonempty { x // x ∈ p }] {S : Set P} (x : p) :
   (AffineIsometryEquiv.VSubconst ℝ x) '' ((@Subtype.val P (fun x => x ∈ p)) ⁻¹' S) =
   (@Subtype.val E fun x => x ∈ p.direction) ⁻¹' (S -ᵥ ({x.1} : Set P)) := by
@@ -472,6 +508,9 @@ lemma InDown_eq_DownIn {p : AffineSubspace ℝ P} [Nonempty { x // x ∈ p }] {S
     exact ⟨ v, hvmemS, this, Subtype.val_injective ((AffineSubspace.coe_vsub _ _ x) ▸ h) ⟩
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=nonempty.2h3v.s13.a973894910d8 from=translated src=- shape=552a3933 vocab=7dc662b4
+-/
 lemma Nonempty_iff_Nonempty_interior_in_direction {S : Set E} {s : E} (hs : s ∈ S)
     (hS : Nonempty S) :
     (interior ((@AffineIsometryEquiv.VSubconst ℝ (affineSpan ℝ S).direction (affineSpan ℝ S)
@@ -483,6 +522,9 @@ lemma Nonempty_iff_Nonempty_interior_in_direction {S : Set E} {s : E} (hs : s �
     intrinsicInterior, Set.image_nonempty, affineSpan_convexHull] at hS
   rwa [← AffineIsometryEquiv.coe_toHomeomorph, ← Homeomorph.image_interior, Set.image_nonempty]
 
+/--
+@isnad1 id=and.0h1v.s7.b8d4ea2c3733 from=translated src=- shape=d81e1c1b vocab=87106d63
+-/
 theorem MainTheoremOfPolytopes [Nontrivial E] :
   (∀ (S : Set E) (hS : S.Finite),
     ∃ (H_ : Set (Halfspace E)) (hH_ : H_.Finite),

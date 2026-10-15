@@ -25,11 +25,17 @@ variable {ι R : Type*} {E : ι → Type*} {F G : Type*}
     [AddCommMonoid F] [Module R F] [TopologicalSpace F]
     [AddCommMonoid G] [Module R G] [TopologicalSpace G]
 
+/--
+@isnad1 id=eq.0h9v.s8.4f0ea3fdcde0 from=translated src=- shape=e7290de5 vocab=e9ae574a
+-/
 theorem prod_add_prod [ContinuousAdd F] [ContinuousAdd G] (f₁ f₂ : ContinuousMultilinearMap R E F)
     (g₁ g₂ : ContinuousMultilinearMap R E G) :
     f₁.prod g₁ + f₂.prod g₂ = (f₁ + f₂).prod (g₁ + g₂) :=
   rfl
 
+/--
+@isnad1 id=eq.0h9v.s8.549d0eab299a from=translated src=- shape=0f5aba03 vocab=47de667f
+-/
 theorem compContinuousLinearMap_sum_left {E' : ι → Type*} [∀ i, AddCommMonoid (E' i)]
     [∀ i, Module R (E' i)] [∀ i, TopologicalSpace (E' i)] [ContinuousAdd F]
     {ι' : Type*} (s : Finset ι')
@@ -50,11 +56,17 @@ variable {ι R : Type*} {E : ι → Type*} {F G : Type*}
     [AddCommGroup F] [Module R F] [TopologicalSpace F]
     [AddCommGroup G] [Module R G] [TopologicalSpace G]
 
+/--
+@isnad1 id=eq.0h9v.s9.cbf06de7bb00 from=translated src=- shape=e7290de5 vocab=4f97d92e
+-/
 theorem prod_sub_prod [IsTopologicalAddGroup F] [IsTopologicalAddGroup G]
      (f₁ f₂ : ContinuousMultilinearMap R E F) (g₁ g₂ : ContinuousMultilinearMap R E G) :
     f₁.prod g₁ - f₂.prod g₂ = (f₁ - f₂).prod (g₁ - g₂) :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.41c5b30b636e from=translated src=- shape=56635ee9 vocab=6474725a
+-/
 @[simp]
 theorem compContinuousLinearMap_neg_left {E' : ι → Type*} [∀ i, AddCommGroup (E' i)]
     [∀ i, Module R (E' i)] [∀ i, TopologicalSpace (E' i)] [IsTopologicalAddGroup F]
@@ -62,6 +74,9 @@ theorem compContinuousLinearMap_neg_left {E' : ι → Type*} [∀ i, AddCommGrou
     (-f).compContinuousLinearMap g = -f.compContinuousLinearMap g := by
   ext; simp
 
+/--
+@isnad1 id=eq.0h8v.s9.e998b90d8170 from=translated src=- shape=35ded6b1 vocab=85e3cdc6
+-/
 theorem compContinuousLinearMap_sub {E' : ι → Type*} [∀ i, AddCommGroup (E' i)]
     [∀ i, Module R (E' i)] [∀ i, TopologicalSpace (E' i)] [IsTopologicalAddGroup F]
     (f g : ContinuousMultilinearMap R E F) (h : ∀ i, E' i →L[R] E i) :
@@ -83,6 +98,9 @@ variable {ι α 𝕜 : Type*} {E F : ι → Type*} {G H : Type*}
   [NormedAddCommGroup H]
 
 omit [Fintype ι] in
+/--
+@isnad1 id=isbigo.3h11v.s9.4fe2d825a6b8 from=translated src=- shape=2dd32813 vocab=c8fa49d4
+-/
 theorem const_apply_sub_const_apply_isBigO [Finite ι] (f : ContinuousMultilinearMap 𝕜 E G)
     {g₁ g₂ : α → ∀ i, E i} {B : α → H} {l : Filter α}
     (hg₁ : ∀ i, l.IsBoundedUnder (· ≤ ·) (‖g₁ · i‖))
@@ -96,11 +114,17 @@ theorem const_apply_sub_const_apply_isBigO [Finite ι] (f : ContinuousMultilinea
   simpa using hg₁.prod_left hg₂ |>.norm_left |>.pow (Fintype.card ι - 1)
     |>.const_mul_left (‖f‖ * Fintype.card ι) |>.mul hsub_pi.norm_norm
 
+/--
+@isnad1 id=eq.0h6v.s13.8f72033b887b from=translated src=- shape=06e1c493 vocab=8e6ad810
+-/
 @[simp]
 theorem compContinuousLinearMapContinuousMultilinear_apply (f : ∀ i, E i →L[𝕜] F i) :
     compContinuousLinearMapContinuousMultilinear 𝕜 E F G f = compContinuousLinearMapL f :=
   rfl
 
+/--
+@isnad1 id=isbigo.5h13v.s11.032a6a79a8c1 from=translated src=- shape=643acbec vocab=874cb59b
+-/
 theorem compContinuousLinearMap_sub_compContinuousLinearMap_isBigO
     {f₁ f₂ : α → ContinuousMultilinearMap 𝕜 F G} {g₁ g₂ : α → ∀ i, E i →L[𝕜] F i}
     {l : Filter α} {B : α → H}

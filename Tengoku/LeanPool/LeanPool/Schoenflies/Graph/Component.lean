@@ -99,58 +99,93 @@ No `v ∈ V(G)` clause: `Graph.Reaches` already carries it, since the empty walk
 vertex of the graph. For `u ∉ V(G)` the component is empty. -/
 def component (G : Graph α β) (u : α) : Set α := {v | G.Reaches u v}
 
+/--
+@isnad1 id=iff.0h5v.s4.3dd2ebea72ba from=translated src=- shape=ba3d7341 vocab=0a6e2f0b
+-/
 theorem mem_component_iff : v ∈ G.component u ↔ G.Reaches u v := Iff.rfl
 
+/--
+@isnad1 id=le.0h4v.s4.1a79986bfb94 from=translated src=- shape=562c52c0 vocab=6a705ec8
+-/
 theorem component_subset_vertexSet : G.component u ⊆ V(G) := fun _ h ↦ Reaches.right_mem h
 
+/--
+@isnad1 id=mem.1h4v.s5.396a94256cef from=translated src=- shape=75b0d091 vocab=6693c2c8
+-/
 theorem mem_component_self (hu : u ∈ V(G)) : u ∈ G.component u := Reaches.refl hu
 
+/--
+@isnad1 id=nonempty.1h4v.s4.038a7c80e575 from=translated src=- shape=b01c07e8 vocab=2f99e193
+-/
 theorem component_nonempty (hu : u ∈ V(G)) : (G.component u).Nonempty :=
   ⟨u, mem_component_self hu⟩
 
-/-- A vertex the graph does not have reaches nothing. -/
+/-- A vertex the graph does not have reaches nothing.
+@isnad1 id=eq.1h4v.s5.5f24cc756c45 from=translated src=- shape=f26454e6 vocab=96f812ca
+-/
 theorem component_eq_empty (hu : u ∉ V(G)) : G.component u = ∅ :=
   Set.eq_empty_of_forall_notMem fun _ h ↦ hu (Reaches.left_mem h)
 
 /-- **A component is closed under reachability**, which is the property every consumer uses:
-whatever a vertex of the component reaches is in the component. -/
+whatever a vertex of the component reaches is in the component.
+@isnad1 id=mem.2h6v.s5.22c515ca9ae8 from=translated src=- shape=d187f878 vocab=0a6e2f0b
+-/
 theorem mem_component_of_reaches (hv : v ∈ G.component u) (h : G.Reaches v w) :
     w ∈ G.component u :=
   Reaches.trans hv h
 
-/-- A component is closed under taking an edge. -/
+/-- A component is closed under taking an edge.
+@isnad1 id=mem.2h7v.s5.421efef6f744 from=translated src=- shape=42005b01 vocab=072ab8b5
+-/
 theorem mem_component_of_isLink (hx : x ∈ G.component u) (hl : G.IsLink e x y) :
     y ∈ G.component u :=
   mem_component_of_reaches hx (Reaches.of_isLink hl)
 
+/--
+@isnad1 id=iff.0h5v.s5.eb59d9bc73e9 from=translated src=- shape=744cd870 vocab=fb41a56b
+-/
 theorem mem_component_comm : v ∈ G.component u ↔ u ∈ G.component v := reaches_comm
 
-/-- A vertex of a component has the same component. -/
+/-- A vertex of a component has the same component.
+@isnad1 id=eq.1h5v.s5.3f77ccc7a88a from=translated src=- shape=7c45cf4b vocab=fb41a56b
+-/
 theorem component_eq_of_mem (hv : v ∈ G.component u) : G.component v = G.component u :=
   Set.ext fun _ ↦ ⟨fun h ↦ Reaches.trans hv h, fun h ↦ Reaches.trans (Reaches.symm hv) h⟩
 
-/-- **Two components are equal or disjoint.** -/
+/-- **Two components are equal or disjoint.**
+@isnad1 id=or.0h5v.s6.8914b64bf54f from=translated src=- shape=d3860878 vocab=46b968c6
+-/
 theorem component_eq_or_disjoint (u v : α) :
     G.component u = G.component v ∨ Disjoint (G.component u) (G.component v) := by
   rcases em (∃ w, w ∈ G.component u ∧ w ∈ G.component v) with ⟨w, hu, hv⟩ | hne
   · exact Or.inl ((component_eq_of_mem hu).symm.trans (component_eq_of_mem hv))
   · exact Or.inr (Set.disjoint_left.2 fun w hw hw' ↦ hne ⟨w, hw, hw'⟩)
 
-/-- **The components cover the vertex set.** -/
+/-- **The components cover the vertex set.**
+@isnad1 id=eq.0h3v.s5.835e5dd4fab7 from=translated src=- shape=0743734f vocab=f615ced9
+-/
 theorem iUnion_component (G : Graph α β) : ⋃ u ∈ V(G), G.component u = V(G) :=
   Set.Subset.antisymm (Set.iUnion₂_subset fun _ _ ↦ component_subset_vertexSet)
     fun _ hx ↦ Set.mem_biUnion hx (mem_component_self hx)
 
 /-! ### The subgraph induced on a component -/
 
+/--
+@isnad1 id=le.0h4v.s5.490c19844387 from=translated src=- shape=6b14a6e8 vocab=a3be93d6
+-/
 theorem induce_component_le : G.induce (G.component u) ≤ G :=
   induce_le component_subset_vertexSet
 
+/--
+@isnad1 id=iff.0h5v.s5.75dc143a455d from=translated src=- shape=ff4afd51 vocab=07b4be86
+-/
 theorem mem_vertexSet_induce_component : v ∈ V(G.induce (G.component u)) ↔ G.Reaches u v :=
   Iff.rfl
 
 /-- **A walk out of a component stays in it**: every vertex it visits is reachable from the
-component's base point, one step at a time. -/
+component's base point, one step at a time.
+@isnad1 id=le.2h7v.s5.68074ad951a1 from=translated src=- shape=f87cd35a vocab=ba215719
+-/
 theorem IsWalk.walkVertices_subset_component (h : G.IsWalk x W y) (hx : x ∈ G.component u) :
     G.walkVertices x W ⊆ G.component u := by
   induction h with
@@ -162,7 +197,9 @@ theorem IsWalk.walkVertices_subset_component (h : G.IsWalk x W y) (hx : x ∈ G.
     · exact ih (mem_component_of_isLink hx hl) hz'
 
 /-- A walk that starts in a component is a walk of the subgraph induced on it. Both ends of
-each of its edges are vertices it visits, so the edges survive the induction. -/
+each of its edges are vertices it visits, so the edges survive the induction.
+@isnad1 id=iswalk.2h7v.s5.b8a504de38f9 from=translated src=- shape=48613baf vocab=dfe59971
+-/
 theorem IsWalk.induce_component (h : G.IsWalk x W y) (hx : x ∈ G.component u) :
     (G.induce (G.component u)).IsWalk x W y := by
   refine h.anti induce_component_le hx fun g hg ↦ ?_
@@ -171,7 +208,9 @@ theorem IsWalk.induce_component (h : G.IsWalk x W y) (hx : x ∈ G.component u) 
     h.walkVertices_subset_component hx (mem_walkVertices_of_mem_covered ⟨g, hg, hst.inc_left⟩),
     h.walkVertices_subset_component hx (mem_walkVertices_of_mem_covered ⟨g, hg, hst.inc_right⟩)⟩
 
-/-- **The subgraph induced on a component is connected**, with the base point as hub. -/
+/-- **The subgraph induced on a component is connected**, with the base point as hub.
+@isnad1 id=connecte.1h4v.s5.fef49d161cc3 from=translated src=- shape=44b4b04b vocab=1d299973
+-/
 theorem induce_component_connected (hu : u ∈ V(G)) : (G.induce (G.component u)).Connected := by
   refine Connected.of_hub (mem_component_self hu) fun z hz ↦ ?_
   obtain ⟨W, hW⟩ := mem_component_iff.1 hz
@@ -180,7 +219,9 @@ theorem induce_component_connected (hu : u ∈ V(G)) : (G.induce (G.component u)
 /-! ### Shortest walks and shortest paths -/
 
 /-- **A shortest walk exists** between any two vertices one of which reaches the other: the
-lengths of such walks form a nonempty set of naturals. No finiteness is needed. -/
+lengths of such walks form a nonempty set of naturals. No finiteness is needed.
+@isnad1 id=ex.1h5v.s5.e5fa60fc9273 from=translated src=- shape=99528b2c vocab=1b050f26
+-/
 theorem exists_minLength_isWalk (h : G.Reaches u v) :
     ∃ W, G.IsWalk u W v ∧ ∀ W', G.IsWalk u W' v → W.length ≤ W'.length := by
   classical
@@ -192,7 +233,9 @@ theorem exists_minLength_isWalk (h : G.Reaches u v) :
 /-- **A shortest walk is a path.** If the vertex a step departs from were visited again, the
 tail could be cut there (`Graph.IsPath.from_visited`) and the result would be a strictly
 shorter walk with the same ends — strictly, because a path repeats no edge and the cut piece
-is a sublist-up-to-permutation of what it came from. -/
+is a sublist-up-to-permutation of what it came from.
+@isnad1 id=ispath.2h6v.s5.1f5e6e684b82 from=translated src=- shape=bc06fcc2 vocab=be52eb4a
+-/
 theorem IsWalk.isPath_of_minLength (h : G.IsWalk u W v)
     (hmin : ∀ W', G.IsWalk u W' v → W.length ≤ W'.length) : G.IsPath u W v := by
   induction h with
@@ -213,12 +256,17 @@ theorem IsWalk.isPath_of_minLength (h : G.IsWalk u W v)
     omega
 
 /-- **A shortest path exists**: among all walks between two vertices, one of least length,
-and it is a path. This is the blueprint's "shortest path". -/
+and it is a path. This is the blueprint's "shortest path".
+@isnad1 id=ex.1h5v.s5.d0e444e8f191 from=translated src=- shape=b08cda90 vocab=eb4b9c4c
+-/
 theorem exists_minLength_isPath (h : G.Reaches u v) :
     ∃ P, G.IsPath u P v ∧ ∀ W, G.IsWalk u W v → P.length ≤ W.length :=
   let ⟨W, hW, hmin⟩ := exists_minLength_isWalk h
   ⟨W, hW.isPath_of_minLength hmin, hmin⟩
 
+/--
+@isnad1 id=ex.3h5v.s6.b7dc2456b21c from=translated src=- shape=d2225d03 vocab=4cdc50c0
+-/
 theorem Connected.exists_minLength_isPath (h : G.Connected) (hu : u ∈ V(G)) (hv : v ∈ V(G)) :
     ∃ P, G.IsPath u P v ∧ ∀ W, G.IsWalk u W v → P.length ≤ W.length :=
   _root_.Graph.exists_minLength_isPath (h.reaches hu hv)
@@ -230,7 +278,9 @@ one of `G.deleteVerts S`. Only two facts about the deletion are used, and both a
 its walks can go. -/
 
 /-- A walk of `G - S` visits only vertices of `G` outside `S` — computed in `G`, which is the
-form the freshness clause of a path of `G` reads. -/
+form the freshness clause of a path of `G` reads.
+@isnad1 id=le.1h7v.s5.e388c91234e2 from=translated src=- shape=062bd044 vocab=cc9a072d
+-/
 theorem IsWalk.walkVertices_subset_of_deleteVerts (h : (G.deleteVerts S).IsWalk u W v) :
     G.walkVertices u W ⊆ V(G) \ S := by
   intro z hz
@@ -243,14 +293,18 @@ theorem IsWalk.walkVertices_subset_of_deleteVerts (h : (G.deleteVerts S).IsWalk 
   rcases hinc.eq_or_eq_of_isLink hst with rfl | rfl
   exacts [⟨hst.left_mem, hs⟩, ⟨hst.right_mem, ht⟩]
 
-/-- The component of `G - S` at `x`, seen in `G`: outside `S`, and inside `V(G)`. -/
+/-- The component of `G - S` at `x`, seen in `G`: outside `S`, and inside `V(G)`.
+@isnad1 id=le.0h5v.s5.2a18789a92ff from=translated src=- shape=76d63817 vocab=52cd1b45
+-/
 theorem component_deleteVerts_subset : (G.deleteVerts S).component x ⊆ V(G) \ S := by
   intro z hz
   have := component_subset_vertexSet hz
   rwa [vertexSet_deleteVerts] at this
 
 /-- **A neighbour of a component of `G - S` that is outside `S` is in the component.** The
-edge joining them survives the deletion, so it extends the walk. -/
+edge joining them survives the deletion, so it extends the walk.
+@isnad1 id=mem.3h8v.s6.b6f2ac36b611 from=translated src=- shape=42842efd vocab=1a85e0d0
+-/
 theorem mem_component_deleteVerts_of_isLink (hp : p ∈ (G.deleteVerts S).component x)
     (hl : G.IsLink e p q) (hq : q ∉ S) : q ∈ (G.deleteVerts S).component x :=
   mem_component_of_isLink hp
@@ -261,7 +315,9 @@ any subgraph `K` of `G` — it is run inside `G - c` once — but the component 
 of `G - S`, which is what makes the conclusion usable twice.
 
 This is `Graph.IsWalk.crossing` plus the previous lemma: the crossing edge's far end is
-outside the component, so it cannot be outside `S`. -/
+outside the component, so it cannot be outside `S`.
+@isnad1 id=ex.4h8v.s7.03a2b88fdf00 from=translated src=- shape=25a09b98 vocab=964c5fcb
+-/
 theorem exists_isLink_out_of_component {K : Graph α β} (hKG : K ≤ G)
     (h : K.IsWalk x W v) (hx : x ∈ (G.deleteVerts S).component x) (hv : v ∈ S) :
     ∃ p ∈ (G.deleteVerts S).component x, ∃ g ∈ W, ∃ t ∈ S, K.IsLink g p t := by
@@ -280,7 +336,9 @@ theorem exists_isLink_out_of_component {K : Graph α β} (hKG : K ≤ G)
 `S` must contain two distinct vertices; in the application it is the vertex set of a
 2-connected subgraph, which has three. The first neighbour `c` comes from a walk of `G` out of
 the component to a vertex of `S`; the second from the same walk run inside `G - c`, which is
-still connected because `G` is 2-connected, and aimed at a vertex of `S` other than `c`. -/
+still connected because `G` is 2-connected, and aimed at a vertex of `S` other than `c`.
+@isnad1 id=ex.7h7v.s7.adf25f2551f6 from=translated src=- shape=8e7d7fed vocab=52cde030
+-/
 theorem IsTwoConnected.component_two_neighbors (hG : G.IsTwoConnected) (hS : S ⊆ V(G))
     (ha : a ∈ S) (hb : b ∈ S) (hab : a ≠ b) (hx : x ∈ V(G)) (hxS : x ∉ S) :
     ∃ c ∈ S, ∃ d ∈ S, c ≠ d ∧
@@ -310,7 +368,9 @@ theorem IsTwoConnected.component_two_neighbors (hG : G.IsTwoConnected) (hS : S �
 
 /-- Reading off the vertices of a walk with one edge appended at the far end. Purely about
 lists; used to check the freshness clause when a path inside a component is capped with an
-edge back into `S`. -/
+edge back into `S`.
+@isnad1 id=or.1h7v.s6.eb0526e2e018 from=translated src=- shape=98eeb269 vocab=bbe582dd
+-/
 theorem mem_walkVertices_append_singleton (hy : y ∈ G.walkVertices u (W ++ [e])) :
     y ∈ G.walkVertices u W ∨ G.Inc e y := by
   rcases mem_walkVertices_iff.1 hy with rfl | hcov
@@ -332,7 +392,9 @@ really does add a vertex, and none of its edges belongs to a subgraph whose vert
 in `S`.
 
 The path is built from the two neighbours of the component: the edge into the component, a
-path across the component (in `G - S`, hence never touching `S`), and the edge back out. -/
+path across the component (in `G - S`, hence never touching `S`), and the edge back out.
+@isnad1 id=ex.7h7v.s7.e3654037aafc from=translated src=- shape=11134e4f vocab=6010097a
+-/
 theorem IsTwoConnected.exists_path_through_component (hG : G.IsTwoConnected) (hS : S ⊆ V(G))
     (ha : a ∈ S) (hb : b ∈ S) (hab : a ≠ b) (hx : x ∈ V(G)) (hxS : x ∉ S) :
     ∃ c ∈ S, ∃ d ∈ S, ∃ P, c ≠ d ∧ G.IsPath c P d ∧

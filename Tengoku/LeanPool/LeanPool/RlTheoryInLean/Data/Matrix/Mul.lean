@@ -23,10 +23,16 @@ section square
 
 variable {A : Matrix m m ℝ}
 
+/--
+@isnad1 id=eq.0h4v.s6.bd31603c00ad from=translated src=- shape=e8112eb0 vocab=2b5596b3
+-/
 lemma dotProduct_transpose_mulVec_real (x y : m → ℝ) :
    x ⬝ᵥ Aᵀ *ᵥ y = y ⬝ᵥ A *ᵥ x := by
   simpa using Matrix.dotProduct_transpose_mulVec (A := A) (x := x) (y := y)
 
+/--
+@isnad1 id=eq.0h4v.s6.1926a6055ca0 from=translated src=- shape=f1ff4766 vocab=137b74a6
+-/
 lemma vecMul_diagonal_dotProduct
   [DecidableEq m] (d x y : m → ℝ) :
   x ᵥ* Matrix.diagonal d ⬝ᵥ y = ∑ i, d i * x i * y i := by

@@ -33,6 +33,9 @@ instance {α β : Type*} {_ : MeasurableSpace α} {_ : MeasurableSpace β} (μ :
   measure_univ_lt_top :=
     (Measure.comap_apply_le _ _ nullMeasurableSet_univ).trans_lt (measure_lt_top _ _)
 
+/--
+@isnad1 id=eq.1h7v.s6.669369f93b20 from=translated src=- shape=7fc2845d vocab=c44cac40
+-/
 theorem comap_sum_countable {ι α β : Type*} {_ : MeasurableSpace α}
     {_ : MeasurableSpace β} [Countable ι] {f : α → β} {μ : ι → Measure β}
     (hf : ∀ i t, MeasurableSet t → NullMeasurableSet (f '' t) (μ i)) :

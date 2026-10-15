@@ -87,7 +87,9 @@ namespace Schoenflies
 /-! ## Small pieces the assembly needs -/
 
 /-- **A polygonal Jordan curve separates the plane** (Theorem 2.3, at the set level): realize it
-and quote `Schoenflies.ClosedPolygon.isSeparating_carrier`. -/
+and quote `Schoenflies.ClosedPolygon.isSeparating_carrier`.
+@isnad1 id=issepara.2h1v.s3.9704f698141f from=translated src=- shape=48b9b733 vocab=7a3305ba
+-/
 theorem isSeparating_of_isJordanCurve {S : Set Plane} (hJ : IsJordanCurve S)
     (hP : IsPolygonal S) : IsSeparating S := by
   obtain ⟨m, Q, hQ⟩ := exists_closedPolygon hJ hP
@@ -95,7 +97,9 @@ theorem isSeparating_of_isJordanCurve {S : Set Plane} (hJ : IsJordanCurve S)
 
 /-- **A polyline is a chain from its first point to its last**, with its degenerate steps
 dropped. `Schoenflies.isChainFrom_pathPieces` says this for `Schoenflies.pathPieces`, which keeps
-them; `Schoenflies.segsOf` is the list a consumer needing nondegenerate edges must use. -/
+them; `Schoenflies.segsOf` is the list a consumer needing nondegenerate edges must use.
+@isnad1 id=ischainf.1h1v.s4.11719fba608d from=translated src=- shape=6a8faa6b vocab=c02df992
+-/
 theorem isChainFrom_segsOf : ∀ (vs : List Plane) (h : vs ≠ []),
     IsChainFrom (segsOf vs) (vs.head h) (vs.getLast h)
   | [], h => absurd rfl h
@@ -118,7 +122,9 @@ theorem isChainFrom_segsOf : ∀ (vs : List Plane) (h : vs ≠ []),
 arcs.** This is `Schoenflies.two_arcs_unique` with the hypotheses on the second splitting weakened
 to what its proof uses: the two sets are closed and neither is just the two cut points. The edge
 lists of a polygon supply exactly that, and nothing tells us they are arcs until this lemma has
-said so. -/
+said so.
+@isnad1 id=or.10h7v.s8.77e8e9945ab5 from=translated src=- shape=42c564ec vocab=1a971a16
+-/
 theorem two_arcs_unique_of_isClosed {C A₁ A₂ D₁ D₂ : Set Plane} {p q : Plane}
     (hA : A₁ ∪ A₂ = C) (hAi : A₁ ∩ A₂ = {p, q})
     (hD : D₁ ∪ D₂ = C) (hDi : D₁ ∩ D₂ = {p, q})
@@ -211,7 +217,9 @@ for no realization at all. The other direction is needed only for the curve `C` 
 
 /-- **The exhaustion clause of the polygonal crosscut theorem, at arbitrary cut points.** This is
 `Schoenflies.CrosscutSplitsRegion`, the hypothesis `Schoenflies/FaceCyclesProof.lean` was left
-with. -/
+with.
+@isnad1 id=crosscut.0h0v.s0.1a09fdd0253d from=translated src=- shape=45709ebd vocab=1a09fdd0
+-/
 theorem crosscutSplitsRegion : CrosscutSplitsRegion := by
   intro J A₁ A₂ P Ω p q hJsep hJpoly hPpoly hA1 hA2 hunion hinter hParc hPJ hΩ hPsub z hz
   have hpq : p ≠ q := hA1.ne
@@ -424,7 +432,9 @@ hypothesis discharged. **These are the forms a consumer should use.** Once this 
 be deleted from the originals and the primes here dropped. -/
 
 /-- **One ear**, with no hypothesis assumed: `Graph.IsDrawing.hasFaceCycles_union` with
-`Schoenflies.CrosscutSplitsRegion` discharged. -/
+`Schoenflies.CrosscutSplitsRegion` discharged.
+@isnad1 id=hasfacec.10h7v.s7.812d30ff551a from=translated src=- shape=cccdabe9 vocab=cc7e7026
+-/
 theorem IsDrawing.hasFaceCycles_union' [G.Finite] (h : IsDrawing G drawing)
     (hpoly : ∀ g ∈ E(G), IsPolygonal (edgeArc drawing g))
     (hBG : B ≤ G) (hmot : HasFaceCycles B drawing) {D' : List β}
@@ -438,7 +448,9 @@ theorem IsDrawing.hasFaceCycles_union' [G.Finite] (h : IsDrawing G drawing)
 has a cycle as its boundary and is one of the two complementary regions of that cycle.
 
 This is `Graph.face_cycles` with its hypothesis `Schoenflies.CrosscutSplitsRegion` discharged by
-`Schoenflies.crosscutSplitsRegion`; nothing is assumed. -/
+`Schoenflies.crosscutSplitsRegion`; nothing is assumed.
+@isnad1 id=hasfacec.3h3v.s5.c6725c97070f from=translated src=- shape=2dade070 vocab=8af0f4c6
+-/
 theorem face_cycles' [G.Finite] (h : IsDrawing G drawing)
     (hpoly : ∀ g ∈ E(G), IsPolygonal (edgeArc drawing g)) (hG : G.IsTwoConnected) :
     HasFaceCycles G drawing :=

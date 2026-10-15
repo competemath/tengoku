@@ -24,12 +24,18 @@ variable [Preorder A] [Preorder B]
 /-- Left injection for chains of sums. -/
 def inl (c : Chain A) : Chain (A ⊕ B) := c.map ⟨.inl, Sum.inl_mono⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.891ede97b44b from=translated src=- shape=b5caaf8c vocab=b36dd49c
+-/
 @[simp]
 lemma inl_coe (c : Chain A) (n : ℕ) : inl (B := B) c n = .inl (c n) := by rfl
 
 /-- Right injection for chains of sums. -/
 def inr (c : Chain B) : Chain (A ⊕ B) := c.map ⟨.inr, Sum.inr_mono⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.94c6c29e1697 from=translated src=- shape=99980df0 vocab=272a599c
+-/
 @[simp]
 lemma inr_coe (c : Chain B) (n : ℕ) : inr (A := A) c n = .inr (c n) := by rfl
 
@@ -50,6 +56,9 @@ def projl [hA : Inhabited A] (c : Chain (A ⊕ B)) : Chain A where
       | inl y => simp only [hn, hn₁, Sum.not_inr_le_inl] at hc
       | inr y => simp only [Sum.elim_inr, le_refl]
 
+/--
+@isnad1 id=eq.0h4v.s6.908c26058f07 from=translated src=- shape=e03ca6f7 vocab=8b3ee588
+-/
 @[simp]
 lemma projl_coe [Inhabited A] (c : Chain (A ⊕ B)) (n : ℕ) :
     projl c n = Sum.elim id (fun _ ↦ default) (c n) := by
@@ -62,6 +71,9 @@ def swapOrderHom : A ⊕ B →o B ⊕ A where
     intro x y h
     simp_all
 
+/--
+@isnad1 id=eq.0h3v.s6.679aa9ff605f from=translated src=- shape=39cdfaa9 vocab=399eb8c4
+-/
 @[simp]
 lemma swapOrderHom_apply (x : A ⊕ B) : swapOrderHom x = Sum.swap x := rfl
 
@@ -69,6 +81,9 @@ lemma swapOrderHom_apply (x : A ⊕ B) : swapOrderHom x = Sum.swap x := rfl
 def projr [hB : Inhabited B] (c : Chain (A ⊕ B)) : Chain B :=
   projl (c.map swapOrderHom)
 
+/--
+@isnad1 id=eq.0h4v.s6.1ee9f9e7b947 from=translated src=- shape=859ffd57 vocab=38594a7c
+-/
 @[simp]
 lemma projr_coe [Inhabited B] (c : Chain (A ⊕ B)) (n : ℕ) :
     projr c n = Sum.elim (fun _ ↦ default) id (c n) := by
@@ -91,12 +106,21 @@ def distrib (c : Chain (A ⊕ B)) : Chain A ⊕ Chain B :=
       .inr (projr c))
     (c 0)
 
+/--
+@isnad1 id=eq.0h3v.s5.f3f7e82af3bb from=translated src=- shape=ca09fa6a vocab=c55dd6c9
+-/
 @[simp]
 lemma distrib_inl (c : Chain A) : distrib (inl (B := B) c) = .inl c := by rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.f18b213737e5 from=translated src=- shape=a5269c7e vocab=4482a006
+-/
 @[simp]
 lemma distrib_inr (c : Chain B) : distrib (inr (A := A) c) = .inr c := by rfl
 
+/--
+@isnad1 id=var.0h6v.s5.c4d6f4df7a6d from=translated src=- shape=a0441166 vocab=4d5c0b22
+-/
 @[elab_as_elim]
 lemma distrib_cases
     {p : Chain (A ⊕ B) → Prop}

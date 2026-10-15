@@ -113,7 +113,9 @@ variable {β : Type*} {G : Graph Plane β}
 /-- **The point set of a plane graph only sees the arcs of its own edges.** Two drawings that
 agree, arc for arc, on `E(G)` give `G` the same point set. This is what makes the split's
 `splitDrawing` — which is `R.drawing` on the old edges and `earDraw` on the ear's — restrict on
-each half of the union to the drawing that half came with. -/
+each half of the union to the drawing that half came with.
+@isnad1 id=eq.1h4v.s5.14d2d1f0b2ca from=translated src=- shape=c5565eca vocab=f170c94e
+-/
 theorem pointSet_congr {drw drw' : β → ℝ → Plane}
     (h : ∀ ⦃e⦄, e ∈ E(G) → edgeArc drw e = edgeArc drw' e) :
     pointSet G drw = pointSet G drw' := by
@@ -131,7 +133,9 @@ variable {γ : Type*} {S : CellStructure γ}
 /-- **A realized 0-cell is a point of the realized 1-skeleton.** The inlined form of this
 appears at least four times on `main` (`SkeletonHomeo.symm`, `Realization.disjoint_skeleton`
 arguments in `Schoenflies/RealizeSplit.lean`, …); it belongs next to
-`Realization.skeletonSet` in `Schoenflies/CombinatorialInvariance.lean`. -/
+`Realization.skeletonSet` in `Schoenflies/CombinatorialInvariance.lean`.
+@isnad1 id=mem.1h4v.s5.c6d22db18ba0 from=translated src=- shape=9d18e6c2 vocab=2937fa9d
+-/
 theorem Realization.pos_mem_skeletonSet (R : S.Realization) {v : γ} (hv : v ∈ V(S.skel)) :
     R.pos v ∈ R.skeletonSet :=
   Graph.vertexSet_subset_pointSet (by rw [Realization.vertexSet_graph]; exact ⟨v, hv, rfl⟩)
@@ -150,7 +154,9 @@ quantifies over the *new* skeleton, into a pair of clauses over the two closed p
 
 `EarCrosscut.splitGraph_eq` says the new drawn graph is the union of the old one with the drawn
 ear; `Graph.pointSet_union` splits the point set of that union; and `Graph.pointSet_congr`
-replaces the split drawing by the drawing each half came with. -/
+replaces the split drawing by the drawing each half came with.
+@isnad1 id=eq.1h6v.s5.07eecc2a3b9f from=translated src=- shape=c4cca935 vocab=129b5671
+-/
 theorem skeletonSet_realize {R : S.Realization} {earPos : γ → Plane} {earDraw : γ → ℝ → Plane}
     (hE : d.EarCrosscut R earPos earDraw) :
     (d.realize R earPos earDraw hE).skeletonSet = R.skeletonSet ∪ d.earSet earPos earDraw := by
@@ -166,13 +172,17 @@ theorem skeletonSet_realize {R : S.Realization} {earPos : γ → Plane} {earDraw
       edgeArc_splitDrawing_of_mem_ear (by rwa [d.edgeSet_earGraph] at he)
 
 /-- **A 2-cell split only grows the realized 1-skeleton.** This is the field
-`Schoenflies.StageSequence.skeletonSet_mono` at a split step. -/
+`Schoenflies.StageSequence.skeletonSet_mono` at a split step.
+@isnad1 id=le.1h6v.s5.dbfb710933c6 from=translated src=- shape=e9afbf75 vocab=ca1928ca
+-/
 theorem skeletonSet_subset_realize {R : S.Realization} {earPos : γ → Plane}
     {earDraw : γ → ℝ → Plane} (hE : d.EarCrosscut R earPos earDraw) :
     R.skeletonSet ⊆ (d.realize R earPos earDraw hE).skeletonSet :=
   (skeletonSet_realize hE).symm ▸ Set.subset_union_left
 
-/-- The drawn ear is closed: it is a simple arc, hence compact. -/
+/-- The drawn ear is closed: it is a simple arc, hence compact.
+@isnad1 id=isclosed.1h6v.s6.b239c2e2e665 from=translated src=- shape=c0916f2b vocab=89ea3e34
+-/
 theorem isClosed_earSet {R : S.Realization} {earPos : γ → Plane} {earDraw : γ → ℝ → Plane}
     (hE : d.EarCrosscut R earPos earDraw) : IsClosed (d.earSet earPos earDraw) :=
   hE.isArcBetween_earSet.isArc.isCompact.isClosed
@@ -218,7 +228,9 @@ variable {earPos₁ earPos₂ : γ → Plane} {earDraw₁ earDraw₂ : γ → �
 
 /-- **The chosen map carries the source ear onto the target ear.** The point set of a drawn
 graph is its vertices together with its edge arcs, and the two matching clauses handle those
-two halves. -/
+two halves.
+@isnad1 id=eq.0h8v.s6.189b73e619ab from=translated src=- shape=3e9c6103 vocab=e5e00b01
+-/
 theorem image_earSet :
     m.toFun '' d.earSet earPos₁ earDraw₁ = d.earSet earPos₂ earDraw₂ := by
   rw [earSet, earSet, Graph.pointSet, Graph.pointSet, Set.image_union, Set.image_iUnion₂]
@@ -228,15 +240,23 @@ theorem image_earSet :
   · rw [d.edgeSet_earGraph, d.edgeSet_earGraph]
     exact Set.iUnion₂_congr fun f hf => m.edgeArc_image hf
 
+/--
+@isnad1 id=injon.0h8v.s5.63c7501a434b from=translated src=- shape=02d79174 vocab=f516a3b7
+-/
 theorem injOn : InjOn m.toFun (d.earSet earPos₁ earDraw₁) := m.leftInvOn.injOn
 
+/--
+@isnad1 id=mapsto.0h8v.s5.13f6fefc27b0 from=translated src=- shape=ab17e3e0 vocab=b369cfe2
+-/
 theorem mapsTo :
     MapsTo m.toFun (d.earSet earPos₁ earDraw₁) (d.earSet earPos₂ earDraw₂) :=
   fun _ hx => m.image_earSet ▸ Set.mem_image_of_mem _ hx
 
 /-- The inverse carries the target ear back into the source ear. Not a field: every point of
 the target ear is the image of a point of the source ear, and there the inverse is a left
-inverse. -/
+inverse.
+@isnad1 id=mapsto.0h8v.s5.21e836604bc0 from=translated src=- shape=78e100f6 vocab=cc829a79
+-/
 theorem mapsTo_invFun :
     MapsTo m.invFun (d.earSet earPos₂ earDraw₂) (d.earSet earPos₁ earDraw₁) := by
   intro y hy
@@ -268,30 +288,47 @@ def symm : d.EarHomeo earPos₂ earDraw₂ earPos₁ earDraw₁ where
     exact m.leftInvOn.image_image'
       (Graph.edgeArc_subset_pointSet (by rw [d.edgeSet_earGraph]; exact hf))
 
+/--
+@isnad1 id=eq.0h8v.s6.07a301e566ad from=translated src=- shape=ea3b1038 vocab=2ee6f141
+-/
 @[simp] theorem symm_toFun : m.symm.toFun = m.invFun := rfl
 
+/--
+@isnad1 id=eq.0h8v.s6.dbb4342bd613 from=translated src=- shape=ea3b1038 vocab=2ee6f141
+-/
 @[simp] theorem symm_invFun : m.symm.invFun = m.toFun := rfl
 
 variable {R₁ R₂ : S.Realization}
 
 /-- **At the ear's source end the chosen map is pinned to the old 0-cell's target position.**
 This — with `SkeletonHomeo.pos_apply` — is why no compatibility hypothesis between the ear map
-and `g` has to be asked for. -/
+and `g` has to be asked for.
+@isnad1 id=eq.2h10v.s6.90ca9285f474 from=translated src=- shape=3d447e4a vocab=21767154
+-/
 theorem toFun_pos_source (hE₁ : d.EarCrosscut R₁ earPos₁ earDraw₁)
     (hE₂ : d.EarCrosscut R₂ earPos₂ earDraw₂) :
     m.toFun (R₁.pos d.source) = R₂.pos d.source := by
   rw [← hE₁.pos_source, m.earPos_apply d.source_mem_ear, hE₂.pos_source]
 
+/--
+@isnad1 id=eq.2h10v.s6.275a1b62be23 from=translated src=- shape=3d447e4a vocab=d45511fa
+-/
 theorem toFun_pos_target (hE₁ : d.EarCrosscut R₁ earPos₁ earDraw₁)
     (hE₂ : d.EarCrosscut R₂ earPos₂ earDraw₂) :
     m.toFun (R₁.pos d.target) = R₂.pos d.target := by
   rw [← hE₁.pos_target, m.earPos_apply d.target_mem_ear, hE₂.pos_target]
 
+/--
+@isnad1 id=eq.2h10v.s6.8c616abf2e79 from=translated src=- shape=37498a19 vocab=7e4107a9
+-/
 theorem invFun_pos_source (hE₁ : d.EarCrosscut R₁ earPos₁ earDraw₁)
     (hE₂ : d.EarCrosscut R₂ earPos₂ earDraw₂) :
     m.invFun (R₂.pos d.source) = R₁.pos d.source := by
   rw [← m.toFun_pos_source hE₁ hE₂, m.leftInvOn hE₁.pos_source_mem_earSet]
 
+/--
+@isnad1 id=eq.2h10v.s6.71dd9b21e673 from=translated src=- shape=37498a19 vocab=4e5e179e
+-/
 theorem invFun_pos_target (hE₁ : d.EarCrosscut R₁ earPos₁ earDraw₁)
     (hE₂ : d.EarCrosscut R₂ earPos₂ earDraw₂) :
     m.invFun (R₂.pos d.target) = R₁.pos d.target := by
@@ -320,19 +357,31 @@ noncomputable def splitInvMap (g : SkeletonHomeo R₁ R₂)
 
 variable {g : SkeletonHomeo R₁ R₂} {m : d.EarHomeo earPos₁ earDraw₁ earPos₂ earDraw₂}
 
+/--
+@isnad1 id=eq.1h12v.s6.22e93c938517 from=translated src=- shape=6b6ce6bf vocab=fb9e44c1
+-/
 theorem splitMap_of_mem_skeletonSet {x : Plane} (hx : x ∈ R₁.skeletonSet) :
     splitMap g m x = g.toFun x := by
   classical
   simp only [splitMap, ite_eq_left hx]
 
+/--
+@isnad1 id=eqon.0h11v.s6.bceec70460bb from=translated src=- shape=2981d054 vocab=188ab12f
+-/
 theorem splitMap_eqOn_skeletonSet : EqOn (splitMap g m) g.toFun R₁.skeletonSet :=
   fun _ hx => splitMap_of_mem_skeletonSet hx
 
+/--
+@isnad1 id=eq.1h12v.s6.3fb92924027d from=translated src=- shape=3336f6f7 vocab=d69063c6
+-/
 theorem splitInvMap_of_mem_skeletonSet {y : Plane} (hy : y ∈ R₂.skeletonSet) :
     splitInvMap g m y = g.invFun y := by
   classical
   simp only [splitInvMap, ite_eq_left hy]
 
+/--
+@isnad1 id=eq.1h12v.s6.5e4d9c7ebe14 from=translated src=- shape=10f0cd21 vocab=aaa576f0
+-/
 theorem splitInvMap_of_notMem_skeletonSet {y : Plane} (hy : y ∉ R₂.skeletonSet) :
     splitInvMap g m y = m.invFun y := by
   classical
@@ -344,7 +393,9 @@ include hE₁ hE₂
 
 /-- **On the drawn ear the transported map is the chosen ear map** — including at the two ends,
 where the two prescriptions agree because both are pinned to the target position of the old
-0-cell. -/
+0-cell.
+@isnad1 id=eq.3h12v.s6.701131426f36 from=translated src=- shape=85fcf145 vocab=bfc616c4
+-/
 theorem splitMap_of_mem_earSet {x : Plane} (hx : x ∈ d.earSet earPos₁ earDraw₁) :
     splitMap g m x = m.toFun x := by
   classical
@@ -357,10 +408,15 @@ theorem splitMap_of_mem_earSet {x : Plane} (hx : x ∈ d.earSet earPos₁ earDra
     · rw [g.pos_apply d.target_mem_skel, m.toFun_pos_target hE₁ hE₂]
   · rw [splitMap, ite_eq_right hs]
 
+/--
+@isnad1 id=eqon.2h11v.s6.430b80187e40 from=translated src=- shape=2cf14933 vocab=0f9f4b26
+-/
 theorem splitMap_eqOn_earSet : EqOn (splitMap g m) m.toFun (d.earSet earPos₁ earDraw₁) :=
   fun _ hx => splitMap_of_mem_earSet hE₁ hE₂ hx
 
-/-- On the drawn target ear the transported inverse is the chosen ear map's inverse. -/
+/-- On the drawn target ear the transported inverse is the chosen ear map's inverse.
+@isnad1 id=eqon.2h11v.s6.9d77ca01f9de from=translated src=- shape=9bc20c75 vocab=3cfda4d7
+-/
 theorem splitInvMap_eqOn_earSet :
     EqOn (splitInvMap g m) m.invFun (d.earSet earPos₂ earDraw₂) := by
   classical
@@ -379,7 +435,9 @@ theorem splitInvMap_eqOn_earSet :
 /-- **A point of the source ear off the old skeleton is carried off the old target skeleton.**
 The image lies on the target ear, and the target ear meets the target skeleton only in the two
 ends — whose preimages under the (injective) ear map are the two ends on the source side, which
-*are* on the source skeleton. -/
+*are* on the source skeleton.
+@isnad1 id=not.4h11v.s6.455075df88a3 from=translated src=- shape=6751ce1a vocab=e5a9ded1
+-/
 theorem toFun_notMem_skeletonSet {x : Plane} (hx : x ∈ d.earSet earPos₁ earDraw₁)
     (hs : x ∉ R₁.skeletonSet) : m.toFun x ∉ R₂.skeletonSet := by
   intro hcon
@@ -391,7 +449,9 @@ theorem toFun_notMem_skeletonSet {x : Plane} (hx : x ∈ d.earSet earPos₁ earD
   · rw [← m.toFun_pos_target hE₁ hE₂] at heq
     exact hs (m.injOn hx hE₁.pos_target_mem_earSet heq ▸ R₁.pos_mem_skeletonSet d.target_mem_skel)
 
-/-- The mirror statement on the target side, for the inverse. -/
+/-- The mirror statement on the target side, for the inverse.
+@isnad1 id=not.4h11v.s6.e732d56e6be4 from=translated src=- shape=7182c02d vocab=ca2b754a
+-/
 theorem invFun_notMem_skeletonSet {y : Plane} (hy : y ∈ d.earSet earPos₂ earDraw₂)
     (hs : y ∉ R₂.skeletonSet) : m.invFun y ∉ R₁.skeletonSet := by
   intro hcon
@@ -486,21 +546,31 @@ noncomputable def splitHomeo (g : SkeletonHomeo R₁ R₂)
           (EarCrosscut.edgeArc_subset_earSet he' hx)),
         m.edgeArc_image he']
 
+/--
+@isnad1 id=eq.2h11v.s6.262263dd7a27 from=translated src=- shape=783d8ed8 vocab=0d4a7a6b
+-/
 @[simp] theorem splitHomeo_toFun : (splitHomeo g hE₁ hE₂ m).toFun = splitMap g m := rfl
 
+/--
+@isnad1 id=eq.2h11v.s6.0510669f7a4e from=translated src=- shape=783d8ed8 vocab=b8190ff5
+-/
 @[simp] theorem splitHomeo_invFun : (splitHomeo g hE₁ hE₂ m).invFun = splitInvMap g m := rfl
 
 /-- **The transported map agrees with `g` on the whole old realized skeleton.**
 
 This is the field `Schoenflies.StageSequence.skelHomeo_succ` at a 2-cell split step: consecutive
 skeleton maps agree wherever both are defined. It holds by definition, which is the point of
-building the map by extension rather than by rebuilding. -/
+building the map by extension rather than by rebuilding.
+@isnad1 id=eqon.2h11v.s6.ed13815a65ab from=translated src=- shape=1c3f7a64 vocab=05bc924b
+-/
 theorem splitHomeo_eqOn :
     EqOn (splitHomeo g hE₁ hE₂ m).toFun g.toFun R₁.skeletonSet :=
   splitMap_eqOn_skeletonSet
 
 /-- On the drawn ear the transported map is the chosen ear map — the other half of
-`def:matched-pair` clause 3 for a split. -/
+`def:matched-pair` clause 3 for a split.
+@isnad1 id=eqon.2h11v.s6.a3487f5c31b1 from=translated src=- shape=e412c463 vocab=da1490c2
+-/
 theorem splitHomeo_eqOn_earSet :
     EqOn (splitHomeo g hE₁ hE₂ m).toFun m.toFun (d.earSet earPos₁ earDraw₁) :=
   splitMap_eqOn_earSet hE₁ hE₂

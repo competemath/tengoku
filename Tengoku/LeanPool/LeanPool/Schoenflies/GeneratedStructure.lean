@@ -165,13 +165,22 @@ def subdivGraph (H : Graph γ γ) (e x y v e₁ e₂ : γ) (hne : e₁ ≠ e₂)
 
 variable {H K : Graph γ γ} {e x y v e₁ e₂ : γ}
 
+/--
+@isnad1 id=eq.3h8v.s6.114af18370a9 from=translated src=- shape=d342f4ec vocab=53223246
+-/
 @[simp] theorem subdivGraph_vertexSet {hne h₁ h₂} :
     V(subdivGraph H e x y v e₁ e₂ hne h₁ h₂) = V(H) ∪ {z | z = v ∧ H.IsLink e x y} := rfl
 
+/--
+@isnad1 id=eq.3h8v.s6.abb1bb05f148 from=translated src=- shape=8edd5b1f vocab=f305b075
+-/
 @[simp] theorem subdivGraph_edgeSet {hne h₁ h₂} :
     E(subdivGraph H e x y v e₁ e₂ hne h₁ h₂) =
       (E(H) \ {e}) ∪ {f | (f = e₁ ∨ f = e₂) ∧ H.IsLink e x y} := rfl
 
+/--
+@isnad1 id=iff.3h11v.s7.481b6f9a33ec from=translated src=- shape=b7529cf5 vocab=91e35ecd
+-/
 theorem subdivGraph_isLink {hne h₁ h₂} {f a b : γ} :
     (subdivGraph H e x y v e₁ e₂ hne h₁ h₂).IsLink f a b ↔
       (H.IsLink f a b ∧ f ≠ e ∧ f ≠ e₁ ∧ f ≠ e₂) ∨
@@ -180,7 +189,9 @@ theorem subdivGraph_isLink {hne h₁ h₂} {f a b : γ} :
 
 /-- Subdividing is monotone in the graph: a subgraph carrying the subdivided edge is subdivided
 along with the whole, and one that does not carry it is left alone and still fits inside. This
-is what gives `CellStructure.subdivideEdge` its `outerGraph_le`. -/
+is what gives `CellStructure.subdivideEdge` its `outerGraph_le`.
+@isnad1 id=le.6h9v.s7.e0e610e1a771 from=translated src=- shape=1bfc1522 vocab=a762af4c
+-/
 theorem subdivGraph_mono (hHK : H ≤ K) {hne h₁ h₂ h₁' h₂'} :
     subdivGraph H e x y v e₁ e₂ hne h₁ h₂ ≤ subdivGraph K e x y v e₁ e₂ hne h₁' h₂' where
   vertexSet_mono := by
@@ -193,7 +204,9 @@ theorem subdivGraph_mono (hHK : H ≤ K) {hne h₁ h₂ h₁' h₂'} :
     · exact Or.inr (Or.inl ⟨rfl, hHK.isLink_mono hl, hs⟩)
     · exact Or.inr (Or.inr ⟨rfl, hHK.isLink_mono hl, hs⟩)
 
-/-- A graph that does not carry the subdivided edge is untouched. -/
+/-- A graph that does not carry the subdivided edge is untouched.
+@isnad1 id=eq.4h8v.s6.8c0a662a3fc9 from=translated src=- shape=7657e3c2 vocab=7bce9d73
+-/
 theorem subdivGraph_eq_self {hne h₁ h₂} (he : e ∉ E(H)) :
     subdivGraph H e x y v e₁ e₂ hne h₁ h₂ = H := by
   have hno : ¬ H.IsLink e x y := fun h => he h.edge_mem
@@ -206,7 +219,9 @@ theorem subdivGraph_eq_self {hne h₁ h₂} (he : e ∉ E(H)) :
 
 /-- An edge of a subgraph has the same ends there as in the ambient graph. General; it is
 here because nothing on `main` states it, and both elementary operations need it to know that
-the outer cycle carries the subdivided edge with its own endpoints. -/
+the outer cycle carries the subdivided edge with its own endpoints.
+@isnad1 id=islink.3h6v.s5.f1bb501a262a from=translated src=- shape=7679038c vocab=30769c6b
+-/
 theorem isLink_of_le_of_mem_edgeSet (hHK : H ≤ K) (he : e ∈ E(H)) (h : K.IsLink e x y) :
     H.IsLink e x y := by
   obtain ⟨a, b, hab⟩ := Graph.exists_isLink_of_mem_edgeSet he
@@ -219,20 +234,38 @@ namespace CellStructure
 
 variable (S : CellStructure γ)
 
+/--
+@isnad1 id=mem.1h3v.s4.60afdb144be2 from=translated src=- shape=abf3ef08 vocab=e7ecaa74
+-/
 theorem mem_cells_of_mem_vertexSet {z : γ} (h : z ∈ V(S.skel)) : z ∈ S.cells :=
   Or.inl (Or.inl h)
 
+/--
+@isnad1 id=mem.1h3v.s4.43f3c8c0d36f from=translated src=- shape=abf3ef08 vocab=be277b8b
+-/
 theorem mem_cells_of_mem_edgeSet {z : γ} (h : z ∈ E(S.skel)) : z ∈ S.cells :=
   Or.inl (Or.inr h)
 
+/--
+@isnad1 id=mem.1h3v.s4.ab9c9bc8bb60 from=translated src=- shape=fce984b8 vocab=f336551e
+-/
 theorem mem_cells_of_mem_faces {z : γ} (h : z ∈ S.faces) : z ∈ S.cells := Or.inr h
 
+/--
+@isnad1 id=ne.2h4v.s5.f8cd3ca0898a from=translated src=- shape=0df89a30 vocab=2dfcb819
+-/
 theorem vertexSet_ne_edgeSet {z w : γ} (hz : z ∈ V(S.skel)) (hw : w ∈ E(S.skel)) : z ≠ w :=
   fun h => Set.disjoint_left.1 S.disjoint_vertexSet_edgeSet hz (h ▸ hw)
 
+/--
+@isnad1 id=ne.2h4v.s5.db833e995edf from=translated src=- shape=93807383 vocab=6c3c6910
+-/
 theorem faces_ne_vertexSet {z w : γ} (hz : z ∈ S.faces) (hw : w ∈ V(S.skel)) : z ≠ w :=
   fun h => Set.disjoint_left.1 S.disjoint_faces_vertexSet hz (h ▸ hw)
 
+/--
+@isnad1 id=ne.2h4v.s5.5bd11cb2fac0 from=translated src=- shape=93807383 vocab=d0feaa9f
+-/
 theorem faces_ne_edgeSet {z w : γ} (hz : z ∈ S.faces) (hw : w ∈ E(S.skel)) : z ≠ w :=
   fun h => Set.disjoint_left.1 S.disjoint_faces_edgeSet hz (h ▸ hw)
 
@@ -242,6 +275,9 @@ def pathCells (u : γ) (W : List γ) : Set γ := {c | c ∈ W} ∪ S.skel.walkVe
 
 variable {S}
 
+/--
+@isnad1 id=le.1h5v.s5.9597bad8dbf9 from=translated src=- shape=c740fa5c vocab=ca7f228d
+-/
 theorem pathCells_subset_cells {u : γ} {W : List γ} (h : S.skel.IsWalk u W v) :
     S.pathCells u W ⊆ S.cells := by
   rintro z (hz | hz)
@@ -335,32 +371,62 @@ def newCells : Set γ := {d.newVertex, d.newEdge₁, d.newEdge₂}
 
 variable {d}
 
+/--
+@isnad1 id=not.1h4v.s5.81ee3081df81 from=translated src=- shape=69979d70 vocab=9f5830cd
+-/
 theorem notMem_cells_of_mem_newCells {z : γ} (h : z ∈ d.newCells) : z ∉ S.cells := by
   rcases h with rfl | rfl | rfl
   exacts [d.newVertex_notMem, d.newEdge₁_notMem, d.newEdge₂_notMem]
 
+/--
+@isnad1 id=not.1h4v.s5.ab81c3973b04 from=translated src=- shape=77473bec vocab=9f5830cd
+-/
 theorem notMem_newCells_of_mem_cells {z : γ} (h : z ∈ S.cells) : z ∉ d.newCells := fun hz =>
   notMem_cells_of_mem_newCells hz h
 
 variable (d)
 
+/--
+@isnad1 id=mem.0h3v.s4.8dff4b2ff1b8 from=translated src=- shape=ef61123f vocab=5919a4ae
+-/
 theorem edge_mem_edgeSet : d.edge ∈ E(S.skel) := d.isLink.edge_mem
 
+/--
+@isnad1 id=mem.0h3v.s4.6c09a4499031 from=translated src=- shape=1ea91c71 vocab=02cb3326
+-/
 theorem edge_mem_cells : d.edge ∈ S.cells := S.mem_cells_of_mem_edgeSet d.edge_mem_edgeSet
 
+/--
+@isnad1 id=mem.0h3v.s4.af936618482c from=translated src=- shape=1ea91c71 vocab=8ff6f03b
+-/
 theorem left_mem_cells : d.left ∈ S.cells := S.mem_cells_of_mem_vertexSet d.isLink.left_mem
 
+/--
+@isnad1 id=mem.0h3v.s4.22ee625789c8 from=translated src=- shape=1ea91c71 vocab=e9e91f81
+-/
 theorem right_mem_cells : d.right ∈ S.cells := S.mem_cells_of_mem_vertexSet d.isLink.right_mem
 
+/--
+@isnad1 id=not.0h3v.s4.d8112a01639d from=translated src=- shape=f431cc5f vocab=3206ca9f
+-/
 theorem newEdge₁_notMem_edgeSet : d.newEdge₁ ∉ E(S.skel) := fun h =>
   d.newEdge₁_notMem (S.mem_cells_of_mem_edgeSet h)
 
+/--
+@isnad1 id=not.0h3v.s4.23cd29a3532f from=translated src=- shape=f431cc5f vocab=85ae1673
+-/
 theorem newEdge₂_notMem_edgeSet : d.newEdge₂ ∉ E(S.skel) := fun h =>
   d.newEdge₂_notMem (S.mem_cells_of_mem_edgeSet h)
 
+/--
+@isnad1 id=not.0h3v.s4.15c97727930e from=translated src=- shape=f431cc5f vocab=1f3fd26e
+-/
 theorem newEdge₁_notMem_outer : d.newEdge₁ ∉ E(S.outerGraph) := fun h =>
   d.newEdge₁_notMem_edgeSet (S.outerGraph_le.edgeSet_mono h)
 
+/--
+@isnad1 id=not.0h3v.s4.87e1adf23926 from=translated src=- shape=f431cc5f vocab=b49add40
+-/
 theorem newEdge₂_notMem_outer : d.newEdge₂ ∉ E(S.outerGraph) := fun h =>
   d.newEdge₂_notMem_edgeSet (S.outerGraph_le.edgeSet_mono h)
 
@@ -375,14 +441,23 @@ def outer : Graph γ γ :=
   subdivGraph S.outerGraph d.edge d.left d.right d.newVertex d.newEdge₁ d.newEdge₂
     d.newEdge_ne d.newEdge₁_notMem_outer d.newEdge₂_notMem_outer
 
+/--
+@isnad1 id=le.0h3v.s5.561b363eb52c from=translated src=- shape=f87b0fe1 vocab=06493410
+-/
 theorem outer_le_skeleton : d.outer ≤ d.skeleton := subdivGraph_mono S.outerGraph_le
 
+/--
+@isnad1 id=eq.0h3v.s5.20b0bb9cac23 from=translated src=- shape=9f662224 vocab=38b6bbdd
+-/
 @[simp] theorem skeleton_vertexSet : V(d.skeleton) = insert d.newVertex V(S.skel) := by
   ext z
   simp only [skeleton, subdivGraph_vertexSet, Set.mem_union, Set.mem_ofPred_eq,
     Set.mem_insert_iff, d.isLink, and_true]
   tauto
 
+/--
+@isnad1 id=eq.0h3v.s5.c39a26e5647a from=translated src=- shape=fc36c0be vocab=6ca6d0d9
+-/
 @[simp] theorem skeleton_edgeSet :
     E(d.skeleton) = insert d.newEdge₁ (insert d.newEdge₂ (E(S.skel) \ {d.edge})) := by
   ext f
@@ -390,6 +465,9 @@ theorem outer_le_skeleton : d.outer ≤ d.skeleton := subdivGraph_mono S.outerGr
     Set.mem_insert_iff, d.isLink, and_true]
   tauto
 
+/--
+@isnad1 id=iff.0h6v.s6.a20b8dc8282a from=translated src=- shape=a7817233 vocab=0f4379d4
+-/
 theorem skeleton_isLink {f a b : γ} :
     d.skeleton.IsLink f a b ↔
       (S.skel.IsLink f a b ∧ f ≠ d.edge ∧ f ≠ d.newEdge₁ ∧ f ≠ d.newEdge₂) ∨
@@ -397,15 +475,22 @@ theorem skeleton_isLink {f a b : γ} :
         (f = d.newEdge₂ ∧ s(a, b) = s(d.newVertex, d.right)) := by
   simp only [skeleton, subdivGraph_isLink, d.isLink, true_and]
 
-/-- The outer cycle is untouched when the subdivided edge is not outer. -/
+/-- The outer cycle is untouched when the subdivided edge is not outer.
+@isnad1 id=eq.1h3v.s5.4756ae9fbcec from=translated src=- shape=2660bdac vocab=4cfc3bc1
+-/
 theorem outer_eq (he : d.edge ∉ E(S.outerGraph)) : d.outer = S.outerGraph :=
   subdivGraph_eq_self he
 
-/-- The subdivided edge, when it is outer, is outer with its own two endpoints. -/
+/-- The subdivided edge, when it is outer, is outer with its own two endpoints.
+@isnad1 id=islink.1h3v.s5.8328235d415e from=translated src=- shape=bd46e524 vocab=6b913a28
+-/
 theorem outer_isLink (he : d.edge ∈ E(S.outerGraph)) :
     S.outerGraph.IsLink d.edge d.left d.right :=
   isLink_of_le_of_mem_edgeSet S.outerGraph_le he d.isLink
 
+/--
+@isnad1 id=eq.1h3v.s6.67c04d80e27b from=translated src=- shape=41a82f06 vocab=9b25bdfc
+-/
 theorem outer_edgeSet_of_mem (he : d.edge ∈ E(S.outerGraph)) :
     E(d.outer) = insert d.newEdge₁ (insert d.newEdge₂ (E(S.outerGraph) \ {d.edge})) := by
   ext f
@@ -480,17 +565,31 @@ noncomputable def subdivideEdge (S : CellStructure γ) (d : S.SubdivData) : Cell
 
 variable {S : CellStructure γ} (d : S.SubdivData)
 
+/--
+@isnad1 id=eq.0h3v.s4.a91cc8741dac from=translated src=- shape=8f3264fd vocab=0c1e815e
+-/
 @[simp] theorem subdivideEdge_skel : (S.subdivideEdge d).skel = d.skeleton := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.0d0f2ff8d501 from=translated src=- shape=618f61f3 vocab=e88f0915
+-/
 @[simp] theorem subdivideEdge_faces : (S.subdivideEdge d).faces = S.faces := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.02c0d25a82ba from=translated src=- shape=8f3264fd vocab=3c05d3dd
+-/
 @[simp] theorem subdivideEdge_outerGraph : (S.subdivideEdge d).outerGraph = d.outer := rfl
 
+/--
+@isnad1 id=iff.0h5v.s4.441357167483 from=translated src=- shape=861a4780 vocab=edf07432
+-/
 @[simp] theorem subdivideEdge_sub {σ τ : γ} :
     (S.subdivideEdge d).sub σ τ ↔ d.subRel σ τ := Iff.rfl
 
 /-- The cells after a subdivision: the old ones except the subdivided edge, plus the three new
-ones. -/
+ones.
+@isnad1 id=eq.0h3v.s5.d7d22bbe6eca from=translated src=- shape=3b01f778 vocab=1e874a8d
+-/
 theorem subdivideEdge_cells : (S.subdivideEdge d).cells = (S.cells \ {d.edge}) ∪ d.newCells := by
   ext z
   simp only [cells, subdivideEdge_skel, subdivideEdge_faces, d.skeleton_vertexSet,
@@ -608,7 +707,9 @@ namespace SplitData
 variable {S : CellStructure γ} (d : S.SplitData)
 
 /-- **The two boundary paths share no edge**, recovered from `paths_meet`: a common edge would
-lie in the intersection, hence be one of the two ends, which are 0-cells. -/
+lie in the intersection, hence be one of the two ends, which are 0-cells.
+@isnad1 id=false.2h4v.s5.c3d83adac2c7 from=translated src=- shape=07c6c508 vocab=bcb90598
+-/
 theorem paths_disjoint ⦃f : γ⦄ (h₁ : f ∈ d.path₁) (h₂ : f ∈ d.path₂) : False := by
   have hmem : f ∈ S.pathCells d.source d.path₁ ∩ S.pathCells d.source d.path₂ :=
     ⟨Or.inl h₁, Or.inl h₂⟩
@@ -632,21 +733,44 @@ def cells₁ : Set γ := S.pathCells d.source d.path₁
 /-- The cells of the second boundary path. -/
 def cells₂ : Set γ := S.pathCells d.source d.path₂
 
+/--
+@isnad1 id=mem.0h3v.s4.d6aa97183bf9 from=translated src=- shape=ef61123f vocab=2fbe0f67
+-/
 theorem source_mem_skel : d.source ∈ V(S.skel) := d.isPath₁.left_mem
 
+/--
+@isnad1 id=mem.0h3v.s4.14e92c4cddd1 from=translated src=- shape=ef61123f vocab=bc4e34fa
+-/
 theorem target_mem_skel : d.target ∈ V(S.skel) := d.isPath₁.right_mem
 
+/--
+@isnad1 id=mem.0h3v.s4.a4140eb2bf88 from=translated src=- shape=1ea91c71 vocab=297b55ff
+-/
 theorem source_mem_cells : d.source ∈ S.cells := S.mem_cells_of_mem_vertexSet d.source_mem_skel
 
+/--
+@isnad1 id=mem.0h3v.s4.3ba0783111c1 from=translated src=- shape=1ea91c71 vocab=f0a93d44
+-/
 theorem target_mem_cells : d.target ∈ S.cells := S.mem_cells_of_mem_vertexSet d.target_mem_skel
 
+/--
+@isnad1 id=mem.0h3v.s4.ec8ff9322707 from=translated src=- shape=1ea91c71 vocab=345af5d2
+-/
 theorem face_mem_cells : d.face ∈ S.cells := S.mem_cells_of_mem_faces d.face_mem
 
+/--
+@isnad1 id=le.0h3v.s4.9a5c0ea0aff3 from=translated src=- shape=e7b2c11e vocab=e01c626e
+-/
 theorem cells₁_subset : d.cells₁ ⊆ S.cells := pathCells_subset_cells d.isPath₁.isWalk
 
+/--
+@isnad1 id=le.0h3v.s4.03df4a3a7eb6 from=translated src=- shape=e7b2c11e vocab=d2811bfb
+-/
 theorem cells₂_subset : d.cells₂ ⊆ S.cells := pathCells_subset_cells d.isPath₂.isWalk
 
-/-- A vertex of the ear other than its two ends is a fresh name; an end is an old vertex. -/
+/-- A vertex of the ear other than its two ends is a fresh name; an end is an old vertex.
+@isnad1 id=or.2h4v.s5.d55db82a887d from=translated src=- shape=ca594205 vocab=58436ddb
+-/
 theorem mem_cells_of_mem_ear_vertexSet {z : γ} (hz : z ∈ V(d.ear)) (h : z ∈ S.cells) :
     z = d.source ∨ z = d.target := by
   by_contra hcon
@@ -655,6 +779,9 @@ theorem mem_cells_of_mem_ear_vertexSet {z : γ} (hz : z ∈ V(d.ear)) (h : z ∈
 
 variable {d}
 
+/--
+@isnad1 id=not.1h4v.s5.37646543686d from=translated src=- shape=69979d70 vocab=64c67008
+-/
 theorem notMem_cells_of_mem_newCells {z : γ} (h : z ∈ d.newCells) : z ∉ S.cells := by
   rcases h with (⟨hz, hz'⟩ | hz) | hz
   · simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hz'
@@ -664,37 +791,73 @@ theorem notMem_cells_of_mem_newCells {z : γ} (h : z ∈ d.newCells) : z ∉ S.c
   · rcases hz with rfl | rfl
     exacts [d.face₁_notMem, d.face₂_notMem]
 
+/--
+@isnad1 id=not.1h4v.s5.9b87744d4736 from=translated src=- shape=77473bec vocab=64c67008
+-/
 theorem notMem_newCells_of_mem_cells {z : γ} (h : z ∈ S.cells) : z ∉ d.newCells := fun hz =>
   notMem_cells_of_mem_newCells hz h
 
 variable (d)
 
+/--
+@isnad1 id=not.0h3v.s4.d8ef109ba952 from=translated src=- shape=5ec4dfdf vocab=949aada8
+-/
 theorem face_notMem_newCells : d.face ∉ d.newCells := notMem_newCells_of_mem_cells d.face_mem_cells
 
+/--
+@isnad1 id=mem.0h3v.s4.d4772370920d from=translated src=- shape=6cea06fe vocab=c11d50cf
+-/
 theorem face₁_mem_newCells : d.face₁ ∈ d.newCells := Or.inr (Or.inl rfl)
 
+/--
+@isnad1 id=mem.0h3v.s4.7316fad9aaa1 from=translated src=- shape=6cea06fe vocab=15a9f7b5
+-/
 theorem face₂_mem_newCells : d.face₂ ∈ d.newCells := Or.inr (Or.inr rfl)
 
+/--
+@isnad1 id=disjoint.0h3v.s5.b7fce21b39de from=translated src=- shape=138f6918 vocab=5ee33497
+-/
 theorem disjoint_edgeSet : Disjoint E(S.skel) E(d.ear) :=
   Set.disjoint_left.2 fun _ hz hz' => d.edge_fresh hz' (S.mem_cells_of_mem_edgeSet hz)
 
+/--
+@isnad1 id=compatib.0h3v.s4.4291d2c64103 from=translated src=- shape=edfc730b vocab=77b12c05
+-/
 theorem compatible : S.skel.Compatible d.ear :=
   Graph.Compatible.of_disjoint_edgeSet d.disjoint_edgeSet
 
 /-- The skeleton after the split: the old skeleton with the ear glued in along its two ends. -/
 def skeleton : Graph γ γ := S.skel.union d.ear
 
+/--
+@isnad1 id=eq.0h3v.s5.50ffe47492ff from=translated src=- shape=0db5dd81 vocab=3246d554
+-/
 @[simp] theorem skeleton_vertexSet : V(d.skeleton) = V(S.skel) ∪ V(d.ear) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.5c5dad2c19a0 from=translated src=- shape=0db5dd81 vocab=6a0d4124
+-/
 @[simp] theorem skeleton_edgeSet : E(d.skeleton) = E(S.skel) ∪ E(d.ear) := rfl
 
+/--
+@isnad1 id=le.0h3v.s4.e2cd0302b5f6 from=translated src=- shape=f83c9a6d vocab=6d474fa0
+-/
 theorem le_skeleton : S.skel ≤ d.skeleton := Graph.left_le_union _ _
 
+/--
+@isnad1 id=le.0h3v.s5.b5c53487f2e3 from=translated src=- shape=f87b0fe1 vocab=9b28f68d
+-/
 theorem ear_le_skeleton : d.ear ≤ d.skeleton := d.compatible.right_le_union
 
+/--
+@isnad1 id=finite.0h3v.s4.248834f53078 from=translated src=- shape=4cf9351c vocab=ef2e993a
+-/
 theorem finite_ear_vertexSet : V(d.ear).Finite := by
   rw [d.isPathGraph.vertexSet_eq]; exact d.isPathGraph.isWalk.finite_walkVertices
 
+/--
+@isnad1 id=finite.0h3v.s4.7680cf1263e2 from=translated src=- shape=4cf9351c vocab=c7fb4471
+-/
 theorem finite_ear_edgeSet : E(d.ear).Finite := by
   rw [d.isPathGraph.edgeSet_eq]; exact d.earWalk.finite_toSet
 
@@ -768,17 +931,31 @@ noncomputable def splitFace (S : CellStructure γ) (d : S.SplitData) : CellStruc
 
 variable {S : CellStructure γ} (c : S.SplitData)
 
+/--
+@isnad1 id=eq.0h3v.s4.a756171dfa66 from=translated src=- shape=8f3264fd vocab=b9e24592
+-/
 @[simp] theorem splitFace_skel : (S.splitFace c).skel = c.skeleton := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.30051545dab7 from=translated src=- shape=3628ef77 vocab=abe2af67
+-/
 @[simp] theorem splitFace_faces :
     (S.splitFace c).faces = insert c.face₁ (insert c.face₂ (S.faces \ {c.face})) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.0637eda60025 from=translated src=- shape=85fb9106 vocab=b73ea34a
+-/
 @[simp] theorem splitFace_outerGraph : (S.splitFace c).outerGraph = S.outerGraph := rfl
 
+/--
+@isnad1 id=iff.0h5v.s4.7c5217a07d54 from=translated src=- shape=861a4780 vocab=1f0abb47
+-/
 @[simp] theorem splitFace_sub {σ τ : γ} : (S.splitFace c).sub σ τ ↔ c.subRel σ τ := Iff.rfl
 
 /-- The cells after a split: the old ones except the split 2-cell, plus the ear's cells and the
-two new 2-cells. (The ear's two ends are old cells and appear on both sides.) -/
+two new 2-cells. (The ear's two ends are old cells and appear on both sides.)
+@isnad1 id=eq.0h3v.s5.93e3a0969a3c from=translated src=- shape=3b01f778 vocab=a686995e
+-/
 theorem splitFace_cells : (S.splitFace c).cells = (S.cells \ {c.face}) ∪ c.newCells := by
   ext z
   simp only [cells, splitFace_skel, splitFace_faces, c.skeleton_vertexSet, c.skeleton_edgeSet,
@@ -872,7 +1049,9 @@ structure CombInvariants (S : CellStructure γ) : Prop where
 
 namespace CombInvariants
 
-/-- The other endpoint of an edge is below it too. -/
+/-- The other endpoint of an edge is below it too.
+@isnad1 id=sub.2h5v.s4.d72c1f465cfa from=translated src=- shape=92891b4e vocab=f8191bbb
+-/
 theorem sub_isLink' {S : CellStructure γ} (hS : S.CombInvariants) ⦃f a b : γ⦄
     (h : S.skel.IsLink f a b) : S.sub b f := hS.sub_isLink h.symm
 
@@ -884,12 +1063,17 @@ namespace SubdivData
 
 variable {S : CellStructure γ} (d : S.SubdivData)
 
+/--
+@isnad1 id=subrel.5h5v.s5.212bad7ea535 from=translated src=- shape=8ad157af vocab=498d95b2
+-/
 theorem subRel_of_old {σ τ : γ} (hσc : σ ∈ S.cells) (hτc : τ ∈ S.cells)
     (hσ : σ ≠ d.edge) (hτ : τ ≠ d.edge) (h : S.sub σ τ) : d.subRel σ τ :=
   Or.inl ⟨notMem_newCells_of_mem_cells hσc, notMem_newCells_of_mem_cells hτc, hσ, hτ, h⟩
 
 /-- On old cells other than the subdivided edge, the relation is unchanged: "all pairs not
-involving `e` are unchanged". -/
+involving `e` are unchanged".
+@isnad1 id=iff.4h5v.s5.75694d318611 from=translated src=- shape=78da9e27 vocab=498d95b2
+-/
 theorem old_subRel_iff {σ τ : γ} (hσc : σ ∈ S.cells) (hτc : τ ∈ S.cells)
     (hσ : σ ≠ d.edge) (hτ : τ ≠ d.edge) : d.subRel σ τ ↔ S.sub σ τ := by
   refine ⟨fun h => ?_, d.subRel_of_old hσc hτc hσ hτ⟩
@@ -901,7 +1085,9 @@ theorem old_subRel_iff {σ τ : γ} (hσc : σ ∈ S.cells) (hτc : τ ∈ S.cel
   · exact absurd (h ▸ hτc) d.newEdge₂_notMem
   · exact absurd hσc (notMem_cells_of_mem_newCells h)
 
-/-- A new cell is below exactly the old strict supercells of the subdivided edge. -/
+/-- A new cell is below exactly the old strict supercells of the subdivided edge.
+@isnad1 id=iff.2h5v.s5.361b11071329 from=translated src=- shape=ddd06a79 vocab=5aafb262
+-/
 theorem newCells_subRel_iff {σ τ : γ} (hσ : σ ∈ d.newCells) (hτc : τ ∈ S.cells) :
     d.subRel σ τ ↔ (τ ≠ d.edge ∧ S.sub d.edge τ) := by
   refine ⟨fun h => ?_, fun h => Or.inr (Or.inr (Or.inr (Or.inr (Or.inr ⟨hσ, h.1, h.2⟩))))⟩
@@ -914,22 +1100,36 @@ theorem newCells_subRel_iff {σ τ : γ} (hσ : σ ∈ d.newCells) (hτc : τ �
   · exact absurd (h ▸ hτc) d.newEdge₂_notMem
   · exact h.2
 
+/--
+@isnad1 id=mem.2h4v.s5.e995d1ebd467 from=translated src=- shape=cdc33cac vocab=0cfab5e5
+-/
 theorem mem_subdivideEdge_cells_of_old {z : γ} (hz : z ∈ S.cells) (hze : z ≠ d.edge) :
     z ∈ (S.subdivideEdge d).cells := by
   rw [subdivideEdge_cells]; exact Or.inl ⟨hz, hze⟩
 
+/--
+@isnad1 id=mem.1h4v.s5.c040fbfdb599 from=translated src=- shape=39742e2b vocab=0ed1fe57
+-/
 theorem mem_subdivideEdge_cells_of_new {z : γ} (hz : z ∈ d.newCells) :
     z ∈ (S.subdivideEdge d).cells := by
   rw [subdivideEdge_cells]; exact Or.inr hz
 
+/--
+@isnad1 id=ne.0h3v.s4.eff48ed85e9f from=translated src=- shape=904ef580 vocab=de453874
+-/
 theorem left_ne_edge : d.left ≠ d.edge :=
   S.vertexSet_ne_edgeSet d.isLink.left_mem d.edge_mem_edgeSet
 
+/--
+@isnad1 id=ne.0h3v.s4.d2e847a4a7bf from=translated src=- shape=904ef580 vocab=25b4d42e
+-/
 theorem right_ne_edge : d.right ≠ d.edge :=
   S.vertexSet_ne_edgeSet d.isLink.right_mem d.edge_mem_edgeSet
 
 /-- **Edge subdivision preserves the combinatorial invariants**: the induction step of
-assertions (iii), (v), (vi) — and of abstract (viii) — over the first constructor. -/
+assertions (iii), (v), (vi) — and of abstract (viii) — over the first constructor.
+@isnad1 id=combinva.1h3v.s4.70236979463a from=translated src=- shape=ecdd8167 vocab=2e3e252f
+-/
 theorem combInvariants (hS : S.CombInvariants) : (S.subdivideEdge d).CombInvariants where
   sub_mem_left := by
     rintro σ τ (⟨-, -, hσ, -, h⟩ | ⟨-, h⟩ | ⟨rfl, -⟩ | ⟨rfl, -⟩ | ⟨rfl, -⟩ | ⟨h, -, -⟩)
@@ -1038,17 +1238,28 @@ open scoped Classical in
 subdivided edge as parent; every surviving cell is its own parent. -/
 noncomputable def parent : γ → γ := fun σ => if σ ∈ d.newCells then d.edge else σ
 
+/--
+@isnad1 id=eq.1h4v.s5.b3a0e6edfbab from=translated src=- shape=daab1f09 vocab=81ef126a
+-/
 theorem parent_of_mem_newCells {σ : γ} (h : σ ∈ d.newCells) : d.parent σ = d.edge := by
   rw [parent]; exact ite_eq_left h
 
+/--
+@isnad1 id=eq.1h4v.s5.16de608c86ec from=translated src=- shape=8de4bf76 vocab=91ce1151
+-/
 theorem parent_of_notMem_newCells {σ : γ} (h : σ ∉ d.newCells) : d.parent σ = σ := by
   rw [parent]; exact ite_eq_right h
 
+/--
+@isnad1 id=eq.1h4v.s4.0f8a96f29d35 from=translated src=- shape=afa93efa vocab=56966cc6
+-/
 theorem parent_of_mem_cells {σ : γ} (h : σ ∈ S.cells) : d.parent σ = σ :=
   d.parent_of_notMem_newCells (notMem_newCells_of_mem_cells h)
 
 /-- **Assertion (iv), the compatibility clause**: `σ ≼ τ` in the refined structure implies
-`par σ ≼ par τ` in the old one. -/
+`par σ ≼ par τ` in the old one.
+@isnad1 id=sub.2h5v.s5.0544294f6e81 from=translated src=- shape=fc176642 vocab=3cd96400
+-/
 theorem sub_parent (hS : S.CombInvariants) {σ τ : γ} (h : (S.subdivideEdge d).sub σ τ) :
     S.sub (d.parent σ) (d.parent τ) := by
   rcases h with ⟨hσ, hτ, -, -, h⟩ | ⟨rfl, hσ⟩ | ⟨rfl, hτ⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨hσ, -, h⟩
@@ -1072,47 +1283,72 @@ namespace SplitData
 
 variable {S : CellStructure γ} (d : S.SplitData)
 
+/--
+@isnad1 id=mem.0h3v.s4.567b9f82a669 from=translated src=- shape=6cea06fe vocab=9cc1e033
+-/
 theorem source_mem_cells₁ : d.source ∈ d.cells₁ := Or.inr Graph.mem_walkVertices_self
 
+/--
+@isnad1 id=mem.0h3v.s4.798c98fe5cd2 from=translated src=- shape=6cea06fe vocab=fc36b863
+-/
 theorem target_mem_cells₁ : d.target ∈ d.cells₁ := Or.inr d.isPath₁.target_mem_walkVertices
 
+/--
+@isnad1 id=ne.1h4v.s4.d262f1e18113 from=translated src=- shape=358d8a71 vocab=6661aca0
+-/
 theorem cells₁_ne_face {σ : γ} (h : σ ∈ d.cells₁) : σ ≠ d.face := by
   rcases h with h | h
   · exact fun heq => S.faces_ne_edgeSet d.face_mem (d.isPath₁.edge_mem h) heq.symm
   · exact fun heq =>
       S.faces_ne_vertexSet d.face_mem (d.isPath₁.isWalk.walkVertices_subset h) heq.symm
 
+/--
+@isnad1 id=ne.1h4v.s4.66ea65a48af8 from=translated src=- shape=358d8a71 vocab=e376742d
+-/
 theorem cells₂_ne_face {σ : γ} (h : σ ∈ d.cells₂) : σ ≠ d.face := by
   rcases h with h | h
   · exact fun heq => S.faces_ne_edgeSet d.face_mem (d.isPath₂.edge_mem h) heq.symm
   · exact fun heq =>
       S.faces_ne_vertexSet d.face_mem (d.isPath₂.isWalk.walkVertices_subset h) heq.symm
 
+/--
+@isnad1 id=false.2h4v.s5.f7148b248e03 from=translated src=- shape=4b2e0f03 vocab=13b50d53
+-/
 theorem notMem_faces_of_mem_cells₁ {σ : γ} (h : σ ∈ d.cells₁) (hσ : σ ∈ S.faces) : False := by
   rcases h with h | h
   · exact S.faces_ne_edgeSet hσ (d.isPath₁.edge_mem h) rfl
   · exact S.faces_ne_vertexSet hσ (d.isPath₁.isWalk.walkVertices_subset h) rfl
 
+/--
+@isnad1 id=false.2h4v.s5.cae1f13de8ea from=translated src=- shape=4b2e0f03 vocab=a46e1345
+-/
 theorem notMem_faces_of_mem_cells₂ {σ : γ} (h : σ ∈ d.cells₂) (hσ : σ ∈ S.faces) : False := by
   rcases h with h | h
   · exact S.faces_ne_edgeSet hσ (d.isPath₂.edge_mem h) rfl
   · exact S.faces_ne_vertexSet hσ (d.isPath₂.isWalk.walkVertices_subset h) rfl
 
 /-- An edge of the skeleton belongs to the cells of a boundary path exactly when it is one of
-that path's edges — a vertex of the walk cannot be an edge name. -/
+that path's edges — a vertex of the walk cannot be an edge name.
+@isnad1 id=iff.1h4v.s5.5d44f77887cb from=translated src=- shape=bfcf1f30 vocab=63c93a3b
+-/
 theorem edge_mem_cells₁_iff {f : γ} (hf : f ∈ E(S.skel)) : f ∈ d.cells₁ ↔ f ∈ d.path₁ := by
   refine ⟨fun h => ?_, fun h => Or.inl h⟩
   rcases h with h | h
   · exact h
   · exact absurd rfl (S.vertexSet_ne_edgeSet (d.isPath₁.isWalk.walkVertices_subset h) hf)
 
+/--
+@isnad1 id=iff.1h4v.s5.8d924c7d7d73 from=translated src=- shape=bfcf1f30 vocab=234cba18
+-/
 theorem edge_mem_cells₂_iff {f : γ} (hf : f ∈ E(S.skel)) : f ∈ d.cells₂ ↔ f ∈ d.path₂ := by
   refine ⟨fun h => ?_, fun h => Or.inl h⟩
   rcases h with h | h
   · exact h
   · exact absurd rfl (S.vertexSet_ne_edgeSet (d.isPath₂.isWalk.walkVertices_subset h) hf)
 
-/-- The ear has at least one edge: its two ends are distinct, so its walk is not empty. -/
+/-- The ear has at least one edge: its two ends are distinct, so its walk is not empty.
+@isnad1 id=ex.0h3v.s4.36610e09406d from=translated src=- shape=a1133f24 vocab=04f43db6
+-/
 theorem exists_ear_edge : ∃ f, f ∈ E(d.ear) := by
   rcases hw : d.earWalk with _ | ⟨f, rest⟩
   · exfalso
@@ -1121,12 +1357,17 @@ theorem exists_ear_edge : ∃ f, f ∈ E(d.ear) := by
     exact d.source_ne_target hmem.symm
   · exact ⟨f, d.isPathGraph.mem_edgeSet (by rw [hw]; exact List.mem_cons_self ..)⟩
 
+/--
+@isnad1 id=subrel.5h5v.s5.dfdf1053be0d from=translated src=- shape=8ad157af vocab=21cc051b
+-/
 theorem subRel_of_old {σ τ : γ} (hσc : σ ∈ S.cells) (hτc : τ ∈ S.cells)
     (hσ : σ ≠ d.face) (hτ : τ ≠ d.face) (h : S.sub σ τ) : d.subRel σ τ :=
   Or.inl ⟨notMem_newCells_of_mem_cells hσc, notMem_newCells_of_mem_cells hτc, hσ, hτ, h⟩
 
 /-- On old cells other than the split 2-cell, the relation is unchanged: "all pairs not
-involving `R` or the new cells are unchanged". -/
+involving `R` or the new cells are unchanged".
+@isnad1 id=iff.4h5v.s5.063d46bdd261 from=translated src=- shape=78da9e27 vocab=21cc051b
+-/
 theorem old_subRel_iff {σ τ : γ} (hσc : σ ∈ S.cells) (hτc : τ ∈ S.cells)
     (hσ : σ ≠ d.face) (hτ : τ ≠ d.face) : d.subRel σ τ ↔ S.sub σ τ := by
   refine ⟨fun h => ?_, d.subRel_of_old hσc hτc hσ hτ⟩
@@ -1138,7 +1379,9 @@ theorem old_subRel_iff {σ τ : γ} (hσc : σ ∈ S.cells) (hτc : τ ∈ S.cel
   · exact absurd (h ▸ hτc) d.face₂_notMem
 
 /-- The cells below the first new 2-cell are exactly the ear's cells, the first boundary path's
-cells, and itself. -/
+cells, and itself.
+@isnad1 id=iff.0h4v.s5.d82f4d279f2d from=translated src=- shape=f16a82ac vocab=86dd500d
+-/
 theorem subRel_face₁_iff {σ : γ} :
     d.subRel σ d.face₁ ↔ (σ = d.face₁ ∨ σ ∈ d.earCells ∨ σ ∈ d.cells₁) := by
   refine ⟨fun h => ?_, fun h => Or.inr (Or.inr (Or.inr (Or.inl ⟨rfl, h⟩)))⟩
@@ -1149,6 +1392,9 @@ theorem subRel_face₁_iff {σ : γ} :
   · exact h
   · exact absurd h d.face_ne
 
+/--
+@isnad1 id=iff.0h4v.s5.3db0112963e3 from=translated src=- shape=f16a82ac vocab=1ff874cf
+-/
 theorem subRel_face₂_iff {σ : γ} :
     d.subRel σ d.face₂ ↔ (σ = d.face₂ ∨ σ ∈ d.earCells ∨ σ ∈ d.cells₂) := by
   refine ⟨fun h => ?_, fun h => Or.inr (Or.inr (Or.inr (Or.inr ⟨rfl, h⟩)))⟩
@@ -1159,14 +1405,23 @@ theorem subRel_face₂_iff {σ : γ} :
   · exact absurd h.symm d.face_ne
   · exact h
 
+/--
+@isnad1 id=mem.2h4v.s5.f35cf3dfb5d2 from=translated src=- shape=cdc33cac vocab=b0a5b92c
+-/
 theorem mem_splitFace_cells_of_old {z : γ} (hz : z ∈ S.cells) (hzf : z ≠ d.face) :
     z ∈ (S.splitFace d).cells := by
   rw [splitFace_cells]; exact Or.inl ⟨hz, hzf⟩
 
+/--
+@isnad1 id=mem.1h4v.s5.352b01d185cb from=translated src=- shape=39742e2b vocab=c6f8e082
+-/
 theorem mem_splitFace_cells_of_new {z : γ} (hz : z ∈ d.newCells) :
     z ∈ (S.splitFace d).cells := by
   rw [splitFace_cells]; exact Or.inr hz
 
+/--
+@isnad1 id=mem.1h4v.s5.9a9a0c72b38d from=translated src=- shape=39742e2b vocab=39b336bf
+-/
 theorem mem_splitFace_cells_of_ear {z : γ} (hz : z ∈ d.earCells) :
     z ∈ (S.splitFace d).cells := by
   rcases hz with hz | hz
@@ -1182,7 +1437,9 @@ theorem mem_splitFace_cells_of_ear {z : γ} (hz : z ∈ d.earCells) :
   · exact d.mem_splitFace_cells_of_new (Or.inl (Or.inr hz))
 
 /-- **A 2-cell split preserves the combinatorial invariants**: the induction step of assertions
-(iii), (v), (vi) — and of abstract (viii) — over the second constructor. -/
+(iii), (v), (vi) — and of abstract (viii) — over the second constructor.
+@isnad1 id=combinva.1h3v.s4.071e04d4b33b from=translated src=- shape=ecdd8167 vocab=c1eb6042
+-/
 theorem combInvariants (hS : S.CombInvariants) : (S.splitFace d).CombInvariants where
   sub_mem_left := by
     rintro σ τ (⟨-, -, hσ, -, h⟩ | ⟨-, h⟩ | h | ⟨-, h⟩ | ⟨-, h⟩)
@@ -1364,21 +1621,39 @@ new 2-cells have the split 2-cell as parent; every surviving cell — including 
 endpoints, which the split does not create — is its own parent. -/
 noncomputable def parent : γ → γ := fun σ => if σ ∈ d.newCells then d.face else σ
 
+/--
+@isnad1 id=eq.1h4v.s5.a01da17f6541 from=translated src=- shape=daab1f09 vocab=84d4817f
+-/
 theorem parent_of_mem_newCells {σ : γ} (h : σ ∈ d.newCells) : d.parent σ = d.face := by
   rw [parent]; exact ite_eq_left h
 
+/--
+@isnad1 id=eq.1h4v.s5.ff82d230a18b from=translated src=- shape=8de4bf76 vocab=260cd188
+-/
 theorem parent_of_notMem_newCells {σ : γ} (h : σ ∉ d.newCells) : d.parent σ = σ := by
   rw [parent]; exact ite_eq_right h
 
+/--
+@isnad1 id=eq.1h4v.s4.56811af4b97d from=translated src=- shape=afa93efa vocab=f89b2cb0
+-/
 theorem parent_of_mem_cells {σ : γ} (h : σ ∈ S.cells) : d.parent σ = σ :=
   d.parent_of_notMem_newCells (notMem_newCells_of_mem_cells h)
 
+/--
+@isnad1 id=sub.1h4v.s5.d1ce6e0d8215 from=translated src=- shape=58bf8dd3 vocab=abfef297
+-/
 theorem sub_parent_of_mem_cells₁ {σ : γ} (h : σ ∈ d.cells₁) : S.sub (d.parent σ) d.face := by
   rw [d.parent_of_mem_cells (d.cells₁_subset h)]; exact d.sub_face.2 (Or.inr (Or.inl h))
 
+/--
+@isnad1 id=sub.1h4v.s5.aeb98d7675e3 from=translated src=- shape=58bf8dd3 vocab=385e8366
+-/
 theorem sub_parent_of_mem_cells₂ {σ : γ} (h : σ ∈ d.cells₂) : S.sub (d.parent σ) d.face := by
   rw [d.parent_of_mem_cells (d.cells₂_subset h)]; exact d.sub_face.2 (Or.inr (Or.inr h))
 
+/--
+@isnad1 id=sub.2h4v.s5.b3ff67ebf7b0 from=translated src=- shape=3e1bc93c vocab=c70d16bd
+-/
 theorem sub_parent_of_mem_earCells (hS : S.CombInvariants) {σ : γ} (h : σ ∈ d.earCells) :
     S.sub (d.parent σ) d.face := by
   rcases h with h | h
@@ -1392,7 +1667,9 @@ theorem sub_parent_of_mem_earCells (hS : S.CombInvariants) {σ : γ} (h : σ ∈
       exact hS.sub_refl d.face_mem_cells
   · rw [d.parent_of_mem_newCells (Or.inl (Or.inr h))]; exact hS.sub_refl d.face_mem_cells
 
-/-- **Assertion (iv), the compatibility clause**, for a 2-cell split. -/
+/-- **Assertion (iv), the compatibility clause**, for a 2-cell split.
+@isnad1 id=sub.2h5v.s5.d329101533c6 from=translated src=- shape=fc176642 vocab=b761fc7c
+-/
 theorem sub_parent (hS : S.CombInvariants) {σ τ : γ} (h : (S.splitFace d).sub σ τ) :
     S.sub (d.parent σ) (d.parent τ) := by
   rcases h with ⟨hσ, hτ, -, -, h⟩ | ⟨rfl, hσ⟩ | h | ⟨rfl, h⟩ | ⟨rfl, h⟩
@@ -1439,7 +1716,9 @@ theorem _root_.Schoenflies.GeneratedStructure.trans {S₀ S₁ S₂ : CellStruct
 /-- **The composite parent map of a full ear insertion.** The blueprint inserts an ear only
 after subdividing its endpoint cells if necessary, and remarks that the composite parent map
 then sends such an endpoint to the pre-subdivision edge. Compatibility composes along with it:
-this is assertion (iv) for the two-step refinement. -/
+this is assertion (iv) for the two-step refinement.
+@isnad1 id=sub.2h6v.s5.1661ad2acf03 from=translated src=- shape=345ccd38 vocab=fd26505e
+-/
 theorem sub_parent_comp {S : CellStructure γ} (hS : S.CombInvariants) (d₁ : S.SubdivData)
     (d₂ : (S.subdivideEdge d₁).SplitData) {σ τ : γ}
     (h : ((S.subdivideEdge d₁).splitFace d₂).sub σ τ) :
@@ -1476,13 +1755,18 @@ namespace IsCellDecomposition
 
 variable {S : CellStructure γ} {R : S.Realization} {D : Set Plane} {σ τ ρ : γ}
 
+/--
+@isnad1 id=le.4h6v.s6.c6505e88d6ca from=translated src=- shape=5329c8dc vocab=03fa5846
+-/
 theorem subset_closure (h : R.IsCellDecomposition D) (hσ : σ ∈ S.cells) (hτ : τ ∈ S.cells)
     (hsub : S.sub σ τ) : R.cell σ ⊆ closure (R.cell τ) := by
   rw [h.closure_eq hτ]
   exact Set.subset_biUnion_of_mem (u := fun ρ => R.cell ρ) (show σ ∈ _ from ⟨hσ, hsub⟩)
 
 /-- A point of an open cell lying in a closed cell forces the abstract relation. This is the
-one step of the argument; everything below is a corollary of it. -/
+one step of the argument; everything below is a corollary of it.
+@isnad1 id=sub.5h7v.s6.0016d96611f6 from=translated src=- shape=6c2cccb0 vocab=cdbc39ef
+-/
 theorem sub_of_mem (h : R.IsCellDecomposition D) (hσ : σ ∈ S.cells) (hτ : τ ∈ S.cells)
     {z : Plane} (hzσ : z ∈ R.cell σ) (hzτ : z ∈ closure (R.cell τ)) : S.sub σ τ := by
   rw [h.closure_eq hτ] at hzτ
@@ -1491,20 +1775,27 @@ theorem sub_of_mem (h : R.IsCellDecomposition D) (hσ : σ ∈ S.cells) (hτ : �
   · exact hne ▸ hρ.2
   · exact absurd hzρ (Set.disjoint_left.1 (h.disjoint hσ hρ.1 hne) hzσ)
 
+/--
+@isnad1 id=sub.4h6v.s6.050ac41d8ad6 from=translated src=- shape=adec367e vocab=03fa5846
+-/
 theorem sub_of_subset_closure (h : R.IsCellDecomposition D) (hσ : σ ∈ S.cells)
     (hτ : τ ∈ S.cells) (hsub : R.cell σ ⊆ closure (R.cell τ)) : S.sub σ τ := by
   obtain ⟨z, hz⟩ := h.nonempty hσ
   exact h.sub_of_mem hσ hτ hz (hsub hz)
 
 /-- **Assertion (ix)** for one realization: the abstract subcell relation *is* geometric
-containment. -/
+containment.
+@isnad1 id=iff.3h6v.s6.6c7cb6249bdb from=translated src=- shape=0906f411 vocab=03fa5846
+-/
 theorem sub_iff_subset_closure (h : R.IsCellDecomposition D) (hσ : σ ∈ S.cells)
     (hτ : τ ∈ S.cells) : S.sub σ τ ↔ R.cell σ ⊆ closure (R.cell τ) :=
   ⟨h.subset_closure hσ hτ, h.sub_of_subset_closure hσ hτ⟩
 
 /-- **Assertion (ii)**, the frontier property: an open cell is either inside a closed cell or
 misses it. It is a formal consequence of (i) — a closed cell is a union of open cells, and two
-open cells that meet are equal. -/
+open cells that meet are equal.
+@isnad1 id=or.3h6v.s7.3d37f5393b5f from=translated src=- shape=e9258930 vocab=99bf3d63
+-/
 theorem frontier_property (h : R.IsCellDecomposition D) (hσ : σ ∈ S.cells) (hτ : τ ∈ S.cells) :
     R.cell σ ⊆ closure (R.cell τ) ∨ Disjoint (R.cell σ) (closure (R.cell τ)) := by
   by_cases hd : Disjoint (R.cell σ) (closure (R.cell τ))
@@ -1516,11 +1807,15 @@ theorem frontier_property (h : R.IsCellDecomposition D) (hσ : σ ∈ S.cells) (
 
 /-- On a structure with a cell decomposition `≼_abs` *is* reflexive on cells — the blueprint's
 "each geometric relation is reflexive". It is not assumed of a `CellStructure`; it is read off
-(i). -/
+(i).
+@isnad1 id=sub.2h5v.s5.8dc6febd3ccd from=translated src=- shape=fb40f902 vocab=e1e9be6e
+-/
 theorem sub_refl (h : R.IsCellDecomposition D) (hσ : σ ∈ S.cells) : S.sub σ σ :=
   h.sub_of_subset_closure hσ hσ _root_.subset_closure
 
-/-- …and transitive, for the same reason. -/
+/-- …and transitive, for the same reason.
+@isnad1 id=sub.6h7v.s6.7422bc519741 from=translated src=- shape=49dfbe32 vocab=e1e9be6e
+-/
 theorem sub_trans (h : R.IsCellDecomposition D) (hσ : σ ∈ S.cells) (hτ : τ ∈ S.cells)
     (hρ : ρ ∈ S.cells) (h₁ : S.sub σ τ) (h₂ : S.sub τ ρ) : S.sub σ ρ := by
   refine h.sub_of_subset_closure hσ hρ ((h.subset_closure hσ hτ h₁).trans ?_)
@@ -1530,7 +1825,9 @@ theorem sub_trans (h : R.IsCellDecomposition D) (hσ : σ ∈ S.cells) (hτ : τ
 
 The hypothesis is that the lower 2-cell is *open*, which is what assertion (vii) supplies — it
 realizes each open 2-cell as the bounded complementary region of a Jordan curve. Given that,
-`thm:jordan` is not needed a second time: a nonempty open set inside a closure meets the set. -/
+`thm:jordan` is not needed a second time: a nonempty open set inside a closure meets the set.
+@isnad1 id=eq.5h6v.s7.8a10bc5c25b4 from=translated src=- shape=3b37c541 vocab=7cb49014
+-/
 theorem face_eq (h : R.IsCellDecomposition D) {F T : γ} (hF : F ∈ S.faces) (hT : T ∈ S.faces)
     (hopen : IsOpen (R.cell F)) (hsub : R.cell F ⊆ closure (R.cell T)) : F = T := by
   by_contra hne
@@ -1546,7 +1843,9 @@ end Realization
 /-- **Assertion (ix)**, in full: geometric containment in the source realization, geometric
 containment in the target realization, and the abstract relation, all coincide. Both
 realizations realize the *same* abstract `S`, so there is nothing to transport — the two
-geometric relations are equal because each equals `≼_abs`. -/
+geometric relations are equal because each equals `≼_abs`.
+@isnad1 id=and.4h8v.s8.8f2472901874 from=translated src=- shape=315d1b92 vocab=03fa5846
+-/
 theorem subset_closure_congr {S : CellStructure γ} {R₁ R₂ : S.Realization} {D₁ D₂ : Set Plane}
     (h₁ : R₁.IsCellDecomposition D₁) (h₂ : R₂.IsCellDecomposition D₂) {σ τ : γ}
     (hσ : σ ∈ S.cells) (hτ : τ ∈ S.cells) :
@@ -1590,7 +1889,9 @@ structure IsRefinement (d : S.SubdivData) (R : S.Realization)
   closure_newEdge₂ : closure (R'.cell d.newEdge₂) =
     R'.cell d.newEdge₂ ∪ R'.cell d.newVertex ∪ R.cell d.right
 
-/-- Nothing is below the new vertex but the new vertex. -/
+/-- Nothing is below the new vertex but the new vertex.
+@isnad1 id=iff.1h4v.s5.533a1ae8ec73 from=translated src=- shape=f801542f vocab=3cfe4e00
+-/
 theorem subRel_newVertex_iff (hS : S.CombInvariants) (d : S.SubdivData) {σ : γ} :
     d.subRel σ d.newVertex ↔ σ = d.newVertex := by
   refine ⟨fun h => ?_, fun h => Or.inr (Or.inl ⟨h.trans rfl, Or.inl h⟩)⟩
@@ -1603,7 +1904,9 @@ theorem subRel_newVertex_iff (hS : S.CombInvariants) (d : S.SubdivData) {σ : γ
   · exact absurd h d.newVertex_ne₂
   · exact absurd (hS.sub_mem_right h) d.newVertex_notMem
 
-/-- The cells below the first new edge are it, the new vertex, and the old left endpoint. -/
+/-- The cells below the first new edge are it, the new vertex, and the old left endpoint.
+@isnad1 id=iff.1h4v.s5.9b9e1690b37e from=translated src=- shape=ca37aeed vocab=746439f8
+-/
 theorem subRel_newEdge₁_iff (hS : S.CombInvariants) (d : S.SubdivData) {σ : γ} :
     d.subRel σ d.newEdge₁ ↔ (σ = d.newEdge₁ ∨ σ = d.newVertex ∨ σ = d.left) := by
   constructor
@@ -1620,7 +1923,9 @@ theorem subRel_newEdge₁_iff (hS : S.CombInvariants) (d : S.SubdivData) {σ : �
     · exact Or.inr (Or.inr (Or.inl ⟨rfl, Or.inl rfl⟩))
     · exact Or.inr (Or.inr (Or.inr (Or.inl ⟨rfl, rfl⟩)))
 
-/-- The cells below the second new edge are it, the new vertex, and the old right endpoint. -/
+/-- The cells below the second new edge are it, the new vertex, and the old right endpoint.
+@isnad1 id=iff.1h4v.s5.5d7be067eaf8 from=translated src=- shape=ca37aeed vocab=1f7ba006
+-/
 theorem subRel_newEdge₂_iff (hS : S.CombInvariants) (d : S.SubdivData) {σ : γ} :
     d.subRel σ d.newEdge₂ ↔ (σ = d.newEdge₂ ∨ σ = d.newVertex ∨ σ = d.right) := by
   constructor
@@ -1641,6 +1946,9 @@ namespace IsRefinement
 
 variable {R : S.Realization} {R' : (S.subdivideEdge d).Realization} {D : Set Plane}
 
+/--
+@isnad1 id=le.2h6v.s5.8c9ecbd9a360 from=translated src=- shape=7b3a5b23 vocab=19c46b44
+-/
 theorem cell_subset_edge (href : d.IsRefinement R R') {σ : γ} (hσ : σ ∈ d.newCells) :
     R'.cell σ ⊆ R.cell d.edge := by
   rw [href.cell_edge]
@@ -1649,7 +1957,9 @@ theorem cell_subset_edge (href : d.IsRefinement R R') {σ : γ} (hσ : σ ∈ d.
   · exact fun _ hz => Or.inl (Or.inl hz)
   · exact fun _ hz => Or.inr hz
 
-/-- **Assertion (i) is preserved by an edge subdivision.** -/
+/-- **Assertion (i) is preserved by an edge subdivision.**
+@isnad1 id=iscellde.3h6v.s5.ec031799dcfa from=translated src=- shape=8afbaec0 vocab=545621d5
+-/
 theorem isCellDecomposition (hS : S.CombInvariants) (href : d.IsRefinement R R')
     (h : R.IsCellDecomposition D) : R'.IsCellDecomposition D where
   nonempty := by
@@ -1776,7 +2086,9 @@ threaded through verbatim; both are being discharged elsewhere. -/
 
 variable {C P A₁ A₂ : Set Plane} {p q : Plane}
 
-/-- The crosscut meets the Jordan domain exactly in its own interior points. -/
+/-- The crosscut meets the Jordan domain exactly in its own interior points.
+@isnad1 id=eq.1h4v.s5.0ed8ad339726 from=translated src=- shape=f0a364ec vocab=358d4641
+-/
 theorem IsCrosscut.inside_inter (h : IsCrosscut C P p q) : inside C ∩ P = P \ {p, q} := by
   refine Set.Subset.antisymm (fun z hz => ⟨hz.2, fun hzpq => ?_⟩) fun z hz =>
     ⟨h.sdiff_subset hz, hz.1⟩
@@ -1786,7 +2098,9 @@ theorem IsCrosscut.inside_inter (h : IsCrosscut C P p q) : inside C ∩ P = P \ 
 /-- **The Jordan domain is the disjoint union of the two sides and the open crosscut.** This is
 the shape assertion (i) consumes at a 2-cell split: the old open 2-cell is partitioned into the
 two new open 2-cells together with the open cells of the ear (here the ear is one open edge,
-its two endpoints being old cells). -/
+its two endpoints being old cells).
+@isnad1 id=eq.4h6v.s6.2a681e1a024b from=translated src=- shape=256fd55e vocab=11abf5bd
+-/
 theorem IsCrosscut.inside_eq_split (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂)
     (hcollars : HasArcCollars (inside C) P) :
@@ -1794,7 +2108,9 @@ theorem IsCrosscut.inside_eq_split (hjordan : ∀ S : Set Plane, IsJordanCurve S
   conv_lhs => rw [← Set.sdiff_union_inter (inside C) P]
   rw [h.inside_diff_eq hjordan hcut hcollars, h.inside_inter]
 
-/-- Each side misses the crosscut. -/
+/-- Each side misses the crosscut.
+@isnad1 id=disjoint.3h6v.s6.b1ce09c666fd from=translated src=- shape=8c88d962 vocab=9480ca2c
+-/
 theorem IsCrosscut.disjoint_side_crosscut
     (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) :
@@ -1807,7 +2123,9 @@ assembled from `Schoenflies.general_crosscut`.
 The old open 2-cell `Int(C)` is the disjoint union of the two new open 2-cells and the open
 crosscut; each new open 2-cell is open and nonempty; and the closure of each is that open
 2-cell together with its own boundary curve `Aᵢ ∪ P`, which is "every closed cell is the union
-of its open subcells" for the two new 2-cells. -/
+of its open subcells" for the two new 2-cells.
+@isnad1 id=and.4h6v.s9.8a732f6ef8b0 from=translated src=- shape=9c212f46 vocab=5593bde3
+-/
 theorem crosscut_cell_partition (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂)
     (hcollars : HasArcCollars (inside C) P) :

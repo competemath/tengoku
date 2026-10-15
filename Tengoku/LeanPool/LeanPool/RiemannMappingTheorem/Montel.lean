@@ -23,6 +23,9 @@ variable {ι : Type*} {U K : Set ℂ} {z : ℂ} {F : ι → 𝓒 U} {Q : Set ℂ
 def UniformlyBoundedOn (F : ι → ℂ → ℂ) (U : Set ℂ) : Prop :=
   ∀ K ∈ compacts U, ∃ Q, IsCompact Q ∧ ∀ i, MapsTo (F i) K Q
 
+/--
+@isnad1 id=uniforml.3h3v.s7.e829128f38e5 from=translated src=- shape=99a0d23e vocab=17582a0c
+-/
 lemma UniformlyBoundedOn.deriv (h1 : UniformlyBoundedOn F U) (hU : IsOpen U)
     (h2 : ∀ i, DifferentiableOn ℂ (F i) U) : UniformlyBoundedOn (deriv ∘ F) U := by
   rintro K ⟨hK1, hK2⟩
@@ -39,6 +42,9 @@ lemma UniformlyBoundedOn.deriv (h1 : UniformlyBoundedOn F U) (hU : IsOpen U)
   rintro z hz
   simpa using hM (hQ2 i (sphere_subset_closedBall.trans (closedBall_subset_cthickening hx δ) hz))
 
+/--
+@isnad1 id=equicont.4h4v.s7.de6d5b7de5ac from=translated src=- shape=7c301b21 vocab=ebfeff88
+-/
 lemma UniformlyBoundedOn.equicontinuousOn (h1 : UniformlyBoundedOn F U) (hU : IsOpen U)
     (h2 : ∀ i, DifferentiableOn ℂ (F i) U) (hK : K ∈ compacts U) : EquicontinuousOn F K := by
   apply (equicontinuous_restrict_iff _).mp
@@ -68,10 +74,16 @@ lemma UniformlyBoundedOn.equicontinuousOn (h1 : UniformlyBoundedOn F U) (hU : Is
   convert mul_lt_mul' le_rfl hzw (norm_nonneg _) hMp
   field_simp [hMp.lt.ne.symm, mul_comm]
 
+/--
+@isnad1 id=uniforml.1h2v.s6.5b3e745eb541 from=translated src=- shape=e76f2783 vocab=4530df30
+-/
 theorem uniformlyBoundedOn_𝓑 (hQ : ∀ K ∈ compacts U, IsCompact (Q K)) :
     UniformlyBoundedOn ((↑) : 𝓑 U Q → 𝓒 U) U :=
   fun K hK => ⟨Q K, hQ K hK, fun f => f.2.2 K hK⟩
 
+/--
+@isnad1 id=iscompac.2h2v.s6.35c58fb94bb0 from=translated src=- shape=6825a6b2 vocab=ad550541
+-/
 theorem isCompact_𝓑 (hU : IsOpen U) (hQ : ∀ K ∈ compacts U, IsCompact (Q K)) :
     IsCompact (𝓑 U Q) := by
   have l1 (K) (hK : K ∈ compacts U) : EquicontinuousOn ((↑) : 𝓑 U Q → 𝓒 U) K :=
@@ -90,6 +102,9 @@ theorem isCompact_𝓑 (hU : IsOpen U) (hQ : ∀ K ∈ compacts U, IsCompact (Q 
   · intro hf
     exact ⟨⟨f, hf⟩, rfl⟩
 
+/--
+@isnad1 id=totallyb.3h3v.s7.b48f21610f8f from=translated src=- shape=543be77f vocab=43c394a4
+-/
 theorem montel (hU : IsOpen U) (h1 : UniformlyBoundedOn F U)
     (h2 : ∀ i, DifferentiableOn ℂ (F i) U) :
     TotallyBounded (range F) := by
@@ -97,5 +112,8 @@ theorem montel (hU : IsOpen U) (h1 : UniformlyBoundedOn F U)
   have l1 : range F ⊆ 𝓑 U Q := by rintro f ⟨i, rfl⟩; exact ⟨h2 i, fun K hK => hQ2 K hK i⟩
   exact TotallyBounded.subset l1 <| (isCompact_𝓑 hU hQ1).totallyBounded
 
+/--
+@isnad1 id=iscompac.1h1v.s5.3b006935ecfa from=translated src=- shape=5e516f48 vocab=24d95691
+-/
 lemma isCompact_𝓜 (hU : IsOpen U) : IsCompact (𝓜 U) := by
   simpa only [𝓜_eq_𝓑] using isCompact_𝓑 hU (fun _ _ => isCompact_closedBall 0 1)

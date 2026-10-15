@@ -110,9 +110,15 @@ def reverse (P : ClosedPolygon m) : ClosedPolygon m where
     rw [Plane.det_comm]
     exact fun h => P.corner (-i) (by linear_combination -h)
 
+/--
+@isnad1 id=eq.0h3v.s7.8dff8c5ec8c1 from=translated src=- shape=c357af48 vocab=9849ba7a
+-/
 @[simp] theorem reverse_vertex (P : ClosedPolygon m) (j : ZMod (m + 3)) :
     P.reverse.vertex j = P.vertex (-j) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.ecd9a571a4ea from=translated src=- shape=7a10b970 vocab=add60481
+-/
 theorem reverse_edge (P : ClosedPolygon m) (j : ZMod (m + 3)) :
     P.reverse.edge j = P.edge (-j - 1) := by
   rw [edge, edge, reverse_vertex, reverse_vertex,
@@ -120,6 +126,9 @@ theorem reverse_edge (P : ClosedPolygon m) (j : ZMod (m + 3)) :
     show (-j - 1 : ZMod (m + 3)) + 1 = -j by ring]
   exact segment_symm ℝ _ _
 
+/--
+@isnad1 id=eq.0h2v.s4.b490e5b4a8d1 from=translated src=- shape=678e0950 vocab=109e2fa2
+-/
 @[simp] theorem reverse_carrier (P : ClosedPolygon m) : P.reverse.carrier = P.carrier := by
   ext z
   constructor
@@ -134,7 +143,9 @@ theorem reverse_edge (P : ClosedPolygon m) (j : ZMod (m + 3)) :
     exact hi
 
 /-- The `t`-th edge of the reversed arc is the `k - 1 - t`-th of the original: the same edges,
-listed backwards. -/
+listed backwards.
+@isnad1 id=eq.1h3v.s7.ce2456cfcfa9 from=translated src=- shape=d42c55e9 vocab=a8d38c72
+-/
 theorem reverse_natCast {n k t : ℕ} (ht : t < k) :
     ((k - t - 1 : ℕ) : ZMod n) + (t : ZMod n) + 1 = (k : ZMod n) := by
   have h : (k - t - 1) + t + 1 = k := by omega
@@ -142,7 +153,9 @@ theorem reverse_natCast {n k t : ℕ} (ht : t < k) :
   push_cast at hc
   linear_combination hc
 
-/-- **Reversing does not move an arc**, it only starts it at the other end. -/
+/-- **Reversing does not move an arc**, it only starts it at the other end.
+@isnad1 id=eq.0h4v.s8.1bd73b69ed24 from=translated src=- shape=5027764c vocab=95a38177
+-/
 theorem reverse_arc (P : ClosedPolygon m) (a : ZMod (m + 3)) (k : ℕ) :
     P.reverse.arc (-a - (k : ZMod (m + 3))) k = P.arc a k := by
   ext z
@@ -162,7 +175,9 @@ theorem reverse_arc (P : ClosedPolygon m) (a : ZMod (m + 3)) (k : ℕ) :
     exact hz
 
 /-- **Reversing does not change the edge list either**, up to the order and the naming of each
-edge's two ends — which is exactly what `Schoenflies.SameEdges` forgives. -/
+edge's two ends — which is exactly what `Schoenflies.SameEdges` forgives.
+@isnad1 id=sameedge.0h4v.s8.67c420854395 from=translated src=- shape=7ec32725 vocab=f9df4095
+-/
 theorem sameEdges_reverse_arcPieces (P : ClosedPolygon m) (a : ZMod (m + 3)) (k : ℕ) :
     SameEdges (P.reverse.arcPieces (-a - (k : ZMod (m + 3))) k) (P.arcPieces a k) := by
   have key : (P.reverse.arcPieces (-a - (k : ZMod (m + 3))) k).map orientPiece
@@ -192,7 +207,9 @@ it. The proof walks the arc: the first edges of the two are two segments leaving
 one ray, so one contains the other, and the shorter one's far end would be a vertex of its own
 polygon interior to an edge of the other — which `corner` forbids. -/
 
-/-- A numeral strictly between `0` and the modulus is not `0` in the cyclic index. -/
+/-- A numeral strictly between `0` and the modulus is not `0` in the cyclic index.
+@isnad1 id=ne.2h2v.s7.a857e197ebdf from=translated src=- shape=7a970fba vocab=ddf5093c
+-/
 theorem natCast_ne_zero_of_lt {m t : ℕ} (ht1 : 0 < t) (ht2 : t < m + 3) :
     ((t : ℕ) : ZMod (m + 3)) ≠ 0 := by
   intro h
@@ -201,7 +218,9 @@ theorem natCast_ne_zero_of_lt {m t : ℕ} (ht1 : 0 < t) (ht2 : t < m + 3) :
   omega
 
 /-- **The first vertex of an arc lies on none of its later edges** — a step index below the
-modulus reaches neither the edge leaving that vertex nor the one arriving at it. -/
+modulus reaches neither the edge leaving that vertex nor the one arriving at it.
+@isnad1 id=not.2h4v.s8.9619fb9f0ae0 from=translated src=- shape=92e7746f vocab=cfe39a81
+-/
 theorem vertex_notMem_edge_natCast (P : ClosedPolygon m) (a : ZMod (m + 3)) {t : ℕ}
     (ht1 : 0 < t) (ht2 : t < m + 2) : P.vertex a ∉ P.edge (a + (t : ZMod (m + 3))) := by
   refine vertex_notMem_edge (fun h => ?_) (fun h => ?_)
@@ -209,7 +228,9 @@ theorem vertex_notMem_edge_natCast (P : ClosedPolygon m) (a : ZMod (m + 3)) {t :
       (by push_cast; linear_combination h)
   · exact natCast_ne_zero_of_lt (m := m) ht1 (by omega) (by linear_combination h)
 
-/-- **Around a point that no later edge of the arc reaches, the arc is its first edge alone.** -/
+/-- **Around a point that no later edge of the arc reaches, the arc is its first edge alone.**
+@isnad1 id=ex.1h5v.s8.cd52df6d33f3 from=translated src=- shape=2ab688f8 vocab=ff87803b
+-/
 theorem exists_ball_arc_subset_edge (P : ClosedPolygon m) (a : ZMod (m + 3)) (k : ℕ) {w : Plane}
     (hw : ∀ t : ℕ, 0 < t → t < k → w ∉ P.edge (a + (t : ZMod (m + 3)))) :
     ∃ r > 0, ball w r ∩ P.arc a k ⊆ P.edge a := by
@@ -229,7 +250,9 @@ theorem exists_ball_arc_subset_edge (P : ClosedPolygon m) (a : ZMod (m + 3)) (k 
   · simpa using hzt
   · exact absurd hzt (hball t ⟨htpos, ht⟩ z hzb)
 
-/-- Bounds a step along two directions inside one ball. -/
+/-- Bounds a step along two directions inside one ball.
+@isnad1 id=ex.1h3v.s7.b77e039e130f from=translated src=- shape=c4d5f8ad vocab=804fe3ab
+-/
 theorem exists_step_lt {ρ : ℝ} (hρ : 0 < ρ) (u v : Plane) :
     ∃ s : ℝ, 0 < s ∧ s ≤ 1 ∧ s * ‖u‖ < ρ ∧ s * ‖v‖ < ρ := by
   refine ⟨min 1 (ρ / (2 * (‖u‖ + ‖v‖ + 1))), lt_min one_pos (by positivity), min_le_left _ _,
@@ -247,7 +270,9 @@ theorem exists_step_lt {ρ : ℝ} (hρ : 0 < ρ) (u v : Plane) :
           rw [div_mul_eq_mul_div, div_lt_iff₀ (by positivity)]
           nlinarith [norm_nonneg u, norm_nonneg v]
 
-/-- **Two segments leaving one point and agreeing near it leave along the same ray.** -/
+/-- **Two segments leaving one point and agreeing near it leave along the same ray.**
+@isnad1 id=ex.3h4v.s8.b3d0a3a40b62 from=translated src=- shape=4a195773 vocab=70ba4b8d
+-/
 theorem exists_pos_smul_of_ball_subset {v₀ v₁ u₁ : Plane} {r : ℝ} (hr : 0 < r) (hv : v₁ ≠ v₀)
     (hsub : segment ℝ v₀ v₁ ∩ ball v₀ r ⊆ segment ℝ v₀ u₁) :
     ∃ c : ℝ, 0 < c ∧ v₁ - v₀ = c • (u₁ - v₀) := by
@@ -279,7 +304,9 @@ theorem exists_pos_smul_of_ball_subset {v₀ v₁ u₁ : Plane} {r : ℝ} (hr : 
 /-- **A vertex of one polygon is never interior to the other's first edge.** Either the shared
 arc is that single edge — and then the far end of the edge cannot be strictly inside it — or the
 other polygon has two edges at the vertex, both lying near it inside one straight segment, which
-is what its `corner` field forbids. -/
+is what its `corner` field forbids.
+@isnad1 id=not.5h8v.s9.61414cb2a08a from=translated src=- shape=6f0ef1a3 vocab=09a1c98c
+-/
 theorem notMem_openSegment_first_edge {m m' : ℕ} (P : ClosedPolygon m) (Q : ClosedPolygon m')
     (a : ZMod (m + 3)) (b : ZMod (m' + 3)) {k l : ℕ} (hk1 : 1 ≤ k) (hk2 : k ≤ m + 2)
     (hl1 : 1 ≤ l) (harc : P.arc a k = Q.arc b l) (hstart : P.vertex a = Q.vertex b) :
@@ -356,14 +383,18 @@ theorem notMem_openSegment_first_edge {m m' : ℕ} (P : ClosedPolygon m) (Q : Cl
       · exact absurd h' hs0.ne'
       · exact h'
 
-/-- Stepping the cyclic index by a positive numeral. -/
+/-- Stepping the cyclic index by a positive numeral.
+@isnad1 id=eq.1h2v.s6.403c409c2a50 from=translated src=- shape=894a3d39 vocab=a8d38c72
+-/
 theorem natCast_pred_succ {n t : ℕ} (ht : 0 < t) : ((t - 1 : ℕ) : ZMod n) + 1 = (t : ZMod n) := by
   have h : (t - 1) + 1 = t := by omega
   have hc := congrArg (fun j : ℕ => (j : ZMod n)) h
   push_cast at hc
   linear_combination hc
 
-/-- **An arc is its first edge together with the arc that leaves the next vertex.** -/
+/-- **An arc is its first edge together with the arc that leaves the next vertex.**
+@isnad1 id=eq.1h4v.s8.fb3492e4fdc1 from=translated src=- shape=3db4d9f3 vocab=44912ada
+-/
 theorem arc_succ (P : ClosedPolygon m) (a : ZMod (m + 3)) {k : ℕ} (hk : 1 ≤ k) :
     P.arc a k = P.edge a ∪ P.arc (a + 1) (k - 1) := by
   ext z
@@ -382,7 +413,9 @@ theorem arc_succ (P : ClosedPolygon m) (a : ZMod (m + 3)) {k : ℕ} (hk : 1 ≤ 
       rw [show a + ((t + 1 : ℕ) : ZMod (m + 3)) = a + 1 + (t : ZMod (m + 3)) by push_cast; ring]
       exact hz
 
-/-- **The first edge of an arc meets the rest of it only at the vertex between them.** -/
+/-- **The first edge of an arc meets the rest of it only at the vertex between them.**
+@isnad1 id=le.1h4v.s9.b832a6fe3643 from=translated src=- shape=d839d886 vocab=aab9d820
+-/
 theorem edge_inter_arc_succ (P : ClosedPolygon m) (a : ZMod (m + 3)) {k : ℕ} (hk : k ≤ m + 2) :
     P.edge a ∩ P.arc (a + 1) (k - 1) ⊆ {P.vertex (a + 1)} := by
   rintro z ⟨hze, hza⟩
@@ -397,7 +430,9 @@ theorem edge_inter_arc_succ (P : ClosedPolygon m) (a : ZMod (m + 3)) {k : ℕ} (
   · rfl
 
 /-- **A one-edge arc has no second edge.** If the same arc were also presented with two or more
-edges, its second edge would lie inside its first, which `edges_meet` forbids. -/
+edges, its second edge would lie inside its first, which `edges_meet` forbids.
+@isnad1 id=false.3h7v.s6.b3f909982e0e from=translated src=- shape=73879af6 vocab=5b51a962
+-/
 theorem arc_one_ne {m m' : ℕ} (P : ClosedPolygon m) (Q : ClosedPolygon m') (a : ZMod (m + 3))
     (b : ZMod (m' + 3)) {l : ℕ} (hl : 2 ≤ l) (harc : P.arc a 1 = Q.arc b l)
     (hedge : P.edge a = Q.edge b) : False := by
@@ -419,7 +454,9 @@ theorem arc_one_ne {m m' : ℕ} (P : ClosedPolygon m) (Q : ClosedPolygon m') (a 
 
 /-- **Two closed polygons that carry the same arc, starting it at the same vertex, run through
 the same vertices along it** — and in particular use the same number of edges. This is what makes
-independent realizations of the six-cycle and of the two spliced curves agree. -/
+independent realizations of the six-cycle and of the two spliced curves agree.
+@isnad1 id=and.6h8v.s9.0d4d9b3414b9 from=translated src=- shape=e25184fe vocab=544b08e4
+-/
 theorem arc_vertex_eq : ∀ (k : ℕ) {m m' : ℕ} (P : ClosedPolygon m) (Q : ClosedPolygon m')
     (a : ZMod (m + 3)) (b : ZMod (m' + 3)) (l : ℕ), 1 ≤ k → k ≤ m + 2 → 1 ≤ l → l ≤ m' + 2 →
       P.arc a k = Q.arc b l → P.vertex a = Q.vertex b →
@@ -514,7 +551,9 @@ theorem arc_vertex_eq : ∀ (k : ℕ) {m m' : ℕ} (P : ClosedPolygon m) (Q : Cl
         exact hstep
 
 /-- **Two closed polygons that carry the same arc, starting it at the same vertex, cut it into
-the same edges.** -/
+the same edges.**
+@isnad1 id=eq.6h8v.s7.4c7089f1df96 from=translated src=- shape=417f794b vocab=052b4ac7
+-/
 theorem arcPieces_eq {m m' : ℕ} (P : ClosedPolygon m) (Q : ClosedPolygon m') (a : ZMod (m + 3))
     (b : ZMod (m' + 3)) {k l : ℕ} (hk1 : 1 ≤ k) (hk2 : k ≤ m + 2) (hl1 : 1 ≤ l)
     (hl2 : l ≤ m' + 2) (harc : P.arc a k = Q.arc b l) (hstart : P.vertex a = Q.vertex b) :
@@ -536,7 +575,9 @@ end ClosedPolygon
 `Schoenflies.exists_closedPolygon_arcs_ordered` come out in the order they were given, but the
 polygon may traverse them either way; reading it backwards when it does is what pins the first
 arc to start at `p`. Two realizations of one arc can then be compared with
-`Schoenflies.ClosedPolygon.arcPieces_eq`. -/
+`Schoenflies.ClosedPolygon.arcPieces_eq`.
+@isnad1 id=ex.9h5v.s9.4b71a382cec2 from=translated src=- shape=e101a738 vocab=8874e513
+-/
 theorem exists_closedPolygon_arcs_oriented {C A₁ A₂ : Set Plane} (hJ : IsJordanCurve C)
     (hP : IsPolygonal C) {p q : Plane} (hp : IsCornerAt C p) (hq : IsCornerAt C q) (hpq : p ≠ q)
     (hA1 : IsArcBetween A₁ p q) (hA2 : IsArcBetween A₂ p q) (hunion : A₁ ∪ A₂ = C)
@@ -607,20 +648,26 @@ def IsHexGeneric (drawing : β → ℝ → Plane) (e : Fin 3 → Fin 3 → β) (
 
 namespace IsK33Config
 
-/-- The first half of the six-cycle is polygonal: it is drawn by a path. -/
+/-- The first half of the six-cycle is polygonal: it is drawn by a path.
+@isnad1 id=ispolygo.3h7v.s6.687ad45ddc49 from=translated src=- shape=9883a4bf vocab=d16cc50b
+-/
 theorem isPolygonal_arcA (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
     (hpoly : ∀ f ∈ E(G), IsPolygonal (edgeArc drawing f)) (s : Fin 3) :
     IsPolygonal (edgesCover drawing (arcA e s)) :=
   hd.isPolygonal_edgesCover hpoly (h.arcA_isPath s).isWalk (by simp [arcA])
 
-/-- The second half of the six-cycle is polygonal. -/
+/-- The second half of the six-cycle is polygonal.
+@isnad1 id=ispolygo.3h7v.s6.7f54ae6f9309 from=translated src=- shape=9883a4bf vocab=50b8c46a
+-/
 theorem isPolygonal_arcB (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
     (hpoly : ∀ f ∈ E(G), IsPolygonal (edgeArc drawing f)) (s : Fin 3) :
     IsPolygonal (edgesCover drawing (arcB e s)) :=
   hd.isPolygonal_edgesCover hpoly (h.arcB_isPath s).isWalk (by simp [arcB])
 
 /-- **The six-cycle of a polygonally drawn `K(3,3)` is polygonal**: it is the union of its two
-halves, which meet. -/
+halves, which meet.
+@isnad1 id=ispolygo.3h6v.s6.dea92d8a1506 from=translated src=- shape=a34ed989 vocab=3f0fd7e3
+-/
 theorem isPolygonal_hexSet (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
     (hpoly : ∀ f ∈ E(G), IsPolygonal (edgeArc drawing f)) :
     IsPolygonal (hexSet drawing e) := by
@@ -628,7 +675,9 @@ theorem isPolygonal_hexSet (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
   exact (h.isPolygonal_arcA hd hpoly 0).union (h.isPolygonal_arcB hd hpoly 0)
     ⟨x 0, (h.arcA_isArcBetween hd 0).left_mem, (h.arcB_isArcBetween hd 0).left_mem⟩
 
-/-- A remaining edge meets the first half of the six-cycle exactly in its own two ends. -/
+/-- A remaining edge meets the first half of the six-cycle exactly in its own two ends.
+@isnad1 id=eq.2h7v.s7.7f9d79c68bf2 from=translated src=- shape=6d4fa869 vocab=52694c9d
+-/
 theorem chord_inter_arcA (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (s : Fin 3) :
     edgesCover drawing (arcA e s) ∩ edgeArc drawing (e s (s + 1)) = {x s, y (s + 1)} := by
   refine Set.Subset.antisymm (fun z hz => ?_) ?_
@@ -642,7 +691,9 @@ theorem chord_inter_arcA (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (s
       ⟨(h.arcA_isArcBetween hd s).right_mem,
       (hd.edge_isArcBetween (h.isLink s (s + 1))).right_mem⟩]
 
-/-- A remaining edge meets the second half of the six-cycle exactly in its own two ends. -/
+/-- A remaining edge meets the second half of the six-cycle exactly in its own two ends.
+@isnad1 id=eq.2h7v.s7.3e605c00291a from=translated src=- shape=6d4fa869 vocab=742120e9
+-/
 theorem chord_inter_arcB (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (s : Fin 3) :
     edgesCover drawing (arcB e s) ∩ edgeArc drawing (e s (s + 1)) = {x s, y (s + 1)} := by
   refine Set.Subset.antisymm (fun z hz => ?_) ?_
@@ -666,7 +717,9 @@ The three presentations are found independently, and what makes them fit togethe
 it into the same edges. So the six-cycle's presentation and the first spliced curve's agree on the
 first half, the six-cycle's and the second spliced curve's agree on the second half, and the two
 spliced curves agree on the remaining edge — the last only after reversing one of them, since a
-crosscut is traversed one way in each of the two curves it bounds. -/
+crosscut is traversed one way in each of the two curves it bounds.
+@isnad1 id=ishexrea.4h7v.s6.e13bf30cd92d from=translated src=- shape=19f9721f vocab=fd4a8b5d
+-/
 theorem isHexRealization (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
     (hpoly : ∀ f ∈ E(G), IsPolygonal (edgeArc drawing f)) (hgen : IsHexGeneric drawing e x y s) :
     IsHexRealization drawing e s := by
@@ -739,7 +792,9 @@ theorem isHexRealization (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
 What is left as a hypothesis is a *bending* step, and only that: every polygonal drawing can be
 redrawn so that no two edges at a vertex leave it along one line. -/
 
-/-- **`lem:k33` for a polygonal drawing in general position.** -/
+/-- **`lem:k33` for a polygonal drawing in general position.**
+@isnad1 id=false.4h6v.s6.adff95aa60ef from=translated src=- shape=ef7366d9 vocab=c3dc741d
+-/
 theorem false_of_hexGeneric (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
     (hpoly : ∀ f ∈ E(G), IsPolygonal (edgeArc drawing f))
     (hgen : ∀ s : Fin 3, IsHexGeneric drawing e x y s) : False :=
@@ -747,7 +802,9 @@ theorem false_of_hexGeneric (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
 
 /-- **Lemma 3.10 (nonplanarity of `K(3,3)`), with only the bending step assumed.** A graph
 carrying a copy of `K(3,3)` has no plane drawing, provided a polygonal drawing can be bent into
-general position at the six vertices. -/
+general position at the six vertices.
+@isnad1 id=not.2h5v.s7.635a599baac4 from=translated src=- shape=16d625c8 vocab=d221ff1d
+-/
 theorem not_isDrawing_of_bendable [G.Finite] (h : IsK33Config G x y e)
     (hbend : ∀ dr : β → ℝ → Plane, IsDrawing G dr → (∀ f ∈ E(G), IsPolygonal (edgeArc dr f)) →
       ∃ dr' : β → ℝ → Plane, IsDrawing G dr' ∧ (∀ f ∈ E(G), IsPolygonal (edgeArc dr' f)) ∧
@@ -772,21 +829,27 @@ abbrev Bendable (x y : Fin 3 → Plane) : Prop :=
       ∀ s : Fin 3, IsHexGeneric dr' (fun i j => (i, j)) x y s
 
 /-- **`lem:k33` for nine arcs**: no nine arcs in the plane meet only where a `K(3,3)` forces them
-to, assuming `Graph.Bendable`. -/
+to, assuming `Graph.Bendable`.
+@isnad1 id=false.2h3v.s5.904ced2c6804 from=translated src=- shape=768620a5 vocab=a58081a6
+-/
 theorem IsArcK33.false_of_bendable {P : Fin 3 → Fin 3 → Set Plane} (h : IsArcK33 x y P)
     (hbend : Bendable x y) : False :=
   h.isK33Config.not_isDrawing_of_bendable hbend ⟨h.arcDrawing, h.isDrawing⟩
 
 /-- **Corollary 3.11 (subdivisions of `K(3,3)`).** No subdivision of `K(3,3)` has a plane
 drawing, assuming `Graph.Bendable`, and only for the *contracted* graph `k33Graph x y`,
-whose nine edges are the branch paths. -/
+whose nine edges are the branch paths.
+@isnad1 id=false.3h6v.s6.27fd7fe1cb5e from=translated src=- shape=50ede9ec vocab=b9a518a8
+-/
 theorem IsK33Subdivision.false_of_bendable {H : Graph Plane β} {W : Fin 3 → Fin 3 → List β}
     (hd : IsDrawing H drawing) (h : IsK33Subdivision H x y W) (hbend : Bendable x y) : False :=
   (h.isArcK33 hd).false_of_bendable hbend
 
 /-- **The headline: `K(3,3)` has no plane drawing.** Stated for the concrete graph
 `Graph.k33Graph x y`, whose nine edges are the index pairs. Assuming `Graph.Bendable`, the
-one hypothesis this module leaves standing. -/
+one hypothesis this module leaves standing.
+@isnad1 id=not.4h2v.s6.76eb21a77a54 from=translated src=- shape=a3e1957a vocab=ef276ca1
+-/
 theorem k33Graph_not_isDrawing (x y : Fin 3 → Plane) (hx : Function.Injective x)
     (hy : Function.Injective y) (hxy : ∀ i j, x i ≠ y j) (hbend : Bendable x y) :
     ¬ ∃ dr : Fin 3 × Fin 3 → ℝ → Plane, IsDrawing (k33Graph x y) dr :=

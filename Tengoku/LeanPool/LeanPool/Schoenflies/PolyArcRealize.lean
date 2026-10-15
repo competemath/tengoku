@@ -113,7 +113,9 @@ open Plane
 part takes, which keeps the extension injective and disjoint from the finite part. -/
 
 /-- **A vertex list injective on an initial segment extends to an injective sequence.** This is
-the padding convention `Schoenflies.PolyArc`'s docstring describes, supplied once. -/
+the padding convention `Schoenflies.PolyArc`'s docstring describes, supplied once.
+@isnad1 id=ex.1h2v.s6.885ade0351dc from=translated src=- shape=bd3de47c vocab=9d53dad8
+-/
 theorem exists_injective_extend {N : ℕ} (v : ℕ → Plane)
     (hv : ∀ i < N, ∀ j < N, v i = v j → i = j) :
     ∃ w : ℕ → Plane, Function.Injective w ∧ ∀ k < N, w k = v k := by
@@ -160,22 +162,40 @@ variable {i k : ℕ}
 /-- The index map that skips over vertex `i + 1`. -/
 def skipIdx (i k : ℕ) : ℕ := if k ≤ i then k else k + 1
 
+/--
+@isnad1 id=eq.1h2v.s4.5ac7a7a3d1c2 from=translated src=- shape=908ab6cb vocab=906db713
+-/
 theorem skipIdx_of_le (h : k ≤ i) : skipIdx i k = k := ite_eq_left h
 
+/--
+@isnad1 id=eq.1h2v.s4.3e8b1f46ca1f from=translated src=- shape=7678e7d1 vocab=7d066fbd
+-/
 theorem skipIdx_of_lt (h : i < k) : skipIdx i k = k + 1 := ite_eq_right (by omega)
 
+/--
+@isnad1 id=injectiv.0h1v.s2.ffa5b329fec3 from=translated src=- shape=f736e2c1 vocab=6948f74e
+-/
 theorem skipIdx_injective (i : ℕ) : Function.Injective (skipIdx i) := by
   intro k l h
   simp only [skipIdx] at h
   split_ifs at h <;> omega
 
+/--
+@isnad1 id=eq.1h2v.s5.b46b8a365a75 from=translated src=- shape=a311a976 vocab=5cccbd03
+-/
 theorem skipIdx_succ (h : k ≠ i) : skipIdx i (k + 1) = skipIdx i k + 1 := by
   simp only [skipIdx]
   split_ifs <;> omega
 
+/--
+@isnad1 id=ne.1h2v.s3.d2d99f63a9c2 from=translated src=- shape=82ee1fce vocab=2cfab5a7
+-/
 theorem skipIdx_ne_left (h : k ≠ i) : skipIdx i k ≠ i := by
   simp only [skipIdx]; split_ifs <;> omega
 
+/--
+@isnad1 id=ne.0h2v.s4.2f0046bf81a7 from=translated src=- shape=7459e780 vocab=5cccbd03
+-/
 theorem skipIdx_ne_right (i k : ℕ) : skipIdx i k ≠ i + 1 := by
   simp only [skipIdx]; split_ifs <;> omega
 
@@ -211,11 +231,20 @@ def carrier (A : PreArc n) : Set Plane := ⋃ i, ⋃ (_ : i ≤ n), A.edge i
 
 variable {A : PreArc n}
 
+/--
+@isnad1 id=iff.0h3v.s5.0aa0bc41c584 from=translated src=- shape=9d19fb8f vocab=82e39cec
+-/
 theorem mem_carrier_iff {x : Plane} : x ∈ A.carrier ↔ ∃ i ≤ n, x ∈ A.edge i := mem_iUnion_le_nat
 
+/--
+@isnad1 id=le.1h3v.s4.2fdb203bf592 from=translated src=- shape=baf7fb6f vocab=3c2c4c57
+-/
 theorem edge_subset_carrier (hi : i ≤ n) : A.edge i ⊆ A.carrier :=
   fun _ hx => mem_carrier_iff.2 ⟨i, hi, hx⟩
 
+/--
+@isnad1 id=ne.0h3v.s4.46f7d7ddaf17 from=translated src=- shape=6561fe56 vocab=b4603b8f
+-/
 theorem vertex_ne : A.vertex i ≠ A.vertex (i + 1) := fun h => by
   have := A.vertex_inj h; omega
 
@@ -226,7 +255,9 @@ consecutive edges are collinear", as an operation rather than an invariant. -/
 
 /-- **A redundant vertex is interior to the segment joining its neighbours**, so the two edges
 at it merge into a single one. This is `Schoenflies.PrePolygon.mem_openSegment_of_det_eq_zero'`
-read on a linear index. -/
+read on a linear index.
+@isnad1 id=eq.2h3v.s8.f58394b9ad67 from=translated src=- shape=d597df7e vocab=e0edf517
+-/
 theorem edge_union_of_det_eq_zero (A : PreArc n) (hi : i < n)
     (hdet : det (A.vertex i - A.vertex (i + 1)) (A.vertex (i + 1 + 1) - A.vertex (i + 1)) = 0) :
     segment ℝ (A.vertex i) (A.vertex (i + 1 + 1)) = A.edge i ∪ A.edge (i + 1) :=
@@ -236,7 +267,9 @@ theorem edge_union_of_det_eq_zero (A : PreArc n) (hi : i < n)
       (A.edges_meet i (by omega) (i + 1) (by omega) (by omega)) hdet))
 
 /-- The middle vertex of a merge lies on no other edge: it is an end of edge `i`, and an edge
-meeting edge `i` there would have it as one of its own ends. -/
+meeting edge `i` there would have it as one of its own ends.
+@isnad1 id=not.4h4v.s6.5c5d239e98a0 from=translated src=- shape=7bc95826 vocab=6b555cf2
+-/
 theorem vertex_notMem_edge (A : PreArc n) (hi : i < n) (hk : k ≤ n) (hk1 : k ≠ i)
     (hk2 : k ≠ i + 1) : A.vertex (i + 1) ∉ A.edge k := by
   intro hmem
@@ -246,7 +279,9 @@ theorem vertex_notMem_edge (A : PreArc n) (hi : i < n) (hk : k ≤ n) (hk1 : k �
 
 /-- **The shortened vertex list is still simple.** The merged edge is the union of the two it
 replaces, and the only point that could escape the two-point bound — the deleted vertex — lies
-on no other edge. -/
+on no other edge.
+@isnad1 id=le.5h5v.s9.1eda013fc836 from=translated src=- shape=67ab5117 vocab=d891e9cb
+-/
 theorem skip_edges_meet (A : PreArc (n + 1)) (hi : i < n + 1)
     (hdet : det (A.vertex i - A.vertex (i + 1)) (A.vertex (i + 1 + 1) - A.vertex (i + 1)) = 0) :
     ∀ j ≤ n, ∀ k ≤ n, j ≠ k →
@@ -309,21 +344,32 @@ def deleteVertex (A : PreArc (n + 1)) (hi : i < n + 1)
   vertex_inj := A.vertex_inj.comp (skipIdx_injective i)
   edges_meet := A.skip_edges_meet hi hdet
 
+/--
+@isnad1 id=eq.2h4v.s8.97e04c2005bf from=translated src=- shape=8592c73b vocab=9e3857ca
+-/
 @[simp] theorem deleteVertex_vertex (A : PreArc (n + 1)) (hi : i < n + 1)
     (hdet : det (A.vertex i - A.vertex (i + 1)) (A.vertex (i + 1 + 1) - A.vertex (i + 1)) = 0)
     (k : ℕ) : (A.deleteVertex hi hdet).vertex k = A.vertex (skipIdx i k) := rfl
 
+/--
+@isnad1 id=eq.2h3v.s8.b1418bdc5f75 from=translated src=- shape=af9074c9 vocab=1bfbcb05
+-/
 theorem deleteVertex_vertex_zero (A : PreArc (n + 1)) (hi : i < n + 1)
     (hdet : det (A.vertex i - A.vertex (i + 1)) (A.vertex (i + 1 + 1) - A.vertex (i + 1)) = 0) :
     (A.deleteVertex hi hdet).vertex 0 = A.vertex 0 := by
   rw [deleteVertex_vertex, skipIdx_of_le (Nat.zero_le i)]
 
+/--
+@isnad1 id=eq.2h3v.s8.ef643d612af6 from=translated src=- shape=75686946 vocab=1bfbcb05
+-/
 theorem deleteVertex_vertex_last (A : PreArc (n + 1)) (hi : i < n + 1)
     (hdet : det (A.vertex i - A.vertex (i + 1)) (A.vertex (i + 1 + 1) - A.vertex (i + 1)) = 0) :
     (A.deleteVertex hi hdet).vertex (n + 1) = A.vertex (n + 1 + 1) := by
   rw [deleteVertex_vertex, skipIdx_of_lt (by omega)]
 
-/-- **Deleting a redundant vertex does not move the arc.** -/
+/-- **Deleting a redundant vertex does not move the arc.**
+@isnad1 id=eq.2h3v.s8.d1bd3c31e962 from=translated src=- shape=62d11258 vocab=0edd0d5c
+-/
 theorem carrier_deleteVertex (A : PreArc (n + 1)) (hi : i < n + 1)
     (hdet : det (A.vertex i - A.vertex (i + 1)) (A.vertex (i + 1 + 1) - A.vertex (i + 1)) = 0) :
     (A.deleteVertex hi hdet).carrier = A.carrier := by
@@ -356,7 +402,9 @@ theorem carrier_deleteVertex (A : PreArc (n + 1)) (hi : i < n + 1)
 /-- **Every `PreArc` normalizes to a `PolyArc` with the same carrier and the same two extreme
 vertices.** This is the blueprint's "delete redundant vertices at which two consecutive edges are
 collinear", run to completion. Unlike the closed case the induction can never get stuck: a
-one-edge arc satisfies `corner` vacuously. -/
+one-edge arc satisfies `corner` vacuously.
+@isnad1 id=ex.0h2v.s6.210732719dac from=translated src=- shape=093612d1 vocab=ce8c2959
+-/
 theorem exists_polyArc : ∀ (n : ℕ) (A : PreArc n), ∃ (m : ℕ) (B : PolyArc m),
     B.carrier = A.carrier ∧ B.vertex 0 = A.vertex 0 ∧ B.vertex (m + 1) = A.vertex (n + 1) := by
   intro n
@@ -392,7 +440,9 @@ the last vertex, and this is what puts it there. Both `a` and `b` are forced ont
 which is what makes `0` a parameter and `b` an end of a piece. -/
 
 /-- **A simple polygonal arc is the carrier of a vertex list.** The arc analogue of
-`Schoenflies.exists_prePolygon_of_isJordanCurve`. -/
+`Schoenflies.exists_prePolygon_of_isJordanCurve`.
+@isnad1 id=ex.2h3v.s6.2186be58a05a from=translated src=- shape=519d3858 vocab=b4079708
+-/
 theorem exists_preArc_of_isArcBetween {P : Set Plane} {a b : Plane}
     (hP : IsArcBetween P a b) (hpoly : IsPolygonal P) :
     ∃ (n : ℕ) (A : PreArc n), A.carrier = P ∧ A.vertex 0 = a ∧ A.vertex (n + 1) = b := by
@@ -599,7 +649,9 @@ Realization followed by normalization. This is the statement
 `Schoenflies.exists_closedPolygon`, and the discharge of `Schoenflies.IsPolyArcCarrier`.
 
 No `a ≠ b` hypothesis is needed: an arc between two points has them distinct, because its
-parametrisation is injective on `[0, 1]`. -/
+parametrisation is injective on `[0, 1]`.
+@isnad1 id=ispolyar.2h3v.s4.d16f2e45ee74 from=translated src=- shape=3bfe48c4 vocab=af846ad6
+-/
 theorem isPolyArcCarrier_of_isPolygonal {P : Set Plane} {a b : Plane}
     (hP : IsArcBetween P a b) (hpoly : IsPolygonal P) : IsPolyArcCarrier P a b := by
   obtain ⟨n, A, hcar, h0, hlast⟩ := exists_preArc_of_isArcBetween hP hpoly
@@ -607,14 +659,18 @@ theorem isPolyArcCarrier_of_isPolygonal {P : Set Plane} {a b : Plane}
   exact ⟨m, B, by rw [hcar', hcar], by rw [h0', h0], by rw [hlast', hlast]⟩
 
 /-- **Blueprint Lemma 1.8 (b) for a set-level simple polygonal arc**, with nothing left
-standing. This is `Schoenflies.hasArcCollars` with its presentation hypothesis discharged. -/
+standing. This is `Schoenflies.hasArcCollars` with its presentation hypothesis discharged.
+@isnad1 id=hasarcco.6h4v.s6.d9fcb350eee9 from=translated src=- shape=0be803c1 vocab=bda11c5f
+-/
 theorem hasArcCollars_of_isPolygonal {D P : Set Plane} {a b : Plane} (hD : IsOpen D)
     (ha : a ∉ D) (hb : b ∉ D) (hPD : P \ {a, b} ⊆ D)
     (hP : IsArcBetween P a b) (hpoly : IsPolygonal P) : HasArcCollars D P :=
   hasArcCollars hD ha hb hPD (isPolyArcCarrier_of_isPolygonal hP hpoly)
 
 /-- **Lemma "At most two sides" for a set-level simple polygonal arc** (`lem:crosscut-at-most-two`),
-with nothing left standing. -/
+with nothing left standing.
+@isnad1 id=ex.7h4v.s8.17e987c3fc22 from=translated src=- shape=e8e6682e vocab=86eb1417
+-/
 theorem crosscut_at_most_two_of_isPolygonal {D P : Set Plane} {a b : Plane}
     (hDopen : IsOpen D) (hDconn : IsPreconnected D)
     (hP : IsArcBetween P a b) (hPpoly : IsPolygonal P)
@@ -625,7 +681,9 @@ theorem crosscut_at_most_two_of_isPolygonal {D P : Set Plane} {a b : Plane}
     (hasArcCollars_of_isPolygonal hDopen ha hb hPD hP hPpoly)
 
 /-- **Lemma "At most two sides" in the form the crosscut theorem consumes**, with nothing left
-standing. -/
+standing.
+@isnad1 id=or.11h7v.s8.3d561dabc8ad from=translated src=- shape=cb65642f vocab=86eb1417
+-/
 theorem crosscut_components_exhaust_of_isPolygonal {D P : Set Plane} {a b v₁ v₂ : Plane}
     (hDopen : IsOpen D) (hDconn : IsPreconnected D)
     (hP : IsArcBetween P a b) (hPpoly : IsPolygonal P)
@@ -645,13 +703,17 @@ is. -/
 
 variable {C P A₁ A₂ : Set Plane} {p q : Plane}
 
-/-- **The collar hypothesis of `thm:general-crosscut`, discharged.** -/
+/-- **The collar hypothesis of `thm:general-crosscut`, discharged.**
+@isnad1 id=hasarcco.1h4v.s4.9f1774673477 from=translated src=- shape=eb98bf43 vocab=4cdbf0ad
+-/
 theorem IsCrosscut.hasArcCollars (h : IsCrosscut C P p q) : HasArcCollars (inside C) P :=
   Schoenflies.hasArcCollars (isOpen_inside h.curve.isClosed) h.left_notMem_inside
     h.right_notMem_inside h.sdiff_subset (isPolyArcCarrier_of_isPolygonal h.arc h.polygonal)
 
 /-- **Theorem "Crosscut theorem", first sentence** (`thm:general-crosscut`), with the collar
-hypothesis discharged: only `thm:jordan` is left. -/
+hypothesis discharged: only `thm:jordan` is left.
+@isnad1 id=and.3h6v.s9.1c2a413314c7 from=translated src=- shape=945241ca vocab=870f88ad
+-/
 theorem general_crosscut' (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) :
     inside C \ P = inside (A₁ ∪ P) ∪ inside (A₂ ∪ P) ∧
@@ -666,7 +728,9 @@ theorem general_crosscut' (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSe
   general_crosscut hjordan h hcut h.hasArcCollars
 
 /-- **Theorem "Crosscut theorem", second sentence** (`thm:general-crosscut`), with the collar
-hypothesis discharged. -/
+hypothesis discharged.
+@isnad1 id=and.3h6v.s9.202fdfbaee7d from=translated src=- shape=b814cf93 vocab=91988c09
+-/
 theorem general_crosscut_three_regions'
     (hjordan : ∀ S : Set Plane, IsJordanCurve S → IsSeparating S)
     (h : IsCrosscut C P p q) (hcut : IsCutPair C p q A₁ A₂) :

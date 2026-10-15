@@ -72,26 +72,37 @@ triangle inequality for `supDist` and no monotonicity at a general centre; both 
 here. -/
 
 /-- Squares about a common centre grow with the radius. `Bounded.closedSquare_mono` says this
-only about the origin. -/
+only about the origin.
+@isnad1 id=le.1h3v.s4.bb90248e75d7 from=translated src=- shape=9a6dd29f vocab=5411dd1a
+-/
 theorem closedSquare_mono_center (c : Plane) {r s : ℝ} (h : r ≤ s) :
     closedSquare c r ⊆ closedSquare c s := fun _ hx => le_trans hx h
 
-/-- The centre lies in its own square. -/
+/-- The centre lies in its own square.
+@isnad1 id=mem.1h2v.s4.27635c2858e9 from=translated src=- shape=0ed9cdf3 vocab=e90cb252
+-/
 theorem mem_closedSquare_self (c : Plane) {r : ℝ} (hr : 0 ≤ r) : c ∈ closedSquare c r := by
   change supDist c c ≤ r
   rw [supDist_self]; exact hr
 
+/--
+@isnad1 id=le.0h2v.s5.6ae6add60a52 from=translated src=- shape=64084b94 vocab=e1d090a0
+-/
 theorem supDist_eq_dist_le (x c : Plane) : supDist x c ≤ dist x c := by
   rw [dist_eq_norm]; exact supNorm_le_norm _
 
 /-- The inscribed ball: a ball is inside the square of the same radius, since the sup norm is
-at most the Euclidean norm. -/
+at most the Euclidean norm.
+@isnad1 id=le.0h2v.s5.5b33ab0d8df8 from=translated src=- shape=68e51b6b vocab=1f45eced
+-/
 theorem closedBall_subset_closedSquare (c : Plane) (r : ℝ) :
     closedBall c r ⊆ closedSquare c r := fun _ hx =>
   le_trans (supDist_eq_dist_le _ _) (mem_closedBall.1 hx)
 
 /-- The circumscribed ball, in the form the separations want: a square of *half* a given
-radius sits inside the open ball of that radius, because `√2 < 2`. -/
+radius sits inside the open ball of that radius, because `√2 < 2`.
+@isnad1 id=le.1h2v.s6.c918af30c600 from=translated src=- shape=452650ff vocab=3fb61886
+-/
 theorem closedSquare_subset_ball {c : Plane} {ρ : ℝ} (hρ : 0 < ρ) :
     closedSquare c (ρ / 2) ⊆ ball c ρ := by
   have hsqrt : Real.sqrt 2 < 2 := by
@@ -116,7 +127,9 @@ parameter interval: the parametrisation is continuous there and the interval is 
 
 Stated over an arbitrary `Icc` and not only over `[0, 1]`, because the *second* use of B3 —
 the first entry into the far vertex's square — has to happen after the last exit from the near
-one, i.e. on the interval `[a, 1]`. -/
+one, i.e. on the interval `[a, 1]`.
+@isnad1 id=iscompac.2h4v.s7.3c6140df643c from=translated src=- shape=3edc050b vocab=dc0fe502
+-/
 theorem isCompact_parameters_mem {f : ℝ → Plane} {α β : ℝ} (hf : ContinuousOn f (Icc α β))
     {C : Set Plane} (hC : IsClosed C) : IsCompact {t | t ∈ Icc α β ∧ f t ∈ C} := by
   have hset : {t | t ∈ Icc α β ∧ f t ∈ C} = Icc α β ∩ f ⁻¹' C := rfl
@@ -128,7 +141,9 @@ theorem isCompact_parameters_mem {f : ℝ → Plane} {α β : ℝ} (hf : Continu
 is a largest one: the curve is in `C` there, and at every larger parameter of the interval it
 has left `C` for good.
 
-This is the supremum of a nonempty compact set of parameters, which is therefore attained. -/
+This is the supremum of a nonempty compact set of parameters, which is therefore attained.
+@isnad1 id=ex.4h5v.s7.5e7040bc218c from=translated src=- shape=ed43db16 vocab=e5a9992a
+-/
 theorem exists_last_mem_Icc {f : ℝ → Plane} {α β : ℝ} (hf : ContinuousOn f (Icc α β))
     {C : Set Plane} (hC : IsClosed C) {t₀ : ℝ} (ht₀ : t₀ ∈ Icc α β) (hmem : f t₀ ∈ C) :
     ∃ s ∈ Icc α β, t₀ ≤ s ∧ f s ∈ C ∧ ∀ t ∈ Icc α β, s < t → f t ∉ C := by
@@ -141,7 +156,9 @@ theorem exists_last_mem_Icc {f : ℝ → Plane} {α β : ℝ} (hf : ContinuousOn
   exact absurd (le_csSup hcpt.bddAbove ⟨htI, htC⟩) (not_le.2 hlt)
 
 /-- The mirror of `exists_last_mem_Icc`: the first parameter inside a closed set. Before it the
-curve has not yet reached `C`. -/
+curve has not yet reached `C`.
+@isnad1 id=ex.4h5v.s7.b9018d25dee4 from=translated src=- shape=07cd289a vocab=e5a9992a
+-/
 theorem exists_first_mem_Icc {f : ℝ → Plane} {α β : ℝ} (hf : ContinuousOn f (Icc α β))
     {C : Set Plane} (hC : IsClosed C) {t₀ : ℝ} (ht₀ : t₀ ∈ Icc α β) (hmem : f t₀ ∈ C) :
     ∃ s ∈ Icc α β, s ≤ t₀ ∧ f s ∈ C ∧ ∀ t ∈ Icc α β, t < s → f t ∉ C := by
@@ -152,14 +169,18 @@ theorem exists_first_mem_Icc {f : ℝ → Plane} {α β : ℝ} (hf : ContinuousO
   refine ⟨sInf S, hsI, csInf_le hcpt.bddBelow ⟨ht₀, hmem⟩, hsC, fun t htI hlt htC => ?_⟩
   exact absurd (csInf_le hcpt.bddBelow ⟨htI, htC⟩) (not_le.2 hlt)
 
-/-- B3 on the unit interval: the last parameter at which an arc is inside a closed set. -/
+/-- B3 on the unit interval: the last parameter at which an arc is inside a closed set.
+@isnad1 id=ex.4h3v.s7.a832b245bc0a from=translated src=- shape=799ed0a4 vocab=d6634ab2
+-/
 theorem exists_last_mem {f : ℝ → Plane} (hf : ContinuousOn f I) {C : Set Plane}
     (hC : IsClosed C) {t₀ : ℝ} (ht₀ : t₀ ∈ I) (hmem : f t₀ ∈ C) :
     ∃ s ∈ I, t₀ ≤ s ∧ f s ∈ C ∧ ∀ t ∈ I, s < t → f t ∉ C :=
   exists_last_mem_Icc hf hC ht₀ hmem
 
 /-- B3 on the unit interval, at the other end: the first parameter at which an arc is inside a
-closed set. -/
+closed set.
+@isnad1 id=ex.4h3v.s7.b41d5acaf4a1 from=translated src=- shape=98510b1f vocab=d6634ab2
+-/
 theorem exists_first_mem {f : ℝ → Plane} (hf : ContinuousOn f I) {C : Set Plane}
     (hC : IsClosed C) {t₀ : ℝ} (ht₀ : t₀ ∈ I) (hmem : f t₀ ∈ C) :
     ∃ s ∈ I, s ≤ t₀ ∧ f s ∈ C ∧ ∀ t ∈ I, t < s → f t ∉ C :=
@@ -177,7 +198,9 @@ namespace Graph
 variable {β : Type*} {G : Graph Plane β} {drawing : β → ℝ → Plane}
 
 /-- A vertex lies on no arc of an edge it is not incident with: the arc meets the vertex set
-only at its own two ends, and those are the vertices it is incident with. -/
+only at its own two ends, and those are the vertices it is incident with.
+@isnad1 id=not.4h5v.s6.f6ed2a452701 from=translated src=- shape=c8f40f4e vocab=ed34c607
+-/
 theorem IsDrawing.notMem_edgeArc_of_not_inc (h : IsDrawing G drawing) {e : β} (he : e ∈ E(G))
     {v : Plane} (hv : v ∈ V(G)) (hinc : ¬ G.Inc e v) : v ∉ edgeArc drawing e := by
   intro hmem
@@ -191,7 +214,9 @@ edge not incident with `v`.
 
 The two families are separated the same way — one compact separation each, then the common
 positive bound of `exists_pos_forall_of_finite` — and the two radii are then merged by taking
-the smaller, which is legitimate because shrinking a square preserves "meets nothing". -/
+the smaller, which is legitimate because shrinking a square preserves "meets nothing".
+@isnad1 id=ex.2h4v.s7.31fd8780b207 from=translated src=- shape=594ddf33 vocab=03467544
+-/
 theorem IsDrawing.exists_square_at [G.Finite] (h : IsDrawing G drawing) {v : Plane}
     (hv : v ∈ V(G)) :
     ∃ r > 0, (∀ w ∈ V(G), w ≠ v → w ∉ Plane.closedSquare v r) ∧
@@ -244,7 +269,9 @@ Disjointness is not a consequence of the per-vertex statement — a square about
 `w` says nothing about a square about `w` reaching towards `v`. It comes from choosing the
 radius once for all vertices and then halving it: two squares of radius `r` that met would put
 their centres within `2r` in the sup metric, i.e. each centre in the other's square of radius
-`2r`, which the unhalved choice forbids. -/
+`2r`, which the unhalved choice forbids.
+@isnad1 id=ex.1h3v.s7.1fc10c3434aa from=translated src=- shape=189e7326 vocab=03467544
+-/
 theorem IsDrawing.exists_vertexSquares [G.Finite] (h : IsDrawing G drawing) :
     ∃ r > 0,
       (∀ v ∈ V(G), ∀ w ∈ V(G), w ≠ v → w ∉ Plane.closedSquare v r) ∧
@@ -283,13 +310,17 @@ theorem IsDrawing.exists_vertexSquares [G.Finite] (h : IsDrawing G drawing) :
 
 /-! ### B4 — the cores -/
 
-/-- An edge is incident only with its own two ends. -/
+/-- An edge is incident only with its own two ends.
+@isnad1 id=not.3h6v.s5.d206d16e26f2 from=translated src=- shape=db4f66da vocab=471b244d
+-/
 theorem not_inc_of_ne {e : β} {v w u : Plane} (hlink : G.IsLink e v w) (huv : u ≠ v)
     (huw : u ≠ w) : ¬ G.Inc e u := fun hinc => (hinc.eq_or_eq_of_isLink hlink).elim huv huw
 
 /-- "The core meets no other vertex square" is really a statement about the whole arc: the
 square about a vertex which is neither end of the edge misses the edge's arc entirely, by B2.
-The hypothesis is exactly the second clause of `exists_vertexSquares`. -/
+The hypothesis is exactly the second clause of `exists_vertexSquares`.
+@isnad1 id=disjoint.4h8v.s7.0f977fcc8d9a from=translated src=- shape=447b0d47 vocab=4149e23d
+-/
 theorem IsDrawing.closedSquare_disjoint_edgeArc_of_ne {e : β} {v w u : Plane} {r : ℝ}
     (hsq : ∀ e ∈ E(G), ¬ G.Inc e u → Disjoint (Plane.closedSquare u r) (edgeArc drawing e))
     (hlink : G.IsLink e v w) (huv : u ≠ v) (huw : u ≠ w) :
@@ -299,7 +330,9 @@ theorem IsDrawing.closedSquare_disjoint_edgeArc_of_ne {e : β} {v w u : Plane} {
 /-- **Distinct cores are disjoint.** A subset of one edge's arc containing no vertex meets no
 other edge's arc at all, because distinct edges meet only at vertices. Stated for arbitrary
 subsets rather than for cores, since that is all the argument uses — and it is why
-`exists_core` carries `Disjoint K V(G)` rather than a clause about other edges. -/
+`exists_core` carries `Disjoint K V(G)` rather than a clause about other edges.
+@isnad1 id=disjoint.7h7v.s7.d00c30b02e17 from=translated src=- shape=52235bc8 vocab=032ec990
+-/
 theorem IsDrawing.disjoint_of_subset_edgeArc (h : IsDrawing G drawing) {e f : β}
     (he : e ∈ E(G)) (hf : f ∈ E(G)) (hef : e ≠ f) {K L : Set Plane}
     (hK : K ⊆ edgeArc drawing e) (hKV : Disjoint K V(G)) (hL : L ⊆ edgeArc drawing f) :
@@ -323,7 +356,9 @@ arc from dipping into the far square and coming back, so the second application 
 That the endpoints of the core are *not* the vertices themselves is where the positivity of
 the radius is used: the arc starts at the centre of the square about `v`, so it is still
 inside the square just after leaving it, and the last exit therefore happens at a positive
-parameter. That fact is what makes `Disjoint K V(G)` true and hence distinct cores disjoint. -/
+parameter. That fact is what makes `Disjoint K V(G)` true and hence distinct cores disjoint.
+@isnad1 id=ex.4h7v.s7.47488bf84d80 from=translated src=- shape=74a13745 vocab=9cb84bc9
+-/
 theorem IsDrawing.exists_core (h : IsDrawing G drawing) {e : β} {v w : Plane} {r : ℝ}
     (hr : 0 < r) (hlink : G.IsLink e v w)
     (hdisj : Disjoint (Plane.closedSquare v r) (Plane.closedSquare w r)) :

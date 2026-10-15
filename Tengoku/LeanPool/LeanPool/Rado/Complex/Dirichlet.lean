@@ -67,10 +67,16 @@ private theorem poissonExtension_eq_choose (hR : 0 < R) (hf : ContinuousOn f (sp
   have hcond : 0 < R ∧ ContinuousOn f (sphere c R) := ⟨hR, hf⟩
   simp only [poissonExtension, dite_eq_left hcond, ite_eq_left hz]
 
+/--
+@isnad1 id=continuo.2h3v.s6.7dbee236d21e from=translated src=- shape=b600967d vocab=d4141afb
+-/
 theorem poissonExtension_continuousOn (hR : 0 < R) (hf : ContinuousOn f (sphere c R)) :
     ContinuousOn (poissonExtension f c R) (closedBall c R) :=
   ((exists_harmonic_extension hR hf).choose_spec.1).congr (poissonExtension_eq_choose hR hf)
 
+/--
+@isnad1 id=harmonic.2h3v.s6.10cd882d7791 from=translated src=- shape=de3fd4ee vocab=b1aff7cd
+-/
 theorem poissonExtension_harmonicOnNhd (hR : 0 < R) (hf : ContinuousOn f (sphere c R)) :
     HarmonicOnNhd (poissonExtension f c R) (ball c R) := by
   intro x hx
@@ -79,12 +85,18 @@ theorem poissonExtension_harmonicOnNhd (hR : 0 < R) (hf : ContinuousOn f (sphere
     exact poissonExtension_eq_choose hR hf (ball_subset_closedBall hy)
   exact (harmonicAt_congr_nhds hev).2 ((exists_harmonic_extension hR hf).choose_spec.2.1 x hx)
 
+/--
+@isnad1 id=eqon.2h3v.s6.a0737453833b from=translated src=- shape=c0f70f96 vocab=651f7d7f
+-/
 theorem poissonExtension_eqOn_sphere (hR : 0 < R) (hf : ContinuousOn f (sphere c R)) :
     EqOn (poissonExtension f c R) f (sphere c R) := by
   intro z hz
   rw [poissonExtension_eq_choose hR hf (sphere_subset_closedBall hz)]
   exact (exists_harmonic_extension hR hf).choose_spec.2.2 hz
 
+/--
+@isnad1 id=eqon.2h3v.s6.6c34df30add2 from=translated src=- shape=ef97ada2 vocab=33483688
+-/
 theorem poissonExtension_eqOn_compl (hR : 0 < R) (hf : ContinuousOn f (sphere c R)) :
     EqOn (poissonExtension f c R) f (closedBall c R)ᶜ := by
   intro z hz
@@ -108,7 +120,9 @@ private theorem meanEqOn_mono {h : ℂ → ℝ} {s t : Set ℂ} (hh : MeanEqOn h
   ⟨hh.continuousOn.mono hts, fun a r hr hsub ↦ hh.mean_eq a r hr (hsub.trans hts)⟩
 
 /-- The Poisson extension takes values in any closed interval containing the
-boundary data (maximum principle packaging). -/
+boundary data (maximum principle packaging).
+@isnad1 id=mem.4h6v.s7.f612bebf68b2 from=translated src=- shape=43082c76 vocab=f737eb6e
+-/
 theorem poissonExtension_mem_Icc (hR : 0 < R) (hf : ContinuousOn f (sphere c R))
     {m M : ℝ} (hfm : ∀ z ∈ sphere c R, f z ∈ Icc m M) :
     ∀ z ∈ closedBall c R, poissonExtension f c R z ∈ Icc m M := by
@@ -146,13 +160,17 @@ theorem poissonExtension_mem_Icc (hR : 0 < R) (hf : ContinuousOn f (sphere c R))
 
 end PoissonExtensionAPI
 
-/-- Harmonic functions satisfy the mean-value property on open sets. -/
+/-- Harmonic functions satisfy the mean-value property on open sets.
+@isnad1 id=meaneqon.1h2v.s4.383cd642ef3b from=translated src=- shape=1df36529 vocab=783c79a6
+-/
 theorem HarmonicOnNhd.meanEqOn {u : ℂ → ℝ} {s : Set ℂ}
     (hu : HarmonicOnNhd u s) : MeanEqOn u s :=
   meanEqOn_of_harmonicOnNhd hu
 
 /-- Continuous functions with the mean-value property on an open set are
-harmonic (Dirichlet uniqueness). -/
+harmonic (Dirichlet uniqueness).
+@isnad1 id=harmonic.2h2v.s5.7f7c9952e26b from=translated src=- shape=8856d217 vocab=fa52c626
+-/
 theorem MeanEqOn.harmonicOnNhd {u : ℂ → ℝ} {s : Set ℂ} (hs : IsOpen s)
     (hu : MeanEqOn u s) : HarmonicOnNhd u s := by
   intro x hx
@@ -179,7 +197,9 @@ theorem MeanEqOn.harmonicOnNhd {u : ℂ → ℝ} {s : Set ℂ} (hs : IsOpen s)
     exact heq (subset_closure hy)
   exact (harmonicAt_congr_nhds hev).2 (hPh x (mem_ball_self hr))
 
-/-- Harmonicity is preserved by holomorphic precomposition. -/
+/-- Harmonicity is preserved by holomorphic precomposition.
+@isnad1 id=harmonic.4h4v.s6.bbef54cb8137 from=translated src=- shape=bd6328e3 vocab=5079f73e
+-/
 theorem HarmonicOnNhd.comp_analytic {u : ℂ → ℝ} {t : Set ℂ} (hu : HarmonicOnNhd u t)
     (ht : IsOpen t) {φ : ℂ → ℂ} {s : Set ℂ} (hφ : AnalyticOnNhd ℂ φ s)
     (hmaps : MapsTo φ s t) : HarmonicOnNhd (u ∘ φ) s := by
@@ -196,7 +216,9 @@ theorem HarmonicOnNhd.comp_analytic {u : ℂ → ℝ} {t : Set ℂ} (hu : Harmon
 
 /-- Comparison characterization of subharmonicity (Anghel–Stan Prop. 3,
 D1 ⇒ D3): a sub-mean-value function is dominated on every closed disk by the
-Poisson extension of its own boundary values. -/
+Poisson extension of its own boundary values.
+@isnad1 id=le.4h5v.s6.092b2bf19c8c from=translated src=- shape=78703b54 vocab=3d39ad55
+-/
 theorem SubMeanOn.le_poissonExtension_on {g : ℂ → ℝ} {s : Set ℂ}
     (hg : SubMeanOn g s) {c : ℂ} {R : ℝ} (hR : 0 < R) (hsub : closedBall c R ⊆ s) :
     ∀ x ∈ closedBall c R, g x ≤ poissonExtension g c R x := by

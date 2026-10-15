@@ -25,7 +25,9 @@ variable {𝕜 E F : Type*} [NontriviallyNormedField 𝕜]
   {α : Type*} {l : Filter α}
 
 /-- If a family of continuous linear maps converges to an invertible continuous linear map,
-then the maps are eventually invertible as well. -/
+then the maps are eventually invertible as well.
+@isnad1 id=eventual.2h7v.s9.dc9a429cc4c1 from=translated src=- shape=7093941d vocab=2f3b65a7
+-/
 protected theorem eventually [CompleteSpace E]
     {f₀ : E →L[𝕜] F} {f : α → E →L[𝕜] F} (hf₀ : f₀.IsInvertible) (hf : Tendsto f l (𝓝 f₀)) :
     ∀ᶠ x in l, (f x).IsInvertible :=
@@ -41,7 +43,9 @@ variable {𝕜 E F : Type*} [NontriviallyNormedField 𝕜]
 
 Suppose that both of them are eventually invertible along a filter `l`,
 and the norms of their inverses are bounded.
-Then $$f^{-1}_a - g^{-1}_a = O(f_a - g_a)$$. -/
+Then $$f^{-1}_a - g^{-1}_a = O(f_a - g_a)$$.
+@isnad1 id=isbigo.4h7v.s11.9b2a5252e48e from=translated src=- shape=7307e7db vocab=8e3420b9
+-/
 theorem isBigO_inverse_sub_inverse
     {l : Filter α} {f g : α → E →L[𝕜] F}
     (hf_inv : ∀ᶠ a in l, (f a).IsInvertible)
@@ -58,6 +62,9 @@ theorem isBigO_inverse_sub_inverse
     simpa [norm_sub_rev] using (hf_bdd.isBigO_one ℝ).norm_left.mul
       (isBigO_refl (fun a ↦ ‖g a - f a‖) _) |>.mul (hg_bdd.isBigO_one ℝ).norm_left
 
+/--
+@isnad1 id=isbigo.4h13v.s10.43d01661109a from=translated src=- shape=242dbef6 vocab=e95de86a
+-/
 theorem apply_sub_apply_isBigO {α 𝕜 𝕝 E F G : Type*}
     [NontriviallyNormedField 𝕜] [NontriviallyNormedField 𝕝]
     [NormedAddCommGroup E] [NormedSpace 𝕜 E]

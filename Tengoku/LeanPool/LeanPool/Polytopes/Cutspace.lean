@@ -21,16 +21,25 @@ variable {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSp
 /-- The cut space of a set of halfspaces: the intersection of all of them. -/
 def cutSpace (H_ : Set (Halfspace E)) : Set E := ⋂₀ (SetLike.coe '' H_)
 
+/--
+@isnad1 id=convex.0h2v.s6.2972b54cc6e3 from=translated src=- shape=326da679 vocab=3e5ba06c
+-/
 lemma Convex_cutSpace (H_ : Set (Halfspace E)) : Convex ℝ (cutSpace H_) := by
   apply convex_sInter
   rintro _ ⟨ Hi_, _, rfl ⟩
   exact Halfspace_convex Hi_
 
+/--
+@isnad1 id=isclosed.0h2v.s5.a6b7e4b09335 from=translated src=- shape=743a83fe vocab=b7f1f4e1
+-/
 lemma Closed_cutSpace (H_ : Set (Halfspace E)) : IsClosed (cutSpace H_) := by
   apply isClosed_sInter
   rintro _ ⟨ Hi_, _, rfl ⟩
   exact Halfspace_closed Hi_
 
+/--
+@isnad1 id=iff.0h3v.s8.641ee0360838 from=translated src=- shape=5026a876 vocab=f1cae5aa
+-/
 lemma mem_cutSpace (H_ : Set (Halfspace E)) (x : E) :
   x ∈ cutSpace H_ ↔ ∀ Hi, Hi ∈ H_ → Hi.f.1 x ≤ Hi.α := by
   constructor <;> intro h
@@ -47,6 +56,9 @@ lemma mem_cutSpace (H_ : Set (Halfspace E)) (x : E) :
     specialize h Hi_ hHi_
     rwa [Halfspace_mem]
 
+/--
+@isnad1 id=ex.1h1v.s6.8cfc0870307c from=translated src=- shape=419647a8 vocab=efa94475
+-/
 lemma empty_cutSpace (h : ∃ x : E, x ≠ 0) : ∃ (H_ : Set (Halfspace E)), cutSpace H_ = ∅ := by
   rcases h with ⟨ x, hx ⟩
   let xhat := (norm x)⁻¹ • x
@@ -67,6 +79,9 @@ lemma empty_cutSpace (h : ∃ x : E, x ≠ 0) : ∃ (H_ : Set (Halfspace E)), cu
   change f.1 x ≤ -1 at h1
   linarith
 
+/--
+@isnad1 id=ex.0h3v.s8.cda5bdaac46d from=translated src=- shape=c899ed1c vocab=3a2184f4
+-/
 lemma hyperplane_cutSpace (f : {f : (StrongDual ℝ E) // norm f = 1}) (c : ℝ) :
   ∃ (H_ : Set (Halfspace E)), cutSpace H_ = {x | f.1 x = c} := by
   refine ⟨ {Halfspace.mk f c, Halfspace.mk (-f) (-c)}, ?_ ⟩
@@ -88,6 +103,9 @@ lemma hyperplane_cutSpace (f : {f : (StrongDual ℝ E) // norm f = 1}) (c : ℝ)
     · rw [unitSphereDual_neg, neg_apply, neg_le, neg_neg]
       exact le_of_eq h.symm
 
+/--
+@isnad1 id=eq.0h3v.s6.863946676576 from=translated src=- shape=f2c39577 vocab=05bd09bc
+-/
 lemma inter_cutSpace (H_1 H_2 : Set (Halfspace E)) :
   cutSpace (H_1 ∪ H_2) = cutSpace H_1 ∩ cutSpace H_2 := by
   ext x
@@ -109,10 +127,16 @@ def orthoHyperplane (x : {x : E // x ≠ 0}) : Set (Halfspace E) :=
   { Halfspace.mk (pointDualLin x) 0,
     Halfspace.mk (pointDualLin ⟨ -x.1, by rw [neg_ne_zero]; exact x.2 ⟩) 0 }
 
+/--
+@isnad1 id=finite.0h2v.s5.fa5de841a666 from=translated src=- shape=5c9017f9 vocab=62838e3f
+-/
 lemma orthoHyperplane.Finite (x : {x : E // x ≠ 0}) : (orthoHyperplane x).Finite := by
   unfold orthoHyperplane
   simp only [Set.finite_singleton, Set.Finite.insert]
 
+/--
+@isnad1 id=iff.0h3v.s6.74843fc181c0 from=translated src=- shape=3b18c57f vocab=b990b6fc
+-/
 lemma orthoHyperplane_mem (x : {x : E // x ≠ 0}) :
     ∀ (y : E), y ∈ cutSpace (orthoHyperplane x) ↔ inner ℝ x.1 y = (0:ℝ) := by
   intro y
@@ -144,6 +168,9 @@ lemma orthoHyperplane_mem (x : {x : E // x ≠ 0}) :
       InnerProductSpace.toDual_apply_apply, inner_neg_left, inner_smul_left, neg_zero, h,
       mul_zero, le_refl]
 
+/--
+@isnad1 id=iff.0h3v.s7.0884d57b0ab7 from=translated src=- shape=22704417 vocab=856d5052
+-/
 lemma cutSpace_sUnion_orthoHyperplane (X : Set {x : E // x ≠ 0}) : ∀ (y : E),
     y ∈ cutSpace (⋃₀ (orthoHyperplane '' X)) ↔
     ∀ (i : ↑(orthoHyperplane '' X)), y ∈ cutSpace ↑i := by
@@ -151,6 +178,9 @@ lemma cutSpace_sUnion_orthoHyperplane (X : Set {x : E // x ≠ 0}) : ∀ (y : E)
   unfold cutSpace
   rw [Set.sUnion_eq_iUnion, Set.image_iUnion, Set.sInter_iUnion, Set.mem_iInter]
 
+/--
+@isnad1 id=iff.0h3v.s8.10a2780546b1 from=translated src=- shape=5af663e8 vocab=79487ee6
+-/
 lemma orthoHyperplanes_mem (X : Set {x : E // x ≠ 0}) :
     ∀ (y : E), y ∈ cutSpace (⋃₀ (orthoHyperplane '' X)) ↔ ∀ x ∈ X, inner ℝ x.1 y = (0:ℝ) := by
   intro y
@@ -169,6 +199,9 @@ lemma orthoHyperplanes_mem (X : Set {x : E // x ≠ 0}) :
 def submoduleCut [FiniteDimensional ℝ E] (p : Subspace ℝ E) : Set (Halfspace E) :=
   ⋃₀ (orthoHyperplane '' (Subtype.val ⁻¹' (Set.range (Subtype.val ∘ Module.finBasis ℝ pᗮ))))
 
+/--
+@isnad1 id=finite.0h2v.s6.e009b82316d1 from=translated src=- shape=836c8142 vocab=3fce214a
+-/
 lemma Submodule_cut_finite [FiniteDimensional ℝ E] (p : Subspace ℝ E) :
     (submoduleCut p).Finite := by
   apply Set.Finite.sUnion ?_ (fun t ht => by
@@ -178,6 +211,9 @@ lemma Submodule_cut_finite [FiniteDimensional ℝ E] (p : Subspace ℝ E) :
   apply Set.Finite.preimage (Set.injOn_of_injective Subtype.val_injective)
   apply Set.finite_range
 
+/--
+@isnad1 id=ex.0h2v.s7.bbc3f2271a24 from=translated src=- shape=da9fab18 vocab=bc913029
+-/
 lemma Submodule_cutspace [FiniteDimensional ℝ E] (p : Subspace ℝ E) :
     ∃ H_ : Set (Halfspace E), H_.Finite ∧ ↑p = cutSpace H_ := by
   use submoduleCut p

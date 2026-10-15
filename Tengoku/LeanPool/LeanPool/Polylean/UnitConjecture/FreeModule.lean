@@ -69,7 +69,9 @@ def monomCoeff (R X : Type _) [Ring R] [DecidableEq X] (x₀ : X) (nx : R × X) 
   | false => 0
 
 omit [DecidableEq R] in
-/-- Homomorphism property for coordinates for a formal sum with one term. -/
+/-- Homomorphism property for coordinates for a formal sum with one term.
+@isnad1 id=eq.0h6v.s6.a5678b922666 from=translated src=- shape=27f05b4b vocab=450793b7
+-/
 theorem monom_coords_hom (x₀ x : X) (a b : R) :
     monomCoeff R X x₀ (a + b, x) =
       monomCoeff R X x₀ (a, x) + monomCoeff R X x₀ (b, x) := by
@@ -77,7 +79,9 @@ theorem monom_coords_hom (x₀ x : X) (a b : R) :
   cases x == x₀ <;> simp
 
 omit [DecidableEq R] in
-/-- Associativity of scalar multiplication coordinates for a formal sum with one term. -/
+/-- Associativity of scalar multiplication coordinates for a formal sum with one term.
+@isnad1 id=eq.0h6v.s6.30feefc273c8 from=translated src=- shape=b9aa4b25 vocab=b79e348f
+-/
 theorem monom_coords_mul (x₀ : X) (a b : R) :
     monomCoeff R X x₀ (a * b, x) = a * monomCoeff R X x₀ (b, x) := by
   simp only [monomCoeff]
@@ -85,6 +89,7 @@ theorem monom_coords_mul (x₀ : X) (a b : R) :
 
 omit [DecidableEq R] in
 /-- Coordinates for a formal sum with one term with scalar `0`.
+@isnad1 id=eq.0h4v.s5.735919ccd713 from=translated src=- shape=27b1626e vocab=7097d216
 -/
 theorem monom_coords_at_zero (x₀ x : X) : monomCoeff R X x₀ (0, x) = 0 := by
   rw [monomCoeff]
@@ -110,7 +115,9 @@ def _root_.LeanPool.Polylean.FormalSum.support (s : FormalSum R X) : List X :=
 open FormalSum
 
 omit [DecidableEq R] in
-/-- Support contains elements `x : X` where the coordinate is not `0`. -/
+/-- Support contains elements `x : X` where the coordinate is not `0`.
+@isnad1 id=mem.1h4v.s5.b9d8fbefe411 from=translated src=- shape=adc70f60 vocab=50ca5453
+-/
 theorem nonzero_coord_in_support (s : FormalSum R X) :
     ∀ x : X, 0 ≠ s.coords x → x ∈ s.support :=
   match s with
@@ -146,7 +153,9 @@ def equalOnList (l : List X) (f g : X → R) : Prop :=
   | h :: t => (f h = g h) ∧ (equalOnList t f g)
 
 omit [Ring R] [DecidableEq R] [DecidableEq X] in
-/-- Equal functions are equal on arbitrary supports. -/
+/-- Equal functions are equal on arbitrary supports.
+@isnad1 id=equalonl.1h5v.s4.98dd7ecc9325 from=translated src=- shape=bf98449b vocab=1f1e9ec6
+-/
 theorem equalOnList_of_equal (l : List X) (f g : X → R) :
     f = g → equalOnList l f g := by
   intro hyp
@@ -207,7 +216,9 @@ def addMonomial (term : R × X) : FormalSum R X → FormalSum R X
         if head.1 + term.1 = 0 then tail else (head.1 + term.1, head.2) :: tail
       else head :: addMonomial term tail
 
-/-- Combining a monomial preserves its contribution to every coordinate. -/
+/-- Combining a monomial preserves its contribution to every coordinate.
+@isnad1 id=eq.0h5v.s6.4ac28f57b757 from=translated src=- shape=ee36a992 vocab=79bed770
+-/
 theorem coords_addMonomial (term : R × X) (sum : FormalSum R X) (x : X) :
     (addMonomial term sum).coords x = monomCoeff R X x term + sum.coords x := by
   induction sum with
@@ -236,7 +247,9 @@ def combineCoefficients : FormalSum R X → FormalSum R X
   | [] => []
   | term :: tail => addMonomial term (combineCoefficients tail)
 
-/-- Combining coefficients preserves every coordinate of a formal sum. -/
+/-- Combining coefficients preserves every coordinate of a formal sum.
+@isnad1 id=eq.0h4v.s5.ac4690229303 from=translated src=- shape=5fdfb26f vocab=3ca4dea2
+-/
 theorem coords_combineCoefficients (sum : FormalSum R X) (x : X) :
     sum.combineCoefficients.coords x = sum.coords x := by
   induction sum with
@@ -258,22 +271,30 @@ def eqlCoords (R X : Type) [Ring R] [DecidableEq X] (s₁ s₂ : FormalSum R X) 
 namespace eqlCoords
 
 omit [DecidableEq R] in
-/-- Relation by equal coordinates is reflexive. -/
+/-- Relation by equal coordinates is reflexive.
+@isnad1 id=eqlcoord.0h3v.s4.8b9a181b1b6a from=translated src=- shape=9db9b5c5 vocab=ac9671f0
+-/
 theorem refl (s : FormalSum R X) : eqlCoords R X s s :=
   by
   rfl
 
 omit [DecidableEq R] in
-/-- Relation by equal coordinates is  symmetric. -/
+/-- Relation by equal coordinates is  symmetric.
+@isnad1 id=eqlcoord.1h4v.s5.8a1c423b341b from=translated src=- shape=9492d6dd vocab=ac9671f0
+-/
 theorem symm {s₁ s₂ : FormalSum R X} : eqlCoords R X s₁ s₂ → eqlCoords R X s₂ s₁ := Eq.symm
 
 omit [DecidableEq R] in
-/-- Relation by equal coordinates is transitive. -/
+/-- Relation by equal coordinates is transitive.
+@isnad1 id=eqlcoord.2h5v.s5.de03b4779bbc from=translated src=- shape=a4350c4e vocab=ac9671f0
+-/
 theorem trans {s₁ s₂ s₃ : FormalSum R X} :
     eqlCoords R X s₁ s₂ → eqlCoords R X s₂ s₃ → eqlCoords R X s₁ s₃ := Eq.trans
 
 omit [DecidableEq R] in
-/-- Relation by equal coordinates is an equivalence relation. -/
+/-- Relation by equal coordinates is an equivalence relation.
+@isnad1 id=equivale.0h2v.s4.b71169deb337 from=translated src=- shape=e5577847 vocab=49558a90
+-/
 theorem is_equivalence : Equivalence (eqlCoords R X) :=
   { refl := refl, symm := symm, trans := trans }
 
@@ -304,7 +325,9 @@ We also show that the coordinate functions are defined on the quotient. -/
 
 namespace FreeModule
 
-/-- Equal combined formal sums represent equal free-module elements. -/
+/-- Equal combined formal sums represent equal free-module elements.
+@isnad1 id=eq.1h4v.s6.f23d86982f89 from=translated src=- shape=cae08eaa vocab=5e2441e9
+-/
 theorem quotient_eq_of_combineCoefficients_eq (left right : FormalSum R X)
     (h : left.combineCoefficients = right.combineCoefficients) :
     (⟦left⟧ : FreeModule R X) = ⟦right⟧ := by
@@ -313,7 +336,9 @@ theorem quotient_eq_of_combineCoefficients_eq (left right : FormalSum R X)
   rw [← FormalSum.coords_combineCoefficients left x,
     ← FormalSum.coords_combineCoefficients right x, h]
 
-/-- Equality on both supports gives equal quotients. -/
+/-- Equality on both supports gives equal quotients.
+@isnad1 id=eq.2h4v.s6.9a9cb427dfbf from=translated src=- shape=f9d35d9e vocab=1821dbc2
+-/
 theorem eqlquot_of_equalOnList (s₁ s₂ : FormalSum R X)
     (ch₁ : equalOnList s₁.support s₁.coords s₂.coords)
     (ch₂ : equalOnList s₂.support s₁.coords s₂.coords) : @Eq (R[X]) ⟦s₁⟧ ⟦s₂⟧ := by
@@ -366,7 +391,9 @@ def beqOnSupport (l : List X) (f g : X → R) : Bool :=
   l.all <| fun x => decide (f x = g x)
 
 omit [Ring R] [DecidableEq X] in
-/-- Equality on support from boolean equality. -/
+/-- Equality on support from boolean equality.
+@isnad1 id=equalonl.1h5v.s5.b660c1ed3f8a from=translated src=- shape=4d1a3e88 vocab=8c1b5e8d
+-/
 theorem eql_on_support_of_true {l : List X} {f g : X → R} :
     beqOnSupport l f g = true → equalOnList l f g := by
   intro hyp
@@ -379,7 +406,9 @@ theorem eql_on_support_of_true {l : List X} {f g : X → R} :
     simp only [beqOnSupport, List.all_eq_true, decide_eq_true_eq] at step
     simp_all
 
-/-- Boolean equality on support gives equal quotients. -/
+/-- Boolean equality on support gives equal quotients.
+@isnad1 id=eq.2h4v.s6.cfddd3e65a3b from=translated src=- shape=5c405c38 vocab=1fa9882f
+-/
 theorem eqlquot_of_beq_support (s₁ s₂ : FormalSum R X)
   (c₁ : beqOnSupport s₁.support s₁.coords s₂.coords)
   (c₂ : beqOnSupport s₂.support s₁.coords s₂.coords) : @Eq (R[X]) ⟦s₁⟧ ⟦s₂⟧ :=
@@ -408,6 +437,7 @@ lemma eq_of_beq_true : ∀ x₁ x₂ : R[X], x₁.beqQuot x₂ = true → x₁ =
 
 /--
 Boolean inequality for the quotient is inequality.
+@isnad1 id=not.1h4v.s5.7874bcf759c1 from=translated src=- shape=e7745914 vocab=0bd7bb05
 -/
 lemma neq_of_beq_false :
     ∀ x₁ x₂ : R[X], x₁.beqQuot x₂ = false → Not (x₁ = x₂) := by
@@ -435,7 +465,9 @@ Decidable equality for the free module.
 ### Induced coordinates on the quotient.
 -/
 
-/-- Coordinates are well defined on the quotient. -/
+/-- Coordinates are well defined on the quotient.
+@isnad1 id=eq.0h5v.s5.cd78afd638a4 from=translated src=- shape=2fd31f2c vocab=31266814
+-/
 theorem equal_coords_of_approx (s₁ s₂ : FormalSum R X) :
     s₁ ≈ s₂ → s₁.coords = s₂.coords :=
   fun hyp => funext fun x₀ => congrFun hyp x₀
@@ -472,7 +504,9 @@ def scmul : R → FormalSum R X → FormalSum R X
     (r * a₀, x₀) :: (scmul r t)
 
 omit [DecidableEq R] in
-/-- Coordinates after scalar multiplication. -/
+/-- Coordinates after scalar multiplication.
+@isnad1 id=eq.0h5v.s5.a555ddd821f7 from=translated src=- shape=41ec239e vocab=e37f05f1
+-/
 theorem scmul_coords (r : R) (s : FormalSum R X) (x₀ : X) :
     (r * s.coords x₀) = (s.scmul r).coords x₀ := by
   induction s with
@@ -502,7 +536,9 @@ def _root_.LeanPool.Polylean.FreeModule.scmul : R → R[X] → R[X] := by
 -/
 
 omit [DecidableEq R] in
-/-- Coordinates add when appending. -/
+/-- Coordinates add when appending.
+@isnad1 id=eq.0h5v.s6.0e6ca77d7feb from=translated src=- shape=0f7ee652 vocab=d26cfcfe
+-/
 theorem append_coords (s₁ s₂ : FormalSum R X) (x₀ : X) :
     (s₁.coords x₀) + (s₂.coords x₀) = (s₁ ++ s₂).coords x₀ := by
   induction s₁ with
@@ -511,7 +547,9 @@ theorem append_coords (s₁ s₂ : FormalSum R X) (x₀ : X) :
   | cons h t ih =>
     simp only [coords, add_assoc, List.cons_append, ← ih]
 
-/-- Coordinates well-defined up to equivalence. -/
+/-- Coordinates well-defined up to equivalence.
+@isnad1 id=equiv.0h8v.s7.e738920abf5c from=translated src=- shape=76757481 vocab=e6f87489
+-/
 theorem append_equiv (s₁ s₂ t₁ t₂ : FormalSum R X) :
     (s₁ ≈ s₂) → (t₁ ≈ t₂) → s₁ ++ t₁ ≈ s₂ ++ t₂ := by
     intro eqv₁ eqv₂
@@ -554,7 +592,9 @@ namespace FormalSum
 -/
 
 omit [DecidableEq R] [DecidableEq X] in
-/-- Associativity for scalar multiplication for formal sums. -/
+/-- Associativity for scalar multiplication for formal sums.
+@isnad1 id=eq.0h5v.s5.50755cbe18d1 from=translated src=- shape=7e30a126 vocab=286e43bc
+-/
 theorem action (a b : R) (s : FormalSum R X) : (s.scmul b).scmul a = s.scmul (a * b) := by
   induction s with
   | nil =>
@@ -562,7 +602,9 @@ theorem action (a b : R) (s : FormalSum R X) : (s.scmul b).scmul a = s.scmul (a 
   | cons h t ih =>
     simp only [scmul, ih, mul_assoc]
 
-/-- Distributivity for the module operations. -/
+/-- Distributivity for the module operations.
+@isnad1 id=equiv.0h5v.s6.2e71efeae2e6 from=translated src=- shape=ba587120 vocab=76b05399
+-/
 theorem act_sum (a b : R) (s : FormalSum R X) : (s.scmul a) ++ (s.scmul b) ≈ s.scmul (a + b) := by
   induction s with
   | nil =>
@@ -595,14 +637,18 @@ namespace FreeModule
 ### Module properties for the free module.
 -/
 
-/-- Associativity for scalar and ring products. -/
+/-- Associativity for scalar and ring products.
+@isnad1 id=eq.0h5v.s6.69436d32957a from=translated src=- shape=e72abd88 vocab=4eff4238
+-/
 theorem module_action (a b : R) (x : R[X]) : a • (b • x) = (a * b) • x := by
   apply @Quotient.ind (motive := fun x : R[X] => a • (b • x) = (a * b) • x)
   intro s
   apply Quotient.sound
   rw [FormalSum.action]
 
-/-- Commutativity of addition. -/
+/-- Commutativity of addition.
+@isnad1 id=eq.0h4v.s6.328fc891dd72 from=translated src=- shape=3542eba8 vocab=dd11ec2a
+-/
 theorem addn_comm (x₁ x₂ : R[X]) : x₁ + x₂ = x₂ + x₁ := by
   apply @Quotient.ind₂ (motive := fun x₁ x₂ : R[X] => x₁ + x₂ = x₂ + x₁)
   intro s₁ s₂
@@ -614,6 +660,9 @@ theorem addn_comm (x₁ x₂ : R[X]) : x₁ + x₂ = x₂ + x₁ := by
   rw [← lm₁, ← lm₂]
   simp only [add_comm]
 
+/--
+@isnad1 id=eq.0h5v.s7.fbfec2c7506b from=translated src=- shape=d40d70d2 vocab=f5093619
+-/
 theorem add_assoc_aux (s₁ : FormalSum R X) (x₂ x₃ : R[X]) :
     (⟦s₁⟧ + x₂) + x₃ = ⟦s₁⟧ + (x₂ + x₃) := by
   apply @Quotient.ind₂
@@ -623,7 +672,9 @@ theorem add_assoc_aux (s₁ : FormalSum R X) (x₂ x₃ : R[X]) :
   apply funext
   simp_all
 
-/-- Associativity of addition. -/
+/-- Associativity of addition.
+@isnad1 id=eq.0h5v.s7.0562739a1a83 from=translated src=- shape=631ddc0f vocab=dd11ec2a
+-/
 theorem addn_assoc (x₁ x₂ x₃ : R[X]) : (x₁ + x₂) + x₃ = x₁ + (x₂ + x₃) := by
   apply @Quotient.ind (motive := fun x₁ : R[X] => (x₁ + x₂) + x₃ = x₁ + (x₂ + x₃))
   intro x₁
@@ -632,7 +683,9 @@ theorem addn_assoc (x₁ x₂ x₃ : R[X]) : (x₁ + x₂) + x₃ = x₁ + (x₂
 /-- The zero element of the free module. -/
 def zero : R[X] := ⟦[]⟧
 
-/-- adding zero -/
+/-- adding zero
+@isnad1 id=eq.0h3v.s6.833c687d0494 from=translated src=- shape=f7199878 vocab=f4c31a87
+-/
 theorem addn_zero (x : R[X]) : x + zero = x := by
   apply @Quotient.ind (motive := fun x : R[X] => x + zero = x)
   intro x
@@ -640,7 +693,9 @@ theorem addn_zero (x : R[X]) : x + zero = x := by
   apply funext
   simp_all
 
-/-- adding zero -/
+/-- adding zero
+@isnad1 id=eq.0h3v.s6.7edeabc20bc9 from=translated src=- shape=2626fc66 vocab=f4c31a87
+-/
 theorem zero_addn (x : R[X]) : zero + x = x := by
   apply @Quotient.ind (motive := fun x : R[X] => zero + x = x)
   intro x
@@ -648,7 +703,9 @@ theorem zero_addn (x : R[X]) : zero + x = x := by
   apply funext
   simp_all
 
-/-- Distributivity for addition of module elements. -/
+/-- Distributivity for addition of module elements.
+@isnad1 id=eq.0h5v.s7.2113adbb3790 from=translated src=- shape=23aaae1f vocab=1d115ea6
+-/
 theorem elem_distrib (a : R) (x₁ x₂ : R[X]) :
     a • (x₁ + x₂) = a • x₁ + a • x₂ := by
   apply @Quotient.ind₂
@@ -664,7 +721,9 @@ theorem elem_distrib (a : R) (x₁ x₂ : R[X]) :
   rw [← scmul_coords]
   simp only [left_distrib]
 
-/-- Distributivity with respect to scalars. -/
+/-- Distributivity with respect to scalars.
+@isnad1 id=eq.0h5v.s7.ee6fb6c7d550 from=translated src=- shape=7e39d499 vocab=1d115ea6
+-/
 theorem coeffs_distrib (a b : R) (x : R[X]) : a • x + b • x = (a + b) • x := by
   apply @Quotient.ind (motive := fun x : R[X] =>
     a • x + b • x = (a + b) • x)
@@ -676,7 +735,9 @@ theorem coeffs_distrib (a b : R) (x : R[X]) : a • x + b • x = (a + b) • x 
   let l'' := congrFun l x₀
   exact l''
 
-/-- Multiplication by `1 : R`. -/
+/-- Multiplication by `1 : R`.
+@isnad1 id=eq.0h3v.s5.d1b2101044d5 from=translated src=- shape=d7a22a94 vocab=cbf5cc4e
+-/
 theorem unit_coeffs (x : R[X]) : (1 : R) • x = x := by
   apply @Quotient.ind (motive := fun x : R[X] =>
     (1 : R) • x = x)
@@ -688,7 +749,9 @@ theorem unit_coeffs (x : R[X]) : (1 : R) • x = x := by
   rw [← l]
   simp only [one_mul]
 
-/-- Multiplication by `0 : R`. -/
+/-- Multiplication by `0 : R`.
+@isnad1 id=eq.0h3v.s6.548af07e3daa from=translated src=- shape=cbcaf327 vocab=33b95bdf
+-/
 theorem zero_coeffs (x : R[X]) : (0 : R) • x = ⟦ [] ⟧ := by
   apply @Quotient.ind (motive := fun x : R[X] =>
     (0 : R) • x = ⟦ [] ⟧)
@@ -779,7 +842,9 @@ infix: 65 " ≃ " => FormalSum.equiv
 ### Invariance of coordinates under elementary moves
 -/
 
-/-- Coordinates are invariant under moves. -/
+/-- Coordinates are invariant under moves.
+@isnad1 id=eq.1h5v.s5.f6616da8b070 from=translated src=- shape=613b391e vocab=b7a4868c
+-/
 theorem coords_move_invariant (x₀ : X) (s₁ s₂ : FormalSum R X)
     (h : ElementaryMove R X s₁ s₂) : coords s₁ x₀ = coords s₂ x₀ := by
   induction h with
@@ -800,13 +865,17 @@ def _root_.LeanPool.Polylean.FreeModuleAux.coeff (x₀ : X) : FreeModuleAux R X 
 
 namespace FormalSum
 
-/-- Commutative diagram for coordinates. -/
+/-- Commutative diagram for coordinates.
+@isnad1 id=eq.0h4v.s5.554e52acae6b from=translated src=- shape=05735d36 vocab=7fdb2bec
+-/
 theorem coeff_factors (x : X) (s : FormalSum R X) : FreeModuleAux.coeff x (sum s) = s.coords x := by
   simp only [FreeModuleAux.coeff]
   apply @Quot.liftBeta (r := ElementaryMove R X) (f := fun s => s.coords x)
   apply coords_move_invariant
 
-/-- Coordinates well-defined under the equivalence generated by moves. -/
+/-- Coordinates well-defined under the equivalence generated by moves.
+@isnad1 id=eq.1h5v.s5.4108beb669d4 from=translated src=- shape=613b391e vocab=8bc7b364
+-/
 theorem coords_well_defined (x : X) (s₁ s₂ : FormalSum R X) :
     s₁ ≃ s₂ → s₁.coords x = s₂.coords x := by
   intro hyp
@@ -816,7 +885,9 @@ theorem coords_well_defined (x : X) (s₁ s₂ : FormalSum R X) :
 ### Equal coordinates implies related by elementary moves.
 -/
 
-/-- Cons respects equivalence. -/
+/-- Cons respects equivalence.
+@isnad1 id=equiv.1h6v.s5.64c01a6af72a from=translated src=- shape=e96dbb97 vocab=425d1c53
+-/
 theorem cons_equiv_of_equiv (s₁ s₂ : FormalSum R X) (a : R) (x : X) :
     s₁ ≃ s₂ → (a, x) :: s₁ ≃ (a, x) :: s₂ := by
   intro h
@@ -834,7 +905,9 @@ theorem cons_equiv_of_equiv (s₁ s₂ : FormalSum R X) (a : R) (x : X) :
   rw [h]
 
 /-- If a coordinate `x` for a formal sum `s` is non-zero, `s` is related by moves to a formal sum
-with first term `x` with coefficient its coordinates, and the rest shorter than `s`. -/
+with first term `x` with coefficient its coordinates, and the rest shorter than `s`.
+@isnad1 id=ex.1h4v.s6.04cb8feffc68 from=translated src=- shape=3b73ebda vocab=9966c071
+-/
 theorem nonzero_coeff_has_complement (x₀ : X) (s : FormalSum R X) :
   0 ≠ s.coords x₀ →
   (∃ ys : FormalSum R X, (((s.coords x₀, x₀) :: ys) ≃ s) ∧
@@ -898,7 +971,9 @@ theorem nonzero_coeff_has_complement (x₀ : X) (s : FormalSum R X) :
         exact Eq.trans eqn₁ eqn₂
       exact ⟨ys, eqn, lIneq⟩
 
-/-- If all coordinates are zero, then moves relate to the empty sum. -/
+/-- If all coordinates are zero, then moves relate to the empty sum.
+@isnad1 id=equiv.1h3v.s5.feda60319bbc from=translated src=- shape=9b8475da vocab=18e34794
+-/
 theorem equiv_e_of_zero_coeffs (s : FormalSum R X) (hyp : ∀ x : X, s.coords x = 0) : s ≃ [] :=
   match mt : s with
   | [] => rfl
@@ -979,7 +1054,9 @@ theorem equiv_e_of_zero_coeffs (s : FormalSum R X) (hyp : ∀ x : X, s.coords x 
         rfl
   termination_by s.length
 
-/-- If coordinates are equal, the sums are related by moves. -/
+/-- If coordinates are equal, the sums are related by moves.
+@isnad1 id=equiv.1h4v.s5.b673a3b89afc from=translated src=- shape=180b9b11 vocab=8bc7b364
+-/
 theorem equiv_of_equal_coeffs (s₁ s₂ : FormalSum R X)
     (hyp : ∀ x : X, s₁.coords x = s₂.coords x) : s₁ ≃ s₂ :=
   match s₁ with
@@ -1055,7 +1132,9 @@ theorem equiv_of_equal_coeffs (s₁ s₂ : FormalSum R X)
 /-!
 ## Functions invariant under moves pass to the quotient.
 -/
-/-- Lifting functions to the move induced quotient. -/
+/-- Lifting functions to the move induced quotient.
+@isnad1 id=eq.1h7v.s6.ba4299efcb85 from=translated src=- shape=d07d7138 vocab=9f4dade4
+-/
 theorem func_eql_of_move_equiv {β : Sort u} (f : FormalSum R X → β) :
     (∀ s₁ s₂ : FormalSum R X, ElementaryMove R X s₁ s₂ → f s₁ = f s₂) →
       (∀ s₁ s₂ : FormalSum R X, s₁ ≈ s₂ → f s₁ = f s₂) :=
@@ -1090,7 +1169,9 @@ open FormalSum
 
 omit [DecidableEq R] in
 /-- For `a : R` and `a ≠ 0`, injectivity of the function `x : X ↦ [(a, x)]` up to
-equivalence. -/
+equivalence.
+@isnad1 id=eq.2h5v.s6.e21fc043b0b7 from=translated src=- shape=f21f8329 vocab=8914e96e
+-/
 theorem monom_elem_eq_of_coord_eq_nonzero (a : R) (non_zero : a ≠ 0) (x₀ x₁ : X) :
     coords [(a, x₀)] = coords [(a, x₁)] → x₀ = x₁ := by
   intro hyp
@@ -1108,7 +1189,9 @@ theorem monom_elem_eq_of_coord_eq_nonzero (a : R) (non_zero : a ≠ 0) (x₀ x�
   exact Eq.symm lem'
 
 omit [DecidableEq R] in
-/-- For `x : X`, injectivity of the function `a : R ↦ [(a, x)]` up to equivalence. -/
+/-- For `x : X`, injectivity of the function `a : R ↦ [(a, x)]` up to equivalence.
+@isnad1 id=eq.1h5v.s5.cc558101772e from=translated src=- shape=14226fe5 vocab=8914e96e
+-/
 theorem monom_coeff_eq_of_coord_eq (x : X) (a₀ a₁ : R) :
     coords [(a₀, x)] = coords [(a₁, x)] → a₀ = a₁ := by
   intro hyp
@@ -1120,7 +1203,9 @@ theorem monom_coeff_eq_of_coord_eq (x : X) (a₀ a₁ : R) :
 def coeffInclusion (x₀ : X) : R → R[X] :=
   fun a₀ => ⟦[(a₀, x₀)]⟧
 
-/-- Injectivity of `coeffInclusion` -/
+/-- Injectivity of `coeffInclusion`
+@isnad1 id=eq.1h5v.s5.5aca97281592 from=translated src=- shape=3ea3c5f4 vocab=03917901
+-/
 theorem coeffInclusion_injective (x₀ : X)
  (a₀ a₁ : R) : coeffInclusion x₀ a₀ =
                 coeffInclusion x₀ a₁ → a₀ = a₁ := by
@@ -1133,7 +1218,9 @@ theorem coeffInclusion_injective (x₀ : X)
 def baseInclusion (a₀ : R) : X → R[X] :=
   fun x₀ => ⟦[(a₀, x₀)]⟧
 
-/-- Injectivity of `baseInclusion a` give `a ≠0` -/
+/-- Injectivity of `baseInclusion a` give `a ≠0`
+@isnad1 id=eq.2h5v.s5.578e20db85b8 from=translated src=- shape=971e66da vocab=d3dbe88b
+-/
 theorem baseInclusion_injective (a₀ : R) (non_zero : a₀ ≠ 0)
  (x₀ x₁ : X) : baseInclusion a₀ x₀ =
                 baseInclusion a₀ x₁ → x₀ = x₁ := by
@@ -1149,8 +1236,14 @@ by constructing a norm ball containing all the non-zero coordinates, and then ma
 non-zero coordinates.
 -/
 
+/--
+@isnad1 id=le.0h2v.s3.7ed6c706edd5 from=translated src=- shape=11d07269 vocab=305c3713
+-/
 theorem fst_le_max (a b : Nat) : a ≤ max a b := Nat.le_max_left a b
 
+/--
+@isnad1 id=le.0h2v.s3.0fc54f98e9a3 from=translated src=- shape=0a05a3ea vocab=305c3713
+-/
 theorem snd_le_max (a b : Nat) : b ≤ max a b := Nat.le_max_right a b
 
 theorem eq_fst_or_snd_of_max (a b : Nat) : (max a b = a) ∨ (max a b = b) := by omega
@@ -1166,6 +1259,9 @@ def maxNormSuccOnSupp (norm : X → Nat) (crds : X → R) (s : List X) : Nat :=
         maxNormSuccOnSupp norm crds tail
 
 omit [DecidableEq X] in
+/--
+@isnad1 id=ex.1h5v.s6.030de3c059e9 from=translated src=- shape=b58b850e vocab=6f4c8b43
+-/
 theorem max_in_support (norm : X → Nat) (crds : X → R) (s : List X) :
     maxNormSuccOnSupp norm crds s > 0 →
       ∃ x : X, crds x ≠ 0 ∧ maxNormSuccOnSupp norm crds s = norm x + 1 := by
@@ -1192,6 +1288,9 @@ theorem max_in_support (norm : X → Nat) (crds : X → R) (s : List X) :
             exact ⟨head, And.intro c rfl⟩
 
 omit [DecidableEq X] in
+/--
+@isnad1 id=le.2h6v.s6.543e2f64bfc6 from=translated src=- shape=36076b4c vocab=6c3d04ed
+-/
 theorem supp_below_max (norm : X → Nat) (crds : X → R) (s : List X) :
     (x : X) → x ∈ s → crds x ≠ 0 → norm x + 1 ≤ maxNormSuccOnSupp norm crds s := by
     intro x h₁ h₂
@@ -1213,6 +1312,9 @@ theorem supp_below_max (norm : X → Nat) (crds : X → R) (s : List X) :
         simpa only [c, ↓reduceIte, ge_iff_le] using l
 
 omit [DecidableEq X] in
+/--
+@isnad1 id=eq.2h6v.s6.0bf79e027d20 from=translated src=- shape=e32ee388 vocab=fc860ea5
+-/
 theorem supp_zero_of_max_zero (norm : X → Nat) (crds : X → R) (s : List X) :
     maxNormSuccOnSupp norm crds s = 0 →
       (x : X) → x ∈ s → crds x = 0 := fun hyp x hm =>
@@ -1227,6 +1329,9 @@ def _root_.LeanPool.Polylean.FormalSum.normSucc (norm : X → Nat) (s : FormalSu
       maxNormSuccOnSupp norm s.coords (s.support)
 
 open FormalSum
+/--
+@isnad1 id=le.0h6v.s6.1a1a386c78f8 from=translated src=- shape=59a82ad9 vocab=209f23fd
+-/
 theorem normsucc_le (norm : X → Nat) (s₁ s₂ : FormalSum R X) (eql : s₁ ≈ s₂) :
     s₁.normSucc norm ≤ s₂.normSucc norm :=
       if c : s₁.normSucc norm = 0 then
@@ -1246,6 +1351,9 @@ theorem normsucc_le (norm : X → Nat) (s₁ s₂ : FormalSum R X) (eql : s₁ �
         rw [p.right]
         apply supp_below_max norm s₂.coords s₂.support x₀ in_supp nonzr'
 
+/--
+@isnad1 id=eq.0h6v.s6.185717c0ff9d from=translated src=- shape=59a82ad9 vocab=775565c1
+-/
 theorem norm_succ_eq (norm : X → Nat) (s₁ s₂ : FormalSum R X) (eql : s₁ ≈ s₂) :
     s₁.normSucc norm = s₂.normSucc norm := by
       apply Nat.le_antisymm

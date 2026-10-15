@@ -57,13 +57,18 @@ structure IsReplaceDisk (e : OpenPartialHomeomorph X ℂ) (c : ℂ) (r : ℝ) (s
   preimage_subset : e.symm '' closedBall c r ⊆ s
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
+/--
+@isnad1 id=iscompac.1h5v.s6.ec207cd4fbd3 from=translated src=- shape=b99028d8 vocab=dbb6e6eb
+-/
 theorem IsReplaceDisk.compact_preimage (hd : IsReplaceDisk e c r s) :
     IsCompact (e.symm '' closedBall c r) :=
   (isCompact_closedBall c r).image_of_continuousOn
     (e.symm.continuousOn.mono (by simpa using hd.closedBall_subset))
 
 omit [ChartedSpace ℂ X] [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
-/-- The replacement agrees with `g` off the closed replacement disk. -/
+/-- The replacement agrees with `g` off the closed replacement disk.
+@isnad1 id=eqon.0h5v.s6.fb8f06378026 from=translated src=- shape=807313f8 vocab=d4d8ccc3
+-/
 theorem surfaceReplace_eqOn_compl :
     EqOn (surfaceReplace g e c r) g (e.symm '' closedBall c r)ᶜ := by
   intro x hx
@@ -137,7 +142,9 @@ The Hausdorff hypothesis is genuinely needed: on the plane with doubled
 origin, with `g = ‖chart value‖²`, the replacement on the copy-1 unit disk is
 `≡ 1` on the shared punctured disk but `0` at the doubled origin, which lies
 in the closure of the replacement disk but outside `e.source` — so the
-replacement fails to be continuous, let alone subharmonic. -/
+replacement fails to be continuous, let alone subharmonic.
+@isnad1 id=surfaces.3h6v.s6.4907788a9da9 from=translated src=- shape=5078e855 vocab=b3bf586a
+-/
 theorem surfaceReplace_surfaceSubharmonicOn [T2Space X] (hs : IsOpen s)
     (hg : SurfaceSubharmonicOn g s) (hd : IsReplaceDisk e c r s) :
     SurfaceSubharmonicOn (surfaceReplace g e c r) s := by
@@ -251,7 +258,9 @@ theorem surfaceReplace_surfaceSubharmonicOn [T2Space X] (hs : IsOpen s)
     exact hle1.trans hle2
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
-/-- The replacement stays in `[0,1]` if `g` does (on `s`). -/
+/-- The replacement stays in `[0,1]` if `g` does (on `s`).
+@isnad1 id=mem.4h7v.s7.935833a0eb22 from=translated src=- shape=88d4206e vocab=cb51e64e
+-/
 theorem surfaceReplace_mem_Icc (hg : SurfaceSubharmonicOn g s)
     (hd : IsReplaceDisk e c r s) (hb : ∀ x ∈ s, g x ∈ Icc (0 : ℝ) 1) :
     ∀ x ∈ s, surfaceReplace g e c r x ∈ Icc (0 : ℝ) 1 := by
@@ -312,18 +321,26 @@ variable {𝓕 : Set (X → ℝ)} {s : Set X} {e : OpenPartialHomeomorph X ℂ} 
 end PerronSeq
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
+/--
+@isnad1 id=le.3h5v.s6.5d5cd61b7d03 from=translated src=- shape=42481728 vocab=4afb4c2d
+-/
 theorem IsPerronFamily.le_perronSup {𝓕 : Set (X → ℝ)} {s : Set X}
     (h𝓕 : IsPerronFamily 𝓕 s) {g : X → ℝ} (hg : g ∈ 𝓕) :
     ∀ x ∈ s, g x ≤ perronSup 𝓕 x := fun x hx ↦
   le_csSup ⟨1, fun _ ⟨g', hg', hgx⟩ ↦ hgx ▸ (h𝓕.bounds g' hg' x hx).2⟩ ⟨g, hg, rfl⟩
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
+/--
+@isnad1 id=le.2h5v.s6.a3b95a138e6c from=translated src=- shape=3962f817 vocab=4afb4c2d
+-/
 theorem IsPerronFamily.perronSup_le {𝓕 : Set (X → ℝ)} {s : Set X}
     (h𝓕 : IsPerronFamily 𝓕 s) {M : ℝ} {x : X}
     (hM : ∀ g ∈ 𝓕, g x ≤ M) : perronSup 𝓕 x ≤ M :=
   csSup_le (h𝓕.nonempty.image _) fun _ ⟨g, hg, hgx⟩ ↦ hgx ▸ hM g hg
 
-/-- `SubMeanOn` transfers along equality on the domain. -/
+/-- `SubMeanOn` transfers along equality on the domain.
+@isnad1 id=submeano.2h3v.s4.cbea313d7587 from=translated src=- shape=8f916f39 vocab=b0a858bf
+-/
 theorem subMeanOn_congr {g₁ g₂ : ℂ → ℝ} {s : Set ℂ} (hg : SubMeanOn g₁ s)
     (h : EqOn g₂ g₁ s) : SubMeanOn g₂ s := by
   refine ⟨hg.continuousOn.congr h, fun c r hr hsub ↦ ?_⟩
@@ -335,7 +352,9 @@ theorem subMeanOn_congr {g₁ g₂ : ℂ → ℝ} {s : Set ℂ} (hg : SubMeanOn 
   exact hg.submean c r hr hsub
 
 omit [IsManifold (modelWithCornersSelf ℂ ℂ) 1 X] in
-/-- `SurfaceSubharmonicOn` transfers along equality on the domain. -/
+/-- `SurfaceSubharmonicOn` transfers along equality on the domain.
+@isnad1 id=surfaces.2h4v.s5.202cc3092c57 from=translated src=- shape=5b205cd4 vocab=7a4e0d46
+-/
 theorem surfaceSubharmonicOn_congr {g₁ g₂ : X → ℝ} {s : Set X}
     (hg : SurfaceSubharmonicOn g₁ s) (h : EqOn g₂ g₁ s) : SurfaceSubharmonicOn g₂ s := by
   refine ⟨hg.continuousOn.congr h, fun e' he' ↦ ?_⟩

@@ -64,12 +64,21 @@ variable
 /-- Borel σ-algebra on the manifold `M`. -/
 local instance instMeasurableSpaceMChartMeasureRiemannianVolume :
     MeasurableSpace M := borel M
+/--
+@isnad1 id=borelspa.0h1v.s3.160ddfa200e5 from=translated src=- shape=c6850a32 vocab=316cb225
+-/
 local instance instBorelSpaceMChartMeasureRiemannianVolume : BorelSpace M := ⟨rfl⟩
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceEChartMeasureRiemannianVolume :
     MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.6b152cae8736 from=translated src=- shape=c6850a32 vocab=2770332b
+-/
 local instance instBorelSpaceEChartMeasureRiemannianVolume : BorelSpace E := ⟨rfl⟩
+/--
+@isnad1 id=opensmea.0h1v.s4.0251f4412047 from=translated src=- shape=c6850a32 vocab=ebe20fb8
+-/
 local instance
     instOpensMeasurableSpaceEChartMeasureRiemannianVolume :
     OpensMeasurableSpace E := by
@@ -143,6 +152,9 @@ private lemma volume_div_hausdorff_closedBall_unit_ne_top :
 omit [IsManifold I (1 : WithTop ℕ∞) M]
   [IsContinuousRiemannianBundle E (fun x : M => TangentSpace I x)]
   [T3Space M] in
+/--
+@isnad1 id=ne.0h6v.s8.73d1eb4a7e0a from=translated src=- shape=9fe4eb34 vocab=fd8757e1
+-/
 lemma chartMeasure_volume_constant_ne_top (i : dR.d.ι) :
     ((((dR.C i : ℝ≥0∞) ^ (Module.finrank ℝ E : ℝ)) *
           ((μH[(Module.finrank ℝ E : ℝ)] (Metric.closedBall (0 : E) 1)) /
@@ -160,6 +172,9 @@ lemma chartMeasure_volume_constant_ne_top (i : dR.d.ι) :
 omit [IsManifold I (1 : WithTop ℕ∞) M]
   [IsContinuousRiemannianBundle E (fun x : M => TangentSpace I x)]
   [T3Space M] in
+/--
+@isnad1 id=ne.0h6v.s8.4e1137a7999c from=translated src=- shape=b904718e vocab=e9067f8d
+-/
 lemma volume_chartMeasure_constant_ne_top (i : dR.d.ι) :
     ((((volume : Measure E) (Metric.closedBall (0 : E) 1)) /
               ((μH[(Module.finrank ℝ E : ℝ)] : Measure E) (Metric.closedBall (0 : E) 1))) *
@@ -175,7 +190,9 @@ lemma volume_chartMeasure_constant_ne_top (i : dR.d.ι) :
   simpa [mul_assoc, mul_left_comm, mul_comm] using (ENNReal.mul_ne_top hratio hCfwd)
 
 /-- On the chart ball, the chart pushforward measure of the Riemannian Hausdorff volume measure is
-dominated by Lebesgue `volume` on the chart model space. -/
+dominated by Lebesgue `volume` on the chart model space.
+@isnad1 id=le.0h6v.s9.f9c4bee0e927 from=translated src=- shape=ed16ece4 vocab=d029ce82
+-/
 lemma chartMeasure_restrict_le_volume (i : dR.d.ι) :
     (FiniteChartData.chartMeasure (d := dR.d) (I := I)
         (RellichKondrachov.Geometry.Manifold.Riemannian.riemannianVolumeMeasure (I := I) (M := M))
@@ -223,7 +240,9 @@ lemma chartMeasure_restrict_le_volume (i : dR.d.ι) :
   exact hμH.trans_eq this
 
 /-- On the chart ball, Lebesgue `volume` on the chart model space is dominated by the chart
-pushforward measure of the Riemannian Hausdorff volume measure. -/
+pushforward measure of the Riemannian Hausdorff volume measure.
+@isnad1 id=le.0h6v.s9.002c45b03afa from=translated src=- shape=56e11627 vocab=b65b4ada
+-/
 lemma volume_restrict_le_chartMeasure (i : dR.d.ι) :
     (volume : Measure E).restrict (chartBall (dR := dR) (I := I) i) ≤
       (((((volume : Measure E) (Metric.closedBall (0 : E) 1)) /

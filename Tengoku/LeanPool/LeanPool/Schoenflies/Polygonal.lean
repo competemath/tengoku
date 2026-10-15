@@ -35,20 +35,31 @@ namespace Schoenflies
 of line segments. -/
 def IsPolygonal (A : Set Plane) : Prop := ∃ vs : List Plane, A = poly vs
 
+/--
+@isnad1 id=iscompac.1h1v.s5.dbb3dbd163a7 from=translated src=- shape=f3db9897 vocab=688887ba
+-/
 theorem IsPolygonal.isCompact {A : Set Plane} (h : IsPolygonal A) : IsCompact A := by
   obtain ⟨vs, rfl⟩ := h
   exact isCompact_poly vs
 
+/--
+@isnad1 id=eq.0h2v.s6.f857deeb1103 from=translated src=- shape=d96f9f8a vocab=562039e1
+-/
 theorem poly_pair (a b : Plane) : poly [a, b] = segment ℝ a b := by
   rw [poly_cons_cons, poly_singleton]
   exact union_eq_self_of_subset_right (singleton_subset_iff.2 (right_mem_segment ℝ a b))
 
+/--
+@isnad1 id=ispolygo.0h2v.s6.b34b739bd28f from=translated src=- shape=4ccf19ee vocab=f48b34a9
+-/
 theorem isPolygonal_segment (a b : Plane) : IsPolygonal (segment ℝ a b) :=
   ⟨[a, b], (poly_pair a b).symm⟩
 
 /-- `lineMap a b` is injective on the unit interval exactly when the segment is
 nondegenerate: two parameters differ by a multiple of `b - a`. Exposed separately because the
-plane-graph drawing condition asks for the parametrization, not just its image. -/
+plane-graph drawing condition asks for the parametrization, not just its image.
+@isnad1 id=injon.1h3v.s9.7ec1a0962940 from=translated src=- shape=26912a13 vocab=cb14e7c6
+-/
 theorem injOn_lineMap {a b : Plane} (hab : a ≠ b) :
     Set.InjOn (AffineMap.lineMap a b : ℝ → Plane) I := by
   intro s _ t _ hst
@@ -61,7 +72,9 @@ theorem injOn_lineMap {a b : Plane} (hab : a ≠ b) :
   · exact absurd h hba
 
 /-- A nondegenerate segment is an arc between its endpoints, parametrized by
-`AffineMap.lineMap a b`. -/
+`AffineMap.lineMap a b`.
+@isnad1 id=isarcbet.1h2v.s6.63a804db75f0 from=translated src=- shape=ec1c1197 vocab=15da0af5
+-/
 theorem isArcBetween_segment {a b : Plane} (hab : a ≠ b) :
     IsArcBetween (segment ℝ a b) a b := by
   refine ⟨AffineMap.lineMap a b, AffineMap.lineMap_continuous.continuousOn, ?_, ?_, ?_, ?_⟩
@@ -70,12 +83,17 @@ theorem isArcBetween_segment {a b : Plane} (hab : a ≠ b) :
   · simp
   · simp
 
+/--
+@isnad1 id=isarc.1h2v.s6.74077b88f08c from=translated src=- shape=d69ddbe3 vocab=e336b83e
+-/
 theorem isArc_segment {a b : Plane} (hab : a ≠ b) : IsArc (segment ℝ a b) :=
   (isArcBetween_segment hab).isArc
 
 /-- **A polygonal set is carried by a vertex list running from any of its points to any other.**
 The list is written with its two ends displayed, so no `List.head`/`List.getLast` obligations
-appear. -/
+appear.
+@isnad1 id=ex.3h3v.s6.11cc045d72f5 from=translated src=- shape=401460d3 vocab=9a230f47
+-/
 theorem exists_poly_anchored : ∀ (vs : List Plane), vs ≠ [] → ∀ z w : Plane,
     z ∈ poly vs → w ∈ poly vs → ∃ mid : List Plane, poly (z :: (mid ++ [w])) = poly vs := by
   intro vs
@@ -154,7 +172,9 @@ theorem exists_poly_anchored : ∀ (vs : List Plane), vs ≠ [] → ∀ z w : Pl
             Set.union_eq_self_of_subset_left hd2]
 
 /-- **Two polygonal sets that meet have a polygonal union.** Anchor both lists at a common
-point and concatenate. -/
+point and concatenate.
+@isnad1 id=ispolygo.3h2v.s4.fe74229a6e7d from=translated src=- shape=72e8c3fd vocab=ebde3e36
+-/
 theorem IsPolygonal.union {A B : Set Plane} (hA : IsPolygonal A) (hB : IsPolygonal B)
     (hmeet : (A ∩ B).Nonempty) : IsPolygonal (A ∪ B) := by
   obtain ⟨vs, rfl⟩ := hA

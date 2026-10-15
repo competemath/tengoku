@@ -39,6 +39,9 @@ noncomputable def assocProd (p q : I) : I where
 @[inherit_doc]
 scoped infixr:80 " ⍟ " => assocProd
 
+/--
+@isnad1 id=eq.0h2v.s6.439df3428483 from=translated src=- shape=a3da51b2 vocab=2e46f189
+-/
 @[simp]
 lemma mul_assocProd
     (p q : I)
@@ -58,6 +61,9 @@ lemma mul_assocProd
       simp only [one_mul, mul_lt_iff_lt_one_left, hq, hp]
     · simp only [one_mul, q.property.2]
 
+/--
+@isnad1 id=eq.0h2v.s5.be633efd4982 from=translated src=- shape=b7d8f8a7 vocab=2e46f189
+-/
 @[simp]
 lemma mul_symm_assocProd
     (p q : I)
@@ -84,6 +90,9 @@ lemma mul_symm_assocProd
     hpq', not_false_eq_true, IsUnit.div_mul_cancel]
   ring_nf
 
+/--
+@isnad1 id=eq.1h2v.s6.563f0ab68eaa from=translated src=- shape=e9a55119 vocab=42a708be
+-/
 @[simp]
 lemma mul_symm_assocProd'
     (p q : I) (hpq : p < 1 ∨ q < 1)

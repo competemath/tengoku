@@ -45,11 +45,17 @@ instance [QuasiBorelSpace A] : QuasiBorelSpace (Quotient S) where
     · apply isHom_cases (by simp only [isHom_ofMeasurableSpace, hindex]) hψ
     · simp only [hφ, implies_true]
 
+/--
+@isnad1 id=iff.0h4v.s5.836026a0eda6 from=translated src=- shape=abf0fbfc vocab=b71b1461
+-/
 @[simp]
 lemma isHom_def (φ : ℝ → Quotient S) : IsHom φ ↔ ∃ ψ : ℝ → A, IsHom ψ ∧ ∀r, φ r = ⟦ψ r⟧ := by
   rw [← isVar_iff_isHom]
   rfl
 
+/--
+@isnad1 id=ishom.0h3v.s4.a7d3860afc4a from=translated src=- shape=7d8cb487 vocab=de5139bf
+-/
 @[simp, fun_prop]
 lemma isHom_mk : IsHom (fun x ↦ (⟦x⟧ : Quotient S)) := by
   rw [QuasiBorelSpace.isHom_def]
@@ -58,6 +64,9 @@ lemma isHom_mk : IsHom (fun x ↦ (⟦x⟧ : Quotient S)) := by
   use φ
   simp_all
 
+/--
+@isnad1 id=ishom.2h6v.s5.d9992e1dac63 from=translated src=- shape=f85846cc vocab=3c66f7f8
+-/
 @[simp, local fun_prop]
 lemma isHom_lift
     {f : A → B} (hf₁ : IsHom f) (hf₂ : ∀ x y, x ≈ y → f x = f y)
@@ -68,6 +77,9 @@ lemma isHom_lift
   simp only [hφ, Quotient.lift_mk]
   fun_prop
 
+/--
+@isnad1 id=ishom.3h9v.s6.da08fa5713af from=translated src=- shape=6f0f0d22 vocab=d1893b85
+-/
 @[simp, fun_prop]
 lemma isHom_lift'
     {f : C → A → B} (hf₁ : IsHom fun (x, y) ↦ f x y) (hf₂ : ∀ x y z, y ≈ z → f x y = f x z)

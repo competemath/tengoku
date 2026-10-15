@@ -29,6 +29,9 @@ variable {V E : Type*} [Fintype V] [Fintype E] [DecidableEq V] [DecidableEq E]
   (G : LoopMultigraph V E)
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=iff.0h5v.s6.80e5e55bc98d from=translated src=- shape=0a19755c vocab=a005e559
+-/
 @[simp]
 theorem mem_edgeSupport_iff {F : Finset E} {v : V} :
     v ∈ G.edgeSupport F ↔ ∃ e ∈ F, ∃ i : Fin 2, G.endAt e i = v := by
@@ -40,6 +43,9 @@ private theorem degreeIn_eq_sum_indicator (F : Finset E) (v : V) :
   simp only [degreeIn, Finset.card_filter, Finset.sum_product]
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=eq.0h5v.s6.6979b660dd87 from=translated src=- shape=0d818f11 vocab=0b0dcd0b
+-/
 theorem degreeIn_cast (F : Finset E) (v : V) :
     (G.degreeIn F v : F₂) = ∑ e ∈ F, G.edgeIncidence v e := by
   rw [G.degreeIn_eq_sum_indicator]
@@ -48,6 +54,9 @@ theorem degreeIn_cast (F : Finset E) (v : V) :
   rw [Fin.sum_univ_two]
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=iff.0h4v.s5.5ce6e0715717 from=translated src=- shape=9041363d vocab=be72fcf5
+-/
 theorem isEvenEdgeSet_iff_even_degree (F : Finset E) :
     G.IsEvenEdgeSet F ↔ ∀ v : V, Even (G.degreeIn F v) := by
   constructor
@@ -59,6 +68,9 @@ theorem isEvenEdgeSet_iff_even_degree (F : Finset E) :
     exact h v
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=iff.0h5v.s5.37ff43005603 from=translated src=- shape=df947e9b vocab=8ddf5d8f
+-/
 theorem degreeIn_pos_iff_mem_edgeSupport (F : Finset E) (v : V) :
     0 < G.degreeIn F v ↔ v ∈ G.edgeSupport F := by
   rw [degreeIn, Finset.card_pos, G.mem_edgeSupport_iff]
@@ -74,7 +86,9 @@ theorem degreeIn_pos_iff_mem_edgeSupport (F : Finset E) (v : V) :
 
 omit [DecidableEq E] in
 /-- The degree-sum formula, valid without excluding loops: each labelled edge has exactly two
-numbered ends. -/
+numbered ends.
+@isnad1 id=eq.0h4v.s5.2c05afb177a8 from=translated src=- shape=4f430153 vocab=2192ea6c
+-/
 theorem sum_degreeIn (F : Finset E) :
     ∑ v : V, G.degreeIn F v = 2 * F.card := by
   have h := Finset.card_eq_sum_card_fiberwise
@@ -96,7 +110,9 @@ private theorem adjacent_of_incident {d e : E} {v : V} {i j : Fin 2}
   exact ⟨i, j, hd.trans he.symm⟩
 
 omit [DecidableEq E] in
-/-- Inclusion-minimal even edge sets are connected in the ordinary edge-chain sense. -/
+/-- Inclusion-minimal even edge sets are connected in the ordinary edge-chain sense.
+@isnad1 id=edgeconn.0h4v.s5.6dafea72ec09 from=translated src=- shape=6b863a3a vocab=586095c9
+-/
 theorem Cycle.edgeConnected (C : G.Cycle) : G.EdgeConnected C.edges := by
   classical
   obtain ⟨root, hroot⟩ := C.nonempty
@@ -150,6 +166,9 @@ noncomputable def incidenceMap (F : Finset E) :
   (G.incidenceMatrix F).mulVecLin
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=eq.0h6v.s10.35dd9465ff33 from=translated src=- shape=29a93e28 vocab=2a05bd29
+-/
 @[simp]
 theorem incidenceMap_apply (F : Finset E) (x : ↑F → F₂)
     (v : ↑(G.edgeSupport F)) :
@@ -347,7 +366,9 @@ private theorem Cycle.card_edges_le_card_support (C : G.Cycle) :
   omega
 
 omit [DecidableEq E] in
-/-- Every supported vertex of a binary cycle has ordinary degree exactly two. -/
+/-- Every supported vertex of a binary cycle has ordinary degree exactly two.
+@isnad1 id=eq.1h5v.s6.d7b041b28bf9 from=translated src=- shape=41fcbd77 vocab=181e31a9
+-/
 theorem Cycle.degree_eq_two (C : G.Cycle) {v : V}
     (hv : v ∈ G.edgeSupport C.edges) : G.degreeIn C.edges v = 2 := by
   have heven : ∀ w : V, Even (G.degreeIn C.edges w) :=
@@ -391,12 +412,17 @@ def Cycle.toOrdinaryCircuit (C : G.Cycle) : G.OrdinaryCircuit where
   twoRegular := fun _ hv ↦ Cycle.degree_eq_two G C hv
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=eq.0h4v.s5.212e6db65a3c from=translated src=- shape=0a53d16a vocab=6903050f
+-/
 @[simp]
 theorem Cycle.toOrdinaryCircuit_edges (C : G.Cycle) :
     C.toOrdinaryCircuit.edges = C.edges := rfl
 
 omit [DecidableEq E] in
-/-- An ordinary circuit is an even edge set (including the singleton-loop case). -/
+/-- An ordinary circuit is an even edge set (including the singleton-loop case).
+@isnad1 id=isevened.0h4v.s5.2cad48e337f5 from=translated src=- shape=6b863a3a vocab=0fff30f1
+-/
 theorem OrdinaryCircuit.even (C : G.OrdinaryCircuit) : G.IsEvenEdgeSet C.edges := by
   rw [G.isEvenEdgeSet_iff_even_degree]
   intro v
@@ -420,7 +446,9 @@ private theorem filter_map_toOrdinaryCircuit_length (L : List G.Cycle) (e : E) :
       by_cases he : e ∈ C.edges <;> simp [he, Cycle.toOrdinaryCircuit, ih]
 
 /-- The existing minimal-even-set decomposition can therefore be read as a decomposition into
-ordinary connected 2-regular circuits. -/
+ordinary connected 2-regular circuits.
+@isnad1 id=ex.1h4v.s7.5152f26ef60c from=translated src=- shape=2665e01e vocab=cd1a4f3a
+-/
 theorem decompose_even_edge_set_ordinary (F : Finset E) (hF : G.IsEvenEdgeSet F) :
     ∃ L : List G.OrdinaryCircuit,
       ∀ e : E, (L.filter fun C ↦ e ∈ C.edges).length = if e ∈ F then 1 else 0 := by
@@ -437,6 +465,9 @@ def CircuitDecomposition.toOrdinary (S : G.CircuitDecomposition) :
     intro e
     rw [filter_map_toOrdinaryCircuit_length, S.coveredOnce e]
 
+/--
+@isnad1 id=compatib.1h5v.s6.8205ac3abbe8 from=translated src=- shape=dd78d433 vocab=a4fff5b7
+-/
 theorem CircuitDecomposition.compatible_toOrdinary {T : G.EulerTour}
     {S : G.CircuitDecomposition} (h : S.Compatible T) : S.toOrdinary.Compatible T := by
   intro i C hC
@@ -446,7 +477,9 @@ theorem CircuitDecomposition.compatible_toOrdinary {T : G.EulerTour}
   exact h i D hD
 
 /-- Sabidussi compatibility with the conclusion expressed using ordinary connected 2-regular
-circuits rather than minimal binary-even edge sets. -/
+circuits rather than minimal binary-even edge sets.
+@isnad1 id=ex.1h4v.s6.ac80be5c94ad from=translated src=- shape=69e98af6 vocab=d0c662c4
+-/
 theorem loop_sabidussi_compatibility_ordinary {G : LoopMultigraph V E} (T : G.EulerTour)
     (hmin : ∀ v : V, 4 ≤ G.degree v) :
     ∃ S : G.OrdinaryCircuitDecomposition, S.Compatible T := by

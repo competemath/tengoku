@@ -26,6 +26,9 @@ variable
   {C : Type*} {_ : QuasiBorelSpace C}
   {I : Type*} [Countable I]
 
+/--
+@isnad1 id=isvar.2h5v.s6.9ca63fa0c4d9 from=translated src=- shape=4ef6dadf vocab=25be844a
+-/
 lemma isVar_cases
     {ix : ℝ → I} {φ : I → ℝ → A}
     (hix : Measurable[_, ⊤] ix) (hφ : ∀ n, IsVar (φ n))
@@ -39,6 +42,9 @@ lemma isVar_cases
   have := isVar_cases' hix' hφk
   simp_all
 
+/--
+@isnad1 id=iff.0h3v.s4.08555bb16e51 from=translated src=- shape=e0d9b943 vocab=8c10e303
+-/
 @[simp]
 lemma isVar_iff_isHom {A : Type*} {_ : QuasiBorelSpace A} (f : ℝ → A) : IsVar f ↔ IsHom f := by
   apply Iff.intro
@@ -49,6 +55,9 @@ lemma isVar_iff_isHom {A : Type*} {_ : QuasiBorelSpace A} (f : ℝ → A) : IsVa
   · rintro ⟨hf⟩
     exact hf measurable_id
 
+/--
+@isnad1 id=iff.0h3v.s4.c8c41a21e18d from=translated src=- shape=2a7585ea vocab=cd559071
+-/
 @[simp]
 lemma isHom_ofMeasurableSpace
     {A : Type*} {_ : MeasurableSpace A} (φ : ℝ → A)
@@ -60,6 +69,9 @@ instance {A : Type*} {_ : MeasurableSpace A} : @MeasurableQuasiBorelSpace A ofMe
   @MeasurableQuasiBorelSpace.mk A ofMeasurableSpace _ fun _ ↦ by
     simp only [isHom_ofMeasurableSpace]
 
+/--
+@isnad1 id=iff.0h5v.s5.141a04cb572d from=translated src=- shape=3cc45bb8 vocab=45ea852a
+-/
 lemma isHom_def
     {A : Type*} {_ : QuasiBorelSpace A}
     {B : Type*} {_ : QuasiBorelSpace B}
@@ -82,6 +94,9 @@ instance {f : A → B}
 
 end IsHom
 
+/--
+@isnad1 id=iff.0h4v.s4.a427c9b43779 from=translated src=- shape=72fbd55d vocab=d8c4c874
+-/
 @[simp]
 lemma isHom_iff_measurable
     {_ : MeasurableSpace A} [MeasurableQuasiBorelSpace A]
@@ -89,6 +104,9 @@ lemma isHom_iff_measurable
     : IsHom φ ↔ Measurable φ :=
   MeasurableQuasiBorelSpace.isHom_iff_measurable φ
 
+/--
+@isnad1 id=ishom.1h7v.s5.a45827860e0e from=translated src=- shape=8f89da8b vocab=05c8a70a
+-/
 @[fun_prop]
 lemma isHom_of_measurable
     {_ : MeasurableSpace A} [MeasurableQuasiBorelSpace A]
@@ -99,15 +117,24 @@ lemma isHom_of_measurable
   simp only [isHom_iff_measurable]
   fun_prop
 
+/--
+@isnad1 id=ishom.0h2v.s3.5ae94655a810 from=translated src=- shape=746c6e19 vocab=402d12e6
+-/
 @[simp]
 lemma isHom_id : IsHom (A := A) id := by
   rw [isHom_def]
   simp only [id_eq, imp_self, implies_true]
 
+/--
+@isnad1 id=ishom.0h2v.s3.7d28f2315781 from=translated src=- shape=81c0c4c1 vocab=3fa53d2d
+-/
 @[fun_prop, simp]
 lemma isHom_id' : IsHom (fun x : A ↦ x) :=
   isHom_id
 
+/--
+@isnad1 id=ishom.2h8v.s5.bdd9f4a9ae20 from=translated src=- shape=3b720b30 vocab=7b8ec211
+-/
 lemma isHom_comp
     {f : B → C} (hf : IsHom f)
     {g : A → B} (hg : IsHom g)
@@ -116,6 +143,9 @@ lemma isHom_comp
   intro φ hφ
   exact hf (hg hφ)
 
+/--
+@isnad1 id=ishom.2h8v.s5.da6e114534ca from=translated src=- shape=c1dbc426 vocab=3fa53d2d
+-/
 @[fun_prop]
 lemma isHom_comp'
     {f : B → C} (hf : IsHom f)
@@ -123,15 +153,24 @@ lemma isHom_comp'
     : IsHom (fun x ↦ f (g x)) :=
   isHom_comp hf hg
 
+/--
+@isnad1 id=ishom.0h5v.s4.f74f5987dc6f from=translated src=- shape=99059531 vocab=b648805d
+-/
 @[simp]
 lemma isHom_const (x : B) : IsHom (Function.const A x) := by
   constructor
   simp only [isVar_const, Function.const, implies_true]
 
+/--
+@isnad1 id=ishom.0h5v.s4.1511c6b635b5 from=translated src=- shape=90eb606c vocab=3fa53d2d
+-/
 @[fun_prop, simp]
 lemma isHom_const' (x : B) : IsHom (fun _ : A ↦ x) :=
   isHom_const x
 
+/--
+@isnad1 id=ishom.2h7v.s5.ae6a7ad30a03 from=translated src=- shape=3b839039 vocab=9d0cd2f6
+-/
 lemma isHom_cases
     {ix : A → I} {f : I → A → B}
     (hix : IsHom[_, default] ix) (hf : ∀ n, IsHom (f n))
@@ -147,6 +186,9 @@ lemma isHom_cases
     refine hf _ ?_
     apply hφ
 
+/--
+@isnad1 id=ishom.0h6v.s4.96340de1c2f8 from=translated src=- shape=f242e781 vocab=84ff14c4
+-/
 @[simp, fun_prop]
 lemma isHom_of_discrete_countable
     {_ : MeasurableSpace A} [DiscreteQuasiBorelSpace A] [Countable A]
@@ -160,6 +202,9 @@ lemma isHom_of_discrete_countable
     apply MeasurableSet.of_discrete
   · fun_prop
 
+/--
+@isnad1 id=ishom.0h5v.s4.3004e32111d9 from=translated src=- shape=d3a7956e vocab=a40e8b04
+-/
 @[simp]
 lemma isHom_to_subsingleton [Subsingleton B] (f : A → B) : IsHom f := by
   rw [isHom_def]
@@ -167,6 +212,9 @@ lemma isHom_to_subsingleton [Subsingleton B] (f : A → B) : IsHom f := by
   have : ∀r, f (φ r) = f (φ 0) := by subsingleton
   simp only [this, isHom_const']
 
+/--
+@isnad1 id=ishom.0h5v.s4.598d140059f7 from=translated src=- shape=42137534 vocab=a40e8b04
+-/
 @[simp]
 lemma isHom_of_subsingleton [Subsingleton A] (f : A → B) : IsHom f := by
   rw [isHom_def]
@@ -174,11 +222,17 @@ lemma isHom_of_subsingleton [Subsingleton A] (f : A → B) : IsHom f := by
   have : ∀r, φ r = φ 0 := by subsingleton
   simp only [this, isHom_const']
 
+/--
+@isnad1 id=ishom.0h4v.s4.f9ffce8fd080 from=translated src=- shape=cb011a27 vocab=9541b357
+-/
 lemma isHom_of_lift {A} (f : A → B) : IsHom[lift f, _] f := by
   apply @IsHom.intro _ _ (lift f)
   intro φ hφ
   apply hφ
 
+/--
+@isnad1 id=iff.0h7v.s5.b9374c5e6acd from=translated src=- shape=ab5a9d09 vocab=9541b357
+-/
 lemma isHom_to_lift
     {A} (f : A → B) (g : C → A)
     : IsHom[_, lift f] g ↔ IsHom (fun x ↦ f (g x)) := by
@@ -190,16 +244,25 @@ lemma isHom_to_lift
     apply @IsHom.intro _ _ _ (lift f)
     exact hg
 
+/--
+@isnad1 id=ishom.0h3v.s4.afa7c9258ffd from=translated src=- shape=22aa1ebb vocab=430199fa
+-/
 @[fun_prop]
 lemma isHom_unpack
     [Nonempty A] {_ : MeasurableSpace A} [MeasurableQuasiBorelSpace A] [StandardBorelSpace A]
     : IsHom (MeasureTheory.unpack (A := A)) := by
   simp only [isHom_iff_measurable, MeasureTheory.measurable_unpack]
 
+/--
+@isnad1 id=ishom.0h2v.s4.f9966fbf6a0a from=translated src=- shape=b774eefa vocab=235f72a1
+-/
 @[fun_prop]
 lemma isHom_mem_Icc {a b : ℝ} : IsHom (· ∈ Set.Icc a b) := by
   simp only [isHom_ofMeasurableSpace, measurable_mem, measurableSet_Icc]
 
+/--
+@isnad1 id=iff.2h7v.s6.333a0a56141d from=translated src=- shape=e1d1ef2e vocab=fa8171a5
+-/
 lemma isHom_cast
     {B} {instB : QuasiBorelSpace B}
     {C} {instC : QuasiBorelSpace C}
@@ -213,6 +276,9 @@ lemma isHom_cast
   subst this
   rfl
 
+/--
+@isnad1 id=measurab.1h7v.s5.ebfbc173c28c from=translated src=- shape=9409950d vocab=2860ecc0
+-/
 @[fun_prop]
 lemma measurable_of_isHom
     {_ : MeasurableSpace A} [MeasurableQuasiBorelSpace A]
@@ -236,6 +302,9 @@ lemma measurable_of_isHom
 
 namespace NonEmpty
 
+/--
+@isnad1 id=ishom.1h4v.s4.5fb7bb92b00e from=translated src=- shape=3877224b vocab=f5958b01
+-/
 @[fun_prop]
 lemma isHom_some (f : A → Nonempty B) : IsHom fun x ↦ (f x).some := by
   rw [isHom_def]
@@ -245,6 +314,9 @@ lemma isHom_some (f : A → Nonempty B) : IsHom fun x ↦ (f x).some := by
 
 end NonEmpty
 
+/--
+@isnad1 id=ishom.2h6v.s5.9e6876fbb795 from=translated src=- shape=e3937064 vocab=8c10e303
+-/
 lemma isHom_mono
     {B : Type*} {f : A → B} {inst₁ inst₂ : QuasiBorelSpace B}
     (hf : IsHom[_, inst₁] f)
@@ -253,6 +325,9 @@ lemma isHom_mono
   rw [isHom_def] at ⊢ hf
   simp_all
 
+/--
+@isnad1 id=iff.0h3v.s5.de6d64dc7ad1 from=translated src=- shape=3a077ed2 vocab=4c65d759
+-/
 lemma measurableSet_toMeasurableSpace
     (X : Set A)
     : MeasurableSet[toMeasurableSpace] X

@@ -100,7 +100,9 @@ private theorem countable_components_meeting {Z : Type*} [TopologicalSpace Z]
 /-- **Poincaré–Volterra lemma** (Forster 23.2). A connected Hausdorff, locally
 compact, locally connected, locally second-countable space admitting a
 continuous map with discrete fibers into a second-countable Hausdorff space is
-second countable. -/
+second countable.
+@isnad1 id=secondco.3h3v.s7.2e5552f56a54 from=translated src=- shape=219270e8 vocab=5c14bec3
+-/
 theorem poincare_volterra {Z : Type*} [TopologicalSpace Z] [T2Space Z] [ConnectedSpace Z]
     [LocallyCompactSpace Z] [LocallyConnectedSpace Z]
     (hloc : ∀ z : Z, ∃ U : Set Z, z ∈ U ∧ IsOpen U ∧ SecondCountableTopology U)

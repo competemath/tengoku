@@ -69,17 +69,23 @@ variable {P : ClosedPolygon m} {i : ZMod (m + 3)} {c t s : ℝ}
 Everything below needs the edge frame read from *both* ends: `Strip.lean` has the departure
 end, and the overlap with the sector at the far vertex needs the arrival end. -/
 
-/-- The incoming ray at a vertex is a unit vector. -/
+/-- The incoming ray at a vertex is a unit vector.
+@isnad1 id=isdirect.0h3v.s4.0a1b077c696b from=translated src=- shape=2d42acdc vocab=06561ca5
+-/
 theorem isDirection_rayIn : IsDirection (P.rayIn i) := isDirection_dir vertex_pred_ne
 
-/-- The far vertex of edge `i` sits at frame position `(len i, 0)`. -/
+/-- The far vertex of edge `i` sits at frame position `(len i, 0)`.
+@isnad1 id=eq.0h5v.s9.d4bb24725639 from=translated src=- shape=f8010821 vocab=b500f927
+-/
 theorem off_sub_vertex_succ :
     P.off i t s - P.vertex (i + 1) = (t - P.len i) • P.tang i + s • perp (P.tang i) := by
   have hv : P.vertex (i + 1) = P.vertex i + (P.len i) • P.tang i := by
     rw [len_smul_tang]; module
   rw [off, hv]; module
 
-/-- The block-to-far-sector distance bound, the mirror of `dist_off_vertex_le`. -/
+/-- The block-to-far-sector distance bound, the mirror of `dist_off_vertex_le`.
+@isnad1 id=le.0h5v.s8.eafeb8cd2d28 from=translated src=- shape=9a8f73d5 vocab=6a542c62
+-/
 theorem dist_off_vertex_succ_le : dist (P.off i t s) (P.vertex (i + 1)) ≤ |t - P.len i| + |s| := by
   rw [dist_eq_norm, off_sub_vertex_succ]
   calc ‖(t - P.len i) • P.tang i + s • perp (P.tang i)‖
@@ -89,7 +95,9 @@ theorem dist_off_vertex_succ_le : dist (P.off i t s) (P.vertex (i + 1)) ≤ |t -
           isDirection_tang.norm, mul_one, mul_one]
 
 /-- The distance from a point of edge `i` to the edge's far endpoint, the mirror of
-`dist_pt_vertex`. -/
+`dist_pt_vertex`.
+@isnad1 id=eq.0h4v.s8.616f7eef03d1 from=translated src=- shape=47342c36 vocab=fe2bad8f
+-/
 theorem dist_pt_vertex_succ : dist (P.pt i c) (P.vertex (i + 1)) = |c - P.len i| := by
   rw [pt, dist_eq_norm, off_sub_vertex_succ, zero_smul, add_zero, norm_smul, Real.norm_eq_abs,
     isDirection_tang.norm, mul_one]
@@ -100,7 +108,9 @@ theorem dist_pt_vertex_succ : dist (P.pt i c) (P.vertex (i + 1)) = |c - P.len i|
 The converses are what says that a ball about a vertex minus the curve is covered by the two
 sectors: a direction on one of the two rays is *on the curve*, not beside it. -/
 
-/-- Walking back along the incoming ray from vertex `i` traverses the previous edge. -/
+/-- Walking back along the incoming ray from vertex `i` traverses the previous edge.
+@isnad1 id=eq.0h4v.s9.3f696cd973ea from=translated src=- shape=63c81c36 vocab=a7854f7c
+-/
 theorem vertex_add_smul_rayIn (P : ClosedPolygon m) (i : ZMod (m + 3)) (c : ℝ) :
     P.vertex i + c • P.rayIn i = P.pt (i - 1) (P.len (i - 1) - c) := by
   have hsucc : i - 1 + 1 = i := sub_add_cancel i 1
@@ -113,13 +123,17 @@ theorem vertex_add_smul_rayIn (P : ClosedPolygon m) (i : ZMod (m + 3)) (c : ℝ)
   module
 
 /-- A point of the incoming ray at distance at most the previous edge's length lies on that
-edge. -/
+edge.
+@isnad1 id=mem.2h4v.s9.de8109684c4e from=translated src=- shape=3fd3c5b6 vocab=ba74063a
+-/
 theorem mem_edge_pred_of_smul_rayIn (hc0 : 0 ≤ c) (hc1 : c ≤ P.len (i - 1)) :
     P.vertex i + c • P.rayIn i ∈ P.edge (i - 1) := by
   rw [vertex_add_smul_rayIn]
   exact pt_mem_edge ⟨by linarith, by linarith⟩
 
-/-- A point of the outgoing ray at distance at most the edge's length lies on that edge. -/
+/-- A point of the outgoing ray at distance at most the edge's length lies on that edge.
+@isnad1 id=mem.2h4v.s7.de60afa46130 from=translated src=- shape=e6ffdac4 vocab=8e0066bb
+-/
 theorem mem_edge_of_smul_tang (hc0 : 0 ≤ c) (hc1 : c ≤ P.len i) :
     P.vertex i + c • P.tang i ∈ P.edge i := by
   rw [← pt_eq]
@@ -140,23 +154,31 @@ vertex in question. The two hypotheses of `StripData` that were put there for th
 and `two_lam_lt_R` together with `rho < lam` — which gives
 `3 lam / 2 + rho / 2 < 2 lam < R`, so the point is inside the sector. -/
 
-/-- The along-coordinate of the witnesses clears the near trim. -/
+/-- The along-coordinate of the witnesses clears the near trim.
+@isnad1 id=lt.0h3v.s5.c9a3f2a59e81 from=translated src=- shape=d064bef8 vocab=bda35163
+-/
 theorem lam_lt_three_halves_lam : D.lam < 3 * D.lam / 2 := by have := D.lam_pos; linarith
 
-/-- …and stays short of the far one, by `four_lam_lt_len`. -/
+/-- …and stays short of the far one, by `four_lam_lt_len`.
+@isnad1 id=lt.0h4v.s6.377e41fdd29f from=translated src=- shape=d7b8e827 vocab=b2d11e4b
+-/
 theorem three_halves_lam_lt : 3 * D.lam / 2 < P.len i - D.lam := by
   have := D.lam_pos
   have := D.four_lam_lt_len i
   linarith
 
-/-- …and the whole witness stays inside the sector, by `rho_lt_lam` and `two_lam_lt_R`. -/
+/-- …and the whole witness stays inside the sector, by `rho_lt_lam` and `two_lam_lt_R`.
+@isnad1 id=lt.0h3v.s6.cfc5b761be58 from=translated src=- shape=50e2595a vocab=623b63d7
+-/
 theorem overlap_dist_lt : 3 * D.lam / 2 + D.rho / 2 < D.R := by
   have := D.rho_lt_lam
   have := D.two_lam_lt_R
   linarith
 
 /-- **The overlap at the departure vertex.** The point at frame position `(3 lam / 2, rho / 2)`
-of edge `i` lies both in the left block of that edge and in the left sector at `i`. -/
+of edge `i` lies both in the left block of that edge and in the left sector at `i`.
+@isnad1 id=mem.0h4v.s6.397cc21c81c1 from=translated src=- shape=368c2582 vocab=5f952513
+-/
 theorem mem_overlapL_start :
     P.off i (3 * D.lam / 2) (D.rho / 2) ∈ D.blockL i ∩ D.sectorL i := by
   have hmem : P.off i (3 * D.lam / 2) (D.rho / 2) ∈ D.blockL i :=
@@ -171,7 +193,9 @@ theorem mem_overlapL_start :
 
 /-- **The overlap at the arrival vertex.** The point at frame position
 `(len i - 3 lam / 2, rho / 2)` of edge `i` lies both in the left block of that edge and in the
-left sector at `i + 1`. -/
+left sector at `i + 1`.
+@isnad1 id=mem.0h4v.s8.8ee435b7a7a9 from=translated src=- shape=ff3dcef0 vocab=e2559875
+-/
 theorem mem_overlapL_finish :
     P.off i (P.len i - 3 * D.lam / 2) (D.rho / 2) ∈ D.blockL i ∩ D.sectorL (i + 1) := by
   have h1 : D.lam < P.len i - 3 * D.lam / 2 := by
@@ -186,7 +210,9 @@ theorem mem_overlapL_finish :
     abs_of_pos (by linarith [D.rho_pos] : (0:ℝ) < D.rho / 2)]
   exact D.overlap_dist_lt
 
-/-- The right-hand mirror of `mem_overlapL_start`. -/
+/-- The right-hand mirror of `mem_overlapL_start`.
+@isnad1 id=mem.0h4v.s6.14a55ed424a1 from=translated src=- shape=5a222c3f vocab=c68a7990
+-/
 theorem mem_overlapR_start :
     P.off i (3 * D.lam / 2) (-(D.rho / 2)) ∈ D.blockR i ∩ D.sectorR i := by
   have hmem : P.off i (3 * D.lam / 2) (-(D.rho / 2)) ∈ D.blockR i :=
@@ -198,7 +224,9 @@ theorem mem_overlapR_start :
     abs_neg, abs_of_pos (by linarith [D.rho_pos] : (0:ℝ) < D.rho / 2)]
   exact D.overlap_dist_lt
 
-/-- The right-hand mirror of `mem_overlapL_finish`. -/
+/-- The right-hand mirror of `mem_overlapL_finish`.
+@isnad1 id=mem.0h4v.s8.3874308f8a47 from=translated src=- shape=abdc34f2 vocab=24498e8b
+-/
 theorem mem_overlapR_finish :
     P.off i (P.len i - 3 * D.lam / 2) (-(D.rho / 2)) ∈ D.blockR i ∩ D.sectorR (i + 1) := by
   have h1 : D.lam < P.len i - 3 * D.lam / 2 := by
@@ -213,12 +241,24 @@ theorem mem_overlapR_finish :
     abs_neg, abs_of_pos (by linarith [D.rho_pos] : (0:ℝ) < D.rho / 2)]
   exact D.overlap_dist_lt
 
+/--
+@isnad1 id=nonempty.0h4v.s4.3ee56e129f80 from=translated src=- shape=f5905169 vocab=fba1bf76
+-/
 theorem blockL_nonempty : (D.blockL i).Nonempty := ⟨_, D.mem_overlapL_start.1⟩
+/--
+@isnad1 id=nonempty.0h4v.s4.762c178b6a7e from=translated src=- shape=f5905169 vocab=c5857e76
+-/
 theorem blockR_nonempty : (D.blockR i).Nonempty := ⟨_, D.mem_overlapR_start.1⟩
 
+/--
+@isnad1 id=isconnec.0h4v.s6.4638ee91a971 from=translated src=- shape=f5905169 vocab=6ae7f243
+-/
 theorem isConnected_blockL : IsConnected (D.blockL i) :=
   D.convex_blockL.isConnected D.blockL_nonempty
 
+/--
+@isnad1 id=isconnec.0h4v.s6.27fafdea81c1 from=translated src=- shape=f5905169 vocab=4d82629d
+-/
 theorem isConnected_blockR : IsConnected (D.blockR i) :=
   D.convex_blockR.isConnected D.blockR_nonempty
 
@@ -238,7 +278,9 @@ The blueprint's "the labels return consistently after one circuit" is therefore 
 `StripData.sideL_disjoint_sideR`, and that is already proved. -/
 
 /-- A cyclically indexed family of connected sets in which every member meets its successor has
-connected union. Only the overlaps along the linear chain `0, 1, …, N - 1` are consumed. -/
+connected union. Only the overlaps along the linear chain `0, 1, …, N - 1` are consumed.
+@isnad1 id=isconnec.2h3v.s6.7a3103dd2224 from=translated src=- shape=6da9fa94 vocab=448687c7
+-/
 theorem isConnected_iUnion_zmod {α : Type*} [TopologicalSpace α] {N : ℕ} [NeZero N]
     (F : ZMod N → Set α) (hconn : ∀ i, IsConnected (F i))
     (hmeet : ∀ i, (F i ∩ F (i + 1)).Nonempty) : IsConnected (⋃ i, F i) := by
@@ -299,40 +341,66 @@ def pieceL (i : ZMod (m + 3)) : Set Plane := D.sectorL i ∪ D.blockL i
 /-- The right piece at index `i`. -/
 def pieceR (i : ZMod (m + 3)) : Set Plane := D.sectorR i ∪ D.blockR i
 
+/--
+@isnad1 id=eq.0h3v.s5.9898bbd1f5ad from=translated src=- shape=c509a125 vocab=32bf5806
+-/
 theorem sideL_eq_iUnion : D.sideL = ⋃ i, D.pieceL i := rfl
+/--
+@isnad1 id=eq.0h3v.s5.5ddec232d5c6 from=translated src=- shape=c509a125 vocab=a64282b2
+-/
 theorem sideR_eq_iUnion : D.sideR = ⋃ i, D.pieceR i := rfl
 
-/-- A piece is connected: its sector and its block overlap, at `mem_overlapL_start`. -/
+/-- A piece is connected: its sector and its block overlap, at `mem_overlapL_start`.
+@isnad1 id=isconnec.0h4v.s6.24cef4c6eece from=translated src=- shape=f5905169 vocab=7acad0da
+-/
 theorem isConnected_pieceL : IsConnected (D.pieceL i) :=
   IsConnected.union ⟨_, D.mem_overlapL_start.2, D.mem_overlapL_start.1⟩ D.isConnected_sectorL
     D.isConnected_blockL
 
+/--
+@isnad1 id=isconnec.0h4v.s6.a5c04d43887d from=translated src=- shape=f5905169 vocab=fde3412e
+-/
 theorem isConnected_pieceR : IsConnected (D.pieceR i) :=
   IsConnected.union ⟨_, D.mem_overlapR_start.2, D.mem_overlapR_start.1⟩ D.isConnected_sectorR
     D.isConnected_blockR
 
-/-- Consecutive pieces overlap: the block of edge `i` reaches into the sector at `i + 1`. -/
+/-- Consecutive pieces overlap: the block of edge `i` reaches into the sector at `i + 1`.
+@isnad1 id=nonempty.0h4v.s8.d4883c576daa from=translated src=- shape=46344c7d vocab=c92c751b
+-/
 theorem pieceL_inter_succ_nonempty : (D.pieceL i ∩ D.pieceL (i + 1)).Nonempty :=
   ⟨_, Or.inr D.mem_overlapL_finish.1, Or.inl D.mem_overlapL_finish.2⟩
 
+/--
+@isnad1 id=nonempty.0h4v.s8.92f69a0dd645 from=translated src=- shape=46344c7d vocab=824d601a
+-/
 theorem pieceR_inter_succ_nonempty : (D.pieceR i ∩ D.pieceR (i + 1)).Nonempty :=
   ⟨_, Or.inr D.mem_overlapR_finish.1, Or.inl D.mem_overlapR_finish.2⟩
 
-/-- **The left side of the collar is connected.** -/
+/-- **The left side of the collar is connected.**
+@isnad1 id=isconnec.0h3v.s5.6cf83db728a4 from=translated src=- shape=f506a1dc vocab=ac258c62
+-/
 theorem isConnected_sideL : IsConnected D.sideL := by
   rw [D.sideL_eq_iUnion]
   exact isConnected_iUnion_zmod _ (fun i => D.isConnected_pieceL)
     (fun i => D.pieceL_inter_succ_nonempty)
 
-/-- **The right side of the collar is connected.** -/
+/-- **The right side of the collar is connected.**
+@isnad1 id=isconnec.0h3v.s5.909b2ff6d9c0 from=translated src=- shape=f506a1dc vocab=39da1d34
+-/
 theorem isConnected_sideR : IsConnected D.sideR := by
   rw [D.sideR_eq_iUnion]
   exact isConnected_iUnion_zmod _ (fun i => D.isConnected_pieceR)
     (fun i => D.pieceR_inter_succ_nonempty)
 
+/--
+@isnad1 id=isopen.0h3v.s5.a708e0092a17 from=translated src=- shape=f506a1dc vocab=73b594ce
+-/
 theorem isOpen_sideL : IsOpen D.sideL :=
   isOpen_iUnion fun _ => D.isOpen_sectorL.union D.isOpen_blockL
 
+/--
+@isnad1 id=isopen.0h3v.s5.dc6d540f0476 from=translated src=- shape=f506a1dc vocab=f9d4348a
+-/
 theorem isOpen_sideR : IsOpen D.sideR :=
   isOpen_iUnion fun _ => D.isOpen_sectorR.union D.isOpen_blockR
 
@@ -342,7 +410,9 @@ theorem isOpen_sideR : IsOpen D.sideR :=
 statements of `Strip.lean` read backwards. -/
 
 /-- **Lemma 1.8 (a), the set equality.** Removing the curve from the collar leaves exactly the
-two labelled sides. With `sideL_disjoint_sideR` this is `N \ P = N_L ⊔ N_R`. -/
+two labelled sides. With `sideL_disjoint_sideR` this is `N \ P = N_L ⊔ N_R`.
+@isnad1 id=eq.0h3v.s5.ff381ec42dc4 from=translated src=- shape=2a1176d8 vocab=4d5a29ac
+-/
 theorem nbhd_diff_carrier : D.nbhd \ P.carrier = D.sideL ∪ D.sideR := by
   ext y
   constructor
@@ -356,6 +426,9 @@ theorem nbhd_diff_carrier : D.nbhd \ P.carrier = D.sideL ∪ D.sideR := by
     · exact fun hc => Set.disjoint_left.1 D.sideL_disjoint_carrier h hc
     · exact fun hc => Set.disjoint_left.1 D.sideR_disjoint_carrier h hc
 
+/--
+@isnad1 id=le.0h3v.s4.619f8786e4fd from=translated src=- shape=a1b11dff vocab=963b51c9
+-/
 theorem carrier_subset_nbhd : P.carrier ⊆ D.nbhd := fun _ hy => Or.inr hy
 
 /-! ### The collar is open
@@ -373,17 +446,29 @@ union of the two blocks with the piece of the edge between them. -/
 def tube (i : ZMod (m + 3)) : Set Plane :=
   strip (P.vertex i) (P.tang i) D.lam (P.len i - D.lam) (-D.rho) D.rho
 
+/--
+@isnad1 id=isopen.0h4v.s6.1c1e6e726acd from=translated src=- shape=f5905169 vocab=4fd0091c
+-/
 theorem isOpen_tube : IsOpen (D.tube i) := isOpen_strip _ _ _ _ _ _
 
+/--
+@isnad1 id=iff.0h6v.s6.734585a6bd8e from=translated src=- shape=0a7afd3d vocab=01bc5c96
+-/
 theorem mem_tube_off {t s : ℝ} : P.off i t s ∈ D.tube i ↔
     D.lam < t ∧ t < P.len i - D.lam ∧ -D.rho < s ∧ s < D.rho := by
   rw [tube, mem_strip_iff, ClosedPolygon.coordAlong_off, ClosedPolygon.coordAcross_off]
 
+/--
+@isnad1 id=le.0h4v.s5.b999eb48852c from=translated src=- shape=b6c13286 vocab=f3359880
+-/
 theorem blockL_subset_tube : D.blockL i ⊆ D.tube i := by
   intro y hy
   obtain ⟨h1, h2, h3, h4⟩ := D.mem_blockL_iff.1 hy
   exact ⟨h1, h2, by linarith [D.rho_pos], h4⟩
 
+/--
+@isnad1 id=le.0h4v.s5.d172586feee1 from=translated src=- shape=b6c13286 vocab=13bee9a1
+-/
 theorem blockR_subset_tube : D.blockR i ⊆ D.tube i := by
   intro y hy
   obtain ⟨h1, h2, h3, h4⟩ := D.mem_blockR_iff.1 hy
@@ -393,7 +478,9 @@ theorem blockR_subset_tube : D.blockR i ⊆ D.tube i := by
 the ball off the curve points in some direction from the vertex; by `mem_ray_or_mem_arcCCW'`
 that direction is either one of the two incident rays — and then the point is *on* the incident
 edge, because `R_le_len` says the sector does not run past the far end — or on one of the two
-arcs, and then the point is in the corresponding sector. -/
+arcs, and then the point is in the corresponding sector.
+@isnad1 id=le.0h4v.s6.197a3b9f6a10 from=translated src=- shape=5e21d9da vocab=088f3389
+-/
 theorem ball_diff_carrier_subset :
     ball (P.vertex i) D.R \ P.carrier ⊆ D.sectorL i ∪ D.sectorR i := by
   rintro y ⟨hy, hyc⟩
@@ -431,7 +518,9 @@ theorem ball_diff_carrier_subset :
   · exact Or.inl ⟨harc, hy⟩
 
 /-- **A tube minus the curve is its two blocks.** The only points of a tube on the curve are
-those on the core of its own edge. -/
+those on the core of its own edge.
+@isnad1 id=le.0h4v.s5.4748f7d4391e from=translated src=- shape=865121e7 vocab=162a5149
+-/
 theorem tube_diff_carrier_subset : D.tube i \ P.carrier ⊆ D.blockL i ∪ D.blockR i := by
   rintro y ⟨⟨h1, h2, h3, h4⟩, hyc⟩
   rcases lt_trichotomy (coordAcross (P.vertex i) (P.tang i) y) 0 with h | h | h
@@ -447,7 +536,9 @@ theorem tube_diff_carrier_subset : D.tube i \ P.carrier ⊆ D.blockL i ∪ D.blo
   · exact Or.inl (D.mem_blockL_iff.2 ⟨h1, h2, h, h4⟩)
 
 /-- Each edge is covered by the ball at its first vertex, the ball at its second, and its own
-tube: `lam < R` leaves no gap in the middle. -/
+tube: `lam < R` leaves no gap in the middle.
+@isnad1 id=le.0h3v.s7.4e2f20dfa474 from=translated src=- shape=5d08e6e2 vocab=2514e69d
+-/
 theorem carrier_subset_balls_union_tubes :
     P.carrier ⊆ (⋃ i, ball (P.vertex i) D.R) ∪ (⋃ i, D.tube i) := by
   rintro y hy
@@ -469,7 +560,9 @@ theorem carrier_subset_balls_union_tubes :
     exact D.mem_tube_off.2 ⟨by linarith, by linarith, by linarith [D.rho_pos], D.rho_pos⟩
 
 /-- The collar is the union of the vertex balls and the edge tubes. This is the presentation
-that makes it visibly open. -/
+that makes it visibly open.
+@isnad1 id=eq.0h3v.s7.47968566f093 from=translated src=- shape=7337ea49 vocab=b093237e
+-/
 theorem nbhd_eq : D.nbhd = (⋃ i, ball (P.vertex i) D.R) ∪ (⋃ i, D.tube i) := by
   refine Set.Subset.antisymm ?_ ?_
   · rintro y ((hy | hy) | hy)
@@ -496,6 +589,9 @@ theorem nbhd_eq : D.nbhd = (⋃ i, ball (P.vertex i) D.R) ∪ (⋃ i, D.tube i) 
         · exact Or.inl (Or.inl (Set.mem_iUnion.2 ⟨i, Or.inr h⟩))
         · exact Or.inl (Or.inr (Set.mem_iUnion.2 ⟨i, Or.inr h⟩))
 
+/--
+@isnad1 id=isopen.0h3v.s5.351b88936a73 from=translated src=- shape=f506a1dc vocab=bd799282
+-/
 theorem isOpen_nbhd : IsOpen D.nbhd := by
   rw [D.nbhd_eq]
   exact (isOpen_iUnion fun _ => isOpen_ball).union (isOpen_iUnion fun _ => D.isOpen_tube)
@@ -505,7 +601,9 @@ theorem isOpen_nbhd : IsOpen D.nbhd := by
 /-- **Two-sided polygonal strips, the closed case.** Given the constants, the collar of a simple
 closed polygon is an open neighbourhood of the curve whose complement in it is the disjoint
 union of the two connected open local sides. This is Lemma 1.8 (a) of the blueprint, modulo
-`exists_stripData`, which produces the constants. -/
+`exists_stripData`, which produces the constants.
+@isnad1 id=and.0h3v.s8.0ea61070098a from=translated src=- shape=99e487f9 vocab=9e2d3e5c
+-/
 theorem collar :
     IsOpen D.nbhd ∧ P.carrier ⊆ D.nbhd ∧ D.nbhd \ P.carrier = D.sideL ∪ D.sideR ∧
       IsOpen D.sideL ∧ IsOpen D.sideR ∧ IsConnected D.sideL ∧ IsConnected D.sideR ∧
@@ -515,7 +613,9 @@ theorem collar :
 
 /-- The existential form of Lemma 1.8 (a): a simple closed polygonal curve for which the
 constants exist has an open neighbourhood `N` with `N \ P` the disjoint union of two connected
-open sets. -/
+open sets.
+@isnad1 id=ex.0h3v.s8.425be0bf6295 from=translated src=- shape=0cb86718 vocab=0460292d
+-/
 theorem exists_collar (D : StripData P) :
     ∃ N NL NR : Set Plane, IsOpen N ∧ P.carrier ⊆ N ∧ IsOpen NL ∧ IsOpen NR ∧
       IsConnected NL ∧ IsConnected NR ∧ Disjoint NL NR ∧ N \ P.carrier = NL ∪ NR :=

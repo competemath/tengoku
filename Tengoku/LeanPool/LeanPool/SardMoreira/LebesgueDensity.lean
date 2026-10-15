@@ -20,10 +20,16 @@ import Tengoku.LeanPool.LeanPool.SardMoreira.Topology
 open scoped ENNReal NNReal Set.Notation Pointwise
 open MeasureTheory Filter Set Function Metric Topology
 
+/--
+@isnad1 id=absolute.0h1v.s6.e7734ede6e06 from=translated src=- shape=2a9b06d8 vocab=4d97f055
+-/
 theorem absolutelyContinuous_volumeIoiPow_left (n : ℕ) :
     .volumeIoiPow n ≪ .comap Subtype.val volume := by
   apply MeasureTheory.withDensity_absolutelyContinuous
 
+/--
+@isnad1 id=absolute.2h7v.s5.278ed9b131ee from=translated src=- shape=ded8f492 vocab=2c8cb3b9
+-/
 protected theorem MeasureTheory.Measure.AbsolutelyContinuous.comap {α β : Type*}
     {_ : MeasurableSpace α} {_ : MeasurableSpace β} {μ ν : Measure β} (h : μ ≪ ν) (f : α → β)
     (hfν : ∀ s, MeasurableSet s → NullMeasurableSet (f '' s) ν) :
@@ -40,6 +46,9 @@ protected theorem MeasureTheory.Measure.AbsolutelyContinuous.comap {α β : Type
     · exact .zero _
     · simp_all
 
+/--
+@isnad1 id=iff.1h7v.s5.ff5ec56ee016 from=translated src=- shape=2e3c78bf vocab=f233054f
+-/
 theorem MeasurableEmbedding.quasiMeasurePreserving_iff_comap {α β : Type*}
     {_ : MeasurableSpace α} {_ : MeasurableSpace β} {e : α → β} (he : MeasurableEmbedding e)
     {μ : Measure α} {ν : Measure β} :
@@ -52,11 +61,17 @@ theorem MeasurableEmbedding.quasiMeasurePreserving_iff_comap {α β : Type*}
     rw [he.map_comap]
     exact ν.restrict_le_self.absolutelyContinuous
 
+/--
+@isnad1 id=quasimea.0h1v.s6.12acb31feca7 from=translated src=- shape=51898efd vocab=8244d10e
+-/
 theorem MeasureTheory.Measure.QuasiMeasurePreserving.subtypeVal_volumeIoiPow (n : ℕ) :
     Measure.QuasiMeasurePreserving Subtype.val (.volumeIoiPow n) volume := by
   rw [MeasurableEmbedding.quasiMeasurePreserving_iff_comap]
   exacts [absolutelyContinuous_volumeIoiPow_left n, .subtype_coe measurableSet_Ioi]
 
+/--
+@isnad1 id=absolute.0h1v.s6.f00d89f739e9 from=translated src=- shape=bae2c08f vocab=00506e87
+-/
 theorem absolutelyContinuous_volumeIoiPow_right (n : ℕ) :
     .comap Subtype.val volume ≪ .volumeIoiPow n := by
   refine MeasureTheory.withDensity_absolutelyContinuous' ?_ <| .of_forall ?_
@@ -65,7 +80,9 @@ theorem absolutelyContinuous_volumeIoiPow_right (n : ℕ) :
 
 /-- If a finite measure `μ` is absolutely continuous with respect to a σ-finite measure `ν`,
 then `μ s → 0` as `ν s → 0`. More precisely, for any `ε ≠ 0` there exists `δ > 0`
-such that all sets of `ν` measure less than `δ` have a `μ` measure less than `ε`. -/
+such that all sets of `ν` measure less than `δ` have a `μ` measure less than `ε`.
+@isnad1 id=ex.2h5v.s6.dabff21c0cef from=translated src=- shape=e44b5615 vocab=a2283b18
+-/
 theorem MeasureTheory.Measure.AbsolutelyContinuous.exists_pos_forall_lt_imp_lt_of_isFiniteMeasure
     {α : Type*} {_ : MeasurableSpace α} {μ ν : Measure α} [IsFiniteMeasure μ]
     [μ.HaveLebesgueDecomposition ν]
@@ -93,6 +110,7 @@ The previous lemma is not true unless we assume that `ν` is a finite measure.
 Indeed, for `ν = volume` on `ℝ`, `μ = ν.withDensity (Real.nnabs ·)`,
 we can choose `s = Set.Icc a (a + δ / 2)` for a large `a`,
 and get an arbitriraly large value of `μ s`.
+@isnad1 id=ex.0h0v.s6.21d98b64d42f from=translated src=- shape=8595d01b vocab=1ffdab41
 -/
 theorem exists_absolutelyContinuous_forall_pos_exists_lt_gt :
     ∃ μ ν : Measure ℝ, μ ≪ ν ∧ ∀ C δ : ℝ≥0, δ ≠ 0 →
@@ -127,7 +145,9 @@ theorem exists_absolutelyContinuous_forall_pos_exists_lt_gt :
 
 /-- If a finite measure `μ` is absolutely continuous with respect to a σ-finite measure `ν`,
 then `μ s → 0` as `ν s → 0`. More precisely, for any `ε ≠ 0` there exists `δ > 0`
-such that all sets of `ν` measure less than `δ` have a `μ` measure less than `ε`. -/
+such that all sets of `ν` measure less than `δ` have a `μ` measure less than `ε`.
+@isnad1 id=ex.3h6v.s7.f7f938c89f2e from=translated src=- shape=280b3669 vocab=3d8a3100
+-/
 theorem MeasureTheory.Measure.AbsolutelyContinuous.exists_pos_forall_subset_lt_imp_lt
     {α : Type*} {_ : MeasurableSpace α} {μ ν : Measure α} [SigmaFinite ν]
     (h : μ ≪ ν) {t : Set α} (ht : μ t ≠ ⊤) {ε : ℝ≥0∞} (hε : ε ≠ 0) :
@@ -138,6 +158,9 @@ theorem MeasureTheory.Measure.AbsolutelyContinuous.exists_pos_forall_subset_lt_i
   refine ⟨δ, hδ₀, fun s hst hs ↦ ?_⟩
   simpa only [Measure.restrict_eq_self _ hst] using hδ s hs
 
+/--
+@isnad1 id=ex.3h5v.s7.4aa9634039be from=translated src=- shape=7a95f3e5 vocab=23930f7b
+-/
 theorem MeasureTheory.Measure.AbsolutelyContinuous.exists_pos_forall_lt_imp_lt
     {α : Type*} {_ : MeasurableSpace α} {μ ν : Measure α} [SFinite μ] [SigmaFinite ν]
     (h : μ ≪ ν) {ε : ℝ≥0∞} (hε : ε ≠ 0)
@@ -175,6 +198,9 @@ theorem MeasureTheory.Measure.AbsolutelyContinuous.exists_pos_forall_lt_imp_lt
 
 -- TODO: write a readable docstring
 -- TODO: move some code to lemmas
+/--
+@isnad1 id=ex.1h4v.s9.b9da07b9949a from=translated src=- shape=a49a64b4 vocab=4525d567
+-/
 theorem exists_pos_forall_measure_le_toSphere_ge_le
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {_ : MeasurableSpace E} [BorelSpace E] (μ : Measure E) [μ.IsAddHaarMeasure]
@@ -266,6 +292,9 @@ theorem exists_pos_forall_measure_le_toSphere_ge_le
       rw [(MeasurableEmbedding.subtype_coe <| by measurability).comap_preimage]
       exact measure_mono inter_subset_left
 
+/--
+@isnad1 id=ex.1h4v.s8.8a7fb0fd9576 from=translated src=- shape=c26e42f0 vocab=a80faa5c
+-/
 theorem exists_pos_forall_measure_le_exists_mem_sphere_dist_lt_volume_smul_mem_lt
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {_ : MeasurableSpace E} [BorelSpace E] (μ : Measure E) [μ.IsAddHaarMeasure]
@@ -288,6 +317,9 @@ theorem exists_pos_forall_measure_le_exists_mem_sphere_dist_lt_volume_smul_mem_l
       rw [mem_ofPred_eq]
       exact (min_le_right _ _).trans <| hη _ y.2 hy
 
+/--
+@isnad1 id=ex.1h2v.s8.d882abd3fe57 from=translated src=- shape=132e07b0 vocab=eb2acd5b
+-/
 theorem exists_pos_forall_measure_le_exists_mem_sphere_dist_lt_volume_lineMap_mem_lt
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {ε : ℝ≥0} (hε : ε ≠ 0) :
@@ -347,17 +379,25 @@ theorem exists_pos_forall_measure_le_exists_mem_sphere_dist_lt_volume_lineMap_me
 /-- If $s_b$ is a family of sets such that $\{(a, b) \mid a \in s_b\}$ is a measurable set,
 then for any s-finite measure $\mu$, the function $b \mapsto \mu(s_b)$ is measurable.
 
-This is a version of `measurable_measure_prod_mk_right`. -/
+This is a version of `measurable_measure_prod_mk_right`.
+@isnad1 id=measurab.1h4v.s6.2f767743ce96 from=translated src=- shape=a03b682f vocab=b1f1daee
+-/
 theorem Measurable.measure_apply {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     (μ : Measure α) [SFinite μ] (s : β → Set α) (hs : MeasurableSet {p : α × β | p.1 ∈ s p.2}) :
     Measurable fun b ↦ μ (s b) :=
   measurable_measure_prodMk_right hs
 
+/--
+@isnad1 id=eq.0h3v.s5.b1c4abe25e4f from=translated src=- shape=9fa60ee1 vocab=70bc4ffb
+-/
 theorem Metric.biInter_lt_rat_closedBall {X : Type*} [PseudoMetricSpace X] (x : X) (r : ℝ) :
     closedBall x r = ⋂ (q : ℚ) (_ : r < q), closedBall x q := by
   ext
   simpa only [mem_iInter₂, mem_closedBall] using le_iff_forall_lt_rat_imp_le
 
+/--
+@isnad1 id=eventual.0h3v.s6.ed4b63255ef2 from=translated src=- shape=e01c0854 vocab=6beec7e0
+-/
 theorem eventually_measure_closedBall_lt_top
     {X : Type*} [PseudoMetricSpace X] [MeasurableSpace X]
     (μ : Measure X) [IsLocallyFiniteMeasure μ] (x : X) :
@@ -365,6 +405,9 @@ theorem eventually_measure_closedBall_lt_top
   rcases (μ.finiteAt_nhds x).exists_mem_basis nhds_basis_closedBall with ⟨ε, ε₀, hε⟩
   exact (eventually_lt_nhds ε₀).mono fun r hr ↦ lt_of_le_of_lt (by gcongr) hε
 
+/--
+@isnad1 id=eventual.0h3v.s6.536e422b865f from=translated src=- shape=f4c9eab7 vocab=cd3ec5e1
+-/
 theorem eventually_forall_le_continuousWithinAt_Ici_measure_closedBall
     {X : Type*} [PseudoMetricSpace X] [MeasurableSpace X] [OpensMeasurableSpace X]
     (μ : Measure X) [IsLocallyFiniteMeasure μ] (x : X) :
@@ -377,6 +420,9 @@ theorem eventually_forall_le_continuousWithinAt_Ici_measure_closedBall
   · rfl
   · rw [biInter_gt_closedBall]
 
+/--
+@isnad1 id=eventual.1h4v.s7.fde4115f9569 from=translated src=- shape=4ccddda4 vocab=177e4698
+-/
 theorem eventually_continuousWithinAt_Ici_measure_inter_closedBall_div
     {X : Type*} [PseudoMetricSpace X] [MeasurableSpace X] [OpensMeasurableSpace X]
     {μ : Measure X} [IsLocallyFiniteMeasure μ] (x : X) {s : Set X} (hs : NullMeasurableSet s μ) :
@@ -410,6 +456,7 @@ If `X = ℚ`, `Y = ℝ`, and `e = Rat.cast`,
 then this lemma can be used to restate convergence of a function defined on real numbers
 in terms of convergence of a function on rational numbers,
 which is more convenient for measure theory, because there are only countably many rational numbers.
+@isnad1 id=iff.4h9v.s7.7b5d64689574 from=translated src=- shape=4ebcd546 vocab=dcbf5696
 -/
 theorem IsDenseEmbedding.tendsto_nhdsWithin_preimage_iff_of_eventually_continuousWithinAt
     {X Y Z : Type*} [TopologicalSpace X] [TopologicalSpace Y]
@@ -437,6 +484,9 @@ theorem IsDenseEmbedding.tendsto_nhdsWithin_preimage_iff_of_eventually_continuou
     rw [inter_comm]
     exact nonempty_of_mem <| inter_mem_nhdsWithin _ (hWo.mem_nhds hyW)
 
+/--
+@isnad1 id=iff.1h5v.s7.1e5fcab6b830 from=translated src=- shape=ba3c98bc vocab=0af053a1
+-/
 theorem tendsto_measure_inter_closedBall_div_iff_rat
     {X : Type*} [PseudoMetricSpace X] [MeasurableSpace X] [OpensMeasurableSpace X]
     {μ : Measure X} [IsLocallyFiniteMeasure μ] {x : X} {a : ℝ≥0∞} {s : Set X}
@@ -457,6 +507,9 @@ theorem tendsto_measure_inter_closedBall_div_iff_rat
 -- We may decide to reformulate in order to reduce dependencies.
 -- UPD: I'm not sure if they're true without `SecondCountableTopology` assumption,
 -- even for simple functions.
+/--
+@isnad1 id=measurab.2h5v.s7.20f4a2f0f01d from=translated src=- shape=0dd41a35 vocab=cd8e5b90
+-/
 theorem MeasurableSet.setOf_tendsto_measure_sectl_inter_closedBall_div
     {X : Type*} [PseudoMetricSpace X] [SecondCountableTopology X]
     [MeasurableSpace X] [OpensMeasurableSpace X]
@@ -477,6 +530,9 @@ theorem MeasurableSet.setOf_tendsto_measure_sectl_inter_closedBall_div
   refine .measure_apply _ _ ?_
   exact .inter (hs.preimage <| .prodMk measurable_fst measurable_snd.snd) this
 
+/--
+@isnad1 id=measurab.2h4v.s7.46204a3906f3 from=translated src=- shape=4bfd9682 vocab=07565a26
+-/
 theorem MeasurableSet.setOf_tendsto_measure_inter_closedBall_div
     {X : Type*} [PseudoMetricSpace X] [SecondCountableTopology X]
     [MeasurableSpace X] [OpensMeasurableSpace X]
@@ -492,7 +548,9 @@ theorem MeasurableSet.setOf_tendsto_measure_inter_closedBall_div
   refine measurableSet_tendsto_fun (fun q ↦ .div (.measure_apply μ _ ?_) (.measure_apply μ _ H)) hf
   exact .inter (hs.preimage measurable_fst) H
 
-/-- Parametrized version of `ae_tendsto_measure_inter_div_of_measurableSet`. -/
+/-- Parametrized version of `ae_tendsto_measure_inter_div_of_measurableSet`.
+@isnad1 id=eventual.1h5v.s8.7eb1a1faadb9 from=translated src=- shape=52e293c2 vocab=32c32df7
+-/
 theorem Besicovitch.ae_tendsto_measure_sectl_inter_closedBall_div
     {X : Type*} [MetricSpace X] [SecondCountableTopology X] [HasBesicovitchCovering X]
     [MeasurableSpace X] [BorelSpace X]
@@ -507,7 +565,9 @@ theorem Besicovitch.ae_tendsto_measure_sectl_inter_closedBall_div
   refine .of_forall fun y ↦ ae_tendsto_measure_inter_div_of_measurableSet μ <| hs.preimage ?_
   measurability
 
-/-- Parametrized version of `ae_tendsto_measure_inter_div_of_measurableSet`. -/
+/-- Parametrized version of `ae_tendsto_measure_inter_div_of_measurableSet`.
+@isnad1 id=eventual.1h5v.s8.87f9301f4c44 from=translated src=- shape=75360b54 vocab=32c32df7
+-/
 theorem Besicovitch.ae_tendsto_measure_sectr_inter_closedBall_div
     {X : Type*} [MetricSpace X] [SecondCountableTopology X] [HasBesicovitchCovering X]
     [MeasurableSpace X] [BorelSpace X]

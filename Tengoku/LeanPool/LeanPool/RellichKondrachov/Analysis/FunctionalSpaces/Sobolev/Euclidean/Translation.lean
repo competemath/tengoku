@@ -44,16 +44,25 @@ def translate {F : Type*} (a : E) (f : E → F) : E → F :=
   fun x => f (x + a)
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=contdiff.1h3v.s6.cef5dd1ab99f from=translated src=- shape=1290cbc7 vocab=af754073
+-/
 lemma contDiff_translate {f : E → ℝ} (hf : ContDiff ℝ 1 f) (a : E) :
     ContDiff ℝ 1 (translate (E := E) a f) := by
   -- `x ↦ x + a` is `C^∞`; compose.
   exact hf.comp (contDiff_id.add contDiff_const)
 
 omit [InnerProductSpace ℝ E] [CompleteSpace E] in
+/--
+@isnad1 id=hascompa.1h4v.s5.ddb9a5c7615a from=translated src=- shape=87627c9e vocab=e39356ae
+-/
 lemma hasCompactSupport_translate {F : Type*} [Zero F] {f : E → F}
     (hf : HasCompactSupport f) (a : E) : HasCompactSupport (translate (E := E) a f) := by
   exact hf.comp_homeomorph (Homeomorph.addRight a)
 
+/--
+@isnad1 id=eq.0h4v.s6.d87f0258a8bc from=translated src=- shape=cd970e04 vocab=8884179e
+-/
 lemma grad_translate (a : E) (f : E → ℝ) (x : E) :
     grad (E := E) (translate (E := E) a f) x = grad (E := E) f (x + a) := by
   classical
@@ -64,6 +73,9 @@ lemma grad_translate (a : E) (f : E → ℝ) (x : E) :
   simp only [grad, hfderiv]
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=mem.1h3v.s7.208b02047c2f from=translated src=- shape=c242dfcb vocab=887bdb38
+-/
 lemma mem_C1c_translate {f : E → ℝ} (hf : f ∈ C1c (E := E)) (a : E) :
     translate (E := E) a f ∈ C1c (E := E) :=
   ⟨contDiff_translate (E := E) hf.1 a, hasCompactSupport_translate (E := E) hf.2 a⟩
@@ -86,9 +98,18 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteS
 
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceTranslation : MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.d4b9ceace08b from=translated src=- shape=c6850a32 vocab=7fdb4683
+-/
 local instance instBorelSpaceTranslation : BorelSpace E := ⟨rfl⟩
+/--
+@isnad1 id=opensmea.0h1v.s4.ed5a6d0726c6 from=translated src=- shape=c6850a32 vocab=b40d8682
+-/
 local instance instOpensMeasurableSpaceTranslation : OpensMeasurableSpace E := by
   infer_instance
+/--
+@isnad1 id=measurab.0h1v.s4.ffdccf3da6fd from=translated src=- shape=c6850a32 vocab=87cf5826
+-/
 local instance instMeasurableAddTranslation : MeasurableAdd E := by
   infer_instance
 
@@ -103,6 +124,9 @@ noncomputable def translateL2 {F : Type*} [NormedAddCommGroup F] [NormedSpace �
       (μ := μ) (μb := μ) (f := fun x : E => x + a) (MeasureTheory.measurePreserving_add_right μ a))
 
 omit [InnerProductSpace ℝ E] [CompleteSpace E] in
+/--
+@isnad1 id=eventual.0h5v.s11.8b0027e4dac0 from=translated src=- shape=89160261 vocab=4ffa26ae
+-/
 lemma translateL2_ae_eq {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F] (a : E)
     (g : E →₂[μ] F) :
     (translateL2 (μ := μ) (F := F) a g : E → F) =ᵐ[μ] fun x => (g : E → F) (x + a) := by
@@ -115,6 +139,9 @@ lemma translateL2_ae_eq {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F] (
 variable [IsFiniteMeasureOnCompacts μ]
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=eq.0h4v.s11.4e006a93fa81 from=translated src=- shape=05477c5f vocab=ae55ea67
+-/
 lemma translateL2_toL2 (a : E) (f : ↥(C1c (E := E))) :
     translateL2 (μ := μ) (F := ℝ) a (toL2 (μ := μ) (E := E) f) =
       toL2 (μ := μ) (E := E) (translateC1c (E := E) a f) := by
@@ -139,6 +166,9 @@ lemma translateL2_toL2 (a : E) (f : ↥(C1c (E := E))) :
       (memLp_of_mem_C1c (μ := μ) (E := E) (translateC1c (E := E) a f).2).coeFn_toLp
   exact h₁.trans h₂.symm
 
+/--
+@isnad1 id=eq.0h4v.s11.bc53a6c27dce from=translated src=- shape=8aa1a2ba vocab=3cccd2ad
+-/
 lemma translateL2_toL2Grad (a : E) (f : ↥(C1c (E := E))) :
     translateL2 (μ := μ) (F := E) a (toL2Grad (μ := μ) (E := E) f) =
       toL2Grad (μ := μ) (E := E) (translateC1c (E := E) a f) := by

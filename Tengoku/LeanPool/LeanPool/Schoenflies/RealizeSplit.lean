@@ -94,6 +94,9 @@ section Map
 
 variable {α α' β : Type*} {G : Graph α β} {f : α → α'} {u v : α} {W : List β}
 
+/--
+@isnad1 id=eq.0h6v.s5.97a632a0e645 from=translated src=- shape=f3d732b4 vocab=df6481b5
+-/
 theorem coveredVertices_map (f : α → α') :
     (G.map f).coveredVertices W = f '' G.coveredVertices W := by
   ext x
@@ -104,13 +107,18 @@ theorem coveredVertices_map (f : α → α') :
   · rintro ⟨v, ⟨e, he, hv⟩, rfl⟩
     exact ⟨e, he, v, hv, rfl⟩
 
+/--
+@isnad1 id=eq.0h7v.s5.96e9a811d9bb from=translated src=- shape=9cfa5476 vocab=141ef503
+-/
 theorem walkVertices_map (f : α → α') (u : α) (W : List β) :
     (G.map f).walkVertices (f u) W = f '' G.walkVertices u W := by
   rw [walkVertices, walkVertices, coveredVertices_map, Set.image_insert_eq]
 
 /-- **A path pushes forward along an injective relabelling.** Unlike `Graph.IsWalk.map` this
 needs the injectivity: the freshness clause is a non-membership, and only an injective map
-reflects it. -/
+reflects it.
+@isnad1 id=ispath.2h8v.s5.08a9bda756bd from=translated src=- shape=2270a0de vocab=ad56586f
+-/
 theorem IsPath.map (hf : InjOn f V(G)) (h : G.IsPath u W v) : (G.map f).IsPath (f u) W (f v) := by
   induction h with
   | nil hx => exact .nil (by simpa using Set.mem_image_of_mem f hx)
@@ -122,7 +130,9 @@ theorem IsPath.map (hf : InjOn f V(G)) (h : G.IsPath u W v) : (G.map f).IsPath (
     exact hfresh (hf hzV hl.left_mem hzf ▸ hz)
 
 /-- Relabelling commutes with the union. Both sides resolve a shared edge name in favour of
-the left-hand graph, and `Graph.map` keeps the edge set, so the two resolutions agree. -/
+the left-hand graph, and `Graph.map` keeps the edge set, so the two resolutions agree.
+@isnad1 id=eq.0h6v.s5.bb77e16965df from=translated src=- shape=d3554a3f vocab=1633ef1a
+-/
 theorem map_union (G H : Graph α β) (f : α → α') :
     (G.union H).map f = (G.map f).union (H.map f) := by
   refine Graph.ext (by simp [Set.image_union]) fun e x y => ?_
@@ -135,6 +145,9 @@ theorem map_union (G H : Graph α β) (f : α → α') :
     · exact ⟨a, b, Or.inl hab, rfl, rfl⟩
     · exact ⟨a, b, Or.inr ⟨he, hab⟩, rfl, rfl⟩
 
+/--
+@isnad1 id=ispathgr.2h8v.s5.a6791c9d40de from=translated src=- shape=97232493 vocab=fb7ac5aa
+-/
 theorem IsPathGraph.map {P : Graph α β} (hf : InjOn f V(P)) (h : P.IsPathGraph u W v) :
     (P.map f).IsPathGraph (f u) W (f v) where
   isPath := h.isPath.map hf
@@ -157,16 +170,24 @@ edges. For a path graph this is the whole of `Graph.pointSet` (`walkPointSet_eq_
 def walkPointSet (H : Graph Plane β) (drw : β → ℝ → Plane) (u : Plane) (W : List β) : Set Plane :=
   H.walkVertices u W ∪ ⋃ e ∈ ({e | e ∈ W} : Set β), edgeArc drw e
 
+/--
+@isnad1 id=eq.1h6v.s5.5a24d8fd1237 from=translated src=- shape=adf03d44 vocab=3986c08c
+-/
 theorem walkPointSet_eq_pointSet {u v : Plane} {W : List β} (h : H.IsPathGraph u W v) :
     walkPointSet H drw u W = pointSet H drw := by
   rw [walkPointSet, pointSet, h.vertexSet_eq, h.edgeSet_eq]
 
+/--
+@isnad1 id=eq.0h4v.s4.572fbc4ad1e6 from=translated src=- shape=395d4a60 vocab=5a7fd9fe
+-/
 theorem walkPointSet_nil (u : Plane) : walkPointSet H drw u ([] : List β) = {u} := by
   rw [walkPointSet, walkVertices_nil]
   simp
 
 /-- Peeling the first step off a walk peels its arc off the point set. The vertex the step
-departs from is an end of that arc, which is why nothing is left behind. -/
+departs from is an end of that arc, which is why nothing is left behind.
+@isnad1 id=eq.2h7v.s5.786d6c3fecd9 from=translated src=- shape=e37a8f1b vocab=bfeb9fb7
+-/
 theorem walkPointSet_cons (hD : IsDrawing H drw) {e : β} {u w : Plane} {W : List β}
     (hl : H.IsLink e u w) :
     walkPointSet H drw u (e :: W) = edgeArc drw e ∪ walkPointSet H drw w W := by
@@ -194,7 +215,9 @@ of the path, and `IsArcBetween.concatenate` asks that they meet only at the vert
 them. That is precisely the freshness clause of `Graph.IsPath`: the vertex the path departs
 from is not among those the rest of it visits, and every point the first arc shares with the
 rest of the drawing is a vertex the rest visits — a vertex by `vertex_mem_edgeArc` if it is
-one of the rest's vertices, and by `edge_inter` if it lies on one of the rest's arcs. -/
+one of the rest's vertices, and by `edge_inter` if it lies on one of the rest's arcs.
+@isnad1 id=isarcbet.3h6v.s5.c537fa7949c6 from=translated src=- shape=2b98fd11 vocab=0362bf6e
+-/
 theorem IsDrawing.isArcBetween_walkPointSet (hD : IsDrawing H drw) :
     ∀ {u v : Plane} {W : List β}, H.IsPath u W v → u ≠ v →
       IsArcBetween (walkPointSet H drw u W) u v := by
@@ -227,6 +250,9 @@ theorem IsDrawing.isArcBetween_walkPointSet (hD : IsDrawing H drw) :
       · exact absurd hzw hfresh
       · rfl
 
+/--
+@isnad1 id=isarcbet.3h6v.s5.b8be548ed68d from=translated src=- shape=d9c2076d vocab=376edcef
+-/
 theorem IsDrawing.isArcBetween_pointSet (hD : IsDrawing H drw) {u v : Plane} {W : List β}
     (h : H.IsPathGraph u W v) (huv : u ≠ v) : IsArcBetween (pointSet H drw) u v := by
   rw [← walkPointSet_eq_pointSet h]
@@ -253,13 +279,18 @@ namespace Realization
 
 variable (R : S.Realization)
 
+/--
+@isnad1 id=eq.0h5v.s5.0ce855183880 from=translated src=- shape=64313f57 vocab=5810e3d4
+-/
 theorem walkVertices_graph (u : γ) (W : List γ) :
     R.graph.walkVertices (R.pos u) W = R.pos '' S.skel.walkVertices u W :=
   Graph.walkVertices_map _ _ _
 
 /-- **The realized cells of a path occupy the point set the drawn path occupies.** The two
 differ only in the endpoints an open 1-cell drops, and those are the points of the 0-cells the
-walk visits. -/
+walk visits.
+@isnad1 id=eq.1h6v.s5.20ce9e42d39f from=translated src=- shape=4f426d7e vocab=58cd2310
+-/
 theorem cellUnion_pathCells {u v : γ} {W : List γ} (h : S.skel.IsWalk u W v) :
     R.cellUnion (S.pathCells u W) = Graph.walkPointSet R.graph R.drawing (R.pos u) W := by
   have hsub : S.skel.walkVertices u W ⊆ V(S.skel) :=
@@ -285,7 +316,9 @@ theorem cellUnion_pathCells {u v : γ} {W : List γ} (h : S.skel.IsWalk u W v) :
       · exact Or.inr ⟨b, Graph.mem_walkVertices_of_mem_covered ⟨f, hf, hl.inc_right⟩, rfl⟩
     · exact Or.inl (cell_subset_cellUnion hf (by rw [R.cell_edge hl]; exact ⟨hx, hxab⟩))
 
-/-- The drawn skeleton is covered by the open cells of dimension 0 and 1. -/
+/-- The drawn skeleton is covered by the open cells of dimension 0 and 1.
+@isnad1 id=le.0h3v.s5.735c8da30a0a from=translated src=- shape=ee4cd5ad vocab=f3d37367
+-/
 theorem skeletonSet_subset_cellUnion :
     R.skeletonSet ⊆ R.cellUnion (V(S.skel) ∪ E(S.skel)) := by
   intro x hx
@@ -312,7 +345,9 @@ theorem skeletonSet_subset_cellUnion :
       exact ⟨hxf, hxab⟩
 
 /-- **An open 2-cell misses the drawn skeleton.** Immediate from the disjointness clause of
-assertion (i): the skeleton is covered by cells of lower dimension. -/
+assertion (i): the skeleton is covered by cells of lower dimension.
+@isnad1 id=disjoint.2h5v.s6.aa21a2322082 from=translated src=- shape=08e54de4 vocab=02f2f6e8
+-/
 theorem disjoint_cell_skeletonSet {D : Set Plane} (hcd : R.IsCellDecomposition D) {F : γ}
     (hF : F ∈ S.faces) : Disjoint (R.cell F) R.skeletonSet := by
   refine Set.disjoint_right.2 fun x hx hxF => ?_
@@ -340,22 +375,36 @@ namespace SplitData
 
 variable (d : S.SplitData)
 
+/--
+@isnad1 id=mem.0h3v.s4.19584bbab1cf from=translated src=- shape=607d03bb vocab=b1fee254
+-/
 theorem source_mem_ear : d.source ∈ V(d.ear) :=
   (d.vertexSet_inter ▸ (Set.mem_insert _ _ : d.source ∈ ({d.source, d.target} : Set γ))).1
 
+/--
+@isnad1 id=mem.0h3v.s4.a7b8bfb32bbb from=translated src=- shape=607d03bb vocab=0cd1eae3
+-/
 theorem target_mem_ear : d.target ∈ V(d.ear) :=
   (d.vertexSet_inter ▸
     (Set.mem_insert_of_mem _ rfl : d.target ∈ ({d.source, d.target} : Set γ))).1
 
+/--
+@isnad1 id=mem.0h3v.s4.f6bbb589f5b1 from=translated src=- shape=6cea06fe vocab=2ca4782d
+-/
 theorem source_mem_cells₂ : d.source ∈ d.cells₂ :=
   Or.inr Graph.mem_walkVertices_self
 
+/--
+@isnad1 id=mem.0h3v.s4.2b74c05196d6 from=translated src=- shape=6cea06fe vocab=77cdfb3e
+-/
 theorem target_mem_cells₂ : d.target ∈ d.cells₂ :=
   Or.inr d.isPath₂.isWalk.target_mem_walkVertices
 
 /-- **The cells strictly below the split 2-cell are the cells of its two boundary paths.**
 This is `SplitData.sub_face` read as a set identity; with assertion (i) it identifies the
-frontier of the old open 2-cell with the two realized boundary paths. -/
+frontier of the old open 2-cell with the two realized boundary paths.
+@isnad1 id=eq.0h3v.s5.d64633b60855 from=translated src=- shape=d0db78d4 vocab=fbac12aa
+-/
 theorem subcells_face_diff : S.subcells d.face \ {d.face} = d.cells₁ ∪ d.cells₂ := by
   ext σ
   simp only [Set.mem_sdiff, Set.mem_singleton_iff, CellStructure.mem_subcells_iff, Set.mem_union]
@@ -374,9 +423,15 @@ theorem subcells_face_diff : S.subcells d.face \ {d.face} = d.cells₁ ∪ d.cel
 /-- The drawn ear: the abstract ear pushed into the plane along the chosen positions. -/
 def earGraph (d : S.SplitData) (earPos : γ → Plane) : Graph Plane γ := d.ear.map earPos
 
+/--
+@isnad1 id=eq.0h4v.s5.7e8f2e330189 from=translated src=- shape=398d8ff4 vocab=c9317d97
+-/
 @[simp] theorem vertexSet_earGraph (earPos : γ → Plane) :
     V(d.earGraph earPos) = earPos '' V(d.ear) := Graph.vertexSet_map _ _
 
+/--
+@isnad1 id=eq.0h4v.s4.a1e9b58d218c from=translated src=- shape=1a16ff47 vocab=31646d72
+-/
 @[simp] theorem edgeSet_earGraph (earPos : γ → Plane) :
     E(d.earGraph earPos) = E(d.ear) := Graph.edgeSet_map _ _
 
@@ -414,12 +469,21 @@ structure EarCrosscut (d : S.SplitData) (R : S.Realization) (earPos : γ → Pla
 namespace EarCrosscut
 
 variable {d} {R : S.Realization} {earPos : γ → Plane} {earDraw : γ → ℝ → Plane}
+/--
+@isnad1 id=ne.0h4v.s4.00acc33c92bc from=translated src=- shape=2e83cd4d vocab=cab48da1
+-/
 theorem source_ne_target_pos : R.pos d.source ≠ R.pos d.target := fun h =>
   d.source_ne_target (R.injOn_pos d.source_mem_skel d.target_mem_skel h)
 
+/--
+@isnad1 id=mem.1h6v.s5.f699a38d07d9 from=translated src=- shape=3dba1dc7 vocab=208bb061
+-/
 theorem mem_earSet_of_mem_ear {z : γ} (hz : z ∈ V(d.ear)) : earPos z ∈ d.earSet earPos earDraw :=
   Graph.vertexSet_subset_pointSet (by rw [d.vertexSet_earGraph]; exact ⟨z, hz, rfl⟩)
 
+/--
+@isnad1 id=le.1h6v.s5.ac406ba36fd7 from=translated src=- shape=5552ed86 vocab=32265217
+-/
 theorem edgeArc_subset_earSet {f : γ} (hf : f ∈ E(d.ear)) :
     Graph.edgeArc earDraw f ⊆ d.earSet earPos earDraw :=
   Graph.edgeArc_subset_pointSet (by rw [d.edgeSet_earGraph]; exact hf)
@@ -429,19 +493,29 @@ variable (hE : d.EarCrosscut R earPos earDraw)
 include hE
 
 /-- On the two ends — the only vertices the ear shares with the old skeleton — the ear's
-positions agree with the old ones. -/
+positions agree with the old ones.
+@isnad1 id=eq.3h7v.s6.f87357fec579 from=translated src=- shape=1bc51755 vocab=2dea70bf
+-/
 theorem earPos_eq {z : γ} (hz : z ∈ V(d.ear)) (hz' : z ∈ V(S.skel)) : earPos z = R.pos z := by
   have : z ∈ ({d.source, d.target} : Set γ) := d.vertexSet_inter ▸ ⟨hz, hz'⟩
   rcases this with rfl | rfl
   exacts [hE.pos_source, hE.pos_target]
 
+/--
+@isnad1 id=mem.1h6v.s5.afdf39acb66b from=translated src=- shape=18fe3026 vocab=d2f1efec
+-/
 theorem pos_source_mem_earSet : R.pos d.source ∈ d.earSet earPos earDraw :=
   hE.pos_source ▸ mem_earSet_of_mem_ear d.source_mem_ear
 
+/--
+@isnad1 id=mem.1h6v.s5.b2295c605d7d from=translated src=- shape=18fe3026 vocab=17adabea
+-/
 theorem pos_target_mem_earSet : R.pos d.target ∈ d.earSet earPos earDraw :=
   hE.pos_target ▸ mem_earSet_of_mem_ear d.target_mem_ear
 
-/-- An interior vertex of the ear is drawn strictly inside the old open 2-cell. -/
+/-- An interior vertex of the ear is drawn strictly inside the old open 2-cell.
+@isnad1 id=mem.4h7v.s6.faf8fde391cb from=translated src=- shape=4f662abc vocab=46e4c399
+-/
 theorem earPos_mem_cell_face {z : γ} (hz : z ∈ V(d.ear)) (hs : z ≠ d.source)
     (ht : z ≠ d.target) : earPos z ∈ R.cell d.face := by
   refine hE.subset_face ⟨mem_earSet_of_mem_ear hz, ?_⟩
@@ -451,7 +525,9 @@ theorem earPos_mem_cell_face {z : γ} (hz : z ∈ V(d.ear)) (hs : z ≠ d.source
   · exact ht (hE.injOn hz d.target_mem_ear (h.trans hE.pos_target.symm))
 
 /-- **The drawn ear meets the old skeleton exactly in its two ends.** The interior of the ear
-is inside the open 2-cell, and an open 2-cell misses the drawn skeleton. -/
+is inside the open 2-cell, and an open 2-cell misses the drawn skeleton.
+@isnad1 id=le.1h6v.s6.63b90e701c92 from=translated src=- shape=b0fe3081 vocab=2f056f4c
+-/
 theorem earSet_inter_skeletonSet :
     d.earSet earPos earDraw ∩ R.skeletonSet ⊆ {R.pos d.source, R.pos d.target} := by
   rintro x ⟨hx, hx'⟩
@@ -460,7 +536,9 @@ theorem earSet_inter_skeletonSet :
 
 /-- **An ear edge's arc meets the ear's vertices exactly at its own two ends**, so dropping
 all of the ear's vertices from it is the same as dropping its own two ends. This is what makes
-the definition of the new open 1-cells independent of a choice of orientation. -/
+the definition of the new open 1-cells independent of a choice of orientation.
+@isnad1 id=eq.2h9v.s6.1792b7ee3535 from=translated src=- shape=a962eebf vocab=cf755656
+-/
 theorem edgeArc_diff {f a b : γ} (hl : d.ear.IsLink f a b) :
     Graph.edgeArc earDraw f \ earPos '' V(d.ear) =
       Graph.edgeArc earDraw f \ {earPos a, earPos b} := by
@@ -503,40 +581,61 @@ noncomputable def splitCell (d : S.SplitData) (R : S.Realization) (earPos : γ �
 
 variable {d} {R : S.Realization} {earPos : γ → Plane} {earDraw : γ → ℝ → Plane}
 
+/--
+@isnad1 id=eq.1h6v.s5.aa61789f7826 from=translated src=- shape=44cbb040 vocab=e9aaf8c6
+-/
 theorem splitPos_of_mem_ear {z : γ} (hz : z ∈ V(d.ear)) : d.splitPos R earPos z = earPos z := by
   classical
   simp only [splitPos,
           ite_eq_left hz]
 
+/--
+@isnad1 id=eq.1h6v.s5.b186168bc424 from=translated src=- shape=b4d13d61 vocab=b10a2e70
+-/
 theorem splitPos_of_notMem_ear {z : γ} (hz : z ∉ V(d.ear)) : d.splitPos R earPos z = R.pos z := by
   classical
   simp only [splitPos,
       ite_eq_right hz]
 
+/--
+@isnad1 id=eq.2h7v.s5.809b76edfa95 from=translated src=- shape=2ecfc7df vocab=8de03762
+-/
 theorem EarCrosscut.splitPos_eq (hE : d.EarCrosscut R earPos earDraw) {z : γ}
     (hz : z ∈ V(S.skel)) : d.splitPos R earPos z = R.pos z := by
   by_cases hz' : z ∈ V(d.ear)
   · rw [splitPos_of_mem_ear hz', hE.earPos_eq hz' hz]
   · rw [splitPos_of_notMem_ear hz']
 
+/--
+@isnad1 id=eq.1h6v.s5.1a48c7ed1287 from=translated src=- shape=4a0bd547 vocab=79f63d01
+-/
 theorem splitDrawing_of_mem_ear {f : γ} (hf : f ∈ E(d.ear)) :
     d.splitDrawing R earDraw f = earDraw f := by
   classical
   simp only [splitDrawing,
           ite_eq_left hf]
 
+/--
+@isnad1 id=eq.1h6v.s5.c0dbdb427b7f from=translated src=- shape=2c9fd9af vocab=da476993
+-/
 theorem splitDrawing_of_mem_skel {f : γ} (hf : f ∈ E(S.skel)) :
     d.splitDrawing R earDraw f = R.drawing f := by
   classical
   simp only [splitDrawing,
       ite_eq_right (Set.disjoint_left.1 d.disjoint_edgeSet hf)]
 
+/--
+@isnad1 id=eq.0h6v.s5.8c5d40312288 from=translated src=- shape=fddd48c0 vocab=efe7f8a3
+-/
 theorem splitCell_face₁ : d.splitCell R earPos earDraw d.face₁ =
     inside (R.cellUnion d.cells₁ ∪ d.earSet earPos earDraw) := by
   classical
   unfold splitCell
   rw [ite_eq_left rfl]
 
+/--
+@isnad1 id=eq.0h6v.s5.45c00c4d2312 from=translated src=- shape=fddd48c0 vocab=edfb152a
+-/
 theorem splitCell_face₂ : d.splitCell R earPos earDraw d.face₂ =
     inside (R.cellUnion d.cells₂ ∪ d.earSet earPos earDraw) := by
   classical
@@ -544,6 +643,9 @@ theorem splitCell_face₂ : d.splitCell R earPos earDraw d.face₂ =
   rw [ite_eq_right (Ne.symm d.face_ne),
           ite_eq_left rfl]
 
+/--
+@isnad1 id=eq.1h7v.s5.86ac19f829a2 from=translated src=- shape=91022540 vocab=99151f59
+-/
 theorem splitCell_of_mem_cells {σ : γ} (hσ : σ ∈ S.cells) :
     d.splitCell R earPos earDraw σ = R.cell σ := by
   classical
@@ -560,6 +662,9 @@ theorem splitCell_of_mem_cells {σ : γ} (hσ : σ ∈ S.cells) :
       ite_eq_right h₃,
       ite_eq_right h₄]
 
+/--
+@isnad1 id=eq.2h7v.s6.f79851eea779 from=translated src=- shape=64f5fcb7 vocab=768a2026
+-/
 theorem EarCrosscut.splitCell_earVertex (hE : d.EarCrosscut R earPos earDraw) {z : γ}
     (hz : z ∈ V(d.ear)) : d.splitCell R earPos earDraw z = {earPos z} := by
   classical
@@ -573,6 +678,9 @@ theorem EarCrosscut.splitCell_earVertex (hE : d.EarCrosscut R earPos earDraw) {z
       ite_eq_right h₂,
           ite_eq_left (show z ∈ V(d.ear) ∧ z ∉ V(S.skel) from ⟨hz, hz'⟩)]
 
+/--
+@isnad1 id=eq.1h7v.s6.f5c43502a336 from=translated src=- shape=72c25d40 vocab=707d4ce7
+-/
 theorem splitCell_earEdge {f : γ} (hf : f ∈ E(d.ear)) :
     d.splitCell R earPos earDraw f = Graph.edgeArc earDraw f \ earPos '' V(d.ear) := by
   classical
@@ -586,10 +694,16 @@ theorem splitCell_earEdge {f : γ} (hf : f ∈ E(d.ear)) :
       ite_eq_right h₃,
           ite_eq_left hf]
 
+/--
+@isnad1 id=eq.1h6v.s5.2e4d87577b8c from=translated src=- shape=19872c28 vocab=252d7e6a
+-/
 theorem edgeArc_splitDrawing_of_mem_skel {f : γ} (hf : f ∈ E(S.skel)) :
     Graph.edgeArc (d.splitDrawing R earDraw) f = Graph.edgeArc R.drawing f := by
   rw [Graph.edgeArc, Graph.edgeArc, splitDrawing_of_mem_skel hf]
 
+/--
+@isnad1 id=eq.1h6v.s5.65cd0c5251c3 from=translated src=- shape=8f7f7b1b vocab=a1f2912c
+-/
 theorem edgeArc_splitDrawing_of_mem_ear {f : γ} (hf : f ∈ E(d.ear)) :
     Graph.edgeArc (d.splitDrawing R earDraw) f = Graph.edgeArc earDraw f := by
   rw [Graph.edgeArc, Graph.edgeArc, splitDrawing_of_mem_ear hf]
@@ -601,7 +715,9 @@ variable (hE : d.EarCrosscut R earPos earDraw)
 include hE
 
 /-- The skeleton of the split structure, drawn: the old drawn skeleton with the drawn ear
-glued on. -/
+glued on.
+@isnad1 id=eq.1h6v.s5.43d318669a40 from=translated src=- shape=91f2c484 vocab=c1b14304
+-/
 theorem splitGraph_eq :
     (S.splitFace d).skel.map (d.splitPos R earPos) = R.graph.union (d.earGraph earPos) := by
   change (S.skel.union d.ear).map (d.splitPos R earPos) = _
@@ -613,7 +729,9 @@ theorem splitGraph_eq :
 /-- **The old drawn skeleton with the drawn ear glued on is a plane graph.** The three clauses
 of `Graph.IsDrawing` all reduce, on a mixed pair, to the same fact: the ear meets the old
 drawing only at its two ends, because its interior lies in an open 2-cell and an open 2-cell
-misses the drawn skeleton. -/
+misses the drawn skeleton.
+@isnad1 id=isdrawin.1h6v.s5.ad481db5d918 from=translated src=- shape=7285f394 vocab=6099c6e0
+-/
 theorem isDrawing_split :
     Graph.IsDrawing (R.graph.union (d.earGraph earPos)) (d.splitDrawing R earDraw) := by
   have hEskel : E(R.graph) = E(S.skel) := Realization.edgeSet_graph R
@@ -715,36 +833,55 @@ end EarCrosscut
 
 /-- **The frontier of the old open 2-cell is the union of its two realized boundary paths.**
 `SplitData.sub_face` says which cells lie below the split 2-cell, and assertion (i) turns the
-union of those open cells into the topological frontier. -/
+union of those open cells into the topological frontier.
+@isnad1 id=eq.2h5v.s6.a3e2f76aad43 from=translated src=- shape=27347ab1 vocab=987db0bb
+-/
 theorem frontier_cell_face {D : Set Plane} (hcd : R.IsCellDecomposition D)
     (hJ : R.IsFaceJordan) :
     frontier (R.cell d.face) = R.cellUnion d.cells₁ ∪ R.cellUnion d.cells₂ := by
   rw [← hJ.faceBoundary_eq hcd d.face_mem, Realization.faceBoundary, d.subcells_face_diff,
     Realization.cellUnion_union]
 
+/--
+@isnad1 id=mem.0h4v.s5.59540352c1c8 from=translated src=- shape=d0350336 vocab=8d837079
+-/
 theorem pos_source_mem_cellUnion_cells₁ : R.pos d.source ∈ R.cellUnion d.cells₁ :=
   Realization.cell_subset_cellUnion d.source_mem_cells₁
     (by rw [R.cell_vertex d.source_mem_skel]; rfl)
 
+/--
+@isnad1 id=mem.0h4v.s5.6db224d122c1 from=translated src=- shape=d0350336 vocab=a95ac720
+-/
 theorem pos_source_mem_cellUnion_cells₂ : R.pos d.source ∈ R.cellUnion d.cells₂ :=
   Realization.cell_subset_cellUnion d.source_mem_cells₂
     (by rw [R.cell_vertex d.source_mem_skel]; rfl)
 
+/--
+@isnad1 id=mem.0h4v.s5.58d93f8498cf from=translated src=- shape=d0350336 vocab=fa82be7c
+-/
 theorem pos_target_mem_cellUnion_cells₁ : R.pos d.target ∈ R.cellUnion d.cells₁ :=
   Realization.cell_subset_cellUnion d.target_mem_cells₁
     (by rw [R.cell_vertex d.target_mem_skel]; rfl)
 
+/--
+@isnad1 id=mem.0h4v.s5.cf9f0a6af06a from=translated src=- shape=d0350336 vocab=c78e6315
+-/
 theorem pos_target_mem_cellUnion_cells₂ : R.pos d.target ∈ R.cellUnion d.cells₂ :=
   Realization.cell_subset_cellUnion d.target_mem_cells₂
     (by rw [R.cell_vertex d.target_mem_skel]; rfl)
 
-/-- **A realized boundary path is a simple arc between the ear's two ends.** -/
+/-- **A realized boundary path is a simple arc between the ear's two ends.**
+@isnad1 id=isarcbet.0h4v.s5.98b795e7ace2 from=translated src=- shape=d778cfd3 vocab=ac051ee4
+-/
 theorem isArcBetween_cellUnion_cells₁ :
     IsArcBetween (R.cellUnion d.cells₁) (R.pos d.source) (R.pos d.target) := by
   rw [cells₁, R.cellUnion_pathCells d.isPath₁.isWalk]
   exact R.isDrawing.isArcBetween_walkPointSet (d.isPath₁.map R.injOn_pos)
     (fun h => d.source_ne_target (R.injOn_pos d.source_mem_skel d.target_mem_skel h))
 
+/--
+@isnad1 id=isarcbet.0h4v.s5.f5ad911ebc73 from=translated src=- shape=d778cfd3 vocab=111e0627
+-/
 theorem isArcBetween_cellUnion_cells₂ :
     IsArcBetween (R.cellUnion d.cells₂) (R.pos d.source) (R.pos d.target) := by
   rw [cells₂, R.cellUnion_pathCells d.isPath₂.isWalk]
@@ -756,7 +893,9 @@ theorem isArcBetween_cellUnion_cells₂ :
 This is where `SplitData.paths_meet` is spent, and it is the only place: `paths_disjoint` alone
 forbids the two paths a common *edge* but not a common interior *vertex*, and with a common
 interior vertex the two realized paths meet in more than the two cut points. See the module
-docstring. -/
+docstring.
+@isnad1 id=iscutpai.2h5v.s6.ee69aa9f1642 from=translated src=- shape=21d9a235 vocab=22005afc
+-/
 theorem isCutPair_of_inter {D : Set Plane} (hcd : R.IsCellDecomposition D)
     (hJ : R.IsFaceJordan) :
     IsCutPair (frontier (R.cell d.face)) (R.pos d.source) (R.pos d.target)
@@ -789,18 +928,24 @@ variable (hE : d.EarCrosscut R earPos earDraw)
 
 include hE
 
-/-- The drawn ear is a path graph in the plane. -/
+/-- The drawn ear is a path graph in the plane.
+@isnad1 id=ispathgr.1h6v.s5.e9a951ab02f7 from=translated src=- shape=1ac2d2d1 vocab=3e894527
+-/
 theorem isPathGraph_earGraph :
     (d.earGraph earPos).IsPathGraph (R.pos d.source) d.earWalk (R.pos d.target) := by
   have := d.isPathGraph.map hE.injOn
   rwa [hE.pos_source, hE.pos_target] at this
 
-/-- **The drawn ear is a simple arc between the two old 0-cells it is glued to.** -/
+/-- **The drawn ear is a simple arc between the two old 0-cells it is glued to.**
+@isnad1 id=isarcbet.1h6v.s5.7fd7653e2e58 from=translated src=- shape=be6dc1cc vocab=cab45887
+-/
 theorem isArcBetween_earSet :
     IsArcBetween (d.earSet earPos earDraw) (R.pos d.source) (R.pos d.target) :=
   hE.isDrawing.isArcBetween_pointSet hE.isPathGraph_earGraph source_ne_target_pos
 
-/-- **The drawn ear is a crosscut of the old Jordan face.** -/
+/-- **The drawn ear is a crosscut of the old Jordan face.**
+@isnad1 id=iscrossc.3h7v.s6.eac6a5d05631 from=translated src=- shape=751ce71a vocab=108e15ff
+-/
 theorem isCrosscut_earSet {D : Set Plane} (hcd : R.IsCellDecomposition D)
     (hJ : R.IsFaceJordan) :
     IsCrosscut (frontier (R.cell d.face)) (d.earSet earPos earDraw)
@@ -814,7 +959,9 @@ theorem isCrosscut_earSet {D : Set Plane} (hcd : R.IsCellDecomposition D)
     rw [← hJ.cell_eq_inside d.face_mem]
     exact hE.subset_face
 
-/-- The closure of an ear edge's open arc is the closed arc. -/
+/-- The closure of an ear edge's open arc is the closed arc.
+@isnad1 id=eq.2h9v.s6.1081f4bb3ed2 from=translated src=- shape=2261d6b6 vocab=7da66313
+-/
 theorem closure_edgeArc_diff {f a b : γ} (hl : d.ear.IsLink f a b) :
     closure (Graph.edgeArc earDraw f \ {earPos a, earPos b}) = Graph.edgeArc earDraw f := by
   have harc : IsArcBetween (Graph.edgeArc earDraw f) (earPos a) (earPos b) :=
@@ -900,18 +1047,29 @@ noncomputable def realize (R : S.Realization) (d : S.SplitData) (earPos : γ →
 
 variable (hE : d.EarCrosscut R earPos earDraw)
 
+/--
+@isnad1 id=eq.1h6v.s5.4ba244d1396f from=translated src=- shape=284ff2f6 vocab=c1f7d390
+-/
 @[simp] theorem realize_pos : (realize R d earPos earDraw hE).pos = d.splitPos R earPos := rfl
 
+/--
+@isnad1 id=eq.1h6v.s5.805ab9d790fb from=translated src=- shape=4f7a1ab6 vocab=e83dfb13
+-/
 @[simp] theorem realize_drawing :
     (realize R d earPos earDraw hE).drawing = d.splitDrawing R earDraw := rfl
 
+/--
+@isnad1 id=eq.1h6v.s5.033dbcc96902 from=translated src=- shape=978d0c83 vocab=bbcc4f0b
+-/
 @[simp] theorem realize_cell :
     (realize R d earPos earDraw hE).cell = d.splitCell R earPos earDraw := rfl
 
 include hE
 
 /-- **The realized ear is the drawn ear.** The open cells of the ear together with the two old
-0-cells at its ends occupy exactly the crosscut. -/
+0-cells at its ends occupy exactly the crosscut.
+@isnad1 id=eq.1h6v.s5.5ceb365b76fa from=translated src=- shape=bdebe81e vocab=9ff54071
+-/
 theorem cellUnion_earCells :
     (realize R d earPos earDraw hE).cellUnion d.earCells = d.earSet earPos earDraw := by
   refine Set.Subset.antisymm (Realization.cellUnion_subset fun σ hσ => ?_) ?_
@@ -938,7 +1096,9 @@ theorem cellUnion_earCells :
         rw [realize_cell, splitCell_earEdge hf]
         exact ⟨hxf, hxv⟩
 
-/-- **The open cells the ear creates are the crosscut minus its two endpoints.** -/
+/-- **The open cells the ear creates are the crosscut minus its two endpoints.**
+@isnad1 id=eq.1h6v.s6.df80210a0264 from=translated src=- shape=55958bb1 vocab=f4dfc78d
+-/
 theorem cellUnion_earNewCells :
     (realize R d earPos earDraw hE).cellUnion d.earNewCells =
       d.earSet earPos earDraw \ {R.pos d.source, R.pos d.target} := by
@@ -990,7 +1150,9 @@ theorem cellUnion_earNewCells :
 `SplitData.IsCrosscutSplit`, discharged.
 
 Composed with `IsCrosscutSplit.isCellDecomposition_and_isFaceJordan` this is the whole
-induction step of `lem:cellulation-invariants` over the second elementary operation. -/
+induction step of `lem:cellulation-invariants` over the second elementary operation.
+@isnad1 id=iscrossc.3h7v.s5.2520ff90b877 from=translated src=- shape=5a16ea18 vocab=3d0fe59e
+-/
 theorem isCrosscutSplit_realize {D : Set Plane} (hcd : R.IsCellDecomposition D)
     (hJ : R.IsFaceJordan) :
     d.IsCrosscutSplit R (realize R d earPos earDraw hE) where
@@ -1059,7 +1221,9 @@ theorem isCrosscutSplit_realize {D : Set Plane} (hcd : R.IsCellDecomposition D)
 /-- **The induction step of `lem:cellulation-invariants` over the second elementary operation,
 end to end.** From a realization of `S` satisfying assertions (i) and (vii) and a drawing of
 the ear as a polygonal crosscut, a realization of `S.splitFace d` satisfying (i) and (vii),
-refining it along `SplitData.parent`. -/
+refining it along `SplitData.parent`.
+@isnad1 id=and.4h7v.s6.47606794ff26 from=translated src=- shape=5ce4a640 vocab=f8d67c54
+-/
 theorem isCellDecomposition_and_isFaceJordan_realize (hS : S.CombInvariants) {D : Set Plane}
     (hcd : R.IsCellDecomposition D) (hJ : R.IsFaceJordan) :
     (realize R d earPos earDraw hE).IsCellDecomposition D ∧

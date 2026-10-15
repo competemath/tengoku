@@ -112,15 +112,23 @@ namespace Graph
 
 /-! ### Deleting one vertex -/
 
+/--
+@isnad1 id=iff.0h5v.s5.a040cadcabae from=translated src=- shape=2a90088b vocab=2f3acec4
+-/
 theorem mem_deleteVerts_singleton : y ∈ V(G.deleteVerts {x}) ↔ y ∈ V(G) ∧ y ≠ x := by
   simp
 
+/--
+@isnad1 id=mem.2h5v.s5.ff47114bfd5b from=translated src=- shape=77e93f59 vocab=2f3acec4
+-/
 theorem mem_deleteVerts_singleton_of_ne (hy : y ∈ V(G)) (hyx : y ≠ x) :
     y ∈ V(G.deleteVerts {x}) :=
   mem_deleteVerts_singleton.2 ⟨hy, hyx⟩
 
 /-- Deleting a vertex the graph does not have leaves the graph alone — on the nose, not merely
-up to isomorphism, because `V(G) \ {x}` is literally `V(G)`. -/
+up to isomorphism, because `V(G) \ {x}` is literally `V(G)`.
+@isnad1 id=eq.1h4v.s5.58cce1a68041 from=translated src=- shape=5a41f895 vocab=2f3acec4
+-/
 theorem deleteVerts_singleton_eq_self (hx : x ∉ V(G)) : G.deleteVerts {x} = G := by
   refine Graph.ext (by simp [sdiff_singleton_eq_self hx]) fun e u v ↦ ?_
   rw [deleteVerts_isLink]
@@ -128,7 +136,9 @@ theorem deleteVerts_singleton_eq_self (hx : x ∉ V(G)) : G.deleteVerts {x} = G 
     simpa only [mem_singleton_iff] using ne_of_mem_of_not_mem h.left_mem hx, by
     simpa only [mem_singleton_iff] using ne_of_mem_of_not_mem h.right_mem hx⟩⟩
 
-/-- Deleting the same vertices from both sides of an inclusion keeps it. -/
+/-- Deleting the same vertices from both sides of an inclusion keeps it.
+@isnad1 id=le.1h5v.s5.a5bf6e32ed23 from=translated src=- shape=3532bb1f vocab=072c7d63
+-/
 theorem deleteVerts_mono (h : G ≤ H) (X : Set α) : G.deleteVerts X ≤ H.deleteVerts X where
   vertexSet_mono := by
     simp only [vertexSet_deleteVerts]
@@ -140,7 +150,9 @@ theorem deleteVerts_mono (h : G ≤ H) (X : Set α) : G.deleteVerts X ≤ H.dele
 /-! ### Walks across a vertex deletion -/
 
 /-- **A walk that never visits `x` survives the deletion of `x`.** Its edges need no separate
-argument: the two ends of an edge the walk takes are vertices the walk visits. -/
+argument: the two ends of an edge the walk takes are vertices the walk visits.
+@isnad1 id=iswalk.2h7v.s5.88578ffe44c3 from=translated src=- shape=4017dc22 vocab=275a4acb
+-/
 theorem IsWalk.deleteVerts_singleton (h : G.IsWalk u W v) (hx : x ∉ G.walkVertices u W) :
     (G.deleteVerts {x}).IsWalk u W v := by
   have hux : u ≠ x := fun hh ↦ hx (hh ▸ mem_walkVertices_self)
@@ -151,7 +163,9 @@ theorem IsWalk.deleteVerts_singleton (h : G.IsWalk u W v) (hx : x ∉ G.walkVert
   rw [edgeSet_deleteVerts]
   exact ⟨c, d, hcd, by simpa using hc, by simpa using hd⟩
 
-/-- **A walk in `G - x` never takes an edge at `x`** — there are none left to take. -/
+/-- **A walk in `G - x` never takes an edge at `x`** — there are none left to take.
+@isnad1 id=not.2h8v.s5.7513f27e3f82 from=translated src=- shape=2608eee7 vocab=592d02ee
+-/
 theorem IsWalk.notMem_of_inc_of_deleteVerts (h : (G.deleteVerts {x}).IsWalk u W v)
     (hx : G.Inc e x) : e ∉ W := by
   intro he
@@ -163,14 +177,18 @@ theorem IsWalk.notMem_of_inc_of_deleteVerts (h : (G.deleteVerts {x}).IsWalk u W 
   exacts [hc rfl, hd rfl]
 
 /-- The bridge between the two deletions: a walk that routes around a vertex `x` cannot have
-used an edge incident to `x`, so it is still there after that edge is deleted. -/
+used an edge incident to `x`, so it is still there after that edge is deleted.
+@isnad1 id=reaches.2h7v.s5.4cfb2ec4a556 from=translated src=- shape=55b7006e vocab=32e20c1f
+-/
 theorem Reaches.deleteEdges_of_deleteVerts (h : (G.deleteVerts {x}).Reaches u v)
     (hx : G.Inc e x) : (G.deleteEdges {e}).Reaches u v := by
   obtain ⟨P, hP⟩ := h
   have he : e ∉ P := hP.notMem_of_inc_of_deleteVerts hx
   exact ⟨P, (hP.mono deleteVerts_le).deleteEdges fun g hg hgF ↦ he (mem_singleton_iff.1 hgF ▸ hg)⟩
 
-/-- Connectedness is unharmed by deleting a vertex the graph does not have. -/
+/-- Connectedness is unharmed by deleting a vertex the graph does not have.
+@isnad1 id=connecte.2h4v.s5.d6aa6414394a from=translated src=- shape=5efa993e vocab=d68210f8
+-/
 theorem Connected.deleteVerts_singleton_of_notMem (h : G.Connected) (hx : x ∉ V(G)) :
     (G.deleteVerts {x}).Connected := by
   rwa [deleteVerts_singleton_eq_self hx]
@@ -189,10 +207,15 @@ def HasThreeVertices (G : Graph α β) : Prop :=
   ∃ a ∈ V(G), ∃ b ∈ V(G), ∃ c ∈ V(G), a ≠ b ∧ a ≠ c ∧ b ≠ c
 
 /-- On a graph with finitely many vertices the clause is the count it is named for. Kept so
-that a consumer holding a cardinality is not stranded; nothing in this file uses it. -/
+that a consumer holding a cardinality is not stranded; nothing in this file uses it.
+@isnad1 id=iff.1h3v.s5.0ef43da67618 from=translated src=- shape=a7641f8f vocab=83902ef7
+-/
 theorem hasThreeVertices_iff_ncard (hV : V(G).Finite) : G.HasThreeVertices ↔ 3 ≤ V(G).ncard :=
   (Set.two_lt_ncard hV).symm
 
+/--
+@isnad1 id=hasthree.2h4v.s5.b5d3e11fadf5 from=translated src=- shape=3d5c723a vocab=bd9fa73f
+-/
 theorem HasThreeVertices.mono (h : G.HasThreeVertices) (hV : V(G) ⊆ V(H)) :
     H.HasThreeVertices := by
   obtain ⟨p, hp, q, hq, r, hr, hpq, hpr, hqr⟩ := h
@@ -200,7 +223,9 @@ theorem HasThreeVertices.mono (h : G.HasThreeVertices) (hV : V(G) ⊆ V(H)) :
 
 /-- **Any two vertices leave a third over.** This, and not the counting clause itself, is what
 every consumer of 2-connectivity uses; the two named vertices need not even be vertices of the
-graph. -/
+graph.
+@isnad1 id=ex.1h5v.s5.9be441789f70 from=translated src=- shape=1440de5f vocab=8e8abb5e
+-/
 theorem HasThreeVertices.exists_ne_ne (h : G.HasThreeVertices) (u v : α) :
     ∃ w ∈ V(G), w ≠ u ∧ w ≠ v := by
   obtain ⟨p, hp, q, hq, r, hr, hpq, hpr, hqr⟩ := h
@@ -224,14 +249,18 @@ structure IsTwoConnected (G : Graph α β) : Prop where
   deleteVerts_connected : ∀ ⦃x⦄, x ∈ V(G) → (G.deleteVerts {x}).Connected
 
 /-- The deletion clause with its hypothesis dropped: deleting a vertex the graph does not have
-changes nothing, so no consumer has to check membership first. -/
+changes nothing, so no consumer has to check membership first.
+@isnad1 id=connecte.1h4v.s4.0f66937052ae from=translated src=- shape=8383b7d3 vocab=9ea18a64
+-/
 theorem IsTwoConnected.deleteVerts_connected' (h : G.IsTwoConnected) (x : α) :
     (G.deleteVerts {x}).Connected := by
   by_cases hx : x ∈ V(G)
   · exact h.deleteVerts_connected hx
   · exact h.connected.deleteVerts_singleton_of_notMem hx
 
-/-- With this convention a 2-connected graph has no cut vertex. -/
+/-- With this convention a 2-connected graph has no cut vertex.
+@isnad1 id=not.1h4v.s4.f39847920311 from=translated src=- shape=ccbd67e3 vocab=cab9d74c
+-/
 theorem IsTwoConnected.no_cut_vertex (h : G.IsTwoConnected) (x : α) : ¬ G.IsCutVertex x :=
   fun hcut ↦ hcut.2 (h.deleteVerts_connected hcut.1)
 
@@ -239,7 +268,9 @@ theorem IsTwoConnected.no_cut_vertex (h : G.IsTwoConnected) (x : α) : ¬ G.IsCu
 consequences of the convention at once: the one-edge graph is not 2-connected, and a
 two-vertex cycle — two parallel edges, `F` a pair — is a cycle without being 2-connected.
 Such cycles do occur in the development, as face boundaries inside a larger 2-connected
-graph. -/
+graph.
+@isnad1 id=not.0h5v.s4.c9f992c4de5f from=translated src=- shape=e01aa9e0 vocab=ebe21f5b
+-/
 theorem not_isTwoConnected_banana (u v : α) (F : Set β) : ¬ (banana u v F).IsTwoConnected := by
   intro h
   obtain ⟨w, hw, hwu, hwv⟩ := h.hasThreeVertices.exists_ne_ne u v
@@ -254,7 +285,9 @@ The blueprint's proof names the two components of `G - e` and finds a vertex of 
 other than its endpoint. This proof routes around instead, and never mentions a component: a
 third vertex `w` exists; the graph without `v` still joins `u` to `w`, and the graph without
 `u` still joins `w` to `v`; and a walk that survives a vertex deletion cannot have used an
-edge there, so neither walk used `e`. A loop needs no argument at all. -/
+edge there, so neither walk used `e`. A loop needs no argument at all.
+@isnad1 id=reaches.2h6v.s5.d8332c25986c from=translated src=- shape=1e90f345 vocab=673039e5
+-/
 theorem IsTwoConnected.no_bridge (h : G.IsTwoConnected) (hl : G.IsLink e u v) :
     (G.deleteEdges {e}).Reaches u v := by
   rcases eq_or_ne u v with rfl | huv
@@ -305,20 +338,34 @@ protected def union (G H : Graph α β) : Graph α β where
     rintro g x y (hxy | ⟨-, hxy⟩)
     exacts [Or.inl hxy.left_mem, Or.inr hxy.left_mem]
 
+/--
+@isnad1 id=eq.0h4v.s5.96f4d82bf86f from=translated src=- shape=59abc3ff vocab=e8539164
+-/
 @[simp]
 theorem vertexSet_union (G H : Graph α β) : V(G.union H) = V(G) ∪ V(H) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.4fdc1fbc7c9d from=translated src=- shape=cabe1be6 vocab=f1142d75
+-/
 @[simp]
 theorem edgeSet_union (G H : Graph α β) : E(G.union H) = E(G) ∪ E(H) := rfl
 
+/--
+@isnad1 id=iff.0h7v.s5.4be6103ec258 from=translated src=- shape=f9229641 vocab=ec2fef41
+-/
 theorem union_isLink :
     (G.union H).IsLink e x y ↔ G.IsLink e x y ∨ (e ∉ E(G) ∧ H.IsLink e x y) := Iff.rfl
 
+/--
+@isnad1 id=le.0h4v.s5.016205c6c25a from=translated src=- shape=16925beb vocab=f9401a7b
+-/
 theorem left_le_union (G H : Graph α β) : G ≤ G.union H where
   vertexSet_mono := subset_union_left
   isLink_mono _ _ _ h := Or.inl h
 
-/-- Two subgraphs of one graph have their union inside it. -/
+/-- Two subgraphs of one graph have their union inside it.
+@isnad1 id=le.2h5v.s6.4862c363f81b from=translated src=- shape=cbade3f3 vocab=f9401a7b
+-/
 theorem union_le (hGK : G ≤ K) (hHK : H ≤ K) : G.union H ≤ K where
   vertexSet_mono := Set.union_subset hGK.vertexSet_mono hHK.vertexSet_mono
   isLink_mono := by
@@ -326,7 +373,9 @@ theorem union_le (hGK : G ≤ K) (hHK : H ≤ K) : G.union H ≤ K where
     exacts [hGK.isLink_mono h, hHK.isLink_mono h]
 
 /-- The right-hand graph is a subgraph of the union only when the two agree about their shared
-edges — without that, no graph has both as subgraphs. -/
+edges — without that, no graph has both as subgraphs.
+@isnad1 id=le.1h4v.s5.aaab9b12c8a5 from=translated src=- shape=7f20c202 vocab=2fb264a4
+-/
 theorem Compatible.right_le_union (h : G.Compatible H) : H ≤ G.union H where
   vertexSet_mono := subset_union_right
   isLink_mono e x y hxy := by
@@ -334,7 +383,9 @@ theorem Compatible.right_le_union (h : G.Compatible H) : H ≤ G.union H where
     · exact Or.inl ((h.isLink_congr hg hxy.edge_mem).2 hxy)
     · exact Or.inr ⟨hg, hxy⟩
 
-/-- For compatible graphs the union is the naive one. -/
+/-- For compatible graphs the union is the naive one.
+@isnad1 id=iff.1h7v.s5.a5b4b2c6e620 from=translated src=- shape=fe1f860f vocab=85be72f5
+-/
 theorem Compatible.union_isLink (h : G.Compatible H) :
     (G.union H).IsLink e x y ↔ G.IsLink e x y ∨ H.IsLink e x y := by
   refine ⟨fun hxy ↦ hxy.imp id (·.2), fun hxy ↦ ?_⟩
@@ -344,7 +395,9 @@ theorem Compatible.union_isLink (h : G.Compatible H) :
 
 /-- **Two connected parts covering a graph and sharing a vertex make it connected.** Used
 twice below — once for the union itself, once for the union with a vertex deleted — and both
-times the two parts are `G` and `H` while the whole is not their union on the nose. -/
+times the two parts are `G` and `H` while the whole is not their union on the nose.
+@isnad1 id=connecte.7h6v.s6.32f900eda638 from=translated src=- shape=21b1db1e vocab=8a5a1209
+-/
 theorem Connected.of_two_subgraphs (h₁ : G₁ ≤ K) (h₂ : G₂ ≤ K) (hV : V(K) ⊆ V(G₁) ∪ V(G₂))
     (hc₁ : G₁.Connected) (hc₂ : G₂.Connected) (hs₁ : s ∈ V(G₁)) (hs₂ : s ∈ V(G₂)) :
     K.Connected := by
@@ -353,6 +406,9 @@ theorem Connected.of_two_subgraphs (h₁ : G₁ ≤ K) (h₂ : G₂ ≤ K) (hV :
   · exact (hc₁.reaches hs₁ hz').mono h₁
   · exact (hc₂.reaches hs₂ hz').mono h₂
 
+/--
+@isnad1 id=connecte.5h5v.s5.8c13adc2f014 from=translated src=- shape=708fa0f5 vocab=f8cb6348
+-/
 theorem Compatible.union_connected (h : G.Compatible H) (hG : G.Connected) (hH : H.Connected)
     (hs : s ∈ V(G)) (hs' : s ∈ V(H)) : (G.union H).Connected :=
   Connected.of_two_subgraphs (left_le_union G H) h.right_le_union subset_rfl hG hH hs hs'
@@ -364,7 +420,9 @@ The blueprint's proof is one sentence — after deleting one vertex, each graph 
 connected and at least one common vertex remains. The work is the case where the deleted
 vertex belongs to only one of the two graphs: the other graph never had it, so nothing was
 deleted from it, and `Graph.deleteVerts_singleton_eq_self` makes that a rewriting step rather
-than an argument. -/
+than an argument.
+@isnad1 id=istwocon.8h6v.s6.e2cfc78150c1 from=translated src=- shape=c0d596c2 vocab=191a3974
+-/
 theorem IsTwoConnected.union (hcompat : G.Compatible H) (hG : G.IsTwoConnected)
     (hH : H.IsTwoConnected) (hab : a ≠ b) (haG : a ∈ V(G)) (haH : a ∈ V(H)) (hbG : b ∈ V(G))
     (hbH : b ∈ V(H)) : (G.union H).IsTwoConnected where

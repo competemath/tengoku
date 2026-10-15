@@ -93,7 +93,9 @@ variable {D K F N : Set Plane} {cells : Set (Set Plane)} {p v a z : Plane} {r s 
 are convex — the second because `y ↦ ⟪v, y⟫ - ‖y‖/2` is concave — so the cone is, and in
 particular it is connected, which is what `lem:cellulation-invariants`(i) asks of it. -/
 
-/-- The truncated access cone is convex. -/
+/-- The truncated access cone is convex.
+@isnad1 id=convex.0h3v.s6.984fc1fbbadd from=translated src=- shape=1dce3861 vocab=e5b5a9d6
+-/
 theorem convex_accessCone (p v : Plane) (s : ℝ) : Convex ℝ (accessCone p v s) := by
   rintro x ⟨hx1, hx2⟩ y ⟨hy1, hy2⟩ α β hα hβ hαβ
   have hβ' : β = 1 - α := by linarith
@@ -129,7 +131,9 @@ theorem convex_accessCone (p v : Plane) (s : ℝ) : Convex ℝ (accessCone p v s
     lt_min (by linarith) (by linarith)
   nlinarith
 
-/-- The truncated access cone is preconnected: it is convex. -/
+/-- The truncated access cone is preconnected: it is convex.
+@isnad1 id=isprecon.0h3v.s5.b359a57791e7 from=translated src=- shape=75efdbb8 vocab=2b3c10a9
+-/
 theorem isPreconnected_accessCone (p v : Plane) (s : ℝ) :
     IsPreconnected (accessCone p v s) := (convex_accessCone p v s).isPreconnected
 
@@ -150,7 +154,9 @@ private theorem dist_apex_axis (hv : ‖v‖ = 1) (ht : 0 < t) : dist p (p + t �
   have hshift : p + t • v - p = t • v := by module
   rw [dist_comm, dist_eq_norm, hshift, norm_smul, Real.norm_eq_abs, abs_of_pos ht, hv, mul_one]
 
-/-- The apex lies in the closure of its own access cone. -/
+/-- The apex lies in the closure of its own access cone.
+@isnad1 id=mem.2h3v.s6.94a9b90d4703 from=translated src=- shape=da1f0868 vocab=d4804a0d
+-/
 theorem mem_closure_accessCone (hv : ‖v‖ = 1) (hs : 0 < s) : p ∈ closure (accessCone p v s) := by
   refine Metric.mem_closure_iff.2 fun ε hε => ⟨p + (min ε s / 2) • v, ?_, ?_⟩
   · have hpos : 0 < min ε s / 2 := by positivity
@@ -165,7 +171,9 @@ theorem mem_closure_accessCone (hv : ‖v‖ = 1) (hs : 0 < s) : p ∈ closure (
 
 /-- **The straight access segment.** The cone contains an open segment leaving the apex, so the
 apex is polygonally accessible from anything containing the cone. This is `PolyAccessible` in
-the shape `lem:accessible-endpoints` consumes. -/
+the shape `lem:accessible-endpoints` consumes.
+@isnad1 id=polyacce.3h4v.s6.8705b812f40a from=translated src=- shape=79ca89f8 vocab=14089791
+-/
 theorem polyAccessible_accessCone (hv : ‖v‖ = 1) (hs : 0 < s) (hsub : accessCone p v s ⊆ N) :
     PolyAccessible N p := by
   have hhalf : (0:ℝ) < s / 2 := by linarith
@@ -179,7 +187,9 @@ theorem polyAccessible_accessCone (hv : ‖v‖ = 1) (hs : 0 < s) (hsub : access
 
 /-- **"Shrink that cone until it misses `K`."** A strongly accessible point off a compact set
 has an access cone into the domain that is disjoint from that set. `lem:tangent-cone` supplies
-the cone and `lem:compact-separation`(c) the radius. -/
+the cone and `lem:compact-separation`(c) the radius.
+@isnad1 id=ex.3h3v.s7.98f13e3cce72 from=translated src=- shape=a0599300 vocab=c5635e39
+-/
 theorem exists_accessCone_disjoint (h : StronglyAccessible D a) (hK : IsCompact K) (ha : a ∉ K) :
     ∃ (v : Plane) (s : ℝ), ‖v‖ = 1 ∧ 0 < s ∧ accessCone a v s ⊆ D ∧
       Disjoint (accessCone a v s) K := by
@@ -198,7 +208,9 @@ def CellsAbsorbIn (D K : Set Plane) (cells : Set (Set Plane)) : Prop :=
   ∀ N : Set Plane, N ⊆ D → IsPreconnected N → Disjoint N K →
     ∀ R ∈ cells, (N ∩ R).Nonempty → N ⊆ R
 
-/-- Global absorption implies its domain-restricted form. -/
+/-- Global absorption implies its domain-restricted form.
+@isnad1 id=cellsabs.1h3v.s4.71ea4b805071 from=translated src=- shape=b8e85f31 vocab=480a1b44
+-/
 theorem CellsAbsorb.cellsAbsorbIn (h : CellsAbsorb K cells) : CellsAbsorbIn D K cells :=
   fun N _ hN hdisj R hR hmeet => h N hN hdisj R hR hmeet
 
@@ -209,7 +221,9 @@ cell; the closure clause then names it.
 `hcover` is the covering half of `lem:cellulation-invariants`(i) — every point of the region off
 the skeleton is in an open cell — and `habs` is the absorption half, `Schoenflies.CellsAbsorb`.
 `hunique` is the combinatorial paragraph of `thm:finite-transfer`(b), not a geometric fact: it
-says that exactly one current 2-cell is incident with `a`. -/
+says that exactly one current 2-cell is incident with `a`.
+@isnad1 id=le.7h7v.s8.6857efee05c6 from=translated src=- shape=7074bd26 vocab=3189a5c7
+-/
 theorem accessCone_subset_cell (habs : CellsAbsorb K cells)
     (hcover : ∀ x ∈ D, x ∉ K → ∃ R ∈ cells, x ∈ R)
     (hunique : ∀ R ∈ cells, a ∈ closure R → R = F)
@@ -225,7 +239,9 @@ theorem accessCone_subset_cell (habs : CellsAbsorb K cells)
   rw [← hunique R hR (closure_mono hsub (mem_closure_accessCone hv hs))]
   exact hsub
 
-/-- The unique-cell argument with absorption required only inside the ambient domain. -/
+/-- The unique-cell argument with absorption required only inside the ambient domain.
+@isnad1 id=le.7h7v.s8.604b55d905a3 from=translated src=- shape=963ebf42 vocab=09fd9ca4
+-/
 theorem accessCone_subset_cell_in (habs : CellsAbsorbIn D K cells)
     (hcover : ∀ x ∈ D, x ∉ K → ∃ R ∈ cells, x ∈ R)
     (hunique : ∀ R ∈ cells, a ∈ closure R → R = F)
@@ -250,7 +266,9 @@ drawn, is polygonally accessible from the current source 2-cell `F` incident wit
 useless here precisely because `a ∈ C`.
 
 `lem:accessible-endpoints` (`Schoenflies.exists_crosscut_of_polyAccessible`) turns this, together
-with the accessibility of the other endpoint, into the polygonal crosscut the ear needs. -/
+with the accessibility of the other endpoint, into the polygonal crosscut the ear needs.
+@isnad1 id=polyacce.6h5v.s7.9e63e9ae9869 from=translated src=- shape=eddbd7ff vocab=8c27877c
+-/
 theorem polyAccessible_of_stronglyAccessible (h : StronglyAccessible D a) (hK : IsCompact K)
     (ha : a ∉ K) (habs : CellsAbsorb K cells)
     (hcover : ∀ x ∈ D, x ∉ K → ∃ R ∈ cells, x ∈ R)
@@ -261,7 +279,9 @@ theorem polyAccessible_of_stronglyAccessible (h : StronglyAccessible D a) (hK : 
     (accessCone_subset_cell habs hcover hunique hv hs hD hdisj)
 
 /-- The fresh-anchor paragraph with the absorption invariant stated only inside the Jordan
-domain, where the tangent cone is already known to lie. -/
+domain, where the tangent cone is already known to lie.
+@isnad1 id=polyacce.6h5v.s7.25144d156461 from=translated src=- shape=67abbfbd vocab=9854dc83
+-/
 theorem polyAccessible_of_stronglyAccessible_in (h : StronglyAccessible D a)
     (hK : IsCompact K) (ha : a ∉ K) (habs : CellsAbsorbIn D K cells)
     (hcover : ∀ x ∈ D, x ∉ K → ∃ R ∈ cells, x ∈ R)

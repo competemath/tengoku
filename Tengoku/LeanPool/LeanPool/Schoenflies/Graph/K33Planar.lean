@@ -112,7 +112,9 @@ def IsHexCrosscut (drawing : β → ℝ → Plane) (e : Fin 3 → Fin 3 → β) 
       IsPolygonalCrosscut C J₁ J₂ K a k yref
 
 /-- The six-cycle separates the plane: it is the carrier of a closed polygon, and
-`thm:polygonal-jordan` applies to that. -/
+`thm:polygonal-jordan` applies to that.
+@isnad1 id=issepara.1h4v.s5.9d2627cb3322 from=translated src=- shape=a8168780 vocab=084d85dc
+-/
 theorem isSeparating_hexSet (h : IsHexCrosscut drawing e s) :
     IsSeparating (hexSet drawing e) := by
   obtain ⟨_, _, _, C, _, _, _, _, _, _, hcar, _⟩ := h
@@ -126,7 +128,9 @@ namespace IsK33Config
 has to be handed *those particular sets*, since the realization has to reproduce them, so the
 two membership clauses are restated here with the arcs written out. -/
 
-/-- The near end of the next remaining edge is interior to the first arc. -/
+/-- The near end of the next remaining edge is interior to the first arc.
+@isnad1 id=mem.2h7v.s7.9c1e1b2f23fb from=translated src=- shape=ffbf42c5 vocab=803a7deb
+-/
 theorem x_succ_mem_arcA (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (s : Fin 3) :
     x (s + 1) ∈ edgesCover drawing (arcA e s) \ ({x s, y (s + 1)} : Set Plane) := by
   have hs1 : ∀ s : Fin 3, s + 1 ≠ s := by decide
@@ -135,7 +139,9 @@ theorem x_succ_mem_arcA (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (s 
   rintro (hc | hc)
   exacts [h.x_ne_x (hs1 s) hc, h.x_ne_y _ _ hc]
 
-/-- The far end of the next remaining edge is interior to the second arc. -/
+/-- The far end of the next remaining edge is interior to the second arc.
+@isnad1 id=mem.2h7v.s7.942db80ae3c5 from=translated src=- shape=9a17a851 vocab=6f657c60
+-/
 theorem y_succ_mem_arcB (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (s : Fin 3) :
     y (s + 1 + 1) ∈ edgesCover drawing (arcB e s) \ ({x s, y (s + 1)} : Set Plane) := by
   have hsucc : ∀ s : Fin 3, s + 1 + 1 = s + 2 := by decide
@@ -148,7 +154,9 @@ theorem y_succ_mem_arcB (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (s 
 
 /-! ### Two of the three remaining edges lie in one region -/
 
-/-- A remaining edge's interior lies inside the edge's arc. -/
+/-- A remaining edge's interior lies inside the edge's arc.
+@isnad1 id=le.2h7v.s7.dd48565c2ffb from=translated src=- shape=ccf8495b vocab=3ef1065e
+-/
 theorem chord_openArc_subset_edgeArc (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
     (s : Fin 3) : openArc (drawing (e s (s + 1))) ⊆ edgeArc drawing (e s (s + 1)) := by
   rw [h.chord_openArc_eq hd s]; exact Set.sdiff_subset
@@ -156,7 +164,9 @@ theorem chord_openArc_subset_edgeArc (h : IsK33Config G x y e) (hd : IsDrawing G
 /-- **Two of the three remaining edges lie in one and the same region of the complement of the
 six-cycle.** This is `Graph.IsK33Config.exists_two_chords_same_side` with the two sides read as
 the two regions `Int` and `Ext` of the polygonal Jordan curve theorem, which is the form the
-crosscut corollary consumes. -/
+crosscut corollary consumes.
+@isnad1 id=ex.3h6v.s7.6d22b814dcf9 from=translated src=- shape=94d34915 vocab=24053277
+-/
 theorem exists_two_chords_same_region (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
     (hsep : IsSeparating (hexSet drawing e)) :
     ∃ s t : Fin 3, s ≠ t ∧ ∃ R : Set Plane, IsRegionOf (hexSet drawing e) R ∧
@@ -175,7 +185,9 @@ region the crosscut does not enter. All four are properties of the *drawing*, an
 here, so that what has to be assumed from outside is only the combinatorial realization
 (`Graph.IsHexRealization`). -/
 
-/-- The two ends of the remaining edge lie on the first arc of the cut. -/
+/-- The two ends of the remaining edge lie on the first arc of the cut.
+@isnad1 id=le.2h7v.s7.a1936fde5723 from=translated src=- shape=c1bdd51e vocab=f0f74a47
+-/
 theorem endpoints_subset_arcA (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (s : Fin 3) :
     ({x s, y (s + 1)} : Set Plane) ⊆ edgesCover drawing (arcA e s) := by
   rintro p (rfl | rfl)
@@ -184,7 +196,9 @@ theorem endpoints_subset_arcA (h : IsK33Config G x y e) (hd : IsDrawing G drawin
   · exact mem_arcA_iff.2 ⟨(s + 1, s + 1), by simp [arcAPairs],
       (hd.edge_isArcBetween (h.isLink (s + 1) (s + 1))).right_mem⟩
 
-/-- The two ends of the remaining edge lie on the second arc of the cut. -/
+/-- The two ends of the remaining edge lie on the second arc of the cut.
+@isnad1 id=le.2h7v.s7.93b3c2ac58d5 from=translated src=- shape=c1bdd51e vocab=b969516b
+-/
 theorem endpoints_subset_arcB (h : IsK33Config G x y e) (hd : IsDrawing G drawing) (s : Fin 3) :
     ({x s, y (s + 1)} : Set Plane) ⊆ edgesCover drawing (arcB e s) := by
   rintro p (rfl | rfl)
@@ -195,7 +209,9 @@ theorem endpoints_subset_arcB (h : IsK33Config G x y e) (hd : IsDrawing G drawin
 
 /-- **The reference point of Theorem 2.8, for a remaining edge.** The interior of the remaining
 edge lies in one region of the complement of the six-cycle; any point of the *other* region is a
-legitimate reference point, and the other region is nonempty because it is a region. -/
+legitimate reference point, and the other region is nonempty because it is a region.
+@isnad1 id=ex.3h7v.s7.4f8ec49101d5 from=translated src=- shape=91617921 vocab=af04d1e6
+-/
 theorem exists_reference_point (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
     (hsep : IsSeparating (hexSet drawing e)) (s : Fin 3) :
     ∃ yref : Plane, yref ∉ hexSet drawing e ∧
@@ -251,7 +267,9 @@ namespace IsK33Config
 /-- **The realization is enough.** The four topological clauses of
 `Schoenflies.IsPolygonalCrosscut` come from the drawing: the remaining edge meets the six-cycle
 exactly in its own two ends (`chord_inter_hexSet`), which lie on both arcs, and the reference
-point is `exists_reference_point`. -/
+point is `exists_reference_point`.
+@isnad1 id=ishexcro.3h7v.s6.29cee71fe11d from=translated src=- shape=b4ec3cbe vocab=1e5abbd7
+-/
 theorem isHexCrosscut (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
     (hr : IsHexRealization drawing e s) : IsHexCrosscut drawing e s := by
   obtain ⟨m, m₁, m₂, C, J₁, J₂, K, a, k, hk, hcar, hA, hB, hK, hE₁, hE₂⟩ := hr
@@ -271,7 +289,9 @@ theorem isHexCrosscut (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
 /-- **The two remaining edges indexed by `s` and `s + 1` cannot lie in one region.** Their four
 ends alternate around the six-cycle (`chords_alternate`), so `cor:alternating-crosscuts` makes
 them meet; but distinct edges of a plane graph meet only at shared vertices, and these two share
-none (`chords_disjoint`). -/
+none (`chords_disjoint`).
+@isnad1 id=false.7h8v.s8.53f326ff4af2 from=translated src=- shape=bb10fc5c vocab=9d24c321
+-/
 theorem false_of_isHexCrosscut (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
     (hcross : IsHexCrosscut drawing e s) (hsep : IsSeparating (hexSet drawing e))
     (hR : IsRegionOf (hexSet drawing e) R)
@@ -300,7 +320,9 @@ theorem false_of_isHexCrosscut (h : IsK33Config G x y e) (hd : IsDrawing G drawi
 
 /-- **`lem:k33` for a drawing that is already polygonal.** Three remaining edges, two sides:
 two of them lie in one region (`exists_two_chords_same_region`); every pair of remaining edges
-is indexed by `s` and `s + 1` for some `s`, so `false_of_isHexCrosscut` applies. -/
+is indexed by `s` and `s + 1` for some `s`, so `false_of_isHexCrosscut` applies.
+@isnad1 id=false.3h6v.s6.cb164de5a813 from=translated src=- shape=77a6ff27 vocab=ced39fd9
+-/
 theorem false_of_hexCrosscuts (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
     (hcross : ∀ s : Fin 3, IsHexCrosscut drawing e s) : False := by
   have hsep : IsSeparating (hexSet drawing e) := isSeparating_hexSet (hcross 0)
@@ -311,7 +333,9 @@ theorem false_of_hexCrosscuts (h : IsK33Config G x y e) (hd : IsDrawing G drawin
   · exact h.false_of_isHexCrosscut hd (hcross s) hsep hR h1 h2
   · exact h.false_of_isHexCrosscut hd (hcross t) hsep hR h2 h1
 
-/-- **`lem:k33` for a polygonal drawing, from the combinatorial realization alone.** -/
+/-- **`lem:k33` for a polygonal drawing, from the combinatorial realization alone.**
+@isnad1 id=false.3h6v.s6.aa0e7106cf45 from=translated src=- shape=77a6ff27 vocab=4c0443cc
+-/
 theorem false_of_hexRealizations (h : IsK33Config G x y e) (hd : IsDrawing G drawing)
     (hr : ∀ s : Fin 3, IsHexRealization drawing e s) : False :=
   h.false_of_hexCrosscuts hd fun s => h.isHexCrosscut hd (hr s)
@@ -323,7 +347,9 @@ plane drawing.
 the same vertices, which is the only use polygonality is put to; the contradiction itself is
 `false_of_hexRealizations`. The realization hypothesis is therefore consulted only about
 drawings that are already polygonal — and it is allowed to *change* the drawing again, which it
-must be: see "The gap" in the module docstring. -/
+must be: see "The gap" in the module docstring.
+@isnad1 id=not.2h5v.s7.a9e525935da7 from=translated src=- shape=861daee5 vocab=40d797a2
+-/
 theorem not_isDrawing [G.Finite] (h : IsK33Config G x y e)
     (hreal : ∀ dr : β → ℝ → Plane, IsDrawing G dr → (∀ f ∈ E(G), IsPolygonal (edgeArc dr f)) →
       ∃ dr' : β → ℝ → Plane, IsDrawing G dr' ∧ ∀ s : Fin 3, IsHexRealization dr' e s) :
@@ -382,16 +408,27 @@ def k33Graph (x y : Fin 3 → Plane) : Graph Plane (Fin 3 × Fin 3) where
     rintro ⟨i, j⟩ u v (⟨rfl, -⟩ | ⟨rfl, -⟩)
     exacts [Or.inl ⟨i, rfl⟩, Or.inr ⟨j, rfl⟩]
 
+/--
+@isnad1 id=eq.0h2v.s5.50e47df55f93 from=translated src=- shape=7b9bf19a vocab=12323537
+-/
 @[simp] theorem k33Graph_vertexSet (x y : Fin 3 → Plane) :
     V(k33Graph x y) = Set.range x ∪ Set.range y := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.4f484969ab1a from=translated src=- shape=968623b6 vocab=0e54326a
+-/
 @[simp] theorem k33Graph_edgeSet (x y : Fin 3 → Plane) :
     E(k33Graph x y) = (Set.univ : Set (Fin 3 × Fin 3)) := rfl
 
+/--
+@isnad1 id=islink.0h4v.s6.0a5e20ecdcd7 from=translated src=- shape=bdf8e931 vocab=1a378898
+-/
 theorem k33Graph_isLink (x y : Fin 3 → Plane) (i j : Fin 3) :
     (k33Graph x y).IsLink (i, j) (x i) (y j) := Or.inl ⟨rfl, rfl⟩
 
-/-- An endpoint of an edge of the abstract `K(3,3)` is incident with it. -/
+/-- An endpoint of an edge of the abstract `K(3,3)` is incident with it.
+@isnad1 id=inc.1h5v.s6.a2c5e059c69d from=translated src=- shape=b3b33ccf vocab=413d012a
+-/
 theorem k33Graph_inc {x y : Fin 3 → Plane} {i j : Fin 3} {p : Plane}
     (hp : p ∈ ({x i, y j} : Set Plane)) : (k33Graph x y).Inc (i, j) p := by
   rcases hp with rfl | rfl
@@ -412,17 +449,28 @@ arcs come with, so the point set of an edge is the arc it was built from
 noncomputable def arcDrawing (h : IsArcK33 x y P) : Fin 3 × Fin 3 → ℝ → Plane :=
   fun p => (h.arc p.1 p.2).choose
 
+/--
+@isnad1 id=eq.1h5v.s6.2e73e800260c from=translated src=- shape=e5ec2fcc vocab=4ad56e61
+-/
 theorem edgeArc_eq (h : IsArcK33 x y P) (i j : Fin 3) :
     edgeArc h.arcDrawing (i, j) = P i j := (h.arc i j).choose_spec.2.2.1
 
+/--
+@isnad1 id=eq.1h5v.s6.9a455a4115f1 from=translated src=- shape=19bd251f vocab=c091b14c
+-/
 theorem arcDrawing_zero (h : IsArcK33 x y P) (i j : Fin 3) : h.arcDrawing (i, j) 0 = x i :=
   (h.arc i j).choose_spec.2.2.2.1
 
+/--
+@isnad1 id=eq.1h5v.s6.d18c930d3581 from=translated src=- shape=c89682c5 vocab=c091b14c
+-/
 theorem arcDrawing_one (h : IsArcK33 x y P) (i j : Fin 3) : h.arcDrawing (i, j) 1 = y j :=
   (h.arc i j).choose_spec.2.2.2.2
 
 /-- An arc carries none of the six points except its own two ends: a third point `x k` lies on
-the arc `P k l` for every `l`, and two distinct arcs meet only in a common end. -/
+the arc `P k l` for every `l`, and two distinct arcs meet only in a common end.
+@isnad1 id=mem.3h6v.s6.0b151f388a98 from=translated src=- shape=21fb2dbb vocab=5c83ff72
+-/
 theorem mem_arc_elim (h : IsArcK33 x y P) {i j : Fin 3} {p : Plane}
     (hpV : p ∈ Set.range x ∪ Set.range y) (hp : p ∈ P i j) :
     p ∈ ({x i, y j} : Set Plane) := by
@@ -435,7 +483,9 @@ theorem mem_arc_elim (h : IsArcK33 x y P) {i j : Fin 3} {p : Plane}
     exact (h.meet i j (i + 1) l (fun hc => hsucc i (congrArg Prod.fst hc).symm)
       ⟨hp, (h.arc (i + 1) l).right_mem⟩).1
 
-/-- **The nine arcs draw the abstract `K(3,3)` in the plane.** -/
+/-- **The nine arcs draw the abstract `K(3,3)` in the plane.**
+@isnad1 id=isdrawin.1h3v.s5.6d863b5802bf from=translated src=- shape=5558b01e vocab=2af3895c
+-/
 theorem isDrawing (h : IsArcK33 x y P) : IsDrawing (k33Graph x y) h.arcDrawing := by
   refine ⟨?_, ?_, ?_⟩
   · rintro ⟨i, j⟩ -
@@ -458,7 +508,9 @@ theorem isDrawing (h : IsArcK33 x y P) : IsDrawing (k33Graph x y) h.arcDrawing :
     rcases hij with rfl | rfl
     exacts [Or.inl ⟨i, rfl⟩, Or.inr ⟨j, rfl⟩]
 
-/-- The nine arcs carry a copy of `K(3,3)`, on the graph they draw. -/
+/-- The nine arcs carry a copy of `K(3,3)`, on the graph they draw.
+@isnad1 id=isk33con.1h3v.s6.a8be40ebf1cb from=translated src=- shape=f855cc88 vocab=04430d72
+-/
 theorem isK33Config (h : IsArcK33 x y P) :
     IsK33Config (k33Graph x y) x y (fun i j => (i, j)) where
   isLink := k33Graph_isLink x y
@@ -467,7 +519,9 @@ theorem isK33Config (h : IsArcK33 x y P) :
   ne := h.ne
 
 /-- **`lem:k33` for nine arcs**: no nine arcs in the plane meet only where a `K(3,3)` forces
-them to. This assumes the realization, exactly as `Graph.IsK33Config.not_isDrawing` does. -/
+them to. This assumes the realization, exactly as `Graph.IsK33Config.not_isDrawing` does.
+@isnad1 id=false.2h3v.s8.a44ed1c2a975 from=translated src=- shape=6902967b vocab=08c69485
+-/
 theorem false_of_realization (h : IsArcK33 x y P)
     (hreal : ∀ dr : Fin 3 × Fin 3 → ℝ → Plane, IsDrawing (k33Graph x y) dr →
       (∀ f ∈ E(k33Graph x y), IsPolygonal (edgeArc dr f)) →
@@ -507,7 +561,9 @@ namespace IsK33Subdivision
 
 variable {x y : Fin 3 → Plane}
 
-/-- A branch path has at least one edge: an empty one would identify its two ends. -/
+/-- A branch path has at least one edge: an empty one would identify its two ends.
+@isnad1 id=ne.1h7v.s6.ac0d97add4b3 from=translated src=- shape=2046e7d0 vocab=cc4af30c
+-/
 theorem ne_nil (h : IsK33Subdivision H x y W) (i j : Fin 3) : W i j ≠ [] := by
   intro hnil
   have hp := h.isPath i j
@@ -517,7 +573,9 @@ theorem ne_nil (h : IsK33Subdivision H x y W) (i j : Fin 3) : W i j ≠ [] := by
 /-- **The branch paths of a drawn subdivision are nine arcs meeting only where they must.**
 A point on two branch paths lies on an edge of each; the two edges are distinct, so a plane
 drawing puts the point at a vertex incident with both, and a vertex on two branch paths is a
-branch vertex of both. -/
+branch vertex of both.
+@isnad1 id=isarck33.2h6v.s6.3342b928a71e from=translated src=- shape=87abc526 vocab=ee462b83
+-/
 theorem isArcK33 {drawing : β → ℝ → Plane} (hd : IsDrawing H drawing)
     (h : IsK33Subdivision H x y W) : IsArcK33 x y fun i j => edgesCover drawing (W i j) := by
   refine ⟨fun i j => hd.path_isArcBetween (h.isPath i j) (h.ne_nil i j), h.x_injective,
@@ -534,7 +592,9 @@ theorem isArcK33 {drawing : β → ℝ → Plane} (hd : IsDrawing H drawing)
 /-- **Corollary 3.11 (subdivisions of `K(3,3)`).** No subdivision of `K(3,3)` has a plane
 drawing. This assumes the realization, exactly as `Graph.IsK33Config.not_isDrawing` does, and
 the realization is needed only for the *contracted* graph `k33Graph x y`, whose nine edges are
-the branch paths. -/
+the branch paths.
+@isnad1 id=false.3h6v.s8.495a74a7bfa7 from=translated src=- shape=0ea50205 vocab=eb5e7cd6
+-/
 theorem false_of_realization {drawing : β → ℝ → Plane} (hd : IsDrawing H drawing)
     (h : IsK33Subdivision H x y W)
     (hreal : ∀ dr : Fin 3 × Fin 3 → ℝ → Plane, IsDrawing (k33Graph x y) dr →

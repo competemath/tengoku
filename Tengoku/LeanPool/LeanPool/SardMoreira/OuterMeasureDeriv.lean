@@ -49,6 +49,9 @@ class ClosedBallCoveringMeasure {α : Type*} [MetricSpace α] [MeasurableSpace �
     ∃ (t : Set α) (r : α → ℝ), t.Countable ∧ t ⊆ s ∧ (∀ x ∈ t, r x ∈ f x) ∧
       (s ⊆ ⋃ x ∈ t, closedBall x (r x)) ∧ (∑' x : t, μ (closedBall x (r x))) ≤ μ s + ε
 
+/--
+@isnad1 id=ex.2h5v.s8.78e8548e822a from=translated src=- shape=8bc6b6d3 vocab=51a4b5f1
+-/
 theorem exists_closedBall_covering_tsum_measure_le (μ : Measure α) [ClosedBallCoveringMeasure μ]
     {ε : ℝ≥0∞} (hε : ε ≠ 0) (f : α → Set ℝ) (s : Set α)
     (hf : ∀ x ∈ s, ∀ δ > 0, (f x ∩ Ioo 0 δ).Nonempty) :
@@ -57,6 +60,9 @@ theorem exists_closedBall_covering_tsum_measure_le (μ : Measure α) [ClosedBall
   ClosedBallCoveringMeasure.exists_closedBall_covering_tsum_measure_le hε f s hf
 
 open IsUnifLocDoublingMeasure in
+/--
+@isnad1 id=closedba.0h2v.s5.af8fd46a4747 from=translated src=- shape=d8d349f9 vocab=372748a5
+-/
 instance instClosedBallCoveringMeasureOfIsUnifLocDoublingMeasure
     [BorelSpace α] [SecondCountableTopology α]
     (μ : Measure α) [IsLocallyFiniteMeasure μ] [IsUnifLocDoublingMeasure μ] :
@@ -139,6 +145,9 @@ instance instClosedBallCoveringMeasureOfIsUnifLocDoublingMeasure
       refine iUnion₂_subset fun x hx ↦ ?_
       exact (hus hx).2.2
 
+/--
+@isnad1 id=le.3h5v.s8.9a4a4146a4c3 from=translated src=- shape=940ce5bf vocab=2ee03eb4
+-/
 lemma outerMeasure_le_mul' {μ : Measure α} [ClosedBallCoveringMeasure μ]
     {ν : OuterMeasure α} {C : ℝ≥0∞} {s : Set α} (hsC : μ s ≠ 0 ∨ C ≠ ∞) (hCs : C ≠ 0 ∨ μ s ≠ ∞)
     (h : ∀ x ∈ s, ∃ᶠ εr : ℝ≥0∞ × ℝ in 𝓝[>] 0 ×ˢ 𝓝[>] 0,
@@ -178,6 +187,9 @@ lemma outerMeasure_le_mul' {μ : Measure α} [ClosedBallCoveringMeasure μ]
     _ ≤ ∑' x : t, (C + ε) * μ (closedBall x (r x)) := by gcongr with i; exact hνμ i i.2
     _ ≤ (C + ε) * (μ s + ε) := by rw [ENNReal.tsum_mul_left]; gcongr
 
+/--
+@isnad1 id=le.2h5v.s8.1368f11109de from=translated src=- shape=4e809aad vocab=e0e694c3
+-/
 lemma outerMeasure_le_mul {μ : Measure α} [SigmaFinite μ] [ClosedBallCoveringMeasure μ]
     {ν : OuterMeasure α} {C : ℝ≥0∞} {s : Set α} (hsC : μ s ≠ 0 ∨ C ≠ ∞)
     (h : ∀ x ∈ s, ∃ᶠ εr : ℝ≥0∞ × ℝ in 𝓝[>] 0 ×ˢ 𝓝[>] 0,
@@ -202,7 +214,9 @@ Then `ν s = 0`.
 The actual statement can't use `Asymptotics.IsBigO` and `Asymptotics.IsLittleO`,
 because the LHS and the RHS are in `ℝ≥0∞`, not `ℝ`.
 
-Note that we do not assume measurability of `s` or `C`. -/
+Note that we do not assume measurability of `s` or `C`.
+@isnad1 id=eq.2h5v.s7.8d6436377505 from=translated src=- shape=a0659087 vocab=e7f5e13a
+-/
 lemma outerMeasure_null_of_forall_le_mul_ae_null {μ : Measure α} [SigmaFinite μ]
     [ClosedBallCoveringMeasure μ]
     {ν : OuterMeasure α} {C : α → ℝ≥0} {s : Set α} (hC : ∀ᵐ x ∂μ, x ∈ s → C x = 0)
@@ -236,6 +250,9 @@ lemma outerMeasure_null_of_forall_le_mul_ae_null {μ : Measure α} [SigmaFinite 
       _ ≤ ∑' n : ℕ, n * μ t := by gcongr; apply Set.sep_subset
       _ ≤ 0 := by simp [hμt]
 
+/--
+@isnad1 id=eq.2h4v.s7.a5db1f1fedab from=translated src=- shape=8fbd850c vocab=738f7227
+-/
 lemma outerMeasure_null_of_null_of_forall_exists_le_mul {μ : Measure α} [SigmaFinite μ]
     [ClosedBallCoveringMeasure μ] {ν : OuterMeasure α} {s : Set α} (hs : μ s = 0)
     (h : ∀ x ∈ s, ∃ C : ℝ≥0, ∃ᶠ r : ℝ in 𝓝[>] 0, ν (s ∩ closedBall x r) ≤ C * μ (closedBall x r)) :
@@ -262,6 +279,7 @@ Briefly speaking, this means that `ν (f '' s) ≤ C * μ s`
 provided that a similar estimate holds for sufficiently small ball around each point `x ∈ s`.
 
 See also `Besicovitch.measure_image_le_mul`.
+@isnad1 id=le.2h7v.s8.bae43ef0c00d from=translated src=- shape=6cf5b4a5 vocab=3f61f65b
 -/
 lemma outerMeasure_image_le_mul {f : α → β} {μ : Measure α} [SigmaFinite μ]
     [ClosedBallCoveringMeasure μ]
@@ -284,6 +302,7 @@ Briefly speaking, this means that `ν (f '' s) ≤ C * μ s`
 provided that a similar estimate holds for sufficiently small ball around each point `x ∈ s`.
 
 See also `Besicovitch.outerMeasure_image_le_mul`.
+@isnad1 id=le.2h8v.s8.c41c7661d0a7 from=translated src=- shape=cc5163b0 vocab=5717a0eb
 -/
 lemma measure_image_le_mul {_ : MeasurableSpace β} {f : α → β} {μ : Measure α} [SigmaFinite μ]
     [ClosedBallCoveringMeasure μ] {ν : Measure β} {C : ℝ≥0∞} {s : Set α} (hsC : μ s ≠ 0 ∨ C ≠ ∞)
@@ -294,6 +313,9 @@ lemma measure_image_le_mul {_ : MeasurableSpace β} {f : α → β} {μ : Measur
 
 -- TODO: some of the nonnegativity/positivity assumptions can be omitted,
 -- because in the other case, the goal is trivial.
+/--
+@isnad1 id=le.8h10v.s8.b2eec3af365a from=translated src=- shape=97e5c4ce vocab=c7623377
+-/
 lemma hasudorffMeasure_image_le_mul' {X : Type*} [MetricSpace X] [MeasurableSpace X] [BorelSpace X]
     {f : α → X} {μ : Measure α} [ClosedBallCoveringMeasure μ] {C : ℝ≥0∞}
     {s : Set α} (hsC : μ s ≠ 0 ∨ C ≠ ∞) {dimDom holderExp dimImg : ℝ} {μBall : ℝ≥0∞}
@@ -391,6 +413,9 @@ lemma hasudorffMeasure_image_le_mul' {X : Type*} [MetricSpace X] [MeasurableSpac
     · positivity
     · grw [hdiam, hδ]
 
+/--
+@isnad1 id=le.8h10v.s8.a705d79ebd03 from=translated src=- shape=d5d75e36 vocab=edcc7754
+-/
 lemma hasudorffMeasure_image_le_mul {X : Type*} [MetricSpace X] [MeasurableSpace X] [BorelSpace X]
     [OpensMeasurableSpace α] [T1Space α]
     {f : α → X} {μ : Measure α} [ClosedBallCoveringMeasure μ] {C : ℝ≥0∞}

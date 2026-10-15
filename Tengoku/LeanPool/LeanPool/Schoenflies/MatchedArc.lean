@@ -29,7 +29,9 @@ namespace Schoenflies
 
 /-! ## The inverse of a compact parametrisation -/
 
-/-- A continuous injection of a compact set has a continuous `invFunOn` on its image. -/
+/-- A continuous injection of a compact set has a continuous `invFunOn` on its image.
+@isnad1 id=continuo.3h2v.s7.098e026c3e0c from=translated src=- shape=bcca0f90 vocab=13110089
+-/
 theorem continuousOn_invFunOn_image' {f : ℝ → Plane} {s : Set ℝ} (hs : IsCompact s)
     (hf : ContinuousOn f s) (hinj : InjOn f s) :
     ContinuousOn (Function.invFunOn f s) (f '' s) := by
@@ -113,7 +115,9 @@ theorem IsArcBetween.eq_of_subset_arc {A B C : Set Plane} {p q r s : Plane}
     rw [hBi, ← hAi, image_inv A hAC] at hx'
     exact hx'
 
-/-- Every closed subarc of a polygonal arc is polygonal. -/
+/-- Every closed subarc of a polygonal arc is polygonal.
+@isnad1 id=ispolygo.4h6v.s5.f8dba311a9d1 from=translated src=- shape=51ee8f58 vocab=baa7839b
+-/
 theorem IsArcBetween.isPolygonal_of_subset_arc {A C : Set Plane} {p q r s : Plane}
     (hA : IsArcBetween A p q) (hC : IsArcBetween C r s)
     (hpoly : IsPolygonal C) (hAC : A ⊆ C) : IsPolygonal A := by
@@ -149,13 +153,22 @@ namespace ArcHomeo
 
 variable {A B : Set Plane} {a b c d : Plane}
 
+/--
+@isnad1 id=injon.0h7v.s5.e8def34f3640 from=translated src=- shape=52804f72 vocab=bc318b2c
+-/
 theorem injOn (h : ArcHomeo A B a b c d) : InjOn h.toFun A := h.leftInvOn.injOn
 
+/--
+@isnad1 id=mapsto.0h7v.s5.aa9fe0246883 from=translated src=- shape=519c2605 vocab=434a14c7
+-/
 theorem mapsTo (h : ArcHomeo A B a b c d) : MapsTo h.toFun A B := by
   intro x hx
   have hx' : h.toFun x ∈ h.toFun '' A := Set.mem_image_of_mem h.toFun hx
   simpa only [h.image_eq] using hx'
 
+/--
+@isnad1 id=mapsto.0h7v.s5.8ad28f0197ce from=translated src=- shape=e31f2a77 vocab=f1469423
+-/
 theorem mapsTo_invFun (h : ArcHomeo A B a b c d) : MapsTo h.invFun B A := by
   intro y hy
   rw [← h.image_eq] at hy
@@ -165,7 +178,9 @@ theorem mapsTo_invFun (h : ArcHomeo A B a b c d) : MapsTo h.invFun B A := by
 
 end ArcHomeo
 
-/-- Any two named arcs admit an endpoint-preserving homeomorphism. -/
+/-- Any two named arcs admit an endpoint-preserving homeomorphism.
+@isnad1 id=nonempty.2h6v.s5.07f531a0ae93 from=translated src=- shape=876934c7 vocab=ce1220ae
+-/
 theorem exists_arcHomeo {A B : Set Plane} {a b c d : Plane}
     (hA : IsArcBetween A a b) (hB : IsArcBetween B c d) :
     Nonempty (ArcHomeo A B a b c d) := by
@@ -240,11 +255,17 @@ variable {β : Type*} {A B : Set Plane} {a b c d : Plane} {G : Graph Plane β}
 def mapDrawing (m : Schoenflies.ArcHomeo A B a b c d) (drawing : β → ℝ → Plane) :
     β → ℝ → Plane := fun e t => m.toFun (drawing e t)
 
+/--
+@isnad1 id=eq.0h10v.s5.7816bc82ca03 from=translated src=- shape=ef431d55 vocab=9c390aa8
+-/
 theorem edgeArc_mapDrawing (m : Schoenflies.ArcHomeo A B a b c d) (e : β) :
     edgeArc (mapDrawing m drawing) e = m.toFun '' edgeArc drawing e := by
   rw [edgeArc, edgeArc, ← Set.image_comp]
   rfl
 
+/--
+@isnad1 id=eq.0h10v.s6.ddf8e4dc9a75 from=translated src=- shape=29a10376 vocab=1b548ee1
+-/
 theorem pointSet_map_mapDrawing (m : Schoenflies.ArcHomeo A B a b c d) :
     pointSet (G.map m.toFun) (mapDrawing m drawing) = m.toFun '' pointSet G drawing := by
   rw [pointSet, pointSet, Graph.vertexSet_map, Graph.edgeSet_map, Set.image_union,
@@ -252,7 +273,9 @@ theorem pointSet_map_mapDrawing (m : Schoenflies.ArcHomeo A B a b c d) :
   congr 1
   exact Set.iUnion₂_congr fun e _ => edgeArc_mapDrawing m e
 
-/-- A drawing whose whole point set is one arc transports along an arc homeomorphism. -/
+/-- A drawing whose whole point set is one arc transports along an arc homeomorphism.
+@isnad1 id=isdrawin.2h10v.s6.7684ac92a331 from=translated src=- shape=58fe8b91 vocab=fca1151d
+-/
 theorem IsDrawing.map_arcHomeo (h : IsDrawing G drawing)
     (m : Schoenflies.ArcHomeo A B a b c d)
     (hpoint : pointSet G drawing = A) :

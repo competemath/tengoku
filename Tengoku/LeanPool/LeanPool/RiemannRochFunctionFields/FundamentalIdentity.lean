@@ -31,7 +31,9 @@ variable {R S : Type*} [CommRing R] [IsDedekindDomain R] [CommRing S] [IsDedekin
   [IsScalarTower R K L]
 
 /-- The fundamental identity `∑ e · f = [L : K]` for the quotient-based ramification index and
-inertia degree, summed over the finite set of primes above a nonzero maximal ideal `p`. -/
+inertia degree, summed over the finite set of primes above a nonzero maximal ideal `p`.
+@isnad1 id=eq.1h5v.s8.d5f6b0de69d9 from=translated src=- shape=fc639d68 vocab=9d6a4bf7
+-/
 theorem sum_ramificationIdx'_mul_inertiaDeg' {p : Ideal R} [p.IsMaximal] (hp0 : p ≠ ⊥) :
     ∑ P ∈ IsDedekindDomain.primesOverFinset p S, ramificationIdx' p P * P.inertiaDeg R =
       finrank K L := by
@@ -44,7 +46,9 @@ theorem sum_ramificationIdx'_mul_inertiaDeg' {p : Ideal R} [p.IsMaximal] (hp0 : 
   rw [ramificationIdx'_eq_ramificationIdx p q.1 hp0]
 
 /-- The quotient-based ramification index of a prime above a nonzero maximal ideal is bounded by
-the degree of the extension of fraction fields. -/
+the degree of the extension of fraction fields.
+@isnad1 id=le.1h6v.s8.577edf8fd870 from=translated src=- shape=c7f645a2 vocab=4aa8e1a4
+-/
 theorem ramificationIdx'_le_finrank {p : Ideal R} [p.IsMaximal] (hp0 : p ≠ ⊥) (P : Ideal S)
     [hP₁ : P.IsPrime] [hP₂ : P.LiesOver p] : ramificationIdx' p P ≤ finrank K L := by
   classical

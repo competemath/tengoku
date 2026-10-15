@@ -93,28 +93,46 @@ def length : {A B : V} → Path A B → Nat
   | _, _, .nil => .zero
   | _, _, .cons _ p => .succ (length p)
 
+/--
+@isnad1 id=eq.0h4v.s5.e83e5901ef8c from=translated src=- shape=519f6f99 vocab=85900b64
+-/
 @[simp] theorem nil_append (p : Path A B) : .append .nil p = p := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.77483f1702e5 from=translated src=- shape=3ce052f0 vocab=85900b64
+-/
 @[simp] theorem append_nil (p : Path A B) : .append p .nil = p := by
   induction p
   · rfl
   · simp [append, *]
 
+/--
+@isnad1 id=eq.0h8v.s6.bd125c5dc7cb from=translated src=- shape=94b06c0d vocab=605e91a9
+-/
 theorem snoc_cons (e : A ⟶ B) (p : Path B C) (e' : C ⟶ D) :
   snoc (cons e p) e' = cons e (snoc p e') := by cases p <;> simp
 
+/--
+@isnad1 id=eq.0h8v.s6.0e2fac64b3fc from=translated src=- shape=90e81d5a vocab=17373202
+-/
 theorem append_snoc (p : Path A B) (p' : Path B C) (e : C ⟶ D) :
     append p (snoc p' e) = snoc (append p p') e := by
   induction p
   · case nil => rfl
   · case cons ih => simp [append, ih p']
 
+/--
+@isnad1 id=eq.0h8v.s6.a1eafa6f357d from=translated src=- shape=284be5ce vocab=69e60014
+-/
 theorem append_cons (p : Path A B) (e : B ⟶ C) (p' : Path C D) :
     append p (cons e p') = append (snoc p e) p' := by
   induction p
   · case nil => rfl
   · case cons ih => dsimp [append]; rw [ih]
 
+/--
+@isnad1 id=eq.0h8v.s6.c26089462af4 from=translated src=- shape=a9c80524 vocab=33f0cc12
+-/
 theorem append_assoc (p : Path A B) (q : Path B C) (r : Path C D) :
     append (append p q) r = append p (append q r) := by
   induction p
@@ -122,14 +140,23 @@ theorem append_assoc (p : Path A B) (q : Path B C) (r : Path C D) :
   · case cons ih => simp [append]; apply ih
 
 -- TODO Rephrase this to work for general paths, not just loops
+/--
+@isnad1 id=iff.0h3v.s5.ce6fee86dcf7 from=translated src=- shape=cb605521 vocab=86a0c19e
+-/
 theorem nil_length {A : V} : (p : Path A A) → p.length = .zero ↔ p = .nil' A
   | .nil => ⟨λ _ => rfl, λ _ => rfl⟩
   | .cons _ p => by apply Iff.intro <;> (intro; simp [length] at *)
 
+/--
+@isnad1 id=eq.0h6v.s5.a09ba8960c1e from=translated src=- shape=dc399f59 vocab=58ea38e2
+-/
 theorem snoc_length {A B C : V} : (p : Path A B) → (e : B ⟶ C) → length (.snoc p e) = .succ (length p)
   | .nil, _ => rfl
   | .cons _ p', e => by simp [length, snoc_length p' e]
 
+/--
+@isnad1 id=eq.0h6v.s5.1f3a7819b34e from=translated src=- shape=a8b6532a vocab=f966cff2
+-/
 theorem length_append {A B C : V} : (p : Path A B) → (q : Path B C) → (append p q).length = p.length + q.length
   | .nil, q => by rw [Nat.add_comm]; rfl
   | .cons _ p', q => by
@@ -147,8 +174,14 @@ def last : {A B : V} → Path A B → V
   | .(v), _, .cons' v _ _ _ .nil => v
   | _, _, .cons' _ _ _ _ (.cons e p) => last (.cons e p)
 
+/--
+@isnad1 id=eq.0h6v.s5.e41cb9fa3f16 from=translated src=- shape=f51ef74e vocab=be780076
+-/
 theorem first_cons (A B C : V) (e : A ⟶ B) (p : Path B C) : first (cons e p) = B := rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.8291ee29709c from=translated src=- shape=f51ef74e vocab=b317986b
+-/
 theorem last_snoc : (A B C : V) → (p : Path A B) → (e : B ⟶ C) → last (snoc p e) = B
   | _, _, _, .nil, _ => rfl
   | _, _, _, .cons' _ _ _ _ .nil, _ => by rw [snoc_cons]; rfl

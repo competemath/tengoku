@@ -31,12 +31,16 @@ namespace Schoenflies
 
 open Graph
 
-/-- One oriented side of the initial hexagonal outer graph. -/
+/-- One oriented side of the initial hexagonal outer graph.
+@isnad1 id=islink.0h1v.s6.b46fac9a6b5a from=translated src=- shape=230e8e42 vocab=d1977cec
+-/
 theorem initOuter_isLink_edge (i : Fin 6) :
     initOuter.IsLink (.edge i) (.vert i) (.vert (i + 1)) :=
   ⟨⟨i, rfl⟩, Or.inl ⟨rfl, rfl⟩⟩
 
-/-- Incidence in the initial outer graph is membership among an outer edge's two ends. -/
+/-- Incidence in the initial outer graph is membership among an outer edge's two ends.
+@isnad1 id=iff.0h2v.s5.ed2adc8dc77e from=translated src=- shape=25eb3253 vocab=9fc8f59f
+-/
 theorem initOuter_inc_iff {e x : InitialCell} :
     initOuter.Inc e x ↔
       e ∈ InitialCell.outerEdges ∧ (x = e.ends.1 ∨ x = e.ends.2) := by
@@ -49,7 +53,9 @@ theorem initOuter_inc_iff {e x : InitialCell} :
     · exact (initOuter_isLink_edge i).inc_left
     · exact (initOuter_isLink_edge i).inc_right
 
-/-- The five-edge complementary path to outer edge zero. -/
+/-- The five-edge complementary path to outer edge zero.
+@isnad1 id=ispath.0h0v.s7.f7701d8c78b8 from=translated src=- shape=ff145ae2 vocab=b496b0ac
+-/
 theorem isPath_initOuter_complement :
     initOuter.IsPath (.vert 0)
       [.edge 5, .edge 4, .edge 3, .edge 2, .edge 1] (.vert 1) := by
@@ -62,7 +68,9 @@ theorem isPath_initOuter_complement :
     simp [Graph.walkVertices, Graph.coveredVertices,
       initOuter_inc_iff, InitialCell.outerEdges, InitialCell.ends]
 
-/-- The initial distinguished outer edge set is exactly the six-edge hexagonal cycle. -/
+/-- The initial distinguished outer edge set is exactly the six-edge hexagonal cycle.
+@isnad1 id=outeredg.0h0v.s1.30bcc0e96997 from=translated src=- shape=25b03439 vocab=9c1d2598
+-/
 theorem outerEdgesFormCycle_initialStructure : initialStructure.OuterEdgesFormCycle := by
   refine ⟨.edge 0, .vert 0, .vert 1,
     [.edge 5, .edge 4, .edge 3, .edge 2, .edge 1], ?_, ?_⟩

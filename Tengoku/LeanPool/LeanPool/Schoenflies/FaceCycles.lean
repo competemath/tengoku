@@ -122,7 +122,9 @@ variable {α β : Type*} {G H K B : Graph α β} {u v w x y z c : α} {e f g : �
 /-! ## Two distinct neighbours -/
 
 /-- **A vertex of a loopless 2-connected graph has a neighbour other than any prescribed
-vertex** — in particular it has two distinct neighbours, and neither is itself. -/
+vertex** — in particular it has two distinct neighbours, and neither is itself.
+@isnad1 id=ex.3h5v.s5.fcaa48083744 from=translated src=- shape=0c0dcfbe vocab=a5ff478c
+-/
 theorem IsTwoConnected.exists_adj_ne (h : G.IsTwoConnected)
     (hnl : ∀ ⦃g x⦄, ¬ G.IsLoopAt g x) (hv : v ∈ V(G)) (w : α) :
     ∃ x, G.Adj v x ∧ x ≠ w := by
@@ -172,14 +174,25 @@ namespace IsLongCycle
 variable (h : G.IsLongCycle e u v D w)
 include h
 
+/--
+@isnad1 id=islink.1h8v.s5.831f685d434d from=translated src=- shape=021eecfb vocab=f67be0b7
+-/
 theorem isLink : G.IsLink e u v := h.isCycle.isLink
 
+/--
+@isnad1 id=ispath.1h8v.s5.d1a384a3008e from=translated src=- shape=8fb3ba4a vocab=2884fbc0
+-/
 theorem isPath : G.IsPath u D v := h.isCycle.isPath
 
+/--
+@isnad1 id=not.1h8v.s5.e675000e40d8 from=translated src=- shape=0f0aab78 vocab=ec7b03a8
+-/
 theorem notMem : e ∉ D := h.isCycle.notMem
 
 /-- The two ends of the edge are distinct: otherwise the detour would be a path from a vertex
-to itself, hence empty, and would visit no third vertex. -/
+to itself, hence empty, and would visit no third vertex.
+@isnad1 id=ne.1h8v.s5.37abf57aafbd from=translated src=- shape=496e442c vocab=0e9cca8a
+-/
 theorem ne : u ≠ v := by
   rintro rfl
   have hnil : D = [] := h.isPath.eq_nil_of_eq
@@ -198,7 +211,9 @@ otherwise the edge to it could be prepended, contradicting maximality. Cutting t
 gives a path from `u` to `x` whose first step is still to `w₀`, and the chord closes it into a
 cycle through `u`, `w₀` and `x`. The chord is not an edge of that piece: an edge at `u` in the
 tail is what the path's freshness clause forbids, and the first edge is not the chord because
-their far ends differ. -/
+their far ends differ.
+@isnad1 id=ex.2h3v.s5.15ead83d691e from=translated src=- shape=913051a0 vocab=b24358c0
+-/
 theorem IsTwoConnected.exists_long_cycle [G.Finite] (h : G.IsTwoConnected)
     (hnl : ∀ ⦃g x⦄, ¬ G.IsLoopAt g x) :
     ∃ g u x D w, G.IsLongCycle g u x D w := by
@@ -251,7 +266,9 @@ This is the one place where "length at least three" is used: a two-vertex cycle 
 `Graph.banana`, and `Graph.not_isTwoConnected_banana` says it is not 2-connected. -/
 
 /-- **A path graph grows with its edge list.** General, and not in
-`Schoenflies/Graph/PathGraph.lean`; the integrator may want to hoist it. -/
+`Schoenflies/Graph/PathGraph.lean`; the integrator may want to hoist it.
+@isnad1 id=le.1h6v.s5.fde240c62d15 from=translated src=- shape=4e88bff8 vocab=ee3f14c2
+-/
 theorem pathGraphOf_mono (h : W ⊆ D) : G.pathGraphOf u W ≤ G.pathGraphOf u D where
   vertexSet_mono := by
     simpa only [pathGraphOf_vertexSet] using walkVertices_mono (u := u) h
@@ -267,7 +284,9 @@ Exported as the object rather than hidden behind an existential — the consumer
 def cycleGraph (G : Graph α β) (u : α) (e : β) (D : List β) : Graph α β :=
   G.pathGraphOf u (D ++ [e])
 
-/-- The detour spans a path subgraph of the cycle. -/
+/-- The detour spans a path subgraph of the cycle.
+@isnad1 id=le.0h6v.s5.f53ed26f8702 from=translated src=- shape=9403bfbf vocab=070b1f9f
+-/
 theorem pathGraphOf_le_cycleGraph : G.pathGraphOf u D ≤ G.cycleGraph u e D :=
   pathGraphOf_mono (List.subset_append_left _ _)
 
@@ -276,11 +295,15 @@ namespace IsCycleThrough
 variable (hc : G.IsCycleThrough e u v D)
 include hc
 
-/-- Going round: the detour and then the edge is a closed walk at the source. -/
+/-- Going round: the detour and then the edge is a closed walk at the source.
+@isnad1 id=iswalk.1h7v.s5.4ce2bebcc263 from=translated src=- shape=279025ac vocab=e1542d8b
+-/
 theorem isWalk_round : G.IsWalk u (D ++ [e]) u :=
   hc.isPath.isWalk.append (IsWalk.single hc.isLink.symm)
 
-/-- Closing the cycle adds no vertex: both ends of the edge are already on the detour. -/
+/-- Closing the cycle adds no vertex: both ends of the edge are already on the detour.
+@isnad1 id=eq.1h7v.s5.92a18f5c6458 from=translated src=- shape=abc57dd1 vocab=89c0df58
+-/
 theorem walkVertices_round : G.walkVertices u (D ++ [e]) = G.walkVertices u D := by
   refine Set.Subset.antisymm (fun y hy ↦ ?_) (walkVertices_mono (List.subset_append_left _ _))
   rcases mem_walkVertices_iff.1 hy with rfl | hcov
@@ -293,28 +316,47 @@ theorem walkVertices_round : G.walkVertices u (D ++ [e]) = G.walkVertices u D :=
   · exact mem_walkVertices_self
   · exact hc.isPath.target_mem_walkVertices
 
+/--
+@isnad1 id=eq.1h7v.s5.1ada3fbc5000 from=translated src=- shape=a0de7676 vocab=d745010d
+-/
 theorem cycleGraph_vertexSet : V(G.cycleGraph u e D) = G.walkVertices u D := by
   rw [cycleGraph, pathGraphOf_vertexSet, hc.walkVertices_round]
 
+/--
+@isnad1 id=le.1h7v.s5.a8e2ffc010eb from=translated src=- shape=e464ff80 vocab=fde00a2b
+-/
 theorem cycleGraph_le : G.cycleGraph u e D ≤ G := pathGraphOf_le hc.isWalk_round
 
+/--
+@isnad1 id=eq.1h7v.s6.7f9ef8616506 from=translated src=- shape=bae8243c vocab=95ac8f1d
+-/
 theorem cycleGraph_edgeSet : E(G.cycleGraph u e D) = {f | f ∈ D ++ [e]} :=
   pathGraphOf_edgeSet hc.isWalk_round
 
+/--
+@isnad1 id=mem.1h7v.s5.76bdaaadc878 from=translated src=- shape=11289975 vocab=fb529730
+-/
 theorem left_mem_cycleGraph : u ∈ V(G.cycleGraph u e D) := by
   rw [hc.cycleGraph_vertexSet]; exact mem_walkVertices_self
 
+/--
+@isnad1 id=mem.1h7v.s5.9fd658e92cfa from=translated src=- shape=fa5b542c vocab=fb529730
+-/
 theorem right_mem_cycleGraph : v ∈ V(G.cycleGraph u e D) := by
   rw [hc.cycleGraph_vertexSet]; exact hc.isPath.target_mem_walkVertices
 
-/-- The edge of the cycle really is an edge of the cycle graph, joining the same two ends. -/
+/-- The edge of the cycle really is an edge of the cycle graph, joining the same two ends.
+@isnad1 id=islink.1h7v.s5.b3f9cbb07a75 from=translated src=- shape=9cf89ccd vocab=2089395b
+-/
 theorem cycleGraph_isLink : (G.cycleGraph u e D).IsLink e u v :=
   pathGraphOf_isLink.2 ⟨by simp, hc.isLink,
     hc.walkVertices_round ▸ mem_walkVertices_self,
     hc.walkVertices_round ▸ hc.isPath.target_mem_walkVertices⟩
 
 /-- The cycle graph is connected: every vertex it has is visited by the detour, and the
-detour's own prefix runs there from the source. -/
+detour's own prefix runs there from the source.
+@isnad1 id=connecte.1h7v.s5.c40cf280966e from=translated src=- shape=b5c18331 vocab=2bd50fb8
+-/
 theorem cycleGraph_connected : (G.cycleGraph u e D).Connected := by
   refine Connected.of_hub hc.left_mem_cycleGraph fun x hx ↦ ?_
   rw [hc.cycleGraph_vertexSet] at hx
@@ -330,6 +372,9 @@ namespace IsLongCycle
 variable (h : G.IsLongCycle e u v D w)
 include h
 
+/--
+@isnad1 id=mem.1h8v.s5.05e0cc44d3d3 from=translated src=- shape=27afe3da vocab=9c45795a
+-/
 theorem mem_cycleGraph : w ∈ V(G.cycleGraph u e D) := by
   rw [h.isCycle.cycleGraph_vertexSet]; exact h.mem
 
@@ -339,7 +384,9 @@ theorem mem_cycleGraph : w ∈ V(G.cycleGraph u e D) := by
 Delete a vertex `c`. One of the two ends of the cycle's edge survives, and it is the hub:
 every remaining vertex reaches an end of the *detour* inside the detour
 (`Graph.IsPathGraph.reaches_an_end`), an end which — having been reached after the deletion —
-survived it too, so the cycle's edge is still there to carry it the rest of the way. -/
+survived it too, so the cycle's edge is still there to carry it the rest of the way.
+@isnad1 id=istwocon.1h8v.s5.7320244578d0 from=translated src=- shape=4cf3f33b vocab=a307536b
+-/
 theorem isTwoConnected : (G.cycleGraph u e D).IsTwoConnected where
   hasThreeVertices :=
     ⟨u, h.isCycle.left_mem_cycleGraph, v, h.isCycle.right_mem_cycleGraph,
@@ -441,7 +488,9 @@ theorem IsPath.eq_singleton_of_edge_mem (hBG : B ≤ G) (hpath : G.IsPath u D v)
   exact ⟨by rw [hT.eq_nil_of_eq], hl⟩
 
 /-- **Either every edge of the ear is new, or the ear changes nothing.** The disjunction the
-step of `Graph.IsTwoConnected.ear_decomposition` has to open before it can do any geometry. -/
+step of `Graph.IsTwoConnected.ear_decomposition` has to open before it can do any geometry.
+@isnad1 id=or.6h7v.s7.25b833ee8fab from=translated src=- shape=cb24085c vocab=ca7f64ea
+-/
 theorem ear_edges_notMem_or_union_eq (hBG : B ≤ G) (hpath : G.IsPath u D v) (huv : u ≠ v)
     (hu : u ∈ V(B)) (hv : v ∈ V(B))
     (hint : ∀ y ∈ G.walkVertices u D, y ≠ u → y ≠ v → y ∉ V(B)) :
@@ -477,7 +526,9 @@ open Schoenflies
 variable {β : Type*} {G B P : Graph Plane β} {drawing : β → ℝ → Plane} {z a b : Plane}
   {S : Set Plane} {D : List β}
 
-/-- What a union of two plane graphs occupies is what the two of them occupy. -/
+/-- What a union of two plane graphs occupies is what the two of them occupy.
+@isnad1 id=eq.0h4v.s5.27c126324778 from=translated src=- shape=1d84401d vocab=3cfcb848
+-/
 @[simp]
 theorem pointSet_union (B P : Graph Plane β) (drawing : β → ℝ → Plane) :
     pointSet (B.union P) drawing = pointSet B drawing ∪ pointSet P drawing := by
@@ -486,13 +537,17 @@ theorem pointSet_union (B P : Graph Plane β) (drawing : β → ℝ → Plane) :
   simp only [Set.mem_union]
   tauto
 
-/-- Adding a graph removes exactly its own point set from the exterior. -/
+/-- Adding a graph removes exactly its own point set from the exterior.
+@isnad1 id=eq.0h4v.s5.6c812852f17c from=translated src=- shape=36ed8334 vocab=e7c0577c
+-/
 theorem exterior_union (B P : Graph Plane β) (drawing : β → ℝ → Plane) :
     exterior (B.union P) drawing = exterior B drawing \ pointSet P drawing := by
   rw [exterior, exterior, pointSet_union, Set.compl_union]
   rfl
 
-/-- A face of the enlarged graph lies inside a face of the old one. -/
+/-- A face of the enlarged graph lies inside a face of the old one.
+@isnad1 id=le.0h5v.s5.83675e56ad49 from=translated src=- shape=b584a566 vocab=8d4da8db
+-/
 theorem face_union_subset : face (B.union P) drawing z ⊆ face B drawing z := by
   by_cases hz : z ∈ exterior (B.union P) drawing
   · refine IsPreconnected.subset_connectedComponentIn isPreconnected_connectedComponentIn
@@ -501,7 +556,9 @@ theorem face_union_subset : face (B.union P) drawing z ⊆ face B drawing z := b
   · rw [face, connectedComponentIn_eq_empty hz]
     exact Set.empty_subset _
 
-/-- **"All other faces are unchanged."** A face the ear does not touch survives the ear. -/
+/-- **"All other faces are unchanged."** A face the ear does not touch survives the ear.
+@isnad1 id=eq.2h5v.s6.04c1af33bc3e from=translated src=- shape=d37fa27c vocab=d08dfbc1
+-/
 theorem face_union_eq_of_disjoint (hz : z ∈ exterior B drawing)
     (hdis : Disjoint (face B drawing z) (pointSet P drawing)) :
     face (B.union P) drawing z = face B drawing z := by
@@ -513,7 +570,9 @@ theorem face_union_eq_of_disjoint (hz : z ∈ exterior B drawing)
 
 /-- **"Its interior is connected and disjoint from the current graph, so it lies in one current
 face."** The topological half: a nonempty preconnected subset of the exterior lies in one
-face. -/
+face.
+@isnad1 id=ex.3h4v.s6.0baa12e4aeb3 from=translated src=- shape=8987cc12 vocab=fe877a8b
+-/
 theorem exists_face_of_isPreconnected (hS : IsPreconnected S) (hSne : S.Nonempty)
     (hsub : S ⊆ exterior B drawing) :
     ∃ z ∈ exterior B drawing, S ⊆ face B drawing z := by
@@ -534,7 +593,9 @@ ends.** Two cases, and both come down to the ear's freshness clause: a point of 
 (`Graph.IsDrawing.vertex_mem_edgeArc`), and a point of the ear on an *edge* of `B` is a vertex
 incident with both (`Graph.IsDrawing.edge_inter`) — the two edges being distinct because no
 edge of the ear belongs to `B`. Either way the point is a vertex of `B` that the ear visits,
-which the freshness clause makes one of the ear's two ends. -/
+which the freshness clause makes one of the ear's two ends.
+@isnad1 id=le.5h7v.s7.0ecce49f86b0 from=translated src=- shape=c467b446 vocab=05a266f5
+-/
 theorem IsDrawing.edgesCover_inter_pointSet (hG : IsDrawing G drawing) (hBG : B ≤ G)
     (hpath : G.IsPath a D b)
     (hint : ∀ y ∈ G.walkVertices a D, y ≠ a → y ≠ b → y ∉ V(B))
@@ -563,7 +624,9 @@ theorem IsDrawing.edgesCover_inter_pointSet (hG : IsDrawing G drawing) (hBG : B 
 
 /-- **"Its interior is connected and disjoint from the current graph, so it lies in one current
 face `F`."** The ear's realisation without its two ends is an arc's interior, hence connected,
-and it misses the drawing of `B` altogether, so it lies in a single face. -/
+and it misses the drawing of `B` altogether, so it lies in a single face.
+@isnad1 id=ex.6h7v.s7.90ea1b56a503 from=translated src=- shape=feb43221 vocab=fbce8401
+-/
 theorem IsDrawing.exists_face_of_ear (hG : IsDrawing G drawing) (hBG : B ≤ G)
     (hpath : G.IsPath a D b) (hab : a ≠ b)
     (hint : ∀ y ∈ G.walkVertices a D, y ≠ a → y ≠ b → y ∉ V(B))
@@ -582,7 +645,9 @@ subgraph to be a plane graph in its own right. Nothing has to be redrawn: the sa
 serves. General, and not in `Schoenflies/Graph/Drawing.lean`; the integrator may want to hoist
 it. -/
 
-/-- **A subgraph of a plane graph is a plane graph**, with the same drawing. -/
+/-- **A subgraph of a plane graph is a plane graph**, with the same drawing.
+@isnad1 id=isdrawin.2h4v.s5.e535f4b06a45 from=translated src=- shape=b3ae000c vocab=3d82e133
+-/
 theorem IsDrawing.mono (hG : IsDrawing G drawing) (hBG : B ≤ G) : IsDrawing B drawing where
   edge_param := fun e he ↦ by
     obtain ⟨hc, hi, hl⟩ := hG.edge_param (hBG.edgeSet_mono he)
@@ -607,7 +672,9 @@ import each other, so the build accepted both. -/
 
 /-- **"The ear's two endpoints are limits of its interior, which lies in `F`, so they lie on
 `∂F`."** This is the hypothesis `thm:polygonal-crosscut` needs of a crosscut: its two ends are
-on the boundary curve of the region it cuts. -/
+on the boundary curve of the region it cuts.
+@isnad1 id=and.7h8v.s7.2e9ee27fbede from=translated src=- shape=91c1914c vocab=2d48bc9f
+-/
 theorem IsDrawing.ends_mem_frontier_face (hG : IsDrawing G drawing)
     (hopen : IsOpen (face B drawing z)) (hpath : G.IsPath a D b) (hab : a ≠ b)
     (ha : a ∈ V(B)) (hb : b ∈ V(B))

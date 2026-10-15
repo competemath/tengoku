@@ -38,8 +38,14 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 /-- Borel σ-algebra on the model space `E`. -/
 local instance instMeasurableSpaceTranslationEstimate :
     MeasurableSpace E := borel E
+/--
+@isnad1 id=borelspa.0h1v.s4.28e8982aa52a from=translated src=- shape=c6850a32 vocab=40d40b5c
+-/
 local instance instBorelSpaceTranslationEstimate :
     BorelSpace E := ⟨rfl⟩
+/--
+@isnad1 id=opensmea.0h1v.s4.775a5c49d6f8 from=translated src=- shape=c6850a32 vocab=1289ca55
+-/
 local instance instOpensMeasurableSpaceTranslationEstimate :
     OpensMeasurableSpace E := by
   infer_instance
@@ -50,6 +56,9 @@ local instance instOpensMeasurableSpaceTranslationEstimate :
 def line (x a : E) (t : ℝ) : E :=
   x + t • a
 
+/--
+@isnad1 id=hasderiv.0h4v.s5.ccb0cf409f56 from=translated src=- shape=40cddabf vocab=3b7c9098
+-/
 lemma hasDerivAt_line (x a : E) (t : ℝ) :
     HasDerivAt (line (x := x) (a := a)) a t := by
   -- `t ↦ t • a` has derivative `a`, and adding the constant `x` preserves the derivative.
@@ -57,10 +66,16 @@ lemma hasDerivAt_line (x a : E) (t : ℝ) :
     simpa [one_smul] using (hasDerivAt_id t).smul_const a
   exact HasDerivAt.const_add x hsmul
 
+/--
+@isnad1 id=eq.0h4v.s5.b56bcb098a70 from=translated src=- shape=55249910 vocab=22d4beeb
+-/
 lemma deriv_line (x a : E) (t : ℝ) :
     deriv (line (x := x) (a := a)) t = a :=
   (hasDerivAt_line (x := x) (a := a) t).deriv
 
+/--
+@isnad1 id=hasderiv.1h5v.s8.dd2b0fa982c6 from=translated src=- shape=bd99e35f vocab=c7f08598
+-/
 lemma hasDerivAt_comp_line
     {f : E → ℝ} (hf : ContDiff ℝ 1 f) (x a : E) (t : ℝ) :
     HasDerivAt (fun t => f (line (x := x) (a := a) t))
@@ -70,6 +85,9 @@ lemma hasDerivAt_comp_line
   exact
     HasFDerivAt.comp_hasDerivAt_of_eq t hf' (hasDerivAt_line (x := x) (a := a) t) rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.576829c5423b from=translated src=- shape=7da82425 vocab=053af99a
+-/
 lemma deriv_comp_line {f : E → ℝ} (hf : ContDiff ℝ 1 f) (x a : E) (t : ℝ) :
     deriv (fun t => f (line (x := x) (a := a) t)) t =
       fderiv ℝ f (line (x := x) (a := a) t) a :=
@@ -81,6 +99,9 @@ section
 
 variable [CompleteSpace E]
 
+/--
+@isnad1 id=le.0h4v.s8.4858cbddb0e3 from=translated src=- shape=bdd543f1 vocab=f212db23
+-/
 lemma enorm_fderiv_apply_le_enorm_grad_mul (f : E → ℝ) (x a : E) :
     ‖fderiv ℝ f x a‖ₑ ≤ ‖grad (E := E) f x‖ₑ * ‖a‖ₑ := by
   -- Use the operator norm bound, then identify `‖fderiv‖` with `‖grad‖` via the Riesz isometry.
@@ -97,6 +118,9 @@ lemma enorm_fderiv_apply_le_enorm_grad_mul (f : E → ℝ) (x a : E) :
   -- Replace the operator norm by the gradient norm.
   simpa [h₂, mul_assoc, mul_left_comm, mul_comm] using h₁
 
+/--
+@isnad1 id=le.1h5v.s7.659870fbf965 from=translated src=- shape=d82d4522 vocab=11d95667
+-/
 lemma enorm_deriv_comp_line_le (x a : E) {f : E → ℝ} (hf : ContDiff ℝ 1 f) (t : ℝ) :
     ‖deriv (fun t => f (line (x := x) (a := a) t)) t‖ₑ ≤
       ‖a‖ₑ * ‖grad (E := E) f (line (x := x) (a := a) t)‖ₑ := by
@@ -108,6 +132,9 @@ lemma enorm_deriv_comp_line_le (x a : E) {f : E → ℝ} (hf : ContDiff ℝ 1 f)
   simpa [deriv_comp_line (hf := hf) (x := x) (a := a) t,
     mul_comm, mul_left_comm, mul_assoc] using this
 
+/--
+@isnad1 id=le.1h4v.s8.47510c186880 from=translated src=- shape=e8ecc914 vocab=f0841fbf
+-/
 lemma enorm_sub_le_enorm_mul_lintegral_grad (x a : E) {f : E → ℝ} (hf : ContDiff ℝ 1 f) :
     ‖f (x + a) - f x‖ₑ ≤
       ‖a‖ₑ * ∫⁻ t in Icc (0 : ℝ) 1, ‖grad (E := E) f (x + t • a)‖ₑ := by

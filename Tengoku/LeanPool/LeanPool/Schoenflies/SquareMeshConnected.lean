@@ -135,7 +135,9 @@ definition of `Graph.IsTwoConnected`, because a four-vertex graph is small enoug
 "delete one vertex and the rest is still connected" is four applications of one lemma. -/
 
 /-- **A four-cycle is 2-connected.** No hypothesis on `G` beyond the four edges, the four
-distinct vertices, and the fact that there are no other vertices. -/
+distinct vertices, and the fact that there are no other vertices.
+@isnad1 id=istwocon.11h11v.s6.503467cb5ac1 from=translated src=- shape=e8b055bb vocab=84b8d0dd
+-/
 theorem isTwoConnected_of_quad {e₁ e₂ e₃ e₄ : β} {a b c d : α}
     (h₁ : G.IsLink e₁ a b) (h₂ : G.IsLink e₂ b c) (h₃ : G.IsLink e₃ c d) (h₄ : G.IsLink e₄ d a)
     (hV : ∀ v ∈ V(G), v = a ∨ v = b ∨ v = c ∨ v = d)
@@ -208,24 +210,39 @@ def attachUnion (K : Graph α β) (Γ : ℕ → Graph α β) : ℕ → Graph α 
   | 0 => K
   | (m + 1) => (attachUnion K Γ m).union (Γ m)
 
+/--
+@isnad1 id=eq.0h4v.s4.20d142fa917f from=translated src=- shape=3d641b83 vocab=ac4e951c
+-/
 @[simp] theorem attachUnion_zero (K : Graph α β) (Γ : ℕ → Graph α β) :
     attachUnion K Γ 0 = K := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.36b66734886d from=translated src=- shape=bbad947b vocab=8e1eec71
+-/
 @[simp] theorem attachUnion_succ (K : Graph α β) (Γ : ℕ → Graph α β) (m : ℕ) :
     attachUnion K Γ (m + 1) = (attachUnion K Γ m).union (Γ m) := rfl
 
+/--
+@isnad1 id=le.0h5v.s5.7ce43a6eced4 from=translated src=- shape=18ccf373 vocab=466fd2eb
+-/
 theorem le_attachUnion (K : Graph α β) (Γ : ℕ → Graph α β) (m : ℕ) :
     K ≤ attachUnion K Γ m := by
   induction m with
   | zero => exact le_rfl
   | succ m ih => exact ih.trans (left_le_union _ _)
 
+/--
+@isnad1 id=le.2h6v.s6.d8d5fa0826c6 from=translated src=- shape=d3f41a2f vocab=c190a9a0
+-/
 theorem attachUnion_le {K : Graph α β} {Γ : ℕ → Graph α β} {m : ℕ} (hK : K ≤ G)
     (hΓ : ∀ q, q < m → Γ q ≤ G) : attachUnion K Γ m ≤ G := by
   induction m with
   | zero => exact hK
   | succ m ih => exact union_le (ih fun q hq => hΓ q (by omega)) (hΓ m (by omega))
 
+/--
+@isnad1 id=le.3h7v.s6.0451ac7e6b5c from=translated src=- shape=ed048171 vocab=c190a9a0
+-/
 theorem piece_le_attachUnion {K : Graph α β} {Γ : ℕ → Graph α β} {m q : ℕ} (hK : K ≤ G)
     (hΓ : ∀ r, r < m → Γ r ≤ G) (hq : q < m) : Γ q ≤ attachUnion K Γ m := by
   induction m with
@@ -237,7 +254,9 @@ theorem piece_le_attachUnion {K : Graph α β} {Γ : ℕ → Graph α β} {m q :
         (hΓ q (by omega))).right_le_union
 
 /-- **`lem:union-two-connected`, iterated at a hub.** A 2-connected `K` and finitely many
-2-connected pieces, each meeting `K` in two distinct vertices, have 2-connected union. -/
+2-connected pieces, each meeting `K` in two distinct vertices, have 2-connected union.
+@isnad1 id=istwocon.5h6v.s7.0a1be07b495b from=translated src=- shape=0fb036f9 vocab=1f2c8396
+-/
 theorem IsTwoConnected.attach_cycles {K : Graph α β} {Γ : ℕ → Graph α β} {m : ℕ}
     (hK : K.IsTwoConnected) (hKG : K ≤ G) (hΓG : ∀ q, q < m → Γ q ≤ G)
     (hΓ : ∀ q, q < m → (Γ q).IsTwoConnected)
@@ -261,7 +280,9 @@ The boundary walk of the grid is a march: vertices `p s, p (s+1), …` joined by
 `p` on the index range, because an edge of the chain is incident with nothing but its own two
 ends (`Graph.Inc.eq_or_eq_of_isLink`). -/
 
-/-- **A chain of edges through pairwise distinct vertices is a path.** -/
+/-- **A chain of edges through pairwise distinct vertices is a path.**
+@isnad1 id=ispath.3h7v.s7.ceee0e5f68fb from=translated src=- shape=573af6c4 vocab=7ccd1538
+-/
 theorem isPath_range' {p : ℕ → α} {q : ℕ → β} :
     ∀ (k s : ℕ), (∀ i, s ≤ i → i < s + k → G.IsLink (q i) (p i) (p (i + 1))) →
       (∀ i j, s ≤ i → i ≤ s + k → s ≤ j → j ≤ s + k → p i = p j → i = j) →
@@ -324,29 +345,51 @@ def pieceListGraph (edges : List Piece) : Graph Plane Piece where
     rintro P x y ⟨hP, h⟩
     exact ⟨P, hP, by tauto⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.dfa969ad3615 from=translated src=- shape=1c3be642 vocab=e8c4a509
+-/
 @[simp] theorem pieceListGraph_vertexSet (l : List Piece) : V(pieceListGraph l) = endSet l := rfl
 
+/--
+@isnad1 id=iff.0h2v.s4.50916597561c from=translated src=- shape=87a8d01b vocab=6316a47e
+-/
 @[simp] theorem pieceListGraph_mem_edgeSet {l : List Piece} {P : Piece} :
     P ∈ E(pieceListGraph l) ↔ P ∈ l := Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s5.8d226555d7eb from=translated src=- shape=8cbe0939 vocab=95a7510f
+-/
 @[simp] theorem pieceListGraph_isLink {l : List Piece} {P : Piece} {x y : Plane} :
     (pieceListGraph l).IsLink P x y ↔
       P ∈ l ∧ ((x = P.1 ∧ y = P.2) ∨ (x = P.2 ∧ y = P.1)) := Iff.rfl
 
+/--
+@isnad1 id=iff.0h2v.s5.9ca8d2573792 from=translated src=- shape=94029519 vocab=d916a4b0
+-/
 theorem pieceListGraph_mem_vertexSet {l : List Piece} {v : Plane} :
     v ∈ V(pieceListGraph l) ↔ ∃ P ∈ l, v = P.1 ∨ v = P.2 := Iff.rfl
 
-/-- The canonical link of a listed segment: it joins its own two ends. -/
+/-- The canonical link of a listed segment: it joins its own two ends.
+@isnad1 id=islink.1h2v.s4.a0eedb9d718f from=translated src=- shape=b827edc0 vocab=95a7510f
+-/
 theorem pieceListGraph_isLink_self {l : List Piece} {P : Piece} (h : P ∈ l) :
     (pieceListGraph l).IsLink P P.1 P.2 := ⟨h, Or.inl ⟨rfl, rfl⟩⟩
 
+/--
+@isnad1 id=mem.1h2v.s4.01c11c48c0fb from=translated src=- shape=6d66376c vocab=75040047
+-/
 theorem mem_vertexSet_pieceListGraph_left {l : List Piece} {P : Piece} (h : P ∈ l) :
     P.1 ∈ V(pieceListGraph l) := ⟨P, h, Or.inl rfl⟩
 
+/--
+@isnad1 id=mem.1h2v.s4.961826eef19c from=translated src=- shape=6d66376c vocab=22b8368c
+-/
 theorem mem_vertexSet_pieceListGraph_right {l : List Piece} {P : Piece} (h : P ∈ l) :
     P.2 ∈ V(pieceListGraph l) := ⟨P, h, Or.inr rfl⟩
 
-/-- An end of a listed segment is incident with it. -/
+/-- An end of a listed segment is incident with it.
+@isnad1 id=inc.2h3v.s5.039bd0e8edce from=translated src=- shape=a1cb83cb vocab=c4f6ba4d
+-/
 theorem pieceListGraph_inc {l : List Piece} {P : Piece} {v : Plane} (hP : P ∈ l)
     (h : v = P.1 ∨ v = P.2) : (pieceListGraph l).Inc P v := by
   rcases h with rfl | rfl
@@ -357,12 +400,17 @@ theorem pieceListGraph_inc {l : List Piece} {P : Piece} {v : Plane} (hP : P ∈ 
 
 `Schoenflies.Plane.coord_ext` in `Schoenflies/JordanSeparates.lean` is the same fact in a more
 general form; that module is not on this one's import path, and the integrator should collapse
-the two if it ever is. -/
+the two if it ever is.
+@isnad1 id=eq.2h2v.s7.159769472e4e from=translated src=- shape=11489ea2 vocab=b6cf64df
+-/
 theorem plane_eq_of_coords {z w : Plane} (h0 : z 0 = w 0) (h1 : z 1 = w 1) : z = w := by
   ext k
   fin_cases k
   exacts [h0, h1]
 
+/--
+@isnad1 id=eq.0h2v.s5.222a72a29461 from=translated src=- shape=a0c72b54 vocab=2558b641
+-/
 theorem endSet_append (l l' : List Piece) : endSet (l ++ l') = endSet l ∪ endSet l' := by
   ext v
   simp only [endSet, Set.mem_ofPred_eq, Set.mem_union, List.mem_append]
@@ -373,7 +421,9 @@ theorem endSet_append (l l' : List Piece) : endSet (l ++ l') = endSet l ∪ endS
     exacts [⟨P, Or.inl hP, h⟩, ⟨P, Or.inr hP, h⟩]
 
 /-- What a segment graph occupies is what its segments occupy: every vertex is an end of a
-listed segment, so the vertices add nothing. -/
+listed segment, so the vertices add nothing.
+@isnad1 id=eq.0h1v.s3.8df2480991a0 from=translated src=- shape=85e04f87 vocab=37e2192d
+-/
 theorem pieceListGraph_pointSet (l : List Piece) :
     Graph.pointSet (pieceListGraph l) segmentDrawing = cover l := by
   ext z
@@ -389,6 +439,9 @@ theorem pieceListGraph_pointSet (l : List Piece) :
   · rintro ⟨P, hP, hzP⟩
     exact Or.inr ⟨P, hP, hzP⟩
 
+/--
+@isnad1 id=le.1h2v.s5.87e0dba284b3 from=translated src=- shape=8c7bd6a8 vocab=eff4cb3c
+-/
 theorem pieceListGraph_mono {l l' : List Piece} (h : l ⊆ l') :
     pieceListGraph l ≤ pieceListGraph l' where
   vertexSet_mono := by
@@ -398,14 +451,18 @@ theorem pieceListGraph_mono {l l' : List Piece} (h : l ⊆ l') :
     rintro P x y ⟨hP, hxy⟩
     exact ⟨h hP, hxy⟩
 
-/-- Two segment graphs never disagree about a shared edge: an edge is its own pair of ends. -/
+/-- Two segment graphs never disagree about a shared edge: an edge is its own pair of ends.
+@isnad1 id=compatib.0h2v.s3.bb8bf5882be8 from=translated src=- shape=1b128b36 vocab=454ebb4e
+-/
 theorem pieceListGraph_compatible (l l' : List Piece) :
     (pieceListGraph l).Compatible (pieceListGraph l') := by
   intro P hP hP' x y
   exact ⟨fun h => ⟨hP', h.2⟩, fun h => ⟨hP, h.2⟩⟩
 
 /-- **The union of two segment graphs is the segment graph of the concatenation.** This is the
-whole reason for `pieceListGraph`: it turns "glue one more cycle on" into an equation. -/
+whole reason for `pieceListGraph`: it turns "glue one more cycle on" into an equation.
+@isnad1 id=eq.0h2v.s5.dc43cf4ec05a from=translated src=- shape=e894eb24 vocab=5879a280
+-/
 theorem pieceListGraph_union (l l' : List Piece) :
     (pieceListGraph l).union (pieceListGraph l') = pieceListGraph (l ++ l') := by
   refine Graph.eq_of_le_of_subset_subset
@@ -433,12 +490,18 @@ def gridHEdge (xc yc : ℕ → ℝ) (i j : ℕ) : Piece := (gridPt xc yc i j, gr
 /-- The vertical grid edge from `(i, j)` to `(i, j+1)`. -/
 def gridVEdge (xc yc : ℕ → ℝ) (i j : ℕ) : Piece := (gridPt xc yc i j, gridPt xc yc i (j + 1))
 
+/--
+@isnad1 id=ne.1h6v.s5.3b1688a30d85 from=translated src=- shape=869d28f0 vocab=cce1bd49
+-/
 theorem gridPt_ne_of_fst {xc yc : ℕ → ℝ} {i i' j j' : ℕ} (h : xc i ≠ xc i') :
     gridPt xc yc i j ≠ gridPt xc yc i' j' := fun he => by
   have := congrArg (fun p : Plane => p 0) he
   simp only [gridPt, Plane.mk_zero] at this
   exact h this
 
+/--
+@isnad1 id=ne.1h6v.s5.d046e7290c66 from=translated src=- shape=9c47659e vocab=cce1bd49
+-/
 theorem gridPt_ne_of_snd {xc yc : ℕ → ℝ} {i i' j j' : ℕ} (h : yc j ≠ yc j') :
     gridPt xc yc i j ≠ gridPt xc yc i' j' := fun he => by
   have := congrArg (fun p : Plane => p 1) he
@@ -463,26 +526,44 @@ def gridEdges (xc yc : ℕ → ℝ) (m n : ℕ) : List Piece :=
 graph with straight edges. -/
 def gridGraph (xc yc : ℕ → ℝ) (m n : ℕ) : Graph Plane Piece := pieceListGraph (gridEdges xc yc m n)
 
+/--
+@isnad1 id=eq.0h4v.s5.e81df5120568 from=translated src=- shape=ecae1d01 vocab=8e1ec9c2
+-/
 theorem stripEdges_succ (xc yc : ℕ → ℝ) (i n : ℕ) :
     stripEdges xc yc i (n + 1) = stripEdges xc yc i n ++ cellEdges xc yc i n := by
   rw [stripEdges, stripEdges, List.range_succ, List.flatMap_append, List.flatMap_singleton]
 
+/--
+@isnad1 id=eq.0h3v.s4.8eecfb13984b from=translated src=- shape=84987d38 vocab=5d6ee46c
+-/
 theorem stripEdges_one (xc yc : ℕ → ℝ) (i : ℕ) :
     stripEdges xc yc i 1 = cellEdges xc yc i 0 := by
   rw [stripEdges_succ]; simp [stripEdges]
 
+/--
+@isnad1 id=subset.1h5v.s5.df74f4b4020c from=translated src=- shape=ad5e959d vocab=ad35da7a
+-/
 theorem cellEdges_subset_stripEdges {xc yc : ℕ → ℝ} {i j n : ℕ} (h : j < n) :
     cellEdges xc yc i j ⊆ stripEdges xc yc i n :=
   fun _ hP => List.mem_flatMap.2 ⟨j, List.mem_range.2 h, hP⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.313257caa4eb from=translated src=- shape=8d4b44ac vocab=392e7ffc
+-/
 theorem gridEdges_succ (xc yc : ℕ → ℝ) (m n : ℕ) :
     gridEdges xc yc (m + 1) n = gridEdges xc yc m n ++ stripEdges xc yc m n := by
   rw [gridEdges, gridEdges, List.range_succ, List.flatMap_append, List.flatMap_singleton]
 
+/--
+@isnad1 id=eq.0h3v.s4.14468aa5ed39 from=translated src=- shape=eedc0c2b vocab=e6cb281e
+-/
 theorem gridEdges_one (xc yc : ℕ → ℝ) (n : ℕ) :
     gridEdges xc yc 1 n = stripEdges xc yc 0 n := by
   rw [gridEdges_succ]; simp [gridEdges]
 
+/--
+@isnad1 id=subset.1h5v.s5.9bb6c6fff2a2 from=translated src=- shape=2c29d5c3 vocab=f40463d1
+-/
 theorem stripEdges_subset_gridEdges {xc yc : ℕ → ℝ} {i m n : ℕ} (h : i < m) :
     stripEdges xc yc i n ⊆ gridEdges xc yc m n :=
   fun _ hP => List.mem_flatMap.2 ⟨i, List.mem_range.2 h, hP⟩
@@ -491,7 +572,9 @@ theorem stripEdges_subset_gridEdges {xc yc : ℕ → ℝ} {i m n : ℕ} (h : i <
 
 /-- **One cell of the grid is 2-connected.** Its boundary is a quadrilateral, so this is
 `Graph.isTwoConnected_of_quad` with the four corners named. Only the two consecutive-coordinate
-inequalities are used. -/
+inequalities are used.
+@isnad1 id=istwocon.2h4v.s5.5332fae084d3 from=translated src=- shape=f567dd70 vocab=47107f76
+-/
 theorem cellGraph_isTwoConnected {xc yc : ℕ → ℝ} {i j : ℕ} (hx : xc i ≠ xc (i + 1))
     (hy : yc j ≠ yc (j + 1)) : (pieceListGraph (cellEdges xc yc i j)).IsTwoConnected := by
   have h₁ : gridHEdge xc yc i j ∈ cellEdges xc yc i j := by simp [cellEdges]
@@ -515,7 +598,9 @@ Two chains of `Graph.IsTwoConnected.union`, and the two shared vertices are in e
 two ends of one edge that both parts contain. -/
 
 /-- **A column of cells is 2-connected.** Consecutive cells share the horizontal edge between
-them, hence its two ends. -/
+them, hence its two ends.
+@isnad1 id=istwocon.2h4v.s6.1e3def5ab8aa from=translated src=- shape=d2c8c53f vocab=82e43de4
+-/
 theorem stripGraph_isTwoConnected {xc yc : ℕ → ℝ} {i : ℕ} (hx : xc i ≠ xc (i + 1)) :
     ∀ k : ℕ, (∀ j ≤ k, yc j ≠ yc (j + 1)) →
       (pieceListGraph (stripEdges xc yc i (k + 1))).IsTwoConnected := by
@@ -542,7 +627,9 @@ theorem stripGraph_isTwoConnected {xc yc : ℕ → ℝ} {i : ℕ} (hx : xc i ≠
 vertical line between them — in particular the two ends of its lowest edge.
 
 The two size hypotheses are not decoration: a grid one point wide is a path, and a path is not
-2-connected. -/
+2-connected.
+@isnad1 id=istwocon.2h4v.s6.fc9a9aaa4bb4 from=translated src=- shape=e9855dab vocab=33191cf4
+-/
 theorem gridGraph_isTwoConnected_aux {xc yc : ℕ → ℝ} {n : ℕ}
     (hy : ∀ j ≤ n, yc j ≠ yc (j + 1)) :
     ∀ k : ℕ, (∀ i ≤ k, xc i ≠ xc (i + 1)) →
@@ -568,7 +655,9 @@ theorem gridGraph_isTwoConnected_aux {xc yc : ℕ → ℝ} {n : ℕ}
       (mem_vertexSet_pieceListGraph_left hold) (mem_vertexSet_pieceListGraph_left hnew)
       (mem_vertexSet_pieceListGraph_right hold) (mem_vertexSet_pieceListGraph_right hnew)
 
-/-- **`prop:anchored-square-mesh`, clause 5, for the inner grid.** -/
+/-- **`prop:anchored-square-mesh`, clause 5, for the inner grid.**
+@isnad1 id=istwocon.4h4v.s6.5c5354c76a15 from=translated src=- shape=26f57f5e vocab=c649882c
+-/
 theorem gridGraph_isTwoConnected {xc yc : ℕ → ℝ} {m n : ℕ} (hm : 1 ≤ m) (hn : 1 ≤ n)
     (hx : ∀ i < m, xc i ≠ xc (i + 1)) (hy : ∀ j < n, yc j ≠ yc (j + 1)) :
     (gridGraph xc yc m n).IsTwoConnected := by
@@ -582,6 +671,9 @@ Two membership lemmas, both by the same trick: a horizontal edge at height `n` i
 of a cell rather than the bottom of one, and a vertical edge on the line `i = m` is the *right*
 side of a cell rather than the left. -/
 
+/--
+@isnad1 id=mem.3h6v.s5.5c20bdbafda3 from=translated src=- shape=efa86214 vocab=4bb7b859
+-/
 theorem gridHEdge_mem_gridEdges {xc yc : ℕ → ℝ} {i j m n : ℕ} (hi : i < m) (hj : j ≤ n)
     (hn : 1 ≤ n) : gridHEdge xc yc i j ∈ gridEdges xc yc m n := by
   rcases lt_or_ge j n with h | h
@@ -591,6 +683,9 @@ theorem gridHEdge_mem_gridEdges {xc yc : ℕ → ℝ} {i j m n : ℕ} (hi : i < 
     exact stripEdges_subset_gridEdges hi
       (cellEdges_subset_stripEdges (Nat.lt_succ_self k) (by simp [cellEdges]))
 
+/--
+@isnad1 id=mem.3h6v.s5.3f7c22c3aa60 from=translated src=- shape=3c9507f6 vocab=16cfcf31
+-/
 theorem gridVEdge_mem_gridEdges {xc yc : ℕ → ℝ} {i j m n : ℕ} (hi : i ≤ m) (hj : j < n)
     (hm : 1 ≤ m) : gridVEdge xc yc i j ∈ gridEdges xc yc m n := by
   rcases lt_or_ge i m with h | h
@@ -601,7 +696,9 @@ theorem gridVEdge_mem_gridEdges {xc yc : ℕ → ℝ} {i j m n : ℕ} (hi : i �
       (cellEdges_subset_stripEdges hj (by simp [cellEdges]))
 
 /-- **The edges of the grid, classified.** A grid edge is a horizontal step in a row, or a
-vertical step in a column, and nothing else. -/
+vertical step in a column, and nothing else.
+@isnad1 id=iff.2h5v.s6.17f0f3ad67b4 from=translated src=- shape=450dbebd vocab=5f98ef9b
+-/
 theorem mem_gridEdges_iff {xc yc : ℕ → ℝ} {m n : ℕ} (hm : 1 ≤ m) (hn : 1 ≤ n) {P : Piece} :
     P ∈ gridEdges xc yc m n ↔
       (∃ i < m, ∃ j ≤ n, P = gridHEdge xc yc i j) ∨
@@ -621,7 +718,9 @@ theorem mem_gridEdges_iff {xc yc : ℕ → ℝ} {m n : ℕ} (hm : 1 ≤ m) (hn :
     · exact gridHEdge_mem_gridEdges hi hj hn
     · exact gridVEdge_mem_gridEdges hi hj hm
 
-/-- **The vertices of the grid are exactly the grid points.** -/
+/-- **The vertices of the grid are exactly the grid points.**
+@isnad1 id=iff.2h5v.s6.508985bd8853 from=translated src=- shape=6bfaf8c8 vocab=d833e4fa
+-/
 theorem mem_vertexSet_gridGraph_iff {xc yc : ℕ → ℝ} {m n : ℕ} (hm : 1 ≤ m) (hn : 1 ≤ n)
     {v : Plane} :
     v ∈ V(gridGraph xc yc m n) ↔ ∃ i ≤ m, ∃ j ≤ n, v = gridPt xc yc i j := by
@@ -657,30 +756,60 @@ def bIdy (m n t : ℕ) : ℕ :=
   if t ≤ m then 0 else if t ≤ m + n then t - m
     else if t ≤ 2 * m + n then n else 2 * m + 2 * n - t
 
+/--
+@isnad1 id=le.0h3v.s3.3f434c7e77bf from=translated src=- shape=591c05ba vocab=25fa6329
+-/
 theorem bIdx_le (m n t : ℕ) : bIdx m n t ≤ m := by unfold bIdx; split_ifs <;> omega
 
+/--
+@isnad1 id=le.1h3v.s5.c18fed6d813f from=translated src=- shape=c57810a4 vocab=47b4a2e3
+-/
 theorem bIdy_le {m n t : ℕ} (h : t ≤ 2 * m + 2 * n) : bIdy m n t ≤ n := by
   unfold bIdy; split_ifs <;> omega
 
+/--
+@isnad1 id=eq.1h3v.s4.5d67ec7e3d1a from=translated src=- shape=fec1fd9f vocab=25fa6329
+-/
 theorem bIdx_bottom {m n t : ℕ} (h : t ≤ m) : bIdx m n t = t := by unfold bIdx; exact ite_eq_left h
 
+/--
+@isnad1 id=eq.1h3v.s4.7e8f7a81aa72 from=translated src=- shape=a0712f00 vocab=5b74d55e
+-/
 theorem bIdy_bottom {m n t : ℕ} (h : t ≤ m) : bIdy m n t = 0 := by unfold bIdy; exact ite_eq_left h
 
+/--
+@isnad1 id=eq.2h3v.s5.5b84aceb3d8c from=translated src=- shape=3de41ee5 vocab=fe40080f
+-/
 theorem bIdx_right {m n t : ℕ} (h₁ : m ≤ t) (h₂ : t ≤ m + n) : bIdx m n t = m := by
   unfold bIdx; split_ifs <;> omega
 
+/--
+@isnad1 id=eq.2h3v.s5.adfbeb21d08c from=translated src=- shape=2a632a44 vocab=000c516e
+-/
 theorem bIdy_right {m n t : ℕ} (h₁ : m ≤ t) (h₂ : t ≤ m + n) : bIdy m n t = t - m := by
   unfold bIdy; split_ifs <;> omega
 
+/--
+@isnad1 id=eq.2h3v.s6.e8d6ec881aac from=translated src=- shape=b85eb930 vocab=179be853
+-/
 theorem bIdx_top {m n t : ℕ} (h₁ : m + n ≤ t) (h₂ : t ≤ 2 * m + n) :
     bIdx m n t = 2 * m + n - t := by unfold bIdx; split_ifs <;> omega
 
+/--
+@isnad1 id=eq.2h3v.s5.b8b1ab7b8f86 from=translated src=- shape=3961670b vocab=47b4a2e3
+-/
 theorem bIdy_top {m n t : ℕ} (h₁ : m + n ≤ t) (h₂ : t ≤ 2 * m + n) : bIdy m n t = n := by
   unfold bIdy; split_ifs <;> omega
 
+/--
+@isnad1 id=eq.2h3v.s6.7155935e7521 from=translated src=- shape=cc84895c vocab=67ec62ef
+-/
 theorem bIdx_left {m n t : ℕ} (h₁ : 2 * m + n ≤ t) (_h₂ : t ≤ 2 * m + 2 * n) :
     bIdx m n t = 0 := by unfold bIdx; split_ifs <;> omega
 
+/--
+@isnad1 id=eq.2h3v.s6.bd56aa3961cd from=translated src=- shape=215d6b68 vocab=66d52b62
+-/
 theorem bIdy_left {m n t : ℕ} (h₁ : 2 * m + n ≤ t) (h₂ : t ≤ 2 * m + 2 * n) :
     bIdy m n t = 2 * m + 2 * n - t := by unfold bIdy; split_ifs <;> omega
 
@@ -689,7 +818,9 @@ overlap only at the corners, and there the two descriptions agree.
 
 `1 ≤ m` and `1 ≤ n` are needed and are not slack. With `n = 0` the walk goes out along the
 bottom and comes back along the *same* row, so index `t` and index `2m - t` name one point;
-this is the degenerate case in which the grid is a path rather than a cycle. -/
+this is the degenerate case in which the grid is a path rather than a cycle.
+@isnad1 id=eq.6h4v.s7.5dbef18b09fe from=translated src=- shape=60756b6e vocab=b48ba8a6
+-/
 theorem bIdx_bIdy_inj {m n t s : ℕ} (hm : 1 ≤ m) (hn : 1 ≤ n) (ht : t < 2 * m + 2 * n)
     (hs : s < 2 * m + 2 * n) (h₁ : bIdx m n t = bIdx m n s) (h₂ : bIdy m n t = bIdy m n s) :
     t = s := by
@@ -708,7 +839,9 @@ def gridBoundaryEdge (xc yc : ℕ → ℝ) (m n t : ℕ) : Piece :=
   else if t < 2 * m + n then gridHEdge xc yc (2 * m + n - 1 - t) n
   else gridVEdge xc yc 0 (2 * m + 2 * n - 1 - t)
 
-/-- The walk closes up: index `2m + 2n` is the corner it started from. -/
+/-- The walk closes up: index `2m + 2n` is the corner it started from.
+@isnad1 id=eq.0h4v.s5.afe0113d69cf from=translated src=- shape=7c1caa09 vocab=0e06a1dd
+-/
 theorem gridBoundaryPt_wrap (xc yc : ℕ → ℝ) (m n : ℕ) :
     gridBoundaryPt xc yc m n (2 * m + 2 * n) = gridBoundaryPt xc yc m n 0 := by
   have e₁ : bIdx m n (2 * m + 2 * n) = 0 := bIdx_left (by omega) (by omega)
@@ -717,7 +850,9 @@ theorem gridBoundaryPt_wrap (xc yc : ℕ → ℝ) (m n : ℕ) :
   have e₄ : bIdy m n 0 = 0 := bIdy_bottom (Nat.zero_le m)
   rw [gridBoundaryPt, gridBoundaryPt, e₁, e₂, e₃, e₄]
 
-/-- The vertices of the boundary walk are pairwise distinct. -/
+/-- The vertices of the boundary walk are pairwise distinct.
+@isnad1 id=eq.7h6v.s7.f87bc5cd2e85 from=translated src=- shape=50d809ac vocab=7caed607
+-/
 theorem gridBoundaryPt_inj {xc yc : ℕ → ℝ} {m n : ℕ} (hm : 1 ≤ m) (hn : 1 ≤ n)
     (hx : Set.InjOn xc (Set.Iic m)) (hy : Set.InjOn yc (Set.Iic n)) {t s : ℕ}
     (ht : t < 2 * m + 2 * n) (hs : s < 2 * m + 2 * n)
@@ -729,7 +864,9 @@ theorem gridBoundaryPt_inj {xc yc : ℕ → ℝ} {m n : ℕ} (hm : 1 ≤ m) (hn 
     (hy (bIdy_le (by omega)) (bIdy_le (by omega)) h1)
 
 /-- **Each step of the boundary walk is an edge of the grid**, joining the two vertices it
-should. -/
+should.
+@isnad1 id=islink.3h5v.s6.e3ce1f69996f from=translated src=- shape=2e8d99d3 vocab=ba77be60
+-/
 theorem gridBoundary_isLink {xc yc : ℕ → ℝ} {m n t : ℕ} (hm : 1 ≤ m) (hn : 1 ≤ n)
     (ht : t < 2 * m + 2 * n) :
     (gridGraph xc yc m n).IsLink (gridBoundaryEdge xc yc m n t)
@@ -777,7 +914,9 @@ def gridBoundaryLast (xc yc : ℕ → ℝ) (m n : ℕ) : Piece :=
   gridBoundaryEdge xc yc m n (2 * m + 2 * n - 1)
 
 /-- **`prop:anchored-square-mesh`, clause 3, as a cycle.** The boundary of the grid is a cycle
-of the grid graph — not merely a point set. -/
+of the grid graph — not merely a point set.
+@isnad1 id=iscyclet.4h4v.s7.d462d668ee68 from=translated src=- shape=cb20ba55 vocab=c0d725bb
+-/
 theorem gridGraph_isCycleThrough_boundary {xc yc : ℕ → ℝ} {m n : ℕ} (hm : 1 ≤ m) (hn : 1 ≤ n)
     (hx : Set.InjOn xc (Set.Iic m)) (hy : Set.InjOn yc (Set.Iic n)) :
     (gridGraph xc yc m n).IsCycleThrough (gridBoundaryLast xc yc m n)
@@ -817,16 +956,25 @@ of the boundary edges is the frame of the bounding rectangle only if the coordin
 and the proof is the one-dimensional fact `Set.Icc_union_Icc_eq_Icc` transported along
 `Schoenflies.mem_segment_horiz` / `mem_segment_vert`. -/
 
+/--
+@isnad1 id=eq.1h5v.s5.bb1b0c4f02f0 from=translated src=- shape=26b19944 vocab=a72e38d1
+-/
 theorem gridBoundaryEdge_bottom {xc yc : ℕ → ℝ} {m n i : ℕ} (h : i < m) :
     gridBoundaryEdge xc yc m n i = gridHEdge xc yc i 0 := by
   unfold gridBoundaryEdge; rw [ite_eq_left h]
 
+/--
+@isnad1 id=eq.1h5v.s5.4fc48ffeaff8 from=translated src=- shape=1c8400a0 vocab=e0a9548c
+-/
 theorem gridBoundaryEdge_right {xc yc : ℕ → ℝ} {m n j : ℕ} (h : j < n) :
     gridBoundaryEdge xc yc m n (m + j) = gridVEdge xc yc m j := by
   unfold gridBoundaryEdge
   rw [ite_eq_right (by omega),
           ite_eq_left (by omega), show m + j - m = j by omega]
 
+/--
+@isnad1 id=eq.2h5v.s6.3615870f554d from=translated src=- shape=f2b30182 vocab=9daa1ccb
+-/
 theorem gridBoundaryEdge_top {xc yc : ℕ → ℝ} {m n i : ℕ} (hn : 1 ≤ n) (h : i < m) :
     gridBoundaryEdge xc yc m n (2 * m + n - 1 - i) = gridHEdge xc yc i n := by
   unfold gridBoundaryEdge
@@ -835,6 +983,9 @@ theorem gridBoundaryEdge_top {xc yc : ℕ → ℝ} {m n i : ℕ} (hn : 1 ≤ n) 
           ite_eq_left (by omega),
     show 2 * m + n - 1 - (2 * m + n - 1 - i) = i by omega]
 
+/--
+@isnad1 id=eq.1h5v.s6.ff40b18e805d from=translated src=- shape=53a5fa05 vocab=07e60abc
+-/
 theorem gridBoundaryEdge_left {xc yc : ℕ → ℝ} {m n j : ℕ} (h : j < n) :
     gridBoundaryEdge xc yc m n (2 * m + 2 * n - 1 - j) = gridVEdge xc yc 0 j := by
   unfold gridBoundaryEdge
@@ -844,7 +995,9 @@ theorem gridBoundaryEdge_left {xc yc : ℕ → ℝ} {m n j : ℕ} (h : j < n) :
     show 2 * m + 2 * n - 1 - (2 * m + 2 * n - 1 - j) = j by omega]
 
 /-- The realisation of the cycle is the union of the boundary edges, indexed by position on
-the walk. -/
+the walk.
+@isnad1 id=eq.1h4v.s7.fbe3c1f458f8 from=translated src=- shape=0c14dc4b vocab=58084ddd
+-/
 theorem edgesCover_gridBoundary_eq_iUnion (xc yc : ℕ → ℝ) {m n : ℕ} (hL : 1 ≤ 2 * m + 2 * n) :
     Graph.edgesCover segmentDrawing
         (gridBoundaryLast xc yc m n :: gridBoundaryDetour xc yc m n)
@@ -862,7 +1015,9 @@ theorem edgesCover_gridBoundary_eq_iUnion (xc yc : ℕ → ℝ) {m n : ℕ} (hL 
     · exact ⟨_, Or.inl rfl, hz⟩
     · exact ⟨_, Or.inr ⟨t, List.mem_range'_1.2 ⟨Nat.zero_le t, by omega⟩, rfl⟩, hz⟩
 
-/-- The boundary edges, sorted into the four sides. -/
+/-- The boundary edges, sorted into the four sides.
+@isnad1 id=eq.2h4v.s8.767a5f76f3f0 from=translated src=- shape=5c0fb755 vocab=b06d4583
+-/
 theorem iUnion_gridBoundaryEdge (xc yc : ℕ → ℝ) {m n : ℕ} (hm : 1 ≤ m) (hn : 1 ≤ n) :
     (⋃ t ∈ Set.Iio (2 * m + 2 * n), (gridBoundaryEdge xc yc m n t).seg) =
       ((⋃ i ∈ Set.Iio m, (gridHEdge xc yc i 0).seg) ∪
@@ -894,6 +1049,9 @@ theorem iUnion_gridBoundaryEdge (xc yc : ℕ → ℝ) {m n : ℕ} (hm : 1 ≤ m)
 
 /-! ### Consecutive intervals -/
 
+/--
+@isnad1 id=le.3h4v.s5.b749abd05564 from=translated src=- shape=e632a313 vocab=cba06ccd
+-/
 theorem chain_le_of_le {f : ℕ → ℝ} {m : ℕ} (h : ∀ i, i < m → f i ≤ f (i + 1)) :
     ∀ a b, a ≤ b → b ≤ m → f a ≤ f b := by
   intro a b
@@ -909,6 +1067,9 @@ theorem chain_le_of_le {f : ℕ → ℝ} {m : ℕ} (h : ∀ i, i < m → f i ≤
     · obtain rfl : a = b + 1 := by omega
       exact le_rfl
 
+/--
+@isnad1 id=eq.2h2v.s6.346164e52c19 from=translated src=- shape=72268599 vocab=a8684f03
+-/
 theorem iUnion_Icc_chain {f : ℕ → ℝ} : ∀ m : ℕ, 1 ≤ m → (∀ i, i < m → f i ≤ f (i + 1)) →
     (⋃ i ∈ Set.Iio m, Set.Icc (f i) (f (i + 1))) = Set.Icc (f 0) (f m) := by
   intro m
@@ -932,7 +1093,9 @@ theorem iUnion_Icc_chain {f : ℕ → ℝ} : ∀ m : ℕ, 1 ≤ m → (∀ i, i 
         Set.Icc_union_Icc_eq_Icc (chain_le_of_le hmono 0 m (by omega) (by omega))
           (hmono m (by omega))]
 
-/-- A run of horizontal grid edges occupies the whole horizontal segment. -/
+/-- A run of horizontal grid edges occupies the whole horizontal segment.
+@isnad1 id=eq.2h4v.s7.89549df059f0 from=translated src=- shape=121b9ce6 vocab=3f011b38
+-/
 theorem iUnion_gridHEdge_seg {xc yc : ℕ → ℝ} {m : ℕ} (hm : 1 ≤ m)
     (hmono : ∀ i, i < m → xc i ≤ xc (i + 1)) (j : ℕ) :
     (⋃ i ∈ Set.Iio m, (gridHEdge xc yc i j).seg)
@@ -954,7 +1117,9 @@ theorem iUnion_gridHEdge_seg {xc yc : ℕ → ℝ} {m : ℕ} (hm : 1 ≤ m)
     obtain ⟨i, hi, hz⟩ := hz0
     exact ⟨i, hi, hz1, by rw [segment_eq_Icc (hmono i hi)]; exact hz⟩
 
-/-- A run of vertical grid edges occupies the whole vertical segment. -/
+/-- A run of vertical grid edges occupies the whole vertical segment.
+@isnad1 id=eq.2h4v.s7.f5c29ebaf2b4 from=translated src=- shape=8a364109 vocab=64159048
+-/
 theorem iUnion_gridVEdge_seg {xc yc : ℕ → ℝ} {n : ℕ} (hn : 1 ≤ n)
     (hmono : ∀ j, j < n → yc j ≤ yc (j + 1)) (i : ℕ) :
     (⋃ j ∈ Set.Iio n, (gridVEdge xc yc i j).seg)
@@ -977,7 +1142,9 @@ theorem iUnion_gridVEdge_seg {xc yc : ℕ → ℝ} {n : ℕ} (hn : 1 ≤ n)
     exact ⟨j, hj, hz0, by rw [segment_eq_Icc (hmono j hj)]; exact hz⟩
 
 /-- **What the outer cycle occupies**: the frame of the bounding rectangle, as the union of its
-four sides. -/
+four sides.
+@isnad1 id=eq.4h4v.s9.81e56ea2c4a6 from=translated src=- shape=22ee23fc vocab=285a7fa6
+-/
 theorem edgesCover_gridBoundary {xc yc : ℕ → ℝ} {m n : ℕ} (hm : 1 ≤ m) (hn : 1 ≤ n)
     (hxmono : ∀ i, i < m → xc i ≤ xc (i + 1)) (hymono : ∀ j, j < n → yc j ≤ yc (j + 1)) :
     Graph.edgesCover segmentDrawing
@@ -993,7 +1160,9 @@ theorem edgesCover_gridBoundary {xc yc : ℕ → ℝ} {m n : ℕ} (hm : 1 ≤ m)
 /-- **The outer cycle of a grid on `[-1,1]²` occupies exactly `S`.** This is the missing half of
 `prop:anchored-square-mesh` clause 3: not "the edges lying on `S` cover `S`", but "`S` is the
 realisation of a distinguished cycle of the graph", which is the form
-`thm:finite-transfer`(b) consumes. -/
+`thm:finite-transfer`(b) consumes.
+@isnad1 id=eq.8h4v.s7.285b4dc70b10 from=translated src=- shape=912c30ca vocab=27273e86
+-/
 theorem edgesCover_gridBoundary_modelCurve {xc yc : ℕ → ℝ} {m n : ℕ} (hm : 1 ≤ m) (hn : 1 ≤ n)
     (hxmono : ∀ i, i < m → xc i ≤ xc (i + 1)) (hymono : ∀ j, j < n → yc j ≤ yc (j + 1))
     (hx0 : xc 0 = -1) (hxm : xc m = 1) (hy0 : yc 0 = -1) (hyn : yc n = 1) :
@@ -1011,7 +1180,9 @@ theorem edgesCover_gridBoundary_modelCurve {xc yc : ℕ → ℝ} {m n : ℕ} (hm
   tauto
 
 /-- **The distinguished outer cycle of the grid on `[-1,1]²`**, both halves at once: it is a
-cycle of the grid graph, and what it occupies is `S`. -/
+cycle of the grid graph, and what it occupies is `S`.
+@isnad1 id=and.10h4v.s8.f6bc86ef905e from=translated src=- shape=3c03c9b7 vocab=5b7c2758
+-/
 theorem gridGraph_outer_cycle {xc yc : ℕ → ℝ} {m n : ℕ} (hm : 1 ≤ m) (hn : 1 ≤ n)
     (hx : Set.InjOn xc (Set.Iic m)) (hy : Set.InjOn yc (Set.Iic n))
     (hxmono : ∀ i, i < m → xc i ≤ xc (i + 1)) (hymono : ∀ j, j < n → yc j ≤ yc (j + 1))
@@ -1031,18 +1202,26 @@ grid edge has the row's `y`-coordinate and an `x`-coordinate in one closed coord
 strict monotonicity turns "`xc a` lies in `[xc i, xc (i+1)]`" into "`a = i` or `a = i+1`", and
 that single step settles both remaining clauses of `Graph.IsDrawing`. -/
 
+/--
+@isnad1 id=le.4h4v.s5.b428064834c4 from=translated src=- shape=84bc4b4e vocab=b4d2bc5b
+-/
 theorem coord_le_of_idx_le {f : ℕ → ℝ} {N : ℕ} (hf : StrictMonoOn f (Set.Iic N)) {a b : ℕ}
     (ha : a ≤ N) (hb : b ≤ N) (h : a ≤ b) : f a ≤ f b := by
   rcases eq_or_lt_of_le h with rfl | h'
   · exact le_rfl
   · exact (hf ha hb h').le
 
+/--
+@isnad1 id=le.4h4v.s5.39bd1017190e from=translated src=- shape=82bce93c vocab=b4d2bc5b
+-/
 theorem idx_le_of_coord_le {f : ℕ → ℝ} {N : ℕ} (hf : StrictMonoOn f (Set.Iic N)) {a b : ℕ}
     (ha : a ≤ N) (hb : b ≤ N) (h : f a ≤ f b) : a ≤ b := by
   by_contra hcon
   exact absurd (hf hb ha (by omega)) (by simpa using h)
 
-/-- **Reading an index off a coordinate.** -/
+/-- **Reading an index off a coordinate.**
+@isnad1 id=or.5h4v.s6.f3839dc89162 from=translated src=- shape=4b066880 vocab=69daffc3
+-/
 theorem idx_of_coord_mem {f : ℕ → ℝ} {N : ℕ} (hf : StrictMonoOn f (Set.Iic N)) {a i : ℕ}
     (ha : a ≤ N) (hi : i + 1 ≤ N) (h₁ : f i ≤ f a) (h₂ : f a ≤ f (i + 1)) :
     a = i ∨ a = i + 1 := by
@@ -1050,17 +1229,25 @@ theorem idx_of_coord_mem {f : ℕ → ℝ} {N : ℕ} (hf : StrictMonoOn f (Set.I
   have := idx_le_of_coord_le hf ha hi h₂
   omega
 
+/--
+@isnad1 id=iff.0h5v.s7.9d41a558b008 from=translated src=- shape=dec127b4 vocab=c6972b3c
+-/
 theorem mem_gridHEdge_seg_iff {xc yc : ℕ → ℝ} {i j : ℕ} {z : Plane} :
     z ∈ (gridHEdge xc yc i j).seg ↔ z 1 = yc j ∧ z 0 ∈ segment ℝ (xc i) (xc (i + 1)) :=
   mem_segment_horiz
 
+/--
+@isnad1 id=iff.0h5v.s7.a857e82e82ff from=translated src=- shape=b9cebecd vocab=62a0f8ce
+-/
 theorem mem_gridVEdge_seg_iff {xc yc : ℕ → ℝ} {i j : ℕ} {z : Plane} :
     z ∈ (gridVEdge xc yc i j).seg ↔ z 0 = xc i ∧ z 1 ∈ segment ℝ (yc j) (yc (j + 1)) :=
   mem_segment_vert
 
 variable {xc yc : ℕ → ℝ} {m n : ℕ}
 
-/-- A grid edge is nondegenerate: its two ends differ in one coordinate. -/
+/-- A grid edge is nondegenerate: its two ends differ in one coordinate.
+@isnad1 id=nondeg.5h5v.s6.8ad8452e3283 from=translated src=- shape=2b8d86a2 vocab=3ae4f9c3
+-/
 theorem gridEdges_nondeg (hxs : StrictMonoOn xc (Set.Iic m)) (hys : StrictMonoOn yc (Set.Iic n))
     (hm : 1 ≤ m) (hn : 1 ≤ n) {P : Piece} (hP : P ∈ gridEdges xc yc m n) : P.Nondeg := by
   rcases (mem_gridEdges_iff hm hn).1 hP with ⟨i, hi, j, hj, rfl⟩ | ⟨i, hi, j, hj, rfl⟩
@@ -1069,7 +1256,9 @@ theorem gridEdges_nondeg (hxs : StrictMonoOn xc (Set.Iic m)) (hys : StrictMonoOn
   · exact gridPt_ne_of_snd
       (ne_of_lt (hys (Set.mem_Iic.2 (by omega)) (Set.mem_Iic.2 (by omega)) (by omega)))
 
-/-- A grid point on a grid edge is one of that edge's two ends. -/
+/-- A grid point on a grid edge is one of that edge's two ends.
+@isnad1 id=or.8h7v.s6.cfc91bdc7883 from=translated src=- shape=68cde029 vocab=a4914a71
+-/
 theorem end_of_gridPt_mem_seg (hxs : StrictMonoOn xc (Set.Iic m))
     (hys : StrictMonoOn yc (Set.Iic n)) (hm : 1 ≤ m) (hn : 1 ≤ n) {P : Piece}
     (hP : P ∈ gridEdges xc yc m n) {a b : ℕ} (ha : a ≤ m) (hb : b ≤ n)
@@ -1089,7 +1278,9 @@ theorem end_of_gridPt_mem_seg (hxs : StrictMonoOn xc (Set.Iic m))
     exacts [Or.inl rfl, Or.inr rfl]
 
 /-- **A point on two grid edges is a grid point on both.** The heart of the drawing clause:
-two grid segments cross only where a coordinate of one is pinned by the other. -/
+two grid segments cross only where a coordinate of one is pinned by the other.
+@isnad1 id=ex.9h7v.s7.96497dfedba3 from=translated src=- shape=2e397e39 vocab=f3d1fb62
+-/
 theorem gridPt_of_mem_two_edges (hxs : StrictMonoOn xc (Set.Iic m))
     (hys : StrictMonoOn yc (Set.Iic n)) (hm : 1 ≤ m) (hn : 1 ≤ n) {P Q : Piece}
     (hP : P ∈ gridEdges xc yc m n) (hQ : Q ∈ gridEdges xc yc m n) (hPQ : P ≠ Q) {z : Plane}
@@ -1133,7 +1324,9 @@ theorem gridPt_of_mem_two_edges (hxs : StrictMonoOn xc (Set.Iic m))
     exact ⟨i, hi, k, hk, plane_eq_of_coords (by simpa [gridPt] using hz0)
       (by simpa [gridPt] using hck)⟩
 
-/-- **The grid is a plane graph**, drawn with straight edges. -/
+/-- **The grid is a plane graph**, drawn with straight edges.
+@isnad1 id=isdrawin.4h4v.s5.0e0d8dfe7f3f from=translated src=- shape=926db431 vocab=cea832db
+-/
 theorem gridGraph_isDrawing (hxs : StrictMonoOn xc (Set.Iic m))
     (hys : StrictMonoOn yc (Set.Iic n)) (hm : 1 ≤ m) (hn : 1 ≤ n) :
     Graph.IsDrawing (gridGraph xc yc m n) segmentDrawing := by
@@ -1161,7 +1354,9 @@ theorem gridGraph_isDrawing (hxs : StrictMonoOn xc (Set.Iic m))
       pieceListGraph_inc hQ (end_of_gridPt_mem_seg hxs hys hm hn hQ ha hb hpQ)⟩
 
 /-- **The outer cycle is a Jordan curve.** Now that the grid is a plane graph this is
-`Graph.IsDrawing.cycle_isJordanCurve` applied to the boundary cycle. -/
+`Graph.IsDrawing.cycle_isJordanCurve` applied to the boundary cycle.
+@isnad1 id=isjordan.4h4v.s6.ed2a20a8dd7f from=translated src=- shape=d5cad9cc vocab=844f41eb
+-/
 theorem gridBoundary_isJordanCurve (hxs : StrictMonoOn xc (Set.Iic m))
     (hys : StrictMonoOn yc (Set.Iic n)) (hm : 1 ≤ m) (hn : 1 ≤ n) :
     IsJordanCurve (Graph.edgesCover segmentDrawing

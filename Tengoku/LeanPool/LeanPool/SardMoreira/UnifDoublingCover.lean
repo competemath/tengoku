@@ -14,6 +14,9 @@ public import Tengoku
 
 open MeasureTheory Measure Metric Set
 
+/--
+@isnad1 id=ex.3h5v.s8.52513859472b from=translated src=- shape=9b9a8a64 vocab=b61df3ef
+-/
 theorem IsUnifLocDoublingMeasure.exists_closedBall_covering_tsum_measure_le_of_measure_zero
      {X : Type*} [MetricSpace X] [MeasurableSpace X] [BorelSpace X]
      [SecondCountableTopology X] (μ : Measure X) [IsLocallyFiniteMeasure μ]

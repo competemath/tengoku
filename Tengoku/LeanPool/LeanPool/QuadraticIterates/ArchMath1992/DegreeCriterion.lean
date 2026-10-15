@@ -44,15 +44,24 @@ noncomputable def rootShift (a : ℤ) (n : ℕ) (β : (fℚ[a, n]).rootSet (Alge
   ⟨(β : AlgebraicClosure ℚ) - (a : AlgebraicClosure ℚ),
     sub_mem (IntermediateField.subset_adjoin ℚ _ β.2) (IntermediateField.intCast_mem _ a)⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.15f50b83207d from=translated src=- shape=5ecc5e54 vocab=89576fe3
+-/
 @[simp] lemma coe_rootShift (n : ℕ) (β : (fℚ[a, n]).rootSet (AlgebraicClosure ℚ)) :
     (rootShift a n β : AlgebraicClosure ℚ)
       = (β : AlgebraicClosure ℚ) - (a : AlgebraicClosure ℚ) := rfl
 
+/--
+@isnad1 id=ne.2h3v.s8.963881b6519c from=translated src=- shape=b7d5a02c vocab=1df98257
+-/
 lemma rootShift_ne_zero (ha : ¬IsSquare (-a : ℚ)) {n : ℕ} (hn : 1 ≤ n)
     (β : (fℚ[a, n]).rootSet (AlgebraicClosure ℚ)) : rootShift a n β ≠ 0 := by
   rw [ne_eq, Subtype.ext_iff, coe_rootShift]
   simpa using sub_intCast_ne_zero_of_mem_rootSet a ha hn β.2
 
+/--
+@isnad1 id=ex.1h4v.s13.49b080c1c010 from=translated src=- shape=d9c6a4cb vocab=185df97c
+-/
 lemma exists_ringEquiv_radicand_smul {n : ℕ}
     [Fact (map (algebraMap ℚ (AlgebraicClosure ℚ)) (fℚ[a, n])).Splits]
     (r : ((fℚ[a, n]).rootSet (AlgebraicClosure ℚ))
@@ -74,6 +83,9 @@ lemma exists_ringEquiv_radicand_smul {n : ℕ}
     AlgEquiv.restrictNormal_commutes ϕ (splittingField a n) (r β)
   rw [hcomm, hr β, hr _, hσβ, map_sub, map_intCast]
 
+/--
+@isnad1 id=ispretra.1h2v.s7.a05d155480b3 from=translated src=- shape=63946b9e vocab=1dc887c7
+-/
 lemma isPretransitive_galoisGroup (n : ℕ)
     (hirr : Irreducible (fℚ[a, n]))
     [Fact (map (algebraMap ℚ (AlgebraicClosure ℚ)) (fℚ[a, n])).Splits] :
@@ -81,6 +93,9 @@ lemma isPretransitive_galoisGroup (n : ℕ)
       ↑((fℚ[a, n]).rootSet (AlgebraicClosure ℚ)) :=
   Gal.galAction_isPretransitive (fℚ[a, n]) (AlgebraicClosure ℚ) hirr
 
+/--
+@isnad1 id=eq.0h2v.s7.57eb8281f557 from=translated src=- shape=40d7868a vocab=a7546071
+-/
 lemma prod_aroots_sub_eq_cSeq (n : ℕ) :
     (Multiset.map (fun α ↦ α - (a : AlgebraicClosure ℚ))
         ((fℚ[a, n]).aroots (AlgebraicClosure ℚ))).prod
@@ -112,6 +127,9 @@ lemma prod_aroots_sub_eq_cSeq (n : ℕ) :
         push_cast
         ring
 
+/--
+@isnad1 id=eq.2h3v.s11.834f268b14e6 from=translated src=- shape=8f955bc3 vocab=3d1e869c
+-/
 lemma prod_radicand_eq_cSeq {n : ℕ} (hirr : Irreducible (fℚ[a, n]))
     (r : ((fℚ[a, n]).rootSet (AlgebraicClosure ℚ))
         → ↥(splittingField a n))
@@ -141,7 +159,9 @@ variable (a : ℤ)
 
 /-! ### The degree criterion and the Kummer extension criterion -/
 
-/-- If `-a` is not a rational square, `K_1 = ℚ(√(-a))` has degree `2` over `ℚ`. -/
+/-- If `-a` is not a rational square, `K_1 = ℚ(√(-a))` has degree `2` over `ℚ`.
+@isnad1 id=eq.1h1v.s9.da42394cbb04 from=translated src=- shape=5d81e1f1 vocab=20cb2222
+-/
 lemma finrank_splittingField_one (hsq : ¬IsSquare (-a : ℚ)) :
     Module.finrank ℚ ↥(splittingField a 1) = 2 := by
   classical
@@ -172,6 +192,9 @@ lemma finrank_splittingField_one (hsq : ¬IsSquare (-a : ℚ)) :
       exact IntermediateField.subset_adjoin ℚ _ hβroot
   rw [hadjeq, finrank_adjoin_sq_eq hβsq, ite_eq_right hsq]
 
+/--
+@isnad1 id=iff.0h1v.s11.f1d93e446afb from=translated src=- shape=79859af5 vocab=638efc14
+-/
 lemma degree_criterion_zero :
     (splittingField a 0).relfinrank (splittingField a 1) = 2 ^ 2 ^ 0 ↔
       ¬IsSquare (algebraMap ℚ ↥(splittingField a 0) (cSeq a (0 + 1) : ℚ)) := by
@@ -190,6 +213,9 @@ lemma degree_criterion_zero :
   · simp only [hsq, not_false_iff, iff_true, pow_zero, pow_one]
     exact finrank_splittingField_one a hsq
 
+/--
+@isnad1 id=eq.1h2v.s9.36d09e52c64b from=translated src=- shape=fdc3d594 vocab=a039041a
+-/
 lemma finrank_eq_of_nonempty_mulEquiv {n : ℕ}
     (hiso : Nonempty (GaloisGroup a n ≃* WreathPower n)) :
     Module.finrank ℚ ↥(splittingField a n) = 2 ^ (2 ^ n - 1) := by
@@ -220,6 +246,9 @@ private lemma exists_coeffs_of_sq_eq_algebraMap {K : Type*} [Field K] [Algebra �
   · rw [Finset.prod_image fun i _ j _ h ↦ hxinj h]
     exact Finset.prod_congr rfl fun i _ ↦ hxinj.extend_apply _ _ i
 
+/--
+@isnad1 id=eq.2h3v.s13.eecd49853175 from=translated src=- shape=77f48558 vocab=3bcb4d58
+-/
 lemma finrank_adjoin_range_eq_two_pow {n : ℕ}
     (hindep : TwoIndependent (fun i : Fin n ↦ (cSeq a ((i : ℕ) + 1) : ℚ)))
     {x : Fin n → ↥(splittingField a n)}
@@ -252,6 +281,9 @@ lemma finrank_adjoin_range_eq_two_pow {n : ℕ}
     · exact hεsupp y hy
   rw [← hrange, multiquadratic_degree hs_sq hs_ne, hscard, hrelbot, finrank_bot, Nat.sub_zero]
 
+/--
+@isnad1 id=eq.1h2v.s12.ba85312afb45 from=translated src=- shape=49a46f3d vocab=08edec26
+-/
 lemma card_monoidHom_eq_two_pow {n : ℕ} (hiso : Nonempty (GaloisGroup a n ≃* WreathPower n)) :
     Nat.card (((splittingField a n) ≃ₐ[ℚ] (splittingField a n)) →*
       Multiplicative (ZMod 2)) = 2 ^ n := by
@@ -259,6 +291,9 @@ lemma card_monoidHom_eq_two_pow {n : ℕ} (hiso : Nonempty (GaloisGroup a n ≃*
   exact ((AlgEquiv.autCongr (IsSplittingField.algEquiv _ (fℚ[a, n]))).trans
     hiso.some).monoidHomCongrLeftEquiv
 
+/--
+@isnad1 id=le.2h3v.s13.65e18f787ae6 from=translated src=- shape=c0a65459 vocab=84953ae5
+-/
 lemma finrank_adjoin_le_two_pow {n : ℕ} (hiso : Nonempty (GaloisGroup a n ≃* WreathPower n))
     (t : Finset ↥(splittingField a n))
     (ht : ∀ y ∈ t, ∃ q : ℚ, y ^ 2 = algebraMap ℚ ↥(splittingField a n) q) :
@@ -282,7 +317,9 @@ lemma finrank_adjoin_le_two_pow {n : ℕ} (hiso : Nonempty (GaloisGroup a n ≃*
 
 /-- If `Ω_n ≅ [C_2]^n` and the `c_i` are 2-independent with square roots `x i` in `K_n`, then for
 nonzero `c : ℚ`, the image of `c` in `K_n` is a square iff it is the square of some
-`z ∈ IntermediateField.adjoin ℚ (Set.range x)`. -/
+`z ∈ IntermediateField.adjoin ℚ (Set.range x)`.
+@isnad1 id=iff.4h4v.s13.6604c4ce0b35 from=translated src=- shape=427c4f61 vocab=0fb8a92c
+-/
 theorem isSquare_algebraMap_iff_exists_sq_eq {n : ℕ}
     (hiso : Nonempty (GaloisGroup a n ≃* WreathPower n))
     (hindep : TwoIndependent (fun i : Fin n ↦ (cSeq a ((i : ℕ) + 1) : ℚ)))
@@ -317,6 +354,9 @@ theorem isSquare_algebraMap_iff_exists_sq_eq {n : ℕ}
   rw [hinsdeg] at hle
   exact absurd hle (by simp [pow_succ])
 
+/--
+@isnad1 id=issquare.3h3v.s11.412ddd78e054 from=translated src=- shape=4f886325 vocab=0d9ea0a7
+-/
 lemma isSquare_algebraMap_cSeq (n : ℕ) (hnsq : ¬IsSquare (-a : ℚ)) (m : ℕ) (hm1 : 1 ≤ m)
     (hmn : m ≤ n) :
     IsSquare (algebraMap ℚ ↥(splittingField a n) (cSeq a m : ℚ)) := by
@@ -352,6 +392,9 @@ lemma isSquare_algebraMap_cSeq (n : ℕ) (hnsq : ¬IsSquare (-a : ℚ)) (m : ℕ
   rw [hsplit, prod_rootSet_eq_prod_aroots hnodup (· - (a : AlgebraicClosure ℚ))]
   exact (prod_aroots_sub_eq_cSeq a k).symm
 
+/--
+@isnad1 id=iff.3h3v.s11.edb04e9e44ff from=translated src=- shape=9884ad1c vocab=7cc64dab
+-/
 lemma isSquare_algebraMap_iff_exists_mul_prod {n : ℕ}
     (hiso : Nonempty (GaloisGroup a n ≃* WreathPower n))
     (hindep : TwoIndependent (fun i : Fin n ↦ (cSeq a ((i : ℕ) + 1) : ℚ))) {c : ℚ} (hc : c ≠ 0) :
@@ -389,6 +432,9 @@ lemma isSquare_algebraMap_iff_exists_mul_prod {n : ℕ}
   · refine ⟨S.image x, by rw [hs]; exact Finset.image_subset_image (Finset.subset_univ S), ?_⟩
     rwa [hprodS]
 
+/--
+@isnad1 id=iff.2h3v.s6.604e7167511d from=translated src=- shape=a48519b6 vocab=f88fd803
+-/
 lemma twoIndependent_snoc_iff {n : ℕ} {v : Fin n → ℚ} (hv : TwoIndependent v) {c : ℚ} (hc : c ≠ 0) :
     TwoIndependent (Fin.snoc v c) ↔
       ∀ S : Finset (Fin n), ¬IsSquare (c * ∏ i ∈ S, v i) := by
@@ -423,7 +469,9 @@ lemma twoIndependent_snoc_iff {n : ℕ} {v : Fin n → ℚ} (hv : TwoIndependent
       exact hvsq S ((Finset.map_nonempty (f := Fin.castSuccEmb)).mp (hno hlast ▸ hT))
 
 /-- Lemma 1.5: if `Ω_n ≅ [C_2]^n` and `c_1, …, c_n` are 2-independent, then a nonzero `c ∈ ℚ` is a
-non-square in `K_n` iff `c_1, …, c_n, c` are 2-independent. -/
+non-square in `K_n` iff `c_1, …, c_n, c` are 2-independent.
+@isnad1 id=iff.3h3v.s11.86fb76092cb4 from=translated src=- shape=ec407af1 vocab=a5a1fa74
+-/
 theorem kummer_extension_criterion {n : ℕ} (hiso : Nonempty (GaloisGroup a n ≃* WreathPower n))
     (hindep : TwoIndependent (fun i : Fin n ↦ (cSeq a ((i : ℕ) + 1) : ℚ))) {c : ℚ} (hc : c ≠ 0) :
     ¬IsSquare (algebraMap ℚ ↥(splittingField a n) c) ↔

@@ -62,35 +62,62 @@ def equiv (X : Type*) (α : ℝ) (hr₀ : 0 < α) (hr₁ : α ≤ 1) : WithRPowD
   left_inv _ := rfl
   right_inv _ := rfl
 
+/--
+@isnad1 id=eq.2h2v.s5.ca252e84f58f from=translated src=- shape=96db0149 vocab=4b49e62b
+-/
 @[simp]
 theorem val_comp_mk : (val : WithRPowDist X α hα₀ hα₁ → X) ∘ mk = id := rfl
 
+/--
+@isnad1 id=eq.2h2v.s6.9045faddefd2 from=translated src=- shape=07a70046 vocab=4b49e62b
+-/
 @[simp]
 theorem mk_comp_val : (mk : X → WithRPowDist X α hα₀ hα₁) ∘ val = id := rfl
 
+/--
+@isnad1 id=eq.2h3v.s5.a85807dd7209 from=translated src=- shape=9885a9d9 vocab=0b541c79
+-/
 theorem image_mk_eq_preimage (s : Set X) :
     (mk '' s : Set (WithRPowDist X α hα₀ hα₁)) = val ⁻¹' s :=
   (equiv X α hα₀ hα₁).symm.image_eq_preimage_symm _
 
+/--
+@isnad1 id=eq.2h3v.s5.9295b9a92684 from=translated src=- shape=57381654 vocab=0b541c79
+-/
 theorem image_val_eq_preimage (s : Set (WithRPowDist X α hα₀ hα₁)) :
     val '' s = mk ⁻¹' s :=
   (equiv X α hα₀ hα₁).image_eq_preimage_symm _
 
+/--
+@isnad1 id=eq.2h3v.s6.d84d8ca2ec42 from=translated src=- shape=2a8a8c25 vocab=1bc43982
+-/
 @[simp]
 theorem image_mk_image_val (s : Set (WithRPowDist X α hα₀ hα₁)) :
     mk '' (val '' s) = s :=
   (equiv X α hα₀ hα₁).symm_image_image _
 
+/--
+@isnad1 id=eq.2h3v.s5.edf4ba7a0ce4 from=translated src=- shape=65960054 vocab=1bc43982
+-/
 @[simp]
 theorem image_val_image_mk (s : Set X) : val '' (mk '' s : Set (WithRPowDist X α hα₀ hα₁)) = s :=
   (equiv X α hα₀ hα₁).image_symm_image _
 
+/--
+@isnad1 id=surjecti.2h2v.s5.12a2c29c7bd9 from=translated src=- shape=af2885cf vocab=40fb77f6
+-/
 theorem surjective_val : Surjective (val : WithRPowDist X α hα₀ hα₁ → X) :=
   equiv _ _ _ _ |>.surjective
 
+/--
+@isnad1 id=surjecti.2h2v.s5.2830f6e68a12 from=translated src=- shape=dc08934d vocab=35a97b1c
+-/
 theorem surjective_mk : Surjective (mk :  X → WithRPowDist X α hα₀ hα₁) :=
   equiv _ _ _ _ |>.symm |>.surjective
 
+/--
+@isnad1 id=injectiv.2h2v.s5.da60cac5c004 from=translated src=- shape=dc08934d vocab=b8b9b4e6
+-/
 theorem injective_mk : Injective (mk : X → WithRPowDist X α hα₀ hα₁) := by simp [Injective]
 
 /-!
@@ -106,10 +133,16 @@ variable [TopologicalSpace X]
 /-- The topological space structure on `WithRPowDist X α _ _` is induced from the original space. -/
 instance : TopologicalSpace (WithRPowDist X α hα₀ hα₁) := .induced WithRPowDist.val ‹_›
 
+/--
+@isnad1 id=continuo.2h2v.s5.30b397065b9e from=translated src=- shape=e48e4955 vocab=402468e6
+-/
 @[fun_prop]
 theorem continuous_val : Continuous (val : WithRPowDist X α hα₀ hα₁ → X) :=
   continuous_induced_dom
 
+/--
+@isnad1 id=continuo.2h2v.s5.e2953ebf7dd6 from=translated src=- shape=ec6931a8 vocab=a5bb1591
+-/
 @[fun_prop]
 theorem continuous_mk : Continuous (mk : X → WithRPowDist X α hα₀ hα₁) :=
   continuous_induced_rng.2 continuous_id

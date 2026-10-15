@@ -112,14 +112,18 @@ interact with `IsCellDecomposition`: "the carrier of any point of `C` is an oute
 first sentence of the blueprint's proof of `lem:outer-incidence`, and it is exactly this
 rewriting. -/
 
-/-- Every outer cell is a cell. -/
+/-- Every outer cell is a cell.
+@isnad1 id=le.0h2v.s4.fb9b889ed649 from=translated src=- shape=a3d8b42f vocab=409a2b8d
+-/
 theorem outerCells_subset_cells : S.outerCells ⊆ S.cells := by
   rintro κ (hv | he)
   · exact S.mem_cells_of_mem_vertexSet (S.outerGraph_le.vertexSet_mono hv)
   · exact S.mem_cells_of_mem_edgeSet (S.outerGraph_le.edgeSet_mono he)
 
 /-- A cell that is neither a 0-cell nor a 1-cell of the skeleton is a 2-cell — the three
-collections exhaust `cells`. -/
+collections exhaust `cells`.
+@isnad1 id=mem.2h3v.s5.649fd7192c2f from=translated src=- shape=69cd95c4 vocab=a8b001e4
+-/
 theorem mem_faces_of_notMem_skel {σ : γ} (hσ : σ ∈ S.cells) (h : σ ∉ V(S.skel) ∪ E(S.skel)) :
     σ ∈ S.faces := by
   rcases hσ with hσ | hσ
@@ -127,21 +131,27 @@ theorem mem_faces_of_notMem_skel {σ : γ} (hσ : σ ∈ S.cells) (h : σ ∉ V(
   · exact hσ
 
 /-- A proper subcell of a 2-cell is a 0- or 1-cell: nothing but the 2-cell itself is a 2-cell
-below it. -/
+below it.
+@isnad1 id=mem.4h4v.s5.24e31902859b from=translated src=- shape=c9ed6c6f vocab=8547e5cf
+-/
 theorem mem_skel_of_sub_face (hS : S.CombInvariants) {σ F : γ}
     (hσ : σ ∈ S.cells) (hsub : S.sub σ F) (hne : σ ≠ F) : σ ∈ V(S.skel) ∪ E(S.skel) := by
   rcases hσ with hσ | hσ
   · exact hσ
   · exact absurd (hS.face_maximal hσ hsub).symm hne
 
-/-- A 2-cell is never an outer cell: outer cells are 0- and 1-cells of the skeleton. -/
+/-- A 2-cell is never an outer cell: outer cells are 0- and 1-cells of the skeleton.
+@isnad1 id=not.1h3v.s4.f18844415e5a from=translated src=- shape=359b32ac vocab=b0073280
+-/
 theorem notMem_outerCells_of_mem_faces {F : γ} (hF : F ∈ S.faces) : F ∉ S.outerCells := by
   rintro (hv | he)
   · exact S.faces_ne_vertexSet hF (S.outerGraph_le.vertexSet_mono hv) rfl
   · exact S.faces_ne_edgeSet hF (S.outerGraph_le.edgeSet_mono he) rfl
 
 /-- A **nonboundary edge** — assertion (iii) of `lem:cellulation-invariants` produces one on every
-2-cell boundary — is not an outer cell. -/
+2-cell boundary — is not an outer cell.
+@isnad1 id=not.2h3v.s5.0d9a905f94d1 from=translated src=- shape=e32d3792 vocab=5991113f
+-/
 theorem notMem_outerCells_of_nonboundary_edge {f : γ} (hf : f ∈ E(S.skel))
     (h : f ∉ E(S.outerGraph)) : f ∉ S.outerCells := by
   rintro (hv | he)
@@ -154,7 +164,9 @@ variable (R : S.Realization)
 
 /-- The realized point set of a subcomplex of the skeleton is the union of the open cells of its
 0- and 1-cells. A drawn edge is its open cell together with the two 0-cells at its ends, and
-those ends belong to the subcomplex whenever the edge does. -/
+those ends belong to the subcomplex whenever the edge does.
+@isnad1 id=eq.1h4v.s6.d0c042a22950 from=translated src=- shape=3df2aac3 vocab=aff10bce
+-/
 theorem pointSet_map_eq_iUnion_cell {H : Graph γ γ} (hH : H ≤ S.skel) :
     Graph.pointSet (H.map R.pos) R.drawing = ⋃ κ ∈ V(H) ∪ E(H), R.cell κ := by
   refine Set.Subset.antisymm (fun z hz => ?_) (Set.iUnion₂_subset fun κ hκ => ?_)
@@ -184,19 +196,26 @@ theorem pointSet_map_eq_iUnion_cell {H : Graph γ γ} (hH : H ≤ S.skel) :
       exact Set.Subset.trans Set.sdiff_subset
         (Graph.edgeArc_subset_pointSet (by rw [Graph.edgeSet_map]; exact he))
 
-/-- **The realized 1-skeleton is the union of the open 0- and 1-cells.** -/
+/-- **The realized 1-skeleton is the union of the open 0- and 1-cells.**
+@isnad1 id=eq.0h3v.s6.0d30ff37fabc from=translated src=- shape=12f37e1a vocab=412a47d0
+-/
 theorem skeletonSet_eq_iUnion_cell :
     R.skeletonSet = ⋃ κ ∈ V(S.skel) ∪ E(S.skel), R.cell κ :=
   R.pointSet_map_eq_iUnion_cell le_rfl
 
 /-- **The realized outer cycle is the union of the open outer cells.** This is the sentence "`C`
 is exactly the union of the outer vertices and the open outer edges" at the head of the
-blueprint's proof of `lem:outer-incidence`. -/
+blueprint's proof of `lem:outer-incidence`.
+@isnad1 id=eq.0h3v.s5.041f6bac8aa9 from=translated src=- shape=c9cdbe71 vocab=135c7e7a
+-/
 theorem outerSet_eq_iUnion_cell : R.outerSet = ⋃ κ ∈ S.outerCells, R.cell κ :=
   R.pointSet_map_eq_iUnion_cell S.outerGraph_le
 
 variable {R}
 
+/--
+@isnad1 id=le.1h4v.s5.5cae67b654ca from=translated src=- shape=1e7fd312 vocab=1b708753
+-/
 theorem cell_subset_outerSet {κ : γ} (hκ : κ ∈ S.outerCells) : R.cell κ ⊆ R.outerSet := by
   rw [R.outerSet_eq_iUnion_cell]; exact Set.subset_biUnion_of_mem hκ
 
@@ -206,7 +225,9 @@ variable {R : S.Realization} {D : Set Plane} {σ τ : γ} {x : Plane}
 
 /-- Off the outer cycle, the open cell of a cell that is not an outer cell. Open cells are
 disjoint and the outer cycle is the union of the outer ones, so a cell's open part misses the
-outer cycle exactly when the cell is not outer. -/
+outer cycle exactly when the cell is not outer.
+@isnad1 id=disjoint.3h5v.s6.8177c7b77693 from=translated src=- shape=02938816 vocab=9fa601d5
+-/
 theorem cell_disjoint_outerSet (h : R.IsCellDecomposition D) (hσ : σ ∈ S.cells)
     (hout : σ ∉ S.outerCells) : Disjoint (R.cell σ) R.outerSet := by
   rw [R.outerSet_eq_iUnion_cell, Set.disjoint_iUnion₂_right]
@@ -215,13 +236,17 @@ theorem cell_disjoint_outerSet (h : R.IsCellDecomposition D) (hσ : σ ∈ S.cel
 
 /-- An open cell is disjoint from the union of the open cells of any collection of cells not
 containing it. This is how `IsCellDecomposition` sees the realized skeleton and the realized
-outer cycle, once those have been rewritten as unions of open cells. -/
+outer cycle, once those have been rewritten as unions of open cells.
+@isnad1 id=disjoint.4h6v.s6.e45b324f27f4 from=translated src=- shape=ca8cbd04 vocab=d328917a
+-/
 theorem cell_disjoint_biUnion (h : R.IsCellDecomposition D) (hσ : σ ∈ S.cells) {K : Set γ}
     (hK : K ⊆ S.cells) (hnot : σ ∉ K) : Disjoint (R.cell σ) (⋃ κ ∈ K, R.cell κ) := by
   rw [Set.disjoint_iUnion₂_right]
   exact fun κ hκ => h.disjoint hσ (hK hκ) fun hcon => hnot (hcon ▸ hκ)
 
-/-- **An open 2-cell never meets the realized skeleton.** -/
+/-- **An open 2-cell never meets the realized skeleton.**
+@isnad1 id=disjoint.2h5v.s6.aa21a2322082 from=translated src=- shape=08e54de4 vocab=02f2f6e8
+-/
 theorem cell_disjoint_skeletonSet (h : R.IsCellDecomposition D) {F : γ} (hF : F ∈ S.faces) :
     Disjoint (R.cell F) R.skeletonSet := by
   rw [R.skeletonSet_eq_iUnion_cell]
@@ -231,7 +256,9 @@ theorem cell_disjoint_skeletonSet (h : R.IsCellDecomposition D) {F : γ} (hF : F
   · rintro (hv | he)
     exacts [S.faces_ne_vertexSet hF hv rfl, S.faces_ne_edgeSet hF he rfl]
 
-/-- The realized skeleton lies in the closed domain. -/
+/-- The realized skeleton lies in the closed domain.
+@isnad1 id=le.1h4v.s4.07c5d98749ed from=translated src=- shape=8883b31c vocab=fb9df2d5
+-/
 theorem skeletonSet_subset_domain (h : R.IsCellDecomposition D) : R.skeletonSet ⊆ D := by
   rw [R.skeletonSet_eq_iUnion_cell]
   refine Set.iUnion₂_subset fun κ hκ => h.cell_subset_domain ?_
@@ -242,7 +269,9 @@ theorem skeletonSet_subset_domain (h : R.IsCellDecomposition D) : R.skeletonSet 
 is the union of the closed 2-cells above the cell, and `CombInvariants.face_maximal` says the
 only 2-cell above a 2-cell is itself. This is the step the blueprint attributes to assertion
 (viii) of `lem:cellulation-invariants`, and it needs neither (vii) nor openness of the open
-2-cell. -/
+2-cell.
+@isnad1 id=eq.3h5v.s6.a29b6ee4c6a2 from=translated src=- shape=dbf367c6 vocab=05970792
+-/
 theorem star_face_eq_closure (h : R.IsCellDecomposition D) (hS : S.CombInvariants) {F : γ}
     (hF : F ∈ S.faces) : R.star F = closure (R.cell F) := by
   rw [h.star_eq_faces hS (S.mem_cells_of_mem_faces hF)]
@@ -252,7 +281,9 @@ theorem star_face_eq_closure (h : R.IsCellDecomposition D) (hS : S.CombInvariant
         ⟨hF, h.sub_refl (S.mem_cells_of_mem_faces hF)⟩))
   exact (congrArg (fun c => closure (R.cell c)) (hS.face_maximal hF hT.2)).le
 
-/-- The carrier of a point of the realized outer cycle is an outer cell. -/
+/-- The carrier of a point of the realized outer cycle is an outer cell.
+@isnad1 id=mem.2h5v.s5.b317b05f82c0 from=translated src=- shape=8e9ca1bb vocab=d5289ea3
+-/
 theorem carrier_mem_outerCells [Nonempty γ] (h : R.IsCellDecomposition D)
     (hx : x ∈ R.outerSet) : R.carrier x ∈ S.outerCells := by
   rw [R.outerSet_eq_iUnion_cell] at hx
@@ -262,7 +293,9 @@ theorem carrier_mem_outerCells [Nonempty γ] (h : R.IsCellDecomposition D)
 /-- **`lem:outer-incidence`**, the closed-cell form: a closed cell meets the realized outer cycle
 exactly when some outer cell is one of its subcells. The middle condition is a statement of the
 abstract structure alone, which is what makes the equivalence transfer between the two
-realizations with nothing to transport. -/
+realizations with nothing to transport.
+@isnad1 id=iff.2h5v.s6.4f691ba4d56a from=translated src=- shape=4de6dfa5 vocab=8af2a730
+-/
 theorem closure_cell_meets_outer_iff (h : R.IsCellDecomposition D) (hτ : τ ∈ S.cells) :
     (closure (R.cell τ) ∩ R.outerSet).Nonempty ↔ ∃ κ ∈ S.outerCells, S.sub κ τ := by
   constructor
@@ -275,7 +308,9 @@ theorem closure_cell_meets_outer_iff (h : R.IsCellDecomposition D) (hτ : τ ∈
     exact ⟨z, h.subset_closure (outerCells_subset_cells hκ) hτ hsub hz, cell_subset_outerSet hκ hz⟩
 
 /-- **`lem:outer-incidence`**, the star form: a closed star meets the realized outer cycle
-exactly when some supercell of the cell has an outer subcell. -/
+exactly when some supercell of the cell has an outer subcell.
+@isnad1 id=iff.2h5v.s6.d02e59cd9c7b from=translated src=- shape=97bd0640 vocab=6bc668b3
+-/
 theorem star_meets_outer_iff (h : R.IsCellDecomposition D)
     (hS : S.CombInvariants) (σ : γ) :
     (R.star σ ∩ R.outerSet).Nonempty ↔ ∃ τ, S.sub σ τ ∧ ∃ κ ∈ S.outerCells, S.sub κ τ := by
@@ -394,80 +429,150 @@ def srcStar (n : ℕ) (x : Plane) : Set Plane := (L.src n).star ((L.src n).carri
 
 variable {L}
 
+/--
+@isnad1 id=iff.0h3v.s5.973574fc7039 from=translated src=- shape=c180756f vocab=4ff3805f
+-/
 theorem mem_region_iff : x ∈ L.region ↔ x ∈ L.dom ∧ x ∉ L.bdry := Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.bfb1527416c9 from=translated src=- shape=c180756f vocab=d482e0b1
+-/
 theorem mem_region'_iff : x ∈ L.region' ↔ x ∈ L.dom' ∧ x ∉ L.bdry' := Iff.rfl
 
+/--
+@isnad1 id=le.0h2v.s4.d98d9a251e50 from=translated src=- shape=140f7f7d vocab=af3e65d3
+-/
 theorem region_subset_dom : L.region ⊆ L.dom := Set.sdiff_subset
 
+/--
+@isnad1 id=le.0h2v.s4.944aada84c9a from=translated src=- shape=140f7f7d vocab=67e209bd
+-/
 theorem region'_subset_dom' : L.region' ⊆ L.dom' := Set.sdiff_subset
 
+/--
+@isnad1 id=isopen.0h2v.s5.b7800a259911 from=translated src=- shape=17969803 vocab=4cd782c5
+-/
 theorem isOpen_region (L : LimitTower γ) : IsOpen L.region := L.isOpen_int
 
+/--
+@isnad1 id=isopen.0h2v.s5.5b3f5f821233 from=translated src=- shape=17969803 vocab=f2e634f5
+-/
 theorem isOpen_region' (L : LimitTower γ) : IsOpen L.region' := L.isOpen_int'
 
+/--
+@isnad1 id=eq.0h4v.s5.d2431f695285 from=translated src=- shape=df3ff8a2 vocab=f7d0494e
+-/
 theorem tgtStar_eq (n : ℕ) (x : Plane) :
     L.tgtStar n x = (L.tgt n).star ((L.src n).carrier x) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.10624da4d0da from=translated src=- shape=adc6bdcd vocab=3d91ac5e
+-/
 theorem srcStar_eq (n : ℕ) (x : Plane) :
     L.srcStar n x = (L.src n).star ((L.src n).carrier x) := rfl
 
 /-- A null real sequence is eventually below any positive bound. Used with `eps` and with the
-pointwise source-star diameters. -/
+pointwise source-star diameters.
+@isnad1 id=ex.2h2v.s5.db24f9f20a2b from=translated src=- shape=45ba9c85 vocab=3550097d
+-/
 theorem exists_lt_of_tendsto_zero {f : ℕ → ℝ} (h : Tendsto f atTop (nhds 0)) {r : ℝ}
     (hr : 0 < r) : ∃ n, f n < r :=
   (h.eventually (Iio_mem_nhds hr)).exists
 
 /-! #### Stars of the tower -/
 
+/--
+@isnad1 id=le.0h4v.s5.101f0e52faab from=translated src=- shape=99052e47 vocab=9790583b
+-/
 theorem srcStar_subset_dom (n : ℕ) (σ : γ) : (L.src n).star σ ⊆ L.dom :=
   ((L.srcDecomp n).star_subset_closure_domain (L.comb n)).trans L.isClosed_dom.closure_subset
 
+/--
+@isnad1 id=le.0h4v.s5.b98665a0c0cc from=translated src=- shape=99052e47 vocab=5cc9c08f
+-/
 theorem tgtStar_subset_dom' (n : ℕ) (σ : γ) : (L.tgt n).star σ ⊆ L.dom' :=
   ((L.tgtDecomp n).star_subset_closure_domain (L.comb n)).trans L.isClosed_dom'.closure_subset
 
+/--
+@isnad1 id=isbounde.0h4v.s6.0c277e855a63 from=translated src=- shape=1ae08dc8 vocab=edf3938a
+-/
 theorem isBounded_tgt_star (n : ℕ) (σ : γ) : IsBounded ((L.tgt n).star σ) :=
   (L.tgtDecomp n).isBounded_star (L.comb n) L.isBounded_dom'
 
+/--
+@isnad1 id=isbounde.0h4v.s6.86d891b30826 from=translated src=- shape=1ae08dc8 vocab=187ec711
+-/
 theorem isBounded_src_star (n : ℕ) (σ : γ) : IsBounded ((L.src n).star σ) :=
   (L.srcDecomp n).isBounded_star (L.comb n) L.isBounded_dom
 
+/--
+@isnad1 id=isbounde.0h4v.s5.56350b190536 from=translated src=- shape=5379f24c vocab=d7d07ade
+-/
 theorem isBounded_srcStar (n : ℕ) (x : Plane) : IsBounded (L.srcStar n x) :=
   isBounded_src_star n _
 
+/--
+@isnad1 id=isbounde.0h4v.s5.cda80ced466a from=translated src=- shape=5379f24c vocab=f51978b2
+-/
 theorem isBounded_tgtStar (n : ℕ) (x : Plane) : IsBounded (L.tgtStar n x) :=
   isBounded_tgt_star n _
 
+/--
+@isnad1 id=mem.1h4v.s5.61589774d999 from=translated src=- shape=bdb858b0 vocab=68463d2e
+-/
 theorem mem_srcStar_self (hx : x ∈ L.dom) (n : ℕ) : x ∈ L.srcStar n x :=
   (L.srcDecomp n).mem_star_carrier hx
 
+/--
+@isnad1 id=tendsto.1h3v.s6.b9d07df0b079 from=translated src=- shape=9f883527 vocab=f2e64018
+-/
 theorem tendsto_diam_srcStar_point (hx : x ∈ L.region) :
     Tendsto (fun n => diam (L.srcStar n x)) atTop (nhds 0) :=
   L.tendsto_diam_srcStar hx
 
-/-- **`lem:refinement-compatibility`(b)** at a point: `T_{n+1}(x) ⊆ T_n(x)`. -/
+/-- **`lem:refinement-compatibility`(b)** at a point: `T_{n+1}(x) ⊆ T_n(x)`.
+@isnad1 id=le.1h4v.s5.12eb3a20d1cd from=translated src=- shape=3c21b92a vocab=9c513dd5
+-/
 theorem tgtStar_succ_subset (hx : x ∈ L.dom) (n : ℕ) : L.tgtStar (n + 1) x ⊆ L.tgtStar n x :=
   (L.srcRefines n).target_star_subset (L.tgtRefines n) (L.comb (n + 1)) (L.srcDecomp n)
     (L.srcDecomp (n + 1)) hx
 
+/--
+@isnad1 id=antitone.1h3v.s5.f91d76774199 from=translated src=- shape=0a812ada vocab=a8433a6c
+-/
 theorem tgtStar_antitone (hx : x ∈ L.dom) : Antitone (fun n => L.tgtStar n x) :=
   antitone_nat_of_succ_le (L.tgtStar_succ_subset hx)
 
+/--
+@isnad1 id=nonempty.1h4v.s5.1f8db17c599f from=translated src=- shape=554e78ab vocab=0fa86973
+-/
 theorem tgtStar_nonempty (hx : x ∈ L.dom) (n : ℕ) : (L.tgtStar n x).Nonempty :=
   (L.tgtDecomp n).star_nonempty ((L.srcDecomp n).mem_cells_carrier hx)
 
+/--
+@isnad1 id=iscompac.0h4v.s5.e95ed85986ca from=translated src=- shape=5379f24c vocab=a427d0f9
+-/
 theorem isCompact_tgtStar (n : ℕ) (x : Plane) : IsCompact (L.tgtStar n x) :=
   (L.tgtDecomp n).isCompact_star (L.comb n) L.isBounded_dom'
 
+/--
+@isnad1 id=le.1h4v.s6.04fc02c22c91 from=translated src=- shape=c4d5c4a6 vocab=2ad3eaf5
+-/
 theorem diam_tgtStar (hx : x ∈ L.dom) (n : ℕ) : diam (L.tgtStar n x) ≤ L.eps n :=
   L.diam_tgtStar_le n ((L.srcDecomp n).mem_cells_carrier hx)
 
+/--
+@isnad1 id=tendsto.1h3v.s6.bb90f901b6ed from=translated src=- shape=9f883527 vocab=744c98d7
+-/
 theorem tendsto_diam_tgtStar (hx : x ∈ L.dom) :
     Tendsto (fun n => diam (L.tgtStar n x)) atTop (nhds 0) :=
   squeeze_zero (fun _ => diam_nonneg) (L.diam_tgtStar hx) L.tendsto_eps
 
 /-! #### The limit map -/
 
+/--
+@isnad1 id=ex.1h3v.s5.24a4e0cba4c0 from=translated src=- shape=52437e8b vocab=3bc4dd6b
+-/
 theorem exists_eq_singleton_iInter_tgtStar (hx : x ∈ L.dom) :
     ∃ p, ⋂ n, L.tgtStar n x = {p} :=
   Plane.eq_singleton_iInter_of_diam_tendsto_zero (L.tgtStar_nonempty hx)
@@ -479,15 +584,23 @@ lemma about it carries `x ∈ L.dom`. -/
 noncomputable def F (L : LimitTower γ) (x : Plane) : Plane :=
   if h : ∃ p, ⋂ n, L.tgtStar n x = {p} then h.choose else 0
 
-/-- **The characterising property of `F`.** -/
+/-- **The characterising property of `F`.**
+@isnad1 id=eq.1h3v.s5.f540741457f0 from=translated src=- shape=6ec51290 vocab=5b4be8fe
+-/
 theorem iInter_tgtStar_eq (hx : x ∈ L.dom) : ⋂ n, L.tgtStar n x = {L.F x} := by
   rw [F, dite_eq_left (L.exists_eq_singleton_iInter_tgtStar hx)]
   exact (L.exists_eq_singleton_iInter_tgtStar hx).choose_spec
 
+/--
+@isnad1 id=mem.1h3v.s5.94d797a78ca9 from=translated src=- shape=a6106e78 vocab=80019d85
+-/
 theorem F_mem_iInter (hx : x ∈ L.dom) : L.F x ∈ ⋂ n, L.tgtStar n x := by
   rw [L.iInter_tgtStar_eq hx]
   exact rfl
 
+/--
+@isnad1 id=mem.1h4v.s5.bd47990c67b1 from=translated src=- shape=921538e2 vocab=15394d7c
+-/
 theorem F_mem_tgtStar (hx : x ∈ L.dom) (n : ℕ) : L.F x ∈ L.tgtStar n x :=
   Set.mem_iInter.1 (L.F_mem_iInter hx) n
 
@@ -496,10 +609,15 @@ theorem eq_F_of_mem_iInter (hx : x ∈ L.dom) (hz : ∀ n, z ∈ L.tgtStar n x) 
   have : z ∈ ⋂ n, L.tgtStar n x := Set.mem_iInter.2 hz
   rwa [L.iInter_tgtStar_eq hx, Set.mem_singleton_iff] at this
 
+/--
+@isnad1 id=mem.1h3v.s5.826509c906e9 from=translated src=- shape=05ecf645 vocab=b386b3b1
+-/
 theorem F_mem_dom' (hx : x ∈ L.dom) : L.F x ∈ L.dom' :=
   tgtStar_subset_dom' 0 _ (L.F_mem_tgtStar hx 0)
 
-/-- `F x` is within `eps n` of anything in the stage-`n` target star of `x`. -/
+/-- `F x` is within `eps n` of anything in the stage-`n` target star of `x`.
+@isnad1 id=le.2h5v.s6.74eef07e08a7 from=translated src=- shape=4262bdd5 vocab=91fc44a5
+-/
 theorem dist_F_le_of_mem_tgtStar (hx : x ∈ L.dom) (hz : z ∈ L.tgtStar n x) :
     dist (L.F x) z ≤ L.eps n :=
   le_trans (dist_le_diam_of_mem (isBounded_tgt_star n _) (L.F_mem_tgtStar hx n) hz)
@@ -511,12 +629,17 @@ The skeleton maps are nested, so `g_n = g_N` on `G_N` for every `n ≥ N`; at ea
 skeleton map carries the carrier of `x` onto the corresponding target cell, which sits inside
 `T_n(x)`. The intersection of the `T_n(x)` is the single point `F x`. -/
 
+/--
+@isnad1 id=le.1h4v.s5.c32f69595ab7 from=translated src=- shape=cd946b68 vocab=04be15d3
+-/
 theorem skeletonSet_mono_le (hmn : m ≤ n) : (L.src m).skeletonSet ⊆ (L.src n).skeletonSet := by
   induction n, hmn using Nat.le_induction with
   | base => exact subset_rfl
   | succ n _ ih => exact ih.trans (L.skeletonSet_mono n)
 
-/-- **The skeleton maps are nested**: `g_n = g_m` on `G_m` whenever `m ≤ n`. -/
+/-- **The skeleton maps are nested**: `g_n = g_m` on `G_m` whenever `m ≤ n`.
+@isnad1 id=eqon.1h4v.s6.5dffc3abb549 from=translated src=- shape=9b7ae524 vocab=e42f8324
+-/
 theorem skelHomeo_eqOn (hmn : m ≤ n) :
     Set.EqOn (L.skelHomeo n).toFun (L.skelHomeo m).toFun (L.src m).skeletonSet := by
   induction n, hmn using Nat.le_induction with
@@ -527,7 +650,9 @@ theorem skelHomeo_eqOn (hmn : m ≤ n) :
 
 /-- At a stage-`n` skeleton point the skeleton map lands in the stage-`n` target star: the
 carrier of `x` is a 0- or 1-cell, and `g_n` carries its open cell onto the target open cell of
-the same abstract name. -/
+the same abstract name.
+@isnad1 id=mem.1h4v.s6.ff3d94d0f9d8 from=translated src=- shape=a4c0547c vocab=77205f0b
+-/
 theorem skelHomeo_mem_tgtStar (hx : x ∈ (L.src n).skeletonSet) :
     (L.skelHomeo n).toFun x ∈ L.tgtStar n x := by
   rw [(L.src n).skeletonSet_eq_iUnion_cell] at hx
@@ -543,7 +668,9 @@ theorem skelHomeo_mem_tgtStar (hx : x ∈ (L.src n).skeletonSet) :
     (_root_.subset_closure hgx)
 
 /-- **`prop:skeleton-agreement`**: `F` agrees with the stage-`N` skeleton map on `G_N ∩ (C ∪ D)`.
-Since the skeleton maps are nested, this is the blueprint's `F = g_∞` on `⋃ₙ Gₙ ∩ D` as well. -/
+Since the skeleton maps are nested, this is the blueprint's `F = g_∞` on `⋃ₙ Gₙ ∩ D` as well.
+@isnad1 id=eq.2h4v.s6.9a668d521b5a from=translated src=- shape=0a97030b vocab=deffadfc
+-/
 theorem F_eq_skelHomeo (hx : x ∈ (L.src n).skeletonSet) (hxD : x ∈ L.dom) :
     L.F x = (L.skelHomeo n).toFun x := by
   refine (eq_F_of_mem_iInter hxD fun m => ?_).symm
@@ -557,7 +684,9 @@ theorem F_eq_skelHomeo (hx : x ∈ (L.src n).skeletonSet) (hxD : x ∈ L.dom) :
 /-- The cross-realization form of `lem:cell-neighborhood` the limit map needs: for `z` in the
 stage-`n` source cell neighbourhood of `x`, `T_n(z) ⊆ T_n(x)`. The subcell relation is read in
 the source realization and used in the target one; it is a relation of the common abstract
-structure, so nothing is transported. -/
+structure, so nothing is transported.
+@isnad1 id=le.3h5v.s6.ecd281693d70 from=translated src=- shape=dc5ba171 vocab=153c2584
+-/
 theorem tgtStar_subset_of_mem_cellNbhd (hx : x ∈ L.dom) (hzD : z ∈ L.dom)
     (hz : z ∈ (L.src n).cellNbhd x) : L.tgtStar n z ⊆ L.tgtStar n x :=
   (L.tgtDecomp n).star_anti_of_sub (L.comb n) ((L.srcDecomp n).mem_cells_carrier hx)
@@ -565,7 +694,9 @@ theorem tgtStar_subset_of_mem_cellNbhd (hx : x ∈ L.dom) (hzD : z ∈ L.dom)
     ((L.srcDecomp n).sub_carrier_of_mem_cellNbhd hx hz hzD)
 
 /-- **`prop:F-continuous`**, on the whole *closed* domain. Only the uniform half of
-`prop:shrinking-stars` enters, so nothing here restricts `x` to the open region. -/
+`prop:shrinking-stars` enters, so nothing here restricts `x` to the open region.
+@isnad1 id=continuo.0h2v.s6.b6bfb460961a from=translated src=- shape=87c7e049 vocab=04d7cc43
+-/
 theorem continuousOn_F (L : LimitTower γ) : ContinuousOn L.F L.dom := by
   rw [Metric.continuousOn_iff]
   intro x hx η hη
@@ -582,14 +713,18 @@ theorem continuousOn_F (L : LimitTower γ) : ContinuousOn L.F L.dom := by
 
 /-- **`lem:outer-incidence`, matched form**: a stage-`n` source star meets `C` exactly when the
 target star of the *same abstract cell* meets `S`. Both sides reduce to the middle condition of
-the blueprint's statement, which mentions only the abstract structure and its outer cycle. -/
+the blueprint's statement, which mentions only the abstract structure and its outer cycle.
+@isnad1 id=iff.0h4v.s5.77510dfe75ac from=translated src=- shape=91609a1b vocab=c84c19b7
+-/
 theorem star_meets_bdry_iff (L : LimitTower γ) (n : ℕ) (σ : γ) :
     ((L.src n).star σ ∩ L.bdry).Nonempty ↔ ((L.tgt n).star σ ∩ L.bdry').Nonempty := by
   rw [← L.srcOuterSet n, ← L.tgtOuterSet n, (L.srcDecomp n).star_meets_outer_iff (L.comb n) σ,
     (L.tgtDecomp n).star_meets_outer_iff (L.comb n) σ]
 
 /-- At a point of the open region the source star is eventually contained in the region: the
-point lies in its own star, and the star diameters tend to zero. -/
+point lies in its own star, and the star diameters tend to zero.
+@isnad1 id=ex.1h3v.s5.5f8757f954fa from=translated src=- shape=cb83d6be vocab=3a6c30cf
+-/
 theorem exists_srcStar_subset_region (hx : x ∈ L.region) : ∃ n, L.srcStar n x ⊆ L.region := by
   obtain ⟨r, hr, hball⟩ := Metric.isOpen_iff.1 L.isOpen_region x hx
   obtain ⟨n, hn⟩ := exists_lt_of_tendsto_zero (L.tendsto_diam_srcStar hx) hr
@@ -597,7 +732,9 @@ theorem exists_srcStar_subset_region (hx : x ∈ L.region) : ∃ n, L.srcStar n 
   exact dist_le_diam_of_mem (isBounded_srcStar n x) hw
     (mem_srcStar_self (region_subset_dom hx) n)
 
-/-- **`prop:image-interior`**: `F(D) ⊆ Q°`. -/
+/-- **`prop:image-interior`**: `F(D) ⊆ Q°`.
+@isnad1 id=mem.1h3v.s5.335f0c0aa7f4 from=translated src=- shape=05ecf645 vocab=4327f9c9
+-/
 theorem F_mem_region' (hx : x ∈ L.region) : L.F x ∈ L.region' := by
   obtain ⟨n, hn⟩ := exists_srcStar_subset_region hx
   refine ⟨F_mem_dom' (region_subset_dom hx), fun hcon => ?_⟩
@@ -608,7 +745,9 @@ theorem F_mem_region' (hx : x ∈ L.region) : L.F x ∈ L.region' := by
 /-! #### Injectivity -/
 
 /-- **`prop:F-injective`**. This is where the pointwise half of `prop:shrinking-stars` is needed,
-and it is why injectivity is asserted on the open region rather than on the closed domain. -/
+and it is why injectivity is asserted on the open region rather than on the closed domain.
+@isnad1 id=injon.0h2v.s4.8bfd64f8dd6b from=translated src=- shape=87c7e049 vocab=72df4b48
+-/
 theorem injOn_F (L : LimitTower γ) : Set.InjOn L.F L.region := by
   intro x hx y hy hxy
   -- the target stars meet at every stage, so `lem:star-intersection` makes the source stars meet
@@ -632,7 +771,9 @@ theorem injOn_F (L : LimitTower γ) : Set.InjOn L.F L.region := by
 /-! #### Density of the target skeleton -/
 
 /-- An open cell that is not an outer cell lies in the open region: open cells are disjoint and
-`S` is the union of the open outer ones. -/
+`S` is the union of the open outer ones.
+@isnad1 id=le.2h4v.s6.6de397749288 from=translated src=- shape=fabcd121 vocab=e54c1b67
+-/
 theorem tgt_cell_subset_region' (n : ℕ) {σ : γ} (hσ : σ ∈ (L.str n).cells)
     (hout : σ ∉ (L.str n).outerCells) : (L.tgt n).cell σ ⊆ L.region' := by
   intro w hw
@@ -643,7 +784,9 @@ theorem tgt_cell_subset_region' (n : ℕ) {σ : γ} (hσ : σ ∈ (L.str n).cell
 /-- **`prop:target-skeleton-dense`**: every point of `Q°` is approximated by target skeleton
 points of `Q°`. If `y` is not already on the stage-`n` skeleton its carrier is a 2-cell, and
 assertion (iii) of `lem:cellulation-invariants` puts a nonboundary edge on its boundary; that
-edge's open cell lies in the star of the carrier, of diameter at most `eps n`. -/
+edge's open cell lies in the star of the carrier, of diameter at most `eps n`.
+@isnad1 id=ex.2h4v.s6.3338f2e4d936 from=translated src=- shape=a8469232 vocab=6e7abcfa
+-/
 theorem exists_mem_tgt_skeletonSet (hy : y ∈ L.region') {δ : ℝ} (hδ : 0 < δ) :
     ∃ n w, w ∈ (L.tgt n).skeletonSet ∧ w ∈ L.region' ∧ dist y w < δ := by
   obtain ⟨n, hn⟩ := exists_lt_of_tendsto_zero L.tendsto_eps hδ
@@ -678,17 +821,29 @@ blueprint calls `K`, read at every stage instead of at one. -/
 def preStar (L : LimitTower γ) (n : ℕ) (y : Plane) : Set Plane :=
   (L.src n).star ((L.tgt n).carrier y)
 
+/--
+@isnad1 id=le.1h4v.s5.62118c309258 from=translated src=- shape=3c21b92a vocab=a6de5063
+-/
 theorem preStar_succ_subset (hy : y ∈ L.dom') (n : ℕ) :
     L.preStar (n + 1) y ⊆ L.preStar n y :=
   (L.tgtRefines n).target_star_subset (L.srcRefines n) (L.comb (n + 1)) (L.tgtDecomp n)
     (L.tgtDecomp (n + 1)) hy
 
+/--
+@isnad1 id=nonempty.1h4v.s5.d064b6e81dec from=translated src=- shape=554e78ab vocab=e83a318a
+-/
 theorem preStar_nonempty (hy : y ∈ L.dom') (n : ℕ) : (L.preStar n y).Nonempty :=
   (L.srcDecomp n).star_nonempty ((L.tgtDecomp n).mem_cells_carrier hy)
 
+/--
+@isnad1 id=iscompac.0h4v.s5.3a3f560570ba from=translated src=- shape=5379f24c vocab=00f18e54
+-/
 theorem isCompact_preStar (n : ℕ) (y : Plane) : IsCompact (L.preStar n y) :=
   (L.srcDecomp n).isCompact_star (L.comb n) L.isBounded_dom
 
+/--
+@isnad1 id=nonempty.1h3v.s5.d8194b1ada4c from=translated src=- shape=0463798f vocab=382fcd81
+-/
 theorem nonempty_iInter_preStar (hy : y ∈ L.dom') : (⋂ n, L.preStar n y).Nonempty :=
   IsCompact.nonempty_iInter_of_sequence_nonempty_isCompact_isClosed _
     (fun n => preStar_succ_subset hy n) (preStar_nonempty hy) (isCompact_preStar 0 y)
@@ -696,7 +851,9 @@ theorem nonempty_iInter_preStar (hy : y ∈ L.dom') : (⋂ n, L.preStar n y).Non
 
 /-- **The heart of surjectivity**: a point lying in every `preStar n y` is carried to `y`. At
 each stage the source carrier of `x` and the target carrier of `y` share a supercell `τ`, so the
-two target stars meet, and both have diameter at most `eps n`. -/
+two target stars meet, and both have diameter at most `eps n`.
+@isnad1 id=eq.3h4v.s5.fc406bd682d9 from=translated src=- shape=c969bfc9 vocab=2614b52d
+-/
 theorem F_eq_of_mem_iInter_preStar (hy : y ∈ L.dom') (hxD : x ∈ L.dom)
     (hx : ∀ n, x ∈ L.preStar n y) : L.F x = y := by
   have hbound : ∀ n, dist (L.F x) y ≤ 2 * L.eps n := by
@@ -725,7 +882,9 @@ theorem F_eq_of_mem_iInter_preStar (hy : y ∈ L.dom') (hxD : x ∈ L.dom)
   exact dist_le_zero.1 hzero
 
 /-- At a point of `Q°` the target star is eventually inside `Q°`. Here the *uniform* half of
-`prop:shrinking-stars` is what is available, and it suffices. -/
+`prop:shrinking-stars` is what is available, and it suffices.
+@isnad1 id=ex.1h3v.s5.3df234a81688 from=translated src=- shape=675b5712 vocab=f9f5e182
+-/
 theorem exists_tgt_star_subset_region' (hy : y ∈ L.region') :
     ∃ n, (L.tgt n).star ((L.tgt n).carrier y) ⊆ L.region' := by
   obtain ⟨r, hr, hball⟩ := Metric.isOpen_iff.1 L.isOpen_region' y hy
@@ -737,7 +896,9 @@ theorem exists_tgt_star_subset_region' (hy : y ∈ L.region') :
   have h₂ := L.diam_tgtStar_le n ((L.tgtDecomp n).mem_cells_carrier (region'_subset_dom' hy))
   linarith
 
-/-- **`prop:F-surjective`**: every point of `Q°` is `F` of a point of `D`. -/
+/-- **`prop:F-surjective`**: every point of `Q°` is `F` of a point of `D`.
+@isnad1 id=ex.1h3v.s5.349d38457950 from=translated src=- shape=f8455d7e vocab=4327f9c9
+-/
 theorem exists_mem_region_F_eq (hy : y ∈ L.region') : ∃ x, x ∈ L.region ∧ L.F x = y := by
   obtain ⟨n, hn⟩ := exists_tgt_star_subset_region' hy
   obtain ⟨x, hx⟩ := nonempty_iInter_preStar (region'_subset_dom' hy)
@@ -750,7 +911,9 @@ theorem exists_mem_region_F_eq (hy : y ∈ L.region') : ∃ x, x ∈ L.region �
 
 /-! #### Exact cell correspondence -/
 
-/-- The source counterpart of `tgt_cell_subset_region'`. -/
+/-- The source counterpart of `tgt_cell_subset_region'`.
+@isnad1 id=le.2h4v.s6.4bd71607715d from=translated src=- shape=fabcd121 vocab=b90cbb74
+-/
 theorem src_cell_subset_region (n : ℕ) {σ : γ} (hσ : σ ∈ (L.str n).cells)
     (hout : σ ∉ (L.str n).outerCells) : (L.src n).cell σ ⊆ L.region := by
   intro w hw
@@ -759,13 +922,18 @@ theorem src_cell_subset_region (n : ℕ) {σ : γ} (hσ : σ ∈ (L.str n).cells
   exact Set.disjoint_left.1 ((L.srcDecomp n).cell_disjoint_outerSet hσ hout) hw hb
 
 /-- A point of the open region has a nonboundary carrier: an outer cell's open cell lies on the
-outer cycle. -/
+outer cycle.
+@isnad1 id=not.1h4v.s5.99890929c5b5 from=translated src=- shape=c5cc3b03 vocab=e9b17b89
+-/
 theorem src_carrier_notMem_outerCells (hx : x ∈ L.region) (n : ℕ) :
     (L.src n).carrier x ∉ (L.str n).outerCells := fun hc =>
   hx.2 (by
     rw [← L.srcOuterSet n]
     exact Realization.cell_subset_outerSet hc ((L.srcDecomp n).mem_cell_carrier hx.1))
 
+/--
+@isnad1 id=not.1h4v.s5.f1b02e0a5c68 from=translated src=- shape=c5cc3b03 vocab=994ac1b0
+-/
 theorem tgt_carrier_notMem_outerCells (hy : y ∈ L.region') (n : ℕ) :
     (L.tgt n).carrier y ∉ (L.str n).outerCells := fun hc =>
   hy.2 (by
@@ -778,7 +946,9 @@ is mapped **into** the corresponding open target 2-cell.
 The closed star of a 2-cell is its own closed cell, so `F x` lies in `closure σ'`; if it lay on
 the frontier it would be a stage-`n` target skeleton point, and its skeleton preimage `w` would
 be a second point of `D` with `F w = F x`, contradicting injectivity — while `x` itself, lying in
-an open 2-cell, is not a skeleton point. -/
+an open 2-cell, is not a skeleton point.
+@isnad1 id=mem.2h5v.s6.fb3932ef28b4 from=translated src=- shape=c0bf9005 vocab=1b4b6941
+-/
 theorem F_mem_cell_of_mem_cell_face (n : ℕ) {σ : γ} (hσ : σ ∈ (L.str n).faces)
     (hx : x ∈ (L.src n).cell σ) : L.F x ∈ (L.tgt n).cell σ := by
   have hσc : σ ∈ (L.str n).cells := (L.str n).mem_cells_of_mem_faces hσ
@@ -812,7 +982,9 @@ theorem F_mem_cell_of_mem_cell_face (n : ℕ) {σ : γ} (hσ : σ ∈ (L.str n).
 /-- **`lem:exact-cell-correspondence`**: `F` carries each nonboundary open cell of the stage-`n`
 source decomposition **onto** the corresponding open cell of the target decomposition. For a 0- or
 1-cell this is `prop:skeleton-agreement` together with the skeleton homeomorphism; for a 2-cell it
-is the previous lemma plus surjectivity. -/
+is the previous lemma plus surjectivity.
+@isnad1 id=eq.2h4v.s6.71ba785b0c47 from=translated src=- shape=f9115352 vocab=73748ee0
+-/
 theorem image_cell (n : ℕ) {σ : γ} (hσ : σ ∈ (L.str n).cells)
     (hout : σ ∉ (L.str n).outerCells) : L.F '' ((L.src n).cell σ) = (L.tgt n).cell σ := by
   by_cases hskel : σ ∈ V((L.str n).skel) ∪ E((L.str n).skel)
@@ -847,7 +1019,9 @@ theorem image_cell (n : ℕ) {σ : γ} (hσ : σ ∈ (L.str n).cells)
   rw [← this]
   exact (L.srcDecomp n).mem_cell_carrier hwr.1
 
-/-- **The corollary the inverse argument runs on**: `F` matches carriers. -/
+/-- **The corollary the inverse argument runs on**: `F` matches carriers.
+@isnad1 id=eq.1h4v.s5.d67fb57f8348 from=translated src=- shape=24f05822 vocab=aa17d7f7
+-/
 theorem tgt_carrier_F (hx : x ∈ L.region) (n : ℕ) :
     (L.tgt n).carrier (L.F x) = (L.src n).carrier x := by
   refine (L.tgtDecomp n).carrier_eq ((L.srcDecomp n).mem_cells_carrier hx.1) ?_
@@ -865,21 +1039,35 @@ needs the inverse named. -/
 noncomputable def inv (L : LimitTower γ) (y : Plane) : Plane :=
   if h : ∃ x, x ∈ L.region ∧ L.F x = y then h.choose else 0
 
+/--
+@isnad1 id=and.1h3v.s6.2982534636cd from=translated src=- shape=609c7015 vocab=0b419cd2
+-/
 theorem inv_spec (h : ∃ x, x ∈ L.region ∧ L.F x = y) :
     L.inv y ∈ L.region ∧ L.F (L.inv y) = y := by
   rw [inv, dite_eq_left h]
   exact h.choose_spec
 
+/--
+@isnad1 id=mem.1h3v.s5.4a222d604ebf from=translated src=- shape=05ecf645 vocab=fa23ccb4
+-/
 theorem inv_mem_region (hy : y ∈ L.region') : L.inv y ∈ L.region :=
   (inv_spec (exists_mem_region_F_eq hy)).1
 
+/--
+@isnad1 id=eq.1h3v.s5.dc8d69c89754 from=translated src=- shape=bd5f0cc8 vocab=2806fdce
+-/
 theorem F_inv (hy : y ∈ L.region') : L.F (L.inv y) = y :=
   (inv_spec (exists_mem_region_F_eq hy)).2
 
+/--
+@isnad1 id=eq.1h3v.s5.547b0d837328 from=translated src=- shape=bd5f0cc8 vocab=0b419cd2
+-/
 theorem inv_F (hx : x ∈ L.region) : L.inv (L.F x) = x :=
   L.injOn_F (inv_spec ⟨x, hx, rfl⟩).1 hx (inv_spec ⟨x, hx, rfl⟩).2
 
-/-- `tgt_carrier_F` read at `inv y`. -/
+/-- `tgt_carrier_F` read at `inv y`.
+@isnad1 id=eq.1h4v.s5.1e7ff689cbd9 from=translated src=- shape=24f05822 vocab=c1396cb0
+-/
 theorem src_carrier_inv (hy : y ∈ L.region') (n : ℕ) :
     (L.src n).carrier (L.inv y) = (L.tgt n).carrier y := by
   have h := tgt_carrier_F (inv_mem_region hy) n
@@ -888,7 +1076,9 @@ theorem src_carrier_inv (hy : y ∈ L.region') (n : ℕ) :
 
 /-- **`prop:inverse-continuous`**: `F⁻¹ : Q° → D` is continuous. `lem:cell-neighborhood` is
 applied on the *target* side; `lem:exact-cell-correspondence`, in the form `src_carrier_inv`,
-transports the resulting subcell relation to the source, where the source star of `x` is small. -/
+transports the resulting subcell relation to the source, where the source star of `x` is small.
+@isnad1 id=continuo.0h2v.s6.d9e5a591f98e from=translated src=- shape=87c7e049 vocab=5ec1b50d
+-/
 theorem continuousOn_inv (L : LimitTower γ) : ContinuousOn L.inv L.region' := by
   rw [Metric.continuousOn_iff]
   intro y hy η hη
@@ -910,7 +1100,9 @@ theorem continuousOn_inv (L : LimitTower γ) : ContinuousOn L.inv L.region' := b
 
 /-- **`prop:interior-homeomorphism`**: `F : Int(C) → Q°` is a homeomorphism, in the
 `Schoenflies.IsHomeoOn` shape — the map, its explicit inverse, and the four laws on the two
-sets — that `Endgame.lean` and the boundary-continuity module consume. -/
+sets — that `Endgame.lean` and the boundary-continuity module consume.
+@isnad1 id=ishomeoo.0h2v.s4.2ee46938b7e0 from=translated src=- shape=f9ecd230 vocab=0b154a3d
+-/
 theorem isHomeoOn_F (L : LimitTower γ) : IsHomeoOn L.F L.inv L.region L.region' where
   mapsTo := fun _ hx => F_mem_region' hx
   mapsTo_inv := fun _ hy => inv_mem_region hy
@@ -918,11 +1110,16 @@ theorem isHomeoOn_F (L : LimitTower γ) : IsHomeoOn L.F L.inv L.region L.region'
   continuousOn_inv := L.continuousOn_inv
   invOn := ⟨fun _ hx => inv_F hx, fun _ hy => F_inv hy⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.f465cfd22f4b from=translated src=- shape=b0928509 vocab=8c737879
+-/
 theorem image_region (L : LimitTower γ) : L.F '' L.region = L.region' :=
   L.isHomeoOn_F.image_eq
 
 /-- **`prop:interior-homeomorphism`** as the blueprint states it: a homeomorphism of `Int(C)` onto
-`Q°` that agrees with the stage-`N` skeleton map on `G_N ∩ (C ∪ D)` for every `N`. -/
+`Q°` that agrees with the stage-`N` skeleton map on `G_N ∩ (C ∪ D)` for every `N`.
+@isnad1 id=and.0h2v.s6.92ef0f7ceda4 from=translated src=- shape=d1b3ea04 vocab=8fb72fc7
+-/
 theorem interior_homeomorphism (L : LimitTower γ) :
     IsHomeoOn L.F L.inv L.region L.region' ∧
       ∀ n, ∀ x ∈ (L.src n).skeletonSet, x ∈ L.dom → L.F x = (L.skelHomeo n).toFun x :=

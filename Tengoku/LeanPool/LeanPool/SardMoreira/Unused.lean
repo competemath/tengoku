@@ -18,6 +18,9 @@ open scoped Topology
 open Filter Set
 
 -- TODO: add before `HasFDerivAt.of_local_left_inverse`
+/--
+@isnad1 id=hasfderi.4h9v.s9.09cd157825b3 from=translated src=- shape=9a0ff4ba vocab=8539a930
+-/
 theorem HasFDerivWithinAt.of_local_leftInverse {𝕜 E F : Type*}
     [NontriviallyNormedField 𝕜]
     [NormedAddCommGroup E] [NormedSpace 𝕜 E]
@@ -47,6 +50,9 @@ def Submodule.topContinuousEquiv {R M : Type*} [Semiring R] [AddCommMonoid M]
   continuous_toFun := by fun_prop
   continuous_invFun := by fun_prop
 
+/--
+@isnad1 id=eq.0h6v.s8.fba7034f146e from=translated src=- shape=d68b5331 vocab=3116a706
+-/
 theorem ContinuousLinearEquiv.map_nhdsWithin_eq {R M N : Type*} [Semiring R]
     [AddCommMonoid M] [Module R M] [TopologicalSpace M]
     [AddCommMonoid N] [Module R N] [TopologicalSpace N]
@@ -54,6 +60,9 @@ theorem ContinuousLinearEquiv.map_nhdsWithin_eq {R M N : Type*} [Semiring R]
     (𝓝[s] x).map e = 𝓝[e '' s] (e x) :=
   e.toHomeomorph.isInducing.map_nhdsWithin_eq _ _
 
+/--
+@isnad1 id=eq.0h6v.s8.027abbd9798c from=translated src=- shape=fa32ea7d vocab=08f99213
+-/
 theorem ContinuousLinearEquiv.map_nhdsWithin_preimage_eq {R M N : Type*} [Semiring R]
     [AddCommMonoid M] [Module R M] [TopologicalSpace M]
     [AddCommMonoid N] [Module R N] [TopologicalSpace N]
@@ -75,12 +84,18 @@ def prodEquiv'
     map_add' _ _ := rfl
     map_smul' _ _ := rfl }
 
+/--
+@isnad1 id=eq.0h5v.s8.ab92bef53a07 from=translated src=- shape=d690ce24 vocab=4ceaa1da
+-/
 @[simp]
 theorem rank_prod_eq_lift [StrongRankCondition R] (s : Submodule R M) (t : Submodule R N)
     [Module.Free R s] [Module.Free R t] :
     Module.rank R (s.prod t) = (Module.rank R s).lift + (Module.rank R t).lift := by
   simp [(s.prodEquiv' t).rank_eq]
 
+/--
+@isnad1 id=eq.0h5v.s8.6a1ab005ca18 from=translated src=- shape=5b662c7e vocab=1eff42ff
+-/
 @[simp]
 theorem finrank_prod [StrongRankCondition R] (s : Submodule R M) (t : Submodule R N)
     [Module.Free R s] [Module.Free R t] [Module.Finite R s] [Module.Finite R t] :
@@ -99,12 +114,18 @@ variable {𝕜 E F G : Type*}
 
 variable {n : WithTop ℕ∞} {k : ℕ} {a : E}
 
+/--
+@isnad1 id=frequent.1h4v.s7.b641beeb6174 from=translated src=- shape=4fa9a94d vocab=64b3a665
+-/
 protected theorem UniqueDiffOn.frequently_smallSets {s : Set E} (hs : UniqueDiffOn 𝕜 s) (a : E) :
     ∃ᶠ t in (𝓝[s] a).smallSets, t ∈ 𝓝[s] a ∧ UniqueDiffOn 𝕜 t := by
   rw [(nhdsWithin_basis_open _ _).smallSets.frequently_iff]
   exact fun U ⟨haU, hUo⟩ ↦ ⟨s ∩ U, (inter_comm _ _).le,
     inter_mem_nhdsWithin _ (hUo.mem_nhds haU), hs.inter hUo⟩
 
+/--
+@isnad1 id=eq.1h8v.s8.8d673dd702f4 from=translated src=- shape=ae391ff4 vocab=98fea117
+-/
 theorem iteratedFDeriv_apply_congr_order
     {k l : ℕ} (h : k = l) (f : E → F) (x : E) (m : Fin k → E) :
     iteratedFDeriv 𝕜 k f x m = iteratedFDeriv 𝕜 l f x (m ∘ Fin.cast h.symm) := by
@@ -135,6 +156,9 @@ def single (n : ℕ) (hn : n ≠ 0) : OrderedFinpartition n where
   disjoint := subsingleton_univ.pairwise _
   cover x := ⟨0, x, rfl⟩
 
+/--
+@isnad1 id=eq.1h7v.s8.14798543a56a from=translated src=- shape=e5179feb vocab=7db9b0a1
+-/
 @[simp]
 theorem applyOrderedFinpartition_single (hn : n ≠ 0)
     (p : ∀ i : Fin (single n hn).length, E [×(single n hn).partSize i]→L[𝕜] F)

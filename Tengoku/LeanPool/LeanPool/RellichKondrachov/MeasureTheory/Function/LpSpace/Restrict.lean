@@ -189,6 +189,9 @@ noncomputable def extendByZeroₗᵢ : Lp E p (μ.restrict s) →ₗᵢ[ℝ] Lp 
     -- Combine with the definition of the `Lp` norm on the restricted space.
     simp [hnorm_out, hnorm_restrict, norm_def]
 
+/--
+@isnad1 id=eventual.1h6v.s11.4af27a334aff from=translated src=- shape=0acd4de0 vocab=2bb5ab39
+-/
 lemma extendByZeroₗᵢ_ae_eq (f : Lp E p (μ.restrict s)) :
     ((extendByZeroₗᵢ (μ := μ) (p := p) (s := s) hs) f : α → E) =ᵐ[μ]
       s.indicator fun x : α => f x := by
@@ -196,6 +199,9 @@ lemma extendByZeroₗᵢ_ae_eq (f : Lp E p (μ.restrict s)) :
   simpa [extendByZeroₗᵢ, extendByZeroₗ] using
     (extendByZeroFun_coe (μ := μ) (p := p) (s := s) hs f)
 
+/--
+@isnad1 id=eq.2h5v.s9.1437f3f91b64 from=translated src=- shape=cd1730bb vocab=9ddbdafc
+-/
 lemma extendByZeroₗᵢ_congr (hs₁ hs₂ : MeasurableSet s) :
     extendByZeroₗᵢ (μ := μ) (E := E) (p := p) (s := s) hs₁ =
       extendByZeroₗᵢ (μ := μ) (E := E) (p := p) (s := s) hs₂ := by

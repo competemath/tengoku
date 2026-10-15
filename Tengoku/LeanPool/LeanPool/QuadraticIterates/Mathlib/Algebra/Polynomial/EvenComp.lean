@@ -21,13 +21,17 @@ polynomials*, Arch. Math. 59 (1992), 239-244; upstreaming candidates for Mathlib
 
 open Polynomial
 
-/-- `X² + c` is fixed by `X ↦ -X`. -/
+/-- `X² + c` is fixed by `X ↦ -X`.
+@isnad1 id=eq.0h2v.s8.16b13367a77e from=translated src=- shape=b0769223 vocab=67a68f84
+-/
 lemma Polynomial.X_sq_add_C_comp_neg_X {R : Type*} [CommRing R] (c : R) :
     (X ^ 2 + C c).comp (-X) = X ^ 2 + C c := by
   simp only [add_comp, pow_comp, X_comp, C_comp]
   ring
 
-/-- `X ↦ -X` preserves being associated. -/
+/-- `X ↦ -X` preserves being associated.
+@isnad1 id=associat.1h3v.s6.acc153bf8411 from=translated src=- shape=cd5ccc14 vocab=f7f1bbbf
+-/
 lemma Associated.comp_neg_X {R : Type*} [CommRing R] {p q : R[X]} (h : Associated p q) :
     Associated (p.comp (-X)) (q.comp (-X)) := by
   have hσ (r : R[X]) : algEquivAevalNegX r = r.comp (-X) := by
@@ -35,7 +39,9 @@ lemma Associated.comp_neg_X {R : Type*} [CommRing R] {p q : R[X]} (h : Associate
   rw [← hσ p, ← hσ q]
   exact h.map (algEquivAevalNegX (R := R)).toMulEquiv.toMonoidHom
 
-/-- Normalizing before reflecting does not change the normalized reflection. -/
+/-- Normalizing before reflecting does not change the normalized reflection.
+@isnad1 id=eq.0h2v.s7.e52d0b36c7bd from=translated src=- shape=130e7a4d vocab=8282cbad
+-/
 lemma Polynomial.normalize_normalize_comp_neg_X {R : Type*} [CommRing R] [IsDomain R]
     [NormalizationMonoid R[X]] (p : R[X]) :
     normalize ((normalize p).comp (-X)) = normalize (p.comp (-X)) := by
@@ -43,7 +49,9 @@ lemma Polynomial.normalize_normalize_comp_neg_X {R : Type*} [CommRing R] [IsDoma
   exact normalize_eq_normalize h.dvd h.symm.dvd
 
 /-- Over a domain, a polynomial whose reflection is merely *associated* to it is fixed by
-`X ↦ -X` up to a sign. -/
+`X ↦ -X` up to a sign.
+@isnad1 id=or.2h2v.s7.17a9e6679001 from=translated src=- shape=bb327348 vocab=f6fe6b22
+-/
 theorem Polynomial.comp_neg_X_eq_or_eq_neg_of_associated {R : Type*} [CommRing R] [IsDomain R]
     {p : R[X]} (hp : p ≠ 0) (h : Associated (p.comp (-X)) p) :
     p.comp (-X) = p ∨ p.comp (-X) = -p := by
@@ -62,7 +70,9 @@ theorem Polynomial.comp_neg_X_eq_or_eq_neg_of_associated {R : Type*} [CommRing R
   · exact .inl (by rwa [C_1, mul_one] at hu)
   · exact .inr (by rw [C_neg, C_1, mul_neg, mul_one] at hu; linear_combination -hu)
 
-/-- A polynomial in `X²` is fixed by `X ↦ -X`. -/
+/-- A polynomial in `X²` is fixed by `X ↦ -X`.
+@isnad1 id=eq.0h2v.s8.323381a31043 from=translated src=- shape=77845687 vocab=50c06a3f
+-/
 @[simp] theorem Polynomial.expand_two_comp_neg_X {R : Type*} [CommRing R] (h : R[X]) :
     (expand R 2 h).comp (-X) = expand R 2 h := by
   rw [expand_eq_comp_X_pow, comp_assoc]
@@ -87,7 +97,9 @@ theorem Polynomial.eq_expand_two_contract_of_comp_neg_X {R : Type*} [CommRing R]
   · rw [ite_eq_left hdvd, coeff_contract (by norm_num)]; congr 1; lia
   · rw [ite_eq_right hdvd]; exact hoddzero n hdvd
 
-/-- An even polynomial over a domain of characteristic `≠ 2` is a polynomial in `X² + c`. -/
+/-- An even polynomial over a domain of characteristic `≠ 2` is a polynomial in `X² + c`.
+@isnad1 id=ex.1h3v.s8.dadb393e8107 from=translated src=- shape=958831c2 vocab=5c0d341f
+-/
 theorem Polynomial.even_eq_comp_X_sq_add_C {R : Type*} [CommRing R] [NoZeroDivisors R]
     [NeZero (2 : R)] (c : R) (b : R[X]) (hb : b.comp (-X) = b) :
     ∃ e : R[X], b = e.comp (X ^ 2 + C c) := by

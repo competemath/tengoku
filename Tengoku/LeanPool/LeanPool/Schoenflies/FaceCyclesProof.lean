@@ -174,7 +174,9 @@ theorem IsArcBetween.eq_of_subset {A B : Set Plane} {p q : Plane}
 
 /-- **Appending two vertex lists joins their carriers by one segment.** The segment runs from
 the last vertex of the first list to the first vertex of the second, and is degenerate — hence
-contributes nothing — exactly when the two lists already share that vertex. -/
+contributes nothing — exactly when the two lists already share that vertex.
+@isnad1 id=eq.2h2v.s7.fd480bb6ff29 from=translated src=- shape=34d598b7 vocab=dcaf2086
+-/
 theorem poly_append_join : ∀ {as : List Plane} (h₁ : as ≠ []) {bs : List Plane} (h₂ : bs ≠ []),
     poly (as ++ bs) = poly as ∪ segment ℝ (as.getLast h₁) (bs.head h₂) ∪ poly bs
   | [], h₁, _, _ => absurd rfl h₁
@@ -192,7 +194,9 @@ theorem poly_append_join : ∀ {as : List Plane} (h₁ : as ≠ []) {bs : List P
     ac_rfl
 
 /-- **Two polylines meeting end to head concatenate.** The joining segment collapses to the
-shared vertex. -/
+shared vertex.
+@isnad1 id=eq.3h2v.s5.5c59ce979e30 from=translated src=- shape=58ce2083 vocab=b6d4343a
+-/
 theorem poly_append_of_eq {as bs : List Plane} (h₁ : as ≠ []) (h₂ : bs ≠ [])
     (h : as.getLast h₁ = bs.head h₂) : poly (as ++ bs) = poly as ∪ poly bs := by
   rw [poly_append_join h₁ h₂, h, segment_same, Set.union_assoc, Set.singleton_union,
@@ -206,7 +210,9 @@ topology is needed: a component of the small set is preconnected inside the big 
 again. -/
 
 /-- **Cutting inside one component.** The component of `z` in `S ∖ P` sees only the component
-of `z` in `S`. -/
+of `z` in `S`.
+@isnad1 id=eq.0h3v.s7.2ac60e7d43ec from=translated src=- shape=41a3ee91 vocab=9da8bb66
+-/
 theorem connectedComponentIn_diff (S P : Set Plane) (z : Plane) :
     connectedComponentIn (S \ P) z = connectedComponentIn (connectedComponentIn S z \ P) z := by
   by_cases hz : z ∈ S \ P
@@ -231,7 +237,9 @@ theorem connectedComponentIn_diff (S P : Set Plane) (z : Plane) :
 /-- **A polygonal arc is `poly` of a vertex list running from one of its ends to the other.**
 `Schoenflies.exists_simple_poly_of_isPolygonal` produces a simple polygonal arc *inside* the
 set between the two points; being an arc between the same two ends it is the whole of it, by
-`Schoenflies.IsArcBetween.eq_of_subset`. -/
+`Schoenflies.IsArcBetween.eq_of_subset`.
+@isnad1 id=ex.3h3v.s5.b55b5fe0866a from=translated src=- shape=60643b4d vocab=0a957b19
+-/
 theorem IsArcBetween.exists_poly_eq {A : Set Plane} {p q : Plane} (harc : IsArcBetween A p q)
     (hpoly : IsPolygonal A) (hpq : p ≠ q) :
     ∃ vs : List Plane, ∃ h : vs ≠ [], vs.head h = p ∧ vs.getLast h = q ∧ poly vs = A := by
@@ -258,7 +266,9 @@ variable {α β : Type*} {G : Graph α β} {u v w x y : α} {e : β} {W W₁ W�
 /-- **Two paths meeting only at the junction concatenate.** The freshness clause of the joined
 path is the freshness of the first together with the meeting condition: a vertex the second
 half visits and the first half departs from would be the junction, which the first half has
-already arrived at. -/
+already arrived at.
+@isnad1 id=ispath.3h8v.s6.ba7bc725635a from=translated src=- shape=5c4f2e41 vocab=025ed86b
+-/
 theorem IsPath.append : ∀ {u w v : α} {W₁ W₂ : List β}, G.IsPath u W₁ w → G.IsPath w W₂ v →
     (∀ y ∈ G.walkVertices u W₁, y ∈ G.walkVertices w W₂ → y = w) → G.IsPath u (W₁ ++ W₂) v := by
   intro u w v W₁ W₂ h₁
@@ -279,7 +289,9 @@ theorem IsPath.append : ∀ {u w v : α} {W₁ W₂ : List β}, G.IsPath u W₁ 
       exact hfresh (this ▸ hW.target_mem_walkVertices)
 
 /-- **A path splits at any vertex it visits, and the two halves meet only there.** This is
-`Graph.IsPath.split` with the meeting condition in place of its weaker last clause. -/
+`Graph.IsPath.split` with the meeting condition in place of its weaker last clause.
+@isnad1 id=ex.2h7v.s6.c67a0d4001f5 from=translated src=- shape=48ccace9 vocab=025ed86b
+-/
 theorem IsPath.split_meet (h : G.IsPath u W v) (hx : x ∈ G.walkVertices u W) :
     ∃ W₁ W₂, W = W₁ ++ W₂ ∧ G.IsPath u W₁ x ∧ G.IsPath x W₂ v ∧
       ∀ y ∈ G.walkVertices u W₁, y ∈ G.walkVertices x W₂ → y = x := by
@@ -307,7 +319,9 @@ theorem IsPath.split_meet (h : G.IsPath u W v) (hx : x ∈ G.walkVertices u W) :
     · exact hmeet y hy' hy₂
 
 /-- The source of a nonempty walk is an end of its first edge, so a nonempty walk visits no
-vertex its edges do not cover. -/
+vertex its edges do not cover.
+@isnad1 id=eq.2h6v.s5.d96adf761e6a from=translated src=- shape=58988548 vocab=66ab3ada
+-/
 theorem IsWalk.walkVertices_eq_covered (h : G.IsWalk u W v) (hne : W ≠ []) :
     G.walkVertices u W = G.coveredVertices W := by
   refine Set.insert_eq_self.2 ?_
@@ -315,7 +329,9 @@ theorem IsWalk.walkVertices_eq_covered (h : G.IsWalk u W v) (hne : W ≠ []) :
   | nil => exact absurd rfl hne
   | cons hl _ => exact mem_coveredVertices List.mem_cons_self hl.inc_left
 
-/-- Running a nonempty walk backwards changes neither the edges nor the vertices it visits. -/
+/-- Running a nonempty walk backwards changes neither the edges nor the vertices it visits.
+@isnad1 id=eq.2h6v.s5.6babb1e04bc8 from=translated src=- shape=3493f5f1 vocab=655205a9
+-/
 theorem IsWalk.walkVertices_reverse_eq (h : G.IsWalk u W v) (hne : W ≠ []) :
     G.walkVertices v W.reverse = G.walkVertices u W := by
   rw [h.reverse.walkVertices_eq_covered (by simpa using hne), coveredVertices_reverse,
@@ -330,7 +346,9 @@ feed this one lemma. -/
 
 /-- **The complementary arc of a cut cycle**, together with the two facts a geometric consumer
 needs: that the two arcs between them use every edge of the cycle exactly once, and that they
-visit no common vertex but the two cut points. -/
+visit no common vertex but the two cut points.
+@isnad1 id=and.8h12v.s8.6591b24f1ac4 from=translated src=- shape=01070c93 vocab=af4a3065
+-/
 theorem IsCycleThrough.split_aux {G : Graph α β} {e : β} {u v c d : α} {D X Y Z : List β}
     (hc : G.IsCycleThrough e u v D) (hD : D = X ++ (Y ++ Z)) (hX : G.IsPath u X c)
     (hY : G.IsPath c Y d) (hZ : G.IsPath d Z v) (hcd : c ≠ d)
@@ -384,7 +402,9 @@ theorem IsCycleThrough.split_aux {G : Graph α β} {e : β} {u v c d : α} {D X 
 /-- **A cycle cut at two of its vertices is two paths between them.** The two arcs use every
 edge of the cycle exactly once — that is what the permutation says — and they have no vertex in
 common but the two cut points. This is the combinatorial half of "the ear is a crosscut of the
-face": the geometric half reads the two arcs of the Jordan curve off it. -/
+face": the geometric half reads the two arcs of the Jordan curve off it.
+@isnad1 id=ex.4h9v.s7.97f1c1bd5e1d from=translated src=- shape=359edb86 vocab=af4a3065
+-/
 theorem IsCycleThrough.split_at {G : Graph α β} {e : β} {u v a b : α} {D : List β}
     (hc : G.IsCycleThrough e u v D) (ha : a ∈ G.walkVertices u D) (hb : b ∈ G.walkVertices u D)
     (hab : a ≠ b) :
@@ -440,7 +460,9 @@ two new cycles are the two arcs of the old one, each closed up by the ear. This 
 combinatorial construction of one of them. -/
 
 /-- Incidence along edges of a subgraph is the same in the subgraph as in the graph, so the
-vertices a walk visits do not depend on which of the two it is read in. -/
+vertices a walk visits do not depend on which of the two it is read in.
+@isnad1 id=eq.2h5v.s6.13ecf0c14407 from=translated src=- shape=b3fa5465 vocab=8628b870
+-/
 theorem coveredVertices_congr_of_le {H G : Graph α β} (hHG : H ≤ G) (hW : ∀ f ∈ W, f ∈ E(H)) :
     G.coveredVertices W = H.coveredVertices W := by
   ext x
@@ -450,13 +472,18 @@ theorem coveredVertices_congr_of_le {H G : Graph α β} (hHG : H ≤ G) (hW : �
   · rintro ⟨g, hg, y, hy⟩
     exact ⟨g, hg, y, hy.mono hHG⟩
 
+/--
+@isnad1 id=eq.2h6v.s6.1e185880b437 from=translated src=- shape=5ffe544e vocab=1f4358e3
+-/
 theorem walkVertices_congr_of_le {H G : Graph α β} (hHG : H ≤ G) (hW : ∀ f ∈ W, f ∈ E(H)) :
     G.walkVertices u W = H.walkVertices u W := by
   rw [walkVertices, walkVertices, coveredVertices_congr_of_le hHG hW]
 
 /-- **The cycle an ear splices onto an arc of the old cycle.** The closed walk runs along the
 arc and back along the ear; presented as `Graph.IsCycleThrough`, its named edge is the ear's
-first, and its detour is the arc followed by the rest of the ear reversed. -/
+first, and its detour is the arc followed by the rest of the ear reversed.
+@isnad1 id=ex.6h8v.s7.87aefe1707fb from=translated src=- shape=e15098ca vocab=51ad86ac
+-/
 theorem exists_spliced_cycle {B G : Graph α β} (hBG : B ≤ G) {a b : α} {D₁ D' : List β}
     (hD1 : B.IsPath a D₁ b) (hear : G.IsPath a D' b) (hab : a ≠ b)
     (hnew : ∀ g ∈ D', g ∉ E(B))
@@ -535,7 +562,9 @@ variable {e f : β} {u v w z a b : Plane} {W D : List β}
 /-- **The realisation of a walk with polygonal edges is a polyline from its source to its
 target.** The induction is along the walk: the first edge contributes its own vertex list, and
 the two lists are joined at the waypoint, which is the last vertex of the first and the first
-vertex of the rest. -/
+vertex of the rest.
+@isnad1 id=ex.4h6v.s6.392b73d23451 from=translated src=- shape=4c56b492 vocab=c7a688de
+-/
 theorem IsDrawing.exists_poly_eq_edgesCover (h : IsDrawing G drawing)
     (hpoly : ∀ e ∈ E(G), IsPolygonal (edgeArc drawing e)) (hW : G.IsWalk u W v) (hne : W ≠ []) :
     ∃ vs : List Plane, ∃ hv : vs ≠ [], vs.head hv = u ∧ vs.getLast hv = v ∧
@@ -570,14 +599,18 @@ knows to separate the plane. Nothing here inspects the polygon; it is used and d
 
 /-- Going round the cycle the other way: the edge, then the detour, is a closed walk at the
 edge's far end. This is the walk whose edge list is `e :: D`, the list every statement about
-the realisation of a cycle is phrased with. -/
+the realisation of a cycle is phrased with.
+@isnad1 id=iswalk.1h7v.s5.663293745d7f from=translated src=- shape=30309d8f vocab=2759f333
+-/
 theorem IsCycleThrough.isWalk_cons {α : Type*} {G : Graph α β} {e : β} {u v : α} {D : List β}
     (hc : G.IsCycleThrough e u v D) : G.IsWalk v (e :: D) v :=
   IsWalk.cons hc.isLink.symm hc.isPath.isWalk
 
 /-- **The realisation of a cycle of a polygonal plane graph is a separating Jordan curve.**
 `Schoenflies.IsSeparating` is Definition 2.4: the complement has exactly two regions, one
-bounded and one unbounded, each with the curve as its boundary. -/
+bounded and one unbounded, each with the curve as its boundary.
+@isnad1 id=issepara.3h7v.s5.bda400e9c6de from=translated src=- shape=06f319e8 vocab=85a836b9
+-/
 theorem IsDrawing.cycle_isSeparating (h : IsDrawing G drawing)
     (hpoly : ∀ e ∈ E(G), IsPolygonal (edgeArc drawing e)) {e : β} {u v : Plane} {D : List β}
     (hc : G.IsCycleThrough e u v D) : IsSeparating (edgesCover drawing (e :: D)) := by
@@ -587,14 +620,18 @@ theorem IsDrawing.cycle_isSeparating (h : IsDrawing G drawing)
 
 /-! ## What a subgraph spanned by a walk occupies -/
 
-/-- An end of an edge lies on that edge's arc. -/
+/-- An end of an edge lies on that edge's arc.
+@isnad1 id=mem.2h5v.s5.3a0668646529 from=translated src=- shape=843503f9 vocab=6cc0a2e5
+-/
 theorem IsDrawing.inc_mem_edgeArc (h : IsDrawing G drawing) {x : Plane} (hinc : G.Inc e x) :
     x ∈ edgeArc drawing e := by
   obtain ⟨y, hy⟩ := hinc
   exact (h.edge_isArcBetween hy).left_mem
 
 /-- **The subgraph spanned by a nonempty walk occupies exactly what the walk draws.** Its
-vertices are ends of its edges, so they add nothing to the union of the edge arcs. -/
+vertices are ends of its edges, so they add nothing to the union of the edge arcs.
+@isnad1 id=eq.3h6v.s5.22aaf5ba429e from=translated src=- shape=9470dd00 vocab=d79d6ba4
+-/
 theorem IsDrawing.pointSet_pathGraphOf (h : IsDrawing G drawing) (hW : G.IsWalk u W v)
     (hne : W ≠ []) : pointSet (G.pathGraphOf u W) drawing = edgesCover drawing W := by
   obtain ⟨f, T, rfl⟩ : ∃ f T, W = f :: T := by
@@ -618,7 +655,9 @@ theorem IsDrawing.pointSet_pathGraphOf (h : IsDrawing G drawing) (hW : G.IsWalk 
     rw [pathGraphOf_edgeSet hW]
     exact hg
 
-/-- **The cycle subgraph occupies exactly what the cycle draws.** -/
+/-- **The cycle subgraph occupies exactly what the cycle draws.**
+@isnad1 id=eq.2h7v.s5.567995e7cb5c from=translated src=- shape=735f5097 vocab=c3bdaf8f
+-/
 theorem IsDrawing.pointSet_cycleGraph (h : IsDrawing G drawing) {e : β} {u v : Plane}
     {D : List β} (hc : G.IsCycleThrough e u v D) :
     pointSet (G.cycleGraph u e D) drawing = edgesCover drawing (e :: D) := by
@@ -653,7 +692,9 @@ namespace IsFaceCycle
 
 variable {e : β} {u v : Plane} {D : List β}
 
-/-- **"has a cycle as its boundary"**: the frontier of the face is the realisation. -/
+/-- **"has a cycle as its boundary"**: the frontier of the face is the realisation.
+@isnad1 id=eq.1h8v.s6.a11d4d412c5d from=translated src=- shape=0d7d37f1 vocab=0775301c
+-/
 theorem frontier_eq (h : IsFaceCycle G drawing z e u v D) :
     frontier (face G drawing z) = edgesCover drawing (e :: D) :=
   h.isRegionOf.frontier_eq h.isSeparating
@@ -674,7 +715,9 @@ theorem eq_inside_of_isBounded (h : IsFaceCycle G drawing z e u v D)
 
 /-- A face bounded by a cycle of a subgraph is bounded by the same cycle of the whole graph,
 *provided the face itself is unchanged* — which is the shape the induction step needs when it
-carries a face past an ear that does not touch it. -/
+carries a face past an ear that does not touch it.
+@isnad1 id=isfacecy.3h9v.s6.e5bc2c038ae4 from=translated src=- shape=e98d4926 vocab=d1aa2ceb
+-/
 theorem mono (h : IsFaceCycle B drawing z e u v D) (hBG : B ≤ G)
     (hface : face G drawing z = face B drawing z) : IsFaceCycle G drawing z e u v D where
   isCycle := ⟨h.isCycle.isLink.mono hBG, h.isCycle.isPath.mono hBG, h.isCycle.notMem⟩
@@ -695,7 +738,9 @@ occupies exactly the cycle's realisation, so its faces are literally the compone
 complement of that curve, and the curve is separating. -/
 
 /-- **The base case of `lem:face-cycles`.** Both faces of the graph consisting of one cycle
-are regions of that cycle. -/
+are regions of that cycle.
+@isnad1 id=hasfacec.3h7v.s6.ef566cd08545 from=translated src=- shape=4d2d5cde vocab=2d6808fc
+-/
 theorem IsDrawing.hasFaceCycles_cycleGraph (h : IsDrawing G drawing)
     (hpoly : ∀ e ∈ E(G), IsPolygonal (edgeArc drawing e)) {e : β} {u v : Plane} {D : List β}
     (hc : G.IsCycleThrough e u v D) : HasFaceCycles (G.cycleGraph u e D) drawing := by
@@ -719,7 +764,9 @@ The combinatorial split of `Graph.IsCycleThrough.split_at` becomes the geometric
 arcs of the Jordan curve between the two cut vertices. The drawing condition is used once, to
 turn "the two edge lists are disjoint" into "the two arcs meet only at vertices". -/
 
-/-- A vertex of the graph lying on the realisation of a cycle is a vertex of that cycle. -/
+/-- A vertex of the graph lying on the realisation of a cycle is a vertex of that cycle.
+@isnad1 id=mem.4h8v.s6.a68662fd0297 from=translated src=- shape=3ec8a2b3 vocab=085ed9fd
+-/
 theorem IsDrawing.mem_walkVertices_of_mem_edgesCover (h : IsDrawing G drawing) {e : β}
     {u v z : Plane} {D : List β} (hc : G.IsCycleThrough e u v D) (hzV : z ∈ V(G))
     (hz : z ∈ edgesCover drawing (e :: D)) : z ∈ G.walkVertices u D := by
@@ -734,7 +781,9 @@ theorem IsDrawing.mem_walkVertices_of_mem_edgesCover (h : IsDrawing G drawing) {
     · exact mem_walkVertices_of_mem_covered ⟨g, hg', hxy.inc_right⟩
 
 /-- **The realisation of a cycle, cut at two of its vertices, is two arcs meeting exactly
-there.** The hypotheses are the output of `Graph.IsCycleThrough.split_at`, read in the plane. -/
+there.** The hypotheses are the output of `Graph.IsCycleThrough.split_at`, read in the plane.
+@isnad1 id=and.6h7v.s7.f8599b91ee9d from=translated src=- shape=f656a3fc vocab=402da350
+-/
 theorem IsDrawing.arcs_of_split (h : IsDrawing G drawing) {a b : Plane} {D₁ D₂ : List β}
     (h₁ : G.IsPath a D₁ b) (h₂ : G.IsPath b D₂ a) (hab : a ≠ b)
     (hdisj : ∀ g ∈ D₁, g ∉ D₂)
@@ -809,6 +858,9 @@ variable {e f : β} {u v w z a b : Plane} {W D : List β}
 
 /-! ## What a list of edges draws depends only on which edges are on it -/
 
+/--
+@isnad1 id=eq.0h4v.s5.433218397b9b from=translated src=- shape=41f2e113 vocab=3304c33f
+-/
 theorem edgesCover_append (drawing : β → ℝ → Plane) (W₁ W₂ : List β) :
     edgesCover drawing (W₁ ++ W₂) = edgesCover drawing W₁ ∪ edgesCover drawing W₂ := by
   refine Set.Subset.antisymm (fun z hz => ?_)
@@ -817,11 +869,17 @@ theorem edgesCover_append (drawing : β → ℝ → Plane) (W₁ W₂ : List β)
   obtain ⟨g, hg, hzg⟩ := mem_edgesCover_iff.1 hz
   exact (List.mem_append.1 hg).imp (fun h => mem_edgesCover h hzg) fun h => mem_edgesCover h hzg
 
+/--
+@isnad1 id=eq.1h4v.s4.fdd5e0f9bdc7 from=translated src=- shape=615eb20d vocab=fd93ea0a
+-/
 theorem edgesCover_perm {W₁ W₂ : List β} (hp : W₁.Perm W₂) :
     edgesCover drawing W₁ = edgesCover drawing W₂ :=
   Set.Subset.antisymm (edgesCover_mono fun _ hg => hp.mem_iff.1 hg)
     (edgesCover_mono fun _ hg => hp.mem_iff.2 hg)
 
+/--
+@isnad1 id=eq.0h3v.s4.5b54f69ea411 from=translated src=- shape=71593a86 vocab=cb2bf6d9
+-/
 theorem edgesCover_reverse (drawing : β → ℝ → Plane) (W : List β) :
     edgesCover drawing W.reverse = edgesCover drawing W := edgesCover_perm (List.reverse_perm W)
 
@@ -836,7 +894,9 @@ Everything here is proved, except that the appeal to Theorem 2.8 is to the hypot
 `Schoenflies.CrosscutSplitsRegion` instead. -/
 
 /-- **One ear.** Given `lem:face-cycles` for the current subgraph, it holds for the subgraph
-enlarged by an ear — modulo `Schoenflies.CrosscutSplitsRegion`. -/
+enlarged by an ear — modulo `Schoenflies.CrosscutSplitsRegion`.
+@isnad1 id=hasfacec.11h7v.s7.6827949cc7ad from=translated src=- shape=6ad63f1e vocab=9a1a6edd
+-/
 theorem IsDrawing.hasFaceCycles_union [G.Finite] (h : IsDrawing G drawing)
     (hobl : CrosscutSplitsRegion) (hpoly : ∀ g ∈ E(G), IsPolygonal (edgeArc drawing g))
     (hBG : B ≤ G) (hmot : HasFaceCycles B drawing) {D' : List β}
@@ -955,7 +1015,9 @@ docstring of `Schoenflies.CrosscutSplitsRegion`. Everything else in the blueprin
 discharged here: the base cycle and its 2-connectivity (`Schoenflies/FaceCycles.lean`), that
 its realisation separates the plane (`Graph.IsDrawing.cycle_isSeparating`), that the ear lies in
 one face and is a crosscut of it, that all other faces are unchanged, and that the two new
-faces are bounded by the two cycles the ear splices onto the two arcs of the old one. -/
+faces are bounded by the two cycles the ear splices onto the two arcs of the old one.
+@isnad1 id=hasfacec.4h3v.s5.5aee6c18c2cc from=translated src=- shape=3f5aa86b vocab=c09635bf
+-/
 theorem face_cycles [G.Finite] (hobl : CrosscutSplitsRegion) (h : IsDrawing G drawing)
     (hpoly : ∀ g ∈ E(G), IsPolygonal (edgeArc drawing g)) (hG : G.IsTwoConnected) :
     HasFaceCycles G drawing := by

@@ -92,7 +92,9 @@ namespace Schoenflies
 
 namespace Plane
 
-/-- Two points of the plane agreeing in two distinct coordinates are equal. -/
+/-- Two points of the plane agreeing in two distinct coordinates are equal.
+@isnad1 id=eq.3h4v.s7.849acaebd249 from=translated src=- shape=442b1d26 vocab=b6cf64df
+-/
 theorem coord_ext {i j : Fin 2} (hij : i ≠ j) {z w : Plane} (hi : z i = w i) (hj : z j = w j) :
     z = w := by
   ext k
@@ -106,9 +108,15 @@ theorem coord_ext {i j : Fin 2} (hij : i ≠ j) {z w : Plane} (hi : z i = w i) (
 noncomputable def axisVec (j : Fin 2) : Plane :=
   mk (if j = 0 then 1 else 0) (if j = 1 then 1 else 0)
 
+/--
+@isnad1 id=eq.0h1v.s6.754c6cd39872 from=translated src=- shape=0b635671 vocab=1a14cd4b
+-/
 @[simp] theorem axisVec_self (j : Fin 2) : axisVec j j = 1 := by
   fin_cases j <;> simp [axisVec]
 
+/--
+@isnad1 id=eq.1h2v.s6.062d67ec06fe from=translated src=- shape=23e792db vocab=1a14cd4b
+-/
 theorem axisVec_of_ne {i j : Fin 2} (h : i ≠ j) : axisVec j i = 0 := by
   revert h; fin_cases i <;> fin_cases j <;> intro h <;> simp_all [axisVec]
 
@@ -118,9 +126,15 @@ curve are named without committing to which of the two coordinates is the horizo
 noncomputable def setCoord (z : Plane) (j : Fin 2) (t : ℝ) : Plane :=
   z + (t - z j) • axisVec j
 
+/--
+@isnad1 id=eq.0h3v.s5.b8f7b64b1d11 from=translated src=- shape=30c14e6e vocab=e8fcea65
+-/
 @[simp] theorem setCoord_self (z : Plane) (j : Fin 2) (t : ℝ) : setCoord z j t j = t := by
   simp [setCoord]
 
+/--
+@isnad1 id=eq.1h4v.s6.5170ff825c27 from=translated src=- shape=04ec9547 vocab=e8fcea65
+-/
 theorem setCoord_of_ne {i j : Fin 2} (h : i ≠ j) (z : Plane) (t : ℝ) :
     setCoord z j t i = z i := by
   simp [setCoord, axisVec_of_ne h]
@@ -129,25 +143,33 @@ theorem setCoord_of_ne {i j : Fin 2} (h : i ≠ j) (z : Plane) (t : ℝ) :
 
 variable {k : Fin 2} {r : ℝ} {s t z : Plane}
 
-/-- A coordinate constant at both ends of a segment is constant along it. -/
+/-- A coordinate constant at both ends of a segment is constant along it.
+@isnad1 id=eq.3h5v.s8.a77bdf0c0ab1 from=translated src=- shape=9f61079b vocab=541b97b7
+-/
 theorem coord_eq_of_mem_segment (hs : s k = r) (ht : t k = r) (hz : z ∈ segment ℝ s t) :
     z k = r :=
   le_antisymm ((convex_coord_le k r).segment_subset hs.le ht.le hz)
     ((convex_coord_ge k r).segment_subset hs.ge ht.ge hz)
 
-/-- A lower bound on a coordinate at both ends of a segment holds along it. -/
+/-- A lower bound on a coordinate at both ends of a segment holds along it.
+@isnad1 id=le.3h5v.s7.dccfe40073a5 from=translated src=- shape=6e9b63ae vocab=9324e5a1
+-/
 theorem le_coord_of_mem_segment (hs : r ≤ s k) (ht : r ≤ t k) (hz : z ∈ segment ℝ s t) :
     r ≤ z k :=
   (convex_coord_ge k r).segment_subset hs ht hz
 
-/-- An upper bound on a coordinate at both ends of a segment holds along it. -/
+/-- An upper bound on a coordinate at both ends of a segment holds along it.
+@isnad1 id=le.3h5v.s8.591491feea3c from=translated src=- shape=9f61079b vocab=9324e5a1
+-/
 theorem coord_le_of_mem_segment (hs : s k ≤ r) (ht : t k ≤ r) (hz : z ∈ segment ℝ s t) :
     z k ≤ r :=
   (convex_coord_le k r).segment_subset hs ht hz
 
 end Plane
 
-/-- Injectivity of a three-element vector, from the three distinctness facts. -/
+/-- Injectivity of a three-element vector, from the three distinctness facts.
+@isnad1 id=injectiv.3h4v.s5.40d9db109e05 from=translated src=- shape=344bd090 vocab=ef2c2e29
+-/
 theorem injective_three {α : Type*} {a b c : α} (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c) :
     Function.Injective ![a, b, c] := by
   intro k l hkl
@@ -157,7 +179,9 @@ theorem injective_three {α : Type*} {a b c : α} (hab : a ≠ b) (hac : a ≠ c
 
 /-- **An arc splits at any of its interior points** into two arcs which cover it and meet
 exactly there. This is the arc analogue of `IsJordanCurve.two_arcs`, and is what turns each
-branch of the configuration below into two branch paths of the `K(3,3)`. -/
+branch of the configuration below into two branch paths of the `K(3,3)`.
+@isnad1 id=ex.4h4v.s6.8e798e32e375 from=translated src=- shape=a8e25da1 vocab=61f79c2a
+-/
 theorem IsArcBetween.exists_split {A : Set Plane} {p q z : Plane} (h : IsArcBetween A p q)
     (hz : z ∈ A) (hzp : z ≠ p) (hzq : z ≠ q) :
     ∃ A₁ A₂, IsArcBetween A₁ p z ∧ IsArcBetween A₂ z q ∧ A₁ ∪ A₂ = A ∧ A₁ ∩ A₂ = {z} := by
@@ -191,7 +215,9 @@ running from `x 0` to `x 1`, each cut at the point `y j`; row `2` holds three fu
 carried by sets `Sg j`, that all issue from `x 2`.
 
 The hypotheses are exactly what the separation proof below has to hand, and nothing about
-their geometry is used: only the listed intersections. -/
+their geometry is used: only the listed intersections.
+@isnad1 id=isarck33.11h5v.s9.0891f6a23c27 from=translated src=- shape=9c229eec vocab=7d59a3b1
+-/
 theorem isArcK33_of_pieces {x y : Fin 3 → Plane} {P : Fin 3 → Fin 3 → Set Plane}
     {Ch Sg : Fin 3 → Set Plane}
     (harc : ∀ i j, IsArcBetween (P i j) (x i) (y j))
@@ -258,7 +284,9 @@ open Plane
 /-! ### The separation proof -/
 
 /-- A chord and an exterior detour across the two arcs force a planar `K(3,3)`
-configuration if the complement were connected. -/
+configuration if the complement were connected.
+@isnad1 id=not.14h8v.s8.e978df9f3296 from=translated src=- shape=f5bbebc1 vocab=f8b9ed47
+-/
 theorem not_isPreconnected_of_arc_chord_detour
     {C C₁ C₂ L₅ : Set Plane} {p₁ p₂ a b : Plane}
     (hCopen : IsOpen Cᶜ) (harc₁ : IsArcBetween C₁ p₁ p₂)
@@ -453,7 +481,9 @@ theorem not_isPreconnected_of_arc_chord_detour
 
 `i` is the blueprint's horizontal direction and `j` its vertical one; the hypothesis on `u`
 and `v` is that the projection of `C` to the `i`-th coordinate has nonzero width, which is all
-the blueprint's rotation achieves. `IsJordanCurve.not_isPreconnected_compl` discharges it. -/
+the blueprint's rotation achieves. `IsJordanCurve.not_isPreconnected_compl` discharges it.
+@isnad1 id=not.5h5v.s7.3b6ca94176a1 from=translated src=- shape=f7fb1518 vocab=8ea9a729
+-/
 theorem not_isPreconnected_compl_of_coord {C : Set Plane} (hC : IsJordanCurve C)
     {i j : Fin 2} (hij : i ≠ j) {u v : Plane} (hu : u ∈ C) (hv : v ∈ C) (huv : u i ≠ v i) :
     ¬ IsPreconnected Cᶜ := by
@@ -599,7 +629,9 @@ theorem not_isPreconnected_compl_of_coord {C : Set Plane} (hC : IsJordanCurve C)
 /-! ### The headline -/
 
 /-- A Jordan curve carries two distinct points: the loop parametrising it is injective on
-`[0, 1)`, which has two distinct points. -/
+`[0, 1)`, which has two distinct points.
+@isnad1 id=ex.1h1v.s5.6dc0ea35da60 from=translated src=- shape=76d02e52 vocab=aa3046a6
+-/
 theorem IsJordanCurve.exists_ne {C : Set Plane} (hC : IsJordanCurve C) :
     ∃ u ∈ C, ∃ v ∈ C, u ≠ v := by
   obtain ⟨g, hg, rfl⟩ := hC
@@ -617,7 +649,9 @@ The direction hypothesis of `not_isPreconnected_compl_of_coord` is discharged he
 has two distinct points, so they differ in one of the two coordinates, and that coordinate
 plays the role of the blueprint's horizontal one. No rotation is performed — the proof is run
 for whichever coordinate projection has nonzero width, with the two coordinate indices carried
-as parameters. -/
+as parameters.
+@isnad1 id=not.1h1v.s5.0940d0688504 from=translated src=- shape=fd1a4e39 vocab=d8438abc
+-/
 theorem IsJordanCurve.not_isPreconnected_compl {C : Set Plane} (hC : IsJordanCurve C) :
     ¬ IsPreconnected Cᶜ := by
   obtain ⟨u, hu, v, hv, huv⟩ := hC.exists_ne
@@ -635,7 +669,9 @@ Jordan curve has at least two connected components. Stated as two of its points 
 different components, since that is what `thm:jordan` starts from.
 
 It is genuinely the same statement: a set all of whose points share one component *is* that
-component, and a component is preconnected. -/
+component, and a component is preconnected.
+@isnad1 id=ex.1h1v.s7.bf366d8fb036 from=translated src=- shape=98c757f4 vocab=c38f2cd8
+-/
 theorem IsJordanCurve.exists_connectedComponentIn_ne {C : Set Plane} (hC : IsJordanCurve C) :
     ∃ u ∈ Cᶜ, ∃ v ∈ Cᶜ, connectedComponentIn Cᶜ u ≠ connectedComponentIn Cᶜ v := by
   by_contra hcon
@@ -656,7 +692,9 @@ the outside of that square is connected and misses it, so the whole outside lies
 component of the complement — the only unbounded one. -/
 
 /-- **The unbounded component of the complement of a compact set.** It exists, it swallows the
-outside of any square containing the set, and it is the only unbounded component. -/
+outside of any square containing the set, and it is the only unbounded component.
+@isnad1 id=ex.1h1v.s8.485397b77789 from=translated src=- shape=c42f8a61 vocab=8c475d34
+-/
 theorem exists_unique_unbounded_connectedComponentIn_compl {C : Set Plane} (hC : IsCompact C) :
     ∃ base ∈ Cᶜ, ¬ Bornology.IsBounded (connectedComponentIn Cᶜ base) ∧
       ∀ z ∈ Cᶜ, ¬ Bornology.IsBounded (connectedComponentIn Cᶜ z) →

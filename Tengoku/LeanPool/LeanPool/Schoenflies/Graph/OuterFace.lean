@@ -39,7 +39,9 @@ namespace Graph
 variable {β : Type*} {G : Graph Plane β} {drawing : β → ℝ → Plane}
 
 /-- A closed axis-parallel square is bounded: it sits inside a Euclidean ball of radius
-`√2 · r`, by the norm comparison. -/
+`√2 · r`, by the norm comparison.
+@isnad1 id=isbounde.0h1v.s6.4c7348c789e0 from=translated src=- shape=a8068374 vocab=f360f119
+-/
 theorem isBounded_closedSquare (r : ℝ) :
     Bornology.IsBounded (Schoenflies.Plane.closedSquare 0 r) := by
   refine (Metric.isBounded_closedBall (x := (0 : Plane)) (r := Real.sqrt 2 * r)).subset ?_
@@ -51,12 +53,16 @@ theorem isBounded_closedSquare (r : ℝ) :
     exact mul_le_mul_of_nonneg_left hsup (Real.sqrt_nonneg 2)
   simpa [Metric.mem_closedBall, dist_eq_norm] using this
 
-/-- A square containing the whole drawing. -/
+/-- A square containing the whole drawing.
+@isnad1 id=ex.1h3v.s6.dc2b47d1c1d8 from=translated src=- shape=d0e346e9 vocab=dea120be
+-/
 theorem IsDrawing.exists_closedSquare [G.Finite] (h : IsDrawing G drawing) :
     ∃ r : ℝ, 0 ≤ r ∧ pointSet G drawing ⊆ Schoenflies.Plane.closedSquare 0 r :=
   Schoenflies.Plane.exists_closedSquare_of_isBounded h.isCompact_pointSet.isBounded
 
-/-- Outside a square containing the drawing, every point is in the exterior. -/
+/-- Outside a square containing the drawing, every point is in the exterior.
+@isnad1 id=le.1h4v.s6.a13883b5690e from=translated src=- shape=2bc93408 vocab=907d2c8c
+-/
 theorem beyondSquare_subset_exterior {r : ℝ}
     (hr : pointSet G drawing ⊆ Schoenflies.Plane.closedSquare 0 r) :
     Schoenflies.Plane.beyondSquare r ⊆ exterior G drawing := by
@@ -64,7 +70,9 @@ theorem beyondSquare_subset_exterior {r : ℝ}
   exact compl_subset_compl.2 hr
 
 /-- The outside of a containing square lies wholly inside one face — the face through any of
-its points. This is the working form of "there is an outer face". -/
+its points. This is the working form of "there is an outer face".
+@isnad1 id=le.2h5v.s6.7321d2dbc9d4 from=translated src=- shape=e39be516 vocab=22ee8870
+-/
 theorem beyondSquare_subset_face {r : ℝ}
     (hr : pointSet G drawing ⊆ Schoenflies.Plane.closedSquare 0 r) {base : Plane}
     (hbase : base ∈ Schoenflies.Plane.beyondSquare r) :
@@ -72,7 +80,9 @@ theorem beyondSquare_subset_face {r : ℝ}
   (Schoenflies.Plane.isConnected_beyondSquare r).isPreconnected.subset_connectedComponentIn
     hbase (beyondSquare_subset_exterior hr)
 
-/-- The outside of a square is unbounded: it contains points of every size. -/
+/-- The outside of a square is unbounded: it contains points of every size.
+@isnad1 id=not.0h1v.s5.fbe37df49a91 from=translated src=- shape=90e8939d vocab=1718c5cd
+-/
 theorem not_isBounded_beyondSquare (r : ℝ) :
     ¬ Bornology.IsBounded (Schoenflies.Plane.beyondSquare r) := by
   intro hb
@@ -100,7 +110,9 @@ theorem not_isBounded_beyondSquare (r : ℝ) :
   rw [abs_of_nonneg ht0] at h1
   linarith
 
-/-- Some face is unbounded. -/
+/-- Some face is unbounded.
+@isnad1 id=ex.1h3v.s6.4de795b87697 from=translated src=- shape=31ee98d6 vocab=e35ad40d
+-/
 theorem exists_unbounded_face [G.Finite] (h : IsDrawing G drawing) :
     ∃ base ∈ exterior G drawing, ¬ Bornology.IsBounded (face G drawing base) := by
   obtain ⟨r, hr0, hr⟩ := h.exists_closedSquare
@@ -111,7 +123,9 @@ theorem exists_unbounded_face [G.Finite] (h : IsDrawing G drawing) :
   exact not_isBounded_beyondSquare r (hb.subset (beyondSquare_subset_face hr hmem))
 
 /-- Any two unbounded faces coincide: an unbounded face escapes every containing square, so it
-swallows the whole outside and is named by any point of it. -/
+swallows the whole outside and is named by any point of it.
+@isnad1 id=eq.3h5v.s7.4cb7fb0b572d from=translated src=- shape=a220b21f vocab=86e4d2a4
+-/
 theorem unbounded_face_unique [G.Finite] (h : IsDrawing G drawing) {b c : Plane}
     (hbu : ¬ Bornology.IsBounded (face G drawing b))
     (hcu : ¬ Bornology.IsBounded (face G drawing c)) :

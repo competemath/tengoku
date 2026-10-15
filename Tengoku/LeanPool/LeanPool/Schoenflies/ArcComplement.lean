@@ -119,26 +119,45 @@ def segGraph (S : Set Piece) : Graph Plane Piece where
 
 variable {S T : Set Piece} {P : Piece} {x y v : Plane}
 
+/--
+@isnad1 id=eq.0h1v.s5.661d9dcc57e7 from=translated src=- shape=e9472b43 vocab=fa81eecc
+-/
 @[simp] theorem segGraph_vertexSet (S : Set Piece) :
     V(segGraph S) = {v | ∃ P ∈ S, v = P.1 ∨ v = P.2} := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.9f81be41c66d from=translated src=- shape=4d38b331 vocab=5bcf8162
+-/
 @[simp] theorem segGraph_edgeSet (S : Set Piece) : E(segGraph S) = S := rfl
 
+/--
+@isnad1 id=iff.0h4v.s5.284631055fa4 from=translated src=- shape=8cbe0939 vocab=1fd452b4
+-/
 @[simp] theorem segGraph_isLink :
     (segGraph S).IsLink P x y ↔ P ∈ S ∧ ((x = P.1 ∧ y = P.2) ∨ (x = P.2 ∧ y = P.1)) := Iff.rfl
 
+/--
+@isnad1 id=iff.0h2v.s5.97159562d735 from=translated src=- shape=279bb143 vocab=b578438b
+-/
 theorem mem_vertexSet_segGraph : v ∈ V(segGraph S) ↔ ∃ P ∈ S, v = P.1 ∨ v = P.2 := Iff.rfl
 
-/-- An end of an edge is a vertex. -/
+/-- An end of an edge is a vertex.
+@isnad1 id=mem.2h3v.s5.870718f08c21 from=translated src=- shape=2c142f3d vocab=b578438b
+-/
 theorem mem_vertexSet_segGraph_of_end (hP : P ∈ S) (h : v = P.1 ∨ v = P.2) :
     v ∈ V(segGraph S) := ⟨P, hP, h⟩
 
 /-- **More edges, larger graph.**  This is the whole point of `segGraph`: the pieces of the
-chain are subgraphs of one ambient overlay by construction. -/
+chain are subgraphs of one ambient overlay by construction.
+@isnad1 id=le.1h2v.s5.6a942a11d183 from=translated src=- shape=fe6ef9c6 vocab=0d01a8b4
+-/
 theorem segGraph_mono (h : S ⊆ T) : segGraph S ≤ segGraph T where
   vertexSet_mono := by rintro v ⟨P, hP, hv⟩; exact ⟨P, h hP, hv⟩
   isLink_mono := by rintro P a b ⟨hP, hab⟩; exact ⟨h hP, hab⟩
 
+/--
+@isnad1 id=finite.1h1v.s3.912519d2da03 from=translated src=- shape=d19de052 vocab=5a03fb93
+-/
 theorem segGraph_finite (hS : S.Finite) : Graph.Finite (segGraph S) where
   finite_vertexSet := by
     refine Set.Finite.subset ((hS.image (fun P : Piece => P.1)).union
@@ -148,12 +167,16 @@ theorem segGraph_finite (hS : S.Finite) : Graph.Finite (segGraph S) where
   finite_edgeSet := hS
 
 /-- **The overlay graph is the graph spanned by its own edge list.**  Definitional, so that a
-subset of the overlay pieces spans a subgraph of the overlay with nothing to prove. -/
+subset of the overlay pieces spans a subgraph of the overlay with nothing to prove.
+@isnad1 id=eq.0h2v.s4.6485921e33a8 from=translated src=- shape=9372ab2d vocab=10cc9fe0
+-/
 theorem overlayGraph_eq_segGraph (pieces : List Piece) (points : List Plane) :
     overlayGraph pieces points = segGraph {Q | Q ∈ overlayPieces pieces points} := rfl
 
 /-- What a spanned graph occupies is the union of its segments: every vertex is an end of an
-edge, so the vertices add nothing. -/
+edge, so the vertices add nothing.
+@isnad1 id=eq.0h1v.s5.82ccbc6d6b3d from=translated src=- shape=650dc2c2 vocab=5037eee0
+-/
 theorem pointSet_segGraph (S : Set Piece) :
     Graph.pointSet (segGraph S) segmentDrawing = ⋃ P ∈ S, P.seg := by
   ext z
@@ -177,7 +200,9 @@ overlay, not an overlay of the four sides of that square alone. -/
 /-- **Every point of a source segment lies on an overlay edge inside that source segment.**
 `Schoenflies.exists_overlayPiece_end_subset` is the same statement for a *cut* point, with the
 edge pinned so as to have that point among its ends; this is the plain covering form, and it is
-what makes the part of the overlay on a square occupy the whole of that square's boundary. -/
+what makes the part of the overlay on a square occupy the whole of that square's boundary.
+@isnad1 id=ex.2h4v.s5.19362901fb0c from=translated src=- shape=931c5ae2 vocab=688a8d20
+-/
 theorem exists_overlayPiece_mem_subset {pieces : List Piece} {points : List Plane}
     {x : Plane} {P₀ : Piece} (hP₀ : P₀ ∈ pieces) (hx : x ∈ P₀.seg) :
     ∃ Q ∈ overlayPieces pieces points, x ∈ Q.seg ∧ Q.seg ⊆ P₀.seg := by
@@ -210,15 +235,27 @@ def squareGraph (pieces : List Piece) (points : List Plane) (c : Plane) (r : ℝ
     Graph Plane Piece :=
   segGraph (squareEdges pieces points c r)
 
+/--
+@isnad1 id=finite.0h4v.s4.f6d1bbf2ea1e from=translated src=- shape=291c8ce6 vocab=72ecd4d7
+-/
 theorem squareEdges_finite : (squareEdges pieces points c r).Finite :=
   (overlayPieces pieces points).finite_toSet.subset fun _ hQ => hQ.1
 
+/--
+@isnad1 id=le.0h4v.s5.eeec2b6b57e2 from=translated src=- shape=26d71411 vocab=3b4589c8
+-/
 theorem squareGraph_le : squareGraph pieces points c r ≤ overlayGraph pieces points :=
   segGraph_mono fun _ hQ => hQ.1
 
+/--
+@isnad1 id=finite.0h4v.s4.d61a132a25aa from=translated src=- shape=349b8c9d vocab=06d7b0c3
+-/
 instance squareGraph_finite : Graph.Finite (squareGraph pieces points c r) :=
   segGraph_finite squareEdges_finite
 
+/--
+@isnad1 id=le.0h4v.s6.306a16a19f25 from=translated src=- shape=b8856a5b vocab=dba14bae
+-/
 theorem pointSet_squareGraph_subset :
     Graph.pointSet (squareGraph pieces points c r) segmentDrawing ⊆
       frontier (Plane.closedSquare c r) := by
@@ -227,7 +264,9 @@ theorem pointSet_squareGraph_subset :
 
 /-- **The part of the overlay on a square occupies the whole square boundary.**  Every point of
 the boundary lies on one of the four sides, and the overlay subdivides that side into pieces
-that stay inside it. -/
+that stay inside it.
+@isnad1 id=eq.2h4v.s6.8221345d7475 from=translated src=- shape=d03de610 vocab=e936356b
+-/
 theorem pointSet_squareGraph (hr : 0 ≤ r) (hsub : ∀ P ∈ squarePieces c r, P ∈ pieces) :
     Graph.pointSet (squareGraph pieces points c r) segmentDrawing =
       frontier (Plane.closedSquare c r) := by
@@ -244,7 +283,9 @@ theorem pointSet_squareGraph (hr : 0 ≤ r) (hsub : ∀ P ∈ squarePieces c r, 
 
 /-- A cut point on a square boundary is a **vertex** of the part of the overlay on that
 square.  This is what turns "two nearby squares meet in two points" into the two common
-*vertices* that `Graph.IsTwoConnected.union` consumes. -/
+*vertices* that `Graph.IsTwoConnected.union` consumes.
+@isnad1 id=mem.5h5v.s7.32841226ded5 from=translated src=- shape=7a46744b vocab=848b566e
+-/
 theorem mem_vertexSet_squareGraph (hnd : ∀ P ∈ pieces, P.Nondeg) (hr : 0 ≤ r)
     (hsub : ∀ P ∈ squarePieces c r, P ∈ pieces) {z : Plane} (hz : z ∈ points)
     (hzf : z ∈ frontier (Plane.closedSquare c r)) :
@@ -261,7 +302,9 @@ theorem mem_vertexSet_squareGraph (hnd : ∀ P ∈ pieces, P.Nondeg) (hr : 0 ≤
 
 /-- **Two nearby congruent squares contribute two common vertices**, each a vertex of the part
 of the overlay lying on its own square.  With equal centres this produces two vertices of one
-square, which is how consecutive links of the chain are shown to meet. -/
+square, which is how consecutive links of the chain are shown to meet.
+@isnad1 id=ex.6h5v.s7.f8316921513c from=translated src=- shape=67db52f7 vocab=fdf6d0e0
+-/
 theorem exists_two_vertices_squareGraph (hnd : ∀ P ∈ pieces, P.Nondeg)
     (hMeets : MeetsAreCut pieces points) (hr : 0 < r) (hd : Plane.supDist c₁ c₂ < r)
     (h₁ : ∀ P ∈ squarePieces c₁ r, P ∈ pieces) (h₂ : ∀ P ∈ squarePieces c₂ r, P ∈ pieces) :
@@ -293,15 +336,24 @@ noncomputable def familyPieces (c : ℕ → Plane) (N : ℕ) (r : ℝ) : List Pi
 
 variable {c : ℕ → Plane} {N m i j : ℕ}
 
+/--
+@isnad1 id=iff.0h4v.s5.75d6654d6fd0 from=translated src=- shape=d3bc6912 vocab=378fa800
+-/
 theorem mem_familyPieces {P : Piece} :
     P ∈ familyPieces c N r ↔ ∃ j ≤ N, P ∈ squarePieces (c j) r := by
   simp only [familyPieces, List.mem_flatMap, List.mem_range]
   exact ⟨fun ⟨j, hj, hP⟩ => ⟨j, by omega, hP⟩, fun ⟨j, hj, hP⟩ => ⟨j, by omega, hP⟩⟩
 
+/--
+@isnad1 id=mem.2h5v.s5.21788f6695b3 from=translated src=- shape=1d5fbd26 vocab=378fa800
+-/
 theorem squarePieces_subset_familyPieces (hj : j ≤ N) :
     ∀ P ∈ squarePieces (c j) r, P ∈ familyPieces c N r :=
   fun _ hP => mem_familyPieces.2 ⟨j, hj, hP⟩
 
+/--
+@isnad1 id=nondeg.2h4v.s5.d9bd3bb12b13 from=translated src=- shape=5295b439 vocab=880a6362
+-/
 theorem familyPieces_nondeg (hr : 0 < r) : ∀ P ∈ familyPieces c N r, P.Nondeg := by
   intro P hP
   obtain ⟨j, -, hPj⟩ := mem_familyPieces.1 hP
@@ -313,9 +365,15 @@ produces them existentially; naming them here is what lets every chain link be a
 noncomputable def familyPoints (c : ℕ → Plane) (N : ℕ) (r : ℝ) : List Plane :=
   (exists_cut_points (familyPieces c N r)).choose
 
+/--
+@isnad1 id=endsarec.0h3v.s4.fcd8e980168a from=translated src=- shape=9c712c4a vocab=a05671ea
+-/
 theorem familyPoints_endsAreCut : EndsAreCut (familyPieces c N r) (familyPoints c N r) :=
   (exists_cut_points (familyPieces c N r)).choose_spec.1
 
+/--
+@isnad1 id=meetsare.0h3v.s4.bf3ff90be1bc from=translated src=- shape=9c712c4a vocab=014e8e4b
+-/
 theorem familyPoints_meetsAreCut : MeetsAreCut (familyPieces c N r) (familyPoints c N r) :=
   (exists_cut_points (familyPieces c N r)).choose_spec.2
 
@@ -334,28 +392,47 @@ sample they have in common. -/
 noncomputable def familyChain (c : ℕ → Plane) (N m : ℕ) (r : ℝ) (i : ℕ) : Graph Plane Piece :=
   Graph.chainUnion (familySquare c N r) (i * m) m
 
+/--
+@isnad1 id=le.0h4v.s5.4a18ac2397d2 from=translated src=- shape=e7ac4941 vocab=ada2b661
+-/
 theorem familySquare_le : familySquare c N r j ≤ familyOverlay c N r := squareGraph_le
 
+/--
+@isnad1 id=finite.0h4v.s4.89610659c7f2 from=translated src=- shape=797c3ad5 vocab=fd0d958b
+-/
 instance familySquare_finite : Graph.Finite (familySquare c N r j) := squareGraph_finite
 
+/--
+@isnad1 id=le.0h5v.s5.af4a9bb318c4 from=translated src=- shape=696278c6 vocab=05ec416d
+-/
 theorem familyChain_le : familyChain c N m r i ≤ familyOverlay c N r :=
   Graph.chainUnion_le fun _ _ _ => familySquare_le
 
+/--
+@isnad1 id=finite.0h5v.s4.2fb70b65e733 from=translated src=- shape=e047cf89 vocab=b1443e53
+-/
 theorem familyChain_finite : (familyChain c N m r i).Finite :=
   Graph.chainUnion_finite fun _ _ _ => familySquare_finite
 
-/-- The drawing of the ambient overlay: every edge is a straight segment. -/
+/-- The drawing of the ambient overlay: every edge is a straight segment.
+@isnad1 id=isdrawin.1h3v.s4.c93be59cd5a1 from=translated src=- shape=a6aade14 vocab=a05f74d5
+-/
 theorem familyOverlay_isDrawing (hr : 0 < r) :
     Graph.IsDrawing (familyOverlay c N r) segmentDrawing :=
   overlayGraph_isDrawing _ _ (familyPieces_nondeg hr) familyPoints_endsAreCut
     familyPoints_meetsAreCut
 
+/--
+@isnad1 id=eq.2h4v.s6.fbd8c998447b from=translated src=- shape=50c31b90 vocab=546fc23c
+-/
 theorem pointSet_familySquare (hr : 0 < r) (hj : j ≤ N) :
     Graph.pointSet (familySquare c N r j) segmentDrawing =
       frontier (Plane.closedSquare (c j) r) :=
   pointSet_squareGraph hr.le (squarePieces_subset_familyPieces hj)
 
-/-- A point of a chain link lies on one of that link's squares. -/
+/-- A point of a chain link lies on one of that link's squares.
+@isnad1 id=ex.1h6v.s6.916f56c9c3c6 from=translated src=- shape=8f79b598 vocab=c321ab70
+-/
 theorem exists_mem_frontier_of_mem_pointSet_familyChain {z : Plane}
     (hz : z ∈ Graph.pointSet (familyChain c N m r i) segmentDrawing) :
     ∃ j, i * m ≤ j ∧ j ≤ i * m + m ∧ z ∈ frontier (Plane.closedSquare (c j) r) := by
@@ -376,6 +453,9 @@ def SquaresTwoConnected : Prop :=
     ∀ (c : Plane) (r : ℝ), 0 < r → (∀ P ∈ squarePieces c r, P ∈ pieces) →
       (squareGraph pieces points c r).IsTwoConnected
 
+/--
+@isnad1 id=istwocon.3h4v.s5.f3dbd4b3793c from=translated src=- shape=ebfb148b vocab=bacbe1a8
+-/
 theorem familySquare_isTwoConnected (h2c : SquaresTwoConnected) (hr : 0 < r) (hj : j ≤ N) :
     (familySquare c N r j).IsTwoConnected :=
   h2c _ _ (familyPieces_nondeg hr) familyPoints_endsAreCut familyPoints_meetsAreCut _ r hr
@@ -383,7 +463,9 @@ theorem familySquare_isTwoConnected (h2c : SquaresTwoConnected) (hr : 0 < r) (hj
 
 /-- Two squares whose centres are within one radius contribute two common vertices to the two
 parts of the overlay lying on them.  With equal centres this gives two vertices of one square,
-which is how consecutive links of the chain are shown to meet. -/
+which is how consecutive links of the chain are shown to meet.
+@isnad1 id=ex.4h5v.s6.709a336b55ed from=translated src=- shape=1b747943 vocab=cbe88a90
+-/
 theorem exists_two_vertices_familySquare (hr : 0 < r) {j j' : ℕ} (hj : j ≤ N) (hj' : j' ≤ N)
     (hd : Plane.supDist (c j) (c j') < r) :
     ∃ a b : Plane, a ≠ b ∧ a ∈ V(familySquare c N r j) ∧ a ∈ V(familySquare c N r j') ∧
@@ -392,7 +474,9 @@ theorem exists_two_vertices_familySquare (hr : 0 < r) {j j' : ℕ} (hj : j ≤ N
     (squarePieces_subset_familyPieces hj) (squarePieces_subset_familyPieces hj')
 
 /-- Each link of the chain is 2-connected: consecutive squares in it share two vertices, so
-`lem:union-two-connected` applies all the way along. -/
+`lem:union-two-connected` applies all the way along.
+@isnad1 id=istwocon.4h5v.s6.96a28647638f from=translated src=- shape=581ff93b vocab=4a9daafa
+-/
 theorem familyChain_isTwoConnected (h2c : SquaresTwoConnected) (hr : 0 < r)
     (hi : i * m + m ≤ N) (hstep : ∀ q < N, Plane.supDist (c q) (c (q + 1)) < r) :
     (familyChain c N m r i).IsTwoConnected :=
@@ -414,7 +498,9 @@ of the edges of the one overlay `familyOverlay c N r`. -/
 The two geometric hypotheses are the blueprint's: consecutive centres are closer than one square
 radius (`hstep`), and centres belonging to nonconsecutive links are more than two radii apart
 (`hfar`).  Everything else — one ambient graph, one drawing, finiteness, polygonality — is
-discharged by the construction. -/
+discharged by the construction.
+@isnad1 id=isplanec.6h5v.s7.c7fe349c9c59 from=translated src=- shape=b934cc29 vocab=89034304
+-/
 theorem isPlaneChain_familyChain {n : ℕ} (h2c : SquaresTwoConnected) (hr : 0 < r)
     (hn : 2 ≤ n) (hN : n * m + m ≤ N)
     (hstep : ∀ q < N, Plane.supDist (c q) (c (q + 1)) < r)
@@ -470,7 +556,9 @@ pairs. -/
 /-- **The outside of a square containing the whole drawing lies in one unbounded face.**
 `Graph.beyondSquare_subset_face` is this statement for a square centred at the origin; the
 chain argument needs it about a square centred at a sample of the arc, and the connectedness of
-the outside of an arbitrary square is `Plane.isConnected_compl_closedSquare`. -/
+the outside of an arbitrary square is `Plane.isConnected_compl_closedSquare`.
+@isnad1 id=and.2h6v.s6.6abdb3ecf559 from=translated src=- shape=75caa2ca vocab=28a12943
+-/
 theorem outer_of_notMem_closedSquare {β : Type*} {G : Graph Plane β} {drawing : β → ℝ → Plane}
     {c₀ : Plane} {R : ℝ} (hsub : Graph.pointSet G drawing ⊆ Plane.closedSquare c₀ R)
     {base : Plane} (hbase : base ∉ Plane.closedSquare c₀ R) :
@@ -481,7 +569,9 @@ theorem outer_of_notMem_closedSquare {β : Type*} {G : Graph Plane β} {drawing 
       hbase (compl_subset_compl.2 hsub)
   exact Plane.not_isBounded_compl_closedSquare c₀ R (hb.subset hsub')
 
-/-- The complement of a square's boundary has the open square as one whole component. -/
+/-- The complement of a square's boundary has the open square as one whole component.
+@isnad1 id=eq.1h3v.s6.50d67434ce8a from=translated src=- shape=75370041 vocab=feecd3c9
+-/
 theorem connectedComponentIn_compl_frontier_closedSquare {c₀ : Plane} {R : ℝ} {z : Plane}
     (hz : z ∈ Plane.openSquare c₀ R) :
     connectedComponentIn (frontier (Plane.closedSquare c₀ R))ᶜ z = Plane.openSquare c₀ R :=
@@ -496,7 +586,9 @@ theorem connectedComponentIn_compl_frontier_closedSquare {c₀ : Plane} {R : ℝ
 /-- **"If it lies inside, the boundary cycle of that square separates it from the outer
 face."**  A point strictly inside a square whose boundary the drawing carries is not in any
 unbounded face: the face would be a connected subset of the complement of that boundary meeting
-the inside, hence inside, hence bounded. -/
+the inside, hence inside, hence bounded.
+@isnad1 id=not.3h7v.s7.2243d3eac970 from=translated src=- shape=2e2f61ac vocab=e76348f5
+-/
 theorem notMem_face_of_mem_openSquare {β : Type*} {G : Graph Plane β} {drawing : β → ℝ → Plane}
     {c₀ : Plane} {R : ℝ} (hfr : frontier (Plane.closedSquare c₀ R) ⊆ Graph.pointSet G drawing)
     {base z : Plane} (hb : ¬ Bornology.IsBounded (Graph.face G drawing base))
@@ -513,7 +605,9 @@ theorem notMem_face_of_mem_openSquare {β : Type*} {G : Graph Plane β} {drawing
 
 /-- **The hypothesis of `lem:outer-chain` on consecutive pairs.**  Every consecutive pair of
 links is contained in one square of radius `R` about the pair's first centre, and `x` is outside
-that square. -/
+that square.
+@isnad1 id=outeronp.2h7v.s7.ade9a58d4f71 from=translated src=- shape=26865ffa vocab=2c275785
+-/
 theorem outerOnPairs_familyChain {n : ℕ} {R : ℝ} {x : Plane}
     (hcontain : ∀ p, p + 1 ≤ n → ∀ j, p * m ≤ j → j ≤ p * m + m + m →
       Plane.supDist (c j) (c (p * m)) + r ≤ R)
@@ -545,7 +639,9 @@ theorem outerOnPairs_familyChain {n : ℕ} {R : ℝ} {x : Plane}
 
 /-- **`lem:outer-chain`, applied to the chain of squares.**  Stated with the two halves of the
 descent step exactly as `Schoenflies/OuterChain.lean` defines them and for *this* chain, so that
-a discharger's terms substitute here with nothing to adapt. -/
+a discharger's terms substitute here with nothing to adapt.
+@isnad1 id=and.2h6v.s6.7c8546ae2a81 from=translated src=- shape=9f3a2d08 vocab=492ed4e1
+-/
 theorem outer_face_familyChain {n : ℕ} {x : Plane}
     (hchain : Graph.IsPlaneChain (familyChain c N m r) segmentDrawing (familyOverlay c N r) n)
     (hout : Graph.OuterOnPairs (familyChain c N m r) segmentDrawing n x) :
@@ -560,6 +656,9 @@ The only place the two metrics have to be compared. `‖·‖ ≤ √2‖·‖�
 Euclidean distance is a *strict* lower bound for the sup distance — which is what turns the
 blueprint's separation constants into square radii. -/
 
+/--
+@isnad1 id=lt.2h3v.s6.c2950199280a from=translated src=- shape=87c3f510 vocab=f0a6416f
+-/
 theorem lt_supDist_of_le_dist {x y : Plane} {t : ℝ} (ht : 0 < t) (h : t ≤ dist x y) :
     t / 2 < Plane.supDist x y := by
   have h2 : Real.sqrt 2 < 2 := by
@@ -571,14 +670,18 @@ theorem lt_supDist_of_le_dist {x y : Plane} {t : ℝ} (ht : 0 < t) (h : t ≤ di
   have hsd : 0 < Plane.supDist x y := by nlinarith
   nlinarith
 
-/-- The block of fine samples belonging to one coarse cell lies in that coarse cell. -/
+/-- The block of fine samples belonging to one coarse cell lies in that coarse cell.
+@isnad1 id=mem.3h4v.s6.35770966c185 from=translated src=- shape=6b47129b vocab=44d43381
+-/
 theorem sample_mem_Icc_of_block {K m j p : ℕ} (hm : 0 < m) (h₁ : p * m ≤ j)
     (h₂ : j ≤ (p + 1) * m) : sample (K * m) j ∈ Icc (sample K p) (sample K (p + 1)) := by
   refine ⟨?_, ?_⟩
   · rw [← sample_mul (k := K) (i := p) hm]; exact sample_mono h₁
   · rw [← sample_mul (k := K) (i := p + 1) hm]; exact sample_mono h₂
 
-/-- Every index below `(n+1)·m` belongs to one of the `n + 1` blocks of length `m`. -/
+/-- Every index below `(n+1)·m` belongs to one of the `n + 1` blocks of length `m`.
+@isnad1 id=ex.1h3v.s6.df6988a6784e from=translated src=- shape=5daa9788 vocab=ebd7a482
+-/
 theorem exists_block_index {j m n : ℕ} (hj : j ≤ (n + 1) * m) :
     ∃ i ≤ n, i * m ≤ j ∧ j ≤ i * m + m := by
   induction n with
@@ -597,7 +700,9 @@ of the descent step of `lem:outer-chain`, quoted verbatim from `Schoenflies/Oute
 `h2c` is the 2-connectivity of one subdivided square, discussed at `SquaresTwoConnected`. -/
 
 /-- **The heart of `thm:arc-complement`**: two points off a simple arc lie in a common open
-connected set missing the arc — the outer face of the chain of small squares along the arc. -/
+connected set missing the arc — the outer face of the chain of small squares along the arc.
+@isnad1 id=ex.4h3v.s7.dd2845a70845 from=translated src=- shape=0a3a343d vocab=8239ec0e
+-/
 theorem exists_face_of_notMem_arc {A : Set Plane} (hA : IsArc A) (h2c : SquaresTwoConnected)
     {u w : Plane} (hu : u ∉ A) (hw : w ∉ A) :
     ∃ F : Set Plane, IsOpen F ∧ IsConnected F ∧ u ∈ F ∧ w ∈ F ∧ Disjoint F A := by
@@ -754,7 +859,9 @@ theorem exists_face_of_notMem_arc {A : Set Plane} (hA : IsArc A) (h2c : SquaresT
 
 /-- **`thm:arc-complement`, the polygonal half.**  Two distinct points off a simple arc are
 joined, off the arc, by a *simple polygonal* arc.  This is the form `lem:accessible-dense`
-consumes; the joining is `lem:polygonal-connected` inside the outer face. -/
+consumes; the joining is `lem:polygonal-connected` inside the outer face.
+@isnad1 id=ex.5h3v.s5.f7eaba8027f7 from=translated src=- shape=2dc724a2 vocab=9df0a471
+-/
 theorem exists_simple_poly_compl_arc {A : Set Plane} (hA : IsArc A) (h2c : SquaresTwoConnected)
     {u w : Plane} (huw : u ≠ w) (hu : u ∉ A) (hw : w ∉ A) :
     ∃ P : Set Plane, IsPolygonal P ∧ IsArcBetween P u w ∧ P ⊆ Aᶜ := by
@@ -768,7 +875,9 @@ theorem exists_simple_poly_compl_arc {A : Set Plane} (hA : IsArc A) (h2c : Squar
     exacts [hu, hw]
   · exact Set.disjoint_left.1 hFA (hPsub ⟨hz, by simpa using hzuw⟩)
 
-/-- **`thm:arc-complement`.**  The complement of a simple arc in the plane is connected. -/
+/-- **`thm:arc-complement`.**  The complement of a simple arc in the plane is connected.
+@isnad1 id=isconnec.2h1v.s5.d770ee3fe712 from=translated src=- shape=fb1cf482 vocab=80e56825
+-/
 theorem isConnected_compl_arc {A : Set Plane} (hA : IsArc A) (h2c : SquaresTwoConnected) :
     IsConnected Aᶜ := by
   refine ⟨?_, isPreconnected_of_forall_pair fun z hz y hy => ?_⟩

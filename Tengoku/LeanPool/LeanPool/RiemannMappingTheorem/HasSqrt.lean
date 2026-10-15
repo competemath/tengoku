@@ -34,6 +34,9 @@ def hasLogs (U : Set ℂ) : Prop :=
   ∀ f : ℂ → ℂ, DifferentiableOn ℂ f U → (∀ z ∈ U, f z ≠ 0) →
   ∃ g : ℂ → ℂ, DifferentiableOn ℂ g U ∧ EqOn f (exp ∘ g) U
 
+/--
+@isnad1 id=eqon.6h3v.s7.b320d364dade from=translated src=- shape=3202ad2e vocab=3fa5bdb9
+-/
 lemma EqOn_zero_of_deriv_eq_zero (hU : IsOpen U) (hU' : IsPreconnected U) {f : ℂ → ℂ}
     (hf : DifferentiableOn ℂ f U) (hf' : EqOn (deriv f) 0 U) (hz₀ : z₀ ∈ U) (hfz₀ : f z₀ = 0) :
     EqOn f 0 U := by
@@ -48,6 +51,9 @@ lemma EqOn_zero_of_deriv_eq_zero (hU : IsOpen U) (hU' : IsPreconnected U) {f : �
   ext1
   simpa [fderiv_apply_one_eq_deriv] using hf' (hrU hw)
 
+/--
+@isnad1 id=eqon.5h3v.s7.5ae3be700614 from=translated src=- shape=9952db31 vocab=3fa5bdb9
+-/
 lemma EqOn_of_deriv_eq_zero (hU : IsOpen U) (hU' : IsPreconnected U) {f : ℂ → ℂ}
     (hf : DifferentiableOn ℂ f U) (hf' : EqOn (deriv f) 0 U) (hz₀ : z₀ ∈ U) :
     EqOn f (fun _ => f z₀) U := by
@@ -57,6 +63,9 @@ lemma EqOn_of_deriv_eq_zero (hU : IsOpen U) (hU' : IsPreconnected U) {f : ℂ �
   have := EqOn_zero_of_deriv_eq_zero hU hU' (hf.sub_const _) h2 hz₀ h3
   exact fun z hz => sub_eq_zero.1 (this hz)
 
+/--
+@isnad1 id=eqon.7h4v.s8.2e1112589b5d from=translated src=- shape=efa9b800 vocab=3fa5bdb9
+-/
 lemma EqOn_of_EqOn_deriv {f g : ℂ → ℂ} (hU : IsOpen U) (hU' : IsPreconnected U)
     (hf : DifferentiableOn ℂ f U) (hg : DifferentiableOn ℂ g U)
     (hfg : EqOn (deriv f) (deriv g) U) (hz₀ : z₀ ∈ U) (hfgz₀ : f z₀ = g z₀) :
@@ -68,6 +77,9 @@ lemma EqOn_of_EqOn_deriv {f g : ℂ → ℂ} (hU : IsOpen U) (hU' : IsPreconnect
     rfl
   exact EqOn_zero_of_deriv_eq_zero hU hU' (hf.sub hg) h2 hz₀ (by simp [hfgz₀]) hz
 
+/--
+@isnad1 id=hassqrt.1h1v.s3.6bb8a4f48a23 from=translated src=- shape=4c88451a vocab=5ce72f8c
+-/
 lemma hasLogs.hasSqrt (h : hasLogs U) : hasSqrt U := by
   rintro f hfz hf
   obtain ⟨l, hl, hlf⟩ := h f hf hfz
@@ -75,6 +87,9 @@ lemma hasLogs.hasSqrt (h : hasLogs U) : hasSqrt U := by
     fun z hz => ?_⟩
   simpa [pow_two, ← exp_add] using hlf hz
 
+/--
+@isnad1 id=haslogs.3h1v.s5.b3a0134842c9 from=translated src=- shape=5dc77b3c vocab=6796d60a
+-/
 lemma hasPrimitives.hasLogs (hp : hasPrimitives U) (hU : IsOpen U) (hU' : IsPreconnected U) :
     hasLogs U := by
   by_cases h : U = ∅

@@ -51,42 +51,58 @@ coefficient ring: the unique preimage of the fraction-field Möbius product unde
 noncomputable def betaSeq {R : Type*} [CommRing R] [IsDomain R] (g : R[X]) (ε : R) (n : ℕ) : R :=
   moebiusFactorR (gammaSeq g ε) n
 
+/--
+@isnad1 id=eq.0h4v.s5.5232dffe6b4a from=translated src=- shape=799b5fd8 vocab=da530d20
+-/
 lemma betaSeq_eq_moebiusFactorR {R : Type*} [CommRing R] [IsDomain R] (g : R[X]) (ε : R) (n : ℕ) :
     betaSeq g ε n = moebiusFactorR (gammaSeq g ε) n := rfl
 
 /-- `g` is an even polynomial (`g ∈ R[X²]`): `g = Polynomial.expand R 2 h` for some `h`. -/
 def EvenPoly {R : Type*} [CommSemiring R] (g : R[X]) : Prop := ∃ h : R[X], g = expand R 2 h
 
-/-- An even polynomial takes equal values at points with equal squares. -/
+/-- An even polynomial takes equal values at points with equal squares.
+@isnad1 id=eq.2h4v.s6.30a68fdf9054 from=translated src=- shape=4e7b9ab5 vocab=b974c5bc
+-/
 theorem EvenPoly.eval_congr {R : Type*} [CommSemiring R] {g : R[X]} (hg : EvenPoly g)
     {x y : R} (h : x ^ 2 = y ^ 2) : g.eval x = g.eval y := by
   obtain ⟨h', rfl⟩ := hg
   rw [expand_eval, expand_eval, h]
 
-/-- An even polynomial defines an even evaluation function. -/
+/-- An even polynomial defines an even evaluation function.
+@isnad1 id=eq.1h3v.s5.5cccac922b97 from=translated src=- shape=11809fcb vocab=d3bbc972
+-/
 theorem EvenPoly.eval_neg {R : Type*} [CommRing R] {g : R[X]} (hg : EvenPoly g) (y : R) :
     g.eval (-y) = g.eval y := hg.eval_congr (neg_sq y)
 
-/-- Being an even polynomial is preserved by ring homomorphisms. -/
+/-- Being an even polynomial is preserved by ring homomorphisms.
+@isnad1 id=evenpoly.1h4v.s5.526d2552fa1a from=translated src=- shape=cfd1145a vocab=83e41a73
+-/
 theorem EvenPoly.map {R S : Type*} [CommSemiring R] [CommSemiring S] {g : R[X]}
     (hg : EvenPoly g) (φ : R →+* S) : EvenPoly (g.map φ) := by
   obtain ⟨h, rfl⟩ := hg
   exact ⟨h.map φ, by rw [map_expand]⟩
 
+/--
+@isnad1 id=dvd.2h5v.s7.df3b9fc5f34b from=translated src=- shape=6f41c9ee vocab=cea587ae
+-/
 lemma EvenPoly.dvd_eval_sub {R : Type*} [CommRing R] {g : R[X]} (hg : EvenPoly g)
     {N a b : R} (h : N ∣ a ^ 2 - b ^ 2) : N ∣ g.eval a - g.eval b := by
   obtain ⟨h', rfl⟩ := hg
   rw [expand_eval, expand_eval]
   exact h.trans (sub_dvd_eval_sub (a ^ 2) (b ^ 2) h')
 
-/-- An even polynomial is fixed by `X ↦ -X`. -/
+/-- An even polynomial is fixed by `X ↦ -X`.
+@isnad1 id=eq.1h2v.s5.5d266b749656 from=translated src=- shape=1abe5942 vocab=b9870803
+-/
 lemma EvenPoly.comp_neg_X {R : Type*} [CommRing R] {g : R[X]} (hg : EvenPoly g) :
     g.comp (-X) = g := by
   obtain ⟨h, rfl⟩ := hg
   exact expand_two_comp_neg_X h
 
 /-- Over a domain of characteristic `≠ 2` the converse holds too, so the two notions of evenness
-this file uses — membership in `R[X²]` and invariance under `X ↦ -X` — agree. -/
+this file uses — membership in `R[X²]` and invariance under `X ↦ -X` — agree.
+@isnad1 id=iff.0h2v.s6.edbd9ae0bba3 from=translated src=- shape=4168b4a3 vocab=7686f0eb
+-/
 lemma evenPoly_iff_comp_neg_X {R : Type*} [CommRing R] [NoZeroDivisors R] [NeZero (2 : R)]
     {g : R[X]} : EvenPoly g ↔ g.comp (-X) = g :=
   ⟨EvenPoly.comp_neg_X, fun h ↦ ⟨contract 2 g, eq_expand_two_contract_of_comp_neg_X h⟩⟩
@@ -97,16 +113,27 @@ section
 
 variable {R : Type*} [CommSemiring R] (g : R[X])
 
+/--
+@isnad1 id=eq.0h3v.s5.60515767e4de from=translated src=- shape=702ead98 vocab=62d50e54
+-/
 @[simp] lemma gammaSeq_zero (ε : R) : gammaSeq g ε 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.f4328e712bf4 from=translated src=- shape=8a7a0306 vocab=dd8489e5
+-/
 @[simp] lemma gammaSeq_one (ε : R) : gammaSeq g ε 1 = ε * g.eval 0 := rfl
 
-/-- The recursion `γ_{n+1} = g(γ_n)`, valid for `n ≥ 1`. -/
+/-- The recursion `γ_{n+1} = g(γ_n)`, valid for `n ≥ 1`.
+@isnad1 id=eq.1h4v.s5.e691108177c6 from=translated src=- shape=3e78d76d vocab=fe2e5e5b
+-/
 lemma gammaSeq_succ (ε : R) {n : ℕ} (hn : 1 ≤ n) :
     gammaSeq g ε (n + 1) = g.eval (gammaSeq g ε n) := by
   obtain ⟨m, rfl⟩ := Nat.exists_eq_succ_of_ne_zero (by lia : n ≠ 0)
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s5.9b33f4226f09 from=translated src=- shape=a231ecb5 vocab=d89fcbbf
+-/
 lemma gammaSeq_add (ε : R) {m : ℕ} (hm : 1 ≤ m) (n : ℕ) :
     gammaSeq g ε (m + n) = (fun z ↦ g.eval z)^[n] (gammaSeq g ε m) := by
   obtain ⟨m', rfl⟩ := Nat.exists_eq_succ_of_ne_zero (by lia : m ≠ 0)
@@ -117,7 +144,9 @@ lemma gammaSeq_add (ε : R) {m : ℕ} (hm : 1 ≤ m) (n : ℕ) :
       show m' + n + 1 = m' + 1 + n by ring, ih, Function.iterate_succ_apply']
 
 /-- A ring homomorphism intertwines the `γ`-sequences of `g` and its image:
-`φ(γ_n(g, ε)) = γ_n(g.map φ, φ ε)`. -/
+`φ(γ_n(g, ε)) = γ_n(g.map φ, φ ε)`.
+@isnad1 id=eq.0h6v.s6.602a7d3c06ca from=translated src=- shape=fb5ffc80 vocab=1f350d83
+-/
 lemma map_gammaSeq {S : Type*} [CommSemiring S] (φ : R →+* S) (ε : R) (n : ℕ) :
     φ (gammaSeq g ε n) = gammaSeq (g.map φ) (φ ε) n := by
   induction n with
@@ -129,7 +158,9 @@ lemma map_gammaSeq {S : Type*} [CommSemiring S] (φ : R →+* S) (ε : R) (n : �
     · rw [gammaSeq_succ g ε hm, gammaSeq_succ (g.map φ) (φ ε) hm, ← ih, eval_map, eval₂_at_apply]
 
 /-- The recursion `γ_{n+1} = g(γ_n)` for the `ε = 1` sequence, valid at every index (including `0`,
-since `γ_0 = 0` and `γ_1 = g(0)`). -/
+since `γ_0 = 0` and `γ_1 = g(0)`).
+@isnad1 id=eq.0h3v.s6.882a5eb1d1e9 from=translated src=- shape=2a81d43d vocab=d26701f7
+-/
 lemma gammaSeq_one_succ (n : ℕ) : gammaSeq g 1 (n + 1) = g.eval (gammaSeq g 1 n) := by
   cases n with
   | zero => simp
@@ -139,7 +170,9 @@ variable {g}
 
 /-- In a ring with `4 = 0`, the `ε = 1` sequence of an even `g` with `g(0) = 1`, `g(1) = 2`
 alternates between `1` and `2`, so consecutive terms sum to `3`. (The only property of `ZMod 4`
-used in the mod-4 step is `4 = 0`, which gives `g(2) = g(0)` by evenness.) -/
+used in the mod-4 step is `4 = 0`, which gives `g(2) = g(0)` by evenness.)
+@isnad1 id=eq.5h3v.s7.210bdae6d73a from=translated src=- shape=dd270f26 vocab=332b7823
+-/
 theorem gammaSeq_add_succ_eq_three (hg : EvenPoly g) (h4 : (4 : R) = 0) (h0 : g.eval 0 = 1)
     (h1 : g.eval 1 = 2) :
     ∀ n ≥ 1, gammaSeq g 1 n + gammaSeq g 1 (n + 1) = 3 := by
@@ -161,7 +194,9 @@ theorem gammaSeq_add_succ_eq_three (hg : EvenPoly g) (h4 : (4 : R) = 0) (h0 : g.
 
 /-- If `ε² = g(0)² = g(1)² = 1` and `g` is even, then `γ_n = g(1)` for all `n ≥ 2`, so
 consecutive terms sum to `2·g(1)`. (The only property of `ZMod 8` used in the mod-8 step is
-that the relevant residues square to `1`.) -/
+that the relevant residues square to `1`.)
+@isnad1 id=eq.5h4v.s8.dbf48f105284 from=translated src=- shape=2c28150c vocab=6fe6abe8
+-/
 theorem gammaSeq_add_succ_eq_two_mul_eval_one (hg : EvenPoly g) {ε : R} (hε : ε ^ 2 = 1)
     (h0 : g.eval 0 ^ 2 = 1) (h1 : g.eval 1 ^ 2 = 1) :
     ∀ n ≥ 2, gammaSeq g ε n + gammaSeq g ε (n + 1) = 2 * g.eval 1 := by
@@ -178,7 +213,9 @@ theorem gammaSeq_add_succ_eq_two_mul_eval_one (hg : EvenPoly g) {ε : R} (hε : 
   rw [hval n hn, hval (n + 1) (by lia), two_mul]
 
 /-- For even `g` and `ε² = 1`, the `ε`-sequence *equals* the `ε = 1` sequence from index `2` on:
-the sign is absorbed by the square inside `g`. -/
+the sign is absorbed by the square inside `g`.
+@isnad1 id=eq.3h4v.s6.b335beb682f0 from=translated src=- shape=a458572b vocab=62836c1f
+-/
 theorem gammaSeq_eq_gammaSeq_one (hg : EvenPoly g) {ε : R} (hε : ε ^ 2 = 1) {n : ℕ} (hn : 2 ≤ n) :
     gammaSeq g ε n = gammaSeq g 1 n := by
   obtain ⟨j, rfl⟩ : ∃ j, n = j + 2 := ⟨n - 2, by lia⟩
@@ -189,7 +226,9 @@ theorem gammaSeq_eq_gammaSeq_one (hg : EvenPoly g) {ε : R} (hε : ε ^ 2 = 1) {
     expand_eval, expand_eval, mul_pow, hε, one_mul, expand_eval]
 
 /-- For even `g` and `ε² = 1`, the `ε`-sequence is associated to the `ε = 1` sequence: the two
-agree from index `2` on and differ by the unit `ε` at index `1`. -/
+agree from index `2` on and differ by the unit `ε` at index `1`.
+@isnad1 id=associat.2h4v.s6.c3ef9d9599ea from=translated src=- shape=16788212 vocab=f963c44b
+-/
 theorem gammaSeq_associated_one (hg : EvenPoly g) {ε : R} (hε : ε ^ 2 = 1) (n : ℕ) :
     Associated (gammaSeq g ε n) (gammaSeq g 1 n) := by
   match n with
@@ -219,7 +258,9 @@ private lemma gammaSeq_one_dvd_sub (m j : ℕ) :
 variable {g}
 
 /-- **Strong divisibility of the `γ`-sequence over a GCD domain**: for even `g` and `ε² = 1`,
-`gcd (γ_m) (γ_n)` is associated to `γ_{gcd m n}`. -/
+`gcd (γ_m) (γ_n)` is associated to `γ_{gcd m n}`.
+@isnad1 id=associat.2h5v.s7.54a25bae6ef3 from=translated src=- shape=446d988d vocab=7a1403b9
+-/
 theorem gammaSeq_associated_gcd [IsDomain R] [NormalizedGCDMonoid R] (hg : EvenPoly g) {ε : R}
     (hε : ε ^ 2 = 1) (m n : ℕ) :
     Associated (gcd (gammaSeq g ε m) (gammaSeq g ε n)) (gammaSeq g ε (m.gcd n)) :=
@@ -229,7 +270,9 @@ theorem gammaSeq_associated_gcd [IsDomain R] [NormalizedGCDMonoid R] (hg : EvenP
 
 variable (g) in
 /-- Periodicity propagates along the recursion: a divisor of `γ_{n₀+m} - γ_{n₀}` divides
-`γ_{n+m} - γ_n` for all `n ≥ n₀ ≥ 1`. -/
+`γ_{n+m} - γ_n` for all `n ≥ n₀ ≥ 1`.
+@isnad1 id=dvd.3h7v.s7.7c8872cf8300 from=translated src=- shape=c58fd2ee vocab=4f668f3c
+-/
 lemma gammaSeq_period {ε : R} {m : ℕ} {n₀ : ℕ} (hn₀ : 1 ≤ n₀) {q : R}
     (hbase : q ∣ gammaSeq g ε (n₀ + m) - gammaSeq g ε n₀) :
     ∀ n ≥ n₀, q ∣ gammaSeq g ε (n + m) - gammaSeq g ε n := by
@@ -241,14 +284,18 @@ lemma gammaSeq_period {ε : R} {m : ℕ} {n₀ : ℕ} (hn₀ : 1 ≤ n₀) {q : 
       gammaSeq_succ g ε (by lia)]
     exact ih.trans (sub_dvd_eval_sub _ _ g)
 
-/-- For even `g`, `γ_n ^ 2` divides `γ_{n+1} - g(0)` (`n ≥ 1`). -/
+/-- For even `g`, `γ_n ^ 2` divides `γ_{n+1} - g(0)` (`n ≥ 1`).
+@isnad1 id=dvd.2h4v.s7.9ff586e7f487 from=translated src=- shape=9316c89a vocab=78f2d74b
+-/
 lemma sq_dvd_gammaSeq_succ_sub (hg : EvenPoly g) (ε : R) {n : ℕ} (hn : 1 ≤ n) :
     gammaSeq g ε n ^ 2 ∣ gammaSeq g ε (n + 1) - g.eval 0 := by
   rw [gammaSeq_succ g ε hn]
   exact hg.dvd_eval_sub (by simp)
 
 /-- Sharpening of `sq_dvd_gammaSeq_succ_sub`: a prime power `p^E` with `E ≥ 1` dividing `γ_n`
-already forces `p^{E+1} ∣ γ_{n+1} - g(0)` (`n ≥ 1`). -/
+already forces `p^{E+1} ∣ γ_{n+1} - g(0)` (`n ≥ 1`).
+@isnad1 id=dvd.4h6v.s7.4ac3a98fb055 from=translated src=- shape=b2971620 vocab=78f2d74b
+-/
 lemma pow_succ_dvd_gammaSeq_succ_sub (hg : EvenPoly g) {ε : R} {n : ℕ} (hn : 1 ≤ n) {p : R}
     {E : ℕ} (hE : 1 ≤ E) (hpE : p ^ E ∣ gammaSeq g ε n) :
     p ^ (E + 1) ∣ gammaSeq g ε (n + 1) - g.eval 0 :=
@@ -257,7 +304,9 @@ lemma pow_succ_dvd_gammaSeq_succ_sub (hg : EvenPoly g) {ε : R} {n : ℕ} (hn : 
     _ ∣ gammaSeq g ε (n + 1) - g.eval 0 := sq_dvd_gammaSeq_succ_sub hg ε hn
 
 /-- If `γ_k + γ_{2k} = 0`, then `γ_{lk} = γ_{2k}` for all `l ≥ 2` (over any ring, for even `g`):
-`γ` is constant on positive multiples of `k` past the first. -/
+`γ` is constant on positive multiples of `k` past the first.
+@isnad1 id=eq.4h5v.s7.e914579cc2c6 from=translated src=- shape=5294f0c0 vocab=6168147b
+-/
 theorem gammaSeq_mul_eq_two_mul (hg : EvenPoly g) {ε : R} {k : ℕ} (hk : 1 ≤ k)
     (hzero : gammaSeq g ε k + gammaSeq g ε (2 * k) = 0) :
     ∀ l ≥ 2, gammaSeq g ε (l * k) = gammaSeq g ε (2 * k) := by
@@ -284,7 +333,9 @@ private theorem prod_eq_pow_card_mul_ite {α : R} {S : Finset ℕ} {f : ℕ → 
     Finset.prod_ite_eq' S 1 (fun _ ↦ (-1 : R))]
 
 /-- If `γ_k + γ_{2k} = 0`, then a product `∏_{t ∈ S} γ_{kt}` over positive indices `t` collapses
-to `γ_{2k} ^ |S|` up to a sign recording whether `1 ∈ S` (over any ring, for even `g`). -/
+to `γ_{2k} ^ |S|` up to a sign recording whether `1 ∈ S` (over any ring, for even `g`).
+@isnad1 id=eq.4h5v.s8.20bdd3e3c573 from=translated src=- shape=ca8c8c9a vocab=10bc93ff
+-/
 theorem prod_gammaSeq_mul_eq (hg : EvenPoly g) {ε : R} {k : ℕ} (hk : 1 ≤ k)
     (hzero : gammaSeq g ε k + gammaSeq g ε (2 * k) = 0)
     {S : Finset ℕ} (hS : ∀ t ∈ S, 1 ≤ t) :
@@ -298,7 +349,9 @@ theorem prod_gammaSeq_mul_eq (hg : EvenPoly g) {ε : R} {k : ℕ} (hk : 1 ≤ k)
   · rw [ite_eq_right h, mul_one, mul_comm k t, gammaSeq_mul_eq_two_mul hg hk hzero t (by lia)]
 
 /-- If `γ_n + γ_{n+1} = 0`, then `γ_{n+j} = γ_{n+1}` for all `j ≥ 1` (over any ring, for even `g`):
-the fixed-point relation `g(γ_{n+1}) = γ_{n+1}` makes `γ` constant past index `n`. -/
+the fixed-point relation `g(γ_{n+1}) = γ_{n+1}` makes `γ` constant past index `n`.
+@isnad1 id=eq.4h5v.s7.7e03b273ed3e from=translated src=- shape=64510f3c vocab=fb896cf2
+-/
 theorem gammaSeq_add_eq_succ (hg : EvenPoly g) {ε : R} {n : ℕ} (hn : 1 ≤ n)
     (hzero : gammaSeq g ε n + gammaSeq g ε (n + 1) = 0) :
     ∀ j ≥ 1, gammaSeq g ε (n + j) = gammaSeq g ε (n + 1) := by
@@ -313,7 +366,9 @@ theorem gammaSeq_add_eq_succ (hg : EvenPoly g) {ε : R} {n : ℕ} (hn : 1 ≤ n)
   | succ j hj ih => rw [show n + (j + 1) = (n + j) + 1 by ring, hsucc (n + j) (by lia), ih, hstep]
 
 /-- For even `g`, `γ_n + γ_{n+1}` divides `γ_n + γ_{2n}` (`n ≥ 1`): modulo the left-hand side the
-sequence is constant from index `n + 1` on, so `γ_{2n} ≡ γ_{n+1}`. -/
+sequence is constant from index `n + 1` on, so `γ_{2n} ≡ γ_{n+1}`.
+@isnad1 id=dvd.2h4v.s7.097626359ec3 from=translated src=- shape=4adb3807 vocab=090a2567
+-/
 lemma gammaSeq_add_succ_dvd (hg : EvenPoly g) (ε : R) {n : ℕ} (hn : 1 ≤ n) :
     gammaSeq g ε n + gammaSeq g ε (n + 1) ∣ gammaSeq g ε n + gammaSeq g ε (2 * n) := by
   set D := gammaSeq g ε n + gammaSeq g ε (n + 1) with hD
@@ -331,7 +386,9 @@ lemma gammaSeq_add_succ_dvd (hg : EvenPoly g) (ε : R) {n : ℕ} (hn : 1 ≤ n) 
 
 variable (g) in
 /-- `γ_{n+1} ≡ g(0)` modulo `γ_n`, so `γ_n + γ_{n+1}` and `γ_n` are coprime once `g(0)` is a
-unit (`n ≥ 1`). -/
+unit (`n ≥ 1`).
+@isnad1 id=iscoprim.2h4v.s6.071a7ae2c64a from=translated src=- shape=0a680e7d vocab=efb7349d
+-/
 lemma isCoprime_gammaSeq_add_succ (ε : R) {n : ℕ} (hn : 1 ≤ n) (h0 : IsUnit (g.eval 0)) :
     IsCoprime (gammaSeq g ε n + gammaSeq g ε (n + 1)) (gammaSeq g ε n) := by
   obtain ⟨k, hk⟩ := sub_dvd_eval_sub (gammaSeq g ε n) 0 g
@@ -349,7 +406,9 @@ section
 variable {R : Type*} [CommRing R] [UniqueFactorizationMonoid R]
     [NormalizationMonoid R] [DecidableEq R] {g : R[X]}
 
-/-- If `p ∣ g(0)`, the valuation `v_p(γ_n)` is the constant `v_p(g(0))`. -/
+/-- If `p ∣ g(0)`, the valuation `v_p(γ_n)` is the constant `v_p(g(0))`.
+@isnad1 id=eq.7h5v.s8.b9dbc73c4f0a from=translated src=- shape=5f499ddc vocab=77beda41
+-/
 lemma factorization_gammaSeq_of_dvd_eval_zero (hg : EvenPoly g) {ε : R} (hε : ε ^ 2 = 1)
     (hne : ∀ k ≥ 1, gammaSeq g ε k ≠ 0) {p : R} (hp : Prime p) (hpn : normalize p = p)
     (hpg : p ∣ g.eval 0) {n : ℕ} (hn : 1 ≤ n) :
@@ -412,7 +471,9 @@ private lemma factorization_gammaSeq_shape_of_exists (hg : EvenPoly g) {ε : R} 
 
 /-- **Constant-valuation shape of the `γ`-sequence over a UFD** (for even `g`, `ε² = 1`, `γ`
 nowhere zero): for each normalized prime `p`, the valuation `v_p(γ_n)` equals a constant `E`
-on the multiples of some index `m ≥ 1` and vanishes elsewhere. -/
+on the multiples of some index `m ≥ 1` and vanishes elsewhere.
+@isnad1 id=ex.5h4v.s7.73b867a1a418 from=translated src=- shape=e8a8b133 vocab=29fab4fb
+-/
 theorem factorization_gammaSeq_shape (hg : EvenPoly g) {ε : R} (hε : ε ^ 2 = 1)
     (hne : ∀ k ≥ 1, gammaSeq g ε k ≠ 0) {p : R} (hp : Prime p) (hpn : normalize p = p) :
     ∃ m ≥ 1, ∃ E : ℕ, ∀ n ≥ 1,
@@ -441,18 +502,25 @@ divisor antidiagonal of `n`: pairs `(e, d)` with `e * d = n` contribute `c_d ^ �
 noncomputable def moebiusFactor (c : ℕ → ℤ) (n : ℕ) : ℚ :=
   ∏ x ∈ n.divisorsAntidiagonal, (c x.2 : ℚ) ^ (μ x.1)
 
+/--
+@isnad1 id=eq.0h2v.s6.05c3c1fb81f8 from=translated src=- shape=fdff00c2 vocab=ad88881c
+-/
 lemma moebiusFactor_eq_prod (c : ℕ → ℤ) (n : ℕ) :
     moebiusFactor c n = ∏ x ∈ n.divisorsAntidiagonal, (c x.2 : ℚ) ^ (μ x.1) := rfl
 
 /-- Strong divisibility over `ℤ`, translated from the `Int.gcd`/`natAbs` form into the
-`Associated`-of-`GCDMonoid.gcd` form consumed by the `moebiusFactorR` API. -/
+`Associated`-of-`GCDMonoid.gcd` form consumed by the `moebiusFactorR` API.
+@isnad1 id=associat.1h3v.s5.a9e8579809fd from=translated src=- shape=d3f5f103 vocab=e49bc094
+-/
 lemma associated_gcd_of_int_gcd_eq_natAbs {c : ℕ → ℤ}
     (hsd : ∀ m n, Int.gcd (c m) (c n) = (c (m.gcd n)).natAbs) (m n : ℕ) :
     Associated (gcd (c m) (c n)) (c (m.gcd n)) := by
   rw [Int.associated_iff_natAbs, ← Int.coe_gcd, Int.natAbs_natCast, hsd]
 
 /-- Over `ℤ`, the image in `ℚ` of the integer-valued Möbius factor `moebiusFactorR` is the
-`ℚ`-valued Möbius product `moebiusFactor`, for a strong divisibility sequence. -/
+`ℚ`-valued Möbius product `moebiusFactor`, for a strong divisibility sequence.
+@isnad1 id=eq.3h2v.s6.ccfb0fd13f05 from=translated src=- shape=810d3647 vocab=3c5225ff
+-/
 lemma intCast_moebiusFactorR {c : ℕ → ℤ} (hc : ∀ d ≥ 1, c d ≠ 0)
     (hsd : ∀ m n, Int.gcd (c m) (c n) = (c (m.gcd n)).natAbs) {n : ℕ} (hn : 1 ≤ n) :
     ((moebiusFactorR c n : ℤ) : ℚ) = moebiusFactor c n := by
@@ -462,7 +530,9 @@ lemma intCast_moebiusFactorR {c : ℕ → ℤ} (hc : ∀ d ≥ 1, c d ≠ 0)
   exact Finset.prod_congr rfl fun x _ ↦ by norm_num
 
 /-- The image in a ring `S` of the `ε`-sequence over `ℤ` is the `ε`-sequence of the image of `g`:
-`(γ_n : S) = γ_n(g.map (· : ℤ → S), ε)`. -/
+`(γ_n : S) = γ_n(g.map (· : ℤ → S), ε)`.
+@isnad1 id=eq.0h4v.s5.c1dd827b3fc7 from=translated src=- shape=fd46beb3 vocab=3762177c
+-/
 lemma intCast_gammaSeq (ε : ℤ) (S : Type*) [CommRing S] (i : ℕ) : ((gammaSeq g ε i : ℤ) : S)
     = gammaSeq (g.map (Int.castRingHom S)) (ε : S) i :=
   map_gammaSeq g (Int.castRingHom S) ε i
@@ -470,7 +540,9 @@ lemma intCast_gammaSeq (ε : ℤ) (S : Type*) [CommRing S] (i : ℕ) : ((gammaSe
 variable {g}
 
 /-- **Strong divisibility** over `ℤ`, for even `g` and `ε = ±1`:
-`gcd (γ_m) (γ_n) = |γ_{gcd m n}|`. -/
+`gcd (γ_m) (γ_n) = |γ_{gcd m n}|`.
+@isnad1 id=eq.2h4v.s5.2a59d6aa3c23 from=translated src=- shape=a189786a vocab=ed5b19bb
+-/
 theorem gammaSeq_gcd (hg : EvenPoly g) {ε : ℤ} (hε : ε = 1 ∨ ε = -1) (m n : ℕ) :
     Int.gcd (gammaSeq g ε m) (gammaSeq g ε n) = (gammaSeq g ε (m.gcd n)).natAbs := by
   have hε2 : ε ^ 2 = 1 := by rcases hε with rfl | rfl <;> norm_num
@@ -478,7 +550,9 @@ theorem gammaSeq_gcd (hg : EvenPoly g) {ε : ℤ} (hε : ε = 1 ∨ ε = -1) (m 
   rw [← h, ← Int.coe_gcd, Int.natAbs_natCast]
 
 /-- The image of `β_n` in `ℚ` is the Möbius product `∏_{ed = n} γ_d^{μ(e)}` (for even `g`,
-`ε = ±1`, and `γ` nowhere zero on positive indices). -/
+`ε = ±1`, and `γ` nowhere zero on positive indices).
+@isnad1 id=eq.4h3v.s6.ab2b08f06908 from=translated src=- shape=17bf5131 vocab=008d9898
+-/
 lemma intCast_betaSeq (hg : EvenPoly g) {ε : ℤ} (hε : ε = 1 ∨ ε = -1)
     (hγ : ∀ k ≥ 1, gammaSeq g ε k ≠ 0) (n : ℕ) (hn : 1 ≤ n) :
     ((betaSeq g ε n : ℤ) : ℚ) = moebiusFactor (gammaSeq g ε) n :=
@@ -499,7 +573,9 @@ private lemma prod_gammaSeq_mul_cast_eq (hg : EvenPoly g) {ε : ℤ} {k : ℕ} (
     prod_gammaSeq_mul_eq (hg.map _) hk hz hS]
 
 /-- Lemma 2.1: if for each `n ≥ 1` some `m` divides `γ_n + γ_{2n}`, is prime to `γ_n`, and `-1` is
-not a square mod `m`, then `β_n` is not a square in `ℚ` for `n ≥ 2`. -/
+not a square mod `m`, then `β_n` is not a square in `ℚ` for `n ≥ 2`.
+@isnad1 id=not.5h3v.s7.62b181f8a968 from=translated src=- shape=993bdca6 vocab=020a6e0b
+-/
 theorem not_isSquare_betaSeq (hg : EvenPoly g) {ε : ℤ} (hε : ε = 1 ∨ ε = -1)
     (hγ : ∀ n ≥ 1, gammaSeq g ε n ≠ 0)
     (hm : ∀ n ≥ 1, ∃ m : ℕ,
@@ -549,7 +625,9 @@ theorem not_isSquare_betaSeq (hg : EvenPoly g) {ε : ℤ} (hε : ε = 1 ∨ ε =
   rw [hβ]
   exact fun hsq ↦ hmnsq (ZMod.isSquare_neg_one_of_isSquare_div hQne hPnegQ hQunit hsq)
 
-/-- The `ZMod 4` specialization of `gammaSeq_add_succ_eq_three` via `intCast_gammaSeq`. -/
+/-- The `ZMod 4` specialization of `gammaSeq_add_succ_eq_three` via `intCast_gammaSeq`.
+@isnad1 id=eq.4h2v.s8.2c87551bd138 from=translated src=- shape=097440ec vocab=75bf2e58
+-/
 lemma gammaSeq_add_succ_zmod_four_eq_three (hg : EvenPoly g) (h0 : g.eval 0 = 1)
     (h1 : ((g.eval 1 : ℤ) : ZMod 4) = 2) :
     ∀ n ≥ 1, ((gammaSeq g 1 n + gammaSeq g 1 (n + 1) : ℤ) : ZMod 4) = 3 := by
@@ -562,7 +640,9 @@ lemma gammaSeq_add_succ_zmod_four_eq_three (hg : EvenPoly g) (h0 : g.eval 0 = 1)
 
 /-- The `ZMod 8` specialization of `gammaSeq_add_succ_eq_two_mul_eval_one` via
 `intCast_gammaSeq`; the mod-4 hypothesis on `g(1)` transfers through the canonical map
-`ZMod 8 → ZMod 4`. -/
+`ZMod 8 → ZMod 4`.
+@isnad1 id=eq.5h3v.s8.a6081a0f403c from=translated src=- shape=b033395b vocab=dae5cf63
+-/
 lemma gammaSeq_add_succ_zmod_eight_eq_six (hg : EvenPoly g) {ε : ℤ} (hε : ε = 1 ∨ ε = -1)
     (h0 : g.eval 0 = 1 ∨ g.eval 0 = -1) (h1 : ((g.eval 1 : ℤ) : ZMod 4) = 3) :
     ∀ n ≥ 2, ((gammaSeq g ε n + gammaSeq g ε (n + 1) : ℤ) : ZMod 8) = 6 := by
@@ -580,7 +660,9 @@ lemma gammaSeq_add_succ_zmod_eight_eq_six (hg : EvenPoly g) {ε : ℤ} (hε : ε
   exact h2x
 
 /-- Lemma 2.2: if all `γ_n > 0` and either `g(0) = 1, g(1) ≡ 2 mod 4`, or `g(0) = ±1, g(1) ≡ 3 mod
-4`, then `β_n` is not a square in `ℚ` for `n ≥ 2`. -/
+4`, then `β_n` is not a square in `ℚ` for `n ≥ 2`.
+@isnad1 id=not.5h3v.s7.3666a20a8c06 from=translated src=- shape=dfdbd31d vocab=1a3980df
+-/
 theorem not_isSquare_betaSeq_of_pos (hg : EvenPoly g) {ε : ℤ}
     (hε : ε = 1 ∨ ε = -1) (hpos : ∀ n ≥ 1, 0 < gammaSeq g ε n)
     (hcase : (g.eval 0 = 1 ∧ g.eval 1 % 4 = 2) ∨

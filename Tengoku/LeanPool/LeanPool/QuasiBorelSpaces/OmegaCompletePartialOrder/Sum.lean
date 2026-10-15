@@ -46,10 +46,16 @@ noncomputable instance instSumLeanPool : OmegaCompletePartialOrder (Sum α β) w
       | inr x =>
         simp_all
 
+/--
+@isnad1 id=eq.0h3v.s5.a4ce6fa70e69 from=translated src=- shape=6024f0bf vocab=5a33c139
+-/
 @[simp]
 lemma ωSup_inl (c : Chain α) : ωSup (Chain.Sum.inl c : Chain (α ⊕ β)) = .inl (ωSup c) := by
   simp only [ωSup, Chain.Sum.distrib_inl, Sum.map_inl]
 
+/--
+@isnad1 id=eq.0h3v.s5.26fe4d3cd93f from=translated src=- shape=28f87341 vocab=6ea0cb2b
+-/
 @[simp]
 lemma ωSup_inr (c : Chain β) : ωSup (Chain.Sum.inr c : Chain (α ⊕ β)) = .inr (ωSup c) := by
   simp only [ωSup, Chain.Sum.distrib_inr, Sum.map_inr]

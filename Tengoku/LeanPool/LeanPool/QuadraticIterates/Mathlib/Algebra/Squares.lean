@@ -19,7 +19,9 @@ polynomials*, Arch. Math. 59 (1992), 239-244; upstreaming candidates for Mathlib
 @[expose] public section
 
 /-- If `P ≡ -Q mod m` with `Q` a unit mod `m` and `P/Q` a rational square, then `-1` is a
-square mod `m`. -/
+square mod `m`.
+@isnad1 id=issquare.4h3v.s7.eca3ee0da6ea from=translated src=- shape=e27d5080 vocab=bba286ef
+-/
 theorem ZMod.isSquare_neg_one_of_isSquare_div {P Q : ℤ} {m : ℕ} (hQne : Q ≠ 0)
     (hPnegQ : (P : ZMod m) = -(Q : ZMod m)) (hQunit : IsUnit (Q : ZMod m))
     (hsq : IsSquare ((P : ℚ) / (Q : ℚ))) : IsSquare (-1 : ZMod m) := by
@@ -45,14 +47,18 @@ theorem ZMod.isSquare_neg_one_of_isSquare_div {P Q : ℤ} {m : ℕ} (hQne : Q �
   linear_combination ((↑u⁻¹ : ZMod m) * (↑u⁻¹ : ZMod m)) * hw
     + ((Q : ZMod m) * (↑u⁻¹ : ZMod m) + 1) * huinv
 
-/-- A sum of two squares is never congruent to `3` modulo `4`, a square being `0` or `1`. -/
+/-- A sum of two squares is never congruent to `3` modulo `4`, a square being `0` or `1`.
+@isnad1 id=not.0h2v.s5.db842b05c030 from=translated src=- shape=6029cb3f vocab=3b5a0f98
+-/
 theorem Nat.not_sq_add_sq_modEq_three (x y : ℕ) : ¬x ^ 2 + y ^ 2 ≡ 3 [MOD 4] := by
   rw [← ZMod.natCast_eq_natCast_iff]
   push_cast
   generalize (x : ZMod 4) = a, (y : ZMod 4) = b
   decide +revert
 
-/-- If `d ∣ m` with `d ≡ 3 mod 4`, then `-1` is not a square in `ZMod m`. -/
+/-- If `d ∣ m` with `d ≡ 3 mod 4`, then `-1` is not a square in `ZMod m`.
+@isnad1 id=not.2h2v.s6.c8c47ffc6e37 from=translated src=- shape=bf83db79 vocab=2196541d
+-/
 theorem ZMod.not_isSquare_neg_one_of_dvd {m d : ℕ} (hdm : d ∣ m) (hd : d % 4 = 3) :
     ¬IsSquare (-1 : ZMod m) := by
   intro hsq
@@ -60,12 +66,16 @@ theorem ZMod.not_isSquare_neg_one_of_dvd {m d : ℕ} (hdm : d ∣ m) (hd : d % 4
     Nat.eq_sq_add_sq_of_isSquare_mod_neg_one (ZMod.isSquare_neg_one_of_dvd hdm hsq)
   exact Nat.not_sq_add_sq_modEq_three x y hd
 
-/-- If `4 ∣ m`, then `-1` is not a square in `ZMod m`. -/
+/-- If `4 ∣ m`, then `-1` is not a square in `ZMod m`.
+@isnad1 id=not.1h1v.s6.a31b1780b8ae from=translated src=- shape=b383ff54 vocab=03d382e9
+-/
 theorem ZMod.not_isSquare_neg_one_of_four_dvd {m : ℕ} (hm : 4 ∣ m) : ¬IsSquare (-1 : ZMod m) :=
   fun hsq ↦ absurd (ZMod.isSquare_neg_one_of_dvd hm hsq) (by decide)
 
 /-- If a family `f` is pairwise coprime on a finite set `S` and `∏_{i ∈ S} f i` is a square, then
-`|f i|` is a square for every `i ∈ S`. -/
+`|f i|` is a square for every `i ∈ S`.
+@isnad1 id=issquare.3h4v.s6.cda82c225846 from=translated src=- shape=207cb29d vocab=00616d46
+-/
 theorem Int.isSquare_abs_of_isSquare_prod_of_pairwise_isCoprime {ι : Type*} (f : ι → ℤ)
     (S : Finset ι) (hcop : ∀ i ∈ S, ∀ j ∈ S, i ≠ j → IsCoprime (f i) (f j))
     (hsq : IsSquare (∏ i ∈ S, f i)) :
@@ -80,7 +90,9 @@ theorem Int.isSquare_abs_of_isSquare_prod_of_pairwise_isCoprime {ι : Type*} (f 
   refine ⟨|a0|, ?_⟩
   rcases ha0 with h | h <;> simpa [sq, abs_mul, abs_neg] using congrArg abs h
 
-/-- A product of fixed nonzero base and varying integer exponents collapses to a single power. -/
+/-- A product of fixed nonzero base and varying integer exponents collapses to a single power.
+@isnad1 id=eq.1h4v.s5.4db78b8a53b9 from=translated src=- shape=69ad0f56 vocab=4ea23e08
+-/
 theorem prod_zpow_eq_zpow_sum {ι : Type*} {x : ℚ} (hx : x ≠ 0) (s : Finset ι) (e : ι → ℤ) :
     ∏ p ∈ s, x ^ e p = x ^ (∑ p ∈ s, e p) := by
   classical

@@ -103,7 +103,9 @@ private lemma diff_two_pow_eq_binomB (d : ℕ) :
     rw [hpow, hα_sq]; ring
 
 /-- The conjugate factors `(x ± √-7)/2` lie in `R` (since `x` is odd) and
-    their product equals `(x²+7)/4 = 2^m = θ^m · θ'^m`. -/
+    their product equals `(x²+7)/4 = 2^m = θ^m · θ'^m`.
+@isnad1 id=ex.2h2v.s8.ceecfb0cb128 from=translated src=- shape=d440d38c vocab=794cd0e7
+-/
 lemma factors_in_R_with_product (x : ℤ) (m : ℕ) (hm_ge : m ≥ 3)
     (h : (x ^ 2 + 7) / 4 = 2 ^ m) :
     ∃ α β : R, α * β = θ ^ m * θ' ^ m ∧ α - β = 2 * θ - 1 := by
@@ -146,7 +148,9 @@ lemma factors_in_R_with_product (x : ℤ) (m : ℕ) (hm_ge : m ≥ 3)
   · -- (k + θ) - (k + (1-θ)) = 2θ - 1
     ring
 
-/-- The conjugate factors are coprime in R. -/
+/-- The conjugate factors are coprime in R.
+@isnad1 id=iscoprim.2h3v.s8.7ab4d916e0ed from=translated src=- shape=6445dc43 vocab=13cb7023
+-/
 lemma conjugate_factors_coprime (α β : R) (m : ℕ)
     (h_prod : α * β = θ ^ m * θ' ^ m)
     (h_diff : α - β = 2 * θ - 1) :
@@ -195,7 +199,9 @@ lemma conjugate_factors_coprime (α β : R) (m : ℕ)
     exact hp.not_isUnit
       (QuadraticAlgebra.isUnit_iff_norm_isUnit.mpr (isUnit_of_dvd_one h_np_dvd_one))
 
-/-- If `α = ±1`, then `α - β` has im-component 0, but `2θ - 1` has im 2. -/
+/-- If `α = ±1`, then `α - β` has im-component 0, but `2θ - 1` has im 2.
+@isnad1 id=not.2h3v.s8.98086d774c22 from=translated src=- shape=eb53d56b vocab=0e976790
+-/
 lemma factor_not_unit_left (α β : R) (m : ℕ)
     (h_prod : α * β = θ ^ m * θ' ^ m)
     (h_diff : α - β = 2 * θ - 1) :
@@ -217,6 +223,9 @@ lemma factor_not_unit_left (α β : R) (m : ℕ)
     have h_im := congrArg QuadraticAlgebra.im h_diff
     simp [θ, h2m_im] at h_im
 
+/--
+@isnad1 id=not.2h3v.s8.eed843d3ca57 from=translated src=- shape=3e278d53 vocab=0e976790
+-/
 lemma factor_not_unit_right (α β : R) (m : ℕ)
     (h_prod : α * β = θ ^ m * θ' ^ m)
     (h_diff : α - β = 2 * θ - 1) :
@@ -240,7 +249,9 @@ lemma factor_not_unit_right (α β : R) (m : ℕ)
     simp [θ, h2m_im] at h_im
 
 /-- From the dichotomy `α ∈ {±θ^m, ±θ'^m}` and the product relation, determine `β`,
-    then take the difference α - β = 2θ-1 to obtain the conclusion. -/
+    then take the difference α - β = 2θ-1 to obtain the conclusion.
+@isnad1 id=or.3h3v.s9.0cf1e72a72f5 from=translated src=- shape=2d5fb513 vocab=82264630
+-/
 lemma eliminate_x_conclude (α β : R) (m : ℕ)
     (h_diff : α - β = 2 * θ - 1)
     (h_assoc : (α = θ ^ m ∨ α = -(θ ^ m)) ∨ (α = θ' ^ m ∨ α = -(θ' ^ m)))
@@ -275,7 +286,9 @@ lemma eliminate_x_conclude (α β : R) (m : ℕ)
     `2θ - 1 = θ^m - θ'^m`, then `θ^m - θ ≡ θ'^m - θ' (mod θ'²)`, and combining with
     `θ^m ≡ θ (mod θ'²)` (for odd m) and `θ'^m ≡ 0 (mod θ'²)` (m ≥ 2) forces
     θ'² ∣ θ',
-    hence θ' is a unit — contradicting `units_pm_one`. -/
+    hence θ' is a unit — contradicting `units_pm_one`.
+@isnad1 id=eq.3h1v.s9.fe2a4032f659 from=translated src=- shape=7009f882 vocab=944cea53
+-/
 lemma must_have_minus_sign (m : ℕ) (hm_odd : Odd m) (hm_ge : m ≥ 3)
     (h : (2 * θ - 1 = θ ^ m - θ' ^ m) ∨ (-2 * θ + 1 = θ ^ m - θ' ^ m)) :
     (-2 * θ + 1 = θ ^ m - θ' ^ m) := by
@@ -318,6 +331,9 @@ lemma must_have_minus_sign (m : ℕ) (hm_odd : Odd m) (hm_ge : m ≥ 3)
         simp [θ'] at h_re_im
   · exact h_minus
 
+/--
+@isnad1 id=eq.3h2v.s8.3062210eadef from=translated src=- shape=0b0c3883 vocab=f38e0990
+-/
 theorem main_m_condition :
   ∀ x : ℤ, ∀ m : ℕ, Odd m → m ≥ 3 → (x ^ 2 + 7) / 4 = 2 ^ m →
     (-2*θ + 1 = θ^m - θ'^m) := by
@@ -330,6 +346,9 @@ theorem main_m_condition :
   have h_disj := eliminate_x_conclude α β m h_diff h_assoc h_prod
   exact must_have_minus_sign m hm_odd hm_ge h_disj
 
+/--
+@isnad1 id=eq.3h2v.s7.d514ab7c8339 from=translated src=- shape=2470d6b0 vocab=f4d039ae
+-/
 lemma reduction_divide_by_4 :
   ∀ x : ℤ, ∀ n : ℕ, Odd n → n ≥ 5 → x ^ 2 + 7 = 2 ^ n →
     (x ^ 2 + 7) / 4 = 2 ^ (n - 2) := by
@@ -339,7 +358,9 @@ lemma reduction_divide_by_4 :
     (by rw [show n = n - 2 + 2 from by omega, pow_add]; norm_num)
 
 /-- From `-2θ + 1 = θ^m - θ'^m`, expand via the binomial theorem and reduce
-    modulo 7 to obtain `-2^(m-1) ≡ m (mod 7)`. -/
+    modulo 7 to obtain `-2^(m-1) ≡ m (mod 7)`.
+@isnad1 id=eq.2h1v.s8.1bd7192ef920 from=translated src=- shape=f60b5964 vocab=af721c6b
+-/
 lemma expand_by_binomial (m : ℕ) (hm_ge : m ≥ 3)
     (h : -2 * θ + 1 = θ ^ m - θ' ^ m) :
     -(2 : ℤ) ^ (m - 1) % 7 = (m : ℤ) % 7 := by
@@ -408,7 +429,9 @@ lemma expand_by_binomial (m : ℕ) (hm_ge : m ≥ 3)
 
 /-- Key consequence of unique factorization in ℤ[(1+√-7)/2]:
     For odd n ≥ 5, if x² + 7 = 2ⁿ, then setting m = n - 2, we have
-    -2^(m-1) ≡ m (mod 7). -/
+    -2^(m-1) ≡ m (mod 7).
+@isnad1 id=eq.3h2v.s7.8c6115ab167e from=translated src=- shape=9f5111c0 vocab=f01d3b51
+-/
 lemma odd_case_mod_seven_constraint :
   ∀ x : ℤ, ∀ n : ℕ, Odd n → n ≥ 5 → x ^ 2 + 7 = 2 ^ n →
     -(2 : ℤ) ^ (n - 3) % 7 = ((n : ℤ) - 2) % 7 := by
@@ -428,7 +451,9 @@ private lemma two_pow_six_pow_emod_seven (q : ℕ) : ((2 : ℤ) ^ 6) ^ q % 7 = 1
   | succ q ih => rw [pow_succ, Int.mul_emod, ih]; norm_num
 
 /-- From -2^(m-1) ≡ m (mod 7) and 2⁶ ≡ 1 (mod 7), the only solutions are
-    m ≡ 3, 5, or 13 (mod 42). -/
+    m ≡ 3, 5, or 13 (mod 42).
+@isnad1 id=or.3h2v.s7.31c5995483d5 from=translated src=- shape=6071789d vocab=91c18734
+-/
 theorem odd_case_only_three_values_mod_42 :
   ∀ x : ℤ, ∀ n : ℕ, Odd n → n ≥ 5 → x ^ 2 + 7 = 2 ^ n →
     (n - 2) % 42 = 3 ∨ (n - 2) % 42 = 5 ∨ (n - 2) % 42 = 13 := by
@@ -464,6 +489,9 @@ theorem odd_case_only_three_values_mod_42 :
 
 /-! ## Skeleton for the uniqueness argument -/
 
+/--
+@isnad1 id=eq.6h4v.s8.2df524f80742 from=translated src=- shape=19cf8691 vocab=64a9e7c8
+-/
 lemma corollary_C (x₁ x₂ : ℤ) (m₁ m₂ : ℕ)
     (h₁_odd : Odd m₁) (h₂_odd : Odd m₂)
     (h₁_ge : m₁ ≥ 3) (h₂_ge : m₂ ≥ 3)
@@ -521,6 +549,9 @@ private lemma higher_term_nat_dvd (d l j : ℕ) (hd : d > 0) (hj : j ≥ 1)
     rw [padicValNat.mul hC_ne (by positivity), padicValNat.prime_pow]
   exact (padicValNat_dvd_iff_le (mul_ne_zero hC_ne (by positivity))).mpr (by omega)
 
+/--
+@isnad1 id=and.3h2v.s7.7ae9937b6ad2 from=translated src=- shape=a52684d1 vocab=9c43d296
+-/
 lemma lemma_A_binomial_valuation (d l : ℕ) (hd : d > 0)
     (h_div : (7 : ℤ) ^ l ∣ ↑d) (h_ndiv : ¬ (7 : ℤ) ^ (l + 1) ∣ ↑d) :
     (7 : ℤ) ^ l ∣ binomialB d ∧ ¬ (7 : ℤ) ^ (l + 1) ∣ binomialB d := by
@@ -597,6 +628,9 @@ private lemma higher_even_term_nat_dvd (d l j : ℕ) (hd : d > 0) (hj : j ≥ 1)
     rw [padicValNat.mul hC_ne (by positivity), padicValNat.prime_pow]
   exact (padicValNat_dvd_iff_le (mul_ne_zero hC_ne (by positivity))).mpr (by omega)
 
+/--
+@isnad1 id=and.4h2v.s7.3616f009f84c from=translated src=- shape=03dc43e3 vocab=1d8f9ae2
+-/
 lemma even_binomial_valuation (d l : ℕ) (hd : d > 0)
     (h_div : (7 : ℤ) ^ l ∣ ↑d) (h_ndiv : ¬ (7 : ℤ) ^ (l + 1) ∣ ↑d)
     (h_7_dvd : 7 ∣ d) :
@@ -671,6 +705,9 @@ def traceSeq : ℕ → ℤ
   | 1 => 1
   | (n + 2) => traceSeq (n + 1) - 2 * traceSeq n
 
+/--
+@isnad1 id=eq.0h1v.s6.bec880bb24ae from=translated src=- shape=f151210f vocab=7d4e0c0b
+-/
 lemma traceSeq_eq (n : ℕ) : (traceSeq n : R) = θ ^ n + θ' ^ n := by
   induction n using traceSeq.induct with
   | case1 =>
@@ -715,6 +752,9 @@ private lemma traceSeq_mod7_period (m : ℕ) :
       · rw [h2', show (m + 2) % 3 = 1 from by omega,
              show (m + 1) % 3 = 0 from by omega]; simp [traceSeq]
 
+/--
+@isnad1 id=not.0h1v.s3.651c757ee990 from=translated src=- shape=4c12b637 vocab=ec5c0d00
+-/
 lemma traceSeq_not_dvd_seven (n : ℕ) : ¬((7 : ℤ) ∣ traceSeq n) := by
   intro ⟨k, hk⟩
   have h := traceSeq_mod7_period n
@@ -725,6 +765,9 @@ lemma traceSeq_not_dvd_seven (n : ℕ) : ¬((7 : ℤ) ∣ traceSeq n) := by
   · rw [h1] at h; simp [traceSeq] at h
   · rw [h2] at h; simp [traceSeq] at h
 
+/--
+@isnad1 id=iff.0h1v.s3.b0af5b6a8ed4 from=translated src=- shape=caf7ec78 vocab=ca09c330
+-/
 lemma nat_even_iff_not_odd (n : ℕ) : Even n ↔ ¬ Odd n := by
   exact Iff.symm not_odd_iff_even
 
@@ -829,7 +872,9 @@ private lemma trace_mul_binomialB_eq (P : ℤ) (m d : ℕ)
   rw [mul_assoc] at h_in_R
   exact mul_left_cancel₀ two_R_ne_zero h_in_R
 
-/-- Each residue class mod 42 has at most one m solving the equation. -/
+/-- Each residue class mod 42 has at most one m solving the equation.
+@isnad1 id=eq.7h2v.s8.f6ed483a9489 from=translated src=- shape=cdf7b739 vocab=f56ed9cd
+-/
 lemma at_most_one_m_per_class (m₁ m₂ : ℕ)
     (h₁_odd : Odd m₁) (h₂_odd : Odd m₂)
     (h₁_ge : m₁ ≥ 3) (h₂_ge : m₂ ≥ 3)
@@ -914,20 +959,30 @@ lemma at_most_one_m_per_class (m₁ m₂ : ℕ)
     exact (Prime.coprime_iff_not_dvd hp).mpr hP_coprime
   exact h_Bd_ndiv (h_coprime.dvd_of_dvd_mul_left h_dvd_prod)
 
-/-- m = 3 is a solution: x = 5, (25+7)/4 = 8 = 2³. -/
+/-- m = 3 is a solution: x = 5, (25+7)/4 = 8 = 2³.
+@isnad1 id=eq.0h0v.s7.3653fab21b3b from=translated src=- shape=67dca533 vocab=82264630
+-/
 lemma theta_eq_at_3 : -2 * θ + 1 = θ ^ 3 - θ' ^ 3 := by
   have h_div : ((5 : ℤ) ^ 2 + 7) / 4 = 2 ^ 3 := by norm_num
   exact main_m_condition 5 3 ⟨1, by omega⟩ (by omega) h_div
 
+/--
+@isnad1 id=eq.0h0v.s7.de86d3f053e0 from=translated src=- shape=67dca533 vocab=82264630
+-/
 lemma theta_eq_at_5 : -2 * θ + 1 = θ ^ 5 - θ' ^ 5 := by
   have h_div : ((11 : ℤ) ^ 2 + 7) / 4 = 2 ^ 5 := by norm_num
   exact main_m_condition 11 5 ⟨2, by omega⟩ (by omega) h_div
 
+/--
+@isnad1 id=eq.0h0v.s7.7c0245b8ffc7 from=translated src=- shape=67dca533 vocab=82264630
+-/
 lemma theta_eq_at_13 : -2 * θ + 1 = θ ^ 13 - θ' ^ 13 := by
   have h_div : ((181 : ℤ) ^ 2 + 7) / 4 = 2 ^ 13 := by norm_num
   exact main_m_condition 181 13 ⟨6, by omega⟩ (by omega) h_div
 
-/-- For x² + 7 = 2ⁿ with odd n ≥ 5: n ∈ {5, 7, 15}. -/
+/-- For x² + 7 = 2ⁿ with odd n ≥ 5: n ∈ {5, 7, 15}.
+@isnad1 id=or.3h2v.s6.169f3cf80431 from=translated src=- shape=ce6aa6b1 vocab=9372b7b4
+-/
 theorem odd_case_only_three_values :
   ∀ x : ℤ, ∀ n : ℕ, Odd n → n ≥ 5 → x ^ 2 + 7 = 2 ^ n →
     n = 5 ∨ n = 7 ∨ n = 15 := by
@@ -955,10 +1010,16 @@ theorem odd_case_only_three_values :
       (by omega) hm_ge (by omega) theta_eq_at_13 h_theta).symm
     omega
 
+/--
+@isnad1 id=odd.1h1v.s4.513a02211a8b from=translated src=- shape=07e7d033 vocab=158b9dd7
+-/
 lemma sq_odd_then_odd :
   ∀ (x : ℤ), Odd (x ^ 2) → Odd (x) := by
   simp [parity_simps]
 
+/--
+@isnad1 id=odd.1h1v.s5.52b4f7233674 from=translated src=- shape=86279bfc vocab=dbdf27d2
+-/
 lemma two_pow_min_seven_odd :
   ∀ (n : ℕ), n ≠ 0 → Odd ( (2 : ℤ) ^ n - 7 ) := by
   intro n hn
@@ -971,6 +1032,9 @@ lemma two_pow_min_seven_odd :
   use k - 4
   omega
 
+/--
+@isnad1 id=eq.2h2v.s6.6597cadda0db from=translated src=- shape=3ad327e1 vocab=bcdbad34
+-/
 lemma x_is_odd :
   ∀ x : ℤ, ∀ n : ℕ, n ≠ 0 → x ^ 2 + 7 = 2 ^ n →
     x % 2 = 1 := by
@@ -980,6 +1044,9 @@ lemma x_is_odd :
     rw [eq_tsub_of_add_eq h]
     exact two_pow_min_seven_odd n hn
 
+/--
+@isnad1 id=or.1h2v.s7.0bf655fe5e68 from=translated src=- shape=0329ef43 vocab=fb2191f5
+-/
 lemma ramanujan_nagell_even_pow_factors :
   ∀ x : ℤ , ∀ k : ℕ, (2^k + x) * (2^k - x) = 7 →
     (2^k - x = 1 ∧ 2^k + x = 7) ∨ (2^k - x = 7 ∧ 2^k + x = 1) := by
@@ -1002,6 +1069,9 @@ lemma ramanujan_nagell_even_pow_factors :
   · exact Or.inr ⟨hb_eq, ha_eq⟩
   · exact Or.inl ⟨hb_eq, ha_eq⟩
 
+/--
+@isnad1 id=or.2h2v.s8.dd7fafbdc810 from=translated src=- shape=1320b4c7 vocab=c8cffffe
+-/
 lemma helper_1
   {x : ℤ} {n : ℕ} (h₁ : x ^ 2 = 9) (h₂ : n = 4) :
     (x, n) = (1, 3) ∨ (x, n) = (-1, 3)
@@ -1012,6 +1082,9 @@ lemma helper_1
     rcases (sq_eq_sq_iff_eq_or_eq_neg.mp h₁ : x = 3 ∨ x = -3) with h | h <;>
       subst h h₂ <;> tauto
 
+/--
+@isnad1 id=or.2h2v.s8.26bdae86f085 from=translated src=- shape=1320b4c7 vocab=c8cffffe
+-/
 lemma helper_2
   {x : ℤ} {n : ℕ} (h₁ : x ^ 2 = 1) (h₂ : n = 3) :
     (x, n) = (1, 3) ∨ (x, n) = (-1, 3)
@@ -1022,6 +1095,9 @@ lemma helper_2
     rcases (sq_eq_sq_iff_eq_or_eq_neg.mp h₁ : x = 1 ∨ x = -1) with h | h <;>
       subst h h₂ <;> tauto
 
+/--
+@isnad1 id=or.2h2v.s8.f3a57eede086 from=translated src=- shape=1320b4c7 vocab=c8cffffe
+-/
 lemma helper_3
   {x : ℤ} {n : ℕ} (h₁ : x ^ 2 = 25) (h₂ : n = 5) :
     (x, n) = (1, 3) ∨ (x, n) = (-1, 3)
@@ -1032,6 +1108,9 @@ lemma helper_3
     rcases (sq_eq_sq_iff_eq_or_eq_neg.mp h₁ : x = 5 ∨ x = -5) with h | h <;>
       subst h h₂ <;> tauto
 
+/--
+@isnad1 id=or.2h2v.s8.8515add8b1d6 from=translated src=- shape=1320b4c7 vocab=c8cffffe
+-/
 lemma helper_4
   {x : ℤ} {n : ℕ} (h₁ : x ^ 2 = 121) (h₂ : n = 7) :
     (x, n) = (1, 3) ∨ (x, n) = (-1, 3)
@@ -1042,6 +1121,9 @@ lemma helper_4
     rcases (sq_eq_sq_iff_eq_or_eq_neg.mp h₁ : x = 11 ∨ x = -11) with h | h <;>
       subst h h₂ <;> tauto
 
+/--
+@isnad1 id=or.2h2v.s8.bf8b681e5519 from=translated src=- shape=1320b4c7 vocab=c8cffffe
+-/
 lemma helper_5
   {x : ℤ} {n : ℕ} (h₁ : x ^ 2 = 32761) (h₂ : n = 15) :
     (x, n) = (1, 3) ∨ (x, n) = (-1, 3)
@@ -1056,7 +1138,9 @@ end RamanujanNagell
 
 open RamanujanNagell
 
-/-- The Ramanujan-Nagell theorem. -/
+/-- The Ramanujan-Nagell theorem.
+@isnad1 id=or.1h2v.s8.5d78dd635782 from=translated src=- shape=c0992579 vocab=c4f021a0
+-/
 theorem RamanujanNagell :
   ∀ x : ℤ, ∀ n : ℕ, x ^ 2 + 7 = 2 ^ n →
     (x, n) = (1, 3) ∨ (x, n) = (-1, 3)
@@ -1113,7 +1197,9 @@ theorem RamanujanNagell :
 
 /-- Exact iff form of the Ramanujan-Nagell theorem: the integer solutions of
     `x ^ 2 + 7 = 2 ^ n` are precisely `(±1, 3)`, `(±3, 4)`,
-    `(±5, 5)`, `(±11, 7)`, and `(±181, 15)`. -/
+    `(±5, 5)`, `(±11, 7)`, and `(±181, 15)`.
+@isnad1 id=iff.0h2v.s8.1fa578b55d72 from=translated src=- shape=05785a74 vocab=c4f021a0
+-/
 theorem ramanujanNagellExact :
   ∀ x : ℤ, ∀ n : ℕ, x ^ 2 + 7 = 2 ^ n ↔
     (x, n) = (1, 3) ∨ (x, n) = (-1, 3)

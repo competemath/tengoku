@@ -26,6 +26,9 @@ section circle_integral
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] {f g : ℂ → E}
   {r : ℝ} {U : Set ℂ} {c : ℂ}
 
+/--
+@isnad1 id=eq.4h5v.s7.08335fc4d0aa from=translated src=- shape=75ef3670 vocab=c20a12bf
+-/
 lemma circle_integral_eq_zero (hU : IsOpen U) (hr : 0 < r) (hcr : closedBall c r ⊆ U)
       (f_hol : DifferentiableOn ℂ f U) :
     (∮ z in C(c, r), f z) = 0 :=
@@ -34,6 +37,9 @@ lemma circle_integral_eq_zero (hU : IsOpen U) (hr : 0 < r) (hcr : closedBall c r
     (fun _ hz => f_hol.differentiableAt
       (hU.mem_nhds (hcr (ball_subset_closedBall (Set.sdiff_subset hz)))))
 
+/--
+@isnad1 id=eq.1h4v.s7.f8febdc9274a from=translated src=- shape=f10f9a5b vocab=bd9a9292
+-/
 lemma circle_integral_sub_center_inv_smul [CompleteSpace E] {v : E} (hr : 0 < r) :
     (∮ z in C(c, r), (z - c)⁻¹ • v) = (2 * π * I : ℂ) • v := by
   simp [circleIntegral.integral_sub_inv_of_mem_ball (mem_ball_self hr)]
@@ -45,12 +51,18 @@ section dslope
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [CompleteSpace E] {f : ℂ → E}
   {p : FormalMultilinearSeries ℂ ℂ E} {U : Set ℂ} {z₀ c : ℂ} {n : ℕ}
 
+/--
+@isnad1 id=differen.3h5v.s7.143be71d3855 from=translated src=- shape=4b707dac vocab=95902de3
+-/
 lemma DifferentiableOn.iterate_dslope (hf : DifferentiableOn ℂ f U) (hU : IsOpen U) (hc : c ∈ U) :
     DifferentiableOn ℂ (iterate (swap dslope c) n f) U := by
   induction n generalizing f
   case zero => exact hf
   case succ n_ih => exact n_ih ((differentiableOn_dslope (hU.mem_nhds hc)).mpr hf)
 
+/--
+@isnad1 id=eventual.2h4v.s9.62c0569154e9 from=translated src=- shape=61ccfadd vocab=5ada0da5
+-/
 lemma HasFPowerSeriesAt.dslope_order_eventually_ne_zero (hp : HasFPowerSeriesAt f p z₀)
     (h : p ≠ 0) :
     ∀ᶠ z in 𝓝 z₀, iterate (swap dslope z₀) p.order f z ≠ 0 := by
@@ -64,6 +76,9 @@ end dslope
 
 variable {f g : ℂ → ℂ} {p : FormalMultilinearSeries ℂ ℂ ℂ} {z z₀ c : ℂ} {n : ℕ} {U : Set ℂ} {r : ℝ}
 
+/--
+@isnad1 id=eq.4h5v.s8.5e1273a8fe15 from=translated src=- shape=0afee715 vocab=f0a21176
+-/
 lemma deriv_div_self_eq_div_add_deriv_div_self (hg : DifferentiableAt ℂ g z) (hgz : g z ≠ 0)
     (hfg : f =ᶠ[𝓝 z] fun w => (w - z₀) ^ n * g w) (hz : z ≠ z₀) :
     deriv f z / f z = n / (z - z₀) + deriv g z / g z := by
@@ -81,6 +96,9 @@ lemma deriv_div_self_eq_div_add_deriv_div_self (hg : DifferentiableAt ℂ g z) (
     field_simp [_root_.pow_succ, hzz]
     ring
 
+/--
+@isnad1 id=other.2h3v.s9.84b4bec82379 from=translated src=- shape=8556ac06 vocab=153d8510
+-/
 lemma eventually_deriv_div_self_eq (hp : HasFPowerSeriesAt f p z₀) (h : p ≠ 0) :
     let g := (iterate (swap dslope z₀) p.order) f
     ∀ᶠ z in 𝓝 z₀, z ≠ z₀ → deriv f z / f z = p.order / (z - z₀) + deriv g z / g z := by
@@ -94,6 +112,9 @@ lemma eventually_deriv_div_self_eq (hp : HasFPowerSeriesAt f p z₀) (h : p ≠ 
         simpa [g, smul_eq_mul] using hp.eq_pow_order_mul_iterate_dslope w
   filter_upwards [lh1, lh2, lh3] with z using deriv_div_self_eq_div_add_deriv_div_self
 
+/--
+@isnad1 id=eq.5h4v.s7.6399405a09c8 from=translated src=- shape=a85e8b3e vocab=b3a18829
+-/
 lemma cindex_eq_zero (hU : IsOpen U) (hr : 0 < r) (hcr : closedBall c r ⊆ U)
     (f_hol : DifferentiableOn ℂ f U) (hf : ∀ z ∈ closedBall c r, f z ≠ 0) :
     cindex c r f = 0 := by
@@ -108,6 +129,9 @@ lemma cindex_eq_zero (hU : IsOpen U) (hr : 0 < r) (hcr : closedBall c r ⊆ U)
 
 -- TODO: off-center using `integral_sub_inv_of_mem_ball`
 
+/--
+@isnad1 id=eq.6h6v.s8.7e5b112834e7 from=translated src=- shape=5f32830e vocab=ea880b9c
+-/
 lemma cindex_eq_order_aux (hU : IsOpen U) (hr : 0 < r) (h0 : closedBall z₀ r ⊆ U)
     (h1 : DifferentiableOn ℂ g U) (h2 : ∀ z ∈ closedBall z₀ r, g z ≠ 0)
     (h3 : ∀ {z}, z ∈ sphere z₀ r → deriv f z / f z = c / (z - z₀) + deriv g z / g z) :
@@ -131,6 +155,9 @@ lemma cindex_eq_order_aux (hU : IsOpen U) (hr : 0 < r) (h0 : closedBall z₀ r �
       circle_integral_sub_center_inv_smul (E := ℂ) (c := z₀) (v := c) hr
   simp [field, cindex, e4, e5, e6, e7]
 
+/--
+@isnad1 id=ex.2h3v.s9.a52351e606de from=translated src=- shape=c991a455 vocab=eb0e896f
+-/
 lemma exists_cindex_eq_order' (hp : HasFPowerSeriesAt f p z₀) (h : p ≠ 0) :
     ∃ R > (0 : ℝ), ∀ r ∈ Set.Ioo 0 R, cindex z₀ r f = p.order := by
   set g : ℂ → ℂ := iterate (swap dslope z₀) p.order f
@@ -145,6 +172,9 @@ lemma exists_cindex_eq_order' (hp : HasFPowerSeriesAt f p z₀) (h : p ≠ 0) :
     (fun hz => (hh (sphere_subset_closedBall.trans (closedBall_subset_ball hr.2) hz)).2.1
       (ne_of_mem_sphere hz hr.1.ne.symm))
 
+/--
+@isnad1 id=ex.1h3v.s7.dadfa43290ce from=translated src=- shape=5b90539a vocab=eb0e896f
+-/
 lemma exists_cindex_eq_order (hp : HasFPowerSeriesAt f p z₀) :
     ∃ R > (0 : ℝ), ∀ r ∈ Set.Ioo 0 R, cindex z₀ r f = p.order := by
   by_cases h : p = 0
@@ -165,6 +195,9 @@ lemma exists_cindex_eq_order (hp : HasFPowerSeriesAt f p z₀) :
     rw [circleIntegral.integral_congr hr.1.le heq]
     simp [circleIntegral]
 
+/--
+@isnad1 id=eventual.1h3v.s7.8c25fa6c5c47 from=translated src=- shape=01bf75ce vocab=57751163
+-/
 lemma cindex_eventually_eq_order (hp : HasFPowerSeriesAt f p z₀) :
     ∀ᶠ r in 𝓝[>] 0, cindex z₀ r f = p.order := by
   obtain ⟨R, hR, hf⟩ := exists_cindex_eq_order hp

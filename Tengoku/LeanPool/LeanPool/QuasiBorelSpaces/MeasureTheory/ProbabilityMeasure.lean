@@ -19,6 +19,9 @@ namespace MeasureTheory
 
 variable {A B C : Type*} [MeasurableSpace A] [MeasurableSpace B] [MeasurableSpace C]
 
+/--
+@isnad1 id=isprobab.1h4v.s5.a7f26d20a5cf from=translated src=- shape=bd27782d vocab=223b7b32
+-/
 lemma isProbabilityMeasure_bind_measurable
     {f : A → Measure B} [∀ x, IsProbabilityMeasure (f x)] (hf : Measurable f)
     (μ : Measure A) [IsProbabilityMeasure μ]
@@ -47,6 +50,9 @@ noncomputable def bind
   else
     f μ.nonempty.some
 
+/--
+@isnad1 id=eq.2h5v.s6.35d80a35f4fc from=translated src=- shape=8a802f72 vocab=9bf212cd
+-/
 lemma lintegral_bind
     (μ : ProbabilityMeasure A)
     {f : A → ProbabilityMeasure B} (hf : Measurable f)
@@ -57,6 +63,9 @@ lemma lintegral_bind
   · apply hf.subtype_val.aemeasurable
   · apply hk.aemeasurable
 
+/--
+@isnad1 id=measurab.0h3v.s5.79541d8a31c3 from=translated src=- shape=743929f2 vocab=f879cdf2
+-/
 @[fun_prop]
 lemma measurable_bind
     (f : A → ProbabilityMeasure B)

@@ -61,6 +61,9 @@ def apply (x : Var I P) (r : ℝ) : Sigma P where
   fst := x.embed (x.index r)
   snd := x.var (x.index r) r
 
+/--
+@isnad1 id=eq.2h6v.s7.49fbfe6404c8 from=translated src=- shape=f8b3dfc1 vocab=8d5232a7
+-/
 @[simp]
 lemma apply_mk
     {f : ℕ → I} {i : ℝ → ℕ} {φ : (i : ℕ) → ℝ → P (f i)} {r : ℝ}
@@ -80,6 +83,9 @@ def mk'
   isHom_var _ := isHom_var _
   measurable_index := Measurable.fun_comp measurable_from_top measurable_index
 
+/--
+@isnad1 id=eq.2h7v.s7.d7bd739e7e24 from=translated src=- shape=52395a98 vocab=0e0c73db
+-/
 @[simp]
 lemma apply_mk'
     {J : Type*} [Encodable J]
@@ -102,6 +108,9 @@ def const (x : Sigma P) : Var I P := mk'
   (isHom_var := by simp only [isHom_const', implies_true])
   (measurable_index := measurable_const)
 
+/--
+@isnad1 id=eq.0h4v.s5.787b3ab241fa from=translated src=- shape=7ddebc6b vocab=373018f9
+-/
 @[simp]
 lemma const_apply (x : Sigma P) (r : ℝ) : const x r = x := by rfl
 
@@ -113,6 +122,9 @@ def comp {f : ℝ → ℝ} (hf : Measurable f) (x : Var I P) : Var I P where
   isHom_var i := isHom_comp' (x.isHom_var i) (by simp only [isHom_ofMeasurableSpace, hf])
   measurable_index := Measurable.fun_comp x.measurable_index hf
 
+/--
+@isnad1 id=eq.1h5v.s5.c397188b1b70 from=translated src=- shape=fae33390 vocab=a4962ccc
+-/
 @[simp]
 lemma comp_apply
     {f : ℝ → ℝ} (hf : Measurable f)
@@ -137,6 +149,9 @@ def cases {ix : ℝ → ℕ} (hix : Measurable ix) (φ : ℕ → Var I P) : Var 
       · apply measurable_from_top
       · apply measurable_index)
 
+/--
+@isnad1 id=eq.1h5v.s5.2510aa7752f1 from=translated src=- shape=47413dd7 vocab=b939aeea
+-/
 @[simp]
 lemma cases_apply
     {ix : ℝ → ℕ} (hix : Measurable ix)
@@ -153,6 +168,9 @@ def distrib {φ₁ : ℝ → A} (hφ₁ : IsHom φ₁) (φ₂ : Var I P) : Var I
   isHom_var i := by simp only [Prod.isHom_iff, hφ₁, φ₂.isHom_var i, and_self]
   measurable_index := φ₂.measurable_index
 
+/--
+@isnad1 id=eq.1h6v.s6.a98d5a67cb83 from=translated src=- shape=1a251487 vocab=be7a2060
+-/
 @[simp]
 lemma distrib_apply
     {φ₁ : ℝ → A} (hφ₁ : IsHom φ₁) (φ₂ : Var I P) (r : ℝ)
@@ -278,6 +296,9 @@ noncomputable def chain [∀ i, Preorder (P i)] (φ : Chain (Var I P)) : Var I f
         ext
         simp only [MeasurableSpace.measurableSet_top, MeasurableSet.of_subtype_image])
 
+/--
+@isnad1 id=eq.0h4v.s7.b8b14e74f664 from=translated src=- shape=66e333a2 vocab=ff1e4738
+-/
 @[simp]
 lemma chain_apply [∀ i, Preorder (P i)] (φ : Chain (Var I P)) (r)
     : (chain φ).apply r = Chain.Sigma.distrib (φ.map ⟨fun φ ↦ φ r, fun _ _ h ↦ h r⟩) := by
@@ -314,11 +335,17 @@ instance : QuasiBorelSpace (Σ i : I, P i) where
     use Var.cases hindex ψ
     simp only [hψ, Var.cases_apply, implies_true]
 
+/--
+@isnad1 id=iff.0h3v.s6.46789fd31ada from=translated src=- shape=7dc3a49b vocab=97e59062
+-/
 @[local simp]
 lemma isHom_def (φ : ℝ → (i : I) × P i) : IsHom φ ↔ ∃ (ψ : Var I P), ∀r, φ r = ψ r := by
   rw [← isVar_iff_isHom]
   rfl
 
+/--
+@isnad1 id=ishom.0h3v.s5.0e691a1ba063 from=translated src=- shape=ea79d784 vocab=6cab7b57
+-/
 @[fun_prop, simp]
 lemma isHom_mk (i) : IsHom (⟨i, ·⟩ : P i → Sigma P) := by
   rw [QuasiBorelSpace.isHom_def]
@@ -333,10 +360,16 @@ lemma isHom_mk (i) : IsHom (⟨i, ·⟩ : P i → Sigma P) := by
     (measurable_index := by simp only [measurable_const])
   simp only [Var.apply_mk', implies_true]
 
+/--
+@isnad1 id=ishom.1h5v.s5.a59a106ced9c from=translated src=- shape=54b84adb vocab=6cab7b57
+-/
 @[fun_prop]
 lemma isHom_mk' {i} {f : A → P i} (hf : IsHom f) : IsHom (fun x ↦ ⟨i, f x⟩ : A → Sigma P) := by
   fun_prop
 
+/--
+@isnad1 id=ishom.1h4v.s5.812f2a8069c8 from=translated src=- shape=9e031cce vocab=6cab7b57
+-/
 lemma isHom_elim {f : Sigma P → A} (hf : ∀ i, IsHom (fun x ↦ f ⟨i, x⟩)) : IsHom f := by
   rw [QuasiBorelSpace.isHom_def]
   simp only [isHom_def]
@@ -350,12 +383,18 @@ lemma isHom_elim {f : Sigma P → A} (hf : ∀ i, IsHom (fun x ↦ f ⟨i, x⟩)
   · intro j
     apply isHom_comp' (hf (emb j)) (hvar j)
 
+/--
+@isnad1 id=ishom.2h6v.s6.44e00efe565a from=translated src=- shape=3759fdef vocab=91448130
+-/
 lemma isHom_elim'
     {f : ∀ i, P i → B} (hf : ∀ i, IsHom (f i))
     {g : A → (i : I) × P i} (hg : IsHom g)
     : IsHom (fun x ↦ f (g x).1 (g x).2) := by
   exact isHom_comp' (f := fun x : Sigma P ↦ (f x.1 x.2 : B)) (g := g) (isHom_elim hf) hg
 
+/--
+@isnad1 id=ishom.0h2v.s4.c3f7f460f836 from=translated src=- shape=45d8aa8e vocab=5d746704
+-/
 @[fun_prop, simp]
 lemma isHom_fst [QuasiBorelSpace I] : IsHom (Sigma.fst : Sigma P → I) := by
   rw [QuasiBorelSpace.isHom_def]
@@ -368,6 +407,9 @@ lemma isHom_fst [QuasiBorelSpace I] : IsHom (Sigma.fst : Sigma P → I) := by
   · simp only [isHom_ofMeasurableSpace, measurable_index]
   · simp only [isHom_const', implies_true]
 
+/--
+@isnad1 id=ishom.0h2v.s4.a64681e71224 from=translated src=- shape=a15c8fd8 vocab=6b0ee5a1
+-/
 @[fun_prop]
 lemma isHom_snd : IsHom (Sigma.snd : (_ : I) × A → A) := by
   rw [QuasiBorelSpace.isHom_def]
@@ -380,6 +422,9 @@ lemma isHom_snd : IsHom (Sigma.snd : (_ : I) × A → A) := by
   · simp only [isHom_ofMeasurableSpace, measurable_index]
   · fun_prop
 
+/--
+@isnad1 id=ishom.0h3v.s6.15a8406df03e from=translated src=- shape=15956248 vocab=d67dbb7c
+-/
 lemma isHom_distrib : IsHom (fun x : A × Sigma P ↦ (⟨x.2.1, x.1, x.2.2⟩ : (i : I) × A × P i)) := by
   rw [QuasiBorelSpace.isHom_def]
   simp only [Prod.isHom_iff, isHom_def, and_imp, forall_exists_index]
@@ -389,6 +434,9 @@ lemma isHom_distrib : IsHom (fun x : A × Sigma P ↦ (⟨x.2.1, x.1, x.2.2⟩ :
   simp only [Var.distrib_apply]
   rw [hψ]
 
+/--
+@isnad1 id=ishom.1h5v.s7.912fa2f71593 from=translated src=- shape=fb955c7f vocab=d67dbb7c
+-/
 lemma isHom_distrib'
     {f : A × Sigma P → B} (hf : IsHom (fun x : (i : I) × A × P i ↦ f ⟨x.2.1, x.1, x.2.2⟩))
     : IsHom f := by
@@ -397,6 +445,9 @@ lemma isHom_distrib'
       (g := fun x : A × Sigma P ↦ ⟨x.2.1, x.1, x.2.2⟩)
       hf isHom_distrib
 
+/--
+@isnad1 id=ishom.1h6v.s6.f5a495c31024 from=translated src=- shape=839912b1 vocab=3cfa8499
+-/
 @[fun_prop]
 lemma isHom_map
     {f : I → J}
@@ -480,6 +531,9 @@ private lemma heq_ext
   ext
   apply h'
 
+/--
+@isnad1 id=ishom.0h2v.s7.eeb609de3470 from=translated src=- shape=653985d5 vocab=11414b19
+-/
 @[fun_prop]
 lemma isHom_chain_distrib : IsHom (Chain.Sigma.distrib (I := I) (P := P)) := by
   rw [isHom_def]

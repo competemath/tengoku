@@ -76,26 +76,41 @@ nonemptiness (`Graph.Connected`), which is what makes the counting statements be
 stated. -/
 def IsTree (G : Graph α β) : Prop := G.Connected ∧ G.IsAcyclic
 
+/--
+@isnad1 id=connecte.1h3v.s4.1ab9c8e76158 from=translated src=- shape=dd44cd6a vocab=e36955f2
+-/
 theorem IsTree.connected (h : G.IsTree) : G.Connected := h.1
 
+/--
+@isnad1 id=isacycli.1h3v.s4.ccd951c233be from=translated src=- shape=dd44cd6a vocab=e8b9a310
+-/
 theorem IsTree.isAcyclic (h : G.IsTree) : G.IsAcyclic := h.2
 
+/--
+@isnad1 id=iff.0h3v.s4.a05ba3bc7986 from=translated src=- shape=9ee960f3 vocab=88f1b4f2
+-/
 theorem isTree_iff : G.IsTree ↔ G.Connected ∧ G.IsAcyclic := Iff.rfl
 
 /-! ### A walk departs along an edge -/
 
-/-- A walk that gets anywhere leaves along an edge at its source. -/
+/-- A walk that gets anywhere leaves along an edge at its source.
+@isnad1 id=ex.2h6v.s5.43c8d95fd2e1 from=translated src=- shape=5f1a1888 vocab=eba3db6e
+-/
 theorem IsWalk.exists_inc_source (h : G.IsWalk u W v) (hW : W ≠ []) : ∃ e ∈ W, G.Inc e u := by
   cases h with
   | nil => exact absurd rfl hW
   | cons hl _ => exact ⟨_, List.mem_cons_self, hl.inc_left⟩
 
-/-- A path between two distinct vertices takes at least one edge. -/
+/-- A path between two distinct vertices takes at least one edge.
+@isnad1 id=ne.2h6v.s5.358eb4a214eb from=translated src=- shape=f1e5636f vocab=9f4b3095
+-/
 theorem IsPath.ne_nil (h : G.IsPath u P v) (huv : u ≠ v) : P ≠ [] := by
   rintro rfl
   exact huv h.isWalk.eq_of_nil
 
-/-- **In a connected graph on two or more vertices nothing is isolated.** -/
+/-- **In a connected graph on two or more vertices nothing is isolated.**
+@isnad1 id=lt.3h4v.s5.2d55b35d53e2 from=translated src=- shape=afcb988f vocab=d099e25c
+-/
 theorem Connected.degree_pos [G.Finite] (hG : G.Connected) (h2 : 2 ≤ V(G).ncard)
     (hx : x ∈ V(G)) : 0 < G.degree x := by
   obtain ⟨b, hb, hbx⟩ := Set.exists_ne_of_one_lt_ncard (s := V(G)) (by omega) x
@@ -118,7 +133,9 @@ theorem IsPath.eq_head_of_inc_source (h : G.IsPath u (e :: W) v) (hf : f ∈ e :
     · rfl
     · exact absurd (mem_walkVertices_of_mem_covered ⟨f, hf, hinc⟩) hfresh
 
-/-- **A path has at most one edge at its source.** -/
+/-- **A path has at most one edge at its source.**
+@isnad1 id=eq.5h8v.s5.56ed1192ba98 from=translated src=- shape=9f2880f6 vocab=cbc9be1b
+-/
 theorem IsPath.inc_source_unique (h : G.IsPath u P v) (hf : f ∈ P) (he : e ∈ P)
     (hfi : G.Inc f u) (hei : G.Inc e u) : f = e := by
   cases P with
@@ -127,7 +144,9 @@ theorem IsPath.inc_source_unique (h : G.IsPath u P v) (hf : f ∈ P) (he : e ∈
 
 /-! ### A longest path -/
 
-/-- A path repeats no edge, so it is no longer than the graph has edges. -/
+/-- A path repeats no edge, so it is no longer than the graph has edges.
+@isnad1 id=le.1h6v.s5.3fd4fed85eb0 from=translated src=- shape=c7f57370 vocab=16695f20
+-/
 theorem IsPath.length_le_ncard_edgeSet [G.Finite] (h : G.IsPath u P v) :
     P.length ≤ E(G).ncard := by
   classical
@@ -139,7 +158,9 @@ theorem IsPath.length_le_ncard_edgeSet [G.Finite] (h : G.IsPath u P v) :
 
 /-- **A finite graph with a vertex has a longest path.** The lengths of paths are bounded by
 the number of edges, so `Nat.findGreatest` picks the largest length that occurs, and the
-witnessing path is longest. -/
+witnessing path is longest.
+@isnad1 id=ex.1h4v.s6.f45e101b1ea5 from=translated src=- shape=5271e826 vocab=580b7d95
+-/
 theorem exists_longest_path [G.Finite] (hu : u ∈ V(G)) :
     ∃ x y Q, G.IsPath x Q y ∧ ∀ x' y' (Q' : List β), G.IsPath x' Q' y' → Q'.length ≤ Q.length := by
   classical
@@ -157,7 +178,9 @@ theorem exists_longest_path [G.Finite] (hu : u ∈ V(G)) :
 /-- **Every edge at the source of a longest path is one of the path's own edges.** The two
 ways out are both closed: an edge onto a vertex the path visits closes a cycle
 (`Graph.IsAcyclic.mem_of_isLink_of_mem_walkVertices`), and an edge to a vertex it does not
-visit extends the path. -/
+visit extends the path.
+@isnad1 id=mem.4h7v.s6.59400d361f74 from=translated src=- shape=1ebf9219 vocab=a08baeda
+-/
 theorem IsAcyclic.longest_path_source_edge (hac : G.IsAcyclic) (hP : G.IsPath u P v)
     (hlong : ∀ x' y' (Q : List β), G.IsPath x' Q y' → Q.length ≤ P.length)
     (hinc : G.Inc e u) : e ∈ P := by
@@ -170,7 +193,9 @@ theorem IsAcyclic.longest_path_source_edge (hac : G.IsAcyclic) (hP : G.IsPath u 
 
 /-- **The source of a longest path in an acyclic graph is a leaf**, as soon as it carries an
 edge at all: every edge there is one of the path's, and the path leaves the vertex only once,
-so they are all the same edge. -/
+so they are all the same edge.
+@isnad1 id=isleaf.4h7v.s6.6e5a9afbeb89 from=translated src=- shape=c731062b vocab=858fee53
+-/
 theorem IsAcyclic.longest_path_source_is_leaf (hac : G.IsAcyclic)
     (hP : G.IsPath u P v)
     (hlong : ∀ x' y' (Q : List β), G.IsPath x' Q y' → Q.length ≤ P.length)
@@ -181,7 +206,9 @@ theorem IsAcyclic.longest_path_source_is_leaf (hac : G.IsAcyclic)
     (hac.longest_path_source_edge hP hlong hinc) hg hinc
 
 /-- **The target of a longest path in an acyclic graph is a leaf** too: reversing a path
-preserves its length, so the reverse is longest as well. -/
+preserves its length, so the reverse is longest as well.
+@isnad1 id=isleaf.4h7v.s6.d8648e54c134 from=translated src=- shape=5d6a8cab vocab=858fee53
+-/
 theorem IsAcyclic.longest_path_target_is_leaf (hac : G.IsAcyclic)
     (hP : G.IsPath u P v)
     (hlong : ∀ x' y' (Q : List β), G.IsPath x' Q y' → Q.length ≤ P.length)
@@ -191,7 +218,9 @@ theorem IsAcyclic.longest_path_target_is_leaf (hac : G.IsAcyclic)
   exact hlong x' y' Q hQ
 
 /-- **A tree on two or more vertices has a leaf.** Two distinct vertices are joined by a path
-that takes an edge, so a longest path takes one too, and its source is a leaf. -/
+that takes an edge, so a longest path takes one too, and its source is a leaf.
+@isnad1 id=ex.2h3v.s5.9aff3e333b50 from=translated src=- shape=67e10d6d vocab=8f23b542
+-/
 theorem IsTree.has_leaf [G.Finite] (hT : G.IsTree) (h2 : 2 ≤ V(G).ncard) :
     ∃ x, G.IsLeaf x := by
   obtain ⟨a, ha⟩ := hT.connected.nonempty
@@ -213,7 +242,9 @@ theorem IsTree.has_leaf [G.Finite] (hT : G.IsTree) (h2 : 2 ≤ V(G).ncard) :
 /-- **A path whose two ends are elsewhere never visits a vertex of degree one.** To pass
 through such a vertex the path would have to arrive and leave along that vertex's single
 edge, and a path takes no edge twice. This is what makes connectivity survive the deletion of
-a leaf. -/
+a leaf.
+@isnad1 id=not.4h7v.s5.51a5159c5e41 from=translated src=- shape=1522c507 vocab=8a727ad6
+-/
 theorem IsLeaf.path_avoids [G.Finite] (hx : G.IsLeaf x) (hP : G.IsPath u P v) :
     u ≠ x → v ≠ x → x ∉ G.walkVertices u P := by
   induction hP with
@@ -239,7 +270,9 @@ theorem IsLeaf.path_avoids [G.Finite] (hx : G.IsLeaf x) (hP : G.IsPath u P v) :
 /-! ### Vertex deletion -/
 
 /-- **A walk that visits no deleted vertex survives the deletion.** Both ends of each of its
-edges are vertices it visits, so they too survive. -/
+edges are vertices it visits, so they too survive.
+@isnad1 id=iswalk.2h7v.s5.5d755a3ec33c from=translated src=- shape=7070ea42 vocab=383a764f
+-/
 theorem IsWalk.deleteVerts {X : Set α} (h : G.IsWalk u W v)
     (hX : ∀ z ∈ G.walkVertices u W, z ∉ X) : (G.deleteVerts X).IsWalk u W v := by
   refine h.anti deleteVerts_le ?_ fun g hg ↦ ?_
@@ -250,7 +283,9 @@ theorem IsWalk.deleteVerts {X : Set α} (h : G.IsWalk u W v)
     exact ⟨p, q, hpq, hX p (mem_walkVertices_of_mem_covered ⟨g, hg, hpq.inc_left⟩),
       hX q (mem_walkVertices_of_mem_covered ⟨g, hg, hpq.inc_right⟩)⟩
 
-/-- Deleting a vertex removes exactly the edges that meet it. -/
+/-- Deleting a vertex removes exactly the edges that meet it.
+@isnad1 id=eq.0h4v.s5.344916dc08ad from=translated src=- shape=0efeb70d vocab=c769bb92
+-/
 theorem edgeSet_deleteVerts_singleton (G : Graph α β) (x : α) :
     E(G.deleteVerts {x}) = E(G) \ G.incidenceSet x := by
   ext g
@@ -264,7 +299,9 @@ theorem edgeSet_deleteVerts_singleton (G : Graph α β) (x : α) :
 
 /-- **A tree minus a leaf is a tree.** Acyclicity is inherited by every subgraph;
 connectedness survives because every path between two surviving vertices already steered
-clear of the leaf (`Graph.IsLeaf.path_avoids`). -/
+clear of the leaf (`Graph.IsLeaf.path_avoids`).
+@isnad1 id=istree.3h4v.s5.6ce3177e905d from=translated src=- shape=935faadc vocab=88eb2543
+-/
 theorem IsTree.delete_leaf [G.Finite] (hT : G.IsTree) (hx : G.IsLeaf x) (h2 : 2 ≤ V(G).ncard) :
     (G.deleteVerts {x}).IsTree := by
   refine ⟨⟨?_, fun a ha b hb ↦ ?_⟩, hT.isAcyclic.anti deleteVerts_le⟩
@@ -324,7 +361,9 @@ private theorem isTree_edge_count_aux :
         exact hT.isAcyclic.not_isLoopAt g c hpq
       omega
 
-/-- **A tree has one edge fewer than it has vertices.** -/
+/-- **A tree has one edge fewer than it has vertices.**
+@isnad1 id=eq.1h3v.s5.d7f445a6d616 from=translated src=- shape=8bc6cd3f vocab=f9027b85
+-/
 theorem IsTree.edge_count [G.Finite] (hT : G.IsTree) : E(G).ncard + 1 = V(G).ncard :=
   isTree_edge_count_aux V(G).ncard G inferInstance le_rfl hT
 
@@ -341,7 +380,9 @@ three is unique.
 The count: with `k` non-leaf vertices the tree has `k + 3` vertices, hence `k + 2` edges
 (`Graph.IsTree.edge_count`), hence degree sum `2k + 4` (the handshake lemma). The leaves
 contribute `3`, so the non-leaves contribute `2k + 1`; each contributes at least `2`, so
-between them they carry exactly one degree above two. -/
+between them they carry exactly one degree above two.
+@isnad1 id=ex.2h3v.s6.f29f0c59c4cc from=translated src=- shape=6dda4aac vocab=4a207ae5
+-/
 theorem IsTree.three_leaves [G.Finite] (hT : G.IsTree)
     (hleaves : {z | G.IsLeaf z}.ncard = 3) :
     ∃ x ∈ V(G), G.degree x = 3 ∧ ∀ z ∈ V(G), z ≠ x → G.degree z ≤ 2 := by

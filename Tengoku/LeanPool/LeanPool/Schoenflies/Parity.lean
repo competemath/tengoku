@@ -86,44 +86,75 @@ def hgt (u z : Plane) : ℝ := Plane.det u z
 of the same `hgt` and larger `fwd`. -/
 noncomputable def fwd (u z : Plane) : ℝ := inner ℝ z u
 
+/--
+@isnad1 id=eq.0h2v.s8.ad6dadb857b1 from=translated src=- shape=9e30b80e vocab=274f3798
+-/
 theorem hgt_eq (u z : Plane) : hgt u z = u 0 * z 1 - u 1 * z 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.dc08c6354165 from=translated src=- shape=5d86afbd vocab=8768346c
+-/
 theorem fwd_eq (u z : Plane) : fwd u z = z 0 * u 0 + z 1 * u 1 := Plane.inner_eq z u
 
 namespace Plane
 
+/--
+@isnad1 id=eq.0h3v.s7.7d8834430dea from=translated src=- shape=508d72c2 vocab=1efdd123
+-/
 theorem add_apply (x y : Plane) (i : Fin 2) : (x + y) i = x i + y i := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.48fc7f031017 from=translated src=- shape=be86b003 vocab=f1955862
+-/
 theorem smul_apply (r : ℝ) (x : Plane) (i : Fin 2) : (r • x) i = r * x i := rfl
 
 end Plane
 
 /-- The coordinate rewriting used throughout: every claim about `hgt` and `fwd` of an affine
-combination is a polynomial identity in the four coordinates. -/
+combination is a polynomial identity in the four coordinates.
+@isnad1 id=eq.0h4v.s7.49f0d31f6062 from=translated src=- shape=e9e31542 vocab=6c027ffe
+-/
 theorem hgt_lin (u a b : Plane) (t : ℝ) :
     hgt u (a + t • (b - a)) = hgt u a + t * (hgt u b - hgt u a) := by
   simp only [hgt_eq, Plane.add_apply, Plane.smul_apply, Plane.sub_apply]; ring
 
+/--
+@isnad1 id=eq.0h4v.s7.a2ca46d479ea from=translated src=- shape=e9e31542 vocab=7e9d427c
+-/
 theorem fwd_lin (u a b : Plane) (t : ℝ) :
     fwd u (a + t • (b - a)) = fwd u a + t * (fwd u b - fwd u a) := by
   simp only [fwd_eq, Plane.add_apply, Plane.smul_apply, Plane.sub_apply]; ring
 
+/--
+@isnad1 id=eq.0h3v.s6.ce209b8eadfe from=translated src=- shape=50a03441 vocab=ae480145
+-/
 theorem hgt_sub (u x y : Plane) : hgt u (x - y) = hgt u x - hgt u y := by
   simp only [hgt_eq, Plane.sub_apply]; ring
 
+/--
+@isnad1 id=eq.0h3v.s6.1428ce030109 from=translated src=- shape=50a03441 vocab=f28ef0cc
+-/
 theorem fwd_sub (u x y : Plane) : fwd u (x - y) = fwd u x - fwd u y := by
   simp only [fwd_eq, Plane.sub_apply]; ring
 
+/--
+@isnad1 id=eq.0h4v.s7.6e6262b010af from=translated src=- shape=da17a9bd vocab=1485416c
+-/
 theorem hgt_add_smul (u v x : Plane) (t : ℝ) :
     hgt u (x + t • v) = hgt u x + t * hgt u v := by
   simp only [hgt_eq, Plane.add_apply, Plane.smul_apply]; ring
 
+/--
+@isnad1 id=eq.0h4v.s7.1f2e93f2674a from=translated src=- shape=da17a9bd vocab=a22e7dd1
+-/
 theorem fwd_add_smul (u v x : Plane) (t : ℝ) :
     fwd u (x + t • v) = fwd u x + t * fwd u v := by
   simp only [fwd_eq, Plane.add_apply, Plane.smul_apply]; ring
 
 /-- `hgt` against `u` is `fwd` against the turned direction. This is how the two coordinates
-of the frame are bounded by the norm. -/
+of the frame are bounded by the norm.
+@isnad1 id=eq.0h2v.s3.6b509b4a6f7f from=translated src=- shape=810eb741 vocab=56e7599a
+-/
 theorem hgt_eq_fwd_perp (u z : Plane) : hgt u z = fwd (Plane.perp u) z := by
   simp only [hgt_eq, fwd_eq, Plane.perp_zero, Plane.perp_one]; ring
 
@@ -132,22 +163,39 @@ section Direction
 variable (hu : Plane.IsDirection u)
 include hu
 
+/--
+@isnad1 id=eq.1h1v.s9.de4f2c7f5c1a from=translated src=- shape=b2e5cb88 vocab=7c7a5a8a
+-/
 theorem norm_sq_one : u 0 ^ 2 + u 1 ^ 2 = 1 := by
   rw [← Plane.norm_sq_eq, hu, one_pow]
 
 omit hu in
+/--
+@isnad1 id=eq.0h1v.s3.d9c06fb2062f from=translated src=- shape=34c957ae vocab=f7331072
+-/
 @[simp] theorem hgt_self : hgt u u = 0 := by simp only [hgt_eq]; ring
 
+/--
+@isnad1 id=eq.1h1v.s4.ba05dddf5169 from=translated src=- shape=c4303323 vocab=37c9db17
+-/
 theorem fwd_self : fwd u u = 1 := by rw [fwd_eq, ← norm_sq_one hu]; ring
 
+/--
+@isnad1 id=eq.1h1v.s4.9a0bf32c191c from=translated src=- shape=5d162b40 vocab=e7528f65
+-/
 theorem hgt_perp : hgt u (Plane.perp u) = 1 := by
   rw [hgt_eq, ← norm_sq_one hu]; simp only [Plane.perp_zero, Plane.perp_one]; ring
 
 omit hu in
+/--
+@isnad1 id=eq.0h1v.s3.af88bfe7f04b from=translated src=- shape=6ae13bdd vocab=8e455545
+-/
 theorem fwd_perp : fwd u (Plane.perp u) = 0 := by
   simp only [fwd_eq, Plane.perp_zero, Plane.perp_one]; ring
 
-/-- The frame is a basis: every vector is its two coordinates. -/
+/-- The frame is a basis: every vector is its two coordinates.
+@isnad1 id=eq.1h2v.s7.a3c46e218446 from=translated src=- shape=0d797391 vocab=20e9d729
+-/
 theorem decomp (v : Plane) : v = fwd u v • u + hgt u v • Plane.perp u := by
   have h1 := norm_sq_one hu
   ext i
@@ -164,11 +212,17 @@ theorem eq_of_coords (h1 : fwd u z = fwd u w) (h2 : hgt u z = hgt u w) : z = w :
   rw [h1, h2] at hz
   exact hz.trans hw.symm
 
+/--
+@isnad1 id=le.1h2v.s5.ee17890601db from=translated src=- shape=4136648e vocab=6431ee9d
+-/
 theorem abs_fwd_le_norm (v : Plane) : |fwd u v| ≤ ‖v‖ := by
   have h := abs_real_inner_le_norm v u
   rw [hu, mul_one] at h
   exact h
 
+/--
+@isnad1 id=le.1h2v.s5.0f1709b5d50a from=translated src=- shape=4136648e vocab=3960c9bd
+-/
 theorem abs_hgt_le_norm (v : Plane) : |hgt u v| ≤ ‖v‖ := by
   have hp : Plane.IsDirection (Plane.perp u) := by
     rw [Plane.IsDirection, Plane.norm_perp]; exact hu
@@ -184,18 +238,26 @@ level, i.e. `hgt u a ≠ hgt u b`. -/
 noncomputable def meet (u a b : Plane) (t : ℝ) : Plane :=
   a + ((t - hgt u a) / (hgt u b - hgt u a)) • (b - a)
 
+/--
+@isnad1 id=eq.1h4v.s4.c29ca86928d9 from=translated src=- shape=17be203e vocab=e12de743
+-/
 theorem hgt_meet (h : hgt u a ≠ hgt u b) (t : ℝ) : hgt u (meet u a b t) = t := by
   have hne : hgt u b - hgt u a ≠ 0 := sub_ne_zero.2 (Ne.symm h)
   rw [meet, hgt_lin]
   field_simp
   ring
 
+/--
+@isnad1 id=eq.0h4v.s6.6179c20f2951 from=translated src=- shape=6a8e8dc8 vocab=bf14a756
+-/
 theorem fwd_meet (u a b : Plane) (t : ℝ) :
     fwd u (meet u a b t) =
       fwd u a + ((t - hgt u a) / (hgt u b - hgt u a)) * (fwd u b - fwd u a) :=
   fwd_lin u a b _
 
-/-- Below the top and above the bottom, the meeting point is on the edge. -/
+/-- Below the top and above the bottom, the meeting point is on the edge.
+@isnad1 id=mem.3h4v.s7.d4a4e49d4e3f from=translated src=- shape=a073e289 vocab=19853ff2
+-/
 theorem meet_mem_segment (h : hgt u a < hgt u b) (h1 : hgt u a ≤ t) (h2 : t ≤ hgt u b) :
     meet u a b t ∈ segment ℝ a b := by
   have hne : (0:ℝ) < hgt u b - hgt u a := by linarith
@@ -212,7 +274,9 @@ theorem eq_meet (h : hgt u a ≠ hgt u b) (hz : z ∈ segment ℝ a b) :
     rw [hgt_lin]; field_simp; ring
   rw [meet, this]
 
-/-- Reversing an edge does not move its meeting point. -/
+/-- Reversing an edge does not move its meeting point.
+@isnad1 id=eq.1h4v.s4.a4fa7c30c015 from=translated src=- shape=dbf29136 vocab=e12de743
+-/
 theorem meet_swap (h : hgt u a ≠ hgt u b) (t : ℝ) : meet u b a t = meet u a b t := by
   have hne : hgt u b - hgt u a ≠ 0 := sub_ne_zero.2 (Ne.symm h)
   have h2 : (t - hgt u b) / (hgt u a - hgt u b)
@@ -235,6 +299,9 @@ def Crosses (u : Plane) (P : Piece) (q : Plane) : Prop :=
 noncomputable instance decidableCrosses (u : Plane) (P : Piece) (q : Plane) :
     Decidable (Crosses u P q) := Classical.dec _
 
+/--
+@isnad1 id=iff.1h4v.s5.d67824d73655 from=translated src=- shape=2f7a2cbc vocab=61e0d136
+-/
 theorem crosses_swap (h : hgt u a ≠ hgt u b) (q : Plane) :
     Crosses u (b, a) q ↔ Crosses u (a, b) q := by
   simp only [Crosses, meet_swap h, min_comm (hgt u b) (hgt u a), max_comm (hgt u b) (hgt u a)]
@@ -251,28 +318,49 @@ noncomputable def mark (u : Plane) (P : Piece) (q : Plane) : ZMod 2 :=
 noncomputable def parity (u : Plane) (L : List Piece) (q : Plane) : ZMod 2 :=
   (L.map (fun P => mark u P q)).sum
 
+/--
+@isnad1 id=eq.0h2v.s4.ad73a3df6e05 from=translated src=- shape=a78e3bef vocab=277aee5d
+-/
 @[simp] theorem crossings_nil (u q : Plane) : crossings u [] q = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.a8d7d4275a33 from=translated src=- shape=d29e8306 vocab=091e067c
+-/
 @[simp] theorem crossings_cons (u : Plane) (P : Piece) (L : List Piece) (q : Plane) :
     crossings u (P :: L) q = (if Crosses u P q then 1 else 0) + crossings u L q := by
   classical
   simp [crossings]
 
+/--
+@isnad1 id=eq.0h4v.s5.2db54428f600 from=translated src=- shape=c93b2f74 vocab=08b21515
+-/
 theorem crossings_append (u : Plane) (L₁ L₂ : List Piece) (q : Plane) :
     crossings u (L₁ ++ L₂) q = crossings u L₁ q + crossings u L₂ q := by
   classical
   simp [crossings, List.sum_append]
 
+/--
+@isnad1 id=eq.0h2v.s6.46367a0d24dd from=translated src=- shape=8ad2cbfb vocab=61fb1ab1
+-/
 @[simp] theorem parity_nil (u q : Plane) : parity u [] q = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.d6e5899ac316 from=translated src=- shape=e561ea4e vocab=e134d52c
+-/
 @[simp] theorem parity_cons (u : Plane) (P : Piece) (L : List Piece) (q : Plane) :
     parity u (P :: L) q = mark u P q + parity u L q := by
   simp [parity]
 
+/--
+@isnad1 id=eq.0h4v.s6.b7cc85ce427e from=translated src=- shape=7a834dcd vocab=9657f110
+-/
 theorem parity_append (u : Plane) (L₁ L₂ : List Piece) (q : Plane) :
     parity u (L₁ ++ L₂) q = parity u L₁ q + parity u L₂ q := by
   simp [parity, List.sum_append]
 
+/--
+@isnad1 id=eq.0h3v.s6.ab5ca8e67c8d from=translated src=- shape=9f7a1d7c vocab=6ed348d8
+-/
 theorem parity_eq_crossings (u : Plane) (L : List Piece) (q : Plane) :
     parity u L q = (crossings u L q : ZMod 2) := by
   classical
@@ -285,12 +373,16 @@ theorem parity_eq_crossings (u : Plane) (L : List Piece) (q : Plane) :
 /-! ### Subdivision invariance -/
 
 /-- A piece with distinct end heights is nondegenerate: this is the hypothesis the
-subdivision machinery of `Schoenflies.Subdivide` asks for. -/
+subdivision machinery of `Schoenflies.Subdivide` asks for.
+@isnad1 id=nondeg.1h2v.s4.5cb7b6961aee from=translated src=- shape=89527f90 vocab=92b45cb4
+-/
 theorem nondeg_of_hgt_ne {P : Piece} (h : hgt u P.1 ≠ hgt u P.2) : P.Nondeg := by
   intro hEq
   exact h (by rw [hEq])
 
-/-- An interior point of a non-level edge is strictly between its ends in height. -/
+/-- An interior point of a non-level edge is strictly between its ends in height.
+@isnad1 id=and.2h4v.s7.84da61d2dd56 from=translated src=- shape=49821fca vocab=104b3d4a
+-/
 theorem hgt_lt_of_mem_openSegment (hab : hgt u a < hgt u b) (hc : c ∈ openSegment ℝ a b) :
     hgt u a < hgt u c ∧ hgt u c < hgt u b := by
   rw [openSegment_eq_image' ℝ a b] at hc
@@ -300,6 +392,9 @@ theorem hgt_lt_of_mem_openSegment (hab : hgt u a < hgt u b) (hc : c ∈ openSegm
   · nlinarith
   · nlinarith
 
+/--
+@isnad1 id=and.2h4v.s7.4343977c04e2 from=translated src=- shape=49821fca vocab=efbfffe0
+-/
 theorem hgt_ne_of_mem_openSegment (hab : hgt u a ≠ hgt u b) (hc : c ∈ openSegment ℝ a b) :
     hgt u a ≠ hgt u c ∧ hgt u c ≠ hgt u b := by
   rcases lt_or_gt_of_ne hab with h | h
@@ -308,7 +403,9 @@ theorem hgt_ne_of_mem_openSegment (hab : hgt u a ≠ hgt u b) (hc : c ∈ openSe
   · obtain ⟨h1, h2⟩ := hgt_lt_of_mem_openSegment h (by rwa [openSegment_symm] at hc)
     exact ⟨ne_of_gt h2, ne_of_gt h1⟩
 
-/-- Cutting an edge keeps both halves non-level. -/
+/-- Cutting an edge keeps both halves non-level.
+@isnad1 id=ne.2h4v.s5.d43dacda1473 from=translated src=- shape=adc65e60 vocab=2d2e13d4
+-/
 theorem splitAt_hgt_ne {P : Piece} (hP : hgt u P.1 ≠ hgt u P.2) (c : Plane) :
     ∀ Q ∈ splitAt c P, hgt u Q.1 ≠ hgt u Q.2 := by
   classical
@@ -326,12 +423,18 @@ theorem splitAt_hgt_ne {P : Piece} (hP : hgt u P.1 ≠ hgt u P.2) (c : Plane) :
     rcases List.mem_singleton.1 hQ with rfl
     exact hP
 
+/--
+@isnad1 id=ne.2h4v.s5.c27e50667e0e from=translated src=- shape=28faece3 vocab=75c8673c
+-/
 theorem splitAllAt_hgt_ne (hL : ∀ P ∈ L, hgt u P.1 ≠ hgt u P.2) (c : Plane) :
     ∀ Q ∈ splitAllAt c L, hgt u Q.1 ≠ hgt u Q.2 := by
   intro Q hQ
   obtain ⟨P, hP, hQP⟩ := List.mem_flatMap.1 hQ
   exact splitAt_hgt_ne (hL P hP) c Q hQP
 
+/--
+@isnad1 id=ne.2h4v.s5.5e23c6a79cf3 from=translated src=- shape=de49781c vocab=7f9c5fbd
+-/
 theorem subdivide_hgt_ne (hL : ∀ P ∈ L, hgt u P.1 ≠ hgt u P.2) (points : List Plane) :
     ∀ Q ∈ subdivide L points, hgt u Q.1 ≠ hgt u Q.2 := by
   induction points generalizing L with
@@ -347,6 +450,9 @@ theorem eq_meet_of_smul (hab : hgt u a ≠ hgt u b) (r : ℝ) (hz : z = a + r �
     rw [hz, hgt_lin]; field_simp; ring
   rw [meet, hr, hz]
 
+/--
+@isnad1 id=eq.3h6v.s7.2a61bd9cb749 from=translated src=- shape=d7554c85 vocab=f6cf7e3a
+-/
 theorem meet_left_eq (hab : hgt u a ≠ hgt u b) (hac : hgt u a ≠ hgt u c)
     {r : ℝ} (hc : c = a + r • (b - a)) (t : ℝ) : meet u a c t = meet u a b t := by
   have hca : c - a = r • (b - a) := by rw [hc]; abel
@@ -354,6 +460,9 @@ theorem meet_left_eq (hab : hgt u a ≠ hgt u b) (hac : hgt u a ≠ hgt u c)
     rw [meet, hca, smul_smul]
   rw [eq_meet_of_smul hab _ hz, hgt_meet hac]
 
+/--
+@isnad1 id=eq.3h6v.s7.a8f90cb96504 from=translated src=- shape=42bc081d vocab=f6cf7e3a
+-/
 theorem meet_right_eq (hab : hgt u a ≠ hgt u b) (hcb : hgt u c ≠ hgt u b)
     {r : ℝ} (hc : c = a + r • (b - a)) (t : ℝ) : meet u c b t = meet u a b t := by
   have hbc : b - c = (1 - r) • (b - a) := by rw [hc, sub_smul, one_smul]; abel
@@ -413,7 +522,9 @@ private theorem crossings_split (hab : hgt u a ≠ hgt u b) (hc : c ∈ openSegm
     rw [add_comm]
     exact key
 
-/-- Cutting one edge does not change the crossing count. -/
+/-- Cutting one edge does not change the crossing count.
+@isnad1 id=eq.1h4v.s5.8cff0e9e4e7a from=translated src=- shape=ab4142da vocab=85a4be52
+-/
 theorem crossings_splitAt {P : Piece} (hP : hgt u P.1 ≠ hgt u P.2) (c q : Plane) :
     crossings u (splitAt c P) q = crossings u [P] q := by
   classical
@@ -425,7 +536,9 @@ theorem crossings_splitAt {P : Piece} (hP : hgt u P.1 ≠ hgt u P.2) (c q : Plan
     exact crossings_split hP hcc q
   · rfl
 
-/-- Cutting the whole list at one point does not change the crossing count. -/
+/-- Cutting the whole list at one point does not change the crossing count.
+@isnad1 id=eq.1h4v.s5.3a41a914ec39 from=translated src=- shape=417b79f7 vocab=b65118ac
+-/
 theorem crossings_splitAllAt (hL : ∀ P ∈ L, hgt u P.1 ≠ hgt u P.2) (c q : Plane) :
     crossings u (splitAllAt c L) q = crossings u L q := by
   induction L with
@@ -437,7 +550,9 @@ theorem crossings_splitAllAt (hL : ∀ P ∈ L, hgt u P.1 ≠ hgt u P.2) (c q : 
       crossings_splitAt hP c q, crossings_cons, crossings_cons, crossings_nil, add_zero]
 
 /-- **Subdivision invariance** (Lemma 2.1). Subdividing changes no crossing count — not even
-its parity is needed here; the count itself is unchanged. -/
+its parity is needed here; the count itself is unchanged.
+@isnad1 id=eq.1h4v.s5.de9a00d4c067 from=translated src=- shape=132c5c14 vocab=9ec66053
+-/
 theorem crossings_subdivide (hL : ∀ P ∈ L, hgt u P.1 ≠ hgt u P.2) (points : List Plane)
     (q : Plane) : crossings u (subdivide L points) q = crossings u L q := by
   induction points generalizing L with
@@ -445,19 +560,27 @@ theorem crossings_subdivide (hL : ∀ P ∈ L, hgt u P.1 ≠ hgt u P.2) (points 
   | cons c cs ih =>
     rw [subdivide_cons, ih (splitAllAt_hgt_ne hL c), crossings_splitAllAt hL c q]
 
-/-- **Subdivision invariance**, in the form the crosscut theorem uses. -/
+/-- **Subdivision invariance**, in the form the crosscut theorem uses.
+@isnad1 id=eq.1h4v.s5.7c8a7dabe4f2 from=translated src=- shape=4d14e7ef vocab=24e69121
+-/
 theorem parity_subdivide (hL : ∀ P ∈ L, hgt u P.1 ≠ hgt u P.2) (points : List Plane)
     (q : Plane) : parity u (subdivide L points) q = parity u L q := by
   rw [parity_eq_crossings, parity_eq_crossings, crossings_subdivide hL]
 
 /-! ### Closed chains -/
 
+/--
+@isnad1 id=eq.0h4v.s8.2bf107801a7a from=translated src=- shape=9dabce3e vocab=d65c6b4f
+-/
 theorem sum_map_add {α : Type*} (l : List α) (F G : α → ZMod 2) :
     (l.map (fun x => F x + G x)).sum = (l.map F).sum + (l.map G).sum := by
   induction l with
   | nil => simp
   | cons x l ih => simp only [List.map_cons, List.sum_cons, ih]; ring
 
+/--
+@isnad1 id=eq.0h5v.s8.08839452ebc6 from=translated src=- shape=84e88dc4 vocab=4c1c223d
+-/
 theorem sum_map_flatMap {α β : Type*} (l : List α) (g : α → List β) (F : β → ZMod 2) :
     ((l.flatMap g).map F).sum = (l.map (fun x => ((g x).map F).sum)).sum := by
   induction l with
@@ -465,6 +588,9 @@ theorem sum_map_flatMap {α β : Type*} (l : List α) (g : α → List β) (F : 
   | cons x l ih => simp only [List.flatMap_cons, List.map_append, List.sum_append, ih,
       List.map_cons, List.sum_cons]
 
+/--
+@isnad1 id=eq.0h1v.s7.dd8a2a9e100c from=translated src=- shape=3d23854a vocab=014cf724
+-/
 theorem add_self_zmod_two (x : ZMod 2) : x + x = 0 := by
   revert x; decide
 
@@ -475,11 +601,17 @@ list. -/
 def IsClosedChain (L : List Piece) : Prop :=
   ∀ f : Plane → ZMod 2, (L.map (fun P => f P.1 + f P.2)).sum = 0
 
+/--
+@isnad1 id=isclosed.0h0v.s1.0789f3ba181b from=translated src=- shape=87ceb31f vocab=ae8abe86
+-/
 theorem isClosedChain_nil : IsClosedChain [] := fun _ => by simp
 
 /-- The closed edge list of a cyclic vertex list: `[v₀v₁, v₁v₂, …, v_{n-1}v₀]`. -/
 def edgesOf (vs : List Plane) : List Piece := vs.zip (vs.rotate 1)
 
+/--
+@isnad1 id=isclosed.0h1v.s2.345efdadb8bf from=translated src=- shape=94c7f951 vocab=4f2287c8
+-/
 theorem isClosedChain_edgesOf (vs : List Plane) : IsClosedChain (edgesOf vs) := by
   intro f
   have h1 : (edgesOf vs).map Prod.fst = vs :=
@@ -499,7 +631,9 @@ theorem isClosedChain_edgesOf (vs : List Plane) : IsClosedChain (edgesOf vs) := 
   rw [sum_map_add, e1, e2, e3]
   exact add_self_zmod_two _
 
-/-- Cutting an edge in two does not disturb the boundary: the cut point is added twice. -/
+/-- Cutting an edge in two does not disturb the boundary: the cut point is added twice.
+@isnad1 id=isclosed.1h2v.s3.efae458203ee from=translated src=- shape=608a1c91 vocab=c723df8d
+-/
 theorem isClosedChain_splitAllAt (h : IsClosedChain L) (c : Plane) :
     IsClosedChain (splitAllAt c L) := by
   classical
@@ -515,6 +649,9 @@ theorem isClosedChain_splitAllAt (h : IsClosedChain L) (c : Plane) :
   rw [splitAllAt, sum_map_flatMap, List.map_congr_left (fun P _ => step P)]
   exact h f
 
+/--
+@isnad1 id=isclosed.1h2v.s3.b332570b0816 from=translated src=- shape=ed70c5a8 vocab=716d5e93
+-/
 theorem isClosedChain_subdivide (h : IsClosedChain L) (points : List Plane) :
     IsClosedChain (subdivide L points) := by
   induction points generalizing L with
@@ -523,17 +660,28 @@ theorem isClosedChain_subdivide (h : IsClosedChain L) (points : List Plane) :
 
 /-! ### What a list of edges occupies -/
 
+/--
+@isnad1 id=mem.2h3v.s5.b267f35330cb from=translated src=- shape=8c275c90 vocab=0e094345
+-/
 theorem mem_cover {P : Piece} (hP : P ∈ L) (hz : z ∈ P.seg) : z ∈ cover L :=
   Set.mem_biUnion hP hz
 
+/--
+@isnad1 id=iscompac.0h1v.s5.57e6944dfc8b from=translated src=- shape=12d4eb43 vocab=776afcc2
+-/
 theorem isCompact_cover (L : List Piece) : IsCompact (cover L) := by
   induction L with
   | nil => rw [cover_nil]; exact isCompact_empty
   | cons P L ih => rw [cover_cons]; exact (isCompact_segment P.1 P.2).union ih
 
+/--
+@isnad1 id=isclosed.0h1v.s5.fe39e80aa5e6 from=translated src=- shape=12d4eb43 vocab=2e1eefbf
+-/
 theorem isClosed_cover (L : List Piece) : IsClosed (cover L) := (isCompact_cover L).isClosed
 
-/-- Where an edge meets the level line, when it does. -/
+/-- Where an edge meets the level line, when it does.
+@isnad1 id=mem.3h3v.s6.028f0440f525 from=translated src=- shape=0ab6b6fd vocab=b2b727ae
+-/
 theorem meet_mem_seg {P : Piece} (h : hgt u P.1 ≠ hgt u P.2)
     (h1 : min (hgt u P.1) (hgt u P.2) ≤ t) (h2 : t ≤ max (hgt u P.1) (hgt u P.2)) :
     meet u P.1 P.2 t ∈ P.seg := by
@@ -554,21 +702,35 @@ variable (hu : Plane.IsDirection u)
 include hu
 
 omit hu in
+/--
+@isnad1 id=eq.0h3v.s7.6a341bf2b304 from=translated src=- shape=71a7e127 vocab=136736a2
+-/
 theorem hgt_along (q : Plane) (s : ℝ) : hgt u (q + s • u) = hgt u q := by
   rw [hgt_add_smul, hgt_self]; ring
 
+/--
+@isnad1 id=eq.1h3v.s7.e096980b1c26 from=translated src=- shape=d1769616 vocab=89e703f5
+-/
 theorem fwd_along (q : Plane) (s : ℝ) : fwd u (q + s • u) = fwd u q + s := by
   rw [fwd_add_smul, fwd_self hu]; ring
 
+/--
+@isnad1 id=eq.1h3v.s7.c88dc7cb77a4 from=translated src=- shape=af633d10 vocab=ca43adc6
+-/
 theorem hgt_across (q : Plane) (s : ℝ) : hgt u (q + s • Plane.perp u) = hgt u q + s := by
   rw [hgt_add_smul, hgt_perp hu]; ring
 
 omit hu in
+/--
+@isnad1 id=eq.0h3v.s7.20de4bbe0d16 from=translated src=- shape=a385dad2 vocab=854f704b
+-/
 theorem fwd_across (q : Plane) (s : ℝ) : fwd u (q + s • Plane.perp u) = fwd u q := by
   rw [fwd_add_smul, fwd_perp]; ring
 
 /-- The segment from `q` in the ray direction is exactly the points at the same height with
-`fwd` in between. -/
+`fwd` in between.
+@isnad1 id=mem.5h4v.s8.c9187f66e64d from=translated src=- shape=815dd2d8 vocab=898ef162
+-/
 theorem mem_segment_along {q y : Plane} {s : ℝ} (hs : 0 ≤ s) (h1 : hgt u y = hgt u q)
     (h2 : fwd u q ≤ fwd u y) (h3 : fwd u y ≤ fwd u q + s) :
     y ∈ segment ℝ q (q + s • u) := by
@@ -586,7 +748,9 @@ theorem mem_segment_along {q y : Plane} {s : ℝ} (hs : 0 ≤ s) (h1 : hgt u y =
       (by rw [hgt_add_smul, hgt_self, h1]; ring)
 
 /-- The segment from `q` across the ray direction is exactly the points with the same `fwd`
-and height in between. -/
+and height in between.
+@isnad1 id=mem.5h4v.s8.72b62eef1b0d from=translated src=- shape=8de017f8 vocab=c80e1c05
+-/
 theorem mem_segment_across {q y : Plane} {s : ℝ} (hs : 0 ≤ s) (h1 : fwd u y = fwd u q)
     (h2 : hgt u q ≤ hgt u y) (h3 : hgt u y ≤ hgt u q + s) :
     y ∈ segment ℝ q (q + s • Plane.perp u) := by
@@ -605,7 +769,9 @@ theorem mem_segment_across {q y : Plane} {s : ℝ} (hs : 0 ≤ s) (h1 : fwd u y 
 
 omit hu in
 /-- A connected piece of an edge that stays between two heights and never meets the level
-line `fwd = ξ` stays on one side of it. -/
+line `fwd = ξ` stays on one side of it.
+@isnad1 id=iff.7h8v.s8.da18629cb4fa from=translated src=- shape=f2e5b1eb vocab=3904bf69
+-/
 theorem side_const {lo hi ξ : ℝ}
     (hmiss : ∀ y ∈ segment ℝ a b, fwd u y = ξ → lo ≤ hgt u y → hgt u y ≤ hi → False)
     (hz : z ∈ segment ℝ a b) (hw : w ∈ segment ℝ a b)
@@ -633,7 +799,9 @@ theorem side_const {lo hi ξ : ℝ}
   exact ⟨fun h => key z w hz hw hzl hzh hwl hwh h, fun h => key w z hw hz hwl hwh hzl hzh h⟩
 
 /-- Moving the base point along the ray direction, without meeting the polygon, changes no
-crossing. -/
+crossing.
+@isnad1 id=eq.4h4v.s8.a7336e1ce86c from=translated src=- shape=7202c84a vocab=07cc25aa
+-/
 theorem parity_move_along (hL : ∀ P ∈ L, hgt u P.1 ≠ hgt u P.2) {q : Plane} {s : ℝ}
     (hs : 0 ≤ s) (hmiss : ∀ y ∈ segment ℝ q (q + s • u), y ∉ cover L) :
     parity u L (q + s • u) = parity u L q := by
@@ -664,6 +832,9 @@ that is the whole content of crossing parity. -/
 noncomputable def fmark (u q : Plane) (s : ℝ) (v : Plane) : ZMod 2 :=
   if hgt u q < hgt u v ∧ hgt u v ≤ hgt u q + s ∧ fwd u q < fwd u v then 1 else 0
 
+/--
+@isnad1 id=eq.1h4v.s5.d320773778a4 from=translated src=- shape=508c2096 vocab=714059bc
+-/
 theorem mark_swap (h : hgt u a ≠ hgt u b) (q : Plane) : mark u (b, a) q = mark u (a, b) q := by
   simp only [mark, crosses_swap h]
 
@@ -761,7 +932,9 @@ private theorem mark_step {q : Plane} {s : ℝ} (hs : 0 ≤ s) (hab : hgt u a < 
       ite_eq_right (by rintro ⟨-, g, -⟩; linarith)]
 
 /-- Sweeping the base point across the ray direction, without meeting the polygon, does not
-change the parity. This is where the polygon has to be closed. -/
+change the parity. This is where the polygon has to be closed.
+@isnad1 id=eq.5h4v.s8.9430e281b557 from=translated src=- shape=a5442004 vocab=417b6f57
+-/
 theorem parity_move_across (hL : ∀ P ∈ L, hgt u P.1 ≠ hgt u P.2) (hC : IsClosedChain L)
     {q : Plane} {s : ℝ} (hs : 0 ≤ s)
     (hmiss : ∀ y ∈ segment ℝ q (q + s • Plane.perp u), y ∉ cover L) :
@@ -790,7 +963,9 @@ theorem parity_move_across (hL : ∀ P ∈ L, hgt u P.1 ≠ hgt u P.2) (hC : IsC
   have harith : ∀ x y : ZMod 2, x + y = 0 → y = x := by decide
   exact harith _ _ hzero
 
-/-- The two moves, for a shift of either sign. -/
+/-- The two moves, for a shift of either sign.
+@isnad1 id=eq.4h5v.s8.19a31b8da3c7 from=translated src=- shape=418726ec vocab=48943284
+-/
 theorem parity_move_along' (hL : ∀ P ∈ L, hgt u P.1 ≠ hgt u P.2) {q q' : Plane} (s : ℝ)
     (hq' : q' = q + s • u) (hmiss : ∀ y ∈ segment ℝ q q', y ∉ cover L) :
     parity u L q' = parity u L q := by
@@ -805,6 +980,9 @@ theorem parity_move_along' (hL : ∀ P ∈ L, hgt u P.1 ≠ hgt u P.2) {q q' : P
     rw [← hq] at hmove
     exact hmove.symm
 
+/--
+@isnad1 id=eq.5h5v.s8.f59da13dec4c from=translated src=- shape=d8a3467c vocab=9e65fb33
+-/
 theorem parity_move_across' (hL : ∀ P ∈ L, hgt u P.1 ≠ hgt u P.2) (hC : IsClosedChain L)
     {q q' : Plane} (s : ℝ) (hq' : q' = q + s • Plane.perp u)
     (hmiss : ∀ y ∈ segment ℝ q q', y ∉ cover L) :
@@ -824,6 +1002,9 @@ end Across
 
 /-! ### Crossing parity -/
 
+/--
+@isnad1 id=ex.1h2v.s6.b5a1c766f067 from=translated src=- shape=be6fc2aa vocab=549f9bb5
+-/
 theorem exists_ball_avoiding {z : Plane} (h : z ∉ cover L) :
     ∃ ε > 0, ∀ y ∈ ball z ε, y ∉ cover L := by
   have hopen := (isClosed_cover L).isOpen_compl
@@ -837,7 +1018,9 @@ variable (hu : Plane.IsDirection u)
 include hu
 
 /-- The parity is constant on a ball that misses the polygon: reach any nearby point by a
-move along the ray direction followed by a move across it. -/
+move along the ray direction followed by a move across it.
+@isnad1 id=eq.5h5v.s7.b6248165dd73 from=translated src=- shape=7d6c707b vocab=740952a3
+-/
 theorem parity_eq_of_mem_ball (hL : ∀ P ∈ L, hgt u P.1 ≠ hgt u P.2) (hC : IsClosedChain L)
     {q q' : Plane} {ε : ℝ} (hq' : q' ∈ ball q ε) (hmiss : ∀ y ∈ ball q ε, y ∉ cover L) :
     parity u L q' = parity u L q := by
@@ -863,7 +1046,9 @@ theorem parity_eq_of_mem_ball (hL : ∀ P ∈ L, hgt u P.1 ≠ hgt u P.2) (hC : 
   rw [h2, h1]
 
 /-- **Crossing parity** (Lemma 2.2). `π_C` is constant on every preconnected subset of the
-complement of the polygon — in particular on every component. -/
+complement of the polygon — in particular on every component.
+@isnad1 id=eq.7h5v.s7.ade35719f5cb from=translated src=- shape=f8ac8df8 vocab=ea23bb11
+-/
 theorem parity_eq_of_isPreconnected (hL : ∀ P ∈ L, hgt u P.1 ≠ hgt u P.2)
     (hC : IsClosedChain L) {S : Set Plane} (hS : IsPreconnected S)
     (hSC : ∀ z ∈ S, z ∉ cover L) {x y : Plane} (hx : x ∈ S) (hy : y ∈ S) :
@@ -888,7 +1073,9 @@ theorem parity_eq_of_isPreconnected (hL : ∀ P ∈ L, hgt u P.1 ≠ hgt u P.2)
       ⟨x, hx, hSC x hx, rfl⟩ ⟨y, hy, hSC y hy, rfl⟩
   exact hne (hzA.2 ▸ hzB.2)
 
-/-- The parity is constant on the component of the complement containing a point. -/
+/-- The parity is constant on the component of the complement containing a point.
+@isnad1 id=eq.5h4v.s6.d6ba66e4b6b9 from=translated src=- shape=f957ca5c vocab=04e120c7
+-/
 theorem parity_eq_of_mem_connectedComponentIn (hL : ∀ P ∈ L, hgt u P.1 ≠ hgt u P.2)
     (hC : IsClosedChain L) {x y : Plane} (hx : x ∉ cover L)
     (hy : y ∈ connectedComponentIn (cover L)ᶜ x) : parity u L y = parity u L x :=
@@ -899,7 +1086,9 @@ end Constancy
 
 /-! ### The value far along the ray, and the jump across an edge -/
 
-/-- Beyond the polygon in the ray direction the count is zero. -/
+/-- Beyond the polygon in the ray direction the count is zero.
+@isnad1 id=eq.2h3v.s6.3a2543cb5c35 from=translated src=- shape=0bf0e968 vocab=aa415b80
+-/
 theorem parity_eq_zero_of_lt (hL : ∀ P ∈ L, hgt u P.1 ≠ hgt u P.2) {q : Plane}
     (h : ∀ z ∈ cover L, fwd u z < fwd u q) : parity u L q = 0 := by
   refine List.sum_eq_zero ?_
@@ -917,7 +1106,9 @@ include hu
 /-- **Opposite sides of an edge** (Lemma 2.2, second half). At an interior point `p` of one
 edge of the list which no other edge of the list passes through, the two points just before
 and just after `p` in the ray direction lie off the polygon and have opposite parity: the
-count changes by one as the base point sweeps across the edge. -/
+count changes by one as the base point sweeps across the edge.
+@isnad1 id=ex.5h6v.s9.7f6a15aa0322 from=translated src=- shape=fa4f42f5 vocab=31e1078c
+-/
 theorem parity_flip {L₁ L₂ : List Piece} {a b p : Plane}
     (hL : ∀ P ∈ L₁ ++ (a, b) :: L₂, hgt u P.1 ≠ hgt u P.2)
     (hp : p ∈ openSegment ℝ a b) (h1 : p ∉ cover L₁) (h2 : p ∉ cover L₂) :
@@ -1050,7 +1241,9 @@ end Flip
 
 /-- The blueprint's opening move — "rotate so that no edge is horizontal" — without rotating
 anything: finitely many edge directions rule out only finitely many rays, so some direction
-is level for none of them. -/
+is level for none of them.
+@isnad1 id=ex.1h1v.s5.451ed30740c8 from=translated src=- shape=d7678b36 vocab=457a0d33
+-/
 theorem exists_direction_hgt_ne (L : List Piece) (hnd : ∀ P ∈ L, P.Nondeg) :
     ∃ u : Plane, Plane.IsDirection u ∧ ∀ P ∈ L, hgt u P.1 ≠ hgt u P.2 := by
   obtain ⟨u, hu, hdet⟩ :=

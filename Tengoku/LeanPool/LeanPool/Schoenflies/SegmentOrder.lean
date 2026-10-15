@@ -73,18 +73,24 @@ the segment's length. Those two facts are the whole content of the module; the r
 arithmetic. -/
 
 /-- The distance from the left endpoint to the point at parameter `t` is `t` times the
-segment's length. This is `dist_left_lineMap` with the absolute value discharged. -/
+segment's length. This is `dist_left_lineMap` with the absolute value discharged.
+@isnad1 id=eq.1h3v.s10.9f699d009f3c from=translated src=- shape=e6c940bd vocab=76c4fda4
+-/
 theorem dist_left_lineMap_of_nonneg (a b : Plane) {t : ℝ} (ht : 0 ≤ t) :
     dist a (AffineMap.lineMap a b t) = t * dist a b := by
   rw [dist_left_lineMap, Real.norm_eq_abs, abs_of_nonneg ht]
 
-/-- The piece of `[a, b]` spanned by two parameters is the image of the segment they span. -/
+/-- The piece of `[a, b]` spanned by two parameters is the image of the segment they span.
+@isnad1 id=eq.0h4v.s11.0c9880eab63f from=translated src=- shape=563208ff vocab=f80ef4af
+-/
 theorem segment_lineMap_image (a b : Plane) (p q : ℝ) :
     segment ℝ (AffineMap.lineMap a b p) (AffineMap.lineMap a b q)
       = (AffineMap.lineMap a b : ℝ →ᵃ[ℝ] Plane) '' segment ℝ p q := by
   simp
 
-/-- The same for interiors. -/
+/-- The same for interiors.
+@isnad1 id=eq.0h4v.s11.0341f20f1990 from=translated src=- shape=563208ff vocab=580ecb25
+-/
 theorem openSegment_lineMap_image (a b : Plane) (p q : ℝ) :
     openSegment ℝ (AffineMap.lineMap a b p) (AffineMap.lineMap a b q)
       = (AffineMap.lineMap a b : ℝ →ᵃ[ℝ] Plane) '' openSegment ℝ p q := by
@@ -92,7 +98,9 @@ theorem openSegment_lineMap_image (a b : Plane) (p q : ℝ) :
 
 /-- Every point of `[a, b]` carries a parameter: a number `t ∈ [0, 1]` placing it on the
 segment, whose distance from `a` is `t` times the segment's length. This is the only way the
-rest of the module looks at a point of the segment. -/
+rest of the module looks at a point of the segment.
+@isnad1 id=ex.1h3v.s10.8a6f2a52a750 from=translated src=- shape=f7832253 vocab=1d125718
+-/
 theorem exists_param_of_mem_segment {x : Plane} (hx : x ∈ segment ℝ a b) :
     ∃ t : ℝ, 0 ≤ t ∧ t ≤ 1 ∧ AffineMap.lineMap a b t = x ∧ dist a x = t * dist a b := by
   rw [segment_eq_image_lineMap] at hx
@@ -102,7 +110,9 @@ theorem exists_param_of_mem_segment {x : Plane} (hx : x ∈ segment ℝ a b) :
 /-! ### The coordinate -/
 
 /-- Along a nondegenerate segment, the distance from the left endpoint **orders the
-parameters**: a nonzero length cancels from `s * ‖b - a‖ ≤ t * ‖b - a‖`. -/
+parameters**: a nonzero length cancels from `s * ‖b - a‖ ≤ t * ‖b - a‖`.
+@isnad1 id=le.4h4v.s10.564796feb271 from=translated src=- shape=3cfe4c3d vocab=90c1db25
+-/
 theorem parameter_le_of_distance (hab : a ≠ b) {s t : ℝ} (hs : 0 ≤ s) (ht : 0 ≤ t)
     (h : dist a (AffineMap.lineMap a b s) ≤ dist a (AffineMap.lineMap a b t)) : s ≤ t := by
   have hd : 0 < dist a b := dist_pos.2 hab
@@ -122,7 +132,9 @@ theorem eq_of_dist_left_eq (hab : a ≠ b) {x y : Plane} (hx : x ∈ segment ℝ
 /-! ### Betweenness as a pair of inequalities -/
 
 /-- A point between two points of the segment is between them in distance from `a` as well:
-measured from `a`, the nearer end comes first. -/
+measured from `a`, the nearer end comes first.
+@isnad1 id=and.5h5v.s9.c525cb0305c7 from=translated src=- shape=39f2a16e vocab=9d4e0d05
+-/
 theorem dist_le_of_mem_segment (hab : a ≠ b) {u v x : Plane} (hu : u ∈ segment ℝ a b)
     (hv : v ∈ segment ℝ a b) (huv : dist a u ≤ dist a v) (hx : x ∈ segment ℝ u v) :
     dist a u ≤ dist a x ∧ dist a x ≤ dist a v := by
@@ -137,7 +149,9 @@ theorem dist_le_of_mem_segment (hab : a ≠ b) {u v x : Plane} (hu : u ∈ segme
   exact ⟨by nlinarith, by nlinarith⟩
 
 /-- The converse: a point of the segment whose distance from `a` lies between the two ends'
-distances lies between the ends. -/
+distances lies between the ends.
+@isnad1 id=mem.6h5v.s9.77d49fe44129 from=translated src=- shape=5d82f675 vocab=9d4e0d05
+-/
 theorem mem_segment_of_dist_le (hab : a ≠ b) {u v x : Plane} (hu : u ∈ segment ℝ a b)
     (hv : v ∈ segment ℝ a b) (hx : x ∈ segment ℝ a b) (h₁ : dist a u ≤ dist a x)
     (h₂ : dist a x ≤ dist a v) : x ∈ segment ℝ u v := by
@@ -155,7 +169,9 @@ theorem mem_segment_of_dist_le (hab : a ≠ b) {u v x : Plane} (hu : u ∈ segme
 converse does not, since strict inequalities force nondegeneracy on their own. -/
 
 /-- A point interior to a nondegenerate piece of the segment is strictly between its ends in
-distance from `a`. -/
+distance from `a`.
+@isnad1 id=and.6h5v.s9.80ac2587d0a1 from=translated src=- shape=4fb2067f vocab=1edc48ce
+-/
 theorem dist_lt_of_mem_openSegment (hab : a ≠ b) {u v x : Plane} (hu : u ∈ segment ℝ a b)
     (hv : v ∈ segment ℝ a b) (huv : u ≠ v) (hor : dist a u ≤ dist a v)
     (hx : x ∈ openSegment ℝ u v) : dist a u < dist a x ∧ dist a x < dist a v := by
@@ -170,7 +186,9 @@ theorem dist_lt_of_mem_openSegment (hab : a ≠ b) {u v x : Plane} (hu : u ∈ s
   exact ⟨by nlinarith, by nlinarith⟩
 
 /-- The converse: a point of the segment strictly between the ends in distance from `a` is
-interior to the piece they span. -/
+interior to the piece they span.
+@isnad1 id=mem.6h5v.s9.2d40358cb6d4 from=translated src=- shape=97e9c3ad vocab=9b26e94f
+-/
 theorem mem_openSegment_of_dist_lt (hab : a ≠ b) {u v x : Plane} (hu : u ∈ segment ℝ a b)
     (hv : v ∈ segment ℝ a b) (hx : x ∈ segment ℝ a b) (h₁ : dist a u < dist a x)
     (h₂ : dist a x < dist a v) : x ∈ openSegment ℝ u v := by
@@ -192,7 +210,9 @@ of a piece's interior has to be outside on one side or the other, and knowing wh
 is not settles it. -/
 
 /-- A point of the ambient segment kept out of `[u, v]`'s interior and lying before `v` lies
-at or before `u`. -/
+at or before `u`.
+@isnad1 id=le.6h5v.s9.b7d100bf6988 from=translated src=- shape=ee127c40 vocab=1edc48ce
+-/
 theorem dist_le_left_of_notMem_openSegment (hab : a ≠ b) {u v y : Plane}
     (hu : u ∈ segment ℝ a b) (hv : v ∈ segment ℝ a b) (hy : y ∈ segment ℝ a b)
     (hout : y ∉ openSegment ℝ u v) (hlt : dist a y < dist a v) : dist a y ≤ dist a u := by
@@ -200,7 +220,9 @@ theorem dist_le_left_of_notMem_openSegment (hab : a ≠ b) {u v y : Plane}
   exact hout (mem_openSegment_of_dist_lt hab hu hv hy (lt_of_not_ge hcon) hlt)
 
 /-- The mirror: a point of the ambient segment kept out of `[u, v]`'s interior and lying
-after `u` lies at or after `v`. -/
+after `u` lies at or after `v`.
+@isnad1 id=le.6h5v.s9.3381899f990b from=translated src=- shape=46cb153b vocab=1edc48ce
+-/
 theorem le_dist_right_of_notMem_openSegment (hab : a ≠ b) {u v y : Plane}
     (hu : u ∈ segment ℝ a b) (hv : v ∈ segment ℝ a b) (hy : y ∈ segment ℝ a b)
     (hout : y ∉ openSegment ℝ u v) (hlt : dist a u < dist a y) : dist a v ≤ dist a y := by
@@ -210,7 +232,9 @@ theorem le_dist_right_of_notMem_openSegment (hab : a ≠ b) {u v y : Plane}
 /-! ### What the overlay is after -/
 
 /-- A piece that meets an overlap and keeps the overlap's two ends out of its interior lies
-inside the overlap — near-end-first form. -/
+inside the overlap — near-end-first form.
+@isnad1 id=le.11h7v.s10.bc827b21e14a from=translated src=- shape=f0c2a148 vocab=a06f4eee
+-/
 theorem segment_inside_of_ends_outside_oriented (hab : a ≠ b) {u v s t x : Plane}
     (hu : u ∈ segment ℝ a b) (hv : v ∈ segment ℝ a b) (hpiece : dist a u ≤ dist a v)
     (hs : s ∈ segment ℝ a b) (ht : t ∈ segment ℝ a b) (hover : dist a s ≤ dist a t)
@@ -241,7 +265,9 @@ theorem segment_inside_of_ends_outside_oriented (hab : a ≠ b) {u v s t x : Pla
   exact mem_segment_of_dist_le hab hs ht hyab (hsu.trans huy) (hyv.trans hvt)
 
 /-- Two pieces of one ambient segment whose interiors meet, each keeping the other's ends out
-of its interior, have the same ends — near-end-first form. -/
+of its interior, have the same ends — near-end-first form.
+@isnad1 id=and.13h7v.s10.c7eda4956751 from=translated src=- shape=a7ffdee7 vocab=a06f4eee
+-/
 theorem same_ends_of_meeting_interiors_oriented (hab : a ≠ b) {u v s t x : Plane}
     (hu : u ∈ segment ℝ a b) (hv : v ∈ segment ℝ a b) (hfirst : dist a u ≤ dist a v)
     (hs : s ∈ segment ℝ a b) (ht : t ∈ segment ℝ a b) (hsecond : dist a s ≤ dist a t)
@@ -287,7 +313,9 @@ inside the overlap.
 
 Collinearity is not optional: every point named is a point of one ambient `segment ℝ a b`. A
 piece crossing the overlap transversally would meet it and avoid both its ends without lying
-inside it. -/
+inside it.
+@isnad1 id=le.9h7v.s10.3d1f7fcc1529 from=translated src=- shape=a0483054 vocab=8b699b6e
+-/
 theorem segment_inside_of_ends_outside (hab : a ≠ b) {u v s t x : Plane}
     (hu : u ∈ segment ℝ a b) (hv : v ∈ segment ℝ a b)
     (hs : s ∈ segment ℝ a b) (ht : t ∈ segment ℝ a b)
@@ -314,7 +342,9 @@ theorem segment_inside_of_ends_outside (hab : a ≠ b) {u v s t x : Plane}
 of its interior, are the same pair of points — in one order or the other.
 
 This is the separation the deduplication clause is for: overlapping collinear pieces cannot
-be pulled apart by cutting, and after enough cuts they coincide instead. -/
+be pulled apart by cutting, and after enough cuts they coincide instead.
+@isnad1 id=or.11h7v.s10.42d59aea349f from=translated src=- shape=5ba239ad vocab=c3fd922f
+-/
 theorem same_ends_of_meeting_interiors (hab : a ≠ b) {u v s t x : Plane}
     (hu : u ∈ segment ℝ a b) (hv : v ∈ segment ℝ a b)
     (hs : s ∈ segment ℝ a b) (ht : t ∈ segment ℝ a b)

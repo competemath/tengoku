@@ -39,6 +39,9 @@ variable (a : ℤ)
 
 /-! ### The integer factors `b_n` -/
 
+/--
+@isnad1 id=ne.2h2v.s5.ca934ff7c782 from=translated src=- shape=9a8c3232 vocab=5598fd07
+-/
 lemma cSeq_ne_zero (ha : ¬IsSquare (-a : ℚ)) {n : ℕ} (hn : 1 ≤ n) : cSeq a n ≠ 0 := by
   rcases Nat.lt_or_ge n 2 with h1 | h2
   · obtain rfl : n = 1 := by lia
@@ -51,7 +54,9 @@ private lemma cSeq_ne_zero' (ha : ¬IsSquare (-a : ℚ)) : ∀ d ≥ 1, cSeq a d
   fun _ ↦ cSeq_ne_zero a ha
 
 /-- The constant-valuation shape for `c`: the specialization of `factorization_gammaSeq_shape`
-to `X² + a`, `ε = -1`, in the form consumed by `moebiusFactorR_isRelPrime`. -/
+to `X² + a`, `ε = -1`, in the form consumed by `moebiusFactorR_isRelPrime`.
+@isnad1 id=ex.3h2v.s7.b468b505778b from=translated src=- shape=f17b8bf1 vocab=6ba99762
+-/
 lemma cSeq_factorization_shape (ha : ¬IsSquare (-a : ℚ)) :
     ∀ q : ℤ, Prime q → normalize q = q →
       ∃ m ≥ 1, ∃ E : ℕ, ∀ k ≥ 1, factorization (cSeq a k) q = if m ∣ k then E else 0 :=
@@ -60,24 +65,33 @@ lemma cSeq_factorization_shape (ha : ¬IsSquare (-a : ℚ)) :
 
 /-- The image of `b_n` in `ℚ` is the Möbius product `∏_{ed = n} c_d^{μ(e)}` (Lemma 1.1 b): the
 Möbius product of the `c`-sequence is the integer `b_n`, since `c` is a strong divisibility
-sequence. -/
+sequence.
+@isnad1 id=eq.2h2v.s5.35a02c5d0d41 from=translated src=- shape=1746e589 vocab=de6139c1
+-/
 lemma intCast_bSeq (ha : ¬IsSquare (-a : ℚ)) {n : ℕ} (hn : 1 ≤ n) :
     (bSeq a n : ℚ) = moebiusFactor (cSeq a) n := by
   rw [bSeq_eq_moebiusFactorR]
   exact intCast_moebiusFactorR (cSeq_ne_zero' a ha) (cSeq_gcd a) hn
 
+/--
+@isnad1 id=ne.2h2v.s5.5b7724ee6a7d from=translated src=- shape=9a8c3232 vocab=b73570f0
+-/
 lemma bSeq_ne_zero (ha : ¬IsSquare (-a : ℚ)) {n : ℕ} (hn : 1 ≤ n) : bSeq a n ≠ 0 := by
   rw [bSeq_eq_moebiusFactorR]
   exact moebiusFactorR_ne_zero (cSeq_ne_zero' a ha) (cSeq_associated_gcd a) n hn
 
-/-- Möbius inversion for the integer factors (Lemma 1.1 b): `c_n = ∏_{d ∣ n} b_d`. -/
+/-- Möbius inversion for the integer factors (Lemma 1.1 b): `c_n = ∏_{d ∣ n} b_d`.
+@isnad1 id=eq.2h2v.s5.f7fa2f591079 from=translated src=- shape=051d8e97 vocab=800f8736
+-/
 lemma cSeq_eq_prod_bSeq (ha : ¬IsSquare (-a : ℚ)) {n : ℕ} (hn : 1 ≤ n) :
     cSeq a n = ∏ d ∈ n.divisors, bSeq a d := by
   simp only [bSeq_eq_moebiusFactorR]
   exact prod_moebiusFactorR (cSeq_ne_zero' a ha) (cSeq_associated_gcd a) n hn
 
 /-- The integer factors `b_n` are pairwise coprime (Lemma 1.1 b): the valuation of `b_n` at
-each prime is supported on a single index, so no prime divides two distinct factors. -/
+each prime is supported on a single index, so no prime divides two distinct factors.
+@isnad1 id=iscoprim.4h3v.s5.56e65399ccac from=translated src=- shape=f3121e29 vocab=10f6cc87
+-/
 lemma isCoprime_bSeq (ha : ¬IsSquare (-a : ℚ)) {m n : ℕ} (hm : 1 ≤ m) (hn : 1 ≤ n)
     (hmn : m ≠ n) : IsCoprime (bSeq a m) (bSeq a n) := by
   rw [bSeq_eq_moebiusFactorR, bSeq_eq_moebiusFactorR]
@@ -92,6 +106,9 @@ variable (a : ℤ)
 
 /-! ### The main theorems -/
 
+/--
+@isnad1 id=nonempty.1h2v.s9.7f2662d25a69 from=translated src=- shape=71103122 vocab=a039041a
+-/
 lemma nonempty_mulEquiv_of_finrank_eq {n : ℕ}
     (hmax : Module.finrank ℚ ↥(splittingField a n) = 2 ^ (2 ^ n - 1)) :
     Nonempty (GaloisGroup a n ≃* WreathPower n) := by
@@ -103,7 +120,9 @@ lemma nonempty_mulEquiv_of_finrank_eq {n : ℕ}
   exact (MonoidHom.nonempty_mulEquiv_iff_card_eq φ hφ).mpr
     (by rw [card_galoisGroup_eq_finrank a n, hmax, card_wreathPower])
 
-/-- In `ℚˣ/(ℚˣ)²`, the class of `c_m` is the sum of the classes of the `b_d` over `d ∣ m`. -/
+/-- In `ℚˣ/(ℚˣ)²`, the class of `c_m` is the sum of the classes of the `b_d` over `d ∣ m`.
+@isnad1 id=eq.2h2v.s8.00f4c52b5cf6 from=translated src=- shape=8eeede30 vocab=25d60c52
+-/
 lemma sqClass_cSeq_eq_sum_divisors (ha : ¬IsSquare (-a : ℚ)) {m : ℕ} (hm : 1 ≤ m) :
     sqClass (cSeq a m : ℚ) = ∑ d ∈ m.divisors, sqClass (bSeq a d : ℚ) := by
   have hprod : (cSeq a m : ℚ) = ∏ d ∈ m.divisors, (bSeq a d : ℚ) := by
@@ -113,14 +132,18 @@ lemma sqClass_cSeq_eq_sum_divisors (ha : ¬IsSquare (-a : ℚ)) {m : ℕ} (hm : 
   rw [hprod, sqClass_prod fun d hd ↦
     mod_cast bSeq_ne_zero a ha (Nat.pos_of_mem_divisors hd)]
 
-/-- In `ℚˣ/(ℚˣ)²`, the class of `b_m` is the Möbius-weighted sum of the classes of the `c_d`. -/
+/-- In `ℚˣ/(ℚˣ)²`, the class of `b_m` is the Möbius-weighted sum of the classes of the `c_d`.
+@isnad1 id=eq.2h2v.s9.9e0adabcb984 from=translated src=- shape=7bf7f9ef vocab=5b07590b
+-/
 lemma sqClass_bSeq_eq_sum_divisorsAntidiagonal (ha : ¬IsSquare (-a : ℚ)) {m : ℕ} (hm : 1 ≤ m) :
     sqClass (bSeq a m : ℚ) = ∑ x ∈ m.divisorsAntidiagonal, (μ x.1) • sqClass (cSeq a x.2 : ℚ) := by
   rw [intCast_bSeq a ha hm, moebiusFactor_eq_prod, sqClass_prod_zpow _ fun x hx ↦
     mod_cast cSeq_ne_zero a ha
       (Nat.pos_of_ne_zero (Nat.right_ne_zero_of_mem_divisorsAntidiagonal hx))]
 
-/-- Section 1, `(b) ↔ (c)`: `c_1, …, c_n` are 2-independent iff `b_1, …, b_n` are 2-independent. -/
+/-- Section 1, `(b) ↔ (c)`: `c_1, …, c_n` are 2-independent iff `b_1, …, b_n` are 2-independent.
+@isnad1 id=iff.1h2v.s6.2d07093e44aa from=translated src=- shape=e5ed6e8c vocab=4eceb312
+-/
 theorem section1_b_iff_c (ha : ¬IsSquare (-a : ℚ)) (n : ℕ) :
     TwoIndependent (fun i : Fin n ↦ (cSeq a ((i : ℕ) + 1) : ℚ)) ↔
       TwoIndependent (fun i : Fin n ↦ (bSeq a ((i : ℕ) + 1) : ℚ)) := by
@@ -172,6 +195,9 @@ private lemma gammaSeq_mul_abs_eq_cSeq (hsignabs : a.sign * |a| = a)
         show |a| * gammaSeq (normPoly a) a.sign k ^ 2 * |a|
           = (gammaSeq (normPoly a) a.sign k * |a|) ^ 2 by ring, ih hk]
 
+/--
+@isnad1 id=eq.2h2v.s5.6119a50899a4 from=translated src=- shape=81f0b315 vocab=5e603d89
+-/
 lemma abs_cSeq_eq_gammaSeq_mul_abs (ha : ¬IsSquare (-a : ℚ)) :
     ∀ d ≥ 1, |cSeq a d| = gammaSeq (normPoly a) a.sign d * |a| := by
   have ha0 := ne_zero_of_not_isSquare_neg a ha
@@ -185,6 +211,9 @@ lemma abs_cSeq_eq_gammaSeq_mul_abs (ha : ¬IsSquare (-a : ℚ)) :
   · rw [abs_of_pos (cSeq_pos a ha hd2)]
     exact (gammaSeq_mul_abs_eq_cSeq a (Int.sign_mul_abs a) hγ1 hd2).symm
 
+/--
+@isnad1 id=lt.2h2v.s5.fda635142313 from=translated src=- shape=82cd461e vocab=2e94fb76
+-/
 lemma gammaSeq_normPoly_pos (ha : ¬IsSquare (-a : ℚ)) :
     ∀ d ≥ 1, 0 < gammaSeq (normPoly a) a.sign d := by
   have habs_pos : 0 < |a| := abs_pos.mpr (ne_zero_of_not_isSquare_neg a ha)
@@ -197,6 +226,9 @@ lemma gammaSeq_normPoly_pos (ha : ¬IsSquare (-a : ℚ)) :
   exact (mul_pos_iff_of_pos_right habs_pos).mp
     (abs_cSeq_eq_gammaSeq_mul_abs a ha d hd ▸ hcabs_pos)
 
+/--
+@isnad1 id=eq.2h2v.s5.51ad102e1cad from=translated src=- shape=7f3bad62 vocab=af4da400
+-/
 lemma abs_bSeq_eq_betaSeq (ha : ¬IsSquare (-a : ℚ)) :
     ∀ n ≥ 2, |bSeq a n| = betaSeq (normPoly a) a.sign n := by
   have ha0 := ne_zero_of_not_isSquare_neg a ha

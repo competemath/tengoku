@@ -55,6 +55,9 @@ end Simps
 
 initialize_simps_projections OmegaQuasiBorelHom (toFun → coe)
 
+/--
+@isnad1 id=eq.1h4v.s6.6d1e2a49dce7 from=translated src=- shape=632a3698 vocab=6d65c9c1
+-/
 @[ext]
 lemma ext {f g : X →ω𝒒 Y} (h : ∀ x, f x = g x) : f = g := DFunLike.ext f g h
 
@@ -67,21 +70,39 @@ protected def copy (f : X →ω𝒒 Y) (f' : X → Y) (h : f' = ⇑f) : X →ω�
   isHom' := h.symm ▸ f.isHom'
   ωScottContinuous' := h.symm ▸ f.ωScottContinuous'
 
+/--
+@isnad1 id=eq.2h3v.s6.5abb8e6a130e from=translated src=- shape=27746508 vocab=985c006d
+-/
 @[simp]
 lemma coe_mk {f : X → Y} (hf₁ : IsHom f) (hf₂ : ωScottContinuous f) : ⇑(mk f hf₁ hf₂) = f := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.9a3f44f32b5f from=translated src=- shape=64602d79 vocab=49d07958
+-/
 @[simp]
 lemma eta (f : X →ω𝒒 Y) : mk f f.isHom' f.ωScottContinuous' = f := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.242f93fa2108 from=translated src=- shape=37f6a9c2 vocab=7634f9ca
+-/
 @[simp]
 lemma toFun_eq_coe (f : X →ω𝒒 Y) : toFun f = ⇑f := rfl
 
+/--
+@isnad1 id=ishom.0h3v.s5.a81ba7b007f1 from=translated src=- shape=bb88c798 vocab=c3d1a6e6
+-/
 @[simp, fun_prop]
 lemma isHom_coe (f : X →ω𝒒 Y) : IsHom (f : X → Y) := f.2
 
+/--
+@isnad1 id=scottcon.0h3v.s5.caecb378a976 from=translated src=- shape=bb88c798 vocab=c7261191
+-/
 @[simp, fun_prop]
 lemma ωScottContinuous_coe (f : X →ω𝒒 Y) : ωScottContinuous (f : X → Y) := f.3
 
+/--
+@isnad1 id=monotone.0h3v.s5.a17ca4d1abe1 from=translated src=- shape=bb88c798 vocab=e1a50098
+-/
 @[simp]
 lemma monotone_coe (f : X →ω𝒒 Y) : Monotone (f : X → Y) := f.3.monotone
 
@@ -162,12 +183,18 @@ instance : QuasiBorelSpace (X →ω𝒒 Y) where
 
 instance : MeasurableSpace (X →ω𝒒 Y) := toMeasurableSpace
 
+/--
+@isnad1 id=iff.0h3v.s6.942aa056b75c from=translated src=- shape=9b9551ec vocab=72dc4231
+-/
 @[local simp]
 lemma isHom_def (φ : ℝ → X →ω𝒒 Y) :
     IsHom φ ↔ IsHom (fun x : ℝ × X ↦ φ x.1 x.2) := by
   rw [← isVar_iff_isHom]
   rfl
 
+/--
+@isnad1 id=ishom.0h2v.s6.09ff9610682c from=translated src=- shape=7e048d0c vocab=6cdbf1ad
+-/
 @[simp]
 lemma isHom_eval : IsHom (fun p : (X →ω𝒒 Y) × X ↦ p.1 p.2) := by
   rw [QuasiBorelSpace.isHom_def]
@@ -178,6 +205,9 @@ lemma isHom_eval : IsHom (fun p : (X →ω𝒒 Y) × X ↦ p.1 p.2) := by
   have h_input : IsHom (fun r : ℝ ↦ (r, (φ r).2)) := Prod.isHom_mk isHom_id h_arg
   apply isHom_comp (hf := h_func) (hg := h_input)
 
+/--
+@isnad1 id=scottcon.0h2v.s6.5573376dad37 from=translated src=- shape=7e048d0c vocab=d6cd4cde
+-/
 @[simp]
 lemma ωScottContinuous_eval : ωScottContinuous (fun p : (X →ω𝒒 Y) × X ↦ p.1 p.2) := by
   rw [ωScottContinuous_iff_monotone_map_ωSup]
@@ -210,6 +240,9 @@ lemma ωScottContinuous_eval : ωScottContinuous (fun p : (X →ω𝒒 Y) × X �
       simp only [Chain.coe_map, Function.comp_apply, OrderHom.snd_coe, le_refl]
 
 omit [OmegaQuasiBorelSpace X] in
+/--
+@isnad1 id=ishom.2h5v.s6.9c5db240cec7 from=translated src=- shape=f32d50c5 vocab=07689486
+-/
 @[fun_prop]
 lemma isHom_eval' [QuasiBorelSpace X]
     {f : X → Y →ω𝒒 Z} (hf : IsHom f)
@@ -217,6 +250,9 @@ lemma isHom_eval' [QuasiBorelSpace X]
     : IsHom (fun x ↦ f x (g x)) := by
   exact isHom_comp' (f := fun x ↦ x.1 x.2) (g := fun x ↦ (f x, g x)) isHom_eval (by fun_prop)
 
+/--
+@isnad1 id=scottcon.2h5v.s6.c14063a2fce9 from=translated src=- shape=79c20605 vocab=c7261191
+-/
 @[fun_prop]
 lemma ωScottContinuous_eval'
     {f : X → Y →ω𝒒 Z} (hf : ωScottContinuous f)
@@ -226,6 +262,9 @@ lemma ωScottContinuous_eval'
     ωScottContinuous_eval (by fun_prop)
 
 omit [OmegaQuasiBorelSpace X] in
+/--
+@isnad1 id=iff.0h4v.s6.c845857b5688 from=translated src=- shape=96ef0b52 vocab=2c63472d
+-/
 @[simp]
 lemma isHom_iff
     [QuasiBorelSpace X] (f : X → Y →ω𝒒 Z)
@@ -242,6 +281,9 @@ lemma isHom_iff
     simp only [isHom_def]
     fun_prop
 
+/--
+@isnad1 id=ishom.2h4v.s6.0f963e71b34e from=translated src=- shape=15828e58 vocab=015ace6a
+-/
 @[fun_prop]
 lemma isHom_mk
     {f : X → Y → Z}
@@ -250,6 +292,9 @@ lemma isHom_mk
     : IsHom fun x ↦ mk (f x) (by fun_prop) (h₂ x) := by
   simp only [isHom_iff, coe_mk, h₁]
 
+/--
+@isnad1 id=scottcon.2h4v.s6.5ed32fe75c32 from=translated src=- shape=7fdbed34 vocab=bebe9645
+-/
 @[fun_prop]
 lemma ωScottContinuous_mk
     {f : X → Y → Z}
@@ -331,9 +376,15 @@ def eval : (X →ω𝒒 Y) × X →ω𝒒 Y where
 def uncurry (f : X →ω𝒒 Y →ω𝒒 Z) : X × Y →ω𝒒 Z :=
   eval.comp (Prod.mk (comp f Prod.fst) Prod.snd)
 
+/--
+@isnad1 id=eq.0h4v.s5.1d59edcbc909 from=translated src=- shape=02cf94e8 vocab=8277cc41
+-/
 @[simp]
 lemma curry_uncurry (f : Z →ω𝒒 (X →ω𝒒 Y)) : curry (uncurry f) = f := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.6f8e5c5bbf79 from=translated src=- shape=7941094f vocab=fcd6c07b
+-/
 @[simp]
 lemma uncurry_curry (f : Z × X →ω𝒒 Y) : uncurry (curry f) = f := rfl
 
