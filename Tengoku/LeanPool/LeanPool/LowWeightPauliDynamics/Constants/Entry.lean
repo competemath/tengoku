@@ -84,6 +84,9 @@ noncomputable def epsJump (kh1 c a : ℝ) (j nu : ℕ) : ℝ :=
 with `a = sin(dt)`. -/
 noncomputable def betaOf (kh1 c a : ℝ) : ℝ := 2 * Real.exp 1 * rungW kh1 c 2 * a
 
+/--
+@isnad1 id=le.3h3v.s5.0fb12f409cea from=translated src=- shape=9d32febd vocab=97e4f654
+-/
 lemma rungW_nonneg {kh1 c : ℝ} (hkh : 0 < kh1) (hc : 0 ≤ c) {m : ℕ} (hm : 1 ≤ m) :
     0 ≤ rungW kh1 c m := by
   have : (1 : ℝ) ≤ (m : ℝ) := by exact_mod_cast hm
@@ -91,6 +94,9 @@ lemma rungW_nonneg {kh1 c : ℝ} (hkh : 0 < kh1) (hc : 0 ≤ c) {m : ℕ} (hm : 
   have : (0 : ℝ) ≤ (m : ℝ) - 1 + c := by linarith
   positivity
 
+/--
+@isnad1 id=le.4h5v.s6.006e66d8acb7 from=translated src=- shape=fe49fc4d vocab=fcde69ca
+-/
 lemma epsJump_nonneg {kh1 c a : ℝ} (hkh : 0 < kh1) (hc : 0 ≤ c) (ha : 0 ≤ a) (j nu : ℕ)
     (h : 1 ≤ nu + j) : 0 ≤ epsJump kh1 c a j nu := by
   have hW := rungW_nonneg hkh hc h
@@ -98,7 +104,9 @@ lemma epsJump_nonneg {kh1 c a : ℝ} (hkh : 0 < kh1) (hc : 0 ≤ c) (ha : 0 ≤ 
   unfold epsJump
   positivity
 
-/-- `(1 + 1/j)^j ≤ e` for `j ≥ 1`. -/
+/-- `(1 + 1/j)^j ≤ e` for `j ≥ 1`.
+@isnad1 id=le.1h1v.s6.9803fbb1abae from=translated src=- shape=3ac46330 vocab=389fd004
+-/
 lemma one_add_inv_pow_le_exp_one {j : ℕ} (hj : 1 ≤ j) :
     (1 + 1 / (j : ℝ)) ^ j ≤ Real.exp 1 := by
   have hjpos : (0 : ℝ) < (j : ℝ) := by
@@ -119,7 +127,9 @@ lemma one_add_inv_pow_le_exp_one {j : ℕ} (hj : 1 ≤ j) :
 
 This geometric decay of the terms is what drives `entryFactor_le_geom`. Two estimates, both
 termwise: `w_{ν+j+1} ≤ w_{ν+j}·(1 + 1/j)` because `ν+j−1+c ≥ j`, and
-`w_{ν+j+1} ≤ w₂·(ν+j) ≤ 2w₂·j` because `ν ≤ j`. -/
+`w_{ν+j+1} ≤ w₂·(ν+j) ≤ 2w₂·j` because `ν ≤ j`.
+@isnad1 id=le.5h5v.s6.55b16605d4d3 from=translated src=- shape=368734ac vocab=56ab9f56
+-/
 theorem epsJump_ratio {kh1 c a : ℝ} (hkh : 0 < kh1) (hc : 0 ≤ c) (ha : 0 ≤ a)
     {j nu : ℕ} (hnu : 1 ≤ nu) (hj : nu ≤ j) :
     epsJump kh1 c a (j + 1) nu ≤ betaOf kh1 c a * epsJump kh1 c a j nu := by
@@ -224,7 +234,9 @@ noncomputable def entryFactor (kh1 c a : ℝ) (nu : ℕ) : ℝ :=
   `E_ν ≤ ε_ν^{(ν)} / (1 − β)`.
 
 No `β ≤ 1/2` is needed; that hypothesis enters only in converting to the affine form
-`entryFactor_le`. The proof sums the geometric majorant supplied by `epsJump_ratio`. -/
+`entryFactor_le`. The proof sums the geometric majorant supplied by `epsJump_ratio`.
+@isnad1 id=le.5h4v.s6.544bd3604bcf from=translated src=- shape=3b1f7c34 vocab=fea7fd88
+-/
 theorem entryFactor_le_geom {kh1 c a : ℝ} (hkh : 0 < kh1) (hc : 0 ≤ c) (ha : 0 ≤ a)
     {nu : ℕ} (hnu : 1 ≤ nu) (hb1 : betaOf kh1 c a < 1) :
     entryFactor kh1 c a nu ≤ epsJump kh1 c a nu nu / (1 - betaOf kh1 c a) := by
@@ -270,7 +282,9 @@ theorem entryFactor_le_geom {kh1 c a : ℝ} (hkh : 0 < kh1) (hc : 0 ≤ c) (ha :
 
 The constant `2` is stronger than the paper's statement, which has `4e ≈ 10.87` in its place.
 Since `1 + 2β ≤ 1 + 4eβ` for `β ≥ 0` (`one_add_two_mul_le_source`), the bound with `(1 + 4eβ)`
-follows, so every downstream use of that factor remains valid. -/
+follows, so every downstream use of that factor remains valid.
+@isnad1 id=le.5h4v.s7.cdb652e06cdd from=translated src=- shape=aa1b146f vocab=2c110496
+-/
 theorem entryFactor_le {kh1 c a : ℝ} (hkh : 0 < kh1) (hc : 0 ≤ c) (ha : 0 ≤ a)
     {nu : ℕ} (hnu : 1 ≤ nu) (hb : betaOf kh1 c a ≤ 1 / 2) :
     entryFactor kh1 c a nu ≤ epsJump kh1 c a nu nu * (1 + 2 * betaOf kh1 c a) := by
@@ -294,7 +308,9 @@ theorem entryFactor_le {kh1 c a : ℝ} (hkh : 0 < kh1) (hc : 0 ≤ c) (ha : 0 �
   linarith [hgeom, hkey]
 
 /-- Comparison with the paper's constant: `1 + 2β ≤ 1 + 4eβ`, since `2 ≤ 4e`. Stated as a lemma
-so that the sharpening in `entryFactor_le` is a checked comparison rather than prose only. -/
+so that the sharpening in `entryFactor_le` is a checked comparison rather than prose only.
+@isnad1 id=le.1h1v.s6.fdf67b11f365 from=translated src=- shape=0506a945 vocab=9081149e
+-/
 lemma one_add_two_mul_le_source {b : ℝ} (hb : 0 ≤ b) :
     1 + 2 * b ≤ 1 + 4 * Real.exp 1 * b := by
   have h : (2 : ℝ) ≤ 4 * Real.exp 1 := by

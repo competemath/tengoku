@@ -32,13 +32,18 @@ def complexLinearRank
     (A : E →L[ℂ] F) : ℕ :=
   Module.finrank ℂ (LinearMap.range A.toLinearMap)
 
+/--
+@isnad1 id=eq.0h3v.s7.57efdaff67a3 from=translated src=- shape=9af0e773 vocab=7b3d5fcf
+-/
 @[simp]
 theorem complexLinearRank_eq_complexRank {n m : ℕ}
     (A : ComplexEuclidean n →L[ℂ] ComplexEuclidean m) :
     complexLinearRank A = complexRank A :=
   rfl
 
-/-- Surjective precomposition does not change range dimension. -/
+/-- Surjective precomposition does not change range dimension.
+@isnad1 id=eq.1h5v.s8.1c4e8dd0e1fa from=translated src=- shape=2e246cb3 vocab=1c5ccb12
+-/
 theorem complexLinearRank_comp_of_surjective_right
     {E F G : Type*}
     [NormedAddCommGroup E] [NormedSpace ℂ E]
@@ -52,7 +57,9 @@ theorem complexLinearRank_comp_of_surjective_right
   rw [LinearMap.range_comp_of_range_eq_top _
     (LinearMap.range_eq_top.mpr hB)]
 
-/-- Injective postcomposition does not change range dimension. -/
+/-- Injective postcomposition does not change range dimension.
+@isnad1 id=eq.1h5v.s8.b194a5d2d2a0 from=translated src=- shape=555df341 vocab=51def84e
+-/
 theorem complexLinearRank_comp_of_injective_left
     {E F G : Type*}
     [NormedAddCommGroup E] [NormedSpace ℂ E] [FiniteDimensional ℂ E]
@@ -74,7 +81,9 @@ theorem complexLinearRank_comp_of_injective_left
 
 /-- If the first component of `B : U × V → U × W` is the first
 projection and `B` has the minimal possible rank `dim U`, then every vertical
-vector is killed by `B`. -/
+vector is killed by `B`.
+@isnad1 id=eq.2h5v.s10.05bae448b631 from=translated src=- shape=67c9f8c6 vocab=6b51339b
+-/
 theorem apply_zero_prod_eq_zero_of_rank_eq
     {U V W : Type*}
     [NormedAddCommGroup U] [NormedSpace ℂ U] [FiniteDimensional ℂ U]
@@ -127,18 +136,27 @@ def finProdContinuousLinearEquiv (r k : ℕ) :
   continuous_toFun := by fun_prop
   continuous_invFun := by fun_prop
 
+/--
+@isnad1 id=eq.0h4v.s9.dae93d75f5d4 from=translated src=- shape=8e8f6ece vocab=f145120e
+-/
 @[simp]
 theorem finProdContinuousLinearEquiv_apply_castAdd (r k : ℕ)
     (x : ComplexEuclidean r × ComplexEuclidean k) (i : Fin r) :
     finProdContinuousLinearEquiv r k x (Fin.castAdd k i) = x.1 i := by
   simp [finProdContinuousLinearEquiv]
 
+/--
+@isnad1 id=eq.0h4v.s9.96e6e0808b70 from=translated src=- shape=34a4fe68 vocab=b67456a8
+-/
 @[simp]
 theorem finProdContinuousLinearEquiv_apply_natAdd (r k : ℕ)
     (x : ComplexEuclidean r × ComplexEuclidean k) (i : Fin k) :
     finProdContinuousLinearEquiv r k x (Fin.natAdd r i) = x.2 i := by
   simp [finProdContinuousLinearEquiv]
 
+/--
+@isnad1 id=eq.0h4v.s10.e038be3c55b7 from=translated src=- shape=a955bb70 vocab=7662ba83
+-/
 @[simp]
 theorem finProdContinuousLinearEquiv_symm_fst_apply (r k : ℕ)
     (x : ComplexEuclidean (r + k)) (i : Fin r) :
@@ -147,6 +165,9 @@ theorem finProdContinuousLinearEquiv_symm_fst_apply (r k : ℕ)
   change ((finProdContinuousLinearEquiv r k).invFun x).1 i = _
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.4563466be3c9 from=translated src=- shape=4efe10ce vocab=c3ca7b48
+-/
 @[simp]
 theorem finProdContinuousLinearEquiv_symm_snd_apply (r k : ℕ)
     (x : ComplexEuclidean (r + k)) (i : Fin k) :
@@ -156,7 +177,9 @@ theorem finProdContinuousLinearEquiv_symm_snd_apply (r k : ℕ)
   rfl
 
 /-- Concatenating the first block of a vector with a zero block is precisely
-the standard rank map. -/
+the standard rank map.
+@isnad1 id=eq.0h4v.s10.759aa33545d2 from=translated src=- shape=acb02d1b vocab=ad9f71e9
+-/
 theorem finProd_fst_zero_eq_standardRankMap (r n' m' : ℕ)
     (x : ComplexEuclidean (r + n')) :
     finProdContinuousLinearEquiv r m'
@@ -187,7 +210,9 @@ theorem finProd_fst_zero_eq_standardRankMap (r n' m' : ℕ)
 
 /-- The preceding coordinate calculation after arbitrary linear coordinate
 choices on the three factors.  The same equivalence is used on the rank
-factor in source and target. -/
+factor in source and target.
+@isnad1 id=eq.0h10v.s11.7c9c65efe930 from=translated src=- shape=1b19fda1 vocab=ac2ff523
+-/
 theorem productEquiv_fst_zero_eq_standardRankMap
     {U V W : Type*}
     [NormedAddCommGroup U] [NormedSpace ℂ U]

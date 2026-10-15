@@ -24,6 +24,9 @@ namespace VonNeumannAlgebra
 
 variable {H : Type _} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
 
+/--
+@isnad1 id=iff.0h3v.s8.0439f635c152 from=translated src=- shape=b3067fff vocab=fefd98cd
+-/
 lemma star_commutant_iff {M : VonNeumannAlgebra H} {e : H →L[ℂ] H} :
   star e ∈ M.commutant ↔ e ∈ M.commutant := by
   simp only [mem_commutant_iff]
@@ -41,7 +44,9 @@ lemma star_commutant_iff {M : VonNeumannAlgebra H} {e : H →L[ℂ] H} :
 
 /-- a continuous linear map `e` is in the von Neumann algebra `M`
 if and only if `e.ker` and `e.range` are `M'`
-(i.e., the commutant of `M` or `M.centralizer`) invariant subspaces -/
+(i.e., the commutant of `M` or `M.centralizer`) invariant subspaces
+@isnad1 id=iff.1h3v.s10.60caec563b7b from=translated src=- shape=b20b6730 vocab=19cff252
+-/
 theorem elem_idempotent_iff_ker_and_range_invariantUnder_commutant (M : VonNeumannAlgebra H)
     (e : H →L[ℂ] H) (h : IsIdempotentElem e) :
     e ∈ M ↔ ∀ y : H →L[ℂ] H, y ∈ M.commutant →

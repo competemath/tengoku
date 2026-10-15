@@ -29,27 +29,47 @@ namespace LehmerE10
 
 open Polynomial
 
+/--
+@isnad1 id=eq.0h0v.s3.8609055c41d4 from=translated src=- shape=b3c4969c vocab=5b911975
+-/
 theorem lehmerPolynomial_natDegree : lehmerPolynomial.natDegree = 10 := by
   unfold lehmerPolynomial; compute_degree!
 
+/--
+@isnad1 id=monic.0h0v.s2.841b4ee85b1e from=translated src=- shape=25b03439 vocab=caa3cbbf
+-/
 theorem lehmerPolynomial_monic : lehmerPolynomial.Monic := by
   unfold lehmerPolynomial; monicity!
 
+/--
+@isnad1 id=ne.0h0v.s4.df57f8d997e2 from=translated src=- shape=2d527563 vocab=a190ecb6
+-/
 theorem lehmerPolynomial_ne_zero : lehmerPolynomial ≠ 0 := lehmerPolynomial_monic.ne_zero
 
 /-! ### The eval-witness integers (the kill table's three points). -/
 
+/--
+@isnad1 id=eq.0h0v.s4.af432b28aa4d from=translated src=- shape=6bc8f2f6 vocab=23755dae
+-/
 theorem lehmer_eval_one : lehmerPolynomial.eval 1 = -1 := by
   unfold lehmerPolynomial; simp
 
+/--
+@isnad1 id=eq.0h0v.s4.2eab576a5e4e from=translated src=- shape=c330820e vocab=23755dae
+-/
 theorem lehmer_eval_neg_one : lehmerPolynomial.eval (-1) = 1 := by
   unfold lehmerPolynomial; norm_num
 
+/--
+@isnad1 id=eq.0h0v.s4.18f7c8994875 from=translated src=- shape=933a7ab2 vocab=dda5f64e
+-/
 theorem lehmer_eval_two : lehmerPolynomial.eval 2 = 1291 := by
   unfold lehmerPolynomial; norm_num
 
 /-- 1291 is prime: the x = 2 witness kills every remaining non-prime-power modulus
-    (Φ₁₂(2)=13, Φ₁₅(2)=151, Φ₂₀(2)=205, Φ₂₄(2)=241, Φ₃₀(2)=331 — none divide 1291). -/
+    (Φ₁₂(2)=13, Φ₁₅(2)=151, Φ₂₀(2)=205, Φ₂₄(2)=241, Φ₃₀(2)=331 — none divide 1291).
+@isnad1 id=prime.0h0v.s2.cd4da804436b from=translated src=- shape=e590c3e1 vocab=1464e337
+-/
 theorem witness_1291_prime : Nat.Prime 1291 := by norm_num
 
 /-! ### Kronecker's theorem: roots of unit-circle monic ℤ-polynomials are roots of unity. -/
@@ -57,7 +77,9 @@ theorem witness_1291_prime : Nat.Prime 1291 := by norm_num
 /-- **Kronecker's theorem, root form**: every complex root of a monic integer
     polynomial, all of whose complex roots lie on the unit circle, is a root of unity.
     (The conclusion is stated root-wise: the `p ∣ xⁿ − 1` form fails for
-    non-squarefree `p`.) -/
+    non-squarefree `p`.)
+@isnad1 id=ex.3h2v.s6.fabb812001d4 from=translated src=- shape=bd3300c4 vocab=ed745617
+-/
 theorem kronecker_roots {p : Polynomial ℤ} (hm : p.Monic)
     (h1 : ∀ w ∈ (p.map (Int.castRingHom ℂ)).roots, ‖w‖ = 1)
     {z : ℂ} (hz : z ∈ (p.map (Int.castRingHom ℂ)).roots) :
@@ -107,7 +129,9 @@ theorem kronecker_roots {p : Polynomial ℤ} (hm : p.Monic)
 /-! ### The order bound: root-of-unity roots of L live in the eligible census. -/
 
 /-- A primitive k-th root of unity that is a root of `lehmerPolynomial` (over ℚ) has
-    φ(k) ≤ 10: cyclotomic k = minpoly, and the minpoly divides the degree-10 image. -/
+    φ(k) ≤ 10: cyclotomic k = minpoly, and the minpoly divides the degree-10 image.
+@isnad1 id=le.3h2v.s7.4704c4726cc5 from=translated src=- shape=5d4dae50 vocab=e2684d3d
+-/
 theorem totient_le_of_lehmer_root {z : ℂ} {k : ℕ} (hk : 0 < k)
     (hprim : IsPrimitiveRoot z k)
     (hroot : (Polynomial.aeval z) (lehmerPolynomial.map (Int.castRingHom ℚ)) = 0) :
@@ -122,7 +146,9 @@ theorem totient_le_of_lehmer_root {z : ℂ} {k : ℕ} (hk : 0 < k)
   rwa [← hmin, natDegree_cyclotomic, hdeg10] at hdeg
 
 /-- The moduli `k ≤ 66` with `φ(k) ≤ 10` — the only possible orders of
-    root-of-unity roots of a degree-10 polynomial. -/
+    root-of-unity roots of a degree-10 polynomial.
+@isnad1 id=eq.0h0v.s7.f8110a2cff90 from=translated src=- shape=b51df58f vocab=b865d120
+-/
 theorem eligible_totient_census :
     ((List.range 66).filter fun n => (n + 1).totient ≤ 10).map (· + 1) =
       [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 18, 20, 22, 24, 30] := by

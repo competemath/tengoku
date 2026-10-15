@@ -51,7 +51,9 @@ section TopologicalAlgebra
 variable {A : Type*} [Ring A] [Algebra ℂ A] {G P : A}
 
 /-- The even terms of the exponential series of `(z * I) • G` are scalar multiples of `1` when
-`G * G = 1`: they are the terms of the cosine series of `z`. -/
+`G * G = 1`: they are the terms of the cosine series of `z`.
+@isnad1 id=eq.1h4v.s7.1fd73a67d040 from=translated src=- shape=7cb0c946 vocab=e8f381d7
+-/
 theorem exp_term_even_of_involution (hG : G * G = 1) (z : ℂ) (n : ℕ) :
     ((2 * n)!⁻¹ : ℂ) • ((z * Complex.I) • G) ^ (2 * n) =
       ((z * Complex.I) ^ (2 * n) / (2 * n)!) • (1 : A) := by
@@ -62,7 +64,9 @@ theorem exp_term_even_of_involution (hG : G * G = 1) (z : ℂ) (n : ℕ) :
 
 /-- The odd terms of the exponential series of `(z * I) • G` are scalar multiples of `G` when
 `G * G = 1`: they are `I` times the terms of the sine series of `z`. There is no division by the
-angle, so the zero-angle case needs no separate argument. -/
+angle, so the zero-angle case needs no separate argument.
+@isnad1 id=eq.1h4v.s8.ef5e45afe7a7 from=translated src=- shape=c3fa806e vocab=cc7958bd
+-/
 theorem exp_term_odd_of_involution (hG : G * G = 1) (z : ℂ) (n : ℕ) :
     ((2 * n + 1)!⁻¹ : ℂ) • ((z * Complex.I) • G) ^ (2 * n + 1) =
       (((z * Complex.I) ^ (2 * n + 1) / (2 * n + 1)! / Complex.I) * Complex.I) • G := by
@@ -77,7 +81,9 @@ variable [TopologicalSpace A] [IsTopologicalRing A] [ContinuousSMul ℂ A] [T2Sp
 /-- **The exponential of an involution**, for a complex angle `z`: if `G * G = 1` then
 `exp ((I * z) • G) = cos z • 1 + (I * sin z) • G`. This is the gate identity underlying
 `apd:eq:pauli_rotation_branch`, proved by summing the even and odd subsequences of Mathlib's
-exponential series (`HasSum.even_add_odd`). -/
+exponential series (`HasSum.even_add_odd`).
+@isnad1 id=eq.1h3v.s7.0dc3d0dc64f0 from=translated src=- shape=b5a512a1 vocab=5382f97d
+-/
 theorem exp_smul_I_of_involution (hG : G * G = 1) (z : ℂ) :
     NormedSpace.exp ((Complex.I * z) • G) =
       Complex.cos z • (1 : A) + (Complex.I * Complex.sin z) • G := by
@@ -97,13 +103,17 @@ theorem exp_smul_I_of_involution (hG : G * G = 1) (z : ℂ) :
 
 /-- **The closed-form rotation is the genuine exponential gate**: for `G * G = 1`,
 `rot G θ = exp ((I * (θ/2)) • G)`. The sign is positive and the angle is halved, which is the
-factor standing on the left of the Heisenberg conjugation in `apd:eq:pauli_rotation_branch`. -/
+factor standing on the left of the Heisenberg conjugation in `apd:eq:pauli_rotation_branch`.
+@isnad1 id=eq.1h3v.s7.7714b0351201 from=translated src=- shape=9ab1d6b1 vocab=c8ca2664
+-/
 theorem rot_eq_exp (hG : G * G = 1) (θ : ℝ) :
     rot G θ = NormedSpace.exp ((Complex.I * (θ / 2 : ℝ)) • G) := by
   rw [exp_smul_I_of_involution hG, rot, Complex.ofReal_cos, Complex.ofReal_sin]
 
 /-- The negative-exponent gate `e^{-i G θ/2}` of `apd:eq:pauli_rotation_branch` is the
-negative-angle rotation `rot G (-θ)`, not `rot G θ`. -/
+negative-angle rotation `rot G (-θ)`, not `rot G θ`.
+@isnad1 id=eq.1h3v.s7.fc15ba53671b from=translated src=- shape=d5a0b2a5 vocab=21543ce5
+-/
 theorem rot_neg_eq_exp (hG : G * G = 1) (θ : ℝ) :
     rot G (-θ) = NormedSpace.exp ((-Complex.I * (θ / 2 : ℝ)) • G) := by
   simpa only [neg_div, Complex.ofReal_neg, mul_neg, neg_mul] using rot_eq_exp hG (-θ)
@@ -111,7 +121,9 @@ theorem rot_neg_eq_exp (hG : G * G = 1) (θ : ℝ) :
 /-- The commuting branch of `apd:eq:pauli_rotation_branch`, stated with genuine exponentials
 rather than the algebraic closed form: if `G * G = 1` and `G` commutes with `P`, conjugation by
 `e^{i G θ/2}` leaves `P` unchanged. This is `rot_conj_of_commute` transported along
-`rot_eq_exp`. -/
+`rot_eq_exp`.
+@isnad1 id=eq.2h4v.s7.46f346ca5d0f from=translated src=- shape=af823f63 vocab=5cebae68
+-/
 theorem exp_conj_of_commute (hG : G * G = 1) (h : Commute G P) (θ : ℝ) :
     NormedSpace.exp ((Complex.I * (θ / 2 : ℝ)) • G) * P *
       NormedSpace.exp ((-Complex.I * (θ / 2 : ℝ)) • G) = P := by
@@ -121,7 +133,9 @@ theorem exp_conj_of_commute (hG : G * G = 1) (h : Commute G P) (θ : ℝ) :
 /-- The anticommuting branch of `apd:eq:pauli_rotation_branch`, stated with genuine
 exponentials: if `G * G = 1` and `G * P = -(P * G)`, conjugation by `e^{i G θ/2}` sends `P` to
 `cos θ • P + (I * sin θ) • (G * P)`. The conjugation angle is `θ`, not `θ/2`, and the partner is
-`G * P`. This is `rot_conj_of_anticommute` transported along `rot_eq_exp`. -/
+`G * P`. This is `rot_conj_of_anticommute` transported along `rot_eq_exp`.
+@isnad1 id=eq.2h4v.s8.94eaccc66595 from=translated src=- shape=ee02c474 vocab=0795a1fb
+-/
 theorem exp_conj_of_anticommute (hG : G * G = 1) (h : G * P = -(P * G)) (θ : ℝ) :
     NormedSpace.exp ((Complex.I * (θ / 2 : ℝ)) • G) * P *
       NormedSpace.exp ((-Complex.I * (θ / 2 : ℝ)) • G) =
@@ -138,7 +152,9 @@ variable {n : ℕ} {G : PauliString n}
 /-- For every Hermitian Pauli string `G`, the closed-form rotation of its matrix is the genuine
 matrix exponential `exp ((I * (θ/2)) • toMatrix G)`, the gate of
 `apd:eq:pauli_rotation_branch`, in the entrywise `toMatrix` model. The product topology on
-finite matrices supplies all analytic instances without choosing a norm. -/
+finite matrices supplies all analytic instances without choosing a norm.
+@isnad1 id=eq.1h3v.s8.aae9f851a84f from=translated src=- shape=00402e28 vocab=8be5cf6a
+-/
 theorem rot_toMatrix_eq_exp (hG : IsSelfAdjoint G) (θ : ℝ) :
     rot (toMatrix G) θ =
       NormedSpace.exp ((Complex.I * (θ / 2 : ℝ)) • toMatrix G) :=
@@ -146,7 +162,9 @@ theorem rot_toMatrix_eq_exp (hG : IsSelfAdjoint G) (θ : ℝ) :
 
 /-- The negative-angle rotation of a Hermitian Pauli matrix is the exponential with the negative
 sign, `exp ((-I * (θ/2)) • toMatrix G)`: the factor standing on the right of the conjugation in
-`apd:eq:pauli_rotation_branch`. -/
+`apd:eq:pauli_rotation_branch`.
+@isnad1 id=eq.1h3v.s8.67aaa4ab7f6c from=translated src=- shape=b9fb4385 vocab=5a341d6a
+-/
 theorem rot_toMatrix_neg_eq_exp (hG : IsSelfAdjoint G) (θ : ℝ) :
     rot (toMatrix G) (-θ) =
       NormedSpace.exp ((-Complex.I * (θ / 2 : ℝ)) • toMatrix G) :=

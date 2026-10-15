@@ -63,7 +63,9 @@ def ofComponents {n m : Nat}
   grad_memLpTwo_loc := hDu_memLp
   isWeakGradient := hweakGradient
 
-/-- Forget the explicit witness package to the earlier Sobolev bridge. -/
+/-- Forget the explicit witness package to the earlier Sobolev bridge.
+@isnad1 id=sobolevw.0h5v.s4.649b7fe35a8c from=translated src=- shape=af0c4f05 vocab=9b6e96b6
+-/
 theorem toSobolevW12LocIn {n m : Nat}
     {u : Domain n -> Target m} {Omega : Set (Domain n)}
     (h : W12LocMapWitness u Omega) :
@@ -73,7 +75,9 @@ theorem toSobolevW12LocIn {n m : Nat}
     h.isWeakGradient
 
 /-- Forget the explicit witness package to the custom weak `W^{1,2}_{loc}`
-interface used internally by the monotonicity proof. -/
+interface used internally by the monotonicity proof.
+@isnad1 id=w12locin.0h5v.s4.642c1956e42e from=translated src=- shape=af0c4f05 vocab=2a0984f7
+-/
 theorem toW12LocIn {n m : Nat}
     {u : Domain n -> Target m} {Omega : Set (Domain n)}
     (h : W12LocMapWitness u Omega) :

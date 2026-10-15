@@ -79,6 +79,9 @@ noncomputable def restrictCLM (𝕜 : Type*) [RCLike 𝕜] {p m : Type*}
   map_add' x y := by ext; simp
   map_smul' c x := by ext; simp
 
+/--
+@isnad1 id=eq.0h6v.s9.89f30ecff19d from=translated src=- shape=53f32156 vocab=451f0549
+-/
 @[simp] lemma restrictCLM_apply {p m : Type*} (f : p → m)
     (x : EuclideanSpace 𝕜 m) (i : p) : restrictCLM 𝕜 f x i = x (f i) := rfl
 
@@ -86,7 +89,9 @@ section Restrict
 
 variable {m p : Type*} [Fintype m] [Fintype p]
 
-/-- Dropping coordinates (along an injective map) does not increase the ℓ² norm. -/
+/-- Dropping coordinates (along an injective map) does not increase the ℓ² norm.
+@isnad1 id=le.1h5v.s9.950c2bca3abf from=translated src=- shape=3f0c83a3 vocab=0e70ed2a
+-/
 lemma norm_restrictCLM_apply_le {f : p → m} (hf : Function.Injective f)
     (x : EuclideanSpace 𝕜 m) : ‖restrictCLM 𝕜 f x‖ ≤ ‖x‖ := by
   classical
@@ -98,7 +103,9 @@ lemma norm_restrictCLM_apply_le {f : p → m} (hf : Function.Injective f)
   have := Real.sqrt_le_sqrt hsq
   rwa [Real.sqrt_sq (norm_nonneg _), Real.sqrt_sq (norm_nonneg _)] at this
 
-/-- Coordinate restriction along an injective map is a contraction. -/
+/-- Coordinate restriction along an injective map is a contraction.
+@isnad1 id=le.1h4v.s9.7f072267eb4a from=translated src=- shape=cd638d07 vocab=cdd5144c
+-/
 lemma norm_restrictCLM_le_one {f : p → m} (hf : Function.Injective f) :
     ‖restrictCLM 𝕜 f‖ ≤ 1 :=
   ContinuousLinearMap.opNorm_le_bound _ zero_le_one fun x => by
@@ -113,12 +120,16 @@ variable {m n p q : Type*} [Fintype m] [Fintype n] [Fintype p] [Fintype q]
 
 omit [DecidableEq m] [DecidableEq p] in
 /-- Selecting a subfamily of rows factors, **definitionally**, through coordinate restriction:
-`clm (A.submatrix f id) = restrictCLM 𝕜 f ∘L clm A`. -/
+`clm (A.submatrix f id) = restrictCLM 𝕜 f ∘L clm A`.
+@isnad1 id=eq.0h6v.s10.89d2312c6127 from=translated src=- shape=3b848af8 vocab=ae4ce4fb
+-/
 lemma clm_submatrix_id (A : Matrix m n 𝕜) (f : p → m) :
     clm (A.submatrix f (id : n → n)) = (restrictCLM 𝕜 f).comp (clm A) := rfl
 
 omit [DecidableEq m] [DecidableEq p] in
-/-- **Row selection does not increase the ℓ² operator norm.** -/
+/-- **Row selection does not increase the ℓ² operator norm.**
+@isnad1 id=le.1h6v.s6.be931efc77e5 from=translated src=- shape=4b2c48cc vocab=5250576a
+-/
 lemma l2_opNorm_submatrix_id_le (A : Matrix m n 𝕜) {f : p → m} (hf : Function.Injective f) :
     ‖A.submatrix f (id : n → n)‖ ≤ ‖A‖ := by
   rw [Matrix.l2_opNorm_def, Matrix.l2_opNorm_def (A := A)]
@@ -135,7 +146,9 @@ are required to be injective, and that hypothesis cannot be dropped: repeating t
 the `1 × 1` identity gives a matrix of norm `√2` (see the last `example` of this file).
 
 The proof selects rows with `l2_opNorm_submatrix_id_le`, conjugate-transposes, and selects rows
-again. -/
+again.
+@isnad1 id=le.2h8v.s6.e8fb29ace9ed from=translated src=- shape=e45d4600 vocab=7241cc9d
+-/
 theorem l2_opNorm_submatrix_le (A : Matrix m n 𝕜) {f : p → m} {g : q → n}
     (hf : Function.Injective f) (hg : Function.Injective g) :
     ‖A.submatrix f g‖ ≤ ‖A‖ := by
@@ -150,7 +163,9 @@ theorem l2_opNorm_submatrix_le (A : Matrix m n 𝕜) {f : p → m} {g : q → n}
     _ ≤ ‖A‖ := l2_opNorm_submatrix_id_le A hf
 
 omit [DecidableEq m] in
-/-- `Matrix.toBlock` form of `l2_opNorm_submatrix_le`. -/
+/-- `Matrix.toBlock` form of `l2_opNorm_submatrix_le`.
+@isnad1 id=le.0h6v.s7.4f6b3284d2ca from=translated src=- shape=a1b095ad vocab=ee19b2e6
+-/
 theorem l2_opNorm_toBlock_le (A : Matrix m n 𝕜) (P : m → Prop) (Q : n → Prop)
     [DecidablePred P] [DecidablePred Q] : ‖A.toBlock P Q‖ ≤ ‖A‖ :=
   l2_opNorm_submatrix_le A Subtype.val_injective Subtype.val_injective
@@ -160,7 +175,9 @@ theorem l2_opNorm_toBlock_le (A : Matrix m n 𝕜) (P : m → Prop) (Q : n → P
 /-- `‖U‖ ≤ 1` for a unitary `U`, with **no nonemptiness hypothesis**.
 `CStarRing.norm_of_mem_unitary` would need `[Nontrivial (Matrix n n 𝕜)]`, hence `[Nonempty n]`, but
 `CStarRing.norm_mul_mem_unitary` needs none, and `‖(1 : Matrix n n 𝕜)‖ ≤ 1` holds even when `n` is
-empty (the matrix ring is then trivial, so `1 = 0` and `‖1‖ = 0`). -/
+empty (the matrix ring is then trivial, so `1 = 0` and `‖1‖ = 0`).
+@isnad1 id=le.1h3v.s7.239851eb528c from=translated src=- shape=5032f168 vocab=d9d664bc
+-/
 lemma l2_opNorm_le_one_of_mem_unitary {U : Matrix n n 𝕜} (hU : U ∈ unitary (Matrix n n 𝕜)) :
     ‖U‖ ≤ 1 := by
   have h1 : ‖U‖ = ‖(1 : Matrix n n 𝕜)‖ := by
@@ -172,7 +189,9 @@ omit [DecidableEq m] [DecidableEq p] in
 /-- **A block of a unitary matrix has ℓ² operator norm at most `1`.**
 
 `f` and `g` are injective index maps, e.g. `Subtype.val` out of the two index subtypes cutting the
-block out. No nonemptiness hypothesis on any of `n`, `p`, `q`. -/
+block out. No nonemptiness hypothesis on any of `n`, `p`, `q`.
+@isnad1 id=le.3h7v.s8.dfd4d9f08b3e from=translated src=- shape=7b615a2e vocab=876c99e6
+-/
 theorem l2_opNorm_submatrix_le_one_of_mem_unitary {U : Matrix n n 𝕜}
     (hU : U ∈ unitary (Matrix n n 𝕜)) {f : p → n} {g : q → n}
     (hf : Function.Injective f) (hg : Function.Injective g) :
@@ -180,7 +199,9 @@ theorem l2_opNorm_submatrix_le_one_of_mem_unitary {U : Matrix n n 𝕜}
   (l2_opNorm_submatrix_le U hf hg).trans (l2_opNorm_le_one_of_mem_unitary hU)
 
 omit [DecidableEq m] [DecidableEq p] in
-/-- `Matrix.unitaryGroup` spelling. -/
+/-- `Matrix.unitaryGroup` spelling.
+@isnad1 id=le.3h7v.s7.345d7a491e53 from=translated src=- shape=27ee5e04 vocab=9eee7417
+-/
 theorem l2_opNorm_submatrix_le_one_of_mem_unitaryGroup {U : Matrix n n 𝕜}
     (hU : U ∈ Matrix.unitaryGroup n 𝕜) {f : p → n} {g : q → n}
     (hf : Function.Injective f) (hg : Function.Injective g) :
@@ -188,7 +209,9 @@ theorem l2_opNorm_submatrix_le_one_of_mem_unitaryGroup {U : Matrix n n 𝕜}
   l2_opNorm_submatrix_le_one_of_mem_unitary hU hf hg
 
 omit [DecidableEq m] in
-/-- `Matrix.toBlock` form: the `(P, Q)` block of a unitary has ℓ² operator norm at most `1`. -/
+/-- `Matrix.toBlock` form: the `(P, Q)` block of a unitary has ℓ² operator norm at most `1`.
+@isnad1 id=le.1h5v.s8.b204763e7758 from=translated src=- shape=24174ee7 vocab=ab182e21
+-/
 theorem l2_opNorm_toBlock_le_one_of_mem_unitary {U : Matrix n n 𝕜}
     (hU : U ∈ unitary (Matrix n n 𝕜)) (P Q : n → Prop) [DecidablePred P] [DecidablePred Q] :
     ‖U.toBlock P Q‖ ≤ 1 :=
@@ -197,7 +220,9 @@ theorem l2_opNorm_toBlock_le_one_of_mem_unitary {U : Matrix n n 𝕜}
 omit [DecidableEq m] [DecidableEq p] in
 /-- **Real orthogonal case**, the `𝕜 = ℝ` specialization: a block of an orthogonal matrix has ℓ²
 operator norm at most `1`.  `Matrix.orthogonalGroup n ℝ` is by definition `unitary (Matrix n n ℝ)`
-with the trivial star, so this is literally the unitary statement at `𝕜 = ℝ`. -/
+with the trivial star, so this is literally the unitary statement at `𝕜 = ℝ`.
+@isnad1 id=le.3h6v.s7.4338aa1b8b0a from=translated src=- shape=a92ed010 vocab=1b9a1cf2
+-/
 theorem l2_opNorm_submatrix_le_one_of_mem_orthogonalGroup {O : Matrix n n ℝ}
     (hO : O ∈ Matrix.orthogonalGroup n ℝ) {f : p → n} {g : q → n}
     (hf : Function.Injective f) (hg : Function.Injective g) :
@@ -205,7 +230,9 @@ theorem l2_opNorm_submatrix_le_one_of_mem_orthogonalGroup {O : Matrix n n ℝ}
   l2_opNorm_submatrix_le_one_of_mem_unitary hO hf hg
 
 omit [DecidableEq m] in
-/-- `Matrix.toBlock` form of the orthogonal case. -/
+/-- `Matrix.toBlock` form of the orthogonal case.
+@isnad1 id=le.1h4v.s7.af72777d59fe from=translated src=- shape=31e0d77f vocab=6b4df8e2
+-/
 theorem l2_opNorm_toBlock_le_one_of_mem_orthogonalGroup {O : Matrix n n ℝ}
     (hO : O ∈ Matrix.orthogonalGroup n ℝ) (P Q : n → Prop) [DecidablePred P] [DecidablePred Q] :
     ‖O.toBlock P Q‖ ≤ 1 :=

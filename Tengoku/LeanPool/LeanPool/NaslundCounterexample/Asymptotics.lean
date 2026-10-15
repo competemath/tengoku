@@ -27,7 +27,9 @@ namespace NaslundCounterexample
 
 open Polynomial
 
-/-- The finite set `polynomialsBelow n` is exactly the set of polynomials of degree below `n`. -/
+/-- The finite set `polynomialsBelow n` is exactly the set of polynomials of degree below `n`.
+@isnad1 id=iff.0h2v.s8.aa83fafc14b0 from=translated src=- shape=83801488 vocab=66db8993
+-/
 theorem mem_polynomialsBelow (n : ℕ) (f : (ZMod 3)[X]) : f ∈ polynomialsBelow n ↔ f.degree < n := by
   classical
   constructor
@@ -51,21 +53,27 @@ theorem mem_polynomialsBelow (n : ℕ) (f : (ZMod 3)[X]) : f ∈ polynomialsBelo
       simp only [C_mul_X_pow_eq_monomial]
       exact (f.as_sum_range' n hn).symm
 
-/-- There are at most `3^n` polynomials of degree below `n`. -/
+/-- There are at most `3^n` polynomials of degree below `n`.
+@isnad1 id=le.0h1v.s5.ce939894482b from=translated src=- shape=07129b0b vocab=59e9d22d
+-/
 theorem polynomialsBelow_card_le (n : ℕ) : (polynomialsBelow n).card ≤ 3 ^ n := by
   classical
   unfold polynomialsBelow
   refine le_trans Finset.card_image_le ?_
   simp [Finset.card_univ, ZMod.card]
 
-/-- The polynomials of degree below `n` sit inside those of degree below `n'` for `n ≤ n'`. -/
+/-- The polynomials of degree below `n` sit inside those of degree below `n'` for `n ≤ n'`.
+@isnad1 id=le.1h2v.s7.822a3f9bf862 from=translated src=- shape=4569d974 vocab=5f595f60
+-/
 theorem polynomialsBelow_mono {n n' : ℕ} (h : n ≤ n') : polynomialsBelow n ⊆ polynomialsBelow n'
     := by
   intro f hf
   rw [mem_polynomialsBelow] at hf ⊢
   exact lt_of_lt_of_le hf (by exact_mod_cast h)
 
-/-- Every square-difference-free set of polynomials of degree below `n` is counted by `D_3(n)`. -/
+/-- Every square-difference-free set of polynomials of degree below `n` is counted by `D_3(n)`.
+@isnad1 id=le.2h2v.s6.a43330a859c9 from=translated src=- shape=039069d8 vocab=dee6513b
+-/
 theorem card_le_maximumCardinality {n : ℕ} {A : Finset (ZMod 3)[X]} (hA : AllBelow n A) (hS :
     SquareDifferenceFree A) :
     A.card ≤ maximumCardinality n := by
@@ -76,7 +84,9 @@ theorem card_le_maximumCardinality {n : ℕ} {A : Finset (ZMod 3)[X]} (hA : AllB
   simp only [Finset.mem_filter, Finset.mem_powerset]
   exact ⟨hsub, hS⟩
 
-/-- `D_3` is nondecreasing. -/
+/-- `D_3` is nondecreasing.
+@isnad1 id=monotone.0h0v.s2.4f3de4429fb0 from=translated src=- shape=e3d48bcb vocab=272b6f10
+-/
 theorem maximumCardinality_mono : Monotone maximumCardinality := by
   intro n n' h
   classical
@@ -84,7 +94,9 @@ theorem maximumCardinality_mono : Monotone maximumCardinality := by
   exact Finset.sup_mono
     (Finset.filter_subset_filter _ (Finset.powerset_mono.mpr (polynomialsBelow_mono h)))
 
-/-- `D_3(n) ≤ 3^n`, the trivial upper bound. -/
+/-- `D_3(n) ≤ 3^n`, the trivial upper bound.
+@isnad1 id=le.0h1v.s4.69ac21ad29c0 from=translated src=- shape=ff508864 vocab=aa51c7a3
+-/
 theorem maximumCardinality_le (n : ℕ) : maximumCardinality n ≤ 3 ^ n := by
   classical
   unfold maximumCardinality
@@ -92,7 +104,9 @@ theorem maximumCardinality_le (n : ℕ) : maximumCardinality n ≤ 3 ^ n := by
   have hsub : A ⊆ polynomialsBelow n := Finset.mem_powerset.mp (Finset.mem_filter.mp hA).1
   exact le_trans (Finset.card_le_card hsub) (polynomialsBelow_card_le n)
 
-/-- `D_3(n) ≥ 1`, witnessed by the one-element set `{0}`. -/
+/-- `D_3(n) ≥ 1`, witnessed by the one-element set `{0}`.
+@isnad1 id=le.0h1v.s3.d31ed960ee07 from=translated src=- shape=8a62b088 vocab=b4a7f7f6
+-/
 theorem one_le_maximumCardinality (n : ℕ) : 1 ≤ maximumCardinality n := by
   classical
   have hA : AllBelow n ({0} : Finset (ZMod 3)[X]) := by
@@ -108,7 +122,9 @@ theorem one_le_maximumCardinality (n : ℕ) : 1 ≤ maximumCardinality n := by
     simpa using h0
   simpa using card_le_maximumCardinality hA hS
 
-/-- The first family gives `D_3(8e) ≥ 810^e`. -/
+/-- The first family gives `D_3(8e) ≥ 810^e`.
+@isnad1 id=le.0h1v.s5.0e2abc2c5e11 from=translated src=- shape=aca883aa vocab=78c4e94b
+-/
 theorem pow_le_maximumCardinality (e : ℕ) : 810 ^ e ≤ maximumCardinality (8 * e) := by
   have h := card_le_maximumCardinality (familyFromZero_allBelow e) (familyFromZero_sdf e)
   rwa [familyFromZero_card e] at h
@@ -116,14 +132,18 @@ theorem pow_le_maximumCardinality (e : ℕ) : 810 ^ e ≤ maximumCardinality (8 
 /-- The exponent supplied by repeated degree-eight lifts. -/
 noncomputable def growthExponent : ℝ := Real.log 810 / (8 * Real.log 3)
 
-/-- The lift exponent is positive. -/
+/-- The lift exponent is positive.
+@isnad1 id=lt.0h0v.s3.bbe826a8d4ce from=translated src=- shape=ff3a10fc vocab=145ed58e
+-/
 theorem growthExponent_pos : 0 < growthExponent := by
   unfold growthExponent
   have : (0 : ℝ) < Real.log 3 := Real.log_pos (by norm_num)
   have : (0 : ℝ) < Real.log 810 := Real.log_pos (by norm_num)
   positivity
 
-/-- The elementary integer comparison `3^128 ≤ 810^21` bounds the exponent. -/
+/-- The elementary integer comparison `3^128 ≤ 810^21` bounds the exponent.
+@isnad1 id=le.0h0v.s4.ef6b0179661a from=translated src=- shape=5ccaf027 vocab=607e518b
+-/
 theorem rational_le_growthExponent : (16 / 21 : ℝ) ≤ growthExponent := by
   have h3 : (0 : ℝ) < Real.log 3 := Real.log_pos (by norm_num)
   rw [growthExponent, le_div_iff₀ (by positivity)]
@@ -133,7 +153,9 @@ theorem rational_le_growthExponent : (16 / 21 : ℝ) ≤ growthExponent := by
   push_cast at h
   linarith
 
-/-- Counting all coefficient vectors bounds the normalized logarithm by one. -/
+/-- Counting all coefficient vectors bounds the normalized logarithm by one.
+@isnad1 id=le.1h1v.s5.a54f1db1b999 from=translated src=- shape=8603458b vocab=15eea3df
+-/
 theorem normalized_log_le_one (n : ℕ) (hn : 1 ≤ n) :
     Real.log (maximumCardinality n) / (n * Real.log 3) ≤ 1 := by
   have hn0 : (0 : ℝ) < n := by exact_mod_cast hn
@@ -146,7 +168,9 @@ theorem normalized_log_le_one (n : ℕ) (hn : 1 ≤ n) :
   have h := Real.log_le_log hD1 hD
   rwa [Real.log_pow] at h
 
-/-- Rounding the degree down to a multiple of eight costs at most seven degrees. -/
+/-- Rounding the degree down to a multiple of eight costs at most seven degrees.
+@isnad1 id=le.0h1v.s5.b73eaa3849e8 from=translated src=- shape=e81f25b3 vocab=e0ea819c
+-/
 theorem log_cardinality_lower (n : ℕ) :
     ((n : ℝ) - 7) * (growthExponent * Real.log 3) ≤ Real.log (maximumCardinality n) := by
   have h3 : (0 : ℝ) < Real.log 3 := Real.log_pos (by norm_num)
@@ -167,7 +191,9 @@ theorem log_cardinality_lower (n : ℕ) :
     _ = ((n / 8 : ℕ) : ℝ) * Real.log 810 := by rw [hclog]; ring
     _ ≤ _ := hlog
 
-/-- Every smaller exponent eventually bounds the normalized logarithm from below. -/
+/-- Every smaller exponent eventually bounds the normalized logarithm from below.
+@isnad1 id=eventual.1h1v.s5.c3a48c782392 from=translated src=- shape=743da16d vocab=eb57b459
+-/
 theorem eventually_le_normalized_log (ρ : ℝ) (hρ : ρ < growthExponent) :
     ∀ᶠ n : ℕ in Filter.atTop, ρ ≤ Real.log (maximumCardinality n) / (n * Real.log 3) := by
   have h3 : (0 : ℝ) < Real.log 3 := Real.log_pos (by norm_num)
@@ -189,7 +215,9 @@ theorem eventually_le_normalized_log (ρ : ℝ) (hρ : ρ < growthExponent) :
     _ = ((n : ℝ) - 7) * (growthExponent * Real.log 3) := by ring
     _ ≤ _ := log_cardinality_lower n
 
-/-- **The growth rate.** The lift exponent, and hence `16/21`, bounds the normalized liminf. -/
+/-- **The growth rate.** The lift exponent, and hence `16/21`, bounds the normalized liminf.
+@isnad1 id=le.0h0v.s6.12601eedde64 from=translated src=- shape=4176ab06 vocab=fb87b6c4
+-/
 theorem liminf_ge :
     (16 / 21 : ℝ) ≤
       Filter.liminf (fun n : ℕ => Real.log (maximumCardinality n) / (n * Real.log 3))

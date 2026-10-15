@@ -22,7 +22,9 @@ open scoped BigOperators Topology
 
 namespace ClassicalComplexWPT
 
-/-- The distinguished monomial has exact order `d`; its `d`-th derivative is `d!`. -/
+/-- The distinguished monomial has exact order `d`; its `d`-th derivative is `d!`.
+@isnad1 id=exactord.0h2v.s4.370f2ff90ff7 from=translated src=- shape=e054c6f7 vocab=9ebdaaad
+-/
 theorem exactOrder_monomial (n d : ℕ) :
     ExactOrderInLastVariable (fun x : Ambient n ↦ x.2 ^ d) d := by
   constructor
@@ -33,7 +35,9 @@ theorem exactOrder_monomial (n d : ℕ) :
   · change iteratedDeriv d (fun w : ℂ ↦ w ^ d) 0 ≠ 0
     simp
 
-/-- The monomial is prepared by zero lower coefficients and the constant unit one. -/
+/-- The monomial is prepared by zero lower coefficients and the constant unit one.
+@isnad1 id=isweiers.0h2v.s5.55d4f787fd43 from=translated src=- shape=7d242d18 vocab=c5bb45b4
+-/
 theorem isWeierstrassPreparation_monomial (n d : ℕ) :
     IsWeierstrassPreparation (fun x : Ambient n ↦ x.2 ^ d) d
       (fun _ _ ↦ 0) (fun _ ↦ 1) := by
@@ -41,7 +45,9 @@ theorem isWeierstrassPreparation_monomial (n d : ℕ) :
   filter_upwards
   simp [preparedPolynomial]
 
-/-- For every degree, `w^d + z₀` has exact distinguished-variable order `d`. -/
+/-- For every degree, `w^d + z₀` has exact distinguished-variable order `d`.
+@isnad1 id=exactord.0h1v.s6.d7c4c9d2ae75 from=translated src=- shape=1e1662ea vocab=0ceb5425
+-/
 theorem exactOrder_pow_add_first (d : ℕ) :
     ExactOrderInLastVariable (fun x : Ambient 1 ↦ x.2 ^ d + x.1 0) d := by
   constructor
@@ -52,7 +58,9 @@ theorem exactOrder_pow_add_first (d : ℕ) :
   · change iteratedDeriv d (fun w : ℂ ↦ w ^ d + (0 : Base 1) 0) 0 ≠ 0
     simp
 
-/-- For positive degree, `w^d + z₀` has the advertised parameter-dependent prepared form. -/
+/-- For positive degree, `w^d + z₀` has the advertised parameter-dependent prepared form.
+@isnad1 id=isweiers.1h1v.s7.cdd7d6c63f64 from=translated src=- shape=a8df81aa vocab=1e6d8650
+-/
 theorem isWeierstrassPreparation_pow_add_first (d : ℕ) (hd : 0 < d) :
     IsWeierstrassPreparation (fun x : Ambient 1 ↦ x.2 ^ d + x.1 0) d
       (fun i z ↦ if (i : ℕ) = 0 then z 0 else 0) (fun _ ↦ 1) := by
@@ -82,7 +90,9 @@ theorem isWeierstrassPreparation_pow_add_first (d : ℕ) (hd : 0 < d) :
       simp [hb0]
     · simp
 
-/-- A nonconstant unit times a prepared degree-one polynomial is still prepared. -/
+/-- A nonconstant unit times a prepared degree-one polynomial is still prepared.
+@isnad1 id=isweiers.0h0v.s7.f5fd7be72966 from=translated src=- shape=01dfff70 vocab=2f982c69
+-/
 theorem isWeierstrassPreparation_nonconstantUnit :
     IsWeierstrassPreparation
       (fun x : Ambient 1 ↦ (1 + x.2) * (x.2 + x.1 0)) 1
@@ -95,7 +105,9 @@ theorem isWeierstrassPreparation_nonconstantUnit :
   · filter_upwards
     simp [preparedPolynomial]
 
-/-- Its distinguished slice has exact order one. -/
+/-- Its distinguished slice has exact order one.
+@isnad1 id=exactord.0h0v.s6.2700f34dd65a from=translated src=- shape=92e9664c vocab=a1912de8
+-/
 theorem exactOrder_nonconstantUnit :
     ExactOrderInLastVariable
       (fun x : Ambient 1 ↦ (1 + x.2) * (x.2 + x.1 0)) 1 := by

@@ -40,21 +40,33 @@ noncomputable def gpow (t : ZMod (Nat.card G)) : G :=
   dlogEquiv g hg (Multiplicative.ofAdd t)
 
 omit [Fintype G] [IsCyclic G] in
+/--
+@isnad1 id=eq.1h4v.s6.d0da93b89b53 from=translated src=- shape=d1a5605e vocab=75ff1a0d
+-/
 theorem dlog_mul (x y : G) : dlog g hg (x * y) = dlog g hg x + dlog g hg y := by
   simp only [dlog, map_mul]
   rfl
 
 omit [Fintype G] [IsCyclic G] in
+/--
+@isnad1 id=eq.1h3v.s5.16deefb44c0d from=translated src=- shape=c635a8ef vocab=bd614b8f
+-/
 theorem dlog_gpow (t : ZMod (Nat.card G)) : dlog g hg (gpow g hg t) = t := by
   simp only [dlog, gpow, MulEquiv.symm_apply_apply]
   rfl
 
 omit [Fintype G] [IsCyclic G] in
+/--
+@isnad1 id=eq.1h4v.s6.6fc6acff0fa5 from=translated src=- shape=ed2804e7 vocab=7c270b4a
+-/
 theorem dlog_mul_gpow (x : G) (t : ZMod (Nat.card G)) :
     dlog g hg (x * gpow g hg t) = dlog g hg x + t := by
   rw [dlog_mul, dlog_gpow]
 
 omit [Fintype G] [IsCyclic G] in
+/--
+@isnad1 id=eq.1h2v.s6.8753476f8966 from=translated src=- shape=9e896038 vocab=d2537c73
+-/
 theorem gpow_zero : gpow g hg 0 = 1 := by
   unfold gpow
   simp
@@ -65,7 +77,9 @@ noncomputable def dlogConcept (s : ZMod (Nat.card G)) (x : G) : Bool :=
   decide ((dlog g hg x - s).val < Nat.card G / 2)
 
 omit [Fintype G] [IsCyclic G] in
-/-- **Shift-equivariance** (workhorse): translating the data by `gᵗ` shifts the secret by `t`. -/
+/-- **Shift-equivariance** (workhorse): translating the data by `gᵗ` shifts the secret by `t`.
+@isnad1 id=eq.1h5v.s6.2f3b6081a885 from=translated src=- shape=1db4ce29 vocab=6ccfeb1d
+-/
 theorem dlogConcept_shift (s t : ZMod (Nat.card G)) (x : G) :
     dlogConcept g hg s (x * gpow g hg t) = dlogConcept g hg (s - t) x := by
   unfold dlogConcept
@@ -73,7 +87,9 @@ theorem dlogConcept_shift (s t : ZMod (Nat.card G)) (x : G) :
 
 omit [Fintype G] [IsCyclic G] in
 /-- **Reduction corollary**: shifting by `g^{s-1}` maps the secret-`s` concept to the fixed
-secret-`1` concept. -/
+secret-`1` concept.
+@isnad1 id=eq.1h4v.s7.5ad4ff14b651 from=translated src=- shape=20bf6b3a vocab=6ccfeb1d
+-/
 theorem dlogConcept_reduction (s : ZMod (Nat.card G)) (y : G) :
     dlogConcept g hg s (y * gpow g hg (s - 1)) = dlogConcept g hg 1 y := by
   rw [dlogConcept_shift, show s - (s - 1) = 1 from by ring]
@@ -85,7 +101,9 @@ noncomputable def acc (p : G → Bool) (s : ZMod (Nat.card G)) : ℝ :=
 omit [IsCyclic G] in
 /-- **Accuracy-level secret-homogeneity** (load-bearing): the accuracy of any predictor on
 the secret-`s` concept equals the accuracy of the shifted predictor on the fixed secret-`1`
-concept. So breaking any secret is equivalent to breaking the single fixed concept. -/
+concept. So breaking any secret is equivalent to breaking the single fixed concept.
+@isnad1 id=eq.1h4v.s7.c4a3003e97d3 from=translated src=- shape=a3c3b737 vocab=e6de6e84
+-/
 theorem acc_shift (p : G → Bool) (s : ZMod (Nat.card G)) :
     acc g hg (fun y => p (y * gpow g hg (s - 1))) 1 = acc g hg p s := by
   have key : (Finset.univ.filter

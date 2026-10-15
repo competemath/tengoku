@@ -43,7 +43,9 @@ namespace LehmerE10
 /-! ### The Mahler measure of `L` is the Salem root `μ`. -/
 
 /-- The classified product with `max 1 ‖·‖` weights: unit-circle roots contribute `1`,
-`ν < 1` contributes `1`, and each occurrence of `μ` contributes `μ`. -/
+`ν < 1` contributes `1`, and each occurrence of `μ` contributes `μ`.
+@isnad1 id=eq.1h1v.s6.5ce2c47830aa from=translated src=- shape=1e80d324 vocab=d507df48
+-/
 lemma classified_prod_max (S : Multiset ℂ)
     (hS : ∀ z ∈ S, ‖z‖ = 1 ∨ z = (mu : ℂ) ∨ z = (nu : ℂ)) :
     (S.map fun z => max 1 ‖z‖).prod = mu ^ S.count (mu : ℂ) := by
@@ -68,16 +70,22 @@ lemma classified_prod_max (S : Multiset ℂ)
 /-- **The Mahler measure of Lehmer's polynomial is the Salem root**: `M(L) = μ`.
 Computed exactly from `mahlerMeasure_eq_leadingCoeff_mul_prod_roots` and the root
 classification — this is the number `≈ 1.17628`, the smallest known Mahler measure `> 1`
-of an integer polynomial. -/
+of an integer polynomial.
+@isnad1 id=eq.0h0v.s2.99a91f148b40 from=translated src=- shape=4b736592 vocab=cc055256
+-/
 theorem lehmer_mahlerMeasure : LC.mahlerMeasure = mu := by
   rw [mahlerMeasure_eq_leadingCoeff_mul_prod_roots, LC_monic.leadingCoeff, norm_one, one_mul,
     classified_prod_max LC.roots (fun z hz => root_classification hz), count_muC, pow_one]
 
-/-- `M(L) > 1`: Lehmer's polynomial is not a product of cyclotomics, quantitatively. -/
+/-- `M(L) > 1`: Lehmer's polynomial is not a product of cyclotomics, quantitatively.
+@isnad1 id=lt.0h0v.s3.9e8b35177f30 from=translated src=- shape=a1bca669 vocab=bcbcf9bf
+-/
 theorem one_lt_lehmer_mahlerMeasure : 1 < LC.mahlerMeasure :=
   lehmer_mahlerMeasure ▸ mu_gt_one
 
-/-- The Salem square root is below `7/10`: `s₅² = y₅² − 4 < (21/10)² − 4 < (7/10)²`. -/
+/-- The Salem square root is below `7/10`: `s₅² = y₅² − 4 < (21/10)² − 4 < (7/10)²`.
+@isnad1 id=lt.0h0v.s4.5d5ab7279e97 from=translated src=- shape=0efb1284 vocab=54152fa5
+-/
 lemma s5_lt : s5 < 7 / 10 := by
   have h5 := Set.mem_Ioo.mp y5_mem
   have hs := s5_sq
@@ -85,7 +93,9 @@ lemma s5_lt : s5 < 7 / 10 := by
   nlinarith [hs, h5.1, h5.2, hpos]
 
 /-- `M(L) < 7/5`: an unconditional upper bound from the trace-root interval.  (The true
-value is `1.17628…`; sharper bounds need only a tighter sign-change interval for `y₅`.) -/
+value is `1.17628…`; sharper bounds need only a tighter sign-change interval for `y₅`.)
+@isnad1 id=lt.0h0v.s4.3b51a5a588b2 from=translated src=- shape=c29dca45 vocab=b8d949e2
+-/
 theorem lehmer_mahlerMeasure_lt : LC.mahlerMeasure < 7 / 5 := by
   rw [lehmer_mahlerMeasure]
   have h5 := Set.mem_Ioo.mp y5_mem
@@ -111,7 +121,9 @@ def LehmerMinimal : Prop :=
     LC.mahlerMeasure ≤ (p.map (Int.castRingHom ℂ)).mahlerMeasure
 
 /-- The strong form implies the gap form, with the gap witnessed by `M(L)` itself —
-legitimate because `M(L) > 1` is proven above. -/
+legitimate because `M(L) > 1` is proven above.
+@isnad1 id=lehmerco.1h0v.s1.515c98f9fb87 from=translated src=- shape=1d48f1ac vocab=d8ef671b
+-/
 theorem lehmerConjecture_of_minimal (h : LehmerMinimal) : LehmerConjecture :=
   ⟨LC.mahlerMeasure, one_lt_lehmer_mahlerMeasure, fun p hp => h p hp⟩
 
@@ -122,7 +134,9 @@ characteristic polynomial is the irreducible `L`, the minimal polynomial is `L` 
 divides `Xⁿ − 1`; evaluating at the Salem root `μ > 1` gives `μⁿ = 1`, impossible.
 
 Contrast: the Coxeter element of a *finite* Weyl group has order `h` (the Coxeter number
-— `30` for E₈); at E₁₀ the spectrum has left the unit circle and no power returns. -/
+— `30` for E₈); at E₁₀ the spectrum has left the unit circle and no power returns.
+@isnad1 id=ne.1h1v.s7.8e281af0a921 from=translated src=- shape=4c148e2d vocab=3123f698
+-/
 theorem coxeterE10_infinite_order {n : ℕ} (hn : 0 < n) : coxeterE10 ^ n ≠ 1 := by
   intro hpow
   -- move to ℚ

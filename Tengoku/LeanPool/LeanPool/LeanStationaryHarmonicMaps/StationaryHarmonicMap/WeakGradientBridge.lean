@@ -44,6 +44,9 @@ instance {n : ℕ} {Ω : Set (Domain n)} {F : Type*}
     CoeFun (CompactlySupportedC1In Ω F) (fun _ => Domain n → F) where
   coe ψ := ψ.toFun
 
+/--
+@isnad1 id=eq.3h4v.s7.3ba38faa6928 from=translated src=- shape=f3beb5c8 vocab=6cf5b4ab
+-/
 theorem coe_mk {n : ℕ} {Ω : Set (Domain n)} {F : Type*}
     [NormedAddCommGroup F] [NormedSpace ℝ F]
     (ψ : Domain n → F) (hψ : ContDiff ℝ 1 ψ)
@@ -64,7 +67,9 @@ structure DistributionalWeakGradientIn {n m : ℕ}
       -∫ x in Ω, inner ℝ (Du x i) (ψ x)
 
 /-- The distributional weak-gradient bridge implies the custom weak-gradient
-interface used by the monotonicity proof. -/
+interface used by the monotonicity proof.
+@isnad1 id=hasweakg.1h5v.s5.f25debbccc67 from=translated src=- shape=c66f79f5 vocab=fde50090
+-/
 theorem DistributionalWeakGradientIn.toHasWeakGradientIn {n m : ℕ}
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
     {Ω : Set (Domain n)}

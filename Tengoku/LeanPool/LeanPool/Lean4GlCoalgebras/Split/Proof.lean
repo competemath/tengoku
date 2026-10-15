@@ -80,7 +80,9 @@ def f : RuleApp → SplitSequent
 /-- Given a RuleApp, obtain the non-principal formulas. -/
 def fₙ : RuleApp → SplitSequent := fun Γ ↦ f Γ \ fₚ Γ
 
-/-- Relating principal formulas, non-principal formulas, and the sequent. -/
+/-- Relating principal formulas, non-principal formulas, and the sequent.
+@isnad1 id=eq.0h1v.s9.a80025b44682 from=translated src=- shape=0973c4bc vocab=78b8c2b7
+-/
 lemma fₙ_alternate (r : RuleApp) : fₙ r = match r with
   | RuleApp.topₗ Δ _ => Δ \ {Sum.inl ⊤}
   | RuleApp.topᵣ Δ _ => Δ \ {Sum.inr ⊤}
@@ -95,6 +97,9 @@ lemma fₙ_alternate (r : RuleApp) : fₙ r = match r with
   | RuleApp.boxₗ Δ A _ => Δ \ {Sum.inl (□ A)}
   | RuleApp.boxᵣ Δ A _ => Δ \ {Sum.inr (□ A)} := by cases r <;> simp [fₙ, f, fₚ]
 
+/--
+@isnad1 id=le.0h1v.s3.02d4d33ae482 from=translated src=- shape=b70c6bb1 vocab=a14aafeb
+-/
 lemma fₙ_sub_f {r : RuleApp} : fₙ r ⊆ f r := by simp [fₙ]
 
 /-- Auxiliary declaration used in the GL coalgebra development. -/
@@ -168,7 +173,9 @@ infixr:7 "≅" => equiv
 
 /-! # Fischer-Ladner properties of GL-split proofs -/
 
-/-- Every edge is contained in FL closure. -/
+/-- Every edge is contained in FL closure.
+@isnad1 id=le.1h3v.s5.a50190a420a7 from=translated src=- shape=ad21cbb1 vocab=bad8119b
+-/
 lemma edge_in_FL {𝕏 : Proof} {x y : 𝕏.X} (x_y : (edge 𝕏.α) x y) :
   f (r 𝕏.α y) ⊆ SplitSequent.FL (f (r 𝕏.α x)) := by
   unfold edge at x_y
@@ -255,7 +262,9 @@ lemma edge_in_FL {𝕏 : Proof} {x y : 𝕏.X} (x_y : (edge 𝕏.α) x y) :
   all_goals
     simp_all
 
-/-- Every path is contained in FL closure. -/
+/-- Every path is contained in FL closure.
+@isnad1 id=le.1h3v.s5.0d30dc300f67 from=translated src=- shape=571bb801 vocab=d425aa11
+-/
 lemma path_in_FL {𝕏 : Proof} {x y : 𝕏.X} (x_y : Relation.ReflTransGen (edge 𝕏.α) x y) :
   f (r 𝕏.α y) ⊆ SplitSequent.FL (f (r 𝕏.α x)) := by
   induction x_y
@@ -288,6 +297,9 @@ def pointGeneratedProof (𝕐 : Proof) (x : 𝕐.X) : Proof where
       simp_all only [p, αPoint, List.pmap, List.map_pmap, List.pmap_eq_map,
         List.empty_eq]
 
+/--
+@isnad1 id=le.0h3v.s5.8deaf3ed08cd from=translated src=- shape=97bf6610 vocab=14af8965
+-/
 lemma node_in_pg_sequent_in_FL (𝕏 : Proof) (x : 𝕏.X) :
     ∀ y : (pointGeneratedProof 𝕏 x).X,
       f (r (αPoint 𝕏 x) y) ⊆ SplitSequent.FL (f (r 𝕏.α x)) := by
@@ -329,7 +341,9 @@ noncomputable def filtration (𝕐 : Proof) : Proof where
 
 /-! # Finite Proof Property -/
 
-/-- Given a split proof of `Δ` there exists a finite split proof of `Δ`. -/
+/-- Given a split proof of `Δ` there exists a finite split proof of `Δ`.
+@isnad1 id=ex.1h2v.s4.5190fcdb711d from=translated src=- shape=d0e62794 vocab=629b0c8a
+-/
 theorem finite_proof_of_proof (𝕏 : Proof) (Δ : SplitSequent) :
     (𝕏 ⊢ Δ) → ∃ 𝕐, Finite 𝕐.X ∧ (𝕐 ⊢ Δ) := by
   intro X_proves_Δ
@@ -367,7 +381,9 @@ def nbEdge {X : Type} (α : X → T.obj X) (x y : X) := y ∈ p α x ∧ ¬ (r �
 def edgeRestr {𝕏 : Proof} (p : 𝕏.X → Prop) : 𝕏.X → 𝕏.X → Prop :=
   fun x y ↦ edge 𝕏.α x y ∧ p x ∧ p y
 
-/-- If a finite proof has no restricted loops, then there must exist a leaf. -/
+/-- If a finite proof has no restricted loops, then there must exist a leaf.
+@isnad1 id=ex.1h4v.s6.5424de428523 from=translated src=- shape=1a20e71b vocab=335f3b5f
+-/
 lemma finite_and_no_loop_implies_exists_leaf {𝕏 : Proof} [Finite 𝕏.X] (h : 𝕏.X → Prop)
     (x : 𝕏.X) (x_sat : h x) :
     (¬ ∃ y, Relation.TransGen (edgeRestr h) y y) →
@@ -410,6 +426,9 @@ lemma finite_and_no_loop_implies_exists_leaf {𝕏 : Proof} [Finite 𝕏.X] (h :
   apply inf_X.not_finite
   apply Subtype.finite
 
+/--
+@isnad1 id=mem.2h4v.s5.4a188eb6df25 from=translated src=- shape=4e7edf6f vocab=a3f154bc
+-/
 lemma in_vocab_of_path_left {𝕏 : Proof} {x y : 𝕏.X} (x_y : Relation.ReflTransGen (edge 𝕏.α) x y)
   {n} (n_in : n ∈ (SplitSequent.left (f (r 𝕏.α y))).vocab) :
     n ∈ (SplitSequent.left (f (r 𝕏.α x))).vocab := by
@@ -485,6 +504,9 @@ lemma in_vocab_of_path_left {𝕏 : Proof} {x y : 𝕏.X} (x_y : Relation.ReflTr
       · exact ⟨φ, c1.1, n_in_φ⟩
       · exact ⟨◇φ, c2, by simp [Formula.vocab, n_in_φ]⟩
 
+/--
+@isnad1 id=mem.2h4v.s5.88ed5141df83 from=translated src=- shape=4e7edf6f vocab=70baf7f7
+-/
 lemma in_vocab_of_path_right {𝕏 : Proof} {x y : 𝕏.X} (x_y : Relation.ReflTransGen (edge 𝕏.α) x y)
   {n} (n_in : n ∈ (SplitSequent.right (f (r 𝕏.α y))).vocab) :
     n ∈ (SplitSequent.right (f (r 𝕏.α x))).vocab := by

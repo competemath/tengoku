@@ -45,10 +45,16 @@ namespace Timed
 /-- Attach a trusted cost to a return value. -/
 def trusted {α : Type u} (cost : ℕ) (ret : α) : Timed α := ⟨ret, cost⟩
 
+/--
+@isnad1 id=eq.0h3v.s3.cf40794464e8 from=translated src=- shape=f306ae9d vocab=90bc2b3b
+-/
 @[simp]
 theorem trusted_ret {α : Type u} (cost : ℕ) (ret : α) :
     (trusted cost ret).ret = ret := rfl
 
+/--
+@isnad1 id=eq.0h3v.s3.0eb34cd300ac from=translated src=- shape=f95ea65e vocab=cb1c2349
+-/
 @[simp]
 theorem trusted_time {α : Type u} (cost : ℕ) (ret : α) :
     (trusted cost ret).time = cost := rfl
@@ -99,41 +105,65 @@ def HasExactCounts (profile : ResourceProfile)
     profile.elementaryGates = elementaryGates ∧
     profile.classicalOps = classicalOps
 
+/--
+@isnad1 id=eq.0h2v.s4.84de15910329 from=translated src=- shape=88b36870 vocab=deadc3a3
+-/
 @[simp]
 theorem sequential_oracleQueries (left right : ResourceProfile) :
     (sequential left right).oracleQueries =
       left.oracleQueries + right.oracleQueries := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.fad85c35de9b from=translated src=- shape=88b36870 vocab=bebad553
+-/
 @[simp]
 theorem sequential_hadamardGates (left right : ResourceProfile) :
     (sequential left right).hadamardGates =
       left.hadamardGates + right.hadamardGates := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.63b206687619 from=translated src=- shape=88b36870 vocab=d49e8ded
+-/
 @[simp]
 theorem sequential_elementaryGates (left right : ResourceProfile) :
     (sequential left right).elementaryGates =
       left.elementaryGates + right.elementaryGates := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.49ca596d76bb from=translated src=- shape=88b36870 vocab=b89fd37a
+-/
 @[simp]
 theorem sequential_classicalOps (left right : ResourceProfile) :
     (sequential left right).classicalOps =
       left.classicalOps + right.classicalOps := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.0eb6d8839117 from=translated src=- shape=88b36870 vocab=c3a683ba
+-/
 @[simp]
 theorem tensor_oracleQueries (left right : ResourceProfile) :
     (tensor left right).oracleQueries =
       left.oracleQueries + right.oracleQueries := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.04cef4e7d416 from=translated src=- shape=88b36870 vocab=a17877c4
+-/
 @[simp]
 theorem tensor_hadamardGates (left right : ResourceProfile) :
     (tensor left right).hadamardGates =
       left.hadamardGates + right.hadamardGates := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.7f1ccebb2041 from=translated src=- shape=88b36870 vocab=847c4a55
+-/
 @[simp]
 theorem tensor_elementaryGates (left right : ResourceProfile) :
     (tensor left right).elementaryGates =
       left.elementaryGates + right.elementaryGates := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.2a750e985d80 from=translated src=- shape=88b36870 vocab=2f5e2e5d
+-/
 @[simp]
 theorem tensor_classicalOps (left right : ResourceProfile) :
     (tensor left right).classicalOps =
@@ -175,10 +205,16 @@ namespace Profiled
 def trusted {α : Type u} (resources : ResourceProfile) (ret : α) : Profiled α :=
   ⟨ret, resources⟩
 
+/--
+@isnad1 id=eq.0h3v.s3.48b434d5297f from=translated src=- shape=f306ae9d vocab=3bc187f2
+-/
 @[simp]
 theorem trusted_ret {α : Type u} (resources : ResourceProfile) (ret : α) :
     (trusted resources ret).ret = ret := rfl
 
+/--
+@isnad1 id=eq.0h3v.s3.5bf70e65ca92 from=translated src=- shape=f95ea65e vocab=df47775d
+-/
 @[simp]
 theorem trusted_resources {α : Type u} (resources : ResourceProfile) (ret : α) :
     (trusted resources ret).resources = resources := rfl
@@ -204,6 +240,9 @@ def HasExactCounts (profile : CommunicationProfile)
     profile.transmittedQubits = transmittedQubits ∧
     profile.bellPairs = bellPairs
 
+/--
+@isnad1 id=hasexact.0h3v.s3.91a1977a03b8 from=translated src=- shape=19e1b6f8 vocab=ae70b9b5
+-/
 @[simp]
 theorem hasExactCounts_mk (classicalBits transmittedQubits bellPairs : ℕ) :
     HasExactCounts

@@ -53,41 +53,57 @@ variable {E F G : Type*}
   [NormedAddCommGroup G] [NormedSpace ℂ G]
   {a : E} {b : F} {c : G}
 
+/--
+@isnad1 id=eq.0h5v.s5.fdb39af67093 from=translated src=- shape=918b8b1e vocab=4b0e62f2
+-/
 @[simp]
 theorem toFun_source (e : LocalBiholomorphAt E F a b) : e.toFun a = b :=
   e.map_source
 
+/--
+@isnad1 id=eq.0h5v.s5.6c9f9aa187e0 from=translated src=- shape=1171e1a4 vocab=c7de32c3
+-/
 @[simp]
 theorem invFun_target (e : LocalBiholomorphAt E F a b) : e.invFun b = a :=
   e.map_target
 
-/-- The forward representative tends to the target base point. -/
+/-- The forward representative tends to the target base point.
+@isnad1 id=tendsto.0h5v.s6.1e48c81478e7 from=translated src=- shape=3398fa4e vocab=48c788dd
+-/
 theorem toFun_tendsto (e : LocalBiholomorphAt E F a b) :
     Tendsto e.toFun (𝓝 a) (𝓝 b) := by
   have h := e.analyticAt_toFun.continuousAt
   change Tendsto e.toFun (𝓝 a) (𝓝 (e.toFun a)) at h
   simpa only [e.map_source] using h
 
-/-- The inverse representative tends to the source base point. -/
+/-- The inverse representative tends to the source base point.
+@isnad1 id=tendsto.0h5v.s6.a4f08c3dcc17 from=translated src=- shape=d8a9369f vocab=d3e4872b
+-/
 theorem invFun_tendsto (e : LocalBiholomorphAt E F a b) :
     Tendsto e.invFun (𝓝 b) (𝓝 a) := by
   have h := e.analyticAt_invFun.continuousAt
   change Tendsto e.invFun (𝓝 b) (𝓝 (e.invFun b)) at h
   simpa only [e.map_target] using h
 
-/-- A target neighborhood contains the forward image eventually. -/
+/-- A target neighborhood contains the forward image eventually.
+@isnad1 id=eventual.1h6v.s6.cc203e2dc4fd from=translated src=- shape=351c52b2 vocab=e294eed1
+-/
 theorem eventually_toFun_mem (e : LocalBiholomorphAt E F a b)
     {s : Set F} (hs : s ∈ 𝓝 b) :
     ∀ᶠ x in 𝓝 a, e.toFun x ∈ s :=
   e.toFun_tendsto hs
 
-/-- A source neighborhood contains the inverse image eventually. -/
+/-- A source neighborhood contains the inverse image eventually.
+@isnad1 id=eventual.1h6v.s6.c43dad6e3afd from=translated src=- shape=78675aec vocab=8b22b372
+-/
 theorem eventually_invFun_mem (e : LocalBiholomorphAt E F a b)
     {s : Set E} (hs : s ∈ 𝓝 a) :
     ∀ᶠ y in 𝓝 b, e.invFun y ∈ s :=
   e.invFun_tendsto hs
 
-/-- The forward representative is injective on some neighborhood of its source. -/
+/-- The forward representative is injective on some neighborhood of its source.
+@isnad1 id=ex.0h5v.s6.c35bea134dc7 from=translated src=- shape=2eef08aa vocab=273c7022
+-/
 theorem exists_mem_nhds_injOn (e : LocalBiholomorphAt E F a b) :
     ∃ s ∈ 𝓝 a, Set.InjOn e.toFun s := by
   let s : Set E := {x | e.invFun (e.toFun x) = x}
@@ -101,7 +117,9 @@ theorem exists_mem_nhds_injOn (e : LocalBiholomorphAt E F a b) :
 
 /-- The derivative of a local biholomorphism is eventually a linear
 isomorphism.  The conclusion is stated as bijectivity so it does not require
-choosing continuous-linear equivalences at every nearby point. -/
+choosing continuous-linear equivalences at every nearby point.
+@isnad1 id=eventual.0h5v.s8.649d1a76b71c from=translated src=- shape=9734a7f7 vocab=cb524bf6
+-/
 theorem eventually_bijective_fderiv_toFun [CompleteSpace E] [CompleteSpace F]
     (e : LocalBiholomorphAt E F a b) :
     ∀ᶠ x in nhds a, Function.Bijective (fderiv ℂ e.toFun x) := by
@@ -168,7 +186,9 @@ def symm (e : LocalBiholomorphAt E F a b) :
   left_inv := e.right_inv
   right_inv := e.left_inv
 
-/-- The derivative of the inverse representative is eventually bijective. -/
+/-- The derivative of the inverse representative is eventually bijective.
+@isnad1 id=eventual.0h5v.s8.7b4c14c2590e from=translated src=- shape=e6ccc575 vocab=085c6b00
+-/
 theorem eventually_bijective_fderiv_invFun [CompleteSpace E] [CompleteSpace F]
     (e : LocalBiholomorphAt E F a b) :
     ∀ᶠ y in nhds b, Function.Bijective (fderiv ℂ e.invFun y) :=

@@ -62,7 +62,9 @@ variable {R E : Type _} [Ring R] [AddCommGroup E] [Module R E]
 open Submodule LinearMap
 
 /-- given an idempotent linear operator $p$, we have
-  $x \in \textnormal{range}(p)$ if and only if $p(x) = x$ (for all $x \in E$) -/
+  $x \in \textnormal{range}(p)$ if and only if $p(x) = x$ (for all $x \in E$)
+@isnad1 id=iff.1h4v.s7.b2d1b2b82706 from=translated src=- shape=9b72e77b vocab=9a62a620
+-/
 theorem IsIdempotentElem.mem_range_iff {p : E →ₗ[R] E} (hp : IsIdempotentElem p) {x : E} :
     x ∈ range p ↔ p x = x := by
   simp_rw [mem_range]
@@ -74,13 +76,18 @@ variable {U V : Submodule R E} {q : E →ₗ[R] E} (hq : IsIdempotentElem q)
 
 include hq in
 /-- given idempotent linear operators $p,q$,
-  we have $qp = p$ iff $p(E) \subseteq q(E)$ -/
+  we have $qp = p$ iff $p(E) \subseteq q(E)$
+@isnad1 id=iff.1h5v.s8.81b6f2c16a9f from=translated src=- shape=08584469 vocab=a0c8f5ce
+-/
 theorem IsIdempotentElem.comp_idempotent_iff
   {E₂ : Type*} [AddCommGroup E₂] [Module R E₂] (p : E₂ →ₗ[R] E) :
     q.comp p = p ↔ LinearMap.range p ≤ LinearMap.range q := by
   simp_rw [LinearMap.ext_iff, comp_apply, ← IsIdempotentElem.mem_range_iff hq,
     SetLike.le_def, mem_range, forall_exists_index, forall_apply_eq_imp_iff]
 include hq in
+/--
+@isnad1 id=iff.1h5v.s8.b4e6d6eda4f7 from=translated src=- shape=5a346ef1 vocab=7b50e9eb
+-/
 theorem IsIdempotentElem.comp_idempotent_iff'
   {E₂ : Type*} [AddCommGroup E₂] [Module R E₂] (p : E₂ →ₗ[R] E) :
     q.comp p = p ↔ Submodule.map p ⊤ ≤ Submodule.map q ⊤ :=
@@ -90,14 +97,18 @@ variable {p : E →ₗ[R] E} (hp : IsIdempotentElem p)
 
 include hp hq in
 /-- if $p,q$ are idempotent operators and $pq = p = qp$,
-  then $q - p$ is an idempotent operator -/
+  then $q - p$ is an idempotent operator
+@isnad1 id=isidempo.3h4v.s8.bdd332ec4d21 from=translated src=- shape=1db31c18 vocab=bbdcdc82
+-/
 theorem LinearMap.isIdempotentElem_sub_of (h : p.comp q = p ∧ q.comp p = p) :
     IsIdempotentElem (q - p) := by
   simp_rw [IsIdempotentElem, mul_eq_comp, sub_comp, comp_sub, h.1, h.2, ← mul_eq_comp, hp.eq, hq.eq,
     sub_self, sub_zero]
 
 /-- if $p,q$ are idempotent operators and $q - p$ is also an idempotent
-  operator, then $pq = p = qp$ -/
+  operator, then $pq = p = qp$
+@isnad1 id=and.3h4v.s9.eab195ef28d0 from=translated src=- shape=e4f1700e vocab=7c567d6d
+-/
 theorem LinearMap.commutes_of_isIdempotentElem {E 𝕜 : Type _} [RCLike 𝕜] [AddCommGroup E]
     [Module 𝕜 E] {p q : E →ₗ[𝕜] E} (hp : IsIdempotentElem p) (hq : IsIdempotentElem q)
     (h : IsIdempotentElem (q - p)) : p.comp q = p ∧ q.comp p = p := by
@@ -119,7 +130,9 @@ theorem LinearMap.commutes_of_isIdempotentElem {E 𝕜 : Type _} [RCLike 𝕜] [
   rw [← H'', and_self_iff, ← smul_right_inj (two_ne_zero' 𝕜), h', ← H'', two_smul]
 
 /-- given idempotent operators $p,q$,
-  we have $pq = p = qp$ iff $q - p$ is an idempotent operator -/
+  we have $pq = p = qp$ iff $q - p$ is an idempotent operator
+@isnad1 id=iff.2h4v.s9.d1078bf84094 from=translated src=- shape=f5c731b2 vocab=7c567d6d
+-/
 theorem LinearMap.commutes_iff_isIdempotentElem {E 𝕜 : Type _} [RCLike 𝕜] [AddCommGroup E]
     [Module 𝕜 E] {p q : E →ₗ[𝕜] E} (hp : IsIdempotentElem p) (hq : IsIdempotentElem q) :
     p.comp q = p ∧ q.comp p = p ↔ IsIdempotentElem (q - p) :=
@@ -135,7 +148,9 @@ variable {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E]
 local notation "P" => Submodule.orthogonalProjectionOnto
 
 /-- given self-adjoint operators $p,q$,
-  we have $pq=p$ iff $qp=p$ -/
+  we have $pq=p$ iff $qp=p$
+@isnad1 id=iff.2h4v.s10.6d80b158e7eb from=translated src=- shape=3a8e765a vocab=66aa0ed0
+-/
 theorem self_adjoint_proj_commutes [InnerProductSpace 𝕜 E] [CompleteSpace E] {p q : E →L[𝕜] E}
     (hpa : IsSelfAdjoint p) (hqa : IsSelfAdjoint q) : p.comp q = p ↔ q.comp p = p := by
   constructor <;> intro h <;>
@@ -146,22 +161,34 @@ local notation "↥P" => orthogonalProjection'
 
 open Submodule
 
+/--
+@isnad1 id=isselfad.0h3v.s7.32b031db9c7d from=translated src=- shape=df10f2be vocab=649aada9
+-/
 theorem orthogonalProjection_isSelfAdjoint [InnerProductSpace 𝕜 E] [CompleteSpace E]
     (U : Submodule 𝕜 E) [U.HasOrthogonalProjection] :
     IsSelfAdjoint (↥P U) :=
   isSelfAdjoint_starProjection U
 
+/--
+@isnad1 id=iff.0h4v.s10.b173e9c3db0c from=translated src=- shape=d0a94a00 vocab=9ff79c1c
+-/
 theorem orthogonalProjection_eq_self_iff [InnerProductSpace 𝕜 E]
     (U : Submodule 𝕜 E) [U.HasOrthogonalProjection] {x : E} :
     (U.orthogonalProjectionOnto x : E) = x ↔ x ∈ U :=
   starProjection_eq_self_iff (K := U)
 
+/--
+@isnad1 id=eq.0h5v.s11.41d765d22558 from=translated src=- shape=e01fd4cd vocab=0899d84d
+-/
 theorem inner_orthogonalProjection_left_eq_right [InnerProductSpace 𝕜 E]
     (U : Submodule 𝕜 E) [U.HasOrthogonalProjection] (x y : E) :
     inner 𝕜 (U.orthogonalProjectionOnto x : E) y =
       inner 𝕜 x (U.orthogonalProjectionOnto y : E) :=
   inner_starProjection_left_eq_right U x y
 
+/--
+@isnad1 id=isidempo.0h3v.s7.7d6b7a9ef481 from=translated src=- shape=24eedc00 vocab=e0b7024e
+-/
 theorem orthogonalProjection.isIdempotentElem [InnerProductSpace 𝕜 E] (U : Submodule 𝕜 E)
     [U.HasOrthogonalProjection] : IsIdempotentElem (↥P U) := by
   rw [IsIdempotentElem]
@@ -177,10 +204,16 @@ class ContinuousLinearMap.IsOrthogonalProjection [InnerProductSpace 𝕜 E]
   isIdempotent : IsIdempotentElem T
   kerEqRangeOrtho : T.ker = T.rangeᗮ
 
+/--
+@isnad1 id=iff.0h3v.s9.50f64e7c1067 from=translated src=- shape=894f8eae vocab=96241fd4
+-/
 theorem IsIdempotentElem.clm_to_lm [InnerProductSpace 𝕜 E] {T : E →L[𝕜] E} :
     IsIdempotentElem T ↔ IsIdempotentElem (T : E →ₗ[𝕜] E) := by
   simp_rw [IsIdempotentElem, ← ContinuousLinearMap.toLinearMap_mul, coe_inj]
 
+/--
+@isnad1 id=iff.0h7v.s7.d1aba5ee1c3a from=translated src=- shape=0b95ebef vocab=9772f846
+-/
 lemma ker_to_clm
   {R R₂ M M₂ : Type*} [Semiring R]
   [Semiring R₂] [AddCommMonoid M] [AddCommMonoid M₂]
@@ -189,6 +222,9 @@ lemma ker_to_clm
     ∀ x, x ∈ LinearMap.ker (ContinuousLinearMap.toLinearMap f) ↔ f x = 0 :=
   fun _ => Iff.rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.425818ee14f9 from=translated src=- shape=1db8015c vocab=76be6d35
+-/
 lemma subtype_compL_ker [InnerProductSpace 𝕜 E] (U : Submodule 𝕜 E)
   (f : E →L[𝕜] U) :
     (U.subtypeL ∘L f).ker = f.ker := by
@@ -198,7 +234,9 @@ lemma subtype_compL_ker [InnerProductSpace 𝕜 E] (U : Submodule 𝕜 E)
 open LinearMap in
 /-- given any idempotent operator $T ∈ L(V)$, then `is_compl T.ker T.range`,
 in other words, there exists unique $v ∈ \textnormal{ker}(T)$ and $w ∈ \textnormal{range}(T)$ such
-  that $x = v + w$ -/
+  that $x = v + w$
+@isnad1 id=iscompl.1h3v.s7.f189adc7f2ed from=translated src=- shape=2c51b4fa vocab=63fdb151
+-/
 theorem IsIdempotentElem.isCompl_range_ker {V R : Type _} [Semiring R] [AddCommGroup V]
     [Module R V] {T : V →ₗ[R] V} (h : IsIdempotentElem T) : IsCompl (ker T) (range T) := by
   constructor
@@ -226,6 +264,9 @@ theorem IsIdempotentElem.isCompl_range_ker {V R : Type _} [Semiring R] [AddCommG
     · rw [LinearMap.mem_ker, map_sub, ← Module.End.mul_apply, IsIdempotentElem.eq h, sub_self]
     · rw [LinearMap.mem_range]; simp only [exists_apply_eq_apply]
 
+/--
+@isnad1 id=eq.0h3v.s8.62a2366aaa5a from=translated src=- shape=b0bcf215 vocab=113abb27
+-/
 theorem orthogonalProjection.ker [InnerProductSpace 𝕜 E]
   {K : Submodule 𝕜 E} [HasOrthogonalProjection K] : (↥P K).ker = Kᗮ := by
   rw [orthogonalProjection']
@@ -285,7 +326,9 @@ instance instPartialOrderLinearMapIdLeanPool {𝕜 E : Type _} [RCLike 𝕜] [No
     rw [hab.1]
     apply le_antisymm hba2 (hab.2 _)
 
-/-- `p ≤ q` means `q - p` is positive -/
+/-- `p ≤ q` means `q - p` is positive
+@isnad1 id=iff.0h3v.s10.681c33170496 from=translated src=- shape=045014ed vocab=d19ac6b5
+-/
 theorem LinearMap.IsPositive'.hasLe {E : Type _} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
     {p q : SymmetricLM E} : p ≤ q ↔ (q - p : l(E,ℂ)).IsPositive' := by rfl
 
@@ -294,7 +337,9 @@ noncomputable instance IsSymmetric.hasZero {E : Type _} [NormedAddCommGroup E]
   ⟨⟨0, by
     simp_all⟩⟩
 
-/-- saying `p` is positive is the same as saying `0 ≤ p` -/
+/-- saying `p` is positive is the same as saying `0 ≤ p`
+@isnad1 id=iff.0h3v.s9.be2bdc97b58f from=translated src=- shape=fa5a36d7 vocab=a575ddeb
+-/
 theorem LinearMap.IsPositive'.is_nonneg {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E]
     [InnerProductSpace 𝕜 E] {p : l(E,𝕜)} : p.IsPositive' ↔ 0 ≤ p := by
   nth_rw 1 [← sub_zero p]
@@ -302,25 +347,34 @@ theorem LinearMap.IsPositive'.is_nonneg {𝕜 E : Type _} [RCLike 𝕜] [NormedA
 
 end
 
-/-- a self-adjoint idempotent operator is positive -/
+/-- a self-adjoint idempotent operator is positive
+@isnad1 id=le.2h3v.s10.681502d14af1 from=translated src=- shape=61236470 vocab=ea8c522b
+-/
 theorem SelfAdjointAndIdempotent.is_positive {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E]
     [InnerProductSpace 𝕜 E] [CompleteSpace E] {p : E →L[𝕜] E} (hp : IsIdempotentElem p)
     (hpa : IsSelfAdjoint p) : 0 ≤ p := by
   rw [ContinuousLinearMap.nonneg_iff_isPositive]
   exact hp.isPositive_iff_isSelfAdjoint.mpr hpa
 
-/-- an idempotent is positive if and only if it is self-adjoint -/
+/-- an idempotent is positive if and only if it is self-adjoint
+@isnad1 id=iff.1h3v.s10.e55e70d7c725 from=translated src=- shape=2a8db0e3 vocab=ea8c522b
+-/
 theorem IsIdempotentElem.is_positive_iff_self_adjoint [InnerProductSpace 𝕜 E] [CompleteSpace E]
     {p : E →L[𝕜] E} (hp : IsIdempotentElem p) : 0 ≤ p ↔ IsSelfAdjoint p := by
   rw [ContinuousLinearMap.nonneg_iff_isPositive]
   exact hp.isPositive_iff_isSelfAdjoint
 
-/-- orthogonal projections are obviously positive -/
+/-- orthogonal projections are obviously positive
+@isnad1 id=le.0h2v.s10.125a46765430 from=translated src=- shape=40a6dff3 vocab=7e7e0bc6
+-/
 theorem orthogonalProjection.is_positive [InnerProductSpace ℂ E] {U : Submodule ℂ E}
     [CompleteSpace E] [CompleteSpace U] : 0 ≤ U.subtypeL.comp (P U) :=
   SelfAdjointAndIdempotent.is_positive (orthogonalProjection.isIdempotentElem U)
     (orthogonalProjection_isSelfAdjoint U)
 
+/--
+@isnad1 id=le.5h4v.s11.48b2ef76cc59 from=translated src=- shape=789fcabd vocab=30115487
+-/
 theorem SelfAdjointAndIdempotent.sub_is_positive_of [InnerProductSpace 𝕜 E] [CompleteSpace E]
     {p q : E →L[𝕜] E} (hp : IsIdempotentElem p) (hq : IsIdempotentElem q) (hpa : IsSelfAdjoint p)
     (hqa : IsSelfAdjoint q) (h : p.comp q = p) : 0 ≤ q - p :=
@@ -332,7 +386,9 @@ theorem SelfAdjointAndIdempotent.sub_is_positive_of [InnerProductSpace 𝕜 E] [
     (IsSelfAdjoint.sub hqa hpa)
 
 /-- given orthogonal projections `Pᵤ,Pᵥ`,
-  then `Pᵤ(Pᵥ)=Pᵤ` implies `Pᵥ-Pᵤ` is positive (i.e., `Pᵤ ≤ Pᵥ`) -/
+  then `Pᵤ(Pᵥ)=Pᵤ` implies `Pᵥ-Pᵤ` is positive (i.e., `Pᵤ ≤ Pᵥ`)
+@isnad1 id=le.1h3v.s10.d37d1c9d188d from=translated src=- shape=8ecb11d1 vocab=f20bc935
+-/
 theorem orthogonalProjection.sub_is_positive_of [InnerProductSpace ℂ E] {U V : Submodule ℂ E}
     [CompleteSpace U] [CompleteSpace V] [CompleteSpace E] (h : (↥P U).comp (↥P V) = ↥P U) :
     0 ≤ ↥P V - ↥P U :=
@@ -341,7 +397,9 @@ theorem orthogonalProjection.sub_is_positive_of [InnerProductSpace ℂ E] {U V :
     (orthogonalProjection_isSelfAdjoint V) h
 
 /-- given orthogonal projections `Pᵤ,Pᵥ`,
-  then if `Pᵥ - Pᵤ` is idempotent, then `Pᵤ Pᵥ = Pᵤ` -/
+  then if `Pᵥ - Pᵤ` is idempotent, then `Pᵤ Pᵥ = Pᵤ`
+@isnad1 id=eq.1h3v.s10.16d801f9c507 from=translated src=- shape=ec8256fa vocab=93476d92
+-/
 theorem orthogonal_projection_commutes_of_is_idempotent [InnerProductSpace ℂ E]
     {U V : Submodule ℂ E} [CompleteSpace U] [CompleteSpace V]
     (h : IsIdempotentElem (↥P V - ↥P U)) : (↥P V).comp (↥P U) = ↥P U := by
@@ -359,7 +417,9 @@ theorem orthogonal_projection_commutes_of_is_idempotent [InnerProductSpace ℂ E
 
 open scoped FiniteDimensional
 
-/-- copy of `linear_map.is_positive_iff_exists_adjoint_mul_self` -/
+/-- copy of `linear_map.is_positive_iff_exists_adjoint_mul_self`
+@isnad1 id=iff.0h3v.s11.7cafe823315d from=translated src=- shape=5b4375a2 vocab=5fdd2e17
+-/
 theorem ContinuousLinearMap.isPositive_iff_exists_adjoint_hMul_self [InnerProductSpace 𝕜 E]
   [FiniteDimensional 𝕜 E] [CompleteSpace E] (T : E →L[𝕜] E) :
     T.IsPositive ↔ ∃ S : E →L[𝕜] E, T = adjoint S * S := by
@@ -379,7 +439,9 @@ open scoped InnerProductSpace
 
 /-- in a finite-dimensional complex Hilbert space `E`,
   if `p,q` are self-adjoint operators, then
-  `p ≤ q` iff `∀ x ∈ E : ⟪x, p x⟫ ≤ ⟪x, q x⟫` -/
+  `p ≤ q` iff `∀ x ∈ E : ⟪x, p x⟫ ≤ ⟪x, q x⟫`
+@isnad1 id=iff.2h4v.s10.1718d3d49b46 from=translated src=- shape=495cd6f5 vocab=aacf3869
+-/
 theorem ContinuousLinearMap.is_positive_le_iff_inner [InnerProductSpace 𝕜 E]
     [CompleteSpace E]
     {p q : E →L[𝕜] E} (hpa : IsSelfAdjoint p) (hqa : IsSelfAdjoint q) :
@@ -399,9 +461,15 @@ theorem ContinuousLinearMap.is_positive_le_iff_inner [InnerProductSpace 𝕜 E]
 
 local notation "⟪" x "," y "⟫" => @inner 𝕜 _ _ x y
 
+/--
+@isnad1 id=iff.0h4v.s10.2b6a57f09b3c from=translated src=- shape=81f462dd vocab=1acf3fb9
+-/
 theorem IsPositive.HasLe.sub [InnerProductSpace 𝕜 E] {p q : E →L[𝕜] E} :
     p ≤ q ↔ 0 ≤ q - p := by simp only [LE.le, sub_zero]
 
+/--
+@isnad1 id=iff.4h3v.s9.c345191fe5d7 from=translated src=- shape=b2509408 vocab=b560bfb2
+-/
 theorem self_adjoint_and_idempotent_is_positive_iff_commutes
     [InnerProductSpace ℂ E]
     [CompleteSpace E] {p q : E →L[ℂ] E}
@@ -430,7 +498,9 @@ theorem self_adjoint_and_idempotent_is_positive_iff_commutes
     exact SelfAdjointAndIdempotent.sub_is_positive_of hp hq hpa hqa h
 
 /-- in a complex-finite-dimensional Hilbert space `E`, we have
-  `Pᵤ ≤ Pᵤ` iff `PᵥPᵤ = Pᵤ` -/
+  `Pᵤ ≤ Pᵤ` iff `PᵥPᵤ = Pᵤ`
+@isnad1 id=iff.0h3v.s10.c4f517039397 from=translated src=- shape=85d95a74 vocab=0a065131
+-/
 theorem orthogonal_projection_is_le_iff_commutes [InnerProductSpace ℂ E]
     {U V : Submodule ℂ E} [CompleteSpace E] [CompleteSpace U] [CompleteSpace V] :
     ↥P U ≤ ↥P V ↔ (↥P V).comp (↥P U) = ↥P U :=
@@ -438,17 +508,25 @@ theorem orthogonal_projection_is_le_iff_commutes [InnerProductSpace ℂ E]
     (orthogonalProjection.isIdempotentElem V) (orthogonalProjection_isSelfAdjoint U)
     (orthogonalProjection_isSelfAdjoint V)
 
+/--
+@isnad1 id=iff.0h3v.s9.0da68bcfd058 from=translated src=- shape=d10c34ad vocab=396504d5
+-/
 theorem orthogonalProjection.is_le_iff_subset [InnerProductSpace ℂ E] {U V : Submodule ℂ E}
     [CompleteSpace U] [CompleteSpace V] : ↥P U ≤ ↥P V ↔ U ≤ V :=
   Submodule.starProjection_le_starProjection_iff
 
+/--
+@isnad1 id=iff.0h5v.s9.2f55741c5522 from=translated src=- shape=f6264f0c vocab=fe1cb0b7
+-/
 theorem Submodule.map_to_linearMap [Module 𝕜 E] {p : E →L[𝕜] E} {U : Submodule 𝕜 E}
     {x : E} :
     x ∈ Submodule.map (p : E →ₗ[𝕜] E) U ↔ ∃ y ∈ U, p y = x :=
   Iff.rfl
 
 /-- given self-adjoint idempotent operators `p,q` we have,
-  `p(E) ⊆ q(E)` iff `q - p` is an idempotent operator -/
+  `p(E) ⊆ q(E)` iff `q - p` is an idempotent operator
+@isnad1 id=iff.4h4v.s11.f70950799262 from=translated src=- shape=bed68a4d vocab=d3cbf653
+-/
 theorem ContinuousLinearMap.image_subset_iff_sub_of_is_idempotent [InnerProductSpace 𝕜 E]
     [CompleteSpace E] {p q : E →L[𝕜] E} (hp : IsIdempotentElem p) (hq : IsIdempotentElem q)
     (hpa : IsSelfAdjoint p) (hqa : IsSelfAdjoint q) :
@@ -477,7 +555,9 @@ def orthogonalProjection.IsMinimalProjection [InnerProductSpace 𝕜 E] (U : Sub
 open FiniteDimensional
 
 /-- when a submodule `U` has dimension `1`, then
-  for any submodule `V`, we have `V ≤ U` if and only if `V = U` or `V = 0` -/
+  for any submodule `V`, we have `V ≤ U` if and only if `V = U` or `V = 0`
+@isnad1 id=iff.1h4v.s8.49e0de7ff29a from=translated src=- shape=a3531330 vocab=4b33b284
+-/
 theorem Submodule.le_finrank_one
   {R M : Type*} [Field R] [AddCommGroup M] [Module R M]
   (U V : Submodule R M) [Module.Finite R ↥U] [Module.Finite R ↥V]
@@ -499,7 +579,9 @@ theorem Submodule.le_finrank_one
 
 /-- for orthogonal projections `Pᵤ,Pᵥ`,
   if `Pᵤ` is a minimal orthogonal projection, then
-  for any `Pᵥ` if `Pᵥ ≤ Pᵤ` and `Pᵥ ≠ 0`, then `Pᵥ = Pᵤ` -/
+  for any `Pᵥ` if `Pᵥ ≤ Pᵤ` and `Pᵥ ≠ 0`, then `Pᵥ = Pᵤ`
+@isnad1 id=eq.3h3v.s10.e691cebb178e from=translated src=- shape=0c452ed8 vocab=15b46109
+-/
 theorem orthogonalProjection.isMinimalProjection_of
   [InnerProductSpace ℂ E]
   (U W : Submodule ℂ E) [CompleteSpace U] [CompleteSpace W]
@@ -519,7 +601,9 @@ theorem orthogonalProjection.isMinimalProjection_of
   exact (orthogonalProjection.is_le_iff_subset).mpr hUW
 
 /-- if `x ∈ E` then we can normalize this (i.e., there exists `y ∈ E`
-  such that `∥y∥ = 1` where `x = r • y` for some `r ∈ ℝ`) unless `x = 0` -/
+  such that `∥y∥ = 1` where `x = r • y` for some `r ∈ ℝ`) unless `x = 0`
+@isnad1 id=or.0h2v.s7.6b84e4e76785 from=translated src=- shape=50c5c15f vocab=5e86ff90
+-/
 theorem normalize_op [InnerProductSpace ℂ E] (x : E) :
     (∃ (y : E) (r : ℝ), ‖y‖ = 1 ∧ x = (r : ℂ) • y) ∨ x = 0 := by
   by_cases A : x = 0
@@ -529,6 +613,9 @@ theorem normalize_op [InnerProductSpace ℂ E] (x : E) :
     · simp_rw [norm_smul, one_div, norm_inv, norm_norm, mul_comm, mul_inv_cancel₀ B]
     · simp_rw [one_div, Complex.coe_smul, smul_inv_smul₀ B]
 
+/--
+@isnad1 id=eq.1h4v.s7.bd7d8e6c3032 from=translated src=- shape=4ae9b0e4 vocab=dece30dc
+-/
 lemma LinearMap.range_of_isProj {R M : Type*} [CommSemiring R] [AddCommGroup M] [Module R M]
   {p : M →ₗ[R] M} {U : Submodule R M}
   (hp : LinearMap.IsProj U p) :
@@ -542,7 +629,9 @@ lemma LinearMap.range_of_isProj {R M : Type*} [CommSemiring R] [AddCommGroup M] 
 open scoped FiniteDimensional
 /-- a linear operator is an orthogonal projection onto a submodule, if and only if
   it is self-adjoint and idempotent;
-  so it always suffices to say `p = p⋆ = p²` -/
+  so it always suffices to say `p = p⋆ = p²`
+@isnad1 id=iff.0h3v.s9.4ab9117f9fdd from=translated src=- shape=229a28be vocab=6fdc1fbb
+-/
 theorem orthogonal_projection_iff [InnerProductSpace 𝕜 E] [FiniteDimensional 𝕜 E]
     [CompleteSpace E] {p : E →L[𝕜] E} : (∃ (U : Submodule 𝕜 E), --(hU : CompleteSpace U)
       ↥P U = p)
@@ -586,7 +675,9 @@ private theorem starProjection_isProj [InnerProductSpace 𝕜 E] (U : Submodule 
 
 /-- a linear operator is an orthogonal projection onto a submodule, if and only if
   it is a self-adjoint linear projection onto the submodule;
-  also see `orthogonal_projection_iff` -/
+  also see `orthogonal_projection_iff`
+@isnad1 id=iff.0h4v.s9.88fe6ce03acf from=translated src=- shape=6c071c14 vocab=158cfe22
+-/
 theorem orthogonal_projection_iff' [InnerProductSpace 𝕜 E] [FiniteDimensional 𝕜 E]
     [CompleteSpace E] {p : E →L[𝕜] E} (U : Submodule 𝕜 E) :
     ↥P U = p ↔ IsSelfAdjoint p ∧ LinearMap.IsProj U p := by
@@ -622,12 +713,18 @@ theorem orthogonal_projection_iff' [InnerProductSpace 𝕜 E] [FiniteDimensional
         ContinuousLinearMap.coe_coe, ← adjoint_inner_left, IsSelfAdjoint.adjoint_eq h, ←
         mul_apply_eq_comp, this, h' _ (LinearMap.IsProj.map_mem h2 _)]
 
+/--
+@isnad1 id=iff.0h3v.s7.6dfb3c45116f from=translated src=- shape=cc0452ba vocab=3b193936
+-/
 theorem orthogonalProjection.isMinimalProjection_to_clm [InnerProductSpace 𝕜 E]
     [FiniteDimensional 𝕜 E] [CompleteSpace E] (U : Submodule 𝕜 E) :
     (↥P U).IsMinimalProjection U ↔ orthogonalProjection.IsMinimalProjection U :=
   ⟨fun h => h.2.1,
     fun h => ⟨orthogonalProjection_isSelfAdjoint U, h, starProjection_isProj U⟩⟩
 
+/--
+@isnad1 id=iff.0h4v.s9.a3384cc5e7f2 from=translated src=- shape=f97d31e6 vocab=fe8164b4
+-/
 theorem Submodule.isOrtho_iff_inner_eq' {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E]
     [InnerProductSpace 𝕜 E] {U W : Submodule 𝕜 E} :
     U ⟂ W ↔ ∀ (u : ↥U) (w : ↥W), inner 𝕜 (u : E) (w : E) = 0 := by
@@ -636,7 +733,9 @@ theorem Submodule.isOrtho_iff_inner_eq' {𝕜 E : Type _} [RCLike 𝕜] [NormedA
 
 -- moved from `ips.lean`
 /-- `U` and `W` are mutually orthogonal if and only if `(P U).comp (P W) = 0`,
-where `P U` is `orthogonal_projection U` -/
+where `P U` is `orthogonal_projection U`
+@isnad1 id=iff.0h4v.s9.112d0273d1a2 from=translated src=- shape=4e57427c vocab=58363be8
+-/
 theorem Submodule.is_pairwise_orthogonal_iff_orthogonal_projection_comp_eq_zero
     [InnerProductSpace 𝕜 E] (U W : Submodule 𝕜 E)
     [HasOrthogonalProjection U] [HasOrthogonalProjection W] :
@@ -657,6 +756,9 @@ theorem Submodule.is_pairwise_orthogonal_iff_orthogonal_projection_comp_eq_zero
       zero_apply, inner_zero_right]
 
 --
+/--
+@isnad1 id=eq.0h3v.s10.ce185d423215 from=translated src=- shape=e0c787a9 vocab=baccd1dc
+-/
 theorem orthogonalProjection.orthogonal_complement_eq [InnerProductSpace 𝕜 E]
     (U : Submodule 𝕜 E) [HasOrthogonalProjection U] : ↥P Uᗮ = 1 - ↥P U :=
   Submodule.starProjection_orthogonal' U
@@ -667,6 +769,9 @@ section
 
 open scoped FiniteDimensional
 
+/--
+@isnad1 id=iff.0h3v.s11.acc66ba63023 from=translated src=- shape=cb99e464 vocab=90e6b82a
+-/
 lemma LinearMap.isSelfAdjoint_toContinuousLinearMap
     {𝕜 E : Type*} [RCLike 𝕜] [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [FiniteDimensional 𝕜 E]
     [CompleteSpace E]
@@ -677,6 +782,9 @@ lemma LinearMap.isSelfAdjoint_toContinuousLinearMap
 
 end
 
+/--
+@isnad1 id=iff.0h3v.s9.037fdccc3d9e from=translated src=- shape=1de35140 vocab=a4f8de47
+-/
 lemma lmul_isIdempotentElem_iff {R A : Type*} [CommSemiring R]
   [Semiring A] [Module R A] [SMulCommClass R A A] [IsScalarTower R A A] (a : A) :
   (IsIdempotentElem (lmul a : _ →ₗ[R] _)) ↔ (IsIdempotentElem a) := by
@@ -686,6 +794,9 @@ lemma lmul_isIdempotentElem_iff {R A : Type*} [CommSemiring R]
   specialize h 1
   simp_all
 
+/--
+@isnad1 id=eq.0h5v.s11.6670fffa8283 from=translated src=- shape=11a9719d vocab=964b3d5f
+-/
 lemma lmul_tmul {R A B : Type*} [CommSemiring R]
   [Semiring A] [Semiring B] [Module R A] [Module R B] [SMulCommClass R A A]
   [SMulCommClass R B B] [IsScalarTower R A A] [IsScalarTower R B B] (a : A) (b : B) :
@@ -695,6 +806,9 @@ lemma lmul_tmul {R A B : Type*} [CommSemiring R]
     LinearMap.coe_restrictScalars, TensorProduct.map_tmul, lmul_apply,
     Algebra.TensorProduct.tmul_mul_tmul]
 
+/--
+@isnad1 id=iff.0h4v.s9.f6aef0f09f2c from=translated src=- shape=11251dc9 vocab=4a1c4da6
+-/
 lemma lmul_eq_lmul_iff {R A : Type*} [CommSemiring R]
   [Semiring A] [Module R A] [SMulCommClass R A A] [IsScalarTower R A A] (a b : A) :
   lmul a = (lmul b : _ →ₗ[R] _) ↔ a = b := by
@@ -704,6 +818,9 @@ lemma lmul_eq_lmul_iff {R A : Type*} [CommSemiring R]
   simp_rw [lmul_apply, mul_one] at h
   exact h
 
+/--
+@isnad1 id=iff.0h5v.s6.7cbe99de117c from=translated src=- shape=304d4a29 vocab=0d221e9c
+-/
 lemma isIdempotentElem_algEquiv_iff {R A B : Type*} [CommSemiring R]
   [Semiring A] [Semiring B]
   [Algebra R A] [Algebra R B]
@@ -712,6 +829,9 @@ lemma isIdempotentElem_algEquiv_iff {R A B : Type*} [CommSemiring R]
   IsIdempotentElem (φ a : B) ↔ IsIdempotentElem a := by
   simp_rw [IsIdempotentElem, ← map_mul, Function.Injective.eq_iff (AlgEquiv.injective _)]
 
+/--
+@isnad1 id=isproj.0h3v.s8.becc7b8fc079 from=translated src=- shape=e476696e vocab=88590c1d
+-/
 theorem orthogonalProjection'_isProj {R M : Type*} [RCLike R] [NormedAddCommGroup M]
   [InnerProductSpace R M] (U : Submodule R M) [HasOrthogonalProjection U] :
   LinearMap.IsProj U (orthogonalProjection' U) := by
@@ -720,17 +840,26 @@ theorem orthogonalProjection'_isProj {R M : Type*} [RCLike R] [NormedAddCommGrou
     Function.comp_apply, SetLike.coe_mem, implies_true,
     orthogonalProjection_eq_self_iff, imp_self, implies_true]
 
+/--
+@isnad1 id=iff.0h5v.s6.0537f77ce7b5 from=translated src=- shape=0fb5017f vocab=c64b0b6e
+-/
 theorem LinearMap.isProj_iff {S M F : Type*} [Semiring S] [AddCommMonoid M]
     [Module S M] (m : Submodule S M) [FunLike F M M] (f : F) :
   LinearMap.IsProj m f ↔ (∀ x, f x ∈ m) ∧ (∀ x ∈ m, f x = x) :=
 ⟨fun h => ⟨h.1, h.2⟩, fun h => ⟨h.1, h.2⟩⟩
 
+/--
+@isnad1 id=iff.0h4v.s9.39cd2f3dc878 from=translated src=- shape=a8ac1b5e vocab=60bbd457
+-/
 theorem LinearMap.isProj_coe {R M : Type*} [RCLike R] [NormedAddCommGroup M]
   [InnerProductSpace R M] (T : M →L[R] M) (U : Submodule R M) :
   LinearMap.IsProj U T.toLinearMap ↔ LinearMap.IsProj U T :=
 by simp_rw [LinearMap.isProj_iff, ContinuousLinearMap.coe_coe]
 
 open LinearMap in
+/--
+@isnad1 id=eq.0h3v.s10.6b8e34421601 from=translated src=- shape=f22a1242 vocab=d4d55d5c
+-/
 lemma orthogonalProjection_trace {R M :
     Type*} [RCLike R] [NormedAddCommGroup M] [InnerProductSpace R M]
   [FiniteDimensional R M]
@@ -759,6 +888,9 @@ lemma ContinuousLinearMap.eq_comp_orthogonalProjection_ker_ortho
     exact ((Submodule.starProjection_eq_self_iff (K := T.range)).mpr
       (LinearMap.mem_range_self (T : M₁ →ₗ[𝕜] M₂) x)).symm
 
+/--
+@isnad1 id=eq.0h2v.s8.12f231531964 from=translated src=- shape=166375d9 vocab=f5409065
+-/
 theorem orthogonalProjection_of_top {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E]
     [InnerProductSpace 𝕜 E] :
     orthogonalProjection' (⊤ : Submodule 𝕜 E) = 1 := by
@@ -767,11 +899,17 @@ theorem orthogonalProjection_of_top {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCo
   rw [orthogonalProjection_eq_self_iff]
   simp only [Submodule.mem_top]
 
+/--
+@isnad1 id=eq.0h2v.s7.f8ada5b1be0e from=translated src=- shape=322b68c8 vocab=08e83e7b
+-/
 theorem LinearMap.IsProj.codRestrict_of_top {S M : Type*} [Semiring S] [AddCommMonoid M]
   [Module S M] :
     (Submodule.subtype ⊤).comp (LinearMap.IsProj.top S M).codRestrict = LinearMap.id :=
 rfl
 
+/--
+@isnad1 id=iff.1h4v.s7.f3a55c5d91ad from=translated src=- shape=7d4d2927 vocab=f47eaff0
+-/
 theorem LinearMap.IsProj.codRestrict_eq_dim_iff {S M : Type*}
   [Semiring S] [AddCommMonoid M] [Module S M]
   {f : M →ₗ[S] M} {U : Submodule S M} (hf : LinearMap.IsProj U f) :

@@ -53,7 +53,9 @@ def translateTargetTestToOriginal {n m : ℕ}
   fun y => ψ (y - a)
 
 /-- The Fréchet derivative of a translated test vector field is the translated
-Fréchet derivative. -/
+Fréchet derivative.
+@isnad1 id=eq.0h4v.s9.11448b36a2a9 from=translated src=- shape=ee7a077b vocab=b4f50acd
+-/
 theorem fderiv_translateVectorFieldToOriginal_add
     {n : ℕ} (X : Domain n → Domain n) (a x : Domain n) :
     fderiv ℝ (translateVectorFieldToOriginal a X) (a + x) =
@@ -62,7 +64,9 @@ theorem fderiv_translateVectorFieldToOriginal_add
   simpa using fderiv_comp_sub (𝕜 := ℝ) (f := X) a (x := a + x)
 
 /-- Coordinate derivatives are unchanged after translating a test vector field
-back to the original coordinates. -/
+back to the original coordinates.
+@isnad1 id=eq.0h5v.s6.0242e9b8738c from=translated src=- shape=7a6ea18b vocab=c140cdcb
+-/
 theorem partialDerivative_translateVectorFieldToOriginal_add
     {n : ℕ} (X : Domain n → Domain n) (a x : Domain n) (i : Fin n) :
     partialDerivative (translateVectorFieldToOriginal a X) i (a + x) =
@@ -70,7 +74,9 @@ theorem partialDerivative_translateVectorFieldToOriginal_add
   simp [partialDerivative, fderiv_translateVectorFieldToOriginal_add]
 
 /-- The Fréchet derivative of a translated target-valued test map is the
-translated Fréchet derivative. -/
+translated Fréchet derivative.
+@isnad1 id=eq.0h5v.s10.216fa79dc5b4 from=translated src=- shape=5c59bd5c vocab=2c33569e
+-/
 theorem fderiv_translateTargetTestToOriginal_add
     {n m : ℕ} (ψ : Domain n → Target m) (a x : Domain n) :
     fderiv ℝ (translateTargetTestToOriginal a ψ) (a + x) =
@@ -79,7 +85,9 @@ theorem fderiv_translateTargetTestToOriginal_add
   simpa using fderiv_comp_sub (𝕜 := ℝ) (f := ψ) a (x := a + x)
 
 /-- Coordinate derivatives of target-valued test maps are unchanged after
-translating them back to the original coordinates. -/
+translating them back to the original coordinates.
+@isnad1 id=eq.0h6v.s6.f28d09613949 from=translated src=- shape=26bb5c0e vocab=79ebe5df
+-/
 theorem partialDerivative_translateTargetTestToOriginal_add
     {n m : ℕ} (ψ : Domain n → Target m) (a x : Domain n) (i : Fin n) :
     partialDerivative (translateTargetTestToOriginal a ψ) i (a + x) =
@@ -87,7 +95,9 @@ theorem partialDerivative_translateTargetTestToOriginal_add
   simp [partialDerivative, fderiv_translateTargetTestToOriginal_add]
 
 /-- Componentwise vector-field derivatives are unchanged after translating a
-test vector field back to the original coordinates. -/
+test vector field back to the original coordinates.
+@isnad1 id=eq.0h6v.s6.7c7669f84e52 from=translated src=- shape=dfb480fe vocab=def783e4
+-/
 theorem vectorFieldPartial_translateVectorFieldToOriginal_add
     {n : ℕ} (X : Domain n → Domain n) (a x : Domain n) (i j : Fin n) :
     vectorFieldPartial (translateVectorFieldToOriginal a X) i j (a + x) =
@@ -95,7 +105,9 @@ theorem vectorFieldPartial_translateVectorFieldToOriginal_add
   simp [vectorFieldPartial, partialDerivative_translateVectorFieldToOriginal_add]
 
 /-- Divergence is unchanged after translating a test vector field back to the
-original coordinates. -/
+original coordinates.
+@isnad1 id=eq.0h4v.s6.5b9d48243a89 from=translated src=- shape=8d43b36f vocab=d5e57096
+-/
 theorem divergence_translateVectorFieldToOriginal_add
     {n : ℕ} (X : Domain n → Domain n) (a x : Domain n) :
     divergence (translateVectorFieldToOriginal a X) (a + x) =
@@ -103,7 +115,9 @@ theorem divergence_translateVectorFieldToOriginal_add
   simp [divergence, vectorFieldPartial_translateVectorFieldToOriginal_add]
 
 /-- The weak stationarity integrand is compatible with recentering
-coordinates. -/
+coordinates.
+@isnad1 id=eq.0h6v.s6.cd1f9e7c5034 from=translated src=- shape=a5ab2326 vocab=c002bf5e
+-/
 theorem weakStationarityIntegrand_translateGradient_add
     {n m : ℕ} (Du : Domain n → Gradient n m) (X : Domain n → Domain n)
     (a x : Domain n) :
@@ -114,7 +128,9 @@ theorem weakStationarityIntegrand_translateGradient_add
     vectorFieldPartial_translateVectorFieldToOriginal_add]
 
 /-- Smoothness of compactly supported test vector fields is preserved when
-moving them from centered coordinates back to the original coordinates. -/
+moving them from centered coordinates back to the original coordinates.
+@isnad1 id=contdiff.1h3v.s8.7bc603c01118 from=translated src=- shape=a36770ea vocab=769a4956
+-/
 theorem contDiff_translateVectorFieldToOriginal
     {n : ℕ} {X : Domain n → Domain n} {a : Domain n}
     (hX : ContDiff ℝ 1 X) :
@@ -124,7 +140,9 @@ theorem contDiff_translateVectorFieldToOriginal
   exact hX.comp hsub
 
 /-- Compact support is preserved when moving a test vector field from centered
-coordinates back to the original coordinates. -/
+coordinates back to the original coordinates.
+@isnad1 id=hascompa.1h3v.s7.98fd6abad6c5 from=translated src=- shape=f37145da vocab=99afe539
+-/
 theorem hasCompactSupport_translateVectorFieldToOriginal
     {n : ℕ} {X : Domain n → Domain n} {a : Domain n}
     (hX : HasCompactSupport X) :
@@ -132,7 +150,9 @@ theorem hasCompactSupport_translateVectorFieldToOriginal
   exact hX.comp_homeomorph (Homeomorph.subRight a)
 
 /-- The topological support of a translated-back test field is the preimage of
-the original topological support under `y ↦ y - a`. -/
+the original topological support under `y ↦ y - a`.
+@isnad1 id=eq.0h3v.s7.cebe588d43fc from=translated src=- shape=5328c6b9 vocab=b71b3fc4
+-/
 theorem tsupport_translateVectorFieldToOriginal
     {n : ℕ} (X : Domain n → Domain n) (a : Domain n) :
     tsupport (translateVectorFieldToOriginal a X) =
@@ -140,7 +160,9 @@ theorem tsupport_translateVectorFieldToOriginal
   exact tsupport_comp_eq_preimage X (Homeomorph.subRight a)
 
 /-- Smoothness of target-valued test maps is preserved when moving them from
-centered coordinates back to the original coordinates. -/
+centered coordinates back to the original coordinates.
+@isnad1 id=contdiff.1h4v.s8.e1b916cecb45 from=translated src=- shape=5b4bcc8d vocab=0f9ff354
+-/
 theorem contDiff_translateTargetTestToOriginal
     {n m : ℕ} {ψ : Domain n → Target m} {a : Domain n}
     (hψ : ContDiff ℝ 1 ψ) :
@@ -150,7 +172,9 @@ theorem contDiff_translateTargetTestToOriginal
   exact hψ.comp hsub
 
 /-- Compact support is preserved when moving a target-valued test map from
-centered coordinates back to the original coordinates. -/
+centered coordinates back to the original coordinates.
+@isnad1 id=hascompa.1h4v.s7.2536eeb826e2 from=translated src=- shape=4631eae3 vocab=66744ac3
+-/
 theorem hasCompactSupport_translateTargetTestToOriginal
     {n m : ℕ} {ψ : Domain n → Target m} {a : Domain n}
     (hψ : HasCompactSupport ψ) :
@@ -158,36 +182,48 @@ theorem hasCompactSupport_translateTargetTestToOriginal
   exact hψ.comp_homeomorph (Homeomorph.subRight a)
 
 /-- The topological support of a translated-back target-valued test map is the
-preimage of the original topological support under `y ↦ y - a`. -/
+preimage of the original topological support under `y ↦ y - a`.
+@isnad1 id=eq.0h4v.s7.8ae6b0eb57a9 from=translated src=- shape=e6be2daa vocab=317ea111
+-/
 theorem tsupport_translateTargetTestToOriginal
     {n m : ℕ} (ψ : Domain n → Target m) (a : Domain n) :
     tsupport (translateTargetTestToOriginal a ψ) =
       (fun y : Domain n => y - a) ⁻¹' tsupport ψ := by
   exact tsupport_comp_eq_preimage ψ (Homeomorph.subRight a)
 
-/-- Left translation preserves Lebesgue measure on the domain. -/
+/-- Left translation preserves Lebesgue measure on the domain.
+@isnad1 id=measurep.0h2v.s8.571680c018c6 from=translated src=- shape=cbf64531 vocab=6ee197f0
+-/
 theorem measurePreserving_add_left_volume {n : ℕ} (a : Domain n) :
     MeasurePreserving (fun x : Domain n => a + x)
       (volume : Measure (Domain n)) (volume : Measure (Domain n)) :=
   measurePreserving_add_left (volume : Measure (Domain n)) a
 
-/-- Left translation is a measurable embedding. -/
+/-- Left translation is a measurable embedding.
+@isnad1 id=measurab.0h2v.s7.d453e0482e3c from=translated src=- shape=605c1f34 vocab=6272d313
+-/
 theorem measurableEmbedding_add_left {n : ℕ} (a : Domain n) :
     MeasurableEmbedding (fun x : Domain n => a + x) :=
   (MeasurableEquiv.addLeft a).measurableEmbedding
 
-/-- Full-space Lebesgue integration is invariant under right translation. -/
+/-- Full-space Lebesgue integration is invariant under right translation.
+@isnad1 id=eq.0h3v.s8.565e57fe665d from=translated src=- shape=e5c00166 vocab=b8a49dad
+-/
 theorem integral_comp_add_right_volume {n : ℕ} (f : Domain n → ℝ) (a : Domain n) :
     (∫ x, f (x + a)) = ∫ x, f x := by
   simpa using
     (integral_add_right_eq_self (μ := (volume : Measure (Domain n))) f a)
 
-/-- Full-space Lebesgue integration is invariant under left translation. -/
+/-- Full-space Lebesgue integration is invariant under left translation.
+@isnad1 id=eq.0h3v.s8.c0b7985fd593 from=translated src=- shape=89974bf3 vocab=b8a49dad
+-/
 theorem integral_comp_add_left_volume {n : ℕ} (f : Domain n → ℝ) (a : Domain n) :
     (∫ x, f (a + x)) = ∫ x, f x := by
   simpa [add_comm] using integral_comp_add_right_volume (n := n) f a
 
-/-- Set integrals are invariant under the change of variables `x ↦ a + x`. -/
+/-- Set integrals are invariant under the change of variables `x ↦ a + x`.
+@isnad1 id=eq.1h4v.s9.71fe76604236 from=translated src=- shape=8888cc28 vocab=adc8bb7a
+-/
 theorem setIntegral_preimage_add_left_eq {n : ℕ}
     (f : Domain n → ℝ) (a : Domain n) {s : Set (Domain n)}
     (hs : MeasurableSet s) :
@@ -214,7 +250,9 @@ theorem setIntegral_preimage_add_left_eq {n : ℕ}
     _ = ∫ x in s, f x := by
         rw [integral_indicator hs]
 
-/-- Weak stationarity is preserved by recentering coordinates. -/
+/-- Weak stationarity is preserved by recentering coordinates.
+@isnad1 id=weakstat.2h5v.s6.64faa24c1db4 from=translated src=- shape=b767f272 vocab=5acf28c2
+-/
 theorem weakStationaryIn_centeredDomain {n m : ℕ}
     {Du : Domain n → Gradient n m} {Ω : Set (Domain n)} {a : Domain n}
     (hstationary : WeakStationaryIn Du Ω)
@@ -267,7 +305,9 @@ theorem weakStationaryIn_centeredDomain {n m : ℕ}
   exact hcongr.trans (hchange.trans hzero)
 
 /-- The weak-gradient integration-by-parts relation is preserved by recentering
-coordinates. -/
+coordinates.
+@isnad1 id=hasweakg.2h6v.s7.770725abefb2 from=translated src=- shape=31bb4a75 vocab=d81971e5
+-/
 theorem hasWeakGradientIn_centeredDomain {n m : ℕ}
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
     {Ω : Set (Domain n)} {a : Domain n}
@@ -357,7 +397,9 @@ theorem hasWeakGradientIn_centeredDomain {n m : ℕ}
   exact horig
 
 /-- The preimage of a ball centered at `a` under `x ↦ a + x` is the
-origin-centered ball of the same radius. -/
+origin-centered ball of the same radius.
+@isnad1 id=eq.0h3v.s7.dd23b3295a24 from=translated src=- shape=9d42a160 vocab=2b605b2b
+-/
 theorem preimage_add_left_ball_center {n : ℕ} (a : Domain n) (r : ℝ) :
     (fun x : Domain n => a + x) ⁻¹' Metric.ball a r =
       Metric.ball (0 : Domain n) r := by
@@ -365,21 +407,27 @@ theorem preimage_add_left_ball_center {n : ℕ} (a : Domain n) (r : ℝ) :
   simp [Metric.mem_ball, dist_eq_norm]
 
 /-- The preimage of a closed ball centered at `a` under `x ↦ a + x` is the
-origin-centered closed ball of the same radius. -/
+origin-centered closed ball of the same radius.
+@isnad1 id=eq.0h3v.s7.4cc2eb8fdc8a from=translated src=- shape=9d42a160 vocab=0a7bf426
+-/
 theorem preimage_add_left_closedBall_center {n : ℕ} (a : Domain n) (r : ℝ) :
     (fun x : Domain n => a + x) ⁻¹' Metric.closedBall a r =
       Metric.closedBall (0 : Domain n) r := by
   ext x
   simp [Metric.mem_closedBall, dist_eq_norm]
 
-/-- Measurability of a domain is preserved when recentering coordinates. -/
+/-- Measurability of a domain is preserved when recentering coordinates.
+@isnad1 id=measurab.1h3v.s6.9cd5693bec85 from=translated src=- shape=02af9bb2 vocab=13ce6d28
+-/
 theorem measurableSet_centeredDomain {n : ℕ} {a : Domain n} {Ω : Set (Domain n)}
     (hΩ : MeasurableSet Ω) :
     MeasurableSet (centeredDomain a Ω) :=
   hΩ.preimage (continuous_const.add continuous_id).measurable
 
 /-- A closed ball contained in `Ω` becomes an origin-centered closed ball
-contained in the recentered domain. -/
+contained in the recentered domain.
+@isnad1 id=le.1h4v.s7.ca0b11af60b3 from=translated src=- shape=bd99cdd6 vocab=a7b9c37d
+-/
 theorem closedBall_subset_centeredDomain_of_closedBall_subset {n : ℕ}
     {a : Domain n} {Ω : Set (Domain n)} {R0 : ℝ}
     (hclosedBall_subset : Metric.closedBall a R0 ⊆ Ω) :
@@ -391,7 +439,9 @@ theorem closedBall_subset_centeredDomain_of_closedBall_subset {n : ℕ}
       simpa [preimage_add_left_closedBall_center] using hx
     exact hxpre)
 
-/-- Local scalar integrability is preserved by recentering coordinates. -/
+/-- Local scalar integrability is preserved by recentering coordinates.
+@isnad1 id=locallyi.1h4v.s4.0ffb55cefd4a from=translated src=- shape=62ab6639 vocab=ace8fa76
+-/
 theorem locallyIntegrableScalarIn_centeredDomain {n : ℕ}
     {f : Domain n → ℝ} {Ω : Set (Domain n)} {a : Domain n}
     (hf : LocallyIntegrableScalarIn f Ω) :
@@ -414,7 +464,9 @@ theorem locallyIntegrableScalarIn_centeredDomain {n : ℕ}
         (f := f) (s := K)).1 h_original
   exact h_change
 
-/-- The `L²_loc` map part of `W^{1,2}_{loc}` is preserved by recentering. -/
+/-- The `L²_loc` map part of `W^{1,2}_{loc}` is preserved by recentering.
+@isnad1 id=maplocal.1h5v.s6.62a737528029 from=translated src=- shape=2dc8c64e vocab=8a3165e9
+-/
 theorem mapLocallyL2In_centeredDomain {n m : ℕ}
     {u : Domain n → Target m} {Ω : Set (Domain n)} {a : Domain n}
     (hu : MapLocallyL2In u Ω) :
@@ -424,7 +476,9 @@ theorem mapLocallyL2In_centeredDomain {n m : ℕ}
       (Ω := Ω) hu
 
 /-- The `L²_loc` gradient-energy part of `W^{1,2}_{loc}` is preserved by
-recentering. -/
+recentering.
+@isnad1 id=gradient.1h5v.s5.fce51223e030 from=translated src=- shape=756776db vocab=8e7b063e
+-/
 theorem gradientLocallyL2In_centeredDomain {n m : ℕ}
     {Du : Domain n → Gradient n m} {Ω : Set (Domain n)} {a : Domain n}
     (hgrad : GradientLocallyL2In Du Ω) :
@@ -433,7 +487,9 @@ theorem gradientLocallyL2In_centeredDomain {n m : ℕ}
       (n := n) (a := a) (f := fun x : Domain n => weakEnergyDensity Du x)
       (Ω := Ω) hgrad
 
-/-- A.e. strong measurability of the weak gradient is preserved by recentering. -/
+/-- A.e. strong measurability of the weak gradient is preserved by recentering.
+@isnad1 id=gradient.1h5v.s5.7f54b683ea0e from=translated src=- shape=756776db vocab=ed0be4f5
+-/
 theorem gradientAEStronglyMeasurableIn_centeredDomain {n m : ℕ}
     {Du : Domain n → Gradient n m} {Ω : Set (Domain n)} {a : Domain n}
     (hDu : GradientAEStronglyMeasurableIn Du Ω) :
@@ -451,7 +507,9 @@ theorem gradientAEStronglyMeasurableIn_centeredDomain {n m : ℕ}
   exact hcomp
 
 /-- The concrete `W^{1,2}_{loc}` package is preserved by recentering
-coordinates. -/
+coordinates.
+@isnad1 id=w12locin.2h6v.s7.eb3cbe108446 from=translated src=- shape=31bb4a75 vocab=ab3bd321
+-/
 theorem w12LocIn_centeredDomain {n m : ℕ}
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
     {Ω : Set (Domain n)} {a : Domain n}
@@ -468,7 +526,9 @@ theorem w12LocIn_centeredDomain {n m : ℕ}
     hasWeakGradientIn_centeredDomain (a := a) hmap.hasWeakGradient hΩ_meas⟩
 
 /-- The full weak stationary map package is preserved by recentering
-coordinates. -/
+coordinates.
+@isnad1 id=weakstat.2h6v.s7.a47339af2f0c from=translated src=- shape=31bb4a75 vocab=5dc6e1e2
+-/
 theorem weakStationaryMapIn_centeredDomain {n m : ℕ}
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
     {Ω : Set (Domain n)} {a : Domain n}
@@ -482,7 +542,9 @@ theorem weakStationaryMapIn_centeredDomain {n m : ℕ}
     weakStationaryIn_centeredDomain (a := a) hmap.2 hΩ_meas⟩
 
 /-- The weak ball energy centered at `a` is the origin-centered energy of the
-translated gradient field. -/
+translated gradient field.
+@isnad1 id=eq.0h5v.s6.e07ed0c24bed from=translated src=- shape=b45ea7cc vocab=739cb9dc
+-/
 theorem weakBallEnergy_translateGradient_zero
     {n m : ℕ} (Du : Domain n → Gradient n m) (a : Domain n) (r : ℝ) :
     weakBallEnergy (translateGradient a Du) (0 : Domain n) r =
@@ -504,21 +566,27 @@ theorem weakBallEnergy_translateGradient_zero
             (n := n) (f := fun x : Domain n => weakEnergyDensity Du x)
             a (measurableSet_ball : MeasurableSet (Metric.ball a r))
 
-/-- The weak monotonicity quantity is unchanged after recentering coordinates. -/
+/-- The weak monotonicity quantity is unchanged after recentering coordinates.
+@isnad1 id=eq.0h5v.s6.547216914aee from=translated src=- shape=b45ea7cc vocab=522ccc23
+-/
 theorem weakTheta_translateGradient_zero
     {n m : ℕ} (Du : Domain n → Gradient n m) (a : Domain n) (r : ℝ) :
     weakTheta (translateGradient a Du) (0 : Domain n) r =
       weakTheta Du a r := by
   simp [weakTheta, weakBallEnergy_translateGradient_zero]
 
-/-- The weak radial derivative is unchanged by recentering coordinates. -/
+/-- The weak radial derivative is unchanged by recentering coordinates.
+@isnad1 id=eq.0h5v.s7.de313010392f from=translated src=- shape=e59a1aca vocab=65d5f601
+-/
 theorem weakRadialDerivative_translateGradient_zero
     {n m : ℕ} (Du : Domain n → Gradient n m) (a x : Domain n) :
     weakRadialDerivative (translateGradient a Du) (0 : Domain n) x =
       weakRadialDerivative Du a (a + x) := by
   simp [weakRadialDerivative, translateGradient, sub_eq_add_neg, add_assoc]
 
-/-- The weak radial-energy density is unchanged by recentering coordinates. -/
+/-- The weak radial-energy density is unchanged by recentering coordinates.
+@isnad1 id=eq.0h5v.s7.0b3836e594b8 from=translated src=- shape=477b2b9c vocab=689ff5c6
+-/
 theorem weakRadialEnergyDensity_translateGradient_zero
     {n m : ℕ} (Du : Domain n → Gradient n m) (a x : Domain n) :
     weakRadialEnergyDensity (translateGradient a Du) (0 : Domain n) x =
@@ -526,7 +594,9 @@ theorem weakRadialEnergyDensity_translateGradient_zero
   simp [weakRadialEnergyDensity, weakRadialDerivative_translateGradient_zero]
 
 /-- The annular right-hand side in the weak monotonicity formula is unchanged
-after recentering coordinates. -/
+after recentering coordinates.
+@isnad1 id=eq.0h6v.s6.a0b87870f120 from=translated src=- shape=ec866cc0 vocab=db0aec46
+-/
 theorem weakMonotonicityRhs_translateGradient_zero
     {n m : ℕ} (Du : Domain n → Gradient n m) (a : Domain n) (s r : ℝ) :
     weakMonotonicityRhs (translateGradient a Du) (0 : Domain n) s r =
@@ -571,7 +641,9 @@ theorem weakMonotonicityRhs_translateGradient_zero
         simp [weakMonotonicityRhs, ann]
 
 /-- Arbitrary-center Euclidean weak monotonicity, reduced to the origin-centered
-theorem for the translated map and translated weak gradient. -/
+theorem for the translated map and translated weak gradient.
+@isnad1 id=monotone.4h7v.s7.75c2360b54b8 from=translated src=- shape=1a2e33aa vocab=9f323b23
+-/
 theorem weakTheta_monotone_from_centered_W12Loc_euclidean
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}

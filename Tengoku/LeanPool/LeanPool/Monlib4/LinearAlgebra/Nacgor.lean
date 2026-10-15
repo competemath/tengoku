@@ -42,7 +42,9 @@ noncomputable def PiNormedAddCommGroupOfRing {ι : Type*} [Fintype ι] {B : ι �
   toMetricSpace := (PiLp.normedAddCommGroupToPi (2 : ENNReal) B).toMetricSpace
   dist_eq := (PiLp.normedAddCommGroupToPi (2 : ENNReal) B).dist_eq
 
-/-- The `L^2` norm on a finite product is the square root of the sum of squared norms. -/
+/-- The `L^2` norm on a finite product is the square root of the sum of squared norms.
+@isnad1 id=eq.0h3v.s6.1994b54f81c6 from=translated src=- shape=494b7d29 vocab=b7336484
+-/
 theorem Pi.normedAddCommGroupOfRing.norm_eq_sum {ι : Type*} [Fintype ι] {B : ι → Type*}
     [Π i, NormedAddCommGroupOfRing (B i)] (x : Π i, B i) :
     PiNormedAddCommGroupOfRing.norm x = Real.sqrt (∑ i, ‖x i‖ ^ 2) := by

@@ -53,7 +53,9 @@ formula.
 The preferred public API is `stationaryW12LocMonotonicityFormula_euclidean`,
 where the chosen weak gradient is bundled in a `StationaryW12LocMap`.  This
 theorem keeps the old componentwise calling style by constructing that witness
-package first. -/
+package first.
+@isnad1 id=eq.10h9v.s8.b48f3becc145 from=translated src=- shape=518eeea7 vocab=50abf51d
+-/
 theorem stationarySobolevMonotonicityFormula_euclidean
     {n m : Nat} [NeZero n]
     {u : Domain n -> Target m} {Du : Domain n -> Gradient n m}
@@ -83,7 +85,9 @@ theorem.
 
 The preferred public API is `stationaryW12LocMonotonicity_euclidean`, where the
 chosen weak gradient is bundled in a `StationaryW12LocMap`.  This theorem keeps
-the old componentwise calling style by constructing that witness package first. -/
+the old componentwise calling style by constructing that witness package first.
+@isnad1 id=le.10h9v.s7.485dbd9618fd from=translated src=- shape=763dc85a vocab=6b8fedc6
+-/
 theorem stationarySobolevMonotonicity_euclidean
     {n m : Nat} [NeZero n]
     {u : Domain n -> Target m} {Du : Domain n -> Gradient n m}

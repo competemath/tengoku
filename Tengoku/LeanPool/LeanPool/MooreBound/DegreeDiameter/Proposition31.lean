@@ -65,7 +65,9 @@ noncomputable def proposition31Degree (K : Type*) [Field K]
   Nat.card ((Proposition31Graph K k).neighborSet
     (proposition31StandardEven K k))
 
-/-- All vertices of the concrete graph have its named actual degree. -/
+/-- All vertices of the concrete graph have its named actual degree.
+@isnad1 id=eq.0h3v.s5.46d057ac1a08 from=translated src=- shape=19939bdb vocab=6fee3b2a
+-/
 theorem proposition31_regular (K : Type*) [Field K] (k : ℕ) :
     ∀ P : Proposition31Vertex K k,
       Nat.card ((Proposition31Graph K k).neighborSet P) =
@@ -76,7 +78,9 @@ theorem proposition31_regular (K : Type*) [Field K] (k : ℕ) :
 /-- **Proposition 3.1 (finite-field form).**  For every finite field `K` and
 positive `k`, the same concrete graph is regular, has the exact q-factorial
 order in both multiplication and division form, obeys the paper's sharp
-degree cap, and has extended diameter exactly `k`. -/
+degree cap, and has extended diameter exactly `k`.
+@isnad1 id=and.1h2v.s8.2cc9e1ea3f49 from=translated src=- shape=f293565f vocab=367bd19c
+-/
 theorem proposition_3_1_over_finite_field
     (K : Type*) [Field K] [Finite K] (k : ℕ) (hk : 0 < k) :
     (∀ P : Proposition31Vertex K k,
@@ -102,7 +106,9 @@ theorem proposition_3_1_over_finite_field
 
 /-- **Proposition 3.1 (prime-power form).**  Every prime power `q` supplies
 a finite field of cardinality exactly `q`, and hence the graph with exactly
-the numerical parameters stated in the write-up. -/
+the numerical parameters stated in the write-up.
+@isnad1 id=and.1h2v.s8.91220abf3644 from=translated src=- shape=5e038c99 vocab=a47fd91d
+-/
 theorem proposition_3_1_for_prime_power (q : PrimePowerIndex)
     (k : ℕ) (hk : 0 < k) :
     (∀ P : Proposition31Vertex (PrimePowerField q) k,

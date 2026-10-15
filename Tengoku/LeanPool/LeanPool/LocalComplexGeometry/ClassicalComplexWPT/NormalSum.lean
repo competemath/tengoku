@@ -39,12 +39,17 @@ def sumTsum (p : I → FormalMultilinearSeries 𝕜 E F) (x : E) : F :=
   ∑' i, (p i).sum x
 
 omit [CompleteSpace F] in
+/--
+@isnad1 id=le.1h6v.s8.f2112225d812 from=translated src=- shape=885b71bf vocab=8380b13d
+-/
 lemma norm_seriesTsum_le (p : I → FormalMultilinearSeries 𝕜 E F)
     (hcoeff : ∀ n, Summable (fun i ↦ ‖p i n‖)) (n : ℕ) :
     ‖seriesTsum p n‖ ≤ ∑' i, ‖p i n‖ := by
   exact norm_tsum_le_tsum_norm (hcoeff n)
 
-/-- Evaluation commutes with the coefficientwise sum of a normally summable family. -/
+/-- Evaluation commutes with the coefficientwise sum of a normally summable family.
+@isnad1 id=eq.1h7v.s9.afcfe130bad6 from=translated src=- shape=744d6ba9 vocab=ad50141d
+-/
 lemma seriesTsum_apply (p : I → FormalMultilinearSeries 𝕜 E F) (n : ℕ)
     (hcoeff : Summable (fun i ↦ ‖p i n‖)) (y : E) :
     seriesTsum p n (fun _ ↦ y) = ∑' i, p i n (fun _ ↦ y) := by
@@ -55,6 +60,7 @@ lemma seriesTsum_apply (p : I → FormalMultilinearSeries 𝕜 E F) (n : ℕ)
 /--
 A common-radius normal-convergence criterion for summing an arbitrary family of
 formal multilinear series.
+@isnad1 id=hasfpowe.3h6v.s8.dc8db80751d6 from=translated src=- shape=5c0deda6 vocab=ce082af8
 -/
 theorem hasFPowerSeriesOnBall_sumTsum
     (p : I → FormalMultilinearSeries 𝕜 E F) (r : ℝ≥0) (hr : 0 < r)

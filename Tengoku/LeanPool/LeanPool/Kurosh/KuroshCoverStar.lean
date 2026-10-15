@@ -33,6 +33,9 @@ namespace GraphCoveringTheory.Kurosh
 
 open Monoid.CoprodI
 
+/--
+@isnad1 id=eq.1h6v.s8.83aaddefa612 from=translated src=- shape=77f82b90 vocab=fed052cf
+-/
 theorem Internal.rawBassSerreEdgeData_action_injective {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {h k : H} (e : rawBassSerreEdgeData G)
@@ -43,6 +46,9 @@ theorem Internal.rawBassSerreEdgeData_action_injective {ι : Type v}
       change (h.1 * g, i) = (k.1 * g, i) at he
       exact mul_right_cancel (congrArg Prod.fst he)
 
+/--
+@isnad1 id=eq.2h7v.s6.ef32cbaa8ba9 from=translated src=- shape=ddb137e4 vocab=38214de1
+-/
 theorem Internal.rawBassSerreEdgeDataOf_cast {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)]
     {a b a' b' : RawBassSerreVertex G}
@@ -53,6 +59,9 @@ theorem Internal.rawBassSerreEdgeDataOf_cast {ι : Type v}
   cases hb
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.f037b88ef71a from=translated src=- shape=1abd3759 vocab=f9a3eeae
+-/
 theorem Internal.coverEdgeMap_data {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {x y : CoverVertex G H}
@@ -65,6 +74,9 @@ theorem Internal.coverEdgeMap_data {ι : Type v}
   rw [Internal.rawBassSerreEdgeDataOf_cast]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.59762845cf44 from=translated src=- shape=0efe2e92 vocab=852193f6
+-/
 theorem Internal.coverVertexMap_orbit {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (x : CoverVertex G H) :
@@ -88,6 +100,9 @@ noncomputable def rawEdgeAlign {ι : Type v}
       actionOrbitMk H (rawBassSerreEdgeData G) f) : H :=
   Classical.choose ((actionOrbitMk_eq_iff H (rawBassSerreEdgeData G) e f).1 h)
 
+/--
+@isnad1 id=eq.1h5v.s8.d9302c6d3ac7 from=translated src=- shape=e558b3b6 vocab=136e8c9d
+-/
 theorem Internal.rawEdgeAlign_spec {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {e f : rawBassSerreEdgeData G}
@@ -96,6 +111,9 @@ theorem Internal.rawEdgeAlign_spec {ι : Type v}
     (rawEdgeAlign G H h).1 • e = f :=
   Classical.choose_spec ((actionOrbitMk_eq_iff H (rawBassSerreEdgeData G) e f).1 h)
 
+/--
+@isnad1 id=eq.2h8v.s6.1e8757869b77 from=translated src=- shape=5b3ef3a8 vocab=5fb31f83
+-/
 theorem Internal.quotientEdgeRawData_cast {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b a' b' : RawBassSerreOrbitVertex G H}
@@ -108,6 +126,9 @@ theorem Internal.quotientEdgeRawData_cast {ι : Type v}
   cases hb
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.b199226434be from=translated src=- shape=eb217538 vocab=3551f980
+-/
 theorem Internal.quotientEdgeRawData_orbit_of_raw {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreVertex G} (f : a ⟶ b) :
@@ -128,6 +149,9 @@ theorem Internal.quotientEdgeRawData_orbit_of_raw {ι : Type v}
       simp [rawBassSerreOrbitQuiverEdge, rawBassSerreOrbitEdgeMk,
         actionOrbitMk]
 
+/--
+@isnad1 id=eq.1h7v.s7.613a47c31a04 from=translated src=- shape=cb6b185b vocab=33d142a3
+-/
 theorem Internal.rawStar_eq_of_data_eq {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)]
     {a b c : RawBassSerreVertex G}
@@ -257,6 +281,9 @@ noncomputable def coverStarInv {ι : Type v}
           let y := coverEdgeTarget G H (p, ce)
           exact ⟨y, ⟨(p, ce), hsource, rfl⟩⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.292bfb5b6711 from=translated src=- shape=70f27818 vocab=88bf5989
+-/
 theorem Internal.coverPrefunctor_star_inv {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (x : CoverVertex G H) (f : Quiver.Star (coverVertexMap G H x)) :
@@ -273,6 +300,9 @@ theorem Internal.coverPrefunctor_star_inv {ι : Type v}
             inv_mul_cancel, mul_one]
           exact Internal.rawEdgeAlign_spec G H _
 
+/--
+@isnad1 id=eq.1h8v.s8.40fac05004f3 from=translated src=- shape=3cb5bcaf vocab=c1966503
+-/
 theorem Internal.coverStar_data_eq {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (x : CoverVertex G H)
@@ -289,6 +319,9 @@ theorem Internal.coverStar_data_eq {ι : Type v}
     (fun F : Quiver.Star (coverVertexMap G H x) =>
       rawBassSerreEdgeDataOf G F.2) h
 
+/--
+@isnad1 id=eq.1h8v.s8.be0f50f1503f from=translated src=- shape=ce254bd8 vocab=0a982717
+-/
 theorem Internal.coverEdge_eq_of_val_eq {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b c : RawBassSerreOrbitVertex G H}
@@ -306,6 +339,9 @@ theorem Internal.coverEdge_eq_of_val_eq {ι : Type v}
   cases hbc
   rfl
 
+/--
+@isnad1 id=eq.2h5v.s9.9e1ae15e28c7 from=translated src=- shape=7648ae06 vocab=f4856cb7
+-/
 theorem Internal.coverEdge_eq_of_base_val_eq {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {e f : CoverEdge G H}
@@ -331,6 +367,9 @@ theorem Internal.coverEdge_eq_of_base_val_eq {ι : Type v}
                   cases hbd
                   exact heq_of_eq (Subtype.ext hv)
 
+/--
+@isnad1 id=eq.3h8v.s10.f3195dce3621 from=translated src=- shape=6d7ee002 vocab=704bdd3f
+-/
 theorem Internal.coverSource_coset_eq_of_edge_eq {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {x : CoverVertex G H} {p q : CoverSource G H}
@@ -349,6 +388,9 @@ theorem Internal.coverSource_coset_eq_of_edge_eq {ι : Type v}
       (MonoidHom.range (treeKuroshVertexInclusion G H e.1)) q⟩ at h
   exact eq_of_heq (Sigma.ext_iff.mp h).2
 
+/--
+@isnad1 id=eq.1h8v.s7.4b54cba00944 from=translated src=- shape=9df4fc88 vocab=f5b5d255
+-/
 theorem Internal.coverEdge_base_eq_of_map_data_eq {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (x : CoverVertex G H)
@@ -397,6 +439,9 @@ theorem Internal.coverEdge_base_eq_of_map_data_eq {ι : Type v}
     exact hd'.trans he'.symm
   exact Internal.coverEdge_eq_of_base_val_eq G H hsource hbase
 
+/--
+@isnad1 id=eq.1h8v.s7.0f9f217db8ed from=translated src=- shape=5a6e3939 vocab=a0765cd0
+-/
 theorem Internal.coverEdge_pair_eq_of_map_data_eq {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (x : CoverVertex G H)
@@ -480,6 +525,9 @@ theorem Internal.coverEdge_pair_eq_of_map_data_eq {ι : Type v}
       _ = e.1.1 := hpk
   exact Prod.ext hp hce
 
+/--
+@isnad1 id=eq.1h8v.s8.e2bbec4b0c3f from=translated src=- shape=04fc25f8 vocab=8bd4ad69
+-/
 theorem Internal.coverStar_eq_of_pair_eq {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {x y z : CoverVertex G H}
@@ -494,6 +542,9 @@ theorem Internal.coverStar_eq_of_pair_eq {ι : Type v}
   cases hyz
   exact heq_of_eq (Subtype.ext hp)
 
+/--
+@isnad1 id=injectiv.0h4v.s6.e186bfcd41ba from=translated src=- shape=ead0f0c7 vocab=a95fd8e8
+-/
 theorem Internal.coverPrefunctor_star_injective {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (x : CoverVertex G H) :
@@ -507,6 +558,9 @@ theorem Internal.coverPrefunctor_star_injective {ι : Type v}
           apply Internal.coverEdge_pair_eq_of_map_data_eq G H x d e
           exact Internal.coverStar_data_eq G H x d e h
 
+/--
+@isnad1 id=bijectiv.0h4v.s6.4dbfde146450 from=translated src=- shape=ead0f0c7 vocab=a0871336
+-/
 theorem Internal.coverPrefunctor_star_bijective {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (x : CoverVertex G H) :

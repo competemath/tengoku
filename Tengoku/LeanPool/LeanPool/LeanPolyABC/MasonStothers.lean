@@ -28,22 +28,34 @@ variable {k : Type _} [Field k] [DecidableEq k]
 namespace Ne
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=isunit.1h2v.s7.74a7c874b394 from=translated src=- shape=850f267b vocab=b218f04d
+-/
 theorem isUnit_C {u : k} (hu : u ≠ 0) : IsUnit (C u) :=
   Polynomial.isUnit_C.mpr hu.isUnit
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=ne.1h2v.s7.3e696195a3d9 from=translated src=- shape=1115344a vocab=ea9a01ae
+-/
 theorem C_ne_zero {u : k} (hu : u ≠ 0) : C u ≠ 0 :=
   Polynomial.C_ne_zero.mpr hu
 
 end Ne
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=iff.0h2v.s9.593647b6d5a2 from=translated src=- shape=1322bc4f vocab=6ce30b18
+-/
 theorem dvd_derivative_iff {a : k[X]} : a ∣ derivative a ↔ derivative a = 0 := by
   simp_all
 
 namespace IsCoprime
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=iff.1h3v.s9.b3c962fda504 from=translated src=- shape=3961430a vocab=946af72e
+-/
 theorem wronskian_eq_zero_iff {a b : k[X]} (hc : IsCoprime a b) :
     wronskian a b = 0 ↔ derivative a = 0 ∧ derivative b = 0 := by
   constructor
@@ -80,6 +92,9 @@ proof ("An Alternative Proof of Mason's Theorem"), but slightly different.
 -/
 namespace IsCoprime
 
+/--
+@isnad1 id=iscoprim.1h3v.s6.86dbfeaf1547 from=translated src=- shape=6ba480a0 vocab=b68d5b09
+-/
 protected theorem divRadical {a b : k[X]} (h : IsCoprime a b) :
     IsCoprime (Polynomial.divRadical a) (Polynomial.divRadical b) := by
   rw [← Polynomial.hMul_radical_divRadical a, ← Polynomial.hMul_radical_divRadical b] at h
@@ -133,6 +148,9 @@ private theorem rot3_isCoprime {a b c : k[X]}
 
 namespace Polynomial
 
+/--
+@isnad1 id=or.5h4v.s10.63c82248411c from=translated src=- shape=61a6e82a vocab=2352abc2
+-/
 theorem abc {a b c : k[X]}
     (ha : a ≠ 0) (hb : b ≠ 0) (hc : c ≠ 0)
     (hab : IsCoprime a b) (hsum : a + b + c = 0) :
@@ -177,6 +195,9 @@ theorem abc {a b c : k[X]}
       apply abc_subcall wca <;> assumption
     · apply abc_subcall wab <;> assumption
 
+/--
+@isnad1 id=or.5h4v.s9.10229af04544 from=translated src=- shape=fbbc1f41 vocab=44728be4
+-/
 theorem abc_char0 [CharZero k] {a b c : k[X]}
     (ha : a ≠ 0) (hb : b ≠ 0) (hc : c ≠ 0)
     (hab : IsCoprime a b) (hsum : a + b + c = 0) :
@@ -189,11 +210,17 @@ theorem abc_char0 [CharZero k] {a b c : k[X]}
 end Polynomial
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=iff.1h2v.s6.bee78803053f from=translated src=- shape=cd2e722e vocab=4fc2d6e2
+-/
 theorem isUnit_iff_natDegree_eq_zero {a : k[X]} (ha : a ≠ 0) :
     IsUnit a ↔ a.natDegree = 0 := by
   rw [isUnit_iff_degree_eq_zero, degree_eq_natDegree ha]
   simp only [Nat.cast_eq_zero]
 
+/--
+@isnad1 id=iff.0h2v.s6.e0cb59d5bbe9 from=translated src=- shape=b5e4d3fa vocab=1d710fe3
+-/
 theorem natDegree_radical_eq_zero_iff {a : k[X]} :
     (radical a).natDegree = 0 ↔ a.natDegree = 0 := by
   by_cases ha : a = 0
@@ -205,6 +232,9 @@ theorem natDegree_radical_eq_zero_iff {a : k[X]} :
 namespace Polynomial
 
 -- Variant of Mason--Stothers not requiring coprimality of `a` and `b`
+/--
+@isnad1 id=or.4h4v.s9.ca801197dccb from=translated src=- shape=3debd09c vocab=4b14fe4b
+-/
 theorem abc'_char0 [CharZero k]
     {a b c : k[X]} (ha : a ≠ 0) (hb : b ≠ 0) (hc : c ≠ 0) (hsum : a + b + c = 0) :
     (a.natDegree = 0 ∧ b.natDegree = 0 ∧ c.natDegree = 0) ∨

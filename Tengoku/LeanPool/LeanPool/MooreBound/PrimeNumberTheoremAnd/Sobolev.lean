@@ -53,6 +53,9 @@ section lemmas
 /-- Precompose a function with multiplication by the reciprocal scale. -/
 noncomputable def funscale {E : Type*} (g : ℝ → E) (R x : ℝ) : E := g (R⁻¹ • x)
 
+/--
+@isnad1 id=contdiff.0h0v.s5.d5a82684315d from=translated src=- shape=352d7a74 vocab=68b11613
+-/
 lemma contDiff_ofReal : ContDiff ℝ ∞ ofReal := by
   have key x : HasDerivAt ofReal 1 x := hasDerivAt_id x |>.ofReal_comp
   have key' : deriv ofReal = fun _ => 1 := by ext x; exact (key x).deriv
@@ -60,6 +63,9 @@ lemma contDiff_ofReal : ContDiff ℝ ∞ ofReal := by
   simpa [key'] using contDiff_const
 
 omit [NormedSpace ℝ E] in
+/--
+@isnad1 id=tendsto.1h3v.s6.f406ae792dbb from=translated src=- shape=9565e2a5 vocab=51b5084c
+-/
 lemma tendsto_funscale {f : ℝ → E} (hf : ContinuousAt f 0) (x : ℝ) :
     Tendsto (fun R => funscale f R x) atTop (𝓝 (f 0)) :=
   hf.tendsto.comp (by simpa using tendsto_inv_atTop_zero.mul_const x)
@@ -83,6 +89,9 @@ def neg (f : CS n E) : CS n E where
 
 instance : Neg (CS n E) where neg := neg
 
+/--
+@isnad1 id=eq.0h4v.s6.9934d93f335b from=translated src=- shape=c537fee1 vocab=9b3439fd
+-/
 @[simp] lemma neg_apply {x : ℝ} : (-f) x = - (f x) := rfl
 
 /-- Multiply a compactly supported smooth function by a real scalar. -/
@@ -90,8 +99,14 @@ def smul (R : ℝ) (f : CS n E) : CS n E := ⟨R • f, f.h1.const_smul R, f.h2.
 
 instance : HSMul ℝ (CS n E) (CS n E) where hSMul := smul
 
+/--
+@isnad1 id=eq.0h5v.s7.9fd3e3267a76 from=translated src=- shape=e4a84f59 vocab=98a3bb99
+-/
 @[simp] lemma smul_apply : (R • f) x = R • f x := rfl
 
+/--
+@isnad1 id=continuo.0h3v.s5.c9bc69fce0a5 from=translated src=- shape=3f40b30e vocab=3ca9c7f8
+-/
 lemma continuous (f : CS n E) : Continuous f := f.h1.continuous
 
 /-- Differentiate a compactly supported function, lowering its smoothness index. -/
@@ -100,11 +115,20 @@ noncomputable def deriv (f : CS (n + 1) E) : CS n E where
   h1 := (contDiff_succ_iff_deriv.mp f.h1).2.2
   h2 := f.h2.deriv
 
+/--
+@isnad1 id=hasderiv.0h4v.s6.c5199f512fcf from=translated src=- shape=42d98e5d vocab=04ce641a
+-/
 lemma hasDerivAt (f : CS (n + 1) E) (x : ℝ) : HasDerivAt f (f.deriv x) x :=
   (f.h1.differentiable (by simp)).differentiableAt.hasDerivAt
 
+/--
+@isnad1 id=eq.0h4v.s6.793fdf94d3ed from=translated src=- shape=8cc87982 vocab=afc6dd19
+-/
 lemma deriv_apply {f : CS (n + 1) E} {x : ℝ} : f.deriv x = _root_.deriv f x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.7467c08c58bc from=translated src=- shape=c76897ae vocab=fcb45452
+-/
 lemma deriv_smul {f : CS (n + 1) E} : (R • f).deriv = R • f.deriv := by
   ext x; exact (f.hasDerivAt x |>.const_smul R).deriv
 
@@ -116,6 +140,9 @@ noncomputable def scale (g : CS n E) (R : ℝ) : CS n E := by
     · exact g.h1.comp (contDiff_const_smul R⁻¹)
     · exact g.h2.comp_smul (inv_ne_zero h)
 
+/--
+@isnad1 id=eq.0h4v.s6.df448f2ac75e from=translated src=- shape=cb9ae223 vocab=f20d2a8a
+-/
 lemma deriv_scale {f : CS (n + 1) E} : (f.scale R).deriv = R⁻¹ • f.deriv.scale R := by
   ext v; by_cases hR : R = 0
   · simp [hR, scale, deriv]
@@ -123,19 +150,31 @@ lemma deriv_scale {f : CS (n + 1) E} : (f.scale R).deriv = R⁻¹ • f.deriv.sc
     exact ((f.hasDerivAt (R⁻¹ • v)).scomp v
       (by simpa using! (hasDerivAt_id v).const_smul R⁻¹)).deriv
 
+/--
+@isnad1 id=eq.0h5v.s7.55fb36e596bb from=translated src=- shape=7bd56575 vocab=8b75b32d
+-/
 lemma deriv_scale' {f : CS (n + 1) E} :
     (f.scale R).deriv v = R⁻¹ • f.deriv (R⁻¹ • v) := by
   rw [deriv_scale, smul_apply]
   by_cases hR : R = 0 <;> simp [hR, scale, funscale]
 
+/--
+@isnad1 id=hasderiv.0h5v.s7.d03e55e9f7f0 from=translated src=- shape=859e459b vocab=ce7ab41a
+-/
 lemma hasDerivAt_scale (f : CS (n + 1) E) (R x : ℝ) :
     HasDerivAt (f.scale R) (R⁻¹ • _root_.deriv f (R⁻¹ • x)) x := by
   convert hasDerivAt (f.scale R) x; rw [deriv_scale']; rfl
 
+/--
+@isnad1 id=tendsto.0h4v.s6.869d17e0c0be from=translated src=- shape=e3d97ada vocab=53a48147
+-/
 lemma tendsto_scale (f : CS n E) (x : ℝ) : Tendsto (fun R => f.scale R x) atTop (𝓝 (f 0)) := by
   apply (tendsto_funscale f.continuous.continuousAt x).congr'
   filter_upwards [eventually_ne_atTop 0] with R hR; simp [scale, hR]
 
+/--
+@isnad1 id=ex.0h3v.s5.ea407d7b16e7 from=translated src=- shape=46d6fbbc vocab=0fd094ad
+-/
 lemma bounded : ∃ C, ∀ v, ‖f v‖ ≤ C := by
   obtain ⟨x, hx⟩ :=
     (continuous_norm.comp f.continuous).exists_forall_ge_of_hasCompactSupport f.h2.norm
@@ -149,15 +188,27 @@ instance : CoeFun trunc (fun _ => ℝ → ℝ) where coe f := f.toFun
 
 instance : Coe trunc (CS 2 ℝ) where coe := trunc.toCS
 
+/--
+@isnad1 id=le.0h2v.s5.76e1230ffd4f from=translated src=- shape=5c2fd3d2 vocab=ae444500
+-/
 lemma nonneg (g : trunc) (x : ℝ) : 0 ≤ g x := (Set.indicator_nonneg (by simp) x).trans (g.h3 x)
 
+/--
+@isnad1 id=le.0h2v.s5.e2e6526fa291 from=translated src=- shape=9a11caa4 vocab=ae444500
+-/
 lemma le_one (g : trunc) (x : ℝ) : g x ≤ 1 :=
   (g.h4 x).trans <| Set.indicator_le_self' (by simp) x
 
+/--
+@isnad1 id=eventual.0h1v.s5.8aeebc9472a6 from=translated src=- shape=9a1ad55d vocab=1736be2b
+-/
 lemma zero (g : trunc) : g =ᶠ[𝓝 0] 1 := by
   have : Set.Icc (-1) 1 ∈ 𝓝 (0 : ℝ) := by apply Icc_mem_nhds <;> linarith
   exact eventually_of_mem this (fun x hx => le_antisymm (g.le_one x) (by simpa [hx] using g.h3 x))
 
+/--
+@isnad1 id=eq.0h1v.s5.d54a649eccfa from=translated src=- shape=abb3ccc1 vocab=1ff33c8c
+-/
 @[simp] lemma zero_at {g : trunc} : g 0 = 1 := g.zero.eq_of_nhds
 
 end trunc
@@ -166,11 +217,20 @@ namespace W1
 
 instance : CoeFun (W1 n E) (fun _ => ℝ → E) where coe := W1.toFun
 
+/--
+@isnad1 id=continuo.0h3v.s5.7fbe1a03af81 from=translated src=- shape=3f40b30e vocab=684f52b8
+-/
 lemma continuous (f : W1 n E) : Continuous f := f.smooth.continuous
 
+/--
+@isnad1 id=differen.0h3v.s6.2d0df627a985 from=translated src=- shape=0f825776 vocab=a20598ec
+-/
 lemma differentiable (f : W1 (n + 1) E) : Differentiable ℝ f :=
   f.smooth.differentiable (by simp)
 
+/--
+@isnad1 id=eq.2h4v.s7.18a1be944b4f from=translated src=- shape=8522fc66 vocab=28de6984
+-/
 lemma iteratedDeriv_sub {f g : ℝ → E} (hf : ContDiff ℝ n f) (hg : ContDiff ℝ n g) :
     iteratedDeriv n (f - g) = iteratedDeriv n f - iteratedDeriv n g := by
   induction n generalizing f g with
@@ -191,6 +251,9 @@ noncomputable def deriv (f : W1 (n + 1) E) : W1 n E where
   integrable k hk := by
     simpa [iteratedDeriv_succ'] using f.integrable (Nat.succ_le_succ hk)
 
+/--
+@isnad1 id=hasderiv.0h4v.s6.f55d277e13c8 from=translated src=- shape=42d98e5d vocab=261cfc6f
+-/
 lemma hasDerivAt (f : W1 (n + 1) E) (x : ℝ) : HasDerivAt f (f.deriv x) x :=
   f.differentiable.differentiableAt.hasDerivAt
 
@@ -205,6 +268,9 @@ def sub (f g : W1 n E) : W1 n E where
 
 instance : Sub (W1 n E) where sub := sub
 
+/--
+@isnad1 id=integrab.0h2v.s7.8abbcdfe9c58 from=translated src=- shape=b922e6e6 vocab=a0a73010
+-/
 lemma integrable_iteratedDeriv_Schwarz {f : 𝓢(ℝ, ℂ)} : Integrable (iteratedDeriv n f) := by
   induction n generalizing f with
   | zero => exact f.integrable
@@ -226,6 +292,9 @@ variable {f : W21}
 noncomputable def norm (f : ℝ → ℂ) : ℝ :=
     (∫ v, ‖f v‖) + (4 * π ^ 2)⁻¹ * (∫ v, ‖deriv (deriv f) v‖)
 
+/--
+@isnad1 id=le.0h1v.s3.fbeaf829d229 from=translated src=- shape=e456648f vocab=989995b3
+-/
 lemma norm_nonneg {f : ℝ → ℂ} : 0 ≤ norm f :=
   add_nonneg (integral_nonneg (fun t => by simp))
     (mul_nonneg (by positivity) (integral_nonneg (fun t => by simp)))
@@ -249,16 +318,28 @@ instance : HMul (CS 2 ℂ) W21 (CS 2 ℂ) where
 
 instance : HMul (CS 2 ℝ) W21 (CS 2 ℂ) where hMul g f := (g : CS 2 ℂ) * f
 
+/--
+@isnad1 id=integrab.0h1v.s5.77d57345c695 from=translated src=- shape=5a0c1598 vocab=f2e3bd91
+-/
 lemma hf (f : W21) : Integrable f := f.integrable zero_le_two
 
+/--
+@isnad1 id=integrab.0h1v.s6.3373265e5a69 from=translated src=- shape=6c4dcfb3 vocab=0bf295c1
+-/
 lemma hf' (f : W21) : Integrable (deriv f) := by
   simpa [iteratedDeriv_succ] using f.integrable one_le_two
 
+/--
+@isnad1 id=integrab.0h1v.s7.7a1e3d5bf388 from=translated src=- shape=b36a2061 vocab=0bf295c1
+-/
 lemma hf'' (f : W21) : Integrable (deriv (deriv f))  := by
   simpa [iteratedDeriv_succ] using f.integrable le_rfl
 
 end W21
 
+/--
+@isnad1 id=tendsto.0h2v.s6.a70c4f0a2c21 from=translated src=- shape=026662a3 vocab=6aa97192
+-/
 theorem W21_approximation (f : W21) (g : trunc) :
     Tendsto (fun R => ‖f - (g.scale R * f : W21)‖) atTop (𝓝 0) := by
   -- Definitions

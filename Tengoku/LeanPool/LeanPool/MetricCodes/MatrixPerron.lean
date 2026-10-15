@@ -48,6 +48,9 @@ def rayleigh (A : Matrix I I ℝ) (x : Space I) : ℝ :=
   (continuousOperator A).rayleighQuotient x
 
 omit [Nonempty I] in
+/--
+@isnad1 id=bddabove.0h2v.s7.cb52126a4d4c from=translated src=- shape=8c77253b vocab=8ac60260
+-/
 theorem rayleigh_bddAbove (A : Matrix I I ℝ) :
     BddAbove
       (Set.range (fun x : {x : Space I // x ≠ 0} => rayleigh A x)) := by
@@ -61,12 +64,18 @@ def topEigenvalue (A : Matrix I I ℝ) : ℝ :=
   ⨆ x : {x : Space I // x ≠ 0}, rayleigh A x
 
 omit [Nonempty I] in
+/--
+@isnad1 id=le.1h3v.s6.191eebf4716b from=translated src=- shape=d68e8b95 vocab=1e1e0d7a
+-/
 theorem rayleigh_le_top (A : Matrix I I ℝ)
     (x : Space I) (hx : x ≠ 0) :
     rayleigh A x ≤ topEigenvalue A := by
   exact le_ciSup (rayleigh_bddAbove A) ⟨x, hx⟩
 
 omit [Nonempty I] in
+/--
+@isnad1 id=issymmet.1h2v.s6.c5be64bed025 from=translated src=- shape=94051cd2 vocab=498345f1
+-/
 theorem operator_isSymmetric (A : Matrix I I ℝ)
     (hA : Aᵀ = A) : (operator A).IsSymmetric := by
   apply Matrix.isSymmetric_toEuclideanLin_iff.mpr
@@ -75,6 +84,9 @@ theorem operator_isSymmetric (A : Matrix I I ℝ)
   have h := congrArg (fun B : Matrix I I ℝ => B i j) hA
   simpa only [star_trivial, Matrix.transpose_apply] using h
 
+/--
+@isnad1 id=ex.1h2v.s8.bd426f7a6e31 from=translated src=- shape=fc76a544 vocab=f5da8696
+-/
 theorem exists_topEigenvector (A : Matrix I I ℝ)
     (hA : Aᵀ = A) :
     ∃ x : Space I, x ≠ 0 ∧
@@ -94,6 +106,9 @@ def coordinateAbs (x : Space I) : Space I :=
   WithLp.toLp 2 fun i : I => |x i|
 
 omit [DecidableEq I] [Nonempty I] in
+/--
+@isnad1 id=eq.0h2v.s5.6ac7311a0964 from=translated src=- shape=c23d63b4 vocab=fba2b23f
+-/
 theorem coordinateAbs_norm (x : Space I) :
     ‖coordinateAbs x‖ = ‖x‖ := by
   have hsquare : ‖coordinateAbs x‖ ^ 2 = ‖x‖ ^ 2 := by
@@ -104,6 +119,9 @@ theorem coordinateAbs_norm (x : Space I) :
   nlinarith [norm_nonneg (coordinateAbs x), norm_nonneg x]
 
 omit [Fintype I] [DecidableEq I] [Nonempty I] in
+/--
+@isnad1 id=ne.1h2v.s6.fc74e1085756 from=translated src=- shape=231f0068 vocab=68f54273
+-/
 theorem coordinateAbs_ne_zero {x : Space I} (hx : x ≠ 0) :
     coordinateAbs x ≠ 0 := by
   intro habs
@@ -114,6 +132,9 @@ theorem coordinateAbs_ne_zero {x : Space I} (hx : x ≠ 0) :
   simpa only [coordinateAbs, PiLp.zero_apply, abs_eq_zero] using hi
 
 omit [Nonempty I] in
+/--
+@isnad1 id=le.1h3v.s9.75a6f3b25acc from=translated src=- shape=6064ff99 vocab=e4cc5081
+-/
 theorem inner_le_inner_coordinateAbs (A : Matrix I I ℝ)
     (hA : ∀ i j : I, 0 ≤ A i j) (x : Space I) :
     @inner ℝ (Space I) _ (operator A x) x ≤
@@ -140,6 +161,9 @@ theorem inner_le_inner_coordinateAbs (A : Matrix I I ℝ)
     _ = A i j * |x j| * |x i| := by ring
 
 omit [Nonempty I] in
+/--
+@isnad1 id=eq.2h4v.s8.be273d971f08 from=translated src=- shape=58bddd4c vocab=8632fd47
+-/
 theorem rayleigh_eq_of_eigenvector (A : Matrix I I ℝ)
     (x : Space I) (hx : x ≠ 0) (eigenvalue : ℝ)
     (heig : operator A x = eigenvalue • x) :
@@ -151,6 +175,9 @@ theorem rayleigh_eq_of_eigenvector (A : Matrix I I ℝ)
   field_simp [hnorm]
 
 omit [Nonempty I] in
+/--
+@isnad1 id=le.1h3v.s5.32b1aa3daeed from=translated src=- shape=d56fd04f vocab=b7a5ccbe
+-/
 theorem rayleigh_le_coordinateAbs (A : Matrix I I ℝ)
     (hA : ∀ i j : I, 0 ≤ A i j) (x : Space I) :
     rayleigh A x ≤ rayleigh A (coordinateAbs x) := by
@@ -162,6 +189,9 @@ theorem rayleigh_le_coordinateAbs (A : Matrix I I ℝ)
   gcongr
   exact inner_le_inner_coordinateAbs A hA x
 
+/--
+@isnad1 id=ex.2h2v.s9.96009690f6e5 from=translated src=- shape=30a21b6f vocab=c5749aa4
+-/
 theorem exists_nonnegative_topEigenvector (A : Matrix I I ℝ)
     (hsymm : Aᵀ = A) (hnonneg : ∀ i j : I, 0 ≤ A i j) :
     ∃ x : Space I, x ≠ 0 ∧
@@ -200,7 +230,9 @@ theorem exists_nonnegative_topEigenvector (A : Matrix I I ℝ)
   simpa only [topEigenvalue, ne_eq, rayleigh, continuousOperator,
     LinearMap.coe_toContinuousLinearMap, Real.ringHom_apply] using happly
 
-/-- A finite nonnegative symmetric matrix has a unit nonnegative vector for its top eigenvalue. -/
+/-- A finite nonnegative symmetric matrix has a unit nonnegative vector for its top eigenvalue.
+@isnad1 id=ex.2h2v.s9.e7d4f7104514 from=translated src=- shape=98827439 vocab=3627e385
+-/
 theorem exists_nonnegative_unit_topEigenvector (A : Matrix I I ℝ)
     (hsymm : Aᵀ = A) (hnonneg : ∀ i j : I, 0 ≤ A i j) :
     ∃ x : Space I, ‖x‖ = 1 ∧
@@ -216,6 +248,9 @@ theorem exists_nonnegative_unit_topEigenvector (A : Matrix I I ℝ)
     exact mul_nonneg (inv_nonneg.mpr hnorm.le) (hxnonneg i)
 
 omit [Nonempty I] in
+/--
+@isnad1 id=eq.5h6v.s9.793e190ea8c1 from=translated src=- shape=8b81c97b vocab=cfb84323
+-/
 theorem eigenvector_zero_of_positive_edge (A : Matrix I I ℝ)
     (hnonneg : ∀ i j : I, 0 ≤ A i j)
     (x : Space I) (hx : ∀ i : I, 0 ≤ x i)
@@ -236,6 +271,9 @@ theorem eigenvector_zero_of_positive_edge (A : Matrix I I ℝ)
   exact (mul_eq_zero.mp hterm).resolve_left hedge.ne'
 
 omit [Nonempty I] in
+/--
+@isnad1 id=eq.4h7v.s9.bfa1f32fb757 from=translated src=- shape=92ca90c2 vocab=1d6db096
+-/
 theorem eigenvector_zero_of_positive_path (A : Matrix I I ℝ)
     (hnonneg : ∀ i j : I, 0 ≤ A i j)
     (x : Space I) (hx : ∀ i : I, 0 ≤ x i)
@@ -250,6 +288,9 @@ theorem eigenvector_zero_of_positive_path (A : Matrix I I ℝ)
         eigenvalue heig ih e.down
 
 omit [Nonempty I] in
+/--
+@isnad1 id=lt.4h5v.s9.31e6d0c1ecad from=translated src=- shape=2cdbc9cd vocab=193055fe
+-/
 theorem eigenvector_pos_of_irreducible (A : Matrix I I ℝ)
     (hirreducible : ConnectedNonnegativeMatrix A)
     (x : Space I) (hxzero : x ≠ 0) (hx : ∀ i : I, 0 ≤ x i)
@@ -267,6 +308,9 @@ theorem eigenvector_pos_of_irreducible (A : Matrix I I ℝ)
   simpa only [PiLp.zero_apply] using
     eigenvector_zero_of_positive_path A hirreducible.nonneg x hx eigenvalue heig p hzero
 
+/--
+@isnad1 id=ex.2h2v.s9.adc3a0d76335 from=translated src=- shape=6e2ff674 vocab=c5a03ca4
+-/
 theorem exists_positive_topEigenvector (A : Matrix I I ℝ)
     (hsymm : Aᵀ = A) (hirreducible : ConnectedNonnegativeMatrix A) :
     ∃ x : Space I, x ≠ 0 ∧
@@ -277,6 +321,9 @@ theorem exists_positive_topEigenvector (A : Matrix I I ℝ)
     eigenvector_pos_of_irreducible A hirreducible x hx hnonneg
       (topEigenvalue A) heig⟩
 
+/--
+@isnad1 id=ex.2h2v.s8.ef15d0c988ed from=translated src=- shape=57dfbf52 vocab=28b60424
+-/
 theorem exists_positive_unit_topEigenvector (A : Matrix I I ℝ)
     (hsymm : Aᵀ = A) (hirreducible : ConnectedNonnegativeMatrix A) :
     ∃ x : Space I,
@@ -295,11 +342,17 @@ theorem exists_positive_unit_topEigenvector (A : Matrix I I ℝ)
     exact mul_pos (inv_pos.mpr hnorm) (hpos i)
 
 omit [DecidableEq I] [Nonempty I] in
+/--
+@isnad1 id=eq.1h2v.s6.0806c4108592 from=translated src=- shape=4f7757d8 vocab=fd5a33a9
+-/
 theorem unit_coordinate_sq_sum {x : Space I} (hx : ‖x‖ = 1) :
     (∑ i : I, x i ^ 2) = 1 := by
   rw [← EuclideanSpace.real_norm_sq_eq, hx]
   norm_num
 
+/--
+@isnad1 id=ex.2h2v.s7.446b838261fc from=translated src=- shape=00763a2d vocab=1cb2218f
+-/
 theorem exists_positive_unit_topEigenpair (A : Matrix I I ℝ)
     (hsymm : Aᵀ = A) (hirreducible : ConnectedNonnegativeMatrix A) :
     ∃ x : I → ℝ,

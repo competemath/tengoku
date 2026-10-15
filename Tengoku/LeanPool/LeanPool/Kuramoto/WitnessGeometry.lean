@@ -21,7 +21,9 @@ open Real
 
 /-- Direct force-magnitude form of the one-dimensional barrier-asymmetry claim: at equal
 distances from the minimum, different quadratic curvatures produce different
-restoring-force magnitudes. -/
+restoring-force magnitudes.
+@isnad1 id=ne.4h3v.s6.05df55622261 from=translated src=- shape=b8cdd0bc vocab=9386a396
+-/
 theorem barrier_asymmetry_direct
     (a b : ℝ) (ha : 0 < a) (hb : 0 < b) (hab : a ≠ b) (x : ℝ) (hx : 0 < x) :
     |(-2 * a * (-x))| ≠ |(-2 * b * x)| := by

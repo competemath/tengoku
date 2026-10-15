@@ -32,6 +32,9 @@ namespace GraphCoveringTheory.Kurosh
 
 open Monoid.CoprodI
 
+/--
+@isnad1 id=eq.1h5v.s6.20d0633f5a18 from=translated src=- shape=dbb1d7b1 vocab=bce0dd78
+-/
 theorem Internal.rightAppendLastIdx {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (i : ι) (w : RightFactorWord (G := G) i)
     (a : G i) (ha : a ≠ 1) :
@@ -40,6 +43,9 @@ theorem Internal.rightAppendLastIdx {ι : Type v} (G : ι → Type u)
   rw [wordInv_wordInv]
   simp
 
+/--
+@isnad1 id=and.3h8v.s7.6903cbfc254d from=translated src=- shape=2972b549 vocab=09a8cb31
+-/
 theorem Internal.factorCentralInjective {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {i i' : ι}
     {w : RightFactorWord (G := G) i} {w' : RightFactorWord (G := G) i'}
@@ -97,6 +103,9 @@ def Internal.bassEdgeOfCode {ι : Type v} (G : ι → Type u)
         BassSerreVertex.central (rightAppendCanonical i w a ha),
         BassSerreEdge.factorCentral i w a ha⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.17c0df6f2e31 from=translated src=- shape=48ce14a6 vocab=df007ba7
+-/
 theorem Internal.bassEdgeCodeOf_ofCode {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (c : Internal.bassEdgeCode G) :
     Internal.bassEdgeCodeOf G (Internal.bassEdgeOfCode G c) = c := by
@@ -104,6 +113,9 @@ theorem Internal.bassEdgeCodeOf_ofCode {ι : Type v} (G : ι → Type u)
   | inl c => cases c; rfl
   | inr c => cases c; rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.7768c633f1ac from=translated src=- shape=48ce14a6 vocab=c652a0b6
+-/
 theorem Internal.bassEdgeOfCode_of {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (e : Internal.bassAllEdge G) :
     Internal.bassEdgeOfCode G (Internal.bassEdgeCodeOf G e) = e := by
@@ -124,6 +136,9 @@ def Internal.bassEdgeCodeTarget {ι : Type v} (G : ι → Type u)
   | Sum.inr ⟨i, w, ⟨a, ha⟩⟩ =>
       BassSerreVertex.central (rightAppendCanonical i w a ha)
 
+/--
+@isnad1 id=eq.0h3v.s5.fdbf27c32871 from=translated src=- shape=8d52e4db vocab=fae514d3
+-/
 theorem Internal.bassEdgeTarget_ofCode {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (c : Internal.bassEdgeCode G) :
     Internal.bassEdgeTarget G (Internal.bassEdgeOfCode G c) =
@@ -132,6 +147,9 @@ theorem Internal.bassEdgeTarget_ofCode {ι : Type v} (G : ι → Type u)
   | inl c => cases c; rfl
   | inr c => cases c; rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.09e6c45eab71 from=translated src=- shape=ce265f85 vocab=d7b18d2e
+-/
 theorem Internal.bassEdgeCodeTarget_injective {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {c d : Internal.bassEdgeCode G}
     (h : Internal.bassEdgeCodeTarget G c = Internal.bassEdgeCodeTarget G d) : c = d := by
@@ -163,6 +181,9 @@ theorem Internal.bassEdgeCodeTarget_injective {ι : Type v} (G : ι → Type u)
       cases hai
       rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.67fa2163e6d1 from=translated src=- shape=ce265f85 vocab=2fcebbed
+-/
 theorem Internal.bassAllEdge_target_injective {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {e f : Internal.bassAllEdge G}
     (h : Internal.bassEdgeTarget G e = Internal.bassEdgeTarget G f) : e = f := by
@@ -179,6 +200,9 @@ theorem Internal.bassAllEdge_target_injective {ι : Type v} (G : ι → Type u)
       congrArg (Internal.bassEdgeOfCode G) hc
     _ = f := Internal.bassEdgeOfCode_of G f
 
+/--
+@isnad1 id=and.0h7v.s6.fc6e8d174455 from=translated src=- shape=6827ba7d vocab=5c86247f
+-/
 theorem Internal.bassUniqueIncoming {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {a b c : BassSerreVertex G}
     (e : a ⟶ c) (f : b ⟶ c) : a = b ∧ HEq e f := by
@@ -188,6 +212,9 @@ theorem Internal.bassUniqueIncoming {ι : Type v} (G : ι → Type u)
   cases h_all
   exact ⟨rfl, HEq.rfl⟩
 
+/--
+@isnad1 id=ex.1h3v.s6.1b5f87de2e5e from=translated src=- shape=88039541 vocab=87d05dc2
+-/
 theorem Internal.wordLastIdx_exists {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (w : Word G) (hw : w.toList ≠ []) :
     ∃ i, wordLastIdx w = some i := by
@@ -205,6 +232,9 @@ theorem Internal.wordLastIdx_exists {ι : Type v} (G : ι → Type u)
       refine ⟨x.1, ?_⟩
       simp
 
+/--
+@isnad1 id=or.0h3v.s6.9e78f4227581 from=translated src=- shape=7e397375 vocab=3d2b6b65
+-/
 theorem Internal.bassRootOrArrow {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (b : BassSerreVertex G) :
     b = BassSerreVertex.central Word.empty ∨
@@ -237,6 +267,9 @@ def Internal.bassHeight {ι : Type v} (G : ι → Type u) [∀ i, Group (G i)] :
   | BassSerreVertex.central w => 2 * w.toList.length
   | BassSerreVertex.factor _ w => 2 * w.1.toList.length + 1
 
+/--
+@isnad1 id=lt.0h5v.s5.e6f408dcde89 from=translated src=- shape=0325d178 vocab=58fac6f7
+-/
 theorem Internal.bassHeight_lt {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {a b : BassSerreVertex G} (e : a ⟶ b) :
     Internal.bassHeight G a < Internal.bassHeight G b := by
@@ -266,11 +299,17 @@ theorem Internal.bassHeight_lt {ι : Type v} (G : ι → Type u)
       intro b
       exact Internal.bassRootOrArrow G b)
 
+/--
+@isnad1 id=eq.0h2v.s5.8b28e062a9e5 from=translated src=- shape=450f0ea6 vocab=d034fe75
+-/
 theorem Internal.bassHeight_root {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] :
     Internal.bassHeight G (BassSerreVertex.central Word.empty) = 0 := by
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.77bacf67c128 from=translated src=- shape=d16c89de vocab=c741ec6f
+-/
 theorem Internal.bassHeight_edge_eq_succ {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {a b : BassSerreVertex G} (e : a ⟶ b) :
     Internal.bassHeight G b = Internal.bassHeight G a + 1 := by
@@ -285,6 +324,9 @@ def Internal.bassSymmHeight {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (x : Quiver.Symmetrify (BassSerreVertex G)) : ℕ :=
   Internal.bassHeight G x
 
+/--
+@isnad1 id=or.0h5v.s6.fc120c2d26ac from=translated src=- shape=0b879ba8 vocab=318e2aef
+-/
 theorem Internal.bassHeight_symm_edge {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {a b : BassSerreVertex G}
     (e : @Quiver.Hom (Quiver.Symmetrify (BassSerreVertex G))
@@ -296,6 +338,9 @@ theorem Internal.bassHeight_symm_edge {ι : Type v} (G : ι → Type u)
   | inr e =>
       exact Or.inr (Internal.bassHeight_edge_eq_succ G e)
 
+/--
+@isnad1 id=le.0h5v.s6.ff2c9bf1f278 from=translated src=- shape=3baec08e vocab=3e2c4d33
+-/
 theorem Internal.bassHeight_path_le {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {a b : BassSerreVertex G}
     (p : @Quiver.Path (Quiver.Symmetrify (BassSerreVertex G))
@@ -311,6 +356,9 @@ theorem Internal.bassHeight_path_le {ι : Type v} (G : ι → Type u)
             (Quiver.symmetrifyQuiver (BassSerreVertex G)) _ _ p + 1)
       rcases he with he | he <;> omega
 
+/--
+@isnad1 id=eq.0h5v.s6.60a01bdf1cca from=translated src=- shape=5a458b76 vocab=ef7871f7
+-/
 theorem Internal.bassHeight_directed_path_eq {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {a b : BassSerreVertex G}
     (p : @Quiver.Path (BassSerreVertex G) (bassSerreQuiver G) a b) :
@@ -322,6 +370,9 @@ theorem Internal.bassHeight_directed_path_eq {ι : Type v} (G : ι → Type u)
       rw [Internal.bassHeight_edge_eq_succ G e, ih]
       omega
 
+/--
+@isnad1 id=iff.0h3v.s5.c71deb282c42 from=translated src=- shape=14ef16f8 vocab=9924452f
+-/
 theorem Internal.bassHeight_zero_iff {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {b : BassSerreVertex G} :
     Internal.bassHeight G b = 0 ↔ b = BassSerreVertex.central Word.empty := by
@@ -348,6 +399,9 @@ def Internal.bassToSymm {ι : Type v} (G : ι → Type u)
   obj := id
   map e := Quiver.Hom.toPos e
 
+/--
+@isnad1 id=eq.0h5v.s7.e7f778a4e70f from=translated src=- shape=b3a0fb26 vocab=35b6d7cf
+-/
 theorem Internal.bassToSymm_mapPath_length {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {a b : BassSerreVertex G}
     (p : @Quiver.Path (BassSerreVertex G) (bassSerreQuiver G) a b) :
@@ -362,6 +416,9 @@ theorem Internal.bassToSymm_mapPath_length {ι : Type v} (G : ι → Type u)
         ((Internal.bassToSymm G).mapPath p) + 1) = p.length + 1
       rw [ih]
 
+/--
+@isnad1 id=ex.1h4v.s8.fc3acabe3770 from=translated src=- shape=6046ba10 vocab=600fc2eb
+-/
 theorem Internal.bassSymmPath_of_length_eq {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {b : BassSerreVertex G}
     (p : @Quiver.Path (Quiver.Symmetrify (BassSerreVertex G))
@@ -423,6 +480,9 @@ theorem Internal.bassSymmPath_of_length_eq {ι : Type v} (G : ι → Type u)
           simp [hp'] at hxy
         omega
 
+/--
+@isnad1 id=mem.0h5v.s6.f0337bca2e3a from=translated src=- shape=b0553d63 vocab=4dd0dab1
+-/
 theorem Internal.bass_edge_mem_geodesicTree {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {a b : BassSerreVertex G} (e : a ⟶ b) :
     Quiver.Hom.toPos e ∈ bassSerreTree G a b := by
@@ -489,6 +549,9 @@ theorem Internal.bass_edge_mem_geodesicTree {ι : Type v} (G : ι → Type u)
   rw [hshort']
   dsimp [qSymm, q]
   simp [Internal.bassToSymm]
+/--
+@isnad1 id=eq.1h5v.s8.fd9095a87726 from=translated src=- shape=a892e97f vocab=18c59eed
+-/
 theorem Internal.rightTailCanonical_factorCoset_eq {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (i : ι) (g h : FreeProduct G)
     (hc : factorCosetMk G i g = factorCosetMk G i h) :
@@ -551,6 +614,9 @@ def Internal.bassToRawVertex {ι : Type v} (G : ι → Type u)
   | BassSerreVertex.factor i w =>
       RawBassSerreVertex.factor i (factorCosetMk G i w.1.prod)
 
+/--
+@isnad1 id=eq.0h4v.s6.def0a64969aa from=translated src=- shape=7867a2e4 vocab=ce6f0e7f
+-/
 theorem Internal.rawCanonicalFactor_coset {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (i : ι) (c : FactorCoset G i) :
     factorCosetMk G i (Internal.rawCanonicalFactor G i c).1.prod = c := by
@@ -577,6 +643,9 @@ theorem Internal.rawCanonicalFactor_coset {ι : Type v} (G : ι → Type u)
       congrArg (factorCosetMk G i) hdec.symm
     _ = c := hc
 
+/--
+@isnad1 id=eq.0h3v.s5.cbdf1765fc6e from=translated src=- shape=48ce14a6 vocab=df7b8c6a
+-/
 theorem Internal.bassToRawVertex_rawCanonicalVertex {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (x : RawBassSerreVertex G) :
     Internal.bassToRawVertex G (Internal.rawCanonicalVertex G x) = x := by
@@ -590,6 +659,9 @@ theorem Internal.bassToRawVertex_rawCanonicalVertex {ι : Type v}
         (factorCosetMk G i (Internal.rawCanonicalFactor G i c).1.prod) = _
       rw [Internal.rawCanonicalFactor_coset]
 
+/--
+@isnad1 id=eq.0h3v.s5.c11e80d64840 from=translated src=- shape=48ce14a6 vocab=41d3a5aa
+-/
 theorem Internal.rawCanonicalVertex_bassToRawVertex {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (x : BassSerreVertex G) :
     Internal.rawCanonicalVertex G (Internal.bassToRawVertex G x) = x := by
@@ -659,6 +731,9 @@ def Internal.bassTreePathMap {ι : Type v} (G : ι → Type u)
         (Quiver.symmetrifyQuiver (BassSerreVertex G)) x y z
         (Internal.bassTreePathMap G p) e.1
 
+/--
+@isnad1 id=eq.0h7v.s7.5154099d698a from=translated src=- shape=9ce6b2fc vocab=4d27c3fe
+-/
 theorem Internal.bassTreePathMap_cons {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {x y z : BassSerreVertex G}
     (p : @Quiver.Path (BassSerreVertex G) (Internal.bassTreeQuiver G) x y)
@@ -670,6 +745,9 @@ theorem Internal.bassTreePathMap_cons {ι : Type v} (G : ι → Type u)
         (Internal.bassTreePathMap G p) e.1 := by
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s7.1c2a3fa444cd from=translated src=- shape=d05eda9c vocab=5b6f6b18
+-/
 theorem Internal.bassTreePathMap_edge_pos {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {x y : BassSerreVertex G}
     (e : x ⟶ y) (he : Quiver.Hom.toPos e ∈ bassSerreTree G x y) :
@@ -707,6 +785,9 @@ noncomputable def Internal.bassPathHom {ι : Type v} (G : ι → Type u)
         | Sum.inl f => (Quiver.FreeGroupoid.of (BassSerreVertex G)).map f
         | Sum.inr f => Groupoid.inv ((Quiver.FreeGroupoid.of (BassSerreVertex G)).map f))
 
+/--
+@isnad1 id=eq.0h3v.s8.127557a5bae3 from=translated src=- shape=519bd9b9 vocab=5bc2856d
+-/
 theorem Internal.bassPathHom_nil {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {x : BassSerreVertex G} :
     Internal.bassPathHom G
@@ -714,6 +795,9 @@ theorem Internal.bassPathHom_nil {ι : Type v} (G : ι → Type u)
           (Quiver.symmetrifyQuiver (BassSerreVertex G)) x x) = 𝟙 _ := by
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.ee128747231e from=translated src=- shape=33782e97 vocab=896c42d8
+-/
 theorem Internal.bassPathHom_cons {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {x y z : BassSerreVertex G}
     (p : @Quiver.Path (Quiver.Symmetrify (BassSerreVertex G))
@@ -730,6 +814,9 @@ theorem Internal.bassPathHom_cons {ι : Type v} (G : ι → Type u)
   | cons p e' => cases e using Sum.casesOn <;> cases e' using Sum.casesOn <;>
       simp [Internal.bassPathHom, Category.assoc]
 
+/--
+@isnad1 id=eq.0h7v.s10.b39b594208e1 from=translated src=- shape=22edc620 vocab=52e420b4
+-/
 theorem Internal.bassQuotientMap_cons {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {x y z : BassSerreVertex G}
     (p : @Quiver.Path (Quiver.Symmetrify (BassSerreVertex G))
@@ -751,6 +838,9 @@ theorem Internal.bassQuotientMap_cons {ι : Type v} (G : ι → Type u)
   | inl e => rfl
   | inr e => rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.94463ae246e1 from=translated src=- shape=c28e0c81 vocab=bcbff943
+-/
 theorem Internal.bassPathHom_eq_quotient_map {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {x y : BassSerreVertex G}
     (p : @Quiver.Path (Quiver.Symmetrify (BassSerreVertex G))
@@ -781,6 +871,9 @@ theorem Internal.bassPathHom_eq_quotient_map {ι : Type v} (G : ι → Type u)
       exact Eq.trans hcons (Eq.trans hmid
         (Internal.bassQuotientMap_cons G p e).symm)
 
+/--
+@isnad1 id=eq.1h5v.s9.418a4d4cf816 from=translated src=- shape=1f581c44 vocab=549cf3c5
+-/
 theorem Internal.bassTreePathHom_edge_neg {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {x y : BassSerreVertex G}
     (e : x ⟶ y) (he : Quiver.Hom.toPos e ∈ bassSerreTree G x y) :
@@ -802,6 +895,9 @@ theorem Internal.bassTreePathHom_edge_neg {ι : Type v} (G : ι → Type u)
   rw [hp, Internal.bassTreePathMap_cons, Internal.bassPathHom_cons]
   simp [te]
 
+/--
+@isnad1 id=eq.0h4v.s8.58307c027367 from=translated src=- shape=073b77fe vocab=61947944
+-/
 theorem Internal.bassPathHom_eq_tree {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {x : BassSerreVertex G} (p :
       @Quiver.Path (Quiver.Symmetrify (BassSerreVertex G))
@@ -874,6 +970,9 @@ theorem Internal.bassPathHom_eq_tree {ι : Type v} (G : ι → Type u)
                 Internal.bass_edge_mem_geodesicTree G e
               exact Internal.bassTreePathHom_edge_neg G e he
 
+/--
+@isnad1 id=subsingl.0h2v.s6.adc161ab77ec from=translated src=- shape=0e60b773 vocab=96faaa51
+-/
 theorem Internal.bassFreeGroupoid_end_subsingleton {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] :
     Subsingleton (End ((Quiver.FreeGroupoid.of (BassSerreVertex G)).obj
@@ -920,6 +1019,9 @@ noncomputable def Internal.freePathHom {V : Type u} [q : Quiver.{v} V] {a : V} :
         | Sum.inl f => (Quiver.FreeGroupoid.of V).map f
         | Sum.inr f => Groupoid.inv ((Quiver.FreeGroupoid.of V).map f))
 
+/--
+@isnad1 id=isconnec.0h2v.s4.633e13ff0f92 from=translated src=- shape=2f86af68 vocab=c886517b
+-/
 theorem Internal.freeGroupoid_isConnected_of_basedPaths {V : Type u}
     [q : Quiver.{v} V] (r : V)
     [Quiver.RootedConnected (show Quiver.Symmetrify V from r)] :
@@ -939,6 +1041,9 @@ theorem Internal.freeGroupoid_isConnected_of_basedPaths {V : Type u}
   exact Zigzag.of_inv_hom
     (Internal.freePathHom pa) (Internal.freePathHom pb)
 
+/--
+@isnad1 id=subsingl.0h3v.s5.e47999bfa444 from=translated src=- shape=c262eda3 vocab=7ed4b9ef
+-/
 theorem Internal.bassFreeGroupoid_end_subsingleton_at {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)]
     (x : Quiver.FreeGroupoid (BassSerreVertex G)) :
@@ -964,6 +1069,9 @@ theorem Internal.bassFreeGroupoid_end_subsingleton_at {ι : Type v}
   unfold CategoryTheory.End at f g ⊢
   simpa [Category.assoc] using hcancel
 
+/--
+@isnad1 id=injectiv.1h3v.s6.3598c5f75575 from=translated src=- shape=2fdaa7c3 vocab=dbbe2d4d
+-/
 theorem Internal.functor_map_injective_of_eq_id {C : Type u} [Category C]
     (F : C ⥤ C) (hF : F = CategoryTheory.Functor.id C) (x : C) :
     Function.Injective (fun f : End x => F.map f) := by
@@ -972,6 +1080,9 @@ theorem Internal.functor_map_injective_of_eq_id {C : Type u} [Category C]
   unfold CategoryTheory.End at f g ⊢
   simpa only [CategoryTheory.Functor.id_obj, CategoryTheory.Functor.id_map] using h
 
+/--
+@isnad1 id=eq.1h5v.s7.4e6e356d3c6d from=translated src=- shape=7196065b vocab=a5778009
+-/
 theorem Internal.bass_factorCoset_append {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (i : ι) (w : RightFactorWord (G := G) i)
     (a : G i) (ha : a ≠ 1) :
@@ -981,6 +1092,9 @@ theorem Internal.bass_factorCoset_append {ι : Type v} (G : ι → Type u)
   rw [rightAppend_prod]
   exact factorCoset_mul_factor G i w.1.prod a
 
+/--
+@isnad1 id=eq.0h4v.s8.8f8cd34cd90c from=translated src=- shape=43133c4c vocab=8e15420d
+-/
 theorem Internal.rawCanonicalVertex_factorCosetMk {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (i : ι) (g : FreeProduct G) :
     Internal.rawCanonicalVertex G
@@ -1089,6 +1203,9 @@ noncomputable def Internal.rawToBassFunctor {ι : Type v} (G : ι → Type u)
       Quiver.FreeGroupoid (BassSerreVertex G) :=
   Quiver.FreeGroupoid.lift (Internal.rawToBassPrefunctor G)
 
+/--
+@isnad1 id=eq.0h5v.s9.54348c8f8bad from=translated src=- shape=3588350a vocab=0bf18733
+-/
 theorem Internal.rawToBassFunctor_map_of {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {a b : RawBassSerreVertex G}
     (e : @Quiver.Hom (RawBassSerreVertex G) (rawBassSerreQuiver G) a b) :
@@ -1107,6 +1224,9 @@ theorem Internal.rawToBassFunctor_map_of {ι : Type v} (G : ι → Type u)
   exact Prefunctor.congr_hom
     (Quiver.FreeGroupoid.lift_spec (Internal.rawToBassPrefunctor G)) e
 
+/--
+@isnad1 id=eq.0h5v.s9.0f47c72fbb06 from=translated src=- shape=3588350a vocab=aec7e2b6
+-/
 theorem Internal.bassToRawFunctor_map_of {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {a b : BassSerreVertex G}
     (e : @Quiver.Hom (BassSerreVertex G) (bassSerreQuiver G) a b) :
@@ -1125,6 +1245,9 @@ theorem Internal.bassToRawFunctor_map_of {ι : Type v} (G : ι → Type u)
   exact Prefunctor.congr_hom
     (Quiver.FreeGroupoid.lift_spec (Internal.bassToRawPrefunctor G)) e
 
+/--
+@isnad1 id=eq.1h4v.s11.4fa41e999011 from=translated src=- shape=2ef34faa vocab=9d4ca80b
+-/
 theorem Internal.bassToRawPrefunctor_map_centralFactor {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (g : FreeProduct G) (i : ι)
     (hw : wordLastIdx (Word.equiv g) ≠ some i) :
@@ -1134,6 +1257,9 @@ theorem Internal.bassToRawPrefunctor_map_centralFactor {ι : Type v}
         (RawBassSerreEdge.centralFactor (Word.equiv g).prod i) := by
   rfl
 
+/--
+@isnad1 id=eq.2h5v.s10.3a59145d3396 from=translated src=- shape=e8d062d0 vocab=9e94adf4
+-/
 theorem Internal.bassToRawPrefunctor_map_factorCentral {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (i : ι)
     (w : RightFactorWord (G := G) i) (a : G i) (ha : a ≠ 1)
@@ -1149,6 +1275,9 @@ theorem Internal.bassToRawPrefunctor_map_factorCentral {ι : Type v}
         (congrArg (Quiver.FreeGroupoid.of (RawBassSerreVertex G)).obj hv)) := by
   rfl
 
+/--
+@isnad1 id=eq.2h8v.s7.0192c14877d8 from=translated src=- shape=15273bc2 vocab=a6283e95
+-/
 theorem Internal.functor_map_homOfEq {C D : Type*} [Category C] [Category D]
     {X Y X' Y' : C} (F : C ⥤ D) (f : X ⟶ Y)
     (hX : X = X') (hY : Y = Y') :
@@ -1157,6 +1286,9 @@ theorem Internal.functor_map_homOfEq {C D : Type*} [Category C] [Category D]
   subst hX hY
   rfl
 
+/--
+@isnad1 id=eq.2h6v.s6.d3d0f609618c from=translated src=- shape=340a9bee vocab=333a18d7
+-/
 theorem Internal.groupoid_inv_homOfEq {C : Type*} [Groupoid C]
     {X Y X' Y' : C} (f : X ⟶ Y)
     (hX : X = X') (hY : Y = Y') :
@@ -1165,12 +1297,18 @@ theorem Internal.groupoid_inv_homOfEq {C : Type*} [Groupoid C]
   subst hX hY
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.88c59d542495 from=translated src=- shape=d9486c31 vocab=6d11fa33
+-/
 theorem Internal.groupoid_inv_inv {C : Type*} [Groupoid C]
     {X Y : C} (f : X ⟶ Y) :
     Groupoid.inv (Groupoid.inv f) = f := by
   rw [Groupoid.inv_eq_inv, Groupoid.inv_eq_inv]
   simp
 
+/--
+@isnad1 id=eq.2h6v.s6.0687f3ffb2be from=translated src=- shape=9b55c8fd vocab=333a18d7
+-/
 theorem Internal.groupoid_inv_inv_homOfEq {C : Type*} [Groupoid C]
     {X Y X' Y' : C} (f : X ⟶ Y)
     (hX : X = X') (hY : Y = Y') :
@@ -1178,6 +1316,9 @@ theorem Internal.groupoid_inv_inv_homOfEq {C : Type*} [Groupoid C]
       Quiver.homOfEq f hX hY := by
   exact Internal.groupoid_inv_inv _
 
+/--
+@isnad1 id=eq.5h9v.s6.8ee7d06500f7 from=translated src=- shape=0694ed6d vocab=5926ec70
+-/
 theorem Internal.homOfEq_transport {C : Type*} [Quiver C]
     {X Y X' Y' X'' Y'' : C} (f : X ⟶ Y) (g : X' ⟶ Y')
     (hX : X = X') (hY : Y = Y') (kX : X' = X'') (kY : Y' = Y'')
@@ -1187,6 +1328,9 @@ theorem Internal.homOfEq_transport {C : Type*} [Quiver C]
   subst hX hY kX kY
   exact h
 
+/--
+@isnad1 id=eq.7h9v.s6.1a28f60a8c74 from=translated src=- shape=4d2722d8 vocab=7106ad1c
+-/
 theorem Internal.homOfEq_transport' {C : Type*} [Quiver C]
     {X Y X' Y' X'' Y'' : C} (f : X ⟶ Y) (g : X' ⟶ Y')
     (hX : X = X') (hY : Y = Y') (kX : X' = X'') (kY : Y' = Y'')
@@ -1196,6 +1340,9 @@ theorem Internal.homOfEq_transport' {C : Type*} [Quiver C]
   have ht := Internal.homOfEq_transport f g hX hY kX kY h
   convert ht using 1
 
+/--
+@isnad1 id=eq.3h7v.s6.cab3969582b2 from=translated src=- shape=c2072c34 vocab=12e3209f
+-/
 theorem Internal.homOfEq_eq_of_heq {C : Type*} [Quiver C]
     {X Y X' Y' : C} {f : X ⟶ Y} {g : X' ⟶ Y'}
     (hX : X = X') (hY : Y = Y') (hfg : HEq f g) :
@@ -1208,6 +1355,9 @@ abbrev Internal.rawEdgeSigma {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] :=
   Σ a b : RawBassSerreVertex G, RawBassSerreEdge G a b
 
+/--
+@isnad1 id=heq.1h5v.s6.4130dd1cfa67 from=translated src=- shape=f9a7c5ac vocab=6dde4592
+-/
 theorem Internal.rawEdge_heq {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (g h : FreeProduct G) (i : ι) (gh : g = h) :
     HEq (RawBassSerreEdge.centralFactor g i)
@@ -1215,6 +1365,9 @@ theorem Internal.rawEdge_heq {ι : Type v} (G : ι → Type u)
   cases gh
   rfl
 
+/--
+@isnad1 id=heq.1h5v.s9.edb6af8fa5cd from=translated src=- shape=9157cc5e vocab=3ef9c424
+-/
 theorem Internal.rawEdgeMap_heq {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (g h : FreeProduct G) (i : ι) (gh : g = h) :
     HEq
@@ -1225,6 +1378,9 @@ theorem Internal.rawEdgeMap_heq {ι : Type v} (G : ι → Type u)
   cases gh
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.8463b579a586 from=translated src=- shape=f2d7e38a vocab=04b800cf
+-/
 theorem Internal.rawBassRaw_obj {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (x : RawBassSerreVertex G) :
     (Internal.rawToBassFunctor G ⋙ Internal.bassToRawFunctor G).obj
@@ -1537,6 +1693,9 @@ private theorem rawBassRaw_map_last_ne {ι : Type v} (G : ι → Type u)
     (hobj (RawBassSerreVertex.factor i (factorCosetMk G i g))).symm hraw
   exact hfinal.symm
 
+/--
+@isnad1 id=eq.0h2v.s6.5ef7cb051b64 from=translated src=- shape=a3c88b56 vocab=42dab905
+-/
 theorem Internal.rawBassRawPrefunctor_eq_of {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] :
     Internal.rawBassRawPrefunctor G =
@@ -1567,6 +1726,9 @@ theorem Internal.rawBassRawPrefunctor_eq_of {ι : Type v} (G : ι → Type u)
     · exact rawBassRaw_map_last_eq G hobj g i hlast
     · exact rawBassRaw_map_last_ne G hobj g i hlast
 
+/--
+@isnad1 id=eq.0h2v.s7.0bbc13849509 from=translated src=- shape=d21b3f37 vocab=5ac51322
+-/
 theorem Internal.rawBassRawFunctor_eq_id {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] :
     Internal.rawToBassFunctor G ⋙ Internal.bassToRawFunctor G =
@@ -1606,6 +1768,9 @@ theorem Internal.rawBassRawFunctor_eq_id {ι : Type v} (G : ι → Type u)
       (CategoryTheory.Functor.id (Quiver.FreeGroupoid (RawBassSerreVertex G))) rfl
   exact hF.trans hid
 
+/--
+@isnad1 id=subsingl.0h2v.s7.ef42f41c2077 from=translated src=- shape=344afaf4 vocab=f4ee03d0
+-/
 theorem Internal.rawFreeGroupoid_end_subsingleton {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] :
     Subsingleton (End ((Quiver.FreeGroupoid.of (RawBassSerreVertex G)).obj
@@ -1675,6 +1840,9 @@ instance Internal.rawSpanningTreeQuiverArborescence {ι : Type v} (G : ι → Ty
   change Quiver.Arborescence (rawBassSerreTree G)
   exact rawBassSerreTreeArborescence G
 
+/--
+@isnad1 id=mem.0h5v.s10.168f8a9d3e4a from=translated src=- shape=e5a087f5 vocab=ec1f58cb
+-/
 theorem Internal.treeDataGenerated_mem_vertex {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (a : RawBassSerreOrbitVertex G H) (x : treeVertexStabilizer G H a) :
@@ -1682,6 +1850,9 @@ theorem Internal.treeDataGenerated_mem_vertex {ι : Type v} (G : ι → Type u)
   apply Subgroup.subset_closure
   exact Or.inl ⟨a, x.property⟩
 
+/--
+@isnad1 id=mem.0h4v.s9.a68b8dcaf757 from=translated src=- shape=198c3021 vocab=4ccea55f
+-/
 theorem Internal.treeDataGenerated_mem_edge {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (e : Internal.orbitAllEdge G H) :
@@ -1689,6 +1860,9 @@ theorem Internal.treeDataGenerated_mem_edge {ι : Type v} (G : ι → Type u)
   apply Subgroup.subset_closure
   exact Or.inr ⟨e, rfl⟩
 
+/--
+@isnad1 id=eq.0h6v.s7.35a932d413c6 from=translated src=- shape=07ace541 vocab=6d9bf4df
+-/
 theorem Internal.rawEdgeMap_dataOf {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreVertex G}
@@ -1704,12 +1878,18 @@ noncomputable def Internal.actionOrbitAlign {A X : Type w} [Group A]
     (h : actionOrbitMk A X x = actionOrbitMk A X y) : A :=
   Classical.choose ((actionOrbitMk_eq_iff A X x y).1 h)
 
+/--
+@isnad1 id=eq.1h4v.s6.1da961939259 from=translated src=- shape=de436419 vocab=a332b03d
+-/
 theorem Internal.actionOrbitAlign_spec {A X : Type w} [Group A]
     [MulAction A X] {x y : X}
     (h : actionOrbitMk A X x = actionOrbitMk A X y) :
     Internal.actionOrbitAlign h • x = y :=
   Classical.choose_spec ((actionOrbitMk_eq_iff A X x y).1 h)
 
+/--
+@isnad1 id=eq.0h6v.s8.838d4bd956e2 from=translated src=- shape=eb217538 vocab=3551f980
+-/
 theorem Internal.rawEdgeData_rep_orbit_eq {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreVertex G}
@@ -1731,6 +1911,9 @@ noncomputable def Internal.rawEdgeOrbitAlign {ι : Type v} (G : ι → Type u)
   Internal.actionOrbitAlign
     (Internal.rawEdgeData_rep_orbit_eq G H e)
 
+/--
+@isnad1 id=eq.0h6v.s9.cbb51dce714a from=translated src=- shape=7e332a7e vocab=7b5ba89c
+-/
 theorem Internal.rawEdgeOrbitAlign_spec {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreVertex G}
@@ -1740,6 +1923,9 @@ theorem Internal.rawEdgeOrbitAlign_spec {ι : Type v} (G : ι → Type u)
       rawBassSerreEdgeDataOf G e :=
   Internal.actionOrbitAlign_spec (Internal.rawEdgeData_rep_orbit_eq G H e)
 
+/--
+@isnad1 id=eq.0h3v.s6.f568d00b01f8 from=translated src=- shape=b2594d11 vocab=fad3b85c
+-/
 theorem Internal.rawTreeRepresentative_root {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G)) :
     rawTreeRepresentative G H (rawBassSerreOrbitRoot G H) =
@@ -1752,6 +1938,9 @@ theorem Internal.rawTreeRepresentative_root {ι : Type v} (G : ι → Type u)
   rw [hp]
   rfl
 
+/--
+@isnad1 id=mem.1h5v.s7.39d31ea7a5e9 from=translated src=- shape=43c50f14 vocab=1e324cd3
+-/
 theorem Internal.conjugate_mem_stabilizer {A X : Type w} [Group A]
     [MulAction A X] (x : X) (s k : A) (hk : k • x = x) :
     s * k * s⁻¹ ∈ MulAction.stabilizer A (s • x) := by
@@ -1760,6 +1949,9 @@ theorem Internal.conjugate_mem_stabilizer {A X : Type w} [Group A]
   simp only [mul_assoc, inv_mul_cancel, mul_one]
   rw [← smul_smul, hk]
 
+/--
+@isnad1 id=iff.0h5v.s7.4c2f284328e1 from=translated src=- shape=8e0f0695 vocab=9f72dee7
+-/
 theorem Internal.stabilizer_conjugate_eq {A : Type w} [Group A]
     (s k u r : A) :
     u * (s * k * s⁻¹) * s = r ↔
@@ -1772,6 +1964,9 @@ theorem Internal.stabilizer_conjugate_eq {A : Type w} [Group A]
     subst k
     simp [mul_assoc]
 
+/--
+@isnad1 id=ex.1h7v.s11.f010b4c7a9cb from=translated src=- shape=87a6619a vocab=890a80ff
+-/
 theorem Internal.positive_step {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreVertex G}
@@ -1879,6 +2074,9 @@ theorem Internal.positive_step {ι : Type v} (G : ι → Type u)
         simp only [Subgroup.coe_mul, Subgroup.coe_inv]
         rw [smul_smul]
 
+/--
+@isnad1 id=ex.1h7v.s11.91d791a56f98 from=translated src=- shape=f4fda3fe vocab=2e09063d
+-/
 theorem Internal.negative_step {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreVertex G}
@@ -2025,6 +2223,9 @@ noncomputable def Internal.positiveStepVertex {ι : Type v} (G : ι → Type u)
       (actionOrbitMk H (RawBassSerreVertex G) a) :=
   Classical.choose (Internal.positive_step G H e u hu)
 
+/--
+@isnad1 id=eq.1h7v.s10.357900b48ab6 from=translated src=- shape=0c572573 vocab=d32c94a2
+-/
 theorem Internal.positiveStepVertex_endpoint {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreVertex G}
@@ -2052,6 +2253,9 @@ noncomputable def Internal.negativeStepVertex {ι : Type v} (G : ι → Type u)
       (actionOrbitMk H (RawBassSerreVertex G) b) :=
   Classical.choose (Internal.negative_step G H e u hu)
 
+/--
+@isnad1 id=eq.1h7v.s10.13d66813df20 from=translated src=- shape=7a1405be vocab=b0ea4659
+-/
 theorem Internal.negativeStepVertex_endpoint {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreVertex G}
@@ -2175,6 +2379,9 @@ noncomputable def Internal.rawPathProduct {ι : Type v} (G : ι → Type u)
                   (quotientEdgeLoop G H
                     (rawBassSerreOrbitEdgeMap G H f))
 
+/--
+@isnad1 id=eq.0h5v.s10.146226c009a8 from=translated src=- shape=a3cbc960 vocab=0da7923d
+-/
 theorem treeKuroshProductToH_testRawPathProduct {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {x : RawBassSerreVertex G}

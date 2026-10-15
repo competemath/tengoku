@@ -31,7 +31,9 @@ namespace LeanStationaryHarmonicMaps
 namespace StationaryHarmonicMap
 
 /-- Energy integration by parts plus integrability of the expanded terms gives
-the concrete one-dimensional IBP formula used downstream. -/
+the concrete one-dimensional IBP formula used downstream.
+@isnad1 id=weakoned.2h4v.s4.36d61a87f30b from=translated src=- shape=8dce662f vocab=20e0369e
+-/
 theorem weakOneDimensionalIBPFormula_of_energyIBP {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (henergy_ibp : WeakBallEnergyIntegrationByPartsFormula Du R0)
@@ -109,7 +111,9 @@ theorem weakOneDimensionalIBPFormula_of_energyIBP {n m : ℕ}
         rfl
 
 /-- The packaged one-dimensional calculus input gives the concrete IBP formula
-used by the defect-to-distribution argument. -/
+used by the defect-to-distribution argument.
+@isnad1 id=weakoned.1h4v.s4.3a8cb9364d47 from=translated src=- shape=cc25598c vocab=f9418d36
+-/
 theorem weakOneDimensionalIBPFormula_of_energy_calculus {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hcalc : WeakBallEnergyOneDimensionalCalculus Du R0) :
@@ -125,7 +129,9 @@ theorem weakOneDimensionalIBPFormula_of_energy_calculus {n m : ℕ}
 only the primitive cutoffs constructed for the given one-dimensional test
 function.  This avoids any global regularity assumption on all scalar cutoffs:
 the constructed primitive is constant near the origin, so its radial vector
-field is admissible. -/
+field is admissible.
+@isnad1 id=weakshar.8h6v.s8.bd12742c47b8 from=translated src=- shape=f9559504 vocab=bf262b71
+-/
 theorem weakSharpCutoffDistributionIdentity_from_stationarity_of_W12Loc_primitives
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -210,7 +216,9 @@ theorem weakSharpCutoffDistributionIdentity_from_stationarity_of_W12Loc_primitiv
     _ = 0 := hderiv_zero
 
 /-- Restricted-weight version of the direct distributional sharp-cutoff
-identity from weak stationarity and primitive cutoffs. -/
+identity from weak stationarity and primitive cutoffs.
+@isnad1 id=weakshar.8h6v.s8.46e6cad83325 from=translated src=- shape=f9559504 vocab=ebdf2e23
+-/
 theorem weakSharpCutoffDistributionIdentity_from_stationarity_of_W12Loc_primitivesForWeights
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -296,7 +304,9 @@ theorem weakSharpCutoffDistributionIdentity_from_stationarity_of_W12Loc_primitiv
 
 /-- Boundary identity from weak stationarity through the primitive-cutoff
 distributional route.  The only one-dimensional analytic input is the packaged
-radius energy calculus; no global `hflat`/`hX` hypothesis is needed. -/
+radius energy calculus; no global `hflat`/`hX` hypothesis is needed.
+@isnad1 id=weakboun.9h6v.s8.022b4dbda551 from=translated src=- shape=a9b41beb vocab=0503a28c
+-/
 theorem weak_boundary_identity_from_stationarity_of_W12Loc_via_primitives
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -326,7 +336,9 @@ theorem weak_boundary_identity_from_stationarity_of_W12Loc_via_primitives
       hdefect_loc hdist)
 
 /-- Restricted-weight version of the boundary identity from weak stationarity
-through the primitive-cutoff distributional route. -/
+through the primitive-cutoff distributional route.
+@isnad1 id=weakboun.9h6v.s8.a910a5e9678d from=translated src=- shape=a9b41beb vocab=0bf5c5b9
+-/
 theorem weak_boundary_identity_from_stationarity_of_W12Loc_via_primitivesForWeights
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -356,7 +368,9 @@ theorem weak_boundary_identity_from_stationarity_of_W12Loc_via_primitivesForWeig
       hdefect_loc hdist)
 
 /-- A concrete integration-by-parts formula discharges the abstract one
-dimensional IBP step. -/
+dimensional IBP step.
+@isnad1 id=weakoned.1h4v.s4.e8bea61b4dae from=translated src=- shape=cc25598c vocab=d1e0f12e
+-/
 theorem weakOneDimensionalIBPStep_of_formula {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hibp_formula : WeakOneDimensionalIBPFormula Du R0) :
@@ -373,7 +387,9 @@ theorem weakOneDimensionalIBPStep_of_formula {n m : ℕ}
   linarith
 
 /-- Once the defect pairs to zero against all primitive cutoff derivatives, the
-primitive family gives the full distributional sharp-cutoff identity. -/
+primitive family gives the full distributional sharp-cutoff identity.
+@isnad1 id=weakshar.2h4v.s6.578728f44b12 from=translated src=- shape=94a40ef4 vocab=8b796aae
+-/
 theorem weakSharpCutoffDistributionIdentity_of_derivative_identity {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hderiv : WeakOneDimensionalDefectDerivativeIdentity Du R0)
@@ -387,7 +403,9 @@ theorem weakSharpCutoffDistributionIdentity_of_derivative_identity {n m : ℕ}
 
 /-- Factored version of the one-dimensional sharp-cutoff-to-distribution step:
 first integrate by parts, then use primitive cutoffs for arbitrary test
-functions. -/
+functions.
+@isnad1 id=weakoned.2h4v.s4.0e1355002b63 from=translated src=- shape=8dce662f vocab=6989c4e0
+-/
 theorem weakOneDimensionalToDistributionStep_of_ibp_and_primitives {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hibp : WeakOneDimensionalIBPStep Du R0)
@@ -399,7 +417,9 @@ theorem weakOneDimensionalToDistributionStep_of_ibp_and_primitives {n m : ℕ}
     (hibp hone) hprimitive
 
 /-- The distributional one-dimensional cutoff step, plus local integrability of
-the defect, gives the a.e. sharp-cutoff step. -/
+the defect, gives the a.e. sharp-cutoff step.
+@isnad1 id=weakoned.2h4v.s7.02c9ad7e3c1a from=translated src=- shape=97d036ee vocab=d6dbc188
+-/
 theorem weakOneDimensionalSharpCutoffStep_of_distribution {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hdefect_loc :
@@ -414,7 +434,9 @@ theorem weakOneDimensionalSharpCutoffStep_of_distribution {n m : ℕ}
     hdefect_loc (hdist hone)
 
 /-- The cutoff-limit step can be factored into coarea/radius differentiation
-followed by a one-dimensional sharp-cutoff approximation. -/
+followed by a one-dimensional sharp-cutoff approximation.
+@isnad1 id=weakradi.2h4v.s4.b24066950750 from=translated src=- shape=8dce662f vocab=655324a1
+-/
 theorem weakRadialCutoffLimitStep_of_coarea_and_oneDimensional {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hcoarea : WeakRadialCoareaDerivativeStep Du R0)
@@ -428,6 +450,7 @@ theorem weakRadialCutoffLimitStep_of_coarea_and_oneDimensional {n m : ℕ}
 In the full proof this should produce the integrand
 `((n - 2) * phi |x| + |x| * phi' |x|) * |du|^2
  - 2 * |x| * phi' |x| * |partial_r u|^2`.
+@isnad1 id=and.1h4v.s6.d7551b3964d3 from=translated src=- shape=921db415 vocab=fd87a874
 -/
 theorem radial_vector_field_computation {n m : ℕ}
     (u : Domain n → Target m) (phi : ℝ → ℝ)
@@ -439,7 +462,9 @@ theorem radial_vector_field_computation {n m : ℕ}
     radialVectorFieldDivergenceFormula hphi,
     radialStressContractionFormula u hphi⟩
 
-/-- Step 2: stationarity implies the radial identity. -/
+/-- Step 2: stationarity implies the radial identity.
+@isnad1 id=radialst.3h4v.s7.883f8d75955e from=translated src=- shape=bf09ae09 vocab=d28d3d04
+-/
 theorem radial_identity_from_stationarity {n m : ℕ}
     {u : Domain n → Target m} {R0 : ℝ}
     (hstationary : SmoothStationaryIn u (Metric.ball (0 : Domain n) R0))
@@ -456,7 +481,9 @@ theorem radial_identity_from_stationarity {n m : ℕ}
     RadialStationarityIdentity u R0 := by
   exact hderive hstationary halgebra
 
-/-- Step 3: approximate the sharp radial cutoff and pass to Lebesgue points. -/
+/-- Step 3: approximate the sharp radial cutoff and pass to Lebesgue points.
+@isnad1 id=boundary.2h4v.s7.aca701fc47e5 from=translated src=- shape=6b117263 vocab=533e6da7
+-/
 theorem boundary_identity_from_radial_identity {n m : ℕ}
     {u : Domain n → Target m} {R0 : ℝ}
     (hrad : RadialStationarityIdentity u R0)
@@ -468,7 +495,9 @@ theorem boundary_identity_from_radial_identity {n m : ℕ}
 
 /-- Weak version of the cutoff-to-boundary step: the radial stationarity identity
 is first converted into the sharp-cutoff a.e. radius identity, then algebraically
-rewritten as the weak boundary identity. -/
+rewritten as the weak boundary identity.
+@isnad1 id=weakboun.2h4v.s6.0099c8e1001e from=translated src=- shape=94a40ef4 vocab=da2dea30
+-/
 theorem weak_boundary_identity_from_radial_identity {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hrad : WeakRadialStationarityIdentity Du R0)
@@ -477,7 +506,9 @@ theorem weak_boundary_identity_from_radial_identity {n m : ℕ}
   exact weakBoundaryIdentity_of_sharpCutoffLimit (hcutoff hrad)
 
 /-- The full weak radial-to-boundary route, with the two analytic ingredients
-kept separate: coarea/radius differentiation and one-dimensional sharp cutoffs. -/
+kept separate: coarea/radius differentiation and one-dimensional sharp cutoffs.
+@isnad1 id=weakboun.3h4v.s6.f288ee0069fa from=translated src=- shape=ff178036 vocab=4c843763
+-/
 theorem weak_boundary_identity_from_radial_identity_via_coarea {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hrad : WeakRadialStationarityIdentity Du R0)
@@ -491,7 +522,9 @@ theorem weak_boundary_identity_from_radial_identity_via_coarea {n m : ℕ}
 
 /-- Fully factored weak radial-to-boundary route: a concrete coarea/radius
 formula plus the one-dimensional distributional sharp-cutoff argument imply the
-weak boundary identity. -/
+weak boundary identity.
+@isnad1 id=weakboun.4h4v.s7.8a2208fcc702 from=translated src=- shape=66d9fdc9 vocab=881ef698
+-/
 theorem weak_boundary_identity_from_radial_identity_via_formula_and_distribution {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hrad : WeakRadialStationarityIdentity Du R0)
@@ -512,7 +545,9 @@ theorem weak_boundary_identity_from_radial_identity_via_formula_and_distribution
 
 /-- Even more granular weak radial-to-boundary route: after the coarea/radius
 formula, the one-dimensional sharp-cutoff part is split into integration by
-parts and primitive cutoff construction. -/
+parts and primitive cutoff construction.
+@isnad1 id=weakboun.5h4v.s7.250e1bca874d from=translated src=- shape=ef3fdd06 vocab=db1940ec
+-/
 theorem weak_boundary_identity_from_radial_identity_via_formula_ibp_primitives {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hrad : WeakRadialStationarityIdentity Du R0)
@@ -531,7 +566,9 @@ theorem weak_boundary_identity_from_radial_identity_via_formula_ibp_primitives {
       (n := n) (m := m) (Du := Du) (R0 := R0) hibp hprimitive)
 
 /-- Version of the previous route using the concrete one-dimensional
-integration-by-parts formula. -/
+integration-by-parts formula.
+@isnad1 id=weakboun.5h4v.s7.41515d1b6449 from=translated src=- shape=ef3fdd06 vocab=96e68af2
+-/
 theorem weak_boundary_identity_from_radial_identity_via_formula_ibpFormula_primitives {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hrad : WeakRadialStationarityIdentity Du R0)
@@ -552,7 +589,9 @@ theorem weak_boundary_identity_from_radial_identity_via_formula_ibpFormula_primi
 
 /-- The most decomposed route currently used by the formalization: vector-field
 regularity, coarea/radius integration, one-dimensional IBP, and primitive
-cutoffs are independent ingredients. -/
+cutoffs are independent ingredients.
+@isnad1 id=weakboun.6h4v.s7.7c93fcd67966 from=translated src=- shape=e465bbb8 vocab=980dbf43
+-/
 theorem weak_boundary_identity_from_radial_identity_via_split_ingredients {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hrad : WeakRadialStationarityIdentity Du R0)
@@ -573,7 +612,9 @@ theorem weak_boundary_identity_from_radial_identity_via_split_ingredients {n m :
     hdefect_loc hibp_formula hprimitive
 
 /-- Same fully decomposed route, with radial vector-field regularity discharged
-from the natural flat-at-origin condition on scalar cutoffs. -/
+from the natural flat-at-origin condition on scalar cutoffs.
+@isnad1 id=weakboun.6h4v.s7.8ab266f80a2b from=translated src=- shape=909b8d62 vocab=96f2cc52
+-/
 theorem weak_boundary_identity_from_radial_identity_via_flat_cutoffs {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hrad : WeakRadialStationarityIdentity Du R0)
@@ -594,7 +635,9 @@ theorem weak_boundary_identity_from_radial_identity_via_flat_cutoffs {n m : ℕ}
     hcoarea_integral hdefect_loc hibp_formula hprimitive
 
 /-- Same route with the coarea ingredient supplied as the two standard radius
-integral formulas for energy and radial energy. -/
+integral formulas for energy and radial energy.
+@isnad1 id=weakboun.7h4v.s7.91be876af87a from=translated src=- shape=848198f7 vocab=844348bd
+-/
 theorem weak_boundary_identity_from_radial_identity_via_radius_formulas {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hrad : WeakRadialStationarityIdentity Du R0)
@@ -617,7 +660,9 @@ theorem weak_boundary_identity_from_radial_identity_via_radius_formulas {n m : �
     hdefect_loc hibp_formula hprimitive
 
 /-- Boundary identity from the `W^{1,2}_{loc}`-friendly scalar-cutoff radial
-stationarity interface and the split analytic ingredients. -/
+stationarity interface and the split analytic ingredients.
+@isnad1 id=weakboun.6h4v.s7.6351ab04b35b from=translated src=- shape=0690b09a vocab=00a2d5da
+-/
 theorem weak_boundary_identity_from_scalar_cutoff_identity_via_radius_formulas {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hrad : WeakRadialScalarCutoffStationarityIdentity Du R0)
@@ -650,7 +695,9 @@ theorem weak_boundary_identity_from_scalar_cutoff_identity_via_radius_formulas {
   exact weakBoundaryIdentity_of_sharpCutoffLimit (hsharp hone)
 
 /-- Boundary identity from the scalar-cutoff radial stationarity interface and
-restricted-weight radius formulas. -/
+restricted-weight radius formulas.
+@isnad1 id=weakboun.6h4v.s7.1661e76f34ff from=translated src=- shape=0690b09a vocab=a0bf849d
+-/
 theorem weak_boundary_identity_from_scalar_cutoff_identity_via_radius_formulasForWeights
     {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
@@ -680,7 +727,9 @@ theorem weak_boundary_identity_from_scalar_cutoff_identity_via_radius_formulasFo
   exact weakBoundaryIdentity_of_sharpCutoffLimit (hsharp hone)
 
 /-- Same scalar-cutoff route, but with the old one-dimensional IBP and
-primitive-family black boxes replaced by their concrete split ingredients. -/
+primitive-family black boxes replaced by their concrete split ingredients.
+@isnad1 id=weakboun.7h4v.s7.074fbb24ceac from=translated src=- shape=bec12cb3 vocab=ccfe382e
+-/
 theorem weak_boundary_identity_from_scalar_cutoff_identity_via_realized_ingredients
     {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
@@ -706,7 +755,9 @@ theorem weak_boundary_identity_from_scalar_cutoff_identity_via_realized_ingredie
       hprimitive_realize)
 
 /-- Same scalar-cutoff route, with restricted-weight radius formulas and the
-one-dimensional IBP/primitive pieces in their concrete split form. -/
+one-dimensional IBP/primitive pieces in their concrete split form.
+@isnad1 id=weakboun.7h4v.s7.2325743868b1 from=translated src=- shape=bec12cb3 vocab=fe2c7aba
+-/
 theorem weak_boundary_identity_from_scalar_cutoff_identity_via_realized_ingredientsForWeights
     {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
@@ -732,7 +783,9 @@ theorem weak_boundary_identity_from_scalar_cutoff_identity_via_realized_ingredie
       hprimitive_realize)
 
 /-- Same scalar-cutoff route, with the one-dimensional radius calculus bundled
-as a single input. -/
+as a single input.
+@isnad1 id=weakboun.6h4v.s7.0d1e623616e5 from=translated src=- shape=97f52bb9 vocab=cb339324
+-/
 theorem weak_boundary_identity_from_scalar_cutoff_identity_via_energy_calculus
     {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
@@ -756,7 +809,9 @@ theorem weak_boundary_identity_from_scalar_cutoff_identity_via_energy_calculus
     hprimitive_realize
 
 /-- Same scalar-cutoff route, with restricted-weight radius formulas and the
-one-dimensional radius calculus bundled as a single input. -/
+one-dimensional radius calculus bundled as a single input.
+@isnad1 id=weakboun.6h4v.s7.eac7cdefa407 from=translated src=- shape=97f52bb9 vocab=c4ad6cea
+-/
 theorem weak_boundary_identity_from_scalar_cutoff_identity_via_energy_calculusForWeights
     {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
@@ -781,7 +836,9 @@ theorem weak_boundary_identity_from_scalar_cutoff_identity_via_energy_calculusFo
 
 /-- Boundary identity with both remaining one-dimensional pieces packaged: the
 energy calculus is an input, while primitive cutoffs are constructed from
-interval integrals and a smooth bump. -/
+interval integrals and a smooth bump.
+@isnad1 id=weakboun.5h4v.s7.fe93ba7b0227 from=translated src=- shape=6caab956 vocab=ac0627f7
+-/
 theorem weak_boundary_identity_from_scalar_cutoff_identity_via_calculus_constructed_primitive
     {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
@@ -801,7 +858,9 @@ theorem weak_boundary_identity_from_scalar_cutoff_identity_via_calculus_construc
 
 /-- Boundary identity from scalar-cutoff stationarity and absolute continuity
 of the two radius energy functions.  The primitive cutoff is the constructed
-interval-integral/smooth-bump one. -/
+interval-integral/smooth-bump one.
+@isnad1 id=weakboun.6h4v.s7.b1742087cd15 from=translated src=- shape=e47117d4 vocab=435cb55b
+-/
 theorem weak_boundary_identity_from_scalar_cutoff_identity_via_radius_ac
     {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
@@ -822,7 +881,9 @@ theorem weak_boundary_identity_from_scalar_cutoff_identity_via_radius_ac
       (n := n) (m := m) (Du := Du) (R0 := R0) hR0_nonneg hac)
 
 /-- Boundary identity with the primitive-cutoff realization constructed from
-the interval primitive and a smooth bump. -/
+the interval primitive and a smooth bump.
+@isnad1 id=weakboun.6h4v.s7.c2578718b2e5 from=translated src=- shape=0690b09a vocab=290ff5b0
+-/
 theorem weak_boundary_identity_from_scalar_cutoff_identity_via_constructed_primitive
     {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}

@@ -37,9 +37,15 @@ variable {V : Type u}
 def Linked (H : SimpleGraph V) (x y : V) : Prop :=
   x = y ∨ H.Adj x y
 
+/--
+@isnad1 id=linked.0h3v.s3.972421f47334 from=translated src=- shape=e99b0604 vocab=574528b2
+-/
 lemma linked_refl (H : SimpleGraph V) (x : V) : Linked H x x :=
   Or.inl rfl
 
+/--
+@isnad1 id=linked.1h4v.s4.7564520f622a from=translated src=- shape=ecc8ce2b vocab=574528b2
+-/
 lemma linked_symm {H : SimpleGraph V} {x y : V} : Linked H x y → Linked H y x := by
   rintro (rfl | h)
   · exact linked_refl H x
@@ -56,18 +62,30 @@ def bipartiteExpansion (H : SimpleGraph V) : SimpleGraph (V ⊕ V) where
   loopless.irrefl _ := by
     grind
 
+/--
+@isnad1 id=iff.0h4v.s4.21dde07391d3 from=translated src=- shape=cdd49246 vocab=498bae13
+-/
 @[simp] lemma bipartiteExpansion_adj_inl_inr (H : SimpleGraph V) (x y : V) :
     (bipartiteExpansion H).Adj (.inl x) (.inr y) ↔ Linked H x y :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s4.b4a67f0806d6 from=translated src=- shape=6926f03c vocab=498bae13
+-/
 @[simp] lemma bipartiteExpansion_adj_inr_inl (H : SimpleGraph V) (x y : V) :
     (bipartiteExpansion H).Adj (.inr y) (.inl x) ↔ Linked H x y :=
   Iff.rfl
 
+/--
+@isnad1 id=not.0h4v.s4.30e47eb89400 from=translated src=- shape=5610afb5 vocab=3d51df13
+-/
 @[simp] lemma bipartiteExpansion_not_adj_inl_inl (H : SimpleGraph V) (x y : V) :
     ¬ (bipartiteExpansion H).Adj (.inl x) (.inl y) := by
   simp [bipartiteExpansion]
 
+/--
+@isnad1 id=not.0h4v.s4.844aed3f7be2 from=translated src=- shape=5610afb5 vocab=3e3c21dc
+-/
 @[simp] lemma bipartiteExpansion_not_adj_inr_inr (H : SimpleGraph V) (x y : V) :
     ¬ (bipartiteExpansion H).Adj (.inr x) (.inr y) := by
   simp [bipartiteExpansion]
@@ -77,21 +95,33 @@ def bipartiteEdge (H : SimpleGraph V) (x y : V) (hxy : Linked H x y) :
     (bipartiteExpansion H).edgeSet :=
   ⟨s(.inl x, .inr y), by simpa [SimpleGraph.mem_edgeSet] using hxy⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.ad946c10a200 from=translated src=- shape=e38f78de vocab=28835420
+-/
 @[simp] lemma bipartiteEdge_val (H : SimpleGraph V) (x y : V) (hxy : Linked H x y) :
     (bipartiteEdge H x y hxy : Sym2 (V ⊕ V)) = s(.inl x, .inr y) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.3bf21b18e9cf from=translated src=- shape=2f69b677 vocab=111693c1
+-/
 lemma setOf_linked_eq_insert_neighborSet (H : SimpleGraph V) (x : V) :
     {y : V | Linked H x y} = insert x (H.neighborSet x) := by
   ext y
   simp [Linked, eq_comm]
 
+/--
+@isnad1 id=eq.0h3v.s5.d1c4e19cc063 from=translated src=- shape=d906e99a vocab=cdc45242
+-/
 lemma neighborSet_bipartiteExpansion_inl (H : SimpleGraph V) (x : V) :
     (bipartiteExpansion H).neighborSet (.inl x) =
       Sum.inr '' insert x (H.neighborSet x) := by
   ext y
   cases y <;> simp [SimpleGraph.mem_neighborSet, bipartiteExpansion, Linked, eq_comm]
 
+/--
+@isnad1 id=eq.0h3v.s5.25d2d6b4cd30 from=translated src=- shape=d906e99a vocab=cdc45242
+-/
 lemma neighborSet_bipartiteExpansion_inr (H : SimpleGraph V) (x : V) :
     (bipartiteExpansion H).neighborSet (.inr x) =
       Sum.inl '' insert x (H.neighborSet x) := by
@@ -99,6 +129,9 @@ lemma neighborSet_bipartiteExpansion_inr (H : SimpleGraph V) (x : V) :
   cases y <;> simp [SimpleGraph.mem_neighborSet, bipartiteExpansion, Linked, eq_comm,
     SimpleGraph.adj_comm]
 
+/--
+@isnad1 id=eq.0h3v.s5.c7d67515e8d0 from=translated src=- shape=cb34e452 vocab=ce7ae909
+-/
 lemma ncard_neighborSet_bipartiteExpansion_inl [Finite V]
     (H : SimpleGraph V) (x : V) :
     ((bipartiteExpansion H).neighborSet (.inl x)).ncard =
@@ -107,6 +140,9 @@ lemma ncard_neighborSet_bipartiteExpansion_inl [Finite V]
     Set.ncard_insert_of_notMem]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s5.42e3114c3e0c from=translated src=- shape=cb34e452 vocab=fd2461ac
+-/
 lemma ncard_neighborSet_bipartiteExpansion_inr [Finite V]
     (H : SimpleGraph V) (x : V) :
     ((bipartiteExpansion H).neighborSet (.inr x)).ncard =
@@ -115,7 +151,9 @@ lemma ncard_neighborSet_bipartiteExpansion_inr [Finite V]
     Set.ncard_insert_of_notMem]
   simp
 
-/-- `B(H)` raises the maximum-degree bound by exactly one. -/
+/-- `B(H)` raises the maximum-degree bound by exactly one.
+@isnad1 id=maxdegre.1h3v.s5.cb2fdf0b641b from=translated src=- shape=150ee781 vocab=d96c3ab4
+-/
 lemma maxDegreeLE_bipartiteExpansion [Finite V] {H : SimpleGraph V} {d : ℕ}
     (hdegree : MaxDegreeLE H d) : MaxDegreeLE (bipartiteExpansion H) (d + 1) := by
   intro x
@@ -128,7 +166,9 @@ lemma maxDegreeLE_bipartiteExpansion [Finite V] {H : SimpleGraph V} {d : ℕ}
       exact Nat.add_le_add_right (hdegree x) 1
 
 /-- If every vertex of `H` has degree `Delta`, then the paper's graph `B(H)` has exactly
-`|V(H)| * (Delta + 1)` edges. -/
+`|V(H)| * (Delta + 1)` edges.
+@isnad1 id=eq.1h3v.s5.ffc0bf496f94 from=translated src=- shape=d4fcb7dd vocab=15d6257d
+-/
 theorem ncard_edgeSet_bipartiteExpansion_of_regular [Finite V]
     (H : SimpleGraph V) (Delta : ℕ)
     (hregular : ∀ x, (H.neighborSet x).ncard = Delta) :
@@ -161,7 +201,9 @@ theorem ncard_edgeSet_bipartiteExpansion_of_regular [Finite V]
       rw [Nat.card_eq_fintype_card, ← B.edgeFinset_card]
     _ = Nat.card V * (Delta + 1) := hedge
 
-/-- Every edge of `B(H)` has a unique orientation from the left part to the right part. -/
+/-- Every edge of `B(H)` has a unique orientation from the left part to the right part.
+@isnad1 id=ex.0h3v.s5.d12d2f7974d0 from=translated src=- shape=be359241 vocab=183c8a89
+-/
 lemma exists_eq_bipartiteEdge (H : SimpleGraph V) (e : (bipartiteExpansion H).edgeSet) :
     ∃ x y, ∃ hxy : Linked H x y, e = bipartiteEdge H x y hxy := by
   rcases e with ⟨e, he⟩
@@ -184,7 +226,9 @@ lemma exists_eq_bipartiteEdge (H : SimpleGraph V) (e : (bipartiteExpansion H).ed
                 simp [bipartiteEdge]
           | inr x => simp [SimpleGraph.mem_edgeSet, bipartiteExpansion] at he
 
-/-- Two represented edges with the same left endpoint have line-graph distance at most one. -/
+/-- Two represented edges with the same left endpoint have line-graph distance at most one.
+@isnad1 id=le.2h5v.s6.fcf0641bd57c from=translated src=- shape=0b0af8d1 vocab=a7096389
+-/
 lemma lineGraph_edist_bipartiteEdge_le_one_of_left
     (H : SimpleGraph V) (a b c : V) (hab : Linked H a b) (hac : Linked H a c) :
     (bipartiteExpansion H).lineGraph.edist
@@ -195,7 +239,9 @@ lemma lineGraph_edist_bipartiteEdge_le_one_of_left
   · exact Or.inl <| SimpleGraph.lineGraph_adj_iff_exists.mpr
       ⟨hEq, .inl a, by simp [bipartiteEdge], by simp [bipartiteEdge]⟩
 
-/-- Two represented edges with the same right endpoint have line-graph distance at most one. -/
+/-- Two represented edges with the same right endpoint have line-graph distance at most one.
+@isnad1 id=le.2h5v.s6.990be60dc9a2 from=translated src=- shape=33fb40c0 vocab=a7096389
+-/
 lemma lineGraph_edist_bipartiteEdge_le_one_of_right
     (H : SimpleGraph V) (a b c : V) (hac : Linked H a c) (hbc : Linked H b c) :
     (bipartiteExpansion H).lineGraph.edist
@@ -261,6 +307,9 @@ def zigSecond (H : SimpleGraph V) {x y : V} {n : ℕ} (p : Route H x y n)
     (b : V) (hb : Linked H x b) : (bipartiteExpansion H).edgeSet :=
   (zigEndpoints H p).2 b hb
 
+/--
+@isnad1 id=and.0h6v.s7.9d9d819f3685 from=translated src=- shape=0443a6d2 vocab=d6b8fdf8
+-/
 theorem zig_terminal (H : SimpleGraph V) {x y : V} {n : ℕ} (p : Route H x y n) :
     (∀ a (ha : Linked H a x),
       (Even n → ∃ a', ∃ ha' : Linked H a' y,
@@ -306,27 +355,41 @@ theorem zig_terminal (H : SimpleGraph V) {x y : V} {n : ℕ} (p : Route H x y n)
           have hn' : Even n := Nat.not_odd_iff_even.mp (Nat.odd_add_one.mp hn)
           simpa [zigFirst, zigSecond, zigEndpoints] using (ih.1 x hxx').1 hn'
 
+/--
+@isnad1 id=ex.2h7v.s6.03f081fcaa5f from=translated src=- shape=aca69e26 vocab=41a4176b
+-/
 theorem zigFirst_of_even (H : SimpleGraph V) {x y : V} {n : ℕ}
     (p : Route H x y n) (a : V) (ha : Linked H a x) (hn : Even n) :
     ∃ a', ∃ ha' : Linked H a' y, zigFirst H p a ha = bipartiteEdge H a' y ha' :=
   ((zig_terminal H p).1 a ha).1 hn
 
+/--
+@isnad1 id=ex.2h7v.s6.df72f92705a6 from=translated src=- shape=3ddac9e2 vocab=c8f8bd8b
+-/
 theorem zigFirst_of_odd (H : SimpleGraph V) {x y : V} {n : ℕ}
     (p : Route H x y n) (a : V) (ha : Linked H a x) (hn : Odd n) :
     ∃ b', ∃ hb' : Linked H y b', zigFirst H p a ha = bipartiteEdge H y b' hb' :=
   ((zig_terminal H p).1 a ha).2 hn
 
+/--
+@isnad1 id=ex.2h7v.s6.94d07bda0482 from=translated src=- shape=fad48a70 vocab=fd7e617f
+-/
 theorem zigSecond_of_even (H : SimpleGraph V) {x y : V} {n : ℕ}
     (p : Route H x y n) (b : V) (hb : Linked H x b) (hn : Even n) :
     ∃ b', ∃ hb' : Linked H y b', zigSecond H p b hb = bipartiteEdge H y b' hb' :=
   ((zig_terminal H p).2 b hb).1 hn
 
+/--
+@isnad1 id=ex.2h7v.s6.bc5f2edff18f from=translated src=- shape=96950fb4 vocab=59391b9a
+-/
 theorem zigSecond_of_odd (H : SimpleGraph V) {x y : V} {n : ℕ}
     (p : Route H x y n) (b : V) (hb : Linked H x b) (hn : Odd n) :
     ∃ a', ∃ ha' : Linked H a' y, zigSecond H p b hb = bipartiteEdge H a' y ha' :=
   ((zig_terminal H p).2 b hb).2 hn
 
-/-- Both alternating coordinate routes cost no more than one line-graph step per route step. -/
+/-- Both alternating coordinate routes cost no more than one line-graph step per route step.
+@isnad1 id=and.0h6v.s6.c394b63a7df7 from=translated src=- shape=31d9d780 vocab=c43534c6
+-/
 theorem edist_zig_le (H : SimpleGraph V) {x y : V} {n : ℕ} (p : Route H x y n) :
     (∀ a (ha : Linked H a x),
       (bipartiteExpansion H).lineGraph.edist
@@ -367,19 +430,27 @@ theorem edist_zig_le (H : SimpleGraph V) {x y : V} {n : ℕ} (p : Route H x y n)
             (ih.1 x hxx')
           _ = ((n + 1 : ℕ) : ℕ∞) := by simp [add_comm]
 
+/--
+@isnad1 id=le.1h7v.s6.603b92ca38fc from=translated src=- shape=5f8e2e2a vocab=67fc246f
+-/
 theorem edist_zigFirst_le (H : SimpleGraph V) {x y : V} {n : ℕ}
     (p : Route H x y n) (a : V) (ha : Linked H a x) :
     (bipartiteExpansion H).lineGraph.edist
         (bipartiteEdge H a x ha) (zigFirst H p a ha) ≤ (n : ℕ∞) :=
   (edist_zig_le H p).1 a ha
 
+/--
+@isnad1 id=le.1h7v.s6.83ba9dc0e485 from=translated src=- shape=1aee345c vocab=7393a089
+-/
 theorem edist_zigSecond_le (H : SimpleGraph V) {x y : V} {n : ℕ}
     (p : Route H x y n) (b : V) (hb : Linked H x b) :
     (bipartiteExpansion H).lineGraph.edist
         (bipartiteEdge H x b hb) (zigSecond H p b hb) ≤ (n : ℕ∞) :=
   (edist_zig_le H p).2 b hb
 
-/-- A diameter bound in `H` supplies an exact-length padded route between every two vertices. -/
+/-- A diameter bound in `H` supplies an exact-length padded route between every two vertices.
+@isnad1 id=nonempty.1h5v.s4.8a676066666d from=translated src=- shape=c4de5358 vocab=d4c17c27
+-/
 lemma nonempty_route_of_ediam_le (H : SimpleGraph V) (k : ℕ)
     (hdiam : H.ediam ≤ (k : ℕ∞)) (x y : V) : Nonempty (Route H x y k) := by
   have hdist : H.edist x y ≤ (k : ℕ∞) := SimpleGraph.edist_le_ediam.trans hdiam
@@ -391,7 +462,9 @@ lemma nonempty_route_of_ediam_le (H : SimpleGraph V) (k : ℕ)
     exact_mod_cast hdist
   exact ⟨Route.padWalk H p k hlength⟩
 
-/-- Pointwise distance form of Lemma 4.1. -/
+/-- Pointwise distance form of Lemma 4.1.
+@isnad1 id=le.1h5v.s6.8bc2b38e471e from=translated src=- shape=c46c5864 vocab=82455c1b
+-/
 lemma lineGraph_edist_bipartiteExpansion_le (H : SimpleGraph V) (k : ℕ)
     (hdiam : H.ediam ≤ (k : ℕ∞))
     (e f : (bipartiteExpansion H).edgeSet) :
@@ -430,12 +503,16 @@ lemma lineGraph_edist_bipartiteExpansion_le (H : SimpleGraph V) (k : ℕ)
       _ = ((k + 1 : ℕ) : ℕ∞) := by simp
 
 /-- Lemma 4.1 in bounded-diameter form.  This formulation also handles empty vertex and edge
-types without adding nonemptiness hypotheses. -/
+types without adding nonemptiness hypotheses.
+@isnad1 id=le.1h3v.s5.f460054639e2 from=translated src=- shape=4ea34f5b vocab=ec138c17
+-/
 theorem lemma_4_1_le (H : SimpleGraph V) (k : ℕ) (hdiam : H.ediam ≤ (k : ℕ∞)) :
     (bipartiteExpansion H).lineGraph.ediam ≤ ((k + 1 : ℕ) : ℕ∞) :=
   SimpleGraph.ediam_le_of_edist_le (lineGraph_edist_bipartiteExpansion_le H k hdiam)
 
-/-- Lemma 4.1 exactly as an inequality of extended diameters. -/
+/-- Lemma 4.1 exactly as an inequality of extended diameters.
+@isnad1 id=le.0h2v.s5.ae495f9d5267 from=translated src=- shape=1f3ef4a8 vocab=7e0054a8
+-/
 theorem lemma_4_1 (H : SimpleGraph V) :
     (bipartiteExpansion H).lineGraph.ediam ≤ H.ediam + 1 := by
   by_cases htop : H.ediam = ⊤

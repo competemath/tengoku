@@ -36,7 +36,9 @@ def hadamardTest (U : Gate n) : Gate (1 + n) :=
   Gate.tensor H (1 : Gate n)
     * (Gate.controlled U * Gate.tensor H (1 : Gate n))
 
-/-- The Hadamard test is unitary. -/
+/-- The Hadamard test is unitary.
+@isnad1 id=mem.0h2v.s10.b29b0a0db258 from=translated src=- shape=564ac019 vocab=6cc996c7
+-/
 theorem hadamardTest_mem_unitaryGroup (U : Gate n) :
     (hadamardTest U : HilbertOperator (1 + n))
       ∈ Matrix.unitaryGroup (Fin (2 ^ (1 + n))) ℂ :=
@@ -109,7 +111,9 @@ private theorem tensor_H_one_finish (U : Gate n) (psi : PureState n) :
     smul_sub, smul_smul, invSqrt2_mul_self]
   ring
 
-/-- Raw-vector pre-measurement state of the Hadamard test. -/
+/-- Raw-vector pre-measurement state of the Hadamard test.
+@isnad1 id=eq.0h3v.s9.d665472a8f77 from=translated src=- shape=9cb6eebf vocab=e8a3b4cb
+-/
 theorem hadamardTest_applyVec_ket0_tensor (U : Gate n) (psi : PureState n) :
     HilbertOperator.applyVec (hadamardTest U : HilbertOperator (1 + n))
         (StateVector.tensor (ket0 : StateVector 1) (psi : StateVector n))
@@ -126,7 +130,9 @@ theorem hadamardTest_applyVec_ket0_tensor (U : Gate n) (psi : PureState n) :
   rw [HilbertOperator.mul_applyVec, HilbertOperator.mul_applyVec, tensor_H_one_applyVec_ket0,
     controlled_applyVec_ketPlus_tensor, tensor_H_one_finish]
 
-/-- The pre-measurement state of the Hadamard test. -/
+/-- The pre-measurement state of the Hadamard test.
+@isnad1 id=eq.0h3v.s9.6bb1b9ebc06d from=translated src=- shape=b0ced694 vocab=b9ea9c24
+-/
 theorem hadamardTest_apply_ket0_tensor (U : Gate n) (psi : PureState n) :
     ((hadamardTest U).apply (ket0.tensor psi) : StateVector (1 + n))
       =
@@ -139,7 +145,9 @@ theorem hadamardTest_apply_ket0_tensor (U : Gate n) (psi : PureState n) :
       (StateVector.tensor (ket0 : StateVector 1) (psi : StateVector n)) = _
   rw [hadamardTest_applyVec_ket0_tensor]
 
-/-- **Hadamard test, outcome 0**. -/
+/-- **Hadamard test, outcome 0**.
+@isnad1 id=eq.0h3v.s7.b6faff5836bd from=translated src=- shape=0158db7a vocab=648b9660
+-/
 theorem HadamardTest.main {U : Gate n} (psi : PureState n) :
     probQubit0 ((hadamardTest U).apply (ket0.tensor psi)) 0
       = (1 + (inner ℂ psi (U.apply psi)).re) / 2 := by
@@ -157,7 +165,9 @@ theorem HadamardTest.main {U : Gate n} (psi : PureState n) :
   simp only [RCLike.re_to_complex]
   ring
 
-/-- **Hadamard test, outcome 1**. -/
+/-- **Hadamard test, outcome 1**.
+@isnad1 id=eq.0h3v.s7.cf89aecfc932 from=translated src=- shape=69e86648 vocab=6625d8fc
+-/
 theorem hadamardTest_probQubit0_one {U : Gate n} (psi : PureState n) :
     probQubit0 ((hadamardTest U).apply (ket0.tensor psi)) 1
       = (1 - (inner ℂ psi (U.apply psi)).re) / 2 := by

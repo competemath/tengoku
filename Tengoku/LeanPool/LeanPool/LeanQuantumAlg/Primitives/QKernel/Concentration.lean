@@ -41,15 +41,23 @@ instance : IsProbabilityMeasure unifAngle := by
     show Real.pi - -Real.pi = 2 * Real.pi from by ring,
     ENNReal.inv_mul_cancel (ENNReal.ofReal_pos.mpr (by positivity)).ne' ENNReal.ofReal_ne_top]
 
+/--
+@isnad1 id=le.0h2v.s4.e0298d14618f from=translated src=- shape=42a2b5ba vocab=5ca0125e
+-/
 theorem ryKernel_nonneg (n : ℕ) (θ : Fin n → ℝ) : 0 ≤ ryKernel n θ :=
   Finset.prod_nonneg (fun _ _ => sq_nonneg _)
 
+/--
+@isnad1 id=continuo.0h1v.s4.dc32fc5bef6d from=translated src=- shape=bbef8654 vocab=cf937704
+-/
 theorem continuous_ryKernel (n : ℕ) : Continuous (ryKernel n) := by
   unfold ryKernel
   exact continuous_finsetProd _
     (fun k _ => (Real.continuous_cos.comp (continuous_apply k)).pow 2)
 
-/-- `∫ cos²θ` over the uniform measure on `[-π,π]` equals `1/2`. -/
+/-- `∫ cos²θ` over the uniform measure on `[-π,π]` equals `1/2`.
+@isnad1 id=eq.0h0v.s5.62d063cf9688 from=translated src=- shape=a878c85b vocab=79b78d4f
+-/
 theorem integral_cos_sq_unifAngle : ∫ x, Real.cos x ^ 2 ∂unifAngle = 1 / 2 := by
   have hpi : (-Real.pi) ≤ Real.pi := by linarith [Real.pi_pos]
   have hpine : Real.pi ≠ 0 := Real.pi_ne_zero
@@ -60,7 +68,9 @@ theorem integral_cos_sq_unifAngle : ∫ x, Real.cos x ^ 2 ∂unifAngle = 1 / 2 :
   field_simp
   ring
 
-/-- `∫ cos⁴θ` over the uniform measure on `[-π,π]` equals `3/8`. -/
+/-- `∫ cos⁴θ` over the uniform measure on `[-π,π]` equals `3/8`.
+@isnad1 id=eq.0h0v.s6.1d12ee17c038 from=translated src=- shape=a878c85b vocab=79b78d4f
+-/
 theorem integral_cos_pow4_unifAngle : ∫ x, Real.cos x ^ 4 ∂unifAngle = 3 / 8 := by
   have hpi : (-Real.pi) ≤ Real.pi := by linarith [Real.pi_pos]
   have hpine : Real.pi ≠ 0 := Real.pi_ne_zero
@@ -75,13 +85,17 @@ theorem integral_cos_pow4_unifAngle : ∫ x, Real.cos x ^ 4 ∂unifAngle = 3 / 8
   field_simp
   ring
 
-/-- First moment: `𝔼[κ_n] = (1/2)ⁿ`. -/
+/-- First moment: `𝔼[κ_n] = (1/2)ⁿ`.
+@isnad1 id=eq.0h1v.s6.51c11be54e77 from=translated src=- shape=77540ce0 vocab=3c456536
+-/
 theorem mean_ryKernel (n : ℕ) : ∫ θ, ryKernel n θ ∂(ryMeasure n) = (1 / 2) ^ n := by
   unfold ryKernel ryMeasure
   rw [integral_fintype_prod_eq_pow (fun t => Real.cos t ^ 2), integral_cos_sq_unifAngle,
     Fintype.card_fin]
 
-/-- Second moment: `𝔼[κ_n²] = (3/8)ⁿ`. -/
+/-- Second moment: `𝔼[κ_n²] = (3/8)ⁿ`.
+@isnad1 id=eq.0h1v.s6.c7790cdc30f9 from=translated src=- shape=ef5e85ab vocab=3c456536
+-/
 theorem mean_ryKernel_sq (n : ℕ) :
     ∫ θ, (ryKernel n θ) ^ 2 ∂(ryMeasure n) = (3 / 8) ^ n := by
   have hrw : (fun θ : Fin n → ℝ => (ryKernel n θ) ^ 2)

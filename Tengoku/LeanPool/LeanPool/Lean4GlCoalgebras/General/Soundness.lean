@@ -123,7 +123,9 @@ noncomputable def chain
           | [] => False.elim (by have := 𝕏.step x_ih; simp [r_def, p_def] at this)
           | x::y::l => False.elim (by have := 𝕏.step x_ih; simp [r_def, p_def] at this)
 
-/-- The left projection of `chain` is a chain in the proof. -/
+/-- The left projection of `chain` is a chain in the proof.
+@isnad1 id=edge.2h7v.s6.e5545960ec9b from=translated src=- shape=2f8d90b5 vocab=f29b97ff
+-/
 lemma chain_proof_prop
   {𝕏 : Proof}
   {x : 𝕏.X}
@@ -145,7 +147,9 @@ lemma chain_proof_prop
     all_goals
       grind [edge]
 
-/-- The right projection of `chain` makes progress in the model on box nodes. -/
+/-- The right projection of `chain` makes progress in the model on box nodes.
+@isnad1 id=and.2h7v.s9.04b98654d2ee from=translated src=- shape=23507429 vocab=50892c9c
+-/
 lemma chain_model_prop {𝕏 : Proof}
   {x : 𝕏.X}
   {Γ : Sequent}
@@ -195,7 +199,9 @@ lemma chain_model_prop {𝕏 : Proof}
       have step := 𝕏.step x_ih
       simp_all
 
-/-- The right projection of `chain` eventually progresses. -/
+/-- The right projection of `chain` eventually progresses.
+@isnad1 id=ex.2h7v.s7.ab4dc76736f2 from=translated src=- shape=b4bd9ab6 vocab=022fda00
+-/
 lemma has_children_of_chain_model {𝕏 : Proof}
   {x : 𝕏.X}
   {Γ : Sequent}
@@ -249,7 +255,9 @@ noncomputable def incChainEventualIncChain {β}
       match incChainEventualIncChain Q_prop n with
         | ⟨ih, ih_prop⟩ => ⟨g (Q_prop ih_prop.choose).choose, by simp⟩
 
-/-- An eventually progressing chain has an progressing subchain. -/
+/-- An eventually progressing chain has an progressing subchain.
+@isnad1 id=var.1h4v.s6.4deabe948e80 from=translated src=- shape=cf657f70 vocab=1bf1c289
+-/
 lemma incChainEventualIncChain_prop {β}
   {Q : β → β → Prop} {g : ℕ → β}
   (Q_prop : ∀ n, ∃ m, Q (g n) (g m)) :
@@ -267,7 +275,9 @@ lemma incChainEventualIncChain_prop {β}
     convert this
     · exact ih_prop.choose_spec
 
-/-- Soundness theorem for the GL-proof system. -/
+/-- Soundness theorem for the GL-proof system.
+@isnad1 id=isvalid.1h1v.s2.b3794f8f6263 from=translated src=- shape=6321fd23 vocab=31e57cbd
+-/
 theorem soundness (Γ : Sequent) : ⊢ Γ → ⊨ Γ := by
   intro mp
   have ⟨𝕏, x, prop⟩ := mp

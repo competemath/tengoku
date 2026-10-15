@@ -29,7 +29,9 @@ Upstream target: `Mathlib/Data/Nat/Nth.lean`.
 
 /-- **Enumeration bridge.** Every infinite set of naturals is the range of its (unique) strictly
 monotone enumeration. This recovers, from a set-valued carrier `X`, the enumeration `N` on which
-the enumeration-first machinery (`Front.shrink`, ranks, …) operates. -/
+the enumeration-first machinery (`Front.shrink`, ranks, …) operates.
+@isnad1 id=ex.1h1v.s4.fe6d6b9000e8 from=translated src=- shape=549aa96e vocab=20d89dbf
+-/
 theorem Set.Infinite.exists_strictMono_range {X : Set ℕ} (hX : X.Infinite) :
     ∃ N : ℕ → ℕ, StrictMono N ∧ Set.range N = X := by
   have hp : (Set.ofPred fun n => n ∈ X).Infinite := by
@@ -38,7 +40,9 @@ theorem Set.Infinite.exists_strictMono_range {X : Set ℕ} (hX : X.Infinite) :
   simpa only [Set.ofPred_mem_eq] using Nat.range_nth_of_infinite hp
 
 /-- The membership form of `Set.Infinite.exists_strictMono_range`: an infinite set of naturals
-carries a strictly monotone sequence of its elements. -/
+carries a strictly monotone sequence of its elements.
+@isnad1 id=ex.1h1v.s5.d9a7cfb4d352 from=translated src=- shape=ebda987a vocab=84565bba
+-/
 theorem Set.Infinite.exists_strictMono {s : Set ℕ} (hs : s.Infinite) :
     ∃ e : ℕ → ℕ, StrictMono e ∧ ∀ i, e i ∈ s := by
   obtain ⟨N, hN, hrange⟩ := hs.exists_strictMono_range

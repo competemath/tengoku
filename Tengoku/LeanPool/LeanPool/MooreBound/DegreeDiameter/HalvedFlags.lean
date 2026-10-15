@@ -58,6 +58,9 @@ instance {parity : ℕ} [Finite V] :
     (fun P : PartialFlag (K := K) (V := V) (n := n) parity ↦ P.1)
     Subtype.val_injective
 
+/--
+@isnad1 id=eq.1h6v.s8.08e88386835e from=translated src=- shape=e8c32cf6 vocab=b3962553
+-/
 @[ext]
 theorem ext {parity : ℕ}
     {P Q : PartialFlag (K := K) (V := V) (n := n) parity}
@@ -70,6 +73,9 @@ def ofComplete (parity : ℕ) (F : CompleteFlag K V n) :
     PartialFlag (K := K) (V := V) (n := n) parity :=
   ⟨flagPart parity F, F, rfl⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.601115446f2a from=translated src=- shape=e12e23c1 vocab=527232d7
+-/
 @[simp]
 theorem ofComplete_val (parity : ℕ) (F : CompleteFlag K V n) :
     (ofComplete parity F).1 = flagPart parity F := rfl
@@ -83,11 +89,16 @@ def Compatible (P : EvenPartialFlag (K := K) (V := V) (n := n))
   ∃ F : CompleteFlag K V n,
     PartialFlag.ofComplete 0 F = P ∧ PartialFlag.ofComplete 1 F = Q
 
+/--
+@isnad1 id=compatib.0h4v.s6.969598087aa9 from=translated src=- shape=d81df46c vocab=4149030f
+-/
 theorem compatible_parts (F : CompleteFlag K V n) :
     Compatible (PartialFlag.ofComplete 0 F) (PartialFlag.ofComplete 1 F) :=
   ⟨F, rfl, rfl⟩
 
-/-- Even and odd parts determine their common complete flag uniquely. -/
+/-- Even and odd parts determine their common complete flag uniquely.
+@isnad1 id=eq.4h7v.s7.223bf0fcf636 from=translated src=- shape=539e608a vocab=2b8a7a7a
+-/
 theorem compatible_unique
     {P : EvenPartialFlag (K := K) (V := V) (n := n)}
     {Q : OddPartialFlag (K := K) (V := V) (n := n)}
@@ -112,6 +123,9 @@ def halvedFlagGraph : SimpleGraph (EvenPartialFlag (K := K) (V := V) (n := n)) :
     ∃ Q : OddPartialFlag (K := K) (V := V) (n := n),
       Compatible P Q ∧ Compatible P' Q
 
+/--
+@isnad1 id=iff.0h5v.s6.385f1e93a75e from=translated src=- shape=d765ef4a vocab=4e6cfbdf
+-/
 theorem halvedFlagGraph_adj_iff
     {P P' : EvenPartialFlag (K := K) (V := V) (n := n)} :
     (halvedFlagGraph (K := K) (V := V) (n := n)).Adj P P' ↔
@@ -125,6 +139,9 @@ theorem halvedFlagGraph_adj_iff
   · rintro ⟨hne, Q, hPQ, hP'Q⟩
     exact ⟨hne, Or.inl ⟨Q, hPQ, hP'Q⟩⟩
 
+/--
+@isnad1 id=eq.2h6v.s7.2f5ddeb32163 from=translated src=- shape=fa96c95c vocab=82743494
+-/
 theorem evenPart_eq_of_alternatingStep {s : Fin n}
     {F G : CompleteFlag K V n} (h : AlternatingStep K V s F G)
     (hs : (s.val + 1) % 2 = 1) :
@@ -136,6 +153,9 @@ theorem evenPart_eq_of_alternatingStep {s : Fin n}
     simpa [PartialFlag.ofComplete, flagPart, hi] using hFG
   · simp [PartialFlag.ofComplete, flagPart, hi]
 
+/--
+@isnad1 id=eq.2h6v.s7.3470e2b6cee5 from=translated src=- shape=fa96c95c vocab=82743494
+-/
 theorem oddPart_eq_of_alternatingStep {s : Fin n}
     {F G : CompleteFlag K V n} (h : AlternatingStep K V s F G)
     (hs : (s.val + 1) % 2 = 0) :
@@ -149,7 +169,9 @@ theorem oddPart_eq_of_alternatingStep {s : Fin n}
     simp [PartialFlag.ofComplete, flagPart, hi']
 
 /-- Two even parts separated by an odd step and then an even step have
-extended graph distance at most one. -/
+extended graph distance at most one.
+@isnad1 id=le.2h6v.s7.769014356c6b from=translated src=- shape=398ba62e vocab=b7130a86
+-/
 theorem halved_edist_le_one_of_parts
     (F₀ F₁ F₂ : CompleteFlag K V n)
     (heven : PartialFlag.ofComplete 0 F₀ = PartialFlag.ofComplete 0 F₁)
@@ -166,7 +188,9 @@ theorem halved_edist_le_one_of_parts
     · exact ⟨F₂, rfl, hodd.symm⟩
 
 /-- A chain with at most unit extended distance at every step has distance at
-most its number of steps. -/
+most its number of steps.
+@isnad1 id=le.1h4v.s6.48d8cb98782a from=translated src=- shape=3123c1b6 vocab=ed640458
+-/
 theorem edist_chain_le {W : Type*} (G : SimpleGraph W) (P : ℕ → W) :
     ∀ m : ℕ, (∀ j < m, G.edist (P j) (P (j + 1)) ≤ 1) →
       G.edist (P 0) (P m) ≤ m := by
@@ -184,7 +208,9 @@ theorem edist_chain_le {W : Type*} (G : SimpleGraph W) (P : ℕ → W) :
         _ = (m + 1 : ℕ) := by simp
 
 /-- The odd-first alternating route of Lemma 2.1 projects to a route of at
-most `k` edges in the halved graph on a `(2*k+1)`-dimensional space. -/
+most `k` edges in the halved graph on a `(2*k+1)`-dimensional space.
+@isnad1 id=le.0h3v.s6.91f3320db8ad from=translated src=- shape=b6b6d743 vocab=53259f39
+-/
 theorem halvedFlagGraph_ediam_le (k : ℕ) :
     (halvedFlagGraph (K := K) (V := V) (n := 2 * k + 1)).ediam ≤ (k : ℕ∞) := by
   apply SimpleGraph.ediam_le_of_edist_le

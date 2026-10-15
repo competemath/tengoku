@@ -41,6 +41,9 @@ the immediate reverse step. -/
 def ForwardNeighbor {V : Type u} (G : SimpleGraph V) (previous current : V) :=
   {next : V // G.Adj current next ∧ next ≠ previous}
 
+/--
+@isnad1 id=finite.0h4v.s4.7f68d0eb5777 from=translated src=- shape=ed958010 vocab=aca89133
+-/
 instance finite_forwardNeighbor {V : Type u} [Finite V] (G : SimpleGraph V)
     (previous current : V) : Finite (ForwardNeighbor G previous current) :=
   Finite.of_injective Subtype.val Subtype.val_injective
@@ -53,6 +56,9 @@ def NBContinuation {V : Type u} (G : SimpleGraph V) : V → V → ℕ → Type u
       Σ next : ForwardNeighbor G previous current,
         NBContinuation G current next.1 n
 
+/--
+@isnad1 id=finite.0h5v.s4.011a39d726d4 from=translated src=- shape=1943f3a3 vocab=0d1e3af8
+-/
 instance finite_nbContinuation {V : Type u} [Finite V] (G : SimpleGraph V)
     (previous current : V) (n : ℕ) : Finite (NBContinuation G previous current n) := by
   classical
@@ -74,6 +80,9 @@ def ExactNBRoute {V : Type u} (G : SimpleGraph V) (root : V) : ℕ → Type u
   | 0 => PUnit
   | n + 1 => Σ first : G.neighborSet root, NBContinuation G root first.1 n
 
+/--
+@isnad1 id=finite.0h4v.s4.7d9dcb36d4e0 from=translated src=- shape=454d791f vocab=5c555ef2
+-/
 instance finite_exactNBRoute {V : Type u} [Finite V] (G : SimpleGraph V)
     (root : V) (n : ℕ) : Finite (ExactNBRoute G root n) := by
   classical
@@ -100,6 +109,9 @@ def ExactNBRoute.endpoint {V : Type u} (G : SimpleGraph V) (root : V) :
   | 0, _ => root
   | _ + 1, route => NBContinuation.endpoint G route.2
 
+/--
+@isnad1 id=eq.1h6v.s5.930517b88ead from=translated src=- shape=3fb96916 vocab=bd682ac6
+-/
 lemma ExactNBRoute.endpoint_cast {V : Type u} (G : SimpleGraph V) (root : V)
     {m n : ℕ} (h : m = n) (route : ExactNBRoute G root m) :
     ExactNBRoute.endpoint G root (h ▸ route) =
@@ -119,6 +131,9 @@ def NBContinuation.ofPath {V : Type u} {G : SimpleGraph V} :
           exact Or.inr (by simpa [h] using tail.start_mem_support))⟩,
         ofPath tail hp.of_cons ((Walk.cons_isPath_iff hadj tail).mp hp).2⟩
 
+/--
+@isnad1 id=eq.2h6v.s5.aea18f9de012 from=translated src=- shape=145a0836 vocab=bb1c6fbc
+-/
 lemma NBContinuation.endpoint_ofPath {V : Type u} {G : SimpleGraph V}
     {previous current target : V} (p : G.Walk current target) (hp : p.IsPath)
     (hprevious : previous ∉ p.support) :
@@ -139,6 +154,9 @@ def ExactNBRoute.ofPath {V : Type u} {G : SimpleGraph V} {root target : V}
         NBContinuation.ofPath tail hp.of_cons
           ((Walk.cons_isPath_iff hadj tail).mp hp).2⟩
 
+/--
+@isnad1 id=eq.1h5v.s5.193d4e1ce4c8 from=translated src=- shape=b36573ac vocab=5955d156
+-/
 lemma ExactNBRoute.endpoint_ofPath {V : Type u} {G : SimpleGraph V}
     {root target : V} (p : G.Walk root target) (hp : p.IsPath) :
     (ExactNBRoute.ofPath p hp).endpoint G root = target := by
@@ -148,7 +166,9 @@ lemma ExactNBRoute.endpoint_ofPath {V : Type u} {G : SimpleGraph V}
       exact NBContinuation.endpoint_ofPath tail hp.of_cons
         ((Walk.cons_isPath_iff hadj tail).mp hp).2
 
-/-- Removing the vertex just left leaves at most `d - 1` choices. -/
+/-- Removing the vertex just left leaves at most `d - 1` choices.
+@isnad1 id=le.2h5v.s5.789617674308 from=translated src=- shape=ace53994 vocab=af581161
+-/
 lemma natCard_forwardNeighbor_le {V : Type u} {G : SimpleGraph V}
     {d : ℕ} (hdegree : MaxDegreeLE G d) {previous current : V}
     (hpc : G.Adj previous current) :
@@ -163,7 +183,9 @@ lemma natCard_forwardNeighbor_le {V : Type u} {G : SimpleGraph V}
   · exact hpc.symm
 
 /-- There are at most `(d - 1)^n` nonbacktracking continuations of length
-`n` after a directed edge. -/
+`n` after a directed edge.
+@isnad1 id=le.2h6v.s5.0b2010933251 from=translated src=- shape=ddac3172 vocab=b8155ead
+-/
 lemma natCard_nbContinuation_le {V : Type u} [Finite V] {G : SimpleGraph V}
     {d : ℕ} (hdegree : MaxDegreeLE G d) {previous current : V}
     (hpc : G.Adj previous current) (n : ℕ) :
@@ -196,7 +218,9 @@ lemma natCard_nbContinuation_le {V : Type u} [Finite V] {G : SimpleGraph V}
                 (natCard_forwardNeighbor_le hdegree hpc)
         _ = (d - 1) ^ (n + 1) := by rw [pow_succ, Nat.mul_comm]
 
-/-- The distance-`n+1` route layer has at most `d(d-1)^n` members. -/
+/-- The distance-`n+1` route layer has at most `d(d-1)^n` members.
+@isnad1 id=le.1h5v.s6.d6ea5fd54559 from=translated src=- shape=f38c1bad vocab=c73ed3ed
+-/
 lemma natCard_exactNBRoute_succ_le {V : Type u} [Finite V] {G : SimpleGraph V}
     {d : ℕ} (hdegree : MaxDegreeLE G d) (root : V) (n : ℕ) :
     Nat.card (ExactNBRoute G root (n + 1)) ≤ d * (d - 1) ^ n := by
@@ -228,6 +252,9 @@ def BoundedNBRoute {V : Type u} (G : SimpleGraph V) (root : V) : ℕ → Type u
   | 0 => PUnit
   | k + 1 => BoundedNBRoute G root k ⊕ ExactNBRoute G root (k + 1)
 
+/--
+@isnad1 id=finite.0h4v.s4.d917c7eaeca5 from=translated src=- shape=454d791f vocab=071910c4
+-/
 instance finite_boundedNBRoute {V : Type u} [Finite V] (G : SimpleGraph V)
     (root : V) (k : ℕ) : Finite (BoundedNBRoute G root k) := by
   classical
@@ -249,7 +276,9 @@ def BoundedNBRoute.endpoint {V : Type u} (G : SimpleGraph V) (root : V) :
 
 /-- A path of length at most `k` belongs to the bounded route type and keeps
 its endpoint.  This is the formal shortest/nonbacktracking-route step in the
-standard Moore-bound proof. -/
+standard Moore-bound proof.
+@isnad1 id=ex.2h6v.s5.6f0abdc890d3 from=translated src=- shape=88183313 vocab=68bffaf9
+-/
 lemma exists_boundedNBRoute_endpoint_of_path {V : Type u} {G : SimpleGraph V}
     {root target : V} (p : G.Walk root target) (hp : p.IsPath) {k : ℕ}
     (hlength : p.length ≤ k) :
@@ -275,7 +304,9 @@ lemma exists_boundedNBRoute_endpoint_of_path {V : Type u} {G : SimpleGraph V}
         exact ExactNBRoute.endpoint_ofPath p hp
 
 /-- The recursive bounded-route type has exactly the cardinality estimate in
-the Moore expression. -/
+the Moore expression.
+@isnad1 id=le.1h5v.s4.a679874b69b7 from=translated src=- shape=9b065770 vocab=ae8a48da
+-/
 lemma natCard_boundedNBRoute_le {V : Type u} [Finite V] {G : SimpleGraph V}
     {d : ℕ} (hdegree : MaxDegreeLE G d) (root : V) (k : ℕ) :
     Nat.card (BoundedNBRoute G root k) ≤ mooreBound k d := by
@@ -296,7 +327,9 @@ lemma natCard_boundedNBRoute_le {V : Type u} [Finite V] {G : SimpleGraph V}
 
 /-- The exact Moore expression is bounded by the convenient leading-term
 comparison `(d + 1)^k`.  This lemma is used only after the exact graph bound
-has been established. -/
+has been established.
+@isnad1 id=le.0h2v.s5.7a09ba77a4ea from=translated src=- shape=c1e18d93 vocab=c74da0d4
+-/
 lemma mooreBound_le_add_one_pow (k d : ℕ) : mooreBound k d ≤ (d + 1) ^ k := by
   induction k with
   | zero => simp [mooreBound]
@@ -314,7 +347,9 @@ lemma mooreBound_le_add_one_pow (k d : ℕ) : mooreBound k d ≤ (d + 1) ^ k := 
             Nat.mul_comm d ((d + 1) ^ k), Nat.add_comm]
 
 /-- Exact Moore bound for every finite graph of maximum degree at most `d`
-and extended diameter at most `k`. -/
+and extended diameter at most `k`.
+@isnad1 id=le.2h4v.s5.dd4e40ed6b52 from=translated src=- shape=a0c561d8 vocab=2c5e6d6d
+-/
 theorem natCard_le_mooreBound_of_ediam_le {V : Type u} [Finite V] [Nonempty V]
     {G : SimpleGraph V} {d k : ℕ} (hdegree : MaxDegreeLE G d)
     (hdiam : G.ediam ≤ (k : ℕ∞)) : Nat.card V ≤ mooreBound k d := by
@@ -338,7 +373,9 @@ theorem natCard_le_mooreBound_of_ediam_le {V : Type u} [Finite V] [Nonempty V]
       Nat.card_le_card_of_surjective _ hsurj
     _ ≤ mooreBound k d := natCard_boundedNBRoute_le hdegree root k
 
-/-- The exact Moore bound, including the empty vertex type. -/
+/-- The exact Moore bound, including the empty vertex type.
+@isnad1 id=le.2h4v.s5.ff75365927e0 from=translated src=- shape=565ec00f vocab=918161b7
+-/
 theorem natCard_le_mooreBound_of_ediam_le' {V : Type u} [Finite V]
     {G : SimpleGraph V} {d k : ℕ} (hdegree : MaxDegreeLE G d)
     (hdiam : G.ediam ≤ (k : ℕ∞)) : Nat.card V ≤ mooreBound k d := by
@@ -347,7 +384,9 @@ theorem natCard_le_mooreBound_of_ediam_le' {V : Type u} [Finite V]
   · exact natCard_le_mooreBound_of_ediam_le hdegree hdiam
 
 /-- Every graph order admitted in the definition of `nKD` obeys the exact
-Moore bound. -/
+Moore bound.
+@isnad1 id=le.1h3v.s4.4f89e9beacdb from=translated src=- shape=be41f538 vocab=99943388
+-/
 theorem orderAdmissible_le_mooreBound {k d n : ℕ}
     (hn : OrderAdmissible k d n) : n ≤ mooreBound k d := by
   rcases hn with ⟨V, G, hfinite, hcard, hdegree, hdiam⟩
@@ -355,7 +394,9 @@ theorem orderAdmissible_le_mooreBound {k d n : ℕ}
   rw [← hcard]
   exact natCard_le_mooreBound_of_ediam_le' hdegree hdiam
 
-/-- The exact paper inequality `n_k(d) ≤ 1 + d ∑_{j<k}(d-1)^j`. -/
+/-- The exact paper inequality `n_k(d) ≤ 1 + d ∑_{j<k}(d-1)^j`.
+@isnad1 id=le.0h2v.s3.c936f64bc6f2 from=translated src=- shape=6c8684e5 vocab=cb7b5be0
+-/
 theorem nKD_le_mooreBound (k d : ℕ) : nKD k d ≤ mooreBound k d :=
   orderAdmissible_le_mooreBound (nKD_admissible k d)
 

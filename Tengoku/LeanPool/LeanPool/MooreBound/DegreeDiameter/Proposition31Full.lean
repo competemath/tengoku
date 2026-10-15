@@ -54,7 +54,9 @@ structure Proposition31FiniteClaims (q : PrimePowerIndex) (k : ℕ) : Prop where
   ediam_eq :
     (Proposition31Graph (PrimePowerField q) k).ediam = (k : ℕ∞)
 
-/-- The finite part of Proposition 3.1, repackaged under a named proposition. -/
+/-- The finite part of Proposition 3.1, repackaged under a named proposition.
+@isnad1 id=proposit.1h2v.s4.8dc249702a77 from=translated src=- shape=c1cf4507 vocab=d6149788
+-/
 theorem proposition31_finite_claims (q : PrimePowerIndex)
     (k : ℕ) (hk : 0 < k) : Proposition31FiniteClaims q k := by
   have hp := proposition_3_1_for_prime_power q k hk
@@ -73,7 +75,9 @@ For every prime-power field order, the concrete halved-flag graph satisfies
 all finite claims in equations (6)--(8).  As the field order tends to infinity
 through all prime powers, its actual degree divided by the cap and its exact
 order divided by the `k`-th power of that actual degree both tend to one, as in
-equation (9). -/
+equation (9).
+@isnad1 id=and.1h1v.s7.14405aaef0f1 from=translated src=- shape=3d19250d vocab=da182e02
+-/
 theorem proposition_3_1 (k : ℕ) (hk : 0 < k) :
     (∀ q : PrimePowerIndex, Proposition31FiniteClaims q k) ∧
     Tendsto
@@ -97,7 +101,9 @@ proved from the bundled declaration `proposition_3_1`, rather than by invoking
 the independently available cap-normalized limit.  Pointwise, after the
 nonzero denominators have been discharged, the identity is
 
-`N / K^k = (N / Δ^k) * (Δ / K)^k`. -/
+`N / K^k = (N / Δ^k) * (Δ / K)^k`.
+@isnad1 id=tendsto.1h1v.s6.5022fbea93c6 from=translated src=- shape=bd7cafa5 vocab=aa2dd421
+-/
 theorem proposition31_order_div_cap_pow_tendsto_one_from_proposition_3_1
     (k : ℕ) (hk : 0 < k) :
     Tendsto

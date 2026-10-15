@@ -55,20 +55,26 @@ open Finset
 variable {n : ℕ}
 
 /-- Coefficients are additive, the coefficient-space helper for the triangle inequality in
-`apd:thm:triangle`. -/
+`apd:thm:triangle`.
+@isnad1 id=eq.0h4v.s6.f3935f3e8e0c from=translated src=- shape=cd6eca0d vocab=adc1aee9
+-/
 theorem coeff_add (A B : Matrix (Bits n) (Bits n) ℂ) (p : PauliIndex n) :
     coeff (A + B) p = coeff A p + coeff B p := by
   rw [coeff, coeff, coeff, Matrix.mul_add, Matrix.trace_add, mul_add]
 
 /-- Coefficient vectors preserve addition, allowing the Pauli-norm form of the triangle step
-in `apd:thm:triangle` without choosing a norm instance on matrices. -/
+in `apd:thm:triangle` without choosing a norm instance on matrices.
+@isnad1 id=eq.0h3v.s7.c54c43d355e3 from=translated src=- shape=7510c759 vocab=c35d33db
+-/
 theorem coeffVec_add (A B : Matrix (Bits n) (Bits n) ℂ) :
     coeffVec (A + B) = coeffVec A + coeffVec B := by
   ext p
   change coeff (A + B) p = coeff A p + coeff B p
   exact coeff_add A B p
 
-/-- Zero contributes no error to the sum in `apd:thm:triangle`. -/
+/-- Zero contributes no error to the sum in `apd:thm:triangle`.
+@isnad1 id=eq.0h1v.s5.7dd2eae4e695 from=translated src=- shape=fc834695 vocab=9472600f
+-/
 @[simp] theorem pauliNorm_zero : pauliNorm (0 : Matrix (Bits n) (Bits n) ℂ) = 0 := by
   rw [← norm_coeffVec]
   have hzero : coeffVec (0 : Matrix (Bits n) (Bits n) ℂ) = 0 := by
@@ -78,13 +84,17 @@ theorem coeffVec_add (A B : Matrix (Bits n) (Bits n) ℂ) :
 
 /-- Minkowski's inequality for the Pauli 2-norm, used on the operator telescope of
 `apd:thm:triangle`. This is an inequality for the `ℓ²` norm of the coefficient vector, not for
-the matrix operator norm. -/
+the matrix operator norm.
+@isnad1 id=le.0h3v.s6.63de863df61c from=translated src=- shape=72be8e1d vocab=ab979094
+-/
 theorem pauliNorm_add_le (A B : Matrix (Bits n) (Bits n) ℂ) :
     pauliNorm (A + B) ≤ pauliNorm A + pauliNorm B := by
   simpa only [← norm_coeffVec, coeffVec_add] using norm_add_le (coeffVec A) (coeffVec B)
 
 /-- Finite-sum Minkowski for the normalized Pauli norm, the norm-level triangle step associated
-with the operator telescope in `apd:thm:triangle`. -/
+with the operator telescope in `apd:thm:triangle`.
+@isnad1 id=le.0h4v.s5.c4d8928c9bf7 from=translated src=- shape=52b1c252 vocab=379fce24
+-/
 theorem pauliNorm_sum_le {ι : Type*} (S : Finset ι)
     (A : ι → Matrix (Bits n) (Bits n) ℂ) :
     pauliNorm (∑ i ∈ S, A i) ≤ ∑ i ∈ S, pauliNorm (A i) := by
@@ -96,7 +106,9 @@ theorem pauliNorm_sum_le {ι : Type*} (S : Finset ι)
       exact (pauliNorm_add_le _ _).trans (add_le_add le_rfl ih)
 
 /-- A block's untruncated evolution is additive. This is the linearity used by the telescope
-in `apd:thm:triangle`; the generators need not be Hermitian here. -/
+in `apd:thm:triangle`; the generators need not be Hermitian here.
+@isnad1 id=eq.0h6v.s6.cc6bace1dfa0 from=translated src=- shape=60710633 vocab=d430c800
+-/
 theorem traj_add (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (A B : Matrix (Bits n) (Bits n) ℂ) (g : ℕ) :
     traj Gs θ (A + B) g = traj Gs θ A g + traj Gs θ B g := by
@@ -105,7 +117,9 @@ theorem traj_add (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
   | succ g ih => simp only [traj_succ, ih, Matrix.mul_add, Matrix.add_mul]
 
 /-- Zero remains zero under a whole untruncated block, the additive-map helper for
-`apd:thm:triangle`. -/
+`apd:thm:triangle`.
+@isnad1 id=eq.0h4v.s6.f2e0bb78b5ba from=translated src=- shape=61dda67f vocab=ae2eab79
+-/
 theorem traj_zero_input (Gs : ℕ → PauliString n) (θ : ℕ → ℝ) (g : ℕ) :
     traj Gs θ (0 : Matrix (Bits n) (Bits n) ℂ) g = 0 := by
   induction g with
@@ -121,7 +135,9 @@ noncomputable def blockEnd (Gs : ℕ → PauliString n) (θ : ℕ → ℝ) (peri
   map_add' A B := traj_add Gs θ A B period
 
 /-- `blockEnd` applies the untruncated `traj` through one block, the evolution that appears in
-`apd:eq:step_component`. -/
+`apd:eq:step_component`.
+@isnad1 id=eq.0h5v.s6.8a14f529b098 from=translated src=- shape=c0ee6277 vocab=0c1cabe6
+-/
 @[simp] theorem blockEnd_apply (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (period : ℕ) (A : Matrix (Bits n) (Bits n) ℂ) :
     blockEnd Gs θ period A = traj Gs θ A period := rfl
@@ -131,7 +147,9 @@ minus the LPD output after `r` steps is the sum of the discarded operators, each
 the remaining whole steps. Here `discardedStep d` is the zero-based `X_{d+1}` of
 `apd:eq:step_component`; its description as a high-weight projection is
 `discardedStep_eq_truncOp`. The proof is an induction on `r` that unfolds the definition of
-`discardedStep`; it needs no Hermiticity, locality or angle hypothesis. -/
+`discardedStep`; it needs no Hermiticity, locality or angle hypothesis.
+@isnad1 id=eq.0h7v.s9.06b03f3ea846 from=translated src=- shape=89135048 vocab=e3fd71e3
+-/
 theorem trotterStep_telescoping (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (period wstar : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) (r : ℕ) :
     ((blockEnd Gs θ period) ^ r) O - trotterStepTraj Gs θ period wstar O r =
@@ -159,7 +177,9 @@ theorem trotterStep_telescoping (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
 
 /-- The untruncated, modulo-indexed run executes the specified block between successive
 boundaries, as used in `apd:thm:triangle`. The endpoint `i = period` is
-included. No positivity assumption is needed; `period = 0` admits only `i = 0`. -/
+included. No positivity assumption is needed; `period = 0` admits only `i = 0`.
+@isnad1 id=eq.1h7v.s6.f47758153e1b from=translated src=- shape=23cc1589 vocab=3b00d2d8
+-/
 theorem traj_periodic_within_step (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (period : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) (d i : ℕ) (hi : i ≤ period) :
     traj (fun g => Gs (g % period)) (fun g => θ (g % period)) O (d * period + i) =
@@ -175,7 +195,9 @@ theorem traj_periodic_within_step (Gs : ℕ → PauliString n) (θ : ℕ → ℝ
 
 /-- The `r`-th power of the block evolution is the rotation-indexed untruncated `traj` at
 `r * period`, with the rotations repeated modulo `period`. This identifies the untruncated
-operator in `apd:thm:triangle`. It holds for every block length, including the empty block. -/
+operator in `apd:thm:triangle`. It holds for every block length, including the empty block.
+@isnad1 id=eq.0h6v.s8.860a3458ec83 from=translated src=- shape=055fdd88 vocab=f12c8eb6
+-/
 theorem blockEnd_pow_eq_periodic_traj (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (period : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) (r : ℕ) :
     ((blockEnd Gs θ period) ^ r) O =
@@ -189,7 +211,9 @@ theorem blockEnd_pow_eq_periodic_traj (Gs : ℕ → PauliString n) (θ : ℕ →
 
 /-- The operator telescope of `apd:thm:triangle`, entirely in terms of
 the rotation-indexed `traj`, the kept trajectory `trotterStepTraj` and the discarded operators
-`discardedStep`. -/
+`discardedStep`.
+@isnad1 id=eq.0h7v.s7.1612e6839451 from=translated src=- shape=1a0c2076 vocab=85ffd429
+-/
 theorem periodic_traj_sub_trotterStepTraj (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (period wstar : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) (r : ℕ) :
     traj (fun g => Gs (g % period)) (fun g => θ (g % period)) O (r * period) -
@@ -200,7 +224,9 @@ theorem periodic_traj_sub_trotterStepTraj (Gs : ℕ → PauliString n) (θ : ℕ
     trotterStep_telescoping Gs θ period wstar O r
 
 /-- Evolution through whole blocks preserves the Pauli 2-norm, the invariance needed for the
-norm-level part of `apd:thm:triangle`. This is where Hermiticity of the generators is used. -/
+norm-level part of `apd:thm:triangle`. This is where Hermiticity of the generators is used.
+@isnad1 id=eq.1h6v.s8.c52cc5570144 from=translated src=- shape=28a8c175 vocab=798ac70e
+-/
 theorem pauliNorm_blockEnd_pow {Gs : ℕ → PauliString n}
     (hG : ∀ g, IsSelfAdjoint (Gs g)) (θ : ℕ → ℝ) (period : ℕ)
     (O : Matrix (Bits n) (Bits n) ℂ) (r : ℕ) :
@@ -212,7 +238,9 @@ theorem pauliNorm_blockEnd_pow {Gs : ℕ → PauliString n}
 `apd:thm:triangle`, Minkowski's inequality and invariance of the Pauli norm bound the error by
 the sum of the Pauli norms of the discarded operators `X_{d+1}` (`apd:eq:step_component`).
 This is the norm-level part of `apd:thm:triangle`; the passage to expectation values in a
-state is not formalized. -/
+state is not formalized.
+@isnad1 id=le.1h7v.s8.047f76eaaae8 from=translated src=- shape=f309416a vocab=cf3ba573
+-/
 theorem pauliNorm_trotterStep_error_le {Gs : ℕ → PauliString n}
     (hG : ∀ g, IsSelfAdjoint (Gs g)) (θ : ℕ → ℝ) (period wstar : ℕ)
     (O : Matrix (Bits n) (Bits n) ℂ) (r : ℕ) :
@@ -224,7 +252,9 @@ theorem pauliNorm_trotterStep_error_le {Gs : ℕ → PauliString n}
 
 /-- The Pauli-norm triangle bound of `apd:thm:triangle` with the untruncated side written as
 the rotation-indexed `traj` of the repeated block. The only hypothesis is Hermiticity of the
-generators. -/
+generators.
+@isnad1 id=le.1h7v.s7.1e961ff37e71 from=translated src=- shape=2ab53e55 vocab=a8f71808
+-/
 theorem pauliNorm_periodic_traj_error_le {Gs : ℕ → PauliString n}
     (hG : ∀ g, IsSelfAdjoint (Gs g)) (θ : ℕ → ℝ) (period wstar : ℕ)
     (O : Matrix (Bits n) (Bits n) ℂ) (r : ℕ) :
@@ -236,7 +266,9 @@ theorem pauliNorm_periodic_traj_error_le {Gs : ℕ → PauliString n}
 
 /-- The norm-level error bound of `apd:thm:triangle` for the rotation-indexed execution
 `trotterTraj` with cuts at step boundaries. Positive block length is needed only to identify
-this scheduled trajectory with the step-indexed recurrence `trotterStepTraj`. -/
+this scheduled trajectory with the step-indexed recurrence `trotterStepTraj`.
+@isnad1 id=le.2h7v.s7.14e2e92827df from=translated src=- shape=2972950f vocab=8842b43d
+-/
 theorem pauliNorm_trotterTraj_error_le {Gs : ℕ → PauliString n}
     (hG : ∀ g, IsSelfAdjoint (Gs g)) (θ : ℕ → ℝ) (period wstar : ℕ)
     (O : Matrix (Bits n) (Bits n) ℂ) (r : ℕ) (hp : 0 < period) :
@@ -248,7 +280,9 @@ theorem pauliNorm_trotterTraj_error_le {Gs : ℕ → PauliString n}
 
 /-- The norm-level triangle bound with the discarded norms written as the high-weight norms of
 the operators before truncation, as in the last equality of `apd:thm:triangle`. These are not
-the high-weight norms of the kept operators, which vanish. -/
+the high-weight norms of the kept operators, which vanish.
+@isnad1 id=le.1h7v.s8.773771750856 from=translated src=- shape=03771b17 vocab=d941ef6a
+-/
 theorem pauliNorm_trotterStep_error_le_highNorm {Gs : ℕ → PauliString n}
     (hG : ∀ g, IsSelfAdjoint (Gs g)) (θ : ℕ → ℝ) (period wstar : ℕ)
     (O : Matrix (Bits n) (Bits n) ℂ) (r : ℕ) :

@@ -87,13 +87,22 @@ factors `Φ = (φ₀, φs)` [Lin22, hermfunc.tex:1121]. -/
 def qspO (φ₀ : ℝ) (φs : List ℝ) (x : ℝ) : HilbertOperator 1 :=
   φs.foldl (fun U φ => U * (signalO x * rotZ φ)) (rotZ φ₀ : HilbertOperator 1)
 
+/--
+@isnad1 id=eq.0h2v.s4.79d5124c59cd from=translated src=- shape=7e366221 vocab=91d9902a
+-/
 @[simp]
 theorem qspO_nil (φ₀ : ℝ) (x : ℝ) : qspO φ₀ [] x = rotZ φ₀ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.eb8de70b23d6 from=translated src=- shape=df682ab8 vocab=6042e039
+-/
 theorem qspO_concat (φ₀ : ℝ) (φs : List ℝ) (φ : ℝ) (x : ℝ) :
     qspO φ₀ (φs ++ [φ]) x = qspO φ₀ φs x * (signalO x * rotZ φ) := by
   simp [qspO, List.foldl_append]
 
+/--
+@isnad1 id=mem.1h1v.s9.970ceb2ee1e6 from=translated src=- shape=498473ad vocab=3c1ec962
+-/
 theorem signalO_mem_unitaryGroup {x : ℝ} (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
     signalO x ∈ Matrix.unitaryGroup (Fin (2 ^ 1)) ℂ := by
   have hs := sq_sqrt_one_sub_sq hx
@@ -109,6 +118,9 @@ theorem signalO_mem_unitaryGroup {x : ℝ} (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
   · simp [signalO, Matrix.mul_apply, Matrix.star_apply, Complex.conj_ofReal]
     linear_combination hs
 
+/--
+@isnad1 id=mem.1h3v.s9.554d18e77c52 from=translated src=- shape=46739481 vocab=7cf370d3
+-/
 theorem qspO_mem_unitaryGroup (φ₀ : ℝ) (φs : List ℝ) {x : ℝ}
     (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
     qspO φ₀ φs x ∈ Matrix.unitaryGroup (Fin (2 ^ 1)) ℂ := by
@@ -175,16 +187,24 @@ structure IsQSPPair (d : ℕ) (P Q : ℂ[X]) : Prop where
   parQ : HasParity Q (d + 1)
   norm : P * conjP P + (1 - X ^ 2) * (Q * conjP Q) = 1
 
+/--
+@isnad1 id=eq.2h4v.s5.2e80831a30f2 from=translated src=- shape=3735c68f vocab=66a7634c
+-/
 theorem IsQSPPair.coeff_P_eq_zero {d : ℕ} {P Q : ℂ[X]} (h : IsQSPPair d P Q)
     {m : ℕ} (hm : d < m) : P.coeff m = 0 := by
   refine (Polynomial.degree_le_iff_coeff_zero P d).mp h.degP m ?_
   exact_mod_cast hm
 
+/--
+@isnad1 id=eq.2h4v.s5.31446c74d28a from=translated src=- shape=f7fdd3fd vocab=6dd860dd
+-/
 theorem IsQSPPair.coeff_Q_eq_zero {d : ℕ} {P Q : ℂ[X]} (h : IsQSPPair d P Q)
     {m : ℕ} (hm : d ≤ m) : Q.coeff m = 0 :=
   (Polynomial.degree_lt_iff_coeff_zero Q d).mp h.degQ m (by exact_mod_cast hm)
 
-/-- Build the degree conditions from coefficient bounds. -/
+/-- Build the degree conditions from coefficient bounds.
+@isnad1 id=isqsppai.5h3v.s7.78056dec7fe9 from=translated src=- shape=6bf081d7 vocab=2eb467a9
+-/
 theorem isQSPPair_of_coeff {d : ℕ} {P Q : ℂ[X]}
     (hP : ∀ m, d < m → P.coeff m = 0) (hQ : ∀ m, d ≤ m → Q.coeff m = 0)
     (parP : HasParity P d) (parQ : HasParity Q (d + 1))
@@ -237,7 +257,9 @@ private theorem IsQSPPair.step {d : ℕ} {P Q : ℂ[X]} (h : IsQSPPair d P Q) (�
 
 /-- Soundness of QSP [Lin22, hermfunc.tex:1139]: every QSP product
 `U_Φ(x)` takes the form `qspMat P Q x` on `[-1,1]` for a pair `(P, Q)`
-satisfying the degree, parity, and normalization conditions. -/
+satisfying the degree, parity, and normalization conditions.
+@isnad1 id=ex.0h2v.s6.55c0b1dc68f2 from=translated src=- shape=72a915d2 vocab=0369e366
+-/
 theorem qspO_forward (φ₀ : ℝ) (φs : List ℝ) :
     ∃ P Q : ℂ[X], IsQSPPair φs.length P Q ∧
       ∀ x ∈ Set.Icc (-1 : ℝ) 1, qspO φ₀ φs x = qspMat P Q x := by
@@ -282,7 +304,9 @@ private def unstepQ (v w : ℂ) (P Q : ℂ[X]) : ℂ[X] :=
 
 /-- The polynomial normalization identity is equivalent to the pointwise
 normalization `|P(x)|² + (1-x²)|Q(x)|² = 1` on `[-1,1]`
-[Lin22, hermfunc.tex:1134]. -/
+[Lin22, hermfunc.tex:1134].
+@isnad1 id=iff.0h2v.s8.3abfe85770a3 from=translated src=- shape=9c985b11 vocab=1b3479e0
+-/
 theorem qsp_normalization_iff (P Q : ℂ[X]) :
     P * conjP P + (1 - X ^ 2) * (Q * conjP Q) = 1 ↔
       ∀ x ∈ Set.Icc (-1 : ℝ) 1,
@@ -323,9 +347,15 @@ def signalW (x : ℝ) : HilbertOperator 1 :=
 def qspW (φ₀ : ℝ) (φs : List ℝ) (x : ℝ) : HilbertOperator 1 :=
   φs.foldl (fun U φ => U * (signalW x * rotZ φ)) (rotZ φ₀ : HilbertOperator 1)
 
+/--
+@isnad1 id=eq.0h2v.s4.89463e99a2a8 from=translated src=- shape=7e366221 vocab=c59a3768
+-/
 @[simp]
 theorem qspW_nil (φ₀ : ℝ) (x : ℝ) : qspW φ₀ [] x = rotZ φ₀ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.a718dfb41722 from=translated src=- shape=df682ab8 vocab=dc304e5d
+-/
 theorem qspW_concat (φ₀ : ℝ) (φs : List ℝ) (φ : ℝ) (x : ℝ) :
     qspW φ₀ (φs ++ [φ]) x = qspW φ₀ φs x * (signalW x * rotZ φ) := by
   simp [qspW, List.foldl_append]
@@ -403,6 +433,9 @@ private theorem rotZ_mul_qspW (φ₀ : ℝ) (φs : List ℝ) (x : ℝ) :
           (rotZ (Real.pi / 4) : HilbertOperator 1),
         ← mul_assoc]
 
+/--
+@isnad1 id=mem.1h1v.s9.7fe32b014afd from=translated src=- shape=498473ad vocab=acafeebd
+-/
 theorem signalW_mem_unitaryGroup {x : ℝ} (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
     signalW x ∈ Matrix.unitaryGroup (Fin (2 ^ 1)) ℂ := by
   have h : signalW x = (rotZ (-(Real.pi / 4)) : HilbertOperator 1) *
@@ -412,6 +445,9 @@ theorem signalW_mem_unitaryGroup {x : ℝ} (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
   exact mul_mem (rotZ_mem_unitaryGroup _)
     (mul_mem (signalO_mem_unitaryGroup hx) (rotZ_mem_unitaryGroup _))
 
+/--
+@isnad1 id=mem.1h3v.s9.b1cf740647d0 from=translated src=- shape=46739481 vocab=93dcff68
+-/
 theorem qspW_mem_unitaryGroup (φ₀ : ℝ) (φs : List ℝ) {x : ℝ}
     (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
     qspW φ₀ φs x ∈ Matrix.unitaryGroup (Fin (2 ^ 1)) ℂ := by
@@ -423,7 +459,9 @@ theorem qspW_mem_unitaryGroup (φ₀ : ℝ) (φs : List ℝ) {x : ℝ}
         (rotZ_mem_unitaryGroup φ))
 
 /-- Pointwise, the Wx form holds iff the reflection form holds (conjugation
-by the unit `e^{i(π/4)Z}`). -/
+by the unit `e^{i(π/4)Z}`).
+@isnad1 id=iff.0h5v.s5.8cd2a98d72b6 from=translated src=- shape=d3e72c32 vocab=09db6094
+-/
 theorem qspW_form_iff (φ₀ : ℝ) (φs : List ℝ) (P Q : ℂ[X]) (x : ℝ) :
     qspW φ₀ φs x = qspMatW P Q x ↔ qspO φ₀ φs x = qspMat P Q x := by
   constructor

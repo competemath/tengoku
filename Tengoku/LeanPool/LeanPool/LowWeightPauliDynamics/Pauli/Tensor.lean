@@ -72,7 +72,9 @@ noncomputable def qubitXZ (x z : ZMod 2) : Matrix (ZMod 2) (ZMod 2) ℂ :=
   fun a b => if a = b + x then negOnePow (z * b) else 0
 
 /-- The one-qubit phase correction: `X^x Z^z` is `i ^ (-(x z))` times the positive Pauli
-matrix of `def:pauli_basis`. Only the `Y` site `x = z = 1` carries a nontrivial phase. -/
+matrix of `def:pauli_basis`. Only the `Y` site `x = z = 1` carries a nontrivial phase.
+@isnad1 id=eq.0h2v.s8.41328c4596a6 from=translated src=- shape=91b0dbcd vocab=5c27a450
+-/
 theorem qubitXZ_eq_phase_qubitPauli (x z : ZMod 2) :
     qubitXZ x z = iPow (-((x * z).val : ZMod 4)) • qubitPauli x z := by
   ext a b
@@ -117,7 +119,9 @@ theorem qubitXZ_eq_phase_qubitPauli (x z : ZMod 2) :
 This is the positive tensor-product convention in `def:pauli_basis`. -/
 def yPhase {n : ℕ} (x z : Bits n) : ZMod 4 := ∑ i, ((x i * z i).val : ZMod 4)
 
-/-- Head/tail decomposition of the Y-site phase, supporting `def:pauli_basis`. -/
+/-- Head/tail decomposition of the Y-site phase, supporting `def:pauli_basis`.
+@isnad1 id=eq.0h3v.s8.4c17803ba598 from=translated src=- shape=50070838 vocab=51bb3ede
+-/
 theorem yPhase_succ {n : ℕ} (x z : Bits (n + 1)) :
     yPhase x z = ((x 0 * z 0).val : ZMod 4) + yPhase (Fin.tail x) (Fin.tail z) := by
   simp only [yPhase, Fin.sum_univ_succ, Fin.tail]
@@ -132,7 +136,9 @@ noncomputable def tensorPauli : (n : ℕ) → Bits n → Bits n → Matrix (Bits
         ((qubitPauli (x 0) (z 0)).kronecker (tensorPauli n (Fin.tail x) (Fin.tail z)))
 
 /-- The bit-indexed tensor product acts by the local matrix entry times its tail entry,
-as required by `def:pauli_basis`. -/
+as required by `def:pauli_basis`.
+@isnad1 id=eq.0h5v.s8.75456c8f1ebb from=translated src=- shape=f08a4be8 vocab=126ec32b
+-/
 theorem tensorPauli_succ_apply {n : ℕ} (x z a b : Bits (n + 1)) :
     tensorPauli (n + 1) x z a b =
       qubitPauli (x 0) (z 0) (a 0) (b 0) *
@@ -144,7 +150,9 @@ def dropFirst {n : ℕ} (s : PauliString (n + 1)) : PauliString n :=
   ⟨Fin.tail s.x, Fin.tail s.z, s.phase⟩
 
 /-- The entrywise model factors into a one-qubit X^x Z^z entry and its tail. This is the
-algebraic step relating `toMatrix` to `def:pauli_basis`. -/
+algebraic step relating `toMatrix` to `def:pauli_basis`.
+@isnad1 id=eq.0h4v.s8.e9b4c20c768c from=translated src=- shape=be1b260c vocab=fa971ba5
+-/
 theorem toMatrix_split {n : ℕ} (s : PauliString (n + 1)) (a b : Bits (n + 1)) :
     toMatrix s a b = qubitXZ (s.x 0) (s.z 0) (a 0) (b 0) *
       toMatrix (dropFirst s) (Fin.tail a) (Fin.tail b) := by
@@ -174,7 +182,9 @@ theorem toMatrix_split {n : ℕ} (s : PauliString (n + 1)) (a b : Bits (n + 1)) 
 /-- **The matrix model is the phase-corrected tensor product of Pauli matrices.** For every
 Pauli string `s`, `toMatrix s` is `i ^ (s.phase - yPhase s.x s.z)` times the Kronecker product
 of the one-qubit Pauli matrices of `def:pauli_basis`. The identification of the entrywise model
-with a tensor product is thus a theorem, not an assumption. -/
+with a tensor product is thus a theorem, not an assumption.
+@isnad1 id=eq.0h2v.s7.9bb81afcd980 from=translated src=- shape=0a2b4642 vocab=12aafb34
+-/
 theorem toMatrix_eq_phase_tensor : ∀ {n : ℕ} (s : PauliString n),
     toMatrix s = iPow (s.phase - yPhase s.x s.z) • tensorPauli n s.x s.z := by
   intro n
@@ -215,14 +225,18 @@ def tensorRepresentative {n : ℕ} (p : PauliIndex n) : PauliString n :=
   ⟨p.1, p.2, yPhase p.1 p.2⟩
 
 /-- The matrix of the positive tensor representative is exactly the tensor product of Pauli
-matrices of `def:pauli_basis`, with no residual sign or phase. -/
+matrices of `def:pauli_basis`, with no residual sign or phase.
+@isnad1 id=eq.0h2v.s4.dfb3e398a11e from=translated src=- shape=bcd0ae4e vocab=74710e82
+-/
 theorem toMatrix_tensorRepresentative {n : ℕ} (p : PauliIndex n) :
     toMatrix (tensorRepresentative p) = tensorPauli n p.1 p.2 := by
   rw [toMatrix_eq_phase_tensor]
   simp [tensorRepresentative]
 
 /-- Doubling the full Y-count phase gives the symplectic sign. This verifies the
-Hermiticity convention for the positive tensor basis of `def:pauli_basis`. -/
+Hermiticity convention for the positive tensor basis of `def:pauli_basis`.
+@isnad1 id=eq.0h3v.s7.62968200a47c from=translated src=- shape=d254e4aa vocab=2b45a8dc
+-/
 theorem two_mul_yPhase : ∀ {n : ℕ} (x z : Bits n),
     2 * yPhase x z = signPhase (z ⬝ᵥ x) := by
   intro n
@@ -237,25 +251,33 @@ theorem two_mul_yPhase : ∀ {n : ℕ} (x z : Bits n),
       simp only [signPhase, mul_comm (x 0) (z 0)]
 
 /-- Positive tensor representatives are genuine Hermitian Pauli strings, not just tensors
-identified up to a freely chosen phase (`def:pauli_basis`). -/
+identified up to a freely chosen phase (`def:pauli_basis`).
+@isnad1 id=isselfad.0h2v.s3.4c808f6ea968 from=translated src=- shape=71337308 vocab=064ebe73
+-/
 theorem isSelfAdjoint_tensorRepresentative {n : ℕ} (p : PauliIndex n) :
     IsSelfAdjoint (tensorRepresentative p) := by
   apply isSelfAdjoint_iff_phase.2
   exact (two_mul_yPhase p.1 p.2).symm
 
 /-- The positive tensor representative has the intended signless class
-(`def:pauli_basis`). -/
+(`def:pauli_basis`).
+@isnad1 id=eq.0h2v.s3.47a66959ad7d from=translated src=- shape=6ddf6d3e vocab=77334746
+-/
 @[simp] theorem cls_tensorRepresentative {n : ℕ} (p : PauliIndex n) :
     cls (tensorRepresentative p) = p := rfl
 
-/-- The literal tensor Pauli is self-adjoint, as required by `def:pauli_basis`. -/
+/-- The literal tensor Pauli is self-adjoint, as required by `def:pauli_basis`.
+@isnad1 id=isselfad.0h2v.s5.ca6e2a643ac9 from=translated src=- shape=63839331 vocab=83e9daf3
+-/
 theorem isSelfAdjoint_tensorPauli {n : ℕ} (p : PauliIndex n) :
     IsSelfAdjoint (tensorPauli n p.1 p.2) := by
   rw [← toMatrix_tensorRepresentative]
   exact star_toMatrix_of_isSelfAdjoint (isSelfAdjoint_tensorRepresentative p)
 
 /-- Orthogonality of the positive tensor Pauli family, in the unnormalized convention of
-`def:pauli_basis`. The normalized statement divides this pairing by `2^n`. -/
+`def:pauli_basis`. The normalized statement divides this pairing by `2^n`.
+@isnad1 id=eq.0h3v.s8.4978dc23cc70 from=translated src=- shape=d8a09fd9 vocab=32be2456
+-/
 theorem trace_star_tensorPauli_mul {n : ℕ} (p q : PauliIndex n) :
     (star (tensorPauli n p.1 p.2) * tensorPauli n q.1 q.2).trace =
       if p = q then (2 : ℂ) ^ n else 0 := by
@@ -268,7 +290,9 @@ theorem trace_star_tensorPauli_mul {n : ℕ} (p q : PauliIndex n) :
     intro hpq
     exact h (Prod.ext hpq.1 hpq.2)
 
-/-- The Hermitian form of the positive tensor Pauli trace pairing in `def:pauli_basis`. -/
+/-- The Hermitian form of the positive tensor Pauli trace pairing in `def:pauli_basis`.
+@isnad1 id=eq.0h3v.s7.34f3fb687fcf from=translated src=- shape=27bb32cf vocab=1468c197
+-/
 theorem trace_tensorPauli_mul {n : ℕ} (p q : PauliIndex n) :
     (tensorPauli n p.1 p.2 * tensorPauli n q.1 q.2).trace =
       if p = q then (2 : ℂ) ^ n else 0 := by
@@ -290,7 +314,9 @@ noncomputable def bitsMatrixEquiv (n : ℕ) :
   Matrix.reindexAlgEquiv ℂ ℂ (bitsEquivFin n)
 
 /-- The change of computational-basis indexing preserves the adjoint as well as the algebra
-operations (`def:pauli_basis`). -/
+operations (`def:pauli_basis`).
+@isnad1 id=eq.0h2v.s10.0b62c680a662 from=translated src=- shape=db124c83 vocab=3dd755e3
+-/
 theorem bitsMatrixEquiv_star (n : ℕ) (A : Matrix (Bits n) (Bits n) ℂ) :
     bitsMatrixEquiv n (star A) = star (bitsMatrixEquiv n A) := rfl
 

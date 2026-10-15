@@ -17,11 +17,17 @@ open  UpperHalfPlane TopologicalSpace Set
 
 open scoped Interval Real NNReal ENNReal Topology BigOperators Nat
 
+/--
+@isnad1 id=ne.0h2v.s4.d8c3949c55b2 from=translated src=- shape=91928213 vocab=22487bd0
+-/
 theorem upper_ne_int (x : ℍ) (d : ℤ) : (x : ℂ) + d ≠ 0 := by
   intro h
   have h1 : 0 < (x : ℂ).im := by simpa using im_pos x
   simp [add_eq_zero_iff_eq_neg.mp h] at h1
 
+/--
+@isnad1 id=eqon.0h2v.s7.0ce1a199f341 from=translated src=- shape=f654d280 vocab=8fc0ca8a
+-/
 theorem aut_iter_deriv (d : ℤ) (k : ℕ) :
     EqOn (iteratedDerivWithin k (fun z : ℂ => 1 / (z + d)) {z : ℂ | 0 < z.im})
       (fun t : ℂ => (-1) ^ k * k ! * (1 / (t + d) ^ (k + 1))) {z : ℂ | 0 < z.im} := by
@@ -82,11 +88,17 @@ theorem aut_iter_deriv (d : ℤ) (k : ℕ) :
       apply IH hr
     simp_all
 
+/--
+@isnad1 id=eqon.0h2v.s7.20059ef8347f from=translated src=- shape=1280a7c9 vocab=1cfc4055
+-/
 theorem aut_iter_deriv' (d : ℤ) (k : ℕ) :
     EqOn (iteratedDerivWithin k (fun z : ℂ => 1 / (z - d)) {z : ℂ | 0 < z.im})
       (fun t : ℂ => (-1) ^ k * k ! * (1 / (t - d) ^ (k + 1))) {z : ℂ | 0 < z.im} := by
   intro x hx; simp_rw [sub_eq_add_neg]; simpa using aut_iter_deriv (-d : ℤ) k hx
 
+/--
+@isnad1 id=contdiff.0h2v.s6.62a29ce3d4e0 from=translated src=- shape=f3a0a15d vocab=da457002
+-/
 theorem aut_contDiffOn (d : ℤ) (k : ℕ) : ContDiffOn ℂ k (fun z : ℂ => 1 / (z - d))
     {z : ℂ | 0 < z.im} := by
   simp only [one_div]
@@ -96,6 +108,9 @@ theorem aut_contDiffOn (d : ℤ) (k : ℕ) : ContDiffOn ℂ k (fun z : ℂ => 1 
     apply contDiffOn_const
   intro x hx; simpa [sub_eq_add_neg] using upper_ne_int ⟨x, hx⟩ (-d)
 
+/--
+@isnad1 id=eqon.0h2v.s8.370c0182eb25 from=translated src=- shape=f0482f1a vocab=1cfc4055
+-/
 theorem iter_div_aut_add (d : ℤ) (k : ℕ) :
     EqOn (iteratedDerivWithin k (fun z : ℂ => 1 / (z - d) + 1 / (z + d)) {z : ℂ | 0 < z.im})
       ((fun t : ℂ => (-1) ^ k * k ! * (1 / (t - d) ^ (k + 1))) + fun t : ℂ =>
@@ -123,6 +138,9 @@ theorem iter_div_aut_add (d : ℤ) (k : ℕ) :
 variable {𝕜 : Type*} [NontriviallyNormedField 𝕜] {F : Type*}
   [NormedAddCommGroup F] [NormedSpace 𝕜 F] (n : ℕ) (f : 𝕜 → F) (s : Set 𝕜) (x : 𝕜)
 
+/--
+@isnad1 id=eqon.0h2v.s7.ac729e930814 from=translated src=- shape=6f3ebcbf vocab=e29cfc19
+-/
 theorem exp_iter_deriv_within (n m : ℕ) :
     EqOn (iteratedDerivWithin n (fun s : ℂ => Complex.exp (2 * ↑π * Complex.I * m * s))
            {z : ℂ | 0 < z.im})

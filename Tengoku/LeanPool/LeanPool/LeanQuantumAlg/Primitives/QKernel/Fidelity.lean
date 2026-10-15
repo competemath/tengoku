@@ -62,11 +62,16 @@ noncomputable def conjState (ψ : PureState n) : PureState n :=
             simp_all
       _ = 1 := ψ.norm_eq_one)
 
+/--
+@isnad1 id=eq.0h3v.s7.4f1c7524977a from=translated src=- shape=ed310ca7 vocab=4427cce2
+-/
 @[simp]
 theorem conjState_apply (ψ : PureState n) (i : Fin (2 ^ n)) :
     conjState ψ i = starRingEnd ℂ (ψ i) := rfl
 
-/-- Conjugating both arguments conjugates the inner product. -/
+/-- Conjugating both arguments conjugates the inner product.
+@isnad1 id=eq.0h3v.s6.ff692de028e7 from=translated src=- shape=feceef6c vocab=10b14ea3
+-/
 theorem inner_conjState (a b : PureState n) :
     inner ℂ (conjState a) (conjState b) = starRingEnd ℂ (inner ℂ a b) := by
   change inner ℂ ((conjState a : PureState n) : StateVector n)

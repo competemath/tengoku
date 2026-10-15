@@ -27,7 +27,9 @@ abbrev Base (n : ℕ) := Fin n → ℂ
 /-- The parameter space together with the distinguished complex variable. -/
 abbrev Ambient (n : ℕ) := Base n × ℂ
 
-/-- The additive zero in the ambient product is the pair of coordinate zeros. -/
+/-- The additive zero in the ambient product is the pair of coordinate zeros.
+@isnad1 id=eq.0h1v.s5.6c238a4a3bd8 from=translated src=- shape=4f4e3060 vocab=fe1ea3e7
+-/
 theorem ambient_zero_eq (n : ℕ) : (0 : Ambient n) = ((0 : Base n), 0) := by
   ext <;> simp
 
@@ -35,6 +37,9 @@ theorem ambient_zero_eq (n : ℕ) : (0 : Ambient n) = ((0 : Base n), 0) := by
 def lastSlice {n : ℕ} (f : Ambient n → ℂ) : ℂ → ℂ :=
   fun w ↦ f (0, w)
 
+/--
+@isnad1 id=eq.0h2v.s5.325dcc045356 from=translated src=- shape=513cfcc1 vocab=cfb12a30
+-/
 @[simp]
 theorem lastSlice_zero {n : ℕ} (f : Ambient n → ℂ) : lastSlice f 0 = f 0 := by
   rw [lastSlice, ambient_zero_eq]

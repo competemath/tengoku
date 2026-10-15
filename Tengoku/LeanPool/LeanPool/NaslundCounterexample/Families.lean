@@ -37,7 +37,9 @@ noncomputable def familyFromFour : ℕ → Finset (ZMod 3)[X]
   | 0 => base4
   | e + 1 => lift (8 * e + 4) (familyFromFour e)
 
-/-- The `e`-th member of the first family lies in `P_{3,8e}`. -/
+/-- The `e`-th member of the first family lies in `P_{3,8e}`.
+@isnad1 id=allbelow.0h1v.s4.62f03c7896ac from=translated src=- shape=e8ae737b vocab=7cb946ff
+-/
 theorem familyFromZero_allBelow (e : ℕ) : AllBelow (8 * e) (familyFromZero e) := by
   induction e with
   | zero => simpa [familyFromZero] using base0_allBelow
@@ -47,7 +49,9 @@ theorem familyFromZero_allBelow (e : ℕ) : AllBelow (8 * e) (familyFromZero e) 
       simp only [familyFromZero]
       exact lift_allBelow (8 * e) (familyFromZero e) ih
 
-/-- The `e`-th member of the first family has `810^e` elements. -/
+/-- The `e`-th member of the first family has `810^e` elements.
+@isnad1 id=eq.0h1v.s5.a1031d84a59d from=translated src=- shape=07129b0b vocab=06967f5f
+-/
 theorem familyFromZero_card (e : ℕ) : (familyFromZero e).card = 810 ^ e := by
   induction e with
   | zero => simpa [familyFromZero] using base0_card
@@ -56,7 +60,9 @@ theorem familyFromZero_card (e : ℕ) : (familyFromZero e).card = 810 ^ e := by
       rw [lift_card (8 * e) (familyFromZero e) (familyFromZero_allBelow e), ih]
       ring
 
-/-- Every member of the first family is square-difference-free. -/
+/-- Every member of the first family is square-difference-free.
+@isnad1 id=squaredi.0h1v.s2.a5769c05cc30 from=translated src=- shape=76a08d12 vocab=cea9b11b
+-/
 theorem familyFromZero_sdf (e : ℕ) : SquareDifferenceFree (familyFromZero e) := by
   induction e with
   | zero => simpa [familyFromZero] using base0_sdf
@@ -64,7 +70,9 @@ theorem familyFromZero_sdf (e : ℕ) : SquareDifferenceFree (familyFromZero e) :
       simp only [familyFromZero]
       exact lift_sdf (8 * e) (familyFromZero e) ⟨4 * e, by ring⟩ (familyFromZero_allBelow e) ih
 
-/-- The `e`-th member of the second family lies in `P_{3,8e+4}`. -/
+/-- The `e`-th member of the second family lies in `P_{3,8e+4}`.
+@isnad1 id=allbelow.0h1v.s4.016c3535e0ff from=translated src=- shape=b9ba7134 vocab=31ad8ab9
+-/
 theorem familyFromFour_allBelow (e : ℕ) : AllBelow (8 * e + 4) (familyFromFour e) := by
   induction e with
   | zero => simpa [familyFromFour] using base4_allBelow
@@ -74,7 +82,9 @@ theorem familyFromFour_allBelow (e : ℕ) : AllBelow (8 * e + 4) (familyFromFour
       simp only [familyFromFour]
       exact lift_allBelow (8 * e + 4) (familyFromFour e) ih
 
-/-- The `e`-th member of the second family has `27 · 810^e` elements. -/
+/-- The `e`-th member of the second family has `27 · 810^e` elements.
+@isnad1 id=eq.0h1v.s6.df68613cce40 from=translated src=- shape=80547ff6 vocab=f33e038d
+-/
 theorem familyFromFour_card (e : ℕ) : (familyFromFour e).card = 27 * 810 ^ e := by
   induction e with
   | zero => simpa [familyFromFour] using base4_card
@@ -83,7 +93,9 @@ theorem familyFromFour_card (e : ℕ) : (familyFromFour e).card = 27 * 810 ^ e :
       rw [lift_card (8 * e + 4) (familyFromFour e) (familyFromFour_allBelow e), ih]
       ring
 
-/-- Every member of the second family is square-difference-free. -/
+/-- Every member of the second family is square-difference-free.
+@isnad1 id=squaredi.0h1v.s2.a17b3506a034 from=translated src=- shape=76a08d12 vocab=10f3d207
+-/
 theorem familyFromFour_sdf (e : ℕ) : SquareDifferenceFree (familyFromFour e) := by
   induction e with
   | zero => simpa [familyFromFour] using base4_sdf

@@ -40,13 +40,17 @@ def weakBallRadialEnergy {n m : ℕ}
     (Du : Domain n → Gradient n m) (a : Domain n) (r : ℝ) : ℝ :=
   ∫ x in Metric.ball a r, weakRadialEnergyDensity Du a x
 
-/-- The open ball of radius `0` is empty, so its weak energy is zero. -/
+/-- The open ball of radius `0` is empty, so its weak energy is zero.
+@isnad1 id=eq.0h4v.s5.b2498a1062c0 from=translated src=- shape=8b3b4a43 vocab=4dfc0c68
+-/
 theorem weakBallEnergy_zero_radius {n m : ℕ}
     (Du : Domain n → Gradient n m) (a : Domain n) :
     weakBallEnergy Du a 0 = 0 := by
   simp [weakBallEnergy, Metric.ball_eq_empty.mpr le_rfl]
 
-/-- The open ball of radius `0` is empty, so its weak radial energy is zero. -/
+/-- The open ball of radius `0` is empty, so its weak radial energy is zero.
+@isnad1 id=eq.0h4v.s5.acbdebda5b9f from=translated src=- shape=8b3b4a43 vocab=df4a0f00
+-/
 theorem weakBallRadialEnergy_zero_radius {n m : ℕ}
     (Du : Domain n → Gradient n m) (a : Domain n) :
     weakBallRadialEnergy Du a 0 = 0 := by
@@ -57,7 +61,9 @@ def thetaFactor (n : ℕ) (r : ℝ) : ℝ :=
   r ^ (2 - (n : ℤ))
 
 /-- The monotonicity factor is continuous on any closed interval bounded away
-from the origin. -/
+from the origin.
+@isnad1 id=continuo.1h3v.s5.d2cabb1108e6 from=translated src=- shape=81673f16 vocab=7e650ad6
+-/
 theorem thetaFactor_continuousOn_Icc {n : ℕ} {s r : ℝ}
     (hs : 0 < s) :
     ContinuousOn (thetaFactor n) (Icc s r) := by
@@ -77,7 +83,9 @@ def weakTheta {n m : ℕ}
   thetaFactor n r * weakBallEnergy Du a r
 
 /-- The factor `r^(2-n)` is smooth, hence absolutely continuous, on every
-strictly positive radius interval. -/
+strictly positive radius interval.
+@isnad1 id=absolute.2h3v.s4.5bed1f2e4c42 from=translated src=- shape=c249e712 vocab=f1fdee7f
+-/
 theorem thetaFactor_absolutelyContinuousOnInterval {n : ℕ} {s r : ℝ}
     (hs : 0 < s) (hsr : s < r) :
     AbsolutelyContinuousOnInterval (thetaFactor n) s r := by
@@ -99,7 +107,9 @@ theorem thetaFactor_absolutelyContinuousOnInterval {n : ℕ} {s r : ℝ}
     exact han.contDiffOn (n := (1 : ℕ∞)) hud
   exact hcontdiff.absolutelyContinuousOnInterval
 
-/-- Derivative of the monotonicity weight. -/
+/-- Derivative of the monotonicity weight.
+@isnad1 id=eq.0h2v.s6.bde4e7146ba5 from=translated src=- shape=9d380bbc vocab=66c902be
+-/
 theorem deriv_thetaFactor {n : ℕ} {rho : ℝ} :
     deriv (thetaFactor n) rho =
       ((2 : ℝ) - (n : ℝ)) * rho ^ (1 - (n : ℤ)) := by
@@ -111,7 +121,9 @@ theorem deriv_thetaFactor {n : ℕ} {rho : ℝ} :
   rw [deriv_zpow, hcast, hexp]
 
 /-- Pointwise algebra turning the boundary identity into the derivative of the
-monotonicity quantity. -/
+monotonicity quantity.
+@isnad1 id=eq.2h5v.s7.66d70e01517e from=translated src=- shape=eb1a4834 vocab=979b4ce1
+-/
 theorem thetaFactor_boundary_algebra {n : ℕ} {rho E E' Q' : ℝ}
     (hrho : rho ≠ 0)
     (hboundary : rho * E' - ((n : ℝ) - 2) * E = 2 * rho * Q') :
@@ -149,7 +161,9 @@ def weakMonotonicityRhs {n m : ℕ}
   2 * ∫ x in Metric.ball a r \ Metric.ball a s,
     ‖x - a‖ ^ (2 - (n : ℤ)) * weakRadialEnergyDensity Du a x
 
-/-- The weak annular radial-energy term is nonnegative. -/
+/-- The weak annular radial-energy term is nonnegative.
+@isnad1 id=le.0h6v.s5.aa003ab2467e from=translated src=- shape=d311bca1 vocab=484fe436
+-/
 theorem weakMonotonicityRhs_nonneg {n m : ℕ}
     (Du : Domain n → Gradient n m) (a : Domain n) (s r : ℝ) :
     0 ≤ weakMonotonicityRhs Du a s r := by
@@ -171,42 +185,54 @@ def weakRadialRhsCoeff {n : ℕ} (phi : ℝ → ℝ) (x : Domain n) : ℝ :=
   ‖x‖ * deriv phi ‖x‖
 
 /-- Continuity of the main radial cutoff coefficient, assuming `phi` and `phi'`
-are continuous. -/
+are continuous.
+@isnad1 id=continuo.2h2v.s6.d2b7f4d87601 from=translated src=- shape=d245af48 vocab=79a23449
+-/
 theorem weakRadialMainCoeff_continuous {n : ℕ} {phi : ℝ → ℝ}
     (hphi : Continuous phi) (hdphi : Continuous (deriv phi)) :
     Continuous (fun x : Domain n => weakRadialMainCoeff n phi x) := by
   unfold weakRadialMainCoeff
   fun_prop
 
-/-- Continuity of the radial-energy cutoff coefficient, assuming `phi'` is continuous. -/
+/-- Continuity of the radial-energy cutoff coefficient, assuming `phi'` is continuous.
+@isnad1 id=continuo.1h2v.s6.cae19711cd9e from=translated src=- shape=9a62aa39 vocab=fcaa801a
+-/
 theorem weakRadialRhsCoeff_continuous {n : ℕ} {phi : ℝ → ℝ}
     (hdphi : Continuous (deriv phi)) :
     Continuous (fun x : Domain n => weakRadialRhsCoeff phi x) := by
   unfold weakRadialRhsCoeff
   fun_prop
 
-/-- A `C¹` scalar cutoff gives a continuous main radial coefficient. -/
+/-- A `C¹` scalar cutoff gives a continuous main radial coefficient.
+@isnad1 id=continuo.1h2v.s6.266a1b057a18 from=translated src=- shape=9653a381 vocab=3eb7e010
+-/
 theorem weakRadialMainCoeff_continuous_of_contDiff {n : ℕ} {phi : ℝ → ℝ}
     (hphi : ContDiff ℝ 1 phi) :
     Continuous (fun x : Domain n => weakRadialMainCoeff n phi x) :=
   weakRadialMainCoeff_continuous
     (n := n) (phi := phi) hphi.continuous hphi.continuous_deriv_one
 
-/-- A `C¹` scalar cutoff gives a continuous radial-energy coefficient. -/
+/-- A `C¹` scalar cutoff gives a continuous radial-energy coefficient.
+@isnad1 id=continuo.1h2v.s6.0d487983f410 from=translated src=- shape=9653a381 vocab=f3fa0dac
+-/
 theorem weakRadialRhsCoeff_continuous_of_contDiff {n : ℕ} {phi : ℝ → ℝ}
     (hphi : ContDiff ℝ 1 phi) :
     Continuous (fun x : Domain n => weakRadialRhsCoeff phi x) :=
   weakRadialRhsCoeff_continuous
     (n := n) (phi := phi) hphi.continuous_deriv_one
 
-/-- The main radial cutoff coefficient is a.e. strongly measurable on any set. -/
+/-- The main radial cutoff coefficient is a.e. strongly measurable on any set.
+@isnad1 id=aestrong.2h3v.s8.7d8ef35abb13 from=translated src=- shape=bc9dd502 vocab=cb2bf57c
+-/
 theorem weakRadialMainCoeff_aestronglyMeasurable {n : ℕ} {Ω : Set (Domain n)}
     {phi : ℝ → ℝ} (hphi : Continuous phi) (hdphi : Continuous (deriv phi)) :
     AEStronglyMeasurable (fun x : Domain n => weakRadialMainCoeff n phi x)
       (volume.restrict Ω) :=
   (weakRadialMainCoeff_continuous (n := n) (phi := phi) hphi hdphi).aestronglyMeasurable
 
-/-- The radial-energy cutoff coefficient is a.e. strongly measurable on any set. -/
+/-- The radial-energy cutoff coefficient is a.e. strongly measurable on any set.
+@isnad1 id=aestrong.1h3v.s8.c7d4dd6a69b1 from=translated src=- shape=76f1b988 vocab=a71e344f
+-/
 theorem weakRadialRhsCoeff_aestronglyMeasurable {n : ℕ} {Ω : Set (Domain n)}
     {phi : ℝ → ℝ} (hdphi : Continuous (deriv phi)) :
     AEStronglyMeasurable (fun x : Domain n => weakRadialRhsCoeff phi x)
@@ -214,7 +240,9 @@ theorem weakRadialRhsCoeff_aestronglyMeasurable {n : ℕ} {Ω : Set (Domain n)}
   (weakRadialRhsCoeff_continuous (n := n) (phi := phi) hdphi).aestronglyMeasurable
 
 /-- The main radial cutoff coefficient is a.e. strongly measurable for a `C¹`
-scalar cutoff. -/
+scalar cutoff.
+@isnad1 id=aestrong.1h3v.s8.e6c9581bec80 from=translated src=- shape=adb07970 vocab=f593e19b
+-/
 theorem weakRadialMainCoeff_aestronglyMeasurable_of_contDiff {n : ℕ}
     {Ω : Set (Domain n)} {phi : ℝ → ℝ} (hphi : ContDiff ℝ 1 phi) :
     AEStronglyMeasurable (fun x : Domain n => weakRadialMainCoeff n phi x)
@@ -222,7 +250,9 @@ theorem weakRadialMainCoeff_aestronglyMeasurable_of_contDiff {n : ℕ}
   (weakRadialMainCoeff_continuous_of_contDiff (n := n) hphi).aestronglyMeasurable
 
 /-- The radial-energy cutoff coefficient is a.e. strongly measurable for a `C¹`
-scalar cutoff. -/
+scalar cutoff.
+@isnad1 id=aestrong.1h3v.s8.91a5911c558d from=translated src=- shape=adb07970 vocab=17127ef0
+-/
 theorem weakRadialRhsCoeff_aestronglyMeasurable_of_contDiff {n : ℕ}
     {Ω : Set (Domain n)} {phi : ℝ → ℝ} (hphi : ContDiff ℝ 1 phi) :
     AEStronglyMeasurable (fun x : Domain n => weakRadialRhsCoeff phi x)
@@ -230,7 +260,9 @@ theorem weakRadialRhsCoeff_aestronglyMeasurable_of_contDiff {n : ℕ}
   (weakRadialRhsCoeff_continuous_of_contDiff (n := n) hphi).aestronglyMeasurable
 
 /-- If `phi` and `phi'` are bounded on `[0, R0]`, then the main radial coefficient
-is a.e. bounded on `B_R0(0)`. -/
+is a.e. bounded on `B_R0(0)`.
+@isnad1 id=eventual.3h5v.s9.0eec3ce736a6 from=translated src=- shape=a88bbc87 vocab=27f306af
+-/
 theorem weakRadialMainCoeff_ae_bound_on_ball_of_radius_bounds {n : ℕ}
     {phi : ℝ → ℝ} {R0 M0 M1 : ℝ}
     (hphi_bound : ∀ t : ℝ, 0 ≤ t → t ≤ R0 → ‖phi t‖ ≤ M0)
@@ -264,7 +296,9 @@ theorem weakRadialMainCoeff_ae_bound_on_ball_of_radius_bounds {n : ℕ}
     _ ≤ ‖((n : ℝ) - 2)‖ * M0 + R0 * M1 := add_le_add hterm₁ hterm₂
 
 /-- If `phi'` is bounded on `[0, R0]`, then the radial-energy coefficient is
-a.e. bounded on `B_R0(0)`. -/
+a.e. bounded on `B_R0(0)`.
+@isnad1 id=eventual.2h4v.s9.8cafd20f24ed from=translated src=- shape=f0646869 vocab=d61afa03
+-/
 theorem weakRadialRhsCoeff_ae_bound_on_ball_of_radius_bound {n : ℕ}
     {phi : ℝ → ℝ} {R0 M1 : ℝ}
     (hdphi_bound : ∀ t : ℝ, 0 ≤ t → t ≤ R0 → ‖deriv phi t‖ ≤ M1)

@@ -31,6 +31,9 @@ universe u v
 
 namespace GraphCoveringTheory.Kurosh
 
+/--
+@isnad1 id=nonempty.0h4v.s8.142719deba09 from=translated src=- shape=f81fe1a4 vocab=001e6292
+-/
 theorem Internal.coverFreeFactorLoopPath {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (x : KuroshFreePart G H) :

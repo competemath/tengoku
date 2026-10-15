@@ -25,6 +25,9 @@ namespace LeanPolyABC
 variable {k : Type _} [Field k] [DecidableEq k]
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=ne.1h2v.s6.399b3703c99b from=translated src=- shape=faea9f04 vocab=3709c3e2
+-/
 lemma ne_zero_of_natDegree_gt_0 {a : k[X]} (ha : a.natDegree > 0) : a ≠ 0 := fun h => by
   simp only [h, natDegree_zero, gt_iff_lt, lt_self_iff_false] at ha
 
@@ -37,6 +40,7 @@ For any nonzero polynomial a, b ∈ k[t] with k of characteristic zero,
 deg(a) + 2 ≤ 2 * deg(a^3 - b^2).
 
 Proof) Apply ABC for (-a^3, b^2, a^3 - b^2).
+@isnad1 id=le.3h3v.s9.4513036e5fae from=translated src=- shape=31ce6ad8 vocab=d544522b
 -/
 theorem davenport [CharZero k] {a b : k[X]}
     (ha : a.natDegree > 0) (hb : b.natDegree > 0) (hnz : a ^ 3 - b ^ 2 ≠ 0) :
@@ -55,6 +59,9 @@ end Polynomial
 
 omit [DecidableEq k] in
 -- Auxiliary lemma to remove nonzero hypothesis using coprimality and a' ≠ 0.
+/--
+@isnad1 id=ne.2h3v.s9.8832d77b9eb5 from=translated src=- shape=11aac06f vocab=18c95654
+-/
 theorem isCoprime_nonzero_c {a b : k[X]} (h : IsCoprime a b) (ha : derivative a ≠ 0) :
     a ^ 3 - b ^ 2 ≠ 0 := by
   by_contra h_eq_zero
@@ -73,6 +80,7 @@ omit [DecidableEq k] in
 For any coprime polynomial a, b ∈ k[t] with nonzero derivatives,
 deg(a) + 2 ≤ 2 * deg(a^3 - b^2).
 Proof) Apply ABC for (-a^3, b^2, a^3 - b^2).
+@isnad1 id=le.3h3v.s9.0cd572c49ad5 from=translated src=- shape=bcef458c vocab=5abf3063
 -/
 theorem davenport' {a b : k[X]} (hab : IsCoprime a b) (haderiv : derivative a ≠ 0)
     (hbderiv : derivative b ≠ 0) : a.natDegree + 2 ≤ 2 * (a ^ 3 - b ^ 2).natDegree := by

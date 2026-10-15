@@ -57,6 +57,9 @@ variable {n : ℕ}
 `highSet n w`. These are the classes a weight-`w` truncation retains. -/
 def lowSet (n w : ℕ) : Finset (PauliIndex n) := (highSet n w)ᶜ
 
+/--
+@isnad1 id=iff.0h3v.s5.03aceb3495c3 from=translated src=- shape=304854fc vocab=c19593cd
+-/
 @[simp] lemma mem_lowSet {w : ℕ} {p : PauliIndex n} : p ∈ lowSet n w ↔ wt p ≤ w := by
   simp [lowSet]
 
@@ -74,8 +77,14 @@ def siteEquiv : PauliIndex n ≃ (Fin n → ZMod 2 × ZMod 2) where
 /-- The sites at which the class is not the identity. `wt` counts exactly these. -/
 def psupp (p : PauliIndex n) : Finset (Fin n) := univ.filter fun i => siteFun p i ≠ 0
 
+/--
+@isnad1 id=eq.0h2v.s4.6399811210c2 from=translated src=- shape=5d96b82c vocab=5392159f
+-/
 lemma wt_eq_card_psupp (p : PauliIndex n) : wt p = (psupp p).card := rfl
 
+/--
+@isnad1 id=iff.0h3v.s7.f140e94e8cf1 from=translated src=- shape=7e6eaaa6 vocab=8066a3ab
+-/
 @[simp] lemma mem_psupp {p : PauliIndex n} {i : Fin n} : i ∈ psupp p ↔ siteFun p i ≠ 0 := by
   simp [psupp]
 
@@ -84,7 +93,9 @@ def vanishOff (S : Finset (Fin n)) : Finset (PauliIndex n) :=
   univ.filter fun p => ∀ i ∉ S, siteFun p i = 0
 
 /-- Exactly `4 ^ S.card` classes are the identity outside `S`: each site of `S` carries one of
-the four bit pairs, and every other site carries `0`. -/
+the four bit pairs, and every other site carries `0`.
+@isnad1 id=eq.0h2v.s5.0432d5343f32 from=translated src=- shape=5d832ae8 vocab=b0b0c576
+-/
 lemma card_vanishOff (S : Finset (Fin n)) : (vanishOff S).card = 4 ^ S.card := by
   classical
   have himg : vanishOff S
@@ -120,7 +131,9 @@ in a fixed `S` number exactly `4^{|S|}` (`card_vanishOff`) — so the union over
 of `S` bounds the whole stored set. The bound is not tight: it double-counts classes of weight
 `< w`, which lie in several `S`. `4` rather than `3` for the same reason — a site inside `S` is
 allowed to be the identity. Both are the price of avoiding a fiberwise exact count, and neither
-affects the `O(n^w)` conclusion this is here to supply. -/
+affects the `O(n^w)` conclusion this is here to supply.
+@isnad1 id=le.1h2v.s5.1dcf349c7174 from=translated src=- shape=75aef6ff vocab=7a78f440
+-/
 theorem card_lowSet_le (n w : ℕ) (hw : w ≤ n) :
     (lowSet n w).card ≤ n.choose w * 4 ^ w := by
   classical
@@ -145,7 +158,9 @@ theorem card_lowSet_le (n w : ℕ) (hw : w ≤ n) :
           smul_eq_mul]
 
 /-- The same bound as a polynomial in `n`: `C(n,w) ≤ n^w`. This is the form
-`apd:thm:runtime`'s `O(n^{w*})` names. -/
+`apd:thm:runtime`'s `O(n^{w*})` names.
+@isnad1 id=le.1h2v.s5.1031e50490da from=translated src=- shape=f0526941 vocab=50cc488d
+-/
 theorem card_lowSet_le_pow (n w : ℕ) (hw : w ≤ n) :
     (lowSet n w).card ≤ 4 ^ w * n ^ w :=
   (card_lowSet_le n w hw).trans <| by

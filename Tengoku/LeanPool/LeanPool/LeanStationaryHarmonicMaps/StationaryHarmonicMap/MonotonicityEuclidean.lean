@@ -39,7 +39,9 @@ namespace StationaryHarmonicMap
 /-- Current strongest packaged weak-map monotonicity interface: primitive
 cutoffs are constructed, thin radial-shell volume control supplies radius
 absolute continuity, and the final boundary-to-monotonicity increment is proved
-inside Lean rather than supplied as an external `hderive` input. -/
+inside Lean rather than supplied as an external `hderive` input.
+@isnad1 id=monotone.8h6v.s8.bce2d7728dae from=translated src=- shape=fe42d706 vocab=611fc986
+-/
 theorem weakTheta_monotone_from_weakStationaryMapIn_via_radialShellsVolume_primitiveCutoffs_closed
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -70,7 +72,9 @@ theorem weakTheta_monotone_from_weakStationaryMapIn_via_radialShellsVolume_primi
         hboundary hac hradial_radius hs hsr hr)
 
 /-- Restricted-weight version of the strongest packaged weak-map monotonicity
-interface through primitive cutoffs and thin radial-shell volume control. -/
+interface through primitive cutoffs and thin radial-shell volume control.
+@isnad1 id=monotone.8h6v.s8.3857c8677fc3 from=translated src=- shape=fe42d706 vocab=607446d4
+-/
 theorem weakTheta_monotone_from_stationaryMap_radialShells_closedForWeights
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -121,7 +125,9 @@ theorem weakTheta_monotone_from_stationaryMap_radialShells_closedForWeights
 `weakTheta_monotone_from_weakStationaryMapIn_via_radialShellsVolume_primitiveCutoffs_closed`,
 but the local integrability of the sharp-cutoff defect is discharged from the
 radius absolute-continuity package obtained via thin radial-shell volume
-control. -/
+control.
+@isnad1 id=monotone.7h6v.s8.f3534d5289a6 from=translated src=- shape=b236a29a vocab=f5e4f01d
+-/
 theorem weakTheta_monotone_from_W12Loc_radialShellsVolume_closed
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -151,7 +157,9 @@ theorem weakTheta_monotone_from_W12Loc_radialShellsVolume_closed
       henergy_radius hradial_radius hdefect_loc
 
 /-- Restricted-weight version of
-`weakTheta_monotone_from_W12Loc_radialShellsVolume_closed`. -/
+`weakTheta_monotone_from_W12Loc_radialShellsVolume_closed`.
+@isnad1 id=monotone.7h6v.s8.ccfb95d2c939 from=translated src=- shape=b236a29a vocab=87e35f22
+-/
 theorem weakTheta_monotone_from_W12Loc_radialShellsVolume_closedForWeights
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -182,7 +190,9 @@ theorem weakTheta_monotone_from_W12Loc_radialShellsVolume_closedForWeights
 
 /-- Strong packaged weak-map monotonicity interface where the two map-specific
 radius integration formulas are discharged from one generic ball-integral
-coarea/radius-derivative theorem. -/
+coarea/radius-derivative theorem.
+@isnad1 id=monotone.6h6v.s8.68e80871e620 from=translated src=- shape=98cc40be vocab=1d3dc22e
+-/
 theorem weakTheta_monotone_from_W12Loc_radialShellsVolume_coarea
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -205,7 +215,9 @@ theorem weakTheta_monotone_from_W12Loc_radialShellsVolume_coarea
 
 /-- Restricted-weight version of the strong packaged weak-map monotonicity
 interface: the generic coarea theorem only needs to hold for measurable
-essentially bounded radius weights. -/
+essentially bounded radius weights.
+@isnad1 id=monotone.6h6v.s8.1d3557778305 from=translated src=- shape=98cc40be vocab=add727e1
+-/
 theorem weakTheta_monotone_from_W12Loc_radialShellsVolume_coareaForWeights
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -227,7 +239,9 @@ theorem weakTheta_monotone_from_W12Loc_radialShellsVolume_coareaForWeights
     hradius.1 hradius.2
 
 /-- Strong packaged weak-map monotonicity interface where the thin-shell input
-is reduced to absolute continuity of the Euclidean ball-volume radius function. -/
+is reduced to absolute continuity of the Euclidean ball-volume radius function.
+@isnad1 id=monotone.6h6v.s8.281c8234c32c from=translated src=- shape=98cc40be vocab=56e82e6d
+-/
 theorem weakTheta_monotone_from_W12Loc_ballVolumeAC_coarea
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -247,7 +261,9 @@ theorem weakTheta_monotone_from_W12Loc_ballVolumeAC_coarea
     hcoarea
 
 /-- Restricted-weight version where the thin-shell input is reduced to absolute
-continuity of the Euclidean ball-volume radius function. -/
+continuity of the Euclidean ball-volume radius function.
+@isnad1 id=monotone.6h6v.s8.d33dc8670090 from=translated src=- shape=98cc40be vocab=59409090
+-/
 theorem weakTheta_monotone_from_W12Loc_ballVolumeAC_coareaForWeights
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -269,7 +285,9 @@ theorem weakTheta_monotone_from_W12Loc_ballVolumeAC_coareaForWeights
 /-- Strong packaged weak-map monotonicity interface with the Euclidean
 thin-shell estimate discharged from the explicit ball-volume formula.  The only
 remaining geometric analysis input is the ball-integral coarea/radius-derivative
-formula. -/
+formula.
+@isnad1 id=monotone.5h6v.s8.bf9a06dfa323 from=translated src=- shape=2b21168a vocab=56adb8e4
+-/
 theorem weakTheta_monotone_from_W12Loc_euclidean_coarea
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -287,7 +305,9 @@ theorem weakTheta_monotone_from_W12Loc_euclidean_coarea
 
 /-- Restricted-weight Euclidean weak-map monotonicity interface.  The remaining
 coarea input only has to be proved for measurable essentially bounded radius
-weights. -/
+weights.
+@isnad1 id=monotone.5h6v.s8.ec35fe038329 from=translated src=- shape=2b21168a vocab=e834b0c2
+-/
 theorem weakTheta_monotone_from_W12Loc_euclidean_coareaForWeights
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -308,7 +328,9 @@ approximation bridge for bounded measurable radius weights.  This removes the
 abstract coarea/radius-derivative hypothesis from the final interface; the only
 remaining input for this route is a bounded interval-step approximation of each
 radius weight on `(0, R0)`, with an exceptional set whose radial pullback is
-null on the ball. -/
+null on the ball.
+@isnad1 id=monotone.5h6v.s8.d5b6ec5676cc from=translated src=- shape=876512bc vocab=72270483
+-/
 theorem weakTheta_monotone_from_W12Loc_euclidean_finiteIntervalStepApproxAE
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -333,7 +355,9 @@ theorem weakTheta_monotone_from_W12Loc_euclidean_finiteIntervalStepApproxAE
 /-- Same Euclidean weak-map monotonicity interface, but with the remaining
 coarea input split into a radial density representation plus a.e. derivative
 identification.  This is the next target for replacing the abstract coarea
-assumption by a direct measure-theoretic proof. -/
+assumption by a direct measure-theoretic proof.
+@isnad1 id=monotone.5h6v.s8.ff554fc96232 from=translated src=- shape=2b21168a vocab=19d36619
+-/
 theorem weakTheta_monotone_from_W12Loc_euclidean_radiusRepresentation
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -351,7 +375,9 @@ theorem weakTheta_monotone_from_W12Loc_euclidean_radiusRepresentation
 
 /-- Same Euclidean weak-map monotonicity interface with the final coarea input
 split into the pure weighted radial representation and the a.e. derivative
-identification of the representing density. -/
+identification of the representing density.
+@isnad1 id=monotone.6h6v.s8.c4a8dea03410 from=translated src=- shape=98cc40be vocab=2c1d7052
+-/
 theorem weakTheta_monotone_from_W12Loc_euclidean_weightedRepresentation
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -371,7 +397,9 @@ theorem weakTheta_monotone_from_W12Loc_euclidean_weightedRepresentation
 
 /-- Same Euclidean weak-map monotonicity interface after the unrestricted
 one-dimensional derivative-identification theorem has been proved: the only
-remaining coarea-side input is the pure weighted radial representation. -/
+remaining coarea-side input is the pure weighted radial representation.
+@isnad1 id=monotone.5h6v.s8.3a773e334258 from=translated src=- shape=2b21168a vocab=b94b3e95
+-/
 theorem weakTheta_monotone_from_W12Loc_euclidean_weightedRepresentation_identified
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -390,7 +418,9 @@ theorem weakTheta_monotone_from_W12Loc_euclidean_weightedRepresentation_identifi
 
 /-- Restricted-weight Euclidean weak-map monotonicity interface with the final
 coarea input split into the restricted weighted radial representation and the
-restricted a.e. derivative identification. -/
+restricted a.e. derivative identification.
+@isnad1 id=monotone.6h6v.s8.8337802280d1 from=translated src=- shape=98cc40be vocab=51854ac3
+-/
 theorem weakTheta_monotone_from_W12Loc_euclidean_weightedRepresentationForWeights
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -410,7 +440,9 @@ theorem weakTheta_monotone_from_W12Loc_euclidean_weightedRepresentationForWeight
 
 /-- Restricted-weight Euclidean weak-map monotonicity interface after the
 restricted derivative-identification theorem has been proved: the only
-remaining coarea-side input is the restricted weighted radial representation. -/
+remaining coarea-side input is the restricted weighted radial representation.
+@isnad1 id=monotone.5h6v.s8.500a2f898631 from=translated src=- shape=2b21168a vocab=09d38aac
+-/
 theorem weakTheta_monotone_from_W12Loc_euclidean_weightedRepresentationForWeights_identified
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -429,7 +461,9 @@ theorem weakTheta_monotone_from_W12Loc_euclidean_weightedRepresentationForWeight
 
 /-- Fully Euclidean weak-map monotonicity interface after the radial
 pushforward/coarea representation has been supplied by the Radon-Nikodym
-density. -/
+density.
+@isnad1 id=monotone.4h6v.s7.3a24a940c32e from=translated src=- shape=9e6a1e10 vocab=2a550d4e
+-/
 theorem weakTheta_monotone_from_W12Loc_euclidean
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -448,7 +482,9 @@ theorem weakTheta_monotone_from_W12Loc_euclidean
 
 This is the equality form of the monotonicity formula:
 `weakTheta r - weakTheta s` is the annular radial-energy term
-`weakMonotonicityRhs s r`. -/
+`weakMonotonicityRhs s r`.
+@isnad1 id=eq.6h8v.s8.019340c3fcc8 from=translated src=- shape=9f7806d2 vocab=09bced73
+-/
 theorem weakTheta_increment_eq_weakMonotonicityRhs_from_W12Loc_euclidean
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
@@ -508,7 +544,9 @@ theorem weakTheta_increment_eq_weakMonotonicityRhs_from_W12Loc_euclidean
 /-- Final packaged weak-map interface with the primitive-cutoff realization
 constructed from interval integrals and smooth bumps.  The remaining
 one-dimensional inputs are the energy IBP formula and its integrability side
-conditions. -/
+conditions.
+@isnad1 id=monotone.11h6v.s9.81da957df361 from=translated src=- shape=9069c4ac vocab=907c0fe9
+-/
 theorem weakTheta_monotone_from_weakStationaryMapIn_via_constructed_primitive
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}

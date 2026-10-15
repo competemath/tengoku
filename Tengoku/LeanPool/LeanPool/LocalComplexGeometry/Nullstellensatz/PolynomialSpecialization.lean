@@ -34,7 +34,9 @@ def functionToGermRingHom (n : ℕ) :
 
 /-- A polynomial identity after passing from coefficient functions to their
 germs holds pointwise after specializing the coefficient functions on a
-single neighborhood of the origin. -/
+single neighborhood of the origin.
+@isnad1 id=eventual.1h3v.s8.f7a6d9706bfd from=translated src=- shape=f0940a2e vocab=06432b3b
+-/
 theorem eventually_polynomial_map_eval_eq_of_map_germ_eq {n : ℕ}
     (p q : Polynomial (ComplexEuclidean n → ℂ))
     (hmap : p.map (functionToGermRingHom n) =
@@ -67,7 +69,9 @@ theorem eventually_polynomial_map_eval_eq_of_map_germ_eq {n : ℕ}
       Polynomial.notMem_support_iff.mp hkq]
 
 /-- Eventual equality of coefficient functions gives eventual equality of
-their fixed polynomial evaluations at every last-coordinate value. -/
+their fixed polynomial evaluations at every last-coordinate value.
+@isnad1 id=eventual.1h3v.s8.7fe4959d1b31 from=translated src=- shape=abadeed9 vocab=3df93c5b
+-/
 theorem eventually_polynomial_eval_eq_of_map_germ_eq {n : ℕ}
     (p q : Polynomial (ComplexEuclidean n → ℂ))
     (hmap : p.map (functionToGermRingHom n) =

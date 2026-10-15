@@ -55,7 +55,9 @@ structure IsLocalLevelSetParametrization
 namespace IsLocalLevelSetParametrization
 
 /-- Near the base point, membership in the regular level set is exactly
-recovery by the local parameter/fiber-coordinate pair. -/
+recovery by the local parameter/fiber-coordinate pair.
+@isnad1 id=eventual.1h6v.s6.b27292bef3bf from=translated src=- shape=b9a8a311 vocab=bde2b612
+-/
 theorem eventually_mem_fiber_iff
     {n m : ℕ}
     {F : ComplexEuclidean n → ComplexEuclidean m}
@@ -78,7 +80,9 @@ theorem eventually_mem_fiber_iff
     rw [hx] at hparam
     exact hparam
 
-/-- The parameter map is injective on some neighborhood of the origin. -/
+/-- The parameter map is injective on some neighborhood of the origin.
+@isnad1 id=ex.1h6v.s7.c141ed2ef928 from=translated src=- shape=dbb2487c vocab=487945ea
+-/
 theorem exists_mem_nhds_parameter_injOn
     {n m : ℕ}
     {F : ComplexEuclidean n → ComplexEuclidean m}
@@ -105,7 +109,9 @@ analytically parametrized by a neighborhood of the origin in `ℂ^(n-m)`, with
 an analytic local inverse defined on the ambient source.
 
 Only surjectivity at the marked point is assumed; no separate neighborhood
-constant-rank hypothesis is needed. -/
+constant-rank hypothesis is needed.
+@isnad1 id=ex.2h4v.s9.fac8ab9ed70a from=translated src=- shape=0427ce3a vocab=a60d7415
+-/
 theorem holomorphic_regularLevelSet_parametrization
     {n m : ℕ}
     {F : ComplexEuclidean n → ComplexEuclidean m}

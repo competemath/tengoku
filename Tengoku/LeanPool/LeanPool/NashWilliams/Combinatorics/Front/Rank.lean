@@ -55,7 +55,9 @@ def treeExt (F : Set (List ℕ)) (a b : List ℕ) : Prop :=
   a ∈ tree F ∧ b ∈ tree F ∧ b <+: a ∧ b ≠ a
 
 /-- If every finite initial segment of `b` is strictly increasing, then `b` is strictly
-monotone. -/
+monotone.
+@isnad1 id=strictmo.1h1v.s4.0a57095eca29 from=translated src=- shape=f84ba96e vocab=c8326ab4
+-/
 theorem strictMono_of_pairwise_map {b : ℕ → ℕ}
     (h : ∀ n, ((List.range n).map b).Pairwise (· < ·)) : StrictMono b := by
   intro i j hij
@@ -64,7 +66,9 @@ theorem strictMono_of_pairwise_map {b : ℕ → ℕ}
   simpa using hp
 
 /-- **Enumeration bridge.** A strictly monotone `b` whose range is contained in that of a
-strictly monotone `M` is a subsequence `M ∘ g` of `M`, for a unique strictly monotone `g`. -/
+strictly monotone `M` is a subsequence `M ∘ g` of `M`, for a unique strictly monotone `g`.
+@isnad1 id=ex.3h2v.s6.b5284ee43954 from=translated src=- shape=fd765489 vocab=ab250355
+-/
 theorem exists_strictMono_comp {M b : ℕ → ℕ} (hM : StrictMono M) (hb : StrictMono b)
     (hsub : ∀ i, b i ∈ Set.range M) : ∃ g : ℕ → ℕ, StrictMono g ∧ M ∘ g = b := by
   choose g hg using hsub
@@ -74,7 +78,9 @@ theorem exists_strictMono_comp {M b : ℕ → ℕ} (hM : StrictMono M) (hb : Str
   exact hM.lt_iff_lt.mp this
 
 /-- **Proper end-extension is well-founded on the tree of a front.** Proved directly: there is no
-infinite descending chain. -/
+infinite descending chain.
+@isnad1 id=wellfoun.1h2v.s4.2a7fdf979e25 from=translated src=- shape=178dfd20 vocab=35704a3a
+-/
 theorem IsFront.wellFounded_treeExt {F : Set (List ℕ)} {M : ℕ → ℕ} (hF : IsFront F M) :
     WellFounded (treeExt F) := by
   rw [wellFounded_iff_isEmpty_descending_chain]
@@ -152,23 +158,31 @@ theorem IsFront.wellFounded_treeExt {F : Set (List ℕ)} {M : ℕ → ℕ} (hF :
 
 variable {F : Set (List ℕ)} {M : ℕ → ℕ}
 
-/-- The root `[]` is in the tree of any front (fronts are nonempty by Density). -/
+/-- The root `[]` is in the tree of any front (fronts are nonempty by Density).
+@isnad1 id=mem.1h2v.s4.2f42404a48d7 from=translated src=- shape=3aa1e196 vocab=8eb29e41
+-/
 theorem IsFront.nil_mem_tree (hF : IsFront F M) : [] ∈ tree F := by
   obtain ⟨t, ht, _⟩ := hF.dense id strictMono_id
   exact ⟨t, ht, List.nil_prefix⟩
 
-/-- `M` being a strictly monotone enumeration, there is an element of `M` above any bound. -/
+/-- `M` being a strictly monotone enumeration, there is an element of `M` above any bound.
+@isnad1 id=ex.1h2v.s5.55ce96c2f9a4 from=translated src=- shape=29bdf6b8 vocab=450f0145
+-/
 theorem exists_gt_range (hM : StrictMono M) (n : ℕ) : ∃ x ∈ Set.range M, n < x :=
   (Set.infinite_range_of_injective hM.injective).exists_gt n
 
-/-- An increasing list contained in `M` can be extended by one further element of `M`. -/
+/-- An increasing list contained in `M` can be extended by one further element of `M`.
+@isnad1 id=ex.1h2v.s5.19d11ade17f5 from=translated src=- shape=47dbedf6 vocab=2976e9df
+-/
 theorem exists_extend_gt (hM : StrictMono M) (s : List ℕ) :
     ∃ x ∈ Set.range M, ∀ y ∈ s, y < x := by
   obtain ⟨x, hx, hlt⟩ := exists_gt_range hM (s.toFinset.sup id)
   refine ⟨x, hx, fun y hy => ?_⟩
   exact lt_of_le_of_lt (Finset.le_sup (f := id) (List.mem_toFinset.mpr hy)) hlt
 
-/-- Any increasing list in `M` extends to an increasing list in `M` of any prescribed length. -/
+/-- Any increasing list in `M` extends to an increasing list in `M` of any prescribed length.
+@isnad1 id=ex.4h3v.s6.d2638863dd02 from=translated src=- shape=e82da753 vocab=5aaef189
+-/
 theorem exists_extend_len (hM : StrictMono M) (L : ℕ) :
     ∀ (s : List ℕ), s.Pairwise (· < ·) → (∀ x ∈ s, x ∈ Set.range M) →
       s.length ≤ L → ∃ t, s <+: t ∧ t.Pairwise (· < ·) ∧
@@ -195,7 +209,9 @@ theorem exists_extend_len (hM : StrictMono M) (L : ℕ) :
     obtain ⟨t, hpre, ht, htM, htlen⟩ := ih (s ++ [x]) hs' hs'M (by simp; omega) (by simp; omega)
     exact ⟨t, (List.prefix_append s [x]).trans hpre, ht, htM, htlen⟩
 
-/-- Membership in the tree of `[M]^k`: increasing lists in `M` of length at most `k`. -/
+/-- Membership in the tree of `[M]^k`: increasing lists in `M` of length at most `k`.
+@isnad1 id=iff.1h3v.s6.527727926d88 from=translated src=- shape=ebef6e7e vocab=afa26c24
+-/
 theorem mem_tree_powK (hM : StrictMono M) {k : ℕ} {s : List ℕ} :
     s ∈ tree (powK M k) ↔
       s.Pairwise (· < ·) ∧ (∀ x ∈ s, x ∈ Set.range M) ∧ s.length ≤ k := by
@@ -207,7 +223,9 @@ theorem mem_tree_powK (hM : StrictMono M) {k : ℕ} {s : List ℕ} :
     obtain ⟨t, hpre, ht, htM, htlen⟩ := exists_extend_len hM k s hs hsM hlen
     exact ⟨t, ⟨htlen, ht, htM⟩, hpre⟩
 
-/-- Membership in the tree of the Schreier front. -/
+/-- Membership in the tree of the Schreier front.
+@isnad1 id=iff.1h2v.s6.d8d3fad4fa0d from=translated src=- shape=4b08009e vocab=0a65ef70
+-/
 theorem mem_tree_schreier (hM : StrictMono M) {s : List ℕ} :
     s ∈ tree (schreier M) ↔
       s.Pairwise (· < ·) ∧ (∀ x ∈ s, x ∈ Set.range M) ∧

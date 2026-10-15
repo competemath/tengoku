@@ -39,25 +39,33 @@ noncomputable def curveInfDist (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ) : ℝ
 
 /-! ### Basic avoidance criteria -/
 
-/-- Trivial wrapper: CurveAvoids follows from pointwise inequality. -/
+/-- Trivial wrapper: CurveAvoids follows from pointwise inequality.
+@isnad1 id=curveavo.1h4v.s5.ce87e8318ecc from=translated src=- shape=2cd88944 vocab=5722772f
+-/
 theorem curveAvoids_of_ne_on_Icc {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
     (h : ∀ t ∈ Icc a b, γ t ≠ z₀) : CurveAvoids γ a b z₀ :=
   h
 
 /-- If every point on the curve has imaginary part strictly greater than z₀.im,
-then the curve avoids z₀. -/
+then the curve avoids z₀.
+@isnad1 id=curveavo.1h4v.s5.d0bed1a5d456 from=translated src=- shape=dff5ac03 vocab=f6bcd6f0
+-/
 theorem curveAvoids_of_im_lt {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
     (h : ∀ t ∈ Icc a b, z₀.im < (γ t).im) : CurveAvoids γ a b z₀ :=
   fun t ht heq => absurd (heq ▸ h t ht) (lt_irrefl _)
 
 /-- If every point on the curve has real part different from z₀.re,
-then the curve avoids z₀. -/
+then the curve avoids z₀.
+@isnad1 id=curveavo.1h4v.s5.d1e9ee84d822 from=translated src=- shape=248de754 vocab=ef8d86cd
+-/
 theorem curveAvoids_of_re_ne {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
     (h : ∀ t ∈ Icc a b, (γ t).re ≠ z₀.re) : CurveAvoids γ a b z₀ :=
   fun t ht heq => h t ht (by rw [heq])
 
 /-- If every point on the curve has norm different from ‖z₀‖, then the curve avoids z₀.
-Useful for curves on circles. -/
+Useful for curves on circles.
+@isnad1 id=curveavo.1h4v.s5.e5ba64e112ee from=translated src=- shape=6b1d4c39 vocab=44a7d093
+-/
 theorem curveAvoids_of_norm_ne {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
     (h : ∀ t ∈ Icc a b, ‖γ t‖ ≠ ‖z₀‖) : CurveAvoids γ a b z₀ :=
   fun t ht heq => h t ht (by rw [heq])
@@ -65,7 +73,9 @@ theorem curveAvoids_of_norm_ne {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
 /-! ### Positive inf-distance -/
 
 /-- If a continuous curve on [a,b] with a ≤ b avoids z₀, then the infimum
-distance from z₀ to the curve image is positive. -/
+distance from z₀ to the curve image is positive.
+@isnad1 id=lt.3h4v.s6.6acb8c86ed47 from=translated src=- shape=6de2df7f vocab=b2770379
+-/
 theorem curveInfDist_pos_of_avoids {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
     (hγ : ContinuousOn γ (Icc a b)) (hab : a ≤ b)
     (hav : CurveAvoids γ a b z₀) : 0 < curveInfDist γ a b z₀ := by
@@ -80,7 +90,9 @@ theorem curveInfDist_pos_of_avoids {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
 /-! ### slitPlane membership -/
 
 /-- If a continuous curve avoids z₀ and every shifted value γ t - z₀ has positive
-imaginary part or positive real part, then every shifted value lies in the slit plane. -/
+imaginary part or positive real part, then every shifted value lies in the slit plane.
+@isnad1 id=mem.4h5v.s7.9865919983bc from=translated src=- shape=78114487 vocab=126c69b1
+-/
 theorem curve_sub_in_slitPlane {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
     (_hγ : ContinuousOn γ (Icc a b))
     (_hav : CurveAvoids γ a b z₀)

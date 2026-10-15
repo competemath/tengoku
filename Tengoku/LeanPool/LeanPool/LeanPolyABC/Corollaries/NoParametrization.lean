@@ -29,6 +29,9 @@ variable {k : Type _} [Field k]
 def IsConst (x : RatFunc k) :=
   ∃ c : k, x = RatFunc.C c
 
+/--
+@isnad1 id=iff.1h4v.s9.292514e9631b from=translated src=- shape=bdcd483c vocab=c417a716
+-/
 theorem associates_pow_eq_pow_iff {A B : Associates k[X]} {n : ℕ} (hn : n ≠ 0) :
     A ^ n = B ^ n ↔ A = B := by
   classical
@@ -46,6 +49,9 @@ theorem associates_pow_eq_pow_iff {A B : Associates k[X]} {n : ℕ} (hn : n ≠ 
       apply Nat.eq_of_mul_eq_mul_left (Nat.zero_lt_of_ne_zero hn)
       rw [← Associates.count_pow hA hp n, ← Associates.count_pow hB hp n, h]
 
+/--
+@isnad1 id=isconst.1h2v.s5.20371413cc42 from=translated src=- shape=b47d3f4c vocab=1dd40268
+-/
 theorem isConst_of_associated {f : RatFunc k} (h : Associated f.num f.denom) : IsConst f := by
   rcases h.symm with ⟨u, heq⟩
   rcases Polynomial.isUnit_iff.mp u.isUnit with ⟨c, _, eq_c⟩
@@ -56,6 +62,9 @@ theorem isConst_of_associated {f : RatFunc k} (h : Associated f.num f.denom) : I
   rw [f.num_div_denom, RatFunc.algebraMap_C] at uu
   exact ⟨c, uu⟩
 
+/--
+@isnad1 id=isconst.2h3v.s6.57557b1f3b62 from=translated src=- shape=52902c42 vocab=fd1e3a32
+-/
 theorem isConst_of_root_unity {n : ℕ} (hn : n ≠ 0) {f : RatFunc k} (h : f ^ n = 1) : IsConst f := by
   rw [← f.num_div_denom, div_pow, ← map_pow, ← map_pow] at h
   have nz : algebraMap k[X] (RatFunc k) (f.denom ^ n) ≠ 0 := by
@@ -67,6 +76,9 @@ theorem isConst_of_root_unity {n : ℕ} (hn : n ≠ 0) {f : RatFunc k} (h : f ^ 
     Associates.mk_eq_mk_iff_associated] at hh
   exact isConst_of_associated hh
 
+/--
+@isnad1 id=ex.6h5v.s9.e59dbc1bb940 from=translated src=- shape=6a5b86f2 vocab=0e76e775
+-/
 theorem associated_pow_pow_coprime_iff {a b : k[X]} {m n : ℕ} (ha : a ≠ 0) (hb : b ≠ 0)
     (_hm : m ≠ 0) (hn : n ≠ 0) (h : Associated (a ^ m) (b ^ n)) (hcp : m.Coprime n) :
     ∃ c : k[X], c ≠ 0 ∧ Associated a (c ^ n) ∧ Associated b (c ^ m) := by
@@ -95,6 +107,9 @@ theorem associated_pow_pow_coprime_iff {a b : k[X]} {m n : ℕ} (ha : a ≠ 0) (
   exact h.symm
 
 -- Auxiliary steps
+/--
+@isnad1 id=eq.3h5v.s11.746b53343385 from=translated src=- shape=7a086cae vocab=872e0e11
+-/
 theorem calcstep {n N m M : k[X]} (nz_M : M ≠ 0) (nz_N : N ≠ 0)
     (eqn :
       (algebraMap _ (RatFunc k)) n ^ 2 / (algebraMap _ (RatFunc k)) N ^ 2 =
@@ -117,6 +132,9 @@ theorem calcstep {n N m M : k[X]} (nz_M : M ≠ 0) (nz_N : N ≠ 0)
     _ = (rm ^ 3 + rM ^ 3) * rN ^ 2 := by
       rw [add_mul, div_mul_cancel₀ _ (pow_ne_zero 3 nz_rM), one_mul]
 
+/--
+@isnad1 id=ex.7h5v.s11.54320c9313ba from=translated src=- shape=6eb56613 vocab=5e3bcdb9
+-/
 theorem calcstep2 {m M n N : k[X]} (nz_M : M ≠ 0) (nz_N : N ≠ 0) (cp_mM : IsCoprime m M)
     (cp_nN : IsCoprime n N) (_nz_m : m ≠ 0) (_nz_n : n ≠ 0)
     (flat_eqn : n ^ 2 * M ^ 3 = (m ^ 3 + M ^ 3) * N ^ 2) :
@@ -151,6 +169,9 @@ theorem calcstep2 {m M n N : k[X]} (nz_M : M ≠ 0) (nz_N : N ≠ 0) (cp_mM : Is
     · contradiction
 
 -- Main corollary
+/--
+@isnad1 id=and.2h3v.s7.670949b2e28c from=translated src=- shape=344f3c1b vocab=2e2360a6
+-/
 theorem no_parametrization_y2_x3_1 (chk : ¬ringChar k ∣ 6) {x y : RatFunc k}
     (eqn : y ^ 2 = x ^ 3 + 1) : IsConst x ∧ IsConst y := by
   rcases eq_or_ne x 0 with eq_x | nz_x

@@ -45,6 +45,9 @@ structure IntermediateSubspace (U W : Submodule K V) where
 
 namespace IntermediateSubspace
 
+/--
+@isnad1 id=eq.1h6v.s6.d5ffd812d1c4 from=translated src=- shape=6e2f6c38 vocab=d8bf76c4
+-/
 @[ext]
 theorem ext {U W : Submodule K V} {L L' : IntermediateSubspace U W}
     (h : L.space = L'.space) : L = L' := by
@@ -55,7 +58,9 @@ theorem ext {U W : Submodule K V} {L L' : IntermediateSubspace U W}
 
 end IntermediateSubspace
 
-/-- Rank-nullity for the image of `L` in the quotient by a contained `U`. -/
+/-- Rank-nullity for the image of `L` in the quotient by a contained `U`.
+@isnad1 id=eq.1h4v.s9.1d42e6b3cfe6 from=translated src=- shape=b5768bd0 vocab=4b41f0b8
+-/
 theorem finrank_map_mkQ_add
     [FiniteDimensional K V] {U L : Submodule K V} (hUL : U ≤ L) :
     finrank K (L.map U.mkQ) + finrank K U = finrank K L := by
@@ -88,6 +93,9 @@ noncomputable def intermediatePoint
     (Submodule.comapSubtypeEquivOfLe hq).finrank_eq
   exact Projectivization.mk'' inside (hins.trans hqL_one)
 
+/--
+@isnad1 id=injectiv.2h4v.s10.d452e46a5f4b from=translated src=- shape=bb223fff vocab=0243e860
+-/
 theorem intermediatePoint_injective
     {U W : Submodule K V}
     (hUW : U ≤ W) (hW : finrank K W = finrank K U + 2) :
@@ -159,7 +167,9 @@ noncomputable def intermediateSubspaceOfPoint
   omega
 
 /-- The quotient-image construction and pullback construction are inverse:
-rank-two subspace intervals are exactly projective lines. -/
+rank-two subspace intervals are exactly projective lines.
+@isnad1 id=surjecti.2h4v.s10.552fe463612c from=translated src=- shape=bb223fff vocab=7bc6a176
+-/
 theorem intermediatePoint_surjective
     {U W : Submodule K V}
     (hUW : U ≤ W) (hW : finrank K W = finrank K U + 2) :
@@ -197,7 +207,9 @@ noncomputable def intermediateSubspaceEquivProjectiveLine
     ⟨intermediatePoint_injective hUW hW,
       intermediatePoint_surjective hUW hW⟩
 
-/-- Exactly `|K| + 1` subspaces occur in a rank-two interval. -/
+/-- Exactly `|K| + 1` subspaces occur in a rank-two interval.
+@isnad1 id=eq.2h4v.s8.d963c9ee0388 from=translated src=- shape=8822d68b vocab=fda5482d
+-/
 theorem natCard_intermediate_eq
     [Finite K] [Finite V]
     {U W : Submodule K V}
@@ -246,20 +258,41 @@ def evenMiddleRank (k : ℕ) (j : Fin k) : Fin ((2 * k + 1) + 1) :=
 def oddUpperRank (k : ℕ) (j : Fin k) : Fin ((2 * k + 1) + 1) :=
   ⟨2 * j.val + 3, by omega⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.ab550c4f5cb8 from=translated src=- shape=eaa9f34f vocab=97c67443
+-/
 @[simp] theorem evenLowerRank_val (k : ℕ) (j : Fin k) :
     (evenLowerRank k j).val = 2 * j.val := rfl
+/--
+@isnad1 id=eq.0h2v.s6.9a3b80983ed6 from=translated src=- shape=83adfd97 vocab=8a61d3ac
+-/
 @[simp] theorem oddMiddleRank_val (k : ℕ) (j : Fin k) :
     (oddMiddleRank k j).val = 2 * j.val + 1 := rfl
+/--
+@isnad1 id=eq.0h2v.s6.8e215deb2d19 from=translated src=- shape=83adfd97 vocab=ebedc26d
+-/
 @[simp] theorem evenUpperRank_val (k : ℕ) (j : Fin k) :
     (evenUpperRank k j).val = 2 * j.val + 2 := rfl
+/--
+@isnad1 id=eq.0h2v.s6.cec04f85f8e5 from=translated src=- shape=83adfd97 vocab=ca308762
+-/
 @[simp] theorem oddLowerRank_val (k : ℕ) (j : Fin k) :
     (oddLowerRank k j).val = 2 * j.val + 1 := rfl
+/--
+@isnad1 id=eq.0h2v.s6.34c8c3ea27bb from=translated src=- shape=83adfd97 vocab=0a84e26c
+-/
 @[simp] theorem evenMiddleRank_val (k : ℕ) (j : Fin k) :
     (evenMiddleRank k j).val = 2 * j.val + 2 := rfl
+/--
+@isnad1 id=eq.0h2v.s6.94ad8d088d4d from=translated src=- shape=83adfd97 vocab=205eba45
+-/
 @[simp] theorem oddUpperRank_val (k : ℕ) (j : Fin k) :
     (oddUpperRank k j).val = 2 * j.val + 3 := rfl
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=eq.2h7v.s8.a236813cebd7 from=translated src=- shape=8a6895c5 vocab=005545a6
+-/
 theorem ofComplete_space_eq_of_mod
     {n parity : ℕ} {F : CompleteFlag K V n}
     {P : PartialFlag (K := K) (V := V) (n := n) parity}
@@ -269,7 +302,9 @@ theorem ofComplete_space_eq_of_mod
   simpa [PartialFlag.ofComplete, flagPart, hi] using hi'
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
-/-- A represented partial flag is bottom at every erased rank. -/
+/-- A represented partial flag is bottom at every erased rank.
+@isnad1 id=eq.1h6v.s8.44abeb8e70d3 from=translated src=- shape=94f19864 vocab=843ac039
+-/
 theorem partialFlag_space_eq_bot_of_mod_ne
     {n parity : ℕ}
     (P : PartialFlag (K := K) (V := V) (n := n) parity)
@@ -279,7 +314,9 @@ theorem partialFlag_space_eq_bot_of_mod_ne
   simpa [flagPart, hi] using hi'.symm
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
-/-- At every retained rank a partial flag has the prescribed dimension. -/
+/-- At every retained rank a partial flag has the prescribed dimension.
+@isnad1 id=eq.1h6v.s9.cd72edd7a819 from=translated src=- shape=2d24941c vocab=6d7b390e
+-/
 theorem partialFlag_finrank_space_of_mod
     {n parity : ℕ}
     (P : PartialFlag (K := K) (V := V) (n := n) parity)
@@ -291,7 +328,9 @@ theorem partialFlag_finrank_space_of_mod
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
 /-- The existence of a partial flag already fixes the dimension of the
-ambient space. -/
+ambient space.
+@isnad1 id=eq.0h5v.s5.a122290e7842 from=translated src=- shape=9a3f1f4b vocab=7aef5b62
+-/
 theorem finrank_eq_of_partialFlag
     {n parity : ℕ}
     (P : PartialFlag (K := K) (V := V) (n := n) parity) :
@@ -320,6 +359,9 @@ def completeFlagOfRankedSpaces {n : ℕ}
   space_last := hlast
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=eq.4h5v.s8.cc37656e2814 from=translated src=- shape=84f5cba4 vocab=b4eb9b3f
+-/
 @[simp]
 theorem completeFlagOfRankedSpaces_apply {n : ℕ}
     (S : Fin (n + 1) → Submodule K V)
@@ -346,6 +388,9 @@ noncomputable def completeOfEvenCompatibility (k : ℕ)
   Classical.choose x.property
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=eq.0h5v.s7.560a9170566a from=translated src=- shape=6121fb32 vocab=0098fbe1
+-/
 theorem completeOfEvenCompatibility_even (k : ℕ)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1))
     (x : {Q : OddPartialFlag (K := K) (V := V) (n := 2 * k + 1) // Compatible P Q}) :
@@ -353,6 +398,9 @@ theorem completeOfEvenCompatibility_even (k : ℕ)
   (Classical.choose_spec x.property).1
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=eq.0h5v.s8.b6fbde26359b from=translated src=- shape=0757ce4c vocab=ee46ecb3
+-/
 theorem completeOfEvenCompatibility_odd (k : ℕ)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1))
     (x : {Q : OddPartialFlag (K := K) (V := V) (n := 2 * k + 1) // Compatible P Q}) :
@@ -383,6 +431,9 @@ noncomputable def evenCompletionCoordinates (k : ℕ)
       simp [oddMiddleRank, evenLowerRank]
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=eq.0h6v.s9.8b813567cb07 from=translated src=- shape=e7c18ee1 vocab=5230fd57
+-/
 @[simp]
 theorem evenCompletionCoordinates_space (k : ℕ)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1))
@@ -392,6 +443,9 @@ theorem evenCompletionCoordinates_space (k : ℕ)
       completeOfEvenCompatibility k P x (oddMiddleRank k j) := rfl
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=injectiv.0h4v.s7.fb6f3d6a36b7 from=translated src=- shape=1303fdac vocab=9db631b5
+-/
 theorem evenCompletionCoordinates_injective (k : ℕ)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1)) :
     Function.Injective (evenCompletionCoordinates k P) := by
@@ -426,6 +480,9 @@ theorem evenCompletionCoordinates_injective (k : ℕ)
     _ = y.1 := completeOfEvenCompatibility_odd k P y
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=le.0h5v.s9.bc8ffdd45485 from=translated src=- shape=1ed98416 vocab=cbc51baa
+-/
 theorem evenBoundary_le (k : ℕ)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1)) (j : Fin k) :
     P.1 (evenLowerRank k j) ≤ P.1 (evenUpperRank k j) := by
@@ -436,6 +493,9 @@ theorem evenBoundary_le (k : ℕ)
   exact F.strictMono_space.monotone (by simp [evenLowerRank, evenUpperRank])
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=eq.0h5v.s10.59b1e5576e50 from=translated src=- shape=5ad2dabe vocab=58a7dae2
+-/
 theorem evenBoundary_finrank (k : ℕ)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1)) (j : Fin k) :
     finrank K (P.1 (evenUpperRank k j)) =
@@ -458,6 +518,9 @@ def evenCompletedSpace (k : ℕ)
   else (c ⟨i.val / 2, by omega⟩).space
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=eq.1h6v.s8.e191498923db from=translated src=- shape=2791a2a4 vocab=525fc6c1
+-/
 @[simp]
 theorem evenCompletedSpace_of_even (k : ℕ)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1))
@@ -466,6 +529,9 @@ theorem evenCompletedSpace_of_even (k : ℕ)
   simp [evenCompletedSpace, hi]
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=eq.0h6v.s9.764fe5c01cc6 from=translated src=- shape=196d5359 vocab=f349f1a7
+-/
 @[simp]
 theorem evenCompletedSpace_oddMiddle (k : ℕ)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1))
@@ -486,6 +552,9 @@ theorem evenCompletedSpace_oddMiddle (k : ℕ)
   rw [dite_eq_right hparity, dite_eq_right hlast, hindex]
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=eq.0h5v.s7.c22827976f8f from=translated src=- shape=cc2d29c4 vocab=1af7e73d
+-/
 @[simp]
 theorem evenCompletedSpace_last (k : ℕ)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1))
@@ -560,6 +629,9 @@ noncomputable def completeFlagOfEvenCoordinates (k : ℕ)
     · simp) (evenCompletedSpace_last k P c)
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=eq.0h6v.s7.40fc0de25c51 from=translated src=- shape=b095748b vocab=132a88fb
+-/
 @[simp]
 theorem completeFlagOfEvenCoordinates_apply (k : ℕ)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1))
@@ -567,6 +639,9 @@ theorem completeFlagOfEvenCoordinates_apply (k : ℕ)
     completeFlagOfEvenCoordinates k P c i = evenCompletedSpace k P c i := rfl
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=eq.0h5v.s7.e9fe29ecd435 from=translated src=- shape=3a3ba9d3 vocab=63a70209
+-/
 theorem completeFlagOfEvenCoordinates_evenPart (k : ℕ)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1))
     (c : EvenCompletionCoordinates k P) :
@@ -588,6 +663,9 @@ noncomputable def oddCompatibleOfEvenCoordinates (k : ℕ)
     completeFlagOfEvenCoordinates_evenPart k P c, rfl⟩
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=rightinv.0h4v.s7.908db4cc60a0 from=translated src=- shape=6f5b4cbe vocab=4a9972a5
+-/
 theorem evenCompletionCoordinates_rightInverse (k : ℕ)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1)) :
     Function.RightInverse (oddCompatibleOfEvenCoordinates k P)
@@ -616,7 +694,9 @@ noncomputable def evenCompletionEquiv (k : ℕ)
     (evenCompletionCoordinates_rightInverse k P (evenCompletionCoordinates k P x))
   right_inv := evenCompletionCoordinates_rightInverse k P
 
-/-- An even partial flag has exactly `(q+1)^k` compatible odd parts. -/
+/-- An even partial flag has exactly `(q+1)^k` compatible odd parts.
+@isnad1 id=eq.0h4v.s7.ea44c67c320b from=translated src=- shape=937f5a03 vocab=67b35fac
+-/
 theorem natCard_odd_compatible_eq (k : ℕ)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1)) :
     Nat.card {Q : OddPartialFlag (K := K) (V := V) (n := 2 * k + 1) // Compatible P Q} =
@@ -635,7 +715,9 @@ theorem natCard_odd_compatible_eq (k : ℕ)
         (evenBoundary_le k P j) (evenBoundary_finrank k P j)
     _ = (Nat.card K + 1) ^ k := by simp
 
-/-- The upper bound as a direct corollary of the exact completion count. -/
+/-- The upper bound as a direct corollary of the exact completion count.
+@isnad1 id=le.0h4v.s7.983bf399ef91 from=translated src=- shape=937f5a03 vocab=c379e359
+-/
 theorem natCard_odd_compatible_le (k : ℕ)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1)) :
     Nat.card {Q : OddPartialFlag (K := K) (V := V) (n := 2 * k + 1) // Compatible P Q} ≤
@@ -658,6 +740,9 @@ noncomputable def completeOfOddCompatibility (k : ℕ)
   Classical.choose x.property
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=eq.0h5v.s8.58d1932cfc44 from=translated src=- shape=ebf7b6f7 vocab=3359e0a7
+-/
 theorem completeOfOddCompatibility_even (k : ℕ)
     (Q : OddPartialFlag (K := K) (V := V) (n := 2 * k + 1))
     (x : {P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1) // Compatible P Q}) :
@@ -665,6 +750,9 @@ theorem completeOfOddCompatibility_even (k : ℕ)
   (Classical.choose_spec x.property).1
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=eq.0h5v.s7.b05bf80dc9d1 from=translated src=- shape=254d85dc vocab=52671499
+-/
 theorem completeOfOddCompatibility_odd (k : ℕ)
     (Q : OddPartialFlag (K := K) (V := V) (n := 2 * k + 1))
     (x : {P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1) // Compatible P Q}) :
@@ -695,6 +783,9 @@ noncomputable def oddCompletionCoordinates (k : ℕ)
       simp [evenMiddleRank, oddLowerRank]
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=eq.0h6v.s9.c26c7f34765c from=translated src=- shape=ed9da958 vocab=428a87f7
+-/
 @[simp]
 theorem oddCompletionCoordinates_space (k : ℕ)
     (Q : OddPartialFlag (K := K) (V := V) (n := 2 * k + 1))
@@ -704,6 +795,9 @@ theorem oddCompletionCoordinates_space (k : ℕ)
       completeOfOddCompatibility k Q x (evenMiddleRank k j) := rfl
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=injectiv.0h4v.s7.09203c2a1c35 from=translated src=- shape=18e5906a vocab=335773cc
+-/
 theorem oddCompletionCoordinates_injective (k : ℕ)
     (Q : OddPartialFlag (K := K) (V := V) (n := 2 * k + 1)) :
     Function.Injective (oddCompletionCoordinates k Q) := by
@@ -737,6 +831,9 @@ theorem oddCompletionCoordinates_injective (k : ℕ)
     _ = y.1 := completeOfOddCompatibility_even k Q y
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=le.0h5v.s9.1cdf49ffb43f from=translated src=- shape=1ed98416 vocab=e39d623f
+-/
 theorem oddBoundary_le (k : ℕ)
     (Q : OddPartialFlag (K := K) (V := V) (n := 2 * k + 1)) (j : Fin k) :
     Q.1 (oddLowerRank k j) ≤ Q.1 (oddUpperRank k j) := by
@@ -747,6 +844,9 @@ theorem oddBoundary_le (k : ℕ)
   exact F.strictMono_space.monotone (by simp [oddLowerRank, oddUpperRank])
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=eq.0h5v.s10.34389b077264 from=translated src=- shape=5ad2dabe vocab=5df41228
+-/
 theorem oddBoundary_finrank (k : ℕ)
     (Q : OddPartialFlag (K := K) (V := V) (n := 2 * k + 1)) (j : Fin k) :
     finrank K (Q.1 (oddUpperRank k j)) =
@@ -769,6 +869,9 @@ def oddCompletedSpace (k : ℕ)
   else (c ⟨i.val / 2 - 1, by omega⟩).space
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=eq.1h6v.s8.aa8c4c5ba8fb from=translated src=- shape=2791a2a4 vocab=74aa13df
+-/
 @[simp]
 theorem oddCompletedSpace_of_odd (k : ℕ)
     (Q : OddPartialFlag (K := K) (V := V) (n := 2 * k + 1))
@@ -777,6 +880,9 @@ theorem oddCompletedSpace_of_odd (k : ℕ)
   simp [oddCompletedSpace, hi]
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=eq.0h6v.s9.b54f3bd33ed5 from=translated src=- shape=196d5359 vocab=3d2d43e6
+-/
 @[simp]
 theorem oddCompletedSpace_evenMiddle (k : ℕ)
     (Q : OddPartialFlag (K := K) (V := V) (n := 2 * k + 1))
@@ -796,6 +902,9 @@ theorem oddCompletedSpace_evenMiddle (k : ℕ)
   rw [dite_eq_right hparity, dite_eq_right hzero, hindex]
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=eq.0h5v.s7.d4d6a95dce73 from=translated src=- shape=5dd8db1f vocab=12da1fd5
+-/
 @[simp]
 theorem oddCompletedSpace_zero (k : ℕ)
     (Q : OddPartialFlag (K := K) (V := V) (n := 2 * k + 1))
@@ -871,6 +980,9 @@ noncomputable def completeFlagOfOddCoordinates (k : ℕ)
     · simp)
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=eq.0h6v.s7.35838c529fe6 from=translated src=- shape=b095748b vocab=917c9bf5
+-/
 @[simp]
 theorem completeFlagOfOddCoordinates_apply (k : ℕ)
     (Q : OddPartialFlag (K := K) (V := V) (n := 2 * k + 1))
@@ -878,6 +990,9 @@ theorem completeFlagOfOddCoordinates_apply (k : ℕ)
     completeFlagOfOddCoordinates k Q c i = oddCompletedSpace k Q c i := rfl
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=eq.0h5v.s7.a0044b606864 from=translated src=- shape=3a3ba9d3 vocab=9abb7afb
+-/
 theorem completeFlagOfOddCoordinates_oddPart (k : ℕ)
     (Q : OddPartialFlag (K := K) (V := V) (n := 2 * k + 1))
     (c : OddCompletionCoordinates k Q) :
@@ -899,6 +1014,9 @@ noncomputable def evenCompatibleOfOddCoordinates (k : ℕ)
     completeFlagOfOddCoordinates_oddPart k Q c⟩
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=rightinv.0h4v.s7.bb24c6b7f3c7 from=translated src=- shape=89fcab8e vocab=b7009534
+-/
 theorem oddCompletionCoordinates_rightInverse (k : ℕ)
     (Q : OddPartialFlag (K := K) (V := V) (n := 2 * k + 1)) :
     Function.RightInverse (evenCompatibleOfOddCoordinates k Q)
@@ -927,7 +1045,9 @@ noncomputable def oddCompletionEquiv (k : ℕ)
     (oddCompletionCoordinates_rightInverse k Q (oddCompletionCoordinates k Q x))
   right_inv := oddCompletionCoordinates_rightInverse k Q
 
-/-- An odd partial flag has exactly `(q+1)^k` compatible even parts. -/
+/-- An odd partial flag has exactly `(q+1)^k` compatible even parts.
+@isnad1 id=eq.0h4v.s7.b6b57c5a5d36 from=translated src=- shape=9b0db493 vocab=67b35fac
+-/
 theorem natCard_even_compatible_eq (k : ℕ)
     (Q : OddPartialFlag (K := K) (V := V) (n := 2 * k + 1)) :
     Nat.card {P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1) // Compatible P Q} =
@@ -946,7 +1066,9 @@ theorem natCard_even_compatible_eq (k : ℕ)
         (oddBoundary_le k Q j) (oddBoundary_finrank k Q j)
     _ = (Nat.card K + 1) ^ k := by simp
 
-/-- The dual upper bound as a direct corollary of the exact completion count. -/
+/-- The dual upper bound as a direct corollary of the exact completion count.
+@isnad1 id=le.0h4v.s7.2039e8bc9d64 from=translated src=- shape=9b0db493 vocab=c379e359
+-/
 theorem natCard_even_compatible_le (k : ℕ)
     (Q : OddPartialFlag (K := K) (V := V) (n := 2 * k + 1)) :
     Nat.card {P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1) // Compatible P Q} ≤
@@ -974,6 +1096,9 @@ noncomputable def encodeNeighbor (k : ℕ)
     exact ⟨⟨Q, hQ.1⟩, ⟨P'.1, hQ.2, by simpa using ha.1.symm⟩⟩
 
 omit [FiniteDimensional K V] [Finite K] [Finite V] in
+/--
+@isnad1 id=injectiv.0h4v.s7.460bb6ef5d92 from=translated src=- shape=55126991 vocab=7a314f30
+-/
 theorem encodeNeighbor_injective (k : ℕ)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1)) :
     Function.Injective (encodeNeighbor k P) := by
@@ -985,7 +1110,9 @@ theorem encodeNeighbor_injective (k : ℕ)
 /-- The paper's neighbor-set cap `A(A-1)`, where `A = (q+1)^k`.  It does not
 count a neighbor twice or posit uniqueness of its common odd flag: the
 injection chooses one witness, and its second coordinate excludes the original
-vertex from the at-most-`A` compatible even parts. -/
+vertex from the at-most-`A` compatible even parts.
+@isnad1 id=le.0h4v.s7.41709ddc4039 from=translated src=- shape=9883b83a vocab=13236684
+-/
 theorem halvedFlagGraph_natCard_neighborSet_le_sharp (k : ℕ)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1)) :
     Nat.card ((halvedFlagGraph (K := K) (V := V) (n := 2 * k + 1)).neighborSet P) ≤
@@ -1012,7 +1139,9 @@ theorem halvedFlagGraph_natCard_neighborSet_le_sharp (k : ℕ)
     _ ≤ A * (A - 1) := Nat.mul_le_mul_right (A - 1) (natCard_odd_compatible_le k P)
     _ = ((Nat.card K + 1) ^ k) * (((Nat.card K + 1) ^ k) - 1) := rfl
 
-/-- The coarser square cap retained as a convenient corollary. -/
+/-- The coarser square cap retained as a convenient corollary.
+@isnad1 id=le.0h4v.s7.e38e2fa28dc7 from=translated src=- shape=3afeb7ec vocab=c5c6ef7b
+-/
 theorem halvedFlagGraph_natCard_neighborSet_le (k : ℕ)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1)) :
     Nat.card ((halvedFlagGraph (K := K) (V := V) (n := 2 * k + 1)).neighborSet P) ≤
@@ -1020,6 +1149,9 @@ theorem halvedFlagGraph_natCard_neighborSet_le (k : ℕ)
   exact (halvedFlagGraph_natCard_neighborSet_le_sharp k P).trans
     (Nat.mul_le_mul_left _ (Nat.sub_le _ _))
 
+/--
+@isnad1 id=le.0h4v.s8.2f6673723093 from=translated src=- shape=0512ad38 vocab=a3be96c2
+-/
 theorem halvedFlagGraph_degree_le (k : ℕ)
     (P : EvenPartialFlag (K := K) (V := V) (n := 2 * k + 1))
     [Fintype ((halvedFlagGraph (K := K) (V := V) (n := 2 * k + 1)).neighborSet P)] :

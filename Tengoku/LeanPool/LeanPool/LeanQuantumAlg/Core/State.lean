@@ -97,14 +97,23 @@ instance : HSub (PureState n) (PureState n) (StateVector n) :=
 instance : HSMul ℂ (PureState n) (StateVector n) :=
   ⟨fun c ψ => c • (ψ : StateVector n)⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.c30a8629de67 from=translated src=- shape=107c23fb vocab=5e307335
+-/
 @[simp]
 theorem hAdd_apply (ψ φ : PureState n) (i : Fin (2 ^ n)) :
     (ψ + φ : StateVector n) i = ψ i + φ i := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.f3f4990a52d1 from=translated src=- shape=107c23fb vocab=530c04a0
+-/
 @[simp]
 theorem hSub_apply (ψ φ : PureState n) (i : Fin (2 ^ n)) :
     (ψ - φ : StateVector n) i = ψ i - φ i := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.1adbe98b6593 from=translated src=- shape=0498d063 vocab=7eb28758
+-/
 @[simp]
 theorem hSMul_apply (c : ℂ) (ψ : PureState n) (i : Fin (2 ^ n)) :
     (c • ψ : StateVector n) i = c * ψ i := rfl
@@ -112,18 +121,30 @@ theorem hSMul_apply (c : ℂ) (ψ : PureState n) (i : Fin (2 ^ n)) :
 /-- Build a pure state from a normalized Hilbert-space vector. -/
 def ofVec (v : StateVector n) (h : ‖v‖ = 1) : PureState n := ⟨v, h⟩
 
+/--
+@isnad1 id=eq.1h2v.s6.8510b60585aa from=translated src=- shape=6370a5ad vocab=22778322
+-/
 @[simp]
 theorem coe_ofVec (v : StateVector n) (h : ‖v‖ = 1) :
     ((ofVec v h : PureState n) : StateVector n) = v := rfl
 
+/--
+@isnad1 id=eq.1h3v.s8.a06cd3f4a97e from=translated src=- shape=9766eb95 vocab=7a94afde
+-/
 @[simp]
 theorem ofVec_apply (v : StateVector n) (h : ‖v‖ = 1) (i : Fin (2 ^ n)) :
     ofVec v h i = v i := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.7a67e94bacbc from=translated src=- shape=a01a8b7d vocab=eb52a5c9
+-/
 @[simp]
 theorem norm_eq_one' (ψ : PureState n) : ‖(ψ : StateVector n)‖ = 1 :=
   ψ.norm_eq_one
 
+/--
+@isnad1 id=eq.1h3v.s7.cbeb4a01ab25 from=translated src=- shape=bcd3bc53 vocab=b575e033
+-/
 @[ext]
 theorem ext {ψ φ : PureState n} (h : ∀ i, ψ i = φ i) : ψ = φ := by
   cases ψ with
@@ -141,10 +162,16 @@ the most significant bit of `x`). -/
 def ket (x : Fin (2 ^ n)) : PureState n :=
   ofVec (PiLp.single 2 x 1) (by simp)
 
+/--
+@isnad1 id=eq.0h3v.s8.3699bd9d6b81 from=translated src=- shape=18a9eaaa vocab=ee6a49bc
+-/
 @[simp]
 theorem ket_apply (x i : Fin (2 ^ n)) : ket x i = if i = x then 1 else 0 := by
   simp [ket]
 
+/--
+@isnad1 id=injectiv.0h1v.s4.c7a1925f1d17 from=translated src=- shape=894818b8 vocab=cbe40891
+-/
 theorem ket_injective : Function.Injective (ket (n := n)) := by
   intro x y hxy
   by_contra hne
@@ -152,6 +179,9 @@ theorem ket_injective : Function.Injective (ket (n := n)) := by
   rw [ket_apply, ket_apply, ite_eq_left rfl, ite_eq_right hne] at h
   exact one_ne_zero h
 
+/--
+@isnad1 id=eq.0h2v.s7.d6f776f0106c from=translated src=- shape=a03841fa vocab=ecbeef2d
+-/
 theorem norm_ket (x : Fin (2 ^ n)) : ‖(ket x : StateVector n)‖ = 1 := by
   exact (ket x).norm_eq_one
 

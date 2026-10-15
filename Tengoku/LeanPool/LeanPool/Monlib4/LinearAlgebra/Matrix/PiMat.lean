@@ -22,6 +22,9 @@ abbrev Mat (R n : Type*) := Matrix n n R
 abbrev PiMat (R k : Type*) (s : k → Type*) :=
 Π i, (fun j => Mat R (s j)) i
 
+/--
+@isnad1 id=eq.1h5v.s5.b77a04890bf6 from=translated src=- shape=eedfb057 vocab=264ea70b
+-/
 @[ext]
 theorem PiMat.ext {R k : Type*} {s : k → Type*} {x y : PiMat R k s}
     (h : ∀ i, x i = y i) : x = y :=

@@ -64,20 +64,32 @@ section Auxiliary
 
 variable {T : Type u}
 
+/--
+@isnad1 id=eq.0h3v.s4.0708e9ca9429 from=translated src=- shape=66eab36f vocab=eca5f42c
+-/
 @[simp] lemma slice_length (σ : InfWord T) (n : ℕ) : (σ.slice n).length = n := by
   simp [InfWord.slice]
 
+/--
+@isnad1 id=eq.1h4v.s5.868cc94dfe07 from=translated src=- shape=58c7d846 vocab=ea48e578
+-/
 @[simp] lemma slice_get (σ : InfWord T) (n k : ℕ)
     (hk : k < (σ.slice n).length) :
     (σ.slice n)[k] = σ k := by
   simp [InfWord.slice]
 
+/--
+@isnad1 id=eq.0h3v.s4.f1bf4b6056a7 from=translated src=- shape=e1f26a8e vocab=926609bf
+-/
 lemma slice_append (α : FinWord T) (β : InfWord T) :
     (α.append β).slice α.length = α := by
   have hfun : (fun i : Fin α.length => (α.append β) i) = fun i : Fin α.length => α[i] := by
     funext i; simp [FinWord.append, i.2]
   simp [InfWord.slice, hfun]
 
+/--
+@isnad1 id=eq.0h3v.s4.da34679e2b73 from=translated src=- shape=43fe8cb4 vocab=2869bb72
+-/
 lemma append_slice_eq_self (σ : InfWord T) (n : ℕ) :
     (σ.slice n).append (fun k => σ (k + n)) = σ := by
   funext k
@@ -89,6 +101,9 @@ lemma append_slice_eq_self (σ : InfWord T) (n : ℕ) :
 end Auxiliary
 
 -- Theorem statement written by hand
+/--
+@isnad1 id=ex.0h2v.s5.1d1519ee3885 from=translated src=- shape=da0b0e07 vocab=9893b358
+-/
 theorem safety_liveness_decomposition
   {T}
   [t_nonempty : Nonempty T]

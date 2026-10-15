@@ -27,36 +27,56 @@ namespace QuantumAlg
 
 open Complex
 
-/-- `exp(iθ) = cos θ + i sin θ` for real `θ`, with real-valued `cos/sin`. -/
+/-- `exp(iθ) = cos θ + i sin θ` for real `θ`, with real-valued `cos/sin`.
+@isnad1 id=eq.0h1v.s5.889290f99560 from=translated src=- shape=82057669 vocab=1785c7b3
+-/
 theorem exp_ofReal_mul_I (θ : ℝ) :
     Complex.exp (θ * Complex.I) =
       (Real.cos θ : ℂ) + (Real.sin θ : ℂ) * Complex.I := by
   rw [Complex.exp_mul_I, Complex.ofReal_cos, Complex.ofReal_sin]
 
+/--
+@isnad1 id=eq.0h1v.s6.df21fa5d066f from=translated src=- shape=21d440e9 vocab=8b768382
+-/
 theorem conj_exp_I (φ : ℝ) :
     starRingEnd ℂ (Complex.exp (φ * Complex.I)) =
       Complex.exp (-(φ * Complex.I)) := by
   rw [← Complex.exp_conj]
   simp_all
 
+/--
+@isnad1 id=eq.0h1v.s6.0abf7ce4dc4f from=translated src=- shape=e5f81328 vocab=8b768382
+-/
 theorem conj_exp_neg_I (φ : ℝ) :
     starRingEnd ℂ (Complex.exp (-(φ * Complex.I))) =
       Complex.exp (φ * Complex.I) := by
   rw [← Complex.exp_conj]
   simp_all
 
+/--
+@isnad1 id=eq.0h1v.s5.2787e91d843f from=translated src=- shape=d157cfe5 vocab=b39605cd
+-/
 theorem exp_I_mul_exp_neg_I (φ : ℝ) :
     Complex.exp (φ * Complex.I) * Complex.exp (-(φ * Complex.I)) = 1 := by
   rw [← Complex.exp_add, add_neg_cancel, Complex.exp_zero]
 
+/--
+@isnad1 id=eq.0h1v.s5.2c8957068dea from=translated src=- shape=fd49cbe4 vocab=b39605cd
+-/
 theorem exp_neg_I_mul_exp_I (φ : ℝ) :
     Complex.exp (-(φ * Complex.I)) * Complex.exp (φ * Complex.I) = 1 := by
   rw [← Complex.exp_add, neg_add_cancel, Complex.exp_zero]
 
+/--
+@isnad1 id=eq.0h0v.s4.e3ca5dd48c55 from=translated src=- shape=5c07e9b5 vocab=5fddeeeb
+-/
 theorem exp_pi_div_two_mul_I :
     Complex.exp ((Real.pi : ℂ) / 2 * Complex.I) = Complex.I := by
   simp_all
 
+/--
+@isnad1 id=eq.0h0v.s5.caace6413557 from=translated src=- shape=e017928a vocab=a9309e50
+-/
 theorem exp_neg_pi_div_two_mul_I :
     Complex.exp (-((Real.pi : ℂ) / 2 * Complex.I)) = -Complex.I := by
   rw [show -((Real.pi : ℂ) / 2 * Complex.I)
@@ -65,7 +85,9 @@ theorem exp_neg_pi_div_two_mul_I :
     Real.sin_pi_div_two]
   simp
 
-/-- `√(1-x²)` squares back to `1 - x²` over `ℂ` for `x ∈ [-1,1]`. -/
+/-- `√(1-x²)` squares back to `1 - x²` over `ℂ` for `x ∈ [-1,1]`.
+@isnad1 id=eq.1h1v.s6.970a3e6c1b2d from=translated src=- shape=674778ef vocab=a36597a3
+-/
 theorem sq_sqrt_one_sub_sq {x : ℝ} (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
     ((Real.sqrt (1 - x ^ 2) : ℂ)) ^ 2 = 1 - (x : ℂ) ^ 2 := by
   rw [← Complex.ofReal_pow,
@@ -73,7 +95,9 @@ theorem sq_sqrt_one_sub_sq {x : ℝ} (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
   simp_all
 
 /-- A phase factor solving the degree-reduction equation `e^{2iφ} q = p`,
-available whenever `|p| = |q| ≠ 0` [Lin22, hermfunc.tex:1226]. -/
+available whenever `|p| = |q| ≠ 0` [Lin22, hermfunc.tex:1226].
+@isnad1 id=ex.2h2v.s7.bfd5556be024 from=translated src=- shape=61d5e891 vocab=71050cb5
+-/
 theorem exists_exp_sq_eq {p q : ℂ} (hq : q ≠ 0)
     (hpq : p * starRingEnd ℂ p = q * starRingEnd ℂ q) :
     ∃ φ : ℝ, Complex.exp (φ * Complex.I) ^ 2 * q = p := by
@@ -96,6 +120,9 @@ theorem exists_exp_sq_eq {p q : ℂ} (hq : q ≠ 0)
     ring
   rw [hsq, harg, div_mul_cancel₀ p hq]
 
+/--
+@isnad1 id=eq.0h0v.s6.ddf9c1441539 from=translated src=- shape=fbcac805 vocab=5fddeeeb
+-/
 theorem exp_pi_div_four_sq :
     Complex.exp ((Real.pi : ℂ) / 4 * Complex.I) *
       Complex.exp ((Real.pi : ℂ) / 4 * Complex.I) = Complex.I := by
@@ -103,12 +130,17 @@ theorem exp_pi_div_four_sq :
       + (Real.pi : ℂ) / 4 * Complex.I = (Real.pi : ℂ) / 2 * Complex.I by ring,
     exp_pi_div_two_mul_I]
 
+/--
+@isnad1 id=eq.0h0v.s6.ebd860c93250 from=translated src=- shape=bcced0c5 vocab=a9309e50
+-/
 theorem exp_pi_div_four_mul_neg :
     Complex.exp ((Real.pi : ℂ) / 4 * Complex.I) *
       Complex.exp (-((Real.pi : ℂ) / 4 * Complex.I)) = 1 := by
   rw [← Complex.exp_add, add_neg_cancel, Complex.exp_zero]
 
-/-- `e^{iπ/4} · i = -e^{-iπ/4}` (both equal `e^{3iπ/4}`). -/
+/-- `e^{iπ/4} · i = -e^{-iπ/4}` (both equal `e^{3iπ/4}`).
+@isnad1 id=eq.0h0v.s6.fcf5a6b15b5d from=translated src=- shape=57315f25 vocab=a9309e50
+-/
 theorem exp_pi_div_four_mul_I :
     Complex.exp ((Real.pi : ℂ) / 4 * Complex.I) * Complex.I
       = -Complex.exp (-((Real.pi : ℂ) / 4 * Complex.I)) := by
@@ -116,20 +148,27 @@ theorem exp_pi_div_four_mul_I :
   rw [← mul_assoc, exp_pi_div_four_sq, Complex.I_mul_I, mul_neg,
     exp_pi_div_four_mul_neg]
 
-/-- `e^{-iπ/4} · i = e^{iπ/4}`. -/
+/-- `e^{-iπ/4} · i = e^{iπ/4}`.
+@isnad1 id=eq.0h0v.s6.9257b984b17d from=translated src=- shape=f196e547 vocab=a9309e50
+-/
 theorem exp_neg_pi_div_four_mul_I :
     Complex.exp (-((Real.pi : ℂ) / 4 * Complex.I)) * Complex.I
       = Complex.exp ((Real.pi : ℂ) / 4 * Complex.I) := by
   apply mul_left_cancel₀ (Complex.exp_ne_zero ((Real.pi : ℂ) / 4 * Complex.I))
   rw [← mul_assoc, exp_pi_div_four_mul_neg, one_mul, exp_pi_div_four_sq]
 
+/--
+@isnad1 id=eq.0h1v.s5.9eb698d83364 from=translated src=- shape=49f9d491 vocab=645b8b59
+-/
 theorem ofReal_sin_sq_add_cos_sq (t : ℝ) :
     (Real.sin t : ℂ) * (Real.sin t : ℂ) + (Real.cos t : ℂ) * (Real.cos t : ℂ)
       = 1 := by
   norm_cast
   linear_combination Real.sin_sq_add_cos_sq t
 
-/-- `t ↦ e^{it}` is injective on `(0, π)`. -/
+/-- `t ↦ e^{it}` is injective on `(0, π)`.
+@isnad1 id=injon.0h0v.s4.14e5a112f628 from=translated src=- shape=df0ed13d vocab=75f49015
+-/
 theorem exp_I_injOn_Ioo :
     Set.InjOn (fun t : ℝ => Complex.exp ((t : ℂ) * Complex.I))
       (Set.Ioo 0 Real.pi) := by
@@ -158,7 +197,9 @@ theorem exp_I_injOn_Ioo :
       linarith [hs.2, ht.1]
   simp_all
 
-/-- `z·z* = ‖z‖²` in `ℂ`. -/
+/-- `z·z* = ‖z‖²` in `ℂ`.
+@isnad1 id=eq.0h1v.s6.48ec2bcd95ae from=translated src=- shape=1db60194 vocab=fe741a75
+-/
 theorem mul_conj_eq_norm_sq (z : ℂ) :
     z * starRingEnd ℂ z = ((‖z‖ : ℝ) : ℂ) ^ 2 := by
   conv_lhs => rw [← Complex.norm_mul_exp_arg_mul_I z]
@@ -166,7 +207,9 @@ theorem mul_conj_eq_norm_sq (z : ℂ) :
   linear_combination ((‖z‖ : ℂ) * (‖z‖ : ℂ)) * exp_I_mul_exp_neg_I z.arg
 
 /-- A unit-normalized multiple of a nonzero pair, with real product: the
-phase `e^{-i·arg(pq)/2}` makes `|cp|² + |cq|² = 1` and `c²pq` real. -/
+phase `e^{-i·arg(pq)/2}` makes `|cp|² + |cq|² = 1` and `c²pq` real.
+@isnad1 id=ex.1h2v.s7.960d05c678c1 from=translated src=- shape=fda0763a vocab=60ba0da0
+-/
 theorem exists_unit_mul {p q : ℂ} (hpq : ¬(p = 0 ∧ q = 0)) :
     ∃ c : ℂ,
       c * p * starRingEnd ℂ (c * p) + c * q * starRingEnd ℂ (c * q) = 1 ∧
@@ -226,7 +269,9 @@ theorem exists_unit_mul {p q : ℂ} (hpq : ¬(p = 0 ∧ q = 0)) :
     rw [hprod]
     exact Complex.ofReal_im _
 
-/-- A unit-normalized positive multiple of a nonzero real pair. -/
+/-- A unit-normalized positive multiple of a nonzero real pair.
+@isnad1 id=ex.1h2v.s6.62425648f630 from=translated src=- shape=f9ee459a vocab=99cc8cf3
+-/
 theorem exists_real_unit {p q : ℝ} (hpq : ¬(p = 0 ∧ q = 0)) :
     ∃ v w : ℝ, v ^ 2 + w ^ 2 = 1 ∧ ∃ c : ℝ, v = c * p ∧ w = c * q := by
   have hpos : 0 < p ^ 2 + q ^ 2 := by
@@ -243,7 +288,9 @@ theorem exists_real_unit {p q : ℝ} (hpq : ¬(p = 0 ∧ q = 0)) :
   exact inv_mul_cancel₀ (pow_ne_zero 2 hrpos.ne')
 
 /-- Any point of the real unit circle is `(cos(θ/2), sin(θ/2))` for some
-angle `θ`. -/
+angle `θ`.
+@isnad1 id=ex.1h2v.s6.f661c70ef57f from=translated src=- shape=57411a70 vocab=5c7eeba4
+-/
 theorem exists_cos_sin {v w : ℝ} (hvw : v ^ 2 + w ^ 2 = 1) :
     ∃ θ : ℝ, Real.cos (θ / 2) = v ∧ Real.sin (θ / 2) = w := by
   set ζ : ℂ := (v : ℂ) + (w : ℂ) * Complex.I with hζdef

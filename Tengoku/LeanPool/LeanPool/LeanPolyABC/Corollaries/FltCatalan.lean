@@ -51,6 +51,9 @@ private theorem rot3_add {α : Type _} [AddCommMonoid α] {a b c : α} : a + b +
 private theorem mul3_add {α : Type _} [CommMonoid α] {a b c : α} : a * b * c = b * c * a := by
   rw [mul_comm (b * c) a]; exact mul_assoc _ _ _
 
+/--
+@isnad1 id=le.0h6v.s6.268d1333f352 from=translated src=- shape=88ef8f6f vocab=7267a6df
+-/
 theorem weighted_average_le_max₃ {p q r a b c : Nat} :
     p * a + q * b + r * c ≤ (p + q + r) * Nat.max₃ a b c := by
   rw [add_mul, add_mul]
@@ -60,6 +63,9 @@ theorem weighted_average_le_max₃ {p q r a b c : Nat} :
   · exact Nat.mul_le_mul (Nat.le_refl _) (Nat.le_max₃_right _ _ _)
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=iff.1h3v.s9.70e5d853228c from=translated src=- shape=a914bf1d vocab=19c12bbc
+-/
 theorem derivative_pow_eq_zero_iff {n : ℕ} (chn : ¬ringChar k ∣ n) {a : k[X]} :
     derivative (a ^ n) = 0 ↔ derivative a = 0 := by
   constructor
@@ -72,6 +78,9 @@ theorem derivative_pow_eq_zero_iff {n : ℕ} (chn : ¬ringChar k ∣ n) {a : k[X
     · exact goal
   · intro hd; rw [derivative_pow, hd, MulZeroClass.mul_zero]
 
+/--
+@isnad1 id=iff.1h3v.s5.1ce7315e6f45 from=translated src=- shape=a8d773ef vocab=e832252e
+-/
 theorem mul_eq_zero_left_iff
     {M₀ : Type*} [MulZeroClass M₀] [NoZeroDivisors M₀]
     {a : M₀} {b : M₀} (ha : a ≠ 0) : a * b = 0 ↔ b = 0 := by
@@ -80,6 +89,9 @@ theorem mul_eq_zero_left_iff
 namespace Polynomial
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=and.15h10v.s11.a829af173f5b from=translated src=- shape=97e757d6 vocab=a302736e
+-/
 theorem flt_catalan_deriv
     {p q r : ℕ} (hp : 0 < p) (hq : 0 < q) (hr : 0 < r)
     (hineq : q * r + r * p + p * q ≤ p * q * r)
@@ -158,6 +170,9 @@ private theorem is_coprime_of_expand {a b : k[X]} {n : ℕ} (hn : n ≠ 0) :
 namespace Polynomial
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=eq.15h10v.s10.8d5a2e20c535 from=translated src=- shape=0e48072a vocab=47e2ef09
+-/
 theorem flt_catalan_aux
     {p q r : ℕ} (hp : 0 < p) (hq : 0 < q) (hr : 0 < r)
     (hineq : q * r + r * p + p * q ≤ p * q * r)
@@ -209,6 +224,9 @@ theorem flt_catalan_aux
         nlinarith [hdeg, hca1, hch2]
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=and.15h10v.s10.36113597ab18 from=translated src=- shape=ab669b97 vocab=47e2ef09
+-/
 theorem flt_catalan
     {p q r : ℕ} (hp : 0 < p) (hq : 0 < q) (hr : 0 < r)
     (hineq : q * r + r * p + p * q ≤ p * q * r)
@@ -231,6 +249,9 @@ theorem flt_catalan
 Take p = q = r = n and u = v = 1, w = -1.
 -/
 omit [DecidableEq k] in
+/--
+@isnad1 id=and.7h5v.s9.7f75e14aff2e from=translated src=- shape=04c8e819 vocab=fe99b3be
+-/
 theorem flt
     {n : ℕ} (hn : 3 ≤ n) (chn : ¬ringChar k ∣ n)
     {a b c : k[X]} (ha : a ≠ 0) (hb : b ≠ 0) (hc : c ≠ 0)

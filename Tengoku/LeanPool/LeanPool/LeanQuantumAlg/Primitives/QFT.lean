@@ -69,7 +69,9 @@ def omega (n : ℕ) : ℂ :=
   Complex.exp (↑(2 * Real.pi / (2 : ℝ) ^ n) * Complex.I)
 -- [dW19, qcnotes.tex:1690]: ω_N = e^{2πi/N}
 
-/-- `ω_n ^ (2^n) = 1`: the root has exact period `2^n`. -/
+/-- `ω_n ^ (2^n) = 1`: the root has exact period `2^n`.
+@isnad1 id=eq.0h1v.s5.f66ec168ad52 from=translated src=- shape=9282313f vocab=bb9d9142
+-/
 theorem omega_pow_eq_one (n : ℕ) : omega n ^ (2 ^ n) = 1 := by
   rw [omega, ← Complex.exp_nat_mul, Complex.exp_eq_one_iff]
   refine ⟨1, ?_⟩
@@ -77,7 +79,9 @@ theorem omega_pow_eq_one (n : ℕ) : omega n ^ (2 ^ n) = 1 := by
   have h : (2 : ℝ) ^ n ≠ 0 := ne_of_gt (pow_pos two_pos n)
   field_simp
 
-/-- `‖ω_n‖ = 1`: roots of unity lie on the unit circle. -/
+/-- `‖ω_n‖ = 1`: roots of unity lie on the unit circle.
+@isnad1 id=eq.0h1v.s3.4db351730a75 from=translated src=- shape=8e1bdd70 vocab=6f427e74
+-/
 @[simp]
 theorem norm_omega (n : ℕ) : ‖omega n‖ = 1 := by
   rw [omega]
@@ -88,7 +92,9 @@ private theorem omega_eq_exp_div (n : ℕ) :
     omega n = Complex.exp (2 * ↑Real.pi * Complex.I / ↑(2 ^ n : ℕ)) := by
   simp only [omega]; congr 1; push_cast; ring
 
-/-- `omega n` is a primitive `2^n`-th root of unity. -/
+/-- `omega n` is a primitive `2^n`-th root of unity.
+@isnad1 id=isprimit.0h1v.s4.f3daf57251a8 from=translated src=- shape=6db62c77 vocab=37d7a5d3
+-/
 theorem omega_isPrimitiveRoot (n : ℕ) : IsPrimitiveRoot (omega n) (2 ^ n) := by
   rw [omega_eq_exp_div]
   exact Complex.isPrimitiveRoot_exp (2 ^ n) (by positivity)
@@ -98,14 +104,23 @@ theorem omega_isPrimitiveRoot (n : ℕ) : IsPrimitiveRoot (omega n) (2 ^ n) := b
 /-- QFT normalization factor: `1/√(2^n)`, generalizing `PureState.invSqrt2`. -/
 def invSqrtN (n : ℕ) : ℂ := (↑(Real.sqrt ((2 : ℝ) ^ n)))⁻¹
 
+/--
+@isnad1 id=eq.0h1v.s5.ae7e2b0cd48d from=translated src=- shape=0a9af14d vocab=d2877597
+-/
 @[simp]
 theorem star_invSqrtN (n : ℕ) : star (invSqrtN n) = invSqrtN n := by
   rw [invSqrtN, star_inv₀, Complex.star_def, Complex.conj_ofReal]
 
+/--
+@isnad1 id=ne.0h1v.s3.e00cff315d84 from=translated src=- shape=a311c14d vocab=35b147de
+-/
 theorem invSqrtN_ne_zero (n : ℕ) : invSqrtN n ≠ 0 :=
   inv_ne_zero <| Complex.ofReal_ne_zero.mpr <|
     Real.sqrt_ne_zero'.mpr (pow_pos two_pos n)
 
+/--
+@isnad1 id=eq.0h1v.s5.3181b70e9eb9 from=translated src=- shape=7159993f vocab=7c5952bc
+-/
 @[simp]
 theorem invSqrtN_mul_self (n : ℕ) :
     invSqrtN n * invSqrtN n = (↑((2 : ℝ) ^ n))⁻¹ := by
@@ -121,6 +136,9 @@ def QFTMatrix (n : ℕ) : HilbertOperator n :=
   Matrix.of fun (j k : Fin (2 ^ n)) =>
     invSqrtN n * omega n ^ (j.val * k.val)
 
+/--
+@isnad1 id=eq.0h3v.s6.1f657147d3dd from=translated src=- shape=51ac07d9 vocab=ee902cde
+-/
 @[simp]
 theorem QFT_entry (n : ℕ) (j k : Fin (2 ^ n)) :
     QFTMatrix n j k = invSqrtN n * omega n ^ (j.val * k.val) := by
@@ -129,28 +147,39 @@ theorem QFT_entry (n : ℕ) (j k : Fin (2 ^ n)) :
 /-! ### Action on basis kets -/
 
 /-- Component formula for the QFT acting on a basis ket:
-`(QFT |x⟩)ᵢ = (1/√N) · ω^{i·x}` [dW19, qcnotes.tex:1692]. -/
+`(QFT |x⟩)ᵢ = (1/√N) · ω^{i·x}` [dW19, qcnotes.tex:1692].
+@isnad1 id=eq.0h3v.s6.ffe52ca92835 from=translated src=- shape=f8f5ea03 vocab=ee902cde
+-/
 theorem QFTMatrix_apply_ket_column (n : ℕ) (x i : Fin (2 ^ n)) :
     QFTMatrix n i x = invSqrtN n * omega n ^ (i.val * x.val) := by
   rw [QFT_entry]
 
 /-! ### Unitarity -/
 
+/--
+@isnad1 id=ne.0h1v.s3.94ad989ef46d from=translated src=- shape=a311c14d vocab=2479b677
+-/
 theorem omega_ne_zero (n : ℕ) : omega n ≠ 0 :=
   Complex.exp_ne_zero _
 
-/-- `star ω_n = ω_n⁻¹`: conjugation inverts a point on the unit circle. -/
+/-- `star ω_n = ω_n⁻¹`: conjugation inverts a point on the unit circle.
+@isnad1 id=eq.0h1v.s5.80c27abc2a6f from=translated src=- shape=732295a4 vocab=1fd0de1a
+-/
 @[simp]
 theorem star_omega (n : ℕ) : star (omega n) = (omega n)⁻¹ := by
   rw [Complex.star_def, ← RCLike.inv_eq_conj (norm_omega n)]
 
-/-- Integer-power version of periodicity: `ω_n ^ d = 1` iff `2^n ∣ d`. -/
+/-- Integer-power version of periodicity: `ω_n ^ d = 1` iff `2^n ∣ d`.
+@isnad1 id=iff.0h2v.s5.34a22bf170f1 from=translated src=- shape=62117be0 vocab=3f2f88c9
+-/
 theorem omega_zpow_eq_one_iff (n : ℕ) (d : ℤ) :
     omega n ^ d = 1 ↔ ((2 ^ n : ℕ) : ℤ) ∣ d :=
   (omega_isPrimitiveRoot n).zpow_eq_one_iff_dvd d
 
 /-- Column orthogonality [dW19, qcnotes.tex:1698]: the full-period geometric
-sum `∑_{l<2^n} ω^{l·d}` vanishes when `2^n ∤ d`. -/
+sum `∑_{l<2^n} ω^{l·d}` vanishes when `2^n ∤ d`.
+@isnad1 id=eq.1h2v.s7.c7fd3bbc0374 from=translated src=- shape=ea1092bd vocab=c98646f1
+-/
 theorem sum_omega_zpow_eq_zero (n : ℕ) {d : ℤ}
     (hd : ¬ ((2 ^ n : ℕ) : ℤ) ∣ d) :
     ∑ l : Fin (2 ^ n), omega n ^ ((l.val : ℤ) * d) = 0 := by
@@ -168,7 +197,9 @@ theorem sum_omega_zpow_eq_zero (n : ℕ) {d : ℤ}
 /-- The QFT is unitary [dW19, qcnotes.tex:1696]: columns are normalized and
 pairwise orthogonal. Entry-by-entry, `star (QFT n) * QFT n` at `(j, k)` is
 `invSqrtN² · ∑_l ω^{l·(k−j)}`, which `sum_omega_zpow_eq_zero` collapses to
-`if j = k then 1 else 0`. -/
+`if j = k then 1 else 0`.
+@isnad1 id=mem.0h1v.s9.1d563b4e1270 from=translated src=- shape=6e34e85c vocab=11aac241
+-/
 theorem QFT_mem_unitaryGroup (n : ℕ) :
     QFTMatrix n ∈ Matrix.unitaryGroup (Fin (2 ^ n)) ℂ := by
   rw [Matrix.mem_unitaryGroup_iff']
@@ -205,13 +236,18 @@ theorem QFT_mem_unitaryGroup (n : ℕ) :
 /-- The quantum Fourier transform on `n` qubits as a unitary gate. -/
 def QFT (n : ℕ) : Gate n := Gate.ofUnitary (QFTMatrix n) (QFT_mem_unitaryGroup n)
 
+/--
+@isnad1 id=eq.0h1v.s3.cdfd1f7e3a49 from=translated src=- shape=1863cfa8 vocab=17ff7ecd
+-/
 @[simp]
 theorem QFT_coe (n : ℕ) : ((QFT n : Gate n) : HilbertOperator n) = QFTMatrix n := rfl
 
 /-! ### Action on basis kets -/
 
 /-- Component formula for the QFT acting on a basis ket:
-`(QFT |x⟩)_i = (1/√N) · ω^{i·x}` [dW19, qcnotes.tex:1692]. -/
+`(QFT |x⟩)_i = (1/√N) · ω^{i·x}` [dW19, qcnotes.tex:1692].
+@isnad1 id=eq.0h3v.s7.0bf6831c7bfd from=translated src=- shape=a83e1609 vocab=63578153
+-/
 theorem QFT_apply_ket (n : ℕ) (x i : Fin (2 ^ n)) :
     (QFT n).apply (ket x) i = invSqrtN n * omega n ^ (i.val * x.val) := by
   simp [QFT, QFTMatrix]
@@ -224,13 +260,18 @@ def QFTCircuitProfile (n : ℕ) : CircuitGateProfile where
   controlledPhaseGates := n * (n - 1) / 2
   swapGates := n / 2
 
+/--
+@isnad1 id=hasexact.0h1v.s5.a5a1c0226e40 from=translated src=- shape=5af3f39a vocab=bc25b5ee
+-/
 theorem QFTCircuitProfile_exact (n : ℕ) :
     CircuitGateProfile.HasExactCounts
       (QFTCircuitProfile n) n (n * (n - 1) / 2) (n / 2) := by
   simp [CircuitGateProfile.HasExactCounts, QFTCircuitProfile]
 
 /-- QFT basis action paired with the fixed-circuit gate counts used by the
-standard decomposition. -/
+standard decomposition.
+@isnad1 id=and.0h2v.s7.ae9bac3f7159 from=translated src=- shape=ee7d92a7 vocab=c360c0d0
+-/
 theorem QuantumFourierTransform.main (n : ℕ) (x : Fin (2 ^ n)) :
     (∀ i : Fin (2 ^ n),
       (QFT n).apply (ket x) i = invSqrtN n * omega n ^ (i.val * x.val)) ∧

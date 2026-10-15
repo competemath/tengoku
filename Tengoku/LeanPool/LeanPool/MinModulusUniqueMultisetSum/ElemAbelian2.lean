@@ -157,6 +157,9 @@ private lemma eq_zero_of_sum_eq_zero {n k : ℕ} (g : Fin n → (Fin k → ZMod 
   have h_all_ones := huniq m h_sum_m h_sum_g i
   exact m_ne_ones h_all_ones
 
+/--
+@isnad1 id=le.1h3v.s5.60df57ca4a9e from=translated src=- shape=13577372 vocab=d0c9d5d4
+-/
 theorem elementaryAbelianTwoGroups_optimal
     {n k : ℕ} (g : Fin n → (Fin k → ZMod 2))
     (huniq : UniqueMultisetSums g) : n - 1 ≤ k := by

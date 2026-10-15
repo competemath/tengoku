@@ -27,6 +27,9 @@ theorem _root_.ext_inner_left_iff {𝕜 E : Type _} [RCLike 𝕜] [NormedAddComm
   · rw [← sub_eq_zero, ← @inner_self_eq_zero 𝕜, inner_sub_left, sub_eq_zero]
     intro h; exact h _
 
+/--
+@isnad1 id=iff.0h3v.s6.77c6112f38a6 from=translated src=- shape=1b635a69 vocab=08bb0bb7
+-/
 theorem forall_inner_eq_zero_iff {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E]
     [InnerProductSpace 𝕜 E] (x : E) : (∀ y, inner 𝕜 x y = 0) ↔ x = 0 := by
   refine ⟨fun h => ?_, fun h y => by rw [h, inner_zero_left]⟩
@@ -38,7 +41,9 @@ open scoped InnerProductSpace
 variable {E : Type*} [NormedAddCommGroup E]
 
 /-- linear maps $p,q$ are equal if and only if
-  $\langle p x, x \rangle = \langle q x, x \rangle$ for any $x$. -/
+  $\langle p x, x \rangle = \langle q x, x \rangle$ for any $x$.
+@isnad1 id=iff.0h3v.s9.8a0d87ed95f3 from=translated src=- shape=f48f1627 vocab=08f61b21
+-/
 theorem LinearMap.ext_iff_inner_map [InnerProductSpace ℂ E] (p q : E →ₗ[ℂ] E) :
     p = q ↔ ∀ x : E, inner ℂ (p x) x = inner ℂ (q x) x := by
   constructor
@@ -47,13 +52,17 @@ theorem LinearMap.ext_iff_inner_map [InnerProductSpace ℂ E] (p q : E →ₗ[�
     rw [← sub_eq_zero, ← inner_map_self_eq_zero]
     simp_rw [LinearMap.sub_apply, inner_sub_left, h, sub_self, forall_const]
 
-/-- copy of `linear_map.ext_iff_inner_map` but for continuous linear maps -/
+/-- copy of `linear_map.ext_iff_inner_map` but for continuous linear maps
+@isnad1 id=iff.0h3v.s9.e0f183bfd083 from=translated src=- shape=f48f1627 vocab=5df8c36a
+-/
 theorem ContinuousLinearMap.ext_iff_inner_map [InnerProductSpace ℂ E] (p q : E →L[ℂ] E) :
     p = q ↔ ∀ x : E, ⟪p x, x⟫_ℂ = ⟪q x, x⟫_ℂ := by
   simp_rw [← ContinuousLinearMap.coe_coe, ← LinearMap.ext_iff_inner_map, coe_inj]
 
 /-- Self-adjoint linear operators $p,q$ are equal if and only if
-  $\langle p x, x \rangle_\mathbb{k} = \langle q x, x \rangle_\mathbb{k}$. -/
+  $\langle p x, x \rangle_\mathbb{k} = \langle q x, x \rangle_\mathbb{k}$.
+@isnad1 id=iff.2h4v.s10.556ad1b3de4a from=translated src=- shape=866ff4dc vocab=ea05baae
+-/
 theorem ContinuousLinearMap.IsSelfAdjoint.ext_iff_inner_map {E 𝕜 : Type _} [RCLike 𝕜]
     [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [CompleteSpace E] {p q : E →L[𝕜] E}
     (hp : IsSelfAdjoint p) (hq : IsSelfAdjoint q) :
@@ -67,12 +76,16 @@ variable {𝕜 : Type _} [RCLike 𝕜]
 
 local notation "⟪" x "," y "⟫" => @inner 𝕜 _ _ x y
 
-/-- the adjoint of a self-adjoint operator is self-adjoint -/
+/-- the adjoint of a self-adjoint operator is self-adjoint
+@isnad1 id=isselfad.1h3v.s11.de50be4e5a74 from=translated src=- shape=181268bc vocab=8debf272
+-/
 theorem IsSelfAdjoint.adjoint [InnerProductSpace 𝕜 E] [CompleteSpace E] {a : E →L[𝕜] E}
     (ha : IsSelfAdjoint a) : IsSelfAdjoint (adjoint a) :=
   congr_arg star ha
 
-/-- for a self-adjoint operator $a$, we have $\langle a x, x \rangle_\mathbb{k}$ is real -/
+/-- for a self-adjoint operator $a$, we have $\langle a x, x \rangle_\mathbb{k}$ is real
+@isnad1 id=eq.1h4v.s9.2c0ff1adb92d from=translated src=- shape=a5bc5f1f vocab=d28b47d2
+-/
 theorem IsSelfAdjoint.inner_re_eq {E : Type _} [NormedAddCommGroup E]
     [InnerProductSpace 𝕜 E] [CompleteSpace E] {a : E →L[𝕜] E}
     (ha : IsSelfAdjoint a) (x : E) :
@@ -88,22 +101,33 @@ theorem IsSelfAdjoint.inner_re_eq {E : Type _} [NormedAddCommGroup E]
 
 end RCLike
 
-/-- copy of `inner_map_self_eq_zero` for bounded linear maps -/
+/-- copy of `inner_map_self_eq_zero` for bounded linear maps
+@isnad1 id=iff.0h2v.s9.38f9d3734277 from=translated src=- shape=d93a6473 vocab=5df8c36a
+-/
 theorem ContinuousLinearMap.inner_map_self_eq_zero [InnerProductSpace ℂ E] {p : E →L[ℂ] E} :
     (∀ x : E, ⟪p x, x⟫_ℂ = 0) ↔ p = 0 := by
   simp_rw [ContinuousLinearMap.ext_iff, ← ContinuousLinearMap.coe_coe,
     ← LinearMap.ext_iff, ContinuousLinearMap.toLinearMap_zero]
   exact @_root_.inner_map_self_eq_zero E _ _ _
 
+/--
+@isnad1 id=eq.0h2v.s11.d1791805febf from=translated src=- shape=dec6bb2a vocab=865ff9d6
+-/
 theorem LinearMap.adjoint_one' {K E : Type _} [RCLike K] [NormedAddCommGroup E]
     [InnerProductSpace K E] [FiniteDimensional K E] : adjoint (1 : E →ₗ[K] E) = 1 :=
   star_one _
 
 variable {𝕜 : Type*} [RCLike 𝕜]
 open scoped ComplexOrder
+/--
+@isnad1 id=le.0h3v.s6.72fdd73817c2 from=translated src=- shape=fad88609 vocab=29619ca9
+-/
 lemma inner_self_nonneg' {E : Type _} [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] {x : E} :
     0 ≤ ⟪x, x⟫_𝕜 := by simp_rw [@RCLike.nonneg_def 𝕜, inner_self_nonneg, true_and, inner_self_im]
 
+/--
+@isnad1 id=iff.0h3v.s6.90561580f3fb from=translated src=- shape=e5800851 vocab=29619ca9
+-/
 lemma inner_self_nonpos' {E : Type _} [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] {x : E} :
     ⟪x, x⟫_𝕜 ≤ 0 ↔ x = 0 := by
   simp_rw [@RCLike.nonpos_def 𝕜, re_inner_self_nonpos, inner_self_im, and_true]

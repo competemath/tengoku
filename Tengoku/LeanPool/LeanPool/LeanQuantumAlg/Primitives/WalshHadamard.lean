@@ -81,32 +81,50 @@ def walshSign (x y : Fin (2 ^ n)) : ℂ := if dotParity x y then -1 else 1
 /-- `(√(2^n))⁻¹`, the normalization scalar of the `n`-qubit Hadamard layer. -/
 def invSqrtCard (n : ℕ) : ℂ := (Real.sqrt ((2 ^ n : ℕ) : ℝ) : ℂ)⁻¹
 
+/--
+@isnad1 id=eq.0h1v.s5.299a539fa9c1 from=translated src=- shape=0a9af14d vocab=3813e922
+-/
 @[simp]
 theorem star_invSqrtCard (n : ℕ) : star (invSqrtCard n) = invSqrtCard n := by
   rw [invSqrtCard, star_inv₀, Complex.star_def, Complex.conj_ofReal]
 
+/--
+@isnad1 id=eq.0h1v.s5.09b6c971fdaf from=translated src=- shape=44743426 vocab=caac3ad9
+-/
 @[simp]
 theorem norm_invSqrtCard (n : ℕ) :
     ‖invSqrtCard n‖ = (Real.sqrt ((2 ^ n : ℕ) : ℝ))⁻¹ := by
   rw [invSqrtCard, norm_inv, Complex.norm_real,
     Real.norm_of_nonneg (Real.sqrt_nonneg _)]
 
+/--
+@isnad1 id=eq.0h1v.s5.33f9f6a2490d from=translated src=- shape=b93d0e5f vocab=f55ebd67
+-/
 theorem norm_sq_invSqrtCard (n : ℕ) :
     ‖invSqrtCard n‖ ^ 2 = (((2 ^ n : ℕ) : ℝ)⁻¹) := by
   rw [norm_invSqrtCard, inv_pow, Real.sq_sqrt (by positivity : (0 : ℝ) ≤ ((2 ^ n : ℕ) : ℝ))]
 
+/--
+@isnad1 id=eq.0h2v.s6.a91209668ed4 from=translated src=- shape=bfffb9a5 vocab=1dbffb71
+-/
 @[simp]
 theorem walshSign_zero_left (x : Fin (2 ^ n)) :
     walshSign (0 : Fin (2 ^ n)) x = 1 := by
   unfold walshSign dotParity bit
   simp
 
+/--
+@isnad1 id=eq.0h2v.s6.c334f5ffc111 from=translated src=- shape=f3b25266 vocab=1dbffb71
+-/
 @[simp]
 theorem walshSign_zero_right (x : Fin (2 ^ n)) :
     walshSign x (0 : Fin (2 ^ n)) = 1 := by
   unfold walshSign dotParity bit
   simp
 
+/--
+@isnad1 id=eq.0h3v.s5.a328cce087db from=translated src=- shape=b87f2eb2 vocab=bca3c068
+-/
 theorem dotParity_comm (x y : Fin (2 ^ n)) : dotParity x y = dotParity y x := by
   have hset : (Finset.univ.filter fun k : Fin n => bit x k && bit y k)
       = Finset.univ.filter fun k : Fin n => bit y k && bit x k := by
@@ -116,22 +134,34 @@ theorem dotParity_comm (x y : Fin (2 ^ n)) : dotParity x y = dotParity y x := by
   unfold dotParity
   rw [hset]
 
+/--
+@isnad1 id=eq.0h3v.s5.6a3c9ce655cf from=translated src=- shape=b87f2eb2 vocab=1dbffb71
+-/
 theorem walshSign_comm (x y : Fin (2 ^ n)) : walshSign x y = walshSign y x := by
   unfold walshSign
   rw [dotParity_comm]
 
+/--
+@isnad1 id=eq.0h3v.s6.91fd66ba024e from=translated src=- shape=86276452 vocab=edabde8f
+-/
 @[simp]
 theorem walshSign_mul_self (x y : Fin (2 ^ n)) :
     walshSign x y * walshSign x y = 1 := by
   unfold walshSign
   by_cases h : dotParity x y <;> simp [h]
 
+/--
+@isnad1 id=eq.0h3v.s6.da6fb7e74e96 from=translated src=- shape=76ca4387 vocab=ec02c623
+-/
 @[simp]
 theorem star_walshSign (x y : Fin (2 ^ n)) :
     star (walshSign x y) = walshSign x y := by
   unfold walshSign
   by_cases h : dotParity x y <;> simp [h]
 
+/--
+@isnad1 id=eq.0h3v.s5.5b6768c94f06 from=translated src=- shape=9fb389ca vocab=068a3d2e
+-/
 @[simp]
 theorem norm_walshSign (x y : Fin (2 ^ n)) : ‖walshSign x y‖ = 1 := by
   unfold walshSign
@@ -144,6 +174,9 @@ def flipBit (x : Fin (2 ^ n)) (k : Fin n) : Fin (2 ^ n) :=
   ⟨x.val ^^^ 2 ^ k.val,
     Nat.xor_lt_two_pow x.isLt (Nat.pow_lt_pow_right one_lt_two k.isLt)⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.14119926088f from=translated src=- shape=c382f986 vocab=7d91ca78
+-/
 theorem bit_flipBit (x : Fin (2 ^ n)) (k k' : Fin n) :
     bit (flipBit x k) k' = (bit x k' ^^ decide (k = k')) := by
   change (x.val ^^^ 2 ^ k.val).testBit k'.val = (bit x k' ^^ decide (k = k'))
@@ -152,19 +185,27 @@ theorem bit_flipBit (x : Fin (2 ^ n)) (k k' : Fin n) :
   rw [decide_eq_decide]
   exact Fin.val_inj
 
+/--
+@isnad1 id=eq.0h3v.s5.09a163e944a1 from=translated src=- shape=616d8564 vocab=888b4a58
+-/
 theorem flipBit_flipBit (x : Fin (2 ^ n)) (k : Fin n) :
     flipBit (flipBit x k) k = x := by
   unfold flipBit
   ext
   simp [Nat.xor_assoc]
 
+/--
+@isnad1 id=ne.0h3v.s5.a3e7e28c86b1 from=translated src=- shape=e54f5098 vocab=888b4a58
+-/
 theorem flipBit_ne (x : Fin (2 ^ n)) (k : Fin n) : flipBit x k ≠ x := by
   intro h
   have hb := congrArg (fun y : Fin (2 ^ n) => bit y k) h
   simp [bit_flipBit] at hb
 
 /-- Flipping bit `k` of `x` toggles the parity `x · z` exactly when bit `k`
-of `z` is set. -/
+of `z` is set.
+@isnad1 id=eq.0h4v.s5.3bf1d88dffb3 from=translated src=- shape=3042ad04 vocab=a409fb41
+-/
 theorem dotParity_flipBit (x z : Fin (2 ^ n)) (k : Fin n) :
     dotParity (flipBit x k) z = (dotParity x z ^^ bit z k) := by
   unfold dotParity
@@ -203,7 +244,9 @@ theorem dotParity_flipBit (x z : Fin (2 ^ n)) (k : Fin n) :
       rw [hset, Finset.card_insert_of_notMem hnot, ← decide_not,
         decide_eq_decide, Nat.odd_add_one]
 
-/-- Two distinct labels differ at some bit. -/
+/-- Two distinct labels differ at some bit.
+@isnad1 id=ex.1h3v.s6.c0b520a5a4f4 from=translated src=- shape=c81939e9 vocab=c2cb361a
+-/
 theorem exists_bit_ne {y s : Fin (2 ^ n)} (h : y ≠ s) :
     ∃ k : Fin n, bit y k ≠ bit s k := by
   by_contra hall
@@ -221,7 +264,9 @@ private theorem if_xor_true (a : Bool) :
   cases a <;> simp
 
 /-- Flipping a bit on which `y` and `s` disagree negates the product of their
-Walsh signs. -/
+Walsh signs.
+@isnad1 id=eq.1h5v.s6.a397f5d41da0 from=translated src=- shape=474f9b38 vocab=f5162131
+-/
 theorem walshSign_mul_walshSign_flipBit {y s : Fin (2 ^ n)} {k : Fin n}
     (hk : bit y k ≠ bit s k) (x : Fin (2 ^ n)) :
     walshSign y (flipBit x k) * walshSign s (flipBit x k)
@@ -238,7 +283,9 @@ theorem walshSign_mul_walshSign_flipBit {y s : Fin (2 ^ n)} {k : Fin n}
   · exact absurd (hy.trans hs.symm) hk
 
 /-- Walsh-character orthogonality: for `y ≠ s` the signed sum over all basis
-labels cancels in pairs under the bit-flip involution. -/
+labels cancels in pairs under the bit-flip involution.
+@isnad1 id=eq.1h3v.s7.37dfd2147a4c from=translated src=- shape=9f7f3636 vocab=c8a4507c
+-/
 theorem sum_walshSign_mul_walshSign {y s : Fin (2 ^ n)} (h : y ≠ s) :
     ∑ x, walshSign y x * walshSign s x = 0 := by
   obtain ⟨k, hk⟩ := exists_bit_ne h
@@ -248,6 +295,9 @@ theorem sum_walshSign_mul_walshSign {y s : Fin (2 ^ n)} (h : y ≠ s) :
   rw [walshSign_mul_walshSign_flipBit hk x]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.b66cd673fef6 from=translated src=- shape=f203e04f vocab=0a015e93
+-/
 theorem sum_walshSign_mul_walshSign_eq (y s : Fin (2 ^ n)) :
     ∑ x, walshSign y x * walshSign s x =
       if y = s then ((2 ^ n : ℕ) : ℂ) else 0 := by
@@ -255,6 +305,9 @@ theorem sum_walshSign_mul_walshSign_eq (y s : Fin (2 ^ n)) :
   · simp_all
   · rw [ite_eq_right hys, sum_walshSign_mul_walshSign hys]
 
+/--
+@isnad1 id=eq.0h1v.s5.38a8350df9ed from=translated src=- shape=8c758db9 vocab=3eb2b197
+-/
 @[simp]
 theorem invSqrtCard_mul_self (n : ℕ) :
     invSqrtCard n * invSqrtCard n = (((2 ^ n : ℕ) : ℂ)⁻¹) := by
@@ -262,7 +315,9 @@ theorem invSqrtCard_mul_self (n : ℕ) :
     Real.mul_self_sqrt (by positivity : (0 : ℝ) ≤ ((2 ^ n : ℕ) : ℝ))]
   norm_num
 
-/-- A Boolean phase has unit norm. -/
+/-- A Boolean phase has unit norm.
+@isnad1 id=eq.0h3v.s5.cd8c28de5969 from=translated src=- shape=6dc32815 vocab=66f08e8b
+-/
 @[simp]
 theorem norm_phaseSign (f : Oracle n) (x : Fin (2 ^ n)) :
     ‖phaseSign f x‖ = 1 := by
@@ -273,7 +328,9 @@ theorem norm_phaseSign (f : Oracle n) (x : Fin (2 ^ n)) :
 def hadamardLayerOp (n : ℕ) : HilbertOperator n :=
   fun y x => invSqrtCard n * walshSign y x
 
-/-- The Walsh-Hadamard closed-form matrix is unitary. -/
+/-- The Walsh-Hadamard closed-form matrix is unitary.
+@isnad1 id=mem.0h1v.s9.dc4bd6aae2ef from=translated src=- shape=6e34e85c vocab=8368c484
+-/
 theorem hadamardLayerOp_mem_unitaryGroup (n : ℕ) :
     hadamardLayerOp n ∈ Matrix.unitaryGroup (Fin (2 ^ n)) ℂ := by
   rw [Matrix.mem_unitaryGroup_iff]
@@ -307,7 +364,9 @@ def hadamardLayer (n : ℕ) : Gate n :=
 def uniformStateVec (n : ℕ) : StateVector n :=
   WithLp.toLp 2 fun _ => invSqrtCard n
 
-/-- The uniform input-register vector has unit norm. -/
+/-- The uniform input-register vector has unit norm.
+@isnad1 id=eq.0h1v.s6.880483ea9c83 from=translated src=- shape=7aab2fa7 vocab=9b56f9c8
+-/
 theorem norm_uniformStateVec (n : ℕ) : ‖uniformStateVec n‖ = 1 := by
   rw [uniformStateVec, EuclideanSpace.norm_eq]
   simp_all
@@ -316,11 +375,16 @@ theorem norm_uniformStateVec (n : ℕ) : ‖uniformStateVec n‖ = 1 := by
 def uniformState (n : ℕ) : PureState n :=
   PureState.ofVec (uniformStateVec n) (norm_uniformStateVec n)
 
+/--
+@isnad1 id=eq.0h2v.s6.a4eb3463f020 from=translated src=- shape=e60353b8 vocab=a562cf5b
+-/
 @[simp]
 theorem uniformState_apply (x : Fin (2 ^ n)) : uniformState n x = invSqrtCard n :=
   rfl
 
-/-- The first Hadamard layer sends `|0^n⟩` to the uniform superposition. -/
+/-- The first Hadamard layer sends `|0^n⟩` to the uniform superposition.
+@isnad1 id=eq.0h1v.s5.c53f1c13bd4b from=translated src=- shape=dad61bba vocab=6425afe9
+-/
 theorem hadamardLayer_apply_zero :
     (hadamardLayer n).apply (ket (0 : Fin (2 ^ n))) = uniformState n := by
   ext i
@@ -338,7 +402,9 @@ Hadamard layer to the input register and leaving the `|−⟩` target alone. -/
 def initialState (n : ℕ) : PureState (n + 1) :=
   ((hadamardLayer n).tensor (1 : Gate 1)).apply (initialBasisState n)
 
-/-- The queried state is the uniform input register tensored with `|−⟩`. -/
+/-- The queried state is the uniform input register tensored with `|−⟩`.
+@isnad1 id=eq.0h1v.s4.d2434fdf8afd from=translated src=- shape=6c2bedd1 vocab=b0350d84
+-/
 theorem initialState_eq_uniform_tensor :
     initialState n = (uniformState n).tensor ketMinus := by
   rw [initialState, initialBasisState, Gate.tensor_apply_tensor,
@@ -353,7 +419,9 @@ kickback: `(√(2^n))⁻¹ ∑ x, (-1)^{f x}|x⟩`. -/
 def afterPhaseQueryVec (f : Oracle n) : StateVector n :=
   WithLp.toLp 2 fun x => invSqrtCard n * phaseSign f x
 
-/-- The phase-query vector has unit norm. -/
+/-- The phase-query vector has unit norm.
+@isnad1 id=eq.0h2v.s6.c42225f5bf0b from=translated src=- shape=a01a8b7d vocab=38bad945
+-/
 theorem norm_afterPhaseQueryVec (f : Oracle n) : ‖afterPhaseQueryVec f‖ = 1 := by
   rw [afterPhaseQueryVec, EuclideanSpace.norm_eq]
   simp_all
@@ -363,7 +431,9 @@ def afterPhaseQuery (f : Oracle n) : PureState n :=
   PureState.ofVec (afterPhaseQueryVec f) (norm_afterPhaseQueryVec f)
 
 /-- The actual XOR-oracle query on the uniform input register and `|−⟩`
-target is exactly the phase-query state tensored with the unchanged target. -/
+target is exactly the phase-query state tensored with the unchanged target.
+@isnad1 id=eq.0h2v.s5.b59d6a60c9dc from=translated src=- shape=1a61d479 vocab=05d2a5e4
+-/
 theorem postOracleState_eq_afterPhaseQuery_tensor (f : Oracle n) :
     postOracleState f = (afterPhaseQuery f).tensor ketMinus := by
   ext i
@@ -387,7 +457,9 @@ def finalJointState (f : Oracle n) : PureState (n + 1) :=
   ((hadamardLayer n).tensor (1 : Gate 1)).apply (postOracleState f)
 
 /-- The actual final joint state factors as the final input-register state
-and the unchanged `|−⟩` target. -/
+and the unchanged `|−⟩` target.
+@isnad1 id=eq.0h2v.s5.644a77ab517b from=translated src=- shape=1a61d479 vocab=b9c0c2a8
+-/
 theorem finalJointState_eq_finalState_tensor (f : Oracle n) :
     finalJointState f = (finalState f).tensor ketMinus := by
   rw [finalJointState, postOracleState_eq_afterPhaseQuery_tensor,

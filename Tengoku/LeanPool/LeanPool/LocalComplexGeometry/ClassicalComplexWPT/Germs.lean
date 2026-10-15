@@ -22,7 +22,9 @@ open scoped Topology
 
 namespace ClassicalComplexWPT
 
-/-- A representative which is eventually nonzero defines a unit in the function-germ ring. -/
+/-- A representative which is eventually nonzero defines a unit in the function-germ ring.
+@isnad1 id=isunit.1h3v.s5.db6132fcd5df from=translated src=- shape=ac18b56d vocab=9c3177c3
+-/
 theorem germ_isUnit_of_eventually_ne {X : Type*} {l : Filter X} {g : X → ℂ}
     (hg : ∀ᶠ x in l, g x ≠ 0) : IsUnit (g : Filter.Germ l ℂ) := by
   refine ⟨⟨(g : Filter.Germ l ℂ), (g⁻¹ : Filter.Germ l ℂ), ?_, ?_⟩, rfl⟩
@@ -33,7 +35,9 @@ theorem germ_isUnit_of_eventually_ne {X : Type*} {l : Filter X} {g : X → ℂ}
     filter_upwards [hg] with x hx
     exact inv_mul_cancel₀ hx
 
-/-- A nonvanishing analytic germ is a ring-theoretic unit. -/
+/-- A nonvanishing analytic germ is a ring-theoretic unit.
+@isnad1 id=isunit.2h3v.s6.a787e0ec944c from=translated src=- shape=12878a6e vocab=3c445fdc
+-/
 theorem analytic_germ_isUnit {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     {g : E → ℂ} {x : E} (hg : AnalyticAt ℂ g x) (hg0 : g x ≠ 0) :
     IsUnit (g : Filter.Germ (𝓝 x) ℂ) := by

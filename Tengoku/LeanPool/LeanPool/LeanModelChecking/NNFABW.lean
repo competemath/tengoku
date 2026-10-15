@@ -33,9 +33,15 @@ abbrev Subtype.embedLe {α} [Preorder α] {x y : α} (hle : x ≤ y) : LeanModel
 
 namespace LeanModelChecking
 
+/--
+@isnad1 id=injectiv.0h2v.s3.b3d9193aafd1 from=translated src=- shape=aa02e256 vocab=39d59aad
+-/
 theorem subtype_val_injective {α} {P : α → Prop} :
     @Function.Injective (Subtype P) α Subtype.val := by simp
 
+/--
+@isnad1 id=ex.1h1v.s5.6e7f403251cd from=translated src=- shape=ec97b967 vocab=8d7ec588
+-/
 theorem antitone_nat_eventually_constant
   {f : ℕ → ℕ} (hf : Antitone f)
     : ∃ N c, (∀ n ≥ N, f n = c) ∧ c ≤ f 0 := by
@@ -51,6 +57,9 @@ def NNF.repeatAndNext {AP} (f g : NNF AP) : ℕ → NNF AP
 | 0 => g
 | n + 1 => f.and (repeatAndNext f g n).next
 
+/--
+@isnad1 id=eq.0h3v.s5.eb3f190a2c9f from=translated src=- shape=219e90ae vocab=152d9cb1
+-/
 theorem release_expand {AP} (f g : NNF AP) :
     (f.release g).language = (g.and (f.or (f.release g).next)).language := by
   funext w; apply propext
@@ -80,6 +89,9 @@ theorem release_expand {AP} (f g : NNF AP) :
         · left; assumption
         · right; exists k + 1, (by omega)
 
+/--
+@isnad1 id=iff.0h4v.s5.a4f39f1bee2d from=translated src=- shape=ab6ad631 vocab=3ce27360
+-/
 theorem until_expand_repeat {AP} (f g : NNF AP) : ∀ w, (f.until g).language w
     ↔ ∃ n, (NNF.repeatAndNext f g n).language w := by
   intros w
@@ -116,6 +128,9 @@ theorem until_expand_repeat {AP} (f g : NNF AP) : ∀ w, (f.until g).language w
 
 namespace PositiveBool
 
+/--
+@isnad1 id=sat.2h5v.s5.2f98446b823d from=translated src=- shape=61c0bff2 vocab=51837d97
+-/
 theorem Sat.and_union {Q} (f g : PositiveBool Q) {A B : Set Q} : PositiveBool.Sat A f
     → PositiveBool.Sat B g → PositiveBool.Sat (A ∪ B) (f.and g) := by
   intros HA HB
@@ -143,6 +158,9 @@ def Forall (p : α → Prop) : PositiveBool α → Prop
 | true | false => True
 | and f g | or f g => f.Forall p ∧ g.Forall p
 
+/--
+@isnad1 id=forall.1h5v.s5.4fa021c31b62 from=translated src=- shape=76b8440a vocab=3cf735f8
+-/
 theorem Forall.imp {α} {p q : α → Prop} (h : ∀ x, p x
     → q x) {φ : PositiveBool α} (pf : φ.Forall p) : φ.Forall q := by
   induction φ <;> simp [PositiveBool.Forall] at pf ⊢ <;> grind
@@ -168,6 +186,9 @@ def mapSubtypeImp {α : Type} {p q : α → Prop} (ψ : PositiveBool (Subtype p)
     p x → q x) : PositiveBool (Subtype q) :=
   (fun x => ⟨x.val, by grind⟩) <$> ψ
 
+/--
+@isnad1 id=eq.1h5v.s5.f8e19e0161f1 from=translated src=- shape=951dc18f vocab=816dcced
+-/
 @[simp]
 lemma mapSubtypeImp_collapse
   {α} {p q : α → Prop} (ψ : PositiveBool α)
@@ -176,6 +197,9 @@ lemma mapSubtypeImp_collapse
   induction ψ <;> simp [mapSubtypeImp, Functor.map,
       map, mapSubtype] at * <;> constructor <;> grind
 
+/--
+@isnad1 id=sat.4h6v.s6.4666316e7d23 from=translated src=- shape=53c7d0b0 vocab=c1465b4a
+-/
 lemma mapSubtype_contract
   {α} {P Q : α → Prop}
   {φ : PositiveBool α}
@@ -185,6 +209,9 @@ lemma mapSubtype_contract
     : (φ.mapSubtype fq).Sat (f '' Y) := by
   induction φ <;> simp [mapSubtype, Sat] at hsat ⊢ <;> simp [Forall] at fp fq <;> grind
 
+/--
+@isnad1 id=sat.2h5v.s6.dfa10946520e from=translated src=- shape=254ad24a vocab=7f815e5f
+-/
 lemma map_sat_le
   {T} {Q Q' : T} [Preorder T] (hle : Q' ≤ Q) {ψ : PositiveBool (Iic Q')} {Y : Set (Iic Q)}
   (Hsat : (ψ.mapSubtypeImp (fun _ qp => qp.trans hle)).Sat Y)
@@ -194,6 +221,9 @@ lemma map_sat_le
   next f g f_ih g_ih => exact ⟨f_ih Hsat.left, g_ih Hsat.right⟩
   next f g f_ih g_ih => exact Hsat.imp f_ih g_ih
 
+/--
+@isnad1 id=iff.1h5v.s7.6cda8af9d19a from=translated src=- shape=354f3b71 vocab=e0729837
+-/
 lemma mapSubtypeImp_embed
   {T : Type} [PartialOrder T] {x y : T} (hle : x ≤ y)
   (ψ : PositiveBool {q // q ≤ x}) (Y : Set {q // q ≤ x})
@@ -201,6 +231,9 @@ lemma mapSubtypeImp_embed
         Y) (ψ.mapSubtypeImp (fun _ x => x.trans hle)) ↔ ψ.Sat Y := by
   induction ψ <;> simp [Sat, mapSubtypeImp, Functor.map, map] at * <;> grind
 
+/--
+@isnad1 id=iff.2h5v.s7.b43e3590ec89 from=translated src=- shape=ae78fdb9 vocab=ff50cb78
+-/
 lemma sat_map_image
   {T : Type} [PartialOrder T] {Q' Q : T} (hq : Q' ≤ Q)
   {ψ : PositiveBool T} {Y : Set { q // q ≤ Q' }}
@@ -209,6 +242,9 @@ lemma sat_map_image
         ↔ (ψ.mapSubtype (H2.imp (by grind))).Sat (Subtype.embedLe hq '' Y) := by
   induction ψ <;> simp [Sat, mapSubtype] <;> simp [Forall] at H2 <;> grind
 
+/--
+@isnad1 id=sat.3h6v.s6.54d6deff7ab1 from=translated src=- shape=40c47e53 vocab=acc73c74
+-/
 lemma mapSubtype_restrict {T : Type} {α β : T → Prop} {ψ : PositiveBool T} {Y : Set (Subtype α)}
   (all_α : ψ.Forall α) (all_β : ψ.Forall β) (hle : ∀ {q}, β q → α q)
   (p_sat : PositiveBool.Sat Y (ψ.mapSubtype all_α))
@@ -232,6 +268,9 @@ instance : Functor DAG where
       grind
   }
 
+/--
+@isnad1 id=path.2h5v.s5.0ea157685d29 from=translated src=- shape=549ad77b vocab=d7b7ad82
+-/
 theorem path_mapped {α β} [Nonempty α] (G : DAG α) (f : α → β) (f_inj : Function.Injective f) (p : ℕ
     → β) (p_path : (f <$> G).path p) : G.path ((Function.invFun f) ∘ p) := by
   obtain ⟨n, p_path⟩ := p_path
@@ -246,6 +285,9 @@ theorem path_mapped {α β} [Nonempty α] (G : DAG α) (f : α → β) (f_inj : 
   have h := Function.leftInverse_invFun f_inj
   grind
 
+/--
+@isnad1 id=var.1h5v.s5.a04a9f9fada8 from=translated src=- shape=6713e31b vocab=7184aff9
+-/
 theorem path_elems_prop {α} {P : α → Prop} {G : DAG (Subtype P)} {p : ℕ
     → α} (p_path : (Subtype.val <$> G).path p) : ∀ i, P (p i) := by
   simp [DAG.path, Functor.map] at p_path
@@ -285,11 +327,17 @@ def dag : DAG {q // q ≤ φ₂} := {
     simp; grind
 }
 
+/--
+@isnad1 id=le.3h8v.s7.519e5d87c86d from=translated src=- shape=9de60a9f vocab=5c86112b
+-/
 lemma path_after_1_prop (p : ℕ
     → {q // q ≤ φ₂}) (p_path : (dag hle r₁ r₂ G).path p) : ∀ i > 0, (p i).val ≤ φ₁ := by
   simp only [DAG.path, dag, base] at p_path
   grind
 
+/--
+@isnad1 id=path.2h7v.s7.eae654bbc172 from=translated src=- shape=c1acd478 vocab=4be7fd7d
+-/
 lemma preserves_path
   (p : ℕ → {q // q ≤ φ₂}) (p_path : (dag hle r₁ r₂ G).path p)
     : G.path (fun i => ⟨(p (i + 1)).val, path_after_1_prop hle r₁ r₂ G p p_path _ (by omega)⟩) := by
@@ -362,7 +410,9 @@ def runDag
 
 /-- If the source run DAG `G` is accepting and the embedding `embedLe hle` reflects
 the acceptance condition (`hF`), then the transported `replaceRoot.runDag` is
-accepting too. -/
+accepting too.
+@isnad1 id=acceptin.5h8v.s8.8da3f55bb215 from=translated src=- shape=06363529 vocab=1d9134b4
+-/
 lemma runDag_accepting
   {S}
   {M : ABW S (Iic φ₁)} {M' : ABW S (Iic φ₂)} {w : ℕ → S}
@@ -402,10 +452,16 @@ def dag (hrx : (r₁, 0) ∈ G.V) : DAG (Iic φ₂) := {
   edge_closure := by have := G.edge_closure; grind
 }
 
+/--
+@isnad1 id=le.4h8v.s7.e06c9ba97150 from=translated src=- shape=2c81b4b6 vocab=b2f4d0cc
+-/
 lemma path_after_1_prop (hrx : (r₁, 0) ∈ G.V) (p : ℕ
     → Iic φ₂) (p_path : (dag hle r₁ r₂ G hrx).path p) : ∀ i > 0, (p i).val ≤ φ₁ := by
   grind [DAG.path, dag]
 
+/--
+@isnad1 id=path.3h7v.s7.0256b61505fe from=translated src=- shape=c8a0f756 vocab=dfc89996
+-/
 lemma preserves_path
   (G : DAG (Iic φ₁)) (hrx : (r₁, 0) ∈ G.V)
   (p : ℕ → Iic φ₂) (p_path : (dag hle r₁ r₂ G hrx).path p)
@@ -536,6 +592,9 @@ def dag : DAG (Iic Φ) := {
       grind
 }
 
+/--
+@isnad1 id=or.3h10v.s7.f831981e0a27 from=translated src=- shape=73b636c2 vocab=bb368c7a
+-/
 lemma preserves_path
   (op : ℕ → Iic Φ) (op_path : (dag leφ₁ leφ₂ r₁ r₂ R G₁ G₂).path op)
   : (∃ k, (Subtype.val <$> G₁).path (fun i => (op (k + i)).val))
@@ -577,7 +636,9 @@ lemma preserves_path
 end
 
 /-- The `p_sat` obligation of `conjoinDag.runDag`, extracted as a standalone
-lemma: every vertex of the conjoined DAG has a satisfying set of successors. -/
+lemma: every vertex of the conjoined DAG has a satisfying set of successors.
+@isnad1 id=match1.6h12v.s9.16ebede12c33 from=translated src=- shape=8a437b43 vocab=290c496d
+-/
 lemma runDag_p_sat
   {S}
   {M₁ : ABW S (Iic φ₁)} {M₂ : ABW S (Iic φ₂)} {M : ABW S (Iic Φ)}
@@ -772,6 +833,9 @@ def dag : DAG (Iic φ) := {
   edge_closure := by cases G; simp; grind
 }
 
+/--
+@isnad1 id=path.2h8v.s6.f25ba0063d14 from=translated src=- shape=0ca354e4 vocab=acea8b5f
+-/
 theorem preserves_path {p : ℕ → Iic φ} (p_path : (dag leφ G rΦ rφ shift).path p) : G.path (fun i =>
     (p (i + 1)).embedLe leφ) := by
   obtain ⟨start, p_path⟩ := p_path
@@ -834,6 +898,9 @@ def V : Set (Iic Φ × ℕ) := { (q, _) | q = ⟨Φ, le_refl _⟩ }
 this is the DAG of the family that first "owns" `v`. -/
 noncomputable def mini (v : Iic φ × ℕ) : ℕ := sInf { i | i ≤ v.2 ∧ (v.1, v.2 - i) ∈ (G i).V }
 
+/--
+@isnad1 id=le.1h5v.s6.45d57035d8c3 from=translated src=- shape=0d73dc68 vocab=f7fa96f4
+-/
 lemma mini_le q l (H : (q, l) ∈ Vb G) : mini G (q, l) ≤ l := by
   simp only [mini]
   simp only [Vb, exists_prop, Subtype.exists, Set.mem_iUnion, Set.mem_ofPred_eq, Prod.mk.injEq] at H
@@ -842,6 +909,9 @@ lemma mini_le q l (H : (q, l) ∈ Vb G) : mini G (q, l) ≤ l := by
   apply csInf_le ⟨0, by intro i _; exact Nat.zero_le i⟩
   simp_all
 
+/--
+@isnad1 id=other.1h5v.s7.6f4759b60cc2 from=translated src=- shape=9cd461dd vocab=0a36db6c
+-/
 lemma mini_in q l (H : (q, l) ∈ Vb G) : let i' := mini G (q, l); (q, l - i') ∈ (G i').V := by
   have hne : Set.Nonempty { i | i ≤ l ∧ (q, l - i) ∈ (G i).V } := by
     simp only [Vb, exists_prop, Subtype.exists, Set.mem_iUnion, Set.mem_ofPred_eq, Prod.mk.injEq
@@ -862,6 +932,9 @@ def E : Set ((Iic Φ × ℕ) × Iic Φ) := { ((q, l), q') : _ |
       let i' := mini G (⟨q.val, hq⟩, l); ((⟨q.val, hq⟩, l - i'), ⟨q'.val, hq'⟩) ∈ (G i').E
 }
 
+/--
+@isnad1 id=le.2h7v.s7.2a5b36dc1e71 from=translated src=- shape=1c87484e vocab=84127679
+-/
 lemma mini_not_increasing q l q' (He : ((q.embedLe ltφ.le, l),
     q'.embedLe ltφ.le) ∈ E G) : mini G (q', l + 1) ≤ mini G (q, l) := by
   obtain ⟨HVb, _, _, He⟩ :
@@ -915,6 +988,9 @@ def dag : DAG (Iic Φ) := {
         grind
 }
 
+/--
+@isnad1 id=or.2h5v.s7.6787ebce0744 from=translated src=- shape=6957f8a7 vocab=0605f5e9
+-/
 lemma preserves_path
   (op : ℕ → Iic Φ) (op_path : (dag ltφ G).path op)
     : op = (fun _ => ⟨Φ, le_refl _⟩) ∨ (∃ i k,
@@ -1052,22 +1128,34 @@ def size {AP} : NNF AP → ℕ
 | .next φ₁ => size φ₁ + 1
 | .and φ₁ φ₂ | .or φ₁ φ₂ | .until φ₁ φ₂ | .release φ₁ φ₂ => max (size φ₁) (size φ₂) + 1
 
+/--
+@isnad1 id=le.1h3v.s4.6dccb28ce868 from=translated src=- shape=490bf2ee vocab=a507fd1c
+-/
 lemma size_le_of_sub {AP} {φ ψ : NNF AP} (h : φ ≤ ψ) : size φ ≤ size ψ := by
   induction h
   case refl => rfl
   all_goals (rename_i ih; simp only [size]; omega)
 
+/--
+@isnad1 id=lt.2h3v.s4.6f49429c9730 from=translated src=- shape=f804cabf vocab=69236fb9
+-/
 lemma size_lt_of_sub {AP} {φ ψ : NNF AP} (h : φ ≤ ψ) (hne : ψ ≠ φ) : size φ < size ψ := by
   cases h
   case refl => contradiction
   all_goals (rename_i hsub; have := size_le_of_sub hsub; simp only [size]; omega)
 
+/--
+@isnad1 id=eq.2h3v.s4.8cbd03613a5c from=translated src=- shape=fde08e6d vocab=75f5c0cc
+-/
 theorem sub_antisymm {AP} {φ₁ φ₂ : NNF AP} (h1 : φ₁ ≤ φ₂) (h2 : φ₂ ≤ φ₁) : φ₁ = φ₂ := by
   by_contra hne
   have : size φ₁ < size φ₂ := size_lt_of_sub h1 (Ne.symm hne)
   have : size φ₂ < size φ₁ := size_lt_of_sub h2 hne
   omega
 
+/--
+@isnad1 id=le.2h4v.s5.3171b455f8cf from=translated src=- shape=5264dd60 vocab=75f5c0cc
+-/
 theorem sub_trans {AP} {a b c : NNF AP} (h1 : a ≤ b) (h2 : b ≤ c) : a ≤ c := by
   induction h2 generalizing a
   case refl => exact h1
@@ -1097,12 +1185,18 @@ def subFinset {AP} [DecidableEq AP] : NNF AP → Finset (NNF AP)
 | .until f g     => insert (.until f g) (subFinset f ∪ subFinset g)
 | .release f g   => insert (.release f g) (subFinset f ∪ subFinset g)
 
+/--
+@isnad1 id=mem.1h3v.s5.7650e5dc726a from=translated src=- shape=300f29ca vocab=e2340432
+-/
 lemma mem_sub_finset {AP} [DecidableEq AP] {q f : NNF AP} : q ≤ f → q ∈ subFinset f := by
   intro h; induction h
   { cases q <;> grind [subFinset] }
   all_goals grind [subFinset]
 
 -- By GPT-5.2
+/--
+@isnad1 id=finite.0h2v.s4.a919b56dea46 from=translated src=- shape=ac8b3bcc vocab=2c3b9c6b
+-/
 lemma sub_finite {AP} (f : NNF AP) : Finite { q // q ≤ f } := by
   classical
   refine Finite.of_injective (fun q => (⟨q.1, ?_⟩ : { r // r ∈ subFinset f })) ?_
@@ -1124,6 +1218,9 @@ def delta {AP} (φ : NNF AP) (σ : Letter AP) [DecidablePred (· ∈ σ)] : Posi
   | .until φ₁ φ₂ => (delta φ₂ σ).or ((delta φ₁ σ).and (.atom (.until φ₁ φ₂)))
   | .release φ₁ φ₂ => (delta φ₂ σ).and ((delta φ₁ σ).or (.atom (.release φ₁ φ₂)))
 
+/--
+@isnad1 id=forall.0h3v.s5.a121ec8d71c1 from=translated src=- shape=8046c336 vocab=732e290b
+-/
 theorem delta_forall {AP} {φ : NNF AP} {σ : Letter AP} [DecidablePred (· ∈
     σ)] : (delta φ σ).Forall (· ≤ φ) := by
   induction φ with
@@ -1152,6 +1249,9 @@ noncomputable def NNF.toABW {AP} (ψ : NNF AP) : ABW (Letter AP) { x // x ≤ ψ
   }
 }
 
+/--
+@isnad1 id=language.4h8v.s8.f6bfc1fcc90a from=translated src=- shape=1e0ca3f5 vocab=16ddd074
+-/
 lemma subformula_toABW_lang
   {S} {Φ φ : NNF S} (leφ : φ ≤ Φ)
   {w : ℕ → Letter S}
@@ -1189,12 +1289,18 @@ private lemma mem_F_of_invFun {S} {Φ χ : NNF S} {v : Iic Φ}
   simp only [NNF.toABW, Set.mem_ofPred_eq] at H ⊢
   rwa [Function.invFun_eq (f := Subtype.val) ⟨⟨v.val, hχ⟩, rfl⟩] at H
 
+/--
+@isnad1 id=language.1h4v.s5.39f8a699c930 from=translated src=- shape=3f02174a vocab=881c9612
+-/
 lemma and_mp.left {S} {φ₁ φ₂ : NNF S} {w} : (φ₁.and φ₂).toABW.language w → φ₁.toABW.language w := by
   simp only [ABW.language, forall_exists_index]
   intros G G_acc
   obtain ⟨Y, p_sat, p_sub⟩ := G.p_sat _ G.p_root
   apply subformula_toABW_lang (sub.and_left sub.refl) G_acc p_sat.left p_sub
 
+/--
+@isnad1 id=language.1h4v.s5.81012ecde49c from=translated src=- shape=0fd92c85 vocab=881c9612
+-/
 lemma and_mp.right {S} {φ₁ φ₂ : NNF S} {w} : (φ₁.and φ₂).toABW.language w
     → φ₂.toABW.language w := by
   simp only [ABW.language, forall_exists_index]
@@ -1202,6 +1308,9 @@ lemma and_mp.right {S} {φ₁ φ₂ : NNF S} {w} : (φ₁.and φ₂).toABW.langu
   obtain ⟨Y, p_sat, p_sub⟩ := G.p_sat _ G.p_root
   apply subformula_toABW_lang (sub.and_right sub.refl) G_acc p_sat.right p_sub
 
+/--
+@isnad1 id=language.2h4v.s6.1b8a603ecc1b from=translated src=- shape=867b3588 vocab=881c9612
+-/
 theorem and_mpr {AP : Type} {φ₁ φ₂ : NNF AP} {w : ℕ
     → Letter AP} (H1 : φ₁.toABW.language w) (H2 : φ₂.toABW.language w)
     : (φ₁.and φ₂).toABW.language w := by
@@ -1233,6 +1342,9 @@ theorem and_mpr {AP : Type} {φ₁ φ₂ : NNF AP} {w : ℕ
     have ⟨j, Hj, H⟩ := G2_acc _ G2_path i
     exact ⟨j + 1, by omega, mem_F_of_invFun (DAG.path_elems_prop p_path j) H⟩
 
+/--
+@isnad1 id=or.1h4v.s6.d770b2f2533d from=translated src=- shape=14d4266d vocab=6e567261
+-/
 lemma or_mp {S} {φ₁ φ₂ : NNF S} {w} : (φ₁.or φ₂).toABW.language w
     → φ₁.toABW.language w ∨ φ₂.toABW.language w := by
   simp only [ABW.language, NNF.toABW, forall_exists_index]
@@ -1248,6 +1360,9 @@ namespace or_mpr
 variable {S} [DecidableEq S] {φ₁ φ₂ : NNF S} {w : ℕ → Letter S}
 
 omit [DecidableEq S] in
+/--
+@isnad1 id=language.1h4v.s5.f47b3e7596f1 from=translated src=- shape=1ca65f07 vocab=6e567261
+-/
 lemma left : φ₁.toABW.language w → (φ₁.or φ₂).toABW.language w := by
   classical
   rintro ⟨G, G_acc⟩
@@ -1263,6 +1378,9 @@ lemma left : φ₁.toABW.language w → (φ₁.or φ₂).toABW.language w := by
     replaceRoot.runDag_accepting _ G_acc _ _ (by simp [NNF.toABW, Subtype.embedLe])⟩
 
 omit [DecidableEq S] in
+/--
+@isnad1 id=language.1h4v.s5.58f3eef02e6f from=translated src=- shape=1944c008 vocab=6e567261
+-/
 lemma right : φ₂.toABW.language w → (φ₁.or φ₂).toABW.language w := by
   classical
   rintro ⟨G, G_acc⟩
@@ -1279,6 +1397,9 @@ lemma right : φ₂.toABW.language w → (φ₁.or φ₂).toABW.language w := by
 
 end or_mpr
 
+/--
+@isnad1 id=language.1h3v.s6.7ba39cab84df from=translated src=- shape=179fc0c0 vocab=dd7451c7
+-/
 lemma next_mp {AP : Type} {φ : NNF AP} {w} : φ.next.toABW.language w
     → φ.toABW.language (fun j => w (j + 1)) := by
   rintro ⟨G, G_acc⟩
@@ -1293,6 +1414,9 @@ lemma next_mp {AP : Type} {φ : NNF AP} {w} : φ.next.toABW.language w
   obtain ⟨Y, p_sat, p_sub⟩ := G.p_sat _ in_1
   apply subformula_toABW_lang (sub.next sub.refl) G_acc p_sat p_sub
 
+/--
+@isnad1 id=language.1h3v.s6.b6f687c9ba07 from=translated src=- shape=d49e103e vocab=dd7451c7
+-/
 lemma next_mpr {AP : Type} {φ : NNF AP} {w} : (φ.toABW.language fun j =>
     w (j + 1)) → φ.next.toABW.language w := by
   rintro ⟨G, G_acc⟩
@@ -1308,6 +1432,9 @@ lemma next_mpr {AP : Type} {φ : NNF AP} {w} : (φ.toABW.language fun j =>
   exists (j + 1)
   grind
 
+/--
+@isnad1 id=ex.1h4v.s6.d4f626210119 from=translated src=- shape=4c91b76e vocab=4293d558
+-/
 lemma until_mp {S} {φ₁ φ₂ : NNF S} {w} (H : (φ₁.until φ₂).toABW.language w) : ∃ n,
     φ₂.toABW.language (fun j => w (j + n)) ∧ ∀ k < n, φ₁.toABW.language (fun j => w (j + k)) := by
   obtain ⟨G, G_acc⟩ := H
@@ -1352,6 +1479,9 @@ lemma until_mp {S} {φ₁ φ₂ : NNF S} {w} (H : (φ₁.until φ₂).toABW.lang
           apply subformula_toABW_lang (sub.until_left sub.refl) G_acc p_sat p_sub
         · exact sat_φ₁ k (by omega)
 
+/--
+@isnad1 id=language.1h4v.s5.a63c6dd5c832 from=translated src=- shape=1944c008 vocab=a9efc0d6
+-/
 lemma until_mpr.base
   {S} {φ₁ φ₂ : NNF S} {w : ℕ → Letter S}
   (h2 : φ₂.toABW.language w)
@@ -1370,6 +1500,9 @@ lemma until_mpr.base
     (by simp [NNF.toABW]),
     replaceRoot.runDag_accepting _ G_acc _ _ (by simp [NNF.toABW, Subtype.embedLe])⟩
 
+/--
+@isnad1 id=language.2h4v.s6.6f4a6719540e from=translated src=- shape=d07d8d0b vocab=7750b317
+-/
 lemma until_mpr.next
   {S} {φ₁ φ₂ : NNF S} {w : ℕ → Letter S}
   (h1 : φ₁.toABW.language w)
@@ -1407,11 +1540,17 @@ namespace release_mp
 
 variable {S} {φ₁ φ₂ : NNF S} {w : ℕ → Letter S} {G : RunDAG (φ₁.release φ₂).toABW w}
 
+/--
+@isnad1 id=language.2h6v.s8.58bfacf2cee4 from=translated src=- shape=298493a7 vocab=fd83a365
+-/
 lemma right (G_acc : G.accepting) {l} (H : (⟨φ₁.release φ₂, le_refl _⟩,
     l) ∈ G.V) : φ₂.toABW.language (fun j => w (j + l)) := by
   obtain ⟨Y, p_sat, p_sub⟩ := G.p_sat _ H
   apply subformula_toABW_lang (sub.release_right sub.refl) G_acc p_sat.left p_sub
 
+/--
+@isnad1 id=language.3h6v.s8.c3471a049de7 from=translated src=- shape=61f3da7e vocab=fd83a365
+-/
 lemma left (G_acc : G.accepting) {l} (H₁ : (⟨φ₁.release φ₂, le_refl _⟩, l) ∈
     G.V) (H₂ : (⟨φ₁.release φ₂, le_refl _⟩,
     l + 1) ∉ G.V) : φ₁.toABW.language (fun j => w (j + l)) := by
@@ -1431,6 +1570,9 @@ namespace release_mpr
 variable {S} [DecidableEq S] {φ₁ φ₂ : NNF S} {w : ℕ → Letter S}
 
 omit [DecidableEq S] in
+/--
+@isnad1 id=language.1h4v.s6.8d8780eb3171 from=translated src=- shape=6d5a54d6 vocab=924761d7
+-/
 lemma always
   (hg : ∀ i, φ₂.toABW.language (fun j => w (j + i)))
     : (φ₁.release φ₂).toABW.language w := by
@@ -1465,6 +1607,9 @@ lemma always
 
 -- By Claude 4.5 Opus
 omit [DecidableEq S] in
+/--
+@isnad1 id=language.2h4v.s6.57b2afd1e4aa from=translated src=- shape=867b3588 vocab=61d26b8e
+-/
 lemma base
   (h1 : φ₁.toABW.language w)
   (h2 : φ₂.toABW.language w)
@@ -1505,6 +1650,9 @@ lemma base
 
 -- By Claude 4.5 Opus
 omit [DecidableEq S] in
+/--
+@isnad1 id=language.2h4v.s6.7592bf2ac09c from=translated src=- shape=7098b1d2 vocab=924761d7
+-/
 lemma next
   (h2 : φ₂.toABW.language w)
   (h3 : (φ₁.release φ₂).toABW.language (fun j => w (j + 1)))
@@ -1567,6 +1715,9 @@ private lemma toABW_leaf_lang {AP} (φ : NNF AP) (w : ℕ → Letter AP) (P : Pr
     intros _ _ he _
     simp [G] at he
 
+/--
+@isnad1 id=eq.0h2v.s5.f817aeda48f3 from=translated src=- shape=a2efc8df vocab=fd0a1f70
+-/
 theorem NNF.toABW_lang {AP} (ψ : NNF AP) : ψ.toABW.language = ψ.language := by
   have : DecidableEq AP := by classical infer_instance
   induction ψ
@@ -1684,6 +1835,9 @@ theorem NNF.toABW_lang {AP} (ψ : NNF AP) : ψ.toABW.language = ψ.language := b
             apply release_mpr.next lg
             apply ih (fun j => w (j + 1)) H hgn
 
+/--
+@isnad1 id=ex.0h2v.s5.26352ae1f12b from=translated src=- shape=2e643786 vocab=9d335abd
+-/
 theorem exists_ABW_lang_for_LTL {AP} (f : LTL AP) :
     ∃ (Q : Type) (_ : Finite Q) (A : ABW (Letter AP) Q), f.language = A.language := by
   obtain ⟨nnf, eqv⟩ := f.exists_equiv_nnf

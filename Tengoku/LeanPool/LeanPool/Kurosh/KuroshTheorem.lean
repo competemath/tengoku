@@ -34,7 +34,9 @@ namespace GraphCoveringTheory.Kurosh
 
 /-- The vertex groups in the Bass--Serre decomposition are either trivial
 central-vertex stabilizers or intersections with conjugates of the original
-free factors. -/
+free factors.
+@isnad1 id=or.0h4v.s8.0d64d4485fff from=translated src=- shape=cfaeb692 vocab=1a2e7da0
+-/
 theorem kurosh_vertex_stabilizer_classification {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (a : RawBassSerreOrbitVertex G H) :
@@ -48,7 +50,9 @@ theorem kurosh_vertex_stabilizer_classification {ι : Type v}
   Internal.treeVertexStabilizer_central_or_factor G H a
 
 /-- Each nontrivial factor in the factor-only form is an intersection with a
-conjugate of one of the original free factors. -/
+conjugate of one of the original free factors.
+@isnad1 id=ex.0h4v.s8.a18a7933c126 from=translated src=- shape=51f701b8 vocab=8a345dd3
+-/
 theorem kurosh_factor_is_conjugate_intersection {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (j : KuroshActiveVertexIndex G H) :

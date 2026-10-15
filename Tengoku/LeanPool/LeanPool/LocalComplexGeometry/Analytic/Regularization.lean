@@ -69,6 +69,9 @@ def directionExtensionEquiv {n : ℕ}
     ClassicalComplexWPT.Ambient n ≃L[ℂ] ComplexEuclidean (n + 1) :=
   (directionExtensionLinearEquiv v j hvj).toContinuousLinearEquiv
 
+/--
+@isnad1 id=eq.1h4v.s9.c0ea9019cbda from=translated src=- shape=fd48ea84 vocab=3e8b3d42
+-/
 @[simp]
 theorem directionExtensionEquiv_axis {n : ℕ}
     (v : ComplexEuclidean (n + 1)) (j : Fin (n + 1)) (hvj : v j ≠ 0)
@@ -87,6 +90,7 @@ one of its homogeneous Taylor coefficients is nonzero.
 
 This formulation is deliberate: multivariable formal multilinear series are
 only unique on their diagonals, and no unjustified symmetry assertion is used.
+@isnad1 id=ex.2h3v.s8.17efa5586b2f from=translated src=- shape=3c50e7bf vocab=ccf5be08
 -/
 theorem HasFPowerSeriesAt.exists_nonzero_diagonal
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
@@ -102,7 +106,9 @@ theorem HasFPowerSeriesAt.exists_nonzero_diagonal
     simpa only [h] using (hasSum_zero : HasSum (fun _ : ℕ ↦ (0 : ℂ)) 0)
   exact hz.unique hzero
 
-/-- A direction witnessing a nonzero homogeneous term is itself nonzero. -/
+/-- A direction witnessing a nonzero homogeneous term is itself nonzero.
+@isnad1 id=ne.2h4v.s7.5473692f804d from=translated src=- shape=e2b5f0e8 vocab=d3557b05
+-/
 theorem nonzero_of_diagonal_ne_zero
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     (p : FormalMultilinearSeries ℂ E ℂ) (d : ℕ) (v : E)
@@ -116,6 +122,7 @@ theorem nonzero_of_diagonal_ne_zero
 The restriction of a nonzero analytic germ to a suitable complex line is not
 the zero one-variable germ.  The proof retains the witnessing nonzero Taylor
 coefficient.
+@isnad1 id=ex.3h2v.s9.ba01817e1227 from=translated src=- shape=324eec54 vocab=aa82dcde
 -/
 theorem exists_nonzero_analytic_line
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
@@ -158,6 +165,7 @@ after an invertible complex-linear coordinate change.
 The returned natural number is the actual analytic order of the chosen line
 slice.  Thus it is the least nonzero homogeneous order on that slice, not merely
 an arbitrary finite bound.
+@isnad1 id=ex.2h2v.s11.c4c7e24fb908 from=translated src=- shape=79b34bd5 vocab=146126eb
 -/
 theorem exists_regularizing_coordinateEquiv
     {n : ℕ} {f : ComplexEuclidean (n + 1) → ℂ}
@@ -209,7 +217,9 @@ theorem exists_regularizing_coordinateEquiv
     rw [harg]
     exact hf_zero
 
-/-- If the germ vanishes at the origin, the regularized order is positive. -/
+/-- If the germ vanishes at the origin, the regularized order is positive.
+@isnad1 id=ex.3h2v.s11.ece4cac129c6 from=translated src=- shape=a750d35b vocab=aa05751e
+-/
 theorem exists_regularizing_coordinateEquiv_pos
     {n : ℕ} {f : ComplexEuclidean (n + 1) → ℂ}
     (hf : AnalyticAt ℂ f 0)

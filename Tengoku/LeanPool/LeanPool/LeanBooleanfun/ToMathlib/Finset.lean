@@ -23,6 +23,9 @@ section ToDataFintypeBasic
 
 variable [Fintype α] [DecidableEq α]
 
+/--
+@isnad1 id=eq.0h2v.s6.e980886f4c30 from=translated src=- shape=0bd01353 vocab=46f35ce0
+-/
 @[simp]
 lemma filter_univ_not_mem (s : Finset α) : univ.filter (· ∉ s) = sᶜ := by
   ext; simp only [mem_filter, mem_univ, true_and, mem_compl]

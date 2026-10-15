@@ -53,7 +53,9 @@ end FiniteFieldModel
 
 /-- The cardinality of every finite field is a prime power.  Together with
 `exists_finiteFieldModel_of_isPrimePow` below, this records both directions
-of the correspondence used by the prime-power indexing. -/
+of the correspondence used by the prime-power indexing.
+@isnad1 id=isprimep.0h1v.s3.c27b265b79b0 from=translated src=- shape=1870cb80 vocab=daf13f18
+-/
 theorem isPrimePow_natCard_finiteField (K : Type*) [Field K] [Finite K] :
     IsPrimePow (Nat.card K) := by
   let : Fintype K := Fintype.ofFinite K
@@ -61,7 +63,9 @@ theorem isPrimePow_natCard_finiteField (K : Type*) [Field K] [Finite K] :
   exact FiniteField.isPrimePow_card K
 
 /-- Every natural-number prime power is the cardinality of an explicitly
-packaged finite field.  The field is the Mathlib Galois field `GF(p^e)`. -/
+packaged finite field.  The field is the Mathlib Galois field `GF(p^e)`.
+@isnad1 id=ex.1h1v.s4.538a43db118b from=translated src=- shape=fc0cd86e vocab=0870387c
+-/
 theorem exists_finiteFieldModel_of_isPrimePow (q : ℕ) (hq : IsPrimePow q) :
     ∃ M : FiniteFieldModel, M.card = q := by
   rcases (isPrimePow_nat_iff q).mp hq with ⟨p, e, hp, he, rfl⟩
@@ -75,7 +79,9 @@ theorem exists_finiteFieldModel_of_isPrimePow (q : ℕ) (hq : IsPrimePow q) :
     (GaloisField.card p e he.ne')
 
 /-- A natural number is a prime power exactly when it occurs as the
-cardinality of an explicitly packaged finite field. -/
+cardinality of an explicitly packaged finite field.
+@isnad1 id=iff.0h1v.s4.e4349b036c93 from=translated src=- shape=4f1586a2 vocab=0870387c
+-/
 theorem isPrimePow_iff_exists_finiteFieldModel (q : ℕ) :
     IsPrimePow q ↔ ∃ M : FiniteFieldModel, M.card = q := by
   constructor
@@ -90,7 +96,9 @@ abbrev PrimePowerIndex := {q : ℕ // IsPrimePow q}
 
 /-- Prime powers are cofinal in the natural numbers.  Consequently `atTop`
 on `PrimePowerIndex` is precisely "tending to infinity through prime
-powers". -/
+powers".
+@isnad1 id=tendsto.0h0v.s4.f27f414bf8a5 from=translated src=- shape=57071c90 vocab=42f7f2b1
+-/
 theorem tendsto_primePowerIndex_val :
     Tendsto (fun q : PrimePowerIndex ↦ q.1) atTop atTop := by
   apply Monotone.tendsto_atTop_atTop
@@ -105,6 +113,9 @@ noncomputable def finiteFieldModelOfPrimePower (q : PrimePowerIndex) :
     FiniteFieldModel :=
   Classical.choose (exists_finiteFieldModel_of_isPrimePow q.1 q.2)
 
+/--
+@isnad1 id=eq.0h1v.s4.4cf54ebd269a from=translated src=- shape=9aba127b vocab=8a815a42
+-/
 @[simp]
 theorem finiteFieldModelOfPrimePower_card (q : PrimePowerIndex) :
     (finiteFieldModelOfPrimePower q).card = q.1 :=
@@ -119,11 +130,16 @@ noncomputable instance primePowerFieldField (q : PrimePowerIndex) :
     Field (PrimePowerField q) :=
   (finiteFieldModelOfPrimePower q).field
 
+/--
+@isnad1 id=finite.0h1v.s2.be5df54161c6 from=translated src=- shape=76a08d12 vocab=0abe41be
+-/
 noncomputable instance primePowerFieldFinite (q : PrimePowerIndex) :
     Finite (PrimePowerField q) :=
   (finiteFieldModelOfPrimePower q).finite
 
-/-- The chosen field really has the prime-power cardinality indexing it. -/
+/-- The chosen field really has the prime-power cardinality indexing it.
+@isnad1 id=eq.0h1v.s4.7a6dda598b07 from=translated src=- shape=9aba127b vocab=d94bf5d1
+-/
 @[simp]
 theorem natCard_primePowerField (q : PrimePowerIndex) :
     Nat.card (PrimePowerField q) = q.1 := by
@@ -131,7 +147,9 @@ theorem natCard_primePowerField (q : PrimePowerIndex) :
     finiteFieldModelOfPrimePower_card q
 
 /-- The cardinalities of the chosen fields tend to infinity along the
-prime-power index. -/
+prime-power index.
+@isnad1 id=tendsto.0h0v.s4.7b918e43799b from=translated src=- shape=4ce9b6c0 vocab=c5526ae5
+-/
 theorem tendsto_natCard_primePowerField :
     Tendsto (fun q : PrimePowerIndex ↦ Nat.card (PrimePowerField q))
       atTop atTop := by

@@ -45,12 +45,16 @@ namespace PauliPropagationTruncation
 
 variable (M : PauliPropagationTruncation)
 
-/-- The error bound (sum of discarded norms) is nonnegative. -/
+/-- The error bound (sum of discarded norms) is nonnegative.
+@isnad1 id=le.0h1v.s4.4607415d0ce0 from=translated src=- shape=ff517d05 vocab=53d39153
+-/
 theorem sum_discarded_nonneg :
     0 ≤ ∑ i ∈ Finset.range M.layers, M.discarded i :=
   Finset.sum_nonneg fun i _ => M.discarded_nonneg i
 
-/-- Exact propagation: if nothing is discarded, the simulation error is `≤ 0`. -/
+/-- Exact propagation: if nothing is discarded, the simulation error is `≤ 0`.
+@isnad1 id=le.1h1v.s4.97dd050300f7 from=translated src=- shape=79f102d9 vocab=983b78fb
+-/
 theorem exact (h : ∀ i, M.discarded i = 0) : M.totalError ≤ 0 := by
   have hsum : ∑ i ∈ Finset.range M.layers, M.discarded i = 0 :=
     Finset.sum_eq_zero fun i _ => h i

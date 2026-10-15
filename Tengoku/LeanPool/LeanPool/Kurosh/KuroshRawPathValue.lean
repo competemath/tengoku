@@ -30,6 +30,9 @@ universe u v
 
 namespace GraphCoveringTheory.Kurosh
 
+/--
+@isnad1 id=eq.0h5v.s7.723ddf64cd0f from=translated src=- shape=ba2c2450 vocab=afb88b5f
+-/
 theorem Internal.coverPathValue_rawTree {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a : RawBassSerreOrbitVertex G H}

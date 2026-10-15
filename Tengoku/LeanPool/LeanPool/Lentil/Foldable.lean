@@ -28,7 +28,9 @@ instance : Foldable List where
   fold op _ _ b f s := List.foldr (op <| f ·) b s
 
 /-- Folding over a list equals folding over its positional re-indexing
-    through `List.finRange`. -/
+    through `List.finRange`.
+@isnad1 id=eq.0h6v.s6.1c48f3fb600a from=translated src=- shape=28caa840 vocab=865db4c9
+-/
 theorem Foldable.list_index_form_change {α : Type u} {β : Type w} (op : β → β → β)
     [inst1 : Std.Commutative op] [inst2 : Std.Associative op]
     (b : β) (f : α → β) (l : List α) :

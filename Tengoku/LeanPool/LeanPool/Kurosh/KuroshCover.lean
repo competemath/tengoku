@@ -132,6 +132,9 @@ instance coverSourceMulAction {ι : Type v} (G : ι → Type u)
               simp [mul_assoc]
         _ = p * Quotient.out c := by rw [hk]
 
+/--
+@isnad1 id=eq.0h5v.s10.1f97c1ca8ce8 from=translated src=- shape=325c06cf vocab=6a3f7ce3
+-/
 theorem coverSource_vertexRange_smul {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (a : RawBassSerreOrbitVertex G H)
@@ -173,6 +176,9 @@ noncomputable def coverVertexMap {ι : Type v} (G : ι → Type u)
                 exact smul_smul _ _ _)
       c
 
+/--
+@isnad1 id=eq.0h5v.s10.ce6db488495a from=translated src=- shape=873fd0ab vocab=b5da4805
+-/
 @[simp] theorem coverVertexMap_mk {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (a : RawBassSerreOrbitVertex G H) (p : CoverSource G H) :
@@ -341,6 +347,9 @@ def coverFreeGroupoidPathHom {ι : Type v} (G : ι → Type u)
             Groupoid.inv
               ((Quiver.FreeGroupoid.of (RawBassSerreOrbitVertex G H)).map f))
 
+/--
+@isnad1 id=eq.0h8v.s10.30c30f3e7896 from=translated src=- shape=a8954f59 vocab=49769c5f
+-/
 theorem coverFreeGroupoidPathHom_cons {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b c : RawBassSerreOrbitVertex G H}
@@ -393,6 +402,9 @@ noncomputable def coverPathValue {ι : Type v} (G : ι → Type u)
       coverPathValue G H p *
         coverEdgeLetter G H (coverBaseEdge G H e)
 
+/--
+@isnad1 id=eq.0h4v.s6.807224c1d378 from=translated src=- shape=8242cb24 vocab=9961d69a
+-/
 theorem coverPathValueOpp_nil {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a : RawBassSerreOrbitVertex G H} :
@@ -410,6 +422,9 @@ theorem coverPathValueOpp_nil {ι : Type v} (G : ι → Type u)
     | (all_goals decide; done)
     | (all_goals tauto; done)
 
+/--
+@isnad1 id=eq.0h7v.s8.f2dbb04ef29c from=translated src=- shape=be3df079 vocab=e1f50dc4
+-/
 theorem coverPathValueOpp_pos {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H}
@@ -427,6 +442,9 @@ theorem coverPathValueOpp_pos {ι : Type v} (G : ι → Type u)
     CategoryTheory.SingleObj.comp_as_mul]
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.ce2cd2027c98 from=translated src=- shape=32c9929b vocab=3051d386
+-/
 theorem coverPathValueOpp_neg {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H}
@@ -489,6 +507,9 @@ theorem coverPathValueOpp_neg {ι : Type v} (G : ι → Type u)
     simpa only [Groupoid.inv_eq_inv] using hmi'
   rw [hmi'']
 
+/--
+@isnad1 id=eq.0h4v.s6.177ad5292362 from=translated src=- shape=2e1695bd vocab=e96f0000
+-/
 theorem coverPathValue_nil {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a : RawBassSerreOrbitVertex G H} :
@@ -501,6 +522,9 @@ theorem coverPathValue_nil {ι : Type v} (G : ι → Type u)
   rw [coverPathValueOpp_nil]
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.cbcbdfe796ab from=translated src=- shape=02ea7546 vocab=98d983ce
+-/
 theorem coverPathValue_pos {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H}
@@ -514,6 +538,9 @@ theorem coverPathValue_pos {ι : Type v} (G : ι → Type u)
         (coverEdgeLetter G H (coverBaseEdge G H e))⁻¹ := by
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.756d7f2eacf5 from=translated src=- shape=dcbf5985 vocab=faaf7b53
+-/
 theorem coverPathValue_neg {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H}
@@ -538,6 +565,9 @@ noncomputable def coverPathFreeLoop {ι : Type v} (G : ι → Type u)
   coverFreeGroupoidPathHom G H p ≫
     Groupoid.inv (quotientTreePathHom G H a)
 
+/--
+@isnad1 id=eq.0h3v.s8.5846ec5167e2 from=translated src=- shape=af1caefb vocab=ff7f2b2f
+-/
 theorem coverQuotientTreePathHom_root {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G)) :
     quotientTreePathHom G H (rawBassSerreOrbitRoot G H) = 𝟙 _ := by
@@ -559,6 +589,9 @@ theorem coverQuotientTreePathHom_root {ι : Type v} (G : ι → Type u)
     (rawBassSerreOrbitQuiver.inst G H)
     (rawBassSerreOrbitRoot G H)
 
+/--
+@isnad1 id=eq.0h5v.s8.e3dc2634d1c0 from=translated src=- shape=c7889305 vocab=5915cb21
+-/
 theorem coverPathValue_formula {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a : RawBassSerreOrbitVertex G H}
@@ -658,6 +691,9 @@ noncomputable def coverPathLift {ι : Type v} (G : ι → Type u)
             Quiver.Path.cons ih.2
               (coverNegativeLiftEdge G H f r)⟩
 
+/--
+@isnad1 id=eq.0h6v.s7.dca01343dbfe from=translated src=- shape=f412f5ac vocab=add06aaa
+-/
 theorem coverPathLift_value {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (p : CoverSource G H)
@@ -698,6 +734,9 @@ noncomputable def coverPrefunctor {ι : Type v} (G : ι → Type u)
   obj := coverVertexMap G H
   map := coverEdgeMap G H
 
+/--
+@isnad1 id=injectiv.0h4v.s12.ff1e4a91329e from=translated src=- shape=a0a2038e vocab=ebd07b8f
+-/
 theorem treeKuroshVertexInclusion_injective {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (a : RawBassSerreOrbitVertex G H) :

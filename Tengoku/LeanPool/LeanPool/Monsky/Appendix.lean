@@ -25,6 +25,9 @@ open Polynomial
 
 -- multiplying a polynomial by 2 commutes with deleting a power
 -- Could generalize outside of 2
+/--
+@isnad1 id=eq.0h3v.s8.947cb5ef13c1 from=translated src=- shape=f7ec90b0 vocab=b881c02f
+-/
 lemma mul_del_commute {R : Type} [CommRing R] (p : Polynomial R) (n : ℕ) :
  C 2 * erase n p = erase n (C 2 * p) := by
   -- Now we use that a polynomial deleting the n-th term and adding it back in
@@ -40,6 +43,9 @@ lemma mul_del_commute {R : Type} [CommRing R] (p : Polynomial R) (n : ℕ) :
 
 -- Deleting the highest order term of a polynomial of degree at most n
 -- leads to a polynomial of degree less than n
+/--
+@isnad1 id=lt.2h3v.s5.44139bf60119 from=translated src=- shape=0fb8f87f vocab=1bc8206e
+-/
 lemma erase_degree_leq_n (R : Type) [CommRing R] (p : Polynomial R) (n : ℕ) (h1 : n > 0)
 (h2 : p.natDegree ≤ n) : (p.erase n).natDegree < n := by
   rw[le_iff_lt_or_eq] at h2
@@ -61,11 +67,15 @@ lemma erase_degree_leq_n (R : Type) [CommRing R] (p : Polynomial R) (n : ℕ) (h
     · have def1 : p.eraseLead = p.erase p.natDegree := rfl
       simp_all
 
-/-- For nonzero `α` and `x ≤ n`, we have `α ^ n * (α ^ x)⁻¹ = α ^ (n - x)`. -/
+/-- For nonzero `α` and `x ≤ n`, we have `α ^ n * (α ^ x)⁻¹ = α ^ (n - x)`.
+@isnad1 id=eq.2h3v.s6.1ae249236df8 from=translated src=- shape=afb3eb9e vocab=f38303cd
+-/
 lemma pow_mul_inv_pow_of_le {α : ℝ} (hα : α ≠ 0) {n x : ℕ} (h : x ≤ n) :
     α ^ n * (α ^ x)⁻¹ = α ^ (n - x) := (pow_sub₀ α hα h).symm
 
-/-- The degree of `q1.erase n` is either `< n` or `0`, given `q1.natDegree ≤ n`. -/
+/-- The degree of `q1.erase n` is either `< n` or `0`, given `q1.natDegree ≤ n`.
+@isnad1 id=or.1h3v.s9.c977a5917002 from=translated src=- shape=5c9d9e39 vocab=3d232972
+-/
 lemma erase_natDegree_lt_or_zero {B : Subring ℝ} {q1 : Polynomial B} {n : ℕ}
     (deg1 : q1.natDegree ≤ n) :
     (q1.erase n).natDegree < n ∨ (q1.erase n).natDegree = 0 := by
@@ -89,6 +99,9 @@ lemma erase_natDegree_lt_or_zero {B : Subring ℝ} {q1 : Polynomial B} {n : ℕ}
 -- If we have polynomials p and q of degrees m and n and an α∈ ℝ such that α, α⁻¹∉ B,
 -- a subring of ℝ, p(α)=1/2 and q(α⁻¹)=1/2 then there is an m' < m such that
 -- there exists a polynomial pq of degree m' such that pq(α)=1/2.
+/--
+@isnad1 id=ex.8h6v.s11.484acfe376fd from=translated src=- shape=c50c140a vocab=214269c3
+-/
 lemma lower_degree (B : Subring ℝ) (α : ℝ) (m n : ℕ) (H : α ∉ B ∧ α⁻¹ ∉ B) (p : Polynomial B)
   (q : Polynomial B) (m_eq_degree_p : p.natDegree = m) (n_eq_degree_q : q.natDegree = n)
   (zero_lt_m : m ≠ 0) (zero_lt_n : n ≠ 0) (p_eval : (aeval α) p = 1 / 2)
@@ -278,6 +291,9 @@ def S := {A : Subring ℝ | (1/2) ∉ A}
 def Z := (Int.castRingHom ℝ).range
 
 -- This lemma shows that the subring of integers in ℝ lies in the set S
+/--
+@isnad1 id=mem.0h0v.s4.850e618bebfc from=translated src=- shape=80a7a8bb vocab=1bb9bba2
+-/
 lemma Z_in_S : Z ∈ S := by
   -- Now follows the to us trivial notion that the elements
   -- represented by 2 in ℤ and ℝ are the same under coercion
@@ -301,6 +317,9 @@ lemma Z_in_S : Z ∈ S := by
   -- We will now use that the only units in ℤ are ±1
   obtain l | l := Int.units_eq_one_or two <;> (rw[l] at H; tauto)
 
+/--
+@isnad1 id=ex.2h1v.s7.722bff9147d8 from=translated src=- shape=fd51bfc7 vocab=f3824084
+-/
 lemma sUnion_is_ub : ∀ c ⊆ S, IsChain (· ≤ ·) c → ∃ ub ∈ S, ∀ z ∈ c, z ≤ ub := by
 -- Idea: The upper bound is the union of the subrings.
   intro c subset chain
@@ -405,12 +424,18 @@ lemma sUnion_is_ub : ∀ c ⊆ S, IsChain (· ≤ ·) c → ∃ ub ∈ S, ∀ z 
 -- This lemma shows that there is a valuation ring of ℝ
 -- such that 1/2 does not lie in it
 
+/--
+@isnad1 id=eq.1h5v.s7.033afa8f2c02 from=translated src=- shape=8306ebb9 vocab=98d564a0
+-/
 lemma non_archimedean (Γ₀ : Type) [LinearOrderedCommGroupWithZero Γ₀] (K : Type) [Field K]
 (v : Valuation K Γ₀) :(∀(x y : K), v x ≠ v y → v (x + y) = max (v x) (v y)) :=
   fun _ _ a ↦ Valuation.map_add_of_distinct_val v a
 
 -- There is a valuation v on ℝ such that v(1/2) > 1.
 
+/--
+@isnad1 id=eq.2h4v.s7.ca3f355ec0a9 from=translated src=- shape=5625fc2c vocab=ea629f85
+-/
 lemma odd_valuation (Γ₀ : Type) (_ : LinearOrderedCommGroupWithZero Γ₀) (v : Valuation ℝ Γ₀)
 (vhalf : v (1 / 2) > 1) : ∀ n : ℕ, Odd n → v (1/n) = 1 := by
   have vhalf' : v (2) < 1 := by

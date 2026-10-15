@@ -57,7 +57,9 @@ def WeakRadialStationarityIdentity {n m : ℕ}
               weakRadialRhsIntegrand Du phi x
 
 /-- The pointwise radial integrand simplification holds almost everywhere on
-balls: the only excluded point is the origin. -/
+balls: the only excluded point is the origin.
+@isnad1 id=eventual.1h5v.s9.e1e2fbfcc3ef from=translated src=- shape=1e4496b9 vocab=52478063
+-/
 theorem weakStationarityIntegrand_radialVectorField_ae {n m : ℕ} [NeZero n]
     (Du : Domain n → Gradient n m) {phi : ℝ → ℝ}
     (hphi : Differentiable ℝ phi) (R0 : ℝ) :
@@ -78,7 +80,9 @@ theorem weakStationarityIntegrand_radialVectorField_ae {n m : ℕ} [NeZero n]
 /-- Weak stationarity plus the radial vector-field computation gives the weak
 radial identity, once the two resulting radial integrands are known to be
 integrable on the ball.  The integrability hypotheses will later be discharged
-from `W^{1,2}_{loc}` and compact support of the cutoff. -/
+from `W^{1,2}_{loc}` and compact support of the cutoff.
+@isnad1 id=eq.7h5v.s10.6384a1a8678b from=translated src=- shape=44d80071 vocab=b176cdf0
+-/
 theorem weak_radial_identity_from_stationarity {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hstationary : WeakStationaryIn Du (Metric.ball (0 : Domain n) R0))
@@ -137,7 +141,9 @@ theorem weak_radial_identity_from_stationarity {n m : ℕ} [NeZero n]
 
 /-- Weak stationarity gives the radial identity when the integrability side
 conditions are discharged from weak-energy integrability and bounded cutoff
-coefficients. -/
+coefficients.
+@isnad1 id=eq.12h7v.s12.a96d897abcbe from=translated src=- shape=8f4e0a58 vocab=a799e521
+-/
 theorem weak_radial_identity_from_stationarity_of_energy_bound {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hstationary : WeakStationaryIn Du (Metric.ball (0 : Domain n) R0))
@@ -191,7 +197,9 @@ theorem weak_radial_identity_from_stationarity_of_energy_bound {n m : ℕ} [NeZe
 
 /-- Weak stationarity gives the radial identity from weak-energy integrability.
 The radial-energy integrability is supplied by the pointwise estimate
-`weakRadialEnergyDensity ≤ weakEnergyDensity`. -/
+`weakRadialEnergyDensity ≤ weakEnergyDensity`.
+@isnad1 id=eq.11h7v.s11.42fbbe6c7b22 from=translated src=- shape=f2ae2b71 vocab=a799e521
+-/
 theorem weak_radial_identity_from_stationarity_of_energy {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hstationary : WeakStationaryIn Du (Metric.ball (0 : Domain n) R0))
@@ -236,7 +244,9 @@ theorem weak_radial_identity_from_stationarity_of_energy {n m : ℕ} [NeZero n]
 
 /-- Weak stationarity gives the radial identity on a ball directly from
 gradient measurability, `GradientLocallyL2In` on a containing set, and elementary
-cutoff bounds. -/
+cutoff bounds.
+@isnad1 id=eq.12h8v.s10.66126edd2ca5 from=translated src=- shape=9e05f1e4 vocab=c5cae440
+-/
 theorem weak_radial_identity_from_stationarity_of_locallyL2 {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {Ω : Set (Domain n)} {R0 M0 M1 : ℝ}
     (hstationary : WeakStationaryIn Du (Metric.ball (0 : Domain n) R0))
@@ -288,7 +298,9 @@ theorem weak_radial_identity_from_stationarity_of_locallyL2 {n m : ℕ} [NeZero 
       hdphi_bound hR0_nonneg)
 
 /-- Weak radial identity on a ball from local `L²` data and the packaged cutoff
-interface. -/
+interface.
+@isnad1 id=eq.5h8v.s9.89caf0aeeecd from=translated src=- shape=eac34dda vocab=caa54a76
+-/
 theorem weak_radial_identity_from_stationarity_of_locallyL2_cutoff {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {Ω : Set (Domain n)} {R0 M0 M1 : ℝ}
     (hstationary : WeakStationaryIn Du (Metric.ball (0 : Domain n) R0))
@@ -313,7 +325,9 @@ theorem weak_radial_identity_from_stationarity_of_locallyL2_cutoff {n m : ℕ} [
 /-- Weak radial identity on a ball from the `W^{1,2}_{loc}` interface and the
 packaged cutoff interface.  The stationarity hypothesis is still stated on the
 ball; proving its restriction from a larger domain is a separate localization
-step. -/
+step.
+@isnad1 id=eq.4h9v.s9.1f75479dd098 from=translated src=- shape=f08f8435 vocab=fd11cb28
+-/
 theorem weak_radial_identity_from_stationarity_of_W12Loc_cutoff {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
     {R0 M0 M1 : ℝ}
@@ -335,7 +349,9 @@ theorem weak_radial_identity_from_stationarity_of_W12Loc_cutoff {n m : ℕ} [NeZ
 
 /-- Weak radial identity for a one-dimensional smooth bump cutoff.  The
 derivative-bound constant required by `AdmissibleRadialCutoff` is produced from
-compactness of `[0, R0]`. -/
+compactness of `[0, R0]`.
+@isnad1 id=eq.4h7v.s10.070fea68d233 from=translated src=- shape=459b0ec4 vocab=8f78425e
+-/
 theorem weak_radial_identity_from_stationarity_of_W12Loc_contDiffBump {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
     {R0 : ℝ}
@@ -355,7 +371,9 @@ theorem weak_radial_identity_from_stationarity_of_W12Loc_contDiffBump {n m : ℕ
     hstationary hW hclosedBall_subset hcut
 
 /-- Full weak radial identity from weak stationarity, packaged with the
-integrability estimates needed to split the integral of `A - 2B`. -/
+integrability estimates needed to split the integral of `A - 2B`.
+@isnad1 id=weakradi.2h4v.s10.91feab2fec71 from=translated src=- shape=7e0d9759 vocab=6fcb20f9
+-/
 theorem weak_radial_identity_from_stationarity_with_integrability {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hstationary : WeakStationaryIn Du (Metric.ball (0 : Domain n) R0))

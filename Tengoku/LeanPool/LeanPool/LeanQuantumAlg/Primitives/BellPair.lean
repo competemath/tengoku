@@ -43,7 +43,9 @@ In the big-endian basis labelling, `|00⟩ = ket 0` and `|11⟩ = ket 3`. -/
 def bellVec : StateVector 2 :=
   invSqrt2 • ((ket 0 : PureState 2) + (ket 3 : PureState 2) : StateVector 2)
 
-/-- The raw Bell-state vector has unit norm. -/
+/-- The raw Bell-state vector has unit norm.
+@isnad1 id=eq.0h0v.s6.24af51234a5d from=translated src=- shape=d71238e5 vocab=7afd0176
+-/
 theorem norm_bellVec : ‖bellVec‖ = 1 := by
   rw [bellVec, norm_smul, norm_invSqrt2]
   have h : ‖((ket 0 : PureState 2) + (ket 3 : PureState 2) : StateVector 2)‖
@@ -63,7 +65,9 @@ theorem norm_bellVec : ‖bellVec‖ = 1 := by
 /-- The Bell state (EPR-pair) as a normalized pure state. -/
 def bell : PureState 2 := ofVec bellVec norm_bellVec
 
-/-- The Bell state in per-qubit tensor form: `(|0⟩⊗|0⟩ + |1⟩⊗|1⟩)/√2`. -/
+/-- The Bell state in per-qubit tensor form: `(|0⟩⊗|0⟩ + |1⟩⊗|1⟩)/√2`.
+@isnad1 id=eq.0h0v.s9.580e8092757e from=translated src=- shape=9f154853 vocab=ef66e963
+-/
 theorem bell_eq_tensor :
     (bell : StateVector 2)
       = invSqrt2 • ((ket0.tensor ket0 + ket1.tensor ket1 : StateVector 2)) := by
@@ -74,7 +78,9 @@ theorem bell_eq_tensor :
     = invSqrt2 • ((ket 0 : PureState 2) + (ket 3 : PureState 2) : StateVector 2)
   rfl
 
-/-- The Bell state is normalized by construction. -/
+/-- The Bell state is normalized by construction.
+@isnad1 id=eq.0h0v.s4.ab0a7778f191 from=translated src=- shape=d71238e5 vocab=2cc3692f
+-/
 @[simp]
 theorem norm_bell : ‖bell‖ = 1 := bell.norm_eq_one
 

@@ -42,16 +42,28 @@ noncomputable def evalLast (n k : ℕ) :
   ContinuousMultilinearMap.apply ℂ (fun _ : Fin k ↦ Ambient n) ℂ
     (fun _ ↦ lastDirection n)
 
+/--
+@isnad1 id=eq.0h1v.s5.532f3e0d7693 from=translated src=- shape=7aab2fa7 vocab=1d7e139f
+-/
 @[simp] theorem norm_lastDirection (n : ℕ) : ‖lastDirection n‖ = 1 := by
   simp [lastDirection]
 
+/--
+@isnad1 id=eq.0h2v.s8.98929c36b225 from=translated src=- shape=9fb0948b vocab=150c72ee
+-/
 @[simp] theorem baseInclusion_apply (n : ℕ) (z : Base n) :
     baseInclusion n z = (z, 0) := rfl
 
+/--
+@isnad1 id=le.0h1v.s8.de2dd6f6c0c8 from=translated src=- shape=94243882 vocab=41d6e9e6
+-/
 theorem norm_baseInclusion_le (n : ℕ) : ‖baseInclusion n‖ ≤ 1 := by
   exact ContinuousLinearMap.opNorm_le_bound (baseInclusion n) (by norm_num) (fun z ↦ by
     simp [baseInclusion])
 
+/--
+@isnad1 id=le.0h2v.s9.a835773bcebd from=translated src=- shape=56a25f30 vocab=d8798acf
+-/
 theorem norm_evalLast_le (n k : ℕ) : ‖evalLast n k‖ ≤ 1 := by
   exact ContinuousLinearMap.opNorm_le_bound (evalLast n k) (by norm_num) (fun q ↦ by
     simpa [evalLast, norm_lastDirection] using
@@ -70,6 +82,9 @@ noncomputable def weightedSingleCLM (r : ℝ≥0) (k : ℕ) :
   (lp.singleContinuousLinearMap ℂ (fun _ : ℕ ↦ ℂ) 1 k).comp
     ((r : ℂ) ^ k • ContinuousLinearMap.id ℂ ℂ)
 
+/--
+@isnad1 id=eq.0h3v.s10.90dcc3b5fcdc from=translated src=- shape=59aae671 vocab=34ffe877
+-/
 @[simp] theorem weightedSingleCLM_apply (r : ℝ≥0) (k : ℕ) (z : ℂ) :
     weightedSingleCLM r k z = lp.single 1 k ((r : ℂ) ^ k * z) := by
   rfl
@@ -86,6 +101,9 @@ noncomputable def weightedCoefficientSeries {n : ℕ}
     FormalMultilinearSeries ℂ (Base n) WeightedSeq :=
   fun l ↦ ∑' k : ℕ, weightedCoordinateSeries p r k l
 
+/--
+@isnad1 id=le.0h4v.s10.b513c9016742 from=translated src=- shape=b82a7c72 vocab=71d1d5d3
+-/
 theorem norm_lastCoefficientSeries_le {n : ℕ}
     (p : FormalMultilinearSeries ℂ (Ambient n) ℂ) (k l : ℕ) :
     ‖lastCoefficientSeries p k l‖ ≤ ‖p.changeOriginSeries k l‖ := by
@@ -114,6 +132,9 @@ theorem norm_lastCoefficientSeries_le {n : ℕ}
           (baseInclusion n)) l)) (by norm_num)
     _ = ‖p.changeOriginSeries k l‖ := one_mul _
 
+/--
+@isnad1 id=eq.0h6v.s12.28b42ee6d92d from=translated src=- shape=45666607 vocab=7cfb2ed5
+-/
 @[simp] theorem weightedCoordinateSeries_apply {n : ℕ}
     (p : FormalMultilinearSeries ℂ (Ambient n) ℂ) (r : ℝ≥0) (k l : ℕ)
     (v : Fin l → Base n) :
@@ -147,6 +168,9 @@ noncomputable def weightedLastCoeffs {n : ℕ}
             mul_le_mul_of_nonneg_left hv (pow_nonneg r.coe_nonneg k)
           _ = ‖(p.changeOrigin x) k‖ * (r : ℝ) ^ k := mul_comm _ _)⟩
 
+/--
+@isnad1 id=eq.1h5v.s9.5726b1555027 from=translated src=- shape=0fd3f7b0 vocab=96db6e7e
+-/
 @[simp] theorem weightedLastCoeffs_apply {n : ℕ}
     (p : FormalMultilinearSeries ℂ (Ambient n) ℂ) (r : ℝ≥0) (x : Ambient n)
     (hr : (r : ℝ≥0∞) < (p.changeOrigin x).radius) (k : ℕ) :

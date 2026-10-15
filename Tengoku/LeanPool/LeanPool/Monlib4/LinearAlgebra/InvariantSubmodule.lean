@@ -23,18 +23,24 @@ variable {E R : Type _} [Ring R] [AddCommGroup E] [Module R E]
 def InvariantUnder (U : Submodule R E) (T : E →ₗ[R] E) : Prop :=
   U ≤ U.comap T
 
-/-- `U` is `T` invariant if and only if `U.map T ≤ U`. -/
+/-- `U` is `T` invariant if and only if `U.map T ≤ U`.
+@isnad1 id=iff.0h4v.s7.980d39e25350 from=translated src=- shape=24d938ee vocab=363fd452
+-/
 @[simp]
 theorem invariantUnder_iff_map (U : Submodule R E) (T : E →ₗ[R] E) :
     U.InvariantUnder T ↔ U.map T ≤ U :=
   Submodule.map_le_iff_le_comap.symm
 
-/-- `U` is `T` invariant if and only if `Set.MapsTo T U U`. -/
+/-- `U` is `T` invariant if and only if `Set.MapsTo T U U`.
+@isnad1 id=iff.0h4v.s7.169da0706ade from=translated src=- shape=11a7a911 vocab=a03dd840
+-/
 theorem invariantUnder_iff_mapsTo (U : Submodule R E) (T : E →ₗ[R] E) :
     Set.MapsTo T U U ↔ U.InvariantUnder T :=
   Iff.rfl
 
-/-- `U` is `T` invariant is equivalent to saying `T(U) ⊆ U`. -/
+/-- `U` is `T` invariant is equivalent to saying `T(U) ⊆ U`.
+@isnad1 id=iff.0h4v.s7.668af5acf2ea from=translated src=- shape=5d7e414b vocab=cdd7ae1e
+-/
 theorem invariantUnder_iff (U : Submodule R E) (T : E →ₗ[R] E) : U.InvariantUnder T ↔ T '' U ⊆ U :=
   by rw [← Set.mapsTo_iff_image_subset, U.invariantUnder_iff_mapsTo]
 
@@ -44,7 +50,9 @@ local notation "pᵤ" => Submodule.projectionOnto U V hUV
 
 local notation "pᵥ" => Submodule.projectionOnto V U hUV.symm
 
-/-- Projection to `p` along `q` of `x` equals `x` if and only if `x ∈ p`. -/
+/-- Projection to `p` along `q` of `x` equals `x` if and only if `x ∈ p`.
+@isnad1 id=iff.1h5v.s8.c8e59992f86b from=translated src=- shape=7b36bfd0 vocab=1c9f36a7
+-/
 theorem linearProjOfIsCompl_eq_self_iff {p q : Submodule R E} (hpq : IsCompl p q) (x : E) :
     (p.projectionOnto q hpq x : E) = x ↔ x ∈ p :=
   ⟨fun H => H ▸ Submodule.coe_mem _,
@@ -52,39 +60,58 @@ theorem linearProjOfIsCompl_eq_self_iff {p q : Submodule R E} (hpq : IsCompl p q
 
 namespace InvariantUnder
 
+/--
+@isnad1 id=eq.2h6v.s9.040d58faf0ab from=translated src=- shape=fd91a8f3 vocab=8d0593c5
+-/
 theorem linear_proj_comp_self_eq (h : U.InvariantUnder T) (x : U) :
     (pᵤ (T x) : E) = T x :=
   (linearProjOfIsCompl_eq_self_iff _ _).mpr <| h (coe_mem _)
 
 end InvariantUnder
 
+/--
+@isnad1 id=invarian.2h5v.s9.2e8ef396fdb5 from=translated src=- shape=a3a48de7 vocab=8d0593c5
+-/
 theorem invariantUnderOfLinearProjCompSelfEq (h : ∀ x : U, (pᵤ (T x) : E) = T x) :
     U.InvariantUnder T := fun u hu => by
   simp_all
 
-/-- `U` is invariant under `T` iff `pᵤ ∘ₗ T = T` on `U`. -/
+/-- `U` is invariant under `T` iff `pᵤ ∘ₗ T = T` on `U`.
+@isnad1 id=iff.1h5v.s9.e98b0f1d9c4c from=translated src=- shape=65a9ef56 vocab=8d0593c5
+-/
 theorem invariantUnder_iff_linear_proj_comp_self_eq :
     U.InvariantUnder T ↔ ∀ x : U, (pᵤ (T x) : E) = T x :=
   ⟨InvariantUnder.linear_proj_comp_self_eq U V hUV T,
     invariantUnderOfLinearProjCompSelfEq U V hUV T⟩
 
+/--
+@isnad1 id=eq.1h5v.s9.8e28b1a6ad0f from=translated src=- shape=f37759fe vocab=99a9f57a
+-/
 theorem linearProjOfIsCompl_eq_self_sub_linear_proj {p q : Submodule R E} (hpq : IsCompl p q)
     (x : E) : (q.projectionOnto p hpq.symm x : E) = x - (p.projectionOnto q hpq x : E) := by
   change q.projection p hpq.symm x = x - p.projection q hpq x
   exact Submodule.projection_eq_self_sub_projection hpq x
 
+/--
+@isnad1 id=eq.1h5v.s9.7bbeebc4e204 from=translated src=- shape=dbaf5290 vocab=e1ef5757
+-/
 theorem linear_proj_add_linearProjOfIsCompl_eq_self {p q : Submodule R E} (hpq : IsCompl p q)
     (x : E) :
     (p.projectionOnto q hpq x : E) + (q.projectionOnto p hpq.symm x : E) = x := by
   rw [linearProjOfIsCompl_eq_self_sub_linear_proj hpq, add_comm, sub_add_cancel]
 
+/--
+@isnad1 id=eq.1h4v.s9.da225406675d from=translated src=- shape=5d358922 vocab=f06df584
+-/
 theorem linearProjOfIsCompl_idempotent {p q : Submodule R E} (hpq : IsCompl p q) :
     (p.subtype.comp (p.projectionOnto q hpq)) *
         (p.subtype.comp (p.projectionOnto q hpq)) =
       p.subtype.comp (p.projectionOnto q hpq) :=
   IsIdempotentElem.eq (Submodule.isIdempotentElem_projection hpq)
 
-/-- `V` is invariant under `T` iff `pᵤ ∘ₗ (T ∘ₗ pᵤ) = pᵤ ∘ₗ T`. -/
+/-- `V` is invariant under `T` iff `pᵤ ∘ₗ (T ∘ₗ pᵤ) = pᵤ ∘ₗ T`.
+@isnad1 id=iff.1h5v.s9.b6cc5cbe1a14 from=translated src=- shape=8df973a8 vocab=8d0593c5
+-/
 theorem invariant_under'_iff_linear_proj_comp_self_comp_linear_proj_eq :
     V.InvariantUnder T ↔ ∀ x : E, (pᵤ (T (pᵤ x)) : E) = pᵤ (T x) := by
   simp_rw [invariantUnder_iff_linear_proj_comp_self_eq _ _ hUV.symm,
@@ -92,7 +119,9 @@ theorem invariant_under'_iff_linear_proj_comp_self_comp_linear_proj_eq :
     linearProjOfIsCompl_eq_self_sub_linear_proj hUV, map_sub, sub_eq_self, Submodule.coe_sub,
     sub_eq_zero, eq_comm]
 
-/-- Both `U` and `V` are invariant under `T` iff `T` commutes with `pᵤ`. -/
+/-- Both `U` and `V` are invariant under `T` iff `T` commutes with `pᵤ`.
+@isnad1 id=iff.1h5v.s8.8f61f815929e from=translated src=- shape=fd9c0ec6 vocab=9fe9da29
+-/
 theorem isCompl_invariantUnder_iff_linear_proj_and_self_commute :
     U.InvariantUnder T ∧ V.InvariantUnder T ↔ Commute (U.subtype ∘ₗ pᵤ) T := by
   simp_rw [Commute, SemiconjBy, LinearMap.ext_iff, Module.End.mul_apply, LinearMap.comp_apply,
@@ -113,7 +142,9 @@ theorem isCompl_invariantUnder_iff_linear_proj_and_self_commute :
           rw [(linearProjOfIsCompl_eq_self_iff hUV _).mpr (SetLike.coe_mem (pᵤ x))]
         _ = (pᵤ (T x) : E) := (h x).symm
 
-/-- `U` is invariant under `T.symm` iff `U ⊆ T(U)`. -/
+/-- `U` is invariant under `T.symm` iff `U ⊆ T(U)`.
+@isnad1 id=iff.0h4v.s7.b06fc6f33ee0 from=translated src=- shape=480b5ab3 vocab=4a98e471
+-/
 theorem invariantUnder_symm_iff_le_map (T : E ≃ₗ[R] E) :
     U.InvariantUnder (T.symm : E →ₗ[R] E) ↔ U ≤ U.map (T : E →ₗ[R] E) := by
   constructor
@@ -125,6 +156,9 @@ theorem invariantUnder_symm_iff_le_map (T : E ≃ₗ[R] E) :
     rw [← hyx]
     simpa using hy
 
+/--
+@isnad1 id=iff.1h5v.s9.ea741708696e from=translated src=- shape=8f734ddc vocab=6d953979
+-/
 theorem commutes_with_linear_proj_iff_linear_proj_eq [Invertible T] :
     Commute (U.subtype.comp pᵤ) T ↔ (⅟ T).comp ((U.subtype.comp pᵤ).comp T) = U.subtype.comp pᵤ :=
   by
@@ -138,6 +172,9 @@ theorem commutes_with_linear_proj_iff_linear_proj_eq [Invertible T] :
     rw [mul_assoc (⅟ T) _ _]
     simp_rw [Module.End.mul_eq_comp, h]; rfl
 
+/--
+@isnad1 id=iff.0h4v.s8.d04043056761 from=translated src=- shape=78ee006d vocab=dfb12b58
+-/
 theorem invariantUnder_inv_iff_U_subset_image [Invertible T] :
     U.InvariantUnder (⅟ T) ↔ ↑U ⊆ T '' U := by
   constructor
@@ -154,6 +191,9 @@ theorem invariantUnder_inv_iff_U_subset_image [Invertible T] :
     rw [← hy.2, ← LinearMap.comp_apply, ← Module.End.mul_eq_comp, invOf_mul_self]
     exact hy.1
 
+/--
+@isnad1 id=iff.1h5v.s9.a4b00afdf0ca from=translated src=- shape=b969fa2e vocab=59de57d2
+-/
 theorem inv_linear_proj_comp_map_eq_linear_proj_iff_images_eq [Invertible T] :
     (⅟ T).comp ((U.subtype.comp pᵤ).comp T) = U.subtype.comp pᵤ ↔ T '' U = U ∧ T '' V = V := by
   simp_rw [← Submodule.commutes_with_linear_proj_iff_linear_proj_eq, ←
@@ -176,6 +216,9 @@ end Submodule
 
 namespace StarAlgebra
 
+/--
+@isnad1 id=eq.0h3v.s11.c96b5c49f59a from=translated src=- shape=7e5aff5b vocab=a7b57b51
+-/
 theorem centralizer_prod {M : Type _} [AddCommGroup M] [Module ℂ M]
     [StarRing (M →ₗ[ℂ] M)] [StarModule ℂ (M →ₗ[ℂ] M)] (A B : StarSubalgebra ℂ (M →ₗ[ℂ] M)) :
     (A.carrier ×ˢ B.carrier).centralizer = A.carrier.centralizer ×ˢ B.carrier.centralizer := by

@@ -102,15 +102,27 @@ def chain (eps : ℕ → ℕ → ℝ) (E : ℕ → ℝ) : ℕ → ℕ → ℝ
   | 1, m => E m
   | (k + 2), m => ∑ j ∈ Ico 1 m, eps j m * chain eps E (k + 1) (m - j)
 
+/--
+@isnad1 id=eq.0h3v.s4.0a3f74064b5f from=translated src=- shape=e9d470e1 vocab=317f0f60
+-/
 @[simp] lemma chain_zero (eps : ℕ → ℕ → ℝ) (E : ℕ → ℝ) (m : ℕ) : chain eps E 0 m = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.2ce55a348091 from=translated src=- shape=c821b687 vocab=317f0f60
+-/
 @[simp] lemma chain_one (eps : ℕ → ℕ → ℝ) (E : ℕ → ℝ) (m : ℕ) : chain eps E 1 m = E m := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.abb2f9a94dd2 from=translated src=- shape=6034b701 vocab=4a487a6b
+-/
 lemma chain_succ_succ (eps : ℕ → ℕ → ℝ) (E : ℕ → ℝ) (k m : ℕ) :
     chain eps E (k + 2) m = ∑ j ∈ Ico 1 m, eps j m * chain eps E (k + 1) (m - j) := rfl
 
 variable {eps : ℕ → ℕ → ℝ} {E : ℕ → ℝ}
 
+/--
+@isnad1 id=le.2h4v.s5.17c6956e4b11 from=translated src=- shape=2297e918 vocab=3a54a5bc
+-/
 lemma chain_nonneg (heps : ∀ j m, 0 ≤ eps j m) (hE : ∀ m, 0 ≤ E m) :
     ∀ k m : ℕ, 0 ≤ chain eps E k m := by
   intro k
@@ -126,7 +138,9 @@ lemma chain_nonneg (heps : ∀ j m, 0 ≤ eps j m) (hE : ∀ m, 0 ≤ E m) :
 
 /-- A path to rung `m ≥ 1` cannot use more than `m` jumps, each jump climbing at least one rung.
 This is what makes the outer sum of `apd:eq:composition_majorant` run to `min(m, T)` even though
-`majorant` below sums to `T`. -/
+`majorant` below sums to `T`.
+@isnad1 id=eq.2h4v.s5.8544aa73f407 from=translated src=- shape=5606b6a2 vocab=41de198b
+-/
 lemma chain_eq_zero_of_lt : ∀ k m : ℕ, 1 ≤ m → m < k → chain eps E k m = 0 := by
   intro k
   induction k using Nat.strong_induction_on with
@@ -152,7 +166,9 @@ last jump of length `j ≥ 2` would leave `m - 1` jumps to reach rung `m - j < m
 term vanishes by `chain_eq_zero_of_lt`. With `ε_1^{(i)} = w_{i+1} sin(dt)` this product is
 `sin^{m-1}(dt) ∏_{j=3}^{m+1} w_j`, which is `Lean4LPD.layer_cumulation`'s product with the entry
 rung's factor replaced by `E 1` — the one place the two bounds differ, and the reason the entry
-factor is kept separate. -/
+factor is kept separate.
+@isnad1 id=eq.1h3v.s6.c6ebabbd3c7f from=translated src=- shape=a17010d7 vocab=6c991ea7
+-/
 lemma chain_diag :
     ∀ m : ℕ, 1 ≤ m → chain eps E m m = E 1 * ∏ i ∈ Ico 2 (m + 1), eps 1 i := by
   intro m
@@ -215,7 +231,9 @@ variable {eps : ℕ → ℕ → ℝ} {E : ℕ → ℝ}
 /-- The Pascal recursion satisfied by the majorant's bracket, which is the whole content of the
 induction behind `apd:eq:composition_majorant`. Among the paths with `k` jumps in `T` layers,
 those whose final layer is idle are counted by `C(T-1,k)` and those that jump in the final layer
-by `C(T-1,k-1)`; the two cases add up by Pascal's rule. -/
+by `C(T-1,k-1)`; the two cases add up by Pascal's rule.
+@isnad1 id=eq.0h4v.s7.f2abdb552eb3 from=translated src=- shape=9853c124 vocab=292a6fe0
+-/
 lemma sum_chain_succ (m T : ℕ) :
     ∑ k ∈ range (T + 2), ((T + 1).choose k : ℝ) * chain eps E k m
       = (∑ k ∈ range (T + 1), (T.choose k : ℝ) * chain eps E k m)
@@ -242,7 +260,9 @@ lemma sum_chain_succ (m T : ℕ) :
   ring
 
 /-- The shifted chain sum, unrolled one level: the `k = 0` term is the entry factor `E m`, and
-every remaining term ends with a `j`-jump that starts from rung `m - j`. -/
+every remaining term ends with a `j`-jump that starts from rung `m - j`.
+@isnad1 id=eq.0h4v.s7.1c33c0fbb7b2 from=translated src=- shape=3517a565 vocab=6ef2fa44
+-/
 lemma sum_chain_shift (m T : ℕ) :
     ∑ k ∈ range (T + 1), (T.choose k : ℝ) * chain eps E (k + 1) m
       = E m + ∑ j ∈ Ico 1 m, eps j m
@@ -275,7 +295,9 @@ lemma sum_chain_shift (m T : ℕ) :
 
 The inner chain sum is `chain`, defined by peeling the last jump. Only nonnegativity of `eps` is
 needed; `E` and `M` are unconstrained, so the bound is inherited by any `E` majorizing the
-overshoot tail. -/
+overshoot tail.
+@isnad1 id=le.2h6v.s6.3bc9c39d5147 from=translated src=- shape=a255530d vocab=4aa8aa72
+-/
 theorem le_majorant (L : MultiLadder eps E M) (heps : ∀ j m, 0 ≤ eps j m) :
     ∀ T : ℕ, ∀ m : ℕ, 1 ≤ m → L.N m T ≤ majorant eps E M m T := by
   intro T
@@ -316,7 +338,9 @@ theorem le_majorant (L : MultiLadder eps E M) (heps : ∀ j m, 0 ≤ eps j m) :
 /-- **The majorant is monotone in the number of layers.** This is what licenses bounding the
 rung norms at the intermediate layers of a Trotter step by the majorant taken at the last layer of
 the step. The rung norms themselves need not be monotone in the number of layers, so it is the
-majorant, not the norm, that is moved to the end of the step; see `MultiLadder.block_inflow_le`. -/
+majorant, not the norm, that is moved to the end of the step; see `MultiLadder.block_inflow_le`.
+@isnad1 id=le.3h5v.s6.09d75879053d from=translated src=- shape=4f2b5f5d vocab=c78b4c42
+-/
 lemma majorant_mono (heps : ∀ j m, 0 ≤ eps j m) (hE : ∀ m, 0 ≤ E m) (hM : 0 ≤ M) (m T : ℕ) :
     majorant eps E M m T ≤ majorant eps E M m (T + 1) := by
   have hchoose : ∀ k, (T.choose k : ℝ) ≤ ((T + 1).choose k : ℝ) := by

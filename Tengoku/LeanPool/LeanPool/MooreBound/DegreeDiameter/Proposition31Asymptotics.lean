@@ -81,22 +81,34 @@ multiplication count is substituted into `N_q / K_q^k`. -/
 def proposition31DenominatorPolynomial (k : ℕ) : ℝ[X] :=
   proposition31AmplitudePolynomial k * proposition31CapPolynomial k ^ k
 
+/--
+@isnad1 id=eq.0h2v.s5.fd3655d8682e from=translated src=- shape=12276ca0 vocab=a914ea81
+-/
 @[simp]
 theorem proposition31_eval_qIntegerPolynomial (x : ℝ) (n : ℕ) :
     eval x (proposition31QIntegerPolynomial n) =
       ∑ i ∈ Finset.range n, x ^ i := by
   simp [proposition31QIntegerPolynomial]
 
+/--
+@isnad1 id=eq.0h2v.s4.29356239c052 from=translated src=- shape=0ef6b341 vocab=d209f7e3
+-/
 theorem proposition31_eval_qIntegerPolynomial_nat (q n : ℕ) :
     eval (q : ℝ) (proposition31QIntegerPolynomial n) =
       (qInteger q n : ℝ) := by
   simp [proposition31QIntegerPolynomial, qInteger]
 
+/--
+@isnad1 id=monic.1h1v.s4.4558c5e0b964 from=translated src=- shape=e0888357 vocab=b8f56c4e
+-/
 theorem proposition31_qIntegerPolynomial_monic {n : ℕ} (hn : n ≠ 0) :
     (proposition31QIntegerPolynomial n).Monic := by
   simpa only [proposition31QIntegerPolynomial] using
     (Polynomial.monic_geom_sum_X (R := ℝ) hn)
 
+/--
+@isnad1 id=eq.0h1v.s4.64021d45091e from=translated src=- shape=74414202 vocab=3dd3ac2f
+-/
 theorem proposition31_qIntegerPolynomial_natDegree_succ (n : ℕ) :
     (proposition31QIntegerPolynomial (n + 1)).natDegree = n := by
   induction n with
@@ -116,6 +128,9 @@ theorem proposition31_qIntegerPolynomial_natDegree_succ (n : ℕ) :
       rw [Polynomial.natDegree_add_eq_right_of_natDegree_lt hlt,
         Polynomial.natDegree_X_pow]
 
+/--
+@isnad1 id=eq.0h2v.s4.3c518a8ff143 from=translated src=- shape=0ef6b341 vocab=bcdc4998
+-/
 @[simp]
 theorem proposition31_eval_qFactorialPolynomial_nat (q n : ℕ) :
     eval (q : ℝ) (proposition31QFactorialPolynomial n) =
@@ -126,12 +141,18 @@ theorem proposition31_eval_qFactorialPolynomial_nat (q n : ℕ) :
   push_cast
   rfl
 
+/--
+@isnad1 id=monic.0h1v.s2.b5df27bf2640 from=translated src=- shape=1a6c1393 vocab=2d6df925
+-/
 theorem proposition31_qFactorialPolynomial_monic (n : ℕ) :
     (proposition31QFactorialPolynomial n).Monic := by
   apply Polynomial.monic_prod_of_monic
   intro i hi
   exact proposition31_qIntegerPolynomial_monic (by omega)
 
+/--
+@isnad1 id=eq.0h1v.s4.8829cf73e06b from=translated src=- shape=782076eb vocab=9da6825d
+-/
 theorem proposition31_qFactorialPolynomial_natDegree_eq_sum (n : ℕ) :
     (proposition31QFactorialPolynomial n).natDegree =
       ∑ i ∈ Finset.range n, i := by
@@ -142,6 +163,9 @@ theorem proposition31_qFactorialPolynomial_natDegree_eq_sum (n : ℕ) :
   · intro i hi
     exact proposition31_qIntegerPolynomial_monic (by omega)
 
+/--
+@isnad1 id=eq.0h1v.s5.9af873c30303 from=translated src=- shape=955eb930 vocab=058b6da4
+-/
 theorem proposition31_qFactorialPolynomial_natDegree_odd (k : ℕ) :
     (proposition31QFactorialPolynomial (2 * k + 1)).natDegree =
       2 * k * k + k := by
@@ -152,11 +176,17 @@ theorem proposition31_qFactorialPolynomial_natDegree_odd (k : ℕ) :
   rw [hsub]
   ring
 
+/--
+@isnad1 id=monic.0h1v.s2.55426a779d70 from=translated src=- shape=1a6c1393 vocab=bac5bae0
+-/
 theorem proposition31_amplitudePolynomial_monic (k : ℕ) :
     (proposition31AmplitudePolynomial k).Monic := by
   simpa only [proposition31AmplitudePolynomial, Polynomial.C_1] using
     (Polynomial.monic_X_add_C (1 : ℝ)).pow k
 
+/--
+@isnad1 id=eq.0h1v.s3.fed7e851951c from=translated src=- shape=c3f7ecf6 vocab=56fa97c5
+-/
 @[simp]
 theorem proposition31_amplitudePolynomial_natDegree (k : ℕ) :
     (proposition31AmplitudePolynomial k).natDegree = k := by
@@ -172,12 +202,18 @@ private theorem proposition31_degree_one_lt_amplitudePolynomial_degree
     proposition31_amplitudePolynomial_natDegree]
   exact_mod_cast hk
 
+/--
+@isnad1 id=monic.1h1v.s5.5232ce8bbf03 from=translated src=- shape=43ac68e6 vocab=ae2908bf
+-/
 theorem proposition31_amplitudePolynomial_sub_one_monic
     {k : ℕ} (hk : 0 < k) :
     (proposition31AmplitudePolynomial k - 1).Monic :=
   (proposition31_amplitudePolynomial_monic k).sub_of_left
     (proposition31_degree_one_lt_amplitudePolynomial_degree hk)
 
+/--
+@isnad1 id=eq.1h1v.s5.4febaab8e7f3 from=translated src=- shape=f067ac39 vocab=4145bc24
+-/
 @[simp]
 theorem proposition31_amplitudePolynomial_sub_one_natDegree
     {k : ℕ} (hk : 0 < k) :
@@ -187,11 +223,17 @@ theorem proposition31_amplitudePolynomial_sub_one_natDegree
       (proposition31_degree_one_lt_amplitudePolynomial_degree hk)),
     proposition31_amplitudePolynomial_natDegree]
 
+/--
+@isnad1 id=monic.1h1v.s4.8720aa5c3de9 from=translated src=- shape=238e953f vocab=be603b24
+-/
 theorem proposition31_capPolynomial_monic {k : ℕ} (hk : 0 < k) :
     (proposition31CapPolynomial k).Monic := by
   exact (proposition31_amplitudePolynomial_monic k).mul
     (proposition31_amplitudePolynomial_sub_one_monic hk)
 
+/--
+@isnad1 id=eq.1h1v.s5.4d77df0dffb6 from=translated src=- shape=43e124d3 vocab=39d24594
+-/
 @[simp]
 theorem proposition31_capPolynomial_natDegree {k : ℕ} (hk : 0 < k) :
     (proposition31CapPolynomial k).natDegree = 2 * k := by
@@ -202,11 +244,17 @@ theorem proposition31_capPolynomial_natDegree {k : ℕ} (hk : 0 < k) :
     proposition31_amplitudePolynomial_sub_one_natDegree hk]
   omega
 
+/--
+@isnad1 id=monic.1h1v.s4.a3195c9860ab from=translated src=- shape=238e953f vocab=57af5e63
+-/
 theorem proposition31_denominatorPolynomial_monic {k : ℕ} (hk : 0 < k) :
     (proposition31DenominatorPolynomial k).Monic := by
   exact (proposition31_amplitudePolynomial_monic k).mul
     ((proposition31_capPolynomial_monic hk).pow k)
 
+/--
+@isnad1 id=eq.1h1v.s5.251e44d889f3 from=translated src=- shape=4a8e0e58 vocab=17c8d751
+-/
 @[simp]
 theorem proposition31_denominatorPolynomial_natDegree {k : ℕ} (hk : 0 < k) :
     (proposition31DenominatorPolynomial k).natDegree = 2 * k * k + k := by
@@ -218,12 +266,18 @@ theorem proposition31_denominatorPolynomial_natDegree {k : ℕ} (hk : 0 < k) :
     proposition31_capPolynomial_natDegree hk]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s4.6b4bc934e56e from=translated src=- shape=0ef6b341 vocab=ed4a4554
+-/
 @[simp]
 theorem proposition31_eval_amplitudePolynomial_nat (q k : ℕ) :
     eval (q : ℝ) (proposition31AmplitudePolynomial k) =
       (proposition31Amplitude q k : ℝ) := by
   simp [proposition31AmplitudePolynomial, proposition31Amplitude]
 
+/--
+@isnad1 id=eq.0h2v.s4.9731f5744326 from=translated src=- shape=0ef6b341 vocab=a26e732a
+-/
 @[simp]
 theorem proposition31_eval_capPolynomial_nat (q k : ℕ) :
     eval (q : ℝ) (proposition31CapPolynomial k) =
@@ -234,6 +288,9 @@ theorem proposition31_eval_capPolynomial_nat (q k : ℕ) :
     proposition31_eval_amplitudePolynomial_nat,
     proposition31DegreeCap, Nat.cast_mul, Nat.cast_sub hA, Nat.cast_one]
 
+/--
+@isnad1 id=eq.0h2v.s5.3effe6f1f326 from=translated src=- shape=e2b438fc vocab=846f3bcb
+-/
 @[simp]
 theorem proposition31_eval_denominatorPolynomial_nat (q k : ℕ) :
     eval (q : ℝ) (proposition31DenominatorPolynomial k) =
@@ -241,7 +298,9 @@ theorem proposition31_eval_denominatorPolynomial_nat (q k : ℕ) :
   simp [proposition31DenominatorPolynomial]
 
 /-- Exact q-factorial enumeration and the cap have the same monic leading
-term after the multiplication count is substituted. -/
+term after the multiplication count is substituted.
+@isnad1 id=tendsto.1h1v.s6.04f5c92e89f6 from=translated src=- shape=b4a250bf vocab=c7d166f6
+-/
 theorem proposition31_qFactorial_div_denominator_tendsto_one
     (k : ℕ) (hk : 0 < k) :
     Tendsto
@@ -267,7 +326,9 @@ theorem proposition31_qFactorial_div_denominator_tendsto_one
       div_one] using h
 
 /-- The purely algebraic ratio, restricted from all real `q` to prime-power
-cardinalities. -/
+cardinalities.
+@isnad1 id=tendsto.1h1v.s7.9808afc3186d from=translated src=- shape=df9bc062 vocab=cab00264
+-/
 theorem proposition31_qFactorial_div_capDenominator_tendsto_one
     (k : ℕ) (hk : 0 < k) :
     Tendsto
@@ -340,7 +401,9 @@ private theorem proposition31_order_div_cap_pow_eq_qFactorial_ratio
   field_simp [hA, hC]
 
 /-- The exact graph order divided by the `k`-th power of the displayed cap
-tends to one.  This is the algebraic input to the Moore squeeze. -/
+tends to one.  This is the algebraic input to the Moore squeeze.
+@isnad1 id=tendsto.1h1v.s6.5022fbea93c6 from=translated src=- shape=bd7cafa5 vocab=aa2dd421
+-/
 theorem proposition31_order_div_cap_pow_tendsto_one
     (k : ℕ) (hk : 0 < k) :
     Tendsto
@@ -411,7 +474,9 @@ private theorem proposition31_order_le_degree_add_one_pow
 
 /-- **First asymptotic in Proposition 3.1, equation (9).**  For fixed
 positive `k`, the actual common degree of the concrete graph is asymptotic
-to the paper's sharp cap as `q` tends to infinity through prime powers. -/
+to the paper's sharp cap as `q` tends to infinity through prime powers.
+@isnad1 id=tendsto.1h1v.s6.4b142f154307 from=translated src=- shape=3475dd2f vocab=2a7f8b38
+-/
 theorem proposition31_degree_div_cap_tendsto_one
     (k : ℕ) (hk : 0 < k) :
     Tendsto
@@ -509,7 +574,9 @@ theorem proposition31_degree_div_cap_tendsto_one
 /-- **Second asymptotic in Proposition 3.1, equation (9).**  For fixed
 positive `k`, the exact order of the concrete graph is asymptotic to the
 `k`-th power of its actual common degree as `q` tends to infinity through
-prime powers. -/
+prime powers.
+@isnad1 id=tendsto.1h1v.s6.9f905cfc9f1c from=translated src=- shape=192ee7f5 vocab=2bb3f416
+-/
 theorem proposition31_order_div_degree_pow_tendsto_one
     (k : ℕ) (hk : 0 < k) :
     Tendsto

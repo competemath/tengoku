@@ -31,24 +31,32 @@ namespace StationaryHarmonicMap
 def domainCoordUnit {n : ℕ} (i : Fin n) : Domain n :=
   EuclideanSpace.single i (1 : ℝ)
 
-/-- Coordinate extraction via the Euclidean inner product. -/
+/-- Coordinate extraction via the Euclidean inner product.
+@isnad1 id=eq.0h3v.s6.01f084824f39 from=translated src=- shape=d1f16425 vocab=a42d0485
+-/
 theorem inner_domainCoordUnit_right {n : ℕ} (i : Fin n) (x : Domain n) :
     inner ℝ x (domainCoordUnit i) = x i := by
   simpa [domainCoordUnit] using
     (EuclideanSpace.inner_single_right (𝕜 := ℝ) i (1 : ℝ) x)
 
-/-- Squared norm as the sum of squared coordinates. -/
+/-- Squared norm as the sum of squared coordinates.
+@isnad1 id=eq.0h2v.s6.025e625d49c9 from=translated src=- shape=bf5efb92 vocab=ab57bee6
+-/
 theorem domain_norm_sq_eq_sum {n : ℕ} (x : Domain n) :
     ‖x‖ ^ 2 = ∑ i : Fin n, x i ^ 2 := by
   simpa using EuclideanSpace.real_norm_sq_eq x
 
-/-- Sum of squared coordinates as the squared norm. -/
+/-- Sum of squared coordinates as the squared norm.
+@isnad1 id=eq.0h2v.s6.eb7da6f66fdc from=translated src=- shape=ce02181a vocab=ab57bee6
+-/
 theorem domain_sum_sq_eq_norm_sq {n : ℕ} (x : Domain n) :
     (∑ i : Fin n, x i ^ 2) = ‖x‖ ^ 2 :=
   (domain_norm_sq_eq_sum x).symm
 
 /-- Euclidean volume of a ball centered at the origin, exposed through the
-project's `Domain` abbreviation. -/
+project's `Domain` abbreviation.
+@isnad1 id=eq.0h2v.s8.2d57a68d3049 from=translated src=- shape=82e28d04 vocab=2c4f7dd5
+-/
 theorem domain_volume_ball_zero (n : ℕ) [NeZero n] (r : ℝ) :
     volume (Metric.ball (0 : Domain n) r) =
       (ENNReal.ofReal r) ^ Fintype.card (Fin n) *

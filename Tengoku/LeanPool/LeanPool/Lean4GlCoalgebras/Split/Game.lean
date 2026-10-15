@@ -109,7 +109,9 @@ inductive Move : GamePos → GamePos → Prop
       Move ⟨Sum.inr R, Γs, Rs⟩ ⟨Sum.inl Γ, Γs, R :: Rs⟩
 
 -- The FL-closure induction performs a large case split over split rule applications.
-/-- Given two consecutive Prover moves, the latter move is in the FL closure of the prior. -/
+/-- Given two consecutive Prover moves, the latter move is in the FL closure of the prior.
+@isnad1 id=mem.3h2v.s6.ab29dc1fea85 from=translated src=- shape=134a7e68 vocab=fa7e2bd9
+-/
 theorem move_move_in_FL {g1 g2 : GamePos} (h1 : (g1.1.isLeft)) (h3 : (g2.1.isLeft))
     (g1_g2 : Relation.ReflTransGen (Relation.Comp Move Move) g1 g2) :
     g2.1.getLeft h3 ∈ (g1.1.getLeft h1).FL.powerset := by
@@ -267,6 +269,9 @@ theorem move_move_in_FL {g1 g2 : GamePos} (h1 : (g1.1.isLeft)) (h3 : (g2.1.isLef
 /- This is the main helper for showing there is no infinite chain, we do it 'from prover'
 because that is where the FL properties are more readily available, but in fact it could
 be from prover or builder. -/
+/--
+@isnad1 id=false.1h2v.s5.77e25d8eb39a from=translated src=- shape=da0aa159 vocab=0c73738c
+-/
 lemma no_inf_chain_from_prover (g : ℕ → GamePos)
     (g_rel : ∀ (n : ℕ), Function.swap Move (g (n + 1)) (g n))
     (h : (g 0).1.isLeft) : False := by
@@ -396,7 +401,9 @@ lemma no_inf_chain_from_prover (g : ℕ → GamePos)
   apply Set.finite_coe_iff.1
   apply Finset.finite_toSet
 
-/-- The game is converse well-founded. -/
+/-- The game is converse well-founded.
+@isnad1 id=wellfoun.0h0v.s3.16e57a30001c from=translated src=- shape=d7d45f37 vocab=97c88c9f
+-/
 lemma matches_finite : WellFounded (Function.swap Move) := by
   rw [wellFounded_iff_isEmpty_descending_chain]
   by_contra hyp
@@ -449,7 +456,9 @@ def coalgebraGame : Game where
       simp only
       exact Move.builder Γ_prop nin
 
-/-- Move relation and being in the set of game moves are equivalent. -/
+/-- Move relation and being in the set of game moves are equivalent.
+@isnad1 id=iff.0h2v.s4.3c9fb8a1ab87 from=translated src=- shape=b9b5c10f vocab=3899c4da
+-/
 theorem move_iff_in_moves {g g' : coalgebraGame.Pos} :
     Move g g' ↔ g' ∈ coalgebraGame.moves g := by
   constructor

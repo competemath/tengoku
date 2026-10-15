@@ -29,7 +29,9 @@ noncomputable section
 
 /-- Exact amplitude estimation in the decoupled dyadic model. Phase estimation
 enters through the raw-vector readout theorem, while the success probability is
-the existing amplitude-amplification `PureState` probability theorem. -/
+the existing amplitude-amplification `PureState` probability theorem.
+@isnad1 id=and.1h3v.s8.5e3d811d7773 from=translated src=- shape=54d55c16 vocab=df2d86ae
+-/
 theorem AmplitudeEstimation.main_exact_dyadic (t : Nat) (j : Fin (2 ^ t)) (theta : Real)
     (htheta : theta = Real.pi * (j.val : Real) / (2 : Real) ^ t) :
     (invQFT t).applyVec (phaseState t ((j.val : Real) / (2 : Real) ^ t))
@@ -51,12 +53,17 @@ model. -/
 def amplitudeEstimationExactResourceProfile (t : Nat) : ResourceProfile :=
   qpeExactResourceProfile t
 
+/--
+@isnad1 id=hasexact.0h1v.s5.514a48bf6445 from=translated src=- shape=5b167fb3 vocab=98519302
+-/
 theorem amplitudeEstimationExactResourceProfile_exact (t : Nat) :
     ResourceProfile.HasExactCounts
       (amplitudeEstimationExactResourceProfile t) (2 ^ t - 1) t (t ^ 2) 0 := by
   exact qpeExactResourceProfile_exact t
 
-/-- Exact amplitude estimation paired with the decoupled QPE resource profile. -/
+/-- Exact amplitude estimation paired with the decoupled QPE resource profile.
+@isnad1 id=and.1h3v.s8.486a1fe94534 from=translated src=- shape=5a36c390 vocab=e2aba7a7
+-/
 theorem AmplitudeEstimation.main_exact_dyadic_with_resources
     (t : Nat) (j : Fin (2 ^ t)) (theta : Real)
     (htheta : theta = Real.pi * (j.val : Real) / (2 : Real) ^ t) :
@@ -85,7 +92,9 @@ structure SourceAmplitudeEstimationInput where
 
 /-- Source-level exact amplitude-estimation bridge: the source preparation has
 good-state probability `sin^2(theta)`, exact QPE reads the dyadic phase register,
-and the same trusted exact-QPE resource profile is recorded. -/
+and the same trusted exact-QPE resource profile is recorded.
+@isnad1 id=and.0h1v.s8.39038a9e3f34 from=translated src=- shape=a39ca2d5 vocab=f3d0f6a4
+-/
 theorem AmplitudeEstimation.main
     (E : SourceAmplitudeEstimationInput) :
     (PureState.probOutcome (E.source.preparation.apply ket0) (1 : Fin (2 ^ 1)) =

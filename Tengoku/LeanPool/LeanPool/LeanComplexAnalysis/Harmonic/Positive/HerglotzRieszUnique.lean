@@ -24,7 +24,9 @@ namespace LeanPool.LeanComplexAnalysis
 
 open MeasureTheory Metric Complex Topology
 
-/-- Equal moments with natural exponents imply equal moments with integer exponents. -/
+/-- Equal moments with natural exponents imply equal moments with integer exponents.
+@isnad1 id=eq.1h3v.s9.34bf4a01fe62 from=translated src=- shape=cd1edbfb vocab=5d51ffd3
+-/
 lemma moments_eq_integers (μ₁ μ₂ : ProbabilityMeasure (sphere (0 : ℂ) 1))
     (h : ∀ n : ℕ, ∫ x : sphere (0 : ℂ) 1, x.val ^ n ∂μ₁ = ∫ x : sphere (0 : ℂ) 1, x.val ^ n ∂μ₂) :
     ∀ n : ℤ, ∫ x : sphere (0 : ℂ) 1, x.val ^ n ∂μ₁ = ∫ x : sphere (0 : ℂ) 1, x.val ^ n ∂μ₂ := by
@@ -50,6 +52,9 @@ lemma moments_eq_integers (μ₁ μ₂ : ProbabilityMeasure (sphere (0 : ℂ) 1)
     lift n to ℕ using hn
     simp_all
 
+/--
+@isnad1 id=continuo.0h1v.s7.42c1be63bb30 from=translated src=- shape=b7dbb214 vocab=d05cb88b
+-/
 lemma continuous_zpow_on_unit_circle (n : ℤ) :
     Continuous (fun x : sphere (0 : ℂ) 1 => x.val ^ n) := by
   cases n with
@@ -62,7 +67,9 @@ lemma continuous_zpow_on_unit_circle (n : ℤ) :
        · exact continuous_subtype_val.pow (m + 1)
        · exact fun x => pow_ne_zero _ (ne_zero_of_mem_unit_sphere x)
 
-/-- The span of moments is dense in the space of continuous functions on the unit circle. -/
+/-- The span of moments is dense in the space of continuous functions on the unit circle.
+@isnad1 id=eq.0h0v.s10.5c91c6562b9d from=translated src=- shape=f08a84b0 vocab=da2be50d
+-/
 lemma span_moments_dense : (Submodule.span ℂ (Set.range (fun n : ℤ => ContinuousMap.mk (
     fun x : sphere (0 : ℂ) 1 => x.val ^ n)
       (continuous_zpow_on_unit_circle n)))).topologicalClosure = ⊤ := by
@@ -152,7 +159,9 @@ lemma span_moments_dense : (Submodule.span ℂ (Set.range (fun n : ℤ => Contin
       exact Submodule.smul_mem _ _ hsx
 
 /-- If two finite measures agree on a dense subspace of continuous functions,
-then they agree on all continuous functions. -/
+then they agree on all continuous functions.
+@isnad1 id=eq.2h5v.s9.1d245b14d23d from=translated src=- shape=05aea61b vocab=0d5171d4
+-/
 lemma integral_eq_on_dense_set {X : Type*} [TopologicalSpace X] [CompactSpace X]
     [MeasurableSpace X] [BorelSpace X]
     (μ ν : Measure X) [IsFiniteMeasure μ] [IsFiniteMeasure ν]
@@ -182,7 +191,9 @@ lemma integral_eq_on_dense_set {X : Type*} [TopologicalSpace X] [CompactSpace X]
     (h_cont.2.continuousAt.tendsto.comp hf_n.2 |> Filter.Tendsto.congr (by
       simp_all))
 
-/-- If two probability measures on the unit circle have the same moments, then they are equal. -/
+/-- If two probability measures on the unit circle have the same moments, then they are equal.
+@isnad1 id=eq.1h2v.s9.f614acb43236 from=translated src=- shape=f67fd160 vocab=be6eaf81
+-/
 lemma measure_eq_of_moments (μ₁ μ₂ : Measure (sphere (0 : ℂ) 1))
     [IsProbabilityMeasure μ₁] [IsProbabilityMeasure μ₂]
     (h : ∀ n : ℕ, ∫ x, x.val ^ n ∂μ₁ = ∫ x, x.val ^ n ∂μ₂) : μ₁ = μ₂ := by
@@ -235,7 +246,9 @@ private lemma summable_zpow_mul {z : ℂ} (hz : ‖z‖ < 1) {c : ℕ → ℂ} {
         |> Summable.comp_injective <| Nat.succ_injective)
   exact Summable.of_norm <| by simpa using h_summable
 
-/-- If two power series are equal on the unit disc, then their coefficients are equal. -/
+/-- If two power series are equal on the unit disc, then their coefficients are equal.
+@isnad1 id=eq.3h2v.s7.897c27f9aad9 from=translated src=- shape=d2bf7c2b vocab=bc8ef93c
+-/
 lemma coeffs_eq_of_series_eq (c1 c2 : ℕ → ℂ)
     (hc1 : ∃ M, ∀ n, ‖c1 n‖ ≤ M) (hc2 : ∃ M, ∀ n, ‖c2 n‖ ≤ M)
     (h : ∀ z : ℂ, ‖z‖ < 1 → ∑' n, z ^ (n + 1) * c1 n = ∑' n, z ^ (n + 1) * c2 n) : c1 = c2 := by
@@ -304,7 +317,9 @@ lemma coeffs_eq_of_series_eq (c1 c2 : ℕ → ℂ)
   exact eq_of_sub_eq_zero (tendsto_nhds_unique h_limit h_zero_limit)
 
 /-- We expand the Herglotz–Riesz kernel into a power series at 0 by using that
- 1/(1 - z/w) = Σ_{n=0}^∞ (z/w)^n. -/
+ 1/(1 - z/w) = Σ_{n=0}^∞ (z/w)^n.
+@isnad1 id=eq.2h2v.s7.671374083c82 from=translated src=- shape=48bd0b71 vocab=6184ed8e
+-/
 lemma kernel_expansion (z : ℂ) (hz : ‖z‖ < 1) (w : ℂ) (hw : ‖w‖ = 1) :
     (w + z) / (w - z) = 1 + 2 * ∑' n : ℕ, z ^ (n + 1) * star (w ^ (n + 1)) := by
   have h_expand : (1 : ℂ) + 2 * z / (w - z) = 1 + 2 * ∑' n : ℕ, (z / w) ^ (n + 1) := by
@@ -330,7 +345,9 @@ lemma kernel_expansion (z : ℂ) (hz : ‖z‖ < 1) (w : ℂ) (hw : ‖w‖ = 1)
     rw [div_eq_mul_inv, inv_def]
     simp [normSq_eq_norm_sq,hw]
 
-/-- The kernel_expansion is used to rewrite the integral. -/
+/-- The kernel_expansion is used to rewrite the integral.
+@isnad1 id=eq.1h2v.s9.ffe1802993d2 from=translated src=- shape=9476f69f vocab=d8429e94
+-/
 lemma integral_kernel_expansion
     (μ : ProbabilityMeasure (sphere (0 : ℂ) 1)) (z : ℂ) (hz : ‖z‖ < 1) :
     ∫ x : sphere (0 : ℂ) 1, (x + z) / (x - z) ∂μ = 1 + 2 * ∑' n : ℕ,
@@ -384,7 +401,9 @@ lemma integral_kernel_expansion
         (Nat.succ_injective)
 
 /-- If two probability measures on the unit circle yield the same Herglotz–Riesz functions,
-then they are equal. -/
+then they are equal.
+@isnad1 id=eq.1h2v.s9.400e1d9b92ec from=translated src=- shape=020ad989 vocab=3e9981ff
+-/
 theorem HerglotzRiesz_representation_uniqueness
     (μ₁ μ₂ : ProbabilityMeasure (sphere (0 : ℂ) 1))
     (h : ∀ z ∈ ball (0 : ℂ) 1, ∫ x : sphere (0 : ℂ) 1, (x + z) / (x - z) ∂μ₁ =

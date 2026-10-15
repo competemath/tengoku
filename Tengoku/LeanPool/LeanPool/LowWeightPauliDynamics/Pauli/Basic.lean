@@ -101,21 +101,42 @@ check over `ZMod 2`, discharged by `decide`. -/
 /-- `signPhase a` is the `ZMod 4` phase exponent of the sign `(-1)^a`, defined as `2a`. -/
 def signPhase (a : ZMod 2) : ZMod 4 := 2 * (a.val : ZMod 4)
 
+/--
+@isnad1 id=eq.0h0v.s6.ac8023ebfdc9 from=translated src=- shape=30f7a560 vocab=25b50960
+-/
 @[simp] lemma signPhase_zero : signPhase 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.41c20ce71463 from=translated src=- shape=30f7a560 vocab=25b50960
+-/
 @[simp] lemma signPhase_one : signPhase 1 = 2 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.0b83c51e9abb from=translated src=- shape=6e1c96fe vocab=544b4867
+-/
 lemma signPhase_add (a b : ZMod 2) : signPhase (a + b) = signPhase a + signPhase b := by
   revert a b; decide
 
+/--
+@isnad1 id=iff.0h1v.s7.5a1e6e02c89d from=translated src=- shape=2ca1125d vocab=25b50960
+-/
 @[simp] lemma signPhase_eq_zero_iff {a : ZMod 2} : signPhase a = 0 ↔ a = 0 := by
   revert a; decide
 
+/--
+@isnad1 id=eq.0h1v.s6.747e4e4d855a from=translated src=- shape=a47232d3 vocab=ac21e05a
+-/
 @[simp] lemma neg_signPhase (a : ZMod 2) : -signPhase a = signPhase a := by revert a; decide
 
+/--
+@isnad1 id=eq.0h1v.s6.044182fd2682 from=translated src=- shape=9715274e vocab=544b4867
+-/
 @[simp] lemma signPhase_add_self (a : ZMod 2) : signPhase a + signPhase a = 0 := by
   revert a; decide
 
+/--
+@isnad1 id=injectiv.0h0v.s3.d6270554fa53 from=translated src=- shape=44762807 vocab=6d65ad39
+-/
 lemma signPhase_injective : Function.Injective signPhase := by decide
 
 /-! ### Bit vectors
@@ -130,11 +151,15 @@ private lemma two_mul_signPhase (a : ZMod 2) : 2 * signPhase a = 0 := by revert 
 private lemma bit_add_eq_zero_iff {a b : ZMod 2} : a + b = 0 ↔ a = b := by
   revert a b; decide
 
-/-- Addition of bit vectors is its own inverse. -/
+/-- Addition of bit vectors is its own inverse.
+@isnad1 id=eq.0h2v.s7.948fb3631f84 from=translated src=- shape=70e57389 vocab=da39f573
+-/
 lemma bits_add_self {n : ℕ} (v : Fin n → ZMod 2) : v + v = 0 := by
   funext i; exact bit_add_self (v i)
 
-/-- In characteristic two, `u + v = 0` says `u = v`. -/
+/-- In characteristic two, `u + v = 0` says `u = v`.
+@isnad1 id=iff.0h3v.s7.4cb95c473a8b from=translated src=- shape=a09bdee8 vocab=da39f573
+-/
 lemma bits_add_eq_zero_iff {n : ℕ} {u v : Fin n → ZMod 2} : u + v = 0 ↔ u = v := by
   constructor
   · intro h
@@ -161,6 +186,9 @@ namespace PauliString
 
 variable {n : ℕ} {s t u : PauliString n}
 
+/--
+@isnad1 id=eq.3h3v.s5.5209a61de47c from=translated src=- shape=2c7597f1 vocab=6efbd635
+-/
 @[ext]
 theorem ext' {s t : PauliString n} (hx : s.x = t.x) (hz : s.z = t.z)
     (hp : s.phase = t.phase) : s = t := by
@@ -180,17 +208,35 @@ instance : DecidableEq (PauliString n) := fun s t =>
 instance : Mul (PauliString n) where
   mul s t := ⟨s.x + t.x, s.z + t.z, s.phase + t.phase + signPhase (s.z ⬝ᵥ t.x)⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.5cbaa32394b1 from=translated src=- shape=906ba0d9 vocab=7b78540e
+-/
 @[simp] lemma mul_x (s t : PauliString n) : (s * t).x = s.x + t.x := rfl
+/--
+@isnad1 id=eq.0h3v.s7.0cc9bfce2268 from=translated src=- shape=906ba0d9 vocab=26e725bf
+-/
 @[simp] lemma mul_z (s t : PauliString n) : (s * t).z = s.z + t.z := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.55497eba7c50 from=translated src=- shape=29bf66ba vocab=f602b7ad
+-/
 lemma mul_phase (s t : PauliString n) :
     (s * t).phase = s.phase + t.phase + signPhase (s.z ⬝ᵥ t.x) := rfl
 
 /-- The identity operator. -/
 instance : One (PauliString n) where one := ⟨0, 0, 0⟩
 
+/--
+@isnad1 id=eq.0h1v.s6.8ce38e3f3ff6 from=translated src=- shape=2077952f vocab=fd70c3ef
+-/
 @[simp] lemma one_x : (1 : PauliString n).x = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s6.a0470effbcb7 from=translated src=- shape=2077952f vocab=e04d4ecf
+-/
 @[simp] lemma one_z : (1 : PauliString n).z = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s6.38801e3cae64 from=translated src=- shape=67494fe9 vocab=8d20485d
+-/
 @[simp] lemma one_phase : (1 : PauliString n).phase = 0 := rfl
 
 /-- The inverse. `star` below is *defined* to be this, and `star_eq_inv` is therefore `rfl`; the
@@ -199,9 +245,18 @@ theorem with content — that this really is the operator adjoint — is `toMatr
 instance : Inv (PauliString n) where
   inv s := ⟨s.x, s.z, -s.phase + signPhase (s.z ⬝ᵥ s.x)⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.39e535ec224c from=translated src=- shape=6f0ff789 vocab=6987b4df
+-/
 @[simp] lemma inv_x (s : PauliString n) : s⁻¹.x = s.x := rfl
+/--
+@isnad1 id=eq.0h2v.s4.d893f6c975f4 from=translated src=- shape=6f0ff789 vocab=3171c014
+-/
 @[simp] lemma inv_z (s : PauliString n) : s⁻¹.z = s.z := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.b8c2b1bf18d5 from=translated src=- shape=319a99b3 vocab=d2dd02d0
+-/
 lemma inv_phase (s : PauliString n) :
     s⁻¹.phase = -s.phase + signPhase (s.z ⬝ᵥ s.x) := rfl
 
@@ -243,7 +298,9 @@ adjoint is not an assumption: `Pauli/Matrix.lean` proves `star (toMatrix s) = to
 instance : Star (PauliString n) where star s := s⁻¹
 
 /-- Pauli strings are **unitary**: the adjoint is the inverse. Definitional here, given how `star`
-is defined; the theorem with content is `toMatrix_star`. -/
+is defined; the theorem with content is `toMatrix_star`.
+@isnad1 id=eq.0h2v.s4.b1ceeec4803e from=translated src=- shape=637f740b vocab=36d43f88
+-/
 lemma star_eq_inv (s : PauliString n) : star s = s⁻¹ := rfl
 
 instance : InvolutiveStar (PauliString n) where
@@ -259,27 +316,39 @@ Mathlib's `dotProduct`. It is the obstruction to commuting: see
 `commute_iff_sympForm_eq_zero`. -/
 def sympForm (s t : PauliString n) : ZMod 2 := s.x ⬝ᵥ t.z + s.z ⬝ᵥ t.x
 
+/--
+@isnad1 id=eq.0h3v.s8.b7f8f685f0ab from=translated src=- shape=821be218 vocab=b2cf6b17
+-/
 lemma sympForm_eq_sum (s t : PauliString n) :
     sympForm s t = ∑ i, (s.x i * t.z i + s.z i * t.x i) := by
   simp [sympForm, dotProduct, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h3v.s4.841c4b222120 from=translated src=- shape=f0fd0580 vocab=a27e12c8
+-/
 lemma sympForm_comm (s t : PauliString n) : sympForm s t = sympForm t s := by
   simp only [sympForm]
   rw [dotProduct_comm s.x t.z, dotProduct_comm s.z t.x, add_comm]
 
-/-- The symplectic form is **bilinear on the right**: `⟪u, s t⟫ = ⟪u, s⟫ + ⟪u, t⟫`. -/
+/-- The symplectic form is **bilinear on the right**: `⟪u, s t⟫ = ⟪u, s⟫ + ⟪u, t⟫`.
+@isnad1 id=eq.0h4v.s6.68287de58c88 from=translated src=- shape=6ac010cf vocab=f5157aa9
+-/
 lemma sympForm_mul_right (u s t : PauliString n) :
     sympForm u (s * t) = sympForm u s + sympForm u t := by
   simp only [sympForm, mul_x, mul_z, dotProduct_add]
   ring
 
-/-- The symplectic form is **bilinear on the left**. -/
+/-- The symplectic form is **bilinear on the left**.
+@isnad1 id=eq.0h4v.s6.85f711ea1d47 from=translated src=- shape=ff9f7413 vocab=f5157aa9
+-/
 lemma sympForm_mul_left (s t u : PauliString n) :
     sympForm (s * t) u = sympForm s u + sympForm t u := by
   simp only [sympForm, mul_x, mul_z, add_dotProduct]
   ring
 
-/-- The form is alternating: every Pauli string commutes with itself. -/
+/-- The form is alternating: every Pauli string commutes with itself.
+@isnad1 id=eq.0h2v.s6.aecb9407e4a0 from=translated src=- shape=aa85282c vocab=a27e12c8
+-/
 @[simp] lemma sympForm_self (s : PauliString n) : sympForm s s = 0 := by
   simp only [sympForm]
   rw [dotProduct_comm s.x s.z]
@@ -288,14 +357,29 @@ lemma sympForm_mul_left (s t u : PauliString n) :
 /-- `phaseMul k s` is `i^k · s`: the same bit vectors, the phase shifted by `k`. -/
 def phaseMul (k : ZMod 4) (s : PauliString n) : PauliString n := ⟨s.x, s.z, s.phase + k⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.19ce15363949 from=translated src=- shape=0f377113 vocab=c03297cd
+-/
 @[simp] lemma phaseMul_x (k : ZMod 4) (s : PauliString n) : (phaseMul k s).x = s.x := rfl
+/--
+@isnad1 id=eq.0h3v.s4.847e72410ca2 from=translated src=- shape=0f377113 vocab=43f1feda
+-/
 @[simp] lemma phaseMul_z (k : ZMod 4) (s : PauliString n) : (phaseMul k s).z = s.z := rfl
+/--
+@isnad1 id=eq.0h3v.s6.3b1674ff0127 from=translated src=- shape=54d75b49 vocab=b34dcfb4
+-/
 @[simp] lemma phaseMul_phase (k : ZMod 4) (s : PauliString n) :
     (phaseMul k s).phase = s.phase + k := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.dbfce7ad7b7e from=translated src=- shape=8cd2d820 vocab=3002983d
+-/
 @[simp] lemma sympForm_phaseMul_right (k : ZMod 4) (s t : PauliString n) :
     sympForm s (phaseMul k t) = sympForm s t := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.9e15fcc51173 from=translated src=- shape=e100d07f vocab=3002983d
+-/
 @[simp] lemma sympForm_phaseMul_left (k : ZMod 4) (s t : PauliString n) :
     sympForm (phaseMul k s) t = sympForm s t := rfl
 
@@ -304,14 +388,22 @@ and `⟪G, G⟫ = 0`. The proof of `apd:thm:local_flow_k_local` pairs each Pauli
 with the generator with a partner `s' = ±i G s` and uses that `s'` is again a Hermitian Pauli
 anticommuting with `G`. This lemma is the anticommutation half (the phase `±i` does not affect
 `sympForm`, see `sympForm_phaseMul_right`); the Hermiticity half is
-`isSelfAdjoint_phaseMul_one_mul`. -/
+`isSelfAdjoint_phaseMul_one_mul`.
+@isnad1 id=eq.0h3v.s5.81d02abc46e7 from=translated src=- shape=651b9a55 vocab=f85d3fef
+-/
 @[simp] lemma sympForm_mul_self_right (G s : PauliString n) :
     sympForm G (G * s) = sympForm G s := by
   rw [sympForm_mul_right, sympForm_self, zero_add]
 
+/--
+@isnad1 id=eq.0h2v.s5.7cd7ef4f7fd3 from=translated src=- shape=90e474ac vocab=983a907b
+-/
 @[simp] lemma phaseMul_zero (s : PauliString n) : phaseMul 0 s = s := by
   refine ext' rfl rfl ?_; simp
 
+/--
+@isnad1 id=iff.0h4v.s5.0df34798af0a from=translated src=- shape=8e42f454 vocab=983a907b
+-/
 @[simp] lemma phaseMul_eq_phaseMul_iff {k l : ZMod 4} {s : PauliString n} :
     phaseMul k s = phaseMul l s ↔ k = l := by
   constructor
@@ -320,6 +412,9 @@ anticommuting with `G`. This lemma is the anticommutation half (the phase `±i` 
     simpa using this
   · rintro rfl; rfl
 
+/--
+@isnad1 id=iff.0h3v.s6.7100a275f55f from=translated src=- shape=58009718 vocab=983a907b
+-/
 @[simp] lemma phaseMul_eq_self_iff {k : ZMod 4} {s : PauliString n} :
     phaseMul k s = s ↔ k = 0 := by
   constructor
@@ -330,7 +425,9 @@ anticommuting with `G`. This lemma is the anticommutation half (the phase `±i` 
 
 /-- **The exact commutation law.** Reversing a product multiplies it by `(-1)^{⟪s,t⟫}`. The two
 cases of `apd:eq:pauli_rotation_branch`, commuting and anticommuting, are the two values of this
-one sign. -/
+one sign.
+@isnad1 id=eq.0h3v.s5.83c439410920 from=translated src=- shape=45a73f6f vocab=683f9bee
+-/
 theorem mul_eq_phaseMul_sympForm (s t : PauliString n) :
     s * t = phaseMul (signPhase (sympForm s t)) (t * s) := by
   refine ext' ?_ ?_ ?_
@@ -344,7 +441,9 @@ theorem mul_eq_phaseMul_sympForm (s t : PauliString n) :
           + (signPhase (t.z ⬝ᵥ s.x) + signPhase (t.z ⬝ᵥ s.x)) by ring]
     simp
 
-/-- Two Pauli strings commute exactly when the symplectic form vanishes. -/
+/-- Two Pauli strings commute exactly when the symplectic form vanishes.
+@isnad1 id=iff.0h3v.s6.c93108cf4bf2 from=translated src=- shape=0da76d4e vocab=6b234be8
+-/
 theorem commute_iff_sympForm_eq_zero (s t : PauliString n) :
     Commute s t ↔ sympForm s t = 0 := by
   have h : Commute s t ↔ s * t = t * s := Iff.rfl
@@ -355,14 +454,18 @@ theorem commute_iff_sympForm_eq_zero (s t : PauliString n) :
     simpa using this
   · intro hc; rw [hc]; simp
 
-/-- Two Pauli strings anticommute exactly when the symplectic form is one. -/
+/-- Two Pauli strings anticommute exactly when the symplectic form is one.
+@isnad1 id=iff.0h3v.s7.bcd7e8eda4c9 from=translated src=- shape=70b8fd4a vocab=9bd23d0f
+-/
 theorem anticommute_iff_sympForm_eq_one (s t : PauliString n) :
     s * t = phaseMul 2 (t * s) ↔ sympForm s t = 1 := by
   rw [mul_eq_phaseMul_sympForm s t, phaseMul_eq_phaseMul_iff]
   exact (by decide : ∀ a : ZMod 2, signPhase a = 2 ↔ a = 1) _
 
 /-- **The dichotomy is exhaustive.** The symplectic form takes only the values `0` and `1`, so
-there is no third case beyond the two that `apd:eq:pauli_rotation_branch` lists. -/
+there is no third case beyond the two that `apd:eq:pauli_rotation_branch` lists.
+@isnad1 id=or.0h3v.s7.f452b6eaa0cc from=translated src=- shape=0bc70331 vocab=a27e12c8
+-/
 theorem sympForm_eq_zero_or_one (s t : PauliString n) :
     sympForm s t = 0 ∨ sympForm s t = 1 :=
   (by decide : ∀ a : ZMod 2, a = 0 ∨ a = 1) _
@@ -377,7 +480,9 @@ This is the hypothesis-level companion to `Lean4LPD.rot_conj_of_commute` and
 `Lean4LPD.rot_conj_of_anticommute`: those two theorems cover a commuting and an anticommuting
 generator, and without this lemma nothing rules out a pair of Paulis that is neither.
 `Pauli/Matrix.lean` transports it to operators as `toMatrix_commute_or_anticommute`, which is the
-form `Rotation.lean` consumes. -/
+form `Rotation.lean` consumes.
+@isnad1 id=or.0h3v.s6.1b688096646d from=translated src=- shape=8697c3cb vocab=9fc0766a
+-/
 theorem commute_or_anticommute (s t : PauliString n) :
     Commute s t ∨ s * t = phaseMul 2 (t * s) := by
   rcases sympForm_eq_zero_or_one s t with h | h
@@ -392,7 +497,9 @@ theorem commute_or_anticommute (s t : PauliString n) :
 **independent**: a self-adjoint element need not square to one (take `2` in `ℂ`), and an element
 squaring to one need not be self-adjoint (take `!![1,1;0,-1]`). `Rotation.lean` notes the first of
 those. For a Pauli string they coincide, because `star s = s⁻¹` (`star_eq_inv`): the string is
-unitary, so self-adjointness *is* involutivity, and one hypothesis discharges both. -/
+unitary, so self-adjointness *is* involutivity, and one hypothesis discharges both.
+@isnad1 id=iff.0h2v.s5.0d5c3c2f9ea0 from=translated src=- shape=252de1be vocab=5c0415a0
+-/
 theorem isSelfAdjoint_iff_mul_self_eq_one {s : PauliString n} :
     IsSelfAdjoint s ↔ s * s = 1 := by
   rw [IsSelfAdjoint, star_eq_inv, inv_eq_iff_mul_eq_one]
@@ -402,7 +509,9 @@ theorem isSelfAdjoint_iff_mul_self_eq_one {s : PauliString n} :
 
 This fixes the parity of the phase and nothing more. Both solutions are admissible and they differ
 by `2`, so a string and its negative are both self-adjoint; the criterion does not pick out a
-canonical sign. -/
+canonical sign.
+@isnad1 id=iff.0h2v.s7.e53e50a11459 from=translated src=- shape=749b3dc8 vocab=f0c64df4
+-/
 theorem isSelfAdjoint_iff_phase {s : PauliString n} :
     IsSelfAdjoint s ↔ signPhase (s.z ⬝ᵥ s.x) = 2 * s.phase := by
   rw [IsSelfAdjoint, star_eq_inv]
@@ -426,7 +535,9 @@ theorem isSelfAdjoint_iff_phase {s : PauliString n} :
 It is needed for the anticommuting branch to mean anything physically:
 `cos(dt) s + i sin(dt) G s` is an observable only if `i G s` is. Note the Hermitian Pauli strings
 are *not* closed under multiplication — `G s` itself is anti-Hermitian when `G` and `s`
-anticommute, which is exactly why the partner carries the factor `i`. -/
+anticommute, which is exactly why the partner carries the factor `i`.
+@isnad1 id=isselfad.3h3v.s7.15463564669d from=translated src=- shape=e91fa892 vocab=0a1a5201
+-/
 theorem isSelfAdjoint_phaseMul_one_mul {G s : PauliString n} (hG : IsSelfAdjoint G)
     (hs : IsSelfAdjoint s) (h : sympForm G s = 1) : IsSelfAdjoint (phaseMul 1 (G * s)) := by
   rw [isSelfAdjoint_iff_phase] at hG hs ⊢
@@ -440,7 +551,9 @@ theorem isSelfAdjoint_phaseMul_one_mul {G s : PauliString n} (hG : IsSelfAdjoint
 
 /-- A Pauli string with neither an `X`- nor a `Z`-part is a phase, and a phase commutes with
 everything. Contrapositively: anything that anticommutes with some `t` has a non-trivial `X`- or
-`Z`-part. No self-adjointness is involved. -/
+`Z`-part. No self-adjointness is involved.
+@isnad1 id=eq.2h3v.s8.d591594367d9 from=translated src=- shape=cbaaecd2 vocab=7e2e2d2b
+-/
 theorem sympForm_eq_zero_of_x_eq_zero_of_z_eq_zero {s t : PauliString n}
     (hx : s.x = 0) (hz : s.z = 0) : sympForm s t = 0 := by
   simp [sympForm, hx, hz]
@@ -463,18 +576,31 @@ def Z1 : PauliString 1 := ⟨0, 1, 0⟩
 rather than `−Y`; `Pauli/Matrix.lean` checks that entrywise. -/
 def Y1 : PauliString 1 := ⟨1, 1, 1⟩
 
+/--
+@isnad1 id=isselfad.0h0v.s3.0795352668d4 from=translated src=- shape=06f63001 vocab=204782e0
+-/
 theorem isSelfAdjoint_X1 : IsSelfAdjoint X1 := isSelfAdjoint_iff_phase.2 (by decide)
 
+/--
+@isnad1 id=isselfad.0h0v.s3.9a3435926361 from=translated src=- shape=06f63001 vocab=a97ecfa9
+-/
 theorem isSelfAdjoint_Z1 : IsSelfAdjoint Z1 := isSelfAdjoint_iff_phase.2 (by decide)
 
+/--
+@isnad1 id=isselfad.0h0v.s3.5b6c45240919 from=translated src=- shape=06f63001 vocab=6fd1ee02
+-/
 theorem isSelfAdjoint_Y1 : IsSelfAdjoint Y1 := isSelfAdjoint_iff_phase.2 (by decide)
 
 /-- **`X` and `Z` anticommute**, so the anticommuting branch has a witness and every theorem
-conditioned on `sympForm G s = 1` says something. -/
+conditioned on `sympForm G s = 1` says something.
+@isnad1 id=eq.0h0v.s6.53457ef4f02d from=translated src=- shape=97d56a1b vocab=02d52da7
+-/
 theorem sympForm_X1_Z1 : sympForm X1 Z1 = 1 := by decide
 
 /-- `i` times their product is the Hermitian partner `Y`, as `isSelfAdjoint_phaseMul_one_mul`
-predicts. The bare product is not: `X Z = −i Y`. -/
+predicts. The bare product is not: `X Z = −i Y`.
+@isnad1 id=eq.0h0v.s6.0c121508d28f from=translated src=- shape=9d973fcd vocab=01e437c4
+-/
 theorem phaseMul_one_X1_mul_Z1 : phaseMul 1 (X1 * Z1) = Y1 := by decide
 
 end PauliString

@@ -109,6 +109,9 @@ noncomputable instance generatorComplementFintype (G : Type u) [Groupoid G]
   classical
   exact inferInstance
 
+/--
+@isnad1 id=eq.0h2v.s7.b215dc579c34 from=translated src=- shape=8de3b20c vocab=e418ccc6
+-/
 lemma generatorComplement_card (G : Type u) [Groupoid G]
     [IsFreeGroupoid G]
     [Fintype (IsFreeGroupoid.Generators G)]
@@ -140,6 +143,9 @@ lemma generatorComplement_card (G : Type u) [Groupoid G]
   rw [hcomp, hS]
   omega
 
+/--
+@isnad1 id=eq.0h2v.s6.725b31708d92 from=translated src=- shape=17990804 vocab=2c7a190c
+-/
 lemma freeGroupoidGeneratorSet_card (G : Type u) [Groupoid G]
     [IsFreeGroupoid G] [IsConnected G]
     [Fintype (IsFreeGroupoid.Generators G)]
@@ -150,6 +156,9 @@ lemma freeGroupoidGeneratorSet_card (G : Type u) [Groupoid G]
   let : Arborescence (freeGroupoidTree G r) := freeGroupoidTreeArborescence G r
   exact generatorComplement_card G (freeGroupoidTree G r)
 
+/--
+@isnad1 id=nonempty.0h2v.s6.9273d52e6a67 from=translated src=- shape=7f4f4d1c vocab=4e5eff77
+-/
 theorem freeGroupoid_end_free_basis (G : Type u) [Groupoid G]
     [IsFreeGroupoid G] [IsConnected G]
     [Fintype (IsFreeGroupoid.Generators G)]
@@ -181,6 +190,9 @@ theorem freeGroupoid_end_free_basis (G : Type u) [Groupoid G]
     hcard ▸ Fintype.equivFin X
   exact ⟨B.reindex eX⟩
 
+/--
+@isnad1 id=nonempty.0h2v.s7.0d839ff43498 from=translated src=- shape=9bf6ac36 vocab=63c81cf2
+-/
 theorem freeGroupoid_end_free_rank (G : Type u) [Groupoid G]
     [IsFreeGroupoid G] [IsConnected G]
     [Fintype (IsFreeGroupoid.Generators G)]

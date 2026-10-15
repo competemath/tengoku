@@ -49,11 +49,17 @@ noncomputable def quotientDeckEndHom (G : Type u) [Group G] (H : Subgroup G)
     change Action.FintypeCat.toEndHom H n = 𝟙 _
     exact Action.FintypeCat.toEndHom_trivial_of_mem (N := H) hn)
 
+/--
+@isnad1 id=eq.0h4v.s9.993039128f7b from=translated src=- shape=a2e1564b vocab=3fd09f34
+-/
 @[simp]
 lemma quotientDeckEndHom_mk (G : Type u) [Group G] (H : Subgroup G)
     [H.Normal] [Fintype (G ⧸ H)] (g h : G) :
     (quotientDeckEndHom G H (g : G ⧸ H)).hom ⟦h⟧ = ⟦h * g⁻¹⟧ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.1e4bfd9e2a15 from=translated src=- shape=65d2edc4 vocab=71fbe022
+-/
 @[simp]
 lemma quotientDeckEndHom_apply_one (G : Type u) [Group G] (H : Subgroup G)
     [H.Normal] [Fintype (G ⧸ H)] (q : G ⧸ H) :
@@ -95,10 +101,16 @@ noncomputable def quotientDeckHom (G : Type u) [Group G] (H : Subgroup G)
   (Aut.unitsEndEquivAut (SchreierAction G H)).toMonoidHom.comp
     (quotientDeckUnitsHom G H)
 
+/--
+@isnad1 id=eq.0h3v.s9.a1c22a142ad7 from=translated src=- shape=374d64c3 vocab=31f4656b
+-/
 lemma quotientDeckHom_hom (G : Type u) [Group G] (H : Subgroup G)
     [H.Normal] [Fintype (G ⧸ H)] (q : G ⧸ H) :
     (quotientDeckHom G H q).hom.hom = (quotientDeckEndHom G H q).hom := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.493c1600c20e from=translated src=- shape=e6aed749 vocab=d7480692
+-/
 @[simp]
 lemma quotientDeckHom_apply_one (G : Type u) [Group G] (H : Subgroup G)
     [H.Normal] [Fintype (G ⧸ H)] (q : G ⧸ H) :
@@ -126,6 +138,9 @@ private lemma schreierActionHom_ext_of_one (G : Type u) [Group G] (H : Subgroup 
     rw [ha]
     exact hf.trans ((congrArg (fun z : G ⧸ H => a • z) h).trans hg.symm)
 
+/--
+@isnad1 id=injectiv.0h2v.s8.26789aadebdd from=translated src=- shape=f5094b6d vocab=c6fbb6c4
+-/
 lemma quotientDeckHom_injective (G : Type u) [Group G] (H : Subgroup G)
     [H.Normal] [Fintype (G ⧸ H)] :
     Function.Injective (quotientDeckHom G H) := by
@@ -138,6 +153,9 @@ lemma quotientDeckHom_injective (G : Type u) [Group G] (H : Subgroup G)
   have h''' : q⁻¹ = r⁻¹ := h''
   exact inv_inj.mp h'''
 
+/--
+@isnad1 id=surjecti.0h2v.s8.76fb50e900d5 from=translated src=- shape=f5094b6d vocab=f15195f5
+-/
 lemma quotientDeckHom_surjective (G : Type u) [Group G] (H : Subgroup G)
     [H.Normal] [Fintype (G ⧸ H)] :
     Function.Surjective (quotientDeckHom G H) := by

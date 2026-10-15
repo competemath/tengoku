@@ -17,9 +17,15 @@ open EisensteinSeries UpperHalfPlane TopologicalSpace Set
 
 open scoped Interval Real NNReal ENNReal Topology BigOperators Nat
 
+/--
+@isnad1 id=eq.0h2v.s7.ad3fd20bba45 from=translated src=- shape=9ff7caa1 vocab=8e613788
+-/
 lemma norm_symm (x y : ℤ) : ‖![x, y]‖ = ‖![y,x]‖ := by
   simp [EisensteinSeries.norm_eq_max_natAbs, max_comm]
 
+/--
+@isnad1 id=isbigo.0h2v.s5.33865f9de28a from=translated src=- shape=cc202cfd vocab=4b0e7066
+-/
 lemma linear_bigO (m : ℤ) (z : ℍ) : (fun (n : ℤ) => ((m : ℂ) * z + n)⁻¹) =O[cofinite]
     fun n => (|(n : ℝ)|⁻¹) := by
   have h1 : (fun (n : ℤ) => ((m : ℂ) * z + n)⁻¹) =O[cofinite]
@@ -71,12 +77,18 @@ lemma linear_bigO (m : ℤ) (z : ℍ) : (fun (n : ℤ) => ((m : ℂ) * z + n)⁻
   · simp only [abs_pos, ne_eq, Int.cast_eq_zero]; omega
   · simp
 
+/--
+@isnad1 id=isbigo.0h3v.s6.602c3ae1ea1c from=translated src=- shape=f5ded19e vocab=5ee9471f
+-/
 lemma linear_bigO_pow (m : ℤ) (z : ℍ) (k : ℕ) : (fun (n : ℤ) => ((((m : ℂ) * z + n)) ^ k )⁻¹)
   =O[cofinite]
     fun n => ((|(n : ℝ)| ^ k)⁻¹) := by
   simp_rw [← inv_pow]
   apply Asymptotics.IsBigO.pow <| linear_bigO m z
 
+/--
+@isnad1 id=isbigo.1h4v.s5.20325c80fb19 from=translated src=- shape=183c6fbf vocab=8e5b9cdc
+-/
 lemma Asymptotics.IsBigO.zify {α β : Type*} [Norm α] [Norm β] {f : ℤ → α} {g : ℤ → β}
     (hf : f =O[cofinite] g) :
     (fun (n : ℕ) => f n) =O[cofinite] fun n => g n := by
@@ -88,16 +100,25 @@ lemma Asymptotics.IsBigO.zify {α β : Type*} [Norm α] [Norm β] {f : ℤ → �
   apply Filter.Eventually.natCast_atTop (p := fun n => ‖f n‖ ≤ C * ‖g n‖)
   simp_all only [eventually_sup, eventually_atBot, eventually_atTop]
 
+/--
+@isnad1 id=isbigo.1h4v.s5.72f6944c43ba from=translated src=- shape=0d3bf858 vocab=246d6cc8
+-/
 lemma Asymptotics.IsBigO.of_neg {α β : Type*} [Norm α] [Norm β] {f : ℤ → α} {g : ℤ → β}
     (hf : f =O[cofinite] g) : (fun n => f (-n)) =O[cofinite] fun n => g (-n) := by
   rw [← Equiv.neg_apply]
   apply Asymptotics.IsBigO.comp_tendsto hf
   refine Injective.tendsto_cofinite (Equiv.injective (Equiv.neg ℤ))
 
+/--
+@isnad1 id=isbigo.0h2v.s5.a10bd4b5fd28 from=translated src=- shape=efb95bf4 vocab=0af1a9a9
+-/
 lemma linear_bigO_nat (m : ℤ) (z : ℍ) : (fun (n : ℕ) => ((m : ℂ) * z + n)⁻¹) =O[cofinite]
     fun n => (|(n : ℝ)|⁻¹) :=
   (linear_bigO (m : ℤ) z).zify
 
+/--
+@isnad1 id=isbigo.0h2v.s5.97224b9a3df1 from=translated src=- shape=84f1b010 vocab=4b0e7066
+-/
 lemma linear_bigO' (m : ℤ) (z : ℍ) : (fun (n : ℤ) => ((n : ℂ) * z + m)⁻¹) =O[cofinite]
     fun n => (|(n : ℝ)|⁻¹) := by
   have h1 : (fun (n : ℤ) => ((n : ℂ) * z + m)⁻¹) =O[cofinite]

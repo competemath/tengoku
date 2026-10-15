@@ -17,6 +17,9 @@ open TopologicalSpace Set MeasureTheory intervalIntegral
 
 open scoped Interval Real NNReal ENNReal Topology BigOperators Nat
 
+/--
+@isnad1 id=eq.0h0v.s6.03be7d4ccd70 from=translated src=- shape=28b830c9 vocab=043bbe84
+-/
 lemma zeta_two_eqn : ∑' (n : ℤ), ((n : ℂ) ^ 2)⁻¹ = 2 * riemannZeta 2 := by
   have := tsum_nat_add_neg (f := fun n => 1/((n : ℂ) ^ 2)) ?_
   · simp only [Int.cast_natCast, one_div, Int.cast_neg, even_two, Even.neg_pow, Int.cast_zero,

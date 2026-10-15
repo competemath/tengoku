@@ -28,7 +28,9 @@ namespace LeanStationaryHarmonicMaps
 namespace StationaryHarmonicMap
 
 /-- Integrability of the weak energy and weak radial energy on the ambient ball
-turns the open-annulus identity into the packaged annulus formula. -/
+turns the open-annulus identity into the packaged annulus formula.
+@isnad1 id=weakener.2h4v.s9.a280c5dda0ae from=translated src=- shape=54bbf89a vocab=d4b45090
+-/
 theorem weakEnergyAnnulusFormula_of_integrableOn_ball {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (henergy :
@@ -60,7 +62,9 @@ theorem weakEnergyAnnulusFormula_of_integrableOn_ball {n m : ℕ} [NeZero n]
         (a := a) (b := b) (R0 := R0) hab hb hradial_b).symm
 
 /-- Local `L²` control and a.e. measurability supply the annulus formula on a
-closed ball contained in the weak map domain. -/
+closed ball contained in the weak map domain.
+@isnad1 id=weakener.3h5v.s7.8ba3c2b18776 from=translated src=- shape=fbddaf3d vocab=2d51b8db
+-/
 theorem weakEnergyAnnulusFormula_of_locallyL2 {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {Ω : Set (Domain n)} {R0 : ℝ}
     (hDu_meas : GradientAEStronglyMeasurableIn Du Ω)
@@ -91,7 +95,9 @@ theorem weakEnergyAnnulusFormula_of_locallyL2 {n m : ℕ} [NeZero n]
     (n := n) (m := m) (Du := Du) (R0 := R0) henergy hradial
 
 /-- A `W^{1,2}_{loc}` map with chosen weak gradient automatically has the
-annulus formula on any closed ball contained in the domain. -/
+annulus formula on any closed ball contained in the domain.
+@isnad1 id=weakener.2h6v.s7.b8c59dde255b from=translated src=- shape=8762f1ff vocab=97877bea
+-/
 theorem weakEnergyAnnulusFormula_of_W12LocIn {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
     {Ω : Set (Domain n)} {R0 : ℝ}
@@ -103,7 +109,9 @@ theorem weakEnergyAnnulusFormula_of_W12LocIn {n m : ℕ} [NeZero n]
     hW.gradient_aestronglyMeasurable hW.gradient_locallyL2 hclosedBall_subset
 
 /-- The generic ball-integral radius derivative formula specializes to the weak
-energy radius formula. -/
+energy radius formula.
+@isnad1 id=weakener.2h4v.s8.938d8b790c20 from=translated src=- shape=e3cb920b vocab=70aa0269
+-/
 theorem weakEnergyRadiusIntegralFormula_of_ballRadiusDerivative {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hcoarea : BallIntegralRadiusDerivativeFormula n)
@@ -117,7 +125,9 @@ theorem weakEnergyRadiusIntegralFormula_of_ballRadiusDerivative {n m : ℕ} [NeZ
       (R0 := R0) henergy c
 
 /-- The restricted generic ball-integral radius derivative formula specializes
-to the restricted weak energy radius formula. -/
+to the restricted weak energy radius formula.
+@isnad1 id=weakener.2h4v.s8.65b3514e86a4 from=translated src=- shape=e3cb920b vocab=2b1d2839
+-/
 theorem weakEnergyRadiusIntegralFormulaForWeights_of_ballRadiusDerivativeForWeights
     {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {R0 : ℝ}
@@ -132,7 +142,9 @@ theorem weakEnergyRadiusIntegralFormulaForWeights_of_ballRadiusDerivativeForWeig
       (R0 := R0) henergy c hc
 
 /-- The generic ball-integral radius derivative formula specializes to the weak
-radial-energy radius formula. -/
+radial-energy radius formula.
+@isnad1 id=weakradi.2h4v.s8.fc7cf3ee5c48 from=translated src=- shape=f3dbcb0a vocab=aa766a0c
+-/
 theorem weakRadialEnergyRadiusIntegralFormula_of_ballRadiusDerivative
     {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {R0 : ℝ}
@@ -150,7 +162,9 @@ theorem weakRadialEnergyRadiusIntegralFormula_of_ballRadiusDerivative
       (R0 := R0) hradial c
 
 /-- The restricted generic ball-integral radius derivative formula specializes
-to the restricted weak radial-energy radius formula. -/
+to the restricted weak radial-energy radius formula.
+@isnad1 id=weakradi.2h4v.s8.bfb1cea4c4ee from=translated src=- shape=f3dbcb0a vocab=91895734
+-/
 theorem weakRadialEnergyRadiusIntegralFormulaForWeights_of_ballRadiusDerivativeForWeights
     {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {R0 : ℝ}
@@ -168,7 +182,9 @@ theorem weakRadialEnergyRadiusIntegralFormulaForWeights_of_ballRadiusDerivativeF
       (R0 := R0) hradial c hc
 
 /-- Local `L²` control plus the generic ball-integral radius derivative theorem
-supplies both weak radius integration formulas on a contained ball. -/
+supplies both weak radius integration formulas on a contained ball.
+@isnad1 id=weakradi.4h5v.s7.f5eb2793c22a from=translated src=- shape=494f1e5a vocab=78b91b52
+-/
 theorem weakRadiusIntegralFormulas_of_locallyL2_coarea {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {Ω : Set (Domain n)} {R0 : ℝ}
     (hcoarea : BallIntegralRadiusDerivativeFormula n)
@@ -205,7 +221,9 @@ theorem weakRadiusIntegralFormulas_of_locallyL2_coarea {n m : ℕ} [NeZero n]
 
 /-- Local `L²` control plus the restricted generic ball-integral radius
 derivative theorem supplies both restricted weak radius integration formulas on
-a contained ball. -/
+a contained ball.
+@isnad1 id=weakradi.4h5v.s7.d9197ed5af66 from=translated src=- shape=494f1e5a vocab=cacb0c49
+-/
 theorem weakRadiusIntegralFormulasForWeights_of_locallyL2_coarea
     {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {Ω : Set (Domain n)} {R0 : ℝ}
@@ -242,7 +260,9 @@ theorem weakRadiusIntegralFormulasForWeights_of_locallyL2_coarea
       (n := n) (m := m) (Du := Du) (R0 := R0) hcoarea hradial⟩
 
 /-- `W^{1,2}_{loc}` data plus the generic ball-integral radius derivative
-theorem supplies both weak radius integration formulas. -/
+theorem supplies both weak radius integration formulas.
+@isnad1 id=weakradi.3h6v.s7.1e4247e988e6 from=translated src=- shape=eed74296 vocab=67dd0182
+-/
 theorem weakRadiusIntegralFormulas_of_W12LocIn_coarea {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
     {Ω : Set (Domain n)} {R0 : ℝ}
@@ -256,7 +276,9 @@ theorem weakRadiusIntegralFormulas_of_W12LocIn_coarea {n m : ℕ} [NeZero n]
     hclosedBall_subset
 
 /-- `W^{1,2}_{loc}` data plus the restricted generic ball-integral radius
-derivative theorem supplies both restricted weak radius integration formulas. -/
+derivative theorem supplies both restricted weak radius integration formulas.
+@isnad1 id=weakradi.3h6v.s7.470386604ebc from=translated src=- shape=eed74296 vocab=59bd50df
+-/
 theorem weakRadiusIntegralFormulasForWeights_of_W12LocIn_coarea
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
@@ -273,7 +295,9 @@ theorem weakRadiusIntegralFormulasForWeights_of_W12LocIn_coarea
 /-- `W^{1,2}_{loc}` data plus bounded a.e. interval-step approximation of
 radius weights supplies the two restricted weak radius integration formulas.
 This is the direct bridge from the finite-step cutoff/coarea core to the weak
-map package. -/
+map package.
+@isnad1 id=weakradi.4h6v.s7.a8c0f2a238f3 from=translated src=- shape=f69a304e vocab=edcae2a9
+-/
 theorem weakRadiusIntegralFormulasForWeights_of_W12LocIn_finiteIntervalStepApproxAE
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
@@ -335,7 +359,9 @@ theorem weakRadiusIntegralFormulasForWeights_of_W12LocIn_finiteIntervalStepAppro
         hR0_pos hradial hradial_ac (happrox c hc)
 
 /-- The radius integration formula, after localization to an annulus, gives the
-increment/FTC form of the radius calculus. -/
+increment/FTC form of the radius calculus.
+@isnad1 id=weakener.4h4v.s5.010e946bf332 from=translated src=- shape=d5862624 vocab=74f0b86f
+-/
 theorem weakEnergyRadiusIncrementFormula_of_radiusIntegral_annulus
     {n m : ℕ} {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hderiv_int : WeakEnergyRadiusDerivativeIntegrability Du R0)
@@ -387,7 +413,9 @@ theorem weakEnergyRadiusIncrementFormula_of_radiusIntegral_annulus
 
 /-- Restricted-weight radius integration is enough for the annulus-localized
 increment/FTC form, since the localization weight is the bounded measurable
-indicator of `(a, b)`. -/
+indicator of `(a, b)`.
+@isnad1 id=weakener.4h4v.s5.6d6ee3b76798 from=translated src=- shape=d5862624 vocab=4c76ad60
+-/
 theorem weakEnergyRadiusIncrementFormula_of_radiusIntegralForWeights_annulus
     {n m : ℕ} {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hderiv_int : WeakEnergyRadiusDerivativeIntegrability Du R0)
@@ -440,7 +468,9 @@ theorem weakEnergyRadiusIncrementFormula_of_radiusIntegralForWeights_annulus
             ha hab hb
 
 /-- The increment/FTC form gives the primitive form by fixing the left endpoint
-and applying the increment identity to each intermediate radius. -/
+and applying the increment identity to each intermediate radius.
+@isnad1 id=weakener.1h4v.s4.200d0786a34e from=translated src=- shape=cc25598c vocab=44d806ad
+-/
 theorem weakEnergyRadiusPrimitiveFormula_of_increment {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hinc : WeakEnergyRadiusIncrementFormula Du R0) :
@@ -464,7 +494,9 @@ theorem weakEnergyRadiusPrimitiveFormula_of_increment {n m : ℕ}
     linarith
 
 /-- The radius primitive formula immediately gives absolute continuity of the
-ball-energy and radial-energy radius functions. -/
+ball-energy and radial-energy radius functions.
+@isnad1 id=weakener.1h4v.s4.4f14670b11bc from=translated src=- shape=cc25598c vocab=5f281cfd
+-/
 theorem weakEnergyAbsolutelyContinuousOnRadii_of_radiusPrimitive {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hprim : WeakEnergyRadiusPrimitiveFormula Du R0) :
@@ -500,7 +532,9 @@ theorem weakEnergyAbsolutelyContinuousOnRadii_of_radiusPrimitive {n m : ℕ}
     exact hconst.add hint_ac
 
 /-- The increment/FTC form gives absolute continuity of the two radius energy
-functions. -/
+functions.
+@isnad1 id=weakener.1h4v.s4.ffa28e35f7bd from=translated src=- shape=cc25598c vocab=49c8382f
+-/
 theorem weakEnergyAbsolutelyContinuousOnRadii_of_increment {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hinc : WeakEnergyRadiusIncrementFormula Du R0) :
@@ -511,7 +545,9 @@ theorem weakEnergyAbsolutelyContinuousOnRadii_of_increment {n m : ℕ}
       (n := n) (m := m) (Du := Du) (R0 := R0) hinc)
 
 /-- Absolute continuity of the ball-energy radius function gives the concrete
-one-dimensional energy integration-by-parts formula. -/
+one-dimensional energy integration-by-parts formula.
+@isnad1 id=weakball.2h4v.s5.c94ad09f9cf3 from=translated src=- shape=9608c92d vocab=7ae8e6f2
+-/
 theorem weakBallEnergyIBPFormula_of_radius_ac {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hR0_nonneg : 0 ≤ R0)
@@ -572,7 +608,9 @@ theorem weakBallEnergyIBPFormula_of_radius_ac {n m : ℕ}
 
 /-- Absolute continuity of the ball-energy and radial-energy radius functions
 also gives the integrability side conditions used in the one-dimensional
-algebraic splitting. -/
+algebraic splitting.
+@isnad1 id=weakoned.2h4v.s5.31cbf731c308 from=translated src=- shape=9608c92d vocab=1a638eb2
+-/
 theorem weakOneDimensionalIBPIntegrability_of_radius_ac {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hR0_nonneg : 0 ≤ R0)
@@ -629,7 +667,9 @@ theorem weakOneDimensionalIBPIntegrability_of_radius_ac {n m : ℕ}
 
 /-- Constructor for the packaged one-dimensional calculus: on a nonnegative
 radius interval, absolute continuity of `E(r)` and `Q(r)` supplies both the
-energy IBP formula and the integrability side conditions. -/
+energy IBP formula and the integrability side conditions.
+@isnad1 id=weakball.2h4v.s5.7638e00e6a26 from=translated src=- shape=9608c92d vocab=90d93757
+-/
 theorem weakBallEnergyOneDimensionalCalculus_of_radius_ac {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hR0_nonneg : 0 ≤ R0)
@@ -642,7 +682,9 @@ theorem weakBallEnergyOneDimensionalCalculus_of_radius_ac {n m : ℕ}
       (n := n) (m := m) (Du := Du) (R0 := R0) hR0_nonneg hac⟩
 
 /-- Constructor for the packaged one-dimensional calculus from the
-increment/FTC form of the radius energy identities. -/
+increment/FTC form of the radius energy identities.
+@isnad1 id=weakball.2h4v.s5.eaad3d4e4646 from=translated src=- shape=9608c92d vocab=e529be44
+-/
 theorem weakBallEnergyOneDimensionalCalculus_of_increment {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hR0_nonneg : 0 ≤ R0)
@@ -655,7 +697,9 @@ theorem weakBallEnergyOneDimensionalCalculus_of_increment {n m : ℕ}
       (n := n) (m := m) (Du := Du) (R0 := R0) hinc)
 
 /-- Constructor for the packaged one-dimensional calculus from radius
-integration localized to annuli. -/
+integration localized to annuli.
+@isnad1 id=weakball.5h4v.s5.3b535f6cf8ba from=translated src=- shape=f1ab1d50 vocab=d9878053
+-/
 theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegral_annulus {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hR0_nonneg : 0 ≤ R0)
@@ -671,7 +715,9 @@ theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegral_annulus {n m : �
       hderiv_int henergy_radius hradial_radius hannulus)
 
 /-- Restricted-weight radius integration over annuli gives the packaged
-one-dimensional calculus. -/
+one-dimensional calculus.
+@isnad1 id=weakball.5h4v.s5.aacc326a3efc from=translated src=- shape=f1ab1d50 vocab=43148c94
+-/
 theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegralForWeights_annulus
     {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
@@ -689,7 +735,9 @@ theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegralForWeights_annulus
 
 /-- Radius integration over annuli plus radius absolute continuity gives the
 one-dimensional calculus package; the derivative integrability is extracted
-automatically from the absolute-continuity input. -/
+automatically from the absolute-continuity input.
+@isnad1 id=weakball.5h4v.s5.68d990ca364a from=translated src=- shape=f1ab1d50 vocab=e235af35
+-/
 theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegral_annulus_radius_ac
     {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
@@ -707,7 +755,9 @@ theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegral_annulus_radius_ac
     henergy_radius hradial_radius hannulus
 
 /-- Restricted-weight radius integration over annuli plus radius absolute
-continuity gives the one-dimensional calculus package. -/
+continuity gives the one-dimensional calculus package.
+@isnad1 id=weakball.5h4v.s5.8b3c5a3e8257 from=translated src=- shape=f1ab1d50 vocab=dd6feb77
+-/
 theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegralForWeights_annulus_radius_ac
     {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
@@ -725,7 +775,9 @@ theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegralForWeights_annulus
     henergy_radius hradial_radius hannulus
 
 /-- Local `L²` control supplies the annulus formula needed by the radius
-integration route to the one-dimensional calculus package. -/
+integration route to the one-dimensional calculus package.
+@isnad1 id=weakball.7h5v.s7.58580275c2d5 from=translated src=- shape=262a6307 vocab=d6a92aea
+-/
 theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegral_locallyL2
     {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {Ω : Set (Domain n)} {R0 : ℝ}
@@ -746,7 +798,9 @@ theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegral_locallyL2
 
 /-- Local `L²` control supplies the annulus formula needed by the
 restricted-weight radius integration route to the one-dimensional calculus
-package. -/
+package.
+@isnad1 id=weakball.7h5v.s7.85e2c84d0eb4 from=translated src=- shape=262a6307 vocab=b4d0decc
+-/
 theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegralForWeights_locallyL2
     {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {Ω : Set (Domain n)} {R0 : ℝ}
@@ -766,7 +820,9 @@ theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegralForWeights_locally
       hDu_meas hgrad hclosedBall_subset)
 
 /-- `W^{1,2}_{loc}` supplies the annulus formula needed by the radius
-integration route to the one-dimensional calculus package. -/
+integration route to the one-dimensional calculus package.
+@isnad1 id=weakball.6h6v.s7.b96471256791 from=translated src=- shape=c7702ccf vocab=df036619
+-/
 theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegral_W12LocIn
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
@@ -785,7 +841,9 @@ theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegral_W12LocIn
 
 /-- `W^{1,2}_{loc}` supplies the annulus formula needed by the
 restricted-weight radius integration route to the one-dimensional calculus
-package. -/
+package.
+@isnad1 id=weakball.6h6v.s7.794aa402a477 from=translated src=- shape=c7702ccf vocab=484343c9
+-/
 theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegralForWeights_W12LocIn
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
@@ -804,7 +862,9 @@ theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegralForWeights_W12LocI
 
 /-- Local `L²` supplies the annulus formula, while radius absolute continuity
 supplies derivative integrability; this is the annulus route without a separate
-`WeakEnergyRadiusDerivativeIntegrability` assumption. -/
+`WeakEnergyRadiusDerivativeIntegrability` assumption.
+@isnad1 id=weakball.7h5v.s7.58ba55e35557 from=translated src=- shape=262a6307 vocab=29f6fa9d
+-/
 theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegral_locallyL2_radius_ac
     {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {Ω : Set (Domain n)} {R0 : ℝ}
@@ -825,7 +885,9 @@ theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegral_locallyL2_radius_
 
 /-- Local `L²` supplies the annulus formula, while radius absolute continuity
 supplies derivative integrability; this is the restricted-weight annulus route
-without a separate derivative-integrability hypothesis. -/
+without a separate derivative-integrability hypothesis.
+@isnad1 id=weakball.7h5v.s7.03463e642950 from=translated src=- shape=262a6307 vocab=384d7048
+-/
 theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegralForWeights_locallyL2_radius_ac
     {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {Ω : Set (Domain n)} {R0 : ℝ}
@@ -846,7 +908,9 @@ theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegralForWeights_locally
 
 /-- `W^{1,2}_{loc}` supplies the annulus formula, while radius absolute
 continuity supplies derivative integrability; this is the `W^{1,2}` packaged
-version with no separate derivative-integrability hypothesis. -/
+version with no separate derivative-integrability hypothesis.
+@isnad1 id=weakball.6h6v.s7.8a72c55c39c7 from=translated src=- shape=c7702ccf vocab=0929c447
+-/
 theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegral_W12LocIn_radius_ac
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
@@ -865,7 +929,9 @@ theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegral_W12LocIn_radius_a
 
 /-- `W^{1,2}_{loc}` supplies the annulus formula, while radius absolute
 continuity supplies derivative integrability; this is the restricted-weight
-packaged version with no separate derivative-integrability hypothesis. -/
+packaged version with no separate derivative-integrability hypothesis.
+@isnad1 id=weakball.6h6v.s7.00085729eba0 from=translated src=- shape=c7702ccf vocab=3c5767a5
+-/
 theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegralForWeights_W12LocIn_radius_ac
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
@@ -883,7 +949,9 @@ theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegralForWeights_W12LocI
     hclosedBall_subset hac henergy_radius hradial_radius
 
 /-- The radius-integration route with the generic `L¹` ball-integral AC theorem
-supplying the radius absolute-continuity input from `W^{1,2}_{loc}`. -/
+supplying the radius absolute-continuity input from `W^{1,2}_{loc}`.
+@isnad1 id=weakball.6h6v.s7.ddad3f37f6a0 from=translated src=- shape=73c2f763 vocab=1e4be09d
+-/
 theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegral_W12LocIn_ballIntegralAC
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
@@ -905,7 +973,9 @@ theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegral_W12LocIn_ballInte
 
 /-- The restricted-weight radius-integration route with the generic `L¹`
 ball-integral AC theorem supplying the radius absolute-continuity input from
-`W^{1,2}_{loc}`. -/
+`W^{1,2}_{loc}`.
+@isnad1 id=weakball.6h6v.s7.17bede2d8c91 from=translated src=- shape=73c2f763 vocab=1f3cfe28
+-/
 theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegralForWeights_W12LocIn_ballIntegralAC
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
@@ -926,7 +996,9 @@ theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegralForWeights_W12LocI
     henergy_radius hradial_radius
 
 /-- The radius-integration route with thin radial-shell volume control supplying
-the radius absolute-continuity input from `W^{1,2}_{loc}`. -/
+the radius absolute-continuity input from `W^{1,2}_{loc}`.
+@isnad1 id=weakball.6h6v.s7.265f44a27544 from=translated src=- shape=73c2f763 vocab=106be972
+-/
 theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegral_W12LocIn_radialShellsVolume
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
@@ -948,7 +1020,9 @@ theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegral_W12LocIn_radialSh
 
 /-- The restricted-weight radius-integration route with thin radial-shell
 volume control supplying the radius absolute-continuity input from
-`W^{1,2}_{loc}`. -/
+`W^{1,2}_{loc}`.
+@isnad1 id=weakball.6h6v.s7.696ea843a89c from=translated src=- shape=73c2f763 vocab=57833cdf
+-/
 theorem weakBallEnergyOneDimensionalCalculus_of_radiusIntegralForWeights_W12LocIn_radialShellsVolume
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}

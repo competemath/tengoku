@@ -36,6 +36,9 @@ def PositiveBool.Sat {Q} (Y : Set Q) : PositiveBool Q → Prop
 | and ψ₁ ψ₂ => Sat Y ψ₁ ∧ Sat Y ψ₂
 | or ψ₁ ψ₂ => Sat Y ψ₁ ∨ Sat Y ψ₂
 
+/--
+@isnad1 id=sat.2h4v.s4.5c6da82cccf7 from=translated src=- shape=eadd57f3 vocab=e2f33c6b
+-/
 theorem PositiveBool.Sat.monotone {Q} {f : PositiveBool Q} {A B : Set Q} :
     A ⊆ B → PositiveBool.Sat A f → PositiveBool.Sat B f := by
   induction f <;> grind [Sat]

@@ -17,6 +17,9 @@ open  TopologicalSpace Set MeasureTheory intervalIntegral
 
 open scoped Interval Real NNReal ENNReal Topology BigOperators Nat
 
+/--
+@isnad1 id=eq.6h3v.s8.ce6df6066b31 from=translated src=- shape=f57ec3b0 vocab=7febe6b4
+-/
 theorem logDeriv_tprod_eq_tsum2 {s : Set ℂ} (hs : IsOpen s) (x : s) (f : ℕ → ℂ → ℂ)
     (hf : ∀ i, f i x ≠ 0)
     (hd : ∀ i : ℕ, DifferentiableOn ℂ (f i) s) (hm : Summable fun i ↦ logDeriv (f i) ↑x)
@@ -45,6 +48,9 @@ theorem logDeriv_tprod_eq_tsum2 {s : Set ℂ} (hs : IsOpen s) (x : s) (f : ℕ �
         (by intro i hi; apply (hd i x x.2).differentiableAt; exact IsOpen.mem_nhds hs x.2)]
     exact HT
 
+/--
+@isnad1 id=eq.6h3v.s8.48430397c3a5 from=translated src=- shape=aa66a104 vocab=d84029dd
+-/
 theorem logDeriv_tprod_eq_tsumold {s : Set ℂ} (hs : IsOpen s) (x : s) (f : ℕ → ℂ → ℂ)
     (hf : ∀ i, f i x ≠ 0)
     (hd : ∀ i : ℕ, DifferentiableOn ℂ (f i) s) (hm : Summable fun i ↦ logDeriv (f i) ↑x)
@@ -71,12 +77,18 @@ theorem logDeriv_tprod_eq_tsumold {s : Set ℂ} (hs : IsOpen s) (x : s) (f : ℕ
           (hd i z hz).differentiableAt (IsOpen.mem_nhds hs hz))).differentiableWithinAt⟩
     · exact hnez
 
+/--
+@isnad1 id=eq.0h1v.s6.8d147dd471ca from=translated src=- shape=7922c9ff vocab=6e3b5b7d
+-/
 lemma logDeriv_one_sub_exp (r : ℂ) : logDeriv (fun z => 1 - r * cexp (z)) =
     fun z => -r * cexp z / (1 - r * cexp ( z)) := by
   ext z
   rw [logDeriv]
   simp_all
 
+/--
+@isnad1 id=eq.1h2v.s7.0ad15208a29a from=translated src=- shape=f0bc2363 vocab=e05256bf
+-/
 lemma logDeriv_one_sub_exp_comp (r : ℂ) (g : ℂ → ℂ) (hg : Differentiable ℂ g) :
     logDeriv ((fun z => 1 - r * cexp (z)) ∘ g) =
     fun z => -r * ((deriv g) z) * cexp (g z) / (1 - r * cexp (g (z))) := by
@@ -87,6 +99,9 @@ lemma logDeriv_one_sub_exp_comp (r : ℂ) (g : ℂ → ℂ) (hg : Differentiable
   · simp_all
   · exact hg y
 
+/--
+@isnad1 id=summable.1h1v.s6.0d7e0abe241b from=translated src=- shape=76590124 vocab=f2ce1079
+-/
 lemma logDeriv_q_expo_summable (r : ℂ) (hr : ‖r‖ < 1) : Summable fun n : ℕ =>
     (n * r^n / (1 - r^n)) := by
   have := aux47 r hr
@@ -115,6 +130,9 @@ lemma logDeriv_q_expo_summable (r : ℂ) (hr : ‖r‖ < 1) : Summable fun n : �
     apply le_trans this.le
     norm_cast
 
+/--
+@isnad1 id=iff.2h5v.s7.8d9b3f00f7bc from=translated src=- shape=d3690f70 vocab=15b9c201
+-/
 lemma func_div (a b c d : ℂ → ℂ) (x : ℂ) (hb : b x ≠ 0) (hd : d x ≠ 0) :
      (a / b) x = (c /d) x ↔ (a * d) x = (b * c) x := by
   simp only [Pi.div_apply, Pi.mul_apply, div_eq_div_iff hb hd]
@@ -123,11 +141,17 @@ lemma func_div (a b c d : ℂ → ℂ) (x : ℂ) (hb : b x ≠ 0) (hd : d x ≠ 
 variable {𝕜 : Type*} [NontriviallyNormedField 𝕜]
 variable {F : Type*} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
 
+/--
+@isnad1 id=eqon.2h3v.s6.52732c36fe57 from=translated src=- shape=52ac2a3b vocab=18790647
+-/
 lemma deriv_EqOn_congr {f g : ℂ → ℂ} (s : Set ℂ) (hfg : s.EqOn f g) (hs : IsOpen s) :
     s.EqOn (deriv f) ( deriv g) := fun x hx => by
   rw [← derivWithin_of_isOpen hs hx, ← derivWithin_of_isOpen hs hx]
   exact derivWithin_congr hfg (hfg hx)
 
+/--
+@isnad1 id=iff.7h3v.s8.81f1351232f7 from=translated src=- shape=1079046e vocab=de196e5c
+-/
 lemma logDeriv_eqOn_iff2 (f g : ℂ → ℂ) (s : Set ℂ) (hf : DifferentiableOn ℂ f s)
     (hg : DifferentiableOn ℂ g s) (_hs : s.Nonempty) (hs2 : IsOpen s) (hsc : Convex ℝ s)
     (hgn : ∀ x, x ∈ s → g x ≠ 0) (hfn : ∀ x, x ∈ s → f x ≠ 0) : EqOn (logDeriv f) (logDeriv g) s ↔

@@ -29,6 +29,9 @@ noncomputable def TensorProduct.toKronecker :
     Matrix m m R ⊗[R] Matrix n n R →ₗ[R] Matrix (m × n) (m × n) R :=
   (kroneckerLinearEquiv m m n n R).toLinearMap
 
+/--
+@isnad1 id=eq.0h5v.s9.7909ea521c62 from=translated src=- shape=5ab4d1d0 vocab=a641168d
+-/
 theorem TensorProduct.toKronecker_apply (x : Matrix m m R) (y : Matrix n n R) :
     toKronecker (x ⊗ₜ[R] y) = x ⊗ₖ y := by
   exact kroneckerLinearEquiv_tmul x y
@@ -38,24 +41,39 @@ noncomputable def Matrix.kroneckerToTensorProduct :
     Matrix (m × n) (m × n) R →ₗ[R] Matrix m m R ⊗[R] Matrix n n R :=
   (kroneckerLinearEquiv m m n n R).symm.toLinearMap
 
+/--
+@isnad1 id=eq.0h4v.s10.ecead9e06da3 from=translated src=- shape=661a9a23 vocab=a144ce1a
+-/
 theorem TensorProduct.toKronecker_to_tensorProduct (x : Matrix m m R ⊗[R] Matrix n n R) :
     Matrix.kroneckerToTensorProduct (toKronecker x) = x := by
   exact (kroneckerLinearEquiv m m n n R).symm_apply_apply x
 
+/--
+@isnad1 id=eq.0h5v.s9.7870b274f8cd from=translated src=- shape=a5c32a66 vocab=c33829a8
+-/
 theorem Matrix.kroneckerToTensorProduct_apply (x : Matrix m m R) (y : Matrix n n R) :
     kroneckerToTensorProduct (x ⊗ₖ y) = x ⊗ₜ[R] y := by
   exact kroneckerLinearEquiv_symm_kronecker x y
 
+/--
+@isnad1 id=eq.0h4v.s10.b078295eb2a1 from=translated src=- shape=c7540d25 vocab=a144ce1a
+-/
 theorem Matrix.kroneckerToTensorProduct_toKronecker (x : Matrix (m × n) (m × n) R) :
     TensorProduct.toKronecker (kroneckerToTensorProduct x) = x := by
   exact (kroneckerLinearEquiv m m n n R).apply_symm_apply x
 
 open scoped Matrix
 
+/--
+@isnad1 id=eq.0h5v.s9.5a20e80cf82a from=translated src=- shape=3118a633 vocab=94596ea3
+-/
 theorem TensorProduct.matrix_star {R m n : Type _} [Field R] [StarRing R]
     (x : Matrix m m R) (y : Matrix n n R) : star (x ⊗ₜ[R] y) = xᴴ ⊗ₜ yᴴ :=
   TensorProduct.star_tmul _ _
 
+/--
+@isnad1 id=eq.0h4v.s11.f421edc94b62 from=translated src=- shape=8bc686b5 vocab=f42f76df
+-/
 theorem TensorProduct.toKronecker_star {R m n : Type _} [Field R] [StarRing R]
   [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
   (x : Matrix m m R ⊗[R] Matrix n n R) :
@@ -67,6 +85,9 @@ theorem TensorProduct.toKronecker_star {R m n : Type _} [Field R] [StarRing R]
 
 open Matrix
 
+/--
+@isnad1 id=eq.0h4v.s8.fb2af0536d8d from=translated src=- shape=62dba3aa vocab=33513464
+-/
 theorem Matrix.kronecker_eq_sum_std_basis (x : Matrix (m × n) (m × n) R) :
     x = ∑ i, ∑ j, ∑ k, ∑ l, x (i, k) (j, l) • single i j 1 ⊗ₖ single k l 1 := by
   ext a b
@@ -75,6 +96,9 @@ theorem Matrix.kronecker_eq_sum_std_basis (x : Matrix (m × n) (m × n) R) :
   simp [Matrix.sum_apply, Matrix.kroneckerMap, Matrix.of_apply,
     Matrix.single, mul_ite, mul_one, mul_zero, ite_and, eq_comm]
 
+/--
+@isnad1 id=eq.0h4v.s10.a3951ad756d9 from=translated src=- shape=cc775f1a vocab=976e98d4
+-/
 theorem TensorProduct.matrix_eq_sum_std_basis (x : Matrix m m R ⊗[R] Matrix n n R) :
     x =
       ∑ i, ∑ j, ∑ k, ∑ l,
@@ -104,6 +128,9 @@ theorem TensorProduct.matrix_eq_sum_std_basis (x : Matrix m m R ⊗[R] Matrix n 
     _ = kroneckerToTensorProduct (toKronecker x) := by rw [← Matrix.kronecker_eq_sum_std_basis]
     _ = x := TensorProduct.toKronecker_to_tensorProduct _
 
+/--
+@isnad1 id=eq.0h7v.s11.0d553835f8a0 from=translated src=- shape=3243332e vocab=e257c6fb
+-/
 theorem Matrix.kroneckerToTensorProduct_hMul (x y : Matrix m m R) (z w : Matrix n n R) :
     kroneckerToTensorProduct (x ⊗ₖ z * y ⊗ₖ w) =
       kroneckerToTensorProduct (x ⊗ₖ z) * kroneckerToTensorProduct (y ⊗ₖ w) := by
@@ -122,6 +149,9 @@ noncomputable def kroneckerToTensor :
     Matrix (m × n) (m × n) R ≃ₐ[R] Matrix m m R ⊗[R] Matrix n n R :=
   (Matrix.kroneckerAlgEquiv m n R).symm
 
+/--
+@isnad1 id=eq.0h4v.s11.db43ae8e2faf from=translated src=- shape=4a78a1d8 vocab=393f94a8
+-/
 theorem Matrix.kroneckerToTensorProduct_star {R m n : Type _} [Field R] [StarRing R]
   [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
   (x : Matrix (m × n) (m × n) R) :
@@ -129,11 +159,17 @@ theorem Matrix.kroneckerToTensorProduct_star {R m n : Type _} [Field R] [StarRin
   apply_fun TensorProduct.toKronecker using AlgEquiv.injective tensorToKronecker
   simp only [← TensorProduct.toKronecker_star, kroneckerToTensorProduct_toKronecker]
 
+/--
+@isnad1 id=eq.0h3v.s9.dbcf76608912 from=translated src=- shape=5c38e98b vocab=8dcb5682
+-/
 theorem kroneckerToTensor_toLinearMap_eq :
     (kroneckerToTensor : Matrix (n × m) (n × m) R ≃ₐ[R] _).toLinearMap =
       (kroneckerToTensorProduct : Matrix (n × m) (n × m) R →ₗ[R] Matrix n n R ⊗[R] Matrix m m R) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.16271e4863d2 from=translated src=- shape=041ab3b6 vocab=c2ebc2cd
+-/
 theorem tensorToKronecker_toLinearMap_eq :
     ((@tensorToKronecker R m n _ _ _ _ _ :
         Matrix m m R ⊗[R] Matrix n n R ≃ₐ[R] _).toLinearMap :

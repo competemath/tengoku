@@ -35,7 +35,9 @@ def LocallyMemLpTwoIn {n : ℕ} {E : Type*} [NormedAddCommGroup E]
     (f : Domain n → E) (Ω : Set (Domain n)) : Prop :=
   ∀ K : Set (Domain n), IsCompact K → K ⊆ Ω → MemLp f 2 (volume.restrict K)
 
-/-- Local `MemLp 2` implies local integrability of the squared norm. -/
+/-- Local `MemLp 2` implies local integrability of the squared norm.
+@isnad1 id=locallyi.1h4v.s5.8147a1e205c5 from=translated src=- shape=e24f9a44 vocab=1e9f7726
+-/
 theorem locallyMemLpTwoIn_to_locallyIntegrable_norm_sq
     {n : ℕ} {E : Type*} [NormedAddCommGroup E]
     {f : Domain n → E} {Ω : Set (Domain n)}
@@ -45,7 +47,9 @@ theorem locallyMemLpTwoIn_to_locallyIntegrable_norm_sq
   have hmem : MemLp f 2 (volume.restrict K) := hf K hK hKΩ
   simpa [IntegrableOn] using hmem.integrable_norm_pow (p := 2) (by norm_num)
 
-/-- Local `MemLp 2` for the map gives the custom map `L²_loc` field. -/
+/-- Local `MemLp 2` for the map gives the custom map `L²_loc` field.
+@isnad1 id=maplocal.1h4v.s5.c64839e93ad0 from=translated src=- shape=e97b4162 vocab=f4d31508
+-/
 theorem mapLocallyL2In_of_locallyMemLpTwoIn
     {n m : ℕ} {u : Domain n → Target m} {Ω : Set (Domain n)}
     (hu : LocallyMemLpTwoIn u Ω) :
@@ -62,7 +66,9 @@ structure GradientLocallyMemLpTwoIn {n m : ℕ}
   memLpTwo_loc : LocallyMemLpTwoIn Du Ω
 
 /-- Local `MemLp 2` for the gradient field gives integrability of the
-Hilbert-Schmidt energy density on compact subsets. -/
+Hilbert-Schmidt energy density on compact subsets.
+@isnad1 id=gradient.1h4v.s4.ecd326c519f6 from=translated src=- shape=0740e719 vocab=abbae5c7
+-/
 theorem gradientLocallyL2In_of_gradientLocallyMemLpTwoIn
     {n m : ℕ} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
     (hDu : GradientLocallyMemLpTwoIn Du Ω) :
@@ -96,7 +102,9 @@ theorem gradientLocallyL2In_of_gradientLocallyMemLpTwoIn
   ext x
   simp
 
-/-- The a.e. measurability component of the gradient local `MemLp 2` package. -/
+/-- The a.e. measurability component of the gradient local `MemLp 2` package.
+@isnad1 id=gradient.1h4v.s4.944fb6a03986 from=translated src=- shape=0740e719 vocab=f584b4b1
+-/
 theorem GradientLocallyMemLpTwoIn.toGradientAEStronglyMeasurableIn
     {n m : ℕ} {Du : Domain n → Gradient n m} {Ω : Set (Domain n)}
     (hDu : GradientLocallyMemLpTwoIn Du Ω) :
@@ -110,7 +118,9 @@ structure LocalL2DataIn {n m : ℕ}
   map_memLpTwo_loc : LocallyMemLpTwoIn u Ω
   gradient_memLpTwo_loc : GradientLocallyMemLpTwoIn Du Ω
 
-/-- Extract the custom map `L²_loc` field from local `MemLp 2` data. -/
+/-- Extract the custom map `L²_loc` field from local `MemLp 2` data.
+@isnad1 id=maplocal.1h5v.s5.9d813d667948 from=translated src=- shape=198a4716 vocab=9732f36d
+-/
 theorem LocalL2DataIn.toMapLocallyL2In {n m : ℕ}
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
     {Ω : Set (Domain n)}
@@ -119,7 +129,9 @@ theorem LocalL2DataIn.toMapLocallyL2In {n m : ℕ}
   mapLocallyL2In_of_locallyMemLpTwoIn h.map_memLpTwo_loc
 
 /-- Extract the custom gradient a.e. measurability field from local gradient
-`MemLp 2` data. -/
+`MemLp 2` data.
+@isnad1 id=gradient.1h5v.s5.a327e3195410 from=translated src=- shape=0375956f vocab=7109d124
+-/
 theorem LocalL2DataIn.toGradientAEStronglyMeasurableIn {n m : ℕ}
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
     {Ω : Set (Domain n)}
@@ -128,7 +140,9 @@ theorem LocalL2DataIn.toGradientAEStronglyMeasurableIn {n m : ℕ}
   h.gradient_memLpTwo_loc.toGradientAEStronglyMeasurableIn
 
 /-- Extract the custom gradient `L²_loc` field from local gradient `MemLp 2`
-data. -/
+data.
+@isnad1 id=gradient.1h5v.s5.f29de59f6962 from=translated src=- shape=0375956f vocab=7079b734
+-/
 theorem LocalL2DataIn.toGradientLocallyL2In {n m : ℕ}
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
     {Ω : Set (Domain n)}

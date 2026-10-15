@@ -39,7 +39,9 @@ structure DomainVariationStationaryIn {n m : ℕ}
       (∫ x in Ω, weakStationarityIntegrand Du X x) = 0
 
 /-- Domain-variation stationarity implies the custom weak stationarity
-interface used by the monotonicity proof. -/
+interface used by the monotonicity proof.
+@isnad1 id=weakstat.1h5v.s5.8e12aed7f3a5 from=translated src=- shape=0375956f vocab=b4f38b45
+-/
 theorem DomainVariationStationaryIn.toWeakStationaryIn {n m : ℕ}
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
     {Ω : Set (Domain n)}

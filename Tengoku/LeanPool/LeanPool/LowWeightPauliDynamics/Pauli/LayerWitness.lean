@@ -95,7 +95,9 @@ variable {n kh : ℕ} {G H p q : PauliString n} {L : List (PauliString n)} {S T 
 Small facts about `support` that `Pauli/Weight.lean` does not need but the light-cone count
 does. -/
 
-/-- The support of a product is contained in the union of the supports. -/
+/-- The support of a product is contained in the union of the supports.
+@isnad1 id=le.0h3v.s5.ec1aa27e4579 from=translated src=- shape=43a73510 vocab=51ee6f07
+-/
 theorem support_mul_subset (s t : PauliString n) :
     support (s * t) ⊆ support s ∪ support t := by
   intro i hi
@@ -106,11 +108,15 @@ theorem support_mul_subset (s t : PauliString n) :
   have h2 : site t i = 0 := by by_contra h; exact hc (Or.inr h)
   exact hi (by rw [h1, h2, add_zero])
 
-/-- The support does not see the phase — the `Finset` refinement of `weight_phaseMul`. -/
+/-- The support does not see the phase — the `Finset` refinement of `weight_phaseMul`.
+@isnad1 id=eq.0h3v.s4.3fea3401e8d4 from=translated src=- shape=e31811f0 vocab=fdb8f460
+-/
 @[simp] theorem support_phaseMul (k : ZMod 4) (s : PauliString n) :
     support (phaseMul k s) = support s := rfl
 
-/-- A locally anticommuting site lies in both supports. -/
+/-- A locally anticommuting site lies in both supports.
+@isnad1 id=le.0h3v.s5.e716d2648901 from=translated src=- shape=3e2b761f vocab=d0c55567
+-/
 theorem antiSites_subset_inter (G s : PauliString n) :
     antiSites G s ⊆ support G ∩ support s := by
   intro i hi
@@ -119,7 +125,9 @@ theorem antiSites_subset_inter (G s : PauliString n) :
 
 /-- **Pauli strings with disjoint supports commute.** This is what makes a layer a layer: the
 generators of one disjoint-support layer of `apd:thm:lightcone` commute with each other, so the
-layer is a product of commuting Pauli rotations. -/
+layer is a product of commuting Pauli rotations.
+@isnad1 id=eq.1h3v.s6.098d97237d10 from=translated src=- shape=f74091f0 vocab=0ae406e7
+-/
 theorem sympForm_eq_zero_of_disjoint_support (h : Disjoint (support G) (support p)) :
     sympForm G p = 0 := by
   have hempty : antiSites G p = ∅ := by
@@ -131,7 +139,9 @@ theorem sympForm_eq_zero_of_disjoint_support (h : Disjoint (support G) (support 
   rw [sympForm_eq_card_antiSites, hempty, Finset.card_empty, Nat.cast_zero]
 
 /-- Contrapositive of the previous theorem, in the form the light-cone count consumes: a generator
-that anticommutes with `p` must touch `p`. -/
+that anticommutes with `p` must touch `p`.
+@isnad1 id=nonempty.1h3v.s6.68b15119cb71 from=translated src=- shape=0336a85e vocab=5b6cc6e0
+-/
 theorem inter_support_nonempty_of_sympForm (h : sympForm G p = 1) :
     (support G ∩ support p).Nonempty := by
   obtain ⟨i, hi⟩ := Finset.card_pos.1 (one_le_card_antiSites h)
@@ -154,13 +164,21 @@ ignores the angle, so it over-approximates the support of the conjugated operato
 def branch (G p : PauliString n) : Finset (PauliString n) :=
   if sympForm G p = 1 then {p, phaseMul 1 (G * p)} else {p}
 
+/--
+@isnad1 id=mem.0h3v.s4.7ba79f531769 from=translated src=- shape=55e5f375 vocab=6c9ee295
+-/
 @[simp] theorem self_mem_branch (G p : PauliString n) : p ∈ branch G p := by
   unfold branch; split <;> simp
 
-/-- The anticommuting branch: the partner `i G p` is reachable. -/
+/-- The anticommuting branch: the partner `i G p` is reachable.
+@isnad1 id=mem.1h3v.s7.f7fc68a60e20 from=translated src=- shape=a0d20c4d vocab=5887bdfe
+-/
 theorem partner_mem_branch (h : sympForm G p = 1) : phaseMul 1 (G * p) ∈ branch G p := by
   simp [branch, h]
 
+/--
+@isnad1 id=le.1h4v.s6.2e02c5469b06 from=translated src=- shape=0cb2bf9c vocab=69c8654e
+-/
 theorem support_subset_of_mem_branch (hq : q ∈ branch G p) :
     support q ⊆ support p ∪ support G := by
   rw [branch] at hq
@@ -181,8 +199,14 @@ def oneLayer : (L : List (PauliString n)) → (p : PauliString n) → Finset (Pa
   | [], p => {p}
   | G :: Gs, p => (branch G p).biUnion (oneLayer Gs)
 
+/--
+@isnad1 id=eq.0h2v.s4.299e23413daa from=translated src=- shape=0b0d4146 vocab=ccb5e57f
+-/
 @[simp] theorem oneLayer_nil (p : PauliString n) : oneLayer [] p = {p} := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.d6cb1e091d36 from=translated src=- shape=5b757b6e vocab=94e8c99b
+-/
 @[simp] theorem oneLayer_cons (G : PauliString n) (Gs : List (PauliString n))
     (p : PauliString n) :
     oneLayer (G :: Gs) p = (branch G p).biUnion (oneLayer Gs) := rfl
@@ -194,8 +218,14 @@ def reachable : (layers : List (List (PauliString n))) → (p : PauliString n) �
   | [], p => {p}
   | L :: Ls, p => (oneLayer L p).biUnion (reachable Ls)
 
+/--
+@isnad1 id=eq.0h2v.s4.0cb5e0ff26cb from=translated src=- shape=bec91f35 vocab=be9706b2
+-/
 @[simp] theorem reachable_nil (p : PauliString n) : reachable [] p = {p} := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.1ba74cb359a7 from=translated src=- shape=06621010 vocab=7cc2f2f2
+-/
 @[simp] theorem reachable_cons (L : List (PauliString n)) (Ls : List (List (PauliString n)))
     (p : PauliString n) :
     reachable (L :: Ls) p = (oneLayer L p).biUnion (reachable Ls) := rfl
@@ -226,7 +256,9 @@ private theorem pairwise_disjoint_of_mem : ∀ {M : List (PauliString n)},
       · exact ih hpw.2 hG' hH' hne
 
 /-- Disjointness in the pointwise form the count needs. Stated separately because `List.Pairwise`
-orders its pairs and `Disjoint` does not care. -/
+orders its pairs and `Disjoint` does not care.
+@isnad1 id=disjoint.4h5v.s6.de8e40adfd4f from=translated src=- shape=f0c499ae vocab=a20bbd69
+-/
 theorem IsLayer.disjoint_of_mem (hL : IsLayer kh L) (hG : G ∈ L) (hH : H ∈ L) (hne : G ≠ H) :
     Disjoint (support G) (support H) :=
   pairwise_disjoint_of_mem hL.disjoint hG hH hne
@@ -241,6 +273,9 @@ are the two halves of the per-layer weight bound: containment, then the count. -
 def hitting (L : List (PauliString n)) (S : Finset (Fin n)) : Finset (PauliString n) :=
   L.toFinset.filter fun G => (support G ∩ S).Nonempty
 
+/--
+@isnad1 id=iff.0h4v.s5.cdd6fb34a0b6 from=translated src=- shape=d7302a19 vocab=c8215d2d
+-/
 theorem mem_hitting : G ∈ hitting L S ↔ G ∈ L ∧ (support G ∩ S).Nonempty := by
   simp [hitting, List.mem_toFinset]
 
@@ -248,22 +283,37 @@ theorem mem_hitting : G ∈ hitting L S ↔ G ∈ L ∧ (support G ∩ S).Nonemp
 def cover (L : List (PauliString n)) (S : Finset (Fin n)) : Finset (Fin n) :=
   S ∪ (hitting L S).biUnion support
 
+/--
+@isnad1 id=eq.0h2v.s4.e83fe63e6b59 from=translated src=- shape=cec8db7b vocab=6ebd3da9
+-/
 @[simp] theorem cover_nil (S : Finset (Fin n)) : cover [] S = S := by
   simp [cover, hitting]
 
+/--
+@isnad1 id=le.0h3v.s4.8aedf7615c42 from=translated src=- shape=4c028f2e vocab=1b5d5235
+-/
 theorem subset_cover (L : List (PauliString n)) (S : Finset (Fin n)) : S ⊆ cover L S :=
   Finset.subset_union_left
 
+/--
+@isnad1 id=le.1h4v.s5.bdec891a4691 from=translated src=- shape=c370d7ee vocab=c4dcbde8
+-/
 theorem support_subset_cover_of_mem_hitting (h : G ∈ hitting L S) :
     support G ⊆ cover L S :=
   (Finset.subset_biUnion_of_mem support h).trans Finset.subset_union_right
 
+/--
+@isnad1 id=le.0h4v.s5.d4e129e0edf0 from=translated src=- shape=4818c37f vocab=5d652845
+-/
 theorem hitting_subset_cons (G : PauliString n) (Gs : List (PauliString n))
     (S : Finset (Fin n)) : hitting Gs S ⊆ hitting (G :: Gs) S := by
   intro H hH
   rw [mem_hitting] at hH ⊢
   exact ⟨List.mem_cons_of_mem _ hH.1, hH.2⟩
 
+/--
+@isnad1 id=le.0h4v.s5.b0147ac883f3 from=translated src=- shape=e6c5bdb6 vocab=b4e33577
+-/
 theorem cover_subset_cons (G : PauliString n) (Gs : List (PauliString n))
     (S : Finset (Fin n)) : cover Gs S ⊆ cover (G :: Gs) S :=
   Finset.union_subset_union_right
@@ -272,7 +322,9 @@ theorem cover_subset_cons (G : PauliString n) (Gs : List (PauliString n))
 /-- The step of the containment induction: once the head generator `G` has fired, the strings it
 produces are supported in `S ∪ supp G`, and — because the rest of the layer is disjoint from
 `G` — the *remaining* generators that can still fire are exactly those that could already fire
-from `S`. So the light cone does not compound within a layer. -/
+from `S`. So the light cone does not compound within a layer.
+@isnad1 id=le.3h5v.s6.81bc283dbb97 from=translated src=- shape=124fc875 vocab=437c8d9f
+-/
 theorem cover_subset_cover_cons {G : PauliString n} {Gs : List (PauliString n)}
     (hG : ∀ H ∈ Gs, Disjoint (support G) (support H))
     (hGS : (support G ∩ S).Nonempty) (hT : T ⊆ S ∪ support G) :
@@ -293,7 +345,9 @@ theorem cover_subset_cover_cons {G : PauliString n} {Gs : List (PauliString n)}
   exact (Finset.biUnion_subset_biUnion_of_subset_left _ hhit).trans Finset.subset_union_right
 
 /-- **Containment.** Everything one layer can reach from `p` is supported in the light cone of
-`supp p`. -/
+`supp p`.
+@isnad1 id=le.2h4v.s6.5e2461da0dba from=translated src=- shape=5aea69df vocab=62c99f97
+-/
 theorem support_subset_cover : ∀ {L : List (PauliString n)},
     (L.Pairwise fun G H => Disjoint (support G) (support H)) →
     ∀ {p q : PauliString n}, q ∈ oneLayer L p → support q ⊆ cover L (support p) := by
@@ -331,7 +385,9 @@ most `k_h` times as large as the set it starts from.
 
 The factor is `k_h` and not `k_h + 1` because each firing generator *pays* for itself out of `S`:
 its support meets `S`, the supports are disjoint, so the firing generators inject into `S ∩ U`,
-and the part of `S` no generator touches is carried along unchanged. -/
+and the part of `S` no generator touches is carried along unchanged.
+@isnad1 id=le.2h4v.s5.c65876b30af9 from=translated src=- shape=ec12e9f9 vocab=b63d8c8e
+-/
 theorem card_cover_le (hL : IsLayer kh L) (hkh : 1 ≤ kh) (S : Finset (Fin n)) :
     (cover L S).card ≤ kh * S.card := by
   set U := (hitting L S).biUnion support with hUdef
@@ -374,7 +430,9 @@ theorem card_cover_le (hL : IsLayer kh L) (hkh : 1 ≤ kh) (S : Finset (Fin n)) 
 
 /-- **One layer multiplies the Pauli weight by at most `k_h`.** This is the per-layer step in the
 proof of `apd:thm:lightcone`, obtained by combining the containment `support_subset_cover` with
-the count `card_cover_le`. -/
+the count `card_cover_le`.
+@isnad1 id=le.3h5v.s6.d9cddcc5371b from=translated src=- shape=f10ead07 vocab=e502f33a
+-/
 theorem layer_weight_le (hL : IsLayer kh L) (hkh : 1 ≤ kh) (hq : q ∈ oneLayer L p) :
     weight q ≤ kh * weight p :=
   le_trans (Finset.card_le_card (support_subset_cover hL.disjoint hq)) (card_cover_le hL hkh _)
@@ -385,7 +443,9 @@ With `|p| ≤ w*` and `L = ΥΓ`, the number of layers of one Trotter step of th
 `apd:eq:suzuki`, the right-hand side is at most `w* k_h^{ΥΓ}`, the weight bound of
 `apd:thm:lightcone` for the Pauli strings of the discarded component `apd:eq:step_component`.
 Nothing is assumed about how the layers are related: they may repeat, as they do in a
-second-order step. -/
+second-order step.
+@isnad1 id=le.3h5v.s6.55e0df19f3a0 from=translated src=- shape=28eac00b vocab=028dda1c
+-/
 theorem reachable_weight_le : ∀ {Ls : List (List (PauliString n))},
     (∀ L ∈ Ls, IsLayer kh L) → 1 ≤ kh →
     ∀ {p q : PauliString n}, q ∈ reachable Ls p → weight q ≤ kh ^ Ls.length * weight p := by
@@ -436,26 +496,41 @@ def L₁ : List (PauliString 8) := [X 0 * Z 1, X 2 * X 3, Z 4 * X 5, X 6 * X 7]
 /-- The **odd** brickwork layer: generators on `(1,2)`, `(3,4)`, `(5,6)`. -/
 def L₂ : List (PauliString 8) := [X 1 * Z 2, X 3 * X 4, X 5 * X 6]
 
-/-- Both layers are layers of `2`-local generators with disjoint supports: `k_h = 2`. -/
+/-- Both layers are layers of `2`-local generators with disjoint supports: `k_h = 2`.
+@isnad1 id=islayer.0h0v.s3.53ff24e84812 from=translated src=- shape=5ad26cac vocab=e650649b
+-/
 theorem isLayer_L₁ : IsLayer 2 L₁ := ⟨by decide, by decide⟩
 
+/--
+@isnad1 id=islayer.0h0v.s3.6c68c1a4c99a from=translated src=- shape=5ad26cac vocab=53c817e5
+-/
 theorem isLayer_L₂ : IsLayer 2 L₂ := ⟨by decide, by decide⟩
 
 /-- Every generator used is a Hermitian Pauli string, so each layer really is a product of Pauli
 rotations `e^{-iθG}` with `G† = G` and `G² = 1` (`isSelfAdjoint_iff_mul_self_eq_one`). None of them
-has a `Y` site, so phase `0` is the Hermitian representative. -/
+has a `Y` site, so phase `0` is the Hermitian representative.
+@isnad1 id=isselfad.1h1v.s5.4e46b5e115c0 from=translated src=- shape=d4c0b2f9 vocab=904966df
+-/
 theorem isSelfAdjoint_L₁ : ∀ G ∈ L₁, IsSelfAdjoint G := by
   have h : ∀ G ∈ L₁, signPhase (G.z ⬝ᵥ G.x) = 2 * G.phase := by decide
   exact fun G hG => isSelfAdjoint_iff_phase.2 (h G hG)
 
+/--
+@isnad1 id=isselfad.1h1v.s5.a3820964725f from=translated src=- shape=d4c0b2f9 vocab=8b3ec246
+-/
 theorem isSelfAdjoint_L₂ : ∀ G ∈ L₂, IsSelfAdjoint G := by
   have h : ∀ G ∈ L₂, signPhase (G.z ⬝ᵥ G.x) = 2 * G.phase := by decide
   exact fun G hG => isSelfAdjoint_iff_phase.2 (h G hG)
 
 /-- The input is `Z₃`, a single-qubit `Z`, so its weight is `1`. The input of a Trotter step has
-weight at most `w*` after the preceding truncation; here that means `w* = 1`. -/
+weight at most `w*` after the preceding truncation; here that means `w* = 1`.
+@isnad1 id=eq.0h0v.s5.21f8a8568687 from=translated src=- shape=275413f0 vocab=3a9bb203
+-/
 theorem weight_Z_three : weight (Z (3 : Fin 8)) = 1 := by decide
 
+/--
+@isnad1 id=isselfad.0h0v.s5.568809e51b71 from=translated src=- shape=62e36ab9 vocab=b999db45
+-/
 theorem isSelfAdjoint_Z_three : IsSelfAdjoint (Z (3 : Fin 8)) :=
   isSelfAdjoint_iff_phase.2 (by decide)
 
@@ -465,7 +540,9 @@ theorem isSelfAdjoint_Z_three : IsSelfAdjoint (Z (3 : Fin 8)) :=
 in its constant: the weight-`6` string of `gamma_weight_bound_false` exceeds `4` only because a
 second-order step has more than `Γ` layers.
 
-Nothing about the brickwork is used: this is `reachable_weight_le` at `k_h = 2` and two layers. -/
+Nothing about the brickwork is used: this is `reachable_weight_le` at `k_h = 2` and two layers.
+@isnad1 id=le.1h1v.s6.d4997d81cc00 from=translated src=- shape=20aa48f7 vocab=9c0f1cc7
+-/
 theorem gamma_layers_weight_le :
     ∀ q ∈ reachable (layers := [L₁, L₂]) (Z 3), q.weight ≤ 4 := by
   intro q hq
@@ -494,27 +571,56 @@ def P₄ : PauliString 8 := ⟨![0, 1, 1, 0, 1, 0, 0, 0], ![0, 0, 1, 1, 0, 0, 0,
 `[L₁, L₂, L₁]`; its weight exceeds `w* k_h^Γ = 4`. -/
 def P₆ : PauliString 8 := ⟨![1, 1, 1, 0, 1, 1, 0, 0], ![0, 1, 1, 1, 1, 0, 0, 0], 3⟩
 
+/--
+@isnad1 id=isselfad.0h0v.s3.d75e36208f50 from=translated src=- shape=06f63001 vocab=c5224d17
+-/
 theorem isSelfAdjoint_P₄ : IsSelfAdjoint P₄ := isSelfAdjoint_iff_phase.2 (by decide)
 
+/--
+@isnad1 id=isselfad.0h0v.s3.697394aefe79 from=translated src=- shape=06f63001 vocab=23279ba2
+-/
 theorem isSelfAdjoint_P₆ : IsSelfAdjoint P₆ := isSelfAdjoint_iff_phase.2 (by decide)
 
+/--
+@isnad1 id=eq.0h0v.s7.9487bdbb46cb from=translated src=- shape=67ea266a vocab=cc63fb54
+-/
 theorem support_P₄ : P₄.support = {1, 2, 3, 4} := by decide
 
+/--
+@isnad1 id=eq.0h0v.s8.4276d77e68dd from=translated src=- shape=437b1bc9 vocab=df7a8eff
+-/
 theorem support_P₆ : P₆.support = {0, 1, 2, 3, 4, 5} := by decide
 
+/--
+@isnad1 id=eq.0h0v.s3.77eebd0adeea from=translated src=- shape=e67f34a4 vocab=928f5559
+-/
 theorem weight_P₄ : P₄.weight = 4 := by decide
 
+/--
+@isnad1 id=eq.0h0v.s3.6780d4ba0806 from=translated src=- shape=e67f34a4 vocab=dd91a227
+-/
 theorem weight_P₆ : P₆.weight = 6 := by decide
 
+/--
+@isnad1 id=mem.0h0v.s6.f2084ecd1abe from=translated src=- shape=93e773b7 vocab=8cc022c6
+-/
 theorem P₄_mem_reachable : P₄ ∈ reachable (layers := [L₁, L₂]) (Z 3) := by decide
 
+/--
+@isnad1 id=mem.0h0v.s6.a593b7914b51 from=translated src=- shape=2d1ab00d vocab=66ec2a9a
+-/
 theorem P₆_mem_reachable : P₆ ∈ reachable (layers := [L₁, L₂, L₁]) (Z 3) := by decide
 
+/--
+@isnad1 id=mem.0h0v.s6.26573a0c2f2b from=translated src=- shape=faad0581 vocab=66ec2a9a
+-/
 theorem P₆_mem_reachable_unmerged : P₆ ∈ reachable (layers := [L₁, L₂, L₂, L₁]) (Z 3) := by decide
 
 /-- …and the bound is attained: `P₄` has weight exactly `4` and is reachable in the two brickwork
 layers. Together with `gamma_layers_weight_le`, the maximum reachable weight after `Γ` layers is
-exactly `w* k_h^Γ`. -/
+exactly `w* k_h^Γ`.
+@isnad1 id=ex.0h0v.s6.7de2874af84d from=translated src=- shape=69bc9f74 vocab=8a9bfbdc
+-/
 theorem gamma_layers_weight_four :
     ∃ q ∈ reachable (layers := [L₁, L₂]) (Z 3), q.weight = 4 :=
   ⟨P₄, P₄_mem_reachable, weight_P₄⟩
@@ -537,14 +643,18 @@ literal `2Γ = 4` layers.
 This theorem is purely combinatorial: it contains no angle and no coefficient, and it does not
 quantify over the product-formula order `p`. That `P₆` has a nonzero coefficient in the operator
 discarded after the second-order step is `LayerCounterexample.actual_discard_exceeds_gamma_bound`
-in `Pauli/LayerCounterexample.lean`. -/
+in `Pauli/LayerCounterexample.lean`.
+@isnad1 id=ex.0h0v.s7.ade20e47c8ed from=translated src=- shape=e3115f72 vocab=2801a344
+-/
 theorem gamma_weight_bound_false :
     ∃ q ∈ reachable (layers := [L₁, L₂, L₁]) (Z 3), 4 < q.weight :=
   ⟨P₆, P₆_mem_reachable, by rw [weight_P₆]; norm_num⟩
 
 /-- The same combinatorial witness for the literal `2Γ = 4` layers `[L₁, L₂, L₂, L₁]` of the
 second-order product formula (`apd:eq:suzuki`), with no merging of the two adjacent `H_Γ`
-half-steps. -/
+half-steps.
+@isnad1 id=ex.0h0v.s7.b70314761461 from=translated src=- shape=326db4d3 vocab=2801a344
+-/
 theorem gamma_weight_bound_false_unmerged :
     ∃ q ∈ reachable (layers := [L₁, L₂, L₂, L₁]) (Z 3), 4 < q.weight :=
   ⟨P₆, P₆_mem_reachable_unmerged, by rw [weight_P₆]; norm_num⟩

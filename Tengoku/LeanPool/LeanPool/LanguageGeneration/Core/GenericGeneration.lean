@@ -65,7 +65,9 @@ def historyThenFallback (history : List α) (fallback : α) : Stream α :=
   fun n => if h : n < history.length then history.get ⟨n, h⟩ else fallback
 
 /-- A finite history followed by a fallback stays in a language when both
-the history and fallback do. -/
+the history and fallback do.
+@isnad1 id=streamin.2h4v.s5.070acc8cc21e from=translated src=- shape=8d094b0e vocab=89f21ae3
+-/
 theorem streamIn_historyThenFallback
     {history : List α} {fallback : α} {L : Language α}
     (hhistory : ∀ x ∈ history, x ∈ L)
@@ -82,13 +84,18 @@ theorem streamIn_historyThenFallback
 def output (G : Generator α) (stream : Stream α) (t : ℕ) : α :=
   G t (fun i => stream i)
 
+/--
+@isnad1 id=iff.0h4v.s5.881daee766aa from=translated src=- shape=5e31e1b1 vocab=312e24e9
+-/
 theorem mem_sequenceSample_iff {t : ℕ} {xs : Fin t → α} {x : α} :
     x ∈ sequenceSample xs ↔ ∃ i : Fin t, xs i = x := by
   classical
   simp [sequenceSample]
 
 /-- Passing a list through its canonical `Fin`-indexed input recovers its
-underlying finite set of values. -/
+underlying finite set of values.
+@isnad1 id=eq.0h2v.s4.44e90a78f8cc from=translated src=- shape=25ea16f3 vocab=1d3446cd
+-/
 theorem sequenceSample_list_get [DecidableEq α] (xs : List α) :
     sequenceSample xs.get = xs.toFinset := by
   classical
@@ -96,7 +103,9 @@ theorem sequenceSample_list_get [DecidableEq α] (xs : List α) :
   rw [mem_sequenceSample_iff, List.mem_toFinset, List.mem_iff_get]
 
 /-- An injective finite history has as many distinct observations as
-positions. -/
+positions.
+@isnad1 id=eq.1h3v.s4.766276ee0164 from=translated src=- shape=4c83e160 vocab=9ff6007d
+-/
 theorem sequenceSample_card_of_injective
     {t : ℕ} (xs : Fin t → α) (hxs : Function.Injective xs) :
     (sequenceSample xs).card = t := by
@@ -107,7 +116,9 @@ theorem sequenceSample_card_of_injective
     exact hxs hij
 
 /-- Pointwise membership of a finite history implies membership of every
-element in its underlying sample. -/
+element in its underlying sample.
+@isnad1 id=le.1h4v.s5.ed758c6bb2aa from=translated src=- shape=4b6e09ed vocab=e6637c2b
+-/
 theorem sequenceSample_subset_of_pointwise
     {t : ℕ} {xs : Fin t → α} {S : Set α}
     (hxs : ∀ k, xs k ∈ S) :
@@ -119,7 +130,9 @@ theorem sequenceSample_subset_of_pointwise
   exact hxs k
 
 /-- Enumerating a finset through its canonical equivalence with `Fin`
-recovers exactly that finset as the distinct sample. -/
+recovers exactly that finset as the distinct sample.
+@isnad1 id=eq.0h2v.s7.4032b04ceb0e from=translated src=- shape=aa99cebc vocab=e96372c7
+-/
 theorem sequenceSample_equivFin_symm (S : Finset α) :
     sequenceSample (fun i : Fin S.card => (S.equivFin.symm i).1) = S := by
   classical
@@ -133,7 +146,9 @@ theorem sequenceSample_equivFin_symm (S : Finset α) :
     refine ⟨S.equivFin z, ?_⟩
     simp [z]
 
-/-- The value map of a finset's canonical `Fin` enumeration is injective. -/
+/-- The value map of a finset's canonical `Fin` enumeration is injective.
+@isnad1 id=injectiv.0h2v.s7.e1f85e0cafcf from=translated src=- shape=c6b01506 vocab=409951c2
+-/
 theorem equivFin_symm_value_injective (S : Finset α) :
     Function.Injective (fun i : Fin S.card => (S.equivFin.symm i).1) := by
   intro i j hij
@@ -141,13 +156,18 @@ theorem equivFin_symm_value_injective (S : Finset α) :
   apply Subtype.ext
   exact hij
 
+/--
+@isnad1 id=iff.0h4v.s5.562bf3e3cbf4 from=translated src=- shape=54359127 vocab=ff5ae964
+-/
 theorem mem_sample_iff {stream : Stream α} {t : ℕ} {x : α} :
     x ∈ sample stream t ↔ ∃ s < t, stream s = x := by
   classical
   simp [sample]
 
 /-- An injective stream has exactly `t` distinct observations before round
-`t`. -/
+`t`.
+@isnad1 id=eq.1h3v.s4.f8a36023bcdb from=translated src=- shape=03e65538 vocab=5c092e95
+-/
 theorem sample_card_of_injective
     (stream : Stream α) (hstream : Function.Injective stream) (t : ℕ) :
     (sample stream t).card = t := by
@@ -157,7 +177,9 @@ theorem sample_card_of_injective
   · intro a b hab
     exact hstream hab
 
-/-- Samples depend only on the corresponding finite stream prefix. -/
+/-- Samples depend only on the corresponding finite stream prefix.
+@isnad1 id=eq.1h4v.s5.52f95a332f4a from=translated src=- shape=33db6b76 vocab=dff336bd
+-/
 theorem sample_eq_of_eq_on_prefix
     {stream₁ stream₂ : Stream α} {t : ℕ}
     (h : ∀ n, n < t → stream₁ n = stream₂ n) :
@@ -172,7 +194,9 @@ theorem sample_eq_of_eq_on_prefix
     exact ⟨n, hn, h n hn⟩
 
 /-- Sampling a finite-history stream at the end of the history recovers
-exactly the history's distinct values. -/
+exactly the history's distinct values.
+@isnad1 id=eq.0h3v.s4.4989b09e505e from=translated src=- shape=0a6c8ff9 vocab=726bc60d
+-/
 theorem sample_historyThenFallback_length [DecidableEq α]
     (history : List α) (fallback : α) :
     sample (historyThenFallback history fallback) history.length =
@@ -190,6 +214,9 @@ theorem sample_historyThenFallback_length [DecidableEq α]
     refine ⟨i, i.isLt, ?_⟩
     simpa [historyThenFallback, i.isLt] using hi
 
+/--
+@isnad1 id=eq.0h3v.s4.001dec98e575 from=translated src=- shape=fc66a2e0 vocab=fe63cfec
+-/
 theorem sequenceSample_prefix (stream : Stream α) (t : ℕ) :
     sequenceSample (fun i : Fin t => stream i) = sample stream t := by
   classical
@@ -201,6 +228,9 @@ theorem sequenceSample_prefix (stream : Stream α) (t : ℕ) :
   · rintro ⟨i, hi, rfl⟩
     exact ⟨⟨i, hi⟩, rfl⟩
 
+/--
+@isnad1 id=le.1h4v.s5.54adec97a07d from=translated src=- shape=2a42b89f vocab=a251e3f8
+-/
 theorem sample_mono {stream : Stream α} {s t : ℕ} (hst : s ≤ t) :
     sample stream s ⊆ sample stream t := by
   intro x hx
@@ -208,11 +238,17 @@ theorem sample_mono {stream : Stream α} {s t : ℕ} (hst : s ≤ t) :
   obtain ⟨i, his, rfl⟩ := hx
   exact ⟨i, lt_of_lt_of_le his hst, rfl⟩
 
+/--
+@isnad1 id=mem.1h4v.s5.0f1c1bbfc75e from=translated src=- shape=e1baa5b5 vocab=ff5ae964
+-/
 theorem value_mem_sample {stream : Stream α} {s t : ℕ} (hst : s < t) :
     stream s ∈ sample stream t := by
   rw [mem_sample_iff]
   exact ⟨s, hst, rfl⟩
 
+/--
+@isnad1 id=le.0h3v.s5.2c6d88a13b70 from=translated src=- shape=4016fa97 vocab=713d15b6
+-/
 theorem sample_card_step (stream : Stream α) (t : ℕ) :
     (sample stream (t + 1)).card ≤ (sample stream t).card + 1 := by
   classical
@@ -227,7 +263,9 @@ theorem sample_card_step (stream : Stream α) (t : ℕ) :
   exact le_trans (Finset.card_le_card hsub) (Finset.card_insert_le _ _)
 
 /-- If a finite prefix contains at least `k` distinct observations, some
-earlier prefix contains exactly `k`. -/
+earlier prefix contains exactly `k`.
+@isnad1 id=ex.1h4v.s5.277cdd8e235b from=translated src=- shape=7314a1d3 vocab=ae580334
+-/
 theorem exists_sample_card_eq_of_le
     {stream : Stream α} {t k : ℕ}
     (hk : k ≤ (sample stream t).card) :
@@ -257,7 +295,9 @@ theorem exists_sample_card_eq_of_le
 
 /-- If every reached size can be crossed exactly, a property that holds
 eventually after reaching exact size `d` also holds after reaching any larger
-exact size. -/
+exact size.
+@isnad1 id=var.4h7v.s6.3463e785d2be from=translated src=- shape=88c54720 vocab=58b355c3
+-/
 theorem eventualAtExactSize_mono
     {size : ℕ → ℕ} {good : ℕ → Prop} {d n : ℕ}
     (hcross : ∀ {t k}, k ≤ size t → ∃ r ≤ t, size r = k)
@@ -271,12 +311,18 @@ theorem eventualAtExactSize_mono
   obtain ⟨r, hrt, hr⟩ := hcross hdAtT
   exact hgood r hr s (hrt.trans hts)
 
+/--
+@isnad1 id=le.0h3v.s4.3ad4cb078573 from=translated src=- shape=66eab36f vocab=ae580334
+-/
 theorem sample_card_le (stream : Stream α) (t : ℕ) :
     (sample stream t).card ≤ t := by
   classical
   simpa [sample] using
     (Finset.card_image_le (s := Finset.range t) (f := stream))
 
+/--
+@isnad1 id=mem.2h5v.s5.6123abac39fe from=translated src=- shape=1e2f2e80 vocab=cda38514
+-/
 theorem mem_language_of_mem_sample_of_presents
     {stream : Stream α} {L : Language α} (hP : Presents stream L)
     {t : ℕ} {x : α} (hx : x ∈ sample stream t) : x ∈ L := by
@@ -284,6 +330,9 @@ theorem mem_language_of_mem_sample_of_presents
   obtain ⟨s, -, rfl⟩ := mem_sample_iff.mp hx
   exact ⟨s, rfl⟩
 
+/--
+@isnad1 id=streamin.1h3v.s4.f83c6abec1c7 from=translated src=- shape=53a4e8fb vocab=4e1831f7
+-/
 theorem streamIn_of_presents
     {stream : Stream α} {L : Language α} (hP : Presents stream L) :
     StreamIn stream L := by
@@ -291,6 +340,9 @@ theorem streamIn_of_presents
   rw [← hP]
   exact hx
 
+/--
+@isnad1 id=ex.2h4v.s5.24296e2266d3 from=translated src=- shape=0406fcd8 vocab=2f96b76b
+-/
 theorem eventually_mem_sample_of_presents
     {stream : Stream α} {L : Language α} (hP : Presents stream L)
     {x : α} (hx : x ∈ L) :
@@ -301,6 +353,9 @@ theorem eventually_mem_sample_of_presents
   intro t ht
   exact value_mem_sample (lt_of_lt_of_le (Nat.lt_succ_self s) ht)
 
+/--
+@isnad1 id=ex.2h4v.s5.0af67bb19a5e from=translated src=- shape=20ee0804 vocab=6ea85367
+-/
 theorem finset_eventually_subset_sample
     {stream : Stream α} {L : Language α} (hP : Presents stream L)
     (S : Finset α) (hS : ↑S ⊆ L) :
@@ -323,6 +378,9 @@ theorem finset_eventually_subset_sample
       · exact hTx _ (Nat.le_max_left _ _)
       · exact sample_mono (Nat.le_max_right _ _) (hTS hy)
 
+/--
+@isnad1 id=ex.2h4v.s5.69249b288378 from=translated src=- shape=48b19b43 vocab=f109cf27
+-/
 theorem exists_sample_card_ge_of_presents_infinite
     {stream : Stream α} {L : Language α}
     (hP : Presents stream L) (hL : L.Infinite) (d : ℕ) :
@@ -335,7 +393,9 @@ theorem exists_sample_card_ge_of_presents_infinite
   exact Finset.card_le_card hST
 
 /-- An exact presentation of an infinite language passes through every finite
-number of distinct observations. -/
+number of distinct observations.
+@isnad1 id=ex.2h4v.s5.9af46c7424d8 from=translated src=- shape=0f314c31 vocab=62991900
+-/
 theorem exists_sample_card_eq_of_presents_infinite
     {stream : Stream α} {L : Language α}
     (hP : Presents stream L) (hL : L.Infinite) (d : ℕ) :

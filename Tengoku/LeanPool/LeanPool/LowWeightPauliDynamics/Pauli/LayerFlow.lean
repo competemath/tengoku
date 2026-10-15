@@ -101,14 +101,18 @@ noncomputable def jumpAct (G : PauliString n) (θ : ℝ)
     else -(Real.sin θ : ℂ) * (partnerSign G p * y.ofLp (partner G p))
 
 /-- Coefficient formula for the unchanged branch; supporting lemma for
-`apd:thm:layer_inflow`. -/
+`apd:thm:layer_inflow`.
+@isnad1 id=eq.0h5v.s8.6691afcbbf1f from=translated src=- shape=afa4036e vocab=3fa34298
+-/
 @[simp] theorem stayAct_apply (G : PauliString n) (θ : ℝ)
     (y : EuclideanSpace ℂ (PauliIndex n)) (p : PauliIndex n) :
     (stayAct G θ y).ofLp p =
       if sympForm G (herm p) = 0 then y.ofLp p else (Real.cos θ : ℂ) * y.ofLp p := rfl
 
 /-- Coefficient formula for the sine branch; supporting lemma for
-`apd:thm:layer_inflow`. -/
+`apd:thm:layer_inflow`.
+@isnad1 id=eq.0h5v.s8.69a05750ec2c from=translated src=- shape=bbc9defa vocab=a1e6bbcf
+-/
 @[simp] theorem jumpAct_apply (G : PauliString n) (θ : ℝ)
     (y : EuclideanSpace ℂ (PauliIndex n)) (p : PauliIndex n) :
     (jumpAct G θ y).ofLp p =
@@ -116,7 +120,9 @@ noncomputable def jumpAct (G : PauliString n) (θ : ℝ)
       else -(Real.sin θ : ℂ) * (partnerSign G p * y.ofLp (partner G p)) := rfl
 
 /-- The two branches add up to the rotation action `rotAct`, which `coeffVec_conj` identifies
-with conjugation by the rotation. Supporting lemma for `apd:thm:layer_inflow`. -/
+with conjugation by the rotation. Supporting lemma for `apd:thm:layer_inflow`.
+@isnad1 id=eq.0h4v.s6.f66a5b7ec73e from=translated src=- shape=193a0f2e vocab=d9c2ca02
+-/
 theorem rotAct_eq_stay_add_jump (G : PauliString n) (θ : ℝ)
     (y : EuclideanSpace ℂ (PauliIndex n)) :
     rotAct G θ y = stayAct G θ y + jumpAct G θ y := by
@@ -125,7 +131,9 @@ theorem rotAct_eq_stay_add_jump (G : PauliString n) (θ : ℝ)
   split <;> ring
 
 /-- Additivity of the unchanged branch, supporting finite expansion in
-`apd:thm:layer_inflow`. -/
+`apd:thm:layer_inflow`.
+@isnad1 id=eq.0h5v.s7.3831f1e67050 from=translated src=- shape=1e904e32 vocab=f5860cb9
+-/
 theorem stayAct_add (G : PauliString n) (θ : ℝ)
     (y z : EuclideanSpace ℂ (PauliIndex n)) :
     stayAct G θ (y + z) = stayAct G θ y + stayAct G θ z := by
@@ -134,7 +142,9 @@ theorem stayAct_add (G : PauliString n) (θ : ℝ)
   split <;> ring
 
 /-- Additivity of the sine branch, supporting finite expansion in
-`apd:thm:layer_inflow`. -/
+`apd:thm:layer_inflow`.
+@isnad1 id=eq.0h5v.s7.5ea8833a5228 from=translated src=- shape=1e904e32 vocab=cc77659b
+-/
 theorem jumpAct_add (G : PauliString n) (θ : ℝ)
     (y z : EuclideanSpace ℂ (PauliIndex n)) :
     jumpAct G θ (y + z) = jumpAct G θ y + jumpAct G θ z := by
@@ -143,13 +153,17 @@ theorem jumpAct_add (G : PauliString n) (θ : ℝ)
   split <;> ring
 
 /-- Zero is preserved by the unchanged branch; supporting lemma for
-`apd:thm:layer_inflow`. -/
+`apd:thm:layer_inflow`.
+@isnad1 id=eq.0h3v.s7.7d42c1cdc515 from=translated src=- shape=d597d1c3 vocab=f8c632f8
+-/
 @[simp] theorem stayAct_zero (G : PauliString n) (θ : ℝ) : stayAct G θ 0 = 0 := by
   ext p
   simp [stayAct_apply]
 
 /-- Zero is preserved by the sine branch; supporting lemma for
-`apd:thm:layer_inflow`. -/
+`apd:thm:layer_inflow`.
+@isnad1 id=eq.0h3v.s7.3e74591670ec from=translated src=- shape=d597d1c3 vocab=b1f51948
+-/
 @[simp] theorem jumpAct_zero (G : PauliString n) (θ : ℝ) : jumpAct G θ 0 = 0 := by
   ext p
   simp [jumpAct_apply]
@@ -171,7 +185,9 @@ noncomputable def layerConj : List (PauliString n × ℝ) →
   | (G, θ) :: L, O => rot (toMatrix G) θ * layerConj L O * rot (toMatrix G) (-θ)
 
 /-- For Hermitian generators, `layerAct L` is the action of the matrix conjugation `layerConj L`
-on coefficient vectors. Supporting lemma for `apd:thm:layer_inflow`. -/
+on coefficient vectors. Supporting lemma for `apd:thm:layer_inflow`.
+@isnad1 id=eq.1h3v.s6.e07e23c3bfdc from=translated src=- shape=5fb378aa vocab=67e44018
+-/
 theorem coeffVec_layerConj (L : List (PauliString n × ℝ))
     (hL : ∀ g ∈ L, IsSelfAdjoint g.1) (O : Matrix (Bits n) (Bits n) ℂ) :
     coeffVec (layerConj L O) = layerAct L (coeffVec O) := by
@@ -184,7 +200,9 @@ theorem coeffVec_layerConj (L : List (PauliString n × ℝ))
 
 /-- A finite layer of Hermitian generators preserves the coefficient `ℓ²` norm. This gives the
 contraction of the diagonal (high-to-high) block; the off-diagonal block is handled by the Schur
-bound of `apd:thm:layer_inflow` below. -/
+bound of `apd:thm:layer_inflow` below.
+@isnad1 id=eq.1h3v.s7.e6766ed85683 from=translated src=- shape=88e3fde1 vocab=4daa6e0d
+-/
 theorem norm_layerAct (L : List (PauliString n × ℝ))
     (hL : ∀ g ∈ L, IsSelfAdjoint g.1) (y : EuclideanSpace ℂ (PauliIndex n)) :
     ‖layerAct L y‖ = ‖y‖ := by
@@ -208,7 +226,9 @@ noncomputable def layerJump : List (PauliString n × ℝ) → ℕ →
       stayAct G θ (layerJump L (j + 1) y) + jumpAct G θ (layerJump L j y)
 
 /-- A layer cannot take more sine branches than it has rotations.
-Supporting lemma for the finite form of `apd:thm:layer_inflow`. -/
+Supporting lemma for the finite form of `apd:thm:layer_inflow`.
+@isnad1 id=eq.1h4v.s6.57e61c02621f from=translated src=- shape=32a6f9ee vocab=23c08dc0
+-/
 theorem layerJump_eq_zero_of_length_lt (L : List (PauliString n × ℝ))
     (j : ℕ) (hj : L.length < j) (y : EuclideanSpace ℂ (PauliIndex n)) :
     layerJump L j y = 0 := by
@@ -224,7 +244,9 @@ theorem layerJump_eq_zero_of_length_lt (L : List (PauliString n × ℝ))
       simp
 
 /-- The unchanged branch distributes over finite coefficient sums; supporting lemma for
-`apd:thm:layer_inflow`. -/
+`apd:thm:layer_inflow`.
+@isnad1 id=eq.0h6v.s7.ec6a46f3a6bc from=translated src=- shape=4f5ee3fc vocab=fc703577
+-/
 theorem stayAct_sum {ι : Type*} (s : Finset ι) (G : PauliString n) (θ : ℝ)
     (f : ι → EuclideanSpace ℂ (PauliIndex n)) :
     stayAct G θ (∑ i ∈ s, f i) = ∑ i ∈ s, stayAct G θ (f i) := by
@@ -234,7 +256,9 @@ theorem stayAct_sum {ι : Type*} (s : Finset ι) (G : PauliString n) (θ : ℝ)
   | @insert i s hi ih => simp only [Finset.sum_insert hi, stayAct_add, ih]
 
 /-- The sine branch distributes over finite coefficient sums; supporting lemma for
-`apd:thm:layer_inflow`. -/
+`apd:thm:layer_inflow`.
+@isnad1 id=eq.0h6v.s7.6d3dc0190f5d from=translated src=- shape=4f5ee3fc vocab=7a6966e9
+-/
 theorem jumpAct_sum {ι : Type*} (s : Finset ι) (G : PauliString n) (θ : ℝ)
     (f : ι → EuclideanSpace ℂ (PauliIndex n)) :
     jumpAct G θ (∑ i ∈ s, f i) = ∑ i ∈ s, jumpAct G θ (f i) := by
@@ -246,7 +270,9 @@ theorem jumpAct_sum {ι : Type*} (s : Finset ι) (G : PauliString n) (θ : ℝ)
 /-- **Expansion of a layer by number of sine branches.** `layerAct L` is the finite sum of its
 exactly-`j` components, `0 ≤ j ≤ L.length`; this is the expansion used in
 `apd:thm:layer_inflow`. It is an identity for arbitrary ordered lists of rotations: disjointness
-and commutation are needed only for the binomial counting estimates below. -/
+and commutation are needed only for the binomial counting estimates below.
+@isnad1 id=eq.0h3v.s6.93d0ae14ec75 from=translated src=- shape=50afb685 vocab=03ca6231
+-/
 theorem layerAct_eq_sum_layerJump (L : List (PauliString n × ℝ))
     (y : EuclideanSpace ℂ (PauliIndex n)) :
     layerAct L y = ∑ j ∈ range (L.length + 1), layerJump L j y := by
@@ -267,7 +293,9 @@ theorem layerAct_eq_sum_layerJump (L : List (PauliString n × ℝ))
       _ = _ := by rw [stayAct_add]; abel
 
 /-- A zero input coordinate stays zero in the unchanged branch; supporting lemma for
-`apd:thm:layer_inflow`. -/
+`apd:thm:layer_inflow`.
+@isnad1 id=eq.1h5v.s6.119befadddd5 from=translated src=- shape=34dfa768 vocab=056bf3b9
+-/
 theorem stayAct_apply_eq_zero (G : PauliString n) (θ : ℝ)
     (y : EuclideanSpace ℂ (PauliIndex n)) (p : PauliIndex n) (hy : y.ofLp p = 0) :
     (stayAct G θ y).ofLp p = 0 := by
@@ -276,7 +304,9 @@ theorem stayAct_apply_eq_zero (G : PauliString n) (θ : ℝ)
 /-- **Exactly `j` sine branches raise the Pauli weight by at most `j (k_h - 1)`.**
 If the input has no coefficient above weight `w`, then `layerJump L j` of it has none above
 `w + j (k_h - 1)`; this is the weight bookkeeping of `apd:thm:layer_inflow`. Cancellations can
-remove coefficients, so only support containment is asserted. No disjointness is needed. -/
+remove coefficients, so only support containment is asserted. No disjointness is needed.
+@isnad1 id=eq.3h7v.s7.ac1d84c70851 from=translated src=- shape=2f797b6c vocab=ecc1ee38
+-/
 theorem layerJump_apply_eq_zero_of_weight_lt (L : List (PauliString n × ℝ))
     {kh w : ℕ} (hk : ∀ g ∈ L, weight g.1 ≤ kh)
     (y : EuclideanSpace ℂ (PauliIndex n))
@@ -311,7 +341,9 @@ theorem layerJump_apply_eq_zero_of_weight_lt (L : List (PauliString n × ℝ))
 
 /-- Finite-support transfer in a `j`-branch matrix column: the input basis vector at `q` can
 reach only coordinates of weight at most `wt q + j(k_h-1)`.
-Supporting lemma for the row bound of `apd:thm:layer_inflow`. -/
+Supporting lemma for the row bound of `apd:thm:layer_inflow`.
+@isnad1 id=eq.2h6v.s8.7b38ef6dabd9 from=translated src=- shape=e4321af5 vocab=eae0959b
+-/
 theorem layerJump_single_eq_zero_of_weight_lt (L : List (PauliString n × ℝ))
     {kh : ℕ} (hk : ∀ g ∈ L, weight g.1 ≤ kh) (j : ℕ) (p q : PauliIndex n)
     (hp : wt q + j * (kh - 1) < wt p) :
@@ -327,7 +359,9 @@ def antiLayer (L : List (PauliString n)) (p : PauliIndex n) : Finset (PauliStrin
   L.toFinset.filter fun G => sympForm G (herm p) = 1
 
 /-- Membership in the layer's anticommuting generator set; supporting lemma for
-`apd:thm:layer_inflow`. -/
+`apd:thm:layer_inflow`.
+@isnad1 id=iff.0h4v.s6.0a9db5d2e7d5 from=translated src=- shape=4d78395c vocab=e0c4b8cc
+-/
 @[simp] theorem mem_antiLayer (L : List (PauliString n)) (p : PauliIndex n)
     (G : PauliString n) : G ∈ antiLayer L p ↔ G ∈ L ∧ sympForm G (herm p) = 1 := by
   simp [antiLayer]
@@ -335,7 +369,9 @@ def antiLayer (L : List (PauliString n)) (p : PauliIndex n) : Finset (PauliStrin
 /-- **Disjoint supports bound the number of anticommuting generators by the Pauli weight.**
 This is the combinatorial statement `|𝒜(p)| ≤ |p|` in `apd:thm:layer_inflow`: every
 anticommuting generator meets the support of `p`, and distinct generators of a layer meet it in
-disjoint sets of sites. -/
+disjoint sets of sites.
+@isnad1 id=le.1h4v.s4.557d0f42b6e0 from=translated src=- shape=1f52a2e8 vocab=b8f5e45e
+-/
 theorem card_antiLayer_le_weight (L : List (PauliString n)) {kh : ℕ}
     (hL : IsLayer kh L) (p : PauliIndex n) : (antiLayer L p).card ≤ wt p := by
   have hdisj : ∀ G ∈ antiLayer L p, ∀ H ∈ antiLayer L p, G ≠ H →
@@ -364,7 +400,9 @@ theorem card_antiLayer_le_weight (L : List (PauliString n)) {kh : ℕ}
 /-- The number of `j`-element subsets of `𝒜(p)` is at most `C(|p|, j)`. This is the
 subset-counting part of the row and column estimates in `apd:thm:layer_inflow`. The matrix
 entries themselves are bounded in `row_sum_norm_layerJumpMatrix_le` and
-`col_sum_norm_layerJumpMatrix_le`, through `layerAntiCount`. -/
+`col_sum_norm_layerJumpMatrix_le`, through `layerAntiCount`.
+@isnad1 id=le.1h5v.s5.7929205ff265 from=translated src=- shape=1e42cc9e vocab=fceea066
+-/
 theorem card_antiLayer_powersetCard_le (L : List (PauliString n)) {kh : ℕ}
     (hL : IsLayer kh L) (p : PauliIndex n) (j : ℕ) :
     ((antiLayer L p).powersetCard j).card ≤ (wt p).choose j := by
@@ -373,7 +411,9 @@ theorem card_antiLayer_powersetCard_le (L : List (PauliString n)) {kh : ℕ}
 
 /-- Commuting with a generator makes its partner translation preserve the symplectic test
 against another generator. Supporting lemma for the fixed `𝒜(p)` in
-`apd:thm:layer_inflow`. -/
+`apd:thm:layer_inflow`.
+@isnad1 id=eq.1h4v.s6.b764562c348a from=translated src=- shape=d5baec53 vocab=55792471
+-/
 theorem sympForm_herm_partner_of_commute (G H : PauliString n)
     (hGH : sympForm G H = 0) (p : PauliIndex n) :
     sympForm G (herm (partner H p)) = sympForm G (herm p) := by
@@ -382,7 +422,9 @@ theorem sympForm_herm_partner_of_commute (G H : PauliString n)
 
 /-- Taking any generator in a commuting layer leaves the entire anticommutation set unchanged.
 Supporting lemma for `apd:thm:layer_inflow`. Disjointness is a sufficient
-condition, but pairwise commutation is exactly what this identity needs. -/
+condition, but pairwise commutation is exactly what this identity needs.
+@isnad1 id=eq.1h4v.s6.5ba3ee78000d from=translated src=- shape=5e1ed658 vocab=7d3e57b0
+-/
 theorem antiLayer_partner (L : List (PauliString n)) (H : PauliString n)
     (hH : ∀ G ∈ L, sympForm G H = 0) (p : PauliIndex n) :
     antiLayer L (partner H p) = antiLayer L p := by
@@ -400,14 +442,18 @@ noncomputable def layerSigma : List (PauliString n × ℝ) → ℝ
   | g :: L => max |Real.sin g.2| (layerSigma L)
 
 /-- The layer's largest absolute sine is nonnegative; supporting lemma for
-`apd:thm:layer_inflow` with the parameter `σ = layerSigma L`. -/
+`apd:thm:layer_inflow` with the parameter `σ = layerSigma L`.
+@isnad1 id=le.0h2v.s4.b4b5b9eaf32b from=translated src=- shape=f073c41d vocab=7e4299c0
+-/
 theorem layerSigma_nonneg (L : List (PauliString n × ℝ)) : 0 ≤ layerSigma L := by
   cases L with
   | nil => exact le_rfl
   | cons g L => exact (abs_nonneg _).trans (le_max_left _ _)
 
 /-- Every individual sine magnitude is bounded by the layer parameter.
-Supporting lemma for `apd:thm:layer_inflow`. -/
+Supporting lemma for `apd:thm:layer_inflow`.
+@isnad1 id=le.1h3v.s5.d51eae24b302 from=translated src=- shape=d42037ce vocab=2d42200a
+-/
 theorem abs_sin_le_layerSigma (L : List (PauliString n × ℝ))
     (g : PauliString n × ℝ) (hg : g ∈ L) : |Real.sin g.2| ≤ layerSigma L := by
   induction L with
@@ -425,7 +471,9 @@ noncomputable def layerJumpMatrix (L : List (PauliString n × ℝ)) (j : ℕ) :
   (layerJump L j (WithLp.toLp 2 (Pi.single q (1 : ℂ)))).ofLp p
 
 /-- `layerJumpMatrix L j` acts on an arbitrary coefficient vector as `layerJump L j` does, not
-only on basis vectors. Supporting lemma for `apd:thm:layer_inflow`. -/
+only on basis vectors. Supporting lemma for `apd:thm:layer_inflow`.
+@isnad1 id=eq.0h5v.s7.24183973c556 from=translated src=- shape=de25945f vocab=61738be1
+-/
 theorem layerJump_apply_eq_sum_matrix (L : List (PauliString n × ℝ)) (j : ℕ)
     (y : EuclideanSpace ℂ (PauliIndex n)) (p : PauliIndex n) :
     (layerJump L j y).ofLp p = ∑ q, layerJumpMatrix L j p q * y.ofLp q := by
@@ -462,7 +510,9 @@ def layerAntiCount (L : List (PauliString n)) (p : PauliIndex n) : ℕ :=
   L.countP fun G => sympForm G (herm p) = 1
 
 /-- Partner translation in a commuting layer preserves its anticommuting-rotation count.
-Supporting lemma for `apd:thm:layer_inflow`. -/
+Supporting lemma for `apd:thm:layer_inflow`.
+@isnad1 id=eq.1h4v.s6.0a9855c461c2 from=translated src=- shape=d0ebc9c2 vocab=2982e26a
+-/
 theorem layerAntiCount_partner (L : List (PauliString n)) (G : PauliString n)
     (hG : ∀ H ∈ L, sympForm H G = 0) (p : PauliIndex n) :
     layerAntiCount L (partner G p) = layerAntiCount L p := by
@@ -478,7 +528,9 @@ theorem layerAntiCount_partner (L : List (PauliString n)) (G : PauliString n)
 the entry `(p, q)` of `layerJumpMatrix L j` vanishes unless `p` and `q` have the same symplectic
 form with `G`. Supporting lemma for the column estimate of `apd:thm:layer_inflow`. This is
 finer than support containment: it shows that an input Pauli commuting with `G` never takes the
-sine branch of `G`. -/
+sine branch of `G`.
+@isnad1 id=eq.2h6v.s7.f1583608e4d8 from=translated src=- shape=61112ef6 vocab=b9f66609
+-/
 theorem layerJumpMatrix_eq_zero_of_sympForm_ne (L : List (PauliString n × ℝ))
     (G : PauliString n) (hG : ∀ g ∈ L, sympForm G g.1 = 0)
     (j : ℕ) (p q : PauliIndex n)
@@ -510,7 +562,9 @@ theorem layerJumpMatrix_eq_zero_of_sympForm_ne (L : List (PauliString n × ℝ))
       split <;> simp
 
 /-- The unchanged branch is a contraction in each coefficient magnitude.
-Supporting lemma for `apd:thm:layer_inflow`. -/
+Supporting lemma for `apd:thm:layer_inflow`.
+@isnad1 id=le.0h5v.s6.9b62d519a921 from=translated src=- shape=3ec21e02 vocab=5f915ba1
+-/
 theorem norm_stayAct_apply_le (G : PauliString n) (θ : ℝ)
     (y : EuclideanSpace ℂ (PauliIndex n)) (p : PauliIndex n) :
     ‖(stayAct G θ y).ofLp p‖ ≤ ‖y.ofLp p‖ := by
@@ -522,7 +576,9 @@ theorem norm_stayAct_apply_le (G : PauliString n) (θ : ℝ)
 
 /-- The sine-branch coefficient is bounded by the absolute sine times its partner coefficient.
 Supporting lemma for `apd:thm:layer_inflow`. No Hermitian hypothesis is needed
-for this magnitude statement: `partnerSign` is always a fourth root of unity. -/
+for this magnitude statement: `partnerSign` is always a fourth root of unity.
+@isnad1 id=le.0h5v.s6.9b4b10b437ab from=translated src=- shape=8cee37d3 vocab=b12ed23b
+-/
 theorem norm_jumpAct_apply_le (G : PauliString n) (θ : ℝ)
     (y : EuclideanSpace ℂ (PauliIndex n)) (p : PauliIndex n) :
     ‖(jumpAct G θ y).ofLp p‖ ≤ |Real.sin θ| * ‖y.ofLp (partner G p)‖ := by
@@ -534,14 +590,18 @@ theorem norm_jumpAct_apply_le (G : PauliString n) (θ : ℝ)
       Complex.norm_real, Real.norm_eq_abs, le_refl]
 
 /-- The unchanged branch contracts the coefficient `ℓ¹` norm. Supporting lemma for the
-column estimate of `apd:thm:layer_inflow`. -/
+column estimate of `apd:thm:layer_inflow`.
+@isnad1 id=le.0h4v.s7.53b6b1ac72d6 from=translated src=- shape=3a96e4aa vocab=ebca1202
+-/
 theorem sum_norm_stayAct_le (G : PauliString n) (θ : ℝ)
     (y : EuclideanSpace ℂ (PauliIndex n)) :
     ∑ p, ‖(stayAct G θ y).ofLp p‖ ≤ ∑ p, ‖y.ofLp p‖ :=
   Finset.sum_le_sum fun p _ => norm_stayAct_apply_le G θ y p
 
 /-- The sine branch contracts the coefficient `ℓ¹` norm by its absolute sine. Supporting
-lemma for the column estimate of `apd:thm:layer_inflow`. -/
+lemma for the column estimate of `apd:thm:layer_inflow`.
+@isnad1 id=le.0h4v.s7.a64b4f358697 from=translated src=- shape=1d408e5a vocab=aa4a9525
+-/
 theorem sum_norm_jumpAct_le (G : PauliString n) (θ : ℝ)
     (y : EuclideanSpace ℂ (PauliIndex n)) :
     ∑ p, ‖(jumpAct G θ y).ofLp p‖ ≤ |Real.sin θ| * ∑ p, ‖y.ofLp p‖ := by
@@ -555,7 +615,9 @@ theorem sum_norm_jumpAct_le (G : PauliString n) (θ : ℝ)
 
 /-- In a disjoint layer the list count has no anticommuting duplicates, so it is exactly the
 finite-set cardinality `|𝒜(p)|`. Supporting lemma for `apd:thm:layer_inflow`.
-Repeated scalar generators are harmless because they never anticommute. -/
+Repeated scalar generators are harmless because they never anticommute.
+@isnad1 id=eq.1h4v.s4.3238e33f3ada from=translated src=- shape=ae5b26de vocab=d61b17fb
+-/
 theorem layerAntiCount_eq_card_antiLayer (L : List (PauliString n)) {kh : ℕ}
     (hL : IsLayer kh L) (p : PauliIndex n) :
     layerAntiCount L p = (antiLayer L p).card := by
@@ -574,7 +636,9 @@ theorem layerAntiCount_eq_card_antiLayer (L : List (PauliString n)) {kh : ℕ}
   simp [pred, antiLayer]
 
 /-- The anticommuting-rotation list count is bounded by Pauli weight for a disjoint layer.
-Supporting lemma for `apd:thm:layer_inflow`. -/
+Supporting lemma for `apd:thm:layer_inflow`.
+@isnad1 id=le.1h4v.s4.36538f3e5daf from=translated src=- shape=25d2b6bb vocab=a8d119e3
+-/
 theorem layerAntiCount_le_weight (L : List (PauliString n)) {kh : ℕ}
     (hL : IsLayer kh L) (p : PauliIndex n) : layerAntiCount L p ≤ wt p := by
   rw [layerAntiCount_eq_card_antiLayer L hL]
@@ -584,7 +648,9 @@ theorem layerAntiCount_le_weight (L : List (PauliString n)) {kh : ℕ}
 absolute sum at most `C(c, j) σ^j`, where `c` is the number of rotations of the layer that
 anticommute with `p`. Supporting theorem for the Schur step in `apd:thm:layer_inflow`.
 Pairwise commutation suffices for this estimate; disjoint supports are used afterwards, to bound
-`layerAntiCount` by the Pauli weight of `p`. -/
+`layerAntiCount` by the Pauli weight of `p`.
+@isnad1 id=le.3h5v.s8.153711e9834a from=translated src=- shape=42483662 vocab=7238be9b
+-/
 theorem row_sum_norm_layerJumpMatrix_le (L : List (PauliString n × ℝ))
     (hcomm : ∀ g ∈ L, ∀ h ∈ L, sympForm g.1 h.1 = 0)
     {σ : ℝ} (hσ : 0 ≤ σ) (hsin : ∀ g ∈ L, |Real.sin g.2| ≤ σ)
@@ -648,7 +714,9 @@ theorem row_sum_norm_layerJumpMatrix_le (L : List (PauliString n × ℝ))
 
 /-- If the input Pauli `q` commutes with `G`, and `G` commutes with every generator of `L`, then
 the sine branch of `G` annihilates `layerJump L j` of the basis vector at `q`.
-Supporting lemma for the column estimate of `apd:thm:layer_inflow`. -/
+Supporting lemma for the column estimate of `apd:thm:layer_inflow`.
+@isnad1 id=eq.2h6v.s8.10f9b0f17fe8 from=translated src=- shape=3bcdb9a4 vocab=18959f35
+-/
 theorem jumpAct_layerJump_single_eq_zero (L : List (PauliString n × ℝ))
     (G : PauliString n) (θ : ℝ) (hG : ∀ g ∈ L, sympForm G g.1 = 0)
     (j : ℕ) (q : PauliIndex n) (hq : sympForm G (herm q) = 0) :
@@ -670,7 +738,9 @@ absolute sum at most `C(c, j) σ^j`, where `c` is the number of rotations of the
 anticommute with `q`. Supporting theorem for the Schur step in `apd:thm:layer_inflow`.
 The proof uses preservation of the commutation class (`jumpAct_layerJump_single_eq_zero`) and
 Pascal's rule; it does not assume that distinct choices of branches give distinct nonzero
-entries. -/
+entries.
+@isnad1 id=le.3h5v.s8.f0e094d60007 from=translated src=- shape=78375a7f vocab=7238be9b
+-/
 theorem col_sum_norm_layerJumpMatrix_le (L : List (PauliString n × ℝ))
     (hcomm : ∀ g ∈ L, ∀ h ∈ L, sympForm g.1 h.1 = 0)
     {σ : ℝ} (hσ : 0 ≤ σ) (hsin : ∀ g ∈ L, |Real.sin g.2| ≤ σ)
@@ -731,7 +801,9 @@ theorem col_sum_norm_layerJumpMatrix_le (L : List (PauliString n × ℝ))
           _ = _ := by rw [Nat.choose_succ_succ, Nat.cast_add, pow_succ]; ring
 
 /-- Disjoint supports imply the pairwise commutation used by the exactly-`j` row and column
-estimates. Supporting lemma for `apd:thm:layer_inflow`. -/
+estimates. Supporting lemma for `apd:thm:layer_inflow`.
+@isnad1 id=eq.3h5v.s7.5a7e6f7faf23 from=translated src=- shape=bd42fdfa vocab=d4c1c7d7
+-/
 theorem layer_sympForm_eq_zero (L : List (PauliString n × ℝ)) {kh : ℕ}
     (hL : IsLayer kh (L.map Prod.fst)) :
     ∀ g ∈ L, ∀ h ∈ L, sympForm g.1 h.1 = 0 := by
@@ -751,7 +823,9 @@ noncomputable def layerInflowMatrix (L : List (PauliString n × ℝ)) (w j : ℕ
 /-- **Row bound for the high-from-low exactly-`j` block.**
 Formalizes the row estimate of `apd:thm:layer_inflow`: a nonzero row has weight at most
 `w + j (k_h - 1)` by `layerJump_single_eq_zero_of_weight_lt`, and in a disjoint-support layer at
-most that many generators anticommute with it. -/
+most that many generators anticommute with it.
+@isnad1 id=le.3h7v.s7.f1e11a746267 from=translated src=- shape=2933b1c1 vocab=5a6aaf11
+-/
 theorem row_sum_norm_layerInflowMatrix_le (L : List (PauliString n × ℝ)) {kh : ℕ}
     (hL : IsLayer kh (L.map Prod.fst)) {σ : ℝ} (hσ : 0 ≤ σ)
     (hsin : ∀ g ∈ L, |Real.sin g.2| ≤ σ) (w j : ℕ) (p : PauliIndex n) :
@@ -786,7 +860,9 @@ theorem row_sum_norm_layerInflowMatrix_le (L : List (PauliString n × ℝ)) {kh 
 
 /-- **Column bound for the high-from-low exactly-`j` block.**
 Formalizes the column estimate of `apd:thm:layer_inflow`: a nonzero column has weight at most
-`w`. The angles are unrestricted and enter only through the bound `σ` on their absolute sines. -/
+`w`. The angles are unrestricted and enter only through the bound `σ` on their absolute sines.
+@isnad1 id=le.3h7v.s7.f2e6ebda0ec8 from=translated src=- shape=dc8a9e38 vocab=f03d2a93
+-/
 theorem col_sum_norm_layerInflowMatrix_le (L : List (PauliString n × ℝ)) {kh : ℕ}
     (hL : IsLayer kh (L.map Prod.fst)) {σ : ℝ} (hσ : 0 ≤ σ)
     (hsin : ∀ g ∈ L, |Real.sin g.2| ≤ σ) (w j : ℕ) (q : PauliIndex n) :
@@ -813,7 +889,9 @@ theorem col_sum_norm_layerInflowMatrix_le (L : List (PauliString n × ℝ)) {kh 
 `apd:thm:layer_inflow`, for any `σ` dominating every absolute sine and an arbitrary threshold
 `w`. The Schur test combines the row bound with the (smaller) column bound. The matrix is built
 from the rotations themselves, so no flow inequality is assumed.
-At `w = w_m`, the upper weight is `w_m + j (k_h - 1) = w_{m+j}` for `m ≥ 1`. -/
+At `w = w_m`, the upper weight is `w_m + j (k_h - 1) = w_{m+j}` for `m ≥ 1`.
+@isnad1 id=le.3h6v.s8.86225babc15f from=translated src=- shape=dd46cf2c vocab=1ce9cd72
+-/
 theorem norm_layerInflowMatrix_le (L : List (PauliString n × ℝ)) {kh : ℕ}
     (hL : IsLayer kh (L.map Prod.fst)) {σ : ℝ} (hσ : 0 ≤ σ)
     (hsin : ∀ g ∈ L, |Real.sin g.2| ≤ σ) (w j : ℕ) :
@@ -828,7 +906,9 @@ theorem norm_layerInflowMatrix_le (L : List (PauliString n × ℝ)) {kh : ℕ}
 
 /-- The layer-inflow bound with no hypothesis on the angles: `apd:eq:layer_inflow` with
 `σ = max_l |sin θ_l|`. Neither positivity of the sines nor monotonicity of sine on an interval of
-angles is required, which is more general than the paper's statement. -/
+angles is required, which is more general than the paper's statement.
+@isnad1 id=le.1h5v.s7.8deb8c95ec0c from=translated src=- shape=95499124 vocab=f6023a1a
+-/
 theorem norm_layerInflowMatrix_le_layerSigma (L : List (PauliString n × ℝ)) {kh : ℕ}
     (hL : IsLayer kh (L.map Prod.fst)) (w j : ℕ) :
     ‖layerInflowMatrix L w j‖
@@ -837,7 +917,9 @@ theorem norm_layerInflowMatrix_le_layerSigma (L : List (PauliString n × ℝ)) {
 
 /-- **Layer inflow, factorial form.** Formalizes the second inequality of
 `apd:eq:layer_inflow`, `C(W, j) σ^j ≤ (W σ)^j / j!` with `W = w + j (k_h - 1)`, for the
-absolute-sine parameter `σ` and an arbitrary natural weight threshold `w`. -/
+absolute-sine parameter `σ` and an arbitrary natural weight threshold `w`.
+@isnad1 id=le.3h6v.s8.5d5d1c3c0f93 from=translated src=- shape=5cc3f3b7 vocab=8b0c5c11
+-/
 theorem norm_layerInflowMatrix_le_factorial (L : List (PauliString n × ℝ)) {kh : ℕ}
     (hL : IsLayer kh (L.map Prod.fst)) {σ : ℝ} (hσ : 0 ≤ σ)
     (hsin : ∀ g ∈ L, |Real.sin g.2| ≤ σ) (w j : ℕ) :
@@ -853,7 +935,9 @@ theorem norm_layerInflowMatrix_le_factorial (L : List (PauliString n × ℝ)) {k
 
 /-- `layerInflowMatrix L w j` acts as `layerJump L j` restricted to low-weight inputs and
 high-weight outputs. This connects the Schur bound to the Pauli coefficients of the conjugated
-operator in `apd:thm:layer_inflow`. -/
+operator in `apd:thm:layer_inflow`.
+@isnad1 id=eq.0h5v.s8.2a664b3b0f9e from=translated src=- shape=b2eba573 vocab=d0c65957
+-/
 theorem layerInflowMatrix_mulVec (L : List (PauliString n × ℝ)) (w j : ℕ)
     (y : EuclideanSpace ℂ (PauliIndex n)) :
     WithLp.toLp 2 (layerInflowMatrix L w j *ᵥ y.ofLp)
@@ -869,7 +953,9 @@ theorem layerInflowMatrix_mulVec (L : List (PauliString n × ℝ)) (w j : ℕ)
   · simp [hp]
 
 /-- The zero-sine branch is diagonal, so its high-from-low block vanishes.
-Supporting lemma for `A_RB = ∑_{j≥1} A^{(j)}` in `apd:thm:layer_inflow`. -/
+Supporting lemma for `A_RB = ∑_{j≥1} A^{(j)}` in `apd:thm:layer_inflow`.
+@isnad1 id=eq.0h3v.s5.bbf1947d70e7 from=translated src=- shape=d09f3f19 vocab=42f686e2
+-/
 theorem layerInflowMatrix_zero (L : List (PauliString n × ℝ)) (w : ℕ) :
     layerInflowMatrix L w 0 = 0 := by
   ext p q
@@ -882,7 +968,9 @@ theorem layerInflowMatrix_zero (L : List (PauliString n × ℝ)) (w : ℕ) :
   · rfl
 
 /-- Additivity of the layer action on coefficient vectors. Supporting lemma for the high/low
-split in `apd:thm:layer_inflow`. -/
+split in `apd:thm:layer_inflow`.
+@isnad1 id=eq.0h4v.s7.920c28ae54bd from=translated src=- shape=a6176b7d vocab=59b6b2c5
+-/
 theorem layerAct_add (L : List (PauliString n × ℝ))
     (y z : EuclideanSpace ℂ (PauliIndex n)) :
     layerAct L (y + z) = layerAct L y + layerAct L z := by
@@ -894,7 +982,9 @@ theorem layerAct_add (L : List (PauliString n × ℝ))
     rfl
 
 /-- Finite-sum compatibility of coefficient projection. Supporting lemma for
-`A_RB = ∑_{j≥1} A^{(j)}` in `apd:thm:layer_inflow`. -/
+`A_RB = ∑_{j≥1} A^{(j)}` in `apd:thm:layer_inflow`.
+@isnad1 id=eq.0h5v.s7.e6d553086bc2 from=translated src=- shape=2ebb9954 vocab=bdc35b81
+-/
 theorem restr_sum {ι : Type*} (s : Finset ι) (R : Finset (PauliIndex n))
     (f : ι → EuclideanSpace ℂ (PauliIndex n)) :
     restr R (∑ i ∈ s, f i) = ∑ i ∈ s, restr R (f i) := by
@@ -905,7 +995,9 @@ theorem restr_sum {ι : Type*} (s : Finset ι) (R : Finset (PauliIndex n))
 
 /-- **The high-from-low block of a layer is the sum of its exactly-`j` blocks.**
 This is the action form of `A_RB = ∑_{j≥1} A^{(j)}` in `apd:thm:layer_inflow`. The finite sum
-runs over `0 ≤ j ≤ L.length`; its `j = 0` term vanishes by `layerInflowMatrix_zero`. -/
+runs over `0 ≤ j ≤ L.length`; its `j = 0` term vanishes by `layerInflowMatrix_zero`.
+@isnad1 id=eq.0h4v.s10.6e8e62d8757b from=translated src=- shape=d92d1d89 vocab=421ae9f8
+-/
 theorem restr_layerAct_low_eq_sum_inflow (L : List (PauliString n × ℝ)) (w : ℕ)
     (y : EuclideanSpace ℂ (PauliIndex n)) :
     restr (highSet n w) (layerAct L (restr (highSet n w)ᶜ y))
@@ -919,7 +1011,9 @@ theorem restr_layerAct_low_eq_sum_inflow (L : List (PauliString n × ℝ)) (w : 
 The triangle inequality applied to the block decomposition of `apd:thm:layer_inflow`: the
 high-to-high block is a contraction because the layer is an isometry (`norm_layerAct`), and the
 high-from-low block is the sum of the `A^{(j)}`. Both facts are proved above from the rotations,
-so no flow inequality is assumed. -/
+so no flow inequality is assumed.
+@isnad1 id=le.1h4v.s10.8d2ec2481677 from=translated src=- shape=75791a8d vocab=57c7ef41
+-/
 theorem norm_restr_layerAct_le_sum_inflow (L : List (PauliString n × ℝ))
     (hL : ∀ g ∈ L, IsSelfAdjoint g.1) (w : ℕ)
     (y : EuclideanSpace ℂ (PauliIndex n)) :
@@ -939,7 +1033,9 @@ theorem norm_restr_layerAct_le_sum_inflow (L : List (PauliString n × ℝ))
 /-- A `j`-jump inflow into weights above `w` only uses the input's coefficients of weight above
 `w'`, for any `w'` with `w' + j (k_h - 1) ≤ w`. This localizes the inflow on the lower rung, as
 needed by `apd:rmk:multijump`; it follows from the coefficient support bound in
-`apd:thm:layer_inflow`. -/
+`apd:thm:layer_inflow`.
+@isnad1 id=eq.2h7v.s11.9e749b8c1006 from=translated src=- shape=3b5c67e6 vocab=62e13fef
+-/
 theorem layerInflowMatrix_clm_restr (L : List (PauliString n × ℝ)) {kh w w' j : ℕ}
     (hk : ∀ g ∈ L, weight g.1 ≤ kh) (hw : w' + j * (kh - 1) ≤ w)
     (y : EuclideanSpace ℂ (PauliIndex n)) :
@@ -966,7 +1062,9 @@ theorem layerInflowMatrix_clm_restr (L : List (PauliString n × ℝ)) {kh w w' j
 
 /-- The `j`-jump inflow of a coefficient vector is bounded by the factorial inflow factor times
 the norm of the vector. Supporting theorem for `apd:thm:layer_inflow`
-and the multi-jump recursion in `apd:rmk:multijump`. -/
+and the multi-jump recursion in `apd:rmk:multijump`.
+@isnad1 id=le.3h7v.s10.a9f53642dec1 from=translated src=- shape=32404c83 vocab=c1f69690
+-/
 theorem norm_layerInflowMatrix_clm_le (L : List (PauliString n × ℝ)) {kh : ℕ}
     (hL : IsLayer kh (L.map Prod.fst)) {σ : ℝ} (hσ : 0 ≤ σ)
     (hsin : ∀ g ∈ L, |Real.sin g.2| ≤ σ) (w j : ℕ)
@@ -979,7 +1077,9 @@ theorem norm_layerInflowMatrix_clm_le (L : List (PauliString n × ℝ)) {kh : �
 
 /-- The `j`-jump inflow bounded by the input's norm above the lower threshold `w'`, where
 `w' + j (k_h - 1) ≤ w`. Supporting theorem for `apd:rmk:multijump`; the coefficient is the one
-proved in `apd:thm:layer_inflow`. -/
+proved in `apd:thm:layer_inflow`.
+@isnad1 id=le.4h8v.s10.30ef2cff8b98 from=translated src=- shape=0a5cd448 vocab=1ba5bb68
+-/
 theorem norm_layerInflowMatrix_clm_le_restr (L : List (PauliString n × ℝ)) {kh w w' j : ℕ}
     (hL : IsLayer kh (L.map Prod.fst)) {σ : ℝ} (hσ : 0 ≤ σ)
     (hsin : ∀ g ∈ L, |Real.sin g.2| ≤ σ) (hw : w' + j * (kh - 1) ≤ w)

@@ -46,6 +46,9 @@ noncomputable section
 def phaseOracle {n : ℕ} (marked : Fin (2 ^ n) → Bool) : HilbertOperator n :=
   fun i j => if i = j then (if marked j then -1 else 1 : ℂ) else 0
 
+/--
+@isnad1 id=eq.0h3v.s7.efa448931eb6 from=translated src=- shape=53452bd2 vocab=de30cb91
+-/
 theorem phaseOracle_apply_ket {n : ℕ} (marked : Fin (2 ^ n) → Bool) (j : Fin (2 ^ n)) :
     HilbertOperator.applyVec (phaseOracle marked) (ket j : StateVector n) =
       ((if marked j then -1 else 1 : ℂ) • (ket j : StateVector n)) := by
@@ -93,7 +96,9 @@ structure GroverModel where
 
 /-- Grover correctness in the accepted two-dimensional scope: under the explicit
 oracle/diffusion rotation hypothesis, `k` Grover iterates produce the standard
-closed-form state. -/
+closed-form state.
+@isnad1 id=eq.0h2v.s7.fea0b6434e17 from=translated src=- shape=883d0aa1 vocab=25ecb0be
+-/
 theorem GroverSearch.main (M : GroverModel) (k : ℕ) :
     Gate.apply ((M.diffusion * M.phaseOracle) ^ k) (amplitudeAmplificationState M.θ 0) =
       amplitudeAmplificationState M.θ k := by
@@ -118,28 +123,40 @@ def timedIterate (M : GroverModel) (k : ℕ) : Timed (PureState 1) :=
     (Gate.apply ((M.diffusion * M.phaseOracle) ^ k)
       (amplitudeAmplificationState M.θ 0))
 
+/--
+@isnad1 id=eq.0h2v.s7.3bfd4ca26c62 from=translated src=- shape=2d4e5c36 vocab=da7bc982
+-/
 @[simp]
 theorem timedIterate_ret (M : GroverModel) (k : ℕ) :
     (timedIterate M k).ret =
       Gate.apply ((M.diffusion * M.phaseOracle) ^ k)
         (amplitudeAmplificationState M.θ 0) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.572ac5852e78 from=translated src=- shape=ed7f706e vocab=cc43d500
+-/
 @[simp]
 theorem timedIterate_time (M : GroverModel) (k : ℕ) :
     (timedIterate M k).time = k := rfl
 
-/-- Grover correctness, phrased through the TimeM return value. -/
+/-- Grover correctness, phrased through the TimeM return value.
+@isnad1 id=eq.0h2v.s4.81d7f12f319a from=translated src=- shape=d56ce5a9 vocab=f9f3b8a1
+-/
 theorem timedIterate_correct (M : GroverModel) (k : ℕ) :
     (timedIterate M k).ret = amplitudeAmplificationState M.θ k := by
   exact GroverSearch.main M k
 
-/-- The marked-subspace success probability after the timed Grover iterate. -/
+/-- The marked-subspace success probability after the timed Grover iterate.
+@isnad1 id=eq.0h2v.s6.7d6fd3495d6a from=translated src=- shape=a5192b92 vocab=7f094dec
+-/
 theorem timedIterate_success_probability (M : GroverModel) (k : ℕ) :
     PureState.probOutcome (timedIterate M k).ret (1 : Fin (2 ^ 1)) =
       Real.sin (amplitudeAmplificationAngle M.θ k) ^ 2 := by
   rw [timedIterate_correct, amplitudeAmplificationState_good_probability]
 
-/-- The timed Grover iterate has the same return value as its amplitude-amplification view. -/
+/-- The timed Grover iterate has the same return value as its amplitude-amplification view.
+@isnad1 id=eq.0h2v.s5.88ca3f1d97e6 from=translated src=- shape=051fc1a9 vocab=a70b20b6
+-/
 theorem timedIterate_ret_eq_amplitudeAmplification
     (M : GroverModel) (k : ℕ) :
     (timedIterate M k).ret =
@@ -155,6 +172,9 @@ def resourceProfile (n k : ℕ) : ResourceProfile where
   elementaryGates := k * n
   classicalOps := 0
 
+/--
+@isnad1 id=hasexact.0h2v.s4.411d8490835e from=translated src=- shape=19fa900f vocab=d78f1bb3
+-/
 theorem resourceProfile_exact (n k : ℕ) :
     ResourceProfile.HasExactCounts (resourceProfile n k) k 0 (k * n) 0 := by
   simp [ResourceProfile.HasExactCounts, resourceProfile]
@@ -162,7 +182,9 @@ theorem resourceProfile_exact (n k : ℕ) :
 /-- Grover supporting theorem for the public marked-count statement. The
 relation between the concrete `n`-qubit oracle and this good/bad plane remains
 an explicit model hypothesis; under the marked-count angle relation, the timed
-iterate has the public success probability and resource profile. -/
+iterate has the public success probability and resource profile.
+@isnad1 id=and.3h4v.s8.26fe5275ac5c from=translated src=- shape=ccd948ee vocab=554cc376
+-/
 theorem success_probability_with_resources
     (M : GroverModel) {n t k : ℕ}
     (_ht_pos : 0 < t) (_ht_le : t ≤ 2 ^ n)
@@ -178,14 +200,18 @@ theorem success_probability_with_resources
 
 end Grover
 
-/-- Registered basis-action wrapper for the concrete Grover phase oracle. -/
+/-- Registered basis-action wrapper for the concrete Grover phase oracle.
+@isnad1 id=eq.0h3v.s7.efa448931eb6 from=translated src=- shape=53452bd2 vocab=de30cb91
+-/
 theorem GroverSearch.main_phase_oracle_basis_action {n : ℕ}
     (marked : Fin (2 ^ n) → Bool) (j : Fin (2 ^ n)) :
     HilbertOperator.applyVec (phaseOracle marked) (ket j : StateVector n) =
       ((if marked j then -1 else 1 : ℂ) • (ket j : StateVector n)) := by
   exact phaseOracle_apply_ket marked j
 
-/-- Registered resource wrapper for the marked-count Grover statement. -/
+/-- Registered resource wrapper for the marked-count Grover statement.
+@isnad1 id=and.3h4v.s8.26fe5275ac5c from=translated src=- shape=ccd948ee vocab=554cc376
+-/
 theorem GroverSearch.main_success_probability_with_resources
     (M : GroverModel) {n t k : ℕ}
     (ht_pos : 0 < t) (ht_le : t ≤ 2 ^ n)

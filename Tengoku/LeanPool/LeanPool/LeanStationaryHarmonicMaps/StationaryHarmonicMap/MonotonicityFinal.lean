@@ -26,7 +26,9 @@ open scoped Topology BigOperators ENNReal
 namespace LeanStationaryHarmonicMaps
 namespace StationaryHarmonicMap
 
-/-- Step 4: integrate the a.e. derivative formula for `theta`. -/
+/-- Step 4: integrate the a.e. derivative formula for `theta`.
+@isnad1 id=eq.6h7v.s9.30ddbd505e96 from=translated src=- shape=e8ba53b6 vocab=12ebe67c
+-/
 theorem interior_monotonicity_formula_smooth {n m : ℕ}
     {u : Domain n → Target m} {a : Domain n} {R0 s r : ℝ}
     (hu : ContDiff ℝ 1 u)
@@ -43,7 +45,9 @@ theorem interior_monotonicity_formula_smooth {n m : ℕ}
   exact hderive hu hboundary hs hsr hr
 
 /-- Weak version of the final integration step, using `weakTheta` and the weak
-annular radial-energy term. -/
+annular radial-energy term.
+@isnad1 id=eq.5h7v.s7.6a973e7116c7 from=translated src=- shape=8f74833f vocab=81827e38
+-/
 theorem interior_monotonicity_formula_weak {n m : ℕ}
     {Du : Domain n → Gradient n m} {a : Domain n} {R0 s r : ℝ}
     (hboundary : WeakBoundaryIdentity Du a R0)
@@ -60,7 +64,9 @@ theorem interior_monotonicity_formula_weak {n m : ℕ}
 /-- Radius-variable form of the final monotonicity increment.  This integrates
 the a.e. boundary identity against the derivative of the monotonicity weight;
 the remaining step is to convert the right-hand side to the annular spatial
-integral. -/
+integral.
+@isnad1 id=eq.5h6v.s8.eeba6f6e78a2 from=translated src=- shape=ebbbd4e3 vocab=8e332f0d
+-/
 theorem weakTheta_increment_eq_radius_integral_of_boundary
     {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 s r : ℝ}
@@ -116,7 +122,9 @@ theorem weakTheta_increment_eq_radius_integral_of_boundary
         2 * thetaFactor n rho * deriv Q rho := hintegrand
 
 /-- A radial indicator on the containing ball is the same as integrating over
-the annulus.  The inner boundary sphere is null in positive dimension. -/
+the annulus.  The inner boundary sphere is null in positive dimension.
+@isnad1 id=eq.1h5v.s9.8aff9c1b7751 from=translated src=- shape=550aaac9 vocab=43784963
+-/
 theorem radial_weighted_annulus_integral_eq_indicator_integral
     {n : ℕ} [NeZero n] {F : Domain n → ℝ} {s r R0 : ℝ}
     (hrR0 : r ≤ R0) :
@@ -191,7 +199,9 @@ theorem radial_weighted_annulus_integral_eq_indicator_integral
         setIntegral_congr_set hclosed_ae
 
 /-- The annular term in the monotonicity formula is exactly the corresponding
-radius integral of the radial-energy derivative. -/
+radius integral of the radial-energy derivative.
+@isnad1 id=eq.4h6v.s7.2a6897471091 from=translated src=- shape=092c87bb vocab=bf81cbaa
+-/
 theorem weakMonotonicityRhs_eq_radius_integral
     {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {R0 s r : ℝ}
@@ -258,7 +268,9 @@ theorem weakMonotonicityRhs_eq_radius_integral
         rw [hinterval]
 
 /-- Restricted-weight version of the conversion from the annular spatial term
-to the radius integral of the radial-energy derivative. -/
+to the radius integral of the radial-energy derivative.
+@isnad1 id=eq.4h6v.s7.d84aa7be26a4 from=translated src=- shape=092c87bb vocab=65c23b07
+-/
 theorem weakMonotonicityRhs_eq_radius_integral_forWeights
     {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {R0 s r : ℝ}
@@ -330,7 +342,9 @@ theorem weakMonotonicityRhs_eq_radius_integral_forWeights
         rw [hinterval]
 
 /-- The final increment formula derived from the weak boundary identity, radius
-absolute continuity, and the radial-energy radius formula. -/
+absolute continuity, and the radial-energy radius formula.
+@isnad1 id=eq.6h6v.s8.86265eca049e from=translated src=- shape=1e862ecf vocab=4818cc51
+-/
 theorem weakTheta_increment_eq_weakMonotonicityRhs_of_boundary
     {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {R0 s r : ℝ}
@@ -352,7 +366,9 @@ theorem weakTheta_increment_eq_weakMonotonicityRhs_of_boundary
   ring
 
 /-- Restricted-weight version of the final increment formula derived from the
-weak boundary identity. -/
+weak boundary identity.
+@isnad1 id=eq.6h6v.s8.14c29bde658b from=translated src=- shape=1e862ecf vocab=ef32ba0b
+-/
 theorem weakTheta_increment_eq_weakMonotonicityRhs_of_boundary_forWeights
     {n m : ℕ} [NeZero n]
     {Du : Domain n → Gradient n m} {R0 s r : ℝ}
@@ -374,7 +390,9 @@ theorem weakTheta_increment_eq_weakMonotonicityRhs_of_boundary_forWeights
   ring
 
 /-- The equality formula immediately gives monotonicity, because the annular integral is
-nonnegative. -/
+nonnegative.
+@isnad1 id=monotone.2h5v.s7.b414ced2f598 from=translated src=- shape=94f1c53c vocab=b492f44b
+-/
 theorem theta_monotone_on_of_formula {n m : ℕ}
     {u : Domain n → Target m} {a : Domain n} {R0 : ℝ}
     (hformula :
@@ -397,7 +415,9 @@ theorem theta_monotone_on_of_formula {n m : ℕ}
     linarith
 
 /-- Weak monotonicity follows from the weak equality formula and nonnegativity of
-the weak annular radial-energy term. -/
+the weak annular radial-energy term.
+@isnad1 id=monotone.2h5v.s7.47b65e29887c from=translated src=- shape=e7eaf4bb vocab=7c564b33
+-/
 theorem weakTheta_monotone_on_of_formula {n m : ℕ}
     {Du : Domain n → Gradient n m} {a : Domain n} {R0 : ℝ}
     (hformula :
@@ -420,7 +440,9 @@ theorem weakTheta_monotone_on_of_formula {n m : ℕ}
     linarith
 
 /-- Clean weak monotonicity interface: once the weak equality formula is known,
-monotonicity follows from the built-in nonnegativity of the radial-energy RHS. -/
+monotonicity follows from the built-in nonnegativity of the radial-energy RHS.
+@isnad1 id=monotone.1h5v.s6.d9bb0b0b5448 from=translated src=- shape=6edc3b8a vocab=76efc671
+-/
 theorem weakTheta_monotone_on_of_formula' {n m : ℕ}
     {Du : Domain n → Gradient n m} {a : Domain n} {R0 : ℝ}
     (hformula :

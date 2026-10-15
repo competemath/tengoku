@@ -53,6 +53,9 @@ def crossDiff (p q : RingRep) : Coeff :=
   (Coeff.scale ((3 : ℤ) ^ q.denomPow) p.coeff).sub
     (Coeff.scale ((3 : ℤ) ^ p.denomPow) q.coeff)
 
+/--
+@isnad1 id=iff.0h2v.s7.0768af4b7785 from=translated src=- shape=29b386df vocab=edd3f141
+-/
 lemma crossDiff_color_eq_zero_iff (p q : RingRep) :
     (p.crossDiff q).color = 0 ↔ p.color = q.color := by
   unfold crossDiff
@@ -60,6 +63,9 @@ lemma crossDiff_color_eq_zero_iff (p q : RingRep) :
     Coeff.color_scale_three_pow]
   rfl
 
+/--
+@isnad1 id=iff.0h2v.s7.8352c4b8fe60 from=translated src=- shape=29b386df vocab=ec1a7141
+-/
 lemma crossDiff_colorTwo_eq_zero_iff (p q : RingRep) :
     Coeff.colorTwo (p.crossDiff q) = 0 ↔ p.colorTwo = q.colorTwo := by
   unfold crossDiff
@@ -67,6 +73,9 @@ lemma crossDiff_colorTwo_eq_zero_iff (p q : RingRep) :
     Coeff.colorTwo_scale_three_pow]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.7df5a6600124 from=translated src=- shape=fbc4b626 vocab=76ee8d2d
+-/
 lemma crossDiff_toR2 (p q : RingRep) :
     (p.crossDiff q).toR2 =
       ((3 : ℝ) ^ (p.denomPow + q.denomPow)) • (p.toR2 - q.toR2) := by
@@ -79,6 +88,9 @@ lemma crossDiff_toR2 (p q : RingRep) :
   field_simp
   ring_nf
 
+/--
+@isnad1 id=eq.0h2v.s7.d68f2ed19511 from=translated src=- shape=c5797e0e vocab=a9476251
+-/
 lemma crossDiff_dist_zero (p q : RingRep) :
     dist (p.crossDiff q).toR2 0 =
       (3 : ℝ) ^ (p.denomPow + q.denomPow) * dist p.toR2 q.toR2 := by
@@ -93,6 +105,9 @@ lemma crossDiff_dist_zero (p q : RingRep) :
       rw [Real.norm_of_nonneg (by positivity)]
       simp [dist_eq_norm]
 
+/--
+@isnad1 id=and.1h4v.s8.8104dc500a44 from=translated src=- shape=36927b4b vocab=67e0a702
+-/
 lemma scaled_norm_coordinates_eq_of_dist_eq
     {p q r s : RingRep} (h : dist p.toR2 q.toR2 = dist r.toR2 s.toR2) :
     (3 : ℤ) ^ (2 * (r.denomPow + s.denomPow)) *
@@ -134,6 +149,9 @@ lemma scaled_norm_coordinates_eq_of_dist_eq
     nlinarith
   exact Coeff.radical_coordinates_unique hradical
 
+/--
+@isnad1 id=iff.1h4v.s6.fa69b104d2cd from=translated src=- shape=4a39bd6a vocab=fc8df705
+-/
 lemma dvd_four_iff_of_scaled_eq {x y : ℤ} {m n : ℕ}
     (h : (3 : ℤ) ^ (2 * m) * x = (3 : ℤ) ^ (2 * n) * y) :
     (4 : ℤ) ∣ x ↔ (4 : ℤ) ∣ y := by
@@ -163,6 +181,9 @@ def IsGeometricColoring {κ : Type*} (f : RingRep → κ) : Prop :=
     dist p.toR2 q.toR2 = dist r.toR2 s.toR2 →
       (f p = f q ↔ f r = f s)
 
+/--
+@isnad1 id=isgeomet.0h0v.s3.345e51eb3538 from=translated src=- shape=1b6181c8 vocab=256c83d6
+-/
 theorem color_isGeometric : IsGeometricColoring color := by
   intro p q r s hdist
   have hcoords := scaled_norm_coordinates_eq_of_dist_eq hdist
@@ -177,6 +198,9 @@ theorem color_isGeometric : IsGeometricColoring color := by
     Coeff.color_eq_zero_iff_norm_sum_dvd_four]
   exact dvd_four_iff_of_scaled_eq hsum
 
+/--
+@isnad1 id=isgeomet.0h0v.s3.8e7c94e0b2ba from=translated src=- shape=1b6181c8 vocab=0398c929
+-/
 theorem colorTwo_isGeometric : IsGeometricColoring colorTwo := by
   intro p q r s hdist
   have hcoords := scaled_norm_coordinates_eq_of_dist_eq hdist
@@ -192,6 +216,9 @@ theorem colorTwo_isGeometric : IsGeometricColoring colorTwo := by
     Coeff.colorTwo_eq_zero_iff_norm_diff_dvd_four]
   exact dvd_four_iff_of_scaled_eq hdiff
 
+/--
+@isnad1 id=and.1h2v.s6.8a56dfb65c85 from=translated src=- shape=44b9396b vocab=616d0036
+-/
 lemma sqNorm_coefficients_of_int {p : Coeff} {t : ℤ}
     (h : ((p.normRational : ℝ) + (p.normRadical : ℝ) * Real.sqrt 33) / 6 = t) :
     p.normRational = 6 * t ∧ p.normRadical = 0 := by
@@ -201,6 +228,9 @@ lemma sqNorm_coefficients_of_int {p : Coeff} {t : ℤ}
       linarith)
   simpa using hcoords
 
+/--
+@isnad1 id=and.1h2v.s7.61a960fbf8c9 from=translated src=- shape=20f01fbc vocab=67e0a702
+-/
 lemma crossDiff_norm_coefficients_of_dist_eq_one {p q : RingRep}
     (h : dist p.toR2 q.toR2 = 1) :
     (p.crossDiff q).normRational =
@@ -223,6 +253,9 @@ lemma crossDiff_norm_coefficients_of_dist_eq_one {p q : RingRep}
     linarith
   exact sqNorm_coefficients_of_int hvalue
 
+/--
+@isnad1 id=ne.1h2v.s6.264fc5ea587d from=translated src=- shape=3f62a7db vocab=732ce5aa
+-/
 lemma color_ne_of_dist_eq_one {p q : RingRep} (h : dist p.toR2 q.toR2 = 1) :
     p.color ≠ q.color := by
   intro heq
@@ -236,6 +269,9 @@ lemma color_ne_of_dist_eq_one {p q : RingRep} (h : dist p.toR2 q.toR2 = 1) :
   apply hsix
   simpa [pow_mul, hnine] using hzmod
 
+/--
+@isnad1 id=ne.1h2v.s6.e5d62f039153 from=translated src=- shape=3f62a7db vocab=2185d440
+-/
 lemma colorTwo_ne_of_dist_eq_one {p q : RingRep} (h : dist p.toR2 q.toR2 = 1) :
     p.colorTwo ≠ q.colorTwo := by
   intro heq
@@ -249,6 +285,9 @@ lemma colorTwo_ne_of_dist_eq_one {p q : RingRep} (h : dist p.toR2 q.toR2 = 1) :
   apply hsix
   simpa [pow_mul, hnine] using hzmod
 
+/--
+@isnad1 id=and.1h2v.s5.15b7b388e16c from=translated src=- shape=71b03b88 vocab=01dc8d01
+-/
 lemma norm_coefficients_of_toR2_eq {p q : RingRep} (h : p.toR2 = q.toR2) :
     (p.crossDiff q).normRational = 0 ∧ (p.crossDiff q).normRadical = 0 := by
   have hdist : dist p.toR2 q.toR2 = 0 := by rw [h]; simp
@@ -260,6 +299,9 @@ lemma norm_coefficients_of_toR2_eq {p q : RingRep} (h : p.toR2 = q.toR2) :
   exact sqNorm_coefficients_of_int (t := 0) (by
     nlinarith)
 
+/--
+@isnad1 id=eq.1h2v.s4.1c499f3cfd53 from=translated src=- shape=25d8d000 vocab=d663b7cb
+-/
 lemma color_eq_of_toR2_eq {p q : RingRep} (h : p.toR2 = q.toR2) :
     p.color = q.color := by
   have hcoeff := norm_coefficients_of_toR2_eq h
@@ -268,6 +310,9 @@ lemma color_eq_of_toR2_eq {p q : RingRep} (h : p.toR2 = q.toR2) :
   rw [hcoeff.1, hcoeff.2]
   norm_num
 
+/--
+@isnad1 id=eq.1h2v.s4.1727fe284727 from=translated src=- shape=25d8d000 vocab=f5442ecd
+-/
 lemma colorTwo_eq_of_toR2_eq {p q : RingRep} (h : p.toR2 = q.toR2) :
     p.colorTwo = q.colorTwo := by
   have hcoeff := norm_coefficients_of_toR2_eq h
@@ -303,17 +348,26 @@ def color : MoserRing → ZMod 2 × ZMod 2 :=
 def colorTwo : MoserRing → ZMod 2 × ZMod 2 :=
   Quotient.lift RingRep.colorTwo fun _ _ h => RingRep.colorTwo_eq_of_toR2_eq h
 
+/--
+@isnad1 id=injectiv.0h0v.s2.e89936c399b6 from=translated src=- shape=54c8eceb vocab=63d8357f
+-/
 theorem toR2_injective : Function.Injective toR2 := by
   intro p q
   refine Quotient.inductionOn₂ p q ?_
   intro p q h
   exact Quotient.sound h
 
+/--
+@isnad1 id=eq.0h1v.s3.92220201dae3 from=translated src=- shape=96663738 vocab=b5948109
+-/
 @[simp] lemma out_toR2 (p : MoserRing) :
     (Quotient.out p : RingRep).toR2 = p.toR2 := by
   change toR2 ⟦Quotient.out p⟧ = toR2 p
   exact congrArg toR2 (Quotient.out_eq p)
 
+/--
+@isnad1 id=eq.0h1v.s4.799cd1474769 from=translated src=- shape=41374865 vocab=f9cd8ab2
+-/
 @[simp] lemma out_color (p : MoserRing) :
     (Quotient.out p : RingRep).color = p.color := by
   change color ⟦Quotient.out p⟧ = color p
@@ -326,6 +380,9 @@ def IsGeometricColoring {κ : Type*} (f : MoserRing → κ) : Prop :=
     dist p.toR2 q.toR2 = dist r.toR2 s.toR2 →
       (f p = f q ↔ f r = f s)
 
+/--
+@isnad1 id=isgeomet.0h0v.s3.657c4188a0e9 from=translated src=- shape=1b6181c8 vocab=918f9e39
+-/
 theorem color_isGeometric : IsGeometricColoring color := by
   intro p q r s
   refine Quotient.inductionOn p ?_
@@ -338,6 +395,9 @@ theorem color_isGeometric : IsGeometricColoring color := by
   intro s h
   exact RingRep.color_isGeometric p q r s h
 
+/--
+@isnad1 id=isgeomet.0h0v.s3.d7b0aa8b630a from=translated src=- shape=1b6181c8 vocab=71673719
+-/
 theorem colorTwo_isGeometric : IsGeometricColoring colorTwo := by
   intro p q r s
   refine Quotient.inductionOn p ?_
@@ -384,10 +444,15 @@ noncomputable def coloringTwo : unitDistanceGraph.Coloring (ZMod 2 × ZMod 2) :=
       intro p q hqp
       exact RingRep.colorTwo_ne_of_dist_eq_one (dist_comm q.toR2 p.toR2 ▸ hqp)
 
+/--
+@isnad1 id=colorabl.0h0v.s3.85dfb3c9e04b from=translated src=- shape=aeae7466 vocab=95b2f789
+-/
 theorem colorable_four : unitDistanceGraph.Colorable 4 := by
   simpa using coloring.colorable
 
-/-- Both explicit proper four-colorings of the Moser ring are geometric. -/
+/-- Both explicit proper four-colorings of the Moser ring are geometric.
+@isnad1 id=and.0h0v.s7.d5d5d3a20ac8 from=translated src=- shape=d3249926 vocab=d38a9888
+-/
 theorem both_colorings_are_geometric :
     IsGeometricColoring coloring ∧ IsGeometricColoring coloringTwo := by
   constructor
@@ -397,7 +462,9 @@ theorem both_colorings_are_geometric :
     exact colorTwo_isGeometric
 
 /-- Every graph whose vertices are realized in the Moser ring and whose edges
-have Euclidean length one is four-colorable. -/
+have Euclidean length one is four-colorable.
+@isnad1 id=colorabl.1h3v.s6.c59b747884ea from=translated src=- shape=e2137929 vocab=c691aebd
+-/
 theorem graph_colorable_four_of_moserRing_realization
     {V : Type*} (G : SimpleGraph V) (f : V → MoserRing)
     (hedge : ∀ {v w : V}, G.Adj v w → dist (f v).toR2 (f w).toR2 = 1) :

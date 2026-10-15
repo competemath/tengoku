@@ -44,7 +44,9 @@ boundary term. This is the display `N^{(g)}_{≥m} ≤ sin(dt) ∑_{l=0}^{g-1} N
 proof of `apd:cor:norm_cumulation_jump`.
 
 Note this needs no sign hypothesis on the damping factor `a`: the paper states the recursion
-with `a = sin(dt) ≥ 0`, but the iteration itself is monotone regardless. -/
+with `a = sin(dt) ≥ 0`, but the iteration itself is monotone regardless.
+@isnad1 id=le.1h5v.s6.9e2e78ae74d6 from=translated src=- shape=96721a03 vocab=7868f0e1
+-/
 lemma step_iterate {m : ℕ} (hm : 1 ≤ m) :
     ∀ g : ℕ, L.N m g ≤ a * ∑ l ∈ range g, L.N (m - 1) l := by
   intro g
@@ -66,7 +68,9 @@ where `a = sin(dt)` is the damping factor and `M = ‖O‖_{2,normalized}`.
 
 The total mass enters with coefficient one: the base case `m = 0` is the reservoir bound
 `N 0 g ≤ M`, valid for every `g`. The only sign hypothesis is `0 ≤ a`, used to multiply the
-inductive hypothesis through the recursion. -/
+inductive hypothesis through the recursion.
+@isnad1 id=le.1h5v.s6.8ea567170f27 from=translated src=- shape=5255587b vocab=a604db8d
+-/
 theorem cumulation (ha : 0 ≤ a) :
     ∀ m g : ℕ, L.N m g ≤ (g.choose m : ℝ) * a ^ m * M := by
   intro m

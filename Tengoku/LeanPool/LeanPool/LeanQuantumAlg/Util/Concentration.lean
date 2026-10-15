@@ -25,7 +25,9 @@ open MeasureTheory ProbabilityTheory
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 
 /-- For a `[0,1]`-valued random variable on a probability space, the variance is at most
-the mean (since `X² ≤ X`). -/
+the mean (since `X² ≤ X`).
+@isnad1 id=le.3h3v.s7.84ad9825128a from=translated src=- shape=fccf929d vocab=76e71c59
+-/
 theorem variance_le_mean [IsProbabilityMeasure μ] {X : Ω → ℝ}
     (hX : MemLp X 2 μ) (h0 : 0 ≤ᵐ[μ] X) (h1 : X ≤ᵐ[μ] 1) :
     variance X μ ≤ ∫ ω, X ω ∂μ := by
@@ -49,7 +51,9 @@ def ExpConcentratedProb {Ω : ℕ → Type*} [∀ n, MeasurableSpace (Ω n)]
     (μ n) {ω | δ ≤ |X n ω - ∫ x, X n x ∂(μ n)|} ≤ ENNReal.ofReal (C / (b ^ n * δ ^ 2))
 
 /-- An exponentially small variance gives probabilistic exponential concentration
-(Chebyshev applied uniformly in `n`). -/
+(Chebyshev applied uniformly in `n`).
+@isnad1 id=expconce.4h5v.s7.49c0dbdfed73 from=translated src=- shape=bdeecce6 vocab=be4b10c6
+-/
 theorem expConcentratedProb_of_variance_le {Ω : ℕ → Type*} [∀ n, MeasurableSpace (Ω n)]
     (μ : (n : ℕ) → Measure (Ω n)) [∀ n, IsProbabilityMeasure (μ n)]
     (X : (n : ℕ) → Ω n → ℝ) (hmem : ∀ n, MemLp (X n) 2 (μ n))
@@ -63,7 +67,9 @@ theorem expConcentratedProb_of_variance_le {Ω : ℕ → Type*} [∀ n, Measurab
   gcongr
   exact hvar n
 
-/-- A `[0,1]`-valued family with exponentially small mean concentrates exponentially. -/
+/-- A `[0,1]`-valued family with exponentially small mean concentrates exponentially.
+@isnad1 id=expconce.6h5v.s8.b0606f485977 from=translated src=- shape=297d56a4 vocab=87c7d704
+-/
 theorem expConcentratedProb_of_mean_le {Ω : ℕ → Type*} [∀ n, MeasurableSpace (Ω n)]
     (μ : (n : ℕ) → Measure (Ω n)) [∀ n, IsProbabilityMeasure (μ n)]
     (X : (n : ℕ) → Ω n → ℝ) (hmem : ∀ n, MemLp (X n) 2 (μ n))
@@ -76,7 +82,9 @@ theorem expConcentratedProb_of_mean_le {Ω : ℕ → Type*} [∀ n, MeasurableSp
 
 /-- Under exponential concentration, the deviation probability vanishes as `n → ∞`
 (for each fixed `δ > 0`): the landscape becomes flat and a polynomial shot budget cannot
-resolve the kernel. -/
+resolve the kernel.
+@isnad1 id=tendsto.2h4v.s7.57a5de4735e9 from=translated src=- shape=169b2153 vocab=8ff9536c
+-/
 theorem ExpConcentratedProb.tendsto_zero {Ω : ℕ → Type*} [∀ n, MeasurableSpace (Ω n)]
     {μ : (n : ℕ) → Measure (Ω n)} {X : (n : ℕ) → Ω n → ℝ}
     (h : ExpConcentratedProb μ X) {δ : ℝ} (hδ : 0 < δ) :

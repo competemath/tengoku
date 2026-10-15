@@ -38,6 +38,9 @@ def rawPathToCat {ι : Type v} (G : ι → Type u) [∀ i, Group (G i)]
         (CategoryTheory.Paths.of
           (Quiver.Symmetrify (RawBassSerreVertex G))).obj b := p
 
+/--
+@isnad1 id=eq.0h5v.s8.6b11b95de124 from=translated src=- shape=cb1b9fba vocab=f419b9a9
+-/
 theorem rawPathToCat_catPathToRaw {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {a b : Quiver.Symmetrify (RawBassSerreVertex G)}
     (p : (CategoryTheory.Paths.of
@@ -46,6 +49,9 @@ theorem rawPathToCat_catPathToRaw {ι : Type v} (G : ι → Type u)
           (Quiver.Symmetrify (RawBassSerreVertex G))).obj b) :
     rawPathToCat G (catPathToRaw G p) = p := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.ffce375f1788 from=translated src=- shape=671899bb vocab=2add7caa
+-/
 theorem catPathToRaw_rawPathToCat {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {a b : Quiver.Symmetrify (RawBassSerreVertex G)}
     (p : @Quiver.Path (Quiver.Symmetrify (RawBassSerreVertex G))
@@ -53,6 +59,9 @@ theorem catPathToRaw_rawPathToCat {ι : Type v} (G : ι → Type u)
         (rawBassSerreQuiver G)) a b) :
     catPathToRaw G (rawPathToCat G p) = p := rfl
 
+/--
+@isnad1 id=subsingl.0h4v.s6.53db990c4fe4 from=translated src=- shape=457609d7 vocab=57031178
+-/
 theorem Internal.rawFreeGroupoid_hom_subsingleton {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)]
     {x y : Quiver.FreeGroupoid (RawBassSerreVertex G)} :

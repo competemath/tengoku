@@ -91,7 +91,9 @@ def WeakPrimitiveCutoffRealization (R0 : ℝ) : Prop :=
                         -deriv phi rho = g rho)
 
 /-- Construction of the primitive cutoff using the interval primitive
-`t ↦ ∫ x in t..R0, g x` and a smooth bump on the left. -/
+`t ↦ ∫ x in t..R0, g x` and a smooth bump on the left.
+@isnad1 id=weakprim.0h1v.s2.2875762e9140 from=translated src=- shape=5c11bb93 vocab=8f9e7829
+-/
 theorem weakPrimitiveCutoffRealization (R0 : ℝ) :
     WeakPrimitiveCutoffRealization R0 := by
   intro g hg_smooth hg_compact hg_support
@@ -230,7 +232,9 @@ theorem weakPrimitiveCutoffRealization (R0 : ℝ) :
       (Filter.Eventually.of_forall fun rho hrho => hderiv_on rho hrho)
 
 /-- The concrete primitive realization discharges the primitive test-family
-interface used by the distributional sharp-cutoff argument. -/
+interface used by the distributional sharp-cutoff argument.
+@isnad1 id=weakoned.1h4v.s4.ac926162c45e from=translated src=- shape=323db5d1 vocab=fdde0bf5
+-/
 theorem weakOneDimensionalPrimitiveTestFamily_of_realization {n m : ℕ}
     {Du : Domain n → Gradient n m} {R0 : ℝ}
     (hrealize : WeakPrimitiveCutoffRealization R0) :

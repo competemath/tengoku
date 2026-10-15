@@ -26,6 +26,9 @@ open scoped ArithmeticFunction.sigma
    We rely on mathlib's `scoped[ModularForm] notation "η" => eta`, brought into
    scope by `open ModularForm` above. -/
 
+/--
+@isnad1 id=eq.0h1v.s6.dafebe4b222f from=translated src=- shape=d99e978e vocab=c8b22e8d
+-/
 lemma eta_logDeriv_eql (z : ℍ) : (logDeriv (η ∘ (fun z : ℂ => -1/z))) z =
   (logDeriv ((csqrt) * η)) z := by
   have h0 : (logDeriv (η ∘ (fun z : ℂ => -1/z))) z =
@@ -95,9 +98,15 @@ lemma eta_logDeriv_eql (z : ℍ) : (logDeriv (η ∘ (fun z : ℂ => -1/z))) z =
   · simpa [ModularForm.eta] using
       (ModularForm.differentiableAt_eta_of_mem_upperHalfPlaneSet (z := (z : ℂ)) z.2)
 
+/--
+@isnad1 id=eqon.0h0v.s6.ebbe54576e45 from=translated src=- shape=144d0da5 vocab=8b729ea2
+-/
 lemma eta_logderivs : {z : ℂ | 0 < z.im}.EqOn (logDeriv (η ∘ (fun z : ℂ => -1/z)))
   (logDeriv ((csqrt) * η)) := fun z hz => eta_logDeriv_eql ⟨z, hz⟩
 
+/--
+@isnad1 id=ex.0h0v.s6.0ccfeaf49c29 from=translated src=- shape=227824c6 vocab=5073a5dd
+-/
 lemma eta_logderivs_const : ∃ z : ℂ, z ≠ 0 ∧ {z : ℂ | 0 < z.im}.EqOn ((η ∘ (fun z : ℂ => -1/z)))
   (z • ((csqrt) * η)) := by
   have h := eta_logderivs
@@ -144,6 +153,9 @@ lemma eta_logderivs_const : ∃ z : ℂ, z ≠ 0 ∧ {z : ℂ | 0 < z.im}.EqOn (
       (by simpa using pnat_div_upper 1 ⟨x, hx⟩)
     simpa only [ne_eq] using this
 
+/--
+@isnad1 id=eqon.0h0v.s6.09c2de814461 from=translated src=- shape=816eb721 vocab=ea83b267
+-/
 lemma eta_equality : {z : ℂ | 0 < z.im}.EqOn ((η ∘ (fun z : ℂ => -1/z)))
    ((csqrt (Complex.I))⁻¹ • ((csqrt) * η)) := by
   have h := eta_logderivs_const

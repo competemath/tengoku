@@ -69,6 +69,9 @@ makes `step` at `m = 1`
 weaker than the true flow bound and hence implied by it, and reads only real rungs at `m ≥ 2`. -/
 def rungWeight (ko kh m : ℕ) : ℕ := ko + (m - 1) * (kh - 1)
 
+/--
+@isnad1 id=eq.0h2v.s3.aac929b75db0 from=translated src=- shape=2d8bf611 vocab=cfaf5310
+-/
 @[simp] lemma rungWeight_one (ko kh : ℕ) : rungWeight ko kh 1 = ko := by
   simp [rungWeight]
 

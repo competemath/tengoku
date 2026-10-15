@@ -71,7 +71,9 @@ def oracle (s : Fin (2 ^ n)) : WalshHadamard.Oracle n := fun x => dotParity x s
 
 /-! ### Walsh-sign algebra -/
 
-/-- The bitwise inner-product parity is symmetric. -/
+/-- The bitwise inner-product parity is symmetric.
+@isnad1 id=eq.0h3v.s5.a328cce087db from=translated src=- shape=b87f2eb2 vocab=bca3c068
+-/
 theorem dotParity_comm (x y : Fin (2 ^ n)) : dotParity x y = dotParity y x := by
   have hset : (Finset.univ.filter fun k : Fin n => bit x k && bit y k)
       = Finset.univ.filter fun k : Fin n => bit y k && bit x k := by
@@ -81,12 +83,16 @@ theorem dotParity_comm (x y : Fin (2 ^ n)) : dotParity x y = dotParity y x := by
   unfold WalshHadamard.dotParity
   rw [hset]
 
-/-- The Walsh sign is symmetric. -/
+/-- The Walsh sign is symmetric.
+@isnad1 id=eq.0h3v.s5.6a3c9ce655cf from=translated src=- shape=b87f2eb2 vocab=1dbffb71
+-/
 theorem walshSign_comm (x y : Fin (2 ^ n)) : walshSign x y = walshSign y x := by
   unfold WalshHadamard.walshSign
   rw [dotParity_comm]
 
-/-- A Walsh sign squares to `1`. -/
+/-- A Walsh sign squares to `1`.
+@isnad1 id=eq.0h3v.s6.91fd66ba024e from=translated src=- shape=86276452 vocab=edabde8f
+-/
 theorem walshSign_mul_self (x y : Fin (2 ^ n)) :
     walshSign x y * walshSign x y = 1 := by
   simp_all
@@ -98,6 +104,9 @@ def flipBit (x : Fin (2 ^ n)) (k : Fin n) : Fin (2 ^ n) :=
   ⟨x.val ^^^ 2 ^ k.val,
     Nat.xor_lt_two_pow x.isLt (Nat.pow_lt_pow_right one_lt_two k.isLt)⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.6e9b9b318b68 from=translated src=- shape=c382f986 vocab=4efe80ba
+-/
 theorem bit_flipBit (x : Fin (2 ^ n)) (k k' : Fin n) :
     bit (flipBit x k) k' = (bit x k' ^^ decide (k = k')) := by
   change (x.val ^^^ 2 ^ k.val).testBit k'.val = (bit x k' ^^ decide (k = k'))
@@ -106,19 +115,27 @@ theorem bit_flipBit (x : Fin (2 ^ n)) (k k' : Fin n) :
   rw [decide_eq_decide]
   exact Fin.val_inj
 
+/--
+@isnad1 id=eq.0h3v.s5.93fa66b628e2 from=translated src=- shape=616d8564 vocab=4734e32f
+-/
 theorem flipBit_flipBit (x : Fin (2 ^ n)) (k : Fin n) :
     flipBit (flipBit x k) k = x := by
   unfold flipBit
   ext
   simp [Nat.xor_assoc]
 
+/--
+@isnad1 id=ne.0h3v.s5.c7c5134bfe26 from=translated src=- shape=e54f5098 vocab=4734e32f
+-/
 theorem flipBit_ne (x : Fin (2 ^ n)) (k : Fin n) : flipBit x k ≠ x := by
   intro h
   have hb := congrArg (fun y : Fin (2 ^ n) => bit y k) h
   simp [bit_flipBit] at hb
 
 /-- Flipping bit `k` of `x` toggles the parity `x · z` exactly when bit `k`
-of `z` is set. -/
+of `z` is set.
+@isnad1 id=eq.0h4v.s5.6207a0764645 from=translated src=- shape=3042ad04 vocab=bfb89ed5
+-/
 theorem dotParity_flipBit (x z : Fin (2 ^ n)) (k : Fin n) :
     dotParity (flipBit x k) z = (dotParity x z ^^ bit z k) := by
   unfold WalshHadamard.dotParity
@@ -159,7 +176,9 @@ theorem dotParity_flipBit (x z : Fin (2 ^ n)) (k : Fin n) :
       rw [hset, Finset.card_insert_of_notMem hnot, ← decide_not,
         decide_eq_decide, Nat.odd_add_one]
 
-/-- Two distinct labels differ at some bit. -/
+/-- Two distinct labels differ at some bit.
+@isnad1 id=ex.1h3v.s6.c0b520a5a4f4 from=translated src=- shape=c81939e9 vocab=c2cb361a
+-/
 theorem exists_bit_ne {y s : Fin (2 ^ n)} (h : y ≠ s) :
     ∃ k : Fin n, bit y k ≠ bit s k := by
   by_contra hall
@@ -177,7 +196,9 @@ private theorem if_xor_true (a : Bool) :
   cases a <;> simp
 
 /-- Flipping a bit on which `y` and `s` disagree negates the product of their
-Walsh signs. -/
+Walsh signs.
+@isnad1 id=eq.1h5v.s6.560f971c28d3 from=translated src=- shape=474f9b38 vocab=f4abe014
+-/
 theorem walshSign_mul_walshSign_flipBit {y s : Fin (2 ^ n)} {k : Fin n}
     (hk : bit y k ≠ bit s k) (x : Fin (2 ^ n)) :
     walshSign y (flipBit x k) * walshSign s (flipBit x k)
@@ -194,7 +215,9 @@ theorem walshSign_mul_walshSign_flipBit {y s : Fin (2 ^ n)} {k : Fin n}
   · exact absurd (hy.trans hs.symm) hk
 
 /-- Walsh-character orthogonality: for `y ≠ s` the signed sum over all basis
-labels cancels in pairs under the bit-flip involution. -/
+labels cancels in pairs under the bit-flip involution.
+@isnad1 id=eq.1h3v.s7.37dfd2147a4c from=translated src=- shape=9f7f3636 vocab=c8a4507c
+-/
 theorem sum_walshSign_mul_walshSign {y s : Fin (2 ^ n)} (h : y ≠ s) :
     ∑ x, walshSign y x * walshSign s x = 0 := by
   obtain ⟨k, hk⟩ := exists_bit_ne h
@@ -207,14 +230,18 @@ theorem sum_walshSign_mul_walshSign {y s : Fin (2 ^ n)} (h : y ≠ s) :
 /-! ### Circuit correctness -/
 
 /-- Querying the inner-product oracle phases each basis label by its Walsh
-sign with the hidden string [dW19, qcnotes.tex:1293]. -/
+sign with the hidden string [dW19, qcnotes.tex:1293].
+@isnad1 id=eq.0h3v.s5.8d1c7dcd1329 from=translated src=- shape=b4fa7ce5 vocab=589620bd
+-/
 theorem phaseSign_oracle (s x : Fin (2 ^ n)) :
     phaseSign (oracle s) x = walshSign s x := by
   unfold WalshHadamard.phaseSign WalshHadamard.walshSign oracle
   rw [dotParity_comm]
 
 /-- The second Hadamard layer maps the Bernstein-Vazirani phase pattern
-exactly to the classical state `|s⟩` [dW19, qcnotes.tex:1296]. -/
+exactly to the classical state `|s⟩` [dW19, qcnotes.tex:1296].
+@isnad1 id=eq.0h2v.s5.33fdafbe9eb2 from=translated src=- shape=a2128866 vocab=033c625c
+-/
 theorem finalState_oracle (s : Fin (2 ^ n)) :
     finalState (oracle s) = ket s := by
   ext y
@@ -234,10 +261,16 @@ theorem finalState_oracle (s : Fin (2 ^ n)) :
 def timedFinalJointState (s : Fin (2 ^ n)) : Timed (PureState (n + 1)) :=
   Timed.trusted 1 (WalshHadamard.finalJointState (oracle s))
 
+/--
+@isnad1 id=eq.0h2v.s5.3fde63a4b08e from=translated src=- shape=11a83284 vocab=f2500fa4
+-/
 @[simp]
 theorem timedFinalJointState_ret (s : Fin (2 ^ n)) :
     (timedFinalJointState s).ret = WalshHadamard.finalJointState (oracle s) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.01a3e775bf95 from=translated src=- shape=4c0fefd3 vocab=b9b331bf
+-/
 @[simp]
 theorem timedFinalJointState_time (s : Fin (2 ^ n)) :
     (timedFinalJointState s).time = 1 := rfl
@@ -250,18 +283,30 @@ def resourceProfile (n : ℕ) : ResourceProfile where
   elementaryGates := 2 * n + 1
   classicalOps := 0
 
+/--
+@isnad1 id=eq.0h1v.s3.a3e770c05ca6 from=translated src=- shape=3c43d5e2 vocab=5515efab
+-/
 @[simp]
 theorem resourceProfile_oracleQueries (n : ℕ) :
     (resourceProfile n).oracleQueries = 1 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.08c1a288668e from=translated src=- shape=de3fa9a7 vocab=c1cca527
+-/
 @[simp]
 theorem resourceProfile_hadamardGates (n : ℕ) :
     (resourceProfile n).hadamardGates = 2 * n + 1 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.a22bb4e6ec72 from=translated src=- shape=de3fa9a7 vocab=81c38273
+-/
 @[simp]
 theorem resourceProfile_elementaryGates (n : ℕ) :
     (resourceProfile n).elementaryGates = 2 * n + 1 := rfl
 
+/--
+@isnad1 id=hasexact.0h1v.s6.ad2bd3ddd7b3 from=translated src=- shape=7f47424d vocab=43e3e927
+-/
 theorem resourceProfile_exact (n : ℕ) :
     ResourceProfile.HasExactCounts (resourceProfile n) 1 (2 * n + 1) (2 * n + 1) 0 := by
   simp [ResourceProfile.HasExactCounts, resourceProfile]
@@ -270,10 +315,16 @@ theorem resourceProfile_exact (n : ℕ) :
 def profiledFinalJointState (s : Fin (2 ^ n)) : Profiled (PureState (n + 1)) :=
   Profiled.trusted (resourceProfile n) (WalshHadamard.finalJointState (oracle s))
 
+/--
+@isnad1 id=eq.0h2v.s5.9561394ee512 from=translated src=- shape=11a83284 vocab=626961b5
+-/
 @[simp]
 theorem profiledFinalJointState_ret (s : Fin (2 ^ n)) :
     (profiledFinalJointState s).ret = WalshHadamard.finalJointState (oracle s) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.ff2845838ad0 from=translated src=- shape=7d2ae543 vocab=c26c32ac
+-/
 @[simp]
 theorem profiledFinalJointState_resources (s : Fin (2 ^ n)) :
     (profiledFinalJointState s).resources = resourceProfile n := rfl
@@ -281,20 +332,26 @@ theorem profiledFinalJointState_resources (s : Fin (2 ^ n)) :
 /-- **Bernstein-Vazirani correctness**: running the Deutsch-Jozsa circuit
 with the inner-product oracle of hidden string `s` leaves the joint register
 in exactly `|s⟩ ⊗ |−⟩` [dW19, qcnotes.tex:1296], so a single query recovers
-the hidden string (Bernstein and Vazirani 1997). -/
+the hidden string (Bernstein and Vazirani 1997).
+@isnad1 id=eq.0h2v.s5.d933fac2e4a0 from=translated src=- shape=ec176b5d vocab=eaf4340e
+-/
 theorem main (s : Fin (2 ^ n)) :
     WalshHadamard.finalJointState (oracle s)
       = (ket s).tensor ketMinus := by
   rw [WalshHadamard.finalJointState_eq_finalState_tensor,
     finalState_oracle]
 
-/-- Bernstein-Vazirani correctness, phrased through the TimeM return value. -/
+/-- Bernstein-Vazirani correctness, phrased through the TimeM return value.
+@isnad1 id=eq.0h2v.s6.f6f2ee470294 from=translated src=- shape=5a62121f vocab=9f522565
+-/
 theorem timedFinalJointState_correct (s : Fin (2 ^ n)) :
     (timedFinalJointState s).ret = (ket s).tensor ketMinus := by
   exact main s
 
 /-- Bernstein-Vazirani supporting theorem for the public statement: the profiled
-circuit returns `|s⟩ ⊗ |-⟩` and records the accepted exact resource counts. -/
+circuit returns `|s⟩ ⊗ |-⟩` and records the accepted exact resource counts.
+@isnad1 id=and.0h2v.s7.9cbc34f9d27c from=translated src=- shape=be042528 vocab=286ca1ec
+-/
 theorem main_with_resources (s : Fin (2 ^ n)) :
     (profiledFinalJointState s).ret = (ket s).tensor ketMinus ∧
       ResourceProfile.HasExactCounts (profiledFinalJointState s).resources

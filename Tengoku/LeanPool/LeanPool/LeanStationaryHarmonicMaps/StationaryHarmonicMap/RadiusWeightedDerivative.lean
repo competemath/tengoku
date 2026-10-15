@@ -26,7 +26,9 @@ open scoped Topology BigOperators ENNReal
 namespace LeanStationaryHarmonicMaps
 namespace StationaryHarmonicMap
 
-/-- A bounded interval-indicator radius coefficient preserves ball integrability. -/
+/-- A bounded interval-indicator radius coefficient preserves ball integrability.
+@isnad1 id=integrab.1h6v.s9.b37705480061 from=translated src=- shape=700742b3 vocab=b6ccb029
+-/
 theorem integrable_indicatorConst_norm_mul_of_integrableOn_ball
     {n : ℕ} {f : Domain n → ℝ} {a b R0 k : ℝ}
     (hf : IntegrableOn f (Metric.ball (0 : Domain n) R0) volume) :
@@ -62,7 +64,9 @@ theorem integrable_indicatorConst_norm_mul_of_integrableOn_ball
       (g := f) (C := ‖k‖) hf hcoeff_meas hcoeff_bound).integrable
 
 /-- A bounded interval-indicator radius coefficient preserves integrability of
-the derivative of the ball-integral radius function on `(0, R0)`. -/
+the derivative of the ball-integral radius function on `(0, R0)`.
+@isnad1 id=integrab.4h6v.s8.daf40d07c175 from=translated src=- shape=fbf846a9 vocab=55ca3d37
+-/
 theorem integrable_indicatorConst_mul_deriv_ballIntegral_on_radiusInterval
     {n : ℕ}
     {f : Domain n → ℝ} {a b R0 k : ℝ}
@@ -100,7 +104,9 @@ theorem integrable_indicatorConst_mul_deriv_ballIntegral_on_radiusInterval
   simpa [F] using hderiv.bdd_mul hcoeff_meas hcoeff_bound
 
 /-- An arbitrary admissible radius weight preserves integrability of the
-derivative of the ball-integral radius function on `(0, R0)`. -/
+derivative of the ball-integral radius function on `(0, R0)`.
+@isnad1 id=integrab.3h4v.s8.a777b0309d1a from=translated src=- shape=3f2d5cf8 vocab=93ea00ce
+-/
 theorem RadiusWeightOn.integrable_mul_deriv_ballIntegral_on_radiusInterval
     {n : ℕ}
     {f : Domain n → ℝ} {R0 : ℝ} {c : ℝ → ℝ}
@@ -128,7 +134,9 @@ theorem RadiusWeightOn.integrable_mul_deriv_ballIntegral_on_radiusInterval
 /-- Finite linear combinations of interval indicators satisfy the radius
 derivative formula, once the finite-sum integrability needed for Bochner
 linearity is supplied.  The next measure-theoretic step is to discharge those
-integrability hypotheses from boundedness of the weights. -/
+integrability hypotheses from boundedness of the weights.
+@isnad1 id=eq.7h8v.s11.995e8ae87345 from=translated src=- shape=8b480dd8 vocab=6e66f7df
+-/
 theorem ballIntegralRadiusDerivativeFormulaForFiniteIndicatorConst_Ioo
     {n : ℕ} [NeZero n]
     {ι : Type*} {s : Finset ι}
@@ -216,7 +224,9 @@ theorem ballIntegralRadiusDerivativeFormulaForFiniteIndicatorConst_Ioo
 /-- Finite linear combinations of interval indicators satisfy the radius
 derivative formula.  The integrability side conditions are automatic from
 boundedness of the interval-indicator coefficients and absolute continuity of
-the ball-integral radius function. -/
+the ball-integral radius function.
+@isnad1 id=eq.5h8v.s10.f6a3a19d7168 from=translated src=- shape=9a48e940 vocab=207992d3
+-/
 theorem ballIntegralRadiusDerivativeFormulaForFiniteIndicatorConst_Ioo_of_radius_ac
     {n : ℕ} [NeZero n]
     {ι : Type*} {s : Finset ι}
@@ -248,7 +258,9 @@ theorem ballIntegralRadiusDerivativeFormulaForFiniteIndicatorConst_Ioo_of_radius
 /-- A dominated-convergence transfer principle for passing the radius derivative
 formula from approximating radius weights to the limiting radius weight.  This
 is the measure-theoretic bridge needed after constructing finite interval-step
-approximations of a general admissible radius weight. -/
+approximations of a general admissible radius weight.
+@isnad1 id=eq.9h7v.s12.39f2fa796365 from=translated src=- shape=4ae130f1 vocab=5724cd98
+-/
 theorem ballIntegralRadiusDerivativeFormula_of_dominated_approx
     {n : ℕ}
     {f : Domain n → ℝ} {R0 : ℝ}
@@ -345,7 +357,9 @@ theorem ballIntegralRadiusDerivativeFormula_of_dominated_approx
 
 /-- The radius derivative formula is unchanged under a.e. modification of the
 radius weight, provided the pulled-back spatial coefficient is also unchanged
-a.e. on the ball. -/
+a.e. on the ball.
+@isnad1 id=eq.3h5v.s11.0fe18fd96317 from=translated src=- shape=8e5b4f85 vocab=a7fd7311
+-/
 theorem ballIntegralRadiusDerivativeFormula_congr_ae_weight
     {n : ℕ}
     {f : Domain n → ℝ} {R0 : ℝ} {c d : ℝ → ℝ}
@@ -388,7 +402,9 @@ theorem ballIntegralRadiusDerivativeFormula_congr_ae_weight
         exact integral_congr_ae hright
 
 /-- A finite interval-step approximation of a radius weight upgrades the
-finite-interval radius derivative formula to that limiting weight. -/
+finite-interval radius derivative formula to that limiting weight.
+@isnad1 id=eq.4h4v.s10.8319fca60420 from=translated src=- shape=2fd48232 vocab=90bd9ffa
+-/
 theorem ballIntegralRadiusDerivativeFormula_of_finiteIntervalStepApprox
     {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {R0 : ℝ} {c : ℝ → ℝ}
@@ -511,7 +527,9 @@ theorem ballIntegralRadiusDerivativeFormula_of_finiteIntervalStepApprox
 
 /-- A finite interval-step approximation away from a countable exceptional set
 also upgrades the finite-interval radius derivative formula to the limiting
-weight. -/
+weight.
+@isnad1 id=eq.4h4v.s10.c706ab383ae9 from=translated src=- shape=2fd48232 vocab=a85b39ed
+-/
 theorem ballIntegralRadiusDerivativeFormula_of_finiteIntervalStepApproxAE
     {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {R0 : ℝ} {c : ℝ → ℝ}
@@ -646,7 +664,9 @@ theorem ballIntegralRadiusDerivativeFormula_of_finiteIntervalStepApproxAE
 /-- Local one-dimensional derivative identification for the radial density
 obtained from all restricted radius-weighted integral identities.  On every
 compact subinterval of `(0, R0)`, the representing density agrees a.e. with the
-derivative of the ball integral radius function. -/
+derivative of the ball integral radius function.
+@isnad1 id=eventual.6h6v.s10.8b5c4987e4b0 from=translated src=- shape=6922c5cd vocab=0239f859
+-/
 theorem ballIntegralRadiusDerivativeIdentificationForWeights_on_Ioo
     {n : ℕ} [NeZero n]
     {f : Domain n → ℝ} {R0 : ℝ} {D : ℝ → ℝ} {a b : ℝ}
@@ -740,7 +760,9 @@ theorem ballIntegralRadiusDerivativeIdentificationForWeights_on_Ioo
     _ = D rho := hG_deriv.deriv
 
 /-- The restricted-weight radial representation determines the a.e. derivative
-of the ball integral radius function on the whole radius interval. -/
+of the ball integral radius function on the whole radius interval.
+@isnad1 id=ballinte.0h1v.s2.b6f7c82f3bb7 from=translated src=- shape=5c11bb93 vocab=ef01d26c
+-/
 theorem ballIntegralRadiusDerivativeIdentificationForWeights (n : ℕ) :
     BallIntegralRadiusDerivativeIdentificationForWeights n := by
   intro hne f R0 D hf hD_loc hweighted
@@ -766,7 +788,9 @@ theorem ballIntegralRadiusDerivativeIdentificationForWeights (n : ℕ) :
   simpa [hset] using hlocal
 
 /-- Unrestricted radius-weighted identities imply the same derivative
-identification, by forgetting the restriction on test weights. -/
+identification, by forgetting the restriction on test weights.
+@isnad1 id=ballinte.0h1v.s2.2069ff723084 from=translated src=- shape=5c11bb93 vocab=917038c8
+-/
 theorem ballIntegralRadiusDerivativeIdentification (n : ℕ) :
     BallIntegralRadiusDerivativeIdentification n := by
   intro hne f R0 D hf hD_loc hweighted
@@ -778,7 +802,9 @@ theorem ballIntegralRadiusDerivativeIdentification (n : ℕ) :
 
 /-- After the derivative-identification theorem is proved, a restricted
 weighted radial representation alone gives the combined radial-density
-representation. -/
+representation.
+@isnad1 id=ballinte.1h1v.s2.643cddc4c06c from=translated src=- shape=6321fd23 vocab=257e2c93
+-/
 theorem ballIntegralRadiusDerivativeRepresentationForWeights_of_weightedRepresentation_identified
     {n : ℕ}
     (hweighted : BallIntegralRadiusWeightedRepresentationForWeights n) :
@@ -788,7 +814,9 @@ theorem ballIntegralRadiusDerivativeRepresentationForWeights_of_weightedRepresen
 
 /-- After the derivative-identification theorem is proved, a restricted
 weighted radial representation alone gives the packaged radius-derivative
-formula. -/
+formula.
+@isnad1 id=ballinte.1h1v.s2.6c09023315f1 from=translated src=- shape=6321fd23 vocab=d988250d
+-/
 theorem ballIntegralRadiusDerivativeFormulaForWeights_of_weightedRepresentation_identified
     {n : ℕ}
     (hweighted : BallIntegralRadiusWeightedRepresentationForWeights n) :
@@ -798,7 +826,9 @@ theorem ballIntegralRadiusDerivativeFormulaForWeights_of_weightedRepresentation_
 
 /-- After the unrestricted derivative-identification theorem is proved, an
 unrestricted weighted radial representation alone gives the combined
-radial-density representation. -/
+radial-density representation.
+@isnad1 id=ballinte.1h1v.s2.457a5adeea6b from=translated src=- shape=6321fd23 vocab=254b2b5b
+-/
 theorem ballIntegralRadiusDerivativeRepresentation_of_weightedRepresentation_identified
     {n : ℕ}
     (hweighted : BallIntegralRadiusWeightedRepresentation n) :
@@ -808,7 +838,9 @@ theorem ballIntegralRadiusDerivativeRepresentation_of_weightedRepresentation_ide
 
 /-- After the unrestricted derivative-identification theorem is proved, an
 unrestricted weighted radial representation alone gives the packaged
-radius-derivative formula. -/
+radius-derivative formula.
+@isnad1 id=ballinte.1h1v.s2.ee139889f8c0 from=translated src=- shape=6321fd23 vocab=477849e2
+-/
 theorem ballIntegralRadiusDerivativeFormula_of_weightedRepresentation_identified
     {n : ℕ}
     (hweighted : BallIntegralRadiusWeightedRepresentation n) :

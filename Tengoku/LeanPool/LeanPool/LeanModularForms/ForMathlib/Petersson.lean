@@ -25,6 +25,9 @@ open scoped Real ComplexConjugate
 
 namespace ModularFormClass
 
+/--
+@isnad1 id=continuo.0h6v.s8.f74e2001085d from=translated src=- shape=e22ad9d3 vocab=fe983ec7
+-/
 lemma petersson_continuous (k : ℤ) (Γ : Subgroup SL(2, ℤ)) {F F' : Type*}
     [FunLike F ℍ ℂ] [ModularFormClass F Γ k]
     [FunLike F' ℍ ℂ] [ModularFormClass F' Γ k] (f : F) (f' : F') :

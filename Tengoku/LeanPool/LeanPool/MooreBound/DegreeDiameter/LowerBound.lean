@@ -51,6 +51,9 @@ def submoduleProdEquiv (P : Submodule K X) (Q : Submodule K Y) :
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.8159c5a5c32b from=translated src=- shape=78ec73bd vocab=8eaa11d5
+-/
 theorem finrank_submodule_prod
     [FiniteDimensional K X] [FiniteDimensional K Y]
     (P : Submodule K X) (Q : Submodule K Y) :
@@ -136,6 +139,9 @@ noncomputable def prependTwoComplete (F : CompleteFlag K Y m) :
 def shiftedRank (m : ℕ) (i : Fin (m + 1)) : Fin ((m + 2) + 1) :=
   ⟨i.val + 2, by omega⟩
 
+/--
+@isnad1 id=eq.0h5v.s9.e574b036015c from=translated src=- shape=2211c1cd vocab=ca4468e3
+-/
 @[simp]
 theorem prependTwoComplete_shifted (F : CompleteFlag K Y m) (i : Fin (m + 1)) :
     prependTwoComplete F (shiftedRank m i) =
@@ -147,12 +153,17 @@ def skewEquiv (L : (Fin 2 → K) →ₗ[K] Y) :
     ((Fin 2 → K) × Y) ≃ₗ[K] ((Fin 2 → K) × Y) :=
   (LinearEquiv.refl K (Fin 2 → K)).skewProd (LinearEquiv.refl K Y) L
 
+/--
+@isnad1 id=eq.0h4v.s10.b2f614418b50 from=translated src=- shape=21dfe6cc vocab=dd0e7718
+-/
 @[simp]
 theorem skewEquiv_apply (L : (Fin 2 → K) →ₗ[K] Y) (z : (Fin 2 → K) × Y) :
     skewEquiv L z = (z.1, z.2 + L z.1) := rfl
 
 /-- The image of the horizontal two-space under the skew equivalence is the
-graph of `L`. -/
+graph of `L`.
+@isnad1 id=eq.0h3v.s10.829f8183aa32 from=translated src=- shape=48ed32e7 vocab=5a496b4c
+-/
 theorem map_top_prod_bot_skewEquiv (L : (Fin 2 → K) →ₗ[K] Y) :
     ((⊤ : Submodule K (Fin 2 → K)).prod (⊥ : Submodule K Y)).map
       (skewEquiv L).toLinearMap = L.graph := by
@@ -169,6 +180,9 @@ theorem map_top_prod_bot_skewEquiv (L : (Fin 2 → K) →ₗ[K] Y) :
     · rfl
     · simpa using hz.symm
 
+/--
+@isnad1 id=injectiv.0h2v.s8.4c732deb91c9 from=translated src=- shape=03f52e67 vocab=e1391c73
+-/
 theorem linearMap_graph_injective :
     Function.Injective (fun L : (Fin 2 → K) →ₗ[K] Y ↦ L.graph) := by
   intro L M h
@@ -184,6 +198,9 @@ noncomputable def skewPrependComplete (L : (Fin 2 → K) →ₗ[K] Y)
     (F : CompleteFlag K Y m) : CompleteFlag K ((Fin 2 → K) × Y) (m + 2) :=
   (prependTwoComplete F).map (skewEquiv L)
 
+/--
+@isnad1 id=eq.0h6v.s10.a95e1821656d from=translated src=- shape=7bb23d74 vocab=427df516
+-/
 @[simp]
 theorem skewPrependComplete_shifted (L : (Fin 2 → K) →ₗ[K] Y)
     (F : CompleteFlag K Y m) (i : Fin (m + 1)) :
@@ -191,13 +208,18 @@ theorem skewPrependComplete_shifted (L : (Fin 2 → K) →ₗ[K] Y)
       ((⊤ : Submodule K (Fin 2 → K)).prod (F i)).map (skewEquiv L).toLinearMap := by
   simp [skewPrependComplete, prependTwoComplete_shifted]
 
+/--
+@isnad1 id=eq.0h5v.s9.bf4238148d26 from=translated src=- shape=c790799a vocab=cc02b3c4
+-/
 theorem skewPrependComplete_rank_two (L : (Fin 2 → K) →ₗ[K] Y)
     (F : CompleteFlag K Y m) :
     skewPrependComplete L F (shiftedRank m 0) = L.graph := by
   rw [skewPrependComplete_shifted, F.space_zero, map_top_prod_bot_skewEquiv]
 
 /-- Equality of the new even parts recovers both the graph parameter and the
-old even part. -/
+old even part.
+@isnad1 id=and.1h7v.s9.bb0fcf1b59d1 from=translated src=- shape=6b762daf vocab=97fab6ad
+-/
 theorem skewPrepend_evenPart_recover
     {L M : (Fin 2 → K) →ₗ[K] Y} {F G : CompleteFlag K Y m}
     (h : PartialFlag.ofComplete 0 (skewPrependComplete L F) =
@@ -252,6 +274,9 @@ noncomputable def representativeComplete {V : Type*} [AddCommGroup V] [Module K 
     {n parity : ℕ} (P : PartialFlag (K := K) (V := V) (n := n) parity) :
     CompleteFlag K V n := Classical.choose P.property
 
+/--
+@isnad1 id=eq.0h5v.s6.8b1dd030db55 from=translated src=- shape=ced11b1f vocab=77ea29ad
+-/
 theorem representativeComplete_part {V : Type*} [AddCommGroup V] [Module K V]
     {n parity : ℕ} (P : PartialFlag (K := K) (V := V) (n := n) parity) :
     PartialFlag.ofComplete parity (representativeComplete K P) = P := by
@@ -268,6 +293,9 @@ noncomputable def bigCellFlag : ∀ k : ℕ, BigCell K k →
       PartialFlag.ofComplete 0
         (skewPrependComplete z.1 (representativeComplete K P))
 
+/--
+@isnad1 id=injectiv.0h2v.s5.541bd1261acc from=translated src=- shape=c8070b95 vocab=0e057344
+-/
 theorem bigCellFlag_injective : ∀ k : ℕ, Function.Injective (bigCellFlag K k) := by
   intro k
   induction k with
@@ -293,6 +321,9 @@ theorem bigCellFlag_injective : ∀ k : ℕ, Function.Injective (bigCellFlag K k
           _ = bigCellFlag K k y.2 := representativeComplete_part K _
       exact Prod.ext hmap (ih hold)
 
+/--
+@isnad1 id=eq.0h2v.s7.b4493a2f4995 from=translated src=- shape=937565f4 vocab=ab9ada0f
+-/
 theorem natCard_linearMap_from_two (k : ℕ) :
     Nat.card ((Fin 2 → K) →ₗ[K] FlagSpace K k) =
       Nat.card K ^ (2 * flagDim k) := by
@@ -309,6 +340,9 @@ theorem natCard_linearMap_from_two (k : ℕ) :
       congr 1
       omega
 
+/--
+@isnad1 id=eq.0h2v.s5.1ada813394f4 from=translated src=- shape=6035f9c9 vocab=cabce50d
+-/
 theorem natCard_bigCell (k : ℕ) :
     Nat.card (BigCell K k) = Nat.card K ^ (2 * k * k) := by
   induction k with
@@ -322,7 +356,9 @@ theorem natCard_bigCell (k : ℕ) :
       ring
 
 /-- The `2*k²`-dimensional affine cell gives the required vertex lower
-bound. -/
+bound.
+@isnad1 id=le.0h2v.s6.714b79fd492a from=translated src=- shape=53015a24 vocab=6269a3af
+-/
 theorem natCard_evenPartialFlag_lower [Finite K] (k : ℕ) :
     Nat.card K ^ (2 * k * k) ≤
       Nat.card (EvenPartialFlag (K := K) (V := FlagSpace K k) (n := flagDim k)) := by

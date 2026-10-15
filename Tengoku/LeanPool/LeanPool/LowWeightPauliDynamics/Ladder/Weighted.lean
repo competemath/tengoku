@@ -88,7 +88,9 @@ variable {c : ℕ → ℝ} {M : ℝ} (L : WeightedLadder c M)
 
 /-- Iterating the flow recursion over the `g` layers, using `N m 0 = 0` for `m ≥ 1` to kill the
 boundary term. The rung-dependent analogue of `Lean4LPD.Ladder.step_iterate`; like it, this needs
-no sign hypothesis on `c`. -/
+no sign hypothesis on `c`.
+@isnad1 id=le.1h5v.s6.23c497f69dbf from=translated src=- shape=169742f3 vocab=09980e0c
+-/
 lemma step_iterate {m : ℕ} (hm : 1 ≤ m) :
     ∀ g : ℕ, L.N m g ≤ c m * ∑ l ∈ range g, L.N (m - 1) l := by
   intro g
@@ -107,7 +109,9 @@ lemma step_iterate {m : ℕ} (hm : 1 ≤ m) :
 
 The same induction as `Lean4LPD.Ladder.cumulation`: iterate the recursion over `g`, insert the
 inductive hypothesis, and close with the hockey-stick identity. Only `0 ≤ c j` is needed, never
-`c j ≤ 1`, even though the intended `c j = w_{j+1} sin(dt)` need not be below one. -/
+`c j ≤ 1`, even though the intended `c j = w_{j+1} sin(dt)` need not be below one.
+@isnad1 id=le.1h5v.s6.99e0bccf30ed from=translated src=- shape=9c4ef6bc vocab=fc089544
+-/
 theorem cumulation (hc : ∀ j, 0 ≤ c j) :
     ∀ m g : ℕ, L.N m g ≤ (g.choose m : ℝ) * (∏ j ∈ Icc 1 m, c j) * M := by
   intro m
@@ -136,7 +140,9 @@ theorem cumulation (hc : ∀ j, 0 ≤ c j) :
 end WeightedLadder
 
 /-- The product reindexing relating the two ways of writing part (ii) of
-`apd:cor:norm_cumulation_jump`: `∏_{j=1}^{m} (w_{j+1} · a) = a^m · ∏_{j=2}^{m+1} w_j`. -/
+`apd:cor:norm_cumulation_jump`: `∏_{j=1}^{m} (w_{j+1} · a) = a^m · ∏_{j=2}^{m+1} w_j`.
+@isnad1 id=eq.0h3v.s6.47257dd4d594 from=translated src=- shape=b84da8ae vocab=c282a4bf
+-/
 lemma weighted_prod_eq (w : ℕ → ℝ) (a : ℝ) :
     ∀ m : ℕ, (∏ j ∈ Finset.Icc 1 m, w (j + 1) * a) = a ^ m * ∏ j ∈ Finset.Icc 2 (m + 1), w j := by
   intro m
@@ -161,7 +167,9 @@ for a ladder whose per-layer coefficient is the single-jump layer inflow `w_{m+1
 This counts **single-jump inflow only**, which is the scope of `apd:eq:layer_cumulation`. The
 multi-jump and overshoot sectors are additive, not multiplicative — a single layer can already
 truncate mass while `C(T,m)` is still zero — and are handled by the first-passage majorant of
-`apd:rmk:multijump` (`MultiLadder.le_majorant`), not here. -/
+`apd:rmk:multijump` (`MultiLadder.le_majorant`), not here.
+@isnad1 id=le.2h6v.s7.2abae1d35089 from=translated src=- shape=cad0e8f0 vocab=51a9a00d
+-/
 theorem layer_cumulation {M a : ℝ} {w : ℕ → ℝ} (ha : 0 ≤ a) (hw : ∀ j, 0 ≤ w j)
     (L : WeightedLadder (fun m => w (m + 1) * a) M) (m g : ℕ) :
     L.N m g ≤ (g.choose m : ℝ) * a ^ m * (∏ j ∈ Finset.Icc 2 (m + 1), w j) * M := by
@@ -206,7 +214,9 @@ noncomputable def satLadder {c : ℕ → ℝ} {M : ℝ} (hc : ∀ j, 0 ≤ c j) 
       ring_nf
       exact le_refl _
 
-/-- The bound of `cumulation` is **attained**: at the saturating family it is an equality. -/
+/-- The bound of `cumulation` is **attained**: at the saturating family it is an equality.
+@isnad1 id=eq.2h4v.s6.cb8f90d0f255 from=translated src=- shape=878a09fc vocab=e4dc7828
+-/
 lemma satLadder_cumulation_eq {c : ℕ → ℝ} {M : ℝ} (hc : ∀ j, 0 ≤ c j) (hM : 0 ≤ M) (m g : ℕ) :
     (satLadder hc hM).N m g = (g.choose m : ℝ) * (∏ j ∈ Icc 1 m, c j) * M := rfl
 

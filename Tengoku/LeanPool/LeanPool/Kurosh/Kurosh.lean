@@ -59,10 +59,16 @@ abbrev FreeProduct (G : ι → Type u) [∀ i, Group (G i)] := Monoid.CoprodI G
 def factorInclusion (G : ι → Type u) [∀ i, Group (G i)] (i : ι) :
     G i →* FreeProduct G := Monoid.CoprodI.of
 
+/--
+@isnad1 id=eq.0h4v.s8.f8757c64b8c9 from=translated src=- shape=c59a0a1e vocab=48647c6f
+-/
 @[simp]
 theorem factorInclusion_apply (G : ι → Type u) [∀ i, Group (G i)] (i : ι)
     (g : G i) : factorInclusion G i g = Monoid.CoprodI.of g := rfl
 
+/--
+@isnad1 id=injectiv.0h3v.s7.801d219709a3 from=translated src=- shape=244d6c60 vocab=c7671c73
+-/
 theorem factorInclusion_injective (G : ι → Type u) [∀ i, Group (G i)] (i : ι) :
     Function.Injective (factorInclusion G i) :=
   Monoid.CoprodI.of_injective i
@@ -79,6 +85,9 @@ appear literally in the Kurosh decomposition.
 def conjugateSubgroup {P : Type u} [Group P] (K : Subgroup P) (g : P) : Subgroup P :=
   K.map (MulAut.conj g)
 
+/--
+@isnad1 id=iff.0h4v.s6.6ebba2d8523c from=translated src=- shape=e7db6219 vocab=94e6ffac
+-/
 @[simp]
 theorem mem_conjugateSubgroup_iff {P : Type u} [Group P] (K : Subgroup P) (g x : P) :
     x ∈ conjugateSubgroup K g ↔ g⁻¹ * x * g ∈ K := by
@@ -99,6 +108,9 @@ def intersectionFactorInH {G : ι → Type u} [∀ i, Group (G i)]
     (H : Subgroup (FreeProduct G)) (i : ι) (g : FreeProduct G) : Subgroup H :=
   (intersectionFactor H i g).comap H.subtype
 
+/--
+@isnad1 id=mem.0h6v.s9.3a651b39aea8 from=translated src=- shape=3c0d51d0 vocab=7357f3b4
+-/
 theorem intersectionFactorInH_coe_mem {G : ι → Type u} [∀ i, Group (G i)]
     (H : Subgroup (FreeProduct G)) (i : ι) (g : FreeProduct G)
     (x : intersectionFactorInH H i g) :
@@ -149,16 +161,25 @@ def wordInv {G : ι → Type u} [∀ i, Group (G i)]
       apply (List.isChain_reverse).2
       simpa only using w.chain_ne.imp (fun _ _ h => Ne.symm h) }
 
+/--
+@isnad1 id=eq.0h3v.s7.76744982bb74 from=translated src=- shape=9b34ed92 vocab=6c1b322d
+-/
 @[simp]
 theorem wordInv_toList {G : ι → Type u} [∀ i, Group (G i)] (w : Word G) :
     (wordInv w).toList = w.toList.reverse.map (fun x : Σ i, G i => ⟨x.1, x.2⁻¹⟩) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.e14dfea9f614 from=translated src=- shape=a0cc2070 vocab=bf8714f6
+-/
 theorem wordInv_prod {G : ι → Type u} [∀ i, Group (G i)] (w : Word G) :
     (wordInv w).prod = w.prod⁻¹ := by
   simp [wordInv, Word.prod, List.map_reverse, List.map_map,
     Function.comp_def, List.prod_reverse_noncomm]
 
+/--
+@isnad1 id=eq.0h3v.s5.4455576b1c63 from=translated src=- shape=48ce14a6 vocab=dcea6be6
+-/
 @[simp]
 theorem wordInv_wordInv {G : ι → Type u} [∀ i, Group (G i)] (w : Word G) :
     wordInv (wordInv w) = w := by
@@ -175,6 +196,9 @@ private lemma head_reverse_map {α β : Type*} (f : α → β) (l : List α) :
   | nil => simp
   | append_singleton tl x ih => simp
 
+/--
+@isnad1 id=iff.0h4v.s6.a11da0b9b3ef from=translated src=- shape=5c386d62 vocab=81a057a4
+-/
 theorem wordLastIdx_ne_iff {G : ι → Type u} [∀ i, Group (G i)]
     (w : Word G) (i : ι) :
     wordLastIdx w ≠ some i ↔
@@ -200,6 +224,9 @@ noncomputable def rightHead {G : ι → Type u} [∀ i, Group (G i)] (i : ι) (w
   classical
   exact (Word.equivPair i (wordInv w)).head⁻¹
 
+/--
+@isnad1 id=ne.0h4v.s5.279a3e4cbd98 from=translated src=- shape=af3ea56e vocab=b904244c
+-/
 theorem rightTail_lastIdx_ne {G : ι → Type u} [∀ i, Group (G i)] (i : ι) (w : Word G) :
     wordLastIdx (rightTail i w) ≠ some i := by
   classical
@@ -216,6 +243,9 @@ noncomputable def rightTailCanonical {G : ι → Type u} [∀ i, Group (G i)]
     (i : ι) (w : Word G) : RightFactorWord (G := G) i :=
   ⟨rightTail i w, rightTail_lastIdx_ne i w⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.c23e23d1697a from=translated src=- shape=4498822c vocab=b904244c
+-/
 theorem rightTail_of_lastIdx_ne {G : ι → Type u} [∀ i, Group (G i)]
     (i : ι) (w : Word G) (hw : wordLastIdx w ≠ some i) :
     rightTail i w = w := by
@@ -224,6 +254,9 @@ theorem rightTail_of_lastIdx_ne {G : ι → Type u} [∀ i, Group (G i)]
   · simp
   · exact hw
 
+/--
+@isnad1 id=ne.1h4v.s8.7e8e3193badd from=translated src=- shape=698995f0 vocab=782768a1
+-/
 theorem equivPair_head_ne_one_of_fstIdx_eq {G : ι → Type u} [∀ i, Group (G i)]
     (i : ι) (w : Word G) (hwi : w.fstIdx = some i) :
     (Word.equivPair i w).head ≠ 1 := by
@@ -235,6 +268,9 @@ theorem equivPair_head_ne_one_of_fstIdx_eq {G : ι → Type u} [∀ i, Group (G 
   rw [htail]
   exact hwi
 
+/--
+@isnad1 id=ne.1h4v.s6.130f43060e97 from=translated src=- shape=e666390e vocab=2382fe36
+-/
 theorem rightHead_ne_one_of_lastIdx_eq {G : ι → Type u} [∀ i, Group (G i)]
     (i : ι) (w : Word G) (hwi : wordLastIdx w = some i) : rightHead i w ≠ 1 := by
   intro hhead
@@ -242,6 +278,9 @@ theorem rightHead_ne_one_of_lastIdx_eq {G : ι → Type u} [∀ i, Group (G i)]
   · simpa [wordLastIdx] using hwi
   · simpa [rightHead] using hhead
 
+/--
+@isnad1 id=eq.0h4v.s8.311745ddfd37 from=translated src=- shape=198ac7f5 vocab=7fae22b8
+-/
 theorem right_syllable_decomposition {G : ι → Type u} [∀ i, Group (G i)]
     (i : ι) (w : Word G) :
     w.prod = (rightTail i w).prod * Monoid.CoprodI.of (rightHead i w) := by
@@ -264,6 +303,9 @@ noncomputable def rightAppend {G : ι → Type u} [∀ i, Group (G i)]
   wordInv (Word.cons a⁻¹ (wordInv w)
     (by simpa [wordLastIdx] using hw) (inv_ne_one.mpr ha))
 
+/--
+@isnad1 id=eq.2h5v.s8.ce7090541b9a from=translated src=- shape=06dba01f vocab=80660b8f
+-/
 theorem wordInv_cons_rightAppend {G : ι → Type u} [∀ i, Group (G i)]
     (i : ι) (a : G i) (w : Word G) (hw : w.fstIdx ≠ some i) (ha : a ≠ 1) :
     rightAppend i (⟨wordInv w, by simpa [wordLastIdx] using hw⟩ : RightFactorWord (G := G) i)
@@ -271,6 +313,9 @@ theorem wordInv_cons_rightAppend {G : ι → Type u} [∀ i, Group (G i)]
       wordInv (Word.cons a w hw ha) := by
   simp only [rightAppend, inv_inv, wordInv_wordInv]
 
+/--
+@isnad1 id=eq.2h5v.s8.769c309d82c4 from=translated src=- shape=858191b2 vocab=4b227f98
+-/
 @[simp]
 theorem rightAppend_prod {G : ι → Type u} [∀ i, Group (G i)]
     (i : ι) (w : Word G) (a : G i) (ha : a ≠ 1)
@@ -293,6 +338,9 @@ private theorem equivPair_cons_rightAppend {G : ι → Type u} [∀ i, Group (G 
   · simp
   · simpa [wordLastIdx] using hw
 
+/--
+@isnad1 id=eq.2h5v.s6.87e6b07c4e52 from=translated src=- shape=6549bbde vocab=96df83a1
+-/
 theorem rightAppend_rightTail {G : ι → Type u} [∀ i, Group (G i)]
     (i : ι) (w : Word G) (a : G i) (ha : a ≠ 1)
     (hw : wordLastIdx w ≠ some i) :
@@ -302,6 +350,9 @@ theorem rightAppend_rightTail {G : ι → Type u} [∀ i, Group (G i)]
     equivPair_cons_rightAppend i w a ha hw]
   simp
 
+/--
+@isnad1 id=eq.2h5v.s6.c0822bb84345 from=translated src=- shape=b05b409e vocab=149da437
+-/
 theorem rightAppend_rightHead {G : ι → Type u} [∀ i, Group (G i)]
     (i : ι) (w : Word G) (a : G i) (ha : a ≠ 1)
     (hw : wordLastIdx w ≠ some i) :
@@ -311,6 +362,9 @@ theorem rightAppend_rightHead {G : ι → Type u} [∀ i, Group (G i)]
     equivPair_cons_rightAppend i w a ha hw]
   simp
 
+/--
+@isnad1 id=eq.1h5v.s9.557c2d4ba197 from=translated src=- shape=e12752d2 vocab=6f2edaa9
+-/
 theorem word_equiv_mul_rightAppend {G : ι → Type u} [∀ i, Group (G i)]
     (i : ι) (w : RightFactorWord (G := G) i) (a : G i) (ha : a ≠ 1) :
     Word.equiv (w.1.prod * Monoid.CoprodI.of a) =
@@ -321,6 +375,9 @@ theorem word_equiv_mul_rightAppend {G : ι → Type u} [∀ i, Group (G i)]
     (rightAppend i w.1 a ha w.2).prod
   rw [rightAppend_prod]
 
+/--
+@isnad1 id=eq.0h5v.s9.a73bbbd13738 from=translated src=- shape=02659b42 vocab=9d8705cc
+-/
 theorem rightTail_equiv_mul_factor {G : ι → Type u} [∀ i, Group (G i)]
     (i : ι) (w : RightFactorWord (G := G) i) (a : G i) :
     rightTail i (Word.equiv (w.1.prod * Monoid.CoprodI.of a)) = w.1 := by
@@ -334,6 +391,9 @@ theorem rightTail_equiv_mul_factor {G : ι → Type u} [∀ i, Group (G i)]
   · rw [word_equiv_mul_rightAppend i w a ha]
     exact rightAppend_rightTail i w.1 a ha w.2
 
+/--
+@isnad1 id=eq.1h7v.s9.e47d7147e97e from=translated src=- shape=702ffa2f vocab=6872737d
+-/
 theorem rightTail_eq_of_prod_eq_mul_factor {G : ι → Type u} [∀ i, Group (G i)]
     (i : ι) (w w' : RightFactorWord (G := G) i) (a a' : G i)
     (h : w.1.prod * Monoid.CoprodI.of a =
@@ -349,6 +409,9 @@ noncomputable def rightAppendCanonical {G : ι → Type u} [∀ i, Group (G i)]
     (i : ι) (w : RightFactorWord (G := G) i) (a : G i) (ha : a ≠ 1) : Word G :=
   rightAppend i w.1 a ha w.2
 
+/--
+@isnad1 id=eq.1h4v.s6.81f5ce8bc140 from=translated src=- shape=859c58dd vocab=cabc4cd8
+-/
 theorem rightAppendCanonical_of_lastIdx_eq {G : ι → Type u} [∀ i, Group (G i)]
     (i : ι) (w : Word G) (hwi : wordLastIdx w = some i) :
     rightAppendCanonical i (rightTailCanonical i w) (rightHead i w)
@@ -399,6 +462,9 @@ instance bassSerreQuiver {ι : Type v} (G : ι → Type u) [∀ i, Group (G i)] 
     Quiver (BassSerreVertex G) where
   Hom := BassSerreEdge G
 
+/--
+@isnad1 id=nonempty.0h3v.s6.75b839a48db5 from=translated src=- shape=564a564d vocab=e6ff0bfb
+-/
 theorem bassSerreWord_path {ι : Type v} (G : ι → Type u) [∀ i, Group (G i)]
     (w : Word G) :
     Nonempty (@Quiver.Path (Quiver.Symmetrify (BassSerreVertex G)) _
@@ -430,6 +496,9 @@ theorem bassSerreWord_path {ι : Type v} (G : ι → Type u) [∀ i, Group (G i)
         exact p.cons (Quiver.Hom.toPos e₁) |>.cons (Quiver.Hom.toPos e₂)
   simpa [root] using hpath (wordInv w)
 
+/--
+@isnad1 id=nonempty.0h4v.s5.58258b8cff4d from=translated src=- shape=f386aa31 vocab=c9bbcd08
+-/
 theorem bassSerreFactor_path {ι : Type v} (G : ι → Type u) [∀ i, Group (G i)]
     (i : ι) (w : RightFactorWord (G := G) i) :
     Nonempty (@Quiver.Path (Quiver.Symmetrify (BassSerreVertex G)) _
@@ -437,6 +506,9 @@ theorem bassSerreFactor_path {ι : Type v} (G : ι → Type u) [∀ i, Group (G 
   rcases bassSerreWord_path G w.1 with ⟨p⟩
   exact ⟨p.cons (Quiver.Hom.toPos (BassSerreEdge.centralFactor w.1 i w.2))⟩
 
+/--
+@isnad1 id=rootedco.0h2v.s5.628fbd93e4c0 from=translated src=- shape=dbc69886 vocab=100bb495
+-/
 theorem bassSerre_rootedConnected {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] :
     Quiver.RootedConnected
@@ -500,6 +572,9 @@ abbrev RightCoset {P : Type w} [Group P] (K : Subgroup P) :=
 def rightCosetMk {P : Type w} [Group P] (K : Subgroup P) (a : P) : RightCoset K :=
   Quotient.mk (rightCosetSetoid K) a
 
+/--
+@isnad1 id=iff.0h4v.s6.c65076fd50c2 from=translated src=- shape=4a688315 vocab=64854081
+-/
 theorem rightCosetMk_eq_iff {P : Type w} [Group P] (K : Subgroup P) (a b : P) :
     rightCosetMk K a = rightCosetMk K b ↔ ∃ k : K, a * k = b := by
   exact Quotient.eq''
@@ -526,12 +601,18 @@ instance rightCosetMulAction {P : Type w} [Group P] (K : Subgroup P) :
           rightCosetMk K (g * (h * a))
         rw [mul_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s6.d4403970fa22 from=translated src=- shape=4b78939d vocab=704d2da3
+-/
 @[simp]
 theorem rightCosetMk_smul {P : Type w} [Group P] (K : Subgroup P) (g a : P) :
     g • rightCosetMk K a = rightCosetMk K (g * a) := by
   change rightCosetMk K (g * a) = rightCosetMk K (g * a)
   rfl
 
+/--
+@isnad1 id=iff.0h4v.s7.1342f34cbcf5 from=translated src=- shape=8e7befbd vocab=04542712
+-/
 theorem rightCoset_stabilizer_iff {P : Type w} [Group P] (K : Subgroup P)
     (g a : P) : g • rightCosetMk K a = rightCosetMk K a ↔
       a⁻¹ * g * a ∈ K := by
@@ -560,6 +641,9 @@ def factorCosetMk {ι : Type v} (G : ι → Type u) [∀ i, Group (G i)]
     (i : ι) (g : FreeProduct G) : FactorCoset G i :=
   rightCosetMk (MonoidHom.range (factorInclusion G i)) g
 
+/--
+@isnad1 id=eq.0h5v.s8.5209af09062e from=translated src=- shape=a4b383fa vocab=8fd8c243
+-/
 theorem factorCoset_mul_factor {ι : Type v} (G : ι → Type u) [∀ i, Group (G i)]
     (i : ι) (g : FreeProduct G) (a : G i) :
     factorCosetMk G i (g * Monoid.CoprodI.of a) = factorCosetMk G i g := by
@@ -586,6 +670,9 @@ instance rawBassSerreQuiver {ι : Type v} (G : ι → Type u) [∀ i, Group (G i
     Quiver (RawBassSerreVertex G) where
   Hom := RawBassSerreEdge G
 
+/--
+@isnad1 id=nonempty.0h3v.s6.9e9fc5e7b9ba from=translated src=- shape=2bca969b vocab=bbbd49d0
+-/
 theorem rawBassSerreWord_path {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (g : FreeProduct G) :
     Nonempty (@Quiver.Path (Quiver.Symmetrify (RawBassSerreVertex G)) _
@@ -632,6 +719,9 @@ theorem rawBassSerreWord_path {ι : Type v} (G : ι → Type u)
   rw [← hword]
   simpa [root] using hpath (wordInv (Word.equiv g))
 
+/--
+@isnad1 id=nonempty.0h4v.s6.9fa51a71e0cd from=translated src=- shape=b8e3b7a1 vocab=477c63e2
+-/
 theorem rawBassSerreFactor_path {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (i : ι) (c : FactorCoset G i) :
     Nonempty (@Quiver.Path (Quiver.Symmetrify (RawBassSerreVertex G)) _
@@ -646,6 +736,9 @@ theorem rawBassSerreFactor_path {ι : Type v} (G : ι → Type u)
   have pe := p.cons (Quiver.Hom.toPos e)
   exact ⟨by simpa only [hg] using pe⟩
 
+/--
+@isnad1 id=rootedco.0h2v.s6.7867e9cec978 from=translated src=- shape=e51ddb34 vocab=1f269377
+-/
 theorem rawBassSerre_rootedConnected {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] :
     Quiver.RootedConnected
@@ -696,6 +789,9 @@ instance rawBassSerreVertexMulAction {ι : Type v} (G : ι → Type u)
           RawBassSerreVertex.factor i (g • h • c)
         rw [mul_smul]
 
+/--
+@isnad1 id=iff.0h6v.s8.86285e8d6462 from=translated src=- shape=60ccb0e0 vocab=b33bd5bc
+-/
 theorem rawBassSerre_factor_fixed_iff {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G)) (i : ι)
     (g : FreeProduct G) (h : H) :
@@ -727,7 +823,9 @@ def kuroshFactorSubgroup {ι : Type v} (G : ι → Type u) [∀ i, Group (G i)]
     (H : Subgroup (FreeProduct G)) (q : KuroshFactorIndex G H) : Subgroup H :=
   intersectionFactorInH H q.1 (kuroshFactorRepresentative G H q)
 
-/-- A central Bass–Serre vertex has trivial stabilizer. -/
+/-- A central Bass–Serre vertex has trivial stabilizer.
+@isnad1 id=iff.0h4v.s7.4b6fb0049303 from=translated src=- shape=d8e73569 vocab=ce65f25d
+-/
 theorem rawBassSerre_central_fixed_iff {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (g h : FreeProduct G) :
     h • RawBassSerreVertex.central g = RawBassSerreVertex.central g ↔ h = 1 := by
@@ -741,6 +839,9 @@ theorem rawBassSerre_central_fixed_iff {ι : Type v} (G : ι → Type u)
   · intro heq
     simp [heq]
 
+/--
+@isnad1 id=iff.0h5v.s9.6dc65ff18eec from=translated src=- shape=6d150d0c vocab=74407b91
+-/
 theorem kurosh_factor_subgroup_is_stabilizer {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (q : KuroshFactorIndex G H) (h : H) :
@@ -771,7 +872,9 @@ def actionOrbitMk (A : Type w) (X : Type w) [Group A] [MulAction A X]
     (x : X) : ActionOrbit A X := Quotient.mk (MulAction.orbitRel A X) x
 
 /-- Orbit equality expressed by an element carrying the first point to the second.
-Mathlib's orbit relation uses the reverse orientation. -/
+Mathlib's orbit relation uses the reverse orientation.
+@isnad1 id=iff.0h4v.s6.d515ec2237aa from=translated src=- shape=7b1e1199 vocab=df8c316d
+-/
 @[simp]
 theorem actionOrbitMk_eq_iff (A : Type w) (X : Type w) [Group A] [MulAction A X]
     (x y : X) : actionOrbitMk A X x = actionOrbitMk A X y ↔
@@ -782,6 +885,9 @@ theorem actionOrbitMk_eq_iff (A : Type w) (X : Type w) [Group A] [MulAction A X]
   · intro h
     exact (Quotient.sound h).symm
 
+/--
+@isnad1 id=eq.0h4v.s6.93969b0e558e from=translated src=- shape=f4c557ee vocab=df8c316d
+-/
 theorem actionOrbitMk_smul (A : Type w) (X : Type w) [Group A] [MulAction A X]
     (a : A) (x : X) : actionOrbitMk A X (a • x) = actionOrbitMk A X x := by
   apply (actionOrbitMk_eq_iff A X (a • x) x).2
@@ -818,11 +924,17 @@ instance rawBassSerreEdgeDataMulAction {ι : Type v} (G : ι → Type u)
     change ((a * b) * e.1, e.2) = (a * (b * e.1), e.2)
     rw [mul_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s7.b628687cab41 from=translated src=- shape=d9824c9e vocab=5c6ba1a3
+-/
 theorem rawBassSerreEdgeData_source_action {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (a : FreeProduct G) (e : rawBassSerreEdgeData G) :
     rawBassSerreEdgeDataSource G (a • e) = a • rawBassSerreEdgeDataSource G e := by
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.98998e612f55 from=translated src=- shape=d9824c9e vocab=59f2f9b2
+-/
 theorem rawBassSerreEdgeData_target_action {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (a : FreeProduct G) (e : rawBassSerreEdgeData G) :
     rawBassSerreEdgeDataTarget G (a • e) = a • rawBassSerreEdgeDataTarget G e := by
@@ -856,11 +968,17 @@ def rawBassSerreEdgeDataOf {ι : Type v} (G : ι → Type u)
   cases e using RawBassSerreEdge.casesOn with
   | centralFactor g i => exact (g, i)
 
+/--
+@isnad1 id=eq.0h5v.s5.5c6c6fbe9004 from=translated src=- shape=0cec5d9f vocab=8518ac9d
+-/
 theorem rawBassSerreEdgeDataOf_source {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {a b : RawBassSerreVertex G} (e : a ⟶ b) :
     rawBassSerreEdgeDataSource G (rawBassSerreEdgeDataOf G e) = a := by
   cases e using RawBassSerreEdge.casesOn; rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.119f52e433d9 from=translated src=- shape=47e963ab vocab=da4c3ba7
+-/
 theorem rawBassSerreEdgeDataOf_target {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] {a b : RawBassSerreVertex G} (e : a ⟶ b) :
     rawBassSerreEdgeDataTarget G (rawBassSerreEdgeDataOf G e) = b := by
@@ -969,6 +1087,9 @@ def rawBassSerreOrbitQuiverEdge {ι : Type v} (G : ι → Type u)
       rawBassSerreOrbitEdgeTarget G H (rawBassSerreOrbitEdgeMk G H e) :=
   ⟨rawBassSerreOrbitEdgeMk G H e, rfl, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.5f811cd2c5fd from=translated src=- shape=f9328b1b vocab=751f1699
+-/
 theorem rawBassSerreOrbitEdgeSource_mk {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (e : rawBassSerreEdgeData G) :
@@ -977,6 +1098,9 @@ theorem rawBassSerreOrbitEdgeSource_mk {ι : Type v} (G : ι → Type u)
   simp [rawBassSerreOrbitEdgeSource, rawBassSerreOrbitEdgeMk,
     actionOrbitMk]
 
+/--
+@isnad1 id=eq.0h4v.s6.d3c7222491ee from=translated src=- shape=f9328b1b vocab=6db3bcc8
+-/
 theorem rawBassSerreOrbitEdgeTarget_mk {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (e : rawBassSerreEdgeData G) :
@@ -1016,6 +1140,9 @@ def rawBassSerreOrbitSymmPrefunctor {ι : Type v} (G : ι → Type u)
       Quiver.Symmetrify (RawBassSerreOrbitVertex G H) :=
   Quiver.Symmetrify.lift (rawBassSerreOrbitPrefunctorToSymm G H)
 
+/--
+@isnad1 id=rootedco.0h3v.s7.bd5d1d593034 from=translated src=- shape=5d12b7f7 vocab=757bb6f7
+-/
 theorem rawBassSerreOrbitQuiver_rootedConnected {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G)) :
     Quiver.RootedConnected
@@ -1080,6 +1207,9 @@ noncomputable def rawOrbitAlign {ι : Type v} (G : ι → Type u)
       actionOrbitMk H (RawBassSerreVertex G) y) : H :=
   Classical.choose ((actionOrbitMk_eq_iff H (RawBassSerreVertex G) x y).1 h)
 
+/--
+@isnad1 id=eq.1h5v.s8.29b1e6c1c485 from=translated src=- shape=e558b3b6 vocab=2039d704
+-/
 theorem rawOrbitAlign_spec {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {x y : RawBassSerreVertex G}
@@ -1160,6 +1290,9 @@ def rawTreeQuiverRoot {ι : Type v} (G : ι → Type u)
   @Quiver.Arborescence.root (RawBassSerreOrbitVertex G H)
     (rawTreeQuiver G H) (rawTreeQuiverArborescence G H)
 
+/--
+@isnad1 id=eq.0h3v.s5.40858e5b282b from=translated src=- shape=be40fe1e vocab=aa084421
+-/
 theorem rawTreeQuiverRoot_eq {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G)) :
     rawTreeQuiverRoot G H = rawBassSerreOrbitRoot G H := by
@@ -1180,6 +1313,9 @@ noncomputable def rawTreePath {ι : Type v} (G : ι → Type u)
       (rawTreeQuiver G H) (rawTreeQuiverArborescence G H) a
   exact default
 
+/--
+@isnad1 id=eq.0h8v.s8.1cf91f3d8e5f from=translated src=- shape=9dc22991 vocab=f683c412
+-/
 theorem rawTreePathMap_cons_raw {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b c : RawBassSerreOrbitVertex G H}
@@ -1293,6 +1429,9 @@ noncomputable def rawTreeRepresentative {ι : Type v} (G : ι → Type u)
     ((wideSubquiverInclusion (rawBassSerreOrbitTree G H)).mapPath
       ((rawTreeUniquePath G H b).default))).1
 
+/--
+@isnad1 id=eq.0h4v.s7.64f25c8ef473 from=translated src=- shape=578e312f vocab=3f3db86e
+-/
 theorem rawTreeRepresentative_orbit {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (b : RawBassSerreOrbitVertex G H) :
@@ -1308,12 +1447,18 @@ noncomputable def quotientEdgeRawData {ι : Type v} (G : ι → Type u)
     (e : a ⟶ b) : rawBassSerreEdgeData G :=
   Quotient.out e.1
 
+/--
+@isnad1 id=eq.0h6v.s6.717b428912f6 from=translated src=- shape=dc65b8e2 vocab=fedf5b8c
+-/
 theorem quotientEdgeRawData_mk {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H}
     (e : a ⟶ b) :
     rawBassSerreOrbitEdgeMk G H (quotientEdgeRawData G H e) = e.1 := by
   simp [quotientEdgeRawData, rawBassSerreOrbitEdgeMk, actionOrbitMk]
+/--
+@isnad1 id=eq.0h6v.s7.cd9c1d0ef684 from=translated src=- shape=70b5a4c7 vocab=c3d0ff22
+-/
 theorem quotientEdgeSource_orbit {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H}
@@ -1327,6 +1472,9 @@ theorem quotientEdgeSource_orbit {ι : Type v} (G : ι → Type u)
   exact (rawBassSerreOrbitEdgeSource_mk G H
     (quotientEdgeRawData G H e)).symm.trans he
 
+/--
+@isnad1 id=eq.0h6v.s7.20623d791b18 from=translated src=- shape=4763f343 vocab=aacae8c0
+-/
 theorem quotientEdgeTarget_orbit {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H}
@@ -1348,6 +1496,9 @@ noncomputable def quotientEdgeSourceAlign {ι : Type v} (G : ι → Type u)
   rawOrbitAlign G H ((quotientEdgeSource_orbit G H e).trans
     (rawTreeRepresentative_orbit G H a).symm)
 
+/--
+@isnad1 id=eq.0h6v.s7.84b10a6c2636 from=translated src=- shape=47411e02 vocab=7e3bf188
+-/
 theorem quotientEdgeSourceAlign_spec {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H}
@@ -1365,6 +1516,9 @@ noncomputable def quotientEdgeAlignedTarget {ι : Type v} (G : ι → Type u)
   (quotientEdgeSourceAlign G H e).1 •
     rawBassSerreEdgeDataTarget G (quotientEdgeRawData G H e)
 
+/--
+@isnad1 id=eq.0h6v.s7.53522a92c1f6 from=translated src=- shape=e7a2e14a vocab=3e038501
+-/
 theorem quotientEdgeAlignedTarget_orbit {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H}
@@ -1378,6 +1532,9 @@ theorem quotientEdgeAlignedTarget_orbit {ι : Type v} (G : ι → Type u)
     (quotientEdgeSourceAlign G H e)]
   exact quotientEdgeTarget_orbit G H e
 
+/--
+@isnad1 id=eq.1h6v.s7.29a5607f7101 from=translated src=- shape=c1a69fa8 vocab=c6357c09
+-/
 theorem rawTreeRepresentative_of_tree_edge {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H} (e : a ⟶ b)
@@ -1413,6 +1570,9 @@ noncomputable def quotientEdgeTargetAlign {ι : Type v} (G : ι → Type u)
   rawOrbitAlign G H ((quotientEdgeAlignedTarget_orbit G H e).trans
     (rawTreeRepresentative_orbit G H b).symm)
 
+/--
+@isnad1 id=eq.0h6v.s7.6e16b4f175f0 from=translated src=- shape=40887e21 vocab=35ceb399
+-/
 theorem quotientEdgeTargetAlign_spec {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H}
@@ -1429,6 +1589,9 @@ noncomputable def quotientEdgeDirectTargetAlign {ι : Type v}
   rawOrbitAlign G H ((quotientEdgeTarget_orbit G H e).trans
     (rawTreeRepresentative_orbit G H b).symm)
 
+/--
+@isnad1 id=eq.0h6v.s7.cbb7a41b8fbe from=translated src=- shape=0162788b vocab=21a0de9c
+-/
 theorem quotientEdgeDirectTargetAlign_spec {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H}
@@ -1438,6 +1601,9 @@ theorem quotientEdgeDirectTargetAlign_spec {ι : Type v}
       rawTreeRepresentative G H b :=
   rawOrbitAlign_spec G H _
 
+/--
+@isnad1 id=eq.1h6v.s8.a1c6cd1e69c5 from=translated src=- shape=651a8ca6 vocab=9df2ecc6
+-/
 theorem rawTreeRepresentative_of_tree_edge_neg {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H} (e : a ⟶ b)
@@ -1491,6 +1657,9 @@ noncomputable def quotientEdgeCoherentSourceAlign {ι : Type v}
     else
       quotientEdgeSourceAlign G H e
 
+/--
+@isnad1 id=eq.0h6v.s7.f15add6a8906 from=translated src=- shape=47411e02 vocab=66aa22f0
+-/
 theorem quotientEdgeCoherentSourceAlign_spec {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H} (e : a ⟶ b) :
@@ -1503,6 +1672,9 @@ theorem quotientEdgeCoherentSourceAlign_spec {ι : Type v}
   · rw [quotientEdgeCoherentSourceAlign, dite_eq_right he]
     exact quotientEdgeSourceAlign_spec G H e
 
+/--
+@isnad1 id=eq.0h6v.s8.aa087db2dfbf from=translated src=- shape=f0654345 vocab=fb64a260
+-/
 theorem quotientEdgeLabel_transport_coherent {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H} (e : a ⟶ b) :
@@ -1558,6 +1730,9 @@ private theorem freeGroupoidPathHom_nil {V : Type u} [q : Quiver.{v} V]
   unfold freeGroupoidPathHom
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.da3e6a9e4de9 from=translated src=- shape=17cab345 vocab=f93955b6
+-/
 theorem freeGroupoidPathHom_nil_public {V : Type u} [q : Quiver.{v} V]
     {a : V} :
     @freeGroupoidPathHom V q a a
@@ -1683,6 +1858,9 @@ noncomputable def quotientRawPathValue {ι : Type v}
     (@freeGroupoidPathHom (RawBassSerreOrbitVertex G H)
       (rawBassSerreOrbitQuiver.inst G H) a b p)
 
+/--
+@isnad1 id=eq.0h6v.s7.7e85b60000a3 from=translated src=- shape=1e3ac3e4 vocab=c441717b
+-/
 theorem quotientPathValue_of {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H}
@@ -1694,6 +1872,9 @@ theorem quotientPathValue_of {ι : Type v}
     (Quiver.FreeGroupoid.lift_spec (quotientGraphLabelPrefunctor G H)) e
   exact hs
 
+/--
+@isnad1 id=eq.0h8v.s9.eee7d127b75d from=translated src=- shape=64716d2e vocab=86df32e4
+-/
 theorem quotientPathValue_comp {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b c : RawBassSerreOrbitVertex G H}
@@ -1706,6 +1887,9 @@ theorem quotientPathValue_comp {ι : Type v}
   unfold quotientPathValue
   rw [Functor.map_comp, SingleObj.comp_as_mul]
 
+/--
+@isnad1 id=eq.0h6v.s8.9e2914804188 from=translated src=- shape=62be5fd8 vocab=fa0ad6db
+-/
 theorem quotientPathValue_inv {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H}
@@ -1716,6 +1900,9 @@ theorem quotientPathValue_inv {ι : Type v}
   simp only [quotientPathValue, Groupoid.inv_eq_inv, Functor.map_inv,
     SingleObj.inv_as_inv]
 
+/--
+@isnad1 id=eq.0h4v.s7.4eeda5b4daca from=translated src=- shape=efa01030 vocab=e142a455
+-/
 theorem quotientRawPathValue_nil {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (a : RawBassSerreOrbitVertex G H) :
@@ -1734,6 +1921,9 @@ theorem quotientRawPathValue_nil {ι : Type v}
     | (all_goals decide; done)
     | (all_goals tauto; done)
 
+/--
+@isnad1 id=eq.0h8v.s8.1f99d3305279 from=translated src=- shape=dd09ec64 vocab=dcf5eb8c
+-/
 theorem quotientRawPathValue_cons {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b c : RawBassSerreOrbitVertex G H}
@@ -1756,6 +1946,9 @@ theorem quotientRawPathValue_cons {ι : Type v}
         quotientPathValue_of]
       rfl
 
+/--
+@isnad1 id=eq.0h6v.s13.e82fd45c8e08 from=translated src=- shape=787e0cb6 vocab=2ece8908
+-/
 theorem quotientGraphFunctor_map_pos {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H} (e : a ⟶ b) :
@@ -1767,6 +1960,9 @@ theorem quotientGraphFunctor_map_pos {ι : Type v} (G : ι → Type u)
     (Quiver.FreeGroupoid.lift_spec (quotientGraphLabelPrefunctor G H)) e
   exact congrArg (fun z => (SingleObj.toEnd H).symm z) hs
 
+/--
+@isnad1 id=eq.0h3v.s6.d5bd4f009d1b from=translated src=- shape=ede29930 vocab=96ad401b
+-/
 theorem rawBassSerreOrbitTree_root_eq {ι : Type v} (G : ι → Type u)
     [∀ i, Group (G i)] (H : Subgroup (FreeProduct G)) :
     (Quiver.root (rawBassSerreOrbitTree G H) : RawBassSerreOrbitVertex G H) =
@@ -1796,6 +1992,9 @@ def rawTreeInclusionMapPathAsRaw {ι : Type v} (G : ι → Type u)
       (show RawBassSerreOrbitVertex G H from b) := by
   exact (rawTreeInclusion G H).mapPath p
 
+/--
+@isnad1 id=eq.0h4v.s7.362ccf6e7445 from=translated src=- shape=fe56af1e vocab=ba2118d2
+-/
 @[simp] theorem rawTreeInclusion_mapPath_asRaw_nil {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a : WideSubquiver.toType
@@ -1813,6 +2012,9 @@ def rawTreeInclusionMapPathAsRaw {ι : Type v} (G : ι → Type u)
         (show RawBassSerreOrbitVertex G H from a)
         (show RawBassSerreOrbitVertex G H from a)) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.485f37d48bda from=translated src=- shape=afb0cb83 vocab=1139254b
+-/
 @[simp] theorem rawTreeInclusion_mapPath_asRaw_cons {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b c : WideSubquiver.toType
@@ -1849,6 +2051,9 @@ def rawTreeRootPath {ι : Type v} (G : ι → Type u)
   cases hroot
   exact rawTreeInclusionMapPathAsRaw G H p
 
+/--
+@isnad1 id=eq.0h3v.s8.4d35389af933 from=translated src=- shape=afc58a94 vocab=b8528f29
+-/
 @[simp] theorem rawTreeRootPath_nil {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G)) :
     rawTreeRootPath G H (Quiver.Path.nil :
@@ -1866,6 +2071,9 @@ def rawTreeRootPath {ι : Type v} (G : ι → Type u)
         (rawBassSerreOrbitRoot G H) (rawBassSerreOrbitRoot G H)) := by
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.c4a1d9ce0c3f from=translated src=- shape=d72c5e91 vocab=126f4b77
+-/
 @[simp] theorem rawTreeRootPath_cons {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {b c : WideSubquiver.toType
@@ -1895,6 +2103,9 @@ noncomputable def rawTreePathAtRoot {ι : Type v}
   cases hroot
   exact rawTreePath G H a
 
+/--
+@isnad1 id=eq.0h4v.s5.01fb717ff313 from=translated src=- shape=1ba7e443 vocab=42cea437
+-/
 theorem rawTreePathAtRoot_eq_rawTreePath {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (a : RawBassSerreOrbitVertex G H) :
@@ -1903,6 +2114,9 @@ theorem rawTreePathAtRoot_eq_rawTreePath {ι : Type v}
   cases hroot
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.1cf91f3d8e5f from=translated src=- shape=9dc22991 vocab=f683c412
+-/
 theorem rawTreePathAtRoot_cons {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b c : RawBassSerreOrbitVertex G H}
@@ -1922,6 +2136,9 @@ theorem rawTreePathAtRoot_cons {ι : Type v}
             (rawBassSerreOrbitQuiver.inst G H)) _ _ from e.1)) := by
   exact rawTreePathMap_cons_raw G H p e
 
+/--
+@isnad1 id=eq.0h4v.s8.63392985b5ee from=translated src=- shape=4a102e2a vocab=1d3fb4e0
+-/
 theorem quotientTreePathHom_eq_rawTreePathAtRoot {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (a : RawBassSerreOrbitVertex G H) :
@@ -1933,6 +2150,9 @@ theorem quotientTreePathHom_eq_rawTreePathAtRoot {ι : Type v}
   unfold quotientTreePathHom
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.ff02eec6387c from=translated src=- shape=9b81bb85 vocab=9f3f927f
+-/
 theorem quotientSymmEdgeLabel_tree {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H}
@@ -1947,6 +2167,9 @@ theorem quotientSymmEdgeLabel_tree {ι : Type v}
   | inr e =>
       simp [quotientSymmEdgeLabel, quotientEdgeLabel, he]
 
+/--
+@isnad1 id=eq.0h6v.s7.d4215da254ab from=translated src=- shape=2455f3a5 vocab=008371b9
+-/
 theorem quotientRawPathValue_tree {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H}
@@ -1960,6 +2183,9 @@ theorem quotientRawPathValue_tree {ι : Type v}
       rw [rawTreePathMap_cons_raw, quotientRawPathValue_cons, ih,
         quotientSymmEdgeLabel_tree G H e.1 e.2, mul_one]
 
+/--
+@isnad1 id=eq.0h4v.s7.db38429d9443 from=translated src=- shape=a3e14d2b vocab=684aebd4
+-/
 theorem quotientTreePathValue_one {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (a : RawBassSerreOrbitVertex G H) :
@@ -1967,12 +2193,18 @@ theorem quotientTreePathValue_one {ι : Type v}
   rw [quotientTreePathHom_eq_rawTreePathAtRoot]
   exact quotientRawPathValue_tree G H (rawTreePathAtRoot G H a)
 
+/--
+@isnad1 id=eq.0h4v.s9.056b581ab6ea from=translated src=- shape=c26b7c55 vocab=98f272a7
+-/
 theorem kuroshFreePartHom_apply {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     (x : KuroshFreePart G H) :
     kuroshFreePartHom G H x = quotientPathValue G H x := by
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.6e6442259dea from=translated src=- shape=1c116d73 vocab=8c7a221c
+-/
 theorem kuroshFreePartHom_quotientEdgeLoop {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H} (e : a ⟶ b) :
@@ -1984,6 +2216,9 @@ theorem kuroshFreePartHom_quotientEdgeLoop {ι : Type v}
     quotientTreePathValue_one, quotientPathValue_of]
   simp
 
+/--
+@isnad1 id=eq.1h6v.s8.f26212793986 from=translated src=- shape=d46422cc vocab=0bb3228b
+-/
 theorem quotientEdgeLoop_tree_pos {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H} (e : a ⟶ b)
@@ -2015,6 +2250,9 @@ theorem quotientEdgeLoop_tree_pos {ι : Type v}
   rw [hpath]
   simp
 
+/--
+@isnad1 id=eq.1h6v.s8.5c4c234b6c2e from=translated src=- shape=0fd5bcb4 vocab=bc2d867e
+-/
 theorem quotientEdgeLoop_tree_neg {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H} (e : a ⟶ b)
@@ -2046,6 +2284,9 @@ theorem quotientEdgeLoop_tree_neg {ι : Type v}
   rw [hpath]
   simp
 
+/--
+@isnad1 id=eq.1h6v.s10.6267f8ea77a6 from=translated src=- shape=a0d56a2e vocab=9e426658
+-/
 theorem kuroshFreePartHom_quotientEdgeLoop_tree_pos {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H} (e : a ⟶ b)
@@ -2054,6 +2295,9 @@ theorem kuroshFreePartHom_quotientEdgeLoop_tree_pos {ι : Type v}
   rw [quotientEdgeLoop_tree_pos G H e he]
   exact (kuroshFreePartHom G H).map_one
 
+/--
+@isnad1 id=eq.1h6v.s10.300792233299 from=translated src=- shape=9b4c24cb vocab=395358ce
+-/
 theorem kuroshFreePartHom_quotientEdgeLoop_tree_neg {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H} (e : a ⟶ b)
@@ -2202,6 +2446,9 @@ noncomputable def treeKuroshFreeInclusion {ι : Type v}
         TreeKuroshComponent G H (Sum.inr PUnit.unit) →* TreeKuroshProduct G H).map_mul]
       rfl }
 
+/--
+@isnad1 id=eq.0h5v.s12.54fea29abe97 from=translated src=- shape=756a4751 vocab=22d32ff5
+-/
 @[simp]
 theorem treeKuroshProductToH_vertex {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
@@ -2216,6 +2463,9 @@ theorem treeKuroshProductToH_vertex {ι : Type v}
   rw [Monoid.CoprodI.lift_of]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.fc5844e79545 from=translated src=- shape=b4305722 vocab=846af340
+-/
 @[simp]
 theorem treeKuroshProductToH_free {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))

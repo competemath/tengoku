@@ -125,7 +125,9 @@ noncomputable def mdenote (M : MModel S) (ρ : MVal M Var) :
   | _, .imp φ ψ => (mdenote M ρ φ)ᶜ ∪ mdenote M ρ ψ
   | _, .ex x s' φ => ⋃ a : M.carrier s', mdenote M (mupdate M ρ s' x a) φ
 
-/-- The denotation clause for sorted universal quantification. -/
+/-- The denotation clause for sorted universal quantification.
+@isnad1 id=eq.0h8v.s6.fc429be038b6 from=translated src=- shape=7209d77f vocab=2cfaf41f
+-/
 theorem mdenote_al (M : MModel S) (ρ : MVal M Var) {s : S.Srt}
     (x : Var) (s' : S.Srt) (φ : MPattern S Var s) :
     mdenote M ρ (MPattern.al x s' φ) =
@@ -133,7 +135,9 @@ theorem mdenote_al (M : MModel S) (ρ : MVal M Var) {s : S.Srt}
   classical
   simp [mdenote, Set.compl_iUnion]
 
-/-- A many-sorted symbol application is empty if one argument is empty. -/
+/-- A many-sorted symbol application is empty if one argument is empty.
+@isnad1 id=eq.1h5v.s6.ee995f508bbf from=translated src=- shape=c0d3a267 vocab=4172c097
+-/
 theorem MModel.app_eq_empty (M : MModel S) (σ : S.Sym)
     (A : (i : Fin (S.arity σ)) → Set (M.carrier (S.argSort σ i)))
     (i : Fin (S.arity σ)) (h : A i = ∅) : M.app σ A = ∅ := by
@@ -164,7 +168,9 @@ def MModel.SatSet (M : MModel S) {s : S.Srt} (Γ : Set (MPattern S Var s)) : Pro
 
 /-- The homogeneous notion is the heterogeneous one restricted to a single
 sort.  Without this the restriction in `SatSet` would be silent, and an audit
-flagged exactly that. -/
+flagged exactly that.
+@isnad1 id=iff.0h5v.s6.7c5685a7c941 from=translated src=- shape=42fa93d0 vocab=7e6c17c5
+-/
 theorem satSetHet_homogeneous (M : MModel S) {s : S.Srt}
     (Γ : Set (MPattern S Var s)) :
     M.SatSet Γ ↔ M.SatSetHet {p | ∃ γ ∈ Γ, p = ⟨s, γ⟩} := by
@@ -232,7 +238,9 @@ abbrev singletonM3 : MModel S3 where
   nonempty := fun _ => ⟨PUnit.unit⟩
   interp := fun _ _ => Set.univ
 
-/-- **Γ is satisfiable.** Take every carrier a singleton and `f`, `g` total. -/
+/-- **Γ is satisfiable.** Take every carrier a singleton and `f`, `g` total.
+@isnad1 id=ex.0h3v.s4.fea95025c97b from=translated src=- shape=bf34edca vocab=226e8a2c
+-/
 theorem Γ3_satisfiable (x y : Var) :
     ∃ M : MModel S3, M.SatSet (Γ3 (Var := Var) x y) := by
   classical
@@ -250,7 +258,9 @@ The paper: if `M_b` had distinct `r, s`, the valuation with `ρ(x) = r`,
 `ρ(y) = s` gives `ρ(x ∧ y) = ∅`, and symbols propagate `∅`, so `ρ(f(x ∧ y)) = ∅`,
 which is not `M_a` because carriers are nonempty. Hence `M_b` is a singleton,
 every valuation sends `x` and `y` to the same element, and `ρ(g(x) ↔ g(y)) = M_c`
-for every `ρ`. -/
+for every `ρ`.
+@isnad1 id=mglobalc.1h3v.s4.ef9f6df1c0cb from=translated src=- shape=482e3948 vocab=08f946a2
+-/
 theorem Γ3_entails_φ3 (x y : Var) (hxy : x ≠ y) :
     MGlobalCons (Γ3 (Var := Var) x y) (φ3 (Var := Var) x y) := by
   classical

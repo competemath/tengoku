@@ -34,6 +34,9 @@ open Polynomial
 
 /-! ### AM–GM face: a positive real plus its inverse is at least 2. -/
 
+/--
+@isnad1 id=le.1h1v.s5.581268539204 from=translated src=- shape=1a858500 vocab=370e557f
+-/
 theorem two_le_self_add_inv {t : ℝ} (ht : 0 < t) : 2 ≤ t + 1 / t := by
   have hsq : 0 ≤ (t - 1) ^ 2 := sq_nonneg _
   have hmul : t * (t + 1 / t) = t ^ 2 + 1 := by
@@ -44,7 +47,9 @@ theorem two_le_self_add_inv {t : ℝ} (ht : 0 < t) : 2 ≤ t + 1 / t := by
 
 /-- If z + 1/z is a real number strictly inside (−2, 2), then ‖z‖ = 1: z cannot be
     real (AM–GM), and the conjugate — a root of the same real quadratic — must then
-    be the reciprocal, giving ‖z‖² = z·conj z = 1. -/
+    be the reciprocal, giving ‖z‖² = z·conj z = 1.
+@isnad1 id=eq.4h2v.s6.320daa891cb8 from=translated src=- shape=8432a040 vocab=3b8eff3d
+-/
 theorem norm_eq_one_of_trace_in_ball {z : ℂ} {y : ℝ} (hz : z ≠ 0)
     (htr : z + 1 / z = (y : ℂ)) (hy : -2 < y) (hy' : y < 2) : ‖z‖ = 1 := by
   -- conj z satisfies the same relation
@@ -101,7 +106,9 @@ theorem norm_eq_one_of_trace_in_ball {z : ℂ} {y : ℝ} (hz : z ≠ 0)
 
 /-- **NO UNIT-CIRCLE FACTOR (proven)**: a monic factor of Lehmer with positive degree
     and all complex roots on the unit circle is impossible — its root of unity would
-    give a cyclotomic ℤ-divisor of Lehmer, refuted by `no_cyclotomic_divisor`. -/
+    give a cyclotomic ℤ-divisor of Lehmer, refuted by `no_cyclotomic_divisor`.
+@isnad1 id=false.4h1v.s6.301e530e128e from=translated src=- shape=25fec09a vocab=d5d100a7
+-/
 theorem no_unit_circle_factor {F : Polynomial ℤ} (hFm : F.Monic)
     (hdeg : 0 < F.natDegree) (hFdvd : F ∣ lehmerPolynomial)
     (hcirc : ∀ z ∈ (F.map (Int.castRingHom ℂ)).roots, ‖z‖ = 1) : False := by

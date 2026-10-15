@@ -56,7 +56,9 @@ In the big-endian basis labelling, `|000⟩ = ket 0` and `|111⟩ = ket 7`. -/
 def ghzVec : StateVector 3 :=
   invSqrt2 • ((ket 0 : PureState 3) + (ket 7 : PureState 3) : StateVector 3)
 
-/-- The raw GHZ vector has unit norm. -/
+/-- The raw GHZ vector has unit norm.
+@isnad1 id=eq.0h0v.s6.9e5075e42fa4 from=translated src=- shape=d71238e5 vocab=460558cb
+-/
 theorem norm_ghzVec : ‖ghzVec‖ = 1 := by
   rw [ghzVec, norm_smul, norm_invSqrt2]
   have h : ‖((ket 0 : PureState 3) + (ket 7 : PureState 3) : StateVector 3)‖
@@ -83,7 +85,9 @@ def ghzCircuit : Gate 3 :=
 
 /-- **GHZ state preparation**: the cascade circuit turns `|000⟩` into the
 GHZ state, extending Bell-state preparation (`bell_state_prep`) by one
-CNOT. -/
+CNOT.
+@isnad1 id=eq.0h0v.s6.6de797fefcba from=translated src=- shape=ad9a7c9b vocab=1b0d8b02
+-/
 theorem GHZStatePreparation.main :
     ghzCircuit.applyVec
         (StateVector.tensor (ket0 : StateVector 1)
@@ -99,7 +103,9 @@ theorem GHZStatePreparation.main :
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.one_apply, Equiv.Perm.permMatrix, dotProduct, Fin.sum_univ_eight]
 
-/-- The GHZ state is normalized. -/
+/-- The GHZ state is normalized.
+@isnad1 id=eq.0h0v.s4.f87000f056c8 from=translated src=- shape=d71238e5 vocab=9be55d33
+-/
 @[simp]
 theorem norm_ghz : ‖ghz‖ = 1 := ghz.norm_eq_one
 

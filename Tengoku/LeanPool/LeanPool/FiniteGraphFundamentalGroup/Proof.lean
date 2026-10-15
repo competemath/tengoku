@@ -98,6 +98,9 @@ noncomputable instance wideSubquiverSetTotalFintype {V : Type u} [Quiver.{u} V]
     Fintype (wideSubquiverEquivSetTotal H : Set (Quiver.Total V)) :=
   Fintype.ofEquiv (Quiver.Total H) (wideTotalEquiv H)
 
+/--
+@isnad1 id=nonempty.1h3v.s6.7b6f96097839 from=translated src=- shape=e3571964 vocab=38ad0a3d
+-/
 lemma exists_last_data (T : WideSubquiver V) [Arborescence T]
     {b : T} (hb : b ≠ root T) :
     Nonempty (Σ a : T, Path (root T) a × (a ⟶ b)) := by
@@ -112,11 +115,17 @@ noncomputable def lastData (T : WideSubquiver V) [Arborescence T]
     Σ a : T, Path (root T) a × (a ⟶ b.1) :=
   Classical.choice (exists_last_data T (b := b.1) b.2)
 
+/--
+@isnad1 id=eq.1h3v.s6.60297c7cdf81 from=translated src=- shape=60548015 vocab=2a014408
+-/
 lemma default_path_length_root (T : WideSubquiver V) [Arborescence T]
     (b : T) (h : b = root T) : (default : Path (root T) b).length = 0 := by
   cases h
   exact congrArg Path.length (Subsingleton.elim _ Path.nil)
 
+/--
+@isnad1 id=ne.0h3v.s5.d885ce43ecb6 from=translated src=- shape=7cf2f80f vocab=19a0c6ea
+-/
 lemma target_ne_root (T : WideSubquiver V) [Arborescence T]
     (e : Quiver.Total T) : e.right ≠ root T := by
   intro h
@@ -144,6 +153,9 @@ noncomputable def treeEdgeEquiv (T : WideSubquiver V) [Arborescence T] :
   right_inv b := by
     rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.f0eaa1dff9cb from=translated src=- shape=d149b891 vocab=601d2904
+-/
 lemma arborescence_card [Fintype V] [∀ a b : V, Fintype (a ⟶ b)]
     (T : WideSubquiver V) [Arborescence T] :
     Fintype.card (Quiver.Total T) = Fintype.card V - 1 := by
@@ -155,6 +167,9 @@ lemma arborescence_card [Fintype V] [∀ a b : V, Fintype (a ⟶ b)]
   rw [hcard]
   simp
 
+/--
+@isnad1 id=false.0h7v.s6.3934798239ff from=translated src=- shape=0a4b6aef vocab=138562bf
+-/
 lemma no_reverse_edges (T : WideSubquiver (Symmetrify V)) [Arborescence T]
     {a b : V} (e : @Quiver.Hom V _ a b)
     (h₁ : T a b (Sum.inl e)) (h₂ : T b a (Sum.inr e)) : False := by
@@ -190,6 +205,9 @@ def symEdgeForgetInv (T : WideSubquiver (Symmetrify V))
   · exact ⟨a, b, ⟨Sum.inl f, h⟩⟩
   · exact ⟨b, a, ⟨Sum.inr f, hf.resolve_left h⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.4f37f4ad4252 from=translated src=- shape=57ce8b9b vocab=b10763e8
+-/
 lemma symEdgeForgetInv_forget (T : WideSubquiver (Symmetrify V)) [Arborescence T]
     (e : Quiver.Total T) : symEdgeForgetInv T (symEdgeForget T e) = e := by
   rcases e with ⟨a, b, ⟨f, hf⟩⟩
@@ -203,6 +221,9 @@ lemma symEdgeForgetInv_forget (T : WideSubquiver (Symmetrify V)) [Arborescence T
       simp only [symEdgeForget, symEdgeForgetInv]
       exact dite_eq_right hn
 
+/--
+@isnad1 id=eq.0h3v.s5.ed0f83c29690 from=translated src=- shape=4d901393 vocab=7b6dc89c
+-/
 lemma symEdgeForget_forgetInv (T : WideSubquiver (Symmetrify V))
     (e : Quiver.Total (wideSubquiverSymmetrify T)) :
     symEdgeForget T (symEdgeForgetInv T e) = e := by
@@ -232,6 +253,9 @@ def symEdgeEquiv (T : WideSubquiver (Symmetrify V)) [Arborescence T] :
   left_inv := symEdgeForgetInv_forget T
   right_inv := symEdgeForget_forgetInv T
 
+/--
+@isnad1 id=eq.0h2v.s6.bab856bf7fd2 from=translated src=- shape=2f397c66 vocab=02975301
+-/
 lemma symmetrified_tree_card [Fintype V] [∀ a b : V, Fintype (a ⟶ b)]
     (T : WideSubquiver (Symmetrify V)) [Arborescence T] :
     Fintype.card (Quiver.Total (wideSubquiverSymmetrify T)) = Fintype.card V - 1 := by
@@ -241,6 +265,9 @@ lemma symmetrified_tree_card [Fintype V] [∀ a b : V, Fintype (a ⟶ b)]
     Fintype.card_congr (Equiv.refl V)
   simpa [hcard] using (arborescence_card T)
 
+/--
+@isnad1 id=eq.0h2v.s6.46fd84f4b042 from=translated src=- shape=2cdc7529 vocab=b44af1fb
+-/
 lemma symmetrified_tree_set_card [Fintype V] [∀ a b : V, Fintype (a ⟶ b)]
     (T : WideSubquiver (Symmetrify V)) [Arborescence T] :
     Fintype.card (wideSubquiverEquivSetTotal (wideSubquiverSymmetrify T) :
@@ -408,6 +435,9 @@ class WeaklyConnected (V : Type u) [Quiver.{u} V] : Prop where
   path : ∀ a b : V,
     Nonempty (@Path (Symmetrify V) (Quiver.symmetrifyQuiver V) a b)
 
+/--
+@isnad1 id=rootedco.0h2v.s5.0ff2946effc0 from=translated src=- shape=ebab06d7 vocab=37d708fd
+-/
 instance rootedConnectedFree {V : Type u} [Quiver.{u} V]
     [WeaklyConnected V] (root : V) :
     @RootedConnected (Symmetrify (IsFreeGroupoid.Generators (Quiver.FreeGroupoid V)))
@@ -507,6 +537,9 @@ noncomputable instance graphGeneratorSetFintype {V : Type u} [Quiver.{u} V]
   classical
   exact Fintype.subtype (Finset.univ.filter fun e => e ∈ graphGeneratorSet root) (by simp)
 
+/--
+@isnad1 id=eq.0h2v.s6.23dffd5c2cf1 from=translated src=- shape=44f11f11 vocab=af4c3508
+-/
 lemma graphGeneratorSet_card {V : Type u} [Quiver.{u} V]
     [Fintype V] [FiniteQuiver V] [WeaklyConnected V] (root : V) :
     Fintype.card (graphGeneratorSet root) =
@@ -546,6 +579,9 @@ lemma graphGeneratorSet_card {V : Type u} [Quiver.{u} V]
     Challenge/Solution correspondence.  The reusable, basis-valued API and
     the consequences of the computation live in `Consequences.lean`. -/
 
+/--
+@isnad1 id=nonempty.0h2v.s6.68f665a091c9 from=translated src=- shape=99b1ac56 vocab=926a569c
+-/
 theorem proved_graph_fundamental_group_free_rank {V : Type u} [Quiver.{u} V]
     [Fintype V] [FiniteQuiver V] [WeaklyConnected V] (root : V) :
     Nonempty (graphFundamentalGroup root ≃*

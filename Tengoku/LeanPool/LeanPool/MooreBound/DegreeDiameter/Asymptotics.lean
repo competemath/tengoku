@@ -46,13 +46,18 @@ noncomputable def AsymptoticHalvedWitness (k p : ℕ) : Prop :=
 def AsymptoticHalvedWitnessHypothesis : Prop :=
   ∀ k p : ℕ, 0 < k → Nat.Prime p → AsymptoticHalvedWitness k p
 
+/--
+@isnad1 id=maxdegre.1h3v.s4.ed47c858796c from=translated src=- shape=43cd3f8c vocab=78d6e587
+-/
 lemma maxDegreeLE_of_regular {V : Type*} {G : SimpleGraph V} {Δ : ℕ}
     (hregular : ∀ v, (G.neighborSet v).ncard = Δ) : MaxDegreeLE G Δ := by
   intro v
   exact (hregular v).le
 
 /-- A single construction witness gives the required vertex-extremum lower bound at every
-admissible ambient degree. -/
+admissible ambient degree.
+@isnad1 id=le.2h3v.s6.ce315a5f2368 from=translated src=- shape=20bb6a1b vocab=927ee9be
+-/
 lemma construction_order_lower {k p d : ℕ} (hw : AsymptoticHalvedWitness k p)
     (hdegree : (p + 1) ^ (2 * k) ≤ d) :
     p ^ (2 * k * k) ≤ nKD k d := by
@@ -63,6 +68,9 @@ lemma construction_order_lower {k p d : ℕ} (hw : AsymptoticHalvedWitness k p)
   exact ⟨V, G, hV, rfl, maxDegreeLE_mono (hΔ.trans hdegree)
     (maxDegreeLE_of_regular hregular), hdiam⟩
 
+/--
+@isnad1 id=le.4h5v.s7.8effbcd73157 from=translated src=- shape=4fbcc78f vocab=ba47dafe
+-/
 lemma base_power_le_regular_degree_add_one {k p : ℕ} (hk : 0 < k)
     {V : Type*} [Finite V] {G : SimpleGraph V} {Δ : ℕ}
     (horder : p ^ (2 * k * k) ≤ Nat.card V)
@@ -79,7 +87,9 @@ lemma base_power_le_regular_degree_add_one {k p : ℕ} (hk : 0 < k)
   exact (Nat.pow_le_pow_iff_left hk.ne').mp hpowers
 
 /-- Applying Lemma 4.1 to a regular construction witness gives an admissible graph for the
-edge extremum, with the exact edge count needed in Corollary 1.2. -/
+edge extremum, with the exact edge count needed in Corollary 1.2.
+@isnad1 id=le.3h3v.s7.c6d968dee5cb from=translated src=- shape=f2a273cd vocab=892e07f1
+-/
 lemma construction_edge_lower {k p d : ℕ} (hk : 0 < k) (hw : AsymptoticHalvedWitness k p)
     (hdegree : (p + 1) ^ (2 * k) + 1 ≤ d) :
     p ^ (2 * k * (k + 1)) ≤ h (k + 1) d - 1 := by

@@ -116,7 +116,9 @@ def Admissible (r m G : ℝ) : Prop :=
   1 ≤ r ∧ 0 ≤ m ∧ 0 < G ∧ m ≤ r ∧ 8 * (m + 1) ^ 2 ≤ r * G
 
 /-- `exp y ≤ 1/(1-y)` for `y < 1`, the upper bound on `Real.exp` used below. It is the
-one-line consequence of `1 - y ≤ exp (-y)`. -/
+one-line consequence of `1 - y ≤ exp (-y)`.
+@isnad1 id=le.1h1v.s5.29401d8f6436 from=translated src=- shape=055aa61e vocab=a208717b
+-/
 lemma exp_le_one_div_one_sub {y : ℝ} (hy : y < 1) : exp y ≤ 1 / (1 - y) := by
   have h1 : (0 : ℝ) < 1 - y := by linarith
   have h2 : 1 - y ≤ exp (-y) := by
@@ -132,7 +134,9 @@ lemma exp_le_one_div_one_sub {y : ℝ} (hy : y < 1) : exp y ≤ 1 / (1 - y) := b
 /-- The exponential factor of `c₀` is at most `64/55` when `Admissible r m G` and `1 ≤ m`:
 `r·Γ ≥ 8(m*+1)²` bounds the exponent by `9/(32(m*+1)) ≤ 9/64`, and `exp (9/64) ≤ 1/(1 − 9/64)` by
 `exp_le_one_div_one_sub`. The clause `m ≤ r` of `Admissible` is not used, and no lower bound on `r`
-beyond `1 ≤ r` is needed. -/
+beyond `1 ≤ r` is needed.
+@isnad1 id=le.2h3v.s6.668af36d93d2 from=translated src=- shape=09c82377 vocab=1835dc9a
+-/
 lemma exp_factor_le {r m G : ℝ} (h : Admissible r m G) (hm1 : 1 ≤ m) :
     exp (9 / 4 * (m + 1) / (r * G)) ≤ 64 / 55 := by
   obtain ⟨hr, hm, hG, _, hrG⟩ := h
@@ -146,7 +150,9 @@ lemma exp_factor_le {r m G : ℝ} (h : Admissible r m G) (hm1 : 1 ≤ m) :
     _ = 64 / 55 := by norm_num
 
 /-- The root factor of `c₀` is at most `√2` once `m* ≥ 1` and `0 ≤ B ≤ 1`. The hypothesis `1 ≤ m`
-is exactly what halves the exponent; at `m = 0` the factor is the whole of `1 + B`. -/
+is exactly what halves the exponent; at `m = 0` the factor is the whole of `1 + B`.
+@isnad1 id=le.3h2v.s6.ce07a99febc4 from=translated src=- shape=34c77671 vocab=4cd8cb85
+-/
 lemma root_factor_le {m B : ℝ} (hm : 1 ≤ m) (hB0 : 0 ≤ B) (hB1 : B ≤ 1) :
     (1 + B) ^ ((1 : ℝ) / (m + 1)) ≤ Real.sqrt 2 := by
   have hbase : (1 : ℝ) ≤ 1 + B := by linarith
@@ -171,7 +177,9 @@ docstring); a smaller range such as `B ≤ 1/2` is covered a fortiori.
 
 `hm1` and `hr5` are explicit arguments rather than fields of `Admissible`, and neither can be
 dropped: `two_lt_cZero_of_m_zero` and `two_lt_cZero_of_admissible_four` give admissible points with
-`c₀ > 2` at which only `1 ≤ m`, respectively only `5 ≤ r`, is violated. -/
+`c₀ > 2` at which only `1 ≤ m`, respectively only `5 ≤ r`, is violated.
+@isnad1 id=le.5h4v.s6.df81199270a3 from=translated src=- shape=51787701 vocab=ee5a25e6
+-/
 theorem cZero_le_two_sharp {r m G B : ℝ} (h : Admissible r m G) (hm1 : 1 ≤ m) (hr5 : 5 ≤ r)
     (hB0 : 0 ≤ B) (hB1 : B ≤ 1) : cZero r m G B ≤ 384 / 275 * Real.sqrt 2 := by
   obtain ⟨hr, hm, hG, hmr, hrG⟩ := h
@@ -194,7 +202,9 @@ theorem cZero_le_two_sharp {r m G B : ℝ} (h : Admissible r m G) (hm1 : 1 ≤ m
 
 /-- **`c₀ ≤ 2`** whenever `Admissible r m G`, `1 ≤ m`, `5 ≤ r` and `0 ≤ B ≤ 1`: the form in which
 the constant enters the threshold `t₀` of `apd:thm:one_step_truncation_error`. It follows from
-`cZero_le_two_sharp` and `√2 ≤ 1.4143`. -/
+`cZero_le_two_sharp` and `√2 ≤ 1.4143`.
+@isnad1 id=le.5h4v.s6.858bb205729b from=translated src=- shape=e67a728a vocab=6ad54aec
+-/
 theorem cZero_le_two {r m G B : ℝ} (h : Admissible r m G) (hm1 : 1 ≤ m) (hr5 : 5 ≤ r)
     (hB0 : 0 ≤ B) (hB1 : B ≤ 1) : cZero r m G B ≤ 2 := by
   have hs : Real.sqrt 2 ≤ 1.4143 := by
@@ -218,7 +228,9 @@ The argument is that of `cZero_le_two_sharp`, which never uses `m ≤ r`: it des
 
 Scope: this statement concerns the constant `c₀` only. It does not show that the condition
 `r ≥ m*` is dispensable elsewhere in the analysis, for instance in the multi-jump majorant
-`apd:eq:composition_majorant`. -/
+`apd:eq:composition_majorant`.
+@isnad1 id=le.5h4v.s7.a42580d63eb6 from=translated src=- shape=356f29f8 vocab=ea1a5c09
+-/
 theorem cZero_le_two_without_m_le_r {r m G B : ℝ}
     (hrG : 8 * (m + 1) ^ 2 ≤ r * G) (hm1 : 1 ≤ m) (hr5 : 5 ≤ r) (hB0 : 0 ≤ B) (hB1 : B ≤ 1) :
     cZero r m G B ≤ 2 := by
@@ -255,7 +267,9 @@ theorem cZero_le_two_without_m_le_r {r m G B : ℝ}
 
 `B = 0` is the most favourable value of the entry factor, so no improvement of the entry-factor
 bound can give `c₀ ≤ 2` from `Admissible` and `1 ≤ m` alone. `scripts/c0_scan.py` evaluates the
-same point numerically. -/
+same point numerically.
+@isnad1 id=and.0h0v.s5.fa8e91e50a6b from=translated src=- shape=3ca7ef2e vocab=cf760e34
+-/
 theorem two_lt_cZero_of_admissible :
     Admissible 1 1 32 ∧ 2 < cZero 1 1 32 0 := by
   refine ⟨⟨le_refl 1, by norm_num, by norm_num, le_refl 1, by norm_num⟩, ?_⟩
@@ -272,7 +286,9 @@ theorem two_lt_cZero_of_admissible :
 /-- **The hypothesis `5 ≤ r` of `cZero_le_two` cannot be weakened to `4 ≤ r`.** At
 `(r, m*, Γ, B) = (4, 1, 8, 1)` every other hypothesis holds — the triple is admissible, since
 `8(m*+1)² = 32 ≤ 4·8 = rΓ`, and `1 ≤ m`, `0 ≤ B ≤ 1` — and
-`c₀ = (5/4)·exp(9/64)·√2 ≈ 2.035 > 2`. -/
+`c₀ = (5/4)·exp(9/64)·√2 ≈ 2.035 > 2`.
+@isnad1 id=and.0h0v.s6.4886b1ca9829 from=translated src=- shape=3ca7ef2e vocab=cf760e34
+-/
 theorem two_lt_cZero_of_admissible_four :
     Admissible 4 1 8 ∧ 2 < cZero 4 1 8 1 := by
   refine ⟨⟨by norm_num, by norm_num, by norm_num, by norm_num, by norm_num⟩, ?_⟩
@@ -303,7 +319,9 @@ theorem two_lt_cZero_of_admissible_four :
 
 because at `m* = 0` the root exponent `1/(m*+1)` is `1`, so the entry factor `1 + B` enters
 undiluted. The middle conjunct `(5 : ℝ) ≥ 5` records that `5 ≤ r` holds at the witness.
-`two_lt_cZero_of_m_zero_general` extends this to every `r` and `Γ`. -/
+`two_lt_cZero_of_m_zero_general` extends this to every `r` and `Γ`.
+@isnad1 id=and.0h0v.s6.a0e179bd1df5 from=translated src=- shape=939ac8bb vocab=c4745144
+-/
 theorem two_lt_cZero_of_m_zero : Admissible 5 0 2 ∧ (5 : ℝ) ≥ 5 ∧ 2 < cZero 5 0 2 1 := by
   refine ⟨⟨by norm_num, le_refl 0, by norm_num, by norm_num, by norm_num⟩, le_refl 5, ?_⟩
   have hroot : (1 + (1 : ℝ)) ^ ((1 : ℝ) / (0 + 1)) = 2 := by
@@ -320,7 +338,9 @@ theorem two_lt_cZero_of_m_zero : Admissible 5 0 2 ∧ (5 : ℝ) ≥ 5 ∧ 2 < cZ
 /-- **`t₀` is antitone in `c₀`**: for `0 < c ≤ c'` (and `0 < G`, `1 < kh`, `0 < a`),
 `tZero c' G kh a ≤ tZero c G kh a`. Hence an upper bound on `c₀` is a lower bound on the threshold
 `t₀`, and replacing `c₀` by a larger constant `c'` shrinks the guaranteed time window `t < t₀` by
-the factor `c'/c₀`. -/
+the factor `c'/c₀`.
+@isnad1 id=le.5h5v.s6.bab6ff3ef3fb from=translated src=- shape=010bb647 vocab=2c52e226
+-/
 lemma tZero_anti {c c' G kh a : ℝ} (hc : 0 < c) (hcc : c ≤ c') (hG : 0 < G) (hkh : 1 < kh)
     (ha : 0 < a) : tZero c' G kh a ≤ tZero c G kh a := by
   have hpos : (0 : ℝ) < c * G * (kh - 1) * a := by
@@ -362,7 +382,9 @@ Stated at fixed `r` deliberately: over the admissible set `r` is *not* free to s
 lower bound `8(m*+1)²/Γ` falls as `Γ` rises, and there the supremum runs the other way.
 
 `cZero_extremal_isotone_gamma` is the statement along the admissible boundary; the two differ in
-what is held fixed. -/
+what is held fixed.
+@isnad1 id=le.5h5v.s6.fccb633ba02a from=translated src=- shape=0497a7a2 vocab=8bfb9fed
+-/
 theorem cZero_antitone_gamma {r m B G G' : ℝ} (hr : 0 < r) (hm : 0 ≤ m) (hB : 0 ≤ B)
     (hG : 0 < G) (hGG' : G ≤ G') : cZero r m G' B ≤ cZero r m G B := by
   have hrG : 0 < r * G := mul_pos hr hG
@@ -385,7 +407,9 @@ hypotheses: `exp (9/64) ≤ 1439/1250`, via Mathlib's third-order `Real.exp_boun
 **The sharpening is needed for `cZero_le_two_of_gamma_le_seven`.** With `Γ ≤ 7` the first factor
 is bounded only by `39/32`, and `(39/32)·(64/55)·√2 ≈ 2.0056 > 2`: the two uniform bounds are
 attained at different points, so their product overshoots. The cruder estimate
-`exp y ≤ 1 + y + y²` is not enough either: it gives `≈ 2.00003`. -/
+`exp y ≤ 1 + y + y²` is not enough either: it gives `≈ 2.00003`.
+@isnad1 id=le.2h3v.s6.abb02022b88a from=translated src=- shape=09c82377 vocab=1835dc9a
+-/
 lemma exp_factor_le_sharp {r m G : ℝ} (h : Admissible r m G) (hm1 : 1 ≤ m) :
     exp (9 / 4 * (m + 1) / (r * G)) ≤ 1439 / 1250 := by
   obtain ⟨hr, hm, hG, _, hrG⟩ := h
@@ -404,7 +428,9 @@ lemma exp_factor_le_sharp {r m G : ℝ} (h : Admissible r m G) (hm1 : 1 ≤ m) :
 needing no new estimate. `8(m*+1)² ≤ rΓ ≤ 6r` with `m* ≥ 1` gives `r ≥ 16/3`.
 
 Six is the physically interesting cap: the second-order formula (`Υ = 2`) on a 1D
-nearest-neighbour chain with bare `Γ = 3` has effective count exactly 6. -/
+nearest-neighbour chain with bare `Γ = 3` has effective count exactly 6.
+@isnad1 id=le.3h3v.s5.0d8142739886 from=translated src=- shape=f89810fe vocab=3b3499d6
+-/
 theorem le_r_of_gamma_le_six {r m G : ℝ} (h : Admissible r m G) (hm1 : 1 ≤ m) (hG6 : G ≤ 6) :
     5 ≤ r := by
   obtain ⟨hr, hm, hG, _, hrG⟩ := h
@@ -413,7 +439,9 @@ theorem le_r_of_gamma_le_six {r m G : ℝ} (h : Admissible r m G) (hm1 : 1 ≤ m
 /-- **`c₀ ≤ 2` under a cap of 6 on the effective layer count**, with `Admissible r m G`, `1 ≤ m`
 and `0 ≤ B ≤ 1`. Immediate from `cZero_le_two` and `le_r_of_gamma_le_six`, so it inherits the
 constant `(384/275)√2 ≈ 1.9748` rather than the narrow margin `1.9838` of
-`cZero_le_two_of_gamma_le_seven`. -/
+`cZero_le_two_of_gamma_le_seven`.
+@isnad1 id=le.5h4v.s6.eb9f2eec611d from=translated src=- shape=dcde8f12 vocab=6ad54aec
+-/
 theorem cZero_le_two_of_gamma_le_six {r m G B : ℝ} (h : Admissible r m G) (hm1 : 1 ≤ m)
     (hG6 : G ≤ 6) (hB0 : 0 ≤ B) (hB1 : B ≤ 1) : cZero r m G B ≤ 2 :=
   cZero_le_two h hm1 (le_r_of_gamma_le_six h hm1 hG6) hB0 hB1
@@ -426,7 +454,9 @@ The cap cannot be raised to 8: `two_lt_cZero_of_admissible_four` is `Admissible 
 `c₀ ≈ 2.0347`, so no separate witness is needed. Over the reals the threshold (at `m* = 1`,
 `B = 1`) is `32(√2·e^{−9/64} − 1) ≈ 7.3181`; seven is the largest sufficient **integer** cap. The
 extremal value is `c₀(32/7, 1, 7, 1) ≈ 1.9838`, a margin of 0.81% below 2, which is why
-`exp_factor_le_sharp` is required. -/
+`exp_factor_le_sharp` is required.
+@isnad1 id=le.5h4v.s6.78cb643e1aa4 from=translated src=- shape=dcde8f12 vocab=6ad54aec
+-/
 theorem cZero_le_two_of_gamma_le_seven {r m G B : ℝ} (h : Admissible r m G) (hm1 : 1 ≤ m)
     (hG7 : G ≤ 7) (hB0 : 0 ≤ B) (hB1 : B ≤ 1) : cZero r m G B ≤ 2 := by
   obtain ⟨hr, hm, hG, _, hrG⟩ := id h
@@ -458,7 +488,9 @@ no numerics: at `m* = 0` the root exponent `1/(m*+1)` is `1`, so the third facto
 The hypothesis `B ≥ 1` matters. The step-count condition `r ≥ 8e²w₂αt` gives `B ≤ 1` and no more
 (see the module docstring), so `B = 1` is the worst case within the range `0 ≤ B ≤ 1` used in this
 file. Under a stronger assumption such as `B ≤ 1/2`, `m* = 0` would satisfy `c₀ ≤ 2` for `r` large
-enough, because `c₀ → 1 + B` as `r → ∞`. -/
+enough, because `c₀ → 1 + B` as `r → ∞`.
+@isnad1 id=lt.3h3v.s5.554dd48416d7 from=translated src=- shape=caf9c545 vocab=d693addd
+-/
 theorem two_lt_cZero_of_m_zero_general {r G B : ℝ} (hr : 0 < r) (hG : 0 < G) (hB : 1 ≤ B) :
     2 < cZero r 0 G B := by
   have h01 : ((1 : ℝ) / (0 + 1)) = 1 := by norm_num
@@ -491,7 +523,9 @@ in what is held fixed.
 The proof is exact rational arithmetic, which is the cleanest evidence that the exponential is not
 what is moving: at both points `rΓ = 32` and `m* = 1`, so `exp (9/4·(m*+1)/(rΓ)) = exp (9/64)` and
 `(1+B)^{1/(m*+1)} = √2` are *literally the same factors* on each side, and the comparison reduces to
-`(r+1)/r`: `19/16 < 39/32`. -/
+`(r+1)/r`: `19/16 < 39/32`.
+@isnad1 id=and.0h0v.s7.5dd93fa6728c from=translated src=- shape=e0506b37 vocab=cf44d405
+-/
 theorem cZero_extremal_isotone_gamma :
     Admissible (32 / 6) 1 6 ∧ Admissible (32 / 7) 1 7 ∧
       cZero (32 / 6) 1 6 1 < cZero (32 / 7) 1 7 1 := by
@@ -533,7 +567,9 @@ the `r ≥ 5` route at the same `Γ`. The hypothesis itself constrains no Trotte
 `(1+1/m)·e^{9/(32(m+1))}·2^{1/(m+1)} = 2`. So `m* ≥ 9/4` would also suffice (supremum `1.9494`);
 these real thresholds are numerical observations and are not formalized. The integer `3` is stated
 because `m*` is a rung index, an integer in the paper, not because the bound fails just below it.
-`two_lt_cZero_of_m_two` shows `m* ≥ 2` does not suffice, so no integer smaller than 3 works. -/
+`two_lt_cZero_of_m_two` shows `m* ≥ 2` does not suffice, so no integer smaller than 3 works.
+@isnad1 id=le.4h4v.s6.0b26813882d1 from=translated src=- shape=91e3749a vocab=6ad54aec
+-/
 theorem cZero_le_two_of_three_le_m {r m G B : ℝ} (h : Admissible r m G) (hm3 : 3 ≤ m)
     (hB0 : 0 ≤ B) (hB1 : B ≤ 1) : cZero r m G B ≤ 2 := by
   obtain ⟨hr, hm, hG, hmr, hrG⟩ := h
@@ -576,7 +612,9 @@ sufficient integer. `(r, m*, Γ, B) = (2, 2, 36, 1)` is admissible — `m ≤ r`
 
 3.8% above 2. This point is moreover the **maximizer** of `c₀` at `m* = 2`, `B = 1` over the
 admissible set: both constraints on `r` are active, `r = max(1, m*) = 2` and
-`Γ = 8(m*+1)²/r = 36`. -/
+`Γ = 8(m*+1)²/r = 36`.
+@isnad1 id=and.0h0v.s6.71d88c7323a6 from=translated src=- shape=3ca7ef2e vocab=cf760e34
+-/
 theorem two_lt_cZero_of_m_two : Admissible 2 2 36 ∧ 2 < cZero 2 2 36 1 := by
   refine ⟨⟨by norm_num, by norm_num, by norm_num, by norm_num, by norm_num⟩, ?_⟩
   have hexp : (1 : ℝ) + 3 / 32 ≤ exp (9 / 4 * (2 + 1) / (2 * 36)) := by
@@ -640,7 +678,9 @@ reached — this is a maximum, not an estimate.
 
 Weakening `2` to this costs a factor `2.6495` in `t₀` (see `tZero_anti`), hence `2.6495^{m*+1}` in
 the error bound `(t/t₀)^{m*+1}` at fixed `t`, and it shrinks `log(t₀/t)` — the denominator of
-`w* = k_o + 𝒪(log(1/ε)/log(t₀/t))` — by `ln 2.6495 = 0.974`. -/
+`w* = k_o + 𝒪(log(1/ε)/log(t₀/t))` — by `ln 2.6495 = 0.974`.
+@isnad1 id=le.3h4v.s6.8870121eb843 from=translated src=- shape=d23e6acb vocab=97fe19a5
+-/
 theorem cZero_le_four_mul_exp {r m G B : ℝ} (h : Admissible r m G) (hB0 : 0 ≤ B) (hB1 : B ≤ 1) :
     cZero r m G B ≤ 4 * exp (9 / 32) := by
   obtain ⟨hr, hm, hG, _, hrG⟩ := h
@@ -666,7 +706,9 @@ theorem cZero_le_four_mul_exp {r m G B : ℝ} (h : Admissible r m G) (hB0 : 0 �
 /-- **`4e^{9/32}` is attained**, so `cZero_le_four_mul_exp` is sharp and no smaller unconditional
 constant exists. `(1, 0, 8)` is admissible with `8(m*+1)² = 8 = 1·8` holding with equality, and
 every one of the three factor bounds is tight there at once, so `4e^{9/32} ≈ 5.2991` is the
-**maximum** of `c₀` over `Admissible` and `0 ≤ B ≤ 1`. -/
+**maximum** of `c₀` over `Admissible` and `0 ≤ B ≤ 1`.
+@isnad1 id=and.0h0v.s6.a4fcb6ba8e7f from=translated src=- shape=cb586a28 vocab=b7606bae
+-/
 theorem cZero_eq_four_mul_exp_at_worst :
     Admissible 1 0 8 ∧ cZero 1 0 8 1 = 4 * exp (9 / 32) := by
   refine ⟨⟨le_refl 1, le_refl 0, by norm_num, by norm_num, by norm_num⟩, ?_⟩
@@ -686,7 +728,9 @@ above the observable's own weight. The supremum there is `2√2·e^{9/64} ≈ 3.
 and `root_factor_le` with no new estimate.
 
 Against the unconditional `5.2991` this recovers a factor `1.59` of `t₀`, for a hypothesis that
-excludes only the degenerate `w* = k_o`. -/
+excludes only the degenerate `w* = k_o`.
+@isnad1 id=le.4h4v.s6.8bc7d3c23c8f from=translated src=- shape=a03ed5cc vocab=a1464fd2
+-/
 theorem cZero_le_ten_thirds_of_one_le_m {r m G B : ℝ} (h : Admissible r m G) (hm1 : 1 ≤ m)
     (hB0 : 0 ≤ B) (hB1 : B ≤ 1) : cZero r m G B ≤ 10 / 3 := by
   obtain ⟨hr, hm, hG, _, _⟩ := id h

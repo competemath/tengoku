@@ -26,6 +26,9 @@ universe u v
 
 namespace GraphCoveringTheory.Kurosh
 
+/--
+@isnad1 id=eq.0h6v.s8.ff678ed0f209 from=translated src=- shape=75aeaaab vocab=527a046c
+-/
 theorem Internal.coverFreeGroupoidPathHom_eq_quotient_map {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H}
@@ -43,6 +46,9 @@ theorem Internal.coverFreeGroupoidPathHom_eq_quotient_map {ι : Type v}
       rw [ih]
       cases e using Sum.casesOn <;> rfl
 
+/--
+@isnad1 id=ex.0h6v.s8.5cf07719b196 from=translated src=- shape=f4857ea1 vocab=de3f1596
+-/
 theorem Internal.coverFreePath_exists {ι : Type v}
     (G : ι → Type u) [∀ i, Group (G i)] (H : Subgroup (FreeProduct G))
     {a b : RawBassSerreOrbitVertex G H}

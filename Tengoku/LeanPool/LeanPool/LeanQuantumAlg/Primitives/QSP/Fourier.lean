@@ -92,22 +92,33 @@ def lEval (L : ℕ) (F : ℂ[X]) (x : ℝ) : ℂ :=
   Complex.exp (-((L * x / 2 : ℝ) * Complex.I)) *
     F.eval (Complex.exp ((x : ℂ) * Complex.I))
 
+/--
+@isnad1 id=eq.0h4v.s6.69ddaf3e18d5 from=translated src=- shape=f88d093e vocab=1ae06f42
+-/
 theorem lEval_C_mul (L : ℕ) (c : ℂ) (F : ℂ[X]) (x : ℝ) :
     lEval L (C c * F) x = c * lEval L F x := by
   rw [lEval, lEval, Polynomial.eval_mul, Polynomial.eval_C]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s5.b5f403b70af9 from=translated src=- shape=922328f2 vocab=4b2eb5f7
+-/
 theorem lEval_add (L : ℕ) (F G : ℂ[X]) (x : ℝ) :
     lEval L (F + G) x = lEval L F x + lEval L G x := by
   rw [lEval, lEval, lEval, Polynomial.eval_add]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s5.382a4f918b71 from=translated src=- shape=922328f2 vocab=4a5c1feb
+-/
 theorem lEval_sub (L : ℕ) (F G : ℂ[X]) (x : ℝ) :
     lEval L (F - G) x = lEval L F x - lEval L G x := by
   rw [lEval, lEval, lEval, Polynomial.eval_sub]
   ring
 
-/-- Raising the parity budget multiplies the encoded value by `e^{-ix/2}`. -/
+/-- Raising the parity budget multiplies the encoded value by `e^{-ix/2}`.
+@isnad1 id=eq.0h3v.s6.75e8316c6c1e from=translated src=- shape=0678c273 vocab=6b5ab492
+-/
 theorem lEval_succ (L : ℕ) (F : ℂ[X]) (x : ℝ) :
     lEval (L + 1) F x
       = Complex.exp (-(((x / 2 : ℝ) : ℂ) * Complex.I)) * lEval L F x := by
@@ -116,7 +127,9 @@ theorem lEval_succ (L : ℕ) (F : ℂ[X]) (x : ℝ) :
   push_cast
   ring
 
-/-- Raising the budget while multiplying by `X` multiplies by `e^{ix/2}`. -/
+/-- Raising the budget while multiplying by `X` multiplies by `e^{ix/2}`.
+@isnad1 id=eq.0h3v.s6.52a35e43c429 from=translated src=- shape=32e6404c vocab=612c34aa
+-/
 theorem lEval_succ_X_mul (L : ℕ) (F : ℂ[X]) (x : ℝ) :
     lEval (L + 1) (X * F) x
       = Complex.exp (((x / 2 : ℝ) : ℂ) * Complex.I) * lEval L F x := by
@@ -126,12 +139,16 @@ theorem lEval_succ_X_mul (L : ℕ) (F : ℂ[X]) (x : ℝ) :
   push_cast
   ring
 
-/-- The encoded value of a constant at budget `0`. -/
+/-- The encoded value of a constant at budget `0`.
+@isnad1 id=eq.0h2v.s5.2c61c3784f99 from=translated src=- shape=63f9fc19 vocab=fb4dc20c
+-/
 theorem lEval_zero_C (c : ℂ) (x : ℝ) : lEval 0 (C c) x = c := by
   rw [lEval, Polynomial.eval_C]
   norm_num
 
-/-- Conjugating the encoded value reflects the conjugated coefficients. -/
+/-- Conjugating the encoded value reflects the conjugated coefficients.
+@isnad1 id=eq.1h3v.s6.d5e6a4cb2e2e from=translated src=- shape=cd0787ab vocab=36e5fe43
+-/
 theorem conj_lEval {L : ℕ} {F : ℂ[X]} (hF : F.natDegree ≤ L) (x : ℝ) :
     starRingEnd ℂ (lEval L F x) = lEval L ((conjP F).reflect L) x := by
   have hw : Complex.exp ((x : ℂ) * Complex.I) ≠ 0 := Complex.exp_ne_zero _
@@ -153,9 +170,15 @@ theorem conj_lEval {L : ℕ} {F : ℂ[X]} (hF : F.natDegree ≤ L) (x : ℝ) :
 def qspYZY (θ₀ : ℝ) (θs : List ℝ) (x : ℝ) : Gate 1 :=
   θs.foldl (fun U θ => U * (rotZStd x * rotY θ)) (rotY θ₀)
 
+/--
+@isnad1 id=eq.0h2v.s4.9221b86c073e from=translated src=- shape=94d8bea5 vocab=a16d8eb1
+-/
 @[simp]
 theorem qspYZY_nil (θ₀ : ℝ) (x : ℝ) : qspYZY θ₀ [] x = rotY θ₀ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.61ccabe75824 from=translated src=- shape=0001d6f1 vocab=cee44c9c
+-/
 theorem qspYZY_concat (θ₀ : ℝ) (θs : List ℝ) (θ : ℝ) (x : ℝ) :
     qspYZY θ₀ (θs ++ [θ]) x = qspYZY θ₀ θs x * (rotZStd x * rotY θ) := by
   simp [qspYZY, List.foldl_append]
@@ -167,10 +190,16 @@ def qspYZZYZ (φ θ₀ φ₀ : ℝ) (ps : List (ℝ × ℝ)) (x : ℝ) : Gate 1 
   ps.foldl (fun U p => U * (rotZStd x * (rotY p.1 * rotZStd p.2)))
     (rotZStd φ * (rotY θ₀ * rotZStd φ₀))
 
+/--
+@isnad1 id=eq.0h4v.s7.d33d41ca859c from=translated src=- shape=e6aa37cc vocab=4daae090
+-/
 @[simp]
 theorem qspYZZYZ_nil (φ θ₀ φ₀ : ℝ) (x : ℝ) :
     qspYZZYZ φ θ₀ φ₀ [] x = rotZStd φ * (rotY θ₀ * rotZStd φ₀) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.a0ae2d4b1edf from=translated src=- shape=175620ae vocab=e7b1cf71
+-/
 theorem qspYZZYZ_concat (φ θ₀ φ₀ : ℝ) (ps : List (ℝ × ℝ)) (p : ℝ × ℝ)
     (x : ℝ) :
     qspYZZYZ φ θ₀ φ₀ (ps ++ [p]) x
@@ -182,7 +211,9 @@ sets every `R_Z` processing angle in the trainable blocks to `0`. This is the
 gate-level form of "YZZYZ subsumes YZY" — the encoding/normalization theory of
 the trigonometric family is shared, and the two characterizations differ only
 in their completeness arguments (one real angle per block vs. three SU(2)
-angles). -/
+angles).
+@isnad1 id=eq.0h3v.s5.6d24f40fd39e from=translated src=- shape=7ac1c9d4 vocab=5c329922
+-/
 theorem qspYZY_eq_qspYZZYZ (θ₀ : ℝ) (θs : List ℝ) (x : ℝ) :
     qspYZY θ₀ θs x = qspYZZYZ 0 θ₀ 0 (θs.map (fun t => (t, (0 : ℝ)))) x := by
   induction θs using List.reverseRecOn with
@@ -219,21 +250,35 @@ structure IsYZYPair (L : ℕ) (A B : ℂ[X]) : Prop extends IsYZPair L A B where
   realA : conjP A = A
   realB : conjP B = B
 
+/--
+@isnad1 id=eq.2h4v.s5.27d363d26ab0 from=translated src=- shape=3735c68f vocab=e9a100b8
+-/
 theorem IsYZPair.coeff_A_eq_zero {L : ℕ} {A B : ℂ[X]} (h : IsYZPair L A B)
     {m : ℕ} (hm : L < m) : A.coeff m = 0 :=
   (Polynomial.degree_le_iff_coeff_zero A L).mp h.degA m (by exact_mod_cast hm)
 
+/--
+@isnad1 id=eq.2h4v.s5.70927906c045 from=translated src=- shape=f7fdd3fd vocab=e9a100b8
+-/
 theorem IsYZPair.coeff_B_eq_zero {L : ℕ} {A B : ℂ[X]} (h : IsYZPair L A B)
     {m : ℕ} (hm : L < m) : B.coeff m = 0 :=
   (Polynomial.degree_le_iff_coeff_zero B L).mp h.degB m (by exact_mod_cast hm)
 
+/--
+@isnad1 id=le.1h3v.s4.78eb84b5e186 from=translated src=- shape=36f955ce vocab=6043228f
+-/
 theorem IsYZPair.natDegA {L : ℕ} {A B : ℂ[X]} (h : IsYZPair L A B) :
     A.natDegree ≤ L := Polynomial.natDegree_le_iff_degree_le.mpr h.degA
 
+/--
+@isnad1 id=le.1h3v.s4.7c5b64f5b833 from=translated src=- shape=52ad74b0 vocab=6043228f
+-/
 theorem IsYZPair.natDegB {L : ℕ} {A B : ℂ[X]} (h : IsYZPair L A B) :
     B.natDegree ≤ L := Polynomial.natDegree_le_iff_degree_le.mpr h.degB
 
-/-- Build the degree conditions from coefficient bounds. -/
+/-- Build the degree conditions from coefficient bounds.
+@isnad1 id=isyzpair.3h3v.s7.dc5654fb76db from=translated src=- shape=62add6c9 vocab=21321201
+-/
 theorem isYZPair_of_coeff {L : ℕ} {A B : ℂ[X]}
     (hA : ∀ m, L < m → A.coeff m = 0) (hB : ∀ m, L < m → B.coeff m = 0)
     (norm : A * (conjP A).reflect L + B * (conjP B).reflect L = X ^ L) :
@@ -381,7 +426,9 @@ private theorem rotYZ_base_eq_qspMatYZ (φ θ₀ φ₀ : ℝ) (a b : ℂ) (x : �
 
 /-- Soundness for the YZZYZ form: every `qspYZZYZ` product realizes the
 target form for a pair satisfying the conditions
-[YYLW22, neurips_2022.tex:333, forward direction]. -/
+[YYLW22, neurips_2022.tex:333, forward direction].
+@isnad1 id=ex.0h4v.s6.ecf80020939b from=translated src=- shape=1ffd5724 vocab=45e134ff
+-/
 theorem qspYZZYZ_forward (φ θ₀ φ₀ : ℝ) (ps : List (ℝ × ℝ)) :
     ∃ A B : ℂ[X], IsYZPair ps.length A B ∧
       ∀ x : ℝ, qspYZZYZ φ θ₀ φ₀ ps x = qspMatYZ ps.length A B x := by
@@ -490,7 +537,9 @@ private theorem IsYZYPair.step {L : ℕ} {A B : ℂ[X]} (h : IsYZYPair L A B) (�
 
 /-- Soundness for the YZY form: every `qspYZY` product realizes the target
 form for a real pair satisfying the conditions
-[YYLW22, neurips_2022.tex:283, forward direction]. -/
+[YYLW22, neurips_2022.tex:283, forward direction].
+@isnad1 id=ex.0h2v.s5.ce51db09bd44 from=translated src=- shape=d3015efd vocab=1fa6cd59
+-/
 theorem qspYZY_forward (θ₀ : ℝ) (θs : List ℝ) :
     ∃ A B : ℂ[X], IsYZYPair θs.length A B ∧
       ∀ x : ℝ, qspYZY θ₀ θs x = qspMatYZ θs.length A B x := by
@@ -547,7 +596,9 @@ private theorem lEval_mul_conj {L : ℕ} {F : ℂ[X]} (hF : F.natDegree ≤ L) (
 
 /-- The polynomial normalization identity is equivalent to the pointwise
 circle normalization `|P(x)|² + |Q(x)|² = 1` on `ℝ`
-[YYLW22, neurips_2022.tex:288]. -/
+[YYLW22, neurips_2022.tex:288].
+@isnad1 id=iff.2h3v.s7.47edb80faa3a from=translated src=- shape=3366f4a3 vocab=8f6af9c7
+-/
 theorem qspYZ_normalization_iff {L : ℕ} {A B : ℂ[X]} (hA : A.natDegree ≤ L)
     (hB : B.natDegree ≤ L) :
     A * (conjP A).reflect L + B * (conjP B).reflect L = X ^ L ↔
@@ -805,7 +856,9 @@ private theorem isYZPair_unstep {L : ℕ} {A B : ℂ[X]} (h : IsYZPair (L + 1) A
 
 /-- Completeness for the YZZYZ form [YYLW22, neurips_2022.tex:848, converse
 direction]: every `IsYZPair` pair is realized by some angle sequence with
-exactly `L` encoding blocks. -/
+exactly `L` encoding blocks.
+@isnad1 id=ex.1h3v.s6.9c41313d8dd2 from=translated src=- shape=5a723e2c vocab=45e134ff
+-/
 theorem qspYZZYZ_converse :
     ∀ (L : ℕ) (A B : ℂ[X]), IsYZPair L A B →
       ∃ (φ θ₀ φ₀ : ℝ) (ps : List (ℝ × ℝ)), ps.length = L ∧
@@ -895,7 +948,9 @@ private theorem exists_unstep_vw_yzy {L : ℕ} {A B : ℂ[X]}
     exact_mod_cast congrArg (fun u : ℝ => (u : ℂ)) hc2
 
 /-- Completeness for the YZY form [YYLW22, neurips_2022.tex:702, converse
-direction]. -/
+direction].
+@isnad1 id=ex.1h3v.s5.e50f2110b679 from=translated src=- shape=a0f1d419 vocab=1fa6cd59
+-/
 theorem qspYZY_converse :
     ∀ (L : ℕ) (A B : ℂ[X]), IsYZYPair L A B →
       ∃ (θ₀ : ℝ) (θs : List ℝ), θs.length = L ∧
@@ -972,6 +1027,9 @@ theorem qspYZY_converse :
 
 /-! #### The characterization theorems -/
 
+/--
+@isnad1 id=mem.0h5v.s9.5e4be596cf6d from=translated src=- shape=c424fe76 vocab=f93b4780
+-/
 theorem qspYZZYZ_mem_unitaryGroup (φ θ₀ φ₀ : ℝ) (ps : List (ℝ × ℝ))
     (x : ℝ) :
     (qspYZZYZ φ θ₀ φ₀ ps x : HilbertOperator 1) ∈
@@ -986,6 +1044,9 @@ theorem qspYZZYZ_mem_unitaryGroup (φ θ₀ φ₀ : ℝ) (ps : List (ℝ × ℝ)
       exact mul_mem ih (mul_mem (rotZStd_mem_unitaryGroup x)
         (mul_mem (rotY_mem_unitaryGroup p.1) (rotZStd_mem_unitaryGroup p.2)))
 
+/--
+@isnad1 id=mem.0h3v.s9.b973a6b1ed70 from=translated src=- shape=b1c2035a vocab=54381148
+-/
 theorem qspYZY_mem_unitaryGroup (θ₀ : ℝ) (θs : List ℝ) (x : ℝ) :
     (qspYZY θ₀ θs x : HilbertOperator 1) ∈
       Matrix.unitaryGroup (Fin (2 ^ 1)) ℂ := by
@@ -997,7 +1058,9 @@ theorem qspYZY_mem_unitaryGroup (θ₀ : ℝ) (θs : List ℝ) (x : ℝ) :
 `(A, B)` satisfies the degree and normalization conditions `IsYZPair L`
 **iff** some angles `(φ, θ₀, φ₀, ps)` with `L` encoding gates realize the
 matrix form `[[P, -Q], [Q*, P*]]` with `P = e^{-iLx/2}·A(e^{ix})` and
-`Q = e^{-iLx/2}·B(e^{ix})` for all `x : ℝ`. -/
+`Q = e^{-iLx/2}·B(e^{ix})` for all `x : ℝ`.
+@isnad1 id=iff.0h3v.s6.2f46312cd46a from=translated src=- shape=114f2218 vocab=45e134ff
+-/
 theorem TrigonometricQuantumSignalProcessing.main (L : ℕ) (A B : ℂ[X]) :
     IsYZPair L A B ↔
       ∃ (φ θ₀ φ₀ : ℝ) (ps : List (ℝ × ℝ)), ps.length = L ∧
@@ -1012,7 +1075,9 @@ theorem TrigonometricQuantumSignalProcessing.main (L : ℕ) (A B : ℂ[X]) :
 /-- **Trigonometric QSP, YZY form** [YYLW22, neurips_2022.tex:283]
 (`lem:qnn_yzy`, encoded form): real-coefficient pairs `IsYZYPair L` are
 exactly those realized by `R_Y` angles `(θ₀, θs)` with `L` encoding
-gates. -/
+gates.
+@isnad1 id=iff.0h3v.s5.12fe0170f2ac from=translated src=- shape=8e754718 vocab=1fa6cd59
+-/
 theorem TrigonometricQuantumSignalProcessing.main_yzy (L : ℕ) (A B : ℂ[X]) :
     IsYZYPair L A B ↔
       ∃ (θ₀ : ℝ) (θs : List ℝ), θs.length = L ∧

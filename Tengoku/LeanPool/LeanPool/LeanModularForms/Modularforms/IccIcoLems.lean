@@ -18,6 +18,9 @@ open TopologicalSpace Set
 
 open scoped Interval Real NNReal ENNReal Topology BigOperators Nat
 
+/--
+@isnad1 id=eq.0h1v.s7.94e9e1c7c8f4 from=translated src=- shape=48021f9f vocab=f4d8f7f2
+-/
 lemma Icc_succ (n : ℕ) : Finset.Icc (-(n + 1) : ℤ) (n + 1) = Finset.Icc (-n : ℤ) n ∪
   {(-(n+1) : ℤ), (n + 1 : ℤ)} := by
   ext a
@@ -25,6 +28,9 @@ lemma Icc_succ (n : ℕ) : Finset.Icc (-(n + 1) : ℤ) (n + 1) = Finset.Icc (-n 
     Finset.mem_insert, Finset.mem_union, Finset.mem_singleton]
   omega
 
+/--
+@isnad1 id=eq.1h2v.s7.dc3f6ce12561 from=translated src=- shape=e1ce1016 vocab=6b5b95b8
+-/
 lemma trex (f : ℤ → ℂ) (N : ℕ) (hn : 1 ≤ N) : ∑ m ∈ Finset.Icc (-N : ℤ) N, f m =
   f N + f (-N : ℤ) + ∑ m ∈ Finset.Icc (-(N - 1) : ℤ) (N - 1), f m := by
   induction N with
@@ -40,9 +46,15 @@ lemma trex (f : ℤ → ℂ) (N : ℕ) (hn : 1 ≤ N) : ∑ m ∈ Finset.Icc (-N
       omega
     simp
 
+/--
+@isnad1 id=le.0h1v.s4.434366f73ae9 from=translated src=- shape=dfa3a8eb vocab=fe33c17a
+-/
 lemma int_add_abs_self_nonneg (n : ℤ) : 0 ≤ n + |n| := by
   rcases abs_cases n with ⟨h, _⟩ | ⟨h, _⟩ <;> omega
 
+/--
+@isnad1 id=tendsto.0h0v.s5.3e94b0268978 from=translated src=- shape=84087be5 vocab=638dc90a
+-/
 lemma verga : Tendsto (fun N : ℕ => Finset.Ico (-N : ℤ) N) atTop atTop := by
   apply tendsto_atTop_finset_of_monotone (fun _ _ _ ↦ Finset.Ico_subset_Ico (by omega) (by gcongr))
   intro x

@@ -17,6 +17,9 @@ open UpperHalfPlane TopologicalSpace Set MeasureTheory intervalIntegral
 
 open scoped Interval Real NNReal ENNReal Topology BigOperators Nat
 
+/--
+@isnad1 id=eq.2h2v.s6.edc2b236afc5 from=translated src=- shape=40f71882 vocab=75ef764a
+-/
 lemma arg_pow_aux (n : ℕ) (x : ℂ) (hx : x ≠ 0) (hna : |arg x| < π / n) :
   Complex.arg (x ^ n) = n * Complex.arg x := by
   induction n with
@@ -52,11 +55,17 @@ lemma arg_pow_aux (n : ℕ) (x : ℂ) (hx : x ≠ 0) (hna : |arg x| < π / n) :
       gcongr
       exact (lt_add_one n)
 
+/--
+@isnad1 id=ne.1h1v.s5.d1cba803c9c1 from=translated src=- shape=25a84a34 vocab=c6bb5a8b
+-/
 lemma one_add_abs_half_ne_zero {x : ℂ} (hb : ‖x‖ < 1 / 2) : 1 + x ≠ 0 := by
   intro h
   rw [add_eq_zero_iff_neg_eq] at h
   simp [← h] at hb; linarith
 
+/--
+@isnad1 id=eventual.1h2v.s6.78135b1293af from=translated src=- shape=4d337cf1 vocab=5105ab77
+-/
 lemma arg_pow (n : ℕ) (f : ℕ → ℂ) (hf : Tendsto f atTop (𝓝 0)) : ∀ᶠ m : ℕ in atTop,
     Complex.arg ((1 + f m) ^ n) = n * Complex.arg (1 + f m) := by
   simp only [eventually_atTop]
@@ -79,6 +88,9 @@ lemma arg_pow (n : ℕ) (f : ℕ → ℂ) (hf : Tendsto f atTop (𝓝 0)) : ∀�
         exact hA b (le_of_max_le_left hb)⟩
   simp only [one_mem_slitPlane]
 
+/--
+@isnad1 id=eventual.1h2v.s6.2a332c8c224d from=translated src=- shape=3969505e vocab=8d719db6
+-/
 lemma arg_pow2 (n : ℕ) (f : ℍ → ℂ) (hf : Tendsto f atImInfty (𝓝 0)) : ∀ᶠ m : ℍ in atImInfty,
     Complex.arg ((1 + f m) ^ n) = n * Complex.arg (1 + f m) := by
   rw [Filter.eventually_iff_exists_mem ]
@@ -117,6 +129,9 @@ lemma arg_pow2 (n : ℕ) (f : ℍ → ℂ) (hf : Tendsto f atImInfty (𝓝 0)) :
       exact hA1 b (mem_of_mem_inter_left hb)
   simp only [one_mem_slitPlane]
 
+/--
+@isnad1 id=eventual.1h2v.s6.164a5dfc7a87 from=translated src=- shape=eee55b3c vocab=1ba57eed
+-/
 lemma clog_pow (n : ℕ) (f : ℕ → ℂ) (hf : Tendsto f atTop (𝓝 0)) : ∀ᶠ m : ℕ in atTop,
     Complex.log ((1 + f m) ^ n) = n * Complex.log (1 + f m) := by
   have h := arg_pow n f hf
@@ -125,6 +140,9 @@ lemma clog_pow (n : ℕ) (f : ℕ → ℂ) (hf : Tendsto f atTop (𝓝 0)) : ∀
   exact ⟨a, fun b hb => by simp_rw [Complex.log, ha b hb, norm_pow, Real.log_pow,
     ofReal_mul, ofReal_natCast]; ring⟩
 
+/--
+@isnad1 id=eventual.1h2v.s6.a40b6e3152c9 from=translated src=- shape=abe6f736 vocab=97840011
+-/
 lemma clog_pow2 (n : ℕ) (f : ℍ → ℂ) (hf : Tendsto f atImInfty (𝓝 0)) : ∀ᶠ m : ℍ in atImInfty,
     Complex.log ((1 + f m) ^ n) = n * Complex.log (1 + f m) := by
   have h := arg_pow2 n f hf
@@ -136,6 +154,9 @@ lemma clog_pow2 (n : ℕ) (f : ℍ → ℂ) (hf : Tendsto f atImInfty (𝓝 0)) 
   simp only [mem_atTop_sets, mem_preimage, mem_ofPred_eq] at *
   rw [h2]; simp only [norm_pow, Real.log_pow, ofReal_mul, ofReal_natCast]; ring
 
+/--
+@isnad1 id=summable.1h2v.s6.ff957372ea39 from=translated src=- shape=85c9d165 vocab=417b79fb
+-/
 lemma log_summable_pow (f : ℕ → ℂ) (hf : Summable f) (m : ℕ) :
     Summable (fun n => Complex.log ((1 + f n)^m)) := by
   have hfl := Complex.summable_log_one_add_of_summable hf

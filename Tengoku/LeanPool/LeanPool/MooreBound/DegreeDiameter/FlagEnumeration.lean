@@ -51,18 +51,30 @@ because multiplication in `ℕ` is commutative. -/
 def qFactorial (q n : ℕ) : ℕ :=
   ∏ i : Fin n, qInteger q (n - i.val)
 
+/--
+@isnad1 id=eq.0h1v.s4.b841f5f2c9bf from=translated src=- shape=1d838610 vocab=c6d0e989
+-/
 @[simp]
 theorem qInteger_zero (q : ℕ) : qInteger q 0 = 0 := by
   simp [qInteger]
 
+/--
+@isnad1 id=eq.0h1v.s4.57d120d6fbaf from=translated src=- shape=1d838610 vocab=c6d0e989
+-/
 @[simp]
 theorem qInteger_one (q : ℕ) : qInteger q 1 = 1 := by
   simp [qInteger]
 
+/--
+@isnad1 id=eq.0h1v.s4.bd74d62d8a3a from=translated src=- shape=1d838610 vocab=8b6b589f
+-/
 @[simp]
 theorem qFactorial_zero (q : ℕ) : qFactorial q 0 = 1 := by
   simp [qFactorial]
 
+/--
+@isnad1 id=eq.0h2v.s5.e6a6c79764d6 from=translated src=- shape=196286cd vocab=7063ae05
+-/
 theorem qFactorial_succ (q n : ℕ) :
     qFactorial q (n + 1) = qInteger q (n + 1) * qFactorial q n := by
   rw [qFactorial, Fin.prod_univ_succ, qFactorial]
@@ -73,7 +85,9 @@ theorem qFactorial_succ (q n : ℕ) :
   simp
 
 /-- The descending-product definition is the conventional ascending product
-`[1]_q [2]_q ... [n]_q`. -/
+`[1]_q [2]_q ... [n]_q`.
+@isnad1 id=eq.0h2v.s5.160d0b52d6c1 from=translated src=- shape=488f0f55 vocab=a2142b7c
+-/
 theorem qFactorial_eq_prod_range (q n : ℕ) :
     qFactorial q n = ∏ j ∈ Finset.range n, qInteger q (j + 1) := by
   induction n with
@@ -81,6 +95,9 @@ theorem qFactorial_eq_prod_range (q n : ℕ) :
   | succ n ih =>
       rw [qFactorial_succ, Finset.prod_range_succ, ih, Nat.mul_comm]
 
+/--
+@isnad1 id=eq.1h2v.s6.18bf2e212bb6 from=translated src=- shape=3daea691 vocab=277603e9
+-/
 theorem qInteger_mul_sub_one (q n : ℕ) (hq : 1 ≤ q) :
     qInteger q n * (q - 1) = q ^ n - 1 := by
   simpa [qInteger] using (geom_sum_mul_of_one_le hq n)
@@ -91,7 +108,9 @@ variable {K V : Type*} [DivisionRing K] [AddCommGroup V] [Module K V]
   {n : ℕ}
 
 /-- Complete flags form a finite type when the ambient vector space is
-finite. -/
+finite.
+@isnad1 id=finite.0h3v.s5.1c41df834ebb from=translated src=- shape=e4c19f59 vocab=33bf7da1
+-/
 noncomputable instance CompleteFlag.instFinite [Finite V] :
     Finite (CompleteFlag K V n) := by
   let : Finite (Submodule K V) :=
@@ -112,6 +131,9 @@ variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
 def FlagStepVector (F : CompleteFlag K V n) (i : Fin n) :=
   {x : F i.succ // (x : V) ∉ F i.castSucc}
 
+/--
+@isnad1 id=finite.0h5v.s5.196c16f30097 from=translated src=- shape=e405c98d vocab=97365362
+-/
 noncomputable instance flagStepVectorFinite [Finite V]
     (F : CompleteFlag K V n) (i : Fin n) : Finite (FlagStepVector F i) := by
   unfold FlagStepVector
@@ -121,6 +143,9 @@ noncomputable instance flagStepVectorFinite [Finite V]
 def FlagStepChoices (F : CompleteFlag K V n) :=
   (i : Fin n) → FlagStepVector F i
 
+/--
+@isnad1 id=finite.0h4v.s5.3c2211b678a5 from=translated src=- shape=3f5c56ab vocab=55d10cfb
+-/
 noncomputable instance flagStepChoicesFinite [Finite V]
     (F : CompleteFlag K V n) : Finite (FlagStepChoices F) := by
   unfold FlagStepChoices
@@ -146,6 +171,9 @@ def previousStepEquiv (F : CompleteFlag K V n) (i : Fin n) :
   left_inv _ := rfl
   right_inv _ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.4c9a88843c43 from=translated src=- shape=1b23920b vocab=43e68f23
+-/
 theorem natCard_flagStepVector [Finite K] [Finite V]
     (F : CompleteFlag K V n) (i : Fin n) :
     Nat.card (FlagStepVector F i) =
@@ -166,6 +194,9 @@ theorem natCard_flagStepVector [Finite K] [Finite V]
   rw [F.finrank_space, F.finrank_space]
   rfl
 
+/--
+@isnad1 id=linearin.0h4v.s5.d6ba294c16ba from=translated src=- shape=239f7d8e vocab=b7358e6c
+-/
 theorem adaptedVectors_linearIndependent (d : AdaptedFlagBasis K V n) :
     LinearIndependent K (adaptedVectors d) := by
   let v := adaptedVectors d
@@ -203,7 +234,9 @@ theorem adaptedVectors_linearIndependent (d : AdaptedFlagBasis K V n) :
   simpa [v, vr] using hLIprefix n le_rfl
 
 /-- The span of the first `r` adapted vectors is exactly the rank-`r`
-subspace of the flag. -/
+subspace of the flag.
+@isnad1 id=eq.0h5v.s7.bc57f533b7e5 from=translated src=- shape=484acfcc vocab=d33a820e
+-/
 theorem span_adaptedVectors_eq (d : AdaptedFlagBasis K V n)
     [FiniteDimensional K V]
     (r : Fin (n + 1)) :
@@ -286,7 +319,9 @@ end AdaptedBases
 section Arithmetic
 
 /-- The factor in the exact count of independent tuples splits into the
-number of choices advancing a fixed flag and the corresponding q-integer. -/
+number of choices advancing a fixed flag and the corresponding q-integer.
+@isnad1 id=eq.1h3v.s6.89d5b63c26ea from=translated src=- shape=03717f07 vocab=3f9325b4
+-/
 theorem independentFactor_eq (q n : ℕ) (hq : 1 ≤ q) (i : Fin n) :
     q ^ n - q ^ i.val =
       (q ^ (i.val + 1) - q ^ i.val) * qInteger q (n - i.val) := by
@@ -310,6 +345,9 @@ theorem independentFactor_eq (q n : ℕ) (hq : 1 ≤ q) (i : Fin n) :
     _ = (q ^ (i.val + 1) - q ^ i.val) * qInteger q (n - i.val) := by
           rw [hadvance]
 
+/--
+@isnad1 id=eq.1h2v.s7.62db58070b2b from=translated src=- shape=b0817a96 vocab=8bbeea1a
+-/
 theorem independentProduct_eq (q n : ℕ) (hq : 1 ≤ q) :
     (∏ i : Fin n, (q ^ n - q ^ i.val)) =
       (∏ i : Fin n, (q ^ (i.val + 1) - q ^ i.val)) * qFactorial q n := by
@@ -333,7 +371,9 @@ variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
   [Finite K] [Finite V] [FiniteDimensional K V]
 
 /-- The exact number of complete flags in an `n`-dimensional vector space
-over a finite field is `[n]_q!`, where `q` is the cardinality of the field. -/
+over a finite field is `[n]_q!`, where `q` is the cardinality of the field.
+@isnad1 id=eq.1h3v.s6.8248a8236679 from=translated src=- shape=ff42e84a vocab=5b70a739
+-/
 theorem natCard_completeFlag_of_finrank {n : ℕ}
     (hV : finrank K V = n) :
     Nat.card (CompleteFlag K V n) = qFactorial (Nat.card K) n := by

@@ -45,11 +45,17 @@ def oneCoordinateLinearEquiv : ComplexEuclidean 1 ≃ₗ[ℂ] ℂ where
 def oneCoordinateEquiv : ComplexEuclidean 1 ≃L[ℂ] ℂ :=
   oneCoordinateLinearEquiv.toContinuousLinearEquiv
 
+/--
+@isnad1 id=eq.0h1v.s8.31c9842d3272 from=translated src=- shape=ecc3aa89 vocab=d15f152e
+-/
 @[simp]
 theorem oneCoordinateEquiv_apply (x : ComplexEuclidean 1) :
     oneCoordinateEquiv x = x 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.e988a6017eaa from=translated src=- shape=4aec4713 vocab=45d400d6
+-/
 @[simp]
 theorem oneCoordinateEquiv_symm_apply (z : ℂ) :
     oneCoordinateEquiv.symm z = fun _ ↦ z :=
@@ -62,6 +68,7 @@ If `f` is a nonzero one-variable analytic germ and both `f` and `g` vanish at
 the origin, then a positive power of `g` is an analytic multiple of `f`.
 
 The exponent produced by the proof is the order of vanishing of `f`.
+@isnad1 id=ex.5h2v.s9.b0f33893d4ed from=translated src=- shape=f2a58996 vocab=6dd84546
 -/
 theorem exists_power_eq_mul_of_analyticAt_oneVariable
     {f g : ComplexEuclidean 1 → ℂ}
@@ -169,6 +176,7 @@ The audited finite-family local analytic Nullstellensatz in one complex
 variable.  The hypothesis is the genuine eventual common-zero implication,
 and the conclusion is a positive-power certificate with analytic
 coefficients.
+@isnad1 id=ex.3h3v.s9.5f0686ecd261 from=translated src=- shape=72a2573e vocab=04c4f85d
 -/
 theorem localAnalyticNullstellensatz_oneVariable
     {s : ℕ}

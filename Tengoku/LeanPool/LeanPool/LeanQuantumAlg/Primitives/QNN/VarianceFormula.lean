@@ -49,7 +49,9 @@ variable {N : ℕ}
 generator `A` is skew-Hermitian (`star A = -A`, the physical case `A = i H` with `H`
 Hermitian), then the adjoint `star x = xᴴ` of any element of the dynamical Lie algebra
 is again in it. Hence the DLA is the complexification of a real Lie algebra inside
-`u(N)`, and admits a Hilbert–Schmidt orthonormal basis of Hermitian matrices. -/
+`u(N)`, and admits a Hilbert–Schmidt orthonormal basis of Hermitian matrices.
+@isnad1 id=mem.2h3v.s9.ad1d9ea91ddb from=translated src=- shape=740115d1 vocab=860ccef4
+-/
 theorem dynamicalLieAlgebra_star_mem
     {gens : Set (Matrix (Fin N) (Fin N) ℂ)} (hskew : ∀ A ∈ gens, star A = -A)
     {x : Matrix (Fin N) (Fin N) ℂ} (hx : x ∈ dynamicalLieAlgebra gens) :
@@ -76,7 +78,9 @@ theorem dynamicalLieAlgebra_star_mem
     simpa only [h] using neg_mem (LieSubalgebra.lie_mem _ ha hb)
 
 /-- Restated with the conjugate-transpose notation: the DLA of skew-Hermitian
-generators is closed under `(·)ᴴ`. -/
+generators is closed under `(·)ᴴ`.
+@isnad1 id=mem.2h3v.s9.7b197e91f063 from=translated src=- shape=166ef71d vocab=54f902a2
+-/
 theorem dynamicalLieAlgebra_conjTranspose_mem
     {gens : Set (Matrix (Fin N) (Fin N) ℂ)} (hskew : ∀ A ∈ gens, Aᴴ = -A)
     {x : Matrix (Fin N) (Fin N) ℂ} (hx : x ∈ dynamicalLieAlgebra gens) :
@@ -109,12 +113,16 @@ namespace DLAHermBasis
 
 variable {gens : Set (Matrix (Fin N) (Fin N) ℂ)} (b : DLAHermBasis gens)
 
-/-- For a Hermitian orthonormal basis, `Tr[Bᵢ Bₖ] = δᵢₖ`. -/
+/-- For a Hermitian orthonormal basis, `Tr[Bᵢ Bₖ] = δᵢₖ`.
+@isnad1 id=eq.0h5v.s6.c90cd0e9dfc3 from=translated src=- shape=5bf70eb2 vocab=6aa079a3
+-/
 theorem trace_mul (i k : Fin b.dim) : (b.B i * b.B k).trace = if i = k then (1 : ℂ) else 0 := by
   have h := b.ortho i k
   rwa [hsInner, b.herm i] at h
 
-/-- An orthonormal family is linearly independent. -/
+/-- An orthonormal family is linearly independent.
+@isnad1 id=linearin.0h3v.s5.458404776483 from=translated src=- shape=61b3b387 vocab=14e700e9
+-/
 theorem linearIndependent_B : LinearIndependent ℂ b.B := by
   rw [Fintype.linearIndependent_iff]
   intro c hc k
@@ -127,7 +135,9 @@ theorem linearIndependent_B : LinearIndependent ℂ b.B := by
     simp_all
   simp_all
 
-/-- The basis cardinality is the dimension of the dynamical Lie algebra. -/
+/-- The basis cardinality is the dimension of the dynamical Lie algebra.
+@isnad1 id=eq.0h3v.s4.9fc076a70823 from=translated src=- shape=458df5ba vocab=b2703e2e
+-/
 theorem dlaDim_eq : dlaDim gens = b.dim := by
   rw [dlaDim, ← b.span_eq, finrank_span_eq_card b.linearIndependent_B, Fintype.card_fin]
 
@@ -145,7 +155,9 @@ noncomputable def gProj (H : Matrix (Fin N) (Fin N) ℂ) : Matrix (Fin N) (Fin N
 noncomputable def gPurity (H : Matrix (Fin N) (Fin N) ℂ) : ℂ :=
   ∑ i, (hsInner (b.B i) H) ^ 2
 
-/-- **Step 9a (normalization).** `⟪C, C⟫ = dim g` — the `1/dim(g)` factor. -/
+/-- **Step 9a (normalization).** `⟪C, C⟫ = dim g` — the `1/dim(g)` factor.
+@isnad1 id=eq.0h3v.s5.4355a9eafe0a from=translated src=- shape=b6ba10e1 vocab=43f1e764
+-/
 theorem casimir_hsInner_self : hsInner b.casimir b.casimir = (b.dim : ℂ) := by
   rw [casimir, hsInner_sum_left]
   have hi : ∀ i, hsInner (b.B i ⊗ₖ b.B i) (∑ k, b.B k ⊗ₖ b.B k) = (1 : ℂ) := by
@@ -161,7 +173,9 @@ theorem casimir_hsInner_self : hsInner b.casimir b.casimir = (b.dim : ℂ) := by
   simp_all
 
 /-- **Step 9b (contraction).** `⟪C, H ⊗ H⟫ = P_g(H)` — the Casimir contracts to the
-`g`-purity. -/
+`g`-purity.
+@isnad1 id=eq.0h4v.s6.63c8f0b1dee9 from=translated src=- shape=c28bd9f0 vocab=d651cc47
+-/
 theorem casimir_hsInner_kron (H : Matrix (Fin N) (Fin N) ℂ) :
     hsInner b.casimir (H ⊗ₖ H) = b.gPurity H := by
   rw [casimir, hsInner_sum_left, gPurity]
@@ -169,7 +183,9 @@ theorem casimir_hsInner_kron (H : Matrix (Fin N) (Fin N) ℂ) :
   intro i _
   rw [hsInner_kronecker, sq]
 
-/-- The `g`-purity coincides with Ragone's `Tr[H_g²]` (`H_g = gProj H`). -/
+/-- The `g`-purity coincides with Ragone's `Tr[H_g²]` (`H_g = gProj H`).
+@isnad1 id=eq.0h4v.s6.de0dfff6fb4a from=translated src=- shape=4fe58b67 vocab=3b3878ad
+-/
 theorem gPurity_eq_trace (H : Matrix (Fin N) (Fin N) ℂ) :
     b.gPurity H = (b.gProj H * b.gProj H).trace := by
   simp only [gPurity, gProj, Matrix.sum_mul, Matrix.mul_sum, Matrix.smul_mul, Matrix.mul_smul,
@@ -178,19 +194,25 @@ theorem gPurity_eq_trace (H : Matrix (Fin N) (Fin N) ℂ) :
   rw [Finset.sum_ite_eq']
   simp [sq]
 
-/-- The quadratic Casimir is Hermitian. -/
+/-- The quadratic Casimir is Hermitian.
+@isnad1 id=eq.0h3v.s6.3a6b4a8edf16 from=translated src=- shape=a1ee359d vocab=9ec1ffd1
+-/
 theorem casimir_isHermitian : b.casimirᴴ = b.casimir := by
   rw [casimir, conjTranspose_sum]
   exact Finset.sum_congr rfl fun j _ => by simp only [conjTranspose_kronecker, b.herm]
 
-/-- The `g`-purity of a Hermitian matrix is real. -/
+/-- The `g`-purity of a Hermitian matrix is real.
+@isnad1 id=eq.1h4v.s6.096c3d2aa726 from=translated src=- shape=820f6ee1 vocab=c463da00
+-/
 theorem gPurity_conj {H : Matrix (Fin N) (Fin N) ℂ} (hH : Hᴴ = H) :
     (starRingEnd ℂ) (b.gPurity H) = b.gPurity H := by
   rw [gPurity, map_sum]
   exact Finset.sum_congr rfl fun i _ => by
     rw [map_pow, hsInner_conj_of_isHermitian (b.herm i) hH]
 
-/-- The `g`-purity of a basis element is `1` (it is normalized). -/
+/-- The `g`-purity of a basis element is `1` (it is normalized).
+@isnad1 id=eq.0h4v.s5.b572fa0490a2 from=translated src=- shape=1adc23c7 vocab=f05bc845
+-/
 theorem gPurity_basis_elem (i : Fin b.dim) : b.gPurity (b.B i) = 1 := by
   rw [gPurity]
   have hterm : ∀ j, (hsInner (b.B j) (b.B i)) ^ 2 = if j = i then (1 : ℂ) else 0 := by
@@ -234,7 +256,9 @@ structure RagoneSecondMoment {gens : Set (Matrix (Fin N) (Fin N) ℂ)} (b : DLAH
 /-- **The Lie-algebraic loss-variance formula (simple-DLA case)** — Ragone et al.
 (2023), the `k=1` case. Given the bundled Haar/twirl/Schur hypotheses and Hermitian
 `ρ`, `O`, the loss variance is `P_g(ρ) · P_g(O) / dim(g)`. Genuinely derived from the
-proved Casimir identities (Steps 9a/9b); only the `RagoneSecondMoment` data is assumed. -/
+proved Casimir identities (Steps 9a/9b); only the `RagoneSecondMoment` data is assumed.
+@isnad1 id=eq.2h6v.s7.70e837d4533d from=translated src=- shape=ffb7eeba vocab=03b9aab2
+-/
 theorem RagoneSecondMoment.variance_eq_gPurity {gens : Set (Matrix (Fin N) (Fin N) ℂ)}
     {b : DLAHermBasis gens} {ρ O : Matrix (Fin N) (Fin N) ℂ}
     (M : RagoneSecondMoment b ρ O) (hρ : ρᴴ = ρ) (hdim : 0 < b.dim) :
@@ -296,7 +320,9 @@ structure RagoneReductive (ρ O : Matrix (Fin N) (Fin N) ℂ) where
   total_eq : (totalVariance : ℂ) = ∑ j, ((comp j).variance : ℂ)
 
 /-- **Reductive-case variance formula.** The total loss variance is the sum over the
-simple ideals of `P_{gⱼ}(ρ) · P_{gⱼ}(O) / dim(gⱼ)`. -/
+simple ideals of `P_{gⱼ}(ρ) · P_{gⱼ}(O) / dim(gⱼ)`.
+@isnad1 id=eq.2h4v.s7.203b60a631e7 from=translated src=- shape=5bfc0827 vocab=25a60770
+-/
 theorem RagoneReductive.totalVariance_eq {ρ O : Matrix (Fin N) (Fin N) ℂ}
     (R : RagoneReductive ρ O) (hρ : ρᴴ = ρ) (hdim : ∀ j, 0 < (R.basis j).dim) :
     (R.totalVariance : ℂ)
@@ -311,7 +337,9 @@ plateau.** For a qubit-indexed family of simple-DLA circuits whose loss variance
 genuine Ragone value `P_g(ρ)·P_g(O)/dim(g)` (the `RagoneSecondMoment` bundle), if the
 `g`-purity numerator stays bounded and the dynamical Lie algebra dimension grows
 exponentially in the qubit count, then the loss has a barren plateau. This consumes the
-*proved* variance formula (`variance_eq_gPurity`) rather than an assumed variance law. -/
+*proved* variance formula (`variance_eq_gPurity`) rather than an assumed variance law.
+@isnad1 id=hasbarre.6h8v.s8.59b213631ea3 from=translated src=- shape=16c10ad9 vocab=adc5048e
+-/
 theorem ragone_hasBarrenPlateau {sz : ℕ → ℕ}
     {gens : (n : ℕ) → Set (Matrix (Fin (sz n)) (Fin (sz n)) ℂ)}
     {ρ O : (n : ℕ) → Matrix (Fin (sz n)) (Fin (sz n)) ℂ}
@@ -353,7 +381,9 @@ def trivialDLAHermBasis : DLAHermBasis ({1} : Set (Matrix (Fin 1) (Fin 1) ℂ)) 
 /-- **The full hypothesis stack is non-vacuous.** There is a concrete dynamical Lie
 algebra with a Hermitian orthonormal basis and a satisfiable second-moment bundle —
 so the variance formula `variance_eq_gPurity` and the barren-plateau capstone are not
-vacuously true. -/
+vacuously true.
+@isnad1 id=ex.0h0v.s6.8ab6d056d2f0 from=translated src=- shape=c673f0c0 vocab=996bf21a
+-/
 theorem ragone_hypotheses_nonempty :
     ∃ (gens : Set (Matrix (Fin 1) (Fin 1) ℂ)) (b : DLAHermBasis gens)
       (ρ O : Matrix (Fin 1) (Fin 1) ℂ), Nonempty (RagoneSecondMoment b ρ O) :=

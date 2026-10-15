@@ -31,6 +31,9 @@ private lemma continuousOn_u_exp {u : ℂ → ℝ} (hc : ContinuousOn u (closedB
     ContinuousOn (fun t : ℝ => u (Complex.exp (t * Complex.I))) s :=
   hc.comp (Continuous.continuousOn (by continuity)) fun x _ => by simp [Complex.norm_exp]
 
+/--
+@isnad1 id=le.2h2v.s6.e56116cf7ccd from=translated src=- shape=8b433780 vocab=6df058e5
+-/
 lemma non_neg_boundary
     (u : ℂ → ℝ) (t : ℝ)
     (h_pos : ∀ z ∈ ball (0 : ℂ) 1, 0 < u z)
@@ -49,6 +52,9 @@ lemma non_neg_boundary
     (Filter.eventually_of_mem (Ioo_mem_nhdsLT zero_lt_one) fun r hr =>
       le_of_lt (h_pos _ (by simpa [abs_of_nonneg hr.1.le, norm_exp] using hr.2)))
 
+/--
+@isnad1 id=le.5h2v.s7.b0328ced0c28 from=translated src=- shape=9ef1fe5e vocab=1e1193ab
+-/
 lemma harnack_ineq_cont_normalized_upper
     (u : ℂ → ℝ)
     (h_pos : ∀ z ∈ ball (0 : ℂ) 1, 0 < u z)
@@ -108,6 +114,9 @@ lemma harnack_ineq_cont_normalized_upper
         field_simp [show (1 - ‖z‖) ≠ (0 : ℝ) by linarith]
         ring
 
+/--
+@isnad1 id=le.5h2v.s7.008adb660c77 from=translated src=- shape=8b3d74b1 vocab=1e1193ab
+-/
 lemma harnack_ineq_cont_normalized_lower
     (u : ℂ → ℝ)
     (h_pos : ∀ z ∈ ball (0 : ℂ) 1, 0 < u z)
@@ -268,6 +277,7 @@ private lemma harnack_ineq_aux
 /-- **Harnack's inequality for positive harmonic functions.**
 A positive harmonic function on the unit disc satisfies
 two-sided estimates in terms of the distance to the boundary.
+@isnad1 id=and.3h2v.s7.6000606c0f8b from=translated src=- shape=90dcf82c vocab=ca8f9468
 -/
 theorem harnack_ineq
     (u : ℂ → ℝ)

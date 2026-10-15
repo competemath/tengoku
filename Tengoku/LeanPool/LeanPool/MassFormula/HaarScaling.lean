@@ -112,7 +112,9 @@ omit [IsUniformAddGroup K] in
 /-- The valuation-level form of the order hypothesis: an integral element whose valuation is the
 `k`-th power of the valuation of `π` is associated to `π ^ k`—the bridge from the shape a valuation
 computation produces to the `Associated` hypothesis of the scaling law below
-([Serre 1978, Lemma 2, p.1033][Serre1978]). -/
+([Serre 1978, Lemma 2, p.1033][Serre1978]).
+@isnad1 id=associat.2h4v.s10.b986607a9f5a from=translated src=- shape=ad242e45 vocab=3c85a6f2
+-/
 theorem associated_pow_of_valuation {π : 𝒪[K]} (hπ : Irreducible π) {a : 𝒪[K]} {k : ℕ}
     (hval : valuation K (a : K) = valuation K (π : K) ^ k) : Associated a (π ^ k) := by
   have hπ1 : valuation K (π : K) < 1 :=
@@ -161,7 +163,9 @@ over the principal ideal ring `𝒪[K]` presents the quotient as a product of th
 diagonal coefficients `a i`; their product is associated to `M.det` because the two embeddings of
 the integer box into itself with image the lattice—the one through `M` and the one through the Smith
 bases—differ by an automorphism, and `LinearMap.associated_det_comp_equiv` makes their determinants
-associated. -/
+associated.
+@isnad1 id=eq.3h5v.s12.ac5fb59c7105 from=translated src=- shape=b6b71ba5 vocab=256e9b16
+-/
 theorem card_quotient_range {n : ℕ} (M : Matrix (Fin n) (Fin n) 𝒪[K]) (hdet : M.det ≠ 0)
     {π : 𝒪[K]} (hπ : Irreducible π) {k : ℕ} (hk : Associated M.det (π ^ k)) :
     Nat.card ((Fin n → 𝒪[K]) ⧸ LinearMap.range (Matrix.mulVecLin M)) = q K ^ k := by
@@ -245,17 +249,25 @@ def toCoeff {n : ℕ} : (Fin n → 𝒪[K]) →+ (Fin n → K) where
   map_add' y z := by funext i; simp
 
 omit [UniformSpace K] [IsUniformAddGroup K] [IsNonarchimedeanLocalField K] in
+/--
+@isnad1 id=eq.0h4v.s10.04dcd0f0d07a from=translated src=- shape=f76ca700 vocab=adcbe57e
+-/
 lemma toCoeff_apply {n : ℕ} (y : Fin n → 𝒪[K]) (i : Fin n) :
     toCoeff y i = (y i : K) := rfl
 
 omit [UniformSpace K] [IsUniformAddGroup K] [IsNonarchimedeanLocalField K] in
+/--
+@isnad1 id=injectiv.0h2v.s10.cec7ea84761a from=translated src=- shape=59016bc7 vocab=d9abb4c0
+-/
 lemma toCoeff_injective {n : ℕ} : Function.Injective (toCoeff (K := K) (n := n)) := by
   intro y z hyz
   funext i
   exact Subtype.val_injective (congrFun hyz i)
 
 omit [UniformSpace K] [IsUniformAddGroup K] [IsNonarchimedeanLocalField K] in
-/-- The integer box is exactly the range of the integral picture. -/
+/-- The integer box is exactly the range of the integral picture.
+@isnad1 id=eq.0h2v.s10.923e3af19d2d from=translated src=- shape=d930c5ce vocab=b15d7dd3
+-/
 lemma range_toCoeff {n : ℕ} : Set.range (toCoeff (K := K) (n := n)) = integerBox K n := by
   ext x
   constructor
@@ -275,7 +287,9 @@ private lemma toCoeff_mulVec {n : ℕ} (M : Matrix (Fin n) (Fin n) 𝒪[K]) (y :
   rfl
 
 omit [UniformSpace K] [IsUniformAddGroup K] [IsNonarchimedeanLocalField K] in
-/-- The image lattice is the integral picture of the range submodule. -/
+/-- The image lattice is the integral picture of the range submodule.
+@isnad1 id=eq.0h3v.s12.b73f418e3bb0 from=translated src=- shape=af26d9a7 vocab=011c7561
+-/
 lemma imageLattice_eq_image_range {n : ℕ} (M : Matrix (Fin n) (Fin n) 𝒪[K]) :
     imageLattice M = toCoeff '' (LinearMap.range (Matrix.mulVecLin M) : Set (Fin n → 𝒪[K])) := by
   rw [imageLattice, ← range_toCoeff, ← Set.image_univ, Set.image_image]
@@ -289,7 +303,9 @@ lemma imageLattice_eq_image_range {n : ℕ} (M : Matrix (Fin n) (Fin n) 𝒪[K])
 omit [UniformSpace K] [IsUniformAddGroup K] [IsNonarchimedeanLocalField K] in
 /-- Membership in an image lattice, in the integral picture: an integral vector lies in the image of
 the integer box under `M` exactly when it lies in the range of `M` over `𝒪[K]`—the integral picture
-being injective. -/
+being injective.
+@isnad1 id=iff.0h4v.s13.71819e71a10b from=translated src=- shape=d4cf21a2 vocab=9c18c64b
+-/
 lemma toCoeff_mem_imageLattice_iff {n : ℕ} (M : Matrix (Fin n) (Fin n) 𝒪[K])
     (y : Fin n → 𝒪[K]) :
     toCoeff y ∈ imageLattice M ↔ y ∈ LinearMap.range (Matrix.mulVecLin M) := by
@@ -298,7 +314,9 @@ lemma toCoeff_mem_imageLattice_iff {n : ℕ} (M : Matrix (Fin n) (Fin n) 𝒪[K]
 
 omit [IsUniformAddGroup K] in
 /-- The image lattice sits inside the integer box, and is compact—the continuous image of the
-compact box. -/
+compact box.
+@isnad1 id=iscompac.0h3v.s7.f7546c86c899 from=translated src=- shape=f9d10f43 vocab=369ad0ff
+-/
 lemma isCompact_imageLattice {n : ℕ} (M : Matrix (Fin n) (Fin n) 𝒪[K]) :
     IsCompact (imageLattice M) := by
   refine IsCompact.image ?_ ?_
@@ -314,7 +332,9 @@ lemma isCompact_imageLattice {n : ℕ} (M : Matrix (Fin n) (Fin n) 𝒪[K]) :
 of its image under `M`, so the box has `q ^ k` times the volume of that image—for *any*
 translation-invariant measure, no normalization needed. The index `q ^ k` is `card_quotient_range`;
 the decomposition is the coset decomposition of the integer box modulo the lattice, transported
-along the integral picture `toCoeff`, and the lattice is measurable because it is compact. -/
+along the integral picture `toCoeff`, and the lattice is measurable because it is compact.
+@isnad1 id=eq.3h6v.s10.7234988a162a from=translated src=- shape=b4ebe6f3 vocab=48a8b262
+-/
 theorem measure_integerBox_eq_pow_mul {n : ℕ} [MeasurableSpace (Fin n → K)]
     [BorelSpace (Fin n → K)] (μ : Measure (Fin n → K)) [μ.IsAddLeftInvariant]
     (M : Matrix (Fin n) (Fin n) 𝒪[K]) (hdet : M.det ≠ 0) {π : 𝒪[K]} (hπ : Irreducible π)
@@ -391,7 +411,9 @@ theorem measure_integerBox_eq_pow_mul {n : ℕ} [MeasurableSpace (Fin n → K)]
 /-! ## The scaling law on boxes and on balls -/
 
 omit [UniformSpace K] [IsUniformAddGroup K] [IsNonarchimedeanLocalField K] in
-/-- Membership in a box, coordinate by coordinate. -/
+/-- Membership in a box, coordinate by coordinate.
+@isnad1 id=iff.0h5v.s9.a693d3d80384 from=translated src=- shape=d15d7341 vocab=001b8146
+-/
 theorem mem_box_iff {n : ℕ} (π : 𝒪[K]) (e : Fin n → ℕ) (w : Fin n → K) :
     w ∈ box π e ↔ ∀ i, valuation K (w i) ≤ valuation K (π : K) ^ (e i) := by
   rw [box, Set.mem_pi]
@@ -400,7 +422,9 @@ theorem mem_box_iff {n : ℕ} (π : 𝒪[K]) (e : Fin n → ℕ) (w : Fin n → 
 omit [UniformSpace K] [IsUniformAddGroup K] [IsNonarchimedeanLocalField K] in
 /-- The lattice of a diagonal matrix is a box: multiplication by `π ^ e i` in the `i`-th coordinate
 has image `π ^ e i` times `𝒪[K]` there, so the image lattice of a diagonal integral matrix of powers
-is the coordinate box of the corresponding radii. -/
+is the coordinate box of the corresponding radii.
+@isnad1 id=eq.1h4v.s9.e69bea74c3f6 from=translated src=- shape=443cccd2 vocab=b423a5f4
+-/
 theorem imageLattice_diagonal {n : ℕ} {π : 𝒪[K]} (hπ : Irreducible π) (e : Fin n → ℕ) :
     imageLattice (Matrix.diagonal fun i => π ^ e i) = box π e := by
   have hπ0 : (π : K) ≠ 0 := by exact_mod_cast hπ.ne_zero
@@ -443,7 +467,9 @@ private lemma det_diagonal_pow {n : ℕ} (π : 𝒪[K]) (e : Fin n → ℕ) :
 
 /-- The volume of an image lattice: for a measure normalized on the integer box—the paper's
 normalization giving `𝒪[K]` volume `1`, coordinatewise—the lattice of a matrix whose determinant
-has `π`-adic order `k` has volume `1 / q ^ k` ([Serre 1978, p.1032][Serre1978]). -/
+has `π`-adic order `k` has volume `1 / q ^ k` ([Serre 1978, p.1032][Serre1978]).
+@isnad1 id=eq.4h6v.s10.f1b432a4d535 from=translated src=- shape=3e78e7bd vocab=949814a8
+-/
 theorem measure_imageLattice_eq_inv_pow {n : ℕ} [MeasurableSpace (Fin n → K)]
     [BorelSpace (Fin n → K)] (μ : Measure (Fin n → K)) [μ.IsAddLeftInvariant]
     (hnorm : μ (integerBox K n) = 1) (M : Matrix (Fin n) (Fin n) 𝒪[K]) (hdet : M.det ≠ 0)
@@ -455,7 +481,9 @@ theorem measure_imageLattice_eq_inv_pow {n : ℕ} [MeasurableSpace (Fin n → K)
   exact ENNReal.eq_inv_of_mul_eq_one_left (by rw [mul_comm]; exact h1.symm)
 
 /-- The volume of a coordinate box: the diagonal case of the lattice volume, the box of radii
-`π ^ e i` having volume `1 / q ^ (∑ i, e i)`. -/
+`π ^ e i` having volume `1 / q ^ (∑ i, e i)`.
+@isnad1 id=eq.2h5v.s9.dc4a337f4846 from=translated src=- shape=77086f28 vocab=feefd4eb
+-/
 theorem measure_box_eq_inv_pow {n : ℕ} [MeasurableSpace (Fin n → K)] [BorelSpace (Fin n → K)]
     (μ : Measure (Fin n → K)) [μ.IsAddLeftInvariant] (hnorm : μ (integerBox K n) = 1)
     {π : 𝒪[K]} (hπ : Irreducible π) (e : Fin n → ℕ) :
@@ -487,7 +515,9 @@ private lemma det_diagonal_const {n : ℕ} (π : 𝒪[K]) (m : ℕ) :
 are translates of lattices—of the integer box scaled by `π ^ m`, and of its image under `M`, of
 determinant orders `m * n` and `m * n + k`—so the two applications of
 `measure_integerBox_eq_pow_mul` differ by the factor `q ^ k`, which is all that survives after the
-common factor `q ^ (m * n)` is cancelled. -/
+common factor `q ^ (m * n)` is cancelled.
+@isnad1 id=eq.3h8v.s11.ff49093ab29a from=translated src=- shape=98976394 vocab=adcafb62
+-/
 theorem measure_ball_eq_pow_mul {n : ℕ} [MeasurableSpace (Fin n → K)] [BorelSpace (Fin n → K)]
     (μ : Measure (Fin n → K)) [μ.IsAddLeftInvariant]
     (M : Matrix (Fin n) (Fin n) 𝒪[K]) (hdet : M.det ≠ 0) {π : 𝒪[K]} (hπ : Irreducible π)

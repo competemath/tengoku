@@ -84,7 +84,9 @@ private lemma sum_zmod_two (f : ZMod 2 → ℂ) : ∑ c : ZMod 2, f c = f 0 + f 
 
 private lemma zmod_two_cases' (a : ZMod 2) : a = 0 ∨ a = 1 := by revert a; decide
 
-/-- **`negOnePow` is multiplicative over finite sums**: `(-1)^{∑ f i} = ∏ (-1)^{f i}`. -/
+/-- **`negOnePow` is multiplicative over finite sums**: `(-1)^{∑ f i} = ∏ (-1)^{f i}`.
+@isnad1 id=eq.0h3v.s6.289652d3b894 from=translated src=- shape=78b872e8 vocab=68fc0e3d
+-/
 lemma negOnePow_sum {ι : Type*} (s : Finset ι) (f : ι → ZMod 2) :
     negOnePow (∑ i ∈ s, f i) = ∏ i ∈ s, negOnePow (f i) := by
   classical
@@ -92,20 +94,26 @@ lemma negOnePow_sum {ι : Type*} (s : Finset ι) (f : ι → ZMod 2) :
   | empty => simp
   | insert a s ha ih => rw [Finset.sum_insert ha, Finset.prod_insert ha, negOnePow_add, ih]
 
-/-- The sign of a dot product **factorizes over sites**. -/
+/-- The sign of a dot product **factorizes over sites**.
+@isnad1 id=eq.0h3v.s7.9ecabc0e185d from=translated src=- shape=33252d74 vocab=40961ea8
+-/
 lemma negOnePow_dotProduct (u b : Bits n) :
     negOnePow (u ⬝ᵥ b) = ∏ i, negOnePow (u i * b i) := by
   simp only [dotProduct]
   exact negOnePow_sum _ _
 
 /-- One site's contribution: `2` at `a = 0` and `0` at `a = 1`. This vanishing is the whole
-content of the character sum. -/
+content of the character sum.
+@isnad1 id=eq.0h1v.s7.43c3879b0877 from=translated src=- shape=3073a9d1 vocab=c85cda08
+-/
 lemma sum_negOnePow_mul (a : ZMod 2) :
     (∑ c : ZMod 2, negOnePow (a * c)) = if a = 0 then (2 : ℂ) else 0 := by
   rw [sum_zmod_two]
   rcases zmod_two_cases' a with ha | ha <;> rw [ha] <;> norm_num
 
-/-- **The Pauli character sum**: `2^n` at the trivial character, `0` otherwise. -/
+/-- **The Pauli character sum**: `2^n` at the trivial character, `0` otherwise.
+@isnad1 id=eq.0h2v.s8.7b9ec69a7ce5 from=translated src=- shape=4c64f5ef vocab=ad5037fa
+-/
 theorem char_sum (n : ℕ) (u : Bits n) :
     (∑ b : Bits n, negOnePow (u ⬝ᵥ b)) = if u = 0 then (2 : ℂ) ^ n else 0 := by
   rw [Finset.sum_congr rfl fun b _ => negOnePow_dotProduct u b,
@@ -120,7 +128,9 @@ theorem char_sum (n : ℕ) (u : Bits n) :
 /-! ### The diagonal -/
 
 /-- In characteristic two a shift fixes a basis label only when it is trivial, so `toMatrix u` has
-a non-empty diagonal exactly when its `X`-part vanishes. -/
+a non-empty diagonal exactly when its `X`-part vanishes.
+@isnad1 id=iff.0h3v.s7.e0b8549a6991 from=translated src=- shape=4c859687 vocab=5565e13a
+-/
 lemma diag_ne_zero_iff (u : PauliString n) (a : Bits n) :
     a = a + u.x ↔ u.x = 0 := by
   constructor
@@ -129,11 +139,17 @@ lemma diag_ne_zero_iff (u : PauliString n) (a : Bits n) :
     exact (add_left_cancel h').symm
   · intro h; rw [h, add_zero]
 
+/--
+@isnad1 id=eq.1h3v.s6.7dfee0325ba9 from=translated src=- shape=6ba15ff8 vocab=dbdf054d
+-/
 lemma toMatrix_diag_of_x_ne_zero (hu : u.x ≠ 0) (a : Bits n) : toMatrix u a a = 0 := by
   rw [toMatrix_apply, ite_eq_right]
   intro h
   exact hu ((diag_ne_zero_iff u a).1 h)
 
+/--
+@isnad1 id=eq.1h3v.s7.9ac3c056e5ff from=translated src=- shape=1e4db64d vocab=1f3dd822
+-/
 lemma toMatrix_diag_of_x_eq_zero (hu : u.x = 0) (a : Bits n) :
     toMatrix u a a = iPow u.phase * negOnePow (u.z ⬝ᵥ a) := by
   rw [toMatrix_apply, ite_eq_left ((diag_ne_zero_iff u a).2 hu)]
@@ -141,12 +157,16 @@ lemma toMatrix_diag_of_x_eq_zero (hu : u.x = 0) (a : Bits n) :
 /-! ### The trace -/
 
 /-- A Pauli operator with a non-trivial `X`-part is traceless: it is a permutation matrix pattern
-with no fixed points. -/
+with no fixed points.
+@isnad1 id=eq.1h2v.s7.f90c6b9cb00d from=translated src=- shape=1463ed67 vocab=4967c52e
+-/
 theorem trace_toMatrix_of_x_ne_zero (hu : u.x ≠ 0) : (toMatrix u).trace = 0 := by
   rw [Matrix.trace]
   exact Finset.sum_eq_zero fun a _ => toMatrix_diag_of_x_ne_zero hu a
 
-/-- With a trivial `X`-part the trace is the phase times a character sum over the `Z`-part. -/
+/-- With a trivial `X`-part the trace is the phase times a character sum over the `Z`-part.
+@isnad1 id=eq.1h2v.s8.6f5c911b621a from=translated src=- shape=16c3eef3 vocab=b54a7e67
+-/
 theorem trace_toMatrix_of_x_eq_zero (hu : u.x = 0) :
     (toMatrix u).trace = iPow u.phase * ∑ b : Bits n, negOnePow (u.z ⬝ᵥ b) := by
   rw [Matrix.trace, Finset.mul_sum]
@@ -160,12 +180,20 @@ The trace pairing sees the `(x, z)` data and nothing else. This is the relation
 normalized basis — which is the form that holds for `PauliString n`, since the group itself is
 not an orthogonal family. -/
 
+/--
+@isnad1 id=eq.0h3v.s7.97bef4400c06 from=translated src=- shape=8c335685 vocab=425b0385
+-/
 lemma star_mul_x (s t : PauliString n) : (star s * t).x = s.x + t.x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.64f784807049 from=translated src=- shape=8c335685 vocab=9bd2e37f
+-/
 lemma star_mul_z (s t : PauliString n) : (star s * t).z = s.z + t.z := rfl
 
 /-- **The trace pairing of two Pauli operators.** Zero unless the two strings carry the same
-`X`- and `Z`-parts; `2^n` times a fourth root of unity when they do. -/
+`X`- and `Z`-parts; `2^n` times a fourth root of unity when they do.
+@isnad1 id=eq.0h3v.s8.9e823f733680 from=translated src=- shape=3c9b44a2 vocab=13449d51
+-/
 theorem trace_star_toMatrix_mul (s t : PauliString n) :
     (star (toMatrix s) * toMatrix t).trace
       = if s.x = t.x ∧ s.z = t.z then (2 : ℂ) ^ n * iPow (star s * t).phase else 0 := by
@@ -183,13 +211,17 @@ theorem trace_star_toMatrix_mul (s t : PauliString n) :
   · have hx0 : (star s * t).x ≠ 0 := fun h => hx (bits_add_eq_zero_iff.1 (by rwa [star_mul_x] at h))
     rw [trace_toMatrix_of_x_ne_zero hx0, ite_eq_right (fun h => hx h.1)]
 
-/-- Two Pauli strings differing in their `X`- or `Z`-part are **orthogonal** operators. -/
+/-- Two Pauli strings differing in their `X`- or `Z`-part are **orthogonal** operators.
+@isnad1 id=eq.1h3v.s7.5e49f2603e39 from=translated src=- shape=fd83cb80 vocab=941024d7
+-/
 theorem trace_star_toMatrix_mul_eq_zero (h : ¬(s.x = t.x ∧ s.z = t.z)) :
     (star (toMatrix s) * toMatrix t).trace = 0 := by
   rw [trace_star_toMatrix_mul, ite_eq_right h]
 
 /-- Every Pauli operator has squared Hilbert–Schmidt norm `2^n`. With the `2^{-n/2}` normalization
-of `def:pauli_basis` this is the diagonal case `Tr(s s) = 1` of its orthonormality relation. -/
+of `def:pauli_basis` this is the diagonal case `Tr(s s) = 1` of its orthonormality relation.
+@isnad1 id=eq.0h2v.s7.f828d2c81c4a from=translated src=- shape=8d76fa6c vocab=a3cd513b
+-/
 theorem trace_star_toMatrix_mul_self (s : PauliString n) :
     (star (toMatrix s) * toMatrix s).trace = (2 : ℂ) ^ n := by
   rw [toMatrix_star, toMatrix_mul, star_eq_inv, inv_mul_cancel, toMatrix_one, Matrix.trace_one,
@@ -199,7 +231,9 @@ theorem trace_star_toMatrix_mul_self (s : PauliString n) :
 
 /-- **Phase variants are not orthogonal**, and this records why the orthogonal family is the `4^n`
 signless classes rather than the `4·4^n` group elements: `i·s` pairs with `s` to give `2^n · i`,
-not `0`. Anything that wants an orthonormal basis must normalize the phase first. -/
+not `0`. Anything that wants an orthonormal basis must normalize the phase first.
+@isnad1 id=eq.0h3v.s7.bb8586719175 from=translated src=- shape=fbc22e8c vocab=0dbc06ee
+-/
 theorem trace_star_toMatrix_mul_phaseMul (k : ZMod 4) (s : PauliString n) :
     (star (toMatrix s) * toMatrix (phaseMul k s)).trace = (2 : ℂ) ^ n * iPow k := by
   have hp : (star s * phaseMul k s).phase = k := by

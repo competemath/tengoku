@@ -67,12 +67,21 @@ noncomputable def chainToBigSegment {u v : ℝ²} (C : Chain u v) : Segment :=
   match C with
   | _ => toSegment u v
 
+/--
+@isnad1 id=eq.1h4v.s6.215fc6beb243 from=translated src=- shape=3bf69064 vocab=fa161e4e
+-/
 lemma chainToBigSegment_join {u v w} (h : colin u v w) (C : Chain v w) :
     chainToBigSegment (Chain.join h C) = toSegment u w := rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.26e218d19924 from=translated src=- shape=65b62876 vocab=cc471c2a
+-/
 lemma chainToBigSegment_glue {u v w : ℝ²} (h : colin u v w) (CL : Chain u v)
     (CR : Chain v w) : chainToBigSegment (glueChains h CL CR) = toSegment u w := rfl
 
+/--
+@isnad1 id=eq.2h7v.s6.629fc1a52cb7 from=translated src=- shape=7a2fc6ce vocab=21351792
+-/
 lemma glueChains_assoc {u v w x : ℝ²} (C₁ : Chain u v) (C₂ : Chain v w) (C₃ : Chain w x)
     (h₁ : colin u v w) (h₂ : colin v w x) :
     glueChains (colin_trans_right h₁ h₂) (glueChains h₁ C₁ C₂) C₃ =
@@ -84,6 +93,9 @@ lemma glueChains_assoc {u v w x : ℝ²} (C₁ : Chain u v) (C₂ : Chain v w) (
     congr 1
     exact ih C₂ _ h₂
 
+/--
+@isnad1 id=eq.1h5v.s6.12eab195881a from=translated src=- shape=ecc4e5c9 vocab=6f76a1ef
+-/
 lemma reverseChain_glue {u v w : ℝ²} (h : colin u v w) (CL : Chain u v)
     (CR : Chain v w)
     : reverseChain (glueChains h CL CR)
@@ -94,6 +106,9 @@ lemma reverseChain_glue {u v w : ℝ²} (h : colin u v w) (CL : Chain u v)
       simp only [glueChains, reverseChain, ih (sub_collinear_right h h₂.2) CR]
       rw [←glueChains_assoc]
 
+/--
+@isnad1 id=eq.1h5v.s8.7624a52c35f2 from=translated src=- shape=c0f9bc5c vocab=8de1e2fc
+-/
 lemma basic_segments_glue {u v w : ℝ²} (h : colin u v w) (CL : Chain u v)
     (CR : Chain v w)
     : toBasicSegments (glueChains h CL CR) = toBasicSegments CL ∪ toBasicSegments CR := by
@@ -102,6 +117,9 @@ lemma basic_segments_glue {u v w : ℝ²} (h : colin u v w) (CL : Chain u v)
   | join h₂ C ih  =>
       simp [toBasicSegments, glueChains, ih (sub_collinear_right h h₂.2) CR]
 
+/--
+@isnad1 id=le.1h4v.s7.5369571ead85 from=translated src=- shape=c3fa47af vocab=30cb440f
+-/
 lemma basic_segment_in_openHull {u v : ℝ²} (C : Chain u v) {S : Segment}
     (hS : S ∈ toBasicSegments C) : openHull S ⊆ openHull (toSegment u v) := by
   induction C with
@@ -125,10 +143,16 @@ private lemma basic_segments_colin_disjoint_aux {u v w : ℝ²} {S : Segment} (h
   rw [Set.eq_empty_iff_forall_notMem] at other
   exact other p ⟨hL q, hR q⟩
 
+/--
+@isnad1 id=not.1h4v.s6.ca36b5bbd38e from=translated src=- shape=57ed2e75 vocab=97f1e87c
+-/
 lemma basic_segments_colin_disjoint {u v w : ℝ²} {C : Chain v w} (h : colin u v w) :
     toSegment u v ∉ toBasicSegments C := fun hc ↦
   basic_segments_colin_disjoint_aux h (fun _ a ↦ a) (basic_segment_in_openHull _ hc)
 
+/--
+@isnad1 id=not.1h4v.s6.d8a40e793eb1 from=translated src=- shape=fa7ebda7 vocab=97f1e87c
+-/
 lemma basic_segments_colin_disjoint2 {u v w : ℝ²} {C : Chain v w} (h : colin u v w) :
     toSegment v u ∉ toBasicSegments C := by
   intro hc
@@ -136,6 +160,9 @@ lemma basic_segments_colin_disjoint2 {u v w : ℝ²} {C : Chain v w} (h : colin 
   refine basic_segments_colin_disjoint_aux h ?_ this
   rw [← reverseSegment_toSegment, reverseSegment_openHull]
 
+/--
+@isnad1 id=not.1h4v.s6.601ab5f64c8e from=translated src=- shape=25005d7f vocab=1106139d
+-/
 lemma basic_segments_colin_disjoint_reverse {u v w : ℝ²} {C : Chain v w} (h : colin u v w) :
     toSegment  u v ∉ toBasicSegments (reverseChain C ):= by
   intro hc
@@ -143,6 +170,9 @@ lemma basic_segments_colin_disjoint_reverse {u v w : ℝ²} {C : Chain v w} (h :
   refine basic_segments_colin_disjoint_aux h (fun _ a ↦ a) ?_
   rwa [← reverseSegment_toSegment (u := v) (v := w), reverseSegment_openHull] at this
 
+/--
+@isnad1 id=eq.0h3v.s8.42a140d6b19b from=translated src=- shape=abea21cd vocab=fb37f627
+-/
 lemma reverseChain_basic_segments {u v : ℝ²} (C : Chain u v) :
     toBasicSegments (reverseChain C) =
     Finset.image (fun S ↦ reverseSegment S) (toBasicSegments C) := by
@@ -152,6 +182,9 @@ lemma reverseChain_basic_segments {u v : ℝ²} (C : Chain u v) :
       simp only [reverseChain, toBasicSegments, basic_segments_glue, ih, Finset.image_union]
       congr 1
 
+/--
+@isnad1 id=disjoint.1h3v.s6.5a7431e6795a from=translated src=- shape=42442111 vocab=a981ca8d
+-/
 lemma reverseChain_basic_segments_disjoint {u v : ℝ²} (C : Chain u v) (huv : u ≠ v) :
     Disjoint (toBasicSegments C) (toBasicSegments (reverseChain C)) := by
   induction C with
@@ -166,6 +199,9 @@ lemma reverseChain_basic_segments_disjoint {u v : ℝ²} (C : Chain u v) (huv : 
       refine ⟨⟨fun h ↦ hxy (congrFun h 1), basic_segments_colin_disjoint2 h₂⟩,
         basic_segments_colin_disjoint_reverse h₂, ih hyz⟩
 
+/--
+@isnad1 id=mem.1h3v.s7.6b650c171f80 from=translated src=- shape=46a2c678 vocab=8ef63e1a
+-/
 lemma segmentSet_vertex {X : Finset ℝ²} {S : Segment}
   (hS : S ∈ segmentSet X) : ∀ i, S i ∈ X := by
   simp only [segmentSet, ne_eq, product_eq_sprod, mem_image,
@@ -174,14 +210,23 @@ lemma segmentSet_vertex {X : Finset ℝ²} {S : Segment}
   rw [←h₂]
   intro i; fin_cases i <;> (simp only [toSegment]; assumption)
 
+/--
+@isnad1 id=mem.1h3v.s7.8fd4c70b8874 from=translated src=- shape=aa6c4590 vocab=f3bd0250
+-/
 lemma avoidingSegmentSet_sub {X : Finset ℝ²} {A : Set ℝ²} {S : Segment}
     (hS : S ∈ avoidingSegmentSet X A) : S ∈ segmentSet X :=
   mem_of_mem_filter S hS
 
+/--
+@isnad1 id=mem.1h3v.s7.eea49094029e from=translated src=- shape=aa6c4590 vocab=d5d64701
+-/
 lemma basicAvoidingSegmentSet_sub {X : Finset ℝ²} {A : Set ℝ²} {S : Segment}
     (hS : S ∈ basicAvoidingSegmentSet X A) : S ∈ segmentSet X :=
   avoidingSegmentSet_sub (A := A) (mem_of_mem_filter S hS)
 
+/--
+@isnad1 id=ne.1h2v.s7.5b628d4355fe from=translated src=- shape=3e15baaf vocab=8ef63e1a
+-/
 lemma segmentSet_vertex_distinct {X : Finset ℝ²} {S : Segment}
     (hS : S ∈ segmentSet X) : S 0 ≠ S 1 := by
   simp only [segmentSet, ne_eq, product_eq_sprod, mem_image,
@@ -190,6 +235,9 @@ lemma segmentSet_vertex_distinct {X : Finset ℝ²} {S : Segment}
   rw [←h₂]
   simpa [toSegment]
 
+/--
+@isnad1 id=mem.2h3v.s7.3fd74126cc26 from=translated src=- shape=98418aa6 vocab=f26f67f7
+-/
 lemma segmentSet_boundary {X : Finset ℝ²} {x : ℝ²} {S : Segment} (hS : S ∈ segmentSet X)
     (hx : x ∈ boundary S) : x ∈ X := by
   rw [boundary_seg (segmentSet_vertex_distinct hS), mem_coe, mem_image] at hx
@@ -197,6 +245,9 @@ lemma segmentSet_boundary {X : Finset ℝ²} {x : ℝ²} {S : Segment} (hS : S �
   rw [←hi]
   exact segmentSet_vertex hS i
 
+/--
+@isnad1 id=mem.1h2v.s7.79bac1e40982 from=translated src=- shape=75a664ee vocab=471b8e2d
+-/
 lemma segmentSet_reverse {X : Finset ℝ²} {S : Segment} (hS : S ∈ segmentSet X) :
     reverseSegment S ∈ segmentSet X := by
   simp only [segmentSet, ne_eq, product_eq_sprod, mem_image, mem_filter, mem_product,
@@ -205,17 +256,26 @@ lemma segmentSet_reverse {X : Finset ℝ²} {S : Segment} (hS : S ∈ segmentSet
   rw[← h.2, reverseSegment_toSegment]
   exact ⟨b, a, ⟨ ⟨ h.1.1.2,h.1.1.1 ⟩ , fun a_1 ↦ h.1.2 (id (Eq.symm a_1))⟩, by rfl  ⟩
 
+/--
+@isnad1 id=mem.1h3v.s7.8d20062c2eed from=translated src=- shape=f012586e vocab=019b8c19
+-/
 lemma avoidingSegmentSet_reverse {X : Finset ℝ²} {A : Set ℝ²} {S : Segment}
     (hS : S ∈ avoidingSegmentSet X A) : reverseSegment S ∈ avoidingSegmentSet X A := by
   simp only[ avoidingSegmentSet, mem_filter, reverseSegment_closedHull ] at *
   exact ⟨ segmentSet_reverse hS.1, hS.2⟩
 
+/--
+@isnad1 id=mem.1h3v.s7.78d11a862f6b from=translated src=- shape=f012586e vocab=0a3bf871
+-/
 lemma basicAvoidingSegmentSet_reverse {X : Finset ℝ²} {A : Set ℝ²} {S : Segment}
     (hS : S ∈ basicAvoidingSegmentSet X A) :
     reverseSegment S ∈ basicAvoidingSegmentSet X A := by
   simp only[basicAvoidingSegmentSet, mem_filter ,reverseSegment_openHull] at *
   exact ⟨ avoidingSegmentSet_reverse hS.1, hS.2 ⟩
 
+/--
+@isnad1 id=mem.3h4v.s8.243dbe95f4f2 from=translated src=- shape=bea31a97 vocab=75978df6
+-/
 lemma avoidingSegmentSet_sub_left {X : Finset ℝ²} {A : Set ℝ²} {S : Segment}
     (hS : S ∈ avoidingSegmentSet X A) {x : ℝ²} (hx : x ∈ X) (hxS : x ∈ openHull S)
     : toSegment (S 0) x ∈ avoidingSegmentSet X A := by
@@ -231,6 +291,9 @@ lemma avoidingSegmentSet_sub_left {X : Finset ℝ²} {A : Set ℝ²} {S : Segmen
     intro i; fin_cases i <;> simp only [toSegment, Fin.isValue, corner_in_closedHull]
     exact open_sub_closed S hxS
 
+/--
+@isnad1 id=mem.3h4v.s8.7cf9c9e7145e from=translated src=- shape=6fd873e6 vocab=75978df6
+-/
 lemma avoidingSegmentSet_sub_right {X : Finset ℝ²} {A : Set ℝ²} {S : Segment}
     (hS : S ∈ avoidingSegmentSet X A) {x : ℝ²} (hx : x ∈ X) (hxS : x ∈ openHull S)
     : toSegment x (S 1) ∈ avoidingSegmentSet X A := by
@@ -239,6 +302,9 @@ lemma avoidingSegmentSet_sub_right {X : Finset ℝ²} {A : Set ℝ²} {S : Segme
     (avoidingSegmentSet_sub_left (avoidingSegmentSet_reverse hS) hx ?_ )
   rwa[← reverseSegment_openHull]
 
+/--
+@isnad1 id=ex.1h3v.s9.01da87a37660 from=translated src=- shape=8abf56d2 vocab=5dc62680
+-/
 theorem segment_decomposition {A : Set ℝ²} {X : Finset ℝ²} {S : Segment}
     (hS : S ∈ avoidingSegmentSet X A) :
     ∃ (C : Chain (S 0) (S 1)),
@@ -404,6 +470,9 @@ def twoModFunction (f : Segment → ℕ)
 /-- A function on segments invariant under reversing the segment. -/
 def symmFun (f : Segment → ℕ) := ∀ S, f (reverseSegment S) = f S
 
+/--
+@isnad1 id=eq.1h4v.s6.d6007b5a4e8d from=translated src=- shape=cb2e836a vocab=b85768ae
+-/
 lemma twoModFunction_chains {f : Segment → ℕ} (hf : twoModFunction f) {u v : ℝ²}
     (C : Chain u v) : (∑ S ∈ toBasicSegments C, f S) % 2 = f (toSegment u v) % 2 := by
   induction C with
@@ -416,6 +485,9 @@ lemma twoModFunction_chains {f : Segment → ℕ} (hf : twoModFunction f) {u v :
       simp only [dvd_refl, Nat.mod_mod_of_dvd, Nat.add_mod_mod, Nat.mod_add_mod, ←hf h₂]
       rw [add_comm]
 
+/--
+@isnad1 id=eq.1h4v.s7.f33bc4c5dc70 from=translated src=- shape=aeccb628 vocab=bfca31c0
+-/
 lemma symmFunction_reverse_sum {f : Segment → ℕ} (hf : symmFun f) {u v : ℝ²}
     (C : Chain u v) :
     (∑ S ∈ toBasicSegments (reverseChain C), f S) =
@@ -428,12 +500,18 @@ lemma symmFunction_reverse_sum {f : Segment → ℕ} (hf : symmFun f) {u v : ℝ
     have ⟨hi,_⟩ := reverseSegment_bijective
     exact fun a ↦ hi (hi (hi a))
 
+/--
+@isnad1 id=eq.1h2v.s6.bff226f72fe5 from=translated src=- shape=19d1e988 vocab=b7cede88
+-/
 lemma mod_two_mul {a b : ℕ} (h : a % 2 = b % 2) : (2 * a) % 4 = (2 * b) % 4 := by
   rw [←Int.natCast_inj, Int.natCast_mod, Int.natCast_mod, ←ZMod.intCast_eq_intCast_iff',
       ←sub_eq_zero, ←Int.cast_sub, ZMod.intCast_zmod_eq_zero_iff_dvd] at *
   have ⟨c, hc⟩ := h
   exact ⟨c, by simp only [Nat.cast_mul, ←mul_sub, hc]; ring⟩
 
+/--
+@isnad1 id=eq.3h4v.s8.f7f1d68d138a from=translated src=- shape=9b8faed5 vocab=539dd8f1
+-/
 lemma sum_two_mod_fun_seg {A : Set ℝ²} {X : Finset ℝ²} {S : Segment}
     (hS : S ∈ avoidingSegmentSet X A) {f : Segment → ℕ} (hf₁ : twoModFunction f)
     (hf₂ : symmFun f) :
@@ -464,6 +542,9 @@ noncomputable def isPurple : Segment → ℕ :=
 noncomputable def isRainbow : Triangle → ℕ :=
     fun T ↦ if (Function.Surjective (coloring v ∘ T)) then 1 else 0
 
+/--
+@isnad1 id=twomodfu.0h2v.s4.47d7ab3a0532 from=translated src=- shape=45621a97 vocab=697e1f04
+-/
 lemma isPurple_twoModFunction : twoModFunction (isPurple v) := by
   unfold twoModFunction
   intro x y z hColin
@@ -492,6 +573,9 @@ lemma isPurple_twoModFunction : twoModFunction (isPurple v) := by
   induction c <;> induction cx <;> induction cy <;> induction cz <;> simp only [reduceCtorEq,
     and_false, and_true, or_self, ↓reduceIte, add_zero, Nat.zero_mod] <;> tauto
 
+/--
+@isnad1 id=symmfun.0h2v.s4.4803e599a555 from=translated src=- shape=45621a97 vocab=31698ea0
+-/
 lemma isPurple_symmFunction : symmFun (isPurple v) := by
   unfold symmFun
   intro S
@@ -518,6 +602,9 @@ noncomputable def triangulationPoints (Δ : Finset Triangle) : Finset ℝ² :=
 noncomputable def triangulationPoints₂ (Δ : Finset Triangle) : Finset ℝ² :=
   Finset.biUnion Δ (fun T ↦ (Finset.image (fun i ↦ T i) Finset.univ))
 
+/--
+@isnad1 id=mem.1h3v.s7.32cb63fc2d25 from=translated src=- shape=e3e87424 vocab=902f6d9d
+-/
 lemma triangulationPoints_mem {Δ : Finset Triangle} {T : Triangle} (hT : T ∈ Δ)
     : ∀ i, T i ∈ triangulationPoints Δ := by
   intro i
@@ -546,7 +633,9 @@ noncomputable def triangulationInteriorBasicSegments (Δ : Finset Triangle) : Fi
 noncomputable def isTriangulation (Δ : Finset Triangle) : Prop :=
   isCover (closedHull unitSquare) (↑Δ : Set Triangle)
 
-/-- Every vertex of a triangulation lies in the closed unit square. -/
+/-- Every vertex of a triangulation lies in the closed unit square.
+@isnad1 id=le.1h1v.s6.c763f69d9baf from=translated src=- shape=d0d1876b vocab=88a567f1
+-/
 lemma triangulationPoints_subset_unitSquare {Δ : Finset Triangle}
     (hCover : isTriangulation Δ) :
     (↑(triangulationPoints Δ) : Set ℝ²) ⊆ closedHull unitSquare := by
@@ -565,6 +654,9 @@ lemma triangulationPoints_subset_unitSquare {Δ : Finset Triangle}
   rcases zT with ⟨i, hi⟩
   exact hTsub (hi ▸ corner_in_closedHull)
 
+/--
+@isnad1 id=ex.3h2v.s8.ffeaa8cc44f1 from=translated src=- shape=c9ecdd2b vocab=9b721ad2
+-/
 lemma segment_in_interior_aux {Δ : Finset Triangle} (hCover : isTriangulation Δ)
 (non_degen : ∀ P ∈ Δ, det P ≠ 0) {L : Segment} (hL : L ∈ triangulationBasicSegments Δ) :
  ∃ T ∈ Δ, closedHull L ⊆ closedHull T := by
@@ -706,6 +798,9 @@ lemma segment_in_interior_aux {Δ : Finset Triangle} (hCover : isTriangulation �
       apply closed_side_sub'
     tauto_set
 
+/--
+@isnad1 id=or.3h2v.s8.e373481cedf7 from=translated src=- shape=1756f915 vocab=a1eee0a8
+-/
 lemma segment_in_interior_or_boundary {Δ : Finset Triangle} (hCover : isTriangulation Δ)
 (non_degen : ∀ P ∈ Δ, det P ≠ 0) {L : Segment} (hL : L ∈ triangulationBasicSegments Δ) :
   openHull L ⊆ boundary unitSquare ∨ openHull L ⊆ openHull unitSquare := by
@@ -738,6 +833,9 @@ lemma segment_in_interior_or_boundary {Δ : Finset Triangle} (hCover : isTriangu
       contradiction
     tauto_set
 
+/--
+@isnad1 id=eq.2h1v.s8.1c975b111184 from=translated src=- shape=b98900e8 vocab=b53be177
+-/
 lemma triangulation_boundary_union (Δ : Finset Triangle) (hCover : isTriangulation Δ)
 (non_degen : ∀ P ∈ Δ, det P ≠ 0) : triangulationBasicSegments Δ =
     triangulationBoundaryBasicSegments Δ ∪ triangulationInteriorBasicSegments Δ := by
@@ -762,6 +860,9 @@ lemma triangulation_boundary_union (Δ : Finset Triangle) (hCover : isTriangulat
   intro hL hinc
   apply segment_in_interior_or_boundary hCover non_degen hL
 
+/--
+@isnad1 id=eq.0h1v.s8.2b725b2a95a4 from=translated src=- shape=7e341178 vocab=53727b63
+-/
 lemma triangulation_boundary_intersection (Δ : Finset Triangle) :
     triangulationBoundaryBasicSegments Δ ∩ triangulationInteriorBasicSegments Δ = ∅ := by
   unfold triangulationBoundaryBasicSegments triangulationInteriorBasicSegments
@@ -804,6 +905,9 @@ noncomputable def rainbowTriangles (Δ : Finset Triangle) : Finset Triangle :=
 noncomputable def basicSegmentSegments (X : Finset Segment) (S : Segment) :=
   filter (fun L ↦ openHull L ⊆ openHull S) X
 
+/--
+@isnad1 id=eq.4h4v.s10.aed31b64d132 from=translated src=- shape=519f55ba vocab=3f72af30
+-/
 lemma segment_sum_splitting (A : Finset Segment) (AVOID : Set ℝ²) (X : Finset ℝ²)
     (hA : A ⊆ avoidingSegmentSet X AVOID)
     (hDisj : ∀ S T, S ∈ A → T ∈ A → S ≠ T → openHull S ∩ openHull T = ∅)
@@ -912,6 +1016,9 @@ noncomputable def squareBoundaryBasic (Δ : Finset Triangle) : Fin 4 → Finset 
   fun i ↦ filter (fun S ↦ openHull S ⊆ openHull (squareBoundaryBig i))
     (triangulationBoundaryBasicSegments Δ)
 
+/--
+@isnad1 id=eq.1h1v.s8.eef92a111f68 from=translated src=- shape=a1cba524 vocab=f1fd3b99
+-/
 lemma unitSquare_boundary_decomposition (Δ : Finset Triangle) (hCovering : isTriangulation Δ) :
     triangulationBoundaryBasicSegments Δ =
     @Finset.biUnion (Fin 4) Segment _ ⊤ (squareBoundaryBasic Δ)
@@ -958,6 +1065,9 @@ lemma unitSquare_boundary_decomposition (Δ : Finset Triangle) (hCovering : isTr
       exists_and_left] at hS
     simp_all
 
+/--
+@isnad1 id=mem.1h2v.s7.9eca2eda038c from=translated src=- shape=b802ad90 vocab=5662ce34
+-/
 lemma unitSquare_cover_segmentSet
     {S : Finset Triangle}
     (hCover : isCover (closedHull unitSquare) (↑S : Set Triangle)) :
@@ -980,6 +1090,9 @@ lemma unitSquare_cover_segmentSet
     exact triangulationPoints_mem hT _
   · exact square_boundary_sides_nonDegen i
 
+/--
+@isnad1 id=eq.1h2v.s6.a30ba67a9e41 from=translated src=- shape=61827070 vocab=518c0a86
+-/
 lemma unitSquare_boundary_intersections (i j : Fin 4) (h_neq : i ≠ j) :
     openHull (squareBoundaryBig i) ∩ openHull (squareBoundaryBig j) = ∅ := by
   ext x
@@ -998,6 +1111,9 @@ lemma unitSquare_boundary_intersections (i j : Fin 4) (h_neq : i ≠ j) :
   clear h4i h3i h3j hh2help
   fin_cases i <;> fin_cases j <;> simp at * <;> linarith
 
+/--
+@isnad1 id=eq.1h3v.s5.39e44b474ac3 from=translated src=- shape=f70c6902 vocab=0993ca41
+-/
 lemma purple_computation0 (i : Fin 4) : i ≠ 0 → isPurple v (squareBoundaryBig i) = 0 := by
   have hR : coloring v !₂[0, 0] = Color.Red := red00 v
   have hB1 : coloring v !₂[1, 0] = Color.Blue := blue10 v
@@ -1014,6 +1130,9 @@ lemma purple_computation0 (i : Fin 4) : i ≠ 0 → isPurple v (squareBoundaryBi
   · simp only [ite_eq_right_iff, one_ne_zero, imp_false, not_or, not_and]
     simp_all [LeanPool.Monsky.v]
 
+/--
+@isnad1 id=eq.0h2v.s5.52914ab45b34 from=translated src=- shape=9d082665 vocab=0993ca41
+-/
 lemma purple_computation1 : isPurple v (squareBoundaryBig 0) = 1 := by
   unfold isPurple squareBoundaryBig
   simp only [ite_eq_left_iff, not_or, not_and, zero_ne_one, imp_false, Classical.not_imp,
@@ -1026,6 +1145,9 @@ lemma purple_computation1 : isPurple v (squareBoundaryBig 0) = 1 := by
     rfl
   tauto
 
+/--
+@isnad1 id=le.3h2v.s7.1d51bc215be5 from=translated src=- shape=456174fc vocab=5cb5e274
+-/
 lemma open_triangle_in_open_square {Δ : Finset Triangle} {T : Triangle} (hT : T ∈ Δ)
     (non_degen : det T ≠ 0) (hCovering : isTriangulation Δ) :
     openHull T ⊆ openHull unitSquare := by
@@ -1050,6 +1172,9 @@ lemma open_triangle_in_open_square {Δ : Finset Triangle} {T : Triangle} (hT : T
     exact (hσ.right ε hε.left)
   tauto
 
+/--
+@isnad1 id=eq.2h3v.s7.44b95b83d6d9 from=translated src=- shape=8297c870 vocab=912f6091
+-/
 theorem segment_sum_odd (Δ : Finset Triangle) (hCovering : isTriangulation Δ)
     (non_degen : ∀ P ∈ Δ, det P ≠ 0) :
     purpleSum v Δ % 4 = 2 := by
@@ -1184,6 +1309,9 @@ theorem segment_sum_odd (Δ : Finset Triangle) (hCovering : isTriangulation Δ)
   · ring
   all_goals decide
 
+/--
+@isnad1 id=eq.0h3v.s5.de15556210a4 from=translated src=- shape=54e86898 vocab=b92567a3
+-/
 theorem segment_sum_rainbowTriangle (Δ : Finset Triangle) :
     rainbowSum v Δ = (rainbowTriangles v Δ).card := by
   unfold rainbowSum rainbowTriangles isRainbow
@@ -1193,6 +1321,9 @@ theorem segment_sum_rainbowTriangle (Δ : Finset Triangle) :
 noncomputable def triangleBasicBoundary (Δ : Finset Triangle) (T : Triangle) :=
     {S ∈ triangulationBasicSegments Δ | closedHull S ⊆ boundary T}
 
+/--
+@isnad1 id=disjoint.2h3v.s7.f2dfc3612068 from=translated src=- shape=12bf740b vocab=c459711d
+-/
 lemma triangle_edges_disjoint (T : Triangle) (i j : Fin 3) (h : i ≠ j) (hdet : det T ≠ 0) :
     Disjoint (openHull (Tside T i))  (openHull (Tside T j)) := by
   by_contra h1
@@ -1203,6 +1334,9 @@ lemma triangle_edges_disjoint (T : Triangle) (i j : Fin 3) (h : i ≠ j) (hdet :
   rw[←  mem_open_side hdet hx j] at hj
   exact Ne.symm (ne_of_lt (hj.2 i h)) hi.1
 
+/--
+@isnad1 id=eq.2h2v.s8.f001f0ab29c2 from=translated src=- shape=c59425b6 vocab=b2f7d5ac
+-/
 lemma triangleBoundary_decomposition {Δ : Finset Triangle} {T : Triangle} (hdet : det T ≠ 0)
     (h : T ∈ Δ) :
     triangleBasicBoundary Δ T =
@@ -1328,9 +1462,15 @@ lemma triangleBoundary_decomposition {Δ : Finset Triangle} {T : Triangle} (hdet
 /-- The three sides of a triangle `T`, as a set of segments. -/
 noncomputable def triangleBoundary (T : Triangle) := Finset.biUnion ⊤ (fun i ↦ {Tside T i})
 
+/--
+@isnad1 id=or.0h1v.s4.6b7d986ae13e from=translated src=- shape=54a624ee vocab=703602a3
+-/
 lemma color_trichotomy (c : Color) : c = Color.Red ∨ c = Color.Blue ∨ c = Color.Green := by
   induction c <;> simp
 
+/--
+@isnad1 id=ne.2h3v.s6.52cdde0308b7 from=translated src=- shape=ae3b20b2 vocab=2daf0a33
+-/
 lemma different_points (T : Triangle) (h_det : det T ≠ 0) (i j : Fin 3) (hneq : i ≠ j) :
     T i ≠ T j := by
   by_contra hcontra
@@ -1393,6 +1533,9 @@ def rainbowB (a b c : Color) : ℕ :=
 
 -- Surjectivity of a `Fin 3 → Color` map is decided by pairwise distinctness.
 -- This isolates a small finite check from the main proof.
+/--
+@isnad1 id=iff.0h3v.s5.0071f6cc804e from=translated src=- shape=4d9954ac vocab=7bb1396a
+-/
 lemma surj_iff_distinct (c0 c1 c2 : Color) :
     Function.Surjective (![c0, c1, c2]) ↔ (c0 ≠ c1 ∧ c1 ≠ c2 ∧ c0 ≠ c2) := by
   constructor
@@ -1404,12 +1547,18 @@ lemma surj_iff_distinct (c0 c1 c2 : Color) :
   · rintro ⟨h01, h12, h02⟩; revert h01 h12 h02; revert c0 c1 c2; decide
 
 -- `isPurple` expressed through the endpoint colours.
+/--
+@isnad1 id=eq.0h3v.s6.02229a439c00 from=translated src=- shape=a9cf1f6c vocab=57dcc97e
+-/
 lemma isPurple_eq_colors (S : Segment) :
     isPurple v S = purpleB (coloring v (S 0)) (coloring v (S 1)) := by
   unfold isPurple purpleB
   rcases (coloring v (S 0)) <;> rcases (coloring v (S 1)) <;> decide +revert
 
 -- `isRainbow` expressed through the three vertex colours.
+/--
+@isnad1 id=eq.0h3v.s6.074fffa0ec56 from=translated src=- shape=4d95eb20 vocab=664c1b7e
+-/
 lemma isRainbow_eq_colors (T : Triangle) :
     isRainbow v T = rainbowB (coloring v (T 0)) (coloring v (T 1)) (coloring v (T 2)) := by
   unfold isRainbow
@@ -1426,10 +1575,16 @@ lemma isRainbow_eq_colors (T : Triangle) :
 
 -- The core counting identity, stated purely on the three vertex colours. It is a
 -- finite check over the 27 colourings, cheap under the default heartbeat budget.
+/--
+@isnad1 id=eq.0h3v.s6.e489dc4f49d9 from=translated src=- shape=419f8df6 vocab=e686e442
+-/
 lemma rainbow_purple_color_identity (c0 c1 c2 : Color) :
     2 * rainbowB c0 c1 c2 % 4 = 2 * (purpleB c1 c2 + purpleB c2 c0 + purpleB c0 c1) % 4 := by
   decide +revert
 
+/--
+@isnad1 id=eq.3h4v.s8.1af70f2ae77e from=translated src=- shape=4f69ebcb vocab=ec198cdc
+-/
 lemma rainbowTriangle_purpleSum {Δ : Finset Triangle}
     (non_degen : ∀ P ∈ Δ, det P ≠ 0)
     (hDisjointCover : isDisjointCover (closedHull unitSquare) (↑Δ : Set Triangle))
@@ -1577,6 +1732,9 @@ lemma rainbowTriangle_purpleSum {Δ : Finset Triangle}
     · exact h_diff_points01 h_contra
     · exact h_diff_points02 h_contra
 
+/--
+@isnad1 id=eq.1h2v.s9.3cd076c8b580 from=translated src=- shape=2142350e vocab=358c5df6
+-/
 lemma boundary_filter_union (Δ : Finset Triangle) (T : Triangle) : T ∈ Δ →
     filter (fun S ↦ closedHull S ⊆ boundary T) (triangulationBoundaryBasicSegments Δ ∪
         triangulationInteriorBasicSegments Δ) =
@@ -1592,6 +1750,9 @@ lemma boundary_filter_union (Δ : Finset Triangle) (T : Triangle) : T ∈ Δ →
     | inl h => simp_all only [true_or, and_self]
     | inr h_1 => simp_all only [or_true, and_self]
 
+/--
+@isnad1 id=eq.0h2v.s10.b17b83aca04b from=translated src=- shape=1c7abf59 vocab=18fe3db5
+-/
 lemma boundary_filter_intersection (Δ : Finset Triangle) (T : Δ) :
     filter (fun S ↦ closedHull S ⊆ boundary T.val) (triangulationBoundaryBasicSegments Δ) ∩
         filter (fun S ↦ closedHull S ⊆ boundary T.val)
@@ -1630,10 +1791,16 @@ lemma interior_iff_reverse_interior (Δ : Finset Triangle) (S : Segment) :
 def triangulationInteriorBasicSegmentsHulls (Δ : Finset Triangle) :=
   {openHull S | S ∈ triangulationInteriorBasicSegments Δ}
 
+/--
+@isnad1 id=ne.1h2v.s7.2491ec68c560 from=translated src=- shape=5d8219ad vocab=8501249f
+-/
 lemma basic_seg_non_degenerate {Δ : Finset Triangle} {S : Segment}
     (h : S ∈ triangulationBasicSegments Δ) : S 0 ≠ S 1 :=
   segmentSet_vertex_distinct (basicAvoidingSegmentSet_sub h)
 
+/--
+@isnad1 id=eq.0h3v.s6.be8e65f67452 from=translated src=- shape=fde285c4 vocab=73b42409
+-/
 theorem interior_purpleSum (Δ : Finset Triangle) :
     (∑ (S ∈ triangulationInteriorBasicSegments Δ), isPurple v S) % 2 = 0 % 2 := by
   rw [←Int.natCast_inj, Int.natCast_mod, Int.natCast_mod, ←ZMod.intCast_eq_intCast_iff']
@@ -1667,6 +1834,9 @@ theorem interior_purpleSum (Δ : Finset Triangle) :
 noncomputable def boundaryIndicator (T : Triangle) (S : Segment) :=
     if (closedHull S ⊆ boundary T) then 1 else 0
 
+/--
+@isnad1 id=eq.0h3v.s7.0c359ff48a51 from=translated src=- shape=a873e4d3 vocab=2f67abfd
+-/
 lemma triangleBasicBoundary_indicator_rw {Δ : Finset Triangle} (T : Triangle) {f : Segment → ℕ} :
     ∑ S ∈ triangleBasicBoundary Δ T, f S =
     ∑ S ∈ triangulationBasicSegments Δ, (f S) * boundaryIndicator T S := by
@@ -1675,6 +1845,9 @@ lemma triangleBasicBoundary_indicator_rw {Δ : Finset Triangle} (T : Triangle) {
   congr
   simp [boundaryIndicator]
 
+/--
+@isnad1 id=eq.2h3v.s8.a75d77332e3b from=translated src=- shape=c3d08677 vocab=420bf0ba
+-/
 lemma open_triangle_segment (Δ : Finset Triangle) (S : Segment)
     (hS : S ∈ triangulationBasicSegments Δ) :
     ∀ T ∈ Δ, openHull T ∩ closedHull S = ∅ := by
@@ -1686,6 +1859,9 @@ lemma open_triangle_segment (Δ : Finset Triangle) (S : Segment)
   apply Disjoint.symm
   exact hS.1.2 T hT
 
+/--
+@isnad1 id=eq.2h2v.s8.72044f7ab7d8 from=translated src=- shape=4236eb51 vocab=860aebfb
+-/
 lemma split_segment_sum (Δ : Finset Triangle)
   (hDisjointCover : isDisjointCover (closedHull unitSquare) (↑Δ : Set Triangle))
  (f : Segment → ℕ) (non_degen : ∀ P ∈ Δ, det P ≠ 0)
@@ -1739,6 +1915,9 @@ lemma split_segment_sum (Δ : Finset Triangle)
   · rw [Finset.disjoint_iff_inter_eq_empty]
     exact triangulation_boundary_intersection Δ
 
+/--
+@isnad1 id=eq.2h3v.s7.01f38e8af16e from=translated src=- shape=ddc1bb2e vocab=211c1ae6
+-/
 theorem rainbowSum_is_purpleSum (Δ : Finset Triangle)
     (hDisjointCover : isDisjointCover (closedHull unitSquare) (↑Δ : Set Triangle))
     (non_degen : ∀ P ∈ Δ, det P ≠ 0) :
@@ -1755,6 +1934,9 @@ theorem rainbowSum_is_purpleSum (Δ : Finset Triangle)
     exact mod_two_mul (interior_purpleSum v Δ)
   rw [Nat.add_mod, h, add_zero, Nat.mod_mod]
 
+/--
+@isnad1 id=ex.2h3v.s8.ae45a7498925 from=translated src=- shape=ae4ae74f vocab=7a479815
+-/
 theorem monsky_rainbow (Δ : Finset Triangle)
     (hDisjointCover : isDisjointCover (closedHull unitSquare) (↑Δ : Set Triangle))
     (non_degen : ∀ P ∈ Δ, det P ≠ 0)

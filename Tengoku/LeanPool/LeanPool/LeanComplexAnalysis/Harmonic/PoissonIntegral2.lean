@@ -55,34 +55,44 @@ open Complex Metric Real Set
 
 namespace LeanPool.LeanComplexAnalysis
 
-/-- Scaling by `r ∈ (0,1)` a point in a closed disc centerd at `0` is in the open disc. -/
+/-- Scaling by `r ∈ (0,1)` a point in a closed disc centerd at `0` is in the open disc.
+@isnad1 id=mem.3h3v.s6.c59e4fe40c58 from=translated src=- shape=95e76534 vocab=b6c5d74a
+-/
 lemma mem_disc_of_scaled {z : ℂ} {r R : ℝ} (hR : 0 < R)
     (hz : ‖z‖ ≤ R) (hr : r ∈ Ioo 0 1) : r * z ∈ ball 0 R := by
   rw [mem_ball, dist_zero_right, norm_mul, norm_real, norm_eq_abs, abs_of_pos hr.1]
   exact lt_of_le_of_lt (mul_le_mul_of_nonneg_left hz (le_of_lt hr.1))
                        ((mul_lt_iff_lt_one_left hR).mpr hr.2)
 
-/-- `r * R * exp (t * I)` is in the disc of radius `R` and center `0`, for `r ∈ (0,1)`. -/
+/-- `r * R * exp (t * I)` is in the disc of radius `R` and center `0`, for `r ∈ (0,1)`.
+@isnad1 id=mem.2h3v.s6.f794692a7497 from=translated src=- shape=a1979458 vocab=e42ba2dc
+-/
 lemma mem_disc_of_scaled_exp_ofReal_mul_I {r R : ℝ} (hR : 0 < R) (hr : r ∈ Ioo 0 1) (t : ℝ) :
     r * R * exp (t * I) ∈ ball 0 R := by
   rw [mul_assoc]
   exact mem_disc_of_scaled hR (by simp [norm_exp_ofReal_mul_I, abs_of_pos hR]) hr
 
-/-- `R * exp (t * I)` is not equal to any `z` in the disc of radius `R`, centered at `0`. -/
+/-- `R * exp (t * I)` is not equal to any `z` in the disc of radius `R`, centered at `0`.
+@isnad1 id=ne.1h3v.s6.6fd450e3d4a5 from=translated src=- shape=94ddf0e0 vocab=9dedffd1
+-/
 lemma neq_in_disc_of_mul_exp_ofReal_mul_I {z : ℂ} {R : ℝ}
     (hz : z ∈ ball 0 R) (t : ℝ) : R * exp (t * I) - z ≠ 0 := by
   intro h
   simp [← sub_eq_zero.mp h, mem_ball, dist_zero_right, norm_exp_ofReal_mul_I,
         norm_real, norm_eq_abs, abs_of_pos (pos_of_mem_ball hz)] at hz
 
-/-- `R * star (exp (t * I))` is not equal to any `z` in the disc of radius `R`, centered at `0`. -/
+/-- `R * star (exp (t * I))` is not equal to any `z` in the disc of radius `R`, centered at `0`.
+@isnad1 id=ne.1h3v.s6.abb172e13a5e from=translated src=- shape=6a3edd3d vocab=48c218d2
+-/
 lemma neq_in_disc_of_mul_star_exp_ofReal_mul_I {z : ℂ} {R : ℝ}
     (hz : z ∈ ball 0 R) (t : ℝ) : R * star (exp (t * I)) - star z ≠ 0 := by
   rw [show R * star (exp (t * I)) = star (R * exp (t * I)) from by simp [star_mul'], ← star_sub]
   exact star_ne_zero.mpr (neq_in_disc_of_mul_exp_ofReal_mul_I hz t)
 
 /-- `R ^ 2 - star z * w ≠ 0`, for `z` in the disc with radius `R` and center `0`,
-and for `w` in the closed disc. -/
+and for `w` in the closed disc.
+@isnad1 id=ne.2h3v.s7.554d5e2ccf0d from=translated src=- shape=1115d34c vocab=4cff7626
+-/
 lemma radius_sq_sub_star_mul_neq_zero {z : ℂ} {w : ℂ} {R : ℝ}
     (hz : z ∈ ball 0 R) (hw : w ∈ closedBall 0 R) : R ^ 2 - star z * w ≠ 0 := by
   intro h
@@ -95,7 +105,9 @@ lemma radius_sq_sub_star_mul_neq_zero {z : ℂ} {w : ℂ} {R : ℝ}
   simp [norm_real, norm_eq_abs, abs_of_pos (pos_of_mem_ball hz)] at this
 
 /-- If `f` is `ℂ`-differentiable on a disc centered at zero,
-then `ζ ↦ f (r * ζ)` is differentiable at `z` for `r` in `(0,1)` and `z` in the closed disc. -/
+then `ζ ↦ f (r * ζ)` is differentiable at `z` for `r` in `(0,1)` and `z` in the closed disc.
+@isnad1 id=differen.4h5v.s7.b17e5dd637c3 from=translated src=- shape=e9ff7f49 vocab=004c3e8c
+-/
 lemma differentiableAt_of_differentiableOn_disc_of_mul {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℂ E] {f : ℂ → E} {z : ℂ} {r R : ℝ} (hR : 0 < R)
     (hf : DifferentiableOn ℂ f (ball 0 R)) (hz : z ∈ closedBall 0 R) (hr : r ∈ Ioo 0 1) :
@@ -106,7 +118,9 @@ lemma differentiableAt_of_differentiableOn_disc_of_mul {E : Type*} [NormedAddCom
         (differentiableAt_id.const_mul _)
 
 /-- Cauchy's integral formula applied to `f` `ℂ`-differentiable on a disc centered at `0`,
-at the point `r*z`, for `r` in `(0,1)` and `z` in the disc. -/
+at the point `r*z`, for `r` in `(0,1)` and `z` in the disc.
+@isnad1 id=eq.3h5v.s8.507a5ec68053 from=translated src=- shape=89d5a9f8 vocab=800fc4eb
+-/
 lemma cauchy_circleIntegral_formula_scaled_disc {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℂ E] [CompleteSpace E] {f : ℂ → E} {z : ℂ} {r R : ℝ}
     (hf : DifferentiableOn ℂ f (ball 0 R)) (hr : r ∈ Ioo 0 1) (hz : z ∈ ball 0 R) :
@@ -126,7 +140,9 @@ lemma cauchy_circleIntegral_formula_scaled_disc {E : Type*} [NormedAddCommGroup 
             (ball_subset_closedBall hx) hr
 
 /-- Cauchy's integral formula for `ℂ`-differentiable functions on a disc centred at 0,
-evaluated at scaled points `r * z` with `r ∈ (0,1)`. -/
+evaluated at scaled points `r * z` with `r ∈ (0,1)`.
+@isnad1 id=eq.3h5v.s8.08d91a4a1c44 from=translated src=- shape=c2f6f515 vocab=fabe8686
+-/
 lemma cauchy_integral_formula_scaled_disc {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℂ E] [CompleteSpace E] {f : ℂ → E} {z : ℂ} {r R : ℝ}
     (hf : DifferentiableOn ℂ f (ball 0 R)) (hr : r ∈ Ioo 0 1) (hz : z ∈ ball 0 R) :
@@ -152,7 +168,9 @@ lemma cauchy_integral_formula_scaled_disc {E : Type*} [NormedAddCommGroup E]
 
 /-- If `f` is `ℂ`-differentiable on a disc centered at zero, then
 `ζ ↦ (star z / (I * (R ^ 2 - star z * ζ))) • f (r * ζ)` is differentiable at `w`
-in the closed disc with radius `R` and center `0`, for `r` in `(0,1)`. -/
+in the closed disc with radius `R` and center `0`, for `r` in `(0,1)`.
+@isnad1 id=differen.4h6v.s8.99fd7d232bf0 from=translated src=- shape=0b8a7556 vocab=a15cd11d
+-/
 lemma differentiableAt_goursat_integrand_scaled_disc
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] {f : ℂ → E} {z w : ℂ} {r R : ℝ}
     (hf : DifferentiableOn ℂ f (ball 0 R)) (hr : r ∈ Ioo 0 1)
@@ -168,7 +186,9 @@ lemma differentiableAt_goursat_integrand_scaled_disc
 
 /-- We apply the Cauchy-Goursat theorem to the function
 `ζ ↦ (star z / (I * (R ^ 2 - star z * ζ))) • (f (r * ζ)))`
-on the circle of radius `R`, centered at `0`. -/
+on the circle of radius `R`, centered at `0`.
+@isnad1 id=eq.3h5v.s8.acf2f9848a2a from=translated src=- shape=8746d94b vocab=c57af829
+-/
 lemma vanishing_goursat_circleIntegral_scaled_disc
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] {f : ℂ → E} {z : ℂ} {r R : ℝ}
     (hf : DifferentiableOn ℂ f (ball 0 R)) (hr : r ∈ Ioo 0 1) (hz : z ∈ ball 0 R) :
@@ -181,7 +201,9 @@ lemma vanishing_goursat_circleIntegral_scaled_disc
     exact fun ζ hζ => differentiableAt_goursat_integrand_scaled_disc hf hr hz
                       (ball_subset_closedBall hζ)
 
-/-- An auxiliary identity that will be used in the integrand of the Cauchy-Goursat theorem. -/
+/-- An auxiliary identity that will be used in the integrand of the Cauchy-Goursat theorem.
+@isnad1 id=eq.1h3v.s8.c5b7ca0b50cf from=translated src=- shape=dcc963d4 vocab=34dc7b40
+-/
 lemma goursat_integrand_eq_aux_disc (z : ℂ) (t R : ℝ) (hR : 0 < R) :
     star z / (R * star (exp (t * I)) - star z) =
     I * R * exp (t * I) * (star z / (I * (R ^ 2 - star z * R * exp (t * I)))) := by
@@ -200,7 +222,9 @@ lemma goursat_integrand_eq_aux_disc (z : ℂ) (t R : ℝ) (hR : 0 < R) :
   ring_nf
 
 /-- The Cauchy-Goursat theorem for a disc centered at `0` implies the integral of a
-`ℂ`-differentiable function against a conjugate Cauchy kernel vanishes. -/
+`ℂ`-differentiable function against a conjugate Cauchy kernel vanishes.
+@isnad1 id=eq.3h5v.s8.14df62550a68 from=translated src=- shape=1124ee18 vocab=fba16aed
+-/
 lemma vanishing_goursat_integral_scaled_disc {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℂ E] {f : ℂ → E} {z : ℂ} {r R : ℝ}
     (hf : DifferentiableOn ℂ f (ball 0 R)) (hr : r ∈ Ioo 0 1) (hz : z ∈ ball 0 R) :
@@ -217,7 +241,9 @@ lemma vanishing_goursat_integral_scaled_disc {E : Type*} [NormedAddCommGroup E]
     congr 1 <;> simp [mul_assoc]
 
 /-- We put together `cauchy_integral_formula_scaled_disc` and
-`vanishing_goursat_integral_scaled_disc`. -/
+`vanishing_goursat_integral_scaled_disc`.
+@isnad1 id=eq.3h5v.s9.378a87478b80 from=translated src=- shape=79770e09 vocab=445336b1
+-/
 lemma cauchy_goursat_integral_scaled_disc {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℂ E] [CompleteSpace E] {f : ℂ → E} {z : ℂ} {r R : ℝ}
     (hf : DifferentiableOn ℂ f (ball 0 R)) (hr : r ∈ Ioo 0 1) (hz : z ∈ ball 0 R) :
@@ -243,7 +269,9 @@ lemma cauchy_goursat_integral_scaled_disc {E : Type*} [NormedAddCommGroup E]
                 (fun t _ => mem_disc_of_scaled_exp_ofReal_mul_I (pos_of_mem_ball hz) hr t)
 
 /-- For a ℂ-differentiable function `f : ℂ → E` on a disc centered at `0`, `f(r*z)` equals the
-integral of `f(r*R*e^{it})` against the Poisson kernel, where `r ∈ (0,1)` and `z` is in the disc. -/
+integral of `f(r*R*e^{it})` against the Poisson kernel, where `r ∈ (0,1)` and `z` is in the disc.
+@isnad1 id=eq.3h5v.s9.2a51ca917177 from=translated src=- shape=b8ae26df vocab=3a30e9ce
+-/
 theorem poisson_integral_of_differentiableOn_scaled_disc {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℂ E] [CompleteSpace E] {f : ℂ → E} {z : ℂ} {r R : ℝ}
     (hf : DifferentiableOn ℂ f (ball 0 R)) (hr : r ∈ Ioo 0 1) (hz : z ∈ ball 0 R) :
@@ -273,7 +301,9 @@ open InnerProductSpace
 
 /-- For a harmonic function `u` on a disc with radius `R`, centered at `0`,
 `u(r*z)` equals the integral of `u(r*R*e^{it})` against the Poisson kernel,
-where `r ∈ (0,1)` and `z` is in the disc. -/
+where `r ∈ (0,1)` and `z` is in the disc.
+@isnad1 id=eq.3h4v.s8.10a5d13e3b3d from=translated src=- shape=3b40955c vocab=b25050e6
+-/
 theorem poisson_integral_of_harmonicOn_scaled_disc {u : ℂ → ℝ} {z : ℂ} {r R : ℝ}
     (hu : HarmonicOnNhd u (ball 0 R)) (hr : r ∈ Ioo 0 1) (hz : z ∈ ball 0 R) :
     u (r * z) = (1 / (2 * π)) * ∫ t in (0)..(2 * π),
@@ -318,7 +348,9 @@ open Filter Topology
 
 /-- We bound  `t ↦ ‖k (R * exp (t * I)) • f (r * R * exp (t * I))‖`, for
 `k` continuous on the circle of radius `R` and center `0`,
-and `f` continuous on the closed disc of radius `R` and center `0`. -/
+and `f` continuous on the closed disc of radius `R` and center `0`.
+@isnad1 id=le.4h6v.s8.0129eb2e8454 from=translated src=- shape=48ed2337 vocab=1a8a7cd5
+-/
 lemma bounds_of_continuousOn_circle_closedDisc {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℝ E] {f : ℂ → E} {k : ℂ → ℝ} {r t R : ℝ} (hR : 0 < R) (hr : r ∈ Ioo 0 1)
     (hf : ContinuousOn f (closedBall 0 R)) (hk : ContinuousOn k (sphere 0 R)) :
@@ -342,7 +374,9 @@ lemma bounds_of_continuousOn_circle_closedDisc {E : Type*} [NormedAddCommGroup E
 `t ↦ k(R*e^{it}) • f(rₙ*R*e^{it})` on `[0 , 2π]` converges to the integral of
 `t ↦ k(R*e^{it}) • f(R*e^{it})` on `[0 , 2π]`, when `f` is continuous on the
 closed disc of radius `R` and center `0`, and `k` is continuous on the circle of radius `R`
-and center `0`, by Lebesgue's Dominated Convergence Theorem. -/
+and center `0`, by Lebesgue's Dominated Convergence Theorem.
+@isnad1 id=tendsto.5h5v.s8.5c2802e48c37 from=translated src=- shape=0eb6fe4f vocab=00fa2ee3
+-/
 lemma tendsto_integral_prod_of_continuousOn_circle_closedDisc
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {f : ℂ → E} {k : ℂ → ℝ} {r : ℕ → ℝ} {R : ℝ} (hR : 0 < R)
@@ -379,7 +413,9 @@ lemma tendsto_integral_prod_of_continuousOn_circle_closedDisc
       · exact Eventually.of_forall (fun n => hrn n x)
     · simp [mem_closedBall, dist_zero_right, norm_exp_ofReal_mul_I, abs_of_pos hR]
 
-/-- The Poisson kernel is continuous on the circle. -/
+/-- The Poisson kernel is continuous on the circle.
+@isnad1 id=continuo.1h2v.s7.18ce054169c8 from=translated src=- shape=246b3c23 vocab=a43148fd
+-/
 theorem poisson_ker_continousOn_circle {z : ℂ} {R : ℝ} (hz : z ∈ ball 0 R) :
      ContinuousOn (fun ζ => (R ^ 2 - ‖z‖ ^ 2) / ‖ζ - z‖ ^ 2) (sphere 0 R) := by
   refine continuousOn_of_forall_continuousAt ?_
@@ -390,7 +426,9 @@ theorem poisson_ker_continousOn_circle {z : ℂ} {R : ℝ} (hz : z ∈ ball 0 R)
   simp_all
 
 /-- If `rₙ` tends to `1`, then `f (rₙ * z)` tends to `f z`, for `z` in a disc centered at `0`,
-when `f` is continuous on the closed disc. -/
+when `f` is continuous on the closed disc.
+@isnad1 id=tendsto.3h5v.s7.57cc2dbe42ff from=translated src=- shape=c5cbb3ba vocab=b822cbc2
+-/
 lemma tendsto_of_radius_tendsto_one_of_continuousOn_closedDisc
     {E : Type*} [NormedAddCommGroup E]
     {f : ℂ → E} {z : ℂ} {r : ℕ → ℝ} {R : ℝ}
@@ -406,7 +444,9 @@ lemma tendsto_of_radius_tendsto_one_of_continuousOn_closedDisc
 /-- **Poisson integral formula for harmonic functions on a disc**:
 A function `u` harmonic on a disc with radius `R` and center `0`,
 and continuous on the closed disc, satisfies
-`u(z) = (1/2π) ∫_0^{2π} (R² - |z|²) / |R*e^{it} - z|² u(R*e^{it}) dt` for `z` in the disc. -/
+`u(z) = (1/2π) ∫_0^{2π} (R² - |z|²) / |R*e^{it} - z|² u(R*e^{it}) dt` for `z` in the disc.
+@isnad1 id=eq.3h3v.s8.6509426925e4 from=translated src=- shape=81311049 vocab=4f85f2d6
+-/
 theorem poisson_integral_of_harmonicOn_disc_continuousOn_closedDisc
     {u : ℂ → ℝ} {z : ℂ} {R : ℝ}
     (hu : HarmonicOnNhd u (ball 0 R)) (hc : ContinuousOn u (closedBall 0 R)) (hz : z ∈ ball 0 R) :
@@ -430,7 +470,9 @@ theorem poisson_integral_of_harmonicOn_disc_continuousOn_closedDisc
 /-- **Poisson integral formula for ℂ-differentiable functions on a disc**:
 A function `f : ℂ → E` `ℂ`-differentiable on a disc with radius `R` and center `0`,
 and continuous on the closed disc, satisfies
-`f(z) = (1/2π) ∫_0^{2π} (R² - |z|²) / |R*e^{it} - z|² f(R*e^{it}) dt` for `z` in the disc. -/
+`f(z) = (1/2π) ∫_0^{2π} (R² - |z|²) / |R*e^{it} - z|² f(R*e^{it}) dt` for `z` in the disc.
+@isnad1 id=eq.2h4v.s8.b932580d0842 from=translated src=- shape=27ee2b9a vocab=9a1d97aa
+-/
 theorem poisson_integral_of_diffContOnCl_disc
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [CompleteSpace E] {f : ℂ → E} {z : ℂ}
     {R : ℝ} (hf : DiffContOnCl ℂ f (ball 0 R)) (hz : z ∈ ball 0 R) :
@@ -449,7 +491,9 @@ theorem poisson_integral_of_diffContOnCl_disc
   rw [← tendsto_nhds_unique (hu_lim)
         (tendsto_of_radius_tendsto_one_of_continuousOn_closedDisc hc hr_lim hz)]
 
-/-- The real part of the Herglotz–Riesz kernel is equal to the Poisson kernel. -/
+/-- The real part of the Herglotz–Riesz kernel is equal to the Poisson kernel.
+@isnad1 id=eq.1h3v.s7.0114467151f7 from=translated src=- shape=56d2b022 vocab=55b39b06
+-/
 theorem realPart_herglotz_ker_eq_poisson_ker {R : ℝ} (x w : ℂ) (hx : ‖x‖ = R) :
     ((x + w) / (x - w)).re = (R ^ 2 - ‖w‖ ^ 2) / ‖x - w‖ ^ 2 := by
   rw [div_re, normSq_eq_norm_sq (x - w)]
@@ -465,7 +509,9 @@ theorem realPart_herglotz_ker_eq_poisson_ker {R : ℝ} (x w : ℂ) (hx : ‖x‖
 A function `u : ℂ → ℝ` harmonic on a disc with radius `R` and center `0`, and
 continuous on the closed disc, satisfies
 `u(z) = (1/2π) ∫_0^{2π} Re((R*e^{it} + z) / (R*e^{it} - z)) * u(R*e^{it}) dt`
-for `z` in the disc. -/
+for `z` in the disc.
+@isnad1 id=eq.3h3v.s8.f0180e0108b3 from=translated src=- shape=75d8b75a vocab=68681d62
+-/
 theorem poisson_integral_of_harmonicOn_disc_continuousOn_closedDisc_ker_re
     {u : ℂ → ℝ} {z : ℂ} {R : ℝ}
     (hu : HarmonicOnNhd u (ball 0 R)) (hc : ContinuousOn u (closedBall 0 R)) (hz : z ∈ ball 0 R) :
@@ -482,7 +528,9 @@ theorem poisson_integral_of_harmonicOn_disc_continuousOn_closedDisc_ker_re
 A function `f : ℂ → E` `ℂ`-differentiable on a disc with radius `R` and center `0`,
 and continuous on the closed disc, satisfies
 `f(z) = (1/2π) ∫_0^{2π} Re((R*e^{it} + z) / (R*e^{it} - z)) • f(R*e^{it}) dt`
-for `z` in the disc. -/
+for `z` in the disc.
+@isnad1 id=eq.2h4v.s8.0252ff78f172 from=translated src=- shape=ae2ac8ba vocab=1c61ae9b
+-/
 theorem poisson_integral_of_diffContOnCl_disc_ker_re
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [CompleteSpace E] {f : ℂ → E} {z : ℂ}
     {R : ℝ} (hf : DiffContOnCl ℂ f (ball 0 R)) (hz : z ∈ ball 0 R) :
@@ -499,7 +547,9 @@ theorem poisson_integral_of_diffContOnCl_disc_ker_re
 A function `u : ℂ → ℝ` harmonic on a disc with radius `R` and center `0`,
 and continuous on the closed disc, satisfies
 `u(z) = (1/2π) ∫_0^{2π} Re((R*e^{it} + z) / (R*e^{it} - z)) * u(R*e^{it}) dt`
-for `z` in the disc. -/
+for `z` in the disc.
+@isnad1 id=eq.3h3v.s7.4f7629c5d29f from=translated src=- shape=d1b31cc0 vocab=46d67bd9
+-/
 theorem circleAverage_of_harmonicOn_disc_continuousOn_closedDisc
     {u : ℂ → ℝ} {z : ℂ} {R : ℝ}
     (hu : HarmonicOnNhd u (ball 0 R)) (hc : ContinuousOn u (closedBall 0 R)) (hz : z ∈ ball 0 R) :
@@ -511,7 +561,9 @@ theorem circleAverage_of_harmonicOn_disc_continuousOn_closedDisc
 A function `f : ℂ → E` `ℂ`-differentiable on a disc with radius `R` and center `0`,
 and continuous on the closed disc, satisfies
 `f(z) = (1/2π) ∫_0^{2π} Re((R*e^{it} + z) / (R*e^{it} - z)) • f(R*e^{it}) dt`
-for `z` in the disc. -/
+for `z` in the disc.
+@isnad1 id=eq.2h4v.s7.f411a983ddfb from=translated src=- shape=57f46a85 vocab=ccd3094a
+-/
 theorem circleAverage_of_diffContOnCl_disc
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [CompleteSpace E]
     {f : ℂ → E} {z : ℂ} {R : ℝ} (hf : DiffContOnCl ℂ f (ball 0 R)) (hz : z ∈ ball 0 R) :

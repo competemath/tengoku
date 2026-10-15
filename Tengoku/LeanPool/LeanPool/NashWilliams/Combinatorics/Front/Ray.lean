@@ -62,25 +62,43 @@ def afterShift (M : ℕ → ℕ) (a : ℕ) : ℕ := sInf {j | a < M j}
 `M ∘ (· + afterShift M a)`. A `StrictMono`-to-`StrictMono` operation on enumerations. -/
 def rayEnum (M : ℕ → ℕ) (a : ℕ) : ℕ → ℕ := fun i => M (i + afterShift M a)
 
+/--
+@isnad1 id=lt.1h2v.s4.a730c6d969fa from=translated src=- shape=3007ccc3 vocab=6ef01087
+-/
 theorem afterShift_spec (hM : StrictMono M) (a : ℕ) : a < M (afterShift M a) := by
   have hne : {j | a < M j}.Nonempty :=
     ⟨a + 1, lt_of_lt_of_le (Nat.lt_succ_self a) (hM.le_apply : a + 1 ≤ M (a + 1))⟩
   exact Nat.sInf_mem hne
 
+/--
+@isnad1 id=le.1h3v.s4.110cf79788be from=translated src=- shape=d07b7769 vocab=3c58aac4
+-/
 theorem lt_of_lt_afterShift {a k : ℕ} (hk : k < afterShift M a) : M k ≤ a := by
   by_contra h
   have hle : afterShift M a ≤ k := Nat.sInf_le (Nat.lt_of_not_le h)
   omega
 
+/--
+@isnad1 id=strictmo.1h2v.s4.3db23def9c3a from=translated src=- shape=e9042b07 vocab=af0b02dd
+-/
 theorem rayEnum_strictMono (hM : StrictMono M) (a : ℕ) : StrictMono (rayEnum M a) :=
   fun _ _ hxy => hM (by omega)
 
+/--
+@isnad1 id=lt.1h3v.s4.f181c270c991 from=translated src=- shape=66433e9a vocab=ce5fc2ad
+-/
 theorem rayEnum_gt (hM : StrictMono M) (a i : ℕ) : a < rayEnum M a i :=
   lt_of_lt_of_le (afterShift_spec hM a) (hM.monotone (by omega))
 
+/--
+@isnad1 id=mem.0h3v.s4.40566531be70 from=translated src=- shape=bc56665b vocab=e95b4826
+-/
 theorem rayEnum_mem_range (a i : ℕ) : rayEnum M a i ∈ Set.range M :=
   ⟨i + afterShift M a, rfl⟩
 
+/--
+@isnad1 id=iff.1h3v.s5.5afabbd3eaed from=translated src=- shape=cc071c80 vocab=3f39e351
+-/
 theorem mem_range_rayEnum_iff (hM : StrictMono M) (a n : ℕ) :
     n ∈ Set.range (rayEnum M a) ↔ n ∈ Set.range M ∧ a < n := by
   constructor
@@ -98,7 +116,9 @@ variable {F : Set (List ℕ)}
 start with `a`. -/
 def ray (F : Set (List ℕ)) (a : ℕ) : Set (List ℕ) := {t | a :: t ∈ F}
 
-/-- Density transported: any strictly monotone subsequence of `M` has an initial segment in `F`. -/
+/-- Density transported: any strictly monotone subsequence of `M` has an initial segment in `F`.
+@isnad1 id=ex.3h3v.s5.fa15fee71d4d from=translated src=- shape=20f586b5 vocab=faa127c1
+-/
 theorem exists_frontElem_isInit (hF : IsFront F M) {N : ℕ → ℕ} (hN : StrictMono N)
     (hsub : Set.range N ⊆ Set.range M) : ∃ u ∈ F, IsInit u N := by
   obtain ⟨h, hh, hcomp⟩ := exists_strictMono_comp hF.mono hN fun i => hsub ⟨i, rfl⟩
@@ -106,6 +126,9 @@ theorem exists_frontElem_isInit (hF : IsFront F M) {N : ℕ → ℕ} (hN : Stric
   rw [hcomp] at hInit
   exact ⟨u, hu, hInit⟩
 
+/--
+@isnad1 id=not.2h3v.s5.d2a33e628168 from=translated src=- shape=aff1d12e vocab=87b6e6ef
+-/
 theorem nil_not_mem (hF : IsFront F M) {a : ℕ} (ha : [a] ∈ tree F) : [] ∉ F := by
   intro hnil
   obtain ⟨w, hw, hpre⟩ := ha
@@ -113,7 +136,9 @@ theorem nil_not_mem (hF : IsFront F M) {a : ℕ} (ha : [a] ∈ tree F) : [] ∉ 
   rw [← this] at hpre
   simpa using hpre.length_le
 
-/-- A front is *nontrivial* (`[] ∉ F`) iff it is not the trivial front `{[]}`. -/
+/-- A front is *nontrivial* (`[] ∉ F`) iff it is not the trivial front `{[]}`.
+@isnad1 id=iff.1h2v.s5.25df3b54b007 from=translated src=- shape=35125ab8 vocab=5afc9c46
+-/
 theorem IsFront.nil_not_mem_iff (hF : IsFront F M) : [] ∉ F ↔ F ≠ {[]} := by
   constructor
   · intro h heq; exact h (by simp [heq])
@@ -124,7 +149,9 @@ theorem IsFront.nil_not_mem_iff (hF : IsFront F M) : [] ∉ F ↔ F ≠ {[]} := 
     exact ⟨fun ht => (hF.incomp [] hnil t ht List.nil_prefix).symm, fun h => h ▸ hnil⟩
 
 /-- **In a nontrivial front, every element of `M` heads some element of `F`.** For `[] ∉ F` and
-`n ∈ M`, the singleton `[n]` is a node of the tree of `F`. -/
+`n ∈ M`, the singleton `[n]` is a node of the tree of `F`.
+@isnad1 id=mem.3h3v.s5.7a40a7df6e06 from=translated src=- shape=27a2d371 vocab=23e22aca
+-/
 theorem IsFront.singleton_mem_tree (hF : IsFront F M) (h0 : [] ∉ F) {n : ℕ}
     (hn : n ∈ Set.range M) : [n] ∈ tree F := by
   obtain ⟨k, rfl⟩ := hn
@@ -138,7 +165,9 @@ theorem IsFront.singleton_mem_tree (hF : IsFront F M) (h0 : [] ∉ F) {n : ℕ}
   exact ⟨u, hu, hys ▸ ⟨ys, rfl⟩⟩
 
 /-- The head-stripping construction: if `[a]` is in the tree and `Q` is a strictly monotone
-subsequence of `M` with `a < Q 0`, then some `a :: t ∈ F` with `t` an initial segment of `Q`. -/
+subsequence of `M` with `a < Q 0`, then some `a :: t ∈ F` with `t` an initial segment of `Q`.
+@isnad1 id=ex.5h4v.s6.af1908545d27 from=translated src=- shape=2d47dc2f vocab=073cff3e
+-/
 theorem exists_cons_mem (hF : IsFront F M) {a : ℕ} (ha : [a] ∈ tree F)
     {Q : ℕ → ℕ} (hQ : StrictMono Q) (haQ : a < Q 0) (hQM : ∀ i, Q i ∈ Set.range M) :
     ∃ t, a :: t ∈ F ∧ IsInit t Q := by
@@ -174,7 +203,9 @@ theorem exists_cons_mem (hF : IsFront F M) {a : ℕ} (ha : [a] ∈ tree F)
   rw [← hu_eq]; exact hu
 
 /-- **`F after a` is a front on `M after a`**, whenever `[a]` is a node of the tree of `F`
-(i.e. `a` is the least element of some element of `F`). -/
+(i.e. `a` is the least element of some element of `F`).
+@isnad1 id=isfront.2h3v.s5.213d0112b68c from=translated src=- shape=fc9644db vocab=a59bcfad
+-/
 theorem ray_isFront (hF : IsFront F M) {a : ℕ} (ha : [a] ∈ tree F) :
     IsFront (ray F a) (rayEnum M a) where
   mono := rayEnum_strictMono hF.mono a
@@ -222,7 +253,9 @@ theorem ray_isFront (hF : IsFront F M) {a : ℕ} (ha : [a] ∈ tree F) :
         obtain ⟨ys, hys⟩ := List.head?_eq_some_iff.mp hhead
         rw [hys]; simp
 
-/-- For a nontrivial front and `n ∈ M`, `F after n` is a front on `M after n`. -/
+/-- For a nontrivial front and `n ∈ M`, `F after n` is a front on `M after n`.
+@isnad1 id=isfront.3h3v.s5.941187a2aa96 from=translated src=- shape=1c6a0988 vocab=dea8263f
+-/
 theorem IsFront.ray_isFront_mem (hF : IsFront F M) (h0 : [] ∉ F) {n : ℕ}
     (hn : n ∈ Set.range M) : IsFront (ray F n) (rayEnum M n) :=
   ray_isFront hF (hF.singleton_mem_tree h0 hn)
@@ -236,7 +269,9 @@ The tree of `ray F a` is the subtree of `tree F` sitting above the node `[a]`, t
 concrete `tree` representation — a later switch to `Descriptive.Tree.subAt` would rewrite only
 this lemma). -/
 
-/-- The tree of the ray at `a` is `tree F` above `[a]`, stripped of the leading `a`. -/
+/-- The tree of the ray at `a` is `tree F` above `[a]`, stripped of the leading `a`.
+@isnad1 id=iff.0h3v.s5.12b5af15ea5c from=translated src=- shape=6d0522f7 vocab=3cc19715
+-/
 theorem mem_tree_ray {a : ℕ} {t : List ℕ} : t ∈ tree (ray F a) ↔ a :: t ∈ tree F := by
   constructor
   · rintro ⟨u, hu, hpre⟩

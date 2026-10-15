@@ -65,12 +65,17 @@ def xorPerm (f : Fin (2 ^ n) → Bool) :
   left_inv p := by by_cases h : f p.1 <;> simp [h]
   right_inv p := by by_cases h : f p.1 <;> simp [h]
 
+/--
+@isnad1 id=eq.0h3v.s9.bf037300ba34 from=translated src=- shape=f38c5cba vocab=ac057536
+-/
 @[simp]
 theorem xorPerm_apply (f : Fin (2 ^ n) → Bool) (p : Fin (2 ^ n) × Fin (2 ^ 1)) :
     xorPerm f p = (p.1, if f p.1 then p.2.rev else p.2) :=
   rfl
 
-/-- The XOR oracle is an involution. -/
+/-- The XOR oracle is an involution.
+@isnad1 id=eq.0h2v.s7.a43da1ab71da from=translated src=- shape=782a2a70 vocab=4b818e3d
+-/
 @[simp]
 theorem xorPerm_symm (f : Fin (2 ^ n) → Bool) : (xorPerm f).symm = xorPerm f :=
   rfl
@@ -81,17 +86,25 @@ target qubit last/least significant). -/
 def xorOracle (f : Fin (2 ^ n) → Bool) : Gate (n + 1) :=
   ofPerm (prodEquiv.permCongr (xorPerm f))
 
+/--
+@isnad1 id=mem.0h2v.s10.afa4754d3fe5 from=translated src=- shape=56f64041 vocab=6e02f3d5
+-/
 theorem xorOracle_mem_unitaryGroup (f : Fin (2 ^ n) → Bool) :
     (xorOracle f : HilbertOperator (n + 1))
       ∈ Matrix.unitaryGroup (Fin (2 ^ (n + 1))) ℂ :=
   (xorOracle f).unitary
 
+/--
+@isnad1 id=eq.0h4v.s10.0f99910ec312 from=translated src=- shape=571ce6b4 vocab=9b948a9c
+-/
 theorem xorOracle_apply (f : Fin (2 ^ n) → Bool) (ψ : PureState (n + 1))
     (i : Fin (2 ^ (n + 1))) :
     (xorOracle f).apply ψ i = ψ (prodEquiv (xorPerm f (prodEquiv.symm i))) := by
   rw [xorOracle, ofPerm_apply, Equiv.permCongr_apply]
 
-/-- Action on basis kets: `U_f |x⟩|b⟩ = |x⟩|b ⊕ f(x)⟩`. -/
+/-- Action on basis kets: `U_f |x⟩|b⟩ = |x⟩|b ⊕ f(x)⟩`.
+@isnad1 id=eq.0h4v.s10.9de3f48a1a91 from=translated src=- shape=1e42c4d7 vocab=53b0b3e7
+-/
 theorem xorOracle_apply_ket (f : Fin (2 ^ n) → Bool) (x : Fin (2 ^ n))
     (b : Fin (2 ^ 1)) :
     (xorOracle f).apply (ket (prodEquiv (x, b)))

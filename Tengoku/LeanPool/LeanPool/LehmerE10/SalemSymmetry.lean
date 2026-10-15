@@ -30,7 +30,9 @@ namespace LehmerE10
 
 /-- The E₁₀ Coxeter element is **unimodular**: `det = 1`, i.e. it lies in `SL(10, ℤ)`.
 Proof: `det = (-1)^(card) · charpoly.coeff 0`; the charpoly is Lehmer's polynomial, whose
-constant coefficient is `1`, and `card (Fin 10) = 10` is even. -/
+constant coefficient is `1`, and `card (Fin 10) = 10` is even.
+@isnad1 id=eq.0h0v.s4.95eb979f0bc8 from=translated src=- shape=5ca0a7a0 vocab=0497b956
+-/
 theorem coxeterE10_det_one : coxeterE10.det = 1 := by
   rw [Matrix.det_eq_sign_charpoly_coeff, coxeter_charpoly_lehmer]
   have hcard : Fintype.card (Fin 10) = 10 := Fintype.card_fin 10

@@ -59,7 +59,9 @@ by a cut exactly when `g+1` is a multiple of the block length. -/
 def trotterSchedule (period wstar : ℕ) (g : ℕ) : Finset (PauliIndex n) :=
   if (g + 1) % period = 0 then (highSet n wstar)ᶜ else univ
 
-/-- No cutoff inside a block, as required by `apd:thm:triangle`. -/
+/-- No cutoff inside a block, as required by `apd:thm:triangle`.
+@isnad1 id=eq.1h5v.s6.ea6cee609d72 from=translated src=- shape=676cc1ef vocab=844ba80d
+-/
 theorem trotterSchedule_interior (period wstar d i : ℕ) (hi : i + 1 < period) :
     trotterSchedule (n := n) period wstar (d * period + i) = univ := by
   have hmod : (d * period + i + 1) % period = i + 1 := by
@@ -68,7 +70,9 @@ theorem trotterSchedule_interior (period wstar d i : ℕ) (hi : i + 1 < period) 
   simp only [trotterSchedule, hmod, Nat.add_one_ne_zero, ↓reduceIte]
 
 /-- The last rotation of each nonempty block is followed by the weight cut
-(`apd:thm:triangle`). -/
+(`apd:thm:triangle`).
+@isnad1 id=eq.1h4v.s7.0a73cd1ffc85 from=translated src=- shape=289488ac vocab=9c8279d1
+-/
 theorem trotterSchedule_boundary (period wstar d : ℕ) (hp : 0 < period) :
     trotterSchedule (n := n) period wstar (d * period + (period - 1)) =
       (highSet n wstar)ᶜ := by
@@ -85,12 +89,16 @@ noncomputable def trotterTraj (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (trotterSchedule period wstar) O
 
 /-- The trajectory starts at the input observable: no truncation is applied before the first
-rotation (`apd:eq:step_component`). -/
+rotation (`apd:eq:step_component`).
+@isnad1 id=eq.0h6v.s5.93eb3852ede1 from=translated src=- shape=ab18db7c vocab=7f8e22c1
+-/
 @[simp] theorem trotterTraj_zero (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (period wstar : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) :
     trotterTraj Gs θ period wstar O 0 = O := rfl
 
-/-- One rotation of the boundary-scheduled execution (`apd:thm:triangle`). -/
+/-- One rotation of the boundary-scheduled execution (`apd:thm:triangle`).
+@isnad1 id=eq.0h7v.s8.0622ae650905 from=translated src=- shape=e864c058 vocab=7ec58cc8
+-/
 theorem trotterTraj_succ (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (period wstar : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) (g : ℕ) :
     trotterTraj Gs θ period wstar O (g + 1) =
@@ -109,13 +117,17 @@ noncomputable def trotterStepTraj (Gs : ℕ → PauliString n) (θ : ℕ → ℝ
       (traj Gs θ (trotterStepTraj Gs θ period wstar O d) period)
 
 /-- The step-indexed recurrence starts at the input observable itself
-(`apd:eq:step_component`). -/
+(`apd:eq:step_component`).
+@isnad1 id=eq.0h6v.s5.29b6bf642153 from=translated src=- shape=ab18db7c vocab=fb351a6a
+-/
 @[simp] theorem trotterStepTraj_zero (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (period wstar : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) :
     trotterStepTraj Gs θ period wstar O 0 = O := rfl
 
 /-- The recurrence of the kept operator: evolve through the whole block, then cut
-(`apd:eq:step_component`). -/
+(`apd:eq:step_component`).
+@isnad1 id=eq.0h7v.s7.ff613d44c566 from=translated src=- shape=01e83d32 vocab=5900dfde
+-/
 theorem trotterStepTraj_succ (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (period wstar : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) (d : ℕ) :
     trotterStepTraj Gs θ period wstar O (d + 1) =
@@ -123,7 +135,9 @@ theorem trotterStepTraj_succ (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
         (traj Gs θ (trotterStepTraj Gs θ period wstar O d) period) := rfl
 
 /-- Before the boundary, no truncation interrupts the block's ordinary `traj`
-(`apd:thm:triangle`). -/
+(`apd:thm:triangle`).
+@isnad1 id=eq.1h8v.s6.35981185bc0a from=translated src=- shape=18495522 vocab=f1e205a7
+-/
 theorem trotterTraj_within_step (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (period wstar : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) (d i : ℕ) (hi : i < period) :
     trotterTraj Gs θ period wstar O (d * period + i) =
@@ -139,7 +153,9 @@ theorem trotterTraj_within_step (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
         traj_succ]
 
 /-- Over one complete block, the scheduled trajectory evolves without truncation and is then
-cut (`apd:eq:step_component`). -/
+cut (`apd:eq:step_component`).
+@isnad1 id=eq.1h7v.s7.bf33d7809abf from=translated src=- shape=d42fa535 vocab=ea76568e
+-/
 theorem trotterTraj_next_boundary (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (period wstar : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) (d : ℕ) (hp : 0 < period) :
     trotterTraj Gs θ period wstar O ((d + 1) * period) =
@@ -158,7 +174,9 @@ theorem trotterTraj_next_boundary (Gs : ℕ → PauliString n) (θ : ℕ → ℝ
   exact congrArg (truncOp (highSet n wstar)ᶜ) htraj.symm
 
 /-- The rotation-indexed execution agrees with the independently defined step recurrence
-at every boundary (`apd:eq:step_component`). -/
+at every boundary (`apd:eq:step_component`).
+@isnad1 id=eq.1h7v.s6.bea52c46f3ca from=translated src=- shape=5d95ee02 vocab=75b38d14
+-/
 theorem trotterTraj_at_boundary (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (period wstar : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) (d : ℕ) (hp : 0 < period) :
     trotterTraj Gs θ period wstar O (d * period) =
@@ -178,7 +196,9 @@ noncomputable def discardedStep (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     trotterStepTraj Gs θ period wstar O (d + 1)
 
 /-- The discarded operator is the projection of the pre-truncation operator onto the Paulis of
-weight above `wstar` (`apd:eq:step_component`). -/
+weight above `wstar` (`apd:eq:step_component`).
+@isnad1 id=eq.0h7v.s5.baa121247b2c from=translated src=- shape=9891b54c vocab=03927cc3
+-/
 theorem discardedStep_eq_truncOp (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (period wstar : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) (d : ℕ) :
     discardedStep Gs θ period wstar O d = truncOp (highSet n wstar)
@@ -186,7 +206,9 @@ theorem discardedStep_eq_truncOp (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
   rw [discardedStep, trotterStepTraj_succ, sub_truncOp_compl]
 
 /-- The discarded operator's Pauli norm is the pre-truncation high-weight mass
-(`apd:thm:triangle`; `apd:eq:step_component`). -/
+(`apd:thm:triangle`; `apd:eq:step_component`).
+@isnad1 id=eq.0h7v.s5.49bf12a3e589 from=translated src=- shape=62cd96b0 vocab=920d765c
+-/
 theorem pauliNorm_discardedStep (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (period wstar : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) (d : ℕ) :
     pauliNorm (discardedStep Gs θ period wstar O d) =
@@ -194,7 +216,9 @@ theorem pauliNorm_discardedStep (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
   rw [discardedStep, trotterStepTraj_succ, pauliNorm_sub_truncOp_highSet_compl]
 
 /-- The retained operator has zero high-weight mass after each completed step. This is a
-support theorem, not an error bound (`apd:eq:step_component`). -/
+support theorem, not an error bound (`apd:eq:step_component`).
+@isnad1 id=eq.0h7v.s5.070af3581046 from=translated src=- shape=59c8d20a vocab=3cc7c046
+-/
 theorem highNorm_trotterStepTraj_succ (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (period wstar : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) (d : ℕ) :
     highNorm wstar (trotterStepTraj Gs θ period wstar O (d + 1)) = 0 := by
@@ -202,7 +226,9 @@ theorem highNorm_trotterStepTraj_succ (Gs : ℕ → PauliString n) (θ : ℕ →
 
 /-- The pre-truncation operator of a block is the last rotation of the block applied to the
 scheduled trajectory just before the boundary (`apd:eq:step_component`). This connects the
-step-indexed recurrence to the rotation-indexed local flow of `Truncate.lean`. -/
+step-indexed recurrence to the rotation-indexed local flow of `Truncate.lean`.
+@isnad1 id=eq.1h7v.s9.1e7f97661dc5 from=translated src=- shape=289bc652 vocab=556a12a9
+-/
 theorem trotterBlock_eq_boundary_pre (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (period wstar : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) (d : ℕ) (hp : 0 < period) :
     traj Gs θ (trotterStepTraj Gs θ period wstar O d) period =
@@ -216,7 +242,9 @@ theorem trotterBlock_eq_boundary_pre (Gs : ℕ → PauliString n) (θ : ℕ → 
   exact htraj
 
 /-- `X_{d+1}` is the operator after the last rotation of the block and before the cut, minus
-the scheduled trajectory at the boundary (`apd:eq:step_component`). -/
+the scheduled trajectory at the boundary (`apd:eq:step_component`).
+@isnad1 id=eq.1h7v.s9.df759477f4c1 from=translated src=- shape=5bea9102 vocab=35767d11
+-/
 theorem discardedStep_eq_boundary_sub (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (period wstar : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) (d : ℕ) (hp : 0 < period) :
     discardedStep Gs θ period wstar O d =
@@ -230,7 +258,9 @@ theorem discardedStep_eq_boundary_sub (Gs : ℕ → PauliString n) (θ : ℕ →
 /-- At a Trotter boundary, the Pauli norm of the discarded operator is the high-weight norm of
 the last rotation applied to the scheduled trajectory, which is the quantity that the local-flow
 bound controls (`apd:thm:triangle`). No such identification is made at interior rotations, where
-nothing is discarded. -/
+nothing is discarded.
+@isnad1 id=eq.1h7v.s9.876f9c66d305 from=translated src=- shape=028452d9 vocab=6014926f
+-/
 theorem pauliNorm_discardedStep_eq_boundary_highNorm (Gs : ℕ → PauliString n) (θ : ℕ → ℝ)
     (period wstar : ℕ) (O : Matrix (Bits n) (Bits n) ℂ) (d : ℕ) (hp : 0 < period) :
     pauliNorm (discardedStep Gs θ period wstar O d) = highNorm wstar
@@ -243,7 +273,9 @@ theorem pauliNorm_discardedStep_eq_boundary_highNorm (Gs : ℕ → PauliString n
 of a step, bounds the discarded operator `X_{d+1}`
 (`apd:eq:step_component`; `apd:thm:local_flow_k_local`). This is a one-rotation estimate: its
 right-hand side still contains the two ladder rungs of the trajectory just before the boundary.
-The multi-layer bound on the sum of the discarded norms is in `LayerError.lean`. -/
+The multi-layer bound on the sum of the discarded norms is in `LayerError.lean`.
+@isnad1 id=other.5h10v.s7.adc1bf443c61 from=translated src=- shape=bfe16f65 vocab=b8da2527
+-/
 theorem pauliNorm_discardedStep_le {Gs : ℕ → PauliString n} {θ : ℕ → ℝ}
     {period wstar ko kh m : ℕ} {O : Matrix (Bits n) (Bits n) ℂ}
     (hG : ∀ g, IsSelfAdjoint (Gs g)) (hk : ∀ g, weight (Gs g) ≤ kh)

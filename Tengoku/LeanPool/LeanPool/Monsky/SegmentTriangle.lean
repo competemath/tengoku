@@ -79,10 +79,16 @@ noncomputable def Tco (T : Triangle) (x : ℝ²) : Fin 3 → ℝ :=
 noncomputable def Oside (T : Triangle) (i : Fin 3) := segVec (Tside T i)
 
 /- Basic lemmas about det₂.-/
+/--
+@isnad1 id=eq.0h3v.s6.7abb9eb6921b from=translated src=- shape=4d536e16 vocab=f5c6af96
+-/
 lemma det₂_mul_last {x y : ℝ²} (a : ℝ)
   : det₂ x (a • y) = a * det₂ x y := by
   simp [det₂]; ring
 
+/--
+@isnad1 id=ne.2h1v.s7.afaa912436e2 from=translated src=- shape=95b9091a vocab=ff656e37
+-/
 lemma aux_det₂ {L : ℝ²} (hL : L ≠ 0) (hi : ∃ i, L i = 0) : det₂ L (v 1 1) ≠ 0 := by
   by_contra hz
   refine hL ?_
@@ -96,6 +102,9 @@ lemma aux_det₂ {L : ℝ²} (hL : L ≠ 0) (hi : ∃ i, L i = 0) : det₂ L (v 
 
 /- Segments -/
 
+/--
+@isnad1 id=le.2h2v.s7.c99dac95ddcf from=translated src=- shape=76fc584d vocab=34b9755f
+-/
 lemma open_segment_sub {L₁ L₂ : Segment} (hsub : ∀ i : Fin 2, L₁ i ∈ closedHull L₂)
     (hL₁ : L₁ 0 ≠ L₁ 1) :
     openHull L₁ ⊆ openHull L₂ := by
@@ -180,10 +189,16 @@ lemma open_segment_sub {L₁ L₂ : Segment} (hsub : ∀ i : Fin 2, L₁ i ∈ c
   · simp only [Fin.sum_univ_two, Fin.isValue, hL₁₀, smul_add, hL₁₁, ← add_assoc, add_comm] at hx
     simpa only [Fin.isValue, Fin.sum_univ_two, add_smul, mul_smul, ← add_assoc, x₁] using hx
 
+/--
+@isnad1 id=le.2h2v.s7.763d977cb32c from=translated src=- shape=95d58bef vocab=8ce55651
+-/
 lemma open_segment_sub' {L₁ L₂ : Segment} (hsub : closedHull L₁ ⊆ closedHull L₂)
     (hL₁ : L₁ 0 ≠ L₁ 1) : openHull L₁ ⊆ openHull L₂ :=
   open_segment_sub (fun _ ↦ (hsub corner_in_closedHull)) hL₁
 
+/--
+@isnad1 id=eq.1h1v.s8.2533ee838721 from=translated src=- shape=6ccd94eb vocab=36b30ccf
+-/
 lemma boundary_seg {L : Segment} (hL : L 0 ≠ L 1)
     : boundary L = image (fun i ↦ L i) (univ : Finset (Fin 2)) := by
   ext x
@@ -224,11 +239,17 @@ lemma boundary_seg {L : Segment} (hL : L 0 ≠ L 1)
       have this := smul_cancel (Ne.symm (ne_of_lt (hα.1 (f i)))) h
       fin_cases i <;> (simp only [Fin.zero_eta, Fin.isValue, f, Fin.mk_one] at this; rw [this])
 
+/--
+@isnad1 id=mem.1h2v.s6.d6c0348bc7c3 from=translated src=- shape=2ee442df vocab=e3ff0b03
+-/
 lemma boundary_seg' {L : Segment} (hL : L 0 ≠ L 1) : ∀ (i : Fin 2), L i ∈ boundary L := by
   intro i
   rw [boundary_seg hL]
   simp only [coe_image, coe_univ, Set.image_univ, Set.mem_range, exists_apply_eq_apply]
 
+/--
+@isnad1 id=eq.1h1v.s7.dc3c51975b26 from=translated src=- shape=01efb2e3 vocab=e6ceffb9
+-/
 lemma boundary_seg_set {L : Segment} (hL : L 0 ≠ L 1) : boundary L = {L 0, L 1} := by
   rw [boundary_seg hL]
   ext x
@@ -246,6 +267,9 @@ lemma boundary_seg_set {L : Segment} (hL : L 0 ≠ L 1) : boundary L = {L 0, L 1
     · use (0 : Fin 2)
     · simp_all
 
+/--
+@isnad1 id=ne.1h2v.s6.5844cdb1ac57 from=translated src=- shape=b2732cae vocab=e3ff0b03
+-/
 lemma boundary_seg_nonempty {L : Segment} {x : ℝ²} (hx : x ∈ boundary L)
     : L 0 ≠ L 1 := by
   intro hc
@@ -257,17 +281,29 @@ lemma boundary_seg_nonempty {L : Segment} {x : ℝ²} (hx : x ∈ boundary L)
   ext i
   rw [hi i]
 
+/--
+@isnad1 id=eq.0h4v.s8.d47dd3af3ec9 from=translated src=- shape=3ccec8c6 vocab=3d00dadb
+-/
 lemma signSeg_line (L : Segment) (x y : ℝ²) (a : ℝ) :
     signSeg L (x + a • y) = (signSeg L x) + a * (det₂ (segVec L) y) := by
   simp [signSeg, det₂, det, segVec]; ring
 
+/--
+@isnad1 id=iff.0h1v.s7.2bcce191924a from=translated src=- shape=78d735d1 vocab=e11db994
+-/
 lemma segVec_zero_iff (L : Segment) : segVec L = 0 ↔ L 0 = L 1 := by
   rw [segVec, sub_eq_zero]
   exact eq_comm
 
+/--
+@isnad1 id=iff.0h1v.s7.4f7dedfbc8c3 from=translated src=- shape=78d735d1 vocab=e11db994
+-/
 lemma segVec_nonzero_iff (L : Segment) : segVec L ≠ 0 ↔ L 0 ≠ L 1 :=
     not_congr (segVec_zero_iff L)
 
+/--
+@isnad1 id=eq.0h1v.s8.8af129aea937 from=translated src=- shape=f3eb7ade vocab=25c4a401
+-/
 lemma closed_segment_interval_im {L : Segment} :
     closedHull L = (fun a ↦ L 0 + a • segVec L) '' (Set.Icc 0 1 : Set ℝ)  := by
   ext x
@@ -284,6 +320,9 @@ lemma closed_segment_interval_im {L : Segment} :
     module
 
 -- Same proof essentially.
+/--
+@isnad1 id=eq.0h1v.s8.a2612031e3fc from=translated src=- shape=f3eb7ade vocab=affebab3
+-/
 lemma open_segment_interval_im {L : Segment} :
     openHull L = (fun a ↦ L 0 + a • segVec L) '' (Set.Ioo 0 1 : Set ℝ)  := by
   ext x
@@ -301,16 +340,25 @@ lemma open_segment_interval_im {L : Segment} :
     simp [←hax, real_to_fin_2, segVec]
     module
 
+/--
+@isnad1 id=eq.1h1v.s7.a9558c6e65ed from=translated src=- shape=fb6e9918 vocab=e6a2d456
+-/
 lemma segVec_zero_closedHull {L : Segment} (hL : segVec L = 0) :
     closedHull L = {L 0} := by
   rw [closed_segment_interval_im, hL]
   simp
 
+/--
+@isnad1 id=eq.1h1v.s7.a06285926de9 from=translated src=- shape=fb6e9918 vocab=e2229818
+-/
 lemma segVec_zero_openHull {L : Segment} (hL : segVec L = 0) :
     openHull L = {L 0} := by
   rw [open_segment_interval_im, hL]
   simp
 
+/--
+@isnad1 id=ex.1h2v.s8.17e09cb0393f from=translated src=- shape=0df8379c vocab=a7646f1f
+-/
 lemma seg_dir_sub {L : Segment} {x : ℝ²} (hxL : x ∈ openHull L) :
     ∃ δ > 0, ∀ (a : ℝ), |a| ≤ δ → x + a • segVec L ∈ openHull L := by
   rw [open_segment_interval_im] at *
@@ -331,6 +379,9 @@ lemma seg_dir_sub {L : Segment} {x : ℝ²} (hxL : x ∈ openHull L) :
         linarith [ha.2]
     · module
 
+/--
+@isnad1 id=ex.2h3v.s8.e6aa8769f57b from=translated src=- shape=89068fb1 vocab=4d69595b
+-/
 lemma segVec_co {L : Segment} {x y : ℝ²} (hx : x ∈ closedHull L) (hy : y ∈ closedHull L)
   : ∃ a : ℝ, y = x + a • segVec L := by
   rw [closed_segment_interval_im] at hx hy
@@ -339,9 +390,15 @@ lemma segVec_co {L : Segment} {x y : ℝ²} (hx : x ∈ closedHull L) (hy : y �
   use a₂ - a₁
   simp [←hx, ←hy, sub_smul]
 
+/--
+@isnad1 id=ex.0h1v.s6.37e442604159 from=translated src=- shape=ce543e67 vocab=1e7ec7aa
+-/
 lemma open_seg_nonempty (L : Segment) : ∃ x, x ∈ openHull L :=
   open_pol_nonempty Nat.zero_lt_two L
 
+/--
+@isnad1 id=ex.1h1v.s8.4fea15cbfe85 from=translated src=- shape=58e7a8b6 vocab=f76c4833
+-/
 lemma perp_vec_exists (Lset : Finset Segment) (hLset : ∀ L ∈ Lset, L 0 ≠ L 1)
     : ∃ y : ℝ², ∀ L ∈ Lset, det₂ (segVec L) y ≠ 0 := by
   have ⟨y₁, hy₁⟩ := Infinite.exists_notMem_finset (image (fun L ↦ segVec L 1 / segVec L 0) Lset)
@@ -360,23 +417,38 @@ lemma perp_vec_exists (Lset : Finset Segment) (hLset : ∀ L ∈ Lset, L 0 ≠ L
     field_simp
     linarith
 
+/--
+@isnad1 id=eq.0h1v.s6.534f5540048e from=translated src=- shape=1dc0281b vocab=6275e934
+-/
 @[simp]
 lemma segment_rfl {L : Segment}
     : toSegment (L 0) (L 1) = L :=
   List.ofFn_inj.mp rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.002cc6424713 from=translated src=- shape=489d1054 vocab=922977ea
+-/
 @[simp]
 lemma reverseSegment_toSegment {u v : ℝ²}
   : reverseSegment (toSegment u v) = toSegment v u := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.5b6c880d06fb from=translated src=- shape=62ff688a vocab=aa2e259c
+-/
 @[simp]
 lemma reverseSegment_involution {L : Segment}
     : reverseSegment (reverseSegment L) = L :=
   List.ofFn_inj.mp rfl
 
+/--
+@isnad1 id=bijectiv.0h0v.s5.cb5d8a15b459 from=translated src=- shape=133bb91c vocab=ce6d004e
+-/
 lemma reverseSegment_bijective : Function.Bijective reverseSegment :=
   Function.Involutive.bijective (Function.involutive_iff_iter_2_eq_id.mpr (by ext _; simp))
 
+/--
+@isnad1 id=eq.0h1v.s5.4f93082b27ed from=translated src=- shape=2f2275a3 vocab=648a1ac0
+-/
 lemma reverseSegment_closedHull {L : Segment}
     : closedHull (reverseSegment L) = closedHull L := by
   have haux : ∀ L', closedHull L' ⊆ closedHull (reverseSegment L') := by
@@ -387,6 +459,9 @@ lemma reverseSegment_closedHull {L : Segment}
     · simp_rw [←hαx, Fin.sum_univ_two, reverseSegment, toSegment, add_comm]
   exact Set.Subset.antisymm (haux (reverseSegment L)) (haux L)
 
+/--
+@isnad1 id=eq.0h1v.s5.b590e394eeea from=translated src=- shape=2f2275a3 vocab=b5a934b4
+-/
 lemma reverseSegment_openHull {L : Segment}
     : openHull (reverseSegment L) = openHull L := by
   have haux : ∀ L', openHull L' ⊆ openHull (reverseSegment L') := by
@@ -397,10 +472,16 @@ lemma reverseSegment_openHull {L : Segment}
     · simp_rw [←hαx, Fin.sum_univ_two, reverseSegment, toSegment, add_comm]
   exact Set.Subset.antisymm (haux _) (haux _)
 
+/--
+@isnad1 id=eq.0h1v.s5.9bbd23f72f9b from=translated src=- shape=2f2275a3 vocab=2456828c
+-/
 lemma reverseSegment_boundary {L : Segment}
     : boundary (reverseSegment L) = boundary L := by
   simp [boundary, reverseSegment_openHull, reverseSegment_closedHull]
 
+/--
+@isnad1 id=iff.0h1v.s6.8ec34fe4a8f3 from=translated src=- shape=327bcc4c vocab=d4761bb5
+-/
 lemma segment_triv {L : Segment} : L 0 = L 1 ↔ ∃ x, closedHull L = {x} := by
   constructor
   · intro h
@@ -414,6 +495,9 @@ lemma segment_triv {L : Segment} : L 0 = L 1 ↔ ∃ x, closedHull L = {x} := by
       constructor <;> (rw [←hx]; exact corner_in_closedHull )
     rw [h₁₂.1, h₁₂.2]
 
+/--
+@isnad1 id=iff.0h1v.s6.d98bcdaa66da from=translated src=- shape=42782df5 vocab=d4761bb5
+-/
 lemma segment_triv' {L : Segment} : L 0 = L 1 ↔ closedHull L = {L 0} := by
   rw [segment_triv]
   constructor
@@ -425,6 +509,9 @@ lemma segment_triv' {L : Segment} : L 0 = L 1 ↔ closedHull L = {L 0} := by
     simp [hL.symm]
   · exact fun h ↦ ⟨L 0, h⟩
 
+/--
+@isnad1 id=ne.2h2v.s7.58300d6a6eb7 from=translated src=- shape=d9063228 vocab=dcf4660d
+-/
 lemma seg_nontriv_sub {L₁ L₂ : Segment} (h : closedHull L₁ ⊆ closedHull L₂) (hneq : L₁ 0 ≠ L₁ 1)
     : L₂ 0 ≠ L₂ 1 := by
   intro hContra
@@ -444,6 +531,9 @@ def lastIndex : Fin 3 → Fin 3 → Fin 3 := fun
   | 1 => (fun | 0 => 2 | 1 => 1 | 2 => 0)
   | 2 => (fun | 0 => 1 | 1 => 0 | 2 => 2)
 
+/--
+@isnad1 id=eq.1h5v.s8.b6920fb5806b from=translated src=- shape=c16a5f79 vocab=87268780
+-/
 lemma linearCombinationDetLast {n : ℕ} {x y : ℝ²} {P : Fin n → ℝ²} {α : Fin n → ℝ}
     (hα : ∑ i, α i = 1) :
   det (fun | 0 => x | 1 => y | 2 => (∑ i, α i • P i)) =
@@ -455,11 +545,17 @@ lemma linearCombinationDetLast {n : ℕ} {x y : ℝ²} {P : Fin n → ℝ²} {α
 
 /- Lemmas about the barycentric coordinates -/
 
+/--
+@isnad1 id=eq.1h2v.s6.8c9c9a832dd4 from=translated src=- shape=974feb16 vocab=6bde1969
+-/
 lemma Tco_sum {T : Triangle} (hdet : det T ≠ 0) (x : ℝ²) : ∑ i, Tco T x i = 1 := by
   apply mul_cancel hdet
   simp_rw [mul_sum, Tco, Fin.sum_univ_three, mul_div_cancel₀ _ hdet, signSeg, det, Tside]
   ring
 
+/--
+@isnad1 id=eq.1h5v.s8.979556a31c61 from=translated src=- shape=418d816d vocab=3559a26e
+-/
 lemma Tco_linear {n : ℕ} {T : Triangle} {P : Fin n → ℝ²} {α : Fin n → ℝ}
     (hα : ∑ i, α i = 1) (k : Fin 3) : Tco T (∑ i, (α i) • (P i)) k =  ∑ i, α i * Tco T (P i) k := by
   fin_cases k <;> (
@@ -467,6 +563,9 @@ lemma Tco_linear {n : ℕ} {T : Triangle} {P : Fin n → ℝ²} {α : Fin n → 
     Fin.mk_one, Fin.reduceFinMk]
   congr; funext _; ring)
 
+/--
+@isnad1 id=eq.1h2v.s5.d620e3f03d69 from=translated src=- shape=390a48c7 vocab=b2e79782
+-/
 lemma Tco_basis_diag {T : Triangle} (hdet : det T ≠ 0) {i : Fin 3} :
     Tco T (T i) i = 1 := by
   fin_cases i<;>(
@@ -475,6 +574,9 @@ lemma Tco_basis_diag {T : Triangle} (hdet : det T ≠ 0) {i : Fin 3} :
     simp [signSeg,det, Tside]
   ) <;> ring
 
+/--
+@isnad1 id=eq.1h3v.s5.101bbf40001a from=translated src=- shape=0049099d vocab=5d76aa1e
+-/
 lemma Tco_basis_off_diag {T : Triangle} {i j : Fin 3} (hij : i ≠ j) :
     Tco T (T i) j = 0 := by
   fin_cases i <;> fin_cases j
@@ -483,12 +585,18 @@ lemma Tco_basis_off_diag {T : Triangle} {i j : Fin 3} (hij : i ≠ j) :
     simp only [Tco, Fin.mk_one, Fin.isValue, Fin.zero_eta, div_eq_zero_iff, Fin.reduceFinMk]; left
     simp [signSeg, det, Tside]; ring)
 
+/--
+@isnad1 id=eq.2h3v.s8.10c8f8dcb545 from=translated src=- shape=d805038f vocab=2ae3a67d
+-/
 lemma Tco_sum_val {T : Triangle} (hdet : det T ≠ 0) {α : Fin 3 → ℝ} (hα : ∑ i, α i = 1)
     (k : Fin 3) :
     Tco T (∑ i, (α i) • (T i)) k = α k := by
   rw [Tco_linear hα, Fin.sum_univ_three]
   fin_cases k <;> simp [Tco_basis_diag hdet, Tco_basis_off_diag]
 
+/--
+@isnad1 id=eq.1h2v.s7.cedce422c418 from=translated src=- shape=b2ac2d27 vocab=2ae3a67d
+-/
 lemma Tco_sum_self {T : Triangle} (hdet : det T ≠ 0) (x : ℝ²) :
     ∑ i, (Tco T x i) • (T i) = x := by
   apply smul_cancel hdet
@@ -496,24 +604,36 @@ lemma Tco_sum_self {T : Triangle} (hdet : det T ≠ 0) (x : ℝ²) :
   simpa only [signSeg, det, Fin.isValue, Tside]
     using PiLp.ext (fun i ↦ by fin_cases i <;> (simp; ring))
 
+/--
+@isnad1 id=iff.1h2v.s6.263b98b28be0 from=translated src=- shape=c38100dd vocab=0150b38c
+-/
 lemma closed_triangle_iff {T : Triangle} (hdet : det T ≠ 0) {x : ℝ²} :
     x ∈ closedHull T ↔ ∀ i, 0 ≤ Tco T x i := by
   constructor
   · exact fun ⟨α,hα,hαx⟩ ↦ by simp_rw [←hαx, Tco_sum_val hdet hα.2]; exact hα.1
   · exact fun hco ↦ ⟨Tco T x, ⟨hco, Tco_sum hdet x⟩, Tco_sum_self hdet x⟩
 
+/--
+@isnad1 id=iff.1h2v.s6.0852d1206935 from=translated src=- shape=c38100dd vocab=29f9cc8e
+-/
 lemma open_triangle_iff {T : Triangle} (hdet : det T ≠ 0) {x : ℝ²} :
     x ∈ openHull T ↔ ∀ i, 0 < Tco T x i := by
   constructor
   · exact fun ⟨α,hα,hαx⟩ ↦ by simp_rw [←hαx, Tco_sum_val hdet hα.2]; exact hα.1
   · exact fun hco ↦ ⟨Tco T x, ⟨hco, Tco_sum hdet x⟩, Tco_sum_self hdet x⟩
 
+/--
+@isnad1 id=eq.4h4v.s6.57aa7afb8e73 from=translated src=- shape=0889e459 vocab=147fa5e0
+-/
 lemma two_co_zero_imp_corner_co {T : Triangle} {i j : Fin 3} {x : ℝ²} (hdet : det T ≠ 0)
     (hij : i ≠ j) (hi : Tco T x i = 0) (hj : Tco T x j = 0) :
     Tco T x (lastIndex i j) =  1 := by
   rw [←Tco_sum hdet x, Fin.sum_univ_three]
   fin_cases i <;> fin_cases j <;> simp_all [lastIndex]
 
+/--
+@isnad1 id=eq.4h4v.s6.c8e71a826607 from=translated src=- shape=1ed72c28 vocab=147fa5e0
+-/
 lemma two_co_zero_imp_corner {T : Triangle} {i j : Fin 3} {x : ℝ²} (hdet : det T ≠ 0)
   (hij : i ≠ j) (hi : Tco T x i = 0) (hj : Tco T x j = 0) :
     x = T (lastIndex i j) := by
@@ -521,15 +641,24 @@ lemma two_co_zero_imp_corner {T : Triangle} {i j : Fin 3} {x : ℝ²} (hdet : de
   rw [←Tco_sum_self hdet x, Fin.sum_univ_three]
   fin_cases i <;> fin_cases j <;> simp_all [lastIndex]
 
+/--
+@isnad1 id=eq.0h5v.s8.525f6aee511d from=translated src=- shape=688df9ce vocab=2cab92d1
+-/
 lemma Tco_line {T : Triangle} {i : Fin 3} (x y : ℝ²) (a : ℝ) :
     Tco T (x  + a • y) i = Tco T x i + a * (det₂ (Oside T i) y) / det T := by
   rw [Tco, signSeg_line, add_div, ←Tco, ←Oside]
 
 /- Lemmas about elements in the side of a triangle. -/
+/--
+@isnad1 id=ne.1h2v.s6.d105c993bed3 from=translated src=- shape=169a1e60 vocab=21e12bf0
+-/
 lemma nondegen_triangle_imp_nondegen_side {T : Triangle} (i : Fin 3) (hdet : det T ≠ 0) :
     Tside T i 0 ≠ Tside T i 1 :=
   fun hS ↦ hdet (by fin_cases i <;> (simp [Tside] at hS; simp [det, hS]) <;> ring)
 
+/--
+@isnad1 id=iff.2h3v.s7.3c9fc29ec14a from=translated src=- shape=082357ef vocab=30a7c356
+-/
 lemma mem_closed_side {T : Triangle} (hdet : det T ≠ 0) {x : ℝ²} (hx : x ∈ closedHull T)
     (i : Fin 3) :
     Tco T x i = 0 ↔ x ∈ closedHull (Tside T i) := by
@@ -546,19 +675,31 @@ lemma mem_closed_side {T : Triangle} (hdet : det T ≠ 0) {x : ℝ²} (hx : x �
     rw [←hαx, Tco_linear hα.2]
     fin_cases i <;> (simp [Tside, Tco_basis_off_diag])
 
+/--
+@isnad1 id=mem.1h3v.s6.2d00c588aab8 from=translated src=- shape=9247ce63 vocab=8ad5630f
+-/
 lemma closed_side_sub {T : Triangle} {x : ℝ²} {i : Fin 3} (hx : x ∈ closedHull (Tside T i)) :
     x ∈ closedHull T := by
   refine closedHull_convex ?_ hx
   intro j
   fin_cases i <;> fin_cases j <;> simp [Tside]
 
+/--
+@isnad1 id=le.0h2v.s5.c4bc84918777 from=translated src=- shape=a3fd1263 vocab=20c15fb8
+-/
 lemma closed_side_sub' {T : Triangle} {i : Fin 3} :
     closedHull (Tside T i) ⊆ closedHull T := fun _ ↦ closed_side_sub
 
+/--
+@isnad1 id=eq.2h3v.s6.cc31e58a8214 from=translated src=- shape=623fee12 vocab=30a7c356
+-/
 lemma closed_side_to_co {T : Triangle} (hdet : det T ≠ 0) {x : ℝ²} {i : Fin 3}
     (hx : x ∈ closedHull (Tside T i)) :
     Tco T x i = 0 := (mem_closed_side hdet (closed_side_sub hx) _).2 hx
 
+/--
+@isnad1 id=iff.2h3v.s7.2d844b98b6dc from=translated src=- shape=b60aebc2 vocab=48135555
+-/
 lemma mem_open_side {T : Triangle} (hdet : det T ≠ 0) {x : ℝ²} (hx : x ∈ closedHull T)
     (i : Fin 3) :
     (Tco T x i = 0 ∧ ∀ j, j ≠ i → 0 < Tco T x j) ↔ x ∈ openHull (Tside T i) := by
@@ -588,6 +729,9 @@ lemma mem_open_side {T : Triangle} (hdet : det T ≠ 0) {x : ℝ²} (hx : x ∈ 
     simp only [Fin.isValue, coe_insert, coe_singleton, Set.mem_insert_iff, Set.mem_singleton_iff]
     fin_cases i <;> fin_cases j <;> tauto
 
+/--
+@isnad1 id=lt.3h4v.s6.abaccba7407f from=translated src=- shape=416ff65f vocab=a0b2254b
+-/
 lemma mem_open_side_other_co {T : Triangle} (hdet : det T ≠ 0) {x : ℝ²} {i : Fin 3}
     (hxOpen : x ∈ openHull (Tside T i))
   : ∀ j, j ≠ i → 0 < Tco T x j := by
@@ -596,6 +740,9 @@ lemma mem_open_side_other_co {T : Triangle} (hdet : det T ≠ 0) {x : ℝ²} {i 
 
 /- Boundary of a triangle. -/
 
+/--
+@isnad1 id=iff.2h2v.s7.b108f4e2bf26 from=translated src=- shape=d4ca30b5 vocab=a2ad29ec
+-/
 lemma boundary_iff {T : Triangle} (hdet : det T ≠ 0) {x : ℝ²} (hx : x ∈ closedHull T) :
     x ∈ boundary T ↔ ∃ i, Tco T x i = 0 := by
   constructor
@@ -613,12 +760,18 @@ lemma boundary_iff {T : Triangle} (hdet : det T ≠ 0) {x : ℝ²} (hx : x ∈ c
     rw [open_triangle_iff hdet] at hxOpen
     linarith [hi, hxOpen i]
 
+/--
+@isnad1 id=le.1h2v.s6.b6b392bbdd8e from=translated src=- shape=09fce030 vocab=3a5f4d95
+-/
 lemma side_in_boundary {T : Triangle} (hdet : det T ≠ 0) (i : Fin 3) :
     closedHull (Tside T i) ⊆ boundary T := by
   intro x hx
   rw [boundary_iff hdet (closed_side_sub hx)]
   exact ⟨i, closed_side_to_co hdet hx⟩
 
+/--
+@isnad1 id=eq.1h1v.s6.b222dcf344b5 from=translated src=- shape=a401adfb vocab=842ad712
+-/
 lemma boundary_is_union_sides {T : Triangle} (hdet : det T ≠ 0)
     : boundary T = ⋃ i, closedHull (Tside T i) := by
   ext x
@@ -630,11 +783,17 @@ lemma boundary_is_union_sides {T : Triangle} (hdet : det T ≠ 0)
     have ⟨_,hx⟩ := Set.mem_iUnion.1 hx
     exact side_in_boundary hdet _ hx
 
+/--
+@isnad1 id=ex.2h2v.s6.f6dca74b6081 from=translated src=- shape=3fb9334d vocab=addff9e5
+-/
 lemma el_boundary_imp_side {T : Triangle} (hdet : det T ≠ 0) {x : ℝ²} (hx : x ∈ boundary T)
     : ∃ i, x ∈ closedHull (Tside T i) := by
   rw [boundary_is_union_sides hdet] at hx
   exact Set.mem_iUnion.mp hx
 
+/--
+@isnad1 id=ex.3h2v.s7.5bc3a139c816 from=translated src=- shape=ec878a91 vocab=10079f17
+-/
 lemma el_in_boundary_imp_side {T : Triangle} {x : ℝ²} (hdet : det T ≠ 0)
     (hx : x ∈ boundary T) (hv : ∀ i, x ≠ T i) : ∃ i, x ∈ openHull (Tside T i) := by
   have hxClosed := (Set.mem_of_mem_sdiff hx)
@@ -653,6 +812,9 @@ lemma el_in_boundary_imp_side {T : Triangle} {x : ℝ²} (hdet : det T ≠ 0)
   vertices of the triangle and a vector y not co-linear with the part of the boundary that
   y is on. There is a σ ∈ {±1} such that x + ε σ y lies in the triangle for small ε > 0 and
   x - a σ y does not (for all a > 0).
+-/
+/--
+@isnad1 id=ex.3h4v.s9.80d87f0cc6fb from=translated src=- shape=b90e4d76 vocab=00b10bd4
 -/
 lemma seg_inter_open {T : Triangle} {x y : ℝ²} {i : Fin 3}
   (hxT : x ∈ openHull (Tside T i)) (hdet : det T ≠ 0)
@@ -699,6 +861,9 @@ lemma seg_inter_open {T : Triangle} {x y : ℝ²} {i : Fin 3}
       rw [real_sign_mul, mul_assoc, mul_div_right_comm]
       exact mul_pos (real_sign_div_self hdet) (real_sign_mul_self hdet₂)
 
+/--
+@isnad1 id=le.5h4v.s8.b98dfd55e20f from=translated src=- shape=e936126c vocab=fefe728e
+-/
 lemma seg_sub_side {T : Triangle} {L : Segment} {x : ℝ²} {i : Fin 3} (hdet : det T ≠ 0)
     (hxL : x ∈ openHull L) (hxT : x ∈ openHull (Tside T i))
     (hInter : openHull T ∩ closedHull L = ∅)
@@ -776,6 +941,9 @@ lemma seg_sub_side {T : Triangle} {L : Segment} {x : ℝ²} {i : Fin 3} (hdet : 
     · exact ⟨α,hαSimp,rfl⟩
   exact (mem_closed_side hdet hy₂ i).1 (hTyi y hy)
 
+/--
+@isnad1 id=ex.2h2v.s6.3f5eb793ffcb from=translated src=- shape=e31ac1ab vocab=3a5f4d95
+-/
 lemma segment_in_boundary_imp_in_side {T : Triangle} {L : Segment} (hdet : det T ≠ 0)
     (hL : closedHull L ⊆ boundary T) : ∃ i, closedHull L ⊆ closedHull (Tside T i) := by
   by_cases hLTriv : L 0 = L 1
@@ -828,6 +996,9 @@ lemma segment_in_boundary_imp_in_side {T : Triangle} {L : Segment} (hdet : det T
     intro hyopen hyclosed
     refine (boundary_not_in_open (hL hyclosed)) hyopen
 
+/--
+@isnad1 id=mem.2h3v.s8.69fc49b92951 from=translated src=- shape=dfe7ba90 vocab=877b496d
+-/
 lemma closed_triangle_is_closed_dir {T : Triangle} (hdet : det T ≠ 0) {x y : ℝ²}
     (h : Set.Infinite {n : ℕ | x + (1 / (n : ℝ)) • y ∈ closedHull T}) : x ∈ closedHull T := by
   rw [closed_triangle_iff hdet]
@@ -868,10 +1039,16 @@ lemma closed_triangle_is_closed_dir {T : Triangle} (hdet : det T ≠ 0) {x y : �
 
 -- Basic lemmas about collinearity
 
+/--
+@isnad1 id=colin.1h3v.s5.b634b7ed3c84 from=translated src=- shape=79af1f5b vocab=13515e58
+-/
 lemma colin_reverse {u v w : ℝ²} (h : colin u v w) : colin w v u := by
   have ⟨h₁,h₂⟩ := h
   exact ⟨h₁.symm, by rwa [←reverseSegment_openHull, reverseSegment_toSegment]⟩
 
+/--
+@isnad1 id=eq.1h3v.s6.e3630bdc2a3d from=translated src=- shape=b4c1d308 vocab=72e6d5cc
+-/
 lemma colin_decomp_closed {u v w : ℝ²} (h : colin u v w) : closedHull (toSegment u w)
   = closedHull (toSegment u v) ∪ closedHull (toSegment v w) := by
   have hv: v ∈ closedHull (toSegment u w) := open_sub_closed _ h.2
@@ -966,6 +1143,9 @@ lemma colin_decomp_closed {u v w : ℝ²} (h : colin u v w) : closedHull (toSegm
         · exact corner_in_closedHull (i := 1) (P := toSegment u w)
       tauto_set
 
+/--
+@isnad1 id=and.1h3v.s5.f2b4abf4328b from=translated src=- shape=e7b2709b vocab=13515e58
+-/
 lemma middle_not_boundary_colin {u v w : ℝ²} (hcolin : colin u v w) : (u ≠ v) ∧ (v ≠ w) := by
   have ht : ∀ {u' v' w' : ℝ²}, colin u' v' w' → u' ≠ v' := by
     intro u _ w ⟨h₁, h₂⟩ huv
@@ -974,6 +1154,9 @@ lemma middle_not_boundary_colin {u v w : ℝ²} (hcolin : colin u v w) : (u ≠ 
     rw [huv, toSegment]
   exact ⟨ht hcolin, (ht (colin_reverse hcolin)).symm⟩
 
+/--
+@isnad1 id=le.1h3v.s6.24e7d078d2d6 from=translated src=- shape=86dc392a vocab=3a047c43
+-/
 lemma left_openHull_in_colin {u v w : ℝ²} {h : colin u v w} :
   openHull (toSegment u v) ⊆ openHull (toSegment u w) := by
   apply open_segment_sub'
@@ -981,6 +1164,9 @@ lemma left_openHull_in_colin {u v w : ℝ²} {h : colin u v w} :
     tauto_set
   · rw [toSegment, toSegment]; exact (middle_not_boundary_colin h).1
 
+/--
+@isnad1 id=le.1h3v.s6.c0d0cc7f0c31 from=translated src=- shape=c2f2e149 vocab=3a047c43
+-/
 lemma right_openHull_in_colin {u v w : ℝ²} {h : colin u v w}
   : openHull (toSegment v w) ⊆ openHull (toSegment u w) := by
   apply open_segment_sub'
@@ -988,6 +1174,9 @@ lemma right_openHull_in_colin {u v w : ℝ²} {h : colin u v w}
     tauto_set
   · rw [toSegment, toSegment]; exact (middle_not_boundary_colin h).2
 
+/--
+@isnad1 id=mem.2h4v.s7.4776fe69f535 from=translated src=- shape=44eabccf vocab=d0e72478
+-/
 lemma interior_left_trans {u v w t : ℝ²}
 (ht : t ∈ openHull (toSegment u v)) (hv : v ∈ openHull (toSegment u w)) :
 t ∈ openHull (toSegment u w) := by
@@ -1009,6 +1198,9 @@ noncomputable def makeNewTwoSimplex (a b : Fin 2 → ℝ)
     : (Fin 2 → ℝ ):= fun | 0 => a 0/(1 - a 1 * b 0) | 1 => a 1 * b 1 /(1 - a 1 *  b 0)
 
 --This lemma shows that the above defined simplex is indeed a two simplex
+/--
+@isnad1 id=mem.2h2v.s6.fa0563739ec8 from=translated src=- shape=729f4e07 vocab=95b3ee07
+-/
 lemma makeNewTwoSimplex_lem (a b : Fin 2 → ℝ) (ha_simplex : a ∈ openSimplex 2)
     (hb_simplex : b ∈ openSimplex 2) : makeNewTwoSimplex a b ∈ openSimplex 2 := by
   have hhelp :=  sub_pos.mpr ((mul_le_of_le_one_right (le_of_lt (ha_simplex.1 1))
@@ -1030,6 +1222,9 @@ lemma makeNewTwoSimplex_lem (a b : Fin 2 → ℝ) (ha_simplex : a ∈ openSimple
 -- This lemma shows that indeed v is in the open hull, using the above defined simplex. It
 -- effectively also shows the same for w, (use two_colin_in_openHull (colin_reverse h₂)
 -- (colin_reverse h₁), with  rw[← reverseSegment_toSegment])
+/--
+@isnad1 id=mem.2h4v.s6.225c40682c3c from=translated src=- shape=7abacbe4 vocab=f2227fd9
+-/
 lemma two_colin_in_openHull {u v w x : ℝ²} (h₁ : colin u v w) (h₂ : colin v w x)
     : v ∈ openHull (toSegment u x) := by
   rcases h₁ with ⟨h_u_neq_w, ⟨ a, ha_simplex, havuw⟩  ⟩
@@ -1060,6 +1255,9 @@ lemma two_colin_in_openHull {u v w x : ℝ²} (h₁ : colin u v w) (h₂ : colin
 
 -- These two lemmas show that if u v w and v w x then u v x and u w x are also colinear, starting
 -- with the latter
+/--
+@isnad1 id=colin.2h4v.s5.d9e4349c7624 from=translated src=- shape=5c716770 vocab=13515e58
+-/
 lemma colin_trans_right {u v w x : ℝ²} (h₁ : colin u v w) (h₂ : colin v w x) : colin u w x := by
   have hw :=  two_colin_in_openHull (colin_reverse h₂) (colin_reverse h₁)
   rw[← reverseSegment_toSegment , reverseSegment_openHull] at hw
@@ -1070,6 +1268,9 @@ lemma colin_trans_right {u v w x : ℝ²} (h₁ : colin u v w) (h₂ : colin v w
   rw [hux', Set.mem_singleton_iff] at hw
   exact (middle_not_boundary_colin h₂).2 hw
 
+/--
+@isnad1 id=colin.2h4v.s5.ea3897414f2b from=translated src=- shape=390e82b5 vocab=13515e58
+-/
 lemma colin_trans_left {u v w x : ℝ²} (h₁ : colin u v w) (h₂ : colin v w x) : colin u v x := by
   have hv := two_colin_in_openHull h₁ h₂
   refine ⟨?_, hv⟩
@@ -1079,9 +1280,15 @@ lemma colin_trans_left {u v w x : ℝ²} (h₁ : colin u v w) (h₂ : colin v w 
   rw [hvx', Set.mem_singleton_iff] at hv
   exact h₂.1 hv
 
+/--
+@isnad1 id=colin.2h4v.s6.2d14e08838b8 from=translated src=- shape=355f1bcc vocab=f2227fd9
+-/
 lemma sub_collinear_left {u v w t : ℝ²} (hc : colin u v w) (ht : t ∈ openHull (toSegment u v)) :
     colin u t v := ⟨(middle_not_boundary_colin hc).1,ht⟩
 
+/--
+@isnad1 id=colin.2h4v.s6.94e3c28f8ebd from=translated src=- shape=be0e4f91 vocab=f2227fd9
+-/
 lemma sub_collinear_right {u v w t : ℝ²} (hc : colin u v w) (ht : t ∈ openHull (toSegment u v)) :
     colin t v w := by
   refine ⟨(middle_not_boundary_colin ⟨hc.1, (interior_left_trans ht hc.2)⟩).2, ?_⟩
@@ -1102,6 +1309,9 @@ lemma sub_collinear_right {u v w t : ℝ²} (hc : colin u v w) (ht : t ∈ openH
     match_scalars <;> field_simp <;> ring
 
 -- A slightly stronger version.
+/--
+@isnad1 id=colin.3h4v.s6.e518c0377dd9 from=translated src=- shape=314c486e vocab=049dd1e1
+-/
 lemma sub_collinear_right' {u v w t : ℝ²} (hc : colin u v w) (ht : t ∈ closedHull (toSegment u v))
     (htv : t ≠ v) : colin t v w := by
   by_cases ht_open : t ∈ openHull (toSegment u v)
@@ -1116,6 +1326,9 @@ lemma sub_collinear_right' {u v w t : ℝ²} (hc : colin u v w) (ht : t ∈ clos
     · rw [←hi] at htv
       tauto
 
+/--
+@isnad1 id=le.2h3v.s7.3971ed78318b from=translated src=- shape=3534b64c vocab=47269305
+-/
 lemma closed_in_clopen_right {v z w : ℝ²} (hvw : v ≠ w)
     (hz : z ∈ closedHull (toSegment v w) \ {v}) :
 closedHull (toSegment z w) ⊆ closedHull (toSegment v w) \ {v} := by
@@ -1154,10 +1367,16 @@ closedHull (toSegment z w) ⊆ closedHull (toSegment v w) \ {v} := by
         tauto_set
       tauto_set
 
+/--
+@isnad1 id=not.1h3v.s7.cdfc4e2021d3 from=translated src=- shape=aee79d78 vocab=47269305
+-/
 lemma corrollary_closed_in_clopen_right {v z w : ℝ²}
   (hclop : closedHull (toSegment z w) ⊆ closedHull (toSegment v w) \ {v}) :
     v ∉ closedHull (toSegment z w) := fun h ↦ by simpa using hclop h
 
+/--
+@isnad1 id=eq.1h3v.s7.6f0b9c1a7920 from=translated src=- shape=a5ec9a62 vocab=97beb12b
+-/
 lemma middle_intersection_empty {u v w : ℝ²} {h : colin u v w} :
  closedHull (toSegment u v) ∩ (closedHull (toSegment v w) \ {v}) = ∅ := by
   by_contra hcontra
@@ -1173,6 +1392,9 @@ lemma middle_intersection_empty {u v w : ℝ²} {h : colin u v w} :
   exact corrollary_closed_in_clopen_right
     (closed_in_clopen_right (middle_not_boundary_colin h).2 hzvwv) hv1
 
+/--
+@isnad1 id=eq.1h3v.s6.1149c4d817bb from=translated src=- shape=02ff15cb vocab=9d56094b
+-/
 lemma colin_intersection_openHulls_empty {u v w : ℝ²} {h : colin u v w} :
 openHull (toSegment u v) ∩ openHull (toSegment v w) = ∅ := by
   have huv : openHull (toSegment u v) ⊆ closedHull (toSegment u v) := open_sub_closed _
@@ -1187,6 +1409,9 @@ openHull (toSegment u v) ∩ openHull (toSegment v w) = ∅ := by
     middle_intersection_empty (h := h)
   tauto_set
 
+/--
+@isnad1 id=eq.1h3v.s7.4b3c99009bed from=translated src=- shape=3a6ed7ed vocab=ae2b046b
+-/
 lemma clopen_left {u v w : ℝ²} {h : colin u v w}
     : closedHull (toSegment u w) \ closedHull (toSegment u v)
 = closedHull (toSegment v w) \ {v} := by
@@ -1216,6 +1441,9 @@ lemma clopen_left {u v w : ℝ²} {h : colin u v w}
       simp_all
     tauto_set
 
+/--
+@isnad1 id=colin.3h4v.s6.eca58c2452fc from=translated src=- shape=1c4efa7b vocab=049dd1e1
+-/
 lemma sub_collinear_right_symm' {u v w t : ℝ²} (hc : colin u v w)
     (ht : t ∈ closedHull (toSegment v w))
     (htv : t ≠ v) : colin u v t := by
@@ -1225,6 +1453,9 @@ lemma sub_collinear_right_symm' {u v w t : ℝ²} (hc : colin u v w)
   convert reverseSegment_closedHull
   simp only [reverseSegment_toSegment]
 
+/--
+@isnad1 id=le.5h5v.s7.326b21169f40 from=translated src=- shape=3ebaee0c vocab=e83d792e
+-/
 lemma colin_sub_aux {u v w x : ℝ²} {L : Segment} (hc : colin u v w)
     (hLsub : closedHull L ⊆ closedHull (toSegment u w)) (hv : v ∉ openHull L)
     (hxL : x ∈ openHull L)
@@ -1278,6 +1509,9 @@ def ClosedSymSeg : Sym2 ℝ² → Set ℝ² :=
   convert reverseSegment_closedHull
   simp only [reverseSegment_toSegment]⟩
 
+/--
+@isnad1 id=or.3h4v.s7.fe757efcd0d0 from=translated src=- shape=24c68fef vocab=e83d792e
+-/
 lemma colin_sub {u v w : ℝ²} (h : colin u v w) {L : Segment}
     (hLsub : closedHull L ⊆ closedHull (toSegment u w)) (hLv : v ∉ openHull L) :
     closedHull L ⊆ closedHull (toSegment u v) ∨
@@ -1303,6 +1537,9 @@ lemma colin_sub {u v w : ℝ²} (h : colin u v w) {L : Segment}
       rw [← reverseSegment_toSegment, reverseSegment_closedHull] at hlrevvw
       exact hlrevvw
 
+/--
+@isnad1 id=and.2h4v.s6.ed727f562b83 from=translated src=- shape=473d209e vocab=6d43f9fa
+-/
 lemma closedHull_eq_imp_eq_triv {u v x y : ℝ²} (huv : u = v)
     (h : closedHull (toSegment u v) = closedHull (toSegment x y)) :
     u = x ∧ u = y := by
@@ -1313,6 +1550,9 @@ lemma closedHull_eq_imp_eq_triv {u v x y : ℝ²} (huv : u = v)
   rw [(segment_triv' (L := toSegment x y)).1 hxy] at h
   simp_all [toSegment]
 
+/--
+@isnad1 id=or.1h4v.s6.5d11843b92d7 from=translated src=- shape=f1b9add0 vocab=6d43f9fa
+-/
 lemma closedHull_eq_imp_eq_or_rev_seg_aux {u v x y : ℝ²}
     (h : closedHull (toSegment u v) = closedHull (toSegment x y))
     : u = x ∨ u = y := by
@@ -1332,6 +1572,9 @@ lemma closedHull_eq_imp_eq_or_rev_seg_aux {u v x y : ℝ²}
     apply Set.eq_empty_iff_forall_notMem.1 (boundary_int_open_empty (P := toSegment u v)) u
     exact ⟨boundary_seg' huv 0 ,hu⟩
 
+/--
+@isnad1 id=or.1h4v.s6.ae52991b795e from=translated src=- shape=323f2bae vocab=6d43f9fa
+-/
 lemma closedHull_eq_imp_eq_or_rev_seg {u v x y : ℝ²}
   (h : closedHull (toSegment u v) = closedHull (toSegment x y))
     : (u = x ∧ v = y) ∨ (u = y ∧ v = x) := by
@@ -1343,6 +1586,9 @@ lemma closedHull_eq_imp_eq_or_rev_seg {u v x y : ℝ²}
   all_goals try simp_all [toSegment]
   all_goals simp_all [closedHull_eq_imp_eq_triv (by rfl) h]
 
+/--
+@isnad1 id=or.1h2v.s6.eacd6585d907 from=translated src=- shape=1d059f5d vocab=648a1ac0
+-/
 lemma closedHull_eq_imp_eq_or_rev {L₁ L₂ : Segment}
     (h : closedHull L₁ = closedHull L₂) : L₁ = L₂ ∨ L₁ = reverseSegment L₂ := by
   obtain ⟨hsame, hrev⟩ := closedHull_eq_imp_eq_or_rev_seg h
@@ -1353,11 +1599,17 @@ lemma closedHull_eq_imp_eq_or_rev {L₁ L₂ : Segment}
     ext i j
     fin_cases i <;> fin_cases j <;> simp_all [reverseSegment, toSegment]
 
+/--
+@isnad1 id=eq.1h2v.s6.75d7cc6f7f92 from=translated src=- shape=b70fdd58 vocab=b0971cc6
+-/
 lemma closedHull_eq_imp_openHull_eq {L₁ L₂ : Segment}
     (h : closedHull L₁ = closedHull L₂) : openHull L₁ = openHull L₂ := by
   obtain h | h := closedHull_eq_imp_eq_or_rev h <;> rw [h]
   exact reverseSegment_openHull
 
+/--
+@isnad1 id=eq.1h2v.s6.9d64c4759655 from=translated src=- shape=b70fdd58 vocab=d5061071
+-/
 lemma closedHull_eq_imp_boundary_eq {L₁ L₂ : Segment}
     (h : closedHull L₁ = closedHull L₂) : boundary L₁ = boundary L₂ := by
   obtain h | h := closedHull_eq_imp_eq_or_rev h <;> rw [h]
@@ -1368,20 +1620,35 @@ lemma closedHull_eq_imp_boundary_eq {L₁ L₂ : Segment}
 /-- The parametrization of the line through `v₁` in direction `v₂`. -/
 noncomputable def linePar (v₁ v₂ : ℝ²) : ℝ → ℝ² := fun t ↦ v₁ + t • v₂
 
+/--
+@isnad1 id=injectiv.1h2v.s7.d74daa99a38d from=translated src=- shape=d23b8611 vocab=a81b2a01
+-/
 lemma seg_par_injective {v₁ v₂ : ℝ²} (h : v₂ ≠ 0) : (linePar v₁ v₂).Injective := by
   intro t₁ t₂ ht
   rw [linePar, linePar, add_right_inj] at ht
   simp_all
 
+/--
+@isnad1 id=eq.0h2v.s5.98f94fa5a3c9 from=translated src=- shape=8afaa370 vocab=aa90fa55
+-/
 lemma seg_par₀ {v₁ v₂ : ℝ²} : linePar v₁ v₂ 0 = v₁ := by
   simp only [linePar, zero_smul, add_zero]
 
+/--
+@isnad1 id=eq.0h1v.s6.0e0353014ee1 from=translated src=- shape=5fe50184 vocab=fea9a1a0
+-/
 lemma seg_par_closed_self {L : Segment} :
   closedHull L = linePar (L 0) (segVec L) '' (Set.Icc 0 1 : Set ℝ) := closed_segment_interval_im
 
+/--
+@isnad1 id=eq.0h1v.s6.2c4431cb61cb from=translated src=- shape=5fe50184 vocab=91249bf1
+-/
 lemma seg_par_open_self {L : Segment} :
   openHull L = linePar (L 0) (segVec L) '' (Set.Ioo 0 1 : Set ℝ) := open_segment_interval_im
 
+/--
+@isnad1 id=eq.1h5v.s7.5fc734606198 from=translated src=- shape=6bdc1eb1 vocab=7cf44048
+-/
 lemma linePar_scalar_Icc {a b t : ℝ} {v₁ v₂ : ℝ²} (ht : 0 < t) :
     linePar v₁ (t • v₂) '' (Set.Icc a b) = linePar v₁ (v₂) '' (Set.Icc (t * a) (t * b)) := by
   ext x
@@ -1402,6 +1669,9 @@ lemma linePar_scalar_Icc {a b t : ℝ} {v₁ v₂ : ℝ²} (ht : 0 < t) :
       · rfl
       · field_simp
 
+/--
+@isnad1 id=eq.0h4v.s7.b8fc46f843bc from=translated src=- shape=8b03c767 vocab=e1f0d6ed
+-/
 lemma linePar_neg {a b : ℝ} {v₁ v₂ : ℝ²} :
     linePar v₁ (v₂) '' (Set.Icc a b) = linePar v₁ (- v₂) '' (Set.Icc (-b) (-a)) := by
   ext x
@@ -1414,11 +1684,17 @@ lemma linePar_neg {a b : ℝ} {v₁ v₂ : ℝ²} :
   · rw [←hx, linePar, linePar]
     module)
 
+/--
+@isnad1 id=eq.1h5v.s7.8482c0e7c461 from=translated src=- shape=16be2c89 vocab=7cf44048
+-/
 lemma linePar_scalar_Icc' {a b t : ℝ} {v₁ v₂ : ℝ²} (ht : t < 0) :
     linePar v₁ (t • v₂) '' (Set.Icc a b) = linePar v₁ (v₂) '' (Set.Icc (t * b) (t * a)) := by
   have ht : 0 < - t := by linarith
   rw [linePar_neg, ←neg_smul, linePar_scalar_Icc ht, neg_mul_neg, neg_mul_neg]
 
+/--
+@isnad1 id=eq.0h5v.s8.b64aeae92de6 from=translated src=- shape=3404701e vocab=fe23e23d
+-/
 lemma linePar_trans_Icc {a b t : ℝ} {v₁ v₂ : ℝ²} :
     linePar (v₁ + t • v₂) (v₂) '' (Set.Icc a b)
       = linePar v₁ (v₂) '' (Set.Icc (a + t) (b + t)) := by
@@ -1434,6 +1710,9 @@ lemma linePar_trans_Icc {a b t : ℝ} {v₁ v₂ : ℝ²} :
     rw [←hx, linePar, linePar]
     module
 
+/--
+@isnad1 id=eq.1h4v.s8.e6b56978c80e from=translated src=- shape=308686c5 vocab=5320c808
+-/
 lemma linePar_closed {a b : ℝ} {v₁ v₂ : ℝ²} (hab : a ≤ b) :
     linePar v₁ v₂ '' (Set.Icc a b) = closedHull (toSegment (v₁ + a • v₂) (v₁ + b • v₂)) := by
   by_cases hab' : a = b
@@ -1482,6 +1761,9 @@ lemma linePar_closed {a b : ℝ} {v₁ v₂ : ℝ²} (hab : a ≤ b) :
         simp only [linePar, Fin.isValue, hα0, toSegment, Fin.sum_univ_two, smul_add]
         module
 
+/--
+@isnad1 id=eq.1h4v.s8.c81acbaae622 from=translated src=- shape=308686c5 vocab=039edb73
+-/
 lemma linePar_open {a b : ℝ} {v₁ v₂ : ℝ²} (hab : a < b) :
     linePar v₁ v₂ '' (Set.Ioo a b) = openHull (toSegment (v₁ + a • v₂) (v₁ + b • v₂)) := by
   have hbsuba : 0 < b - a := by linarith
@@ -1518,6 +1800,9 @@ lemma linePar_open {a b : ℝ} {v₁ v₂ : ℝ²} (hab : a < b) :
       simp only [linePar, Fin.isValue, hα0, toSegment, Fin.sum_univ_two, smul_add]
       module
 
+/--
+@isnad1 id=ex.1h2v.s7.fafe89d5b2b7 from=translated src=- shape=dab674bf vocab=4fe9fe46
+-/
 lemma segVec_mul {L₁ L₂ : Segment} (h : closedHull L₁ ⊆ closedHull L₂) :
     ∃ t : ℝ, segVec L₁ = t • (segVec L₂) := by
   have ⟨α0, hα0, h0⟩ := h (corner_in_closedHull (P := L₁) (i := 0))
@@ -1528,6 +1813,9 @@ lemma segVec_mul {L₁ L₂ : Segment} (h : closedHull L₁ ⊆ closedHull L₂)
   simp [segVec, ←h0, ←h1,hα00, hα10]
   module
 
+/--
+@isnad1 id=ex.2h2v.s7.4dc7143511b2 from=translated src=- shape=b72bc36a vocab=76a6899f
+-/
 lemma seg_par {L₁ L₂ : Segment} (h₁ : L₁ 0 ≠ L₁ 1) (h₂ : closedHull L₁ ⊆ closedHull L₂) :
     ∃ a b, closedHull L₂ = linePar (L₁ 0) (segVec L₁) '' (Set.Icc a b : Set ℝ) := by
   have ⟨t, ht⟩ := segVec_mul h₂
@@ -1556,6 +1844,9 @@ lemma seg_par {L₁ L₂ : Segment} (h₁ : L₁ 0 ≠ L₁ 1) (h₂ : closedHul
     unfold linePar
     rw [h0, h1]
 
+/--
+@isnad1 id=eq.2h5v.s6.5cb22d690a89 from=translated src=- shape=35f0cda8 vocab=90492bf1
+-/
 lemma seg_par_openHull {L : Segment} {a b : ℝ} {v₁ v₂ : ℝ²} (hab : a < b)
     (hc : closedHull L = linePar v₁ v₂ '' (Set.Icc a b : Set ℝ)) :
     openHull L = linePar v₁ v₂ '' (Set.Ioo a b : Set ℝ) := by
@@ -1563,6 +1854,9 @@ lemma seg_par_openHull {L : Segment} {a b : ℝ} {v₁ v₂ : ℝ²} (hab : a < 
   rw [closedHull_eq_imp_openHull_eq hc]
   exact (linePar_open hab).symm
 
+/--
+@isnad1 id=eq.3h5v.s7.487d61c78775 from=translated src=- shape=66ba004e vocab=9c7cc4e5
+-/
 lemma seg_par_boundary {L : Segment} {a b : ℝ} {v₁ v₂ : ℝ²} (hab : a < b) (h : v₂ ≠ 0)
     (hc : closedHull L = linePar v₁ v₂ '' (Set.Icc a b : Set ℝ)) :
     boundary L = linePar v₁ v₂ '' {a,b} := by
@@ -1570,6 +1864,9 @@ lemma seg_par_boundary {L : Segment} {a b : ℝ} {v₁ v₂ : ℝ²} (hab : a < 
   apply (Set.image_eq_image (seg_par_injective h)).mpr
   exact Set.Icc_sdiff_Ioo_same (le_of_lt hab)
 
+/--
+@isnad1 id=lt.2h5v.s6.2252dc7028bd from=translated src=- shape=e1e9e769 vocab=f523ed5f
+-/
 lemma seg_par_nontrivial {L : Segment} {a b : ℝ} {v₁ v₂ : ℝ²} (hL : L 0 ≠ L 1)
     (hc : closedHull L = linePar v₁ v₂ '' (Set.Icc a b : Set ℝ)) :
   a < b := by
@@ -1579,6 +1876,9 @@ lemma seg_par_nontrivial {L : Segment} {a b : ℝ} {v₁ v₂ : ℝ²} (hL : L 0
     exact Set.Subsingleton.image (by rw [Set.subsingleton_Icc_iff]; linarith) _
   exact hL (hS corner_in_closedHull corner_in_closedHull)
 
+/--
+@isnad1 id=le.4h4v.s6.58a4bfe9df2c from=translated src=- shape=66c8c495 vocab=49b91b24
+-/
 lemma interval_intersection {a₁ a₂ b₁ b₂ : ℝ} (hx₁ : Set.Icc 0 1 ⊆ Set.Icc a₁ b₁)
   (hx₂ : Set.Icc 0 1 ⊆ Set.Icc a₂ b₂)
   (ha : a₂ ∉ Set.Ioo a₁ b₁) (hb : b₂ ∉ Set.Ioo a₁ b₁) : Set.Icc a₁ b₁ ⊆ Set.Icc a₂ b₂ := by
@@ -1593,6 +1893,9 @@ lemma interval_intersection {a₁ a₂ b₁ b₂ : ℝ} (hx₁ : Set.Icc 0 1 ⊆
   · by_contra hy
     exact hb ⟨by linarith, by linarith⟩
 
+/--
+@isnad1 id=le.4h3v.s8.7e3b723d09d4 from=translated src=- shape=e5b6a787 vocab=a0601279
+-/
 lemma seg_sub_seg {L₁ L₂ L₃ : Segment} (h₁ : L₁ 0 ≠ L₁ 1) (h₂ : closedHull L₁ ⊆ closedHull L₂)
     (h₃ : closedHull L₁ ⊆ closedHull L₃) (h₂₃ : Disjoint (openHull L₂) (boundary L₃))
   : closedHull L₂ ⊆ closedHull L₃ := by
@@ -1619,6 +1922,9 @@ lemma seg_sub_seg {L₁ L₂ L₃ : Segment} (h₁ : L₁ 0 ≠ L₁ 1) (h₂ : 
     rw [seg_par_boundary ha₃leqb₃ segNeqZero hab₃]
     simp
 
+/--
+@isnad1 id=infinite.1h1v.s6.34a9159aaa58 from=translated src=- shape=82c40248 vocab=d487513a
+-/
 lemma seg_openHull_infinite {L : Segment} (h : L 0 ≠ L 1) :
   Set.Infinite (openHull L) := by
   rw [open_segment_interval_im]
@@ -1630,10 +1936,16 @@ lemma seg_openHull_infinite {L : Segment} (h : L 0 ≠ L 1) :
   · exfalso
     exact h ((segVec_zero_iff L).mp this)
 
+/--
+@isnad1 id=infinite.1h1v.s6.ed67288e3e46 from=translated src=- shape=82c40248 vocab=35b171c7
+-/
 lemma seg_closedHull_infinite {L : Segment} (h : L 0 ≠ L 1) :
     Set.Infinite (closedHull L) :=
   Set.Infinite.mono (open_sub_closed L) (seg_openHull_infinite h)
 
+/--
+@isnad1 id=ex.3h2v.s9.b44da56a9665 from=translated src=- shape=b034341e vocab=fe79ccd9
+-/
 lemma closed_segment_sub_union_segment {A : Finset Segment} {L : Segment}
     (hL : L 0 ≠ L 1)
     (hSub : closedHull L ⊆ ⋃ S ∈ A, closedHull S)
@@ -1661,6 +1973,9 @@ lemma closed_segment_sub_union_segment {A : Finset Segment} {L : Segment}
   · exact hA _ (coe_mem (fL x₁))
 
 /- Convex in the sense that it contains line segments. -/
+/--
+@isnad1 id=le.2h4v.s6.8b1819c3bad2 from=translated src=- shape=002cf75f vocab=32dbf51b
+-/
 lemma openHull_convex {n : ℕ} {P : Fin n → ℝ²} {x y : ℝ²}
     (hx : x ∈ openHull P) (hy : y ∈ openHull P)
     : closedHull (toSegment x y) ⊆ openHull P := by
@@ -1690,6 +2005,9 @@ lemma openHull_convex {n : ℕ} {P : Fin n → ℝ²} {x y : ℝ²}
   · simp only [Fin.isValue, add_smul, sum_add_distrib, mul_smul, ←smul_sum,
         hαx, hβy, ←hγz, toSegment, Fin.sum_univ_two]
 
+/--
+@isnad1 id=le.1h2v.s6.02be314a1c8e from=translated src=- shape=b70fdd58 vocab=8ce55651
+-/
 lemma open_sub_closed_sub (S L : Segment) (h : openHull S ⊆ openHull L) :
     closedHull S ⊆ closedHull L := by
   by_cases hS : segVec S = 0
@@ -1719,6 +2037,9 @@ lemma open_sub_closed_sub (S L : Segment) (h : openHull S ⊆ openHull L) :
 noncomputable def segmentAroundX (x y : ℝ²) (ε₁ ε₂ : ℝ)
     : Segment := toSegment (x + (1 * ε₁) • y) (x + (-1 * ε₂) • y)
 
+/--
+@isnad1 id=mem.2h4v.s6.31c9f7f3f313 from=translated src=- shape=304eeab6 vocab=0e4ed491
+-/
 lemma openHull_segment_around {x y : ℝ²} {ε₁ ε₂ : ℝ} (h₁ : 0 < ε₁)
     (h₂ : 0 < ε₂) : x ∈ openHull (segmentAroundX x y ε₁ ε₂) := by
   have hs   : ε₁ + ε₂ > 0 := by linarith
@@ -1731,6 +2052,9 @@ lemma openHull_segment_around {x y : ℝ²} {ε₁ ε₂ : ℝ} (h₁ : 0 < ε�
   · simp only [Fin.sum_univ_two, segmentAroundX, toSegment, neg_mul, one_mul]
     match_scalars <;> field_simp <;> ring
 
+/--
+@isnad1 id=ne.2h4v.s8.7ad917f16df5 from=translated src=- shape=8f14f46c vocab=0eaafd4f
+-/
 lemma openHull_segment_around_non_trivial {x y : ℝ²} {ε₁ ε₂ : ℝ}
     (hy : y ≠ 0) (hε : ε₁ + ε₂ ≠ 0) : segVec (segmentAroundX x y ε₁ ε₂) ≠ 0 := by
   simp only [segVec, segmentAroundX, toSegment, neg_mul, one_mul, add_sub_add_left_eq_sub,
@@ -1742,6 +2066,9 @@ lemma openHull_segment_around_non_trivial {x y : ℝ²} {ε₁ ε₂ : ℝ}
 
 -- More lemmas about the triangle
 
+/--
+@isnad1 id=false.2h3v.s6.2c1f1a79076f from=translated src=- shape=473e6841 vocab=0406478a
+-/
 lemma real_number_bound_aux {n : ℕ} {f g : Fin n → ℝ}
     (h₁ : ∀ i, 0 < f i) (h₂ : ∀ ε > 0, ∃ i, ε * g i ≤ -f i) : False := by
   revert h₂
@@ -1804,6 +2131,9 @@ lemma real_number_bound_aux {n : ℕ} {f g : Fin n → ℝ}
           rw [mul_comm (a := 2 * M)]
           simp_all
 
+/--
+@isnad1 id=ex.2h3v.s8.e8a413d4fb0d from=translated src=- shape=edddebc6 vocab=2f1d8f97
+-/
 lemma triangle_openHull_open {T : Triangle} (hnonDeg : det T ≠ 0) {x : ℝ²}
     (y : ℝ²)
     (hx : x ∈ openHull T) : ∃ (ε : ℝ), ε > 0 ∧ x + ε • y ∈ openHull T := by
@@ -1830,6 +2160,9 @@ lemma triangle_openHull_open {T : Triangle} (hnonDeg : det T ≠ 0) {x : ℝ²}
   rw [mul_div]
   linarith
 
+/--
+@isnad1 id=ex.2h2v.s7.31bf10ebd2d4 from=translated src=- shape=27a897a5 vocab=34b9755f
+-/
 lemma triangle_direction_sub {T : Triangle} {x : ℝ²} (hx : x ∈ closedHull T)
     (hn : ∀ i, x ≠ T i) :
     ∃ L : Segment, L 0 ≠ L 1 ∧ x ∈ openHull L ∧ closedHull L ⊆ closedHull T := by
@@ -1892,6 +2225,9 @@ lemma triangle_direction_sub {T : Triangle} {x : ℝ²} (hx : x ∈ closedHull T
           one_mul, segVec, neg_smul]
         fin_cases i <;> fin_cases j <;> (simp_all) <;> module
 
+/--
+@isnad1 id=ex.2h2v.s7.fe61b79d28ef from=translated src=- shape=c78e1a9e vocab=32dbf51b
+-/
 lemma inward_pointing_vector_exists {T : Triangle} {x : ℝ²}
     (hx : x ∈ closedHull T) (hT : ¬(∀ i j, T i = T j))
     : ∃ y, x ≠ y ∧ openHull (toSegment x y) ⊆ openHull T := by
@@ -1931,6 +2267,9 @@ lemma inward_pointing_vector_exists {T : Triangle} {x : ℝ²}
   · simp only [Fin.isValue, add_smul, sum_add_distrib, mul_smul, ←smul_sum,
         hαx, hβy, ←hγz, toSegment, Fin.sum_univ_two]
 
+/--
+@isnad1 id=ne.2h2v.s7.0b3a04eed920 from=translated src=- shape=ad32b047 vocab=50d09010
+-/
 lemma seg_inter_open_triangle {T : Triangle} {S : Segment} (hDet : det T ≠ 0)
     (hST : closedHull S ∩ openHull T ≠ ∅) : openHull S ∩ openHull T ≠ ∅ := by
   rw [← Set.nonempty_iff_ne_empty] at *
@@ -1972,6 +2311,9 @@ lemma seg_inter_open_triangle {T : Triangle} {S : Segment} (hDet : det T ≠ 0)
       · exact le_min (by norm_num) (le_of_lt hεpos)
       · exact min_le_right _ _
 
+/--
+@isnad1 id=disjoint.2h2v.s8.83af357a0312 from=translated src=- shape=eec7a525 vocab=1bb6cc5f
+-/
 lemma disjoint_opens_implies_disjoint_open_closed {T₁ T₂ : Triangle}
   (hT : Disjoint (openHull T₁) (openHull T₂)) (hDet : det T₂ ≠ 0) :
     Disjoint (closedHull T₁) (openHull T₂) := by

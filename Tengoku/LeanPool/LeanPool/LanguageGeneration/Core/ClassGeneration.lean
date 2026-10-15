@@ -53,6 +53,9 @@ def IsNonuniformGenerator (gen : Generator α) (H : LanguageClass α) : Prop :=
 def NonuniformlyGeneratable (H : LanguageClass α) : Prop :=
   ∃ gen : Generator α, IsNonuniformGenerator gen H
 
+/--
+@isnad1 id=nonunifo.1h2v.s3.0f568e0e828a from=translated src=- shape=11db0672 vocab=216c87b5
+-/
 theorem uniform_implies_nonuniform
     {H : LanguageClass α} (h : UniformlyGeneratable H) :
     NonuniformlyGeneratable H := by
@@ -61,6 +64,9 @@ theorem uniform_implies_nonuniform
   intro L hLH
   exact ⟨d, hG L hLH⟩
 
+/--
+@isnad1 id=generata.2h2v.s4.038db9f2a9dc from=translated src=- shape=dc554f49 vocab=4e3229be
+-/
 theorem nonuniform_implies_limit
     {H : LanguageClass α} (hUUS : UUS H)
     (h : NonuniformlyGeneratable H) :
@@ -75,6 +81,9 @@ theorem nonuniform_implies_limit
   intro s hTs
   exact hd stream (streamIn_of_presents hP) T hT s hTs
 
+/--
+@isnad1 id=generata.2h2v.s4.c96f1c2c3e81 from=translated src=- shape=dc554f49 vocab=ac6b6da0
+-/
 theorem uniform_implies_limit
     {H : LanguageClass α} (hUUS : UUS H)
     (h : UniformlyGeneratable H) :

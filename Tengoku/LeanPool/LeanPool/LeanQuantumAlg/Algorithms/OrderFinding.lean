@@ -30,7 +30,9 @@ noncomputable section
 
 namespace OrderFinding
 
-/-- Exact order recovery from the dyadic phase-estimation output. -/
+/-- Exact order recovery from the dyadic phase-estimation output.
+@isnad1 id=eq.3h3v.s6.036f08fec0f4 from=translated src=- shape=cf917b9a vocab=cb4aba78
+-/
 theorem main_recovery {t s r : ℕ} (hr : 0 < r) (hrt : r ∣ 2 ^ t)
     (hsr : Nat.Coprime s r) :
     2 ^ t / Nat.gcd (s * (2 ^ t / r)) (2 ^ t) = r := by
@@ -54,7 +56,9 @@ namespace OrderFinding
 
 /-- Exact order finding through the decoupled QPE interface. The inverse-QFT
 readout is stated at the raw-vector layer because the phase superposition is a
-linear combination before it is packaged as a `PureState`. -/
+linear combination before it is packaged as a `PureState`.
+@isnad1 id=and.4h4v.s7.0d8ee7081bc8 from=translated src=- shape=7f40eca3 vocab=8f708d21
+-/
 theorem main_exact_dyadic {t s r : ℕ} (hr : 0 < r) (hrt : r ∣ 2 ^ t)
     (hsr : Nat.Coprime s r) (j : Fin (2 ^ t))
     (hj : j.val = s * (2 ^ t / r)) :
@@ -86,6 +90,9 @@ def orderFindingExactResourceProfile (t : ℕ) : ResourceProfile where
   elementaryGates := t ^ 2
   classicalOps := 1
 
+/--
+@isnad1 id=hasexact.0h1v.s5.1c5b93271654 from=translated src=- shape=e87fda76 vocab=a923c409
+-/
 theorem orderFindingExactResourceProfile_exact (t : ℕ) :
     ResourceProfile.HasExactCounts
       (orderFindingExactResourceProfile t) 1 t (t ^ 2) 1 := by
@@ -106,6 +113,9 @@ def modExpOracleTarget {N x t m : ℕ} (A : ModExpOracleAccess N x t m)
     Nat.xor_lt_two_pow y.isLt
       (lt_of_lt_of_le (Nat.mod_lt _ A.modulus_pos) A.register_fits)⟩
 
+/--
+@isnad1 id=eq.1h6v.s7.63f17786a1d8 from=translated src=- shape=fcddeda6 vocab=81ebae0d
+-/
 @[simp]
 theorem modExpOracleTarget_val {N x t m : ℕ} (A : ModExpOracleAccess N x t m)
     (a : Fin (2 ^ t)) (y : Fin (2 ^ m)) :
@@ -122,12 +132,18 @@ def modExpOraclePerm {N x t m : ℕ} (A : ModExpOracleAccess N x t m) :
   right_inv p := by
     ext <;> simp [modExpOracleTarget, Nat.xor_assoc]
 
+/--
+@isnad1 id=eq.1h5v.s9.a059f50b8144 from=translated src=- shape=89bb140f vocab=234dbd79
+-/
 @[simp]
 theorem modExpOraclePerm_apply {N x t m : ℕ} (A : ModExpOracleAccess N x t m)
     (p : Fin (2 ^ t) × Fin (2 ^ m)) :
     modExpOraclePerm A p = (p.1, modExpOracleTarget A p.1 p.2) :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.d0fb870e9839 from=translated src=- shape=4f7b96e9 vocab=7c9bb8fe
+-/
 @[simp]
 theorem modExpOraclePerm_symm {N x t m : ℕ} (A : ModExpOracleAccess N x t m) :
     (modExpOraclePerm A).symm = modExpOraclePerm A :=
@@ -138,12 +154,17 @@ theorem modExpOraclePerm_symm {N x t m : ℕ} (A : ModExpOracleAccess N x t m) :
 def modExpOracle {N x t m : ℕ} (A : ModExpOracleAccess N x t m) : Gate (t + m) :=
   Gate.ofPerm (prodEquiv.permCongr (modExpOraclePerm A))
 
+/--
+@isnad1 id=mem.1h4v.s9.fcfc2eb48703 from=translated src=- shape=609321fd vocab=c414586e
+-/
 theorem modExpOracle_mem_unitaryGroup {N x t m : ℕ} (A : ModExpOracleAccess N x t m) :
     ((modExpOracle A : Gate (t + m)) : HilbertOperator (t + m))
       ∈ Matrix.unitaryGroup (Fin (2 ^ (t + m))) ℂ :=
   Gate.ofPerm_mem_unitaryGroup _
 
-/-- Basis action of the modular-exponentiation oracle. -/
+/-- Basis action of the modular-exponentiation oracle.
+@isnad1 id=eq.1h6v.s9.01162019b849 from=translated src=- shape=87919e65 vocab=fd06f956
+-/
 theorem modExpOracle_apply_ket {N x t m : ℕ} (A : ModExpOracleAccess N x t m)
     (a : Fin (2 ^ t)) (y : Fin (2 ^ m)) :
     (modExpOracle A).apply (ket (prodEquiv (a, y))) =
@@ -154,7 +175,9 @@ theorem modExpOracle_apply_ket {N x t m : ℕ} (A : ModExpOracleAccess N x t m)
       = prodEquiv (a, modExpOracleTarget A a y)
   rw [Equiv.symm_apply_apply, modExpOraclePerm_symm, modExpOraclePerm_apply]
 
-/-- Exact order finding paired with the decoupled resource profile. -/
+/-- Exact order finding paired with the decoupled resource profile.
+@isnad1 id=and.4h4v.s7.f9d5de89e9ea from=translated src=- shape=0f86457b vocab=13508b84
+-/
 theorem main_exact_dyadic_with_resources {t s r : ℕ}
     (hr : 0 < r) (hrt : r ∣ 2 ^ t) (hsr : Nat.Coprime s r)
     (j : Fin (2 ^ t)) (hj : j.val = s * (2 ^ t / r)) :
@@ -184,7 +207,9 @@ structure Input (N x r : ℕ) : Prop where
 claim. If `q = 2^t` is a multiple of the order `r`, then every
 `s ∈ {0, ..., r-1}` gives a valid phase-register output index
 `j = s(q/r)`. The modular-exponentiation oracle body is treated as one oracle
-call in this resource profile. -/
+call in this resource profile.
+@isnad1 id=ex.3h5v.s7.1ebf9c24361b from=translated src=- shape=86bdc426 vocab=3a0a1010
+-/
 theorem main_output_with_resources {N x t r s : ℕ}
     (hinput : OrderFinding.Input N x r) (hrt : r ∣ 2 ^ t) (hs : s < r) :
     ∃ j : Fin (2 ^ t),
@@ -212,7 +237,9 @@ namespace OrderFinding
 /-- Integrated exact order-finding access theorem: the modular-exponentiation
 oracle is a unitary gate with the public basis action, and the exact divisible
 case has a phase-register output index with the trusted one-query resource
-profile. -/
+profile.
+@isnad1 id=and.4h6v.s11.38faa684930d from=translated src=- shape=54370da1 vocab=63f852bd
+-/
 theorem main {N x t m r s : ℕ}
     (hinput : OrderFinding.Input N x r)
     (A : ModExpOracleAccess N x t m) (hrt : r ∣ 2 ^ t) (hs : s < r) :
@@ -239,7 +266,9 @@ end OrderFinding
 namespace OrderFinding
 
 /-- Factoring-reduction gcd step. If `N ∣ a * b` while `N` divides neither `a`
-nor `b`, then `gcd(a, N)` is a nontrivial factor of `N`. -/
+nor `b`, then `gcd(a, N)` is a nontrivial factor of `N`.
+@isnad1 id=and.4h3v.s5.60b20578a884 from=translated src=- shape=9efc26ba vocab=9cad8d5b
+-/
 theorem main_factor_reduction {N a b : ℕ} (hN : 1 < N)
     (hdvd : N ∣ a * b) (ha : ¬ N ∣ a) (hb : ¬ N ∣ b) :
     1 < Nat.gcd a N ∧ Nat.gcd a N < N := by

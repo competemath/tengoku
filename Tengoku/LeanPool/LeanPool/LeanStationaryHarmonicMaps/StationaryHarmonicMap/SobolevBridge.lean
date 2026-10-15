@@ -44,7 +44,9 @@ structure SobolevW12LocIn {n m : ℕ}
 
 /-- Constructor for the Sobolev-style package from its natural component
 hypotheses: local `L²` control of `u`, local `L²` control and a.e.
-measurability of `Du`, and the distributional weak-gradient identity. -/
+measurability of `Du`, and the distributional weak-gradient identity.
+@isnad1 id=sobolevw.4h5v.s6.4de4128619c8 from=translated src=- shape=94c89056 vocab=9edae540
+-/
 theorem sobolevW12LocIn_of_components {n m : ℕ}
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
     {Ω : Set (Domain n)}
@@ -56,7 +58,9 @@ theorem sobolevW12LocIn_of_components {n m : ℕ}
   ⟨⟨hu_memLp, ⟨hDu_aesm, hDu_memLp⟩⟩, hweakGradient⟩
 
 /-- The bridge from the Sobolev-style package to the custom weak `W^{1,2}_{loc}`
-interface used by the proved monotonicity theorem. -/
+interface used by the proved monotonicity theorem.
+@isnad1 id=w12locin.1h5v.s5.db7e410b83d6 from=translated src=- shape=c66f79f5 vocab=f8b43db4
+-/
 theorem SobolevW12LocIn.toW12LocIn {n m : ℕ}
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
     {Ω : Set (Domain n)}
@@ -74,7 +78,9 @@ structure SobolevWeakStationaryMapIn {n m : ℕ}
   stationary : WeakStationaryIn Du Ω
 
 /-- The bridge from the Sobolev-style stationary package to the custom weak
-stationary package used by the monotonicity theorem. -/
+stationary package used by the monotonicity theorem.
+@isnad1 id=weakstat.1h5v.s5.655e6e6caccb from=translated src=- shape=c66f79f5 vocab=402a6135
+-/
 theorem SobolevWeakStationaryMapIn.toWeakStationaryMapIn {n m : ℕ}
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
     {Ω : Set (Domain n)}
@@ -85,7 +91,9 @@ theorem SobolevWeakStationaryMapIn.toWeakStationaryMapIn {n m : ℕ}
 /-- Arbitrary-center Euclidean weak monotonicity from the Sobolev bridge
 package.  This theorem is the next public entry point above
 `WeakStationaryMapIn`: all monotonicity work is delegated to the frozen endpoint
-in `Monotonicity.lean`. -/
+in `Monotonicity.lean`.
+@isnad1 id=le.6h9v.s7.62e5f0e67fa0 from=translated src=- shape=2dbd2e80 vocab=c257648c
+-/
 theorem weakTheta_le_of_sobolev_bridge_euclidean
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}
@@ -104,7 +112,9 @@ theorem weakTheta_le_of_sobolev_bridge_euclidean
       hmap.toWeakStationaryMapIn hΩ_meas hclosedBall_subset hs_pos hsr hr_lt
 
 /-- Convenience variant when the Sobolev local package and stationarity
-identity are supplied separately. -/
+identity are supplied separately.
+@isnad1 id=le.7h9v.s7.3257856613b7 from=translated src=- shape=c7fe590f vocab=74a73ebf
+-/
 theorem weakTheta_le_of_sobolev_bridge_euclidean'
     {n m : ℕ} [NeZero n]
     {u : Domain n → Target m} {Du : Domain n → Gradient n m}

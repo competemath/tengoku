@@ -23,6 +23,7 @@ namespace SimpleGraph
 
 /--
 If the support of a simple graph is finite, then so is its edge set.
+@isnad1 id=finite.1h2v.s4.469c61ec4ecf from=translated src=- shape=a366acf1 vocab=566534cc
 -/
 theorem edgeSet_finite_of_support_finite {graph : SimpleGraph V}
     (hfin : graph.support.Finite) : graph.edgeSet.Finite := by
@@ -38,6 +39,7 @@ theorem edgeSet_finite_of_support_finite {graph : SimpleGraph V}
 /--
 If a non-empty walk ends with a vertex `u`, then there exists some edge
 incident to `u`.
+@isnad1 id=ex.1h5v.s5.61f770b1b77b from=translated src=- shape=85f84d4b vocab=5fd79a70
 -/
 theorem exist_edge_end_walk {graph : SimpleGraph V} {v u : V} (h1 : v ≠ u)
     (walk : graph.Walk v u) : ∃ e ∈ graph.edgeSet, u ∈ e := by

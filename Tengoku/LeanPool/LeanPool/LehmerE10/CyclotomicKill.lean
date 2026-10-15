@@ -35,7 +35,9 @@ open Polynomial
 instance : Fact (Nat.Prime 1291) := ⟨witness_1291_prime⟩
 
 /-- 2 has order exactly 1290 = 2·3·5·43 in (ℤ/1291)ˣ — certified by Fermat plus the
-    four maximal-divisor refusals (kernel bignum arithmetic). -/
+    four maximal-divisor refusals (kernel bignum arithmetic).
+@isnad1 id=eq.0h0v.s6.55809236859b from=translated src=- shape=ffb5aeb8 vocab=d8b33d4c
+-/
 theorem orderOf_two_mod_1291 : orderOf (2 : ZMod 1291) = 1290 := by
   apply orderOf_eq_of_pow_and_pow_div_prime (by norm_num)
   · have h := ZMod.pow_card_sub_one_eq_one (p := 1291) (a := 2) (by decide)
@@ -66,7 +68,9 @@ theorem orderOf_two_mod_1291 : orderOf (2 : ZMod 1291) = 1290 := by
 
 /-! ### LEG (a): the uniform cyclotomic kill. -/
 
-/-- **NO CYCLOTOMIC DIVIDES LEHMER (proven)** — the uniform 1291 argument. -/
+/-- **NO CYCLOTOMIC DIVIDES LEHMER (proven)** — the uniform 1291 argument.
+@isnad1 id=not.1h1v.s5.f22f4f13a61a from=translated src=- shape=e0cdde6f vocab=c5168571
+-/
 theorem no_cyclotomic_divisor {k : ℕ} (hk : 1 ≤ k) :
     ¬ (cyclotomic k ℤ ∣ lehmerPolynomial) := by
   intro hdvd
@@ -122,7 +126,9 @@ theorem no_cyclotomic_divisor {k : ℕ} (hk : 1 ≤ k) :
 /-- If Lehmer's polynomial is irreducible over ℚ, then any 10×10 integer matrix it
     annihilates has characteristic polynomial `L` over ℚ.
     (Cayley–Hamilton gives minpoly ∣ charpoly; annihilation gives minpoly ∣ L;
-    irreducibility forces minpoly = L; degree 10 monic on both sides closes it.) -/
+    irreducibility forces minpoly = L; degree 10 monic on both sides closes it.)
+@isnad1 id=eq.2h1v.s8.a4e08a402076 from=translated src=- shape=a1b5afa6 vocab=095b7ead
+-/
 theorem charpoly_eq_lehmer_of_irreducible {M : Matrix (Fin 10) (Fin 10) ℤ}
     (hann : (Polynomial.aeval M) lehmerPolynomial = 0)
     (hirr : Irreducible (lehmerPolynomial.map (Int.castRingHom ℚ))) :

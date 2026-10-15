@@ -93,7 +93,9 @@ in `Pauli/LayerFlow.lean`.
 
 In this file's convention `U_g` is `∏ rot G_l (-dt)`, not `∏ rot G_l dt`, since `rot G θ` is the
 `+` exponential (`Rotation.lean`'s Conventions block). This is `Lean4LPD.rot_mem_unitary` with
-both of its hypotheses discharged from the single hypothesis `IsSelfAdjoint G`. -/
+both of its hypotheses discharged from the single hypothesis `IsSelfAdjoint G`.
+@isnad1 id=mem.1h3v.s9.d7c28422d246 from=translated src=- shape=0ddac91b vocab=f27c8b98
+-/
 theorem rot_toMatrix_mem_unitary (hG : IsSelfAdjoint G) (θ : ℝ) :
     rot (toMatrix G) θ ∈ unitary (Matrix (Bits n) (Bits n) ℂ) :=
   rot_mem_unitary (toMatrix_mul_self_of_isSelfAdjoint hG) (star_toMatrix_of_isSelfAdjoint hG)
@@ -121,7 +123,9 @@ analogue of it.
 The only hypothesis is `IsSelfAdjoint G`, which by `isSelfAdjoint_iff_mul_self_eq_one` also
 supplies the `G * G = 1` that both `rot_*` lemmas need. Note `θ` is the paper's **conjugation
 angle** `dt`, following `Rotation.lean`'s convention: a physical rotation `e^{-i α_l G_l τ}` has
-`dt = 2 α_l τ`. -/
+`dt = 2 α_l τ`.
+@isnad1 id=eq.1h4v.s9.aaad9af87d54 from=translated src=- shape=907b7dde vocab=bd7bf477
+-/
 theorem pauli_rotation_branch (hG : IsSelfAdjoint G) (s : PauliString n) (θ : ℝ) :
     rot (toMatrix G) θ * toMatrix s * rot (toMatrix G) (-θ)
       = if sympForm G s = 0 then toMatrix s
@@ -134,13 +138,17 @@ theorem pauli_rotation_branch (hG : IsSelfAdjoint G) (s : PauliString n) (θ : �
     rw [ite_eq_right hne, rot_conj_of_anticommute hG2 (toMatrix_anticommute h), toMatrix_mul]
 
 /-- The commuting branch: if `⟪G,s⟫ = 0`, **no rotation occurs and the Pauli operator is
-unchanged**; in particular its weight does not change. -/
+unchanged**; in particular its weight does not change.
+@isnad1 id=eq.2h4v.s8.b39e32cc1070 from=translated src=- shape=c008dd20 vocab=a892afeb
+-/
 theorem pauli_rotation_branch_commute (hG : IsSelfAdjoint G) (h : sympForm G s = 0) (θ : ℝ) :
     rot (toMatrix G) θ * toMatrix s * rot (toMatrix G) (-θ) = toMatrix s := by
   rw [pauli_rotation_branch hG s θ, ite_eq_left h]
 
 /-- The anticommuting branch: if `⟪G,s⟫ = 1`, the image has **two terms, the new one `G s`
-carrying `i sin(θ)`**. -/
+carrying `i sin(θ)`**.
+@isnad1 id=eq.2h4v.s9.5883108459c5 from=translated src=- shape=836ac814 vocab=2ed50a23
+-/
 theorem pauli_rotation_branch_anticommute (hG : IsSelfAdjoint G) (h : sympForm G s = 1) (θ : ℝ) :
     rot (toMatrix G) θ * toMatrix s * rot (toMatrix G) (-θ)
       = (Real.cos θ : ℂ) • toMatrix s + (Complex.I * Real.sin θ) • toMatrix (G * s) := by
@@ -160,7 +168,9 @@ Absorbing the `i` into the operator fixes both at once — `i G s` is Hermitian
 This is the form consumed by the coefficient-vector computation `coeff_conj` in
 `Pauli/Flow.lean`, and the reason `isSelfAdjoint_phaseMul_one_mul` and
 `weight_sub_le_weight_phaseMul_one_mul` are stated about the partner rather than the bare
-product. -/
+product.
+@isnad1 id=eq.2h4v.s9.2ce958897bf2 from=translated src=- shape=0f6b8356 vocab=670d882a
+-/
 theorem pauli_rotation_branch_anticommute_hermitian (hG : IsSelfAdjoint G)
     (h : sympForm G s = 1) (θ : ℝ) :
     rot (toMatrix G) θ * toMatrix s * rot (toMatrix G) (-θ)
@@ -182,7 +192,9 @@ statement about coefficients in the Pauli basis and needs a basis that this file
 `ℕ`; that is harmless, since when it truncates to `0` the lower bound holds trivially.
 
 Stated as one theorem because the paper states one equation with one set of consequences, and
-because a reader checking the correspondence should not have to assemble it. -/
+because a reader checking the correspondence should not have to assemble it.
+@isnad1 id=and.3h5v.s9.e2d28f89d276 from=translated src=- shape=c7fe7082 vocab=8aaa59ed
+-/
 theorem pauli_rotation_branch_anticommute_bounds (hG : IsSelfAdjoint G) (h : sympForm G s = 1)
     (hk : weight G ≤ kh) (θ : ℝ) :
     rot (toMatrix G) θ * toMatrix s * rot (toMatrix G) (-θ)
