@@ -22,17 +22,29 @@ namespace IsPointedMap
 
 variable {X Y : Type*} [Inhabited X] [Inhabited Y] (f : X → Y) [IsPointedMap f]
 
+/--
+@isnad1 id=mem.1h4v.s5.1ad8e6369601 from=translated src=- shape=70cf501b vocab=82ebefc6
+-/
 lemma default_mem_image_of_default_mem {A : Set X} : default ∈ A → default ∈ f '' A :=
   fun h ↦ (Set.mem_image _ _ _).mpr ⟨default, ⟨h, IsPointedMap.map_default⟩⟩
 
+/--
+@isnad1 id=mem.0h3v.s5.c4ed08f215bc from=translated src=- shape=24166962 vocab=b38fac08
+-/
 lemma default_mem_preimage_default : default ∈ f ⁻¹' {default} := by
   apply Set.mem_preimage.mpr
   rw [(IsPointedMap.map_default : f _ = _)]
   exact Set.mem_singleton _
 
+/--
+@isnad1 id=le.0h3v.s5.07777954e06d from=translated src=- shape=ff715c39 vocab=e55f483b
+-/
 lemma default_subset_preimage_default : {default} ⊆ f ⁻¹' {default} :=
   Set.singleton_subset_iff.mpr (default_mem_preimage_default _)
 
+/--
+@isnad1 id=eq.0h3v.s5.84ce5b3bd2cc from=translated src=- shape=6ab92e4b vocab=05e8bb51
+-/
 lemma default_eq_image_preimage_default : {default} = f '' (f ⁻¹' {default}) := by
   refine Set.Subset.antisymm ?_ (Set.image_preimage_subset f {default})
   apply Set.singleton_subset_iff.mpr
@@ -50,6 +62,9 @@ def IsExactAt {X Y Z : Type*} [Inhabited Z]
     (f : X → Y) (g : Y → Z) : Prop :=
   g ⁻¹' {default} = Set.range f
 
+/--
+@isnad1 id=isexacta.2h5v.s6.1303d0bd7b3c from=translated src=- shape=56b46381 vocab=0c5cdb05
+-/
 lemma isExactAt_of_ker_supset_im_of_ker_subset_im
     {X Y Z : Type*} [Inhabited Z] {f : X → Y} {g : Y → Z}
     (hsup : ∀ y, (∃ x, f x = y) → g y = default)
@@ -100,7 +115,9 @@ private lemma ker_c_eq_C (c : C → D) (d : D → E) (d_inj : Function.Injective
 
 omit [Inhabited A] in
 /-- `C = {0}` if there is an exact sequence `A --a-> B --b-> C --c-> D --d-> E`
-of five pointed sets such that `a` is surjective and `d` is injective. -/
+of five pointed sets such that `a` is surjective and `d` is injective.
+@isnad1 id=nonempty.5h9v.s6.6cc591c65d62 from=translated src=- shape=cba04f3a vocab=88de8357
+-/
 theorem unique_mid_of_five (a : A → B) (b : B → C) (c : C → D) (d : D → E)
     [IsPointedMap d]
     (a_surj : Function.Surjective a) (d_inj : Function.Injective d)

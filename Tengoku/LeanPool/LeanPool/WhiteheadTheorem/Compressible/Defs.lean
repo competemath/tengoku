@@ -59,6 +59,9 @@ variable {sq : CommSq f ι i F} (l : LiftStructUpToRelHomotopy sq)
 noncomputable def curriedH : X' ⟶ TopCat.of C(I, X) :=
   ofHom l.H.some.toContinuousMap.argSwap.curry
 
+/--
+@isnad1 id=eq.1h9v.s7.fe1203f5eaa9 from=translated src=- shape=4d9ecf47 vocab=83414703
+-/
 lemma curriedH_apply_zero :
     l.curriedH ≫ PathSpace.eval₀ X = F := by
   unfold curriedH PathSpace.eval₀
@@ -66,6 +69,9 @@ lemma curriedH_apply_zero :
   ext x_1 : 1
   simp_all
 
+/--
+@isnad1 id=eq.1h9v.s7.19a2993fcc02 from=translated src=- shape=3b73a4a1 vocab=eeadf730
+-/
 lemma curriedH_apply_one :
     l.curriedH ≫ PathSpace.eval₁ X = l.l ≫ i := by
   unfold curriedH PathSpace.eval₁
@@ -73,6 +79,9 @@ lemma curriedH_apply_one :
   ext x : 1
   simp_all
 
+/--
+@isnad1 id=eq.1h10v.s7.d4ea4837d522 from=translated src=- shape=549d2012 vocab=99c1ad39
+-/
 lemma curriedH_prop :
     ∀ t, ι ≫ l.curriedH ≫ PathSpace.evalAt X t = ι ≫ F := by
   intro t

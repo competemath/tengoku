@@ -4,6 +4,9 @@ open MeasureTheory intervalIntegral Set Topology
 
 open MeasureTheory intervalIntegral Real Set Filter
 
+/--
+@isnad1 id=eq.2h4v.s6.6abe8911673f from=translated src=- shape=5a398af8 vocab=af067db0
+-/
 lemma ContinuousOn.integral_sub_adjacent_intervals {a t : ℝ} {μ : ℝ → ℝ} {s : ℝ}
     (hμ_t : ContinuousOn μ (Icc a t))
     (hs : s ∈ Icc a t) :
@@ -12,6 +15,9 @@ lemma ContinuousOn.integral_sub_adjacent_intervals {a t : ℝ} {μ : ℝ → ℝ
     ((hμ_t.mono (Icc_subset_Icc_right hs.2)).intervalIntegrable_of_Icc hs.1)
     ((hμ_t.mono (Icc_subset_Icc_left hs.1)).intervalIntegrable_of_Icc hs.2)]
 
+/--
+@isnad1 id=le.4h6v.s7.0b32240a3d6a from=translated src=- shape=5c95b29f vocab=b74b89f8
+-/
 lemma intervalIntegral.norm_integral_le_of_norm_le_mul {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     {u : ℝ → E} {v : ℝ → ℝ} {a b L : ℝ}
@@ -27,7 +33,9 @@ lemma intervalIntegral.norm_integral_le_of_norm_le_mul {E : Type*}
 
 /-- `‖∫ a..b, u‖ ≤ C * (b - a)` from a uniform pointwise bound `‖u s‖ ≤ C` on `Icc a b`.
 Hides the `uIoc`-to-`Icc` membership conversion required by Mathlib's
-`norm_integral_le_of_norm_le_const`. -/
+`norm_integral_le_of_norm_le_const`.
+@isnad1 id=le.2h5v.s6.0306d3641da9 from=translated src=- shape=f8cbed47 vocab=fdf4012b
+-/
 lemma intervalIntegral.norm_integral_le_const_mul {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     {u : ℝ → E} {C : ℝ} {a b : ℝ}
@@ -42,13 +50,17 @@ lemma intervalIntegral.norm_integral_le_const_mul {E : Type*}
   rwa [abs_of_nonneg (sub_nonneg.mpr hab)] at key
 
 /-- The interval integral of a real constant equals `(b - a) * C`.
-Convenience form of `intervalIntegral.integral_const` for `ℝ`, avoiding `•` notation. -/
+Convenience form of `intervalIntegral.integral_const` for `ℝ`, avoiding `•` notation.
+@isnad1 id=eq.0h3v.s5.5da62444f6fb from=translated src=- shape=5f1f58eb vocab=8234698e
+-/
 lemma intervalIntegral.integral_const_eq {a b C : ℝ} :
     ∫ _ in a..b, C = (b - a) * C := by
   rw [intervalIntegral.integral_const, smul_eq_mul]
 
 /-- The composition `s ↦ f(s, z(s))` is interval-integrable on `[t₀, t₁]` when `f` is
-    jointly continuous and `z` is continuous on the interval. -/
+    jointly continuous and `z` is continuous on the interval.
+@isnad1 id=interval.3h5v.s6.b312c620a0de from=translated src=- shape=4e22b8c5 vocab=8ea6f550
+-/
 lemma Continuous.intervalIntegrable_comp {t₀ t₁ : ℝ} (hle : t₀ ≤ t₁)
     {E : Type*} [NormedAddCommGroup E]
     {f : ℝ → E → E} {z : ℝ → E}
@@ -62,7 +74,9 @@ lemma Continuous.intervalIntegrable_comp {t₀ t₁ : ℝ} (hle : t₀ ≤ t₁)
 /-! ## Moving window integrals -/
 
 /-- The scaled half-window average `η ↦ (2/η) * ∫ s in (η/2)..η, f s` is antitone on `(0, ∞)`
-    whenever `f` is antitone on `(0, ∞)`. -/
+    whenever `f` is antitone on `(0, ∞)`.
+@isnad1 id=antitone.2h1v.s7.885d2b754ae4 from=translated src=- shape=f6f86475 vocab=7337a825
+-/
 lemma antitoneOn_halfWindow_average {f : ℝ → ℝ}
     (hf_anti : AntitoneOn f (Set.Ioi 0))
     (hf_int : ∀ a b, 0 < a → 0 < b → IntervalIntegrable f volume a b) :

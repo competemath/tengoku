@@ -150,7 +150,9 @@ private lemma envelopeStep_contractionInputs {d : ℕ} [NeZero d]
 
 /-- Lipschitz growth of the force plus a first moment of the measure make the
 shifted force integrable.  The workhorse integrability fact behind every
-`convolveFunctionMeasure` estimate. -/
+`convolveFunctionMeasure` estimate.
+@isnad1 id=integrab.2h5v.s8.a795e4baf969 from=translated src=- shape=b7e44439 vocab=7cb5f11f
+-/
 lemma integrable_gradW_shift
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -180,7 +182,9 @@ lemma integrable_gradW_shift
   exact h_dom_int.mono' h_aesm (Filter.Eventually.of_forall fun y => h_dom y)
 
 /-- `LocalSmallnessContraction L T` IS the Grönwall contraction factor
-`gronwallBound 0 (max 1 L) L T < 1`, after unfolding both definitions. -/
+`gronwallBound 0 (max 1 L) L T < 1`, after unfolding both definitions.
+@isnad1 id=lt.1h2v.s5.c5e78a39cb4f from=translated src=- shape=2ef5884c vocab=03c90307
+-/
 lemma LocalSmallnessContraction.gronwallBound_lt_one
     {L : NNReal} {T : ℝ} (hTL_con : LocalSmallnessContraction L T) :
     gronwallBound 0 ((max 1 L : NNReal) : ℝ) (L : ℝ) T < 1 := by
@@ -833,7 +837,9 @@ satisfiable for any `L > 0` by taking `T < 1/C₂(L)`.
 * Flow `(charX, charV)` against the *spatial marginal of the pushforward*
   — the load-bearing self-consistency conjunct.
 * Boundary regularity.
-* Uniform moment bound `M_ρ` on the spatial marginal trajectory. -/
+* Uniform moment bound `M_ρ` on the spatial marginal trajectory.
+@isnad1 id=ex.7h6v.s10.d9bfeba66e97 from=translated src=- shape=4587d6b7 vocab=9c67bee0
+-/
 theorem vlasovWellPosedness_local_picard_fixedPointFlow
     {d : ℕ} [NeZero d]
     (W : PhysSpace d → ℝ)
@@ -1081,7 +1087,9 @@ Given the Picard fixed-point flow's bundle (from
 4. Integrable `‖·‖` on `f t`: via `integrable_map_measure` + growth bound +
    `Integrable ‖·‖ f₀`.
 
-Factored out to keep `vlasovWellPosedness_local`'s body a clean glue. -/
+Factored out to keep `vlasovWellPosedness_local`'s body a clean glue.
+@isnad1 id=hasfinit.15h10v.s10.927c17fda6c6 from=translated src=- shape=c4e6855f vocab=4abb8ebd
+-/
 theorem vlasovWellPosedness_local_moment
     {d : ℕ}
     (W : PhysSpace d → ℝ)
@@ -1205,7 +1213,9 @@ threading through
 7. Final invocation: `vlasovSolutionViaPushforward_isLagrangianVlasovSolutionOn`
    with the full hypothesis bundle.
 
-Factored out to keep `vlasovWellPosedness_local`'s body a clean glue. -/
+Factored out to keep `vlasovWellPosedness_local`'s body a clean glue.
+@isnad1 id=islagran.14h9v.s10.7a91e9f5cb90 from=translated src=- shape=c46378f9 vocab=a09bee21
+-/
 theorem vlasovWellPosedness_local_isLagrangian
     {d : ℕ}
     (W : PhysSpace d → ℝ)
@@ -1350,7 +1360,9 @@ from `IsLagrangianVlasovSolutionOn` (local) to `IsLagrangianVlasovSolution`
 
 The body invokes `vlasovWellPosedness_local_picard_fixedPointFlow` for the
 Picard fixed-point flow, then `vlasovWellPosedness_local_finalAssembly_*`
-for the moment and Lagrangian conjuncts, deriving `f 0 = f₀` inline. -/
+for the moment and Lagrangian conjuncts, deriving `f 0 = f₀` inline.
+@isnad1 id=ex.7h6v.s10.b92f7cf13ae5 from=translated src=- shape=5f7c446a vocab=b60f5e0c
+-/
 theorem vlasovWellPosedness_local
     {d : ℕ} [NeZero d]
     (W : PhysSpace d → ℝ)
@@ -1508,7 +1520,9 @@ The proof composes `hasDerivWithinAt_Iic_of_tendsto_deriv` (left side) +
 `hasDerivWithinAt_Ici_of_tendsto_deriv` (right side) + `HasDerivWithinAt.union`,
 following the Mathlib lemma's proof structure but with locally-quantified
 hypothesis (enabling use when the punctured-HasDerivAt holds only on a bounded
-interval, not all of ℝ). -/
+interval, not all of ℝ).
+@isnad1 id=hasderiv.3h3v.s6.c47e3c22ce2a from=translated src=- shape=5620800d vocab=b0def354
+-/
 theorem hasDerivAt_of_hasDerivAt_of_ne_in_nhds
     {f g : ℝ → ℝ} {x₀ : ℝ}
     (h_diff_ne : ∀ᶠ y in 𝓝 x₀, y ≠ x₀ → HasDerivAt f (g y) y)
@@ -1886,7 +1900,9 @@ moving-measure convolution into a fixed-`f₀` integral with moving integrand, c
 dominated convergence: convergence from the flow's seam continuity `h_charX_cont`,
 domination from the Gronwall growth bound `hC_T` (Piece A) against `f₀`'s finite first
 moment.  This is the structural reason `h_cont_g` does NOT need the general narrow→W₁
-kernel — its consumer carries a pushforward representation. -/
+kernel — its consumer carries a pushforward representation.
+@isnad1 id=continuo.8h9v.s10.47f43ba9bc8b from=translated src=- shape=82ce92f8 vocab=c8155fa0
+-/
 lemma flowConv_continuousWithinAt_Iic_seam
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -1978,7 +1994,9 @@ generic window `[a, b]` with the seam at the lower endpoint `a`.  Same proof sha
 the only set-dependent swaps are `Iic T → Ici a`, `Icc_mem_nhdsLE → Icc_mem_nhdsGE`,
 and the window `[0, T] → [a, b]`.  Used for the RIGHT side of the seam at `T` where
 `charX` is the composed position flow `Z_s z = charX_g (s-T) (charX_prev T z, …)` and
-`μ s = spatialMarginal (g (s-T))` is its pushforward of `f₀`. -/
+`μ s = spatialMarginal (g (s-T))` is its pushforward of `f₀`.
+@isnad1 id=continuo.8h10v.s9.87bd56b84e36 from=translated src=- shape=9cad6add vocab=32850a23
+-/
 lemma flowConv_continuousWithinAt_Ici_seam
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -3801,7 +3819,9 @@ satisfying the smallness constraints `LocalSmallnessPLBuffer L T_0` +
        (charX_next(t, z) := if t ≤ T then charX_prev(t, z) else
        charX_g(t - T, (charX_prev(T, z), charV_prev(T, z)))).
      * Pushforward equation: holds piecewise.
-     * AEMeasurable witness: composition of AEMeasurable maps. -/
+     * AEMeasurable witness: composition of AEMeasurable maps.
+@isnad1 id=ex.17h10v.s11.3edf193b747e from=translated src=- shape=2e5ee6bf vocab=4ddc448f
+-/
 theorem vlasovWellPosedness_glue
     {d : ℕ} [NeZero d]
     (W : PhysSpace d → ℝ)
@@ -4098,7 +4118,9 @@ theorem vlasovWellPosedness_glue
 /-- For every positive Lipschitz constant there is a window length satisfying all
 three per-window smallness constraints — the PL buffer, the contraction, and the
 envelope closure.  Pure threshold arithmetic: `T_0 := min(1/√L, T_0_con, T_0_env)/2`
-with each threshold positive for every `L > 0` (no `L < 1` restriction). -/
+with each threshold positive for every `L > 0` (no `L < 1` restriction).
+@isnad1 id=ex.1h1v.s6.f31e4ee1f7c2 from=translated src=- shape=cce30f0a vocab=e4c49012
+-/
 lemma exists_localSmallness_window (L : NNReal) (hL_pos : (0 : ℝ) < L) :
     ∃ T_0 : ℝ, 0 < T_0 ∧ LocalSmallnessPLBuffer L T_0 ∧ LocalSmallnessContraction L T_0 ∧
       (L : ℝ) / (1 + (L : ℝ)) * (Real.exp ((1 + (L : ℝ)) * T_0) - 1) < 1 := by
@@ -4229,7 +4251,9 @@ data at a fixed step `T_0` depending only on `L` (no `L < 1` hypothesis).
    - Step case (`n → n+1`): apply `vlasovWellPosedness_glue` to extend.
 
 4. Take `f := f_N` and verify the conjuncts for `T_target ≤ N · T_0` via
-   `IsLagrangianVlasovSolutionOn`'s monotonicity in `T` (project down). -/
+   `IsLagrangianVlasovSolutionOn`'s monotonicity in `T` (project down).
+@isnad1 id=ex.5h6v.s9.890cb9c09da6 from=translated src=- shape=ba416741 vocab=3eaee468
+-/
 theorem vlasovWellPosedness_forward
     {d : ℕ} [NeZero d]
     (W : PhysSpace d → ℝ)
@@ -5618,7 +5642,9 @@ Two `IsLagrangianVlasovSolutionOn`s with the same initial data agree on
 1. Extract `IsVlasovSolutionOn` from each `IsLagrangianVlasovSolutionOn`.
 2. Note `f 0 = f₀ = g 0` from the init hypotheses.
 3. Apply `dobrushin_uniqueness_On` (localized Dobrushin uniqueness, the
-   private helper above) to conclude `f t = g t`. -/
+   private helper above) to conclude `f t = g t`.
+@isnad1 id=eq.11h9v.s9.95f2ca209070 from=translated src=- shape=557e1648 vocab=55ae4ff5
+-/
 theorem vlasovWellPosedness_uniqueness
     {d : ℕ}
     (W : PhysSpace d → ℝ)
@@ -5651,7 +5677,9 @@ theorem vlasovWellPosedness_uniqueness
 -- overlaps.
 
 /-- `IsLagrangianVlasovSolutionOn` is antitone in the window length: a Lagrangian
-solution on `[0, T]` restricts to one on any `[0, T'] ⊆ [0, T]`. -/
+solution on `[0, T]` restricts to one on any `[0, T'] ⊆ [0, T]`.
+@isnad1 id=islagran.2h5v.s6.19211870dab6 from=translated src=- shape=9507a013 vocab=ae9a73ae
+-/
 lemma IsLagrangianVlasovSolutionOn.mono_window
     {d : ℕ}
     {gradW : PhysSpace d → PhysSpace d} {g : ℝ → Measure (PhaseSpace d)}
@@ -5670,7 +5698,9 @@ lemma IsLagrangianVlasovSolutionOn.mono_window
 
 /-- Continuity (within a window, at a point) of `t ↦ ∫ g d(fcur t)` for a curve
 represented on the window as a flow pushforward: dominated convergence against
-the fixed `f₀`, then transfer along the representation. -/
+the fixed `f₀`, then transfer along the representation.
+@isnad1 id=continuo.6h8v.s9.f23ec5548b25 from=translated src=- shape=cb08d655 vocab=7ff84352
+-/
 lemma integral_continuousWithinAt_of_flow_rep
     {d : ℕ}
     (f₀ : Measure (PhaseSpace d)) [IsProbabilityMeasure f₀]
@@ -5724,7 +5754,9 @@ Composes `vlasovWellPosedness_forward` (forward iteration) +
    growth.
 
 The problem is a forward Cauchy problem; backward time is not on the
-critical path. -/
+critical path.
+@isnad1 id=ex.4h5v.s9.2fc1a80be29a from=translated src=- shape=cb4beab9 vocab=11759f88
+-/
 theorem vlasovWellPosedness_universal_existence
     {d : ℕ} [NeZero d]
     (W : PhysSpace d → ℝ)
@@ -6136,7 +6168,9 @@ window `[0, T_target]`.
 Per-window uniqueness over the Lagrangian class is provided separately by
 `vlasovWellPosedness_uniqueness`.  The proof case-splits on `L = 0` (constant
 force, explicit solution) vs `0 < L` (the substantive forward-iteration path),
-and holds for every `L` (no smallness restriction). -/
+and holds for every `L` (no smallness restriction).
+@isnad1 id=ex.3h5v.s9.2da57ce71e87 from=translated src=- shape=17beeaf4 vocab=218be8d7
+-/
 theorem vlasovWellPosedness
     {d : ℕ} [NeZero d]
     (W : PhysSpace d → ℝ) [AssW W]
@@ -6280,7 +6314,9 @@ theorem vlasovWellPosedness
 
 /-- Package the bound and positivity of C into the existential conclusion of dobrushin:
 ∃ C > 0, ∀ t ≥ 0, W₁(f_t, g_t) ≤ exp(C·t) · W₁(f_0, g_0).
-Depends on dobrushin_C_choice (in Basic.lean) and dobrushin_ennreal_bound. -/
+Depends on dobrushin_C_choice (in Basic.lean) and dobrushin_ennreal_bound.
+@isnad1 id=ex.6h6v.s9.5c6f17344928 from=translated src=- shape=a0235562 vocab=c0e82b86
+-/
 lemma dobrushin_package_exists
     {d : ℕ}
     (W : PhysSpace d → ℝ) [_hW : AssW W]
@@ -6325,7 +6361,9 @@ inequality; the key estimate is |∇W * ρ − ∇W * σ|_∞ ≤ L · W_1(ρ, �
 The `[AssW W]` instance and `hgradW` record the standing setup ass:W (∇W the
 gradient of an even C^{1,1} potential); the inequality itself consumes only
 the Lipschitz bound `hL` — see `dobrushin_on` below for the minimal-hypothesis
-window form with the explicit constant `C = 2 · max 1 L`. -/
+window form with the explicit constant `C = 2 · max 1 L`.
+@isnad1 id=ex.6h6v.s9.191920b1c9f5 from=translated src=- shape=3279da81 vocab=5abf1763
+-/
 theorem dobrushin
     {d : ℕ}
     (W : PhysSpace d → ℝ) [hW : AssW W]
@@ -6369,7 +6407,9 @@ per-window `IsLagrangianVlasovSolutionOn` plus window moments — and (ii)
 exposes the **explicit constant** `C = 2 · max 1 L`, which depends only on
 the force's Lipschitz bound, not on the solution pair.  That uniformity is
 what a mean-field argument quantifying over a family of solutions (e.g.
-empirical curves, once their flow witnesses are formalized) needs. -/
+empirical curves, once their flow witnesses are formalized) needs.
+@isnad1 id=le.7h7v.s9.f913842317ce from=translated src=- shape=6703974b vocab=e5c14f20
+-/
 theorem dobrushin_on
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -6403,7 +6443,9 @@ per-window `IsLagrangianVlasovSolutionOn` family on every horizon, moments on
 `Set.Ici 0`), and the estimate holds for all `t ≥ 0` with the
 pair-independent constant `C = 2 · max 1 L`.  This is the arrow that lets the
 existence output feed a Dobrushin-type stability input; see
-`vlasovWellPosedness_stability` for the packaged composition. -/
+`vlasovWellPosedness_stability` for the packaged composition.
+@isnad1 id=le.6h6v.s9.a83a0a0569c1 from=translated src=- shape=7d715815 vocab=3e02d8dc
+-/
 theorem dobrushin_forward
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -6428,7 +6470,9 @@ For any two initial data `f₀, g₀ ∈ 𝒫₁`, the curves produced by
 `vlasovWellPosedness` satisfy the Dobrushin estimate with the explicit
 constant `C = 2 · max 1 L` at every `t ≥ 0` — the composition of the two
 headline theorems, recorded so that the existence output demonstrably feeds
-the stability input (`dobrushin_forward`). -/
+the stability input (`dobrushin_forward`).
+@isnad1 id=ex.4h6v.s10.524ef9f32c68 from=translated src=- shape=8a3801b2 vocab=a78d9ad0
+-/
 theorem vlasovWellPosedness_stability
     {d : ℕ} [NeZero d]
     (W : PhysSpace d → ℝ) [AssW W]
@@ -6484,7 +6528,9 @@ The two are mathematically equal (KR duality) and coupling-convergence is the
 *natural* form for empirical measures (one exhibits couplings to bound the cost
 from above), so this is a nominal — not a real — strengthening.  The all-dual
 `meanFieldLimit` (Basic) remains the standard-hypothesis form, routing through
-the all-dual `dobrushin` (the single Foundation-B bridge). -/
+the all-dual `dobrushin` (the single Foundation-B bridge).
+@isnad1 id=tendsto.10h10v.s9.00829c0b1852 from=translated src=- shape=6b6dc080 vocab=eceecae2
+-/
 theorem meanFieldLimit_coupling
     {d : ℕ}
     (W : PhysSpace d → ℝ)

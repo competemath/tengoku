@@ -42,7 +42,9 @@ abbrev Homotopic (f g : RelGenLoop n X A a) : Prop :=
 
 /-- For a continuous function `f` to be a `RelGenLoop`,
 it suffices to show that `f` send the top face into `A ⊆ X` and `⊔I^n` to `a ∈ A`.
-Note: this lemma does not work in dimension 0. -/
+Note: this lemma does not work in dimension 0.
+@isnad1 id=mem.2h5v.s8.77feb23a28d0 from=translated src=- shape=7fffc5e5 vocab=3b0d0f8c
+-/
 lemma mem_of_boundaryLid_and_boundaryJar (f : C(I^Fin n, X))
     (hlid : ∀ y ∈ Cube.boundaryLid n, f y ∈ A) (hjar : ∀ y ∈ ⊔I^n, f y = a) :
     f ∈ RelGenLoop n X A a := by
@@ -55,17 +57,28 @@ lemma mem_of_boundaryLid_and_boundaryJar (f : C(I^Fin n, X))
 
 namespace Homotopic
 
+/--
+@isnad1 id=homotopi.0h5v.s6.58bc14f067ca from=translated src=- shape=6fee968b vocab=ded54430
+-/
 lemma refl {f : RelGenLoop n X A a} : Homotopic f f :=
   ContinuousMap.HomotopicWith.refl f.val f.property
 
+/--
+@isnad1 id=homotopi.1h6v.s6.f2686c05d2f9 from=translated src=- shape=ab6ee936 vocab=ded54430
+-/
 lemma symm {f g : RelGenLoop n X A a} (H : Homotopic f g) : Homotopic g f :=
   ContinuousMap.HomotopicWith.symm H
 
+/--
+@isnad1 id=homotopi.2h7v.s7.087ad27a989f from=translated src=- shape=7f1e58e6 vocab=ded54430
+-/
 lemma trans {f g h : RelGenLoop n X A a}
     (H : Homotopic f g) (G : Homotopic g h) : Homotopic f h :=
   ContinuousMap.HomotopicWith.trans H G
 
-/-- `RelGenLoop.Homotopic` is an equivalence relationship. -/
+/-- `RelGenLoop.Homotopic` is an equivalence relationship.
+@isnad1 id=equivale.0h4v.s6.40e1a281577f from=translated src=- shape=03f965a5 vocab=3547eeee
+-/
 theorem equiv : Equivalence (@Homotopic n X _ A a) :=
   ⟨@refl n X _ A a, @symm n X _ A a, @trans n X _ A a⟩
 
@@ -228,6 +241,9 @@ def ofHomotopyRel {n : ℕ} {X : Type*} [TopologicalSpace X] {A : Set X} {a : A}
 
 namespace ofHomotopyRel
 
+/--
+@isnad1 id=eq.0h7v.s9.bcab77b6dd01 from=translated src=- shape=d717da2b vocab=096366f8
+-/
 lemma eq (f : RelGenLoop n X A a) (g : C(I^Fin n, X))
     (H : ContinuousMap.HomotopyRel f g (∂I^n)) :
     ⟦f⟧ = (⟦ofHomotopyRel f g H⟧ : π_rel n X A a) :=

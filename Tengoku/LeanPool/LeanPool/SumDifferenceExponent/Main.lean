@@ -19,11 +19,17 @@ namespace SumDifferenceExponent
 /-- The explicit row-and-column family whose exponents approach two. -/
 abbrev approximatingSet : ℕ → Finset ℤ := ColumnConstruction.A
 
+/--
+@isnad1 id=le.1h1v.s4.21f2193280e5 from=translated src=- shape=f57c8995 vocab=2753dbe4
+-/
 theorem approximatingSet_card_two_le
     {l : ℕ} (hl : 0 < l) :
     2 ≤ (approximatingSet l).card :=
   ColumnConstruction.A_card_two_le hl
 
+/--
+@isnad1 id=le.1h1v.s4.33d7ef6b63fe from=translated src=- shape=d68fe5a5 vocab=e93f0ba2
+-/
 theorem exponentLower_le_growthExponent_approximatingSet
     {l : ℕ} (hl : 2 ≤ l) :
     ColumnConstruction.exponentLower l ≤
@@ -33,6 +39,7 @@ theorem exponentLower_le_growthExponent_approximatingSet
 /--
 The explicit finite integer sets `approximatingSet l` have growth exponent
 tending to the sharp upper bound `2`.
+@isnad1 id=tendsto.0h0v.s4.5700d72605b8 from=translated src=- shape=63ffac97 vocab=70ad1edc
 -/
 theorem tendsto_growthExponent_approximatingSet :
     Tendsto (fun l : ℕ => growthExponent (approximatingSet l))
@@ -49,7 +56,9 @@ theorem tendsto_growthExponent_approximatingSet :
 def admissibleExponents : Set ℝ :=
   {x | ∃ B : Finset ℤ, 2 ≤ B.card ∧ x = growthExponent B}
 
-/-- The number `2` is the least upper bound of all admissible exponents. -/
+/-- The number `2` is the least upper bound of all admissible exponents.
+@isnad1 id=islub.0h0v.s3.5d339c399b16 from=translated src=- shape=ffdda526 vocab=4a882a51
+-/
 theorem isLUB_admissibleExponents :
     IsLUB admissibleExponents 2 := by
   constructor
@@ -63,7 +72,9 @@ theorem isLUB_admissibleExponents :
     exact ⟨approximatingSet l,
       approximatingSet_card_two_le (by omega), rfl⟩
 
-/-- The supremum in the main problem is exactly `2`. -/
+/-- The supremum in the main problem is exactly `2`.
+@isnad1 id=eq.0h0v.s3.3a772112e3a2 from=translated src=- shape=3701a056 vocab=6a9b1ea5
+-/
 theorem sSup_admissibleExponents :
     sSup admissibleExponents = 2 :=
   (isLUB_admissibleExponents.unique
@@ -73,7 +84,9 @@ theorem sSup_admissibleExponents :
         approximatingSet_card_two_le (by norm_num), rfl⟩
       (by exact ⟨2, isLUB_admissibleExponents.1⟩))).symm
 
-/-- The supremum is not attained by any admissible finite integer set. -/
+/-- The supremum is not attained by any admissible finite integer set.
+@isnad1 id=ne.1h1v.s4.39b12d689194 from=translated src=- shape=6d5cbaa8 vocab=b2040feb
+-/
 theorem supremum_not_attained
     (B : Finset ℤ) (hB : 2 ≤ B.card) :
     growthExponent B ≠ 2 :=

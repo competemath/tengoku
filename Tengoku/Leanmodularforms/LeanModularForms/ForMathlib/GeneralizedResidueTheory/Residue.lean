@@ -63,13 +63,17 @@ def CauchyPrincipalValueExistsOn
     (a b : ℝ) : Prop :=
   ∃ L : ℂ, HasCauchyPVOn' S f γ a b L
 
-/-- Bridge theorem: if `HasCauchyPVOn' S f γ a b L`, then `cauchyPrincipalValueOn S f γ a b = L`. -/
+/-- Bridge theorem: if `HasCauchyPVOn' S f γ a b L`, then `cauchyPrincipalValueOn S f γ a b = L`.
+@isnad1 id=eq.1h6v.s5.e832d4494971 from=translated src=- shape=b2e1c372 vocab=6c0a4344
+-/
 theorem HasCauchyPVOn'.cauchyPVOn_eq {S : Finset ℂ} {f : ℂ → ℂ} {γ : ℝ → ℂ}
     {a b : ℝ} {L : ℂ} (h : HasCauchyPVOn' S f γ a b L) :
     cauchyPrincipalValueOn S f γ a b = L :=
   h.limUnder_eq
 
-/-- The limit in `HasCauchyPVOn'` is unique. -/
+/-- The limit in `HasCauchyPVOn'` is unique.
+@isnad1 id=eq.2h7v.s5.ef773625e358 from=translated src=- shape=39cf5939 vocab=4ac14f84
+-/
 theorem HasCauchyPVOn'.unique {S : Finset ℂ} {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ}
     {L₁ L₂ : ℂ} (h₁ : HasCauchyPVOn' S f γ a b L₁) (h₂ : HasCauchyPVOn' S f γ a b L₂) :
     L₁ = L₂ :=
@@ -149,7 +153,9 @@ private lemma off_partition_in_consecutive_pair
         (Finset.mem_filter.mpr ⟨hr, htr⟩)]
     · exact ht_nP (le_antisymm (not_lt.mp htr) hrt ▸ hr)
 
-/-- The derivative of a piecewise C¹ immersion is bounded on [a,b]. -/
+/-- The derivative of a piecewise C¹ immersion is bounded on [a,b].
+@isnad1 id=ex.0h1v.s6.89ad3687a1b1 from=translated src=- shape=8fb6bee1 vocab=208c4e73
+-/
 lemma piecewiseC1Immersion_deriv_bounded
     (γ : PiecewiseC1Immersion) :
     ∃ M : ℝ, ∀ t ∈ Icc γ.a γ.b,
@@ -196,7 +202,9 @@ lemma piecewiseC1Immersion_deriv_bounded
       exact ⟨⟨hp, hq⟩, hpq, hc⟩
     exact hM_off (p, q) hmem t ht_in⟩
 
-/-- The derivative of a piecewise C¹ curve is interval integrable when bounded. -/
+/-- The derivative of a piecewise C¹ curve is interval integrable when bounded.
+@isnad1 id=interval.1h1v.s7.4c4ad596dcdb from=translated src=- shape=213c6c86 vocab=de7e0722
+-/
 lemma piecewiseC1_deriv_intervalIntegrable (γ : PiecewiseC1Curve)
     (h_bdd : ∃ M : ℝ, ∀ t ∈ Icc γ.a γ.b, ‖deriv γ.toFun t‖ ≤ M) :
     IntervalIntegrable (deriv γ.toFun) MeasureTheory.volume γ.a γ.b := by
@@ -210,7 +218,9 @@ lemma piecewiseC1_deriv_intervalIntegrable (γ : PiecewiseC1Curve)
     exact .of_forall fun t ht => hM t <|
       Set.uIcc_of_le (le_of_lt γ.hab) ▸ uIoc_subset_uIcc ht
 
-/-- A single singular term is interval integrable when γ avoids s. -/
+/-- A single singular term is interval integrable when γ avoids s.
+@isnad1 id=interval.2h3v.s7.6090a91aa1cc from=translated src=- shape=d218e55e vocab=97fc24c5
+-/
 lemma singular_term_intervalIntegrable
     (f : ℂ → ℂ) (s : ℂ)
     (γ : PiecewiseC1Curve)
@@ -224,7 +234,9 @@ lemma singular_term_intervalIntegrable
       (γ.continuous_toFun.sub continuousOn_const)
       fun t ht => sub_ne_zero.mpr (hγ_avoids_s t ht)
 
-/-- The singular sum is interval integrable when curve avoids all poles. -/
+/-- The singular sum is interval integrable when curve avoids all poles.
+@isnad1 id=interval.2h3v.s7.84ea631ca74f from=translated src=- shape=4bed5bc8 vocab=5f1ad38c
+-/
 lemma singular_sum_intervalIntegrable
     (f : ℂ → ℂ) (S0 : Finset ℂ)
     (γ : PiecewiseC1Curve)
@@ -243,7 +255,9 @@ lemma singular_sum_intervalIntegrable
       (fun t ht => hγ_avoids s (Finset.mem_insert_self s S) t ht) hγ'_bdd).add
       (ih fun s' hs' t ht => hγ_avoids s' (Finset.mem_insert_of_mem hs') t ht)
 
-/-- For simple poles, the residue equals the Laurent coefficient. -/
+/-- For simple poles, the residue equals the Laurent coefficient.
+@isnad1 id=eq.2h4v.s6.4abcb1ada20c from=translated src=- shape=4e964524 vocab=57e72fc6
+-/
 theorem residue_simple_pole_eq_laurent
     (f : ℂ → ℂ) (z₀ : ℂ) (c : ℂ) (g : ℂ → ℂ)
     (hg : AnalyticAt ℂ g z₀)
@@ -262,7 +276,9 @@ theorem residue_simple_pole_eq_laurent
     simpa using h_sub.mul (hg.continuousAt.tendsto.mono_left nhdsWithin_le_nhds)
   simpa using tendsto_const_nhds.add h_prod
 
-/-- The integral of a singular term equals the winding number times the coefficient. -/
+/-- The integral of a singular term equals the winding number times the coefficient.
+@isnad1 id=eq.1h3v.s7.7bd32d327bc5 from=translated src=- shape=0784650d vocab=72422ad3
+-/
 lemma integral_singular_term_eq_winding_times_coeff
     (γ : PiecewiseC1Curve) (s c : ℂ)
     (h_avoids : ∀ t ∈ Icc γ.a γ.b, γ.toFun t ≠ s) :
@@ -283,7 +299,9 @@ lemma integral_singular_term_eq_winding_times_coeff
     _ = 2 * Real.pi * I * generalizedWindingNumber' γ.toFun γ.a γ.b s * c := by
         rw [h_integral]; ring
 
-/-- PV with empty singular set is just the ordinary contour integral. -/
+/-- PV with empty singular set is just the ordinary contour integral.
+@isnad1 id=hascauch.0h4v.s6.2c410310e3dc from=translated src=- shape=cd67de08 vocab=0ae0fb03
+-/
 lemma hasCauchyPVOn'_empty (f : ℂ → ℂ) (γ : ℝ → ℂ) (a b : ℝ) :
     HasCauchyPVOn' ∅ f γ a b (∫ t in a..b, f (γ t) * deriv γ t) := by
   refine Filter.Tendsto.congr' ?_ tendsto_const_nhds
@@ -292,7 +310,9 @@ lemma hasCauchyPVOn'_empty (f : ℂ → ℂ) (γ : ℝ → ℂ) (a b : ℝ) :
     (cpvIntegrandOn_of_forall_gt (by simp)).symm
 
 /-- PV exists with value equal to the ordinary contour integral when the curve avoids
-all singularities. -/
+all singularities.
+@isnad1 id=hascauch.1h3v.s7.eefa139f2b84 from=translated src=- shape=ffe3b303 vocab=ccbfd891
+-/
 lemma hasCauchyPVOn'_avoids
     (S0 : Finset ℂ) (f : ℂ → ℂ) (γ : PiecewiseC1Curve)
     (h_avoids : ∀ s ∈ S0, ∀ t ∈ Icc γ.a γ.b, γ.toFun t ≠ s) :
@@ -325,14 +345,18 @@ lemma hasCauchyPVOn'_avoids
       _ ≤ dist s (γ.toFun t) := Metric.infDist_le_dist_of_mem ⟨t, ht, rfl⟩
       _ = ‖γ.toFun t - s‖ := by rw [dist_eq_norm, norm_sub_rev]).symm
 
-/-- PV exists when curve avoids all singularities. -/
+/-- PV exists when curve avoids all singularities.
+@isnad1 id=cauchypr.1h3v.s5.cdb9139b8b1a from=translated src=- shape=4b7471b6 vocab=8a93ad94
+-/
 lemma cauchyPrincipalValueExistsOn_avoids
     (S0 : Finset ℂ) (f : ℂ → ℂ) (γ : PiecewiseC1Curve)
     (h_avoids : ∀ s ∈ S0, ∀ t ∈ Icc γ.a γ.b, γ.toFun t ≠ s) :
     CauchyPrincipalValueExistsOn S0 f γ.toFun γ.a γ.b :=
   ⟨_, hasCauchyPVOn'_avoids S0 f γ h_avoids⟩
 
-/-- PV value equals classical integral when avoiding. -/
+/-- PV value equals classical integral when avoiding.
+@isnad1 id=eq.1h3v.s7.0d2440d13e67 from=translated src=- shape=2beb3a46 vocab=e815f2f7
+-/
 lemma cauchyPrincipalValueOn_avoids
     (S0 : Finset ℂ) (f : ℂ → ℂ) (γ : PiecewiseC1Curve)
     (h_avoids : ∀ s ∈ S0, ∀ t ∈ Icc γ.a γ.b, γ.toFun t ≠ s) :
@@ -340,7 +364,9 @@ lemma cauchyPrincipalValueOn_avoids
       ∫ t in γ.a..γ.b, f (γ.toFun t) * deriv γ.toFun t :=
   (hasCauchyPVOn'_avoids S0 f γ h_avoids).cauchyPVOn_eq
 
-/-- PV of 1/z equals 2πi times winding number. -/
+/-- PV of 1/z equals 2πi times winding number.
+@isnad1 id=eq.0h2v.s6.c2d9f9e5c3bb from=translated src=- shape=e32f1494 vocab=f80c4fff
+-/
 theorem pv_integral_inverse
     (γ : PiecewiseC1Curve) (z₀ : ℂ) :
     cauchyPrincipalValue' (·⁻¹) (fun t => γ.toFun t - z₀) γ.a γ.b 0 =
@@ -349,7 +375,9 @@ theorem pv_integral_inverse
   have h_ne : (2 * Real.pi * I : ℂ) ≠ 0 := by norm_num [Real.pi_ne_zero, Complex.I_ne_zero]
   field_simp [h_ne]
 
-/-- Single-point PV formula for simple pole. -/
+/-- Single-point PV formula for simple pole.
+@isnad1 id=eq.1h3v.s8.f66508842617 from=translated src=- shape=2430c071 vocab=5e63f947
+-/
 theorem pv_integral_simple_pole
     (γ : PiecewiseC1Curve) (z₀ c : ℂ)
     (hPV : ∃ L, Tendsto (fun ε => ∫ t in γ.a..γ.b,

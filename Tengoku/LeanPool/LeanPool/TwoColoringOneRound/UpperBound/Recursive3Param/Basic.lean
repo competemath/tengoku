@@ -38,15 +38,33 @@ noncomputable def t1 : Rand :=
 noncomputable def t2 : Rand :=
   (⟨(17 / 32 : ℝ), by constructor <;> norm_num⟩ : I)
 
+/--
+@isnad1 id=lt.0h0v.s4.5de26ebc48ea from=translated src=- shape=8a4173cf vocab=c188a063
+-/
 lemma t1_lt_t2 : (t1 : ℝ) < t2 := by norm_num [t1, t2]
 
+/--
+@isnad1 id=lt.0h0v.s4.627ee4fca3bf from=translated src=- shape=8a4173cf vocab=173a0ccb
+-/
 lemma t2_lt_t : (t2 : ℝ) < t := by norm_num [t2, t]
 
+/--
+@isnad1 id=lt.0h0v.s4.4bfb83a534f5 from=translated src=- shape=a438a05c vocab=216029b0
+-/
 lemma t_lt_one : (t : ℝ) < 1 := by norm_num [t]
 
+/--
+@isnad1 id=lt.0h0v.s4.a5e856ef589c from=translated src=- shape=76eb2767 vocab=216029b0
+-/
 lemma zero_lt_t : (0 : ℝ) < t := by simp [t]
 
+/--
+@isnad1 id=le.0h0v.s4.6f59550f5bb8 from=translated src=- shape=8a4173cf vocab=fd125f1b
+-/
 lemma t1_le_t2 : (t1 : ℝ) ≤ t2 := (t1_lt_t2).le
+/--
+@isnad1 id=le.0h0v.s4.f1953177f70a from=translated src=- shape=8a4173cf vocab=13d8a697
+-/
 lemma t2_le_t : (t2 : ℝ) ≤ t := (t2_lt_t).le
 
 /-!
@@ -89,6 +107,9 @@ noncomputable def z0 (x y : Rand) : ℝ :=
 noncomputable def g (x y z : Rand) : Color :=
   if (z : ℝ) < z0 x y then 1 else 0
 
+/--
+@isnad1 id=measurab.0h0v.s5.594eac708ea0 from=translated src=- shape=e37279c3 vocab=b01efbda
+-/
 lemma measurable_zBase : Measurable fun xy : Rand × Rand => zBase xy.1 xy.2 := by
   classical
   -- `zBase` is piecewise defined using comparisons against constants and projections.
@@ -116,6 +137,9 @@ lemma measurable_zBase : Measurable fun xy : Rand × Rand => zBase xy.1 xy.2 := 
       · exact measurable_const
       · exact my
 
+/--
+@isnad1 id=measurab.0h0v.s5.f0d57ab1fe64 from=translated src=- shape=e37279c3 vocab=6e519b04
+-/
 lemma measurable_z0 : Measurable fun xy : Rand × Rand => z0 xy.1 xy.2 := by
   classical
   have mx : Measurable fun xy : Rand × Rand => (xy.1 : ℝ) := by
@@ -159,6 +183,9 @@ lemma measurable_z0 : Measurable fun xy : Rand × Rand => z0 xy.1 xy.2 := by
   · -- Outside-square branch
     exact measurable_zBase
 
+/--
+@isnad1 id=measurab.0h0v.s6.db70e635c53d from=translated src=- shape=b0e8fc3d vocab=6f7bbd61
+-/
 lemma measurable_g : Measurable fun xyz : Rand × Rand × Rand => g xyz.1 xyz.2.1 xyz.2.2 := by
   classical
   have mz : Measurable fun xyz : Rand × Rand × Rand => (xyz.2.2 : ℝ) := by
@@ -190,6 +217,9 @@ noncomputable def recursive3ParamAlg : ClassicalAlgorithm where
 For probability computations, it is convenient to view `z0 x y` as an element of the unit interval.
 -/
 
+/--
+@isnad1 id=mem.0h2v.s4.b33aa1b9d6a4 from=translated src=- shape=934e17b0 vocab=5f8b9f49
+-/
 lemma zBase_mem_Icc (x y : Rand) : zBase x y ∈ Set.Icc (0 : ℝ) 1 := by
   classical
   have ht : (t : ℝ) ∈ Set.Icc (0 : ℝ) 1 := t.property
@@ -204,6 +234,9 @@ lemma zBase_mem_Icc (x y : Rand) : zBase x y ∈ Set.Icc (0 : ℝ) 1 := by
       · simp [zBase, hyt, hxt, hxy, ht]
       · simp [zBase, hyt, hxt, hxy, hy]
 
+/--
+@isnad1 id=mem.0h2v.s4.6900a2be86e5 from=translated src=- shape=934e17b0 vocab=3cd41e85
+-/
 lemma z0_mem_Icc (x y : Rand) : z0 x y ∈ Set.Icc (0 : ℝ) 1 := by
   classical
   have ht : (t : ℝ) ∈ Set.Icc (0 : ℝ) 1 := t.property
@@ -229,9 +262,15 @@ lemma z0_mem_Icc (x y : Rand) : z0 x y ∈ Set.Icc (0 : ℝ) 1 := by
 noncomputable def z0I (x y : Rand) : Rand :=
   ⟨z0 x y, z0_mem_Icc x y⟩
 
+/--
+@isnad1 id=iff.0h3v.s5.018ff5aad258 from=translated src=- shape=789adce4 vocab=ab39796f
+-/
 lemma g_eq_one_iff (x y z : Rand) : g x y z = 1 ↔ (z : ℝ) < z0 x y := by
   by_cases h : (z : ℝ) < z0 x y <;> simp [g, h]
 
+/--
+@isnad1 id=iff.0h3v.s5.77610063c1f3 from=translated src=- shape=3545c20e vocab=ab39796f
+-/
 lemma g_eq_zero_iff (x y z : Rand) : g x y z = 0 ↔ ¬ (z : ℝ) < z0 x y := by
   by_cases h : (z : ℝ) < z0 x y <;> simp [g, h]
 

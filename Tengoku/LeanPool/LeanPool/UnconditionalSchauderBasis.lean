@@ -332,6 +332,7 @@ def IsUnconditional (b : SchauderBasis' 𝕜 E) : Prop :=
 This is a useful technical form of unconditionality, but it is still phrased in
 terms of `HasSum`, so it is mostly a reindexing statement.  For the ordered
 partial-sum formulation, see `SchauderBasis'.isUnconditional_tendsto_rearranged`.
+@isnad1 id=iff.0h3v.s8.fdab5c230289 from=translated src=- shape=ba670e0f vocab=28625703
 -/
 theorem isUnconditional_iff_hasSum_rearranged (b : SchauderBasis' 𝕜 E) :
     b.IsUnconditional ↔
@@ -354,6 +355,7 @@ This is the same mathematical content as
 underlying `Filter.Tendsto` statement instead of the abbreviation `HasSum`.
 The filter is `atTop` on `Finset ℕ`, so finite sets eventually contain any
 prescribed finite set of indices.
+@isnad1 id=iff.0h3v.s8.c5a9c09cb75b from=translated src=- shape=3f47c024 vocab=8de9fe69
 -/
 theorem isUnconditional_iff_tendsto_rearranged (b : SchauderBasis' 𝕜 E) :
     b.IsUnconditional ↔
@@ -379,6 +381,7 @@ For every vector `x` and permutation `σ`, the initial partial sums
 `∑ n ∈ Finset.range N, coeff (σ n) x • basis (σ n)` tend to `x` in the norm
 topology.  This is the direct Lean version of the usual statement that every
 rearrangement of the Schauder expansion converges to the same vector.
+@isnad1 id=tendsto.1h5v.s8.65f5bcb134de from=translated src=- shape=27ca9e58 vocab=108db3f8
 -/
 theorem isUnconditional_tendsto_rearranged (b : SchauderBasis' 𝕜 E) :
     b.IsUnconditional →
@@ -401,6 +404,7 @@ expansion.
 This is the classical rearrangement formulation: for every vector `x` and every
 permutation `σ : Equiv.Perm ℕ`, the initial partial sums over `Finset.range N`
 of the permuted expansion converge to `x`.
+@isnad1 id=iff.0h3v.s8.670d5de70770 from=translated src=- shape=3e87616d vocab=108db3f8
 -/
 theorem isUnconditional_iff_tendsto_ordered_rearranged (b : SchauderBasis' 𝕜 E) :
     b.IsUnconditional ↔
@@ -471,13 +475,17 @@ namespace UnconditionalSchauderBasisAbstractIndex
 variable {𝕜 Index E : Type*} [NontriviallyNormedField 𝕜]
     [NormedAddCommGroup E] [NormedSpace 𝕜 E] [CompleteSpace E]
 
-/-- The representation theorem of an abstract unconditional Schauder basis, as a simp lemma. -/
+/-- The representation theorem of an abstract unconditional Schauder basis, as a simp lemma.
+@isnad1 id=hassum.0h5v.s8.9641109a3c45 from=translated src=- shape=43ed5d01 vocab=f2a5b071
+-/
 @[simp]
 theorem hasSum_repr_apply (b : UnconditionalSchauderBasisAbstractIndex 𝕜 Index E) (x : E) :
     HasSum (fun i : Index => b.coeff i x • b.basis i) x :=
   b.hasSum_repr x
 
-/-- Coefficients in an abstract unconditional expansion are the stored coordinate maps. -/
+/-- Coefficients in an abstract unconditional expansion are the stored coordinate maps.
+@isnad1 id=eq.1h6v.s8.352eeeb891d9 from=translated src=- shape=7bb2b222 vocab=f2a5b071
+-/
 theorem unique_coeff_apply (b : UnconditionalSchauderBasisAbstractIndex 𝕜 Index E)
     (x : E) (a : Index → 𝕜) (ha : HasSum (fun i : Index => a i • b.basis i) x) :
     a = fun i : Index => b.coeff i x :=
@@ -490,7 +498,9 @@ The next two lemmas extract the usual Kronecker-delta behaviour of the
 coordinate maps from uniqueness of unconditional expansions.
 -/
 
-/-- The coordinate maps take value `1` on their own basis vector. -/
+/-- The coordinate maps take value `1` on their own basis vector.
+@isnad1 id=eq.0h5v.s8.e1c1986ccee7 from=translated src=- shape=d267d982 vocab=b3f043cf
+-/
 theorem coeff_basis_self (b : UnconditionalSchauderBasisAbstractIndex 𝕜 Index E)
     (i : Index) :
     b.coeff i (b.basis i) = (1 : 𝕜) := by
@@ -512,7 +522,9 @@ theorem coeff_basis_self (b : UnconditionalSchauderBasisAbstractIndex 𝕜 Index
       hsingle) i
   simpa using hcoeff.symm
 
-/-- The coordinate maps vanish on the other basis vectors. -/
+/-- The coordinate maps vanish on the other basis vectors.
+@isnad1 id=eq.1h6v.s8.d4e13508cecf from=translated src=- shape=08ea89ae vocab=b3f043cf
+-/
 theorem coeff_basis_ne (b : UnconditionalSchauderBasisAbstractIndex 𝕜 Index E)
     {i j : Index} (hji : j ≠ i) :
     b.coeff i (b.basis j) = 0 := by
@@ -622,7 +634,9 @@ noncomputable def toUnconditionalSchauderBasis
     simpa [f, Function.comp_def] using (e.hasSum_iff).2 hf
 }
 
-/-- Enumerating an abstract basis does not change the set of basis vectors. -/
+/-- Enumerating an abstract basis does not change the set of basis vectors.
+@isnad1 id=eq.0h5v.s6.82bee6f84ce5 from=translated src=- shape=25a5b414 vocab=139c5bc3
+-/
 theorem range_basis_toUnconditionalSchauderBasis
     (b : UnconditionalSchauderBasisAbstractIndex 𝕜 Index E) (e : ℕ ≃ Index) :
     Set.range (toUnconditionalSchauderBasis b e).toSchauderBasis.basis =
@@ -634,7 +648,9 @@ theorem range_basis_toUnconditionalSchauderBasis
   · rintro ⟨i, rfl⟩
     exact ⟨e.symm i, by simp [toUnconditionalSchauderBasis]⟩
 
-/-- Enumerating an abstract basis does not change the set of coordinate maps. -/
+/-- Enumerating an abstract basis does not change the set of coordinate maps.
+@isnad1 id=eq.0h5v.s8.85695a16beaf from=translated src=- shape=9d151e85 vocab=f11d02f9
+-/
 theorem range_coeff_toUnconditionalSchauderBasis
     (b : UnconditionalSchauderBasisAbstractIndex 𝕜 Index E) (e : ℕ ≃ Index) :
     Set.range (toUnconditionalSchauderBasis b e).toSchauderBasis.coeff =
@@ -704,7 +720,9 @@ def toUnconditionalSchauderBasisAbstractIndex (b : UnconditionalSchauderBasis' �
 }
 
 /-- Every unconditional Schauder basis gives an abstractly indexed one over `ℕ`
-with the same basis vectors and coordinate maps. -/
+with the same basis vectors and coordinate maps.
+@isnad1 id=ex.0h3v.s7.5771b71c7cb6 from=translated src=- shape=0d10657f vocab=7b1f9bcf
+-/
 theorem exists_unconditionalSchauderBasisAbstractIndex_nat
     (b : UnconditionalSchauderBasis' 𝕜 E) :
     ∃ b' : UnconditionalSchauderBasisAbstractIndex 𝕜 ℕ E,
@@ -1389,6 +1407,7 @@ Abstract-index finite sign criterion.
 If `x` has dense closed linear span, no vector `x i` is zero, and finite sign
 changes are uniformly bounded by `C`, then there is an abstractly indexed
 unconditional Schauder basis whose basis family is exactly `x`.
+@isnad1 id=ex.4h5v.s7.998470f8a332 from=translated src=- shape=d7cb848d vocab=9aa528b5
 -/
 theorem exists_unconditionalSchauderBasisAbstractIndex_of_finiteSignBound
     {Index : Type*}
@@ -1413,6 +1432,7 @@ unconditional Schauder basis.
 
 This theorem is kept for the usual `ℕ`-indexed API; internally it is just the
 abstract-index criterion specialized to `ℕ`.
+@isnad1 id=ex.4h4v.s7.951a869f5626 from=translated src=- shape=ca58639f vocab=7a36bad5
 -/
 theorem exists_unconditionalSchauderBasis_of_finiteSignBound
     (x : ℕ → E)

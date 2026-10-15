@@ -21,6 +21,9 @@ namespace SumDifferenceExponent.ColumnConstruction
 noncomputable def exponentLower (l : ℕ) : ℝ :=
   Real.log ((l : ℝ) ^ 2 / 2) / Real.log (12 * l)
 
+/--
+@isnad1 id=le.1h1v.s4.8ec66bc12ade from=translated src=- shape=f57c8995 vocab=e8b82da3
+-/
 theorem A_card_two_le {l : ℕ} (hl : 0 < l) :
     2 ≤ (A l).card := by
   apply le_trans ?_ (columnModulus_le_A_card l)
@@ -28,6 +31,9 @@ theorem A_card_two_le {l : ℕ} (hl : 0 < l) :
   have hd : 0 < 28 * l := by omega
   exact le_trans (by norm_num) (Nat.le_pow hd)
 
+/--
+@isnad1 id=le.1h1v.s5.6d6f19921cd6 from=translated src=- shape=e9eb8228 vocab=8f54bbb6
+-/
 theorem sigma_A_lower {l : ℕ} (hl : 0 < l) :
     (l : ℝ) ^ 2 / 2 ≤ sigma (A l) := by
   have hnN : 0 < columnModulus l := by simp [columnModulus]
@@ -51,6 +57,9 @@ theorem sigma_A_lower {l : ℕ} (hl : 0 < l) :
       ring
     _ ≤ ((A l + A l).card : ℝ) := hsumlower
 
+/--
+@isnad1 id=le.1h1v.s5.8dad4ea6dd15 from=translated src=- shape=7d8c5798 vocab=91b8c7fe
+-/
 theorem delta_A_upper {l : ℕ} (hl : 0 < l) :
     delta (A l) ≤ 12 * l := by
   have hnN : 0 < columnModulus l := by simp [columnModulus]
@@ -71,6 +80,9 @@ theorem delta_A_upper {l : ℕ} (hl : 0 < l) :
     _ ≤ (12 * (l : ℝ)) * (A l).card := by
       gcongr
 
+/--
+@isnad1 id=le.1h1v.s4.f649f2b22df2 from=translated src=- shape=d68fe5a5 vocab=9ad597c8
+-/
 theorem exponentLower_le_growthExponent_A
     {l : ℕ} (hl : 2 ≤ l) :
     exponentLower l ≤ growthExponent (A l) := by
@@ -111,6 +123,9 @@ theorem exponentLower_le_growthExponent_A
           Real.log (delta (A l)) := by
       gcongr
 
+/--
+@isnad1 id=eq.1h1v.s6.71dc0b00a99b from=translated src=- shape=e85e42f3 vocab=dd140d92
+-/
 theorem exponentLower_formula
     {l : ℕ} (hl : 0 < l) :
     exponentLower l =
@@ -124,6 +139,9 @@ theorem exponentLower_formula
   field_simp
   ring
 
+/--
+@isnad1 id=eventual.0h0v.s6.85337d3dc89c from=translated src=- shape=19167a9d vocab=22108019
+-/
 theorem exponentLower_eventually_formula :
     ∀ᶠ l : ℕ in atTop,
       exponentLower l =
@@ -132,6 +150,9 @@ theorem exponentLower_eventually_formula :
   filter_upwards [eventually_ge_atTop (1 : ℕ)] with l hl
   exact exponentLower_formula (by omega)
 
+/--
+@isnad1 id=tendsto.0h0v.s4.7397f3f94dd4 from=translated src=- shape=8e2810f0 vocab=17a8ecab
+-/
 theorem tendsto_exponentLower :
     Tendsto exponentLower atTop (𝓝 2) := by
   have hlog :

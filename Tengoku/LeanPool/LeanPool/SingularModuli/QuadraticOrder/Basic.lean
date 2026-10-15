@@ -64,7 +64,9 @@ namespace QuadraticOrder
 We define `poly` before the `variable` command so the auto-binder does not
 add a second implicit `d` to its signature. -/
 
-/-- The defining polynomial is monic of degree 2. -/
+/-- The defining polynomial is monic of degree 2.
+@isnad1 id=monic.0h1v.s2.3992cda4a20c from=translated src=- shape=6da4ece3 vocab=da749727
+-/
 lemma poly_monic (d : ℤ) : (poly d).Monic := by
   have heq : poly d =
       Polynomial.X ^ 2 -
@@ -77,11 +79,15 @@ lemma poly_monic (d : ℤ) : (poly d).Monic := by
   · exact (Polynomial.degree_C_mul_X_le d).trans_lt (by norm_cast)
   · exact Polynomial.degree_C_le.trans_lt (by norm_cast)
 
-/-- The natural degree of the defining polynomial is `2`. -/
+/-- The natural degree of the defining polynomial is `2`.
+@isnad1 id=eq.0h1v.s3.44bf13a5410d from=translated src=- shape=fcff7bf0 vocab=7d7f8911
+-/
 lemma poly_natDegree (d : ℤ) : (poly d).natDegree = 2 := by
   unfold poly; compute_degree!
 
-/-- The degree of the defining polynomial is `2`. -/
+/-- The degree of the defining polynomial is `2`.
+@isnad1 id=eq.0h1v.s4.f9671b946acb from=translated src=- shape=a947dcc4 vocab=d6eeb199
+-/
 lemma poly_degree (d : ℤ) : (poly d).degree = 2 := by
   rw [Polynomial.degree_eq_natDegree (poly_monic d).ne_zero, poly_natDegree]
   rfl
@@ -97,7 +103,9 @@ noncomputable def tau : QuadraticOrder d :=
 /-- `τ` is a root of the defining polynomial `X² - dX + (d²-d)/4`.
 
 Proof sketch: `aeval τ (poly d) = mk (poly d) (poly d) = 0` by
-`AdjoinRoot.aeval_eq` and `AdjoinRoot.mk_self`. -/
+`AdjoinRoot.aeval_eq` and `AdjoinRoot.mk_self`.
+@isnad1 id=eq.0h1v.s7.ea405f9398de from=translated src=- shape=10a7bac9 vocab=eb359f3a
+-/
 lemma tau_minimal_poly :
     tau ^ 2 - d • tau + ((d ^ 2 - d) / 4 : ℤ) • (1 : QuadraticOrder d) = 0 := by
   have h : Polynomial.aeval (tau (d := d)) (poly d) = 0 := by
@@ -108,7 +116,9 @@ lemma tau_minimal_poly :
              Algebra.algebraMap_eq_smul_one, smul_mul_assoc, one_mul] at h
   exact h
 
-/-- `τ` is a root of the defining polynomial `poly d` in `QuadraticOrder d`. -/
+/-- `τ` is a root of the defining polynomial `poly d` in `QuadraticOrder d`.
+@isnad1 id=eq.0h1v.s7.bc308ee6bae2 from=translated src=- shape=7c273e83 vocab=d0298c99
+-/
 @[simp] lemma poly_aeval_tau :
     Polynomial.aeval (tau (d := d)) (poly d) = 0 := by
   unfold tau
@@ -120,7 +130,9 @@ noncomputable def basis : PowerBasis ℤ (QuadraticOrder d) :=
 
 /-- For an honest discriminant (`d ≡ 0 ∨ 1 (mod 4)`), `4 ∣ d² − d`. This is the
 shared arithmetic fact underlying the discriminant computations in
-`Discriminant.lean` and `Prime/PolyMod.lean`. -/
+`Discriminant.lean` and `Prime/PolyMod.lean`.
+@isnad1 id=dvd.1h1v.s6.46dd38ca53ec from=translated src=- shape=00e4885b vocab=34efd7e3
+-/
 lemma dvd_four_of_valid_disc (hd : d % 4 = 0 ∨ d % 4 = 1) : (4 : ℤ) ∣ d ^ 2 - d := by
   have hdd : d ^ 2 - d = d * (d - 1) := by ring
   rw [hdd]
@@ -135,18 +147,24 @@ ring element — via the `modByMonic` representation underlying `AdjoinRoot`'s
 `powerBasis'`. -/
 
 /-- The dimension of the power basis equals the degree of the defining
-polynomial, namely `2`. -/
+polynomial, namely `2`.
+@isnad1 id=eq.0h1v.s5.ed9e93038272 from=translated src=- shape=e716a5af vocab=f2ffce66
+-/
 @[simp] lemma basis_dim : (basis (d := d)).dim = 2 := poly_natDegree d
 
 /-- The basis-representation coefficient at index `i` is the `i`-th coefficient
 of the unique polynomial of degree `< 2` representing `α` (its `modByMonic`
-remainder). -/
+remainder).
+@isnad1 id=eq.0h3v.s10.bf22eafe2dab from=translated src=- shape=a57ade31 vocab=edb573c1
+-/
 lemma basis_repr_apply (α : QuadraticOrder d) (i : Fin (basis (d := d)).dim) :
     (basis.basis.repr α) i =
       (AdjoinRoot.modByMonicHom (poly_monic d) α).coeff i.val :=
   AdjoinRoot.powerBasisAux'_repr_apply_to_fun _ _ _
 
-/-- The τ-coefficient (index `1`) of `τ` itself is `1`. -/
+/-- The τ-coefficient (index `1`) of `τ` itself is `1`.
+@isnad1 id=eq.0h1v.s10.2e0479e2a353 from=translated src=- shape=c5204de7 vocab=c089f6e4
+-/
 lemma basis_repr_tau_one :
     (basis.basis.repr (tau (d := d))) ⟨1, by simp⟩ = 1 := by
   rw [basis_repr_apply]

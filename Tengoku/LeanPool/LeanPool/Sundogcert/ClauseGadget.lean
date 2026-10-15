@@ -76,12 +76,16 @@ instance (free : Fin 3 → Bool) : Decidable (clauseCoverable free) :=
 
     These simplifications hold for every wheel size. -/
 
-/-- A positive tip under the constant wheel `σ = fun _ => !ai` is free iff `ai = true`. -/
+/-- A positive tip under the constant wheel `σ = fun _ => !ai` is free iff `ai = true`.
+@isnad1 id=iff.0h3v.s4.2074a2abd262 from=translated src=- shape=3a2cd15c vocab=beadc4f4
+-/
 theorem posTipFree_const_iff (ai : Bool) {m : ℕ} (j : Fin m) :
     posTipFree (fun _ => !ai) j ↔ ai = true := by
   unfold posTipFree; cases ai <;> simp
 
-/-- A negative tip under the constant wheel `σ = fun _ => !ai` is free iff `ai = false`. -/
+/-- A negative tip under the constant wheel `σ = fun _ => !ai` is free iff `ai = false`.
+@isnad1 id=iff.0h3v.s4.784c0832bfb9 from=translated src=- shape=3a2cd15c vocab=f1b04777
+-/
 theorem negTipFree_const_iff (ai : Bool) {m : ℕ} (j : Fin m) :
     negTipFree (fun _ => !ai) j ↔ ai = false := by
   unfold negTipFree; cases ai <;> simp
@@ -94,7 +98,9 @@ def litTipFree (a : Assignment n) (l : Literal n) {m : ℕ} (j : Fin m) : Prop :
 
 /-- **THE BRIDGE** (discharges milestone 2's deferred labeling): the tip of literal `l` is free
     exactly when `l` evaluates to `true`.  Case on the sign `l.2`; both sides split in lockstep on
-    the same `if l.2`, the positive/negative tip branch matching the `evalLiteral` branch. -/
+    the same `if l.2`, the positive/negative tip branch matching the `evalLiteral` branch.
+@isnad1 id=iff.0h5v.s4.275a04383cf9 from=translated src=- shape=1c67dcb9 vocab=553fd39d
+-/
 theorem litTipFree_iff_eval (a : Assignment n) (l : Literal n) {m : ℕ} (j : Fin m) :
     litTipFree a l j ↔ evalLiteral a l = true := by
   unfold litTipFree evalLiteral
@@ -103,7 +109,9 @@ theorem litTipFree_iff_eval (a : Assignment n) (l : Literal n) {m : ℕ} (j : Fi
 /-! ### Clause local correctness (clean composition — near-definitional once the bridge is set). -/
 
 /-- A clause's internal pair is coverable (some slot-tip free) iff the clause is SATISFIED — both
-    sides unfold to `∃ k, evalLiteral a (c k) = true`. -/
+    sides unfold to `∃ k, evalLiteral a (c k) = true`.
+@isnad1 id=iff.0h3v.s4.a3d7dd724946 from=translated src=- shape=8b502f03 vocab=7b68a2de
+-/
 theorem clauseCoverable_iff_clauseSat (a : Assignment n) (c : Clause n) :
     clauseCoverable (fun k => evalLiteral a (c k)) ↔ clauseSat a c := by
   unfold clauseCoverable clauseSat; rfl
@@ -115,10 +123,14 @@ theorem clauseCoverable_iff_clauseSat (a : Assignment n) (c : Clause n) :
     `![false, true]` makes `a 1 = true` ⟹ slot-1 literal `(1, true)` evaluates true ⟹ coverable;
     `![false, false]` makes every literal false ⟹ NOT coverable. -/
 
-/-- SAT lock: `a = ![false, true]` covers the clause via the `x₁` slot. -/
+/-- SAT lock: `a = ![false, true]` covers the clause via the `x₁` slot.
+@isnad1 id=clauseco.0h0v.s5.12800fc7d9cc from=translated src=- shape=d6786e7d vocab=68cbd819
+-/
 theorem lockSat : clauseCoverable (fun k => evalLiteral ![false, true] (cSat k)) := by decide
 
-/-- UNSAT lock: `a = ![false, false]` leaves every slot-tip consumed — not coverable. -/
+/-- UNSAT lock: `a = ![false, false]` leaves every slot-tip consumed — not coverable.
+@isnad1 id=not.0h0v.s5.54d4c46a6b63 from=translated src=- shape=214dd1ab vocab=b0acb403
+-/
 theorem lockUnsat : ¬ clauseCoverable (fun k => evalLiteral ![false, false] (cSat k)) := by decide
 
 /-! ### Axiom audit.

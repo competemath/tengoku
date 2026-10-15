@@ -39,7 +39,9 @@ noncomputable def nnDistC (c : ℤ → ℝ) (N q : ℕ) : ℝ :=
     ((Finset.range (N + 1)).erase q).inf' h (fun j => c ((q : ℤ) - (j : ℤ))) else 0
 
 /-- **Generic isometry reduction.** For a symmetric cost `c`, the gap value equals the
-nearest-neighbour distance, via the value-preserving offset bijection `j ↦ |q − j|`. -/
+nearest-neighbour distance, via the value-preserving offset bijection `j ↦ |q − j|`.
+@isnad1 id=eq.3h3v.s5.47ef8863cec1 from=translated src=- shape=440c1a18 vocab=c5accb60
+-/
 theorem gapVal_eq_nnDistC (c : ℤ → ℝ) (hsymm : ∀ t : ℤ, c (-t) = c t) {N : ℕ} (hN : 2 ≤ N)
     {q : ℕ} (hq : q ≤ N) : gapVal (fun n => c (n : ℤ)) N q = nnDistC c N q := by
   have hIcc : (Finset.Icc 1 (max q (N - q))).Nonempty := by
@@ -105,7 +107,9 @@ any
 `α : Fin 2 → ℝ` with an irrational coordinate and `N ≥ 2`, the orbit `{0, α, …, Nα}` has at most
 **six**
 distinct nearest-neighbour distances in the Euclidean metric. (The sharp `≤ 5` needs Romanov's `K =
-4`.) -/
+4`.)
+@isnad1 id=le.2h3v.s6.2df627a87067 from=translated src=- shape=3a355db3 vocab=496cf482
+-/
 theorem nnDistE_count_le (α : Fin 2 → ℝ) {k₀ : Fin 2} (hirr : Irrational (α k₀)) {N : ℕ}
     (hN : 2 ≤ N) : ((Finset.range (N + 1)).image (nnDistE α N)).card ≤ 6 := by
   have hsymm : ∀ t : ℤ, deltaN (euclNorm 2) α (-t) = deltaN (euclNorm 2) α t :=

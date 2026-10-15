@@ -44,10 +44,16 @@ abbrev rwTargetPt {f g : C(X, Y)} (point : X) (gf : g = f) :
     PointedTopCat.of point ⟶ PointedTopCat.of (f point) :=
   Under.homMk (TopCat.ofHom g)
 
+/--
+@isnad1 id=eq.1h5v.s7.72ceb0526fce from=translated src=- shape=9e16377e vocab=640084dd
+-/
 lemma toFun_rwTargetPt {f g : C(X, Y)} (point : X) (gf : g = f) :
     (rwTargetPt point gf).right.hom.toFun = g :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.bf24ff58b4b0 from=translated src=- shape=84a36913 vocab=766054cc
+-/
 lemma rwTargetPt_eq {f g : C(X, Y)} (point : X) (gf : g = f) :
     rwTargetPt point gf = ofHom f point := by
   simp_all
@@ -68,10 +74,16 @@ abbrev rwTargetPt {X Y : TopCat.{u}} {f g : X ⟶ Y} (point : X) (gf : g = f) :
     PointedTopCat.of point ⟶ PointedTopCat.of (f point) :=
   Under.homMk g
 
+/--
+@isnad1 id=eq.1h5v.s9.b6bea995a809 from=translated src=- shape=0386c33a vocab=dcbe7482
+-/
 lemma toFun_rwTargetPt {X Y : TopCat.{u}} {f g : X ⟶ Y} (point : X) (gf : g = f) :
     (rwTargetPt point gf).right.hom.toFun = g :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s7.f5adba218d19 from=translated src=- shape=bf71fc8e vocab=5bc8a693
+-/
 lemma rwTargetPt_eq {X Y : TopCat.{u}} {f g : X ⟶ Y} (point : X) (gf : g = f) :
     rwTargetPt point gf = ofHom' f point := by
   simp_all
@@ -84,7 +96,9 @@ abbrev as (X : PointedTopCat.{u}) : TopCat.{u} := X.right
 /-- The distinguished piont of a pointed topological space -/
 abbrev point (X : PointedTopCat.{u}) : X.as := (TopCat.Hom.hom X.hom) PUnit.unit
 
-/-- A morphism between pointed topological spaces maps the base point to the base point. -/
+/-- A morphism between pointed topological spaces maps the base point to the base point.
+@isnad1 id=eq.0h3v.s7.c074638ae71a from=translated src=- shape=42038cb1 vocab=a686241d
+-/
 lemma w {X Y : PointedTopCat.{u}} (f : X ⟶ Y) : f.right X.point = Y.point := by
   change (TopCat.Hom.hom (X.hom ≫ f.right)) _ = _
   rw [Under.w]
@@ -94,18 +108,27 @@ lemma _root_.TopCat.isIso_of_isHomeomorph
   let e : TopCat.of X ≅ TopCat.of Y := TopCat.isoOfHomeo (IsHomeomorph.homeomorph f hf)
   ⟨e.inv, ⟨e.hom_inv_id, e.inv_hom_id⟩⟩
 
+/--
+@isnad1 id=isiso.1h4v.s6.ca9b004ee255 from=translated src=- shape=83ea3ac6 vocab=0f2da093
+-/
 lemma isIso_of_isHomeomorph
     (f : C(X, Y)) (point : X) (hf : IsHomeomorph f) : IsIso (PointedTopCat.ofHom f point) :=
   let e : TopCat.of X ≅ TopCat.of Y := TopCat.isoOfHomeo (IsHomeomorph.homeomorph f hf)
   let E : PointedTopCat.of point ≅ PointedTopCat.of (f point) := Under.isoMk e
   ⟨E.inv, ⟨E.hom_inv_id, E.inv_hom_id⟩⟩
 
+/--
+@isnad1 id=eq.0h6v.s7.02ba71eafc3b from=translated src=- shape=c128de2c vocab=f588bcb0
+-/
 lemma ofHom_comp (f : C(X, Y)) (g : C(Y, Z)) (point : X) :
     ofHom (g.comp f) point = (ofHom f point) ≫ (ofHom g (f point)) := by
   unfold ofHom
   simp only [ContinuousMap.comp_apply, TopCat.ofHom_comp]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.36be6529d191 from=translated src=- shape=9c7d1872 vocab=89855608
+-/
 lemma ofHom'_comp {X Y Z : TopCat.{u}} (f : X ⟶ Y) (g : Y ⟶ Z) (point : X) :
     ofHom' (f ≫ g) point = (ofHom' f point) ≫ (ofHom' g (f point)) := by
   unfold ofHom'
@@ -116,6 +139,9 @@ end PointedTopCat
 
 namespace Pointed
 
+/--
+@isnad1 id=iff.0h5v.s7.10e4f4072ada from=translated src=- shape=961834aa vocab=f3677f5a
+-/
 lemma isIso_iff_bijective {A B : Type u} {a₀ : A} {b₀ : B}
     (f : Pointed.of a₀ ⟶ Pointed.of b₀) : IsIso f ↔ Function.Bijective f := by
   constructor
@@ -149,10 +175,16 @@ abbrev rwTargetPt {X Y : Type u} (point : X) {f g : X → Y} (gf : g = f) :
     of point ⟶ of (f point) :=
   ⟨g, by rw [gf]⟩
 
+/--
+@isnad1 id=eq.1h5v.s5.b22014c4fb7c from=translated src=- shape=42e1b19d vocab=61ba3b90
+-/
 lemma toFun_rwTargetPt {X Y : Type u} (point : X) {f g : X → Y} (gf : g = f) :
     (rwTargetPt point gf).toFun = g :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s5.be4efd7b17ce from=translated src=- shape=e64bd361 vocab=62e570d3
+-/
 lemma rwTargetPt_eq {X Y : Type u} (point : X) {f g : X → Y} (gf : g = f) :
     rwTargetPt point gf = ⟨f, rfl⟩ := by
   simp_all
@@ -203,6 +235,9 @@ def inducedMap' (n : ℕ) {X Y : PointedTopCat} (f : X ⟶ Y) :
   Quotient.map (GenLoop.inducedMap' n f) fun {α β} hαβ ↦ by
     exact inducedMap'_respects n f (α := α) (β := β) hαβ
 
+/--
+@isnad1 id=eq.0h4v.s6.cf2aa036168a from=translated src=- shape=b298d9b6 vocab=bc6b2dc2
+-/
 lemma inducedMap'_default (n : ℕ) {X Y : PointedTopCat} (f : X ⟶ Y) :
     inducedMap' n f (default : π_ n X.as X.point) = (default : π_ n Y.as Y.point) := by
   change inducedMap' n f ⟦GenLoop.const⟧ = ⟦GenLoop.const⟧
@@ -228,6 +263,9 @@ abbrev rwTargetPt (n : ℕ) {f g : C(X, Y)} (x : X) (gf : g = f) :
     π_ n X x → π_ n Y (f x) :=
   inducedMap' n (PointedTopCat.Hom.rwTargetPt x gf)
 
+/--
+@isnad1 id=eq.1h6v.s6.4106547ceb02 from=translated src=- shape=908a82fb vocab=adc89237
+-/
 lemma rwTargetPt_eq (n : ℕ) {f g : C(X, Y)} (x : X) (gf : g = f) :
     rwTargetPt n x gf = inducedMap n x f := by
   rw [rwTargetPt, PointedTopCat.Hom.rwTargetPt_eq]
@@ -292,6 +330,9 @@ noncomputable abbrev inducedPointedHom' (n : ℕ) {X Y : TopCat.{u}} (x₀ : X) 
     Pointed.of (default : π_ n X x₀) ⟶ Pointed.of (default : π_ n Y (f x₀)) :=
   (functorToPointed n).map (PointedTopCat.ofHom' f x₀)
 
+/--
+@isnad1 id=eq.0h5v.s8.0a92b5232cd1 from=translated src=- shape=b5d85b57 vocab=4084e1f2
+-/
 lemma inducedPointedHom'_eq_inducedPointedHom
     (n : ℕ) {X Y : TopCat.{u}} (x₀ : X) (f : X ⟶ Y) :
     inducedPointedHom' n x₀ f = inducedPointedHom n x₀ f.hom :=
@@ -310,12 +351,18 @@ noncomputable abbrev rwTargetPt (n : ℕ) {f g : C(X, Y)} (x₀ : X) (gf : g = f
     Pointed.of (default : π_ n X x₀) ⟶ Pointed.of (default : π_ n Y (f x₀)) :=
   (functorToPointed n).map (PointedTopCat.Hom.rwTargetPt x₀ gf)
 
+/--
+@isnad1 id=eq.1h6v.s7.e852fcd98a4f from=translated src=- shape=41c9de0d vocab=82bc6cef
+-/
 lemma toFun_rwTargetPt
      (n : ℕ) {f g : C(X, Y)} (x₀ : X) (gf : g = f) :
     (rwTargetPt n x₀ gf).toFun =
     inducedMap.rwTargetPt n x₀ gf := by
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s7.2dfedff907ff from=translated src=- shape=98c1ec0f vocab=6b78b0d1
+-/
 lemma rwTargetPt_eq (n : ℕ) {f g : C(X, Y)} (x₀ : X) (gf : g = f) :
     rwTargetPt n x₀ gf = inducedPointedHom n x₀ f := by
   simp_all
@@ -337,12 +384,18 @@ noncomputable abbrev rwTargetPt
     Pointed.of (default : π_ n X x₀) ⟶ Pointed.of (default : π_ n Y (f x₀)) :=
   (functorToPointed n).map (PointedTopCat.Hom'.rwTargetPt x₀ gf)
 
+/--
+@isnad1 id=eq.1h6v.s9.fb189e9e2a27 from=translated src=- shape=7f661a8d vocab=b5b84c35
+-/
 lemma toFun_rwTargetPt
     (n : ℕ) {X Y : TopCat.{u}} (x₀ : X) {f g : X ⟶ Y} (gf : g = f) :
     (rwTargetPt n x₀ gf).toFun =
     inducedMap.rwTargetPt n x₀ (congr_arg TopCat.Hom.hom gf) := by
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.59e644b74e5a from=translated src=- shape=d986b1c5 vocab=0abc2d58
+-/
 lemma rwTargetPt_eq
     (n : ℕ) {X Y : TopCat.{u}} (x₀ : X) {f g : X ⟶ Y} (gf : g = f) :
     rwTargetPt n x₀ gf = inducedPointedHom' n x₀ f := by
@@ -350,12 +403,18 @@ lemma rwTargetPt_eq
 
 end inducedPointedHom'
 
+/--
+@isnad1 id=isiso.1h5v.s7.025bac11bbfa from=translated src=- shape=27018044 vocab=27799cf1
+-/
 lemma isIso_inducedPointedHom_of_isHomeomorph (n : ℕ) (x₀ : X) (f : C(X, Y))
     (hf : IsHomeomorph f) : IsIso (inducedPointedHom n x₀ f) := by
   unfold inducedPointedHom
   have : IsIso (PointedTopCat.ofHom f x₀) := PointedTopCat.isIso_of_isHomeomorph f _ hf
   exact Functor.map_isIso (functorToPointed n) (PointedTopCat.ofHom f x₀)
 
+/--
+@isnad1 id=eq.0h7v.s8.7d37cc62e61f from=translated src=- shape=eac62c9e vocab=479aace5
+-/
 lemma inducedPointedHom_comp (n : ℕ) (x₀ : X) (f : C(X, Y)) (g : C(Y, Z)) :
     inducedPointedHom n x₀ (g.comp f) =
     inducedPointedHom n x₀ f ≫ inducedPointedHom n (f x₀) g := by
@@ -363,6 +422,9 @@ lemma inducedPointedHom_comp (n : ℕ) (x₀ : X) (f : C(X, Y)) (g : C(Y, Z)) :
   rw [PointedTopCat.ofHom_comp]
   exact (functorToPointed n).map_comp _ _
 
+/--
+@isnad1 id=eq.1h8v.s9.eb7c404b7761 from=translated src=- shape=09ea2c91 vocab=768dce19
+-/
 lemma inducedPointedHom_comp_isoTarget_eq_comp (n : ℕ) (x₀ : X)
     {h : C(X, Z)} {f : C(X, Y)} {g : C(Y, Z)} (hgf : h = g.comp f) :
     inducedPointedHom n x₀ h ≫ (inducedPointedHom.isoTarget n x₀ hgf).hom =
@@ -371,12 +433,18 @@ lemma inducedPointedHom_comp_isoTarget_eq_comp (n : ℕ) (x₀ : X)
   subst hgf
   simp only [ContinuousMap.comp_apply, Iso.refl_hom, Category.comp_id]
 
+/--
+@isnad1 id=eq.1h8v.s8.88feeba7f7d4 from=translated src=- shape=7e39e64f vocab=113b1f13
+-/
 lemma inducedPointedHom_eq_comp_of_eq_comp (n : ℕ) (x₀ : X)
     {h : C(X, Z)} {f : C(X, Y)} {g : C(Y, Z)} (hgf : h = g.comp f) :
     inducedPointedHom.rwTargetPt n x₀ hgf =
     inducedPointedHom n x₀ f ≫ inducedPointedHom n (f x₀) g := by
   rw [inducedPointedHom.rwTargetPt_eq, inducedPointedHom_comp]
 
+/--
+@isnad1 id=eq.0h7v.s10.a5da02cf37bc from=translated src=- shape=42ac9b5d vocab=4262a7b4
+-/
 lemma inducedPointedHom'_comp (n : ℕ) {X Y Z : TopCat.{u}} (x₀ : X) (f : X ⟶ Y) (g : Y ⟶ Z) :
     inducedPointedHom' n x₀ (f ≫ g) =
     inducedPointedHom' n x₀ f ≫ inducedPointedHom' n (f x₀) g := by
@@ -384,6 +452,9 @@ lemma inducedPointedHom'_comp (n : ℕ) {X Y Z : TopCat.{u}} (x₀ : X) (f : X �
   rw [PointedTopCat.ofHom'_comp]
   exact (functorToPointed n).map_comp _ _
 
+/--
+@isnad1 id=eq.1h8v.s11.525994983356 from=translated src=- shape=334d7338 vocab=59b0082a
+-/
 lemma inducedPointedHom'_comp_isoTarget_eq_comp (n : ℕ) {X Y Z : TopCat.{u}} (x₀ : X)
     {h : X ⟶ Z} {f : X ⟶ Y} {g : Y ⟶ Z} (hfg : h = f ≫ g) :
     inducedPointedHom' n x₀ h ≫ (inducedPointedHom'.isoTarget n x₀ hfg).hom =
@@ -392,6 +463,9 @@ lemma inducedPointedHom'_comp_isoTarget_eq_comp (n : ℕ) {X Y Z : TopCat.{u}} (
   subst hfg
   simp only [TopCat.hom_comp, ContinuousMap.comp_apply, Iso.refl_hom, Category.comp_id]
 
+/--
+@isnad1 id=eq.1h8v.s10.2291497b1f38 from=translated src=- shape=1487ff76 vocab=85ae8826
+-/
 lemma inducedPointedHom'_eq_comp_of_eq_comp (n : ℕ) {X Y Z : TopCat.{u}} (x₀ : X)
     {h : X ⟶ Z} {f : X ⟶ Y} {g : Y ⟶ Z} (hfg : h = f ≫ g) :
     inducedPointedHom'.rwTargetPt n x₀ hfg =

@@ -31,34 +31,49 @@ variable {𝕜 : Type*} [Semiring 𝕜] {V : Type*} [AddCommGroup V] [Module �
 def commutator (A B : V →ₗ[𝕜] V) : V →ₗ[𝕜] V :=
   A * B - B * A
 
-/-- `[A,B] = -[B,A]` -/
+/-- `[A,B] = -[B,A]`
+@isnad1 id=eq.0h4v.s7.8c5c4d41c2c7 from=translated src=- shape=fbbffe11 vocab=22dea650
+-/
 lemma commutator_comm (A B : V →ₗ[𝕜] V) :
     A.commutator B = - B.commutator A := by
   simp [LinearMap.commutator]
 
+/--
+@isnad1 id=eq.0h4v.s8.c84c0151da2b from=translated src=- shape=ae472ae6 vocab=7d009844
+-/
 lemma mul_eq_mul_add_commutator (A B : V →ₗ[𝕜] V) :
     A * B = B * A + A.commutator B := by
   simp [LinearMap.commutator]
 
-/-- `[AB,C] = A[B,C] + [A,C]B` -/
+/-- `[AB,C] = A[B,C] + [A,C]B`
+@isnad1 id=eq.0h5v.s8.89245eba9abe from=translated src=- shape=33d5f8d3 vocab=7d009844
+-/
 lemma commutator_pair (A B C : V →ₗ[𝕜] V) :
     (A * B).commutator C = A * B.commutator C + A.commutator C * B := by
   calc  A * B * C - C * (A * B)
     _ = A * B * C - A * C * B + A * C * B - C * A * B     := by simp [← mul_assoc]
     _ = A * (B * C - C * B) + (A * C - C * A) * B         := by simp [mul_sub, sub_mul, ← mul_assoc]
 
-/-- `[A,BC] = B[A,C] + [A,B]C` -/
+/-- `[A,BC] = B[A,C] + [A,B]C`
+@isnad1 id=eq.0h5v.s8.ee327268bf8b from=translated src=- shape=9efd0333 vocab=7d009844
+-/
 lemma commutator_pair' (A B C : V →ₗ[𝕜] V) :
     A.commutator (B * C) = B * A.commutator C + A.commutator B * C := by
   calc  A * (B * C) - B * C * A
     _ = A * B * C - B * A * C + B * A * C - B * C * A     := by simp [← mul_assoc]
     _ = B * (A * C - C * A) + (A * B - B * A) * C         := by simp [mul_sub, sub_mul, ← mul_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s9.cb747e562bfe from=translated src=- shape=1f609949 vocab=e0869636
+-/
 @[simp] lemma commutator_smul_one {𝕜 : Type*} [Field 𝕜] (V : Type*) [AddCommGroup V] [Module 𝕜 V]
     (A : V →ₗ[𝕜] V) (c : 𝕜) :
     A.commutator (c • 1) = 0 := by
   simp [LinearMap.commutator]
 
+/--
+@isnad1 id=eq.0h4v.s9.649de6ea921a from=translated src=- shape=e3f91bce vocab=e0869636
+-/
 @[simp] lemma smul_one_commutator {𝕜 : Type*} [Field 𝕜] (V : Type*) [AddCommGroup V] [Module 𝕜 V]
     (A : V →ₗ[𝕜] V) (c : 𝕜) :
     (c • 1 : V →ₗ[𝕜] V).commutator A = 0 := by

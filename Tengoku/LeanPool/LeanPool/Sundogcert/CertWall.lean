@@ -74,14 +74,18 @@ noncomputable def minCosetWeight {m n : ℕ} (H : Matrix (Fin m) (Fin n) F)
   sInf {w | ∃ e' : Fin n → F, H *ᵥ e' = z ∧ wt e' = w}
 
 omit [Fintype F] in
-/-- The witness set of a body's own syndrome is always nonempty (the body itself qualifies). -/
+/-- The witness set of a body's own syndrome is always nonempty (the body itself qualifies).
+@isnad1 id=nonempty.0h5v.s6.4eea55afa1d5 from=translated src=- shape=dfa83a13 vocab=339bd33e
+-/
 theorem minCosetWeight_set_nonempty {m n : ℕ} (H : Matrix (Fin m) (Fin n) F)
     (y : Fin n → F) :
     {w | ∃ e' : Fin n → F, H *ᵥ e' = H *ᵥ y ∧ wt e' = w}.Nonempty :=
   ⟨wt y, y, rfl, rfl⟩
 
 /-- `Safe S y` is exactly "`minCosetWeight` of the body's syndrome is `≤ τ`" — the bridge that
-    makes `minCosetWeight` the genuine semantic target of the verifier. -/
+    makes `minCosetWeight` the genuine semantic target of the verifier.
+@isnad1 id=iff.0h3v.s6.18e936030ac3 from=translated src=- shape=2ad4562c vocab=0ff95475
+-/
 theorem safe_iff_minCosetWeight_le (S : Scheme F) (y : Fin S.n → F) :
     Safe S y ↔ minCosetWeight S.H (S.H *ᵥ y) ≤ S.τ := by
   unfold Safe minCosetWeight
@@ -100,7 +104,9 @@ theorem safe_iff_minCosetWeight_le (S : Scheme F) (y : Fin S.n → F) :
 
 omit [Fintype F] [DecidableEq F] in
 /-- The coset is preserved by a row-equivalent parity check `M * H` (`M` invertible): `e'` has
-    `M*H`-syndrome `(M*H) y` iff it has `H`-syndrome `H y`. -/
+    `M*H`-syndrome `(M*H) y` iff it has `H`-syndrome `H y`.
+@isnad1 id=iff.0h7v.s8.afffb3f8f547 from=translated src=- shape=a76c71c6 vocab=f674356a
+-/
 theorem mulVec_eq_iff_of_invertible {m n : ℕ} (M : Matrix (Fin m) (Fin m) F) [Invertible M]
     (H : Matrix (Fin m) (Fin n) F) (e' y : Fin n → F) :
     (M * H) *ᵥ e' = (M * H) *ᵥ y ↔ H *ᵥ e' = H *ᵥ y := by
@@ -114,7 +120,9 @@ theorem mulVec_eq_iff_of_invertible {m n : ℕ} (M : Matrix (Fin m) (Fin m) F) [
 omit [Fintype F] in
 /-- **CODE-INVARIANCE (the meaningful theorem).**  A change of parity-check basis (left-multiply
     `H` by an invertible `M`) leaves the minimum coset weight unchanged on the corresponding
-    syndrome.  The true decoding distance is a CODE invariant — it cannot see the basis. -/
+    syndrome.  The true decoding distance is a CODE invariant — it cannot see the basis.
+@isnad1 id=eq.0h6v.s7.6a4fc7aac9dd from=translated src=- shape=1ff0daaf vocab=313b8f0d
+-/
 theorem minCosetWeight_rowEquiv {m n : ℕ} (M : Matrix (Fin m) (Fin m) F) [Invertible M]
     (H : Matrix (Fin m) (Fin n) F) (y : Fin n → F) :
     minCosetWeight (M * H) ((M * H) *ᵥ y) = minCosetWeight H (H *ᵥ y) := by
@@ -133,7 +141,9 @@ theorem minCosetWeight_rowEquiv {m n : ℕ} (M : Matrix (Fin m) (Fin m) F) [Inve
     but `colWeightLb` is `m` under the sparse `projScheme` and `0` under the dense `denseScheme`
     — while the code-invariant `minCosetWeight` stays `≥ m` on both. -/
 
-/-- `colWeightLb` on the sparse projection scheme equals the true distance `m`. -/
+/-- `colWeightLb` on the sparse projection scheme equals the true distance `m`.
+@isnad1 id=eq.1h1v.s7.04fd156673e5 from=translated src=- shape=a75209ea vocab=beb7f54d
+-/
 theorem colWeightLb_projScheme_eq (m : ℕ) (hm : 0 < m) :
     colWeightLb (projScheme m) ((projScheme m).H *ᵥ allOnesSynBody m) = m := by
   unfold colWeightLb
@@ -142,7 +152,9 @@ theorem colWeightLb_projScheme_eq (m : ℕ) (hm : 0 < m) :
 
 /-- The all-ones body has Hamming weight `≤ m`: its support sits inside the first `m`
     coordinates of `Fin (2*m)`, which inject into `Fin m`.  (Used to cap `minCosetWeight` from
-    above — the all-ones body is a coset witness of weight `≤ m`.) -/
+    above — the all-ones body is a coset witness of weight `≤ m`.)
+@isnad1 id=le.1h1v.s5.54b6e8daf1cb from=translated src=- shape=f6ed6eb8 vocab=7259446b
+-/
 theorem wt_allOnesSynBody_le (m : ℕ) (hm : 0 < m) : wt (allOnesSynBody m) ≤ m := by
   rw [wt, hammingNorm]
   -- support ⊆ {j | (j:ℕ) < m}; map j ↦ ⟨j.val % m, _⟩ : Fin m injectively into univ.
@@ -164,7 +176,9 @@ theorem wt_allOnesSynBody_le (m : ℕ) (hm : 0 < m) : wt (allOnesSynBody m) ≤ 
   exact hbound
 
 /-- The dense scheme's all-ones body has true min coset weight `≥ m` — the SAME code is unsafe
-    at `τ = m-1`, so no coset witness has weight `≤ m-1`.  (Code-invariant.) -/
+    at `τ = m-1`, so no coset witness has weight `≤ m-1`.  (Code-invariant.)
+@isnad1 id=le.1h1v.s8.77cd6621d928 from=translated src=- shape=0189eb64 vocab=2d3d47a7
+-/
 theorem minCosetWeight_denseScheme_ge (m : ℕ) (hm : 2 ≤ m) :
     m ≤ minCosetWeight (denseScheme m).H ((denseScheme m).H *ᵥ allOnesSynBody m) := by
   by_contra h
@@ -181,7 +195,9 @@ theorem minCosetWeight_denseScheme_ge (m : ℕ) (hm : 2 ≤ m) :
 /-- **`colWeightLb` is BASIS-DEPENDENT (the typed looseness).**  There is a code (the `[2m,m]`
     family, `m ≥ 2`) and a syndrome on which two parity-check bases of THAT code give different
     `colWeightLb` — `m` on the sparse basis, `0` on the dense one.  So `colWeightLb` is NOT a
-    code invariant; it cannot be the decoding distance on every basis. -/
+    code invariant; it cannot be the decoding distance on every basis.
+@isnad1 id=ne.1h1v.s8.5864d1b5e19c from=translated src=- shape=ee8bce92 vocab=720d1bb6
+-/
 theorem colWeightLb_not_basis_invariant (m : ℕ) (hm : 2 ≤ m) :
     colWeightLb (projScheme m) ((projScheme m).H *ᵥ allOnesSynBody m) ≠
       colWeightLb (denseScheme m) ((denseScheme m).H *ᵥ allOnesSynBody m) := by
@@ -202,7 +218,9 @@ def TightAt {m n : ℕ} (H : Matrix (Fin m) (Fin n) F) (lb : (Fin m → F) → �
     cheap evaluation decides the imported-hard decoding question.  This is the HONEST typing of
     "a cheap, basis-robust, tight bound is a decoder": the conclusion is decoding, reached ONLY
     under the tightness HYPOTHESIS; nothing here discharges that hypothesis, so NO
-    hardness/P≠NP/one-wayness claim is made. -/
+    hardness/P≠NP/one-wayness claim is made.
+@isnad1 id=eq.1h4v.s7.7a80539a2062 from=translated src=- shape=6eb8d3ae vocab=7b9dacdf
+-/
 theorem tight_bound_decodes (S : Scheme F) (V : Verifier S) (y : Fin S.n → F)
     (hTight : TightAt S.H V.lb (S.H *ᵥ y)) :
     V.lb (S.H *ᵥ y) = minCosetWeight S.H (S.H *ᵥ y) :=
@@ -213,7 +231,9 @@ theorem tight_bound_decodes (S : Scheme F) (V : Verifier S) (y : Fin S.n → F)
     but on the dense row-equivalent basis of the SAME code it is `0 ≠ minCosetWeight` (which is
     `≥ m`).  So `colWeightLb` is NOT a basis-robust tight bound — exactly the gap the imported
     hardness lives in.  (No claim that NO cheap bound could be tight everywhere — that WOULD be a
-    decoder, which stays an imported assumption.) -/
+    decoder, which stays an imported assumption.)
+@isnad1 id=and.1h1v.s9.8b0bd2948163 from=translated src=- shape=694d34f8 vocab=8975c65f
+-/
 theorem colWeightLb_cannot_be_tight_basisRobust (m : ℕ) (hm : 2 ≤ m) :
     TightAt (projScheme m).H (colWeightLb (projScheme m))
         ((projScheme m).H *ᵥ allOnesSynBody m) ∧

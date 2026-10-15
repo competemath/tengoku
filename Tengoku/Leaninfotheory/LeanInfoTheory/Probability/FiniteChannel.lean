@@ -75,20 +75,26 @@ def channelExtension {alpha : Type u} {beta : Type v} {gamma : Type w}
 
 /-! ## Pointwise laws -/
 
-/-- A deterministic channel returns the pure law at the function value. -/
+/-- A deterministic channel returns the pure law at the function value.
+@isnad1 id=eq.0h4v.s4.728b5dc623a2 from=translated src=- shape=19e7ca82 vocab=ea3e5ef3
+-/
 @[simp]
 theorem deterministicChannel_apply {alpha : Type u} {beta : Type v}
     (f : alpha -> beta) (a : alpha) :
     deterministicChannel f a = PMF.pure (f a) :=
   rfl
 
-/-- Pointwise mass formula for channel composition. -/
+/-- Pointwise mass formula for channel composition.
+@isnad1 id=eq.0h7v.s6.0d3199fd6fa1 from=translated src=- shape=fd3badb0 vocab=2646986b
+-/
 theorem channelComp_apply {alpha : Type u} {beta : Type v} {gamma : Type w}
     (W : alpha -> PMF beta) (V : beta -> PMF gamma) (a : alpha) (c : gamma) :
     channelComp W V a c = ∑' b, W a b * V b c :=
   rfl
 
-/-- The induced joint mass factors as input mass times channel mass. -/
+/-- The induced joint mass factors as input mass times channel mass.
+@isnad1 id=eq.0h6v.s6.2951fb7de2be from=translated src=- shape=5cb05e03 vocab=dd2b6197
+-/
 @[simp]
 theorem channelJoint_apply {alpha : Type u} {beta : Type v}
     (p : PMF alpha) (W : alpha -> PMF beta) (a : alpha) (b : beta) :
@@ -104,7 +110,9 @@ theorem channelJoint_apply {alpha : Type u} {beta : Type v}
       exact ha' (congrArg Prod.fst hab)
     rw [PMF.map_apply_eq_zero_of_notMem_range (W a') hnot, mul_zero]
 
-/-- The extended triple mass factors as pair mass times channel mass. -/
+/-- The extended triple mass factors as pair mass times channel mass.
+@isnad1 id=eq.0h8v.s6.8e2ee4ed58d1 from=translated src=- shape=5bc099e7 vocab=d71686e4
+-/
 @[simp]
 theorem channelExtension_apply
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -124,7 +132,9 @@ theorem channelExtension_apply
 
 /-! ## Projection laws -/
 
-/-- The first projection of an induced joint law is its input law. -/
+/-- The first projection of an induced joint law is its input law.
+@isnad1 id=eq.0h4v.s4.d5dc1bf53eec from=translated src=- shape=ef21037a vocab=b827a516
+-/
 @[simp]
 theorem channelJoint_map_fst {alpha : Type u} {beta : Type v}
     (p : PMF alpha) (W : alpha -> PMF beta) :
@@ -145,7 +155,9 @@ theorem channelJoint_map_fst {alpha : Type u} {beta : Type v}
         _ = PMF.pure a := PMF.map_const (p := W a) (b := a)
     _ = p := PMF.bind_pure p
 
-/-- The second projection of an induced joint law is the channel output law. -/
+/-- The second projection of an induced joint law is the channel output law.
+@isnad1 id=eq.0h4v.s5.c3f4842874ae from=translated src=- shape=8a00105c vocab=1c925b60
+-/
 @[simp]
 theorem channelJoint_map_snd {alpha : Type u} {beta : Type v}
     (p : PMF alpha) (W : alpha -> PMF beta) :
@@ -165,7 +177,9 @@ theorem channelJoint_map_snd {alpha : Type u} {beta : Type v}
         _ = (W a).map id := rfl
         _ = W a := PMF.map_id (p := W a)
 
-/-- Projecting an extension to its original input pair recovers that pair law. -/
+/-- Projecting an extension to its original input pair recovers that pair law.
+@isnad1 id=eq.0h5v.s5.b3261b10a958 from=translated src=- shape=0d007a1a vocab=f6d7f714
+-/
 @[simp]
 theorem channelExtension_map_input {alpha : Type u} {beta : Type v}
     {gamma : Type w} (p : PMF (alpha × beta)) (V : beta -> PMF gamma) :
@@ -196,6 +210,7 @@ theorem channelExtension_map_input {alpha : Type u} {beta : Type v}
 /--
 Projecting an extension to the channel input-output pair gives the induced
 joint law of the original second marginal and the extending channel.
+@isnad1 id=eq.0h5v.s5.d366c66d394b from=translated src=- shape=d101640b vocab=870a243a
 -/
 @[simp]
 theorem channelExtension_map_outputPair
@@ -222,7 +237,9 @@ theorem channelExtension_map_outputPair
       (PMF.bind_map p Prod.snd (fun b => (V b).map fun c => (b, c))).symm
     _ = channelJoint (p.map Prod.snd) V := rfl
 
-/-- Projecting an extension to its new output gives the corresponding output law. -/
+/-- Projecting an extension to its new output gives the corresponding output law.
+@isnad1 id=eq.0h5v.s5.e0c24d64e7ee from=translated src=- shape=d1578b5f vocab=4921cdc2
+-/
 @[simp]
 theorem channelExtension_map_output {alpha : Type u} {beta : Type v}
     {gamma : Type w} (p : PMF (alpha × beta)) (V : beta -> PMF gamma) :
@@ -249,6 +266,7 @@ theorem channelExtension_map_output {alpha : Type u} {beta : Type v}
 /--
 For a two-stage channel, projecting the generated triple to its endpoints gives
 the joint law induced by the composite channel.
+@isnad1 id=eq.0h6v.s6.79653f613eb4 from=translated src=- shape=76a53d13 vocab=f432777a
 -/
 @[simp]
 theorem channelExtension_map_endpoints
@@ -279,14 +297,18 @@ theorem channelExtension_map_endpoints
 
 /-! ## Channel algebra -/
 
-/-- Sending an input law through a composite channel is iterated `PMF.bind`. -/
+/-- Sending an input law through a composite channel is iterated `PMF.bind`.
+@isnad1 id=eq.0h6v.s5.a1d62422b36e from=translated src=- shape=4023e13e vocab=ca6f49be
+-/
 theorem bind_channelComp {alpha : Type u} {beta : Type v} {gamma : Type w}
     (p : PMF alpha) (W : alpha -> PMF beta) (V : beta -> PMF gamma) :
     p.bind (channelComp W V) = (p.bind W).bind V := by
   change p.bind (fun a => (W a).bind V) = (p.bind W).bind V
   exact (PMF.bind_bind p W V).symm
 
-/-- The pure channel is a left identity for channel composition. -/
+/-- The pure channel is a left identity for channel composition.
+@isnad1 id=eq.0h3v.s4.780f5d72dca6 from=translated src=- shape=03a4e5ae vocab=bb8f5e1f
+-/
 @[simp]
 theorem channelComp_pure_left {alpha : Type u} {beta : Type v}
     (W : alpha -> PMF beta) :
@@ -294,7 +316,9 @@ theorem channelComp_pure_left {alpha : Type u} {beta : Type v}
   funext a
   simp [channelComp]
 
-/-- The pure channel is a right identity for channel composition. -/
+/-- The pure channel is a right identity for channel composition.
+@isnad1 id=eq.0h3v.s4.ed67836f0958 from=translated src=- shape=6e83fd86 vocab=bb8f5e1f
+-/
 @[simp]
 theorem channelComp_pure_right {alpha : Type u} {beta : Type v}
     (W : alpha -> PMF beta) :
@@ -302,7 +326,9 @@ theorem channelComp_pure_right {alpha : Type u} {beta : Type v}
   funext a
   simp [channelComp]
 
-/-- Channel composition is associative. -/
+/-- Channel composition is associative.
+@isnad1 id=eq.0h7v.s5.a0b037916af0 from=translated src=- shape=422263a5 vocab=a1576606
+-/
 theorem channelComp_assoc
     {alpha : Type u} {beta : Type v} {gamma : Type w} {delta : Type x}
     (W : alpha -> PMF beta) (V : beta -> PMF gamma) (U : gamma -> PMF delta) :
@@ -312,14 +338,18 @@ theorem channelComp_assoc
 
 /-! ## Deterministic channels -/
 
-/-- Sending a law through a deterministic channel is `PMF.map`. -/
+/-- Sending a law through a deterministic channel is `PMF.map`.
+@isnad1 id=eq.0h4v.s4.0fb4e143d436 from=translated src=- shape=869b068a vocab=12472018
+-/
 @[simp]
 theorem bind_deterministicChannel {alpha : Type u} {beta : Type v}
     (p : PMF alpha) (f : alpha -> beta) :
     p.bind (deterministicChannel f) = p.map f :=
   rfl
 
-/-- A deterministic first stage evaluates the following channel at its image. -/
+/-- A deterministic first stage evaluates the following channel at its image.
+@isnad1 id=eq.0h5v.s5.1d5ef0472221 from=translated src=- shape=a19be3c3 vocab=542e183c
+-/
 @[simp]
 theorem channelComp_deterministic_left
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -328,7 +358,9 @@ theorem channelComp_deterministic_left
   funext a
   simp [channelComp, deterministicChannel]
 
-/-- A deterministic second stage maps each output law. -/
+/-- A deterministic second stage maps each output law.
+@isnad1 id=eq.0h5v.s5.e87276d75653 from=translated src=- shape=a874b232 vocab=a9f6c9df
+-/
 @[simp]
 theorem channelComp_deterministic_right
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -336,7 +368,9 @@ theorem channelComp_deterministic_right
     channelComp W (deterministicChannel f) = fun a => (W a).map f :=
   rfl
 
-/-- The joint law of a deterministic channel is the graph pushforward. -/
+/-- The joint law of a deterministic channel is the graph pushforward.
+@isnad1 id=eq.0h4v.s5.47f9e8f51a62 from=translated src=- shape=a7a9b7e8 vocab=614da56b
+-/
 @[simp]
 theorem channelJoint_deterministicChannel
     {alpha : Type u} {beta : Type v} (p : PMF alpha) (f : alpha -> beta) :
@@ -345,7 +379,9 @@ theorem channelJoint_deterministicChannel
   simp_rw [PMF.pure_map]
   rfl
 
-/-- Extending a pair law through a deterministic channel is its graph pushforward. -/
+/-- Extending a pair law through a deterministic channel is its graph pushforward.
+@isnad1 id=eq.0h5v.s6.3cb3732697b2 from=translated src=- shape=d2046290 vocab=dec9e3f4
+-/
 theorem channelExtension_deterministicChannel
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     (p : PMF (alpha × beta)) (f : beta -> gamma) :
@@ -357,7 +393,9 @@ theorem channelExtension_deterministicChannel
 
 /-! ## Support laws -/
 
-/-- An output lies in a composite channel's support through a supported intermediate atom. -/
+/-- An output lies in a composite channel's support through a supported intermediate atom.
+@isnad1 id=iff.0h7v.s6.c76f89b25e64 from=translated src=- shape=74a76b85 vocab=fce4ee6d
+-/
 @[simp]
 theorem mem_support_channelComp_iff
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -366,7 +404,9 @@ theorem mem_support_channelComp_iff
       ∃ b ∈ (W a).support, c ∈ (V b).support := by
   exact PMF.mem_support_bind_iff (W a) V c
 
-/-- A pair is supported by the induced joint law exactly when both stages support it. -/
+/-- A pair is supported by the induced joint law exactly when both stages support it.
+@isnad1 id=iff.0h6v.s6.f99e3275df8f from=translated src=- shape=48fc68ca vocab=612b1085
+-/
 @[simp]
 theorem mem_support_channelJoint_iff {alpha : Type u} {beta : Type v}
     (p : PMF alpha) (W : alpha -> PMF beta) (a : alpha) (b : beta) :
@@ -378,6 +418,7 @@ theorem mem_support_channelJoint_iff {alpha : Type u} {beta : Type v}
 Two channels induce the same joint law from an input PMF exactly when they
 agree on every supported input atom. Their values away from the input support
 are irrelevant.
+@isnad1 id=iff.0h5v.s5.0cc8f6f45354 from=translated src=- shape=e8e8784b vocab=dd2255e3
 -/
 theorem channelJoint_eq_iff_eq_on_support
     {alpha : Type u} {beta : Type v}
@@ -406,7 +447,9 @@ theorem channelJoint_eq_iff_eq_on_support
         exact ha ((p.mem_support_iff a).2 hne)
       rw [hzero, zero_mul, zero_mul]
 
-/-- A triple is supported by an extension exactly when its pair and new output are supported. -/
+/-- A triple is supported by an extension exactly when its pair and new output are supported.
+@isnad1 id=iff.0h8v.s6.dbe0fb4d62bc from=translated src=- shape=29003ed4 vocab=1c0205f5
+-/
 @[simp]
 theorem mem_support_channelExtension_iff
     {alpha : Type u} {beta : Type v} {gamma : Type w}

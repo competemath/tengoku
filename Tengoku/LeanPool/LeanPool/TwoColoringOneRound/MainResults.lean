@@ -39,6 +39,7 @@ noncomputable def pStar : ENNReal :=
 
 /--
 If `c` is a lower bound for `ClassicalAlgorithm.p` for *every* algorithm, then `c ≤ pStar`.
+@isnad1 id=le.1h1v.s4.d5bf1456a665 from=translated src=- shape=07dc892a vocab=e736a8e2
 -/
 theorem le_pStar_of_forall_le {c : ENNReal} (hc : ∀ alg : ClassicalAlgorithm, c ≤ alg.p) :
     c ≤ ClassicalAlgorithm.pStar := by
@@ -50,6 +51,7 @@ theorem le_pStar_of_forall_le {c : ENNReal} (hc : ∀ alg : ClassicalAlgorithm, 
 If there exists an algorithm achieving `p ≤ c`, then `pStar ≤ c`.
 
 In particular, any explicit construction gives an upper bound on `pStar`.
+@isnad1 id=le.1h1v.s4.e18eb4065dbb from=translated src=- shape=267ca4ab vocab=e736a8e2
 -/
 theorem pStar_le_of_exists_le {c : ENNReal} (hc : ∃ alg : ClassicalAlgorithm, alg.p ≤ c) :
     ClassicalAlgorithm.pStar ≤ c := by
@@ -64,16 +66,23 @@ end ClassicalAlgorithm
 The bridge step is `Distributed2Coloring.p_ge_23879` from `Distributed2Coloring/Reduction.lean`.
 -/
 
-/-- Every one-round algorithm has monochromatic-edge probability at least `0.23879`. -/
+/-- Every one-round algorithm has monochromatic-edge probability at least `0.23879`.
+@isnad1 id=le.0h0v.s4.c0a1f23fb761 from=translated src=- shape=53d5c5d8 vocab=ede3fe1b
+-/
 theorem pStar_ge_23879 :
     ENNReal.ofReal (23879 / 100000 : ℝ) ≤ ClassicalAlgorithm.pStar :=
   ClassicalAlgorithm.le_pStar_of_forall_le (fun alg => Distributed2Coloring.p_ge_23879 alg)
 
-/-- An explicit one-round algorithm achieves monochromatic-edge probability at most `0.24118`. -/
+/-- An explicit one-round algorithm achieves monochromatic-edge probability at most `0.24118`.
+@isnad1 id=le.0h0v.s4.2f06aba0de94 from=translated src=- shape=4f039536 vocab=ede3fe1b
+-/
 theorem pStar_le_24118 :
     ClassicalAlgorithm.pStar ≤ ENNReal.ofReal (24118 / 100000 : ℝ) :=
   ClassicalAlgorithm.pStar_le_of_exists_le Distributed2Coloring.exists_algorithm_p_le_24118
 
+/--
+@isnad1 id=lt.0h0v.s5.3ea9e12cee37 from=translated src=- shape=4f039536 vocab=229148ee
+-/
 theorem pStar_lt_24118 :
     ClassicalAlgorithm.pStar < ENNReal.ofReal (24118 / 100000 : ℝ) := by
   rcases UpperBound.Recursive3Param.exists_algorithm_p_lt with ⟨alg, hlt⟩

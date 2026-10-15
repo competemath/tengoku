@@ -18,6 +18,9 @@ section
 open Filter
 open scoped Topology
 
+/--
+@isnad1 id=iff.0h3v.s5.6f2cf1183387 from=translated src=- shape=64bc6088 vocab=9255f44e
+-/
 lemma DiscreteTopology.summable_iff_eventually_zero
     {E : Type*} [AddCommGroup E] [TopologicalSpace E] [DiscreteTopology E]
     {ι : Type*} (f : ι → E) :

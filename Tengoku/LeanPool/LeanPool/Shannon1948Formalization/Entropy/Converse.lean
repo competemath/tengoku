@@ -33,7 +33,9 @@ open Finset Real
 
 /-! ## Relabel invariance -/
 
-/-- Entropy is invariant under relabeling outcomes by an equivalence. -/
+/-- Entropy is invariant under relabeling outcomes by an equivalence.
+@isnad1 id=eq.0h4v.s5.d5a522c307d3 from=translated src=- shape=4e867029 vocab=12e2ce72
+-/
 theorem entropyNat_relabelInvariant
     {α β : Type} [Fintype α] [Fintype β]
     (e : α ≃ β) (p : ProbDist α) :
@@ -44,7 +46,9 @@ theorem entropyNat_relabelInvariant
 
 /-! ## Uniform monotonicity -/
 
-/-- Entropy on uniform distributions is strictly monotone in alphabet size. -/
+/-- Entropy on uniform distributions is strictly monotone in alphabet size.
+@isnad1 id=strictmo.0h0v.s4.4241a587c7da from=translated src=- shape=75350d54 vocab=5f83f5e0
+-/
 theorem entropyNat_uniformMonotone :
     StrictMono fun n : ℕ+ => entropyNat (uniformPNat n) := by
   intro m n hmn
@@ -53,7 +57,9 @@ theorem entropyNat_uniformMonotone :
 
 /-! ## Grouping -/
 
-/-- Two-stage decomposition: `H(compose p q) = H(p) + ∑ a, p(a) * H(q a)`. -/
+/-- Two-stage decomposition: `H(compose p q) = H(p) + ∑ a, p(a) * H(q a)`.
+@isnad1 id=eq.0h4v.s6.ea662de8d16b from=translated src=- shape=51570087 vocab=e1d529a7
+-/
 theorem entropyNat_grouping
     {α : Type} [Fintype α]
     {β : α → Type} [∀ a, Fintype (β a)]
@@ -89,7 +95,9 @@ theorem entropyNat_grouping
 This is the converse of the characterization: the characterization shows any `H`
 satisfying the conditions must be a positive multiple of `entropyNat`; this theorem
 shows `entropyNat` itself satisfies the conditions, proving the specification is
-consistent and completing the "if and only if". -/
+consistent and completing the "if and only if".
+@isnad1 id=shannone.0h0v.s3.a26ca5b09477 from=translated src=- shape=cf0b7ae2 vocab=dcccdbdb
+-/
 theorem entropyNat_shannonAxioms : ShannonEntropyAxioms (fun {α} [Fintype α] => entropyNat) where
   continuous := continuous_entropyNat
   uniformMonotone := entropyNat_uniformMonotone

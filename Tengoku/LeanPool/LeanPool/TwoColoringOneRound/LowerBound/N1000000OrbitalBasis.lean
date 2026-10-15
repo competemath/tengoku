@@ -63,6 +63,9 @@ def baseTuple : Tuple 3 n
   | ⟨1, _⟩ => s1
   | ⟨2, _⟩ => s2
 
+/--
+@isnad1 id=injectiv.0h0v.s3.e0be8008626d from=translated src=- shape=b032868b vocab=8de8f6b7
+-/
 theorem baseTuple_injective : Function.Injective baseTuple := by
   intro i j hij
   fin_cases i <;> fin_cases j <;> simp only [baseTuple] at hij <;> cases hij <;> rfl
@@ -92,6 +95,9 @@ abbrev OutsideSym := { x : SymN // outside x }
 def A (d : DirIdx) : Matrix V V Q :=
   fun u v => if dirMask v u = maskAt d then 1 else 0
 
+/--
+@isnad1 id=eq.0h3v.s5.38f448371e7a from=translated src=- shape=ce519a44 vocab=fe867003
+-/
 @[simp] theorem A_apply (d : DirIdx) (u v : V) :
     A d u v = (if dirMask v u = maskAt d then 1 else 0) := rfl
 

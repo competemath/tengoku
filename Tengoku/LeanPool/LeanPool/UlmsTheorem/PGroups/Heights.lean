@@ -56,7 +56,9 @@ section ReducedLemmas
 
 variable {G : Type*} [AddCommGroup G]
 
-/-- `G` is `p`-separable iff `⋂_n p^n·G = 0`. -/
+/-- `G` is `p`-separable iff `⋂_n p^n·G = 0`.
+@isnad1 id=iff.0h2v.s5.a9776a7e45e2 from=translated src=- shape=1cc205f7 vocab=a3a1bbbe
+-/
 lemma isPSeparable_iff_iInf :
     IsPSeparable p G ↔ (⨅ n : ℕ, pPow p (G := G) n) = ⊥ := by
   constructor
@@ -87,9 +89,15 @@ section HeightLemmas
 
 variable {G : Type*} [AddCommGroup G]
 
+/--
+@isnad1 id=eq.0h2v.s5.55a5d61888e7 from=translated src=- shape=92c2ec33 vocab=772ef45a
+-/
 @[simp] lemma pHeight_zero : pHeight p (0 : G) = ⊤ := by
   simp only [pHeight, ite_true]
 
+/--
+@isnad1 id=iff.0h4v.s6.7262eeab0547 from=translated src=- shape=4aac536e vocab=d0123dbe
+-/
 lemma pHeight_ge_iff (x : G) (n : ℕ) :
     (n : ℕ∞) ≤ pHeight p x ↔ ∃ y : G, p ^ n • y = x := by
   by_cases hx : x = 0
@@ -113,10 +121,16 @@ lemma pHeight_ge_iff (x : G) (n : ℕ) :
       apply le_sSup
       exact ⟨n, ⟨y, hy⟩, rfl⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.9141600849f9 from=translated src=- shape=01d5096c vocab=16a61cfd
+-/
 lemma pHeight_ge_iff_mem (x : G) (n : ℕ) :
     (n : ℕ∞) ≤ pHeight p x ↔ x ∈ pPow p n := by
   rw [pHeight_ge_iff, pPow_mem_iff]
 
+/--
+@isnad1 id=le.2h5v.s6.230e249a9bd5 from=translated src=- shape=b2f66b46 vocab=b005e8a7
+-/
 lemma pHeight_add_ge (x y : G) (n : ℕ)
     (hx : (n : ℕ∞) ≤ pHeight p x) (hy : (n : ℕ∞) ≤ pHeight p y) :
     (n : ℕ∞) ≤ pHeight p (x + y) := by
@@ -125,6 +139,9 @@ lemma pHeight_add_ge (x y : G) (n : ℕ)
   obtain ⟨b, hb⟩ := hy
   exact ⟨a + b, by rw [smul_add, ha, hb]⟩
 
+/--
+@isnad1 id=le.0h4v.s5.455fd142b7bc from=translated src=- shape=19ca4b16 vocab=c445a0c4
+-/
 lemma pHeight_add_ge_min (x y : G) :
     min (pHeight p x) (pHeight p y) ≤ pHeight p (x + y) := by
   by_cases hxy : pHeight p x ≥ pHeight p y
@@ -146,6 +163,9 @@ lemma pHeight_add_ge_min (x y : G) :
       pHeight_add_ge p x y n hn (le_trans hn (le_of_not_ge hxy))
     cases h : pHeight p x <;> aesop
 
+/--
+@isnad1 id=eq.1h4v.s6.a1a6bc7c23da from=translated src=- shape=2d004ca0 vocab=e7d22583
+-/
 lemma pHeight_add_eq_min_of_ne (x y : G) (h : pHeight p x ≠ pHeight p y) :
     pHeight p (x + y) = min (pHeight p x) (pHeight p y) := by
   wlog hx_lt_hy : pHeight p x < pHeight p y generalizing x y

@@ -49,26 +49,44 @@ def srcIndex (i : Fin 3) : Fin 4 :=
 def dstIndex (i : Fin 3) : Fin 4 :=
   ⟨i.1 + 1, Nat.succ_lt_succ i.2⟩
 
+/--
+@isnad1 id=eq.0h0v.s5.2aa3a4247bb2 from=translated src=- shape=30f7a560 vocab=324df941
+-/
 @[simp] lemma srcIndex_zero : srcIndex (0 : Fin 3) = (0 : Fin 4) := by
   ext
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s5.a0bc5d3c3b78 from=translated src=- shape=30f7a560 vocab=324df941
+-/
 @[simp] lemma srcIndex_one : srcIndex (1 : Fin 3) = (1 : Fin 4) := by
   ext
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s5.4045866fa611 from=translated src=- shape=30f7a560 vocab=324df941
+-/
 @[simp] lemma srcIndex_two : srcIndex (2 : Fin 3) = (2 : Fin 4) := by
   ext
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s5.ad2e504f02e4 from=translated src=- shape=30f7a560 vocab=1d2066f1
+-/
 @[simp] lemma dstIndex_zero : dstIndex (0 : Fin 3) = (1 : Fin 4) := by
   ext
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s5.4d16a4cbcd94 from=translated src=- shape=30f7a560 vocab=1d2066f1
+-/
 @[simp] lemma dstIndex_one : dstIndex (1 : Fin 3) = (2 : Fin 4) := by
   ext
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s5.ec61f9787c4c from=translated src=- shape=30f7a560 vocab=1d2066f1
+-/
 @[simp] lemma dstIndex_two : dstIndex (2 : Fin 3) = (3 : Fin 4) := by
   ext
   rfl
@@ -131,24 +149,35 @@ def edgeCorrSum {n : Nat} (f : Coloring n) : Int :=
 def edgeCorrelation {n : Nat} (f : Coloring n) : ℚ :=
   (edgeCorrSum f : ℚ) / (edgeCount n : ℚ)
 
+/--
+@isnad1 id=eq.0h3v.s4.14f45643bb42 from=translated src=- shape=b63190e2 vocab=70ffbf33
+-/
 lemma signOfColoring_sq {n : Nat} (f : Coloring n) (v : Vertex n) :
     (signOfColoring f v) * (signOfColoring f v) = 1 := by
   unfold signOfColoring
   by_cases h : f v <;> simp [h]
 
-/-- On an edge, being monochromatic is equivalent to having product `+1` in `±1`. -/
+/-- On an edge, being monochromatic is equivalent to having product `+1` in `±1`.
+@isnad1 id=iff.0h3v.s5.20591f16b3be from=translated src=- shape=2d2ad365 vocab=6f4509c1
+-/
 lemma mono_iff_sign_mul_eq_one {n : Nat} (f : Coloring n) (e : Edge n) :
     Edge.monochromatic f e ↔
       (signOfColoring f (Edge.src e)) * (signOfColoring f (Edge.dst e)) = 1 := by
   unfold Edge.monochromatic signOfColoring
   by_cases hs : f (Edge.src e) <;> by_cases ht : f (Edge.dst e) <;> simp [hs, ht]
 
+/--
+@isnad1 id=eq.0h3v.s6.238feb59951a from=translated src=- shape=9d603bf4 vocab=3b6a8e1c
+-/
 lemma monoIndicator_eq_one_add_sign_mul_div_two {n : Nat} (f : Coloring n) (e : Edge n) :
     (if Edge.monochromatic f e then (1 : ℚ) else 0)
       = ((1 : ℚ) + (signOfColoring f (Edge.src e) * signOfColoring f (Edge.dst e) : Int)) / 2 := by
   unfold Edge.monochromatic signOfColoring
   by_cases hs : f (Edge.src e) <;> by_cases ht : f (Edge.dst e) <;> simp [hs, ht]
 
+/--
+@isnad1 id=eq.1h2v.s5.fe89e055ea22 from=translated src=- shape=29c65119 vocab=ebd28f88
+-/
 lemma monoFraction_eq_one_add_edgeCorrelation_div_two {n : Nat} (f : Coloring n)
     (hE : edgeCount n ≠ 0) :
     monoFraction f = ((1 : ℚ) + edgeCorrelation f) / 2 := by

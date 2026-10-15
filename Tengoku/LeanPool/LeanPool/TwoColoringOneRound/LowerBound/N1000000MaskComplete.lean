@@ -115,6 +115,9 @@ private theorem mem_masks_block15 {m : Mask} (hlo : 480 ≤ m) (hhi : m < 512)
     m ∈ (masks.toList.toFinset : Finset Mask) := by
   interval_cases m <;> first | decide | exfalso; revert hperm; decide
 
+/--
+@isnad1 id=mem.2h1v.s5.e17df1f96f35 from=translated src=- shape=1d6a8ca5 vocab=731c9e8d
+-/
 theorem mem_masks_toFinset_of_isPartialPermMask {m : Mask} (hm : m < (1 <<< 9))
     (hperm : IsPartialPermMask m) : m ∈ (masks.toList.toFinset : Finset Mask) := by
   have hm' : m < 512 := by simpa using hm
@@ -150,8 +153,14 @@ theorem mem_masks_toFinset_of_isPartialPermMask {m : Mask} (hm : m < (1 <<< 9))
   · exact mem_masks_block14 (le_of_not_gt h13) h14 hperm
   exact mem_masks_block15 (le_of_not_gt h14) hm' hperm
 
+/--
+@isnad1 id=injectiv.0h0v.s2.2a1d6fdf99ae from=translated src=- shape=54c8eceb vocab=cb7017ae
+-/
 theorem maskAt_injective : Function.Injective (maskAt : DirIdx → Mask) := by decide
 
+/--
+@isnad1 id=ex.2h1v.s5.064ec8491ba1 from=translated src=- shape=143708a6 vocab=929c08fb
+-/
 theorem exists_dirIdx_of_isPartialPermMask {m : Mask} (hm : m < (1 <<< 9))
     (hperm : IsPartialPermMask m) : ∃ d : DirIdx, maskAt d = m := by
   classical

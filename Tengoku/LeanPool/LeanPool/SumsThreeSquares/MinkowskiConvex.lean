@@ -37,6 +37,9 @@ private lemma euclideanSpace_F_measurableSet :
   exact (MeasurableEquiv.toLp 2 (Fin n → ℝ)).measurableSet_image.mpr
     (MeasurableSet.univ_pi fun _ => measurableSet_Ico)
 
+/--
+@isnad1 id=ex.3h2v.s9.31736cb9e490 from=translated src=- shape=1decd84d vocab=93da5961
+-/
 theorem classical_exists_ne_zero_mem_lattice_of_measure_mul_two_pow_lt_measure
     (h_symm : ∀ x ∈ s, -x ∈ s) (h_conv : Convex ℝ s) (h : 2 ^ n < volume s) :
     ∃ x ≠ 0, (x ∈ s) ∧ (∀ i : Fin n, (∃ (m : ℤ), m = x i)) := by

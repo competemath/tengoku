@@ -17,7 +17,9 @@ open Equiv Equiv.Perm
 
 /-- Powers of `finRotate` act by addition modulo `m`.
 
-This is the arithmetic core behind the rotation normalization arguments. -/
+This is the arithmetic core behind the rotation normalization arguments.
+@isnad1 id=eq.1h3v.s6.a95b71a1a0b1 from=translated src=- shape=6ef80a90 vocab=85de299f
+-/
 @[simp] lemma finRotate_pow_apply' {m : ℕ} (hm : 0 < m) (k : ℕ) (x : Fin m) :
     ((finRotate m) ^ k) x = ⟨(x.val + k) % m, Nat.mod_lt _ hm⟩ := by
   cases m with
@@ -40,7 +42,9 @@ This is the arithmetic core behind the rotation normalization arguments. -/
       · congr 1
         omega
 
-/-- Rotating `m` times is the identity on `Fin m`. -/
+/-- Rotating `m` times is the identity on `Fin m`.
+@isnad1 id=eq.1h1v.s5.ed9459d15da1 from=translated src=- shape=f232cfa5 vocab=b4eec680
+-/
 lemma finRotate_pow_self' {m : ℕ} (hm : 0 < m) : (finRotate m) ^ m = 1 := by
   ext x : 1
   have h := finRotate_pow_apply' hm m x
@@ -52,7 +56,9 @@ section RotationFacts
 
 variable (m : ℕ) (hm : 0 < m) (i : Fin m)
 
-/-- Rotating `i` by `m - i.val` lands on `0`. -/
+/-- Rotating `i` by `m - i.val` lands on `0`.
+@isnad1 id=eq.1h2v.s6.c79bbf4e8d63 from=translated src=- shape=0a8cafba vocab=7e5a9dfa
+-/
 lemma rotate_self_eq_zero :
     ((finRotate m) ^ (m - i.val)) i = ⟨0, hm⟩ := by
   rw [finRotate_pow_apply' hm]
@@ -60,7 +66,9 @@ lemma rotate_self_eq_zero :
   have : i.val + (m - i.val) = m := by omega
   rw [this, Nat.mod_self]
 
-/-- Rotating `finRotate m i` by `m - i.val` lands on `1`, provided `m ≥ 2`. -/
+/-- Rotating `finRotate m i` by `m - i.val` lands on `1`, provided `m ≥ 2`.
+@isnad1 id=eq.1h2v.s6.ad2689e24b5d from=translated src=- shape=459828f9 vocab=87b77ed5
+-/
 lemma rotate_succ_eq_one (hm2 : 2 ≤ m) :
     ((finRotate m) ^ (m - i.val)) (finRotate m i) = ⟨1, by omega⟩ := by
   rw [finRotate_pow_apply' (by omega : 0 < m)]

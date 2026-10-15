@@ -18,10 +18,16 @@ namespace LeanPool.Zeta3Irrational
 open scoped Nat
 open BigOperators Finset
 
+/--
+@isnad1 id=eq.0h2v.s4.2cdb24424a1a from=translated src=- shape=db52ea32 vocab=6c1c64ff
+-/
 lemma Nat_Ico_succ_right (a b : ℕ) : Finset.Ico a (b + 1) = Finset.Icc a b := by
   ext x
   simp_all
 
+/--
+@isnad1 id=eq.0h2v.s5.d9b942408f8c from=translated src=- shape=cc87dcc5 vocab=c6acc3bb
+-/
 lemma Nat_Ico_succ_succ (a b : ℕ) :
     Finset.Ico (a + 1) (b + 1) = Finset.Ioc a b := by
   ext x
@@ -37,6 +43,9 @@ noncomputable abbrev JENN (r s : ℕ) : ENNReal :=
   ∫⁻ (x : ℝ × ℝ) in Set.Ioo 0 1 ×ˢ Set.Ioo 0 1,
   ENNReal.ofReal (- (x.1 * x.2).log / (1 - x.1 * x.2) * x.1 ^ r * x.2 ^ s)
 
+/--
+@isnad1 id=eq.1h2v.s7.a48203fd68ba from=translated src=- shape=f9f5989f vocab=6af18c19
+-/
 lemma log_rpow_integral_aux (n : ℝ) (a : ℝ) (ha : 0 < a ∧ a ≤ 1) :
     ∫ (x : ℝ) in Set.Ioc a 1, |-x.log * x ^ n| =
       ∫ (x : ℝ) in Set.Ioc a 1, -x.log * x ^ n := by
@@ -50,6 +59,9 @@ lemma log_rpow_integral_aux (n : ℝ) (a : ℝ) (ha : 0 < a ∧ a ≤ 1) :
   · apply Real.rpow_nonneg
     linarith
 
+/--
+@isnad1 id=eq.2h2v.s8.39f928d89375 from=translated src=- shape=0f659acf vocab=c47ecc8f
+-/
 lemma log_rpow_integral' (n : ℝ) (hn : n > -1) (a : ℝ) (ha : 0 < a ∧ a ≤ 1) :
     ∫ (x : ℝ) in Set.Ioc a 1, -x.log * x ^ n =
     1 / (n + 1) ^ 2 - (a ^ (n + 1) / (n + 1) ^ 2 - a ^ (n + 1) * a.log / (n + 1)) := by
@@ -125,6 +137,9 @@ lemma log_rpow_integral' (n : ℝ) (hn : n > -1) (a : ℝ) (ha : 0 < a ∧ a ≤
       simp only [Set.mem_Icc, id_eq, ne_eq] at hx ⊢
       nlinarith
 
+/--
+@isnad1 id=interval.1h1v.s6.0581cc02f14f from=translated src=- shape=e067010d vocab=a1b3ac64
+-/
 lemma log_rpow_integrable (n : ℝ) (hn : n > -1) :
     IntervalIntegrable (fun x ↦ -Real.log x * x ^ n) MeasureTheory.volume 0 1 := by
   let f := fun (x : ℝ) => -x.log * x ^ n
@@ -181,6 +196,9 @@ lemma log_rpow_integrable (n : ℝ) (hn : n > -1) :
       · positivity
       · rw [div_le_one] <;> linarith
 
+/--
+@isnad1 id=eq.1h1v.s6.677f6e535b04 from=translated src=- shape=63055c96 vocab=45bfccb4
+-/
 lemma log_rpow_integral (n : ℝ) (hn : n > -1) :
     ∫ (x : ℝ) in (0)..1, -x.log * x ^ n = 1 / (n + 1) ^ 2 := by
   let F := fun (x : ℝ) => x ^ (n + 1) * (1 - (n + 1) * x.log) / (n + 1) ^ 2
@@ -254,6 +272,9 @@ lemma log_rpow_integral (n : ℝ) (hn : n > -1) :
         apply ContinuousAt.log continuousAt_id (by norm_num)
     · simp_all
 
+/--
+@isnad1 id=eq.1h1v.s6.d45a2bfa5837 from=translated src=- shape=021f334f vocab=a1d89b65
+-/
 lemma ENN_log_rpow_integral (n : ℝ) (hn : n > -1) : ∫⁻ (x : ℝ) in Set.Ioo 0 1,
     ENNReal.ofReal (-x.log * x ^ n) = ENNReal.ofReal (1 / (n + 1) ^ 2) := by
   calc
@@ -296,6 +317,9 @@ lemma ENN_log_rpow_integral (n : ℝ) (hn : n > -1) : ∫⁻ (x : ℝ) in Set.Io
           · apply Real.rpow_nonneg; linarith
         · simp only [h, ↓reduceIte, le_refl]
 
+/--
+@isnad1 id=eq.0h1v.s6.f9c3122a81fc from=translated src=- shape=b4090370 vocab=0698f244
+-/
 lemma ENN_log_pow_integral (n : ℕ) : ∫⁻ (x : ℝ) in Set.Ioo 0 1,
     ENNReal.ofReal (-x.log * x ^ n) = ENNReal.ofReal (1 / (n + 1) ^ 2) := by
   rw [← ENN_log_rpow_integral]
@@ -303,6 +327,9 @@ lemma ENN_log_pow_integral (n : ℕ) : ∫⁻ (x : ℝ) in Set.Ioo 0 1,
   · suffices 0 ≤ n by linarith
     omega
 
+/--
+@isnad1 id=eq.0h1v.s6.1eac76bc8b36 from=translated src=- shape=97cc6bfe vocab=01813e23
+-/
 lemma ENN_pow_integral (n : ℕ) : ∫⁻ (x : ℝ) in Set.Ioo 0 1,
     ENNReal.ofReal (x ^ n) = ENNReal.ofReal (1 / (n + 1)) := by
   have h := @integral_pow 0 1 n
@@ -328,10 +355,16 @@ lemma ENN_pow_integral (n : ℕ) : ∫⁻ (x : ℝ) in Set.Ioo 0 1,
         · tauto
   · omega
 
+/--
+@isnad1 id=aemeasur.0h2v.s7.d4314ac17600 from=translated src=- shape=d684cd92 vocab=74a5e47c
+-/
 lemma AEMeasurable_aux : AEMeasurable (fun (x : ℝ × ℝ × ℝ) ↦
     1 / (1 - (1 - x.2.1 * x.2.2) * x.1) * x.2.1 ^ r * x.2.2 ^ s) MeasureTheory.volume := by
   measurability
 
+/--
+@isnad1 id=eq.2h1v.s7.7dd9ab21520c from=translated src=- shape=bf09fbe1 vocab=5ed6e13c
+-/
 lemma integral1 {a : ℝ} (ha : 0 < a) (ha1 : a < 1) :
     ∫ (z : ℝ) in (0)..1, 1 / (1 - (1 - a) * z) = - a.log / (1 - a) := by
   rw[← sub_pos] at ha1
@@ -346,6 +379,9 @@ lemma integral1 {a : ℝ} (ha : 0 < a) (ha1 : a < 1) :
   rw [eq1, inv_mul_eq_div]
   simp_all
 
+/--
+@isnad1 id=ne.2h2v.s7.d45384d53640 from=translated src=- shape=a8af7feb vocab=959079f2
+-/
 lemma sub_mul_mul_ne_zero (y : ℝ) (x : ℝ × ℝ)
     (hy : y ∈ Set.Icc 0 1) (h1 : 0 < 1 - (1 - x.1 * x.2)) : 1 - (1 - x.1 * x.2) * y ≠ 0 := by
   suffices 1 - (1 - x.1 * x.2) * y > 0 by linarith
@@ -360,6 +396,9 @@ lemma sub_mul_mul_ne_zero (y : ℝ) (x : ℝ × ℝ)
     suffices y = 0 by tauto
     linarith
 
+/--
+@isnad1 id=integrab.2h1v.s7.a7daebaebab7 from=translated src=- shape=7af95e6c vocab=bca502dc
+-/
 lemma integrableOn_aux (x : ℝ × ℝ)
     (h1 : 0 < 1 - (1 - x.1 * x.2)) (h2 : 1 - (1 - x.1 * x.2) < 1) :
     MeasureTheory.IntegrableOn (fun t ↦ 1 / (1 - (1 - x.1 * x.2) * t))
@@ -398,6 +437,9 @@ lemma integrableOn_aux (x : ℝ × ℝ)
     simp only [sub_nonneg]
     exact (mul_le_of_le_one_left (by linarith) (by linarith)).trans (by linarith)
 
+/--
+@isnad1 id=eq.1h1v.s7.b2e2203c3c5f from=translated src=- shape=8e73eea5 vocab=f19e441f
+-/
 lemma JENN_eq_triple_aux' (x : ℝ × ℝ) (hx : x ∈ Set.Ioo 0 1 ×ˢ Set.Ioo 0 1) :
     ∫⁻ (w : ℝ) in Set.Ioo 0 1, ENNReal.ofReal (1 / (1 - (1 - x.1 * x.2) * w)) =
     ENNReal.ofReal (-Real.log (1 - (1 - x.1 * x.2)) / (1 - x.1 * x.2)) := by
@@ -428,6 +470,9 @@ lemma JENN_eq_triple_aux' (x : ℝ × ℝ) (hx : x ∈ Set.Ioo 0 1 ×ˢ Set.Ioo 
         exact (mul_le_of_le_one_left (by linarith) (by linarith)).trans (by linarith)
       · tauto
 
+/--
+@isnad1 id=eq.1h3v.s8.70e2d9123dd9 from=translated src=- shape=82102bee vocab=804eb0e2
+-/
 lemma JENN_eq_triple_aux (x : ℝ × ℝ) (hx : x ∈ Set.Ioo 0 1 ×ˢ Set.Ioo 0 1) :
     ∫⁻ (w : ℝ) in Set.Ioo 0 1,
       ENNReal.ofReal (1 / (1 - (1 - x.1 * x.2) * w) * x.1 ^ r * x.2 ^ s) =
@@ -460,6 +505,9 @@ lemma JENN_eq_triple_aux (x : ℝ × ℝ) (hx : x ∈ Set.Ioo 0 1 ×ˢ Set.Ioo 0
     · simp only [sub_nonneg]
       exact (mul_le_of_le_one_left (by linarith) (by linarith)).trans (by linarith)
 
+/--
+@isnad1 id=eq.0h2v.s8.8fb51ecf04ae from=translated src=- shape=290c9cfe vocab=04765cec
+-/
 lemma JENN_eq_triple (r s : ℕ) : JENN r s =
     ∫⁻ (x : ℝ × ℝ × ℝ) in Set.Ioo 0 1 ×ˢ Set.Ioo 0 1 ×ˢ Set.Ioo 0 1,
     ENNReal.ofReal (1 / (1 - (1 - x.2.1 * x.2.2) * x.1) * x.2.1 ^ r * x.2.2 ^ s) := by
@@ -486,6 +534,9 @@ lemma JENN_eq_triple (r s : ℕ) : JENN r s =
     intro x hx
     exact JENN_eq_triple_aux _ hx
 
+/--
+@isnad1 id=aemeasur.0h3v.s7.c5cb584a330d from=translated src=- shape=a62d5c88 vocab=bc80ad87
+-/
 lemma AEMeasurable_aux' : AEMeasurable
     (fun x ↦ ENNReal.ofReal (-Real.log (x.1 * x.2) * x.1 ^ (k + r) * x.2 ^ (k + s)))
     (MeasureTheory.volume.restrict (Set.Ioo 0 1 ×ˢ Set.Ioo 0 1)) := by
@@ -497,6 +548,9 @@ lemma AEMeasurable_aux' : AEMeasurable
       apply Measurable.log
       apply Measurable.mul measurable_fst measurable_snd
 
+/--
+@isnad1 id=eq.1h4v.s7.61a9aabebc55 from=translated src=- shape=337bc7a8 vocab=e768aa9c
+-/
 lemma aux_lintegral1 (k r s : ℕ) (x : ℝ) (hx : 0 < x ∧ x < 1) :
     ∫⁻ (a : ℝ) in Set.Ioo 0 1,
     ENNReal.ofReal (-(Real.log x * x ^ (k + r) * a ^ (k + s)))
@@ -526,6 +580,9 @@ lemma aux_lintegral1 (k r s : ℕ) (x : ℝ) (hx : 0 < x ∧ x < 1) :
       · apply Real.log_nonpos (by linarith) (by nlinarith)
       · apply pow_nonneg (by linarith)
 
+/--
+@isnad1 id=eq.1h4v.s7.114a91de825c from=translated src=- shape=c6d6ae2d vocab=e768aa9c
+-/
 lemma aux_lintegral2 (k r s : ℕ) (x : ℝ) (hx : 0 < x ∧ x < 1) :
     ∫⁻ (a : ℝ) in Set.Ioo 0 1,
     ENNReal.ofReal (-(Real.log a * x ^ (k + r) * a ^ (k + s)))
@@ -551,6 +608,9 @@ lemma aux_lintegral2 (k r s : ℕ) (x : ℝ) (hx : 0 < x ∧ x < 1) :
     · norm_cast
     · apply pow_nonneg (by linarith)
 
+/--
+@isnad1 id=eq.0h3v.s7.98f9b1a458cc from=translated src=- shape=1f82ec66 vocab=0698f244
+-/
 lemma aux_lintegral3 (k r s : ℕ) : ∫⁻ (x : ℝ) in Set.Ioo 0 1,
     ENNReal.ofReal (-x.log * x ^ (k + r) / (k + s + 1))
     = ENNReal.ofReal (1 / ((k + r + 1) ^ 2 * (k + s + 1))) := by
@@ -579,6 +639,9 @@ lemma aux_lintegral3 (k r s : ℕ) : ∫⁻ (x : ℝ) in Set.Ioo 0 1,
     · norm_cast
     · positivity
 
+/--
+@isnad1 id=eq.0h3v.s7.a51ce010d0b8 from=translated src=- shape=1aa52ea1 vocab=a6445a9b
+-/
 lemma aux_lintegral4 (k r s : ℕ) : ∫⁻ (x : ℝ) in Set.Ioo 0 1,
     ENNReal.ofReal (x ^ (k + r) / (k + s + 1) ^ 2)
     = ENNReal.ofReal (1 / ((k + r + 1) * (k + s + 1) ^ 2)) :=
@@ -600,6 +663,9 @@ lemma aux_lintegral4 (k r s : ℕ) : ∫⁻ (x : ℝ) in Set.Ioo 0 1,
     · norm_cast
     · positivity
 
+/--
+@isnad1 id=eq.0h3v.s8.3405b3429036 from=translated src=- shape=f082ab7e vocab=515b4288
+-/
 lemma J_ENN_rs_eq_tsum_aux_intergal (r s k : ℕ) :
     ∫⁻ (x : ℝ × ℝ) in Set.Ioo 0 1 ×ˢ Set.Ioo 0 1,
     ENNReal.ofReal (- (x.1 * x.2).log * x.1 ^ (k + r) * x.2 ^ (k + s)) =
@@ -686,6 +752,9 @@ lemma J_ENN_rs_eq_tsum_aux_intergal (r s k : ℕ) :
   · rw [MeasureTheory.Measure.prod_restrict, ← MeasureTheory.Measure.volume_eq_prod]
     exact AEMeasurable_aux'
 
+/--
+@isnad1 id=eq.0h2v.s7.b2ddc13684f8 from=translated src=- shape=127b1bf9 vocab=a2f87531
+-/
 lemma J_ENN_rs_eq_tsum (r s : ℕ) : JENN r s = ∑' (k : ℕ), ENNReal.ofReal
     (1 / ((k + r + 1) ^ 2 * (k + s + 1)) + 1 / ((k + r + 1) * (k + s + 1) ^ 2)) := by
   calc
@@ -733,6 +802,9 @@ lemma J_ENN_rs_eq_tsum (r s : ℕ) : JENN r s = ∑' (k : ℕ), ENNReal.ofReal
     (1 / ((k + r + 1) ^ 2 * (k + s + 1)) + 1 / ((k + r + 1) * (k + s + 1) ^ 2)) := by
     simp_rw [J_ENN_rs_eq_tsum_aux_intergal r s]
 
+/--
+@isnad1 id=eq.0h1v.s7.818a0ce852af from=translated src=- shape=24cc5549 vocab=bdb70549
+-/
 lemma J_ENN_rr (r : ℕ) : JENN r r = ENNReal.ofReal
     (2 * ∑' n : ℕ , 1 / ((n : ℝ) + 1) ^ 3 -
       2 * ∑ m ∈ Finset.Icc 1 r, 1 / (m : ℝ) ^ 3) := by
@@ -773,6 +845,9 @@ lemma J_ENN_rr (r : ℕ) : JENN r r = ENNReal.ofReal
     simp only [mul_one_div] at h2
     exact h2
 
+/--
+@isnad1 id=le.1h3v.s7.388cae2dfbf0 from=translated src=- shape=6e5975b9 vocab=d23b116d
+-/
 lemma fun_of_J_nonneg (r s : ℕ) (x : ℝ × ℝ) (hx : x ∈ Set.Ioo 0 1 ×ˢ Set.Ioo 0 1) :
     0 ≤ -Real.log (x.1 * x.2) / (1 - x.1 * x.2) * x.1 ^ r * x.2 ^ s := by
   simp only [Set.mem_prod, Set.mem_Ioo] at hx
@@ -787,6 +862,9 @@ lemma fun_of_J_nonneg (r s : ℕ) (x : ℝ × ℝ) (hx : x ∈ Set.Ioo 0 1 ×ˢ 
     · apply pow_nonneg (by linarith)
   · apply pow_nonneg (by linarith)
 
+/--
+@isnad1 id=integrab.0h1v.s7.e49c1fc6de91 from=translated src=- shape=84e2c182 vocab=b542af0f
+-/
 lemma integrableOn_J_rr (r : ℕ) : MeasureTheory.IntegrableOn
     (fun x ↦ -Real.log (x.1 * x.2) / (1 - x.1 * x.2) * x.1 ^ r * x.2 ^ r)
     (Set.Ioo 0 1 ×ˢ Set.Ioo 0 1) MeasureTheory.volume := by
@@ -828,6 +906,9 @@ lemma integrableOn_J_rr (r : ℕ) : MeasureTheory.IntegrableOn
       · simp only [hx, ↓reduceIte]
     simp_all
 
+/--
+@isnad1 id=eq.0h1v.s7.00e14ee12a2a from=translated src=- shape=acfdf2d1 vocab=61f06161
+-/
 theorem J_rr (r : ℕ) :
     J r r =
       2 * ∑' n : ℕ , 1 / ((n : ℝ) + 1) ^ 3 -
@@ -870,10 +951,16 @@ theorem J_rr (r : ℕ) :
         · apply Measurable.pow measurable_fst measurable_const
       · apply Measurable.pow measurable_snd measurable_const
 
+/--
+@isnad1 id=eq.0h0v.s6.83ab4500b25a from=translated src=- shape=dd71c024 vocab=31d2d6fa
+-/
 theorem zeta3 : J 0 0 = 2 * ∑' n : ℕ , 1 / ((n : ℝ) + 1) ^ 3 := by
   simp only [J_rr, one_div, zero_lt_one, Finset.Icc_eq_empty_of_lt, Finset.sum_empty, mul_zero,
     sub_zero]
 
+/--
+@isnad1 id=le.1h3v.s7.10114f89b68d from=translated src=- shape=661ac426 vocab=ee032576
+-/
 lemma positivity_aux (r s : ℕ) (h : r > s) :
     ∀ (i : ℕ), 0 ≤ 1 / ((r : ℝ) - s) * (1 / (i + s + 1) ^ 2 - 1 / (i + r + 1) ^ 2) := by
   intro n
@@ -886,6 +973,9 @@ lemma positivity_aux (r s : ℕ) (h : r > s) :
     simp only [add_le_add_iff_right, add_le_add_iff_left, Nat.cast_le]
     linarith
 
+/--
+@isnad1 id=summable.0h1v.s6.83b07a567447 from=translated src=- shape=3dac87d0 vocab=72262d31
+-/
 lemma summable_aux (r : ℕ) : Summable fun (b : ℕ) ↦ 1 / ((b : ℝ) + r + 1) ^ 2 := by
   norm_cast
   simp only [add_assoc, Nat.cast_pow]
@@ -893,6 +983,9 @@ lemma summable_aux (r : ℕ) : Summable fun (b : ℕ) ↦ 1 / ((b : ℝ) + r + 1
     Real.summable_one_div_nat_pow (p := 2)]
   norm_num
 
+/--
+@isnad1 id=eq.1h2v.s6.a638695898d8 from=translated src=- shape=cd03be50 vocab=6a1186b1
+-/
 lemma J_ENN_rs (r s : ℕ) (h : r > s) :
     JENN r s = ENNReal.ofReal ((∑ k ∈ Finset.Ioc s r, 1 / (k : ℝ) ^ 2) / (r - s)) := by
   calc
@@ -975,6 +1068,9 @@ lemma J_ENN_rs (r s : ℕ) (h : r > s) :
       · exact summable_aux s
       · exact summable_aux r
 
+/--
+@isnad1 id=integrab.1h2v.s7.a892ccf137e3 from=translated src=- shape=c703449a vocab=34fd1f6e
+-/
 lemma integrableOn_J_rs' (r s : ℕ) (h : r > s) : MeasureTheory.IntegrableOn
     (fun x ↦ -Real.log (x.1 * x.2) / (1 - x.1 * x.2) * x.1 ^ r * x.2 ^ s)
     (Set.Ioo 0 1 ×ˢ Set.Ioo 0 1) MeasureTheory.volume := by
@@ -1016,6 +1112,9 @@ lemma integrableOn_J_rs' (r s : ℕ) (h : r > s) : MeasureTheory.IntegrableOn
       · simp only [hx, ↓reduceIte]
     simp_all
 
+/--
+@isnad1 id=eq.1h2v.s6.7fe815480776 from=translated src=- shape=41d14d8f vocab=b0df896d
+-/
 lemma J_rs' (r s : ℕ) (h : r > s) :
     J r s = (∑ k ∈ Finset.Ioc s r, 1 / (k : ℝ) ^ 2) / (r - s) := by
   have h₀ := J_ENN_rs r s h
@@ -1047,9 +1146,15 @@ lemma J_rs' (r s : ℕ) (h : r > s) :
         · apply Measurable.pow measurable_fst measurable_const
       · apply Measurable.pow measurable_snd measurable_const
 
+/--
+@isnad1 id=eq.0h2v.s3.cb4787f3370c from=translated src=- shape=ab795eaa vocab=dda412a9
+-/
 lemma J_ENN_rs_symm (r s : ℕ) : JENN r s = JENN s r := by
   simp only [J_ENN_rs_eq_tsum, add_comm, mul_comm]
 
+/--
+@isnad1 id=integrab.0h2v.s7.721869ac3980 from=translated src=- shape=446609b2 vocab=b542af0f
+-/
 lemma integrableOn_J_rs (r s : ℕ) : MeasureTheory.IntegrableOn
     (fun x ↦ -Real.log (x.1 * x.2) / (1 - x.1 * x.2) * x.1 ^ r * x.2 ^ s)
     (Set.Ioo 0 1 ×ˢ Set.Ioo 0 1) MeasureTheory.volume := by
@@ -1100,6 +1205,9 @@ lemma integrableOn_J_rs (r s : ℕ) : MeasureTheory.IntegrableOn
         rw [J_ENN_rs_symm s r] at h₀
         simp_all
 
+/--
+@isnad1 id=eq.0h2v.s3.e7dd2fa23552 from=translated src=- shape=8f610c9e vocab=e000e1b1
+-/
 lemma J_eq_toReal_J_ENN (r s : ℕ) : J r s = (JENN r s).toReal := by
   rw [J, JENN, MeasureTheory.integral_eq_lintegral_of_nonneg_ae]
   · apply MeasureTheory.ae_nonneg_restrict_of_forall_setIntegral_nonneg_inter
@@ -1120,9 +1228,15 @@ lemma J_eq_toReal_J_ENN (r s : ℕ) : J r s = (JENN r s).toReal := by
         · apply Measurable.pow measurable_fst measurable_const
       · apply Measurable.pow measurable_snd measurable_const
 
+/--
+@isnad1 id=eq.0h2v.s3.d6f92d01d4e8 from=translated src=- shape=ab795eaa vocab=0c5e9b2e
+-/
 lemma J_rs_symm (r s : ℕ) : J r s = J s r := by
   rw [J_eq_toReal_J_ENN, J_eq_toReal_J_ENN, J_ENN_rs_symm]
 
+/--
+@isnad1 id=eq.1h2v.s7.6029cfe1206e from=translated src=- shape=4354e1ef vocab=4a561c90
+-/
 theorem J_rs {r s : ℕ} (h : r ≠ s) : J r s =
     (∑ m ∈ Icc 1 r, 1 / (m : ℝ) ^ 2 - ∑ m ∈ Icc 1 s, 1 / (m : ℝ) ^ 2) / (r - s) := by
   by_cases h1 : r > s

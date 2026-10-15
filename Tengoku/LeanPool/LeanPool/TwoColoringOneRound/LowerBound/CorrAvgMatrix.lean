@@ -31,6 +31,9 @@ noncomputable def corrAvgMatrix {n : Nat} (f : Coloring n) :
     Matrix (Vertex n) (Vertex n) Correlation.Q :=
   fun u v => corrAvg f u v
 
+/--
+@isnad1 id=possemid.0h2v.s4.5c9abfd54586 from=translated src=- shape=cc4c7d09 vocab=c5595ffb
+-/
 theorem corrMatrix_posSemidef {n : Nat} (f : Coloring n) : (corrMatrix f).PosSemidef := by
   -- `corrMatrix f = vecMulVec a (star a)` where `a u = spin (f u)`.
   convert (Matrix.posSemidef_vecMulVec_self_star (R := Correlation.Q) (n := Vertex n)
@@ -38,6 +41,9 @@ theorem corrMatrix_posSemidef {n : Nat} (f : Coloring n) : (corrMatrix f).PosSem
   ext u v
   simp [corrMatrix, corr, Matrix.vecMulVec_apply]
 
+/--
+@isnad1 id=possemid.0h2v.s4.714d89e6f585 from=translated src=- shape=cc4c7d09 vocab=c9f858e4
+-/
 theorem corrAvgMatrix_posSemidef {n : Nat} (f : Coloring n) : (corrAvgMatrix f).PosSemidef := by
   classical
   let G : Type := Correlation.G n

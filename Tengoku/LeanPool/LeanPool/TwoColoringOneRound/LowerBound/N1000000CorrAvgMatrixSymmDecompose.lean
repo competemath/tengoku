@@ -54,6 +54,9 @@ private theorem maskAt_invDir_testBit (d : DirIdx) (i j : Fin 3) :
     (maskAt (invDir d)).testBit (i.1 * 3 + j.1) = (maskAt d).testBit (j.1 * 3 + i.1) := by
   fin_cases d <;> fin_cases i <;> fin_cases j <;> decide
 
+/--
+@isnad1 id=eq.1h3v.s4.3eb776b4566b from=translated src=- shape=35c71e36 vocab=5b9def55
+-/
 theorem dirMask_swap_eq_maskAt_invDir {u v : V} (d : DirIdx) (h : dirMask u v = maskAt d) :
     dirMask v u = maskAt (invDir d) := by
   classical
@@ -90,6 +93,9 @@ theorem dirMask_swap_eq_maskAt_invDir {u v : V} (d : DirIdx) (h : dirMask u v = 
     have hLtR' : dirMask v u < (2 : Nat) ^ t := lt_of_lt_of_le hLtR hPow
     simp [Nat.testBit_eq_false_of_lt hLtL', Nat.testBit_eq_false_of_lt hLtR']
 
+/--
+@isnad1 id=eq.0h2v.s3.2bf20e6edff9 from=translated src=- shape=80c54f17 vocab=96fd1e73
+-/
 theorem coeff_invDir (f : Coloring n) (d : DirIdx) :
     coeff (f := f) d = coeff (f := f) (invDir d) := by
   classical
@@ -120,6 +126,9 @@ private theorem A_tTr_mk_eq_A_invDir (d : DirIdx) :
   rfl
 
 -- The diagonal overlap type: `dirMask baseVertex baseVertex` is the canonical `idDirIdx` mask.
+/--
+@isnad1 id=eq.0h0v.s2.b1b99deda816 from=translated src=- shape=b5d9c1ba vocab=25023a6f
+-/
 theorem dirMask_baseVertex_baseVertex_eq_maskAt_idDirIdx :
     dirMask baseVertex baseVertex = maskAt idDirIdx := by
   decide
@@ -130,6 +139,9 @@ private theorem corrAvg_self (f : Coloring n) (u : V) : corrAvg f u u = (1 : Q) 
   -- Each summand is `spin b * spin b = 1`.
   simp [spin_mul_self, Finset.sum_const]
 
+/--
+@isnad1 id=eq.0h1v.s3.e3ea56936d5b from=translated src=- shape=10bfd009 vocab=e2571a68
+-/
 theorem coeff_idDirIdx_eq_one (f : Coloring n) : coeff (f := f) idDirIdx = (1 : Q) := by
   classical
   have hMask1 : dirMask baseVertex (repVertex idDirIdx) = maskAt idDirIdx :=
@@ -145,6 +157,9 @@ theorem coeff_idDirIdx_eq_one (f : Coloring n) : coeff (f := f) idDirIdx = (1 : 
   simp [coeff, hCorr, corrAvg_self (f := f) (u := baseVertex)]
 
 -- `varRepVertexU` is always the base vertex `(0,1,2)`.
+/--
+@isnad1 id=eq.0h1v.s3.55002813a96f from=translated src=- shape=0d914058 vocab=b033c556
+-/
 theorem varRepVertexU_eq_baseVertex (i : Var) : varRepVertexU i = baseVertex := by
   classical
   apply Subtype.ext
@@ -164,11 +179,17 @@ theorem varRepVertexU_eq_baseVertex (i : Var) : varRepVertexU i = baseVertex := 
       N1000000Relaxation.symOfNat, Fin.ofNat, h0, h1, h2, baseVertex, baseTuple]
 
 -- Compute the directed mask of each representative variable pair: it matches `varOrbit`.
+/--
+@isnad1 id=eq.0h1v.s3.334fc8e999b6 from=translated src=- shape=067e0780 vocab=e5e38585
+-/
 theorem dirMask_base_varRepVertexV_eq_varOrbit (i : Var) :
     dirMask baseVertex (varRepVertexV i) = maskAt (varOrbit i) := by
   classical
   fin_cases i <;> decide
 
+/--
+@isnad1 id=eq.0h2v.s3.7e6427f6fa99 from=translated src=- shape=3f6e24c4 vocab=57cae118
+-/
 theorem coeff_varOrbit_eq_xFromColoring (f : Coloring n) (i : Var) :
     coeff (f := f) (varOrbit i) = xFromColoring f i := by
   classical
@@ -210,15 +231,24 @@ def dirToVar : Array (Option Var) :=
 def varOfDirIdx (d : DirIdx) : Option Var :=
   dirToVar.getD d.1 none
 
+/--
+@isnad1 id=iff.0h1v.s3.62165ebf073a from=translated src=- shape=ccb8aff4 vocab=2306df6c
+-/
 theorem varOfDirIdx_eq_none_iff (d : DirIdx) : varOfDirIdx d = none ↔ d = idDirIdx := by
   classical
   fin_cases d <;> decide
 
+/--
+@isnad1 id=iff.0h2v.s4.5648884f1ddc from=translated src=- shape=61d32963 vocab=e9522d54
+-/
 theorem varOfDirIdx_eq_some_iff (d : DirIdx) (i : Var) :
     varOfDirIdx d = some i ↔ d = varOrbit i ∨ d = invDir (varOrbit i) := by
   classical
   fin_cases d <;> fin_cases i <;> decide
 
+/--
+@isnad1 id=ex.1h1v.s5.84df6fe82521 from=translated src=- shape=37920112 vocab=dc1e16aa
+-/
 theorem varOfDirIdx_spec (d : DirIdx) (hd : d ≠ idDirIdx) :
     ∃ i : Var, varOfDirIdx d = some i ∧ (d = varOrbit i ∨ d = invDir (varOrbit i)) := by
   classical
@@ -280,6 +310,9 @@ private theorem ASymm_varOrbit_entry_one_of_orbit {u v : V} {d0 : DirIdx} {i0 : 
       simp_all
 
 -- Final symmetric decomposition into the reduced variables `xFromColoring`.
+/--
+@isnad1 id=eq.0h1v.s6.5ac188fd55ae from=translated src=- shape=7a79f96d vocab=b62c2a1f
+-/
 theorem corrAvgMatrix_eq_A_id_add_sum_var (f : Coloring n) :
     corrAvgMatrix (f := f) =
       A idDirIdx + ∑ i : Var, (xFromColoring f i) • ASymm (varOrbit i) := by

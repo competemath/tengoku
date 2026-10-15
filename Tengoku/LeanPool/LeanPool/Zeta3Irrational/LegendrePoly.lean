@@ -23,6 +23,9 @@ variable {R : Type*}
 
 namespace Polynomial
 
+/--
+@isnad1 id=eq.0h3v.s10.79e080929f16 from=translated src=- shape=a68517ba vocab=f2a03389
+-/
 lemma Finsum_iterate_deriv [CommRing R] (k : ℕ) (h : ℕ → ℕ) :
     derivative^[k] (∑ m ∈ Finset.range (k + 1), (h m) • ((-1) ^ m : R[X]) * X ^ (k + m)) =
     ∑ m ∈ Finset.range (k + 1), (h m) • (-1) ^ m * derivative^[k] (X ^ (k + m)) := by
@@ -38,6 +41,9 @@ lemma Finsum_iterate_deriv [CommRing R] (k : ℕ) (h : ℕ → ℕ) :
     · simp_all only [nsmul_eq_mul, Even.neg_pow, one_pow, one_mul]
     · simp_all
 
+/--
+@isnad1 id=eq.0h2v.s8.baa2f7a19ce1 from=translated src=- shape=3a6520c1 vocab=ea437efd
+-/
 lemma deriv_one_sub_X {n i : ℕ} : (⇑derivative)^[i] ((1 - X) ^ n : ℝ[X]) =
     (-1) ^ i * (n.descFactorial i) • ((1 - X) ^ (n - i)) := by
   rw [show (1 - X : ℝ[X]) ^ n = (X ^ n : ℝ[X]).comp (1 - X) by simp,
@@ -45,6 +51,9 @@ lemma deriv_one_sub_X {n i : ℕ} : (⇑derivative)^[i] ((1 - X) ^ n : ℝ[X]) =
     Polynomial.iterate_derivative_X_pow_eq_smul, Algebra.smul_def, algebraMap_eq, map_natCast]
   simp
 
+/--
+@isnad1 id=not.2h3v.s7.517cb3f49131 from=translated src=- shape=b2017cd8 vocab=e3b503fc
+-/
 theorem differentiableAt_inv_special {x a : ℝ} {n : ℕ}
     (ha : a > 0) (hx : 1 - a * x = 0) :
     ¬DifferentiableAt ℝ (fun x ↦ ↑n ! * a ^ n / (1 - a * x) ^ (n + 1)) x := by
@@ -127,6 +136,9 @@ theorem differentiableAt_inv_special {x a : ℝ} {n : ℕ}
         div_self (by linarith)]
       simp
 
+/--
+@isnad1 id=eq.1h2v.s7.c2b195fcda9b from=translated src=- shape=8697219d vocab=2b02a744
+-/
 lemma n_derivative {a : ℝ} (n : ℕ) (ha : a > 0) : deriv^[n] (fun x ↦ 1 / (1 - a * x)) =
     fun x ↦ (n) ! * (a ^ n) / (1 - a * x) ^ (n + 1) := by
   induction n with
@@ -166,6 +178,9 @@ lemma n_derivative {a : ℝ} (n : ℕ) (ha : a > 0) : deriv^[n] (fun x ↦ 1 / (
           · apply differentiableAt_id
       · exact pow_ne_zero (n + 1) hne
 
+/--
+@isnad1 id=not.4h5v.s7.752347c33d92 from=translated src=- shape=dbf04b2a vocab=e3e020a3
+-/
 theorem differentiableAt_inv_special' (c x y z : ℝ) (n : ℕ) (hc : c ≠ 0)
     (hx : x ∈ Set.Ioo 0 1)
     (hz : z ∈ Set.Ioo 0 1) (h1 : 1 - (1 - x * y) * z = 0) :
@@ -223,6 +238,9 @@ theorem differentiableAt_inv_special' (c x y z : ℝ) (n : ℕ) (hc : c ≠ 0)
     linarith
   · simp_all
 
+/--
+@isnad1 id=eq.2h3v.s8.dc5e570643af from=translated src=- shape=519fda47 vocab=1582ac0b
+-/
 lemma n_derivative' {x z : ℝ} (n : ℕ) (hx : x ∈ Set.Ioo 0 1) (hz : z ∈ Set.Ioo 0 1) :
     (deriv^[n] fun y ↦ 1 / (1 - (1 - x * y) * z)) =
     (fun y ↦ (-1) ^ n * (n) ! * (x * z) ^ n / (1 - (1 - x * y) * z) ^ (n + 1)) := by
@@ -277,6 +295,9 @@ lemma n_derivative' {x z : ℝ} (n : ℕ) (hx : x ∈ Set.Ioo 0 1) (hz : z ∈ S
         apply DifferentiableAt.const_mul differentiableAt_id
       · exact pow_ne_zero (n + 1) hne
 
+/--
+@isnad1 id=eq.1h2v.s7.2b2023046e58 from=translated src=- shape=1d260efa vocab=bf755750
+-/
 lemma shiftedLegendre_poly_eval_zero_eq_zero {m : ℕ} (h : m < n) :
     eval 0 ((⇑derivative)^[m] (X ^ n * (1 - X) ^ n) : ℝ[X]) = 0 := by
   rw [Polynomial.iterate_derivative_mul, Polynomial.eval_finsetSum]
@@ -296,6 +317,9 @@ lemma shiftedLegendre_poly_eval_zero_eq_zero {m : ℕ} (h : m < n) :
     m - x ≤ m := by simp
     _ < n := by exact h
 
+/--
+@isnad1 id=eq.1h2v.s7.e489c2ed2de0 from=translated src=- shape=1d260efa vocab=bf755750
+-/
 lemma shiftedLegendre_poly_eval_one_eq_zero {m : ℕ} (h : m < n) :
     eval 1 ((⇑derivative)^[m] (X ^ n * (1 - X) ^ n) : ℝ[X]) = 0 := by
   rw [Polynomial.iterate_derivative_mul, Polynomial.eval_finsetSum]
@@ -316,6 +340,9 @@ lemma shiftedLegendre_poly_eval_one_eq_zero {m : ℕ} (h : m < n) :
   simp only [gt_iff_lt, tsub_pos_iff_lt]
   linarith
 
+/--
+@isnad1 id=continuo.0h2v.s8.813c710846fc from=translated src=- shape=eab6117a vocab=a2ca5b14
+-/
 lemma shiftedLegendre_continuousOn {n m : ℕ} : ContinuousOn
     (fun x ↦ eval x ((⇑derivative)^[n - m] (X ^ n * (1 - X) ^ n : ℝ[X]))) (Set.uIcc 0 1) := by
   simp_rw [Polynomial.iterate_derivative_mul, Polynomial.eval_finsetSum]
@@ -339,6 +366,9 @@ lemma shiftedLegendre_continuousOn {n m : ℕ} : ContinuousOn
       refine ContinuousOn.mul continuousOn_const (ContinuousOn.mul continuousOn_const ?_)
       apply ContinuousOn.pow (ContinuousOn.sub continuousOn_const continuousOn_id)
 
+/--
+@isnad1 id=continuo.2h3v.s7.601e68a79dd8 from=translated src=- shape=83a9ce78 vocab=e45052ba
+-/
 lemma special_deriv_div_continuousOn {m : ℕ} {x z : ℝ} (hx : x ∈ Set.Ioo 0 1)
     (hz : z ∈ Set.Ioo 0 1) :
     ContinuousOn (fun u ↦ (deriv^[m] fun y ↦ 1 / (1 - (1 - x * y) * z)) u) (Set.uIcc 0 1) := by
@@ -357,6 +387,9 @@ lemma special_deriv_div_continuousOn {m : ℕ} {x z : ℝ} (hx : x ∈ Set.Ioo 0
     suffices (1 - x * y) * z ≤ z by linarith
     simp_all
 
+/--
+@isnad1 id=eq.3h4v.s9.7eccdcc0609a from=translated src=- shape=556650a1 vocab=bc13054c
+-/
 lemma integral_shiftedLegendre_mul_smooth_eq_aux {x z : ℝ} (n m : ℕ) (h : m ≤ n)
     (hx : x ∈ Set.Ioo 0 1) (hz : z ∈ Set.Ioo 0 1) : ∫ (y : ℝ) in (0)..1,
     eval y ((⇑derivative)^[n] (X ^ n * (1 - X) ^ n)) * (fun y ↦ 1 / (1 - (1 - x * y) * z)) y =

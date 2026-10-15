@@ -33,12 +33,18 @@ noncomputable section
 /-- Vertical delta: `delta(eps) = eps / (5 * (H - sqrt(3)/2))`. -/
 def vertDelta (H : ℝ) (ε : ℝ) : ℝ := ε / (5 * (H - Real.sqrt 3 / 2))
 
+/--
+@isnad1 id=lt.2h2v.s4.b870debc2c02 from=translated src=- shape=035135a1 vocab=43206647
+-/
 theorem vertDelta_pos {H ε : ℝ} (hH : fdHeightValid H) (hε : 0 < ε) :
     0 < vertDelta H ε := by
   unfold vertDelta fdHeightValid at *
   have : 0 < H - Real.sqrt 3 / 2 := by linarith
   positivity
 
+/--
+@isnad1 id=lt.2h2v.s6.a7746c0c4d7b from=translated src=- shape=12d639a7 vocab=e9d06ed6
+-/
 theorem vertDelta_lt_one_fifth {H ε : ℝ} (hH : fdHeightValid H)
     (hε_lt : ε < H - Real.sqrt 3 / 2) :
     vertDelta H ε < 1 / 5 := by
@@ -81,7 +87,9 @@ section RhoBounds
 variable (H : ℝ)
 
 /-- Near bound on arc for rho: `|t - 3/5| <= arcsinDelta(eps)` implies
-`norm(gamma(t) - rho) <= eps`. -/
+`norm(gamma(t) - rho) <= eps`.
+@isnad1 id=le.4h3v.s7.630721e95489 from=translated src=- shape=dbf19ae0 vocab=b07cdad5
+-/
 theorem arc_near_at_rho_arcsin {ε : ℝ} (hε : 0 < ε) (hε_lt : ε < 1/3)
     {t : ℝ} (ht2 : t ≤ 3/5) (ht : |t - 3/5| ≤ arcsinDelta ε) :
     ‖fdBoundaryFun H t - ellipticPointRho‖ ≤ ε := by
@@ -100,7 +108,9 @@ theorem arc_near_at_rho_arcsin {ε : ℝ} (hε : 0 < ε) (hε_lt : ε < 1/3)
   rw [Real.abs_sin_eq_sin_abs_of_abs_le_pi hα_le_pi]
   exact two_sin_abs_le_of_le_arcsin hε hε_lt hα_le_asin
 
-/-- Far bound on arc for rho: `arcsinDelta(eps) < |t - 3/5|` implies `eps < norm`. -/
+/-- Far bound on arc for rho: `arcsinDelta(eps) < |t - 3/5|` implies `eps < norm`.
+@isnad1 id=lt.4h3v.s7.078b5b5e742c from=translated src=- shape=0ec1c665 vocab=8a3f5145
+-/
 theorem arc_far_at_rho_arcsin {ε : ℝ} (hε : 0 < ε) (hε_lt : ε < 1/3)
     {t : ℝ} (ht_arc : t ∈ Icc (1/5 : ℝ) (3/5))
     (hδt : arcsinDelta ε < |t - 3/5|) :
@@ -132,7 +142,9 @@ theorem arc_far_at_rho_arcsin {ε : ℝ} (hε : 0 < ε) (hε_lt : ε < 1/3)
   rw [Real.abs_sin_eq_sin_abs_of_abs_le_pi (by linarith [Real.pi_pos])]
   exact ε_lt_two_sin_abs hε hε_lt (by linarith [Real.pi_pos]) hα_gt_asin
 
-/-- Distance from rho on segment 4 (left vertical). -/
+/-- Distance from rho on segment 4 (left vertical).
+@isnad1 id=eq.3h2v.s7.13e6905a78c0 from=translated src=- shape=6009a1d7 vocab=5c2e329e
+-/
 theorem fdBoundaryFun_seg4_dist_rho (hH : fdHeightValid H) (t : ℝ)
     (ht3 : 3/5 < t) (ht4 : t ≤ 4/5) :
     ‖fdBoundaryFun H t - ellipticPointRho‖ =
@@ -148,7 +160,9 @@ theorem fdBoundaryFun_seg4_dist_rho (hH : fdHeightValid H) (t : ℝ)
       ↑(5 * (t - 3/5) * (H - Real.sqrt 3 / 2)) * I := by push_cast; ring
   rw [h_eq, norm_ofReal_mul_I_eq _ (by nlinarith)]
 
-/-- Near bound on vertical for rho. -/
+/-- Near bound on vertical for rho.
+@isnad1 id=le.4h3v.s6.e531d6566698 from=translated src=- shape=f5eadc82 vocab=655d038a
+-/
 theorem vert_near_at_rho (hH : fdHeightValid H)
     {ε : ℝ} {t : ℝ} (ht3 : 3/5 < t) (ht4 : t ≤ 4/5)
     (hδ : t - 3/5 ≤ vertDelta H ε) :
@@ -160,7 +174,9 @@ theorem vert_near_at_rho (hH : fdHeightValid H)
     mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_left hδ (by norm_num)) hH'.le
   linarith [vertDelta_mul_eq hH ε]
 
-/-- Far bound on vertical for rho. -/
+/-- Far bound on vertical for rho.
+@isnad1 id=lt.4h3v.s6.df7a1c23cdf1 from=translated src=- shape=7656e98f vocab=655d038a
+-/
 theorem vert_far_at_rho (hH : fdHeightValid H)
     {ε : ℝ} {t : ℝ} (ht3 : 3/5 < t) (ht4 : t ≤ 4/5)
     (hδt : vertDelta H ε < t - 3/5) :
@@ -176,7 +192,9 @@ section RhoPlusOneBounds
 
 variable (H : ℝ)
 
-/-- Near bound on arc for rho+1. -/
+/-- Near bound on arc for rho+1.
+@isnad1 id=le.4h3v.s7.1162ccb4d196 from=translated src=- shape=9794444b vocab=65517524
+-/
 theorem arc_near_at_rhoPlusOne_arcsin {ε : ℝ} (hε : 0 < ε) (hε_lt : ε < 1/3)
     {t : ℝ} (ht1 : 1/5 ≤ t) (ht : |t - 1/5| ≤ arcsinDelta ε) :
     ‖fdBoundaryFun H t - ellipticPointRhoPlusOne‖ ≤ ε := by
@@ -198,7 +216,9 @@ theorem arc_near_at_rhoPlusOne_arcsin {ε : ℝ} (hε : 0 < ε) (hε_lt : ε < 1
   rw [Real.abs_sin_eq_sin_abs_of_abs_le_pi hα_le_pi]
   exact two_sin_abs_le_of_le_arcsin hε hε_lt hα_le_asin
 
-/-- Far bound on arc for rho+1. -/
+/-- Far bound on arc for rho+1.
+@isnad1 id=lt.4h3v.s7.8c2788abb2de from=translated src=- shape=0ec1c665 vocab=05af4ffe
+-/
 theorem arc_far_at_rhoPlusOne_arcsin {ε : ℝ} (hε : 0 < ε) (hε_lt : ε < 1/3)
     {t : ℝ} (ht_arc : t ∈ Icc (1/5 : ℝ) (3/5))
     (hδt : arcsinDelta ε < |t - 1/5|) :
@@ -226,7 +246,9 @@ theorem arc_far_at_rhoPlusOne_arcsin {ε : ℝ} (hε : 0 < ε) (hε_lt : ε < 1/
   rw [Real.abs_sin_eq_sin_abs_of_abs_le_pi (by linarith [Real.pi_pos])]
   exact ε_lt_two_sin_abs hε hε_lt (by linarith [Real.pi_pos]) hα_gt_asin
 
-/-- Distance from rho+1 on segment 1 (right vertical). -/
+/-- Distance from rho+1 on segment 1 (right vertical).
+@isnad1 id=eq.3h2v.s7.7655d5a32d99 from=translated src=- shape=8d013bb1 vocab=919c89ef
+-/
 theorem fdBoundaryFun_seg1_dist_rhoPlusOne (hH : fdHeightValid H) (t : ℝ)
     (_ht0 : 0 ≤ t) (ht1 : t < 1/5) :
     ‖fdBoundaryFun H t - ellipticPointRhoPlusOne‖ =
@@ -240,7 +262,9 @@ theorem fdBoundaryFun_seg1_dist_rhoPlusOne (hH : fdHeightValid H) (t : ℝ)
       ↑(5 * (1/5 - t) * (H - Real.sqrt 3 / 2)) * I := by push_cast; ring
   rw [h_eq, norm_ofReal_mul_I_eq _ (by nlinarith)]
 
-/-- Near bound on vertical for rho+1. -/
+/-- Near bound on vertical for rho+1.
+@isnad1 id=le.4h3v.s6.d2bc5aa2a545 from=translated src=- shape=9846817b vocab=98700cdc
+-/
 theorem vert_near_at_rhoPlusOne (hH : fdHeightValid H)
     {ε : ℝ} {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t < 1/5)
     (hδ : 1/5 - t ≤ vertDelta H ε) :
@@ -252,7 +276,9 @@ theorem vert_near_at_rhoPlusOne (hH : fdHeightValid H)
     mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_left hδ (by norm_num)) hH'.le
   linarith [vertDelta_mul_eq hH ε]
 
-/-- Far bound on vertical for rho+1. -/
+/-- Far bound on vertical for rho+1.
+@isnad1 id=lt.4h3v.s6.8abb596e2551 from=translated src=- shape=6902f00f vocab=98700cdc
+-/
 theorem vert_far_at_rhoPlusOne (hH : fdHeightValid H)
     {ε : ℝ} {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t < 1/5)
     (hδt : vertDelta H ε < 1/5 - t) :
@@ -411,7 +437,9 @@ private theorem rhoPlusOne_near {H : ℝ} (hH : 1 < H)
     exact vert_near_at_rhoPlusOne H hH_valid ht0 ht15 (by linarith [ht.1])
 
 /-- The winding number at rho is `-1/6`, constructed via the asymmetric
-crossing limit theorem. -/
+crossing limit theorem.
+@isnad1 id=hasgener.2h3v.s8.d824d9e7b74d from=translated src=- shape=1904cbaa vocab=e65a7f9a
+-/
 theorem hasWindingNumber_atRho_of_cornerFtcHyp {H : ℝ} (hH : 1 < H)
     (γ : PiecewiseC1Path (fdStart H) (fdStart H))
     (hγ : ∀ t ∈ Icc (0 : ℝ) 1, γ.toPath.extend t = fdBoundaryFun H t)
@@ -453,7 +481,9 @@ theorem hasWindingNumber_atRho_of_cornerFtcHyp {H : ℝ} (hH : 1 < H)
   ring
 
 /-- The winding number at rho+1 is `-1/6`, constructed via the asymmetric
-crossing limit theorem. -/
+crossing limit theorem.
+@isnad1 id=hasgener.2h3v.s8.39315b453ec0 from=translated src=- shape=286ac011 vocab=62525e9b
+-/
 theorem hasWindingNumber_atRhoPlusOne_of_cornerFtcHyp {H : ℝ} (hH : 1 < H)
     (γ : PiecewiseC1Path (fdStart H) (fdStart H))
     (hγ : ∀ t ∈ Icc (0 : ℝ) 1, γ.toPath.extend t = fdBoundaryFun H t)

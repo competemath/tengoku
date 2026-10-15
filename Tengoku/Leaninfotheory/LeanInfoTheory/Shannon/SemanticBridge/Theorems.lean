@@ -57,6 +57,7 @@ Mutual information is nonnegative:
 The proof passes through the semantic bridge
 `I(A;B) = D(P_AB || P_A x P_B)` and then uses nonnegativity of the real
 coercion of an `ENNReal` KL divergence.
+@isnad1 id=le.0h3v.s4.33ba666d74b4 from=translated src=- shape=df5ad661 vocab=b24f18cb
 -/
 theorem mutualInfo_nonneg {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) :
@@ -73,6 +74,7 @@ Fiber conditional entropy is nonnegative:
 
 On zero-mass fibers this is `0 <= 0`; on nonzero fibers it reduces to entropy
 nonnegativity for the conditional law `P_{A|B=b}`.
+@isnad1 id=le.0h4v.s4.a5ff971a1121 from=translated src=- shape=4ad63c06 vocab=548f893e
 -/
 theorem condEntropyFstGivenSnd_nonneg
     {alpha : Type u} {beta : Type v}
@@ -86,6 +88,7 @@ theorem condEntropyFstGivenSnd_nonneg
 /--
 On a nonzero conditioning fiber, conditional entropy is zero exactly when the
 canonical conditional PMF is pure.
+@isnad1 id=iff.1h4v.s6.8934f7b5f28b from=translated src=- shape=b480ff12 vocab=3b4d8436
 -/
 theorem condEntropyFstGivenSnd_eq_zero_iff_of_sndMarginal_ne_zero
     {alpha : Type u} {beta : Type v}
@@ -106,6 +109,7 @@ The proof uses the finite semantic bridge
 `H(A | B) = sum_b P_B(b) * H(P_{A|B=b})`,
 
 then every summand is nonnegative.
+@isnad1 id=le.0h3v.s4.c381b23f04ca from=translated src=- shape=df5ad661 vocab=3d33fc56
 -/
 theorem condEntropy_nonneg {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) :
@@ -115,7 +119,9 @@ theorem condEntropy_nonneg {alpha : Type u} {beta : Type v}
     mul_nonneg (PMF.toReal_nonneg (sndMarginal p) b)
       (condEntropyFstGivenSnd_nonneg p b)
 
-/-- Conditional entropy of finite-valued random variables is nonnegative. -/
+/-- Conditional entropy of finite-valued random variables is nonnegative.
+@isnad1 id=le.0h6v.s5.5316c27bf6d5 from=translated src=- shape=4af929b4 vocab=21972df0
+-/
 theorem condEntropyOf_nonneg
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -128,6 +134,7 @@ theorem condEntropyOf_nonneg
 /--
 Conditional entropy is zero exactly when the first coordinate is a function of
 the second coordinate on the support of the joint PMF.
+@isnad1 id=iff.0h3v.s6.75d19ef6a2b1 from=translated src=- shape=4bde4409 vocab=0779f795
 -/
 theorem condEntropy_eq_zero_iff_exists_function
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
@@ -218,6 +225,7 @@ theorem condEntropy_eq_zero_iff_exists_function
 /--
 Conditional entropy of finite-valued random variables is zero exactly when the
 first variable is a function of the second on the source PMF support.
+@isnad1 id=iff.0h6v.s6.dce17bb2dc24 from=translated src=- shape=c6623d2b vocab=04ef4d4f
 -/
 theorem condEntropyOf_eq_zero_iff_exists_function
     {omega : Type u} {alpha : Type v} {beta : Type w}
@@ -247,7 +255,9 @@ theorem condEntropyOf_eq_zero_iff_exists_function
     obtain ⟨omega, homega, rfl⟩ := hz
     exact hf omega homega
 
-/-- A deterministic function of `Y` has zero conditional entropy given `Y`. -/
+/-- A deterministic function of `Y` has zero conditional entropy given `Y`.
+@isnad1 id=eq.0h6v.s5.c81970517b40 from=translated src=- shape=d5e951c5 vocab=ce1d7146
+-/
 theorem condEntropyOf_comp_eq_zero
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -257,7 +267,9 @@ theorem condEntropyOf_comp_eq_zero
     (condEntropyOf_eq_zero_iff_exists_function p
       (fun omega => f (Y omega)) Y).2 ⟨f, fun _ _ => rfl⟩
 
-/-- A finite-valued random variable has zero conditional entropy given itself. -/
+/-- A finite-valued random variable has zero conditional entropy given itself.
+@isnad1 id=eq.0h4v.s4.903b22af290a from=translated src=- shape=ae57ae0a vocab=ce1d7146
+-/
 theorem condEntropyOf_self_eq_zero
     {omega : Type u} {alpha : Type v} [Fintype alpha]
     (p : PMF omega) (X : omega -> alpha) :
@@ -269,6 +281,7 @@ theorem condEntropyOf_self_eq_zero
 /--
 Joint entropy equals the entropy of the second marginal exactly when the first
 coordinate is a function of the second on the joint support.
+@isnad1 id=iff.0h3v.s6.8c2643812d14 from=translated src=- shape=18ae9a3e vocab=f1cf8f73
 -/
 theorem entropy_eq_entropy_sndMarginal_iff_exists_function
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
@@ -295,6 +308,7 @@ theorem entropy_eq_entropy_sndMarginal_iff_exists_function
 /--
 `H(X,Y) = H(Y)` exactly when `X` is a function of `Y` on the source PMF
 support.
+@isnad1 id=iff.0h6v.s6.65bb3a3c0ba3 from=translated src=- shape=4def5a33 vocab=42a44c8e
 -/
 theorem jointEntropyOf_eq_entropyOf_iff_exists_function
     {omega : Type u} {alpha : Type v} {beta : Type w}
@@ -337,7 +351,9 @@ private theorem entropy_eq_entropy_map_add_condEntropyOf_id
       jointEntropyOf_eq_entropyOf_add_condEntropyOf_swap p f id
     _ = entropy (p.map f) + condEntropyOf p id f := rfl
 
-/-- Applying a deterministic map to a finite PMF cannot increase entropy. -/
+/-- Applying a deterministic map to a finite PMF cannot increase entropy.
+@isnad1 id=le.0h4v.s5.ba0a91480476 from=translated src=- shape=222b5e80 vocab=34001ba8
+-/
 theorem entropy_map_le
     {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta]
@@ -350,6 +366,7 @@ theorem entropy_map_le
 /--
 Applying a deterministic map preserves entropy exactly when it is injective on
 the support of the source PMF.
+@isnad1 id=iff.0h4v.s5.44c5d6317fb5 from=translated src=- shape=2eada334 vocab=f6ee0270
 -/
 theorem entropy_map_eq_iff_injOn_support
     {alpha : Type u} {beta : Type v}
@@ -377,7 +394,9 @@ theorem entropy_map_eq_iff_injOn_support
           fun a ha => (hinj.leftInvOn_invFunOn ha).symm⟩
     linarith
 
-/-- Deterministic post-processing of a finite-valued variable cannot increase entropy. -/
+/-- Deterministic post-processing of a finite-valued variable cannot increase entropy.
+@isnad1 id=le.0h6v.s5.794d67e4e8e2 from=translated src=- shape=064e068c vocab=ae905f54
+-/
 theorem entropyOf_comp_le
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -389,6 +408,7 @@ theorem entropyOf_comp_le
 /--
 Deterministic post-processing preserves random-variable entropy exactly when
 the map is injective on the support of the law of the original variable.
+@isnad1 id=iff.0h6v.s5.0af442caa83a from=translated src=- shape=421ab211 vocab=16e5402f
 -/
 theorem entropyOf_comp_eq_iff_injOn_support
     {omega : Type u} {alpha : Type v} {beta : Type w}
@@ -402,6 +422,7 @@ theorem entropyOf_comp_eq_iff_injOn_support
 /--
 Conditional deterministic chain rule:
 `H(X|Z) = H(f(X)|Z) + H(X|f(X),Z)`.
+@isnad1 id=eq.0h8v.s6.7afb10a82ce9 from=translated src=- shape=8203a98b vocab=75255dd0
 -/
 theorem condEntropyOf_deterministic_chain_rule
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -434,7 +455,9 @@ theorem condEntropyOf_deterministic_chain_rule
           condEntropyOf p X (fun omega => (f (X omega), Z omega)) :=
       condEntropyOf_pair_chain_rule p X (fun omega => f (X omega)) Z
 
-/-- Deterministic post-processing cannot increase conditional entropy. -/
+/-- Deterministic post-processing cannot increase conditional entropy.
+@isnad1 id=le.0h8v.s5.bd7d8b387f94 from=translated src=- shape=bf8591ed vocab=21972df0
+-/
 theorem condEntropyOf_comp_le
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -449,6 +472,7 @@ theorem condEntropyOf_comp_le
 /--
 Deterministic post-processing preserves conditional entropy exactly when `X`
 is recoverable from `(f(X), Z)` on the source PMF support.
+@isnad1 id=iff.0h8v.s6.c0361450c931 from=translated src=- shape=cd8a830a vocab=f24fa161
 -/
 theorem condEntropyOf_comp_eq_iff_exists_recovery
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -474,7 +498,9 @@ theorem condEntropyOf_comp_eq_iff_exists_recovery
         (fun omega => (f (X omega), Z omega))).2 hrecover
     linarith
 
-/-- Applying a deterministic map to the first coordinate cannot increase `H(A|C)`. -/
+/-- Applying a deterministic map to the first coordinate cannot increase `H(A|C)`.
+@isnad1 id=le.0h5v.s5.36b51d72e536 from=translated src=- shape=c5226723 vocab=954afe46
+-/
 theorem condEntropy_map_fst_le
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -493,6 +519,7 @@ theorem condEntropy_map_fst_le
 /--
 The first-coordinate map preserves `H(A|C)` exactly when `A` is recoverable
 from `(f(A), C)` on the joint support.
+@isnad1 id=iff.0h5v.s6.f5094889142d from=translated src=- shape=eb482e27 vocab=34695db0
 -/
 theorem condEntropy_map_fst_eq_iff_exists_recovery
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -513,7 +540,9 @@ theorem condEntropy_map_fst_eq_iff_exists_recovery
 
 /-! ## Pair-level entropy and mutual-information inequalities -/
 
-/-- Conditioning reduces entropy: `H(A|B) <= H(A)`. -/
+/-- Conditioning reduces entropy: `H(A|B) <= H(A)`.
+@isnad1 id=le.0h3v.s4.cdf90f8c435a from=translated src=- shape=57df014c vocab=6c181f90
+-/
 theorem condEntropy_le_entropy_fstMarginal
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
     (p : PMF (alpha × beta)) :
@@ -522,7 +551,9 @@ theorem condEntropy_le_entropy_fstMarginal
   rw [mutualInfo_eq_entropy_fstMarginal_sub_condEntropy] at hnonneg
   exact sub_nonneg.mp hnonneg
 
-/-- Mutual information is at most the entropy of the first marginal. -/
+/-- Mutual information is at most the entropy of the first marginal.
+@isnad1 id=le.0h3v.s4.29a300165a69 from=translated src=- shape=57df014c vocab=88ed9e4e
+-/
 theorem mutualInfo_le_entropy_fstMarginal
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
     (p : PMF (alpha × beta)) :
@@ -533,7 +564,9 @@ theorem mutualInfo_le_entropy_fstMarginal
     _ <= entropy (fstMarginal p) :=
       sub_le_self _ (condEntropy_nonneg p)
 
-/-- Mutual information is at most the entropy of the second marginal. -/
+/-- Mutual information is at most the entropy of the second marginal.
+@isnad1 id=le.0h3v.s4.40ae13835fc7 from=translated src=- shape=1a89b92b vocab=5143e4e5
+-/
 theorem mutualInfo_le_entropy_sndMarginal
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
     (p : PMF (alpha × beta)) :
@@ -545,7 +578,9 @@ theorem mutualInfo_le_entropy_sndMarginal
     _ <= entropy (sndMarginal p) :=
       sub_le_self _ (condEntropy_nonneg (p.map Prod.swap))
 
-/-- The entropy of the first marginal is at most the joint entropy. -/
+/-- The entropy of the first marginal is at most the joint entropy.
+@isnad1 id=le.0h3v.s5.2ef229951372 from=translated src=- shape=c1c60d1e vocab=4a55b62e
+-/
 theorem entropy_fstMarginal_le_entropy
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
     (p : PMF (alpha × beta)) :
@@ -557,7 +592,9 @@ theorem entropy_fstMarginal_le_entropy
     _ = entropy p :=
       (entropy_eq_entropy_fstMarginal_add_condEntropy_swap p).symm
 
-/-- The entropy of the second marginal is at most the joint entropy. -/
+/-- The entropy of the second marginal is at most the joint entropy.
+@isnad1 id=le.0h3v.s5.43509e7c7fce from=translated src=- shape=87a0d705 vocab=afcd61d3
+-/
 theorem entropy_sndMarginal_le_entropy
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
     (p : PMF (alpha × beta)) :
@@ -568,7 +605,9 @@ theorem entropy_sndMarginal_le_entropy
     _ = entropy p :=
       (entropy_eq_entropy_sndMarginal_add_condEntropy p).symm
 
-/-- Joint entropy is subadditive: `H(A,B) <= H(A) + H(B)`. -/
+/-- Joint entropy is subadditive: `H(A,B) <= H(A) + H(B)`.
+@isnad1 id=le.0h3v.s5.6f416fcd68ba from=translated src=- shape=7ec4cb2a vocab=489394a1
+-/
 theorem entropy_le_entropy_fstMarginal_add_entropy_sndMarginal
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
     (p : PMF (alpha × beta)) :
@@ -577,7 +616,9 @@ theorem entropy_le_entropy_fstMarginal_add_entropy_sndMarginal
   rw [mutualInfo_eq] at hnonneg
   exact sub_nonneg.mp hnonneg
 
-/-- Random-variable conditioning reduces entropy: `H(X|Y) <= H(X)`. -/
+/-- Random-variable conditioning reduces entropy: `H(X|Y) <= H(X)`.
+@isnad1 id=le.0h6v.s5.2b00e0b3b0c8 from=translated src=- shape=73326911 vocab=0121b072
+-/
 theorem condEntropyOf_le_entropyOf
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -587,7 +628,9 @@ theorem condEntropyOf_le_entropyOf
     condEntropy_le_entropy_fstMarginal
       (p.map fun omega => (X omega, Y omega))
 
-/-- Random-variable mutual information is at most `H(X)`. -/
+/-- Random-variable mutual information is at most `H(X)`.
+@isnad1 id=le.0h6v.s5.75b523d5563f from=translated src=- shape=73326911 vocab=e2f55b62
+-/
 theorem mutualInfoOf_le_entropyOf_left
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -597,7 +640,9 @@ theorem mutualInfoOf_le_entropyOf_left
     mutualInfo_le_entropy_fstMarginal
       (p.map fun omega => (X omega, Y omega))
 
-/-- Random-variable mutual information is at most `H(Y)`. -/
+/-- Random-variable mutual information is at most `H(Y)`.
+@isnad1 id=le.0h6v.s5.4bf0b194e9f7 from=translated src=- shape=00fce5b1 vocab=e2f55b62
+-/
 theorem mutualInfoOf_le_entropyOf_right
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -607,7 +652,9 @@ theorem mutualInfoOf_le_entropyOf_right
     mutualInfo_le_entropy_sndMarginal
       (p.map fun omega => (X omega, Y omega))
 
-/-- The entropy of `X` is at most the joint entropy `H(X,Y)`. -/
+/-- The entropy of `X` is at most the joint entropy `H(X,Y)`.
+@isnad1 id=le.0h6v.s5.415b85b6120f from=translated src=- shape=81b6e500 vocab=3a01cffb
+-/
 theorem entropyOf_le_jointEntropyOf
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -617,7 +664,9 @@ theorem entropyOf_le_jointEntropyOf
     entropy_fstMarginal_le_entropy
       (p.map fun omega => (X omega, Y omega))
 
-/-- The entropy of `Y` is at most the joint entropy `H(X,Y)`. -/
+/-- The entropy of `Y` is at most the joint entropy `H(X,Y)`.
+@isnad1 id=le.0h6v.s5.40cc4eb70484 from=translated src=- shape=fa8ddba5 vocab=3a01cffb
+-/
 theorem entropyOf_le_jointEntropyOf_swap
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -627,7 +676,9 @@ theorem entropyOf_le_jointEntropyOf_swap
     entropy_sndMarginal_le_entropy
       (p.map fun omega => (X omega, Y omega))
 
-/-- Random-variable joint entropy is subadditive: `H(X,Y) <= H(X) + H(Y)`. -/
+/-- Random-variable joint entropy is subadditive: `H(X,Y) <= H(X) + H(Y)`.
+@isnad1 id=le.0h6v.s5.8c0d7498f7f3 from=translated src=- shape=a5f588c6 vocab=97abb083
+-/
 theorem jointEntropyOf_le_entropyOf_add_entropyOf
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -639,49 +690,63 @@ theorem jointEntropyOf_le_entropyOf_add_entropyOf
 
 /-! ## Textbook-Facing Pair-Inequality Aliases -/
 
-/-- Textbook-facing PMF alias for `H(A|B) <= H(A)`. -/
+/-- Textbook-facing PMF alias for `H(A|B) <= H(A)`.
+@isnad1 id=le.0h3v.s4.cdf90f8c435a from=translated src=- shape=57df014c vocab=6c181f90
+-/
 theorem condEntropy_le_entropy_left
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
     (p : PMF (alpha × beta)) :
     condEntropy p <= entropy (fstMarginal p) :=
   condEntropy_le_entropy_fstMarginal p
 
-/-- Textbook-facing PMF alias for `I(A;B) <= H(A)`. -/
+/-- Textbook-facing PMF alias for `I(A;B) <= H(A)`.
+@isnad1 id=le.0h3v.s4.29a300165a69 from=translated src=- shape=57df014c vocab=88ed9e4e
+-/
 theorem mutualInfo_le_entropy_left
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
     (p : PMF (alpha × beta)) :
     mutualInfo p <= entropy (fstMarginal p) :=
   mutualInfo_le_entropy_fstMarginal p
 
-/-- Textbook-facing PMF alias for `I(A;B) <= H(B)`. -/
+/-- Textbook-facing PMF alias for `I(A;B) <= H(B)`.
+@isnad1 id=le.0h3v.s4.40ae13835fc7 from=translated src=- shape=1a89b92b vocab=5143e4e5
+-/
 theorem mutualInfo_le_entropy_right
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
     (p : PMF (alpha × beta)) :
     mutualInfo p <= entropy (sndMarginal p) :=
   mutualInfo_le_entropy_sndMarginal p
 
-/-- Textbook-facing PMF alias for `H(A) <= H(A,B)`. -/
+/-- Textbook-facing PMF alias for `H(A) <= H(A,B)`.
+@isnad1 id=le.0h3v.s5.2ef229951372 from=translated src=- shape=c1c60d1e vocab=4a55b62e
+-/
 theorem entropy_left_le_jointEntropy
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
     (p : PMF (alpha × beta)) :
     entropy (fstMarginal p) <= entropy p :=
   entropy_fstMarginal_le_entropy p
 
-/-- Textbook-facing PMF alias for `H(B) <= H(A,B)`. -/
+/-- Textbook-facing PMF alias for `H(B) <= H(A,B)`.
+@isnad1 id=le.0h3v.s5.43509e7c7fce from=translated src=- shape=87a0d705 vocab=afcd61d3
+-/
 theorem entropy_right_le_jointEntropy
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
     (p : PMF (alpha × beta)) :
     entropy (sndMarginal p) <= entropy p :=
   entropy_sndMarginal_le_entropy p
 
-/-- Textbook-facing PMF alias for joint-entropy subadditivity. -/
+/-- Textbook-facing PMF alias for joint-entropy subadditivity.
+@isnad1 id=le.0h3v.s5.6f416fcd68ba from=translated src=- shape=7ec4cb2a vocab=489394a1
+-/
 theorem jointEntropy_le_add_marginalEntropy
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
     (p : PMF (alpha × beta)) :
     entropy p <= entropy (fstMarginal p) + entropy (sndMarginal p) :=
   entropy_le_entropy_fstMarginal_add_entropy_sndMarginal p
 
-/-- Left-oriented alias for `H(X) <= H(X,Y)`. -/
+/-- Left-oriented alias for `H(X) <= H(X,Y)`.
+@isnad1 id=le.0h6v.s5.415b85b6120f from=translated src=- shape=81b6e500 vocab=3a01cffb
+-/
 theorem entropyOf_left_le_jointEntropyOf
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -689,7 +754,9 @@ theorem entropyOf_left_le_jointEntropyOf
     entropyOf p X <= jointEntropyOf p X Y :=
   entropyOf_le_jointEntropyOf p X Y
 
-/-- Right-oriented alias for `H(Y) <= H(X,Y)`. -/
+/-- Right-oriented alias for `H(Y) <= H(X,Y)`.
+@isnad1 id=le.0h6v.s5.40cc4eb70484 from=translated src=- shape=fa8ddba5 vocab=3a01cffb
+-/
 theorem entropyOf_right_le_jointEntropyOf
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -697,7 +764,9 @@ theorem entropyOf_right_le_jointEntropyOf
     entropyOf p Y <= jointEntropyOf p X Y :=
   entropyOf_le_jointEntropyOf_swap p X Y
 
-/-- Short random-variable alias for joint-entropy subadditivity. -/
+/-- Short random-variable alias for joint-entropy subadditivity.
+@isnad1 id=le.0h6v.s5.8c0d7498f7f3 from=translated src=- shape=a5f588c6 vocab=97abb083
+-/
 theorem jointEntropyOf_le_add_entropyOf
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -714,6 +783,7 @@ Fiber conditional mutual information is nonnegative:
 
 On zero-mass fibers this is `0 <= 0`; on nonzero fibers it reduces to
 `mutualInfo_nonneg` applied to the conditional joint law `P_{A,B|C=c}`.
+@isnad1 id=le.0h5v.s5.e28439633364 from=translated src=- shape=d2d3323f vocab=ff5a6cef
 -/
 theorem condMutualInfoFstSndGivenThird_nonneg
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -736,6 +806,7 @@ We use the finite semantic bridge
 
 then each summand is nonnegative because both `P_C(c)` and the fiber mutual
 information are nonnegative.
+@isnad1 id=le.0h4v.s5.55f4ca04b998 from=translated src=- shape=66e92880 vocab=110dd71c
 -/
 theorem condMutualInfo_nonneg
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -747,7 +818,9 @@ theorem condMutualInfo_nonneg
     mul_nonneg (PMF.toReal_nonneg (thirdMarginal p) c)
       (condMutualInfoFstSndGivenThird_nonneg p c)
 
-/-- Conditional mutual information of finite-valued random variables is nonnegative. -/
+/-- Conditional mutual information of finite-valued random variables is nonnegative.
+@isnad1 id=le.0h8v.s5.129a68733a20 from=translated src=- shape=ba234f23 vocab=22745e3d
+-/
 theorem condMutualInfoOf_nonneg
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -762,6 +835,7 @@ Taking the first marginal after projecting `(A,B,C)` to `(A,C)` recovers the
 first marginal of the original law:
 
 `(P_AC)_A = P_A`.
+@isnad1 id=eq.0h4v.s4.41ccf9b97e16 from=translated src=- shape=6df8c7e8 vocab=a879fbaa
 -/
 @[simp]
 theorem fstMarginal_fstThirdMarginal
@@ -775,6 +849,7 @@ Viewing a triple law as a joint law of `A` and `(B,C)`, the second marginal is
 the same law as the explicit `(B,C)` marginal:
 
 `P_{B,C} = sndMarginal P_{A,(B,C)}`.
+@isnad1 id=eq.0h4v.s4.9e80c78bd9f9 from=translated src=- shape=e9710e6f vocab=58fb91f7
 -/
 @[simp]
 theorem sndMarginal_eq_sndThirdMarginal
@@ -793,6 +868,7 @@ First mutual-information chain rule:
 In Lean's right-associated product convention, a PMF
 `p : PMF (alpha × beta × gamma)` is also a joint law of `A` and `(B,C)`, so
 `mutualInfo p` denotes `I(A;B,C)`.
+@isnad1 id=eq.0h4v.s5.35b3af977d7b from=translated src=- shape=08750747 vocab=536eb15a
 -/
 theorem mutualInfo_chain_rule_fst
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -808,6 +884,7 @@ theorem mutualInfo_chain_rule_fst
 Second mutual-information chain-rule variant:
 
 `I(A;B,C) = I(A;B) + I(A;C | B)`.
+@isnad1 id=eq.0h4v.s6.a2e2c0c836ee from=translated src=- shape=af93478f vocab=96840533
 -/
 theorem mutualInfo_chain_rule_snd
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -849,6 +926,7 @@ theorem mutualInfo_chain_rule_snd
 Random-variable form of `mutualInfo_chain_rule_fst`:
 
 `I(X;Y,Z) = I(X;Z) + I(X;Y | Z)`.
+@isnad1 id=eq.0h8v.s6.9ffbe2c51f7f from=translated src=- shape=8eb56961 vocab=4308a230
 -/
 theorem mutualInfoOf_chain_rule_fst
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -863,6 +941,7 @@ theorem mutualInfoOf_chain_rule_fst
 Random-variable form of `mutualInfo_chain_rule_snd`:
 
 `I(X;Y,Z) = I(X;Y) + I(X;Z | Y)`.
+@isnad1 id=eq.0h8v.s6.48b9062c9541 from=translated src=- shape=106ae6ff vocab=4308a230
 -/
 theorem mutualInfoOf_chain_rule_snd
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -924,6 +1003,7 @@ private theorem mutualInfoOf_augment_right
 /--
 Deterministic mutual-information chain rule:
 `I(X;Y) = I(f(X);Y) + I(X;Y | f(X))`.
+@isnad1 id=eq.0h8v.s6.cabab78216f6 from=translated src=- shape=74c73ec7 vocab=1e65aebf
 -/
 theorem mutualInfoOf_deterministic_chain_rule_left
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -945,7 +1025,9 @@ theorem mutualInfoOf_deterministic_chain_rule_left
           condMutualInfoOf p X Y (fun omega => f (X omega)) := by
       rw [mutualInfoOf_swap, condMutualInfoOf_swap]
 
-/-- Deterministic post-processing of the left variable cannot increase mutual information. -/
+/-- Deterministic post-processing of the left variable cannot increase mutual information.
+@isnad1 id=le.0h8v.s5.66ee2b3613f8 from=translated src=- shape=b8c6cbca vocab=64206a1a
+-/
 theorem mutualInfoOf_comp_left_le
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -956,7 +1038,9 @@ theorem mutualInfoOf_comp_left_le
   exact le_add_of_nonneg_right
     (condMutualInfoOf_nonneg p X Y fun omega => f (X omega))
 
-/-- Deterministic post-processing of the right variable cannot increase mutual information. -/
+/-- Deterministic post-processing of the right variable cannot increase mutual information.
+@isnad1 id=le.0h8v.s5.36fcbcd83788 from=translated src=- shape=c30bbb3e vocab=64206a1a
+-/
 theorem mutualInfoOf_comp_right_le
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -970,7 +1054,9 @@ theorem mutualInfoOf_comp_right_le
     _ <= mutualInfoOf p Y X := mutualInfoOf_comp_left_le p Y X f
     _ = mutualInfoOf p X Y := mutualInfoOf_swap p X Y
 
-/-- Deterministic post-processing of both variables cannot increase mutual information. -/
+/-- Deterministic post-processing of both variables cannot increase mutual information.
+@isnad1 id=le.0h10v.s6.bbe8059cdc70 from=translated src=- shape=ea67df9a vocab=64206a1a
+-/
 theorem mutualInfoOf_comp_le
     {omega : Type u} {alpha : Type v} {beta : Type w}
       {gamma : Type x} {delta : Type y}
@@ -985,7 +1071,9 @@ theorem mutualInfoOf_comp_le
       mutualInfoOf_comp_right_le p (fun omega => f (X omega)) Y g
     _ <= mutualInfoOf p X Y := mutualInfoOf_comp_left_le p X Y f
 
-/-- Mapping the first coordinate of a joint PMF cannot increase mutual information. -/
+/-- Mapping the first coordinate of a joint PMF cannot increase mutual information.
+@isnad1 id=le.0h5v.s5.5c04d8b5290d from=translated src=- shape=c6a331c2 vocab=c5f34f15
+-/
 theorem mutualInfo_map_fst_le
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1001,7 +1089,9 @@ theorem mutualInfo_map_fst_le
   simpa only [mutualInfoOf, hid] using
     mutualInfoOf_comp_left_le p Prod.fst Prod.snd f
 
-/-- Mapping the second coordinate of a joint PMF cannot increase mutual information. -/
+/-- Mapping the second coordinate of a joint PMF cannot increase mutual information.
+@isnad1 id=le.0h5v.s5.0501ac65eb56 from=translated src=- shape=30148a21 vocab=c5f34f15
+-/
 theorem mutualInfo_map_snd_le
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1017,7 +1107,9 @@ theorem mutualInfo_map_snd_le
   simpa only [mutualInfoOf, hid] using
     mutualInfoOf_comp_right_le p Prod.fst Prod.snd f
 
-/-- Mapping both coordinates of a joint PMF cannot increase mutual information. -/
+/-- Mapping both coordinates of a joint PMF cannot increase mutual information.
+@isnad1 id=le.0h7v.s6.b9b2ad5508b5 from=translated src=- shape=2599dfe8 vocab=c5f34f15
+-/
 theorem mutualInfo_map_prod_le
     {alpha : Type u} {beta : Type v} {gamma : Type w} {delta : Type x}
     [Fintype alpha] [Fintype beta] [Fintype gamma] [Fintype delta]
@@ -1035,7 +1127,9 @@ theorem mutualInfo_map_prod_le
 
 /-! ## Textbook-Facing Deterministic-Processing Aliases -/
 
-/-- Explicitly two-sided alias for deterministic mutual-information processing. -/
+/-- Explicitly two-sided alias for deterministic mutual-information processing.
+@isnad1 id=le.0h10v.s6.bbe8059cdc70 from=translated src=- shape=ea67df9a vocab=64206a1a
+-/
 theorem mutualInfoOf_comp_both_le
     {omega : Type u} {alpha : Type v} {beta : Type w}
       {gamma : Type x} {delta : Type y}
@@ -1046,7 +1140,9 @@ theorem mutualInfoOf_comp_both_le
       mutualInfoOf p X Y :=
   mutualInfoOf_comp_le p X Y f g
 
-/-- Left-coordinate alias for deterministic processing of a joint PMF. -/
+/-- Left-coordinate alias for deterministic processing of a joint PMF.
+@isnad1 id=le.0h5v.s5.5c04d8b5290d from=translated src=- shape=c6a331c2 vocab=c5f34f15
+-/
 theorem mutualInfo_map_left_le
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1054,7 +1150,9 @@ theorem mutualInfo_map_left_le
     mutualInfo (p.map fun z => (f z.1, z.2)) <= mutualInfo p :=
   mutualInfo_map_fst_le p f
 
-/-- Right-coordinate alias for deterministic processing of a joint PMF. -/
+/-- Right-coordinate alias for deterministic processing of a joint PMF.
+@isnad1 id=le.0h5v.s5.0501ac65eb56 from=translated src=- shape=30148a21 vocab=c5f34f15
+-/
 theorem mutualInfo_map_right_le
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1062,7 +1160,9 @@ theorem mutualInfo_map_right_le
     mutualInfo (p.map fun z => (z.1, f z.2)) <= mutualInfo p :=
   mutualInfo_map_snd_le p f
 
-/-- Both-coordinate alias for deterministic processing of a joint PMF. -/
+/-- Both-coordinate alias for deterministic processing of a joint PMF.
+@isnad1 id=le.0h7v.s6.b9b2ad5508b5 from=translated src=- shape=2599dfe8 vocab=c5f34f15
+-/
 theorem mutualInfo_map_both_le
     {alpha : Type u} {beta : Type v} {gamma : Type w} {delta : Type x}
     [Fintype alpha] [Fintype beta] [Fintype gamma] [Fintype delta]
@@ -1076,6 +1176,7 @@ theorem mutualInfo_map_both_le
 Conditional mutual information as a difference of conditional entropies:
 
 `I(A;B | C) = H(A | C) - H(A | B,C)`.
+@isnad1 id=eq.0h4v.s5.ad7c0d2f7b56 from=translated src=- shape=bc21fecc vocab=b46846c8
 -/
 theorem condMutualInfo_eq_condEntropy_fstThirdMarginal_sub_condEntropy
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -1089,6 +1190,7 @@ theorem condMutualInfo_eq_condEntropy_fstThirdMarginal_sub_condEntropy
 /--
 Symmetric conditional-entropy difference form:
 `I(A;B | C) = H(B | C) - H(B | A,C)`.
+@isnad1 id=eq.0h4v.s6.fb4836c24fc5 from=translated src=- shape=8c155318 vocab=060018e3
 -/
 theorem condMutualInfo_eq_condEntropy_sndThirdMarginal_sub_condEntropy_swap12
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -1108,6 +1210,7 @@ Conditioning reduces entropy:
 
 The proof rewrites the difference as `I(A;B | C)` and uses conditional mutual
 information nonnegativity.
+@isnad1 id=le.0h4v.s5.d7452324ecd3 from=translated src=- shape=1dc5b80c vocab=3fd42947
 -/
 theorem condEntropy_le_condEntropy_fstThirdMarginal
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -1122,6 +1225,7 @@ theorem condEntropy_le_condEntropy_fstThirdMarginal
 Random-variable conditioning-reduces-entropy theorem:
 
 `H(X | Y,Z) <= H(X | Z)`.
+@isnad1 id=le.0h8v.s6.7cd8f98bc439 from=translated src=- shape=a56ce6ac vocab=039a5c26
 -/
 theorem condEntropyOf_pair_le_condEntropyOf
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -1134,7 +1238,9 @@ theorem condEntropyOf_pair_le_condEntropyOf
 
 /-! ## Triple-level conditional entropy and mutual-information inequalities -/
 
-/-- Conditional mutual information is at most `H(A|C)`. -/
+/-- Conditional mutual information is at most `H(A|C)`.
+@isnad1 id=le.0h4v.s5.93475dbc70db from=translated src=- shape=6d81652e vocab=cc67dd26
+-/
 theorem condMutualInfo_le_condEntropy_fstThirdMarginal
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1146,7 +1252,9 @@ theorem condMutualInfo_le_condEntropy_fstThirdMarginal
     _ <= condEntropy (fstThirdMarginal p) :=
       sub_le_self _ (condEntropy_nonneg p)
 
-/-- Conditional mutual information is at most `H(B|C)`. -/
+/-- Conditional mutual information is at most `H(B|C)`.
+@isnad1 id=le.0h4v.s5.5c14cce20edd from=translated src=- shape=ead92087 vocab=276c2a63
+-/
 theorem condMutualInfo_le_condEntropy_sndThirdMarginal
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1162,7 +1270,9 @@ theorem condMutualInfo_le_condEntropy_sndThirdMarginal
         (condEntropy_nonneg
           (p.map fun z : alpha × beta × gamma => (z.2.1, z.1, z.2.2)))
 
-/-- `H(A|C)` is at most the conditional joint entropy `H(A,B|C)`. -/
+/-- `H(A|C)` is at most the conditional joint entropy `H(A,B|C)`.
+@isnad1 id=le.0h4v.s5.82f260b262ef from=translated src=- shape=1ee8b448 vocab=7d9a7b73
+-/
 theorem condEntropy_fstThirdMarginal_le_condEntropy_pairThirdLaw
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1178,7 +1288,9 @@ theorem condEntropy_fstThirdMarginal_le_condEntropy_pairThirdLaw
     _ = condEntropy (pairThirdLaw p) :=
       (condEntropy_pairThirdLaw_chain_rule_swap p).symm
 
-/-- `H(B|C)` is at most the conditional joint entropy `H(A,B|C)`. -/
+/-- `H(B|C)` is at most the conditional joint entropy `H(A,B|C)`.
+@isnad1 id=le.0h4v.s5.78e49c691869 from=translated src=- shape=250456c5 vocab=a66cca29
+-/
 theorem condEntropy_sndThirdMarginal_le_condEntropy_pairThirdLaw
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1191,7 +1303,9 @@ theorem condEntropy_sndThirdMarginal_le_condEntropy_pairThirdLaw
     _ = condEntropy (pairThirdLaw p) :=
       (condEntropy_pairThirdLaw_chain_rule p).symm
 
-/-- Conditional joint entropy is subadditive: `H(A,B|C) <= H(A|C) + H(B|C)`. -/
+/-- Conditional joint entropy is subadditive: `H(A,B|C) <= H(A|C) + H(B|C)`.
+@isnad1 id=le.0h4v.s6.e4f71fefc5c2 from=translated src=- shape=c8e4c9e8 vocab=20d3ad98
+-/
 theorem condEntropy_pairThirdLaw_le_condEntropy_fstThirdMarginal_add_condEntropy_sndThirdMarginal
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1202,7 +1316,9 @@ theorem condEntropy_pairThirdLaw_le_condEntropy_fstThirdMarginal_add_condEntropy
   rw [condMutualInfo_eq_condEntropy_marginals] at hnonneg
   exact sub_nonneg.mp hnonneg
 
-/-- Random-variable conditional mutual information is at most `H(X|Z)`. -/
+/-- Random-variable conditional mutual information is at most `H(X|Z)`.
+@isnad1 id=le.0h8v.s5.baed4f678eab from=translated src=- shape=5643e11a vocab=64a8c5cb
+-/
 theorem condMutualInfoOf_le_condEntropyOf_left
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1217,7 +1333,9 @@ theorem condMutualInfoOf_le_condEntropyOf_left
       sub_le_self _
         (condEntropyOf_nonneg p X fun omega => (Y omega, Z omega))
 
-/-- Random-variable conditional mutual information is at most `H(Y|Z)`. -/
+/-- Random-variable conditional mutual information is at most `H(Y|Z)`.
+@isnad1 id=le.0h8v.s5.d64e613ec9d7 from=translated src=- shape=f74d583c vocab=64a8c5cb
+-/
 theorem condMutualInfoOf_le_condEntropyOf_right
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1232,7 +1350,9 @@ theorem condMutualInfoOf_le_condEntropyOf_right
       sub_le_self _
         (condEntropyOf_nonneg p Y fun omega => (X omega, Z omega))
 
-/-- `H(X|Z)` is at most the conditional joint entropy `H(X,Y|Z)`. -/
+/-- `H(X|Z)` is at most the conditional joint entropy `H(X,Y|Z)`.
+@isnad1 id=le.0h8v.s6.48acb5a4c0fd from=translated src=- shape=78cc8ca7 vocab=039a5c26
+-/
 theorem condEntropyOf_le_condEntropyOf_pair
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1248,7 +1368,9 @@ theorem condEntropyOf_le_condEntropyOf_pair
     _ = condEntropyOf p (fun omega => (X omega, Y omega)) Z :=
       (condEntropyOf_pair_chain_rule_swap p X Y Z).symm
 
-/-- `H(Y|Z)` is at most the conditional joint entropy `H(X,Y|Z)`. -/
+/-- `H(Y|Z)` is at most the conditional joint entropy `H(X,Y|Z)`.
+@isnad1 id=le.0h8v.s6.390c3bd75143 from=translated src=- shape=bf74a333 vocab=039a5c26
+-/
 theorem condEntropyOf_le_condEntropyOf_pair_swap
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1264,7 +1386,9 @@ theorem condEntropyOf_le_condEntropyOf_pair_swap
     _ = condEntropyOf p (fun omega => (X omega, Y omega)) Z :=
       (condEntropyOf_pair_chain_rule p X Y Z).symm
 
-/-- Random-variable conditional joint entropy is subadditive. -/
+/-- Random-variable conditional joint entropy is subadditive.
+@isnad1 id=le.0h8v.s6.cd175b7b146b from=translated src=- shape=c4c1d0c0 vocab=e832ea6d
+-/
 theorem condEntropyOf_pair_le_condEntropyOf_add_condEntropyOf
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1278,7 +1402,9 @@ theorem condEntropyOf_pair_le_condEntropyOf_add_condEntropyOf
 
 /-! ## Textbook-Facing Conditional-Inequality Aliases -/
 
-/-- Textbook-facing PMF alias for `I(A;B|C) <= H(A|C)`. -/
+/-- Textbook-facing PMF alias for `I(A;B|C) <= H(A|C)`.
+@isnad1 id=le.0h4v.s5.93475dbc70db from=translated src=- shape=6d81652e vocab=cc67dd26
+-/
 theorem condMutualInfo_le_condEntropy_left
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1286,7 +1412,9 @@ theorem condMutualInfo_le_condEntropy_left
     condMutualInfo p <= condEntropy (fstThirdMarginal p) :=
   condMutualInfo_le_condEntropy_fstThirdMarginal p
 
-/-- Textbook-facing PMF alias for `I(A;B|C) <= H(B|C)`. -/
+/-- Textbook-facing PMF alias for `I(A;B|C) <= H(B|C)`.
+@isnad1 id=le.0h4v.s5.5c14cce20edd from=translated src=- shape=ead92087 vocab=276c2a63
+-/
 theorem condMutualInfo_le_condEntropy_right
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1294,7 +1422,9 @@ theorem condMutualInfo_le_condEntropy_right
     condMutualInfo p <= condEntropy (sndThirdMarginal p) :=
   condMutualInfo_le_condEntropy_sndThirdMarginal p
 
-/-- Left-oriented PMF alias for `H(A|C) <= H(A,B|C)`. -/
+/-- Left-oriented PMF alias for `H(A|C) <= H(A,B|C)`.
+@isnad1 id=le.0h4v.s5.82f260b262ef from=translated src=- shape=1ee8b448 vocab=7d9a7b73
+-/
 theorem condEntropy_left_le_condEntropy_pair
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1302,7 +1432,9 @@ theorem condEntropy_left_le_condEntropy_pair
     condEntropy (fstThirdMarginal p) <= condEntropy (pairThirdLaw p) :=
   condEntropy_fstThirdMarginal_le_condEntropy_pairThirdLaw p
 
-/-- Right-oriented PMF alias for `H(B|C) <= H(A,B|C)`. -/
+/-- Right-oriented PMF alias for `H(B|C) <= H(A,B|C)`.
+@isnad1 id=le.0h4v.s5.78e49c691869 from=translated src=- shape=250456c5 vocab=a66cca29
+-/
 theorem condEntropy_right_le_condEntropy_pair
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1310,7 +1442,9 @@ theorem condEntropy_right_le_condEntropy_pair
     condEntropy (sndThirdMarginal p) <= condEntropy (pairThirdLaw p) :=
   condEntropy_sndThirdMarginal_le_condEntropy_pairThirdLaw p
 
-/-- Short PMF alias for conditional joint-entropy subadditivity. -/
+/-- Short PMF alias for conditional joint-entropy subadditivity.
+@isnad1 id=le.0h4v.s6.e4f71fefc5c2 from=translated src=- shape=c8e4c9e8 vocab=20d3ad98
+-/
 theorem condEntropy_pair_le_add_condEntropy
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1320,7 +1454,9 @@ theorem condEntropy_pair_le_add_condEntropy
   condEntropy_pairThirdLaw_le_condEntropy_fstThirdMarginal_add_condEntropy_sndThirdMarginal
     p
 
-/-- Left-oriented random-variable alias for `H(X|Z) <= H(X,Y|Z)`. -/
+/-- Left-oriented random-variable alias for `H(X|Z) <= H(X,Y|Z)`.
+@isnad1 id=le.0h8v.s6.48acb5a4c0fd from=translated src=- shape=78cc8ca7 vocab=039a5c26
+-/
 theorem condEntropyOf_left_le_condEntropyOf_pair
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1329,7 +1465,9 @@ theorem condEntropyOf_left_le_condEntropyOf_pair
       condEntropyOf p (fun omega => (X omega, Y omega)) Z :=
   condEntropyOf_le_condEntropyOf_pair p X Y Z
 
-/-- Right-oriented random-variable alias for `H(Y|Z) <= H(X,Y|Z)`. -/
+/-- Right-oriented random-variable alias for `H(Y|Z) <= H(X,Y|Z)`.
+@isnad1 id=le.0h8v.s6.390c3bd75143 from=translated src=- shape=bf74a333 vocab=039a5c26
+-/
 theorem condEntropyOf_right_le_condEntropyOf_pair
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -1338,7 +1476,9 @@ theorem condEntropyOf_right_le_condEntropyOf_pair
       condEntropyOf p (fun omega => (X omega, Y omega)) Z :=
   condEntropyOf_le_condEntropyOf_pair_swap p X Y Z
 
-/-- Short random-variable alias for conditional joint-entropy subadditivity. -/
+/-- Short random-variable alias for conditional joint-entropy subadditivity.
+@isnad1 id=le.0h8v.s6.cd175b7b146b from=translated src=- shape=c4c1d0c0 vocab=e832ea6d
+-/
 theorem condEntropyOf_pair_le_add_condEntropyOf
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
     [Fintype alpha] [Fintype beta] [Fintype gamma]

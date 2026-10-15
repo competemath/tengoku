@@ -62,6 +62,9 @@ def dirMask (u v : V) : Mask :=
       (if u.1 i2 = v.1 i2 then bit 2 else 0)
   (row2 <<< 6) ||| ((row1 <<< 3) ||| row0)
 
+/--
+@isnad1 id=eq.0h2v.s4.b1ce95de6567 from=translated src=- shape=ab9c9aa2 vocab=046fe8b7
+-/
 @[simp] lemma testBit_bit (k t : Nat) : (bit k).testBit t = decide (k = t) := by
   -- `bit k = 2^k`.
   simp [bit, Nat.shiftLeft_eq, Nat.testBit_two_pow]
@@ -83,6 +86,9 @@ private lemma decide_mod_two_ite_bit {p : Prop} [Decidable p] (k : Nat) :
         simp [hp, bit, Nat.shiftLeft_eq, hmod]
   · simp [hp]
 
+/--
+@isnad1 id=eq.0h4v.s7.1c896800a332 from=translated src=- shape=99820ab9 vocab=9c39093e
+-/
 lemma dirMask_testBit (u v : V) (i j : Fin 3) :
     (dirMask u v).testBit (i.1 * 3 + j.1) = decide (u.1 i = v.1 j) := by
   -- There are only `3×3` relevant bit positions; compute each case.
@@ -90,6 +96,9 @@ lemma dirMask_testBit (u v : V) (i j : Fin 3) :
     simp [dirMask, i0, i1, i2, testBit_ite_bit, decide_mod_two_ite_bit, Nat.testBit_or,
       Nat.testBit_shiftLeft]
 
+/--
+@isnad1 id=lt.0h2v.s4.06cdee151d15 from=translated src=- shape=f513a8c1 vocab=3d42a4da
+-/
 lemma dirMask_lt (u v : V) : dirMask u v < (1 <<< 9) := by
   -- Each row is a `3`-bit number, hence `< 2^3 = 8`.
   have hu01 : u.1 i0 ≠ u.1 i1 := by

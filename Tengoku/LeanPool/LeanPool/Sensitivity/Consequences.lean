@@ -27,7 +27,9 @@ namespace LeanPoolSensitivity
 
 /-- The multilinear degree is at most the square of the sensitivity, an
 immediate corollary of the sensitivity theorem `√d ≤ s(f)`: squaring both
-sides yields `d ≤ s(f)^2`. -/
+sides yields `d ≤ s(f)^2`.
+@isnad1 id=le.0h2v.s4.5be0ede65f28 from=translated src=- shape=e0677b4f vocab=3caaf827
+-/
 theorem degree_le_sensitivity_sq {n : ℕ} (f : BoolFun n) :
     f.degree ≤ f.sensitivity ^ 2 := by
   by_cases hd : f.degree = 0

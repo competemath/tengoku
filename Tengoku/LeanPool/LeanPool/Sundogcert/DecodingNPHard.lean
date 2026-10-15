@@ -98,7 +98,9 @@ def eOf (T : Finset (Fin s)) : Fin s → ZMod 2 :=
 omit [Fintype X] in
 /-- For each point `x`, the syndrome coordinate `(Hmat c *ᵥ eOf T) x` equals the mod-2 cast of
     `coverCount c T x`: each selected set containing `x` contributes a `1`, all summed in `ZMod 2`,
-    so the parity of the cover count is exactly the syndrome bit. -/
+    so the parity of the cover count is exactly the syndrome bit.
+@isnad1 id=eq.0h5v.s7.c07d6aed8802 from=translated src=- shape=913dbacc vocab=9af85f8c
+-/
 theorem syndrome_eq_coverCount_cast (T : Finset (Fin s)) (x : X) :
     (Hmat c *ᵥ eOf T) x = ((coverCount c T x : ℕ) : ZMod 2) := by
   unfold Hmat eOf coverCount
@@ -114,7 +116,9 @@ theorem syndrome_eq_coverCount_cast (T : Finset (Fin s)) (x : X) :
   rw [Finset.sum_ite_mem, Finset.univ_inter]
 
 omit [Fintype X] [DecidableEq X] in
-/-- The Hamming weight of the indicator error equals the size of the selection. -/
+/-- The Hamming weight of the indicator error equals the size of the selection.
+@isnad1 id=eq.0h2v.s6.6fcdea70f567 from=translated src=- shape=7598b32b vocab=1347d78d
+-/
 theorem hammingNorm_eOf (T : Finset (Fin s)) : hammingNorm (eOf T) = T.card := by
   unfold hammingNorm eOf
   -- the support `{i | (if i ∈ T then 1 else 0) ≠ 0}` is exactly `T`.
@@ -126,7 +130,9 @@ theorem hammingNorm_eOf (T : Finset (Fin s)) : hammingNorm (eOf T) = T.card := b
 
 omit [Fintype X] in
 /-- An EXACT cover makes the syndrome the all-ones vector: count `1` is odd, so its mod-2 cast is
-    `1` at every point. -/
+    `1` at every point.
+@isnad1 id=eq.1h4v.s6.7782b519fe42 from=translated src=- shape=8dcce508 vocab=0e884292
+-/
 theorem syndrome_eOf_eq_allOnes (T : Finset (Fin s)) (hT : IsExactCover c T) :
     Hmat c *ᵥ eOf T = allOnes := by
   funext x
@@ -137,7 +143,9 @@ theorem syndrome_eOf_eq_allOnes (T : Finset (Fin s)) (hT : IsExactCover c T) :
 
 /-- **Incidence double-count.**  Summing set-sizes over selected sets equals summing cover-counts
     over points: both count the incidence pairs `(i, x)` with `i ∈ T` and `x ∈ c i`.  Proved by
-    `Finset.sum_comm` after writing each card as a sum of `0/1` indicators. -/
+    `Finset.sum_comm` after writing each card as a sum of `0/1` indicators.
+@isnad1 id=eq.0h4v.s5.c2e94906c92a from=translated src=- shape=ef8a01f0 vocab=ffaf3162
+-/
 theorem incidence_double_count (T : Finset (Fin s)) :
     (∑ i ∈ T, (c i).card) = ∑ x : X, coverCount c T x := by
   unfold coverCount
@@ -152,7 +160,9 @@ theorem incidence_double_count (T : Finset (Fin s)) :
   exact Finset.sum_comm
 
 /-- With each 3-set of card `3`, an exact cover of an `X` of size `3q` selects exactly `q` sets.
-    `3 * T.card = ∑ i∈T, 3 = ∑ i∈T, (c i).card = ∑ x, coverCount = ∑ x, 1 = |X| = 3q`. -/
+    `3 * T.card = ∑ i∈T, 3 = ∑ i∈T, (c i).card = ∑ x, coverCount = ∑ x, 1 = |X| = 3q`.
+@isnad1 id=eq.3h5v.s6.fc64c10ea6ea from=translated src=- shape=31b86668 vocab=e288c737
+-/
 theorem exactCover_card_eq (hc : ∀ i, (c i).card = 3) (hX : Fintype.card X = 3 * q)
     (T : Finset (Fin s)) (hT : IsExactCover c T) : T.card = q := by
   have hsum : (∑ i ∈ T, (c i).card) = 3 * T.card := by
@@ -168,7 +178,9 @@ theorem exactCover_card_eq (hc : ∀ i, (c i).card = 3) (hX : Fintype.card X = 3
 
 /-- **FORWARD (PROVED).**  An EC3S exact cover yields a bounded-weight GF(2) decoding witness:
     the column-selection `eOf T` has syndrome `allOnes` (connection lemma) and weight
-    `T.card = q ≤ q` (double-count). -/
+    `T.card = q ≤ q` (double-count).
+@isnad1 id=decodes.3h4v.s6.97d07987a424 from=translated src=- shape=d9153e05 vocab=4912354c
+-/
 theorem reduction_forward (hc : ∀ i, (c i).card = 3) (hX : Fintype.card X = 3 * q)
     (h : X3C c) : Decodes c q := by
   obtain ⟨T, hT⟩ := h
@@ -181,7 +193,9 @@ theorem reduction_forward (hc : ∀ i, (c i).card = 3) (hX : Fintype.card X = 3 
     casts each cover count to `1` in `ZMod 2`, forcing it ODD hence `≥ 1`; the double-count plus
     `hc` gives `∑ coverCount = 3|T|`, and pointwise `≥ 1` summed gives `∑ coverCount ≥ |X| = 3q`,
     pinning `|T| = q`.  Finally equal sums against the pointwise `≥ 1` bound force every cover count
-    to be EXACTLY `1` — an exact cover. -/
+    to be EXACTLY `1` — an exact cover.
+@isnad1 id=x3c.3h4v.s6.02abea1e46d3 from=translated src=- shape=1ed7d9c9 vocab=4912354c
+-/
 theorem reduction_backward (hc : ∀ i, (c i).card = 3) (hX : Fintype.card X = 3 * q)
     (h : Decodes c q) : X3C c := by
   obtain ⟨e, hsyn, hwt⟩ := h
@@ -227,7 +241,9 @@ theorem reduction_backward (hc : ∀ i, (c i).card = 3) (hX : Fintype.card X = 3
     the full EC3S ⇔ bounded-weight-GF(2)-decoding equivalence — the reduction's correctness, NO
     hypothesis, NO `sorry`, NO `axiom` — landing on CertWall's `minCosetWeight` imported wall.  Only
     the COMPLEXITY WRAPPING (NP class, poly-time-ness, EC3S's own NP-hardness, Karp 1972) stays the
-    named imported wall; the standing limit (NP-hard CONDITIONAL on P≠NP) is unchanged. -/
+    named imported wall; the standing limit (NP-hard CONDITIONAL on P≠NP) is unchanged.
+@isnad1 id=iff.2h4v.s6.5b859493b256 from=translated src=- shape=52697028 vocab=4912354c
+-/
 theorem reduction_iff (hc : ∀ i, (c i).card = 3) (hX : Fintype.card X = 3 * q) :
     X3C c ↔ Decodes c q :=
   ⟨reduction_forward c q hc hX, reduction_backward c q hc hX⟩

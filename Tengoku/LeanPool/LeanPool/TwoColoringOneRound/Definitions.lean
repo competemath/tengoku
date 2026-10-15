@@ -69,24 +69,39 @@ def pEvent (alg : ClassicalAlgorithm) : Set (Samples 4) :=
 noncomputable def p (alg : ClassicalAlgorithm) : ENNReal :=
   (volume : Measure (Samples 4)) (pEvent alg)
 
+/--
+@isnad1 id=measurab.0h0v.s7.3dc29fd6dc3b from=translated src=- shape=71c9fa14 vocab=fce04844
+-/
 lemma measurable_fstTriple :
     Measurable (fun x : Samples 4 => (x 0, x 1, x 2) : Samples 4 → Rand × Rand × Rand) := by
   simpa using
     (measurable_pi_apply 0).prodMk ((measurable_pi_apply 1).prodMk (measurable_pi_apply 2))
 
+/--
+@isnad1 id=measurab.0h0v.s7.6e659fb9ec29 from=translated src=- shape=71c9fa14 vocab=fce04844
+-/
 lemma measurable_sndTriple :
     Measurable (fun x : Samples 4 => (x 1, x 2, x 3) : Samples 4 → Rand × Rand × Rand) := by
   simpa using
     (measurable_pi_apply 1).prodMk ((measurable_pi_apply 2).prodMk (measurable_pi_apply 3))
 
+/--
+@isnad1 id=measurab.0h1v.s6.2ccaa631e12c from=translated src=- shape=ed618cc8 vocab=f2127c4a
+-/
 lemma measurable_nodeColor₀ (alg : ClassicalAlgorithm) :
     Measurable fun x : Samples 4 => alg.f (x 0, x 1, x 2) := by
   simpa [Function.comp_def] using alg.measurable_f.comp measurable_fstTriple
 
+/--
+@isnad1 id=measurab.0h1v.s6.e484b274f3bc from=translated src=- shape=ed618cc8 vocab=f2127c4a
+-/
 lemma measurable_nodeColor₁ (alg : ClassicalAlgorithm) :
     Measurable fun x : Samples 4 => alg.f (x 1, x 2, x 3) := by
   simpa [Function.comp_def] using alg.measurable_f.comp measurable_sndTriple
 
+/--
+@isnad1 id=measurab.0h1v.s5.330f5e395f45 from=translated src=- shape=0aeb7ffb vocab=6f1002ff
+-/
 lemma measurableSet_pEvent (alg : ClassicalAlgorithm) : MeasurableSet (pEvent alg) := by
   classical
   refine measurableSet_eq_fun (measurable_nodeColor₀ alg) (measurable_nodeColor₁ alg)

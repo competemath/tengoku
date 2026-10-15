@@ -64,7 +64,9 @@ variable {n m : ℕ} [NeZero n] [NeZero m]
 /-! ### Helper lemma -/
 
 /-- In a `Finset` `T`, if exactly one of two DISTINCT elements `a`, `b` is present (the `{a,b}`
-    fibre of `T` has card `1`), then membership of `a` is the negation of membership of `b`. -/
+    fibre of `T` has card `1`), then membership of `a` is the negation of membership of `b`.
+@isnad1 id=iff.2h4v.s6.15f002ad0bf1 from=translated src=- shape=c8ffea95 vocab=8bb5cd0f
+-/
 lemma card_filter_pair_eq_one {α} [DecidableEq α] {T : Finset α} {a b : α}
     (hab : a ≠ b)
     (h : (T.filter (fun x => x = a ∨ x = b)).card = 1) :
@@ -78,7 +80,9 @@ omit [NeZero n] in
 /-- **Reverse correctness.**  A perfect 3-dimensional matching of the gadget triple map yields a
     satisfying assignment: the wheel triples force each variable's selection constant (a truth
     value), and each clause's selected slot triple frees its literal's wheel triple, making the
-    literal true.  (One direction only; the forward direction is milestone 8.) -/
+    literal true.  (One direction only; the forward direction is milestone 8.)
+@isnad1 id=satisfia.1h3v.s8.0489df3986bc from=translated src=- shape=3a54dc0c vocab=0d880477
+-/
 theorem reverse (φ : Formula n m) (h : threeDMI (tripleFn φ)) :
     Satisfiable φ := by
   obtain ⟨T, hW, hX, hY⟩ := h

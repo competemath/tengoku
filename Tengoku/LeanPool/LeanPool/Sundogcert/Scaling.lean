@@ -72,7 +72,9 @@ def allOnesSynBody (m : ℕ) : Fin (2 * m) → ZMod 2 :=
     the indices `i` and `k+m` are distinct, so every summand is `0`. Then
     `projH m *ᵥ (s ᵥ* projG m) = (projH m * (projG m)ᵀ) *ᵥ s = 0`. -/
 
-/-- The structural core: `projH m * (projG m)ᵀ = 0`. -/
+/-- The structural core: `projH m * (projG m)ᵀ = 0`.
+@isnad1 id=eq.0h1v.s8.823edfa7a8b8 from=translated src=- shape=060c1698 vocab=9dba1500
+-/
 theorem projH_mul_projG_transpose (m : ℕ) :
     projH m * (projG m)ᵀ = 0 := by
   ext i k
@@ -90,7 +92,9 @@ theorem projH_mul_projG_transpose (m : ℕ) :
   · rw [ite_eq_right hji, zero_mul]
 
 /-- The dual-pair law for the family, via the structural core. SCALABLE: kernel cost is
-    polynomial in `m` (no `2^m` secret enumeration). -/
+    polynomial in `m` (no `2^m` secret enumeration).
+@isnad1 id=eq.0h2v.s7.d93083fc96e7 from=translated src=- shape=418c5ed1 vocab=501e4eb3
+-/
 theorem hHG_proj (m : ℕ) :
     ∀ s : Fin m → ZMod 2, projH m *ᵥ (s ᵥ* projG m) = 0 := by
   intro s
@@ -119,6 +123,9 @@ def witnessOpt (m : ℕ) (y : Fin (projScheme m).n → ZMod 2) :
     Option (Fin (projScheme m).n → ZMod 2) :=
   if wt y ≤ (projScheme m).τ then some y else none
 
+/--
+@isnad1 id=and.1h3v.s9.464501b72f9b from=translated src=- shape=dbe5fcb1 vocab=9b0f94c9
+-/
 theorem witness_sound (m : ℕ) :
     ∀ y e', witnessOpt m y = some e' →
       (projScheme m).H *ᵥ e' = (projScheme m).H *ᵥ y ∧ wt e' ≤ (projScheme m).τ := by
@@ -167,7 +174,9 @@ def verdicts (m : ℕ) : String :=
       scaling_law           : ∀ m, 0 < m → ¬ Safe (projScheme m) (allOnesSynBody m). -/
 
 /-- `projH m *ᵥ allOnesSynBody m` is the all-ones vector in `Fin m`: at row `i`, the only
-    nonzero term is `j = i` (both guards `j = i` and `j < m` hold since `i < m`). -/
+    nonzero term is `j = i` (both guards `j = i` and `j < m` hold since `i < m`).
+@isnad1 id=eq.0h1v.s7.1f460e85e687 from=translated src=- shape=edc37ac7 vocab=4a47a413
+-/
 theorem projH_mulVec_allOnes (m : ℕ) :
     projH m *ᵥ allOnesSynBody m = (fun _ => 1) := by
   funext i
@@ -188,7 +197,9 @@ theorem projH_mulVec_allOnes (m : ℕ) :
     · rw [ite_eq_right hjm, mul_zero]
   · intro h; exact absurd (Finset.mem_univ _) h
 
-/-- `hammingNorm (projH m *ᵥ allOnesSynBody m) = m`: the all-ones vector over `Fin m`. -/
+/-- `hammingNorm (projH m *ᵥ allOnesSynBody m) = m`: the all-ones vector over `Fin m`.
+@isnad1 id=eq.0h1v.s7.082d24b84afc from=translated src=- shape=1618f4f2 vocab=2e15ee00
+-/
 theorem hammingNorm_projH_allOnes (m : ℕ) :
     hammingNorm (projH m *ᵥ allOnesSynBody m) = m := by
   rw [projH_mulVec_allOnes]
@@ -200,7 +211,9 @@ theorem hammingNorm_projH_allOnes (m : ℕ) :
     exact one_ne_zero
   rw [this, Finset.card_univ, Fintype.card_fin]
 
-/-- Each column `j` of `projH m` has support cardinality `≤ 1`: at most the single row `i = j`. -/
+/-- Each column `j` of `projH m` has support cardinality `≤ 1`: at most the single row `i = j`.
+@isnad1 id=le.0h2v.s7.03ae07ac7b1e from=translated src=- shape=efc7ee74 vocab=0720cbbc
+-/
 theorem colSupp_projH_le_one (m : ℕ) (j : Fin (2 * m)) :
     (Finset.univ.filter (fun i : Fin m => projH m i j ≠ 0)).card ≤ 1 := by
   rw [Finset.card_le_one]
@@ -221,7 +234,9 @@ theorem colSupp_projH_le_one (m : ℕ) (j : Fin (2 * m)) :
   exact Fin.ext (hja ▸ hjb)
 
 /-- **colBound (projH m) = 1** for `m > 0`: every column has ≤ 1 nonzero, and column `0`
-    (row `0`) attains it, so the sup is exactly `1`. -/
+    (row `0`) attains it, so the sup is exactly `1`.
+@isnad1 id=eq.1h1v.s5.f56addcb33ff from=translated src=- shape=ff2c779d vocab=24d44829
+-/
 theorem colBound_projH (m : ℕ) (hm : 0 < m) : colBound (projH m) = 1 := by
   apply le_antisymm
   · -- upper bound: sup over columns of (≤ 1) is ≤ 1
@@ -245,7 +260,9 @@ theorem colBound_projH (m : ℕ) (hm : 0 < m) : colBound (projH m) = 1 := by
 /-- **THE SCALING LAW.**  For every `m > 0`, the all-ones-syndrome body is UNSAFE at the
     radius `τ = m - 1`: no same-syndrome witness has weight ≤ m - 1, because the syndrome
     `projH m *ᵥ (allOnesSynBody m)` has weight `m`, and (colBound = 1 ⟹) `colWeightLb = m`
-    is a SOUND lower bound on every witness weight. One proof, the whole [2m, m] family. -/
+    is a SOUND lower bound on every witness weight. One proof, the whole [2m, m] family.
+@isnad1 id=not.1h1v.s5.82daaa8aabd0 from=translated src=- shape=e46183fe vocab=bb508402
+-/
 theorem scaling_law (m : ℕ) (hm : 0 < m) :
     ¬ Safe (projScheme m) (allOnesSynBody m) := by
   rintro ⟨e', he, hwt⟩

@@ -32,7 +32,9 @@ variable (f : X ⟶ Y) (g : X ⟶ Z)
 
 namespace TopCat
 
-/-- Explicit description of the topology on the pushout -/
+/-- Explicit description of the topology on the pushout
+@isnad1 id=isopen.2h6v.s8.41adf56f71ea from=translated src=- shape=264fca3c vocab=7d942dc6
+-/
 lemma pushout_isOpen (s : Set (pushout f g).carrier)
     (hl : IsOpen <| (pushout.inl f g) ⁻¹' s)
     (hr : IsOpen <| (pushout.inr f g) ⁻¹' s) : IsOpen s := by
@@ -117,6 +119,7 @@ Z ---inr---> pushout f g
 The proof is similar to the one in
 https://math.stackexchange.com/questions/3906319/pushout-of-injective-is-injective
 TODO: prove this in the category of types.
+@isnad1 id=injectiv.0h5v.s9.dfdfc04cce15 from=translated src=- shape=b28b7387 vocab=3a725f2f
 -/
 lemma injective_pushoutInr' : Function.Injective <| pushoutInr' f g := by
   have : ∀ z : Z, Decidable (z ∈ Set.range g) := fun _ ↦ Classical.dec _
@@ -151,6 +154,9 @@ lemma injective_pushoutInr' : Function.Injective <| pushoutInr' f g := by
       exact fun ⦃a₁ a₂⦄ a ↦ a
     exact Function.Injective.of_comp this
 
+/--
+@isnad1 id=ne.2h7v.s8.3c4050389b80 from=translated src=- shape=a63b631f vocab=f703d4a1
+-/
 lemma pushoutInr_neq_pushoutInr_of_mem_compl_range_of_mem_range :
     ∀ z ∈ (Set.range g)ᶜ, ∀ z' ∈ Set.range g, (pushout.inr f g) z ≠ (pushout.inr f g) z' := by
   have : ∀ z : Z, Decidable (z ∈ Set.range g) := fun _ ↦ Classical.dec _
@@ -176,7 +182,9 @@ lemma pushoutInr_neq_pushoutInr_of_mem_compl_range_of_mem_range :
       simp_all
     exact fun heq ↦ p_neq (congrArg pYZ heq)
 
-/-- TODO: re-use the code in `pushoutInr_neq_pushoutInr_of_mem_compl_range_of_mem_range` -/
+/-- TODO: re-use the code in `pushoutInr_neq_pushoutInr_of_mem_compl_range_of_mem_range`
+@isnad1 id=ne.1h7v.s8.62aab7e80bca from=translated src=- shape=54872c75 vocab=99c3b984
+-/
 lemma pushoutInr_neq_pushoutInl_of_mem_compl_range :
     ∀ z ∈ (Set.range g)ᶜ, ∀ y : Y, (pushout.inr f g) z ≠ (pushout.inl f g) y := by
   have : ∀ z : Z, Decidable (z ∈ Set.range g) := fun _ ↦ Classical.dec _
@@ -236,6 +244,7 @@ g           inl
 v            v
 Z ---inr---> pushout f g
 ```
+@isnad1 id=isopenma.1h5v.s9.466d057c64b9 from=translated src=- shape=14bec541 vocab=bb6a885d
 -/
 lemma isOpenMap_pushoutInr' (hg : IsClosed {z | z ∈ Set.range g}) :
     IsOpenMap <| pushoutInr' f g := by
@@ -280,6 +289,7 @@ g           inl
 v            v
 Z ---inr---> pushout f g
 ```
+@isnad1 id=isopenem.1h5v.s9.bcae6896dbcb from=translated src=- shape=14bec541 vocab=d1a1b5be
 -/
 theorem isOpenEmbedding_pushoutInr' (hg : IsClosed {z | z ∈ Set.range g}) :
     Topology.IsOpenEmbedding <| pushoutInr' f g := by

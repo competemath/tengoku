@@ -44,7 +44,9 @@ def embed (free : Finset (Fin n)) (base : Fin n → Bool)
     (x : Fin n → Bool) : Fin n → Bool :=
   fun j => if j ∈ free then x j else base j
 
-/-- For a free coordinate `i`, embedding commutes with flipping bit `i`. -/
+/-- For a free coordinate `i`, embedding commutes with flipping bit `i`.
+@isnad1 id=eq.1h5v.s5.c354c17035dd from=translated src=- shape=5f900d93 vocab=bd31cb1e
+-/
 theorem embed_flipBit_free (free : Finset (Fin n)) (base x : Fin n → Bool)
     (i : Fin n) (hi : i ∈ free) :
     embed free base (flipBit x i) = flipBit (embed free base x) i := by
@@ -57,7 +59,9 @@ theorem embed_flipBit_free (free : Finset (Fin n)) (base x : Fin n → Bool)
       rw [Function.update_of_ne hji]
       simp [embed, hj]
 
-/-- For a non-free coordinate `i`, embedding ignores flips at `i`. -/
+/-- For a non-free coordinate `i`, embedding ignores flips at `i`.
+@isnad1 id=eq.1h5v.s5.f8473c70fd16 from=translated src=- shape=e4d52fd0 vocab=bd31cb1e
+-/
 theorem embed_flipBit_nonfree (free : Finset (Fin n)) (base x : Fin n → Bool)
     (i : Fin n) (hi : i ∉ free) :
     embed free base (flipBit x i) = embed free base x := by
@@ -68,7 +72,9 @@ theorem embed_flipBit_nonfree (free : Finset (Fin n)) (base x : Fin n → Bool)
   · simp [hj]
 
 /-- Embedding the indicator of `T ⊆ S ⊆ free` with `base = false` recovers
-the original indicator of `T`. -/
+the original indicator of `T`.
+@isnad1 id=eq.2h4v.s6.e9009a966610 from=translated src=- shape=d4daa93d vocab=89536ff9
+-/
 theorem embed_indicator_subset (free S T : Finset (Fin n))
     (hS : S ⊆ free) (hT : T ⊆ S) :
     embed free (fun _ => false) (indicator T) = indicator T := by
@@ -87,14 +93,18 @@ def restrictTo (f : BoolFun n) (free : Finset (Fin n))
     (base : Fin n → Bool) : BoolFun n :=
   fun x => f (embed free base x)
 
-/-- Flipping a coordinate outside `free` does not change the restriction. -/
+/-- Flipping a coordinate outside `free` does not change the restriction.
+@isnad1 id=eq.1h6v.s5.53f7d2fd619c from=translated src=- shape=7db4546c vocab=cbba59d9
+-/
 theorem restrictTo_flipBit_nonfree (f : BoolFun n) (free : Finset (Fin n))
     (base : Fin n → Bool) (x : Fin n → Bool) (i : Fin n) (hi : i ∉ free) :
     f.restrictTo free base (flipBit x i) = f.restrictTo free base x := by
   unfold restrictTo
   rw [embed_flipBit_nonfree free base x i hi]
 
-/-- The restriction is never sensitive in a coordinate outside `free`. -/
+/-- The restriction is never sensitive in a coordinate outside `free`.
+@isnad1 id=not.1h6v.s5.d3fea03d1d3b from=translated src=- shape=b7df349f vocab=42b2ec54
+-/
 theorem restrictTo_not_sensitiveAt_nonfree (f : BoolFun n) (free : Finset (Fin n))
     (base : Fin n → Bool) (x : Fin n → Bool) (i : Fin n) (hi : i ∉ free) :
     ¬(f.restrictTo free base).sensitiveAt x i := by
@@ -102,7 +112,9 @@ theorem restrictTo_not_sensitiveAt_nonfree (f : BoolFun n) (free : Finset (Fin n
   intro hcontra
   exact hcontra (f.restrictTo_flipBit_nonfree free base x i hi)
 
-/-- Restriction cannot increase sensitivity. -/
+/-- Restriction cannot increase sensitivity.
+@isnad1 id=le.0h4v.s4.1f09388f259e from=translated src=- shape=48b62269 vocab=7904f513
+-/
 theorem restrictTo_sensitivity_le (f : BoolFun n) (free : Finset (Fin n))
     (base : Fin n → Bool) :
     (f.restrictTo free base).sensitivity ≤ f.sensitivity := by
@@ -123,7 +135,9 @@ theorem restrictTo_sensitivity_le (f : BoolFun n) (free : Finset (Fin n))
     exact f.restrictTo_not_sensitiveAt_nonfree free base x i him hi
 
 /-- Restricting with `base = false` preserves Möbius coefficients on subsets
-of the free coordinates. -/
+of the free coordinates.
+@isnad1 id=eq.1h4v.s5.7eeebd553021 from=translated src=- shape=caea29c0 vocab=5eaa1300
+-/
 theorem restrictTo_moebius_subset (f : BoolFun n) (free : Finset (Fin n))
     (S : Finset (Fin n)) (hS : S ⊆ free) :
     (f.restrictTo free (fun _ => false)).moebius S = f.moebius S := by
@@ -136,7 +150,9 @@ theorem restrictTo_moebius_subset (f : BoolFun n) (free : Finset (Fin n))
 
 /-- Key lemma: if `f` has degree `d ≥ 1`, there is a subcube of dimension `d`
 on which the restriction has full degree `d` (its top Möbius coefficient is
-nonzero). -/
+nonzero).
+@isnad1 id=ex.1h2v.s6.37c6d937b18e from=translated src=- shape=a1455ad2 vocab=9631e762
+-/
 theorem exists_fullDegree_restriction (f : BoolFun n) (hd : 0 < f.degree) :
     ∃ S : Finset (Fin n),
       S.card = f.degree ∧

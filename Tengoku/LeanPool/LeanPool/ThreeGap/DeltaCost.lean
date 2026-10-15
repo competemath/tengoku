@@ -55,14 +55,18 @@ norm this is the closest lattice point, so it *attains* the defect `delta α q`.
 noncomputable def nearestInt (α : Fin d → ℝ) (q : ℤ) : Fin d → ℤ :=
   fun k => round ((q : ℝ) * α k)
 
-/-- The remainder against the nearest integer vector, coordinatewise. -/
+/-- The remainder against the nearest integer vector, coordinatewise.
+@isnad1 id=eq.0h4v.s6.20e7e9831c54 from=translated src=- shape=c4bdf4d6 vocab=633cb194
+-/
 theorem rem_nearestInt_apply (α : Fin d → ℝ) (q : ℤ) (k : Fin d) :
     rem α q (nearestInt α q) k = (q : ℝ) * α k - round ((q : ℝ) * α k) := by
   simp only [rem, nearestInt, Pi.sub_apply, Pi.smul_apply, smul_eq_mul]
 
 /-- **The defect is attained by rounding (sup norm).** `delta α q = ‖q • α − round(q • α)‖`. Each
 coordinate `|qα_k − round(qα_k)| ≤ |qα_k − p_k|` (`round_le`), so the rounded vector minimises the
-sup norm over all integer translates. This is the `hattain` hypothesis of the growth lemma. -/
+sup norm over all integer translates. This is the `hattain` hypothesis of the growth lemma.
+@isnad1 id=eq.0h3v.s5.40b0069a3026 from=translated src=- shape=a59c04ce vocab=7e13a46d
+-/
 theorem delta_attained (α : Fin d → ℝ) (q : ℤ) :
     ‖rem α q (nearestInt α q)‖ = delta α q := by
   refine le_antisymm ?_ (delta_le α q (nearestInt α q))
@@ -78,13 +82,17 @@ theorem delta_attained (α : Fin d → ℝ) (q : ℤ) :
 noncomputable def deltaCost (α : Fin d → ℝ) : ℕ → ℝ := fun q => delta α (q : ℤ)
 
 /-- `hattain` for the record denominators: at each `q_k = bestDenom`, the defect is attained by the
-nearest integer vector. -/
+nearest integer vector.
+@isnad1 id=eq.1h3v.s6.ae7acc6f0bc9 from=translated src=- shape=b4042878 vocab=02fb2d67
+-/
 theorem bestDenom_hattain (α : Fin d → ℝ) (hr : RecordsContinue (deltaCost α)) (k : ℕ) :
     ‖rem α ((bestDenom (deltaCost α) hr k : ℤ)) (nearestInt α (bestDenom (deltaCost α) hr k))‖
       = delta α ((bestDenom (deltaCost α) hr k : ℤ)) :=
   delta_attained α _
 
-/-- `hdec` for the record denominators: the defects `delta α q_i` are non-increasing in `i`. -/
+/-- `hdec` for the record denominators: the defects `delta α q_i` are non-increasing in `i`.
+@isnad1 id=le.2h4v.s5.54d79df5ec02 from=translated src=- shape=a97c3b24 vocab=ae72f0f4
+-/
 theorem bestDenom_hdec (α : Fin d → ℝ) (hr : RecordsContinue (deltaCost α)) {i j : ℕ}
     (h : i ≤ j) :
     delta α ((bestDenom (deltaCost α) hr j : ℤ)) ≤ delta α ((bestDenom (deltaCost α) hr i : ℤ)) :=
@@ -92,7 +100,9 @@ theorem bestDenom_hdec (α : Fin d → ℝ) (hr : RecordsContinue (deltaCost α)
 
 /-- `hbsad` for the record denominators: each `q_k` is a **strict** record minimum over *all*
 smaller
-positive denominators — `delta α q_k < delta α m` for `0 < m < q_k`. -/
+positive denominators — `delta α q_k < delta α m` for `0 < m < q_k`.
+@isnad1 id=lt.3h4v.s5.84c83425eb1a from=translated src=- shape=eb5af117 vocab=1071570c
+-/
 theorem bestDenom_hbsad (α : Fin d → ℝ) (hr : RecordsContinue (deltaCost α)) (k : ℕ) (m : ℤ)
     (hpos : 0 < m) (hlt : m < (bestDenom (deltaCost α) hr k : ℤ)) :
     delta α ((bestDenom (deltaCost α) hr k : ℤ)) < delta α m := by
@@ -112,7 +122,9 @@ defect cost `r q = delta α q` and `RecordsContinue` (irrationality), the record
 
 This discharges the growth hypothesis of `ChevallierCount.chevallier_gap_count_le` **with no extra
 input** — `hattain` comes from rounding (`delta_attained`), `hdec`/`hbsad` from the record structure
-(`bestDenom_*`), and the doubling itself from the orthant pigeonhole (`supNorm_growth_doubling`). -/
+(`bestDenom_*`), and the doubling itself from the orthant pigeonhole (`supNorm_growth_doubling`).
+@isnad1 id=le.1h3v.s6.1279e049b27e from=translated src=- shape=e313d8ff vocab=3bd14de4
+-/
 theorem bestDenom_supNorm_growth (α : Fin d → ℝ) (hr : RecordsContinue (deltaCost α)) (k : ℕ) :
     2 * bestDenom (deltaCost α) hr k ≤ bestDenom (deltaCost α) hr (k + 2 ^ d) := by
   have hint : 2 * (bestDenom (deltaCost α) hr k : ℤ)
@@ -133,7 +145,9 @@ For every `N ≥ 2`, the number of distinct values of the abstract nearest-neigh
 the
 appropriate irrationality of `α`). The remaining step to the geometric three-distance statement is
 the
-isometry identification of `gapVal` with the actual torus nearest-neighbour distance. -/
+isometry identification of `gapVal` with the actual torus nearest-neighbour distance.
+@isnad1 id=le.2h3v.s6.25ee8ca9e5f7 from=translated src=- shape=78a64ac3 vocab=46b9fcd1
+-/
 theorem gap_count_supNorm_le (α : Fin d → ℝ) (hr : RecordsContinue (deltaCost α))
     {N : ℕ} (hN : 2 ≤ N) :
     ((Finset.range (N + 1)).image (gapVal (deltaCost α) N)).card ≤ 2 ^ d + 1 :=

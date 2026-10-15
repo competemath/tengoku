@@ -49,39 +49,55 @@ noncomputable
 def semicirclePDFReal (μ : ℝ) (v : ℝ≥0) (x : ℝ) : ℝ :=
   1 / (2 * π * v) * √(4 * v - (x - μ) ^ 2)
 
+/--
+@isnad1 id=eq.0h2v.s6.8343ca3f7243 from=translated src=- shape=82b53122 vocab=9541eea7
+-/
 lemma semicirclePDFReal_def (μ : ℝ) (v : ℝ≥0) :
     semicirclePDFReal μ v =
       fun x ↦ 1 / (2 * π * v) * √(4 * v - (x - μ) ^ 2) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.18b97fbfc940 from=translated src=- shape=f0be0be8 vocab=8701cdd6
+-/
 @[simp]
 lemma semicirclePDFReal_zero_var (m : ℝ) : semicirclePDFReal m 0 = 0 := by
   ext x
   simp [semicirclePDFReal]
 
-/-- The semicircle pdf is nonnegative. -/
+/-- The semicircle pdf is nonnegative.
+@isnad1 id=le.0h3v.s4.c5d81c082cef from=translated src=- shape=bad53a6c vocab=94da086e
+-/
 lemma semicirclePDFReal_nonneg (μ : ℝ) (v : ℝ≥0) (x : ℝ) : 0 ≤ semicirclePDFReal μ v x := by
   rw [semicirclePDFReal]
   positivity
 
-/-- The semicircle pdf is continuous. -/
+/-- The semicircle pdf is continuous.
+@isnad1 id=continuo.0h2v.s4.664118c83ff8 from=translated src=- shape=39a012a0 vocab=1dfc2f3a
+-/
 lemma continuous_semicirclePDFReal (μ : ℝ) (v : ℝ≥0) :
     Continuous (semicirclePDFReal μ v) := by
   rw [semicirclePDFReal_def]
   fun_prop
 
-/-- The semicircle pdf is measurable. -/
+/-- The semicircle pdf is measurable.
+@isnad1 id=measurab.0h2v.s3.c5e6bbe22bad from=translated src=- shape=39a012a0 vocab=37240d8c
+-/
 @[fun_prop]
 lemma measurable_semicirclePDFReal (μ : ℝ) (v : ℝ≥0) :
     Measurable (semicirclePDFReal μ v) :=
   (continuous_semicirclePDFReal μ v).measurable
 
-/-- The semicircle pdf is strongly measurable. -/
+/-- The semicircle pdf is strongly measurable.
+@isnad1 id=strongly.0h2v.s4.c2cc319b2198 from=translated src=- shape=39a012a0 vocab=68df6b82
+-/
 @[fun_prop]
 lemma stronglyMeasurable_semicirclePDFReal (μ : ℝ) (v : ℝ≥0) :
     StronglyMeasurable (semicirclePDFReal μ v) :=
   (measurable_semicirclePDFReal μ v).stronglyMeasurable
 
-/-- The support of the semicircle pdf is contained in `[μ - 2√v, μ + 2√v]`. -/
+/-- The support of the semicircle pdf is contained in `[μ - 2√v, μ + 2√v]`.
+@isnad1 id=le.0h2v.s6.a026e329ba88 from=translated src=- shape=6310058f vocab=a2b6e767
+-/
 lemma support_semicirclePDFReal_subset (μ : ℝ) (v : ℝ≥0) :
     Function.support (semicirclePDFReal μ v) ⊆ Icc (μ - 2 * √v) (μ + 2 * √v) := by
   intro x hx
@@ -105,7 +121,9 @@ lemma support_semicirclePDFReal_subset (μ : ℝ) (v : ℝ≥0) :
   have h_nonpos : 4 * (v : ℝ) - (x - μ) ^ 2 ≤ 0 := by linarith
   rw [Real.sqrt_eq_zero_of_nonpos h_nonpos, mul_zero]
 
-/-- The semicircle pdf is integrable. -/
+/-- The semicircle pdf is integrable.
+@isnad1 id=integrab.0h2v.s5.39bb12d2df52 from=translated src=- shape=acb8ff6e vocab=d731e41b
+-/
 @[fun_prop]
 lemma integrable_semicirclePDFReal (μ : ℝ) (v : ℝ≥0) :
     Integrable (semicirclePDFReal μ v) := by
@@ -116,6 +134,9 @@ lemma integrable_semicirclePDFReal (μ : ℝ) (v : ℝ≥0) :
   exact (integrableOn_iff_integrable_of_support_subset
     (support_semicirclePDFReal_subset μ v)).mp h_int_on
 
+/--
+@isnad1 id=eq.1h2v.s7.63baa274b1bf from=translated src=- shape=72f4407b vocab=c32d8416
+-/
 lemma sqrt_semicircle_affine (v : ℝ≥0) {y : ℝ} (hy : y ∈ Icc (-1 : ℝ) 1) :
     √(4 * (v : ℝ) - (2 * √(v : ℝ) * y) ^ 2) =
       2 * √(v : ℝ) * √(1 - y ^ 2) := by
@@ -136,7 +157,9 @@ lemma sqrt_semicircle_affine (v : ℝ≥0) {y : ℝ} (hy : y ∈ Icc (-1 : ℝ) 
             norm_num
           rw [h_sqrt_four]
 
-/-- The unnormalized semicircle kernel has integral `2 * π * v` over its support interval. -/
+/-- The unnormalized semicircle kernel has integral `2 * π * v` over its support interval.
+@isnad1 id=eq.1h2v.s7.101e3187a481 from=translated src=- shape=bfd1546a vocab=43ac4243
+-/
 lemma integral_sqrt_semicircle_interval (μ : ℝ) {v : ℝ≥0} (hv : v ≠ 0) :
     ∫ x in μ - 2 * √(v : ℝ)..μ + 2 * √(v : ℝ),
       √(4 * (v : ℝ) - (x - μ) ^ 2) = 2 * π * (v : ℝ) := by
@@ -171,7 +194,9 @@ lemma integral_sqrt_semicircle_interval (μ : ℝ) {v : ℝ≥0} (hv : v ≠ 0) 
                 2 * π * (√(v : ℝ)) ^ 2 := by ring
             _ = 2 * π * (v : ℝ) := by rw [Real.sq_sqrt hv_nonneg]
 
-/-- The semicircle distribution pdf integrates to 1 when the variance is nonzero. -/
+/-- The semicircle distribution pdf integrates to 1 when the variance is nonzero.
+@isnad1 id=eq.1h2v.s5.29dbbbc9fa6e from=translated src=- shape=be70d9e3 vocab=fb3f2024
+-/
 lemma integral_semicirclePDFReal_eq_one (μ : ℝ) {v : ℝ≥0} (hv : v ≠ 0) :
     ∫ x, semicirclePDFReal μ v x = 1 := by
   have hv_pos : 0 < (v : ℝ) := NNReal.coe_pos.mpr (pos_iff_ne_zero.mpr hv)
@@ -194,7 +219,9 @@ lemma integral_semicirclePDFReal_eq_one (μ : ℝ) {v : ℝ≥0} (hv : v ≠ 0) 
   rw [integral_const_mul, h_interval, integral_sqrt_semicircle_interval μ hv]
   field_simp [(show (v : ℝ) ≠ 0 by positivity), Real.pi_ne_zero]
 
-/-- The semicircle distribution pdf has total mass 1 when the variance is nonzero. -/
+/-- The semicircle distribution pdf has total mass 1 when the variance is nonzero.
+@isnad1 id=eq.1h2v.s5.2a0376d838b5 from=translated src=- shape=5c69d697 vocab=377f1cd3
+-/
 lemma lintegral_semicirclePDFReal_eq_one (μ : ℝ) {v : ℝ≥0} (hv : v ≠ 0) :
     ∫⁻ x, ENNReal.ofReal (semicirclePDFReal μ v x) = 1 := by
   rw [← ofReal_integral_eq_lintegral_ofReal (integrable_semicirclePDFReal μ v)
@@ -206,29 +233,50 @@ noncomputable
 def semicirclePDF (μ : ℝ) (v : ℝ≥0) (x : ℝ) : ℝ≥0∞ :=
   ENNReal.ofReal (semicirclePDFReal μ v x)
 
+/--
+@isnad1 id=eq.0h2v.s4.822f82106558 from=translated src=- shape=8c946898 vocab=716634b0
+-/
 lemma semicirclePDF_def (μ : ℝ) (v : ℝ≥0) :
     semicirclePDF μ v = fun x ↦ ENNReal.ofReal (semicirclePDFReal μ v x) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.2ef4c671a527 from=translated src=- shape=0c51273e vocab=f9743ba5
+-/
 @[simp]
 lemma semicirclePDF_zero_var (μ : ℝ) : semicirclePDF μ 0 = 0 := by
   ext
   simp [semicirclePDF]
 
+/--
+@isnad1 id=eq.0h3v.s4.469d6fb99633 from=translated src=- shape=c4e6304e vocab=b47120f5
+-/
 @[simp]
 lemma toReal_semicirclePDF {μ : ℝ} {v : ℝ≥0} (x : ℝ) :
     (semicirclePDF μ v x).toReal = semicirclePDFReal μ v x := by
   rw [semicirclePDF, ENNReal.toReal_ofReal (semicirclePDFReal_nonneg μ v x)]
 
+/--
+@isnad1 id=lt.0h3v.s4.7fbd86dc6d67 from=translated src=- shape=3ebecc7b vocab=cfa5ff85
+-/
 lemma semicirclePDF_lt_top {μ : ℝ} {v : ℝ≥0} {x : ℝ} : semicirclePDF μ v x < ∞ := by
   simp [semicirclePDF]
 
+/--
+@isnad1 id=ne.0h3v.s3.1f75be8677cf from=translated src=- shape=3ebecc7b vocab=b531592c
+-/
 lemma semicirclePDF_ne_top {μ : ℝ} {v : ℝ≥0} {x : ℝ} : semicirclePDF μ v x ≠ ∞ :=
   semicirclePDF_lt_top.ne
 
+/--
+@isnad1 id=measurab.0h2v.s3.cac0e0491828 from=translated src=- shape=ded0e42c vocab=44dd50d5
+-/
 @[fun_prop]
 lemma measurable_semicirclePDF (μ : ℝ) (v : ℝ≥0) : Measurable (semicirclePDF μ v) :=
   (measurable_semicirclePDFReal _ _).ennreal_ofReal
 
+/--
+@isnad1 id=eq.1h2v.s5.d857872265b6 from=translated src=- shape=b5bd5020 vocab=b02acaef
+-/
 @[simp]
 lemma lintegral_semicirclePDF_eq_one (μ : ℝ) {v : ℝ≥0} (hv : v ≠ 0) :
     ∫⁻ x, semicirclePDF μ v x = 1 :=
@@ -239,35 +287,52 @@ noncomputable
 def semicircleReal (μ : ℝ) (v : ℝ≥0) : Measure ℝ :=
   if v = 0 then Measure.dirac μ else volume.withDensity (semicirclePDF μ v)
 
+/--
+@isnad1 id=eq.1h2v.s5.e3143ca72605 from=translated src=- shape=4eae06d9 vocab=8b9c51c0
+-/
 lemma semicircleReal_of_var_ne_zero (μ : ℝ) {v : ℝ≥0} (hv : v ≠ 0) :
     semicircleReal μ v = volume.withDensity (semicirclePDF μ v) := ite_eq_right hv
 
+/--
+@isnad1 id=eq.0h1v.s4.5ca6731f08e5 from=translated src=- shape=4ea98ba5 vocab=29050da9
+-/
 @[simp]
 lemma semicircleReal_zero_var (μ : ℝ) : semicircleReal μ 0 = Measure.dirac μ := ite_eq_left rfl
 
+/--
+@isnad1 id=isprobab.0h2v.s3.7ffbe3b1c5d2 from=translated src=- shape=ded0e42c vocab=0cacfd42
+-/
 instance instIsProbabilityMeasureSemicircleReal (μ : ℝ) (v : ℝ≥0) :
     IsProbabilityMeasure (semicircleReal μ v) where
   measure_univ := by by_cases h : v = 0 <;> simp [semicircleReal_of_var_ne_zero, h]
 
-/-- The semicircle pdf vanishes outside the support `[μ - 2√v, μ + 2√v]`. -/
+/-- The semicircle pdf vanishes outside the support `[μ - 2√v, μ + 2√v]`.
+@isnad1 id=eq.1h3v.s6.3ce3e2460c7a from=translated src=- shape=14daa56a vocab=de320c55
+-/
 lemma semicirclePDFReal_eq_zero_of_notMem (μ : ℝ) (v : ℝ≥0) {x : ℝ}
     (hx : x ∉ Icc (μ - 2 * √v) (μ + 2 * √v)) :
     semicirclePDFReal μ v x = 0 := by
   by_contra h
   exact hx (support_semicirclePDFReal_subset μ v h)
 
-/-- Translating the input translates the mean in the opposite direction. -/
+/-- Translating the input translates the mean in the opposite direction.
+@isnad1 id=eq.0h4v.s5.1089db90ac42 from=translated src=- shape=1494344e vocab=9d2c9c58
+-/
 lemma semicirclePDFReal_sub {μ : ℝ} {v : ℝ≥0} (x y : ℝ) :
     semicirclePDFReal μ v (x - y) = semicirclePDFReal (μ + y) v x := by
   simp only [semicirclePDFReal]
   rw [sub_add_eq_sub_sub_swap]
 
-/-- Translating the input translates the mean in the opposite direction. -/
+/-- Translating the input translates the mean in the opposite direction.
+@isnad1 id=eq.0h4v.s5.a9265265746f from=translated src=- shape=1494344e vocab=9d2c9c58
+-/
 lemma semicirclePDFReal_add {μ : ℝ} {v : ℝ≥0} (x y : ℝ) :
     semicirclePDFReal μ v (x + y) = semicirclePDFReal (μ - y) v x := by
   rw [sub_eq_add_neg, ← semicirclePDFReal_sub, sub_eq_add_neg, neg_neg]
 
-/-- Scaling the input rescales both the mean and variance parameters of the density. -/
+/-- Scaling the input rescales both the mean and variance parameters of the density.
+@isnad1 id=eq.1h4v.s6.5774f2807c2d from=translated src=- shape=c0eaace5 vocab=c85e7add
+-/
 lemma semicirclePDFReal_inv_mul {μ : ℝ} {v : ℝ≥0} {c : ℝ} (hc : c ≠ 0) (x : ℝ) :
     semicirclePDFReal μ v (c⁻¹ * x)
       = |c| * semicirclePDFReal (c * μ) (.mk (c ^ 2) (sq_nonneg _) * v) x := by
@@ -295,7 +360,9 @@ lemma semicirclePDFReal_inv_mul {μ : ℝ} {v : ℝ≥0} {c : ℝ} (hc : c ≠ 0
   field_simp [hc, abs_ne_zero.mpr hc]
   rw [sq_abs]
 
-/-- Scaling the input rescales both the mean and variance parameters of the density. -/
+/-- Scaling the input rescales both the mean and variance parameters of the density.
+@isnad1 id=eq.1h4v.s6.d04b501c2091 from=translated src=- shape=3a3e15fa vocab=1717d061
+-/
 lemma semicirclePDFReal_mul {μ : ℝ} {v : ℝ≥0} {c : ℝ} (hc : c ≠ 0) (x : ℝ) :
     semicirclePDFReal μ v (c * x)
       = |c⁻¹| * semicirclePDFReal (c⁻¹ * μ)
@@ -303,33 +370,45 @@ lemma semicirclePDFReal_mul {μ : ℝ} {v : ℝ≥0} {c : ℝ} (hc : c ≠ 0) (x
   conv_lhs => rw [← inv_inv c, semicirclePDFReal_inv_mul (inv_ne_zero hc)]
   simp
 
-/-- The `ℝ≥0∞`-valued semicircle density is nonnegative. -/
+/-- The `ℝ≥0∞`-valued semicircle density is nonnegative.
+@isnad1 id=le.0h3v.s4.e95b68165446 from=translated src=- shape=bbab959a vocab=090678ee
+-/
 lemma semicirclePDF_nonneg (μ : ℝ) (v : ℝ≥0) (x : ℝ) : 0 ≤ semicirclePDF μ v x := by
   simp [semicirclePDF]
 
-/-- The support of the `ℝ≥0∞`-valued semicircle density is contained in its support interval. -/
+/-- The support of the `ℝ≥0∞`-valued semicircle density is contained in its support interval.
+@isnad1 id=le.0h2v.s6.1ab6f28e169b from=translated src=- shape=daa141ff vocab=3c858be5
+-/
 lemma support_semicirclePDF_subset (μ : ℝ) (v : ℝ≥0) :
     Function.support (semicirclePDF μ v) ⊆ Icc (μ - 2 * √v) (μ + 2 * √v) := by
   intro x hx
   exact support_semicirclePDFReal_subset μ v fun hzero ↦ hx (by simp [semicirclePDF, hzero])
 
-/-- The `ℝ≥0∞`-valued semicircle density vanishes outside its support interval. -/
+/-- The `ℝ≥0∞`-valued semicircle density vanishes outside its support interval.
+@isnad1 id=eq.1h3v.s6.4fd80d68399d from=translated src=- shape=76bd3006 vocab=0c7b2b19
+-/
 lemma semicirclePDF_eq_zero_of_notMem (μ : ℝ) (v : ℝ≥0) {x : ℝ}
     (hx : x ∉ Icc (μ - 2 * √v) (μ + 2 * √v)) :
     semicirclePDF μ v x = 0 := by
   simp [semicirclePDF, semicirclePDFReal_eq_zero_of_notMem μ v hx]
 
-/-- The semicircle measure has no atoms when the variance is nonzero. -/
+/-- The semicircle measure has no atoms when the variance is nonzero.
+@isnad1 id=nullsing.1h2v.s4.6006b3e5b4af from=translated src=- shape=3070f7a2 vocab=43bd8f53
+-/
 lemma noAtoms_semicircleReal {μ : ℝ} {v : ℝ≥0} (hv : v ≠ 0) :
     NullSingletonClass (semicircleReal μ v) := by
   rw [semicircleReal_of_var_ne_zero μ hv]; infer_instance
 
-/-- The semicircle measure of a set is the set integral of the density when `v ≠ 0`. -/
+/-- The semicircle measure of a set is the set integral of the density when `v ≠ 0`.
+@isnad1 id=eq.1h3v.s5.b61d9c7d0432 from=translated src=- shape=647d6505 vocab=4feb86cb
+-/
 lemma semicircleReal_apply (μ : ℝ) {v : ℝ≥0} (hv : v ≠ 0) (s : Set ℝ) :
     semicircleReal μ v s = ∫⁻ x in s, semicirclePDF μ v x := by
   rw [semicircleReal_of_var_ne_zero _ hv, withDensity_apply' _ s]
 
-/-- The semicircle measure of a set as a real integral of the density when `v ≠ 0`. -/
+/-- The semicircle measure of a set as a real integral of the density when `v ≠ 0`.
+@isnad1 id=eq.1h3v.s6.65c65e937cc6 from=translated src=- shape=43bec67b vocab=c82becc2
+-/
 lemma semicircleReal_apply_eq_integral (μ : ℝ) {v : ℝ≥0} (hv : v ≠ 0) (s : Set ℝ) :
     semicircleReal μ v s = ENNReal.ofReal (∫ x in s, semicirclePDFReal μ v x) := by
   rw [semicircleReal_apply _ hv s, ofReal_integral_eq_lintegral_ofReal]
@@ -338,14 +417,18 @@ lemma semicircleReal_apply_eq_integral (μ : ℝ) {v : ℝ≥0} (hv : v ≠ 0) (
   · exact ae_of_all _ (semicirclePDFReal_nonneg _ _)
 
 /-- The semicircle measure is absolutely continuous with respect to the Lebesgue measure
-when the variance is nonzero. -/
+when the variance is nonzero.
+@isnad1 id=absolute.1h2v.s4.515e28962238 from=translated src=- shape=b660bbb6 vocab=d06b9b67
+-/
 lemma semicircleReal_absolutelyContinuous (μ : ℝ) {v : ℝ≥0} (hv : v ≠ 0) :
     semicircleReal μ v ≪ (volume : Measure ℝ) := by
   rw [semicircleReal_of_var_ne_zero μ hv]
   exact withDensity_absolutelyContinuous _ _
 
 /-- The Radon-Nikodym derivative of the semicircle measure with respect to the Lebesgue
-measure equals the pdf almost everywhere when the variance is nonzero. -/
+measure equals the pdf almost everywhere when the variance is nonzero.
+@isnad1 id=eventual.0h2v.s5.ec37dd979358 from=translated src=- shape=2015e998 vocab=4e7cafe4
+-/
 lemma rnDeriv_semicircleReal (μ : ℝ) (v : ℝ≥0) :
     (semicircleReal μ v).rnDeriv volume =ᵐ[volume] semicirclePDF μ v := by
   by_cases hv : v = 0
@@ -355,7 +438,9 @@ lemma rnDeriv_semicircleReal (μ : ℝ) (v : ℝ≥0) :
   · rw [semicircleReal_of_var_ne_zero μ hv]
     exact Measure.rnDeriv_withDensity _ (measurable_semicirclePDF μ v)
 
-/-- Integrating against a non-degenerate semicircle measure is integrating against its density. -/
+/-- Integrating against a non-degenerate semicircle measure is integrating against its density.
+@isnad1 id=eq.1h4v.s7.c5a4e8fbe81f from=translated src=- shape=88530776 vocab=be4eaa53
+-/
 lemma integral_semicircleReal_eq_integral_smul {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℝ E] {μ : ℝ} {v : ℝ≥0} {f : ℝ → E} (hv : v ≠ 0) :
     ∫ x, f x ∂semicircleReal μ v = ∫ x, semicirclePDFReal μ v x • f x := by
@@ -383,7 +468,9 @@ lemma _root_.MeasurableEquiv.semicircleReal_map_symm_apply (hv : v ≠ 0) (f : �
   exact f.withDensity_ofReal_map_symm_apply_eq_integral_abs_deriv_mul' hs h_deriv
     (ae_of_all _ (semicirclePDFReal_nonneg _ _)) (integrable_semicirclePDFReal _ _)
 
-/-- The map of a semicircle distribution by addition of a constant is semicircular. -/
+/-- The map of a semicircle distribution by addition of a constant is semicircular.
+@isnad1 id=eq.0h3v.s5.630fe6136bab from=translated src=- shape=12e4c859 vocab=c318ba3e
+-/
 lemma semicircleReal_map_add_const (y : ℝ) :
     (semicircleReal μ v).map (· + y) = semicircleReal (μ + y) v := by
   by_cases hv : v = 0
@@ -397,13 +484,17 @@ lemma semicircleReal_map_add_const (y : ℝ) :
   rw [semicircleReal_apply_eq_integral _ hv s]
   simp [e, semicirclePDFReal_sub _ y, Homeomorph.addRight, ← sub_eq_add_neg]
 
-/-- The map of a semicircle distribution by addition of a constant is semicircular. -/
+/-- The map of a semicircle distribution by addition of a constant is semicircular.
+@isnad1 id=eq.0h3v.s5.eebf3ce5bb0a from=translated src=- shape=58b0a2cc vocab=c318ba3e
+-/
 lemma semicircleReal_map_const_add (y : ℝ) :
     (semicircleReal μ v).map (y + ·) = semicircleReal (μ + y) v := by
   simp_rw [add_comm y]
   exact semicircleReal_map_add_const y
 
-/-- The map of a semicircle distribution by multiplication by a constant is semicircular. -/
+/-- The map of a semicircle distribution by multiplication by a constant is semicircular.
+@isnad1 id=eq.0h3v.s6.dd7b9b1d2250 from=translated src=- shape=73d83404 vocab=a48124aa
+-/
 lemma semicircleReal_map_const_mul (c : ℝ) :
     (semicircleReal μ v).map (c * ·) =
       semicircleReal (c * μ) (.mk (c ^ 2) (sq_nonneg _) * v) := by
@@ -431,18 +522,25 @@ lemma semicircleReal_map_const_mul (c : ℝ) :
   rw [he_apply, semicirclePDFReal_inv_mul hc]
   rw [abs_inv, ← mul_assoc, inv_mul_cancel₀ (abs_ne_zero.mpr hc), one_mul]
 
-/-- The map of a semicircle distribution by multiplication by a constant is semicircular. -/
+/-- The map of a semicircle distribution by multiplication by a constant is semicircular.
+@isnad1 id=eq.0h3v.s6.985540f29754 from=translated src=- shape=7e22e68a vocab=a48124aa
+-/
 lemma semicircleReal_map_mul_const (c : ℝ) :
     (semicircleReal μ v).map (· * c) =
       semicircleReal (c * μ) (.mk (c ^ 2) (sq_nonneg _) * v) := by
   simp_rw [mul_comm _ c]
   exact semicircleReal_map_const_mul c
 
+/--
+@isnad1 id=eq.0h2v.s4.5acc4036cdd6 from=translated src=- shape=8f9fb57b vocab=fe748506
+-/
 lemma semicircleReal_map_neg :
     (semicircleReal μ v).map (fun x ↦ -x) = semicircleReal (-μ) v := by
   simpa using semicircleReal_map_const_mul (μ := μ) (v := v) (-1)
 
-/-- The map of a semicircle distribution by division by a constant is semicircular. -/
+/-- The map of a semicircle distribution by division by a constant is semicircular.
+@isnad1 id=eq.0h3v.s6.b5cab99d6aa0 from=translated src=- shape=f964157a vocab=67db0d62
+-/
 lemma semicircleReal_map_div_const (c : ℝ) :
     (semicircleReal μ v).map (· / c) =
       semicircleReal (μ / c) (v / .mk (c ^ 2) (sq_nonneg _)) := by
@@ -450,10 +548,16 @@ lemma semicircleReal_map_div_const (c : ℝ) :
   convert semicircleReal_map_mul_const (μ := μ) (v := v) c⁻¹ using 2 <;> rw [mul_comm]
   simp_all
 
+/--
+@isnad1 id=eq.0h3v.s5.f388b8126f93 from=translated src=- shape=12e4c859 vocab=671a129a
+-/
 lemma semicircleReal_map_sub_const (y : ℝ) :
     (semicircleReal μ v).map (· - y) = semicircleReal (μ - y) v := by
   simp_rw [sub_eq_add_neg, semicircleReal_map_add_const]
 
+/--
+@isnad1 id=eq.0h3v.s5.57e7c335ec00 from=translated src=- shape=ad29569c vocab=671a129a
+-/
 lemma semicircleReal_map_const_sub (y : ℝ) :
     (semicircleReal μ v).map (y - ·) = semicircleReal (y - μ) v := by
   simp_rw [sub_eq_add_neg]
@@ -464,28 +568,36 @@ lemma semicircleReal_map_const_sub (y : ℝ) :
 variable {Ω : Type*} {mΩ : MeasurableSpace Ω} {P : Measure Ω} {X : Ω → ℝ}
 
 /-- If `X` has semicircular law with mean `μ` and variance `v`, then `X + y` has
-semicircular law with mean `μ + y` and variance `v`. -/
+semicircular law with mean `μ + y` and variance `v`.
+@isnad1 id=haslaw.1h7v.s5.85d75cad687c from=translated src=- shape=c385e344 vocab=9c0fc5ae
+-/
 lemma semicircleReal_add_const (hX : ProbabilityTheory.HasLaw X (semicircleReal μ v) P)
     (y : ℝ) :
     ProbabilityTheory.HasLaw (fun ω ↦ X ω + y) (semicircleReal (μ + y) v) P :=
   ProbabilityTheory.HasLaw.comp ⟨by fun_prop, semicircleReal_map_add_const y⟩ hX
 
 /-- If `X` has semicircular law with mean `μ` and variance `v`, then `y + X` has
-semicircular law with mean `μ + y` and variance `v`. -/
+semicircular law with mean `μ + y` and variance `v`.
+@isnad1 id=haslaw.1h7v.s5.08f60e89ec55 from=translated src=- shape=4481c97a vocab=9c0fc5ae
+-/
 lemma semicircleReal_const_add (hX : ProbabilityTheory.HasLaw X (semicircleReal μ v) P)
     (y : ℝ) :
     ProbabilityTheory.HasLaw (fun ω ↦ y + X ω) (semicircleReal (μ + y) v) P :=
   ProbabilityTheory.HasLaw.comp ⟨by fun_prop, semicircleReal_map_const_add y⟩ hX
 
 /-- If `X` has semicircular law with mean `μ` and variance `v`, then `X - y` has
-semicircular law with mean `μ - y` and variance `v`. -/
+semicircular law with mean `μ - y` and variance `v`.
+@isnad1 id=haslaw.1h7v.s5.694713d81404 from=translated src=- shape=c385e344 vocab=2d3fb0b8
+-/
 lemma semicircleReal_sub_const (hX : ProbabilityTheory.HasLaw X (semicircleReal μ v) P)
     (y : ℝ) :
     ProbabilityTheory.HasLaw (fun ω ↦ X ω - y) (semicircleReal (μ - y) v) P :=
   ProbabilityTheory.HasLaw.comp ⟨by fun_prop, semicircleReal_map_sub_const y⟩ hX
 
 /-- If `X` has semicircular law with mean `μ` and variance `v`, then `c * X` has
-semicircular law with mean `c * μ` and variance `c ^ 2 * v`. -/
+semicircular law with mean `c * μ` and variance `c ^ 2 * v`.
+@isnad1 id=haslaw.1h7v.s6.55e8a721ca8e from=translated src=- shape=4b5cc139 vocab=728962a9
+-/
 lemma semicircleReal_const_mul (hX : ProbabilityTheory.HasLaw X (semicircleReal μ v) P)
     (c : ℝ) :
     ProbabilityTheory.HasLaw (fun ω ↦ c * X ω)
@@ -493,26 +605,36 @@ lemma semicircleReal_const_mul (hX : ProbabilityTheory.HasLaw X (semicircleReal 
   ProbabilityTheory.HasLaw.comp ⟨by fun_prop, semicircleReal_map_const_mul c⟩ hX
 
 /-- If `X` has semicircular law with mean `μ` and variance `v`, then `X * c` has
-semicircular law with mean `c * μ` and variance `c ^ 2 * v`. -/
+semicircular law with mean `c * μ` and variance `c ^ 2 * v`.
+@isnad1 id=haslaw.1h7v.s6.f2bd2f1e963c from=translated src=- shape=c1fd7e82 vocab=728962a9
+-/
 lemma semicircleReal_mul_const (hX : ProbabilityTheory.HasLaw X (semicircleReal μ v) P)
     (c : ℝ) :
     ProbabilityTheory.HasLaw (fun ω ↦ X ω * c)
       (semicircleReal (c * μ) (.mk (c ^ 2) (sq_nonneg _) * v)) P :=
   ProbabilityTheory.HasLaw.comp ⟨by fun_prop, semicircleReal_map_mul_const c⟩ hX
 
+/--
+@isnad1 id=haslaw.1h6v.s5.9616d516c98b from=translated src=- shape=e9819529 vocab=2606e154
+-/
 lemma semicircleReal_neg (hX : ProbabilityTheory.HasLaw X (semicircleReal μ v) P) :
     ProbabilityTheory.HasLaw (-X) (semicircleReal (-μ) v) P := by
   rw [Pi.neg_def, ← Function.comp_def]
   exact ProbabilityTheory.HasLaw.comp ⟨by fun_prop, semicircleReal_map_neg⟩ hX
 
 /-- If `X` has semicircular law with mean `μ` and variance `v`, then `X / c` has
-semicircular law with mean `μ / c` and variance `v / c ^ 2`. -/
+semicircular law with mean `μ / c` and variance `v / c ^ 2`.
+@isnad1 id=haslaw.1h7v.s6.5e0aaad1e99f from=translated src=- shape=64d8121f vocab=64f16de5
+-/
 lemma semicircleReal_div_const (hX : ProbabilityTheory.HasLaw X (semicircleReal μ v) P)
     (c : ℝ) :
     ProbabilityTheory.HasLaw (fun ω ↦ X ω / c)
       (semicircleReal (μ / c) (v / .mk (c ^ 2) (sq_nonneg _))) P :=
   ProbabilityTheory.HasLaw.comp ⟨by fun_prop, semicircleReal_map_div_const c⟩ hX
 
+/--
+@isnad1 id=haslaw.1h7v.s5.fbae1f1e5009 from=translated src=- shape=395b0127 vocab=2d3fb0b8
+-/
 lemma semicircleReal_const_sub (hX : ProbabilityTheory.HasLaw X (semicircleReal μ v) P)
     (y : ℝ) :
     ProbabilityTheory.HasLaw (fun ω ↦ y - X ω) (semicircleReal (y - μ) v) P :=
@@ -520,7 +642,9 @@ lemma semicircleReal_const_sub (hX : ProbabilityTheory.HasLaw X (semicircleReal 
 
 variable {μ : ℝ} {v : ℝ≥0}
 
-/-- The identity is almost surely bounded under a semicircle distribution. -/
+/-- The identity is almost surely bounded under a semicircle distribution.
+@isnad1 id=eventual.0h2v.s5.57cdf47bf30b from=translated src=- shape=e310ea27 vocab=a1a80a93
+-/
 lemma ae_abs_id_le_semicircleReal :
     ∀ᵐ x ∂semicircleReal μ v, |id x| ≤ |μ| + 2 * √(v : ℝ) := by
   by_cases hv : v = 0
@@ -538,20 +662,26 @@ lemma ae_abs_id_le_semicircleReal :
     _ ≤ 2 * √(v : ℝ) + |μ| := by linarith
     _ = |μ| + 2 * √(v : ℝ) := by ring
 
-/-- All finite moments of a real semicircle distribution are finite. -/
+/-- All finite moments of a real semicircle distribution are finite.
+@isnad1 id=memlp.0h3v.s5.a914a6849fc5 from=translated src=- shape=d7f6218c vocab=8645ec05
+-/
 lemma memLp_id_semicircleReal (p : ℝ≥0) : MemLp id p (semicircleReal μ v) := by
   have htop : MemLp id ∞ (semicircleReal μ v) :=
     memLp_top_of_bound (by fun_prop) (|μ| + 2 * √(v : ℝ)) ae_abs_id_le_semicircleReal
   exact htop.mono_exponent (by simp)
 
-/-- All finite moments of a real semicircle distribution are finite. -/
+/-- All finite moments of a real semicircle distribution are finite.
+@isnad1 id=memlp.1h3v.s5.5fd810528a65 from=translated src=- shape=0dfc0c10 vocab=52088c34
+-/
 lemma memLp_id_semicircleReal' (p : ℝ≥0∞) (hp : p ≠ ∞) :
     MemLp id p (semicircleReal μ v) := by
   lift p to ℝ≥0 using hp
   exact memLp_id_semicircleReal p
 
 /-- The support of the semicircle pdf with mean `μ` and variance `v` is the open interval
-`(μ - 2√v, μ + 2√v)`. -/
+`(μ - 2√v, μ + 2√v)`.
+@isnad1 id=eq.1h2v.s6.32e43a906ea6 from=translated src=- shape=951c7207 vocab=bd4159dd
+-/
 @[simp]
 lemma support_semicirclePDF (hv : v ≠ 0) :
     Function.support (semicirclePDF μ v) = Ioo (μ - 2 * √v) (μ + 2 * √v) := by
@@ -585,19 +715,25 @@ lemma support_semicirclePDF (hv : v ≠ 0) :
     exact mul_pos hden (Real.sqrt_pos.mpr h_arg_pos)
 
 /-- The real part of the `ℝ≥0∞`-valued semicircle density coincides with the real-valued density,
-when the latter is nonnegative. -/
+when the latter is nonnegative.
+@isnad1 id=eq.1h3v.s5.bc211348ae48 from=translated src=- shape=542e78a4 vocab=6f4631c8
+-/
 lemma semicirclePDF_toReal (μ : ℝ) (v : ℝ≥0) (x : ℝ) (h₀ : 0 ≤ semicirclePDFReal μ v x) :
     (ENNReal.ofReal (semicirclePDFReal μ v x)).toReal = semicirclePDFReal μ v x :=
   ENNReal.toReal_ofReal h₀
 
-/-- The canonical inclusion of `ℝ≥0` into `ℝ≥0∞` is measurable. -/
+/-- The canonical inclusion of `ℝ≥0` into `ℝ≥0∞` is measurable.
+@isnad1 id=measurab.0h0v.s2.79825663320c from=translated src=- shape=54c8eceb vocab=822f2e32
+-/
 lemma measurable_ofNNReal : Measurable (ENNReal.ofNNReal) := by
   have h1 : Measurable fun (x : ℝ≥0) ↦ (x : ℝ) := measurable_subtype_coe
   have h2 : Measurable fun (x : ℝ) ↦ ENNReal.ofReal x := ENNReal.measurable_ofReal
   have h3 : Measurable fun (x : ℝ≥0) ↦ ENNReal.ofReal (x : ℝ) := h2.comp h1
   simpa [ENNReal.ofReal_coe_nnreal] using h3
 
-/-- The integral of an even power of cosine over `[0, π]`, as a Wallis-type product. -/
+/-- The integral of an even power of cosine over `[0, π]`, as a Wallis-type product.
+@isnad1 id=eq.0h1v.s7.7447ab36687f from=translated src=- shape=b32f73cd vocab=edd7e453
+-/
 lemma integral_cos_pow_even (n : ℕ) : (∫ x in (0)..π, Real.cos x ^ (2 * n))
     = π * ∏ k ∈ Finset.range n, ((2 * k + 1) : ℝ) / (2 * (k + 1)) := by
   induction n with
@@ -629,7 +765,9 @@ lemma integral_cos_pow_even (n : ℕ) : (∫ x in (0)..π, Real.cos x ^ (2 * n))
     rw [ih, Finset.prod_range_succ]
     ring
 
-/-- The product `∏_{x < n} 2 * (x + 1)` equals `2 ^ n * n!`. -/
+/-- The product `∏_{x < n} 2 * (x + 1)` equals `2 ^ n * n!`.
+@isnad1 id=eq.0h1v.s6.dff6fdea9e8b from=translated src=- shape=cf3af189 vocab=6c277a7f
+-/
 lemma prod_two_mul_factorial (n : ℕ) : ∏ x ∈ Finset.range n, (2 : ℝ) * (↑x + 1)
     = 2 ^ n * (↑n.factorial : ℝ) := by
   induction n with
@@ -639,7 +777,9 @@ lemma prod_two_mul_factorial (n : ℕ) : ∏ x ∈ Finset.range n, (2 : ℝ) * (
     rw [pow_succ, Nat.factorial_succ, Nat.cast_mul, Nat.cast_add, Nat.cast_one]
     ring
 
-/-- The Wallis product ratio equals the central binomial coefficient divided by `4 ^ n`. -/
+/-- The Wallis product ratio equals the central binomial coefficient divided by `4 ^ n`.
+@isnad1 id=eq.0h1v.s7.a04aac87f0db from=translated src=- shape=5ff16782 vocab=be9c6950
+-/
 lemma prod_odd_over_even_central_choose (n : ℕ) :
     (∏ x ∈ Finset.range n, (2 * (x : ℝ) + 1)) /
       (∏ x ∈ Finset.range n, (2 * ((x : ℝ) + 1))) =
@@ -683,7 +823,9 @@ lemma prod_odd_over_even_central_choose (n : ℕ) :
             rw [Nat.cast_choose ℝ (by omega : n ≤ 2 * n), show 2 * n - n = n by omega]]
           ring
 
-/-- The Catalan numbers satisfy the recurrence `(n + 2) * C_{n+1} = (4n + 2) * C_n`. -/
+/-- The Catalan numbers satisfy the recurrence `(n + 2) * C_{n+1} = (4n + 2) * C_n`.
+@isnad1 id=eq.0h1v.s6.d40983328dc6 from=translated src=- shape=a2b7f0ff vocab=6140a2c0
+-/
 lemma catalan_recur (n : ℕ) : (n + 2) * catalan (n + 1) = (4 * n + 2) * (catalan n) := by
   -- Recurrence for the central binomial coefficients.
   have h_central : (n + 1) * Nat.centralBinom (n + 1) = (4 * n + 2) * Nat.centralBinom n := by
@@ -701,7 +843,9 @@ lemma catalan_recur (n : ℕ) : (n + 2) * catalan (n + 1) = (4 * n + 2) * (catal
   rw [h_left, h_right]
 
 /-- Reduction of `∫_{-2}^{2} x ^ (2n) √(4 - x ^ 2)` to a difference of even cosine-power
-integrals over `[0, π]`. -/
+integrals over `[0, π]`.
+@isnad1 id=eq.0h1v.s8.955860d95233 from=translated src=- shape=57e17318 vocab=4ff8d2b2
+-/
 lemma integral_even_pow_mul_sqrt_eq_cos_diff (n : ℕ) :
     ∫ (x : ℝ) in (-2)..2, x ^ (2 * n) * √(4 - x ^ 2) = 2 ^ (2 * n + 2) *
       ((∫ (x : ℝ) in (0)..π, Real.cos x ^ (2 * n))
@@ -786,7 +930,9 @@ lemma integral_even_pow_mul_sqrt_eq_cos_diff (n : ℕ) :
     rw [c510, c511, c512]
   rw [c51]
 
-/-- The mean of a real semicircle distribution `semicircleReal μ v` is its mean parameter `μ`. -/
+/-- The mean of a real semicircle distribution `semicircleReal μ v` is its mean parameter `μ`.
+@isnad1 id=eq.0h2v.s4.0f9ec4536b25 from=translated src=- shape=a7cdeef0 vocab=a83b726e
+-/
 @[simp]
 lemma integral_id_semicircleReal : ∫ x, x ∂semicircleReal μ v = μ := by
   by_cases hv : v = 0
@@ -826,7 +972,9 @@ lemma integral_id_semicircleReal : ∫ x, x ∂semicircleReal μ v = μ := by
   rw [integral_const_mul, integral_semicirclePDFReal_eq_one μ hv, mul_one]
 
 /-- The substitution `x ↦ x * √v` rescales the centered semicircle moment integral to the
-standard interval `[-2, 2]`. -/
+standard interval `[-2, 2]`.
+@isnad1 id=eq.1h2v.s8.c114adb4c733 from=translated src=- shape=22fe2f62 vocab=08aa2ab0
+-/
 lemma integral_scaled_semicircle_eq (v : ℝ≥0) (n : ℕ) (hv : v ≠ 0) :
     1 / (2 * π * (v : ℝ)) * ∫ (x : ℝ) in (-2 * √v)..(2 * √v), x ^ (2 * n) * √(4 * v - x ^ 2)
       = (v : ℝ) ^ n / (2 * π) * ∫ (x : ℝ) in (-2)..2, x ^ (2 * n) * √(4 - x ^ 2) := by
@@ -861,7 +1009,9 @@ lemma integral_scaled_semicircle_eq (v : ℝ≥0) (n : ℕ) (hv : v ≠ 0) :
   rw [Real.sq_sqrt hv_nonneg]
 
 /-- The Wallis product telescopes: `2 ^ (2n+1)` times the difference of consecutive Wallis
-partial products equals the `n`-th Catalan number. -/
+partial products equals the `n`-th Catalan number.
+@isnad1 id=eq.0h1v.s7.d9fdaf57e61f from=translated src=- shape=5f3e6581 vocab=485a6879
+-/
 lemma wallis_prod_diff_eq_catalan (n : ℕ) :
     2 ^ (2 * n + 1) * ((∏ i ∈ Finset.range n, (2 * (i : ℝ) + 1) / (2 * (i + 1)))
         - ∏ i ∈ Finset.range (n + 1), (2 * (i : ℝ) + 1) / (2 * (i + 1)))
@@ -891,7 +1041,9 @@ lemma wallis_prod_diff_eq_catalan (n : ℕ) :
   field_simp
 
 /-- The centered `2 * n`-th power integral against the semicircle measure, rewritten as a
-weighted integral of the unnormalized kernel over its centered support interval. -/
+weighted integral of the unnormalized kernel over its centered support interval.
+@isnad1 id=eq.1h3v.s7.1fd8e892c8d4 from=translated src=- shape=820533b7 vocab=778704f5
+-/
 lemma integral_centered_pow_semicircleReal (μ : ℝ) (v : ℝ≥0) (n : ℕ) (hv : v ≠ 0) :
     ∫ (x : ℝ), (x - μ) ^ (2 * n) ∂semicircleReal μ v
       = 1 / (2 * π * (v : ℝ))
@@ -925,7 +1077,9 @@ lemma integral_centered_pow_semicircleReal (μ : ℝ) (v : ℝ≥0) (n : ℕ) (h
   ring
 
 /-- The `2 * n`-th central moment of the semicircle distribution equals `v ^ n` times the `n`-th
-Catalan number. -/
+Catalan number.
+@isnad1 id=eq.0h3v.s5.12d8ee6a4302 from=translated src=- shape=e9d16f00 vocab=185b673e
+-/
 lemma centralMoment_fun_two_mul_semicircleReal (μ : ℝ) (v : ℝ≥0) (n : ℕ) :
     ProbabilityTheory.centralMoment (fun x ↦ x) (2 * n) (semicircleReal μ v)
       = v ^ n * catalan n := by
@@ -954,7 +1108,9 @@ lemma centralMoment_fun_two_mul_semicircleReal (μ : ℝ) (v : ℝ≥0) (n : ℕ
     rw [pow_succ]; field_simp]
   rw [wallis_prod_diff_eq_catalan n]
 
-/-- The `2 * n`-th central moment of the identity equals `v ^ n` times the `n`-th Catalan number. -/
+/-- The `2 * n`-th central moment of the identity equals `v ^ n` times the `n`-th Catalan number.
+@isnad1 id=eq.0h3v.s5.d7afae1658a1 from=translated src=- shape=26e66074 vocab=13aeec99
+-/
 lemma centralMoment_two_mul_semicircleReal (μ : ℝ) (v : ℝ≥0) (n : ℕ) :
     ProbabilityTheory.centralMoment id (2 * n) (semicircleReal μ v) = v ^ n * catalan n := by
   apply centralMoment_fun_two_mul_semicircleReal
@@ -962,7 +1118,9 @@ lemma centralMoment_two_mul_semicircleReal (μ : ℝ) (v : ℝ≥0) (n : ℕ) :
 variable {μ : ℝ} {v : ℝ≥0}
 
 /-- The variance of a real semicircle distribution `semicircleReal μ v` is its variance
-parameter `v`. -/
+parameter `v`.
+@isnad1 id=eq.0h2v.s4.7461bb4fc61a from=translated src=- shape=8b0debf4 vocab=dab6b34a
+-/
 @[simp]
 lemma variance_id_semicircleReal : Var[id; semicircleReal μ v] = v := by
   rw [← ProbabilityTheory.centralMoment_two_eq_variance measurable_id.aemeasurable]
@@ -970,12 +1128,16 @@ lemma variance_id_semicircleReal : Var[id; semicircleReal μ v] = v := by
   simpa [catalan_one] using this
 
 /-- The variance of a real semicircle distribution `semicircleReal μ v` is its variance
-parameter `v`. -/
+parameter `v`.
+@isnad1 id=eq.0h2v.s4.278536e9cdc3 from=translated src=- shape=a1ea5fda vocab=6ca51236
+-/
 @[simp]
 lemma variance_fun_id_semicircleReal : Var[fun x ↦ x; semicircleReal μ v] = v :=
   variance_id_semicircleReal
 
-/-- The odd central moments of the semicircle distribution vanish. -/
+/-- The odd central moments of the semicircle distribution vanish.
+@isnad1 id=eq.0h3v.s5.7eb81e1ced56 from=translated src=- shape=eeea18f1 vocab=b177c02f
+-/
 lemma centralMoment_fun_odd_semicircleReal (μ : ℝ) (v : ℝ≥0) (n : ℕ) :
     ProbabilityTheory.centralMoment (fun x ↦ x) ((2 * n) + 1) (semicircleReal μ v) = 0 := by
   rw [ProbabilityTheory.centralMoment]
@@ -1005,7 +1167,9 @@ lemma centralMoment_fun_odd_semicircleReal (μ : ℝ) (v : ℝ≥0) (n : ℕ) :
   rw [integral_neg] at h_odd
   linarith
 
-/-- The odd central moments of the identity vanish. -/
+/-- The odd central moments of the identity vanish.
+@isnad1 id=eq.0h3v.s5.530730340db0 from=translated src=- shape=35f22480 vocab=84f88f37
+-/
 lemma centralMoment_odd_semicircleReal (μ : ℝ) (v : ℝ≥0) (n : ℕ) :
     ProbabilityTheory.centralMoment id ((2 * n) + 1) (semicircleReal μ v) = 0 := by
   apply centralMoment_fun_odd_semicircleReal

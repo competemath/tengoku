@@ -38,6 +38,7 @@ open scoped Topology
 Uniqueness in natural-log units:
 every `H` satisfying the condition bundle agrees with Shannon entropy up to the
 positive multiplicative scale factor `K H`.
+@isnad1 id=eq.1h3v.s6.be2bf11b8a97 from=translated src=- shape=36060adf vocab=81c9dd06
 -/
 theorem entropyNat_unique
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)
@@ -60,6 +61,7 @@ theorem entropyNat_unique
 Base-parametric uniqueness:
 for each base `b > 1`, there is a positive scale factor `Kb` with
 `H p = -Kb * ∑ p_i log_b p_i`.
+@isnad1 id=ex.2h2v.s6.45d071b2872a from=translated src=- shape=87d4d277 vocab=518e0020
 -/
 theorem entropyBase_unique
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)

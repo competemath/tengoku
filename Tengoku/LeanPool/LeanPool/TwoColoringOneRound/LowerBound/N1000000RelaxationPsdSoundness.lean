@@ -53,6 +53,9 @@ private lemma posSemidef_of_pos_smul {M : Matrix (Fin 3) (Fin 3) Q} {a : Q}
   have := Matrix.PosSemidef.smul (x := (a • M)) h (a := (1 / a : Q)) ha'
   simpa [smul_smul, div_eq_mul_inv, mul_assoc, inv_mul_cancel₀ (ne_of_gt ha), one_smul] using this
 
+/--
+@isnad1 id=possemid.1h2v.s4.16050f3f1850 from=translated src=- shape=16743a47 vocab=84639458
+-/
 theorem psd_of_compressionHypScaled (h : CompressionHypScaled) :
     ∀ f : Coloring n, ∀ r : Block, (S (xFromColoring f) r).PosSemidef := by
   classical

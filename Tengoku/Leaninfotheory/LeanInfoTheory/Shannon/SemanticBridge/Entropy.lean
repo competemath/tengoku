@@ -41,14 +41,18 @@ outcomes contribute no expected information.
 def selfInfo {alpha : Type u} (p : PMF alpha) (a : alpha) : Real :=
   if (p a).toReal = 0 then 0 else -Real.log (p a).toReal
 
-/-- A zero-mass atom has zero self-information by convention. -/
+/-- A zero-mass atom has zero self-information by convention.
+@isnad1 id=eq.1h3v.s5.c10473fd4c8c from=translated src=- shape=5ec5da81 vocab=d8465b2a
+-/
 @[simp]
 theorem selfInfo_of_toReal_eq_zero {alpha : Type u} (p : PMF alpha) {a : alpha}
     (ha : (p a).toReal = 0) :
     selfInfo p a = 0 := by
   simp [selfInfo, ha]
 
-/-- A nonzero-mass atom has self-information `-log p(a)`. -/
+/-- A nonzero-mass atom has self-information `-log p(a)`.
+@isnad1 id=eq.1h3v.s5.ddecf5acbd14 from=translated src=- shape=34262361 vocab=4ab70ceb
+-/
 theorem selfInfo_of_toReal_ne_zero {alpha : Type u} (p : PMF alpha) {a : alpha}
     (ha : (p a).toReal ≠ 0) :
     selfInfo p a = -Real.log (p a).toReal := by
@@ -57,6 +61,7 @@ theorem selfInfo_of_toReal_ne_zero {alpha : Type u} (p : PMF alpha) {a : alpha}
 /--
 Multiplying self-information by the atom mass recovers the `Real.negMulLog`
 entropy summand.
+@isnad1 id=eq.0h3v.s5.7c5eaf3bdad5 from=translated src=- shape=f6839f60 vocab=3ef4df92
 -/
 theorem toReal_mul_selfInfo {alpha : Type u} (p : PMF alpha) (a : alpha) :
     (p a).toReal * selfInfo p a = Real.negMulLog (p a).toReal := by
@@ -71,6 +76,7 @@ Semantic bridge for finite entropy: the finite-sum definition of
 
 Informally, this is the textbook identity `H(P) = E[-log P(X)]`, with the
 zero-mass convention handled by `selfInfo`.
+@isnad1 id=eq.0h2v.s5.39f4df495451 from=translated src=- shape=5b264c23 vocab=49c6c68d
 -/
 theorem entropy_eq_integral_selfInfo {alpha : Type u}
     [Fintype alpha] [MeasurableSpace alpha] [MeasurableSingletonClass alpha]

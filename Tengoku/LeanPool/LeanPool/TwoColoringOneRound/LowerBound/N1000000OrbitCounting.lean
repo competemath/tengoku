@@ -110,6 +110,9 @@ noncomputable instance (k : DirIdx) : Fintype (BaseOrbit k) := by
   dsimp [BaseOrbit]
   infer_instance
 
+/--
+@isnad1 id=le.0h3v.s6.38a8e8fbc842 from=translated src=- shape=71857a1b vocab=5c536ba7
+-/
 theorem baseOrbit_freeCoord_outside {k : DirIdx} (u : BaseOrbit k) (j : FreeCol k) :
     3 ≤ (u.1.1 j.1).1 := by
   have hcolNone : colMatch (maskAt k) j.1 = none := j.2
@@ -155,11 +158,17 @@ noncomputable def decodeTuple (k : DirIdx) (g : FreeCol k ↪ AvailFrom3) : Tupl
       -- `colMatch ≠ none`, so it must be `some i` for a unique `i`.
       baseVertex.1 (Classical.choose ((Option.ne_none_iff_exists').1 hc))
 
+/--
+@isnad1 id=eq.1h3v.s6.d507ba7eda73 from=translated src=- shape=45e80a99 vocab=86e14fc3
+-/
 theorem decodeTuple_of_colMatch_none (k : DirIdx) (g : FreeCol k ↪ AvailFrom3) (j : Fin 3)
     (hc : colMatch (maskAt k) j = none) :
     decodeTuple (k := k) g j = (g ⟨j, hc⟩).1 := by
   simp [decodeTuple, hc]
 
+/--
+@isnad1 id=eq.1h4v.s6.9626b1bf4d98 from=translated src=- shape=88b4e3e2 vocab=e04637f2
+-/
 theorem decodeTuple_of_colMatch_some (k : DirIdx) (g : FreeCol k ↪ AvailFrom3) (j i : Fin 3)
     (hc : colMatch (maskAt k) j = some i) :
     decodeTuple (k := k) g j = baseVertex.1 i := by
@@ -254,6 +263,9 @@ private lemma decide_base_eq_decodeVertex_eq_decide_colMatch (k : DirIdx)
         have hEq' : i0 ≠ i := by simpa [eq_comm] using hEq
         simp [hv, hne, hEq']
 
+/--
+@isnad1 id=eq.0h2v.s4.98825bd72b5c from=translated src=- shape=bfb99154 vocab=849650f6
+-/
 theorem decodeVertex_mask (k : DirIdx) (g : FreeCol k ↪ AvailFrom3) :
     dirMask baseVertex (decodeVertex (k := k) g) = maskAt k := by
   classical
@@ -299,6 +311,9 @@ theorem decodeVertex_mask (k : DirIdx) (g : FreeCol k ↪ AvailFrom3) :
 noncomputable def decodeBaseOrbit (k : DirIdx) (g : FreeCol k ↪ AvailFrom3) : BaseOrbit k :=
   ⟨decodeVertex (k := k) g, decodeVertex_mask (k := k) g⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.04c5d7820dbf from=translated src=- shape=6d59d9f5 vocab=8bff0365
+-/
 theorem base_eq_of_colMatch {k : DirIdx} (u : BaseOrbit k) {j i : Fin 3}
     (h : colMatch (maskAt k) j = some i) : u.1.1 j = baseVertex.1 i := by
   -- Compare the `(i,j)` bit in the mask equality.
@@ -371,6 +386,9 @@ noncomputable def baseOrbitEquivEmbedding (k : DirIdx) :
   left_inv := by exact decode_encode_id k
   right_inv := by exact encode_decode_id k
 
+/--
+@isnad1 id=eq.0h1v.s3.769356d2e2b7 from=translated src=- shape=7718e021 vocab=493f5805
+-/
 theorem baseOrbit_card (k : DirIdx) : Fintype.card (BaseOrbit k) = baseTypeCount k := by
   classical
   -- Convert to embeddings of the free columns into the `n-3` outside symbols.

@@ -57,7 +57,9 @@ noncomputable def decodingErrorIndicator
   classical
   exact decide (decoder y ≠ x)
 
-/-- The decoding-error indicator is `true` exactly on decoder failure. -/
+/-- The decoding-error indicator is `true` exactly on decoder failure.
+@isnad1 id=iff.0h5v.s4.3c4fd69ab302 from=translated src=- shape=c8f84818 vocab=257c7c22
+-/
 @[simp]
 theorem decodingErrorIndicator_eq_true_iff
     {alpha : Type u} {beta : Type v}
@@ -66,7 +68,9 @@ theorem decodingErrorIndicator_eq_true_iff
   classical
   simp [decodingErrorIndicator]
 
-/-- The decoding-error indicator is `false` exactly on decoder success. -/
+/-- The decoding-error indicator is `false` exactly on decoder success.
+@isnad1 id=iff.0h5v.s4.e6f7f7058fd3 from=translated src=- shape=713796f2 vocab=c64338af
+-/
 @[simp]
 theorem decodingErrorIndicator_eq_false_iff
     {alpha : Type u} {beta : Type v}
@@ -103,6 +107,7 @@ The decoding-error probability is the total mass of the joint atoms on which
 the decoder fails.
 
 This is the main finite-sum elimination theorem for decoding error.
+@isnad1 id=eq.0h4v.s6.b2ed3e8fef78 from=translated src=- shape=c368bc60 vocab=147c702b
 -/
 theorem decodingErrorProbability_eq_sum
     {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
@@ -122,7 +127,9 @@ theorem decodingErrorProbability_eq_sum
     · exact p.apply_ne_top z
     · exact ENNReal.zero_ne_top
 
-/-- A decoding-error probability is nonnegative. -/
+/-- A decoding-error probability is nonnegative.
+@isnad1 id=le.0h4v.s4.eecd54560d26 from=translated src=- shape=68f1f3ae vocab=3f8815a1
+-/
 theorem decodingErrorProbability_nonneg
     {alpha : Type u} {beta : Type v}
     (p : PMF (alpha × beta)) (decoder : beta -> alpha) :
@@ -130,7 +137,9 @@ theorem decodingErrorProbability_nonneg
   unfold decodingErrorProbability
   exact PMF.toReal_nonneg _ true
 
-/-- A decoding-error probability is at most one. -/
+/-- A decoding-error probability is at most one.
+@isnad1 id=le.0h4v.s4.6e6dda1b93de from=translated src=- shape=ca5fc2a9 vocab=3f8815a1
+-/
 theorem decodingErrorProbability_le_one
     {alpha : Type u} {beta : Type v}
     (p : PMF (alpha × beta)) (decoder : beta -> alpha) :
@@ -138,7 +147,9 @@ theorem decodingErrorProbability_le_one
   unfold decodingErrorProbability
   exact PMF.toReal_le_one _ true
 
-/-- The decoding-error probability of random variables is nonnegative. -/
+/-- The decoding-error probability of random variables is nonnegative.
+@isnad1 id=le.0h7v.s5.df1eea50ece9 from=translated src=- shape=67587561 vocab=443ed1e8
+-/
 theorem decodingErrorProbabilityOf_nonneg
     {omega : Type u} {alpha : Type v} {beta : Type w}
     (p : PMF omega) (X : omega -> alpha) (Y : omega -> beta)
@@ -147,7 +158,9 @@ theorem decodingErrorProbabilityOf_nonneg
   unfold decodingErrorProbabilityOf
   exact decodingErrorProbability_nonneg _ decoder
 
-/-- The decoding-error probability of random variables is at most one. -/
+/-- The decoding-error probability of random variables is at most one.
+@isnad1 id=le.0h7v.s5.d5a158415f94 from=translated src=- shape=3da48d77 vocab=443ed1e8
+-/
 theorem decodingErrorProbabilityOf_le_one
     {omega : Type u} {alpha : Type v} {beta : Type w}
     (p : PMF omega) (X : omega -> alpha) (Y : omega -> beta)
@@ -161,6 +174,7 @@ The entropy, in nats, of the Boolean decoding-error indicator is the binary
 entropy of the decoding-error probability.
 
 The indicator is `true` exactly on decoder failure.
+@isnad1 id=eq.0h4v.s5.bb234e0e986c from=translated src=- shape=b8f66f83 vocab=2b8ed5ac
 -/
 theorem entropy_decodingErrorIndicator
     {alpha : Type u} {beta : Type v}
@@ -176,6 +190,7 @@ is the binary entropy of its decoding-error probability.
 
 Here `X` is the source variable, `Y` is the observation, and `decoder` attempts
 to recover `X` from `Y`.
+@isnad1 id=eq.0h7v.s5.9aa15cd510f3 from=translated src=- shape=cd9ac290 vocab=34ce55aa
 -/
 theorem entropyOf_decodingErrorIndicator
     {omega : Type u} {alpha : Type v} {beta : Type w}
@@ -548,6 +563,7 @@ observation, and `decoder` attempts to recover the source from the observation.
 The decoding-error indicator is `true` exactly when decoding fails. No lower
 bound on the source-alphabet cardinality is required; in particular, the
 singleton case is included.
+@isnad1 id=le.0h4v.s6.d785048f2e72 from=translated src=- shape=a7d55130 vocab=83e4396d
 -/
 theorem condEntropy_fano
     {alpha : Type u} {beta : Type v}
@@ -605,6 +621,7 @@ Fano's inequality for a finite joint law, expressed with mathlib's
 The error convention and decoder direction are the same as in
 `condEntropy_fano`. This form is valid without a lower bound on the source
 alphabet cardinality.
+@isnad1 id=le.0h4v.s5.5eb34621bcb0 from=translated src=- shape=73742ec5 vocab=8ade74ea
 -/
 theorem condEntropy_fano_qary
     {alpha : Type u} {beta : Type v}
@@ -632,6 +649,7 @@ The random-variable form of `condEntropy_fano`, in nats.
 Here `X` is the finite source variable, `Y` is the finite observation, and
 `decoder` attempts to recover `X` from `Y`. The error indicator is `true`
 exactly when decoding fails. The source sample space itself need not be finite.
+@isnad1 id=le.0h7v.s6.2b685f3f0a5e from=translated src=- shape=5c364ceb vocab=2c7070c7
 -/
 theorem condEntropyOf_fano
     {omega : Type u} {alpha : Type v} {beta : Type w}
@@ -651,6 +669,7 @@ The random-variable form of `condEntropy_fano_qary`, in nats.
 
 The decoder direction and error convention are those of `condEntropyOf_fano`.
 Only the value alphabets of `X` and `Y` must be finite.
+@isnad1 id=le.0h7v.s5.03b2c052b322 from=translated src=- shape=2f3689c1 vocab=b3c0f1f4
 -/
 theorem condEntropyOf_fano_qary
     {omega : Type u} {alpha : Type v} {beta : Type w}
@@ -673,6 +692,7 @@ The conventional weaker form of Fano's inequality for a finite joint law:
 All logarithms are natural, so `log 2` is the one-bit textbook constant
 expressed in nats. No lower bound on the source-alphabet cardinality is
 required.
+@isnad1 id=le.0h4v.s5.4cdc9a694bcd from=translated src=- shape=a25acd52 vocab=e0c15105
 -/
 theorem condEntropy_fano_weak
     {alpha : Type u} {beta : Type v}
@@ -719,6 +739,7 @@ The random-variable form of `condEntropy_fano_weak`, in nats.
 
 Only the finite value alphabets of `X` and `Y` are required; the source sample
 space may be arbitrary.
+@isnad1 id=le.0h7v.s6.730af4eeb3a8 from=translated src=- shape=9e68722f vocab=4f14704c
 -/
 theorem condEntropyOf_fano_weak
     {omega : Type u} {alpha : Type v} {beta : Type w}
@@ -741,6 +762,7 @@ Fano's lower bound on the decoding-error probability for a finite joint law:
 The hypothesis `2 <= |alpha|` is needed here, unlike in the entropy forms of
 Fano's inequality, because it makes the logarithmic denominator strictly
 positive.
+@isnad1 id=le.1h4v.s6.b587c3315d94 from=translated src=- shape=8b069d4d vocab=e209c659
 -/
 theorem decodingErrorProbability_fano_lower_bound
     {alpha : Type u} {beta : Type v}
@@ -765,6 +787,7 @@ The random-variable form of
 
 Only the finite value alphabets of `X` and `Y` are required. The source sample
 space may be arbitrary.
+@isnad1 id=le.1h7v.s6.7907e094d0bc from=translated src=- shape=5b75971f vocab=2ad5b3df
 -/
 theorem decodingErrorProbabilityOf_fano_lower_bound
     {omega : Type u} {alpha : Type v} {beta : Type w}
@@ -802,6 +825,7 @@ Fano's mutual-information lower bound for a uniform finite source, in nats:
 
 The first marginal of the supplied joint law is the source law. No cardinality
 lower bound is needed because this theorem does not divide by `log |alpha|`.
+@isnad1 id=le.1h4v.s6.c0746ace94fb from=translated src=- shape=da2057cc vocab=66099998
 -/
 theorem mutualInfo_fano_lower_bound_of_uniform_source
     {alpha : Type u} {beta : Type v}
@@ -823,6 +847,7 @@ The random-variable form of
 
 Uniformity is stated through the existing pushforward-law equality
 `p.map X = PMF.uniformOfFintype alpha`.
+@isnad1 id=le.1h7v.s6.b05b7d6fe331 from=translated src=- shape=495dc21a vocab=abf70d9d
 -/
 theorem mutualInfoOf_fano_lower_bound_of_uniform_source
     {omega : Type u} {alpha : Type v} {beta : Type w}
@@ -852,6 +877,7 @@ The standard uniform-source Fano lower bound on decoding error, in nats:
 The hypothesis `2 <= |alpha|` makes the logarithmic denominator strictly
 positive. Uniformity is expressed by equality of the first marginal with the
 existing finite uniform PMF.
+@isnad1 id=le.2h4v.s6.81e5f8193f79 from=translated src=- shape=6310fefa vocab=5a577499
 -/
 theorem decodingErrorProbability_fano_lower_bound_of_uniform_source
     {alpha : Type u} {beta : Type v}
@@ -889,6 +915,7 @@ The random-variable form of
 
 The sample space may be arbitrary; only the source and observation value
 alphabets are finite.
+@isnad1 id=le.2h7v.s6.32aa575fdde4 from=translated src=- shape=6a0690f9 vocab=be27fb65
 -/
 theorem decodingErrorProbabilityOf_fano_lower_bound_of_uniform_source
     {omega : Type u} {alpha : Type v} {beta : Type w}

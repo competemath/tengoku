@@ -56,7 +56,9 @@ open ThreeGap.EuclideanRecords (sq_residue_le five_le_card_image_of_strictAnti_c
 noncomputable def astar : Fin 2 → ℝ := ![4 / 47, 15 / 47]
 
 /-- **Per-coordinate integer minimum (`L∞` crux).** The balanced residue `|r|` lower-bounds
-`|a − m·k|` for every `k` — the absolute-value version of `sq_residue_le`. -/
+`|a − m·k|` for every `k` — the absolute-value version of `sq_residue_le`.
+@isnad1 id=le.3h4v.s6.dc35182dd819 from=translated src=- shape=61264a3d vocab=70eb8623
+-/
 theorem abs_residue_le (m r a : ℤ) (hm : 0 < m) (h2r : 2 * |r| ≤ m) (hcong : m ∣ (a - r)) (k : ℤ) :
     |(r : ℝ)| ≤ |(a : ℝ) - m * k| := by
   have hsq := sq_residue_le m r a hm h2r hcong k
@@ -69,7 +71,9 @@ theorem abs_residue_le (m r a : ℤ) (hm : 0 < m) (h2r : 2 * |r| ≤ m) (hcong :
 `4d ≡ r₀`, `15d ≡ r₁ (mod 47)` give `delta α* d = M/47`, where `M = max(|r₀|, |r₁|)` (provided as
 `M` with `|r₀| ≤ M`, `|r₁| ≤ M`, `M ∈ {|r₀|, |r₁|}`). Upper bound at the rounding `(n₀, n₁)`; lower
 bound coordinatewise via `abs_residue_le` and `norm_le_pi_norm` (the sup norm dominates each
-coordinate). -/
+coordinate).
+@isnad1 id=eq.7h6v.s7.b28a6146c46e from=translated src=- shape=cee94acd vocab=2da0d793
+-/
 theorem delta_astar (d n₀ n₁ r₀ r₁ M : ℤ)
     (hr0 : 4 * d = r₀ + 47 * n₀) (hr1 : 15 * d = r₁ + 47 * n₁)
     (hb0 : 2 * |r₀| ≤ 47) (hb1 : 2 * |r₁| ≤ 47)
@@ -122,43 +126,81 @@ theorem delta_astar (d n₀ n₁ r₀ r₁ M : ℤ)
 
 /-- The thirteen witness defects `delta α* d = M_d/47`, `d = 1,…,13`, with
 `M_d = [15,17,12,16,20,23,19,21,11,9,23,8,7]` — from `delta_astar` at the balanced residues of
-`4d, 15d` mod `47`. -/
+`4d, 15d` mod `47`.
+@isnad1 id=eq.0h0v.s5.672a60c12ce8 from=translated src=- shape=f2618047 vocab=3c901d70
+-/
 theorem dstar1 : delta astar 1 = (15 : ℝ) / 47 := by
   rw [delta_astar 1 0 0 4 15 15 (by decide) (by decide) (by decide) (by decide) (by decide)
     (by decide) (by decide)]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.63213c7926c4 from=translated src=- shape=f2618047 vocab=3c901d70
+-/
 theorem dstar2 : delta astar 2 = (17 : ℝ) / 47 := by
   rw [delta_astar 2 0 1 8 (-17) 17 (by decide) (by decide) (by decide) (by decide) (by decide)
     (by decide) (by decide)]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.8b702127d504 from=translated src=- shape=f2618047 vocab=3c901d70
+-/
 theorem dstar3 : delta astar 3 = (12 : ℝ) / 47 := by
   rw [delta_astar 3 0 1 12 (-2) 12 (by decide) (by decide) (by decide) (by decide) (by decide)
     (by decide) (by decide)]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.527aaf53485e from=translated src=- shape=f2618047 vocab=3c901d70
+-/
 theorem dstar4 : delta astar 4 = (16 : ℝ) / 47 := by
   rw [delta_astar 4 0 1 16 13 16 (by decide) (by decide) (by decide) (by decide) (by decide)
     (by decide) (by decide)]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.817a14ea955e from=translated src=- shape=f2618047 vocab=3c901d70
+-/
 theorem dstar5 : delta astar 5 = (20 : ℝ) / 47 := by
   rw [delta_astar 5 0 2 20 (-19) 20 (by decide) (by decide) (by decide) (by decide) (by decide)
     (by decide) (by decide)]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.96c098c0c075 from=translated src=- shape=f2618047 vocab=3c901d70
+-/
 theorem dstar6 : delta astar 6 = (23 : ℝ) / 47 := by
   rw [delta_astar 6 1 2 (-23) (-4) 23 (by decide) (by decide) (by decide) (by decide) (by decide)
     (by decide) (by decide)]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.7aceadc0291b from=translated src=- shape=f2618047 vocab=3c901d70
+-/
 theorem dstar7 : delta astar 7 = (19 : ℝ) / 47 := by
   rw [delta_astar 7 1 2 (-19) 11 19 (by decide) (by decide) (by decide) (by decide) (by decide)
     (by decide) (by decide)]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.17d386a08061 from=translated src=- shape=f2618047 vocab=3c901d70
+-/
 theorem dstar8 : delta astar 8 = (21 : ℝ) / 47 := by
   rw [delta_astar 8 1 3 (-15) (-21) 21 (by decide) (by decide) (by decide) (by decide) (by decide)
     (by decide) (by decide)]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.cfc571e97544 from=translated src=- shape=f2618047 vocab=3c901d70
+-/
 theorem dstar9 : delta astar 9 = (11 : ℝ) / 47 := by
   rw [delta_astar 9 1 3 (-11) (-6) 11 (by decide) (by decide) (by decide) (by decide) (by decide)
     (by decide) (by decide)]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.522d7db771dd from=translated src=- shape=f2618047 vocab=3c901d70
+-/
 theorem dstar10 : delta astar 10 = (9 : ℝ) / 47 := by
   rw [delta_astar 10 1 3 (-7) 9 9 (by decide) (by decide) (by decide) (by decide) (by decide)
     (by decide) (by decide)]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.5197e401897a from=translated src=- shape=f2618047 vocab=3c901d70
+-/
 theorem dstar11 : delta astar 11 = (23 : ℝ) / 47 := by
   rw [delta_astar 11 1 4 (-3) (-23) 23 (by decide) (by decide) (by decide) (by decide) (by decide)
     (by decide) (by decide)]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.dd43f9e6776d from=translated src=- shape=f2618047 vocab=3c901d70
+-/
 theorem dstar12 : delta astar 12 = (8 : ℝ) / 47 := by
   rw [delta_astar 12 1 4 1 (-8) 8 (by decide) (by decide) (by decide) (by decide) (by decide)
     (by decide) (by decide)]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.3237d197b2fc from=translated src=- shape=f2618047 vocab=3c901d70
+-/
 theorem dstar13 : delta astar 13 = (7 : ℝ) / 47 := by
   rw [delta_astar 13 1 4 5 7 7 (by decide) (by decide) (by decide) (by decide) (by decide)
     (by decide) (by decide)]; norm_num
@@ -166,7 +208,9 @@ theorem dstar13 : delta astar 13 = (7 : ℝ) / 47 := by
 /-! ### `nnDist` as a prefix-minimum, and `card ≥ 5` from the four record drops -/
 
 /-- **`nnDist` as a prefix-minimum of the `L∞` defect.** `nnDist α 13 q` is the infimum of
-`delta α d` over `d ∈ [1, max(q, 13−q)]` (via the repo's `gapVal_eq_nnDist`). -/
+`delta α d` over `d ∈ [1, max(q, 13−q)]` (via the repo's `gapVal_eq_nnDist`).
+@isnad1 id=eq.2h2v.s6.c9529f270e99 from=translated src=- shape=e5c450db vocab=f632f241
+-/
 theorem nnDist_eq_inf (α : Fin 2 → ℝ) {q : ℕ} (hq : q ≤ 13)
     (hne : (Finset.Icc 1 (max q (13 - q))).Nonempty) :
     nnDist α 13 q = (Finset.Icc 1 (max q (13 - q))).inf' hne (fun n => delta α (n : ℤ)) := by
@@ -175,7 +219,9 @@ theorem nnDist_eq_inf (α : Fin 2 → ℝ) {q : ℕ} (hq : q ≤ 13)
 /-- **`card ≥ 5` from the four record drops.** If the defect drops strictly below the whole
 preceding
 prefix at `d = 9, 10, 12, 13`, then the five `nnDist α 13 q` at `q = 6, 4, 3, 1, 0` are strictly
-decreasing, so the image has `≥ 5` elements. -/
+decreasing, so the image has `≥ 5` elements.
+@isnad1 id=le.4h1v.s8.9b4c23fb0601 from=translated src=- shape=70e57efc vocab=c8c0af78
+-/
 theorem card_ge_five (α : Fin 2 → ℝ)
     (H1 : ∀ n ∈ Finset.Icc (1 : ℕ) 7, delta α 9 < delta α (n : ℤ))
     (H2 : ∀ n ∈ Finset.Icc (1 : ℕ) 9, delta α 10 < delta α (n : ℤ))
@@ -216,7 +262,9 @@ theorem card_ge_five (α : Fin 2 → ℝ)
 /-! ### Rational → irrational upgrade by Lipschitz-openness -/
 
 /-- **`delta · d` is `|d|`-Lipschitz in `α`.** (Both are distances to the lattice; perturbing `α` by
-`α − β` moves `d·α` by `d·(α−β)`.) -/
+`α − β` moves `d·α` by `d·(α−β)`.)
+@isnad1 id=le.0h3v.s7.cdf71b9e4c52 from=translated src=- shape=21f6d980 vocab=3864d51f
+-/
 theorem delta_sub_le (α β : Fin 2 → ℝ) (d : ℤ) :
     delta α d ≤ delta β d + |(d : ℝ)| * ‖α - β‖ := by
   have hC : ∀ p : Fin 2 → ℤ, delta α d ≤ ‖rem β d p‖ + |(d : ℝ)| * ‖α - β‖ := by
@@ -236,11 +284,17 @@ theorem delta_sub_le (α β : Fin 2 → ℝ) (d : ℤ) :
 /-- The perturbed witness `α* + (s, 0) = (4/47 + s, 15/47)`. -/
 noncomputable def aprt (s : ℝ) : Fin 2 → ℝ := ![4 / 47 + s, 15 / 47]
 
+/--
+@isnad1 id=irration.1h1v.s4.d6423ff6919c from=translated src=- shape=ffc67196 vocab=809048b1
+-/
 theorem aprt_irrational {s : ℝ} (hs : Irrational s) : Irrational (aprt s 0) := by
   have h : aprt s 0 = ((4 / 47 : ℚ) : ℝ) + s := by
     rw [show ((4 / 47 : ℚ) : ℝ) = 4 / 47 by norm_num]; simp [aprt]
   rw [h]; exact hs.ratCast_add _
 
+/--
+@isnad1 id=eq.1h1v.s6.c3aabc35a100 from=translated src=- shape=065f5d6b vocab=dcf86509
+-/
 theorem norm_aprt (s : ℝ) (hs : 0 ≤ s) : ‖aprt s - astar‖ = s := by
   have e0 : (aprt s - astar) 0 = s := by
     simp only [Pi.sub_apply, aprt, astar, Matrix.cons_val_zero]; ring
@@ -254,6 +308,9 @@ theorem norm_aprt (s : ℝ) (hs : 0 ≤ s) : ‖aprt s - astar‖ = s := by
   · calc s = ‖(aprt s - astar) 0‖ := by rw [e0, Real.norm_eq_abs, abs_of_nonneg hs]
       _ ≤ ‖aprt s - astar‖ := norm_le_pi_norm _ 0
 
+/--
+@isnad1 id=eq.1h1v.s6.787b701246fc from=translated src=- shape=7d1e690d vocab=dcf86509
+-/
 theorem norm_aprt' (s : ℝ) (hs : 0 ≤ s) : ‖astar - aprt s‖ = s := by
   have e0 : (astar - aprt s) 0 = -s := by
     simp only [Pi.sub_apply, aprt, astar, Matrix.cons_val_zero]; ring
@@ -267,7 +324,9 @@ theorem norm_aprt' (s : ℝ) (hs : 0 ≤ s) : ‖astar - aprt s‖ = s := by
   · calc s = ‖(astar - aprt s) 0‖ := by rw [e0, Real.norm_eq_abs, abs_neg, abs_of_nonneg hs]
       _ ≤ ‖astar - aprt s‖ := norm_le_pi_norm _ 0
 
-/-- **Transport a defect inequality from `α*` to the perturbed witness.** -/
+/-- **Transport a defect inequality from `α*` to the perturbed witness.**
+@isnad1 id=lt.4h5v.s7.2d515b8e06e1 from=translated src=- shape=704c4aa0 vocab=298b74e2
+-/
 theorem transport (s : ℝ) (hs0 : 0 ≤ s) (m n : ℤ) (Mm Mn : ℝ)
     (hm : delta astar m = Mm / 47) (hn : delta astar n = Mn / 47)
     (hgap : 47 * ((|(m : ℝ)| + |(n : ℝ)|) * s) < Mn - Mm) :
@@ -286,7 +345,9 @@ theorem transport (s : ℝ) (hs0 : 0 ≤ s) (m n : ℤ) (Mm Mn : ℝ)
   linarith [hd1, hd2, hgap]
 
 /-- Bundles `transport` for an integer record gap: once `s` is small (`1222·s < 1`), an integer
-defect drop `Mm + 1 ≤ Mn` transports from `α*` to `aprt s`. -/
+defect drop `Mm + 1 ≤ Mn` transports from `α*` to `aprt s`.
+@isnad1 id=lt.6h5v.s7.924678b94ea2 from=translated src=- shape=256896b8 vocab=42b3b4d5
+-/
 theorem Hpair (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 1222 * s < 1) (m n Mm Mn : ℤ)
     (hm : delta astar m = (Mm : ℝ) / 47) (hn : delta astar n = (Mn : ℝ) / 47)
     (hc : |(m : ℝ)| + |(n : ℝ)| ≤ 26) (hgapZ : Mm + 1 ≤ Mn) :
@@ -296,6 +357,9 @@ theorem Hpair (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 1222 * s < 1) (m n Mm Mn : ℤ
   have h2 : (Mm : ℝ) + 1 ≤ (Mn : ℝ) := by exact_mod_cast hgapZ
   linarith [h1, h2, hsmall]
 
+/--
+@isnad1 id=lt.3h2v.s6.92c1498fe484 from=translated src=- shape=45c48fd9 vocab=cf3d4298
+-/
 theorem H1_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 1222 * s < 1) :
     ∀ n ∈ Finset.Icc (1 : ℕ) 7, delta (aprt s) 9 < delta (aprt s) (n : ℤ) := by
   intro n hn; obtain ⟨hn1, hn2⟩ := Finset.mem_Icc.mp hn
@@ -308,6 +372,9 @@ theorem H1_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 1222 * s < 1) :
   · exact Hpair s hs0 hsmall 9 6 11 23 dstar9 dstar6 (by norm_num) (by norm_num)
   · exact Hpair s hs0 hsmall 9 7 11 19 dstar9 dstar7 (by norm_num) (by norm_num)
 
+/--
+@isnad1 id=lt.3h2v.s6.d4817a6f1625 from=translated src=- shape=45c48fd9 vocab=cf3d4298
+-/
 theorem H2_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 1222 * s < 1) :
     ∀ n ∈ Finset.Icc (1 : ℕ) 9, delta (aprt s) 10 < delta (aprt s) (n : ℤ) := by
   intro n hn; obtain ⟨hn1, hn2⟩ := Finset.mem_Icc.mp hn
@@ -322,6 +389,9 @@ theorem H2_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 1222 * s < 1) :
   · exact Hpair s hs0 hsmall 10 8 9 21 dstar10 dstar8 (by norm_num) (by norm_num)
   · exact Hpair s hs0 hsmall 10 9 9 11 dstar10 dstar9 (by norm_num) (by norm_num)
 
+/--
+@isnad1 id=lt.3h2v.s6.16f7bdbfbe9d from=translated src=- shape=45c48fd9 vocab=cf3d4298
+-/
 theorem H3_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 1222 * s < 1) :
     ∀ n ∈ Finset.Icc (1 : ℕ) 10, delta (aprt s) 12 < delta (aprt s) (n : ℤ) := by
   intro n hn; obtain ⟨hn1, hn2⟩ := Finset.mem_Icc.mp hn
@@ -337,6 +407,9 @@ theorem H3_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 1222 * s < 1) :
   · exact Hpair s hs0 hsmall 12 9 8 11 dstar12 dstar9 (by norm_num) (by norm_num)
   · exact Hpair s hs0 hsmall 12 10 8 9 dstar12 dstar10 (by norm_num) (by norm_num)
 
+/--
+@isnad1 id=lt.3h2v.s6.111bafb7e1f8 from=translated src=- shape=45c48fd9 vocab=cf3d4298
+-/
 theorem H4_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 1222 * s < 1) :
     ∀ n ∈ Finset.Icc (1 : ℕ) 12, delta (aprt s) 13 < delta (aprt s) (n : ℤ) := by
   intro n hn; obtain ⟨hn1, hn2⟩ := Finset.mem_Icc.mp hn
@@ -360,7 +433,9 @@ Nα}`
 on `𝕋²` realizes **exactly five** distinct sup-norm nearest-neighbour distances — so the bound
 `nnDist_count_plane_unconditional` is sharp. The witness is `α = (4/47 + s, 15/47)` for a small
 irrational `s`: `card ≥ 5` transports from the rational `α*` (Lipschitz), `card ≤ 5` is the
-five-distance theorem itself. Entirely elementary — no homogeneous dynamics. -/
+five-distance theorem itself. Entirely elementary — no homogeneous dynamics.
+@isnad1 id=ex.0h0v.s6.e6705693826f from=translated src=- shape=69c43547 vocab=987f128a
+-/
 theorem sharp_attained : ∃ α : Fin 2 → ℝ, (∃ k, Irrational (α k)) ∧
     ∃ N, 2 ≤ N ∧ ((Finset.range (N + 1)).image (nnDist α N)).card = 5 := by
   obtain ⟨s, hs_irr, hs_pos, hs_lt⟩ :=

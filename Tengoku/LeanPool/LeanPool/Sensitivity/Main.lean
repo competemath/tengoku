@@ -40,7 +40,9 @@ namespace LeanPoolSensitivity
 
 /-- **Sensitivity Theorem** (Huang 2019). For any Boolean function `f` of
 multilinear degree `d ≥ 1`, the sensitivity `s(f)` satisfies
-`√d ≤ s(f)`. -/
+`√d ≤ s(f)`.
+@isnad1 id=le.1h2v.s5.1114bccebe49 from=translated src=- shape=4ae1a555 vocab=0e353008
+-/
 theorem sensitivity_ge_sqrt_degree {n : ℕ} (f : BoolFun n) (hd : 1 ≤ f.degree) :
     Real.sqrt (f.degree : ℝ) ≤ (f.sensitivity : ℝ) := by
   obtain ⟨S, hcard, _, hmoeb⟩ := f.exists_fullDegree_restriction (by omega)

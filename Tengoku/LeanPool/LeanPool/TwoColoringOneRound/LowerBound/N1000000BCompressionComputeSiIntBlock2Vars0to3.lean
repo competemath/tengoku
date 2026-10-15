@@ -19,24 +19,36 @@ namespace Distributed2Coloring.LowerBound
 namespace N1000000BCompressionCompute
 
 -- Kernel-checked computation for the 9 entries of `SiIntGoal` at block `2` and variable `0`.
+/--
+@isnad1 id=siintgoa.0h2v.s5.b9c518089879 from=translated src=- shape=27f1885d vocab=be47e8f4
+-/
 theorem siIntGoal_block2_var0 :
     ∀ p q : Fin 3,
       SiIntGoal (r := (⟨2, by decide⟩ : Block)) (i := (⟨0, by decide⟩ : Var)) p q := by
   decide +kernel
 
 -- Kernel-checked computation for the 9 entries of `SiIntGoal` at block `2` and variable `1`.
+/--
+@isnad1 id=siintgoa.0h2v.s5.0134ea3d5ced from=translated src=- shape=27f1885d vocab=574a1871
+-/
 theorem siIntGoal_block2_var1 :
     ∀ p q : Fin 3,
       SiIntGoal (r := (⟨2, by decide⟩ : Block)) (i := (⟨1, by decide⟩ : Var)) p q := by
   decide +kernel
 
 -- Kernel-checked computation for the 9 entries of `SiIntGoal` at block `2` and variable `2`.
+/--
+@isnad1 id=siintgoa.0h2v.s5.0a734e9a83ad from=translated src=- shape=27f1885d vocab=62866115
+-/
 theorem siIntGoal_block2_var2 :
     ∀ p q : Fin 3,
       SiIntGoal (r := (⟨2, by decide⟩ : Block)) (i := (⟨2, by decide⟩ : Var)) p q := by
   decide +kernel
 
 -- Kernel-checked computation for the 9 entries of `SiIntGoal` at block `2` and variable `3`.
+/--
+@isnad1 id=siintgoa.0h2v.s5.51a2e8aad04d from=translated src=- shape=27f1885d vocab=c87f7da2
+-/
 theorem siIntGoal_block2_var3 :
     ∀ p q : Fin 3,
       SiIntGoal (r := (⟨2, by decide⟩ : Block)) (i := (⟨3, by decide⟩ : Var)) p q := by

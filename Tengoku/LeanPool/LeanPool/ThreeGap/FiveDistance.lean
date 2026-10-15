@@ -29,17 +29,24 @@ open scoped Real EuclideanSpace
 /-- The 2D signed area (cross product) of `x, y ∈ ℝ²`. -/
 def det2 (x y : EuclideanSpace ℝ (Fin 2)) : ℝ := x 0 * y 1 - x 1 * y 0
 
+/--
+@isnad1 id=eq.0h2v.s4.7c600730f08e from=translated src=- shape=91ee4750 vocab=cf590fbe
+-/
 theorem det2_skew (x y : EuclideanSpace ℝ (Fin 2)) : det2 x y = - det2 y x := by
   simp only [det2]; ring
 
 open RealInnerProductSpace in
-/-- The real inner product on `EuclideanSpace ℝ (Fin 2)` in coordinates. -/
+/-- The real inner product on `EuclideanSpace ℝ (Fin 2)` in coordinates.
+@isnad1 id=eq.0h2v.s9.180508b6b157 from=translated src=- shape=8f368d6a vocab=4a1567ef
+-/
 theorem inner_eq_coord (x y : EuclideanSpace ℝ (Fin 2)) : ⟪x, y⟫ = x 0 * y 0 + x 1 * y 1 := by
   rw [PiLp.inner_apply]; simp [Fin.sum_univ_two, RCLike.inner_apply, mul_comm]
 
 open RealInnerProductSpace in
 /-- **The 2D Lagrange identity:** `(det2 x y)² + ⟪x,y⟫² = ‖x‖²‖y‖²`. Converts angle conditions
-(inner product) into orientation conditions (signed area `det2`). -/
+(inner product) into orientation conditions (signed area `det2`).
+@isnad1 id=eq.0h2v.s8.816f81a954ab from=translated src=- shape=4f6fa04d vocab=f1b9bdb5
+-/
 theorem det2_sq_add_inner_sq (x y : EuclideanSpace ℝ (Fin 2)) :
     (det2 x y) ^ 2 + (⟪x, y⟫) ^ 2 = ‖x‖ ^ 2 * ‖y‖ ^ 2 := by
   have hx : ‖x‖ ^ 2 = x 0 ^ 2 + x 1 ^ 2 := by
@@ -49,7 +56,9 @@ theorem det2_sq_add_inner_sq (x y : EuclideanSpace ℝ (Fin 2)) :
   rw [det2, inner_eq_coord, hx, hy]; ring
 
 /-- **Cramer reconstruction in the plane.** If `x, z` are independent (`det2 x z ≠ 0`), every `y` is
-`s•x + t•z` with `s = det2 y z / det2 x z`, `t = det2 x y / det2 x z`. -/
+`s•x + t•z` with `s = det2 y z / det2 x z`, `t = det2 x y / det2 x z`.
+@isnad1 id=eq.1h3v.s8.0759238615bc from=translated src=- shape=a25a8271 vocab=fa79d2d4
+-/
 theorem cramer (x y z : EuclideanSpace ℝ (Fin 2)) (hxz : det2 x z ≠ 0) :
     y = (det2 y z / det2 x z) • x + (det2 x y / det2 x z) • z := by
   have hkey : ∀ i : Fin 2, det2 x z * y i = det2 y z * x i + det2 x y * z i := by
@@ -61,7 +70,9 @@ theorem cramer (x y z : EuclideanSpace ℝ (Fin 2)) (hxz : det2 x z ≠ 0) :
 
 /-- **Cone membership from signed-area signs.** If `x, z` are independent and `det2 x y`, `det2 y z`
 have the **same sign** as `det2 x z`, then `y` lies in the open positive cone of `x, z`:
-`y = s•x + t•z` with `s, t > 0`. -/
+`y = s•x + t•z` with `s, t > 0`.
+@isnad1 id=ex.3h3v.s8.aeadbb8e4cd1 from=translated src=- shape=c40fcd2f vocab=652093f3
+-/
 theorem mem_openCone_of_det_signs (x y z : EuclideanSpace ℝ (Fin 2)) (hxz : det2 x z ≠ 0)
     (hs : 0 < det2 y z / det2 x z) (ht : 0 < det2 x y / det2 x z) :
     ∃ s t : ℝ, 0 < s ∧ 0 < t ∧ y = s • x + t • z :=
@@ -73,7 +84,9 @@ open RealInnerProductSpace in
 signed
 angle of `vᵢ` from `v₀`, this says `cos∠(vᵢ,vⱼ) = aᵢaⱼ + dᵢdⱼ` — the full planar trigonometry,
 derived
-from `det2` + inner alone (no `oangle`/`kahler`). -/
+from `det2` + inner alone (no `oangle`/`kahler`).
+@isnad1 id=eq.0h3v.s8.edaf51cd3135 from=translated src=- shape=05bd7cac vocab=f1b9bdb5
+-/
 theorem inner_mul_add_det2_mul (v0 vi vj : EuclideanSpace ℝ (Fin 2)) :
     ⟪v0, vi⟫ * ⟪v0, vj⟫ + det2 v0 vi * det2 v0 vj = ‖v0‖ ^ 2 * ⟪vi, vj⟫ := by
   have h0 : ‖v0‖ ^ 2 = v0 0 ^ 2 + v0 1 ^ 2 := by
@@ -84,7 +97,9 @@ open RealInnerProductSpace in
 /-- **The sine-difference law from signed areas.** `‖v₀‖²·det2 vᵢ vⱼ = det2 v₀ vⱼ · ⟪v₀,vᵢ⟫ −
 ⟪v₀,vⱼ⟫ · det2 v₀ vᵢ`. In the `(aᵢ,dᵢ) = (cos,sin)` reading, `sin∠(vᵢ→vⱼ) = dⱼaᵢ − aⱼdᵢ` — so the
 sign
-of `det2 vᵢ vⱼ` (which orientation `vⱼ` is from `vᵢ`) is read off the `v₀`-relative coordinates. -/
+of `det2 vᵢ vⱼ` (which orientation `vⱼ` is from `vᵢ`) is read off the `v₀`-relative coordinates.
+@isnad1 id=eq.0h3v.s8.7bc8ca8bb1c3 from=translated src=- shape=54923e08 vocab=ffd297ab
+-/
 theorem det2_mul_eq (v0 vi vj : EuclideanSpace ℝ (Fin 2)) :
     ‖v0‖ ^ 2 * det2 vi vj = det2 v0 vj * ⟪v0, vi⟫ - ⟪v0, vj⟫ * det2 v0 vi := by
   have h0 : ‖v0‖ ^ 2 = v0 0 ^ 2 + v0 1 ^ 2 := by
@@ -94,7 +109,9 @@ theorem det2_mul_eq (v0 vi vj : EuclideanSpace ℝ (Fin 2)) :
 open RealInnerProductSpace in
 /-- **The signed area is `‖x‖‖y‖·sin∠`.** `|det2 x y| = ‖x‖ ‖y‖ · sin∠(x,y)`. With the cosine law
 `⟪x,y⟫ = ‖x‖‖y‖cos∠` and Lagrange `det2² = ‖x‖²‖y‖² − ⟪x,y⟫²`, this gives `det2² = ‖x‖²‖y‖²sin²∠`.
-So `dᵢ := det2(v₀,vᵢ)` has magnitude `‖v₀‖‖vᵢ‖·sin βᵢ` (`βᵢ = ∠(v₀,vᵢ)`) — the "sine" coordinate. -/
+So `dᵢ := det2(v₀,vᵢ)` has magnitude `‖v₀‖‖vᵢ‖·sin βᵢ` (`βᵢ = ∠(v₀,vᵢ)`) — the "sine" coordinate.
+@isnad1 id=eq.2h2v.s8.042ab5326cd5 from=translated src=- shape=61a517af vocab=c2dfc784
+-/
 theorem abs_det2_eq (x y : EuclideanSpace ℝ (Fin 2)) (hx : x ≠ 0) (hy : y ≠ 0) :
     |det2 x y| = ‖x‖ * ‖y‖ * Real.sin (InnerProductGeometry.angle x y) := by
   have hcos : ⟪x, y⟫ = ‖x‖ * ‖y‖ * Real.cos (InnerProductGeometry.angle x y) := by
@@ -113,7 +130,9 @@ theorem abs_det2_eq (x y : EuclideanSpace ℝ (Fin 2)) (hx : x ≠ 0) (hy : y �
 
 open RealInnerProductSpace in
 /-- **Angle composition (same side).** If `vᵢ, vⱼ` are on the same side of `v₀` (`det2 v₀ vᵢ`,
-`det2 v₀ vⱼ` same sign), then `∠(vᵢ,vⱼ)` has cosine `cos(βᵢ − βⱼ)` (`βₖ = ∠(v₀,vₖ)`). -/
+`det2 v₀ vⱼ` same sign), then `∠(vᵢ,vⱼ)` has cosine `cos(βᵢ − βⱼ)` (`βₖ = ∠(v₀,vₖ)`).
+@isnad1 id=eq.4h3v.s9.1c3b864cacd6 from=translated src=- shape=6749f36f vocab=79f47c44
+-/
 theorem cos_angle_same_side (v0 vi vj : EuclideanSpace ℝ (Fin 2)) (h0 : v0 ≠ 0) (hi : vi ≠ 0)
     (hj : vj ≠ 0) (hsame : 0 < det2 v0 vi * det2 v0 vj) :
     Real.cos (InnerProductGeometry.angle vi vj)
@@ -142,7 +161,9 @@ theorem cos_angle_same_side (v0 vi vj : EuclideanSpace ℝ (Fin 2)) (h0 : v0 ≠
 
 open RealInnerProductSpace in
 /-- **Angle composition (opposite sides).** If `vᵢ, vⱼ` are on opposite sides of `v₀`
-(`det2 v₀ vᵢ`, `det2 v₀ vⱼ` of opposite sign), then `∠(vᵢ,vⱼ)` has cosine `cos(βᵢ + βⱼ)`. -/
+(`det2 v₀ vᵢ`, `det2 v₀ vⱼ` of opposite sign), then `∠(vᵢ,vⱼ)` has cosine `cos(βᵢ + βⱼ)`.
+@isnad1 id=eq.4h3v.s9.0fd3c9242889 from=translated src=- shape=739ccde9 vocab=277c0c8a
+-/
 theorem cos_angle_opp_side (v0 vi vj : EuclideanSpace ℝ (Fin 2)) (h0 : v0 ≠ 0) (hi : vi ≠ 0)
     (hj : vj ≠ 0) (hopp : det2 v0 vi * det2 v0 vj < 0) :
     Real.cos (InnerProductGeometry.angle vi vj)
@@ -173,7 +194,9 @@ open RealInnerProductSpace in
 /-- **Same-side angle is the angle difference.** When `vᵢ, vⱼ` lie on the same side of `v₀`,
 `∠(vᵢ,vⱼ) = |βᵢ − βⱼ|` exactly (both lie in `[0,π]`, and cosine is injective there). This is the
 fact Step A feeds to `not_four_in_interval`: same-side record vectors pairwise `> π/3` apart give
-their `βᵢ` pairwise `> π/3` apart in the length-`π` interval `[0,π]`. -/
+their `βᵢ` pairwise `> π/3` apart in the length-`π` interval `[0,π]`.
+@isnad1 id=eq.4h3v.s9.cf34032de959 from=translated src=- shape=053b849d vocab=b793ea98
+-/
 theorem angle_eq_abs_sub_of_same_side (v0 vi vj : EuclideanSpace ℝ (Fin 2)) (h0 : v0 ≠ 0)
     (hi : vi ≠ 0) (hj : vj ≠ 0) (hsame : 0 < det2 v0 vi * det2 v0 vj) :
     InnerProductGeometry.angle vi vj
@@ -192,7 +215,9 @@ open RealInnerProductSpace in
 /-- **Opposite-side angle is the reduced angle sum.** When `vᵢ, vⱼ` lie on opposite sides of `v₀`,
 `∠(vᵢ,vⱼ) = π − |π − (βᵢ + βⱼ)|` — i.e. `βᵢ + βⱼ` if that is `≤ π`, else `2π − (βᵢ + βⱼ)` (the
 reflection of the angle sum back into `[0,π]`). The flanking-wedge step uses the second branch: a
-large angle sum forces a *small* cross-side angle. -/
+large angle sum forces a *small* cross-side angle.
+@isnad1 id=eq.4h3v.s9.300c2e769054 from=translated src=- shape=49026950 vocab=3ada4941
+-/
 theorem angle_eq_of_opp_side (v0 vi vj : EuclideanSpace ℝ (Fin 2)) (h0 : v0 ≠ 0) (hi : vi ≠ 0)
     (hj : vj ≠ 0) (hopp : det2 v0 vi * det2 v0 vj < 0) :
     InnerProductGeometry.angle vi vj
@@ -219,7 +244,9 @@ open RealInnerProductSpace in
 /-- **Step B (flanking wedge).** If `vᵢ, vⱼ` are on opposite sides of `v₀` with angle sum
 `βᵢ + βⱼ > 5π/3`, then the cross-side angle `∠(vᵢ,vⱼ) < π/3`. (The two vectors flank `v₀` so widely
 that, wrapping past `π`, they come back within `π/3` of each other.) Contrapositive: a cross-side
-pair that is `≥ π/3` apart has `βᵢ + βⱼ ≤ 5π/3`. -/
+pair that is `≥ π/3` apart has `βᵢ + βⱼ ≤ 5π/3`.
+@isnad1 id=lt.5h3v.s9.5e356a103766 from=translated src=- shape=6c45438d vocab=a36d9675
+-/
 theorem angle_lt_of_opp_side_of_sum_gt (v0 vi vj : EuclideanSpace ℝ (Fin 2)) (h0 : v0 ≠ 0)
     (hi : vi ≠ 0) (hj : vj ≠ 0) (hopp : det2 v0 vi * det2 v0 vj < 0)
     (hsum : 5 * π / 3 < InnerProductGeometry.angle v0 vi + InnerProductGeometry.angle v0 vj) :
@@ -237,7 +264,9 @@ theorem angle_lt_of_opp_side_of_sum_gt (v0 vi vj : EuclideanSpace ℝ (Fin 2)) (
 impossible: sorting, the three consecutive gaps each exceed `π/3` so sum to `> π`, but the span is
 `≤ π`. This is the real-number heart of "4 vectors in a half-plane can't be pairwise `> π/3`" (the
 arc
-has length `≤ π`). -/
+has length `≤ π`).
+@isnad1 id=false.2h2v.s6.c2fffe304eff from=translated src=- shape=a6bd6b8d vocab=c260264b
+-/
 theorem not_four_in_interval (θ : Fin 4 → ℝ) (a : ℝ) (hmem : ∀ i, θ i ∈ Set.Icc a (a + π))
     (hsep : ∀ i j, i ≠ j → π / 3 < |θ i - θ j|) : False := by
   set σ := Tuple.sort θ with hσ
@@ -260,7 +289,9 @@ theorem not_four_in_interval (θ : Fin 4 → ℝ) (a : ℝ) (hmem : ∀ i, θ i 
 are impossible: sorting, the two consecutive gaps each exceed `π/3` so sum to `> 2π/3`, but the span
 is `≤ 2π/3`. The `2π/3`-length analogue of `not_four_in_interval` — it bounds the number of vectors
 on
-one *strict side* of `v₀` (where reference angles live in `(π/3, π]`, of length `< 2π/3`). -/
+one *strict side* of `v₀` (where reference angles live in `(π/3, π]`, of length `< 2π/3`).
+@isnad1 id=false.2h2v.s7.a690b9ddbb30 from=translated src=- shape=1f0dc1eb vocab=758ba4a1
+-/
 theorem not_three_in_interval (θ : Fin 3 → ℝ) (a : ℝ)
     (hmem : ∀ i, θ i ∈ Set.Icc a (a + 2 * π / 3))
     (hsep : ∀ i j, i ≠ j → π / 3 < |θ i - θ j|) : False := by
@@ -280,7 +311,9 @@ theorem not_three_in_interval (θ : Fin 3 → ℝ) (a : ℝ)
   linarith
 
 /-- The reduced angle `|(↑Δ).toReal|` never exceeds `|Δ|`: reducing modulo `2π` into `(-π,π]` can
-only shrink the magnitude (or keep it, when `|Δ| ≤ π`). -/
+only shrink the magnitude (or keep it, when `|Δ| ≤ π`).
+@isnad1 id=le.0h1v.s4.3185e76c230c from=translated src=- shape=a22711e9 vocab=3751c155
+-/
 theorem abs_toReal_coe_le_abs (Δ : ℝ) : |((Δ : Real.Angle)).toReal| ≤ |Δ| := by
   rcases lt_or_ge |Δ| π with h | h
   · rw [abs_lt] at h
@@ -289,7 +322,9 @@ theorem abs_toReal_coe_le_abs (Δ : ℝ) : |((Δ : Real.Angle)).toReal| ≤ |Δ|
 
 /-- The reduced angle `|(↑Δ).toReal|` also bounded by the *complementary* arc `2π − |Δ|` (for
 `|Δ| ≤ 2π`): together with `abs_toReal_coe_le_abs`, the reduced angle is `≤ min(|Δ|, 2π−|Δ|)`,
-the cyclic distance. -/
+the cyclic distance.
+@isnad1 id=le.1h1v.s6.b6c5982e58af from=translated src=- shape=e8d1b3bb vocab=28e77f37
+-/
 theorem abs_toReal_coe_le_two_pi_sub (Δ : ℝ) (h : |Δ| ≤ 2 * π) :
     |((Δ : Real.Angle)).toReal| ≤ 2 * π - |Δ| := by
   have hpi := Real.pi_pos
@@ -307,7 +342,9 @@ theorem abs_toReal_coe_le_two_pi_sub (Δ : ℝ) (h : |Δ| ≤ 2 * π) :
 Six reals with pairwise cyclic distance `min(|θᵢ−θⱼ|, 2π−|θᵢ−θⱼ|) > π/3` are impossible: sorting,
 the five consecutive gaps telescope to `θ₅−θ₀ > 5π/3`, while the wrap-around gap `2π−(θ₅−θ₀) > π/3`
 forces `θ₅−θ₀ < 5π/3`. (The six cyclic gaps each exceed `π/3` so sum to `> 2π`, but the circle has
-circumference `2π`.) This is the circular analogue of `not_four_in_interval`. -/
+circumference `2π`.) This is the circular analogue of `not_four_in_interval`.
+@isnad1 id=false.1h1v.s6.4fe4f396a8f8 from=translated src=- shape=06252878 vocab=5575c190
+-/
 theorem not_six_circular (θ : Fin 6 → ℝ)
     (hsep : ∀ i j, i ≠ j → π / 3 < min |θ i - θ j| (2 * π - |θ i - θ j|)) : False := by
   set σ := Tuple.sort θ with hσ
@@ -338,7 +375,9 @@ of `ℝ²` cannot be pairwise `> π/3` apart: assigning each a circular coordina
 `θᵢ = (oangle(w₀, wᵢ)).toReal` and using `∠(wᵢ,wⱼ) = |oangle(wᵢ,wⱼ).toReal|` with oriented-angle
 additivity, the pairwise condition becomes pairwise cyclic distance `> π/3` among six circle points
 — impossible by `not_six_circular`. This is the kissing-type packing bound behind the sharp
-Euclidean five-distance theorem (`g₂ ≤ 5`). -/
+Euclidean five-distance theorem (`g₂ ≤ 5`).
+@isnad1 id=false.2h2v.s8.84a91f5f0540 from=translated src=- shape=b1548d2d vocab=a40d5b68
+-/
 theorem not_six_vectors_pairwise
     (o : Orientation ℝ (EuclideanSpace ℝ (Fin 2)) (Fin 2))
     (w : Fin 6 → EuclideanSpace ℝ (Fin 2)) (hw : ∀ i, w i ≠ 0)
@@ -372,7 +411,9 @@ theorem not_six_vectors_pairwise
 
 /-- **At most 5 vectors pairwise `> π/3` (finite-set form).** A finset of nonzero plane vectors that
 are pairwise more than `π/3` apart has at most `5` elements — the form the record list consumes (the
-`K` distinct nearest-neighbour distances give `K` pairwise-`> π/3` vectors, so `K ≤ 5`). -/
+`K` distinct nearest-neighbour distances give `K` pairwise-`> π/3` vectors, so `K ≤ 5`).
+@isnad1 id=le.2h2v.s9.21c50ff55825 from=translated src=- shape=2bcbca8f vocab=897ab173
+-/
 theorem card_le_five_of_pairwise
     (o : Orientation ℝ (EuclideanSpace ℝ (Fin 2)) (Fin 2))
     (s : Finset (EuclideanSpace ℝ (Fin 2))) (h0 : ∀ v ∈ s, v ≠ 0)
@@ -395,7 +436,9 @@ values. This is the exact interface for the sharp Euclidean `g₂ ≤ 5`: the `K
 nearest-neighbour gaps at a fixed `N`, assigned their realizing orbit-difference vectors (records),
 are pairwise `> π/3` by the minimality crux (`EuclideanAngle.angle_gt_pi_div_three`), so `K ≤ 5`.
 The remaining work is supplying the assignment `rec` and its two hypotheses — the gaps↔records
-correspondence — *not* the geometry, which `card_le_five_of_pairwise` now discharges. -/
+correspondence — *not* the geometry, which `card_le_five_of_pairwise` now discharges.
+@isnad1 id=le.2h5v.s8.d95fda1d2556 from=translated src=- shape=7235dd6c vocab=4e1a1206
+-/
 theorem card_image_le_five_of_record_assignment {ι : Type*} (s : Finset ι) (val : ι → ℝ)
     (o : Orientation ℝ (EuclideanSpace ℝ (Fin 2)) (Fin 2))
     (rec : ℝ → EuclideanSpace ℝ (Fin 2)) (hne : ∀ i ∈ s, rec (val i) ≠ 0)
@@ -430,7 +473,9 @@ open RealInnerProductSpace in
 vectors all on the same side of `v₀` (all `det2 v₀ (w i)` of one sign) and pairwise more than `π/3`
 apart are impossible: their reference angles `βᵢ = ∠(v₀, w i)` lie in the length-`π` interval
 `[0,π]`
-and (same side) are pairwise `> π/3` apart, contradicting `not_four_in_interval`. -/
+and (same side) are pairwise `> π/3` apart, contradicting `not_four_in_interval`.
+@isnad1 id=false.4h2v.s8.c1a365c789e8 from=translated src=- shape=97185d7d vocab=3e64b870
+-/
 theorem not_four_same_side (v0 : EuclideanSpace ℝ (Fin 2)) (w : Fin 4 → EuclideanSpace ℝ (Fin 2))
     (h0 : v0 ≠ 0) (hw : ∀ i, w i ≠ 0) (hside : ∀ i j, 0 < det2 v0 (w i) * det2 v0 (w j))
     (hsep : ∀ i j, i ≠ j → π / 3 < InnerProductGeometry.angle (w i) (w j)) : False := by
@@ -450,7 +495,9 @@ nonzero vectors all on the same strict side of `v₀` (`det2 v₀ (w i)` of one 
 `βᵢ = ∠(v₀, w i)` lie in the length-`2π/3` interval `(π/3, π]` and are pairwise `> π/3` apart,
 contradicting `not_three_in_interval`. This is the per-side ceiling the Theorem-8 cyclic argument
 uses
-(so the four non-shortest vectors split with `≥ 1` strictly on each side of the shortest). -/
+(so the four non-shortest vectors split with `≥ 1` strictly on each side of the shortest).
+@isnad1 id=false.5h2v.s9.3b84132a6029 from=translated src=- shape=1cdf6ccc vocab=3e64b870
+-/
 theorem not_three_same_side (v0 : EuclideanSpace ℝ (Fin 2)) (w : Fin 3 → EuclideanSpace ℝ (Fin 2))
     (h0 : v0 ≠ 0) (hw : ∀ i, w i ≠ 0) (hside : ∀ i j, 0 < det2 v0 (w i) * det2 v0 (w j))
     (hbeta : ∀ i, π / 3 < InnerProductGeometry.angle v0 (w i))
@@ -470,7 +517,9 @@ with
 both `> π/3` from `v₀`, then `∠(wᵢ,wⱼ) ≤ π/3` — impossible under pairwise `> π/3`. (Zero signed area
 +
 `v₀ ≠ 0` ⟹ parallel to `v₀`; `> π/3` from `v₀` forces `∠(v₀,·)=π` (antiparallel); two antiparallel
-vectors point the same way, so `∠(wᵢ,wⱼ)=0`.) -/
+vectors point the same way, so `∠(wᵢ,wⱼ)=0`.)
+@isnad1 id=false.8h3v.s9.641acc08c878 from=translated src=- shape=eafb724a vocab=f868f532
+-/
 theorem antiparallel_unique (v0 wi wj : EuclideanSpace ℝ (Fin 2)) (h0 : v0 ≠ 0) (hwi : wi ≠ 0)
     (hwj : wj ≠ 0) (hi0 : det2 v0 wi = 0) (hj0 : det2 v0 wj = 0)
     (hbi : π / 3 < InnerProductGeometry.angle v0 wi)
@@ -497,7 +546,9 @@ open RealInnerProductSpace in
 π/3`
 from `v₀` and pairwise `> π/3`, some has `det2 v₀ (w i) > 0`. Otherwise all have `det2 ≤ 0`; at most
 one is antiparallel (`det2 = 0`, by `antiparallel_unique`), so `≥ 3` are strictly negative — but
-`not_three_same_side` forbids `3` on one strict side. -/
+`not_three_same_side` forbids `3` on one strict side.
+@isnad1 id=ex.4h2v.s9.50d5e2b71b5c from=translated src=- shape=2102b4f7 vocab=f868f532
+-/
 theorem exists_pos_det2 (v0 : EuclideanSpace ℝ (Fin 2)) (w : Fin 4 → EuclideanSpace ℝ (Fin 2))
     (h0 : v0 ≠ 0) (hw : ∀ i, w i ≠ 0)
     (hbeta : ∀ i, π / 3 < InnerProductGeometry.angle v0 (w i))
@@ -532,7 +583,9 @@ theorem exists_pos_det2 (v0 : EuclideanSpace ℝ (Fin 2)) (w : Fin 4 → Euclide
     (fun i j hij => hsep _ _ (fun heq => hij (e.injective (Subtype.ext heq))))
 
 open RealInnerProductSpace in
-/-- **At least one vector strictly on the negative side of `v₀`** (mirror of `exists_pos_det2`). -/
+/-- **At least one vector strictly on the negative side of `v₀`** (mirror of `exists_pos_det2`).
+@isnad1 id=ex.4h2v.s9.6f396edabcfb from=translated src=- shape=40aa2cf2 vocab=f868f532
+-/
 theorem exists_neg_det2 (v0 : EuclideanSpace ℝ (Fin 2)) (w : Fin 4 → EuclideanSpace ℝ (Fin 2))
     (h0 : v0 ≠ 0) (hw : ∀ i, w i ≠ 0)
     (hbeta : ∀ i, π / 3 < InnerProductGeometry.angle v0 (w i))
@@ -569,7 +622,9 @@ theorem exists_neg_det2 (v0 : EuclideanSpace ℝ (Fin 2)) (w : Fin 4 → Euclide
 /-- **`v₁` lies in the open cone of a flanking pair.** If `vⱼ` is strictly on the positive side of
 `v₁` (`det2 v₁ vⱼ > 0`), `vₖ` strictly on the negative side (`det2 v₁ vₖ < 0`), and the through-`v₁`
 arc is less than `π` (`det2 vⱼ vₖ < 0`, the orientation that makes `vⱼ, v₁, vₖ` a positively-spanned
-triple), then `v₁ = s·vⱼ + t·vₖ` with `s, t > 0`. From `mem_openCone_of_det_signs`. -/
+triple), then `v₁ = s·vⱼ + t·vₖ` with `s, t > 0`. From `mem_openCone_of_det_signs`.
+@isnad1 id=ex.3h3v.s8.099a808c78b7 from=translated src=- shape=9dd1658c vocab=55ad47a7
+-/
 theorem v1_mem_openCone_of_flanking {v1 vj vk : EuclideanSpace ℝ (Fin 2)} (hpos : 0 < det2 v1 vj)
     (hneg : det2 v1 vk < 0) (harc : det2 vj vk < 0) :
     ∃ s t : ℝ, 0 < s ∧ 0 < t ∧ v1 = s • vj + t • vk := by
@@ -583,7 +638,9 @@ open RealInnerProductSpace in
 (`det2 v₀ vⱼ > 0`) and `vₖ` strictly on the negative side (`det2 v₀ vₖ < 0`), the signed area
 `det2 vⱼ vₖ = −‖vⱼ‖‖vₖ‖·sin(βⱼ+βₖ)` (`βₘ = ∠(v₀,vₘ)`), via the sine-difference law and `sin_add`. In
 particular `βⱼ+βₖ < π ⟹ det2 vⱼ vₖ < 0` — the through-`v₀` arc is `< π`, the orientation
-`v1_mem_openCone_of_flanking` needs. -/
+`v1_mem_openCone_of_flanking` needs.
+@isnad1 id=lt.6h3v.s9.ce83b91def1c from=translated src=- shape=3b52c518 vocab=a83a8cfd
+-/
 theorem det2_neg_of_opp_side_of_sum_lt_pi (v0 vj vk : EuclideanSpace ℝ (Fin 2)) (h0 : v0 ≠ 0)
     (hj : vj ≠ 0) (hk : vk ≠ 0) (hjpos : 0 < det2 v0 vj) (hkneg : det2 v0 vk < 0)
     (hsum : InnerProductGeometry.angle v0 vj + InnerProductGeometry.angle v0 vk < π) :
@@ -619,7 +676,9 @@ theorem det2_neg_of_opp_side_of_sum_lt_pi (v0 vj vk : EuclideanSpace ℝ (Fin 2)
   nlinarith [hkey, hprod, hv0sq]
 
 /-- A 2D vector with zero signed area against a nonzero `v₀` is a scalar multiple of it
-(`det2 v₀ w = 0 ⟹ w ∈ ℝ·v₀`). -/
+(`det2 v₀ w = 0 ⟹ w ∈ ℝ·v₀`).
+@isnad1 id=ex.2h2v.s7.624afacf3272 from=translated src=- shape=bbd52029 vocab=ce5d0f2d
+-/
 theorem parallel_of_det2_zero {v0 w : EuclideanSpace ℝ (Fin 2)} (h0 : v0 ≠ 0)
     (hdet : det2 v0 w = 0) : ∃ c : ℝ, w = c • v0 := by
   have hor : v0 0 ≠ 0 ∨ v0 1 ≠ 0 := by
@@ -642,7 +701,9 @@ theorem parallel_of_det2_zero {v0 w : EuclideanSpace ℝ (Fin 2)} (h0 : v0 ≠ 0
 open RealInnerProductSpace in
 /-- **Antiparallel angle.** If `w` is a negative multiple of `v₀` (forced when `det2 v₀ w = 0` and
 `∠(v₀,w) > π/3`, since then `w` is parallel but not codirectional), then for any `u`,
-`∠(w,u) = π − ∠(v₀,u)`. The reflected reference vector flips the angle through `π`. -/
+`∠(w,u) = π − ∠(v₀,u)`. The reflected reference vector flips the angle through `π`.
+@isnad1 id=eq.4h3v.s9.90ad9cc773a3 from=translated src=- shape=94d1ca00 vocab=f30645c0
+-/
 theorem angle_antiparallel {v0 w : EuclideanSpace ℝ (Fin 2)} (u : EuclideanSpace ℝ (Fin 2))
     (h0 : v0 ≠ 0) (hw : w ≠ 0) (hdet : det2 v0 w = 0)
     (hbeta : π / 3 < InnerProductGeometry.angle v0 w) :
@@ -665,7 +726,9 @@ vector `v 0` is in no open cone `openCone(v j, v k)` for higher indices `0 < j, 
 (`det2 (v j) (v k) < 0`) — is contradictory, since it puts `v 0 ∈ openCone(v j, v k)`. The arc-`< π`
 fact (from `det2_neg_of_opp_side_of_sum_lt_pi` once the gap argument gives `βⱼ+βₖ < π`) is the
 single
-remaining geometric input for `g₂ ≤ 5` along this route. -/
+remaining geometric input for `g₂ ≤ 5` along this route.
+@isnad1 id=false.7h3v.s9.c2f639be87c0 from=translated src=- shape=979bf6e1 vocab=55ad47a7
+-/
 theorem hm_theorem8_final {v : Fin 5 → EuclideanSpace ℝ (Fin 2)}
     (hcone : ∀ j k : Fin 5, 0 < j → 0 < k → j ≠ k →
       ¬ ∃ s t : ℝ, 0 < s ∧ 0 < t ∧ v 0 = s • v j + t • v k)
@@ -678,7 +741,9 @@ open RealInnerProductSpace in
 /-- **Antiparallel reference angle is `π`.** If `det2 v₀ w = 0` (so `w` is parallel to `v₀`) and
 `∠(v₀,w) > π/3` (ruling out codirectional), then `∠(v₀,w) = π`. Extracted from
 `antiparallel_unique`'s
-inner argument; the signed-angle gap argument needs it to pin antiparallel records to `ψ = π`. -/
+inner argument; the signed-angle gap argument needs it to pin antiparallel records to `ψ = π`.
+@isnad1 id=eq.4h2v.s8.3747998bb17d from=translated src=- shape=c3827ac0 vocab=f868f532
+-/
 theorem angle_eq_pi_of_det2_zero {v0 w : EuclideanSpace ℝ (Fin 2)} (h0 : v0 ≠ 0) (hw : w ≠ 0)
     (hdet : det2 v0 w = 0) (hb : π / 3 < InnerProductGeometry.angle v0 w) :
     InnerProductGeometry.angle v0 w = π := by
@@ -700,7 +765,9 @@ sum is `< π` we are done. Otherwise, place all 4 non-`v 0` vectors at signed an
 side
 `ψ = β`, negative/antiparallel side `ψ = 2π − β`); the assumed sum `≥ π` compresses them into an
 interval of length `π`, where they are still pairwise `> π/3` (same-side: `|βᵢ−βⱼ|`; cross-side:
-`2π−(βᵢ+βⱼ)`; antiparallel: `π−β`) — impossible by `not_four_in_interval`. -/
+`2π−(βᵢ+βⱼ)`; antiparallel: `π−β`) — impossible by `not_four_in_interval`.
+@isnad1 id=ex.2h1v.s9.7e2eb0306570 from=translated src=- shape=f63bcf4d vocab=fca3e6fa
+-/
 theorem exists_flanking_pair {v : Fin 5 → EuclideanSpace ℝ (Fin 2)} (hne : ∀ i, v i ≠ 0)
     (hsep : ∀ i j, i ≠ j → π / 3 < InnerProductGeometry.angle (v i) (v j)) :
     ∃ j k : Fin 5, j ≠ 0 ∧ k ≠ 0 ∧ 0 < det2 (v 0) (v j) ∧ det2 (v 0) (v k) < 0 ∧
@@ -870,7 +937,9 @@ the cone property for `v 0` (the shortest vector lies in no open cone of two hig
 vectors).
 Combines the flanking pair (`exists_flanking_pair`), the arc-sign bridge
 (`det2_neg_of_opp_side_of_sum_lt_pi`), and the cone contradiction (`hm_theorem8_final`). This is the
-geometric heart of the sharp Euclidean five-distance theorem `g₂ ≤ 5`. -/
+geometric heart of the sharp Euclidean five-distance theorem `g₂ ≤ 5`.
+@isnad1 id=false.3h1v.s9.173e32b43c73 from=translated src=- shape=08dbaf35 vocab=591e8756
+-/
 theorem hm_theorem8 {v : Fin 5 → EuclideanSpace ℝ (Fin 2)} (hne : ∀ i, v i ≠ 0)
     (hsep : ∀ i j, i ≠ j → π / 3 < InnerProductGeometry.angle (v i) (v j))
     (hcone : ∀ j k : Fin 5, 0 < j → 0 < k → j ≠ k →

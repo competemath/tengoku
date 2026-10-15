@@ -24,6 +24,9 @@ namespace Distributed2Coloring.LowerBound
 
 namespace N1000000BCompressionCompute
 
+/--
+@isnad1 id=siintgoa.0h3v.s5.554587301d5f from=translated src=- shape=1455bddf vocab=39c0f7c8
+-/
 theorem siIntGoal_block2 :
     ∀ i : Var, ∀ p q : Fin 3,
       SiIntGoal (r := (⟨2, by decide⟩ : Block)) (i := i) p q := by

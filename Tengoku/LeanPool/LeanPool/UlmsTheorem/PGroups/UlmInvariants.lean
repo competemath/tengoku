@@ -64,7 +64,9 @@ noncomputable instance {G : Type*} [AddCommGroup G] (α : Ordinal) :
   infer_instance
 
 omit hp in
-/-- Every element of `G_α / G_{α+1}` has order `p`. -/
+/-- Every element of `G_α / G_{α+1}` has order `p`.
+@isnad1 id=eq.0h4v.s6.befaaf8cca11 from=translated src=- shape=1e1e4c20 vocab=8d6c8aa4
+-/
 lemma layerQuotient_orderOf_dvd_p {G : Type*} [AddCommGroup G] (α : Ordinal)
     (x : layerQuotient p α (G := G)) : p • x = 0 := by
   refine Quotient.inductionOn x ?_
@@ -106,7 +108,9 @@ abbrev ulmQuotient {G : Type*} [AddCommGroup G] (α : Ordinal) :
     Type _ :=
   (pSocleAt p α (G := G)) ⧸ ulmDenSubmodule p α
 
-/-- Every element of the classical Ulm quotient has order `p`. -/
+/-- Every element of the classical Ulm quotient has order `p`.
+@isnad1 id=eq.0h4v.s7.1a7d6be1bcaf from=translated src=- shape=416de597 vocab=bab53f97
+-/
 lemma ulmQuotient_orderOf_dvd_p {G : Type*} [AddCommGroup G] (α : Ordinal)
     (x : ulmQuotient p α (G := G)) : p • x = 0 := by
   refine Quotient.inductionOn x ?_
@@ -151,7 +155,9 @@ abbrev markedGradedQuotient (S : AddSubgroup G) (α : Ordinal) : Type _ :=
 noncomputable def markedGradedInvariant (S : AddSubgroup G) (α : Ordinal) : Cardinal :=
   Module.rank (ZMod p) (markedGradedQuotient p S α)
 
-/-- With no marked subgroup, the marked-graded invariant is the ordinary Ulm invariant. -/
+/-- With no marked subgroup, the marked-graded invariant is the ordinary Ulm invariant.
+@isnad1 id=eq.0h3v.s5.4e0b0014a7e1 from=translated src=- shape=d18deebc vocab=769f2647
+-/
 theorem markedGradedInvariant_bot (α : Ordinal) :
     markedGradedInvariant p (⊥ : AddSubgroup G) α = ulmInvariant p α (G := G) := by
   have hden :
@@ -188,7 +194,9 @@ order-`p`, exact-height-`α` elements proper with respect to `S`. -/
 noncomputable def hillInvariant (S : AddSubgroup G) (α : Ordinal) : Cardinal :=
   Module.rank (ZMod p) (hillQuotient p S α)
 
-/-- With no marked subgroup, the Hill invariant is the ordinary Ulm invariant. -/
+/-- With no marked subgroup, the Hill invariant is the ordinary Ulm invariant.
+@isnad1 id=eq.0h3v.s5.849b720c696c from=translated src=- shape=d18deebc vocab=6860c44c
+-/
 theorem hillInvariant_bot (α : Ordinal) :
     hillInvariant p (⊥ : AddSubgroup G) α = ulmInvariant p α (G := G) := by
   have hden :
@@ -229,7 +237,9 @@ abbrev relativeUlmQuotient (S : AddSubgroup G) (α : Ordinal) :=
 noncomputable abbrev relativeUlmInvariant (S : AddSubgroup G) (α : Ordinal) :=
   hillInvariant p S α
 
-/-- The marked-graded denominator is contained in the Hill denominator. -/
+/-- The marked-graded denominator is contained in the Hill denominator.
+@isnad1 id=le.0h4v.s8.6052873e4033 from=translated src=- shape=6655074b vocab=799dcba7
+-/
 lemma markedGradedSubmodule_le_hillSubmodule (S : AddSubgroup G) (α : Ordinal) :
     markedGradedSubmodule p S α ≤ hillSubmodule p S α := by
   intro x hx
@@ -247,7 +257,9 @@ lemma markedGradedSubmodule_le_hillSubmodule (S : AddSubgroup G) (α : Ordinal) 
       exact AddSubgroup.mem_sup_left hy.1
   exact hle hx
 
-/-- The ordinary Ulm denominator `P_(α+1)` is contained in the Hill denominator. -/
+/-- The ordinary Ulm denominator `P_(α+1)` is contained in the Hill denominator.
+@isnad1 id=le.0h4v.s8.63fb2c218f87 from=translated src=- shape=bc165838 vocab=d1b99b8d
+-/
 lemma ulmDenSubmodule_le_hillSubmodule (S : AddSubgroup G) (α : Ordinal) :
     ulmDenSubmodule p α ≤ hillSubmodule p S α := by
   intro x hx
@@ -270,7 +282,9 @@ noncomputable def occupiedQuotientEquivRelative (S : AddSubgroup G) (α : Ordina
     (ulmDenSubmodule_le_hillSubmodule p S α)
 
 /-- The occupied-space equation underlying the Barwise–Eklof room criterion:
-`relative room + occupied = the ordinary Ulm invariant`. -/
+`relative room + occupied = the ordinary Ulm invariant`.
+@isnad1 id=eq.0h4v.s10.30a55bcd7b3e from=translated src=- shape=21895998 vocab=ee145a84
+-/
 theorem relativeUlmInvariant_add_occupiedInvariant
     (S : AddSubgroup G) (α : Ordinal) :
     relativeUlmInvariant p S α +
@@ -295,12 +309,17 @@ noncomputable def markedGradedToHill (S : AddSubgroup G) (α : Ordinal) :
     markedGradedQuotient p S α →ₗ[ZMod p] hillQuotient p S α :=
   Submodule.factor (markedGradedSubmodule_le_hillSubmodule p S α)
 
+/--
+@isnad1 id=surjecti.0h4v.s9.7a8bdacfe1f4 from=translated src=- shape=0a27e879 vocab=72d0fb8e
+-/
 theorem markedGradedToHill_surjective (S : AddSubgroup G) (α : Ordinal) :
     Function.Surjective (markedGradedToHill (p := p) S α) := by
   exact Submodule.factor_surjective (markedGradedSubmodule_le_hillSubmodule p S α)
 
 /-- BCM's exact-sequence dimension equation:
-the marked-graded invariant is the Hill invariant plus the overhang dimension. -/
+the marked-graded invariant is the Hill invariant plus the overhang dimension.
+@isnad1 id=eq.0h4v.s5.36c9de50847e from=translated src=- shape=83e5dec4 vocab=ea208dfc
+-/
 theorem hillInvariant_add_overhangInvariant
     (S : AddSubgroup G) (α : Ordinal) :
     hillInvariant p S α + overhangInvariant (p := p) S α =
@@ -312,7 +331,9 @@ theorem hillInvariant_add_overhangInvariant
     (markedGradedSubmodule_le_hillSubmodule p S α)).rank_eq]
   exact Submodule.rank_quotient_add_rank (overhangSubmodule p S α)
 
-/-- The same BCM equation in relative-Ulm terminology. -/
+/-- The same BCM equation in relative-Ulm terminology.
+@isnad1 id=eq.0h4v.s5.24f27c98a850 from=translated src=- shape=83e5dec4 vocab=cc0ac6c4
+-/
 theorem relativeUlmInvariant_add_overhangInvariant
     (S : AddSubgroup G) (α : Ordinal) :
     relativeUlmInvariant p S α + overhangInvariant (p := p) S α =
@@ -333,18 +354,24 @@ namespace ulmLength
 variable {G : Type*} [AddCommGroup G]
 
 omit hp in
-/-- The set `{α | p^α·G = 0}` is nonempty for a reduced p-group. -/
+/-- The set `{α | p^α·G = 0}` is nonempty for a reduced p-group.
+@isnad1 id=ex.1h2v.s5.887e9b09ee65 from=translated src=- shape=b0eb717f vocab=f27eb760
+-/
 lemma exists_zero (hred' : IsPReduced p G) :
     ∃ α : Ordinal.{0}, ulmSubgroup p α (G := G) = ⊥ := by
   exact hred'
 
 omit hp in
-/-- p^(ulmLength)·G = 0. -/
+/-- p^(ulmLength)·G = 0.
+@isnad1 id=eq.1h2v.s5.08bccd6d3d46 from=translated src=- shape=616d2337 vocab=66e5cfc1
+-/
 lemma at_ulmLength (hred : IsPReduced p G) :
     ulmSubgroup p (ulmLength p (G := G)) (G := G) = ⊥ :=
   csInf_mem (exists_zero (p := p) (G := G) hred)
 
-/-- Ulm invariants vanish above the Ulm length. -/
+/-- Ulm invariants vanish above the Ulm length.
+@isnad1 id=eq.2h3v.s5.a69594552bc1 from=translated src=- shape=f92c730a vocab=1bf5320c
+-/
 lemma inv_zero_of_ge (hred : IsPReduced p G)
     (α : Ordinal) (hα : ulmLength p (G := G) ≤ α) :
     ulmInvariant p α (G := G) = 0 := by

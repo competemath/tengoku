@@ -48,16 +48,25 @@ noncomputable def virasoroCocycleBilin : (WittAlgebra 𝕜) →ₗ[𝕜] (WittAl
   (lgen 𝕜).constr 𝕜 <| fun n ↦ (lgen 𝕜).constr 𝕜 <| fun m ↦
       if n + m = 0 then (n^3 - n) / 12 else 0
 
+/--
+@isnad1 id=eq.0h3v.s10.1578428dbe92 from=translated src=- shape=f729ab35 vocab=a9a792dc
+-/
 lemma virasoroCocycleBilin_apply_lgen_lgen (n m : ℤ) :
     virasoroCocycleBilin 𝕜 (lgen 𝕜 n) (lgen 𝕜 m)
       = if n + m = 0 then (n^3 - n : 𝕜) / 12 else 0 := by
   simp [virasoroCocycleBilin]
 
+/--
+@isnad1 id=eq.0h3v.s10.786be6f728b8 from=translated src=- shape=beb1f1bd vocab=2909182b
+-/
 lemma virasoroCocycleBilin_apply_lgen_lgen' (n m : ℤ) :
     virasoroCocycleBilin 𝕜 (lgen 𝕜 n) (lgen 𝕜 m)
       = if n + m = 0 then (n-1 : 𝕜) * n * (n + 1) / 12 else 0 := by
   rw [virasoroCocycleBilin_apply_lgen_lgen]; congr; ring
 
+/--
+@isnad1 id=eq.0h1v.s9.2002adb3c665 from=translated src=- shape=dfa27729 vocab=1e6d7d0c
+-/
 lemma virasoroCocycleBilin_eq_neg_flip :
     virasoroCocycleBilin 𝕜 = -(virasoroCocycleBilin 𝕜).flip := by
   apply LinearMap.ext_basis (lgen _) (lgen _)
@@ -70,7 +79,9 @@ lemma virasoroCocycleBilin_eq_neg_flip :
     ring
   · simp only [add_comm m n, opp, ↓reduceIte, neg_zero]
 
-/-- An auxiliary for of the Leibniz identity of the Virasoro cocycle `WittAlgebra`. -/
+/-- An auxiliary for of the Leibniz identity of the Virasoro cocycle `WittAlgebra`.
+@isnad1 id=eq.0h1v.s11.6bf80b303e47 from=translated src=- shape=07e0626f vocab=40a1ae32
+-/
  lemma virasoroCocycleBracketCyclic_eq_zero :
     cyclicTripleSumHom (bracket 𝕜) (virasoroCocycleBilin 𝕜) = 0 := by
   apply LinearMap.ext_basis (lgen _) (lgen _)
@@ -114,19 +125,27 @@ noncomputable def virasoroCocycle :
         show (bracket 𝕜) X Y = ⁅X, Y⁆ from rfl, show (bracket 𝕜) Z X = ⁅Z, X⁆ from rfl]
     ring
 
+/--
+@isnad1 id=eq.0h3v.s9.8044749a274e from=translated src=- shape=af64a572 vocab=8a2958cb
+-/
 lemma virasoroCocycle_apply_lgen_lgen (n m : ℤ) :
     virasoroCocycle 𝕜 (lgen 𝕜 n) (lgen 𝕜 m) = if n + m = 0 then (n^3 - n : 𝕜)/12 else 0 :=
   virasoroCocycleBilin_apply_lgen_lgen 𝕜 n m
 
 variable {𝕜}
 
+/--
+@isnad1 id=eq.0h3v.s9.85a267205aad from=translated src=- shape=79ed252c vocab=6f6262fd
+-/
 lemma bdry_lgen_lgen_neg_eq (β : LieOneCochain 𝕜 (WittAlgebra 𝕜) 𝕜) (n : ℤ) :
     β.bdry (lgen 𝕜 n) (lgen 𝕜 (-n)) = 2 * n * β (lgen 𝕜 0) := by
   simp [LieOneCochain.bdry_apply, ← (two_mul (n : 𝕜))]
 
 variable (𝕜)
 
-/-- The Virasoro cocycle is cohomologically nontrivial. -/
+/-- The Virasoro cocycle is cohomologically nontrivial.
+@isnad1 id=ne.0h1v.s8.59487b8391b0 from=translated src=- shape=95a6244a vocab=3c4bbcd1
+-/
 theorem cohomologyClass_virasoroCocycle_ne_zero :
     (virasoroCocycle 𝕜).cohomologyClass ≠ 0 := by
   intro con
@@ -144,7 +163,9 @@ theorem cohomologyClass_virasoroCocycle_ne_zero :
   norm_num at aux
   apply (show (4 : 𝕜) ≠ 35/2 by norm_num) <| by grind
 
-/-- The Witt algebra 2-cohomology `H²(WittAlgebra, 𝕜)` is nontrivial. -/
+/-- The Witt algebra 2-cohomology `H²(WittAlgebra, 𝕜)` is nontrivial.
+@isnad1 id=nontrivi.0h1v.s5.3cb3186cd216 from=translated src=- shape=4d75d831 vocab=2972c2f5
+-/
 theorem nontrivial_lieTwoCohomology :
     Nontrivial (LieTwoCohomology 𝕜 (WittAlgebra 𝕜) 𝕜) :=
   nontrivial_of_ne _ _ (cohomologyClass_virasoroCocycle_ne_zero 𝕜)

@@ -26,7 +26,9 @@ universe u
 variable (p : ℕ) [hp : Fact p.Prime]
 
 omit hp in
-/-- An isomorphism of abelian groups preserves the Ulm subgroups. -/
+/-- An isomorphism of abelian groups preserves the Ulm subgroups.
+@isnad1 id=eq.0h5v.s6.ed1bb7bc4181 from=translated src=- shape=b377d89a vocab=61571f70
+-/
 lemma ulmSubgroup_map_iso {G H : Type u} [AddCommGroup G] [AddCommGroup H]
     (φ : G ≃+ H) (α : Ordinal) :
     (ulmSubgroup p α (G := G)).map φ.toAddMonoidHom = ulmSubgroup p α (G := H) := by
@@ -81,7 +83,9 @@ lemma ulmSubgroup_map_iso {G H : Type u} [AddCommGroup G] [AddCommGroup H]
       simpa only [this] using hx
 
 omit hp in
-/-- An isomorphism preserves the filtered p-socle layers `P_α`. -/
+/-- An isomorphism preserves the filtered p-socle layers `P_α`.
+@isnad1 id=eq.0h5v.s6.ab32363d6970 from=translated src=- shape=b377d89a vocab=bbdfa42a
+-/
 lemma pSocleAt_map_iso {G H : Type u} [AddCommGroup G] [AddCommGroup H]
     (φ : G ≃+ H) (α : Ordinal) :
     (pSocleAt p α (G := G)).map φ.toAddMonoidHom = pSocleAt p α (G := H) := by
@@ -173,7 +177,9 @@ noncomputable def ulmQuotientMapIso {G H : Type u} [AddCommGroup G] [AddCommGrou
       change (QuotientAddGroup.mk' Dh (e (e.symm y))) = QuotientAddGroup.mk' Dh y
       simp)
 
-/-- Isomorphic groups have equal Ulm invariants. -/
+/-- Isomorphic groups have equal Ulm invariants.
+@isnad1 id=eq.0h5v.s5.fc7ef3eb37e0 from=translated src=- shape=a25c8345 vocab=c6e232bd
+-/
 theorem ulmInvariant_iso_invariant {G H : Type u} [AddCommGroup G] [AddCommGroup H]
     (φ : G ≃+ H) (α : Ordinal) :
     ulmInvariant p α (G := G) = ulmInvariant p α (G := H) := by

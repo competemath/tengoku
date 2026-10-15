@@ -40,12 +40,16 @@ namespace ThreeGap.Chevallier
 variable (r : ℕ → ℝ)
 
 /-- The record costs `r(q_i)` are **strictly decreasing in `i`** (each record is a strictly better
-minimum). -/
+minimum).
+@isnad1 id=strictan.1h1v.s4.5cd7b402a7c6 from=translated src=- shape=ec33c2d1 vocab=d43195f0
+-/
 theorem bestDenom_cost_strictAnti (hr : RecordsContinue r) :
     StrictAnti (fun n => r (bestDenom r hr n)) :=
   strictAnti_nat_of_succ_lt (fun n => bestDenom_cost_lt r hr n)
 
-/-- The record costs `r(q_i)` are **non-increasing in `i`** (each record is a new minimum). -/
+/-- The record costs `r(q_i)` are **non-increasing in `i`** (each record is a new minimum).
+@isnad1 id=le.2h3v.s5.ccb25d2eeaf7 from=translated src=- shape=2a44346d vocab=aaeffe98
+-/
 theorem bestDenom_cost_antitone (hr : RecordsContinue r) {k i : ℕ} (h : k ≤ i) :
     r (bestDenom r hr i) ≤ r (bestDenom r hr k) :=
   (bestDenom_cost_strictAnti r hr).antitone h
@@ -53,7 +57,9 @@ theorem bestDenom_cost_antitone (hr : RecordsContinue r) {k i : ℕ} (h : k ≤ 
 /-- **Strict record floor.** Every `j ∈ [1, q_k)` has cost **strictly** above the record `r(q_k)`:
 `r(q_k) < r j` for `1 ≤ j < q_k`. (This is the full best-approximation property: `q_k` strictly
 beats
-*every* smaller positive denominator, not just those in its own bracket.) -/
+*every* smaller positive denominator, not just those in its own bracket.)
+@isnad1 id=lt.3h3v.s5.0fde3c2f5a5c from=translated src=- shape=91667d60 vocab=ae98c637
+-/
 theorem bestDenom_strict_floor (hr : RecordsContinue r) (k : ℕ) {j : ℕ} (hj1 : 1 ≤ j)
     (hj2 : j < bestDenom r hr k) : r (bestDenom r hr k) < r j := by
   obtain ⟨i, hi1, hi2⟩ := bestDenom_bracket r hr hj1
@@ -70,7 +76,9 @@ theorem bestDenom_strict_floor (hr : RecordsContinue r) (k : ℕ) {j : ℕ} (hj1
   exact lt_of_lt_of_le hlt hle
 
 /-- **Record floor.** Every `j ∈ [1, q_{i+1})` has cost `≥ r(q_i)`: the cost stays above the `i`-th
-record until the `(i+1)`-th. (So `min_{1 ≤ j ≤ M} r(j) = r(q_i)` when `q_i ≤ M < q_{i+1}`.) -/
+record until the `(i+1)`-th. (So `min_{1 ≤ j ≤ M} r(j) = r(q_i)` when `q_i ≤ M < q_{i+1}`.)
+@isnad1 id=le.3h3v.s5.e74678673af5 from=translated src=- shape=8f17fb63 vocab=4cc4fa4d
+-/
 theorem record_floor (hr : RecordsContinue r) (i : ℕ) {j : ℕ} (hj1 : 1 ≤ j)
     (hj2 : j < bestDenom r hr (i + 1)) : r (bestDenom r hr i) ≤ r j := by
   obtain ⟨k, hk1, hk2⟩ := bestDenom_bracket r hr hj1
@@ -94,7 +102,9 @@ noncomputable def gapVal (N q : ℕ) : ℝ :=
 
 /-- **The gap value is a record cost in the band `[m, n]`.** For `q ∈ [0,N]` (`N ≥ 2`), with `n, m`
 the record indices bracketing `N` and `N/2`, the nearest-neighbour distance `gapVal N q` equals
-`r(q_i)` for some `i ∈ [m, n]`. -/
+`r(q_i)` for some `i ∈ [m, n]`.
+@isnad1 id=ex.7h5v.s7.eff4c266dd61 from=translated src=- shape=c43b85e2 vocab=22b1bc38
+-/
 theorem gapVal_eq_record (hr : RecordsContinue r) {N : ℕ} (hN : 2 ≤ N) {n m : ℕ}
     (_hn1 : bestDenom r hr n ≤ N) (hn2 : N < bestDenom r hr (n + 1))
     (hm1 : 2 * bestDenom r hr m ≤ N) (_hm2 : N < 2 * bestDenom r hr (m + 1))
@@ -128,7 +138,9 @@ theorem gapVal_eq_record (hr : RecordsContinue r) {N : ℕ} (hN : 2 ≤ N) {n m 
 /-- **Chevallier's Lemma, upper bound (`g_dist ≤ n − m + 1`).** For `N ≥ 2`, the number of distinct
 nearest-neighbour distances `{gapVal N q : 0 ≤ q ≤ N}` is at most `n − m + 1`, where `q_n ≤ N <
 q_{n+1}` and `2q_m ≤ N < 2q_{m+1}`. This is exactly the gap-count hypothesis fed to
-`ChevallierGapBound.gap_count_doubling` to obtain `g ≤ K + 1`. -/
+`ChevallierGapBound.gap_count_doubling` to obtain `g ≤ K + 1`.
+@isnad1 id=le.6h4v.s7.5266d01d680a from=translated src=- shape=40228640 vocab=e050f192
+-/
 theorem chevallier_count (hr : RecordsContinue r) {N : ℕ} (hN : 2 ≤ N) {n m : ℕ}
     (hn1 : bestDenom r hr n ≤ N) (hn2 : N < bestDenom r hr (n + 1))
     (hm1 : 2 * bestDenom r hr m ≤ N) (hm2 : N < 2 * bestDenom r hr (m + 1)) :
@@ -155,7 +167,9 @@ denominators satisfy the doubling growth `2 q_k ≤ q_{k+K}` (Shutov: `K = 2^d` 
 `K + 1`. Proof: `chevallier_count` gives `≤ n − m + 1`, and `index_bound_doubling` gives `n − m ≤ K`
 from the growth. This is the complete combinatorial core of `g_∞ ≤ 2^d + 1` and `g_2 ≤ 5` — only the
 geometric isometry reduction (actual nearest-neighbour distance `=` `gapVal`) and the growth for the
-specific cost remain to instantiate. -/
+specific cost remain to instantiate.
+@isnad1 id=le.3h3v.s6.c3a061748149 from=translated src=- shape=bc2effee vocab=985c415b
+-/
 theorem chevallier_gap_count_le (hr : RecordsContinue r) (K : ℕ)
     (hgrowth : ∀ k, 2 * bestDenom r hr k ≤ bestDenom r hr (k + K))
     {N : ℕ} (hN : 2 ≤ N) :

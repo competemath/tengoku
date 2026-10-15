@@ -30,6 +30,9 @@ namespace TopCat
 
 open CategoryTheory
 
+/--
+@isnad1 id=isiso.0h3v.s4.0a0332b42569 from=translated src=- shape=58f4f9a4 vocab=ce6081f2
+-/
 instance isIso_of_isEmpty {X Y : TopCat.{u}} [IsEmpty X] [IsEmpty Y] (f : X ⟶ Y) : IsIso f := by
   use ofHom ⟨isEmptyElim, by fun_prop⟩
   constructor
@@ -45,6 +48,9 @@ lemma eq_of_topCat_ofHom {A B : Type u} [TopologicalSpace A] [TopologicalSpace B
 
 namespace Homotopic
 
+/--
+@isnad1 id=homotopi.1h4v.s5.37fc457dabb4 from=translated src=- shape=74ddf61c vocab=93e143b9
+-/
 lemma of_eq (X Y : Type u) [TopologicalSpace X] [TopologicalSpace Y]
     (f g : C(X, Y)) (hfg : f = g) : f.Homotopic g :=
   hfg ▸ ContinuousMap.Homotopic.refl f
@@ -57,20 +63,32 @@ end ContinuousMap
 Auxiliary lemmas used in `largeCubeHomeoPDisk` and `largeCubeBoundaryHomeoPDiskBoundary`
 -/
 
+/--
+@isnad1 id=le.2h4v.s5.25a052fe958e from=translated src=- shape=e5a9ed49 vocab=d6206558
+-/
 lemma Real.forall_le_of_iSup_le_of_bddAbove {ι : Sort*} {f : ι → ℝ} {a : ℝ}
     (hbdd : BddAbove (Set.range f)) (hf : ⨆ i, f i ≤ a) : ∀ (i : ι), f i ≤ a := fun i ↦ by
   cases (Set.range f).eq_empty_or_nonempty
   · exact Set.range_eq_empty_iff.mp ‹_› |>.false i |>.elim
   · exact Real.isLUB_sSup ‹_› hbdd |>.left (Set.mem_range_self i) |>.trans hf
 
+/--
+@isnad1 id=bddabove.0h2v.s4.b031f27ee2b8 from=translated src=- shape=6d1b6c0e vocab=7a83cde8
+-/
 lemma Real.range_bddAbove_of_finite_domain {ι : Type*} (f : ι → ℝ) [Finite ι] :
     BddAbove (Set.range f) :=
   (Set.finite_range f).bddAbove
 
+/--
+@isnad1 id=le.1h4v.s5.0a8507be2219 from=translated src=- shape=21753e7e vocab=7ad48cca
+-/
 lemma Real.forall_le_of_iSup_le_of_finite_domain {ι : Type*} {f : ι → ℝ} {a : ℝ}
     [Finite ι] (hf : ⨆ i, f i ≤ a) : ∀ (i : ι), f i ≤ a :=
   forall_le_of_iSup_le_of_bddAbove (range_bddAbove_of_finite_domain f) hf
 
+/--
+@isnad1 id=le.2h3v.s5.fc4d9d597cc5 from=translated src=- shape=71af8ca0 vocab=d6206558
+-/
 lemma Real.le_iSup_of_exists_ge_of_bddAbove {ι : Sort*} {f : ι → ℝ} {a : ℝ}
     (hbdd : BddAbove (Set.range f)) (hf : ∃ i, a ≤ f i) : a ≤ ⨆ i, f i := by
   obtain ⟨i, hi⟩ := hf
@@ -78,10 +96,16 @@ lemma Real.le_iSup_of_exists_ge_of_bddAbove {ι : Sort*} {f : ι → ℝ} {a : �
   · exact Set.range_eq_empty_iff.mp ‹_› |>.false i |>.elim
   · exact hi.trans <| (Real.isLUB_sSup ‹_› hbdd).left (Set.mem_range_self i)
 
+/--
+@isnad1 id=le.1h3v.s5.13b9b57cf00b from=translated src=- shape=4719e927 vocab=7ad48cca
+-/
 lemma Real.le_iSup_of_exists_ge_of_finite_domain {ι : Type*} {f : ι → ℝ} {a : ℝ}
     [Finite ι] (hf : ∃ i, a ≤ f i) : a ≤ ⨆ i, f i :=
   le_iSup_of_exists_ge_of_bddAbove (range_bddAbove_of_finite_domain f) hf
 
+/--
+@isnad1 id=ex.2h3v.s5.0562058adade from=translated src=- shape=f652fd49 vocab=8bc0e8c8
+-/
 lemma Real.exists_eq_of_iSup_eq_of_finite_domain {ι : Type*} {f : ι → ℝ} {a : ℝ}
     [Finite ι] (hfz : ∃ i, f i ≥ 0) (hf : ⨆ i, f i = a) : ∃ i, f i = a := by
   have : Nonempty ι := hfz.nonempty
@@ -126,10 +150,16 @@ noncomputable def liftCoverClosed : C(α, β) :=
     exact isClosed_iUnion_of_finite fun i ↦
       IsClosed.trans (IsClosed.preimage (φ i).continuous hY) (hS_closed i)
 
+/--
+@isnad1 id=eq.3h7v.s8.3006bb4125e0 from=translated src=- shape=6d5091e3 vocab=900a4b7c
+-/
 theorem liftCoverClosed_coe {i : ι} (x : S i) :
     liftCoverClosed S φ hφ hS_cover hS_closed x = φ i x := by
   rw [liftCoverClosed, ContinuousMap.coe_mk, Set.liftCover_coe _]
 
+/--
+@isnad1 id=eq.4h7v.s8.97538c973cf6 from=translated src=- shape=fea777fd vocab=a79bab4f
+-/
 theorem liftCoverClosed_coe' {i : ι} (x : α) (hx : x ∈ S i) :
     liftCoverClosed S φ hφ hS_cover hS_closed x = φ i ⟨x, hx⟩ := by
   rw [← liftCoverClosed_coe]

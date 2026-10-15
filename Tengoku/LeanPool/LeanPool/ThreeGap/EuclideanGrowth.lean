@@ -36,13 +36,22 @@ variable {d : ℕ}
 noncomputable def euclNorm (d : ℕ) (x : Fin d → ℝ) : ℝ :=
   ‖(EuclideanSpace.equiv (Fin d) ℝ).symm x‖
 
+/--
+@isnad1 id=le.0h2v.s4.1b679b04e9d8 from=translated src=- shape=42a2b5ba vocab=d7e18fc6
+-/
 theorem euclNorm_nonneg (x : Fin d → ℝ) : 0 ≤ euclNorm d x := norm_nonneg _
 
+/--
+@isnad1 id=le.0h3v.s5.21cb30e8a79e from=translated src=- shape=10558f34 vocab=51f3b9ff
+-/
 theorem euclNorm_tri (x y : Fin d → ℝ) : euclNorm d (x + y) ≤ euclNorm d x + euclNorm d y := by
   unfold euclNorm
   rw [map_add]
   exact norm_add_le _ _
 
+/--
+@isnad1 id=eq.0h3v.s5.5a69b03dcc08 from=translated src=- shape=b6ea3dc1 vocab=e3ca75a2
+-/
 theorem euclNorm_smul (c : ℝ) (x : Fin d → ℝ) : euclNorm d (c • x) = |c| * euclNorm d x := by
   unfold euclNorm
   rw [map_smul, norm_smul, Real.norm_eq_abs]

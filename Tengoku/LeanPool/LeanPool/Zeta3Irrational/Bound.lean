@@ -18,6 +18,9 @@ namespace LeanPool.Zeta3Irrational
 open scoped Nat
 open BigOperators
 
+/--
+@isnad1 id=le.2h1v.s6.b84b769ead05 from=translated src=- shape=613e20c0 vocab=d4e3a789
+-/
 lemma max_value {x : ℝ} (x0 : 0 < x) (x1 : x < 1) : √x * √(1 - x) ≤ ((1 / 2) : ℝ) := by
   rw [← Real.sqrt_mul, le_div_iff₀,
     ← show √4 = 2 by rw [Real.sqrt_eq_iff_eq_sq] <;> linarith,
@@ -25,6 +28,9 @@ lemma max_value {x : ℝ} (x0 : 0 < x) (x1 : x < 1) : √x * √(1 - x) ≤ ((1 
     show x * (1 - x) * 4 = 1 - (2 * x - 1) ^ 2 by ring] <;>
   nlinarith [mul_self_nonneg (2 * x - 1)]
 
+/--
+@isnad1 id=le.2h1v.s6.a7a3522b3392 from=translated src=- shape=7e76ec87 vocab=d4e3a789
+-/
 lemma max_value' {x : ℝ} (x0 : 0 < x) (x1 : x < 1) : √x * (1 - x) ≤ ((2 / 5) : ℝ) := by
   calc
   _ = √(x * (1 - x) ^ 2) := by rw [Real.sqrt_mul, pow_two, Real.sqrt_mul_self] <;> linarith
@@ -38,9 +44,15 @@ lemma max_value' {x : ℝ} (x0 : 0 < x) (x1 : x < 1) : √x * (1 - x) ≤ ((2 / 
   _ ≤ ((2 / 5) : ℝ) := by
     rw [Real.sqrt_le_left] <;> norm_num
 
+/--
+@isnad1 id=le.2h1v.s5.ce334c0617cc from=translated src=- shape=82552df1 vocab=10d6356c
+-/
 lemma nonneg {x : ℝ} (_ : 0 < x) (_ : x < 1) : (0 : ℝ) ≤ √x * √(1 -x) :=
   mul_nonneg (Real.sqrt_nonneg _) (Real.sqrt_nonneg _)
 
+/--
+@isnad1 id=le.4h2v.s7.66df5331d5f6 from=translated src=- shape=611830d8 vocab=430251b8
+-/
 lemma bound_aux (x z : ℝ) (x0 : 0 < x) (x1 : x < 1) (z0 : 0 < z) (_ : z < 1) :
     2 * √(1 - x) * √(x * z) ≤ 1 - (1 - z) * x := by
   rw [← sub_pos] at x1
@@ -52,6 +64,9 @@ lemma bound_aux (x z : ℝ) (x0 : 0 < x) (x1 : x < 1) (z0 : 0 < z) (_ : z < 1) :
     _ = √(1 - x) * √(1 - x) + √(x * z) * √(x * z) := by ring
     _ = 1 - x + x * z := by rw [Real.mul_self_sqrt, Real.mul_self_sqrt] <;> linarith
 
+/--
+@isnad1 id=lt.6h3v.s7.83bcbeab914a from=translated src=- shape=805a993e vocab=03c2a7d7
+-/
 lemma bound (x y z : ℝ) (x0 : 0 < x) (x1 : x < 1) (y0 : 0 < y) (y1 : y < 1)
     (z0 : 0 < z) (z1 : z < 1) :
     x * (1 -x) * y * (1 - y) * z * (1 - z) /
@@ -99,6 +114,9 @@ lemma bound (x y z : ℝ) (x0 : 0 < x) (x1 : x < 1) (y0 : 0 < y) (y1 : y < 1)
       linarith
     _ < (1 / 30 : ℝ) := by norm_num
 
+/--
+@isnad1 id=le.6h3v.s7.28e2b956de2a from=translated src=- shape=887819d1 vocab=430251b8
+-/
 lemma bound_aux' (x y z : ℝ) (x0 : 0 < x) (_ : x < 1) (y0 : 0 < y) (_ : y < 1)
     (z0 : 0 < z) (z1 : z < 1) :
     2 * √(1 - z) * √(x * y * z) ≤ 1 - (1 - x * y) * z := by
@@ -112,6 +130,9 @@ lemma bound_aux' (x y z : ℝ) (x0 : 0 < x) (_ : x < 1) (y0 : 0 < y) (_ : y < 1)
     _ = √(1 - z) * √(1 - z) + √(x * y * z) * √(x * y * z) := by ring
     _ = 1 - z + x * y * z := by rw [Real.mul_self_sqrt, Real.mul_self_sqrt] <;> linarith
 
+/--
+@isnad1 id=lt.6h3v.s7.b3a31e1e25f6 from=translated src=- shape=52ab5628 vocab=03c2a7d7
+-/
 lemma bound' (x y z : ℝ) (x0 : 0 < x) (x1 : x < 1) (y0 : 0 < y) (y1 : y < 1)
     (z0 : 0 < z) (z1 : z < 1) :
     x * (1 - x) * y * (1 - y) * z * (1 - z) / (1 - (1 - x * y) * z) < (1 / 24 : ℝ) := by
@@ -153,6 +174,9 @@ lemma bound' (x y z : ℝ) (x0 : 0 < x) (x1 : x < 1) (y0 : 0 < y) (y1 : y < 1)
     _ < (1 / 24 : ℝ) := by
       norm_num
 
+/--
+@isnad1 id=lt.6h3v.s7.ca292bb309b8 from=translated src=- shape=52ab5628 vocab=03c2a7d7
+-/
 lemma bound'' (x y z : ℝ) (x0 : 0 < x) (x1 : x < 1) (y0 : 0 < y) (y1 : y < 1)
     (z0 : 0 < z) (z1 : z < 1) :
     x * (1 - x) * y * (1 - y) * z * (1 - z) / (1 - (1 - x * y) * z) <

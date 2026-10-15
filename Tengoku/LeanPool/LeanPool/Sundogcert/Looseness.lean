@@ -90,7 +90,9 @@ def collapseRow (m : ℕ) : ℕ × ℕ × ℕ × ℕ × ℕ :=
 
 /-- The structural inverse identity: `lowerTriOnes m * Linv m = 1`.  Proved by a column-by-column
     PARITY argument (the OR-indicator splits into a disjoint sum of two single-row indicators),
-    NOT by `decide` — so it holds for ALL `m`, no `2^m`-style enumeration. -/
+    NOT by `decide` — so it holds for ALL `m`, no `2^m`-style enumeration.
+@isnad1 id=eq.0h1v.s8.e2ae8b6d987d from=translated src=- shape=a482ea80 vocab=aa21b281
+-/
 theorem lowerTriOnes_mul_Linv (m : ℕ) : lowerTriOnes m * Linv m = 1 := by
   ext i j
   rw [Matrix.mul_apply, Matrix.one_apply]
@@ -173,13 +175,17 @@ instance lowerTriOnesInvertible (m : ℕ) : Invertible (lowerTriOnes m) :=
 
 /-! ### denseH structure: `denseH m *ᵥ v = lowerTriOnes m *ᵥ (projH m *ᵥ v)`. -/
 
-/-- `denseH` factors through `projH`: `denseH m *ᵥ v = lowerTriOnes m *ᵥ (projH m *ᵥ v)`. -/
+/-- `denseH` factors through `projH`: `denseH m *ᵥ v = lowerTriOnes m *ᵥ (projH m *ᵥ v)`.
+@isnad1 id=eq.0h2v.s7.6306f29413e3 from=translated src=- shape=4eb5625b vocab=d7d8f1a4
+-/
 theorem denseH_mulVec (m : ℕ) (v : Fin (2 * m) → ZMod 2) :
     denseH m *ᵥ v = lowerTriOnes m *ᵥ (projH m *ᵥ v) := by
   rw [denseH, Matrix.mulVec_mulVec]
 
 /-- The dual-pair law for the dense scheme: `denseH m *ᵥ (s ᵥ* projG m) = 0`.
-    Via `denseH = L * projH` and `projH m *ᵥ (s ᵥ* projG m) = 0`. -/
+    Via `denseH = L * projH` and `projH m *ᵥ (s ᵥ* projG m) = 0`.
+@isnad1 id=eq.0h2v.s7.ea7622ab11d8 from=translated src=- shape=418c5ed1 vocab=ef6fd14c
+-/
 theorem hHG_dense (m : ℕ) :
     ∀ s : Fin m → ZMod 2, denseH m *ᵥ (s ᵥ* projG m) = 0 := by
   intro s
@@ -203,7 +209,9 @@ def denseScheme (m : ℕ) : Scheme (ZMod 2) where
     and `L` is INVERTIBLE (hence injective on `mulVec`).  Therefore the two schemes have the
     SAME `Safe` predicate — the SAME true min coset weight. -/
 
-/-- Syndrome equivalence: the dense and sparse parity-checks have the SAME kernel relation. -/
+/-- Syndrome equivalence: the dense and sparse parity-checks have the SAME kernel relation.
+@isnad1 id=iff.0h3v.s8.77fc34174f72 from=translated src=- shape=f5e005ae vocab=380f9483
+-/
 theorem dense_syndrome_iff (m : ℕ) (a b : Fin (2 * m) → ZMod 2) :
     denseH m *ᵥ a = denseH m *ᵥ b ↔ projH m *ᵥ a = projH m *ᵥ b := by
   rw [denseH_mulVec, denseH_mulVec]
@@ -214,7 +222,9 @@ theorem dense_syndrome_iff (m : ℕ) (a b : Fin (2 * m) → ZMod 2) :
     rw [h]
 
 /-- **SAFE-EQUIVALENCE (parametric).**  `Safe (denseScheme m) y ↔ Safe (projScheme m) y`.
-    SAME code, SAME safety predicate, SAME true min coset weight — only `H` differs. -/
+    SAME code, SAME safety predicate, SAME true min coset weight — only `H` differs.
+@isnad1 id=iff.0h2v.s6.9952c7be4c55 from=translated src=- shape=5f90f730 vocab=7d96f95f
+-/
 theorem safe_dense_iff_proj (m : ℕ) (y : Fin (2 * m) → ZMod 2) :
     Safe (denseScheme m) y ↔ Safe (projScheme m) y := by
   constructor
@@ -230,7 +240,9 @@ theorem safe_dense_iff_proj (m : ℕ) (y : Fin (2 * m) → ZMod 2) :
     is the all-ones vector in `Fin m` — support cardinality `m`.  Every column has support `≤ m`
     trivially (the whole index set), so the sup is exactly `m`. -/
 
-/-- Column 0 of `denseH m` is the all-ones vector: `denseH m i 0 = 1` for every row `i`. -/
+/-- Column 0 of `denseH m` is the all-ones vector: `denseH m i 0 = 1` for every row `i`.
+@isnad1 id=eq.1h2v.s6.92941f459829 from=translated src=- shape=21054f9e vocab=96b0e8b3
+-/
 theorem denseH_col0 (m : ℕ) (hm : 0 < m) (i : Fin m) :
     denseH m i (⟨0, by omega⟩ : Fin (2 * m)) = 1 := by
   simp only [denseH, Matrix.mul_apply, lowerTriOnes, projH, Matrix.of_apply]
@@ -246,7 +258,9 @@ theorem denseH_col0 (m : ℕ) (hm : 0 < m) (i : Fin m) :
     rw [ite_eq_right hk0, mul_zero]
   · intro h; exact absurd (Finset.mem_univ _) h
 
-/-- Each column of `denseH m` has support cardinality `≤ m` (trivially: at most all `m` rows). -/
+/-- Each column of `denseH m` has support cardinality `≤ m` (trivially: at most all `m` rows).
+@isnad1 id=le.0h2v.s7.7d57e2d9fd72 from=translated src=- shape=858311c0 vocab=bcda02d8
+-/
 theorem colSupp_denseH_le (m : ℕ) (j : Fin (2 * m)) :
     (Finset.univ.filter (fun i : Fin m => denseH m i j ≠ 0)).card ≤ m := by
   calc (Finset.univ.filter (fun i : Fin m => denseH m i j ≠ 0)).card
@@ -254,7 +268,9 @@ theorem colSupp_denseH_le (m : ℕ) (j : Fin (2 * m)) :
     _ = m := by rw [Finset.card_univ, Fintype.card_fin]
 
 /-- **colBound (denseH m) = m** for `m > 0`: column 0 is all-ones (support `m`), and no column
-    exceeds `m`.  The dense `H` has worst-column weight `m` vs `projH`'s `1`. -/
+    exceeds `m`.  The dense `H` has worst-column weight `m` vs `projH`'s `1`.
+@isnad1 id=eq.1h1v.s5.5023dccb1748 from=translated src=- shape=f7808c72 vocab=1780f0e1
+-/
 theorem colBound_denseH (m : ℕ) (hm : 0 < m) : colBound (denseH m) = m := by
   apply le_antisymm
   · apply Finset.sup_le
@@ -280,7 +296,9 @@ theorem colBound_denseH (m : ℕ) (hm : 0 < m) : colBound (denseH m) = m := by
     = `(i + 1 mod 2)_i`.  hammingNorm = ⌈m/2⌉ ≤ m, so `colWeightLb = ⌈m/2⌉ / m = 0` for m ≥ 2. -/
 
 /-- The dense syndrome of the all-ones body:
-    `denseH m *ᵥ allOnesSynBody m = lowerTriOnes m *ᵥ 1`. -/
+    `denseH m *ᵥ allOnesSynBody m = lowerTriOnes m *ᵥ 1`.
+@isnad1 id=eq.0h1v.s7.2a55f391c33a from=translated src=- shape=2eb0982c vocab=014594b4
+-/
 theorem denseH_mulVec_allOnes (m : ℕ) :
     denseH m *ᵥ allOnesSynBody m = lowerTriOnes m *ᵥ (fun _ => 1) := by
   rw [denseH_mulVec, projH_mulVec_allOnes]
@@ -296,7 +314,9 @@ theorem denseH_mulVec_allOnes (m : ℕ) :
     the floor-division is `0` whenever the numerator `< m`.  We prove numerator `≤ m` always, and
     `< m` for `m ≥ 2` (so the bound is `0` — vacuous, can't reject anything at `τ ≥ 0`). -/
 
-/-- The dense syndrome has hammingNorm `≤ m` (at most all `m` coordinates can be nonzero). -/
+/-- The dense syndrome has hammingNorm `≤ m` (at most all `m` coordinates can be nonzero).
+@isnad1 id=le.0h1v.s7.1e7ef8dcdd9c from=translated src=- shape=1618f4f2 vocab=0b20113c
+-/
 theorem hammingNorm_denseSyn_le (m : ℕ) :
     hammingNorm (denseH m *ᵥ allOnesSynBody m) ≤ m := by
   rw [hammingNorm]
@@ -308,7 +328,9 @@ theorem hammingNorm_denseSyn_le (m : ℕ) :
     Row 0 of `L *ᵥ 1` is `∑_{k ≤ 0} 1 = 1 ≠ 0`; but row `m-1` is `∑_{k ≤ m-1} 1 = m`, and more
     importantly NOT every row is nonzero — the dense syndrome `(⌈row+1⌉ mod 2)` alternates, so the
     support is at most `⌈m/2⌉ < m` for `m ≥ 2`.  We give the clean fact: row 1 (when m ≥ 2) of
-    `L *ᵥ 1` is `1 + 1 = 0`, so coordinate 1 is excluded from the support ⟹ hammingNorm < m. -/
+    `L *ᵥ 1` is `1 + 1 = 0`, so coordinate 1 is excluded from the support ⟹ hammingNorm < m.
+@isnad1 id=lt.1h1v.s7.aa077924c177 from=translated src=- shape=991c6e96 vocab=e3937557
+-/
 theorem hammingNorm_denseSyn_lt (m : ℕ) (hm : 2 ≤ m) :
     hammingNorm (denseH m *ᵥ allOnesSynBody m) < m := by
   rw [hammingNorm]
@@ -353,7 +375,9 @@ theorem hammingNorm_denseSyn_lt (m : ℕ) (hm : 2 ≤ m) :
 
 /-- **The dense colWeightLb VANISHES**: `colWeightLb (denseScheme m) (denseH *ᵥ allOnes) = 0`
     for `m ≥ 2`.  The numerator (dense syndrome weight) is `< m = colBound (denseH)`, so the
-    floor-division is `0`.  The non-degenerate column-weight bound is VACUOUS on the dense `H`. -/
+    floor-division is `0`.  The non-degenerate column-weight bound is VACUOUS on the dense `H`.
+@isnad1 id=eq.1h1v.s7.44ec2a358ed4 from=translated src=- shape=04768583 vocab=49448885
+-/
 theorem colWeightLb_denseScheme_zero (m : ℕ) (hm : 2 ≤ m) :
     colWeightLb (denseScheme m) ((denseScheme m).H *ᵥ allOnesSynBody m) = 0 := by
   unfold colWeightLb
@@ -367,7 +391,9 @@ theorem colWeightLb_denseScheme_zero (m : ℕ) (hm : 2 ≤ m) :
           `m`, transferred from the proven `scaling_law` via the SAFE-EQUIVALENCE), and YET
       (2) `colWeightLb (denseScheme m) (...) = 0` — the bound is VACUOUS on the SAME unsafe body.
     The looseness gap = `m - 0 = m`, MAXIMAL.  The bound is BASIS-DEPENDENT: it measures `H`,
-    not the code.  The `scaling_law`'s tightness was an artifact of the sparse projection `H`. -/
+    not the code.  The `scaling_law`'s tightness was an artifact of the sparse projection `H`.
+@isnad1 id=and.1h1v.s7.f50c9e654f75 from=translated src=- shape=efe6030e vocab=d8b4428a
+-/
 theorem looseness (m : ℕ) (hm : 2 ≤ m) :
     ¬ Safe (denseScheme m) (allOnesSynBody m) ∧
       colWeightLb (denseScheme m) ((denseScheme m).H *ᵥ allOnesSynBody m) = 0 := by
@@ -382,6 +408,9 @@ def witnessDenseOpt (m : ℕ) (y : Fin (denseScheme m).n → ZMod 2) :
     Option (Fin (denseScheme m).n → ZMod 2) :=
   if wt y ≤ (denseScheme m).τ then some y else none
 
+/--
+@isnad1 id=and.1h3v.s9.3e19de3fa35c from=translated src=- shape=dbe5fcb1 vocab=44debcee
+-/
 theorem witnessDense_sound (m : ℕ) :
     ∀ y e', witnessDenseOpt m y = some e' →
       (denseScheme m).H *ᵥ e' = (denseScheme m).H *ᵥ y ∧ wt e' ≤ (denseScheme m).τ := by

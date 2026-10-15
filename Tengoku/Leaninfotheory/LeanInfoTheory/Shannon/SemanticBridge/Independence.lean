@@ -75,7 +75,9 @@ def IsCondIndependentOf
     (Z : omega → gamma) : Prop :=
   IsCondIndependent (p.map fun omega => (X omega, Y omega, Z omega))
 
-/-- Swapping the first two coordinates of a triple law preserves conditional independence. -/
+/-- Swapping the first two coordinates of a triple law preserves conditional independence.
+@isnad1 id=iff.0h4v.s6.90bf1e7ffe9f from=translated src=- shape=139e322b vocab=6ddc7586
+-/
 @[simp]
 theorem isCondIndependent_map_swap12
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -122,7 +124,9 @@ theorem isCondIndependent_map_swap12
     rw [hmass a b c, hthird, hfst, hsnd]
     simpa [mul_comm] using h
 
-/-- Conditional independence of random variables is symmetric in its first two variables. -/
+/-- Conditional independence of random variables is symmetric in its first two variables.
+@isnad1 id=iff.0h8v.s5.a950b68ff929 from=translated src=- shape=9fc09f13 vocab=02e36706
+-/
 theorem isCondIndependentOf_swap
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
     (p : PMF omega) (X : omega → alpha) (Y : omega → beta)
@@ -137,7 +141,9 @@ theorem isCondIndependentOf_swap
   unfold IsCondIndependentOf
   rw [hmap, isCondIndependent_map_swap12]
 
-/-- Independence is equivalent to pointwise factorization into marginal masses. -/
+/-- Independence is equivalent to pointwise factorization into marginal masses.
+@isnad1 id=iff.0h3v.s6.2ed35ebd4cab from=translated src=- shape=2f120183 vocab=ed80af29
+-/
 theorem isIndependent_iff_apply_eq_mul_marginals
     {alpha : Type u} {beta : Type v} (p : PMF (alpha × beta)) :
     IsIndependent p ↔
@@ -155,14 +161,18 @@ theorem isIndependent_iff_apply_eq_mul_marginals
     rintro ⟨a, b⟩
     simpa using hp a b
 
-/-- The independent product of two PMFs is independent. -/
+/-- The independent product of two PMFs is independent.
+@isnad1 id=isindepe.0h4v.s4.fed4a2f497b0 from=translated src=- shape=bd548aa8 vocab=9accbddb
+-/
 @[simp]
 theorem isIndependent_indepProd {alpha : Type u} {beta : Type v}
     (p : PMF alpha) (q : PMF beta) :
     IsIndependent (indepProd p q) := by
   simp [IsIndependent]
 
-/-- Swapping the coordinates of a joint law preserves independence. -/
+/-- Swapping the coordinates of a joint law preserves independence.
+@isnad1 id=iff.0h3v.s4.1e3b0a668ac8 from=translated src=- shape=3ec664ca vocab=4fd3a68e
+-/
 @[simp]
 theorem isIndependent_map_swap {alpha : Type u} {beta : Type v}
     (p : PMF (alpha × beta)) :
@@ -201,6 +211,7 @@ theorem isIndependent_map_swap {alpha : Type u} {beta : Type v}
 /--
 Random-variable independence is equality of the joint law with the independent
 product of the two individual laws.
+@isnad1 id=iff.0h6v.s5.a8e4b4a14e4e from=translated src=- shape=d871a29b vocab=598f1e23
 -/
 theorem isIndependentOf_iff_map_eq_indepProd
     {omega : Type u} {alpha : Type v} {beta : Type w}
@@ -215,6 +226,7 @@ Deterministic processing of the right variable preserves independence.
 
 The source and observed types are arbitrary: the PMF mapped-law proof needs no
 finiteness, measurable-space, or injectivity assumptions on the processing map.
+@isnad1 id=isindepe.1h8v.s5.840ee66869d0 from=translated src=- shape=915a7461 vocab=c6949622
 -/
 theorem isIndependentOf_comp_right
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -234,6 +246,7 @@ mathlib's measure-theoretic `ProbabilityTheory.IndepFun` predicate.
 Measurability and measurable-singleton assumptions are explicit here because
 they belong to the semantic bridge, not to the PMF-first definition
 `IsIndependentOf`.
+@isnad1 id=iff.2h6v.s6.4cf7540fe846 from=translated src=- shape=e301614b vocab=c9044daf
 -/
 theorem isIndependentOf_iff_indepFun
     {omega : Type u} {alpha : Type v} {beta : Type w}
@@ -251,7 +264,9 @@ theorem isIndependentOf_iff_indepFun
     ← indepProd_toMeasure]
   exact PMF.toMeasure_inj.symm
 
-/-- Independence of random variables is symmetric. -/
+/-- Independence of random variables is symmetric.
+@isnad1 id=iff.0h6v.s5.bb1cc517d343 from=translated src=- shape=2a74de0d vocab=c6949622
+-/
 theorem isIndependentOf_swap
     {omega : Type u} {alpha : Type v} {beta : Type w}
     (p : PMF omega) (X : omega → alpha) (Y : omega → beta) :
@@ -272,6 +287,7 @@ Finite mutual information is zero exactly when the joint PMF is independent.
 The proof chooses the discrete measurable structure only locally, uses the KL
 representation of mutual information, and discharges the necessary real-KL
 finiteness guard through support inclusion.
+@isnad1 id=iff.0h3v.s5.024eec0fa08f from=translated src=- shape=a6cc8082 vocab=8846b666
 -/
 theorem mutualInfo_eq_zero_iff_isIndependent
     {alpha : Type u} {beta : Type v}
@@ -293,6 +309,7 @@ theorem mutualInfo_eq_zero_iff_isIndependent
 /--
 Finite-valued random variables have zero mutual information exactly when their
 mapped joint law is independent.
+@isnad1 id=iff.0h6v.s5.1a01c5363a5c from=translated src=- shape=187891bb vocab=4ef797de
 -/
 theorem mutualInfoOf_eq_zero_iff_isIndependentOf
     {omega : Type u} {alpha : Type v} {beta : Type w}
@@ -308,6 +325,7 @@ theorem mutualInfoOf_eq_zero_iff_isIndependentOf
 /--
 Conditioning preserves the entropy of the left coordinate exactly when the two
 coordinates are independent.
+@isnad1 id=iff.0h3v.s5.90c146f3ccb6 from=translated src=- shape=413f5398 vocab=ede5d94f
 -/
 theorem condEntropy_eq_entropy_left_iff_isIndependent
     {alpha : Type u} {beta : Type v}
@@ -324,6 +342,7 @@ theorem condEntropy_eq_entropy_left_iff_isIndependent
 /--
 Conditioning preserves `H(X)` exactly when the finite-valued random variables
 `X` and `Y` are independent.
+@isnad1 id=iff.0h6v.s5.4012d4fcba77 from=translated src=- shape=323803dd vocab=971f9ba2
 -/
 theorem condEntropyOf_eq_entropyOf_iff_isIndependentOf
     {omega : Type u} {alpha : Type v} {beta : Type w}
@@ -334,7 +353,9 @@ theorem condEntropyOf_eq_entropyOf_iff_isIndependentOf
     condEntropy_eq_entropy_left_iff_isIndependent
       (p.map fun omega => (X omega, Y omega))
 
-/-- Joint entropy is additive exactly when the two coordinates are independent. -/
+/-- Joint entropy is additive exactly when the two coordinates are independent.
+@isnad1 id=iff.0h3v.s5.0547a0d6c941 from=translated src=- shape=d42c2df2 vocab=88bb523f
+-/
 theorem jointEntropy_eq_add_marginalEntropy_iff_isIndependent
     {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) :
@@ -351,6 +372,7 @@ theorem jointEntropy_eq_add_marginalEntropy_iff_isIndependent
 /--
 Joint entropy is additive exactly when the finite-valued random variables are
 independent.
+@isnad1 id=iff.0h6v.s5.3db9ddc0b6f6 from=translated src=- shape=0f1cca3b vocab=811dd8c7
 -/
 theorem jointEntropyOf_eq_add_entropyOf_iff_isIndependentOf
     {omega : Type u} {alpha : Type v} {beta : Type w}
@@ -364,7 +386,9 @@ theorem jointEntropyOf_eq_add_entropyOf_iff_isIndependentOf
 
 /-! ## Textbook-facing pair equality aliases -/
 
-/-- Short PMF alias for additivity of joint entropy under independence. -/
+/-- Short PMF alias for additivity of joint entropy under independence.
+@isnad1 id=iff.0h3v.s5.0547a0d6c941 from=translated src=- shape=d42c2df2 vocab=88bb523f
+-/
 theorem jointEntropy_additive_iff_isIndependent
     {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) :
@@ -372,7 +396,9 @@ theorem jointEntropy_additive_iff_isIndependent
       IsIndependent p :=
   jointEntropy_eq_add_marginalEntropy_iff_isIndependent p
 
-/-- Short random-variable alias for additivity of joint entropy under independence. -/
+/-- Short random-variable alias for additivity of joint entropy under independence.
+@isnad1 id=iff.0h6v.s5.3db9ddc0b6f6 from=translated src=- shape=0f1cca3b vocab=811dd8c7
+-/
 theorem jointEntropyOf_additive_iff_isIndependentOf
     {omega : Type u} {alpha : Type v} {beta : Type w}
     [Fintype alpha] [Fintype beta]
@@ -391,6 +417,7 @@ The forward direction uses nonnegativity to extract zero from each term in the
 averaged conditional-mutual-information formula. The marginal guard lets us
 cancel the positive real fiber weight. In the reverse direction, null fibers
 have zero weight and every positive-mass fiber is zero by hypothesis.
+@isnad1 id=iff.0h4v.s6.3928e3e0911e from=translated src=- shape=fe79c7eb vocab=544c7fe2
 -/
 theorem condMutualInfo_eq_zero_iff_condMutualInfoFstSndGivenThird_eq_zero
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -434,6 +461,7 @@ fiber.
 No condition is needed on null fibers: the cross-product identity holds there
 because the corresponding first-third marginal has zero mass. The right-hand
 side is independent of the particular proof of nonzero marginal mass.
+@isnad1 id=iff.0h4v.s5.248efee2596a from=translated src=- shape=d2caf6e1 vocab=770e0414
 -/
 theorem isCondIndependent_iff_isIndependent_condFstSndGivenThird
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -534,6 +562,7 @@ No conditional law needs to be chosen on null fibers. `IsCondIndependent`
 uses the cross-product identity on the original PMF, where those fibers satisfy
 the identity directly; conditional PMFs appear only for positive-mass fibers
 inside the proof.
+@isnad1 id=iff.0h4v.s5.a0d77b0665c9 from=translated src=- shape=e98f369d vocab=6bb6431a
 -/
 theorem condMutualInfo_eq_zero_iff_isCondIndependent
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -556,6 +585,7 @@ theorem condMutualInfo_eq_zero_iff_isCondIndependent
 /--
 Finite-valued random variables have zero conditional mutual information exactly
 when they are conditionally independent under their mapped triple law.
+@isnad1 id=iff.0h8v.s5.66c88a5af531 from=translated src=- shape=3e9b4e1e vocab=ffa4ed03
 -/
 theorem condMutualInfoOf_eq_zero_iff_isCondIndependentOf
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -572,6 +602,7 @@ theorem condMutualInfoOf_eq_zero_iff_isCondIndependentOf
 /--
 Conditioning the first coordinate on the second preserves its entropy given the
 third coordinate exactly under conditional independence.
+@isnad1 id=iff.0h4v.s5.ccbb25681287 from=translated src=- shape=630eac15 vocab=1a8d4ffa
 -/
 theorem condEntropy_eq_condEntropy_fstThirdMarginal_iff_isCondIndependent
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -591,6 +622,7 @@ theorem condEntropy_eq_condEntropy_fstThirdMarginal_iff_isCondIndependent
 /--
 Conditioning `X` on `Y` preserves its entropy given `Z` exactly when `X` and
 `Y` are conditionally independent given `Z`.
+@isnad1 id=iff.0h8v.s6.0236c971bfd2 from=translated src=- shape=a69022cc vocab=2c0edb4c
 -/
 theorem condEntropyOf_eq_condEntropyOf_iff_isCondIndependentOf
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -611,6 +643,7 @@ theorem condEntropyOf_eq_condEntropyOf_iff_isCondIndependentOf
 /--
 Conditional joint entropy is additive exactly when the first two coordinates
 are conditionally independent given the third.
+@isnad1 id=iff.0h4v.s6.400aa11dd58b from=translated src=- shape=59bfd011 vocab=c9854226
 -/
 theorem condEntropy_pair_eq_add_condEntropy_iff_isCondIndependent
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -630,6 +663,7 @@ theorem condEntropy_pair_eq_add_condEntropy_iff_isCondIndependent
 /--
 Conditional joint entropy of finite-valued random variables is additive exactly
 under conditional independence.
+@isnad1 id=iff.0h8v.s6.14a49070ad85 from=translated src=- shape=df28780b vocab=b179db74
 -/
 theorem condEntropyOf_pair_eq_add_condEntropyOf_iff_isCondIndependentOf
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -650,7 +684,9 @@ theorem condEntropyOf_pair_eq_add_condEntropyOf_iff_isCondIndependentOf
 
 /-! ## Textbook-facing conditional equality aliases -/
 
-/-- Short PMF alias for conditional joint-entropy additivity. -/
+/-- Short PMF alias for conditional joint-entropy additivity.
+@isnad1 id=iff.0h4v.s6.400aa11dd58b from=translated src=- shape=59bfd011 vocab=c9854226
+-/
 theorem condEntropy_pair_additive_iff_isCondIndependent
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -660,7 +696,9 @@ theorem condEntropy_pair_additive_iff_isCondIndependent
       IsCondIndependent p :=
   condEntropy_pair_eq_add_condEntropy_iff_isCondIndependent p
 
-/-- Short random-variable alias for conditional joint-entropy additivity. -/
+/-- Short random-variable alias for conditional joint-entropy additivity.
+@isnad1 id=iff.0h8v.s6.14a49070ad85 from=translated src=- shape=df28780b vocab=b179db74
+-/
 theorem condEntropyOf_pair_additive_iff_isCondIndependentOf
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
     [Fintype alpha] [Fintype beta] [Fintype gamma]

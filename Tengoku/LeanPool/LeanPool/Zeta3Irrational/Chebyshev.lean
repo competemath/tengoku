@@ -38,6 +38,9 @@ private lemma Ioc_eq_Icc (M N : ℕ) : Finset.Ioc N M = Finset.Icc (N + 1) M :=
 noncomputable def T (x : ℝ) : ℝ :=
   ∑ n ∈ Finset.Icc 1 ⌊x⌋₊, log n
 
+/--
+@isnad1 id=le.1h1v.s5.fda8d5d79f71 from=translated src=- shape=0b850f37 vocab=d4a22c04
+-/
 theorem T.le (x : ℝ) (hx : 1 ≤ x) : T x ≤ x * log x - x + 1 + log x := by
   rw [T, ← Ico_insert_right <| Nat.one_le_iff_ne_zero.mpr (Nat.floor_pos.mpr hx).ne',
     sum_insert right_notMem_Ico]
@@ -69,6 +72,9 @@ theorem T.le (x : ℝ) (hx : 1 ≤ x) : T x ≤ x * log x - x + 1 + log x := by
     exact h2 (Set.mem_Ici.mpr h1) (Set.mem_Ici.mpr hx) <| Nat.floor_le (by grind)
   linarith [log_le_log (by positivity) <| Nat.floor_le (by linarith)]
 
+/--
+@isnad1 id=le.1h1v.s5.22f7798b3921 from=translated src=- shape=29c515f5 vocab=c825192d
+-/
 theorem T.ge (x : ℝ) (hx : 1 ≤ x) : T x ≥ x * log x - x + 1 - log x := by
   have hone_le_floor : 1 ≤ ⌊x⌋₊ := Nat.one_le_iff_ne_zero.mpr (Nat.floor_pos.mpr hx).ne'
   simp only [T, ← Ico_insert_right hone_le_floor, sum_insert right_notMem_Ico]
@@ -114,6 +120,9 @@ theorem T.eq_sum_Lambda (x : ℝ) : T x = ∑ n ∈ Icc 1 ⌊x⌋₊, Λ n * ⌊
 noncomputable def E (ν : ℕ →₀ ℝ) (x : ℝ) : ℝ :=
   ν.sum (fun m w ↦ w * ⌊x / m⌋₊)
 
+/--
+@isnad1 id=eq.0h2v.s6.854aaf35fe17 from=translated src=- shape=c0d99f95 vocab=352c806b
+-/
 theorem T.weighted_eq_sum (ν : ℕ →₀ ℝ) (x : ℝ) :
     ν.sum (fun m w ↦ w * T (x / m)) = ∑ n ∈ Icc 1 ⌊x⌋₊, Λ n * E ν (x / n) := by
   simp_rw [T.eq_sum_Lambda, E, Finsupp.mul_sum]
@@ -176,9 +185,15 @@ private lemma floor_div_bounds {y : ℝ} (hy : 0 ≤ y) {k : ℕ} (hk : 1 ≤ k)
     have : (⌊y⌋₊ : ℝ) < (k : ℝ) * (⌊y / k⌋₊ + 1) := (Nat.floor_le hy).trans_lt hy_lt
     exact_mod_cast this
 
+/--
+@isnad1 id=eq.0h0v.s5.67a3d2987a69 from=translated src=- shape=6e2cd568 vocab=ba93bbde
+-/
 theorem nu_sum_div_eq_zero : ν.sum (fun n w ↦ w / n) = 0 := by
   norm_num [ν, add_div, sum_add_index', sub_div, sum_sub_index]
 
+/--
+@isnad1 id=eq.1h1v.s5.dbf43262802d from=translated src=- shape=aee982c7 vocab=3a01ce63
+-/
 theorem E_nu_eq_one (x : ℝ) (hx : x ∈ Set.Ico 1 6) : E ν x = 1 := by
   obtain ⟨h1, h6⟩ := hx
   have hx0 : (0 : ℝ) ≤ x := by linarith
@@ -192,6 +207,9 @@ theorem E_nu_eq_one (x : ℝ) (hx : x ∈ Set.Ico 1 6) : E ν x = 1 := by
   rw [show ⌊x⌋₊ = ⌊x / 2⌋₊ + ⌊x / 3⌋₊ + ⌊x / 5⌋₊ + 1 by omega]
   grind
 
+/--
+@isnad1 id=eq.1h1v.s5.7746ed6651fa from=translated src=- shape=a97be27b vocab=29355e61
+-/
 theorem E_nu_period (x : ℝ) (hx : x ≥ 0) : E ν (x + 30) = E ν x := by
   have h (k : ℝ) : (x + 30) / k = x / k + 30 / k := by ring
   simp_rw [E_nu_expand, h 2, h 3, h 5, h 30]
@@ -200,6 +218,9 @@ theorem E_nu_period (x : ℝ) (hx : x ≥ 0) : E ν (x + 30) = E ν x := by
   rw [Nat.floor_add_one (by positivity)]
   grind
 
+/--
+@isnad1 id=and.1h1v.s5.7cd8b5a722d5 from=translated src=- shape=0380a5bc vocab=bdee5d18
+-/
 theorem E_nu_bound (x : ℝ) (hx : x ≥ 0) : 0 ≤ E ν x ∧ E ν x ≤ 1 := by
   have base (y : ℝ) (hy0 : 0 ≤ y) (hy30 : y < 30) : 0 ≤ E ν y ∧ E ν y ≤ 1 := by
     simp only [E_nu_expand, Nat.floor_eq_zero.mpr (by linarith : y / 30 < 1), Nat.cast_zero,
@@ -233,6 +254,9 @@ theorem E_nu_bound (x : ℝ) (hx : x ≥ 0) : 0 ≤ E ν x ∧ E ν x ≤ 1 := b
 noncomputable def U (x : ℝ) : ℝ :=
   ν.sum (fun m w ↦ w * T (x / m))
 
+/--
+@isnad1 id=le.1h1v.s4.0185afaa9f8b from=translated src=- shape=cfb0e90d vocab=ff6fe363
+-/
 theorem psi_ge_weighted (x : ℝ) (hx : x > 0) : ψ x ≥ U x := by
   unfold U Chebyshev.psi
   rw [T.weighted_eq_sum, ← Ioc_eq_Icc]
@@ -240,6 +264,9 @@ theorem psi_ge_weighted (x : ℝ) (hx : x > 0) : ψ x ≥ U x := by
   have := E_nu_bound (x / i) (div_nonneg hx.le (by simp))
   grw [this.2, mul_one]
 
+/--
+@isnad1 id=le.1h1v.s5.6ee46490166a from=translated src=- shape=4b3a6e33 vocab=cbefac4f
+-/
 theorem psi_diff_le_weighted (x : ℝ) (hx : x > 0) : ψ x - ψ (x / 6) ≤ U x := by
   unfold U Chebyshev.psi
   rw [T.weighted_eq_sum, ← Ioc_eq_Icc]
@@ -264,11 +291,17 @@ theorem psi_diff_le_weighted (x : ℝ) (hx : x > 0) : ψ x - ψ (x / 6) ≤ U x 
 noncomputable def a : ℝ :=
   -ν.sum (fun m w ↦ w * log m / m)
 
+/--
+@isnad1 id=eq.0h0v.s7.d6980746de6c from=translated src=- shape=c4b209af vocab=a3e2dd1a
+-/
 lemma a_simpl : a = (7 / 15) * Real.log 2 + (3 / 10) * Real.log 3 + (1 / 6) * Real.log 5 := by
   norm_num [a, Finsupp.sum, single_apply, ν_support]
   norm_num [Finset.sum, ν]
   grind [show (30 : ℝ) = 2 * 3 * 5 by ring, log_mul, log_mul]
 
+/--
+@isnad1 id=mem.0h0v.s4.082346bed873 from=translated src=- shape=98b13bd9 vocab=ffb7fa7c
+-/
 theorem a_bound : a ∈ Set.Icc 0.92129 0.92130 := by
   norm_num [ChebyshevAux.a_simpl]
   constructor <;>
@@ -279,15 +312,24 @@ theorem a_bound : a ∈ Set.Icc 0.92129 0.92130 := by
 noncomputable def e (x : ℝ) : ℝ :=
   T x - (x * log x - x + 1)
 
+/--
+@isnad1 id=eq.0h1v.s5.5e2d4a2d46ea from=translated src=- shape=897b2cc8 vocab=3456bd7a
+-/
 lemma U_bound.lemma_1 (x : ℝ) : T x = x * log x - x + 1 + e x := by
   unfold e
   ring
 
+/--
+@isnad1 id=le.1h1v.s4.418fd2e2d25f from=translated src=- shape=90a7b9b4 vocab=77b91de3
+-/
 lemma U_bound.lemma_2 (x : ℝ) (hx : 1 ≤ x) : |e x| ≤ log x := by
   rw [abs_le]
   unfold e
   constructor <;> linarith [T.ge x hx, T.le x hx]
 
+/--
+@isnad1 id=eq.0h1v.s7.e84877ed047c from=translated src=- shape=9470f3e4 vocab=d122fc22
+-/
 lemma U_bound.lemma_3 (x : ℝ) :
     U x = ν.sum (fun m w ↦ w * ((x / m) * log (x / m))) -
           ν.sum (fun m w ↦ w * (x / m)) +
@@ -295,6 +337,9 @@ lemma U_bound.lemma_3 (x : ℝ) :
           ν.sum (fun m w ↦ w * e (x / m)) := by
   simp [U, Finsupp.sum, U_bound.lemma_1, sub_eq_add_neg, add_mul, mul_comm, sum_add_distrib]
 
+/--
+@isnad1 id=eq.1h1v.s6.08615ed9fb77 from=translated src=- shape=99b72aad vocab=899fd437
+-/
 lemma U_bound.lemma_4 (x : ℝ) (hx : 0 < x) :
     ν.sum (fun m w ↦ w * ((x / m) * log (x / m))) = a * x := by
   have hx0 : x ≠ 0 := ne_of_gt hx
@@ -306,15 +351,24 @@ lemma U_bound.lemma_4 (x : ℝ) (hx : 0 < x) :
   simp [Real.log_div hx0]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.a29255463799 from=translated src=- shape=fc59da95 vocab=61e9498f
+-/
 lemma U_bound.lemma_5 (x : ℝ) : ν.sum (fun m w ↦ w * (x / m)) = 0 := by
   rw [ν_sum_mul (fun m ↦ x / m)]
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h0v.s4.7fb870b1af13 from=translated src=- shape=2cb2c4cd vocab=48b18945
+-/
 lemma U_bound.lemma_6 : ν.sum (fun _ w ↦ w) = (-1 : ℝ) := by
   have := ν_sum_mul (fun _ ↦ (1 : ℝ))
   simp_all
 
+/--
+@isnad1 id=le.0h3v.s6.553f20d75462 from=translated src=- shape=7075c378 vocab=c3a77157
+-/
 lemma Finsupp.abs_sum_le (A : Type*) (ν : A →₀ ℝ) (g : A → ℝ → ℝ) : |ν.sum g| ≤ ν.sum |g| := by
   simp_rw [Finsupp.sum.eq_1]
   exact abs_sum_le_sum_abs (fun i ↦ g i (ν i)) ν.support
@@ -324,6 +378,9 @@ private lemma log_30_gt : (3.401197 : ℝ) < log 30 := by
     rw [show (30 : ℝ) = (2 * 3) * 5 by norm_num, log_mul, log_mul] <;> norm_num
   nlinarith [Real.log_two_gt_d9, Real.log_three_gt_d9, Real.log_five_gt_d9]
 
+/--
+@isnad1 id=le.1h1v.s6.6cdc0cc19456 from=translated src=- shape=79793e18 vocab=5b8242b1
+-/
 theorem U_bound (x : ℝ) (hx : 30 ≤ x) : |U x - a * x| ≤ 5 * log x - 5 := by
   have hxpos : 0 < x := lt_of_lt_of_le (by norm_num) hx
   rw [U_bound.lemma_3, U_bound.lemma_4 x hxpos]
@@ -385,10 +442,16 @@ theorem U_bound (x : ℝ) (hx : 30 ≤ x) : |U x - a * x| ≤ 5 * log x - 5 := b
   rw [habs]
   linarith
 
+/--
+@isnad1 id=le.1h1v.s6.1cf0151927a0 from=translated src=- shape=71efd546 vocab=b11fcd27
+-/
 theorem psi_diff_upper (x : ℝ) (hx : 30 ≤ x) : ψ x - ψ (x / 6) ≤ a * x + 5 * log x - 5 := by
   have h2 := abs_sub_le_iff.mp (U_bound x hx)
   linarith [psi_diff_le_weighted x (by linarith), h2.2]
 
+/--
+@isnad1 id=le.1h1v.s7.3b2c584bdb45 from=translated src=- shape=c6afa446 vocab=53f151df
+-/
 theorem psi_upper_coarse (x : ℝ) (hx : 30 ≤ x) :
     ψ x ≤ 6 * a * x / 5 +
       (⌊log (x / 5) / log 6⌋₊ : ℝ) * (5 * log x - 5) + 180 := by
@@ -479,6 +542,9 @@ theorem psi_upper_coarse (x : ℝ) (hx : 30 ≤ x) :
         nlinarith
       nlinarith
 
+/--
+@isnad1 id=eventual.0h0v.s5.2cbd94f39751 from=translated src=- shape=1d1b0cd3 vocab=b06b4d4e
+-/
 theorem eventually_psi_le_mul :
     ∀ᶠ x : ℝ in atTop, ψ x ≤ (113 / 100 : ℝ) * x := by
   have h_logsq : (fun x : ℝ ↦ 5 * (log x) ^ 2 + 180) =o[atTop] (fun x : ℝ ↦ x) :=

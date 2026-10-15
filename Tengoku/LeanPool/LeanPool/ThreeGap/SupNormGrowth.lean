@@ -39,7 +39,9 @@ namespace ThreeGap.SimApprox
 variable {d : ℕ}
 
 /-- Pointwise: two reals of the **same sign** (`0 ≤ a ↔ 0 ≤ b`) with `|a|, |b| ≤ r` satisfy
-`|a − b| ≤ r`. (If both `≥ 0` or both `≤ 0`, the difference cannot exceed the larger magnitude.) -/
+`|a − b| ≤ r`. (If both `≥ 0` or both `≤ 0`, the difference cannot exceed the larger magnitude.)
+@isnad1 id=le.3h3v.s6.eb3c1a1b9535 from=translated src=- shape=60823e83 vocab=881e8232
+-/
 theorem abs_sub_le_of_same_sign {a b r : ℝ} (hsign : (0 ≤ a) ↔ (0 ≤ b))
     (ha : |a| ≤ r) (hb : |b| ≤ r) : |a - b| ≤ r := by
   rw [abs_le] at ha hb ⊢
@@ -52,7 +54,9 @@ theorem abs_sub_le_of_same_sign {a b r : ℝ} (hsign : (0 ≤ a) ↔ (0 ≤ b))
     exact ⟨by linarith [ha.1, ha.2, hb.1, hb.2], by linarith [ha.1, ha.2, hb.1, hb.2]⟩
 
 /-- **Same-orthant sup-norm bound.** If `u, v : Fin d → ℝ` lie in the same orthant
-(`0 ≤ u k ↔ 0 ≤ v k` for every `k`) and each has sup-norm `≤ r`, then `‖u − v‖ ≤ r`. -/
+(`0 ≤ u k ↔ 0 ≤ v k` for every `k`) and each has sup-norm `≤ r`, then `‖u − v‖ ≤ r`.
+@isnad1 id=le.3h4v.s7.2bc3eb087dc1 from=translated src=- shape=d111d35b vocab=da50136a
+-/
 theorem norm_sub_le_of_sameOrthant {u v : Fin d → ℝ} {r : ℝ}
     (hsign : ∀ k, (0 ≤ u k) ↔ (0 ≤ v k)) (hu : ‖u‖ ≤ r) (hv : ‖v‖ ≤ r) :
     ‖u - v‖ ≤ r := by
@@ -71,7 +75,9 @@ best-approximation denominators of `α` in the sup norm, with remainders `p` att
 
   `2 q_N ≤ q_{N + 2^d}`.
 
-This feeds `ChevallierGapBound.gap_count_doubling` with `K = 2^d` to give `g_∞ ≤ 2^d + 1`. -/
+This feeds `ChevallierGapBound.gap_count_doubling` with `K = 2^d` to give `g_∞ ≤ 2^d + 1`.
+@isnad1 id=le.4h5v.s7.e5ee3a674545 from=translated src=- shape=2bb06efb vocab=76ea9520
+-/
 theorem supNorm_growth_doubling (α : Fin d → ℝ) (q : ℕ → ℤ) (p : ℕ → Fin d → ℤ)
     (hmono : StrictMono q)
     (hattain : ∀ k, ‖rem α (q k) (p k)‖ = delta α (q k))

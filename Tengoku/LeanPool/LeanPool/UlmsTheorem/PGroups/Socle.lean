@@ -39,25 +39,43 @@ section SocleLemmas
 
 variable {G : Type*} [AddCommGroup G]
 
+/--
+@isnad1 id=iff.0h3v.s6.aa77b2a9c99b from=translated src=- shape=fa2971e6 vocab=2181463d
+-/
 @[simp] lemma mem_pSocle (x : G) : x ∈ pSocle p (G := G) ↔ p • x = 0 := Iff.rfl
 
 /-- The filtered socle `P_α = P ∩ G_α`. -/
 noncomputable def pSocleAt (α : Ordinal) : AddSubgroup G :=
   pSocle p ⊓ ulmSubgroup p α
 
+/--
+@isnad1 id=iff.0h4v.s6.4abbb2f5d0ef from=translated src=- shape=03c3c786 vocab=2ea90118
+-/
 @[simp] lemma mem_pSocleAt (α : Ordinal) (x : G) :
     x ∈ pSocleAt p α (G := G) ↔ p • x = 0 ∧ x ∈ ulmSubgroup p α := Iff.rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.4b32a07ad8c7 from=translated src=- shape=3ed6f2aa vocab=b6448174
+-/
 lemma pSocleAt_zero : pSocleAt p (0 : Ordinal) (G := G) = pSocle p := by
   simp [pSocleAt, ulmSubgroup_zero]
 
+/--
+@isnad1 id=antitone.0h2v.s5.1f8afa7800fb from=translated src=- shape=0f0b298a vocab=f8de8058
+-/
 lemma pSocleAt_antitone : Antitone (fun α ↦ pSocleAt p α (G := G)) := fun _ _ h ↦
   inf_le_inf_left _ (ulmSubgroup_antitone p h)
 
+/--
+@isnad1 id=le.0h3v.s5.9909887c4929 from=translated src=- shape=dec31855 vocab=51e2804e
+-/
 lemma pSocleAt_succ_le (α : Ordinal) :
     pSocleAt p (Order.succ α) (G := G) ≤ pSocleAt p α :=
   pSocleAt_antitone p (Order.le_succ α)
 
+/--
+@isnad1 id=le.0h3v.s5.9a041699744f from=translated src=- shape=bcd66024 vocab=d4cfbb2f
+-/
 lemma pSocleAt_le_pSocle (α : Ordinal) :
     pSocleAt p α (G := G) ≤ pSocle p :=
   inf_le_left

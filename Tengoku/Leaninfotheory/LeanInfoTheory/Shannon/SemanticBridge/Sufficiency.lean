@@ -77,7 +77,9 @@ information-measure views use the finite value types required by the existing
 finite Shannon API.
 -/
 
-/-- Fixed-prior sufficiency is exactly the reverse Markov condition. -/
+/-- Fixed-prior sufficiency is exactly the reverse Markov condition.
+@isnad1 id=iff.0h8v.s5.e376620945d5 from=translated src=- shape=5b993c59 vocab=dbf8c5bc
+-/
 theorem isSufficientStatisticOf_iff_isMarkovChainOf
     {omega : Type u} {theta : Type v} {alpha : Type w} {beta : Type x}
     (p : PMF omega) (Theta : omega → theta) (X : omega → alpha)
@@ -89,6 +91,7 @@ theorem isSufficientStatisticOf_iff_isMarkovChainOf
 /--
 A finite-valued statistic is sufficient exactly when the parameter and the
 observation have zero conditional mutual information given the statistic.
+@isnad1 id=iff.0h8v.s6.c03f57f7392a from=translated src=- shape=d83bc3b5 vocab=9aad15f3
 -/
 theorem isSufficientStatisticOf_iff_condMutualInfoOf_eq_zero
     {omega : Type u} {theta : Type v} {alpha : Type w} {beta : Type x}
@@ -104,6 +107,7 @@ theorem isSufficientStatisticOf_iff_condMutualInfoOf_eq_zero
 /--
 A finite-valued statistic is sufficient exactly when it preserves the mutual
 information between the parameter and the observation under the fixed law.
+@isnad1 id=iff.0h8v.s6.1f2475018eb6 from=translated src=- shape=5beac967 vocab=4d0333fc
 -/
 theorem isSufficientStatisticOf_iff_mutualInfoOf_eq
     {omega : Type u} {theta : Type v} {alpha : Type w} {beta : Type x}
@@ -123,6 +127,7 @@ theorem isSufficientStatisticOf_iff_mutualInfoOf_eq
 /--
 A finite-valued statistic is sufficient exactly when conditioning on it leaves
 the same parameter uncertainty as conditioning on the full observation.
+@isnad1 id=iff.0h8v.s6.90b9794da484 from=translated src=- shape=74f37aab vocab=63134d21
 -/
 theorem isSufficientStatisticOf_iff_condEntropyOf_eq
     {omega : Type u} {theta : Type v} {alpha : Type w} {beta : Type x}
@@ -180,6 +185,7 @@ A fixed-prior statistic is sufficient exactly when one channel from statistic
 values back to observations reconstructs the complete
 `(parameter, statistic, observation)` law. The same channel is used for every
 parameter value, and its behavior on a null statistic fiber is irrelevant.
+@isnad1 id=iff.0h8v.s6.722feafd9a10 from=translated src=- shape=9497bb9a vocab=6ef0aae5
 -/
 theorem isSufficientStatisticOf_iff_exists_recovery
     {omega : Type u} {theta : Type v} {alpha : Type w} {beta : Type x}
@@ -212,6 +218,7 @@ theorem isSufficientStatisticOf_iff_exists_recovery
 Sufficiency implies that the observation marginal can be recovered from the
 statistic marginal. This is only a one-way consequence: marginal recovery by
 itself does not characterize sufficiency.
+@isnad1 id=ex.1h8v.s6.b930c285c2bc from=translated src=- shape=fe856e14 vocab=b4bb66ca
 -/
 theorem exists_marginal_recovery_of_isSufficientStatisticOf
     {omega : Type u} {theta : Type v} {alpha : Type w} {beta : Type x}
@@ -280,7 +287,9 @@ def IsSufficientStatistic
     (model : theta → PMF alpha) (T : alpha → beta) : Prop :=
   IsSufficientChannel model (PMF.deterministicChannel T)
 
-/-- The identity statistic is sufficient for every model family. -/
+/-- The identity statistic is sufficient for every model family.
+@isnad1 id=issuffic.0h3v.s4.7b901f830fb3 from=translated src=- shape=9345ffef vocab=54fb98d0
+-/
 theorem isSufficientStatistic_id
     {theta : Type u} {alpha : Type v}
     (model : theta → PMF alpha) :
@@ -363,6 +372,7 @@ private theorem modelChannel_reverse_eq_channelExtension
 /--
 For every parameter prior, a sufficient family channel gives the reverse
 Markov chain `parameter -> output -> input` in the generated experiment law.
+@isnad1 id=ismarkov.1h6v.s6.02d773993e2a from=translated src=- shape=2afcaee5 vocab=608a3317
 -/
 theorem isMarkovChainOf_of_isSufficientChannel
     {theta : Type u} {alpha : Type v} {beta : Type w}
@@ -388,6 +398,7 @@ theorem isMarkovChainOf_of_isSufficientChannel
 /--
 For every finite parameter prior, sufficiency makes the parameter and input
 conditionally independent given the channel output.
+@isnad1 id=eq.1h6v.s5.8a0ffe4c97d5 from=translated src=- shape=db46f859 vocab=76bda36c
 -/
 theorem condMutualInfo_eq_zero_of_isSufficientChannel
     {theta : Type u} {alpha : Type v} {beta : Type w}
@@ -416,6 +427,7 @@ theorem condMutualInfo_eq_zero_of_isSufficientChannel
 /--
 For every finite parameter prior, a sufficient family channel preserves the
 mutual information between the parameter and the model observation.
+@isnad1 id=eq.1h6v.s5.e6363b025c78 from=translated src=- shape=52a3eaed vocab=eae812d7
 -/
 theorem mutualInfo_eq_of_isSufficientChannel
     {theta : Type u} {alpha : Type v} {beta : Type w}
@@ -439,6 +451,7 @@ theorem mutualInfo_eq_of_isSufficientChannel
 /--
 For every finite parameter prior, conditioning the parameter on a sufficient
 channel output leaves the same uncertainty as conditioning on the model input.
+@isnad1 id=eq.1h6v.s5.53b75c97943c from=translated src=- shape=92a35d42 vocab=f6c78cba
 -/
 theorem condEntropy_eq_of_isSufficientChannel
     {theta : Type u} {alpha : Type v} {beta : Type w}
@@ -477,6 +490,7 @@ uses only the canonical uniform prior from the universal hypothesis.
 For a prior supported on every parameter value, family sufficiency is
 equivalent to the reverse Markov condition in the generated experiment law.
 Only the model-input alphabet must be finite.
+@isnad1 id=iff.1h6v.s6.ed93ad9c8e05 from=translated src=- shape=91de5639 vocab=c145dd14
 -/
 theorem isSufficientChannel_iff_isMarkovChainOf_of_support_eq_univ
     {theta : Type u} {alpha : Type v} {beta : Type w}
@@ -561,6 +575,7 @@ theorem isSufficientChannel_iff_isMarkovChainOf_of_support_eq_univ
 /--
 On a finite nonempty parameter alphabet, a family channel is sufficient exactly
 when it gives the reverse Markov chain for every parameter prior.
+@isnad1 id=iff.0h5v.s6.e87b0f4e170d from=translated src=- shape=3da17a5b vocab=cf1c321b
 -/
 theorem isSufficientChannel_iff_forall_isMarkovChainOf
     {theta : Type u} {alpha : Type v} {beta : Type w}
@@ -600,6 +615,7 @@ private theorem isSufficientStatisticOf_channelJoint_iff
 /--
 For a prior supported on every parameter value, family sufficiency of a
 deterministic statistic is equivalent to its fixed-prior sufficiency.
+@isnad1 id=iff.1h6v.s6.a3cb97c7f571 from=translated src=- shape=ad96232a vocab=b6ededf3
 -/
 theorem isSufficientStatistic_iff_isSufficientStatisticOf_of_support_eq_univ
     {theta : Type u} {alpha : Type v} {beta : Type w}
@@ -616,6 +632,7 @@ theorem isSufficientStatistic_iff_isSufficientStatisticOf_of_support_eq_univ
 /--
 On a finite nonempty parameter alphabet, a deterministic statistic is
 sufficient for a model family exactly when it is sufficient under every prior.
+@isnad1 id=iff.0h5v.s5.9058fed1b833 from=translated src=- shape=927f1098 vocab=f80cc679
 -/
 theorem isSufficientStatistic_iff_forall_isSufficientStatisticOf
     {theta : Type u} {alpha : Type v} {beta : Type w}
@@ -716,6 +733,7 @@ positive fiber. Pointwise finiteness of `g` separately excludes pathological
 top-valued witnesses and matches the canonical forward witness
 `g t b = (model t).map T b`; it is not the hypothesis used to normalize the
 recovery row.
+@isnad1 id=iff.0h5v.s6.7afdbd3f8b66 from=translated src=- shape=1639a9e8 vocab=3179b67b
 -/
 theorem isSufficientStatistic_iff_exists_fisherNeymanFactorization
     {theta : Type u} {alpha : Type v} {beta : Type w}

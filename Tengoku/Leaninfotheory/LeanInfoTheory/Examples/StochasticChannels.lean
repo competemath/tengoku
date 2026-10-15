@@ -51,19 +51,25 @@ private theorem averagingChannel_column_sum (b : Bool) :
   rw [← two_mul]
   exact ENNReal.mul_inv_cancel (by norm_num) (by norm_num)
 
-/-- Uniform invariance proves entropy growth for the averaging channel. -/
+/-- Uniform invariance proves entropy growth for the averaging channel.
+@isnad1 id=le.0h1v.s4.b7de309f9637 from=translated src=- shape=53a9bfd9 vocab=6ec29ace
+-/
 theorem entropy_le_after_averaging_via_invariant (p : PMF Bool) :
     entropy p ≤ entropy (p.bind averagingChannel) :=
   entropy_le_entropy_bind_of_uniform_invariant p averagingChannel (by
     exact bind_averagingChannel (PMF.uniformOfFintype Bool))
 
-/-- The direct column-sum criterion proves the same entropy comparison. -/
+/-- The direct column-sum criterion proves the same entropy comparison.
+@isnad1 id=le.0h1v.s4.b7de309f9637 from=translated src=- shape=53a9bfd9 vocab=6ec29ace
+-/
 theorem entropy_le_after_averaging_via_columns (p : PMF Bool) :
     entropy p ≤ entropy (p.bind averagingChannel) :=
   entropy_le_entropy_bind_of_doublyStochastic p averagingChannel
     averagingChannel_column_sum
 
-/-- Averaging strictly raises the entropy of a pure binary input. -/
+/-- Averaging strictly raises the entropy of a pure binary input.
+@isnad1 id=lt.0h0v.s4.d0b006df93b9 from=translated src=- shape=0c10e083 vocab=7cfbf613
+-/
 theorem entropy_strictly_increases_from_pure :
     entropy (PMF.pure false) <
       entropy ((PMF.pure false).bind averagingChannel) := by
@@ -87,7 +93,9 @@ def biasedLaw : PMF Bool :=
 /-- A channel that resets every input to the nonuniform reference law. -/
 def biasedReset (_ : Bool) : PMF Bool := biasedLaw
 
-/-- The invariant reference in this example is not the uniform law. -/
+/-- The invariant reference in this example is not the uniform law.
+@isnad1 id=ne.0h0v.s3.180e2974e3d2 from=translated src=- shape=228d301a vocab=ca1d49f3
+-/
 theorem biasedLaw_ne_uniform : biasedLaw ≠ PMF.uniformOfFintype Bool := by
   intro h
   have hmass := congrArg (fun p : PMF Bool => p true) h
@@ -96,12 +104,16 @@ theorem biasedLaw_ne_uniform : biasedLaw ≠ PMF.uniformOfFintype Bool := by
   have hreal := congrArg ENNReal.toReal hmass
   norm_num [ENNReal.toReal_inv] at hreal
 
-/-- The nonuniform reference law is invariant under the reset channel. -/
+/-- The nonuniform reference law is invariant under the reset channel.
+@isnad1 id=eq.0h0v.s3.5d9daa12d713 from=translated src=- shape=e6bbf1a6 vocab=58b679f1
+-/
 theorem biasedLaw_invariant : biasedLaw.bind biasedReset = biasedLaw := by
   change biasedLaw.bind (fun _ => biasedLaw) = biasedLaw
   exact PMF.bind_const _ _
 
-/-- One reset step contracts KL divergence toward the nonuniform invariant law. -/
+/-- One reset step contracts KL divergence toward the nonuniform invariant law.
+@isnad1 id=le.0h1v.s5.9dd23210f831 from=translated src=- shape=212e74d5 vocab=7f717552
+-/
 theorem klDiv_contracts_toward_biased (p : PMF Bool) :
     InformationTheory.klDiv (p.bind biasedReset).toMeasure
         biasedLaw.toMeasure ≤
@@ -114,23 +126,31 @@ def leftLaw : PMF Bool := PMF.pure false
 /-- The second of two source laws with disjoint support. -/
 def rightLaw : PMF Bool := PMF.pure true
 
-/-- The source support condition for real-valued cascade contraction fails. -/
+/-- The source support condition for real-valued cascade contraction fails.
+@isnad1 id=not.0h0v.s3.6eb1750f9ed4 from=translated src=- shape=9d6ec9df vocab=310b9914
+-/
 theorem source_support_not_subset :
     Not (leftLaw.support ⊆ rightLaw.support) := by
   simp [leftLaw, rightLaw]
 
-/-- The averaging stage merges the two source laws. -/
+/-- The averaging stage merges the two source laws.
+@isnad1 id=eq.0h0v.s3.88ab2e821f46 from=translated src=- shape=7e15b30e vocab=394e2d6b
+-/
 theorem intermediate_laws_eq :
     leftLaw.bind averagingChannel = rightLaw.bind averagingChannel := by
   simp [leftLaw, rightLaw, averagingChannel]
 
-/-- Support inclusion is restored after the averaging stage. -/
+/-- Support inclusion is restored after the averaging stage.
+@isnad1 id=le.0h0v.s4.8f5a07f57f82 from=translated src=- shape=827d9c63 vocab=ab665c45
+-/
 theorem intermediate_support_subset :
     (leftLaw.bind averagingChannel).support ⊆
       (rightLaw.bind averagingChannel).support := by
   rw [intermediate_laws_eq]
 
-/-- `ENNReal`-valued KL contracts along the two stochastic stages. -/
+/-- `ENNReal`-valued KL contracts along the two stochastic stages.
+@isnad1 id=le.0h0v.s5.0978ab3fb99a from=translated src=- shape=c0218add vocab=6e02d25e
+-/
 theorem klDiv_cascade_contracts :
     InformationTheory.klDiv
         (leftLaw.bind (PMF.channelComp averagingChannel biasedReset)).toMeasure
@@ -143,6 +163,7 @@ theorem klDiv_cascade_contracts :
 /--
 The one-stage theorem gives the weaker intermediate-support real cascade
 contract directly, without requiring another public cascade declaration.
+@isnad1 id=le.0h0v.s5.e71eeb24a967 from=translated src=- shape=6c787374 vocab=098a42d9
 -/
 theorem toReal_klDiv_cascade_contracts_from_intermediate :
     (InformationTheory.klDiv
@@ -156,7 +177,9 @@ theorem toReal_klDiv_cascade_contracts_from_intermediate :
       (leftLaw.bind averagingChannel) (rightLaw.bind averagingChannel)
       biasedReset intermediate_support_subset
 
-/-- Mutual information contracts along the same two stochastic stages. -/
+/-- Mutual information contracts along the same two stochastic stages.
+@isnad1 id=le.0h0v.s5.f3e11a608af2 from=translated src=- shape=4faeb5e8 vocab=2894d488
+-/
 theorem mutualInfo_cascade_contracts :
     mutualInfo
         (PMF.channelJoint (PMF.uniformOfFintype Bool)

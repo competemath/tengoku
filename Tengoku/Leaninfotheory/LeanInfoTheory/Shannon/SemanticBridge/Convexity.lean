@@ -258,6 +258,7 @@ KL divergence is jointly convex under a common finite PMF-valued selector.
 
 The result is canonical in `ENNReal`. An inactive selector component may have
 infinite KL because its weighted contribution is `0 * top = 0`.
+@isnad1 id=le.0h5v.s6.353f38984878 from=translated src=- shape=04abd538 vocab=3e415eab
 -/
 theorem klDiv_bind_le_sum
     {iota : Type u} {alpha : Type v}
@@ -287,6 +288,7 @@ selector component.
 
 No support condition is required when the selector mass is zero, even if that
 inactive component has infinite KL.
+@isnad1 id=le.1h5v.s7.4851292a84c6 from=translated src=- shape=3106f6c4 vocab=61da3de3
 -/
 theorem toReal_klDiv_bind_le_sum
     {iota : Type u} {alpha : Type v}
@@ -334,6 +336,7 @@ theorem toReal_klDiv_bind_le_sum
 Binary joint convexity of KL divergence.
 
 The weight is `t` on the first component and `1 - t` on the second.
+@isnad1 id=le.1h6v.s7.30a4c1d2fd9b from=translated src=- shape=521e9fc4 vocab=fb49bcec
 -/
 theorem klDiv_binaryMixture_le
     {alpha : Type u} [Finite alpha]
@@ -375,6 +378,7 @@ components whose weights can be nonzero.
 
 At `t = 0`, only the second support implication is used; at `t = 1`, only the
 first is used.
+@isnad1 id=le.3h6v.s7.6b4a11fe1b2f from=translated src=- shape=52f4c8ec vocab=7e0083b6
 -/
 theorem toReal_klDiv_binaryMixture_le
     {alpha : Type u} [Finite alpha]
@@ -854,6 +858,7 @@ the usual equality of likelihood ratios. If one reference mass vanishes,
 support inclusion forces its corresponding numerator mass to vanish, so the
 division-free statement handles the absent component without assigning a
 meaning to `0 / 0`.
+@isnad1 id=iff.5h6v.s8.354693c98f20 from=translated src=- shape=95f8f211 vocab=aec12b82
 -/
 theorem klDiv_binaryMixture_eq_iff
     {alpha : Type u} [Finite alpha]
@@ -884,6 +889,7 @@ The division-free condition has the same null-mass interpretation as the
 canonical `ENNReal` theorem: a component absent at an atom contributes matching
 zero numerator and reference masses rather than an artificial likelihood
 ratio.
+@isnad1 id=iff.5h6v.s8.58dece99068a from=translated src=- shape=a55ad1a4 vocab=de0415cc
 -/
 theorem toReal_klDiv_binaryMixture_eq_iff
     {alpha : Type u} [Finite alpha]
@@ -945,6 +951,7 @@ private theorem entropy_channelJoint_eq_entropy_add_sum
 /--
 Mutual information across a finite PMF-valued channel is output entropy minus
 the input-weighted entropy of the channel laws.
+@isnad1 id=eq.0h4v.s6.45cde333cb75 from=translated src=- shape=8eae77e1 vocab=53c22d1f
 -/
 theorem mutualInfo_channelJoint_eq_entropy_bind_sub_sum
     {alpha : Type u} {beta : Type v}
@@ -988,6 +995,7 @@ private theorem sum_mul_expectation_eq_expectation_bind
 /--
 For a fixed finite channel, mutual information is concave in the input law
 under a common finite PMF-valued selector.
+@isnad1 id=le.0h6v.s6.a23472804562 from=translated src=- shape=3a356f8b vocab=3bf4a7f6
 -/
 theorem sum_mul_mutualInfo_channelJoint_le
     {iota : Type u} {alpha : Type v} {beta : Type w}
@@ -1035,6 +1043,7 @@ theorem sum_mul_mutualInfo_channelJoint_le
 /--
 For a fixed finite channel, mutual information is concave along a binary
 mixture of input laws.
+@isnad1 id=le.1h6v.s6.1994262616ee from=translated src=- shape=6109c4f8 vocab=31e04136
 -/
 theorem mutualInfo_binaryMixture_input_concave
     {alpha : Type u} {beta : Type v}
@@ -1112,6 +1121,7 @@ private theorem bind_indepProd_eq_indepProd_bind
 /--
 For a fixed finite input law, mutual information is convex under a common
 finite PMF-valued selector of channels.
+@isnad1 id=le.0h6v.s6.3b1cbd160a4b from=translated src=- shape=973969a6 vocab=3bf4a7f6
 -/
 theorem mutualInfo_channelMixture_le_sum
     {iota : Type u} {alpha : Type v} {beta : Type w}
@@ -1178,6 +1188,7 @@ theorem mutualInfo_channelMixture_le_sum
 /--
 For a fixed finite input law, mutual information is convex along a binary
 mixture of channels.
+@isnad1 id=le.1h6v.s6.e9f70f53e6a2 from=translated src=- shape=61ed24d1 vocab=31e04136
 -/
 theorem mutualInfo_binaryChannelMixture_le
     {alpha : Type u} {beta : Type v}

@@ -68,6 +68,9 @@ def dualObjectiveComputedD2 : Int :=
   -- so obj * D^2 = -muSumD * D - psdSumD2.
   (-muSumD) * (D : Int) - psdSumD2
 
+/--
+@isnad1 id=eq.0h0v.s2.601415209821 from=translated src=- shape=54c8eceb vocab=ae6e7f8b
+-/
 theorem dualObjective_ok : dualObjectiveComputedD2 = dualObjectiveD2 := by decide
 
 /-- Imported auxiliary declaration for the 2-coloring one-round formalization. -/
@@ -76,6 +79,9 @@ def stationarityOK : Bool :=
   (List.range numVars).all fun i =>
     decide (stationarityLHSD2 i = -(c i) * D2)
 
+/--
+@isnad1 id=eq.0h0v.s2.b5a6dac8fadf from=translated src=- shape=54c8eceb vocab=fe0a9e77
+-/
 theorem stationarityOK_true : stationarityOK = true := by decide
 
 end N1000000

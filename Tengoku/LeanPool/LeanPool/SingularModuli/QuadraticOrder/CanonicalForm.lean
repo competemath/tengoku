@@ -228,7 +228,9 @@ private lemma zSpan_smul_mem
 
 /-- Under `k ≤ m ≤ 2·k` and admissibility, the underlying additive
 subgroup of `canonicalIdeal` coincides with the Z-span of its
-two generators. -/
+two generators.
+@isnad1 id=eq.3h5v.s7.758e772d2794 from=translated src=- shape=99a30dda vocab=3fecdcb5
+-/
 lemma canonicalIdeal_eq_zSpan
     (hk_hi : k ≤ m) (hk_lo : m ≤ 2 * k) (hA : CanonicalAdmissible d p k m A) :
     (canonicalIdeal d p k m A).restrictScalars ℤ = canonicalZSpan d p k m A := by

@@ -34,7 +34,9 @@ def G : Matrix (Fin 2) (Fin 4) (ZMod 2) := !![0, 0, 1, 0; 0, 0, 0, 1]
 /-- Parity-check matrix of the concrete code: `H *ᵥ y = (y 0, y 1)`. -/
 def H : Matrix (Fin 2) (Fin 4) (ZMod 2) := !![1, 0, 0, 0; 0, 1, 0, 0]
 
-/-- The dual-pair law, AXIOM-CLEAN by `decide` (4 secrets over ZMod 2, 2×4 / 2×2 matrices). -/
+/-- The dual-pair law, AXIOM-CLEAN by `decide` (4 secrets over ZMod 2, 2×4 / 2×2 matrices).
+@isnad1 id=eq.0h1v.s7.0cffb2b01e52 from=translated src=- shape=dc4aad40 vocab=4b7a91e2
+-/
 theorem hHG_decide : ∀ s : Fin 2 → ZMod 2, H *ᵥ (s ᵥ* G) = 0 := by decide
 
 /-- The concrete scheme. -/
@@ -53,6 +55,9 @@ def S : Scheme (ZMod 2) where
 def witnessOpt (y : Fin S.n → ZMod 2) : Option (Fin S.n → ZMod 2) :=
   if wt y ≤ S.τ then some y else none
 
+/--
+@isnad1 id=and.1h2v.s9.0c07337af4cb from=translated src=- shape=b432461c vocab=72c90341
+-/
 theorem witness_sound :
     ∀ y e', witnessOpt y = some e' → S.H *ᵥ e' = S.H *ᵥ y ∧ wt e' ≤ S.τ := by
   intro y e' h

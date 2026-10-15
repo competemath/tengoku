@@ -50,7 +50,9 @@ polynomial in `(ZMod p)[X]`. -/
 noncomputable def polyMod : (ZMod p)[X] :=
   (poly d).map (Int.castRingHom (ZMod p))
 
-/-- Explicit form: `polyMod d p = X² - d·X + ((d² - d)/4)` over `ZMod p`. -/
+/-- Explicit form: `polyMod d p = X² - d·X + ((d² - d)/4)` over `ZMod p`.
+@isnad1 id=eq.0h2v.s9.8cec00445dcf from=translated src=- shape=b75c8c72 vocab=7b4fc80f
+-/
 lemma polyMod_eq :
     polyMod d p = X ^ 2 - C ((d : ZMod p)) * X
       + C (((d ^ 2 - d) / 4 : ℤ) : ZMod p) := by
@@ -58,21 +60,27 @@ lemma polyMod_eq :
   simp [Polynomial.map_sub, Polynomial.map_add, Polynomial.map_mul,
         Polynomial.map_pow, Polynomial.map_X]
 
-/-- The mod-`p` reduction is monic. -/
+/-- The mod-`p` reduction is monic.
+@isnad1 id=monic.0h2v.s4.11bc4abd1386 from=translated src=- shape=2ff5ef71 vocab=d78fa199
+-/
 lemma polyMod_monic : (polyMod d p).Monic :=
   (poly_monic d).map _
 
 variable {d p}
 
 /-- The mod-`p` reduction has degree 2 (requires `p` prime so `ZMod p` is
-nontrivial). -/
+nontrivial).
+@isnad1 id=eq.0h2v.s4.cc8a7d50be56 from=translated src=- shape=9d9d2aba vocab=30f2d401
+-/
 lemma polyMod_natDegree [Fact p.Prime] : (polyMod d p).natDegree = 2 := by
   unfold polyMod
   rw [(poly_monic d).natDegree_map]
   unfold poly
   compute_degree!
 
-/-- Coefficient of `X²` in `polyMod d p` is `1`. -/
+/-- Coefficient of `X²` in `polyMod d p` is `1`.
+@isnad1 id=eq.0h2v.s5.ead74a68a7e7 from=translated src=- shape=2f60d274 vocab=7a8ab874
+-/
 @[simp] lemma polyMod_coeff_two : (polyMod d p).coeff 2 = 1 := by
   unfold polyMod
   rw [Polynomial.coeff_map]
@@ -80,7 +88,9 @@ lemma polyMod_natDegree [Fact p.Prime] : (polyMod d p).natDegree = 2 := by
   simp [Polynomial.coeff_X_pow,
         Mathlib.Tactic.ComputeDegree.coeff_intCast_ite]
 
-/-- Coefficient of `X` in `polyMod d p` is `-d (mod p)`. -/
+/-- Coefficient of `X` in `polyMod d p` is `-d (mod p)`.
+@isnad1 id=eq.0h2v.s6.9a2f50c3ddca from=translated src=- shape=e1d6cfa6 vocab=ebd0e660
+-/
 @[simp] lemma polyMod_coeff_one :
     (polyMod d p).coeff 1 = -(d : ZMod p) := by
   unfold polyMod
@@ -89,7 +99,9 @@ lemma polyMod_natDegree [Fact p.Prime] : (polyMod d p).natDegree = 2 := by
   simp [Polynomial.coeff_X_pow,
         Mathlib.Tactic.ComputeDegree.coeff_intCast_ite]
 
-/-- Constant coefficient of `polyMod d p` is `(d² - d)/4 (mod p)`. -/
+/-- Constant coefficient of `polyMod d p` is `(d² - d)/4 (mod p)`.
+@isnad1 id=eq.0h2v.s6.75279d256a0c from=translated src=- shape=c1697866 vocab=12ee75ed
+-/
 @[simp] lemma polyMod_coeff_zero :
     (polyMod d p).coeff 0 = (((d ^ 2 - d) / 4 : ℤ) : ZMod p) := by
   unfold polyMod
@@ -100,7 +112,9 @@ lemma polyMod_natDegree [Fact p.Prime] : (polyMod d p).natDegree = 2 := by
 /-- Discriminant identity: when `d ≡ 0 ∨ 1 (mod 4)`, the (coefficient-level)
 discriminant of the monic-quadratic form of `polyMod d p` equals `d` in
 `ZMod p`. This is the key bridge connecting `poly d`'s splitting behaviour
-to the Kronecker symbol `(d / p)`. -/
+to the Kronecker symbol `(d / p)`.
+@isnad1 id=eq.1h2v.s7.4a0f3b3c0514 from=translated src=- shape=3e582514 vocab=054dd0d4
+-/
 lemma polyMod_discrim_eq (hd : d % 4 = 0 ∨ d % 4 = 1) :
     discrim (1 : ZMod p) (-(d : ZMod p)) (((d ^ 2 - d) / 4 : ℤ) : ZMod p)
       = (d : ZMod p) := by
@@ -116,7 +130,9 @@ lemma polyMod_discrim_eq (hd : d % 4 = 0 ∨ d % 4 = 1) :
 
 /-- Evaluation of `polyMod d p` at `x ∈ ZMod p`: a closed-form expansion.
 
-This reduces evaluation to a quadratic expression in `x` over `ZMod p`. -/
+This reduces evaluation to a quadratic expression in `x` over `ZMod p`.
+@isnad1 id=eq.0h3v.s7.05a9b43490ef from=translated src=- shape=4c188972 vocab=13437214
+-/
 lemma polyMod_eval (x : ZMod p) :
     (polyMod d p).eval x = x ^ 2 - (d : ZMod p) * x + (((d ^ 2 - d) / 4 : ℤ) : ZMod p) := by
   rw [polyMod_eq]
@@ -127,7 +143,9 @@ lemma polyMod_eval (x : ZMod p) :
 in `ZMod p` iff `d` is a quadratic residue mod `p` (i.e. `IsSquare (d : ZMod p)`).
 
 This is the polynomial-level bridge connecting `poly d`'s splitting behaviour
-to the Kronecker / Legendre symbol `(d / p)`. -/
+to the Kronecker / Legendre symbol `(d / p)`.
+@isnad1 id=iff.2h2v.s7.87d11b3e41ef from=translated src=- shape=d07b6b22 vocab=d8097f41
+-/
 theorem polyMod_exists_root_iff_isSquare_d
     [Fact p.Prime] (hp2 : p ≠ 2) (hd : d % 4 = 0 ∨ d % 4 = 1) :
     (∃ x : ZMod p, (polyMod d p).eval x = 0) ↔ IsSquare (d : ZMod p) := by
@@ -169,27 +187,35 @@ theorem polyMod_exists_root_iff_isSquare_d
 
 /-- `polyMod d p` has a root in `ZMod p` iff the Legendre symbol `(d/p)` is
 not `-1`. Equivalently, `d` is either zero (ramified case) or a quadratic
-residue (split case) mod `p`. -/
+residue (split case) mod `p`.
+@isnad1 id=iff.2h2v.s6.b58921d3f2b1 from=translated src=- shape=02d89434 vocab=7a400a77
+-/
 theorem polyMod_exists_root_iff_legendreSym_ne_neg_one
     [Fact p.Prime] (hp2 : p ≠ 2) (hd : d % 4 = 0 ∨ d % 4 = 1) :
     (∃ x : ZMod p, (polyMod d p).eval x = 0) ↔ legendreSym p d ≠ -1 := by
   rw [polyMod_exists_root_iff_isSquare_d hp2 hd, Ne, legendreSym.eq_neg_one_iff,
       not_not]
 
-/-- `polyMod d p` has no root in `ZMod p` iff `(d/p) = -1` — the inert case. -/
+/-- `polyMod d p` has no root in `ZMod p` iff `(d/p) = -1` — the inert case.
+@isnad1 id=iff.2h2v.s6.56d920ec4265 from=translated src=- shape=18302471 vocab=7a400a77
+-/
 theorem polyMod_no_root_iff_legendreSym_eq_neg_one
     [Fact p.Prime] (hp2 : p ≠ 2) (hd : d % 4 = 0 ∨ d % 4 = 1) :
     (¬ ∃ x : ZMod p, (polyMod d p).eval x = 0) ↔ legendreSym p d = -1 := by
   rw [polyMod_exists_root_iff_legendreSym_ne_neg_one hp2 hd, not_not]
 
-/-- The ramified case: `(d/p) = 0 ↔ p ∣ d`. -/
+/-- The ramified case: `(d/p) = 0 ↔ p ∣ d`.
+@isnad1 id=iff.0h2v.s4.017005df581f from=translated src=- shape=9b5714e4 vocab=d8bbda20
+-/
 theorem legendreSym_eq_zero_iff_dvd [Fact p.Prime] :
     legendreSym p d = 0 ↔ (p : ℤ) ∣ d := by
   rw [legendreSym.eq_zero_iff, ZMod.intCast_zmod_eq_zero_iff_dvd]
 
 /-- A monic-quadratic polynomial in `(ZMod p)[X]` splits iff it has a root.
 For `polyMod d p` this is the bridge from `polyMod_exists_root_iff_isSquare_d`
-to the `Polynomial.Splits` predicate. -/
+to the `Polynomial.Splits` predicate.
+@isnad1 id=iff.0h2v.s6.7e296413789a from=translated src=- shape=7a6249b7 vocab=bb600bb2
+-/
 theorem polyMod_splits_iff_exists_root [Fact p.Prime] :
     (polyMod d p).Splits ↔ ∃ x : ZMod p, (polyMod d p).eval x = 0 := by
   constructor
@@ -202,7 +228,9 @@ theorem polyMod_splits_iff_exists_root [Fact p.Prime] :
 
 /-- `polyMod d p` splits in `(ZMod p)[X]` iff the Legendre symbol `(d/p)` is
 not `-1`. This combines `polyMod_splits_iff_exists_root` with the previously
-proved `polyMod_exists_root_iff_legendreSym_ne_neg_one`. -/
+proved `polyMod_exists_root_iff_legendreSym_ne_neg_one`.
+@isnad1 id=iff.2h2v.s6.08e3da62bd7d from=translated src=- shape=b7d42177 vocab=7efa5a15
+-/
 theorem polyMod_splits_iff_legendreSym_ne_neg_one
     [Fact p.Prime] (hp2 : p ≠ 2) (hd : d % 4 = 0 ∨ d % 4 = 1) :
     (polyMod d p).Splits ↔ legendreSym p d ≠ -1 := by
@@ -213,7 +241,9 @@ theorem polyMod_splits_iff_legendreSym_ne_neg_one
 dividing `d` (with `d ≡ 0 ∨ 1 (mod 4)`), the reduction `polyMod d p` is
 identically `X²` in `(ZMod p)[X]`. In particular it has the unique root 0
 with multiplicity 2, witnessing the ramified behaviour of `(p)` in
-`QuadraticOrder d`. -/
+`QuadraticOrder d`.
+@isnad1 id=eq.3h2v.s7.1da887ce146f from=translated src=- shape=1abfa932 vocab=424737cb
+-/
 theorem polyMod_eq_X_sq_of_p_dvd_d
     [Fact p.Prime] (hp2 : p ≠ 2) (hd : d % 4 = 0 ∨ d % 4 = 1)
     (hpd : (p : ℤ) ∣ d) :
@@ -249,7 +279,9 @@ theorem polyMod_eq_X_sq_of_p_dvd_d
 /-- The split case at the polynomial level: when `p` is an odd prime, `d ≡ 0 ∨ 1
 (mod 4)`, and the Legendre symbol `(d/p) = 1` (so `d` is a non-zero quadratic
 residue mod `p`), `polyMod d p` has two distinct roots in `ZMod p`. These two
-roots witness the splitting `(p) = P₁ · P₂` in `QuadraticOrder d`. -/
+roots witness the splitting `(p) = P₁ · P₂` in `QuadraticOrder d`.
+@isnad1 id=ex.3h2v.s7.32c234f82157 from=translated src=- shape=8b68f2a4 vocab=3a64116c
+-/
 theorem polyMod_exists_two_distinct_roots_of_legendreSym_eq_one
     [Fact p.Prime] (hp2 : p ≠ 2) (hd : d % 4 = 0 ∨ d % 4 = 1)
     (h_split : legendreSym p d = 1) :
@@ -311,7 +343,9 @@ theorem polyMod_exists_two_distinct_roots_of_legendreSym_eq_one
 
 /-- `polyMod d p` is irreducible in `(ZMod p)[X]` iff the Legendre symbol
 `(d/p) = -1`. Combines the monic-degree-two irreducibility characterisation
-with the polynomial-level Legendre bridge already established. -/
+with the polynomial-level Legendre bridge already established.
+@isnad1 id=iff.2h2v.s6.f10941413d9a from=translated src=- shape=045a77e5 vocab=b98ac1cc
+-/
 theorem polyMod_irreducible_iff_legendreSym_eq_neg_one
     [Fact p.Prime] (hp2 : p ≠ 2) (hd : d % 4 = 0 ∨ d % 4 = 1) :
     Irreducible (polyMod d p) ↔ legendreSym p d = -1 := by

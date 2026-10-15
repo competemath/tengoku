@@ -192,6 +192,9 @@ private theorem globalCharacter_extendDomain {R : Type w} {I : Type u}
     simpa only [AddMonoidHom.comp_apply, Finsupp.singleAddHom_apply] using happly
   exact DFunLike.congr_fun hhom x
 
+/--
+@isnad1 id=eq.1h7v.s9.9a92e1964bbc from=translated src=- shape=b99aaadc vocab=3c4d0dc6
+-/
 theorem globalCharacter_eq_local_restriction {R : Type w} {I : Type u}
     [AddCommMonoid R] [One R] [LinearOrder I] [WellFoundedLT I]
     (extension : CoordinateExtension R) (E : Data R I) (D : Set I)
@@ -227,7 +230,9 @@ private theorem tendsto_stageEvaluation_compactLimit
       (nhds (compactStageLimit E i previous c)) := by
   exact (Ultrafilter.map (stageEvaluation E i previous c) (E.p c)).le_nhds_lim
 
-/-- The transfinite extension realizes every prescribed ultrafilter limit. -/
+/-- The transfinite extension realizes every prescribed ultrafilter limit.
+@isnad1 id=tendsto.2h7v.s9.7b73d0aa8a49 from=translated src=- shape=0f17e478 vocab=e881f510
+-/
 theorem globalCharacter_admissible
     {R : Type w} {I : Type u} [AddCommMonoid R] [One R] [LinearOrder I] [WellFoundedLT I]
     (extension : CoordinateExtension R) (E : Data R I) (D : Set I)

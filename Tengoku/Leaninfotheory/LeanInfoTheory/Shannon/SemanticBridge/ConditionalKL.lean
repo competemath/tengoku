@@ -58,7 +58,9 @@ def conditionalKlDiv
 
 /-! ## Elementary API -/
 
-/-- Conditional relative entropy from a channel to itself is zero. -/
+/-- Conditional relative entropy from a channel to itself is zero.
+@isnad1 id=eq.0h4v.s5.272d66a9deb9 from=translated src=- shape=7b72d3da vocab=90f22a17
+-/
 @[simp] theorem conditionalKlDiv_self
     {alpha : Type u} {beta : Type v}
     [MeasurableSpace alpha] [MeasurableSpace beta]
@@ -113,6 +115,7 @@ divergences.
 This identity is unconditional in `ENNReal`. An infinite KL value on a null
 base fiber contributes `0 * ⊤ = 0`, while an infinite KL value on an active
 fiber makes both sides `⊤`.
+@isnad1 id=eq.0h5v.s6.8478c4968bdd from=translated src=- shape=6400f089 vocab=8e0b950c
 -/
 theorem conditionalKlDiv_eq_sum
     {alpha : Type u} {beta : Type v}
@@ -228,6 +231,7 @@ support inclusion on the active base atoms:
 No support condition is imposed when `r x = 0`. In particular, an infinite
 fiber KL divergence on a null base atom contributes zero to the canonical
 `ENNReal` weighted sum before conversion to `Real`.
+@isnad1 id=eq.1h5v.s6.c65eaf4e8e9a from=translated src=- shape=e4f6cc55 vocab=468c1657
 -/
 theorem toReal_conditionalKlDiv_eq_sum
     {alpha : Type u} {beta : Type v}
@@ -267,6 +271,7 @@ KL chain rule for two finite channel-joint laws:
 
 The conditional term is weighted by the numerator base law `p`. The identity
 is unconditional in `ENNReal`, including when either summand is `⊤`.
+@isnad1 id=eq.0h6v.s6.1d1b71157d84 from=translated src=- shape=d852f797 vocab=925f9e8c
 -/
 theorem klDiv_channelJoint_eq_add_conditionalKlDiv
     {alpha : Type u} {beta : Type v}
@@ -296,6 +301,7 @@ laws and for every active numerator fiber:
 
 The fiber condition is required only on `p.support`; an infinite fiber KL
 divergence at a null numerator atom does not affect the identity.
+@isnad1 id=eq.2h6v.s7.f642fe1ee27c from=translated src=- shape=e4b33dca vocab=58458e71
 -/
 theorem toReal_klDiv_channelJoint_eq_add_conditionalKlDiv
     {alpha : Type u} {beta : Type v}

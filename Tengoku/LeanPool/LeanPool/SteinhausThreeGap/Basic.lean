@@ -62,12 +62,16 @@ noncomputable def orbit (a : ℝ) (N : ℕ) : Finset ℝ :=
   (Finset.range N).image (fun i : ℕ => Int.fract ((i : ℝ) * a))
 
 /-- The orbit is nonempty as soon as there is at least one index, i.e. `0 < N`.
-    Ties the hypothesis `0 < N` of `gaps_sum_eq_one` to the orbit. -/
+    Ties the hypothesis `0 < N` of `gaps_sum_eq_one` to the orbit.
+@isnad1 id=nonempty.1h2v.s4.13e15cdc790c from=translated src=- shape=0f4a3c96 vocab=04b899cd
+-/
 theorem orbit_nonempty (a : ℝ) {N : ℕ} (hN : 0 < N) : (orbit a N).Nonempty := by
   simp only [orbit, Finset.image_nonempty, Finset.nonempty_range_iff]
   exact hN.ne'
 
-/-- Every orbit point is a fractional part, hence lies in `[0,1)`. -/
+/-- Every orbit point is a fractional part, hence lies in `[0,1)`.
+@isnad1 id=le.0h2v.s5.7897b5e94ee4 from=translated src=- shape=5b1deab3 vocab=7b1240cc
+-/
 theorem orbit_subset_Ico (a : ℝ) (N : ℕ) :
     ↑(orbit a N) ⊆ Set.Ico (0 : ℝ) 1 := by
   intro x hx
@@ -109,7 +113,9 @@ noncomputable def gaps (a : ℝ) (N : ℕ) : Multiset ℝ :=
     `max - min`; adding the wrap-around gap `(min + 1) - max` yields `1`.
 
     The proof is a pure `Finset` telescoping sum (`Finset.sum_range_sub`) followed
-    by `ring`. -/
+    by `ring`.
+@isnad1 id=eq.1h2v.s4.ce321b6c13db from=translated src=- shape=0baba646 vocab=54804e7b
+-/
 theorem gaps_sum_eq_one (a : ℝ) (N : ℕ) (hN : 0 < N) : (gaps a N).sum = 1 := by
   have _hne : (orbit a N).Nonempty := orbit_nonempty a hN
   simp only [gaps, Multiset.sum_add, Multiset.sum_singleton, Finset.sum_map_val]
@@ -119,18 +125,24 @@ theorem gaps_sum_eq_one (a : ℝ) (N : ℕ) (hN : 0 < N) : (gaps a N).sum = 1 :=
 /-! ## Phase 1 — orbit membership and the sorted enumeration -/
 
 /-- **Membership in the orbit.**  `x` is an orbit point iff it is `Int.fract (i * a)`
-    for some index `i < N`. -/
+    for some index `i < N`.
+@isnad1 id=iff.0h3v.s5.df164678d7c1 from=translated src=- shape=2057547a vocab=71b6489a
+-/
 theorem mem_orbit_iff (a : ℝ) (N : ℕ) (x : ℝ) :
     x ∈ orbit a N ↔ ∃ i, i < N ∧ Int.fract ((i : ℝ) * a) = x := by
   simp only [orbit, Finset.mem_image, Finset.mem_range]
 
-/-- **`0` lies in every nonempty orbit** (index `i = 0` gives `Int.fract 0 = 0`). -/
+/-- **`0` lies in every nonempty orbit** (index `i = 0` gives `Int.fract 0 = 0`).
+@isnad1 id=mem.1h2v.s5.c0f99b42d118 from=translated src=- shape=c0c8c869 vocab=5c3e1b81
+-/
 theorem zero_mem_orbit (a : ℝ) {N : ℕ} (hN : 0 < N) : (0 : ℝ) ∈ orbit a N := by
   rw [mem_orbit_iff]
   exact ⟨0, hN, by rw [Nat.cast_zero, zero_mul, Int.fract_zero]⟩
 
 /-- **The sorted enumeration is strictly increasing** on the valid index range:
-    for `i < j` with `j < orbitCard a N`, `sortedVal a N i < sortedVal a N j`. -/
+    for `i < j` with `j < orbitCard a N`, `sortedVal a N i < sortedVal a N j`.
+@isnad1 id=lt.2h4v.s5.63e86f27839d from=translated src=- shape=a62ccde9 vocab=349295a8
+-/
 theorem sortedVal_strictMono (a : ℝ) (N : ℕ) {i j : ℕ}
     (hij : i < j) (hj : j < orbitCard a N) :
     sortedVal a N i < sortedVal a N j := by
@@ -138,14 +150,18 @@ theorem sortedVal_strictMono (a : ℝ) (N : ℕ) {i j : ℕ}
   simp only [sortedVal, dite_eq_left hi, dite_eq_left hj]
   exact (orbitEmb a N).strictMono (by simpa using hij)
 
-/-- **The first sorted value is the minimum.** -/
+/-- **The first sorted value is the minimum.**
+@isnad1 id=eq.1h2v.s4.64d33d36c137 from=translated src=- shape=be63f0f7 vocab=60476a57
+-/
 theorem sortedVal_zero (a : ℝ) {N : ℕ} (hN : 0 < N) :
     sortedVal a N 0 = (orbit a N).min' (orbit_nonempty a hN) := by
   have hpos : 0 < orbitCard a N := Finset.card_pos.mpr (orbit_nonempty a hN)
   simp only [sortedVal, dite_eq_left hpos]
   exact Finset.orderEmbOfFin_zero rfl hpos
 
-/-- **The last sorted value is the maximum.** -/
+/-- **The last sorted value is the maximum.**
+@isnad1 id=eq.1h2v.s5.dd5414547310 from=translated src=- shape=1ceb1de2 vocab=aad908f4
+-/
 theorem sortedVal_last (a : ℝ) {N : ℕ} (hN : 0 < N) :
     sortedVal a N (orbitCard a N - 1) = (orbit a N).max' (orbit_nonempty a hN) := by
   have hpos : 0 < orbitCard a N := Finset.card_pos.mpr (orbit_nonempty a hN)
@@ -153,7 +169,9 @@ theorem sortedVal_last (a : ℝ) {N : ℕ} (hN : 0 < N) :
   simp only [sortedVal, dite_eq_left hlast]
   exact Finset.orderEmbOfFin_last rfl hpos
 
-/-- **Every sorted value (below the count) is an orbit point.** -/
+/-- **Every sorted value (below the count) is an orbit point.**
+@isnad1 id=mem.1h3v.s4.a1ca34a6a606 from=translated src=- shape=04485467 vocab=ec2a6057
+-/
 theorem sortedVal_mem (a : ℝ) {N : ℕ} {i : ℕ} (h : i < orbitCard a N) :
     sortedVal a N i ∈ orbit a N := by
   simp only [sortedVal, dite_eq_left h]
@@ -165,19 +183,25 @@ theorem sortedVal_mem (a : ℝ) {N : ℕ} {i : ℕ} (h : i < orbitCard a N) :
 noncomputable def gapAt (a : ℝ) (N : ℕ) (i : ℕ) : ℝ :=
   sortedVal a N (i + 1) - sortedVal a N i
 
-/-- `gaps` written through `gapAt` (definitional). -/
+/-- `gaps` written through `gapAt` (definitional).
+@isnad1 id=eq.0h2v.s6.31729127576d from=translated src=- shape=65b5e00a vocab=072b9ef1
+-/
 theorem gaps_eq (a : ℝ) (N : ℕ) :
     gaps a N =
       ((Finset.range (orbitCard a N - 1)).val.map (gapAt a N)) +
         {sortedVal a N 0 + 1 - sortedVal a N (orbitCard a N - 1)} := rfl
 
-/-- Internal (non-wrap-around) gaps are positive. -/
+/-- Internal (non-wrap-around) gaps are positive.
+@isnad1 id=lt.1h3v.s5.87fafa9bec26 from=translated src=- shape=9874a929 vocab=d8c2440a
+-/
 theorem gapAt_pos (a : ℝ) (N : ℕ) {i : ℕ} (h : i + 1 < orbitCard a N) :
     0 < gapAt a N i := by
   unfold gapAt
   exact sub_pos.mpr (sortedVal_strictMono a N (Nat.lt_succ_self i) h)
 
-/-- Membership in `gaps`, unpacked into the internal gaps and the wrap-around gap. -/
+/-- Membership in `gaps`, unpacked into the internal gaps and the wrap-around gap.
+@isnad1 id=iff.0h3v.s6.ef09f4a38c0b from=translated src=- shape=76ec1649 vocab=276bff6f
+-/
 theorem mem_gaps_iff (a : ℝ) (N : ℕ) (x : ℝ) :
     x ∈ gaps a N ↔
       (∃ i, i < orbitCard a N - 1 ∧ gapAt a N i = x) ∨
@@ -186,14 +210,18 @@ theorem mem_gaps_iff (a : ℝ) (N : ℕ) (x : ℝ) :
   simp only [Multiset.mem_add, Multiset.mem_map, Finset.range_val,
     Multiset.mem_range, Multiset.mem_singleton]
 
-/-- A loose bound: the number of distinct gap values is at most the number of gaps. -/
+/-- A loose bound: the number of distinct gap values is at most the number of gaps.
+@isnad1 id=le.0h2v.s4.8371342b952e from=translated src=- shape=5ff653b3 vocab=55980f65
+-/
 theorem gaps_toFinset_card_le (a : ℝ) (N : ℕ) :
     (gaps a N).toFinset.card ≤ Multiset.card (gaps a N) :=
   Multiset.toFinset_card_le (gaps a N)
 
 /-- **Reduction lemma for the three-gap bound.** If every distinct gap value lies in
     a fixed three-element set, then there are at most three distinct gap lengths.
-    The Phase 2 core supplies the hypothesis with `{η⁺, η⁻, η⁺+η⁻}`. -/
+    The Phase 2 core supplies the hypothesis with `{η⁺, η⁻, η⁺+η⁻}`.
+@isnad1 id=le.1h5v.s6.58fa8ecdd48c from=translated src=- shape=2eed1816 vocab=39c5bad6
+-/
 theorem three_gap_card_le_three_of_subset (a : ℝ) (N : ℕ) {x y z : ℝ}
     (hsub : (gaps a N).toFinset ⊆ ({x, y, z} : Finset ℝ)) :
     (gaps a N).toFinset.card ≤ 3 :=
@@ -211,24 +239,39 @@ Phase 2 core sections below. -/
 /-- The **positive orbit points** `(orbit a N) \ {0}`.  Each lies in `(0,1)`. -/
 noncomputable def posOrbit (a : ℝ) (N : ℕ) : Finset ℝ := (orbit a N).erase 0
 
+/--
+@isnad1 id=iff.0h3v.s5.817b1ac97a52 from=translated src=- shape=81edb25a vocab=2ac38b25
+-/
 theorem mem_posOrbit_iff (a : ℝ) (N : ℕ) (x : ℝ) :
     x ∈ posOrbit a N ↔ x ≠ 0 ∧ x ∈ orbit a N := by
   simp only [posOrbit, Finset.mem_erase]
 
+/--
+@isnad1 id=le.0h2v.s4.bdc4646140d5 from=translated src=- shape=74d6d0d6 vocab=cdec680a
+-/
 theorem posOrbit_subset_orbit (a : ℝ) (N : ℕ) : posOrbit a N ⊆ orbit a N :=
   Finset.erase_subset _ _
 
+/--
+@isnad1 id=lt.1h3v.s4.cae97e4a7ea6 from=translated src=- shape=d553b3cb vocab=b42f5b88
+-/
 theorem posOrbit_pos (a : ℝ) (N : ℕ) {x : ℝ} (hx : x ∈ posOrbit a N) : 0 < x := by
   rw [mem_posOrbit_iff] at hx
   obtain ⟨hx0, hxo⟩ := hx
   have hmem : x ∈ Set.Ico (0 : ℝ) 1 := orbit_subset_Ico a N (by simpa using hxo)
   exact lt_of_le_of_ne hmem.1 (Ne.symm hx0)
 
+/--
+@isnad1 id=lt.1h3v.s4.5acb2f017445 from=translated src=- shape=b3d46774 vocab=b42f5b88
+-/
 theorem posOrbit_lt_one (a : ℝ) (N : ℕ) {x : ℝ} (hx : x ∈ posOrbit a N) : x < 1 := by
   rw [mem_posOrbit_iff] at hx
   have hmem : x ∈ Set.Ico (0 : ℝ) 1 := orbit_subset_Ico a N (by simpa using hx.2)
   exact hmem.2
 
+/--
+@isnad1 id=nonempty.1h2v.s4.add464ca1c71 from=translated src=- shape=78649951 vocab=e80becf4
+-/
 theorem posOrbit_nonempty (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) :
     (posOrbit a N).Nonempty := by
   have hntriv : (orbit a N).Nontrivial := by
@@ -237,14 +280,18 @@ theorem posOrbit_nonempty (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) :
   obtain ⟨x, hx, hx0⟩ := hntriv.exists_ne (0 : ℝ)
   exact ⟨x, by rw [mem_posOrbit_iff]; exact ⟨hx0, hx⟩⟩
 
-/-- `orbitCard a N ≤ N` (the orbit is the image of `range N`). -/
+/-- `orbitCard a N ≤ N` (the orbit is the image of `range N`).
+@isnad1 id=le.0h2v.s3.1e6a90f2525a from=translated src=- shape=be8b5c95 vocab=961fe64a
+-/
 theorem orbitCard_le (a : ℝ) (N : ℕ) : orbitCard a N ≤ N := by
   unfold orbitCard orbit
   calc ((Finset.range N).image (fun i : ℕ => Int.fract ((i : ℝ) * a))).card
       ≤ (Finset.range N).card := Finset.card_image_le
     _ = N := Finset.card_range N
 
-/-- A nondegenerate orbit (`2 ≤ orbitCard`) forces `0 < N`. -/
+/-- A nondegenerate orbit (`2 ≤ orbitCard`) forces `0 < N`.
+@isnad1 id=lt.1h2v.s4.a1d19d3196d1 from=translated src=- shape=f85d87e2 vocab=71fb7cfd
+-/
 theorem pos_of_two_le_orbitCard (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) : 0 < N := by
   have hle := orbitCard_le a N
   omega
@@ -259,50 +306,66 @@ noncomputable def etaPos (a : ℝ) (N : ℕ) : ℝ :=
 noncomputable def etaNeg (a : ℝ) (N : ℕ) : ℝ :=
   if h : (posOrbit a N).Nonempty then 1 - (posOrbit a N).max' h else 1
 
-/-- `η⁺` is achieved by an actual positive orbit point: it lies in `posOrbit`. -/
+/-- `η⁺` is achieved by an actual positive orbit point: it lies in `posOrbit`.
+@isnad1 id=mem.1h2v.s5.87987547f737 from=translated src=- shape=053b8350 vocab=94dd1bac
+-/
 theorem etaPos_mem (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) :
     etaPos a N ∈ posOrbit a N := by
   have h := posOrbit_nonempty a h2
   simp only [etaPos, dite_eq_left h]
   exact (posOrbit a N).min'_mem h
 
-/-- `η⁺ > 0`. -/
+/-- `η⁺ > 0`.
+@isnad1 id=lt.1h2v.s4.08491fd41d6d from=translated src=- shape=013ebb13 vocab=1f6ff308
+-/
 theorem etaPos_pos (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) : 0 < etaPos a N :=
   posOrbit_pos a N (etaPos_mem a h2)
 
-/-- `η⁺` is minimal among positive orbit points. -/
+/-- `η⁺` is minimal among positive orbit points.
+@isnad1 id=le.2h3v.s5.07f5942f2192 from=translated src=- shape=3f9d593a vocab=94dd1bac
+-/
 theorem etaPos_le (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N)
     {x : ℝ} (hx : x ∈ posOrbit a N) : etaPos a N ≤ x := by
   have h := posOrbit_nonempty a h2
   simp only [etaPos, dite_eq_left h]
   exact (posOrbit a N).min'_le x hx
 
-/-- `η⁺` is the smallest *positive* orbit point. -/
+/-- `η⁺` is the smallest *positive* orbit point.
+@isnad1 id=le.3h3v.s5.a8f95e5ddc24 from=translated src=- shape=7e4b9a7d vocab=e3117a58
+-/
 theorem no_orbit_below_etaPos (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N)
     {x : ℝ} (hx : x ∈ orbit a N) (hx0 : 0 < x) : etaPos a N ≤ x :=
   etaPos_le a h2 (by rw [mem_posOrbit_iff]; exact ⟨hx0.ne', hx⟩)
 
-/-- `1 - η⁻` (the largest positive orbit point) is achieved. -/
+/-- `1 - η⁻` (the largest positive orbit point) is achieved.
+@isnad1 id=mem.1h2v.s5.956eb698632c from=translated src=- shape=c9f9c63d vocab=4b596d47
+-/
 theorem max_posOrbit_mem (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) :
     (1 : ℝ) - etaNeg a N ∈ posOrbit a N := by
   have h := posOrbit_nonempty a h2
   simp only [etaNeg, dite_eq_left h, sub_sub_self]
   exact (posOrbit a N).max'_mem h
 
-/-- `η⁻ > 0`. -/
+/-- `η⁻ > 0`.
+@isnad1 id=lt.1h2v.s4.5c852902a33f from=translated src=- shape=013ebb13 vocab=8610dd5a
+-/
 theorem etaNeg_pos (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) : 0 < etaNeg a N := by
   have hmem := max_posOrbit_mem a h2
   have hlt1 : (1 : ℝ) - etaNeg a N < 1 := posOrbit_lt_one a N hmem
   linarith
 
-/-- Every positive orbit point is `≤ 1 - η⁻`. -/
+/-- Every positive orbit point is `≤ 1 - η⁻`.
+@isnad1 id=le.2h3v.s5.b865f77d47dc from=translated src=- shape=fa60f9d3 vocab=4b596d47
+-/
 theorem le_one_sub_etaNeg (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N)
     {x : ℝ} (hx : x ∈ posOrbit a N) : x ≤ 1 - etaNeg a N := by
   have h := posOrbit_nonempty a h2
   simp only [etaNeg, dite_eq_left h, sub_sub_self]
   exact (posOrbit a N).le_max' x hx
 
-/-- With at least one orbit point, the smallest sorted value is `0`. -/
+/-- With at least one orbit point, the smallest sorted value is `0`.
+@isnad1 id=eq.1h2v.s4.7d629e04ff6a from=translated src=- shape=49af02a5 vocab=51ea763b
+-/
 theorem sortedVal_zero_eq_zero (a : ℝ) {N : ℕ} (hN : 0 < N) :
     sortedVal a N 0 = 0 := by
   rw [sortedVal_zero a hN]
@@ -313,7 +376,9 @@ theorem sortedVal_zero_eq_zero (a : ℝ) {N : ℕ} (hN : 0 < N) :
     have : y ∈ Set.Ico (0 : ℝ) 1 := orbit_subset_Ico a N (by simpa using hy)
     exact this.1
 
-/-- `sortedVal` is monotone (non-strict) on the valid index range. -/
+/-- `sortedVal` is monotone (non-strict) on the valid index range.
+@isnad1 id=le.2h4v.s5.65f4de3d3ec4 from=translated src=- shape=27721f2b vocab=40e0ff02
+-/
 theorem sortedVal_monotone (a : ℝ) (N : ℕ) {i j : ℕ}
     (hij : i ≤ j) (hj : j < orbitCard a N) :
     sortedVal a N i ≤ sortedVal a N j := by
@@ -321,14 +386,18 @@ theorem sortedVal_monotone (a : ℝ) (N : ℕ) {i j : ℕ}
   · exact le_of_eq (by rw [h])
   · exact le_of_lt (sortedVal_strictMono a N h hj)
 
-/-- `sortedVal` reflects strict order on valid indices. -/
+/-- `sortedVal` reflects strict order on valid indices.
+@isnad1 id=lt.2h4v.s5.5346cfdeb143 from=translated src=- shape=1cb8c834 vocab=349295a8
+-/
 theorem lt_of_sortedVal_lt (a : ℝ) (N : ℕ) {i m : ℕ}
     (hi : i < orbitCard a N) (h : sortedVal a N i < sortedVal a N m) : i < m := by
   by_contra hcon
   push Not at hcon
   exact absurd (sortedVal_monotone a N hcon hi) (not_le.mpr h)
 
-/-- In the degenerate regime `orbitCard a N ≤ 1`, `gaps a N` has a single element. -/
+/-- In the degenerate regime `orbitCard a N ≤ 1`, `gaps a N` has a single element.
+@isnad1 id=eq.1h2v.s4.913381f5efaa from=translated src=- shape=ba507385 vocab=880ce9b0
+-/
 theorem gaps_card_eq_one_of_degenerate (a : ℝ) {N : ℕ} (h1 : orbitCard a N ≤ 1) :
     Multiset.card (gaps a N) = 1 := by
   rw [gaps_eq]
@@ -345,7 +414,9 @@ three-gap bound to the single first-return classification lemma
 (`neighbour_gap_in_returns`, the genuine combinatorial core, proved below). -/
 
 /-- **The sorted enumeration is onto the orbit.**  Every orbit point is `sortedVal j`
-    for some valid index `j`. -/
+    for some valid index `j`.
+@isnad1 id=ex.1h3v.s5.91f4131f20f5 from=translated src=- shape=1074dffa vocab=ec2a6057
+-/
 theorem exists_index_of_mem_orbit (a : ℝ) (N : ℕ) {y : ℝ} (hy : y ∈ orbit a N) :
     ∃ j, j < orbitCard a N ∧ sortedVal a N j = y := by
   have hrange : Set.range (orbitEmb a N) = ↑(orbit a N) :=
@@ -357,7 +428,9 @@ theorem exists_index_of_mem_orbit (a : ℝ) (N : ℕ) {y : ℝ} (hy : y ∈ orbi
   simp only [sortedVal, dite_eq_left j.2, Fin.eta]
   exact hj
 
-/-- No orbit point lies strictly between two consecutive sorted points. -/
+/-- No orbit point lies strictly between two consecutive sorted points.
+@isnad1 id=false.4h4v.s6.4827191104db from=translated src=- shape=fe9b758a vocab=dd87410d
+-/
 theorem no_orbit_strictly_between (a : ℝ) (N : ℕ) {i : ℕ} (hi : i + 1 < orbitCard a N)
     {z : ℝ} (hz : z ∈ orbit a N)
     (hlo : sortedVal a N i < z) (hhi : z < sortedVal a N (i + 1)) : False := by
@@ -367,7 +440,9 @@ theorem no_orbit_strictly_between (a : ℝ) (N : ℕ) {i : ℕ} (hi : i + 1 < or
   have hmi : m < i + 1 := lt_of_sortedVal_lt a N hm (by rwa [hmval])
   omega
 
-/-- `sortedVal a N 1 = η⁺`. -/
+/-- `sortedVal a N 1 = η⁺`.
+@isnad1 id=eq.1h2v.s4.800b06154648 from=translated src=- shape=e2fab632 vocab=b10fd751
+-/
 theorem sortedVal_one_eq_etaPos (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) :
     sortedVal a N 1 = etaPos a N := by
   have hN : 0 < N := pos_of_two_le_orbitCard a h2
@@ -391,7 +466,9 @@ theorem sortedVal_one_eq_etaPos (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) :
     · exact le_of_lt (sortedVal_strictMono a N hjlt hj)
   · exact no_orbit_below_etaPos a h2 hmem hpos
 
-/-- The wrap-around gap equals `η⁻`. -/
+/-- The wrap-around gap equals `η⁻`.
+@isnad1 id=eq.1h2v.s6.58c08ed5cada from=translated src=- shape=b04f8e9c vocab=965245d2
+-/
 theorem wraparound_eq_etaNeg (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) :
     sortedVal a N 0 + 1 - sortedVal a N (orbitCard a N - 1) = etaNeg a N := by
   have hN : 0 < N := pos_of_two_le_orbitCard a h2
@@ -410,14 +487,18 @@ theorem wraparound_eq_etaNeg (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) :
     · exact (orbit a N).le_max' _ hmem
   rw [hmax]; ring
 
-/-- The first internal gap is `η⁺`. -/
+/-- The first internal gap is `η⁺`.
+@isnad1 id=eq.1h2v.s4.00ff883fef0f from=translated src=- shape=e2fab632 vocab=6f914228
+-/
 theorem gapAt_zero_eq_etaPos (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) :
     gapAt a N 0 = etaPos a N := by
   have hN : 0 < N := pos_of_two_le_orbitCard a h2
   unfold gapAt
   rw [sortedVal_zero_eq_zero a hN, sortedVal_one_eq_etaPos a h2, sub_zero]
 
-/-- `η⁺` occurs as a gap value.  (API extra; not used by the main chain.) -/
+/-- `η⁺` occurs as a gap value.  (API extra; not used by the main chain.)
+@isnad1 id=mem.1h2v.s4.781a7b56ebde from=translated src=- shape=053b8350 vocab=96a9a4b2
+-/
 theorem etaPos_is_gap (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) :
     etaPos a N ∈ gaps a N := by
   rw [mem_gaps_iff]
@@ -425,7 +506,9 @@ theorem etaPos_is_gap (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) :
   refine ⟨0, ?_, gapAt_zero_eq_etaPos a h2⟩
   omega
 
-/-- `η⁻` occurs as a gap value.  (API extra; not used by the main chain.) -/
+/-- `η⁻` occurs as a gap value.  (API extra; not used by the main chain.)
+@isnad1 id=mem.1h2v.s4.9ce7517438ad from=translated src=- shape=053b8350 vocab=8eb12317
+-/
 theorem etaNeg_is_gap (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) :
     etaNeg a N ∈ gaps a N := by
   rw [mem_gaps_iff]
@@ -437,7 +520,9 @@ theorem etaNeg_is_gap (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) :
 /-- **Fractional-part index-shift identity.**  Reducing the two summands mod 1
     first does not change the fractional part of a sum:
     `Int.fract (Int.fract x + Int.fract y) = Int.fract (x + y)`.  With `x = u*a`,
-    `y = m*a` this is the value form of the multiplier shift `u, m ↦ u + m`. -/
+    `y = m*a` this is the value form of the multiplier shift `u, m ↦ u + m`.
+@isnad1 id=eq.0h2v.s5.f4e944a37117 from=translated src=- shape=00234d03 vocab=19981c94
+-/
 theorem fract_add_fract_eq (x y : ℝ) :
     Int.fract (Int.fract x + Int.fract y) = Int.fract (x + y) := by
   rw [Int.fract_eq_fract]
@@ -450,7 +535,9 @@ theorem fract_add_fract_eq (x y : ℝ) :
     rotated value `Int.fract (Int.fract (u*a) + Int.fract (m*a))` is again an orbit
     point.  This is the half of the Slater closure that does not wrap past index
     `N`; the values that fall off the end (`u + m ≥ N`) are where the negative
-    return appears.  (API extra; not used by the main chain.) -/
+    return appears.  (API extra; not used by the main chain.)
+@isnad1 id=mem.1h4v.s6.4c63cc477ef0 from=translated src=- shape=81a9c2a1 vocab=3bee4100
+-/
 theorem fract_rotate_mem (a : ℝ) (N : ℕ) {u m : ℕ} (hum : u + m < N) :
     Int.fract (Int.fract ((u : ℝ) * a) + Int.fract ((m : ℝ) * a)) ∈ orbit a N := by
   rw [fract_add_fract_eq]
@@ -469,10 +556,16 @@ of the three-gap dichotomy is the *Nat* condition `canMul + mp < N`.
 noncomputable def mulFiber (a : ℝ) (N : ℕ) (p : ℝ) : Finset ℕ :=
   (Finset.range N).filter (fun k => Int.fract ((k : ℝ) * a) = p)
 
+/--
+@isnad1 id=iff.0h4v.s5.1b32b02c568f from=translated src=- shape=6acd73a4 vocab=49bdce36
+-/
 theorem mem_mulFiber_iff (a : ℝ) (N : ℕ) (p : ℝ) (k : ℕ) :
     k ∈ mulFiber a N p ↔ k < N ∧ Int.fract ((k : ℝ) * a) = p := by
   simp only [mulFiber, Finset.mem_filter, Finset.mem_range]
 
+/--
+@isnad1 id=nonempty.1h3v.s4.b6b90d1ba00a from=translated src=- shape=6fc360c5 vocab=c444a3fb
+-/
 theorem mulFiber_nonempty (a : ℝ) (N : ℕ) {p : ℝ} (hp : p ∈ orbit a N) :
     (mulFiber a N p).Nonempty := by
   obtain ⟨i, hi, hival⟩ := (mem_orbit_iff a N p).mp hp
@@ -482,21 +575,32 @@ theorem mulFiber_nonempty (a : ℝ) (N : ℕ) {p : ℝ} (hp : p ∈ orbit a N) :
 noncomputable def canMul (a : ℝ) (N : ℕ) (p : ℝ) (hp : p ∈ orbit a N) : ℕ :=
   (mulFiber a N p).min' (mulFiber_nonempty a N hp)
 
+/--
+@isnad1 id=mem.1h3v.s5.a5082d7b06ed from=translated src=- shape=bdf32c9c vocab=877f0aec
+-/
 theorem canMul_mem_fiber (a : ℝ) (N : ℕ) {p : ℝ} (hp : p ∈ orbit a N) :
     canMul a N p hp ∈ mulFiber a N p := by
   unfold canMul
   exact (mulFiber a N p).min'_mem (mulFiber_nonempty a N hp)
 
+/--
+@isnad1 id=lt.1h3v.s4.1f1063d18ff9 from=translated src=- shape=223b60b2 vocab=48e93bc9
+-/
 theorem canMul_lt (a : ℝ) (N : ℕ) {p : ℝ} (hp : p ∈ orbit a N) :
     canMul a N p hp < N :=
   ((mem_mulFiber_iff a N p _).mp (canMul_mem_fiber a N hp)).1
 
+/--
+@isnad1 id=eq.1h3v.s5.82f02882dbd9 from=translated src=- shape=0ebedfce vocab=a130bb1e
+-/
 theorem fract_canMul (a : ℝ) (N : ℕ) {p : ℝ} (hp : p ∈ orbit a N) :
     Int.fract ((canMul a N p hp : ℝ) * a) = p :=
   ((mem_mulFiber_iff a N p _).mp (canMul_mem_fiber a N hp)).2
 
 /-- **Return-multiplier existence** for `η⁺` (the smallest positive orbit point):
-    some `mp < N` rotates to `η⁺`. -/
+    some `mp < N` rotates to `η⁺`.
+@isnad1 id=ex.1h2v.s5.779a18310860 from=translated src=- shape=f2523cd8 vocab=6b85362c
+-/
 theorem exists_return_multiplier (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) :
     ∃ mp, mp < N ∧ Int.fract ((mp : ℝ) * a) = etaPos a N := by
   have hmem : etaPos a N ∈ orbit a N := posOrbit_subset_orbit a N (etaPos_mem a h2)
@@ -504,7 +608,9 @@ theorem exists_return_multiplier (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) 
   exact ⟨mp, hmp, hmpval⟩
 
 /-- **Backward return-multiplier existence** for `1 - η⁻` (the largest positive
-    orbit point): some `mn < N` rotates to `1 - η⁻`. -/
+    orbit point): some `mn < N` rotates to `1 - η⁻`.
+@isnad1 id=ex.1h2v.s5.31069b76f6e1 from=translated src=- shape=7201c51a vocab=a51a789e
+-/
 theorem exists_back_return_multiplier (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) :
     ∃ mn, mn < N ∧ Int.fract ((mn : ℝ) * a) = 1 - etaNeg a N := by
   have hmem : (1 : ℝ) - etaNeg a N ∈ orbit a N :=
@@ -514,7 +620,9 @@ theorem exists_back_return_multiplier (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard 
 
 /-- **Value-shift identity.**  Rotating an orbit point `p` (canonical multiplier
     `u = canMul p`) by a return multiplier `mp` for `η⁺` lands on
-    `Int.fract (p + η⁺)`.  (API extra; the main chain uses `fract_index_shift`.) -/
+    `Int.fract (p + η⁺)`.  (API extra; the main chain uses `fract_index_shift`.)
+@isnad1 id=eq.2h4v.s6.796c3c77d1eb from=translated src=- shape=c5e339d6 vocab=8df28a34
+-/
 theorem fract_shift_eq (a : ℝ) (N : ℕ) {p : ℝ} (hp : p ∈ orbit a N)
     {mp : ℕ} (hmpval : Int.fract ((mp : ℝ) * a) = etaPos a N) :
     Int.fract (((canMul a N p hp + mp : ℕ)) * a) = Int.fract (p + etaPos a N) := by
@@ -523,7 +631,9 @@ theorem fract_shift_eq (a : ℝ) (N : ℕ) {p : ℝ} (hp : p ∈ orbit a N)
   rw [hcast, ← fract_add_fract_eq, fract_canMul a N hp, hmpval]
 
 /-- **Forward shift lands in the orbit** when the multiplier stays in range
-    (`canMul p + mp < N`) and `p + η⁺ < 1` (no wrap).  (API extra; unused.) -/
+    (`canMul p + mp < N`) and `p + η⁺ < 1` (no wrap).  (API extra; unused.)
+@isnad1 id=mem.6h4v.s7.e79827ee8985 from=translated src=- shape=91e35a2d vocab=ae94a2f5
+-/
 theorem shift_mem_orbit (a : ℝ) (N : ℕ) {p : ℝ} (hp : p ∈ orbit a N)
     {mp : ℕ} (hmpval : Int.fract ((mp : ℝ) * a) = etaPos a N)
     (hrange : canMul a N p hp + mp < N)
@@ -539,7 +649,9 @@ theorem shift_mem_orbit (a : ℝ) (N : ℕ) {p : ℝ} (hp : p ∈ orbit a N)
 /-- **Forward-neighbour upper bound.**  Under the forward hypothesis `hfwd`, the
     gap is at MOST `η⁺`: the orbit point `q := sortedVal i + η⁺` lies strictly above
     `sortedVal i` and `< 1`, so by `no_orbit_strictly_between` it cannot sit strictly
-    below `sortedVal (i+1)`.  (API extra; superseded by `gap_eq_etaPos`.) -/
+    below `sortedVal (i+1)`.  (API extra; superseded by `gap_eq_etaPos`.)
+@isnad1 id=le.3h3v.s6.d5321354b0b2 from=translated src=- shape=fd0cc590 vocab=dc1af9ed
+-/
 theorem gap_le_etaPos (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N)
     {i : ℕ} (hi : i + 1 < orbitCard a N)
     (hfwd : sortedVal a N i + etaPos a N < 1 ∧ sortedVal a N i + etaPos a N ∈ orbit a N) :
@@ -561,7 +673,9 @@ the value condition `xⱼ + η⁺ ∈ orbit`: those differ (e.g. `α = 4/5, N = 
 `2/5` has `2/5 + η⁺ = 4/5 ∈ orbit` yet gap `= η⁻`, since its index is off-end).
 -/
 
-/-- Fractional-part subtraction identity (companion of `fract_add_fract_eq`). -/
+/-- Fractional-part subtraction identity (companion of `fract_add_fract_eq`).
+@isnad1 id=eq.0h2v.s5.6eccfff17826 from=translated src=- shape=00234d03 vocab=5b2435c4
+-/
 theorem fract_sub_fract_eq (x y : ℝ) :
     Int.fract (Int.fract x - Int.fract y) = Int.fract (x - y) := by
   rw [Int.fract_eq_fract]
@@ -571,7 +685,9 @@ theorem fract_sub_fract_eq (x y : ℝ) :
   rw [hx, hy]; push_cast; ring
 
 /-- Pure `Nat`/`Finset` counting seed: exactly `N - mp` indices keep their forward
-    `+mp` shift in range, so exactly `mp` fall off the end.  (API extra; unused.) -/
+    `+mp` shift in range, so exactly `mp` fall off the end.  (API extra; unused.)
+@isnad1 id=eq.1h2v.s5.7942108eebcb from=translated src=- shape=725a6976 vocab=a80f5427
+-/
 theorem forward_inRange_card {N mp : ℕ} (h : mp ≤ N) :
     (Finset.filter (fun j => j + mp < N) (Finset.range N)).card = N - mp := by
   have hset : Finset.filter (fun j => j + mp < N) (Finset.range N)
@@ -586,13 +702,22 @@ theorem forward_inRange_card {N mp : ℕ} (h : mp ≤ N) :
 noncomputable def mPlus (a : ℝ) (N : ℕ) (h2 : 2 ≤ orbitCard a N) : ℕ :=
   canMul a N (etaPos a N) (posOrbit_subset_orbit a N (etaPos_mem a h2))
 
+/--
+@isnad1 id=lt.1h2v.s4.882fd1c6daff from=translated src=- shape=ff179860 vocab=5493b24b
+-/
 theorem mPlus_lt (a : ℝ) (N : ℕ) (h2 : 2 ≤ orbitCard a N) : mPlus a N h2 < N := by
   unfold mPlus; exact canMul_lt a N _
 
+/--
+@isnad1 id=eq.1h2v.s5.bb6860635da5 from=translated src=- shape=5c559e22 vocab=cb2e01eb
+-/
 theorem fract_mPlus (a : ℝ) (N : ℕ) (h2 : 2 ≤ orbitCard a N) :
     Int.fract ((mPlus a N h2 : ℝ) * a) = etaPos a N := by
   unfold mPlus; exact fract_canMul a N _
 
+/--
+@isnad1 id=lt.1h2v.s4.45a0d90d2fe9 from=translated src=- shape=7dd7ae36 vocab=5493b24b
+-/
 theorem mPlus_pos (a : ℝ) (N : ℕ) (h2 : 2 ≤ orbitCard a N) : 0 < mPlus a N h2 := by
   rcases Nat.eq_zero_or_pos (mPlus a N h2) with h0 | hpos
   · exfalso
@@ -605,7 +730,9 @@ theorem mPlus_pos (a : ℝ) (N : ℕ) (h2 : 2 ≤ orbitCard a N) : 0 < mPlus a N
 /-- **Difference extraction, `w ≥ j`.**  If two orbit points have non-decreasing
     indices `j ≤ w < N` and increasing values, their difference is an orbit point.
     Combined with `no_orbit_below_etaPos` this rules out a between-point reachable
-    from a higher index. -/
+    from a higher index.
+@isnad1 id=mem.3h4v.s6.575106ffa781 from=translated src=- shape=f5315149 vocab=1b8d65e1
+-/
 theorem sub_mem_orbit_of_index_le (a : ℝ) (N : ℕ) {j w : ℕ} (hjw : j ≤ w) (hw : w < N)
     (hlt : Int.fract ((j : ℝ) * a) < Int.fract ((w : ℝ) * a)) :
     Int.fract ((w : ℝ) * a) - Int.fract ((j : ℝ) * a) ∈ orbit a N := by
@@ -628,7 +755,9 @@ theorem sub_mem_orbit_of_index_le (a : ℝ) (N : ℕ) {j w : ℕ} (hjw : j ≤ w
 /-- **Difference extraction, `w < j` (dual).**  If the larger value `{w·a}` has the
     *smaller* index `w < j`, the complement `1 - ({w·a} - {j·a})` is an orbit point
     (`{(j-w)·a}`) in the top band `(1 - η⁺, 1)`.  Via `le_one_sub_etaNeg` this gives
-    `{w·a} - {j·a} ≥ η⁻`; used in the backward index-bridge toward Case B. -/
+    `{w·a} - {j·a} ≥ η⁻`; used in the backward index-bridge toward Case B.
+@isnad1 id=mem.3h4v.s6.124cdccefd41 from=translated src=- shape=ed7a32c7 vocab=bc3a282f
+-/
 theorem compl_mem_orbit_of_index_gt (a : ℝ) (N : ℕ) {j w : ℕ} (hwj : w < j) (hj : j < N)
     (hlt : Int.fract ((j : ℝ) * a) < Int.fract ((w : ℝ) * a)) :
     1 - (Int.fract ((w : ℝ) * a) - Int.fract ((j : ℝ) * a)) ∈ orbit a N := by
@@ -654,7 +783,9 @@ theorem compl_mem_orbit_of_index_gt (a : ℝ) (N : ℕ) {j w : ℕ} (hwj : w < j
 /-! ## The forward (η⁺) case -/
 
 /-- Shifting an index by `m⁺` realises the rotation by `η⁺` at the value level:
-    `{(j+m⁺)·a} = {{j·a} + η⁺}`. -/
+    `{(j+m⁺)·a} = {{j·a} + η⁺}`.
+@isnad1 id=eq.1h3v.s6.f5a33e310ede from=translated src=- shape=db6cbc78 vocab=40a5b05f
+-/
 theorem fract_index_shift (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) (j : ℕ) :
     Int.fract (((j + mPlus a N h2 : ℕ) : ℝ) * a)
       = Int.fract (Int.fract ((j : ℝ) * a) + etaPos a N) := by
@@ -663,7 +794,9 @@ theorem fract_index_shift (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) (j : �
   rw [hcast, ← fract_add_fract_eq, fract_mPlus]
 
 /-- No-wrap specialisation: when `{j·a} + η⁺ < 1`, the `m⁺`-shifted index lands on
-    exactly `{j·a} + η⁺`. -/
+    exactly `{j·a} + η⁺`.
+@isnad1 id=eq.2h3v.s6.5172e89d5fd8 from=translated src=- shape=3f742c55 vocab=33cef43d
+-/
 theorem fract_index_shift_noWrap (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) (j : ℕ)
     (hlt1 : Int.fract ((j : ℝ) * a) + etaPos a N < 1) :
     Int.fract (((j + mPlus a N h2 : ℕ) : ℝ) * a) = Int.fract ((j : ℝ) * a) + etaPos a N := by
@@ -676,7 +809,9 @@ theorem fract_index_shift_noWrap (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) 
 
 /-- **D1 — an in-range index is not in the top band.**  If `d + m⁺ < N` then
     `{d·a} + η⁺ ≤ 1`.  (If not, `{(d+m⁺)·a} = {d·a}+η⁺-1` is a positive orbit value
-    `< η⁺`, contradicting minimality.) -/
+    `< η⁺`, contradicting minimality.)
+@isnad1 id=le.2h3v.s6.9014047b3bec from=translated src=- shape=5ce491ac vocab=33cef43d
+-/
 theorem fract_add_etaPos_le_one (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {d : ℕ}
     (hd : d + mPlus a N h2 < N) :
     Int.fract ((d : ℝ) * a) + etaPos a N ≤ 1 := by
@@ -701,7 +836,9 @@ theorem fract_add_etaPos_le_one (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {
 
 /-- **No orbit point lies in `(xⱼ, xⱼ + η⁺)` when `j + m⁺ < N`.**  `w ≥ j`: the
     difference is a positive orbit value `< η⁺` (minimality).  `w < j`: the
-    complementary index `j - w` would be in the top band, contradicting D1. -/
+    complementary index `j - w` would be in the top band, contradicting D1.
+@isnad1 id=false.5h4v.s6.4e3d4637e320 from=translated src=- shape=c637a796 vocab=b01e9e0f
+-/
 theorem noPointBetween (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {j : ℕ}
     (hj : j + mPlus a N h2 < N)
     {z : ℝ} (hz : z ∈ orbit a N)
@@ -739,7 +876,9 @@ theorem noPointBetween (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {j : ℕ}
     linarith
 
 /-- **Case A (forward): an index `j` of `v = sortedVal i` with `j + m⁺ < N` forces
-    gap `= η⁺`.** -/
+    gap `= η⁺`.**
+@isnad1 id=eq.4h4v.s6.883e673c2456 from=translated src=- shape=9e84261a vocab=3d237cc7
+-/
 theorem gap_eq_etaPos (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {i : ℕ}
     (hi : i + 1 < orbitCard a N)
     {j : ℕ} (hjfr : Int.fract ((j : ℝ) * a) = sortedVal a N i)
@@ -778,14 +917,22 @@ theorem gap_eq_etaPos (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {i : ℕ}
 noncomputable def mMinus (a : ℝ) (N : ℕ) (h2 : 2 ≤ orbitCard a N) : ℕ :=
   canMul a N (1 - etaNeg a N) (posOrbit_subset_orbit a N (max_posOrbit_mem a h2))
 
+/--
+@isnad1 id=lt.1h2v.s4.55cbe770a63d from=translated src=- shape=ff179860 vocab=72153a80
+-/
 theorem mMinus_lt (a : ℝ) (N : ℕ) (h2 : 2 ≤ orbitCard a N) : mMinus a N h2 < N := by
   unfold mMinus; exact canMul_lt a N _
 
+/--
+@isnad1 id=eq.1h2v.s5.e71f539538bb from=translated src=- shape=8671d1c5 vocab=52443ab4
+-/
 theorem fract_mMinus (a : ℝ) (N : ℕ) (h2 : 2 ≤ orbitCard a N) :
     Int.fract ((mMinus a N h2 : ℝ) * a) = 1 - etaNeg a N := by
   unfold mMinus; exact fract_canMul a N _
 
-/-- Index shift by `m⁻` realises rotation by `1-η⁻` (i.e. by `-η⁻`) at value level. -/
+/-- Index shift by `m⁻` realises rotation by `1-η⁻` (i.e. by `-η⁻`) at value level.
+@isnad1 id=eq.1h3v.s6.9454d6103d76 from=translated src=- shape=701763e8 vocab=747ceb73
+-/
 theorem fract_index_shift_neg (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) (j : ℕ) :
     Int.fract (((j + mMinus a N h2 : ℕ) : ℝ) * a)
       = Int.fract (Int.fract ((j : ℝ) * a) + (1 - etaNeg a N)) := by
@@ -794,7 +941,9 @@ theorem fract_index_shift_neg (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) (j 
   rw [hcast, ← fract_add_fract_eq, fract_mMinus]
 
 /-- **D1' (mirror): an in-range index is not in the bottom band.**  If
-    `d + m⁻ < N` and `{d·a} > 0` then `η⁻ ≤ {d·a}`. -/
+    `d + m⁻ < N` and `{d·a} > 0` then `η⁻ ≤ {d·a}`.
+@isnad1 id=le.3h3v.s6.152022bd25e4 from=translated src=- shape=dc332d4b vocab=e57aee15
+-/
 theorem fract_sub_etaNeg_ge (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {d : ℕ}
     (hd : d + mMinus a N h2 < N) (h0 : 0 < Int.fract ((d : ℝ) * a)) :
     etaNeg a N ≤ Int.fract ((d : ℝ) * a) := by
@@ -814,7 +963,9 @@ theorem fract_sub_etaNeg_ge (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {d : 
   linarith
 
 /-- **No orbit point lies in `(xⱼ - η⁻, xⱼ)` when `j + m⁻ < N`** (backward mirror
-    of `noPointBetween`). -/
+    of `noPointBetween`).
+@isnad1 id=false.5h4v.s6.315e0d63190d from=translated src=- shape=23e85392 vocab=777b7a7a
+-/
 theorem noPointBetween_neg (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {j : ℕ}
     (hj : j + mMinus a N h2 < N)
     {z : ℝ} (hz : z ∈ orbit a N)
@@ -856,7 +1007,9 @@ theorem noPointBetween_neg (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {j : �
     linarith
 
 /-- **Case B (backward): an index `j'` of `v' = sortedVal (i+1)` with `j' + m⁻ < N`
-    forces gap `= η⁻`.** -/
+    forces gap `= η⁻`.**
+@isnad1 id=eq.4h4v.s6.78ac59369ba8 from=translated src=- shape=bcf9ac2f vocab=33be0aea
+-/
 theorem gap_eq_etaNeg (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {i : ℕ}
     (hi : i + 1 < orbitCard a N)
     {j' : ℕ} (hjfr : Int.fract ((j' : ℝ) * a) = sortedVal a N (i + 1))
@@ -921,7 +1074,9 @@ contradicting minimality of `m⁻` (the max `1-η⁻` at index `m⁻-d`) or of `
 induction-on-`N` and avoids their irrational-only restriction. -/
 
 /-- **Backward index shift by `m⁻`.**  For `m⁻ ≤ k`, subtracting the canonical
-    `m⁻` from the index `k` rotates the value by `-(1-η⁻)` mod 1. -/
+    `m⁻` from the index `k` rotates the value by `-(1-η⁻)` mod 1.
+@isnad1 id=eq.2h3v.s6.b5d4f1ccb466 from=translated src=- shape=b777659c vocab=52443ab4
+-/
 theorem fract_sub_mMinus (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {k : ℕ}
     (hk : mMinus a N h2 ≤ k) :
     Int.fract (((k - mMinus a N h2 : ℕ) : ℝ) * a)
@@ -932,14 +1087,18 @@ theorem fract_sub_mMinus (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {k : ℕ
   rw [hcast, ← fract_sub_fract_eq, fract_mMinus a N h2]
 
 /-- **Minimality of the canonical multiplier.**  Any in-range index `c < N` whose
-    rotation value is `p` is at least `canMul a N p`. -/
+    rotation value is `p` is at least `canMul a N p`.
+@isnad1 id=le.3h4v.s5.6f4f792ed35b from=translated src=- shape=908131e9 vocab=c2005305
+-/
 theorem canMul_le (a : ℝ) (N : ℕ) {p : ℝ} (hp : p ∈ orbit a N) {c : ℕ}
     (hc : c < N) (hcval : Int.fract ((c : ℝ) * a) = p) : canMul a N p hp ≤ c := by
   unfold canMul
   exact Finset.min'_le _ _ ((mem_mulFiber_iff a N p c).mpr ⟨hc, hcval⟩)
 
 /-- **Forward index shift by `m⁺`.**  For `m⁺ ≤ k`, subtracting the canonical `m⁺`
-    from the index `k` rotates the value by `-η⁺` mod 1. -/
+    from the index `k` rotates the value by `-η⁺` mod 1.
+@isnad1 id=eq.2h3v.s6.072f295064e4 from=translated src=- shape=2c379561 vocab=bdbae934
+-/
 theorem fract_sub_mPlus (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {k : ℕ}
     (hk : mPlus a N h2 ≤ k) :
     Int.fract (((k - mPlus a N h2 : ℕ) : ℝ) * a)
@@ -953,7 +1112,9 @@ theorem fract_sub_mPlus (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {k : ℕ}
     (positive return).**  No new index `k ∈ [N, m⁺+m⁻)` produces a positive value
     below `η⁺`.  (Key step of the M-circle route to the corner bound: a value
     `s = {k·a} ∈ (0, η⁺)` would force `{(k-m⁻)·a} = η⁺`, hence `m⁺ ≤ k-m⁻` by
-    minimality, i.e. `k ≥ m⁺+m⁻`, contradiction.) -/
+    minimality, i.e. `k ≥ m⁺+m⁻`, contradiction.)
+@isnad1 id=le.4h3v.s6.c25f143ffc96 from=translated src=- shape=c72431bc vocab=3baf573e
+-/
 theorem no_new_below_etaPos (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N)
     {k : ℕ} (hkN : N ≤ k) (hkM : k < mPlus a N h2 + mMinus a N h2)
     (hpos : 0 < Int.fract ((k : ℝ) * a)) :
@@ -998,7 +1159,9 @@ theorem no_new_below_etaPos (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N)
 
 /-- **Returns are preserved when extending the orbit to `M = m⁺ + m⁻` indices
     (negative return).**  No new index `k ∈ [N, m⁺+m⁻)` produces a value in the top
-    band `(1-η⁻, 1)`.  Mirror of `no_new_below_etaPos`. -/
+    band `(1-η⁻, 1)`.  Mirror of `no_new_below_etaPos`.
+@isnad1 id=le.3h3v.s6.9491f4beea9c from=translated src=- shape=ff3947d1 vocab=228efe4d
+-/
 theorem no_new_above_etaNeg (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N)
     {k : ℕ} (hkN : N ≤ k) (hkM : k < mPlus a N h2 + mMinus a N h2) :
     Int.fract ((k : ℝ) * a) ≤ 1 - etaNeg a N := by
@@ -1045,23 +1208,33 @@ Monotonicity of the orbit in the index count, and the fact that the two returns
 These let the corner "no point in the big gap" arguments (`corner_noPoint_lo/hi`)
 borrow the in-range first-return machinery in the larger circle. -/
 
-/-- The orbit grows with the index count. -/
+/-- The orbit grows with the index count.
+@isnad1 id=le.1h3v.s4.350f9ca44b96 from=translated src=- shape=9a6dd29f vocab=9da35000
+-/
 theorem orbit_mono (a : ℝ) {N M : ℕ} (h : N ≤ M) : orbit a N ⊆ orbit a M := by
   intro x hx
   rw [mem_orbit_iff] at hx ⊢
   obtain ⟨k, hk, hkval⟩ := hx
   exact ⟨k, lt_of_lt_of_le hk h, hkval⟩
 
+/--
+@isnad1 id=le.1h3v.s4.9da9a22a6be1 from=translated src=- shape=008790cb vocab=961fe64a
+-/
 theorem orbitCard_mono (a : ℝ) {N M : ℕ} (h : N ≤ M) : orbitCard a N ≤ orbitCard a M :=
   Finset.card_le_card (orbit_mono a h)
 
+/--
+@isnad1 id=le.1h3v.s4.2243b3417b8f from=translated src=- shape=9a6dd29f vocab=9feb747e
+-/
 theorem posOrbit_mono (a : ℝ) {N M : ℕ} (h : N ≤ M) : posOrbit a N ⊆ posOrbit a M := by
   intro x hx
   rw [mem_posOrbit_iff] at hx ⊢
   exact ⟨hx.1, orbit_mono a h hx.2⟩
 
 /-- **Positive return preserved under extension.**  If every new index `k ∈ [N, M)`
-    avoids the band `(0, η⁺)`, then `η⁺` is unchanged from `N` to `M`. -/
+    avoids the band `(0, η⁺)`, then `η⁺` is unchanged from `N` to `M`.
+@isnad1 id=eq.4h3v.s6.479212139ff6 from=translated src=- shape=751dfa60 vocab=6b85362c
+-/
 theorem etaPos_eq_extend (a : ℝ) {N M : ℕ} (h2 : 2 ≤ orbitCard a N) (hNM : N ≤ M)
     (hM2 : 2 ≤ orbitCard a M)
     (hnew : ∀ k, N ≤ k → k < M → 0 < Int.fract ((k : ℝ) * a) →
@@ -1078,7 +1251,9 @@ theorem etaPos_eq_extend (a : ℝ) {N M : ℕ} (h2 : 2 ≤ orbitCard a N) (hNM :
     · have := hnew k hkN hk (by rw [hkval]; exact hpos); rwa [hkval] at this
 
 /-- **Negative return preserved under extension.**  If every new index `k ∈ [N, M)`
-    avoids the top band `(1 - η⁻, 1)`, then `η⁻` is unchanged from `N` to `M`. -/
+    avoids the top band `(1 - η⁻, 1)`, then `η⁻` is unchanged from `N` to `M`.
+@isnad1 id=eq.4h3v.s6.5a2c0070c919 from=translated src=- shape=f6222571 vocab=a51a789e
+-/
 theorem etaNeg_eq_extend (a : ℝ) {N M : ℕ} (h2 : 2 ≤ orbitCard a N) (hNM : N ≤ M)
     (hM2 : 2 ≤ orbitCard a M)
     (hnew : ∀ k, N ≤ k → k < M → Int.fract ((k : ℝ) * a) ≤ 1 - etaNeg a N) :
@@ -1106,7 +1281,9 @@ theorem etaNeg_eq_extend (a : ℝ) {N M : ℕ} (h2 : 2 ≤ orbitCard a N) (hNM :
     `< N`).  As `w` lies in range with `canMul w + m⁻ ≤ j < N`, case B
     (`gap_eq_etaNeg`) shows the predecessor of `w` is `w - η⁻ = v`; hence `w` is the
     successor `v'` of `v`, so `v' = v + η⁻` and `canMul v' ≤ j - m⁻`, giving
-    `canMul v' + m⁻ ≤ j < N` — contradicting the corner hypothesis `hB`. -/
+    `canMul v' + m⁻ ≤ j < N` — contradicting the corner hypothesis `hB`.
+@isnad1 id=lt.5h3v.s7.8f511b2f81d4 from=translated src=- shape=f9f421e1 vocab=ea0d3295
+-/
 theorem corner_canMul_lt_mMinus (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {i : ℕ}
     (hi : i + 1 < orbitCard a N)
     (hvmem : sortedVal a N i ∈ orbit a N)
@@ -1177,7 +1354,9 @@ theorem corner_canMul_lt_mMinus (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {
     `w < j`, a positive value `η⁺ - (z-v) < η⁺` in the *extended* orbit `orbit a M`
     (`M = m⁺ + m⁻`) at index `(j-w) + m⁺ < M`, contradicting minimality of
     `etaPos a M = etaPos a N`.  The discriminant `hP1 : j < m⁻` makes the shifted
-    index stay in range `< M`. -/
+    index stay in range `< M`.
+@isnad1 id=false.7h4v.s6.ba3f31540ee9 from=translated src=- shape=35b55e47 vocab=8a088415
+-/
 theorem corner_noPoint_lo (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {i : ℕ}
     (hvmem : sortedVal a N i ∈ orbit a N)
     (hP1 : canMul a N (sortedVal a N i) hvmem < mMinus a N h2)
@@ -1227,7 +1406,9 @@ theorem corner_noPoint_lo (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {i : �
     the point `p₁ = v + η⁺ = {(j+m⁺)·a} ∈ orbit a M`.  A point `z` with
     `p₁ < z < p₁ + η⁻` has every index `w < N ≤ j + m⁺`, so `{((j+m⁺)-w)·a} = 1 -
     (z - p₁)` lies in `(1 - η⁻, 1) ∩ orbit a M`, exceeding the maximum `1 - η⁻` of
-    `orbit a M` — contradiction. -/
+    `orbit a M` — contradiction.
+@isnad1 id=false.7h4v.s7.e0aafdcf55fd from=translated src=- shape=1cd75592 vocab=83127ba2
+-/
 theorem corner_noPoint_hi (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {i : ℕ}
     (hvmem : sortedVal a N i ∈ orbit a N)
     (hP1 : canMul a N (sortedVal a N i) hvmem < mMinus a N h2)
@@ -1274,7 +1455,9 @@ theorem corner_noPoint_hi (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {i : �
 /-- **The corner case.**  When both first returns fall off the end
     (`canMul v + m⁺ ≥ N` and `canMul v' + m⁻ ≥ N`), the internal gap is `η⁺ + η⁻`.
     The lower bound `hLower` (no orbit point lies strictly in `(v, v + η⁺ + η⁻)`)
-    is proved inline below; the proof is self-contained, with no external input. -/
+    is proved inline below; the proof is self-contained, with no external input.
+@isnad1 id=eq.6h3v.s7.070b8afbf514 from=translated src=- shape=c8810775 vocab=db4ff3c8
+-/
 theorem corner_gap (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {i : ℕ}
     (hi : i + 1 < orbitCard a N)
     (hvmem : sortedVal a N i ∈ orbit a N)
@@ -1430,7 +1613,9 @@ theorem corner_gap (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) {i : ℕ}
     `η⁺ + η⁻`: case A (`gap_eq_etaPos`) when `canMul v + m⁺ < N`, case B
     (`gap_eq_etaNeg`) when `canMul v' + m⁻ < N`, and the corner (`corner_gap`)
     otherwise.  (No `i = 0` special case is needed: there `canMul v = 0` and
-    `m⁺ < N`, so case A always fires.) -/
+    `m⁺ < N`, so case A always fires.)
+@isnad1 id=mem.2h3v.s6.5ba0360c4c32 from=translated src=- shape=ce40807e vocab=9f65af1a
+-/
 theorem neighbour_gap_in_returns (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N)
     {i : ℕ} (hi : i + 1 < orbitCard a N) :
     gapAt a N i ∈ ({etaPos a N, etaNeg a N, etaPos a N + etaNeg a N} : Finset ℝ) := by
@@ -1449,7 +1634,9 @@ theorem neighbour_gap_in_returns (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N)
     · rw [corner_gap a h2 hi hvmem hv'mem hA hB]
       exact Finset.mem_insert_of_mem (Finset.mem_insert_of_mem (Finset.mem_singleton_self _))
 
-/-- All distinct gap values lie in `{η⁺, η⁻, η⁺ + η⁻}` (non-degenerate regime). -/
+/-- All distinct gap values lie in `{η⁺, η⁻, η⁺ + η⁻}` (non-degenerate regime).
+@isnad1 id=le.1h2v.s6.4e71f474a891 from=translated src=- shape=ac174eb8 vocab=1dbbd228
+-/
 theorem gaps_subset_returns (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) :
     (gaps a N).toFinset ⊆
       ({etaPos a N, etaNeg a N, etaPos a N + etaNeg a N} : Finset ℝ) := by
@@ -1463,7 +1650,9 @@ theorem gaps_subset_returns (a : ℝ) {N : ℕ} (h2 : 2 ≤ orbitCard a N) :
     exact Finset.mem_insert_of_mem (Finset.mem_insert_self _ _)
 
 /-- **The three-gap (Steinhaus) theorem, distinct-gap-count form.**  Every gap of
-    `{i·a mod 1 : i < N}` is `η⁺`, `η⁻`, or `η⁺ + η⁻`, so at most three lengths. -/
+    `{i·a mod 1 : i < N}` is `η⁺`, `η⁻`, or `η⁺ + η⁻`, so at most three lengths.
+@isnad1 id=le.0h2v.s4.ba9444765f19 from=translated src=- shape=7dd9e545 vocab=ec55e339
+-/
 theorem three_gap_card_le_three (a : ℝ) (N : ℕ) :
     (gaps a N).toFinset.card ≤ 3 := by
   by_cases h2 : 2 ≤ orbitCard a N
@@ -1477,7 +1666,9 @@ theorem three_gap_card_le_three (a : ℝ) (N : ℕ) :
 /-- **The sum relation.**  When the gaps take exactly three distinct lengths, those
     lengths are precisely `η⁺`, `η⁻`, and `η⁺ + η⁻`; in particular the largest,
     `η⁺ + η⁻`, is the sum of the other two (they are positive: `etaPos_pos`,
-    `etaNeg_pos`).  The nondegeneracy `2 ≤ orbitCard` is derived from `h3`. -/
+    `etaNeg_pos`).  The nondegeneracy `2 ≤ orbitCard` is derived from `h3`.
+@isnad1 id=eq.1h2v.s6.6e18f3dcf609 from=translated src=- shape=e45190ae vocab=7b7ce3b0
+-/
 theorem three_gap_lengths_eq (a : ℝ) {N : ℕ}
     (h3 : (gaps a N).toFinset.card = 3) :
     (gaps a N).toFinset = ({etaPos a N, etaNeg a N, etaPos a N + etaNeg a N} : Finset ℝ) := by

@@ -25,7 +25,9 @@ open scoped Real Interval
 
 noncomputable section
 
-/-- C¹ regularity of `deriv γ` from C² regularity of `γ`. -/
+/-- C¹ regularity of `deriv γ` from C² regularity of `γ`.
+@isnad1 id=contdiff.1h2v.s7.f8b86fb044bf from=translated src=- shape=3cc694a7 vocab=a757616e
+-/
 lemma contDiffAt_one_deriv_of_contDiffAt_two {γ : ℝ → ℂ} {t₀ : ℝ}
     (hγ_C2 : ContDiffAt ℝ 2 γ t₀) : ContDiffAt ℝ 1 (deriv γ) t₀ := by
   have hfderiv : ContDiffAt ℝ 1 (fderiv ℝ γ) t₀ :=
@@ -34,7 +36,9 @@ lemma contDiffAt_one_deriv_of_contDiffAt_two {γ : ℝ → ℂ} {t₀ : ℝ}
   simp only [fderiv_apply_one_eq_deriv] at h
   exact h
 
-/-- Lipschitz-type bound on `deriv γ` deviation from C². -/
+/-- Lipschitz-type bound on `deriv γ` deviation from C².
+@isnad1 id=ex.2h3v.s7.5d371e745b7e from=translated src=- shape=4283dc4f vocab=fb3e9018
+-/
 lemma deriv_deviation_bound_of_C2 {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ}
     (hγ_C2 : ContDiffAt ℝ 2 γ t₀) (hγ_deriv : deriv γ t₀ = L) :
     ∃ K δ, 0 < δ ∧ ∀ t, |t - t₀| < δ → ‖deriv γ t - L‖ ≤ K * |t - t₀| := by
@@ -47,7 +51,9 @@ lemma deriv_deviation_bound_of_C2 {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ}
     t₀ (hball_sub (Metric.mem_ball_self hδ_pos))
   rwa [dist_eq_norm, hγ_deriv, Real.dist_eq] at h
 
-/-- Quadratic Taylor approximation from C² smoothness. -/
+/-- Quadratic Taylor approximation from C² smoothness.
+@isnad1 id=ex.2h3v.s8.9b689b0817b2 from=translated src=- shape=3111c072 vocab=c94cbe27
+-/
 lemma quadratic_approx_of_contDiffAt_two {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ}
     (hγ_C2 : ContDiffAt ℝ 2 γ t₀) (hγ_deriv : deriv γ t₀ = L) :
     ∃ K δ, 0 < δ ∧ 0 < K ∧ ∀ t, |t - t₀| < δ →
@@ -118,7 +124,9 @@ lemma quadratic_approx_of_contDiffAt_two {γ : ℝ → ℂ} {t₀ : ℝ} {L : �
     _ ≤ M * |t - t₀| * |t - t₀| := h_bound
     _ ≤ K * |t - t₀| ^ 2 := by nlinarith [sq_nonneg |t - t₀|]
 
-/-- Numerator quadratic bound for `(t-t₀)γ'(t) - (γt - γt₀)`. -/
+/-- Numerator quadratic bound for `(t-t₀)γ'(t) - (γt - γt₀)`.
+@isnad1 id=ex.2h3v.s8.771d63411647 from=translated src=- shape=ea669493 vocab=1f8af708
+-/
 lemma numerator_quadratic_bound {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ}
     (hγ_C2 : ContDiffAt ℝ 2 γ t₀) (hγ_deriv : deriv γ t₀ = L) :
     ∃ K δ, 0 < δ ∧ ∀ t, |t - t₀| < δ →
@@ -144,7 +152,9 @@ lemma numerator_quadratic_bound {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ}
     _ ≤ |t - t₀| * (K₂ * |t - t₀|) + K₁ * |t - t₀| ^ 2 := add_le_add h1 h2
     _ ≤ (K₁ + K₂ + 1) * |t - t₀| ^ 2 := by nlinarith [sq_nonneg |t - t₀|]
 
-/-- Bounded remainder from C² smoothness. -/
+/-- Bounded remainder from C² smoothness.
+@isnad1 id=ex.3h3v.s8.52af0e95d008 from=translated src=- shape=9abdf747 vocab=a90460d1
+-/
 lemma remainder_bounded_of_C2 {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ} (hL : L ≠ 0)
     (hγ_C2 : ContDiffAt ℝ 2 γ t₀) (hγ_deriv : deriv γ t₀ = L) :
     ∃ C δ, 0 < δ ∧ ∀ t, 0 < |t - t₀| → |t - t₀| < δ →

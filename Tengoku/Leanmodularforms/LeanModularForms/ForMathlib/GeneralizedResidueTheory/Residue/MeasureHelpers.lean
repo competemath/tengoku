@@ -18,7 +18,9 @@ open scoped Real Interval
 noncomputable section
 
 /-- A subset of `ℝ` consisting of points that are uniformly isolated within the set is
-countable. -/
+countable.
+@isnad1 id=countabl.1h1v.s6.cae9f2b4b3c1 from=translated src=- shape=85edfb79 vocab=2869f79e
+-/
 theorem Set.countable_setOf_isolated_points' {S : Set ℝ}
     (h : ∀ t ∈ S, ∃ ε > 0, ∀ s ∈ S, s ≠ t → |s - t| ≥ ε) : S.Countable := by
   classical
@@ -43,7 +45,9 @@ theorem Set.countable_setOf_isolated_points' {S : Set ℝ}
   exact Set.countable_coe_iff.mp
     (Pairwise.countable_of_isOpen_disjoint h_disj h_open h_nonempty)
 
-/-- Preimage of a singleton under a piecewise C¹ immersion has measure zero. -/
+/-- Preimage of a singleton under a piecewise C¹ immersion has measure zero.
+@isnad1 id=eq.3h5v.s8.5020ee445954 from=translated src=- shape=f74fe7d0 vocab=d15d838b
+-/
 theorem preimage_singleton_measure_zero_of_deriv_ne_zero {γ : ℝ → ℂ} {a b : ℝ}
     {P : Finset ℝ} (z₀ : ℂ) (_hγ : ContinuousOn γ (Icc a b))
     (hγ_diff : ∀ t ∈ Icc a b, t ∉ P → DifferentiableAt ℝ γ t)
@@ -73,7 +77,9 @@ theorem preimage_singleton_measure_zero_of_deriv_ne_zero {γ : ℝ → ℂ} {a b
   exact h_countable.measure_zero _
 
 /-- Preimage of a finite set of points under a piecewise C¹ immersion has measure
-zero. Lifts `preimage_singleton_measure_zero_of_deriv_ne_zero` to a finset. -/
+zero. Lifts `preimage_singleton_measure_zero_of_deriv_ne_zero` to a finset.
+@isnad1 id=eq.3h5v.s8.7719c7fbc1d9 from=translated src=- shape=a1a2551a vocab=e4e32f2a
+-/
 theorem preimage_finset_measure_zero_of_deriv_ne_zero {γ : ℝ → ℂ} {a b : ℝ}
     {P : Finset ℝ} (S : Finset ℂ) (hγ : ContinuousOn γ (Icc a b))
     (hγ_diff : ∀ t ∈ Icc a b, t ∉ P → DifferentiableAt ℝ γ t)

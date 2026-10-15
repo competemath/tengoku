@@ -152,6 +152,9 @@ private lemma LDL_entry (r : Block) (i j : Fin 3) :
     _ = (rhsInt r i j : Q) * ((den r : Q) * (den r : Q) * (den r : Q))⁻¹ := by simp [hdenProd]
     _ = (rhsInt r i j : Q) / ((den r : Q) * (den r : Q) * (den r : Q)) := by simp [div_eq_mul_inv]
 
+/--
+@isnad1 id=eq.0h1v.s7.202c41bca0d9 from=translated src=- shape=5de34a13 vocab=a6d08706
+-/
 theorem Z_eq_LDL (r : Block) :
     Z r = (L r) * Matrix.diagonal (Dvec r) * (Matrix.transpose (L r)) := by
   classical
@@ -180,6 +183,9 @@ theorem Z_eq_LDL (r : Block) :
     _ = ((L r) * Matrix.diagonal (Dvec r) * (Matrix.transpose (L r))) i j := by
             simpa using (LDL_entry (r := r) (i := i) (j := j)).symm
 
+/--
+@isnad1 id=le.0h2v.s4.54f3e9e7c202 from=translated src=- shape=69cf97e8 vocab=1138d50c
+-/
 theorem Dvec_nonneg (r : Block) : ∀ i : Fin 3, 0 ≤ Dvec r i := by
   intro i
   have hnum : 0 ≤ (DNum r).getD i.1 0 := by fin_cases r <;> fin_cases i <;> decide
@@ -189,6 +195,9 @@ theorem Dvec_nonneg (r : Block) : ∀ i : Fin 3, 0 ≤ Dvec r i := by
     mul_nonneg (show (0 : Q) ≤ (DNum r).getD i.1 0 by exact_mod_cast hnum)
       (inv_nonneg.2 (le_of_lt hden))
 
+/--
+@isnad1 id=possemid.0h1v.s4.89ecfb5434b4 from=translated src=- shape=60f92da2 vocab=f80dd3cf
+-/
 theorem Z_posSemidef (r : Block) : (Z r).PosSemidef := by
   classical
   have hD : (Matrix.diagonal (Dvec r)).PosSemidef :=
@@ -201,6 +210,9 @@ theorem Z_posSemidef (r : Block) : (Z r).PosSemidef := by
     simp_all
   simpa [Z_eq_LDL r] using hLDL
 
+/--
+@isnad1 id=le.1h2v.s7.95a6973e6a82 from=translated src=- shape=4219d57c vocab=6aae782e
+-/
 theorem trace_mul_nonneg_of_Z_posSemidef {r : Block} {S : Matrix (Fin 3) (Fin 3) Q}
     (hS : S.PosSemidef) : 0 ≤ ((Z r) * S).trace := by
   classical

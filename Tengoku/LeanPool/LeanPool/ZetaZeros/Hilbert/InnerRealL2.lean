@@ -27,7 +27,9 @@ open MeasureTheory
 
 variable {lam : ℝ}
 
-/-- Negation preserves Lebesgue measure restricted to the symmetric interval. -/
+/-- Negation preserves Lebesgue measure restricted to the symmetric interval.
+@isnad1 id=measurep.0h1v.s5.8e04c14fec50 from=translated src=- shape=7727bc40 vocab=88655f5f
+-/
 theorem measurePreserving_neg_Ioo (lam : ℝ) :
     MeasurePreserving (fun u : ℝ => -u) (volume.restrict (Set.Ioo (-lam) lam))
       (volume.restrict (Set.Ioo (-lam) lam)) := by
@@ -41,7 +43,9 @@ theorem measurePreserving_neg_Ioo (lam : ℝ) :
     (measurableSet_Ioo (a := -lam) (b := lam))
   rwa [hpre] at h
 
-/-- A reflection-invariant integral over the symmetric interval. -/
+/-- A reflection-invariant integral over the symmetric interval.
+@isnad1 id=eq.0h3v.s6.669bfeb728ed from=translated src=- shape=f0d944ae vocab=7185daed
+-/
 theorem integral_comp_neg_Ioo {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (g : ℝ → E) (lam : ℝ) :
     ∫ u in Set.Ioo (-lam) lam, g (-u) = ∫ u in Set.Ioo (-lam) lam, g u :=

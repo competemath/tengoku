@@ -46,7 +46,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 /-- Submultiplicativity for nonneg matrix powers: if (A^a)_{ij} > 0 and
 (A^b)_{jl} > 0, then (A^{a+b})_{il} > 0. This follows by extracting the
 single positive term (A^a)_{ij} * (A^b)_{jl} from the matrix product sum
-∑_m (A^a)_{im} * (A^b)_{ml}, with all other terms nonneg. -/
+∑_m (A^a)_{im} * (A^b)_{ml}, with all other terms nonneg.
+@isnad1 id=lt.3h7v.s7.ed75ec83c475 from=translated src=- shape=d1d05dd7 vocab=99c5edc0
+-/
 lemma Matrix.Nonneg.pos_pow_mul {A : Matrix n n ℝ} (hA : A.Nonneg)
     {a b : ℕ} {i j l : n}
     (ha : 0 < (A ^ a) i j) (hb : 0 < (A ^ b) j l) :
@@ -59,7 +61,9 @@ lemma Matrix.Nonneg.pos_pow_mul {A : Matrix n n ℝ} (hA : A.Nonneg)
 /-- Padding lemma: if A is nonneg with A_{rr} > 0 and (A^k)_{ir} > 0,
 then (A^{k+m})_{ir} > 0 for all m ≥ 0. The positive self-loop at r absorbs
 arbitrary additional steps: each extra step contributes a factor of A_{rr} > 0
-through the path staying at r. -/
+through the path staying at r.
+@isnad1 id=lt.3h6v.s7.65f286740b0b from=translated src=- shape=b9c633bb vocab=99c5edc0
+-/
 lemma Matrix.Nonneg.pos_pow_pad {A : Matrix n n ℝ} (hA : A.Nonneg)
     {r : n} (hdiag : 0 < A r r) {k : ℕ} {i : n}
     (hk : 0 < (A ^ k) i r) (m : ℕ) :
@@ -77,7 +81,9 @@ lemma Matrix.Nonneg.pos_pow_pad {A : Matrix n n ℝ} (hA : A.Nonneg)
 /-! ### Helper lemmas for mulVec positivity -/
 
 omit [DecidableEq n] in
-/-- A nonneg matrix applied to a nonneg vector gives a nonneg vector. -/
+/-- A nonneg matrix applied to a nonneg vector gives a nonneg vector.
+@isnad1 id=le.2h4v.s5.522f60f0d5a2 from=translated src=- shape=8774524c vocab=6c57b137
+-/
 lemma Matrix.Nonneg.mulVec_nonneg {A : Matrix n n ℝ} (hA : A.Nonneg)
     {v : n → ℝ} (hv : ∀ i, 0 ≤ v i) : ∀ i, 0 ≤ A.mulVec v i := by
   intro i
@@ -86,7 +92,9 @@ lemma Matrix.Nonneg.mulVec_nonneg {A : Matrix n n ℝ} (hA : A.Nonneg)
 
 omit [DecidableEq n] in
 /-- A matrix with all positive entries, applied to a nonneg nonzero vector,
-gives a strictly positive vector. -/
+gives a strictly positive vector.
+@isnad1 id=lt.3h4v.s6.a64e54548739 from=translated src=- shape=1bce5a6b vocab=bcfe53b0
+-/
 lemma Matrix.mulVec_pos_of_allPos {B : Matrix n n ℝ} (hB : ∀ i j, 0 < B i j)
     {v : n → ℝ} (hv_nn : ∀ i, 0 ≤ v i) (hv_ne : ∃ j, 0 < v j) :
     ∀ i, 0 < B.mulVec v i := by
@@ -98,7 +106,9 @@ lemma Matrix.mulVec_pos_of_allPos {B : Matrix n n ℝ} (hB : ∀ i j, 0 < B i j)
 
 omit [DecidableEq n] in
 /-- A nonneg matrix applied to a positive vector gives a positive vector,
-provided each row has a positive entry. -/
+provided each row has a positive entry.
+@isnad1 id=lt.3h4v.s6.a541f8e8ace8 from=translated src=- shape=113f917f vocab=f9a3d468
+-/
 lemma Matrix.mulVec_pos_of_pos {A : Matrix n n ℝ} (hA : A.Nonneg)
     (hrows : ∀ i, ∃ j, 0 < A i j)
     {v : n → ℝ} (hv : ∀ i, 0 < v i) : ∀ i, 0 < A.mulVec v i := by
@@ -109,7 +119,9 @@ lemma Matrix.mulVec_pos_of_pos {A : Matrix n n ℝ} (hA : A.Nonneg)
     ⟨j, Finset.mem_univ j, mul_pos hj (hv j)⟩
 
 /-- `pow` and `mulVec` interaction: (A^m).mulVec ((A^l).mulVec v) =
-(A^(m+l)).mulVec v. -/
+(A^(m+l)).mulVec v.
+@isnad1 id=eq.0h5v.s7.f298219ae793 from=translated src=- shape=20e0b282 vocab=dbe7e75f
+-/
 lemma Matrix.pow_mulVec_comp {A : Matrix n n ℝ} {m l : ℕ} {v : n → ℝ} :
     (A ^ m).mulVec ((A ^ l).mulVec v) = (A ^ (m + l)).mulVec v := by
   rw [pow_add, ← mulVec_mulVec]
@@ -118,7 +130,9 @@ lemma Matrix.pow_mulVec_comp {A : Matrix n n ℝ} {m l : ℕ} {v : n → ℝ} :
 
 omit [DecidableEq n] in
 /-- Key Collatz–Wielandt monotonicity: if Bv >= lam*v componentwise and B >= 0,
-then B^2 v >= lam*(Bv) componentwise. -/
+then B^2 v >= lam*(Bv) componentwise.
+@isnad1 id=le.2h5v.s7.36c06d8a7683 from=translated src=- shape=8daa4221 vocab=7ed08798
+-/
 lemma collatz_wielandt_monotone
     {B : Matrix n n ℝ} (hB_nn : ∀ i j, 0 ≤ B i j)
     {v : n → ℝ} {lam : ℝ}
@@ -137,7 +151,9 @@ lemma collatz_wielandt_monotone
 
 omit [DecidableEq n] in
 /-- Strict version: if B > 0 entrywise and Bv > lam*v at some coordinate,
-then B^2 v > lam*(Bv) at every coordinate. -/
+then B^2 v > lam*(Bv) at every coordinate.
+@isnad1 id=lt.3h5v.s7.c2864e6ba37f from=translated src=- shape=bea75eed vocab=f750747a
+-/
 lemma collatz_wielandt_strict
     {B : Matrix n n ℝ} (hB : ∀ i j, 0 < B i j)
     {v : n → ℝ} {lam : ℝ}
@@ -175,6 +191,9 @@ Bv* = ρ(v*)·v* by the strict monotonicity.
 The full formalization connects Mathlib's `IsCompact.exists_isMaxOn`
 with `ContinuousOn.finset_inf'_apply` on a compact subset of the standard simplex. -/
 omit [DecidableEq n] in
+/--
+@isnad1 id=ex.2h2v.s6.e0ef5eb2a2dd from=translated src=- shape=6c825329 vocab=09802865
+-/
 theorem allpos_has_pos_eigenvec (hn : Nonempty n)
     {B : Matrix n n ℝ} (hB : ∀ i j, 0 < B i j) :
     ∃ (μ : ℝ) (w : n → ℝ), 0 < μ ∧ (∀ i, 0 < w i) ∧ B.mulVec w = μ • w := by

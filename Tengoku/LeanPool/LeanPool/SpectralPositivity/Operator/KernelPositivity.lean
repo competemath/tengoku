@@ -54,7 +54,9 @@ def IntegralOperator.IsAEPositive (T : IntegralOperator Ω) : Prop :=
     0 < T.kernel p.1 p.2
 
 /-- Forward direction: if K(x,y) > 0 a.e. and f ≥ 0, f ≠ 0, then
-Tf(x) = ∫ K(x,y) f(y) dμ(y) > 0 for a.e. x. -/
+Tf(x) = ∫ K(x,y) f(y) dμ(y) > 0 for a.e. x.
+@isnad1 id=eventual.5h3v.s7.37378725f4a6 from=translated src=- shape=7e24f25c vocab=24e848f3
+-/
 theorem IntegralOperator.ae_pos_integral_of_ae_pos_kernel
     [SFinite (volume : Measure Ω)]
     (T : IntegralOperator Ω)
@@ -109,7 +111,9 @@ theorem IntegralOperator.ae_pos_integral_of_ae_pos_kernel
 
 /-- Reverse direction in the purely atomic case: if singletons are measurable with positive
 finite measure and every positive-measure pair `(A, B)` has strictly positive double integral,
-then `K(x, y) > 0` for every pair `(x, y)`, hence in particular for a.e. `(x, y)`. -/
+then `K(x, y) > 0` for every pair `(x, y)`, hence in particular for a.e. `(x, y)`.
+@isnad1 id=isaeposi.3h2v.s8.af263ed17d1d from=translated src=- shape=562c5716 vocab=8d28ab84
+-/
 theorem IntegralOperator.ae_pos_kernel_of_positivity_improving
     [MeasurableSingletonClass Ω]
     (T : IntegralOperator Ω)

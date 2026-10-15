@@ -132,7 +132,9 @@ private lemma integral_cpvIntegrandOn_fdBoundary_H_eq_fdBoundaryFun
 
 /-- Multi-point version: convert a Tendsto statement about the old-chain
 multi-point CPV integrand on `[0, 5]` into a ForMathlib `HasCauchyPVOn`
-statement on a `PiecewiseC1Path` agreeing with `fdBoundaryFun H`. -/
+statement on a `PiecewiseC1Path` agreeing with `fdBoundaryFun H`.
+@isnad1 id=hascauch.2h5v.s8.08eb22df0a94 from=translated src=- shape=016dbb63 vocab=9582442e
+-/
 theorem hasCauchyPVOn_of_cauchyPVOn'_tendsto
     {H : ℝ} {S : Finset ℂ} {f : ℂ → ℂ} {L : ℂ}
     (γ : PiecewiseC1Path (fdStart H) (fdStart H))
@@ -151,7 +153,9 @@ theorem hasCauchyPVOn_of_cauchyPVOn'_tendsto
 known value `w`), derive the old chain's `generalizedWindingNumber' = w`.
 
 This is the per-point converter: if the new chain proves a winding number value,
-the old chain's parametrization gives the same value. -/
+the old chain's parametrization gives the same value.
+@isnad1 id=eq.2h4v.s7.9b914e034f0f from=translated src=- shape=ae40d549 vocab=1ba6cbff
+-/
 theorem generalizedWindingNumberPrime_eq_of_hasGeneralizedWindingNumber
     {H : ℝ}
     (γ : PiecewiseC1Path (fdStart H) (fdStart H))

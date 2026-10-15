@@ -62,6 +62,7 @@ private theorem map_prod_mk_apply {alpha : Type u} {beta : Type v}
 
 /--
 The atom mass of an independent product is the product of the two atom masses.
+@isnad1 id=eq.0h6v.s6.fe965934f870 from=translated src=- shape=5ecb7585 vocab=eed83a0b
 -/
 @[simp]
 theorem indepProd_apply {alpha : Type u} {beta : Type v}
@@ -77,6 +78,7 @@ theorem indepProd_apply {alpha : Type u} {beta : Type v}
 /--
 An atom of the independent product has zero mass exactly when one of the two
 coordinate atoms has zero mass.
+@isnad1 id=iff.0h6v.s6.31b45fc1282b from=translated src=- shape=c5e77a8c vocab=2371e377
 -/
 @[simp]
 theorem indepProd_apply_eq_zero_iff {alpha : Type u} {beta : Type v}
@@ -87,6 +89,7 @@ theorem indepProd_apply_eq_zero_iff {alpha : Type u} {beta : Type v}
 /--
 An atom belongs to the independent product support exactly when both coordinate
 atoms belong to the corresponding supports.
+@isnad1 id=iff.0h6v.s6.75d0d789f305 from=translated src=- shape=c5e77a8c vocab=2371e377
 -/
 @[simp]
 theorem indepProd_apply_ne_zero_iff {alpha : Type u} {beta : Type v}
@@ -94,7 +97,9 @@ theorem indepProd_apply_ne_zero_iff {alpha : Type u} {beta : Type v}
     indepProd p q (a, b) ≠ 0 ↔ p a ≠ 0 ∧ q b ≠ 0 := by
   rw [ne_eq, indepProd_apply_eq_zero_iff, not_or]
 
-/-- The support of an independent product is the product of the two supports. -/
+/-- The support of an independent product is the product of the two supports.
+@isnad1 id=eq.0h4v.s5.bbedfbf645e8 from=translated src=- shape=343ad82e vocab=921e7a0e
+-/
 @[simp]
 theorem support_indepProd {alpha : Type u} {beta : Type v}
     (p : PMF alpha) (q : PMF beta) :
@@ -103,7 +108,9 @@ theorem support_indepProd {alpha : Type u} {beta : Type v}
   rcases x with ⟨a, b⟩
   simp [PMF.mem_support_iff, Set.prod]
 
-/-- The first marginal of an independent product is the first factor law. -/
+/-- The first marginal of an independent product is the first factor law.
+@isnad1 id=eq.0h4v.s4.a13e1489a636 from=translated src=- shape=1ed1d590 vocab=2db8c1a2
+-/
 @[simp]
 theorem fstMarginal_indepProd {alpha : Type u} {beta : Type v}
     (p : PMF alpha) (q : PMF beta) :
@@ -120,7 +127,9 @@ theorem fstMarginal_indepProd {alpha : Type u} {beta : Type v}
   rw [hinner]
   exact PMF.bind_pure p
 
-/-- The second marginal of an independent product is the second factor law. -/
+/-- The second marginal of an independent product is the second factor law.
+@isnad1 id=eq.0h4v.s4.16ce9f09d957 from=translated src=- shape=a4a3d45e vocab=27e94621
+-/
 @[simp]
 theorem sndMarginal_indepProd {alpha : Type u} {beta : Type v}
     (p : PMF alpha) (q : PMF beta) :
@@ -139,6 +148,7 @@ theorem sndMarginal_indepProd {alpha : Type u} {beta : Type v}
 
 /--
 Swapping the coordinates of an independent product swaps the two factor laws.
+@isnad1 id=eq.0h4v.s5.bd53cc23abcf from=translated src=- shape=cc2b3858 vocab=4a649919
 -/
 theorem indepProd_map_swap {alpha : Type u} {beta : Type v}
     (p : PMF alpha) (q : PMF beta) :
@@ -159,6 +169,7 @@ theorem indepProd_map_swap {alpha : Type u} {beta : Type v}
 /--
 The independent product law assigns product rectangles the product of the
 factor probabilities.
+@isnad1 id=eq.2h6v.s7.3a86d8071ef8 from=translated src=- shape=066d30df vocab=c6d8f732
 -/
 theorem indepProd_toMeasure_prod {alpha : Type u} {beta : Type v}
     [MeasurableSpace alpha] [MeasurableSpace beta]
@@ -208,6 +219,7 @@ theorem indepProd_toMeasure_prod {alpha : Type u} {beta : Type v}
 /--
 The measure associated to the independent product PMF is the product of the
 two associated measures.
+@isnad1 id=eq.0h4v.s5.e17d5ec76b37 from=translated src=- shape=83610985 vocab=be8b4830
 -/
 theorem indepProd_toMeasure {alpha : Type u} {beta : Type v}
     [MeasurableSpace alpha] [MeasurableSpace beta]
@@ -229,6 +241,7 @@ Mathematically, if the product of the marginal masses of `(a, b)` is zero, then
 one marginal atom is zero, hence the joint atom `p (a, b)` is zero. This is the
 support fact needed before comparing finite mutual information with KL
 divergence from the joint law to the product of its marginals.
+@isnad1 id=absolute.0h3v.s5.66edce5cd057 from=translated src=- shape=c2d71a91 vocab=dc93b75f
 -/
 theorem joint_toMeasure_absolutelyContinuous_indepProd_marginals
     {alpha : Type u} {beta : Type v} [Finite alpha] [Finite beta]
@@ -264,6 +277,7 @@ Product-measure version of
 
 This is the form expected by KL-divergence statements that use
 `Measure.prod` directly.
+@isnad1 id=absolute.0h3v.s5.80979cbbfdd6 from=translated src=- shape=2d53db82 vocab=e9437e2f
 -/
 theorem joint_toMeasure_absolutelyContinuous_prod_marginals
     {alpha : Type u} {beta : Type v} [Finite alpha] [Finite beta]

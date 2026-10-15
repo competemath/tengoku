@@ -47,7 +47,9 @@ def HasInfiniteSetAccumulationProperty
 /-- In a T1 space, the accumulation-point property implies countable compactness.
 
 This invokes mathlib's standard equivalence
-`isCountablyCompact_iff_infinite_subset_has_accPt`; it is not a custom compactness notion. -/
+`isCountablyCompact_iff_infinite_subset_has_accPt`; it is not a custom compactness notion.
+@isnad1 id=countabl.1h1v.s4.a43dee112bf0 from=translated src=- shape=affebb5f vocab=333c2803
+-/
 theorem countablyCompact_of_infiniteSet_accumulation
     {X : Type u} [TopologicalSpace X] [T1Space X]
     (hacc : HasInfiniteSetAccumulationProperty X) :
@@ -59,7 +61,9 @@ theorem countablyCompact_of_infiniteSet_accumulation
   exact ⟨x, Set.mem_univ x, hx⟩
 
 /-- An injective sequence converging along a free ultrafilter has its limit as an accumulation
-point of its range. -/
+point of its range.
+@isnad1 id=accpt.3h4v.s5.1ab77062122e from=translated src=- shape=78377dc0 vocab=2db93bd7
+-/
 theorem accPt_range_of_free_ultrafilter_limit
     {X : Type u} [TopologicalSpace X]
     {h : ℕ → X} {p : Ultrafilter ℕ} {x : X}
@@ -86,7 +90,9 @@ def HasWallaceLimitProperty
         Tendsto (s ∘ φ) p (𝓝 x)
 
 /-- A limit in the ambient space is also a limit in a subspace when the sequence and its limit
-lie in that subspace. -/
+lie in that subspace.
+@isnad1 id=tendsto.3h5v.s6.e22e1d90542f from=translated src=- shape=028e539b vocab=f786f7c9
+-/
 theorem tendsto_subtype_of_tendsto
     {X : Type u} [TopologicalSpace X] {P : Set X} {p : Filter ℕ}
     {u : ℕ → X} {x : X}
@@ -97,7 +103,9 @@ theorem tendsto_subtype_of_tendsto
   exact htendsto
 
 /-- The paper's free-ultrafilter limit property gives the accumulation-point property on the
-subspace `P`. -/
+subspace `P`.
+@isnad1 id=hasinfin.1h2v.s5.5845cc67d2b1 from=translated src=- shape=f0472d55 vocab=3b818d40
+-/
 theorem infiniteSet_accumulation_of_wallaceLimitProperty
     {F : Type u} [TopologicalSpace F] [AddZeroClass F]
     (P : AddSubmonoid F)
@@ -126,7 +134,9 @@ theorem infiniteSet_accumulation_of_wallaceLimitProperty
   change eP (φ n) ∈ B
   exact (e (φ n)).property
 
-/-- The algebraic witness `a ∈ P`, `-a ∉ P` is not an additive unit of the cone. -/
+/-- The algebraic witness `a ∈ P`, `-a ∉ P` is not an additive unit of the cone.
+@isnad1 id=not.2h3v.s7.665e3da549b2 from=translated src=- shape=b0f4f907 vocab=4e3d9b5e
+-/
 theorem not_isAddUnit_of_neg_not_mem
     {F : Type u} [AddCommGroup F] (P : AddSubmonoid F)
     {a : F} (ha : a ∈ P) (hneg : -a ∉ P) :
@@ -139,7 +149,9 @@ theorem not_isAddUnit_of_neg_not_mem
   exact b.property
 
 /-- A countably compact additive submonoid `P` of a Hausdorff Abelian group with continuous
-addition is a Wallace semigroup whenever `a ∈ P` and `-a ∉ P` for some `a`. -/
+addition is a Wallace semigroup whenever `a ∈ P` and `-a ∉ P` for some `a`.
+@isnad1 id=iswallac.3h3v.s8.6c7b4e18490a from=translated src=- shape=aacb357d vocab=a2b690a6
+-/
 theorem addSubmonoid_isWallace
     {F : Type u} [TopologicalSpace F] [AddCommGroup F]
     [ContinuousAdd F] [T2Space F]
@@ -151,7 +163,9 @@ theorem addSubmonoid_isWallace
   refine ⟨inferInstance, inferInstance, inferInstance, inferInstance, ?_⟩
   exact ⟨⟨a, ha⟩, not_isAddUnit_of_neg_not_mem P ha hneg⟩
 
-/-- The Wallace conclusion from the exact accumulation-point hypothesis. -/
+/-- The Wallace conclusion from the exact accumulation-point hypothesis.
+@isnad1 id=iswallac.3h3v.s8.5de0edb58197 from=translated src=- shape=aacb357d vocab=fb0a3ccb
+-/
 theorem addSubmonoid_isWallace_of_accumulation
     {F : Type u} [TopologicalSpace F] [AddCommGroup F]
     [ContinuousAdd F] [T2Space F]
@@ -162,7 +176,9 @@ theorem addSubmonoid_isWallace_of_accumulation
   addSubmonoid_isWallace P
     (countablyCompact_of_infiniteSet_accumulation hacc) ha hneg
 
-/-- The Wallace conclusion from the free-ultrafilter limit property proved in the paper. -/
+/-- The Wallace conclusion from the free-ultrafilter limit property proved in the paper.
+@isnad1 id=iswallac.3h3v.s7.5132939028ca from=translated src=- shape=940198cb vocab=49ad53af
+-/
 theorem addSubmonoid_isWallace_of_limitProperty
     {F : Type u} [TopologicalSpace F] [AddCommGroup F]
     [ContinuousAdd F] [T2Space F]
@@ -179,6 +195,9 @@ def positiveCone (ι : Type u) : AddSubmonoid (ι →₀ ℤ) where
   zero_mem' i := by simp
   add_mem' hx hy i := add_nonneg (hx i) (hy i)
 
+/--
+@isnad1 id=mem.0h2v.s6.b610b3ee5be2 from=translated src=- shape=f8afe016 vocab=c3d718cd
+-/
 theorem single_one_mem_positiveCone (ι : Type u) (i : ι) :
     Finsupp.single i (1 : ℤ) ∈ positiveCone ι := by
   classical
@@ -188,6 +207,9 @@ theorem single_one_mem_positiveCone (ι : Type u) (i : ι) :
     simp
   · rw [Finsupp.single_eq_of_ne (Ne.symm hij)]
 
+/--
+@isnad1 id=not.0h2v.s6.a3579b17a789 from=translated src=- shape=1847cd79 vocab=abf7e065
+-/
 theorem neg_single_one_not_mem_positiveCone (ι : Type u) (i : ι) :
     -Finsupp.single i (1 : ℤ) ∉ positiveCone ι := by
   intro h
@@ -196,7 +218,9 @@ theorem neg_single_one_not_mem_positiveCone (ι : Type u) (i : ι) :
 
 /-- The formalized Wallace deduction for a free Abelian group: if the topology has the exact
 free-ultrafilter limit property constructed by the paper, its nonnegative cone is a Wallace
-semigroup. -/
+semigroup.
+@isnad1 id=iswallac.1h2v.s7.6bd69b01a35b from=translated src=- shape=c25dcd17 vocab=44849fad
+-/
 theorem positiveCone_isWallace_of_limitProperty
     (ι : Type u) [TopologicalSpace (ι →₀ ℤ)]
     [IsTopologicalAddGroup (ι →₀ ℤ)] [T2Space (ι →₀ ℤ)]

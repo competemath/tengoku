@@ -35,7 +35,9 @@ open Finset Fintype Numbering
 
 variable {α : Type*} [Fintype α] {𝒜 : Finset (Finset α)}
 
-/-- The **Lubell-Yamamoto-Meshalkin inequality**, proved using the Katona circle method. -/
+/-- The **Lubell-Yamamoto-Meshalkin inequality**, proved using the Katona circle method.
+@isnad1 id=le.1h2v.s6.ec92a27a752c from=translated src=- shape=1719f3c3 vocab=211b437e
+-/
 theorem LYM_inequality (h𝒜 : IsAntichain (· ⊆ ·) (𝒜 : Set (Finset α))) :
     ∑ s ∈ 𝒜, ((card α).choose #s : ℚ≥0)⁻¹ ≤ 1 := by
   classical

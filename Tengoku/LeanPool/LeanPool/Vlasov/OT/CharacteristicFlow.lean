@@ -83,7 +83,9 @@ Proof sketch: by `LipschitzWith.dist_le_mul` applied pointwise to
 The integrability hypotheses on `gradW(x − ·)` for two distinct `x`s
 are needed for `integral_sub` and `norm_integral_le_integral_norm`
 to fire.  At the dobrushin call site these follow from finite first
-moment of `ρ` + Lipschitz growth of `gradW`. -/
+moment of `ρ` + Lipschitz growth of `gradW`.
+@isnad1 id=lipschit.2h4v.s8.f13f9b87a45c from=translated src=- shape=254a3a8f vocab=f86c9923
+-/
 lemma convolveFunctionMeasure_lipschitz_in_x
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -153,7 +155,9 @@ which forces Gronwall and produces exponential-in-`T` constants
 uses the bounded-and-Lipschitz absorption
   `|B_μ(x) - B_{μ'}(x)| ≤ max(2‖B‖_∞, C_B) · min(|x₁-x₂|, 1)`
 and produces *linear-in-`T`* constants (Dobrushin 1979, eq. 5.7), changing this
-output shape from `C_T · (‖z‖ + 1)` to a bounded analog. -/
+output shape from `C_T · (‖z‖ + 1)` to a bounded analog.
+@isnad1 id=ex.9h8v.s10.e83a973ee737 from=translated src=- shape=f3cebae8 vocab=f3a969ec
+-/
 theorem flow_distance_growth_bound_on
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -294,7 +298,9 @@ theorem flow_distance_growth_bound_on
 on `ρ`).  Solutions of the characteristic ODE grow at most linearly in their
 initial condition: `‖(charX t z, charV t z)‖ ≤ C_T · (‖z‖ + 1)` for some
 `C_T` depending only on `T`, `L`, `‖gradW 0‖`, and the uniform first-moment
-bound `M_ρ`. -/
+bound `M_ρ`.
+@isnad1 id=ex.7h8v.s9.4ad5d2a21231 from=translated src=- shape=a07a3300 vocab=b8fcb52e
+-/
 theorem flow_distance_growth_bound
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -334,7 +340,9 @@ flows.  In the integrated-bound application, `z₁ = ω.1`, `z₂ = ω.2` range 
 coupling `π₀` of `(f 0, g 0)`, `ε = (L : ℝ) * (wasserstein1 (f s) (g s)).toReal`
 (the self-coupling diff-bound, uniform in the trajectory), and integrating this
 pointwise bound over `π₀` against the pushforward bound gives the Dobrushin
-estimate `W₁(f t, g t) ≤ … · W₁(f 0, g 0)`. -/
+estimate `W₁(f t, g t) ≤ … · W₁(f 0, g 0)`.
+@isnad1 id=le.8h12v.s8.fc08b44dbed5 from=translated src=- shape=b567fcf2 vocab=4a1bc704
+-/
 theorem flow_difference_growth_bound
     {α : Type*} [NormedAddCommGroup α] [NormedSpace ℝ α]
     (b_f b_g : ℝ → α → α) (L : NNReal) (hL_f : ∀ t, LipschitzWith L (b_f t))
@@ -385,7 +393,9 @@ keeping the forcing `ε s` *inside* the integral.  After integrating this over
 the base measure, the self-reference `ε s = L·W₁(f s,g s) ≤ L·Q(s)` is resolved
 by `gronwall_mild_le` — avoiding the constant-`ε` smallness that
 `flow_difference_growth_bound`'s closed form would force (and the blocked
-windowing that smallness needs). -/
+windowing that smallness needs).
+@isnad1 id=le.9h9v.s9.b7e57b209635 from=translated src=- shape=9701d952 vocab=8d82397f
+-/
 theorem flow_difference_mild_bound
     {α : Type*} [NormedAddCommGroup α] [NormedSpace ℝ α] [CompleteSpace α]
     (b_f b_g : ℝ → α → α) (L : NNReal) (hL_f : ∀ t, LipschitzWith L (b_f t))
@@ -463,7 +473,9 @@ theorem flow_difference_mild_bound
 Given a base probability measure `π` on `Ω` and a family `w : ℝ → Ω → α`, if each
 trajectory satisfies the mild bound `‖w t ω‖ ≤ ‖w 0 ω‖ + ∫₀ᵗ (L‖w s ω‖ + ε s) ds`,
 then the integrated quantity `Q t := ∫ ‖w t ω‖ ∂π` satisfies
-`Q t ≤ Q 0 + ∫₀ᵗ (L · Q s + ε s) ds`. The `∫₀ᵗ L‖w s ω‖` term swaps via Tonelli. -/
+`Q t ≤ Q 0 + ∫₀ᵗ (L · Q s + ε s) ds`. The `∫₀ᵗ L‖w s ω‖` term swaps via Tonelli.
+@isnad1 id=le.10h9v.s8.49119e565f17 from=translated src=- shape=90068b73 vocab=6675f8be
+-/
 theorem integral_mild_bound
     {Ω α : Type*} [MeasurableSpace Ω] [NormedAddCommGroup α]
     [MeasurableSpace α] [BorelSpace α]
@@ -627,7 +639,9 @@ and transfer back on `[0, T]` where `clamp = id` via integrand congruence.
 
 **Base-measure genericity**: `π` is abstract, so this serves both the
 uniqueness call site (`π = f 0`, `Q 0 = 0`, Foundation-B-free) and the
-mean-field call site (`π` an optimal coupling, `Q 0 = W₁(f 0, g 0)`). -/
+mean-field call site (`π` an optimal coupling, `Q 0 = W₁(f 0, g 0)`).
+@isnad1 id=le.16h12v.s9.e0a29bf748ef from=translated src=- shape=3dba11a5 vocab=44e72a55
+-/
 theorem integrated_coupling_gronwall_bound
     {Ω α : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup α] [NormedSpace ℝ α] [CompleteSpace α]
@@ -783,7 +797,9 @@ The canonical envelope `m*(t) := A(t)/(1-B(T))` is then Φ-invariant under the
 **data-independent** constraint `B(T) < 1`, dissolving the constant-`M`
 fixed-point without a data-dependent hypothesis.  (Contrast the constant-sup
 bound, which feeds `m(T)` into `ε` and re-derives an `M_f₀`-dependent
-smallness.) -/
+smallness.)
+@isnad1 id=le.10h10v.s10.aff2d0e91da5 from=translated src=- shape=0ceb457d vocab=f41fd13d
+-/
 theorem flow_distance_growth_bound_on_timedep
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -916,7 +932,9 @@ Composed with Piece A integrated over `f₀` (which gives
 shows the Picard iterates stay inside the fixed envelope `m*` with **no**
 data-dependent hypothesis — the faithful dissolution of the constant-`M`
 fixed-point.  This lemma is the measure-free heart of the option-2 escape;
-Pieces B–D thread it through the curve space, `Phi_step`, and #11. -/
+Pieces B–D thread it through the curve space, `Phi_step`, and #11.
+@isnad1 id=ex.4h4v.s7.c163b4670773 from=translated src=- shape=4e6a73f0 vocab=f2fc8100
+-/
 theorem gronwall_envelope_exists
     (M_f₀ g0 : ℝ) (hM_f₀ : 0 ≤ M_f₀) (hg0 : 0 ≤ g0)
     (L : NNReal) (T : ℝ) (hT : 0 ≤ T)
@@ -1015,7 +1033,9 @@ term integrates to itself).
 
 Composing with `gronwall_envelope_exists` (Piece A.3): when `m = m*` the canonical
 envelope and `g0 = ‖gradW 0‖`, the RHS is `≤ m* t`, i.e. `Φ` maps the envelope to
-itself at the moment level — the measure-level statement of the data-free escape. -/
+itself at the moment level — the measure-level statement of the data-free escape.
+@isnad1 id=le.4h9v.s10.a1b5fbc6ed74 from=translated src=- shape=afc4a5da vocab=cf7473a5
+-/
 theorem phi_moment_envelope_le {d : ℕ}
     (L : NNReal) (charX charV : ℝ → PhaseSpace d → PhysSpace d)
     (g0 : ℝ) (T : ℝ) (m : ℝ → ℝ)
@@ -1113,7 +1133,9 @@ def IsCharacteristicFlowOn
 /-- Monotonicity of `IsCharacteristicFlowOn` in both the time set and the
 initial-condition set.  Used at the end of the global existence theorem
 to restrict a flow produced on `Ioo 0 (N·δ)` (covering all of `[0, T]`)
-down to `Ioo 0 T`. -/
+down to `Ioo 0 T`.
+@isnad1 id=ischarac.3h9v.s6.0647bbd86dc5 from=translated src=- shape=f7a19d0d vocab=e2d4d222
+-/
 lemma IsCharacteristicFlowOn.mono
     {d : ℕ}
     {gradW : PhysSpace d → PhysSpace d}
@@ -1225,7 +1247,9 @@ def IsLagrangianVlasovSolutionOn {d : ℕ}
 /-- A global `IsVlasovSolution` restricts to `IsVlasovSolutionOn T` for any
 `T : ℝ`.  Projects the universal HasDerivAt claim onto `Ioo 0 T` by direct
 specialization (the restricted set is open, so HasDerivAt and
-HasDerivWithinAt coincide there). -/
+HasDerivWithinAt coincide there).
+@isnad1 id=isvlasov.1h4v.s6.723cef7dcc4f from=translated src=- shape=effcbe39 vocab=5760b329
+-/
 lemma IsVlasovSolution.toOn {d : ℕ}
     {gradW : PhysSpace d → PhysSpace d}
     {f : ℝ → Measure (PhaseSpace d)} (h : IsVlasovSolution gradW f) (T : ℝ) :
@@ -1239,7 +1263,9 @@ lemma IsVlasovSolution.toOn {d : ℕ}
 The flow witness restricts via `IsCharacteristicFlowOn`'s natural relationship
 to the universal `IsCharacteristicFlow` (open Ioo ⊆ ℝ).  The pushforward and
 AEMeasurability conjuncts restrict trivially since the originals are
-universal. -/
+universal.
+@isnad1 id=islagran.1h4v.s6.e404039c9cef from=translated src=- shape=effcbe39 vocab=c6a46ca7
+-/
 lemma IsLagrangianVlasovSolution.toOn {d : ℕ}
     {gradW : PhysSpace d → PhysSpace d}
     {f : ℝ → Measure (PhaseSpace d)}
@@ -1268,7 +1294,9 @@ is 1-Lipschitz (`LipschitzWith.prod_snd`), and the force-side map
 `(x, v) ↦ -(∇W ∗ ρ_t)(x)` is `L`-Lipschitz (compose
 `convolveFunctionMeasure_lipschitz_in_x` with `Neg.neg` and
 `Prod.fst`, both 1-Lipschitz).  Combining the two via
-`LipschitzWith.prodMk` yields `max(1, L)` on the product. -/
+`LipschitzWith.prodMk` yields `max(1, L)` on the product.
+@isnad1 id=lipschit.2h5v.s8.ffcba7e4d691 from=translated src=- shape=b48c8e0b vocab=011c56c5
+-/
 lemma vlasovVectorField_lipschitzWith
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -1299,7 +1327,9 @@ on `PhaseSpace d = PhysSpace d × PhysSpace d`.
 
 This is the decomposition used to derive `IsPicardLindelof.norm_le`
 once a uniform bound `M` for `‖(∇W ∗ ρ_t)(x)‖` on a closed ball is
-known (e.g. from finite-first-moment + Lipschitz growth of `gradW`). -/
+known (e.g. from finite-first-moment + Lipschitz growth of `gradW`).
+@isnad1 id=le.0h5v.s7.0a9ed650fa40 from=translated src=- shape=5d65c7cc vocab=e048bd19
+-/
 lemma vlasovVectorField_norm_le
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -1326,7 +1356,9 @@ field of `IsPicardLindelof` both require a global bound on `‖b_t‖`.
 
 The global existence form `exists_vlasov_characteristicFlow` (below)
 is the stitched version on `[0, T]`, iterating this local theorem on
-overlapping windows and gluing with `ODE_solution_unique`. -/
+overlapping windows and gluing with `ODE_solution_unique`.
+@isnad1 id=ex.6h8v.s9.33dfdb9e82a3 from=translated src=- shape=467f82f0 vocab=a6b58972
+-/
 theorem exists_vlasov_characteristicFlow_local
     {d : ℕ}
     (W : PhysSpace d → ℝ)
@@ -1495,7 +1527,9 @@ windows (by combining with the a priori bound
 
 Implementation: build an IsPicardLindelof centered at `w` over `[t_start,
 t_start + δ]` with `L_pl := V_max + a + M`.  Invoke the vendored headline
-theorem.  Take the single trajectory `β t := α w t`. -/
+theorem.  Take the single trajectory `β t := α w t`.
+@isnad1 id=ex.6h9v.s10.b0c4972db906 from=translated src=- shape=30a5674b vocab=4378ec2f
+-/
 lemma exists_vlasov_extend_one_window
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -1682,7 +1716,9 @@ bound, contraction inequality) are retained for genericity / call
 site compatibility; they are not consumed by the projection body but
 remain available for future call sites that want to re-derive the
 confinement directly (e.g. via supremum trick) without invoking
-the vendored Mathlib API. -/
+the vendored Mathlib API.
+@isnad1 id=mem.13h12v.s10.cea9ac584b33 from=translated src=- shape=0eb26891 vocab=ce3c41c6
+-/
 lemma vlasov_window_confinement
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -1734,7 +1770,9 @@ Triangle with `‖(β t_start).2‖ = ‖w.2‖ ≤ h_vel_init` (using `hβ_init
 gives the conclusion.
 
 The universal quantification over `y` in the mean-value lemma is what
-makes this WINDOW-WIDE from ONE invocation — no per-s re-application. -/
+makes this WINDOW-WIDE from ONE invocation — no per-s re-application.
+@isnad1 id=le.8h11v.s9.9c72779e3203 from=translated src=- shape=5b378b46 vocab=ab629365
+-/
 lemma vlasov_window_velocity_bound
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -1815,7 +1853,9 @@ Triangle with `‖w.1 - x_ref‖ ≤ h_pos_init` gives the conclusion.
 hardcoded to the N-window induction's `z₀.1`.  This makes the helper
 reusable for the Lagrangian → Eulerian chain rule (reference point:
 support of test function φ), well-posedness's Banach iteration
-(reference point: fixed-point candidate), etc. -/
+(reference point: fixed-point candidate), etc.
+@isnad1 id=le.5h10v.s9.f4e1bf5a955a from=translated src=- shape=f3b74ebc vocab=557def1b
+-/
 lemma vlasov_window_position_bound
     {d : ℕ}
     (_gradW : PhysSpace d → PhysSpace d)
@@ -1871,7 +1911,9 @@ lemma vlasov_window_position_bound
 Tight form of `exists_vlasov_extend_one_window`: the force bound is required
 only on `[t_start, t_start + δ]` (the actual step), not the loose unit window
 `[t_start, t_start + 1]`, and `δ` is supplied by the caller (so the N-window
-chain can tile exactly, `N·δ = T`, dissolving the `(T+1)²` → `T²` smallness). -/
+chain can tile exactly, `N·δ = T`, dissolving the `(T+1)²` → `T²` smallness).
+@isnad1 id=ex.8h10v.s10.5139261a64c5 from=translated src=- shape=086eb160 vocab=df140626
+-/
 lemma exists_vlasov_extend_one_window_tight
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -2438,7 +2480,9 @@ calling `exists_vlasov_extend_one_window_tight` with the adaptive force-window
 `[k·δ', (k+1)·δ']`, the global force-bound is required only on `[0,T]` and the
 position drift is `M·T²` (not `M·(T+1)²`).  Consumers' R-selection then needs only
 `L·T² < 1`, satisfiable for any `L` (threshold `T < 1/√L`), dissolving the `L<1`
-restriction. -/
+restriction.
+@isnad1 id=ex.8h10v.s10.c993134ff517 from=translated src=- shape=cc8ce68f vocab=192a6117
+-/
 theorem exists_vlasov_characteristicFlow_tight
     {d : ℕ}
     (W : PhysSpace d → ℝ)
@@ -2615,7 +2659,9 @@ single-Picard contraction cannot be satisfied — i.e., when the total
 time window needed exceeds the asymptotic threshold `≈ 1/2` regardless
 of `a`.  For the upcoming N-window induction follow-up, this single-
 Picard extension is iterated, with each iteration using a per-z
-center from the previous window's endpoint. -/
+center from the previous window's endpoint.
+@isnad1 id=ex.6h8v.s9.d1d3ee2a1372 from=translated src=- shape=e1c9889b vocab=a6b58972
+-/
 theorem exists_vlasov_characteristicFlow_twoWindow
     {d : ℕ}
     (W : PhysSpace d → ℝ)
@@ -2797,7 +2843,9 @@ AE-strong-measurability of the dot-product integrand (continuity threading
 via smoothness of `φ` and Lipschitz of `gradW`). -/
 
 /-- **SC.1: integral change-of-variables for the Vlasov pushforward.**
-Direct application of `integral_map`. -/
+Direct application of `integral_map`.
+@isnad1 id=eq.2h6v.s9.0bcc2623a98b from=translated src=- shape=1324e383 vocab=d1296ecf
+-/
 lemma vlasov_pushforward_integral_eq_compose
     {d : ℕ}
     (charX charV : ℝ → PhaseSpace d → PhysSpace d)
@@ -2820,7 +2868,9 @@ has derivative
  − ⟨(∇W ∗ ρ_t)(charX t z), gradVφ (charX t z, charV t z)⟩`
 at `t`.  Proof: chain rule on `φ ∘ (charX · z, charV · z)`, using
 `hflow`'s pointwise `HasDerivAt`s and the gradient formula for `φ`'s
-directional derivative. -/
+directional derivative.
+@isnad1 id=hasderiv.5h10v.s10.7d8d7c0bce39 from=translated src=- shape=f8cff5e4 vocab=aa085ac9
+-/
 lemma vlasov_traj_chain_rule
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -2933,7 +2983,9 @@ consumer all compose against this one.
 hypothesis-naming.  The original uses `hX_deriv t z`, `hV_deriv t z`
 exactly once each (at the `prodMk` step); we replace these with
 `hX_deriv_at`, `hV_deriv_at` directly.  All other steps are
-specific-`(t, z)` already. -/
+specific-`(t, z)` already.
+@isnad1 id=hasderiv.5h10v.s10.0439caefdaad from=translated src=- shape=06c13a17 vocab=aa085ac9
+-/
 lemma vlasov_traj_chain_rule_at
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -3068,7 +3120,9 @@ Proven by direct application of Mathlib's
 Taking `h_data : DiffUnderIntegralData ...` as a hypothesis keeps SC.3's
 body a one-line Mathlib application; the burden of producing the
 dominated-bundle data moves to the caller (discharged from compact support
-of `φ` plus Picard regularity). -/
+of `φ` plus Picard regularity).
+@isnad1 id=hasderiv.2h10v.s9.96eeaf7d3ec4 from=translated src=- shape=276a6e02 vocab=f71e25be
+-/
 lemma vlasov_pushforward_hasDerivAt_under_integral
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -3104,7 +3158,9 @@ lemma vlasov_pushforward_hasDerivAt_under_integral
 
 Symmetric to SC.1; the same `integral_map` invocation, applied to the
 dot-product integrand.  Closes by `integral_map` after establishing AE-
-strong-measurability of the integrand. -/
+strong-measurability of the integrand.
+@isnad1 id=eq.2h8v.s10.25db5bfb5475 from=translated src=- shape=6ea854e7 vocab=a20da324
+-/
 lemma vlasov_rhs_pushforward_back
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -3162,7 +3218,9 @@ into four named regularity sub-helpers:
 The composition `z ↦ φ (charX s' z, charV s' z)` is AE-strongly-
 measurable wrt `f₀` for every `s'`, in particular for `s'` in any
 neighborhood of `t`.  Uses continuity of `φ` plus
-`h_flow_meas`'s AE-measurability of the flow pair. -/
+`h_flow_meas`'s AE-measurability of the flow pair.
+@isnad1 id=eventual.2h6v.s9.fe5253dd0de6 from=translated src=- shape=0b80914f vocab=c25a2bf5
+-/
 lemma vlasov_compose_flow_aestronglymeas
     {d : ℕ}
     (charX charV : ℝ → PhaseSpace d → PhysSpace d)
@@ -3180,7 +3238,9 @@ lemma vlasov_compose_flow_aestronglymeas
 /-- **SC.6: Integrability of `φ ∘ flow_t` against `f₀`.**
 
 `HasCompactSupport φ` + `Continuous φ` give boundedness; combined with
-`[IsProbabilityMeasure f₀]` this yields integrability. -/
+`[IsProbabilityMeasure f₀]` this yields integrability.
+@isnad1 id=integrab.3h6v.s9.1fe9bb9e4bc6 from=translated src=- shape=4d80cf1d vocab=1705cef6
+-/
 lemma vlasov_compose_flow_integrable_at
     {d : ℕ}
     (charX charV : ℝ → PhaseSpace d → PhysSpace d)
@@ -3202,7 +3262,9 @@ lemma vlasov_compose_flow_integrable_at
 The chain-rule pointwise derivative integrand
 `⟨charV t z, gradXφ(flow_t z)⟩ - ⟨convolve_t(charX t z), gradVφ(flow_t z)⟩`
 is AE-strongly-measurable wrt `f₀`.  Same continuity argument as the
-wrapper's `h_integrand_aesm` proof. -/
+wrapper's `h_integrand_aesm` proof.
+@isnad1 id=aestrong.5h10v.s10.920a05f41593 from=translated src=- shape=45bd7502 vocab=f9973444
+-/
 lemma vlasov_pointwise_deriv_aestronglymeas
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -3283,7 +3345,9 @@ The global `vlasov_trajectory_lipschitz_bound_lag` follows by restricting its
 flow to a suitable finite interval.
 
 The neighborhood `nhd` is chosen to stay within `Ioo 0 T` (where `hflow_on`
-is defined), e.g. `Ioo (max 0 (t/2)) (min T (t + 1/2))`. -/
+is defined), e.g. `Ioo (max 0 (t/2)) (min T (t + 1/2))`.
+@isnad1 id=ex.16h11v.s11.888d4a577dfa from=translated src=- shape=998d6962 vocab=3fc5ff59
+-/
 lemma vlasov_trajectory_lipschitz_bound_on
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -3466,7 +3530,9 @@ flow-growth prerequisites supplied as explicit hypotheses, enabling the
 dominated Lipschitz bound to be derived via Gronwall on the characteristic
 ODE (see `flow_distance_growth_bound` above).  Used by `_lag` variants
 of the Lagrangian → Eulerian chain that route through
-`IsLagrangianVlasovSolution`. -/
+`IsLagrangianVlasovSolution`.
+@isnad1 id=ex.12h10v.s10.78f2106ee6be from=translated src=- shape=cdaecbb9 vocab=023a5d83
+-/
 lemma vlasov_trajectory_lipschitz_bound_lag
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -3527,7 +3593,9 @@ The global proof's structure transports to the `_On` form:
   `vlasov_pushforward_hasDerivAt_under_integral`,
   `vlasov_rhs_pushforward_back` all consume flow hypotheses at a
   *specific `t`*, not universally, so they transport unchanged after
-  threading the `ht : t ∈ Ioo 0 T` constraint. -/
+  threading the `ht : t ∈ Ioo 0 T` constraint.
+@isnad1 id=isvlasov.15h8v.s10.4b9b20720931 from=translated src=- shape=e198179e vocab=122f1325
+-/
 theorem vlasovSolutionViaPushforward_isVlasovSolutionOn
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -3696,7 +3764,9 @@ stronger `IsLagrangianVlasovSolutionOn` predicate.
   `IsCharacteristicFlowOn`'s initial-condition clause).
 
 This is the **packaging layer**; the substantive PDE proof lives in
-`vlasovSolutionViaPushforward_isVlasovSolutionOn` above. -/
+`vlasovSolutionViaPushforward_isVlasovSolutionOn` above.
+@isnad1 id=islagran.15h8v.s10.6f5e9b12105b from=translated src=- shape=e198179e vocab=6208f32b
+-/
 theorem vlasovSolutionViaPushforward_isLagrangianVlasovSolutionOn
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -3784,6 +3854,9 @@ The theorem is a direct application of `wasserstein1_pushforward_le_iInf`
 from `Coupling.lean`; the integration test confirms the type chain
 composes correctly when the maps are characteristic flows. -/
 
+/--
+@isnad1 id=le.6h9v.s11.8d93c4aa5e9a from=translated src=- shape=4cf7a9db vocab=bee087c2
+-/
 theorem wasserstein1_lagrangian_pushforward_bound
     {d : ℕ}
     (charX_f charV_f charX_g charV_g : ℝ → PhaseSpace d → PhysSpace d)
@@ -3838,6 +3911,9 @@ noncomputable def supW1On {d : ℕ}
     (S : Set ℝ) (ρ σ : ℝ → Measure (PhysSpace d)) : ℝ≥0∞ :=
   ⨆ (t : ℝ) (_ : t ∈ S), wasserstein1 (ρ t) (σ t)
 
+/--
+@isnad1 id=eq.0h4v.s6.596e4bdd05ea from=translated src=- shape=0011c2c5 vocab=40c8ac5e
+-/
 lemma supW1On_comm {d : ℕ} (S : Set ℝ)
     (ρ σ : ℝ → Measure (PhysSpace d)) :
     supW1On S ρ σ = supW1On S σ ρ := by
@@ -3846,12 +3922,18 @@ lemma supW1On_comm {d : ℕ} (S : Set ℝ)
   refine iSup_congr fun _ => ?_
   exact wasserstein1_comm _ _
 
+/--
+@isnad1 id=eq.0h3v.s5.e4bc29c320ba from=translated src=- shape=60780278 vocab=40c8ac5e
+-/
 lemma supW1On_self {d : ℕ} (S : Set ℝ)
     (ρ : ℝ → Measure (PhysSpace d)) :
     supW1On S ρ ρ = 0 := by
   unfold supW1On
   simp [wasserstein1_self]
 
+/--
+@isnad1 id=le.0h5v.s7.79cd61e5d1f9 from=translated src=- shape=d3302e42 vocab=7f081588
+-/
 lemma supW1On_triangle {d : ℕ} (S : Set ℝ)
     (ρ σ τ : ℝ → Measure (PhysSpace d)) :
     supW1On S ρ τ ≤ supW1On S ρ σ + supW1On S σ τ := by
@@ -3883,7 +3965,9 @@ the boundary (or not at all, as in the ENNReal-form Cauchy argument).
 
 Proof: induction on `n` starting from `n = m` via `Nat.le_induction`.
 Base case is the empty sum via `supW1On_self`.  Inductive step combines
-`supW1On_triangle` with `Finset.sum_Ico_succ_top`. -/
+`supW1On_triangle` with `Finset.sum_Ico_succ_top`.
+@isnad1 id=le.1h5v.s6.faf3212a8ba7 from=translated src=- shape=eae3d05a vocab=0db41695
+-/
 lemma supW1On_iterated_triangle {d : ℕ} (S : Set ℝ)
     (x : ℕ → ℝ → Measure (PhysSpace d))
     (m n : ℕ) (hmn : m ≤ n) :
@@ -3990,7 +4074,9 @@ structure VlasovMeasureCurve (d : ℕ) [NeZero d] (T : ℝ) (M : ℝ → ℝ) wh
 is bounded by `2M`, hence finite.
 
 Combines pointwise `wasserstein1_le_moments_sum` with `iSup_le` over the
-compact time set. -/
+compact time set.
+@isnad1 id=le.1h6v.s6.9bdc74dfc283 from=translated src=- shape=30f1fed9 vocab=ff83bc24
+-/
 lemma supW1On_le_two_moment_of_VlasovMeasureCurve {d : ℕ} [NeZero d]
     {T : ℝ} {M : ℝ → ℝ} (Mbar : ℝ) (hMbar : ∀ t ∈ Set.Icc 0 T, M t ≤ Mbar)
     (ρ σ : VlasovMeasureCurve d T M) :
@@ -4010,7 +4096,9 @@ lemma supW1On_le_two_moment_of_VlasovMeasureCurve {d : ℕ} [NeZero d]
   have hσ_t : ∫ y, ‖y‖ ∂(σ.ρ t) ≤ M t := σ.hasMoment t ht
   linarith [hMbar t ht]
 
-/-- `supW1On` of two `VlasovMeasureCurve`s is finite (≠ ⊤). -/
+/-- `supW1On` of two `VlasovMeasureCurve`s is finite (≠ ⊤).
+@isnad1 id=ne.1h6v.s6.2e5de67befbb from=translated src=- shape=031d4b90 vocab=7bb4167d
+-/
 lemma supW1On_ne_top_of_VlasovMeasureCurve {d : ℕ} [NeZero d] {T : ℝ} {M : ℝ → ℝ}
     (Mbar : ℝ) (hMbar : ∀ t ∈ Set.Icc 0 T, M t ≤ Mbar)
     (ρ σ : VlasovMeasureCurve d T M) :
@@ -4023,7 +4111,9 @@ lemma supW1On_ne_top_of_VlasovMeasureCurve {d : ℕ} [NeZero d] {T : ℝ} {M : �
 
 For each `x ∈ PhysSpace d`, the map `t ↦ (∇W ∗ ρ_t)(x)` is continuous on
 `[0, T]`.  Used inside `Φ`'s well-definedness proof to discharge the
-convolution-continuity hypothesis of `exists_vlasov_characteristicFlow`. -/
+convolution-continuity hypothesis of `exists_vlasov_characteristicFlow`.
+@isnad1 id=continuo.2h7v.s8.3df9595a10bb from=translated src=- shape=f8da521f vocab=ff1180ae
+-/
 lemma vlasovMeasureCurve_convCont {d : ℕ} [NeZero d]
     (gradW : PhysSpace d → PhysSpace d)
     (L : NNReal) (hL : LipschitzWith L gradW)
@@ -4104,11 +4194,17 @@ continuous clamp via `ContinuousOn.comp_continuous`. -/
 extend a curve from `Icc 0 T` to all of `ℝ`. -/
 def clampToIcc (T t : ℝ) : ℝ := max 0 (min t T)
 
+/--
+@isnad1 id=mem.1h2v.s5.a346ccee2439 from=translated src=- shape=83e234f0 vocab=8ca068b1
+-/
 lemma clampToIcc_mem {T : ℝ} (hT : 0 ≤ T) (t : ℝ) :
     clampToIcc T t ∈ Set.Icc (0 : ℝ) T := by
   unfold clampToIcc
   refine Set.mem_Icc.mpr ⟨le_max_left _ _, max_le hT (min_le_right _ _)⟩
 
+/--
+@isnad1 id=continuo.0h1v.s4.f3200e7dc440 from=translated src=- shape=f736e2c1 vocab=197ea02d
+-/
 lemma clampToIcc_continuous (T : ℝ) : Continuous (clampToIcc T) := by
   unfold clampToIcc
   exact continuous_const.max (continuous_id.min continuous_const)
@@ -4129,19 +4225,25 @@ noncomputable def VlasovMeasureCurve.extend {d : ℕ} [NeZero d] {T : ℝ} {M : 
     (ρ : VlasovMeasureCurve d T M) : ℝ → Measure (PhysSpace d) :=
   fun t => ρ.ρ (clampToIcc T t)
 
-/-- The extended curve is a probability measure at every `t : ℝ`. -/
+/-- The extended curve is a probability measure at every `t : ℝ`.
+@isnad1 id=isprobab.0h5v.s6.3866747672d2 from=translated src=- shape=68c70d6b vocab=502a22c9
+-/
 instance VlasovMeasureCurve.extend_isProb {d : ℕ} [NeZero d] {T : ℝ} {M : ℝ → ℝ}
     (ρ : VlasovMeasureCurve d T M) (t : ℝ) :
     IsProbabilityMeasure (ρ.extend t) :=
   ρ.isProb _
 
-/-- The extended curve has `‖·‖` integrable at every `t : ℝ`. -/
+/-- The extended curve has `‖·‖` integrable at every `t : ℝ`.
+@isnad1 id=integrab.1h5v.s7.5c88e80978d7 from=translated src=- shape=24d03feb vocab=d2276230
+-/
 lemma VlasovMeasureCurve.extend_yIntegrable {d : ℕ} [NeZero d] {T : ℝ} {M : ℝ → ℝ}
     (hT : 0 ≤ T) (ρ : VlasovMeasureCurve d T M) (t : ℝ) :
     Integrable (fun y : PhysSpace d => ‖y‖) (ρ.extend t) :=
   ρ.yIntegrable _ (clampToIcc_mem hT t)
 
-/-- The extended curve preserves the moment bound `M` universally in `t`. -/
+/-- The extended curve preserves the moment bound `M` universally in `t`.
+@isnad1 id=le.1h5v.s7.dc47bd6e9787 from=translated src=- shape=6ef1ae60 vocab=5adb9eaa
+-/
 lemma VlasovMeasureCurve.extend_hasMoment {d : ℕ} [NeZero d] {T : ℝ} {M : ℝ → ℝ}
     (hT : 0 ≤ T) (ρ : VlasovMeasureCurve d T M) (t : ℝ) :
     ∫ y, ‖y‖ ∂(ρ.extend t) ≤ M (clampToIcc T t) :=
@@ -4152,7 +4254,9 @@ lemma VlasovMeasureCurve.extend_hasMoment {d : ℕ} [NeZero d] {T : ℝ} {M : �
 Composed from `vlasovMeasureCurve_convCont` (ContinuousOn on `Icc 0 T`)
 with `clampToIcc_continuous` via `ContinuousOn.comp_continuous`.  This
 provides the flow construction's universal `hρ_cont` hypothesis directly
-from a `VlasovMeasureCurve`'s structural fields. -/
+from a `VlasovMeasureCurve`'s structural fields.
+@isnad1 id=continuo.3h7v.s8.0c6d6f5fd3fb from=translated src=- shape=e9cbe65a vocab=42f7a2b4
+-/
 lemma VlasovMeasureCurve.extend_convCont {d : ℕ} [NeZero d]
     (gradW : PhysSpace d → PhysSpace d)
     (L : NNReal) (hL : LipschitzWith L gradW)
@@ -4199,7 +4303,9 @@ the algebraic constraint per-z yields a finite `R(z)` and `M(z)`, with the
 existence-bound on `T` driven by `L·T² < 1`.
 
 The forward-iteration continuation extends to arbitrary T via shifted
-initial data; the small-T regime here is where the contraction operates. -/
+initial data; the small-T regime here is where the contraction operates.
+@isnad1 id=ex.9h8v.s10.d9e6d76826b9 from=translated src=- shape=470f3192 vocab=8e78a533
+-/
 theorem exists_vlasov_trajectory
     {d : ℕ}
     (W : PhysSpace d → ℝ)
@@ -4417,7 +4523,9 @@ algebraic R(z), M(z) computation.
 doesn't propagate continuity-in-z.  A measurable variant
 (`exists_vlasov_characteristicFlow_global_on_ball_measurable`) covers
 the analogous question for the ball-localized flow; a parallel
-`_global_smallT_measurable` companion can be added when needed. -/
+`_global_smallT_measurable` companion can be added when needed.
+@isnad1 id=ex.9h7v.s10.bb09e3a7f55d from=translated src=- shape=8b9e7088 vocab=1da78cdb
+-/
 theorem exists_vlasov_characteristicFlow_global_smallT
     {d : ℕ}
     (W : PhysSpace d → ℝ)
@@ -4504,7 +4612,9 @@ noncomputable def Phi {d : ℕ}
   fun t => Measure.map (fun z => charX t z) f₀
 
 /-- `Phi charX f₀ t` is a probability measure when `charX t` is AE-measurable
-wrt `f₀`. -/
+wrt `f₀`.
+@isnad1 id=isprobab.1h4v.s8.8f6012da5fbc from=translated src=- shape=0b5f7804 vocab=f6098714
+-/
 theorem Phi_isProbabilityMeasure {d : ℕ}
     (charX : ℝ → PhaseSpace d → PhysSpace d)
     (f₀ : Measure (PhaseSpace d)) [IsProbabilityMeasure f₀]
@@ -4518,7 +4628,9 @@ theorem Phi_isProbabilityMeasure {d : ℕ}
 hypothesis `‖charX t z‖ ≤ C_T · (‖z‖ + 1)`.
 
 Composes `integral_map` (which exchanges the pushforward) with the pointwise
-growth bound + linearity of integration over `f₀`. -/
+growth bound + linearity of integration over `f₀`.
+@isnad1 id=le.7h7v.s9.5e65b8b9826b from=translated src=- shape=d7147682 vocab=ecfc0eca
+-/
 theorem Phi_hasMoment_le {d : ℕ}
     (charX : ℝ → PhaseSpace d → PhysSpace d)
     (f₀ : Measure (PhaseSpace d)) [IsProbabilityMeasure f₀]
@@ -4566,7 +4678,9 @@ theorem Phi_hasMoment_le {d : ℕ}
         apply mul_le_mul_of_nonneg_left _ hC_T_nn
         linarith
 
-/-- `‖·‖` is integrable wrt `Phi charX f₀ t` under the growth hypothesis. -/
+/-- `‖·‖` is integrable wrt `Phi charX f₀ t` under the growth hypothesis.
+@isnad1 id=integrab.6h6v.s9.62d77ec2c1a4 from=translated src=- shape=3f02521c vocab=61d451ee
+-/
 theorem Phi_yIntegrable {d : ℕ}
     (charX : ℝ → PhaseSpace d → PhysSpace d)
     (f₀ : Measure (PhaseSpace d)) [IsProbabilityMeasure f₀]
@@ -4620,7 +4734,9 @@ before the call (no inline `?_`).  The `integrable_map_measure` bridge uses
 `.mpr` to handle the `g ∘ f` ↔ `fun z => g (f z)` syntactic mismatch.
 
 Used by `Phi_hW1Cont` to bound W₁(Φ_s, Φ_t) by an integral that DCT controls
-as `t → s`. -/
+as `t → s`.
+@isnad1 id=le.3h5v.s9.d3afeaabd3c4 from=translated src=- shape=f8135974 vocab=df483d64
+-/
 theorem wasserstein1_Phi_le_integral_diff {d : ℕ}
     (charX : ℝ → PhaseSpace d → PhysSpace d)
     (f₀ : Measure (PhaseSpace d)) [IsProbabilityMeasure f₀]
@@ -4721,7 +4837,9 @@ tends to 0 as `t → s` within `Icc 0 T`.**
 Combines pointwise continuity `t ↦ charX t z` (from the flow's HasDerivAt
 → ContinuousAt) with a uniform dominator `2·C_T·(‖z‖+1)` (from the per-z
 growth bound) via Mathlib's filter-DCT.  The dominator integrability is
-built as a named `have` before the DCT call. -/
+built as a named `have` before the DCT call.
+@isnad1 id=tendsto.7h6v.s9.ec32921975bb from=translated src=- shape=1b9469ef vocab=f168833b
+-/
 theorem Phi_integral_diff_tendsto_zero {d : ℕ}
     (charX : ℝ → PhaseSpace d → PhysSpace d)
     (f₀ : Measure (PhaseSpace d)) [IsProbabilityMeasure f₀]
@@ -4805,7 +4923,9 @@ theorem Phi_integral_diff_tendsto_zero {d : ℕ}
 
 Composes the W₁ bound (`wasserstein1_Phi_le_integral_diff`) with the DCT step
 (`Phi_integral_diff_tendsto_zero`) to conclude that
-`(wasserstein1 (Phi charX f₀ s) (Phi charX f₀ t)).toReal → 0` as `t → s`. -/
+`(wasserstein1 (Phi charX f₀ s) (Phi charX f₀ t)).toReal → 0` as `t → s`.
+@isnad1 id=continuo.8h6v.s9.7347d391528d from=translated src=- shape=6929332b vocab=62f8ae96
+-/
 theorem Phi_hW1Cont {d : ℕ}
     (charX : ℝ → PhaseSpace d → PhysSpace d)
     (f₀ : Measure (PhaseSpace d)) [IsProbabilityMeasure f₀]
@@ -4957,7 +5077,9 @@ regularity at `t = 0` is a property of the underlying Picard construction,
 not derivable from `IsCharacteristicFlowOn` alone.  The Picard iteration
 discharges these hypotheses from the concrete construction.
 
-This is what the Picard construction plugs into the Φ pipeline. -/
+This is what the Picard construction plugs into the Φ pipeline.
+@isnad1 id=measurab.7h8v.s10.a9c23e350781 from=translated src=- shape=25f3fc6e vocab=3cf08f1c
+-/
 theorem charFlow_measurable_via_gronwall
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -5041,7 +5163,9 @@ constant `exp((max 1 L) · (t − 0))`, uniformly for `t ∈ [0, T]`.
 Same hypotheses as `charFlow_measurable_via_gronwall_Ioo`; the conclusion
 is the Grönwall distance bound used by both that lemma (to derive
 continuity-in-`z` hence measurability) and the moment-free dominator in
-`dobrushin_uniqueness_On`. -/
+`dobrushin_uniqueness_On`.
+@isnad1 id=le.7h10v.s10.834be7d2a0a5 from=translated src=- shape=df4f4fd5 vocab=36248370
+-/
 theorem charFlow_lipschitzInZ_via_gronwall_Ioo
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -5162,7 +5286,9 @@ The proof reuses the per-window Grönwall distance bound, but obtains the
 `t = 0` endpoint distance bound by taking a one-sided limit
 `s₀ → 0⁺` of the Grönwall bounds on `[s₀, t]` (each of which only needs
 the derivative on `Set.Ico s₀ t ⊆ Set.Ioo 0 T`), rather than applying
-Grönwall directly on `[0, t]`. -/
+Grönwall directly on `[0, t]`.
+@isnad1 id=measurab.7h8v.s10.08342c92565f from=translated src=- shape=25f3fc6e vocab=8c21dbb9
+-/
 theorem charFlow_measurable_via_gronwall_Ioo
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -5249,7 +5375,9 @@ and transports it into the precise form needed:
   → ContinuousOn (joining components via `Prod`).
 * `h_deriv_Ico` from `h_boundary`'s HasDerivWithinAt-on-Icc lifted to
   HasDerivWithinAt-on-Ici at boundary points via `mono_of_mem_nhdsWithin`
-  (the local-equivalence-of-filters argument). -/
+  (the local-equivalence-of-filters argument).
+@isnad1 id=and.3h6v.s10.f7dc7142df70 from=translated src=- shape=701792da vocab=82ec3a6c
+-/
 theorem characteristicFlow_boundary_regularity
     {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
@@ -5338,7 +5466,9 @@ single Picard step.
 output curve + local pushforward equation on `Icc 0 T`.  Internally,
 `σ.ρ = Phi charX_clamped f₀` where `charX_clamped t := charX (clampToIcc T t)`;
 on `Icc 0 T` the clamp is the identity so the pushforward equation
-holds with the un-clamped `charX`. -/
+holds with the un-clamped `charX`.
+@isnad1 id=ex.10h10v.s10.6c70c0764911 from=translated src=- shape=58c097e1 vocab=5d6c29d9
+-/
 theorem Phi_step
     {d : ℕ} [NeZero d]
     (W : PhysSpace d → ℝ)
@@ -5513,7 +5643,9 @@ Output also exposes the **boundary-regularity bundle** (as
 discharge `Phi_supW1_contraction`'s per-`z` regularity hypotheses at each step.
 
 The envelope's anchor moment is the **phase-space** `∫z‖z‖∂f₀` (matching the
-`integral_map` initial value), NOT the spatial marginal. -/
+`integral_map` initial value), NOT the spatial marginal.
+@isnad1 id=ex.9h8v.s10.17c8e77409fe from=translated src=- shape=7bf0417f vocab=d85d011c
+-/
 theorem Phi_step_envelope
     {d : ℕ} [NeZero d]
     (W : PhysSpace d → ℝ)
@@ -5717,7 +5849,9 @@ trajectory.  The Picard construction discharges these hypotheses.
 
 Used by the main contraction lemma to bound
 `supW1On(Icc 0 T)(Phi ρ)(Phi σ)` by `K_contract(T) · supW1On(Icc 0 T) ρ σ`
-where `K_contract(T) := (L/K) · (exp(K·T) - 1) → 0` as `T → 0`. -/
+where `K_contract(T) := (L/K) · (exp(K·T) - 1) → 0` as `T → 0`.
+@isnad1 id=le.14h11v.s11.270eaf9abc41 from=translated src=- shape=72fe3984 vocab=c789db98
+-/
 theorem flow_difference_gronwall_bound {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
     (L : NNReal) (hL : LipschitzWith L gradW)
@@ -5862,7 +5996,9 @@ dual direct, with `integral_map` converting pushforward integrals + the
 
 Used by `Phi_pointwise_contraction` (below) with
 `f := charX_ρ t, g := charX_σ t` to bound the pushforward W₁ in terms of
-the pointwise flow difference. -/
+the pointwise flow difference.
+@isnad1 id=le.5h4v.s10.ddf6fa32f763 from=translated src=- shape=710731ba vocab=bc400c35
+-/
 theorem wasserstein1_pushforward_pair_le_integral_norm_diff {d : ℕ}
     (f g : PhaseSpace d → PhysSpace d)
     (f₀ : Measure (PhaseSpace d)) [IsProbabilityMeasure f₀]
@@ -5939,7 +6075,9 @@ transfers to the Wasserstein side.
 
 Taking sup over `t ∈ Icc 0 T` derives the contraction
 `supW1On(Phi_ρ)(Phi_σ) ≤ K_contract(T) · D` where
-`K_contract(T) := (L/K)·(exp(K·T)−1) → 0` as `T → 0`. -/
+`K_contract(T) := (L/K)·(exp(K·T)−1) → 0` as `T → 0`.
+@isnad1 id=le.18h13v.s11.9deaf7ace8e1 from=translated src=- shape=aef13946 vocab=d29eb1b3
+-/
 theorem Phi_pointwise_contraction {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
     (L : NNReal) (hL : LipschitzWith L gradW)
@@ -6088,7 +6226,9 @@ match the two distinct sub-arguments.
 Under the `Wbar` refactor (Dobrushin 1979, §5), the contraction factor
 becomes `C₂(L) · T` — *linear in T*, no exponential.
 `LocalSmallnessContraction` would reduce to `C₂(L) · T < 1`;
-`LocalSmallnessPLBuffer` is independent of that change. -/
+`LocalSmallnessPLBuffer` is independent of that change.
+@isnad1 id=le.19h12v.s11.b6f76b124d8c from=translated src=- shape=03a1918b vocab=6202e242
+-/
 theorem Phi_supW1_contraction {d : ℕ}
     (gradW : PhysSpace d → PhysSpace d)
     (L : NNReal) (hL : LipschitzWith L gradW)
@@ -6216,7 +6356,9 @@ boundary at the bridge between the structural argument (supW1On in ENNReal)
 and the closed-form algebra (real geometric series).  The Finset partial sum
 bound comes from `Mathlib/Algebra/Order/Field/GeomSum.lean`'s
 `geom_sum_Ico_le_of_lt_one` — no case-split on `q = 0` vs `q > 0` needed,
-no shifting tricks via `Finset.sum_Ico_eq_sum_range`. -/
+no shifting tricks via `Finset.sum_Ico_eq_sum_range`.
+@isnad1 id=le.5h7v.s7.355864218793 from=translated src=- shape=78c5ae7c vocab=dd7908d2
+-/
 lemma picard_iterate_geometric_bound {d : ℕ} (S : Set ℝ)
     (x : ℕ → ℝ → Measure (PhysSpace d))
     (q : ℝ) (hq_nn : 0 ≤ q) (hq_lt : q < 1)
@@ -6270,7 +6412,9 @@ that `supW1On (x m) (x n) < ε` for all `m, n ≥ N`.
 
 **Proof sketch**: for the symmetric case (m > n), use `supW1On_comm`.
 For `ε = ⊤`, any N works.  For `ε < ⊤`, pick N such that
-`D₀ * q^N / (1-q) < ε.toReal`; combine with the geometric bound. -/
+`D₀ * q^N / (1-q) < ε.toReal`; combine with the geometric bound.
+@isnad1 id=ex.5h6v.s7.532677162402 from=translated src=- shape=9414b5c1 vocab=4cc7193b
+-/
 theorem picard_iterate_isCauchy_of_contraction {d : ℕ} (S : Set ℝ)
     (x : ℕ → ℝ → Measure (PhysSpace d))
     (q : ℝ) (hq_nn : 0 ≤ q) (hq_lt : q < 1)
@@ -6333,7 +6477,9 @@ theorem picard_iterate_isCauchy_of_contraction {d : ℕ} (S : Set ℝ)
 For `t ∈ S`, the per-`t` Wasserstein-1 distance is bounded by the sup-W₁
 over `S`.  Routine `le_iSup` chain.  Mirror image of the `supW1On`-shape
 lemmas (`supW1On_triangle`, `supW1On_self`) — the per-point extraction
-from the sup. -/
+from the sup.
+@isnad1 id=le.1h5v.s7.769cb011cbf8 from=translated src=- shape=0f944fe3 vocab=f2771b73
+-/
 lemma wasserstein1_le_supW1On {d : ℕ}
     (S : Set ℝ) (ρ σ : ℝ → Measure (PhysSpace d))
     (t : ℝ) (ht : t ∈ S) :
@@ -6353,7 +6499,9 @@ for every `ε : ENNReal` with `0 < ε`, there is `N` such that
 `wasserstein1 (x n t) (y t) ≤ wasserstein1 (x n t) (x m t) + wasserstein1 (x m t) (y t)`.
 The first term `≤ supW1On (x n) (x m) < ε` by Cauchy; the second `→ 0` by
 pointwise tendsto.  Apply `ENNReal.le_of_forall_pos_le_add` for the limit
-passage. -/
+passage.
+@isnad1 id=ex.3h5v.s8.24e99ca0f573 from=translated src=- shape=1d4b4e53 vocab=9d2d7a99
+-/
 lemma picard_iterate_limit_uniform_tendsto {d : ℕ}
     (S : Set ℝ) (x : ℕ → ℝ → Measure (PhysSpace d))
     (y : ℝ → Measure (PhysSpace d))
@@ -6415,7 +6563,9 @@ produce a limit `ρ_lim : VlasovMeasureCurve d T M` such that
    * `yIntegrable`: from the placeholder.
    * `hW1Cont`: ε/3 triangle through `x N`, using
      `picard_iterate_limit_uniform_tendsto` for the uniform tendsto +
-     `(x N).hW1Cont` for the middle term. -/
+     `(x N).hW1Cont` for the middle term.
+@isnad1 id=ex.4h6v.s8.b6f8a003473a from=translated src=- shape=ed4202b5 vocab=bbdf8208
+-/
 theorem picard_iterate_exists_limit {d : ℕ} [NeZero d]
     {T : ℝ} {M : ℝ → ℝ}
     (x : ℕ → VlasovMeasureCurve d T M)

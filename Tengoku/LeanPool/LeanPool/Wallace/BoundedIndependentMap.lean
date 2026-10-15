@@ -23,7 +23,9 @@ noncomputable section
 
 universe u v
 
-/-- Bounded independence is reflected by an injective additive homomorphism. -/
+/-- Bounded independence is reflected by an injective additive homomorphism.
+@isnad1 id=boundedi.2h5v.s7.96bfdf0050a1 from=translated src=- shape=6e2dc776 vocab=ca05db15
+-/
 theorem boundedIndependent_of_image
     {G : Type u} {H : Type v} [AddCommGroup G] [AddCommGroup H] [DecidableEq H]
     (f : G →+ H) (hf : Function.Injective f)

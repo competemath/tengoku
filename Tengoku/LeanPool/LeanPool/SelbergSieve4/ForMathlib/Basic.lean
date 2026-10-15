@@ -20,6 +20,9 @@ modifications. -/
 
 variable {R : Type*}
 
+/--
+@isnad1 id=eq.2h4v.s7.ddbe03c8edd9 from=translated src=- shape=b8df1f00 vocab=d0bb99a4
+-/
 theorem mult_lcm_eq_of_ne_zero [CommGroupWithZero R] (f : ArithmeticFunction R)
     (h_mult : f.IsMultiplicative) (x y : ℕ)
     (hf : f (x.gcd y) ≠ 0) :
@@ -27,6 +30,9 @@ theorem mult_lcm_eq_of_ne_zero [CommGroupWithZero R] (f : ArithmeticFunction R)
   rw [←h_mult.lcm_apply_mul_gcd_apply]
   field_simp
 
+/--
+@isnad1 id=eq.2h2v.s5.f1e2f2d127b6 from=translated src=- shape=52d19bd4 vocab=02fb114e
+-/
 theorem prod_factors_of_mult (f : ArithmeticFunction ℝ)
     (h_mult : ArithmeticFunction.IsMultiplicative f) {l : ℕ} (hl : Squarefree l) :
     ∏ a ∈ l.primeFactors, f a = f l := by

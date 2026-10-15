@@ -26,6 +26,9 @@ def LieAlgebra.bracketHom : 𝓰 →ₗ[𝕜] 𝓰 →ₗ[𝕜] 𝓰 where
   map_add' X Y := by simp_all only [add_lie]; exact rfl
   map_smul' c X := by simp_all only [smul_lie, RingHom.id_apply]; exact rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.9f0c9a8408fa from=translated src=- shape=53d740e3 vocab=bd617948
+-/
 @[simp]
 lemma LieAlgebra.bracketHom_apply {X Y : 𝓰} : LieAlgebra.bracketHom 𝕜 𝓰 X Y = ⁅X, Y⁆ := rfl
 

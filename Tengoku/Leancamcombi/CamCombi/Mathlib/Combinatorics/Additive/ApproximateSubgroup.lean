@@ -11,6 +11,9 @@ variable {G : Type*} [Group G] {A B : Set G} {K L : ℝ} {m n : ℕ}
 namespace IsApproximateSubgroup
 
 open Set in
+/--
+@isnad1 id=isapprox.1h4v.s6.81eece6f589f from=translated src=- shape=6d3cd92d vocab=eec9916b
+-/
 @[to_additive]
 lemma pi {ι : Type*} {G : ι → Type*} [Fintype ι] [∀ i, Group (G i)] {A : ∀ i, Set (G i)} {K : ι → ℝ}
     (hA : ∀ i, IsApproximateSubgroup (K i) (A i)) :

@@ -71,6 +71,9 @@ def π {n : ℕ} : Q n.succ → Q n := fun p => p ∘ Fin.succ
 
 namespace Q
 
+/--
+@isnad1 id=eq.1h3v.s4.22db501a91c8 from=translated src=- shape=96557b98 vocab=23a85093
+-/
 @[ext]
 theorem ext {n} {f g : Q n} (h : ∀ x, f x = g x) : f = g := funext h
 
@@ -82,7 +85,9 @@ variable (n : ℕ)
 instance : Unique (Q 0) :=
   ⟨⟨fun _ => true⟩, by intro; ext x; fin_cases x⟩
 
-/-- `Q n` has 2^n elements. -/
+/-- `Q n` has 2^n elements.
+@isnad1 id=eq.0h1v.s5.db3b1c1fde5a from=translated src=- shape=5b09d1d5 vocab=c9e95cac
+-/
 theorem card : card (Q n) = 2 ^ n := by simp
 
 /-! Until the end of this namespace, `n` will be an implicit argument (still
@@ -90,6 +95,9 @@ a natural number). -/
 
 variable {n}
 
+/--
+@isnad1 id=iff.0h3v.s5.43fd5ccb237c from=translated src=- shape=59644d75 vocab=cf23c956
+-/
 theorem succ_n_eq (p q : Q n.succ) : p = q ↔ p 0 = q 0 ∧ π p = π q := by
   constructor
   · rintro rfl; exact ⟨rfl, rfl⟩
@@ -104,11 +112,15 @@ theorem succ_n_eq (p q : Q n.succ) : p = q ↔ p 0 = q 0 ∧ π p = π q := by
 `p.adjacent q` if there is an edge from `p` to `q` in `Q n`. -/
 def adjacent {n : ℕ} (p : Q n) : Set (Q n) := { q | ∃! i, p i ≠ q i }
 
-/-- In `Q 0`, no two vertices are adjacent. -/
+/-- In `Q 0`, no two vertices are adjacent.
+@isnad1 id=not.0h2v.s5.5b1f17684226 from=translated src=- shape=c699ae40 vocab=ae415e7a
+-/
 theorem not_adjacent_zero (p q : Q 0) : q ∉ p.adjacent := by rintro ⟨v, _⟩; apply finZeroElim v
 
 /-- If `p` and `q` in `Q n.succ` have different values at zero then they are adjacent
-iff their projections to `Q n` are equal. -/
+iff their projections to `Q n` are equal.
+@isnad1 id=iff.1h3v.s6.98be6f2e2228 from=translated src=- shape=bf7f757b vocab=f2748897
+-/
 theorem adj_iff_proj_eq {p q : Q n.succ} (h₀ : p 0 ≠ q 0) : q ∈ p.adjacent ↔ π p = π q := by
   constructor
   · rintro ⟨i, _, h_uni⟩
@@ -123,7 +135,9 @@ theorem adj_iff_proj_eq {p q : Q n.succ} (h₀ : p 0 ≠ q 0) : q ∈ p.adjacent
     apply congr_fun heq
 
 /-- If `p` and `q` in `Q n.succ` have the same value at zero then they are adjacent
-iff their projections to `Q n` are adjacent. -/
+iff their projections to `Q n` are adjacent.
+@isnad1 id=iff.1h3v.s6.1088ddbc2bfe from=translated src=- shape=baaac9de vocab=f2748897
+-/
 theorem adj_iff_proj_adj {p q : Q n.succ} (h₀ : p 0 = q 0) :
     q ∈ p.adjacent ↔ π q ∈ (π p).adjacent := by
   constructor
@@ -146,6 +160,9 @@ theorem adj_iff_proj_adj {p q : Q n.succ} (h₀ : p 0 = q 0) :
     apply h_uni
     simp [π, hy]
 
+/--
+@isnad1 id=iff.0h3v.s5.7329f19c115f from=translated src=- shape=631dec85 vocab=ae415e7a
+-/
 @[symm]
 theorem adjacent.symm {p q : Q n} : q ∈ p.adjacent ↔ p ∈ q.adjacent := by
   simp only [adjacent, ne_comm, Set.mem_ofPred_eq]
@@ -159,12 +176,21 @@ abbrev V : ℕ → Type
   | 0 => ℝ
   | n + 1 => V n × V n
 
+/--
+@isnad1 id=eq.0h0v.s3.8ae75e505112 from=translated src=- shape=fffb20d2 vocab=25cccc64
+-/
 theorem V_zero : V 0 = ℝ := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.fc9924827556 from=translated src=- shape=b3ab8dc8 vocab=da175be1
+-/
 theorem V_succ {n : ℕ} : V (n + 1) = (V n × V n) := rfl
 
 namespace V
 
+/--
+@isnad1 id=eq.2h3v.s5.c5a5c15b51cf from=translated src=- shape=b45aa93d vocab=9807c43c
+-/
 @[ext]
 theorem ext {n : ℕ} {p q : V n.succ} (h₁ : p.1 = q.1) (h₂ : p.2 = q.2) : p = q := Prod.ext h₁ h₂
 
@@ -185,6 +211,9 @@ noncomputable def e : ∀ {n}, Q n → V n
   | 0 => fun _ => (1 : ℝ)
   | Nat.succ _ => fun x => cond (x 0) (e (π x), 0) (0, e (π x))
 
+/--
+@isnad1 id=eq.0h1v.s4.184f698d7da7 from=translated src=- shape=858bc3cc vocab=3b49f82e
+-/
 @[simp]
 theorem e_zero_apply (x : Q 0) : e x = (1 : ℝ) :=
   rfl
@@ -197,6 +226,9 @@ noncomputable def ε : ∀ {n : ℕ}, Q n → V n →ₗ[ℝ] ℝ
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=eq.0h3v.s6.eec33f21eee3 from=translated src=- shape=dfc85406 vocab=d9eee066
+-/
 theorem duality (p q : Q n) : ε p (e q) = if p = q then 1 else 0 := by
   induction n with
   | zero => simp [Subsingleton.elim (α := Q 0) p q, ε, e]
@@ -208,7 +240,9 @@ theorem duality (p q : Q n) : ε p (e q) = if p = q then 1 else 0 := by
         LinearMap.comp_apply, IH]
       congr 1; simp [Q.succ_n_eq, hp, hq]
 
-/-- Any vector in `V n` annihilated by all `ε p`'s is zero. -/
+/-- Any vector in `V n` annihilated by all `ε p`'s is zero.
+@isnad1 id=eq.1h2v.s6.b79c877f5da5 from=translated src=- shape=19634f23 vocab=8c3e9ce8
+-/
 theorem epsilon_total {v : V n} (h : ∀ p : Q n, (ε p) v = 0) : v = 0 := by
   induction n with
   | zero => dsimp [ε] at h; exact h fun _ => true
@@ -227,7 +261,9 @@ theorem epsilon_total {v : V n} (h : ∀ p : Q n, (ε p) v = 0) : v = 0 := by
 open Module
 
 /-- `e` and `ε` are dual families of vectors. It implies that `e` is indeed a basis
-and `ε` computes coefficients of decompositions of vectors on that basis. -/
+and `ε` computes coefficients of decompositions of vectors on that basis.
+@isnad1 id=dualbase.0h1v.s4.75a65d0ecb1d from=translated src=- shape=09a01e49 vocab=a45e55cc
+-/
 theorem dualBases_e_ε (n : ℕ) : DualBases (@e n) (@ε n) where
   eval_same := by simp [duality]
   eval_of_ne _ _ h := by simp [duality, h]
@@ -237,6 +273,9 @@ theorem dualBases_e_ε (n : ℕ) : DualBases (@e n) (@ε n) where
 /-! We will now derive the dimension of `V`, first as a cardinal in `dim_V` and,
 since this cardinal is finite, as a natural number in `finrank_V` -/
 
+/--
+@isnad1 id=eq.0h1v.s5.c5e4f06476d1 from=translated src=- shape=ea0489e5 vocab=a809ab4e
+-/
 theorem dim_V : Module.rank ℝ (V n) = 2 ^ n := by
   have : Module.rank ℝ (V n) = (2 ^ n : ℕ) := by
     rw [rank_eq_card_basis (dualBases_e_ε _).basis, Q.card]
@@ -245,6 +284,9 @@ theorem dim_V : Module.rank ℝ (V n) = 2 ^ n := by
 instance : FiniteDimensional ℝ (V n) :=
   (dualBases_e_ε _).basis.finiteDimensional_of_finite
 
+/--
+@isnad1 id=eq.0h1v.s5.5f274f8b09d8 from=translated src=- shape=e96f2693 vocab=a16bbe8b
+-/
 theorem finrank_V : finrank ℝ (V n) = 2 ^ n := by
   have := @dim_V n
   rw [← finrank_eq_rank] at this; assumption_mod_cast
@@ -262,10 +304,16 @@ noncomputable def f : ∀ n, V n →ₗ[ℝ] V n
 get that `f` is linear, but its values are somewhat buried as a side-effect.
 The next two lemmas unbury them. -/
 
+/--
+@isnad1 id=eq.0h0v.s7.af633c45057f from=translated src=- shape=aaa0d4ec vocab=3be0a34c
+-/
 @[simp]
 theorem f_zero : f 0 = 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.664ad5c6bd51 from=translated src=- shape=61599e09 vocab=5695febd
+-/
 theorem f_succ_apply (v : V n.succ) : f n.succ v = (f n v.1 + v.2, v.1 - f n v.2) := by
   cases v
   rw [f]
@@ -276,6 +324,9 @@ theorem f_succ_apply (v : V n.succ) : f n.succ v = (f n v.1 + v.2, v.1 - f n v.2
 is necessary since otherwise `n • v` refers to the multiplication defined
 using only the addition of `V`. -/
 
+/--
+@isnad1 id=eq.0h2v.s7.70fcb410a394 from=translated src=- shape=c71e737b vocab=8f596139
+-/
 theorem f_squared (v : V n) : (f n) (f n v) = (n : ℝ) • v := by
   induction n with
   | zero => simp only [Nat.cast_zero, zero_smul, f_zero, LinearMap.zero_apply]
@@ -286,6 +337,9 @@ theorem f_squared (v : V n) : (f n) (f n v) = (n : ℝ) • v := by
 `q` the column index). -/
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h3v.s7.e91c0d5724ba from=translated src=- shape=a1fbd18f vocab=e41bc871
+-/
 theorem f_matrix (p q : Q n) : |ε q (f n (e p))| = if p ∈ q.adjacent then 1 else 0 := by
   induction n with
   | zero =>
@@ -310,15 +364,24 @@ variable {m : ℕ}
 
 /-! Again we unpack what are the values of `g`. -/
 
+/--
+@isnad1 id=eq.0h2v.s8.f66c207b8e99 from=translated src=- shape=d0a251a9 vocab=0d6646ea
+-/
 theorem g_apply : ∀ v, g m v = (f m v + √(m + 1) • v, v) := by
   delta g; intro v; simp
 
+/--
+@isnad1 id=injectiv.0h1v.s7.548bc6962c57 from=translated src=- shape=431ce4ae vocab=5959de21
+-/
 theorem g_injective : Injective (g m) := by
   rw [g]
   intro x₁ x₂ h
   simp only [V, LinearMap.prod_apply, LinearMap.id_apply, Prod.mk_inj, Function.prod_apply] at h
   exact h.right
 
+/--
+@isnad1 id=eq.1h2v.s8.fa5daec887e6 from=translated src=- shape=77e8b000 vocab=2760bbf3
+-/
 theorem f_image_g (w : V m.succ) (hv : ∃ v, g m v = w) : f m.succ w = √(m + 1) • w := by
   rcases hv with ⟨v, rfl⟩
   have : √(m + 1) * √(m + 1) = m + 1 := Real.mul_self_sqrt (mod_cast zero_le)
@@ -356,7 +419,9 @@ theory of lattices, with inf and sup (also known as meet and join). -/
 open scoped Classical in
 /-- If a subset `H` of `Q (m+1)` has cardinal at least `2^m + 1` then the
 subspace of `V (m+1)` spanned by the corresponding basis vectors non-trivially
-intersects the range of `g m`. -/
+intersects the range of `g m`.
+@isnad1 id=ex.1h2v.s8.40762a190a3e from=translated src=- shape=9f165d20 vocab=f0fc614b
+-/
 theorem exists_eigenvalue (H : Set (Q m.succ)) (hH : Card H ≥ 2 ^ m + 1) :
     ∃ y ∈ Span (e '' H) ⊓ range (g m), y ≠ 0 := by
   let W := Span (e '' H)
@@ -389,7 +454,9 @@ theorem exists_eigenvalue (H : Set (Q m.succ)) (hH : Card H ≥ 2 ^ m + 1) :
   linarith
 
 open scoped Classical in
-/-- **Huang sensitivity theorem** also known as the **Huang degree theorem** -/
+/-- **Huang sensitivity theorem** also known as the **Huang degree theorem**
+@isnad1 id=ex.1h2v.s8.ba44f53ed663 from=translated src=- shape=bcfb0675 vocab=d5e09779
+-/
 theorem huang_degree_theorem (H : Set (Q m.succ)) (hH : Card H ≥ 2 ^ m + 1) :
     ∃ q, q ∈ H ∧ √(m + 1) ≤ Card H ∩ q.adjacent := by
   rcases exists_eigenvalue H hH with ⟨y, ⟨⟨y_mem_H, y_mem_g⟩, y_ne⟩⟩

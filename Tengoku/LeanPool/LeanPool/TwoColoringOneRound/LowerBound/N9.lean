@@ -525,6 +525,9 @@ private lemma monoCount_ge_606 (f : Coloring9) : 606 ≤ monoCount f := by
   have : Even 605 := by simpa [hm] using hEven
   exact (by decide : ¬ Even 605) this
 
+/--
+@isnad1 id=le.0h1v.s4.321d0d18108b from=translated src=- shape=ac1d09c0 vocab=99f18e3a
+-/
 theorem monoFraction_ge_101_504 (f : Coloring9) : (101 : ℚ) / 504 ≤ monoFraction f := by
   have h606 : (606 : ℚ) ≤ (monoCount f : ℚ) := by exact_mod_cast monoCount_ge_606 (f := f)
   have hE : (edgeCount n : ℚ) = 3024 := by exact_mod_cast edgeCount_9
@@ -535,6 +538,9 @@ theorem monoFraction_ge_101_504 (f : Coloring9) : (101 : ℚ) / 504 ≤ monoFrac
     simp [hE, show (606 : ℚ) / 3024 = (101 : ℚ) / 504 by norm_num]
   simpa [hred] using hdiv
 
+/--
+@isnad1 id=lt.0h1v.s4.804a6956a172 from=translated src=- shape=ac1d09c0 vocab=9ad812a7
+-/
 theorem monoFraction_gt_one_fifth (f : Coloring9) : (1 : ℚ) / 5 < monoFraction f := by
   have h := monoFraction_ge_101_504 (f := f)
   have hstrict : (1 : ℚ) / 5 < (101 : ℚ) / 504 := by norm_num

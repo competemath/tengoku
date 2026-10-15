@@ -187,6 +187,9 @@ private lemma tuple0110_injective {n : Nat} {two : Sym n} (ad : Fin 2 ↪ Big (t
   simpa [tuple0110_eq_embedding0110 (two := two) ad bc] using
     (embedding0110 two ad bc).injective
 
+/--
+@isnad1 id=eq.0h2v.s7.b387f351025f from=translated src=- shape=2aa5f20b vocab=8f07a792
+-/
 theorem card_pat0000 :
     Fintype.card {e : Edge n // Pat0000 (two := two) e}
       = (Fintype.card (Small (two := two))).descFactorial 4 := by
@@ -223,6 +226,9 @@ theorem card_pat0000 :
     Fintype.card_congr hEquiv
   simp [hcard, Fintype.card_embedding_eq]
 
+/--
+@isnad1 id=eq.0h2v.s7.b1713b6854fc from=translated src=- shape=2aa5f20b vocab=906906bf
+-/
 theorem card_pat1111 :
     Fintype.card {e : Edge n // Pat1111 (two := two) e}
       = (Fintype.card (Big (two := two))).descFactorial 4 := by
@@ -259,6 +265,9 @@ theorem card_pat1111 :
     Fintype.card_congr hEquiv
   simp [hcard, Fintype.card_embedding_eq]
 
+/--
+@isnad1 id=eq.0h2v.s7.e990c6460d17 from=translated src=- shape=0d83ba68 vocab=8004a2a5
+-/
 theorem card_pat1001 :
     Fintype.card {e : Edge n // Pat1001 (two := two) e}
       = (Fintype.card (Big (two := two))).descFactorial 2
@@ -306,6 +315,9 @@ theorem card_pat1001 :
     Fintype.card_congr hEquiv
   simp [hcard, Fintype.card_embedding_eq, Fintype.card_prod]
 
+/--
+@isnad1 id=eq.0h2v.s7.78da498a6f4f from=translated src=- shape=0d83ba68 vocab=1fd767e4
+-/
 theorem card_pat0110 :
     Fintype.card {e : Edge n // Pat0110 (two := two) e}
       = (Fintype.card (Big (two := two))).descFactorial 2

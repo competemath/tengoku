@@ -22,7 +22,9 @@ open scoped Real Interval
 
 noncomputable section
 
-/-- When γ avoids z₀, the PV winding number equals the classical contour integral. -/
+/-- When γ avoids z₀, the PV winding number equals the classical contour integral.
+@isnad1 id=eq.1h2v.s7.449be1b85b53 from=translated src=- shape=5ec7dc04 vocab=b9ecc625
+-/
 theorem generalizedWindingNumber_eq_classical_away
     (γ : PiecewiseC1Curve) (z₀ : ℂ) (hoff : ∀ t ∈ Icc γ.a γ.b, γ.toFun t ≠ z₀) :
     generalizedWindingNumber' γ.toFun γ.a γ.b z₀ =

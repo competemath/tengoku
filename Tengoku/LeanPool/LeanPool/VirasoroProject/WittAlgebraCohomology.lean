@@ -46,16 +46,25 @@ noncomputable def normalizingCochain : LieOneCochain 𝕜 (WittAlgebra 𝕜) �
         then (-2⁻¹ : 𝕜) • γ (lgen 𝕜 1) (lgen 𝕜 (-1))
         else (1/n : 𝕜) • γ (lgen 𝕜 0) (lgen 𝕜 n)
 
+/--
+@isnad1 id=eq.0h2v.s9.4492e5fc8d20 from=translated src=- shape=c34763d9 vocab=3167c0cc
+-/
 lemma normalizingCochain_apply_lgen_zero :
     normalizingCochain γ (lgen 𝕜 0) = (-2⁻¹ : 𝕜) * γ (lgen 𝕜 1) (lgen 𝕜 (-1)) := by
   change ((WittAlgebra.lgen 𝕜).constr 𝕜 _) (lgen 𝕜 0) = _
   simp [smul_eq_mul]
 
+/--
+@isnad1 id=eq.1h3v.s9.4bb096a5a14e from=translated src=- shape=28c128e8 vocab=e42c6baf
+-/
 lemma normalizingCochain_apply_lgen (n : ℤ) (hn : n ≠ 0) :
     normalizingCochain γ (lgen 𝕜 n) = (1/n : 𝕜) * γ (lgen 𝕜 0) (lgen 𝕜 n) := by
   change ((WittAlgebra.lgen 𝕜).constr 𝕜 _) (lgen 𝕜 n) = _
   simp [smul_eq_mul, hn]
 
+/--
+@isnad1 id=eq.0h2v.s9.8914850e88d1 from=translated src=- shape=f90c0c52 vocab=ccc90fad
+-/
 lemma add_bdry_normalizingCochain_apply_lgen_one :
     (γ + (normalizingCochain γ).bdry) (lgen 𝕜 1) (lgen 𝕜 (-1)) = 0 := by
   simp only [Int.reduceNeg, LieTwoCocycle.add_apply, LieOneCochain.bdry_apply, bracket_lgen_lgen,
@@ -63,6 +72,9 @@ lemma add_bdry_normalizingCochain_apply_lgen_one :
              normalizingCochain_apply_lgen_zero, neg_mul, smul_eq_mul, mul_neg]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s9.5da303b44bba from=translated src=- shape=850bf495 vocab=cd33856d
+-/
 lemma add_bdry_normalizingCochain_apply_lgen_zero (n : ℤ) (hn : n ≠ 0) :
     (γ + (normalizingCochain γ).bdry) (lgen 𝕜 0) (lgen 𝕜 n) = 0 := by
   simp only [LieTwoCocycle.add_apply, LieOneCochain.bdry_apply, bracket_lgen_lgen, Int.cast_zero,
@@ -71,7 +83,9 @@ lemma add_bdry_normalizingCochain_apply_lgen_zero (n : ℤ) (hn : n ≠ 0) :
   simp_all
 
 /-- The 2-cocycle equation in the standard basis `ℓₙ` of the Witt algebra:
-    `0 = (m-k) * γ(n,m+k) + (k-n) * γ(m,n+k) + (n-m) * γ(k,n+m)`. -/
+    `0 = (m-k) * γ(n,m+k) + (k-n) * γ(m,n+k) + (n-m) * γ(k,n+m)`.
+@isnad1 id=eq.0h5v.s10.fd0cd69677c1 from=translated src=- shape=cd10eb9a vocab=1e365b06
+-/
 lemma add_lieTwoCocycle_apply_lgen_lgen_lgen_eq_zero (n m k : ℤ) :
     (m - k) * γ (lgen 𝕜 n) (lgen 𝕜 (m + k)) + (k - n) * γ (lgen 𝕜 m) (lgen 𝕜 (n + k))
      + (n - m) * γ (lgen 𝕜 k) (lgen 𝕜 (n + m)) = 0 := by
@@ -87,6 +101,9 @@ lemma add_lieTwoCocycle_apply_lgen_lgen_lgen_eq_zero (n m k : ℤ) :
           := by simp only [← γ.skew (lgen 𝕜 k), key, sub_mul, mul_neg, neg_sub]
     _ = 0 := by ring
 
+/--
+@isnad1 id=eq.2h4v.s10.db46182a3e64 from=translated src=- shape=c486b696 vocab=2f703c7a
+-/
 lemma lieTwoCocycle_apply_lgen_lgen_eq_zero_of_add_ne_zero {n m : ℤ} (ne_zero : n + m ≠ 0)
     (hγ : γ (lgen 𝕜 0) (lgen 𝕜 (n + m)) = 0) :
     γ (lgen 𝕜 n) (lgen 𝕜 m) = 0 := by
@@ -95,6 +112,9 @@ lemma lieTwoCocycle_apply_lgen_lgen_eq_zero_of_add_ne_zero {n m : ℤ} (ne_zero 
              add_zero, zero_sub, neg_neg, ← add_mul, mul_zero, mul_eq_zero] at key
   simpa [show (m : 𝕜) + n ≠ 0 by rw [add_comm]; exact_mod_cast ne_zero] using key
 
+/--
+@isnad1 id=ex.0h2v.s9.180fd6e8a32d from=translated src=- shape=540fe376 vocab=05409516
+-/
 lemma exists_add_bdry_eq_smul_virasoroCocycle :
     ∃ (r : 𝕜), γ + (normalizingCochain γ).bdry = r • virasoroCocycle 𝕜 := by
   set γ₀ := γ + (normalizingCochain γ).bdry -- notation decluttering
@@ -196,7 +216,9 @@ lemma exists_add_bdry_eq_smul_virasoroCocycle :
 variable (𝕜)
 
 /-- The Lie algebra 2-cohomology of the Witt algebra is one-dimensional,
-`dim H²(WittAlgebra, 𝕜) = 1`. -/
+`dim H²(WittAlgebra, 𝕜) = 1`.
+@isnad1 id=eq.0h1v.s7.00515aa92689 from=translated src=- shape=37eeb802 vocab=db88475e
+-/
 theorem rank_lieTwoCohomology_eq_one :
     Module.rank 𝕜 (LieTwoCohomology 𝕜 (WittAlgebra 𝕜) 𝕜) = 1 := by
   apply Module.rank_eq_one_iff_finrank_eq_one.mpr

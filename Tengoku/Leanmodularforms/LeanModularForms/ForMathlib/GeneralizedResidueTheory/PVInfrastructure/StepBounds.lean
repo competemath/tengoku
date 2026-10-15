@@ -28,7 +28,9 @@ open scoped Real Interval
 
 noncomputable section
 
-/-- Symmetric cancellation of 1/(t-t₀). -/
+/-- Symmetric cancellation of 1/(t-t₀).
+@isnad1 id=eq.3h3v.s7.27d3127a921a from=translated src=- shape=5b2de407 vocab=0f2c3e4e
+-/
 lemma integral_inv_symm (t₀ ε₁ ε₂ : ℝ) (_hε₁ : 0 < ε₁) (_hε₂ : 0 < ε₂) (_hε₁₂ : ε₁ ≤ ε₂) :
     (∫ t in (t₀ - ε₂)..(t₀ - ε₁), (↑(t - t₀) : ℂ)⁻¹) +
       (∫ t in (t₀ + ε₁)..(t₀ + ε₂), (↑(t - t₀) : ℂ)⁻¹) = 0 := by
@@ -46,7 +48,9 @@ lemma integral_inv_symm (t₀ ε₁ ε₂ : ℝ) (_hε₁ : 0 < ε₁) (_hε₂ 
     exact h1.symm
   rw [h_reflect, neg_add_cancel]
 
-/-- Cutoff integrand is interval integrable. -/
+/-- Cutoff integrand is interval integrable.
+@isnad1 id=interval.5h6v.s8.563bd0bcfd5e from=translated src=- shape=4e3d7a71 vocab=bc5e9034
+-/
 lemma cutoff_integrand_intervalIntegrable {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : ℂ}
     (hat₀ : t₀ ∈ Set.Ioo a b) (_hL : L ≠ 0) (hγ_meas : Measurable γ)
     (hγ_cont_deriv : ContinuousOn (deriv γ) (Set.Icc a b)) (ε : ℝ) (hε_pos : 0 < ε) :
@@ -89,7 +93,9 @@ lemma cutoff_integrand_intervalIntegrable {γ : ℝ → ℂ} {a b t₀ : ℝ} {L
     · filter_upwards with t ht using h_norm_bound_ae t ht
     · exact measurableSet_uIoc
 
-/-- Cutoff difference equals annulus integral. -/
+/-- Cutoff difference equals annulus integral.
+@isnad1 id=eq.3h7v.s8.7940b4cbd523 from=translated src=- shape=a8e9d29f vocab=aaa8d284
+-/
 lemma cutoff_diff_eq_annulus_integral {f : ℝ → ℂ} {γ : ℝ → ℂ} {a b t₀ : ℝ} {ε₁ ε₂ : ℝ}
     (h_le : ε₁ ≤ ε₂)
     (h_int₁ : IntervalIntegrable (fun t => if ε₁ < ‖γ t - γ t₀‖ then f t else 0)
@@ -104,7 +110,9 @@ lemma cutoff_diff_eq_annulus_integral {f : ℝ → ℂ} {γ : ℝ → ℂ} {a b 
   ext t
   grind
 
-/-- Dyadic sequence is Cauchy with bounded remainder. -/
+/-- Dyadic sequence is Cauchy with bounded remainder.
+@isnad1 id=cauchyse.3h3v.s7.769395a48c6f from=translated src=- shape=ffa9eed3 vocab=9d062c15
+-/
 lemma cauchySeq_pv_dyadic {I : ℝ → ℂ} {δ₀ C : ℝ} (_hδ₀_pos : 0 < δ₀) (_hC_pos : 0 < C)
     (h_step : ∀ n, ‖I (δ₀ / 2 ^ (n + 1)) - I (δ₀ / 2 ^ n)‖ ≤ C * δ₀ / 2 ^ n) :
     CauchySeq (fun n => I (δ₀ / 2 ^ n)) := by
@@ -114,7 +122,9 @@ lemma cauchySeq_pv_dyadic {I : ℝ → ℂ} {δ₀ C : ℝ} (_hδ₀_pos : 0 < �
       ≤ C * δ₀ / 2 ^ n := h_step n
     _ = C * δ₀ * (1 / 2) ^ n := by rw [one_div, inv_pow, ← div_eq_mul_inv]
 
-/-- t-space bound from γ-annulus. -/
+/-- t-space bound from γ-annulus.
+@isnad1 id=le.6h6v.s7.b7736d39c582 from=translated src=- shape=dd5453a1 vocab=e020930e
+-/
 lemma t_bound_from_gamma_annulus {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ} {δ₁ ε : ℝ} (hL : L ≠ 0)
     (_hε_pos : 0 < ε)
     (h_lower : ∀ t, 0 < |t - t₀| → |t - t₀| < δ₁ → ‖γ t - γ t₀‖ ≥ (‖L‖ / 2) * |t - t₀|)
@@ -129,7 +139,9 @@ lemma t_bound_from_gamma_annulus {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ} {δ�
     _ ≤ 2 * ε / ‖L‖ :=
         div_le_div_of_nonneg_right (by linarith) hL_norm_pos.le
 
-/-- Bracket ε between dyadic points: for ε ∈ (0, δ], find n with δ/2^(n+1) < ε ≤ δ/2^n. -/
+/-- Bracket ε between dyadic points: for ε ∈ (0, δ], find n with δ/2^(n+1) < ε ≤ δ/2^n.
+@isnad1 id=ex.3h2v.s6.6943033e72a2 from=translated src=- shape=46c2b3a2 vocab=8b19d7e0
+-/
 lemma exists_dyadic_bracket {δ ε : ℝ} (hδ_pos : 0 < δ) (hε_pos : 0 < ε) (hε_le : ε ≤ δ) :
     ∃ n : ℕ, δ / 2 ^ (n + 1) < ε ∧ ε ≤ δ / 2 ^ n := by
   have h_tendsto : Tendsto (fun n : ℕ => δ / 2 ^ n) atTop (𝓝 0) := by
@@ -163,7 +175,9 @@ lemma exists_dyadic_bracket {δ ε : ℝ} (hδ_pos : 0 < δ) (hε_pos : 0 < ε) 
     · by_contra! h_not
       exact Nat.find_min h_exists (by omega : n < m) h_not
 
-/-- Telescoping sum bound for geometric step bounds. -/
+/-- Telescoping sum bound for geometric step bounds.
+@isnad1 id=le.4h6v.s8.799ad2b177b3 from=translated src=- shape=68437a5e vocab=f4529825
+-/
 lemma telescoping_sum_bound {X : Type*} [SeminormedAddCommGroup X] {I : ℕ → X} {K δ : ℝ}
     (_hK_pos : 0 < K) (_hδ_pos : 0 < δ)
     (h_step : ∀ n, ‖I (n + 1) - I n‖ ≤ K * δ / 2 ^ n) (N : ℕ) :

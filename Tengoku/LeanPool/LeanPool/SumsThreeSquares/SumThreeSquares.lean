@@ -32,7 +32,9 @@ open scoped Pointwise
 def IsSumOfThreeSquares (n : ℕ) : Prop :=
   ∃ a b c : ℕ, a ^ 2 + b ^ 2 + c ^ 2 = n
 
-/-- A prime `q ≡ 1 (mod 4)` with `(-2q / p) = 1` for every prime factor of `m`. -/
+/-- A prime `q ≡ 1 (mod 4)` with `(-2q / p) = 1` for every prime factor of `m`.
+@isnad1 id=ex.2h1v.s6.4f83376c646b from=translated src=- shape=47472981 vocab=ae2c5500
+-/
 lemma exists_prime_aux (m : ℕ) (hm_sq : Squarefree m) (hm_mod : m % 8 = 3) :
     ∃ q : ℕ, Nat.Prime q ∧ q % 4 = 1 ∧
       ∀ p, p ∣ m → Nat.Prime p → jacobiSym (-2 * q) p = 1 := by
@@ -155,6 +157,9 @@ lemma exists_prime_aux (m : ℕ) (hm_sq : Squarefree m) (hm_mod : m % 8 = 3) :
 If $m \equiv 3 \pmod 8$ is squarefree, $q \equiv 1 \pmod 4$ is prime, and
 $(-2q/p) = 1$ for all $p|m$, then $(-m/q) = 1$.
 -/
+/--
+@isnad1 id=ex.3h2v.s6.08115ffd26ba from=translated src=- shape=2f30a9dc vocab=83094b28
+-/
 lemma exists_odd_sq_mod_prime_of_jacobi_eq_one (m q : ℕ) (hq_prime : Nat.Prime q)
     (hq_mod : q % 4 = 1)
     (h_jacobi : jacobiSym (-m) q = 1) :
@@ -176,6 +181,9 @@ lemma exists_odd_sq_mod_prime_of_jacobi_eq_one (m q : ℕ) (hq_prime : Nat.Prime
     · norm_num [Int.add_emod, Int.even_iff.mp hb₀_odd,
         show (q : ℤ) % 2 = 1 from mod_cast hq_prime.eq_two_or_odd.resolve_left (by aesop_cat)]
 
+/--
+@isnad1 id=eq.3h2v.s6.a00b80f240e2 from=translated src=- shape=bfa18813 vocab=c9341de6
+-/
 lemma jacobi_neg_m_q (m : ℕ) (q : ℕ) (hm_mod : m % 8 = 3) (hq_mod : q % 4 = 1)
     (h_jacobi : ∀ p, p ∣ m → Nat.Prime p → jacobiSym (-2 * q) p = 1) :
     jacobiSym (-m) q = 1 := by
@@ -205,6 +213,9 @@ lemma jacobi_neg_m_q (m : ℕ) (q : ℕ) (hm_mod : m % 8 = 3) (hq_mod : q % 4 = 
 /-
 There exist integers $b$ and $h$ such that $b$ is odd and $b^2 - 4qh = -m$.
 -/
+/--
+@isnad1 id=ex.4h2v.s7.4701e2de53d3 from=translated src=- shape=badc0192 vocab=a8fc6cb9
+-/
 lemma exists_b_h (m : ℕ) (q : ℕ) (hm_mod : m % 8 = 3)
     (hq_prime : Nat.Prime q) (hq_mod : q % 4 = 1)
     (h_jacobi : jacobiSym (-m) q = 1) :
@@ -232,6 +243,9 @@ lemma exists_b_h (m : ℕ) (q : ℕ) (hm_mod : m % 8 = 3)
 
 /-
 There exists an integer $t$ such that $2q t^2 \equiv -1 \pmod m$.
+-/
+/--
+@isnad1 id=ex.4h2v.s7.3c064ac11976 from=translated src=- shape=840dbe24 vocab=c22d11b7
 -/
 lemma exists_t (m : ℕ) (q : ℕ) (hm_sq : Squarefree m) (hm_mod : m % 8 = 3)
     (hq_prime : Nat.Prime q)
@@ -343,6 +357,9 @@ noncomputable def linearMapM (m q : ℕ) (t b : ℤ) :
       ![(Real.sqrt (2 * q)), b / (Real.sqrt (2 * q)), 0],
       ![0, Real.sqrt m / Real.sqrt (2 * q), 0]] : Matrix (Fin 3) (Fin 3) ℝ)
 
+/--
+@isnad1 id=eq.2h4v.s10.ceb72f4acc4c from=translated src=- shape=209fbf6c vocab=f305ccc1
+-/
 lemma det_linear_map_M (m q : ℕ) (t b : ℤ) (_hm : 0 < m) (hq : 0 < q) :
     LinearMap.det (linearMapM m q t b) = m * Real.sqrt m := by
   let M : Matrix (Fin 3) (Fin 3) ℝ :=
@@ -357,6 +374,9 @@ lemma det_linear_map_M (m q : ℕ) (t b : ℤ) (_hm : 0 < m) (hq : 0 < q) :
     mul_zero, zero_mul, sub_self, add_zero, zero_add, sub_zero]
   rw [mul_assoc, mul_div_cancel₀ _ (by positivity)]
 
+/--
+@isnad1 id=ne.2h4v.s10.b03d2bc55413 from=translated src=- shape=f4da7f39 vocab=604be928
+-/
 lemma det_linear_map_M_ne_zero (m q : ℕ) (t b : ℤ) (hm : 0 < m) (hq : 0 < q) :
     LinearMap.det (linearMapM m q t b) ≠ 0 := by
   rw [det_linear_map_M m q t b hm hq]
@@ -368,6 +388,9 @@ noncomputable abbrev linearMapMEuclidean (m q : ℕ) (t b : ℤ) :
   (EuclideanSpace.equiv (Fin 3) ℝ).symm.toLinearMap ∘ₗ
     (linearMapM m q t b) ∘ₗ (EuclideanSpace.equiv (Fin 3) ℝ).toLinearMap
 
+/--
+@isnad1 id=eq.2h4v.s11.2533597be5c8 from=translated src=- shape=df84e022 vocab=6c47ef01
+-/
 lemma det_linear_map_M_euclidean (m q : ℕ) (t b : ℤ) (hm : 0 < m) (hq : 0 < q) :
     LinearMap.det (linearMapMEuclidean m q t b) = m * Real.sqrt m := by
   have hrw : linearMapMEuclidean m q t b =
@@ -380,6 +403,9 @@ lemma det_linear_map_M_euclidean (m q : ℕ) (t b : ℤ) (hm : 0 < m) (hq : 0 < 
 
 /-
 The volume of the preimage of the ball is $\frac{4}{3}\pi (2m)^{3/2} / m^{3/2}$.
+-/
+/--
+@isnad1 id=eq.2h4v.s10.35a5fe7fe3f2 from=translated src=- shape=eb5737a4 vocab=f37cdcf3
 -/
 lemma vol_preimage_ball_euclidean (m q : ℕ) (t b : ℤ) (hm : 0 < m) (hq : 0 < q) :
     MeasureTheory.volume
@@ -435,11 +461,17 @@ lemma vol_preimage_ball_euclidean (m q : ℕ) (t b : ℤ) (hm : 0 < m) (hq : 0 <
 /-
 The calculated volume is greater than 8.
 -/
+/--
+@isnad1 id=lt.0h0v.s6.d631c640a6e8 from=translated src=- shape=8dcfc5ae vocab=1710a4b8
+-/
 lemma volume_inequality : (4 / 3) * Real.pi * (2 : ℝ) ^ (3 / 2 : ℝ) > 8 := by
   rw [show (2 : ℝ) ^ (3 / 2 : ℝ) = 2 * Real.sqrt 2 by
     rw [Real.sqrt_eq_rpow, ← Real.rpow_one_add'] <;> norm_num]
   nlinarith [Real.pi_gt_three, Real.sqrt_nonneg 2, Real.sq_sqrt zero_le_two]
 
+/--
+@isnad1 id=eq.2h6v.s8.b8d9d5855fec from=translated src=- shape=9cc78607 vocab=677497a4
+-/
 lemma quad_form_decomposition (m q : ℕ) (b h x y : ℤ) (hq : 0 < q)
     (hbqm : b ^ 2 - 4 * q * h = -m) :
     (Real.sqrt 2 * Real.sqrt q * x + (b : ℝ) / (Real.sqrt 2 * Real.sqrt q) * y) ^ 2 +
@@ -621,6 +653,9 @@ private lemma xyz_zero_of_sum_sq_eq_zero (m q : ℕ) (t b x y z : ℤ)
     simp_all
   simp_all
 
+/--
+@isnad1 id=ex.4h5v.s8.a6d22baa428a from=translated src=- shape=876bb473 vocab=fcc6e29c
+-/
 lemma exists_Rv_from_Minkowski (m q : ℕ) (t b h : ℤ) (hm : 0 < m) (hq : 0 < q)
     (hqt : t ^ 2 * 2 * q ≡ -1 [ZMOD m]) (hbqm : b ^ 2 - 4 * (q : ℤ) * h = -(m : ℤ)) :
     ∃ (x y : ℤ) (R : ℤ) (v : ℕ),
@@ -699,7 +734,9 @@ lemma exists_Rv_from_Minkowski (m q : ℕ) (t b h : ℤ) (hm : 0 < m) (hq : 0 < 
           have := Int.emod_lt_of_pos b four_pos
           interval_cases b % 4 <;> trivial)
       · nlinarith [show z ^ 2 * (m + 1 + 1) = 1 by nlinarith]
-/-- There exist `q, b, h, t, x, y, z` yielding `R² + 2v = m` with `v > 0`. -/
+/-- There exist `q, b, h, t, x, y, z` yielding `R² + 2v = m` with `v > 0`.
+@isnad1 id=ex.3h1v.s8.2f1d37f6afb4 from=translated src=- shape=234c0316 vocab=e76384cd
+-/
 lemma exists_R_v_of_mod8_eq3 (m : ℕ) (hm : Squarefree m) (hm_pos : 0 < m) (hmod : m % 8 = 3) :
     ∃ (q : ℕ) (b h x y : ℤ) (R : ℤ) (v : ℕ),
       Nat.Prime q ∧ q % 4 = 1 ∧
@@ -718,6 +755,9 @@ lemma exists_R_v_of_mod8_eq3 (m : ℕ) (hm : Squarefree m) (hm_pos : 0 < m) (hmo
     exists_Rv_from_Minkowski m q t b h hm_pos (hq_prime.pos) hqt' hbqm
   exact ⟨q, b, h, x, y, R, v, hq_prime, hq_mod, hjac, hbqm, hv_def, hRv, hv_pos⟩
 
+/--
+@isnad1 id=eq.5h4v.s6.1a67caa93332 from=translated src=- shape=0ce001f2 vocab=5ea56843
+-/
 lemma jacobi_neg_d_of_dvd_sq_add (p : ℕ) (a d b' : ℤ)
     (hp : Nat.Prime p) (_hp_odd : p ≠ 2)
     (hp_dvd : (p : ℤ) ∣ a ^ 2 + d * b' ^ 2)
@@ -733,6 +773,9 @@ lemma jacobi_neg_d_of_dvd_sq_add (p : ℕ) (a d b' : ℤ)
   use a / b'
   grind
 
+/--
+@isnad1 id=eq.4h4v.s6.69bf32c9ae44 from=translated src=- shape=e68ad6d0 vocab=1b770ecc
+-/
 lemma jacobi_neg_d_of_odd_padicVal (p : ℕ) (a d b' : ℤ)
     (hp : Nat.Prime p) (hp_odd : p ≠ 2)
     (hp_not_dvd_d : ¬ (p : ℤ) ∣ d)
@@ -790,6 +833,9 @@ lemma jacobi_neg_d_of_odd_padicVal (p : ℕ) (a d b' : ℤ)
       exact ih _ hlt a' k rfl hodd'
     · exact jacobi_neg_d_of_dvd_sq_add p a d b' hp hp_odd hp_dvd hp_not_dvd_d h_div_b'
 
+/--
+@isnad1 id=eq.7h9v.s7.138d76264be1 from=translated src=- shape=6aeb4a65 vocab=fe31ecdb
+-/
 lemma p_mod4_eq1_of_dvd_v_not_dvd_m (p : ℕ) (q : ℤ) (b h x y v R m : ℤ)
     (hp : Nat.Prime p) (hp_odd : p ≠ 2)
     (hv : v = q * x ^ 2 + b * x * y + h * y ^ 2)
@@ -851,6 +897,9 @@ lemma p_mod4_eq1_of_dvd_v_not_dvd_m (p : ℕ) (q : ℤ) (b h x y v R m : ℤ)
     interval_cases p % 4 <;> trivial
   · exact hp.odd_of_ne_two hp_odd
 
+/--
+@isnad1 id=false.9h9v.s8.76ac35ae1919 from=translated src=- shape=b0d79116 vocab=5c96aae2
+-/
 lemma p_mod4_of_dvd_v_dvd_m (p : ℕ) (q : ℕ) (b h x y : ℤ) (R v : ℤ) (m : ℕ)
     (hp : Nat.Prime p) (hp3 : p % 4 = 3)
     (hm_sq : Squarefree m)
@@ -918,6 +967,9 @@ lemma p_mod4_of_dvd_v_dvd_m (p : ℕ) (q : ℕ) (b h x y : ℤ) (R v : ℤ) (m :
     simp_all +decide [jacobiSym.mul_left]
   · exact hp.odd_of_ne_two <| by aesop_cat
 
+/--
+@isnad1 id=even.8h9v.s8.09d2a913ff3d from=translated src=- shape=f1b8afdf vocab=eb282838
+-/
 lemma even_padicVal_of_mod4_eq3 (p : ℕ) (q : ℕ) (b h x y : ℤ) (R : ℤ) (v : ℕ) (m : ℕ)
     (hp : Nat.Prime p) (hp3 : p % 4 = 3)
     (hm_sq : Squarefree m)
@@ -950,6 +1002,9 @@ lemma even_padicVal_of_mod4_eq3 (p : ℕ) (q : ℕ) (b h x y : ℤ) (R : ℤ) (v
         have := Nat.le_of_dvd (by positivity) t
         interval_cases p <;> trivial
 
+/--
+@isnad1 id=ex.6h8v.s8.4e7e97ae543b from=translated src=- shape=005e9cc2 vocab=f2304155
+-/
 lemma two_v_sum_two_squares (q : ℕ) (b h x y : ℤ) (R : ℤ) (v : ℕ) (m : ℕ)
     (hm_sq : Squarefree m)
     (hv_pos : 0 < v)
@@ -963,7 +1018,9 @@ lemma two_v_sum_two_squares (q : ℕ) (b h x y : ℤ) (R : ℤ) (v : ℕ) (m : �
   exact even_padicVal_of_mod4_eq3 p q b h x y R v m (Nat.prime_of_mem_primeFactors hp) hp3
     hm_sq hv_pos hv_def hbqm hRv hjac
 
-/-- The `m ≡ 3 (mod 8)` case of the three-squares theorem. -/
+/-- The `m ≡ 3 (mod 8)` case of the three-squares theorem.
+@isnad1 id=issumoft.3h1v.s5.9a66d12cce53 from=translated src=- shape=960726a0 vocab=895c8e4c
+-/
 theorem blueprint_case_mod8_eq3 (m : ℕ) (hm_sq : Squarefree m) (hm_pos : 0 < m)
     (hm_mod : m % 8 = 3) : IsSumOfThreeSquares m := by
   obtain ⟨q, b, h, x, y, R, v, hq_prime, hq_mod, hjac, hbqm, hv_def, hRv, hv_pos⟩ :=

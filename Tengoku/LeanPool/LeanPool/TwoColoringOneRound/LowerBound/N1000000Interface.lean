@@ -52,6 +52,7 @@ Convenience wrapper for the main theorem (to avoid re-declaring names from
 `Distributed2Coloring.LowerBound.N1000000`).
 
 See `Distributed2Coloring.LowerBound.N1000000.monoFraction_ge_23879`.
+@isnad1 id=le.0h1v.s4.7481958dd3a5 from=translated src=- shape=7d95156c vocab=88131574
 -/
 theorem monoFraction_ge_23879 (f : Coloring n₀) :
     (23879 : ℚ) / 100000 ≤ monoFraction f := by

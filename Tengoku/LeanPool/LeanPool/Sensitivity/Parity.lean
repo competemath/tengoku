@@ -46,18 +46,24 @@ def pmOne (f : BoolFun n) (x : Fin n → Bool) : ℤ :=
 def paritySigned (f : BoolFun n) (x : Fin n → Bool) : ℤ :=
   f.pmOne x * parity x
 
-/-- The `±1` encoding is never zero. -/
+/-- The `±1` encoding is never zero.
+@isnad1 id=ne.0h3v.s4.990810e09299 from=translated src=- shape=56260578 vocab=a48e3a1a
+-/
 theorem pmOne_ne_zero (f : BoolFun n) (x : Fin n → Bool) :
     f.pmOne x ≠ 0 := by
   unfold pmOne; split <;> omega
 
 end BoolFun
 
-/-- The parity sign is never zero. -/
+/-- The parity sign is never zero.
+@isnad1 id=ne.0h2v.s4.af43b16d6dab from=translated src=- shape=b162c6a7 vocab=75c939fb
+-/
 theorem parity_ne_zero (x : Fin n → Bool) : parity x ≠ 0 := by
   unfold parity; positivity
 
-/-- Flipping any single bit negates the parity. -/
+/-- Flipping any single bit negates the parity.
+@isnad1 id=eq.0h3v.s4.c2765c342b72 from=translated src=- shape=55dc59ac vocab=b8b302bd
+-/
 theorem parity_flipBit (x : Fin n → Bool) (i : Fin n) :
     parity (flipBit x i) = -parity x := by
   unfold parity
@@ -84,7 +90,9 @@ theorem parity_flipBit (x : Fin n → Bool) (i : Fin n) :
 namespace BoolFun
 
 /-- If the parity-signed value of `f` is unchanged by a bit flip, then `f` is
-sensitive at that input in that direction. -/
+sensitive at that input in that direction.
+@isnad1 id=sensitiv.1h4v.s5.cb73e9482398 from=translated src=- shape=5083e96e vocab=44b9dddc
+-/
 theorem sensitiveAt_of_paritySigned_eq (f : BoolFun n)
     (x : Fin n → Bool) (i : Fin n)
     (h : f.paritySigned (flipBit x i) = f.paritySigned x) :
@@ -127,7 +135,9 @@ private theorem filter_true_indicator (T : Finset (Fin n)) :
   simp_all
 
 /-- Key identity: the parity-weighted sum recovers the top Möbius coefficient,
-`∑_x f_pm(x) · parity(x) = 2 · (-1)^n · c_univ(f)`. -/
+`∑_x f_pm(x) · parity(x) = 2 · (-1)^n · c_univ(f)`.
+@isnad1 id=eq.1h2v.s6.b8c1831234f4 from=translated src=- shape=50b53bfe vocab=ffb08dc2
+-/
 theorem moebius_parity_sum (f : BoolFun n) (hn : 0 < n) :
     ∑ x : Fin n → Bool, f.paritySigned x =
     2 * (-1 : ℤ) ^ n * f.moebius Finset.univ := by
@@ -166,7 +176,9 @@ theorem moebius_parity_sum (f : BoolFun n) (hn : 0 < n) :
   simp_all
 
 /-- If `f` has full multilinear degree (`c_univ(f) ≠ 0`), then the
-parity-weighted sum is nonzero. -/
+parity-weighted sum is nonzero.
+@isnad1 id=ne.2h2v.s6.d99a114d0bef from=translated src=- shape=56ad0472 vocab=de38b119
+-/
 theorem fullDegree_paritySigned_sum_ne_zero (f : BoolFun n) (hn : 0 < n)
     (h : f.moebius Finset.univ ≠ 0) :
     ∑ x : Fin n → Bool, f.paritySigned x ≠ 0 := by
@@ -174,7 +186,9 @@ theorem fullDegree_paritySigned_sum_ne_zero (f : BoolFun n) (hn : 0 < n)
   simp_all
 
 /-- **Parity imbalance.** If `f` has full multilinear degree, then one of the
-two parity-sign classes contains more than `2^{n-1}` inputs. -/
+two parity-sign classes contains more than `2^{n-1}` inputs.
+@isnad1 id=ex.2h2v.s7.ae5d5bececab from=translated src=- shape=2ffe71d2 vocab=84e19f6c
+-/
 theorem fullDegree_imbalance (f : BoolFun n) (hn : 0 < n)
     (h : f.moebius Finset.univ ≠ 0) :
     ∃ c : ℤ, (c = 1 ∨ c = -1) ∧

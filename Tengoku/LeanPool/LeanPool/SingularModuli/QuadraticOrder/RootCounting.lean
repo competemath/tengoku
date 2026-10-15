@@ -33,7 +33,9 @@ section PrimeBase
 variable (p : ℕ) [hp : Fact p.Prime]
 
 /-- For an odd prime `p`, the number of solutions to `x² = c` in `ZMod p`
-equals `legendreSym p c + 1`. -/
+equals `legendreSym p c + 1`.
+@isnad1 id=eq.1h2v.s5.d207d55b6448 from=translated src=- shape=3daecb4b vocab=582d7f0f
+-/
 theorem cardSqrts_prime (hp2 : p ≠ 2) (c : ℤ) :
     (cardSqrts p ((c : ℤ) : ZMod p) : ℤ) = legendreSym p c + 1 := by
   unfold cardSqrts
@@ -399,7 +401,9 @@ private lemma cardSqrtsPrimePowCoprimeSucc (hp2 : p ≠ 2)
   exact ih
 
 /-- For odd prime `p` and `p ∤ c`, each of the 0 or 2 roots mod `p` lifts
-uniquely through all `ZMod (p^n)` by Hensel's lemma. -/
+uniquely through all `ZMod (p^n)` by Hensel's lemma.
+@isnad1 id=eq.3h3v.s7.bd8f2d475602 from=translated src=- shape=8b4f5a87 vocab=b6b25220
+-/
 theorem cardSqrts_prime_pow_coprime (hp2 : p ≠ 2) (n : ℕ) (hn : 0 < n)
     (c : ℤ) (hc : ¬ (p : ℤ) ∣ c) :
     cardSqrts (p ^ n) ((c : ℤ) : ZMod (p ^ n)) =
@@ -458,7 +462,9 @@ private lemma prime_pow_dvd_sq_imp (r : ℕ) {a : ℤ} (hpp : Prime (p : ℤ))
 
 omit hp2 in
 /-- If the `p`-adic valuation of `c` is odd and less than `n`, then `x² ≡ c (mod p^n)`
-has no solutions. -/
+has no solutions.
+@isnad1 id=eq.2h4v.s7.7620c731a6b6 from=translated src=- shape=43ef847c vocab=9c7b1668
+-/
 theorem cardSqrts_odd_val_eq_zero (n r : ℕ)
     (u : ℤ) (hr : 2 * r + 1 < n) (hu : ¬ (p : ℤ) ∣ u) :
     cardSqrts (p ^ n) ((p ^ (2 * r + 1) * u : ℤ) : ZMod (p ^ n)) = 0 := by
@@ -738,7 +744,9 @@ private lemma cardSqrtsPrimePowEvenValImage (n r : ℕ) (u : ℤ) (hr : 2 * r < 
     push_cast; rfl
 
 /-- When `c = p^{2r} · u` with `p ∤ u` and `2r < n`, the substitution `x = p^r · y`
-reduces the problem to solving `y² ≡ u (mod p^{n-2r})`. -/
+reduces the problem to solving `y² ≡ u (mod p^{n-2r})`.
+@isnad1 id=eq.3h4v.s7.21def8cd784c from=translated src=- shape=c71b1345 vocab=d9da2bcf
+-/
 theorem cardSqrts_prime_pow_even_val (hp2 : p ≠ 2) (n r : ℕ)
     (u : ℤ) (hr : 2 * r < n) (hu : ¬ (p : ℤ) ∣ u) :
     cardSqrts (p ^ n) ((p ^ (2 * r) * u : ℤ) : ZMod (p ^ n)) =
@@ -847,7 +855,9 @@ theorem cardSqrts_prime_pow_even_val (hp2 : p ≠ 2) (n r : ℕ)
 
 omit hp2 in
 /-- When `c ≡ 0 (mod p^n)`, every multiple of `p^⌈n/2⌉` is a solution,
-giving `p^⌊n/2⌋` solutions total. -/
+giving `p^⌊n/2⌋` solutions total.
+@isnad1 id=eq.1h2v.s7.17225f60dcfb from=translated src=- shape=54012eb6 vocab=501e2ff8
+-/
 theorem cardSqrts_zero (n : ℕ) (hn : 0 < n) :
     cardSqrts (p ^ n) (0 : ZMod (p ^ n)) = p ^ (n / 2) := by
   unfold cardSqrts
@@ -937,16 +947,22 @@ end OddPrimePower
 
 section TwoPower
 
-/-- In `ZMod 2`, squaring is the identity. -/
+/-- In `ZMod 2`, squaring is the identity.
+@isnad1 id=eq.0h1v.s4.c9cd280532e4 from=translated src=- shape=618fc151 vocab=7689ee1a
+-/
 theorem cardSqrts_two (u : ZMod 2) : cardSqrts 2 u = 1 := by
   fin_cases u <;> decide
 
-/-- In `ZMod 4`, for odd `u`, there are 2 roots or none. -/
+/-- In `ZMod 4`, for odd `u`, there are 2 roots or none.
+@isnad1 id=eq.1h1v.s8.0afd00103923 from=translated src=- shape=8795c7f4 vocab=02c71162
+-/
 theorem cardSqrts_four_odd (u : ZMod 4) (hu : u = 1 ∨ u = 3) :
     cardSqrts 4 u = if u = 1 then 2 else 0 := by
   rcases hu with rfl | rfl <;> decide
 
-/-- In `ZMod 8`, for odd `u`, there are 4 roots or none. -/
+/-- In `ZMod 8`, for odd `u`, there are 4 roots or none.
+@isnad1 id=eq.1h1v.s8.2d1bd9aba2a7 from=translated src=- shape=4df2fb50 vocab=02c71162
+-/
 theorem cardSqrts_eight (u : ZMod 8) (hu : u = 1 ∨ u = 3 ∨ u = 5 ∨ u = 7) :
     cardSqrts 8 u = if u = 1 then 4 else 0 := by
   rcases hu with rfl | rfl | rfl | rfl <;> decide

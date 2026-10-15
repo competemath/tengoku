@@ -43,6 +43,9 @@ def approxTotal
     (N : ℕ) : ℕ :=
   ∑ a, approxCount p N a
 
+/--
+@isnad1 id=lt.0h4v.s4.447097f40469 from=translated src=- shape=a931cfac vocab=f8de102d
+-/
 lemma approxCount_pos
     {α : Type} [Fintype α]
     (p : ProbDist α)
@@ -51,6 +54,9 @@ lemma approxCount_pos
     0 < approxCount p N a :=
   Nat.succ_pos _
 
+/--
+@isnad1 id=lt.0h3v.s4.7824f62f89b1 from=translated src=- shape=c629759b vocab=7246ceee
+-/
 lemma approxTotal_pos
     {α : Type} [Fintype α]
     (p : ProbDist α)
@@ -77,6 +83,9 @@ def approxProb
   rw [← Finset.sum_div, show (∑ a, (approxCount p N a : ℝ)) = (T : ℝ) by
     rw [← Nat.cast_sum]; rfl, div_self hT_ne]
 
+/--
+@isnad1 id=eq.0h4v.s5.9a9f5912513a from=translated src=- shape=8b1992cb vocab=b95848d3
+-/
 @[simp] lemma approxProb_apply
     {α : Type} [Fintype α]
     (p : ProbDist α)
@@ -86,6 +95,9 @@ def approxProb
   unfold approxProb
   simp
 
+/--
+@isnad1 id=eq.1h4v.s6.681d849cc246 from=translated src=- shape=cf0fda6f vocab=ef693d6e
+-/
 lemma entropyNat_approxProb
     (H : {α : Type} → [Fintype α] → ProbDist α → ℝ)
     (hH : ShannonEntropyAxioms H)
@@ -100,6 +112,9 @@ lemma entropyNat_approxProb
   · simp [approxTotal]
   · simp_all
 
+/--
+@isnad1 id=other.0h4v.s6.0cb02e6ba1a2 from=translated src=- shape=99a4cb9d vocab=9abfb6ab
+-/
 lemma approxCount_mul_bounds
     {α : Type} [Fintype α]
     (p : ProbDist α)
@@ -117,6 +132,9 @@ lemma approxCount_mul_bounds
     simp [approxCount, M, add_comm]
   rw [hcount]; constructor <;> linarith
 
+/--
+@isnad1 id=other.0h3v.s6.100f8aeb1695 from=translated src=- shape=bb9bcc70 vocab=c31c98bc
+-/
 lemma approxTotal_bounds
     {α : Type} [Fintype α]
     (p : ProbDist α)
@@ -137,6 +155,9 @@ lemma approxTotal_bounds
     Finset.sum_le_sum fun a _ => (approxCount_mul_bounds p N a).2
   simp_all
 
+/--
+@isnad1 id=other.0h4v.s6.0e49a387f8ee from=translated src=- shape=7375054b vocab=4c0de84a
+-/
 lemma approxProb_error_bound
     {α : Type} [Fintype α]
     (p : ProbDist α)
@@ -189,6 +210,9 @@ lemma approxProb_error_bound
     _ ≤ (((Fintype.card α : ℝ) + 1) / T) := by gcongr
     _ ≤ ((Fintype.card α : ℝ) + 1) / M := div_le_div_of_nonneg_left (by positivity) hM_pos hM_le_T
 
+/--
+@isnad1 id=tendsto.0h3v.s5.81fc06743c4b from=translated src=- shape=1260d4d2 vocab=f4954e15
+-/
 lemma tendsto_approxProb_apply
     {α : Type} [Fintype α]
     (p : ProbDist α)
@@ -217,6 +241,9 @@ lemma tendsto_approxProb_apply
     simpa using hsub
   exact (Filter.tendsto_sub_const_iff (b := p a)).1 hsub'
 
+/--
+@isnad1 id=tendsto.0h2v.s5.220dbeabd782 from=translated src=- shape=abd76327 vocab=30717257
+-/
 lemma tendsto_approxProb
     {α : Type} [Fintype α]
     (p : ProbDist α) :

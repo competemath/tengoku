@@ -52,7 +52,9 @@ variable {U V W : Type*} [Group U] [Group V] [Group W]
 variable {f : U →* V} {g : V →* W}
 variable {σ : W → V}
 
-/-- Uniqueness of the "corrector" for a given vector. -/
+/-- Uniqueness of the "corrector" for a given vector.
+@isnad1 id=eq.3h9v.s8.538c7d27f70c from=translated src=- shape=55e5b922 vocab=9b21ebf4
+-/
 @[to_additive] lemma unique_corrector (hf : f.ker = ⊥) (v : V) (u₁ u₂ : U)
     (h₁ : v = σ (g v) * f u₁) (h₂ : v = σ (g v) * f u₂) :
     u₁ = u₂ := by
@@ -60,7 +62,9 @@ variable {σ : W → V}
   nth_rw 1 [h₁] at h₂
   simpa using h₂
 
-/-- Existence of the "corrector" for a given vector. -/
+/-- Existence of the "corrector" for a given vector.
+@isnad1 id=ex.2h7v.s8.e57057fddd55 from=translated src=- shape=2b4eaa81 vocab=e82427b5
+-/
 @[to_additive] lemma exists_corrector (hfg : f.range = g.ker) (hgσ : g ∘ σ = _root_.id) (v : V) :
     ∃ (u : U), v = σ (g v) * f u := by
   suffices (σ (g v))⁻¹ * v ∈ g.ker by
@@ -79,16 +83,24 @@ noncomputable def corrector
     U :=
   (exists_corrector hfg hgσ v).choose
 
-/-- The corrector map `γ : V → U` satisfies `v = σ(g(v)) * f(γ(v))` for any `v : V`. -/
+/-- The corrector map `γ : V → U` satisfies `v = σ(g(v)) * f(γ(v))` for any `v : V`.
+@isnad1 id=eq.2h7v.s8.2a1b321f63a3 from=translated src=- shape=52ce35eb vocab=e940b87c
+-/
 @[to_additive] lemma corrector_spec (hfg : f.range = g.ker) (hgσ : g ∘ σ = _root_.id) (v : V) :
     v = σ (g v) * f (corrector hfg hgσ v) :=
   (exists_corrector hfg hgσ v).choose_spec
 
+/--
+@isnad1 id=iff.3h8v.s8.9d25cbde66a2 from=translated src=- shape=65d837e5 vocab=6da083e7
+-/
 @[to_additive] lemma corrector_eq_iff
     (hf : f.ker = ⊥) (hfg : f.range = g.ker) (hgσ : g ∘ σ = _root_.id) (v : V) (u : U) :
     corrector hfg hgσ v = u ↔ v = σ (g v) * f u :=
   ⟨fun h ↦ h ▸ corrector_spec hfg hgσ v, unique_corrector hf v _ _ (corrector_spec hfg hgσ v)⟩
 
+/--
+@isnad1 id=eq.3h7v.s8.d49ffec7c2ae from=translated src=- shape=8c05eed3 vocab=e1f438b0
+-/
 @[to_additive] lemma image_corrector_eq_self_of_mem_ker {σ : W →* V} (hfg : f.range = g.ker)
     (hgσ : g ∘ σ = _root_.id) {v : V} (hv : v ∈ g.ker) :
     f (corrector hfg hgσ v) = v := by
@@ -96,6 +108,9 @@ noncomputable def corrector
   nth_rw 2 [corrector_spec hfg hgσ v]
   simp [hv]
 
+/--
+@isnad1 id=eq.3h6v.s8.1d5ca090ad8b from=translated src=- shape=eaac707e vocab=baf498ef
+-/
 @[to_additive] lemma corrector_one {σ : W →* V}
     (hf : f.ker = ⊥) (hfg : f.range = g.ker) (hgσ : g ∘ σ = _root_.id) :
     corrector hfg hgσ 1 = 1 := by
@@ -113,6 +128,9 @@ namespace MonoidHom
 variable {U V W : Type*} [Group U] [CommGroup V] [Group W]
 variable {f : U →* V} {g : V →* W}
 
+/--
+@isnad1 id=eq.3h8v.s8.1eb146c6e102 from=translated src=- shape=5e08c754 vocab=8b73f0e9
+-/
 @[to_additive] lemma corrector_mul {σ : W →* V}
     (hf : f.ker = ⊥) (hfg : f.range = g.ker) (hgσ : g ∘ σ = _root_.id) (v₁ v₂ : V) :
     corrector hfg hgσ (v₁ * v₂) = corrector hfg hgσ v₁ * corrector hfg hgσ v₂ := by
@@ -135,6 +153,9 @@ noncomputable def correctorHom {σ : W →* V}
   map_one' := corrector_one hf hfg ..
   map_mul' := corrector_mul hf hfg (by ext w; simpa using congrFun (congrArg DFunLike.coe hgσ) w)
 
+/--
+@isnad1 id=iff.3h8v.s8.cb3f1732dcf0 from=translated src=- shape=00878383 vocab=25cded2c
+-/
 @[to_additive] lemma correctorHom_eq_iff {σ : W →* V}
     (hf : f.ker = ⊥) (hfg : f.range = g.ker) (hgσ : g.comp σ = MonoidHom.id _)
     (v : V) (u : U) :
@@ -143,6 +164,9 @@ noncomputable def correctorHom {σ : W →* V}
   ext w
   exact congrFun (congrArg DFunLike.coe hgσ) w
 
+/--
+@isnad1 id=eq.4h7v.s8.d3e356ab63a4 from=translated src=- shape=cb67b9db vocab=240b9345
+-/
 @[to_additive] lemma image_correctorHom_eq_self_of_mem_ker {σ : W →* V} (hf : f.ker = ⊥)
     (hfg : f.range = g.ker) (hgσ : g.comp σ = MonoidHom.id _) {v : V} (hv : v ∈ g.ker) :
     f (correctorHom hf hfg hgσ v) = v := by
@@ -168,6 +192,9 @@ noncomputable def chooseSection {𝕜 : Type*} [CommSemiring 𝕜] {V W : Type*}
   (chooseBasis 𝕜 W).constr 𝕜 fun i ↦ (aux i).choose
 
 open Module.Free in
+/--
+@isnad1 id=eq.1h4v.s8.8263264faa00 from=translated src=- shape=c6b82c16 vocab=d3d09748
+-/
 lemma choose_section_prop {𝕜 : Type*} [CommSemiring 𝕜] {V W : Type*}
     [AddCommGroup V] [Module 𝕜 V] [AddCommGroup W] [Module 𝕜 W] [Module.Free 𝕜 W]
     {g : V →ₗ[𝕜] W} (hg : range g = ⊤) :
@@ -177,6 +204,9 @@ lemma choose_section_prop {𝕜 : Type*} [CommSemiring 𝕜] {V W : Type*}
     range_eq_top.mp hg (chooseBasis 𝕜 W i)
   simp [chooseSection, (aux i).choose_spec]
 
+/--
+@isnad1 id=eq.1h5v.s8.425727626331 from=translated src=- shape=bc4ea436 vocab=16e07d9f
+-/
 lemma choose_section_prop_apply {𝕜 : Type*} [CommSemiring 𝕜] {V W : Type*}
     [AddCommGroup V] [Module 𝕜 V] [AddCommGroup W] [Module 𝕜 W] [Module.Free 𝕜 W]
     {g : V →ₗ[𝕜] W} (hg : range g = ⊤) (w : W) :
@@ -191,6 +221,9 @@ variable {f : U →ₗ[𝕜] V} {g : V →ₗ[𝕜] W}
 variable {σ : W →ₗ[𝕜] V}
 
 open AddMonoidHom in
+/--
+@isnad1 id=eq.3h9v.s9.805d41a19a11 from=translated src=- shape=c0bc8036 vocab=733f61d1
+-/
 lemma correctorHom_smul (hf : f.toAddMonoidHom.ker = ⊥)
     (hfg : f.toAddMonoidHom.range = g.toAddMonoidHom.ker)
     (hgσ : g.toAddMonoidHom.comp σ.toAddMonoidHom = AddMonoidHom.id _) (c : 𝕜) (v : V) :
@@ -212,12 +245,17 @@ noncomputable def corrector (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g
   map_add' := AddMonoidHom.map_add (AddMonoidHom.correctorHom _ _ _)
   map_smul' := by apply correctorHom_smul
 
-/-- The corrector map `γ : V → U` satisfies `v = σ(g(v)) + f(γ(v))` for any `v : V`. -/
+/-- The corrector map `γ : V → U` satisfies `v = σ(g(v)) + f(γ(v))` for any `v : V`.
+@isnad1 id=eq.3h8v.s9.9a33e08e87fe from=translated src=- shape=4afeed68 vocab=0edafcd3
+-/
 lemma corrector_spec (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g ∘ₗ σ = 1) (v : V) :
     v = σ (g v) + f (corrector hf hfg hgσ v) :=
   @AddMonoidHom.corrector_spec U V W _ _ _ f g σ (congr_arg Submodule.toAddSubgroup hfg)
     (by ext w; simpa using congrFun (congrArg DFunLike.coe hgσ) w) v
 
+/--
+@isnad1 id=iff.3h9v.s9.f7a6d92dc2de from=translated src=- shape=0897fc3c vocab=0edafcd3
+-/
 lemma corrector_eq_iff (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g ∘ₗ σ = 1) (v : V) (u : U) :
     corrector hf hfg hgσ v = u ↔ v = σ (g v) + f u := by
   apply AddMonoidHom.corrector_eq_iff
@@ -225,6 +263,9 @@ lemma corrector_eq_iff (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g ∘�
   · exact congr_arg Submodule.toAddSubgroup hfg
   · ext w; simpa using congrFun (congrArg DFunLike.coe hgσ) w
 
+/--
+@isnad1 id=eq.4h8v.s9.0f3a358f0259 from=translated src=- shape=9febffc1 vocab=f7a16211
+-/
 lemma image_corrector_eq_self_of_mem_ker {σ : W →ₗ[𝕜] V} (hf : ker f = ⊥)
     (hfg : range f = ker g) (hgσ : g ∘ₗ σ = 1) {v : V} (hv : v ∈ ker g) :
     f (corrector hf hfg hgσ v) = v :=
@@ -247,7 +288,9 @@ universe u
 variable {ιU : Type u} {ιW : Type u} (basU : Basis ιU 𝕜 U) (basW : Basis ιW 𝕜 W)
 
 /-- A short exact sequence of modules together with a section gives an internal direct sum
-decomposition. -/
+decomposition.
+@isnad1 id=isintern.3h7v.s8.2feb07d7c3b6 from=translated src=- shape=84b7fddc vocab=5adf2e44
+-/
 lemma ses_directSum_isInternal (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g ∘ₗ σ = 1) :
     DirectSum.IsInternal (fun (j : Bool) ↦ if j then range f else range σ) := by
   rw [DirectSum.isInternal_submodule_iff_iSupIndep_and_iSup_eq_top]
@@ -324,6 +367,9 @@ noncomputable def sesBasis (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g 
   }
   exact auxBasis.reindex (_root_.id β.symm)
 
+/--
+@isnad1 id=eq.3h12v.s9.c8b9a629ac81 from=translated src=- shape=3b1be64f vocab=d17e6377
+-/
 @[simp] lemma ses_basis_eq_of_left (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g ∘ₗ σ = 1)
     (iu : ιU) :
     sesBasis basU basW hf hfg hgσ (Sum.inl iu) = f (basU iu) := by
@@ -332,6 +378,9 @@ noncomputable def sesBasis (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g 
     Function.comp_apply, ↓reduceDIte, cast_eq]
   rfl
 
+/--
+@isnad1 id=eq.3h12v.s9.3449a0fb9dc4 from=translated src=- shape=822554b7 vocab=186a6665
+-/
 @[simp] lemma ses_basis_eq_of_right (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g ∘ₗ σ = 1)
     (iw : ιW) :
     sesBasis basU basW hf hfg hgσ (Sum.inr iw) = σ (basW iw) := by

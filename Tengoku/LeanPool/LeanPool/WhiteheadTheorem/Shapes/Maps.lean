@@ -20,18 +20,27 @@ open scoped Topology unitInterval CategoryTheory
 
 namespace ContinuousMap
 
+/--
+@isnad1 id=eq.0h1v.s5.a38c65e1d733 from=translated src=- shape=ab278279 vocab=0fb3604b
+-/
 lemma mulRight_one (X : Type*) [TopologicalSpace X]
     [mulOne : MulOneClass X] [ContinuousMul X] :
     ContinuousMap.mulRight 1 = ContinuousMap.id X := by
   ext x
   simpa only [coe_mulRight, id_apply] using mulOne.mul_one x
 
+/--
+@isnad1 id=eq.0h1v.s5.e5ccba20b341 from=translated src=- shape=0ff3f4dd vocab=ba530864
+-/
 lemma mulRight_zero (X : Type*) [TopologicalSpace X]
     [mulOne : MulZeroClass X] [ContinuousMul X] :
     ContinuousMap.mulRight 0 = ContinuousMap.const X 0 := by
   ext x
   simp_all
 
+/--
+@isnad1 id=eq.0h2v.s5.115569b7f868 from=translated src=- shape=fa9642e4 vocab=d3fe3e35
+-/
 lemma prodMap_id_id (X Y : Type u) [TopologicalSpace X] [TopologicalSpace Y] :
     ContinuousMap.prodMap (ContinuousMap.id X) (ContinuousMap.id Y) = ContinuousMap.id _ :=
   rfl
@@ -63,12 +72,21 @@ abbrev r₀ (A : TopCat.{u}) : TopCat.of (A × I) ⟶ A :=
     { toFun := fun ⟨a, _⟩ ↦ a
       continuous_toFun := continuous_fst }
 
+/--
+@isnad1 id=eq.0h1v.s5.9debbab2b650 from=translated src=- shape=0a6ddc71 vocab=7e8cd081
+-/
 @[simp]
 lemma i₀_r₀_eq_id {A : TopCat.{u}} : i₀ A ≫ r₀ A = 𝟙 _ := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.01aeed2274c8 from=translated src=- shape=0a6ddc71 vocab=8e8619d6
+-/
 @[simp]
 lemma i₁_r₀_eq_id {A : TopCat.{u}} : i₁ A ≫ r₀ A = 𝟙 _ := rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.9b07f5afe13e from=translated src=- shape=7a7263e2 vocab=fdb2d241
+-/
 lemma set_neq_zero_eq_compl_range_i₀ (X : TopCat.{u}) :
     {⟨_, t⟩ : TopCat.of (X × I) | t ≠ 0} = (Set.range (Cyl.i₀ X))ᶜ := by
   rw [(by rfl: (Set.range (Cyl.i₀ X))ᶜ = {z | z ∉ Set.range (Cyl.i₀ X)})]
@@ -93,6 +111,9 @@ def i₁ToComplRangeI₀ (X : TopCat.{u}) :
       simp_all ⟩
   continuous_toFun := (ContinuousMap.continuous _).subtype_mk _
 
+/--
+@isnad1 id=isclosed.0h1v.s8.a5863f7d91ad from=translated src=- shape=0a5dd8fd vocab=0db7b24a
+-/
 lemma isClosed_range_i₀ (X : TopCat.{u}) :
     IsClosed <| Set.range (Cyl.i₀ X) := by
   have : {xt : TopCat.of (X × I) | xt.snd = 0} = Set.range (Cyl.i₀ X) := by
@@ -103,6 +124,9 @@ lemma isClosed_range_i₀ (X : TopCat.{u}) :
   rw [← this]
   exact isClosed_eq continuous_snd continuous_const
 
+/--
+@isnad1 id=isclosed.0h1v.s11.f17670761520 from=translated src=- shape=67755e06 vocab=e9313a8c
+-/
 lemma isClosedEmbedding_i₁ToComplRangeI₀ (X : TopCat.{u}) :
     Topology.IsClosedEmbedding (Cyl.i₁ToComplRangeI₀ X) := by
   apply Topology.IsClosedEmbedding.of_continuous_injective_isClosedMap

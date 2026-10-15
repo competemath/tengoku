@@ -69,7 +69,9 @@ omit [Fintype W] [Fintype X] [Fintype Y]
 /-- Pushing a `Finset` through an equiv-embedding and re-filtering by the transported predicate
     preserves the filtered cardinality.  Generic over an arbitrary equiv `e : J ≃ K` and an
     arbitrary projection `proj` — this one helper serves both the forward (`e := equivFin I`) and
-    reverse (`e := (equivFin I).symm`) directions of `threeDM_reindex`. -/
+    reverse (`e := (equivFin I).symm`) directions of `threeDM_reindex`.
+@isnad1 id=eq.0h11v.s7.6878988735d7 from=translated src=- shape=02df71d0 vocab=5a4b3e0b
+-/
 theorem map_filter_card_eq {J K : Type*}
     (e : J ≃ K) (T : Finset J)
     {Z : Type*} [DecidableEq Z] (proj : (W × X × Y) → Z)
@@ -87,7 +89,9 @@ theorem map_filter_card_eq {J K : Type*}
 omit [Fintype W] [Fintype X] [Fintype Y] [DecidableEq I] in
 /-- **The reindexing bridge.**  A perfect matching over the arbitrary `Fintype` index `I` exists iff
     one exists for the `Fin (card I)`-reindexed triple map (along `e := Fintype.equivFin I`).  This
-    is the bridge from `threeDMI` to the real `Fin s`-indexed `MatchingNPHard.ThreeDM`. -/
+    is the bridge from `threeDMI` to the real `Fin s`-indexed `MatchingNPHard.ThreeDM`.
+@isnad1 id=iff.0h5v.s6.a0b556589d79 from=translated src=- shape=d21bb7cf vocab=19bd147d
+-/
 theorem threeDM_reindex (t : I → W × X × Y) :
     threeDMI t ↔
       ThreeDM (fun i : Fin (Fintype.card I) => t ((Fintype.equivFin I).symm i)) := by
@@ -119,7 +123,9 @@ theorem threeDM_reindex (t : I → W × X × Y) :
 
 omit [Fintype W] [Fintype X] [Fintype Y] [DecidableEq I] in
 /-- **Point-free restatement** of the bridge: `threeDMI t ↔ ThreeDM (t ∘ (equivFin I).symm)`.
-    Defeq to `threeDM_reindex`; reads cleanly when `t = SATReduction.tripleFn φ` in m8. -/
+    Defeq to `threeDM_reindex`; reads cleanly when `t = SATReduction.tripleFn φ` in m8.
+@isnad1 id=iff.0h5v.s6.64e909931fa2 from=translated src=- shape=97f01408 vocab=473d5a6d
+-/
 theorem threeDM_reindex_comp (t : I → W × X × Y) :
     threeDMI t ↔ ThreeDM (t ∘ (Fintype.equivFin I).symm) :=
   threeDM_reindex t

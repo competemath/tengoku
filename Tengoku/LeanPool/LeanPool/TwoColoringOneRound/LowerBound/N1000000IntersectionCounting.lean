@@ -55,6 +55,9 @@ noncomputable instance (a d : DirIdx) : Fintype (FreeCoord a d) := by
   dsimp [FreeCoord]
   infer_instance
 
+/--
+@isnad1 id=eq.0h2v.s4.b66bf4331980 from=translated src=- shape=6e1b62da vocab=9c7780c7
+-/
 theorem card_freeCoord (a d : DirIdx) :
     Fintype.card (FreeCoord a d) = freeCoords (maskAt a) (maskAt d) := by
   classical
@@ -109,6 +112,9 @@ noncomputable instance {k : DirIdx} (u : BaseOrbit k) : Fintype (AvailFor u) := 
   dsimp [AvailFor]
   infer_instance
 
+/--
+@isnad1 id=eq.0h2v.s5.b55397f3985b from=translated src=- shape=b34a2683 vocab=c7c7aeee
+-/
 theorem card_availFor {k : DirIdx} (u : BaseOrbit k) :
     Fintype.card (AvailFor u) = n - (3 + freeCols (maskAt k)) := by
   classical
@@ -125,6 +131,9 @@ theorem card_availFor {k : DirIdx} (u : BaseOrbit k) :
     exact Fintype.card_subtype_compl (α := SymN) (p := fun x : SymN => x ∈ used)
   simp_all
 
+/--
+@isnad1 id=eq.0h4v.s5.564d0b1b6e04 from=translated src=- shape=d3318799 vocab=a20a5e5d
+-/
 theorem card_embedding_freeCoord_availFor {k a d : DirIdx} (u : BaseOrbit k) :
     Fintype.card (FreeCoord a d ↪ AvailFor u) =
       (n - (3 + freeCols (maskAt k))).descFactorial (freeCoords (maskAt a) (maskAt d)) := by
@@ -351,6 +360,9 @@ noncomputable def gOfEmbeddingVal {k : DirIdx} (u : BaseOrbit k) (a d : DirIdx)
         of_decide_eq_true (by simpa [consistentAt, j.2, hl] using hAt)
       exact ⟨u.1.1 l, baseOrbit_freeCoord_outside (u := u) ⟨l, hkFree⟩⟩
 
+/--
+@isnad1 id=eq.2h7v.s7.8fb0cafa6205 from=translated src=- shape=1aa6fbb2 vocab=8d9576e3
+-/
 theorem gOfEmbeddingVal_val_of_rowMatch_some {k : DirIdx} (u : BaseOrbit k) (a d : DirIdx)
     (hcons : consistent (maskAt k) (maskAt a) (maskAt d) = true)
     (e : FreeCoord a d ↪ AvailFor u) (j : FreeCol a) (l : Fin 3)
@@ -367,6 +379,9 @@ theorem gOfEmbeddingVal_val_of_rowMatch_some {k : DirIdx} (u : BaseOrbit k) (a d
   rw [dite_eq_right hne]
   simp [hchoose]
 
+/--
+@isnad1 id=eq.2h6v.s8.5469724945fb from=translated src=- shape=ae07f53f vocab=1f3e2a2b
+-/
 theorem gOfEmbeddingVal_val_of_rowMatch_none {k : DirIdx} (u : BaseOrbit k) (a d : DirIdx)
     (hcons : consistent (maskAt k) (maskAt a) (maskAt d) = true)
     (e : FreeCoord a d ↪ AvailFor u) (j : FreeCol a)
@@ -561,6 +576,9 @@ noncomputable def decodeInter {k : DirIdx} (u : BaseOrbit k) (a d : DirIdx)
       simp [Nat.testBit_eq_false_of_lt hLtL', Nat.testBit_eq_false_of_lt hLtR']
   exact ⟨v, ⟨hvBase, hvRel⟩⟩
 
+/--
+@isnad1 id=eq.1h5v.s5.1c7c6d4113a3 from=translated src=- shape=9d2551bd vocab=2f23a2a6
+-/
 theorem encode_decodeInter {k : DirIdx} (u : BaseOrbit k) (a d : DirIdx)
     (hcons : consistent (maskAt k) (maskAt a) (maskAt d) = true)
     (e : FreeCoord a d ↪ AvailFor u) :
@@ -597,6 +615,9 @@ theorem encode_decodeInter {k : DirIdx} (u : BaseOrbit k) (a d : DirIdx)
               (e j).1
           exact h0
 
+/--
+@isnad1 id=eq.1h5v.s5.0e8ba7d63617 from=translated src=- shape=2e56e063 vocab=16c574a4
+-/
 theorem decode_encodeInter {k : DirIdx} (u : BaseOrbit k) (a d : DirIdx)
     (hcons : consistent (maskAt k) (maskAt a) (maskAt d) = true)
     (w : Inter u a d) :
@@ -670,6 +691,9 @@ noncomputable def interEquivEmbedding {k : DirIdx} (u : BaseOrbit k) (a d : DirI
   left_inv := decode_encodeInter (u := u) (a := a) (d := d) hcons
   right_inv := encode_decodeInter (u := u) (a := a) (d := d) hcons
 
+/--
+@isnad1 id=eq.0h4v.s4.a8e49813b5a2 from=translated src=- shape=369cc207 vocab=371ffb61
+-/
 theorem card_inter_eq_N {k : DirIdx} (u : BaseOrbit k) (a d : DirIdx) :
     Fintype.card (Inter u a d) = N k a d := by
   classical

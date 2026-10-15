@@ -51,7 +51,9 @@ noncomputable def normForm (d a b : ℤ) : ℤ :=
 /-- The norm form is multiplicative: N(αβ) = N(α)·N(β).
 
 This follows from the ring-identity that holds for any integers a, b, c, e, d,
-and any integer q substituted for (d²-d)/4. -/
+and any integer q substituted for (d²-d)/4.
+@isnad1 id=eq.0h5v.s7.ee949a593ce6 from=translated src=- shape=351abbd3 vocab=56a545db
+-/
 theorem normForm_mul (a b c e : ℤ) :
     normForm d (a * c - ((d ^ 2 - d) / 4) * (b * e)) (a * e + b * c + d * b * e) =
     normForm d a b * normForm d c e := by
@@ -69,12 +71,16 @@ factorisation `(a + b·τ)(a + b·tauConj) = N(a, b)`. -/
 /-- The Galois conjugate of `tau`: the other root of `poly d`. -/
 noncomputable def tauConj : QuadraticOrder d := d • (1 : QuadraticOrder d) - tau
 
-/-- Vieta: the sum of the roots of `poly d` equals `d`. -/
+/-- Vieta: the sum of the roots of `poly d` equals `d`.
+@isnad1 id=eq.0h1v.s6.38504907c773 from=translated src=- shape=b61a7fd8 vocab=fb05e465
+-/
 lemma tau_add_tauConj : tau + tauConj = d • (1 : QuadraticOrder d) := by
   unfold tauConj
   ring
 
-/-- Vieta: the product of the roots of `poly d` equals `(d^2 - d) / 4`. -/
+/-- Vieta: the product of the roots of `poly d` equals `(d^2 - d) / 4`.
+@isnad1 id=eq.0h1v.s7.dc7c2868e683 from=translated src=- shape=eed24185 vocab=9d4a98ca
+-/
 lemma tau_mul_tauConj :
     tau * tauConj = ((d ^ 2 - d) / 4 : ℤ) • (1 : QuadraticOrder d) := by
   unfold tauConj
@@ -82,14 +88,18 @@ lemma tau_mul_tauConj :
   -- `tau * (d • 1 - tau) = d • tau - tau^2`, and `tau^2 = d • tau - q • 1`.
   linear_combination -h
 
-/-- The conjugate `tauConj` is also a root of the defining polynomial `poly d`. -/
+/-- The conjugate `tauConj` is also a root of the defining polynomial `poly d`.
+@isnad1 id=eq.0h1v.s7.1ac12e99a453 from=translated src=- shape=10a7bac9 vocab=fbf310e9
+-/
 lemma tauConj_minimal_poly :
     tauConj ^ 2 - d • tauConj + ((d ^ 2 - d) / 4 : ℤ) • (1 : QuadraticOrder d) = 0 := by
   unfold tauConj
   have h := tau_minimal_poly (d := d)
   linear_combination h
 
-/-- The Galois conjugate `tauConj` is also a root of `poly d`. -/
+/-- The Galois conjugate `tauConj` is also a root of `poly d`.
+@isnad1 id=eq.0h1v.s7.2724ea157faf from=translated src=- shape=7c273e83 vocab=9b95f1b6
+-/
 @[simp] lemma poly_aeval_tauConj :
     Polynomial.aeval (tauConj (d := d)) (poly d) = 0 := by
   have h := tauConj_minimal_poly (d := d)
@@ -99,7 +109,9 @@ lemma tauConj_minimal_poly :
   exact h
 
 /-- The norm involution: `(a + b·τ)(a + b·tauConj) = N(a, b)`. This exhibits the
-conjugate as the involution under which `normForm` is the multiplicative norm. -/
+conjugate as the involution under which `normForm` is the multiplicative norm.
+@isnad1 id=eq.0h3v.s8.b3e61a875179 from=translated src=- shape=5704e11e vocab=3b6e4ab1
+-/
 lemma normForm_eq_mul_conj (a b : ℤ) :
     (a • (1 : QuadraticOrder d) + b • tau)
       * (a • (1 : QuadraticOrder d) + b • tauConj)

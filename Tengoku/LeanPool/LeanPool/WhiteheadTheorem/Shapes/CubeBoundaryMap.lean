@@ -25,6 +25,9 @@ namespace TopCat.cubeBoundary
 abbrev botTopSidesCover (n : ℕ) : Fin 3 → Set (∂𝕀 (n + 1)) :=
     ![botOrTop n 0, botOrTop n 1, sides n]
 
+/--
+@isnad1 id=eq.0h1v.s7.ac185f2d1b53 from=translated src=- shape=0f43ea74 vocab=9e180ba0
+-/
 lemma sides_eq_iUnion (n : ℕ) :
     sides n = ⋃ (i : Fin n), {⟨⟨y, _⟩⟩ | y i.castSucc = 0 ∨ y i.castSucc = 1} := by
   ext x
@@ -35,6 +38,9 @@ lemma sides_eq_iUnion (n : ℕ) :
     obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hx
     exact ⟨i.castSucc, ⟨Fin.castSucc_lt_last _, hi⟩⟩
 
+/--
+@isnad1 id=eq.0h1v.s8.89975e722958 from=translated src=- shape=07067958 vocab=09b563bc
+-/
 lemma sides_eq_union_iUnion (n : ℕ) :
     sides n =
       (⋃ (i : Fin n), {⟨⟨y, _⟩⟩ | y i.castSucc = 0}) ∪
@@ -53,6 +59,9 @@ lemma sides_eq_union_iUnion (n : ℕ) :
     | inl h => obtain ⟨i, h⟩ := h; split; use i; left; assumption
     | inr h => obtain ⟨i, h⟩ := h; split; use i; right; assumption
 
+/--
+@isnad1 id=ex.0h2v.s6.f92ae23cb8e5 from=translated src=- shape=056c500e vocab=0fbcfdec
+-/
 lemma botTopSidesCover_cover (n : ℕ) :
     ∀ y : ∂𝕀 (n + 1), ∃ k, y ∈ botTopSidesCover n k := by
   intro ⟨⟨y, ⟨i, hi⟩⟩⟩
@@ -63,6 +72,9 @@ lemma botTopSidesCover_cover (n : ℕ) :
   · have : i < Fin.last _ := Fin.lt_last_iff_ne_last.mpr hin
     use 2, i
 
+/--
+@isnad1 id=isclosed.0h2v.s5.1de71508513c from=translated src=- shape=fad9b1ea vocab=0a171f23
+-/
 lemma botTopSidesCover_closed (n : ℕ) :
     ∀ k, IsClosed (botTopSidesCover n k) := by
   intro k
@@ -75,6 +87,9 @@ lemma botTopSidesCover_closed (n : ℕ) :
   all_goals exact isClosed_iUnion_of_finite fun i ↦
     isClosed_eq ((continuous_apply _).comp (by fun_prop)) continuous_const
 
+/--
+@isnad1 id=mem.1h2v.s9.52172441f137 from=translated src=- shape=1d3f8ae6 vocab=94293317
+-/
 lemma splitAtLast_snd_mem_boundary_of_mem_sides {n : ℕ} {y : ∂𝕀 (n + 1)}
     (hy : y ∈ sides n) : (Cube.splitAtLast y.down.val).snd ∈ ∂I^n := by
   obtain ⟨i, hin, hi⟩ := hy
@@ -104,6 +119,9 @@ def mapVecOfBotTopSides : (k : Fin 3) → C(botTopSidesCover n k, Z) :=
       continuous_toFun := by fun_prop }
   Fin.cons g0 <| Fin.cons g1 <| Fin.cons gs <| finZeroElim
 
+/--
+@isnad1 id=and.1h4v.s11.0aa0d950da48 from=translated src=- shape=c79541d0 vocab=69a0c559
+-/
 lemma mapVecOfBotTopSides_compatible_botOrTop
     (h : ∀ t y, f01 t (cubeBoundaryIncl _ y) = fs ⟨zeroOneIncl t, y⟩) :
     (∀ y hy0 hy2,
@@ -122,6 +140,9 @@ lemma mapVecOfBotTopSides_compatible_botOrTop
     convert h _ z using 1
     all_goals rfl
 
+/--
+@isnad1 id=eq.3h7v.s10.4f29af1be219 from=translated src=- shape=a9279801 vocab=69a0c559
+-/
 theorem mapVecOfBotTopSides_compatible
     (h : ∀ t y, f01 t (cubeBoundaryIncl _ y) = fs ⟨zeroOneIncl t, y⟩) :
     ∀ j k y hyj hyk,
@@ -144,6 +165,9 @@ noncomputable def mapOfBotTopSides
       (mapVecOfBotTopSides f01 fs) (mapVecOfBotTopSides_compatible f01 fs h)
       (botTopSidesCover_cover n) (botTopSidesCover_closed n)
 
+/--
+@isnad1 id=eq.1h5v.s9.5db3ed15cd19 from=translated src=- shape=b7272a37 vocab=1d84dcfd
+-/
 lemma cubeInclToBotOrTop_mapOfBotTopSides
     (h : ∀ t y, f01 t (cubeBoundaryIncl _ y) = fs ⟨zeroOneIncl t, y⟩)
     (t : zeroOne) :

@@ -50,7 +50,9 @@ noncomputable def wassersteinCost {α : Type*} [MeasurableSpace α]
 /-- The oscillation test class `∀ x y, |f x − f y| ≤ dist x y` coincides with
 `LipschitzWith 1 f` for real-valued `f` on a pseudometric space.  Bridge between
 `wassersteinCost dist` (the cost-parameterized form) and the `LipschitzWith`-
-phrased property lemmas. -/
+phrased property lemmas.
+@isnad1 id=iff.0h2v.s5.1e5e7675bff6 from=translated src=- shape=ea506aa9 vocab=6a6e2b1c
+-/
 lemma lipschitzWith_one_iff_oscillation {α : Type*} [PseudoMetricSpace α]
     (f : α → ℝ) : LipschitzWith 1 f ↔ ∀ x y, |f x - f y| ≤ dist x y := by
   constructor
@@ -70,7 +72,9 @@ noncomputable def wasserstein1 {α : Type*} [MeasurableSpace α] [PseudoMetricSp
 
 /-- `wasserstein1` equals the `LipschitzWith 1`-phrased sup.  The property lemmas
 below `rw` through this; consumers reference `wasserstein1` only through these
-property lemmas. -/
+property lemmas.
+@isnad1 id=eq.0h3v.s7.3c6f47460a08 from=translated src=- shape=bff342d8 vocab=6ae756bd
+-/
 lemma wasserstein1_eq_iSup_lipschitz {α : Type*} [MeasurableSpace α] [PseudoMetricSpace α]
     (μ ν : Measure α) :
     wasserstein1 μ ν = ⨆ (f : α → ℝ) (_ : LipschitzWith 1 f),
@@ -87,7 +91,9 @@ Proof sketch:  For any 1-Lipschitz `φ : E → ℝ`, set `ψ y := φ y - φ 0`. 
 constants φ(0)·μ(univ) = φ(0)·ν(univ) cancel since both are probability
 measures).
 So ∫φdμ − ∫φdν ≤ ∫|ψ|dμ + ∫|ψ|dν ≤ ∫‖y‖dμ + ∫‖y‖dν =: M, finite.
-Taking sup over 1-Lip φ: `wasserstein1 μ ν ≤ ENNReal.ofReal M < ⊤`. -/
+Taking sup over 1-Lip φ: `wasserstein1 μ ν ≤ ENNReal.ofReal M < ⊤`.
+@isnad1 id=lt.2h3v.s6.d1c5fc874263 from=translated src=- shape=567b3260 vocab=f4eaada5
+-/
 lemma wasserstein1_lt_top_of_finite_moment
     {E : Type*} [NormedAddCommGroup E] [MeasurableSpace E]
     [BorelSpace E]
@@ -166,7 +172,9 @@ lemma wasserstein1_lt_top_of_finite_moment
           integral_mono_ae hψ_int_ν.abs hν (Filter.Eventually.of_forall hψ_bound)
   linarith
 
-/-- Convenience corollary: under the same hypotheses, `wasserstein1 μ ν ≠ ⊤`. -/
+/-- Convenience corollary: under the same hypotheses, `wasserstein1 μ ν ≠ ⊤`.
+@isnad1 id=ne.2h3v.s6.2dd42c19ca24 from=translated src=- shape=567b3260 vocab=abaae996
+-/
 lemma wasserstein1_ne_top_of_finite_moment
     {E : Type*} [NormedAddCommGroup E] [MeasurableSpace E]
     [BorelSpace E]
@@ -186,7 +194,9 @@ distance on time-indexed measure curves (see `supW1On` in
 `LeanPool/Vlasov/OT/CharacteristicFlow.lean`). -/
 
 /-- `wassersteinCost c μ μ = 0` (cost-generic; no hypothesis on `c`).  Self-distance
-is zero; `wasserstein1_self` is the `c = dist` corollary. -/
+is zero; `wasserstein1_self` is the `c = dist` corollary.
+@isnad1 id=eq.0h3v.s4.a31e6f0bb40c from=translated src=- shape=46983c6f vocab=f4b43cde
+-/
 lemma wassersteinCost_self {α : Type*} [MeasurableSpace α]
     (c : α → α → ℝ) (μ : Measure α) : wassersteinCost c μ μ = 0 := by
   unfold wassersteinCost
@@ -194,13 +204,18 @@ lemma wassersteinCost_self {α : Type*} [MeasurableSpace α]
   refine iSup_le fun _ => iSup_le fun _ => ?_
   simp
 
+/--
+@isnad1 id=eq.0h2v.s4.8d7c7f7d84aa from=translated src=- shape=1408b639 vocab=ceb0fe95
+-/
 lemma wasserstein1_self {α : Type*} [MeasurableSpace α] [PseudoMetricSpace α]
     (μ : Measure α) : wasserstein1 μ μ = 0 :=
   wassersteinCost_self (fun x y => dist x y) μ
 
 /-- Symmetry: `wassersteinCost c μ ν = wassersteinCost c ν μ`.  The oscillation
 test class `|f x − f y| ≤ c x y` is closed under `f ↦ −f`, so **no symmetry
-assumption on `c`** is needed. -/
+assumption on `c`** is needed.
+@isnad1 id=eq.0h4v.s5.073e2c7788f9 from=translated src=- shape=2c341588 vocab=f4b43cde
+-/
 lemma wassersteinCost_comm {α : Type*} [MeasurableSpace α]
     (c : α → α → ℝ) (μ ν : Measure α) :
     wassersteinCost c μ ν = wassersteinCost c ν μ := by
@@ -221,6 +236,9 @@ lemma wassersteinCost_comm {α : Type*} [MeasurableSpace α]
     simp only [Pi.neg_apply, integral_neg]
     congr 1; ring
 
+/--
+@isnad1 id=eq.0h3v.s4.4ada77c3e85f from=translated src=- shape=d8e7d638 vocab=ceb0fe95
+-/
 lemma wasserstein1_comm {α : Type*} [MeasurableSpace α] [PseudoMetricSpace α]
     (μ ν : Measure α) : wasserstein1 μ ν = wasserstein1 ν μ :=
   wassersteinCost_comm (fun x y => dist x y) μ ν
@@ -228,7 +246,9 @@ lemma wasserstein1_comm {α : Type*} [MeasurableSpace α] [PseudoMetricSpace α]
 /-- Triangle inequality: `wassersteinCost c μ τ ≤ wassersteinCost c μ ν +
 wassersteinCost c ν τ`.  **No triangle assumption on `c`** — the inequality is
 the test-function integral decomposition (the same `f` is valid for all three
-costs `wassersteinCost c · ·`). -/
+costs `wassersteinCost c · ·`).
+@isnad1 id=le.0h5v.s5.f3175ca8e65a from=translated src=- shape=825c8be5 vocab=b86a85f7
+-/
 lemma wassersteinCost_triangle {α : Type*} [MeasurableSpace α]
     (c : α → α → ℝ) (μ ν τ : Measure α) :
     wassersteinCost c μ τ ≤ wassersteinCost c μ ν + wassersteinCost c ν τ := by
@@ -249,6 +269,9 @@ lemma wassersteinCost_triangle {α : Type*} [MeasurableSpace α]
         · exact le_iSup_of_le f (le_iSup_of_le hf le_rfl)
         · exact le_iSup_of_le f (le_iSup_of_le hf le_rfl)
 
+/--
+@isnad1 id=le.0h4v.s5.5d2449f9274f from=translated src=- shape=e39fcf50 vocab=f492c237
+-/
 lemma wasserstein1_triangle {α : Type*} [MeasurableSpace α] [PseudoMetricSpace α]
     (μ ν τ : Measure α) :
     wasserstein1 μ τ ≤ wasserstein1 μ ν + wasserstein1 ν τ :=
@@ -260,7 +283,9 @@ bounded by the sum of the two measures' first moments.
 This refines `wasserstein1_lt_top_of_finite_moment` (which only states ≠⊤)
 by providing the explicit upper bound `∫‖y‖dμ + ∫‖y‖dν`.  Used by the sup-W₁
 pseudodistance on `VlasovMeasureCurve`s to derive finiteness from the
-uniform first-moment bound. -/
+uniform first-moment bound.
+@isnad1 id=le.2h3v.s7.68b4afc4dddc from=translated src=- shape=853da75c vocab=c8a77036
+-/
 lemma wasserstein1_le_moments_sum
     {E : Type*} [NormedAddCommGroup E] [MeasurableSpace E]
     [BorelSpace E]
@@ -341,7 +366,9 @@ pushforward by `T` is `L`-non-expansive in `wassersteinCost`:
 `wassersteinCost c_β (T_# μ) (T_# ν) ≤ L · wassersteinCost c_α μ ν`.
 
 `wasserstein1_le_of_lipschitz_map` (`c = dist`, below) and the Wbar analog
-(`c = fun x y => min (dist x y) 1`) are instances. -/
+(`c = fun x y => min (dist x y) 1`) are instances.
+@isnad1 id=le.3h8v.s7.4c5c003cff83 from=translated src=- shape=48585bcc vocab=8b7bc30e
+-/
 lemma wassersteinCost_le_of_lipschitz_map
     {α β : Type*}
     [MeasurableSpace α]
@@ -406,7 +433,9 @@ lemma wassersteinCost_le_of_lipschitz_map
     exact le_iSup_of_le h (le_iSup_of_le h_osc le_rfl)
 
 /-- **W₁ non-expansion under Lipschitz pushforward** — the `c = dist` instance of
-`wassersteinCost_le_of_lipschitz_map`. -/
+`wassersteinCost_le_of_lipschitz_map`.
+@isnad1 id=le.2h6v.s6.a5ab2958d973 from=translated src=- shape=ccc55cf1 vocab=4183dd80
+-/
 lemma wasserstein1_le_of_lipschitz_map
     {α β : Type*}
     [MeasurableSpace α] [PseudoMetricSpace α]
@@ -435,7 +464,9 @@ separation lemma `wasserstein1_eq_zero_iff_measure_eq`.
 
 **Cost-generic**: stated below for `wassersteinCost c` with `f`
 of `c`-oscillation, no hypothesis on `c`; `wasserstein1_dual_lower_bound` is the
-`c = dist` corollary. -/
+`c = dist` corollary.
+@isnad1 id=le.1h5v.s6.e8d814ddae0e from=translated src=- shape=a8c2c32d vocab=ec1cde71
+-/
 lemma wassersteinCost_dual_lower_bound
     {α : Type*} [MeasurableSpace α]
     (c : α → α → ℝ) (μ ν : Measure α) (f : α → ℝ)
@@ -444,6 +475,9 @@ lemma wassersteinCost_dual_lower_bound
   unfold wassersteinCost
   exact le_iSup_of_le f (le_iSup_of_le hf le_rfl)
 
+/--
+@isnad1 id=le.1h4v.s6.685e3b82c081 from=translated src=- shape=0ad4fa17 vocab=70156ae1
+-/
 lemma wasserstein1_dual_lower_bound
     {α : Type*} [MeasurableSpace α] [PseudoMetricSpace α]
     (μ ν : Measure α) (f : α → ℝ) (hf : LipschitzWith 1 f) :
@@ -467,19 +501,31 @@ noncomputable def wassersteinBar {α : Type*} [MeasurableSpace α] [PseudoMetric
     (μ ν : Measure α) : ENNReal :=
   wassersteinCost (fun x y => min (dist x y) 1) μ ν
 
+/--
+@isnad1 id=eq.0h2v.s4.80fe46af1fca from=translated src=- shape=1408b639 vocab=57f88f3e
+-/
 lemma wassersteinBar_self {α : Type*} [MeasurableSpace α] [PseudoMetricSpace α]
     (μ : Measure α) : wassersteinBar μ μ = 0 :=
   wassersteinCost_self _ μ
 
+/--
+@isnad1 id=eq.0h3v.s4.9bf8457aa401 from=translated src=- shape=d8e7d638 vocab=57f88f3e
+-/
 lemma wassersteinBar_comm {α : Type*} [MeasurableSpace α] [PseudoMetricSpace α]
     (μ ν : Measure α) : wassersteinBar μ ν = wassersteinBar ν μ :=
   wassersteinCost_comm _ μ ν
 
+/--
+@isnad1 id=le.0h4v.s5.2438fd64b46d from=translated src=- shape=e39fcf50 vocab=7b501a11
+-/
 lemma wassersteinBar_triangle {α : Type*} [MeasurableSpace α] [PseudoMetricSpace α]
     (μ ν τ : Measure α) :
     wassersteinBar μ τ ≤ wassersteinBar μ ν + wassersteinBar ν τ :=
   wassersteinCost_triangle _ μ ν τ
 
+/--
+@isnad1 id=le.1h4v.s6.5cc2d1cce779 from=translated src=- shape=77423390 vocab=9de608fd
+-/
 lemma wassersteinBar_dual_lower_bound {α : Type*} [MeasurableSpace α] [PseudoMetricSpace α]
     (μ ν : Measure α) (f : α → ℝ) (hf : ∀ x y, |f x - f y| ≤ min (dist x y) 1) :
     ENNReal.ofReal (∫ x, f x ∂μ - ∫ x, f x ∂ν) ≤ wassersteinBar μ ν :=
@@ -487,7 +533,9 @@ lemma wassersteinBar_dual_lower_bound {α : Type*} [MeasurableSpace α] [PseudoM
 
 /-- Wbar non-expansion under 1-Lipschitz pushforward: `Wbar(T_# μ, T_# ν) ≤ Wbar(μ, ν)`.
 The cost-Lipschitz hypothesis is `min(dist(Tx,Ty),1) ≤ min(dist x y, 1)` (from
-`dist(Tx,Ty) ≤ dist x y`). -/
+`dist(Tx,Ty) ≤ dist x y`).
+@isnad1 id=le.2h5v.s6.663de1f9bbf8 from=translated src=- shape=65c3dd8f vocab=0c61aa41
+-/
 lemma wassersteinBar_le_of_lipschitz_map {α β : Type*}
     [MeasurableSpace α] [PseudoMetricSpace α]
     [MeasurableSpace β] [PseudoMetricSpace β] [OpensMeasurableSpace β]
@@ -521,7 +569,9 @@ equality holds for every bounded continuous function `f : α →ᵇ ℝ`.
   and ν agree (Step A); letting `δ → 0` and using
   `tendsto_lintegral_thickenedIndicator_of_isClosed` gives `μ F = ν F`.
 * Closed sets form a π-system generating the Borel σ-algebra, so `μ = ν` by
-  `ext_of_generate_finite`; equality of all BC integrals is then immediate. -/
+  `ext_of_generate_finite`; equality of all BC integrals is then immediate.
+@isnad1 id=eq.1h4v.s8.6a1ac36a317c from=translated src=- shape=dfccec29 vocab=d57d052f
+-/
 theorem integral_boundedContinuous_eq_of_integral_lipschitz_eq
     {α : Type*}
     [MeasurableSpace α] [NormedAddCommGroup α] [BorelSpace α]
@@ -604,7 +654,9 @@ first moments, `W₁(μ, ν) = 0` iff `μ = ν`.
 The substantive middle (1-Lipschitz equality → BC equality) is
 `integral_boundedContinuous_eq_of_integral_lipschitz_eq` (above); the final
 step (BC equality → μ = ν) routes through Mathlib's
-`ext_of_forall_integral_eq_of_IsFiniteMeasure`. -/
+`ext_of_forall_integral_eq_of_IsFiniteMeasure`.
+@isnad1 id=iff.0h3v.s6.8824d7ea4a70 from=translated src=- shape=0afa9e06 vocab=8bd992a8
+-/
 lemma wasserstein1_eq_zero_iff_measure_eq
     {α : Type*}
     [MeasurableSpace α] [NormedAddCommGroup α] [BorelSpace α]
@@ -676,7 +728,9 @@ have finite first moment) recovers `ofReal(∫φ dμ − ∫φ dν) ≤ liminf_n
 the `⨆` over `φ` closes it.  The narrow hypothesis is taken in
 bounded-continuous-test form (what `ProbabilityMeasure.tendsto_iff_forall_integral_tendsto`
 exposes), so the `exists_wasserstein1_limit_of_cauchy` caller feeds it directly
-from Prokhorov. -/
+from Prokhorov.
+@isnad1 id=le.3h4v.s8.e6d28a9fd21a from=translated src=- shape=5e2c3092 vocab=049b50ae
+-/
 lemma wasserstein1_le_liminf_of_narrow
     {E : Type*} [NormedAddCommGroup E] [MeasurableSpace E] [BorelSpace E]
     (μ : Measure E) [IsProbabilityMeasure μ] (hμ_int : Integrable (fun y => ‖y‖) μ)
@@ -790,7 +844,9 @@ lemma wasserstein1_le_liminf_of_narrow
 
 /-- For C > 0 and 0 ≤ s ≤ t, we have
 ENNReal.ofReal (Real.exp (C * s)) ≤ ENNReal.ofReal (Real.exp (C * t)).
-This is the monotonicity of the exponential bound in time. -/
+This is the monotonicity of the exponential bound in time.
+@isnad1 id=le.2h3v.s5.450ae1d34511 from=translated src=- shape=4bdc1e36 vocab=b906c65f
+-/
 lemma wasserstein1_ofReal_exp_monotone
     (C : ℝ) (hC : 0 < C) (s t : ℝ) (hst : s ≤ t) :
     ENNReal.ofReal (Real.exp (C * s)) ≤ ENNReal.ofReal (Real.exp (C * t)) := by

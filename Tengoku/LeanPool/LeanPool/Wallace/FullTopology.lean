@@ -33,7 +33,9 @@ noncomputable section
 
 /-! ## Countable compactness from the nonzero-limit property -/
 
-/-- The nonzero ultrafilter-limit property gives an accumulation point for every infinite set. -/
+/-- The nonzero ultrafilter-limit property gives an accumulation point for every infinite set.
+@isnad1 id=hasinfin.1h1v.s4.2136afb09ec6 from=translated src=- shape=affebb5f vocab=9d1a26b7
+-/
 theorem infiniteSet_accumulation_of_nonzero_ultrafilter_limits
     {X : Type u} [TopologicalSpace X] [Zero X]
     (hlimits : HasNonzeroLimitProperty X) :
@@ -51,7 +53,9 @@ theorem infiniteSet_accumulation_of_nonzero_ultrafilter_limits
   obtain ⟨n, rfl⟩ := hy
   exact (e (φ n)).property
 
-/-- In a `T₁` space, the package's ultrafilter limits imply countable compactness. -/
+/-- In a `T₁` space, the package's ultrafilter limits imply countable compactness.
+@isnad1 id=countabl.1h1v.s4.464d51421ffb from=translated src=- shape=7ddc04c7 vocab=a4ccc5e6
+-/
 theorem countablyCompact_of_nonzero_ultrafilter_limits
     {X : Type u} [TopologicalSpace X] [Zero X] [T1Space X]
     (hlimits : HasNonzeroLimitProperty X) :
@@ -108,15 +112,23 @@ def evaluation (C : FullCharacterPackage G) :
 @[reducible] def initialUniformSpace (C : FullCharacterPackage G) : UniformSpace G :=
   UniformSpace.comap C.evaluation inferInstance
 
+/--
+@isnad1 id=eq.0h2v.s4.616862e07cbe from=translated src=- shape=b86bbeed vocab=18575509
+-/
 theorem initialUniformSpace_toTopology (C : FullCharacterPackage G) :
     C.initialUniformSpace.toTopologicalSpace = C.initialTopology := rfl
 
 /-- The pulled-back uniformity is the canonical uniform group structure induced by the diagonal
-homomorphism. -/
+homomorphism.
+@isnad1 id=isunifor.0h2v.s4.70cc56c6560f from=translated src=- shape=c612a321 vocab=a9e54dd6
+-/
 theorem initial_isUniformAddGroup (C : FullCharacterPackage G) :
     @IsUniformAddGroup G C.initialUniformSpace _ :=
   IsUniformAddGroup.comap C.evaluation
 
+/--
+@isnad1 id=injectiv.0h2v.s7.45f8bfe92c50 from=translated src=- shape=11f522ac vocab=73772a95
+-/
 theorem evaluation_injective (C : FullCharacterPackage G) :
     Function.Injective C.evaluation := by
   intro x y hxy
@@ -128,12 +140,17 @@ theorem evaluation_injective (C : FullCharacterPackage G) :
   have hcoord : C.character j x = C.character j y := congrFun hxy j
   rw [hcoord, sub_self]
 
+/--
+@isnad1 id=t2space.0h2v.s3.dd46cb27e0b1 from=translated src=- shape=c612a321 vocab=3d0775fc
+-/
 theorem initial_t2Space (C : FullCharacterPackage G) :
     @T2Space G C.initialTopology := by
   let : TopologicalSpace G := C.initialTopology
   exact C.evaluation_injective.isEmbedding_induced.t2Space
 
-/-- The selected subsequence converges to its prescribed point in the initial topology. -/
+/-- The selected subsequence converges to its prescribed point in the initial topology.
+@isnad1 id=tendsto.0h3v.s6.46aa6d73d538 from=translated src=- shape=9ad58be6 vocab=5996c621
+-/
 theorem prepared_tendsto_limitPoint (C : FullCharacterPackage G) (c : C.Code) :
     Tendsto
       (fun n ↦ (C.codeEquiv c).1 (C.subsequence c n))
@@ -145,6 +162,9 @@ theorem prepared_tendsto_limitPoint (C : FullCharacterPackage G) (c : C.Code) :
   refine tendsto_pi_nhds.2 fun j ↦ ?_
   simpa [evaluation, Function.comp_def] using C.character_limit c j
 
+/--
+@isnad1 id=hasnonze.0h2v.s4.79f856e88c62 from=translated src=- shape=c612a321 vocab=51970d92
+-/
 theorem hasNonzeroLimitProperty (C : FullCharacterPackage G) :
     @HasNonzeroLimitProperty G C.initialTopology _ := by
   intro s hs
@@ -159,6 +179,9 @@ theorem hasNonzeroLimitProperty (C : FullCharacterPackage G) :
   rw [← hcoded]
   exact C.prepared_tendsto_limitPoint c
 
+/--
+@isnad1 id=countabl.0h2v.s3.b8b30fcf10f8 from=translated src=- shape=c612a321 vocab=e9b9d652
+-/
 theorem initial_countablyCompactSpace (C : FullCharacterPackage G) :
     @CountablyCompactSpace G C.initialTopology := by
   let : TopologicalSpace G := C.initialTopology
@@ -167,7 +190,9 @@ theorem initial_countablyCompactSpace (C : FullCharacterPackage G) :
     C.hasNonzeroLimitProperty
 
 /-- The induced uniformity is totally bounded because the target is a compact power of the
-circle. -/
+circle.
+@isnad1 id=totallyb.0h2v.s4.74aef05624da from=translated src=- shape=4c9b52a8 vocab=894b1940
+-/
 theorem initial_totallyBounded (C : FullCharacterPackage G) :
     @TotallyBounded G C.initialUniformSpace Set.univ := by
   let : UniformSpace G := C.initialUniformSpace
@@ -201,9 +226,15 @@ def toFullCharacterPackage (C : SeparationPackage I) :
   character_detects x hx := ⟨⟨x, hx⟩, C.character_self_ne_zero ⟨x, hx⟩⟩
   character_limit := C.character_limit
 
+/--
+@isnad1 id=eq.0h2v.s5.96390280eb8e from=translated src=- shape=51caaa7e vocab=dafee8ed
+-/
 theorem full_initialTopology_eq (C : SeparationPackage I) :
     C.toFullCharacterPackage.initialTopology = C.initialTopology := rfl
 
+/--
+@isnad1 id=countabl.0h2v.s4.2734d9bc26a6 from=translated src=- shape=43984f75 vocab=68c72caa
+-/
 theorem initial_countablyCompactSpace (C : SeparationPackage I) :
     @CountablyCompactSpace (I →₀ ℤ) C.initialTopology := by
   rw [← C.full_initialTopology_eq]
@@ -214,14 +245,23 @@ theorem initial_countablyCompactSpace (C : SeparationPackage I) :
     UniformSpace (I →₀ ℤ) :=
   C.toFullCharacterPackage.initialUniformSpace
 
+/--
+@isnad1 id=eq.0h2v.s4.ae09d39c607d from=translated src=- shape=ff030cf9 vocab=13fd4feb
+-/
 theorem initialUniformSpace_toTopology (C : SeparationPackage I) :
     C.initialUniformSpace.toTopologicalSpace = C.initialTopology := by
   exact C.toFullCharacterPackage.initialUniformSpace_toTopology
 
+/--
+@isnad1 id=isunifor.0h2v.s4.5f36c0028c04 from=translated src=- shape=43984f75 vocab=49a37745
+-/
 theorem initial_isUniformAddGroup (C : SeparationPackage I) :
     @IsUniformAddGroup (I →₀ ℤ) C.initialUniformSpace _ :=
   C.toFullCharacterPackage.initial_isUniformAddGroup
 
+/--
+@isnad1 id=totallyb.0h2v.s4.401adc695c4f from=translated src=- shape=6bc29346 vocab=7004cd07
+-/
 theorem initial_totallyBounded (C : SeparationPackage I) :
     @TotallyBounded (I →₀ ℤ) C.initialUniformSpace Set.univ :=
   C.toFullCharacterPackage.initial_totallyBounded

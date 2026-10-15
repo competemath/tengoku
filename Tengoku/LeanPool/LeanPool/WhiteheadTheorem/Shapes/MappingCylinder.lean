@@ -38,7 +38,9 @@ namespace MapCyl
 noncomputable abbrev inl : Y ⟶ MapCyl f := Limits.pushout.inl _ _
 /-- `inr` -/
 noncomputable abbrev inr : TopCat.of (X × I) ⟶ MapCyl f := Limits.pushout.inr _ _
-/-- `condition` -/
+/-- `condition`
+@isnad1 id=eq.0h3v.s6.bb776d884d0e from=translated src=- shape=958850f1 vocab=22ae1235
+-/
 lemma condition : f ≫ inl f = Cyl.i₀ X ≫ inr f := Limits.pushout.condition
 
 /-- Inclusion map from the domain `X` to the mapping cylinder of `f : X ⟶ Y` -/
@@ -50,12 +52,18 @@ noncomputable alias codIncl := inl
 /-- The top surface of the mapping cylinder -/
 abbrev top : Set (MapCyl f) := Set.range (domIncl f)
 
+/--
+@isnad1 id=eq.0h3v.s9.d9efbef0cf61 from=translated src=- shape=c0471a51 vocab=e0fceb23
+-/
 lemma domIncl_hom_eq_pushoutInr'_comp :
     (domIncl f).hom = (pushoutInr' _ _).comp (Cyl.i₁ToComplRangeI₀ X) := by
   ext x
   simp_all only [hom_comp, hom_ofHom, ContinuousMap.comp_apply, ContinuousMap.coe_mk]
   rfl
 
+/--
+@isnad1 id=isembedd.0h3v.s6.06c343cabb7e from=translated src=- shape=42e09575 vocab=85532317
+-/
 theorem isEmbedding_domIncl : Topology.IsEmbedding (domIncl f) := by
   change Topology.IsEmbedding ((domIncl f).hom)
   rw [domIncl_hom_eq_pushoutInr'_comp]
@@ -78,11 +86,20 @@ noncomputable def domInclToTop : C(X, top f) := toContinuousMap (domHomeoTop f)
 /-- `domInclFromTop` -/
 def domInclFromTop : C(top f, MapCyl f) := ⟨Subtype.val, continuous_subtype_val⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.05ee05e2fb90 from=translated src=- shape=42331259 vocab=b29545b6
+-/
 lemma domIncl_hom_eq_domInclFromTop_comp_domInclToTop :
   (domIncl f).hom = (domInclFromTop f).comp (domInclToTop f) := rfl
+/--
+@isnad1 id=eq.0h3v.s8.a57495107fc9 from=translated src=- shape=1241efaa vocab=e206d7e6
+-/
 lemma domIncl_toFun_eq_domInclFromTop_comp_domInclToTop :
   (domIncl f).hom.toFun = domInclFromTop f ∘ domInclToTop f := rfl
 
+/--
+@isnad1 id=ishomeom.0h3v.s7.e80e85dedbe2 from=translated src=- shape=2cb04f47 vocab=4e109cd3
+-/
 lemma isHomeomorph_domInclToTop : IsHomeomorph (domInclToTop f) :=
   isHomeomorph_iff_exists_homeomorph.mpr ⟨domHomeoTop f, rfl⟩
 
@@ -91,16 +108,28 @@ noncomputable def retr : MapCyl f ⟶ Y :=
   Limits.pushout.desc (𝟙 Y) (Cyl.r₀ X ≫ f)
     (by rw [Category.comp_id, ← Category.assoc, Cyl.i₀_r₀_eq_id, Category.id_comp])
 
+/--
+@isnad1 id=eq.0h3v.s5.d7935c5c4085 from=translated src=- shape=587e4121 vocab=e78b34c6
+-/
 lemma domIncl_retr_eq : domIncl f ≫ retr f = f := by
   unfold domIncl retr
   change Cyl.i₁ X ≫ Limits.pushout.inr f (Cyl.i₀ X) ≫ _ = f
   rw [Limits.pushout.inr_desc, ← Category.assoc, Cyl.i₁_r₀_eq_id, Category.id_comp]
+/--
+@isnad1 id=eq.0h5v.s6.3d93fc1a4baa from=translated src=- shape=ff821992 vocab=e78b34c6
+-/
 lemma domIncl_retr_eq_assoc : domIncl f ≫ retr f ≫ h = f ≫ h := by
   rw [← Category.assoc, domIncl_retr_eq f]
 
+/--
+@isnad1 id=eq.0h3v.s5.2abfc770d46d from=translated src=- shape=128fc6cf vocab=483fbc6c
+-/
 lemma inl_retr_eq_id : inl f ≫ retr f = 𝟙 Y := by
   change Limits.pushout.inl f (Cyl.i₀ X) ≫ _ = _
   rw [retr, Limits.pushout.inl_desc]
+/--
+@isnad1 id=eq.0h3v.s5.5d4d2698b17c from=translated src=- shape=128fc6cf vocab=8827f97b
+-/
 lemma codIncl_retr_eq_id : codIncl f ≫ retr f = 𝟙 Y := inl_retr_eq_id f
 -- alias codIncl_retr_eq_id := inl_retr_eq_id
 
@@ -128,6 +157,9 @@ noncomputable def curriedDeformRetr : MapCyl f ⟶ TopCat.of C(I, MapCyl f) :=
 noncomputable def curriedDeformRetrEvalAt (t : I) : MapCyl f ⟶ MapCyl f :=
   ofHom <| (curriedDeformRetr f).hom.uncurry.curryLeft t
 
+/--
+@isnad1 id=eq.0h5v.s9.cd7a76907db7 from=translated src=- shape=bbd7e8d8 vocab=1be80cbb
+-/
 lemma curriedDeformRetrEvalAt_hom_apply (t : I) (z : MapCyl f) :
     (curriedDeformRetrEvalAt f t).hom z = ((curriedDeformRetr f).hom z) t :=
   rfl
@@ -146,6 +178,9 @@ noncomputable def deformRetrEvalAt (t : I) : MapCyl f ⟶ MapCyl f :=
         ContinuousMap.coe_mulRight, Prod.map_apply, id_eq, zero_mul]
       exact congr_fun (congr_arg (ContinuousMap.toFun ∘ Hom.hom) (condition f)) x )
 
+/--
+@isnad1 id=eq.0h3v.s6.9d2bc7cfe56e from=translated src=- shape=c51d782f vocab=3ec8a105
+-/
 lemma deformRetrEvalAt_zero : deformRetrEvalAt f 0 = retr f ≫ inl f := by
   simp only [deformRetrEvalAt, ContinuousMap.mulRight_zero]
   apply Limits.pushout.hom_ext
@@ -158,10 +193,16 @@ lemma deformRetrEvalAt_zero : deformRetrEvalAt f 0 = retr f ≫ inl f := by
     rw [Limits.pushout.inr_desc_assoc, Category.assoc, condition f, ← Category.assoc]
     congr
 
+/--
+@isnad1 id=eq.0h3v.s5.07b4e0d604e1 from=translated src=- shape=3c2ffa39 vocab=a7545fbd
+-/
 lemma deformRetrEvalAt_one : deformRetrEvalAt f 1 = 𝟙 _ := by
   simp only [deformRetrEvalAt, ContinuousMap.mulRight_one]
   apply Limits.pushout.desc_inl_inr
 
+/--
+@isnad1 id=eq.0h4v.s5.e7e10a0dafd5 from=translated src=- shape=d5d1c493 vocab=aad6d793
+-/
 lemma curriedDeformRetrEvalAt_eq_deformRetrEvalAt (t : I) :
     curriedDeformRetrEvalAt f t = deformRetrEvalAt f t := by
   apply Limits.pushout.hom_ext
@@ -209,6 +250,9 @@ TODO: Show `inl f` is a topological embedding using `inl f ≫ retr f = 𝟙 Y`,
 using `homotopyEquivBase.right_inv`.
 -/
 
+/--
+@isnad1 id=ishomoto.0h3v.s5.967ee171d762 from=translated src=- shape=781c3749 vocab=eaf164cf
+-/
 theorem isHomotopyEquiv_retr : IsHomotopyEquiv (retr f).hom :=
   ⟨homotopyEquivBase f, rfl⟩
 

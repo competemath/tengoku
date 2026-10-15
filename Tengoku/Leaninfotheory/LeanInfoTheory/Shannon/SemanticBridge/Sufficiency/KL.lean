@@ -58,6 +58,7 @@ divergence.
 No support inclusion is needed: data processing through the forward and
 recovery channels gives the two inequalities even when either divergence is
 infinite.
+@isnad1 id=eq.2h6v.s7.0a8d491d949c from=translated src=- shape=c3586101 vocab=1d978eff
 -/
 theorem klDiv_channel_eq_of_common_recovery
     {alpha : Type u} {beta : Type v}
@@ -89,6 +90,7 @@ holds exactly when one channel recovers both complete output-input joint laws.
 The support hypothesis is needed only for the converse: it excludes the
 uninformative case where both KL divergences are `⊤`. The recovery-to-equality
 direction is the unconditional theorem above.
+@isnad1 id=iff.1h5v.s7.c483f595032d from=translated src=- shape=432ff33b vocab=6be4ce89
 -/
 theorem klDiv_channel_eq_iff_exists_common_recovery
     {alpha : Type u} {beta : Type v}
@@ -125,6 +127,7 @@ theorem klDiv_channel_eq_iff_exists_common_recovery
 /--
 The real-valued finite KL equality case has the same common exact-recovery
 characterization under input support inclusion.
+@isnad1 id=iff.1h5v.s7.61b0eb645f54 from=translated src=- shape=a59b613b vocab=3c60b980
 -/
 theorem toReal_klDiv_channel_eq_iff_exists_common_recovery
     {alpha : Type u} {beta : Type v}
@@ -162,6 +165,7 @@ private theorem map_graph_swap
 Under input support inclusion, a deterministic statistic preserves `ENNReal`
 KL divergence exactly when one channel recovers both input-statistic graph
 laws from their statistic marginals.
+@isnad1 id=iff.1h5v.s7.7280c0552eb5 from=translated src=- shape=ec725b54 vocab=535abed3
 -/
 theorem klDiv_map_eq_iff_exists_common_recovery
     {alpha : Type u} {beta : Type v}
@@ -185,6 +189,7 @@ theorem klDiv_map_eq_iff_exists_common_recovery
 /--
 The real-valued deterministic-statistic equality case has the same common
 exact-recovery characterization under input support inclusion.
+@isnad1 id=iff.1h5v.s7.f1a4951f187c from=translated src=- shape=18a362e3 vocab=fade0051
 -/
 theorem toReal_klDiv_map_eq_iff_exists_common_recovery
     {alpha : Type u} {beta : Type v}
@@ -214,6 +219,7 @@ laws in the model family.
 The family sufficiency hypothesis already supplies one recovery channel shared
 by all parameter values, so no support inclusion is needed, even when the
 divergence is infinite.
+@isnad1 id=eq.1h7v.s6.3da96868880c from=translated src=- shape=c6ea39c1 vocab=04913f7a
 -/
 theorem klDiv_eq_of_isSufficientChannel
     {theta : Type u} {alpha : Type v} {beta : Type w}
@@ -232,6 +238,7 @@ theorem klDiv_eq_of_isSufficientChannel
 /--
 A sufficient deterministic statistic preserves `ENNReal` KL divergence
 between every pair of laws in the model family.
+@isnad1 id=eq.1h7v.s6.cfc3a97fa2ab from=translated src=- shape=0fe60c84 vocab=e4525566
 -/
 theorem klDiv_eq_of_isSufficientStatistic
     {theta : Type u} {alpha : Type v} {beta : Type w}
@@ -258,6 +265,7 @@ The binary index is substantive: the guarded equality produces one recovery
 channel for these two laws, which therefore recovers every law in this family.
 No analogous converse for unrelated pairwise witnesses in a larger family is
 claimed.
+@isnad1 id=iff.1h4v.s6.582dca619f63 from=translated src=- shape=8aecec9b vocab=a43d0bd2
 -/
 theorem isSufficientChannel_iff_klDiv_eq_bool
     {alpha : Type u} {beta : Type v}
@@ -289,6 +297,7 @@ theorem isSufficientChannel_iff_klDiv_eq_bool
 For a guarded Boolean-indexed model, a deterministic statistic is sufficient
 exactly when it preserves the directed `ENNReal` KL divergence from the
 `false` law to the `true` law.
+@isnad1 id=iff.1h4v.s6.1f640dd8bcf4 from=translated src=- shape=7f66540f vocab=425e0efc
 -/
 theorem isSufficientStatistic_iff_klDiv_eq_bool
     {alpha : Type u} {beta : Type v}

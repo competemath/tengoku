@@ -21,15 +21,21 @@ open scoped Topology
 variable {X Y Y' Z : Type*}
 variable [TopologicalSpace X] [TopologicalSpace Y] [TopologicalSpace Y'] [TopologicalSpace Z]
 
-/-- `uncurry_curry` -/
+/-- `uncurry_curry`
+@isnad1 id=eq.0h4v.s5.f858a9d3d598 from=translated src=- shape=d8c5299c vocab=6911cd1d
+-/
 lemma ContinuousMap.uncurry_curry [LocallyCompactSpace Y]
   (f : C(X × Y, Z)) : f = f.curry.uncurry := rfl
 
-/-- `curry_uncurry` -/
+/-- `curry_uncurry`
+@isnad1 id=eq.0h4v.s6.1ce5ffb7816c from=translated src=- shape=ca97e9b9 vocab=665cae10
+-/
 lemma ContinuousMap.curry_uncurry [LocallyCompactSpace Y]
   (f : C(X, C(Y, Z))) : f = f.uncurry.curry := rfl
 
-/-- An auxiliary lemma only used for showing the naturality of `topBinProdRightAdjExp` -/
+/-- An auxiliary lemma only used for showing the naturality of `topBinProdRightAdjExp`
+@isnad1 id=eq.0h6v.s6.412f21224cf3 from=translated src=- shape=299362ce vocab=1e04cede
+-/
 lemma TopCat.exp_homEquiv_naturality_right [LocallyCompactSpace X]
     (f : C(Y', Y)) (g : C(Y, C(X, Z))) :
   (g.comp f).uncurry = g.uncurry.comp (f.prodMap (ContinuousMap.id X)) := rfl
@@ -136,6 +142,9 @@ def curriedArgSwap [LocallyCompactSpace A] [LocallyCompactSpace B] :
     refine Continuous.comp continuous_curry ?_
     exact Continuous.comp argSwap.continuous continuous_uncurry
 
+/--
+@isnad1 id=eq.0h3v.s8.37436be543d2 from=translated src=- shape=f439ac29 vocab=2b4a4a09
+-/
 lemma curriedArgSwap_curriedArgSwap [LocallyCompactSpace A] [LocallyCompactSpace B] :
   curriedArgSwap ∘ (curriedArgSwap (A := A) (B := B) (Y := Y)) = id := rfl
 
@@ -173,10 +182,16 @@ namespace TopCat
 
 variable {A B : Type*} [TopologicalSpace A] [TopologicalSpace B]
 
+/--
+@isnad1 id=eq.1h5v.s7.736b1d9573f7 from=translated src=- shape=b8d8c0f9 vocab=44dbb3a4
+-/
 lemma hom_eq_of_curry_eq {Y : TopCat} {f g : TopCat.of (A × B) ⟶ Y}
     (e : f.hom.curry = g.hom.curry) : f = g :=
   TopCat.hom_ext_iff.mpr <| ContinuousMap.eq_of_curry_eq e
 
+/--
+@isnad1 id=eq.1h5v.s8.0332780075c6 from=translated src=- shape=bff0640a vocab=e02ff9a1
+-/
 lemma hom_eq_of_argSwap_curry_eq {Y : TopCat} {f g : TopCat.of (A × B) ⟶ Y}
     (e : f.hom.argSwap.curry = g.hom.argSwap.curry) : f = g :=
   TopCat.hom_ext_iff.mpr <| ContinuousMap.eq_of_argSwap_curry_eq e

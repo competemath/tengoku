@@ -24,6 +24,9 @@ def g : Bool → Bool → Bool → Bool
   | true, true, true => false
   | _, y, _ => y
 
+/--
+@isnad1 id=iff.0h4v.s6.f5fbddf159f0 from=translated src=- shape=f346a977 vocab=e224db83
+-/
 lemma g_eq_iff_patterns (x y z w : Bool) :
     g x y z = g y z w ↔
       (x = false ∧ y = false ∧ z = false ∧ w = false) ∨
@@ -32,6 +35,9 @@ lemma g_eq_iff_patterns (x y z w : Bool) :
       (x = false ∧ y = true ∧ z = true ∧ w = false) := by
   cases x <;> cases y <;> cases z <;> cases w <;> decide
 
+/--
+@isnad1 id=iff.2h4v.s6.1843db472896 from=translated src=- shape=db5e7d0d vocab=e584b659
+-/
 theorem monochromatic_iff_patterns {n : Nat} {two : Sym n} (round : Sym n → Bool)
     (hr_true : ∀ a : Sym n, round a = true ↔ two ≤ a)
     (hr_false : ∀ a : Sym n, round a = false ↔ a < two)

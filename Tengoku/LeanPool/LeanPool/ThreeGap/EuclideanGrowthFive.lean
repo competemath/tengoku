@@ -47,14 +47,18 @@ open ThreeGap.EuclideanPacking
 
 variable {n : ℕ}
 
-/-- `rem` negates under simultaneous negation of denominator and translate. -/
+/-- `rem` negates under simultaneous negation of denominator and translate.
+@isnad1 id=eq.0h4v.s6.64e35cafb275 from=translated src=- shape=4236a5cc vocab=a1fcea3f
+-/
 theorem rem_neg_neg' (α : Fin n → ℝ) (q : ℤ) (p : Fin n → ℤ) :
     rem α (-q) (-p) = -(rem α q p) := by
   funext k
   simp only [rem, Pi.sub_apply, Pi.smul_apply, Pi.neg_apply, smul_eq_mul]
   push_cast; ring
 
-/-- The defect for a **symmetric** norm is even in the denominator: `δ_{−q} = δ_q`. -/
+/-- The defect for a **symmetric** norm is even in the denominator: `δ_{−q} = δ_q`.
+@isnad1 id=eq.2h4v.s6.c29d6f370827 from=translated src=- shape=5c8d2e18 vocab=6b732968
+-/
 theorem deltaN_neg (N : (Fin n → ℝ) → ℝ) (hN0 : ∀ x, 0 ≤ N x) (hNneg : ∀ x, N (-x) = N x)
     (α : Fin n → ℝ) (q : ℤ) : deltaN N α (-q) = deltaN N α q := by
   have key : ∀ r : ℤ, deltaN N α (-r) ≤ deltaN N α r := by
@@ -64,13 +68,17 @@ theorem deltaN_neg (N : (Fin n → ℝ) → ℝ) (hN0 : ∀ x, 0 ≤ N x) (hNneg
       _ = N (rem α r p) := by rw [rem_neg_neg', hNneg]
   exact le_antisymm (key q) (by have := key (-q); rwa [neg_neg] at this)
 
-/-- The Euclidean norm is symmetric. -/
+/-- The Euclidean norm is symmetric.
+@isnad1 id=eq.0h2v.s4.2a9dbbcdacb1 from=translated src=- shape=fabe8457 vocab=1aac092c
+-/
 theorem euclNorm_neg (x : Fin n → ℝ) : euclNorm n (-x) = euclNorm n x := by
   rw [show -x = (-1 : ℝ) • x by simp, euclNorm_smul]; simp
 
 /-- **The Euclidean growth inequality, `K = 5` (planar packing).** For a best-`L²`-approximation
 sequence `(q, p)` of `α : Fin 2 → ℝ` with the record/monotonicity hypotheses, the denominators
-at least double every five steps: `2 qₙ ≤ qₙ₊₅`. -/
+at least double every five steps: `2 qₙ ≤ qₙ₊₅`.
+@isnad1 id=le.6h4v.s8.543bb2bf6f20 from=translated src=- shape=f9c8420b vocab=e4ac9661
+-/
 theorem euclidean_growth_five (α : Fin 2 → ℝ) (q : ℕ → ℤ) (p : ℕ → Fin 2 → ℤ)
     (hmono : StrictMono q)
     (hattain : ∀ k, euclNorm 2 (rem α (q k) (p k)) ≤ deltaN (euclNorm 2) α (q k))

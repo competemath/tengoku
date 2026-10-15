@@ -40,7 +40,9 @@ over `ZMod p`.
 Combined with `polyMod_splits_iff_legendreSym_ne_neg_one` (and the field
 structure on `(ZMod p)[X] / (irreducible)`), this connects the Legendre
 symbol `(d/p) = -1` characterisation to the ring-theoretic notion that
-`(p)` remains prime in `QuadraticOrder d`. -/
+`(p)` remains prime in `QuadraticOrder d`.
+@isnad1 id=iff.0h2v.s6.3a4412062ea7 from=translated src=- shape=25d05bde vocab=bf3cc0aa
+-/
 theorem span_p_isMaximal_iff_irreducible_polyMod
     (d : ℤ) (p : ℕ) [Fact p.Prime] :
     (Ideal.span {(p : QuadraticOrder d)}).IsMaximal ↔ Irreducible (polyMod d p) := by
@@ -79,7 +81,9 @@ variable {d : ℤ} {p : ℕ}
 /-- **Issue #7's inert iff at the ideal level**: the ideal `(p)` is maximal
 in `QuadraticOrder d` (i.e. `p` is "inert") iff the Legendre symbol
 `(d/p) = -1`. Direct composition of `span_p_isMaximal_iff_irreducible_polyMod`
-with `polyMod_irreducible_iff_legendreSym_eq_neg_one`. -/
+with `polyMod_irreducible_iff_legendreSym_eq_neg_one`.
+@isnad1 id=iff.2h2v.s7.2345936fce46 from=translated src=- shape=d94c297f vocab=cfa55a3e
+-/
 theorem prime_inert_iff
     [Fact p.Prime] (hp2 : p ≠ 2) (hd : d % 4 = 0 ∨ d % 4 = 1) :
     (Ideal.span {(p : QuadraticOrder d)}).IsMaximal ↔ legendreSym p d = -1 := by

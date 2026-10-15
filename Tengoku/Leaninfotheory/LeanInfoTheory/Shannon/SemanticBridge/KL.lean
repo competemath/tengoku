@@ -57,6 +57,7 @@ set-valued supports.
 This statement does not require a finite alphabet: measurable singletons let
 the forward direction test individual atoms, while the reverse direction uses
 the PMF measure's zero-set characterization.
+@isnad1 id=iff.0h3v.s5.898a0bd2c06f from=translated src=- shape=bf463906 vocab=dfd32618
 -/
 theorem toMeasure_absolutelyContinuous_iff_support_subset
     {alpha : Type u} [MeasurableSpace alpha] [MeasurableSingletonClass alpha]
@@ -83,6 +84,7 @@ theorem toMeasure_absolutelyContinuous_iff_support_subset
 /--
 On a finite alphabet, PMF KL divergence is finite exactly when the first PMF's
 support is contained in the second PMF's support.
+@isnad1 id=iff.0h3v.s5.e0a5b9cf4955 from=translated src=- shape=2f0f177f vocab=5367c7f5
 -/
 theorem klDiv_pmf_ne_top_iff_support_subset
     {alpha : Type u} [Finite alpha]
@@ -102,6 +104,7 @@ theorem klDiv_pmf_ne_top_iff_support_subset
 /--
 On a finite alphabet, PMF KL divergence is infinite exactly when support
 inclusion fails.
+@isnad1 id=iff.0h3v.s5.7d047d7a6f40 from=translated src=- shape=3d35279d vocab=5367c7f5
 -/
 theorem klDiv_pmf_eq_top_iff_not_support_subset
     {alpha : Type u} [Finite alpha]
@@ -121,6 +124,7 @@ KL divergence between two PMFs is zero exactly when the PMFs are equal.
 
 The alphabet need not be finite: PMF measures are finite measures, and
 measurable singletons make `PMF.toMeasure` injective.
+@isnad1 id=iff.0h3v.s5.e728595ebcce from=translated src=- shape=9b6b4df4 vocab=507908d7
 -/
 theorem klDiv_pmf_eq_zero_iff
     {alpha : Type u} [MeasurableSpace alpha] [MeasurableSingletonClass alpha]
@@ -134,6 +138,7 @@ divergence is zero exactly when the PMFs are equal.
 
 The support hypothesis is essential: without KL finiteness,
 `ENNReal.toReal ⊤ = 0` would make the reverse characterization false.
+@isnad1 id=iff.1h3v.s5.81736067f834 from=translated src=- shape=5013c799 vocab=9cf19770
 -/
 theorem toReal_klDiv_pmf_eq_zero_iff
     {alpha : Type u} [Finite alpha]
@@ -157,6 +162,7 @@ Countable PMF density formula.
 If `p.toMeasure ≪ q.toMeasure`, then `p.toMeasure` is obtained from
 `q.toMeasure` by the density `a ↦ p(a) / q(a)`. On atoms with `q(a)=0`,
 absolute continuity forces `p(a)=0`, so the formula is still valid.
+@isnad1 id=eq.1h3v.s6.37a33310c572 from=translated src=- shape=2acdc0d4 vocab=e83f4a28
 -/
 theorem toMeasure_withDensity_pmf_div {alpha : Type u}
     [Countable alpha] [MeasurableSpace alpha] [MeasurableSingletonClass alpha]
@@ -188,6 +194,7 @@ Finite KL expansion for absolutely continuous PMFs:
 
 The left-hand side is mathlib's measure-theoretic KL divergence applied to
 `PMF.toMeasure`; the right-hand side is the usual finite sum over atoms.
+@isnad1 id=eq.1h3v.s6.0feb3095ecb7 from=translated src=- shape=febba88e vocab=e0ff1dae
 -/
 theorem toReal_klDiv_pmf_eq_sum {alpha : Type u}
     [Fintype alpha] [MeasurableSpace alpha] [MeasurableSingletonClass alpha]
@@ -227,6 +234,7 @@ uniform log-cardinality minus entropy, provided the PMF is supported on that
 finset:
 
 `D(P || U_s) = log |s| - H(P)`.
+@isnad1 id=eq.2h3v.s6.6351565205d7 from=translated src=- shape=cd40c7e5 vocab=bb2c3709
 -/
 theorem toReal_klDiv_pmf_uniformOfFinset
     {alpha : Type u} [Fintype alpha]
@@ -271,6 +279,7 @@ theorem toReal_klDiv_pmf_uniformOfFinset
 Full-alphabet form of `toReal_klDiv_pmf_uniformOfFinset`:
 
 `D(P || U_alpha) = log |alpha| - H(P)`.
+@isnad1 id=eq.0h2v.s5.1bffdbe34ccd from=translated src=- shape=87740c7c vocab=712d9421
 -/
 theorem toReal_klDiv_pmf_uniformOfFintype
     {alpha : Type u} [Fintype alpha] [Nonempty alpha]
@@ -292,6 +301,7 @@ Here `P_A × P_B` is represented by the finite independent-product PMF
 `indepProd (fstMarginal p) (sndMarginal p)`. This theorem is the finite
 textbook identity connecting the entropy definition of mutual information to
 mathlib's measure-theoretic KL divergence.
+@isnad1 id=eq.0h3v.s5.91fc70cef33a from=translated src=- shape=66837ee1 vocab=f279702c
 -/
 theorem mutualInfo_eq_toReal_klDiv_joint_indepProd
     {alpha : Type u} {beta : Type v}
@@ -316,6 +326,7 @@ theorem mutualInfo_eq_toReal_klDiv_joint_indepProd
 Product-measure form of the finite mutual-information KL bridge:
 
 `I(A;B) = D(P_AB || P_A.toMeasure.prod P_B.toMeasure)`.
+@isnad1 id=eq.0h3v.s6.473a70c69c0c from=translated src=- shape=bd8bd311 vocab=d6bccd93
 -/
 theorem mutualInfo_eq_toReal_klDiv_joint_prod_marginals
     {alpha : Type u} {beta : Type v}
@@ -354,6 +365,7 @@ def condMutualInfoFstSndGivenThirdKL
 /--
 The fiber mutual-information helper agrees with the fiberwise KL expression
 `D(P_{A,B|C=c} || P_{A|C=c} × P_{B|C=c})`.
+@isnad1 id=eq.0h5v.s5.876dd977ddc9 from=translated src=- shape=894ff967 vocab=738ab449
 -/
 theorem condMutualInfoFstSndGivenThird_eq_KL
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -378,6 +390,7 @@ Averaged conditional-KL bridge for finite conditional mutual information:
 
 Zero-marginal `c` contribute zero by definition of
 `condMutualInfoFstSndGivenThirdKL`.
+@isnad1 id=eq.0h4v.s6.992fca2eaa6a from=translated src=- shape=8e20e476 vocab=351da5b6
 -/
 theorem condMutualInfo_eq_sum_thirdMarginal_mul_condMutualInfoFstSndGivenThirdKL
     {alpha : Type u} {beta : Type v} {gamma : Type w}

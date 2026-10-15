@@ -32,6 +32,7 @@ namespace PerfectDecoder
 /--
 A diagonal Boolean joint law has zero conditional entropy under the identity
 decoder. This specializes the expanded PMF form of Fano's inequality.
+@isnad1 id=eq.0h1v.s4.a048f29c99cb from=translated src=- shape=bd9abdae vocab=0a5bb3db
 -/
 theorem condEntropy_diagonal_eq_zero (p : PMF Bool) :
     condEntropy (p.map fun b => (b, b)) = 0 := by
@@ -60,6 +61,7 @@ namespace SingletonSource
 /--
 Fano's q-ary form includes a singleton source alphabet without a public
 cardinality lower bound. Every decoder is necessarily correct on that source.
+@isnad1 id=eq.0h3v.s4.e4602cad3ba5 from=translated src=- shape=51e220e0 vocab=12e4633b
 -/
 theorem condEntropy_eq_zero
     {beta : Type*} [Fintype beta]
@@ -81,6 +83,7 @@ namespace BinaryConstantObservation
 /--
 For a fair Boolean source, a constant-false observation decoded by the
 identity function has error probability `1/2`.
+@isnad1 id=eq.0h0v.s5.c5b962d07f3a from=translated src=- shape=52961e60 vocab=3cc68c37
 -/
 theorem decodingErrorProbabilityOf_eq_half :
     decodingErrorProbabilityOf
@@ -104,6 +107,7 @@ theorem decodingErrorProbabilityOf_eq_half :
 The random-variable expanded Fano theorem bounds the conditional entropy in
 the constant-observation example by binary entropy at error probability
 `1/2`.
+@isnad1 id=le.0h0v.s5.a686679408b5 from=translated src=- shape=2c248e8c vocab=4bd1b3d6
 -/
 theorem condEntropyOf_le_binEntropy_half :
     condEntropyOf
@@ -118,6 +122,7 @@ theorem condEntropyOf_le_binEntropy_half :
 /--
 The uniform-source mutual-information corollary specializes directly to the
 binary constant-observation example.
+@isnad1 id=le.0h0v.s6.98f0f1b79d05 from=translated src=- shape=31a5492e vocab=d2bbb785
 -/
 theorem mutualInfoOf_fano_lower_bound :
     Real.log 2 - Real.log 2 - (1 / 2 : Real) * Real.log 2 ≤
@@ -136,6 +141,7 @@ theorem mutualInfoOf_fano_lower_bound :
 /--
 The normalized uniform-source converse gives a concrete lower bound on the
 same binary decoding-error probability.
+@isnad1 id=le.0h0v.s6.d8c9b142c21a from=translated src=- shape=cd71a00f vocab=ce2207d4
 -/
 theorem decodingErrorProbabilityOf_fano_lower_bound :
     1 -

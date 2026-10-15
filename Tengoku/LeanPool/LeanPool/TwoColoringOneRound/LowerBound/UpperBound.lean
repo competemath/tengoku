@@ -67,8 +67,14 @@ abbrev Small9 : Type := Set.Iio two9
 /-- Imported auxiliary declaration for the 2-coloring one-round formalization. -/
 abbrev Big9 : Type := Set.Ici two9
 
+/--
+@isnad1 id=eq.0h0v.s4.4555303f599e from=translated src=- shape=b0ae1d2b vocab=e82e5607
+-/
 lemma card_Small9 : Fintype.card Small9 = 4 := by simp [Small9, two9]
 
+/--
+@isnad1 id=eq.0h0v.s4.3019fc39a4ea from=translated src=- shape=b0ae1d2b vocab=15fcc5cf
+-/
 lemma card_Big9 : Fintype.card Big9 = 5 := by
   -- `simp` reduces the card to `n - 4`, then `decide` finishes.
   simpa [Big9, two9] using (by decide : (n - 4 : Nat) = 5)
@@ -77,8 +83,14 @@ lemma card_Big9 : Fintype.card Big9 = 5 := by
 def round9 (a : Sym9) : Bool :=
   decide (two9 ≤ a)
 
+/--
+@isnad1 id=iff.0h1v.s3.fcdf33a0d9cf from=translated src=- shape=b1284c08 vocab=19e1bd2d
+-/
 @[simp] lemma round9_eq_true {a : Sym9} : round9 a = true ↔ two9 ≤ a := by simp [round9]
 
+/--
+@isnad1 id=iff.0h1v.s3.11054cc71b7e from=translated src=- shape=37892c9f vocab=4c9b27d0
+-/
 @[simp] lemma round9_eq_false {a : Sym9} : round9 a = false ↔ a < two9 := by simp [round9, not_le]
 
 /-- Imported auxiliary declaration for the 2-coloring one-round formalization. -/
@@ -141,6 +153,9 @@ private lemma edgeCount_9 : edgeCount n = 3024 := by
     simp [hcongr, Sym, n, Fintype.card_embedding_eq]
   exact this.trans (by decide : (9 : Nat).descFactorial 4 = 3024)
 
+/--
+@isnad1 id=le.0h0v.s4.9d8b96b691e5 from=translated src=- shape=8dc2642f vocab=70da6575
+-/
 theorem monoFraction_f9_le_13_63 : monoFraction f9 ≤ (13 : ℚ) / 63 := by
   classical
   -- Upper bound `monoCount` by summing the four pattern counts.
@@ -179,6 +194,9 @@ theorem monoFraction_f9_le_13_63 : monoFraction f9 ≤ (13 : ℚ) / 63 := by
     simp [hE, show (624 : ℚ) / 3024 = (13 : ℚ) / 63 by norm_num]
   simpa [hred] using hdiv
 
+/--
+@isnad1 id=ex.0h0v.s4.01d53bb2b144 from=translated src=- shape=b16fd8db vocab=dca324c2
+-/
 theorem exists_coloring_monoFraction_le_13_63 : ∃ f : Coloring9, monoFraction f ≤ (13 : ℚ) / 63 :=
   ⟨f9, monoFraction_f9_le_13_63⟩
 
@@ -213,10 +231,16 @@ abbrev Big (n : Nat) (hn : 5 ≤ n) : Type := EdgePatterns.Big (two := two n hn)
 def round (n : Nat) (hn : 5 ≤ n) (a : Sym n) : Bool :=
   decide (two n hn ≤ a)
 
+/--
+@isnad1 id=iff.1h2v.s5.7a50ea3a14b5 from=translated src=- shape=ed31a940 vocab=0369e597
+-/
 @[simp] lemma round_eq_true {a : Sym n} :
     round (n := n) hn a = true ↔ two n hn ≤ a := by
   simp [round]
 
+/--
+@isnad1 id=iff.1h2v.s5.49508ea61356 from=translated src=- shape=fbc9ed57 vocab=8ded100d
+-/
 @[simp] lemma round_eq_false {a : Sym n} :
     round (n := n) hn a = false ↔ a < two n hn := by
   simp [round, not_le]

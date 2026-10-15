@@ -69,7 +69,9 @@ open ThreeGap.SimApprox ThreeGap.Chevallier
 (`m ∣ a − r` and `2|r| ≤ m`), then `r²` is the minimum of `(a − m·k)²` over all integers `k` — the
 nearest multiple of `m` to `a` is at distance `|r|`. This is the coordinatewise core of the defect
 lower bound `deltaN α* d ≥ √(r(3d)²+r(8d)²)/29`: since `ℤ²` is a product and the norm Euclidean, the
-nearest lattice point is coordinatewise nearest. -/
+nearest lattice point is coordinatewise nearest.
+@isnad1 id=le.3h4v.s6.9c68b1495fe4 from=translated src=- shape=89a3b91b vocab=12c94e4f
+-/
 theorem sq_residue_le (m r a : ℤ) (hm : 0 < m) (h2r : 2 * |r| ≤ m) (hcong : m ∣ (a - r)) :
     ∀ k : ℤ, r ^ 2 ≤ (a - m * k) ^ 2 := by
   intro k
@@ -93,12 +95,16 @@ theorem sq_residue_le (m r a : ℤ) (hm : 0 < m) (h2r : 2 * |r| ≤ m) (hcong : 
 /-- The rational witness `α* = (3/29, 8/29)`. -/
 noncomputable def astar : Fin 2 → ℝ := ![3 / 29, 8 / 29]
 
-/-- `euclNorm 2` of an explicit plane vector is `√(x₀² + x₁²)`. -/
+/-- `euclNorm 2` of an explicit plane vector is `√(x₀² + x₁²)`.
+@isnad1 id=eq.0h1v.s6.65bc2b3b392e from=translated src=- shape=80d153b4 vocab=89687d06
+-/
 theorem euclNorm_two (x : Fin 2 → ℝ) : euclNorm 2 x = Real.sqrt (x 0 ^ 2 + x 1 ^ 2) := by
   rw [euclNorm, EuclideanSpace.norm_eq]; simp_all
 
 /-- **Defect by attainment + lower bound.** If some translate realizes value `c` and `c` bounds all
-translates below, the defect equals `c`. -/
+translates below, the defect equals `c`.
+@isnad1 id=eq.2h3v.s6.3c9df373019e from=translated src=- shape=96b37bb4 vocab=486c1e3f
+-/
 theorem deltaN_eq_of (α : Fin 2 → ℝ) (q : ℤ) (c : ℝ)
     (hattain : ∃ p, euclNorm 2 (rem α q p) = c) (hlb : ∀ p, c ≤ euclNorm 2 (rem α q p)) :
     deltaN (euclNorm 2) α q = c := by
@@ -108,7 +114,9 @@ theorem deltaN_eq_of (α : Fin 2 → ℝ) (q : ℤ) (c : ℝ)
 
 /-- **The witness defect is coordinatewise-exact (R4b).** With `α* = (3/29, 8/29)`, balanced
 residues `3d ≡ r₀`, `8d ≡ r₁ (mod 29)` give `deltaN α* d = √(r₀² + r₁²)/29`. Upper bound at the
-rounding `(n₀,n₁)`; lower bound coordinatewise via `sq_residue_le`. -/
+rounding `(n₀,n₁)`; lower bound coordinatewise via `sq_residue_le`.
+@isnad1 id=eq.4h5v.s7.f63d4cd00369 from=translated src=- shape=899219d2 vocab=a199e4e7
+-/
 theorem deltaN_astar (d : ℤ) (n₀ n₁ r₀ r₁ : ℤ)
     (hr0 : 3 * d = r₀ + 29 * n₀) (hr1 : 8 * d = r₁ + 29 * n₁)
     (hb0 : 2 * |r₀| ≤ 29) (hb1 : 2 * |r₁| ≤ 29) :
@@ -139,40 +147,76 @@ theorem deltaN_astar (d : ℤ) (n₀ n₁ r₀ r₁ : ℤ)
 
 /-- The eleven witness defects `deltaN α* d = √(K_d)/29`, `d = 1,…,11`, with
 `K_d = [73,205,106,153,317,221,68,61,200,50,17]` — verified by `deltaN_astar` at the balanced
-residues of `3d, 8d` mod 29. -/
+residues of `3d, 8d` mod 29.
+@isnad1 id=eq.0h0v.s5.2875b74ff67a from=translated src=- shape=f1905d25 vocab=cce3ccd6
+-/
 theorem dstar1 : deltaN (euclNorm 2) astar 1 = Real.sqrt 73 / 29 := by
   rw [deltaN_astar 1 0 0 3 8 (by norm_num) (by norm_num) (by norm_num) (by norm_num)]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.93d1637968e5 from=translated src=- shape=f1905d25 vocab=cce3ccd6
+-/
 theorem dstar2 : deltaN (euclNorm 2) astar 2 = Real.sqrt 205 / 29 := by
   rw [deltaN_astar 2 0 1 6 (-13) (by norm_num) (by norm_num) (by norm_num) (by norm_num)]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.7410eaf42ab0 from=translated src=- shape=f1905d25 vocab=cce3ccd6
+-/
 theorem dstar3 : deltaN (euclNorm 2) astar 3 = Real.sqrt 106 / 29 := by
   rw [deltaN_astar 3 0 1 9 (-5) (by norm_num) (by norm_num) (by norm_num) (by norm_num)]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.bf4cafc8c84d from=translated src=- shape=f1905d25 vocab=cce3ccd6
+-/
 theorem dstar4 : deltaN (euclNorm 2) astar 4 = Real.sqrt 153 / 29 := by
   rw [deltaN_astar 4 0 1 12 3 (by norm_num) (by norm_num) (by norm_num) (by norm_num)]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.6f3a68025b2d from=translated src=- shape=f1905d25 vocab=cce3ccd6
+-/
 theorem dstar5 : deltaN (euclNorm 2) astar 5 = Real.sqrt 317 / 29 := by
   rw [deltaN_astar 5 1 1 (-14) 11 (by norm_num) (by norm_num) (by norm_num) (by norm_num)]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.113764a59c00 from=translated src=- shape=f1905d25 vocab=cce3ccd6
+-/
 theorem dstar6 : deltaN (euclNorm 2) astar 6 = Real.sqrt 221 / 29 := by
   rw [deltaN_astar 6 1 2 (-11) (-10) (by norm_num) (by norm_num) (by norm_num) (by norm_num)]
   norm_num
+/--
+@isnad1 id=eq.0h0v.s5.96187109dee9 from=translated src=- shape=f1905d25 vocab=cce3ccd6
+-/
 theorem dstar7 : deltaN (euclNorm 2) astar 7 = Real.sqrt 68 / 29 := by
   rw [deltaN_astar 7 1 2 (-8) (-2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)];
     norm_num
+/--
+@isnad1 id=eq.0h0v.s5.bc75f6a9d24b from=translated src=- shape=f1905d25 vocab=cce3ccd6
+-/
 theorem dstar8 : deltaN (euclNorm 2) astar 8 = Real.sqrt 61 / 29 := by
   rw [deltaN_astar 8 1 2 (-5) 6 (by norm_num) (by norm_num) (by norm_num) (by norm_num)]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.72e0b92f5889 from=translated src=- shape=f1905d25 vocab=cce3ccd6
+-/
 theorem dstar9 : deltaN (euclNorm 2) astar 9 = Real.sqrt 200 / 29 := by
   rw [deltaN_astar 9 1 2 (-2) 14 (by norm_num) (by norm_num) (by norm_num) (by norm_num)]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.9a344efc1dad from=translated src=- shape=f1905d25 vocab=cce3ccd6
+-/
 theorem dstar10 : deltaN (euclNorm 2) astar 10 = Real.sqrt 50 / 29 := by
   rw [deltaN_astar 10 1 3 1 (-7) (by norm_num) (by norm_num) (by norm_num) (by norm_num)]; norm_num
+/--
+@isnad1 id=eq.0h0v.s5.3bb8e3c089d8 from=translated src=- shape=f1905d25 vocab=cce3ccd6
+-/
 theorem dstar11 : deltaN (euclNorm 2) astar 11 = Real.sqrt 17 / 29 := by
   rw [deltaN_astar 11 1 3 4 1 (by norm_num) (by norm_num) (by norm_num) (by norm_num)]; norm_num
 
-/-- Comparison of two `√K/29` defects reduces to comparing the integers `K`. -/
+/-- Comparison of two `√K/29` defects reduces to comparing the integers `K`.
+@isnad1 id=lt.2h2v.s5.7b52293aab80 from=translated src=- shape=56179dee vocab=553efe20
+-/
 theorem sqrt_div_lt {a b : ℝ} (ha : 0 ≤ a) (hab : a < b) :
     Real.sqrt a / 29 < Real.sqrt b / 29 := by
   rw [div_eq_mul_inv, div_eq_mul_inv]
   exact mul_lt_mul_of_pos_right (Real.sqrt_lt_sqrt ha hab) (by norm_num)
 
 /-- **The record chain** `deltaN α* 1 > deltaN α* 7 > deltaN α* 8 > deltaN α* 10 > deltaN α* 11`
-(`√73 > √68 > √61 > √50 > √17`, all over 29) — the four record drops giving five distances. -/
+(`√73 > √68 > √61 > √50 > √17`, all over 29) — the four record drops giving five distances.
+@isnad1 id=and.0h0v.s7.b5dc0b959a9b from=translated src=- shape=14d9244e vocab=54917582
+-/
 theorem dstar_chain :
     deltaN (euclNorm 2) astar 11 < deltaN (euclNorm 2) astar 10 ∧
     deltaN (euclNorm 2) astar 10 < deltaN (euclNorm 2) astar 8 ∧
@@ -187,7 +231,9 @@ theorem dstar_chain :
 /-- **Five strictly-decreasing sample values force ≥ 5 distinct images.** If `f` takes five values
 `f q₀ > f q₁ > f q₂ > f q₃ > f q₄` at points of `Finset.range (N+1)`, then the image of
 `Finset.range (N+1)` under `f` has at least five elements. The combinatorial heart of arithmetic
-sharpness: exhibiting five strictly-decreasing nearest-neighbour distances. -/
+sharpness: exhibiting five strictly-decreasing nearest-neighbour distances.
+@isnad1 id=le.9h7v.s7.885a0e05e7a9 from=translated src=- shape=c1d9e300 vocab=86dacb88
+-/
 theorem five_le_card_image_of_strictAnti_chain {N : ℕ} (f : ℕ → ℝ) {q₀ q₁ q₂ q₃ q₄ : ℕ}
     (m₀ : q₀ ∈ Finset.range (N + 1)) (m₁ : q₁ ∈ Finset.range (N + 1))
     (m₂ : q₂ ∈ Finset.range (N + 1)) (m₃ : q₃ ∈ Finset.range (N + 1))
@@ -220,7 +266,9 @@ theorem five_le_card_image_of_strictAnti_chain {N : ℕ} (f : ℕ → ℝ) {q₀
     _ ≤ _ := Finset.card_le_card hsub
 
 /-- **`nnDistE` as a prefix-minimum of the defect.** `nnDistE α 11 q` is the infimum of
-`deltaN (euclNorm 2) α d` over `d ∈ [1, max(q, 11−q)]` (via the repo's `gapVal_eq_nnDistC`). -/
+`deltaN (euclNorm 2) α d` over `d ∈ [1, max(q, 11−q)]` (via the repo's `gapVal_eq_nnDistC`).
+@isnad1 id=eq.2h2v.s6.402ae421a8dc from=translated src=- shape=877b5f4f vocab=da3e7c86
+-/
 theorem nnDistE_eq_inf (α : Fin 2 → ℝ) {q : ℕ} (hq : q ≤ 11)
     (hne : (Finset.Icc 1 (max q (11 - q))).Nonempty) :
     nnDistE α 11 q = (Finset.Icc 1 (max q (11 - q))).inf' hne
@@ -231,7 +279,9 @@ theorem nnDistE_eq_inf (α : Fin 2 → ℝ) {q : ℕ} (hq : q ≤ 11)
     gapVal, dite_eq_left hne]
 
 /-- A strictly larger prefix has a strictly smaller infimum once a new element `m` beats the whole
-shorter prefix. -/
+shorter prefix.
+@isnad1 id=lt.4h4v.s6.fb8e5de85753 from=translated src=- shape=f8e8fe87 vocab=2cc7674b
+-/
 theorem inf_lt_inf (f : ℕ → ℝ) {a b : ℕ} (m : ℕ) (hm : m ∈ Finset.Icc 1 b)
     (hnea : (Finset.Icc 1 a).Nonempty) (hneb : (Finset.Icc 1 b).Nonempty)
     (hlt : ∀ n ∈ Finset.Icc 1 a, f m < f n) :
@@ -240,7 +290,9 @@ theorem inf_lt_inf (f : ℕ → ℝ) {a b : ℕ} (m : ℕ) (hm : m ∈ Finset.Ic
 
 /-- **`card ≥ 5` from the four record drops (R4b-finish).** If the defect drops strictly below the
 whole preceding prefix at `d = 7, 8, 10, 11`, then the five `nnDistE α 11 q` at `q = 5,4,3,1,0` are
-strictly decreasing, so the image has `≥ 5` elements. -/
+strictly decreasing, so the image has `≥ 5` elements.
+@isnad1 id=le.4h1v.s8.94594308a8cb from=translated src=- shape=45363ac6 vocab=fc0fee5f
+-/
 theorem card_ge_five (α : Fin 2 → ℝ)
     (H1 : ∀ n ∈ Finset.Icc (1 : ℕ) 6, deltaN (euclNorm 2) α 7 < deltaN (euclNorm 2) α (n : ℤ))
     (H2 : ∀ n ∈ Finset.Icc (1 : ℕ) 7, deltaN (euclNorm 2) α 8 < deltaN (euclNorm 2) α (n : ℤ))
@@ -284,7 +336,9 @@ theorem card_ge_five (α : Fin 2 → ℝ)
 
 /-- **The witness realizes ≥ 5 distinct distances (R4b complete, rational `α*`).** The orbit of
 `α* = (3/29, 8/29)` to `N = 11` has at least five distinct Euclidean nearest-neighbour distances —
-the four record drops of `card_ge_five` discharged by the `dstar` defect values. -/
+the four record drops of `card_ge_five` discharged by the `dstar` defect values.
+@isnad1 id=le.0h0v.s4.e50cc18dd9f9 from=translated src=- shape=317558a2 vocab=f9dda5f4
+-/
 theorem card_ge_five_astar :
     5 ≤ ((Finset.range 12).image (nnDistE astar 11)).card := by
   refine card_ge_five astar ?_ ?_ ?_ ?_ <;>
@@ -299,7 +353,9 @@ theorem card_ge_five_astar :
 
 /-- **`deltaN · d` is `|d|`-Lipschitz in `α`.** (Both are distances to the lattice; perturbing `α`
 by
-`α − β` moves `d·α` by `d·(α−β)`.) -/
+`α − β` moves `d·α` by `d·(α−β)`.)
+@isnad1 id=le.0h3v.s7.a4d9444fec70 from=translated src=- shape=cb3e73bd vocab=ee1a3050
+-/
 theorem deltaN_sub_le (α β : Fin 2 → ℝ) (d : ℤ) :
     deltaN (euclNorm 2) α d ≤ deltaN (euclNorm 2) β d + |(d : ℝ)| * euclNorm 2 (α - β) := by
   have hC : ∀ p : Fin 2 → ℤ, deltaN (euclNorm 2) α d
@@ -320,25 +376,36 @@ theorem deltaN_sub_le (α β : Fin 2 → ℝ) (d : ℤ) :
 /-- The perturbed witness `α* + (s, 0) = (3/29 + s, 8/29)`. -/
 noncomputable def aprt (s : ℝ) : Fin 2 → ℝ := ![3 / 29 + s, 8 / 29]
 
+/--
+@isnad1 id=eq.1h1v.s6.078b5d510331 from=translated src=- shape=ca1b0984 vocab=e7300071
+-/
 theorem eucl_aprt (s : ℝ) (hs : 0 ≤ s) : euclNorm 2 (aprt s - astar) = s := by
   rw [euclNorm_two,
     show (aprt s - astar) 0 = s by simp [aprt, astar],
     show (aprt s - astar) 1 = 0 by simp [aprt, astar]]
   rw [show s ^ 2 + (0:ℝ) ^ 2 = s ^ 2 by ring, Real.sqrt_sq hs]
 
+/--
+@isnad1 id=eq.1h1v.s6.30c9c34f4acd from=translated src=- shape=dddcdfd7 vocab=e7300071
+-/
 theorem eucl_aprt' (s : ℝ) (hs : 0 ≤ s) : euclNorm 2 (astar - aprt s) = s := by
   rw [euclNorm_two,
     show (astar - aprt s) 0 = -s by simp [aprt, astar],
     show (astar - aprt s) 1 = 0 by simp [aprt, astar]]
   rw [show (-s) ^ 2 + (0:ℝ) ^ 2 = s ^ 2 by ring, Real.sqrt_sq hs]
 
+/--
+@isnad1 id=irration.1h1v.s4.5b4fe92cefcc from=translated src=- shape=ffc67196 vocab=634e469c
+-/
 theorem aprt_irrational {s : ℝ} (hs : Irrational s) : Irrational (aprt s 0) := by
   have h : aprt s 0 = ((3 / 29 : ℚ) : ℝ) + s := by
     rw [show ((3 / 29 : ℚ) : ℝ) = 3 / 29 by norm_num]; simp [aprt]
   rw [h]; exact hs.ratCast_add _
 
 /-- A uniform gap between two distinct square roots in `[0, 317]`: `√b − √a ≥ 1/(2√317)`, in the
-clearing-denominators form `1 ≤ (√b − √a)·2√317`. -/
+clearing-denominators form `1 ≤ (√b − √a)·2√317`.
+@isnad1 id=le.3h2v.s6.cc579f65c120 from=translated src=- shape=4218573d vocab=119f0b21
+-/
 theorem sqrt_gap (a b : ℝ) (ha : 0 ≤ a) (h1 : a + 1 ≤ b) (hb : b ≤ 317) :
     1 ≤ (Real.sqrt b - Real.sqrt a) * (2 * Real.sqrt 317) := by
   have hbnn : 0 ≤ b := by linarith
@@ -354,7 +421,9 @@ theorem sqrt_gap (a b : ℝ) (ha : 0 ≤ a) (h1 : a + 1 ≤ b) (hb : b ≤ 317) 
         mul_le_mul_of_nonneg_left (by linarith) hdiff
 
 /-- The gap inequality `29·(c·s) < √Kn − √Km` holds once `s` is small (`1276·s·√317 < 1`), for any
-coefficient `c ≤ 22` and integer gap `Km + 1 ≤ Kn ≤ 317`. -/
+coefficient `c ≤ 22` and integer gap `Km + 1 ≤ Kn ≤ 317`.
+@isnad1 id=lt.6h4v.s7.83cedc4f0123 from=translated src=- shape=49d45098 vocab=d39cac0d
+-/
 theorem gap_ok (c Km Kn s : ℝ) (hs0 : 0 ≤ s) (hc : c ≤ 22)
     (hKa : 0 ≤ Km) (hK : Km + 1 ≤ Kn) (hKb : Kn ≤ 317)
     (hsmall : 1276 * s * Real.sqrt 317 < 1) :
@@ -364,7 +433,9 @@ theorem gap_ok (c Km Kn s : ℝ) (hs0 : 0 ≤ s) (hc : c ≤ 22)
   nlinarith [hkey, hsmall, h317, mul_nonneg hs0 h317.le,
     mul_nonneg (sub_nonneg.mpr hc) (mul_nonneg hs0 h317.le)]
 
-/-- **Transport an inequality from `α*` to the perturbed witness.** -/
+/-- **Transport an inequality from `α*` to the perturbed witness.**
+@isnad1 id=lt.4h5v.s7.c94a0d980403 from=translated src=- shape=648b95e7 vocab=c4486f70
+-/
 theorem transport (s : ℝ) (hs0 : 0 ≤ s) (m n : ℤ) (Km Kn : ℝ)
     (hm : deltaN (euclNorm 2) astar m = Real.sqrt Km / 29)
     (hn : deltaN (euclNorm 2) astar n = Real.sqrt Kn / 29)
@@ -384,7 +455,9 @@ theorem transport (s : ℝ) (hs0 : 0 ≤ s) (m n : ℤ) (Km Kn : ℝ)
   linarith [hd1, hd2, hgap]
 
 /-- Bundles `transport` + `gap_ok` for the perturbed witness: a defect comparison transports from
-`α*` once `s` is small. -/
+`α*` once `s` is small.
+@isnad1 id=lt.8h5v.s7.0d8211b8ad81 from=translated src=- shape=0d23db14 vocab=7f51582e
+-/
 theorem Hpair (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 1276 * s * Real.sqrt 317 < 1)
     (m n : ℤ) (Km Kn : ℝ) (hm : deltaN (euclNorm 2) astar m = Real.sqrt Km / 29)
     (hn : deltaN (euclNorm 2) astar n = Real.sqrt Kn / 29) (hc : |(m : ℝ)| + |(n : ℝ)| ≤ 22)
@@ -393,6 +466,9 @@ theorem Hpair (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 1276 * s * Real.sqrt 317 < 1)
   transport s hs0 m n Km Kn hm hn
     (gap_ok (|(m : ℝ)| + |(n : ℝ)|) Km Kn s hs0 hc hKa hK hKb hsmall)
 
+/--
+@isnad1 id=lt.3h2v.s6.651040c42e7b from=translated src=- shape=18b76e7a vocab=a824fd3e
+-/
 theorem H1_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 1276 * s * Real.sqrt 317 < 1) :
     ∀ n ∈ Finset.Icc (1 : ℕ) 6,
       deltaN (euclNorm 2) (aprt s) 7 < deltaN (euclNorm 2) (aprt s) (n : ℤ) := by
@@ -411,6 +487,9 @@ theorem H1_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 1276 * s * Real.sqrt 317 < 1
   · exact Hpair s hs0 hsmall 7 6 68 221 dstar7 dstar6 (by norm_num) (by norm_num) (by norm_num)
       (by norm_num)
 
+/--
+@isnad1 id=lt.3h2v.s6.e775903f078d from=translated src=- shape=18b76e7a vocab=a824fd3e
+-/
 theorem H2_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 1276 * s * Real.sqrt 317 < 1) :
     ∀ n ∈ Finset.Icc (1 : ℕ) 7,
       deltaN (euclNorm 2) (aprt s) 8 < deltaN (euclNorm 2) (aprt s) (n : ℤ) := by
@@ -431,6 +510,9 @@ theorem H2_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 1276 * s * Real.sqrt 317 < 1
   · exact Hpair s hs0 hsmall 8 7 61 68 dstar8 dstar7 (by norm_num) (by norm_num) (by norm_num)
       (by norm_num)
 
+/--
+@isnad1 id=lt.3h2v.s6.7fb7f588d924 from=translated src=- shape=18b76e7a vocab=a824fd3e
+-/
 theorem H3_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 1276 * s * Real.sqrt 317 < 1) :
     ∀ n ∈ Finset.Icc (1 : ℕ) 8,
       deltaN (euclNorm 2) (aprt s) 10 < deltaN (euclNorm 2) (aprt s) (n : ℤ) := by
@@ -453,6 +535,9 @@ theorem H3_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 1276 * s * Real.sqrt 317 < 1
   · exact Hpair s hs0 hsmall 10 8 50 61 dstar10 dstar8 (by norm_num) (by norm_num) (by norm_num)
       (by norm_num)
 
+/--
+@isnad1 id=lt.3h2v.s6.41f2f81e2786 from=translated src=- shape=18b76e7a vocab=a824fd3e
+-/
 theorem H4_aprt (s : ℝ) (hs0 : 0 ≤ s) (hsmall : 1276 * s * Real.sqrt 317 < 1) :
     ∀ n ∈ Finset.Icc (1 : ℕ) 10,
       deltaN (euclNorm 2) (aprt s) 11 < deltaN (euclNorm 2) (aprt s) (n : ℤ) := by
@@ -484,7 +569,9 @@ irrational coordinate and an `N ≥ 2` for which the orbit `{0, α, …, Nα}` o
 five** distinct Euclidean nearest-neighbour distances — so the bound `nnDistE_count_le_five` is
 sharp.
 The witness is `α = (3/29 + s, 8/29)` for a small irrational `s`: `card ≥ 5` transports from the
-rational `α*` (Lipschitz), `card ≤ 5` is the five-distance theorem itself. -/
+rational `α*` (Lipschitz), `card ≤ 5` is the five-distance theorem itself.
+@isnad1 id=ex.0h0v.s6.864812102cce from=translated src=- shape=2a589fbe vocab=496cf482
+-/
 theorem sharp_attained : ∃ α : Fin 2 → ℝ, (∃ k, Irrational (α k)) ∧
     ∃ N, 2 ≤ N ∧ ((Finset.range (N + 1)).image (nnDistE α N)).card = 5 := by
   obtain ⟨s, hs_irr, hs_pos, hs_lt⟩ :=

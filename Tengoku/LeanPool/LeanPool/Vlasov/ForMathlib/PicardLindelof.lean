@@ -66,7 +66,9 @@ exposing the FunSpace confinement guarantee at the public API level. The
 underlying property is already proved upstream (the existing proof of
 `_lipschitzOnWith` invokes `FunSpace.compProj_mem_closedBall hf.mul_max_le`
 internally to constrain the iterate to the Lipschitz region); we only
-re-export it. -/
+re-export it.
+@isnad1 id=ex.1h10v.s8.6da7c0fac8b2 from=translated src=- shape=3a807759 vocab=fea95388
+-/
 theorem exists_forall_mem_closedBall_eq_hasDerivWithinAt_lipschitzOnWith_confined
     (hf : IsPicardLindelof f t₀ x₀ a r L K) :
     ∃ α : E → ℝ → E, (∀ x ∈ closedBall x₀ r, α x t₀ = x ∧
@@ -112,7 +114,9 @@ theorem exists_forall_mem_closedBall_eq_hasDerivWithinAt_lipschitzOnWith_confine
 /-- **Picard-Lindelöf with confinement, thin wrapper** (vendored). Drops the
 Lipschitz-in-initial-point conjunct from `_lipschitzOnWith_confined`. This is
 the form `exists_vlasov_extend_one_window` consumes — Vlasov doesn't need the
-flow's Lipschitz dependence on the initial point. -/
+flow's Lipschitz dependence on the initial point.
+@isnad1 id=ex.1h10v.s7.df74164d6300 from=translated src=- shape=657239bc vocab=e67710b9
+-/
 theorem exists_forall_mem_closedBall_eq_forall_mem_Icc_hasDerivWithinAt_confined
     (hf : IsPicardLindelof f t₀ x₀ a r L K) :
     ∃ α : E → ℝ → E, ∀ x ∈ closedBall x₀ r, α x t₀ = x ∧

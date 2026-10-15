@@ -44,12 +44,21 @@ abbrev ProbDist (α : Type) [Fintype α] := {p : α → ℝ // IsProbDist p}
 instance {α : Type} [Fintype α] : CoeFun (ProbDist α) (fun _ => α → ℝ) where
   coe p := p.1
 
+/--
+@isnad1 id=le.0h3v.s5.a1d93fdfa83c from=translated src=- shape=6fe71bcd vocab=f01f7af1
+-/
 lemma prob_nonneg {α : Type} [Fintype α] (p : ProbDist α) (a : α) : 0 ≤ p a :=
   p.2.1 a
 
+/--
+@isnad1 id=eq.0h2v.s5.9ad8669160e6 from=translated src=- shape=5d7cce79 vocab=8868a56e
+-/
 lemma prob_sum_eq_one {α : Type} [Fintype α] (p : ProbDist α) : (∑ a, p a) = 1 :=
   p.2.2
 
+/--
+@isnad1 id=le.0h3v.s5.b7a9a56ee49c from=translated src=- shape=f1cb1562 vocab=f01f7af1
+-/
 lemma prob_le_one {α : Type} [Fintype α] (p : ProbDist α) (a : α) : p a ≤ 1 :=
   (prob_sum_eq_one p) ▸ Finset.single_le_sum (fun b _ => prob_nonneg p b) (Finset.mem_univ a)
 

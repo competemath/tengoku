@@ -37,7 +37,9 @@ variable {n : ℕ}
 /-- **The sharp Euclidean growth inequality, `K = 4` (Haynes–Marklof Theorem 8).** For a
 best-`L²`-approximation sequence `(q, p)` of `α : Fin 2 → ℝ` with the record/monotonicity
 hypotheses,
-the denominators at least double every **four** steps: `2 qₙ ≤ qₙ₊₄`. -/
+the denominators at least double every **four** steps: `2 qₙ ≤ qₙ₊₄`.
+@isnad1 id=le.6h4v.s8.eff2af3630c7 from=translated src=- shape=f9c8420b vocab=e4ac9661
+-/
 theorem euclidean_growth_four (α : Fin 2 → ℝ) (q : ℕ → ℤ) (p : ℕ → Fin 2 → ℤ)
     (hmono : StrictMono q)
     (hattain : ∀ k, euclNorm 2 (rem α (q k) (p k)) ≤ deltaN (euclNorm 2) α (q k))

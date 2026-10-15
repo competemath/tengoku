@@ -130,7 +130,9 @@ noncomputable def reduce (φ : Formula n m) :
 /-! ### Cardinality lemmas — the hypotheses `threeDM_iff_Decodes` needs (`q := 2*m*n`). -/
 
 omit [NeZero n] [NeZero m] in
-/-- `|Tip| = n·m·2 = 2mn`.  No `NeZero` needed (pure product of `Fin`/`Bool` cards). -/
+/-- `|Tip| = n·m·2 = 2mn`.  No `NeZero` needed (pure product of `Fin`/`Bool` cards).
+@isnad1 id=eq.0h2v.s5.2b6b2a558eef from=translated src=- shape=6b56faab vocab=dc9fa8b1
+-/
 theorem card_tip : Fintype.card (Tip n m) = 2 * m * n := by
   unfold Tip
   rw [Fintype.card_prod, Fintype.card_prod, Fintype.card_fin, Fintype.card_fin,
@@ -138,7 +140,9 @@ theorem card_tip : Fintype.card (Tip n m) = 2 * m * n := by
   ring
 
 omit [NeZero m] in
-/-- `|XNode| = n·m + m + m·(n-1) = 2mn` (the `m·(n-1)+m = m·n` step uses `n ≥ 1`). -/
+/-- `|XNode| = n·m + m + m·(n-1) = 2mn` (the `m·(n-1)+m = m·n` step uses `n ≥ 1`).
+@isnad1 id=eq.0h2v.s6.ed4ed4697ed6 from=translated src=- shape=df35771d vocab=71a20b52
+-/
 theorem card_xnode : Fintype.card (XNode n m) = 2 * m * n := by
   unfold XNode
   simp only [Fintype.card_sum, Fintype.card_prod, Fintype.card_fin]
@@ -147,7 +151,9 @@ theorem card_xnode : Fintype.card (XNode n m) = 2 * m * n := by
   ring
 
 omit [NeZero m] in
-/-- `|YNode| = n·m + m + m·(n-1) = 2mn` (same shape as `XNode`). -/
+/-- `|YNode| = n·m + m + m·(n-1) = 2mn` (same shape as `XNode`).
+@isnad1 id=eq.0h2v.s6.57c1e0b38e75 from=translated src=- shape=df35771d vocab=18e19d72
+-/
 theorem card_ynode : Fintype.card (YNode n m) = 2 * m * n := by
   unfold YNode
   simp only [Fintype.card_sum, Fintype.card_prod, Fintype.card_fin]
@@ -160,7 +166,9 @@ theorem card_ynode : Fintype.card (YNode n m) = 2 * m * n := by
 /-- **THE CHAIN CONNECTION** (the m4 deliverable).  `reduce φ` plugs into the formalized hardness
     chain: `ThreeDM (reduce φ) ↔ Decodes (reduce3DM (reduce φ)) (2mn)`, by feeding the three card
     lemmas to the already-proved `MatchingNPHard.threeDM_iff_Decodes`.  The GADGET correctness
-    (`Satisfiable φ ↔ ThreeDM (reduce φ)`) is milestones 5–7. -/
+    (`Satisfiable φ ↔ ThreeDM (reduce φ)`) is milestones 5–7.
+@isnad1 id=iff.0h3v.s10.18a363453a3d from=translated src=- shape=f2c8ce68 vocab=30a61b5e
+-/
 theorem reduce_chain_connects (φ : Formula n m) :
     ThreeDM (reduce φ) ↔
       DecodingNPHard.Decodes (reduce3DM (reduce φ)) (2 * m * n) :=

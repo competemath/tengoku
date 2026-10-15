@@ -64,7 +64,9 @@ def aCoveredOnce (σ : Selection m) (j : Fin m) : Prop :=
   Xor (σ j = true) (σ (j - 1) = false)
 
 /-- The covered-once exclusive-or collapses to the local agreement `σ j = σ (j-1)`:
-    `xor a (¬b) = (a == b)`. -/
+    `xor a (¬b) = (a == b)`.
+@isnad1 id=iff.0h3v.s5.1f34d15539a9 from=translated src=- shape=1683c32b vocab=0474188b
+-/
 lemma aCoveredOnce_iff (σ : Selection m) (j : Fin m) :
     aCoveredOnce σ j ↔ σ j = σ (j - 1) := by
   unfold aCoveredOnce
@@ -110,7 +112,9 @@ private lemma agree_imp_eq_zero (σ : Selection m)
 
 /-- **The two-cover engine.**  A selection is a valid internal cover iff it is constant —
     the all-true or the all-false truth value.  (The `hm : 0 < m` hypothesis is kept in the
-    signature for the downstream assembly; the wheel itself runs on the `[NeZero m]` instance.) -/
+    signature for the downstream assembly; the wheel itself runs on the `[NeZero m]` instance.)
+@isnad1 id=iff.1h2v.s5.c0e355691f5a from=translated src=- shape=3bff479d vocab=57c9f083
+-/
 theorem validCover_iff_const (_hm : 0 < m) (σ : Selection m) :
     ValidCover σ ↔ (σ = fun _ => true) ∨ (σ = fun _ => false) := by
   constructor
@@ -138,7 +142,9 @@ def posTipFree (σ : Selection m) (j : Fin m) : Prop := σ j = false
 def negTipFree (σ : Selection m) (j : Fin m) : Prop := σ j = true
 
 omit [NeZero m] in
-/-- The all-true (one truth value) state frees every negative tip and no positive tip. -/
+/-- The all-true (one truth value) state frees every negative tip and no positive tip.
+@isnad1 id=and.1h2v.s4.51d00ef76221 from=translated src=- shape=7992ccf8 vocab=a29d46e5
+-/
 theorem trueState_frees_neg (σ : Selection m) (h : σ = fun _ => true) :
     (∀ j, ¬ posTipFree σ j) ∧ (∀ j, negTipFree σ j) := by
   subst h
@@ -147,7 +153,9 @@ theorem trueState_frees_neg (σ : Selection m) (h : σ = fun _ => true) :
   · simp [negTipFree]
 
 omit [NeZero m] in
-/-- The all-false (other truth value) state frees every positive tip and no negative tip. -/
+/-- The all-false (other truth value) state frees every positive tip and no negative tip.
+@isnad1 id=and.1h2v.s4.644ec34297dd from=translated src=- shape=67660a09 vocab=26812b9b
+-/
 theorem falseState_frees_pos (σ : Selection m) (h : σ = fun _ => false) :
     (∀ j, posTipFree σ j) ∧ (∀ j, ¬ negTipFree σ j) := by
   subst h

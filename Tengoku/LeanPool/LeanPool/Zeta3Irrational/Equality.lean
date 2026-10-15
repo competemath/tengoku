@@ -19,6 +19,9 @@ namespace LeanPool.Zeta3Irrational
 open scoped Nat
 open BigOperators Polynomial
 
+/--
+@isnad1 id=eq.4h2v.s8.451ffbe303f4 from=translated src=- shape=0c7560c7 vocab=7ed456ef
+-/
 lemma integral_equality_help (s t : ℝ) (s0 : 0 < s) (s1 : s < 1) (t0 : 0 < t) (t1 : t < 1) :
     ∫ (u : ℝ) in (0)..1, 1 / ((1 - (1 - u) * s) * (1 - (1 - t) * u)) =
     ∫ (u : ℝ) in (0)..1,
@@ -71,6 +74,9 @@ lemma integral_equality_help (s t : ℝ) (s0 : 0 < s) (s1 : s < 1) (t0 : 0 < t) 
       rw [b00]
       ring_nf
 
+/--
+@isnad1 id=eq.4h2v.s8.276174ed4d38 from=translated src=- shape=8d746295 vocab=4d94e445
+-/
 lemma integral_equality (s t : ℝ) (s0 : 0 < s) (s1 : s < 1) (t0 : 0 < t) (t1 : t < 1) :
     ∫ (u : ℝ) in (0)..1, 1 /(1 - (1 - (1 - s) * t) * u) =
     ∫ (u : ℝ) in (0)..1, 1 /((1 - (1 - u) * s) * (1 - (1 - t) * u)) := by

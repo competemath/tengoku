@@ -38,7 +38,9 @@ open Finset Real
 /-! ## Bridge to negMulLog -/
 
 /-- `entropyNat p = ∑ a, negMulLog (p a)`, connecting our definition to Mathlib's
-`Real.negMulLog` which carries concavity and differentiability lemmas. -/
+`Real.negMulLog` which carries concavity and differentiability lemmas.
+@isnad1 id=eq.0h2v.s5.7081536fa7f0 from=translated src=- shape=af83de8a vocab=61f51476
+-/
 lemma entropyNat_eq_sum_negMulLog {α : Type} [Fintype α] (p : ProbDist α) :
     entropyNat p = ∑ a, Real.negMulLog (p a) := by
   unfold entropyNat Real.negMulLog
@@ -51,7 +53,9 @@ the support of `p`, we have `∑ pᵢ log(qᵢ/pᵢ) ≤ 0`. Equivalently, the
 Kullback-Leibler divergence `D(p ‖ q) ≥ 0`.
 
 The proof uses `log x ≤ x - 1` on each ratio `qᵢ/pᵢ`, then telescopes via
-`∑ qᵢ = ∑ pᵢ = 1`. -/
+`∑ qᵢ = ∑ pᵢ = 1`.
+@isnad1 id=le.1h3v.s7.037ad73b8378 from=translated src=- shape=c015a105 vocab=c8de2e68
+-/
 theorem gibbs_inequality {α : Type} [Fintype α]
     (p q : ProbDist α) (hsupp : ∀ a, 0 < p a → 0 < q a) :
     ∑ a, p a * Real.log (q a / p a) ≤ 0 := by
@@ -70,13 +74,17 @@ theorem gibbs_inequality {α : Type} [Fintype α]
 
 /-! ## Single-variable entropy bounds -/
 
-/-- Entropy is nonnegative: each `negMulLog(pᵢ) ≥ 0` for `pᵢ ∈ [0, 1]`. -/
+/-- Entropy is nonnegative: each `negMulLog(pᵢ) ≥ 0` for `pᵢ ∈ [0, 1]`.
+@isnad1 id=le.0h2v.s4.57b0ca2f0864 from=translated src=- shape=13e264ab vocab=605363cf
+-/
 theorem entropyNat_nonneg {α : Type} [Fintype α] (p : ProbDist α) :
     0 ≤ entropyNat p := by
   rw [entropyNat_eq_sum_negMulLog]
   exact Finset.sum_nonneg fun a _ => Real.negMulLog_nonneg (prob_nonneg p a) (prob_le_one p a)
 
-/-- Entropy of the uniform distribution on `n` outcomes equals `log n`. -/
+/-- Entropy of the uniform distribution on `n` outcomes equals `log n`.
+@isnad1 id=eq.0h1v.s4.27056e94124c from=translated src=- shape=f9b561cc vocab=b6748567
+-/
 theorem entropyNat_uniformPNat (n : ℕ+) :
     entropyNat (uniformPNat n) = Real.log n := by
   have hn_ne : (n : ℝ) ≠ 0 := by exact_mod_cast Nat.ne_of_gt n.2
@@ -87,7 +95,9 @@ theorem entropyNat_uniformPNat (n : ℕ+) :
   simp [nsmul_eq_mul, hn_ne]
 
 /-- Entropy is at most `log |α|`, with equality at the uniform distribution.
-The proof applies `gibbs_inequality` with `q = uniform`. -/
+The proof applies `gibbs_inequality` with `q = uniform`.
+@isnad1 id=le.0h2v.s4.c5bd6aba9048 from=translated src=- shape=64496f86 vocab=b16095cc
+-/
 theorem entropyNat_le_log_card {α : Type} [Fintype α] [Nonempty α]
     (p : ProbDist α) :
     entropyNat p ≤ Real.log (Fintype.card α) := by

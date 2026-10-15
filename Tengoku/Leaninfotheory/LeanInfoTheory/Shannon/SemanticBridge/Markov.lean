@@ -68,6 +68,7 @@ the cross-product factorization
 
 The identity also covers null middle-coordinate fibers, so it requires no
 finite-alphabet or measurable-space assumptions.
+@isnad1 id=iff.0h4v.s7.ef41cbaf6e8d from=translated src=- shape=92ee41bc vocab=adb592ce
 -/
 theorem isMarkovChain_iff_crossProduct
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -133,6 +134,7 @@ A triple law is Markov exactly when its two endpoint coordinates are
 independent in every positive-mass conditional fiber of the middle coordinate.
 The displayed mapped law orders the coordinates as endpoint, endpoint, middle
 so that it can reuse `condFstSndGivenThird` directly.
+@isnad1 id=iff.0h4v.s7.fa0df0c174f1 from=translated src=- shape=84215e57 vocab=26e768b2
 -/
 theorem isMarkovChain_iff_isIndependent_condFstSndGivenThird
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -148,7 +150,9 @@ theorem isMarkovChain_iff_isIndependent_condFstSndGivenThird
   exact isCondIndependent_iff_isIndependent_condFstSndGivenThird
     (p.map fun x => (x.1, x.2.2, x.2.1))
 
-/-- Textbook-facing alias for the positive-fiber Markov characterization. -/
+/-- Textbook-facing alias for the positive-fiber Markov characterization.
+@isnad1 id=iff.0h4v.s7.fa0df0c174f1 from=translated src=- shape=84215e57 vocab=26e768b2
+-/
 theorem isMarkovChain_iff_fiberwise_endpoints_independent
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype gamma]
@@ -164,6 +168,7 @@ theorem isMarkovChain_iff_fiberwise_endpoints_independent
 /--
 The Markov condition `X → Y → Z` is equivalent to the textbook zero-CMI
 identity `I(X;Z | Y) = 0`.
+@isnad1 id=iff.0h8v.s5.dbb56b3eeac0 from=translated src=- shape=c9497242 vocab=afbe7291
 -/
 theorem condMutualInfoOf_eq_zero_iff_isMarkovChainOf
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -174,7 +179,9 @@ theorem condMutualInfoOf_eq_zero_iff_isMarkovChainOf
   change condMutualInfoOf p X Z Y = 0 ↔ IsCondIndependentOf p X Z Y
   exact condMutualInfoOf_eq_zero_iff_isCondIndependentOf p X Z Y
 
-/-- Reversing a Markov chain preserves the random-variable Markov condition. -/
+/-- Reversing a Markov chain preserves the random-variable Markov condition.
+@isnad1 id=iff.0h8v.s5.7821dd0e8490 from=translated src=- shape=26f379f8 vocab=a72e99b1
+-/
 theorem isMarkovChainOf_reverse
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
     (p : PMF omega) (X : omega → alpha) (Y : omega → beta)
@@ -183,7 +190,9 @@ theorem isMarkovChainOf_reverse
   change IsCondIndependentOf p Z X Y ↔ IsCondIndependentOf p X Z Y
   exact isCondIndependentOf_swap p X Z Y
 
-/-- Reversing the coordinates of a triple law preserves its Markov condition. -/
+/-- Reversing the coordinates of a triple law preserves its Markov condition.
+@isnad1 id=iff.0h4v.s6.25b3142a6c23 from=translated src=- shape=e9d418bc vocab=d2562fc3
+-/
 @[simp]
 theorem isMarkovChain_map_reverse
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -217,7 +226,9 @@ def condFstGivenSndChannel {alpha : Type u} {beta : Type v}
 
 /-! ## Total conditional-channel laws -/
 
-/-- On a null conditioning fiber, the total channel uses the documented fallback. -/
+/-- On a null conditioning fiber, the total channel uses the documented fallback.
+@isnad1 id=eq.1h4v.s5.aa6d9b83daac from=translated src=- shape=44a63e13 vocab=28f23e8e
+-/
 @[simp]
 theorem condFstGivenSndChannel_of_sndMarginal_eq_zero
     {alpha : Type u} {beta : Type v} [Fintype alpha]
@@ -225,7 +236,9 @@ theorem condFstGivenSndChannel_of_sndMarginal_eq_zero
     condFstGivenSndChannel p b = fstMarginal p := by
   rw [condFstGivenSndChannel, dite_eq_left hb]
 
-/-- On a positive conditioning fiber, the total channel is the canonical conditional PMF. -/
+/-- On a positive conditioning fiber, the total channel is the canonical conditional PMF.
+@isnad1 id=eq.1h4v.s5.7db608aef0f7 from=translated src=- shape=f1b613e4 vocab=28dc7694
+-/
 theorem condFstGivenSndChannel_of_sndMarginal_ne_zero
     {alpha : Type u} {beta : Type v} [Fintype alpha]
     (p : PMF (alpha × beta)) {b : beta} (hb : sndMarginal p b ≠ 0) :
@@ -235,6 +248,7 @@ theorem condFstGivenSndChannel_of_sndMarginal_ne_zero
 /--
 The value chosen for a null conditional fiber is irrelevant after weighting by
 the conditioning marginal. The PMF `q` represents any alternative fallback.
+@isnad1 id=eq.1h6v.s6.2a62da7df89d from=translated src=- shape=8dbade75 vocab=873fbed4
 -/
 theorem condFstGivenSndChannel_null_fiber_irrelevant
     {alpha : Type u} {beta : Type v} [Fintype alpha]
@@ -247,6 +261,7 @@ theorem condFstGivenSndChannel_null_fiber_irrelevant
 /--
 The conditioning marginal times the total conditional-channel mass reconstructs
 the original joint mass on every fiber, including null fibers.
+@isnad1 id=eq.0h5v.s6.62024e6d3d06 from=translated src=- shape=605b2baa vocab=d7c613a6
 -/
 theorem sndMarginal_mul_condFstGivenSndChannel
     {alpha : Type u} {beta : Type v} [Fintype alpha]
@@ -261,6 +276,7 @@ theorem sndMarginal_mul_condFstGivenSndChannel
 /--
 Sampling the total conditional channel from the second marginal reconstructs
 the original pair law with its coordinates in channel input-output order.
+@isnad1 id=eq.0h3v.s5.fc42eda9e0f9 from=translated src=- shape=48bd0385 vocab=f01dd93b
 -/
 theorem channelJoint_condFstGivenSndChannel
     {alpha : Type u} {beta : Type v} [Fintype alpha]
@@ -280,6 +296,7 @@ on `B` produces the Markov chain `A → B → C`.
 
 The result is type-generic and includes null middle-coordinate fibers through
 the cross-product characterization, without requiring a conditional PMF.
+@isnad1 id=ismarkov.0h5v.s4.7a2b467f6f69 from=translated src=- shape=eace8fe9 vocab=8512ed1a
 -/
 @[simp]
 theorem isMarkovChain_channelExtension
@@ -304,6 +321,7 @@ Markov chain `X → Y → f(Y)`.
 
 Equivalently, `X` and `f(Y)` are conditionally independent given `Y`:
 `X ⟂ f(Y) | Y`.
+@isnad1 id=ismarkov.0h8v.s5.d231cc045361 from=translated src=- shape=44d73c9a vocab=a72e99b1
 -/
 theorem isMarkovChainOf_comp
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -334,6 +352,7 @@ The second-third marginal is swapped into `(C,B)` order because
 `condFstGivenSndChannel` constructs a channel from the second coordinate to the
 first. Its documented null-fiber fallback is irrelevant: both the original and
 reconstructed atom masses vanish whenever the middle marginal does.
+@isnad1 id=iff.0h4v.s5.b703dabeb7a5 from=translated src=- shape=e47a2493 vocab=b68e5c94
 -/
 theorem isMarkovChain_iff_eq_channelExtension_condFstGivenSndChannel
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -407,7 +426,9 @@ theorem isMarkovChain_iff_eq_channelExtension_condFstGivenSndChannel
     rw [hp]
     exact isMarkovChain_channelExtension _ _
 
-/-- Compatibility alias for reconstruction by the canonical total conditional channel. -/
+/-- Compatibility alias for reconstruction by the canonical total conditional channel.
+@isnad1 id=iff.0h4v.s5.b703dabeb7a5 from=translated src=- shape=e47a2493 vocab=b68e5c94
+-/
 theorem isMarkovChain_iff_canonical_channelExtension
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype gamma]
@@ -421,6 +442,7 @@ theorem isMarkovChain_iff_canonical_channelExtension
 Textbook channel-factorization characterization of a finite Markov triple: a
 law is Markov exactly when some channel from the middle alphabet extends its
 first-two marginal to the original triple law.
+@isnad1 id=iff.0h4v.s5.465d7d5b1e91 from=translated src=- shape=09eb523e vocab=ebd11a1c
 -/
 theorem isMarkovChain_iff_exists_channelExtension
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -448,6 +470,7 @@ Exact mutual-information loss along a finite Markov triple:
 
 This is the PMF form of the Markov chain rule. The Markov hypothesis removes
 the opposite conditional term `I(A;C | B)` from the ordinary chain rule.
+@isnad1 id=eq.1h4v.s6.c039ab64539f from=translated src=- shape=6600f218 vocab=b5e9bb7f
 -/
 theorem mutualInfo_markov_chain_rule
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -471,6 +494,7 @@ theorem mutualInfo_markov_chain_rule
 Exact mutual-information loss along the finite Markov chain `X → Y → Z`:
 
 `I(X;Y) = I(X;Z) + I(X;Y | Z)`.
+@isnad1 id=eq.1h8v.s6.1cf918c7bad3 from=translated src=- shape=0c57c10b vocab=bd2f43e3
 -/
 theorem mutualInfoOf_markov_chain_rule
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -494,6 +518,7 @@ theorem mutualInfoOf_markov_chain_rule
 Mutual-information data processing for a finite Markov triple:
 
 `I(A;C) <= I(A;B)` when `A -> B -> C`.
+@isnad1 id=le.1h4v.s5.cd02c6facc78 from=translated src=- shape=a2f5f055 vocab=f22f0840
 -/
 theorem mutualInfo_dataProcessing
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -507,6 +532,7 @@ theorem mutualInfo_dataProcessing
 Random-variable mutual-information data processing:
 
 `I(X;Z) <= I(X;Y)` when `X -> Y -> Z`.
+@isnad1 id=le.1h8v.s5.e23a232c0935 from=translated src=- shape=e37d2ce4 vocab=2b79db29
 -/
 theorem mutualInfoOf_dataProcessing
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -521,6 +547,7 @@ theorem mutualInfoOf_dataProcessing
 Conditional-entropy form of data processing:
 
 `H(X|Y) <= H(X|Z)` when `X -> Y -> Z`.
+@isnad1 id=le.1h8v.s5.602e2414d1d3 from=translated src=- shape=8f38564c vocab=ff4ad09d
 -/
 theorem condEntropyOf_dataProcessing
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -540,6 +567,7 @@ theorem condEntropyOf_dataProcessing
 PMF form of the conditional-entropy data-processing consequence:
 
 `H(A|B) <= H(A|C)` when `A -> B -> C`.
+@isnad1 id=le.1h4v.s5.0182e90c34c2 from=translated src=- shape=07328b8a vocab=e4aea37a
 -/
 theorem condEntropy_dataProcessing
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -553,6 +581,7 @@ theorem condEntropy_dataProcessing
 /--
 Equality in mutual-information data processing holds exactly when the reverse
 chain `X -> Z -> Y` is also Markov.
+@isnad1 id=iff.1h8v.s6.bcd84f89aa62 from=translated src=- shape=099fe013 vocab=1a82822f
 -/
 theorem mutualInfoOf_dataProcessing_eq_iff
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -577,6 +606,7 @@ theorem mutualInfoOf_dataProcessing_eq_iff
 For a Markov triple law, equality in mutual-information data processing holds
 exactly when its first, third, and second coordinate variables form the reverse
 Markov chain.
+@isnad1 id=iff.1h4v.s6.fd0b6f117116 from=translated src=- shape=e36f9904 vocab=a0aaef74
 -/
 theorem mutualInfo_dataProcessing_eq_iff
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -595,6 +625,7 @@ processing holds exactly when the reverse chain `X -> Z -> Y` is also Markov.
 Equivalently, `X` and `Y` are conditionally independent given `Z`,
 `X ⟂ Y | Z`; in this sense, `Z` retains all information about `X` carried by
 `Y`.
+@isnad1 id=iff.1h8v.s6.e63597cf700f from=translated src=- shape=86e18b01 vocab=9ec7e4bb
 -/
 theorem condEntropyOf_dataProcessing_eq_iff
     {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
@@ -613,6 +644,7 @@ theorem condEntropyOf_dataProcessing_eq_iff
 For a Markov triple law, equality in conditional-entropy data processing holds
 exactly when its first, third, and second coordinate variables form the reverse
 Markov chain.
+@isnad1 id=iff.1h4v.s6.5847c27d50c8 from=translated src=- shape=357aeff5 vocab=363524bd
 -/
 theorem condEntropy_dataProcessing_eq_iff
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -630,6 +662,7 @@ theorem condEntropy_dataProcessing_eq_iff
 /--
 Applying a channel to the right coordinate of a finite joint law cannot
 increase mutual information.
+@isnad1 id=le.0h5v.s5.37cbf4fb8d1e from=translated src=- shape=a1feb82c vocab=3fb016cf
 -/
 theorem mutualInfo_channel_right_le
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -660,6 +693,7 @@ private theorem channel_left_processed_law
 Applying a channel to the left coordinate of a finite joint law cannot
 increase mutual information. The displayed bind is the law of the processed
 left output paired with the unchanged right coordinate.
+@isnad1 id=le.0h5v.s6.701853fe9578 from=translated src=- shape=104c77c3 vocab=68e895f7
 -/
 theorem mutualInfo_channel_left_le
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -702,6 +736,7 @@ private theorem independent_channels_processed_law
 Applying independent channels to both coordinates of a finite joint law
 cannot increase mutual information. Conditional on an input pair `(a,b)`, the
 two channel outputs have law `indepProd (W a) (V b)`.
+@isnad1 id=le.0h7v.s6.81be6ed2e779 from=translated src=- shape=5d9369e0 vocab=54846990
 -/
 theorem mutualInfo_independent_channels_le
     {alpha : Type u} {beta : Type v} {gamma : Type w} {delta : Type x}
@@ -721,6 +756,7 @@ theorem mutualInfo_independent_channels_le
 
 /--
 Mutual information contracts along a two-stage finite channel cascade.
+@isnad1 id=le.0h6v.s5.f3c3fb329bad from=translated src=- shape=3cc56e61 vocab=fbee4685
 -/
 theorem mutualInfo_channelComp_le
     {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -731,7 +767,9 @@ theorem mutualInfo_channelComp_le
   simpa using
     mutualInfo_channel_right_le (PMF.channelJoint p W) V
 
-/-- Textbook-facing alias for mutual-information contraction along a channel cascade. -/
+/-- Textbook-facing alias for mutual-information contraction along a channel cascade.
+@isnad1 id=le.0h6v.s5.f3c3fb329bad from=translated src=- shape=3cc56e61 vocab=fbee4685
+-/
 theorem mutualInfo_channel_cascade_le
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -743,6 +781,7 @@ theorem mutualInfo_channel_cascade_le
 /--
 Deterministically mapping every output law of a finite channel cannot increase
 its input-output mutual information.
+@isnad1 id=le.0h6v.s5.9c5c99b9aacb from=translated src=- shape=ceb30c8e vocab=bef0058c
 -/
 theorem mutualInfo_channel_map_output_le
     {alpha : Type u} {beta : Type v} {gamma : Type w}

@@ -48,35 +48,54 @@ def protectedBound (l : ℕ) : ℕ :=
 def blockSize (l : ℕ) : ℕ :=
   (l + 2) * protectedBound l
 
+/--
+@isnad1 id=eq.0h1v.s4.10ad5b9c22da from=translated src=- shape=a3b61a71 vocab=8c011f77
+-/
 @[simp]
 theorem accumulatedSize_succ (l : ℕ) :
     accumulatedSize (l + 1) = accumulatedSize l + blockSize l := by
   rfl
 
+/--
+@isnad1 id=lt.0h1v.s3.d6f94d076d64 from=translated src=- shape=8a62b088 vocab=0fdc543f
+-/
 theorem protectedBound_pos (l : ℕ) : 0 < protectedBound l := by
   simp only [protectedBound]
   omega
 
+/--
+@isnad1 id=le.0h1v.s4.9b7b987086c3 from=translated src=- shape=8ebb3917 vocab=bad3bdda
+-/
 theorem accumulatedSize_add_le_protectedBound (l : ℕ) :
     accumulatedSize l + l + 2 ≤ protectedBound l := by
   simp only [protectedBound]
   omega
 
+/--
+@isnad1 id=ne.0h1v.s3.191fba4fdf0d from=translated src=- shape=b14ee516 vocab=6b591d4a
+-/
 theorem protectedBound_ne_zero (l : ℕ) : protectedBound l ≠ 0 :=
   Nat.ne_of_gt (protectedBound_pos l)
 
+/--
+@isnad1 id=lt.0h1v.s3.7cc7c8669a10 from=translated src=- shape=8a62b088 vocab=966e2c5b
+-/
 theorem blockSize_pos (l : ℕ) : 0 < blockSize l := by
   simp only [blockSize]
   exact Nat.mul_pos (by omega) (protectedBound_pos l)
 
-/-- The exact discarded-proportion identity behind the density-one argument. -/
+/-- The exact discarded-proportion identity behind the density-one argument.
+@isnad1 id=eq.0h1v.s5.eb4cec92cf97 from=translated src=- shape=645b1280 vocab=a42f4a1c
+-/
 theorem protectedBound_div_blockSize (l : ℕ) :
     (protectedBound l : ℝ) / (blockSize l : ℝ) =
       1 / ((l : ℝ) + 2) := by
   rw [blockSize, Nat.cast_mul, Nat.cast_add, Nat.cast_ofNat]
   field_simp [protectedBound_ne_zero l]
 
-/-- The proportion of a block which bounded deletion may discard tends to zero. -/
+/-- The proportion of a block which bounded deletion may discard tends to zero.
+@isnad1 id=tendsto.0h0v.s5.bfa3652a9564 from=translated src=- shape=3386506e vocab=83e396c1
+-/
 theorem tendsto_protectedBound_div_blockSize :
     Tendsto (fun l : ℕ ↦ (protectedBound l : ℝ) / (blockSize l : ℝ))
       atTop (nhds 0) := by
@@ -93,17 +112,24 @@ theorem tendsto_protectedBound_div_blockSize :
 def stageError (l : ℕ) : ℝ :=
   (1 / 32 : ℝ) / 2 / 2 ^ l
 
+/--
+@isnad1 id=lt.0h1v.s3.817d98008901 from=translated src=- shape=b9369acb vocab=1ef69b5a
+-/
 theorem stageError_pos (l : ℕ) : 0 < stageError l := by
   simp only [stageError]
   positivity
 
-/-- Exact geometric-tail identity, convenient for the completeness estimate. -/
+/-- Exact geometric-tail identity, convenient for the completeness estimate.
+@isnad1 id=eq.0h2v.s5.c3f99de83d2d from=translated src=- shape=07968900 vocab=8bf400c4
+-/
 theorem stageError_add (L n : ℕ) :
     stageError (L + n) = stageError L / 2 ^ n := by
   simp only [stageError, pow_add]
   ring
 
-/-- The tail beginning at stage `L` has total mass exactly `2 * stageError L`. -/
+/-- The tail beginning at stage `L` has total mass exactly `2 * stageError L`.
+@isnad1 id=hassum.0h1v.s5.81d5264a4173 from=translated src=- shape=3727a3b9 vocab=67ff554a
+-/
 theorem hasSum_stageError_add (L : ℕ) :
     HasSum (fun n : ℕ ↦ stageError (L + n)) (2 * stageError L) := by
   convert hasSum_geometric_two' (2 * stageError L) using 1
@@ -111,22 +137,36 @@ theorem hasSum_stageError_add (L : ℕ) :
   rw [stageError_add]
   ring
 
+/--
+@isnad1 id=summable.0h1v.s4.7d7926989771 from=translated src=- shape=7119c14c vocab=c11c5143
+-/
 theorem summable_stageError_add (L : ℕ) :
     Summable (fun n : ℕ ↦ stageError (L + n)) :=
   (hasSum_stageError_add L).summable
 
+/--
+@isnad1 id=eq.0h1v.s5.d388dad1d170 from=translated src=- shape=14f1cffc vocab=eb2c6757
+-/
 theorem tsum_stageError_add (L : ℕ) :
     ∑' n : ℕ, stageError (L + n) = 2 * stageError L :=
   (hasSum_stageError_add L).tsum_eq
 
+/--
+@isnad1 id=summable.0h0v.s3.791820182309 from=translated src=- shape=ef4b497d vocab=2caf10aa
+-/
 theorem summable_stageError : Summable stageError := by
   change Summable (fun n : ℕ ↦ (1 / 32 : ℝ) / 2 / 2 ^ n)
   exact summable_geometric_two' (1 / 32 : ℝ)
 
+/--
+@isnad1 id=tendsto.0h0v.s4.6f2f79cc74c5 from=translated src=- shape=8e2810f0 vocab=af3e7cee
+-/
 theorem tendsto_stageError : Tendsto stageError atTop (nhds 0) :=
   summable_stageError.tendsto_atTop_zero
 
-/-- The total perturbation budget of the entire fusion is `1/32`. -/
+/-- The total perturbation budget of the entire fusion is `1/32`.
+@isnad1 id=eq.0h0v.s5.57497ab48393 from=translated src=- shape=5cc1707c vocab=56c77a16
+-/
 theorem tsum_stageError : ∑' l : ℕ, stageError l = (1 / 32 : ℝ) := by
   change (∑' n : ℕ, (1 / 32 : ℝ) / 2 / 2 ^ n) = 1 / 32
   exact tsum_geometric_two' (1 / 32 : ℝ)
@@ -147,6 +187,9 @@ literally a single sequence of natural numbers. -/
 noncomputable def rawKroneckerBound (l m : ℕ) : ℕ :=
   Classical.choose (exists_uniformKroneckerBound.{0} m (stageError_pos l))
 
+/--
+@isnad1 id=isunifor.0h2v.s3.9f0495031cf0 from=translated src=- shape=58ccb911 vocab=c90ab4be
+-/
 theorem rawKroneckerBound_spec (l m : ℕ) :
     IsUniformKroneckerBound.{0} m (stageError l) (rawKroneckerBound l m) :=
   Classical.choose_spec (exists_uniformKroneckerBound.{0} m (stageError_pos l))
@@ -158,9 +201,15 @@ not enter the numerical schedule. -/
 noncomputable def kroneckerBound (l : ℕ) : ℕ :=
   max 1 ((Finset.Icc 1 (tupleLengthBound l)).sup (rawKroneckerBound l))
 
+/--
+@isnad1 id=le.0h1v.s3.c672a62cb3e8 from=translated src=- shape=8a62b088 vocab=5b4a8e3f
+-/
 theorem one_le_kroneckerBound (l : ℕ) : 1 ≤ kroneckerBound l := by
   exact Nat.le_max_left _ _
 
+/--
+@isnad1 id=le.2h2v.s4.f3610de54a7f from=translated src=- shape=bce740fa vocab=c2b63c2d
+-/
 theorem rawKroneckerBound_le (l m : ℕ) (hm0 : 0 < m)
     (hm : m ≤ tupleLengthBound l) :
     rawKroneckerBound l m ≤ kroneckerBound l := by
@@ -169,13 +218,17 @@ theorem rawKroneckerBound_le (l m : ℕ) (hm0 : 0 < m)
   exact Finset.mem_Icc.mpr ⟨hm0, hm⟩
 
 /-- The uniform Kronecker assertion is vacuous for an empty tuple, so no value `q(0, ε_l)` is
-needed in the paper's maximum. -/
+needed in the paper's maximum.
+@isnad1 id=isunifor.0h1v.s3.55881a81e67d from=translated src=- shape=88774e53 vocab=19fad89a
+-/
 theorem kroneckerBound_spec_zero (l : ℕ) :
     IsUniformKroneckerBound.{0} 0 (stageError l) (kroneckerBound l) := by
   intro G _inst z t _ht
   exact ⟨0, fun i ↦ Fin.elim0 i⟩
 
-/-- The scheduled height bound is valid for every tuple that can occur at this stage. -/
+/-- The scheduled height bound is valid for every tuple that can occur at this stage.
+@isnad1 id=isunifor.1h2v.s4.8b4bd583dfdc from=translated src=- shape=0659d62e vocab=2f3e772b
+-/
 theorem kroneckerBound_spec (l m : ℕ) (hm : m ≤ tupleLengthBound l) :
     IsUniformKroneckerBound.{0} m (stageError l) (kroneckerBound l) :=
   by
@@ -188,6 +241,9 @@ theorem kroneckerBound_spec (l m : ℕ) (hm : m ≤ tupleLengthBound l) :
 noncomputable def stageIndependenceBound (l : ℕ) : ℕ :=
   independenceBound l (kroneckerBound l)
 
+/--
+@isnad1 id=le.2h4v.s5.dcdc314ce3c3 from=translated src=- shape=7cb370a1 vocab=c435b920
+-/
 theorem card_union_le_tupleLengthBound {G : Type*} [DecidableEq G]
     {l : ℕ} {A Y : Finset G}
     (hA : A.card ≤ protectedBound l) (hY : Y.card ≤ blockSize l) :
@@ -197,7 +253,9 @@ theorem card_union_le_tupleLengthBound {G : Type*} [DecidableEq G]
     _ ≤ protectedBound l + blockSize l := Nat.add_le_add hA hY
     _ = tupleLengthBound l := rfl
 
-/-- The bounded-deletion lemma specialized to the numerical schedule. -/
+/-- The bounded-deletion lemma specialized to the numerical schedule.
+@isnad1 id=ex.2h4v.s6.b75d509d5aad from=translated src=- shape=a9cff4bf vocab=b0845dd8
+-/
 theorem exists_stage_deletion {G : Type*} [AddCommGroup G] [DecidableEq G]
     {l : ℕ} (A X : Finset G) (hA : A.card ≤ protectedBound l)
     (hX : BoundedIndependent (stageIndependenceBound l) X) :

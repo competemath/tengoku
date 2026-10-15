@@ -110,7 +110,9 @@ private theorem crossings_bounded_from_partition_finset
 - No other crossing `t_j ≠ t_i` lies in `[t_i - r, t_i + r]` (distinct
   windows are pairwise disjoint up to width `2r`);
 - No partition point lies in `[t_i - r, t_i + r]` (each window avoids the
-  legacy partition). -/
+  legacy partition).
+@isnad1 id=ex.3h2v.s7.b202e43a81ee from=translated src=- shape=d4f07414 vocab=68edda85
+-/
 theorem multi_pole_common_radius
     {crossings partition : Finset ℝ}
     (h_nonempty : crossings.Nonempty)
@@ -159,7 +161,9 @@ theorem multi_pole_common_radius
 and pairwise disjointness) and the completeness assumption that every
 parameter `t ∈ Icc 0 1` with `γ(t) = s` lies in `crossings`, the only
 parameter `t ∈ Icc (t_i - r) (t_i + r)` with
-`γ.toPiecewiseC1Path.toPath.extend t = s` is `t = t_i`. -/
+`γ.toPiecewiseC1Path.toPath.extend t = s` is `t = t_i`.
+@isnad1 id=eq.7h7v.s8.05c50e5332d1 from=translated src=- shape=a70e996d vocab=ae34a54a
+-/
 theorem multi_pole_local_uniqueness
     (γ : ClosedPwC1Immersion x) {s : ℂ}
     {crossings : Finset ℝ} {r : ℝ} (hr_pos : 0 < r)
@@ -185,7 +189,9 @@ theorem multi_pole_local_uniqueness
 /-- **Localized far-bound from local uniqueness.** On the window `[t_i - r, t_i + r]`,
 since the only parameter where γ = s is `t_i`, the distance `‖γ(t) - s‖` has a positive
 minimum on each closed half-window `[t_i - r, t_i - r']` and `[t_i + r', t_i + r]`,
-for any `0 < r' < r`. -/
+for any `0 < r' < r`.
+@isnad1 id=ex.4h6v.s8.dbced7e9d76d from=translated src=- shape=88522a13 vocab=a267ea22
+-/
 theorem multi_pole_local_far_bound
     (γ : ClosedPwC1Immersion x) {s : ℂ}
     {t_i : ℝ} {r : ℝ} (hr_pos : 0 < r)

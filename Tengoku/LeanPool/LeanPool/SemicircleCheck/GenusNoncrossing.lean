@@ -61,7 +61,9 @@ Mathlib provides this as `finRotate`. Key properties we need:
 def longCycle (n : ℕ) : Perm (Fin (2 * n)) :=
   finRotate (2 * n)
 
-/-- For n ≥ 1, the long cycle is a single cycle of length 2n. -/
+/-- For n ≥ 1, the long cycle is a single cycle of length 2n.
+@isnad1 id=iscycle.1h1v.s4.0067407407c4 from=translated src=- shape=bfffe250 vocab=d4351064
+-/
 theorem longCycle_isCycle {n : ℕ} (hn : 1 ≤ n) :
     (longCycle n).IsCycle := by
   unfold longCycle
@@ -465,7 +467,9 @@ private lemma pairing_swap_factorization {n : ℕ} (p : Pairing n) :
     intro g hg
     exact hswap g (by rw [← hl_eq]; exact List.mem_toFinset.mpr hg)
 
-/-- For any pairing, numCycles(γπ) ≤ n + 1. -/
+/-- For any pairing, numCycles(γπ) ≤ n + 1.
+@isnad1 id=le.0h2v.s7.6c3f3fcdb500 from=translated src=- shape=d22e001e vocab=088cb1dc
+-/
 theorem Pairing.numCycles_le {n : ℕ} (p : Pairing n) :
     numCycles (longCycle n * p.val) ≤ n + 1 := by
   rcases Nat.eq_zero_or_pos n with rfl | hn
@@ -533,7 +537,9 @@ private theorem numCycles_parity_even {n : ℕ} (p : Pairing n) (hn : 1 ≤ n) :
   omega
 
 /-- For any pairing with n ≥ 1, (n + 1 - numCycles(γπ)) is even.
-    False for n = 0: numCycles on Fin 0 is 0, but 2 * 0 ≠ 1. -/
+    False for n = 0: numCycles on Fin 0 is 0, but 2 * 0 ≠ 1.
+@isnad1 id=eq.1h2v.s7.f8a7152352d7 from=translated src=- shape=722a35bc vocab=f742a12b
+-/
 theorem Pairing.genus_exact {n : ℕ} (p : Pairing n) (hn : 1 ≤ n) :
     2 * p.genus = (n + 1) - numCycles (longCycle n * p.val) := by
   unfold Pairing.genus
@@ -875,7 +881,9 @@ private theorem numCycles_split_normalized {n : ℕ} (hn : 1 ≤ n)
 /-- The cycle-splitting lemma: removing an adjacent pair from a
     pairing decreases numCycles(γπ) by 1. Equivalently, the pairing
     with the adjacent pair has one more cycle than the contracted one.
-    Requires n ≥ 1 so the target Pairing n is on ≥ 2 elements. -/
+    Requires n ≥ 1 so the target Pairing n is on ≥ 2 elements.
+@isnad1 id=eq.2h3v.s9.17aba415e14d from=translated src=- shape=dd96f0cd vocab=84af296d
+-/
 theorem numCycles_delete_adjacent {n : ℕ} (hn : 1 ≤ n) (p : Pairing (n + 1))
     (i : Fin (2 * (n + 1))) (h : p.hasAdjacentAt i) :
     numCycles (longCycle (n + 1) * p.val) =
@@ -1010,7 +1018,9 @@ private lemma fixedPoint_gives_adjacent {n : ℕ} (p : Pairing (n + 1))
     forces the composition gamma*pi to have fixed points (at least 2).
     Each fixed point yields an adjacent pair via the involution property.
     After deleting that adjacent pair, the cycle-splitting lemma gives
-    numCycles = n for the contracted pairing, and induction applies. -/
+    numCycles = n for the contracted pairing, and induction applies.
+@isnad1 id=isnoncro.1h2v.s7.8bb83f1953f5 from=translated src=- shape=0aee4005 vocab=fa9c515c
+-/
 theorem Pairing.maxCycles_imp_noncrossing {n : ℕ} (p : Pairing n)
     (h : numCycles (longCycle n * p.val) = n + 1) :
     p.IsNoncrossing := by
@@ -1041,7 +1051,9 @@ theorem Pairing.maxCycles_imp_noncrossing {n : ℕ} (p : Pairing n)
     points with numCycles(γ' * p') = n + 1 by induction. The
     cycle-splitting lemma gives numCycles(γπ) = numCycles(γ'π') + 1.
 
-    Requires n ≥ 1: on Fin 0, numCycles = 0 ≠ 1 = 0 + 1. -/
+    Requires n ≥ 1: on Fin 0, numCycles = 0 ≠ 1 = 0 + 1.
+@isnad1 id=eq.2h2v.s7.0220a8e09f1d from=translated src=- shape=30e1c273 vocab=988f3206
+-/
 theorem Pairing.noncrossing_imp_maxCycles {n : ℕ} (p : Pairing n)
     (hn : 1 ≤ n) (h : p.IsNoncrossing) :
     numCycles (longCycle n * p.val) = n + 1 := by
@@ -1078,7 +1090,9 @@ theorem Pairing.noncrossing_imp_maxCycles {n : ℕ} (p : Pairing n)
 
 /-! ## 7. Main Theorem and Corollary -/
 
-/-- **The Bridge Theorem**: genus zero ↔ noncrossing. -/
+/-- **The Bridge Theorem**: genus zero ↔ noncrossing.
+@isnad1 id=iff.0h2v.s4.38562e3ea34e from=translated src=- shape=93dc54ee vocab=a3a87067
+-/
 theorem Pairing.genus_zero_iff_noncrossing {n : ℕ} (p : Pairing n) :
     p.genus = 0 ↔ p.IsNoncrossing := by
   cases n with
